@@ -1,0 +1,368 @@
+\chapter{极限定理}
+本章介绍概率论中的极限定理，即大数律和中心极限定理，藉此给出“频率\(f_n(A)\)随试验次数\(n\)增多而逐渐收敛于概率\(P(A)\)”的严格描述.
+
+\section{切比雪夫不等式}
+由于随机变量\(X\)的方差\(D(X)\)刻画了\(X\)取值集中在期望\(E(X)\)周围的程度，故对任意\(\varepsilon>0\)，事件\((\abs{X - E(X)} < \varepsilon)\)的概率与\(D(X)\)有关，且\(D(X)\)越小，这个概率就应越大.
+切比雪夫不等式就可以说明这一点.
+\begin{theorem}[切比雪夫不等式]\label{theorem:极限定理.切比雪夫不等式}
+设随机变量\(X\)的数学期望与方差都存在，则对任意\(\varepsilon > 0\)，有\begin{equation}\label{equation:极限定理.切比雪夫不等式1}
+P(\abs{X-E(X)}<\varepsilon) \geqslant 1 - \frac{D(X)}{\varepsilon^2}
+\end{equation}或\begin{equation}\label{equation:极限定理.切比雪夫不等式2}
+P(\abs{X-E(X)}\geqslant\varepsilon) \leqslant \frac{D(X)}{\varepsilon^2}.
+\end{equation}
+\labelcref{equation:极限定理.切比雪夫不等式1} 与\labelcref{equation:极限定理.切比雪夫不等式2} 这两个等价的不等式都叫做\DefineConcept{切比雪夫不等式}.
+\begin{proof}
+设连续型随机变量\(X\)的密度函数\(f(x)\)，则\begin{align*}
+P(\abs{X-E(X)}\geqslant\varepsilon)
+&=\int_{\abs{x-E(X)}\geqslant\varepsilon} f(x) \dd{x}
+\leqslant \int_{\abs{x-E(X)}\geqslant\varepsilon} \frac{[x - E(X)]^2}{\varepsilon^2} f(x) \dd{x} \\
+&\leqslant \int_{-\infty}^{+\infty} \frac{[x-E(X)]^2}{\varepsilon^2} f(x) \dd{x}
+=\frac{D(X)}{\varepsilon^2}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+应用切比雪夫不等式，当随机变量\(X\)的分布未知，而\(E(X)\)、\(D(X)\)已知时，%
+可对事件\((\abs{X-E(X)}<\varepsilon)\)发生的概率进行粗略估计.
+
+\begin{example}
+已知健康成人男性中，每一毫升血液中白细胞数平均是7300，均方差是700.
+而白细胞数正常范围是5200到9400.
+请估计健康成人男性白细胞正常率.
+\begin{solution}
+设随机变量\(X\)表示健康成人男性每一毫升血液中白细胞数，则\(E(X) = 7300\)，\(D(X) = 700^2\)，于是\[
+P(5200 < X < 9400)
+= P(\abs{X - 7300} < 2100)
+\geqslant 1 - \frac{700^2}{2100^2} = \frac{8}{9}
+\approx 0.8889.
+\]
+\end{solution}
+\end{example}
+
+当\(X\)的分布已知时，在实际应用中应算出精确概率.
+这是因为在实际应用中切比雪夫不等式估计概率的误差较大.
+但是切比雪夫不等式在理论研究中有非常重要的用途.
+
+根据\cref{theorem:随机变量的数字特征.方差的性质1} 可知，常数的方差为零.
+于是我们不禁要问，方差为零的随机变量有什么性质.
+\begin{theorem}
+方差为零的随机变量\(X\)必然几乎处处为常数，且该常数就是其数学期望\(E(X)\)，即\[
+D(X)=0 \implies P[X=E(X)]=1.
+\]
+\begin{proof}
+由\cref{theorem:极限定理.切比雪夫不等式} 可知，对\(\forall\varepsilon>0\)，有\[
+0 \leqslant P[\abs{X-E(X)}\geqslant\varepsilon] \leqslant \frac{D(X)}{\varepsilon^2} = 0,
+\]故有\(P[\abs{X-E(X)}\geqslant\varepsilon] = 0\)或\(P[\abs{X-E(X)}<\varepsilon] = 1\)；
+由于\(\varepsilon\)的任意性，\(\varepsilon\to0\)时\(X \to E(X)\)，那么\[
+P[X=E(X)]=1.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+这个定理表明，在方差为零的情况下，除去一个零概率事件外，\(X\)就是仅取\(E(X)\)这一个值的随机变量.
+在这里，方差起到了决定性作用.
+
+\section{柯尔莫哥洛夫不等式}
+\begin{theorem}
+设随机变量\(\v{X}{n}\)相互独立，且\(E(X_k) = 0, E(X_k^2) < +\infty, i=1,2,\dotsc,n\).
+令\(S_k = X_1 + X_2 + \dotsb + X_k\).
+那么，对\(\forall \varepsilon > 0\)，\[
+P\left(
+\max\limits_{1 \leqslant k \leqslant n} \abs{S_k} \geqslant \varepsilon
+\right) \leqslant \frac{E(S_n^2)}{\varepsilon^2}.
+\]
+
+如果还有\(P(\abs{X_i} \leqslant c) = 1\ (i=1,2,\dotsc,n)\)，则\[
+P\left(
+\max\limits_{1 \leqslant k \leqslant n} \abs{S_k} \geqslant \varepsilon
+\right) \geqslant 1 - \frac{(c+\varepsilon)^2}{E(S_n^2)}.
+\]
+%证明@see: 施利亚耶夫的概率，补充和修订第三版，第二卷第8页
+\end{theorem}
+
+\begin{theorem}
+设随机变量\(\v{X}{n}\)相互独立，且\(E(X_k) = \mu_k, D(X_k) = \sigma_k^2\in[0,+\infty), i=1,2,\dotsc,n\).
+令\(S_k = X_1 + X_2 + \dotsb + X_k\)，%
+\(m_k = E(S_k) = \mu_1 + \mu_2 + \dotsb + \mu_k\)，%
+\(s_k^2 = D(S_k) = \sigma_1^2 + \sigma_2^2 + \dotsb + \sigma_k^2\).
+那么，对\(\forall \varepsilon > 0\)，\[
+P\left(
+\max\limits_{1 \leqslant k \leqslant n} \abs{S_k - m_k} < \varepsilon s_n
+\right) \geqslant 1 - \frac{1}{\varepsilon^2}.
+\]
+\end{theorem}
+当\(n=1\)时，上述定理化为切比雪夫不等式.
+对\(n>1\)的情形，切比雪夫不等式只是对概率\(P(\abs{S_n - m_n} < \varepsilon s_n)\)给出了一样的界.
+因此柯尔莫哥洛夫不等式是比较强的.
+
+\section{大数律}
+我们现在来定义随机变量序列的“收敛性”.
+\begin{definition}
+设\(\{X_n\}\)是一随机变量序列，\(a\)为常数，若对任意\(\varepsilon>0\)，有\[
+\lim\limits_{n\to\infty} P(\abs{X_n-a}<\varepsilon) = 1
+\quad\text{或}\quad
+\lim\limits_{n\to\infty} P(\abs{X-a}\geqslant\varepsilon) = 0,
+\]则称“\(\v{X}{n},\dotsc\) \textbf{依概率收敛于} \(a\)”，%
+记为\(X_n \overset{P}{\longrightarrow} a\).
+\end{definition}
+
+依概率收敛的直观意义是：
+当\(n\)充分大时，虽不能保证必有不等式\(\abs{X_n-a}<\varepsilon\)成立，但事件\((\abs{X_n-a}<\varepsilon)\)发生的概率充分接近于1，即\(X_n\)的取值与\(a\)以极大的概率充分接近.
+
+由切比雪夫不等式，立即可以得到一个随机变量序列依概率收敛的充分条件.
+\begin{theorem}\label{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}
+随机变量序列\(\{X_n\}\)中，若\(E(X_n)=\mu_n\)、\(D(X_n)=\sigma_n^2\)存在；
+且\(n\to\infty\)时，有\(\sigma_n^2\to0\)，则\[
+X_n - \mu_n \overset{P}{\longrightarrow} 0.
+\]
+\begin{proof}
+由切比雪夫不等式，对\(\forall \varepsilon > 0\)，有\[
+1 \geqslant P(\abs{X_n-\mu_n}<\varepsilon) \geqslant 1 - \frac{\sigma_n^2}{\varepsilon^2}.
+\]
+当\(n\to\infty\)时，\(\sigma_n^2\to0\)，\(1 - \frac{\sigma_n^2}{\varepsilon^2} \to 1\)，那么有\[
+\lim\limits_{n\to\infty}{P(\abs{X_n-\mu_n}<\varepsilon)=1},
+\]
+即\(X_n - \mu_n \overset{P}{\longrightarrow} 0\).
+\end{proof}
+\end{theorem}
+
+\begin{definition}
+一个随机变量序列\(\{X_k\}\)中，若其中任意有限个随机变量都相互独立，则称\(\{X_k\}\)为\textbf{独立随机变量序列}.
+\end{definition}
+
+\begin{definition}
+对于一个随机变量序列\(\{X_n\}\)，%
+记\(\overline{X} = \frac{1}{n} \sum\limits_{i=1}^n{X_i}\)，若\[
+\overline{X} - \frac{1}{n} \sum\limits_{i=1}^n{E(X_i)} \overset{P}{\longrightarrow} 0,
+\]则称“随机变量序列\(\{X_n\}\)服从\textbf{大数律}”.
+\end{definition}
+
+\begin{theorem}[切比雪夫大数律]\label{theorem:极限定理.大数律.切比雪夫大数律}
+对独立随机变量序列\(\{X_k\}\)，若\(E(X_k)\)、\(D(X_k)\)都存在（\(k=1,2,\dotsc\)）；且有常数\(C\)，使得\(D(X_k) \leqslant C\ (k=1,2,\dotsc)\)，则有\[
+\frac{1}{n} \sum\limits_{k=1}^n{X_k} - \frac{1}{n} \sum\limits_{k=1}^n{E(X_k)} \overset{P}{\longrightarrow} 0.
+\]
+\begin{proof}
+\def\Yn{\frac{1}{n} \sum\limits_{k=1}^n{X_k}}
+令\(Y_n=\Yn\)，则\[
+\mu_n = E(Y_n) = E\left(\Yn\right) = \frac{1}{n} \sum\limits_{k=1}^n{E(X_k)},
+\]\[
+\sigma_n^2 = D(Y_n) = D\left(\Yn\right) = \frac{1}{n^2} \sum\limits_{k=1}^n{D(X_k)} \leqslant \frac{C}{n},
+\]
+故\(n\to\infty\)时，\(\sigma_n^2\to0\)，由\cref{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件} ，有\[
+Y_n - \mu_n \overset{P}{\longrightarrow} 0,
+\]即\[
+\frac{1}{n} \sum\limits_{k=1}^n{X_k} - \frac{1}{n} \sum\limits_{k=1}^n{E(X_k)} \overset{P}{\longrightarrow} 0.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{corollary}[独立同分布大数律]\label{theorem:极限定理.大数律.独立同分布大数律}
+设\(\{X_k\}\)是独立同分布随机变量序列，且\(E(X_k)=\mu\)，\(D(X_k)=\sigma^2\)，\(k=1,2,\dotsc\)，则\[
+\overline{X} \overset{P}{\longrightarrow} \mu.
+\]
+\end{corollary}
+这说明，当样本容量\(n\)充分大时，\(\overline{X}\)在概率意义下取值充分接近于\(X_k\)的共同期望\(\mu\).
+故在实际问题中，可以用\(\overline{X}\)估计\(\mu\)，比如在测量一物体的长度时，取多次测量的平均值.
+
+\begin{theorem}[辛钦大数律]\label{theorem:极限定理.大数律.辛钦大数律}
+设\(\{X_k\}\)是独立同分布随机变量序列，且\(E(X_k)=\mu\ (k=1,2,\dotsc)\)，则\[
+\overline{X} \overset{P}{\longrightarrow} \mu.
+\]
+\begin{proof}
+不妨令\(E(X_k) = \mu = 0\).
+
+当\(D(X_k)=\sigma^2\)存在时，由切比雪夫不等式\labelcref{equation:极限定理.切比雪夫不等式2} 可知，对\(\forall\varepsilon>0\)，有\[
+P(\abs{X_i}\geqslant\varepsilon) \leqslant \frac{\sigma^2}{\varepsilon^2},
+\quad(i=1,2,\dotsc,n).
+\eqno{(1)}
+\]记\(S_n = X_1 + X_2 + \dotsb + X_n\)，那么有\[
+P(\abs{S_n} > \varepsilon) \leqslant \frac{n \sigma^2}{\varepsilon^2}.
+\eqno{(2)}
+\]令\(\varepsilon = c n\)，则\(n\to\infty\)时，\[
+\frac{n \sigma^2}{\varepsilon^2}
+= \frac{\sigma^2}{c^2 n} \to 0.
+\]
+
+当\(D(X_k)\)不存在时，证明较难.
+为此，可用“截尾法”将其化为前述情形.
+此法是一种证明各种极限定理的标准方法.
+
+令\[
+U_k = \left\{ \begin{array}{cl}
+X_k, & \abs{X_k} \leqslant \delta n, \\
+0, & \abs{X_k} > \delta n;
+\end{array} \right.
+\qquad
+V_k = \left\{ \begin{array}{cl}
+0, & \abs{X_k} \leqslant \delta n, \\
+X_k, & \abs{X_k} > \delta n;
+\end{array} \right.
+\quad(k=1,2,\dotsc,n).
+\eqno{(3)}
+\]显然\(X_k = U_k + V_k\).
+现在只要证明，对\(\forall\varepsilon>0\)，可取常数\(\delta\)，使得\(n\to\infty\)时有\[
+P\left(\abs{U_1+\dotsb+U_n} > \frac{1}{2} \varepsilon n\right) \to 0,
+\eqno{(4)}
+\]\[
+P\left(\abs{V_1+\dotsb+V_n} > \frac{1}{2} \varepsilon n\right) \to 0.
+\eqno{(5)}
+\]
+
+假设\(X_j\)可能的取值为\(x_1,x_2,\dotsc\)，且其对应的概率为\(f(x_j)\ (j=1,2,\dotsc)\).
+令\[
+a = E(\abs{X_j}) = \sum\limits_j \abs{x_j} f(x_j).
+\eqno{(6)}
+\]随机变量\(U_k\)上界是\(\delta n\)，因此显然有\(E(U_k^2) < a \delta n\).
+又因为\(U_1,\dotsc,U_n\)独立同分布，所以\[
+D(U_1+\dotsb+U_n) = n D(U_1) \leqslant n E(U_1^2) \leqslant a \delta n^2.
+\eqno{(7)}
+\]另一方面，由\(U_k\)的定义，当\(n\to\infty\)时，\(E(U_k) \to E(X_k) = 0\).
+由此推出：当\(n\)充分大时，\(E[(U_1+\dotsb+U_n)^2] \leqslant 2 a \delta n^2\).
+由于\[
+P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \varepsilon n \right) \geqslant \frac{8a\delta}{\varepsilon},
+\eqno{(8)}
+\]所以(4)式是切比雪夫不等式\labelcref{equation:极限定理.切比雪夫不等式1} 的直接变形.
+只要\(\delta\)充分小，使得(8)式右边足够小，就有(4)式成立.
+
+至于(5)式，注意到 \hyperref[equation:概率论基础.布尔不等式]{布尔不等式} \[
+P(V_1+\dotsb+V_n \neq 0) \leqslant n P(V_1 \neq 0).
+\eqno{(9)}
+\]对\(\forall \delta > 0\)，有\[
+P(V_1 \neq 0) = P(\abs{X_1} > \delta n)
+= \sum\limits_{\abs{x_j} > \delta n} f(x_j)
+\leqslant \frac{1}{\delta n} \sum\limits_{\abs{x_j} > \delta n} \abs{x_j} f(x_j).
+\eqno{(10)}
+\]因为(10)式最右边的级数当\(n\to\infty\)时趋于\(0\)，因此(9)式左边当\(n\to\infty\)时也趋于\(0\).
+此结论比(5)式更强.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}[伯努利大数律]\label{theorem:极限定理.大数律.伯努利大数律}
+在\(n\)次伯努利试验中，事件\(A\)发生了\(n_A\)次（即事件\(A\)发生的频率为\(f_n(A)=n_A / n\)），且\(A\)发生的概率为\(p=P(A)\)，则\[
+f_n(A) \overset{P}{\longrightarrow} p.
+\]
+\begin{proof}
+令随机变量\(X_k\)为\[
+X_k = \left\{ \begin{array}{cl}
+1, & \text{事件\(A\)在第\(k\)次试验中发生}, \\
+0, & \text{事件\(A\)在第\(k\)次试验中不发生}, \\
+\end{array} \right.
+\]则\(\v{X}{k}\)独立同服从于\(B(1,p)\)分布，且\(E(X_k)=p\)，\(D(X_k)=p(1-p)\).
+注意\(f_n(A)=\overline{X}=\frac{1}{n} \sum\limits_{k=1}^n{X_k}\)，从而由独立同分布大数律，有\[
+f_n(A) \overset{P}{\longrightarrow} p = P(A).
+\qedhere
+\]
+\end{proof}
+\end{corollary}
+这个推论则指明了“频概关系”，即频率\(f_n(A)\)的稳定值\(P(A)\)实际上是频率依概率收敛于\(P(A)\).
+这样，在实际应用中，\(n\)较大时，可用频率\(f_n(A)\)估计\(A\)发生的概率\(P(A)\).
+
+\begin{example}
+随机变量序列\(\{X_n\}\)独立同服从于指数分布\(e(3)\)，记\(Y_n = \frac{1}{n} \sum\limits_{k=1}^n X_k^2\).
+求：当\(n\to\infty\)时，\(\overline{X}\)与\(Y_n\)分别依概率收敛于何值？
+\begin{solution}
+因为\(E(X_k) = \frac{1}{3}\)，\(E(X_k^2) = D(X_k) + [E(X_k)]^2 = \frac{1}{9} + \frac{1}{9} = \frac{2}{9}\)，且\(D(X_k^2)\)存在，\(\{X_n^2\}\)也是独立同分布随机变量序列，于是\[
+\overline{X} \overset{P}{\longrightarrow} \frac{1}{3},
+\qquad
+Y_n \overset{P}{\longrightarrow} \frac{2}{9}.
+\]
+\end{solution}
+\end{example}
+
+\section{中心极限定理}
+由 \hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布的可加性} 可知，相互独立的正态分布随机变量的和仍然服从正态分布.但在实际问题中，经常要遇到求解相互独立的非正态随机变量的和的分布问题.
+
+\subsection{林德伯格-列维中心极限定理}
+\begin{lemma}
+对于任意随机变量\(X\)，称函数\[
+\varphi_X(t) = E(e^{\iu t X})
+\]为它的特征函数.
+相互独立的随机变量的和的特征函数等于各个随机变量的特征函数的乘积，即\[
+\varphi_{X_1+X_2+\dotsb+X_n}(t)
+= \varphi_{X_1}(t)
+\cdot \varphi_{X_2}(t)
+\cdot \dotsb
+\cdot \varphi_{X_n}(t),
+\]其中\(\v{X}{n}\)是相互独立的随机变量.
+\end{lemma}
+
+\begin{theorem}[林德伯格-列维中心极限定理]\label{theorem:极限定理.林德伯格-列维中心极限定理}
+设随机变量序列\(\{X_k\}\)独立同分布，且\(E(X_k)=\mu, D(X_k)=\sigma^2\in(0,+\infty), k=1,2,\dotsc\)；
+记\[
+Y_n = \frac{\sum\limits_{k=1}^n X_k - n\mu}{\sqrt{n} \sigma}
+= \frac{ \frac{1}{n} \sum\limits_{k=1}^n X_k - \mu}{\sigma / \sqrt{n}}.
+\]设\(F_n(y)\)是\(Y_n\)的分布函数，则对\(\forall y \in \mathbb{R}\)，有\[
+\lim\limits_{n\to\infty} F_n(y)
+= \lim\limits_{n\to\infty} P(Y_n \leqslant y) = \Phi(y),
+\]其中\(\Phi(y)\)是标准正态分布函数.
+\begin{proof}
+记\(\lambda_i = X_i-\mu\)，则随机变量\(\lambda_i\)独立同分布，且\(E(\lambda_i)=0\)，\(D(\lambda_i)=\sigma^2\).
+设\(\lambda_i\)的特征函数为\(\varphi(t)\)，则\(\frac{\sum\limits_{k=1}^n X_k - n\mu}{\sqrt{n} \sigma}\)的特征函数为\(\left[\varphi\left(\frac{t}{\sqrt{n}\sigma}\right)\right]\).
+当\(n\to\infty\)时，\(\frac{t}{\sqrt{n}\sigma}\to0\).
+\end{proof}
+\end{theorem}
+
+\cref{theorem:极限定理.林德伯格-列维中心极限定理} 又叫做\textbf{独立同分布的中心极限定理}.
+现在对该定理的含义做一些说明.
+注意\begin{align*}
+&E\left(\sum\limits_{k=1}^n X_k\right) = \sum\limits_{k=1}^n E(X_k) = n\mu, \\
+&D\left(\sum\limits_{k=1}^n X_k\right) = \sum\limits_{k=1}^n D(X_k) = n\sigma^2, \\
+&E\left(\frac{1}{n} \sum\limits_{k=1}^n X_k\right)
+= \frac{1}{n} E\left(\sum\limits_{k=1}^n X_k\right)
+= \mu, \\
+&D\left(\frac{1}{n} \sum\limits_{k=1}^n X_k\right)
+= \frac{1}{n^2} D\left(\sum\limits_{k=1}^n X_k\right)
+= \frac{\sigma^2}{n},
+\end{align*}
+故\(Y_n\)是\(\sum\limits_{k=1}^n X_k\)或\(\frac{1}{n} \sum\limits_{k=1}^n X_k\)的标准化随机变量.
+该定理表明\(Y_n\)的分布函数\(F_n(x)\)的极限分布是标准正态分布.
+
+独立同分布的中心极限定理在概率论与数理统计的理论与应用中都非常重要.
+由独立同分布的中心极限定理，我们可以得到二项分布的中心极限定理.
+\subsection{棣莫弗-拉普拉斯中心极限定理}
+\begin{theorem}[棣莫弗-拉普拉斯中心极限定理]\label{theorem:极限定理.棣莫弗-拉普拉斯中心极限定理}
+设随机变量序列\(\{X_n\}\)中，\(X_n \sim B(n,p)\)，\(q = 1-p\)，则对任意\(x \in \mathbb{R}\)，有\[
+\lim\limits_{n\to\infty} P\left( \frac{X_n - np}{\sqrt{npq}} \leqslant x \right) = \Phi(x).
+\]
+\begin{proof}
+设独立同分布随机变量序列\(\{Y_k\}\)，\(Y_k \sim B(1,p)\)，则\(E(Y_k)=p\)，\(D(Y_k)=pq\).由二项分布可加性可知\[
+X_n = \sum\limits_{k=1}^n{Y_k}.
+\]
+
+由\hyperref[theorem:极限定理.林德伯格-列维中心极限定理]{林德伯格-列维中心极限定理}可得\[
+\lim\limits_{n\to\infty} P\left(\frac{X_n-np}{\sqrt{npq}} \leqslant x\right)
+= \lim\limits_{n\to\infty} P\left(\frac{\sum\limits_{k=1}^n{Y_k}-np}{\sqrt{npq}} \leqslant x\right)
+= \Phi(x).
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\cref{theorem:极限定理.棣莫弗-拉普拉斯中心极限定理} 的应用形式是：
+\begin{corollary}
+设\(X_n \sim B(n,p)\)，\(q = 1-p\).
+当\(n\)充分大时，\(X_n\)近似地服从正态分布\(N(np,npq)\)，即\[
+X_n \dotsim N(np,npq).
+\]
+\end{corollary}
+
+\begin{corollary}
+设\(X \sim B(n,p)\)，当\(n\)充分大时，有\[
+P(a < X \leqslant b)
+\approx \Phi\left(\frac{b-np}{\sqrt{npq}}\right) - \Phi\left(\frac{a-np}{\sqrt{npq}}\right).
+\]
+\end{corollary}
+
+关于二项分布的中心极限定理及推论，需要做几点说明：
+\begin{enumerate}
+\item 二项分布的泊松近似需要\(p \leqslant 0.1\)，而正态近似对\(p\)无限制；
+\item 二项分布的正态近似中，“\(n\)充分大”一般认为\(n \geqslant 50\)；
+\item \(n\)充分大时，\(P(X=a)\)和\(P(X=b)\)都很小，可以忽略不计，从而\[
+P(a < X < b)
+\approx P(a < X \leqslant b)
+\approx P(a \leqslant X < b)
+\approx P(a \leqslant X \leqslant b).
+\]
+\end{enumerate}

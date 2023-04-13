@@ -1,0 +1,1990 @@
+\chapter{解析几何}
+古希腊的毕达哥拉斯曾经提出“万物皆数”这一哲学观点，从这一章开始，我们研究如何利用代数方法研究几何问题.
+
+在利用函数图像研究初等函数的性质时，我们产生了这么一个观念：
+平面直角坐标系上的点与数（或更专业地说成是“2元组”\(\opair{x,y}\)）是一一对应的.
+几何图形是由点构成的集合，我们自然地想到能不能用数的集合来代表几何图形.
+这就是解析几何的思想根源.
+
+\section{向量}
+这一节我们首先研究向量的概念，并利用向量给出平面直角坐标系和空间直角坐标系的严格定义.
+
+\subsection{向量的基本概念}
+古人很早就意识到“没有规矩不成方圆\footnote{语出《孟子·离娄章句上》第一节：“离娄之明，公输子之巧，不以规矩，不能成方圆”.}”，即利用圆规确定长短、利用曲尺确定方向，才能够作出各种需要的平面几何图形.
+
+\begin{definition}
+既有大小又有方向的量，称为\textbf{向量}或\textbf{矢量}（vector）.
+
+通常用黑体字母（如\(\mat{a}\)、\(\mat{r}\)、\(\mat{v}\)、\(\mat{F}\)等），或在字母上面加箭头（如\(\vec{a}\)、\(\vec{r}\)、\(\vec{v}\)、\(\vec{F}\)等）来表记向量.
+
+在几何上，常用一条带箭头的线段（称作\textbf{有向线段}）来表示向量.有向线段的长度表示向量的大小，有向线段的方向表示向量的方向.以点\(A\)为起点，点\(B\)为终点的有向线段表示的向量记作\(\vec{AB}\)（\cref{figure:解析几何.有向线段} ）.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[->] (0,0)node[left]{\(A\)}-- (3,1)node[right]{\(B\)};
+\end{tikzpicture}
+\caption{有向线段}
+\label{figure:解析几何.有向线段}
+\end{figure}
+
+与向量相对的，只有大小，没有方向的量，称为\textbf{标量}（scalar\footnote{标量的英文scalar的对应的动词scale具有伸缩的意思.我们马上会讲到向量与标量相乘的结果还是一个向量；只不过当这个标量不为1时，所得的向量与原来的向量相比，大小会发生变化，就好像我们对有向线段进行了伸缩变换一样.}）.
+\end{definition}
+
+\begin{definition}
+如果两个向量\(\mat{a}\)和\(\mat{b}\)的大小相等，且方向相反，我们就说“向量\(\mat{a}\)和\(\mat{b}\)是\textbf{相等}的”，记作\(\mat{a}=\mat{b}\).
+\end{definition}
+在几何上，我们可以形象地把两个向量相等的现象理解为两条有向线段经过平移以后，两者的起点和终点分别完全重合.
+
+\begin{definition}
+向量的大小叫做向量的\textbf{模}.
+我们用两条竖线框在向量符号两边，表示该向量的模，例如：
+向量\(\vec{AB},\mat{a},\vec{a}\)的模依次记作\(\abs{\vec{AB}},\abs{\mat{a}},\abs{\vec{a}}\).
+\end{definition}
+
+\begin{definition}
+模等于1的向量叫做\textbf{单位向量}，记作\(\mat{e}\).
+模等于0的向量叫做\textbf{零向量}，记作\(\mat{0}\)或\(\vec{0}\).
+\end{definition}
+看作有向线段时，零向量的起点和终点重合，所以它的方向可以看作是任意的、不确定的.
+
+\begin{definition}
+设有两个非零向量\(\mat{a},\mat{b}\).
+任取空间一点\(O\)，作\(\vec{OA}=\mat{a},\vec{OB}=\mat{b}\).
+规定不超过\(\pi\)\footnote{%
+“不超过\(\pi\)”也就是夹角\(\theta \in [0,\pi]\).%
+}的\(\angle{AOB}\)称为向量\(\mat{a}\)和\(\mat{b}\)的夹角\footnote{%
+在不强调“由向量\(\mat{a}\)转动到向量\(\mat{b}\)所扫过的角度”时，%
+也就是说当没有规定角度的正负时，%
+两向量间夹角\(\theta\)始终是区间\([0,\pi]\)中的一个值，%
+那么有\(\angle(\mat{a},\mat{b}) \equiv \angle(\mat{b},\mat{a})\)；%
+否则，规定\(\angle(\mat{a},\mat{b}) \equiv -\angle(\mat{b},\mat{a})\).%
+}，记作\(\angle(\mat{a},\mat{b})\)或\(\angle(\mat{b},\mat{a})\)，即\[
+\angle(\mat{a},\mat{b}) \defeq \angle{AOB} = \theta.
+\]
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\pgfmathsetmacro{\by}{sqrt(3)}
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,0);
+\coordinate (B) at (1,\by);
+\draw[->] (O)node[left]{\(O\)} -- (A)node[right]{\(A\)}node[midway,below]{\(\mat{a}\)};
+\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,above left]{\(\mat{b}\)};
+\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.5,angle radius=4mm]{angle=A--O--B};
+
+\coordinate (O) at (5,0);
+\coordinate (A) at (7,0);
+\coordinate (B) at (4,\by);
+\draw[->] (O)node[left]{\(O\)} -- (A)node[right]{\(A\)}node[midway,below]{\(\mat{a}\)};
+\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,left]{\(\mat{b}\)};
+\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.7,angle radius=3mm]{angle=A--O--B};
+\end{tikzpicture}
+\caption{向量的夹角}
+\label{figure:解析几何.向量的夹角}
+\end{figure}
+
+如果\(\angle(\mat{a},\mat{b}) = 0\)或\(\angle(\mat{a},\mat{b}) = \pi\)，就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{平行}\footnote{%
+如果\(\vec{OA}\)和\(\vec{OB}\)的公共起点\(O\)和终点\(A\)、\(B\)位于同一条直线上，因此两向量平行也称作“两向量\textbf{共线}”.%
+}”，记作\(\mat{a}\parallel\mat{b}\).
+如果\(\angle(\mat{a},\mat{b}) = \pi/2\)，就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{垂直}”，记作\(\mat{a}\perp\mat{b}\).
+由于零向量与任一向量的夹角\(\theta\)可以在\(0\)到\(\pi\)之间任意取值，因此可以认为零向量与任何向量都平行，也可以认为零向量与任何向量都垂直.
+\end{definition}
+
+\begin{definition}
+设\(\vec{OA_1},\vec{OA_2},\dotsc,\vec{OA_k}\ (k \geqslant 3)\)是\(k\)个非零向量.
+如果它们的公共起点\(O\)和\(k\)个终点都在同一个平面上，则称这\(k\)个向量\textbf{共面}.
+\end{definition}
+
+\subsection{向量的线性运算}
+既然我们说向量与数是相互对应的，自然地就要为向量定义与数类似的四则运算.
+
+\begin{definition}[向量的加法]
+设有两个向量\(\mat{a}\)与\(\mat{b}\)，任取一点\(A\)，作\(\vec{AB}=\mat{a}\)，再以\(B\)为起点，作\(\vec{BC}=\mat{b}\)，连接\(AC\)，那么向量\(\vec{AC}=\mat{c}\)称为向量\(\mat{a}\)与\(\mat{b}\)的\textbf{和}，记作\(\mat{a}+\mat{b}\)，即\[
+\mat{c}=\mat{a}+\mat{b}.
+\]
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[help lines, color=gray!30, dashed] (0,0) grid (5,4);
+\draw [->, ultra thick] (0,0) -- (5,0) node[right]{\(x\)};
+\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
+\coordinate (A) at (1,1);
+\coordinate (B) at (4,2);
+\coordinate (C) at (3,3);
+\draw[->] (A)node[left]{\(A\)} -- (B)node[right]{\(B\)}node[midway,below]{\(\mat{a}\)};
+\draw[->] (B) -- (C)node[above]{\(C\)}node[midway,above right]{\(\mat{b}\)};
+\draw[->] (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
+\end{tikzpicture}
+\caption{向量相加的三角形法则}
+\label{figure:解析几何.向量相加的三角形法则}
+\end{figure}
+\end{definition}
+
+\begin{definition}[负向量]
+设\(\mat{a}\)为一个向量，称与\(\mat{a}\)的模相同而方向相反的向量为\(\mat{a}\)的\textbf{负向量}，记作\(-\mat{a}\).
+\end{definition}
+
+\begin{definition}[向量的减法]
+规定两个向量\(\mat{b}\)与\(\mat{a}\)的\textbf{差}为\[
+\mat{b}-\mat{a}=\mat{b}+(-\mat{a}),
+\]即把向量\((-\mat{a})\)加到向量\(\mat{b}\)上，便得\(\mat{b}\)与\(\mat{a}\)的差\(\mat{b}-\mat{a}\).
+
+特别地，当\(\mat{b}=\mat{a}\)时，有\[
+\mat{a}-\mat{a}=\mat{a}+(-\mat{a})=\mat{0}.
+\]
+\end{definition}
+
+\begin{definition}[向量与数的乘法]
+规定：向量\(\mat{a}\)与实数\(\lambda\)的\textbf{乘积}还是一个向量，记作\(\lambda\mat{a}\)；它的模为\[
+\abs{\lambda\mat{a}}=\abs{\lambda}\abs{\mat{a}},
+\]它的方向当\(\lambda>0\)时与\(\mat{a}\)相同，当\(\lambda<0\)时与\(\mat{a}\)相反.
+
+当\(\lambda=0\)时，\(\abs{\lambda\mat{a}}=0\)，即\(\lambda\mat{a}\)为零向量，这是它的方向可以是任意的.
+
+特别地，当\(\lambda=\pm 1\)时，有\[
+1 \mat{a} = \mat{a}, \quad (-1) \mat{a} = -\mat{a}.
+\]
+\end{definition}
+
+\begin{definition}
+向量相加及数乘向量统称为向量的\textbf{线性运算}.
+\end{definition}
+
+\begin{theorem}
+设向量\(\mat{e}_a\)表示与非零向量\(\mat{a}\)同方向的单位向量，则\[
+\mat{e}_a=\frac{\mat{a}}{\abs{\mat{a}}}.
+\]
+\end{theorem}
+
+\begin{theorem}[平行定理]
+设向量\(\mat{a} \neq 0\)，那么，向量\(\mat{b}\)平行于\(\mat{a}\)的充要条件是：存在唯一的实数\(\lambda\)使得\(\mat{b}=\lambda\mat{a}\).
+\end{theorem}
+
+\begin{definition}
+设点\(O\)及单位向量\(\mat{i}\)确定了数轴\(Ox\)，对于轴上任一点\(P\)，对应一个向量\(\vec{OP}\)，由于\(\vec{OP}\parallel\mat{i}\)，根据平行定理，必有唯一的实数\(x\)使\(\vec{OP}=x\mat{i}\)（实数\(x\)叫做\textbf{轴上有向线段\(\vec{OP}\)的值}），并知\(\vec{OP}\)与实数\(x\)一一对应.
+据此，定义实数\(x\)为轴上点\(P\)的\textbf{坐标}.
+\end{definition}
+
+\begin{theorem}
+数轴\(Ox\)上点\(P\)的坐标为\(x\)的充要条件是：\(\vec{OP}=x\mat{i}\).
+\end{theorem}
+
+\subsection{平面直角坐标系}
+当在平面上引入一个直角坐标系后，平面上的点\(P\)与有序二元实数组\(\opair{x,y}\)之间就建立了一一对应.
+像这样，建立了坐标系的平面称为\textbf{坐标平面}.
+全体实有序对\(\opair{x,y}\)的集合，即\[
+\mathbb{R}^2=\mathbb{R}\times\mathbb{R}=\Set{\opair{x,y} \given x,y\in\mathbb{R}}
+\]就表示坐标平面.
+
+\subsection{空间直角坐标系}
+在空间取定一点\(O\)和三个两两垂直的单位向量\(\mat{i}\)、\(\mat{j}\)、\(\mat{k}\)，就确定了三条都以\(O\)为原点的两两垂直的的数轴，依次记为\textbf{\(x\)轴}（横轴）、\textbf{\(y\)轴}（竖轴）、\textbf{\(z\)轴}（纵轴），统称\textbf{坐标轴}.它们构成一个空间直角坐标系，称为\(Oxyz\)坐标系.通常把\(x\)轴和\(y\)轴配置在水平面上，而\(z\)轴则是铅垂线.
+
+它们的正向通常符合右手规则，即以右手握住\(z\)轴，当右手的四个手指从正向\(x\)轴以\(\frac{\pi}{2}\)角度转向正向\(y\)轴时，大拇指的指向就是\(z\)轴的方向.
+
+三条坐标轴中任意两条可以确定一个平面，这样定出的三个平面统称为\textbf{坐标面}.\(x\)轴及\(y\)轴所确定的坐标面叫做\textbf{\(xOy\)面}，\(y\)轴及\(z\)轴所确定的坐标面叫做\(yOz\)面，\(z\)轴及\(x\)轴所确定的坐标面叫做\textbf{\(zOx\)面}.
+
+三个坐标面把空间分为八个部分，每一个部分叫做一个\textbf{卦限}.
+
+\begin{center}
+\def\guaxian#1#2#3{\Set{ \opair{x,y,z} \given x #1 0, y #2 0, z #3 0 }}%
+\def\arraystretch{1.2}%
+\begin{tabular}{cl}%
+第一卦限 & \(\guaxian{>}{>}{>}\) \\
+第二卦限 & \(\guaxian{<}{>}{>}\) \\
+第三卦限 & \(\guaxian{<}{<}{>}\) \\
+第四卦限 & \(\guaxian{>}{<}{>}\) \\
+第五卦限 & \(\guaxian{>}{>}{<}\) \\
+第六卦限 & \(\guaxian{<}{>}{<}\) \\
+第七卦限 & \(\guaxian{<}{<}{<}\) \\
+第八卦限 & \(\guaxian{>}{<}{<}\) \\
+\end{tabular}%
+\end{center}
+
+任给向量\(\mat{r}\)，则在空间直角坐标系下存在点\(M\)使\(\vec{OM}=\mat{r}\).以\(OM\)为体对角线，三条坐标轴为棱，作长方体\(RHMK-OPNQ\)，有\[
+\mat{r}=\vec{OM}=\vec{OP}+\vec{PN}+\vec{NM}=\vec{OP}+\vec{OQ}+\vec{OR}.
+\]设\(\vec{OP}=x\mat{i}\)，\(\vec{OQ}=y\mat{j}\)，\(\vec{OR}=z\mat{k}\)，则\[
+\mat{r}=\vec{OM}=x\mat{i}+y\mat{j}+z\mat{k}.
+\]上式称为向量\(\mat{r}\)的\textbf{坐标分解式}，\(x\mat{i}\)、\(y\mat{j}\)、\(z\mat{k}\)称为向量\(r\)沿三个坐标轴方向的\textbf{分向量}.
+
+据此，定义：\(x\)、\(y\)、\(z\)构成的有序数称为\textbf{向量\(\mat{r}\)}（在坐标系\(Oxyz\)中）的\textbf{坐标}，记作\(\mat{r}=\opair{x,y,z}\).同样的有序数也称为\textbf{点\(M\)}（在坐标系\(Oxyz\)中）的坐标，记作\(M\opair{x,y,z}\).
+
+向量\(\mat{r}=\vec{OM}\)称为点\(M\)关于原点\(O\)的\textbf{向径}（或\DefineConcept{位矢}）.
+
+\subsection{利用坐标做向量的线性运算}
+设\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，即\[
+\mat{a}=a_x\mat{i}+a_y\mat{j}+a_z\mat{k},
+\qquad
+\mat{b}=b_x\mat{i}+b_y\mat{j}+b_z\mat{k}.
+\]那么有\[
+\mat{a}+\mat{b}=(a_x+b_x)\mat{i}+(a_y+b_y)\mat{j}+(a_z+b_z)\mat{k},
+\]\[
+\mat{a}-\mat{b}=(a_x-b_x)\mat{i}+(a_y-b_y)\mat{j}+(a_z-b_z)\mat{k},
+\]\[
+\lambda\mat{a}=(\lambda a_x)\mat{i}+(\lambda a_y)\mat{j}+(\lambda a_z)\mat{k}, \quad \lambda\in\mathbb{R},
+\]即\[
+\mat{a}+\mat{b}=\opair{a_x+b_x,a_y+b_y,a_z+b_z},
+\]\[
+\mat{a}-\mat{b}=\opair{a_x-b_x,a_y-b_y,a_z-b_z},
+\]\[
+\lambda\mat{a}=\opair{\lambda a_x,\lambda a_y,\lambda a_z}, \quad \lambda\in\mathbb{R}.
+\]
+
+当向量\(\mat{a}\neq\mat{0}\)时，向量\(\mat{b}\parallel\mat{a}\)相当于\(\mat{b}=\lambda\mat{a}\ (\lambda\in\mathbb{R}^*)\)，坐标表达式为\[
+\opair{b_x,b_y,b_z}=\lambda\opair{a_x,a_y,a_z},
+\]这也相当于向量\(\mat{b}\)与\(\mat{a}\)对应的坐标成比例\[
+\frac{b_x}{a_x}=\frac{b_y}{a_y}=\frac{b_z}{a_z}. \eqno{(1)}
+\]注：当\(a_x\)、\(a_y\)、\(a_z\)有一个为零，例如\(a_x=0\)，\(a_y a_z \neq 0\)，这时(1)式应理解为\[
+b_x = 0 \quad\land\quad \frac{b_y}{a_y}=\frac{b_z}{a_z};
+\]当\(a_x\)、\(a_y\)、\(a_z\)有两个为零，例如\(a_x=a_y=0\)，\(a_z \neq 0\)，这时(1)式应理解为\[
+b_x = b_y = 0.
+\]
+
+在计算前要注意记号\(\opair{x,y,z}\)的含义，因为它既可表示点\(M\)，又可表示向量\(\vec{OM}\)；当它表示向量时可以进行线性运算，当它表示点时就不能进行运算.
+
+\begin{example}[向量形式的定比分点公式]
+已知两点\(A\opair{x_1,y_1,z_1}\)和\(B\opair{x_2,y_2,z_2}\)以及实数\(\lambda \neq -1\)，在直线\(AB\)上求点\(M\)，使\[
+\vec{AM} = \lambda \vec{MB}.
+\]
+
+因为\(\vec{AM}=\vec{OM}-\vec{OA}\)，\(\vec{MB}=\vec{OB}-\vec{OM}\)，%
+所以\(\vec{OM}-\vec{OA}=\lambda(\vec{OB}-\vec{OM})\)，%
+从而\(\vec{OM}=\frac{1}{1+\lambda}(\vec{OA}+\lambda\vec{OB})\)，%
+再代入\(\vec{OA}=\opair{x_1,y_1,z_1}\)、\(\vec{OB}=\opair{x_2,y_2,z_2}\)，可得\[
+\vec{OM}=\opair*{ \frac{x_1+\lambda x_2}{1+\lambda},\frac{y_1+\lambda y_2}{1+\lambda},\frac{z_1+\lambda z_2}{1+\lambda} }.
+\]
+
+特别地，当\(\lambda = 1\)时，得线段\(AB\)的中点为\[
+M\opair*{ \frac{x_1+x_2}{2},\frac{y_1+y_2}{2},\frac{z_1+z_2}{2} }.
+\]
+\end{example}
+
+\subsection{向量的模、方向角、投影}
+\subsubsection{模}
+\begin{theorem}
+设向量\(\mat{r} = \opair{x,y,z}\)，那么向量的模的坐标表达式为\[
+\abs{\mat{r}} = \sqrt{x^2 + y^2 + z^2}.
+\]
+\end{theorem}
+
+\subsubsection{方向角、方向余弦}
+\begin{definition}
+非零向量\(\mat{r}=\opair{x,y,z}\)与三条坐标轴的夹角\(\alpha\)、\(\beta\)、\(\gamma\)称为向量\(\mat{r}\)的\textbf{方向角}，对应的余弦值\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)称为向量\(\mat{r}\)的\textbf{方向余弦}.有\[
+\opair{\cos\alpha,\cos\beta,\cos\gamma}
+= \opair*{ \frac{x}{\abs{\mat{r}}},\frac{y}{\abs{\mat{r}}},\frac{z}{\abs{\mat{r}}} }
+= \frac{1}{\abs{\mat{r}}} \opair{x,y,z}
+= \frac{\mat{r}}{\abs{\mat{r}}}
+= \mat{e}_r,
+\]且有\[
+\cos^2\alpha+\cos^2\beta+\cos^2\gamma=\abs{\mat{e}_r}^2=1.
+\]
+\end{definition}
+
+\subsubsection{投影}
+\begin{definition}
+一般地，设点\(O\)及单位向量\(\mat{e}\)确定\(u\)轴.任给向量\(\mat{r}\)，再过\(u\)轴外一点\(M\)作与\(u\)轴垂直的平面交\(u\)轴于点\(M'\)（点\(M'\)叫做\textbf{点\(M\)在\(u\)轴上的投影}），则向量\(\vec{OM'}\)称为向量\(\mat{r}\)在\(u\)轴上的分向量.设\(\vec{OM'}=\lambda\mat{e}\)，则数\(\lambda\)称为向量\(\mat{r}\)在\(u\)轴上的投影，记作\(\Prj_u \mat{r}\)或\((\mat{r})_u\).
+\end{definition}
+按此定义，向量\(\mat{a}=\opair{a_x,a_y,a_z}\)在直角坐标系\(Oxyz\)中的坐标\(a_x\)、\(a_y\)、\(a_z\)就是\(\mat{a}\)在三条坐标轴上的投影，即\[
+a_x = \Prj_x\mat{a},
+\quad
+a_y = \Prj_y\mat{a},
+\quad
+a_z = \Prj_z\mat{a},
+\]或记作\[
+a_x = (\mat{a})_x,
+\quad
+a_y = (\mat{a})_y,
+\quad
+a_z = (\mat{a})_z.
+\]
+
+\begin{property}
+\(\Prj_u\mat{a} = (\mat{a})_u = \abs{\mat{a}} \cos\varphi\)，其中\(\varphi\)为向量\(\mat{a}\)与\(u\)轴的夹角.
+\end{property}
+
+\begin{property}
+\((\mat{a}+\mat{b})_u = (\mat{a})_u + (\mat{b})_u\)（即\(\Prj_u(\mat{a}+\mat{b}) = \Prj_u\mat{a} + \Prj_u\mat{b}\)）.
+\end{property}
+
+\begin{property}
+\((\lambda\mat{a})_u = \lambda(\mat{a})_u\)（即\(\Prj_u(\lambda\mat{a}) = \lambda \Prj_u\mat{a}\)）.
+\end{property}
+
+\subsection{数量积、向量积、混合积}
+\subsubsection{数量积}
+\begin{definition}
+设向量\(\mat{a}\)、\(\mat{b}\).定义：数\begin{equation}
+\mat{a}\cdot\mat{b} = \abs{\mat{a}}\abs{\mat{b}}\cos\theta
+\end{equation}称为向量\(\mat{a}\)与\(\mat{b}\)的\textbf{数量积}，其中\(\theta\)是向量\(\mat{a}\)和\(\mat{b}\)的夹角.
+\end{definition}
+
+\begin{property}
+由数量积的定义可得：\begin{enumerate}
+\item 当\(\mat{a}\neq\mat{0}\)时，\[
+\mat{a}\cdot\mat{b} = \abs{\mat{a}} \Prj_a\mat{b};
+\]当\(\mat{b}\neq\mat{0}\)时，\[
+\mat{a}\cdot\mat{b} = \abs{\mat{b}} \Prj_b\mat{a}.
+\]也就是说，两向量的数量积等于其中一个向量的模和另一个向量在前者方向上的投影的乘积.
+\item \(\mat{a}\cdot\mat{a} = \abs{\mat{a}}^2\).
+\item \(\mat{a}\perp\mat{b} \iff \mat{a}\cdot\mat{b}=0\).
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么\begin{equation}
+\mat{a}\cdot\mat{b} = a_x b_x + a_y b_y + a_z b_z.
+\end{equation}
+\end{theorem}
+
+\begin{property}
+非零向量\(\mat{a}\)与\(\mat{b}\)的夹角\(\theta\)满足\begin{equation}
+\cos\theta = \frac{\mat{a}\cdot\mat{b}}{\abs{\mat{a}}\abs{\mat{b}}}.
+\end{equation}
+若设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么\begin{equation}
+\cos\theta = \frac{a_x b_x + a_y b_y + a_z b_z}{\sqrt{a_x^2 + a_y^2 + a_z^2} \sqrt{b_x^2 + b_y^2 + b_z^2}}.
+\end{equation}
+\end{property}
+
+\begin{example}
+在平面直角坐标系下，已知不在同一直线上的三点\(A\opair{x_1,y_1}, \allowbreak B\opair{x_2,y_2}, \allowbreak C\opair{x_3,y_3}\).求\(\triangle ABC\)的面积.
+\begin{solution}
+由\(\vec{AB}=\opair{x_2-x_1,y_2-y_1}\)，\(\vec{AC}=\opair{x_3-x_1,y_3-x_1}\)，可得\begin{align*}
+\cos\angle BAC
+&= \frac{\abs{\vec{AB} \cdot \vec{AC}}}{\abs{\vec{AB}} \abs{\vec{AC}}} \\
+&= \frac{
+\abs{(x_2-x_1)(x_3-x_1)+(y_2-y_1)(y_3-y_1)}
+}{
+\sqrt{(x_2-x_1)^2+(y_2-y_1)^2} \sqrt{(x_3-x_1)^2+(y_3-y_1)^2}
+}, \\
+\sin\angle BAC &= \sqrt{1-(\cos\angle BAC)^2} \\
+&= \sqrt{1-\frac{
+[(x_2-x_1)(x_3-x_1)+(y_2-y_1)(y_3-y_1)]^2
+}{
+[(x_2-x_1)^2+(y_2-y_1)^2][(x_3-x_1)^2+(y_3-y_1)^2]
+}} \\
+&= \frac{
+\abs{(x_2-x_1)(y_3-y_1)-(y_2-y_1)(x_3-x_1)}
+}{
+\sqrt{(x_2-x_1)^2+(y_2-y_1)^2} \sqrt{(x_3-x_1)^2+(y_3-y_1)^2}
+}.
+\end{align*}
+
+那么\begin{align*}
+S_{\triangle ABC} &= \frac{1}{2} b c \sin\angle BAC
+= \frac{1}{2} \abs{\vec{AC}} \abs{\vec{AB}} \sin\angle BAC \\
+&= \frac{1}{2} \abs{(y_3-y_1)(x_2-x_1)-(y_2-y_1)(x_3-x_1)}.
+\end{align*}又因为行列式\[
+\begin{vmatrix}
+x_1 & y_1 & 1 \\
+x_2 & y_2 & 1 \\
+x_3 & y_3 & 1
+\end{vmatrix} = \begin{vmatrix}
+x_1 & y_1 & 1 \\
+x_2-x_1 & y_2-y_1 & 0 \\
+x_3-x_1 & y_3-y_1 & 0
+\end{vmatrix}
+\]按第3列展开后取绝对值就得到上述三角形面积公式，所以\begin{equation}
+S_{\triangle ABC} = \frac{1}{2} \abs{\begin{vmatrix}
+x_1 & y_1 & 1 \\
+x_2 & y_2 & 1 \\
+x_3 & y_3 & 1
+\end{vmatrix}}.
+\end{equation}
+\end{solution}
+\end{example}
+
+\subsubsection{向量积}
+\begin{definition}
+设向量\(\mat{a}\)、\(\mat{b}\)的夹角为\(\theta\).定义：如果向量\(\mat{c}\)的模\(\abs{\mat{c}}\)满足\begin{equation}
+\abs{\mat{c}} = \abs{\mat{a}}\abs{\mat{b}}\sin\theta,
+\end{equation}而\(\mat{c}\)的方向垂直于\(\mat{a}\)和\(\mat{b}\)所决定的平面，\(\mat{c}\)的指向是按\emph{右手规则}从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)来确定的，即当右手的四个手指从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)握拳时，大拇指的朝向就是\(\mat{c}\)的指向，那么称\(\mat{c}\)为\(\mat{a}\)与\(\mat{b}\)的\textbf{向量积}，记作\(\mat{c}=\mat{a}\times\mat{b}\).
+\end{definition}
+
+由向量积的定义可得以下两条简单的性质：
+\begin{property}
+\(\mat{a}\times\mat{a} = \mat{0}\).
+\begin{proof}
+因为向量\(\mat{a}\)与它自己的夹角为\(\theta=0\)，所以\(\abs{\mat{a}\times\mat{a}} = \abs{\mat{a}}^2 \sin0 = 0\).模长为零的向量只有零向量，故\(\mat{a}\times\mat{a} = \mat{0}\).
+\end{proof}
+\end{property}
+一般地，任意两个平行（共线）向量的向量积总是零向量.
+
+\begin{property}
+设\(\mat{a},\mat{b}\)是非零向量，那么\(\mat{a}\parallel\mat{b} \iff \mat{a}\times\mat{b} = \mat{0}\).
+\begin{proof}
+因为\(\mat{a},\mat{b}\)是非零向量，\(\abs{\mat{a}}\neq0\)，\(\abs{\mat{b}}\neq0\)，故由\(\mat{a}\times\mat{b} = \mat{0}\)必有\(\sin\theta=0\)，即\(\theta=0\)或\(\theta=\pi\)，亦即\(\mat{a}\parallel\mat{b}\).反之，如果\(\mat{a}\parallel\mat{b}\)，那么\(\theta=0\)或\(\theta=\pi\)，从而\(\sin\theta=0\)，继而\(\abs{\mat{a}\times\mat{b}}=0\)，即\(\mat{a}\times\mat{b}=\mat{0}\).
+\end{proof}
+\end{property}
+
+\begin{theorem}
+设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么\begin{equation}
+\mat{a}\times\mat{b} = \begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+a_x & a_y & a_z \\
+b_x & b_y & b_z
+\end{vmatrix}
+= (a_y b_z - a_z b_y) \mat{i}
+	+ (a_z b_x - a_x b_z) \mat{j}
+	+ (a_x b_y - a_y b_x) \mat{k}.
+\end{equation}
+\end{theorem}
+
+\subsubsection{混合积}
+\begin{definition}
+设向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\).定义混合积：\begin{equation}
+[\ \mat{a}\ \mat{b}\ \mat{c}\ ]
+= (\mat{a}\times\mat{b})\cdot\mat{c}
+= \begin{vmatrix}
+a_x & a_y & a_z \\
+b_x & b_y & b_z \\
+c_x & c_y & c_z
+\end{vmatrix}.
+\end{equation}
+
+向量的混合积的模表示的是以向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)为棱的平行六面体的体积.如果向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)组成右手系，那么混合积的符号为正的；如果\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)组成左手系，那么混合积的符号为负的.
+\end{definition}
+
+\begin{theorem}
+三向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)共面的充要条件为：\[
+[\ \mat{a}\ \mat{b}\ \mat{c}\ ]
+= (\mat{a}\times\mat{b})\cdot\mat{c}
+= \begin{vmatrix}
+a_x & a_y & a_z \\
+b_x & b_y & b_z \\
+c_x & c_y & c_z
+\end{vmatrix}
+= 0.
+\]
+\end{theorem}
+
+\begin{example}
+已知不在一平面上的四点\[
+A\opair{x_1,y_1,z_1},
+\qquad
+B\opair{x_2,y_2,z_2},
+\qquad
+C\opair{x_3,y_3,z_3},
+\qquad
+D\opair{x_4,y_4,z_4}.
+\]求四面体\(ABCD\)的体积.
+\begin{solution}
+由立体几何知道，四面体的体积\(V\)等于以向量\(\vec{AB}\)、\(\vec{AC}\)和\(\vec{AD}\)为棱的平行六面体的体积的六分之一，因而\[
+V = \frac{1}{6} \abs{ [\ \vec{AB}\ \vec{AC}\ \vec{AD}\ ] }.
+\]又因为\[
+\vec{AB} = \opair{x_2-x_1,y_2-y_1,z_2-z_1},
+\]\[
+\vec{AC} = \opair{x_3-x_1,y_3-y_1,z_3-z_1},
+\]\[
+\vec{AD} = \opair{x_4-x_1,y_4-y_1,z_4-z_1},
+\]所以\[
+V = \frac{1}{6} \abs{ \begin{vmatrix}
+x_2-x_1 & y_2-y_1 & z_2-z_1 \\
+x_3-x_1 & y_3-y_1 & z_3-z_1 \\
+x_4-x_1 & y_4-y_1 & z_4-z_1
+\end{vmatrix} }.
+\]
+\end{solution}
+\end{example}
+
+\subsection{向量的运算法则}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{加法} & \multicolumn{2}{c|}{数乘} \\ \hline
+交换律 & \(\mat{a}+\mat{b}=\mat{b}+\mat{a}\) &
+	结合律 & \(\lambda(\mu\mat{a})=\mu(\lambda\mat{a})=(\lambda\mu)\mat{a}\) \\ \hline
+\multirow{2}{*}{结合律} & \multirow{2}{*}{\((\mat{a}+\mat{b})+\mat{c}=\mat{a}+(\mat{b}+\mat{c})\)} &
+	\multirow{2}{*}{分配律} & \((\lambda+\mu)\mat{a}=\lambda\mat{a}+\mu\mat{a}\) \\
+ & & & \(\lambda(\mat{a}+\mat{b})=\lambda\mat{a}+\lambda\mat{b}\) \\ \hline
+\multicolumn{2}{|c|}{点乘} & \multicolumn{2}{c|}{叉乘} \\ \hline
+交换律 & \(\mat{a}\cdot\mat{b}=\mat{b}\cdot\mat{a}\) &
+	负交换律 & \(\mat{a}\times\mat{b}=-\mat{b}\times\mat{a}\) \\ \hline
+分配律 & \((\mat{a}+\mat{b})\cdot\mat{c}=\mat{a}\cdot\mat{c}+\mat{b}\cdot{c}\) &
+	分配律 & \((\mat{a}+\mat{b})\times\mat{c}=\mat{a}\times\mat{c}+\mat{b}\times\mat{c}\) \\ \hline
+\multirow{3}{*}{结合律} & \((\lambda\mat{a})\cdot\mat{b}=\lambda(\mat{a}\cdot\mat{b})\) & \multirow{3}{*}{结合律} & \multirow{3}{*}{\((\lambda\mat{a})\times\mat{b}=\mat{a}\times(\lambda\mat{b})=\lambda(\mat{a}\times\mat{b})\)} \\
+	& \(\mat{a}\cdot(\lambda\mat{b})=\lambda(\mat{a}\cdot\mat{b})\) & & \\
+	& \((\lambda\mat{a})\cdot(\mu\mat{b})=\lambda\mu(\mat{a}\cdot\mat{b})\) & & \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{平面直线及其方程}
+\subsection{斜截式方程}
+设直线在平面直角坐标系下与横轴正半轴之间的夹角为\(\alpha\)，则实数\(k = \tan \alpha\)称为直线的\textbf{斜率}.记直线在纵轴上的交点的坐标为\(\opair{0,b}\)，称实数\(b\)为直线的\textbf{截距}.
+
+由此，已知斜率\(k\)和截距\(b\)，则方程\[
+y = k x + b \quad(k,b \in \mathbb{R})
+\]可以确定一条直线.称该方程为直线的\textbf{斜截式方程}.
+
+\subsection{点斜式方程}
+已知直线上一点\(\opair{x_0,y_0}\)和斜率\(k\)，则直线方程为\[
+y-y_0 = k(x-x_0),
+\]称为直线的\textbf{点斜式方程}.
+
+\subsection{截距式方程}
+已知直线与横轴交于\(\opair{a,0}\)，与纵轴交于\(\opair{0,b}\)，则直线方程\[
+\frac{x}{a}+\frac{y}{b}=1 \quad(a,b\in\mathbb{R}^*)
+\]称为直线的\textbf{截距式方程}.
+
+显然，直线的斜截式方程和点斜式方程无法用来表示垂直于\(x\)轴的直线，直线的截距式方程无法用来表示通过原点的直线.
+
+\subsection{一般方程}
+一般地，方程\[
+A x + B y + C = 0 \quad(A^2+B^2>0)
+\]可以确定平面上任意一条直线，其中\(A\)、\(B\)、\(C\)是常数.
+
+\begin{example}
+求与直线\(l: A x + B y + C = 0\)平行的向量.
+\begin{solution}
+在直线\(l\)上任取两点\(\opair{x_1,y_1}\)和\(\opair{x_2,y_2}\)，那么\begin{gather}
+A x_1 + B y_1 + C = 0, \tag1 \\
+A x_2 + B y_2 + C = 0. \tag2
+\end{gather}
+(1)式和(2)式相减得\begin{gather}
+A (x_1-x_2) + B (y_1-y_2) = 0, \tag3
+\end{gather}
+(3)式可以看做一个关于两个变元\((x_1-x_2)\)和\((y_1-y_2)\)的齐次线性方程，它存在非零解\[
+\opair{x_1-x_2,y_1-y_2} = \opair{B,-A}.
+\]
+\end{solution}
+\end{example}
+与平面直线平行的向量称作该直线的\DefineConcept{方向向量}.
+
+\begin{example}
+设直线\(l_1: y=k_1 x+b_2\)与\(l_2: y=k_2 x+b_2\)垂直，证明：\(k_1 \cdot k_2 = -1\).
+\begin{proof}
+因为直线\(l_1\)与\(l_2\)垂直，所以么它们的方向向量垂直，即\(\vec{l}_1 \perp \vec{l}_2\).
+取\(\vec{l}_1 = \opair{1,k_1},\vec{l}_2 = \opair{1,k_2}\)，那么\[
+\vec{l}_1\cdot\vec{l}_2 = 1 \cdot 1 + k_1 \cdot k_2 = 0
+\implies
+k_1 \cdot k_2 = -1.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:解析几何.平面直线外一点到该直线的距离问题}
+平面上任意一点\(P\opair{x_0,y_0}\)到直线\(L: Ax+By+C=0\)的距离为\begin{equation}
+d = \frac{\abs{A x_0 + B y_0 + C}}{\sqrt{A^2 + B^2}}.
+\end{equation}
+\begin{proof}
+设点\(Q\opair{x_1,y_1}\)在直线\(L\)上，那么\[
+A x_1 + B y_1 + C = 0.
+\]\(\vec{PQ} = \opair{x_1 - x_0,y_1 - y_0}\)，而直线\(L: Ax+By+C=0\)的方向向量为\(\vec{l} = \opair{B,-A}\)，又设\(\vec{PQ}\)与\(\vec{l}\)的夹角为\(\theta\)，显然\[
+d = \abs{\vec{PQ}} \sin\theta.
+\]
+建立空间直角坐标系，在\(\vec{PQ}\)和\(\vec{l}\)后加一个维度，即\[
+\vec{PQ} = \opair{x_1 - x_0,y_1 - y_0,0},
+\quad
+\vec{l} = \opair{B,-A,0},
+\]那么\[
+\vec{PQ} \times \vec{l} = \begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+x_1 - x_0 & y_1 - y_0 & 0 \\
+B & -A & 0
+\end{vmatrix} = -\bigl[A(x_1 - x_0)+B(y_1 - y_0)\bigr] \mat{k},
+\]\[
+\abs{\vec{PQ} \times \vec{l}}
+= \abs{\vec{PQ}} \abs{\vec{l}} \sin\theta
+= \abs{A(x_1 - x_0)+B(y_1 - y_0)}
+= \abs{A x_0 + B y_0 + C},
+\]所以\[
+d = \abs{\vec{PQ}} \sin\theta
+= \frac{\abs{\vec{PQ} \times \vec{l}}}{\abs{\vec{l}}}
+= \frac{\abs{A x_0 + B y_0 + C}}{\sqrt{A^2+B^2}}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\section{平面二次曲线及其方程}
+\subsection{圆}
+\subsubsection{圆的概念与方程}
+\begin{definition}
+平面内与定点距离等于定长的点的集合是\textbf{圆}.定点称为\textbf{圆心}，定长称为\textbf{半径}.
+\end{definition}
+
+根据圆的定义，我们来求圆心是\(C\opair{a,b}\)，半径是\(r\)的圆的方程.
+设点\(P\opair{x,y}\)是圆上任意一点，根据定义，点\(P\)到圆心\(C\)的距离等于\(r\).圆就是点集\[
+\Set{ P \given \abs{PC} = r }.
+\]由两点间的距离公式，\[
+\abs{PC} = \sqrt{(x-a)^2+(y-b)^2} = r.
+\]把上式等号两边分别平方，得\begin{equation}
+(x-a)^2+(y-b)^2 = r^2.
+\end{equation}上面这个方程式就是圆心是\(C\opair{a,b}\)，半径是\(r\)的圆的方程，我们称之为\textbf{圆的标准方程}.
+特别地，如果圆心在坐标原点，即\(a=b=0\)时，那么圆的方程就是\begin{equation}
+x^2+y^2 = r^2.
+\end{equation}
+
+把圆的标准方程\[
+(x-a)^2+(y-b)^2 = r^2
+\]展开，得\[
+x^2 + y^2 - 2ax - 2by + a^2 + b^2 - r^2 = 0.
+\]可见，任何一个圆的方程都可以写成下面的形式\[
+x^2 + y^2 + Dx + Ey + F = 0.
+\]反过来，我们来研究上式确定的曲线是不是圆，将其配方，得\[
+\left(x+\frac{D}{2}\right)^2+\left(y+\frac{E}{2}\right)^2 = \frac{D^2+E^2-4F}{4}.
+\]\begin{enumerate}
+\item 当\(D^2+E^2-4F > 0\)时，比较上式与圆的标准方程，可知上述曲线是以\(\opair*{-\frac{D}{2},-\frac{E}{2}}\)为圆心，\(\frac{1}{2} \sqrt{D^2+E^2-4F}\)为半径的圆；
+\item 当\(D^2+E^2-4F = 0\)时，上式只有实数解\(x=-\frac{D}{2}\)，\(y=-\frac{E}{2}\)，所以上述曲线是一个点\(\opair*{-\frac{D}{2},-\frac{E}{2}}\)；
+\item 当\(D^2+E^2-4F < 0\)时，上式没有实数解，因而它不表示任何图形.
+\end{enumerate}
+综上所述，方程\begin{equation}
+x^2 + y^2 + Dx + Ey + F = 0,
+\quad
+D^2+E^2-4F > 0
+\end{equation}表示一个圆，叫做\textbf{圆的一般方程}.
+
+圆的标准方程的优点在于它明确地指出了圆心和半径，而一般方程突出了方程形式上的特点：\begin{enumerate}
+\item \(x^2\)和\(y^2\)的系数相同，且均不为零；
+\item 没有\(xy\)这样的二次项.
+\end{enumerate}以上两点是二元二次方程\[
+A x^2 + B xy + C y^2 + D x + E y + F = 0
+\]表示圆的必要不充分条件.
+
+\subsubsection{圆与点的位置关系}
+已知圆\(C: (x-a)^2+(y-b)^2=r^2\).
+任给一点\(P\opair{x_0,y_0}\)，令\(z_0 = (x_0-a)^2+(y_0-b)^2\).
+若\(z_0 < r^2\)，则称点\(P\)在圆\(C\)的内部；
+若\(z_0 = r^2\)，则称点\(P\)在圆\(C\)上；
+若\(z_0 > r^2\)，则称点\(P\)在圆\(C\)的外部.
+
+若圆\(C\)的方程是\(x^2+y^2+Dx+Ey+F=0\)，则令\(u_0 = x_0^2+y_0^2+Dx_0+Ey_0+F\).
+只要\(u_0 < 0\)，则称点\(P\)在圆\(C\)内；
+只要\(u_0 = 0\)，则称点\(P\)在圆\(C\)上；
+只要\(u_0 > 0\)，则称点\(P\)在圆\(C\)外.
+
+\subsubsection{圆与直线的位置关系}
+\begin{example}
+已知圆的方程是\(x^2+y^2 = r^2\)，求经过圆上一点\(P\opair{x_0,y_0}\)的切线的方程.
+\begin{solution}
+设切线的斜率为\(k\)，半径\(OP\)的斜率为\(k_1\).因为圆的切线垂直于过切点的半径，于是\(k = -\frac{1}{k_1}\).又因为\(k_1 = \frac{y_0}{x_0}\)，所以\(k = -\frac{x_0}{y_0}\)，那么经过点\(P\)的切线方程是\[
+y-y_0 = -\frac{x_0}{y_0} (x-x_0),
+\]整理得\[
+x_0 x + y_0 y = x_0^2 + y_0^2.
+\]因为\(P\opair{x_0,y_0}\)在圆上，所以\(x_0^2 + y_0^2 = r^2\)，所求切线方程是\begin{equation}
+x_0 x + y_0 y = r^2.
+\end{equation}
+\end{solution}
+\end{example}
+
+\begin{example}
+已知平面直线\(l: x + y = a\)与圆\(C: x^2 + y^2 = r^2\).
+求当直线\(l\)与圆\(C\)相交、相切或相离时，参数\(a\)与\(r\)的关系.
+\end{example}
+
+\subsubsection{圆与圆的位置关系}
+已知两个圆：\[
+(x-x_1)^2+(y-y_1)^2=R^2
+\quad\text{和}\quad
+(x-x_2)^2+(y-y_2)^2=r^2,
+\]其中\(R \geqslant r\).
+设两圆的圆心距为\(d\).
+记方程组\[
+M: \begin{cases}
+(x-x_1)^2+(y-y_1)^2=R^2, \\
+(x-x_2)^2+(y-y_2)^2=r^2.
+\end{cases}
+\]
+\begin{center}
+\begin{tabular}{|*3{c|}}
+\hline
+位置关系 & 几何特征 & 代数特征 \\ \hline
+外离 & \(d>R+r\) & \(M\)无实数解 \\
+外切 & \(d=R+r\) & \(M\)有一组实数解 \\
+相交 & \(R-r<d<R+r\) & \(M\)有两组实数解 \\
+内切 & \(d=R-r\) & \(M\)有一组实数解 \\
+内含 & \(d<R-r\) & \(M\)无实数解 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{椭圆}
+\begin{definition}
+平面内与两个定点的距离之和等于定长的点的集合是\textbf{椭圆}（ellipse）.这两个定点叫做椭圆的\textbf{焦点}（Focus）.两焦点的距离叫做\textbf{焦距}.
+\end{definition}
+
+根据椭圆的定义，我们来求椭圆的方程.取过焦点\(F_1\)、\(F_2\)的直线为\(x\)轴，线段\(F_1 F_2\)的垂直平分线为\(y\)轴，建立直角坐标系.
+
+设\(P\opair{x,y}\)是椭圆上任意一点，椭圆的焦距为\(2c\)（\(c > 0\)），\(P\)与\(F_1\)和\(F_2\)的距离之和等于正常数\(2a\)，则\(F_1\)、\(F_2\)的坐标分别是\(\opair{-c,0}\)和\(\opair{c,0}\).那么根据定义，椭圆就是点集\[
+\Set{ P \given \abs{P F_1} + \abs{P F_2} = 2a }.
+\]由两点间的距离公式，\[
+\abs{P F_1} = \sqrt{(x+c)^2+y^2},
+\qquad
+\abs{P F_2} = \sqrt{(x-c)^2+y^2},
+\]得\[
+\sqrt{(x+c)^2+y^2} + \sqrt{(x-c)^2+y^2} = 2a,
+\]把这个方程移项，两边平方，得\[
+(x+c)^2+y^2 = 4a^2 - 4a\sqrt{(x-c)^2+y^2} + (x-c)^2+y^2,
+\]\[
+a^2 - cx = a\sqrt{(x-c)^2+y^2},
+\]两边再平方，得\[
+a^4 - 2 a^2 cx + c^2 x^2 = a^2 [(x-c)^2+y^2],
+\]整理得\[
+(a^2 - c^2) x^2 + a^2 y^2 = a^2 (a^2 - c^2).
+\]由椭圆定义可知，\(2a > 2c\)，\(a > c\)，\(a^2 - c^2 > 0\).设\(b^2 = a^2 - c^2\)（\(b > 0\)），得\[
+b^2 x^2 + a^2 y^2 = a^2 b^2,
+\]两边除以\(a^2 b^2\)，得\begin{equation}
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1,
+\quad a > b > 0.
+\end{equation}
+这个方程叫做\textbf{椭圆的标准方程}.它所表示的椭圆的焦点在\(x\)轴上，焦点是\(F_1\opair{-c,0}\)和\(F_2\opair{c,0}\)（\(c^2 = a^2 - b^2\)）.
+
+如果椭圆的焦点在\(y\)轴上，焦点是\(F_1\opair{0,-c}\)和\(F_2\opair{0,c}\)，只要将上面这个方程中的\(x\)、\(y\)互换，就可以得到它的方程.这时方程为\begin{equation}
+\frac{y^2}{a^2} + \frac{x^2}{b^2} = 1,
+\quad a > b > 0.
+\end{equation}这个方程也是椭圆的标准方程.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+%\draw[gray,help lines,dashed] (-5,-3) grid (5,3);
+\draw[thick,->] (-6,0) -- (7,0)node[above]{\(x\)};
+\draw[thick,->] (0,-4) -- (0,4)node[right]{\(y\)};
+\pgfmathsetmacro{\a}{5}
+\pgfmathsetmacro{\b}{3}
+\pgfmathsetmacro{\c}{sqrt(\a*\a-\b*\b)}
+\pgfmathsetmacro{\px}{3}
+\pgfmathsetmacro{\py}{12/5}
+\pgfmathsetmacro{\dx}{\a*\a/\c}  % directrix
+\coordinate (P) at (\px,\py);
+\coordinate (Q) at (\dx,\py);
+\coordinate (R) at (\dx,0);
+\coordinate (M) at (\c,9/5);
+\coordinate (N) at (\c,-9/5);
+\coordinate (F1) at (-\c,0);
+\coordinate (F2) at (\c,0);
+\draw[orange] (0,0)ellipse[x radius=\a,y radius=\b];
+\draw[red] (F1)node[below right,black]{\(F_1\)}
+	-- (P)node[above right,black]{\(P\)}
+	-- (F2)node[below left,black]{\(F_2\)}
+	(P) -- (Q)node[right,black]{\(Q\)}
+	pic[draw=gray,-,angle radius=0.3cm]{right angle=P--Q--R}
+	pic[draw=gray,-,angle radius=0.3cm]{right angle=N--F2--R};
+\draw[blue] (N)node[right,black]{\(N\)}
+	-- (M)node[right,black]{\(M\)};
+\draw[purple] (\dx,-4) -- (\dx,4);
+\draw (-3,2)node[above left]{\(C: \frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)}
+	(\dx,-3)node[left]{\(l: x = \frac{a^2}{c}\)};
+\draw (0,0)node[below left]{\(O\)}
+	(-5,0)node[above left]{\(A_1\)}
+	(5,0)node[above right]{\(A_2\)}
+	(0,-3)node[below right]{\(B_1\)}
+	(0,3)node[above right]{\(B_2\)};
+\end{tikzpicture}
+\caption{椭圆的图形}
+\label{figure:解析几何.椭圆的图形}
+\end{figure}
+
+我们根据椭圆的标准方程\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1,
+\quad a > b > 0
+\]来研究椭圆的几何性质.
+\begin{enumerate}
+\item 范围
+
+由标准方程可知，椭圆上点的坐标\(\opair{x,y}\)都适合不等式\[
+\frac{x^2}{a^2} \leqslant 1, \qquad \frac{y^2}{b^2} \leqslant 1,
+\]即\[
+x^2 \leqslant a^2, \qquad y^2 \leqslant b^2,
+\]\[
+\abs{x} \leqslant a, \qquad \abs{y} \leqslant b.
+\]这说明椭圆位于直线\(x=\pm a\)和\(y=\pm b\)所围成的矩形里.
+
+\item 对称性
+
+在标准方程中，把\(x\)换成\(-x\)，或把\(y\)换成\(-y\)，或把\(x\)、\(y\)同时换成\(-x\)、\(-y\)时，方程都不变，所以图形关于\(y\)轴、\(x\)轴和原点都是对称的.也就是说，坐标轴是椭圆的对称轴，原点是椭圆的对称中心.椭圆的对称中心叫做椭圆的\textbf{中心}.
+
+\item 顶点
+
+在标注方程中，令\(x=0\)，得\(y=\pm b\)，这说明\(B_1\opair{0,-b}\)和\(B_2\opair{0,b}\)是椭圆和\(y\)轴的两个交点.同理，令\(y=0\)，得\(x=\pm a\)，说明\(A_1\opair{-a,0}\)和\(A_2\opair{a,0}\)是椭圆和\(x\)轴的两个交点.因为\(x\)轴和\(y\)轴是椭圆的对称轴，所以椭圆和它的对称轴共有四个交点.这四个交点叫做椭圆的\textbf{顶点}.
+
+线段\(A_1 A_2\)和\(B_1 B_2\)分别叫做椭圆的\textbf{长轴}（Major axis）和\textbf{短轴}（Minor Axis）.它们的长为\[
+\abs{A_1 A_2} = 2a, \qquad \abs{B_1 B_2} = 2b.
+\]而\(a\)和\(b\)分别叫做椭圆的长半轴长和短半轴长.
+
+\item 离心率
+
+椭圆的焦距与长轴长的比\(e = \frac{c}{a}\)叫做椭圆的\textbf{离心率}（Eccentricity）.
+因为\(a > c > 0\)，所以\(0 < e < 1\).
+
+\(e\)越接近\(1\)，则\(c\)越接近\(a\)，从而\(b = \sqrt{a^2 - c^2}\)越小，因此椭圆越扁；反之，\(e\)越接近\(0\)，\(c\)越接近\(0\)，从而\(b\)越接近\(a\)，这时椭圆就接近于圆.如果\(a=b\)，则\(c=0\)，两个焦点重合，这时椭圆的标准方程成为\[
+x^2 + y^2 = a^2,
+\]它的图形就是圆了；因此可以把圆\(x^2+y^2=a^2\)看作离心率为\(0\)的椭圆.
+\end{enumerate}
+
+\begin{example}
+我国于1970年4月24日发射的第一颗人造地球卫星（东方红一号卫星）的运行轨道，是以地球的重心为一个焦点的椭圆，近地点\(A\)距离地面439公里，远地点\(B\)距离地面2384公里，地球半径约为6371公里.求卫星的轨道方程.
+\begin{solution}
+由题可知\[
+a - c = 6371 + 439 = 6810,
+\]\[
+a + c = 6371 + 2384 = 8755.
+\]解得\(a=7782.5\)，\(c=972.5\)，所以\(b=\sqrt{a^2-c^2}=\sqrt{(a+c)(a-c)}=7721.5\).因此，卫星的轨道方程是\[
+\frac{x^2}{7783^2}+\frac{y^2}{7722^2}=1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+点\(P\opair{x,y}\)与定点\(F\opair{c,0}\)的距离和它到定直线\(l: x = \frac{a^2}{c}\)的距离的比是常数\(\frac{c}{a}\)（\(a > c > 0\)）.求点\(P\)的轨迹.
+\begin{solution}
+设点\(P\)到直线\(l\)的距离是\(d\)，那么所求轨迹就是点集\[
+\Set*{ P \given \frac{\abs{PF}}{d} = \frac{c}{a} },
+\]由此得\[
+\frac{\sqrt{(x-c)^2+y^2}}{\abs{\frac{a^2}{c}-x}} = \frac{c}{a},
+\]化简得\[
+(a^2-c^2)x^2 + a^2 y^2 = a^2(a^2-c^2).
+\]设\(b^2=a^2-c^2\)，则可将上式进一步化简为\[
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
+\]这是椭圆的标准方程，所以点\(P\)的轨迹是椭圆.
+\end{solution}
+
+由上例可知，点\(P\)与一个定点的距离和它到一条定直线的距离的比是常数\(e = \frac{c}{a}\ (0 < e < 1)\)时，这个点的轨迹是椭圆.定点是椭圆的焦点，定直线叫做椭圆的\textbf{准线}，常数\(e\)是椭圆的离心率.
+
+对于椭圆\(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\ (a>b>1)\)，相应于焦点\(F\opair{c,0}\)的准线方程是\[
+x = \frac{a^2}{c}
+\quad\text{或}\quad
+x = \frac{a}{e}.
+\]根据椭圆的对称性，相应于焦点\(F'\opair{-c,0}\)的准线方程是\(x=-\frac{a^2}{c}\)，所以椭圆有两条准线.
+\end{example}
+
+\begin{example}\label{example:解析几何.椭圆的切线}
+平面上任意一条直线\(l\)与椭圆\[
+C: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 \quad(a>b>1)
+\]的位置关系要么是相交于两点（称\(l\)为割线），要么是相切于一点（称\(l\)为切线），要么没有公共点.
+请求出椭圆在其上任意一点\(P_0\opair{x_0,y_0}\)处的切线方程.
+\begin{solution}
+因为点\(P_0\opair{x_0,y_0}\)在椭圆\(C\)上，所以\[
+\frac{x_0^2}{a^2} + \frac{y_0^2}{b^2} = 1
+\quad\text{即}\quad
+b^2 x_0^2 + a^2 y_0^2 = a^2 b^2.
+\]
+
+当切线\(l\)与\(x\)轴相垂直时，显然只有\(\opair{-a,0}\)和\(\opair{a,0}\)两点可能是切点，而它们各自的切线方程分别为\(x=-a\)和\(x=a\).
+
+当切线\(l\)不与\(x\)轴相垂直时，设切线方程为\(l: y = kx + p\)，其中\(p = y_0 - k x_0\).
+联立方程组，得\[
+\begin{cases}
+y = kx + p, \\
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.
+\end{cases}
+\]那么有\[
+\frac{1}{a^2} x^2 + \frac{1}{b^2} (kx+p)^2 = 1,
+\]\[
+b^2 x^2 + a^2 (k^2 x^2 + 2kpx + p^2) = a^2 b^2,
+\]\[
+(a^2 k^2 + b^2) x^2 + 2 a^2 k p x + a^2 (p^2 - b^2) = 0.
+\]令判别式\(\Delta_1 = (2 a^2 k p)^2 - 4 (a^2 k^2 + b^2) a^2 (p^2 - b^2) = 0\)，得\[
+4 a^4 k^2 p^2 = 4 (a^2 k^2 + b^2) a^2 (p^2 - b^2),
+\]\[
+a^2 k^2 p^2 = (a^2 k^2 + b^2)(p^2 - b^2),
+\]\[
+[a^2 (p^2 - b^2) - a^2 p^2] k^2 + b^2 (p^2 - b^2) = 0,
+\]\[
+a^2 b^2 k^2 = b^2 (p^2 - b^2),
+\]\[
+a^2 k^2 = p^2 - b^2,
+\]
+代入\(p = y_0 - k x_0\)，得\[
+a^2 k^2 = (y_0 - k x_0)^2 - b^2,
+\]\[
+y_0^2 - 2k x_0 y_0 + k^2 x_0^2 - b^2 = a^2 k^2,
+\]\[
+(x_0^2 - a^2) k^2 - 2 x_0 y_0 k + (y_0^2 - b^2) = 0.
+\]上式的判别式\(\Delta_2 = (2 x_0 y_0)^2 - 4(x_0^2 - a^2)(y_0^2 - b^2)
+= 4(a^2 y_0^2 + b^2 x_0^2 - a^2 b^2) = 0\)，故可解得\[
+k = \frac{2 x_0 y_0}{2 (x_0^2 - a^2)}
+= \frac{x_0 y_0}{x_0^2 - a^2}.
+\]那么\(l\)的方程为\[
+y - y_0 = \frac{x_0 y_0}{x_0^2 - a^2} (x - x_0),
+\]\[
+(x_0^2 - a^2) y = x_0 y_0 x + (x_0^2 - a^2) y_0 - x_0^2 y_0
+= x_0 y_0 x - a^2 y_0,
+\]\[
+x_0 y_0 x + (a^2 - x_0^2) y = a^2 y_0,
+\]\[
+\frac{x_0 x}{a^2} + (a^2 - x_0^2) \frac{y_0 y}{a^2 y_0^2} = 1,
+\]\[
+\frac{x_0 x}{a^2} + (a^2 - x_0^2) \frac{y_0 y}{(a^2 - x_0^2) b^2} = 1,
+\]最后化简得\begin{equation}\label{equation:解析几何.椭圆的切线}
+\frac{x_0 x}{a^2} + \frac{y_0 y}{b^2} = 1.
+\end{equation}
+这就是椭圆在其上任意一点\(P_0\opair{x_0,y_0}\)处的切线方程.
+\end{solution}
+\end{example}
+
+\begin{example}
+% Manipulate[ParametricPlot[{a Cos[t],b Sin[t]},{t,0,2 \[Pi]}],{a,1,100},{b,1,100}]
+点\(P\opair{x,y}\)满足参数方程\begin{equation}
+\left\{ \begin{array}{l}
+x = a \cos\theta, \\
+y = b \sin\theta,
+\end{array} \right.
+\quad a > b > 0, 0 \leqslant \theta \leqslant 2\pi.
+\end{equation}求点\(P\)的轨迹.
+\begin{solution}
+对参数方程各式两边平方，得\[
+x^2 = a^2 \cos^2\theta,
+\qquad
+y^2 = b^2 \sin^2\theta.
+\]因为\(\cos^2\theta + \sin^2\theta = 1\)，所以\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.
+\]这是椭圆的标准方程，所以点\(P\)的轨迹是椭圆（见\cref{figure:解析几何.椭圆的参数方程} ）.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=.7]
+%\draw[gray,help lines,dashed] (-5,-3) grid (5,3);
+\draw[thick,->] (-6,0) -- (6,0)node[above]{\(x\)};
+\draw[thick,->] (0,-6) -- (0,6)node[right]{\(y\)};
+\pgfmathsetmacro{\a}{5}
+\pgfmathsetmacro{\b}{3}
+\pgfmathsetmacro{\c}{sqrt(\a^2-\b^2)}
+\pgfmathsetmacro{\t}{40} % 参数（角度制）
+\pgfmathsetmacro{\cost}{cos(\t)}
+\pgfmathsetmacro{\sint}{sin(\t)}
+\pgfmathsetmacro{\px}{\a*\cost}
+\pgfmathsetmacro{\py}{\b*\sint}
+\pgfmathsetmacro{\ax}{\a*\cost}
+\pgfmathsetmacro{\ay}{\a*\sint}
+\pgfmathsetmacro{\bx}{\b*\cost}
+\pgfmathsetmacro{\by}{\b*\sint}
+\coordinate (O) at (0,0);
+\coordinate (P) at (\px,\py);
+\coordinate (A) at (\ax,\ay);
+\coordinate (B) at (\bx,\by);
+\coordinate (F1) at (-\c,0);
+\coordinate (F2) at (\c,0);
+\draw[blue,dashed] (O)circle(\a)circle(\b);
+\draw[orange] (0,0)ellipse[x radius=\a,y radius=\b];
+\draw[red] (O) -- (B)node[above,black]{\(B\)}
+	-- (P)node[right,black]{\(P\)}
+	-- (A)node[right,black]{\(A\)} -- (B);
+\fill[red] (B)circle(2pt) (P)circle(2pt) (A)circle(2pt);
+\fill (F1)circle(2pt)node[below right,black]{\(F_1\)}
+	(F2)circle(2pt)node[below left,black]{\(F_2\)};
+\draw pic["\(\theta\)",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=F2--O--B} pic[draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=P--B--A};
+\draw (O)node[below left]{\(O\)};
+\end{tikzpicture}
+\caption{椭圆的参数方程}
+\label{figure:解析几何.椭圆的参数方程}
+\end{figure}
+\end{solution}
+\end{example}
+
+\begin{example}
+设椭圆的方程为\[
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1, \quad a>b>1.
+\]过椭圆的右焦点\(F_2\opair{c,0}\)（\(c^2=a^2-b^2\)）作\(x\)轴的垂线交椭圆于\(M\)、\(N\)两点，求线段\(MN\)的长.
+\begin{solution}
+连接左焦点\(F_1\opair{-c,0}\)与点\(M\)，则根据椭圆的定义、勾股定理，有\[
+\left\{ \begin{array}{l}
+\abs{F_1 F_2} = 2c, \\
+\abs{F_1 M} + \abs{F_2 M} = 2a, \\
+\abs{F_1 M}^2 = \abs{F_1 F_2}^2 + \abs{F_2 M}^2,
+\end{array} \right.
+\]整理得关于\(\abs{F_2 M}\)的方程\[
+(2a - \abs{F_2 M})^2 = (2c)^2 + \abs{F_2 M}^2,
+\]解得\[
+\abs{F_2 M} = \frac{a^2 - c^2}{a} = \frac{b^2}{a}.
+\]由椭圆的对称性可知，\(\abs{F_2 M} = \abs{F_2 N}\)，故\[
+\abs{MN} = 2\abs{F_2 M} = \frac{2 b^2}{a}.
+\]
+\end{solution}
+
+连接椭圆上任意两点所得的线段叫做椭圆的\textbf{弦}.
+若这条弦通过椭圆的焦点，则称之为\textbf{焦点弦}（Focal chord）.
+若焦点弦垂直于椭圆的长轴，则称之为\textbf{通径}（Latus rectum）；因为椭圆有两个焦点，所以它有两条通径，通径长总是等于\(\frac{2b^2}{a}\).
+\end{example}
+
+% REMOVE
+%称线段\(A_1A_2\)为\textbf{长轴}（长\(2a\)），\(OA_1\)、\(OA_2\)为\textbf{半长轴}（长\(a\)），\(B_1B_2\)为\textbf{短轴}（长\(2b\)），\(OB_1\)、\(OB_2\)为\textbf{半短轴}（长\(b\)），\(F_1F_2\)为\textbf{焦距}（长\(2c\)），\(OF_1\)、\(OF_2\)为\textbf{半焦距}（长\(c\)），\(MN\)为\textbf{通径}（长\(2\frac{b^2}{a}\)），\(F_2M\)、\(F_2N\)为\textbf{半通径}（长\(\frac{b^2}{a}\)）.
+%令\(c=\sqrt{a^2-b^2}\).
+%称点\(F_1\opair{-c,0}\)、\(F_2\opair{c,0}\)为椭圆的\textbf{焦点}.
+%称\(e=c/a\)为椭圆的\textbf{离心率}.
+
+\begin{theorem}[椭圆的焦点三角形]
+如\cref{figure:解析几何.椭圆的焦点三角形} 所示，设\(P\)是椭圆\(C: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\)（\(a>b>0\)）上任一点，\(F_1\)、\(F_2\)是\(C\)的焦点，那么\[
+S_{\triangle P F_1 F_2} = b^2 \tan\frac{\theta}{2},
+\]其中\(\theta=\angle{F_1 P F_2}\).
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=.7]
+%\draw[gray,help lines,dashed] (-5,-3) grid (5,3);
+\draw[thick,->] (-6,0) -- (6,0)node[above]{\(x\)};
+\draw[thick,->] (0,-4) -- (0,4)node[right]{\(y\)};
+\pgfmathsetmacro{\a}{5}
+\pgfmathsetmacro{\b}{3}
+\pgfmathsetmacro{\c}{sqrt(\a*\a-\b*\b)}
+\pgfmathsetmacro{\px}{3}
+\pgfmathsetmacro{\py}{12/5}
+\coordinate (P) at (\px,\py);
+\coordinate (F1) at (-\c,0);
+\coordinate (F2) at (\c,0);
+\draw[orange] (0,0)ellipse[x radius=\a,y radius=\b];
+\draw[red] (F1)node[below right,black]{\(F_1\)}
+	-- (P)node[above right,black]{\(P\)}
+	-- (F2)node[below left,black]{\(F_2\)};
+\draw pic["\(\theta\)",draw=gray,-,angle eccentricity=1.7,angle radius=3mm]{angle=F1--P--F2};
+\draw (-3,2)node[above left]{\(C: \frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)};
+\draw (0,0)node[below left]{\(O\)};
+\end{tikzpicture}
+\caption{椭圆的焦点三角形}
+\label{figure:解析几何.椭圆的焦点三角形}
+\end{figure}
+\end{theorem}
+
+\begin{theorem}
+设直线\(l: Ax+By+C=0\)与椭圆\(C: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\)（\(a>b>0\)）相交于两点\(M\)和\(N\)，那么\[
+\abs{MN} = \frac{2ab\sqrt{A^2+B^2}\sqrt{a^2 A^2 + b^2 B^2 - C^2}}{a^2 A^2 + b^2 B^2}.
+\]
+
+特别地，若\(l\)过\(C\)的焦点，\(l\)与\(x\)轴的夹角为\(\theta\)，那么\[
+\abs{MN} = \frac{2ab^2}{a^2 - c^2 \cos^2\theta}.
+\]
+\end{theorem}
+
+
+\begin{example}
+求证两椭圆\(b^2 x^2 + a^2 y^2 - a^2 b^2 = 0\)和\(a^2 x^2 + b^2 y^2 - a^2 b^2 = 0\)的交点在以原点为中心的圆周上，并求解这个圆的方程.
+\begin{proof}
+将椭圆改写为标准方程，得\begin{gather}
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1, \tag1 \\
+\frac{y^2}{a^2}+\frac{x^2}{b^2}=1. \tag2
+\end{gather}
+若将(1)式、(2)式联立，看作关于变量\(x^2\)和\(y^2\)的非齐次线性方程组，则其系数矩阵为\[
+\mat{A} = \def\arraystretch{1.5} \begin{bmatrix}
+\frac{1}{a^2} & \frac{1}{b^2} \\
+\frac{1}{b^2} & \frac{1}{a^2}
+\end{bmatrix}.
+\]由椭圆的定义可知，\(a \neq b\)，故上述方程的系数行列式为\[
+d = \def\arraystretch{1.5} \begin{vmatrix}
+\frac{1}{a^2} & \frac{1}{b^2} \\
+\frac{1}{b^2} & \frac{1}{a^2}
+\end{vmatrix} = \frac{1}{a^4} - \frac{1}{b^4} \neq 0,
+\]该方程具有唯一解\[
+\left( \def\arraystretch{1.5}
+\frac{1}{d} \begin{vmatrix}
+1 & \frac{1}{b^2} \\
+1 & \frac{1}{a^2}
+\end{vmatrix},
+\frac{1}{d} \begin{vmatrix}
+\frac{1}{a^2} & 1 \\
+\frac{1}{b^2} & 1
+\end{vmatrix}
+\right)^T,
+\]即\begin{gather}
+x^2 = y^2 = \frac{1}{d} \left(\frac{1}{a^2} - \frac{1}{b^2}\right)
+= \frac{a^2 b^2}{a^2 + b^2}. \tag3
+\end{gather}题设的两个椭圆的交点可由(3)式确定.
+
+由椭圆的定义可知，\(a>0\)，\(b>0\)，故\(\frac{a^2 b^2}{a^2 + b^2} > 0\)，那么方程\begin{gather}
+x^2 + y^2 = \frac{2 a^2 b^2}{a^2 + b^2} \tag4
+\end{gather}符合圆的标准方程，说明这两个椭圆的交点在以原点为中心，以\(\sqrt{\frac{2 a^2 b^2}{a^2 + b^2}}\)为半径的圆上.
+\end{proof}
+\end{example}
+
+\subsection{双曲线}
+\begin{definition}
+平面内与两定点的距离的差的绝对值是常数（该常数小于两定点的距离）的点的集合叫做\textbf{双曲线}（hyperbola）.
+这两个定点叫做双曲线的\textbf{焦点}，两焦点的距离叫做\textbf{焦距}.
+\end{definition}
+
+取过焦点\(F_1\)、\(F_2\)的直线为\(x\)轴，线段\(F_1 F_2\)的垂直平分线为\(y\)轴，建立平面直角坐标系.
+
+设\(P\opair{x,y}\)是双曲线上的任意一点，双曲线的焦距是\(2c\)（\(c>0\)），那么\(F_1\)、\(F_2\)的坐标分别是\(\opair{-c,0}\)和\(\opair{c,0}\).又设点\(P\)与\(F_1\)和\(F_2\)的距离的差的绝对值等于正常数\(2a\).
+
+由定义可知，双曲线就是点集\[
+\Set{ P \given \abs{\abs{P F_1} - \abs{P F_2}} = 2a }.
+\]由两点间的距离公式，\[
+\abs{P F_1} = \sqrt{(x+c)^2+y^2},
+\qquad
+\abs{P F_2} = \sqrt{(x-c)^2+y^2},
+\]得\[
+\abs{\sqrt{(x+c)^2+y^2} - \sqrt{(x-c)^2+y^2}} = 2a,
+\]化简，得\[
+(c^2-a^2)x^2 - a^2 y^2 = a^2(c^2-a^2).
+\]由双曲线的定义，\(2c > 2a\)，\(c > a\)，\(c^2 - a^2 > 0\).设\(b^2 = c^2 - a^2\)（\(b > 0\)），代入上式得\[
+b^2 x^2 - a^2 y^2 = a^2 b^2,
+\]也就是\begin{equation}
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1.
+\end{equation}这个方程叫做\textbf{双曲线的标准方程}，它所表示的双曲线的焦点在\(x\)轴上，焦点是\[
+F_1\opair{-c,0}
+\quad\text{和}\quad
+F_2\opair{c,0}.
+\]
+
+如果双曲线的焦点在\(y\)轴上，焦点是\(F_1\opair{0,-c}\)、\(F_2\opair{0,c}\)，只要将上面这个方程中的\(x\)、\(y\)互换，就可以得到它的方程\begin{equation}
+\frac{y^2}{a^2}-\frac{x^2}{b^2}=1.
+\end{equation}
+这个方程也是双曲线的标准方程.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+%\draw[gray,help lines,dashed] (-5,-3) grid (5,3);
+\draw[thick,->] (-4,0) -- (4,0)node[above]{\(x\)};
+\draw[thick,->] (0,-4) -- (0,4)node[right]{\(y\)};
+\draw (-3,2)node[above left]{\(C: \frac{x^2}{a^2}-\frac{y^2}{b^2}=1\)};
+\pgfmathsetmacro{\e}{1.8}   % eccentricity
+\pgfmathsetmacro{\a}{1}
+\pgfmathsetmacro{\b}{(\a*sqrt((\e)^2-1)}
+\pgfmathsetmacro{\c}{(sqrt((\a)^2+(\b)^2))}
+\pgfmathsetmacro{\px}{2.4}
+\pgfmathsetmacro{\py}{sqrt(\b^2*(\px^2/\a^2-1))}
+\pgfmathsetmacro{\d}{1.8} % 定义域
+\draw[orange] plot[domain=-\d:\d] ({\a*cosh(\x)},{\b*sinh(\x)});
+\draw[orange] plot[domain=-\d:\d] ({-\a*cosh(\x)},{\b*sinh(\x)});
+\pgfmathsetmacro{\k}{1.8*\d}
+\coordinate (F1) at (-\c,0);
+\coordinate (F2) at (\c,0);
+\coordinate (P) at (\px,\py);
+\draw[gray,dashed] (\a,\b) -- (-\a,\b) -- (-\a,-\b) -- (\a,-\b) -- (\a,\b)
+	(\k*\a,\k*\b) -- (-\k*\a,-\k*\b)
+	(\k*\a,-\k*\b) -- (-\k*\a,\k*\b)
+	(-\k*\a/2,-\k*\b/2)node[below right]{\(l_1\)}
+	(\k*\a/2,-\k*\b/2)node[below left]{\(l_2\)};
+\draw[red] (F1)node[below left,black]{\(F_1\)}
+	-- (P)node[right,black]{\(P\)}
+	-- (F2)node[below right,black]{\(F_2\)};
+\pgfmathsetmacro{\dx}{\a^2/\c}
+\draw[blue] (\dx,-4) -- (\dx,4)node[right]{\(l\)}; % 准线
+\draw (0,0)node[above right]{\(O\)}
+	(-\a,0)node[above right]{\(A_1\)}
+	(\a,0)node[above right]{\(A_2\)}
+	(0,-\b)node[below left]{\(B_1\)}
+	(0,\b)node[above left]{\(B_2\)};
+\end{tikzpicture}
+\caption{双曲线的图形}
+\label{figure:解析几何.双曲线的图形}
+\end{figure}
+
+我们根据双曲线的标准方程\[
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1
+\]来研究它的几何性质.
+\begin{enumerate}
+\item 范围
+
+由标准方程可知，双曲线上的点的坐标\(\opair{x,y}\)都适合不等式\(\frac{x^2}{a^2}\geqslant1\)，即\(x^2 \geqslant a^2\)，所以\(x \geqslant a\)或\(x \leqslant -a\).这说明双曲线在两条直线\(x = \pm a\)的外侧.
+
+\item 对称性
+
+双曲线关于每条坐标轴和原点都是对称的.这时，坐标轴是双曲线的对称轴，原点是双曲线的对称中心.双曲线的对称中心叫做双曲线的\textbf{中心}.
+
+\item 顶点
+
+在标准方程中，令\(y=0\)，得\(x = \pm a\)，因此双曲线和\(x\)轴有两个交点\(A_1\opair{-a,0}\)、\(A_2\opair{a,0}\).因为\(x\)轴是双曲线的对称轴，所以双曲线和它的对称轴有两个焦点，它们叫做双曲线的\textbf{顶点}.
+
+令\(x=0\)，得\(y^2=-b^2\)，这个方程没有实数根，说明双曲线和\(y\)轴没有交点，但我们也把\(B_1\opair{0,-b}\)和\(B_2\opair{0,b}\)画在\(y\)轴上.
+
+线段\(A_1 A_2\)叫做双曲线的\textbf{实轴}，它的长等于\(2a\)，\(a\)叫做双曲线的实半轴长.
+线段\(B_1 B_2\)叫做双曲线的\textbf{虚轴}，它的长等于\(2b\)，\(b\)叫做双曲线的虚半轴长.
+
+\item 渐近线
+
+经过\(A_2\)、\(A_1\)作\(y\)轴的平行线\(x = \pm a\)，经过\(B_2\)、\(B_1\)作\(x\)轴的平行线\(y = \pm b\)，四条直线围成一个矩形.矩形的两条对角线所在的直线是\(y = \pm\frac{b}{a}x\).可以看出，双曲线的各支向外延伸时，与这两条直线逐渐接近.我们把这两条直线叫做双曲线的\textbf{渐近线}.
+
+在方程\(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\)中，如果\(a=b\)，那么双曲线方程为\(x^2-y^2=a^2\)，它的实轴和虚轴的长都等于\(2a\).这时，四条直线\(x=\pm a\)、\(y=\pm a\)围成正方形；渐近线方程成为\(x=\pm y\)，它们互相垂直，并且平分双曲线实轴与虚轴所成的角.像这样，实轴和虚轴等长的双曲线叫做\textbf{等轴双曲线}.
+
+\item 离心率
+
+双曲线的焦距与实轴的比\(e = \frac{c}{a}\)，叫做双曲线的\textbf{离心率}.因为\(c > a\)，所以双曲线的离心率\(e > 1\).
+
+由等式\(c^2-a^2=b^2\)可得\[
+\frac{b}{a} = \frac{\sqrt{c^2-b^2}}{a} = \sqrt{\frac{c^2}{a^2}-1} = \sqrt{e^2-1}.
+\]因此\(e\)越大，\(\frac{b}{a}\)也越大，即渐近线\(y = \pm\frac{b}{a}x\)的斜率的绝对值越大，这时双曲线的形状就从褊狭逐渐变得开阔.由此可知，双曲线的离心率越大，它的开口就越开阔.
+\end{enumerate}
+
+\begin{example}
+以已知双曲线的虚轴为实轴，实轴为虚轴的双曲线叫做原双曲线的\textbf{共轭双曲线}.求证：\begin{enumerate}
+\item 双曲线和它的共轭双曲线有共同的渐近线；
+\item 双曲线和它的共轭双曲线的四个焦点在同一个圆上.
+\end{enumerate}
+\begin{proof}
+设已知双曲线的方程是\[
+\frac{x^2}{a^2}-\frac{y^2}{b^2}=1.
+\]它的焦点坐标为\(F_1\opair{-c,0}\)和\(F_2\opair{c,0}\)（\(c^2=a^2+b^2\)）.它的渐近线方程是\(y=\pm\frac{b}{a}x\).
+
+根据定义，其共轭双曲线的方程是\[
+\frac{y^2}{a^2}-\frac{x^2}{b^2}=1.
+\]它的交点坐标为\(F'_1\opair{0,-c}\)和\(F'_2\opair{0,c}\)，可见四个焦点都在圆\(x^2+y^2=c^2\)上.它的共轭双曲线的渐近线方程是\(x=\pm\frac{a}{b}y\)，也即\(y=\pm\frac{b}{a}x\)，所以双曲线和它的共轭双曲线具有共同的渐近线.
+\end{proof}
+\end{example}
+
+\begin{example}
+点\(P\opair{x,y}\)与定点\(F\opair{c,0}\)的距离和它到定直线\(l: x = \frac{a^2}{c}\)的距离的比是常数\(\frac{c}{a}\)（\(c > a > 0\)）.求点\(P\)的轨迹.
+\begin{solution}
+设点\(P\)到直线\(l\)的距离是\(d\)，那么所求轨迹就是点集\[
+\Set*{ P \given \frac{\abs{PF}}{d} = \frac{c}{a} },
+\]由此得\[
+\frac{\sqrt{(x-c)^2+y^2}}{\abs{\frac{a^2}{c}-x}} = \frac{c}{a},
+\]化简得\[
+(c^2-a^2)x^2 - a^2 y^2 = a^2(c^2-a^2).
+\]设\(b^2=c^2-a^2\)，则可将上式进一步化简为\[
+\frac{x^2}{a^2}-\frac{y^2}{b^2}=1.
+\]这是双曲线的标准方程，所以点\(P\)的轨迹是双曲线.
+\end{solution}
+
+由上例可知，点\(P\)与一个定点的距离和它到一条定直线的距离的比是常数\(e = \frac{c}{a}\)（\(e > 1\)）时，这个点的轨迹是双曲线.定点是双曲线的焦点，定直线叫做双曲线的\textbf{准线}，常数\(e\)是双曲线的离心率.
+
+对于双曲线\(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\)，相应于焦点\(F\opair{c,0}\)的准线方程是\[
+x = \frac{a^2}{c}
+\quad\text{或}\quad
+x = \frac{a}{e}.
+\]根据双曲线的对称性，相应于焦点\(F'\opair{-c,0}\)的准线方程是\(x=-\frac{a^2}{c}\)，所以双曲线有两条准线.
+\end{example}
+
+\begin{example}
+证明：等轴双曲线的离心率是\(\sqrt2\).
+\begin{proof}
+由定义，等轴双曲线\(x^2-y^2=a^2\)的实半轴长与虚半轴长相等，即\(a=b>0\)，故\(c^2 = a^2 + b^2 = 2 a^2\)，\(c = \sqrt2 a\)，那么等轴双曲线的离心率为\[
+e = \frac{c}{a} = \frac{\sqrt2 a}{a} = \sqrt2.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：从双曲线的一个焦点到一条渐近线的距离等于虚半轴长.
+\begin{proof}
+设双曲线方程为\[
+\frac{x^2}{a^2}-\frac{y^2}{b^2}=1,
+\]它的右焦点为\(F\opair{c,0}\)（\(c^2=a^2+b^2\)），其中一条渐近线为\(y=\frac{b}{a}x\)或\(bx-ay=0\).由点到直线的距离公式，焦点\(F\)到上述渐近线的距离为\[
+d = \frac{\abs{b \cdot c - a \cdot 0}}{\sqrt{b^2+(-a)^2}}
+= \frac{bc}{c} = b.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+已知双曲线\[
+C: \frac{x^2}{a^2} - \frac{y^2}{b^2} = 1 \quad(a>b>1).
+\]求双曲线在其上任意一点\(P_0\opair{x_0,y_0}\)处的切线方程.
+\begin{solution}
+因为点\(P_0\opair{x_0,y_0}\)在双曲线\(C\)上，所以\[
+\frac{x_0^2}{a^2} - \frac{y_0^2}{b^2} = 1
+\quad\text{即}\quad
+b^2 x_0^2 - a^2 y_0^2 = a^2 b^2.
+\]
+
+当切线\(l\)与\(x\)轴相垂直时，显然只有\(\opair{-a,0}\)和\(\opair{a,0}\)两点可能是切点，而它们各自的切线方程分别为\(x=-a\)和\(x=a\).
+
+当切线\(l\)不与\(x\)轴相垂直时，设切线方程为\(l: y = kx + p\)，其中\(p = y_0 - k x_0\).
+联立方程组，得\[
+\begin{cases}
+y = kx + p, \\
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1.
+\end{cases}
+\]那么有\[
+\frac{1}{a^2} x^2 - \frac{1}{b^2} (kx+p)^2 = 1,
+\]\[
+b^2 x^2 - a^2 (k^2 x^2 + 2kpx + p^2) = a^2 b^2,
+\]\[
+(b^2 - a^2 k^2) x^2 - 2 a^2 k p x - a^2 (p^2 + b^2) = 0.
+\]令判别式\(\Delta_1 = (2 a^2 k p)^2 + 4 (b^2 - a^2 k^2) a^2 (p^2 + b^2) = 0\)，得\[
+4 a^4 k^2 p^2 = 4 (a^2 k^2 - b^2) a^2 (p^2 + b^2),
+\]\[
+a^2 k^2 p^2 = (a^2 k^2 - b^2)(p^2 + b^2),
+\]\[
+a^2 b^2 k^2 = b^2(p^2 + b^2),
+\]\[
+a^2 k^2 = p^2 + b^2,
+\]
+代入\(p = y_0 - k x_0\)，得\[
+a^2 k^2 = (y_0 - k x_0)^2 + b^2,
+\]\[
+y_0^2 - 2k x_0 y_0 + k^2 x_0^2 + b^2 = a^2 k^2,
+\]\[
+(x_0^2 - a^2) k^2 - 2 x_0 y_0 k + (y_0^2 + b^2) = 0.
+\]上式的判别式\(\Delta_2 = (2 x_0 y_0)^2 - 4(x_0^2 - a^2)(y_0^2 + b^2)
+= 4(a^2 b^2 + a^2 y_0^2 - b^2 x_0^2) = 0\)，故可解得\[
+k = \frac{2 x_0 y_0}{2 (x_0^2 - a^2)}
+= \frac{x_0 y_0}{x_0^2 - a^2}.
+\]那么\(l\)的方程为\[
+y - y_0 = \frac{x_0 y_0}{x_0^2 - a^2} (x - x_0),
+\]\[
+(x_0^2 - a^2) y = x_0 y_0 x + (x_0^2 - a^2) y_0 - x_0^2 y_0
+= x_0 y_0 x - a^2 y_0,
+\]\[
+x_0 y_0 x + (a^2 - x_0^2) y = a^2 y_0,
+\]\[
+\frac{x_0 x}{a^2} + (a^2 - x_0^2) \frac{y_0 y}{a^2 y_0^2} = 1,
+\]\[
+\frac{x_0 x}{a^2} + (a^2 - x_0^2) \frac{y_0 y}{(x_0^2 - a^2) b^2} = 1,
+\]最后化简得\begin{equation}\label{equation:解析几何.双曲线的切线}
+\frac{x_0 x}{a^2} - \frac{y_0 y}{b^2} = 1.
+\end{equation}
+这就是双曲线在其上任意一点\(P_0\opair{x_0,y_0}\)处的切线方程.
+\end{solution}
+\end{example}
+
+\begin{theorem}[双曲线的焦点三角形]
+设\(P\)是双曲线\(C: \frac{x^2}{a^2} - \frac{y^2}{b^2} = 1\)（\(a>0,b>0\)）上任一点，\(F_1\)、\(F_2\)是\(C\)的焦点，那么\[
+S_{\triangle P F_1 F_2} = \frac{b^2}{\tan(\theta/2)},
+\]其中\(\theta=\angle{F_1 P F_2}\).
+\end{theorem}
+
+\subsection{抛物线}
+\begin{definition}
+平面内与一个定点和一条定直线的距离相等的点的集合叫做\textbf{抛物线}（Parabola）.这个定点叫做抛物线的\textbf{焦点}.定直线叫做抛物线的\textbf{准线}.
+\end{definition}
+
+取经过焦点\(F\)且垂直于准线\(l\)的直线为\(x\)轴，\(x\)轴于\(l\)相交于点\(K\)，以线段\(KF\)的垂直平分线为\(y\)轴.设\(\abs{KF}=p\)，那么，焦点\(F\)的坐标为\(\opair{\frac{p}{2},0}\)，准线\(l\)的方程为\(x=-\frac{p}{2}\).
+
+设抛物线上的点\(P\opair{x,y}\)到\(l\)的距离为\(d\).抛物线就是点集\[
+\Set*{ P \given \abs{PF} = d }.
+\]因为\(\abs{PF} = \sqrt{\left(x-\frac{p}{2}\right)^2+y^2}\)，\(d = \abs{x+\frac{p}{2}}\)，所以\[
+\sqrt{\left(x-\frac{p}{2}\right)^2+y^2} = \abs{x+\frac{p}{2}}.
+\]将上式两边平方，并化简得\begin{equation}
+y^2 = 2px, \quad p > 0.
+\end{equation}
+这个方程叫做\textbf{抛物线的标准方程}，它所表示的抛物线的焦点在\(x\)轴的正半轴上，坐标是\(\opair{\frac{p}{2},0}\)，准线方程是\(x=-\frac{p}{2}\).
+
+一条抛物线，由于它在坐标平面上的位置不同，方程也不同，所以抛物线的标准方程还有其他几种形式：\(y^2 = -2px\)、\(x^2 = 2py\)、\(x^2 = -2py\).
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+%\draw[gray,help lines,dashed] (-3,-3) grid (3,3);
+\draw[thick,->] (-3,0) -> (4,0)node[above]{\(x\)};
+\draw[thick,->] (0,-4) -> (0,4)node[right]{\(y\)};
+\draw (0,0)node[below left]{\(O\)};
+\pgfmathsetmacro{\p}{2}
+\pgfmathsetmacro{\x}{3}
+\pgfmathsetmacro{\y}{sqrt(2*\p*\x)}
+\pgfmathsetmacro{\f}{\p/2}
+\coordinate (F)at(\f,0);
+\draw[orange] [rotate=-90](0,0)parabola(\y,\x) [rotate=180](0,0)parabola(\y,-\x);
+\draw[purple] (-\f,-4)--(-\f,4);
+\draw (2,2)node[above right]{\(C: y^2 = 2px\)（\(p>0\)）}
+	(-\f,-1)node[below left]{\(l: x = -\frac{p}{2}\)};
+\fill (F)circle(2pt)node[below right]{\(F\)};
+\pgfmathsetmacro{\px}{\f/2}
+\pgfmathsetmacro{\py}{\p/sqrt(2)}
+\coordinate (P)at(\px,\py);
+\coordinate (Q)at(-\f,\py);
+\coordinate (K)at(-\f,0);
+\draw[red] (F)--(P)node[above,black]{\(P\)}--(Q)node[left,black]{\(Q\)}
+	pic[draw=gray,-,angle radius=0.3cm]{right angle=P--Q--K};
+\draw (K)node[below left]{\(K\)};
+\coordinate (M)at(\f,\p);
+\coordinate (N)at(\f,-\p);
+\draw[blue] (M)node[above,black]{\(M\)}--(N)node[below,black]{\(N\)}
+	pic[draw=gray,-,angle radius=0.3cm]{right angle=N--F--K};
+\end{tikzpicture}
+\caption{抛物线的图形}
+\label{figure:解析几何.抛物线的图形}
+\end{figure}
+
+我们根据抛物线的标准方程\[
+y^2 = 2px, \quad p > 0
+\]来研究它的几何性质.
+\begin{enumerate}
+\item 范围
+
+因为\(p>0\)，由标准方程可知，抛物线上的点的坐标\(\opair{x,y}\)都适合不等式\(x \geqslant 0\)，所以这条抛物线在\(y\)轴的右侧.当\(x\)的值增大时，\(\abs{y}\)也增大，这说明抛物线向右上方和右下方无限延伸.
+
+\item 对称性
+
+以\(-y\)代\(y\)，标准方程形式不变，所以这个抛物线关于\(x\)轴对称，我们把抛物线的对称轴叫做抛物线的\textbf{轴}.
+
+\item 顶点
+
+抛物线和它的轴的交点叫做抛物线的\textbf{顶点}.在标准方程中，当\(y=0\)时，\(x=0\)，因此标准方程所表示的抛物线的顶点就是坐标原点.
+
+\item 离心率
+
+抛物线上的点\(P\)与焦点和准线的距离的比，叫做抛物线的\textbf{离心率}，用\(e\)表示.由抛物线的定义，抛物线的离心率为\(e = 1\).
+\end{enumerate}
+
+\begin{example}
+已知抛物线方程\(C: y^2=2px\)（\(p>0\)）.下面讨论过焦点\(F\opair*{\frac{p}{2},0}\)的直线\(l\)与抛物线的交点个数.
+\begin{enumerate}
+\item 当直线\(l\)的方程为\(y=0\)时，代入抛物线方程得\(2px = 0\)，解得\(x=0\).可见直线\(l\)与抛物线\(C\)只有一个交点，即坐标原点\(O\).
+\item 当直线\(l\)的方程为\(x=\frac{p}{2}\)时，代入抛物线方程得\(y^2=2p\cdot\frac{p}{2}=p^2\)，解得\(y=\pm p\).可见直线\(l\)与抛物线\(C\)有两个交点\(P\opair*{\frac{p}{2},p}\)和\(Q\opair*{\frac{p}{2},-p}\).焦点弦长为\(\abs{PQ} = 2p\).
+
+\begin{center}
+\begin{tikzpicture}
+%\draw[gray,help lines,dashed] (-3,-3) grid (3,3);
+\draw[thick,->] (-2,0) -> (4,0)node[above]{\(x\)};
+\draw[thick,->] (0,-4) -> (0,4)node[right]{\(y\)};
+\draw (0,0)node[below left]{\(O\)};
+\pgfmathsetmacro{\p}{2}  % 参数p
+\pgfmathsetmacro{\x}{3}
+\pgfmathsetmacro{\y}{sqrt(2*\p*\x)}
+\pgfmathsetmacro{\f}{\p/2}  % 焦点横坐标
+\coordinate (F)at(\f,0);
+\coordinate (2F)at(2\f,0);
+\draw[orange] [rotate=-90](0,0)parabola(\y,\x) [rotate=180](0,0)parabola(\y,-\x);
+\draw[purple] (-\f,-4)--(-\f,4); % 准线
+\draw (2,-3)node[above right]{\(C: y^2 = 2px\)（\(p>0\)）};
+\pgfmathsetmacro{\k}{3}  % 焦点弦 斜率
+\pgfmathsetmacro{\a}{\p/(2*\k^2)}
+\pgfmathsetmacro{\b}{\p/\k}
+\pgfmathsetmacro{\c}{sqrt(\k^2+1)}
+\pgfmathsetmacro{\px}{\a*(\c+1)^2}
+\pgfmathsetmacro{\py}{\b*(\c+1)}
+\pgfmathsetmacro{\qx}{\a*(\c-1)^2}
+\pgfmathsetmacro{\qy}{-\b*(\c-1)}
+\coordinate (P)at(\px,\py);
+\coordinate (Q)at(\qx,\qy);
+\coordinate (P1)at(-\f,\py);
+\coordinate (Q1)at(-\f,\qy);
+\coordinate (K)at(-\f,0);
+\fill (P)circle(2pt)node[below right]{\(P\)}
+	(F)circle(2pt)node[below right]{\(F\)}
+	(Q)circle(2pt)node[right]{\(Q\)};
+\draw[red] (P)--(P1)node[left,black]{\(P_1\)}
+	pic[draw=gray,-,angle radius=0.3cm]{right angle=P--P1--K}
+	(Q)--(Q1)node[left,black]{\(Q_1\)}
+	pic[draw=gray,-,angle radius=0.3cm]{right angle=Q--Q1--K};
+\draw[blue] (P)--(F)--(Q);
+\draw pic["\(\theta\)",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=2F--F--P};
+\end{tikzpicture}
+\end{center}
+
+\item 当直线\(l\)的方程为\(y=k\left(x-\frac{p}{2}\right)\)（\(k\neq0\)）时，代入抛物线方程得\[
+\left[k \left(x-\frac{p}{2}\right)\right]^2 = 2px,
+\]化简得\begin{gather}
+k^2 x^2 - (k^2 + 2)px + \frac{1}{4} k^2 p^2 = 0, \tag1
+\end{gather}因为\[
+\Delta = [- (k^2 + 2)p]^2 - 4 k^2 \frac{1}{4} k^2 p^2
+= 4 p^2 (k^2 + 1) > 0,
+\]所以(1)式总有两个实根\[
+x_{1,2} = \frac{(k^2+2)p \pm \sqrt\Delta}{2 k^2}
+= \frac{p}{2 k^2} (\sqrt{k^2+1} \pm 1)^2.
+\]可见直线\(l\)与抛物线\(C\)有两个交点\(P\opair*{x_1,y_1}\)和\(Q\opair*{x_2,y_2}\).不妨设\(x_1 > x_2\)，即\[
+x_1 = \frac{(k^2+2)p + \sqrt\Delta}{2 k^2}
+= \frac{p}{2 k^2} (\sqrt{k^2+1} + 1)^2,
+\]\[
+x_2 = \frac{(k^2+2)p - \sqrt\Delta}{2 k^2}
+= \frac{p}{2 k^2} (\sqrt{k^2+1} - 1)^2.
+\]将\(x_{1,2}\)代入抛物线方程得\[
+y^2 = 2 p^2 \frac{(\sqrt{k^2+1}\pm1)^2}{2 k^2}
+= \frac{p^2}{k^2} (\sqrt{k^2+1}\pm1)^2,
+\]\[
+y = \pm \frac{p}{k} (\sqrt{k^2+1}\pm1).
+\]当\(k>0\)时，由\(x_1 > x_2\)可知\(y_1 > 0 > y_2\)，那么\[
+y_1 = \frac{p}{k} (\sqrt{k^2+1}+1),
+\qquad
+y_2 = -\frac{p}{k} (\sqrt{k^2+1}-1).
+\]
+由两点间距离公式，焦点弦长为\begin{equation}
+\abs{PQ} = \sqrt{
+\left(\frac{p}{2 k^2} \cdot 4 \sqrt{k^2+1}\right)^2
++\left(\frac{p}{k} \cdot 2 \sqrt{k^2+1}\right)^2
+} = 2p \left(1+\frac{1}{k^2}\right).
+\end{equation}若记\(k=\tan\theta\)，则上述弦长公式也可改写为\begin{equation}
+\abs{PQ} = 2p \frac{\tan^2\theta+1}{\tan^2\theta}
+= 2p \frac{\sec^2\theta}{\tan^2\theta}
+= 2p \frac{1}{\sin^2\theta}
+= 2p \csc^2\theta.
+\end{equation}
+
+现在我们来检验上述弦长公式的正确性.根据抛物线的定义，抛物线上一点到焦点与其到准线的距离相等，故\(\abs{PF} = \abs{P P_1} = x_1 + \frac{p}{2}\)，\(\abs{QF} = \abs{Q Q_1} = x_2 + \frac{p}{2}\)，那么\(\abs{PQ} = \abs{PF}+\abs{QF} = x_1 + x_2 + p\).代入\(x_{1,2}\)，得\begin{align*}
+\abs{PQ} &= \frac{p}{2 k^2} \left[(\sqrt{k^2+1} + 1)^2 + (\sqrt{k^2+1} - 1)^2\right] + p \\
+&= p\left[\frac{2(k^2 + 1) + 2}{2 k^2} + 1\right]
+= p \frac{4k^2 + 4}{2k^2}
+= 2p \left(1+\frac{1}{k^2}\right).
+\end{align*}
+\end{enumerate}
+
+另外，可以注意到，\(P\)、\(Q\)两点的坐标满足\begin{equation}
+x_1 \cdot x_2 = \frac{p^2}{4},
+\qquad
+y_1 \cdot y_2 = -p^2.
+\end{equation}
+
+\(P\)、\(Q\)两点的焦半径\(\abs{FP}\)、\(\abs{FQ}\)满足\begin{equation}
+\frac{1}{\abs{FP}} + \frac{1}{\abs{FB}}
+= \frac{2}{p}.
+\end{equation}
+\end{example}
+
+\section{曲面及其方程}
+\subsection{曲面方程的概念}
+\begin{definition}
+如果曲面\(S\)与三元方程\begin{gather}
+F(x,y,z)=0 \tag1
+\end{gather}有下述关系：
+\begin{enumerate}
+\item 曲面\(S\)上任一点的坐标都满足方程(1)；
+\item 不在曲面\(S\)上的点的坐标都不满足方程(1).
+\end{enumerate}
+那么，上述三元方程就叫做\textbf{曲面\(S\)的方程}，而曲面\(S\)就叫做该方程的\textbf{图形}.
+\end{definition}
+
+\begin{example}
+建立球心在点\(M_0\opair{x_0,y_0,z_0}\)，半径为\(R\)的球面的方程.
+\begin{solution}
+设\(M\opair{x,y,z}\)是球面上任一点，那么\[
+\abs{M_0 M} = \sqrt{(x-x_0)^2+(y-y_0)^2+(z-z_0)^2} = R
+\]或\((x-x_0)^2+(y-y_0)^2+(z-z_0)^2=R^2\).
+
+特别地，当球心在原点时，\(x_0=y_0=z_0=0\)，从而球面方程为\[
+x^2+y^2+z^2=R^2.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设有点\(A\opair{1,2,3}\)和\(B\opair{2,-1,4}\)，求线段\(AB\)的垂直平分面的方程.
+\begin{solution}
+设\(M\opair{x,y,z}\)为所求平面上任一点，由于\(\abs{AM}=\abs{BM}\)，所以\[
+\sqrt{(x-1)^2+(y-2)^2+(z-3)^2}=\sqrt{(x-2)^2+(x+1)^2+(x-4)^2},
+\]化简得\(2x-6y+2z-7=0\).
+\end{solution}
+\end{example}
+
+\subsection{旋转曲面}
+\begin{definition}
+以一条平面曲线绕其平面上的一条直线旋转一周所成的曲面叫做\textbf{旋转曲面}，旋转的曲线和定直线分别称作旋转曲面的\textbf{母线}和\textbf{轴}.
+\end{definition}
+
+\begin{center}
+\begin{tabular}{c|c|c}
+\hline
+平面曲线方程 & 旋转轴 & 旋转曲面方程 \\ \hline
+\multirow{2}{*}{\(f(x,y)=0\)} & \(x\) & \(f(x,\pm\sqrt{y^2+z^2})=0\) \\ \cline{2-3}
+ & \(y\) & \(f(\pm\sqrt{x^2+z^2},y)=0\) \\ \hline
+\multirow{2}{*}{\(f(y,z)=0\)} & \(y\) & \(f(y,\pm\sqrt{x^2+z^2})=0\) \\ \cline{2-3}
+ & \(z\) & \(f(\pm\sqrt{x^2+y^2},z)=0\) \\ \hline
+\multirow{2}{*}{\(f(x,z)=0\)} & \(x\) & \(f(x,\pm\sqrt{y^2+z^2})=0\) \\ \cline{2-3}
+ & \(z\) & \(f(\pm\sqrt{x^2+y^2},z)=0\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{example}
+直线\(L\)绕另一条与\(L\)相交的直线旋转一周，所得旋转曲面叫做\textbf{圆锥面}.两直线的交点叫做圆锥面的\textbf{顶点}，两直线的夹角\(\alpha\)（\(0<\alpha<\pi/2\)）叫做圆锥面的\textbf{半顶角}.试建立顶点在坐标原点\(O\)，旋转轴为\(z\)轴，半顶角为\(\alpha\)的圆锥面的方程.
+\begin{solution}
+在\(yOz\)坐标面上，直线\(L\)的方程为\begin{gather}
+z = y \cot\alpha, \tag1
+\end{gather}因为旋转轴为\(z\)轴，所以只要将方程(1)中的\(y\)改成\(\pm\sqrt{x^2+y^2}\)，便得到这圆锥面的方程\[
+z = \pm\sqrt{x^2+y^2} \cot\alpha
+\quad \text{或} \quad
+z^2 = a^2(x^2+y^2),
+\]其中\(a=\cot\alpha\).
+\end{solution}
+\end{example}
+
+\subsection{柱面}
+\begin{definition}
+一般地，直线\(L\)沿定曲线\(C\)平行移动形成的轨迹叫做\textbf{柱面}，定曲线\(C\)叫做柱面的\textbf{准线}，动直线\(L\)叫做柱面的\textbf{母线}.
+\end{definition}
+
+\begin{example}
+方程\(x^2+y^2=R^2\)在\(xOy\)面上表示圆心在原点\(O\)，半径为\(R\)的圆；在空间直角坐标系中，它表示以\(z\)轴为轴，以\(x^2+y^2=R^2\)为准线的\textbf{圆柱面}.
+\end{example}
+
+\begin{example}
+方程\(y^2=2x\)表示母线平行于\(z\)轴的柱面，它的准线是\(xOy\)面上的抛物线\(y^2=2x\)，该柱面叫做\textbf{抛物柱面}.
+\end{example}
+
+\begin{example}
+方程\(x-y=0\)表示母线平行于\(z\)轴的柱面，其准线是\(xOy\)面上的直线\(x-y=0\)，所以它是过\(z\)轴的平面.
+\end{example}
+
+一般地，只含\(x\)、\(y\)而缺\(z\)的方程\(F(x,y)=0\)在空间直角坐标系中表示母线平行于\(z\)轴的柱面，其准线是\(xOy\)面上的曲线\(C: F(x,y)=0\).
+
+类似可知，只含\(x\)、\(z\)而缺\(y\)的方程\(G(x,z)=0\)和只含\(y\)、\(z\)而缺\(x\)的方程\(H(y,z)=0\)分别表示母线平行于\(y\)轴和\(x\)轴的柱面.
+
+\subsection{二次曲面}
+\begin{definition}
+把三元二次方程\(F(x,y,z)=0\)所表示的曲面称为\textbf{二次曲面}（quadratic surface）.
+%@see: https://mathworld.wolfram.com/QuadraticSurface.html
+相对地，把平面称为\textbf{一次曲面}.
+\end{definition}
+
+二次曲面总共有九种.下面列举九种二次曲面的标准方程：
+\begin{enumerate}
+\item \textbf{椭圆锥面} \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=z^2\).
+\item \textbf{椭球面}（ellipsoid） \(\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\).
+	特别地，\textbf{旋转椭球面}包括：\begin{enumerate}
+	\item \(\frac{x^2+y^2}{a^2}+\frac{z^2}{c^2}=1\)\footnote{%
+	将球面\(x^2+y^2+z^2=a^2\)沿\(z\)轴方向伸缩\(\frac{c}{a}\)倍便得旋转椭球面\(\frac{x^2+y^2}{a^2}+\frac{z^2}{c^2}=1\)；再沿\(y\)轴方向伸缩\(\frac{b}{a}\)倍，便得椭球面\(\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\).%
+	}.
+	\end{enumerate}
+	显然，球面是旋转椭球面的特殊情形，旋转椭球面是椭球面的特殊情形.
+\item \textbf{单叶双曲面}（one-sheeted (elliptic) hyperboloid） \(\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\).
+\item \textbf{双叶双曲面}（two-sheeted (elliptic) hyperboloid） \(\frac{x^2}{a^2}-\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\).
+	特别地，\textbf{旋转双叶双曲面}：\begin{enumerate}
+	\item \(\frac{x^2}{a^2}-\frac{y^2+z^2}{c^2}=1\)\footnote{%
+	将\(xOz\)面上的双曲线\(\frac{x^2}{a^2}-\frac{z^2}{c^2}=1\)绕\(x\)轴旋转，得旋转双叶双曲面\(\frac{x^2}{a^2}-\frac{y^2+z^2}{c^2}=1\)；再沿\(y\)轴方向伸缩\(\frac{b}{c}\)倍，便得双叶双曲面\(\frac{x^2}{a^2}-\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\).%
+	}.
+	\end{enumerate}
+\item \textbf{椭圆抛物面} \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=z\).
+% RevolutionPlot3D[{Sec[t], Tan[t]}, {t, -Pi, Pi}, PlotRange -> {-5, 5}]
+\item \textbf{双曲抛物面}（又称\textbf{马鞍面}） \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=z\).
+% RevolutionPlot3D[{Tan[t], Sec[t]}, {t, -Pi, Pi}, PlotRange -> {-5, 5}]
+\item \textbf{椭圆柱面} \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\).
+\item \textbf{双曲柱面} \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\).
+\item \textbf{抛物柱面} \(x^2=ay\).
+\end{enumerate}
+
+\begin{example}
+单叶双曲面\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1
+\]的参数方程为\[
+\left\{ \begin{array}{l}
+x = a \sqrt{1+u^2} \cos v, \\
+y = b \sqrt{1+u^2} \sin v, \\
+z = c u
+\end{array} \right.
+\quad
+v\in[0,2\pi).
+\]
+
+双叶双曲面\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = -1
+\]的参数方程为\[
+\left\{ \begin{array}{l}
+x = a \sinh u \cos v, \\
+y = b \sinh u \sin v, \\
+z = \pm c \cosh u
+\end{array} \right.
+\quad
+u\in(-\infty,+\infty),
+v\in[0,\pi).
+\]
+\end{example}
+
+\begin{example}
+试证：椭球面\[
+S: \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1.
+\]在其上任意一点\(P_0\opair{x_0,y_0,z_0}\)处的切面方程为
+\begin{equation}\label{equation:解析几何.椭球面的切平面}
+\frac{x_0 x}{a^2} + \frac{y_0 y}{b^2} + \frac{z_0 z}{c^2} = 1.
+\end{equation}
+\end{example}
+
+\section{空间曲线及其方程}
+\subsection{空间曲线的一般方程}
+空间曲线可以看成是两个曲面的交线.设\(F(x,y,z)=0\)和\(G(x,y,z)=0\)是两个曲面的方程，它们的交线为\(C\)，则\(C\)的方程为\begin{gather}
+\left\{ \begin{array}{l}
+F(x,y,z)=0, \\
+G(x,y,z)=0.
+\end{array} \right. \tag1
+\end{gather}
+方程组(1)叫做空间曲线\(C\)的\textbf{一般方程}.
+
+\subsection{空间曲线的参数方程}
+只要将空间曲线\(C\)上动点的坐标\(x\)、\(y\)、\(z\)表示为参数\(t\)的函数：\begin{gather}
+\left\{ \begin{array}{l}
+x=x(t), \\
+y=y(t), \\
+z=z(t).
+\end{array} \right. \tag2
+\end{gather}
+方程组(2)叫做空间曲线\(C\)的\textbf{参数方程}.
+
+\subsection{曲面的参数方程}
+曲面的参数方程通常是含两个参数的方程，形如\begin{gather}
+\left\{ \begin{array}{l}
+x=x(s,t), \\
+y=y(s,t), \\
+z=z(s,t).
+\end{array} \right. \tag3
+\end{gather}
+
+\begin{example}
+空间曲线\[
+\Gamma: \left\{ \begin{array}{l}
+x=\varphi(t), \\
+y=\psi(t), \\
+z=\omega(t),
+\end{array} \right.
+\quad \alpha \leqslant t \leqslant \beta
+\]绕\(z\)轴旋转，所得旋转曲面的方程为\begin{gather}
+\left\{ \begin{array}{l}
+x=\sqrt{[\varphi(t)]^2+[\psi(t)]^2} \cos\theta, \\
+y=\sqrt{[\varphi(t)]^2+[\psi(t)]^2} \sin\theta, \\
+z=\omega(t),
+\end{array} \right.
+\quad \begin{array}{c}
+\alpha \leqslant t \leqslant \beta \\
+0 \leqslant \theta \leqslant 2\pi
+\end{array}. \tag4
+\end{gather}
+\end{example}
+
+\subsection{空间曲线在坐标面上的投影}
+设空间曲线\(C\)的一般方程为\begin{gather}
+\left\{ \begin{array}{l}
+F(x,y,z)=0, \\
+G(x,y,z)=0.
+\end{array} \right. \tag5
+\end{gather}假如上式消去变量\(z\)后所得的方程为\begin{gather}
+H(x,y)=0. \tag6
+\end{gather}
+由于方程(6)是由方程组(5)消去\(z\)后所得的结果，因此当\(x\)、\(y\)和\(z\)都满足方程组(5)时，前两个数\(x\)、\(y\)必定满足方程(6)，这说明曲线\(C\)上的所有点都在由方程(6)所表示的曲面上.
+
+由上节知道，方程(6)表示一个母线平行于\(z\)轴的柱面.由上面的讨论可知，这柱面必定包含曲线\(C\).以曲线\(C\)为准线、母线平行于\(z\)轴（即垂直于\(xOy\)面)的柱面叫做曲线\(C\)关于\(xOy\)面的\textbf{投影柱面}.投影柱面与\(xOy\)面的交线叫做空间曲线\(C\)在\(xOy\)面上的\textbf{投影曲线}（简称\textbf{投影}）.因此方程(6)所表示的柱面必定包含投影柱面，而方程\[
+\left\{ \begin{array}{l}
+H(x,y)=0, \\
+z=0
+\end{array} \right.
+\]所表示的曲线必定包含空间曲线\(C\)在\(xOy\)面上的投影.
+
+同理，消去方程组(5)中的变量\(x\)或变量\(y\)，再分别和\(x=0\)或\(y=0\)联立，即可得到包含曲线\(C\)在\(yOz\)面或\(xOz\)面上的投影的曲线方程\[
+\left\{ \begin{array}{l}
+R(y,z)=0, \\
+x=0,
+\end{array} \right.
+\quad \text{或} \quad
+\left\{ \begin{array}{l}
+T(x,z)=0, \\
+y=0.
+\end{array} \right.
+\]
+
+\section{平面及其方程}
+我们在平面几何中已经知道，确定一个平面的条件包括但不限于\begin{enumerate}
+\item 不在一直线上的三点；
+\item 一条直线和此直线外的一点；
+\item 两条相交直线；
+\item 两条平行曲线.
+\end{enumerate}在空间解析几何中，我们采用“一个点和两个不共线的向量确定一个平面”作为讨论的出发点.
+
+\subsection{平面的点法式方程}
+\begin{definition}
+如果一非零向量垂直于一平面，这向量就叫做该平面的\textbf{法线向量}（简称\textbf{法向量}）.
+\end{definition}
+
+\begin{property}
+平面上任一向量均与该平面的法向量垂直.
+\end{property}
+
+设平面的法向量为\(\mat{n}=\opair{A,B,C}\)，平面上任一点\(M_0\opair{x_0,y_0,z_0}\)，则该平面的点法式方程为\[
+A(x-x_0)+B(y-y_0)+C(z-z_0)=0.
+\]
+
+\subsection{平面的一般方程}
+平面的一般方程为：\[
+Ax+By+Cz+D=0.
+\]
+
+\subsection{平面的截距式方程}
+设一平面与\(x\)、\(y\)、\(z\)轴的交点依次为\(P\opair{a,0,0}\)、\(Q\opair{0,b,0}\)，\(R\opair{0,0,c}\)三点，则平面方程为\[
+\frac{x}{a}+\frac{y}{b}+\frac{z}{c}=1.
+\]上式叫做\textbf{平面的截距式方程}，而\(a\)、\(b\)、\(c\)依次叫做平面在\(x\)、\(y\)、\(z\)轴上的\textbf{截距}.
+
+\subsection{两平面的夹角}
+\begin{definition}
+两平面的法线向量的夹角（通常指锐角）称为\textbf{两平面的夹角}.
+\end{definition}
+
+\begin{theorem}
+设平面\(\Pi_1\)和\(\Pi_2\)的法向量分别为\[
+\mat{n}_1=\opair{A_1,B_1,C_1}
+\quad\text{和}\quad
+\mat{n}_2=\opair{A_2,B_2,C_2},
+\]则该两平面的夹角\(\theta\)满足：\[
+\cos\theta
+= \frac{\abs{A_1A_2+B_1B_2+C_1C_2}}{\sqrt{A_1^2+B_1^2+C_1^2}\sqrt{A_2^2+B_2^2+C_2^2}}
+= \frac{\abs{\mat{n}_1 \cdot \mat{n}_2}}{\abs{\mat{n}_1} \abs{\mat{n}_2}}.
+\]
+\end{theorem}
+
+\begin{corollary}
+从两向量垂直、平行的充要条件立即推出下列结论：\[
+\Pi_1 \perp \Pi_2
+	\iff A_1A_2+B_1B_2+C_1C_2=0,
+\]\[
+\Pi_1 \parallel \Pi_2
+	\iff \frac{A_1}{A_2} = \frac{B_1}{B_2} = \frac{C_1}{C_2}.
+\]
+其中，\(\Pi_1 \perp \Pi_2\)表示两者垂直，\(\Pi_1 \parallel \Pi_2\)表示两者平行（或重合）.
+\end{corollary}
+
+\subsection{平面外一点到平面的距离}
+设\(P_0\opair{x_0,y_0,z_0}\)是平面\(\Pi:\: Ax+By+Cz+D=0\)外一点，在平面上任取一点\(P_1\opair{x_1,y_1,z_1}\).记平面的法线向量为\(\mat{n}\)，则\(\mat{n}=\opair{A,B,C}\).考虑到\(\vec{P_1 P_0}\)与\(\mat{n}\)的夹角\(\theta\)可能是钝角，那么点\(P_0\)到平面\(\Pi\)的距离为\[
+d = \abs{\Prj_n\vec{P_1 P_0}}.
+\]设\(\mat{e}_n\)是与向量\(\mat{n}\)方向一致的单位向量，那么有\[
+\Prj_n\vec{P_1 P_0} = \vec{P_1 P_0} \cdot \mat{e}_n,
+\]而\[
+\mat{e}_n = \frac{1}{\sqrt{A^2+B^2+C^2}}\opair{A,B,C},
+\]\[
+\vec{P_1 P_0} = \opair{x_0-x_1,y_0-y_1,z_0-z_1},
+\]得\begin{align*}
+\Prj_n\vec{P_1 P_0}
+&= \frac{A(x_0-x_1)+B(y_0-y_1)+C(z_0-z_1)}{\sqrt{A^2+B^2+C^2}} \\
+&= \frac{A x_0 + B y_0 + C z_0 - (A x_1 + B y_1 + C z_1)}{\sqrt{A^2+B^2+C^2}}.
+\end{align*}又因为\(A x_1 + B y_1 + C z_1 + D = 0\)，所以\[
+\Prj_n\vec{P_1 P_0} = \frac{A x_0 + B y_0 + C z_0 + D}{\sqrt{A^2+B^2+C^2}}.
+\]
+
+由此得点\(P_0\opair{x_0,y_0,z_0}\)到平面\(\Pi:\: Ax+By+Cz+D=0\)的距离公式：\[
+d = \frac{\abs{\vec{P_0 P_1} \cdot \mat{n}}}{\abs{\mat{n}}} = \frac{\abs{A x_0 + B y_0 + C z_0 + D}}{\sqrt{A^2+B^2+C^2}}.
+\]
+
+\section{空间直线及其方程}
+\subsection{空间直线的一般方程}
+空间直线\(L\)可以看做是两个平面\(\Pi_1\)和\(\Pi_2\)的交线.如果两个相交的平面\(\Pi_1\)和\(\Pi_2\)的方程分别为\(A_1x+B_1y+C_1z+D_1=0\)和\(A_2x+B_2y+C_2z+D_2=0\)，那么直线\(L\)上的任一点的坐标应同时满足这两个平面的方程，即满足方程组\begin{gather}
+\left\{ \begin{array}{l}
+A_1x+B_1y+C_1z+D_1=0, \\
+A_2x+B_2y+C_2z+D_2=0.
+\end{array} \right. \tag1
+\end{gather}
+方程组(1)叫做空间直线的\textbf{一般方程}.
+
+\subsection{空间直线的对称式方程与参数方程}
+\begin{definition}
+如果一个非零向量平行于一条已知直线，这个向量就叫做这条直线的\textbf{方向向量}.
+\end{definition}
+
+由于过空间一点可作而且只能作一条直线平行于一已知直线，所以当给定直线\(L\)上一点\(M_0\opair{x_0,y_0,z_0}\)和它的一个方向向量\(\mat{s}=\opair{m,n,p}\)时，直线\(L\)的位置就完全确定了.设点\(M\opair{x,y,z}\)是直线\(L\)上的任一点，那么向量\(\vec{M_0M}\)与\(L\)的方向向量\(\mat{s}\)平行，所以两向量的对应坐标成比例，由\(\vec{M_0M}=\opair{x-x_0,y-y_0,z-z_0}\)，从而有\[
+\left\{ \begin{array}{c}
+x-x_0=\lambda m, \\
+y-y_0=\lambda n, \\
+z-z_0=\lambda p
+\end{array} \right.
+\]或\begin{gather}
+\left\{ \begin{array}{c}
+x=x_0+\lambda m, \\
+y=y_0+\lambda n, \\
+z=z_0+\lambda p,
+\end{array} \right. \tag2
+\end{gather}其中\(\lambda \neq 0\)，方程组(2)就是直线的\textbf{参数方程}.
+当\(m\)、\(n\)、\(p\)均不为零时，以上方程组可以写成\begin{gather}
+\frac{x-x_0}{m}=\frac{y-y_0}{n}=\frac{z-z_0}{p}. \tag3
+\end{gather}
+方程组(2)就是直线\(L\)的方程，叫做直线的\textbf{对称式方程}或\textbf{点向式方程}；
+当\(m\)、\(n\)、\(p\)中有一个为零时，例如\(m=0\)而\(n p \neq 0\)，方程(3)可以写成\begin{gather}
+\left\{ \begin{array}{l}
+x-x_0=0, \\
+\frac{y-y_0}{n}=\frac{z-z_0}{p};
+\end{array} \right. \tag{3'}
+\end{gather}
+当\(m\)、\(n\)、\(p\)中有两个为零时，例如\(m=n=0\)而\(p \neq 0\)，方程(3)可以写成\begin{gather}
+x-x_0=y-y_0=0. \tag{3''}
+\end{gather}
+
+\begin{definition}
+直线的任一方向向量\(s\)的坐标\(m\)、\(n\)、\(p\)叫做这直线的一组\textbf{方向数}，而向量\(\mat{s}\)的方向余弦叫做该直线的\textbf{方向余弦}.
+\end{definition}
+
+\subsection{两直线的夹角}
+\begin{definition}
+两直线的方向向量的夹角（通常指锐角）叫做两直线的夹角.
+\end{definition}
+
+\begin{theorem}
+设空间直线\(L_1\)和\(L_2\)的方向向量依次是\(\mat{s}_1=(m_1,n_1,p_1)\)和\(\mat{s}_2=(m_2,n_2,p_2)\)，那么\(L_1\)和\(L_2\)的夹角\(\varphi\)满足\[
+\cos\varphi
+=\frac{\abs{m_1m_2+n_1n_2+p_1p_2}}{\sqrt{m_1^2+n_1^2+p_1^2}\sqrt{m_2^2+n_2^2+p_2^2}}
+=\frac{\abs{\mat{s}_1 \cdot \mat{s}_2}}{\abs{\mat{s}_1}\abs{\mat{s}_2}}
+\]
+\end{theorem}
+
+\begin{corollary}
+从两向量垂直、平行的充要条件立即推出下列结论：\[
+L_1 \perp L_2
+	\iff m_1 m_2 + n_1 n_2 + p_1 p_2 = 0;
+\]\[
+L_1 \parallel L_2
+	\iff \frac{m_1}{m_2} = \frac{n_1}{n_2} = \frac{p_1}{p_2}.
+\]
+其中，\(L_1 \perp L_2\)表示两者垂直，\(L_1 \parallel L_2\)表示两者平行（或重合）.
+\end{corollary}
+
+\subsection{直线与平面的夹角}
+\begin{definition}
+当直线与平面不垂直时，直线和它在平面上的投影直线的夹角\(\varphi\)（\(0\leqslant\varphi<\frac{\pi}{2}\)）称为直线与平面的夹角.当直线与平面垂直时，规定直线与平面的夹角为\(\frac{\pi}{2}\).
+\end{definition}
+
+\begin{theorem}
+设直线的方向向量为\(\mat{s}=\opair{m,n,p}\)，平面的法线向量为\(\mat{n}=\opair{A,B,C}\)，直线与平面的夹角为\(\varphi\)，那么有\[
+\sin\varphi
+=\frac{\abs{Am+Bn+Cp}}{\sqrt{A^2+B^2+C^2}\sqrt{m^2+n^2+p^2}}
+=\frac{\abs{\mat{s}\cdot\mat{n}}}{\abs{\mat{s}}\abs{\mat{n}}}.
+\]
+\end{theorem}
+
+\begin{corollary}
+设直线的方向向量为\(\mat{s}=\opair{m,n,p}\)，平面的法线向量为\(\mat{n}=\opair{A,B,C}\)，直线与平面的夹角为\(\varphi\).若直线与平面垂直，则有\(\mat{s}\parallel\mat{n}\).
+进一步，当\(m\)、\(n\)、\(p\)均不为零时，有\[
+\frac{A}{m}=\frac{B}{n}=\frac{C}{p}.
+\]
+\end{corollary}
+
+\begin{corollary}
+设直线的方向向量为\(\mat{s}=\opair{m,n,p}\)，平面的法线向量为\(\mat{n}=\opair{A,B,C}\)，直线与平面的夹角为\(\varphi\).若直线与平面平行或直线在平面上，则有\(\mat{s}\perp\mat{n}\)，也即\[
+Am+Bn+Cp=0.
+\]
+\end{corollary}
+
+\begin{definition}
+通过定直线的所有平面的全体称为\textbf{平面束}.
+\end{definition}
+
+\begin{theorem}
+设空间直线\(L\)由方程组\[
+\left\{ \begin{array}{c}
+A_1x+B_1y+C_1z+D_1=0, \\
+A_2x+B_2y+C_2z+D_2=0
+\end{array} \right.
+\]所确定，其中系数\(A_1\)、\(B_1\)、\(C_1\)与\(A_2\)、\(B_2\)、\(C_2\)不成比例.建立三元一次方程\[
+\lambda(A_1x+B_1y+C_1z+D_1)+\mu(A_2x+B_2y+C_2z+D_2)=0, \quad \lambda\mu\neq0.
+\]这个方程表示一族通过直线\(L\)的\textbf{平面束}的方程.
+\end{theorem}
+
+\subsection{直线外一点到直线的距离}
+设\(M_0(x_0,y_0,z_0)\)是直线\(L\)外一点，\(M(x,y,z)\)是直线\(L\)上任意一点，且直线的方向向量为\(\mat{s}=(m,n,p)\)，则\(M_0\)到直线\(L\)的距离为\[
+d=\frac{\abs{\vec{M_0M}\times\mat{s}}}{\abs{\mat{s}}}.
+\]
+
+\section{极坐标系}
+极坐标系是一种平面坐标系.
+极坐标系上的点\(\opair{\rho,\theta}\)与平面直角坐标系上的点\(\opair{x,y}\)存在以下的一一对应关系：\[
+\left\{ \begin{array}{l}
+x = \rho\cos\theta \\
+y = \rho\sin\theta \\
+\end{array} \right.
+\]
+
+\section{柱面坐标系}
+柱面坐标系是一种空间坐标系.
+柱面坐标系上的点\(\opair{\rho,\theta,z}\)与空间直角坐标系上的点\(\opair{x,y,z}\)存在以下的一一对应关系：\[
+\left\{ \begin{array}{l}
+x = \rho\cos\theta \\
+y = \rho\sin\theta \\
+z = z \\
+\end{array} \right.
+\]
+
+\section{球面坐标系}
+球面坐标系是一种空间坐标系.
+球面坐标系上的点\(\opair{r,\theta,\varphi}\)与空间直角坐标系上的点\(\opair{x,y,z}\)存在以下的一一对应关系：\[
+\left\{ \begin{array}{l}
+x = r \sin\varphi \cos\theta \\
+y = r \sin\varphi \sin\theta \\
+z = r \cos\varphi \\
+\end{array} \right.
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\coordinate (O) at (0,0);
+\coordinate (M) at (2,2);
+\coordinate (P) at (2,-1.2);
+\coordinate (A) at (-0.8,-1.2);
+\coordinate (Z) at (0,1);
+
+\draw (O)node[left]{\(O\)}
+		-- (M)node[right]{\(M\)} node[midway,above]{\(r\)}
+		-- (P)node[right]{\(P\)} node[midway,right]{\(z\)}
+		-- (A)node[left]{\(A\)} node[midway,below]{\(y\)}
+		-- (O)node[midway,left]{\(x\)}
+	(O) -- (P)
+	pic["\(\varphi\)",draw=orange,<-,angle eccentricity=1.3,angle radius=0.6cm]{angle=M--O--Z}
+	pic["\(\theta\)",draw=orange,->,angle eccentricity=1.5,angle radius=0.4cm]{angle=A--O--P};
+
+\draw[->,ultra thick] (0,0) -- (-1.5,-2.25) node[right]{\(x\)};
+\draw[->,ultra thick] (0,0) -- (3,0) node[right]{\(y\)};
+\draw[->,ultra thick] (0,0) -- (0,3) node[above]{\(z\)};
+\end{tikzpicture}
+\end{center}

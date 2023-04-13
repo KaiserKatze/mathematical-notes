@@ -1,0 +1,245 @@
+\begingroup
+\chapter{初等数论}
+数论在一些地方总有让人意想不到的妙用.
+有这样一种说法：“自然科学的皇后是数学，数学的皇冠是数论，哥德巴赫猜想则是皇冠上的明珠。”
+在这一章，我们介绍一些基础的数论理论，供大家参考.
+
+\section{素数与合数}
+在正整数集上，由于没有引入负数、分数的概念，正整数\(x\)与\(y\)相除的结果除了商\(z\)以外，还经常是带有余数\(r\)的，于是有关系式\[
+x = y z + r.
+\]
+\begin{definition}
+在正整数集上，如果\(x\)与\(y\)相除余\(r=0\)，我们就称“\(y\)可以\textbf{整除}\(x\)”或“\(x\)可以\textbf{被}\(y\)\textbf{整除}”或“\(x\)是\(y\)的\textbf{倍数}”或“\(y\)是\(x\)的\textbf{因子}”，记作\(\truediv{x}{y}\)，即\[
+\truediv{x}{y} \iff
+\bigl( \exists z \in \mathbb{N}^+ : x = y z \bigr).
+\]
+\end{definition}
+
+\begin{definition}
+设\(a,b\in\mathbb{N}^+\).
+\(a\)与\(b\)的\textbf{最大公约数}（greatest common divisor），记作\((a,b)\)；
+\(a\)与\(b\)的\textbf{最小公倍数}（least common multiple），记作\([a,b]\).
+\end{definition}
+在本章以外，为了防止最大公约数、最小公倍数记号与开区间、闭区间符号混淆，分别记作\(\gcd{p,q}\)和\(\lcm{p,q}\).
+
+\begin{theorem}
+设\(a,b\in\mathbb{N}^+\).
+已知\(a\)与\(b\)的最大公约数\((a,b)\)和最小公倍数\([a,b]\)，%
+那么\((a,b)\times[a,b]=ab\).
+\end{theorem}
+
+\begin{definition}
+如果正整数\(x\)只能被1或它自己整除\footnote{特别地，我们规定1不是素数.}，那么称\(x\)为\textbf{素数}或\textbf{质数}（prime number），否则称之为\textbf{合数}（composite number）.
+如果正整数\(x\)与\(y\)除了1以外没有其他公因子，就称“\(x\)与\(y\)\textbf{互素}（或\textbf{互质}）”.
+
+全体素数的集合，记作\(\mathbb{S}\)，即\[
+\mathbb{S} = \Set*{
+x\in\mathbb{N}^+-\{1\} \given \forall y\in\mathbb{N}^+ \bigl[
+	y \neq x \implies (x,y)=1
+\bigr]
+}.
+\]
+\end{definition}
+
+\begin{theorem}
+如果一个正整数\(a\)能整除正整数的乘积\(bc\)，且\(a\)与其中一个因子\(b\)互素，则\(a\)必能整除另一个因子\(c\).
+\end{theorem}
+\begin{corollary}
+如果素数\(a\)能整除正整数的乘积\(bcd\dotsm\)，则\(a\)必能整除该乘积的一个因子.
+\end{corollary}
+\begin{corollary}
+如果素数\(a\)能整除正整数的乘积\(b^n\ (n\in\mathbb{N}^+)\)，那么\(a\)必能整除\(b\).
+\end{corollary}
+
+\begin{theorem}
+如果正整数\(a\)与正整数\(b,c\)均互素，则它必与乘积\(bc\)互素.
+\end{theorem}
+\begin{corollary}
+如果正整数\(a\)与正整数的乘积\(bc\)互素，则\(a\)与正整数\(b,c\)均互素.
+\end{corollary}
+\begin{corollary}
+如果正整数\(a\)与\(b\)互素，则\(a^m\ (m\in\mathbb{N}^+)\)与\(b^n\ (n\in\mathbb{N}^+)\)互素.
+\end{corollary}
+
+\begin{theorem}
+如果正整数\(a\)与\(b\)互素，则分数\(\frac{a^m}{b^n}\ (m,n\in\mathbb{N}^+)\)均为既约分数.
+\end{theorem}
+\begin{corollary}
+设\(a,b,c,d\in\mathbb{N}^+\).
+如果\(\frac{a}{b} = \frac{c}{d}\)，且\(\frac{a}{b}\)是既约分数，则\[
+\forall k\in\mathbb{R}^* : c = ka, d = kb.
+\]
+\end{corollary}
+
+不难发现，第一个素数是2，它也是素数中唯一一个偶数.
+第二个素数是3，接下来是5、7、11……
+我们不禁发问，素数的个数究竟是有限的，还是无限的.
+\begin{theorem}
+素数有无穷多个.
+\begin{proof}
+用反证法\footnote{这个证法是由古希腊数学家欧几里得给出的.}.
+假设素数只有\(k\)个，分别是\(\v{p}{k}\)，且\(p_1 < p_2 < \dotsb < p_k\).
+显然，数\(\truediv{p_1 p_2 \dotsm p_k}{p_i}\ (i=1,2,\dotsc,k)\).
+但数\[
+N = 1 + p_1 p_2 \dotsm p_k
+\]与\(p_i\ (i=1,2,\dotsc,k)\)相除总余1，这就说明数\(N\)要么是一个素数，要么是一个可以被区间\((p_k,N)\)内的一个正整数\(M\)整除的合数，总之素数的个数大于\(k\).
+以此类推，可知素数必然有无穷多个.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+没有任何一个有理代数式能唯一地表示素数.
+\begin{proof}
+用反证法.
+假设有理代数式\[
+p(x) = a_0 + a_1 x + a_2 x^2 + \dotsb
+\]唯一地表示素数，且\[
+p(m) = a_0 + a_1 m + a_2 m^2 + \dotsb = q.
+\]但\begin{align*}
+p(m+nq) &= a_0 + a_1 (m+nq) + a_2 (m+nq)^2 + \dotsb \\
+&= a_0 + a_1 m + a_2 m^2 + \dotsb + \alpha q \quad(\alpha\in\mathbb{Q}) \\
+&= q + \alpha q = (1+\alpha)q,
+\end{align*}即\(\truediv{p(m+nq)}{q}\)，说明\(p(m+nq)\)不是一个素数.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+一个数只能以一种方式分解素因子.
+\begin{proof}
+设合数\(N\)可以分解为乘积\(abcd\dotsm\)，其中\(a,b,c,d,\dotsc\)是素数；又设\(N = \alpha\beta\gamma\delta\dotsm\)，其中\(\alpha,\beta,\gamma,\delta,\dotsc\)是另一些素数；那么\[
+abcd\dotsm = \alpha\beta\gamma\delta\dotsm.
+\]
+显然，数\(\alpha\)可以整除\(abcd\dotsm\)，所以\(\alpha\)至少能整除它们中的一个因子，不妨设\(\truediv{a}{\alpha}\)，但是由于\(a,b,c,d,\dotsc\)都是素数，故可知\(a=\alpha\)，因此\[
+bcd\dotsm = \beta\gamma\delta\dotsm.
+\]以此类推，最后得到\(b=\beta,c=\gamma,d=\delta,\dotsc\)，也就是说，任意合数的素因子分解式是唯一的.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+已知合数\(N = a^p b^q c^r \dotsm\)，其中\(a,b,c,\dotsc\)是不同的素数，\(p,q,r,\dotsc\)是正整数.
+计算\(N\)的因子个数，\(N\)分解成两个因子的方式数，\(N\)分解成两个互素的因子的方式数，\(N\)的所有因子之和.
+\begin{solution}
+因为乘积\[
+(1+a+a^2+\dotsb+a^p)
+(1+b+b^2+\dotsb+b^q)
+(1+c+c^2+\dotsb+c^r)\dotsm
+\]的展开式的每一项都是数\(N\)的一个因子，所以，\(N\)的因子个数就是上述乘积的项数\((p+1)(q+1)(r+1)\dotsm\)\footnote{这里“因子个数”包括了1和合数\(N\)本身.}.
+
+当\(N\)不是完全平方数时，\(N\)分解成两个因子的方式显然有\[
+\frac{1}{2} (p+1)(q+1)(r+1)\dotsm
+\]种.
+
+当\(N\)是完全平方数时，\(N = \sqrt{N}\times\sqrt{N}\)也是一种分解方式，但对应于这种分解方式的因子只有一个\(\sqrt{N}\).
+如果不计入这种分解方式，那么\(N\)的分解方式有\[
+\frac{1}{2} \left[-1 + (p+1)(q+1)(r+1)\dotsm\right]
+\]种；再加上刚刚提到的一种特殊分解方式\(N = \sqrt{N}\times\sqrt{N}\)，那么\(N\)的分解方式总共有\[
+\frac{1}{2} \left[1 + (p+1)(q+1)(r+1)\dotsm\right]
+\]种.
+
+在将数\(N\)分解成互素的两个因子\(\alpha,\beta\)时，其中一个必须包含\(a^p\)，否则就会有\(a\)的一些幂在一个因子中，\(a\)的另一些幂在在另一个因子中，于是这两个因子就不互素了.
+以此类推，可知“\(N\)分解成两个互素的因子的方式数”与“\(abcd\dotsm\)分解成两个因子的方式数”相等，即为\[
+\frac{1}{2}(1+1)(1+1)(1+1)\dotsm.
+\]若设\(N\)中共有\(n\)个不同的素因子，那么\(N\)分解成两个互素的因子的方式数是\[
+\frac{1}{2} \cdot 2^n = 2^{n-1}.
+\]
+
+如前所述，由于乘积\[
+(1+a+a^2+\dotsb+a^p)
+(1+b+b^2+\dotsb+b^q)
+(1+c+c^2+\dotsb+c^r)\dotsm
+\]展开式的每一项都是一个因子，所以“\(N\)的所有因子之和”就等于这个乘积，由等比数列的求和公式，便得\(N\)的所有因子之和为\[
+\frac{1-a^{p+1}}{1-a}\cdot\frac{1-b^{q+1}}{1-b}\cdot\frac{1-c^{r+1}}{1-c}\dotsm.
+\]
+\end{solution}
+\end{example}
+
+\section{费马小定理}
+\begin{lemma}\label{theorem:初等数论.费马小定理.引理0}
+证明：任意\(r\)个连续正整数的乘积能被\(r!\)整除.
+\begin{proof}
+设从正整数\(n\)开始的连续\(r\)个正整数的乘积为\(P_n = n(n+1)(n+2)\dotsm(n+r-1)\)，那么\[
+P_{n+1} = (n+1)(n+2)\dotsm(n+r),
+\]\[
+n P_{n+1} = (n+r) P_n = n P_n + r P_n,
+\]\[
+P_{n+1} = P_n + \frac{r}{n} P_n,
+\]\[
+P_{n+1} - P_n = r \frac{P_n}{n},
+\]上式等号右边是\(r-1\)个连续正整数的\(r\)倍.
+因此，如果任意\(r-1\)个连续正整数的乘积能被\((r-1)!\)整除，就有\(P_{n+1} - P_n\)能被\(r!\)整除.
+因为\(P_1 = 1 \cdot 2 \dotsm r = r!\)，所以\(P_2\)必是\(r!\)的倍数，从而\(P_3,P_4,\dotsc\)也都是\(r!\)的倍数.
+这样就证明了“如果\(r-1\)个连续正整数的乘积能被\((r-1)!\)整除，那么\(r\)个连续正整数的乘积便能被\(r!\)整除”.
+但是由于每两个连续正整数（必有一个奇数和一个偶数）的乘积能被\(2!=2\)整除，所以每三个连续正整数的乘积也能被\(3!\)整除；以此类推，该命题普遍成立.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}\label{theorem:初等数论.费马小定理.引理1}
+设\(p\)是素数.
+证明：除了第一项和最后一项以外，\((a+b)^p\)展开式的每一项的系数，都可以被\(p\)整除.
+\begin{proof}
+除了第一项与最后一项以外的各项系数为\[
+C_p^r = \frac{p(p-1)(p-2)\dotsm(p-r+1)}{r!},
+\]其中\(r=1,2,\dotsc,p-1\).
+因为\(p\)是素数，所以\(r!\)中（除了1以外）没有一个因子可以整除\(p\)；
+又因为\(p>r\)，所以\(p\)也不能整除\(r!\)中的任一因子；
+也就是说，\((p-1)(p-2)\dotsm(p-r+1)\)必能被\(r!\)整除，而系数\(C_p^r\)必能被\(p\)整除.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}\label{theorem:初等数论.费马小定理.引理2}
+设\(p\)是素数.
+证明：\[
+(a+b+c+d+\dotsb)^p = M + a^p + b^p + c^p + d^p + \dotsb,
+\]其中\(M\)是\(p\)的倍数.
+\begin{proof}
+记\(\beta=b+c+\dotsb\)，则由\cref{theorem:初等数论.费马小定理.引理1} 可知\[
+(a+\beta)^p = a^p + \beta^p + M_1,
+\]其中\(M_1\)是\(p\)的倍数.
+接下来，记\(\gamma=c+d+\dotsb\)，则同样有\[
+\beta^p = (b+\gamma)^p = b^p + \gamma^p + M_2,
+\]其中\(M_2\)是\(p\)的倍数.
+以此类推，便得要证的结果，且\(M = M_1+M_2+\dotsb\).
+\end{proof}
+\end{lemma}
+
+\begin{theorem}[费马小定理]\label{theorem:初等数论.费马小定理}
+如果\(p\)是素数，且正整数\(n\)与\(p\)互素，则\(n^{p-1}-1\)是\(p\)的倍数.
+\begin{proof}
+根据\cref{theorem:初等数论.费马小定理.引理2} ，在\(n\)个正整数的和的\(p\)次幂\[
+(a+b+c+d+\dotsb)^p = M + a^p + b^p + c^p + d^p + \dotsb
+\]中令\(a=b=c=d=\dotsb=1\)，那么有\[
+n^p = n + M
+\quad\text{或}\quad
+n^p - n = n(n^{p-1}-1) = M,
+\]即\(\truediv{n^{p-1}-1}{p}\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+如果\(p\)是素数，且\(p\neq2\)，那么\(p-1\)是偶数，且对于任意正整数\(N\)总有\[
+\left(N^{\frac{p-1}{2}}+1\right)
+\left(N^{\frac{p-1}{2}}-1\right)
+\]是\(p\)的倍数，或者说\[
+N^{\frac{p-1}{2}} = Kp\pm1,
+\]其中\(K\)是某个正整数.
+\end{corollary}
+
+\begin{corollary}[费马小定理']
+如果\(p\)是素数，则\(\truediv{n^p-n}{p}\).
+\end{corollary}
+
+\begin{example}
+设\(p\)是素数，证明：任意两个正整数的\(p\)次幂的差比这两个数的差大\(p\)的倍数.
+\end{example}
+
+\begin{example}
+证明：任意完全平方数要么等于\(5n\)，要么等于\(5n\pm1\)，其中\(n\in\mathbb{N}^+\).
+\end{example}
+
+\begin{example}[费马猜想]
+费马提出过一个错误的猜想：数\(2^{2^n}+1\ (n=0,1,2,\dotsc)\)都是素数.
+这个猜想在当\(n=0,1,2,3,4\)时是正确的，但很遗憾的是，数学家欧拉发现，当\(n=5\)时，数\(2^{2^5}+1 = 4294967297 = 641 \times 6700417\)是合数.
+% FactorInteger[2^(2^5)+1]
+\end{example}
+
+\endgroup

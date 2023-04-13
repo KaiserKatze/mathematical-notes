@@ -1,0 +1,544 @@
+\chapter{解析函数的积分表示}
+\section{复变函数的积分}
+\subsection{积分的定义和计算方法}
+为了叙述简便而又不妨碍实际应用，今后除特别声明外，我们谈到曲线时一律是指光滑或逐段光滑的曲线.
+其中，逐段光滑的简单闭曲线简称为\textbf{围线}或\textbf{周线}.
+
+\begin{definition}
+设有向曲线\(C: z = z(t)\ (\alpha \leqslant t \leqslant \beta)\)以\(a = z(\alpha)\)为起点，\(b = z(\beta)\)为终点.
+又设函数\(f(z)\)沿\(C\)有定义.
+在\(C\)上沿着\(C\)从\(a\)到\(b\)的方向（此为实参数增大的方向，通常作为\(C\)的正方向）任取\(n-1\)个分点\[
+z_0 = a,\ z_1,\dots,\ z_{n-1},\ z_n = b
+\]把曲线\(C\)分成\(n\)个小弧段.在每个小弧段\(\arc{z_{k-1} z_k}\)上任取一点\(\zeta_k\)，求和得\[
+S_n = \sum\limits_{k=1}^n{f(\zeta_k) \increment z_k},
+\]其中\(\increment z_k = z_k - z_{k-1}\).记\(\lambda = \max\{\abs{\increment z_1},\abs{\increment z_2},\dots,\abs{\increment z_n}\}\).若\(\lambda\to0\)（分点无限增多，且这些弧段长度均趋于零）时，上述和式的极限\(\lim\limits_{n\to\infty}S_n\)存在且趋于确定的极限\(J\)，那么称函数\(f(z)\)沿\(C\)\textbf{可积}，称\(J\)为函数\(f(z)\)沿\(C\)（从\(a\)到\(b\)）的\textbf{积分}，记作\(\int_C f(z) \dd{z}\)，即\[
+\int_C f(z) \dd{z} = J = \lim\limits_{\lambda\to0} \sum\limits_{k=1}^n{f(\zeta_k) \increment z_k}.
+\]其中\(C\)称为\textbf{积分路径}.\(\int_C f(z) \dd{z}\)表示沿\(C\)的正方向的积分，而\(\int_{C^-}{f(z)\dd{z}}\)表示沿\(C\)的负方向的积分.
+\end{definition}
+
+\begin{theorem}
+如果函数\(f(z)=u(x,y)+\iu v(x,y)\)沿曲线\(C\)连续，则\(f(z)\)沿\(C\)可积，且\[
+\int_C f(z) \dd{z}
+= \int_C{u(x,y)\dd{x} - v(x,y)\dd{y}} + \iu \int_C{v(x,y)\dd{x} + u(x,y)\dd{y}}.
+\]
+
+为了便于记忆，上式也可写成\[
+\int_C f(z) \dd{z} = \int_C{(u+\iu v)(\dd{x}+\iu\dd{y})}.
+\]
+\end{theorem}
+
+\begin{corollary}
+如果\(\int_C f(z) \dd{z}\)沿有向光滑曲线\(C\)连续.曲线\(C\)的方程为\[
+z = z(t) = x(t) + \iu y(t), \quad \alpha \leqslant t \leqslant \beta,
+\]那么有\[
+\int_C f(z) \dd{z} = \int_{\alpha}^{\beta} f[z(t)] z'(t) \dd{t}.
+\]称上式为复积分的\textbf{变量代换公式}.
+\end{corollary}
+
+\begin{example}
+设\(n\in\mathbb{Z}\)，\(C\)是以\(a\)为心，\(R\)为半径的圆周.求：\[
+I = \int_C \frac{\dd{z}}{(z-a)^n}.
+\]
+\begin{solution}
+由于圆周\(C\)的参数方程为\[
+z-a=Re^{\iu\theta}, \quad 0 \leqslant \theta \leqslant 2\pi,
+\]所以\(\dd{z}=\iu R e^{\iu\theta} \dd{\theta}\).
+
+当\(n=1\)时，\[
+\int_C \frac{\dd{z}}{z-a}
+= \int_0^{2\pi}{\frac{\iu R e^{\iu\theta} \dd{\theta}}{R e^{\iu\theta}}}
+= \iu \int_0^{2\pi}\dd{\theta}
+= 2\pi\iu.
+\]
+
+当\(n \neq 1\)时，\begin{align*}
+\int_C{\frac{\dd{z}}{(z-a)^n}}
+&= \int_0^{2\pi}{
+	\frac{
+		\iu R e^{\iu\theta} \dd{\theta}
+	}{
+		R^n e^{\iu n \theta}
+	}
+}
+= \frac{\iu}{R^{n-1}} \int_0^{2\pi}{e^{-\iu(n-1)\theta}\dd{\theta}} \\
+&= \frac{\iu}{R^{n-1}} \left[
+	\int_0^{2\pi}{\cos(n-1)\theta\dd{\theta}}
+	-\iu \int_0^{2\pi}{\sin(n-1)\theta\dd{\theta}}
+	\right]
+= 0.
+\end{align*}
+也就是说，\begin{equation}\label{equation.解析函数的积分表示.重要积分1}
+\int_C \frac{\dd{z}}{(z-a)^n} = \left\{ \begin{array}{cl}
+2\pi\iu, & n=1, \\
+0, & n\in\mathbb{Z}-\{1\}.
+\end{array} \right.
+\end{equation}
+\end{solution}
+\end{example}
+
+\subsection{复积分的基本性质}
+\begin{property}
+设\(f(z)\)和\(g(z)\)沿曲线\(C\)连续，则\begin{enumerate}
+\item \(\int_C a f(z) \dd{z} = a \int_C f(z) \dd{z}, a\in\mathbb{C}\)；
+\item \(\int_C [f(z) \pm g(z)] \dd{z} = \int_C f(z) \dd{z} \pm \int_C g(z) \dd{z}\)；
+\item \(\int_C f(z) \dd{z} = \int_{C_1} f(z) \dd{z} + \int_{C_2} f(z) \dd{z}\)，其中\(C\)由曲线\(C_1\)和\(C_2\)衔接而成；
+\item \(\int_{C^-} f(z) \dd{z} = -\int_C f(z) \dd{z}\).
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+设\(f(z)\)和\(g(z)\)沿曲线\(C\)连续，则\[
+\abs{\int_C f(z) \dd{z}}
+\leqslant \int_C{\abs{f(z)}\abs{\dd{z}}}
+= \int_C{\abs{f(z)}\dd{s}},
+\]其中\(\abs{\dd{z}}=\dd{s}=\sqrt{(\dd{x})^2+(\dd{y})^2}\)表示弧长的微分.
+\end{theorem}
+
+\begin{corollary}[积分估值定理]\label{theorem:解析函数的积分表示.积分估值定理}
+若存在\(M > 0\)，使在曲线\(C\)上\(\abs{f(z)} \leqslant M\)，曲线\(C\)的长为\(L\)，则有\begin{equation}\label{equation:解析函数的积分表示.长大不等式}
+\abs{\int_C f(z) \dd{z}} \leqslant ML.
+\end{equation}\rm
+因为\cref{equation:解析函数的积分表示.长大不等式} 是关于弧长\(L\)和函数\(f\)的模（大小）\(\abs{f(z)}\)的不等式，所以又称之为\textbf{长大不等式}.
+\end{corollary}
+
+\section{柯西积分定理}
+\subsection{柯西积分定理}
+\begin{theorem}[柯西积分定理]\label{theorem:解析函数的积分表示.柯西积分定理}
+若\(f(z)\)在单连通区域\(D\)内解析，则对\(D\)内的任意一条围线\(C\)，有\[
+\int_C f(z) \dd{z}=0.
+\]
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析函数的积分表示.柯西积分定理.闭区域的情形}
+设\(C\)是一条围线，\(D\)是\(C\)的内部区域，\(f(z)\)在闭区域\(\overline{D}=D \cup C\)上解析，则\[
+\int_C f(z) \dd{z}=0.
+\]
+\end{theorem}
+
+\begin{corollary}\label{theorem:解析函数的积分表示.柯西积分定理.非简单闭曲线的情形}
+设\(f(z)\)在单连通区域\(D\)内解析，\(C\)为\(D\)内任一闭曲线（不必是简单闭曲线），则\[
+\int_C f(z) \dd{z} = 0.
+\]
+\end{corollary}
+
+\begin{corollary}\label{theorem:解析函数的积分表示.解析函数在解析区域内的积分与路径无关}
+若\(f(z)\)在单连通区域\(D\)内解析，则\(f(z)\)在\(D\)内的积分与路径无关.
+\end{corollary}
+
+我们约定，当复积分\(\int_C f(z) \dd{z}\)与路径\(C\)无关，只与积分的起点\(z_0\)和终点\(z_1\)有关时，这个积分就可以表示为\[
+\int_{z_0}^{z_1} f(z) \dd{z}.
+\]
+
+下面对柯西积分定理从两个方面进行推广：
+一方面是被积函数的解析范围；
+另一方面是解析区域的连通性.
+这两个方面的推广分别表现在下面两个定理中.
+\begin{theorem}
+设\(C\)是一条围线，区域\(D\)是\(C\)的内部，\(f(z)\)在\(D\)内解析，在\(\overline{D}=D \cup C\)上连续\footnote{%
+也称这种情况为“\(f(z)\)从\(D\)内连续到边界”.%
+}，则\[
+\int_C f(z) \dd{z} = 0.
+\]
+\end{theorem}
+
+\begin{definition}
+设有\(n+1\)条围线\(C_0,C_1,\dots,C_n\)，其中\(C_1,\dots,C_n\)中每一条都在其余各条的外部，而它们又全都在\(C_0\)的内部.
+在\(C_0\)内部且在\(C_1,\dots,C_n\)外部的点集构成有界的多连通区域\(D\).
+\(D\)以\(C_0,C_1,\dots,C_n\)为边界.
+我们把区域\(D\)的边界称为\textbf{复围线}，记作\(C=C_0+C_1^-+\dots+C_n^-\).
+规定：在外边界\(C_0\)上，\(C\)的正方向为逆时针方向；
+在内边界\(C_1,\dots,C_n\)上，\(C\)的正方向为顺时针方向.
+\end{definition}
+
+\begin{theorem}[多连通区域的柯西积分定理]\label{theorem:解析函数的积分表示.多连通区域的柯西积分定理}
+设\(C\)是由复围线\(C=C_0+C_1^-+\dots+C_n^-\)所围成的有界多连通区域，%
+\(f(z)\)在\(D\)内解析，在\(\overline{D}=D \cup C\)上连续，则\[
+\int_C f(z) \dd{z} = 0
+\]或\begin{equation}
+\def\Ic#1{\int_{C_{#1}} f(z) \dd{z}}
+\Ic{0} = \Ic{1} + \dots + \Ic{n}.
+\end{equation}
+\end{theorem}
+
+在掌握上述柯西积分定理的两种等价形式、两个推论和两个推广结论后，可以使复积分的计算变得极为简便.
+
+\begin{example}
+设\(a\)是任意围线\(C\)内部一点，试证：\[
+\int_C \frac{\dd{z}}{(z-a)^n} = \left\{ \begin{array}{cl}
+2\pi\iu, & n=1, \\
+0, & n\in\mathbb{Z}-\{1\}.
+\end{array} \right.
+\]
+\begin{proof}
+记围线\(C\)所围成的区域为\(D\).
+取\(r\in\mathbb{R}^+\)使得圆周\(C_0: z - a = r e^{\iu\theta}\ (0 \leqslant \theta \leqslant 2\pi)\)所围成的区域\(D_0 \subseteq D\).
+根据\hyperref[theorem:解析函数的积分表示.多连通区域的柯西积分定理]{多连通区域的柯西积分定理}有\[
+\int_C \frac{\dd{z}}{(z-a)^n} = \int_{C_0} \frac{\dd{z}}{(z-a)^n};
+\]再应用重要积分\labelcref{equation.解析函数的积分表示.重要积分1} 即得要证结论.
+\end{proof}
+\end{example}
+由本例结果还可以得到一个时常用到的重要公式：对任一围线\(C\)，都有\begin{equation}\label{equation.解析函数的积分表示.重要积分2}
+\frac{1}{2\pi\iu} \int_C \frac{\dd{z}}{z-a}
+= \left\{ \begin{array}{ll}
+1, & a \in I(C); \\
+0, & a \in E(C).
+\end{array} \right.
+\end{equation}
+
+\begin{example}
+试讨论在不同围线\(C\)上的复积分\[
+I = \frac{1}{2\pi\iu} \int_C \frac{\dd{z}}{(z-a)(z-b)}
+\]的取值，其中\(a \neq b\)且\(a,b \notin C\).
+\begin{solution}
+由于\[
+\frac{1}{(z-a)(z-b)}
+= \frac{1}{a-b} \left(\frac{1}{z-a}-\frac{1}{z-b}\right),
+\]应用\cref{equation.解析函数的积分表示.重要积分2} ，即得\[
+I = \left\{\begin{array}{cl}
+0, & \text{\(a,b\)同时在\(C\)内部或\(C\)外部}, \\
+\frac{1}{a-b}, & \text{\(a\)在\(C\)内部而\(b\)在\(C\)外部}, \\
+\frac{1}{b-a}, & \text{\(a\)在\(C\)外部而\(b\)在\(C\)内部}.
+\end{array}\right.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}%例3.2.4
+试证：若函数\(f(z)\)在区域\(D: 0<\abs{z-a}<R\)内解析，且\[
+\lim\limits_{z \to a}(z-a)f(z)=A,
+\]则\[
+\int_{\gamma} f(z) \dd{z} = 2\pi\iu A,
+\]其中\(\gamma(\theta) = a+re^{\iu\theta}\ (0 \leqslant \theta \leqslant 2\pi, 0 < r < R)\).
+\begin{proof}
+由\(\lim\limits_{z \to a}(z-a)f(z) = A\)，设\[
+(z-a)f(z) = A + \varepsilon(z),
+\]其中\(\varepsilon(z)\)满足\(\lim\limits_{z \to a} \varepsilon(z) = 0\).那么有\[
+f(z) = \frac{1}{z-a}[A+\varepsilon(z)].
+\]
+
+由于\(r\to0\)时，\(z=\gamma(\theta) \to a\)，所以\[
+\lim\limits_{r\to0} \abs{\varepsilon[\gamma(\theta)]} = 0,
+\quad 0 \leqslant \theta \leqslant 2\pi.
+\]
+
+又因为\[
+\abs{\frac{\varepsilon(z)}{z-a}}
+= \abs{\frac{\varepsilon[\gamma(\theta)]}{\gamma(\theta)-a}}
+= \frac{\abs{\varepsilon[\gamma(\theta)]}}{\abs{re^{\iu\theta}}}
+= \frac{\abs{\varepsilon[\gamma(\theta)]}}{r},
+\]则根据积分估值定理可得\[
+\abs{\int_{\gamma} \frac{\varepsilon(z)}{z-a} \dd{z}}
+\leqslant \abs{\frac{\varepsilon(z)}{z-a}} \cdot 2\pi r
+= \frac{\abs{\varepsilon[\gamma(\theta)]}}{r} \cdot 2\pi r
+= 2\pi \abs{\varepsilon[\gamma(\theta)]},
+\]且由函数\(f(z) = \frac{1}{z-a}[A+\varepsilon(z)]\)在区域\(D\)内解析可知函数\(\frac{\varepsilon(z)}{z-a}\)也同样在区域\(D\)内解析，再根据\hyperref[theorem:解析函数的积分表示.多连通区域的柯西积分定理]{多连通区域的柯西积分定理}可得\[
+\int_{\gamma} \frac{\varepsilon(z)}{z-a} \dd{z}
+= \lim\limits_{r\to0} \int_{\gamma} \frac{\varepsilon(z)}{z-a} \dd{z}
+= 0.
+\]
+
+那么有
+\[
+\int_{\gamma} f(z) \dd{z}
+= \int_{\gamma} \frac{A}{z-a} \dd{z}
++ \int_{\gamma} \frac{\varepsilon(z)}{z-a} \dd{z}
+= 2\pi\iu A.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{原函数}
+在实积分中，我们学习过\hyperref[theorem:定积分.原函数存在定理]{原函数存在定理}，现在我们将这个定理推广到复积分的情形.
+\begin{theorem}\label{theorem:解析函数的积分表示.原函数1}
+设\(f(z)\)在单连通区域\(D\)内连续，且对全含于\(D\)内的任一围线\(C\)，有\[
+\int_C f(z) \dd{z} = 0,
+\]则由变上限积分所确定的函数\[
+F(z) = \int_{z_0}^z f(\zeta) \dd{\zeta}
+\]在\(D\)内解析，且\(F'(z) = f(z)\)，其中\(z_0, z \in D\).
+\begin{proof}
+由于\(D\)是单连通区域，又由\(\int_C f(z) \dd{z}=0\)可知\(f(z)\)在\(D\)内从点\(z_0\)到\(z\)的积分与路径无关，因此\(F(z)\)是\(D\)内的单值函数.
+
+以点\(z\)为心作一个含于\(D\)内的圆，在此圆内任取一点\(z+\increment z\)，于是\[
+\frac{F(z+\increment z)-F(z)}{\increment z}
+= \frac{1}{\increment z}\left[
+ \int_{z_0}^{z+\increment z} f(\zeta) \dd{\zeta}
+ -\int_{z_0}^z f(\zeta) \dd{\zeta}
+\right]
+= \frac{1}{\increment z} \int_z^{z+\increment z} f(\zeta) \dd{\zeta}.
+\]又因为\[
+\frac{1}{\increment z} \int_z^{z+\increment z} f(z) \dd{\zeta}
+= \frac{f(z)}{\increment z} \int_z^{z+\increment z} \dd{\zeta} = f(z),
+\]所以\[
+\frac{F(z+\increment z)-F(z)}{\increment z} - f(z)
+= \frac{1}{\increment z} \int_z^{z+\increment z} [f(\zeta)-f(z)]\dd{\zeta}.
+\]由于\(f(\zeta)\)在点\(z\)连续，故对任给的\(\varepsilon > 0\)，存在\(\delta > 0\)，当\(\abs{\zeta - z} < \delta\)时，便有\(\abs{f(\zeta)-f(z)} < \varepsilon\).这样，若取\(0<\abs{\increment z}<\delta\)，则由\hyperref[theorem:解析函数的积分表示.积分估值定理]{积分估值定理}可得\[
+\abs{\frac{F(z+\increment z)-F(z)}{\increment z} - f(z)}
+= \frac{1}{\abs{\increment z}} \abs{ \int_z^{z+\increment z} [f(\zeta)-f(z)]\dd{\zeta} }
+\leqslant \frac{1}{\abs{\increment z}} \varepsilon \abs{\increment z}
+= \varepsilon.
+\]也就是说\[
+\lim\limits_{\increment z\to0} \frac{F(z+\increment z)-F(z)}{\increment z} = f(z)
+\]或\[
+F'(z) = f(z).
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:解析函数的积分表示.原函数2}
+若\(f(z)\)在单连通区域\(D\)内解析，则由变上限积分确定的函数\[
+F(z) = \int_{z_0}^z f(\zeta) \dd{\zeta}
+\]在\(D\)内解析，且\(F'(z) = f(z)\).
+\end{corollary}
+
+\begin{definition}
+若在区域\(D\)内有\(F'(z)=f(z)\)，则称\(F(z)\)为\(f(z)\)在区域\(D\)内的一个\textbf{原函数}.
+\end{definition}
+
+\begin{corollary}\label{theorem:解析函数的积分表示.原函数3}
+若\(f(z)\)在单连通区域\(D\)内解析（或在\cref{theorem:解析函数的积分表示.原函数1} 的前提条件下），\(\Phi(z)\)为\(f(z)\)在\(D\)内的任一原函数，则有牛顿-莱布尼茨公式\begin{equation}\label{equation:解析函数的积分表示.牛顿莱布尼茨公式}
+\int_{z_0}^z f(\zeta) \dd{\zeta}
+= \eval{\Phi(\zeta)}_{z_0}^z
+= \Phi(z)-\Phi(z_0)
+\end{equation}成立.
+\end{corollary}
+事实上，由于\(F(z) = \int_{z_0}^z f(\zeta) \dd{\zeta}\)是\(f(z)\)在\(D\)内的一个原函数，按定义对任意\(z \in D\)，有\([\Phi(z) - F(z)]'=0\)，从而\[
+\Phi(z) - F(z) = C,
+\]即\[
+\Phi(z) = F(z) + C.
+\]令\(z=z_0\)，得\(C = \Phi(z_0)\)，于是\cref{equation:解析函数的积分表示.牛顿莱布尼茨公式} 成立.
+
+\begin{example}
+在单连通区域\(D: -\pi<\arg z<\pi\)内，函数\(\ln z\)是\(f(z) = \frac{1}{z}\)的一个原函数，而\(f(z)\)在单连通区域\(D\)内解析，故由\cref{theorem:解析函数的积分表示.原函数3} 有\[
+\int_1^z \frac{\dd{\zeta}}{\zeta}
+= \ln z - \ln 1
+= \ln z \quad(z \in D).
+\]
+\end{example}
+
+\begin{example}
+计算积分\[
+\int_C (z^2 - \sin z) \dd{z},
+\]其中\(C\)为摆线\[
+\left\{ \begin{array}{l}
+x = a(\theta-\sin\theta) \\
+y = a(1\cos\theta)
+\end{array} \right.
+\quad(0\leqslant\theta\leqslant2\pi).
+\]
+\begin{solution}
+因为被积函数\(f(z) = z^2 - \sin z\)在\(z\)平面\(\mathbb{C}\)上解析，\(\mathbb{C}\)是单连通区域，所以积分只与路径的起点、终点有关，而与路径无关.
+当\(\theta=0\)时，\(z=0\)；
+当\(\theta=2\pi\)时，\(z=2\pi a\).
+因此要么将沿\(C\)的积分简化为沿实轴的积分，要么直接应用\hyperref[equation:解析函数的积分表示.牛顿莱布尼茨公式]{牛顿-莱布尼茨公式}.
+\begin{align*}
+\int_C (z^2 - \sin z) \dd{z}
+&= \int_0^{2\pi a} (x^2 + \sin x) \dd{x} \\
+&= \left(\frac{1}{3} x^3 - \cos x\right)_0^{2\pi a} \\
+&= \frac{8}{3} \pi^3 a^3 - \cos(3\pi a+1).
+\end{align*}
+\end{solution}
+\end{example}
+
+必须指出的是：\cref{theorem:解析函数的积分表示.原函数2,theorem:解析函数的积分表示.原函数3} 中，区域\(D\)的单连通性对于推论的结论来说是不可缺少的.
+若函数\(f(z)\)的解析区域\(D\)是复连通区域，则\(f(z)\)沿\(D\)内任意围线上的积分可能不为零，因而若仍用\(\int_{z_0}^z f(\zeta) \dd{\zeta}\)来表示\(f(z)\)沿点\(z_0\)到点\(z\)的\(D\)内某曲线上的积分，则\(\int_{z_0}^z f(\zeta) \dd{\zeta}\)一般来说不仅与\(z_0,z\)在\(D\)中的位置有关，也与由\(z_0\)到\(z\)的积分路径有关.
+随着\(z_0\)到\(z\)的积分路径不同，\(\int_{z_0}^z f(\zeta) \dd{\zeta}\)的值也不同，所以，一般来说\(\int_{z_0}^z f(\zeta) \dd{\zeta}\)是一个多值函数，\(f(z)\)在多连通区域\(D\)内就不可能有原函数.
+
+若\(f(z)\)在\(D\)内有原函数\(F(z)\)，而\(C(t)\ (\alpha\leqslant t \leqslant\beta)\)是\(D\)内从\(z_0\)到\(z\)的光滑曲线，则由\(F'(z) = f(z)\)，\begin{align*}
+\int_C f(z) \dd{z}
+&= \int_{\alpha}^{\beta} F'[C(t)] \cdot C'(t) \dd{t}
+= \eval{F[C(t)]}_{\alpha}^{\beta} \\
+&= F[C(\beta)] - F[C(\alpha)]
+\end{align*}
+与路径无关，只与\(C(t)\)的起点\(z_0\)和终点\(z\)有关，这就产生矛盾.
+例如，函数\(f(z) = \frac{1}{z}\)在\(D=\mathbb{C}-\{0\}\)内解析，但它在\(D\)内没有原函数.
+\begin{example}%例3.2.7
+\def\f{\frac{\dd{\zeta}}{\zeta}}
+试证：在两连通区域\(G: z\neq0,\infty\)内\[
+\int_1^z \f
+= \Ln z
+\quad (z \in G),
+\]其中积分路径\(C\)是不经过原点，且连接点\(z_0=1\)和点\(z\)的任意逐段光滑曲线.
+\begin{proof}
+考虑这样两条路径的积分，其中一条\(L\)沿着正方向或负方向绕原点若干周，另一条则既不过原点也不穿过负实轴.
+%由例3.2.5和例3.2.2可得
+\[
+\int_L \f
+= \left(\int_{ABCbDA} + \int_{ADaCEA} + \int_{AEF}\right) \f
+= 2 \int_{\gamma} \f + \int_l \f.
+\]
+一般，\begin{align*}
+\int_L \f
+&= \int_l \f + n \int_{\gamma} \f \\
+&= \ln z + 2n\pi\iu \quad(n=0,\pm1,\dotsc) \\
+&= \Ln z.
+\end{align*}
+因此，所给变上限积分\(F(z) = \int_1^z \f\)在两连通区域\(G\)内是对数函数\(\Ln z\)的一个积分表达式.
+\end{proof}
+\end{example}
+
+\section{柯西积分公式}
+\subsection{柯西积分公式}
+\begin{theorem}\label{theorem:解析函数的积分表示.柯西积分公式}
+设区域\(D\)的边界\(C\)是围线（或复围线）；\(f(z)\)在\(D\)内解析，在\(\overline{D}=D+C\)上连续，则\begin{enumerate}
+\item 对\(D\)内任意一点\(z\)，有\begin{equation}\label{equation:解析函数的积分表示.柯西积分公式}
+f(z) = \frac{1}{2\pi\iu} \int_C \frac{f(\zeta)}{\zeta-z} \dd{\zeta},
+\end{equation}上式称为\textbf{柯西积分公式}；
+\item \(f(z)\)在\(D\)内有各阶导数，且\begin{equation}\label{equation:解析函数的积分表示.柯西高阶导数公式}
+f^{(n)}(z) = \frac{n!}{2\pi\iu} \int_C \frac{f(\zeta)}{(\zeta-z)^{n+1}} \dd{\zeta} \quad (n=1,2,\dots),
+\end{equation}上式称为\textbf{柯西高阶导数公式}.
+\end{enumerate}
+\begin{proof}
+在区域\(D\)内任意取定一点\(z\)，以\(z\)为中心、\(r\)为半径作一小圆周\(C_r\)，使\(C_r\)及其内部都含于\(D\)内.设\(D_1\)是由\(C\)及\(C_r\)所围成的区域.显然，函数\(\frac{f(\zeta)}{\zeta-z}\)在\(D_1\)内解析，在\(\overline{D_1}\)上连续.由多连通区域上柯西积分定理，有\[
+\int_C{\frac{f(\zeta)}{\zeta-z}\dd{\zeta}}
+= \int_{C_r}{\frac{f(\zeta)}{\zeta-z}\dd{\zeta}}.
+\]又由\(\lim\limits_{\zeta \to z} (\zeta-z) \frac{f(\zeta)}{\zeta-z} = f(z)\)，有\[
+\int_{C_r}{\frac{f(\zeta)}{\zeta-z}\dd{\zeta}} = 2\pi\iu f(z).
+\]从而有\[
+f(z) = \frac{1}{2\pi\iu} \int_C{\frac{f(\zeta)}{\zeta-z}\dd{\zeta}}.
+\]
+
+当\(n=1\)时，在\(D\)内任意取定一点\(z_0\)，在\(z_0\)的邻近任取一点\(z \in D\)，则\begin{align*}
+f(z)-f(z_0)
+&= \frac{1}{2\pi\iu} \int_C{\left[\frac{f(\zeta)}{\zeta-z}-\frac{f(\zeta)}{\zeta-z_0}\right]\dd{\zeta}} \\
+&= \frac{z-z_0}{2\pi\iu} \int_C{\frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)}\dd{\zeta}},
+\end{align*}
+于是\begin{align*}
+&\hspace{-20pt}\frac{f(z)-f(z_0)}{z-z_0} - \frac{1}{2\pi\iu} \int_C{\frac{f(\zeta)}{(\zeta-z_0)^2} \dd{\zeta}} \\
+&=\frac{1}{2\pi\iu} \int_C{f(\zeta) \left[\frac{1}{(\zeta-z)(\zeta-z_0)}-\frac{1}{(\zeta-z_0)^2}\right]\dd{\zeta}} \\
+&=\frac{z-z_0}{2\pi\iu} \int_C{\frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)^2}\dd{\zeta}}.
+\end{align*}
+
+由于\(\lim\limits_{z \to z_0} z-z_0 = 0\)，要证明\[
+f'(z_0) = \lim\limits_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}
+= \frac{1}{2\pi\iu} \int_C{\frac{f(\zeta)}{(\zeta-z_0)^2}\dd{\zeta}},
+\]只需要证明\(\int_C{\frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)^2}\dd{\zeta}}\)在点\(z_0\)的邻域内有界.
+
+为此，由于\(f(z)\)在\(\overline{D}\)上连续，设在\(C\)上有\(\abs{f(z)} \leqslant M\)，点\(z_0\)到\(C\)的距离为\(d\)，则\(\zeta \in C\)时，\(\abs{\zeta-z_0} \geqslant d\).若\(z \in N_{\frac{d}{2}}(z_0)\)，有\(\abs{z-z_0} \leqslant \frac{d}{2}\)，则对于\(\zeta \in C\)有\begin{align*}
+\abs{\zeta-z}
+&= \abs{(\zeta-z_0)-(z-z_0)} \\
+&\geqslant \abs{ \abs{\zeta-z_0} - \abs{z-z_0} } \\
+&= \abs{\zeta-z_0} - \abs{z-z_0} \\
+&\geqslant d - \frac{d}{2} = \frac{d}{2},
+\end{align*}
+所以有\[
+\abs{
+ \int_C{\frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)^2}\dd{\zeta}}
+ } \leqslant \frac{M}{(d/2) d^2} L
+= \frac{2ML}{d^3},
+\]其中\(L\)是围线\(C\)的长度.因为\(z_0\)是\(D\)内任意一点，于是得到当\(n=1\)时\[
+f'(z) = \frac{1}{2\pi\iu} \int_C{\frac{f(\zeta)}{(\zeta-z)^2}\dd{\zeta}}
+\]成立.利用数学归纳法可以进一步证明\(n=2,3,\dots\)情况下命题依然成立.
+\end{proof}
+\end{theorem}
+
+\hyperref[equation:解析函数的积分表示.柯西积分公式]{柯西积分公式}表明，一个在区域内解析并连续到边界的函数，它在边界上的值决定了它在区域内任一点的值.因此，人们称柯西积分公式为解析函数的积分表达式.从柯西积分公式可以看出，解析函数的函数值之间有着密切的联系.这是解析函数不同于一般函数的一个显著特性.积分是涉及函数整体性质的一个概念；函数在一点的值应只涉及孤立点这一局部.柯西积分公式把整体和局部联系起来，可以帮助我们详细地研究解析函数的各种局部性质.
+
+必须注意的是，\cref{theorem:解析函数的积分表示.柯西积分公式} 中的围线\(C\)可以是复围线，这时\(C\)所围的区域\(D\)是多连通区域，\cref{equation:解析函数的积分表示.柯西积分公式} 和\cref{equation:解析函数的积分表示.柯西高阶导数公式} 中的积分也是复围线上的积分.其正面与在\cref{theorem:解析函数的积分表示.柯西积分公式} 中把\(C\)视作单围线时的证明方法完全一致.
+
+\subsection{柯西积分公式的若干推论}
+\begin{corollary}\label{theorem:解析函数的积分表示.柯西积分公式推论1}
+若函数\(f(z)\)在区域\(D\)内解析，则\(f(z)\)在\(D\)内有任意阶导数.
+\end{corollary}
+\cref{theorem:解析函数的积分表示.柯西积分公式推论1} 表明了我们曾多次提到的一个事实：解析函数在其解析的区域内是无穷次可微的，且求任意阶导数后所得到的函数仍是该区域内的解析函数.这也就是我们曾经说过的：对于复变函数来说，在一个区域内一阶可微就蕴含着任意阶可微.较之实函数，这是解析函数的一个最鲜明的特征.
+
+\begin{corollary}\label{theorem:解析函数的积分表示.柯西积分公式推论2}
+函数\(f(z)=u(x,y)+\iu v(x,y)\)在区域\(D\)内解析的充要条件为：
+\begin{enumerate}
+\item 二元实函数\(u(x,y)\)和\(v(x,y)\)的偏导数\(u'_x\)、\(u'_y\)、\(v'_x\)和\(v'_y\)在区域\(D\)内连续；
+\item \(u(x,y)\)和\(v(x,y)\)在区域\(D\)内处处满足C-R条件.
+\end{enumerate}
+\end{corollary}
+\cref{theorem:解析函数的积分表示.柯西积分公式推论2} 是刻画解析函数的第二个等价定理.
+
+\begin{theorem}[莫雷拉（Morera）定理]\label{theorem:解析函数的积分表示.莫雷拉定理}
+若函数\(f(z)\)在单连通区域\(D\)内连续，且对\(D\)内的任一围线\(C\)有\[
+\int_C f(z) \dd{z} = 0,
+\]则\(f(z)\)在\(D\)内解析.
+\end{theorem}
+\hyperref[theorem:解析函数的积分表示.莫雷拉定理]{莫雷拉定理}又称作\DefineConcept{摩累拉定理}.对\cemph{单连通区域内连续复变函数}而言，它是柯西积分定理的逆定理.
+
+\begin{theorem}\label{theorem:解析函数的积分表示.柯西积分公式推论3}
+函数\(f(z)\)在区域\(D\)内解析的充要条件为：
+\begin{enumerate}
+\item \(f(z)\)在区域\(D\)内连续；
+\item 对任一围线\(C\)，只要\(C\)及其内部全含于\(D\)内，就有\(\int_C f(z) \dd{z} = 0\).
+\end{enumerate}
+\end{theorem}
+\cref{theorem:解析函数的积分表示.柯西积分公式推论3} 是刻画解析函数的第三个等价定理.
+
+\begin{theorem}[柯西不等式]
+若函数\(f(z)\)在圆\(K: \abs{z-a}<R\)内解析，且\(\abs{f(z)} \leqslant M\)，则\begin{equation}\label{theorem:解析函数的积分表示.柯西不等式}
+\abs{f^{(n)}(a)} \leqslant \frac{n! M}{R^n}
+\quad(n=1,2,\dots).
+\end{equation}
+\end{theorem}
+\cref{theorem:解析函数的积分表示.柯西不等式} 是对解析函数各阶导数模的估计式，表明解析函数在解析点\(a\)的各阶导数模的估计与它的解析区域的大小密切相关.
+
+\begin{definition}
+在整个复平面上解析的函数称为\DefineConcept{整函数}（entire function）.
+\end{definition}
+在有的书上，整函数是这样定义的：若函数\(f(z)\)除了无穷远点外，在\(\mathbb{C}\)上是全纯的，则称\(f(z)\)是一个整函数.
+
+\begin{example}
+常函数、多项式函数、\(e^z\)、\(\cos z\)和\(\sin z\)都是整函数.
+\end{example}
+
+\begin{definition}
+若函数\(f(z)\)除了无穷远点外，在\(\mathbb{C}\)上只有极点（极点的可以是有限个，也可以是无限个），则称\(f(z)\)是一个\DefineConcept{亚纯函数}（meromorphic function）.
+\end{definition}
+
+\begin{example}
+所有的整函数都是亚纯函数.
+有理分式函数\(f(z) = \frac{P_n(z)}{Q_m(z)}\)也是亚纯函数.
+\end{example}
+
+\begin{theorem}[刘维尔（Liouville）定理]\label{theorem:解析函数的积分表示.刘维尔定理}
+若\(f(z)\)是有界的整函数，则\(f(z)\)必为常数.
+\begin{proof}
+因为\(f(z)\)有界，所以\(\abs{f(z)} \leqslant M\)在\(z\)平面上恒成立，在圆\(\abs{z-a}<R\)内自然也成立.由柯西不等式得\[
+\abs{f'(z)} \leqslant \frac{M}{R}.
+\]令\(R\to+\infty\)，得到\(f'(z)=0\)恒成立，即\(f(z)\)是常数.
+\end{proof}
+\end{theorem}
+\hyperref[theorem:解析函数的积分表示.刘维尔定理]{刘维尔定理}的逆定理（即“常函数是有界整函数”）也成立.刘维尔定理的逆否定理“非常数的整函数必无界”自然也成立.
+
+\begin{theorem}[解析函数的平均值定理]\label{theorem:解析函数的积分表示.平均值定理}
+若函数\(f(z)\)在圆\(\abs{z-z_0}<R\)内解析，在闭圆\(\abs{z-z_0} \leqslant R\)上连续，则\[
+f(z_0) = \frac{1}{2\pi} \int_0^{2\pi} f(z_0+Re^{\iu\varphi}) \dd{\varphi},
+\]即\(f(z)\)在圆心\(z_0\)的值等于它在圆周上的值的算术平均数.
+\end{theorem}
+
+\begin{theorem}[最大模定理]\label{theorem:解析函数的积分表示.最大模定理}
+若函数\(f(z)\)在区域\(D\)内解析，且不为常数，则\(\abs{f(z)}\)在\(D\)内取不到最大值.
+\end{theorem}
+
+\begin{corollary}\label{theorem:解析函数的积分表示.最大模定理推论}
+若函数\(f(z)\)在有界区域\(D\)内解析，在闭区域\(\overline{D}\)上连续，并且不为常数，则\(\abs{f(z)}\)只能在\(D\)的边界上达到最大值.
+\end{corollary}
+
+\section{解析函数与调和函数的关系}
+\begin{definition}
+若二元实函数\(H(x,y)\)在平面区域\(D\)内有二阶连续偏导数，且满足拉普拉斯方程\[
+\pdv[2]{H}{x} + \pdv[2]{H}{y} = 0,
+\]则称\(H(x,y)\)是区域\(D\)内的调和函数.
+\end{definition}
+
+\begin{theorem}
+若函数\(f(z)=u(x,y)+\iu v(x,y)\)在区域\(D\)内解析，则其实部\(u(x,y)\)及其虚部\(v(x,y)\)都是\(D\)内的调和函数.
+\end{theorem}
+
+\begin{definition}
+在区域\(D\)内满足C-R条件\[
+\pdv{u}{x}=\pdv{v}{y}, \qquad \pdv{u}{y}=-\pdv{v}{x}
+\]的两个调和函数\(u\)和\(v\)，称\(v\)为\(u\)在区域\(D\)内的\textbf{共轭调和函数}.
+\end{definition}
+注意，此定义中\(u\)和\(v\)是不能交换顺序的，因为C-R条件中\(u\)和\(v\)不能交换顺序的.当\(v\)是\(u\)在区域\(D\)内的\textbf{共轭调和函数}，则只能说\(-u\)是\(v\)在\(D\)中的共轭调和函数.
+
+\begin{theorem}
+若\(u(x,y)\)是单连通区域\(D\)内的调和函数，则由第二类曲线积分确定的函数\[
+v(x,y)=\int_{\opair{x_0,y_0}}^{\opair{x,y}}
+-\pdv{u}{y} \dd{x} + \pdv{u}{x} \dd{y} + C
+\]可使\(f(x+\iu y)=u(x,y)+\iu v(x,y)\)在\(D\)内解析，其中\(C\in\mathbb{C}\).
+\end{theorem}

@@ -1,0 +1,888 @@
+\chapter{解析函数}
+本章内容是围绕解析函数概念展开的.
+首先，在讨论复变函数可微性的基础上，引入解析函数的一个分析定义：解析函数是在一个区域内处处可微的函数.
+关于在无源、无旋区域内平面稳定流动的内容，一方面是为了加深解析函数在概念上总是联系着一个区域的，哪怕所联系的区域只是一个点的邻域；另一方面也表明解析函数在刻画平面稳定流动问题中有着广阔的应用前景.
+接下来，在讨论导数几何意义的基础上引入了保形变换的概念，这是从几何意义上描述单叶解析函数的特征.
+然后，在第三节，从分析性质和变换性质两个方面具体介绍一些常用的初等解析函数.
+其中，对初等多值函数还着重分析了产生多值性的元音，并说明如何找出支点以及在什么样的区域内多值函数可以分成单值的解析分支.
+最后，为了体现保形变换是用化繁为简的方法解决实际问题的有力工具，举了一些应用初等函数的变换特征实现区域间变换的具体例子.
+
+\section{复变函数的可微性与解析函数概念}
+\subsection{复变函数的导数及求导法则}
+\begin{definition}
+设函数\(w=f(z)\)在点\(z_0\)的某个邻域\(N(z_0)\)内有定义，且\(z=z_0+\increment z \in N(z_0)\)，若极限\[
+\lim\limits_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}
+\quad\text{或}\quad
+\lim\limits_{\increment z\to0} \frac{f(z_0+\increment z)-f(z_0)}{\increment z}
+\]存在，且极限值为有限复数\(v_0\ (\abs{v_0}<+\infty)\)，则称函数\(w=f(z)\)在点\(z_0\)\textbf{可导}（或\textbf{可微}），极限值称为\(f(z)\)在点\(z_0\)的\textbf{导数}（或\textbf{微商}），记作\(f'(z_0)\)，或\(\eval{\dv{f}{z}}_{z=z_0}\)，或\(\eval{\dv{w}{z}}_{z=z_0}\)，即\begin{equation}\label{equation:解析函数.导数的定义式}
+f'(z_0) = \lim\limits_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0} = \lim\limits_{\increment z\to0} \frac{f(z_0+\increment z)-f(z_0)}{\increment z}
+= v_0.
+\end{equation}
+
+若\(f(z)\)在区域\(D\)内任一点均可微，即\[
+{ \def\arraystretch{.7} \begin{array}{c}
+\forall z_0 \in D, \exists v_0 \in \mathbb{C}, \\
+\forall \varepsilon > 0, \exists \delta > 0
+\end{array} }
+\left[
+0 < \abs{z - z_0} < \delta
+\implies
+\abs{\frac{f(z) - f(z_0)}{z - z_0} - v_0} < \varepsilon
+\right],
+\]则称\(f(z)\)在区域\(D\)内可微.
+\end{definition}
+
+由极限的唯一性，可知：
+\begin{theorem}
+若\(f(z)\)在区域\(D\)内可微，则\(f(z)\)在\(D\)内的导数\(f'(z)\)仍是在\(D\)内有定义的一个单值函数.
+\end{theorem}
+
+\begin{theorem}[可微的必要条件]
+若\(f(z)\)在点\(z\)可微，则\(f(z)\)在点\(z\)必定连续.
+\begin{proof}
+固定点\(z\)，令\[
+\alpha = \frac{f(z+\increment z)-f(z)}{\increment z} - f'(z).
+\]显然\(\alpha\)是\(\increment z \to 0\)时的无穷小.因为\(\abs{\alpha \increment z}\)是\(\increment z \to 0\)时较\(\abs{\increment z}\)高阶的无穷小，且\(f'(z)\)在定点\(z\)处是一个有限常数，以及\(f(z+\increment z) - f(z) = f'(z) \increment z + \alpha \increment z\)，所以\[
+\lim\limits_{\increment z \to 0} f(z + \increment z) = f(z).
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+由于复函数导数的定义与一元实函数导数的定义在形式上完全相同，容易验证：微积分中所有一元实函数的基本求导运算法则及求导公式，对可微的复变函数仍然适用.
+\begin{theorem}\label{theorem:解析函数.函数的和差积商的导数}
+设复变函数\(u=u(z)\)和\(v=v(z)\)都可导，则\(u \pm v\)、\(u \cdot v\)和\(\frac{u}{v}\ (v\neq0)\)也都可导，且有：
+\begin{enumerate}
+\item \((u \pm v)' = u' \pm v'\)；
+\item \((u v)' = u' v + u v'\)；
+\item \(\left(\frac{u}{v}\right)' = \frac{u' v - u v'}{v^2} \quad (v \neq 0)\).
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析函数.反函数的导数}
+若\(w=f(z)\)与\(z=\varphi'(w)\)是两个互为反函数的单值函数，且\(\varphi'(w) \neq 0\)，则\[
+f'(z) = \frac{1}{\varphi'(z)}.
+\]
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析函数.复合函数的导数}
+如果\(u=g(z)\)在点\(z\)可导，而\(w=f(u)\)在点\(u=g(z)\)可导，则复合函数\(w=f[g(z)]\)在点\(z\)可导，且其导数为\[
+\dv{w}{z} = \dv{w}{u} \cdot \dv{u}{z}.
+\]
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析函数.基本导数}
+\begin{gather}
+(C)' = 0, \\
+(z^n)' = n z^{n-1} \quad (n\in\mathbb{N}).
+\end{gather}
+\begin{proof}
+首先证明\((C)' = 0\).记\(f(z) = C\)，则根据\cref{equation:解析函数.导数的定义式} 有\[
+f'(z_0) = \lim\limits_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}
+= \lim\limits_{z \to z_0} \frac{C-C}{z-z_0} = 0.
+\]
+
+再证明\((z^n)' = n z^{n-1}\ (n\in\mathbb{N})\).利用牛顿二项式可以得到\[
+(z_0 + \increment z)^n = z_0^n + n z_0^{n-1} \increment z + \dotsb + (\increment z)^n,
+\]再根据\cref{equation:解析函数.导数的定义式} 和\cref{theorem:解析函数.函数的和差积商的导数} 有\begin{align*}
+f'(z_0) &= \lim\limits_{\increment z\to0} \frac{f(z_0+\increment z)-f(z_0)}{\increment z} \\
+&= \lim\limits_{\increment z\to0} \frac{(z_0+\increment z)^n-z_0^n}{\increment z} \\
+&= \lim\limits_{\increment z\to0} \frac{n z_0^{n-1} \increment z + \dotsb + (\increment z)^n}{\increment z} \\
+&= \lim\limits_{\increment z\to0} \left[ n z_0^{n-1} + \dotsb + (\increment z)^{n-1} \right] \\
+&= n z_0^{n-1}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{example}
+求函数\(f(z) = \frac{1}{z}\)的导数.
+\begin{solution}
+记\(u = 1\)，\(v = z\)，则由\cref{theorem:解析函数.函数的和差积商的导数} 和\cref{theorem:解析函数.基本导数} 有\[
+\left(\frac{u}{v}\right)' = \frac{u' v - u v'}{v^2}
+= \frac{0 \cdot z - 1 \cdot 1}{z^2}
+= - \frac{1}{z^2}.
+\]
+\end{solution}
+\end{example}
+
+我们要强调的是，尽管复函数导数的定义在形式上与一元实函数导数的定义完全相同，但实际上复函数在一点可导的定义比实函数的情形要苛刻得多.
+这是因为在复函数导数的定义中，只有出现“当\(z\)沿复平面上任意路径趋于\(z_0\)时，\(\frac{f(z) - f(z_0)}{z - z_0}\)总趋于唯一有限复数”这种情况时，我们才能说导数\(f'(z_0)\)存在，而实函数\(\varphi(x)\)在点\(x_0\)处的导数存在只要“其左右导数同时存在且相等”即可.
+正是由于在可导性定义要求上的这种不同，才给可导的复变函数带来许多我们后面将看到的特殊性质；也由于这种定义要求上的不同，在复变函数中，处处连续又处处不可微的函数几乎唾手可得；而在一元实函数中，要构造一个这样的函数却不是那么容易的事情.
+
+\begin{example}
+试证\(f(z)=x+\iu \lambda y\)在\(z\)平面上处处连续但处处不可微，其中\(\lambda \in \mathbb{C}\)且\(\lambda \neq 1\).
+\begin{proof}
+对\(z\)平面上任意取定一点\(z=x+\iu y\)，\[
+f(z+\increment z)-f(z) = [x + \increment x + \iu \lambda (y + \increment y)] - (x + \iu \lambda y) = \increment x + \iu \lambda \increment y,
+\]进而有\[
+\lim\limits_{\increment z\to0} f(z+\increment z)-f(z)
+= \lim\limits_{\substack{\increment x\to0 \\ \increment y\to0}} \increment x + \iu \lambda \increment y
+= 0,
+\]所以，\(f(z)\)在点\(z\)处连续.
+
+但当\(\increment z\)沿实轴方向（即\(\increment z = \increment x\)，\(\increment y = 0\)）趋于零时，\[
+\lim\limits_{\substack{\increment z\to0 \\ (z \in \mathbb{R})}} \frac{f(z+\increment z)-f(z)}{\increment z}
+= \eval{\lim\limits_{\increment x\to0} \frac{\increment x + \iu \lambda \increment y}{\increment x + \iu \increment y}}_{\increment y = 0} = 1;
+\]当\(\increment z\)沿虚轴方向（即\(\increment z = \iu \increment y\)，\(\increment x = 0\)）趋于零时，\[
+\lim\limits_{\substack{\increment z\to0 \\ (z \in \iu \mathbb{R})}} \frac{f(z+\increment z)-f(z)}{\increment z}
+= \eval{\lim\limits_{\increment y\to0} \frac{\increment x + \iu \lambda \increment y}{\increment x + \iu \increment y}}_{\increment x = 0} = \lambda \neq 1.
+\]故\(f(z)\)在点\(z\)处不可微.
+
+综上所述，\(f(z)\)在\(z\)平面上处处连续但处处不可微.
+\end{proof}
+\end{example}
+在上例中，若取\(\lambda=-1\)则得\(f(z) = \overline{z}\)，若取\(\lambda=0\)则得\(f(z) = \Re z\)，说明\(f(z) = \overline{z}\)、\(f(z) = \Re z\)也都是\(z\)平面上处处连续但处处不可微的函数.
+根据对称性，函数\(f(z) = \Im z = \frac{z - \overline{z}}{2\iu}\)也是\(z\)平面上处处连续但处处不可微的函数.
+
+\begin{example}
+证明：函数\(f(z) = \abs{z} = z \overline{z}\)在\(z\)平面上处处连续但处处不可微.
+\end{example}
+
+\begin{example}
+证明：函数\(f(z) = x^3 - \iu y^3\)仅在原点处可导.
+\begin{proof}
+因为\[
+\lim\limits_{z\to0} \frac{f(z) - f(0)}{z - 0}
+= \lim\limits_{\opair{x,y}\to\opair{0,0}} \frac{x^3 - \iu y^3}{x + \iu y}
+= \lim\limits_{\opair{x,y}\to\opair{0,0}} x^2 - y^2 - \iu xy
+= 0,
+\]故\(f(z)\)在点\(z = 0\)处可导，\(f'(0) = 0\).
+
+再任取\(z\)平面上一点\(z_0 = x_0 + \iu y_0 \neq 0\).
+当\(z = x + \iu y\)沿路径\(y = y_0\)趋于\(z_0\)时，\[
+\lim\limits_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}
+= \lim\limits_{x \to x_0} \eval{\frac{(x^3 - \iu y^3) - (x_0^3 - \iu y_0^3)}{(x + \iu y) - (x_0 + \iu y_0)}}_{y = y_0}
+= \lim\limits_{x \to x_0} \frac{x^3 - x_0^3}{x - x_0}
+= 3 x_0^3;
+\]而当\(z = x + \iu y\)沿路径\(x = x_0\)趋于\(z_0\)时，\[
+\lim\limits_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}
+= \lim\limits_{y \to y_0} \frac{-\iu y^3 + \iu y_0^3}{\iu (y - y_0)}
+= -3 y_0^3.
+\]因此\(f(z)\)在非零点\(z\)处不可导.
+\end{proof}
+\end{example}
+
+\subsection{复函数可微与实部、虚部函数可微的联系\ 柯西-黎曼条件}
+我们知道，复函数\(f(z)=u(x,y)+\iu v(x,y)\)在点\(z=x+\iu y\)连续，等价于二元实函数\(u(x,y)\)和\(v(x,y)\)在点\(\opair{x,y}\)连续.但是，\(f(z)\)在点\(z\)可微却不等价于\(u(x,y)\)和\(v(x,y)\)在点\(\opair{x,y}\)可微.
+
+\begin{theorem}\label{theorem:解析函数.柯西-黎曼条件}
+函数\(f(z)=u(x,y)+\iu v(x,y)\)在点\(z=x+\iu y\)可微的充要条件为：
+\begin{enumerate}
+\item 二元实函数\(u(x,y)\)和\(v(x,y)\)在点\(\opair{x,y}\)可微；
+\item \(u(x,y)\)和\(v(x,y)\)在点\((x,y)\)满足\textbf{柯西-黎曼条件}（简称C-R条件），即\[
+\left\{ \def\arraystretch{1.5} \begin{array}{lcr}
+\pdv{u}{x} &=& \pdv{v}{y}, \\
+\pdv{u}{y} &=& -\pdv{v}{x},
+\end{array} \right.
+\quad\text{或}\quad
+\left(\pdv{x}+\iu\pdv{y}\right)u = \frac{1}{\iu} \left(\pdv{x}+\iu\pdv{y}\right)v.
+\]
+\end{enumerate}
+
+若函数\(f(z)\)在点\(z\)处可微，则函数\(f(z)\)的导数为\begin{equation}\label{equation:解析函数.导数的计算式}
+f'(z)
+= \left(\pdv{u}{x} + \iu \pdv{v}{x}\right)
+= \left(\pdv{v}{y} - \iu \pdv{u}{y}\right)
+= \left(\pdv{u}{x} - \iu \pdv{u}{y}\right)
+= \left(\pdv{v}{y} + \iu \pdv{v}{x}\right).
+\end{equation}
+\begin{proof}
+\def\odz{o(\increment z)}%
+先证必要性.设\(f(z)\)在点\(z\)可微，即\[
+f(z+\increment z) - f(z) = f'(z) \increment z + \odz,
+\]其中\(\odz\)是当\(\increment z\to0\)时的无穷小.
+
+令\(f'(z) = a+\iu b,%
+\increment z = \increment x + \iu \increment y,%
+f(z+\increment z) - f(z) = \increment u+\iu \increment v,%
+\odz = \beta_1 + \iu \beta_2\)，则有\begin{align*}
+\increment u + \iu \increment v
+&= (a+\iu b) (\increment x + \iu \increment y) + (\beta_1 + \iu \beta_2) \\
+&= (\alpha \increment x - b \increment y + \beta_1) + \iu (b \increment x + a \increment y + \beta_2),
+\end{align*}当\(\increment z\to0\)时，\(\beta_1\)和\(\beta_2\)是\(\abs{\increment z} = \sqrt{\increment x^2 + \increment y^2}\)的高阶无穷小.比较可得\[
+\increment u = a \increment x - b \increment y + \beta_1,
+\qquad
+\increment v = b \increment x + a \increment y + \beta_2,
+\]这也意味着\(u(x,y)\)和\(v(x,y)\)在点\((x,y)\)可微，且有\[
+a = \pdv{u}{x} = \pdv{v}{y},
+\qquad
+-b = \pdv{u}{y} = -\pdv{v}{x}.
+\]
+
+再证充分性.设\(u(x,y)\)和\(v(x,y)\)在点\((x,y)\)可微且满足C-R条件，则\[
+\increment u = \pdv{u}{x} \increment x + \pdv{u}{y} \increment y + \beta_1,
+\qquad
+\increment v = \pdv{v}{x} \increment x + \pdv{v}{y} \increment y + \beta_2,
+\]其中当\(\increment z\to0\)时，\(\beta_1\)和\(\beta_2\)是\(\abs{\increment z} = \sqrt{\increment x^2 + \increment y^2}\)的高阶无穷小.又令\[
+\pdv{u}{x} = \pdv{v}{y} = a,
+\qquad
+\pdv{u}{y} = -\pdv{v}{x} = -b,
+\]则有\begin{align*}
+\increment f(z) &= \increment u + \iu \increment v \\
+&= a \increment x - b \increment y + \beta_1 + \iu (b \increment x + a \increment y + \beta_2) \\
+&= (a+\iu b)(\increment x + \iu \increment y) + \beta_1 + \iu \beta_2,
+\end{align*}或\[
+\frac{\increment f}{\increment z} = a + \iu b + \beta,
+\]其中\(\beta = \frac{\beta_1 + \iu \beta_2}{\increment z}\).
+因为\[
+\abs{\beta} \leqslant
+\frac{\abs{\beta_1}}{\abs{\increment z}} + \frac{\abs{\beta_2}}{\abs{\increment z}},
+\]所以\[
+\lim\limits_{\increment z\to0} \beta = 0,
+\qquad
+\lim\limits_{\increment z\to0} \frac{\increment f}{\increment z} = a+\iu b.
+\]
+也就是说\(f(z)\)在点\(z\)可微.
+\end{proof}
+\end{theorem}
+
+\cref{theorem:解析函数.柯西-黎曼条件} 把复函数可微性的判定问题，拆解成了我们已熟知的二元实函数的可微性的判定和实部、虚部函数是否满足C-R条件两个问题.
+只有当这两个条件同时成立，给定的复函数才可微.
+如果这两个条件中任有一个不成立，则给定的复函数不可微.
+
+虽然理论上可以用\cref{equation:解析函数.导数的定义式} 计算复函数的导数，而且\cref{equation:解析函数.导数的定义式} 确实可以求出一些诸如幂函数\(f(z) = z^n\)等简单初等函数的导数，但一般说来，由于\cref{equation:解析函数.导数的定义式} 是一个二重极限，用它来求一般复函数的导数是比较困难的.
+
+现如今证明\cref{theorem:解析函数.柯西-黎曼条件} 后，依靠\cref{equation:解析函数.导数的计算式} 就可以把复函数的求导问题，转化为求解其实部、虚部函数在点\(\opair{x,y}\)处的偏导数，从而避免了计算二重极限所带来的困难.
+
+另一方面，我们在微积分中还知道一个事实：若二元实函数\(\varphi(x,y)\)的偏导数\(\varphi'_x,\varphi'_y\)在点\(\opair{x,y}\)连续，则\(\varphi(x,y)\)在点\(\opair{x,y}\)处必定可微.
+藉此可以把\cref{theorem:解析函数.柯西-黎曼条件} 中的条件加强，得到复函数可微的充分条件，即：
+\begin{theorem}\label{theorem:解析函数.复函数可微的充分条件}
+如果函数\(f(z)=u(x,y)+\iu v(x,y)\)的实部\(u(x,y)\)和虚部\(v(x,y)\)在点\(\opair{x,y}\)具有一阶连续偏导数，且满足C-R条件，则\(f\)在点\(z=x+\iu y\)可微.
+\end{theorem}
+
+\begin{example}
+考察函数\(f(z) = \sqrt{\abs{xy}}\)在点\(z = 0\)处的可微性.
+\begin{solution}
+记\(f(z) = u(x,y) + \iu v(x,y)\)，显然\(u(x,y) = \sqrt{\abs{xy}}\)，\(v(x,y) = 0\)，\[
+u'_x(0,0) = u'_y(0,0) = v'_x(0,0) = v'_y(0,0) = 0,
+\]也就是说\(u'_x,u'_y,v'_x,v'_y\)在点\(\opair{x,y}\)处存在，且满足C-R条件.
+但差商\[
+\frac{f(\increment z) - f(0)}{\increment z}
+= \frac{ \sqrt{ \abs{ \increment x \increment y } } }{ \increment x + \iu \increment y }
+\]在\(\increment z \to 0\)时的极限不存在.
+这是因为只要让\(\increment z = \increment x + \iu \increment y\)沿射线\(\increment y = k \increment x \ (\increment x > 0)\)随\(\increment x \to 0\)而趋于零，即可得差商\(\frac{f(\increment z) - f(0)}{\increment z}\)趋于一个与\(k\)有关的值\(\frac{\sqrt{\abs{k}}}{1 + \iu k}\).
+因此\(f(z)\)在点\(z = 0\)处不可微.
+\end{solution}
+这里例子说明，利用\cref{theorem:解析函数.复函数可微的充分条件} 判定函数可微性时，如果不能断定其实部、虚部函数一阶偏导数的连续性，即便已知实部、虚部函数一阶偏导数存在且满足C-R条件，也不能认定该函数是可微的.
+\end{example}
+
+\begin{example}
+考察函数\(f(z) = x^3 - y^3 + \iu 2 x^2 y^2\)的可微性，并求其在各可微点的导数.
+\begin{solution}
+记\(f(z) = u(x,y) + \iu v(x,y)\)，\(u(x,y) = x^3 - y^3\)，\(v(x,y) = 2 x^2 y^2\).
+显然实部、虚部函数的一阶偏导数\[
+u'_x = 3x^2,
+\qquad
+u'_y = -3y^2,
+\qquad
+v'_x = 4xy^2,
+\qquad
+v'_y = 4x^2y
+\]都在\(z\)平面上连续.依据C-R条件联立方程组\[
+\left\{ \begin{array}{*7r}
+u'_x &=& 3x^2 &=& 4x^2y &=& v'_y, \\
+u'_y &=& -3y^2 &=& -4xy^2 &=& -v'_x
+\end{array} \right.
+\]解得\[
+\opair{x,y}\in\left\{ \opair{0,0}, \opair*{\frac{3}{4},\frac{3}{4}} \right\}.
+\]也就是说，函数\(f(z)\)只在点\(\opair{0,0}\)和\(\opair*{\frac{3}{4},\frac{3}{4}}\)满足C-R条件，也只在这两点可微.
+
+接下来，根据\cref{equation:解析函数.导数的计算式} 可以计算得到\[
+f'(0) = \eval{u'_x + \iu v'_x}_{\opair{0,0}} = 0,
+\]\[
+f'\left(\frac{3}{4}+\iu\frac{3}{4}\right)
+= \eval{u'_x + \iu v'_x}_{\opair*{\frac{3}{4},\frac{3}{4}}}
+= \frac{27}{16} (1+\iu).
+\]
+\end{solution}
+\end{example}
+
+\begin{theorem}\label{theorem:解析函数.函数在区域内处处可微的条件}
+函数\(f(z)=u(x,y)+\iu v(x,y)\)在区域\(D\)内可微的充要条件为：
+\begin{enumerate}
+\item 二元实函数\(u(x,y)\)和\(v(x,y)\)在区域\(D\)内可微；
+\item \(u(x,y)\)和\(v(x,y)\)在区域\(D\)内处处满足C-R条件.
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+考察函数\(f(z) = e^x (\cos y + \iu \sin y)\)的可微性，并求其在各可微点的导数.
+\begin{solution}
+由二元初等实函数的可微性，\(u = e^x \cos y\)和\(v = e^x \sin y\)都是全平面上的可微函数，且C-R条件\[
+\left\{ \begin{array}{*5r}
+u'_x &=& e^x \cos y &=& v'_y, \\
+u'_y &=& - e^x \sin y &=& - v'_x
+\end{array} \right.
+\]在全平面上处处成立，故\(f(z)\)在全平面可微，且\[
+f'(z) = u'_x + \iu v'_x = e^x (\cos y + \iu \sin y) = f(z).
+\]
+\end{solution}
+\end{example}
+
+\subsection{解析函数的定义}
+\begin{definition}\label{definition:解析函数.解析函数的定义}
+若函数\(w=f(z)\)在点\(z_0\)的一个邻域\(N(z_0)\)内处处可微，则称“\(f(z)\)在点\(z_0\)\DefineConcept{解析}”，或称“点\(z_0\)是\(f(z)\)的\DefineConcept{解析点}”.
+
+若函数\(w=f(z)\)在区域\(D\)内处处可微，则称“\(f(z)\)在区域\(D\)内\DefineConcept{解析}”，或称“\(f(z)\)是区域\(D\)内的\DefineConcept{解析函数}”.
+
+若函数\(w=f(z)\)在点\(z_0\)不解析，但在点\(z_0\)的任意邻域内存在\(f(z)\)的解析点，则称“点\(z_0\)为\(f(z)\)的\DefineConcept{奇点}”.
+\end{definition}
+以后当我们说函数\(f(z)\)在闭区域\(\overline{D}\)上解析时，其意义是指\(f(z)\)在某个包含\(\overline{D}\)的开区域内解析.
+
+从\cref{definition:解析函数.解析函数的定义} 可以看出，“函数\(f(z)\)在区域\(D\)内解析”与“函数\(f(z)\)在区域\(D\)内处处可微”等价.但“函数\(f(z)\)在点\(z_0\)解析”却只是“函数\(f(z)\)在点\(z_0\)可微”的充分不必要条件.
+
+\subsection{解析函数的判定}
+\begin{theorem}\label{theorem:解析函数.函数在区域内处处解析的充要条件}
+函数\(f(z)=u(x,y)+\iu v(x,y)\)在区域\(D\)内解析的充要条件为：
+\begin{enumerate}
+\item 二元实函数\(u(x,y)\)和\(v(x,y)\)在区域\(D\)内可微；
+\item \(u(x,y)\)和\(v(x,y)\)在区域\(D\)内处处满足C-R条件.
+\end{enumerate}
+\begin{proof}
+根据\cref{definition:解析函数.解析函数的定义} 和\cref{theorem:解析函数.函数在区域内处处可微的条件} 显然成立.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析函数.函数的和差积商的解析性}
+设复变函数\(u=u(z)\)和\(v=v(z)\)都在区域\(D\)内解析，则\(u \pm v\)、\(u \cdot v\)和\(\frac{u}{v}\ \bigl( z \in D : v(z) \neq 0 \bigr)\)也都在区域\(D\)内解析.
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析函数.复合函数的解析性}
+如果函数\(u=g(z)\)在区域\(D\)内解析，函数\(w=f(u)\)在区域\(G\)内解析，且\(g(D) \subseteq G\)，则复合函数\(w=f[g(z)]\)在\(D\)内解析.
+\end{theorem}
+
+现在就可以依据\cref{theorem:解析函数.函数在区域内处处解析的充要条件,theorem:解析函数.函数的和差积商的解析性,theorem:解析函数.复合函数的解析性} 判定函数\(f(z)\)是否在区域\(D\)内解析.
+
+\begin{example}
+多项式函数\[
+p(z) = a_0 z^n + a_1 z^{n-1} + \dotsb + a_n \quad (a_0 \neq 0)
+\]在\(z\)平面解析.
+\end{example}
+
+\begin{example}
+有理分式函数\[
+\frac{p(z)}{q(z)} = \frac{a_0 z^n + a_1 z^{n-1} + \dotsb + a_n}{b_0 z^m + b_1 z^{m-1} + \dotsb + b_m} \quad (a_0 \neq 0,\ b_0 \neq 0)
+\]在\(z\)平面上除使分母\(q(z)=0\)的各点外解析.
+\end{example}
+
+\begin{example}
+讨论函数\(f(z) = x^2 - \iu y\)的可微性和解析性.
+\begin{solution}
+令\(u(x,y) = x^2, v(x,y) = -y\)，由实函数的可微性可知\(u,v\)都在\(z\)平面上可微.
+求偏导得\[
+u_x' = 2x, \qquad u_y' = 0, \qquad v_x' = 0, \qquad v_y' = -1.
+\]显然有\(u_y' = 0 = -v_x'\).但要使\(u_x' = 2x = -1 = v_y'\)，必有\(x = -1/2\)，即仅在直线\(x=-1/2\)上满足C-R条件，从而\(f(z)\)仅在直线\(x=-1/2\)上可微，在\(z\)平面上处处不解析.
+\end{solution}
+\end{example}
+
+\begin{example}
+讨论函数\(f(z) = \abs{z}^2\)的可微性和解析性.
+\begin{solution}
+令\(u(x,y) = x^2 + y^2, v(x,y) = 0\)，显然\(u,v\)都在\(z\)平面上可微.
+求偏导得\[
+u_x' = 2x, \qquad u_y' = 2y, \qquad v_x' = 0, \qquad v_y' = 0.
+\]要满足C-R条件，必有\(u_x' = 2x = 0 = v_y' \land u_y' = 2y = 0 = -v_y'\)，即\(x=y=0\).
+也就是说仅在原点0处满足C-R条件，从而\(f(z)\)仅在原点可微，在\(z\)平面上处处不解析.
+\end{solution}
+\end{example}
+
+\subsection{解析函数的性质}
+如果函数\(w=f(z)\)在点\(z_0\)处解析，则\(f(z)\)在点\(z_0\)处无穷次可微，其各阶导函数\(f^{(n)}(z)\ (n=1,2,\dotsc)\)也在点\(z_0\)处解析，\(f(z)\)可以在点\(z_0\)的邻域内展开成幂级数.
+
+\subsection{解析函数的散度与旋度}
+设函数\(w=f(z)=u(x,y)+\iu v(x,y)\)在点\(z_0\)
+
+\section{导数的几何意义与解析变换的几何特性}
+\subsection{导数的几何意义}
+我们已经知道，从几何上看，定义在\(z\)平面点集\(E\)上的函数\(w = f(z)\)是点集\(E\)到\(w\)平面上点集\(f(E)\)的一个变换或映射.
+因此，区域\(D\)内的一个解析函数又称为\(D\)内的一个\DefineConcept{解析变换}.
+区域\(D\)上的一个单叶函数又称为\(D\)上的一个\DefineConcept{单叶变换}.
+
+设\(w = f(z)\)在区域\(D\)内解析，且\(\forall z_0 \in D\)都有\(f'(z_0) \neq 0\).
+过点\(z_0\)任意作一条有向光滑曲线\[
+C: z = z(t)
+\quad(t_0 \leqslant t \leqslant t_1),
+\]并假设\(C\)在点\(z_0 = z(t_0)\)的切向量\(z'(t_0)\)存在且不为零，显然原象曲线的切向量与\(z\)平面实轴间的夹角（也称为切线倾角）为\(\arg z'(t_0)\).
+又假设，经变换\(w = f(z)\)之后，\(C\)的象曲线\[
+\Gamma = f(C): w = f[z(t)]
+\quad(t_0 \leqslant t \leqslant t_1)
+\]在点\(z_0\)的象点\(w_0 = f(z_0) = f[z(t_0)]\)的邻域内是光滑的；象曲线\(\Gamma\)在\(w_0\)点的切向量\(w'(t_0)\)存在且不为零（即\(w'(t_0) = f'(z_0) z'(t_0) \neq 0\)）.
+象曲线的切向量\(w'(t_0)\)与\(w\)平面实轴间的夹角为\[
+\arg w'(t_0) = \arg f'(z_0) + \arg z'(t_0),
+\]从而有\begin{equation}\label{equation:解析函数.导函数的辐角的几何意义}
+\arg f'(z_0) = \arg w'(t_0) - \arg z'(t_0).
+\end{equation}
+
+如果我们把\(z\)平面和\(w\)平面重叠在一起，使点\(z_0\)与\(z_0\)重合，\(z\)平面实轴与\(z\)平面实轴同向平行，注意到过点\(z_0\)的有向光滑曲线\(C\)是任意作出的，则\cref{equation:解析函数.导函数的辐角的几何意义} 意味着：
+无论过点\(z_0\)作怎样的光滑曲线，它在点\(z_0\)的正向切线与象曲线在点\(w_0\)的正向切线之间的夹角总是\(\arg f'(z_0)\)；
+或者说，象曲线过点\(w_0\)的切线相比于原象曲线过点\(z_0\)的切线，总是绕点\(z_0\)旋转了一个角度\(\arg f'(z_0)\).
+变换\(w = f(z)\)取定之后，角\(\arg f'(z_0)\)仅与点\(z_0\)有关，而与原象曲线\(C\)无关，因此称\(\arg f'(z_0)\)为变换\(w = f(z)\)在点\(z_0\)的\DefineConcept{旋转角}.
+这就是导数辐角的几何意义.
+“变换\(w = f(z)\)取定之后，旋转角\(\arg f'(z_0)\)仅与点\(z_0\)有关，而与过点\(z_0\)的曲线\(C\)的无关”这个特性，通常也称为\cemph{旋转角的不变性}.
+
+下面再看导数的模的几何意义.根据\hyperref[equation:解析函数.导数的定义式]{导数的定义}有\[
+f'(z_0) = \lim\limits_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0},
+\]又因为\(f'(z)\)是连续的，根据\cref{theorem:复变函数.连续函数的性质}  2，函数\(\abs{f'(z)}\)也是连续的，所以\[
+\abs{f'(z_0)}
+= \abs{ \lim\limits_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} }
+= \lim\limits_{z \to z_0} \abs{ \frac{f(z) - f(z_0)}{z - z_0} }.
+\]因此\begin{equation}\label{equation:解析函数.导函数的模的几何意义}
+\abs{f'(z_0)}
+= \lim\limits_{z \to z_0} \frac{\abs{f(z) - f(z_0)}}{\abs{z - z_0}}.
+\end{equation}
+由于曲线\(C\)是过点\(z_0\)任意作的一条光滑曲线，所以\cref{equation:解析函数.导函数的模的几何意义} 表明：
+象点之间的距离\(\abs{w - w_0}\)与原象之间的距离\(\abs{z - z_0}\)之比的极限为\(\abs{f'(z_0)}\)，且此极限值仅与点\(z_0\)的选择有关，而与曲线\(C\)的选择无关，也与点\(z\)沿曲线\(C\)从什么方向逼近点\(z_0\)无关.
+因此称导数模\(\abs{f'(z_0)}\)为变换\(w = f(z)\)在点\(z_0\)的\DefineConcept{伸缩率}（特别地，\(0 < \abs{f'(z_0)} < 1\)时缩短，\(\abs{f'(z_0)} > 1\)时伸长）.
+这就是导数模的几何意义.而这个特性通常也称为\cemph{伸缩率的不变性}.
+
+上面的讨论说明：\emph{解析函数在导数不为零的点处具有旋转角不变性和伸缩率不变性}.
+\(f'(z_0)\)表达的是变换\(w = f(z)\)在点\(w_0\)处的旋转角和伸缩率.
+
+在清楚了导数辐角的几何意义之后，我们立刻可以看到以下现象：
+设\(w = f(z)\)在区域\(D\)内解析，且\(\forall z_0 \in D\)都有\(f'(z_0) \neq 0\)，则过点\(z_0\)的任意两条有向光滑曲线\(C_1\)和\(C_2\)之间的夹角\footnote{两条有向光滑曲线\(C_1\)和\(C_2\)之间的夹角定义为它们在交点\(z_0\)处的正向切线之间的夹角.}，经\(w = f(z)\)变换之后将保持不变 —— 不但不改变夹角的大小，而且也不改变构成夹角的旋转方向.
+
+事实上，设\(C_1\)与\(C_2\)在点\(z_0\)处的正向切线倾角分别为\(\psi_1\)与\(\psi_2\)，\(C_1\)和\(C_2\)在变换\(w = f(z)\)下的象曲线\(\Gamma_1\)和\(\Gamma_2\)在点\(w_0 = f(z_0)\)的切线倾角分别为\(\Psi_1\)与\(\Psi_2\).则由\cref{equation:解析函数.导函数的辐角的几何意义} 有\[
+\Psi_1 - \psi_1 = \arg f'(z_0) = \Psi_2 - \psi_2,
+\]整理得\[
+\Psi_2 - \Psi_1 = \psi_2 - \psi_1.
+\]上式左端是象曲线\(\Gamma_1\)与\(\Gamma_2\)之间的夹角，右端是原象曲线\(C_1\)和\(C_2\)之间的夹角，它们相等表示夹角大小经变换后保持不变.
+注意到\(C_1\)和\(C_2\)是任意选定的，于是我们看到：解析函数在其导数不为零处具有保持任意两条曲线间夹角大小和旋转方向不变的特性.
+通常称此特性为\cemph{保角性}.
+
+\begin{definition}\label{definition:解析函数.保角变换}
+若变换\(w = f(z)\)在点\(z_0\)处具有保角性及伸缩率不变性，则称“变换\(w = f(z)\)在点\(z_0\)是保角的”，或称“\(w = f(z)\)在点\(z_0\)处是\DefineConcept{保角变换}”.
+若\(w = f(z)\)在区域\(D\)内处处是保角的，则称“变换\(w = f(z)\)在区域\(D\)内是保角的”，或称“\(w = f(z)\)在区域\(D\)内是保角变换”.
+\end{definition}
+从\cref{definition:解析函数.保角变换} 可以看出，“变换在一点具有保角性”与“变换在该点是保角变换”是有区别的.
+
+\begin{theorem}
+若\(w = f(z)\)在区域\(D\)内解析，则它在导数不为零处是保角的.
+\end{theorem}
+
+\begin{corollary}
+若\(w = f(z)\)在区域\(D\)内解析，且\(\forall z \in D\)都有\(f'(z) \neq 0\)，则\(w = f(z)\)在区域\(D\)内是保角变换.
+\end{corollary}
+
+\subsection{单叶解析变换的保形性}
+一般说来，在区域\(D\)内解析的变换，其导数未必在\(D\)内处处都不等于零，因此，区域\(D\)内解析的变换未必在区域\(D\)内是保角变换.
+但我们不加证明地指出：若变换\(w = f(z)\)在区域\(D\)内既是解析的，又是单叶的，则在区域内将处处有\(f'(z)\neq0\)，从而\(w = f(z)\)在区域\(D\)内是保角的.
+同时我们也指出：在区域\(D\)内解析的保角变换，未必一定在区域\(D\)内也是单叶的.
+
+\begin{definition}
+若变换\(w = f(z)\)在区域\(D\)内既是单叶的又是保角的，则称此变换在\(D\)内是\DefineConcept{保形的}或\DefineConcept{共形的}，也称它为区域\(D\)内的\DefineConcept{保形变换}或\DefineConcept{共形映射}.
+\end{definition}
+
+我们知道，区域\(D\)内的单值单叶的满变换是一一变换；再注意到我们规定除特别声明外一个函数总是指单值函数（变换），因此区域\(D\)内的保形变换一定是\(D\)内的一一保角变换；反之，\(D\)内的一一保角变换显然也是\(D\)内的单叶保角变换.于是我们得到：
+\begin{property}
+“变换\(w = f(z)\)为区域\(D\)内的保形变换”的充要条件是“\(w = f(z)\)为区域\(D\)内的一一保角变换”.
+\end{property}
+在下一章我们将证明：解析函数在解析点处是无穷次可微的.
+因此，若\(w = f(z)\)在点\(z_0\)处解析，则\(f(z)\)在点\(z_0\)的邻域内连续.
+于是，若\(f'(z_0)\neq0\)，则由\(f'(z)\)的连续性可知，必定存在点\(z_0\)的一个邻域\(N(z_0)\)，在\(z \in N(z_0)\)时，\(f'(z)\neq0\)；从而在邻域\(N(z_0)\)内\(w = f(z)\)是保角的.
+根据隐函数存在定理，容易证明：在\(w = f(z)\)的解析点\(z_0\)处，若\(f'(z_0)\neq0\)，则在点\(z_0\)的邻域\(N(z_0)\)内，\(w = f(z)\)是单叶的.于是我们得到：
+\begin{theorem}
+解析变换在其导数不为零的点的邻域内是保形的.
+\end{theorem}
+
+通常称在一点邻域内保形的变换是在该点\cemph{局部保形的}.
+显然，变换\(w = f(z)\)在区域\(D\)内（整体）保形时，它必然在\(D\)内处处局部保形.
+但反过来未必一定成立，这是因为在区域\(D\)内处处有\(f'(z)\neq0\)时，\(w = f(z)\)虽然在\(D\)内处处局部单叶，缺未必在区域\(D\)内（整体）单叶.
+
+关于单叶解析变换，有下述定理成立：
+\begin{theorem}\label{theorem:解析函数.单叶解析变换的性质}
+设\(w = f(z)\)在区域\(D\)内单叶解析，则\begin{enumerate}
+\item \(w = f(z)\)将\(D\)保形变换成区域\(G = f(D)\).
+\item 反函数\(z = f^{-1}(w)\)在区域\(G\)内单叶解析，且\[
+[ f^{-1}(w_0) ]' = \frac{1}{f'(z_0)}
+\quad(z_0 \in D, w_0 = f(z_0) \in G).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+若\(w = f(z)\)将区域\(D\)保形变换成区域\(G\)，则\(w = f(z)\)在\(D\)内单叶解析.
+\end{theorem}
+由此可见，“\(w = f(z)\)在\(D\)内单叶解析”的充要条件是：\(w = f(z)\)将区域\(D\)保形变换成区域\(G\).
+
+根据上述讨论可知，保形变换\(w = f(z)\)将区域\(D\)保形变换成区域\(G = f(D)\)（保形、保域），而其反函数\(z = f^{-1}(w)\)将区域\(G\)保形变换成区域\(D\)（即保形变换的逆变换仍保形、保域）.
+这时，\(D\)内任一点\(z_0\)邻域内的任一小三角形，通常会变换为\(G\)内的象邻域内的一个小曲边三角形，这两个三角形的对应角相等，对应边长近似成比例，因此，它们是近似的相似形.
+这就是保形变换的名称的由来.
+
+显然，两个保形变换的复合仍然是一个保形变换.
+具体说，如果\(\xi = g(z)\)把\(z\)平面上的区域\(D\)保形变换成\(\xi\)平面上的区域\(D_1\)，而\(w = f(\xi)\)把区域\(D_1\)保形变换成\(w\)平面上的区域\(G\)，则复合函数\(w = f[g(z)]\)是一个把\(D\)变换成\(G\)的保形变换.
+这一事实在求具体的保形变换时常常要用到.
+
+\section{初等解析函数及其分析性质、变换特性}
+在前两节，我们对解析函数的概念及变换特性作了一般性讨论.
+这一节我们将具体地研究一些初等解析函数，它们是实分析中通常初等函数在复数域中的自然推广.
+经过推广之后的初等函数，往往会获得一些新的性质.
+例如，复指数函数\(e^z\)是周期函数，复三角函数\(\sin z\)及\(\cos z\)已不再是有界函数，等等.
+我们将着重从分析性质和变换特性这两个方面来研究这些复初等函数.
+
+\subsection{指数函数}
+\begin{definition}\label{definition:解析函数.指数函数}
+对任意复数\(z=x+\iu y\)，定义复指数函数\begin{equation}
+e^z = e^{x+\iu y} = e^x(\cos y + \iu \sin y).
+\end{equation}
+\end{definition}
+
+在\cref{definition:解析函数.指数函数} 中，若取\(y = 0\)，则\(e^z = e^x\)就是实指数函数，可见复指数函数是实指数函数\(e^x\)的推广，但复指数函数\(e^z\)已没有幂的意义；若取\(x = 0\)，则\(e^z = \cos y + \iu \sin y\)，所以复指数函数是欧拉公式的推广.
+
+\begin{property}
+复指数函数具有以下性质：
+\begin{enumerate}
+\item \(\forall z\in\mathbb{C} : e^z \neq 0, \abs{e^z} = e^x > 0\)；
+\item \(\forall z_1,z_2\in\mathbb{C} : e^{z_1+z_2} = e^{z_1}e^{z_2}\)；
+\item \(e^{2k\pi\iu} = 1\ (k\in\mathbb{Z})\)；
+\item \(e^z\)是以\(2\pi\iu\)为基本周期的周期函数，即\[
+e^{z + 2k\pi\iu} = e^z \quad (k\in\mathbb{Z});
+\]
+\item 因为沿正实轴有\(\lim\limits_{\substack{z\to\infty \\ (x>0,y=0)}} e^z = \lim\limits_{x\to+\infty} e^x = +\infty\)，而沿负实轴有\(\lim\limits_{\substack{z\to\infty \\ (x<0,y=0)}} e^z = \lim\limits_{x\to-\infty} e^x = 0\)，所以\(\lim\limits_{z\to\infty} e^z\)不存在；
+\item \(e^z\)在\(z\)平面解析，且\begin{equation}\label{equation:解析函数.指数函数的导数}
+(e^z)'=e^z.
+\end{equation}
+\end{enumerate}
+\end{property}
+
+因为变换\(w=e^z\)满足\((e^z)' \neq 0\)，所以\(w=e^z\)是\(z\)平面上的保角变换.
+
+变换\(w=e^z\)的单叶性区域是\(z\)平面上宽不超过\(2\pi\)的水平带状区域，即\[
+A = \Set{ z=x+\iu y \in \mathbb{C} \given (2k-1)\pi < y-\alpha < (2k+1)\pi }\ (\alpha\in\mathbb{R}, k\in\mathbb{Z}).
+\]事实上，若\(z_1,z_2\)有\(z_1 \neq z_2\)，但使得\(e^{z_1} = e^{z_2}\)，或\(e^{x_1}e^{\iu y_1} = e^{x_2}e^{\iu y_2}\)，或\[
+e^{x_1}(\cos y_1 + \iu \sin y_1) = e^{x_2}(\cos y_2 + \iu \sin y_2),
+\]则\(x_1 = x_2\)，\(y_1 = y_2 + 2k\pi\ (k\in\mathbb{Z}^*)\)，于是有\[
+z_1 - z_2 = 2k\pi\iu.
+\]由此可知，区域\(A\)是\(w = e^z\)的单叶性区域的充要条件为：
+对\(A\)内任意一点\(z_1\)，满足条件\(z_1 - z_2 = 2k\pi\iu\)的点\(z_1\)都不属于\(A\).
+也就是说，不包含满足\(z_1 - z_2 = 2k\pi\iu\)的\(z_1,z_2\)的区域都可以作为\(w = e^z\)的单叶性区域.
+有时候为简单起见，可以取\[
+A = \Set{ z=x+\iu y \given (2k-1)\pi < y < (2k+1)\pi,\ x \in \mathbb{R} }\ (k\in\mathbb{Z})
+\]作为\(w = e^z\)的单叶性区域.
+
+这样，解析变换\(w = e^z\)在宽不超过\(2\pi\)的水平带状区域\(A\)内是单叶、保角的，从而是保形的.
+
+\subsection{茹科夫斯基函数}
+\begin{definition}
+定义茹科夫斯基函数\[
+w = \frac{1}{2} \left(z + \frac{1}{z}\right).
+\]
+\end{definition}
+
+显然，茹科夫斯基函数在\(z=0\)处无定义，自然不可微.
+它在\(z\)平面的其他点处都是可微的，且有\[
+w' = \frac{1}{2} \left(1 - \frac{1}{z^2}\right).
+\]令\(w' = 0\)，解得\(z=\pm1\)，说明茹科夫斯基函数只在\(z=\pm1\)处导数为零.
+因此，它在除去\(0,\pm1\)三点后的\(z\)平面内是保角的解析变换.
+
+现在我们来研究茹科夫斯基函数的单叶性区域.
+取\(z_1,z_2\in\mathbb{C}\)使得\[
+\frac{1}{2} \left(z_1 + \frac{1}{z_1}\right)
+= \frac{1}{2} \left(z_2 + \frac{1}{z_2}\right),
+\]或\[
+(z_1-z_2)\left(1-\frac{1}{z_1 z_2}\right) = 0,
+\]解得\(z_1 = z_2\)或\(z_1 z_2 = 1\).
+由此可知，“茹科夫斯基函数在区域\(D\)内是单叶的”的充要条件是：\(D\)内不含满足\(z_1 z_2 = 1\)的不同两点\(z_1,z_2\).
+所以除去原点的单位圆内区域\(D_1\)和单位圆外区域\(D_2\)分别都可以作为茹科夫斯基函数的单叶性区域；上半平面\(B_1\)和下半平面\(B_2\)也可分别作为它的单叶性区域.
+在这些区域内，茹科夫斯基函数都是单叶解析的，从而是保形的.
+
+下面我们来考察茹科夫斯基函数把区域\(D_1\)和\(D_2\)变为什么样的区域.
+设\[
+z = r e^{\iu\theta}, \qquad
+w = u + \iu v.
+\]那么\[
+u + \iu v = w
+= \frac{1}{2} \left(z + \frac{1}{z}\right)
+= \frac{1}{2} \left( r e^{\iu\theta} + \frac{1}{r} e^{-\iu\theta} \right).
+\]因为\(e^{\iu\theta} = \cos\theta + \iu \sin\theta\)，所以\begin{align*}
+r e^{\iu\theta} + \frac{1}{r} e^{-\iu\theta}
+&= r (\cos\theta + \iu \sin\theta)
++ \frac{1}{r} (\cos\theta - \iu \sin\theta) \\
+&= \cos\theta \left( r + \frac{1}{r} \right)
++ \iu \sin\theta \left( r - \frac{1}{r} \right),
+\end{align*}故\[
+u = \frac{1}{2} \cos\theta \left( r + \frac{1}{r} \right),
+\qquad
+v = \frac{1}{2} \sin\theta \left( r - \frac{1}{r} \right).
+\]由此可见，\(z\)平面上每个圆周\(C: \abs{z} = r_0 > 0\)都会变成\(w\)平面上的一个椭圆\[
+\Gamma: \left\{ \def\arraystretch{1.5} \begin{array}{l}
+u = \frac{1}{2} \left( r_0 + \frac{1}{r_0} \right) \cos\theta, \\
+v = \frac{1}{2} \left( r_0 - \frac{1}{r_0} \right) \sin\theta.
+\end{array} \right.
+\]椭圆\(\Gamma\)的半长轴、半短轴分别是\[
+a = \frac{1}{2} \left( r_0 + \frac{1}{r_0} \right),
+\qquad
+b = \frac{1}{2} \left( r_0 - \frac{1}{r_0} \right).
+\]
+对于区域\(D_1\)内以原点为圆心的任意圆周\(C\)，其半径满足\(0 < r_0 < 1\)，这时\(C\)的上半圆周会变成下半椭圆，其下半圆周会变成上半椭圆；
+对于区域\(D_2\)内以原点为圆心的任意圆周\(C\)，其半径满足\(r_0 > 0\)，这时\(C\)的上半圆周会变成上半椭圆，其下半圆周会变成下半椭圆.
+所以，对于不同的\(r_0\)，由于焦距总是\(c = \sqrt{a^2-b^2} = 1\)，即对应的椭圆是共焦的，焦点为\(\pm1\).
+当\(r_0\to1\)时，\(a\to1,b\to0\)，椭圆“压缩”成接近于实轴上的线段\([-1,1]\)；
+当\(r_0\to1\)或\(r_0\to+\infty\)时，\(a,b\to+\infty\).
+由此可见，在除去原点的\(z\)平面上，茹科夫斯基函数是双叶的.
+
+设原象曲线是射线\(C: \arg z = \theta_0\)，那么\(z\)平面上的动点\(z = r e^{\iu\theta_0}\)在\(w\)平面上对应的是双曲线\[
+\Gamma: \left\{ \def\arraystretch{1.5} \begin{array}{l}
+u = \frac{1}{2} \left( r + \frac{1}{r} \right) \cos\theta_0, \\
+v = \frac{1}{2} \left( r - \frac{1}{r} \right) \sin\theta_0
+\end{array} \right.
+\]上的点.
+当\(\theta_0=0,2\pi\)时，象曲线是射线\(\Set{ w = u + \iu v \given u\geqslant1, v=0 }\)（分别称为射线的“上岸”和“下岸”）；
+当\(\theta_0=\pi\)时，象曲线是射线\(\Set{ w = u + \iu v \given u\leqslant-1, v=0 }\)；
+当\(\theta_0=\frac{1}{2}\pi,\frac{3}{2}\pi\)时，象曲线是\(w\)平面上的虚轴.
+除这些特殊的\(\theta_0\)值外，对于不同的\(\theta_0\)，它们所对应的双曲线是共焦的，焦点都是\(\pm1\).
+总之，茹科夫斯基函数将\(z\)平面上去掉原点的单位圆内部区域和单位圆外部区域都分别地保形变换为去掉线段\([-1,1]\)后的\(w\)平面.
+
+如果把上半\(z\)平面或下半\(z\)平面作为茹科夫斯基函数的单叶性区域，与上面的讨论相仿，茹科夫斯基函数把上半\(z\)平面\(\Im z > 0\)和下半\(z\)平面\(\Im z < 0\)都分别保形地变换成去掉实轴上射线\[
+\Set{ \mathbb{C} \ni w = u + \iu v \given -\infty < u \leqslant -1 }
+\quad\text{和}\quad
+\Set{ \mathbb{C} \ni w = u + \iu v \given 1 \leqslant u < +\infty }
+\]后的整个\(w\)平面.
+
+\begin{definition}
+定义机翼剖面函数\[
+w = \frac{1}{2} \left(z + \frac{l^2}{z}\right).
+\]
+\end{definition}
+
+\subsection{三角函数}
+\begin{definition}
+定义复三角函数\[
+\sin z = \frac{e^{\iu z}-e^{-\iu z}}{2\iu},
+\qquad
+\cos z = \frac{e^{\iu z}+e^{-\iu z}}{2}.
+\]
+\end{definition}
+
+\begin{property}
+复三角函数具有以下性质：
+\begin{enumerate}
+\item \(\sin z\)和\(\cos z\)都以\(2\pi\)为基本周期，即\[
+\sin(z+2\pi) = \sin z, \qquad
+\cos(z+2\pi) = \cos z;
+\]
+\item \(\sin z\)是奇函数，\(\cos z\)是偶函数，即\[
+\sin(-z) = -\sin z, \qquad
+\cos(-z) = \cos z;
+\]
+\item \(\abs{\sin z}\)和\(\abs{\cos z}\)都是无界的；
+\item 当且仅当\(z = k\pi\)时\(\sin z = 0\)，当且仅当\(z = k\pi+\frac{\pi}{2}\)时\(\cos z = 0\)，其中\(k\in\mathbb{Z}\)；
+\item \(\sin z\)和\(\cos z\)在\(z\)平面上解析，且\begin{gather}
+(\sin z)' = \cos z, \label{equation:解析函数.正弦函数的导数} \\
+(\cos z)' = -\sin z. \label{equation:解析函数.余弦函数的导数}
+\end{gather}
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+实三角函数通常的恒等式仍然成立，例如，\(\forall z,z_1,z_2 \in \mathbb{C}\)，有\begin{gather}
+\sin^2 z + \cos^2 z = 1, \\
+\sin(z_1 \pm z_2) = \sin z_1 \cos z_2 \pm \cos z_1 \sin z_2, \\
+\cos(z_1 \pm z_2) = \cos z_1 \cos z_2 \mp \sin z_1 \sin z_2, \\
+\sin(\frac{\pi}{2}-z)=\cos z.
+\end{gather}
+\end{theorem}
+
+下面考察余弦函数\(w = \cos z\)的单叶性区域和变换特性.
+余弦函数是由\[
+\xi = \iu z,
+\qquad
+\zeta = e^{\xi},
+\qquad
+w = \frac{1}{2} \left( \zeta + \frac{1}{\zeta} \right)
+\]三个函数复合而成.
+第一个函数只是旋转\(\frac{\pi}{2}\)的变换，显然在\(z\)平面单叶.
+第二函数单叶的充要条件是：在\(\xi\)平面上的区域不包含满足\(\xi_1 - \xi_2 = 2k\pi\iu\ (k\in\mathbb{Z}^*)\)的两点\(\xi_1,\xi_2\)，换到\(z\)平面就是在\(z\)平面上的区域不包含\(z_1 - z_2 = 2k\pi\)的两点\(z_1,z_2\).
+第三个函数单叶的充要条件是：在\(\zeta\)平面上的区域不包含满足\(\zeta_1 \zeta_2 = 1\)的两点\(\zeta_1,\zeta_2\)，换到\(z\)平面就是不包含满足\(e^{\iu z_1} \cdot e^{\iu z_2} = e^{\iu(z_1+z_2)} = 1\)，即\(z_1 + z_2 = 2k\pi\)的两点\(z_1,z_2\).
+因此，宽不超过\(\pi\)的垂直带状区域，例如\(0 < \Re z < \pi\)，就可以作为\(\cos z\)的单叶性区域.
+
+\begin{definition}
+在复正弦函数和复余弦函数的基础上，可以进一步定义\begin{gather}
+\tan z = \frac{\sin z}{\cos z}, \\
+\cot z = \frac{\cos z}{\sin z}, \\
+\sec z = \frac{1}{\cos z}, \\
+\csc z = \frac{1}{\sin z}.
+\end{gather}
+\end{definition}
+
+\begin{property}
+正切函数\(\tan z\)和余切函数\(\cot z\)都以\(\pi\)为基本周期，即\[
+\tan(z+\pi) = \tan z,
+\qquad
+\cot(z+\pi) = \cot z.
+\]
+
+正割函数\(\sec z\)和余割函数\(\csc z\)都以\(2\pi\)为基本周期，即\[
+\sec(z+2\pi) = \sec z,
+\qquad
+\csc(z+2\pi) = \csc z.
+\]
+\end{property}
+
+\begin{property}
+\(\tan z\)、\(\cot z\)、\(\sec z\)和\(\csc z\)都在分母不为零的点处解析，且\begin{gather}
+(\tan z)' = \sec^2 z, \label{equation:解析函数.正切函数的导数} \\
+(\cot z)' = -\csc^2 z, \label{equation:解析函数.余切函数的导数} \\
+(\sec z)' = \sec z \tan z, \label{equation:解析函数.正割函数的导数} \\
+(\csc z)' = -\csc z \cot z. \label{equation:解析函数.余割函数的导数}
+\end{gather}
+\end{property}
+
+\subsection{反三角函数}
+\begin{definition}
+定义复反三角函数为复三角函数的反函数.对任意复变量\(z\)，称满足方程\[
+z = \sin w
+\]的复数\(w\)为复数\(z\)的反正弦函数，记作\(w = \Arcsin z\)；称满足方程\[
+z = \cos w
+\]的复数\(w\)为复数\(z\)的反余弦函数，记作\(w = \Arccos z\).
+\end{definition}
+
+\begin{property}
+复反正弦函数满足\[
+w = \Arcsin z = -\iu \Ln(\iu z + \sqrt{1-z^2}).
+\]这里，根式理解为双值函数，故不必像实根式一样在前面添加“\(\pm\)”号.
+\end{property}
+
+\subsection{双曲函数}
+\begin{definition}
+定义复双曲函数\begin{gather}
+\sinh z = \frac{e^z-e^{-z}}{2}, \\
+\cosh z = \frac{e^z+e^{-z}}{2}, \\
+\tanh z = \frac{\sinh z}{\cosh z}, \\
+\coth z = \frac{\cosh z}{\sinh z}, \\
+\sech z = \frac{1}{\cosh z}, \\
+\csch z = \frac{1}{\sinh z}.
+\end{gather}
+\end{definition}
+
+\begin{property}
+双曲正弦\(\sinh z\)和双曲余弦\(\cosh z\)都是以\(2\pi\iu\)为基本周期的周期函数，即\[
+\sinh(z+2\pi\iu) = \sinh z,
+\qquad
+\cosh(z+2\pi\iu) = \cosh z.
+\]
+\end{property}
+
+\begin{property}
+比较三角函数和双曲函数的定义，立即有以下性质：\begin{gather}
+\sinh(\iu z) = \iu\sin z, \\
+\cosh(\iu z) = \iu\cos z, \\
+\sin(\iu z) = \iu\sinh z, \\
+\cos(\iu z) = \cosh z.
+\end{gather}
+\end{property}
+
+\begin{property}
+双曲函数满足恒等式：\begin{gather}
+\cosh^2 z - \sinh^2 z = 1.
+\end{gather}
+\end{property}
+
+\subsection{对数函数}
+对数函数是作为指数函数的反函数来定义的，即对任意非零有限复数\(z\ (z \neq 0 \land z \neq \infty)\)，称满足方程\[
+e^w = z
+\]的复数\(w\)为复数\(z\)的对数，记作\(w = \Ln z\).
+
+显然，由于指数函数是周期函数，周期函数是多叶函数，多叶函数的反函数是多值函数，故\(\Ln z\)是（无穷）多值函数.
+若设\(z = r e^{\iu\theta}\)，\(w = u + \iu v\)，则由\(e^w = z\)可得\[
+e^{u + \iu v} = r e^{\iu\theta},
+\]因而\[
+\left\{ \begin{array}{l}
+u = \ln r, \\
+v = \theta+2k\pi
+\end{array} \right.
+\quad(k\in\mathbb{Z}),
+\]所以\[
+w = \ln r + \iu(\theta+2k\pi)
+\quad(k\in\mathbb{Z}),
+\]即\begin{equation}\label{equation:解析函数.对数函数与辐角的关系式}
+w = \Ln z = \ln\abs{z} + \iu \Arg z
+\end{equation}或\[
+w_k = (\Ln z)_k = \ln\abs{z} + \iu(\arg z + 2k\pi)
+\quad(k\in\mathbb{Z}).
+\]
+
+在\cref{equation:解析函数.对数函数与辐角的关系式} 中，用\(\Arg z\)的无穷多值性表达了对数函数\(\Ln z\)的无穷多值性.
+若把\cref{equation:解析函数.对数函数与辐角的关系式} 看作复对数函数的定义式，则其多执行的根源在于辐角\(\Arg z\)是无穷多值函数.
+当限定\(z\)的辐角主值\(\arg z \in (-\pi,\pi]\)时，称\(\ln\abs{z}+\iu\arg z\)为\(\Ln z\)的主值（支），并记作\(\ln z\)，即\begin{equation}\label{equation:解析函数.对数函数的主值支}
+\ln z = \ln\abs{z} + \iu\arg z
+\quad(-\pi < \arg z \leqslant \pi),
+\end{equation}则对数函数的一般值是\[
+\Ln z = \ln z + 2k\pi\iu
+\quad(k\in\mathbb{Z}).
+\]
+
+\begin{theorem}
+设\(z_1\)和\(z_2\)都是非零有限复数，即\(z_1,z_2\neq0,\infty\)，则\begin{gather}
+\Ln(z_1 z_2) = \Ln z_1 + \Ln z_2, \\
+\Ln \frac{z_1}{z_2} = \Ln z_1 - \Ln z_2.
+\end{gather}
+\end{theorem}
+
+\begin{example}
+设\(a > 0\)，则\[
+\Ln a = \ln a + 2k\pi\iu \quad(k\in\mathbb{Z}).
+\]同时\[
+\Ln(-a) = \ln a + (2k+1)\pi\iu \quad(k\in\mathbb{Z}),
+\]\[
+\ln(-a) = \ln a + \pi\iu.
+\]特别地，\[
+\ln(-1) = \pi\iu,
+\]\[
+\Ln(-1) = (2k+1)\pi\iu \quad(k\in\mathbb{Z}).
+\]
+\end{example}
+此例说明：复对数是实对数在复数域内的推广.
+在实数域内“负数无对数”的说法在复数域内是不成立的，但可修改为“负数无实对数，且正实数的对数也是无穷多值的.”
+
+下面讨论\(w = \Ln z\)的单叶性区域.
+根据前面对指数函数的讨论，指数函数\(z = e^w\)在宽为\(2\pi\)的水平带状区域\[
+A_k = \Set{ \mathbb{C} \ni w = u + \iu v \given (2k-1)\pi < v < (2k+1)\pi }
+\quad(k\in\mathbb{Z})
+\]内单叶解析，因而是保形的.
+它把\(w\)平面上所有水平带状区域的集合\(\{A_1,A_2,\dotsc\}\)中的每一个都保形地变成\(z\)平面去掉原点和负实轴后的区域\[
+E = \mathbb{C} - \Set{ \mathbb{C} \ni w = u + \iu v \given u \leqslant 0 }.
+\]
+根据\cref{theorem:解析函数.单叶解析变换的性质} ，作为指数函数\(z = e^w\)的反函数 —— 对数函数\(w = \Ln z\)的每个单值支在\(z\)平面去掉原点和负实轴后的区域\(E\)内单叶解析，且有\begin{equation}
+(\Ln z)'_k = \frac{1}{(e^w)'} = \frac{1}{e^w} = \frac{1}{z}.
+\end{equation}
+
+\subsection{幂函数}
+\begin{definition}
+设\(\alpha\)是任意给定的复数，对复变量\(z \neq 0\)，定义\(z\)的\(\alpha\)次幂为\[
+w = z^{\alpha} = e^{\alpha \Ln z}.
+\]
+
+记\(w_0 = e^{\alpha \ln z}\).
+若\(\ln z\)为\(\Ln z\)的主值（支），即\(\ln z = \ln\abs{z} + \iu \arg z\)，则称\(w_0\)为\(z^{\alpha}\)的主值（支），继而有\[
+w = z^{\alpha} = w_0 e^{2k\pi\alpha i}, \quad k\in\mathbb{Z}.
+\]
+\end{definition}
+
+\begin{property}
+随着\(\alpha\)的取值不同，\(w=z^{\alpha}\)可能是单值的、有限多值的或无限多值的函数：
+\begin{enumerate}
+\item 当\(\alpha=n\in\mathbb{Z}\)时，由于\(e^{2 k n \pi \iu}=1\)，故\(z^{\alpha}\)是\(z\)的单值函数，通常称之为整幂函数；
+\item 当\(\alpha=\frac{p}{q}\in\mathbb{Q}-\mathbb{Z}\)时，由于\(\frac{p}{q} \cdot 2 k \pi\)仅当\(k=0,1,\dots,q-1\)时的\(q\)个值关于\(2\pi\)是不同余的；\(k\)取其他值时，其相应的值\(\frac{p}{q} \cdot 2 k \pi\)均与上述\(q\)个值中的一个关于\(2\pi\)是同余的.所以这时\(z^{\alpha}\)是有限多值函数.特别地，当\(\alpha=\frac{1}{n}\)（\(n\in\mathbb{N}^+\)）时，有\[
+z^{1/n} = \abs{z}^{1/n} \exp(\iu\frac{\arg z + 2 k \pi}{n}), \quad k=0,1,\dotsc,n-1,
+\]由复数的开方公式可知，它是整幂函数\(z^n\)的反函数——根式函数\(\sqrt[n]{z}\)，这是一个\(n\)值函数；
+\item 当\(\alpha\in\mathbb{R}-\mathbb{Q}\)或\(\alpha\in\mathbb{C}-\mathbb{R}\)时，由于\(e^{2 k \pi \alpha \iu}\)有无限多个各不相同的值，所以这时\(z^{\alpha}\)是无限多值函数.
+\end{enumerate}
+\end{property}
+
+\subsection{分式线性函数}
+\begin{definition}
+函数\[
+w = L(z) = \frac{a z + b}{c z + d}, \quad ad-bc \neq 0
+\]称为\textbf{分式线性函数}.
+
+当\(c \neq 0\)时，定义\[
+L\left(-\frac{d}{c}\right) = \infty,
+\]\[
+L(\infty) = \frac{a}{c}.
+\]
+
+当\(c = 0\)时，定义\[
+L(\infty) = \infty.
+\]
+\end{definition}

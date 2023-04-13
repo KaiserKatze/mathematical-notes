@@ -1,0 +1,212 @@
+\ProvidesPackage{my-math-note}
+
+\usepackage{xcolor}%颜色
+\usepackage{etoolbox}%循环测试\whileboolexpr
+\usepackage{seqsplit}%自动切割素数表
+\usepackage{longtable}%长表格
+
+\usepackage{xparse}
+\usepackage{fnbreak}%如果一个脚注被切割后跨页排版，可以在log日志文件里发出警告提示.
+
+\usepackage[a4paper,total={6in,8in}]{geometry}
+
+\usepackage[%hyperref
+pdfauthor={\pdfauthor},
+pdftitle={\pdftitle},
+unicode=true,
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+bookmarks=true,
+pdfpagemode=UseOutlines,
+]{hyperref}
+
+\usepackage{pdflscape}  % 单页横置
+
+% 矩阵初等变换
+\def\addeq{+\hspace{-4pt}=}
+\def\subeq{-\hspace{-5pt}=}
+\def\muleq{\times\hspace{-6pt}=}
+\def\diveq{/\hspace{-5pt}=}
+
+%--------------------------------------
+\usepackage{tipa}
+\newcommand{\cemph}[1]{\begingroup\makeatletter\@tfor\i:=#1\do{\textsubdot{\i}\allowbreak\relax}\makeatother\endgroup}  % 中文着重号 https://www.zhihu.com/question/20769117/answer/1204224192
+
+%--------------------------------------
+\usepackage{graphicx}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+\newcommand{\arc@arc}[2]{%
+  \sbox0{$\m@th#1#2$}%
+  \vbox{%
+    \hbox{\resizebox{\wd0}{\height}{\arc@char}}%
+    \nointerlineskip%
+    \box0%
+  }%
+}
+\makeatother
+%--------------------------------------
+
+\usepackage{mathrsfs}  % \mathscr
+
+\usepackage{amssymb}%https://mirror.aarnet.edu.au/pub/CTAN/fonts/amsfonts/doc/amssymb.pdf
+
+\usepackage{amsmath}
+
+\usepackage{centernot}
+\def\notimplies{\centernot\implies}
+
+\let\mat\boldsymbol
+\DeclareMathOperator\arsh{arsh}  % 反双曲正弦
+\DeclareMathOperator\arch{arch}  % 反双曲余弦
+\DeclareMathOperator\arth{arth}  % 反双曲正切
+\DeclareMathOperator\arcth{arcth}  % 反双曲余切
+\DeclareMathOperator\diag{diag}  % 对角矩阵
+\DeclareMathOperator\card{card}  % 集合基数
+\DeclareMathOperator\Arg{Arg}  % 复数 辐角
+\DeclareMathOperator\Cov{Cov}  % 协方差
+\DeclareMathOperator\Ln{Ln}  % 复对数函数
+\DeclareMathOperator\Arcsin{Arcsin}  % 复反正弦函数
+\DeclareMathOperator\Arccos{Arccos}  % 复反余弦函数
+\newcommand{\rel}[1]{ \mathcal{#1} }  % 关系
+\DeclareMathOperator\dom{dom} % 关系 定义域
+\DeclareMathOperator\ran{ran} % 关系 值域
+\DeclareMathOperator\fld{fld} % 关系 域
+\DeclareMathOperator\Prj{Prj} % 《解析几何》向量的投影
+\DeclareMathOperator\sgn{sgn} % 符号函数
+\DeclareMathOperator\Res{Res} % 留数
+
+%--------------------------------------
+\usepackage[%cleveref
+nosort%禁止压缩引用
+]{cleveref} % 放在hyperref,amsmath后面
+\def\crefpairconjunction{和}
+\def\creflastconjunction{和}%列表式引用，最后一个连词
+\def\crefnamezh#1#2{\crefname{#1}{#2}{#2}}%
+\crefnamezh{figure}{图}%
+\creflabelformat{figure}{#2{\rm#1}#3}%
+\crefnamezh{table}{表}%
+\creflabelformat{table}{#2{\rm#1}#3}%
+\crefnamezh{equation}{公式}%
+\creflabelformat{equation}{#2{\rm#1}#3}%
+\crefnamezh{chapter}{}%
+\creflabelformat{chapter}{#2第#1章#3}%
+\crefnamezh{section}{}%
+\creflabelformat{section}{第\kern2pt#2#1#3\kern2pt节}%
+
+% If the amsthm package is used with a non-AMS documentclass and with the amsmath
+% package, amsthm must be loaded after amsmath, not before.
+\usepackage{amsthm}%https://mirror.aarnet.edu.au/pub/CTAN/macros/latex/required/amscls/doc/amsthdoc.pdf
+
+\def\newtheoremWithCrefName#1#2#3{%
+    \newtheorem{#1}{#2}[#3]%
+    \crefnamezh{#1}{#2}%
+    \creflabelformat{#1}{##2{\rm##1}##3}%
+}
+\def\newtheoremWithCrefNameAndFramebox#1#2#3{%
+    \def\amsEnvName{ams#1}
+    \newtheoremWithCrefName{\amsEnvName}{#2}{#3}%
+    \newenvironment{#1}{%
+        \begin{framed}% 这个环境需要framed包，以后准备换用tcolorbox包
+        \begin{\amsEnvName}%
+    }{%
+        \end{\amsEnvName}%
+        \end{framed}%
+    }%
+}
+
+\theoremstyle{plain}
+\newtheoremWithCrefName{lemma}{引理}{section}%Lemma
+\newtheoremWithCrefName{theorem}{定理}{section}%Theorem
+\newtheoremWithCrefName{corollary}{推论}{section}%Corollary
+\newtheoremWithCrefName{property}{性质}{section}%Property
+
+\theoremstyle{definition}
+\newtheoremWithCrefName{definition}{定义}{chapter}%Definition
+\newtheoremWithCrefName{axiom}{公理}{chapter}%Axiom
+\newtheoremWithCrefName{example}{例}{subsection}%Example
+
+\newtheorem*{solution}{解}
+%--------------------------------------
+
+\usepackage{physics}%http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/physics/physics.pdf
+% Must be loaded after pkg{amsmath}
+\usepackage{extarrows}%necessary for \xlongequal
+%--------------------------------------
+
+\usepackage{tikz}  % 绘图库
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{intersections}
+\usepackage{pgffor}  % for 循环
+\usepackage{pgfplots}  % axis环境，用于直接绘制给定函数式的图像
+\pgfplotsset{compat=newest}
+\usepackage{subcaption}  % necessary for subfigure environment
+
+\usepackage{ifthen}  % 条件判断
+
+\usepackage{mathtools}%https://mirror.aarnet.edu.au/pub/CTAN/macros/latex/contrib/mathtools/mathtools.pdf
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}  % 向上取整
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}  % 向下取整
+\DeclarePairedDelimiter{\round}{[}{]}  % 四舍五入
+%\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\mid{\;\delimsize\vert\;}#1}
+\DeclarePairedDelimiterX{\opair}[1]{\langle}{\rangle}{#1} % 有序对
+\def\defeq{\xlongequal{\rm def}}%符号（系统）定义
+%--------------------------------------
+% 集合（描述法）表示方法.举例： \Set*{ x \given x > 0 }
+\providecommand\given{}
+\newcommand\SetSymbol[1][]{\nonscript\:#1\vert\allowbreak\nonscript\:\mathopen{}}
+\DeclarePairedDelimiterX\Set[1]\lbrace\rbrace{ \renewcommand\given{\SetSymbol[\delimsize]} #1 }
+%--------------------------------------
+
+
+%--------------------------------------
+
+\usepackage{esint}% necessary for \varoiint
+
+%--------------------------------------
+% table
+\usepackage{multirow}
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\renewcommand{\vec}[1]{ \overrightarrow{#1} }
+\newcommand{\jacobi}[2]{ \pdv{ (#1) }{ (#2) } }%向量值函数微积分 雅克比式
+\newcommand{\ft}{ \mathfrak{F} }%傅里叶变换
+%\usepackage{textgreek}\def\tau{\textit{\texttau}}% 代替\tau
+\usepackage{upgreek}\def\tau{\uptau}% 代替\tau
+\let\emptyset\varnothing  % 空集
+\def\iu{\kern1pt\mathrm{i}\kern1pt}  % 虚数单位
+\def\complexconjugate#1{\kern1pt\overline{#1}\kern1pt}% 共轭复数
+\def\Powerset{\mathscr{P}}
+\def\vectorinnerproduct#1#2{#1\cdot#2}%向量内积
+\def\pvint{{\rm PV} \int_{-\infty}^{+\infty}}%广义积分的柯西主值
+\def\MatrixMinor#1#2{#1\begin{pmatrix}#2\end{pmatrix}}%矩阵的子式（第一个参数放矩阵名，例如“\mat{A}”；第二参数放选定的行与列）
+\def\truediv#1#2{#2\mid#1}%整除符号.表示第一个参数是第二个参数的因子.
+\def\gcd#1{\operatorname{g.c.d}(#1)}%最大公约数
+\def\lcm#1{\operatorname{l.c.m}(#1)}%最小公倍数
+\def\hessian{\mat{\operatorname{H}}}%黑森矩阵
+\def\increment{\Delta}%增量%U+2206
+
+\usepackage{mathdots}  % necessary for \iddots
+
+% 对subsubsection编号，并编入目录
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% 概念表
+\def\DefineConcept#1{%
+%\label{concept:#1}%
+{\rm\bf#1}%
+}%
+\def\RefConcept#1{%
+%\hyperref[concept:#1]{#1}%
+}
+\def\PageRefConcept#1{%
+%\pageref{concept:#1}
+}

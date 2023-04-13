@@ -1,0 +1,225 @@
+\chapter{初等代数}
+\section{排列组合}
+\subsection{基本原理}
+\begin{axiom}[加法原理]
+如果做一件事，完成它可以有\(n\)类办法，在第一类办法中有\(m_1\)种不同的方法，在第二类办法中有\(m_2\)种不同的方法，……，在第\(n\)类办法中有\(m_n\)种不同的方法，那么完成这件事共有\[
+N = m_1 + m_2 + \dotsb + m_n
+\]种不同的方法.
+\end{axiom}
+
+\begin{axiom}[乘法原理]
+如果做一件事，完成它需要分成\(n\)个步骤，做第一步有\(m_1\)种不同的方法，做第二部有\(m_2\)种不同的方法，……，做第\(n\)步有\(m_n\)种不同的方法，那么完成这件事共有\[
+N = m_1 \times m_2 \times \dotsm \times m_n
+\]种不同的方法.
+\end{axiom}
+
+\begin{theorem}[抽屉原理]\label{theorem:抽屉原理}
+抽屉原理有以下几种形式：
+\begin{enumerate}
+\item 把\(n+1\)个元素放入\(n\)个集合内，则一定有一个集合里有两个或两个以上的元素.
+\item 把\(m\)个元素任意放入\(n\ (n<m)\)个集合里，则一定有一个集合里至少有\(k\)个元素，其中\[
+k = \left\{ \begin{array}{ll}
+m/n, & m \pmod n = 0, \\
+\floor{m/n}+1, & m \pmod n \neq 0.
+\end{array} \right.
+\]
+\item 把无穷多个元素放入有限个集合里，则一定有一个集合里含有无穷多个元素.
+\end{enumerate}
+\end{theorem}
+抽屉原理有时候也称作\DefineConcept{鸽巢原理}；因它最先是由狄利克雷明确地提出来的，因此也称作\DefineConcept{狄利克雷原理}.
+
+\subsection{排列、组合的基本概念}
+\begin{definition}[排列]
+从\(n\)个相异元素中取出\(k\)个元素，排列数为\[
+A_n^k = \frac{n!}{(n-k)!} = n \cdot (n-1) \dotsm (n-k+1)
+\]
+\end{definition}
+
+\begin{definition}[组合]
+从\(n\)个相异元素中取出\(k\)个元素，组合数为\[
+\binom{n}{k} =
+C_n^k = \frac{n!}{k!(n-k)!} = \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) \dotsm 1}
+\]
+
+特别地，规定：当\(n < k\)时，\(C_n^k = 0\).
+\end{definition}
+
+\subsection{组合数的性质}
+\begin{property}\label{theorem:组合数性质1}
+\(C_n^k = C_n^{n-k}\).
+\begin{proof}
+\(
+\displaystyle
+C_n^{n-k}
+= \frac{n!}{(n-k)! [n-(n-k)]!}
+= \frac{n!}{k! (n-k)!}
+= C_n^k
+\).
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:组合数性质2}
+\(C_{n-1}^{k-1} + C_{n-1}^k = C_n^k\).
+\begin{proof}
+\begin{align*}
+C_{n-1}^{k-1} + C_{n-1}^k
+&= \frac{(n-1)!}{(k-1)! (n-k)!} + \frac{(n-1)!}{k! (n-k-1)!} \\
+&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \left( \frac{1}{n-k} + \frac{1}{k} \right) \\
+&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \frac{n}{(n-k)k}
+= \frac{n!}{k! (n-k)!}
+= C_n^k. \qedhere
+\end{align*}
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:组合数性质3}
+\(\sum\limits_{i=0}^n C_n^i = 2^n\).
+\begin{proof}
+当\(n=0\)时，\(\sum\limits_{i=0}^0 C_0^i = C_0^0 = \frac{0!}{0! \cdot 0!} = 1 = 2^0\)成立.
+假设\(n=k\)时，结论仍成立，即\[
+\sum\limits_{i=0}^k C_k^i
+= C_k^0 + C_k^1 + \dotsb + C_k^k = 2^k.
+\]那么\[
+\begin{array}{*{14}{c}}
+& C_k^0 &+& C_k^1 &+& \dotsb &+& C_k^{k-1} &+& C_k^k && &=& 2^k \\
++) & && C_k^0 &+& \dotsb &+& C_k^{k-2} &+& C_k^{k-1} &+& C_k^k &=& 2^k \\ \hline
+& C_k^0 &+& C_{k+1}^1 &+& \dotsb &+& C_{k+1}^{k-1} &+& C_{k+1}^k &+& C_k^k &=& 2 \cdot 2^k
+\end{array}
+\]又因为\(C_k^0 = C_{k+1}^0 = C_k^k = C_{k+1}^{k+1} = 1\)，所以\[
+\sum\limits_{i=0}^{k+1} C_{k+1}^i = 2^{k+1}
+\]成立.
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:组合数性质4}
+\(\sum\limits_{k=0}^n (-1)^k C_n^k = 0\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质5}
+\(\sum\limits_{k=0}^{\floor{n/2}} C_n^{2k} = 2^{n-1}\).
+\end{property}
+\begin{property}\label{theorem:组合数性质6}
+\(\sum\limits_{k=0}^{\floor{(n-1)/2}} C_n^{2k+1} = 2^{n-1}\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质7}
+\(C_{n+m}^k = \sum\limits_{r=0}^{k} C_n^r C_m^{k-r}\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质8}
+\(\sum\limits_{k=0}^n (C_n^k)^2 = C_{2n}^n\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质9}
+\(C_n^{r_1} C_{n-r_1}^{r_2} \dotsm C_{n-(r_1+r_2+\dotsb+r_{k-1})}^{r_k}
+= \frac{n!}{r_1! r_2! \dotsm r_k!}\).
+\end{property}
+
+\section{常见代数公式}
+
+\begin{theorem}[平方差、立方差公式]
+\[
+a^2 - b^2 = (a-b)(a+b),
+\]\[
+a^3 - b^3 = (a-b)(a^2+ab+b^2),
+\]
+
+推广一下可得，当\(n \in \mathbb{N}^+\)时，有\[
+a^n - b^n = (a-b) \sum\limits_{k=0}^{n-1}{a^{n-1-k} b^k}
+= (a-b)(a^{n-1} + a^{n-2} b + \dotsb + b^{n-1}).
+\]
+\end{theorem}
+
+\begin{theorem}[完全平方公式、牛顿二项式定理]
+\[
+(a \pm b)^2 = a^2 \pm 2ab + b^2,
+\]\[
+(a \pm b)^3 = a^3 \pm 3 a^2 b + 3 a b^2 \pm b^3.
+\]
+
+推广一下可得，当\(n \in \mathbb{N}^+\)时，有\[
+(x+y)^n = \sum_{k=0}^{n} {C_n^k x^{n-k} y^k}.
+\]若令\(y=1\)，则有\[
+(1+x)^n = \sum_{k=0}^{n}{C_n^k x^k}.
+\]
+\end{theorem}
+
+\section{初等代数方程}
+\subsection{一元二次方程}
+一元二次方程的\textbf{一般形式}为：\[
+ax^2 + bx + c = 0, \quad a \neq 0. \eqno{(1)}
+\]其中，\(ax^2\)是二次项，\(bx\)是一次项，\(c\)是常数项；
+\(a\)、\(b\)、\(c\)被称作系数.
+
+(1)式两端同除以\(a\)，得\[
+x^2 + \frac{b}{a} x + \frac{c}{a} = 0, \eqno{(2)}
+\]配方，得\[
+\left( x + \frac{b}{2a} \right)^2 + \left( \frac{c}{a} - \frac{b^2}{4a^2} \right) = 0,
+\]移项，再开方，得\[
+x = -\frac{b}{2a} \pm \sqrt{\frac{b^2}{4a^2} - \frac{c}{a}}
+= -\frac{b}{2a} \pm \sqrt{\frac{b^2-4ac}{4a^2}}
+= \frac{-b \pm \sqrt{b^2-4ac}}{2a}.
+\]
+于是我们得到一元二次方程\(ax^2 + bx + c = 0\ (a\neq0)\)的两个解\[
+x_1 = \frac{-b + \sqrt{b^2-4ac}}{2a},
+\qquad
+x_2 = \frac{-b - \sqrt{b^2-4ac}}{2a}.
+\]
+
+记\(\Delta = b^2-4ac\)，称之为方程(1)的\textbf{判别式}（discriminant）.
+当\(\Delta > 0\)时，它有两个不同的实根\[
+x = \frac{-b \pm \sqrt{\Delta}}{2a};
+\]当\(\Delta = 0\)时，它有两个相同的实根\[
+x = -\frac{b}{2a};
+\]当\(\Delta < 0\)时，它有一对共轭复根\[
+x = \frac{-b \pm \iu \sqrt{-\Delta}}{2a}.
+\]
+
+\begin{theorem}[韦达定理]
+设数\(x_1,x_2\)是一元二次方程{\rm(1)}的两个根，则有\[
+x_1 + x_2 = -\frac{b}{a},
+\qquad
+x_1 \cdot x_2 = \frac{c}{a}.
+\]
+\begin{proof}
+因为\(x_1,x_2\)是一元二次方程\(ax^2 + bx + c = 0\)的两个根，所以原方程可化为\[
+a(x - x_1)(x - x_2) = 0
+\quad\text{或}\quad
+a x^2 - a (x_1 + x_2) x + a x_1 x_2 = 0.
+\]将上式与方程(1)比较可得\[
+b = -a (x_1 + x_2),
+\qquad
+c = a x_1 x_2.
+\]整理得\(x_1 + x_2 = -\frac{b}{a}, x_1 \cdot x_2 = \frac{c}{a}\).
+\end{proof}
+\end{theorem}
+
+\subsection{一元三次方程}
+\begin{theorem}[卡丹（Cardano）公式]
+\def\a{-\frac{q}{2}}%
+\def\d{\frac{q^2}{4}+\frac{p^3}{27}}
+\def\b{\sqrt{\d}}%
+\def\c#1{\sqrt[3]{\a#1\b}}%
+形如\[
+x^3 + px + q = 0 \quad (p,q \in \mathbb{C})
+\]的一元三次方程的解为\[
+x = \c{+}+\c{-}.
+\]
+
+令\[
+\alpha=\c{+}, \qquad \beta=\c{-}.
+\]总有\[
+\alpha \beta = -\frac{p}{3}
+\]成立.
+
+当\(p,q\in\mathbb{R}\)时，判别式\[
+\Delta = -108\left(\d\right) = -27q^2-4p^3
+\]的正负号决定了\(x^3+px+q=0\)的根的性质：\begin{enumerate}
+\item 当\(\Delta>0\)时，方程的三个根是各不相同的实根.
+\item 当\(\Delta=0\)时，\begin{enumerate}
+	\item 如果\(p=q=0\)，则方程有三重实根；
+	\item 如果\(p\neq0\)且\(q\neq0\)，则方程有一个二重实根和一个与之不同的实根.
+	\end{enumerate}
+\item 当\(\Delta<0\)时，方程的三个根各不相同，其中一个是实根，两个是共轭复根.
+\end{enumerate}
+\end{theorem}

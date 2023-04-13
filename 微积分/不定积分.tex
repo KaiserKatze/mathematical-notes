@@ -1,0 +1,815 @@
+\chapter{不定积分}\label{chapter:不定积分}
+\section{不定积分的概念与性质}
+\subsection{原函数与不定积分的概念}
+\begin{definition}
+如果在区间\(I\)上，可导函数\(F(x)\)的导函数为\(f(x)\)，即对任一\(x \in I\)，都有\[
+F'(x)=f(x) \quad\text{或}\quad \dd{F(x)}=f(x) \dd{x},
+\]那么函数\(F(x)\)就称为\(f(x)\)（或\(f(x) \dd{x}\)）在区间\(I\)上的\textbf{原函数}.
+\end{definition}
+
+关于原函数，我们首先要问：一个函数具备什么条件，才能保证它的原函数一定存在？这个问题将在下一章中讨论，这里先介绍一个结论.
+\begin{theorem}[原函数存在定理]%提前叙述该定理.参见\cref{theorem:定积分.原函数存在定理}
+如果函数\(f(x)\)在区间\(I\)上连续，那么在区间\(I\)上存在可导函数\(F(x)\)，使对任一\(x \in I\)都有\[
+F'(x)=f(x).
+\]换言之，\textbf{连续函数一定有原函数}.
+\end{theorem}
+下面还要说明两点.
+
+第一，如果\(f(x)\)在区间\(I\)上有原函数，即有一个函数\(F(x)\)，使对任一\(x \in I\)，都有\(F'(x) = f(x)\)，那么，对任何常数\(C\)，显然也有\[
+[F(x) + C]' = f(x),
+\]即对任何常数\(C\)，函数\(F(x) + C\)也是\(f(x)\)的原函数.这说明，如果\(f(x)\)有一个原函数，那么\(f(x)\)就有无限多个原函数.
+
+第二，如果在区间\(I\)上\(F(x)\)是\(f(x)\)的一个原函数，那么\(f(x)\)的其他原函数与\(F(x)\)有什么关系？
+
+设\(\Phi(x)\)是\(f(x)\)的另一个原函数，即对任一\(x \in I\)有\[
+\Phi'(x) = f(x),
+\]于是\[
+[\Phi(x) - F(x)]' = \Phi'(x) - F'(x) = f(x) - f(x) = 0.
+\]在前面章节已经知道，在一个区间上导数恒为零的函数必为常数，所以\[
+\Phi(x) - F(x) = C_0,
+\]其中\(C_0\)是某个常数.这就表明\(\Phi(x)\)与\(F(x)\)只差一个常数.因此，当\(C\)为任意的常数时，表达式\(F(x) + C\)就可表示\(f(x)\)的任意一个原函数.也就是说，\(f(x)\)的全体原函数所组成的集合，就是函数族\[
+\Set{ F(x) + C \given C \in (-\infty,\infty) }.
+\]
+
+\begin{definition}
+在区间\(I\)上，函数\(f(x)\)的带有任意常数项的原函数称为\(f(x)\)（或\(f(x) \dd{x}\)）在区间\(I\)上的\textbf{不定积分}，记作\[
+\int f(x) \dd{x},
+\]其中记号\(\int\)称为\textbf{积分号}，\(f(x)\)称为\textbf{被积函数}，\(f(x)\dd{x}\)称为\textbf{被积表达式}，\(x\)称为\textbf{积分变量}.
+\end{definition}
+由此定义及前面的说明可知，如果\(F(x)\)是\(f(x)\)在区间\(I\)上的一个原函数，那么\(F(x) + C\)就是\(f(x)\)的不定积分，即\[
+\int f(x) \dd{x} = F(x) + C.
+\]因而不定积分\(\int f(x) \dd{x}\)可以表示\(f(x)\)的任意一个原函数.
+
+\begin{example}
+求\(\int \frac{1}{x} \dd{x}\).
+\begin{solution}
+当\(x > 0\)时，由于\((\ln x)' = \frac{1}{x}\)，所以\(\ln x\)是\(\frac{1}{x}\)在区间\((0,+\infty)\)内的一个原函数.因此，在\((0,+\infty)\)内，\[
+\int \frac{1}{x} \dd{x} = \ln x + C_1.
+\]
+
+当\(x < 0\)时，由于\([\ln(-x)]' = \frac{1}{-x} \cdot (-1) = \frac{1}{x}\)，所以\(\ln(-x)\)是\(\frac{1}{x}\)在\((-\infty,0)\)内的一个原函数.因此，在\((-\infty,0)\)内，\[
+\int \frac{1}{x} \dd{x} = \ln(-x) + C_2.
+\]
+
+把在\(x > 0\)及\(x < 0\)内的结果合起来，可写作\begin{equation}
+\int \frac{1}{x} \dd{x} = \left\{ \begin{array}{lc}
+\ln x + C_1, & x>0, \\
+\ln(-x) + C_2, & x<0.
+\end{array} \right.
+\end{equation}
+虽然常数\(C_1\)和\(C_2\)的取值可以是独立的，但在不严谨的情况下，为方便记忆，上式也可写作\begin{equation}
+\int \frac{1}{x} \dd{x} = \ln\abs{x} + C.
+\end{equation}
+\end{solution}
+\end{example}
+
+\begin{definition}
+函数\(f(x)\)的原函数的图形称为\(f(x)\)的积分曲线.
+\end{definition}
+
+从不定积分的定义，即可知以下关系：
+
+由于\(\int f(x) \dd{x}\)是\(f(x)\)的原函数，所以\[
+\dv{x} \left[ \int f(x) \dd{x} \right] = f(x),
+\]\[
+\dd\left[\int f(x) \dd{x}\right] = f(x) \dd{x};
+\]又由于\(F(x)\)是\(F'(x)\)的原函数，所以\[
+\int F'(x) \dd{x} = F(x) + C,
+\]或\[
+\int \dd{F(x)} = F(x) + C.
+\]
+
+由此可见，微分运算（以记号\(\dd\)表示）与求不定积分的运算（简称积分运算，以记号\(\int\)表示）是互逆的；当记号\(\int\)与\(\dd\)连在一起时，或者抵消，或者抵消后差一个常数.
+
+\begin{example}
+设\(o(x^n)\)是\(x\to0\)时的无穷小，那么有\[
+\int o(x^n) \dd{x} = o(x^{n+1}).
+\]
+\end{example}
+
+\subsection{不定积分的性质}
+\begin{property}
+设函数\(f(x)\)及\(g(x)\)的原函数存在，则\[
+\int \bigl[f(x) + g(x)\bigr] \dd{x} = \int f(x) \dd{x} + \int g(x) \dd{x}.
+\]
+\end{property}
+这个性质对于有限个函数都是成立的.
+
+\begin{example}
+求\(\int \tan^2 x \dd{x}\).
+\begin{solution}
+根据三角恒等式\(\tan^2 x + 1 = \sec^2 x\)，有\[
+\int \tan^2 x \dd{x}
+= \int (\sec^2 x - 1) \dd{x}
+= \int \sec^2 x \dd{x} - \int \dd{x}
+= \tan x - x + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{property}
+设函数\(f(x)\)的原函数存在，\(k\)为非零常数，则\[
+\int k f(x) \dd{x} = k \int f(x) \dd{x}.
+\]
+\end{property}
+
+\begin{example}
+对初等函数来说，在其定义区间上，它的原函数一定存在，但原函数不一定都是初等函数，如\[
+\int e^{-x^2} \dd{x},\quad
+\int \frac{\sin x}{x} \dd{x},\quad
+\int \frac{\dd{x}}{\ln{x}} \dd{x},\quad
+\int \frac{\dd{x}}{\sqrt{1+x^4}}
+\]
+\end{example}
+
+\section{换元积分法}
+\subsection{第一类换元法}
+\begin{theorem}
+设\(f(u)\)具有原函数，\(u=\varphi(x)\)可导，则有换元公式\[
+\int f\bigl[\varphi(x)\bigr] \varphi'(x) \dd{x} = \left[ \int f(u) \dd{u} \right]_{u=\varphi(x)}.
+\]
+\begin{proof}
+设\(f(u)\)的原函数是\(F(u)\)，即\[
+F'(u) = f(u),
+\qquad
+\int f(u) \dd{u} = F(u) + C.
+\]因为\(u = \varphi(x)\)可导，那么，根据复合函数微分法，有\[
+\dd{F\bigl[\varphi(x)\bigr]} = f\bigl[\varphi(x)\bigr] \varphi'(x) \dd{x},
+\]从而根据不定积分的定义有\[
+\int f\bigl[\varphi(x)\bigr] \varphi'(x) \dd{x}
+= F\bigl[\varphi(x)\bigr] + C
+= \left[ \int f(u) \dd{u} \right]_{u=\varphi(x)}.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{example}
+求\(\int \frac{1}{3+2x} \dd{x}\).
+\begin{solution}
+令\(u = 3+2x\)，那么被积函数\(\frac{1}{3+2x} = \frac{1}{u}\).这里缺少\(\displaystyle\dv{u}{x}=2\)这样一个因子，但由于\(\displaystyle\dv{u}{x}\)是个常数，故可改变系数凑出这个因子：\[
+\frac{1}{3+2x} = \frac{1}{2} \cdot \frac{1}{3+2x} \cdot 2 = \frac{1}{2} \cdot \frac{1}{3+2x} (3+2x)',
+\]从而\begin{align*}
+\int \frac{1}{3+2x} \dd{x}
+&= \int \frac{1}{2} \cdot \frac{1}{3+2x} (3+2x)' \dd{x}
+= \int \frac{1}{2} \frac{1}{u} \dd{u} \\
+&= \frac{1}{2} \ln\abs{u} + C
+= \frac{1}{2} \ln\abs{3+2x} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+一般地，对于积分\(\int f(ax+b) \dd{x}\)，总可作变换\(u=ax+b\)，把它化为\begin{align*}
+\int f(ax+b) \dd{x}
+&= \int \frac{1}{a} f(ax+b) \dd(ax+b) \\
+&= \frac{1}{a} \left[ \int f(u) \dd{u} \right]_{u=ax+b}.
+\end{align*}
+
+\begin{example}
+求\(\int 2x e^{x^2} \dd{x}\).
+\begin{solution}
+令\(u=x^2\)，则被积函数\(2x e^{x^2} = e^{x^2} (x^2)' = e^u u'\)，\[
+\int 2x e^{x^2} \dd{x}
+= \int e^u \dd{u}
+= e^u + C
+= e^{x^2} + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int x \sqrt{1-x^2} \dd{x}\).
+\begin{solution}
+令\(u=1-x^2\)，则\(\dd{u} = -2x\dd{x}\)，\(-\frac{1}{2}\dd{u} = x\dd{x}\)，因此\begin{align*}
+\int x \sqrt{1-x^2} \dd{x}
+&= \int u^{\frac{1}{2}} \left(-\frac{1}{2}\right) \dd{u}
+= -\frac{1}{2} \frac{u^{\frac{3}{2}}}{\frac{3}{2}} + C \\
+&= -\frac{1}{3} u^{\frac{3}{2}} + C
+= -\frac{1}{3} (1-x^2)^{\frac{3}{2}} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \frac{1}{a^2+x^2} \dd{x}\).
+\begin{solution}
+\begin{align*}
+\int \frac{1}{a^2+x^2} \dd{x}
+&= \int \frac{1}{a^2} \cdot \frac{1}{1+\left(\frac{x}{a}\right)^2} \dd{x} \\
+&= \frac{1}{a} \int \frac{1}{1+\left(\frac{x}{a}\right)^2} \dd(\frac{x}{a})
+= \frac{1}{a} \arctan\frac{x}{a} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \frac{\dd{x}}{\sqrt{a^2-x^2}}\)（\(a>0\)）.
+\begin{solution}
+\[
+\int \frac{\dd{x}}{\sqrt{a^2-x^2}}
+= \int \frac{1}{a} \frac{\dd{x}}{\sqrt{1-\left(\frac{x}{a}\right)^2}}
+= \int \frac{\dd(\frac{x}{a})}{\sqrt{1-\left(\frac{x}{a}\right)^2}}
+= \arcsin\frac{x}{a} + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \frac{1}{x^2 - a^2} \dd{x}\).
+\begin{solution}
+因为\[
+\frac{1}{x^2 - a^2} = \frac{1}{2a} \left(\frac{1}{x-a} - \frac{1}{x+a}\right),
+\]所以\begin{align*}
+\int \frac{1}{x^2 - a^2} \dd{x}
+&= \frac{1}{2a} \int \left(\frac{1}{x-a} - \frac{1}{x+a}\right) \dd{x} \\
+&= \frac{1}{2a} \left[ \int \frac{\dd(x-a)}{x-a} - \int \frac{\dd(x+a)}{x+a} \right] \\
+&= \frac{1}{2a} ( \ln\abs{x-a} - \ln\abs{x+a} ) + C \\
+&= \frac{1}{2a} \ln\abs{\frac{x-a}{x+a}} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \sin^3 x \dd{x}\).
+\begin{solution}
+\begin{align*}
+\int \sin^3 x \dd{x}
+&= \int \sin^2 x \cdot \sin x \dd{x}
+= -\int (1 - \cos^2 x) \dd(\cos x) \\
+&= -\cos x + \frac{1}{3} \cos^3 x + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+一般地，对于\(\sin^{2k+1} x \cos^n x\)或\(\sin^n x \cos^{2k+1} x\)（其中\(k\in\mathbb{N}\)）型函数的积分，总可依次作变换\(u = \cos x\)或\(u = \sin x\)，求得结果.
+
+\begin{example}
+求\(\int \tan x \dd{x}\).
+\begin{solution}
+\begin{align*}
+\int \tan x \dd{x}
+&= \int \frac{\sin x}{\cos x} \dd{x}
+= - \int \frac{1}{\cos x} \dd(\cos x) \\
+&= - \ln\abs{\cos x} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \cos^2 x \dd{x}\).
+\begin{solution}
+\begin{align*}
+\int \cos^2 x \dd{x}
+&= \int \frac{1 + \cos 2x}{2} \dd{x}
+= \frac{1}{2} \left( \int \dd{x} + \int \cos 2x \dd{x} \right) \\
+&= \frac{1}{2} \int \dd{x} + \frac{1}{4} \int \cos 2x \dd(2x) \\
+&= \frac{1}{2} + \frac{1}{4} \sin 2x + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \sin^2 x \cos^4 x \dd{x}\).
+\begin{solution}
+\begin{align*}
+\int \sin^2 x \cos^4 x \dd{x}
+&= \frac{1}{8} \int (1 - \cos 2x) (1 + \cos 2x)^2 \dd{x} \\
+&= \frac{1}{8} \int (1 + \cos 2x - \cos^2 2x - \cos^3 2x) \dd{x} \\
+&= \frac{1}{8} \int (\cos 2x - \cos^3 2x) \dd{x}
+	+ \frac{1}{8} \int (1 - \cos^2 2x) \dd{x} \\
+&= \frac{1}{8} \int \sin^2 2x \frac{1}{2} \dd(\sin 2x)
+	+ \frac{1}{8} \int \frac{1}{2} (1 - \cos 4x) \dd{x} \\
+&= \frac{1}{48} \sin^3 2x + \frac{1}{16} x - \frac{1}{64} \sin 4x + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+一般地，对于\(\sin^{2k} x \cos^{2l} x\)（\(k,l\in\mathbb{N}\)）型函数，总可利用三角恒等式\(\sin^2 x = \frac{1}{2} (1 - \cos 2x)\)，\(\cos^2 x = \frac{1}{2} (1 + \cos 2x)\)把积分函数化为\(\cos 2x\)的多项式.
+
+\subsection{第二类换元法}
+
+\begin{theorem}
+设\(x = \psi(t)\)是单调的、可导的函数，并且\(\psi'(t) \neq 0\).又设\(f[\psi(t)] \psi'(t)\)具有原函数，则有换元公式\[
+\int f(x) \dd{x} = \left[ \int f[\psi(t)] \psi'(t) \dd{t} \right]_{t=\psi^{-1}(x)},
+\]其中\(t=\psi^{-1}(x)\)是\(x=\psi(t)\)的反函数.
+\begin{proof}
+设\(f[\psi(t)] \psi'(t)\)的原函数为\(\Phi(t)\)，记\(\Phi[\psi^{-1}(x)] = F(x)\)，利用复合函数及反函数的求导法则，得到\[
+F'(x) = \dv{\Phi}{t} \cdot \dv{t}{x}
+= f[\psi(t)] \psi'(t) \cdot \frac{1}{\psi'(t)}
+= f[\psi(t)] = f(x),
+\]即\(F(x)\)是\(f(x)\)的原函数，所以有\begin{align*}
+\int f(x) \dd{x} &= F(x) + C
+= \Phi[\psi^{-1}(x)] + C \\
+&= \left[ \int f[\psi(t)] \psi'(t) \dd{t} \right]_{t=\psi^{-1}(x)}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{example}
+求\(\int \sqrt{a^2 - x^2} \dd{x}\).
+\begin{solution}
+设\(x = a \sin t\)（\(-\frac{\pi}{2} < x < \frac{\pi}{2}\)），那么\(t = \arcsin\frac{x}{a}\)，\(\sqrt{a^2 - x^2} = \sqrt{a^2 - a^2 \sin^2 t} = a \cos t\)，\(\dd{x} = a \cos t \dd{t}\)，于是根式化成了三角式，所求积分化为\begin{align*}
+\int \sqrt{a^2 - x^2} \dd{x}
+&= \int a \cos t \cdot a \cos t \dd{t}
+= a^2 \int \cos^2 t \dd{t} \\
+&= a^2 \left( \frac{t}{2} + \frac{\sin 2t}{4} \right) + C \\
+&= \frac{1}{2} a^2 t + \frac{1}{2} a^2 \sin t \cos t + C.
+\end{align*}又因为\(\cos t = \sqrt{1 - \sin^2 t} = \sqrt{1 - \left(\frac{x}{a}\right)^2} = \frac{1}{a} \sqrt{a^2 - x^2}\)，于是所求积分为\[
+\int \sqrt{a^2 - x^2} \dd{x}
+= \frac{1}{2} a^2 \arcsin\frac{x}{a} + \frac{1}{2} x \sqrt{a^2 - x^2} + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \frac{\dd{x}}{\sqrt{x^2 + a^2}}\)（\(a>0\)）.
+\begin{solution}
+设\(x = a \tan t\)（\(-\frac{\pi}{2} < t < \frac{\pi}{2}\)），那么\[
+\sqrt{x^2 + a^2}
+= \sqrt{a^2 + a^2 \tan^2 t}
+= a \sqrt{1 + \tan^2 t}
+= a \sec t,
+\]\[
+\dd{x} = a \sec^2 t \dd{t},
+\]于是\[
+\int \frac{\dd{x}}{\sqrt{x^2 + a^2}}
+= \int \frac{a \sec^2 t}{a \sec t} \dd{t}
+= \int \sec t \dd{t}
+= \ln\abs{\sec t + \tan t} + C.
+\]
+
+因为\(\sec t = \frac{1}{a} \sqrt{x^2 + a^2}\)，且\(\sec t + \tan t > 0\)，所以\[
+\int \frac{\dd{x}}{\sqrt{x^2 + a^2}}
+= \ln( \frac{x}{a} + \frac{\sqrt{x^2 + a^2}}{a} ) + C
+= \ln(x + \sqrt{x^2 + a^2}) + C_1,
+\]其中\(C_1 = C - \ln a\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}\)（\(a>0\)）.
+\begin{solution}
+首先要注意被积函数的定义域是\((-\infty,-a)\cup(a,+\infty)\)，故须分别在这两个区间求解不定积分.
+
+当\(x > a\)时，设\(x = a \sec t\)（\(0 < t < \frac{\pi}{2}\)），那么\[
+\sqrt{x^2 - a^2} = \sqrt{a^2 \sec^2 t - a^2} = a \sqrt{\sec^2 t - 1} = a \tan t,
+\]\[
+\dd{x} = a \sec t \tan t \dd{t},
+\]于是\begin{align*}
+\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
+&= \int \frac{a \sec t \tan t \dd{t}}{a \tan t}
+= \int \sec t \dd{t} \\
+&= \ln(\sec t + \tan t) + C.
+\end{align*}又因为\(\tan t = \frac{1}{a} \sqrt{x^2 - a^2}\)，所以\[
+\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
+= \ln( \frac{x}{a} + \frac{\sqrt{x^2 - a^2}}{a} ) + C
+= \ln( x + \sqrt{x^2 - a^2} ) + C_1,
+\]其中\(C_1 = C - \ln a\).
+
+当\(x < -a\)时，令\(x = -u\)，那么\(u > a\)，由上可知\begin{align*}
+\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
+&= -\int \frac{\dd{u}}{\sqrt{u^2 - a^2}}
+= -\ln(u + \sqrt{u^2 - a^2}) + C \\
+&= -\ln(-x + \sqrt{x^2 - a^2}) + C \\
+&= \ln\frac{1}{-x + \sqrt{x^2 - a^2}} + C \\
+&= \ln\frac{-x - \sqrt{x^2 - a^2}}{(-x)^2 - \sqrt{x^2 - a^2}^2} + C \\
+&= \ln\frac{-x - \sqrt{x^2 - a^2}}{a^2} + C \\
+&= \ln(-x - \sqrt{x^2 - a^2}) + C_1,
+\end{align*}其中\(C_1 = C - 2 \ln a\).
+
+把\(x > a\)和\(x < -a\)的结果合起来，可写作\[
+\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
+= \ln\abs{x + \sqrt{x^2 - a^2}} + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \frac{\sqrt{a^2 - x^2}}{x^4} \dd{x}\).
+\begin{solution}
+设\(x = \frac{1}{t}\)，那么\(\dd{x} = -\frac{\dd{t}}{t^2}\)，于是\[
+\int \frac{\sqrt{a^2 - x^2}}{x^4} \dd{x}
+= \int \frac{\sqrt{a^2 - \frac{1}{t^2}} \cdot \left( -\frac{\dd{t}}{t^2} \right)}{\frac{1}{t^4}}
+= -\int (a^2 t^2 - 1)^{1/2} \abs{t} \dd{t}.
+\]当\(x > 0\)时，\(t > 0\)，那么\begin{align*}
+\int \frac{\sqrt{a^2 - x^2}}{x^4} \dd{x}
+&= -\frac{1}{2a^2} \int (a^2 t^2 - 1)^{1/2} \dd(a^2 t^2 - 1) \\
+&= -\frac{(a^2 t^2 - 1)^{3/2}}{3 a^2} + C \\
+&= -\frac{(a^2 - x^2)^{3/2}}{3 a^2 x^3} + C,
+\end{align*}
+同理，当\(x < 0\)时，有相同的结果.
+\end{solution}
+\end{example}
+
+\section{分部积分法}
+\begin{theorem}[分部积分公式]
+设函数\(u=u(x)\)及\(v=v(x)\)具有连续导数，那么\[
+\int u \dd{v} = uv - \int u' \dd{v}.
+\]
+\begin{proof}
+因为函数\(u=u(x)\)及\(v=v(x)\)具有连续导数，那么两个函数乘积的导数公式为\[
+(uv)' = u'v + uv',
+\]移项，得\[
+uv' = (uv)' - u'v.
+\]
+
+对这个等式两边求不定积分，得\[
+\int u v' \dd{x} = \int (uv)' \dd{x} - \int u' v \dd{x}
+= uv - \int u' v \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+如果直接求\(\int u v' \dd{x}\)有困难，而求\(\int u' v \dd{x}\)时比较容易时，分部积分公式就可以发挥作用了.
+
+\begin{example}
+求\(\int x \cos x \dd{x}\).
+\begin{solution}
+设\(u = x, \dd{v} = \cos x \dd{x}\)，那么\(\dd{u} = \dd{x}, v = \sin x\)，得\[
+\int x \cos x \dd{x}
+= x \sin x - \int \sin \dd{x},
+\]而\(\int v \dd{u} = \int \sin x \dd{x}\)容易积出，所以\[
+\int x \cos x \dd{x} = x \sin x + \cos x + C.
+\]
+
+求这个积分的时候，如果设\(u = \cos x, \dd{v} = x \dd{x}\)，那么\[
+\dd{u} = -\sin x \dd{x}, \qquad v = \frac{x^2}{2}.
+\]于是\[
+\int x \cos x \dd{x} = \frac{x^2}{2} \cos x + \int \frac{x^2}{2} \sin x \dd{x}.
+\]上式右端的积分比原积分更不容易求出.
+\end{solution}
+\end{example}
+由此可见，如果\(u\)和\(\dd{v}\)选取不当，就求不出结果，所以应用分部积分法时，恰当选取\(u\)和\(\dd{v}\)是一个关键.
+选取\(u\)和\(\dd{v}\)一般要考虑下面两点：\begin{enumerate}
+\item \(v\)要容易求得；
+\item \(\int v \dd{u}\)要比\(\int u \dd{v}\)容易积出.
+\end{enumerate}
+
+\begin{example}
+求\(\int x e^x \dd{x}\).
+\begin{solution}
+设\(u = x\)，\(\dd{v} = e^x \dd{x}\)，那么\(\dd{u} = \dd{x}\)，\(v = e^x\)，于是\[
+\int x e^x \dd{x}
+= \int x \dd(e^x)
+= x e^x - \int e^x \dd{x}
+= x e^x - e^x + C
+= e^x (x - 1) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int x^2 e^x \dd{x}\).
+\begin{solution}
+设\(u = x^2\)，\(\dd{v} = e^x \dd{x}\)，那么\[
+\int x^2 e^x \dd{x}
+= \int x^2 \dd(e^x)
+= x^2 e^x - \int e^x \dd{x^2}
+= x^2 e^x - 2 \int x e^x \dd{x}.
+\]
+
+这里\(\int x e^x \dd{x}\)比\(\int x^2 e^x \dd{x}\)更容易积出，因为被积函数中\(x\)的幂次前者比后者降低了一次.由上例可知，对\(\int x e^x \dd{x}\)再使用一次分部积分就可以了，于是\[
+\int x^2 e^x \dd{x} = e^x (x^2 -2x + 2) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int x \ln x \dd{x}\).
+\begin{solution}
+设\(u=\ln x\)，\(\dd{v} = x \dd{x}\)，那么\begin{align*}
+\int x \ln x \dd{x}
+&= \int \ln x \dd(\frac{x^2}{2})
+= \frac{x^2}{2} \ln x - \int \frac{x^2}{2} \dd(\ln x) \\
+&= \frac{x^2}{2} \ln x - \frac{1}{2} \int x \dd{x}
+= \frac{x^2}{2} \ln x - \frac{x^2}{4} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \arccos x \dd{x}\).
+\begin{solution}
+设\(u = \arccos x\)，\(\dd{v} = \dd{x}\)，那么\[
+\int \arccos x \dd{x} = x \arccos x - \int x \dd(\arccos x),
+\]其中\begin{align*}
+\int x \dd(\arccos x)
+&= -\int \frac{x}{\sqrt{1-x^2}} \dd{x}
+= \frac{1}{2} \int \frac{\dd(1-x^2)}{(1-x^2)^{1/2}} \\
+&= \sqrt{1-x^2} + C,
+\end{align*}所以\[
+\int \arccos x \dd{x} = x \arccos x - \sqrt{1-x^2} + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int x \arctan x \dd{x}\).
+\begin{solution}
+设\(u = \arctan x\)，\(\dd{v} = x \dd{x}\)，那么\[
+\int x \arctan x \dd{x}
+= \frac{1}{2} \int \arctan x \dd(x^2)
+= \frac{1}{2} \left( x^2 \arctan x
+	- \int \frac{x^2}{1+x^2} \dd{x} \right),
+\]其中\[
+\int \frac{x^2}{1+x^2} \dd{x}
+= \int \left(1-\frac{1}{1+x^2}\right) \dd{x}
+= x - \arctan x + C,
+\]所以\begin{align*}
+\int x \arctan x \dd{x}
+&= \frac{1}{2} \left[ x^2 \arctan x
+	- (x - \arctan x + C) \right] \\
+&= \frac{1}{2} (x^2+1) \arctan x - \frac{1}{2} x + C_1.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+计算\(I_1 = \int e^x \cos x\dd{x}\)和\(I_2 = \int e^x \sin x\dd{x}\).
+\begin{solution}
+因为\begin{align*}
+I_1 &= \int e^x \cos x\dd{x}
+= \int e^x \dd(\sin x) \\
+&= e^x \sin x - \int \sin x \dd(e^x)
+= e^x \sin x - I_2, \\
+I_2 &= \int e^x \sin x\dd{x}
+= -\int e^x \dd(\cos x) \\
+&= -\left[ e^x \cos x - \int \cos x \dd(e^x) \right]
+= I_1 - e^x \cos x.
+\end{align*}解得\[
+I_1 = \frac{1}{2} e^x (\sin x + \cos x) + C,
+\qquad
+I_2 = \frac{1}{2} e^x (\sin x - \cos x) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \sec^3 x \dd{x}\).
+\begin{solution}
+由题有\begin{align*}
+\int \sec^3 x \dd{x}
+&= \int \sec x \dd(\tan x) \\
+&= \sec x \tan x - \int \sec x \tan^2 x \dd{x} \\
+&= \sec x \tan x - \int \sec x (\sec^2 x - 1) \dd{x} \\
+&= \sec x \tan x - \int \sec^3 x \dd{x} + \int \sec x \dd{x} \\
+&= \sec x \tan x + \ln\abs{\sec x + \tan x} - \int \sec^3 x \dd{x},
+\end{align*}解得\[
+\int \sec^3 x \dd{x}
+= \frac{1}{2} \left(
+	\sec x \tan x
+	+ \ln\abs{\sec x + \tan x}
+\right) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int e^{\sqrt{x}} \dd{x}\).
+\begin{solution}
+令\(t = \sqrt{x}\)，则\(x = t^2\)，\(\dd{x} = 2t\dd{t}\)，于是\[
+\int e^{\sqrt{x}} \dd{x}
+= 2 \int t e^t \dd{t}
+= 2 e^t (t-1) + C
+= 2 e^{\sqrt{x}} (\sqrt{x}-1) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算\(I_1 = \int \sin{\ln{x}} \dd{x}\)和\(I_2 = \int \cos{\ln{x}} \dd{x}\).
+\begin{solution}
+\begin{align*}
+I_1
+&= \int \sin{\ln x}\dd{x}
+\xlongequal{u = \ln x} \int \sin u \dd(e^u) \\
+&= \frac{1}{2} e^u (\sin u - \cos u) + C
+= \frac{1}{2} x (\sin{\ln x} - \cos{\ln x}) + C, \\
+I_2
+&= \int \cos{\ln x}\dd{x}
+\xlongequal{u = \ln x} \int \cos u \dd(e^u) \\
+&= \frac{1}{2} e^u (\sin u + \cos u) + C
+= \frac{1}{2} x (\sin{\ln x} + \cos{\ln x}) + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\displaystyle\int \frac{x \cos x}{(x + \cos x)^2}\dd{x}\).
+\begin{solution}
+因为\begin{align*}
+\int \frac{x \cos x}{(x + \cos x)^2}\dd{x}
+&= \int \frac{x \cos x}{(x + \cos x)^2} \frac{1 - \sin x}{1 - \sin x}\dd{x} \\
+&= \int \frac{x \cos x}{(x + \cos x)^2} \frac{1}{1 - \sin x} \dd(x + \cos x) \\
+&= -\int \frac{x \cos x}{1 - \sin x} \dd(\frac{1}{x + \cos x}) \\
+&= -\frac{x \cos x}{1 - \sin x} \frac{1}{x + \cos x}
+	+\int \frac{1}{x + \cos x} \dd(\frac{x \cos x}{1 - \sin x}),
+\end{align*}
+其中
+\begin{align*}
+&\int \frac{1}{x + \cos x} \dd(\frac{x \cos x}{1 - \sin x}) \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{(\cos x  - x \sin x)(1 - \sin x) - x \cos x (-\cos x)}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{\cos x - \sin x \cos x - x \sin x + x \sin^2 x + x \cos^2 x}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{\cos x - \sin x \cos x - x \sin x + x}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{(\cos x + x)(1 - \sin x)}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{1 - \sin x}\dd{x} \\
+&\qquad\xlongequal{u=\tan(x/2)}
+	\int \frac{1}{1 - \frac{2u}{u^2 + 1}} \frac{2\dd{u}}{u^2 + 1}
+= \int \frac{u^2 + 1}{(u - 1)^2} \frac{2\dd{u}}{u^2 + 1} \\
+&\qquad= \int \frac{2}{(u - 1)^2}\dd{u}
+\xlongequal{v=u-1} 2 \int v^{-2}\dd{v}
+= 2 \cdot (-1) v^{-1} + C \\
+&\qquad= \frac{2}{-v} + C
+= \frac{2}{1 - u} + C
+= \frac{2}{1 - \tan(x/2)} + C,
+\end{align*}
+所以\[
+\int \frac{x \cos x}{(x + \cos x)^2}\dd{x}
+= -\frac{x \cos x}{1 - \sin x} \frac{1}{x + \cos x}
+	+\frac{2}{1 - \tan(x/2)} + C.
+\]
+\end{solution}
+\end{example}
+
+\section{有理函数的积分}
+\subsection{有理函数的积分}
+\begin{definition}
+两个（不含公因式的）多项式的商\(\frac{P(x)}{Q(x)}\)称为\textbf{有理函数}，又称\textbf{有理分式}.
+当分子多项式\(P(x)\)的幂次小于分母多项式\(Q(x)\)的幂次时，称这有理函数为\textbf{真分式}；否则称为\textbf{假分式}.
+\end{definition}
+利用多项式的除法，总可以将一个假分式化为一个多项式与一个真分式之和的形式.
+
+对于真分式\(\frac{P(x)}{Q(x)}\)，如果分母可分解为两个多项式的乘积\[
+Q(x)=Q_1(x)Q_2(x)
+\]且\(Q_1(x)\)与\(Q_2(x)\)没有公因式，那么它可分拆成两个真分式之和\[
+\frac{P(x)}{Q(x)} = \frac{P_1(x)}{Q_1(x)} + \frac{P_2(x)}{Q_2(x)}
+\]上述步骤将真分式化为\textbf{部分分式}之和.
+
+如果部分分式的分母还能再分解成两个没有公因式的多项式的乘积，那么就可再分拆成更简单的部分分式.
+最后，有理函数的分解式中只出现三类函数：
+\begin{enumerate}
+	\item 多项式\(F(x)\)；
+	\item 部分分式\(\frac{P_1(x)}{(x-a)^k}\)；
+	\item 部分分式\(\frac{P_2(x)}{(x^2+px+q)^l}\).
+\end{enumerate}
+其中\(\increment=p^2-4q<0\)，\(P_1(x)\)为小于\(k\)次的多项式，\(P_2(x)\)为小于\(2l\)次的多项式.
+
+当\(k=1\)时，\[
+\int \frac{1}{x-a} \dd{x} = \ln\abs{x-a} + C;
+\]当\(k\geqslant2\)时，\[
+\int \frac{1}{(x-a)^k} \dd{x} = \frac{1}{1-k} (x-a)^{1-k} + C.
+\]
+
+现在我们研究如何计算\[
+\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}
+\quad(k\in\mathbb{N}^*, p^2-4q<0).
+\]经过配方，得\[
+x^2+px+q = \left(x+\frac{p}{2}\right)^2 + q-\frac{p^2}{4}.
+\]令\(a^2=q-p^2/4\)，利用\(u=x+p/2\)换元，得\[
+\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}
+= A \int \frac{u}{(a^2+u^2)^l} \dd{u}
++ \left(B - \frac{Ap}{2}\right) \int \frac{1}{(a^2+u^2)^l} \dd{u}.
+\]上式右边第一个不定积分，当\(l=1\)时，\[
+\int \frac{u}{(a^2+u^2)^l} \dd{u}
+= \frac{1}{2} \ln(a^2+u^2) + C;
+\]当\(l\geqslant2\)时，\[
+\int \frac{u}{(a^2+u^2)^l} \dd{u}
+= \frac{1}{2(1-l)} (a^2+u^2)^{1-l} + C.
+\]而上式右边第二个不定积分（记为\(I_l\ (l=1,2,\dotsc)\)）作分部积分，得\begin{align*}
+I_l &= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{u^2}{(a^2+u^2)^{l+1}} \dd{u} \\
+&= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{a^2+u^2-a^2}{(a^2+u^2)^{l+1}} \dd{u} \\
+&= \frac{u}{(a^2+u^2)^l} + 2l I_l - 2la^2 I_{l+1},
+\end{align*}由此推出\[
+I_{l+1} = \frac{1}{2la^2} \frac{u}{(a^2+u^2)^l} + \frac{2k-1}{2ka^2} I_l
+\quad(l\in\mathbb{N}^*).
+\]这是一个递推公式.反复利用这个公式可以把指标\(l\)降低，最后归结为已知的不定积分.最初的几个是\begin{align*}
+I_1 &= \int \frac{1}{a^2+u^2} \dd{u} = \frac{1}{a} \arctan\frac{u}{a} + C, \\
+I_2 &= \frac{1}{2a^2} \left( \frac{u}{a^2+u^2} + I_1 \right), \\
+I_3 &= \frac{1}{4a^2} \left[ \frac{u}{(a^2+u^2)^2} + 3 I_2 \right].
+\end{align*}
+
+\begin{example}
+求\(\int \frac{x+1}{x^2-5x+6} \dd{x}\).
+\begin{solution}
+被积函数的分母可分解成\((x-3)(x-2)\)，故可设\[
+\frac{x+1}{x^2-5x+6}
+= \frac{A}{x-3} + \frac{B}{x-2},
+\]其中\(A,B\)为待定系数.上式两端通分后，得\[
+x+1 = A(x-2)+B(x-3),
+\]即\[
+x+1 = (A+B)x -(2A+3B).
+\]比较上式两端同次幂的系数，即有\[
+\left\{ \begin{array}{l}
+A+B = 1, \\
+2A+3B = -1,
+\end{array} \right.
+\]从而解得\(A=4\)，\(B=-3\).于是\[
+\int \frac{x+1}{x^2-5x+6} \dd{x}
+= \int \left(\frac{4}{x-3} - \frac{3}{x-2}\right) \dd{x}
+= 4\ln\abs{x-3} - 3\ln\abs{x-2} + C.
+\]
+\end{solution}
+\end{example}
+
+\section{本章总结}
+\subsection{基本积分表}
+\begingroup
+\def\intx#1{\int #1\dd{x}}%
+\begin{gather}
+\intx{k} = kx + C \\
+\intx{x^\mu} = \frac{x^{\mu + 1}}{\mu + 1} + C \quad (\mu \neq -1) \\
+\intx{\frac{1}{x}} = \ln\abs{x} + C \\
+\intx{\frac{1}{1 + x^2}} = \arctan x + C \\
+\intx{\frac{1}{\sqrt{1 - x^2}}} = \arcsin x + C \\
+\intx{\cos x} = \sin x + C \\
+\intx{\sin x} = -\cos x + C \\
+\intx{\sec^2 x} = \tan x + C \\
+\intx{\csc^2 x} = -\cot x + C \\
+\intx{\sec x \tan x} = \sec x + C \\
+\intx{\csc x \cot x} = -\csc x + C \\
+\intx{e^x} = e^x + C \\
+\intx{a^x} = \frac{a^x}{\ln a} + C \\
+\intx{\sinh x} = \cosh x + C \\
+\intx{\cosh x} = \sinh x + C \\
+\intx{\tan x} = -\ln\abs{\cos x} + C \\
+\intx{\cot x} = \ln\abs{\sin x} + C \\
+\intx{\sec x} = \ln\abs{\sec x + \tan x} + C \\
+\intx{\csc x} = \ln\abs{\csc x - \cot x} + C \\
+\intx{\frac{1}{a^2 + x^2}} = \frac{1}{a} \arctan\frac{x}{a} + C \\
+\intx{\frac{1}{x^2 - a^2}} = \frac{1}{2a} \ln\abs{\frac{x - a}{x + a}} + C \\
+\intx{\frac{1}{\sqrt{a^2 - x^2}}} = \arcsin\frac{x}{a} + C \\
+\intx{\frac{1}{\sqrt{x^2 + a^2}}} = \ln(x + \sqrt{x^2 + a^2}) + C \\
+\intx{\frac{1}{\sqrt{x^2 - a^2}}} = \ln\abs{x + \sqrt{x^2 - a^2}} + C
+\end{gather}
+\endgroup
+
+\subsection{积分技巧}
+\begin{example}
+一般的，对于积分\(\int f(ax+b) \dd{x}\)，总可作变换\(u=ax+b\)，把它作为\[
+\int f(ax+b) \dd{x}
+= \int \frac{1}{a} f(ax+b) \dd{(ax+b)} \\
+= \frac{1}{a} \left[ \int f(u) \dd{u} \right]_{u=ax+b}.
+\]
+\end{example}
+
+\begin{example}
+一般的，对于\(\sin^{2k+1} x \cos^n x\)或\(\sin^n x \cos^{2k+1} x\ (k \in \mathbb{N})\)型函数的积分，总可依次作变换\(u=\cos x\)或\(u=\sin x\)，利用恒等式\(\sin^2 x + \cos^2 x \equiv 1\)求得结果.
+\begin{align*}
+\int \sin^{2k+1} x \cos^n x \dd{x}
+&= - \int \sin^{2k} x \cos^n x \cdot \sin x \dd{x} \\
+&= - \int (1-\cos^2 x)^k \cos^n x \dd(\cos x), \\
+\int \sin^n x \cos^{2k+1} x \dd{x}
+&= \int \sin^n x \cos^{2k} x \cdot \cos x \dd{x} \\
+&= \int \sin^n x (1-\sin^2 x)^k \dd(\sin x).
+\end{align*}
+\end{example}
+
+\begin{example}
+一般的，对于\(\sin^{2k} x \cos^{2l} x\ (k,l \in \mathbb{N})\)型函数，总可利用三角恒等式\(\sin^2 x = \frac{1}{2}(1-\cos 2x)\)，\(\cos^2 x = \frac{1}{2}(1+\cos 2x)\)化成\(\cos 2x\)的多项式，求得结果.\[
+\int \sin^{2k} x \cos^{2l} x \dd{x}
+= \int \left[\frac{1}{2}(1-\cos 2x)\right]^k \left[\frac{1}{2}(1+\cos 2x)\right]^l \dd{x}
+= \int f(\cos 2x) \dd{x}.
+\]
+\end{example}
+
+\begin{example}
+一般的，对于\(\tan^n x \sec^{2k} x\)或\(\tan^{2k+1} x \sec^n x\ (k \in \mathbb{N}^+)\)型函数的积分，可依次作变换\(u=\tan x\)或\(u=\sec x\)，利用三角恒等式\(\sec^2 x = \tan^2 x + 1\)和微分公式\(\dd(\tan x) = \sec^2 x \dd{x}\)，\(\dd(\sec x) = \sec x \tan x \dd{x}\)，求得结果.
+\begin{align*}
+\int \tan^n x \sec^{2k} x \dd{x}
+&=\int \tan^n x\sec^{2k-2} x \cdot \sec^2 x \dd{x} \\
+&=\int \tan^n x(1+\tan^2 x)^{k-1} \dd(\tan x), \\
+\int \tan^{2k+1} x \sec^n x \dd{x}
+&=\int \tan^{2k} x \sec^{n-1} x \cdot \sec x\tan x\dd{x} \\
+&=\int (\sec^2 x - 1)^k \sec^{n-1} x \dd(\sec x).
+\end{align*}
+\end{example}
+
+\begin{example}
+如果被积函数含有\(\sqrt{a^2 - x^2}\)，可以作代换\(x = a \sin t\)化去根式；如果被积函数含有\(\sqrt{x^2 + a^2}\)，可以作代换\(x=a \tan t\)化去根式；如果被积函数含有\(\sqrt{x^2 - a^2}\)，可以作代换\(x=\pm a \sec t\)化去根式.
+
+如果被积函数有高次多项式，可以首先利用平方差公式和平方和公式对其配方.
+
+当被积函数含有\(\sqrt{x^2 \pm a^2}\)时，为了化去根式，除采用三角代换\(x = a \tan t\)或\(x = \pm a \sec t\)外，还可利用公式\(\cosh^2 t - \sinh^2 t = 1\)，采用双曲代换\(x = a \sinh t\)和\(x = \pm a \cosh t\)来化去根式.
+\end{example}
+
+\begin{example}
+如果被积函数是分式，且积分变量在分子中的最高幂次比其在分母中的最高幂次要低2次或3次，则可利用倒代换技巧，即令\(t=\frac{1}{x}\).
+\end{example}
+
+\begin{example}
+如果被积函数是幂函数和正（余）弦函数或幂函数和指数函数的乘积，就可以考虑用分部积分法，并设幂函数为\(u\).这样每用一次分部积分法就可使幂次降低一次.
+
+如果被积函数是幂函数和对数函数或幂函数和反三角函数的乘积，也可以考虑用分部积分法，并设对数函数或反三角函数为\(u\).
+\end{example}
+
+\begin{example}
+如果被积函数中含有简单根式\(\sqrt[n]{ax+b}\)或\(\sqrt[n]{\frac{ax+b}{cx+d}}\)，可以令这个简单根式为\(u\)，即\begin{align*}
+u=\sqrt[n]{ax+b} &\implies x=\frac{1}{a}(u^n-b) \\
+u=\sqrt[n]{\frac{ax+b}{cx+d}} &\implies x=\frac{u^nd-b}{a-u^nc}
+\end{align*}由于这样的变换具有反函数，且反函数是\(u\)的有理函数，因此原积分可以化为有理函数的积分.
+\end{example}

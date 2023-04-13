@@ -1,0 +1,132 @@
+\chapter{线性回归分析与方差分析}
+\section{线性回归分析}
+在实际工作中，遇到的两个变量通常有相互制约、相互关联的关系.这些关系又可分为两大类：一类是确定性关系，如理想状态下匀速直线运动中时间\(t\)与距离\(s\)的关系；另一类是相关关系，如中老年健康调查中年龄\(x\)与血压\(Y\)的关系，水稻的单位面积施肥量\(x\)与单位面积产量\(Y\)的关系.
+
+当\(x\)与\(Y\)存在相关关系时，最常见、最普通的这种相关关系是线性相关关系，即\(x\)与\(Y\)的相关关系有线性趋势.围绕线性相关关系的线性趋势展开的统计分析叫做\textbf{线性回归分析}.
+
+\subsection{线性回归模型}
+\begin{definition}
+设\(x\)是普通变量，\(Y\)是随机变量，且\[
+Y = \alpha + \beta x + \varepsilon,
+\quad \varepsilon \sim N(0,\sigma^2),
+\]其中\(\alpha\)，\(\beta\)，\(\sigma^2\)是不依赖于\(x\)的未知参数.称此模型为\textbf{一元线性回归模型}.
+
+易见，此时\[
+Y \sim N(\alpha + \beta x,\sigma^2).
+\]称\(Y\)的期望\[
+\tilde{Y} = E(Y) = \alpha + \beta x
+\]为\(Y\)关于\(x\)的\textbf{线性回归函数}.\(\alpha\)和\(\beta\)称为\textbf{回归系数}，\(x\)称为\textbf{回归变量}.
+
+在一元线性回归模型下，\(x\)与\(Y\)就存在线性相关关系，也叫做\textbf{线性回归关系}.
+
+取得样本观测值\((x_1,y_1),(x_2,y_2),\dotsc,(x_n,y_n)\)后，若能得\(\alpha\)、\(\beta\)的点估计\(\hat{\alpha}\)和\(\hat{\beta}\)，称\[
+\hat{Y} = \hat{\alpha} + \hat{\beta} x
+\]为\textbf{线性回归方程}，它所代表的直线叫做\textbf{线性回归直线}.
+\end{definition}
+线性回归直线描述了\(x\)与\(Y\)线性相关关系中线性趋势.
+
+\subsection{线性回归模型参数的极大似然估计及性质}
+取得样本观测值\((x_1,y_1),(x_2,y_2),\dotsc,(x_n,y_n)\)后，似然函数为\[
+L(\alpha,\beta,\sigma^2)
+= \prod\limits_{i=1}^n{ \frac{1}{\sqrt{2\pi}\sigma} e^{ -\frac{[y_i - (\alpha+\beta x_i)]^2}{2\sigma^2} } }
+= (2\pi)^{-\frac{n}{2}} (\sigma^2)^{-\frac{n}{2}} e^{ -\frac{1}{2\sigma^2} \sum\limits_{i=1}^n[y_i - (\alpha+\beta x_i)]^2 },
+\]从而有\[
+\ln L(\alpha,\beta,\sigma^2)
+= -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum\limits_{i=1}^n[y_i-(\alpha+\beta x_i)]^2.
+\]故可得对数似然方程组\[
+\left\{ \begin{array}{l}
+\pdv{\ln L(\alpha,\beta,\sigma^2)}{\alpha}
+= \frac{1}{\sigma^2} \sum\limits_{i=1}^n{y_i-(\alpha+\beta x_i)} = 0, \\
+\pdv{\ln L(\alpha,\beta,\sigma^2)}{\beta}
+= \frac{1}{\sigma^2} \sum\limits_{i=1}^n{x_i[y_i-(\alpha+\beta x_i)]} = 0, \\
+\pdv{\ln L(\alpha,\beta,\sigma^2)}{\sigma^2}
+= -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum\limits_{i=1}^n[y_i-(\alpha+\beta x_i)]^2 = 0.
+\end{array} \right.
+\]整理得\[
+\left\{ \begin{array}{l}
+n \alpha + \beta \sum\limits_{i=1}^n{x_i} = \sum\limits_{i=1}^n{y_i}, \\
+\alpha \sum\limits_{i=1}^n{x_i} + \beta \sum\limits_{i=1}^n{x_i^2} = \sum\limits_{i=1}^n{x_i y_i}, \\
+\sigma^2 = \frac{1}{n} \sum\limits_{i=1}^n[y_i - (\alpha+\beta x_i)]^2.
+\end{array} \right.
+\]解得\[
+\left\{ \begin{array}{l}
+\hat{\alpha} = \overline{y} - \hat{\beta} \overline{x}, \\
+\hat{\beta} = \frac{s_{xy}}{s_{xx}}, \\
+\hat{\sigma}^2 = \frac{1}{n} \sum\limits_{i=1}^n[y_i - (\hat{\alpha}+\hat{\beta}x_i)]^2.
+\end{array} \right.
+\]其中，\[
+s_{xy} = \sum\limits_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})
+= \sum\limits_{i=1}^n{x_i y_i - \overline{x}y_i - \overline{y}x_i + \overline{x}\overline{y}}
+= \sum\limits_{i=1}^n{x_i y_i - n \overline{x} \overline{y}},
+\]\[
+s_{xx} = \sum\limits_{i=1}^n(x_i - \overline{x})^2
+= \sum\limits_{i=1}^n{x_i^2 - n \overline{x}^2}.
+\]
+在上述结果中可以用\(Y_i\)代替观测值\(y_i\).
+
+注意，\(\alpha\)和\(\beta\)的极大似然估计值是使似然函数中\(e\)的指数部分\[
+Q(\alpha,\beta) = \sum\limits_{i=1}^n[y_i-(\alpha+\beta x_i)]^2
+\]达到最小的估计，所以\(\alpha\)和\(\beta\)的极大似然估计\(\hat{\alpha}\)和\(\hat{\beta}\)又叫做最小二乘估计.
+
+事实上，\(Q(\hat{\alpha},\hat{\beta})\)是数据\((x_i,y_i)\)对估计\(\hat{y}_i=\hat{\alpha}+\beta x_i\)的偏差平方和（又称残差平方和）.最小二乘估计使数据点沿着与\(y\)轴平行的方向到回归直线的距离的平方和达到最小.
+
+得到\(\hat{\alpha}\)和\(\hat{\beta}\)后，可得回归方程\[
+\hat{y} = \hat{\alpha} + \hat{\beta} x
+= \overline{y} + \hat{\beta} (x - \overline{x}),
+\]可见回归直线过点\((\overline{x},\overline{y})\).
+
+\begin{theorem}
+\begin{enumerate}
+\item \(\overline{Y}\)、\(\hat{\beta}\)和\(\hat{\sigma}^2\)相互独立；
+\item \((\hat{\alpha},\hat{\beta}) \sim N\left(
+	\alpha, \beta;
+	\sigma^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{s_{xx}} \right),
+	\frac{\sigma^2}{s_{xx}},
+	\frac{-\overline{x}}{
+		\sqrt{s_{xx}} \sqrt{\frac{1}{n} + \frac{\overline{x}^2}{s_{xx}}}
+	}
+\right)\)；
+\item \(\frac{n \hat{\sigma}^2}{\sigma^2} \sim \x(n-2)\).
+\end{enumerate}
+\end{theorem}
+
+\subsection{线性回归方程的显著性检验}
+当\(x\)与\(Y\)不存在线性相关关系时，虽然也可以计算出\(\hat{\alpha}\)和\(\hat{\beta}\)，从而也可以在形式上得到一条“回归直线”.但这条直线并不代表\(x\)与\(Y\)的相关关系趋势.因此在实际情况中，\(x\)与\(Y\)是否存在线性相关（线性回归）关系，即模型中\(E(Y) = \widetilde{Y} = \alpha + \beta x\)的假定是否符合实际情况，是需要判断的.
+
+首先可以根据有关的专业知识和实践来判断，也可以由统计理论和方法来判断.直观和初步的统计判断方法可根据散点图来进行.
+
+散点图是将各样本观测值\((x_i,Y_i)\)（\(i=1,2,\dotsc,n\)）描绘在一个直角坐标平面上得到的图.若这些点大致散布在某条直线周围，则可初步认定\(x\)与\(Y\)之间存在线性相关关系或线性回归关系.
+
+对\(x\)与\(Y\)是否存在线性相关关系（线性回归关系）的细致分析应是对回归模型的线性性进行显著性检验.检验假设为\[
+H_0: \beta = 0, \quad H_1: \beta \neq 0.
+\]当\(H_0\)成立（即\(\beta = 0\)）时，相当于\(x\)与\(Y\)不存在线性回归关系，且有\[
+\hat{\beta} \sim N\left(0, \frac{\sigma^2}{s_{xx}}\right),
+\]\[
+\frac{n \hat{\sigma}^2}{\sigma^2} \sim \x(n-2),
+\]且\(\hat{\beta}\)和\(\hat{\sigma}^2\)独立.于是\[
+t = \frac{\hat{\beta} / \frac{\sigma}{\sqrt{s_{xx}}}}{\sqrt{\frac{n\hat{\sigma}^2}{\sigma^2(n-2)}}}
+= \frac{\hat{\beta} \sqrt{s_{xx}}}{\sqrt{\frac{n}{n-2} \hat{\sigma}^2}}
+\sim t(n-2).
+\]而当\(H_1\)成立时，检验统计量\(t\)有\(\abs{t}\)取值偏大，得到检验的拒绝域为\[
+W = \{ \abs{t} > t_{1-\frac{\alpha}{2}}(n-2) \},
+\]其中\(\alpha\)为显著性水平.
+
+关于检验统计量\(t\)中\(\hat{\sigma}^2\)的计算，记\(\hat{Y}_i = \hat{\alpha}+\hat{\beta} x_i\)，因为\[
+\hat{\sigma}^2 = \frac{1}{n} \sum\limits_{i=1}^n[Y_i-\hat{Y}_i]^2,
+\]\begin{align*}
+\sum\limits_{i=1}^n(Y_i-\hat{Y}_i)^2
+&= \sum\limits_{i=1}^n[Y_i-\overline{Y}-\hat{\beta}(x_i-\overline{x})]^2 \\
+&= \sum\limits_{i=1}^n(Y_i-\overline{Y})^2
+	-2\hat{\beta} \sum\limits_{i=1}^n(x_i-\overline{x})(Y_i-\overline{Y})
+	+\hat{\beta}^2 \sum\limits_{i=1}^n(x_i-\overline{x})^2 \\
+&= s_{YY} - 2 \hat{\beta} s_{xY} + \hat{\beta}^2 s_{xx} \\
+&= s_{YY} - \hat{\beta} s_{xY},
+\end{align*}那么有\[
+\hat{\sigma}^2 = \frac{1}{n} (s_{YY} - \hat{\beta} s_{xY}),
+\]其中\[
+s_{YY} = \sum\limits_{i=1}^n(Y_i - \overline{Y})^2
+= \sum\limits_{i=1}^n{Y_i^2 - n\overline{Y}^2}.
+\]
+
+\subsection{预测}
+经检验后，若认为\(x\)与\(Y\)存在线性回归关系后，回归方程重要的用途是预测和控制，即在\(x\)的指定值\(x_0\)处，对于对应的\(Y_0\)的平均取值和\(Y_0\)的\(1-\alpha\)取值区间进行预测，就是\(Y_0\)的点预测和区间预测.而控制问题则相反，当\(Y\)的取值限定在区间\((Y_1,Y_2)\)间时，要求\(x\)应控制在什么范围内.

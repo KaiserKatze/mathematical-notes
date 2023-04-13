@@ -1,0 +1,653 @@
+\chapter{矩阵的逆}
+\section{可逆矩阵}
+\begin{definition}
+对于\(n\)阶方阵\(\A\)，如果存在\(n\)阶方阵\(\B\)，使得\[
+\A\B=\B\A=\E
+\]则称\(\A\)为\textbf{可逆矩阵}，或称\(\A\)\textbf{可逆}（invertible），并称\(\B\)为\(\A\)的\textbf{逆矩阵}（inverse matrix），记作\(\A^{-1}\)，即\(\A^{-1} = \B\).
+\end{definition}
+
+\begin{definition}
+对于\(n\)阶方阵\(\A\)，%
+若\(\abs{\A}=0\)，称\(\A\)为\textbf{奇异矩阵}；%
+若\(\abs{\A} \neq 0\)，称\(\A\)为\textbf{非奇异矩阵}.
+\end{definition}
+
+\begin{definition}
+\def\Ainv{\A^{-1}}
+若\(\A\)是可逆矩阵，那么规定\begin{equation}
+\A^{-k} = (\Ainv)^k
+= \underbrace{\Ainv\Ainv\dotsm\Ainv}_{k\text{个}}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}\label{theorem:逆矩阵.矩阵可逆的充要条件1}
+设\(\A\)是\(n\)阶方阵，则\(\A\)可逆的充要条件是\(\abs{\A} \neq 0\).
+\begin{proof}
+必要性.
+假设矩阵\(\A\)可逆，那么存在\(n\)阶方阵\(\B\)，使得\(\A\B=\E\)，于是\(\abs{\A\B}=\abs{\E}\).
+而根据\cref{theorem:行列式.矩阵乘积的行列式} ，\(\abs{\A\B}=\abs{\A}\abs{\B}=1\)，可知\(\abs{\A}\neq0\).
+
+充分性.
+设\(\abs{\A}\neq0\)，令\(\B=\frac{1}{\abs{\A}} \A^*\)，其中\(\A^*\)是\(\A\)的伴随矩阵.
+根据\cref{equation:行列式.伴随矩阵.恒等式1} ，可知\(\A\B = \B\A = \E\)，故由定义可知\(\A\)可逆，且\[
+\A^{-1} = \B = \frac{1}{\abs{\A}} \A^*.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{property}\label{theorem:逆矩阵.逆矩阵的唯一性}
+设\(\A\)是可逆矩阵，则它的逆矩阵唯一，且有\(\A^{-1}=\frac{1}{\abs{\A}}\A^*\).
+\begin{proof}
+在\cref{theorem:逆矩阵.矩阵可逆的充要条件1} 的证明过程中我们看到矩阵\(\B=\frac{1}{\abs{\A}} \A^*\)是可逆矩阵\(\A\)的一个逆矩阵，即\(\A\B=\E\).
+设矩阵\(\C\)也是\(\A\)的逆矩阵，即\(\C\A=\E\)，于是\[
+\C=\C\E=\C(\A\B)=(\C\A)\B=\E\B=\B.
+\]由此可知，任意可逆矩阵的逆矩阵是唯一的.
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.逆矩阵的对称性}
+设\(\A\)、\(\B\)均为\(n\)阶矩阵，满足\(\A\B=\E\)，则\(\A\)、\(\B\)互为逆矩阵.
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.逆矩阵的行列式}
+设\(\A\)可逆，则\(\abs{\A^{-1}}=\abs{\A}^{-1}\).
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.逆矩阵的逆}
+设\(\A\)可逆，则\(\A^{-1}\)可逆，且\((\A^{-1})^{-1}=\A\).
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.矩阵乘积的逆1}
+设\(\A\)、\(\B\)都是\(n\)阶可逆矩阵，则\(\A\B\)可逆，且\begin{equation}
+(\A \B)^{-1} = \B^{-1} \A^{-1}.
+\end{equation}
+\end{property}
+
+\cref{theorem:逆矩阵.矩阵乘积的逆1} 可以推广到有限个\(n\)阶可逆矩阵乘积的情形.
+\begin{property}\label{theorem:逆矩阵.矩阵乘积的逆2}
+设\(\v{\A}{n}\)都是\(n\)阶可逆矩阵，则\(\A_1 \A_2 \dotsm \A_{n-1} \A_n\)可逆，且\begin{equation}
+(\A_1 \A_2 \dotsm \A_{n-1} \A_n)^{-1}
+= \A_n^{-1} \A_{n-1}^{-1} \dotsm \A_2^{-1} \A_1^{-1}.
+\end{equation}
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.数与矩阵乘积的逆}
+设\(\A\)可逆，数\(k\neq0\)，则\(k\A\)可逆，且\((k\A)^{-1}=k^{-1}\A^{-1}\).
+\begin{proof}
+假设矩阵\(\A\)是\(n\)阶可逆矩阵.
+由\cref{theorem:行列式.性质2.推论2} ，\(\abs{k\A} = k^n\abs{\A}\).
+因为\(\A\)可逆，\(\abs{\A}\neq0\)，加之\(k\neq0\)，于是\(\abs{k\A}\neq0\)，即\(k\A\)可逆.\[
+(k\A)^{-1} = \frac{1}{\abs{k\A}} (k\A)^*
+\]
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.转置矩阵的逆与逆矩阵的转置}
+设\(\A\)可逆，则\(\A^T\)可逆，\(\left(\A^T\right)^{-1}=\left(\A^{-1}\right)^T\).
+\begin{proof}
+由\cref{theorem:行列式.性质1} ，\(\abs{\A^T}=\abs{\A}\neq0\)，于是\(\A^T\)可逆.
+由\cref{theorem:矩阵.矩阵乘积的转置} ，\((\A \A^{-1})^T = (\A^{-1})^T \A^T\).
+既然\(\A \A^{-1} = \E, \E^T = \E\)，于是\((\A^{-1})^T \A^T = \E\)，那么由\cref{theorem:逆矩阵.逆矩阵的对称性} 即得\(\left(\A^T\right)^{-1}=\left(\A^{-1}\right)^T\).
+\end{proof}
+\end{property}
+
+\begin{example}
+若\(\A\)、\(\B\)可交换，证明：\(\A^{-1}\)与\(\B\)可交换.
+\begin{proof}
+因为\(\A\B = \B\A\)，在等式两边同时左乘\(\A^{-1}\)，得\[
+\B = (\A^{-1}\A)\B = \A^{-1}(\A\B) = \A^{-1}(\B\A);
+\]再在等式两边右乘\(\A^{-1}\)，得\[
+\B\A^{-1} = (\A^{-1}\B\A)\A^{-1} = \A^{-1}\B(\A\A^{-1}) = \A^{-1}\B.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A=\diag(\lambda_1,\lambda_2,\dotsc,\lambda_n)\)，证明：\(\A^{-1}=\diag(\lambda_1^{-1},\lambda_2^{-1},\dotsc,\lambda_n^{-1})\).
+\end{example}
+
+\begin{example}
+设\(\A=\begin{bmatrix}
+& & & & \lambda_1 \\
+& & & \lambda_2 \\
+& & \iddots \\
+& \lambda_{n-1} \\
+\lambda_n
+\end{bmatrix}\).
+证明：矩阵\[
+\B=\begin{bmatrix}
+& & & & \lambda_n^{-1} \\
+& & & \lambda_{n-1}^{-1} \\
+& & \iddots \\
+& \lambda_2^{-1} \\
+\lambda_1^{-1}
+\end{bmatrix}
+\]是\(\A\)的逆矩阵.
+\begin{proof}
+因为\(\A \B = \E\)，所以\(\A\)与\(\B\)互为逆矩阵.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)可逆.
+证明：\(\A\)的伴随矩阵\(\A^*\)可逆，且\[
+(\A^*)^{-1}=\frac{1}{\abs{\A}}\A=(\A^{-1})^*.
+\]
+\begin{proof}
+因为\(\A^{-1}=\frac{1}{\abs{\A}} \A^*\)，所以\[
+(\A^{-1})^{-1} = \left( \frac{1}{\abs{\A}} \A^* \right)^{-1},
+\]\[
+\A = \abs{\A} (\A^*)^{-1}.
+\]又因为\(\A\)可逆，\(\abs{\A}\neq0\)，\[
+(\A^*)^{-1} = \frac{1}{\abs{\A}} \A.
+\]另外，\[
+(\A^{-1})^* = \abs{\A^{-1}} (\A^{-1})^{-1}
+= \frac{1}{\abs{\A}} \A,
+\]所以\[
+(\A^*)^{-1}=\frac{1}{\abs{\A}}\A=(\A^{-1})^*.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)、\(\B\)都是\(n\)阶可逆矩阵，\(\C\)是\(n\)阶矩阵.
+证明：矩阵\[
+\mat{M} = \begin{bmatrix}
+\A & \C \\
+\z & \B
+\end{bmatrix}
+\]可逆，且\[
+\mat{M}^{-1} = \begin{bmatrix}
+\A^{-1} & -\A^{-1} \C \B^{-1} \\
+\z & \B^{-1}
+\end{bmatrix}.
+\]
+\begin{proof}
+因为\(\A\)、\(\B\)为可逆矩阵，\(\abs{\A} \neq 0\)，\(\abs{\B} \neq 0\).
+所以\(\abs{\mat{M}}=\abs{\A}\abs{\B} \neq 0\)，即\(\mat{M}\)可逆.
+
+令\(\mat{M}\mat{X}=\E\)，即\[
+\begin{bmatrix}
+\A & \C \\
+\z & \B
+\end{bmatrix}\begin{bmatrix}
+\mat{X}_1 & \mat{X}_2 \\
+\mat{X}_3 & \mat{X}_4
+\end{bmatrix} = \begin{bmatrix}
+\E & \z \\
+\z & \E
+\end{bmatrix}
+\]则\[
+\begin{bmatrix}
+\A\mat{X}_1+\C\mat{X}_3 & \A\mat{X}_2+\C\mat{X}_4 \\
+\B\mat{X}_3 & \B\mat{X}_4
+\end{bmatrix} = \begin{bmatrix}
+\E & \z \\
+\z & \E
+\end{bmatrix}
+\]进而有\[
+\left\{ \begin{array}{l}
+\A\mat{X}_1+\C\mat{X}_3 = \E \\
+\A\mat{X}_2+\C\mat{X}_4 = \z \\
+\B\mat{X}_3 = \z \\
+\B\mat{X}_4 = \E
+\end{array} \right.
+\]
+由第4式可得\(\mat{X}_4 = \B^{-1}\).
+代入第2式得\(\A\mat{X}_2=-\C\B^{-1}\)，%
+\(\mat{X}_2=-\A^{-1}\C\B^{-1}\).
+用\(\B^{-1}\)左乘第3式左右两端，\(\B^{-1}\B\mat{X}_3=\mat{X}_3=\z\).
+则第1式化为\(\A\mat{X}_1=\E\)，显然\(\mat{X}_1=\A^{-1}\)，所以\[
+\mat{M}^{-1} = \mat{X} = \begin{bmatrix}
+\A^{-1} & -\A^{-1}\C\B^{-1} \\
+\z & \B^{-1}
+\end{bmatrix}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设矩阵\(\P,\Q\)都是可逆矩阵，求矩阵\(\begin{bmatrix}
+\z & \P \\ \Q & \z
+\end{bmatrix}\)的逆矩阵.
+\begin{solution}
+假设\[
+\begin{bmatrix}
+\z & \P \\ \Q & \z
+\end{bmatrix} \begin{bmatrix}
+\A & \B \\ \C & \D
+\end{bmatrix} = \begin{bmatrix}
+\P \C & \P \D \\
+\Q \A & \Q \B
+\end{bmatrix} = \begin{bmatrix}
+\E & \z \\ \z & \E
+\end{bmatrix},
+\]那么可以写出矩阵方程组如下：\[
+\left\{ \begin{array}{l}
+\P \C = \E, \\
+\P \D = \z, \\
+\Q \A = \z, \\
+\Q \B = \E,
+\end{array} \right.
+\]解得\[
+\A = \z, \qquad
+\B = \Q^{-1}, \qquad
+\C = \P^{-1}, \qquad
+\D = \z;
+\]也就是说，矩阵\(\begin{bmatrix}
+\z & \P \\ \Q & \z
+\end{bmatrix}\)的逆矩阵是\(\begin{bmatrix}
+\z & \Q^{-1} \\ \P^{-1} & \z
+\end{bmatrix}\).
+\end{solution}
+\end{example}
+
+\section{初等矩阵}
+\subsection{初等变换}
+\begin{definition}
+对矩阵施行以下变换，称为矩阵的\textbf{初等行变换}（elementary row operation）：
+\begin{enumerate}
+\item 互换两行的位置；
+\item 用一非零数\(c\)乘以某行；
+\item 将某行的\(k\)倍加到另一行.
+\end{enumerate}
+类似地，可以定义矩阵的\textbf{初等列变换}（elementary column operation）.
+矩阵的初等行变换、初等列变换统称为矩阵的\textbf{初等变换}（elementary operation）.
+
+有的书上约定：矩阵\(\A\)经过一次初等行变换\(\sigma_1\)化为矩阵\(\B\)的过程可以表示为在连接矩阵\(\A\)和\(\B\)的箭头上方标记\(\sigma_1\)，即\[
+\A \xlongrightarrow{\sigma_1} \B;
+\]而矩阵\(\A\)经过一次初等列变换\(\sigma_2\)化为矩阵\(\B\)的过程可以表示为在连接矩阵\(\A\)和\(\B\)的箭头下方标记\(\sigma_2\)，即\[
+\A \xlongrightarrow[\sigma_2]{} \B.
+\]
+
+当初等变换的效果是互换两行（列）时，记\[
+i \rightleftharpoons j.
+\]
+
+当初等变换的效果是用一非零数\(c\)乘以第\(i\)行（列）时，记\[
+(i) \muleq c
+\quad\text{或}\quad
+(i) \diveq \frac{1}{c}.
+\]
+
+当初等行变换的效果是将第\(j\)行的\(k\)倍加到第\(i\)行时，记\[
+(i) \addeq k \times (j)
+\quad\text{或}\quad
+(i) \subeq -k \times (j).
+\]
+
+当初等列变换的效果是将第\(i\)列的\(k\)倍加到第\(j\)列时，记\[
+(j) \addeq k \times (i)
+\quad\text{或}\quad
+(j) \subeq -k \times (i).
+\]
+\end{definition}
+
+\subsection{初等矩阵的概念}
+\begin{definition}\label{definition:逆矩阵.矩阵等价}
+若矩阵\(\A\)可以经过一系列初等变换化为矩阵\(\B\)，则称矩阵\(\A\)与\(\B\)\textbf{等价}\footnote{在丘维声教授所著的《高等代数》上又将这种关系称作“相抵”.}（equivalent），记作\(\A\cong\B\).
+\end{definition}
+
+\begin{definition}
+由\(n\)阶单位矩阵\(\E\)经过\emph{一次}初等变换所得矩阵称为\(n\)阶\textbf{初等矩阵}（elementary matrix）.
+\end{definition}
+对应于矩阵的三类初等变换，有三种类型的初等矩阵：
+\begin{enumerate}
+\item 互换\(\E\)的\(i\)，\(j\)两行（列）所得的矩阵\[
+\P(i,j) = \begin{bmatrix}
+\E_{i-1} & & & \\
+& 0 & & 1 & \\
+& & \E_{j-i-1} & & \\
+& 1 & & 0 & \\
+& & & & \E_{n-j}
+\end{bmatrix}_n;
+\]
+\item 用非零数\(c\)乘以\(\E\)的第\(i\)行（列）所得的矩阵\[
+\P(i(c)) = \begin{bmatrix}
+\E_{i-1} & & \\
+& c & \\
+& & \E_{n-i}
+\end{bmatrix}_n;
+\]
+\item 把\(\E\)的第\(j\)行（第\(i\)列）的\(k\)倍加到第\(i\)行（第\(j\)列）所得的矩阵\[
+\P(i,j(k)) = \begin{bmatrix}
+\E_{i-1} & & & \\
+& 1 & & k & \\
+& & \E_{j-i-1} & & \\
+& 0 & & 1 & \\
+& & & & \E_{n-j}
+\end{bmatrix}_n.
+\]
+\end{enumerate}
+
+\subsection{初等矩阵的性质}
+\begin{property}
+初等矩阵具有以下性质：
+\begin{enumerate}
+\item \(\abs{\P(i,j)}=-1\)；
+\item \(\abs{\P(i(c))}=c\)；
+\item \(\abs{\P(i,j(k))}=1\)；
+\item \(\P(i,j)^T=\P(i,j)\)；
+\item \(\P(i(c))^T=\P(i(c))\)；
+\item \(\P(i,j(k))^T=\P(j,i(k))\)；
+\item \(\P(i,j)^{-1}=\P(i,j)\)；
+\item \(\P(i(c))^{-1}=\P(i(c^{-1}))\)；
+\item \(\P(i,j(k))^{-1}=\P(i,j(-k))\).
+\end{enumerate}
+\end{property}
+
+\begin{property}
+对\(n \times t\)矩阵\(\A\)施行一次初等行变换，相当于用一个相应的\(n\)阶初等矩阵左乘\(\A\)；
+对\(\A\)施行一次初等列变换，相当于用一个相应的\(t\)阶初等矩阵右乘\(\A\).
+\begin{proof}
+用\(n\)阶矩阵\(\P(i,j)\)左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
+\P(i,j) \A = \begin{bmatrix}
+\E_{i-1} \\
+& 0 & & 1 \\
+& & \E_{j-i-1} \\
+& 1 & & 0 \\
+& & & & \E_{n-j}
+\end{bmatrix} \begin{bmatrix}
+\A_1 \\ \a_i \\ \A_2 \\ \a_j \\ \A_3
+\end{bmatrix} = \begin{bmatrix}
+\A_1 \\ \a_j \\ \A_2 \\ \a_i \\ \A_3
+\end{bmatrix},
+\]即\(\A\)交换\(i\)、\(j\)两行.
+
+用\(n\)阶矩阵\(\P(i(c))\)左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
+\P(i(c)) \A = \begin{bmatrix}
+\E_{i-1} \\
+& c \\
+& & \E_{n-i}
+\end{bmatrix} \begin{bmatrix}
+\A_1 \\ \a_i \\ \A_2
+\end{bmatrix} = \begin{bmatrix}
+\A_1 \\ c \a_i \\ a_2
+\end{bmatrix},
+\]即用一非零数\(c\)乘以第\(i\)行.
+
+用\(n\)阶矩阵\(\P(i,j(k))\)（\(i < j\)）左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
+\P(i,j(k)) \A = \begin{bmatrix}
+\E_{i-1} \\
+& 1 & & k \\
+& & \E_{j-i-1} \\
+& 0 & & 1 \\
+& & & & \E_{n-j}
+\end{bmatrix} \begin{bmatrix}
+\A_1 \\ \a_i \\ \A_2 \\ \a_j \\ \A_3
+\end{bmatrix} = \begin{bmatrix}
+\A_1 \\ \a_i + k \a_j \\ \A_2 \\ \a_j \\ \A_3
+\end{bmatrix},
+\]即把\(\A\)第\(j\)行的\(k\)倍加到第\(i\)行.
+\end{proof}
+\end{property}
+
+\begin{property}
+初等矩阵可逆.
+\end{property}
+
+\begin{theorem}
+设\(\A=(a_{ij})_n\)，则\(\A\)可逆的充要条件是：\(\A\)可经一系列初等行变换化为单位矩阵\(\E_n\)，即\(\A \cong \E_n\).
+\begin{proof}
+\def\Ps{\P_t \P_{t-1} \dotsm \P_2 \P_1}
+存在与\(t\)次初等行变换对应的\(t\)个初等矩阵\(\P_t,\P_{t-1},\dotsc,\P_2,\P_1\)，使\[
+\A \to \E_n = \Ps \A,
+\]则\(\A\)可逆且\(\A^{-1} = \Ps\).
+
+对矩阵\((\A,\E_n)\)作以上初等行变换，则\begin{align*}
+(\A,\E_n) \to &\Ps(\A,\E_n) = \A^{-1}(\A,\E_n) \\
+&= (\A^{-1}\A,\A^{-1}\E_n) = (\E_n,\A^{-1}).
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+如果方阵\(\A\)经\(t\)次初等行变换为\(\E_n\)，%
+那么同样的初等行变换会将\(\E_n\)变为\(\A^{-1}\).
+\end{corollary}
+
+\subsection{应用初等变换求解逆矩阵}
+\begin{corollary}
+可逆矩阵\(\A\)可以表示成若干个初等矩阵的乘积.
+\end{corollary}
+
+\begin{corollary}
+\(n\)阶方阵\(\A\)可逆的充要条件是：\(\A\)可经过一系列初等列变换变为\(\E_n\)，%
+且同样的初等列变换将\(\begin{bmatrix}\A\\\E_n\end{bmatrix}\)变为
+\(\begin{bmatrix}\E_n\\\A^{-1}\end{bmatrix}\).
+\end{corollary}
+
+\begin{theorem}
+设\(\A\)与\(\B\)都是\(s \times n\)矩阵，则\(\A\)与\(\B\)等价的充要条件是：存在\(s\)阶可逆矩阵\(\P\)与\(n\)阶可逆矩阵\(\Q\)，使得\(\B=\P\A\Q\).
+\end{theorem}
+
+\begin{example}
+初等矩阵的逆：
+\begin{enumerate}
+\item \([\P(i,j)]^{-1}=\P(i,j)\)
+\item \([\P(i(c))]^{-1}=\P(i(c^{-1}))\)
+\item \([\P(i,j(k))]^{-1}=\P(i,j(-k))\)
+\end{enumerate}
+\end{example}
+
+\begin{example}
+设\(\A\)和\(\B\)都是可逆矩阵，证明：\(\A\)与\(\B\)等价.
+\end{example}
+
+\section{广义初等变换}
+\subsection{广义初等变换的概念}
+\begin{definition}
+\def\originalmatrix{%
+	\begin{bmatrix}%
+	\A & \B \\
+	\C & \D
+	\end{bmatrix}%
+}%
+\def\r#1{{\color{red}#1}}%
+分块矩阵有以下三种\textbf{广义初等行变换}：
+\def\originalmatrixTail{%
+	\originalmatrix \begin{matrix} m \\ n \end{matrix}%
+}%
+\begin{enumerate}
+\item 交换两行，\[
+\originalmatrixTail \to \begin{bmatrix}
+\C & \D \\
+\A & \B
+\end{bmatrix} = \r{\begin{bmatrix}
+\z & \E_n \\
+\E_m & \z
+\end{bmatrix}} \originalmatrix
+\]
+
+\item 用一个可逆矩阵\(\P_m\)左乘某一行，\[
+\originalmatrixTail \to \begin{bmatrix}
+\P\A & \P\B \\
+\C & \D
+\end{bmatrix} = \r{\begin{bmatrix}
+\P & \z \\
+\z & \E_n
+\end{bmatrix}} \originalmatrix
+\]
+
+\item 用一个矩阵\(\Q_{n \times m}\)左乘某一行后加到另一行，\[
+\originalmatrixTail \to \begin{bmatrix}
+\A & \B \\
+\C+\Q\A & \D+\Q\B
+\end{bmatrix} = \r{\begin{bmatrix}
+\E_m & \z \\
+\Q & \E_n
+\end{bmatrix}} \originalmatrix
+\]
+\end{enumerate}
+
+类似地，有\textbf{广义初等列变换}：
+\def\originalmatrixHead{%
+	\overset{\begin{matrix} s & t \end{matrix}}{ \originalmatrix }%
+}%
+\begin{enumerate}
+\item 交换两列，\[
+\originalmatrixHead \to \begin{bmatrix}
+\B & \A \\
+\D & \C
+\end{bmatrix} = \originalmatrix \r{\begin{bmatrix}
+\z & \E_s \\
+\E_t & \z
+\end{bmatrix}}
+\]
+
+\item 用一个可逆矩阵\(\P_t\)右乘某一列，\[
+\originalmatrixHead \to \begin{bmatrix}
+\A & \B \P \\
+\C & \D \P
+\end{bmatrix} = \originalmatrix \r{\begin{bmatrix}
+\E_s & \z \\
+\z & \P
+\end{bmatrix}}
+\]
+
+\item 用一个矩阵\(\Q_{t \times s}\)右乘某一列后加到另一列，\[
+\originalmatrixHead \to \begin{bmatrix}
+\A + \B \Q & \B \\
+\C + \D \Q & \D
+\end{bmatrix} = \originalmatrix \r{\begin{bmatrix}
+\E_s & \z \\
+\Q & \E_t
+\end{bmatrix}}
+\]
+\end{enumerate}
+
+广义初等行变换与广义初等列变换统称为\textbf{广义初等变换}.
+\end{definition}
+
+类比于初等矩阵，我们定义分块初等矩阵如下：
+\begin{definition}
+将\(n\)阶单位矩阵\(\E\)分为\(m\)块后，进行\emph{一次}广义初等变换所得的矩阵称为\textbf{分块初等矩阵}.
+\end{definition}
+
+\begin{property}
+分块初等矩阵都是可逆矩阵.
+\end{property}
+
+\subsection{Schur定理}
+\begin{theorem}[Schur定理]\label{theorem:逆矩阵.Schur定理}
+设\(\A\)是\(m\)阶可逆矩阵，\(\B,\C,\D\)分别是\(m \times p, n \times m, n \times p\)矩阵，则有\begin{gather}
+\begin{bmatrix}
+\E_m & \z \\
+-\C\A^{-1} & \E_n
+\end{bmatrix} \begin{bmatrix}
+\A & \B \\
+\C & \D
+\end{bmatrix} = \begin{bmatrix}
+\A & \B \\
+\z & \D - \C \A^{-1} \B
+\end{bmatrix},
+\\
+\begin{bmatrix}
+\A & \B \\
+\C & \D
+\end{bmatrix} \begin{bmatrix}
+\E_m & -\A^{-1} \B \\
+\z & \E_p
+\end{bmatrix} = \begin{bmatrix}
+\A & \z \\
+\C & \D - \C \A^{-1} \B
+\end{bmatrix},
+\\
+\begin{bmatrix}
+\E_m & \z \\
+-\C \A^{-1} & \E_n
+\end{bmatrix} \begin{bmatrix}
+\A & \B \\
+\C & \D
+\end{bmatrix} \begin{bmatrix}
+\E_m & -\A^{-1} \B \\
+\z & \E_p
+\end{bmatrix} = \begin{bmatrix}
+\A & \z \\
+\z & \D - \C \A^{-1} \B
+\end{bmatrix},
+\end{gather}
+其中\(\D - \C \A^{-1} \B\)称为矩阵\(\begin{bmatrix} \A & \B \\ \C & \D \end{bmatrix}\)关于\(\A\)的\DefineConcept{Schur补}.
+\end{theorem}
+可以看到只要\(\A\)可逆，就能通过初等分块矩阵直接对分块矩阵进行分块对角化，而在操作过程中就把一些原本不为0的分块矩阵变成了零矩阵，这个过程可以形象地称为“矩阵打洞”，即让矩阵出现尽可能多的0.
+
+利用\hyperref[theorem:逆矩阵.Schur定理]{Schur定理}可以证明下述行列式降阶定理：
+\begin{theorem}[行列式第一降阶定理]\label{theorem:逆矩阵.行列式第一降阶定理}
+\def\M{\mat{M}}
+设\(\M = \begin{bmatrix}
+\A & \B \\
+\C & \D
+\end{bmatrix}\)是方阵.\begin{enumerate}
+\item 若\(\A\)可逆，则\[
+\abs{\M} = \abs{\A} \abs{\D - \C \A^{-1} \B};
+\]
+
+\item 若\(\D\)可逆，则\[
+\abs{\M} = \abs{\D} \abs{\A - \B \D^{-1} \C};
+\]
+
+\item 若\(\A,\D\)均可逆，则\[
+\abs{\A} \abs{\D - \C \A^{-1} \B}
+= \abs{\D} \abs{\A - \B \D^{-1} \C}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+\def\M{\mat{M}}
+求解行列式\(\det \M\)，其中\[
+\M = \begin{bmatrix}
+1+a_1 b_1 & a_1 b_2 & \dots & a_1 b_n \\
+a_2 b_1 & 1+a_2 b_2 & \dots & a_2 b_n \\
+\vdots & \vdots & & \vdots \\
+a_n b_1 & a_n b_2 & \dots & 1+a_n b_n
+\end{bmatrix}.
+\]
+\begin{solution}
+记\(\a = (\v{a}{n})^T, \b = (\v{b}{n})\)，则\(\M = \E_n + \a\b\).
+注意到\(\M = \E_n + \a\b\)形似某个矩阵的Schur补，因此考虑下面的矩阵：\[
+\A = \begin{bmatrix}
+1 & -\b \\
+\a & \E_n
+\end{bmatrix}.
+\]由于\[
+\begin{bmatrix}
+1 & \z \\
+-\a & \E_n
+\end{bmatrix} \A
+= \begin{bmatrix}
+1 & \z \\
+-\a & \E_n
+\end{bmatrix} \begin{bmatrix}
+1 & -\b \\
+\a & \E_n
+\end{bmatrix} = \begin{bmatrix}
+1 & -\b \\
+\z & \M
+\end{bmatrix},
+\]且\[
+\begin{bmatrix}
+1 & \b \\
+\z & \E_n
+\end{bmatrix} \A
+= \begin{bmatrix}
+1 & \b \\
+\z & \E_n
+\end{bmatrix} \begin{bmatrix}
+1 & -\b \\
+\a & \E_n
+\end{bmatrix} = \begin{bmatrix}
+1+\a\b & \z \\
+\a & \E_n
+\end{bmatrix},
+\]所以\[
+\abs{\A} = \abs{\M} = \abs{1+\a\b}
+= 1+\a\b = 1 + \sum\limits_{k=1}^n a_k b_k.
+\]
+\end{solution}
+\end{example}

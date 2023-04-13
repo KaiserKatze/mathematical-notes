@@ -1,0 +1,793 @@
+\chapter{反常积分}
+有一些实际问题中，常会遇到积分区间为无穷区间\((-\infty,+\infty)\)，或者被积函数为无界函数的积分，它们已经不属于前面所说的定积分了.
+因此，我们对定积分作如下两种推广，从而形成反常积分（或广义积分）的概念.
+相对地，原本的定积分又称作常义积分.
+
+\section{无穷限的反常积分的概念}
+\subsection{无穷限的反常积分的概念}
+\begin{definition}\label{definition:定积分.无穷限的反常积分的定义}
+设函数\(f(x)\)在区间\([a,+\infty)\)上连续，取\(t > a\).
+
+如果极限\[
+\lim\limits_{t \to +\infty} \int_a^t f(x) \dd{x}
+\]存在，则称此极限为函数\(f(x)\)在无穷区间\([a,+\infty)\)上的\textbf{反常积分}，记作\[
+\int_a^{+\infty} f(x) \dd{x},
+\]即\[
+\int_a^{+\infty} f(x) \dd{x} = \lim\limits_{t \to +\infty} \int_a^t f(x) \dd{x}.
+\]这时也称\textbf{反常积分}\(\int_a^{+\infty} f(x) \dd{x}\)\textbf{收敛}.
+
+如果上述极限不存在，则函数\(f(x)\)在无穷区间\([a,+\infty)\)上的反常积分就没有意义，习惯上称为\textbf{反常积分}\(\int_a^{+\infty} f(x) \dd{x}\)\textbf{发散}，这时记号\(\int_a^{+\infty} f(x) \dd{x}\)不再表示数值了.
+
+类似地，设函数\(f(x)\)在区间\((-\infty,b]\)上连续，取\(t < b\).
+
+如果极限\[
+\lim\limits_{t \to -\infty} \int_t^b f(x) \dd{x}
+\]存在，则称此极限为函数\(f(x)\)在无穷区间\((-\infty,b]\)上的反常积分，记作\[
+\int_{-\infty}^b f(x) \dd{x},
+\]即\[
+\int_{-\infty}^b f(x) \dd{x} = \lim\limits_{t \to -\infty} \int_t^b f(x) \dd{x}
+\]这时也称\textbf{反常积分}\(\int_{-\infty}^b f(x) \dd{x}\)\textbf{收敛}.
+
+如果上述极限不存在，则称\textbf{反常积分}\(\int_{-\infty}^b f(x) \dd{x}\)\textbf{发散}.
+
+\vspace{.5cm}
+
+设函数\(f(x)\)在区间\((-\infty,\infty)\)上连续，如果反常积分\[
+\int_{-\infty}^0 f(x) \dd{x}
+\quad\text{和}\quad
+\int_0^{+\infty} f(x) \dd{x}
+\]都收敛，则称上述两个反常积分之和为函数\(f(x)\)在无穷区间\((-\infty,\infty)\)上的\textbf{反常积分}，记作\[
+\int_{-\infty}^{+\infty} f(x) \dd{x},
+\]即\begin{align*}
+\int_{-\infty}^{+\infty} f(x) \dd{x}
+&= \int_{-\infty}^0 f(x) \dd{x} + \int_0^{+\infty} f(x) \dd{x} \\
+&= \lim\limits_{t \to -\infty} \int_t^0 f(x) \dd{x}
+	+ \lim\limits_{t \to +\infty} \int_0^t f(x) \dd{x}.
+\end{align*}
+这时也称\textbf{反常积分}\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)\textbf{收敛}；否则就称\textbf{反常积分}\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)\textbf{发散}.
+
+上述反常积分统称为\textbf{无穷限的反常积分}.
+\end{definition}
+
+\subsection{无穷限的反常积分的性质}
+由上述定义及牛顿-莱布尼茨公式，可得如下结果.
+\begin{theorem}\label{theorem:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分}
+设函数\(F(x)\)为\(f(x)\)在\([a,+\infty)\)上的一个原函数，若\(\lim\limits_{x \to +\infty} F(x)\)存在，则反常积分\[
+\int_a^{+\infty} f(x) \dd{x} = \lim\limits_{x \to +\infty} F(x) - F(a);
+\]若\(\lim\limits_{x\to+\infty} F(x)\)不存在，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+
+如果记\(F(+\infty)=\lim\limits_{x \to +\infty} F(x)\)，\([F(x)]_a^{+\infty} = F(+\infty) - F(a)\)，则当\(F(+\infty)\)存在时，\[
+\int_a^{+\infty} f(x) \dd{x} = [F(x)]_a^{+\infty};
+\]当\(F(+\infty)\)不存在时，反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+
+类似地，若在\((-\infty,b]\)上\(F'(x)=f(x)\)，则当\(F(-\infty)\)存在时，\[
+\int_{-\infty}^b f(x) \dd{x} = [F(x)]_{-\infty}^b;
+\]当\(F(-\infty)\)不存在时，反常积分\(\int_{-\infty}^b f(x) \dd{x}\)发散.
+
+若在\((-\infty,+\infty)\)内\(F'(x)=f(x)\)，则当\(F(-\infty)\)和\(F(+\infty)\)都存在时，\[
+\int_{-\infty}^{+\infty} f(x) \dd{x} = [F(x)]_{-\infty}^{+\infty};
+\]当\(F(-\infty)\)与\(F(+\infty)\)有一个不存在时，反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)发散.
+\end{theorem}
+
+\begin{example}
+计算反常积分\(\int_{-\infty}^{+\infty} \frac{\dd{x}}{1+x^2}\).
+\begin{solution}
+因为\(\arctan x\)是\(\frac{1}{1+x^2}\)的一个原函数，所以\[
+\begin{split}
+\int_{-\infty}^{+\infty} \frac{\dd{x}}{1+x^2}
+&= [\arctan x]_{-\infty}^{+\infty} \\
+&= \lim\limits_{x\to+\infty} \arctan x
+	-\lim\limits_{x\to-\infty} \arctan x \\
+&= \frac{\pi}{2} - \left(-\frac{\pi}{2}\right) = \pi.
+\end{split}
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算反常积分\(\int_0^{+\infty} t e^{-pt} \dd{t}\)，其中\(p\)是常数，且\(p>0\).
+\begin{solution}
+由题有\begin{align*}
+\int_0^{+\infty} t e^{-pt} \dd{t}
+&= \left[ \int t e^{-pt} \dd{t} \right]_0^{+\infty}
+= \left[ -\frac{1}{p} \int t \dd(e^{-pt}) \right]_0^{+\infty} \\
+&= \left[ -\frac{t}{p} e^{-pt} + \frac{1}{p} \int e^{-pt} \dd{t} \right]_0^{+\infty} \\
+&= \left[ -\frac{t}{p} e^{-pt} \right]_0^{+\infty} - \left[ \frac{1}{p^2} e^{-pt} \right]_0^{+\infty} \\
+&= -\frac{1}{p} \lim\limits_{t\to+\infty} t e^{-pt} - 0 - \frac{1}{p^2}(0-1) = \frac{1}{p^2}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\subsection{p积分}
+\begin{example}[p积分]\label{example:定积分.p积分}
+试证：反常积分\[
+\int_a^{+\infty} \frac{\dd{x}}{x^p} \quad(a>0)
+\]\begin{enumerate}
+\item 当\(p > 1\)时收敛；
+\item 当\(p \leqslant 1\)时发散.
+\end{enumerate}
+\begin{proof}
+\def\arraystretch{1.5}
+当\(p=1\)时，\[
+\int_a^{+\infty} \frac{\dd{x}}{x^p}
+= \int_a^{+\infty} \frac{\dd{x}}{x}
+= [\ln x]_a^{+\infty} = +\infty;
+\]当\(p\neq1\)时，\[
+\int_a^{+\infty} \frac{\dd{x}}{x^p}
+= \left[ \frac{x^{1-p}}{1-p} \right]_a^{+\infty}
+= \left\{ \begin{array}{cl}
++\infty, & p<1, \\
+\frac{a^{1-p}}{p-1}, & p>1.
+\end{array} \right.
+\]
+综上，当\(p > 1\)时，这反常积分收敛于\(\frac{a^{1-p}}{p-1}\)；
+当\(p\leqslant1\)时，这反常积分发散.
+\end{proof}
+\end{example}
+
+\section{无界函数的反常积分的概念}
+如果函数\(f\)在点\(a\)的任一邻域内都无界，那么点\(a\)称为函数\(f\)的\textbf{瑕点}（也称无穷间断点、\textbf{无界间断点}）.
+无界函数的反常积分又称为\textbf{瑕积分}.
+\subsection{无界函数的反常积分的概念}
+\begin{definition}\label{definition:定积分.无界函数的反常积分的定义}
+设函数\(f\)在\((a,b]\)上连续，点\(a\)为\(f\)的瑕点.取\(t > a\)，如果极限\[
+\lim\limits_{t \to a^+} \int_t^b f(x) \dd{x}
+\]存在，则称此极限为函数\(f(x)\)在\((a,b]\)上的\textbf{反常积分}，仍然记作\(\int_a^b f(x) \dd{x}\)，即\[
+\int_a^b f(x) \dd{x} = \lim\limits_{t \to a^+} \int_t^b f(x) \dd{x}.
+\]这时也称反常积分\(\int_a^b f(x) \dd{x}\)\textbf{收敛}.
+如果上述极限不存在，则称反常积分\textbf{发散}.
+
+类似地，设函数\(f\)在\([a,b)\)上连续，点\(b\)为\(f\)的瑕点.取\(t < b\)，如果极限\[
+\lim\limits_{t \to b^-} \int_a^t f(x) \dd{x}
+\]存在，则定义\[
+\int_a^b f(x) \dd{x}
+= \lim\limits_{t \to b^-} \int_a^t f(x) \dd{x};
+\]否则，就称反常积分\(\int_a^b f(x) \dd{x}\)\textbf{发散}.
+
+设函数\(f\)在\([a,c)\cup(c,b]\)上连续，点\(c\)为\(f\)的瑕点.如果两个反常积分\[
+\int_a^c f(x) \dd{x}
+\quad\text{与}\quad
+\int_c^b f(x) \dd{x}
+\]都收敛，则定义\[
+\int_a^b f(x) \dd{x}
+= \int_a^c f(x) \dd{x} + \int_c^b f(x) \dd{x}
+= \lim\limits_{t \to c^-} \int_a^t f(x) \dd{x}
+	+ \lim\limits_{t \to c^+} \int_t^b f(x) \dd{x};
+\]否则，就称反常积分\(\int_a^b f(x) \dd{x}\)\textbf{发散}.
+\end{definition}
+
+\subsection{无界函数的反常积分的性质}
+计算无界函数的反常积分，也可借助于牛顿-莱布尼茨公式.
+\begin{theorem}\label{theorem:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分}
+设\(x=a\)是\(f\)的瑕点，在\((a,b]\)上\(F'(x) = f(x)\)，如果极限\[
+F(a^+) = \lim\limits_{x \to a^+} F(x)
+\]存在，则反常积分\[
+\int_a^b f(x) \dd{x}
+= F(b) - \lim\limits_{x \to a^+} F(x)
+= F(b) - F(a^+);
+\]如果\(F(a^+)\)不存在，则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+
+我们仍用记号\([F(x)]_a^b\)来表示\(F(b) - F(a^+)\)，从而形式上仍有\[
+\int_a^b f(x) \dd{x} = [F(x)]_a^b.
+\]
+\end{theorem}
+对于\(f\)在\([a,b)\)上连续，\(b\)为瑕点的反常积分，也有类似的计算公式.
+
+\begin{example}
+计算反常积分\[
+\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}\quad(a>0).
+\]
+\begin{solution}
+因为\[
+\lim\limits_{x \to a^-} \frac{1}{\sqrt{a^2-x^2}} = +\infty,
+\]所以点\(a\)是瑕点，于是\[
+\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}
+= \left[ \arcsin\frac{x}{a} \right]_0^a
+= \lim\limits_{x \to a^-} \arcsin\frac{x}{a} - 0 = \frac{\pi}{2}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+讨论反常积分\(\int_{-1}^1 \frac{\dd{x}}{x^2}\)的收敛性.
+\begin{solution}
+被积函数\(f(x) = \frac{1}{x^2}\)在积分区间\([-1,1]\)上除\(x=0\)外连续，且\[
+\lim\limits_{x\to0} \frac{1}{x^2} = +\infty.
+\]
+
+由于\[
+\int_{-1}^0 \frac{\dd{x}}{x^2}
+= \left[-\frac{1}{x}\right]_{-1}^0
+= \lim\limits_{x\to0^-} \left(-\frac{1}{x}\right) - 1
+= +\infty,
+\]即反常积分\(\int_{-1}^0 \frac{\dd{x}}{x^2}\)发散，所以反常积分\(\int_{-1}^1 \frac{\dd{x}}{x^2}\)发散.
+\end{solution}
+
+\textbf{注意}\hspace{1em}如果疏忽了\(x=0\)是被积函数的瑕点，就可能得到以下错误结果：\[
+\int_{-1}^1 \frac{\dd{x}}{x^2}
+= \left[ -\frac{1}{x} \right]_{-1}^1
+= -1 - 1 = -2.
+\]
+\end{example}
+
+\subsection{q积分}
+\begin{example}[q积分]\label{example:定积分.q积分}
+试证：反常积分\[
+\int_a^b \frac{\dd{x}}{(x-a)^q} \quad(a<b)
+\]\begin{enumerate}
+\item 当\(0 < q < 1\)时收敛；
+\item 当\(q \geqslant 1\)时发散.
+\end{enumerate}
+\begin{proof}
+当\(q=1\)时，\[
+\int_a^b \frac{\dd{x}}{(x-a)^q}
+= \int_a^b \frac{\dd{x}}{x-a}
+= [\ln(x-a)]_a^b
+= \ln(b-a) - \lim\limits_{x \to a^+} \ln(x-a) = +\infty.
+\]
+
+\def\arraystretch{1.5}
+当\(q\neq1\)时，\[
+\int_a^b \frac{\dd{x}}{(x-a)^q}
+= \left[ \frac{(x-a)^{1-q}}{1-q} \right]_a^b
+= \left\{ \begin{array}{cc}
+\frac{(b-a)^{1-q}}{1-q}, & 0<q<1, \\
++\infty, & q>1.
+\end{array} \right.
+\]
+综上，当\(0<q<1\)时，这反常积分收敛于\(\frac{(b-a)^{1-q}}{1-q}\)；
+当\(q\geqslant1\)时，这反常积分发散.
+\end{proof}
+\end{example}
+
+设反常积分\(\int_a^b f(x) \dd{x}\)收敛，其中被积函数\(f \in C(a,b)\)（\(a\)可以是\(-\infty\)，\(b\)可以是\(+\infty\)，\(a\)、\(b\)也可以是\(f(x)\)的瑕点）.
+对这样的反常积分，在另加换元函数单调的假定下，可以像定积分一样作换元.
+
+\begin{example}
+求反常积分\(\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}\).
+\begin{solution}
+这里，积分上限为\(+\infty\)，且下限\(x=0\)为被积函数的瑕点.
+
+令\(\sqrt{x} = t\)，则\(x = t^2\)，\(x\to0^+\)时\(t\to0\)，\(x\to+\infty\)时\(t\to+\infty\).于是\[
+\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}
+= \int_0^{+\infty} \frac{2t\dd{t}}{t(t^2+1)^{3/2}}
+= 2 \int_0^{+\infty} \frac{\dd{t}}{(t^2+1)^{3/2}}.
+\]
+再令\(t = \tan u\)，则\(u = \arctan t\)，\(t=0\)时\(u=0\)，\(t\to+\infty\)时，\(u\to\pi/2\).于是\[
+\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}
+= 2 \int_0^{\pi/2} \frac{\sec^2 u \dd{u}}{\sec^3 u}
+= 2 \int_0^{\pi/2} \cos u \dd{u}
+= 2.
+\]
+\end{solution}
+本例如用变换\(t = 1/x\)或\(t = 1/(x+1)\)，计算会更简单些.
+\end{example}
+
+\begin{example}\label{example:定积分.伽马函数}
+计算反常积分\[
+I_n = \int_0^{+\infty} x^n e^{-x} \dd{x}
+\quad(n\in\mathbb{N}).
+\]
+\begin{solution}
+使用分部积分法\[
+\begin{split}
+I_n
+&= -\int_0^{+\infty} x^n \dd(e^{-x})
+= -\left[ x^n e^{-x} \right]_0^{+\infty}
+	+ \int_0^{+\infty} e^{-x} \dd(x^n) \\
+&= -\lim\limits_{x\to+\infty} \frac{x^n}{e^x}
+	+ n \int_0^{+\infty} x^{n-1} e^{-x} \dd{x}
+= n \cdot I_{n-1},
+\end{split}
+\]那么\(I_n = n! \cdot I_0\).
+又因为\[
+I_0 = \int_0^{+\infty} e^{-x} \dd{x}
+= -\left[ e^{-x} \right]_0^{+\infty}
+= 1,
+\]所以\(I_n = n!\).
+\end{solution}
+\end{example}
+
+\begin{example}
+证明反常积分\[
+f(p) = \int_2^{+\infty} \frac{1}{x \ln^p x} \dd{x}
+\]当\(p>1\)时收敛，当\(p\leqslant1\)时发散.
+\end{example}
+可以算出，当\(p>1\)时，\(\int_2^{+\infty} \frac{1}{x \ln^p x} \dd{x}
+= -\frac{\ln^{1-p}2}{1-p}\).
+
+\section{反常积分的审敛法}
+反常积分的收敛性，可以通过求被积函数的原函数，然后按定义取极限，根据极限的存在与否来判定.
+但在本节中，我们可以建立不通过被积函数的原函数判定反常积分收敛性的判定法.
+
+\subsection{无穷限反常积分的审敛法}
+\begin{theorem}\label{theorem:定积分.无穷限反常积分的审敛法引理}
+设函数\(f(x)\)在区间\([a,+\infty)\)上连续，且\(f(x) \geqslant 0\).若函数\[
+F(x)=\int_a^x f(t) \dd{t}
+\]在\([a,+\infty)\)上有上界，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+\end{theorem}
+
+\begin{theorem}[比较审敛原理]\label{theorem:定积分.无穷限反常积分的比较审敛原理}
+设函数\(f(x)\)、\(g(x)\)在区间\([a,+\infty)\)上连续.
+如果\[
+0 \leqslant f(x) \leqslant g(x) \quad (a \leqslant x < +\infty),
+\]并且\(\int_a^{+\infty} g(x) \dd{x}\)收敛，则\(\int_a^{+\infty} f(x) \dd{x}\)也收敛；
+如果\[
+0 \leqslant g(x) \leqslant f(x) \quad (a \leqslant x < +\infty),
+\]并且\(\int_a^{+\infty} g(x) \dd{x}\)发散，则\(\int_a^{+\infty} f(x) \dd{x}\)也发散.
+\begin{proof}
+设\(a < t < +\infty\).由\(0 \leqslant f(x) \leqslant g(x)\)及\(\int_a^{+\infty} g(x) \dd{x}\)收敛，得\[
+\int_a^t f(x) \dd{x}
+\leqslant
+\int_a^t g(x) \dd{x}
+\leqslant
+\int_a^{+\infty} g(x) \dd{x}.
+\]这表明作为积分上限\(t\)的函数\[
+F(t) = \int_a^t f(x) \dd{x}
+\]在区间\([a,+\infty)\)上有上界.由\cref{theorem:定积分.无穷限反常积分的审敛法引理} 可知反常积分\(\int_a^{+\infty} f(x) \dd{x}\)也收敛.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}[比较审敛法]\label{theorem:定积分.无穷限反常积分的比较审敛法}
+设函数\(f(x)\)在区间\([a,+\infty)\ (a>0)\)上连续，且\(f(x) \geqslant 0\).
+如果存在常数\(M>0\)及\(p>1\)，使得\[
+f(x) \leqslant \frac{M}{x^p} \quad (a \leqslant x < +\infty),
+\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛；
+如果存在常数\(N>0\)，使得\[
+f(x) \geqslant \frac{N}{x} \quad (a \leqslant x < +\infty),
+\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\end{theorem}
+
+\begin{theorem}[极限审敛法]\label{theorem:定积分.无穷限反常积分的极限审敛法}
+设函数\(f(x)\)在区间\([a,+\infty)\)上连续，且\(f(x) \geqslant 0\).
+如果存在常数\(p > 1\)，使得\[
+\lim\limits_{x \to +\infty} x^p f(x)
+\]存在，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛；
+如果\[
+\lim\limits_{x \to +\infty} x f(x) = d \in (0,+\infty],
+\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\end{theorem}
+
+\begin{theorem}\label{theorem:定积分.绝对收敛的无穷限反常积分必收敛}
+设函数\(f(x)\)在区间\([a,+\infty)\)上连续.
+如果反常积分\[
+\int_a^{+\infty} \abs{f(x)} \dd{x}
+\]收敛，则反常积分\[
+\int_a^{+\infty} f(x) \dd{x}
+\]也收敛.
+\end{theorem}
+通常称满足上述定理条件的反常积分\(\int_a^{+\infty} f(x) \dd{x}\)\textbf{绝对收敛}.
+于是，上述定理可简单地表述为：
+绝对收敛的反常积分\(\int_a^{+\infty} f(x) \dd{x}\)必定收敛.
+
+\begin{example}
+设反常积分\(\int_1^{+\infty} f^2(x) \dd{x}\)收敛.
+证明：反常积分\(\int_1^{+\infty} \frac{f(x)}{x} \dd{x}\)绝对收敛.
+\begin{proof}
+因为根据\cref{theorem:不等式.基本不等式1} 有\[
+\frac{\abs{f(x)}}{x} \leqslant \frac{1}{2} \left[
+	\abs{f(x)}^2 + \frac{1}{x^2}
+\right]
+= \frac{1}{2} f^2(x) + \frac{1}{2x^2}
+\]成立，且\(\int_1^{+\infty} f^2(x) \dd{x}\)和\(\int_1^{+\infty} \frac{1}{x^2} \dd{x}\)都收敛，%
+故\(\int_1^{+\infty} \abs{\frac{f(x)}{x}} \dd{x}\)收敛.
+\end{proof}
+\end{example}
+
+\subsection{无界函数的反常积分的审敛法}
+\begin{theorem}[比较审敛法]\label{theorem:定积分.无界函数的反常积分的比较审敛法}
+设函数\(f(x)\)在区间\((a,b]\)上连续，且\(f(x) \geqslant 0\)，\(x=a\)为\(f(x)\)的瑕点.
+如果存在常数\(M > 0\)及\(q < 1\)，使得\[
+f(x) \leqslant \frac{M}{(x-a)^q} \quad (a < x \leqslant b)
+\]则反常积分\(\int_a^b f(x) \dd{x}\)收敛；
+如果存在常数\(N > 0\)，使得\[
+f(x) \geqslant \frac{N}{x - a} \quad (a < x \leqslant b)
+\]则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{theorem}
+
+\begin{theorem}[极限审敛法]\label{theorem:定积分.无界函数的反常积分的极限审敛法}
+设函数\(f(x)\)在区间\((a,b]\)上连续，且\(f(x) \geqslant 0\)，\(x=a\)为\(f(x)\)的瑕点.
+如果存在常数\(q \in (0,1)\)，使得\[
+\lim\limits_{x \to a^+} (x-a)^q f(x)
+\]存在，则反常积分\(\int_a^b f(x) \dd{x}\)收敛；
+如果\[
+\lim\limits_{x \to a^+} (x-a) f(x) = d \in (0,+\infty],
+\]则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{theorem}
+
+\section{贝塔函数}
+\subsection{贝塔函数的定义}
+\begin{definition}
+含参反常积分\begin{equation}
+\int_0^1 t^{p-1} (1-t)^{q-1} \dd{t}
+\quad(p,q>0)
+\end{equation}称为\(B\)函数（或\textit{Beta}函数，贝塔函数，Euler第一型积分），记作\(B(p,q)\).
+\end{definition}
+
+\section{伽马函数}
+在前面我们已经举例讨论了一个特殊的反常积分\cref{example:定积分.伽马函数} .
+现在我们来进一步讨论\[
+\int_0^{+\infty} t^{s-1} e^{-t} \dd{t} \quad(s\in\mathbb{R}^+)
+\]的收敛性问题.
+这个积分的积分区间为\([0,+\infty)\)，又当\(s-1<0\)时，\(t=0\)是被积函数的瑕点.
+为此，分别讨论下列两个积分\[
+I_1 = \int_0^1 t^{s-1} e^{-t} \dd{t},
+\qquad
+I_2 = \int_1^{+\infty} t^{s-1} e^{-t} \dd{t}
+\]的收敛性.
+
+当\(s \geqslant 1\)时，\(I_1\)是定积分；
+当\(0 < s < 1\)时，因为\[
+t^{s-1} \cdot e^{-t} = \frac{1}{t^{1-s}} \cdot \frac{1}{e^t} < \frac{1}{t^{1-s}},
+\]而\(1-s < 1\)，根据\hyperref[theorem:定积分.无界函数的反常积分的比较审敛法]{无界函数反常积分的比较审敛法}，反常积分\(I_1\)收敛.
+
+又因为\[
+\lim\limits_{t\to+\infty} t^2 (e^{-t} t^{s-1})
+= \lim\limits_{t\to+\infty} \frac{t^{s+1}}{e^t} = 0,
+\]根据\hyperref[theorem:定积分.无穷限反常积分的极限审敛法]{无穷限反常积分的极限审敛法}，反常积分\(I_2\)也收敛.
+
+综上所述，反常积分\(\int_0^{+\infty} e^{-t} t^{s-1} \dd{t}\)对\(s > 0\)均收敛.
+
+\subsection{伽马函数的定义}
+\begin{definition}
+含参反常积分\begin{equation}
+\int_0^{+\infty} t^{s-1} e^{-t} \dd{t}
+\quad (s>0)
+\end{equation}称为\(\Gamma\)函数（或\(\Gamma\)函数，伽马函数，Euler第二型积分），记作\(\Gamma(s)\).
+\end{definition}
+
+\(\Gamma\)函数的图形如\cref{figure:定积分.伽马函数} 所示.
+
+\begin{figure}%伽马函数
+\centering
+\begin{tikzpicture}
+% Plot[Gamma[s], {s, 0, 5}, PlotRange -> {0, 6}]
+\begin{axis}[
+xmin=0,xmax=5.1,
+restrict y to domain=-6:6,
+axis lines=middle,
+xlabel={\(x\)},
+ylabel={\(y\)},
+enlarge x limits=0.05,
+enlarge y limits=0.1,
+x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=north},
+y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south east},
+]
+\addplot[color=blue,samples=222,smooth,domain=0:5]{sqrt(2*pi)*x^(x-0.5)*exp(-x)*exp(1/(12*x))};
+\end{axis}
+\end{tikzpicture}
+\caption{\(\Gamma\)函数的图形}
+\label{figure:定积分.伽马函数}
+\end{figure}
+
+特别地，函数\[
+G(s,z) = \int_z^{+\infty} t^{s-1} e^{-t} \dd{t}
+\]称为\DefineConcept{不完全伽马函数}.
+函数\[
+G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
+\]称为\DefineConcept{广义不完全伽马函数}.
+
+\subsection{伽马函数的性质}
+\begin{property}
+\(\Gamma\)函数具有以下性质：
+\begin{enumerate}
+\item \textbf{递推公式}：\begin{equation}
+\Gamma(s+1) = s \Gamma(s) \quad (s > 0).
+\end{equation}
+
+因为\(\Gamma(1) = \int_0^{+\infty} e^{-x} \dd{x} = 1\)，反复运用递推公式，便有\begin{equation}\label{equation:定积分.伽马函数与阶乘的联系}
+\Gamma(n+1) = n! \quad (n\in\mathbb{N}^+),
+\end{equation}所以，我们可以把\(\Gamma\)函数看成是阶乘的推广.
+
+\item 当\(s\to0^+\)时，\(\Gamma(s) \to +\infty\).
+
+\item \(\Gamma\)函数在\(s > 0\)时连续，且有各阶连续导数.
+
+\item \(\Gamma(s) > 0\ (s>0)\).
+
+\item \textbf{余元公式}：\begin{equation}\label{equation:定积分.余元公式}
+\Gamma(s) \cdot \Gamma(1-s) = \frac{\pi}{\sin{\pi s}} \quad (0 < s < 1).
+\end{equation}
+
+当\(s = \frac{1}{2}\)时，由余元公式可得\begin{equation}
+\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}.
+\end{equation}
+
+\item 在\(\Gamma(s) = \int_0^{+\infty} e^{-x} x^{s-1} \dd{x}\)中，作代换\(x = u^2\)，有\begin{equation}\label{equation:定积分.伽马函数.中间步骤1}
+\Gamma(s) = 2 \int_0^{+\infty} e^{-u^2} u^{2s-1} \dd{u}.
+\end{equation}
+再令\(2s-1 = t\)或\(s = (1+t)/2\)，即有\begin{equation}
+\int_0^{+\infty} e^{-u^2} u^t \dd{u}
+= \frac{1}{2} \Gamma\left(\frac{1+t}{2}\right)
+\quad (t > -1).
+\end{equation}
+
+在\labelcref{equation:定积分.伽马函数.中间步骤1} 中，令\(s=1/2\)，得\[
+2\int_0^{+\infty} e^{-u^2} \dd{u}
+= \Gamma\left(\frac{1}{2}\right)
+= \sqrt{\pi},
+\]从而\begin{equation}
+\int_0^{+\infty} e^{-u^2} \dd{u} = \frac{\sqrt{\pi}}{2}.
+\end{equation}
+\end{enumerate}
+\end{property}
+
+\begin{example}
+证明：\[
+\Gamma\left(\frac{2k+1}{2}\right)
+= \frac{1 \times 3 \times 5 \times \dotsm \times (2k-1) \times \sqrt{\pi}}{2^k},
+\]其中\(k\in\mathbb{N}^+\).
+\begin{proof}
+因为\[
+\Gamma\left(\frac{2k+1}{2}\right)
+= \Gamma\left(\frac{2k-1}{2}+1\right)
+= \frac{2k-1}{2} \Gamma\left(\frac{2k-1}{2}\right),
+\]且\(\Gamma(1/2) = \sqrt{\pi}\)，所以\[
+\begin{split}
+\Gamma\left(\frac{2k+1}{2}\right)
+&= \frac{2k-1}{2} \cdot \frac{2k-3}{2} \cdot \dotsm \cdot \frac{3}{2} \cdot \frac{1}{2} \cdot \Gamma\left(\frac{1}{2}\right) \\
+&= \frac{1 \times 3 \times 5 \times \dotsm \times (2k-1) \times \sqrt{\pi}}{2^k}.
+\qedhere
+\end{split}
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+试证：\begin{equation}\label{equation:定积分.伽马函数与双阶乘的联系1}
+2 \times 4 \times 6 \times\dotsm\times (2n) = 2^n \cdot \Gamma(n+1).
+\end{equation}
+\begin{proof}
+由\cref{equation:定积分.伽马函数与阶乘的联系} 有，\[
+\begin{split}
+2 \times 4 \times 6 \times\dotsm\times (2n)
+&= (2 \cdot 1) \times (2 \cdot 2) \times (2 \cdot 3) \times\dotsm\times (2 \cdot n) \\
+&= 2^n \cdot (1 \times 2 \times\dotsm\times n)
+= 2^n \cdot \Gamma(n+1).
+\qedhere
+\end{split}
+\]
+\end{proof}
+\end{example}
+
+
+\begin{example}
+试证：\begin{equation}\label{equation:定积分.伽马函数与双阶乘的联系2}
+1 \times 3 \times 5 \times\dotsm\times (2n-1) = \frac{\Gamma(2n)}{2^{n-1} \cdot \Gamma(n)}.
+\end{equation}
+\begin{proof}
+由\cref{equation:定积分.伽马函数与阶乘的联系} 有，\[
+(2n)! = \Gamma(2n+1) \quad(n\in\mathbb{N}).
+\]又因为\[
+\begin{split}
+(2n)! &= 1 \times 2 \times 3 \times\dotsm\times (2n-1) \times (2n) \\
+&= [1 \times 3 \times 5 \times\dotsm\times (2n-1)]
+	\times [2 \times 4 \times 6 \times\dotsm\times (2n)] \\
+&= [1 \times 3 \times 5 \times\dotsm\times (2n-1)] \times 2^n \cdot \Gamma(n+1),
+\end{split}
+\]所以\[
+1 \times 3 \times 5 \times\dotsm\times (2n-1)
+= \frac{\Gamma(2n+1)}{2^n \cdot \Gamma(n+1)} \\
+= \frac{2n \cdot \Gamma(2n)}{2^n \cdot n\Gamma(n)}
+= \frac{\Gamma(2n)}{2^{n-1} \cdot \Gamma(n)}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+计算定积分\(\int_0^1 x^m \ln^n x \dd{x}\ (n>-1)\).
+\begin{solution}
+直接计算得
+\begin{align*}
+\int_0^1 x^m \ln^n x \dd{x}
+&\xlongequal{t=\ln x}
+\int_{-\infty}^0 e^{mt} t^n \cdot e^t \dd{t} \\
+&\xlongequal{t=-u}
+\int_{+\infty}^0 e^{-(m+1)u} (-u)^n \cdot (-1) \dd{u} \\
+&\xlongequal{s=(m+1)u}
+\int_0^{+\infty} e^{-s} \left(-\frac{s}{m+1}\right)^n \cdot \frac{1}{m+1} \dd{s} \\
+&=
+\frac{(-1)^n}{(m+1)^{n+1}} \int_0^{+\infty} e^{-s} s^n \dd{s} \\
+&=
+\frac{(-1)^n}{(m+1)^{n+1}} \cdot \Gamma(n+1).
+\end{align*}
+于是，当\(n>-1\)时，有\begin{equation}
+\int_0^1 x^m \ln^n x \dd{x}
+= \frac{(-1)^n}{(m+1)^{n+1}} \cdot \Gamma(n+1);
+\end{equation}
+特别地，有\begin{equation}
+\int_0^1 \ln^n x \dd{x}
+= (-1)^n \cdot \Gamma(n+1).
+\end{equation}
+\end{solution}
+\end{example}
+
+\subsection{勒让德倍量公式}
+\begin{example}[勒让德（Legendre）倍量公式]
+试证：\begin{equation}\label{equation:定积分.勒让德倍量公式}
+\sqrt{\pi} \cdot \Gamma(2n) = 2^{2n-1} \cdot \Gamma(n) \cdot \Gamma\left(n+\frac{1}{2}\right).
+\end{equation}
+\end{example}
+
+\subsection{伽马函数的斯特林近似}
+\begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理1}
+对任意的\(x>0\)，有不等式\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理1}
+0 < \left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x}) - 1 < \frac{1}{12}\left(\frac{1}{x}-\frac{1}{x+1}\right).
+\end{equation}
+\begin{proof}
+由于\[
+\ln\frac{1+x}{1-x}
+= 2 \sum\limits_{k=0}^{\infty} \frac{x^{2k+1}}{2k+1}
+\quad(-1<x<1),
+\]所以\begin{align*}
+\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x})
+&= \frac{2x+1}{2} \ln({1+\frac{1}{2x+1}}\Bigg/{1-\frac{1}{2x+1}}) \\
+&= \frac{2x+1}{2} \cdot
+2 \sum\limits_{k=0}^{\infty} \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k+1} \\
+&= \sum\limits_{k=0}^{\infty} \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k},
+\end{align*}从而\[
+\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x}) - 1
+= \frac{1}{3} \left(\frac{1}{2x+1}\right)^2
++ \frac{1}{5} \left(\frac{1}{2x+1}\right)^4
++ \dotsb.
+\]显然上式（当\(x>0\)时）恒大于零；另外，上式右边小于\begin{align*}
+&\hspace{-20pt}
+\frac{1}{3} \left(\frac{1}{2x+1}\right)^2 \left[
+1 + \left(\frac{1}{2x+1}\right)^2 + \left(\frac{1}{2x+1}\right)^4 + \dotsb
+\right] \\
+&= \frac{1}{3} \left(\frac{1}{2x+1}\right)^2 \left[
+1 - \left(\frac{1}{2x+1}\right)^2
+\right]^{-1}
+= \frac{1}{3} \frac{1}{4x^2 + 4x}
+= \frac{1}{12} \left(\frac{1}{x} - \frac{1}{x+1}\right).
+\qedhere
+\end{align*}
+\end{proof}
+\end{lemma}
+
+\begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理2}
+对任意的\(x>0\)，有\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理2}
+0 < \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x} < \frac{1}{12 x}.
+\end{equation}
+\begin{proof}
+计算得\begin{align*}
+\int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x}
+&= \sum\limits_{k=0}^{\infty} \int_k^{k+1} \frac{k - t + 1/2}{t + x} \dd{t} \\
+&= \sum\limits_{k=0}^{\infty} \left[
+\left(k + \frac{1}{2} + x\right) \ln(1 + \frac{1}{k + x}) - 1
+\right].
+\end{align*}
+在\labelcref{equation:定积分.伽马函数的斯特灵近似.引理1} 中，用\((k+x)\)代替\(x\)，则得\begin{align*}
+0 &< \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x} \\
+&< \frac{1}{12} \sum\limits_{k=0}^{\infty} \left(\frac{1}{k+x} - \frac{1}{k+x+1}\right) \\
+&= \frac{1}{12} \left[
+\left(\frac{1}{x} - \frac{1}{x+1}\right) + \left(\frac{1}{x+1} - \frac{1}{x+2}\right) + \dotsb
+\right]
+= \frac{1}{12x}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{lemma}
+
+\begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理3}
+对任意的\(n\in\mathbb{N}^+\)和\(x>0\)，有\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理3}
+\begin{split}
+\int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
+&= \left(n+x+\frac{1}{2}\right) \ln(n+x) \\
+&\hspace{20pt}
+- \left(\frac{1}{2}+x\right) \ln x
+- \sum\limits_{k=1}^n \ln(k+x) - n.
+\end{split}
+\end{equation}
+\begin{proof}
+直接计算得\begin{align*}
+&\hspace{-5pt}
+\int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
+= \sum\limits_{k=0}^{n-1} \int_k^{k+1} \left(
+\frac{k + 1/2 + x}{t + x} - 1
+\right) \dd{t} \\
+&= \sum\limits_{k=0}^{n-1} \left[
+\left(k + \frac{1}{2} + x\right)
+\left(\ln\overline{k+1+x} - \ln\overline{k+x}\right)
+- 1
+\right] \\
+&= \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+1+x)
+- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
+- n \\
+&= \sum\limits_{k=1}^n \left(k - \frac{1}{2} + x\right) \ln(k+x)
+- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
+- n \\
+&= \sum\limits_{k=1}^n \left(k + \frac{1}{2} + x\right) \ln(k+x)
+- \sum\limits_{k=1}^n \ln(k+x)
+- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
+- n \\
+&= \left(n + \frac{1}{2} + x\right) \ln(n+x)
+- \left(\frac{1}{2} + x\right) \ln x
+- \sum\limits_{k=1}^n \ln(k+x)
+- n.
+\qedhere
+\end{align*}
+\end{proof}
+\end{lemma}
+
+\begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理4}
+\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理4}
+\lim\limits_{n\to\infty} \left[
+\ln n! + n - \left(n+\frac{1}{2}\right) \ln n
+\right]
+= \ln\sqrt{2\pi}.
+\end{equation}
+\begin{proof}
+在斯特林公式\[
+\lim\limits_{n\to\infty} \frac{n!}{(n/e)^n \sqrt{2\pi n}} = 1
+\]的两边取对数，即得\labelcref{equation:定积分.伽马函数的斯特灵近似.引理4} .
+\end{proof}
+\end{lemma}
+
+\begin{theorem}[\(\Gamma\)函数的斯特林近似公式]
+证明：对于任意的\(x>0\)，存在\(\theta(x)\in(0,1)\)，使得\begin{equation}\label{equation:定积分.伽马函数的斯特林近似}
+\Gamma(x+1) = \sqrt{2\pi x} \left(\frac{x}{e}\right)^x e^{\frac{\theta(x)}{12x}}.
+\end{equation}
+\begin{proof}
+因为\(\Gamma(x+1) = x \Gamma(x)\)，故可证\[
+\Gamma(x) = \frac{1}{x} \sqrt{2\pi x} \left(\frac{x}{e}\right)^x e^{\frac{\theta(x)}{12x}},
+\]再两边取对数，得\[
+\ln \Gamma(x) = \ln\sqrt{2\pi} + \left(x - \frac{1}{2}\right) \ln x - x + \frac{\theta(x)}{12x}.
+\]
+
+由等式\[
+\ln\frac{n^x n!}{x(x+1)\dotsm(x+n)}
+= \ln n! + x \ln n - \sum\limits_{k=0}^n \ln(k+x)
+\]和\cref{theorem:定积分.伽马函数的斯特灵近似.引理3} ，可得\begin{align*}
+&\hspace{-5pt}
+\ln\frac{n^x n!}{x(x+1)\dotsm(x+n)}
+- \int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t} \\
+&= \ln n! + x \ln n - \ln x - \left(n+x+\frac{1}{2}\right) \ln(n+x) + \left(\frac{1}{2}+x\right) \ln x + n \\
+&= \ln n! + n + x \ln n - \ln x
+- \left(n+x+\frac{1}{2}\right) \left[\ln n + \ln(1+\frac{x}{n})\right]
++ \left(\frac{1}{2}+x\right) \ln x \\
+&= \ln n! + n - \left(n+\frac{1}{2}\right) \ln n
+- \left(n+x+\frac{1}{2}\right) \ln(1+\frac{x}{n})
++ \left(x-\frac{1}{2}\right) \ln x.
+\end{align*}
+由\cref{theorem:定积分.伽马函数的斯特灵近似.引理4} 可知，%
+上式右边的前三项之和当\(n\to\infty\)时趋于\(\ln\sqrt{2\pi}\)，%
+上式左边的第一项当\(n\to\infty\)时趋于\(\ln\Gamma(x)\)，%
+而{%
+\def\l{\lim\limits_{n\to\infty}}%
+\def\xn{\left(1+\frac{x}{n}\right)}%
+\begin{align*}
+\l \left(n+x+\frac{1}{2}\right) \ln\xn
+&= \l \ln\xn^{n+x+\frac{1}{2}} \\
+&= \l \ln\xn^n \xn^{x+\frac{1}{2}}
+= x.
+\end{align*}}
+那么只要令\(n\to\infty\)，即得\[
+\ln\Gamma(x) - \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
+= \ln\sqrt{2\pi} - x + \left(x - \frac{1}{2}\right) \ln x.
+\]若记\[
+\theta(x) = 12 x \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t},
+\]则由\cref{theorem:定积分.伽马函数的斯特灵近似.引理3} 可知，必有\(0<\theta(x)<1\)，如此便得要证的\labelcref{equation:定积分.伽马函数的斯特林近似} .
+\end{proof}
+\end{theorem}
+
+\begin{example}
+对任意的实数\(a\)，试证：\[
+\lim\limits_{x\to+\infty} \frac{x^a \Gamma(x)}{\Gamma(x+a)} = 1.
+\]
+\end{example}
+
+\begin{example}
+试证：\begin{equation}
+\int_0^{+\infty} x^{s-1} e^{-\lambda x} \dd{x}
+= \frac{\Gamma(s)}{\lambda^s}.
+\end{equation}
+\end{example}
+
+\subsection{伽马函数与贝塔函数的关系}
+\begin{theorem}
+对任意的\(p,q>0\)，有\begin{equation}\label{equation:定积分.伽马函数与贝塔函数的关系}
+B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)}.
+\end{equation}
+\end{theorem}

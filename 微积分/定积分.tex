@@ -1,0 +1,1158 @@
+\chapter{定积分}
+\section{定积分的概念与性质}
+\subsection{定积分的概念}
+\begin{definition}
+设函数\(f(x)\)在\([a,b]\)上有界，在\([a,b]\)中任意插入若干个分点\[
+a=x_0 < x_1 < x_2 < \dotsb < x_{n-1} < x_n = b,
+\]把区间\([a,b]\)分成\(n\)个小区间\[
+[x_0,x_1],[x_1,x_2],\dotsc,[x_{n-1},x_n],
+\]各个小区间的长度依次为\[
+\increment x_1=x_1-x_0,\,\increment x_2=x_2-x_1,\,\dotsc,\,\increment x_n=x_n-x_{n-1},
+\]在每个小区间\([x_{i-1},x_i]\)上任取一点\(\xi_i\)（\(x_{i-1} \leqslant \xi_i \leqslant x_{i}\)），作函数值\(f(\xi_i)\)与小区间长度\(\increment x_i\)的乘积\(f(\xi_i)\increment x_i\)（\(i=1,2,\dotsc,n\)），并求和\[
+S = \sum\limits_{i=1}^n f(\xi_i) \increment x_i,
+\]和\(S\)通常称为\textbf{积分和}.记\(\lambda=\max\{\increment x_1,\increment x_2,\dotsc,\increment x_n\}\)，如果不论对\([a,b]\)怎么划分，也不论小区间\([x_{i-1},x_i]\)上点\(\xi_i\)怎样选取，只要当\(\lambda\to0\)时，和\(S\)总趋于确定的极限\(I\)，那么称这个极限\(I\)为函数\(f(x)\)在区间\([a,b]\)上的\textbf{定积分}，记作\(\int_a^b f(x) \dd{x}\)，即\begin{equation}
+\int_a^b f(x) \dd{x}=I=\lim\limits_{\lambda\to0}{\sum\limits_{i=1}^{n}{f(\xi_i)\increment x_i}},
+\end{equation}其中\(f(x)\)称为\textbf{被积函数}，\(f(x)\dd{x}\)称为\textbf{被积表达式}，\(x\)称为\textbf{积分变量}，\(a\)称为\textbf{积分下限}，\(b\)称为\textbf{积分上限}，\([a,b]\)称为\textbf{积分区间}.
+\end{definition}
+利用“\(\varepsilon-\delta\)”语言，上述对定积分的定义还可以表述如下：
+
+设有常数\(I\)，如果对于任意给定的正数\(\varepsilon\)，总存在一个正数\(\delta\)，使得对于区间\([a,b]\)的任何分法，不论\(\xi_i\)在\([x_{i-1},x_i]\)中怎样选取，只要\(\lambda<\delta\)，总有\[
+\abs{I - \sum\limits_{i=1}^n f(\xi_i) \increment x_i}<\varepsilon
+\]成立，则称\(I\)是区间\([a,b]\)上的定积分，记作\(\int_a^b f(x) \dd{x}\).
+
+以上积分定义在数学分析中称为\DefineConcept{黎曼积分}.
+
+注意：当和\(\sum\limits_{i=1}^n f(\xi_i) \increment x_i\)的极限\(\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i) \increment x_i\)存在时，其极限\(I\)仅与被积函数\(f(x)\)及积分区间\([a,b]\)有关.如果既不改变被积函数\(f\)，也不改变积分区间\([a,b]\)，而只把积分变量\(x\)改写成其他字母，则和的极限\(I\)不变，也就是定积分的值不变，即\[
+\int_a^b f(x) \dd{x}
+= \int_a^b f(t) \dd{t}
+= \int_a^b f(u) \dd{u}.
+\]换句话说，定积分的值只与被积函数及积分区间有关，而与积分变量的记法无关.
+
+\begin{definition}[可积函数]
+如果函数\(f(x)\)在区间\([a,b]\)上的定积分存在，那么就说\(f(x)\)在\([a,b]\)上\textbf{可积}（integrable），记作\(f \in R[a,b]\).这里，\(R[a,b]\)表示\textbf{可积函数族}，即由在区间\([a,b]\)上可积的全体函数组成的集合.
+\end{definition}
+
+\begin{example}[用定义法证明定积分不存在]
+根据定积分定义判定定积分不存在的方法有两种：一种是证明存在一种分法使得积分和极限不存在；另一种是证明存在两种分法使得两个极限不相等.
+\end{example}
+
+\begin{theorem}[函数可积的充分条件I]
+设\(f(x)\)在区间\([a,b]\)上连续，则\(f(x)\)在\([a,b]\)上可积.
+\end{theorem}
+
+\begin{theorem}[函数可积的充分条件II]
+设\(f(x)\)在区间\([a,b]\)上有界，则只有有限个间断点，则\(f(x)\)在\([a,b]\)上可积.
+\end{theorem}
+
+补充说明：可以证明，一个闭区间\([a,b]\)上的有界函数\(f\)是（黎曼）可积的，当且仅当\(f\)的不连续点构成的集合是零测度的.
+
+\begin{example}
+利用定义计算定积分\(\int_0^1 x^2 \dd{x}\).
+\begin{solution}
+因为被积函数\(f(x) = x^2\)在积分区间\([0,1]\)上连续，而连续函数是可积的，所以积分与区间\([0,1]\)的分法及点\(\xi_i\)的取法无关.因此，为了便于计算，不放把区间\([0,1]\)分成\(n\)等份，分点为\(x_i = i/n,\,i=1,2,\dotsc,n-1\)；这样，每个小区间\([x_{i-1},x_i]\)的长度\(\increment x_i = 1/n,\,i=1,2,\dotsc,n\)；取\(\xi_i=x_i,\,i=1,2,\dotsc,n\).于是积分和为\begin{align*}
+\sum\limits_{i=1}^n f(\xi_i) \increment x_i
+&= \sum\limits_{i=1}^n \xi_i^2 \increment x_i
+= \sum\limits_{i=1}^n \left(\frac{i}{n}\right)^2 \frac{1}{n}
+= \frac{1}{n^3} \sum\limits_{i=1}^n i^2 \\
+&= \frac{1}{n^3} \cdot \frac{1}{6} n(n+1)(2n+1) \\
+&= \frac{1}{6} \left(1+\frac{1}{n}\right) \left(2+\frac{1}{n}\right).
+\end{align*}
+当\(\lambda\to0\)时，\(n\to\infty\)，那么有\[
+\int_0^1 x^2 \dd{x}
+= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i) \increment x_i
+= \lim\limits_{n\to\infty} \frac{1}{6} \left(1+\frac{1}{n}\right) \left(2+\frac{1}{n}\right)
+= \frac{1}{3}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{定积分的几何意义}
+在区间\([a,b]\)上\(f(x) \geqslant 0\)时，定积分\(\int_a^b f(x) \dd{x}\)在几何上表示由曲线\(y=f(x)\)、直线\(x=a\)、直线\(x=b\)与\(x\)轴所围成的曲边梯形的面积.
+在区间\([a,b]\)上\(f(x) \leqslant 0\)时，由曲线\(y=f(x)\)、直线\(x=a\)、直线\(x=b\)与\(x\)轴所围成的曲边梯形在\(x\)轴的下方，定积分\(\int_a^b f(x) \dd{x}\)在几何上表示上述曲边梯形的面积的负值.
+
+实际上，对于任意可积函数\(f\colon \mathbb{R} \to \mathbb{R}\)，定积分\(\int_a^b f(x) \dd{x}\)还可以理解为非空集\(R[a,b]\)上的泛函.
+
+\subsection{定积分的性质}
+\begin{definition}
+为了以后计算及应用方便起见，对定积分作以下两点补充规定：\begin{enumerate}
+\item 当\(a=b\)时，\(\int_a^b f(x) \dd{x}=0\)；
+\item 当\(a>b\)时，\(\int_a^b f(x) \dd{x}=-\int_b^a{f(x)\dd{x}}\).
+
+由上式可知，交换定积分的上下限时，定积分的绝对值不变而符号相反.
+\end{enumerate}
+\end{definition}
+
+下面讨论定积分的性质.下列各性质中积分上下限的大小，如不特别指明，均不加限制；并假定各性质中所列出的定积分都是存在的.
+\begin{property}\label{theorem:定积分.定积分性质1}
+\(\int_a^b [f(x) \pm g(x)] \dd{x}
+= \int_a^b f(x) \dd{x} \pm \int_a^b g(x) \dd{x}\).
+\begin{proof}
+显然有\[
+\begin{split}
+\int_a^b [f(x) \pm g(x)] \dd{x}
+&= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n [f(\xi_i) \pm g(\xi_i)] \increment x_i \\
+&= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i) \increment x_i
+	\pm \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n g(\xi_i) \increment x_i \\
+&= \int_a^b f(x) \dd{x} \pm \int_a^b g(x) \dd{x}.
+\qedhere
+\end{split}
+\]
+\end{proof}
+\end{property}
+上述性质对任意有限个函数都是成立的.
+
+\begin{property}\label{theorem:定积分.定积分性质2}
+\(\int_a^b{kf(x)\dd{x}}=k\int_a^b f(x) \dd{x}\)（其中\(k\)是不随\(x\)变化的数）.
+\end{property}
+
+\begin{property}\label{theorem:定积分.定积分性质3}
+设\(a < c < b\)，则\(\int_a^b f(x) \dd{x}
+= \int_a^c{f(x)\dd{x}} + \int_c^b{f(x)\dd{x}}\).
+\end{property}
+上述性质表明定积分对于积分区间具有\cemph{可加性}.
+
+\begin{example}
+设连续函数\(f(x)\)满足\(f(x+2)-f(x)=x\)，且\(\int_0^2 f(x) \dd{x} = 0\)，求\(\int_1^3 f(x) \dd{x}\).
+\begin{solution}
+由\cref{theorem:定积分.定积分性质3} 有，\[
+\int_1^3 f(x) \dd{x}
+= \int_1^2 f(x) \dd{x}
++ \int_2^3 f(x) \dd{x}.
+\]而\[
+\int_2^3 f(x) \dd{x}
+\xlongequal{x=t+2} \int_0^1 f(t+2) \dd{t} \\
+= \int_0^1 [f(t) + t] \dd{t} \\
+= \int_0^1 f(t) \dd{t} + \frac{1}{2},
+\]因此\[
+\int_1^3 f(x) \dd{x}
+= \int_1^2 f(x) \dd{x}
++ \int_0^1 f(t) \dd{t} + \frac{1}{2}
+= \int_0^2 f(x) \dd{x} + \frac{1}{2}
+= \frac{1}{2}.
+\]
+\end{solution}
+\end{example}
+
+\begin{property}\label{theorem:定积分.定积分性质4}
+\(\int_a^b 1 \dd{x} = \int_a^b \dd{x} = b-a\).
+\end{property}
+
+\begin{property}\label{theorem:定积分.定积分性质5}
+如果在区间\([a,b]\)上，\(f(x) \geqslant 0\)，则\(\int_a^b f(x) \dd{x} \geqslant 0\).
+\begin{proof}
+因为\(f(x) \geqslant 0\)，所以在区间\([a,b]\)上任取\(n\)个分点\(\v{x}{n}\)使之满足\[
+a = x_0 \leqslant x_1 \leqslant x_2 \leqslant \dotsb \leqslant x_n \leqslant x_{n+1} = b,
+\]在各个小区间上任取一点\(\xi_i\in[x_i,x_{i+1}]\ (i=0,1,2,\dotsc,n)\)，就有\[
+f(\xi_i)\geqslant0.
+\]
+
+又因为小区间\([x_i,x_{i+1}]\)的长度\(\increment x_i = x_{i+1}-x_i \geqslant 0\ (i=0,1,2,\dotsc,n)\)，因此\[
+\sum\limits_{i=0}^n f(\xi_i) \increment x_i \geqslant 0,
+\]令\(\lambda = \max\{\increment x_0, \increment x_1, \dotsc, \increment x_n\}\)，则由极限的保号性可得\[
+\int_a^b f(x) \dd{x} = \lim\limits_{\lambda\to0} \sum\limits_{i=0}^n f(\xi_i) \increment x_i \geqslant 0.
+\qedhere
+\]
+\end{proof}
+\end{property}
+上述性质表明定积分具有\cemph{保号性}.
+
+\begin{example}
+比较\(\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t}\)与\(\int_0^1 t^n \abs{\ln t} \dd{t}\)的大小（\(n=1,2,\dotsc\)）.
+\begin{solution}
+直接相减得
+\begin{align*}
+&\hspace{-20pt}
+\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t} - \int_0^1 t^n \abs{\ln t} \dd{t} \\
+&= \int_0^1 [\abs{\ln t} \ln^n(1+t) - t^n \abs{\ln t}] \dd{t} \\
+&= \int_0^1 \abs{\ln t} [\ln^n(1+t) - t^n] \dd{t}.
+\end{align*}
+注意到\(\ln t\)的自然定义域为\(t > 0\).
+当\(0 < t \leqslant 1\)时，\(\ln(1+t) < t\)，\(\ln^n(1+t) < t^n\)，\[
+\abs{\ln t} [\ln^n(1+t) - t^n] < 0,
+\]\[
+\int_0^1 \abs{\ln t} [\ln^n(1+t) - t^n] \dd{t} < 0,
+\]\[
+\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t} < \int_0^1 t^n \abs{\ln t} \dd{t}.
+\]
+\end{solution}
+\end{example}
+
+\begin{corollary}\label{theorem:定积分.定积分性质5推论1}
+如果在区间\([a,b]\)上，\(f(x) \leqslant g(x)\)，则\[
+\int_a^b f(x) \dd{x} \leqslant \int_a^b g(x) \dd{x}.
+\]
+\begin{proof}
+令\(\varphi(x) = g(x) - f(x)\).
+因为\(f(x) \leqslant g(x)\)，所以\(\varphi(x) \geqslant 0\).
+由\cref{theorem:定积分.定积分性质5} 得\[
+\int_a^b \varphi(x) \dd{x} \geqslant 0,
+\]又由\cref{theorem:定积分.定积分性质1} 得\[
+\int_a^b \varphi(x) \dd{x}
+= \int_a^b [g(x) - f(x)] \dd{x}
+= \int_a^b g(x) \dd{x} - \int_a^b f(x) \dd{x},
+\]所以\[
+\int_a^b g(x) \dd{x} - \int_a^b f(x) \dd{x} \geqslant 0,
+\]从而有\[
+\int_a^b g(x) \dd{x} \geqslant \int_a^b f(x) \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{corollary}
+
+\begin{corollary}\label{theorem:定积分.定积分性质5推论2}
+当\(a<b\)时，\(\abs{\int_a^b f(x) \dd{x}} \leqslant \int_a^b \abs{f(x)} \dd{x}\).
+\begin{proof}
+因为\[
+-\abs{f(x)} \leqslant f(x) \leqslant \abs{f(x)},
+\]那么由\cref{theorem:定积分.定积分性质5推论1} 和\cref{theorem:定积分.定积分性质2} 可得\[
+-\int_a^b \abs{f(x)} \dd{x}
+\leqslant
+\int_a^b f(x) \dd{x}
+\leqslant
+\int_a^b \abs{f(x)} \dd{x},
+\]即\[
+\abs{\int_a^b f(x) \dd{x}} \leqslant \int_a^b \abs{f(x)} \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{corollary}
+
+\begin{property}\label{theorem:定积分.定积分性质6}
+设\(M\)及\(m\)分别是函数\(f(x)\)在区间\([a,b]\)上的最大值及最小值，则\[
+m(b-a) \leqslant \int_a^b f(x) \dd{x} \leqslant M(b-a).
+\]
+\begin{proof}
+因为\(m \leqslant f(x) \leqslant M\)，所以由上述推论，得\[
+m(b-a) = \int_a^b m \dd{x} \leqslant \int_a^b f(x) \dd{x} \leqslant \int_a^b M \dd{x} = M(b-a).
+\qedhere
+\]
+\end{proof}
+\end{property}
+上述性质说明，由被积函数在积分区间上的最大值及最小值，可以估计积分值的大致范围.
+
+\subsection{积分中值定理}
+\begin{theorem}[定积分中值定理]\label{theorem:定积分.积分中值定理0}
+设函数\(f(x)\)在积分区间\([a,b]\)上连续，则\(\exists\xi\in[a,b]\)，使下式成立：\[
+\int_a^b f(x) \dd{x} = (b-a) f(\xi).
+\]这个公式称为\textbf{积分中值公式}.
+\end{theorem}
+显然，积分中值公式不论\(a<b\)或\(a>b\)都是成立的.
+
+按积分中值公式所得\[
+f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
+\]称为函数\(f(x)\)在区间\([a,b]\)上的\textbf{平均值}.
+
+\begin{theorem}[积分第一中值定理]\label{theorem:定积分.积分中值定理1}
+若\(f,g \in R[a,b]\)，且\(g(x) \gtrless 0\ (x\in[a,b])\)，那么\(\exists\mu\in\left[\inf\limits_{a \leqslant x \leqslant b} f(x),\sup\limits_{a \leqslant x \leqslant b} f(x)\right]\)，使得\[
+\int_a^b f(x) g(x) \dd{x} = \mu \int_a^b g(x) \dd{x}.
+\]
+\end{theorem}
+
+\begin{corollary}\label{theorem:定积分.积分中值定理1推论1}
+若\(f \in C[a,b]\)，\(g \in R[a,b]\)，\(g(x) \gtrless 0\)，那么\(\exists\xi\in[a,b]\)，使得\[
+\int_a^b f(x) g(x) \dd{x} = f(\xi) \int_a^b g(x) \dd{x}.
+\]
+\end{corollary}
+
+\begin{theorem}[积分第二中值定理]\label{theorem:定积分.积分中值定理2}
+设\(f,g \in R[a,b]\).\begin{enumerate}
+\item 若\(f\)在\((a,b)\)上单调，则\(\exists \xi \in [a,b]\)使得\[
+\int_a^b f(x) g(x) \dd{x} = f(a^+) \int_a^{\xi} g(x) \dd{x} + f(b^-) \int_{\xi}^b g(x) \dd{x}.
+\]
+\item 若\(f\)在\((a,b)\)上单调递减且\(f(x) \geqslant 0\)，则\(\exists \xi \in [a,b]\)使得\[
+\int_a^b f(x) g(x) \dd{x} = f(a^+) \int_a^{\xi} g(x) \dd{x};
+\]
+\item 若\(f(\)在\((a,b)\)上单调递增且\(f(x) \geqslant 0\)，则\(\exists \xi \in [a,b]\)使得\[
+\int_a^b f(x) g(x) \dd{x} = f(b^-) \int_{\xi}^b g(x) \dd{x};
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+设\(f \in R[a,b]\).证明：等式\[
+\int_a^b f^2(x) \dd{x} = 0
+\]成立的充要条件是“对于函数\(f(x)\)在\([a,b]\)上的所有连续点都有\(f(x)=0\)”.
+\end{example}
+
+\section{微积分基本公式}
+\subsection{积分上限的函数及其导数}
+\begin{theorem}[变限积分可导定理]\label{theorem:定积分.变限积分可导定理}
+如果函数\(f(x)\)在区间\([a,b]\)上连续，则积分上限的函数\[
+\Phi(x) = \int_a^x{f(t)\dd{t}}
+\]在\([a,b]\)上可导，且其导数\[
+\Phi'(x) = \dv{x} \int_a^x{f(t)\dd{t}} = f(x),
+\quad a \leqslant x \leqslant b.
+\]
+\begin{proof}
+若\(x\in(a,b)\)，设\(x + \increment x \in (a,b)\)，则\(\Phi(x)\)在\(x + \increment x\)处的函数值为\[
+\Phi(x + \increment x) = \int_a^{x+\increment x} f(t) \dd{t}.
+\]由此得函数的增量\begin{align*}
+\increment{\Phi}
+&= \Phi(x + \increment x) - \Phi(x) \\
+&= \int_a^{x+\increment x} f(t) \dd{t} - \int_a^x f(t) \dd{t} \\
+&= \int_a^x f(t) \dd{t} + \int_x^{x+\increment x} f(t) \dd{t} - \int_a^x f(t) \dd{t} \\
+&= \int_x^{x+\increment x} f(t) \dd{t}.
+\end{align*}
+再应用积分中值定理，即\(\exists\xi\in( \min\{x,x+\increment x\}, \max\{x,x+\increment x\} )\)，使得\[
+\increment{\Phi} = f(\xi) \increment x.
+\]把上式两端各除以\(\increment x\)，得函数增量与自变量增量的比值\[
+\frac{\increment{\Phi}}{\increment x} = f(\xi).
+\]
+
+由于假设\(f(x)\)在\([a,b]\)上连续，而当\(\increment x\to0\)时，\(\xi \to x\)，因此\[
+\lim\limits_{\increment x\to0} f(\xi) = f(x).
+\]
+于是，令\(\increment x\to0\)对上式两端取极限时，左端的极限也应该存在且等于\(f(x)\).这就是说，函数\(\Phi(x)\)的导数存在，并且\[
+\Phi'(x) = f(x).
+\]
+
+若\(x = a\)，取\(\increment x > 0\)，则同理可证\(\Phi'_+(a)=f(a)\)；
+若\(x = b\)，取\(\increment x < 0\)，则同理可证\(\Phi'_-(b)=f(b)\).
+\end{proof}
+\end{theorem}
+
+这个定理指出了一个重要结论：连续函数\(f(x)\)取变上限\(x\)的定积分然后求导，其结果还原为\(f(x)\)本身.联想到原函数的定义，就可以从该定理推知\(\Phi(x)\)是连续函数\(f(x)\)的一个原函数.因此，我们引出如下的原函数的存在定理：
+
+\begin{theorem}[原函数存在定理]\label{theorem:定积分.原函数存在定理}
+如果函数\(f(x)\)在区间\([a,b]\)上连续，则函数\[
+\Phi(x) = \int_a^x f(t) \dd{t}
+\]就是\(f(x)\)在\([a,b]\)上的一个原函数.
+\end{theorem}
+这个定理的重要意义是：一方面肯定了连续函数的原函数是存在的，另一方面初步地揭示了积分学中的定积分与原函数之间的联系.因此，我们就有可能通过原函数来计算定积分.
+
+\begin{example}
+设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(\varphi(x)\)和\(\psi(x)\)可导.证明：\[
+F(x) = \int_{\psi(x)}^{\varphi(x)} f(t) \dd{t}
+\]在\([a,b]\)上可导，且其导数为\begin{equation}\label{equation:定积分.含参变量积分的导数1}
+F'(x) = \dv{x} \int_{\psi(x)}^{\varphi(x)} f(t) \dd{t}
+= f[\varphi(x)] \varphi'(x) - f[\psi(x)] \psi'(x).
+\end{equation}
+\begin{proof}
+令\(F_1(x) = \int_{\xi}^{\varphi(x)} f(t) \dd{t}\)，\(u = \varphi(x)\)，设函数\(G(x)\)是被积函数\(f(x)\)的一个原函数，那么\[
+F_1(x) = G[\varphi(x)] - G(\xi),
+\]从而\begin{align*}
+F'_1(x) = \dv{x} F_1(x)
+&= \dv{x} G[\varphi(x)] - \dv{x} G(\xi) = \dv{G}{u} \dv{u}{x} - 0 \\
+&= f(u) \varphi'(x) = f[\varphi(x)] \varphi'(x).
+\end{align*}
+同样地，令\(F_2(x) = \int_{\psi(x)}^{\xi} f(t) \dd{t}\)，\(v = \psi(x)\)，则有\[
+F'_2(x) = \dv{x} F_2(x) = -\dv{x} \int_{\xi}^{\psi(x)} f(x) \dd{t}
+= -f[\psi(x)] \psi'(x).
+\]
+因为\(F(x) = F_1(x) + F_2(x)\)，所以\[
+F'(x) = F'_1(x) + F'_2(x)
+= f[\varphi(x)] \varphi'(x) - f[\psi(x)] \psi'(x).
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+计算极限\[
+\lim\limits_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t},
+\]其中\(f\)连续.
+\begin{solution}
+显然\[
+\frac{x}{x-a} \int_a^x f(t)
+= \frac{\int_a^x f(t)}{1 - a/x}.
+\]
+当\(x \to a\)时，\(\int_a^x f(t)\)和\(1 - a/x\)都趋于0；
+根据\cref{theorem:定积分.变限积分可导定理} ，有\[
+\dv{x} \int_a^x f(t) = f(x);
+\]又有\[
+\dv{x}(1 - \frac{a}{x}) = \frac{a}{x^2};
+\]那么根据\cref{theorem:微分中值定理.洛必达法则1} 有\[
+\lim\limits_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t}
+= \lim\limits_{x \to a} \frac{f(x)}{a/x^2}
+= a f(a).
+\]
+\end{solution}
+\end{example}
+
+\subsection{牛顿-莱布尼茨公式}
+现在我们根据\hyperref[theorem:定积分.原函数存在定理]{原函数存在定理}来证明一个重要定理，它给出了用原函数计算定积分的公式.
+\begin{theorem}[牛顿-莱布尼茨公式]
+如果函数\(F(x)\)是\cemph{连续}函数\(f(x)\)在区间\([a,b]\)上的一个原函数，则\begin{equation}\label{equation:定积分.牛顿-莱布尼茨公式}
+\int_a^b f(x) \dd{x} = F(b) - F(a).
+\end{equation}
+\begin{proof}
+已知函数\(F(x)\)是连续函数\(f(x)\)的一个原函数，又根据\hyperref[theorem:定积分.原函数存在定理]{原函数存在定理}知道，积分上限的函数\[
+\Phi(x) = \int_a^x f(t) \dd{t}
+\]也是\(f(x)\)的一个原函数.
+于是这两个原函数之差\(F(x) - \Phi(x)\)在\([a,b]\)上必定是某一个常数\(C\)，即\begin{gather}
+F(x) - \Phi(x) = C. \tag1
+\end{gather}
+
+在上式中令\(x=a\)，得\(F(a) - \Phi(a) = C\).
+又由\(\Phi(x)\)的定义式及定积分的补充规定可知\(\Phi(a) = 0\)，因此，\(C = F(a)\).
+以\(F(a)\)代入(1)式中的\(C\)，以\(\int_a^x f(t) \dd{t}\)代入(1)式中的\(\Phi(x)\)，可得\[
+\int_a^x f(t) \dd{t} = F(x) - F(a).
+\]在上式中令\(x=b\)，就得到所要证明的公式，并称之为\textbf{牛顿-莱布尼茨公式}（或\textbf{微积分基本公式}）.
+\end{proof}
+\end{theorem}
+为求简便，可将\(F(b) - F(a)\)记成\([F(x)]_a^b\)，于是又有\[
+\int_a^b f(x) \dd{x} = [F(x)]_a^b.
+\]
+
+牛顿-莱布尼茨公式进一步揭示了定积分与被积函数的原函数或不定积分之间的联系.
+它表明：一个连续函数在区间\([a,b]\)上的定积分等于它的任一个原函数在区间\([a,b]\)上的增量.
+这就给定积分提供了一个有效而简便的计算方法，大大简化了定积分的计算手续.
+
+\begin{example}
+计算\(\int_0^1 x^2 \dd{x}\).
+\begin{solution}
+由于\(F(x) = x^3/3\)是\(x^2\)的一个原函数，所以按牛顿-莱布尼茨公式，有\[
+\int_0^1 x^2 \dd{x} = \left[\frac{x^3}{3}\right]_0^1
+= \frac{1^3}{3} - \frac{0^3}{3} = \frac{1}{3} - 0 = \frac{1}{3}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算\(\int_{-2}^{-1} \frac{\dd{x}}{x}\).
+\begin{solution}
+当\(x<0\)时，\(1/x\)的一个原函数是\(\ln\abs{x}\)，现在积分区间是\([-2,-1]\)，这个原函数的形式可以化为\(\ln(-x)\)，所以按牛顿-莱布尼茨公式，有\[
+\int_{-2}^{-1} \frac{\dd{x}}{x}
+= [ \ln\abs{x} ]_{-2}^{-1}
+= \ln1 - \ln2
+= -\ln2.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+证明积分中值定理：若函数\(f(x)\)在闭区间\([a,b]\)上连续，则\(\exists\xi\in(a,b)\)，使\[
+\int_a^b f(x) \dd{x} = f(\xi) (b-a).
+\]
+\begin{proof}
+因\(f(x)\)连续，故它的原函数存在，设\(F(x)\)为\(f(x)\)的一个原函数，即在\([a,b]\)上\(F'(x) = f(x)\).
+根据牛顿-莱布尼茨公式，有\[
+\int_a^b f(x) \dd{x}
+= F(b) - F(a).
+\]
+
+显然函数\(F(x)\)在区间\([a,b]\)上满足微分中值定理的条件，因此按微分中值定理，\(\exists\xi\in(a,b)\)，使\[
+F(b) - F(a) = F'(\xi) (b-a),
+\]故\[
+\int_a^b f(x) \dd{x} = f(\xi) (b-a).
+\qedhere
+\]
+\end{proof}
+\end{example}
+本例的结论是对上一节所述积分中值定理的改进.
+从证明过程中不难看出积分中值定理与微分中值定理的联系.
+
+\begin{example}
+\def\fu{\displaystyle \int_0^x t f(t) \dd{t}}
+\def\fv{\displaystyle \int_0^x f(t) \dd{t}}
+\def\fvv{\left[ \fv \right]^2}
+\def\fw{\displaystyle \int_0^x (x-t) f(t) \dd{t}}
+设\(f(x)\)在\([0,+\infty)\)内连续且\(f(x) > 0\).证明：函数\[
+F(x) = \frac{\fu}{\fv}
+\]在\((0,+\infty)\)内为单调增加函数.
+\begin{proof}
+因为\[
+\dv{x} \fu = x f(x),
+\qquad
+\dv{x} \fv = f(x),
+\]所以\[
+F'(x) = \frac{x f(x) \fv - f(x) \fu}{\fvv}
+= \frac{f(x) \fw}{\fvv}.
+\]按假设，当\(0 < t < x\)时，\(f(t) > 0\)，\((x-t) f(t) > 0\)，根据改进后的积分中值定理可知\[
+\fv > 0, \qquad \fw > 0,
+\]所以\(F'(x) > 0\ (x > 0)\)，从而\(F(x)\)在\((0,+\infty)\)内为单调增加函数.
+\end{proof}
+\end{example}
+
+\begin{example}
+求\(\lim\limits_{x\to0} \frac{1}{x^2} \int_{\cos x}^1 \exp(-t^2) \dd{t}\).
+\begin{solution}
+已知这是一个\(0/0\)型未定式，我们利用洛必达法则来计算.
+分子可写成\[
+- \int_1^{\cos x} \exp(-t^2) \dd{t},
+\]它是以\(\cos x\)为上限的积分，作为\(x\)的函数可看成是以\(u = \cos x\)为中间变量的复合函数，故\begin{align*}
+\dv{x} \int_{\cos x}^1 \exp(-t^2) \dd{t}
+&= -\dv{x} \int_1^{\cos x} \exp(-t^2) \dd{t} \\
+&= -\left[ \dv{u}\int_1^u \exp(-t^2) \dd{t} \right]_{u=\cos x} \cdot (\cos x)' \\
+&= -\exp(-\cos^2 x) \cdot (-\sin x) \\
+&= \sin x \exp(-\cos^2 x).
+\end{align*}
+因此\[
+\lim\limits_{x\to0} \frac{1}{x^2} \int_{\cos x}^1 \exp(-t^2) \dd{t}
+= \lim\limits_{x\to0} \frac{\sin x \exp(-\cos^2 x)}{2x}
+= \frac{1}{2e}.
+\]
+\end{solution}
+\end{example}
+
+\section{定积分的换元法、分部积分法}
+由上节结果知道，计算定积分\(\int_a^b f(x) \dd{x}\)的简便方法是把它转化为求\(f(x)\)的原函数的增量.在\cref{chapter:不定积分} 中，我们知道用换元积分法和分部积分法可以求出一些函数的原函数.因此，在一定条件下，可以用换元积分法和分部积分法来计算定积分.下面就来讨论定积分的这两种计算方法.
+\subsection{定积分的换元法}
+为了说明如何用换元法来计算定积分，先证明下面的定理.
+\begin{theorem}\label{theorem:定积分.定积分的换元法}
+假设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(x = \varphi(t)\)满足条件：
+\begin{enumerate}
+\item \(\varphi(\alpha) = a\)，\(\varphi(\beta)=b\)；
+\item \(\varphi(t)\)在\([\alpha,\beta]\)上具有连续导数，且其值域\footnote{当\(\varphi(t)\)的值域\(R_{\varphi}\)超出\([a,b]\)，但\(\varphi(t)\)满足其余条件时，只要\(f(x)\)在\(R_{\varphi}\)上连续，则定理的结论仍成立.}\(R_\varphi = [a,b]\),
+\end{enumerate}
+则有\[
+\int_a^b f(x)\dd{x} = \int_{\alpha}^{\beta} f[\varphi(t)] \varphi'(t) \dd{t}.
+\eqno{(1)}
+\]
+\begin{proof}
+由假设可知，被积函数\(f(x)\)和\(f[\varphi(t)] \varphi'(t)\)都是连续的，因此不仅(1)式两边的定积分都存在，而且由\hyperref[theorem:定积分.原函数存在定理]{原函数存在定理}知道，被积函数的原函数也都存在.所以(1)式两边的定积分都可应用牛顿-莱布尼茨公式.假设\(F(x)\)是\(f(x)\)的一个原函数，则\[
+\int_a^b f(x) \dd{x} = F(b) - F(a).
+\]
+另一方面，记\(\Phi(t) = F[\varphi(t)]\)，它是由\(F(x)\)与\(x=\varphi(t)\)复合而成的函数.由复合函数求导法则，得\[
+\Phi'(t) = \dv{F}{x} \dv{x}{t} = f(x) \varphi'(t) = f[\varphi(t)] \varphi'(t).
+\]这表明\(\Phi(t)\)是\(f[\varphi(t)] \varphi'(t)\)的一个原函数，因此有\[
+\int_{\alpha}^{\beta} f[\varphi(t)] \varphi'(t) \dd{t}
+= \Phi(\beta) - \Phi(\alpha).
+\]又由\(\Phi(t) = F[\varphi(t)]\)及\(\varphi(\alpha) = a\)，\(\varphi(\beta) = b\)，可得\[
+\Phi(\beta) - \Phi(\alpha)
+= F[\varphi(\beta)] - F[\varphi(\alpha)]
+= F(b) - F(a).
+\]所以\[
+\int_a^b f(x) \dd{x}
+= F(b) - F(a)
+= \Phi(\beta) - \Phi(\alpha)
+= \int_{\alpha}^{\beta} f[\varphi(t)] \varphi'(t) \dd{t}.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+在定积分\(\int_a^b f(x) \dd{x}\)中的\(\dd{x}\)，本来是整个定积分记号中不可分割的一部分，但由上述定理可知，在一定条件下，它确实可以作为微分记号来对待.
+这就是说，应用换元公式时，如果把\(\int_a^b f(x) \dd{x}\)中的\(x\)换成\(\varphi(t)\)，则\(\dd{x}\)就换成\(\varphi'(t) \dd{t}\)，这正好是\(x = \varphi(t)\)的微分\(\dd{x}\).
+
+应用换元公式时，有两点值得注意：\begin{enumerate}
+\item 用\(x = \varphi(t)\)把原来变量\(x\)代换成新变量\(t\)时，积分限也要换成相应于新变量\(t\)的积分限；
+\item 求出\(f[\varphi(t)] \varphi'(t)\)的一个原函数\(\Phi(t)\)后，不必像计算不定积分那样再要把\(\Phi(t)\)变换成原来变量\(x\)的函数，而只要把新变量\(t\)的上、下限分别代入\(\Phi(t)\)中然后相减就行了.
+\end{enumerate}
+
+\begin{example}
+设\(f \in C[-a,a]\).证明：\(\int_{-a}^a f(x) \dd{x} = \int_0^a [f(x) + f(-x)] \dd{x}\).
+\begin{proof}
+由\cref{theorem:定积分.定积分性质3} 有\[
+\int_{-a}^a f(x) \dd{x}
+= \int_{-a}^0 f(x) \dd{x} + \int_0^a f(x) \dd{x};
+\]又由定积分的补充定义有\[
+\int_{-a}^0 f(x) \dd{x}
+\xlongequal{t=-x} \int_a^0 f(-t) \dd(-t)
+= \int_0^a f(-t) \dd{t}
+= \int_0^a f(-x) \dd{x};
+\]故由\cref{theorem:定积分.定积分性质1} 有\[
+\int_{-a}^a f(x) \dd{x}
+= \int_0^a f(-x) \dd{x} + \int_0^a f(x) \dd{x}
+= \int_0^a [f(-x) + f(x)] \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(f \in C[0,2a]\).证明：\(\int_0^{2a} f(x) \dd{x} = \int_0^a [f(x) + f(2a-x)] \dd{x}\).
+\begin{proof}
+由\cref{theorem:定积分.定积分性质3} 有\[
+\int_0^{2a} f(x) \dd{x}
+= \int_0^a f(x) \dd{x} + \int_a^{2a} f(x) \dd{x};
+\]又由定积分的补充定义有\[
+\int_a^{2a} f(x) \dd{x}
+\xlongequal{t=2a-x} \int_a^0 f(2a-t) \dd(2a-t)
+= \int_0^a f(2a-t) \dd{t}
+= \int_0^a f(2a-x) \dd{x};
+\]故由\cref{theorem:定积分.定积分性质1} 有\[
+\int_0^{2a} f(x) \dd{x}
+= \int_0^a f(x) \dd{x} + \int_0^a f(2a-x) \dd{x}
+= \int_0^a [f(x) + f(2a-x)] \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(f \in C[a,b]\).证明：\(\int_a^b f(x) \dd{x} = \int_a^b f(a+b-x) \dd{x}\).
+\begin{proof}
+由定积分的补充定义有\[
+\int_a^b f(x) \dd{x}
+\xlongequal{t=a+b-x} \int_b^a f(a+b-t) \dd(a+b-t)
+= \int_a^b f(a+b-x) \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+计算\(\int_0^a{\sqrt{a^2-x^2} \dd{x}}\)（\(a > 0\)）.
+\begin{solution}
+令\(x = a \sin t\)（\(t \in [-\frac{\pi}{2},\frac{\pi}{2}]\)），则\(\dd{x} = a \cos t \dd{t}\)，\(\sqrt{a^2-x^2} = a \cos t\).
+当\(x = 0\)时，取\(t = 0\)；当\(x = a\)时，取\(t = \frac{\pi}{2}\).
+那么有\[
+\int_0^a{\sqrt{a^2-x^2} \dd{x}}
+= \int_0^{\frac{\pi}{2}}{a \cos t \cdot a \cos t \dd{t}}
+= \frac{a^2}{2} \int_0^{\frac{\pi}{2}}{(1+\cos 2 t) \dd{t}}
+= \frac{\pi a^2}{4}.
+\]
+\end{solution}
+\end{example}
+
+\begin{corollary}
+设\(f \in C[-a,a]\).
+\begin{enumerate}
+\item 若函数\(f(x)\)在区间\([-a,a]\)上是偶函数，则\[
+\int_{-a}^a f(x) \dd{x} = 2 \int_0^a f(x) \dd{x};
+\]
+
+\item 若函数\(f(x)\)在区间\([-a,a]\)上是奇函数，则\[
+\int_{-a}^a f(x) \dd{x} = 0.
+\]
+\end{enumerate}
+\begin{proof}
+由\cref{theorem:定积分.定积分性质3} 有\[
+\int_{-a}^a f(x) \dd{x} = \int_{-a}^0 f(x) \dd{x} + \int_0^a f(x) \dd{x}.
+\]又由定积分的补充定义有\[
+\int_{-a}^0 f(x) \dd{x}
+\xlongequal{t=-x} \int_a^0 f(-t) \dd(-t)
+= \int_0^a f(-x) \dd{x}.
+\]故由\cref{theorem:定积分.定积分性质1} 有\[
+\int_{-a}^a f(x) \dd{x}
+= \int_0^a f(-x) \dd{x} + \int_0^a f(x) \dd{x}
+= \int_0^a [f(-x) + f(x)] \dd{x}.
+\]
+
+\begin{enumerate}
+\item 若\(f(x)\)是偶函数，则\[
+f(x) + f(-x) = 2 f(x),
+\]从而\[
+\int_{-a}^a f(x) \dd{x} = 2 \int_0^a f(x) \dd{x};
+\]
+
+\item 若\(f(x)\)是奇函数，则\[
+f(x) + f(-x) = 0,
+\]从而\[
+\int_{-a}^a f(x) \dd{x} = 0.
+\qedhere
+\]
+\end{enumerate}
+\end{proof}
+\end{corollary}
+常用上例的结论简化奇、偶函数在对称于原点的区间上的定积分.
+
+\begin{example}
+设\(f \in C[0,1]\).证明：\begin{enumerate}
+\item \(\int_0^{\pi/2} f(\sin x) \dd{x} = \int_0^{\pi/2} f(\cos x) \dd{x}\)；
+\item \(\int_0^{\pi} x f(\sin x) \dd{x} = \frac{\pi}{2} \int_0^{\pi} f(\sin x) \dd{x}\).
+\end{enumerate}
+\begin{proof}
+显然有\[
+\begin{split}
+\int_0^{\pi/2} f(\sin x) \dd{x}
+&\xlongequal{x = \pi/2-t} \int_{\pi/2}^0 f\left[\sin(\frac{\pi}{2}-t)\right] \dd(\frac{\pi}{2}-t) \\
+&= \int_0^{\pi/2} f(\cos x) \dd{x}.
+\end{split}
+\]
+
+因为\[
+\begin{split}
+\int_0^{\pi} x f(\sin x) \dd{x}
+&\xlongequal{x = \pi-t} \int_{\pi}^0 (\pi-t) f[\sin(\pi-t)] \dd(\pi-t) \\
+&= \int_0^{\pi} (\pi-x) f(\sin x) \dd{x} \\
+&= \pi \int_0^{\pi} f(\sin x) \dd{x}
+	- \int_0^{\pi} x f(\sin x) \dd{x},
+\end{split}
+\]所以\[
+\int_0^{\pi} x f(\sin x) \dd{x}
+= \frac{\pi}{2} \int_0^{\pi} f(\sin x) \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(f \in C[0,1]\)，\(n\in\mathbb{Z}\).证明：\[
+\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\sin x}) \dd{x}
+= \int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}
+= \int_0^{\frac{\pi}{2}} f(\sin x) \dd{x}.
+\]
+\def\arraystretch{1.5}
+\begin{proof}
+令\(x = n\pi+\frac{\pi}{2}-t\)，则有\[
+\begin{split}
+\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\sin x}) \dd{x}
+&= \int_{\frac{n+1}{2} \pi}^{\frac{n}{2} \pi} f\left[\abs{\pm\sin(\frac{\pi}{2}-t)}\right] \dd(\frac{2n+1}{2}\pi-t) \\
+&= \int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}.
+\end{split}
+\]
+
+又令\(x=u+\frac{n}{2} \pi\)，则有\[
+\begin{split}
+\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}
+&= \int_0^{\frac{1}{2}\pi} f\left[ \abs{\cos(u+\frac{\pi}{2})} \right] \dd(u+\frac{n}{2}\pi) \\
+&= \int_0^{\frac{1}{2}\pi} f\left( \abs{-\sin u} \right) \dd{u} \\
+&= \int_0^{\frac{1}{2}\pi} f(\sin x) \dd{x}.
+\qedhere
+\end{split}
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设函数\(f(x)\)是连续的周期函数，周期为\(T\)，证明：\begin{enumerate}
+\item \(\int_a^{a+T} f(x) \dd{x} = \int_0^T f(x) \dd{x}\)；
+\item \(\int_a^{a+nT} f(x)\dd{x} = n\int_0^T f(x)\dd{x}\ (n \in \mathbb{N})\).
+\end{enumerate}
+\begin{proof}
+记\(\Phi(a) = \int_a^{a+T} f(x) \dd{x}\)，则\[
+\Phi'(a) = f(a+T) - f(a) = 0,
+\]即\(\Phi(a)\)与\(a\)无关，因此\(\Phi(a) = \Phi(0)\)，即\[
+\int_a^{a+T} f(x) \dd{x} = \int_0^T f(x) \dd{x};
+\]由此可得\[
+\int_a^{a+nT} f(x)\dd{x}
+= \sum\limits_{k=0}^{n-1} \int_{a+kT}^{(a+kT)+T} f(x) \dd{x}
+= \sum\limits_{k=0}^{n-1} \int_0^T f(x) \dd{x}
+= n \int_0^T f(x) \dd{x}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\begin{enumerate}
+\item 若\(f(t)\)是连续的奇函数，\(\int_0^x f(t) \dd{t}\)是偶函数；
+\item 若\(f(t)\)是连续的偶函数，\(\int_0^x f(t) \dd{t}\)是奇函数.
+\end{enumerate}
+\begin{proof}
+设\(F(x) = \int_0^x f(t) \dd{t}\)，那么\[
+F(-x) = \int_0^{-x} f(t) \dd{t}
+\xlongequal{t=-u} \int_0^x f(-u) \dd(-u).
+\]
+\begin{enumerate}
+\item 若\(f\)是连续的奇函数，那么\(f(-u) = -f(u)\)，所以\[
+F(-x) = \int_0^x f(u) \dd{u} = F(x),
+\]即\(F(x)\)是偶函数；
+
+\item 若\(f\)是连续的偶函数，那么\(f(-u) = f(u)\)，所以\[
+F(-x) = -\int_0^x f(u) \dd{u} = -F(x),
+\]即\(F(x)\)是奇函数.
+\qedhere
+\end{enumerate}
+\end{proof}
+\end{example}
+
+\subsection{定积分的分部积分法}
+\begin{theorem}
+若函数\(u(x)\)、\(v(x)\)在区间\([a,b]\)上连续，在\((a,b)\)上可导，则\[
+\int_a^b u(x) v'(x) \dd{x} = [u(x) v(x)]_a^b - \int_a^b v(x) u'(x) \dd{x}.
+\]或\[
+\int_a^b u \dd{v} = [uv]_a^b - \int_a^b v \dd{u}.
+\]
+\end{theorem}
+公式表明原函数已经积出的部分可以先用上、下限代入.
+
+多次运用分部积分公式可以进一步得到以下结果：
+\begin{corollary}
+设函数\(u(x)\)及\(v(x)\)在区间\([a,b]\)上有\(n+1\)阶连续导数，则\[
+\int_a^b u(x) v^{(n+1)}(x) \dd{x}
+= \biggl[
+\sum\limits_{k=0}^n (-1)^k u^{(k)}(x) v^{(n-k)}(x)
+\biggr]_a^b + (-1)^{n+1} \int_a^b u^{(n+1)}(x) v(x) \dd{x}
+\]对\(n=1,2,\dotsc\)均成立.
+\end{corollary}
+
+\begin{example}
+计算\(\int_0^1 e^{\sqrt{x}} \dd{x}\).
+\begin{solution}
+先用换元法.令\(\sqrt{x}=t\)，则\(x=t^2\)，\(\dd{x} = 2t\dd{t}\)，那么\[
+\int_0^1 e^{\sqrt{x}} \dd{x}
+= 2 \int_0^1 t \dd(e^t)
+= 2 (t e^t)_0^1 - 2 \int_0^1 e^t \dd{t}
+= 2.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}\label{example:定积分.点火公式}
+证明\begin{equation}\label{equation:定积分.点火公式}
+\def\arraystretch{1.5}
+I_n = \int_0^{\frac{\pi}{2}} \sin^n x \dd{x}
+= \left\{ \begin{array}{rl}
+\frac{\pi}{2}\frac{(n-1)!!}{n!!}, & n = 2k \\
+\frac{(n-1)!!}{n!!}, & n = 2k+1
+\end{array} \right.
+\quad (k \in \mathbb{N}^+).
+\end{equation}
+\begin{proof}
+由于\[
+\begin{split}
+I_n &= -\int_0^{\frac{\pi}{2}} \sin^{n-1} x \dd(\cos x) \\
+&= [-\cos x \sin^{n-1} x]_0^{\pi/2}
+	+ (n-1) \int_0^{\pi/2} \sin^{n-2} x \cos^2 x \dd{x} \\
+&= (n-1) \int_0^{\pi/2} \sin^{n-2} x (1-\sin^2 x) \dd{x} \\
+&= (n-1) I_{n-2} - (n-1) I_n,
+\end{split}
+\]所以\[
+I_n = \frac{n-1}{n} I_{n-2}.
+\]于是\[
+\begin{split}
+I_{2k} = \frac{2k-1}{2k} \cdot \frac{2k-3}{2k-2} \cdot \dotsm \cdot \frac{5}{6} \cdot \frac{3}{4} \cdot \frac{1}{2} \cdot I_0, \\
+I_{2k+1} = \frac{2k}{2k+1} \cdot \frac{2k-2}{2k-1} \cdot \dotsm \cdot \frac{6}{7} \cdot \frac{4}{5} \cdot \frac{2}{3} \cdot I_1,
+\end{split}
+\quad(k=1,2,\dotsc).
+\]而\[
+I_0 = \int_0^{\frac{\pi}{2}} \dd{x} = \frac{\pi}{2},
+\qquad
+I_1 = \int_0^{\frac{\pi}{2}} \sin x \dd{x} = 1,
+\]因此\[
+I_{2k} = \frac{2k-1}{2k} \cdot \frac{2k-3}{2k-2} \cdot \dotsm \cdot \frac{5}{6} \cdot \frac{3}{4} \cdot \frac{1}{2} \cdot \frac{\pi}{2},
+\]\[
+I_{2k+1} = \frac{2k}{2k+1} \cdot \frac{2k-2}{2k-1} \cdot \dotsm \cdot \frac{6}{7} \cdot \frac{4}{5} \cdot \frac{2}{3}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+下面特别就\cref{equation:定积分.点火公式} 做一点点展开.
+\begin{example}
+证明：\(\lim\limits_{n\to\infty} \int_0^{\pi/2} \sin^n x \dd{x} = 0\).
+\begin{proof}
+因为\(\sin^n\frac{\pi}{2}=1\)，所以对于任意\(n\)总有函数\(\sin^n x\)在点\(\frac{\pi}{2}\)的左邻域取值接近\(1\).另一方面，对于固定的\(x\)取值，只要\(x<\frac{\pi}{2}\)，则当\(n\)增加时函数值\(\sin^n x\)就很快趋于\(0\).接下来我们就采用这样的“分而治之”的方法证明\(\lim\limits_{n\to\infty} \int_0^{\pi/2} \sin^n x \dd{x} = 0\).
+
+当\(0<x<\frac{\pi}{2}\)时，\(0<\sin x<1\).\(\forall\varepsilon>0\)（不妨设\(\varepsilon<\pi\)）.因为\(\sin x\)在\([0,\pi/2]\)上单调增加且大于零，故根据\cref{theorem:定积分.定积分性质6} ，有\[
+\int_0^{(\pi-\varepsilon)/2} \sin^n x \dd{x}
+\leqslant
+\int_0^{(\pi-\varepsilon)/2} \sin^n\frac{\pi-\varepsilon}{2} \dd{x}
+\leqslant
+\frac{\pi}{2} \sin^n\frac{\pi-\varepsilon}{2},
+\]因此\[
+0 \leqslant \int_0^{\pi/2} \sin^n x \dd{x}
+= \int_0^{(\pi-\varepsilon)/2} \sin^n x \dd{x}
++ \int_{(\pi-\varepsilon)/2}^{\pi/2} \sin^n x \dd{x}
+\leqslant \frac{\pi}{2} \sin^n\frac{\pi-\varepsilon}{2} + \frac{\varepsilon}{2}.
+\]由\(0<\sin\frac{\pi-\varepsilon}{2}<1\)，可见\(\lim\limits_{n\to\infty} \sin^n\frac{\pi-\varepsilon}{2} = 0\).从而对于上述\(\varepsilon\)，有\[
+\exists N\in\mathbb{N}^+ \left( \begin{array}{ll}
+n>N &\implies 0<\frac{\pi}{2} \sin^n\frac{\pi-\varepsilon}{2}<\frac{\varepsilon}{2} \\
+&\implies 0 \leqslant \int_0^{\pi/2} \sin^n x \dd{s} < \varepsilon
+\end{array} \right).
+\]这就证明了\(\lim\limits_{n\to\infty} \int_0^{\pi/2} \sin^n x \dd{x} = 0\).
+\end{proof}
+\end{example}
+
+可以观察到\cref{example:定积分.点火公式} 中\(I_{2k}\)和\(I_{2k+1}\)几乎只差一个系数\(\pi/2\).我们不禁猜想是否可以利用\cref{equation:定积分.点火公式} 求出圆周率\(\pi\).
+\begin{example}[Wallis公式]
+证明：\begin{equation}\label{equation:定积分.Wallis公式}
+\lim\limits_{n\to\infty} \frac{1}{2n+1} \left[
+\frac{(2n)!!}{(2n-1)!!}
+\right]^2 = \frac{\pi}{2}.
+\end{equation}
+\begin{proof}
+因为当\(0<x<\frac{\pi}{2}\)时有\(0<\sin x<1\)，因此就有\[
+\sin^{2n+2} x < \sin^{2n+1} x < \sin^{2n} x.
+\]这样就成立积分不等式\(I_{2n+2} < I_{2n+1} < I_{2n}\)，那么\[
+I_{2n+2} = \frac{2n+1}{2n+2} \cdot I_{2n}
+< I_{2n+1} < I_{2n}.
+\]在上式两边同时除以\(I_{2n}\)，并取极限，根据\hyperref[theorem:极限.夹逼准则]{夹逼准则}有\[
+\lim\limits_{n\to\infty} \frac{I_{2n+1}}{I_{2n}} = 1
+\]或\[
+\lim\limits_{n\to\infty} \frac{1}{2n+1} \cdot \left[
+	\frac{(2n)!!}{(2n-1)!!}
+\right]^2 \cdot \frac{2}{\pi} = 1.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+计算\[
+I_n = \int_0^{\pi} x \sin^n x \dd{x}
+\quad(n\in\mathbb{N}^+).
+\]
+\end{example}
+
+\begin{example}
+计算：\(\int_0^{2\pi}\left(\int_x^{2\pi}\frac{\sin t}{t}\dd{t}\right)\dd{x}\).
+\begin{solution}
+利用分部积分法，有\begin{align*}
+\int_0^{2\pi}\left(\int_x^{2\pi}\frac{\sin t}{t}\dd{t}\right)\dd{x}
+&= \left(x \int_x^{2\pi}\frac{\sin t}{t}\dd{t}\right)_0^{2\pi}
+- \int_0^{2\pi} x \dd(\int_x^{2\pi}\frac{\sin t}{t}\dd{t}) \\
+&= 0 - \int_0^{2\pi} x \left(-\frac{\sin x}{x}\right) \dd{x} \\
+&= \int_0^{2\pi} \sin x \dd{x} = 0.
+\end{align*}
+\end{solution}
+\end{example}
+
+\section{定积分的应用}
+\subsection{利用定积分的定义计算极限}
+\begin{example}
+\def\l{\lim\limits_{n\to\infty}}%
+\def\s{\sum\limits_{i=1}^n}%
+利用定积分的定义计算极限\[
+\l \frac{1}{n} \s \sqrt{1+\frac{i}{n}}.
+\]
+\begin{solution}
+考虑当\(i=1\)时，\(\frac{i}{n}\to0\ (n\to\infty)\)；%
+当\(i=n\)时，\(\frac{i}{n}=1\)；%
+那么该极限可以看作函数\(\sqrt{1+x}\)在区间\([0,1]\)上的积分，即\[
+\l \frac{1}{n} \s \sqrt{1+\frac{i}{n}}
+= \int_0^1 \sqrt{1+x} \dd{x}
+= \frac{2}{3} \eval{(1+x)^{\frac{3}{2}}}_0^1
+= \frac{2}{3} (2\sqrt{2}-1).
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+\def\l{\lim\limits_{n\to\infty}}%
+\def\s{\sum\limits_{i=1}^n}%
+利用定积分的定义计算极限\footnote{利用施托尔兹公式也可以计算该极限，参见\cref{example:极限.解极限常用公式方法.例1} .}\[
+\l \frac{1^p + 2^p + \dotsb + n^p}{n^{p+1}}.
+\]
+\begin{solution}
+我们将原极限变形为\[
+\l \frac{1}{n} \s \left(\frac{i}{n}\right)^p.
+\]考虑当\(i=1\)时，\(\frac{i}{n}\to0\ (n\to\infty)\)；%
+当\(i=n\)时，\(\frac{i}{n}=1\)；%
+那么该极限可以看作函数\(x^p\)在区间\([0,1]\)上的积分，即\[
+\l \frac{1^p + 2^p + \dotsb + n^p}{n^{p+1}}
+= \int_0^1 x^p \dd{x}
+= \frac{1}{p+1} \eval{x^{p+1}}_0^1
+= \frac{1}{p+1}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{极坐标下的图形面积}
+由曲线\(\rho = \varphi(\theta)\)及射线\(\theta=\alpha\)、\(\theta=\beta\)围成的曲边扇形的面积为\[
+A = \int_{\alpha}^{\beta} \frac{1}{2} [\varphi(\theta)]^2 \dd{\theta}.
+\]
+
+\subsection{旋转体的体积}
+\begin{definition}[旋转体]
+\textbf{旋转体}就是由一个平面图形绕着这平面内一条直线旋转一周而成的立体.这条直线叫做\textbf{旋转轴}.
+\end{definition}
+
+由连续曲线\(y=f(x)\)及直线\(x=a\)、\(x=b\)、\(x\)轴所围成的曲边梯形绕\(x\)轴旋转一周而成的立体的体积为
+\begin{equation}\label{equation:定积分.曲边梯形绕x轴旋转体的体积}
+V = \pi \int_a^b [f(x)]^2 \dd{x}.
+\end{equation}
+
+由连续曲线\(y=f(x)\)及直线\(x=a\)、\(x=b\)、\(x\)轴所围成的曲边梯形绕\(y\)轴旋转一周而成的立体的体积为
+\begin{equation}\label{equation:定积分.曲边梯形绕y轴旋转体的体积}
+V = 2\pi \int_a^b \abs{x f(x)} \dd{x}.
+\end{equation}
+
+\subsection{平面曲线的弧长}
+我们知道，圆的周长可以利用圆的内接正多边形（或外切正多边形）的周长在其边数诬陷增多时的极限来确定.
+类似地，我们建立平面曲线的弧长的概念，并运用定积分计算平面曲线的弧长.
+
+设\(A\)、\(B\)是平面曲线弧的两个端点.
+在弧\(\arc{AB}\)上依次任取分点\[
+A=M_0,M_1,M_2,\dotsc,M_{n-1},M_n=B,
+\]并依次连接相邻的分点得一条折线.
+当分点的数目无限增加且每个小段\(\arc{M_{i-1}M_i}\)都缩向一点时，如果此折线的长\[
+\sum\limits_{i=1}^n \abs{M_{i-1} M_i}
+\]的极限存在，则称“极限\(\lim\limits_{n\to\infty} \sum\limits_{i=1}^n \abs{M_{i-1} M_i}\)为曲线弧\(\arc{AB}\)的\textbf{弧长}”，并称“曲线弧\(\arc{AB}\)是可求长的”.
+
+\begin{theorem}
+光滑曲线弧是可求长的.
+\end{theorem}
+
+下面利用定积分的元素法来讨论平面光滑曲线弧长的计算公式.
+
+设曲线弧由参数方程\[
+\left\{ \begin{array}{l}
+x = \varphi(t), \\
+y = \psi(t)
+\end{array} \right.
+\quad(\alpha \leqslant t \leqslant \beta)
+\]给出，其中\(\varphi(t)\)、\(\psi(t)\)在\([\alpha,\beta]\)上具有连续导数，且\(\varphi'(t)\)、\(\psi'(t)\)不同时为零.
+现在来计算这曲线弧的长度.
+
+取参数\(t\)为积分变量，它的变化区间为\([\alpha,\beta]\).
+相应于\([\alpha,\beta]\)上任一小区间\([t,t+\dd{t}]\)的小弧段的长度\(\increment s\)近似等于对应的弦的长度\(\sqrt{(\increment x)^2+(\increment y)^2}\)，因为\[
+\increment x = \varphi(t+\dd{t})-\varphi(t) \approx \dd{x} = \varphi'(t) \dd{t},
+\]\[
+\increment y = \psi(t+\dd{t})-\psi(t) \approx \dd{y} = \psi'(t) \dd{t},
+\]所以，\(\increment s\)的近似值（弧微分）即弧长元素为\[
+\dd{s} = \sqrt{(\dd{x})^2 + (\dd{y})^2}
+= \sqrt{\varphi'^2(t) + \psi'^2(t)} \dd{t}.
+\]于是所求弧长为\begin{equation}
+s = \int_{\alpha}^{\beta} \sqrt{\varphi'^2(t) + \psi'^2(t)} \dd{t}.
+\end{equation}
+
+当曲线弧由直角坐标方程\[
+y = f(x) \quad(a \leqslant x \leqslant b)
+\]给出，其中\(f(x)\)在\([a,b]\)上具有一阶连续导数，这时曲线弧有参数方程\[
+\left\{ \begin{array}{l}
+x = x, \\
+y = f(x)
+\end{array} \right.
+\quad(\alpha \leqslant t \leqslant \beta),
+\]从而所求弧长为\begin{equation}
+s = \int_a^b \sqrt{1+y'^2} \dd{x}.
+\end{equation}
+
+当曲线弧由极坐标方程\[
+\rho=\rho(x)
+\quad(\alpha \leqslant \theta \leqslant \beta)
+\]给出，其中\(\rho(\theta)\)在\([\alpha,\beta]\)上具有连续导数，则由直角坐标与极坐标的关系可得\[
+\left\{ \begin{array}{c}
+x = \rho(\theta) \cos\theta, \\
+y = \rho(\theta) \sin\theta
+\end{array} \right.
+\quad(\alpha \leqslant \theta \leqslant \beta).
+\]
+这就是以极角\(\theta\)为参数的曲线弧的参数方程.
+而\[
+x'(\theta) = \rho'(\theta) \cos\theta - \rho(\theta) \sin\theta,
+\]\[
+y'(\theta) = \rho'(\theta) \sin\theta + \rho(\theta) \cos\theta.
+\]
+于是，弧长元素为\[
+ds = \sqrt{x'^2(\theta) + y'^2(\theta)} \dd{\theta}
+= \sqrt{\rho^2(\theta) + \rho'^2(\theta)} \dd{\theta}.
+\]从而所求弧长为\begin{equation}
+s = \int_{\alpha}^{\beta} \sqrt{\rho^2(\theta) + \rho'^2(\theta)} \dd{\theta}.
+\end{equation}
+
+\begin{example}
+求阿基米德螺线\(\rho=a\theta\ (a>0)\)相应于\(0\leqslant\theta\leqslant2\pi\)一段的弧长.
+\begin{solution}
+弧长元素为\[
+\dd{s} = \sqrt{(a\theta)^2 + a^2} \dd{\theta}
+= a\sqrt{\theta^2+1} \dd{\theta},
+\]于是所求弧长为\[
+s = a \int_0^{2\pi} \sqrt{1+\theta^2} \dd{\theta}
+= \frac{a}{2} \left[
+2\pi\sqrt{1+4\pi^2} + \ln(2\pi+\sqrt{1+4\pi^2})
+\right].
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求对数螺线\(\rho=e^{\theta}\)相应于\(0\leqslant\theta\leqslant\pi\)一段的弧长.
+\begin{solution}
+弧长元素为\[
+\dd{s} = \sqrt{e^{2\theta}+e^{2\theta}} \dd{\theta}
+= \sqrt{2}e^{\theta} \dd{\theta},
+\]于是所求弧长为\[
+s = \sqrt{2} \int_0^{\pi} e^{\theta} \dd{\theta}
+= \sqrt{2} (e^{\pi}-1).
+\]
+\end{solution}
+\end{example}
+
+\section{高等不等式}
+\subsection{柯西-施瓦茨不等式}
+\begin{theorem}[柯西-施瓦茨（Cauchy-Schwarz）不等式]\label{theorem:定积分.柯西-施瓦茨不等式}
+设函数\(f,g \in R[a,b]\)，则\begin{equation}\label{equation:定积分.柯西-施瓦茨不等式}
+\left[ \int_a^b f(x) g(x) \dd{x} \right]^2
+\leqslant
+\left[ \int_a^b f^2(x) \dd{x} \right] \left[ \int_a^b g^2(x) \dd{x} \right].
+\end{equation}
+若函数\(f,g \in C[a,b]\)，则上式“\(=\)”当且仅当“存在不全为零的常数\(\alpha\)和\(\beta\)，使得\(\alpha f(x) = \beta g(x)\)”成立.
+\begin{proof}
+因为对任意实数\(t\)，总有\begin{align*}
+&\hspace{-20pt}\int_a^b f^2(x) \dd{x}
++ 2t \int_a^b f(x) g(x) \dd{x}
++ t^2 \int_a^b g^2(x) \dd{x} \\
+&= \int_a^b [ f(x) + t g(x) ]^2 \dd{x}
+\geqslant \int_a^b 0 \dd{x} = 0
+\tag1
+\end{align*}成立.
+将(1)式视作关于\(t\)的一元二次多项式，假设二次项系数\(\int_a^b g^2(x) \dd{x} > 0\)，由于该多项式是非负的，故其判别式非正，即\[
+\left[ 2 \int_a^b f(x) g(x) \dd{x} \right]^2
+- 4 \left[ \int_a^b g^2(x) \dd{x} \right] \left[ \int_a^b f^2(x) \dd{x} \right] \leqslant 0,
+\]移项并化简，可得\cref{equation:定积分.柯西-施瓦茨不等式} .
+如果二次项系数\(\int_a^b g^2(x) \dd{x} = 0\)，%
+那么\(g\)在其所有连续点上恒等于零.
+由于可积函数的连续点稠密，%
+因此可以推出积分\(\int_a^b f(x) g(x) \dd{x} = 0\)，%
+从而有\cref{equation:定积分.柯西-施瓦茨不等式} 成立.
+\end{proof}
+\end{theorem}
+
+\subsection{闵可夫斯基不等式}
+\begin{theorem}[闵可夫斯基不等式]\label{theorem:定积分.闵可夫斯基不等式}
+设函数\(f,g \in C[a,b]\)，则\begin{equation}\label{equation:定积分.闵可夫斯基不等式}
+\sqrt{ \int_a^b [f(x)+g(x)]^2 \dd{x} }
+\leqslant
+\sqrt{ \int_a^b f^2(x) \dd{x} } + \sqrt{ \int_a^b g^2(x) \dd{x} }.
+\end{equation}
+\end{theorem}
+
+\subsection{欧庇尔不等式}
+\begin{theorem}[欧庇尔（Opial）不等式]\label{theorem:定积分.欧庇尔不等式}
+设函数\(f(x)\)在\([a,b]\)上有连续导数，\(f(a)=f(b)=0\)，则\begin{equation}\label{equation:定积分.Opial不等式}
+\int_a^b \abs{f(x) f'(x)} \dd{x}
+\leqslant \frac{b-a}{4}
+\int_a^b [f'(x)]^2 \dd{x}.
+\end{equation}
+\begin{proof}
+由于\(f(a)=f(b)=0\)，所以\begin{enumerate}
+\item 当\(x \in \left[a,c\right]\)时，\(\abs{f(x)} = \abs{\int_a^x f'(t) \dd{t}} \leqslant \int_a^x \abs{f'(t)} \dd{t} = F(x)\)；
+\item 当\(x \in \left[c,b\right]\)时，\(\abs{f(x)} = \abs{\int_b^x f'(t) \dd{t}} \leqslant \int_b^x \abs{f'(t)} \dd{t} = G(x)\),
+\end{enumerate}其中\(c=\frac{a+b}{2}\).从而，\begin{align*}
+\int_a^b \abs{f(x) f'(x)} \dd{x}
+&= \int_a^c \abs{f(x) f'(x)} \dd{x}
+    + \int_c^b \abs{f(x) f'(x)} \dd{x} \\
+&\leqslant \int_a^c F(x) F'(x) \dd{x}
+    + \int_c^b G(x) G'(x) \dd{x} \\
+&= \frac{1}{2} \left[ F^2(c) + G^2(c) \right].
+\end{align*}分别代入\(F(x)\)与\(G(x)\)的表达式，可得\[
+F^2(c) = \left( \int_a^c \abs{f'(t)} \dd{t} \right)^2,
+\qquad
+G^2(c) = \left( \int_c^b \abs{f'(t)} \dd{t} \right)^2.
+\]根据\hyperref[equation:定积分.柯西-施瓦茨不等式]{柯西-施瓦茨不等式}，有\begin{align*}
+&\hspace{-20pt}\int_a^b{\abs{f(x) f'(x)} \dd{x}}
+\leqslant \frac{1}{2} \left[
+    F^2(c)
+    + G^2(c)
+    \right] \\
+&= \frac{1}{2} \left[
+    \left(\int_a^c{\abs{f'(t)}\dd{t}}\right)^2
+    +\left(\int_c^b{\abs{f'(t)}\dd{t}}\right)^2
+    \right] \\
+&\leqslant \frac{1}{2} \left\{
+    \int_a^c{1^2 \dd{x}}
+    \int_a^c{[f'(x)]^2 \dd{x}}
+    +\int_c^b{1^2 \dd{x}}
+    \int_c^b{[f'(x)]^2 \dd{x}}
+    \right\} \\
+&= \frac{b-a}{4} \int_a^b{[f'(x)]^2 \dd{x}}.
+\end{align*}
+\cref{equation:定积分.Opial不等式} 当且仅当\[
+f(x) = \left\{ \begin{array}{cl}
+c(x-a), & x\in\left[a,c\right], \\
+-c(x-b), & x\in\left[c,b\right],
+\end{array} \right.
+\]时取等号，其中\(c\neq0\).
+\end{proof}
+\end{theorem}
+
+\subsection{贝尔曼-格朗沃尔不等式}
+\begin{theorem}[贝尔曼-格朗沃尔（Bellman-Gronwall）不等式]\label{theorem:定积分.贝尔曼-格朗沃尔不等式}
+%https://www.sciencedirect.com/topics/engineering/gronwall-bellman-inequality
+设\(f(x),g(x),\varphi(x)\)为\([a,b]\)上的连续函数，\(g(x)\)单调递增，\(\varphi(x)\geqslant0\)，且\[
+\forall x \in [a,b] : f(x) \leqslant g(x) + \int_a^x \varphi(t) f(t) \dd{t},
+\]那么\[
+\forall x \in [a,b] : f(x) \leqslant g(x) e^{\int_a^x \varphi(s) \dd{s}}.
+\]
+\begin{proof}
+设\(F(x) = \int_a^x \varphi(t) f(t) \dd{t}\)，则\[
+F'(x) = \varphi(x) f(x) \leqslant \varphi(x) g(x) + \varphi(x) F(x),
+\]移项得\(F'(x) - \varphi(x) F(x) \leqslant \varphi(x) g(x)\)，于是\[
+\dv{x}\left[F(x) e^{-\int_a^x \varphi(t) \dd{t}}\right]
+\leqslant \varphi(x) g(x) e^{-\int_a^x \varphi(t) \dd{t}},
+\]\[
+F(x) \leqslant \int_a^x \varphi(t) g(t) e^{\int_t^x \varphi(s) \dd{s}} \dd{t}.
+\]由于\(g(x)\)单调递增，根据\hyperref[theorem:定积分.积分中值定理2]{积分第二中值定理}，有\begin{align*}
+f(x) &\leqslant g(x) + F(x)
+\leqslant g(x) + \int_a^x \varphi(t) g(t) e^{\int_t^x \varphi(s) \dd{s}} \dd{t} \\
+&\leqslant g(x) + g(x) \int_a^x \varphi(t) e^{\int_t^x \varphi(s) \dd{s}} \dd{t} \\
+&= g(x) + g(x) \left[-e^{\int_t^ \varphi(s) \dd{s}}\right]_a^x \\
+&= g(x) e^{\int_a^x \varphi(s) \dd{s}}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}

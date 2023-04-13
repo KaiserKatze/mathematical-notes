@@ -1,0 +1,603 @@
+\chapter{正态分布与自然指数分布族}
+
+在数理统计中，最重要的分布就是正态分布.
+正态分布的重要性在于：
+在实际问题中有许多随机变量服从（或近似服从）正态分布，例如成年男子的身高、体重，工件的测量误差，大气的温度、湿度等；
+正态分布的密度函数与分布函数具有许多良好的性质；
+正态分布是许多分布的极限分布；
+正态分布在数理统计中的基础作用.
+所以，许多实际问题与理论问题的解决，都离不开正态分布.
+
+另外，二项分布、泊松分布、指数分布、\(\Gamma\)分布、几何分布等分布也很重要.
+由于它们与正态分布具有许多统一的概率性质，这些分布都被划归为自然指数分布族.
+
+\section{正态分布及其密度函数、分布函数}
+\begin{definition}
+若随机变量\(X\)的概率密度函数为\begin{equation}\label{equation:正态分布与自然指数分布族.标准正态分布的密度函数}
+\varphi(x) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}},
+\quad x \in \mathbb{R},
+\end{equation}则称\(X\)服从\textbf{标准正态分布}，记为\(X \sim N(0,1)\).
+
+\begin{figure}[ht]%标准正态分布的密度函数
+\centering
+\begin{tikzpicture}
+% Plot[1/Sqrt[2 \[Pi]] Exp[-(x^2/2)], {x, -5, 5}]
+\begin{axis}[
+xmin=-5.1,xmax=5.1,
+axis lines=middle,
+xlabel={\(x\)},
+ylabel={\(y\)},
+xscale=2,
+enlarge x limits=0.05,
+enlarge y limits=0.1,
+x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=north},
+y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south east},
+]
+\addplot[color=blue,samples=30,smooth,domain=-5:5]{exp(-x^2/2)/sqrt(2*pi)};
+\end{axis}
+\end{tikzpicture}
+\caption{标准正态分布\(N(0,1)\)的密度函数的图形}
+\label{figure:正态分布与自然指数分布族.标准正态分布的密度函数}
+\end{figure}
+
+
+标准正态分布随机变量\(X\)的分布函数记为\(\Phi(x)\)，有\begin{equation}\label{equation:正态分布与自然指数分布族.标准正态分布的分布函数}
+\Phi(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \dd{t}.
+\end{equation}
+\end{definition}
+
+\begin{property}
+由于密度函数\(\varphi(x)\)是偶函数，故分布函数\(\Phi(x)\)满足：
+\begin{enumerate}
+\item \(\Phi(0) = \frac{1}{2}\)；
+\item \(\Phi(-x) = 1 - \Phi(x)\).
+\end{enumerate}
+\end{property}
+
+\begin{definition}
+设\(\mu,\sigma\in\mathbb{R}^+\)是常数，若随机变量\(X\)满足\[
+\frac{X-\mu}{\sigma} \sim N(0,1),
+\]则称\(X\)服从参数为\(\mu\)、\(\sigma^2\)的\textbf{正态分布}，%
+记为\(X \sim N(\mu,\sigma^2)\).
+\end{definition}
+
+\begin{theorem}
+设\(X \sim N(\mu,\sigma^2)\)，则
+\begin{enumerate}
+\item \(X\)的分布函数为\[
+F(x) = \Phi\left(\frac{x-\mu}{\sigma}\right),
+\quad x\in\mathbb{R};
+\]
+\item \(P(a < X \leqslant b) = \Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)\);
+\item \(X\)的概率密度函数为\[
+f(x) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+\quad x\in\mathbb{R}.
+\]
+\end{enumerate}
+\begin{proof}
+\(X\)的分布函数为\[
+F(x) = P(X \leqslant x)
+= P\left(\frac{X-\mu}{\sigma}\leqslant\frac{x-\mu}{\sigma}\right)
+= \Phi\left(\frac{x-\mu}{\sigma}\right), \quad x\in\mathbb{R};
+\]由\cref{equation:正态分布与自然指数分布族.标准正态分布的分布函数} 可知\(\Phi\left(\frac{x-\mu}{\sigma}\right)\)处处连续可微，从而\begin{align*}
+f(x) &= F'(x) = \Phi'\left(\frac{x-\mu}{\sigma}\right)
+= \frac{1}{\sigma} \varphi\left(\frac{x-\mu}{\sigma}\right) \\
+&= \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+\quad x\in\mathbb{R}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{figure}[ht]%正态分布的密度函数
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+name=NormalDistribution,
+xmin=-5.1,xmax=7.1,
+axis lines=middle,
+xlabel={\(x\)},
+ylabel={\(y\)},
+xscale=2,
+enlarge x limits=0.05,
+enlarge y limits=0.1,
+x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=north},
+y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south east},
+]
+\def\plotNDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=-5:7]{exp(-(x-#1)^2/(2*#2^2))/(sqrt(2*pi)*#2)}}%
+\plotNDPDF{1}{0.25}{blue};\label{pgfplots:正态分布与自然指数分布族.N(1,0.25)}
+\plotNDPDF{1}{1}{orange};\label{pgfplots:正态分布与自然指数分布族.N(1,1)}
+\plotNDPDF{1}{2}{pink};\label{pgfplots:正态分布与自然指数分布族.N(1,2)}
+\plotNDPDF{-1}{0.25}{green};\label{pgfplots:正态分布与自然指数分布族.N(-1,0.25)}
+\end{axis}
+\node[draw,fill=white,inner sep=0pt,above left=0.5em]at(NormalDistribution.north east){\small\begin{tabular}{cl}
+\ref{pgfplots:正态分布与自然指数分布族.N(1,0.25)} & \(N(1,0.25)\) \\
+\ref{pgfplots:正态分布与自然指数分布族.N(1,1)} & \(N(1,1)\) \\
+\ref{pgfplots:正态分布与自然指数分布族.N(1,2)} & \(N(1,2)\) \\
+\ref{pgfplots:正态分布与自然指数分布族.N(-1,0.25)} & \(N(-1,0.25)\) \\
+\end{tabular}};
+\end{tikzpicture}
+\caption{正态分布\(N(\mu,\sigma^2)\)的密度函数的图形}
+\label{figure:正态分布与自然指数分布族.正态分布的密度函数}
+\end{figure}
+
+\begin{property}
+观察正态分布\(N(\mu,\sigma^2)\)的密度函数图像\labelcref{figure:正态分布与自然指数分布族.正态分布的密度函数} 可知：
+\begin{enumerate}
+\item 其密度函数\(f(x)\)对称于\(x=\mu\)；
+\item 密度函数曲线顶点为\(\max\{f(x)\}=\frac{1}{\sqrt{2\pi}\sigma}\)；
+\item 密度函数曲线以\(x\)轴为渐近线，且在\(\mu\pm\sigma\)处有拐点；
+\item \(\sigma\)不变，\(\mu\)改变，曲线平移但曲线形态不变，故\(\mu\)又称为位置参数；\(\mu\)不变，\(\sigma\)改变，曲线对称轴不变，但曲线形态改变——\(\sigma\)越小，曲线越高越瘦；反之\(\sigma\)越大，曲线越矮越胖——故\(\sigma\)又称为刻度参数.
+\end{enumerate}
+\end{property}
+
+\begin{example}
+设\(X \sim N(0,1)\).试证：\(Y=-X\)也服从标准正态分布.
+\begin{proof}
+\(Y\)的分布函数\(F(y)\)可表为\begin{align*}
+F(y) &= P(Y \leqslant y) = P(-X \leqslant y) = P(X \geqslant -y) \\
+&= 1 - \Phi(-y) = \Phi(y),
+\end{align*}故\(Y \sim N(0,1)\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(X \sim N(\mu,\sigma^2)\).求\(X\)落在\((\mu-3\sigma,\mu+3\sigma)\)内的概率.
+\begin{solution}
+\begin{align*}
+P(\mu-3\sigma<X<\mu+3\sigma)
+&= \Phi\left(\frac{\mu+3\sigma-\mu}{\sigma}\right)
+- \Phi\left(\frac{\mu-3\sigma-\mu}{\sigma}\right) \\
+&= \Phi(3) - \Phi(-3) = 2\Phi(3) - 1 \\
+&= 2 \times 0.998\ 7 - 1 = 0.997\ 4.
+\end{align*}
+\end{solution}
+\end{example}
+由此可见，\(X\)落在\((\mu-3\sigma,\mu+3\sigma)\)区间外的概率不到\(0.003\).
+一般认为这个事件的概率是极小的.
+因此在实际应用中我们常把区间\((\mu-3\sigma,\mu+3\sigma)\)看作\(X\)的实际取值区间，这就是正态分布所谓的“\(3\sigma\)原则”.
+
+\begin{example}
+设随机变量\(X \sim N(0,1)\)，求随机变量\(Y = X^2\)的概率密度.
+\begin{solution}
+\(X\)的密度函数为\[
+\varphi(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}},
+\quad -\infty < x < +\infty.
+\]
+
+\(Y\)有值域\(R(Y) = [0,+\infty)\)，对\(\forall y \geqslant 0\)有\(Y\)分布函数为\[
+F_Y(y) = P(Y \leqslant y) = P(X^2 \leqslant y)
+= P(-\sqrt{y} \leqslant X \leqslant \sqrt{y})
+= \int_{-\sqrt{y}}^{\sqrt{y}}{\frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \dd{x}};
+\]而当\(y < 0\)时，显然有\(F_Y(y) = P(Y \leqslant y) = P(\emptyset) = 0\).于是有\[
+f_Y(y) = F'_Y(y) = \left\{ \begin{array}{ll}
+\frac{1}{\sqrt{2\pi}} y^{-\frac{1}{2}} e^{-\frac{y}{2}}, & y > 0, \\
+0, & y \leqslant 0.
+\end{array} \right.
+\]
+由此可知，\(Y \sim \Gamma\left(\frac{1}{2},\frac{1}{2}\right)\).
+\end{solution}
+\end{example}
+
+
+\section{正态分布的数字特征、线性性质}
+\subsection{正态分布的数字特征}
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.正态分布的数字特征}
+设随机变量\(X \sim N(\mu,\sigma^2)\)，则\(X\)的期望与方差分别为\[
+E(X) = \mu,
+\qquad
+D(X) = \sigma^2.
+\]
+\begin{proof}
+设\(Y \sim N(0,1)\)，则有\begin{align*}
+E(Y) &= \int_{-\infty}^{+\infty} y \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \dd{y} = 0, \\
+D(Y) &= E(Y^2)
+ = \int_{-\infty}^{+\infty} y^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \dd{y} \\
+ &= \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} y^2 e^{-\frac{y^2}{2}} \dd{y} \\
+ &\xlongequal{t=y^2/2} \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} 2 t e^{-t} \frac{\sqrt{2}}{2} t^{-\frac{1}{2}} \dd{t} \\
+ &=\frac{2}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{1}{2}} e^{-t} \dd{t} \\
+ &= \frac{2}{\sqrt{\pi}} \Gamma\left(\frac{3}{2}\right)
+ = \frac{2}{\sqrt{\pi}} \cdot \frac{1}{2} \Gamma\left(\frac{1}{2}\right)
+ = 1.
+\end{align*}
+由一般正态分布定义，\(Y = \frac{X-\mu}{\sigma}\)，即\(X = \sigma Y + \mu\)，从而\[
+E(X) = E(\sigma Y + \mu) = \sigma E(Y) + \mu = \mu,
+\]\[
+D(X) = D(\sigma Y + \mu) = \sigma^2 D(Y) = \sigma^2.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{example}
+设随机变量\(X\)的分布函数为\[
+F(x) = \frac{3}{10} \Phi(x) + \frac{7}{10} \Phi\left(\frac{x-1}{2}\right),
+\]其中\(\Phi(x)\)是标准正态分布的分布函数，求\(E(X)\).
+\begin{solution}
+对\(F(x)\)求导得\[
+f(x) = F'(x) = \frac{3}{10} \varphi(x) + \frac{7}{10} \varphi\left(\frac{x-1}{2}\right) \frac{1}{2},
+\]其中\(\varphi(x)\)是标准正态分布的密度函数.
+那么\begin{align*}
+E(X) &= \int_{-\infty}^{+\infty} x f(x) \dd{x} \\
+&= \int_{-\infty}^{+\infty} x \frac{3}{10} \varphi(x) \dd{x}
++ \int_{-\infty}^{+\infty} x \frac{7}{10} \varphi\left(\frac{x-1}{2}\right) \frac{1}{2} \dd{x} \\
+&\xlongequal{y=(x-1)/2} \frac{3}{10} \cdot 0
++ \frac{7}{10} \int_{-\infty}^{+\infty} (2y+1) \varphi(y) \dd{y}
+= \frac{7}{10}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\subsection{正态分布的线性性质}
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.正态分布的线性性质}
+设随机变量\(X \sim N(\mu,\sigma^2)\)，当\(b \neq 0\)时，有\begin{equation}
+Y = a+bX \sim N(a+b\mu,b^2\sigma^2).
+\end{equation}
+\begin{proof}
+令\[
+Z = \frac{Y-(a+b\mu)}{\abs{b}\sigma}.
+\]
+
+当\(b > 0\)时，\[
+Z = \frac{(a+bX)-(a+b\mu)}{b\sigma}=\frac{X-\mu}{\sigma},
+\]故\(Z \sim N(0,1)\)；
+
+当\(b < 0\)时，\[
+Z = \frac{(a+bX)-(a+b\mu)}{-b\sigma}=-\frac{X-\mu}{\sigma},
+\]故\(Z \sim N(0,1)\).
+
+综上所述，\(Y \sim N(a+b\mu,b^2\sigma^2)\).
+\end{proof}
+\end{theorem}
+
+\subsection{正态分布的可加性}
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.正态分布的可加性1}
+设\(X \sim N(\mu_1,\sigma_1^2)\)，\(Y \sim N(\mu_2,\sigma_2^2)\)，%
+且\(X\)与\(Y\)相互独立，则\begin{equation}
+X+Y \sim N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2).
+\end{equation}
+\end{theorem}
+
+\begin{corollary}\label{theorem:正态分布与自然指数分布族.正态分布的可加性2}
+设随机变量\(\v{X}{n}\)相互独立，且\[
+X_i \sim N(\mu_i,\sigma_i^2),
+\quad i=1,2,\dotsc,n,
+\]\(C_1,C_2,\dotsc,C_n\)为常数，则\begin{equation}
+\sum\limits_{i=1}^n {C_i X_i}
+\sim N\left(
+\sum\limits_{i=1}^n {C_i \mu_i},
+\sum\limits_{i=1}^n {C_i^2 \sigma_i^2}
+\right).
+\end{equation}
+\end{corollary}
+
+\begin{example}
+设\(\v{X}{n}\)独立同分布于\(N(\mu,\sigma^2)\)，试计算其算术平均数\[
+\overline{X} = \frac{1}{n} (X_1+X_2+\dotsb+X_n)
+\]的分布.
+\begin{solution}
+由\hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布的卷积公式}可知\[
+X_1+X_2+\dotsb+X_n \sim N(n\mu,n\sigma^2).
+\]又由\hyperref[theorem:正态分布与自然指数分布族.正态分布的线性性质]{正态分布的线性性}可知\[
+\overline{X} = \frac{1}{n} (X_1+X_2+\dotsb+X_n) \sim N\left(\mu,\frac{\sigma^2}{n}\right).
+\]
+\end{solution}
+由此可见，\(n\)个独立同分布于正态分布\(N(\mu,\sigma^2)\)的随机变量的算术平均数\(\overline{X}\)仍服从正态分布，其均值与原分布的均值\(\mu\)相同；但其方差缩小了\(n\)倍，变为\(\sigma^2/n\)；其标准差缩小了\(\sqrt{n}\)倍，变为\(\sigma/\sqrt{n}\).
+这表明\(\overline{X}\)的分布更加集中，这也是为什么在测量物体的尺寸时我们应该多次读数并取算术平均值.
+\end{example}
+
+\section{二维正态分布}
+\begin{definition}
+设二维随机变量\((X,Y)\)有二维密度函数\begin{equation}
+f(x,y) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-r^2}} \exp[- u(x,y)],
+\quad(x,y)\in\mathbb{R}^2,
+\end{equation}
+其中\[
+u(x,y)
+= \frac{1}{2(1-r^2)} \left[
+		\frac{(x-\mu_1)^2}{\sigma_1^2}
+		-2r\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}
+		+\frac{(y-\mu_2)^2}{\sigma_2^2}
+	\right],
+\]\(\mu_1,\mu_2,\sigma_1\in\mathbb{R}^+,\sigma_2\in\mathbb{R}^+,r\in(-1,1)\)是参数，%
+则称“\((X,Y)\)服从\textbf{二维正态分布}”，%
+记为\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\).
+\end{definition}
+
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.性质1}
+若\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，%
+则对应的边缘分布均为正态分布，且\[
+X \sim N(\mu_1,\sigma_1^2),
+\qquad
+Y \sim N(\mu_2,\sigma_2^2).
+\]
+\begin{proof}
+首先有
+\begin{align*}
+f_X(x) &= \int_{-\infty}^{+\infty} f(x,y) \dd{y} \\
+&= \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-r^2}}
+	\int_{-\infty}^{+\infty} e^{-u(x,y)} \dd{y},
+\end{align*}
+其中\begin{align*}
+u(x,y)
+&= \frac{1}{2(1-r^2)} \left[
+		\frac{(x-\mu_1)^2}{\sigma_1^2}
+		-2r\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}
+		+\frac{(y-\mu_2)^2}{\sigma_2^2}
+	\right] \\
+&= \frac{1}{2 \sigma_1^2} (x-\mu_1)^2
+	+ \frac{1}{2(1-r^2)} \left[
+		\frac{y-\mu_2}{\sigma_2}
+		- \frac{r(x-\mu_1)^2}{\sigma_1}
+	\right]^2.
+\end{align*}
+令\[
+t = \frac{1}{\sqrt{1-r^2}} \left[
+\frac{y-\mu_2}{\sigma_2}
+- \frac{r(x-\mu_1)}{\sigma_1}
+\right],
+\]则有\[
+f_X(x)
+= \frac{1}{\sqrt{2\pi} \sigma_1} e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} \dd{t} \\
+= \frac{1}{\sqrt{2\pi} \sigma_1} e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}},
+\quad(x\in\mathbb{R}).
+\]
+同理可得\[
+f_Y(y)
+= \frac{1}{\sqrt{2\pi} \sigma_2} e^{-\frac{(y-\mu_2)^2}{2\sigma_2^2}},
+\quad(y\in\mathbb{R}).
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.性质2}
+若\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，则\[
+R(X,Y) = r.
+\]
+\begin{proof}
+根据\cref{theorem:随机变量的数字特征.相关系数的性质1} ，有\begin{align*}
+R(X,Y)
+&= E(X^* Y^*) \\
+&= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty}
+	\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1 \sigma_2}
+	\cdot
+	\frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1-r^2}}
+	e^{-u(x,y)}
+	\dd{x} \dd{y}.
+\end{align*}
+{%define \u and \v
+\def\u{u}%
+\def\v{v}%
+\def\intx{\int_{-\infty}^{+\infty}}%
+令\[
+\u = \frac{x-\mu_1}{\sigma_1},
+\qquad
+\v = \frac{y-\mu_2}{\sigma_2},
+\]从而\[
+R(X,Y)
+= \intx
+	\frac{1}{\sqrt{2\pi}}
+	\u e^{-\frac{\u^2}{2}}
+	\left[
+		\intx
+		\frac{\v}{\sqrt{2\pi} \sqrt{1-r^2}}
+		e^{-\frac{(\v-r\u)^2}{2(1-r^2)}}
+		\dd\v
+	\right]
+	\dd\u.
+\]由数学期望的定义可知，上式括号中的部分是正态分布\(N(r\u,1-r^2)\)的数学期望，等于\(r\u\)，于是得到\[
+R(X,Y)
+= r \intx \frac{1}{\sqrt{2\pi}} \u^2 e^{-\frac{\u^2}{2}} \dd\u.
+\]由于上式中的积分是标准正态分布\(N(0,1)\)的方差，等于\(1\)，因此\(R(X,Y) = r\).
+}%undefine \u and \v
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:正态分布与自然指数分布族.性质3}
+设\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，%
+则\(X\)与\(Y\)相互独立的充要条件为\(r=0\)（\(X\)与\(Y\)不相关）.
+\end{corollary}
+
+二维正态分布的条件分布仍然是正态分布.
+\begin{example}\label{theorem:正态分布与自然指数分布族.性质4}
+设二维随机变量\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\).
+求解条件密度函数\[
+f_{X \vert Y}(x \vert y)
+\]的解析式.
+\begin{solution}
+\def\A{\frac{1}{\sqrt{2\pi}\sigma_1\sqrt{1-r^2}}}%
+\def\B{\frac{1}{2(1-r^2)}}%
+直接计算得\begin{align*}
+&f_{X \vert Y}(x \vert y) = \frac{f(x,y)}{f_Y(y)} \\
+&= \A
+	\exp\Biggl\{
+		- \B
+		\left[
+			\frac{(x-\mu_1)^2}{\sigma_1^2}
+			- 2r\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}
+			+ r^2\frac{(y-\mu_2)^2}{\sigma_2^2}
+		\right]
+	\Biggr\} \\
+&= \A
+	\exp\left\{
+		- \B
+		\left[
+			\frac{x-\mu_1}{\sigma_1}
+			- r\frac{y-\mu_2}{\sigma_2}
+		\right]^2
+	\right\} \\
+&= \A
+	\exp\left\{
+		- \B
+		\frac{1}{\sigma_1^2}
+		\left[
+			x - \mu_1
+			- r\frac{\sigma_1}{\sigma_2}(y-\mu_2)
+		\right]^2
+	\right\}.
+\end{align*}
+这个条件密度函数恰好是期望为\(\mu_1+r\frac{\sigma_1}{\sigma_2}(y-\mu_2)\)，方差为\(\sigma_1^2(1-r^2)\)的正态分布的密度函数.
+\end{solution}
+\end{example}
+
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.二维随机变量服从二维正态分布的充要条件}
+二维随机变量\((X,Y)\)服从二维正态分布的充要条件是：
+\(X\)与\(Y\)的任意非零线性组合\(Z=aX+bY\)服从一维正态分布，%
+即\(Z \sim N(E(Z),D(Z))\).
+\end{theorem}
+
+\begin{example}
+设\((X,Y) \sim N\left(2,3;4,9;\frac{1}{2}\right)\)，\(Z = \frac{1}{2} X - \frac{1}{3} Y\)，求\(E(\abs{Z})\).
+\begin{solution}
+由\cref{theorem:正态分布与自然指数分布族.性质1} 有\[
+X \sim N(2,4), \qquad
+Y \sim N(3,9),
+\]且相关系数\(R(X,Y) = 1/2\)，于是\[
+\Cov(X,Y) = R(X,Y) \sqrt{D(X)} \sqrt{D(Y)} = 3.
+\]\[
+E(Z) = \frac{1}{2} E(X) - \frac{1}{3} E(Y) = 0.
+\]\[
+D(Z) = \frac{1}{4} D(X) + \frac{1}{9} D(Y)
+	- 2 \cdot \frac{1}{2} \cdot \frac{1}{3} \Cov(X,Y)
+= 1.
+\]
+由\cref{theorem:正态分布与自然指数分布族.二维随机变量服从二维正态分布的充要条件} 有\begin{align*}
+E(\abs{Z})
+&= \int_{-\infty}^{+\infty} \abs{z} \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} \dd{z}
+= \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} z e^{-\frac{z^2}{2}} \dd{z} \\
+&= \frac{\sqrt{2}}{\sqrt{\pi}} \int_0^{+\infty} \dd(-e^{-\frac{z^2}{2}})
+= \sqrt{\frac{2}{\pi}} \left(-e^{-\frac{z^2}{2}}\right)_0^{+\infty}
+= \sqrt{\frac{2}{\pi}}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+设随机变量\(X\)、\(Y\)相互独立，且\(X \sim U(0,1)\)，\(Y \sim e(1/2)\).
+求关于\(a\)的一元二次方程\(a^2 + 2aX + Y = 0\)有实根的概率.
+\begin{solution}
+根据均匀分布和指数分布的定义，\[
+f_X(x) = \left\{ \begin{array}{cl}
+1, & x\in(0,1), \\
+0, & \text{其他};
+\end{array} \right.
+\qquad
+f_Y(y) = \left\{ \begin{array}{cl}
+\frac{1}{2} e^{-\frac{1}{2} y}, & y>0, \\
+0, & y \leqslant 0.
+\end{array} \right.
+\]
+因为随机变量\(X\)、\(Y\)相互独立，所以\(X\)与\(Y\)的联合密度函数为\[
+f(x,y) = f_X(x) \cdot f_Y(y)
+= \left\{ \begin{array}{cl}
+\frac{1}{2} e^{-\frac{1}{2} y}, & 0<x<1 \land y>0, \\
+0, & \text{其他}.
+\end{array} \right.
+\]
+
+一元二次方程有实根的概率为\begin{align*}
+P[(2X)^2 - 4Y \geqslant 0]
+&= P(X^2 \geqslant Y)
+= \int_0^1 \dd{x} \int_0^{x^2} \frac{1}{2} e^{-\frac{1}{2} y} \dd{y} \\
+&= 1 - \sqrt{2\pi} \left[ \Phi(1) - \frac{1}{2} \right]
+\approx 0.144376.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+设二维随机变量\((X,Y)\)的概率密度为\[
+f(x,y) = A e^{-2x^2+2xy-y^2}, \quad x,y\in\mathbb{R},
+\]求常数\(A\)及条件概率密度\(f_{Y \vert X}(y \vert x)\).
+\begin{solution}
+先求\(X\)的边缘密度函数，有\begin{align*}
+f_X(x) &= \int_{-\infty}^{+\infty} f(x,y) \dd{y} \\
+&= \int_{-\infty}^{+\infty} A e^{-2x^2+2xy-y^2} \dd{y} \\
+&= A e^{-x^2} \int_{-\infty}^{+\infty} e^{-(y-x)^2} \dd{y} \\
+&= A e^{-x^2} \sqrt{\pi} \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi} \sqrt{\frac{1}{2}}} e^{\frac{-(y-x)^2}{2 \cdot \frac{1}{2}}} \dd{y} \\
+&= A \sqrt{\pi} e^{-x^2}.
+\end{align*}
+由\hyperref[theorem:随机变量及其分布.连续型随机变量的密度函数的性质]{规范性}和重要积分公式\labelcref{equation:重积分.常用积分2} 可知\[
+\int_{-\infty}^{+\infty} f_X(x) \dd{x}
+= A \sqrt{\pi} \int_{-\infty}^{+\infty} e^{-x^2} \dd{x}
+= A \pi = 1,
+\]因此，\(A = \frac{1}{\pi}\).
+那么根据\cref{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系2} 有\[
+f_{Y \vert X}(y \vert x)
+= \frac{f(x,y)}{f_X(x)}
+= \frac{\frac{1}{\pi} e^{-2x^2+2xy-y^2}}{\frac{1}{\pi} \sqrt{\pi} e^{-x^2}}
+= \frac{1}{\sqrt{\pi}} e^{-(x-y)^2},
+\quad y\in\mathbb{R}.
+\]
+\end{solution}
+\end{example}
+
+\section{自然指数分布族}
+\begin{definition}
+若存在\(H \subseteq \mathbb{R}\)上的实值函数\(\varphi(\theta)\)，%
+以及不依赖于\(\theta\)的函数\(h(x)\)，%
+非退化的随机变量\(X\)有概率分布或概率密度函数\[
+f(x,\theta) = \exp[\theta x - \varphi(\theta)] h(x),
+\quad x \in G,\,\theta \in H,
+\]则称\(X\)服从\textbf{自然指数分布族分布}.
+其中\(\theta\)叫做自然参数，\(H\)叫做\textbf{自然参数空间}，%
+\(\varphi(\theta)\)叫做\textbf{累积量母函数}，%
+\(G\)叫做\textbf{支撑集}，且\(G\)不依赖于\(\theta\).
+\end{definition}
+
+\begin{theorem}
+若\(X\)服从自然指数分布族分布，则\[
+E(X) = \varphi'(\theta),
+\quad
+D(X) = \varphi''(\theta),
+\quad
+\theta \in H.
+\]
+\end{theorem}
+
+\begin{landscape}
+\begin{table}
+\def\arraystretch{2.1}
+%\setlength{\tabcolsep}{18pt} % 影响列宽
+\centering
+\caption{常见自然指数分布族分布}
+\begin{tabular}{|*{5}{c|}}
+\hline
+密度函数或概率分布 & 自然参数\(\theta\) & 累积量母函数\(\varphi(\theta)\) & 均值参数\(m=\varphi'(\theta)\) & 方差函数\(V(m) = \varphi''(\theta)\) \\ \hline
+正态函数\(N(\mu,\sigma^2)\) & \(\frac{\mu}{\sigma^2}\) & \(\frac{\sigma^2 \theta^2}{2}\) & \(m=\mu=\theta\sigma^2\) & \(\sigma^2\) \\ \hline
+泊松分布\(P(\lambda)\) & \(\ln\lambda\) & \(e^{\theta}\) & \(m=\lambda=e^{\theta}\) & \(\lambda=m\) \\ \hline
+\(\Gamma\)分布\(\Gamma(\alpha,\beta)\) & \(-\beta\) & \(-\alpha\ln(-\theta)=-\alpha\ln\beta\) & \(m=\frac{\alpha}{\beta}=-\frac{\alpha}{\theta}\) & \(\frac{\alpha}{\beta^2}=\frac{m^2}{\alpha}\) \\ \hline
+二项分布\(B(n,p)\) & \(\ln\frac{p}{q}\) & \(n\ln(1+e^{\theta})=-n\ln{q}\) & \(m=np=\frac{n}{1+e^{-\theta}}\) & \(npq=-\frac{m^2}{n}+m\) \\ \hline
+负二项分布\(NB(r,p)\) & \(\ln{q}\) & \(r\ln(\frac{e^{\theta}}{1-e^{\theta}})=r\ln\frac{q}{p}\) & \(m=\frac{r}{q}=\frac{r}{1-e^{\theta}}\) & \(\frac{rq}{p^2}=\frac{m^2}{r}-m\) \\ \hline
+\multicolumn{5}{l}{%
+\begin{minipage}{.7\paperwidth}
+\vspace{1em}
+注：\begin{enumerate}
+\item 作为自然指数分布族分布，正态分布的参数\(\sigma^2\)和\(\Gamma\)分布的参数\(\alpha\)是作为已知的，且\(\alpha=1\)时\(\Gamma\)分布化为指数分布\(e(\beta)\).
+\item 当\(r=1\)时负二项分布（即帕斯卡分布）化为几何分布\(G(p)\).
+\end{enumerate}
+\end{minipage}
+} \\
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{definition}
+称\(m\)为自然指数分布族的\textbf{均值参数}.
+称均值参数\(m\)的取值区间为\textbf{均值空间}，记为\(M\)，即\[
+M = \{ m \vert m = \varphi'(\theta), \theta \in H \}.
+\]
+
+由于\(m\)与\(\theta\)存在一一对应关系，即\(\theta = \theta(m)\)，则\[
+D(X) = \varphi''(\theta) = V(m),
+\]称\(V(m)\)为\(X\)的\textbf{方差函数}.
+\end{definition}
+
+\begin{theorem}
+若\(\v{X}{n}\)独立同服从于一个自然指数分布族分布，其方差函数为\(V(m)\)，则\(Y=X_1+X_2+\dotsb+X_n\)也服从同一个自然指数分布族分布，且\[
+E(Y)=n m,
+\]\[
+D(Y)=n V(m).
+\]
+\end{theorem}

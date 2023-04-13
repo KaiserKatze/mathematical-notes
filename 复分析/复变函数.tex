@@ -1,0 +1,363 @@
+\chapter{复变函数}
+\section{复变函数及其极限与连续性}
+\subsection{复平面上的点集}
+\subsubsection{简单曲线}
+\begin{definition}
+设\(x(t)\)和\(y(t)\)是实变数\(t\)的两个实函数，且在闭区间\([\alpha,\beta]\)上连续，则由方程组\[
+\left\{ \begin{array}{l}
+x = x(t) \\
+y = y(t)
+\end{array} \right., \quad t \in [\alpha,\beta]
+\]所确定的点集\(C = \{ z \mid z = x + \iu y \}\)称为复平面上的一条连续曲线.上式称为曲线\(C\)的参数方程.
+
+\(z(\alpha)\)和\(z(\beta)\)分别称为曲线\(C\)的\textbf{起点}和\textbf{终点}.
+若存在\(t_1\)、\(t_2\)满足：\(\alpha \leqslant t_1 < t_2 \leqslant \beta\)，且\(\alpha \leqslant t_1\)与\(t_2 \leqslant \beta\)不同时取等号，使得\(z(t_1) = z(t_2) = z\)成立，则称点\(z\)为曲线\(C\)的\textbf{重点}.
+
+无重点的连续曲线称为\textbf{若尔当曲线}或\textbf{简单曲线}.
+仅起点和终点重合（即\(z(\alpha)=z(\beta)\)）的简单曲线，称作\textbf{若尔当闭曲线}或\textbf{简单闭曲线}.
+\end{definition}
+
+\begin{property}
+简单曲线是复平面上的有界闭集.
+\end{property}
+
+\begin{example}
+线段、圆弧、抛物线段等是简单曲线；圆（周）、椭圆等是简单闭曲线.
+\end{example}
+
+\begin{definition}
+设简单（闭）曲线\(C\)的参数方程为\[
+z = x(t) + \iu y(t), \quad t \in [\alpha,\beta].
+\]若在\([\alpha,\beta]\)上，\(x'(t)\)与\(y'(t)\)存在、连续且不全为零，则称曲线\(C\)为\textbf{光滑曲线}.由有限条光滑曲线衔接而成的连续曲线称为\textbf{逐段光滑曲线}.
+\end{definition}
+
+\begin{example}
+简单折线是逐段光滑曲线.
+\end{example}
+
+\begin{theorem}[若尔当（Jordan）定理]
+任一简单闭曲线\(C\)将复平面唯一地分成\(C\)、\(I(C)\)和\(E(C)\)三个点集.它们具有如下的性质：\begin{enumerate}
+\item 三个点集彼此不交，即\[
+C \cap I(C) = \emptyset,
+\qquad
+C \cap E(C) = \emptyset,
+\qquad
+I(C) \cap E(C) = \emptyset;
+\]
+\item \(I(C)\)是一个有界区域，称作\(C\)的内部（interior）；
+\item \(E(C)\)是一个无界区域，称作\(C\)的外部（exterior）；
+\item 若简单折线\(L\)的一个端点属于\(I(C)\)，另一个端点属于\(E(C)\)，则\(L\)必与\(C\)相交.
+\end{enumerate}
+\end{theorem}
+
+参照\cref{definition:线积分与面积分.平面闭区域的边界曲线的取向} ，我们可以规定复平面上任一简单闭曲线的取向.
+\begin{definition}
+沿着一条简单闭曲线\(C\)有两个相反的方向.当观察者按逆时针方向沿\(C\)行进时，\(C\)的内部\(I(C)\)一直在\(C\)的左边，称这个方向为曲线\(C\)的正方向；当光插着按顺时针方向沿\(C\)行进时，\(C\)的外部\(E(C)\)一直在\(C\)的左边，称这个方向为曲线\(C\)的负方向.
+\end{definition}
+
+\subsubsection{单连通区域与多连通区域}
+在简单闭曲线\(\Gamma\)的内部\(I(\Gamma)\)无论怎样画简单闭曲线\(C\)，则\(C\)的内部\(I(C)\)必全含于\(I(\Gamma)\).对上述现象进行一般化，可以得到如下定义：
+\begin{definition}
+若在区域\(D\)内无论怎样画简单闭曲线\(C\)，其内部\(I(C)\)仍全含于\(D\)，即\(I(C) \subseteq D\)，则称\(D\)为\textbf{单连通区域}.
+非单连通的区域称为\textbf{多连通区域}（或称\textbf{复连通区域}）.
+\end{definition}
+
+复平面上的区域通常是由复数的实部、虚部、模、辐角的不等式（组）所确定的点集.
+\begin{example}
+常见的复平面区域有：\begin{enumerate}
+\item 以点\(z_0\)为圆心，\(R\)为半径的开圆：\(\abs{z-z_0}<R\)；
+\item 以点\(z_0\)为圆心，\(R\)为半径的闭圆：\(\abs{z-z_0} \leqslant R\)；
+\item 单位开圆的上半部分：\(\left\{ \begin{array}{l}
+\abs{z}<1, \\
+\Im z > 0;
+\end{array} \right.\)
+\item 下半平面：\(\Im z < 0\)；
+\item 右半平面：\(\Re z > 0\)；
+\item 水平带域：\(0 < \Im z < \pi\)；
+\item 角形区域：\(\theta_1 < \arg z < \theta_2\ (\theta_1,\theta_2\in\mathbb{R})\)；
+\item 以点\(\pm\iu\)为焦点，\(a\)为半长轴长的闭椭圆：\(\abs{z-\iu}+\abs{z+\iu}\leqslant2a\).
+\end{enumerate}
+\end{example}
+
+\subsubsection{序列}
+\begin{definition}
+复数序列\(\{z_n\}\)作为复平面\(C\)上的一个点列，也可视作一个平面点集\(E\).
+点集\(E\)有界也就是序列\(\{z_n\}\)有界.
+点集\(E\)的聚点也称为序列\(\{z_n\}\)的聚点.
+规定：序列\(\{z_n\}\)中重复出现无限多次的点也称为\(\{z_n\}\)的聚点.
+\end{definition}
+
+\begin{example}
+在序列\(\{z_n = (-1)^n\}\)中，点\(x_1=1\)和\(x_2=-1\)，但由于它们在\(\{z_n\}\)中反复出现无限多次，故\(z_1,z_2\)都是\(\{z_n\}\)的聚点.
+\end{example}
+
+\begin{theorem}[Borel-Weierstrass定理]\label{theorem:复变函数.BW定理}
+有界点列\(\{z_n\}\)必有聚点.
+\end{theorem}
+
+\subsubsection{序列的极限}
+\begin{definition}
+若\(\lim\limits_{n \to \infty} \abs{z_n - z_0} = 0\)，即\[
+\forall \varepsilon > 0, \exists N \in \mathbb{N}^+ \bigl(
+n > N \implies \abs{z_n - z_0} < \varepsilon
+\bigr),
+\]则称\(\{z_n\}\)为收敛序列，\(z_0\)为序列\(\{z_n\}\)的极限，也称序列\(\{z_n\}\)收敛于\(z_0\)，又记作\[
+\lim\limits_{n \to \infty} z_n = z_0.
+\]
+\end{definition}
+
+\begin{definition}
+若序列\(\{z_n\}\)满足\[
+\forall \varepsilon > 0, \exists N \in \mathbb{N}^+, \forall p\in\mathbb{N}^+ \bigl(
+n > N  \implies  \abs{z_{n+p} - z_n} < \varepsilon
+\bigr),
+\]则称\(\{z_n\}\)为\textbf{基本序列}或\textbf{Cauchy序列}.
+\end{definition}
+
+\begin{theorem}
+对于序列\(\{z_n = x_n + \iu y_n\}\)，以下命题相互等价：
+\begin{enumerate}
+\item \(\lim\limits_{n \to \infty} z_n = z_0\)；
+
+\item \(\{z_n\}\)有界且以\(z_0\)为唯一聚点；
+
+\item \(\{z_n\}\)是Cauchy序列；
+
+\item \(\lim\limits_{n \to \infty} x_n = x_0 \land \lim\limits_{n \to \infty} y_n = y_0\)，其中\[
+z_n = x_n + \iu y_n \quad(n = 1,2,\dotsc),
+\]\[
+z_0 = x_0 + \iu y_0.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+在包含无穷远点\(\infty\)的闭平面\(C_{\infty}\)上，任一圆周的外部（包含点\(\infty\)）皆可称为无穷远点的邻域.将有限点\(a\in\mathbb{C}\)和有限数\(r\in(0,+\infty)\)确定的点集\[
+\Set*{ z\in\mathbb{C} \given \abs{z-a}>r }
+\]可称为\textbf{以\(a\)为中心的无穷远点的邻域}.
+
+特别地，以原点为中心的无穷远点邻域\[
+\Set*{ z \given \abs{z} > \frac{1}{\varepsilon} }
+\]常称为\(\infty\)的\(\varepsilon\)邻域，记作\(N_{\varepsilon}(\infty)\).
+\end{definition}
+经此推广后，在闭平面\(C_{\infty}\)上，无穷远点也可以是某个点集的聚点：
+若点列\(\{z_n\}\)无界，则称无穷远点\(\infty\)是点列\(\{z_n\}\)的聚点.
+换言之，若在以原点为圆心、半径无论多么大的圆周外部总含有\(\{z_n\}\)中的点，则称\(\infty\)是\(\{z_n\}\)的聚点.
+
+再考虑到\cref{theorem:复变函数.BW定理} ，我们得到这样一个结论：
+\begin{theorem}
+在闭平面\(C_{\infty}\)上，任意点列\(\{z_n\}\)都有聚点.
+\end{theorem}
+这样一来，不论序列\(\{z_n\}\)是否有界，也不论\(z_0\)是有限点或无穷远点，在闭平面上\[
+\lim\limits_{n\to\infty} z_n = z_0
+\]的充要条件是：\(z_0\)是\(\{z_n\}\)的唯一聚点.
+
+\subsection{复变函数的概念}
+\begin{definition}
+若对复平面上点集\(E\)中的每一个复数\(z\)，有唯一确定的复数\(w\)与之对应，则称在\(E\)上确定了\(w\)为\(z\)的一个\DefineConcept{单值函数}.
+若对\(E\)中每个复数\(z\)，有确定的两个或更多个复数\(w\)与之对应，则称在\(E\)上确定了一个\DefineConcept{多值函数}.
+对于复变函数\(w = f(z)\ (z \in E)\)，称点集\(E\)为复变函数的\DefineConcept{定义域}，记作\(\dom f\)，即\(\dom f = E\)；而由复数\(w\)构成的集合\[
+M = \Set*{ w \given w = f(z), z \in E }
+\]称作复变函数的\DefineConcept{值域}，记作\(\ran f\)，即\(\ran f = M\).
+
+设\(z_1,z_2 \in E\)，若对于复变函数\(w=f(z)\)总有\[
+z_1 \neq z_2 \implies f(z_1) \neq f(z_2),
+\]则称复变函数\(w=f(z)\)是在\(E\)上的\DefineConcept{单叶函数}；否则称之在\(E\)上的\DefineConcept{多叶函数}.
+\end{definition}
+
+\begin{definition}
+若由函数\(w=f(z)\)确定了值域\(M\)中的点\(w\)与定义域\(E\)中的点\(z\)之间的对应关系\(z=g(w)\)，则称\(z=g(w)\)为\(w=f(z)\)的\DefineConcept{反函数}，记作\(z=f^{-1}(w)\).
+\end{definition}
+
+\begin{property}
+已知复变函数\(w=f(z)\)的定义域、值域分别为\(E\)、\(M\).如果\[
+\forall w \in M: w=f[f^{-1}(w)]
+\]且当反函数\(z=f^{-1}(w)\)也是单值函数时，还有\[
+\forall z \in E : z=f^{-1}[f(z)].
+\]
+\end{property}
+
+\begin{property}
+多值函数的反函数是多叶的.多叶函数的反函数是多值的.
+\end{property}
+
+\begin{definition}
+如果函数\(w = F(\zeta)\ (\zeta \in M)\)和\(\zeta = f(z)\ (z \in E)\)，且\(\ran f \subseteq M\)，则函数\[
+w = F[f(z)] \quad (z \in E)
+\]称为由函数\(w = F(\zeta)\)与函数\(\zeta = f(z)\)构成的\DefineConcept{复合函数}.
+\end{definition}
+
+一个复变函数等价于两个二元实函数的有序组合.
+当复变量\(z\)用代数形式\(z = x + \iu y\)表示时，函数\(w = f(z)\)可表为\[
+w = u(x,y) + \iu v(x,y);
+\]其中\(u(x,y), v(x,y)\)是二元实函数；
+当复变量\(z\)用指数形式\(z = r e^{\iu \theta}\)表示时，函数\(w = f(z)\)可表为\[
+w = p(r,\theta) + \iu q(r,\theta),
+\]其中\(p(r,\theta), q(r,\theta)\)也是二元实函数.
+
+在实分析中，我们常常借助函数的几何图形来研究函数的性质，这些几何图形为我们提供了很多直观上的帮助.
+现在，对于复变函数\(w = f(z)\)，若仍简单采用实分析中描绘函数图形的方法来赋予复函数以几何意义，就需要在四维空间中绘出点\(\opair{x,y,u,v}\)，这不能带来直观上的帮助.
+为此，我们取两张复平面：\(z\)平面和\(w\)平面.
+对于\(z\)平面上点集\(E\)中的每个点\(z\)，我们按\(f(z)\)计算出相应的复数\(w\)，在\(w\)平面上描出相应的点\(w\).
+当我们在\(z\)平面上取尽\(f(z)\)的定义域\(E = \dom f\)中的点时，\(w\)就相应地在\(w\)平面上穷尽\(f(z)\)的值域\(M = \ran f = f(E)\)中的点.
+这样一来，复函数\(w = f(z)\)就可看成是\(z\)平面上点集\(E\)与\(w\)平面上点集\(M\)之间的一个变换（或映射）.
+在变换（或映射）\(w=f(z)\)下，点\(w_0=f(z_0)\)和点集\(M=f(E)\)分别称作点\(z_0\)和点集\(E\)的\DefineConcept{象}，而点\(z_0\)和点集\(E\)则分别称作点\(w_0\)和点集\(M=f(E)\)的\DefineConcept{原象}.
+
+\begin{definition}
+设\(E\)是\(z\)平面上的点集，\(F\)是\(w\)平面上的点集.
+
+若\[
+\forall z \in E, \exists w \in F : w = f(z),
+\]则称“\(w=f(z)\)把\(E\)变（映）入\(F\)”，或称“\(w=f(z)\)是\(E\)到\(F\)的\DefineConcept{入变换}”，记为\(f(E) \subseteq F\).
+
+若\(f(E) \subseteq F\)，且\[
+\forall w \in F, \exists z \in E : w = f(z),
+\]则称“\(w = f(z)\)把\(E\)变换成\(F\)”或称“\(w = f(z)\)是\(E\)到\(F\)的\DefineConcept{满变换}”，记作\(f(E) = F\).
+
+由点集\(E\)到点集\(F\)的满变换\(w = f(z)\)所确定的\(F\)到\(E\)的反函数\(z=f^{-1}(w)\)又称为变换\(w = f(z)\)的\textbf{逆变换}.
+若\(z=f^{-1}(w)\)也是\(F\)到\(E\)的单值变换，则称“\(w = f(z)\)是\(E\)到\(F\)的\DefineConcept{双方单值变换}或\DefineConcept{一一变换}”.
+显然地，若\(E\)到\(F\)的满变换\(w = f(z)\)既是单值的又是单叶的，则\(w = f(z)\)就是\(E\)到\(F\)的一一变换.
+\end{definition}
+
+\begin{example}
+求直线\(x=1\)在变换\(w=z^2\)下的象.
+\begin{solution}
+令\(z=x+\iu y\)，\(w=u+\iu v\)，则由\(w=z^2\)可得\(u=x^2-y^2\)和\(v=2xy\)，代入\(x=1\)可得\[
+u=1-y^2, \qquad v=2y,
+\]消去\(y\)得\[
+u=1-\frac{1}{4} v^2.
+\]这是\(w\)平面上开口向左的一条抛物线.
+\end{solution}
+\end{example}
+
+\subsection{复变函数的极限}
+\begin{definition}
+设复函数\(w=f(z)\)在点集\(E\)上有定义，\(z_0\)为\(E\)的聚点.若\(\exists w_0 \in \mathbb{C}\)，使对\(\forall \varepsilon > 0\)，总\(\exists \delta > 0\)，只要\(0<\abs{z-z_0}<\delta, z \in E\)，就有\(\abs{f(z)-w_0} < \varepsilon\)，则称\(f(z)\)在\(z\)沿\(E\)趋于\(z_0\)时以\(w_0\)为\textbf{极限}，记为\[
+\lim\limits_{\substack{z \to z_0 \\ (z \in E)}} f(z) = w.
+\]
+
+不特别强调变量\(z\)所在点集时，符号\(\lim\limits_{\substack{z \to z_0 \\ (z \in E)}}\)可以简化为\(\lim\limits_{z \to z_0}\).
+\end{definition}
+从几何上看，\(z\)趋近于\(z_0\)时\(f(z)\)以\(w_0\)为极限的意义是：只要自变量点\(z\)进入\(z_0\)的充分小去心邻域，对应的象点\(f(z)\)就一定落入\(w_0\)的任意给定的\(\varepsilon\)邻域.
+
+\begin{theorem}
+若函数\(f(z)\)、\(g(z)\)沿点集\(E\)在点\(z_0\)有极限，则\(f(z) \pm g(z)\)、\(f(z) \cdot g(z)\)和\(\frac{f(z)}{g(z)}\ \bigl(g(z) \neq 0\bigr)\)沿点集\(E\)有极限，且其极限值等于\(f(z)\)、\(g(z)\)在点\(z_0\)的函数值的和、差、积、商.
+\end{theorem}
+
+\begin{example}
+证明\(\lim\limits_{z\to0} \frac{z}{\abs{z}}\)极限不存在.
+\begin{proof}
+当\(z\)沿正实轴\(E: x > 0\)趋于0时，\[
+\lim\limits_{\substack{z\to0 \\ (z \in E)}} \frac{z}{\abs{z}}
+= \lim\limits_{x\to0^+} \frac{x}{x} = 1.
+\]
+
+当\(z\)沿负实轴\(E: x < 0\)趋于0时，\[
+\lim\limits_{\substack{z\to0 \\ (z \in E)}} \frac{z}{\abs{z}}
+= \lim\limits_{x\to0^-} \frac{x}{-x} = -1.
+\]
+
+所以\(\lim\limits_{z\to0} \frac{z}{\abs{z}}\)极限不存在.
+\end{proof}
+\end{example}
+
+\begin{example}
+证明\(\lim\limits_{z\to0} \frac{\Re z}{z}\)极限不存在.
+\begin{proof}
+令\(z = x + \iu y\).当\(z\)沿直线\(E: y = kx\)趋于零时，有\[
+\lim\limits_{\substack{z\to0 \\ (z \in E)}} \frac{\Re z}{z}
+= \lim\limits_{x\to0} \frac{x}{x + \iu kx}
+= \lim\limits_{x\to0} \frac{1}{1+\iu k}.
+\]显然上式随\(k\)变化而变化，所以\(\lim\limits_{z\to0} \frac{\Re z}{z}\)极限不存在.
+\end{proof}
+\end{example}
+
+可见，从某种意义上说，复变函数的极限类似于二元实变函数的极限.
+\begin{theorem}\label{theorem:复变函数.复变函数极限与二元实变函数的关系}
+设\(f(z)=u(x,y)+\iu v(x,y)\)在点集\(E\)上有定义，\(z_0=x_0+\iu y_0\)为\(E\)的聚点，\(w_0=u_0+\iu v_0\)为已知复数，则\[
+\lim\limits_{\substack{z \to z_0 \\ (z \in E)}} f(z) = w_0
+\iff
+\left\{ \begin{array}{l}
+\lim\limits_{\substack{\opair{x,y}\to\opair{x_0,y_0} \\ (\opair{x,y} \in E)}} u(x,y) = u_0, \\
+\lim\limits_{\substack{\opair{x,y}\to\opair{x_0,y_0} \\ (\opair{x,y} \in E)}} v(x,y) = v_0.
+\end{array} \right.
+\]
+\end{theorem}
+
+\begin{example}
+设\(z_0\neq0,\infty\).证明：\[
+\lim\limits_{n\to\infty} z_n = z_0
+\iff
+\lim\limits_{n\to\infty} \abs{z_n} = \abs{z_0},
+\lim\limits_{n\to\infty} \Arg z_n = \Arg z_0.
+\]其中\(\lim\limits_{n\to\infty} \Arg z_n = \Arg z_0\)应这样理解：对\(\Arg z_0\)的任意一个确定值\(\arg z_0\)，总可以选取一个\(z_n\)的辐角取确定值的（不必取主值）数列\(\{ \arg z_n \}\)，使得\(n\to\infty\)时，有\(\arg z_n \to \arg z_0\).
+\end{example}
+
+\subsection{复变函数的连续性}
+\begin{definition}\label{definition:复变函数.复变函数的连续性}
+设函数\(w=f(z)\)在点集\(E\)上有定义，\(z_0\)为\(E\)的聚点，且\(z_0 \in E\)，令\(\increment z = z - z_0\).如果\[
+\lim\limits_{\substack{\increment z\to0 \\ (z \in E)}} f(z+\increment z) - f(z) = 0
+\]或\[
+\lim\limits_{\substack{z \to z_0 \\ (z \in E)}} f(z) = f(z_0),
+\]则称\(f(z)\)沿\(E\)在点\(z_0\)\textbf{连续}.若\(E\)内每一点都是聚点，且\(f(z)\)在\(E\)内每点都连续，则称\(f(z)\)在点集\(E\)内连续.
+\end{definition}
+
+由\cref{theorem:复变函数.复变函数极限与二元实变函数的关系} 和\cref{definition:复变函数.复变函数的连续性} ，显然有：
+\begin{theorem}
+函数\(f(z)=u(x,y)+\iu v(x,y)\)在点\(z_0=x_0+\iu y_0\)连续的充要条件是：
+二元实函数\(u(x,y)\)和\(v(x,y)\)在点\(\opair{x_0,y_0}\)连续.
+\end{theorem}
+
+由于上面引入的连续定义与实函数的连续定义在形式上完全相仿，因此连续函数的一些性质对复函数仍然成立.
+\begin{property}\label{theorem:复变函数.连续函数的性质}
+连续函数具有以下性质：
+\begin{enumerate}
+\item 若\(f(z)\)、\(g(z)\)在点\(z_0\)连续，则\(f(z) \pm g(z)\)、\(f(z) \cdot g(z)\)和\(\frac{f(z)}{g(z)}\ \bigl(g(z) \neq 0\bigr)\)也在\(z_0\)连续；
+
+\item 若\(\eta = f(z)\)沿点集\(E\)在点\(z_0\)连续，且\(f(E) \subseteq G\)，又有\(w=g(\eta)\)沿点集\(G\)在点\(\eta_0=f(z_0)\)连续，则复合函数\(w=g[f(z)]=F(z)\)沿点集\(E\)在\(z_0\)连续；
+
+\item 若函数\(f(z)\)在\cemph{有界闭集}\(E\)上连续，则\begin{enumerate}
+\item\label{theorem:复变函数.连续函数的性质.3a} \(f(z)\)在\(E\)上有界，即\[
+\exists M>0 \bigl[
+z \in E \implies \abs{f(z)} \leqslant M
+\bigr];
+\]
+
+\item\label{theorem:复变函数.连续函数的性质.3b} \(\abs{f(z)}\)在\(E\)上有最大值\(M\)与最小值\(m\)，即\[
+\exists z_1 \in E, \forall z \in E : \abs{f(z)} \leqslant \abs{f(z_1)} = M,
+\]\[
+\exists z_2 \in E, \forall z \in E : \abs{f(z)} \geqslant \abs{f(z_2)} = m;
+\]
+
+\item\label{theorem:复变函数.连续函数的性质.3c} \(f(z)\)在\(E\)上一致连续，即\[
+\forall \varepsilon>0, \exists \delta>0, \forall z_1,z_2 \in E \bigl[
+\abs{z_1-z_2}<\delta
+\implies
+\abs{f(z_1)-f(z_2)}<\varepsilon
+\bigr].
+\]
+\end{enumerate}
+\end{enumerate}
+\end{property}
+\cref{theorem:复变函数.连续函数的性质}  3(a) 对开区域不一定成立.
+例如\(f(z) = \frac{1}{1-z}\)在圆\(\abs{z} < 1\)内连续，但无界.
+
+\begin{example}
+证明：\(\arg z\ (-\pi < \arg z \leqslant \pi)\)在负实轴上（包括原点）不连续，但除此之外在\(z\)平面上处处连续.
+\begin{proof}
+当\(z = 0\)时，\(\arg z\)无定义，当然不连续.
+当\(z\)从上、下半平面趋于负实轴上的点时，\[
+\lim\limits_{\substack{\Im z \to 0^+ \\ (\Re z < 0)}} \arg z = \pi,
+\qquad
+\lim\limits_{\substack{\Im z \to 0^- \\ (\Re z < 0)}} \arg z = -\pi,
+\]故\(\arg z\)在负实轴上不连续.
+
+取动点\(z_0\neq0,Ce^{\pm\iu\pi}\ (C\in\mathbb{R}^+)\)（即点\(z_0\)不在原点或负实轴上）.
+\(\forall \varepsilon > 0\)，取\(\delta = \abs{z_0} \sin\varepsilon\)，则以\(z_0\)为心、\(\delta\)为半径的邻域\(N_{\delta}(z_0)\)包含在以原点为顶点、张角为\(2\varepsilon\)的角形区域内.
+\(N_{\delta}(z_0)\)内任一点\(z\)都满足\(\arg z < \arg z_0 + \varepsilon\)，于是，当\(\abs{z - z_0} < \delta\)时，总有\[
+\abs{\arg z - \arg z_0} < \varepsilon.
+\]
+
+综上所述，\(\arg z\)在\(z\)平面上除负实轴上的点以外处处连续.
+\end{proof}
+\end{example}

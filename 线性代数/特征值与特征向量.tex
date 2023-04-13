@@ -1,0 +1,1401 @@
+\chapter{特征值、特征向量}
+
+\section{矩阵的迹}
+\begin{definition}
+矩阵\(\A=(a_{ij})_{s \times n}\)主对角线上元素之和称为\(\A\)的\textbf{迹}（trace），记作\(\tr\A\)，即\[
+\tr\A \defeq \sum\limits_{i=1}^m a_{ii},
+\]其中\(m = \min\{s,n\}\).
+\end{definition}
+
+\begin{property}
+已知矩阵\(\A \in M_{s \times n}(P)\)，则\(\tr\A = \tr(\A^T)\).
+\end{property}
+
+\begin{property}
+已知矩阵\(\A,\B \in M_{s \times n}(P)\)，则
+\begin{enumerate}
+\item \(\tr(\A+\B) = \tr\A + \tr\B\)；
+\item \(\tr(k \A) = k \tr\A\ (k \in P)\).
+\end{enumerate}
+\begin{proof}
+设\(\A=(a_{ij})_{s \times n}, \B=(b_{ij})_{s \times n}\)，取\(m = \min\{s,n\}\)，那么\[
+\tr(\A+\B) = \sum\limits_{i=1}^m (a_{ii}+b_{ii})
+= \sum\limits_{i=1}^m a_{ii}
++ \sum\limits_{i=1}^m b_{ii}
+= \tr\A + \tr\B,
+\]\[
+\tr(k \A) = \sum\limits_{i=1}^m (k a_{ii})
+= k \sum\limits_{i=1}^m a_{ii}
+= k \tr\A.
+\]这也说明“矩阵的迹”具有\cemph{线性性}.
+\end{proof}
+\end{property}
+
+\begin{property}
+设\(\A\)是可逆矩阵，则\(\tr(\A^*) = \abs{\A} \cdot \tr(\A^{-1})\).
+\end{property}
+
+\begin{property}
+已知矩阵\(\A,\B \in M_n(P)\)，则\[
+\tr(\A\B) = \tr(\B\A).
+\]
+\end{property}
+
+\begin{property}
+已知矩阵\(\A \in M_{s \times n}(P)\)，则\(\tr(\A\A^T) = \tr(\A^T\A)\).
+\end{property}
+
+\begin{property}
+已知矩阵\(\A,\B \in M_n(P)\)，且\(\A,\B\)均为实对称矩阵，则\[
+\tr(\A\B)^2 \leqslant \tr(\A^2\B^2).
+\]
+\end{property}
+
+\section{矩阵的特征值与特征向量}
+\subsection{特征值、特征向量的概念与性质}
+\begin{definition}
+设\(\A\)为复数域上\(n\)阶矩阵.如果存在复数\(\L0\)和非零的\(n\)维列向量\(\X0\)，使得\[
+\A\X0 = \L0\X0,
+\]则称“\(\L0\)是\(\A\)的一个\textbf{特征值}（eigenvalue）”，“\(\X0\)是\(\A\)属于特征值\(\L0\)的\textbf{特征向量}（eigenvector）”.
+\end{definition}
+
+容易观察到，当特征值\(\l=0\)时，\(\l\)对应的特征向量都是齐次方程\(\A\x=\z\)的解.
+
+\begin{property}
+若\(\X1\)，\(\X2\)是\(\A\)属于同一个特征值\(\L0\)的特征向量，且\(\X1 + \X2 \neq 0\)，则\(\X1 + \X2\)也是\(\A\)的属于\(\L0\)的特征向量.
+\begin{proof}
+\(\A(\X1+\X2)=\A\X1+\A\X2=\L0\X1+\L0\X2=\L0(\X1+\X2)\).
+\end{proof}
+\end{property}
+
+\begin{property}
+若\(\X0\)是\(\A\)属于特征值\(\L0\)的特征向量，\(k\)为任意非零常数，则\(k\X0\)也是\(\A\)的属于\(\L0\)的特征向量.
+\begin{proof}
+因为\(k\X0\neq\z\)，\(\A(k\X0)=k(\A\X0)=k(\L0\X0)=\L0(k\X0)\)，所以\(k\X0\)也是\(\A\)的属于\(\L0\)的特征向量.
+\end{proof}
+\end{property}
+
+由此可知，\(\A\)的属于同一个特征值\(\L0\)的特征向量\(\v{\x}{t}\)的非零线性组合\(\sum\limits_{i=1}^t{k_i \X i}\)也是\(\A\)的属于\(\L0\)的特征向量.
+
+\begin{property}
+设\(\L0\)是\(\A\)的特征值.
+当\(m\in\mathbb{N}\)时，\(\L0^m\)是\(\A^m\)的特征值.
+若\(\A\)可逆，则当\(m\in\mathbb{Z}\)时，\(\L0^m\)是\(\A^m\)的特征值.
+\begin{proof}
+由定义，存在\(\X0\neq\z\)，%
+使得\(\A\X0 = \L0\X0\)，则\[
+\A^2\X0 = \A(\A\X0)
+=\A(\L0\X0)
+=\L0(\A\X0)
+=\L0(\L0\X0)
+=\L0^2\X0.
+\]
+设\(\A^{m-1}\X0 = \L0^{m-1}\X0\)成立，则\[
+\A^m\X0 = \A(\A^{m-1}\X0)
+= \A(\L0^{m-1}\X0)
+= \L0^{m-1}(\A\X0)
+= \L0^{m-1}(\L0\X0)
+= \L0^m\X0.
+\]
+
+当\(\A\)可逆时，\(\L0\neq0\)，由\(\L0\X0 = \A\X0\)可得\[
+\L0(\A^{-1}\X0) = \A^{-1}(\L0\X0) = \A^{-1}(\A\X0) = (\A^{-1}\A)\X0 = \E\X0 = \X0,
+\]从而有\(\A^{-1}\X0 = \L0^{-1}\X0\).
+\end{proof}
+\end{property}
+
+\begin{corollary}
+设多项式\(f(x)=\sum\limits_k a_k x^k\).
+若\(\L0\)是方阵\(\A\)的特征值，则\(f(\L0)\)是\(f(\A)\)的特征值.
+\end{corollary}
+
+\begin{definition}
+设\(\A=(a_{ij})_n\)为\(n\)阶矩阵，\(\l\)为一个数字.
+称\(\l\E-\A\)为\(\A\)的\textbf{特征矩阵}.
+称特征矩阵的行列式\[
+f(\l)=\abs{\l\E-\A}=\begin{vmatrix}
+\l-a_{11} & -a_{12} & \dots & -a_{1n} \\
+-a_{21} & \l-a_{22} & \dots & -a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+-a_{n1} & -a_{n2} & \dots & \l-a_{nn}
+\end{vmatrix}
+\]为\(\A\)的\textbf{特征多项式}（eigenpolynomial）.
+\end{definition}
+
+\begin{property}
+\(\X0\)是\(\A\)属于\(\L0\)的特征向量的充要条件是：\(\X0\)是齐次线性方程组\((\L0\E-\A)\x=\z\)的非零解.
+\begin{proof}
+\(\X0\neq\z \bigl[ \A\X0=\L0\X0 \iff \A\X0-\L0\X0=\z \iff (\L0\E-\A)\X0=\z \bigr]\).
+\end{proof}
+\end{property}
+
+\begin{property}
+\(\L0\)是\(\A\)的特征值的充要条件是：\(\abs{\L0\E-\A}=0\)，即\(\L0\)是特征多项式\(f(\l)=\abs{\l\E-\A}=0\)的根.
+\begin{proof}
+因为“\(\X0\)是\(\A\)属于\(\L0\)的特征向量”的充要条件是“\(\X0\)是齐次线性方程组\((\L0\E-\A)\x=\z\)的非零解”，而后者成立的充要条件是“\(\rank(\L0\E-\A)<n\)”，从而有等价命题\(\abs{\L0\E-\A}=0\).
+\end{proof}
+\end{property}
+
+大数学家高斯（Gauss）在1799年证明了以下\textbf{代数基本定理}：
+\begin{lemma}[代数基本定理]
+任何\(n\ (n\geqslant1)\)次多项式至少有一个复数根.
+\end{lemma}
+
+\begin{theorem}[代数基本定理']
+任何\(n\ (n>0)\)次多项式有且仅有\(n\)个复根，其中规定\(m\)重根算\(m\)个根.
+\end{theorem}
+由此可知，任意\(n\)阶矩阵的特征多项式有且仅有\(n\)个复根.
+
+\begin{example}
+设\(\A = \begin{bmatrix}
+2 & -1 & 2 \\
+5 & -3 & 3 \\
+-1 & 0 & -2
+\end{bmatrix}\)，求\(\A\)的特征值与对应的特征向量.
+\begin{solution}
+\(\A\)的特征多项式\begin{align*}
+\abs{\l\E-\A}
+&= \begin{vmatrix}
+\l-2 & 1 & -2 \\
+-5 & \l+2 & -3 \\
+1 & 0 & \l+2
+\end{vmatrix} \\
+&= \l^3 + 3\l^2 + 3\l + 1
+= (\l+1)^3,
+\end{align*}
+特征值为\(\L{1}=-1\)（三重）.
+
+当\(\l=-1\)时，解方程组\((-\E-\A)\x = \z\)，对系数矩阵施行初等行变换，\[
+-\E-\A = \begin{bmatrix}
+-3 & 1 & -2 \\
+-5 & 2 & -3 \\
+1 & 0 & 1
+\end{bmatrix} \to \begin{bmatrix}
+1 & 0 & 1 \\
+5 & 2 & -3 \\
+-3 & 1 & -2
+\end{bmatrix} \to \begin{bmatrix}
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+0 & 0 & 0
+\end{bmatrix}.
+\]可知\(\rank(-\E-\A) = 2\)，方程组\((-\E-\A)\x = \z\)的解空间只有1个基向量.
+令\(x_3 = -1\)，得基础解系\[
+\X1 = (1,1,-1)^T,
+\]那么属于\(-1\)的全部特征向量为\(k (1,1,-1)^T\)，\(k\)是非零的任意常数.
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(\A = \begin{bmatrix}
+-1 & 0 & 0 \\
+8 & 2 & 4 \\
+8 & 3 & 3
+\end{bmatrix}\)，求\(\A\)的特征值与对应的特征向量.
+\begin{solution}
+\(\A\)的特征多项式\[
+\abs{\l\E-\A}
+= \begin{vmatrix}
+\l+1 & 0 & 0 \\
+-8 & \l-2 & -4 \\
+-8 & -3 & \l-3
+\end{vmatrix}
+= (\l+1)^2 (\l-6),
+\]故\(\A\)的特征值为\(\L{1}=-1\)（二重），\(\L{2}=6\).
+
+当\(\l=-1\)时，解方程组\((-\E-\A)\x = \z\)，\[
+-\E-\A = \begin{bmatrix}
+0 & 0 & 0 \\
+-8 & -3 & -4 \\
+-8 & -3 & -4
+\end{bmatrix} \to \begin{bmatrix}
+-8 & -3 & -4 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix},
+\]可知\(\rank(-\E-\A) = 1\)，方程组\((-\E-\A)\x = \z\)的解空间有2个基向量.
+分别令\(x_2 = 8, x_3 = 0\)和\(x_2 = 0, x_3 = 2\)，得基础解系\[
+\X1 = \begin{bmatrix} -3 \\ 8 \\ 0 \end{bmatrix},
+\qquad
+\X2 = \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix},
+\]故属于\(-1\)的全部特征向量为\(k_1 \X1 + k_2 \X2\)，\(k_1,k_2\)是不全为零的任意常数.
+
+当\(\l=6\)时，解方程组\((6\E-\A)\x = \z\)，\[
+6\E-\A = \begin{bmatrix}
+7 & 0 & 0 \\
+-8 & 4 & -4 \\
+-8 & -3 & 3
+\end{bmatrix} \to \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & -1 \\
+0 & 0 & 0
+\end{bmatrix},
+\]可知\(\rank(6\E-\A) = 2\)，方程组\((6\E-\A)\x = \z\)的解空间有1个基向量.
+令\(x_3 = 1\)，得\(x_1 = 0, x_2 = 1\)，基础解系\[
+\X3 = (0,1,1)^T,
+\]故属于\(6\)的全部特征向量为\(k_3 \X3\)，\(k_3\)是任意非零常数.
+\end{solution}
+\end{example}
+
+从特征值、特征向量的性质可以看出，矩阵\(\A\)的一个特征值对应若干个线性无关的特征向量；但反之，一个特征向量只能属于一个特征值.事实上，设\(\X0\)为某个矩阵\(\A\)的特征向量，若有\(\L{1},\L{2}\)满足\[
+\A\X0=\L{1}\X0,
+\quad
+\A\X0=\L{2}\X0,
+\]则必有\(\L{1}\X0=\L{2}\X0\)或\((\L{1}-\L{2})\X0=\z\)，因为\(\X0\neq\z\)，所以\(\L{1}-\L{2}=0\)，\(\L{1}=\L{2}\).
+
+前面已经知道，矩阵\(\A\)的同一个特征值\(\L0\)对应的特征向量的非零线性组合仍为\(\A\)的属于\(\L0\)的特征向量.那么，\(\A\)的不同特征值对应的特征向量的非零线性组合又如何呢？
+\begin{example}
+设\(\L{1}\)、\(\L{2}\)是矩阵\(\A\)的两个不同的特征值，\(\X1\)、\(\X2\)分别是\(\L{1}\)、\(\L{2}\)对应的特征向量.证明：\(\X1+\X2\)不是\(\A\)的特征向量.
+\begin{proof}
+\(\A\X1 = \L{1}\X1\)，\(\A\X2 = \L{2}\X2\)，假设\(\A(\X1+\X2) = \L0(\X1+\X2)\)，则\[
+\A\X1+\A\X2 =\L{1}\X1+\L{2}\X2 = \L0\X1+\L0\X2,
+\]\[
+(\L0-\L{1})\X1+(\L0-\L{2})\X2 = \z,
+\]在上式左右两端同乘\(\A\)和\(\L{1}\)可得\[
+\left\{ \begin{array}{l}
+(\L0-\L{1})\A\X1+(\L0-\L{2})\A\X2 = (\L0-\L{1})\L{1}\X1 + (\L0-\L{2})\L{2}\X2 = \z, \\
+(\L0-\L{1})\L{1}\X1+(\L0-\L{2})\L{1}\X2 = \z,
+\end{array} \right.
+\]\[
+(\L0-\L{2})(\L{2}-\L{1})\X2 = \z,
+\]因为\(\X2\neq\z\)，所以\((\L0-\L{2})(\L{2}-\L{1})=0\)；又因为\(\L{2}\neq\L{1}\)，所以\(\L0=\L{2}\).
+同理有\[
+(\L0-\L{1})\L{2}\X1+(\L0-\L{2})\L{2}\X2 = \z
+\implies
+(\L0-\L{1})(\L{1}-\L{2})\X1 = \z,
+\]因为\(\X1\neq\z\)，所以\(\L0=\L{1}\).
+
+于是导出\(\L{1}=\L{2}\)，与题设矛盾，说明\(\X1+\X2\)不是\(\A\)的特征向量.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\L0\)是矩阵\(\A\)的特征值，\(k\)是任意常数，则\(k\L0\)是矩阵\(k\A\)的特征值.
+\begin{proof}
+\(\A\X0=\L0\X0\)，\((k\A)\X0=k(\A\X0)=k(\L0\X0)=(k\L0)\X0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：矩阵\(\A\)与其转置矩阵\(\A^T\)的特征值相同.
+\begin{proof}
+因为矩阵\(\A\)与\(\A^T\)的特征多项式相同，即\(\abs{\l\E-\A} = \abs{(\l\E-\A)^T} = \abs{\l\E-\A^T}\)，所以特征值相同.
+\end{proof}
+\end{example}
+
+\begin{example}
+若矩阵\(\A\)满足\(\A^2=\A\).证明：\(\A\)的特征值\(\L0\)只能为0或1.
+\begin{proof}
+设\(\A\X0=\L0\X0\ (\X0\neq\z)\).
+因为\(\A^2=\A\)，\(\A^2-\A=\z\)，所以\[
+(\A^2-\A)\X0=\z\X0,
+\]\[
+\A^2\X0-\A\X0=\z,
+\]\[
+\L0^2\X0-\L0\X0=(\L0^2-\L0)\X0=\L0(\L0-1)\X0=\z,
+\]进一步有\(\L0(\L0-1)=0\)，所以\(\L0=0\)或\(\L0=1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+试讨论：在什么条件下，矩阵\(\A\)的任一特征向量总是\(\A^T\)的特征向量.
+\begin{solution}
+假设\(\A\)的特征向量都是\(\A^T\)的特征向量，\(\A\x=\L{1}\x\)，\(\A^T\x=\L{2}\x\)，那么有\[
+(\A^T\x)^T=(\L{2}\x)^T
+\implies
+\x^T\A=\L{2}\x^T
+\implies
+(\x^T\A)\x=(\L{2}\x^T)\x,
+\]\[
+\x^T(\A\x)=\x^T(\L{1}\x)=\L{1}\x^T\x=\L{2}\x^T\x
+\implies
+(\L{1}-\L{2})\x^T\x=0,
+\]
+因为\(\x\neq\z\)，\(\x^T\x\neq0\)，所以\(\L{1}-\L{2}=0\)，\(\L{1}=\L{2}\).那么\[
+\A\x=\L{1}\x=\L{2}\x=\A^T\x,
+\]从而\((\A-\A^T)\x=\z\)，\(\A=\A^T\).也就是说，当且仅当\(\A\)是对称矩阵时，\(\A\)的特征向量都是\(\A^T\)的特征向量.
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(n\)阶矩阵\(\A=(a_{ij})_n\)的特征多项式为\[
+f(\l) = \abs{\l\E-\A}
+= \l^n - a_1 \l^{n-1} + a_2 \l^{n-2} - \dotsb + (-1)^n a_n,
+\]证明：系数\(a_i\)是矩阵\(\A\)的\(i\)阶主子式之和（\(i=1,2,\dotsc,n\)）.
+特别地，\(a_1 = \tr\A\)，\(a_n = \abs{\A}\).
+\end{example}
+
+\begin{example}
+设\(n\)阶矩阵\(\A=(a_{ij})_n\)的特征值为\(\L{1},\L{2},\dotsc,\L{n}\)，即\(\A\)的特征多项式为\(\abs{\l\E-\A}=(\l-\L{1})(\l-\L{2})\dotsm(\l-\L{n})\).证明：
+\begin{enumerate}
+\item \(\abs{\A} = \L{1} \L{2} \dotsm \L{n}\)；
+\item \(\L{1} + \L{2} + \dotsb + \L{n} = \tr\A\).
+\end{enumerate}
+\begin{proof}
+比较特征多项式的两种形式：\[
+\abs{\l\E-\A}=\l^n-\l^{n-1}(a_{11}+a_{22}+ \dotsb +a_{nn})+ \dotsb +(-1)^n\abs{\A}
+\]和\begin{align*}
+\abs{\l\E-\A} &= (\l-\L{1})(\l-\L{2})\dotsm(\l-\L{n}) \\
+&= \l^n-\l^{n-1}(\L{1}+\L{2}+ \dotsb +\L{n}) + \dotsb + (-1)^n \L{1} \L{2} \dotsm \L{n},
+\end{align*}可得\[
+\L{1} + \L{2} + \dotsb + \L{n} = a_{11} + a_{22} + \dotsb + a_{nn} = \tr\A,
+\]\[
+\abs{\A} = \L{1} \L{2} \dotsm \L{n}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\a,\b\)是\(n\)维列向量.
+证明：\(\a\b^T\)的特征值是\(0,\b^T\a\).
+\begin{proof}
+显然有\((\a\b^T)\a = \a(\b^T\a)\)，那么根据定义可知\(\b^T\a\)就是矩阵\(\a\b^T\)的特征值.
+又由\cref{example:行列式.两个向量的乘积矩阵的行列式} 可知\(\abs{\a\b^T} = 0\)，所以\(\abs{0\cdot\E-\a\b^T}=0\)，也就是说\(0\)也是矩阵\(\a\b^T\)的特征值.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A \in M_{m \times n}(P), \B \in M_{n \times m}(P)\)，且\(m \geqslant n\).
+求证：\[
+\abs{\l\E_m-\A\B} = \l^{m-n} \abs{\l\E_n-\B\A}.
+\]
+\begin{proof}
+当\(\l\neq0\)时，考虑下列分块矩阵：\[
+\begin{bmatrix}
+\l\E_m & \A \\
+\B & \E_n
+\end{bmatrix}.
+\]因为\(\l\E_m,\E_n\)都是可逆矩阵，故由\hyperref[theorem:逆矩阵.行列式第一降阶定理]{降阶公式}可得\[
+\abs{\E_n} \cdot \abs{\l\E_m - \A (\E_n)^{-1} \B}
+= \abs{\l\E_m} \cdot \abs{\E_n - \B (\l\E_m)^{-1} \A},
+\]即有\(\abs{\l\E_m-\A\B} = \l^{m-n} \abs{\l\E_n-\B\A}\)成立.
+
+当\(\l=0\)时，若\(m>n\)，则\[
+r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
+\]故\(\abs{-\A\B}=0\)，结论也成立；
+若\(m = n\)，则由\cref{theorem:行列式.矩阵乘积的行列式} 可知结论也成立.
+
+事实上，\(\l=0\)的情形也可通过摄动法由\(\l\neq0\)的情形来得到.
+\end{proof}
+\end{example}
+上例还有其他证法：你可以将\(\A\)化为等价标准型来证明，或先证\(\A\)非异的情形，再用摄动法进行讨论.
+
+\subsection{求解特征值和特征向量的一般程序}
+求解\(n\)阶矩阵\(\A = (a_{ij})_n\)的特征值和特征向量的一般程序：
+\begin{enumerate}
+\item 计算特征多项式\(\abs{\l\E-\A}\)；
+\item 求出\(\abs{\l\E-\A}=0\)的全部根，得\(\A\)的全部特征值\(\v{\lambda}{n}\)；
+\item 对于每个不同的特征值\(\L{j}\)，求出齐次线性方程组\((\L{j} \E - \A)\x = \z\)的一个基础解系\(\v{\x}{t}\)，则\(\A\)的属于\(\L{j}\)的全部特征向量为\(k_1 \X1 + k_2 \X2 + \dotsb + k_t \X t\)（其中\(k_1,k_2,\dotsc,k_t\)是不全为零的任意常数）.
+\end{enumerate}
+
+注1：根据高斯代数基本定理，任何\(n\ (n \geqslant 1)\)次多项式至少有一个复数根.
+由此推出，任何\(n\ (n>0)\)次多项式有且仅由\(n\)个复根，其中规定\(m\)重根算\(m\)个根.
+
+注2：\(n\)阶矩阵\(\A\)恰有\(n\)个特征值，但它不一定有\(n\)个线性无关的特征向量.
+
+注3：如果\(\A\)是\(n\)阶实矩阵，则它有\(n\)个复特征值，其中实特征值个数\(m\)满足\(0 \leqslant m \leqslant n\).
+
+\begin{example}
+设\(\A = \begin{bmatrix} 2 & -1 & 2 \\ 5 & -3 & 3 \\ -1 & 0 & -2 \end{bmatrix}\)，求\(\A\)的特征值与对应的特征向量.
+\begin{solution}
+\(\A\)的特征多项式\[
+\abs{\l\E-\A}
+= \begin{vmatrix} \l-2 & 1 & -2 \\ -5 & \l+3 & -3 \\ 1 & 0 & \l+2 \end{vmatrix}
+= (\l+1)^3,
+\]解\(\abs{\l\E-\A}=0\)得\(\l=-1\)（三重）.
+
+当\(\l=-1\)时，解方程组\((-\E-\A)\x=\z\)，\[
+-\E-\A = \begin{bmatrix} -3 & 1 & -2 \\ -5 & 2 & -3 \\ 1 & 0 & 1 \end{bmatrix}
+\to \begin{bmatrix} 1 & 0 & 1 \\ 5 & 2 & -3 \\ -3 & 1 & -2 \end{bmatrix}
+\to \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix},
+\]\(\rank(-\E-\A)=2\)，令\(x_3=1\)，得基础解系\[
+\X1=\begin{bmatrix} -1 \\ -1 \\ 1 \end{bmatrix},
+\]属于\(-1\)的全部特征向量为\(k\X1\)（\(k\)为非零的任意常数）.
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(\A = \begin{bmatrix} -1 & 0 & 0 \\ 8 & 2 & 4 \\ 8 & 3 & 3 \end{bmatrix}\)，求\(\A\)的特征值与对应的特征向量.
+\begin{solution}
+\(\A\)的特征多项式\[
+\a = \begin{vmatrix}
+\l+1 & 0 & 0 \\
+-8 & \l-2 & -4 \\
+-8 & -3 & \l-3
+\end{vmatrix}
+= (\l+1)(\l^2-5\l-6)
+= (\l+1)^2(\l-6).
+\]令\(\a = 0\)可得\(\A\)的特征值为\(\L{1}=-1\)（二重），\(\L{2}=6\).
+
+当\(\l=-1\)时，解方程组\((-\E-\A)\x=\z\)，\[
+-\E-\A = \begin{bmatrix} 0 & 0 & 0 \\ -8 & -3 & -4 \\ -8 & -3 & -4 \end{bmatrix} \to \begin{bmatrix} -8 & -3 & -4 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}.
+\]分别令\(\left\{ \begin{array}{l} x_2=8 \\ x_3=0 \end{array} \right.\)和\(\left\{ \begin{array}{l} x_2=0 \\ x_3=2 \end{array} \right.\)，得基础解系\[
+\X1 = \begin{bmatrix} -3 \\ 8 \\ 0 \end{bmatrix},
+\quad
+\X2 = \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix},
+\]属于\(-1\)的全部特征向量为\(k_1\X1+k_2\X2\)（\(k_1,k_2\)为不全为零的任意常数）；
+
+当\(\l=6\)时，解方程组\((6\E-\A)\x=\z\)，\[
+6\E-\A = \begin{bmatrix} 7 & 0 & 0 \\ -8 & 4 & -4 \\ -8 & -3 & 3 \end{bmatrix} \to \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 0 \end{bmatrix},
+\]令\(x_3=1\)得\(x_1=0\)，\(x_2=1\)，基础解系\[
+\X3 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix},
+\]属于\(6\)的全部特征向量为\(k_3\X3\)（\(k_3\)为任意常数）.
+\end{solution}
+\end{example}
+
+\begin{example}
+设矩阵\(\A = (a_{ij})_n \in \mathbb{C}^n\)，但\(a_{ij} \in \mathbb{R}\ (i,j=1,2,\dotsc,n)\).证明：如果\(\L0\in\mathbb{C}\)是\(\A\)的一个特征值，\(\X0\)是\(\A\)属于\(\L0\)的一个特征向量，那么\(\complexconjugate{\L0}\)也是\(\A\)的一个特征值，且\(\complexconjugate{\X0}\)是\(\A\)属于\(\complexconjugate{\L0}\)的一个特征向量.
+\begin{proof}
+在\(\A\X0=\L0\X0\)两边取共轭得\(\complexconjugate{\A}\complexconjugate{\X0}=\complexconjugate{\L0}\complexconjugate{\X0}\).又因为\(\A=\complexconjugate{\A}\)，因此\(\A\complexconjugate{\X0}=\complexconjugate{\L0}\complexconjugate{\X0}\).这就表明\(\complexconjugate{\L0}\)也是\(\A\)的一个特征值，\(\complexconjugate{\X0}\)是\(\A\)的属于\(\complexconjugate{\L0}\)的一个特征向量.
+\end{proof}
+\end{example}
+
+\begin{example}
+求复数域上矩阵\[
+\A = \begin{bmatrix}
+4 & 7 & -3 \\
+-2 & -4 & 2 \\
+-4 & -10 & 4
+\end{bmatrix}
+\]的全部特征值和特征向量.
+\begin{solution}
+\(\A\)的特征多项式为\[
+\abs{\l\E-\A} = \begin{vmatrix}
+\l-4 & -7 & 3 \\
+2 & \l+4 & -2 \\
+4 & 10 & \l-4
+\end{vmatrix}
+= \l^3 - 4\l^2 + 6\l - 4
+= (\l-2)(\l^2-2\l+2).
+\]令\(\abs{\l\E-\A}=0\)解得\(\l=2,1\pm\iu\).
+
+当\(\l=2\)时，解方程组\((2\E-\A)\x=\z\)，\[
+2\E-\A = \begin{bmatrix}
+-2 & -7 & 3 \\
+2 & 6 & -2 \\
+4 & 10 & -2
+\end{bmatrix} \to \begin{bmatrix}
+2 & 4 & 0 \\
+0 & 1 & -1 \\
+0 & 0 & 0
+\end{bmatrix}.
+\]令\(x_2=x_3=1\)得\(x_1=-2\)，基础解系为\[
+\X1 = (-2,1,1)^T,
+\]属于\(2\)的全部特征向量为\(k_1\X1\ (k_1\in\mathbb{C}-\{0\})\).
+
+当\(\l=1+\iu\)时，解方程组\([(1+\iu)\E-\A]\x=\z\)，\[
+(1+\iu)\E-\A = \begin{bmatrix}
+-3+\iu & -7 & 3 \\
+2 & 5+\iu & -2 \\
+4 & 10 & -3+\iu
+\end{bmatrix} \to \def\arraystretch{1.5}\begin{bmatrix}
+1 & 0 & \frac{1}{2}-\iu \\
+0 & 1 & -\frac{1}{2}+\frac{1}{2}\iu \\
+0 & 0 & 0
+\end{bmatrix}.
+\]令\(x_3=-2\)得\(x_1=1-2\iu,x_2=-1+\iu\)，基础解系为\[
+\X2 = (1-2\iu,-1+\iu,-2)^T,
+\]属于\(1+\iu\)的全部特征向量为\(k_2\X2\ (k_2\in\mathbb{C}-\{0\})\).
+
+当\(\l=1-\iu\)时，\(\X2\)也是它的一个特征向量，那么属于\(1-\iu\)的全部特征向量为\(k_3\X2\ (k_3\in\mathbb{C}-\{0\})\).
+\end{solution}
+\end{example}
+
+\section{矩阵的相似、对角化}
+\subsection{矩阵相似的概念}
+\begin{definition}
+设\(\A\)、\(\B\)是两个\(n\)阶矩阵.若存在可逆矩阵\(\P\)，使得\[
+\P^{-1}\A\P=\B
+\]则称\(\A\)与\(\B\)相似，记作\(\A\sim\B\).
+\end{definition}
+
+\begin{property}
+矩阵之间的相似关系，是矩阵集合上的等价关系，因为它满足：
+\begin{enumerate}
+\item 反身性，即对每个矩阵\(\A\)，都有\(\A\sim\A\)；
+\item 对称性，即若\(\A\sim\B\)，则有\(\B\sim\A\)；
+\item 传递性，即若\(\A\sim\B\)且\(\B\sim\C\)，则\(\A\sim\C\).
+\end{enumerate}
+\end{property}
+
+\begin{property}
+\(\A\sim\B\)是\(\A\cong\B\)的充分不必要条件.
+\end{property}
+
+以下性质是两个矩阵相似的必要条件.
+\begin{property}
+若\(\A\sim\B\)，则\(\abs{\A}=\abs{\B}\).
+\begin{proof}
+因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，两端取行列式，得\[
+\abs{\B} = \abs{\P^{-1}\A\P}
+= \abs{\P^{-1}}\abs{\A}\abs{\P}
+= \abs{\P}^{-1}\abs{\A}\abs{\P}
+= \abs{\A}.
+\qedhere
+\]
+\end{proof}
+\end{property}
+我们还可以进一步推得如下结论：若\(\A\sim\B\)，则\(\A\)、\(\B\)同为可逆或不可逆.
+
+\begin{property}
+若\(\A\sim\B\)，则\(\A^m \sim \B^m\ (m\in\mathbb{N})\).
+\begin{proof}
+因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
+(\B)^m = (\P^{-1}\A\P)^m
+= (\P^{-1}\A\P)(\P^{-1}\A\P)\dotsb(\P^{-1}\A\P)
+= \P^{-1}\A^m\P.
+\qedhere
+\]
+\end{proof}
+\end{property}
+如果\(\A\)、\(\B\)可逆，那么上述结论可以扩展为\(\A^m\sim\B^m\ (m\in\mathbb{Z})\).
+
+\begin{property}
+相似矩阵有相同的特征多项式，从而有相同的特征值.
+\begin{proof}
+因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
+\abs{\l\E-\B}=\abs{\P^{-1}(\l\E-\A)\P}=\abs{\P^{-1}}\abs{\l\E-\A}\abs{\P}=\abs{\l\E-\A}.
+\qedhere
+\]
+\end{proof}
+\end{property}
+
+\begin{property}
+相似矩阵有相同的迹，即\(\A\sim\B \implies \tr\A=\tr\B\).
+\end{property}
+
+\begin{example}
+设矩阵\(\A\)可逆，\(\A^T\)是\(\A\)的转置.
+证明：\(\A\A^T \sim \A^T\A\).
+\begin{proof}
+当\(\P=\A^{-1}\)时，\(\P\A=\A\P=\E\)，\begin{align*}
+\A^T &= (\P\A)\A^T = \P(\A\A^T) \\
+&= \A^T(\A\P) = (\A^T\A)\P,
+\end{align*}
+\(\P(\A\A^T)\P^{-1} = \A^T\A\)，故\(\A\A^T \sim \A^T\A\).
+\end{proof}
+\end{example}
+
+\begin{example}
+特征值相同的矩阵不一定相似.
+例如\(\A=\begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}\)和\(\B=\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}\)的特征值相同，即\(\l=2\)（二重），但\(\A\)与\(\B\)不相似.这是因为\(\B=2\E\)是数乘矩阵，可以和所有二阶矩阵交换，那么对任意二阶可逆矩阵\(\P\)都有\(\P^{-1}\B\P=\B\P^{-1}\P=\B\)，即\(\B\)只能与自身相似，\(\A\)与\(\B\)不相似.
+\end{example}
+
+\subsection{矩阵的对角化}
+\begin{theorem}[矩阵可对角化的充要条件]
+\(n\)阶矩阵\(\A\)相似于对角阵的充要条件为\(\A\)有\(n\)个线性无关的特征向量.
+\begin{proof}
+必要性.
+\(\A\)相似于对角阵，即存在可逆矩阵\(\P\)，使\[
+\P^{-1}\A\P=\V=\begin{bmatrix}
+\L{1} \\ & \L{2} \\ & & \ddots \\ & & &\L{n}
+\end{bmatrix}=\diag(\L{1},\L{2},\dotsc,\L{n}),
+\]用\(\P\)左乘上式两端，得\[
+\A\P=\P\V.
+\]将\(\P\)按列分块，则\(\P=(\v{\x}{n})\)，由于\(\P\)可逆，所以\(\v{\x}{n}\)线性无关，有\[
+\A(\v{\x}{n})=(\v{\x}{n})\V,
+\]\[
+(\A\X1,\A\X2,\dotsc,\A\X{n})=(\X1\V,\X2\V,\dotsc,\X{n}\V),
+\]于是\[
+A\X i=\L{i}\X i,
+\quad i=1,2,\dotsc,n,
+\]即\(\v{\x}{n}\)是\(\A\)分别对应于\(\v{\lambda}{n}\)的\(n\)个线性无关的特征向量.
+
+同理可证充分性.
+\end{proof}
+\end{theorem}
+
+由上述定理的证明可知：
+{\color{red}当\(\P^{-1}\A\P=\V\)时，\(\V\)的\(n\)个主对角元是\(\A\)的\(n\)个特征值；可逆矩阵\(\P\)的\(n\)个列向量\(\v{\x}{n}\)是\(\A\)分别属于\(\L{1},\L{2},\dotsc,\L{n}\)的线性无关特征向量.}
+
+\begin{theorem}
+矩阵\(\A\)的属于不同特征值的特征向量线性无关.
+\begin{proof}
+设\(n\)阶矩阵\(\A\)的\(m\)个不同的特征值\(\L{1},\L{2},\dotsc,\L{m}\)对应的特征向量分别为\(\v{\x}{m}\).
+
+由上述所有特征向量构成的向量组，记作\(X_m=\{\v{\x}{m}\}\).
+
+当\(m=1\)时，由于\(\X1 \neq 0\)，故向量组\(X_1=\{\X1\}\)线性无关.
+当\(m>1\)时，假设\(m-1\)个不同特征值对应的特征向量\(X_{m-1}=\{\v{\x}{m-1}\}\)线性无关.
+对于\(m\)个不同特征值对应的特征向量组\(X_m\)，令\begin{gather}
+k_1\X1+k_2\X2+\dotsb+k_m\X{m}=\z, \tag1
+\end{gather}由于\(\A\X{j}=\L{j}\X{j}\)，用\(\A\)左乘(1)式两端，得\begin{gather}
+k_1\L{1}\X1+k_2\L{2}\X2+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\L{m}\X{m}=\z. \tag2
+\end{gather}再用\(\L{m}\)数乘(1)式两端，得\begin{gather}
+\L{m}k_1\X1+\L{m}k_2\X2+\dotsb+\L{m}k_{m-1}\X{m-1}+\L{m}k_m\X{m}=\z, \tag3
+\end{gather}(2)、(3)两式相减，得\begin{gather}
+(\L{1}-\L{m})k_1\X1+(\L{2}-\L{m})k_2\X2+\dotsb+(\L{m-1}-\L{m})k_{m-1}\X{m-1}=\z. \tag4
+\end{gather}根据归纳假设，向量组\(X_{m-1}\)线性无关，则\((\L{i}-\L{m})k_i=0\)（\(i=1,2,\dotsc,m-1\)）.由于\(\L{i}\neq\L{m}\)（\(i=1,2,\dotsc,m-1\)），所以\(k_1=k_2=\dotsb=k_{m-1}=0\)，得\(k_m\X{m}=\z\)，但特征向量\(\X{m}\neq\z\)，则\(k_m=0\)，从而向量组\(X_m\)线性无关.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}[矩阵可对角化的充分条件]
+若\(n\)阶矩阵\(\A\)有\(n\)个不同的特征值，则\(\A\)可对角化.
+\end{corollary}
+
+\begin{theorem}
+设\(\L{1},\L{2},\dotsc,\L{m}\)是\(n\)阶矩阵\(\A\)的不同的特征值，而\(\X{ij}\ (j=1,2,\dotsc)\)是\(\A\)属于\(\L{i}\ (i=1,2,\dotsc,m)\)的线性无关的特征向量，即\[
+\A \X{ij} = \L{i} \X{ij},
+\quad i=1,2,\dotsc,m;j=1,2,\dotsc,
+\]则\[
+\X{11},\X{12},\dotsc,\X{21},\X{22},\dotsc,\X{m1},\X{m2},\dotsc
+\]线性无关.
+\end{theorem}
+
+\begin{example}
+设\[
+\A = \begin{bmatrix}
+1 & 0 & 0 \\
+-2 & 5 & -2 \\
+-2 & 4 & -1
+\end{bmatrix}.
+\]试问：\(\A\)能否对角化？若能，则求出可逆矩阵\(\P\)，使\(\P^{-1}\A\P\)为对角形矩阵.
+\begin{solution}
+\(\A\)的特征多项式为\[
+\abs{\l\E-\A} = \begin{bmatrix}
+\l-1 & 0 & 0 \\
+2 & \l-5 & 2 \\
+2 & -4 & \l+1
+\end{bmatrix} = (\l-1)^2 (\l-3),
+\]则\(\A\)的特征值为\(\L{1}=1\)（二重），\(\L{2}=3\).
+
+当\(\L{1}=1\)时，解齐次线性方程组\((\E-\A)\x=\z\)，\[
+\E-\A=\begin{bmatrix}
+0 & 0 & 0 \\
+2 & -4 & 2 \\
+2 & -4 & 2
+\end{bmatrix} \to \begin{bmatrix}
+1 & -2 & 1 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix},
+\]基础解系为\(\X1 = \begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix}, \X2 = \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\).
+
+对于\(\L{2}=3\)，解方程组\((3\E-\A)\x=\z\)，\[
+3\E-\A=\begin{bmatrix}
+2 & 0 & 0 \\
+2 & -2 & 2 \\
+2 & -4 & 4
+\end{bmatrix} \to \begin{bmatrix}
+2 & 0 & 0 \\
+0 & -2 & 2 \\
+0 & 0 & 0
+\end{bmatrix},
+\]基础解系为\(\X3 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}\).
+
+特征向量\(\X1,\X2,\X3\)线性无关，所以\(\A\)可以对角化.
+令\[
+\P = \begin{bmatrix} \X1 & \X2 & \X3 \end{bmatrix} = \begin{bmatrix}
+2 & -1 & 0 \\
+1 & 0 & 1 \\
+0 & 1 & 1
+\end{bmatrix},
+\quad\text{则有}\quad
+\P^{-1} \A \P = \begin{bmatrix} 1 \\ & 1 \\ && 3 \end{bmatrix}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(\A = \begin{bmatrix}
+2 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 1 & 2
+\end{bmatrix}\)，证明：\(\A\)不可对角化.
+\begin{proof}
+\(\A\)的特征多项式为\[
+\abs{\l\E-\A} = \begin{vmatrix}
+\l-2 & 0 & 0 \\
+0 & \l-2 & 0 \\
+0 & -1 & \l-2
+\end{vmatrix} = (\l-2)^2,
+\]令\(\abs{\l\E-\A} = 0\)解得特征值\(\L{1}=2\)（三重）.由于\(\rank(\L{1}\E-\A)=1\)，那么对应于唯一的特征值\(\L{1}=2\)，\(\A\)只有两个线性无关的特征向量，因而不存在可逆矩阵\(\P\)使得\(\P^{-1}\A\P\)为对角形矩阵.
+\end{proof}
+\end{example}
+
+从上述例子可以看出，当矩阵\(\A\)的某个特征值\(\L0\)为\(k\)重根式，对应于\(\L0\)的线性无关的特征向量的个数可能等于\(k\)，也可能小于\(k\).这个规律对于一般的矩阵是成立的.
+
+\begin{theorem}
+设\(\L0\)为\(n\)阶矩阵\(\A\)的\(k\)重特征值，则属于\(\L0\)的\(\A\)的线性无关的特征向量最多只有\(k\)个.
+\end{theorem}
+
+\begin{theorem}
+\(n\)阶矩阵\(\A\)可对角化的充要条件是：对于\(\A\)的每个\(k_i\)重特征值\(\L{i}\)，\(\A\)有\(k_i\)个线性无关的特征向量.
+\end{theorem}
+
+\begin{corollary}
+\(n\)阶矩阵\(\A\)可对角化的充要条件是：对于\(\A\)的每个\(k_i\)重特征值\(\L{i}\)，都有\(\rank(\L{i}\E-\A) = n-k_i\).
+\end{corollary}
+
+\begin{example}
+设\(\A\)、\(\B\)是\(n\)阶矩阵，且\(\A\)可逆，证明：\(\A\B\)与\(\B\A\)相似.
+\begin{proof}
+因为\(\A\)可逆，则\[
+\B\A
+=\E\B\A
+=(\A^{-1}\A)\B\A
+=\A^{-1}(\A\B)\A
+\]根据定义可得\(\A\B \sim \B\A\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)为可逆矩阵且可对角化，证明：\(\A^{-1}\)也可对角化.
+\begin{proof}
+设存在可逆矩阵\(\P\)使得\begin{gather}
+\P^{-1}\A\P = \V, \tag1
+\end{gather}其中\(\V=\diag(\L{1},\L{2},\dotsc,\L{n})\)，\(n\)是矩阵\(\A\)的阶数，\(\L{1},\L{2},\dotsc,\L{n}\)是矩阵\(\A\)的特征值.
+显然有\(\abs{\V} = \abs{\P^{-1}\A\P} = \abs{\P^{-1}}\abs{\A}\abs{\P} = (\abs{\P^{-1}}\abs{\P})\abs{\A} = 1 \cdot \abs{\A} = \abs{\A} \neq 0\)，即\(\V\)可逆.
+在(1)式两端左乘\(\P\)得\(\P(\P^{-1}\A\P) = \P\V\)即\begin{gather}
+\A\P = \P\V. \tag2
+\end{gather}
+在(2)式两端左乘\(\P^{-1}\A^{-1}\)，右乘\(\V^{-1}\)得\[
+(\P^{-1}\A^{-1})(\A\P)\V^{-1} = (\P^{-1}\A^{-1})(\P\V)\V^{-1},
+\]即\(\V^{-1} = \P^{-1}\A^{-1}\P\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(m\)阶矩阵\(\A\)与\(n\)阶矩阵\(\B\)都可对角化，证明：\(m+n\)阶矩阵\[
+\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix}
+\]可对角化.
+\begin{proof}
+设存在\(m\)阶可逆矩阵\(\P\)和\(n\)阶可逆矩阵\(\Q\)使得\begin{align*}
+\P^{-1}\A\P &= \V_1 \\
+\Q^{-1}\B\Q &= \V_2
+\end{align*}则可构造矩阵使得\[
+\begin{bmatrix}
+\P^{-1} & \z \\
+\z & \Q^{-1}
+\end{bmatrix}
+\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix}
+\begin{bmatrix}
+\P & \z \\
+\z & \Q
+\end{bmatrix}
+=
+\begin{bmatrix}
+\V_1 & \z \\
+\z & \V_2
+\end{bmatrix}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是非零的\textbf{幂零矩阵}，%
+即\(\A\neq\z\)，且存在自然数\(m\)，使得\(\A^m=\z\).
+证明：\(\A\)的特征值全为零，且\(\A\)不可以对角化.
+\begin{proof}
+设存在非零列向量\(\X0\)，使得\(\A\X0=\L0\X0\)成立，则\[
+\A^m\X0=\L0^m\X0.
+\]
+令\(\A^m=\z\)，则解\(\A^m\X0=\z=\L0^m\X0\)得\(\L0=0\)，可见\(\A\)的特征值全为零.
+
+假设\(\A\)可以对角化，即存在可逆矩阵\(\P\)使得\[
+\P^{-1}\A\P = \diag(\L{1},\L{2},\dotsc,\L{n}) = \z.
+\]
+在等式两边同时左乘\(\P\)，并右乘\(\P^{-1}\)，得\[
+\A = \P(\P^{-1}\A\P)\P^{-1} = \P\z\P^{-1} = \z.
+\]矛盾，故\(\A\)不可以对角化.
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\J{\mat{J}_n}
+形式为\[
+\J = \begin{bmatrix}
+\L0 & 0 & 0 & \dots & 0 & 0 \\
+1 & \L0 & 0 & \dots & 0 & 0 \\
+0 & 1 & \L0 & \dots & 0 & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & 0 & \dots & \L0 & 0 \\
+0 & 0 & 0 & \dots & 1 & \L0
+\end{bmatrix}_n
+\]的复数三角形阵称为\textbf{若尔当（Jordan）块}.证明：\(n\)（\(n>1\)）阶若尔当块不可以对角化.
+\begin{proof}
+令\(\abs{\l\E-\J}=(\lambda-\L0)^n=0\)，解得\(\l=\L0\)（\(n\)重），那么\[
+\L0\E-\J = \begin{bmatrix}
+0 \\
+-1 & 0 \\
+& -1 & 0 \\
+& & \ddots & \ddots \\
+& & & -1 & 0
+\end{bmatrix}_n,
+\]\(\rank(\L0\E-\J)=n-1 > 0\),故当\(n>1\)时\(\J\)不可以对角化.
+\end{proof}
+\end{example}
+
+\begin{definition}
+由若干个若尔当块构成的准对角矩阵称为\textbf{若尔当形矩阵}.
+\end{definition}
+
+\begin{theorem}
+每个\(n\)阶复数矩阵不一定与对角阵相似，但必与一个若尔当形矩阵相似.
+\end{theorem}
+
+\section{实对称矩阵的对角化}
+由上节讨论我们知道，\(n\)阶矩阵分成可对角化与不可对角化两类.
+实际上，矩阵的相似概念与数域有关，矩阵能否对角化也与数域有关.
+因为一般矩阵的特征值是复数，即使\(\A\)的元素都是实数，也可能没有实数特征值.
+例如，\(\A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}\)是一个二阶实矩阵，\(\abs{\l\E-\A}=\begin{vmatrix} \l & 1 \\ -1 & \l \end{vmatrix} = (\l+\iu)(\l-\iu)\)，\(\A\)有两个特征值\(\pm\iu\)，其对应的特征向量是复向量，因此\(\A\)在复数域上可对角化，但不存在可逆实阵\(\P\)使得\(\P^{-1}\A\P\)为对角阵.
+
+\subsection{正交矩阵的概念与性质}
+\begin{definition}
+在欧几里得空间中，如果向量组\(A=\{\a_1,\a_2,\dotsc,\a_m\}\)不含零向量，且\(A\)中向量两两正交，即\((\a_i,\a_j)=0\)，\(i \neq j\)，则称\(A\)为一个\textbf{正交向量组}（简称\textbf{正交组}）.
+由单位向量构成的正交组叫做\textbf{规范正交组}（或称\textbf{标准正交组}）.
+称含有\(n\)个向量的规范正交组\(\e_1,\e_2,\dotsc,\e_n\)为\(\mathbb{R}^n\)的一个\textbf{规范正交基}（或称\textbf{标准正交基}，orthonormal basis）.
+\end{definition}
+
+\begin{definition}
+设\(n\)阶实矩阵\(\Q\)满足\(\Q^T\Q = \Q\Q^T = \E\)，则称\(\Q\)为\textbf{正交矩阵}.
+\end{definition}
+
+容易验证：单位矩阵\(\E\)是正交矩阵.
+
+\begin{property}
+正交矩阵\(\Q\)是可逆矩阵，且\(\Q^{-1} = \Q^T\)，\(\abs{\Q} = \pm 1\).
+\begin{proof}
+因为\(1=\abs{\E}=\abs{\Q^T\Q}
+=\abs{\Q^T}\abs{\Q}
+=\abs{\Q}^2\)，解得\(\abs{\Q} = \pm 1 \neq 0\)，所以\(\Q\)是可逆矩阵.
+又有：\(\Q^T = \E\Q^T = (\Q^{-1}\Q)\Q^T
+= \Q^{-1}(\Q\Q^T)
+= \Q^{-1}\E
+= \Q^{-1}\).
+\end{proof}
+\end{property}
+
+容易验证：正交矩阵\(\Q\)的伴随矩阵\(\Q^*\)满足\[
+\Q^* = \abs{\Q} \Q^{-1}
+= \abs{\Q} \Q^T
+= \left\{ \begin{array}{rc}
+\Q^T, & \abs{\Q}>0, \\
+-\Q^T, & \abs{\Q}<0.
+\end{array} \right.
+\]
+
+\begin{example}
+设\(\Q=(\v{\a}{n})\)是\(n\)阶实矩阵，则\(\Q\)是正交矩阵的充要条件是\(\v{\a}{n}\)是\(\mathbb{R}^{n \times 1}\)的规范正交基.
+\begin{proof}
+在\(\Q\)是\(n\)阶实矩阵的前提下，\begin{align*}
+&\Q\text{是正交矩阵}
+\iff \Q^T\Q = \Q\Q^T = \E \\
+&\iff \E = \begin{bmatrix} \a_1^T \\ \a_2^T \\ \vdots \\ \a_n^T \end{bmatrix} (\v{\a}{n}) = \begin{bmatrix}
+\a_1^T \a_1 & \a_1^T \a_2 & \dots & \a_1^T \a_n \\
+\a_2^T \a_1 & \a_2^T \a_2 & \dots & \a_2^T \a_n \\
+\vdots & \vdots & & \vdots \\
+\a_n^T \a_1 & \a_n^T \a_2 & \dots & \a_n^T \a_n
+\end{bmatrix} \\
+&\iff \a_i^T \a_j = (\a_i,\a_j) = \left\{ \begin{array}{ll}
+1, & i=j, \\
+0, & i \neq j,
+\end{array} \right. i,j=1,2,\dotsc,n \\
+&\iff \v{\a}{n}\text{是规范正交基}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+可以看出，正交矩阵是由一系列初等矩阵\(\P(i,j)\)的乘积.
+
+\begin{example}
+设\(\A\)是正交矩阵.证明：\(\A\)的特征值是模为1的复数.
+\begin{proof}
+设\(\L0\)是\(\A\)的任意一个特征值，\(\X0=(\v{c}{n})^T\neq\z\)是\(\A\)属于特征值\(\L0\)的特征向量，即\begin{gather}
+\A\X0=\L0\X0, \tag1
+\end{gather}
+取共轭转置，得\begin{gather}
+\overline{\X0}^T \overline{\A}^T = \overline{\L0} \overline{\X0}^T, \tag2
+\end{gather}
+将(1)式两端分别右乘到(2)式两端，得\begin{gather}
+\overline{\X0}^T \overline{\A}^T \A\X0 = \overline{\L0} \overline{\X0}^T \L0\X0, \tag3
+\end{gather}
+因为\(\A\)是正交矩阵，\(\A\)是实矩阵，\(\overline{\A}^T = \A^T\)，且\(\A^T\A=\A\A^T=\E\)，所以\[
+\overline{\X0}^T \X0 = \overline{\L0} \L0 \overline{\X0}^T \X0,
+\]\[
+(\overline{\L0} \L0 - 1) \overline{\X0}^T \X0 = 0,
+\]又因为\(\overline{\X0}^T \X0 = \overline{c_1}c_1 + \overline{c_2}c_2 + \dotsb + \overline{c_n}{c_n} > 0\)，所以\[
+\overline{\L0} \L0 = 1,
+\]即\(\A\)的特征值\(\L0\)是模为1的复数.
+\end{proof}
+\end{example}
+
+\subsection{正规矩阵}
+\begin{definition}
+若矩阵\(\A\)满足\(\A\A^H = \A^H\A\)，则称该矩阵为\DefineConcept{正规矩阵}.
+\end{definition}
+
+\begin{property}
+实正交矩阵、实对称矩阵、实反对称矩阵都是实正规矩阵.
+\end{property}
+
+\subsection{施密特正交规范化方法}
+以下讨论将线性无关向量组改造为规范正交组的施密特（Schmidt）正交规范化方法.
+
+\begin{theorem}
+设\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_m\)是\(\mathbb{R}^n\)中的一个线性无关组，令\begin{align*}
+\mat{\beta}_1 &= \mat{\alpha}_1, \\
+\mat{\beta}_k &= \mat{\alpha}_k - \sum\limits_{i=1}^{k-1}
+	\frac{\vectorinnerproduct{\mat{\alpha}_k}{\mat{\beta}_i}}{\vectorinnerproduct{\mat{\beta}_i}{\mat{\beta}_i}} \mat{\beta}_i,
+\quad k=2,3,\dotsc,m,
+\end{align*}
+再将之单位化（或规范化）得\[
+\mat{\gamma}_k = \frac{1}{\abs{\mat{\beta}_k}}\mat{\beta}_k, \quad k=1,2,\dotsc,m
+\]则\(\mat{\gamma}_1,\mat{\gamma}_2,\dotsc,\mat{\gamma}_m\)是一个规范正交组，且满足
+\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_j\)与\(\mat{\gamma}_1,\mat{\gamma}_2,\dotsc,\mat{\gamma}_j\)等价（\(j=1,2,\dotsc,m\)）.
+\end{theorem}
+
+\subsection{实对称矩阵的对角化}
+\begin{theorem}\label{theorem:特征值与特征向量.实对称矩阵1}
+实对称矩阵的特征值都是实数.
+\begin{proof}
+设\(\A \in M_n(\mathbb{R})\)满足\(\A^T=\A\).
+显然\(\A\)的特征多项式\(\abs{\l\E-\A}\)在复数范围内有\(n\)个根.
+假设\(\L0\in\mathbb{C}\)是\(\A\)的任意一个特征值，%
+则存在\(n\)维复向量\(\X0=(\v{c}{n})^T \neq \z\)，使得\begin{gather}
+\A\X0 = \L0 \X0, \tag1
+\end{gather}用\(\X0\)的共轭转置向量\(\overline{\X0}^T=(\overline{c_1},\overline{c_2},\dotsc,\overline{c_n})\)左乘(1)式两端，得\begin{gather}
+\overline{\X0}^T \A \X0 = \l \overline{\X0}^T \X0, \tag2
+\end{gather}其中\(\A^T=\A=\overline{\A}\)，\(\overline{\X0}^T \X0 = \overline{c_1}c_1 + \overline{c_2}c_2 + \dotsb + \overline{c_n}{c_n} \in \mathbb{R}^+\).
+
+又因为\(\overline{\X0}^T \A \X0 \in \mathbb{C}\)取转置不变，且实对称矩阵满足\(\A^T = \A = \overline{\A}\)，所以\[
+\overline{\X0}^T \A \X0
+= (\overline{\X0}^T \A \X0)^T
+= \X0^T \A^T \overline{\X0}
+= \overline{\overline{\X0}^T} \overline{\A} \overline{\X0}
+= \overline{\overline{\X0}^T \A \X0},
+\]说明\(\overline{\X0}^T \A \X0 \in \mathbb{R}\)，进而有\(\L0 \in \mathbb{R}\).
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:特征值与特征向量.实对称矩阵2}
+实对称矩阵\(\A\)的不同特征值所对应的特征向量正交.
+\begin{proof}
+设\(\L{1}\neq\L{2}\)是\(\A\)的两个不同的特征值，\(\X1\neq\z\)，\(\X2\neq\z\)分别是\(\A\)对应于\(\L{1}\)、\(\L{2}\)的特征向量，则\(\X1\)、\(\X2\)都是实向量，\begin{align*}
+\A\X1 &= \L{1}\X1, \tag1 \\
+\A\X2 &= \L{2}\X2. \tag2
+\end{align*}
+对(1)式左乘\(\X2^T\)，得\begin{gather}
+\X2^T \A \X1 = \L{1} \X2^T \X1, \tag3
+\end{gather}
+对(2)式左乘\(\X1^T\)，得\begin{gather}
+\X1^T \A \X2 = \L{2} \X1^T \X2, \tag4
+\end{gather}
+(3)式取转置，得\(\L{1}(\X2^T \X1)^T = (\X2^T \A \X1)^T\)，又由\(\A=\A^T\)，得\begin{gather}
+\L{1} \X1^T \X2 = \X1^T \A^T \X2 = \X1^T \A \X2, \tag5
+\end{gather}
+(5)式减(4)式，得
+\begin{gather}
+(\L{2}-\L{1})\X1^T\X2=0. \tag6
+\end{gather}
+因为\(\L{2} \neq \L{1}\)，所以\(\X1^T \X2 = 0\)，即\((\X1,\X2) = 0\)，也就是\(\X1\)与\(\X2\)正交.
+\end{proof}
+\end{theorem}
+
+一般地，对于\(n\)阶实对称矩阵\(\A\)，属于\(\A\)的同一特征值的一组线性无关的特征向量不一定相互正交，可用施密特正交化方法将其正交化，得到\(\A\)的属于该特征值的正交特征向量组.
+由以上定理，\(\A\)的几个属于不同特征值的正交特征向量组仍构成正交组.
+特别地，\(\A\)有\(n\)个正交的特征向量，\(\A\)相似于对角形矩阵.
+
+\begin{theorem}\label{theorem:特征值与特征向量.实对称矩阵3}
+若\(\A\)为\(n\)阶实对称矩阵，则一定存在正交矩阵\(\Q\)，使得\(\V = \Q^{-1}\A\Q\)为对角形矩阵.
+\begin{proof}
+\def\M{\mat{M}}%
+用数学归纳法.
+当\(n=1\)时，矩阵\(\A\)是一个实数\(a_{11}\)，定理成立.
+假设当\(n=k-1\)时定理成立，下面证明当\(n=k\)时定理也成立.
+
+由\cref{theorem:特征值与特征向量.实对称矩阵1} ，\(\A\)的特征值全为实数.
+假设\(\L1\)是\(\A\)的特征值，并且相应地存在非零实向量\(\X1=(\v{c}{n})^T\)，使得\[
+\A\X1=\L1\X1.
+\]不妨设\(c_1\neq0\)，则\(n\)元向量组\[
+\X1,\X2=(0,1,\dotsc,0)^T,\dotsc,\X{n}=(0,0,\dotsc,1)^T
+\]线性无关.
+对向量组\(X=\{\v{\x}{n}\}\)用施密特正交规范化方法可得规范正交组\(Y=\{\v{\y}{n}\}\)，则\(\P=(\v{\y}{n})\)是正交矩阵，其中\(\y_1=\abs{\X1}^{-1}\X1\)是\(\A\)的特征向量.
+
+因为\(\mathbb{R}^n\)中任意\(n+1\)个向量线性相关，故任意向量都可由\(Y\)线性表出，即\begin{align*}
+\A\y_1 &= \L1\y_1 = \L1\y_1 + 0\y_2 + \dotsb + 0\y_n, \\
+\A\y_k &= b_{1k}\y_1 + b_{2k}\y_2 + \dotsb + b_{nk}\y_n \quad(k=2,3,\dotsc,n),
+\end{align*}由分块矩阵乘法，\[
+\A(\v{\y}{n}) = (\v{\y}{n}) \begin{bmatrix}
+\l_1 & b_{11} & \dots & b_{1n} \\
+0 & b_{22} & \dots & b_{2n} \\
+\vdots & \vdots & & \vdots \\
+0 & b_{n2} & \dots & b_{nn}
+\end{bmatrix},
+\]令\(\P=(\v{\y}{n})\)，显然\(\P\)是正交阵，而\(\P^{-1}\A\P=\P^T\A\P=\begin{bmatrix}
+\L1 & \a \\
+\z & \B
+\end{bmatrix}\).
+
+由\((\P^T\A\P)^T=\P^T\A^T\P=\P^T\A\P\)可知\(\begin{bmatrix}
+\L1 & \a \\
+\z & \B
+\end{bmatrix} = \begin{bmatrix}
+\L1 & \z \\
+\a^T & \B^T
+\end{bmatrix}\)，于是\(\a=\z\)，\(\B=\B^T\)，也就是说\(\B\)是\(n-1\)阶实对称矩阵.
+又由归纳假设，存在\(n-1\)阶正交阵\(\M\)，使得\(\M^{-1}\B\M\)成为对角阵.
+
+令\(\Q=\P\begin{bmatrix} 1 & \z \\ \z & \M \end{bmatrix}\)，因为\(\Q\Q^T=\Q^T\Q=\E\)，所以\(\Q\)是正交矩阵，而\begin{align*}
+\Q^{-1}\A\Q
+&=\begin{bmatrix}
+1 & \z \\
+\z & \M^{-1}
+\end{bmatrix}\P^{-1}\A\P\begin{bmatrix}
+1 & \z \\
+\z & \M
+\end{bmatrix}=\begin{bmatrix}
+1 & \z \\
+\z & \M^{-1}
+\end{bmatrix}\begin{bmatrix}
+\L1 & \z \\
+\z & \B
+\end{bmatrix}\begin{bmatrix}
+1 & \z \\
+\z & \M
+\end{bmatrix} \\
+&=\begin{bmatrix}
+\L1 & \z \\
+\z & \M^{-1}\B\M
+\end{bmatrix}
+=\diag(\v{\lambda}{n}).
+\end{align*}
+由上可知当\(n=k\)时定理也成立.
+\end{proof}
+\rm
+我们称“实对称矩阵\(\A\)总是\textbf{正交相似}（{orthogonally similar}）于某个对角形矩阵\(\V\)”.
+\end{theorem}
+
+\begin{corollary}
+\(n\)阶实对称矩阵\(\A\)存在\(n\)个正交的单位特征向量.
+\end{corollary}
+
+\begingroup
+\color{red}
+对于实对称矩阵\(\A\)，求正交矩阵\(\Q\)，使得\(\Q^{-1}\A\Q\)为对角形矩阵的方法：
+\begin{enumerate}
+\item 求出\(\A\)的全部不同的特征值\(\v{\lambda}{m}\)；
+\item 求出\((\L{i}\E-\A)\x=\z\)的基础解系，将其正交化，得到\(\A\)属于\(\L{i}\)的正交特征向量（\(i=1,2,\dotsc,m\)），共求出\(\A\)的\(n\)个正交特征向量；
+\item 将以上\(n\)个正交特征向量单位化，由所得向量作为列构成正交矩阵\(\Q\)，则\[
+\Q^{-1}\A\Q = \Q^T \A \Q = \diag(\v{\lambda}{n}).
+\]
+\end{enumerate}
+\endgroup
+
+\begin{example}
+设\(\A\)为\(n\)阶实对称矩阵，满足\(\A^2=\E\)，证明：存在正交矩阵\(\Q\)，使得\[
+\Q^{-1}\A\Q=\begin{bmatrix} \E_r \\ & -\E_{n-r} \end{bmatrix}.
+\]
+\begin{proof}
+因为\(\A\)为\(n\)阶实对称矩阵，则\(\A\)有\(n\)个实特征值，\(\A\)有\(n\)个正交的单位特征向量，适当调整它们的顺序，可以构成正交矩阵\(\Q\)，满足\begin{gather}
+\Q^{-1}\A\Q=\diag(\v{\lambda}{n}), \tag1
+\end{gather}其中，\(\L{i}>0\ (i=1,2,\dotsc,r),%
+\L{i}\leqslant0\ (i=r+1,r+2,\dotsc,n)\).
+对(1)式两端分别平方，又由\(\A^2=\E\)，得\[
+\Q^{-1}\A^2\Q
+= \Q^{-1}\E\Q
+= \E
+= \diag(\L{1}^2,\L{2}^2,\dotsc,\L{n}^2),
+\]于是\(\L{i}^2=1\)（\(i=1,2,\dotsc,n\)），进而有\[
+\L{i}= \begin{cases}
+1, & i=1,2,\dotsc,r, \\
+-1, & i=r+1,r+2,\dotsc,n.
+\end{cases}
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是4阶实对称矩阵，且\(\A^2+\A=\z\).
+若\(\rank\A=3\)，求\(\A\)的特征值以及与\(\A\)相似的对角阵.
+\begin{solution}
+\(\A\)是实对称矩阵，根据\cref{theorem:特征值与特征向量.实对称矩阵3} ，\(\A\)一定可对角化，不妨设\(\A\x=\l\x\ (\x\neq0)\)，那么\(\A^2\x=\l^2\x\)，\((\A^2+\A)\x=(\l^2+\l)\x\).
+因为\(\A^2+\A=\z\)，所以\((\l^2+\l)\x=\z\)，\(\l^2+\l=0\)，解得\(\A\)的特征值为\(\l=0,-1\).
+又因为\(\rank\A=3\)，所以\(\A\)具有3个非零特征值，因此与\(\A\)相似的对角阵为\(\diag(-1,-1,-1,0)\).
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(\A\)、\(\B\)是两个\(n\)阶正交矩阵.证明：
+\begin{enumerate}
+\item \(\A\B\)是正交矩阵；
+\item \(\A^{-1}\)是正交矩阵；
+\end{enumerate}
+\begin{proof}
+因为\(\A\)、\(\B\)是两个\(n\)阶正交矩阵，所以\(\A\A^T = \E\)，\(\B\B^T = \E\).
+\begin{enumerate}
+\item \((\A\B)(\A\B)^T
+= (\A\B)(\B^T\A^T)
+= \E\).
+\item \(\A^{-1}(\A^{-1})^T
+= \A^{-1} (\A^T)^{-1}
+= \A^{-1} (\A^{-1})^{-1}
+= \A^{-1} \A
+= \E\).
+\qedhere
+\end{enumerate}
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是特征值仅为1与0的\(n\)阶实对称矩阵，证明：\(\A^2=\A\).
+\begin{proof}
+\def\M{\begin{bmatrix} \E_r \\ & \z_{n-r} \end{bmatrix}}%
+因为\(\A\)是实对称矩阵，所以存在正交矩阵\(\Q\)使得\[
+\Q^{-1}\A\Q = \M,
+\]从而有\[
+\A = \Q\M\Q^{-1},
+\]进而有\[
+\A^2 = \Q\M\Q^{-1}\Q\M\Q^{-1} = \Q\M\Q^{-1} = \A.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)为\(n\)阶实对称矩阵，满足\(\A^2=\z\)，证明：\(\A=\z\).
+\begin{proof}
+因为\(\A\)是实对称矩阵，所以存在正交矩阵\(\Q\)使得\[
+\Q^{-1}\A\Q = \diag(\v{\lambda}{n}) = \V,
+\]从而有\(\A = \Q\V\Q^{-1}\)，\(\A^2 = (\Q\V\Q^{-1})^2 = \Q\V^2\Q^{-1} = \z\)，那么\[
+\V^2 = \diag(\L{1}^2,\L{2}^2,\dotsc,\L{n}^2) = \Q^{-1}\z\Q = \z,
+\]\[
+\L{1}=\L{2}=\dotsb=\L{n} = 0,
+\]所以\(\A=\z\).
+\end{proof}
+\end{example}
+
+\section{实反对称矩阵的对角化}
+\subsection{实反对称矩阵的对角化}
+\begin{theorem}
+实反对称矩阵的特征值为零或纯虚数.
+\begin{proof}
+设\(\A \in M_n(\mathbb{R})\)满足\(\A^T=-\A\).
+又设\(\mathbb{C} \ni \L0 = a_0 + \iu b_0\ (a_0,b_0 \in \mathbb{R})\)是\(\A\)的任意一个特征值，\(\mathbb{C}^{n \times 1} \ni \X0=(\v{c}{n})^T \neq \z\)是\(\A\)属于特征值\(\L0\)的特征向量，即\begin{gather}
+\A\X0 = \L0\X0, \tag1
+\end{gather}在(1)式两端左乘\(\overline{\X0}^T\)，得\begin{gather}
+\overline{\X0}^T \A \X0
+= \L0\ \overline{\X0}^T \X0, \tag2
+\end{gather}
+取共轭转置，得\begin{gather}
+\overline{\X0}^T \A^T \X0
+= \overline{\L0}\ \overline{\X0}^T \X0, \tag3
+\end{gather}
+由于\(\A\)是实反对称矩阵，即\(\A^T = -\A\)，所以\begin{gather}
+\overline{\X0}^T \A \X0
+= -\overline{\L0}\ \overline{\X0}^T \X0, \tag4
+\end{gather}其中，\(\overline{\X0}^T \X0 = \overline{c_1}c_1 + \overline{c_2}c_2 + \dotsb + \overline{c_n}{c_n} > 0\).
+由(2)式与(4)式，得\[
+\L0\ \overline{\X0}^T \X0
+= -\overline{\L0}\ \overline{\X0}^T \X0,
+\]\[
+\L0 = -\overline{\L0},
+\]\[
+a_0 + \iu b_0 = -(a_0 - \iu b_0) = -a_0 + \iu b_0,
+\]\[
+\Re \L0 = a_0 = 0.
+\]
+也就是说\(\L0\)要么为零要么为纯虚数.
+\end{proof}
+\end{theorem}
+
+\section{矩阵的分解}
+\subsection{LU分解}
+\begingroup
+\def\L{\mat{L}}%
+\def\U{\mat{U}}%
+\begin{theorem}
+设\(\A = (a_{ij})_n \in M_n(\mathbb{R})\)，存在下三角阵\(\L = (l_{ij})_n\)和上三角阵\(\U = (u_{ij})_n\)，使得\(\A = \L \U\)，其中\(l_{ii} = 1\ (i=1,2,\dotsc,n),\,%
+l_{ij} = 0\ (i<j),\,%
+u_{ij} = 0\ (i>j)\).
+\end{theorem}
+
+举例来说，令\[
+\A = \begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 \\
+l_{21} & 1
+\end{bmatrix} \begin{bmatrix}
+u_{11} & u_{12} \\
+0 & u_{22}
+\end{bmatrix} = \L \U,
+\]得\[
+\left.\begin{array}{r}
+1 \cdot u_{11} + 0 \cdot 0 = a_{11} \\
+1 \cdot u_{12} + 0 \cdot u_{22} = a_{12} \\
+l_{21} u_{11} + 1 \cdot 0 = a_{21} \\
+l_{21} u_{12} + 1 \cdot u_{22} = a_{22}
+\end{array}\right\} \implies \left\{\begin{array}{l}
+u_{11} = a_{11}, \\
+u_{12} = a_{12}, \\
+l_{21} = a_{21} / u_{11}, \\
+u_{22} = a_{22} - l_{21} u_{12}.
+\end{array}\right.
+\]
+
+又令\[
+\A = \begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 & 0 \\
+l_{21} & 1 & 0 \\
+l_{31} & l_{32} & 1
+\end{bmatrix} \begin{bmatrix}
+u_{11} & u_{12} & u_{13} \\
+0 & u_{22} & u_{23} \\
+0 & 0 & u_{33}
+\end{bmatrix} = \L \U,
+\]得\[
+\left\{\begin{array}{l}
+u_{11} = a_{11}, \\
+u_{12} = a_{12}, \\
+u_{13} = a_{13}, \\
+l_{21} = a_{21} / u_{11}, \\
+l_{31} = a_{31} / u_{11}, \\
+u_{22} = a_{22} - l_{21} \cdot u_{12}, \\
+u_{23} = a_{23} - l_{21} \cdot u_{13}, \\
+l_{32} = (a_{32} - l_{31} \cdot u_{12}) / u_{22}, \\
+u_{33} = a_{33} - (l_{31} \cdot u_{13} + l_{32} \cdot u_{23}).
+\end{array}\right.
+\]
+\endgroup%LU分解
+
+\subsection{谱分解}
+\begin{theorem}
+设\(\A \in M_n(\mathbb{R})\)，数\(\L{1},\L{2},\dotsc,\L{n}\)是\(\A\)的\(n\)个特征值，且\[
+\L{1}\leqslant\L{2}\leqslant\dotsb\leqslant\L{n},
+\]而\(\X{1},\X{2},\dotsc,\X{n}\)是其对应的\(n\)个线性无关的特征向量，则存在正交矩阵\(\Q\)，使得\[
+\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\L{1},\L{2},\dotsc,\L{n}).
+\]
+\end{theorem}
+
+\subsection{奇异值分解}
+\begin{theorem}
+\def\U{\mat{U}}
+\def\S{\mat{\Sigma}}
+\def\V{\mat{V}}
+\let\Q\V
+\let\P\U
+\def\p{\mat{u}}
+\def\q{\mat{v}}
+设矩阵\(\A \in M_{m \times n}(\mathbb{R})\)，则存在\(m\)阶正交矩阵\(\U\)、\(n\)阶正交矩阵\(\V\)和\(m \times n\)对角阵\(\S\)，使得\[
+\A = \U \S \V^T,
+\]其中\(\S = (\sigma_{ij})_{m \times n}\)的元素\(\sigma_{ij}\)满足\[
+\sigma_{ij} = \left\{ \begin{array}{cc}
+0, & i \neq j, \\
+s_i \geqslant 0, & i = j.
+\end{array} \right.
+\]
+
+这里，矩阵\(\S\)的对角元\(s_i\)称为\(\A\)的\textbf{奇异值}（通常按\(s_i \geqslant s_{i+1}\)排列），\(\U\)的列分块向量称为\(\A\)的\textbf{左奇异向量}，\(\V\)的列分块向量称为\textbf{右奇异向量}.
+\begin{proof}
+由于\(\A^T \A \in M_n(\mathbb{R})\)，故可作谱分解，即存在正交矩阵\(\Q\)，使得\[
+\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\L{1},\L{2},\dotsc,\L{n}),
+\]其中\(\Q=(\q_1,\q_2,\dotsc,\q_n)\)中的列分块向量\(\q_i\)是\(\A^T \A\)对应于特征值\(\L{i}\)的特征向量，而\(\{\q_1,\q_2,\dotsc,\q_n\}\)构成\(\mathbb{R}^n\)的一组标准正交基.
+
+注意到\(\A^T \A\)是半正定矩阵\footnote{当\(\A^T \A\)是可逆矩阵时，\(\A^T \A\)是正定矩阵.}，故其特征值\(\L{i}\geqslant0\).
+
+考虑映射\(\A_{m \times n}\colon \mathbb{R}^n \to \mathbb{R}^m, \x \mapsto \A\x\)，设\(\rank\A = r\)，将\(\A\)作用到\(\mathbb{R}^n\)的标准正交基\(\{\q_1,\q_2,\dotsc,\q_n\}\)上，利用维数公式，得\[
+\dim(\ker \A) + \dim(\Im \A) = n,
+\]可知\(\A\q_1,\A\q_2,\dotsc,\A\q_n\)这\(n\)个向量中有\(r\)个向量构成\(\mathbb{R}^m\)的一组部分基，不妨设它们为\(\{\A\q_1,\A\q_2,\dotsc,\A\q_r\}\)，而\(\A\q_{r+1} = \A\q_{r+2} = \dotsb = \A\q_n = 0\).
+
+有\(\A^T \A \q_j = \L{j} \q_j\)，又有\[
+\q_i \cdot \q_j = \q_i^T \q_j
+= \left\{ \begin{array}{lc}
+1, & i=j, \\
+0, & i \neq j.
+\end{array} \right.
+\]所以，当\(i \neq j\)时，\[
+(\A\q_i)\cdot(\A\q_j) = \q_i^T \A^T \A \q_j = \L{j} \q_i^T \q_j = 0;
+\]而当\(i = j\)时，\[
+\abs{\A\q_i}^2 = (\A\q_i)\cdot(\A\q_j) = \L{i} \q_i^T \q_i = \L{i}.
+\]也就是说，向量组\(\{\A\q_1,\A\q_2,\dotsc,\A\q_r\}\)是两两正交的.单位化该向量组，又记\[
+\p_i = \frac{\A\q_i}{\abs{\A\q_i}}
+= \frac{\A\q_i}{\sqrt{\L{i}}}
+\quad(i=1,2,\dotsc,r),
+\]于是\(\A\q_i = s_i \p_i\)，其中\(s_i = \sqrt{\L{i}}\).
+
+将\(\p_1,\p_2,\dotsc,\p_r\)扩充成\(\mathbb{R}^m\)的标准正交基\(\{\p_1,\p_2,\dotsc,\p_r,\p_{r+1},\dotsc,\p_m\}\)，在这组基下，有\[
+\A\Q = \A(\q_1,\q_2,\dotsc,\q_n) = \begin{bmatrix}
+s_1 \p_1 \\
+& \ddots \\
+& & s_r \p_r \\
+& & & 0 \\
+& & & & \ddots \\
+& & & & & 0
+\end{bmatrix}
+= \P \S,
+\]其中\(\P = (\p_1,\p_2,\dotsc,\p_m)\)，\(\S = \diag(s_1,\dotsc,s_r,0,\dotsc,0)\)，将上式两边右乘\(\Q^{-1}\)，即得\(\A = \P\S\Q^T\).
+\end{proof}
+\end{theorem}
+
+\begin{example}
+\def\U{\mat{U}}
+\def\S{\mat{\Sigma}}
+\def\V{\mat{V}}
+\def\M#1{\mu_{#1}}
+对矩阵\(\A = \begin{bmatrix} 0 & 1 \\ 1 & 1 \\ 1 & 0 \end{bmatrix}\)进行奇异值分解.
+\begin{solution}
+经计算\[
+\A^T \A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix},
+\]其特征值是\(\L{1} = 3\)和\(\L{2} = 1\).
+\(\A^T \A\)属于特征值\(\L{1}\)的特征向量为\(\mat{v}_1 = \begin{bmatrix} 1/\sqrt{2} \\ 1/\sqrt{2} \end{bmatrix}\)；
+\(\A^T \A\)属于特征值\(\L{2}\)的特征向量为\(\mat{v}_2 = \begin{bmatrix} -1/\sqrt{2} \\ 1/\sqrt{2} \end{bmatrix}\).
+
+同时有\[
+\A \A^T = \begin{bmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{bmatrix},
+\]其特征值是\(\M{1} = 3\)、\(\M{2} = 1\)、\(\M{3} = 0\).
+\(\A \A^T\)属于特征值\(\M{1}\)的特征向量为\(\mat{u}_1 = \begin{bmatrix} 1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix}\)；
+\(\A \A^T\)属于特征值\(\M{2}\)的特征向量为\(\mat{u}_2 = \begin{bmatrix} 1/\sqrt{2} \\ 0 \\ -1/\sqrt{2} \end{bmatrix}\)；
+\(\A \A^T\)属于特征值\(\M{3}\)的特征向量为\(\mat{u}_3 = \begin{bmatrix} 1/\sqrt{3} \\ -1/\sqrt{3} \\ 1/\sqrt{3} \end{bmatrix}\).
+
+再根据\(s_i = \sqrt{\L{i}}\)求得奇异值\(s_1 = \sqrt{3}\)和\(s_2 = 1\).
+
+于是\[
+\U = (\mat{u}_1,\mat{u}_2,\mat{u}_3) = \begin{bmatrix}
+1/\sqrt{6} & 1/\sqrt{2} & 1/\sqrt{3} \\
+2/\sqrt{6} & 0 & -1/\sqrt{3} \\
+1/\sqrt{6} & -1/\sqrt{2} & 1/\sqrt{3}
+\end{bmatrix},
+\]\[
+\V = (\mat{v}_1,\mat{v}_2,\mat{v}_3) = \begin{bmatrix}
+1/\sqrt{2} & -1/\sqrt{2} \\
+1/\sqrt{2} & 1/\sqrt{2}
+\end{bmatrix},
+\]\[
+\S = \begin{bmatrix}
+\sqrt{3} & 0 \\
+0 & 1 \\
+0 & 0
+\end{bmatrix}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{极分解}
+\begin{theorem}
+\def\S{\mat{S}}
+\def\M{\mat{\Omega}}
+任意实方阵\(\A\)可表为\[
+\A = \S\M = \M_1 \S_1,
+\]其中\(\S\)和\(\S_1\)为半正定实对称方阵，\(\M\)与\(\M_1\)为实正交方阵，而且\(\S\)和\(\S_1\)都是唯一的.
+\begin{proof}
+当\(\A\)可逆时，\(\A^T \A\)是正定阵，存在正定阵\(\S_1\)，使得\(\A^T \A = \S_1^2\)，于是\(\A = \A \S_1^{-1} \S_1\)，注意到\((\A \S_1^{-1})^T (\A \S_1^{-1}) = (\S_1^{-1})^T \A^T \A \S_1^{-1} = \E\)，即\(\A \S_1^{-1}\)正交，那么只需要令\(\M_1 = \A \S_1^{-1}\)即有\(\A = \M_1 \S_1\).
+
+当\(\A\)不可逆时，可以运用正交相似标准型；也可以运用扰动法，即令\(\S_1(t) = \S_1 + t\E\)，则当\(t\)充分大时，\(\S_1(t)\)可逆.
+\end{proof}
+\end{theorem}
+
+\subsection{LDLT分解}
+待分解的矩阵是对称矩阵时，使用LDLT分解可以减少计算量.
+
+\subsection{Cholesky分解}
+应用Cholesky分解可以将一个矩阵分解为一个下三角矩阵以及它的厄米矩阵的乘积.
