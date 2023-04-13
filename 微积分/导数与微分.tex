@@ -5,7 +5,9 @@
 设函数\(y=f(x)\)在点\(x_0\)的某个邻域内有定义，当自变量\(x\)在\(x_0\)处取得增量\(\increment x\)（点\(x_0+\increment x\)仍在该邻域内）时，%
 相应的函数取得增量\(\increment y = f(x_0 + \increment x) - f(x_0)\)；如果\(\increment y\)与\(\increment x\)之比当\(\increment x\to0\)时的极限存在，%
 则称函数\(y=f(x)\)在点\(x_0\)处\textbf{可导}，并称这个极限为函数\(y=f(x)\)在点\(x_0\)处的导数，记为\(f'(x_0)\)，即\begin{equation}
-f'(x_0) = \lim\limits_{\increment x\to0} \frac{\increment y}{\increment x} = \lim\limits_{\increment x\to0} \frac{f(x_0+\increment x)-f(x_0)}{\increment x}
+f'(x_0)
+= \lim\limits_{\increment x\to0} \frac{\increment y}{\increment x}
+= \lim\limits_{\increment x\to0} \frac{f(x_0+\increment x)-f(x_0)}{\increment x}
 \end{equation}也可记作\(\eval{y'}_{x=x_0}\)，\(\eval{\dv{y}{x}}_{x=x_0}\)，\(\eval{\dv{f(x)}{x}}_{x=x_0}\)或\(\left[\dv{x} f(x)\right]_{x=x_0}\).
 
 函数\(f(x)\)在点\(x_0\)处可导有时也说成“\(f(x)\)在点\(x_0\)具有导数”或“\(f(x)\)在点\(x_0\)导数存在”.
@@ -18,6 +20,19 @@ f'(x_0) = \lim\limits_{x \to x_0}\frac{f(x) - f(x_0)}{x - x_0}.
 \begin{definition}
 如果函数\(y = f(x)\)在开区间\(I\)内的每点处都可导，就称函数\(f(x)\)在开区间\(I\)内可导.
 这是，对于任一\(x \in I\)，都对应着\(f(x)\)的一个确定的导数值.这样就构成一个新的函数，这个函数叫做原来函数\(y = f(x)\)的\textbf{导函数}（简称导数），记作\(y'\)，\(f'(x)\)，\(\dv{y}{x}\)，\(\dv{f(x)}{x}\)或\(\dv{x} f(x)\).
+\end{definition}
+
+\begin{definition}\label{definition:函数族.可导函数族}
+由区间\(I\)上全部的可导函数组成的集合，称作\textbf{可导函数族}，记作\(D(I)\)\footnote{%
+当\(I=(a,b)\)时，可改写为\(D(a,b)\)，以此类推.%
+}，即\[
+D(I) = \Set*{
+	f\colon I \to \mathbb{R}
+	\given
+	\forall x \in I, \exists A \in \mathbb{R} :
+		\lim\limits_{\increment x\to0} \frac{f(x+\increment x)-f(x)}{\increment x} = A
+}.
+\]
 \end{definition}
 
 \begin{example}
@@ -82,8 +97,9 @@ f'(x_0) = \lim\limits_{x \to x_0}\frac{f(x) - f(x_0)}{x - x_0}.
 \end{example}
 
 \begin{definition}
-极限\(\lim\limits_{h\to0^-} \frac{f(x_0+h)-f(x_0)}{h}\)和\(\lim\limits_{h\to0^+} \frac{f(x_0+h)-f(x_0)}{h}\)分别称为函数\(f(x)\)在点\(x_0\)处的\textbf{左导数}和\textbf{右导数}，记作\(f'_-(x_0)\)和\(f'_+(x_0)\).
-左导数和右导数统称\textbf{单侧导数}.
+极限\(\lim\limits_{h\to0^-} \frac{f(x_0+h)-f(x_0)}{h}\)和\(\lim\limits_{h\to0^+} \frac{f(x_0+h)-f(x_0)}{h}\)分别称为函数\(f(x)\)在点\(x_0\)处的\textbf{左导数}（left-sided derivative）和\textbf{右导数}（right-sided derivative），记作\(f'_-(x_0)\)和\(f'_+(x_0)\).
+
+左导数和右导数统称\textbf{单侧导数}（one-sided derivative）.
 \end{definition}
 
 \begin{theorem}[导数存在的充要条件]
@@ -120,7 +136,7 @@ y-y_0=-\frac{1}{f'(x_0)}(x-x_0);
 \end{theorem}
 
 \subsection{函数可导性与连续性的关系}
-\begin{theorem}
+\begin{theorem}\label{theorem:导数与微分.函数可导性与连续性的关系}
 如果函数\(y = f(x)\)在点\(x_0\)处可导，则函数在该点必连续.
 \begin{proof}
 因为函数\(y = f(x)\)在点\(x_0\)处可导，所以极限\[
@@ -140,6 +156,10 @@ f'(x_0) = \lim\limits_{x \to x_0}\frac{f(x)-f(x_0)}{x-x_0} = A
 \]只要取\(\varepsilon_2 = (\abs{A} + \varepsilon_1) \abs{x-x_0}\)即有\(\abs{f(x)-f(x_0)} < \varepsilon_2\).
 \end{proof}
 \end{theorem}
+借用\cref{definition:函数族.连续函数族} 和\cref{definition:函数族.可导函数族} 的记号，%
+可以将\cref{theorem:导数与微分.函数可导性与连续性的关系} 描述为：\[
+D(I) \subseteq C(I).
+\]
 
 但是，一个函数在某点连续却不一定在该点可导.
 \begin{example}
@@ -321,6 +341,41 @@ W(x) = \lim\limits_{n\to\infty} \sum\limits_{k=0}^n a^k \cos(b^k \pi x),
 \dv{y}{x} = \dv{y}{u} \cdot \dv{u}{v} \cdot \dv{v}{x}.
 \]
 
+上述复合函数的求导公式也称作\textbf{链式法则}（chain rule）.
+
+\subsection{行列式函数的求导法则}
+\begin{theorem}
+\def\f#1{f_{#1}(x)}%
+\def\g#1{f_{#1}'(x)}%
+设函数\[
+f(x) = \begin{vmatrix}
+\f{11} & \f{12} & \dots & \f{1n} \\
+\vdots & \vdots & & \vdots \\
+\f{i1} & \f{i2} & \dots & \f{in} \\
+\vdots & \vdots & & \vdots \\
+\f{n1} & \f{n2} & \dots & \f{nn}
+\end{vmatrix}
+\]的任意分量函数都可导（即\(\f{ij}\ (i,j=1,2,\dotsc,n)\)可导），那么\(f(x)\)可导，且\[
+\dv{x} f(x) = \sum\limits_{i=1}^n \begin{vmatrix}
+\f{11} & \f{12} & \dots & \f{1n} \\
+\vdots & \vdots & & \vdots \\
+\g{i1} & \g{i2} & \dots & \g{in} \\
+\vdots & \vdots & & \vdots \\
+\f{n1} & \f{n2} & \dots & \f{nn}
+\end{vmatrix}.
+\]
+\end{theorem}
+
+\subsection{对数导数}
+\begin{theorem}
+设函数\(f \in D(I)\)，且对\(\forall x \in I\)总有\(f(x)\neq0\)，则
+\begin{equation}\label{equation:导数与微分.对数导数公式1}
+f'(x) = f(x) \pdv{x} \ln\abs{f(x)}.
+\end{equation}
+\rm
+\cref{equation:导数与微分.对数导数公式1} 称作\textbf{对数导数公式}（logarithmic derivative）.
+\end{theorem}
+
 \section{高阶导数}
 \subsection{函数的\texorpdfstring{\(n\)}{n}阶导数}
 \begin{definition}
@@ -334,24 +389,80 @@ y''=(y')'
 
 类似地，二阶导数的导数叫做\textbf{三阶导数}，记作\(y'''\)或\(\dv[3]{y}{x}\)；
 三阶导数的导数叫做\textbf{四阶导数}，记作\(y^{(4)}\)或\(\dv[4]{y}{x}\)；
-以此类推，\((n-1)\)阶导数的导数叫做\textbf{\(n\)阶导数}，记作\(y^{(n)}\)或\(\dv[n]{y}{x}\).
+以此类推，\((n-1)\)阶导数的导数叫做\textbf{ \(n\)阶导数}，记作\(y^{(n)}\)或\(\dv[n]{y}{x}\).
 二阶及二阶以上的导数统称\textbf{高阶导数}.
-规定：\(f^{(0)}(x) = f(x)\).
 
-函数\(y=f(x)\)具有\(n\)阶导数，也常说成函数\(f(x)\)为\(n\)阶可导，记作\(f \in C^n\).
+特别地，规定：\(f^{(0)}(x) = f(x)\).
+
+函数\(y=f(x)\)具有\(n\)阶导数，也常说成“函数\(f(x)\)为\(n\)阶可导”.
+\end{definition}
+
+\begin{theorem}
+设\(u=u(x)\)和\(v=v(x)\)都\(n\)阶可导，则
+\begin{equation}
+(u \pm v)^{(n)} = u^{(n)} \pm v^{(n)}.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+设\(u=u(x)\)和\(v=v(x)\)都\(n\)阶可导，则
+\begin{equation}\label{equation:导数与微分.莱布尼茨公式}
+(u v)^{(n)} = \sum_{k=0}^n C_n^k u^{(n-k)} v^{(k)}.
+\end{equation}
+\rm
+\cref{equation:导数与微分.莱布尼茨公式} 称为\textbf{莱布尼茨公式}.
+\end{theorem}
+
+\begin{definition}\label{definition:函数族.n阶可导函数族}
+由区间\(I\)上全部的\(n\)阶可导函数组成的集合，称作\(n\)阶\textbf{可导函数族}，记作\(D^n(I)\)，即\[
+D^n(I) = \Set*{
+	f\colon I \to \mathbb{R}
+	\given
+	f^{(i)} \in D(I),
+	0 \leqslant i \leqslant n-1
+}.
+\]
+\end{definition}
+
+\begin{definition}\label{definition:函数族.n阶连续可导函数族}
+由区间\(I\)上全部的\(n\)阶连续可导函数组成的集合，称作\(n\)阶\textbf{连续可导函数族}，记作\(C^n(I)\)，即\[
+C^n(I) = \Set*{
+	f\colon I \to \mathbb{R}
+	\given
+	f \in D^n(I)
+	\land
+	f^{(n)} \in C(I)
+}.
+\]
 \end{definition}
 
 \begin{theorem}
 如果函数\(f(x)\)在点\(x\)处具有\(n\)阶导数，那么\(f(x)\)在点\(x\)的某一邻域内必定具有一切低于\(n\)阶的导数.
 \end{theorem}
+换句话说，\(
+C(I) \supseteq
+D(I) = D^1(I) \supseteq
+C^1(I) \supseteq
+D^2(I) \supseteq
+C^2(I) \supseteq
+D^3(I) \supseteq
+\dotsb
+\).
 
-\begin{theorem}[函数和、差、积的高阶导数]
-设\(u=u(x)\)和\(v=v(x)\)都\(n\)阶可导，则
-\begin{gather}
-(u \pm v)^{(n)} = u^{(n)} \pm v^{(n)}, \\
-(u v)^{(n)} = \sum_{k=0}^{n} C_n^k u^{(n-k)} v^{(k)}.
-\end{gather}
-\end{theorem}
+\subsection{光滑函数}
+\begin{definition}\label{definition:函数族.光滑函数族}
+定义：\[
+D^{\infty}(I) \defeq \bigcap\limits_{n\geqslant1} D^n(I),
+\]\[
+C^{\infty}(I) \defeq \bigcap\limits_{n\geqslant1} C^n(I).
+\]
+
+称函数\(f \in C^{\infty}(I)\)为\(I\)上的\textbf{光滑函数}（smooth function）.
+\end{definition}
+
+\begin{property}\label{theorem:函数族.光滑函数族的性质1}
+\(D^{\infty}(I) = C^{\infty}(I)\).
+\end{property}
 
 \section{隐函数及由参数方程所确定的函数的导数}\label{section:导数与微分.隐函数及由参数方程所确定的函数的导数}
 \subsection{隐函数的导数}

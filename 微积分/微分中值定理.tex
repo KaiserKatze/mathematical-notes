@@ -3,7 +3,8 @@
 \section{微分中值定理}
 \subsection{罗尔定理}
 \begin{lemma}[费马引理]\label{theorem:微分中值定理.费马引理}
-设函数\(f(x)\)在点\(x_0\)的某邻域\(U(x_0)\)内有定义，并且在\(x_0\)处可导，如果对任意的\(x \in U(x_0)\)，有
+设函数\(f(x)\)在点\(x_0\)的某邻域\(U(x_0)\)内有定义，并且在\(x_0\)处可导.
+如果对任意的\(x \in U(x_0)\)，有
 \[f(x) \leqslant f(x_0) \quad \text{或} \quad f(x) \geqslant f(x_0)\]
 那么\(f'(x_0) = 0\).
 \begin{proof}
@@ -23,11 +24,35 @@ f'(x_0) = f'_-(x_0) = \lim\limits_{\increment x\to0^-} \frac{f(x_0 + \increment 
 \end{proof}
 \end{lemma}
 
+\begin{theorem}[达布定理]\label{theorem:微分中值定理.达布定理}
+设函数\(f \in D(a,b)\).
+如果点\(x_1,x_2\ (a<x_1<x_2<b)\)满足\(f'(x_1) \cdot f'(x_2) < 0\)，%
+那么\(\exists\xi\in(x_1,x_2)\)使得\[
+f'(\xi) = 0.
+\]
+\begin{proof}
+不妨设\(f'(x_1)<0,f'(x_2)>0\).
+
+显然\(\exists\delta_1,\delta_2>0\)，%
+使得\(U(x_1,\delta_1),U(x_2,\delta_2)\subseteq(a,b)\),且\[
+\forall x \in U(x_1,\delta_1): \frac{f(x)-f(x_1)}{x-x_1}<0,
+\]\[
+\forall x \in U(x_2,\delta_2): \frac{f(x)-f(x_2)}{x-x_2}>0.
+\]因此\(\exists\alpha,\beta\in(x_1,x_2)\)且\(\alpha<\beta\)使得\[
+f(\alpha)<f(x_1) \land f(\beta)<f(x_2).
+\]
+由于\(f \in C[x_1,x_2]\)，故\(\exists\xi\in[\alpha,\beta]\subseteq(x_1,x_2)\)满足\[
+\forall x\in[\alpha,\beta]: f(\xi) \leqslant f(x).
+\]
+那么利用\cref{theorem:微分中值定理.费马引理} 可知\(f'(\xi)=0\).
+\end{proof}
+\end{theorem}
+
 \begin{theorem}[罗尔定理]\label{theorem:微分中值定理.罗尔定理}
 如果函数\(f(x)\)满足
 \begin{enumerate}
-\item 在闭区间\([a,b]\)上连续；
-\item 在开区间\((a,b)\)内可导；
+\item 在闭区间\([a,b]\)上连续（即\(f \in C[a,b]\)）；
+\item 在开区间\((a,b)\)内可导（即\(f \in D(a,b)\)）；
 \item 在区间端点处的函数值相等，即\(f(a)=f(b)\)，%
 \end{enumerate}
 那么\(\exists \xi \in (a,b)\)使得\(f'(\xi) = 0\).
@@ -39,6 +64,13 @@ f'(x_0) = f'_-(x_0) = \lim\limits_{\increment x\to0^-} \frac{f(x_0 + \increment 
 \end{enumerate}
 \end{proof}
 \end{theorem}
+
+\begin{corollary}
+设函数\(f \in D(a,b)\)，且\[
+\lim\limits_{x \to a^+} f(x)
+= \lim\limits_{x \to b^-} f(x),
+\]则\(\exists\xi\in(a,b)\)，使得\(f'(\xi) = 0\).
+\end{corollary}
 
 \begin{example}
 若方程\(a_0 x^n + a_1 x^{n-1} + \dotsb + a_{n-1} x = 0\)有一个正根\(x = x_0\)，证明：方程\(a_0 n x^{n-1} + a_1 (n-1) x^{n-2} + \dotsb + a_{n-1} = 0\)必有一个小于\(x_0\)的正根.
@@ -53,11 +85,33 @@ f'(x) = a_0 n x^{n-1} + a_1 (n-1) x^{n-2} + \dotsb + a_{n-1}.
 \begin{theorem}[拉格朗日中值定理]\label{theorem:微分中值定理.拉格朗日中值定理}
 如果函数\(f(x)\)满足
 \begin{enumerate}
-\item 在闭区间\([a,b]\)上连续；
-\item 在开区间\((a,b)\)内可导；
+\item 在闭区间\([a,b]\)上连续（即\(f \in C[a,b]\)）；
+\item 在开区间\((a,b)\)内可导（即\(f \in D(a,b)\)）；
 \end{enumerate}
-那么\(\exists \xi \in (a,b)\)使得\(f(b)-f(a)=f'(\xi)(b-a)\)成立.
+那么\(\exists \xi \in (a,b)\)使得
+\begin{equation}\label{equation:微分中值定理.拉格朗日中值公式}
+f(b)-f(a)=f'(\xi) \cdot (b-a)
+\end{equation}
+成立.
 \end{theorem}
+\cref{equation:微分中值定理.拉格朗日中值公式} 叫做\textbf{拉格朗日中值公式}.
+
+设\(x\)为区间\([a,b]\)内一点，\(x+\increment x\)为这区间内的另一点（\(\increment x \gtrless 0\)），则\cref{equation:微分中值定理.拉格朗日中值公式} 在区间\([x,x+\increment x]\)（当\(\increment x>0\)时）或在区间\([x+\increment x,x]\)（当\(\increment x<0\)时）上就成为
+\begin{equation}
+f(x+\increment x) - f(x)
+= f'(x+\theta \increment x) \cdot \increment x
+\quad(0<\theta<1).
+\end{equation}
+
+如果记\(f(x)\)为\(y\)，\(\increment y = f(x+\increment x) - f(x)\)，则上式又可写成
+\begin{equation}\label{equation:微分中值定理.有限增量公式}
+\increment y = f'(x+\theta \increment x) \cdot \increment x
+\quad(0<\theta<1).
+\end{equation}
+我们知道，函数的微分\(\dd{y} = f'(x) \cdot \increment x\)是函数的增量\(\increment y\)的近似表达式.
+一般说来，以\(\dd{y}\)近似代替\(\increment y\)时所产生的误差只有当\(\increment x\to0\)时才趋于零；
+而\cref{equation:微分中值定理.有限增量公式} 却给出了自变量取得有限增量\(\increment x\)（\(\abs{\increment x}\)不一定很小）时，函数增量\(\increment y\)的准确表达式.
+因此，这个定理也叫做\textbf{有限增量定理}，\cref{equation:微分中值定理.有限增量公式} 称为\textbf{有限增量公式}.
 
 \begin{example}\label{example:微分中值定理.拉格朗日中值定理.重要不等式1}
 证明：当\(x>0\)时，\[
@@ -106,15 +160,6 @@ x_n &= 1 + \frac{1}{2} + \dotsb + \frac{1}{n} - \ln n \\
 实际上该极限被称为\textbf{欧拉-马歇罗尼常数}，记作\(\gamma\)，其在数值上近似等于0.577 216.
 \end{example}
 
-利用拉格朗日中值定理公式可以对函数增量\(\increment y\)作出更精确的估计.
-设\(x\)为区间\([a,b]\)内一点，\(x + \increment x\)为这区间内另一点（\(\increment \gtrless 0\)），则拉格朗日中值定理公式在区间\([x,x + \increment x]\)（当\(\increment x > 0\)时）或在区间\([x + \increment x,x]\)（当\(\increment x < 0\)时）上就成为\[
-f(x + \increment x) - f(x) = f'(x + \theta \increment x) \cdot \increment x,
-\quad 0 < \theta < 1.
-\]如果记\(y=f(x)\)，那么上式又可写成\[
-\increment y = f'(x + \theta \increment x) \cdot \increment x,
-\quad 0 < \theta < 1.
-\]我们知道，函数的微分\(\dd{y} = f'(x) \cdot \increment x\)是函数的增量\(\increment y\)的近似表达式，一般说来，以\(\dd{y}\)近似代替\(\increment y\)时所产生的误差只有当\(\increment x\to0\)时才趋于零；而上式却给出了自变量取得有限增量\(\increment x\)（\(\abs{\increment x}\)不一定很小）时，函数增量\(\increment y\)的准确表达式.因此，这个定理也叫作\textbf{有限增量定理}，上式称为\textbf{有限增量公式}.
-
 我们知道，如果函数\(f(x)\)在某一区间上是一个常数，那么\(f(x)\)在该区间上的导数恒为零.作为拉格朗日中值定理的一个应用，可以推出以上命题的逆命题也是成立的，即：
 \begin{theorem}
 如果函数\(f(x)\)在区间\(I\)上的导数恒为零，那么\(f(x)\)在区间\(I\)上是一个常数.
@@ -160,11 +205,15 @@ f(x) = f(0) \equiv \arcsin 0 + \arccos 0 = \frac{\pi}{2},
 \begin{theorem}[柯西中值定理]\label{theorem:微分中值定理.柯西中值定理}
 如果函数\(f(x)\)及\(F(x)\)满足
 \begin{enumerate}
-\item 在闭区间\([a,b]\)上连续；
-\item 在开区间\((a,b)\)内可导；
-\item 对任一\(x \in (a,b)\)，\(F'(x) \neq 0\)，%
+\item 在闭区间\([a,b]\)上连续（即\(f \in C[a,b]\)）；
+\item 在开区间\((a,b)\)内可导（即\(f \in D(a,b)\)）；
+\item 对\(\forall x\in(a,b)\)，有\(F'(x) \neq 0\)，%
 \end{enumerate}
-那么在\((a,b)\)内至少有一点\(\xi\)，使等式\(\frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f'(\xi)}{F'(\xi)}\)成立.
+那么在\((a,b)\)内至少有一点\(\xi\)，使等式
+\begin{equation}
+\frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f'(\xi)}{F'(\xi)}
+\end{equation}
+成立.
 \end{theorem}
 
 \section{洛必达法则}
