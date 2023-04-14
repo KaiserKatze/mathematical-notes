@@ -370,14 +370,114 @@ f(\v{x}{n}) &= \L{1} y_1^2 + \L{2} y_2^2 + \dotsb + \L{n} y_n^2 \\
 \end{example}
 
 \subsection{拉格朗日配方法}
-当研究一般数域\(P\)上的二次型（包括实二次型）的标准型时，可以用拉格朗日配方法.这种方法不用解矩阵特征值问题，只需反复利用以下两个初等公式\[
+用正交变换能够化实二次型为标准型，这种方法是根据实对称矩阵的性质，求出二次型矩阵的特征值和规范正交的特征向量，条件要求较强.
+当研究一般数域\(P\)上的二次型（包括实二次型）的标准型时，可以用\textbf{拉格朗日配方法}.
+这种方法不用解矩阵特征值问题，只需反复利用以下两个初等代数公式\[
 a^2+2ab+b^2=(a+b)^2 ,\quad a^2-b^2=(a+b)(a-b)
 \]就能将二次型化为标准型.
 
+\begin{example}
+用配方法化二次型\(f(x_1,x_2,x_3)
+= x_1^2 + 2 x_1 x_2 + 2 x_2^2 - 3 x_2 x_3\)为标准型，并求出所用的可逆线性替换.
+\begin{solution}
+首先有
+\begin{align*}
+f(x_1,x_2,x_3)
+&= x_1^2 + 2 x_1 x_2 + 2 x_2^2 - 3 x_2 x_3 \\
+&= x_1^2 + 2 x_1 x_2 + x_2^2 + x_2^2 - 3 x_2 x_3 \\
+&= (x_1 + x_2)^2 + x_2^2 - 3 x_2 x_3 + \frac{9}{4} x_3^2 - \frac{9}{4} x_3^2 \\
+&= (x_1 + x_2)^2 + \left( x_2 - \frac{3}{2} x_3 \right)^2 - \frac{9}{4} x_3^2,
+\end{align*}
+令\[
+\left\{ \def\arraystretch{1.5} \begin{array}{*7r}
+y_1 &= &x_1 &+&x_2 \\
+y_2 &= & & & x_2 & -& \frac{3}{2} x_3 \\
+y_3 &= & & & & & x_3
+\end{array} \right.
+\eqno{(1)}
+\]则\[
+\left\{ \def\arraystretch{1.5} \begin{array}{*7r}
+x_1 &= &y_1 &-&y_2 &-&\frac{3}{2} y_3 \\
+x_2 &= & & & y_2 & +& \frac{3}{2} y_3 \\
+x_3 &= & & & & & y_3
+\end{array} \right.
+\eqno{(2)}
+\]
+(2)是可逆线性替换，使\(f(x_1,x_2,x_3) = y_1^2 + y_2^2 - \frac{9}{4} y_3^2\).
+\end{solution}
+\end{example}
+
 \begin{theorem}
-对于任一\(n\)元二次型\(f(\v{x}{n})=\x^T\A\x\)（\(\A=\A^T\)），都存在非退化的线性替换\(\x=\C\mat{Y}\)，使之成为\[
+对于任一\(n\)元二次型\(f(\v{x}{n})=\x^T\A\x\ (\A=\A^T)\)，都存在非退化的线性替换\(\x=\C\mat{Y}\)，使之成为\[
 f(\v{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
 \]
+\begin{proof}
+应用数学归纳法.
+当\(n=1\)时，\(f(x_1) = a_{11} x_1^2 = d_1 y_1^2\)，结论成立.
+
+假设当\(n=k-1\ (k\geqslant2)\)时结论成立；那么当\(n=k\)时，我们分以下两种情况进行讨论：
+\begin{enumerate}
+\item 若\(f\)的平方项系数不全为零，不妨设\(a_{11}\neq0\)，从而有\begin{align*}
+f(\v{x}{n}) &= a_{11} x_1^2 + 2 x_1 \sum\limits_{j=2}^n a_{1j} x_j + \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j \\
+&= a_{11} \left[
+	x_1 + \frac{1}{a_{11}} \sum\limits_{j=2}^n a_{1j} x_j
+\right]^2
+- \frac{1}{a_{11}} \left[
+	\sum\limits_{j=2}^n a_{1j} x_j
+\right]^2
++ \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j,
+\end{align*}
+令\(y_1 = x_1 + \frac{1}{a_{11}} \sum\limits_{j=2}^n a_{1j} x_j,
+y_2 = x_2,
+\dotsc,
+y_n = x_n\)，则\[
+f(\v{x}{n}) = a_{11} y_1^2 + g(\v[2]{y}{n}),
+\]
+其中\(g(\v[2]{y}{n})
+= - \frac{1}{a_{11}} \left[
+	\sum\limits_{j=2}^n a_{1j} x_j
+\right]^2
++ \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j\)%
+是一个\(n-1\)元二次型或零多项式.
+由归纳假设，存在\(n-1\)阶可逆矩阵\(\Q\)，得到非退化线性变换\((\v[2]{y}{n})^T = \Q (\v[2]{z}{n})^T\)，使得\[
+g(\v[2]{y}{n})
+= d_2 z_2^2 + d_3 z_3^2 + \dotsb + d_n z_n^2.
+\]
+记\[
+\P = \begin{bmatrix}
+1 & -a_{11}^{-1} a_{12} & -a_{11}^{-1} a_{13} & \dots & -a_{11}^{-1} a_{1n} \\
+& 1 & 0 & \dots & 0 \\
+& & 1 & \dots & 0 \\
+& & & \ddots & \vdots \\
+& & & & 1
+\end{bmatrix},
+\]则非退化线性替换\[
+\begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix}
+= \P \begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_n
+\end{bmatrix}
+= \P \begin{bmatrix} 1 & \z \\ \z & \Q \end{bmatrix} \begin{bmatrix}
+z_1 \\ z_2 \\ \vdots \\ z_n
+\end{bmatrix}
+\]使得\(f(\v{x}{n}) = a_{11} z_1^2 + d_2 z_2^2 + d_3 z_3^2 + \dotsb + d_n z_n^2\).
+
+\item 若\(f\)不含平方项，则必存在\(1 \leqslant i < j \leqslant n\)使得\(a_{ij}\neq0\)；
+于是\[
+\left\{ \begin{array}{l}
+x_i = y_i + y_j \\
+x_j = y_i - y_j \\
+x_k = y_k\ (1 \leqslant k \leqslant n \land k \neq i \land k \neq j)
+\end{array} \right.
+\]是非退化的线性替换，使得\[
+f(\v{x}{n})
+= g(\v{y}{n})
+= a_{ij} y_i^2 - a_{ij} y_j^2 + h(\v{y}{n}),
+\]其中\(h(\v{y}{n})\)是不含平方项的二次型或零多项式，故\(g(\v{y}{n})\)含有平方项，这归结为第一种情形，从而可以化为标准型.
+\qedhere
+\end{enumerate}
+\end{proof}
 \end{theorem}
 
 \begin{corollary}
@@ -446,7 +546,9 @@ f(\v{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
 
 \subsection{惯性定理}
 \begin{theorem}[惯性定理 / Inertial Theorem]\label{theorem:二次型.惯性定理}
-\(n\)元实二次型\(f(\v{x}{n}) = \x^T\A\x\)经过任意满秩线性变换化为标准型，所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
+\(n\)元实二次型\[
+f(\v{x}{n}) = \x^T\A\x
+\]经过任意满秩线性变换化为标准型，所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
 \begin{proof}
 \def\z{\mat{Z}}%
 设实二次型的秩为\(r\).

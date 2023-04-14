@@ -457,7 +457,7 @@ f(x) \to A \quad (x \to -\infty).
 \end{proof}
 \end{theorem}
 
-\begin{theorem}[函数极限的局部保号性]\label{theorem:极限.函数极限的局部保号性}
+\begin{theorem}[函数极限的局部保号性]\label{theorem:极限.函数极限的局部保号性1}
 如果\(\lim\limits_{x \to x_0}f(x)=A\)，且\(A \gtrless 0\)，那么存在常数\(\delta>0\)，使得当\(0<\abs{x-x_0}<\delta\)时，有\(f(x) \gtrless 0\).
 \begin{proof}
 就\(A > 0\)的情形证明.因为\(\lim\limits_{x \to x_0}f(x) = A > 0\)，所以若取\(\varepsilon = \frac{A}{2} > 0\)，则\(\exists \delta > 0\)，当\(0 < \abs{x - x_0} < \delta\)时，有\[
@@ -467,11 +467,11 @@ f(x) \to A \quad (x \to -\infty).
 \end{proof}
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:极限.函数极限的局部保号性2}
 如果\(\lim\limits_{x \to x_0}f(x) = A \neq 0\)，那么就存在着\(x_0\)的某一去心邻域\(\mathring{U}(x_0)\)，当\(x\in\mathring{U}(x_0)\)时，就有\(\abs{f(x)}>\frac{\abs{A}}{2}\).
 \end{theorem}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:极限.函数极限的局部保号性3}
 如果在\(x_0\)的某去心邻域内\(f(x) \geqslant 0\)（或\(f(x) \leqslant 0\)），而且\(\lim\limits_{x \to x_0}f(x) = A\)，那么\(A \geqslant 0\)（或\(A \leqslant 0\)）.
 \end{corollary}
 
@@ -591,17 +591,18 @@ f(x) = a_n, \quad x\in\left[\frac{1}{n+1},\frac{1}{n}\right), n=1,2,\dotsc.
 
 \section{函数极限与数列极限的关系\ 海涅定理}
 \begin{theorem}[海涅（Heine）定理]\label{theorem:极限.海涅定理}
+\def\Dx{\mathring{U}(x_0,r)}%
+设函数\(f\colon \Dx\to\mathbb{R}\)，常数\(A\in\mathbb{R}\).
 极限\(\lim\limits_{x \to x_0} f(x) = A\)的充要条件是：\[
-\forall \{x_n\} \bigl[
-	x_n \neq x_0
-	\land
-	\lim\limits_{n \to \infty}x_n = x_0
+\forall \{x_n\}\subseteq\Dx \bigl[
+	\lim\limits_{n \to \infty} x_n = x_0
 	\implies
 	\lim\limits_{n \to \infty} f(x_n) = A
 \bigr].
 \]
 \begin{proof}
-必要性.因为\(\lim\limits_{x \to x_0} f(x) = A\)，所以\[
+必要性.
+因为\(\lim\limits_{x \to x_0} f(x) = A\)，所以\[
 \forall \varepsilon > 0, \exists \delta > 0 \bigl[
 	0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \varepsilon
 \bigr].
@@ -612,7 +613,8 @@ f(x) = a_n, \quad x\in\left[\frac{1}{n+1},\frac{1}{n}\right), n=1,2,\dotsc.
 \bigr).
 \]这样，当\(n> N\)时，有\(\abs{f(x_n) - A} < \varepsilon\)，即\(\lim\limits_{n \to \infty} f(x_n) = A\).
 
-充分性.用反证法，假设\(\lim\limits_{x \to x_0} f(x) = A\)不成立，那么，\[
+充分性.
+用反证法，假设\(\lim\limits_{x \to x_0} f(x) = A\)不成立，那么，\[
 \exists \varepsilon_0 > 0, \forall \delta > 0, \exists \xi\in\mathring{U}(x_0,\delta) \bigl[
 	\abs{f(\xi) - A} > \varepsilon_0
 \bigr].
@@ -1628,7 +1630,9 @@ f(x_0^+) = f(x_0),
 \end{definition}
 
 \begin{definition}\label{definition:函数族.连续函数族}
-由区间\(I\)上全部的连续函数组成的集合，称作\textbf{连续函数族}，记作\(C(I)\)\footnote{%
+由区间\(I\)上全部的连续函数组成的集合，称作\textbf{连续函数族}\footnote{%
+也可将“函数族”称为“函数空间”.%
+}，记作\(C(I)\)\footnote{%
 当\(I=(a,b)\)时，可改写为\(C(a,b)\)，以此类推.%
 }，即\[
 C(I) = \Set*{
@@ -1983,26 +1987,83 @@ f(x) \geqslant f(x_0),
 \end{theorem}
 注意：如果函数在开区间内连续，或函数在闭区间上有间断点，那么函数在该区间上不一定有界，也不一定有最大值或最小值.
 
+\subsection{闭区间套定理}
+\begin{definition}\label{definition:极限.闭区间套的定义}
+闭区间构成的序列\(\{[a_n,b_n]\}\)如果满足
+\begin{enumerate}
+\item \([a_{n+1},b_{n+1}] \subseteq [a_n,b_n]\ (n=1,2,\dotsc)\)；
+\item \(\lim\limits_{n\to\infty} (b_n - a_n) = 0\)，
+\end{enumerate}
+就称该序列为\textbf{闭区间套}（nested intervals）.
+\end{definition}
+
+\begin{theorem}\label{definition:极限.闭区间套定理}
+如果序列\(\{[a_n,b_n]\}\)是闭区间套，那么\(\exists!\xi\in\mathbb{R}\)，使得
+\begin{enumerate}
+\item \(a_n \leqslant \xi \leqslant b_n\ (n=1,2,\dotsc)\)；
+\item \(\lim\limits_{n\to\infty} a_n
+= \xi
+= \lim\limits_{n\to\infty} b_n\).
+\end{enumerate}
+\end{theorem}
+
 \subsection{零点定理与介值定理}
 \begin{definition}
 如果\(x_0\)使\(f(x_0) = 0\)，则\(x_0\)称为函数\(f(x)\)的\textbf{零点}.
 \end{definition}
 
 \begin{theorem}[零点定理]\label{theorem:极限.闭区间上连续函数的性质.零点定理}
-设函数\(f(x)\)在闭区间\([a,b]\)上连续，且\(f(a)\)与\(f(b)\)异号（即\(f(a) \cdot f(b)<0\)），那么在开区间\((a,b)\)内至少有一点\(\xi\)，使\[
+设函数\(f(x)\)在闭区间\([a,b]\)上连续，%
+且\(f(a) \cdot f(b)<0\)（或\(f(a) \cdot f(b) \leqslant 0\)），%
+那么\(\exists\xi\in(a,b)\)（或\(\exists\xi\in[a,b]\)），使\[
 f(\xi) = 0.
 \]
+\begin{proof}
+不妨设\(f(a) < 0 < f(b)\).
+假设对\(\forall x\in(a,b)\)都有\(f(x) \neq 0\).
+
+若\(f\left(\frac{a+b}{2}\right)>0\)，取\(a_1=a\)、\(b_1=\frac{a+b}{2}\)；
+若\(f\left(\frac{a+b}{2}\right)<0\)，取\(a_1=\frac{a+b}{2}\)、\(b_1=b\)；
+总之，在上述两种情形下均有不等式\(f(a_1) < 0 < f(b_1)\)成立.
+以此类推，建立闭区间序列\(\{[a_n,b_n]\}\)，%
+可知\[
+[a_{n+1},b_{n+1}] \subseteq [a_n,b_n],
+f(a_n) < 0 < f(b_n),
+\lim\limits_{n\to\infty} (b_n - a_n)
+= \lim\limits_{n\to\infty} \frac{b-a}{2^n}
+= 0.
+\]
+根据\cref{definition:极限.闭区间套定理}，%
+\(\exists\xi\in[a,b]\)满足\(\lim\limits_{n\to\infty} a_n
+= \xi
+= \lim\limits_{n\to\infty} b_n\).
+
+由\hyperref[theorem:极限.函数极限的局部保号性3]{函数极限的局部保号性}有\[
+\lim\limits_{n\to\infty} f(a_n) \leqslant 0,
+\qquad
+\lim\limits_{n\to\infty} f(b_n) \geqslant 0.
+\]
+又因为\(f \in C[a,b]\)，由连续函数的定义可知，\(\lim\limits_{x\to\xi} f(x) = f(\xi)\)；
+那么由\hyperref[theorem:极限.海涅定理]{海涅定理}可知，\[
+\lim\limits_{n\to\infty} f(a_n)
+= \lim\limits_{n\to\infty} f(b_n)
+= f(\xi).
+\]再由\hyperref[theorem:极限.夹逼准则]{夹逼准则}有\(f(\xi)=0\).
+\end{proof}
 \end{theorem}
-从几何上看，零点定理表示：如果连续曲线弧\(y = f(x)\)的两个端点位于\(x\)轴的不同侧，那么这段曲线弧与\(x\)轴至少有一个交点.
+从几何上看，零点定理表示：
+如果连续曲线弧\(y = f(x)\)的两个端点位于\(x\)轴的不同侧，那么这段曲线弧与\(x\)轴至少有一个交点.
 
 \begin{theorem}[介值定理]\label{theorem:极限.闭区间上连续函数的性质.介值定理}
 设函数\(f(x)\)在闭区间\([a,b]\)上连续，且在这区间的端点取不同的函数值\[
-f(a) = A, \quad f(b) = B,
+f(a) = A, \qquad
+f(b) = B,
 \]那么，对于\(\forall C \in (A,B)\)，\(\exists \xi \in (a,b)\)，使得\[
 f(\xi) = C.
 \]
 \end{theorem}
-这定理的几何意义是：连续曲线弧\(y=f(x)\)与水平直线\(y=C\)至少相交于一点.
+\cref{theorem:极限.闭区间上连续函数的性质.介值定理} 的几何意义是：
+连续曲线弧\(y=f(x)\)与水平直线\(y=C\)至少相交于一点.
 
 \begin{corollary}
 在闭区间上连续的函数必取得介于最大值\(M\)与最小值\(m\)之间的任何值.

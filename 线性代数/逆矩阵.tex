@@ -28,8 +28,8 @@
 而根据\cref{theorem:行列式.矩阵乘积的行列式} ，\(\abs{\A\B}=\abs{\A}\abs{\B}=1\)，可知\(\abs{\A}\neq0\).
 
 充分性.
-设\(\abs{\A}\neq0\)，令\(\B=\frac{1}{\abs{\A}} \A^*\)，其中\(\A^*\)是\(\A\)的伴随矩阵.
-根据\cref{equation:行列式.伴随矩阵.恒等式1} ，可知\(\A\B = \B\A = \E\)，故由定义可知\(\A\)可逆，且\[
+设\(\abs{\A}\neq0\)，\(\A^*\)是\(\A\)的伴随矩阵.
+根据\cref{equation:行列式.伴随矩阵.恒等式1}，若令\(\B=\frac{1}{\abs{\A}} \A^*\)，则有\(\A\B = \B\A = \E\)，故由可逆矩阵的定义可知，矩阵\(\A\)可逆，且有\[
 \A^{-1} = \B = \frac{1}{\abs{\A}} \A^*.
 \qedhere
 \]
@@ -105,29 +105,36 @@
 \end{example}
 
 \begin{example}
-设\(\A=\diag(\lambda_1,\lambda_2,\dotsc,\lambda_n)\)，证明：\(\A^{-1}=\diag(\lambda_1^{-1},\lambda_2^{-1},\dotsc,\lambda_n^{-1})\).
-\end{example}
-
-\begin{example}
-设\(\A=\begin{bmatrix}
+下面看一些常见矩阵的逆矩阵：
+\[
+\begin{bmatrix}
+\lambda_1 \\
+& \lambda_2 \\
+&& \ddots \\
+&&& \lambda_n
+\end{bmatrix}^{-1}
+= \begin{bmatrix}
+\lambda_1^{-1} \\
+& \lambda_2^{-1} \\
+&& \ddots \\
+&&& \lambda_n^{-1}
+\end{bmatrix},
+\]\[
+\begin{bmatrix}
 & & & & \lambda_1 \\
 & & & \lambda_2 \\
 & & \iddots \\
 & \lambda_{n-1} \\
 \lambda_n
-\end{bmatrix}\).
-证明：矩阵\[
-\B=\begin{bmatrix}
+\end{bmatrix}^{-1}
+= \begin{bmatrix}
 & & & & \lambda_n^{-1} \\
 & & & \lambda_{n-1}^{-1} \\
 & & \iddots \\
 & \lambda_2^{-1} \\
 \lambda_1^{-1}
-\end{bmatrix}
-\]是\(\A\)的逆矩阵.
-\begin{proof}
-因为\(\A \B = \E\)，所以\(\A\)与\(\B\)互为逆矩阵.
-\end{proof}
+\end{bmatrix}.
+\]
 \end{example}
 
 \begin{example}
@@ -258,7 +265,7 @@
 类似地，可以定义矩阵的\textbf{初等列变换}（elementary column operation）.
 矩阵的初等行变换、初等列变换统称为矩阵的\textbf{初等变换}（elementary operation）.
 
-有的书上约定：矩阵\(\A\)经过一次初等行变换\(\sigma_1\)化为矩阵\(\B\)的过程可以表示为在连接矩阵\(\A\)和\(\B\)的箭头上方标记\(\sigma_1\)，即\[
+我们约定：矩阵\(\A\)经过一次初等行变换\(\sigma_1\)化为矩阵\(\B\)的过程可以表示为在连接矩阵\(\A\)和\(\B\)的箭头上方标记\(\sigma_1\)，即\[
 \A \xlongrightarrow{\sigma_1} \B;
 \]而矩阵\(\A\)经过一次初等列变换\(\sigma_2\)化为矩阵\(\B\)的过程可以表示为在连接矩阵\(\A\)和\(\B\)的箭头下方标记\(\sigma_2\)，即\[
 \A \xlongrightarrow[\sigma_2]{} \B.
@@ -267,19 +274,16 @@
 当初等变换的效果是互换两行（列）时，记\[
 i \rightleftharpoons j.
 \]
-
 当初等变换的效果是用一非零数\(c\)乘以第\(i\)行（列）时，记\[
 (i) \muleq c
 \quad\text{或}\quad
 (i) \diveq \frac{1}{c}.
 \]
-
 当初等行变换的效果是将第\(j\)行的\(k\)倍加到第\(i\)行时，记\[
 (i) \addeq k \times (j)
 \quad\text{或}\quad
 (i) \subeq -k \times (j).
 \]
-
 当初等列变换的效果是将第\(i\)列的\(k\)倍加到第\(j\)列时，记\[
 (j) \addeq k \times (i)
 \quad\text{或}\quad
@@ -289,7 +293,7 @@ i \rightleftharpoons j.
 
 \subsection{初等矩阵的概念}
 \begin{definition}\label{definition:逆矩阵.矩阵等价}
-若矩阵\(\A\)可以经过一系列初等变换化为矩阵\(\B\)，则称矩阵\(\A\)与\(\B\)\textbf{等价}\footnote{在丘维声教授所著的《高等代数》上又将这种关系称作“相抵”.}（equivalent），记作\(\A\cong\B\).
+若矩阵\(\A\)可以经过一系列初等变换化为矩阵\(\B\)，则称矩阵\(\A\)与\(\B\)\textbf{等价}或\textbf{相抵}（equivalent），记作\(\A\cong\B\).
 \end{definition}
 
 \begin{definition}

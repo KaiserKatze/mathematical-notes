@@ -410,7 +410,7 @@ s_n &= 1 + \sum\limits_{k=2}^n{\frac{1}{k^p}}
 \def\s{\sum\limits_{n=1}^{\infty} a_n}%
 设正项级数\(\s a_n\)发散，证明：级数\(\s \frac{a_n}{n^3+a_n^2}\)收敛.
 \begin{proof}
-由基本不等式\labelcref{theorem:不等式.基本不等式1} 可知\(n^3+a_n^2\geqslant2\sqrt{n^3 a_n^2}=2n^{3/2}a_n\)，那么\(\frac{a_n}{n^3+a_n^2}\leqslant\frac{a_n}{2n^{3/2}a_n}=\frac{1}{2n^{3/2}}\).
+由基本不等式 \labelcref{theorem:不等式.基本不等式1} 可知\(n^3+a_n^2\geqslant2\sqrt{n^3 a_n^2}=2n^{3/2}a_n\)，那么\(\frac{a_n}{n^3+a_n^2}\leqslant\frac{a_n}{2n^{3/2}a_n}=\frac{1}{2n^{3/2}}\).
 由\cref{example:无穷级数.p级数的收敛性} 我们知道\(p=\frac{3}{2}>1\)时，p级数收敛；
 那么根据\hyperref[theorem:无穷级数.正项级数的比较审敛法]{比较审敛法}可知级数\(\s \frac{a_n}{n^3+a_n^2}\)收敛.
 \end{proof}
@@ -1263,6 +1263,7 @@ f(x) = \sum\limits_{n=0}^{\infty}{\frac{1}{n!} f^{(n)}(0) x^n}
 \]称为函数\(f(x)\)的\textbf{麦克劳林展开式}.
 \end{definition}
 
+{\color{red}
 要把函数\(f(x)\)展开成麦克劳林级数，可以按照下列步骤进行：
 \begin{enumerate}
 \item 求出函数\(f(x)\)的各阶导数\[
@@ -1285,6 +1286,18 @@ f(x) = \sum\limits_{n=0}^{\infty} \frac{1}{n!} f^{(n)}(0) x^n
 
 如果\(\l R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数.
 \end{enumerate}
+}
+
+需要注意的是，不要错误地认为“一个函数的泰勒级数收敛，该级数就一定收敛到这个函数”，最常见的例子是：\[
+f(x) = \left\{ \begin{array}{ll}
+\exp(-\frac{1}{x^2}), & x\neq0, \\
+0, & x=0.
+\end{array} \right.
+\]
+根据导数的定义，以及\(\forall k\in\mathbb{R}: x^k \exp(-\frac{1}{x^2}) \to 0\ (x\to0)\)，%
+可知\(f^{(n)}(0) = 0\ (n=0,1,2,\dotsc)\).
+于是，函数\(f\)在点\(x=0\)处的泰勒级数的每一项都是零，其和恒等于零；
+只不过，当\(x\neq0\)时，\(f(x)\neq0\).
 
 \begin{example}
 将函数\(f(x) = e^x\)展开成\(x\)的幂级数.
