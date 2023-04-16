@@ -2054,7 +2054,7 @@ f(a_n) < 0 < f(b_n),
 从几何上看，零点定理表示：
 如果连续曲线弧\(y = f(x)\)的两个端点位于\(x\)轴的不同侧，那么这段曲线弧与\(x\)轴至少有一个交点.
 
-\begin{theorem}[介值定理]\label{theorem:极限.闭区间上连续函数的性质.介值定理}
+\begin{theorem}[介值定理]\label{theorem:极限.闭区间上连续函数的性质.介值定理1}
 设函数\(f(x)\)在闭区间\([a,b]\)上连续，且在这区间的端点取不同的函数值\[
 f(a) = A, \qquad
 f(b) = B,
@@ -2062,12 +2062,91 @@ f(b) = B,
 f(\xi) = C.
 \]
 \end{theorem}
-\cref{theorem:极限.闭区间上连续函数的性质.介值定理} 的几何意义是：
+\cref{theorem:极限.闭区间上连续函数的性质.介值定理1} 的几何意义是：
 连续曲线弧\(y=f(x)\)与水平直线\(y=C\)至少相交于一点.
 
-\begin{corollary}
-在闭区间上连续的函数必取得介于最大值\(M\)与最小值\(m\)之间的任何值.
+\begin{corollary}\label{theorem:极限.闭区间上连续函数的性质.介值定理2}
+设函数\(f \in C[a,b]\)，取\[
+M=\max\limits_{a \leqslant x \leqslant b} f(x), \qquad
+m=\min\limits_{a \leqslant x \leqslant b} f(x),
+\]则对\(\forall\mu\in(m,M)\)，\(\exists\xi\in(a,b)\)满足\(f(\xi)=\mu\).
 \end{corollary}
+这就是说：在闭区间上连续的函数必取得介于最大值\(M\)与最小值\(m\)之间的任何值.
+
+\begin{corollary}
+如果\(I\)是区间，且\(f\in C(I)\)，则\(f(I)\)也是区间.
+\end{corollary}
+
+\begin{corollary}
+设函数\(f\)是定义在区间\(I\)上的严格单调函数，则\(f\)连续当且仅当\(f(I)\)也是区间.
+\end{corollary}
+
+\begin{corollary}
+定义在区间\(I\)上的严格单调连续函数必然可逆，且逆函数也是严格单调连续的.
+\end{corollary}
+
+\begin{corollary}
+如果\(f \in C(I)\)，则\(f\)严格单调当且仅当\(f^{-1}\)存在.
+\end{corollary}
+
+\begin{corollary}
+如果\(f\colon[a,b]\to[a,b]\)连续，则\(\exists\xi\in[a,b]: f(\xi)=\xi\).
+\end{corollary}
+
+\begin{example}
+设\(f \in C[a,b]\)，证明：函数\[
+m(x) = \inf\limits_{a \leqslant y \leqslant x} f(y), \qquad
+M(x) = \sup\limits_{a \leqslant y \leqslant x} f(y)
+\]都在\([a,b]\)上连续.
+\begin{proof}
+这里只证\(m\)是连续的.
+\begin{enumerate}
+\item 首先证明\(m\)在点\(x=a\)处右连续.
+注意到\(m(a) = f(a)\).
+对\(\forall\varepsilon>0\)，由于\(f\)在\(x=a\)处右连续，所以\(\exists\delta>0\)使得对\(\forall x\in(a,a+\delta)\)都有\(\abs{f(x)-f(a)}<\varepsilon\)成立；
+因此\[
+f(x)
+> f(a) - \varepsilon
+= m(a) - \varepsilon.
+\]
+于是，当\(x\in[a,a+\delta)\)时，对\(\forall y\in[a,x]\)总有\[
+m(a) - \varepsilon < f(y);
+\]再根据\(m\)的定义有\[
+m(a) - \varepsilon \leqslant m(x) \leqslant m(a);
+\]这样就有不等式\(\abs{m(x)-m(a)}<\varepsilon\)成立.
+
+\item 然后证明\(m\)在点\(x=b\)处左连续.
+因为\(f \in C[a,b]\)，所以由\cref{theorem:极限.闭区间上连续函数的性质.介值定理1} 可知，\(\exists\xi\in[a,b]\)满足\(f(\xi) = \min\limits_{a \leqslant x \leqslant b} f = m(b)\).
+	\begin{enumerate}
+	\item 首先假设\(\xi=b\)，即有\(f(b)=m(b)\).
+	对\(\forall\varepsilon>0\)，由于\(f\)在\(x=b\)处左连续，所以\(\exists\delta>0\)使得对\(\forall x\in(b-\delta,b)\)都有\(\abs{f(x)-f(b)}<\varepsilon\)成立；
+	因此\[
+	f(x)
+	< f(b) + \varepsilon
+	= m(b) + \varepsilon.
+	\]
+	于是，当\(x\in(b-\delta,b)\)时，根据\(m\)的定义有\[
+	m(x) \leqslant m(b) + \varepsilon,
+	\]
+	即\(\abs{m(x)-m(b)}<\varepsilon\)，也即\(\lim\limits_{x \to b^-} m(x) = m(b)\).
+
+	\item 然后假设\(\xi\in[a,b)\).
+	那么对\(\forall x\in(a,b)\)有\[
+	m(x) = \inf\limits_{a \leqslant y \leqslant x} f(y)
+	\leqslant f(\xi)
+	= m(b)
+	\geqslant \inf\limits_{a \leqslant y \leqslant b} f(y)
+	= m(b).
+	\]
+	\end{enumerate}
+	由上可知\(m(x) = m(b)\)，也就是说\(m\)在点\(x=b\)处左连续.
+
+\item 最后证明\(m\)在\((a,b)\)内连续.
+证明已经蕴含在上述证明\(m\)在点\(x=a\)处右连续和在点\(x=b\)处左连续的过程中.
+\qedhere
+\end{enumerate}
+\end{proof}
+\end{example}
 
 \subsection{一致连续性}
 \begin{definition}

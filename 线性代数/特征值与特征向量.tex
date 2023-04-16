@@ -505,22 +505,31 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 \section{矩阵的相似、对角化}
 \subsection{矩阵相似的概念}
 \begin{definition}
-设\(\A\)、\(\B\)是两个\(n\)阶矩阵.若存在可逆矩阵\(\P\)，使得\[
+设\(\A\)、\(\B\)是两个\(n\)阶矩阵.若存在可逆矩阵\(\P\)，使得
+\begin{equation}\label{equation:特征值与特征向量.相似矩阵的定义}
 \P^{-1}\A\P=\B
-\]则称\(\A\)与\(\B\)相似，记作\(\A\sim\B\).
+\end{equation}
+则称\(\A\)与\(\B\)相似，记作\(\A\sim\B\).
 \end{definition}
 
+\subsection{矩阵相似的性质}
 \begin{property}
 矩阵之间的相似关系，是矩阵集合上的等价关系，因为它满足：
 \begin{enumerate}
-\item 反身性，即对每个矩阵\(\A\)，都有\(\A\sim\A\)；
+\item 反身性，即对任意矩阵\(\A\)，都有\(\A\sim\A\)；
 \item 对称性，即若\(\A\sim\B\)，则有\(\B\sim\A\)；
 \item 传递性，即若\(\A\sim\B\)且\(\B\sim\C\)，则\(\A\sim\C\).
 \end{enumerate}
-\end{property}
+\begin{proof}
+在\cref{equation:特征值与特征向量.相似矩阵的定义} 中，令\(\A=\B\)、\(\P=\E\)，得\(\E\A\E=\A\)，即有相似矩阵的反身性成立.
 
-\begin{property}
-\(\A\sim\B\)是\(\A\cong\B\)的充分不必要条件.
+再在\cref{equation:特征值与特征向量.相似矩阵的定义} 中取\(\Q=\P^{-1}\)，%
+得\(\A = \Q^{-1}(\P^{-1}\A\P)\Q = \Q^{-1}\B\Q\)，即有相似矩阵的对称性成立.
+
+设\(\P_1^{-1}\A\P_1=\B,
+\P_2^{-1}\B\P_2=\C\)，于是\(\P_2^{-1}(\P_1^{-1}\A\P_1)\P_2=\C\).
+取\(\Q=\P_1\P_2\)，\(\Q\)是可逆矩阵，且\(\Q^{-1}\A\Q=\C\)，所以\(\A\sim\C\)，即有相似矩阵的传递性成立.
+\end{proof}
 \end{property}
 
 以下性质是两个矩阵相似的必要条件.
@@ -563,17 +572,76 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 
 \begin{property}
 相似矩阵有相同的迹，即\(\A\sim\B \implies \tr\A=\tr\B\).
+\begin{proof}
+设\[
+\A = (a_{ij})_n
+= \begin{bmatrix}
+a_{11} & \dots & a_{1i} & a_{1j}  & \dots & a_{1n} \\
+\vdots & & \vdots & \vdots & & \vdots \\
+a_{i1} & \dots & a_{ii} & a_{ij}  & \dots & a_{in} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{j1} & \dots & a_{ji} & a_{jj}  & \dots & a_{jn} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{n1} & \dots & a_{ni} & a_{nj}  & \dots & a_{nn}
+\end{bmatrix}.
+\]
+
+我们首先考察在成对的初等变换\(\P^{-1}\)、\(\P\)的作用下，任意矩阵\(\A\)的迹\(\tr\A\)与\(\P^{-1} \A \P\)的迹\(\tr(\P^{-1} \A \P)\)相比，会如何变化：
+\begin{enumerate}
+\item 令\(\P = \P(i,j)\)，有\(\P^{-1} = \P\)，那么\(\P^{-1} \A \P\)相当于“首先交换\(\A\)的\(i\)、\(j\)两行，然后交换所得矩阵的\(i\)、\(j\)两列”，即\[
+\P^{-1} \A \P
+= \begin{bmatrix}
+a_{11} & \dots & a_{1j} & a_{1i}  & \dots & a_{1n} \\
+\vdots & & \vdots & \vdots & & \vdots \\
+a_{j1} & \dots & a_{jj} & a_{ji}  & \dots & a_{jn} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{i1} & \dots & a_{ij} & a_{ii}  & \dots & a_{in} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{n1} & \dots & a_{nj} & a_{ni}  & \dots & a_{nn}
+\end{bmatrix}.
+\]可以看到经过变换\(\P(i,j)\)前后两个矩阵的主对角线的元素之和不变.
+
+\item 令\(\P = \P(i(c))\ (c\neq0)\)，有\(\P^{-1} = \P(i(c^{-1}))\)，那么\(\P^{-1} \A \P\)相当于“首先用\(1/c\)乘以\(\A\)的第\(i\)行，再用\(c\)乘以\(\A\)的第\(i\)列”，即\[
+\P^{-1} \A \P
+= \begin{bmatrix}
+a_{11} & \dots & c a_{1i} & a_{1j}  & \dots & a_{1n} \\
+\vdots & & \vdots & \vdots & & \vdots \\
+\frac{1}{c} a_{i1} & \dots & \left( c \cdot \frac{1}{c} \right) a_{ii} & \frac{1}{c} a_{ij}  & \dots & \frac{1}{c} a_{in} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{j1} & \dots & c a_{ji} & a_{jj}  & \dots & a_{jn} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{n1} & \dots & c a_{ni} & a_{nj}  & \dots & a_{nn}
+\end{bmatrix}.
+\]可以看到经过变换\(\P(i(c))\)前后两个矩阵的主对角线的元素之和也不变.
+
+\item 令\(\P = \P(i,j(k))\)，有\(\P^{-1} = \P(i,j(-k))\)，那么\(\P^{-1} \A \P\)相当于“首先将\(\A\)的第\(j\)行的\((-k)\)倍加到第\(i\)行，再将所得矩阵的第\(i\)列的\(k\)倍加到第\(j\)列”，即\[
+\P^{-1} \A \P
+= \scalebox{.8}{\(\begin{bmatrix}
+a_{11} & \dots & a_{1i} & a_{1j} + k a_{1i}  & \dots & a_{1n} \\
+\vdots & & \vdots & \vdots & & \vdots \\
+a_{i1} - k a_{j1} & \dots & a_{ii} - k a_{ji} & a_{ij} - k a_{jj} + k(a_{ii} - k a_{ji})  & \dots & a_{in} - k a_{jn} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{j1} & \dots & a_{ji} & a_{jj} + k a_{ji}  & \dots & a_{jn} \\
+\vdots & & \vdots & \vdots  & & \vdots \\
+a_{n1} & \dots & a_{ni} & a_{nj} + k a_{ni}  & \dots & a_{nn}
+\end{bmatrix}\)}.
+\]可以看到经过变换\(\P(i,j(k))\)前后两个矩阵的主对角线的元素之和还是不变.
+\end{enumerate}
+综上所述，成对的初等变换不改变矩阵的迹.
+由\cref{theorem:逆矩阵.可逆矩阵与初等矩阵的关系} 可知，任意可逆矩阵都可以分解为若干个初等矩阵的乘积，那么根据上述讨论结果，对于任意可逆矩阵\(\P\)，总有\[
+\tr(\P^{-1}\A\P) = \tr\A.
+\qedhere
+\]
+\end{proof}
 \end{property}
 
 \begin{example}
 设矩阵\(\A\)可逆，\(\A^T\)是\(\A\)的转置.
 证明：\(\A\A^T \sim \A^T\A\).
 \begin{proof}
-当\(\P=\A^{-1}\)时，\(\P\A=\A\P=\E\)，\begin{align*}
-\A^T &= (\P\A)\A^T = \P(\A\A^T) \\
-&= \A^T(\A\P) = (\A^T\A)\P,
-\end{align*}
-\(\P(\A\A^T)\P^{-1} = \A^T\A\)，故\(\A\A^T \sim \A^T\A\).
+取\(\P=\A^{-1}\)，那么\(\P\A=\A\P=\E\)，\(\A^T = (\P\A)\A^T = \P(\A\A^T)\)，\[
+\P(\A\A^T)\P^{-1} = \A^T\P^{-1} = \A^T\A,
+\]故\(\A\A^T \sim \A^T\A\).
 \end{proof}
 \end{example}
 

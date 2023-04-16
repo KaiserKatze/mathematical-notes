@@ -689,14 +689,81 @@ e^{f(x)} &= 1 + f(x) + \frac{1}{2} [f(x)]^2 + o(x^2) \\
 \end{solution}
 \end{example}
 
+\begin{example}
+设函数\(f(x)\)在\([-a,a]\)上具有二阶连续导数，证明：\begin{enumerate}
+\item 若\(f(0)=0\)，则存在\(\xi\in(-a,a)\)，使得\(f''(\xi) = \frac{1}{a^2} [f(a) + f(-a)]\)；
+\item 若\(f(x)\)在\((-a,a)\)内取得极值，则存在\(\eta\in(-a,a)\)，使得\[
+\abs{f''(\eta)}
+\geqslant
+\frac{1}{2a^2} \abs{f(a) - f(-a)}.
+\]
+\end{enumerate}
+\begin{proof}
+因为函数\(f\)在\([-a,a]\)上具有二阶连续导数，由泰勒中值定理可知，对\(\forall x\in(-a,a)\)，有\[
+\begin{aligned}
+f(x) &= f(0) + f'(0) x + \frac{1}{2} f''(\xi) x^2 \\
+&= f'(0) x + \frac{1}{2} f''(\xi) x^2,
+\end{aligned}
+\]其中\(\xi\)是\(0\)与\(x\)之间的某个值.
+因此\[
+f(a) = f'(0) a + \frac{1}{2} f''(\xi_1) a^2,
+\quad \xi_1\in(0,a),
+\eqno{(1)}
+\]\[
+f(-a) = f'(0) (-a) + \frac{1}{2} f''(\xi_2) (-a)^2,
+\quad \xi_2\in(-a,0).
+\eqno{(2)}
+\](1)、(2)两式相加得\[
+f(a) + f(-a) = \frac{a^2}{2} [f''(\xi_1) + f''(\xi_2)].
+\eqno{(3)}
+\]
+又因为\(f''(x)\)在闭区间\([\xi_2,\xi_1]\)上连续，必有最大值\(M\)和最小值\(m\)，即\[
+m \leqslant f''(\xi_1) \leqslant M,
+\qquad
+m \leqslant f''(\xi_2) \leqslant M,
+\]从而\[
+m \leqslant \frac{f''(\xi_1) + f''(\xi_2)}{2} \leqslant M.
+\]
+由介值定理得，\(\exists\xi\in[\xi_2,\xi_1]\subseteq(-a,a)\)，使得\[
+\frac{f''(\xi_1) + f''(\xi_2)}{2} = f''(\xi).
+\eqno{(4)}
+\]将(4)式代入(3)式，命题1得证.
 
-除了上述带有拉格朗日型余项的泰勒公式以外，还有带有\textbf{柯西余项}的泰勒公式和带有\textbf{积分余项}的泰勒公式.
+\vspace{1cm}
 
-\subsection{积分余项}
-积分余项的表达式为\begin{equation}\label{equation:微分中值定理.泰勒公式.余项3}
-R_n = \int_{x_0}^x f^{(n+1)}(t) \frac{(x-t)^n}{n!} \dd{t}.
-\end{equation}
-积分余项的应用条件是：\(f \in C^n\)，即\(n\)阶可导且导函数均连续.
+设\(f\)在点\(x=x_0\in(-a,a)\)处取得极值，由费马引理可知\(f'(x_0)=0\).
+于是有函数\(f\)按\(x-x_0\)的幂展开的带有拉格朗日型余项的1阶泰勒公式：\[
+\begin{aligned}
+f(x) &= f(x_0) + f'(x_0) (x-x_0) + \frac{f''(\gamma)}{2!} (x-x_0)^2 \\
+&= f(x_0) + \frac{f''(\gamma)}{2!} (x-x_0)^2,
+\quad(\text{\(\gamma\)介于\(x_0\)与\(x\)之间}),
+\end{aligned}
+\]则\[
+f(-a) = f(x_0) + \frac{f''(\gamma_1)}{2!}(-a-x_0)^2,
+\quad\gamma_1\in(-a,x_0),
+\]\[
+f(a) = f(x_0) + \frac{f''(\gamma_2)}{2!} (a-x_0)^2,
+\quad\gamma_2\in(x_0,a),
+\]从而\[
+\begin{aligned}
+\abs{f(a)-f(-a)} &= \abs{\frac{1}{2} (a-x_0)^2 f''(\gamma_2) - \frac{1}{2} (a+x_0)^2 f''(\gamma_1)} \\
+&\leqslant \frac{1}{2} \abs{(a-x_0)^2 f''(\gamma_2)} + \frac{1}{2} \abs{(a+x_0)^2 f''(\gamma_1)}.
+\end{aligned}
+\]
+因为\(\abs{f''(x)}\)连续，设\(M = \max\{ \abs{f''(\gamma_1)}, \abs{f''(\gamma_2)} \}\)，则\[
+\abs{f(a) - f(-a)}
+\leqslant \frac{1}{2} M(a+x_0)^2 + \frac{1}{2} M(a-x_0)^2
+= M(a^2 + x_0^2).
+\]因为\(x_0\in(-a,a)\)，则\(\abs{f(a) - f(-a)} \leqslant M(a^2+x_0^2) \leqslant 2 M a^2\)，%
+则\(M \geqslant \frac{1}{2 a^2} \abs{f(a) - f(-a)}\)，即存在\(\eta\in\{\gamma_1,\gamma_2\}\subseteq(-a,a)\)，使得\(\abs{f''(\eta)} \geqslant \frac{1}{2 a^2} \abs{f(a) - f(-a)}\).
+命题2得证.
+\end{proof}
+\end{example}
+
+%积分余项的表达式为\begin{equation}\label{equation:微分中值定理.泰勒公式.余项3}
+%R_n = \int_{x_0}^x f^{(n+1)}(t) \frac{(x-t)^n}{n!} \dd{t}.
+%\end{equation}
+%积分余项的应用条件是：\(f \in C^n\)，即\(n\)阶可导且导函数均连续.
 
 \subsection{总结}
 常见函数的（带有佩亚诺型余项的）麦克劳林公式：

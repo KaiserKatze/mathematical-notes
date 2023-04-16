@@ -285,10 +285,9 @@ a^2 + b^2 \geqslant 2ab.
 \begin{corollary}\label{corollary:不等式.基本不等式2}
 如果\(a,b\in\mathbb{R}^+\)，那么\(\frac{a+b}{2} \geqslant \sqrt{ab}\)（当且仅当\(a=b\)时取“\(=\)”号）.
 \begin{proof}
-当\(a,b\in\mathbb{R}^+\)时，由\cref{theorem:不等式.基本不等式1} 有\(a^2 + b^2 \geqslant 2ab\)，\(a^2 + b^2 + 2ab \geqslant 4ab\)，故\[
-(a + b)^2 \geqslant 4ab;
-\]又因为\(a + b > 0\)，\(ab>0\)，那么\(a + b \geqslant 2 \sqrt{ab}\)，即\[
-\frac{a + b}{2} \geqslant \sqrt{ab}.
+当\(a,b\in\mathbb{R}^+\)时，亦有\(\sqrt{a},\sqrt{b}\in\mathbb{R}^+\)，%
+由\cref{theorem:不等式.基本不等式1} 有\[
+a + b = \sqrt{a}^2 + \sqrt{b}^2 \geqslant 2\sqrt{a}\sqrt{b}.
 \qedhere
 \]
 \end{proof}
@@ -300,6 +299,34 @@ a^2 + b^2 \geqslant 2ab.
 
 \begin{corollary}\label{theorem:不等式.基本不等式4}
 如果\(a,b,c\in\mathbb{R}^+\)，那么\(\frac{a+b+c}{3} \geqslant \sqrt[3]{abc}\)（当且仅当\(a=b=c\)时取“\(=\)”号）.
+\end{corollary}
+
+\begin{theorem}[均值不等式]\label{theorem:不等式.均值不等式}
+如果\(\v{x}{n}\in\mathbb{R}^+\)，那么
+\begin{equation}
+n \left( \frac{1}{x_1} + \dotsb + \frac{1}{x_n} \right)
+\leqslant \sqrt[n]{x_1 \dotsm x_n}
+\leqslant \frac{x_1 + \dotsb + x_n}{n}
+\leqslant \sqrt{\frac{x_1^2 + \dotsb + x_n^2}{n}}.
+\end{equation}
+\rm
+上述四个式子依次分别称为\textbf{调和平均数}、\textbf{几何平均数}、\textbf{算术平均数}、\textbf{平方平均数}.
+\end{theorem}
+
+\begin{corollary}\label{theorem:不等式.基本不等式6}
+如果\(\v{x}{n},\v{p}{n}\in\mathbb{R}^+\)，那么
+\begin{equation}
+x_1^{p_1} \dotsm x_n^{p_n}
+\leqslant
+\left( \frac{p_1 x_1 + \dotsb + p_n x_n}{p_1 + \dotsb + p_n} \right)^{p_1 + \dotsb + p_n}.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}[杨格不等式]\label{theorem:不等式.杨格不等式}
+设\(a,b\geqslant0\)，\(p,q>1\)且\(\frac{1}{p}+\frac{1}{q}=1\)，则
+\begin{equation}
+ab \leqslant \frac{a^p}{p} + \frac{b^q}{q}.
+\end{equation}
 \end{corollary}
 
 \begin{theorem}[伯努利不等式]\label{theorem:不等式.伯努利不等式}
@@ -356,7 +383,8 @@ a^2 + b^2 \geqslant 2ab.
 \end{example}
 
 \begin{theorem}[柯西不等式]\label{theorem:不等式.柯西不等式}
-设\(\v{a}{n},\v{b}{n}\in\mathbb{R}\)，则\begin{equation}
+设\(\v{a}{n},\v{b}{n}\in\mathbb{R}\)，则
+\begin{equation}
 (a_1 b_1 + a_2 b_2 + \dotsb + a_n b_n)^2
 \leqslant
 (a_1^2 + a_2^2 + \dotsb + a_n^2) (b_1^2 + b_2^2 + \dotsb + b_n^2).
@@ -374,3 +402,44 @@ C_n^k &= \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) \dotsm 1} \\
 \end{align*}
 \end{proof}
 \end{example}
+
+\begin{theorem}[赫尔德不等式]\label{theorem:不等式.赫尔德不等式}
+设\(\v{x}{n},\v{y}{n}\geqslant0\)，\(p,q>1\)，且满足\(\frac{1}{p}+\frac{1}{q}=1\)，则
+\def\s{\sum\limits_{i=1}^n}%
+\def\sp#1#2#3{\left( \s #1^#2 \right)^{#3/#2}}%
+\begin{equation}
+\s x_i y_i
+\leqslant
+\sp{x_i}{p}{1} \sp{y_i}{q}{1}.
+\end{equation}
+\begin{proof}
+令\[
+a_j = x_j \sp{x_i}{p}{-1}, \qquad
+b_j = y_j \sp{y_i}{q}{-1}.
+\]那么根据\cref{theorem:不等式.杨格不等式} 得到\[
+\s a_i b_i \leqslant \s \left( \frac{a_i^p}{p} + \frac{b_i}{q} \right)
+\leqslant \frac{1}{p} + \frac{1}{q} = 1.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{theorem}[闵可夫斯基不等式]\label{theorem:不等式.闵可夫斯基不等式}
+设\(\v{x}{n},\v{y}{n}\in\mathbb{R}\)，\(p\geqslant1\)，则
+\def\s{\sum\limits_{i=1}^n}%
+\def\sumonly#1{\s \abs{#1}^p}%
+\newcommand\sumpower[2][1]{\left( \sumonly{#2} \right)^{\frac{#1}{p}}}%
+\begin{equation}
+\sumpower{x_i+y_i} \leqslant \sumpower{x_i} + \sumpower{y_i}.
+\end{equation}
+\begin{proof}
+利用\cref{theorem:不等式.赫尔德不等式} 就有\[\begin{aligned}
+&\hspace{-20pt}\sumonly{x_i+y_i}
+= \s \abs{x_i+y_i} \abs{x_i+y_i}^{p-1}
+\leqslant \s (\abs{x_i}+\abs{y_i}) \abs{x_i+y_i}^{p-1} \\
+&\leqslant \sumpower{x_i} \sumpower[p-1]{x_i+y_i}
++ \sumpower{y_i} \sumpower[p-1]{x_i+y_i}.
+\end{aligned}\]
+整理即得欲证不等式.
+\end{proof}
+\end{theorem}
