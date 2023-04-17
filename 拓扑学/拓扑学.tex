@@ -2,50 +2,410 @@
 拓扑学是极限的推广，通常分为点集拓扑学和代数拓扑学.
 本章主要介绍点集拓扑学，它为几何学提供了基本语言.
 
+\section{度量空间与连续映射}
+根据\cref{definition:极限.函数在一点的连续性} 我们知道，函数\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x_0\in\mathbb{R}\)处连续当且仅当\[
+\forall\varepsilon>0,
+\exists\delta>0
+\bigl(
+\abs{x - x_0}<\delta
+\implies
+\abs{f(x) - f(x_0)} < \varepsilon
+\bigr).
+\]
+在这个定义中只涉及两个实数之间的距离（即两个实数之差的绝对值）这个概念.
+为了验证一个函数在某点处的连续性往往只要用到关于上述距离的最基本的性质，而与实数的其他性质无关.
+关于多元函数的连续性情形也完全类似.
+在此之前，我们一直是依靠几何直觉理解“距离”的概念，从现在开始，我们要抽象出度量和度量空间的概念.
+
+\subsection{度量与度量空间的概念}
+\begin{definition}
+设\(X\)是一个集合，映射\(\rho\colon X \times X\to\mathbb{R}\).
+如果对于\(\forall x,y,z \in X\)，总有\begin{enumerate}
+\item \textbf{正定性}，即\[
+\rho(x,y)\geqslant0,
+\]其中\(\rho(x,y)=0\)当且仅当\(x=y\)；
+
+\item \textbf{对称性}，即\[
+\rho(x,y) = \rho(y,x);
+\]
+
+\item \textbf{三角不等式}，即\[
+\rho(x,z) \leqslant \rho(x,y) + \rho(y,z);
+\]
+\end{enumerate}
+那么称“\(\rho\)是集合\(X\)的一个\textbf{度量}（measure）”；
+还称“集合\(X\)是\textbf{可度量的}（measurable）”；
+有时候称实数\(\rho(x,y)\)为“从点\(x\)到点\(y\)的\textbf{距离}”.
+%@see: https://mathworld.wolfram.com/Measure.html
+\end{definition}
+
+\begin{definition}
+设\(\rho\)是集合\(X\)的一个度量.
+用符号\((X,\rho)\)表示\textbf{度量空间}，称“\(X\)是一个对于度量\(\rho\)而言的度量空间”；
+当前文已经说明了度量\(\rho\)，省略它不至于引起混淆时，可以简称“\(X\)是一个度量空间”.
+\end{definition}
+
+\subsection{常见的度量空间}
+\begin{example}[实数空间\(\mathbb{R}\)]
+对于实数集\(\mathbb{R}\)，定义映射\(\rho\colon\mathbb{R}\times\mathbb{R}\to\mathbb{R}\)如下：\[
+\rho(x,y) = \abs{x-y},
+\quad x,y\in\mathbb{R}.
+\]显然\(\rho\)是\(\mathbb{R}\)的一个度量，因此\((\mathbb{R},\rho)\)是一个度量空间.
+特别地，这个度量空间被称为\textbf{实数空间}或\textbf{直线}，称度量\(\rho\)为\(\mathbb{R}\)的\textbf{通常度量}.
+\end{example}
+
+\begin{example}[\(n\)维欧式空间\(\mathbb{R}^n\)]
+对于实数集\(\mathbb{R}\)的\(n\)重笛卡尔积\(\mathbb{R}^n\)，定义映射\(\rho\colon\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}\)如下：\[
+\rho(\mat{x},\mat{y}) = \sqrt{\sum\limits_{i=1}^n (x_i-y_i)^2},
+\quad \mat{x}=(\v{x}{n}),\mat{y}=(\v{y}{n})\in\mathbb{R}^n.
+\]显然\(\rho\)是\(\mathbb{R}^n\)的一个度量，因此\((\mathbb{R}^n,\rho)\)是一个度量空间.
+特别地，这个度量空间被称为（\(n\)维）\textbf{欧式空间}，称度量\(\rho\)为\(\mathbb{R}^n\)的\textbf{通常度量}.
+2维欧式空间通常称为（欧式）平面.
+\end{example}
+
+\begin{example}[希尔伯特空间\(\mathbb{H}\)]
+构造由所有的平方收敛的实数序列构成的集合，并记为\[
+\mathbb{H}
+= \Set*{
+\mat{x}=(\v{x}{0})
+\given
+x_i\in\mathbb{R},
+i\in\mathbb{N}^+;
+\sum\limits_{i=1}^{\infty} x_i^2<\infty
+}.
+\]定义映射\(\rho\colon\mathbb{H}\times\mathbb{H}\to\mathbb{R}\)如下：\[
+\rho(\mat{x},\mat{y}) = \sqrt{\sum\limits_{i=1}^{\infty} (x_i-y_i)^2},
+\quad \mat{x}=(\v{x}{0}),\mat{y}=(\v{y}{0})\in\mathbb{H}.
+\]可以证明\(\rho\)是\(\mathbb{H}\)的一个度量，因此\((\mathbb{H},\rho)\)是一个度量空间.
+特别地，这个度量空间被称为\textbf{希尔伯特空间}，称度量\(\rho\)为\(\mathbb{H}\)的\textbf{通常度量}.
+\end{example}
+
+\begin{example}[离散度量空间]
+设\((X,\rho)\)是一个度量空间.
+如果总有\[
+\forall x \in X,
+\exists \delta_x > 0,
+\forall y \in X - \{x\}
+\bigl[
+\rho(x,y) > \delta_x
+\bigr]
+\]成立，则称\((X,\rho)\)是离散的.
+
+例如，设\(X\)是任意一个集合，映射\(\rho\colon X \times X\to\mathbb{R}\)满足\[
+\rho(x,y) = \left\{ \begin{array}{ll}
+0, & x=y, \\
+1, & x\neq y.
+\end{array} \right.
+\]容易验证\(\rho\)是\(X\)的一个离散的度量，或者说度量空间\((X,\rho)\)是离散的.
+\end{example}
+
+\subsection{邻域的概念}
+\begin{definition}
+设\((X,\rho)\)是一个度量空间，\(x \in X\).
+对于\(\forall\varepsilon>0\)，集合\[
+\Set{ y \in X \given \rho(x,y) < \varepsilon }
+\]称为“一个以\(x\)为\textbf{中心}、以\(\varepsilon\)为\textbf{半径}的\textbf{球形邻域}”或“\(x\)的一个\(\varepsilon\)-邻域”，记作\(B(x,\varepsilon)\)或\(B_{\varepsilon}(x)\)；
+不特别强调球形邻域的半径\(\varepsilon\)时，可以简称其为“\(x\)的一个球形邻域”.
+\end{definition}
+
+\subsection{邻域的性质}
+\begin{theorem}
+设\((X,\rho)\)是一个度量空间，任取一点\(x \in X\).
+\(x\)的球形邻域具有以下基本性质：
+\begin{enumerate}
+\item 点\(x\)至少有一个球形邻域，并且点\(x\)属于它的每一个球形邻域；
+\item 对于点\(x\)的任意两个球形邻域，存在\(x\)的球形邻域同时包含于两者；
+\item 如果\(y \in X\)属于\(x\)的某一个球形邻域，则\(y\)有一个球形邻域包含于\(x\)的这个球形邻域.
+\end{enumerate}
+\end{theorem}
+
+\subsection{开集的概念}
+\begin{definition}
+设\(A\)是度量空间\(X\)的一个子集.
+如果\(A\)中的每一个点都有一个球形邻域包含于\(A\)，即\[
+\forall a \in A, \exists\varepsilon>0 \bigl[ B(a,\varepsilon) \subseteq A \bigr],
+\]则称“\(A\)是度量空间\(X\)中的一个\textbf{开集}”.
+\end{definition}
+
+\begin{example}
+实数空间\(\mathbb{R}\)中，所有的开区间，不论是有限的还是无限的，都是开集；
+闭区间或半开半闭区间都不是\(\mathbb{R}\)中的开集.
+\end{example}
+
+\subsection{开集的性质}
+\begin{theorem}\label{theorem:测度论.开集的性质}
+度量空间\(X\)中的开集具有以下性质：
+\begin{enumerate}
+\item 集合\(X\)本身和空集\(\emptyset\)都是开集；
+\item 任意两个开集的交也是一个开集；
+\item 任意一个开集族的并是一个开集；
+\item 任意一个球形邻域都是开集.
+\end{enumerate}
+\end{theorem}
+
+有时候为了方便讨论问题，我们将球形邻域的概念稍稍作一点推广.
+\begin{definition}
+设\(x\)是度量空间\(X\)中的一个点，集合\(U \subseteq X\).
+如果存在一个开集\(V\)满足条件\(x \in V \subseteq U\)，就称\(U\)是点\(x\)的一个\textbf{邻域}.
+\end{definition}
+下面这个定理为邻域的定义提供了一个等价的说法，并且表明从球形邻域推广到邻域是自然的事情.
+\begin{theorem}
+设\(x\)是度量空间\(X\)中的一个点，则\(X\)的子集\(U\)是\(x\)的一个邻域的充要条件是：
+\(x\)有某一个球形邻域包含于\(U\).
+\end{theorem}
+
+\subsection{连续映射的概念}
+现在我们把分析学中的连续函数的概念推广为度量空间之间的连续映射.
+
+\begin{definition}\label{definition:测度论.连续映射的概念}
+设\(X\)和\(Y\)是两个度量空间.
+映射\(f\colon X \to Y\).
+取\(x_0 \in X\).
+如果对于\(f(x_0)\)的任何一个球形邻域\(B(f(x_0),\varepsilon)\)，%
+存在\(x_0\)的某一个球形邻域\(B(x_0,\delta)\)，%
+使得\(f(B(x_0,\delta)) \subseteq B(f(x_0),\varepsilon)\)，%
+则称“映射\(f\)在点\(x_0\)处是连续的”.
+
+如果映射\(f\)在\(X\)的每一个点\(x \in X\)处连续，则称“\(f\)是一个\textbf{连续映射}”.
+\end{definition}
+以上的这个定义是分析学中函数连续性定义的纯粹形式推广.
+因为如果设\(\rho\)和\(\sigma\)分别是度量空间\(X\)与\(Y\)中的度量，%
+则“映射\(f\)在点\(x_0\)处连续”可以说成\[
+\forall\varepsilon>0,
+\exists\delta>0
+\bigl[
+\rho(x,x_0)<\delta
+\implies
+\sigma(f(x),f(x_0))<\varepsilon
+\bigr].
+\]
+
+\begin{theorem}\label{theorem:测度论.度量空间下的连续映射与邻域的联系}
+设\(X\)、\(Y\)是两个度量空间.
+映射\(f\colon X \to Y\).
+取\(x_0 \in X\).
+那么\[
+\text{\(f\)在点\(x_0\)处是连续的}
+\iff
+\text{\(f(x_0)\)的每一个邻域的原像是\(x_0\)的一个邻域},
+\]\[
+\text{\(f\)是连续的}
+\iff
+\text{\(Y\)中的每一个开集的原像是\(X\)中的一个开集}.
+\]
+\end{theorem}
+
+%现在我们就明白了，对于积分的每一种定义都基于一种度量：
+%黎曼积分基于若尔当度量，%
+%勒贝格积分基于勒贝格度量.
+
 \begingroup
 \def\T{\mathfrak T}%
 \def\oT{\overline{\mathfrak T}}%
 
 \section{拓扑的基本概念}
+从\cref{theorem:测度论.度量空间下的连续映射与邻域的联系} 可以看出：
+度量空间之间的一个映射是否是连续的，或者在某一点处是否是连续的，本质上只与度量空间中的开集有关（这是因为邻域是通过开集定义的）.
+这就导致我们可以抛弃度量这个概念，参照\hyperref[theorem:测度论.开集的性质]{度量空间中开集的基本性质}，抽象出拓扑空间和拓扑空间之间的连续映射的概念.
+于是，\cref{theorem:测度论.度量空间下的连续映射与邻域的联系} 成为了我们把度量空间和度量空间之间的连续映射的概念推广为拓扑空间和拓扑空间之间的连续映射的出发点.
+
 \subsection{拓扑的定义}
 \begin{definition}\label{definition:拓扑学.开集公理定义的拓扑空间}
-已知非空集合\(X\)，\(\T \subseteq \Powerset X\).
-若有\begin{enumerate}
-\item \(\emptyset,X \in \T\).
-\item \(\T\)的\cemph{任意并}仍然属于\(\T\)，即\(\T_1 \subseteq \T \implies \bigcup_{A \in \T_1} A \in \T\). 
-\item \(\T\)的\cemph{有限交}仍然属于\(\T\)，即\(A,B \in \T \implies A \cap B \in \T\).
+已知非空集合\(X\).
+\(\T\)是\(X\)的一个子集族，即\(\T \subseteq \Powerset X\).
+若有
+\begin{enumerate}
+\item \(\emptyset,X \in \T\)；
+\item \(\T\)的\cemph{有限交}仍然属于\(\T\)，即\(A,B \in \T \implies A \cap B \in \T\)；
+\item \(\T\)的\cemph{任意并}仍然属于\(\T\)，即\(\T_1 \subseteq \T \implies \bigcup_{A \in \T_1} A \in \T\)；
 \end{enumerate}
 则称“\(\T\)为\(X\)的一个\DefineConcept{拓扑}”，%
-称“\((X,\T)\)为一个（开集公理定义的）\DefineConcept{拓扑空间}（topological space）”，%
+称“\((X,\T)\)为一个\DefineConcept{拓扑空间}（topological space）”，%
 或称“集合\(X\)是一个相对于拓扑\(\T\)而言的拓扑空间”\footnote{%
 不特别强调拓扑\(\T\)时，可以简单地表述为“集合\(X\)是一个拓扑空间”.%
 }，%
 \(\T\)的任一元素都称为拓扑空间\((X,\T)\)（或\(X\)）中的一个\DefineConcept{开集}（open set）.
 \end{definition}
+如果我们将\cref{definition:拓扑学.开集公理定义的拓扑空间} 中的三个条件与\cref{theorem:测度论.开集的性质} 的三个结论对照一下，并将“\(U\)属于\(\T\)”读作“\(U\)是一个开集”，便会发现两者实际上是一样的.
 
-\begin{definition}\label{definition:拓扑学.闭集公理定义的拓扑空间}
-已知非空集合\(X\)，\(\oT \subseteq \Powerset X\).
-若有\begin{enumerate}
-\item \(\emptyset,X \in \oT\).
-\item \(\oT\)的\cemph{有限并}仍然属于\(\oT\).
-\item \(\oT\)的\cemph{任意交}仍然属于\(\oT\).
-\end{enumerate}
-则称“\((X,\oT)\)为一个闭集公理定义的\DefineConcept{拓扑空间}”，%
-\(\oT\)的任一元素都称为拓扑空间\((X,\T)\)（或\(X\)）中的一个\DefineConcept{闭集}（closed set），%
-\(\oT\)称为一个\DefineConcept{闭集族}.
+只要经过简单的归纳立即可见，\cref{definition:拓扑学.开集公理定义的拓扑空间} 中的第二个条件蕴含着以下结论：\[
+\v{A}{n}\in\T\ (n\geqslant1)
+\implies
+A_1 \cap A_2 \cap \dotsb \cap A_n \in \T.
+\]
+
+此外，如果在\cref{definition:拓扑学.开集公理定义的拓扑空间} 中的第三个条件中令\(\T_1=\emptyset\)，就会得到\(\emptyset = \bigcup_{A\in\T_1} A \in \T\)，而这一点在第一个条件中已经做了规定.
+因此我们在验证任意集合\(X\)的一个子集族是否可以是\(X\)的一个拓扑，在验证第三个条件是否满足时，总可以假定\(\T_1\neq\emptyset\).
+
+现在首先将度量空间纳入拓扑空间的范畴.
+\begin{definition}
+设\((X,\rho)\)是一个度量空间.
+令\(\T_\rho\)是由\(X\)中的所有开集构成的集族.
+根据\cref{theorem:测度论.开集的性质} 可知\((X,\T_\rho)\)是\(X\)的一个拓扑.
+我们称\(\T_\rho\)为“\(X\)的由度量\(\rho\)诱导出来的拓扑”\footnote{%
+以后如果没有特别说明，当提到度量空间\((X,\rho)\)的拓扑时，指的就是拓扑\(\T_\rho\)；
+在称度量空间\((X,\rho)\)为拓扑空间时，指的就是拓扑空间\((X,\T_\rho)\).
+}.
 \end{definition}
 
-\cref{definition:拓扑学.开集公理定义的拓扑空间,definition:拓扑学.闭集公理定义的拓扑空间} 是等价的，这是因为对于集合\(X\)，若有开集族\(\T\)则对应闭集族\[
-\oT = \Set{ F \given F^C \in \T };
-\]若有闭集族\(\oT\)则对应开集族\[
-\T = \Set{ G \given G^C \in \oT };
-\]且二者显然互逆确定.
-也就是说，当我们说拓扑空间\(X\)时，就自动配上了对应的开集和闭集.
+可以看出，实数空间\(\mathbb{R}\)、\(n\)维欧式空间\(\mathbb{R}^n\)（特别是欧式平面\(\mathbb{R}^2\)）和希尔伯特空间\(\mathbb{H}\)都可以叫做拓扑空间，它们各自的拓扑分别是由各自的通常度量所诱导出来的拓扑.
 
-\begin{theorem}
-已知拓扑空间\(X\)，若\(A \subseteq X\)，则\[
-A\text{是开集} \iff A^C\text{是闭集}.
+\subsection{常见的拓扑空间}
+\begin{example}[平庸空间]
+设\(X\)是一个集合.
+令\(\T=\{X,\emptyset\}\).
+容易验证，\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\textbf{平庸拓扑}；
+称拓扑空间\((X,\T)\)为一个\textbf{平庸空间}.
+在平庸空间\((X,\T)\)中，有且仅有两个开集，即\(X\)本身和空集\(\emptyset\).
+\end{example}
+
+\begin{example}[离散空间]
+设\(X\)是一个集合.
+令\(\T=\Powerset X\).
+容易验证\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\textbf{离散拓扑}；
+称拓扑空间\((X,\T)\)为一个\textbf{离散空间}.
+在离散空间\((X,\T)\)中，\(X\)的每一个子集都是开集.
+\end{example}
+
+\begin{example}
+设\(X = \{a,b,c\}\).
+令\[
+\T = \{
+	\emptyset,
+	\{a\},
+	\{a,b\},
+	\{a,b,c\}
+\}.
 \]
+容易验证\(\T\)是\(X\)的一个拓扑，因此\((X,\T)\)是一个拓扑空间，但这个拓扑空间既不是平庸空间也不是离散空间.
+\end{example}
+
+\begin{example}[有限补空间]
+设\(X\)是一个集合.
+令\[
+\T = \Set{ U \subseteq X \given \text{\((X-U)\)是\(X\)的一个有限子集} } \cup \{\emptyset\}.
+\]
+可以验证\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\textbf{有限补拓扑}；
+称拓扑空间\((X,\T)\)为一个\textbf{有限补空间}.
+\end{example}
+
+\begin{example}[可数补空间]
+设\(X\)是一个集合.
+令\[
+\T = \Set{ U \subseteq X \given \text{\((X-U)\)是\(X\)的一个可数子集} } \cup \{\emptyset\}.
+\]
+可以验证\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\textbf{可数补拓扑}；
+称拓扑空间\((X,\T)\)为一个\textbf{可数补空间}.
+\end{example}
+
+\subsection{可度量化空间}
+\begin{definition}
+设\((X,\T)\)是一个拓扑空间.
+如果存在\(X\)的一个度量\(\rho\)使得拓扑\(\T\)就是由度量\(\rho\)诱导出来的拓扑\(\T_\rho\)，则称“拓扑空间\((X,\T)\)是一个\textbf{可度量化空间}”，或称“拓扑空间\((X,\T)\)是\textbf{可度量化的}”.
+\end{definition}
+我们知道，每一个只含有限个点的度量空间作为拓扑空间都是离散空间.
+然而一个平庸空间如果含有多余一个点的话，它肯定不是离散空间，因此含有多余一个点的有限的平庸空间不是可度量化的.
+由此可见，拓扑空间比度量空间的范畴要更加广泛.
+
+\section{连续映射}
+\subsection{拓扑空间之间的连续映射的概念}
+下面我们参考\cref{definition:测度论.连续映射的概念} 和\cref{theorem:测度论.度量空间下的连续映射与邻域的联系} 定义拓扑空间之间的连续映射.
+\begin{definition}\label{definition:拓扑学.拓扑空间之间的连续映射}
+设\(X\)、\(Y\)是两个拓扑空间.
+映射\(f\colon X \to Y\).
+如果\(Y\)中每一个开集\(U\)的原像\(f^{-1}(U)\)是\(X\)中的一个开集，则称“映射\(f\)是从\(X\)到\(Y\)的一个\textbf{连续映射}”，简称“映射\(f\)\textbf{连续}”.
+\end{definition}
+结合\cref{definition:拓扑学.拓扑空间之间的连续映射} 和\cref{theorem:测度论.度量空间下的连续映射与邻域的联系} 可知：
+当\(X\)、\(Y\)是两个度量空间时，如果映射\(f\colon X \to Y\)是从度量空间\(X\)到度量空间\(Y\)的一个连续映射，那么它也是从拓扑空间\(X\)到拓扑空间\(Y\)的一个连续映射；反之亦然.
+注意到这里提到的拓扑都是指诱导拓扑.
+
+\subsection{拓扑空间之间的连续映射的性质}
+\begin{theorem}\label{theorem:拓扑学.拓扑空间之间的连续映射的性质}
+设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
+\begin{enumerate}
+\item 恒同映射\(i_X\colon X \to X\)是一个连续映射；
+\item 如果映射\(f\colon X \to Y\)、\(g\colon Y \to Z\)都是连续映射，则复合映射\(g \circ f\colon X \to Z\)也是连续映射.
+\end{enumerate}
 \end{theorem}
+
+\section{同胚映射}
+在数学的许多分支学科中都要涉及两种基本对象.
+例如在线性代数中我们考虑线性空间和线性变换，%
+在群论中我们考虑群和同态，%
+在集合论中我们考虑集合和映射，%
+在不同的几何学中考虑各自的图形和各自的变换等.
+并且对于后者都要提出一类来予以重点研究，%
+例如线性代数中的（线性）同构、%
+群论中的同构、%
+集合论中的一一映射%
+以及欧式几何中的刚体运动（即平移、旋转）等.
+
+既然我们已经提出了两种基本对象（即拓扑空间和连续映射），那么我们也要从连续映射中挑出重要的一类来进行特别研究.
+
+\subsection{同胚映射的概念}
+\begin{definition}
+设\(X\)、\(Y\)是两个拓扑空间.
+如果映射\(f\colon X \to Y\)是一个一一映射，并且\(f\)和逆映射\(f^{-1}\colon Y \to X\)都是连续的，那么称\(f\)为一个\textbf{同胚（映射）}.
+\end{definition}
+
+\subsection{同胚映射的性质}
+\begin{theorem}\label{theorem:拓扑学.同胚映射的性质}
+设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
+\begin{enumerate}
+\item 恒同映射\(i_X\colon X \to X\)是一个同胚；
+\item 如果映射\(f\colon X \to Y\)是一个同胚，则逆映射\(f^{-1}\colon Y \to X\)也是同胚；
+\item 如果映射\(f\colon X \to Y\)、\(g\colon Y \to Z\)都是同胚，则复合映射\(g \circ f\colon X \to Z\)也是同胚.
+\end{enumerate}
+\end{theorem}
+
+\subsection{同胚的拓扑空间}
+\begin{definition}
+设\(X\)、\(Y\)是两个拓扑空间.
+如果存在一个同胚\(f\colon X \to Y\)，则称“拓扑空间\(X\)与拓扑空间\(Y\)是\textbf{同胚的}”，或“\(X\)与\(Y\)同胚”，或“\(X\)同胚于\(Y\)”.
+\end{definition}
+
+\begin{theorem}\label{theorem:拓扑学.同胚关系是等价关系}
+设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
+\begin{enumerate}
+\item \(X\)与\(X\)同胚；
+\item 如果\(X\)与\(Y\)同胚，则\(Y\)与\(X\)同胚；
+\item 如果\(X\)与\(Y\)同胚、\(Y\)与\(Z\)同胚，则\(X\)与\(Z\)同胚.
+\end{enumerate}
+\end{theorem}
+根据\cref{theorem:拓扑学.同胚关系是等价关系}，我们可以说：
+在任意给定的一个由拓扑空间组成的族中，两个拓扑空间是否同胚这一关系是一个等价关系.
+因此同胚关系将这个拓扑空间族分为互不相交的等价类，使得属于同一类的拓扑空间彼此同胚，属于不同类的拓扑空间彼此不同配.
+
+拓扑空间的某种性质\(P\)，如果为某一个拓扑空间所具有，则必为与其同胚的任何一个拓扑空间所具有，%
+那么称此性质\(P\)是一个\textbf{拓扑不变性质}.
+换言之，拓扑不变性质就是彼此同胚的拓扑空间所共有的性质.
+
+{\color{red} 拓扑学的中心任务就是研究拓扑不变性质.}
+
+%\subsection*{利用闭集公理定义拓扑空间}
+%\begin{definition}\label{definition:拓扑学.闭集公理定义的拓扑空间}
+%已知非空集合\(X\)，\(\oT \subseteq \Powerset X\).
+%若有\begin{enumerate}
+%\item \(\emptyset,X \in \oT\).
+%\item \(\oT\)的\cemph{有限并}仍然属于\(\oT\).
+%\item \(\oT\)的\cemph{任意交}仍然属于\(\oT\).
+%\end{enumerate}
+%则称“\((X,\oT)\)为一个闭集公理定义的\DefineConcept{拓扑空间}”，%
+%\(\oT\)的任一元素都称为拓扑空间\((X,\T)\)（或\(X\)）中的一个\DefineConcept{闭集}（closed set），%
+%\(\oT\)称为一个\DefineConcept{闭集族}.
+%\end{definition}
+%
+%\cref{definition:拓扑学.开集公理定义的拓扑空间,definition:拓扑学.闭集公理定义的拓扑空间} 是等价的，这是因为对于集合\(X\)，若有开集族\(\T\)则对应闭集族\[
+%\oT = \Set{ F \given F^C \in \T };
+%\]若有闭集族\(\oT\)则对应开集族\[
+%\T = \Set{ G \given G^C \in \oT };
+%\]且二者显然互逆确定.
+%也就是说，当我们说拓扑空间\(X\)时，就自动配上了对应的开集和闭集.
+%
+%\begin{theorem}
+%已知拓扑空间\(X\)，若\(A \subseteq X\)，则\[
+%A\text{是开集} \iff A^C\text{是闭集}.
+%\]
+%\end{theorem}
 
 \endgroup
