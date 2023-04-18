@@ -9,7 +9,10 @@ a_{21} x_1 + a_{22} x_2 + \dotsb + a_{2n} x_n = b_2 \\
 \hdotsfor{1} \\
 a_{s1} x_1 + a_{s2} x_2 + \dotsb + a_{sn} x_n = b_s
 \end{array} \right.
-\]为\(n\)元\textbf{线性方程组}（system of linear equations），\(s\)为方程的个数，\(a_{ij}\)（\(i=1,2,\dotsc,s\)，\(j=1,2,\dotsc,n\)）叫做\textbf{系数}，\(b_i\)（\(i=1,2,\dotsc,s\)）叫做\textbf{常数项}.
+\]为\(n\)元\textbf{线性方程组}（system of linear equations），%
+\(s\)为方程的个数，%
+\(a_{ij}\ (i=1,2,\dotsc,s;j=1,2,\dotsc,n)\)叫做\textbf{系数}，%
+\(b_i\)（\(i=1,2,\dotsc,s\)）叫做\textbf{常数项}.
 由系数按原位置构成的\(s \times n\)矩阵\[
 \A = \begin{bmatrix}
 a_{11} & a_{12} & \dots & a_{1n} \\
@@ -18,6 +21,7 @@ a_{21} & a_{22} & \dots & a_{2n} \\
 a_{n1} & a_{n2} & \dots & a_{nn}
 \end{bmatrix}
 \]叫做\textbf{系数矩阵}（coefficient matrix）.
+
 特别地，如果\(s = n\)（即系数矩阵\(\A\)是一个方阵），则系数矩阵的行列式\(\abs{\A}\)叫做\textbf{系数行列式}.
 如果存在\(n\)个数\(\v{c}{n}\)满足上述线性方程组，即\[
 a_{i1}c_1 + a_{12}c_2 + \dotsb + a_{in}c_n = b_i,
@@ -55,7 +59,7 @@ a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
 \end{definition}
 
 \subsection{克拉默法则}
-\begin{theorem}[克拉默（Cramer）法则]
+\begin{theorem}[克拉默法则]
 未知量个数与方程个数相同的线性方程组\[
 \left\{
 \begin{array}{l}
@@ -120,7 +124,7 @@ A_{1n} & A_{2n} & \dots & A_{nn}
 如果\(\X0\)是原线性方程组的解，即\(\A \X0 = \b\)，用\(\P\)左乘等式两端得\(\C \X0 = \g\)；反之，若\(\X0\)满足\(\C \X0 = \g\)，用\(\P^{-1}\)左乘等式两端得\(\A \X0 = \b\)，故两方程组同解.
 \end{proof}
 \end{theorem}
-这就是消元法解线性方程组的理论根据.具体化简\(\widetilde{\A}\)时，可用一系列初等行变换将其变成一个较为简单的阶梯形矩阵（或更简单的Jordan阶梯形矩阵）.
+这就是消元法解线性方程组的理论根据.具体化简\(\widetilde{\A}\)时，可用一系列初等行变换将其变成一个较为简单的阶梯形矩阵（或更简单的若尔当阶梯形矩阵）.
 
 \begin{definition}
 称如下形式的\(s \times n\)矩阵\[
@@ -135,9 +139,9 @@ A_{1n} & A_{2n} & \dots & A_{nn}
 \end{bmatrix}
 \]为\textbf{阶梯形矩阵}（ladder matrix），其中\(a_{1 j_1},a_{2 j_2},\dotsc,a_{r j_r}\)均不为零，\(j_1 < j_2 < \dotsb < j_r\)，\(\A\)的后\(s-r\)行全为零.称\(\A\)的第\(i\)行第一个不为零的元素\(a_{i j_i}\)（\(i=1,2,\dotsc,r\)）为\textbf{非零首元}.
 
-若阶梯形矩阵\(\A\)的非零行的非零首元全为\(1\)，它们所在列的其余元素全为零，则称\(\A\)为Jordan阶梯形矩阵.
+若阶梯形矩阵\(\A\)的非零行的非零首元全为\(1\)，它们所在列的其余元素全为零，则称\(\A\)为若尔当阶梯形矩阵.
 \end{definition}
-% 在Mathematica中可以用RowReduce对矩阵进行初等行变换化为Jordan阶梯形矩阵.
+% 在Mathematica中可以用RowReduce对矩阵进行初等行变换化为若尔当阶梯形矩阵.
 
 \begin{lemma}
 任何一个非零矩阵都可经初等行变换化为阶梯形矩阵.
@@ -158,8 +162,8 @@ A_{1n} & A_{2n} & \dots & A_{nn}
 \end{proof}
 \end{lemma}
 
-\begin{corollary}\label{theorem:线性方程组.非零矩阵可经初等行变换化为Jordan阶梯形矩阵}
-任何一个非零矩阵都可经初等行变换化为Jordan阶梯形矩阵.
+\begin{corollary}\label{theorem:线性方程组.非零矩阵可经初等行变换化为若尔当阶梯形矩阵}
+任何一个非零矩阵都可经初等行变换化为若尔当阶梯形矩阵.
 \end{corollary}
 
 \begin{theorem}
@@ -1152,7 +1156,7 @@ r_{\A} = r_{\P^{-1} (\P \A)} \leqslant r_{\P \A} \leqslant r_{\A},
 \rank\A = \rank\B = r.
 \qedhere
 \]
-%\cref{theorem:线性方程组.非零矩阵可经初等行变换化为Jordan阶梯形矩阵}
+%\cref{theorem:线性方程组.非零矩阵可经初等行变换化为若尔当阶梯形矩阵}
 \end{proof}
 \end{theorem}
 

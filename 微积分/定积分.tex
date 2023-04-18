@@ -8,12 +8,31 @@ a=x_0 < x_1 < x_2 < \dotsb < x_{n-1} < x_n = b,
 [x_0,x_1],[x_1,x_2],\dotsc,[x_{n-1},x_n],
 \]各个小区间的长度依次为\[
 \increment x_1=x_1-x_0,\,\increment x_2=x_2-x_1,\,\dotsc,\,\increment x_n=x_n-x_{n-1},
-\]在每个小区间\([x_{i-1},x_i]\)上任取一点\(\xi_i\)（\(x_{i-1} \leqslant \xi_i \leqslant x_{i}\)），作函数值\(f(\xi_i)\)与小区间长度\(\increment x_i\)的乘积\(f(\xi_i)\increment x_i\)（\(i=1,2,\dotsc,n\)），并求和\[
+\]
+在每个小区间\([x_{i-1},x_i]\)上任取一点\(\xi_i\ (x_{i-1} \leqslant \xi_i \leqslant x_i)\)，%
+作函数值\(f(\xi_i)\)与小区间长度\(\increment x_i\)的乘积\(f(\xi_i)\increment x_i\ (i=1,2,\dotsc,n)\)，%
+并求和\[
 S = \sum\limits_{i=1}^n f(\xi_i) \increment x_i,
-\]和\(S\)通常称为\textbf{积分和}.记\(\lambda=\max\{\increment x_1,\increment x_2,\dotsc,\increment x_n\}\)，如果不论对\([a,b]\)怎么划分，也不论小区间\([x_{i-1},x_i]\)上点\(\xi_i\)怎样选取，只要当\(\lambda\to0\)时，和\(S\)总趋于确定的极限\(I\)，那么称这个极限\(I\)为函数\(f(x)\)在区间\([a,b]\)上的\textbf{定积分}，记作\(\int_a^b f(x) \dd{x}\)，即\begin{equation}
-\int_a^b f(x) \dd{x}=I=\lim\limits_{\lambda\to0}{\sum\limits_{i=1}^{n}{f(\xi_i)\increment x_i}},
-\end{equation}其中\(f(x)\)称为\textbf{被积函数}，\(f(x)\dd{x}\)称为\textbf{被积表达式}，\(x\)称为\textbf{积分变量}，\(a\)称为\textbf{积分下限}，\(b\)称为\textbf{积分上限}，\([a,b]\)称为\textbf{积分区间}.
+\]
+和\(S\)通常称为\textbf{积分和}.
+记\(\lambda=\max\{\increment x_1,\increment x_2,\dotsc,\increment x_n\}\)，%
+如果不论对\([a,b]\)怎么划分，也不论小区间\([x_{i-1},x_i]\)上点\(\xi_i\)怎样选取，%
+只要当\(\lambda\to0\)时，和\(S\)总趋于确定的极限\(I\)，%
+那么称这个极限\(I\)为函数\(f(x)\)在区间\([a,b]\)上的\textbf{定积分}，记作\(\int_a^b f(x) \dd{x}\)，即
+\begin{equation}
+\int_a^b f(x) \dd{x}
+= I
+= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i)\increment x_i,
+\end{equation}
+其中\(f(x)\)称为\textbf{被积函数}，%
+\(f(x)\dd{x}\)称为\textbf{被积表达式}，%
+\(x\)称为\textbf{积分变量}，%
+\(a\)称为\textbf{积分下限}，%
+\(b\)称为\textbf{积分上限}，%
+\([a,b]\)称为\textbf{积分区间}.
+我们称“函数\(f\)在\([a,b]\)上\textbf{可积}（integrable）”
 \end{definition}
+
 利用“\(\varepsilon-\delta\)”语言，上述对定积分的定义还可以表述如下：
 
 设有常数\(I\)，如果对于任意给定的正数\(\varepsilon\)，总存在一个正数\(\delta\)，使得对于区间\([a,b]\)的任何分法，不论\(\xi_i\)在\([x_{i-1},x_i]\)中怎样选取，只要\(\lambda<\delta\)，总有\[
@@ -22,14 +41,19 @@ S = \sum\limits_{i=1}^n f(\xi_i) \increment x_i,
 
 以上积分定义在数学分析中称为\DefineConcept{黎曼积分}.
 
-注意：当和\(\sum\limits_{i=1}^n f(\xi_i) \increment x_i\)的极限\(\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i) \increment x_i\)存在时，其极限\(I\)仅与被积函数\(f(x)\)及积分区间\([a,b]\)有关.如果既不改变被积函数\(f\)，也不改变积分区间\([a,b]\)，而只把积分变量\(x\)改写成其他字母，则和的极限\(I\)不变，也就是定积分的值不变，即\[
+注意：
+当和\(\sum\limits_{i=1}^n f(\xi_i) \increment x_i\)的极限\(\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i) \increment x_i\)存在时，其极限\(I\)仅与被积函数\(f(x)\)及积分区间\([a,b]\)有关.
+如果既不改变被积函数\(f\)，也不改变积分区间\([a,b]\)，而只把积分变量\(x\)改写成其他字母，则和的极限\(I\)不变，也就是定积分的值不变，即\[
 \int_a^b f(x) \dd{x}
 = \int_a^b f(t) \dd{t}
 = \int_a^b f(u) \dd{u}.
-\]换句话说，定积分的值只与被积函数及积分区间有关，而与积分变量的记法无关.
+\]
+换句话说，定积分的值只与被积函数及积分区间有关，而与积分变量的记法无关.
 
-\begin{definition}[可积函数]
-如果函数\(f(x)\)在区间\([a,b]\)上的定积分存在，那么就说\(f(x)\)在\([a,b]\)上\textbf{可积}（integrable），记作\(f \in R[a,b]\).这里，\(R[a,b]\)表示\textbf{可积函数族}，即由在区间\([a,b]\)上可积的全体函数组成的集合.
+\begin{definition}\label{definition:函数族.黎曼可积函数族}
+由闭区间\([a,b]\)上全部的黎曼可积函数组成的集合，称作\textbf{黎曼可积函数族}\footnote{%
+不作特别强调时，可以将其简称为\textbf{可积函数族}.%
+}，记作\(R[a,b]\).
 \end{definition}
 
 \begin{example}[用定义法证明定积分不存在]

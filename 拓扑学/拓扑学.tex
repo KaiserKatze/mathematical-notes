@@ -2,7 +2,7 @@
 拓扑学是极限的推广，通常分为点集拓扑学和代数拓扑学.
 本章主要介绍点集拓扑学，它为几何学提供了基本语言.
 
-\section{度量空间与连续映射}
+\section{度量空间}
 根据\cref{definition:极限.函数在一点的连续性} 我们知道，函数\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x_0\in\mathbb{R}\)处连续当且仅当\[
 \forall\varepsilon>0,
 \exists\delta>0
@@ -33,15 +33,16 @@
 \rho(x,z) \leqslant \rho(x,y) + \rho(y,z);
 \]
 \end{enumerate}
-那么称“\(\rho\)是集合\(X\)的一个\textbf{度量}（measure）”；
+那么称“映射\(\rho\)是集合\(X\)的一个\textbf{度量}（measure）”；
 还称“集合\(X\)是\textbf{可度量的}（measurable）”；
 有时候称实数\(\rho(x,y)\)为“从点\(x\)到点\(y\)的\textbf{距离}”.
 %@see: https://mathworld.wolfram.com/Measure.html
 \end{definition}
 
 \begin{definition}
-设\(\rho\)是集合\(X\)的一个度量.
-用符号\((X,\rho)\)表示\textbf{度量空间}，称“\(X\)是一个对于度量\(\rho\)而言的度量空间”；
+设映射\(\rho\)是集合\(X\)的一个度量.
+用有序对\((X,\rho)\)表示\textbf{度量空间}，%
+并称“集合\(X\)是一个对于度量\(\rho\)而言的度量空间”；
 当前文已经说明了度量\(\rho\)，省略它不至于引起混淆时，可以简称“\(X\)是一个度量空间”.
 \end{definition}
 
@@ -99,8 +100,8 @@ i\in\mathbb{N}^+;
 \]容易验证\(\rho\)是\(X\)的一个离散的度量，或者说度量空间\((X,\rho)\)是离散的.
 \end{example}
 
-\subsection{邻域的概念}
-\begin{definition}
+\subsection{球形邻域的概念与性质}
+\begin{definition}\label{definition:测度论.球形邻域的概念}
 设\((X,\rho)\)是一个度量空间，\(x \in X\).
 对于\(\forall\varepsilon>0\)，集合\[
 \Set{ y \in X \given \rho(x,y) < \varepsilon }
@@ -108,9 +109,9 @@ i\in\mathbb{N}^+;
 不特别强调球形邻域的半径\(\varepsilon\)时，可以简称其为“\(x\)的一个球形邻域”.
 \end{definition}
 
-\subsection{邻域的性质}
-\begin{theorem}
-设\((X,\rho)\)是一个度量空间，任取一点\(x \in X\).
+\begin{theorem}\label{theorem:测度论.球形邻域的性质}
+设\((X,\rho)\)是一个度量空间.
+取\(x \in X\).
 \(x\)的球形邻域具有以下基本性质：
 \begin{enumerate}
 \item 点\(x\)至少有一个球形邻域，并且点\(x\)属于它的每一个球形邻域；
@@ -119,8 +120,8 @@ i\in\mathbb{N}^+;
 \end{enumerate}
 \end{theorem}
 
-\subsection{开集的概念}
-\begin{definition}
+\subsection{开集的概念与性质}
+\begin{definition}\label{definition:测度论.开集的概念}
 设\(A\)是度量空间\(X\)的一个子集.
 如果\(A\)中的每一个点都有一个球形邻域包含于\(A\)，即\[
 \forall a \in A, \exists\varepsilon>0 \bigl[ B(a,\varepsilon) \subseteq A \bigr],
@@ -132,7 +133,6 @@ i\in\mathbb{N}^+;
 闭区间或半开半闭区间都不是\(\mathbb{R}\)中的开集.
 \end{example}
 
-\subsection{开集的性质}
 \begin{theorem}\label{theorem:测度论.开集的性质}
 度量空间\(X\)中的开集具有以下性质：
 \begin{enumerate}
@@ -144,7 +144,7 @@ i\in\mathbb{N}^+;
 \end{theorem}
 
 有时候为了方便讨论问题，我们将球形邻域的概念稍稍作一点推广.
-\begin{definition}
+\begin{definition}\label{definition:测度论.邻域的概念}
 设\(x\)是度量空间\(X\)中的一个点，集合\(U \subseteq X\).
 如果存在一个开集\(V\)满足条件\(x \in V \subseteq U\)，就称\(U\)是点\(x\)的一个\textbf{邻域}.
 \end{definition}
@@ -154,7 +154,7 @@ i\in\mathbb{N}^+;
 \(x\)有某一个球形邻域包含于\(U\).
 \end{theorem}
 
-\subsection{连续映射的概念}
+\subsection{度量空间之间的连续映射}
 现在我们把分析学中的连续函数的概念推广为度量空间之间的连续映射.
 
 \begin{definition}\label{definition:测度论.连续映射的概念}
@@ -203,13 +203,13 @@ i\in\mathbb{N}^+;
 \def\T{\mathfrak T}%
 \def\oT{\overline{\mathfrak T}}%
 
-\section{拓扑的基本概念}
+\section{拓扑空间}
 从\cref{theorem:测度论.度量空间下的连续映射与邻域的联系} 可以看出：
 度量空间之间的一个映射是否是连续的，或者在某一点处是否是连续的，本质上只与度量空间中的开集有关（这是因为邻域是通过开集定义的）.
 这就导致我们可以抛弃度量这个概念，参照\hyperref[theorem:测度论.开集的性质]{度量空间中开集的基本性质}，抽象出拓扑空间和拓扑空间之间的连续映射的概念.
 于是，\cref{theorem:测度论.度量空间下的连续映射与邻域的联系} 成为了我们把度量空间和度量空间之间的连续映射的概念推广为拓扑空间和拓扑空间之间的连续映射的出发点.
 
-\subsection{拓扑的定义}
+\subsection{拓扑与拓扑空间的概念}
 \begin{definition}\label{definition:拓扑学.开集公理定义的拓扑空间}
 已知非空集合\(X\).
 \(\T\)是\(X\)的一个子集族，即\(\T \subseteq \Powerset X\).
@@ -220,7 +220,7 @@ i\in\mathbb{N}^+;
 \item \(\T\)的\cemph{任意并}仍然属于\(\T\)，即\(\T_1 \subseteq \T \implies \bigcup_{A \in \T_1} A \in \T\)；
 \end{enumerate}
 则称“\(\T\)为\(X\)的一个\DefineConcept{拓扑}”，%
-称“\((X,\T)\)为一个\DefineConcept{拓扑空间}（topological space）”，%
+称有序对\((X,\T)\)为一个\DefineConcept{拓扑空间}（topological space），%
 或称“集合\(X\)是一个相对于拓扑\(\T\)而言的拓扑空间”\footnote{%
 不特别强调拓扑\(\T\)时，可以简单地表述为“集合\(X\)是一个拓扑空间”.%
 }，%
@@ -307,8 +307,7 @@ A_1 \cap A_2 \cap \dotsb \cap A_n \in \T.
 然而一个平庸空间如果含有多余一个点的话，它肯定不是离散空间，因此含有多余一个点的有限的平庸空间不是可度量化的.
 由此可见，拓扑空间比度量空间的范畴要更加广泛.
 
-\section{连续映射}
-\subsection{拓扑空间之间的连续映射的概念}
+\subsection{拓扑空间之间的连续映射}
 下面我们参考\cref{definition:测度论.连续映射的概念} 和\cref{theorem:测度论.度量空间下的连续映射与邻域的联系} 定义拓扑空间之间的连续映射.
 \begin{definition}\label{definition:拓扑学.拓扑空间之间的连续映射}
 设\(X\)、\(Y\)是两个拓扑空间.
@@ -319,7 +318,6 @@ A_1 \cap A_2 \cap \dotsb \cap A_n \in \T.
 当\(X\)、\(Y\)是两个度量空间时，如果映射\(f\colon X \to Y\)是从度量空间\(X\)到度量空间\(Y\)的一个连续映射，那么它也是从拓扑空间\(X\)到拓扑空间\(Y\)的一个连续映射；反之亦然.
 注意到这里提到的拓扑都是指诱导拓扑.
 
-\subsection{拓扑空间之间的连续映射的性质}
 \begin{theorem}\label{theorem:拓扑学.拓扑空间之间的连续映射的性质}
 设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
 \begin{enumerate}
@@ -328,7 +326,7 @@ A_1 \cap A_2 \cap \dotsb \cap A_n \in \T.
 \end{enumerate}
 \end{theorem}
 
-\section{同胚映射}
+\subsection{同胚映射}
 在数学的许多分支学科中都要涉及两种基本对象.
 例如在线性代数中我们考虑线性空间和线性变换，%
 在群论中我们考虑群和同态，%
@@ -342,13 +340,12 @@ A_1 \cap A_2 \cap \dotsb \cap A_n \in \T.
 
 既然我们已经提出了两种基本对象（即拓扑空间和连续映射），那么我们也要从连续映射中挑出重要的一类来进行特别研究.
 
-\subsection{同胚映射的概念}
-\begin{definition}
+\begin{definition}\label{definition:拓扑学.同胚映射的概念}
 设\(X\)、\(Y\)是两个拓扑空间.
-如果映射\(f\colon X \to Y\)是一个一一映射，并且\(f\)和逆映射\(f^{-1}\colon Y \to X\)都是连续的，那么称\(f\)为一个\textbf{同胚（映射）}.
+如果映射\(f\colon X \to Y\)是一个一一映射，并且\(f\)和逆映射\(f^{-1}\colon Y \to X\)都是连续的，那么称\(f\)为一个\textbf{同胚映射}（homeomorphism），简称\textbf{同胚}；
+又称“\(X\)与\(Y\)是\textbf{同胚的}（homeomorphic）”，或“\(X\)与\(Y\)同胚”，或“\(X\)同胚于\(Y\)”，记作\(X \cong Y\).
 \end{definition}
 
-\subsection{同胚映射的性质}
 \begin{theorem}\label{theorem:拓扑学.同胚映射的性质}
 设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
 \begin{enumerate}
@@ -357,12 +354,6 @@ A_1 \cap A_2 \cap \dotsb \cap A_n \in \T.
 \item 如果映射\(f\colon X \to Y\)、\(g\colon Y \to Z\)都是同胚，则复合映射\(g \circ f\colon X \to Z\)也是同胚.
 \end{enumerate}
 \end{theorem}
-
-\subsection{同胚的拓扑空间}
-\begin{definition}
-设\(X\)、\(Y\)是两个拓扑空间.
-如果存在一个同胚\(f\colon X \to Y\)，则称“拓扑空间\(X\)与拓扑空间\(Y\)是\textbf{同胚的}”，或“\(X\)与\(Y\)同胚”，或“\(X\)同胚于\(Y\)”.
-\end{definition}
 
 \begin{theorem}\label{theorem:拓扑学.同胚关系是等价关系}
 设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
