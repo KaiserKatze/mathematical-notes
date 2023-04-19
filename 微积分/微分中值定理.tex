@@ -1,7 +1,6 @@
 \chapter{微分中值定理}
 
 \section{微分中值定理}
-\subsection{罗尔定理}
 \begin{lemma}[费马引理]\label{theorem:微分中值定理.费马引理}
 设函数\(f(x)\)在点\(x_0\)的某邻域\(U(x_0)\)内有定义，并且在\(x_0\)处可导.
 如果对任意的\(x \in U(x_0)\)，有
@@ -24,7 +23,10 @@ f'(x_0) = f'_-(x_0) = \lim\limits_{\increment x\to0^-} \frac{f(x_0 + \increment 
 \end{proof}
 \end{lemma}
 
-\begin{theorem}[达布定理]\label{theorem:微分中值定理.达布定理}
+\subsection{达布定理}
+一般来说，一个可微函数的导数并不一定连续，但是导函数却像闭区间上的连续函数一样，服从自己的“零点定理”和“介值定理”.
+
+\begin{theorem}[达布零点定理]\label{theorem:微分中值定理.达布定理1}
 设函数\(f \in D(a,b)\).
 如果点\(x_1,x_2\ (a<x_1<x_2<b)\)满足\(f'(x_1) \cdot f'(x_2) < 0\)，%
 那么\(\exists\xi\in(x_1,x_2)\)使得\[
@@ -48,6 +50,26 @@ f(\alpha)<f(x_1) \land f(\beta)<f(x_2).
 \end{proof}
 \end{theorem}
 
+我们可以将\cref{theorem:微分中值定理.达布定理1} 作一番推广.
+\begin{theorem}[达布介值定理]\label{theorem:微分中值定理.达布定理2}
+设函数\(f \in D[a,b]\)，且\(f'(a) < f'(b)\).
+那么\(\forall\lambda\in(f'(A),f'(b))\)，\(\exists\xi\in(a,b)\)，%
+使得\[
+f'(\xi) = \lambda.
+\]
+\begin{proof}
+令\(F(x) = f(x) - \lambda x\ (a \leqslant x \leqslant b)\).
+那么\(F \in D[a,b]\)，且\[
+F'(a) = f'(a) - \lambda < 0, \qquad
+F'(b) = f'(b) - \lambda > 0.
+\]
+根据\cref{theorem:微分中值定理.达布定理1} 就有\(\exists\xi\in[a,b]\)使得\[
+F'(\xi)=0,
+\]即\(f'(x) = \lambda\).
+\end{proof}
+\end{theorem}
+
+\subsection{罗尔定理}
 \begin{theorem}[罗尔定理]\label{theorem:微分中值定理.罗尔定理}
 如果函数\(f(x)\)满足
 \begin{enumerate}

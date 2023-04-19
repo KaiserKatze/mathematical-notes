@@ -4,47 +4,83 @@
 \section{微分方程的基本概念}
 \subsection{微分方程的基本概念}
 \begin{definition}
-一般地，凡表示未知函数、未知函数的导数与自变量之间的关系的方程\begin{equation}\label{equation:微分方程.微分方程的一般形式}
-F\left(x,y,\dv{y}{x},\dv[2]{y}{x},\dotsc,\dv[n]{y}{x}\right)=0,
-\end{equation}叫做\DefineConcept{微分方程}.微分方程中所出现的未知函数的最高阶导数的阶数，称为微分方程的\DefineConcept{阶}.
-\end{definition}
-如果能从方程 \labelcref{equation:微分方程.微分方程的一般形式} 中解出最高阶导数，则可得微分方程\begin{equation}\label{equation:微分方程.分离出最高阶导数}
-\dv[n]{y}{x} = f\left(x,y,\dv{y}{x},\dv[2]{y}{x},\dotsc,\dv[n-1]{y}{x}\right).
-\end{equation}
-以后我们讨论的微分方程都是已解出最高阶导数的方程或能解出最高阶导数的方程.
+一般地，含有自变量、未知函数、未知函数的导数（或偏导数）的方程叫做\DefineConcept{微分方程}（differential equation）.
+如果微分方程中的未知函数是一元实值函数\(y = y(x)\)，则称其为\DefineConcept{常微分方程}（ordinary differential equation）.
+如果微分方程中的未知函数是多元实值函数\(y = y(\v{x}{m})\)，则称其为\DefineConcept{偏微分方程}（partial differential equation）.
 
-由于微分方程所要求解的未知函数是单变量函数\(y = y(x)\)，所以我们称像这样的微分方程为\DefineConcept{常微分方程}.
+微分方程中所出现的未知函数的最高阶导数（或偏导数）的阶数，称为微分方程的\DefineConcept{阶}（order）.
+\end{definition}
+
+常微分方程的一般形式为：
+\begin{equation}\label{equation:微分方程.微分方程的一般形式}
+F\left( x,y,y',y'',\dotsc,y^{(n)} \right)=0.
+\end{equation}
+根据定义，微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 中所出现的未知函数\(y = y(x)\)的最高阶导数\(y^{(n)}\)的阶数\(n\)就是微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 的阶.
+
+如果微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 左边是关于未知函数\(y\)及其导数\(y',y'',\dotsc,y^{(n)}\)的一次有理整式，那么称其为\(n\)阶\textbf{线性常微分方程}（n-th order linear ordinary differential equation）；
+否则称其为\(n\)阶\textbf{非线性常微分方程}（n-th order nonlinear ordinary differential equation）.
+
+如果能从方程 \labelcref{equation:微分方程.微分方程的一般形式} 中解出最高阶导数，则可得微分方程
+\begin{equation}\label{equation:微分方程.分离出最高阶导数}
+y^{(n)} = f\left( x,y,y',y'',\dotsc,y^{(n-1)} \right).
+\end{equation}
+像这样的微分方程称为\(n\)阶\textbf{显式常微分方程}（n-th order explicit ordinary differential equation）.
+本章讨论的微分方程都是显式常微分方程.
+
+\(n\)阶线性常微分方程的一般形式为
+\begin{equation}\label{equation:微分方程.线性常微分方程的一般形式}
+y^{(n)} + a_1(x) \cdot y^{(n-1)}
++ \dotsb + a_{n-1}(x) y'
++ a_n(x) y
+= f(x),
+\end{equation}
+其中\(a_i(x)\ (i=1,2,\dotsc,n)\)和\(f(x)\)是关于\(x\)的已知函数.
+称\(f(x)\)为微分方程 \labelcref{equation:微分方程.线性常微分方程的一般形式} 的\textbf{非齐次项}（non-homogeneous term）.
+当\(f(x) = 0\)时，我们称微分方程 \labelcref{equation:微分方程.线性常微分方程的一般形式} 为\(n\)阶线性齐次常微分方程（n-th order linear homogeneous ordinary differential equation）；
+否则，称其为\(n\)阶线性非齐次常微分方程（n-th order linear non-homogeneous ordinary differential equation）.
 
 \begin{definition}
-设函数\(y=\varphi(x)\)在区间\(I\)上有\(n\)阶连续导数，如果在区间\(I\)上有\[
+设函数\(y=\varphi(x)\)在区间\(I\subseteq\mathbb{R}\)上有\(n\)阶连续导数.
+如果对于\(\forall x \in I\)有\[
 F[x,\varphi(x),\varphi'(x),\dotsc,\varphi^{(n)}(x)]\equiv0,
-\]那么函数\(y=\varphi(x)\)就叫做微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 在区间\(I\)上的\DefineConcept{解}.
+\]那么称函数\(y=\varphi(x)\)为“微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 在区间\(I\)上的\DefineConcept{解}（solution）”.
 
-如果微分方程的解中含有任意常数，且任意常数的个数与微分方程的阶数相同\footnote{这里所说的任意常数是相互独立的，就是说，它们不能合并而使得任意常数的个数减少.}，这样的解叫做微分方程的\DefineConcept{通解}.
+如果\(n\)阶微分方程的解中含有任意常数\(\v{C}{n}\)，且任意常数的个数与微分方程的阶数相同\footnote{%
+这里所说的任意常数是相互\textbf{独立的}（independent），%
+就是说，它们不能合并而使得任意常数的个数减少；%
+或者说，\(\varphi,\varphi',\dotsc,\varphi^{(n-1)}\)关于\(\v{C}{n}\)的“雅克比行列式”不为零，即\[
+\jacobi{\varphi,\varphi',\dotsc,\varphi^{(n-1)}}{\v{C}{n}} \neq 0.
+\]}，这样的解\[
+y = \varphi(x;\v{C}{n})
+\]叫做微分方程的\DefineConcept{通解}（general solution）；
+否则称其为微分方程的\DefineConcept{特解}（special solution）.
 \end{definition}
 
 由于通解中含有任意常数，所以它还不能完全确定地反映某一客观事物的规律性.要完全确定地反映客观事物的规律性，必须确定这些常数的值.为此，要根据问题的实际情况，提出确定这些常数的条件.
 
 如果微分方程是\cemph{一阶}的，通常用来确定任意常数的条件是\[
-\eval{y}_{x=x_0} = y_0,
+y(x_0) = y_0,
 \]其中\(x_0,y_0\)都是给定的值；如果微分方程是\cemph{二阶}的，通常用来确定任意常数的条件是\[
-\eval{y}_{x=x_0} = y_0,
+y(x_0) = y_0,
 \qquad
-\eval{y'}_{x=x_0} = y'_0,
+y'(x_0) = y'_0,
 \]其中\(x_0,y_0,y'_0\)都是给定的值；以此类推.上述这种条件叫做\DefineConcept{初始条件}.确定了通解中的任意常数以后，就得到微分方程的\DefineConcept{特解}.
 
-特别地，求一阶微分方程\(y'=f(x,y)\)满足初始条件\(\eval{y}_{x=x_0} = y_0\)的特解这样一个问题，叫做一阶微分方程的\DefineConcept{初值问题}，记作\[
+特别地，求一阶微分方程\(y'=f(x,y)\)满足初始条件\(y(x_0) = y_0\)的特解这样一个问题，叫做一阶微分方程的\DefineConcept{初值问题}，记作\[
 \left\{ \begin{array}{l}
 y' = f(x,y), \\
-\eval{y}_{x=x_0} = y_0.
+y(x_0) = y_0.
 \end{array} \right.
 \]
 
-微分方程的解的图形一条曲线，叫做微分方程的\DefineConcept{积分曲线}.上述一阶微分方程的初值问题的几何意义，就是求通过点\(\opair{x_0,y_0}\)的那条积分曲线.二阶微分方程的初值问题\[
+微分方程的任意特解在平面上表现为一条曲线，叫做微分方程的\DefineConcept{积分曲线}（integral curve）或\DefineConcept{解曲线}（solution curve）.
+同样地，微分方程的通解在平面上表现为一族曲线，叫做微分方程的\DefineConcept{积分曲线族}（family of integral curves）或\DefineConcept{解曲线族}（family of solution curves）.
+
+上述一阶微分方程的初值问题的几何意义，就是求通过点\(\opair{x_0,y_0}\)的那条积分曲线.二阶微分方程的初值问题\[
 \left\{ \begin{array}{l}
 y'' = f(x,y,y'), \\
-\eval{y}_{x=x_0} = y_0, \\
-\eval{y'}_{x=x_0} = y'_0
+y(x_0) = y_0, \\
+y'(x_0) = y'_0
 \end{array} \right.
 \]的几何意义，是求微分方程的通过点\(\opair{x_0,y_0}\)且在该点处的切线斜率为\(y'_0\)的那条积分曲线.
 

@@ -298,9 +298,21 @@ A \subseteq B \implies \bigcup A \subseteq \bigcup B \\
 \end{property}
 
 \begin{example}
-证明：\[
-(A \cup B) - (A \cap B) = (A-B)\cup(B-A).
-\]
+证明：\((A \cup B) - (A \cap B) = (A-B)\cup(B-A)\).
+\begin{proof}
+根据集合交、并、差的定义，有\[\begin{aligned}
+(A \cup B) - (A \cap B)
+&= \Set{ x \given x \in (A \cup B) \land x \notin (A \cap B) } \\
+&= \Set{ x \given (x \in A \lor x \in B) \land \neg(x \in A \land x \in B) } \\
+&= \Set{ x \given [x \in A \land \neg(x \in A \land x \in B)]
+ \lor [x \in B \land \neg(x \in A \land x \in B)] } \\
+&= \Set{ x \given [x \in A \land (x \notin A \lor x \notin B)]
+ \lor [x \in B \land (x \notin A \lor x \notin B)] } \\
+&= \Set{ x \given (x \in A \land x \notin B) \lor (x \in B \land x \notin A) } \\
+&= (A-B)\cup(B-A).
+\qedhere
+\end{aligned}\]
+\end{proof}
 \end{example}
 
 \section{关系与映射}
