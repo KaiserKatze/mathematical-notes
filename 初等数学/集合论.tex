@@ -4,7 +4,8 @@
 于是我们想到，古人在农业生产中始终有着对农产品（例如红枣、覆盆子、野兔、鲤鱼等）分类、计数的需要，即将同类的产品集中地放置，再用一个符号（绳结或算筹）表示这类产品的数量.
 
 对于分类的标准的探索，或者说对于物的“同一性”与“差异性”的研究，也同样源远流长.
-古希腊哲学家赫拉克利特（Heraclitus）也提出“太阳每天都是新的”“人不能两次踏进同一条河流”，并认为事物总是在变化的，观念上的同一的物也是不同的；后来，罗马哲学家普鲁塔克（Plutarchus）也提出了著名的忒修斯之船（The Ship of Theseus）悖论.
+古希腊哲学家赫拉克利特（Heraclitus）也提出“太阳每天都是新的”“人不能两次踏进同一条河流”，并认为事物总是在变化的，观念上的同一的物也是不同的；
+后来，罗马哲学家普鲁塔克（Plutarchus）也提出了著名的忒修斯之船（The Ship of Theseus）悖论.
 但是，即使椭圆、双曲线和抛物线在几何形态上存在天差地别，古希腊数学家阿波罗尼（Apollonius）仍将它们归作一类，看作相似的概念，并创立了《圆锥曲线论》.
 为了解决上述问题，一组相对的哲学概念被提出来了，这就是“逻辑同一性”和“实在同一性”.
 简单地说，实在同一性和逻辑同一性都是对事物关系的一种描述，实在同一性要求被比较的事物无法被区分，而逻辑同一性是指两个物在部分的属性上具备某种相同、相等或相似的关系.
@@ -13,42 +14,109 @@
 \section{朴素集合论}
 \subsection{集合的概念}
 \begin{definition}
-\textbf{集合}（简称\textbf{集}，Set）是指具有某种特定性质的事物的总体.
-组成这个集合的事物称为该集合的\textbf{元素}（简称\textbf{元}，Member或Element）.
+我们将一些事物的\textbf{收集}（collection）看成一个整体，将这个整体称为\textbf{集合}（set），简称为\textbf{集}.
+组成这个集合的事物被称为该集合的\textbf{元素}（member，或element），简称\textbf{元}.
 集合常用大写字母（如\(A,B,C,X,Y\)等）表示，元素常用小写字母（如\(a,b,c\)等）表示.
 
-如果元素\(a\)是集合\(A\)的元素，就说“\(a\)\textbf{属于}\(A\)（\(a\) is a member of \(A\)或\(a\) belongs to \(A\)）”，记作\(a \in A\)；
-如果\(b\)不是集合\(A\)的元素，就说“\(b\)\textbf{不属于}\(A\)（\(b\) is not a member of \(A\)）”，记作\(b \notin A\).
+如果元素\(a\)是集合\(A\)的元素，就说“\(a\)是\(A\)的元素（\(a\) is a member of \(A\)）”，或“\(a\)\textbf{属于}\(A\)（\(a\) belongs to \(A\)）”，记作\(a \in A\)；
+如果\(b\)不是集合\(A\)的元素，就说“\(a\)不是\(A\)的元素（\(b\) is not a member of \(A\)）”，或“\(b\)\textbf{不属于}\(A\)（\(b\) does not belong to \(A\)）”，记作\(b \notin A\).
 \end{definition}
 
+表记集合的方法大致有两类：
+我们可以把集合的全体元素一一列举出来，用以表示集合，这种方法被称为\textbf{列举法}.
+例如由\(3\)个元素\(x,y,z\)组成的集合可以表记为\[
+\{x,y,z\};
+\]而由\(n\)个元素\(a_i\ (i=1,2,\dotsc,n)\)组成的集合可以表记为\[
+\Set{ \v{a}{n} }.
+\]
+我们也可以通过说明集合中的元素都具有的性质，这种方法称为\textbf{描述法}.
+例如若集合\(M\)是由具有某种性质\(P\)的元素\(x\)的全体所组成的，就可表示为\[
+M = \Set{ x \given x\ \text{具有性质}\ P }.
+\]
+
 \begin{property}
-集合具有三种特性：\begin{enumerate}
+集合具有三种特性：
+\begin{enumerate}
 \item \textbf{确定性}，即对于任意一个元素，要么它属于某个指定集合，要么它不属于该集合，二者必居其一；
-\item \textbf{互异性}，即同一个集合中的元素是互不相同的；
-\item \textbf{无序性}，即任意改变集合中元素的排列次序，它们仍然表示同一个集合.
+\item \textbf{互异性}，即同一个集合中的元素是互不相同的，或者说，在以列举法表记的集合中，如果表记同一个元素的符号出现了多次，那么可以直接去除多余的符号而对集合的描述没有任何影响；
+\item \textbf{无序性}，即在以列举法表记的集合中，任意改变集合中元素的排列次序，它们仍然表示同一个集合.
 \end{enumerate}
 \end{property}
 
 \begin{definition}
-由不是集合的元素组成的集合，叫做\textbf{第一层集}.
-把第一层集当作元素组成的集合，叫做\textbf{第二层集}（又称\textbf{系}）.
+由不是集合的元素组成的集合，叫做\textbf{第一层集}（first-order set）.
+把第一层集当作元素组成的集合，叫做\textbf{第二层集}（second-order set）或\textbf{系}（system）.
 \end{definition}
 
-把集合的全体元素一一列举出来，用以表示集合的方法，称为\textbf{列举法}.
-例如由\(n\)个元素\(\v{a}{n}\)组成的集合，可表示为\[
-\Set{ \v{a}{n} }.
-\]
+\begin{figure}[ht]
+\def\subwidth{.5\linewidth}
+\centering
+\begin{subfigure}[b]{\subwidth}
+\centering
+\begin{tikzpicture}
+\path[save path=\pathA](-1,0)circle(2cm);
+\path[save path=\pathB](+1,0)circle(2cm);
+\begin{scope}
+	\clip[use path=\pathA];
+	\fill[black!30][use path=\pathB];
+\end{scope}
+\draw[use path=\pathA];
+\draw[use path=\pathB];
+\draw(0,0)node{\(A \cap B\)};
+\end{tikzpicture}
+\subcaption{集合的交}
+\end{subfigure}%
+\begin{subfigure}[b]{\subwidth}
+\centering
+\begin{tikzpicture}
+\path[save path=\pathA,name path=A](-1,0)circle(2cm);
+\path[save path=\pathB,name path=B](+1,0)circle(2cm);
+\path[fill=black!30][use path=\pathA+\pathB];
+\draw[name intersections={of=A and B}]
+	(intersection-1)arc[start angle=60,end angle=300,radius=2]
+	(intersection-2)arc[start angle=-120,end angle=120,radius=2]
+	(intersection-1);
+\draw(0,0)node{\(A \cup B\)};
+\pgfresetboundingbox
+\path[use as bounding box] (-3,-2)rectangle(3,2);
+\end{tikzpicture}
+\subcaption{集合的并}
+\end{subfigure}%
 
-\subsection{集合的关系与运算}
+\begin{subfigure}[b]{\linewidth}
+\centering
+\begin{tikzpicture}
+\path[save path=\pathA,name path=A](-1,0)circle(2cm);
+\path[save path=\pathB,name path=B](+1,0)circle(2cm);
+\begin{scope}
+	\clip[name intersections={of=A and B}]
+		(intersection-1)arc[start angle=60,end angle=300,radius=2]
+		(intersection-2)arc[start angle=-120,end angle=-240,radius=2]
+		(intersection-2);
+	\fill[black!30][use path=\pathA];
+\end{scope}
+\draw[use path=\pathA];
+\draw[use path=\pathB];
+\draw(-2,0)node{\(A-B\)};
+\pgfresetboundingbox
+\path[use as bounding box] (-3,-2)rectangle(3,2);
+\end{tikzpicture}
+\subcaption{集合的差}
+\end{subfigure}%
+\caption{韦恩图}
+\label{figure:集合论.韦恩图}
+\end{figure}
+
+\section{公理化集合论}
 \begin{axiom}[外延公理]
-如果集合\(A\)与集合\(B\)具有相同的元素，则称集合\(A\)与集合\(B\)\textbf{相等}，记作\(A=B\)，即\[
+如果集合\(A\)与集合\(B\)具有相同的元素，则称“集合\(A\)与集合\(B\)\textbf{相等}”，记作\(A=B\)，即\[
 \forall A, \forall B \Bigl[
 	\forall x \bigl( x \in A \iff x \in B \bigr)
 	\implies A = B
 \Bigr].
 \]
 \end{axiom}
-外延性公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
+外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
 
 \begin{axiom}[空集公理]
 总存在这样一个集合，没有任何元素属于它，即\[
@@ -58,10 +126,16 @@
 空集公理在英语中称作Empty Set Axiom.
 
 \begin{definition}
-不含任何元素的集合称为\textbf{空集}（Empty set），记作\(\emptyset\).
+不含任何元素的集合称为\textbf{空集}（empty set），记作\(\emptyset\).
 \end{definition}
-定义空集\(\emptyset\)时一定要注意两点：一是“空集”是否存在，这已由空集公理确保；二是“空集”是否唯一，这则由外延公理确保.
-没有这两条公理的帮助，我们就不能说\(\emptyset\)是\cemph{定义良好的}.
+定义空集\(\emptyset\)时一定要注意两点：
+一是“空集”是否存在，这已由空集公理确保；
+二是“空集”是否唯一，这则由外延公理确保.
+没有这两条公理的帮助，我们就不能说\(\emptyset\)是\cemph{良定义的}.
+
+利用描述法，我们可以重新定义空集如下：\[
+\emptyset \defeq \Set{ x \given x \neq x }.
+\]
 
 \begin{example}
 以空集为元素构成的集合\(\Set{\emptyset}\)不是空集，即\(\Set{\emptyset} \neq \emptyset\).
@@ -94,16 +168,6 @@
 \end{axiom}
 子集公理有时候也称作\textbf{分离公理}，它在英语中称作Subset Axioms，在德语中称作Axiom der Aussonderung.
 正如其名，该定理的作用就是从集合\(A\)中取出适合命题公式\(\lambda\)的元素，组合成新的集合\(B\).
-
-由子集公理可知，除了用列举法表示集合以外，还可以通过说明集合中的元素具有的性质来确定集合，这种方法称为\textbf{描述法}.例如若集合\(M\)是由具有某种性质\(P\)的元素\(x\)的全体所组成的，就可表示为\[
-M = \Set{ x \given x\ \text{具有性质}\ P }.
-\]
-
-利用描述法，我们可以重新定义空集如下：\[
-\emptyset \equiv \Set{ x \given x \neq x },
-\]\[
-\Set{ u, v } \equiv \Set{ x \given x = u \lor x = v };
-\]
 
 \begin{theorem}
 以所有集合为元素组成的集合不存在.
@@ -252,47 +316,47 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \begin{property}
 集合的运算满足以下性质：
 \begin{enumerate}
-\item 交换律（Commutative laws）
+\item 交换律（{\rm Commutative laws}）
 \begin{gather}
-A \cap B = B \cap A \\
-A \cup B = B \cup A
+A \cap B = B \cap A, \\
+A \cup B = B \cup A.
 \end{gather}
 
-\item 结合律（Associative laws）
+\item 结合律（{\rm Associative laws}）
 \begin{gather}
-(A \cap B) \cap C = A \cap (B \cap C) \\
-(A \cup B) \cup C = A \cup (B \cup C)
+(A \cap B) \cap C = A \cap (B \cap C), \\
+(A \cup B) \cup C = A \cup (B \cup C).
 \end{gather}
 
-\item 分配律（Distributive laws）
+\item 分配律（{\rm Distributive laws}）
 \begin{gather}
-(A \cap B) \cup C = (A \cup C) \cap (B \cup C) \\
-(A \cup B) \cap C = (A \cap C) \cup (B \cap C)
+(A \cap B) \cup C = (A \cup C) \cap (B \cup C), \\
+(A \cup B) \cap C = (A \cap C) \cup (B \cap C).
 \end{gather}
 
-\item 对偶律（De Morgan's laws）
+\item 对偶律（{\rm De Morgan's laws}）
 \begin{gather}
-\overline{A \cap B} = \overline A \cup \overline B \\
-\overline{A \cup B} = \overline A \cap \overline B
+\overline{A \cap B} = \overline A \cup \overline B, \\
+\overline{A \cup B} = \overline A \cap \overline B.
 \end{gather}
 
 \item 与空集\(\emptyset\)和全集\(\Omega\)的运算（假设\(A \subseteq \Omega\)）
 \begin{gather}
-A \cup \emptyset = A \\
-A \cap \emptyset = \emptyset \\
-A \cup \Omega = \Omega \\
-A \cap \Omega = A \\
-A \cup \overline{A} = \Omega \\
-A \cap \overline{A} = \emptyset
+A \cup \emptyset = A, \\
+A \cap \emptyset = \emptyset, \\
+A \cup \Omega = \Omega, \\
+A \cap \Omega = A, \\
+A \cup \overline{A} = \Omega, \\
+A \cap \overline{A} = \emptyset.
 \end{gather}
 
 \item 包含关系的运算
 \begin{gather}
-A \subseteq B \implies A \cup C \subseteq B \cup C \\
-A \subseteq B \implies A \cap C \subseteq B \cap C \\
-A \subseteq B \implies \overline{B} \subseteq \overline{A} \\
-A \subseteq B \implies \bigcup A \subseteq \bigcup B \\
-\emptyset \neq A \subseteq B \implies \bigcap B \subseteq \bigcap A
+A \subseteq B \implies A \cup C \subseteq B \cup C, \\
+A \subseteq B \implies A \cap C \subseteq B \cap C, \\
+A \subseteq B \implies \overline{B} \subseteq \overline{A}, \\
+A \subseteq B \implies \bigcup A \subseteq \bigcup B, \\
+\emptyset \neq A \subseteq B \implies \bigcap B \subseteq \bigcap A.
 \end{gather}
 \end{enumerate}
 \end{property}
@@ -300,8 +364,10 @@ A \subseteq B \implies \bigcup A \subseteq \bigcup B \\
 \begin{example}
 证明：\((A \cup B) - (A \cap B) = (A-B)\cup(B-A)\).
 \begin{proof}
-根据集合交、并、差的定义，有\[\begin{aligned}
-(A \cup B) - (A \cap B)
+根据集合交、并、差的定义，有
+\begin{align*}
+&\hspace{-20pt}
+(A \cup B) - (A \cap B) \\
 &= \Set{ x \given x \in (A \cup B) \land x \notin (A \cap B) } \\
 &= \Set{ x \given (x \in A \lor x \in B) \land \neg(x \in A \land x \in B) } \\
 &= \Set{ x \given [x \in A \land \neg(x \in A \land x \in B)]
@@ -311,14 +377,16 @@ A \subseteq B \implies \bigcup A \subseteq \bigcup B \\
 &= \Set{ x \given (x \in A \land x \notin B) \lor (x \in B \land x \notin A) } \\
 &= (A-B)\cup(B-A).
 \qedhere
-\end{aligned}\]
+\end{align*}
 \end{proof}
 \end{example}
 
 \section{关系与映射}
-\subsection{无序对与有序对}
+\subsection{无序对、有序对的概念}
 \begin{definition}[无序对]
-由两个元素\(x_1\)和\(x_2\)组成的集合\(\Set{x_1, x_2}\)称作\textbf{无序对}.
+由两个元素\(x_1\)和\(x_2\)组成的集合\[
+\Set{x_1, x_2}
+\]称作\textbf{无序对}（unordered pair）.
 \end{definition}
 
 \begin{example}
@@ -337,71 +405,154 @@ A \subseteq B \implies \bigcup A \subseteq \bigcup B \\
 \end{example}
 
 \begin{definition}[有序对]
-两个元素\(x_1\)和\(x_2\)按一定顺序形成的排列\[
-\Set{ \Set{x_1}, \Set{x_1, x_2} }
-\]称为\textbf{有序对}，记作\(\opair{x_1,x_2}\).
-
-我们可以把有序对的概念进一步扩展，形成一系列称为\(n\)\textbf{元组}（n-tuple）的概念，例如定义\[
-\opair{x_1,x_2,x_3} = \opair{\opair{x_1,x_2},x_3},
-\]称之为\textbf{三元组}（triple）；定义\[
-\opair{x_1,x_2,x_3,x_4} = \opair{\opair{x_1,x_2,x_3},x_4},
-\]称之为\textbf{四元组}（quadruple）.特别地，定义\[
-\opair{x} = x,
-\]称之为\textbf{一元组}（1-tuple）.
-\end{definition}
-
-\begin{definition}[直积、笛卡尔乘积]
-设\(A\)和\(B\)是任意两个集合，在集合\(A\)中任取一个元素\(x\)，在集合\(B\)中任取一个元素\(y\)，组成一个有序对\(\opair{x,y}\)，把这样的有序对作为新的元素，它们全体组成的集合\[
-\Set{ \opair{x,y} \given x \in A, y \in B }
-\]称为集合\(A\)与集合\(B\)的\textbf{直积}（或称\textbf{笛卡尔乘积}，Cartesian product），记为\(A \times B\).
-
-特别地，\(A \times A\)可以简记为\(A^2\)，\((A \times A) \times A\)可以简记为\(A^3\)，以此类推.
-\end{definition}
-
-\begin{theorem}
-有序对\(\opair{x_1,x_2} = \opair{y_1,y_2}\)的充要条件是：\[
-x_1=y_1 \land x_2=y_2.
+两个元素\(x_1\)和\(x_2\)按一定顺序形成的排列称为\textbf{有序对}，记作\[
+\opair{x_1,x_2}.
 \]
-\end{theorem}
+
+我们可以采用多种方式构造集合用于表记有序对\(\opair{x_1,x_2}\)，例如（由Norbert Wiener于1914年构造的）
+\[
+\Set{ \Set{ \Set{x_1}, \emptyset }, \Set{ \Set{ x_2 } } }.
+\]
+但我们更常用（由Kazimierz Kuratowski于1921年构造的）以下形式
+\[
+\Set{ \Set{x_1}, \Set{x_1, x_2} }.
+\]以后我们都采用第二种形式表记有序对，因此\[
+\opair{x_1,x_2}
+\defeq
+\Set{ \Set{x_1}, \Set{x_1, x_2} }.
+\]
+\end{definition}
+
+有序对具有以下性质.
+\begin{property}\label{theorem:集合论.有序对的性质1}
+\(\opair{u,v} = \opair{x,y}\)的充要条件是：\(u=x\)且\(v=y\).
+\begin{proof}
+充分性.
+这个方向的证明是平凡的；
+当\(u=x\)且\(v=y\)时，自然有\(\opair{u,v}\)和\(\opair{x,y}\)是同一的.
+
+必要性.
+当\(\opair{u,v} = \opair{x,y}\)时，根据定义有\[
+\Set{ \Set{u}, \Set{u, v} }
+=
+\Set{ \Set{x}, \Set{x, y} };
+\]于是\[
+\Set{u} \in \Set{ \Set{x}, \Set{x, y} },
+\eqno{(1)}
+\]且\[
+\Set{u,v} \in \Set{ \Set{x}, \Set{x, y} }.
+\eqno{(2)}
+\]
+从(1)式我们知道，要么等式\[
+\Set{u} = \Set{x}
+\eqno{(3)}
+\]成立，要么等式\[
+\Set{u} = \Set{x,y}
+\eqno{(4)}
+\]成立；
+从(2)式我们知道，要么等式\[
+\Set{u,v} = \Set{x}
+\eqno{(5)}
+\]成立，要么等式\[
+\Set{u,v} = \Set{x,y}
+\eqno{(6)}
+\]成立.
+
+首先我们假设(4)式成立，那么有\(u = x = y\)；
+从而有(5)式等价于(6)式，且\(u = v = x = y\)；
+在这种情况下，必要性得证.
+同理，假设(5)式成立，也可证明必要性.
+
+然后我们假设(3)式、(6)式同时成立.
+从(3)式成立我们知道\(u = x\).
+从(6)式成立我们知道\(u = y\)或\(v = y\)；
+第一种情况，即\(u = x\)和\(u = y\)同时成立的情况，已经在(4)式成立时作了讨论.
+第二种情况，即\(u = x\)和\(v = y\)同时成立的情况，立即保证了必要性.
+\end{proof}
+\end{property}
+\cref{theorem:集合论.有序对的性质1} 让我们可以不含糊地将有序对\(\opair{x,y}\)中的\(x\)和\(y\)分别称为有序对的\textbf{第一坐标}（first coordinate）和\textbf{第二坐标}（second coordinate）.
+
+\begin{definition}[直积]\label{definition:集合论.直积}
+设\(A\)和\(B\)是任意两个集合，%
+在集合\(A\)中任取一个元素\(x\)，%
+在集合\(B\)中任取一个元素\(y\)，%
+组成一个有序对\(\opair{x,y}\)，%
+把这样的有序对作为新的元素，它们全体组成的集合称为集合\(A\)与集合\(B\)的\textbf{直积}或\textbf{笛卡尔乘积}（Cartesian product），%
+记为\(A \times B\)，即\[
+A \times B
+\defeq
+\Set{ \opair{x,y} \given x \in A, y \in B }.
+\]
+
+特别地，集合\(A\)与自己的直积\(A \times A\)可以简记为\(A^2\)，%
+\((A \times A) \times A\)可以简记为\(A^3\)，%
+以此类推.
+\end{definition}
+我们必须确认\cref{definition:集合论.直积} 定义的收集\(A \times B\)是不是真的是一个集合.
+
 
 \begin{theorem}
-如果\(x,y \in A\)，那么\(\opair{x,y} \in \Powerset\Powerset A\).
+如果\(x,y \in A\)，那么\[
+\opair{x,y} \in \Powerset\Powerset A.
+\]
 \begin{proof}
 由\(x,y \in A\)可知\(\{x\},\{x,y\} \subseteq A\)，即\(\{x\},\{x,y\} \in \Powerset A\)，那么\(\{\{x\},\{x,y\}\} \subseteq \Powerset A\)，进一步可得\(\{\{x\},\{x,y\}\} \in \Powerset\Powerset A\).
 \end{proof}
 \end{theorem}
 
+\subsection{元组的概念}
+我们可以把有序对的概念进一步扩展，形成一系列称为\(n\)\textbf{元组}（n-tuple）的概念.
+例如定义\[
+\opair{x_1,x_2,x_3}
+\defeq
+\opair{\opair{x_1,x_2},x_3},
+\]称之为\textbf{三元组}（triple）；
+定义\[
+\opair{x_1,x_2,x_3,x_4}
+\defeq
+\opair{\opair{x_1,x_2,x_3},x_4},
+\]称之为\textbf{四元组}（quadruple）.
+特别地，定义\[
+\opair{x}
+\defeq
+x,
+\]称之为\textbf{一元组}（1-tuple）.
+
 \subsection{关系}
 \begin{definition}
-已知集合\(X\)和集合\(Y\)，集合\(\Set{ \opair{x,y} \given x \in X, y \in Y }\)称作\textbf{ \(X\)与\(Y\)之间的二元关系}；当\(X = Y\)时，就称之为\textbf{ \(X\)上的二元关系}.
+已知集合\(X\)和集合\(Y\)，集合\[
+\Set{ \opair{x,y} \given x \in X, y \in Y }
+\]称作“\(X\)与\(Y\)之间的\textbf{ 二元关系}”；
+当\(X = Y\)时，就称之为“\(X\)上的\textbf{ 二元关系}”.
 
-如果有序对\(\opair{x,y}\)是关系\(\rel{R}\)的元素（即\(\opair{x,y} \in \rel{R}\)），那么称\(x\)与\(y\)有\(\rel{R}\)关系，记作\(x\rel{R}y\)；反之，如果\(\opair{x,y} \notin \rel{R}\)，那么称\(x\)与\(y\)没有\(\rel{R}\)关系.
+如果有序对\(\opair{x,y}\)是关系\(\rel{R}\)的元素（即\(\opair{x,y} \in \rel{R}\)），那么称“\(x\)与\(y\)有\(\rel{R}\)关系”，记作\(x\rel{R}y\)；
+反之，如果\(\opair{x,y} \notin \rel{R}\)，那么称“\(x\)与\(y\)没有\(\rel{R}\)关系”.
 \end{definition}
 
 \begin{definition}
 设\(\rel{R} \subseteq A^2\).
-对于\(\forall x \in A\)，若满足\(x\rel{R}x\)，则称关系\(\rel{R}\)具有\textbf{自反性}（reflexive）；
-对于\(\forall x,y \in A\)，若\(x\rel{R}y \implies y\rel{R}x\)，则称关系\(\rel{R}\)具有\textbf{对称性}（symmetric）；
-对于\(\forall x,y \in A\)，若\(x\rel{R}y \land yRx \implies x = y\)，则称关系\(\rel{R}\)具有\textbf{反对称性}（antisymmetric）；
-对于\(\forall x,y,z \in A\)，若\(x\rel{R}y \land yRz \implies xRz\)，则称关系\(\rel{R}\)具有\textbf{传递性}（transitive）.
+对于\(\forall x \in A\)，若满足\(x\rel{R}x\)，则称“关系\(\rel{R}\)具有\textbf{自反性}（reflexive）”；
+对于\(\forall x,y \in A\)，若\(x\rel{R}y \implies y\rel{R}x\)，则称“关系\(\rel{R}\)具有\textbf{对称性}（symmetric）”；
+对于\(\forall x,y \in A\)，若\(x\rel{R}y \land yRx \implies x = y\)，则称“关系\(\rel{R}\)具有\textbf{反对称性}（antisymmetric）”；
+对于\(\forall x,y,z \in A\)，若\(x\rel{R}y \land yRz \implies xRz\)，则称“关系\(\rel{R}\)具有\textbf{传递性}（transitive）”.
 \end{definition}
 
 \begin{definition}
 已知\(\rel{R} \subseteq A^2\).
-如果关系\(\rel{R}\)同时具有自反性、对称性、传递性，则称关系\(\rel{R}\)是集合\(A\)上的\textbf{等价关系}（equivalence）.
-如果关系\(\rel{R}\)同时具有自反性、反对称性、传递性，则称关系\(\rel{R}\)是集合\(A\)上的\textbf{偏序关系}（partial ordering）.
+如果关系\(\rel{R}\)同时具有自反性、对称性、传递性，则称“关系\(\rel{R}\)是集合\(A\)上的\textbf{等价关系}（equivalence）”.
+如果关系\(\rel{R}\)同时具有自反性、反对称性、传递性，则称“关系\(\rel{R}\)是集合\(A\)上的\textbf{偏序关系}（partial ordering）”.
 \end{definition}
 
 \begin{definition}
 对于关系\(\rel{R}\)，把集合\(
 \Set{ x \given \opair{x,y} \in \rel{R} }
-\)称作它的\textbf{定义域}（Domain），记作\(\dom \rel{R}\)；
+\)称作它的\textbf{定义域}（domain），记作\(\dom \rel{R}\)；
 把集合\(
 \Set{ y \given \opair{x,y} \in \rel{R} }
-\)称作它的\textbf{值域}（Range），记作\(\ran \rel{R}\)；
+\)称作它的\textbf{值域}（range），记作\(\ran \rel{R}\)；
 把集合\(
 \dom \rel{R} \cup \ran \rel{R}
-\)称作它的\textbf{域}（Field），记作\(\fld \rel{R}\).
+\)称作它的\textbf{域}（field），记作\(\fld \rel{R}\).
 \end{definition}
 
 \subsection{映射}
@@ -595,8 +746,8 @@ A^+ \defeq A \cup \{A\}.
 \end{definition}
 
 \begin{definition}
-只含有限个元素的集合称为\textbf{有限集}（Finite set）.
-不是有限集的集合称为\textbf{无限集}（或\textbf{无穷集}，Infinite set）.
+只含有限个元素的集合称为\textbf{有限集}（finite set）.
+不是有限集的集合称为\textbf{无限集}（infinite set）.
 \end{definition}
 
 利用上述定义，前面讨论中对自然数定义的讨论可以简化为\[
@@ -995,13 +1146,13 @@ a \cdot (b + c) = a \cdot b + a \cdot c,
 
 
 \section{区间}
-\begin{definition}[区间]
-\textbf{区间}是实数集的子集.设\(a,b\in\mathbb{R}\)，且\(a<b\).定义：
+\begin{definition}
+\textbf{区间}（interval）是实数集的子集.设\(a,b\in\mathbb{R}\)，且\(a<b\).定义：
 \begin{center}
 \begin{tabular}{|c|c|c|c|} \hline
 \multicolumn{2}{|c|}{名称} & 记法 & 描述法表示 \\ \hline
-\multicolumn{2}{|c|}{开区间} & \((a,b)\) & \(\{ x \mid a < x < b \}\) \\ \hline
-\multicolumn{2}{|c|}{闭区间} & \([a,b]\) & \(\{ x \mid a \leqslant x \leqslant b \}\) \\ \hline
+\multicolumn{2}{|c|}{开区间（open interval）} & \((a,b)\) & \(\{ x \mid a < x < b \}\) \\ \hline
+\multicolumn{2}{|c|}{闭区间（closed interval）} & \([a,b]\) & \(\{ x \mid a \leqslant x \leqslant b \}\) \\ \hline
 \multirow{2}{*}{半开区间} & 左开右闭区间 & \((a,b]\) & \(\{ x \mid a < x \leqslant b \}\) \\ \cline{2-4}
 & 左闭右开区间 & \([a,b)\) & \(\{ x \mid a \leqslant x < b \}\) \\ \hline
 \end{tabular}
@@ -1014,7 +1165,7 @@ a \cdot (b + c) = a \cdot b + a \cdot c,
 \[ (-\infty,b) = \{ x \mid x < b\}, \]
 \[ (-\infty,b] = \{ x \mid x \leqslant b\}, \]
 \[ (-\infty,+\infty) = \{ x \mid x \in \mathbb{R} \}. \]
-像这样，端点中任一或全部为无穷大的，称为\textbf{无限区间}.
+像这样，端点中任一或全部为无穷大的，统称为\textbf{无限区间}.
 \end{definition}
 
 \section{上确界与下确界}

@@ -2,23 +2,53 @@
 \section{数列极限}
 \subsection{数列极限的定义}
 \begin{definition}
-设\(\{x_n\}\)为一数列，如果存在常数\(a\)，对于\(\forall \varepsilon > 0\)，总\(\exists N \in \mathbb{N}^+\)，使当\(n > N\)时，不等式\[
+设\(\{x_n\}\)为一数列.
+如果存在常数\(a\)，%
+对于任意给定的正数\(\varepsilon\)（不论它多么小），%
+总存在正整数\(N\)，%
+使得当\(n > N\)时，%
+不等式\[
 \abs{x_n - a} < \varepsilon
-\]都成立，那么就称数列\(\{x_n\}\)\textbf{收敛的}（Convergent），常数\(a\)是数列\(\{x_n\}\)的\textbf{极限}，或者称数列\(\{x_n\}\)\textbf{收敛于}\(a\)，记为\[
-\lim\limits_{n\to\infty}x_n = a,
+\]都成立，%
+那么就称%
+“数列\(\{x_n\}\)是\textbf{收敛的}（convergent）”，%
+“常数\(a\)是数列\(\{x_n\}\)的\textbf{极限}”，%
+或者称“数列\(\{x_n\}\)\textbf{收敛于}\(a\)”，%
+记为\[
+\lim\limits_{n\to\infty} x_n = a,
 \]或\[
 x_n \to a \quad (n \to \infty).
 \]
 
-上述对数列极限的定义可以简化为：\[
-\lim\limits_{n\to\infty}x_n = a
-\iff \forall \varepsilon > 0, \exists N\in\mathbb{N}^+ (n > N \implies \abs{x_n - a} < \varepsilon).
-\]
-
-如果不存在这样的常数\(a\)，就说数列\(\{x_n\}\)没有极限，或者说数列\(\{x_n\}\)是\textbf{发散的}（Divergent），习惯上也说\(\lim\limits_{n\to\infty}x_n\)不存在.
+如果不存在这样的常数\(a\)，%
+就说“数列\(\{x_n\}\)没有极限”，%
+或者说“数列\(\{x_n\}\)是\textbf{发散的}（divergent）”，%
+习惯上也说“极限\(\lim\limits_{n\to\infty} x_n\)不存在”.
 \end{definition}
 
-上面定义中正数\(\varepsilon\)可以任意给定是很重要的，因为只有这样，不等式\(\abs{x_n - a} < \varepsilon\)才能表达出\(x_n\)与\(a\)无限接近的意思.此外还应注意到：定义中的正整数\(N\)是与任意给定的正数\(\varepsilon\)有关的，它随着\(\varepsilon\)的给定而选定.
+上面定义中正数\(\varepsilon\)可以任意给定是很重要的，因为只有这样，不等式\[
+\abs{x_n - a} < \varepsilon
+\]才能表达出\(x_n\)与\(a\)无限接近的意思.
+此外还应注意到：
+定义中的正整数\(N\)是与任意给定的正数\(\varepsilon\)有关的，它随着\(\varepsilon\)的给定而选定.
+
+上述对数列极限的定义（即“数列\(\{a_n\}\)收敛于\(a\)”）可以简化为：\[
+\lim\limits_{n\to\infty} x_n = a
+\iff
+\forall \varepsilon > 0,
+\exists N\in\mathbb{N}^+ (n > N \implies \abs{x_n - a} < \varepsilon).
+\]
+而“数列\(\{a_n\}\)发散”则可表达为：
+\[
+\forall a \in \mathbb{R},
+\exists \varepsilon_0 > 0,
+\forall N \in \mathbb{N},
+\exists n_0 > N
+(
+\abs{a_{n_0} - a} \geqslant \varepsilon_0
+).
+\]
+
 
 \begin{example}
 证明数列\[
@@ -31,46 +61,65 @@ x_n \to a \quad (n \to \infty).
 = \abs{\frac{(-1)^{n-1}}{n}}
 = \frac{1}{n},
 \]所以为使\(\abs{x_n - 1} < \varepsilon\)，须取\(\frac{1}{n} < \varepsilon\)或\(\frac{1}{\varepsilon} < n\).
-也就是说，对于\(\forall \varepsilon > 0\)，取\(N = \round*{\frac{1}{\varepsilon}}\)，则当\(n > N\)时，就有\(\abs{x_n - a} < \varepsilon\)，即\(\lim\limits_{n\to\infty}\frac{n+(-1)^{n-1}}{n}=1\).
+也就是说，对于\(\forall \varepsilon > 0\)，取\(N = \floor*{\frac{1}{\varepsilon}}\)，则当\(n > N\)时，就有\(\abs{x_n - a} < \varepsilon\)，即\(\lim\limits_{n\to\infty}\frac{n+(-1)^{n-1}}{n}=1\).
 \end{proof}
 \end{example}
 
 \begin{example}
 已知\(x_n = \frac{(-1)^n}{(n+1)^2}\)，证明数列\(\Set{x_n}\)的极限是\(0\).
 \begin{proof}
-因为\(\abs{x_n - a} = \abs{\frac{(-1)^n}{(n+1)^2}-0} = \frac{1}{(n+1)^2} < \frac{1}{n+1}\)，所以对于\(\forall\varepsilon>0\)（设\(\varepsilon<1\)），只要\(\frac{1}{n+1}<\varepsilon\)或\(n>\frac{1}{\varepsilon}-1\)，不等式\(\abs{x_n-a}<\varepsilon\)必定成立.所以，取\(N=\round*{\frac{1}{\varepsilon}-1}\)，则当\(n>N\)时就有\(\abs{x_n - a}<\varepsilon\)，即\(\lim\limits_{n\to\infty}\frac{(-1)^n}{(n+1)^2}=0\).
+因为\(\abs{x_n - a} = \abs{\frac{(-1)^n}{(n+1)^2}-0} = \frac{1}{(n+1)^2} < \frac{1}{n+1}\)，所以对于\(\forall\varepsilon>0\)（设\(\varepsilon<1\)），只要\(\frac{1}{n+1}<\varepsilon\)或\(n>\frac{1}{\varepsilon}-1\)，不等式\(\abs{x_n-a}<\varepsilon\)必定成立.所以，取\(N=\floor*{\frac{1}{\varepsilon}-1}\)，则当\(n>N\)时就有\(\abs{x_n - a}<\varepsilon\)，即\(\lim\limits_{n\to\infty}\frac{(-1)^n}{(n+1)^2}=0\).
 \end{proof}
 \end{example}
+
+在利用数列极限的定义来论证某个数\(a\)是数列\(\{x_n\}\)的极限时，%
+重要的是对于任意给定的正数\(\varepsilon\)，要能够指出定义中所说的这种正整数\(N\)确实存在，%
+但没有必要去求最小的\(N\).
+如果知道\(\abs{x_n-a}\)小于某个量（这个量是\(n\)的一个函数），%
+那么当这个量小于\(\varepsilon\)时，\(\abs{x_n-a}<\varepsilon\)当然也成立.
+若令这个量小于\(\varepsilon\)来定出\(N\)比较方便的话，就可采用这种方法.
 
 \begin{example}
 设\(\abs{q}<1\)，证明等比数列\[
 1,q,q^2,\dotsc,q^{n-1},\dotsc
 \]的极限是\(0\).
 \begin{proof}
-对于\(\forall\varepsilon>0\)（设\(\varepsilon<1\)），因为\(\abs{x_n-0}=\abs{q^{n-1}-0}=\abs{q}^{n-1}\)，要使\(\abs{x_n-0}<\varepsilon\)，只要\(\abs{q}^{n-1}<\varepsilon\).取自然对数得\((n-1)\ln\abs{q}<\ln\varepsilon\).因为\(\abs{q}<1\)，\(\ln\abs{q}<0\)，故\(n>1+\frac{\ln\varepsilon}{\ln\abs{q}}\).取\(N=\round*{1+\frac{\ln\varepsilon}{\ln\abs{q}}}\)，则当\(n>N\)时，就有\(\abs{q^{n-1}-0}<\varepsilon\)，即\(\lim\limits_{n\to\infty}q^{n-1}=0\).
+对于\(\forall\varepsilon>0\)（设\(\varepsilon<1\)），因为\(\abs{x_n-0}=\abs{q^{n-1}-0}=\abs{q}^{n-1}\)，要使\(\abs{x_n-0}<\varepsilon\)，只要\(\abs{q}^{n-1}<\varepsilon\).取自然对数得\((n-1)\ln\abs{q}<\ln\varepsilon\).因为\(\abs{q}<1\)，\(\ln\abs{q}<0\)，故\(n>1+\frac{\ln\varepsilon}{\ln\abs{q}}\).取\(N=\floor*{1+\frac{\ln\varepsilon}{\ln\abs{q}}}\)，则当\(n>N\)时，就有\(\abs{q^{n-1}-0}<\varepsilon\)，即
+\begin{equation}
+\lim\limits_{n\to\infty}q^{n-1}=0
+\quad(\abs{q}<1).
+\end{equation}
+由此可知，当\(\abs{q}<1\)时，等比数列\(1,q,q^2,\dotsc,q^{n-1},\dotsc\)的极限是\(0\).
 \end{proof}
 \end{example}
 
 \begin{example}
-证明：\(\lim\limits_{n\to\infty} \sqrt[n]{n^k} = 1\ (k\in\mathbb{N}^+)\).
+证明：\begin{equation}
+\lim\limits_{n\to\infty} \sqrt[n]{n^k} = 1
+\quad(k\in\mathbb{N}^+).
+\end{equation}
 \begin{proof}
-要证\(\forall\varepsilon>0\)，\(\exists N > 0\)，使得当\(n > N\)时，\begin{gather}
+要证\(\forall\varepsilon>0\)，\(\exists N > 0\)，使得当\(n > N\)时，
+\[
 \abs{\sqrt[n]{n^k} - 1} < \varepsilon.
-\tag1
-\end{gather}
+\eqno{(1)}
+\]
 
 因为\(n \geqslant 1\)，\(n^k \geqslant 1\)，\(\sqrt[n]{n^k} \geqslant 1\)，所以(1)式等价于\[
 \abs{\sqrt[n]{n^k} - 1} = \sqrt[n]{n^k} - 1 < \varepsilon,
-\]也即\(\sqrt[n]{n^k} < 1 + \varepsilon\)，\(\sqrt[n]{n} < \sqrt[k]{1+\varepsilon}\)，\begin{gather}
+\]也即\(\sqrt[n]{n^k} < 1 + \varepsilon\)，\(\sqrt[n]{n} < \sqrt[k]{1+\varepsilon}\)，
+\[
 \frac{1}{n} \ln n < \frac{1}{k} \ln(1+\varepsilon);
-\tag2
-\end{gather}
+\eqno{(2)}
+\]
 又因为\(\ln n < \sqrt{n}\)，所以只要有\[
 \frac{1}{n} \ln n < \frac{1}{n} \sqrt{n} = \frac{1}{\sqrt{n}} \leqslant \frac{1}{k} \ln(1+\varepsilon)
-\]或\begin{gather}
+\]或
+\[
 n \geqslant \left[ \frac{k}{\ln(1+\varepsilon)} \right]^2
-\tag3
-\end{gather}成立即有(2)式成立，那么取\[
+\eqno{(3)}
+\]
+成立即有(2)式成立，那么取\[
 N = \ceil*{\left[ \frac{k}{\ln(1+\varepsilon)} \right]^2},
 \]就对\(\forall\varepsilon>0\)，\(\exists N > 0\)，使得当\(n > N\)时，有\[
 \abs{\sqrt[n]{n^k} - 1} < \varepsilon
@@ -82,48 +131,72 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\varepsilon)} \right]^2},
 \begin{theorem}[极限的唯一性]\label{theorem:极限.收敛数列的唯一性}
 如果数列\(\{x_n\}\)收敛，那么它的极限唯一.
 \begin{proof}
-用反证法.假设当\(n\to\infty\)时，同时有\(x_n \to a\)及\(x_n \to b\)，且\(a < b\).取\(\varepsilon = \frac{b-a}{2}\).因为\(\lim\limits_{n\to\infty}x_n = a\)，所以有\begin{gather}
-\exists N_1 \in \mathbb{N}^+ \left(n > N_1 \implies \abs{x_n - a} < \frac{b-a}{2}\right) \tag1
-\end{gather}成立.同理，因为\(\lim\limits_{n\to\infty}x_n = b\)，所以有\begin{gather}
-\exists N_2 \in \mathbb{N}^+ \left(n > N_2 \implies \abs{x_n - a} < \frac{b-a}{2}\right) \tag2
-\end{gather}成立.取\(N = \max\{N_1,N_2\}\)，则当\(n > N\)时，上述两个不等式应同时成立.
+用反证法.
+假设当\(n\to\infty\)时，同时有\(x_n \to a\)及\(x_n \to b\)，且\(a < b\).
+取\(\varepsilon = \frac{b-a}{2}\).
+因为\(\lim\limits_{n\to\infty}x_n = a\)，所以有
+\[
+\exists N_1 \in \mathbb{N}^+ \left(n > N_1 \implies \abs{x_n - a} < \frac{b-a}{2}\right)
+\eqno{(1)}
+\]
+成立.
+同理，因为\(\lim\limits_{n\to\infty}x_n = b\)，所以有
+\[
+\exists N_2 \in \mathbb{N}^+ \left(n > N_2 \implies \abs{x_n - a} < \frac{b-a}{2}\right)
+\eqno{(2)}
+\]
+成立.
+取\(N = \max\{N_1,N_2\}\)，则当\(n > N\)时，上述两个不等式应同时成立.
 但由(1)式有\(x_n<\frac{a+b}{2}\)，由(2)式有\(x_n>\frac{a+b}{2}\)，矛盾，故收敛数列的极限必定唯一.
 \end{proof}
 \end{theorem}
 
-\begin{example}
+\begin{example}\label{example:极限.振荡数列不存在极限}
 证明数列\(x_n=(-1)^{n+1}\ (n=1,2,\dotsc)\)是发散的.
 \begin{proof}
-假设这级数收敛，则它具有唯有的极限\(\lim\limits_{n\to\infty}x_n=a\).
-按数列极限的定义，对于\(\varepsilon=1/2\)，\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，\(\abs{x_n-a}<1/2\)或\(x_n\in\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)成立.但这是不可能的，因为\(n\to\infty\)时，\(x_n\)无休止地一再重复取得\(1\)和\(-1\)这两个数，而这两个数不可能同时属于长度为\(1\)的开区间\(\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)内，因此这数列发散.
+假设这级数收敛，则它具有唯一的极限\(\lim\limits_{n\to\infty}x_n = a\).
+按数列极限的定义，对于\(\varepsilon=1/2\)，\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，\(\abs{x_n-a}<1/2\)或\(x_n\in\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)成立.
+但这是不可能的，因为\(n\to\infty\)时，\(x_n\)无休止地一再重复取得\(1\)和\(-1\)这两个数，而这两个数不可能同时属于长度为\(1\)的开区间\(\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)内，因此这数列发散.
 \end{proof}
 \end{example}
 
 \begin{definition}[数列的有界性]
 对于数列\(\{x_n\}\)，若\(\exists M > 0\)，使得对于\(\forall x_n\)都满足不等式\[
 \abs{x_n} \leqslant M,
-\]则称数列\(\{x_n\}\)是\textbf{有界的}；如果这样的正数\(M\)不存在，就说数列\(\{x_n\}\)是\textbf{无界的}.
+\]则称“数列\(\{x_n\}\)是\textbf{有界的}”；
+如果这样的正数\(M\)不存在，就说“数列\(\{x_n\}\)是\textbf{无界的}”.
 \end{definition}
-例如，数列\(x_n=\frac{n}{n+1}\)（\(n=1,2,\dotsc\)）是有界的，因为可取\(M=1\)，而使\[
+例如，数列\(x_n = \frac{n}{n+1}\ (n=1,2,\dotsc)\)是有界的，因为可取\(M=1\)，而使\[
 \abs{\frac{n}{n+1}} \leqslant 1
 \]对于一切正整数\(n\)都成立.
 
-数列\(x_n = 2^n\)（\(n=1,2,\dotsc\)）是无界的，因为当\(n\)无限增加时，\(2^n\)可超过任何正数.
+数列\(x_n = 2^n\ (n=1,2,\dotsc)\)是无界的，因为当\(n\)无限增加时，\(2^n\)可超过任何正数.
 
 \begin{theorem}[收敛数列的有界性]\label{theorem:极限.收敛数列的有界性}
 如果数列\(\{x_n\}\)收敛，那么数列\(\{x_n\}\)一定有界.
 \begin{proof}
-因为数列\(\{x_n\}\)收敛，设\(\lim\limits_{n\to\infty}x_n = a\).根据数列极限的定义，对于\(\varepsilon = 1\)，\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，不等式\(\abs{x_n - a} < 1\)都成立.于是，当\(n > N\)时，\[
+既然数列\(\{x_n\}\)收敛，不妨设\(\lim\limits_{n\to\infty}x_n = a\).
+根据数列极限的定义，对于\(\varepsilon = 1\)，\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，不等式\(\abs{x_n - a} < 1\)都成立.
+于是，当\(n > N\)时，\[
 \abs{x_n} = \abs{(x_n - a) + a} \leqslant \abs{x_n - a} + \abs{a} < 1 + \abs{a}.
-\]取\(M = \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_N},1+\abs{a}\}\)，那么数列\(\{x_n\}\)中的一切\(x_n\)都满足不等式\[
+\]
+取\(M = \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_N},1+\abs{a}\}\)，%
+那么数列\(\{x_n\}\)中的一切\(x_n\)都满足不等式\[
 \abs{x_n} \leqslant M.
-\]这就证明了数列\(\{x_n\}\)是有界的.
+\]
+这就证明了数列\(\{x_n\}\)是有界的.
 \end{proof}
 \end{theorem}
-根据上述定理，如果数列\(\{x_n\}\)是无界的，那么数列\(\{x_n\}\)一定发散.但是，如果数列\(\{x_n\}\)有界，却不能断定数列\(\{x_n\}\)一定收敛.
-例如数列\[
-1,-1,1,\dotsc,(-1)^{n+1},\dotsc,
-\]有界，但它是发散的，即数列有界是数列收敛的必要不充分条件.
+
+根据\cref{theorem:极限.收敛数列的有界性} 立即有以下推论.
+\begin{corollary}
+如果数列\(\{x_n\}\)是无界的，那么数列\(\{x_n\}\)一定发散.
+\end{corollary}
+但是，如果数列\(\{x_n\}\)有界，却不能断定数列\(\{x_n\}\)一定收敛.
+例如，在\cref{example:极限.振荡数列不存在极限} 中，数列\[
+1,-1,1,\dotsc,(-1)^{n+1},\dotsc
+\]有界，但它是发散的.
+于是我们可以说：数列有界是数列收敛的必要不充分条件.
 
 \begin{theorem}[收敛数列的保号性]\label{theorem:极限.收敛数列的保号性}
 如果\(\lim\limits_{n\to\infty}x_n = a\)，且\(a \gtrless 0\)，那么\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，都有\(x_n \gtrless 0\).
@@ -155,7 +228,7 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\varepsilon)} \right]^2},
 当\(a = 0\)时，\(\frac{\sqrt{n^2+a^2}-n}{n} = \frac{\sqrt{n^2}-n}{n} = 0\).
 
 对于\(\forall\varepsilon>0\)，要使\(\abs{x_n-1}<\varepsilon\)，根据上面的讨论可知，只需\(\frac{a}{n}<\varepsilon\)，\(n>\frac{a}{\varepsilon}\).
-取\(N = \round*{\frac{a}{\varepsilon}}\)，则当\(n>N\)时有\(\abs{x_n-1}<\varepsilon\)，即\[
+取\(N = \floor*{\frac{a}{\varepsilon}}\)，则当\(n>N\)时有\(\abs{x_n-1}<\varepsilon\)，即\[
 \ys = 1.
 \qedhere
 \]
@@ -171,7 +244,7 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\varepsilon)} \right]^2},
 \end{align*}
 
 对于\(\forall\varepsilon>0\)，要使\(\abs{x_n-1}<\varepsilon\)，只需\(\frac{a^2}{n^2}<\varepsilon\)，\(n^2>\frac{a^2}{\varepsilon}\)，\(n>\sqrt\frac{a^2}{\varepsilon}\).
-取\(N = \round*{\sqrt\frac{a^2}{\varepsilon}}\)，则当\(n>N\)时有\(\abs{x_n-1}<\varepsilon\)，即\[
+取\(N = \floor*{\sqrt\frac{a^2}{\varepsilon}}\)，则当\(n>N\)时有\(\abs{x_n-1}<\varepsilon\)，即\[
 \ys = 1.
 \qedhere
 \]
@@ -187,7 +260,7 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\varepsilon)} \right]^2},
 \(\abs{x_n - 1} = \abs{\left(1-\frac{1}{10^n}\right)-1} = \frac{1}{10^n}\).
 
 对\(\forall \varepsilon>0\)（设\(\varepsilon<1\)），要使\(\abs{x_n-1}<\varepsilon\)，只需\(\frac{1}{10^n}<\varepsilon\)，\(10^n>\frac{1}{\varepsilon}\)，\(n>\lg\frac{1}{\varepsilon}=-\lg\varepsilon\).
-取\(N=\round{-\lg\varepsilon}\)，则当\(n>N\)时有\(\abs{x_n-1}<\varepsilon\)成立，即\[
+取\(N=\floor{-\lg\varepsilon}\)，则当\(n>N\)时有\(\abs{x_n-1}<\varepsilon\)成立，即\[
 \l x_n = \l \left(1-\frac{1}{10^n}\right) = \ys = 1.
 \qedhere
 \]
@@ -1659,50 +1732,45 @@ C - \varepsilon <
 在实数域中，增量\(\increment u\)既可以是正的，也可以是负的.当\(\increment u > 0\)时，变量\(u\)从初值变到终值时是增大的；当\(\increment u < 0\)时，变量\(u\)从初值变到终值时是减小的.
 
 \begin{definition}\label{definition:极限.函数在一点的连续性}
-设函数\(y=f(x)\)在点\(x_0\)的某一邻域内有定义，如果\[
+设函数\(y=f(x)\)在点\(x_0\)的某一邻域内有定义.
+如果\[
 \lim\limits_{\increment x\to0} \increment y
 =\lim\limits_{\increment x\to0} [f(x_0 + \increment x)-f(x_0)]
 =0,
-\]那么就称\textbf{函数\(y=f(x)\)在点\(x_0\)连续}.
-\end{definition}
-
-函数在点\(x_0\)连续的定义也可叙述如下：
-\begin{definition}
-设函数\(y=f(x)\)在点\(x_0\)的某一邻域内有定义.如果\[
+\]或者\[
 \lim\limits_{x \to x_0} f(x) = f(x_0),
 \]或者\[
 \forall \varepsilon > 0,
 \exists \delta > 0
 ( 0 < \abs{x - x_0} < \delta \implies \abs{f(x) - f(x_0)} < \varepsilon )
-\]那么就称\textbf{函数\(f(x)\)在点\(x_0\)连续}.
+\]那么就称“函数\(f(x)\)在点\(x_0\)\textbf{连续}（the function \(f(x)\) is continuous at \(x_0\)）”，%
+称“点\(x_0\)是函数\(f(x)\)的\textbf{连续点}（point of continuity）”.
 
 如果\(f(x)\)在点\(x_0\)的某一左邻域内有定义，极限\(f(x_0^-) = \lim\limits_{x \to x_0^-} f(x)\)存在，且\[
 f(x_0^-) = f(x_0),
-\]则称\textbf{函数\(f(x)\)在点\(x_0\)左连续}.
+\]则称“函数\(f(x)\)在点\(x_0\)\textbf{左连续}（the function \(f(x)\) is left-continuous at \(x_0\)）”.
 
 如果\(f(x)\)在点\(x_0\)的某一右邻域内有定义，极限\(f(x_0^+) = \lim\limits_{x \to x_0^+} f(x)\)存在，且\[
 f(x_0^+) = f(x_0),
-\]则称\textbf{函数\(f(x)\)在点\(x_0\)右连续}.
+\]则称“函数\(f(x)\)在点\(x_0\)\textbf{右连续}（the function \(f(x)\) is right-continuous at \(x_0\)）”.
 \end{definition}
 
 \begin{definition}
-如果函数\(f(x)\)在区间\(I\)上每一点都连续，则称函数\(f(x)\)是在区间\(I\)上的连续函数，或者说函数\(f(x)\)在区间\(I\)上连续.
-如果区间包含端点，那么函数在右端点连续是指左连续，在左端点连续是指右连续.
+如果函数\(f(x)\)在\(\forall x \in (a,b)\)处都连续，%
+那么称“函数\(f(x)\)在开区间\((a,b)\)内连续”.
+
+如果函数\(f(x)\)不仅在\(\forall x \in (a,b)\)处都连续，%
+还在点\(a\)处右连续，且在\(b\)处左连续，%
+那么称“函数\(f(x)\)在闭区间\([a,b]\)上连续”.
 \end{definition}
+类似地可以定义函数\(f(x)\)在半开半闭区间\((a,b]\)或\([a,b)\)内连续的概念.
 
 \begin{definition}\label{definition:函数族.连续函数族}
 由区间\(I\)上全部的连续函数组成的集合，称作\textbf{连续函数族}\footnote{%
 也可将“函数族”称为“函数空间”.%
 }，记作\(C(I)\)\footnote{%
 当\(I=(a,b)\)时，可改写为\(C(a,b)\)，以此类推.%
-}，即\[
-C(I) = \Set*{
-	f\colon I \to \mathbb{R}
-	\given
-	\forall x \in I :
-		\lim\limits_{\increment x\to0} [f(x+\increment x)-f(x)] = 0
 }.
-\]
 \end{definition}
 
 \begin{example}
@@ -1784,22 +1852,27 @@ t \in [\alpha,\beta].
 \end{definition}
 
 \subsection{函数的间断点}
-设函数\(f(x)\)在点\(x_0\)的某去心邻域内有定义.在此前提下，如果函数\(f(x)\)有下列三种情形之一：\begin{enumerate}
+设函数\(f(x)\)在点\(x_0\)的某去心邻域内有定义.
+在此前提下，如果函数\(f(x)\)有下列三种情形之一：
+\begin{enumerate}
 \item 在\(x=x_0\)没有定义；
 \item 虽在\(x=x_0\)有定义，但\(\lim\limits_{x \to x_0} f(x)\)不存在；
 \item 虽在\(x=x_0\)有定义，且\(\lim\limits_{x \to x_0} f(x)\)存在，但\(\lim\limits_{x \to x_0} f(x) \neq f(x_0)\)，%
-\end{enumerate}则函数\(f(x)\)在点\(x_0\)不连续，而点\(x_0\)称为函数\(f(x)\)的不连续点或间断点.
+\end{enumerate}
+则称“函数\(f(x)\)在点\(x_0\)不连续”，%
+称“点\(x_0\)是函数\(f(x)\)的\textbf{不连续点}或\textbf{间断点}（discontinuity）”.
 
 \begin{definition}
-如果函数\(y=f(x)\)在点\(x_0\)不连续，则点\(x_0\)称为函数\(f(x)\)的\textbf{不连续点}或\textbf{间断点}.
-
 如果\(\lim\limits_{x \to x_0}f(x) = \infty\)，则称点\(x_0\)为函数的\textbf{无穷间断点}.
-如果\(f(x)\)在点\(x_0\)的某一邻域是有界的，但其左、右极限均不存在，则称点\(x_0\)为函数的\textbf{振荡间断点}.
-如果\(f(x)\)在点\(x_0\)没有定义，\(\lim\limits_{x \to x_0}f(x) = A\)，则称点\(x_0\)为函数的\textbf{可去间断点}.
-如果\(f(x)\)在点\(x_0\)的左、右极限存在但不相等，即\(\lim\limits_{x \to x_0^-}f(x) \neq \lim\limits_{x \to x_0^+}f(x)\)，则称点\(x_0\)为函数的\textbf{跳跃间断点}.
 
-如果\(x_0\)是函数\(f(x)\)的间断点，但左极限\(f(x_0^-)\)及右极限\(f(x_0^+)\)都存在，那么\(x_0\)称为函数\(f(x)\)的\textbf{第一类间断点}.
-不是第一类间断点的间断点，称为\textbf{第二类间断点}.
+如果\(f(x)\)在点\(x_0\)的某一邻域是有界的，但其左、右极限均不存在，则称点\(x_0\)为函数的\textbf{振荡间断点}.
+
+如果\(f(x)\)在点\(x_0\)没有定义，\(\lim\limits_{x \to x_0}f(x) = A\)，则称点\(x_0\)为函数的\textbf{可去间断点}（removable discontinuity）.
+
+如果\(f(x)\)在点\(x_0\)的左、右极限存在但不相等，即\(\lim\limits_{x \to x_0^-}f(x) \neq \lim\limits_{x \to x_0^+}f(x)\)，则称点\(x_0\)为函数的\textbf{跳跃间断点}（jump discontinuity）.
+
+如果\(x_0\)是函数\(f(x)\)的间断点，但左极限\(f(x_0^-)\)及右极限\(f(x_0^+)\)都存在，那么\(x_0\)称为函数\(f(x)\)的\textbf{第一类间断点}（discontinuity of the first kind）.
+不是第一类间断点的间断点，称为\textbf{第二类间断点}（discontinuity of the second kind）.
 \end{definition}
 显然，可去间断点、跳跃间断点是第一类间断点，无穷间断点、振荡间断点是第二类间断点.
 
@@ -1842,7 +1915,7 @@ D(x) = \left\{ \begin{array}{ll}
 
 \begin{example}
 记集合\(A = \Set*{ x\in[0,1] \given x = \frac{p}{q} \land p,q\in\mathbb{N}^+ }\).
-黎曼函数\[
+证明：黎曼函数\[
 R(x) = \left\{ \begin{array}{cl}
 \frac{1}{q}, & x \in A, \\
 0, & x \in [0,1] - A
@@ -2045,6 +2118,25 @@ f(x) \geqslant f(x_0),
 
 \begin{theorem}[有界性与最大值最小值定理]\label{theorem:极限.闭区间上连续函数的性质.有界性与最大值最小值定理}
 在闭区间上连续的函数在该区间上有界且一定能取得它的最大值和最小值.
+\begin{proof}
+用反证法.
+假设连续函数\(f\)在闭区间\([a,b]\)上无界，那么\[
+\forall M>0,
+\exists x_n\in[a,b]
+\bigg[
+\abs{f(x_n)} > M
+\bigg],
+\]换言之，数列\(\{f(x_n)\}\)满足\[
+\lim\limits_{n\to\infty} f(x_n) = \infty;
+\]
+但数列\(\{x_n\}\)是有界的，%
+因此在闭区间\([a,b]\)上存在收敛子列\(\{x_{n_k}\}\)，即\[
+\lim\limits_{k\to\infty} x_{n_k} = c \in [a,b];
+\]
+而根据函数\(f\)的连续性可知，\[
+f(c) = \lim\limits_{k\to\infty} f(x_{n_k}),
+\]这就和\(f(x_n)\to\infty\ (n\to\infty)\)矛盾.
+\end{proof}
 \end{theorem}
 注意：如果函数在开区间内连续，或函数在闭区间上有间断点，那么函数在该区间上不一定有界，也不一定有最大值或最小值.
 
