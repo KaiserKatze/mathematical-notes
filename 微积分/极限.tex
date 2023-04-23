@@ -663,7 +663,7 @@ f(x) = a_n, \quad x\in\left[\frac{1}{n+1},\frac{1}{n}\right), n=1,2,\dotsc.
 \end{example}
 
 \section{函数极限与数列极限的关系\ 海涅定理}
-\begin{theorem}[海涅（Heine）定理]\label{theorem:极限.海涅定理}
+\begin{theorem}[海涅定理]\label{theorem:极限.海涅定理}
 \def\Dx{\mathring{U}(x_0,r)}%
 设函数\(f\colon \Dx\to\mathbb{R}\)，常数\(A\in\mathbb{R}\).
 极限\(\lim\limits_{x \to x_0} f(x) = A\)的充要条件是：\[
@@ -1344,7 +1344,7 @@ e^x = \lim\limits_{n\to\infty} \left(1+\frac{x}{n}\right)^n.
 = e.
 \]
 
-画出函数\(y=\left(1+\frac{1}{x}\right)^x\)（\(x\in(-\infty,-1)\cup(0,+\infty)\)）的图像如\cref{figure:极限.函数(1+1/x)^x的图像} .
+画出函数\(y=\left(1+\frac{1}{x}\right)^x\)（\(x\in(-\infty,-1)\cup(0,+\infty)\)）的图像如\cref{figure:极限.函数(1+1/x)^x的图像}.
 
 \begin{figure}
 \centering
@@ -1387,7 +1387,7 @@ y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
 \]
 \end{solution}
 
-画出函数\(y=\left(1-\frac{1}{x}\right)^x\)（\(x\in(-\infty,0)\cup[1,+\infty)\)）的图像如\cref{figure:极限.函数(1-1/x)^x的图像} .
+画出函数\(y=\left(1-\frac{1}{x}\right)^x\)（\(x\in(-\infty,0)\cup[1,+\infty)\)）的图像如\cref{figure:极限.函数(1-1/x)^x的图像}.
 \begin{figure}
 \centering
 \begin{tikzpicture}[scale=.5]
@@ -2025,13 +2025,13 @@ D(x) = \lim\limits_{n\to+\infty} a_n = 0.
 \item 若\(\mathring{U}(x_0) \subseteq \D\)且\(\lim\limits_{x \to x_0}g(x) = u_0\)，则\[
 \lim\limits_{x \to x_0}f[g(x)]
 = \lim\limits_{u \to u_0}f(u) = f(u_0)
-= f\bigl[ \lim\limits_{x \to x_0}g(x) \bigr].
+= f\left[ \lim\limits_{x \to x_0} g(x) \right].
 \]
 
 \item 若\(\mathring{U}(\infty) \subseteq \D\)且\(\lim\limits_{x\to\infty}g(x) = u_0\)，则\[
 \lim\limits_{x \to \infty}f[g(x)]
 = \lim\limits_{u \to u_0}f(u) = f(u_0)
-= f\bigl[ \lim\limits_{x \to \infty}g(x) \bigr].
+= f\left[ \lim\limits_{x \to \infty} g(x) \right].
 \]
 \end{enumerate}
 \end{theorem}
@@ -2109,33 +2109,35 @@ D(x) = \lim\limits_{n\to+\infty} a_n = 0.
 \begin{definition}
 函数\(f(x)\)在区间\(I\)上有定义.如果有\(x_0 \in I\)，使得对于任一\(x \in I\)都有\[
 f(x) \leqslant f(x_0),
-\]则称\(f(x_0)\)是函数\(f(x)\)在区间\(I\)上的\textbf{最大值}，记作\(\max\limits_{x \in I}f(x) = f(x_0)\).
+\]则称“\(f(x_0)\)是函数\(f(x)\)在区间\(I\)上的\textbf{最大值}”，记作\(\max\limits_{x \in I}f(x) = f(x_0)\).
 
 如果有\(x_0 \in I\)，使得对于任一\(x \in I\)都有\[
 f(x) \geqslant f(x_0),
-\]则称\(f(x_0)\)是函数\(f(x)\)在区间\(I\)上的\textbf{最小值}，记作\(\min\limits_{x \in I}f(x) = f(x_0)\).
+\]则称“\(f(x_0)\)是函数\(f(x)\)在区间\(I\)上的\textbf{最小值}”，记作\(\min\limits_{x \in I}f(x) = f(x_0)\).
 \end{definition}
 
 \begin{theorem}[有界性与最大值最小值定理]\label{theorem:极限.闭区间上连续函数的性质.有界性与最大值最小值定理}
 在闭区间上连续的函数在该区间上有界且一定能取得它的最大值和最小值.
 \begin{proof}
 用反证法.
-假设连续函数\(f\)在闭区间\([a,b]\)上无界，那么\[
+假设连续函数\(f\)在闭区间\([a,b]\)上无界，那么根据\hyperref[definition:函数.函数的有界性]{有界函数的定义} 可知\[
 \forall M>0,
 \exists x_n\in[a,b]
-\bigg[
+\bigl[
 \abs{f(x_n)} > M
-\bigg],
-\]换言之，数列\(\{f(x_n)\}\)满足\[
+\bigl],
+\]换言之，函数列\(\{f(x_n)\}\)满足\[
 \lim\limits_{n\to\infty} f(x_n) = \infty;
 \]
-但数列\(\{x_n\}\)是有界的，%
-因此在闭区间\([a,b]\)上存在收敛子列\(\{x_{n_k}\}\)，即\[
+但是数列\(\{x_n\}\)有界（即\(a \leqslant x_n \leqslant b\)），%
+因此在闭区间\([a,b]\)内存在收敛子列\(\{x_{n_k}\}\)，%
+不妨设\[
 \lim\limits_{k\to\infty} x_{n_k} = c \in [a,b];
 \]
-而根据函数\(f\)的连续性可知，\[
+然而根据函数\(f\)的连续性可知，\[
 f(c) = \lim\limits_{k\to\infty} f(x_{n_k}),
-\]这就和\(f(x_n)\to\infty\ (n\to\infty)\)矛盾.
+\]
+这就和\(f(x_n)\to\infty\ (n\to\infty)\)矛盾，因此函数\(f\)在\([a,b]\)上有界.
 \end{proof}
 \end{theorem}
 注意：如果函数在开区间内连续，或函数在闭区间上有间断点，那么函数在该区间上不一定有界，也不一定有最大值或最小值.

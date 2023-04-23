@@ -1,0 +1,20 @@
+\ProvidesPackage{natural-set}% 以纯粹集合论的语言表示自然数
+
+\RequirePackage{amsmath}
+\newcommand{\NaturalSet}[1]{% 定义 \NaturalSet 命令
+  \ifnum#1=0 % 如果输入参数是 0
+    \emptyset % 输出空集符号
+  \else % 否则
+    \lbrace % 输出左花括号
+    \NaturalSetLoop{0}{\the\numexpr#1-1\relax}% 调用内层循环
+    \rbrace % 输出右花括号
+  \fi
+}
+% 定义内层循环命令
+\def\NaturalSetLoop#1#2{%
+  \ifnum#1<#2 % 如果未达到目标次数
+    \NaturalSet{#1},\,\NaturalSetLoop{\the\numexpr#1+1\relax}{#2}% 递归调用自身，输出第 #1 个自然数集合和逗号
+  \else % 否则
+    \NaturalSet{#1} % 输出最后一个自然数集合
+  \fi
+}

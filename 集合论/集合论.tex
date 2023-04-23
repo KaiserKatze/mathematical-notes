@@ -1,4 +1,5 @@
 \chapter{集合论}
+%@see: https://plato.stanford.edu/entries/set-theory/ZF.html
 虽然直到19世纪末德国数学家康托（Cantor）才创立了集合论，但是其实人们很早就开始使用集合的概念与运算了.
 在《周易·系辞下》中有这么一句话：“上古结绳而治，后世圣人易之以书契.”
 于是我们想到，古人在农业生产中始终有着对农产品（例如红枣、覆盆子、野兔、鲤鱼等）分类、计数的需要，即将同类的产品集中地放置，再用一个符号（绳结或算筹）表示这类产品的数量.
@@ -108,6 +109,7 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \end{figure}
 
 \section{公理化集合论}
+\subsection{外延公理}
 \begin{axiom}[外延公理]
 如果集合\(A\)与集合\(B\)具有相同的元素，则称“集合\(A\)与集合\(B\)\textbf{相等}”，记作\(A=B\)，即\[
 \forall A, \forall B \Bigl[
@@ -118,8 +120,9 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \end{axiom}
 外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
 
+\subsection{空集公理}
 \begin{axiom}[空集公理]
-总存在这样一个集合，没有任何元素属于它，即\[
+总存在这样一个集合\(A\)，没有任何元素属于它，即\[
 \exists A,\forall x( x \notin A ).
 \]
 \end{axiom}
@@ -131,7 +134,7 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 定义空集\(\emptyset\)时一定要注意两点：
 一是“空集”是否存在，这已由空集公理确保；
 二是“空集”是否唯一，这则由外延公理确保.
-没有这两条公理的帮助，我们就不能说\(\emptyset\)是\cemph{良定义的}.
+若是没有这两条公理的帮助，我们就不能说\(\emptyset\)是\cemph{良定义的}.
 
 利用描述法，我们可以重新定义空集如下：\[
 \emptyset \defeq \Set{ x \given x \neq x }.
@@ -142,6 +145,7 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 这是因为\(\emptyset \in \Set{\emptyset}\)但\(\emptyset \notin \emptyset\).
 \end{example}
 
+\subsection{对集公理}
 \begin{axiom}[对集公理]
 对于任意集合\(u\)和\(v\)，总存在一个集合\(B\)，它的元素只有\(u\)和\(v\)，即\[
 \forall u, \forall v, \exists B, \forall x \bigl(
@@ -159,6 +163,7 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \]为\(A\)和\(B\)的\textbf{对集}（Pair set）.
 \end{definition}
 
+\subsection{子集公理}
 \begin{axiom}[子集公理]
 对于不涉及\(B\)的每一条命题公式\(\lambda\)，下式是一条公理：\[
 \forall A, \exists B, \forall x \bigl(
@@ -188,26 +193,31 @@ B \in B \iff B \notin B,
 
 利用子集定理，我们可以进一步定义子集、真子集、交集等概念.
 \begin{definition}
-设\(A\)、\(B\)是两个集合，如果集合\(A\)的元素都是集合\(B\)的元素，则称\(A\)是\(B\)的\textbf{子集}（\(A\) is a Subset of \(B\)），记作\(A \subseteq B\)（读作\(A\)包含于\(B\)，\(A\) is included in \(B\)）或\(B \supseteq A\)（读作\(B\)包含\(A\)，\(B\) includes \(A\)），即\[
-\forall x \in A \bigl( x \in B \bigr) \iff A \subseteq B.
+设\(A\)、\(B\)是两个集合，如果集合\(A\)的元素都是集合\(B\)的元素，则称“\(A\)是\(B\)的\textbf{子集}（\(A\) is a \textit{subset} of \(B\)）”，%
+记作\(A \subseteq B\)读作“\(A\)包含于\(B\)（\(A\) is included in \(B\)）”，%
+或记作\(B \supseteq A\)读作“\(B\)包含\(A\)（\(B\) includes \(A\)）”，%
+即\[
+\forall x \in A \bigl( x \in B \bigr)
+\iff A \subseteq B
+\iff B \supseteq A.
 \]
 
-若集合\(A \subseteq B\)且\(A \neq B\)，则称\(A\)是\(B\)的\textbf{真子集}（Proper subset），记作\(A \subsetneqq B\).
+若集合\(A \subseteq B\)且\(A \neq B\)，则称“\(A\)是\(B\)的\textbf{真子集}（\(A\) is a \textit{proper subset} of \(B\)）”，记作\(A \subsetneqq B\)读作“\(A\)是\(B\)的真子集”.
 \end{definition}
 
-\begin{property}
+\begin{theorem}
 任意集合都是其本身的子集，即\[
 \forall A \bigl( A \subseteq A \bigr).
 \]
-\end{property}
+\end{theorem}
 
-\begin{property}
+\begin{theorem}
 空集\(\emptyset\)是任何集合的子集，即\[
 \forall A \bigl( \emptyset \subseteq A \bigr);
 \]还是任何非空集合的真子集，即\[
 \forall A \bigl( A \neq \emptyset \iff \emptyset \subsetneqq A \bigr).
 \]
-\end{property}
+\end{theorem}
 
 在学习了从属关系（\(\in\)）和包含关系（\(\subseteq\)）以后，切莫将两者搞混.
 在讨论\(A \in B\)是否成立时，我们是将\(A\)作为一个整体，看它是不是\(B\)中的一个元素.
@@ -219,18 +229,19 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \]
 \end{theorem}
 
+\subsection{幂集公理}
 \begin{axiom}[幂集公理]
 对于任意集合\(A\)，总存在这样一个集合——它的全部元素恰好是集合\(A\)的全部子集，即\[
 \forall A, \exists B, \forall x ( x \in B \iff x \subseteq A ).
 \]
 
-像这样由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合\(B\)，称作集合\(A\)的\textbf{幂集}（Power set），记作\(\Powerset A\)（有的地方也记作\(2^A\)或\(\mathcal{P}A\)），即\[
+像这样由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合\(B\)，称作集合\(A\)的\textbf{幂集}（power set），记作\(\Powerset A\)（有的地方也记作\(2^A\)或\(\mathcal{P}A\)），即\[
 \Powerset A \equiv \Set{x \given x \subseteq A}.
 \]
 \end{axiom}
 幂集公理在英语中称作Power Set Axiom，在德语中称作Axiom der Potenzmenge.
 
-空集公理、对集公理、并集公理、幂集公理并称\textbf{集合存在公理}（Set existence axioms）.
+空集公理、对集公理、并集公理、幂集公理并称\textbf{集合存在公理}（Set Existence Axioms）.
 
 \begin{example}
 \(\Powerset \emptyset = \{ \emptyset \},%
@@ -245,6 +256,7 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \end{solution}
 \end{example}
 
+\subsection{并集公理}
 \begin{axiom}[并集公理]
 对于任意集合\(a\)和\(b\)，总存在这样一个集合——它的元素要么属于\(a\)，要么属于\(b\)，即\[
 \forall a, \forall b, \exists B, \forall x( x \in B \iff x \in a \lor x \in b ).
@@ -253,6 +265,7 @@ A \subseteq B \land B \subseteq A \iff A = B.
 上述公理在英语中称作Union Axiom, Preliminary Form.
 并集公理在德语中称作Axiom der Vereinigung.
 
+\subsection{集合代数}
 \begin{definition}[集合的交、并、差]
 设集合\(A\)、\(B\).
 称集合\[
@@ -269,7 +282,10 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \end{definition}
 
 \begin{definition}[全集、补集]
-有时，我们研究某个问题限定在一个大的集合\(U\)中进行，所研究的其他集合都是\(U\)的子集.此时我们称集合\(U\)为\textbf{全集}（或\textbf{基本集}）.设\(A \subseteq U\)，则称\(U-A\)为\(A\)的\textbf{补集}（或\textbf{余集}），记作\(\overline{A}\)（或\(\complement_U A\)，或\(A^C\)）.
+有时，我们研究某个问题限定在一个大的集合\(U\)中进行，所研究的其他集合都是\(U\)的子集；
+此时我们称集合\(U\)为\textbf{全集}（universe）或\textbf{基本集}.
+
+设集合\(A \subseteq U\)，则称\(U-A\)为\(A\)的\textbf{补集}或\textbf{余集}，记作\(\overline{A}\)，或\(\complement_U A\)，或\(A^C\).
 \end{definition}
 
 我们可以进一步改善并集公理如下：
@@ -302,12 +318,13 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \end{theorem}
 
 \begin{definition}[系的并、交]
-设系\(A = \Set{\v{a}{n}}\).称集合\(\v{a}{n}\)的并为\(A\)的并，即\[
+设系\(A = \Set{\v{a}{n}}\).
+称集合\(\v{a}{n}\)的并为\(A\)的\textbf{并}，即\[
 \bigcup A \equiv \bigcup\limits_i a_i
 = \Set{ x \given x \in a, a \in A }.
 \]
 
-称集合\(\v{a}{n}\)的并为\(A\)的交，即\[
+称集合\(\v{a}{n}\)的并为\(A\)的\textbf{交}，即\[
 \bigcap A \equiv \bigcap\limits_i a_i
 = \Set{ x \given \forall a \in A \bigl(x \in a\bigr) }.
 \]
@@ -318,47 +335,65 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \begin{enumerate}
 \item 交换律（{\rm Commutative laws}）
 \begin{gather}
-A \cap B = B \cap A, \\
-A \cup B = B \cup A.
+A \cap B = B \cap A, \label{equation:集合论.集合代数公式1} \\
+A \cup B = B \cup A. \label{equation:集合论.集合代数公式2}
 \end{gather}
 
 \item 结合律（{\rm Associative laws}）
 \begin{gather}
-(A \cap B) \cap C = A \cap (B \cap C), \\
-(A \cup B) \cup C = A \cup (B \cup C).
+(A \cap B) \cap C = A \cap (B \cap C), \label{equation:集合论.集合代数公式3} \\
+(A \cup B) \cup C = A \cup (B \cup C). \label{equation:集合论.集合代数公式4}
 \end{gather}
 
 \item 分配律（{\rm Distributive laws}）
 \begin{gather}
-(A \cap B) \cup C = (A \cup C) \cap (B \cup C), \\
-(A \cup B) \cap C = (A \cap C) \cup (B \cap C).
+(A \cap B) \cup C = (A \cup C) \cap (B \cup C), \label{equation:集合论.集合代数公式5} \\
+(A \cup B) \cap C = (A \cap C) \cup (B \cap C), \label{equation:集合论.集合代数公式6} \\
+A \cup \bigcap \mathscr{B} = \bigcap\Set{A \cup X \given X \in \mathscr{B}} \quad(\mathscr{B}\neq\emptyset), \label{equation:集合论.集合代数公式5'} \\
+A \cap \bigcup \mathscr{B} = \bigcup\Set{A \cap X \given X \in \mathscr{B}}. \label{equation:集合论.集合代数公式6'}
 \end{gather}
 
-\item 对偶律（{\rm De Morgan's laws}）
+\item 对偶律（{\rm De Morgan's laws}）（假设\(\mathscr{A}\neq\emptyset\)）
 \begin{gather}
-\overline{A \cap B} = \overline A \cup \overline B, \\
-\overline{A \cup B} = \overline A \cap \overline B.
+\overline{A \cap B} = \overline A \cup \overline B, \label{equation:集合论.集合代数公式7} \\
+\overline{A \cup B} = \overline A \cap \overline B, \label{equation:集合论.集合代数公式8} \\
+C - \bigcup\mathscr{A} = \bigcap\Set{C-X \given X\in\mathscr{A}}, \label{equation:集合论.集合代数公式7'} \\
+C - \bigcap\mathscr{A} = \bigcup\Set{C-X \given X\in\mathscr{A}}. \label{equation:集合论.集合代数公式8'}
 \end{gather}
 
 \item 与空集\(\emptyset\)和全集\(\Omega\)的运算（假设\(A \subseteq \Omega\)）
 \begin{gather}
-A \cup \emptyset = A, \\
-A \cap \emptyset = \emptyset, \\
-A \cup \Omega = \Omega, \\
-A \cap \Omega = A, \\
-A \cup \overline{A} = \Omega, \\
-A \cap \overline{A} = \emptyset.
+A \cup \emptyset = A, \label{equation:集合论.集合代数公式9} \\
+A \cap \emptyset = \emptyset, \label{equation:集合论.集合代数公式10} \\
+A \cup \Omega = \Omega, \label{equation:集合论.集合代数公式11} \\
+A \cap \Omega = A, \label{equation:集合论.集合代数公式12} \\
+A \cup \overline{A} = \Omega, \label{equation:集合论.集合代数公式13} \\
+A \cap \overline{A} = \emptyset. \label{equation:集合论.集合代数公式14}
 \end{gather}
 
-\item 包含关系的运算
+\item 包含关系的单调性
 \begin{gather}
-A \subseteq B \implies A \cup C \subseteq B \cup C, \\
-A \subseteq B \implies A \cap C \subseteq B \cap C, \\
-A \subseteq B \implies \overline{B} \subseteq \overline{A}, \\
-A \subseteq B \implies \bigcup A \subseteq \bigcup B, \\
-\emptyset \neq A \subseteq B \implies \bigcap B \subseteq \bigcap A.
+A \subseteq B \implies A \cup C \subseteq B \cup C, \label{equation:集合论.集合代数公式15} \\
+A \subseteq B \implies A \cap C \subseteq B \cap C, \label{equation:集合论.集合代数公式16} \\
+A \subseteq B \implies \bigcup A \subseteq \bigcup B, \label{equation:集合论.集合代数公式17} \\
+A \subseteq B \implies \overline{B} \subseteq \overline{A}, \label{equation:集合论.集合代数公式18} \\
+\emptyset \neq A \subseteq B \implies \bigcap B \subseteq \bigcap A. \label{equation:集合论.集合代数公式19}
 \end{gather}
 \end{enumerate}
+\begin{proof}
+对于\cref{equation:集合论.集合代数公式19}，假设\(x \in A = \Set{\v{a}{0}} \implies x \in B = \Set{\v{b}{0}}\)，%
+那么
+\begin{align*}
+x \in \bigcap B = \bigcap_i b_i
+&\iff
+	x \in b_i\ (i=1,2,\dotsc) \\
+&\implies
+	x \in a_i\ (i=1,2,\dotsc) \\
+&\iff
+	x \in \bigcap_i a_i = \bigcap A.
+\qedhere
+\end{align*}
+\end{proof}
 \end{property}
 
 \begin{example}
@@ -703,46 +738,316 @@ f \circ g: X \to Z,
 \end{proof}
 \end{example}
 
-\section{集合的大小与自然数}
-利用空集、幂集和映射的概念，我们可以定义出两个相关的概念：集合的大小和自然数.
+\section{自然数与集合的大小}
+在本节，我们要尝试利用集合论（尤其是空集、幂集和映射的概念）重新构建自然数系统，同时定义集合的大小的概念.
 
-\begin{definition}
-一个集合所包含的元素的个数，称作集合的\textbf{基数}（cardinal）、\textbf{元数}或\textbf{浓度}，记作\(\card(A)\)或\(\abs{A}\).
-\end{definition}
+\subsection{归纳集}
+在前面我们看到，利用空集和幂集的概念，我们可以构造出一系列集合如下：
+\[\begin{aligned}
+\emptyset
+&\to
+\Powerset\emptyset = \NaturalSet{1} \\
+&\hspace{1cm}\to
+\Powerset\NaturalSet{1} = \NaturalSet{2} \\
+&\hspace{2cm}\to
+\Powerset\NaturalSet{2} = \NaturalSet{3} \\
+&\hspace{3cm}\to
+\dotsb
+\end{aligned}\]
 
-我们首先用空集\(\emptyset\)代表“零”，用符号\(0\)表示它，即\[
-0 = \emptyset.
-\]接下来，只以空集为元素的集合\(\{\emptyset\}\)代表“一”，用符号\(1\)表示它，即\[
-1 = \{\emptyset\}.
-\]以\(\emptyset\)和\(\{\emptyset\}\)为元素的集合代表“二”，用符号\(2\)表示它，即\[
-2 = \{\emptyset,\ \{\emptyset\}\}.
-\]以此类推，\[
-3 = \{\emptyset,\ \{\emptyset\},\ \{\emptyset,\{\emptyset\}\}\},
-\]\[
-4 = \{\emptyset,\ \{\emptyset\},\ \{\emptyset,\{\emptyset\}\},\ \{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}\}.
-\]照此方法我们可以定义任意自然数.
-注意到集合“\(3\)”含有三个元素，它选自包括所有含有三个元素的集合的类，用以表征这个类中的集合的大小.
-
-像这样定义自然数可以引出两条出人意料的性质.例如，\[
-0 \in 1 \in 2 \in 3 \in \dotsb
-\]以及\[
-0 \subseteq 1 \subseteq 2 \subseteq 3 \subseteq \dotsb.
-\]只不过这些性质可以被看作是利用集合论定义自然数过程中偶然的副作用.
-
-尽管我们已经定义了从\(0\)到\(4\)这五个自然数，但我们还没有给出自然数的完整定义，也就是说我们还没有定义包含所有自然数的集合（简称自然数集）.
-为了定义自然数集，我们不可依赖不严谨的自然语言，于是我们给出以下几个初步的概念的定义：
-\begin{definition}
-对于任意集合\(A\)，定义它的\DefineConcept{后继}（successor）\(A^+\)为\[
-A^+ \defeq A \cup \{A\}.
+于是我们可以作出以下定义：
+\begin{definition}[后继]\label{definition:集合论.后继的定义}
+对于任意集合\(a\)，定义它的\textbf{后继} \(a^+\)如下：\[
+a^+ \defeq a \cup \{a\}.
 \]
 \end{definition}
+利用后继的符号，我们就可以将本节开头构造的一系列集合重写为\[
+\emptyset
+\to \emptyset^+
+\to \emptyset^{++}
+\to \emptyset^{+++}
+\to \dotsb
+\]容易发现，这些集合具有以下两个奇妙的性质：\[
+\emptyset
+\in \emptyset^+
+\in \emptyset^{++}
+\in \emptyset^{+++}
+\in \dotsb
+\]以及\[
+\emptyset
+\subsetneqq \emptyset^+
+\subsetneqq \emptyset^{++}
+\subsetneqq \emptyset^{+++}
+\subsetneqq \dotsb
+\]
 
-\begin{definition}
-如果\begin{enumerate}
-\item 集合\(A\)包含空集元素，即\(\emptyset \in A\)；
-\item 且集合\(A\)“对后继封闭”，即\(\forall a \in A : a^+ \in A\)，%
+\begin{definition}[归纳集]\label{definition:集合论.归纳集的定义}
+如果集合\(A\)满足\(\emptyset \in A\)，%
+且“\(A\)对后继封闭（即\(\forall a \in A : a^+ \in A\)）”，%
+则称“集合\(A\)是\DefineConcept{归纳的}（inductive）”，%
+或“集合\(A\)是\DefineConcept{归纳集}（inductive set）”.
+\end{definition}
+利用列举法，我们可以将归纳集\(A\)表示为如下的一般形式：\[
+A = \Set{
+ \emptyset, \emptyset^+, \emptyset^{++}, \dotsc,
+ a, a^+, a^{++}, \dotsc,
+ b, b^+, b^{++}, \dotsc
+}.
+\]
+
+\subsection{无穷公理}
+尽管“归纳集”的概念在形式上有了清晰的定义，%
+我们可以照此方法尝试构造无穷多个不同的集合，%
+但是由于我们尚未建立确保“无穷集”存在的公理，%
+我们就无法证明存在这样一个“拥有无穷多个元素的集合”，%
+因此我们也就不能证明任何“归纳集”真实存在.
+于是我们要用“无穷公理”补上这个漏洞.
+\begin{axiom}[无穷公理]
+总存在一个集合\(A\)是归纳集，即\[
+\exists A \bigl(
+  \emptyset \in A
+  \land
+  \forall a \in A : a^+ \in A
+\bigr).
+\]
+\end{axiom}
+无穷公理在英语中称作Infinity Axiom.
+
+\subsection{自然数}
+在无穷公理的加持下，我们终于可以定义自然数的概念了.
+\begin{definition}\label{definition:集合论.自然数的定义}
+如果集合\(a\)属于每一个归纳集，那么称其为\textbf{自然数}（natural number）.
+\end{definition}
+
+下面我们证明所有自然数的收集构成一个集合.
+\begin{theorem}\label{theorem:集合论.自然数集存在定理}
+%@see: 《Elements of Set Theory》 P68. Theorem 4A
+存在这样一个集合：它的元素都是自然数.
+\begin{proof}
+设\(A\)是一个归纳集（根据无穷公理，总可找到这样的\(A\)）.
+根据子集公理，%
+\[
+\exists w,
+\forall x
+\left(
+\begin{array}{rcl}
+x \in w
+&\iff& x \in A \land x\ \text{属于所有异于\(A\)的其他归纳集} \\
+&\iff& x\ \text{属于所有归纳集}
+\end{array}
+\right).
+\]
+于是集合\(w\)的所有元素都是自然数，%
+所有的自然数都是集合\(w\)的元素.
+\end{proof}
+\end{theorem}
+这里我们用小写希腊字母\(\omega\)表记所有自然数的集合.
+那么“\(x \in \omega\)”成立，当且仅当“\(x\)是一个自然数”成立；
+又或根据\hyperref[definition:集合论.自然数的定义]{自然数的定义}，当且仅当“\(x\)属于每一个归纳集”成立.
+
+利用描述法可以将自然数集定义为：
+\[
+\omega
+\defeq \bigcap\Set{ A \given A\ \text{是归纳集} }.
+\]
+特别注意到“全部归纳集构成的类不是一个集合”！
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P69. Theorem 4B
+自然数集\(\omega\)是归纳集，且它是任意一个归纳集的子集.
+\begin{proof}
+设\(A\)是任意的一个归纳集.
+
+首先，由\hyperref[definition:集合论.归纳集的定义]{归纳集的定义}可知\(\emptyset \in A\)，%
+于是根据\hyperref[definition:集合论.自然数的定义]{自然数的定义}可知\(\emptyset \in \omega\).
+
+其次，对于任意集合\(a\)，\(a \in \omega
+\implies a \in A
+\implies a^+ \in A
+\implies a^+ \in \omega\).
+
+因此\(\omega\)是归纳集，且\(\omega\)是任意一个归纳集的子集.
+\end{proof}
+\end{theorem}
+
+我们可以说：自然数集是“最小的”归纳集.
+这句话可以更严谨地表述为下述“归纳原理”.
+\begin{theorem}[归纳原理]
+自然数集\(\omega\)的任意归纳子集总是它自己.
+\end{theorem}
+
+这就引出“数学归纳法”的方法论，即：
+如果我们要证明形如“对于每个自然数\(n\)，涉及\(n\)的命题公式成立”的命题，我们可以基于自然数集\(\omega\)，构造一个集合\[
+T = \Set{ n \in \omega \given \text{“涉及\(n\)的命题公式”} }.
+\]
+如果我们可以证明集合\(T\)是归纳的，那么证明就完成了.
+
+我们可以马上利用数学归纳法证明下面这个定理：
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P69. Theorem 4C
+除了\(\emptyset\)以外，所有自然数都是某个自然数的后继.
+\begin{proof}
+令集合\[
+T = \Set{n \in \omega \given n = \emptyset \lor \exists p \in \omega : n = p^+ },
+\]
+则\(\emptyset \in T\)，且\(k \in T \implies k^+ \in T\).
+因此\(T = \omega\).
+\end{proof}
+\end{theorem}
+
+\subsection{传递集}
+\begin{definition}\label{definition:集合论.传递集的定义}
+如果集合\(A\)的任一元素的每个元素都是\(A\)的子集，%
+那么称“集合\(A\)是\textbf{传递的}（transitive）”，%
+或称“集合\(A\)是一个\textbf{传递集}（transitive set）”，%
+即\[
+\forall x, \forall a \bigl(
+x \in a \in A \implies x \in A
+\bigr).
+\]
+\end{definition}
+传递集的概念也可等价地定义为以下三种形式：
+\begin{enumerate}
+	\item \(\bigcup A \subseteq A\)；
+	\item \(a \in A \implies a \subseteq A\)；
+	\item \(A \subseteq \Powerset A\).
 \end{enumerate}
-则称“集合\(A\)是\DefineConcept{归纳的}（inductive）”，或“集合\(A\)是\DefineConcept{归纳集}”.
+
+\begin{example}
+空集\(\emptyset\)是传递集.
+\begin{proof}
+假设空集不是传递集，那么根据传递集的定义可知，\(\exists a \in \emptyset, \exists x \in a (x \notin \emptyset)\).
+但是根据空集公理，空集中根本就不存在满足条件的\(a\)，矛盾，因此空集是传递集.
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\a{\Set{\emptyset}}%
+\def\b{\Set{\a}}%
+\def\A{\Set{ \emptyset, \b }}%
+集合\(\A\)不是一个传递集，%
+这是因为\[
+\a \in \b \in \A,
+\]\[
+\a \notin \A.
+\]
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 2.
+证明：如果\(a\)是传递集，那么\(a^+\)也是传递集.
+\begin{proof}
+因为\(a^+ = a \cup \{a\}\)，%
+那么\[
+\forall x( x \in a^+ \implies x = a \lor x \in a ).
+\]
+
+当\(x = a\)时，%
+对于\(\forall t \in x\)，%
+因为\(x = a \subseteq a^+\)，%
+所以\(t \in a^+\).
+
+当\(x \in a\)时，%
+因为\(a\)是传递集，所以\[
+\forall t
+(
+t \in x \in a
+\implies t \in a \subseteq a^+
+\implies t \in a^+
+).
+\]
+
+综上所述，\(a^+\)也是传递集.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 3.
+证明：“\(a\)是传递集”的充要条件是“\(\Powerset a\)是传递集”.
+\begin{proof}
+充分性.
+根据幂集公理，\(\forall x(x \in \Powerset a \iff x \subseteq a)\)，%
+于是\[
+\forall t, \forall x
+(t \in x \in a \in \Powerset a
+\implies t \in x \subseteq a
+\implies t \in a);
+\]因此\(a\)是传递集.
+
+必要性.
+因为\(a\)是传递集，所以\[
+\forall t, \forall x
+(t \in x \in a \implies t \in a);
+\]
+而\(\Powerset a = \Set{ y \given y \subseteq a }\)，%
+那么\[
+\forall t, \forall y
+(t \in y \in \Powerset a
+\implies t \in y \subseteq a
+\implies t \in a \in \Powerset a);
+\]
+因此\(\Powerset a\)也是传递集.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 4.
+证明：如果\(a\)是传递集，那么\(\bigcup a\)也是传递集.
+\end{example}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P69. Theorem 4E
+如果\(a\)是传递集，那么\(\bigcup a^+ = a\).
+\begin{proof}
+直接计算得\[
+\bigcup a^+
+= \bigcup (a \cup \{a\})
+= \bigcup a \cup \bigcup\{a\}
+= \bigcup a \cup a
+= a.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{example}
+证明：如果\(\bigcup a^+ = a\)，那么\(a\)是传递集.
+\end{example}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P69. Theorem 4F
+任一自然数都是传递集.
+\begin{proof}
+用数学归纳法证明.
+首先，\(\emptyset\)是传递集.
+假设自然数\(k\)也是传递集，那么\[
+\bigcup k^+ = k \subseteq k^+,
+\]又因为\(k^+\)也是传递集，所以每个自然数都是传递集.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+自然数集\(\omega\)是传递集.
+\begin{proof}
+用数学归纳法证明.
+欲证\(\forall a \in \omega ( a \subseteq \omega )\)，%
+只需证集合\[
+T = \Set{n \in \omega \given n \subseteq \omega}
+\]是传递的.
+显然\(\emptyset \in T\).
+假设\(k \in T\)，那么有\[
+k \subseteq \omega
+\land
+\{k\} \subseteq \omega,
+\]同时\(k \cup \{k\} \subseteq \omega\)，从而\(k^+ \in T\).
+因此\(T\)是传递的，而自然数集\(\omega\)是传递集.
+\end{proof}
+\end{theorem}
+
+
+\subsection{集合的大小}
+\begin{definition}
+一个集合所包含的元素的个数，称作集合的\textbf{基数}（cardinal）、\textbf{元数}或\textbf{浓度}，记作\(\card(A)\)或\(\abs{A}\).
 \end{definition}
 
 \begin{definition}
@@ -750,51 +1055,10 @@ A^+ \defeq A \cup \{A\}.
 不是有限集的集合称为\textbf{无限集}（infinite set）.
 \end{definition}
 
-利用上述定义，前面讨论中对自然数定义的讨论可以简化为\[
-0 = \emptyset,
-1 = 0^+ = \emptyset^+,
-2 = 1^+ = \emptyset^{++},
-3 = 2^+ = \emptyset^{+++},
-\dotsc.
-\]
-可以证明，上述集合任取两个必不相等，例如\(\emptyset^+ \neq \emptyset^{+++}\).
-虽然我们还没有定义什么是“无穷”，但我们还是可以直观地感受到上述归纳集是无穷无尽的.
-至此我们尚无任何公理确定地保证了无穷集的存在.
-诚然，我们可以按上述自然数定义方法构造出无穷多个互不相同的集合.
-但我们不能证明存在一个集合包含无穷多个元素，继而我们也无法证明任何归纳集存在，因此我们给出以下公理：
-\begin{axiom}[无穷公理]
-归纳集存在，即\[
-\exists A \Bigl[
-\emptyset \in A
-\land
-\forall a \in A \bigl( a^+ \in A \bigr)
-\Bigr].
-\]
-\end{axiom}
-
-利用无穷公理，我们就可以定义出自然数的概念了.
-\begin{definition}
-一个自然数是这样一个集合 —— 它属于任意归纳集.
-\end{definition}
-
-下面我们证明所有自然数构成一个集合.
-\begin{theorem}%Theorem4A
-存在这样一个集合 —— 它的元素恰好是全部自然数.
-\end{theorem}
-
-因为\(\Powerset\emptyset = \{ \emptyset \}\)，所以\(\abs{\Powerset\emptyset} = 1\).
-因为\(\Powerset\Powerset\emptyset = \{ \emptyset, \{ \emptyset \} \}\)，所以\(\abs{\Powerset\Powerset\emptyset} = 2\).
-因为\[
-\Powerset\Powerset\Powerset\emptyset = \{ %
-	\emptyset,
-	\{ \emptyset \},
-	\{\{ \emptyset \}\},
-	\{ \emptyset, \{ \emptyset \} \}
-\},
-\]所以\(\abs{\Powerset\Powerset\Powerset\emptyset} = 4\).
-
 \begin{property}
-有限集\(A\)对应的\cemph{幂集的大小}为\(\abs{\Powerset A} = 2^{\abs{A}}\).
+有限集\(A\)对应的\cemph{幂集的大小}为\[
+\abs{\Powerset A} = 2^{\abs{A}}.
+\]
 \end{property}
 
 \begin{example}

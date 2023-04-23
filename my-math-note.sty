@@ -33,26 +33,10 @@ pdfpagemode=UseOutlines,
 
 %--------------------------------------
 \usepackage{tipa}
-\newcommand{\cemph}[1]{\begingroup\makeatletter\@tfor\i:=#1\do{\textsubdot{\i}\allowbreak\relax}\makeatother\endgroup}  % 中文着重号 https://www.zhihu.com/question/20769117/answer/1204224192
-
+\usepackage{chinese-emph}  % 中文着重号
 %--------------------------------------
 \usepackage{graphicx}
-
-\makeatletter
-\DeclareFontFamily{U}{tipa}{}
-\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
-\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
-
-\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
-\newcommand{\arc@arc}[2]{%
-  \sbox0{$\m@th#1#2$}%
-  \vbox{%
-    \hbox{\resizebox{\wd0}{\height}{\arc@char}}%
-    \nointerlineskip%
-    \box0%
-  }%
-}
-\makeatother
+\usepackage{math-arc}  % 表示曲线弧
 %--------------------------------------
 
 \usepackage{mathrsfs}  % \mathscr
@@ -65,24 +49,9 @@ pdfpagemode=UseOutlines,
 \def\notimplies{\centernot\implies}
 
 \let\mat\boldsymbol
-\DeclareMathOperator\arsh{arsh}  % 反双曲正弦
-\DeclareMathOperator\arch{arch}  % 反双曲余弦
-\DeclareMathOperator\arth{arth}  % 反双曲正切
-\DeclareMathOperator\arcth{arcth}  % 反双曲余切
-\DeclareMathOperator\diag{diag}  % 对角矩阵
-\DeclareMathOperator\card{card}  % 集合基数
-\DeclareMathOperator\Arg{Arg}  % 复数 辐角
-\DeclareMathOperator\Cov{Cov}  % 协方差
-\DeclareMathOperator\Ln{Ln}  % 复对数函数
-\DeclareMathOperator\Arcsin{Arcsin}  % 复反正弦函数
-\DeclareMathOperator\Arccos{Arccos}  % 复反余弦函数
 \newcommand{\rel}[1]{ \mathcal{#1} }  % 关系
-\DeclareMathOperator\dom{dom} % 关系 定义域
-\DeclareMathOperator\ran{ran} % 关系 值域
-\DeclareMathOperator\fld{fld} % 关系 域
-\DeclareMathOperator\Prj{Prj} % 《解析几何》向量的投影
-\DeclareMathOperator\sgn{sgn} % 符号函数
-\DeclareMathOperator\Res{Res} % 留数
+
+\usepackage{math-operator}
 
 %--------------------------------------
 \usepackage[%cleveref
@@ -156,17 +125,11 @@ nosort%禁止压缩引用
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}  % 向上取整
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}  % 向下取整
 \DeclarePairedDelimiter{\round}{[}{]}  % 四舍五入
-%\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\mid{\;\delimsize\vert\;}#1}
 \DeclarePairedDelimiterX{\opair}[1]{\langle}{\rangle}{#1} % 有序对
 \def\defeq{\xlongequal{\rm def}}%符号（系统）定义
 %--------------------------------------
-% 集合（描述法）表示方法.举例： \Set*{ x \given x > 0 }
-\providecommand\given{}
-\newcommand\SetSymbol[1][]{\nonscript\:#1\vert\allowbreak\nonscript\:\mathopen{}}
-\DeclarePairedDelimiterX\Set[1]\lbrace\rbrace{ \renewcommand\given{\SetSymbol[\delimsize]} #1 }
-%--------------------------------------
-
-
+\usepackage{math-set}  % 描述法表示集合
+\usepackage{natural-set}  % 以纯粹集合论的语言表示自然数
 %--------------------------------------
 
 \usepackage{esint}% necessary for \varoiint
@@ -181,7 +144,7 @@ nosort%禁止压缩引用
 \newcommand{\ft}{ \mathfrak{F} }%傅里叶变换
 %\usepackage{textgreek}\def\tau{\textit{\texttau}}% 代替\tau
 \usepackage{upgreek}\def\tau{\uptau}% 代替\tau
-\let\emptyset\varnothing  % 空集
+%\let\emptyset\varnothing  % 空集
 \def\iu{\kern1pt\mathrm{i}\kern1pt}  % 虚数单位
 \def\complexconjugate#1{\kern1pt\overline{#1}\kern1pt}% 共轭复数
 \def\Powerset{\mathscr{P}}

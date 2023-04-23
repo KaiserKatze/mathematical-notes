@@ -1,0 +1,20 @@
+\ProvidesPackage{math-arc}  % 表示曲线弧
+
+\RequirePackage{tipa}
+\RequirePackage{graphicx}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+\newcommand{\arc@arc}[2]{%
+  \sbox0{$\m@th#1#2$}%
+  \vbox{%
+    \hbox{\resizebox{\wd0}{\height}{\arc@char}}%
+    \nointerlineskip%
+    \box0%
+  }%
+}
+\makeatother
