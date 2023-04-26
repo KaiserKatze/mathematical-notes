@@ -2,7 +2,8 @@
 古希腊的毕达哥拉斯曾经提出“万物皆数”这一哲学观点，从这一章开始，我们研究如何利用代数方法研究几何问题.
 
 在利用函数图像研究初等函数的性质时，我们产生了这么一个观念：
-平面直角坐标系上的点与数（或更专业地说成是“2元组”\(\opair{x,y}\)）是一一对应的.
+在平面上建立了平面直角坐标系以后，%
+平面上的点与数（或说由实数\(x\)、\(y\)构成的有序对\(\opair{x,y}\)）是一一对应的.
 几何图形是由点构成的集合，我们自然地想到能不能用数的集合来代表几何图形.
 这就是解析几何的思想根源.
 
@@ -10,14 +11,22 @@
 这一节我们首先研究向量的概念，并利用向量给出平面直角坐标系和空间直角坐标系的严格定义.
 
 \subsection{向量的基本概念}
-古人很早就意识到“没有规矩不成方圆\footnote{语出《孟子·离娄章句上》第一节：“离娄之明，公输子之巧，不以规矩，不能成方圆”.}”，即利用圆规确定长短、利用曲尺确定方向，才能够作出各种需要的平面几何图形.
+古人很早就意识到“没有规矩不成方圆\footnote{%
+语出《孟子·离娄章句上》第一节：“离娄之明，公输子之巧，不以规矩，不能成方圆”.}”，%
+即利用圆规确定长短、利用曲尺确定方向，才能够作出各种需要的平面几何图形.
+因此我们需要定义这样一个量：它既有大小，又有方向.
 
 \begin{definition}
 既有大小又有方向的量，称为\textbf{向量}或\textbf{矢量}（vector）.
 
 通常用黑体字母（如\(\mat{a}\)、\(\mat{r}\)、\(\mat{v}\)、\(\mat{F}\)等），或在字母上面加箭头（如\(\vec{a}\)、\(\vec{r}\)、\(\vec{v}\)、\(\vec{F}\)等）来表记向量.
 
-在几何上，常用一条带箭头的线段（称作\textbf{有向线段}）来表示向量.有向线段的长度表示向量的大小，有向线段的方向表示向量的方向.以点\(A\)为起点，点\(B\)为终点的有向线段表示的向量记作\(\vec{AB}\)（\cref{figure:解析几何.有向线段} ）.
+在几何上，常用一条带箭头的线段（称作\textbf{有向线段}）来表示向量.
+有向线段的长度表示向量的大小，有向线段的方向表示向量的方向.
+如\cref{figure:解析几何.有向线段}，%
+以点\(A\)为起点、点\(B\)为终点的有向线段表示的向量，%
+记作\(\vec{AB}\)；
+它的大小记作\(\abs{\vec{AB}}\).
 
 \begin{figure}[ht]
 \centering
@@ -32,7 +41,9 @@
 \end{definition}
 
 \begin{definition}
-如果两个向量\(\mat{a}\)和\(\mat{b}\)的大小相等，且方向相反，我们就说“向量\(\mat{a}\)和\(\mat{b}\)是\textbf{相等}的”，记作\(\mat{a}=\mat{b}\).
+如果两个向量\(\mat{a}\)和\(\mat{b}\)的大小相等，且方向相同，%
+我们就说“向量\(\mat{a}\)和\(\mat{b}\)是\textbf{相等}的”，%
+记作\(\mat{a}=\mat{b}\).
 \end{definition}
 在几何上，我们可以形象地把两个向量相等的现象理解为两条有向线段经过平移以后，两者的起点和终点分别完全重合.
 
@@ -201,11 +212,53 @@
 \end{tabular}%
 \end{center}
 
-任给向量\(\mat{r}\)，则在空间直角坐标系下存在点\(M\)使\(\vec{OM}=\mat{r}\).以\(OM\)为体对角线，三条坐标轴为棱，作长方体\(RHMK-OPNQ\)，有\[
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\coordinate(O)at(0,0);
+\coordinate(P)at(-1,-1);
+\coordinate(H)at(-1,1.2);
+\coordinate(N)at(2,-1);
+\coordinate(M)at(2,1.2);
+\coordinate(R)at(0,2.2);
+\coordinate(K)at(3,2.2);
+\coordinate(Q)at(3,0);
+
+\draw[dashed](O)--(P)
+	(O)--(Q)
+	(O)--(R);
+\draw(P)--(N)--(M)--(H)--(P)
+	(H)--(R)--(K)--(Q)--(N)
+	(K)--(M);
+\begin{scope}[->]
+\draw(P)--+(-.5,-.5)node[below left]{\(x\)};
+\draw(Q)--+(.5,0)node[right]{\(y\)};
+\draw(R)--+(0,.5)node[left]{\(z\)};
+\end{scope}
+\begin{scope}[>=Stealth]
+\draw[dashed,->](O)--(M);
+\end{scope}
+\draw(O)node[below]{\(O\)};
+\draw(P)node[below]{\(P\)};
+\draw(H)node[left]{\(H\)};
+\draw(N)node[below]{\(N\)};
+\draw(M)node[right]{\(M\)};
+\draw(R)node[above right]{\(R\)};
+\draw(K)node[right]{\(K\)};
+\draw(Q)node[below right]{\(Q\)};
+\end{tikzpicture}
+\caption{向量\(\mat{r}\)的坐标分解式}
+\label{figure:解析几何.向量的坐标分解式}
+\end{figure}
+
+任给向量\(\mat{r}\)，则在空间直角坐标系下存在点\(M\)使\(\vec{OM}=\mat{r}\).
+以\(OM\)为体对角线，三条坐标轴为棱，作长方体\(RHMK-OPNQ\)，%
+如\cref{figure:解析几何.向量的坐标分解式}，有\[
 \mat{r}=\vec{OM}=\vec{OP}+\vec{PN}+\vec{NM}=\vec{OP}+\vec{OQ}+\vec{OR}.
 \]设\(\vec{OP}=x\mat{i}\)，\(\vec{OQ}=y\mat{j}\)，\(\vec{OR}=z\mat{k}\)，则\[
 \mat{r}=\vec{OM}=x\mat{i}+y\mat{j}+z\mat{k}.
-\]上式称为向量\(\mat{r}\)的\textbf{坐标分解式}，\(x\mat{i}\)、\(y\mat{j}\)、\(z\mat{k}\)称为向量\(r\)沿三个坐标轴方向的\textbf{分向量}.
+\]上式称为向量\(\mat{r}\)的\textbf{坐标分解式}；%
+\(x\mat{i}\)、\(y\mat{j}\)、\(z\mat{k}\)称为向量\(r\)沿三个坐标轴方向的\textbf{分向量}.
 
 据此，定义：\(x\)、\(y\)、\(z\)构成的有序数称为\textbf{向量\(\mat{r}\)}（在坐标系\(Oxyz\)中）的\textbf{坐标}，记作\(\mat{r}=\opair{x,y,z}\).同样的有序数也称为\textbf{点\(M\)}（在坐标系\(Oxyz\)中）的坐标，记作\(M\opair{x,y,z}\).
 
@@ -395,9 +448,18 @@ x_3 & y_3 & 1
 
 \subsubsection{向量积}
 \begin{definition}
-设向量\(\mat{a}\)、\(\mat{b}\)的夹角为\(\theta\).定义：如果向量\(\mat{c}\)的模\(\abs{\mat{c}}\)满足\begin{equation}
+设向量\(\mat{a}\)、\(\mat{b}\)的夹角为\(\theta\).
+定义：如果向量\(\mat{c}\)的模\(\abs{\mat{c}}\)满足
+\begin{equation}
 \abs{\mat{c}} = \abs{\mat{a}}\abs{\mat{b}}\sin\theta,
-\end{equation}而\(\mat{c}\)的方向垂直于\(\mat{a}\)和\(\mat{b}\)所决定的平面，\(\mat{c}\)的指向是按\emph{右手规则}从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)来确定的，即当右手的四个手指从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)握拳时，大拇指的朝向就是\(\mat{c}\)的指向，那么称\(\mat{c}\)为\(\mat{a}\)与\(\mat{b}\)的\textbf{向量积}，记作\(\mat{c}=\mat{a}\times\mat{b}\).
+\end{equation}
+而\(\mat{c}\)的方向垂直于\(\mat{a}\)和\(\mat{b}\)所决定的平面，%
+\(\mat{c}\)的指向是按\emph{右手规则}%
+从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)来确定的，%
+即当右手的四个手指从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)握拳时，%
+大拇指的朝向就是\(\mat{c}\)的指向，%
+那么称\(\mat{c}\)为\(\mat{a}\)与\(\mat{b}\)的\textbf{向量积}或\textbf{外积}，%
+记作\(\mat{c}=\mat{a}\times\mat{b}\).
 \end{definition}
 
 由向量积的定义可得以下两条简单的性质：
@@ -417,15 +479,46 @@ x_3 & y_3 & 1
 \end{property}
 
 \begin{theorem}
-设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么\begin{equation}
-\mat{a}\times\mat{b} = \begin{vmatrix}
+设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么
+\begin{equation}\label{equation:解析几何.向量积坐标表达式1}
+\mat{a}\times\mat{b}
+= (a_y b_z - a_z b_y) \mat{i}
+	+ (a_z b_x - a_x b_z) \mat{j}
+	+ (a_x b_y - a_y b_x) \mat{k}.
+\end{equation}
+\end{theorem}
+为了方便记忆，\cref{equation:解析几何.向量积坐标表达式1} 可以利用行列式简记为
+\begin{equation}\label{equation:解析几何.向量积坐标表达式2}
+\mat{a}\times\mat{b}
+=
+\begin{vmatrix}
 \mat{i} & \mat{j} & \mat{k} \\
 a_x & a_y & a_z \\
 b_x & b_y & b_z
 \end{vmatrix}
-= (a_y b_z - a_z b_y) \mat{i}
-	+ (a_z b_x - a_x b_z) \mat{j}
-	+ (a_x b_y - a_y b_x) \mat{k}.
+=
+\mat{i} \begin{vmatrix}
+a_y & a_z \\
+b_y & b_z
+\end{vmatrix}
+- \mat{j} \begin{vmatrix}
+a_x & a_z \\
+b_x & b_z
+\end{vmatrix}
++ \mat{k} \begin{vmatrix}
+a_x & a_y \\
+b_x & b_y
+\end{vmatrix}.
+\end{equation}
+
+
+\begin{theorem}
+设向量\(\mat{a} = \opair{a_x,a_y,a_z}\)，
+\(\mat{b} = \opair{b_x,b_y,b_z}\)，
+\(\mat{c} = \opair{c_x,c_y,c_z}\)，那么
+\begin{equation}
+\mat{a} \times (\mat{b} \times \mat{c})
+= (\mat{a} \cdot \mat{c}) \mat{b} - (\mat{a} \cdot \mat{b}) \mat{c}.
 \end{equation}
 \end{theorem}
 
@@ -1329,7 +1422,10 @@ S_{\triangle P F_1 F_2} = \frac{b^2}{\tan(\theta/2)},
 
 \subsection{抛物线}
 \begin{definition}
-平面内与一个定点和一条定直线的距离相等的点的集合叫做\textbf{抛物线}（Parabola）.这个定点叫做抛物线的\textbf{焦点}.定直线叫做抛物线的\textbf{准线}.
+在平面内，与一个定点和一条定直线的距离相等的点的集合，%
+叫做\textbf{抛物线}（parabola）.
+这个定点叫做抛物线的\textbf{焦点}.
+这条定直线叫做抛物线的\textbf{准线}.
 \end{definition}
 
 取经过焦点\(F\)且垂直于准线\(l\)的直线为\(x\)轴，\(x\)轴于\(l\)相交于点\(K\)，以线段\(KF\)的垂直平分线为\(y\)轴.设\(\abs{KF}=p\)，那么，焦点\(F\)的坐标为\(\opair{\frac{p}{2},0}\)，准线\(l\)的方程为\(x=-\frac{p}{2}\).

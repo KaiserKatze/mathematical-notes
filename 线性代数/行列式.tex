@@ -429,8 +429,10 @@ j'_1,j'_2,\dotsc,j'_{n-k}
 \end{theorem}
 
 \subsection{伴随矩阵}
-\begin{definition}
-设\(\A=(a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\)的代数余子式（\(i,j=1,2,\dotsc,n\)），以\(A_{ij}\)作为第\(j\)行第\(i\)列元素（\(i,j=1,2,\dotsc,n\)）构成的矩阵称为\(\A\)的\textbf{伴随矩阵}（adjoint matrix），记为\(\A^*\)，即\[
+\begin{definition}\label{definition:伴随矩阵.伴随矩阵的定义}
+设\(\A=(a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\)的代数余子式（\(i,j=1,2,\dotsc,n\)），%
+以\(A_{ij}\)作为第\(j\)行第\(i\)列元素（\(i,j=1,2,\dotsc,n\)）构成的矩阵%
+称为\(\A\)的\textbf{伴随矩阵}（adjoint matrix），记为\(\A^*\)，即\[
 \A^*
 = [(A_{ij})_n]^T
 = (A_{ji})_n
@@ -446,45 +448,73 @@ A_{1n} & A_{2n} & \dots & A_{nn}
 \begin{theorem}
 设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，则\begin{gather}
 \A \A^* = \A^* \A = \abs{\A} \E, \label{equation:行列式.伴随矩阵.恒等式1} \\
-\left(\A^*\right)^T = \left(\A^T\right)^*, \label{equation:行列式.伴随矩阵.恒等式2} \\
-\left(\A\B\right)^* = \B^* \A^*. \label{equation:行列式.伴随矩阵.恒等式3}
+(\A^*)^T = (\A^T)^*, \label{equation:行列式.伴随矩阵.恒等式2} \\
+(\A\B)^* = \B^* \A^*. \label{equation:行列式.伴随矩阵.恒等式3}
 \end{gather}
 \end{theorem}
 
 \begin{example}
 设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，求\((k\A)^*\).
+\begin{solution}
+设\(\A\)的元素\(a_{ij}\)的代数余子式是\(A_{ij}\)，%
+那么矩阵\(k\A = (b_{ij})_n\)的元素\(b_{ij} = k a_{ij}\)的代数余子式是\[
+B_{ij}
+= (-1)^{i+j} \begin{vmatrix}
+k a_{11} & \dots & k a_{1,j-1} & k a_{1,j+1} & \dots & k a_{1n} \\
+\vdots & & \vdots & \vdots & & \vdots \\
+k a_{i-1,1} & \dots & k a_{i-1,j-1} & k a_{i-1,j+1} & \dots & k a_{i-1,n} \\
+k a_{i+1,1} & \dots & k a_{i+1,j-1} & k a_{i+1,j+1} & \dots & k a_{i+1,n} \\
+\vdots & & \vdots & \vdots & & \vdots \\
+k a_{n1} & \dots & k a_{n,j-1} & k a_{n,j+1} & \dots & k a_{nn} \\
+\end{vmatrix}
+= k^{n-1} A_{ij}.
+\]
+因此，\(k\A\)的伴随矩阵是\(
+(B_{ji})_n = k^{n-1} (A_{ji})_n
+= k^{n-1} \A^*
+\).
+\end{solution}
 \end{example}
 
 \begin{example}
-试证范德蒙德（Vandermonde）行列式：\begin{equation}\label{equation:行列式.范德蒙德行列式}
+试证范德蒙德（Vandermonde）行列式：
+\begin{equation}\label{equation:行列式.范德蒙德行列式}
 V_n = \begin{vmatrix}
 1 & 1 & 1 & \dots & 1 \\
 x_1 & x_2 & x_3 & \dots & x_n \\
 x_1^2 & x_2^2 & x_3^2 & \dots & x_n^2 \\
-\vdots & \vdots & \vdots& \ddots& \vdots \\
+\vdots & \vdots & \vdots& & \vdots \\
 x_1^{n-1} & x_2^{n-1} & x_3^{n-1} & \dots & x_n^{n-1}
 \end{vmatrix}=\prod\limits_{1 \leqslant j < i \leqslant n}{(x_i-x_j)}.
 \end{equation}
 \begin{proof}
-利用数学归纳法.当\(n=2\)时，\(V_2 = \begin{vmatrix} 1 & 1 \\ x_1 & x_2 \end{vmatrix} = x_2 - x_1\)，结论成立.假设\(n=k-1\)时，结论成立，那么当\(n=k\)时，在\(V_k\)中，依次将第\(k-1\)行的\(-x_1\)倍加到第\(k\)行，将第\(k-2\)行的\(-x_1\)倍加到第\(k-1\)行，以此类推，直至把第\(1\)行的\(-x_1\)倍加到第\(2\)行，得\[
+利用数学归纳法.
+当\(n=2\)时，\(V_2 = \begin{vmatrix}
+	1 & 1 \\ x_1 & x_2
+\end{vmatrix} = x_2 - x_1\)，结论成立.
+假设\(n=k-1\)时，结论成立，%
+那么当\(n=k\)时，在\(V_k\)中，依次将第\(k-1\)行的\(-x_1\)倍加到第\(k\)行，%
+将第\(k-2\)行的\(-x_1\)倍加到第\(k-1\)行，%
+以此类推，%
+直至把第\(1\)行的\(-x_1\)倍加到第\(2\)行，得\[
 V_k = \begin{vmatrix}
 1 & 1 & 1 & \dots & 1 \\
 0 & x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
 0 & x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
-\vdots & \vdots & \vdots & \ddots & \vdots \\
+\vdots & \vdots & \vdots & & \vdots \\
 0 & x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
 \end{vmatrix}_k,
 \]按第一列展开得\begin{align*}
 V_n &= 1 \times (-1)^{1+1} \times \begin{vmatrix}
 x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
 x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
-\vdots & \vdots & \ddots & \vdots \\
+\vdots & \vdots & & \vdots \\
 x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
 \end{vmatrix}_{k-1} \\
 &= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \begin{vmatrix}
 1 & 1 & \dots & 1 \\
 x_2 & x_3 & \dots & x_k \\
-\vdots & \vdots & \ddots & \vdots \\
+\vdots & \vdots & & \vdots \\
 x_2^{k-2} & x_3^{k-2} & \dots & x_k^{k-2} \\
 \end{vmatrix}_{k-1} \\
 &= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \prod\limits_{2 \leqslant j < i \leqslant k}{x_i - x_j} \\

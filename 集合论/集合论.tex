@@ -1,4 +1,4 @@
-\chapter{集合论}
+\chapter{集合论与数理逻辑}
 %@see: https://plato.stanford.edu/entries/set-theory/ZF.html
 虽然直到19世纪末德国数学家康托（Cantor）才创立了集合论，但是其实人们很早就开始使用集合的概念与运算了.
 在《周易·系辞下》中有这么一句话：“上古结绳而治，后世圣人易之以书契.”
@@ -15,12 +15,22 @@
 \section{朴素集合论}
 \subsection{集合的概念}
 \begin{definition}
-我们将一些事物的\textbf{收集}（collection）看成一个整体，将这个整体称为\textbf{集合}（set），简称为\textbf{集}.
+我们将一些事物的\textbf{收集}（collection）看成一个整体，%
+将这个整体称为\textbf{集合}（set），简称为\textbf{集}.
 组成这个集合的事物被称为该集合的\textbf{元素}（member，或element），简称\textbf{元}.
 集合常用大写字母（如\(A,B,C,X,Y\)等）表示，元素常用小写字母（如\(a,b,c\)等）表示.
 
-如果元素\(a\)是集合\(A\)的元素，就说“\(a\)是\(A\)的元素（\(a\) is a member of \(A\)）”，或“\(a\)\textbf{属于}\(A\)（\(a\) belongs to \(A\)）”，记作\(a \in A\)；
-如果\(b\)不是集合\(A\)的元素，就说“\(a\)不是\(A\)的元素（\(b\) is not a member of \(A\)）”，或“\(b\)\textbf{不属于}\(A\)（\(b\) does not belong to \(A\)）”，记作\(b \notin A\).
+如果元素\(a\)是集合\(A\)的元素，%
+就说“\(a\)是\(A\)的元素（\(a\) is a member of \(A\)）”，%
+或“\(a\)\textbf{属于}\(A\)（\(a\) belongs to \(A\)）”，%
+记作\(a \in A\)\footnote{%
+用来表记“所属关系（membership）”的符号\(\in\)实际上是变形的小写希腊字母\(\varepsilon\)，%
+它是由意大利数学家 Giuseppe Peano 于 1889 年提出的.
+}；
+如果\(b\)不是集合\(A\)的元素，%
+就说“\(a\)不是\(A\)的元素（\(b\) is not a member of \(A\)）”，%
+或“\(b\)\textbf{不属于}\(A\)（\(b\) does not belong to \(A\)）”，%
+记作\(b \notin A\).
 \end{definition}
 
 表记集合的方法大致有两类：
@@ -108,9 +118,225 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \label{figure:集合论.韦恩图}
 \end{figure}
 
+\section{数理逻辑概论}
+\subsection{命题的概念}
+\begin{definition}
+\textbf{命题}（proposition），%
+是指对确定的对象进行判断的\cemph{陈述句}.
+我们常用小写字母（如\(p,q\)等）表记命题.
+\end{definition}
+
+\begin{definition}
+如果命题\(p\)的判断正确，%
+那么我们称“命题\(p\)是\textbf{真的}（true）”，%
+或称“命题\(p\)是\textbf{真命题}”，
+或称“；
+如果命题\(p\)的判断错误，%
+那么我们称“命题\(p\)是\textbf{假的}（false）”，%
+或称“命题\(p\)是\textbf{假命题}”.
+\end{definition}
+
+对于一个命题，它要么是真命题，要么是假命题.
+悖论不能作为命题.
+
+我们可以用集合表示命题的真值.
+一般用空集\(\emptyset\)表示假命题，%
+用任意非空集（例如\(\Set{\emptyset}\)）表示真命题.
+
+我们也可以用数字表示命题的真值.
+一般用\(0\)表示假命题，%
+用任意非零整数（例如\(1\)）表示真命题.
+
+\begin{definition}
+\textbf{逻辑联结词}（logical connectives），%
+是指连接命题，对各个命题的真值进行运算的词，%
+例如“\emph{且}”“\emph{或}”“\emph{不}”“\emph{非}”%
+“\emph{如果……那么……}”“\emph{当且仅当}”等.
+\end{definition}
+
+为了将逻辑联结词形式化，我们可以使用符号来代表逻辑联结词.
+
+\begin{table}[bp]
+\centering
+\begin{tabular}{|*{3}{c|}}
+\hline
+\textbf{概念} & \textbf{意义} & \textbf{符号} \\ \hline
+\textbf{否定词}（negative） & 不、非 & \(\neg\) \\ \hline
+\textbf{合取词}（conjunction） & 且、而且、并且 & \(\land\) \\ \hline
+\textbf{析取词}（disjunction） & 或、或者 & \(\lor\) \\ \hline
+\textbf{蕴涵词}（implication） & 如果……那么…… & \(\implies\) \\ \hline
+\textbf{等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
+\end{tabular}
+\caption{逻辑联结词}
+\end{table}
+
+\begin{definition}
+\textbf{简单命题}或\textbf{原子命题}（atom proposition），%
+是指不含有逻辑联结词的命题.
+相反地，\textbf{复合命题}（compound proposition），%
+是指包含了简单命题和逻辑联结词的命题.
+\end{definition}
+
+逻辑联结词具有对命题的真值进行运算的效果，%
+我们可以用\textbf{真值表}来说明其具体效果.
+
+\begin{table}[ht]
+\centering
+\begin{subtable}[ht]{0.9\textwidth}
+\centering
+\begin{tabular}{|c|p{1.5cm}|}
+\hline
+\(p\) & \(\neg p\) \\ \hline
+0 & 1 \\ \hline
+1 & 0 \\ \hline
+\end{tabular}
+\caption{否定词“非”}
+\end{subtable}
+
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \land q\) \\ \hline
+0 & 0 & 0 \\ \hline
+0 & 1 & 0 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{合取词“且”}
+\end{subtable}
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \lor q\) \\ \hline
+0 & 0 & 0 \\ \hline
+0 & 1 & 1 \\ \hline
+1 & 0 & 1 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{析取词“或”}
+\end{subtable}
+
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \implies q\) \\ \hline
+0 & 0 & 1 \\ \hline
+0 & 1 & 1 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{蕴涵词}
+\end{subtable}
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \iff q\) \\ \hline
+0 & 0 & 1 \\ \hline
+0 & 1 & 0 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{等价词}
+\end{subtable}
+
+\caption{单个逻辑联结词逻辑运算结果的真值表}
+\end{table}
+    
+\begin{definition}
+如果有“\(p\)成立时\(q\)必成立”，%
+记\(p \implies q\)，%
+称“\(p\)是\(q\)的\textbf{充分条件}”，%
+或称“\(q\)是\(p\)的\textbf{必要条件}”；
+分别称\(p\)和\(q\)为这个命题的\textbf{蕴含前件}和\textbf{蕴含后件}.
+\end{definition}
+
+在自然语言中，条件语句一般都具有内在的联系；
+而数理逻辑中的\emph{蕴含}则仅是命题的连接，不一定具有什么内在联系.
+
+\begin{property}
+只有当“\(p\)为真，且\(q\)为假”时，蕴含式\(p \implies q\)才为假.
+\end{property}
+可以观察发现，\(p \implies q\)的真值表与\(\neg p \land q\)的相同.
+
+\subsection{命题公式及其组成成分}
+\begin{definition}
+\textbf{命题常元}（proposition constant），%
+简称\textbf{常元}（constant），%
+表示具体命题.
+\textbf{命题变元}（proposition variable），%
+简称\textbf{变元}（variable），%
+表示以“真、假”或者“0、1”为取值范围的变量.
+\end{definition}
+
+\begin{definition}
+\textbf{命题公式}（proposition formula），%
+简称为\textbf{公式}（formula），%
+是指由命题常元、命题变元和逻辑联结词组成的命题.
+它有如下的归纳定义：
+\begin{enumerate}
+\item 命题常元和命题变元是命题公式，也称作\textbf{原子公式}或\textbf{原子}；
+\item 设\(A\)、\(B\)为命题公式，那么有\[
+(\neg A),\quad
+(A \land B),\quad
+(A \lor B),\quad
+(A \implies B),\quad
+(A \iff B)
+\]也都是命题公式；
+\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+根据定义，\((\neg(p \implies (q \land r)))\)是命题公式.
+\((qp)\)缺少联结词，所以不是命题公式.
+\((p_1 \land (p_2 \land \dotsb))\)是无限的，所以不是命题公式.
+\end{example}
+
+为了简化书写，我们可以规定逻辑联结词的优先级顺序.
+逻辑联结词的优先级为：\[
+\neg,\quad \land,\quad \lor,\quad \implies,\quad \iff.
+\]除非有括号，否则按照命题公式从左到右，按照优先级从高到低的次序结合.
+定义逻辑联结词的优先级的意义在于可以减少命题公式中的括号数量.
+
+\begin{example}
+\(((\neg p) \lor (q))\)等同于\(\neg p \lor q\).
+
+但\[
+p \implies q \land r \implies s
+\]并非\[
+((p \implies q) \land (r \implies s)),
+\]而应等同于\[
+((p \implies (q \land r)) \implies s).
+\]
+\end{example}
+
+\begin{definition}
+如果对于一个公式，不论其命题变元取何值，该公式总为真，%
+则称该公式为\DefineConcept{永真式}或\DefineConcept{重言式}.
+\end{definition}
+
+常见的永真式列举如下：\begin{enumerate}
+\item 肯定后件律 \(p \implies (q \implies p)\)；
+\item 同一律 \(p \implies p\)；
+\item 排中律 \(\neg p \lor p\)；
+\item 矛盾律 \(\neg(\neg p \land p)\)；
+\item 双重否定律 \(\neg\neg p \iff p\).
+\end{enumerate}
+
+
+
 \section{公理化集合论}
+集合论公理统共有十个，在本节我们首先介绍其中六个；
+其中最为重要的当属空集公理、对集公理、并集公理、幂集公理，%
+它们统称为\textbf{集合存在公理}（Set Existence Axioms）.
+
 \subsection{外延公理}
 \begin{axiom}[外延公理]
+%@see: 《Elements of Set Theory》 P17. Extensionality Axiom
 如果集合\(A\)与集合\(B\)具有相同的元素，则称“集合\(A\)与集合\(B\)\textbf{相等}”，记作\(A=B\)，即\[
 \forall A, \forall B \Bigl[
 	\forall x \bigl( x \in A \iff x \in B \bigr)
@@ -120,10 +346,38 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \end{axiom}
 外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
 
+\subsection{子集公理}
+\begin{axiom}[子集公理]
+%@see: 《Elements of Set Theory》 P21. Subset Axiom
+对于不涉及\(B\)的每一条命题公式\(\lambda\)，下式是一条公理：\[
+\forall A, \exists B, \forall x \bigl(
+	x \in B \iff x \in A \land \lambda
+\bigr).
+\]
+\end{axiom}
+子集公理有时候也称作\textbf{分离公理}，%
+它在英语中称作Subset Axioms，%
+在德语中称作Axiom der Aussonderung.
+正如其名，该定理的作用就是从集合\(A\)中取出适合命题公式\(\lambda\)的元素，组合成新的集合\(B\).
+
+可以看出，子集公理是保障我们采用“描述法”表示集合这一方法论的正当性的基础.
+也就是说，\[
+\Bigl[
+	\forall A, \exists B, \forall x \bigl(
+		x \in B \iff x \in A \land \lambda
+	\bigr)
+\Bigr]
+\quad\iff\quad
+B = \Set{ x \in A \given \lambda }.
+\]
+
 \subsection{空集公理}
 \begin{axiom}[空集公理]
+%@see: 《Elements of Set Theory》 P18. Empty Set Axiom
 总存在这样一个集合\(A\)，没有任何元素属于它，即\[
-\exists A,\forall x( x \notin A ).
+\exists A, \forall x \bigl( x \notin A \bigr),
+\]或\[
+\exists A, \forall x \bigl( x \in A \iff x \neq x \bigr).
 \]
 \end{axiom}
 空集公理在英语中称作Empty Set Axiom.
@@ -147,8 +401,10 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 
 \subsection{对集公理}
 \begin{axiom}[对集公理]
+%@see: 《Elements of Set Theory》 P18. Pairing Axiom
 对于任意集合\(u\)和\(v\)，总存在一个集合\(B\)，它的元素只有\(u\)和\(v\)，即\[
-\forall u, \forall v, \exists B, \forall x \bigl(
+\forall u, \forall v, \exists B, \forall x
+\bigl(
 	x \in B \iff x = u \lor x = v
 \bigr).
 \]
@@ -158,38 +414,248 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 在德语中把对集公理和空集公理并称为Axiom der Elementarmengen.
 
 \begin{definition}
-设\(A\)、\(B\)是两个集合，称集合\[
-\Set{ A, B }
-\]为\(A\)和\(B\)的\textbf{对集}（Pair set）.
+称集合\(\Set{ A, B }\)为\(A\)和\(B\)的\textbf{对集}（pair set）.
 \end{definition}
 
-\subsection{子集公理}
-\begin{axiom}[子集公理]
-对于不涉及\(B\)的每一条命题公式\(\lambda\)，下式是一条公理：\[
-\forall A, \exists B, \forall x \bigl(
-	x \in B \iff x \in A \land \lambda
+\subsection{并集公理}
+\begin{axiom}[并集公理I]
+%@see: 《Elements of Set Theory》 P18. Union Axiom, Preliminary Form
+对于任意集合\(a\)和\(b\)，总存在一个集合\(B\)，它的元素要么属于\(a\)，要么属于\(b\)，即\[
+\forall a, \forall b, \exists B, \forall x
+\bigl(
+	x \in B
+	\iff
+	x \in a \lor x \in b
 \bigr).
 \]
 \end{axiom}
-子集公理有时候也称作\textbf{分离公理}，它在英语中称作Subset Axioms，在德语中称作Axiom der Aussonderung.
-正如其名，该定理的作用就是从集合\(A\)中取出适合命题公式\(\lambda\)的元素，组合成新的集合\(B\).
+上述公理在英语中称作Union Axiom, Preliminary Form.
+并集公理在德语中称作Axiom der Vereinigung.
 
-\begin{theorem}
-以所有集合为元素组成的集合不存在.
-\begin{proof}
-设\(A\)是一个集合，那么我们总可构造出一个不属于\(A\)的集合.记\[
-B = \Set{ x \in A \given x \notin x },
-\]那么有\[
-B \in B \iff B \in A \land B \notin B.
+\begin{definition}
+称集合\[
+\Set{ x \given x \in A \lor x \in B }
+\]为“\(A\)和\(B\)的\textbf{并集}（the union of \(A\) and \(B\)）”，%
+简称“\(A\)和\(B\)的\textbf{并}”，%
+记作\(A \cup B\)或\(A+B\).
+\end{definition}
+
+\begin{definition}
+称集合\[
+\Set{ x \given x \in A \land x \in B }
+\]为“\(A\)和\(B\)的\textbf{交集}（the intersection of \(A\) and \(B\)）”，%
+简称“\(A\)和\(B\)的\textbf{交}”，%
+记作\(A \cap B\).
+\end{definition}
+
+\begin{definition}
+称集合\[
+\Set{ x \given x \in A \land x \notin B }
+\]为“\(A\)和\(B\)的\textbf{差集}（the relative complement of \(B\) in \(A\)）”，%
+记作\(A - B\)或\(A \setminus B\).
+\end{definition}
+
+\begin{theorem}\label{theorem:集合论.系的交的唯一存在性}
+%@see: 《Elements of Set Theory》 P25. Theorem 2B
+对于任意非空集合\(A\)，%
+存在唯一的集合\(B\)，%
+使得对于任意\(x\)，有\[
+x \in B
+\iff
+\forall a \in A \bigl( x \in a \bigr).
+\]
+\end{theorem}
+
+\begin{definition}
+设系\(A = \Set{\v{a}{n}}\).
+称集合\(\v{a}{n}\)的并为\(A\)的\textbf{并}，%
+记作\(\bigcup A\)或\(\bigcup\limits_i a_i\)，即\[
+\bigcup A
+\defeq
+a_1 \cup a_2 \cup \dotsb \cup a_n
+= \Set*{ x \given \exists a \in A \bigl( x \in a \bigr) }.
+\]
+\end{definition}
+
+为了确保“系的并”这样的集合存在，我们需要改进并集公理，如下：
+\begin{axiom}[并集公理II]
+对于任意集合\(A\)，总存在一个集合\(B\)，%
+使得集合\(B\)中的元素都是集合\(A\)的子集，即\[
+\forall x \Bigl[
+	x \in B
+	\iff
+	\exists b \in A \bigl( x \in b \bigr)
+\Bigr].
+\]
+\end{axiom}
+
+于是，原有的对于“集的并”的定义可以修改为\[
+a \cup b \defeq \bigcup\Set{a,b}.
 \]
 
-假设\(B \in A\)，那么上式化为\[
+\begin{property}
+\(b \in A \implies b \subseteq \bigcup A\).
+\end{property}
+
+\begin{example}
+证明：
+\begin{equation}
+\Set{ \Set{x}, \Set{x,y} } \in A
+\implies
+\Set{x,y} \in \bigcup A
+\land
+x,y \in \bigcup\bigcup A.
+\end{equation}
+\end{example}
+
+\begin{definition}
+设系\(A = \Set{\v{a}{n}}\).
+称集合\(\v{a}{n}\)的并为\(A\)的\textbf{交}\footnote{%
+\cref{theorem:集合论.系的交的唯一存在性} 确保了\(\bigcap A\)可以定义为唯一存在的集合\(B\).
+}，%
+记作\(\bigcap A\)或\(\bigcap\limits_i a_i\)，即\[
+\bigcap A
+\defeq
+a_1 \cap a_2 \cap \dotsb \cap a_n
+= \Set*{ x \given \forall a \in A \bigl(x \in a\bigr) }.
+\]
+\end{definition}
+
+例如，
+\begin{align*}
+&\bigcup\Set{a,b,c,d} = a \cup b \cup c \cup d. \\
+&\bigcup\Set{a} = a. \\
+&\bigcup\emptyset = \emptyset.
+\end{align*}
+
+例如，
+\begin{align*}
+&\bigcap\Set{a} = a. \\
+&\bigcap\Set{a,b} = a \cap b. \\
+&\bigcap\Set{a,b,c,d} = a \cap b \cap c \cap d.
+\end{align*}
+
+特别注意到“\(\bigcap\emptyset\)”是未定义的！
+
+\begin{example}
+因为\(\bigcap\Set{ \Set{a}, \Set{a,b} } = \Set{a} \cap \Set{a,b} = \Set{a}\)，%
+所以\[
+\bigcup \bigcap \Set{ \Set{a}, \Set{a,b} } = \bigcup \Set{a} = a;
+\]\[
+\bigcap \bigcup \Set{ \Set{a}, \Set{a,b} } = \bigcap \Set{a,b} = a \cap b.
+\]
+\end{example}
+
+\subsection{幂集公理}
+\begin{axiom}[幂集公理]
+对于任意集合\(A\)，总存在一个集合\(B\)，\(B\)的全部元素恰好是集合\(A\)的全部子集，即\[
+\forall A, \exists B, \forall x \bigl[
+	x \in B
+	\iff
+	x \subseteq A
+	\iff
+	\forall t \bigl( t \in x \implies t \in A \bigr)
+\bigr].
+\]
+\end{axiom}
+幂集公理在英语中称作Power Set Axiom，在德语中称作Axiom der Potenzmenge.
+
+\begin{definition}
+由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合\(B\)，%
+称作“集合\(A\)的\textbf{幂集}（power set）”，%
+记作\(\Powerset A\)或\(2^A\)或\(\mathcal{P}A\)，即\[
+\Powerset A
+\defeq
+\Set{ x \given x \subseteq A }.
+\]
+\end{definition}
+
+\begin{property}
+%@see: 《Elements of Set Theory》 P26. Exercise 6(a).
+对任意集合\(A\)，总有
+\begin{equation}
+\bigcup \Powerset A = A.
+\end{equation}
+\begin{proof}
+令\(B = \Powerset A\).
+由并集的定义可知，\[
+x \in \bigcup B
+\iff
+\exists b \in B
+\bigl(
+	x \in b
+\bigr).
+\eqno(1)
+\]
+又由幂集的定义可知，\[
+b \in B = \Powerset A
+\iff
+b \subseteq A.
+\eqno(2)
+\]
+结合(1)式与(2)式，可知\[
+x \in \bigcup \Powerset A
+\iff
+\exists b \subseteq A
+\bigl(
+	x \in b
+\bigr).
+\eqno(3)
+\]
+于是，若要证\(\bigcup \Powerset A = A\)，%
+只需证\(x \in \bigcup \Powerset A \iff x \in A\)，%
+即证\[
+x \in A
+\iff
+\exists b \subseteq A
+\bigl(
+	x \in b
+\bigr).
+\eqno(4)
+\]
+(4)式是显然的.
+\end{proof}
+\end{property}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Exercise 6(b).
+证明：对任意集合\(A\)，总有
+\begin{equation}
+A \subseteq \Powerset \bigcup A;
+\end{equation}
+并找出使得\(A = \Powerset \bigcup A\)成立的条件.
+\end{example}
+
+\subsection{利用集合存在公理构造有限集合的一般方法}
+利用对集公理和并集公理，我们可以构造任意有限集合.
+例如，给定任意的\(x\)，我们可以定义“单元集（singleton）”\(\{x\} \defeq \{x, x\}\).
+又例如，给定任意的\(\v{x}{3}\)，我们可以定义由这三个元素构成的集合\(\{\v{x}{3}\} \defeq \{x_1,x_2\}\cup\{x_3\}\)；
+同样地，我们还可以定义\(\{\v{x}{4}\}\)，以此类推.
+可以看出，对集公理和并集公理是保障我们采用“列举法”表示集合这一方法论的正当性的基础.
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P22. Theorem 2A
+以所有集合为元素组成的集合不存在.
+\begin{proof}
+设\(A\)是一个集合.
+令\[
+B = \Set{ x \in A \given x \notin x }.
+\]那么有\[
+B \in B
+\iff
+B \in A \land B \notin B.
+\eqno(1)
+\]
+
+假设\(B \in A\)，那么(1)式化为\[
 B \in B \iff B \notin B,
 \]矛盾，故\(B \notin A\).
+
+综上所述，我们总可构造出一个不属于\(A\)的集合\(B\)，因此不存在“以所有集合为元素组成的集合”.
 \end{proof}
+\end{theorem}
 有的人可能会对是否存在以其本身为元素的集合抱有疑问，我们将在后面证明这是不可能的.
 而根据这个结论，在上面的证明中，集合\(B\)实际上与集合\(A\)完全相同.
-\end{theorem}
 
 利用子集定理，我们可以进一步定义子集、真子集、交集等概念.
 \begin{definition}
@@ -225,23 +691,11 @@ B \in B \iff B \notin B,
 
 \begin{theorem}
 如果集合\(A\)与集合\(B\)互为子集，那么集合\(A\)与集合\(B\)相等，即\[
-A \subseteq B \land B \subseteq A \iff A = B.
+A \subseteq B \land B \subseteq A
+\iff
+A = B.
 \]
 \end{theorem}
-
-\subsection{幂集公理}
-\begin{axiom}[幂集公理]
-对于任意集合\(A\)，总存在这样一个集合——它的全部元素恰好是集合\(A\)的全部子集，即\[
-\forall A, \exists B, \forall x ( x \in B \iff x \subseteq A ).
-\]
-
-像这样由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合\(B\)，称作集合\(A\)的\textbf{幂集}（power set），记作\(\Powerset A\)（有的地方也记作\(2^A\)或\(\mathcal{P}A\)），即\[
-\Powerset A \equiv \Set{x \given x \subseteq A}.
-\]
-\end{axiom}
-幂集公理在英语中称作Power Set Axiom，在德语中称作Axiom der Potenzmenge.
-
-空集公理、对集公理、并集公理、幂集公理并称\textbf{集合存在公理}（Set Existence Axioms）.
 
 \begin{example}
 \(\Powerset \emptyset = \{ \emptyset \},%
@@ -256,47 +710,13 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \end{solution}
 \end{example}
 
-\subsection{并集公理}
-\begin{axiom}[并集公理]
-对于任意集合\(a\)和\(b\)，总存在这样一个集合——它的元素要么属于\(a\)，要么属于\(b\)，即\[
-\forall a, \forall b, \exists B, \forall x( x \in B \iff x \in a \lor x \in b ).
-\]
-\end{axiom}
-上述公理在英语中称作Union Axiom, Preliminary Form.
-并集公理在德语中称作Axiom der Vereinigung.
-
 \subsection{集合代数}
-\begin{definition}[集合的交、并、差]
-设集合\(A\)、\(B\).
-称集合\[
-\Set{ x \given x \in A \land x \in B }
-\]为\(A\)和\(B\)的\textbf{交集}（简称\textbf{交}，the intersection of \(A\) and \(B\)），记作\(A \cap B\).
-
-称集合\[
-\Set{ x \given x \in A \lor x \in B }
-\]为\(A\)和\(B\)的\textbf{并集}（简称\textbf{并}，the union of \(A\) and \(B\)），记作\(A \cup B\)或\(A+B\).
-
-称\[
-\Set{ x \given x \in A \land x \notin B }
-\]为\(A\)和\(B\)的\textbf{差集}（the relative complement of \(B\) in \(A\)），记作\(A - B\)或\(A \setminus B\).
-\end{definition}
-
 \begin{definition}[全集、补集]
 有时，我们研究某个问题限定在一个大的集合\(U\)中进行，所研究的其他集合都是\(U\)的子集；
 此时我们称集合\(U\)为\textbf{全集}（universe）或\textbf{基本集}.
 
 设集合\(A \subseteq U\)，则称\(U-A\)为\(A\)的\textbf{补集}或\textbf{余集}，记作\(\overline{A}\)，或\(\complement_U A\)，或\(A^C\).
 \end{definition}
-
-我们可以进一步改善并集公理如下：
-\begin{axiom}[并集公理']
-对于任意集合\(A\)，总存在一个集合\(B\)，使得集合\(B\)中的所有元素都属于集合\(A\)中的元素，即\[
-\forall x \bigl[
-	x \in B \iff (\exists b \in A) x \in b
-\bigr].
-\]
-\end{axiom}
-在给出上述并集公理后，原本的并集公理就可以抛弃不用了.
 
 \begin{theorem}
 对于任意非空集合\(A\)，总存在唯一的集合\(B\)，使得\[
@@ -316,19 +736,6 @@ A \subseteq B \land B \subseteq A \iff A = B.
 \]唯一性可通过外延公理证明.
 \end{proof}
 \end{theorem}
-
-\begin{definition}[系的并、交]
-设系\(A = \Set{\v{a}{n}}\).
-称集合\(\v{a}{n}\)的并为\(A\)的\textbf{并}，即\[
-\bigcup A \equiv \bigcup\limits_i a_i
-= \Set{ x \given x \in a, a \in A }.
-\]
-
-称集合\(\v{a}{n}\)的并为\(A\)的\textbf{交}，即\[
-\bigcap A \equiv \bigcap\limits_i a_i
-= \Set{ x \given \forall a \in A \bigl(x \in a\bigr) }.
-\]
-\end{definition}
 
 \begin{property}
 集合的运算满足以下性质：
@@ -416,7 +823,7 @@ x \in \bigcap B = \bigcap_i b_i
 \end{proof}
 \end{example}
 
-\section{关系与映射}
+\section{关系}
 \subsection{无序对、有序对的概念}
 \begin{definition}[无序对]
 由两个元素\(x_1\)和\(x_2\)组成的集合\[
@@ -590,15 +997,37 @@ x,
 \)称作它的\textbf{域}（field），记作\(\fld \rel{R}\).
 \end{definition}
 
-\subsection{映射}
+\section{映射}
 \begin{definition}
-设\(X\)和\(Y\)是两个非空集合，如果存在一个法则\(f\)，使得对\(X\)中每个元素\(x\)，按法则\(f\)，在\(Y\)中有唯一确定的元素\(y\)与之对应，则称\(f\)为从\(X\)到\(Y\)的\textbf{映射}，记作\[
-f\colon X \to Y,
-\]其中\(y\)称为元素\(x\)（在映射\(f\)下）的\textbf{像}，并记作\(f(x)\)，即\[
-y = f(x),
-\]而元素\(x\)称为元素\(y\)（在映射\(f\)下）的一个\textbf{原像}；集合\(X\)称为映射\(f\)的\textbf{定义域}，记作\(D_f\)，即\(D_f = X\)；而\(X\)中所有元素的像所组成的集合称为映射\(f\)的\textbf{值域}，记作\(R_f\)或\(f(X)\)，即\[
-R_f = f(X) = \Set{f(x) \given x \in X}.
+设\(X\)和\(Y\)是两个非空集合，%
+如果关系\(f \subseteq X \times Y\)满足%
+对\(X\)中每个元素\(x\)，%
+在\(Y\)中有唯一确定的元素\(y\)与之对应，即\[
+\forall x \in X,
+\exists! y \in Y
+\bigl( x f y \bigr)
+\]则称“\(f\)是从\(X\)到\(Y\)的\textbf{映射}%
+（\(f\) is a function from \(X\) into \(Y\)，%
+或\(f\) maps \(X\) into \(Y\)）”，记作\[
+f\colon X \to Y, x \mapsto y,
+\]或简记为\[
+f\colon X \to Y;
 \]
+称\(y\)为“\(x\)（在映射\(f\)下）的\textbf{像}%
+（the \textit{value} of \(f\) at \(x\)）”，%
+记为\(f(x)\)，即\[
+y = f(x)
+\defeq \bigcup\Set{ y \given \opair{x,y} \in f };
+\]
+称\(x\)为“\(y\)（在映射\(f\)下）的一个\textbf{原像}”；
+集合\(X\)称为“映射\(f\)的\textbf{定义域}”，%
+记作\(D_f\)，即\(D_f = X\)；
+而\(X\)中所有元素的像所组成的集合称为“映射\(f\)的\textbf{值域}”，%
+记作\(R_f\)或\(f(X)\)，即\[\begin{aligned}
+R_f = f(X)
+&\defeq \Set{ y \given \forall x \in X \bigl( x f y \bigr) } \\
+&\subseteq Y.
+\end{aligned}\]
 \end{definition}
 
 从上述映射的定义中，需要注意的是：
@@ -1056,7 +1485,7 @@ k \subseteq \omega
 \end{definition}
 
 \begin{property}
-有限集\(A\)对应的\cemph{幂集的大小}为\[
+有限集\(A\)对应的幂集的大小为\[
 \abs{\Powerset A} = 2^{\abs{A}}.
 \]
 \end{property}
