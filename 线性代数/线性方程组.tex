@@ -2,17 +2,45 @@
 \section{线性方程组的表示、消元法}
 \subsection{线性方程组的矩阵形式}
 \begin{definition}
-称含有\(n\)个未知量\(\v{x}{n}\)的一元方程组\[
+称含有\(n\)个未知量\(\v{x}{n}\)的一次方程组
+\begin{equation}\label{equation:线性方程组.线性方程组的代数形式}
 \left\{ \begin{array}{l}
-a_{11} x_1 + a_{12} x_2 + \dotsb + a_{1n} x_n = b_1 \\
-a_{21} x_1 + a_{22} x_2 + \dotsb + a_{2n} x_n = b_2 \\
+a_{11} x_1 + a_{12} x_2 + \dotsb + a_{1n} x_n = b_1, \\
+a_{21} x_1 + a_{22} x_2 + \dotsb + a_{2n} x_n = b_2, \\
 \hdotsfor{1} \\
 a_{s1} x_1 + a_{s2} x_2 + \dotsb + a_{sn} x_n = b_s
 \end{array} \right.
-\]为\(n\)元\textbf{线性方程组}（system of linear equations），%
-\(s\)为方程的个数，%
-\(a_{ij}\ (i=1,2,\dotsc,s;j=1,2,\dotsc,n)\)叫做\textbf{系数}，%
-\(b_i\)（\(i=1,2,\dotsc,s\)）叫做\textbf{常数项}.
+\end{equation}
+为\(n\)元\textbf{线性方程组}（system of linear equations）；
+这里，\(s\)为方程的个数\footnote{%
+在方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 中，%
+方程的数目\(s\)可以等于未知数的数目\(n\)，%
+也可以不相等（即\(s<n\)或\(s>n\)）.
+}；%
+\(a_{ij}\)是“第\(i\)个方程中\(x_j\)的\textbf{系数}”%
+（\(i=1,2,\dotsc,s; \allowbreak
+j=1,2,\dotsc,n\)）；
+\(b_i\ (i=1,2,\dotsc,s)\)叫做\textbf{常数项}.
+
+如果存在\(n\)个数\(\v{c}{n}\)满足上述线性方程组，即\[
+a_{i1} c_1 + a_{12} c_2 + \dotsb + a_{in} c_n \equiv b_i
+\quad(i=1,2,\dotsc,s),
+\]则称“线性方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 有解”；
+称这\(n\)个数构成的列向量\((\v{c}{n})^T\)为它的一个\textbf{解}（solution）.
+线性方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 的解的全体构成的集合\(S\)，%
+称为“线性方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 的\textbf{解集}”.
+\end{definition}
+
+\begin{definition}
+解集合相等的两个线性方程组称为\textbf{同解方程组}.
+\end{definition}
+
+\begin{definition}
+称常数项中有非零数的线性方程组为\textbf{非齐次线性方程组}.
+称常数项全为零的线性方程组为\textbf{齐次线性方程组}.
+\end{definition}
+
+\begin{definition}
 由系数按原位置构成的\(s \times n\)矩阵\[
 \A = \begin{bmatrix}
 a_{11} & a_{12} & \dots & a_{1n} \\
@@ -21,19 +49,11 @@ a_{21} & a_{22} & \dots & a_{2n} \\
 a_{n1} & a_{n2} & \dots & a_{nn}
 \end{bmatrix}
 \]叫做\textbf{系数矩阵}（coefficient matrix）.
+特别地，如果\(s = n\)（即系数矩阵\(\A\)是一个方阵），%
+则系数矩阵的行列式\(\abs{\A}\)叫做\textbf{系数行列式}.
 
-特别地，如果\(s = n\)（即系数矩阵\(\A\)是一个方阵），则系数矩阵的行列式\(\abs{\A}\)叫做\textbf{系数行列式}.
-如果存在\(n\)个数\(\v{c}{n}\)满足上述线性方程组，即\[
-a_{i1}c_1 + a_{12}c_2 + \dotsb + a_{in}c_n = b_i,
-\quad
-i=1,2,\dotsc,s,
-\]则称该线性方程组有解，并称这\(n\)个数构成的列向量\(\mat{X}_0 = (\v{c}{n})^T\)为它的一个\textbf{解}（solution）.
-线性方程组的解的全体构成的集合\(S\)称为它的\textbf{解集合}（简称\textbf{解集}）.
-解集合相等的两个线性方程组称为\textbf{同解方程组}.
-解线性方程组首先要判断其有无解.有解时，应求出全部解.
-称常数项中有非零数的线性方程组为\textbf{非齐次线性方程组}，常数项全为零的线性方程组为\textbf{齐次线性方程组}.
-
-为使表述简明，常用向量、矩阵表示线性方程组.若记\[
+为使表述简明，常用向量、矩阵表示线性方程组.
+若记\[
 \mat{X}=\begin{bmatrix}
 x_1 \\ x_2 \\ \vdots \\ x_n
 \end{bmatrix},
@@ -783,7 +803,7 @@ B'=\{\a1,\a2,\dotsc,\a t\},
 \def\b#1{\mat{\beta}_{#1}}
 设矩阵\[
 \A=(\a1,\a2,\dotsc,\a m)
-\]经一系列\cemph{初等行变换}化为矩阵\[
+\]经一系列初等行变换化为矩阵\[
 \B=(\b1,\b2,\dotsc,\b m),
 \]则\(\a{j1},\a{j2},\dotsc,\a{jk}\)为\(\A\)的列极大无关组的充要条件是：
 \(\b{j1},\b{j2},\dotsc,\b{jk}\)为\(\B\)的列极大无关组.
@@ -1413,7 +1433,7 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 \end{example}
 
 \subsection{重要不等式}
-\begin{theorem}[西尔维斯特（Sylvester）不等式]
+\begin{theorem}[西尔维斯特不等式]
 设\(\A\)是\(m \times n\)矩阵，\(\B\)是\(n \times t\)矩阵.证明：\begin{equation}\label{equation:线性方程组.西尔维斯特不等式}
 \rank\A + \rank\B - n \leqslant \rank(\A \B).
 \end{equation}

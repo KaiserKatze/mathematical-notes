@@ -1,4 +1,6 @@
 \chapter{复数}
+\begingroup
+
 \section{复数的形式与运算}
 \subsection{复数的代数形式}
 \begin{definition}[虚数单位]
@@ -353,11 +355,35 @@ r_1 = r_2 \\
 \]
 \end{theorem}
 
-\begin{example}
-证明：\[
-\sum\limits_{k=1}^n \cos kx
-= \frac{\sin \left(n+\frac{1}{2}\right)x}{2 \sin \frac{x}{2}} - \frac{1}{2}.
+我们可以利用指数形式的复数作出对三角函数和积互化公式的证明.
+由于\[
+e^{\iu(\alpha+\beta)}
+= e^{\iu\alpha} e^{\iu\beta}
 \]
+可以写为代数形式
+\[\begin{aligned}
+\cos(\alpha+\beta)+\iu\sin(\alpha+\beta)
+&= (\cos\alpha+\iu\sin\alpha)(\cos\beta+\iu\sin\beta) \\
+&= (\cos\alpha \cos\beta - \sin\alpha \sin\beta)
+    + \iu(\cos\alpha \sin\beta + \sin\alpha \cos\beta),
+\end{aligned}\]
+那么，稍加比较便知\[
+\cos(\alpha+\beta) = \cos\alpha \cos\beta - \sin\alpha \sin\beta,
+\]\[
+\sin(\alpha+\beta) = \cos\alpha \sin\beta + \sin\alpha \cos\beta.
+\]
+
+\begin{example}
+证明：\begin{gather}
+\sum\limits_{k=1}^n \cos kx
+    = \cos(\frac{n+1}{2}x)
+    \csc(\frac{1}{2}x)
+    \sin(\frac{n}{2}x). \\
+\sum\limits_{k=1}^n \sin kx
+    = \sin(\frac{n+1}{2}x)
+    \csc(\frac{1}{2}x)
+    \sin(\frac{n}{2}x).
+\end{gather}
 \end{example}
 
 \subsection{复数的乘幂与方根}
@@ -370,11 +396,12 @@ z^n = r^n e^{in\theta} = r^n(\cos n\theta+\iu\sin n\theta),
 \]
 \end{definition}
 
-\begin{theorem}[棣莫弗（De Moivre）公式]
-\begin{align}
+\begin{theorem}[棣莫弗公式]
+\begin{equation}\label{equation:复数.棣莫弗公式}
 (\cos\theta+i\sin\theta)^n = \cos{n\theta}+\iu\sin{n\theta}
-\end{align}
+\end{equation}
 \end{theorem}
+我们称\cref{equation:复数.棣莫弗公式}为{棣莫弗（de Moivre）公式}.
 
 \begin{definition}[复数的方根]
 已知\(z\in\mathbb{C}\)，关于复数\(w\)的方程\[
@@ -475,3 +502,5 @@ z - z_0 = R e^{\iu \theta}.
 \begin{theorem}
 点\(z_1,z_2\)关于圆周\(C: \abs{z - a} = R\)对称的充要条件是：通过\(z_1,z_2\)的任意圆周都与\(C\)正交.
 \end{theorem}
+
+\endgroup

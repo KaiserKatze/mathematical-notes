@@ -191,7 +191,7 @@ f(x + a) \neq f(x)，%
 \end{definition}
 
 \begin{example}
-狄利克雷（Dirichelet）函数\[
+狄利克雷函数\[
 D(x) = \left\{ \begin{array}{ll}
 1, & x \in \mathbb{Q}, \\
 0, & x \in \mathbb{Q}^C.
@@ -304,7 +304,7 @@ f(x) = \left\{ \begin{array}{cc}
 \]
 \end{definition}
 
-\begin{figure}
+\begin{figure}[ht]
 \def\subwidth{.45\linewidth}
 \def\subscale{.9}
 \begin{subfigure}[b]{\subwidth}%
@@ -382,7 +382,7 @@ f(x) = \left\{ \begin{array}{cc}
 0, & x < 0, \\
 1, & x \geqslant 1
 \end{array} \right.
-\]称为\DefineConcept{单位阶跃函数}（或称为\DefineConcept{赫维赛德（Heaviside）阶跃函数}）.
+\]称为\DefineConcept{单位阶跃函数}或\DefineConcept{赫维赛德阶跃函数}.
 \end{definition}
 
 \begin{figure}[h!]
@@ -398,6 +398,32 @@ f(x) = \left\{ \begin{array}{cc}
 \end{tikzpicture}
 \caption{单位阶跃函数的图形}
 \end{figure}
+
+\subsection{克罗内克\texorpdfstring{\(\delta\)}{\textdelta}函数}
+\begin{definition}
+%@see: https://mathworld.wolfram.com/KroneckerDelta.html
+定义：\[
+\delta_K(a,b)
+\defeq \left\{ \begin{array}{cl}
+	1, & a = b, \\
+	0, & a \neq b.
+\end{array} \right.
+\]称其为\DefineConcept{克罗内克\(\delta\)函数}.
+\end{definition}
+
+\subsection{狄拉克\texorpdfstring{\(\delta\)}{\textdelta}函数}
+\begin{definition}
+%@see: https://functions.wolfram.com/GeneralizedFunctions/DiracDelta/02/
+%@see: https://functions.wolfram.com/GeneralizedFunctions/DiracDelta2/02/
+定义：\[
+\delta_D(x)
+\defeq \frac{1}{\pi}
+	\lim\limits_{\varepsilon\to0}
+	\frac{\varepsilon}{x^2+\varepsilon^2}
+\quad(x\in\mathbb{R}).
+\]
+称其为\DefineConcept{狄拉克\(\delta\)函数}.
+\end{definition}
 
 \subsection{幂函数、指数函数、对数函数}
 \begin{definition}
@@ -439,16 +465,31 @@ a^b = \underbrace{a \times a \times \dotsm \times a}_{b\text{次}} = \prod\limit
 幂函数具有以下性质：
 \begin{enumerate}
 \item 当\(\mu = 0\)时，幂函数\(y=x^{\mu}=1\)是常数函数；
-\item 当\(\mu\)为正奇数时，幂函数\(y=x^{\mu}\)为奇函数，其定义域、值域均为\((-\infty,+\infty)\)，它在定义域内恒单调递增；
-\item 当\(\mu\)为正偶数时，幂函数\(y=x^{\mu}\)为偶函数，其定义域为\((-\infty,+\infty)\)，其值域为\([0,+\infty)\)，它在\((-\infty,0]\)上单调递减，在\([0,+\infty)\)上单调递增；
-\item 当\(\mu\)为负奇数时，幂函数\(y=x^{\mu}\)又称\textbf{比例函数}（%
-若幂函数前有常系数大于零则称之为\textbf{正比例函数}，%
-% Plot[Evaluate[x^-n /. n -> {1, 2, 3, 4, 5}], {x, 0, 2}, PlotRange -> {0, 2}, PlotLegends -> Automatic]
-若幂函数前有常系数小于零则称之为\textbf{反比例函数}），%
-% Plot[Evaluate[x^-n /. n -> {1, 2, 3, 4, 5}], {x, -2, 0}, PlotRange -> {-2, 2}, PlotLegends -> Automatic]
-其定义域、值域为\((-\infty,0)\cup(0,+\infty)\)，它在区间\((-\infty,0)\)和\((0,+\infty)\)内单调递减；
-\item 当\(\mu\)为负偶数时，幂函数\(y=x^{\mu}\)为偶函数，其定义域为\((-\infty,0)\cup(0,+\infty)\)，其值域为\((0,+\infty)\)，它在\((-\infty,0)\)内单调递增，在\((0,+\infty)\)内单调递减；
-\item 当\(\mu = \frac{m}{n} \in \mathbb{Q}\)（\(m\)、\(n\)是互质的整数）时，幂函数\(y=x^{\mu}=x^{\frac{m}{n}}\)可改写为\(y=\sqrt[n]{x^m}\)（\(\mu>0\)时）或\(y=\frac{1}{\sqrt[n]{x^m}}\)（\(\mu<0\)时）.
+
+\item 当\(\mu\)为正奇数时，幂函数\(y=x^{\mu}\)为奇函数，%
+其定义域、值域均为\((-\infty,+\infty)\)，它在定义域内恒单调递增；
+
+\item 当\(\mu\)为正偶数时，幂函数\(y=x^{\mu}\)为偶函数，%
+其定义域为\((-\infty,+\infty)\)，其值域为\([0,+\infty)\)；
+它在\((-\infty,0]\)上单调递减，在\([0,+\infty)\)上单调递增；
+
+\item 当\(\mu\)为负奇数时，幂级数\(y=x^{\mu}\)又称为\textbf{比例函数}，%
+其定义域、值域为\((-\infty,0)\cup(0,+\infty)\)；
+它在区间\((-\infty,0)\)和\((0,+\infty)\)内单调递减；
+\begin{enumerate}
+	\item 若幂函数前有常系数大于零则称之为\textbf{正比例函数}.
+	% Plot[Evaluate[x^-n /. n -> {1, 2, 3, 4, 5}], {x, 0, 2}, PlotRange -> {0, 2}, PlotLegends -> Automatic]
+	\item 若幂函数前有常系数小于零则称之为\textbf{反比例函数}.
+	% Plot[Evaluate[x^-n /. n -> {1, 2, 3, 4, 5}], {x, -2, 0}, PlotRange -> {-2, 2}, PlotLegends -> Automatic]
+\end{enumerate}
+
+\item 当\(\mu\)为负偶数时，幂函数\(y=x^{\mu}\)为偶函数，%
+其定义域为\((-\infty,0)\cup(0,+\infty)\)，其值域为\((0,+\infty)\)；
+它在\((-\infty,0)\)内单调递增，在\((0,+\infty)\)内单调递减；
+
+\item 当\(\mu = \pm\frac{m}{n} \in \mathbb{Q}\)（\(m,n>0\)且\(m\)、\(n\)是互质的整数）时，%
+幂函数\(y=x^{\mu}=x^{\pm\frac{m}{n}}\)可改写为\(y=\sqrt[n]{x^m}\)（\(\mu>0\)时）%
+或\(y=\frac{1}{\sqrt[n]{x^m}}\)（\(\mu<0\)时）.
 \end{enumerate}
 \end{property}
 
@@ -514,7 +555,7 @@ a^{\ln b} = b^{\ln a}.
 
 \subsection{三角函数}
 \subsubsection{三角函数的概念}
-\begin{definition}
+\begin{definition}\label{definition:函数.三角函数的几何定义}
 如图所示，\(\angle{BAC} = \theta\)，\(\angle{ABC} = \frac{\pi}{2}\).
 \begin{center}
 \begin{tikzpicture}
@@ -529,15 +570,16 @@ a^{\ln b} = b^{\ln a}.
 定义三角函数如下：
 \begin{center}
 \def\arraystretch{1.5}
-\begin{tabular}{|c|c|l|}
+\begin{tabular}{ccl}
 \hline
 名称 & 解析式 & 定义域 \\ \hline
-正弦 & \(\sin \theta = a/b\) & \(-\infty < \theta < +\infty\) \\ \hline
-余弦 & \(\cos \theta = c/b\) & \(-\infty < \theta < +\infty\) \\ \hline
-正切 & \(\tan \theta = a/c\) & \(\theta\neq k\pi+\frac{\pi}{2}\ (k\in\mathbb{Z})\) \\ \hline
-余切 & \(\cot \theta = c/a\) & \(\theta\neq k\pi\ (k\in\mathbb{Z})\) \\ \hline
-正割 & \(\sec \theta = b/c\) & \(\theta\neq k\pi+\frac{\pi}{2}\ (k\in\mathbb{Z})\) \\ \hline
-余割 & \(\csc \theta = b/a\) & \(\theta\neq k\pi\ (k\in\mathbb{Z})\) \\ \hline
+正弦 & \(\sin \theta = a/b\) & \(-\infty < \theta < +\infty\) \\
+余弦 & \(\cos \theta = c/b\) & \(-\infty < \theta < +\infty\) \\
+正切 & \(\tan \theta = a/c\) & \(\theta\neq k\pi+\frac{\pi}{2}\ (k\in\mathbb{Z})\) \\
+余切 & \(\cot \theta = c/a\) & \(\theta\neq k\pi\ (k\in\mathbb{Z})\) \\
+正割 & \(\sec \theta = b/c\) & \(\theta\neq k\pi+\frac{\pi}{2}\ (k\in\mathbb{Z})\) \\
+余割 & \(\csc \theta = b/a\) & \(\theta\neq k\pi\ (k\in\mathbb{Z})\) \\
+\hline
 \end{tabular}
 \end{center}
 \end{definition}
@@ -612,7 +654,7 @@ a^{\ln b} = b^{\ln a}.
 \end{property}
 
 \begin{theorem}[毕达哥拉斯三角恒等式]
-\begin{figure}
+\begin{figure}[ht]
 \def\subwidth{.5\linewidth}
 \def\subscale{.8}
     \begin{subfigure}[b]{\subwidth}%
@@ -651,7 +693,7 @@ a^{\ln b} = b^{\ln a}.
 
 \begin{property}
 %sine
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=0.7]
 	\draw[help lines, color=gray!30, dashed] (-8,-2) grid (8,2);
@@ -682,7 +724,7 @@ a^{\ln b} = b^{\ln a}.
 
 \begin{property}
 %cosine
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=0.7]
 	\draw[help lines, color=gray!30, dashed] (-8,-2) grid (8,2);
@@ -714,7 +756,7 @@ a^{\ln b} = b^{\ln a}.
 
 \begin{property}
 %tangent
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}
 \draw[help lines, color=gray!30, dashed] (-6,-4) grid (6,4);
@@ -829,13 +871,13 @@ a^{\ln b} = b^{\ln a}.
 
 \begin{example}
 \def\s{\sum\limits_{k=1}^n}%
-证明：\begin{gather}
+证明：
+当\(x\neq0\)时，有
+\begin{gather}
 \s \sin kx
-= \frac{\sin\frac{nx}{2} \sin\frac{(n+1)x}{2}}{\sin\frac{x}{2}},
-\quad(x\neq0) \\
+= \frac{\sin\frac{nx}{2} \sin\frac{(n+1)x}{2}}{\sin\frac{x}{2}}, \\
 \s \cos kx
 = \frac{\sin\frac{nx}{2} \cos\frac{(n+1)x}{2}}{\sin\frac{x}{2}}.
-\quad(x\neq0)
 \end{gather}
 \end{example}
 
@@ -1012,7 +1054,8 @@ F(t) = A \sin(\omega t + \varphi) \quad (-\infty<t<+\infty)
 \arcsin\frac{1}{x} &= \arccsc x, \\
 \arccos\frac{1}{x} &= \arcsec x, \\
 \arctan\frac{1}{x} &= \arccot x
-	= \frac{\pi}{2} - \arctan x, \quad(x>0) \\
+	= \frac{\pi}{2} - \arctan x
+ \quad(x>0), \\
 \arccot\frac{1}{x} &= \begin{cases}
 	\arctan x, & x>0, \\
 	\pi+\arctan x, & x<0,
@@ -1045,52 +1088,52 @@ F(t) = A \sin(\omega t + \varphi) \quad (-\infty<t<+\infty)
 \begin{align}
 &\hspace{-10pt}
 \arcsin x + \arcsin y \\
-	&= \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2}),
+	&= \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2})
 		\quad(xy\leqslant0 \lor x^2+y^2\leqslant1) \\
-	&= \pi - \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2}),
+	&= \pi - \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2})
 		\quad(x>0, y>0, x^2+y^2>1) \\
-	&= -\pi - \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2}),
-		\quad(x<0, y<0, x^2+y^2>1) \\
+	&= -\pi - \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2})
+		\quad(x<0, y<0, x^2+y^2>1), \\
 &\hspace{-10pt}
 \arcsin x - \arcsin y \\
-	&= \arcsin(x \sqrt{1-y^2} - y \sqrt{1-x^2}),
+	&= \arcsin(x \sqrt{1-y^2} - y \sqrt{1-x^2})
 		\quad(xy\geqslant0 \lor x^2+y^2\leqslant1) \\
-	&= \pi - \arcsin(x \sqrt{1-y^2} - y \sqrt{1-x^2}),
+	&= \pi - \arcsin(x \sqrt{1-y^2} - y \sqrt{1-x^2})
 		\quad(x>0, y<0, x^2+y^2>1) \\
-	&= -\pi - \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2}),
-		\quad(x<0, y>0, x^2+y^2>1) \\
+	&= -\pi - \arcsin(x \sqrt{1-y^2} + y \sqrt{1-x^2})
+		\quad(x<0, y>0, x^2+y^2>1), \\
 &\hspace{-10pt}
 \arccos x + \arccos y \\
-	&= \arccos[xy - \sqrt{(1-x^2)(1-y^2)}],
+	&= \arccos[xy - \sqrt{(1-x^2)(1-y^2)}]
 		\quad(x+y\geqslant0) \\
-	&= 2\pi - \arccos[xy - \sqrt{(1-x^2)(1-y^2)}],
-		\quad(x+y<0) \\
+	&= 2\pi - \arccos[xy - \sqrt{(1-x^2)(1-y^2)}]
+		\quad(x+y<0), \\
 &\hspace{-10pt}
 \arccos x - \arccos y \\
-	&= -\arccos[xy + \sqrt{(1-x^2)(1-y^2)}],
+	&= -\arccos[xy + \sqrt{(1-x^2)(1-y^2)}]
 		\quad(x \geqslant y) \\
-	&= \arccos[xy + \sqrt{(1-x^2)(1-y^2)}],
-		\quad(x<y) \\
+	&= \arccos[xy + \sqrt{(1-x^2)(1-y^2)}]
+		\quad(x<y), \\
 &\hspace{-10pt}
 \arctan x + \arctan y \\
-	&= \arctan\frac{x+y}{1-xy},
+	&= \arctan\frac{x+y}{1-xy}
 		\quad(xy<1) \\
-	&= \pi+\arctan\frac{x+y}{1-xy},
+	&= \pi+\arctan\frac{x+y}{1-xy}
 		\quad(x>0,xy>1) \\
-	&= -\pi+\arctan\frac{x+y}{1-xy},
-		\quad(x<0,xy>1) \\
+	&= -\pi+\arctan\frac{x+y}{1-xy}
+		\quad(x<0,xy>1), \\
 &\hspace{-10pt}
 \arctan x - \arctan y \\
-	&= \arctan\frac{x-y}{1+xy},
+	&= \arctan\frac{x-y}{1+xy}
 		\quad(xy>-1) \\
-	&= \pi+\arctan\frac{x-y}{1+xy},
+	&= \pi+\arctan\frac{x-y}{1+xy}
 		\quad(x>0,xy<-1) \\
-	&= -\pi+\arctan\frac{x-y}{1+xy},
-		\quad(x<0,xy<-1)
+	&= -\pi+\arctan\frac{x-y}{1+xy}
+		\quad(x<0,xy<-1).
 \end{align}
 \end{theorem}
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}
   \draw[help lines, color=gray!30, dashed] (0,0) grid (4,3);

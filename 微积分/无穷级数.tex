@@ -1,5 +1,6 @@
 \begingroup
 \def\s{\sum\limits_{i=1}^{\infty}}
+\renewcommand{\s}[1][1]{\sum\limits_{i=#1}^{\infty}}%
 \def\sn{\sum\limits_{i=1}^n}
 \def\l{\lim\limits_{n\to\infty}}
 \def\tint{\int_{-\pi}^{\pi}}
@@ -13,6 +14,7 @@
 在这种认识过程中，会遇到由有限个数量相加到无穷多个数量相加的问题.
 
 例如计算半径为\(R\)的圆面积\(A\)，具体做法如下：
+如\cref{figure:无穷级数.用内接正多边形覆盖圆}，%
 作圆的内接正六边形，算出这六边形的面积\(a_1\)，它是圆面积\(A\)的一个粗糙的近似值.
 为了比较准确地计算出\(A\)的值，我们以这个正六边形的每一边为底分别作一个顶点在圆周上的等腰三角形，算出这六个等腰三角形的面积之和\(a_2\).
 那么\(a_1+a_2\)（即内接正十二边形的面积）就是\(A\)的一个较好的近似值.
@@ -22,35 +24,59 @@
 A \approx a_1 + a_2 + \dotsb + a_n.
 \]
 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\radius}{4}
+		\pgfmathsetmacro{\pax}{\radius/2}
+		\pgfmathsetmacro{\pay}{\radius*sin(60)}
+		\pgfmathsetmacro{\pbx}{\radius*cos(30)}
+		\pgfmathsetmacro{\pby}{\radius*sin(30)}
+		\begin{scope}[cyan]
+		\draw(\radius,0)--(-\pax,\pay)--(-\pax,-\pay)--(\radius,0);
+		\draw(\radius,0)--(\pax,\pay)--(-\pax,\pay)--(-\radius,0)--(-\pax,-\pay)--(\pax,-\pay)--(\radius,0);
+		\draw(\radius,0)--(\pbx,\pby)--(\pax,\pay)--(0,4)--(-\pax,\pay)--(-\pbx,\pby)--(-\radius,0)--(-\pbx,-\pby)--(-\pax,-\pay)--(0,-4)--(\pax,-\pay)--(\pbx,-\pby)--(\radius,0);
+		\end{scope}
+		\draw(0,0)circle(\radius)node[left]{\(O\)}--(\radius,0)node[midway,above]{\(R\)};
+		\fill(0,0)circle(1pt);
+	\end{tikzpicture}
+	\caption{用内接正多边形覆盖圆}
+	\label{figure:无穷级数.用内接正多边形覆盖圆}
+\end{figure}
+
 如果内接正多边形的边数无限增多，即\(n\)无限增大，则和\(a_1+a_2+\dotsb+a_n\)的极限就是所要求的圆面积\(A\).
 这时和式中的项数无限增多，于是出现了无穷多个数量依次相加的数学式子.
 
 \subsection{常数项级数的概念}
-\begin{definition}
+\begin{definition}\label{definition:无穷级数.常数项级数的定义}
 一般地，给定一个有无穷多项的数列\[
 u_1,u_2,\dotsc,u_n,\dotsc,
 \]则由该数列构成的表达式\[
 u_1+u_2+\dotsb+u_n+\dotsb
-\]叫做\textbf{（常数项）无穷级数}，%
-简称\textbf{（常数项）级数}，记作\(\s u_i\)，即\[
+\]叫做\textbf{常数项无穷级数}（infinite series with constant terms），%
+简称\textbf{常数项级数}，记作\(\s u_i\)，即\[
 \s u_i
-=u_1+u_2+\dotsb+u_n+\dotsb,
-\]其中第\(n\)项\(u_n\)叫做级数的\textbf{一般项}.
+= u_1+u_2+\dotsb+u_n+\dotsb,
+\]
+其中第\(n\)项\(u_n\)叫做级数的\textbf{一般项}.
 
-作（常数项）级数的前\(n\)项的和\[
+作常数项级数的前\(n\)项的和\[
 s_n = u_1+u_2+\dotsb+u_n = \sum\limits_{i=1}^n{u_i},
-\]\(s_n\)称为级数\(\s u_i\)的\textbf{部分和}.
+\]\(s_n\)称为级数\(\s u_i\)的\textbf{部分和}（partial sum）.
 
 如果级数\(\s u_i\)的部分和数列\(\{s_n\}\)有极限\(s\)，即\[
 \l s_n = s,
-\]则称无穷级数\(\s u_i\)\textbf{收敛}，%
-这时极限\(s\)叫做这级数的\textbf{和}，并写成\[
+\]则称“无穷级数\(\s u_i\)\textbf{收敛}（converge）”，%
+这时极限\(s\)叫做这级数的\textbf{和}（sum），并写成\[
 s = u_1+u_2+\dotsb+u_n+\dotsb;
-\]如果\(\{s_n\}\)没有极限，则称无穷级数\(\s u_i\)\textbf{发散}.
+\]如果\(\{s_n\}\)没有极限，%
+则称“无穷级数\(\s u_i\)\textbf{发散}（diverge）”.
 
 显然，当级数收敛时，其部分和\(s_n\)是级数的和\(s\)的近似值，它们之间的差值\[
 r_n = s - s_n = u_{n+1}+u_{n+2}+\dotsb
-\]叫做级数的\textbf{余项}.用近似值\(s_n\)代替和\(s\)所产生的\textbf{误差}是这个余项的绝对值\(\abs{r_n}\).
+\]叫做级数的\textbf{余项}.
+称这个余项的绝对值\(\abs{r_n}\)为%
+“用近似值\(s_n\)代替和\(s\)所产生的\textbf{误差}”.
 \end{definition}
 从上述定义可知，级数与数列极限有着紧密的联系.给定级数\(\s u_i\)，就有部分和数列\(\{s_n = \sn u_i\}\)；反之，给定数列\(\{s_n\}\)，就有以\(\{s_n\}\)为部分和数列的级数\[
 s_1 + (s_2-s_1) + \dotsb + (s_n-s_{n-1}) + \dotsb
@@ -85,9 +111,11 @@ s_n = \frac{a(1-q^n)}{1-q} = \frac{a}{1-q} - \frac{aq^n}{1-q}.
 \begin{proof}
 级数的部分和为\[
 s_n = 1+2+3+\dotsb+n = \frac{n(n+1)}{2}.
-\]显然，\(\l s_n=\infty\)，因此{\color{red}等差级数总是发散的.}
+\]显然，\(\l s_n=\infty\)，级数是发散的.
 \end{proof}
 \end{example}
+从上例也可看出：
+{\color{red}除非初项与公差都等于\(0\)，否则等差级数总是发散的.}
 
 \begin{example}
 判定无穷级数\[
@@ -121,7 +149,7 @@ s_n &= \frac{1}{1\cdot2}+\frac{1}{2\cdot3}+\dotsb+\frac{1}{n(n+1)} \\
 \end{property}
 
 由关系式\(\sigma_n = k s_n\)知道，如果\(\{s_n\}\)没有极限且\(k\neq0\)，那么\(\{\sigma_n\}\)也不可能有极限.因此我们得到如下结论：
-{\color{red}级数的每一项同乘一个非零常数后，它的收敛性不会改变.}
+{\color{red}级数的每一项同乘一个非零常数后，它的敛散性不会改变.}
 
 \begin{example}
 判断\[
@@ -170,10 +198,8 @@ s_n &= \left(2\sin\frac{\pi}{12}\right)^{-1} \cdot \sigma_n \\
 这就表明级数\(\s (u_i \pm v_i)\)收敛于\(s \pm \sigma\).
 \end{proof}
 \end{property}
-\cref{theorem:无穷级数.收敛级数性质2} 也可以说成：{\color{red}两个收敛级数可以逐项相加、逐项相减.}
-
-若级数\(\s u_i\)收敛，而级数\(\s v_i\)发散，则级数\(\s \left(u_i \pm v_i\right)\)发散.
-若级数\(\s u_i\)、\(\s v_i\)都发散，则级数\(\s \left(u_i \pm v_i\right)\)可能收敛也可能发散.
+\cref{theorem:无穷级数.收敛级数性质2} 也可以说成：
+{\color{red}两个收敛级数可以逐项相加、逐项相减.}
 
 \begin{example}
 \def\s#1{\sum\limits_{#1}^{\infty}}
@@ -195,11 +221,24 @@ s_n &= \left(2\sin\frac{\pi}{12}\right)^{-1} \cdot \sigma_n \\
 \]也就是说\(\{\pm\sigma_n\}\)（即\(\pm\s{n=0} v_n\)）收敛，矛盾！
 \end{proof}
 \end{example}
+从上例我们可以看出：
+{\color{red}一个收敛级数与一个发散级数相加（或相减）所得级数必定发散.}
+
+{\def\s{\sum\limits_{n=0}^{\infty}}%
+另一方面，任给一个发散级数\(\s u_n\)，%
+级数\(\s u_n + \s u_n
+= \s 2 u_n\)也是发散的，%
+而级数\(\s u_n - \s u_n
+= 0\)却是收敛的，%
+于是我们还可以看出：
+\color{red}两个发散级数相加（或相减）所得级数可能收敛也可能发散.}
 
 \begin{property}\label{theorem:无穷级数.收敛级数性质3}
 在级数中去掉、加上或改变有限项，不会改变级数的收敛性.
 \begin{proof}
-我们只需证明“在级数的前面部分去掉或加上有限项，不会改变级数的收敛性”，因为其他情形（即在级数中任意去掉、加上或改变有限项的情形）都可以看成在级数的前面部分先去掉有限项，然后再加上有限项的结果.
+我们只需证明“在级数的前面部分去掉或加上有限项，不会改变级数的收敛性”，%
+因为其他情形（即在级数中任意去掉、加上或改变有限项的情形）都可以看成在级数的前面部分先去掉有限项，%
+然后再加上有限项的结果.
 
 将级数\[
 u_1+u_2+\dotsb+u_k+u_{k+1}+\dotsb+u_{k+n}+\dotsb
@@ -207,11 +246,15 @@ u_1+u_2+\dotsb+u_k+u_{k+1}+\dotsb+u_{k+n}+\dotsb
 u_{k+1}+u_{k+2}+\dotsb+u_{k+n}+\dotsb.
 \]于是新得到的级数的部分和为\[
 \sigma_n = u_{k+1}+u_{k+2}+\dotsb+u_{k+n} = s_{k+n} - s_k,
-\]其中\(s_{k+n}\)是原级数的前\(k+n\)项的和.因为\(s_k\)是常数，所以当\(n\to\infty\)时，\(\sigma_n\)与\(s_{k+n}\)或同时具有极限，或同时没有极限.
+\]其中\(s_{k+n}\)是原级数的前\(k+n\)项的和.
+因为\(s_k\)是常数，所以当\(n\to\infty\)时，%
+\(\sigma_n\)与\(s_{k+n}\)这两个量，要么同时具有极限，要么同时没有极限.
 
-同理可证在级数的前面加上有限项，不会改变级数的收敛性.由此可见，在级数中去掉、加上或改变有限项，不会改变级数的收敛性.
+同理可证在级数的前面加上有限项，不会改变级数的收敛性.
+由此可见，在级数中去掉、加上或改变有限项，不会改变级数的收敛性.
 
-另外，我们可以观察到，在收敛级数中去掉、加上或改变有限项，虽不会改变级数的收敛性，但可能会改变收敛级数的和.
+另外，我们可以观察到，在收敛级数中去掉、加上或改变有限项，%
+虽不会改变级数的收敛性，但可能会改变收敛级数的和.
 \end{proof}
 \end{property}
 
@@ -315,7 +358,7 @@ s_{2n} - s_n = \frac{1}{n+1}+\frac{1}{n+2}+\dotsb+\frac{1}{2n}
 现在我们先讨论各项都是正数或零的级数，这种级数称为\DefineConcept{正项级数}.
 这种级数特别重要，以后将看到许多级数的收敛性问题可归结为正项级数的收敛性问题.
 
-\begin{theorem}\label{theorem:无穷级数.正项级数收敛的充要条件1}
+\begin{theorem}\label{theorem:无穷级数.正项级数收敛的充要条件}
 正项级数\(\s u_i\)收敛的充要条件是：它的部分和数列\(\{s_n\}\)有界.
 \begin{proof}
 设级数\[
@@ -335,7 +378,8 @@ s_1 \leqslant s_2 \leqslant \dotsb \leqslant s_n \leqslant \dotsb.
 \subsubsection{比较审敛法}
 \begin{theorem}[比较审敛法]\label{theorem:无穷级数.正项级数的比较审敛法}
 设\(\s u_i\)和\(\s v_i\)都是正项级数，且\[
-u_n \leqslant v_n \quad (n=1,2,\dotsc).
+u_n \leqslant v_n
+\quad(n=1,2,\dotsc).
 \]
 若级数\(\s v_i\)收敛，则级数\(\s u_i\)收敛；
 反之，若级数\(\s u_i\)发散，则级数\(\s v_i\)发散.
@@ -344,8 +388,10 @@ u_n \leqslant v_n \quad (n=1,2,\dotsc).
 s_n = u_1 + u_2 + \dotsb u_n
 \leqslant
 v_1 + v_2 + \dotsb + v_n \leqslant \sigma
-\quad (n=1,2,\dotsc),
-\]即部分和数列\(\{s_n\}\)有界，由\cref{theorem:无穷级数.正项级数收敛的充要条件1} 知级数\(\s u_i\)收敛.
+\quad(n=1,2,\dotsc),
+\]
+即部分和数列\(\{s_n\}\)有界，%
+由\cref{theorem:无穷级数.正项级数收敛的充要条件} 知级数\(\s u_i\)收敛.
 \end{proof}
 \end{theorem}
 
@@ -391,15 +437,18 @@ v_1 + v_2 + \dotsb + v_n \leqslant \sigma
 \frac{1}{k^p}
 = \int_{k-1}^k \frac{1}{k^p} \dd{x}
 \leqslant \int_{k-1}^k \frac{1}{x^p} \dd{x}
-\quad (k=2,3,\dotsc),
-\]从而级数的部分和\begin{align*}
+\quad(k=2,3,\dotsc),
+\]
+从而级数的部分和
+\begin{align*}
 s_n &= 1 + \sum\limits_{k=2}^n{\frac{1}{k^p}}
 \leqslant 1 + \sum\limits_{k=2}^n{ \int_{k-1}^k{\frac{1}{x^p}\dd{x}} }
 = 1 + \int_1^n{\frac{1}{x^p}\dd{x}} \\
 &= 1 + \frac{1}{p-1}\left(1-\frac{1}{n^{p-1}}\right)
 < 1 + \frac{1}{p-1}
-\quad (n=2,3,\dotsc),
-\end{align*}这表明数列\(\{s_n\}\)有界，因此p级数收敛.
+\quad(n=2,3,\dotsc),
+\end{align*}
+这表明数列\(\{s_n\}\)有界，因此p级数收敛.
 
 综上所述，{\color{red} p级数\(\sum\limits_{n=1}^{\infty} \frac{1}{n^p}\)当\(p > 1\)时收敛，当\(p \leqslant 1\)时发散.}
 \end{solution}
@@ -505,7 +554,7 @@ l = \l \frac{u_n}{v_n}.
 用比较审敛法审敛时，需要适当地选取一个已知其收敛性的级数\(\sum\limits_{n=1}^{\infty}v_n\)作为比较的基准.最常选用作为基准级数的是等比级数和p级数.
 
 将所给正项级数与等比级数比较，我们能得到在实用上很方便的比值审敛法和根值审敛法.
-\begin{theorem}[比值审敛法，达朗贝尔（d'Alembert）判别法]\label{theorem:无穷级数.正项级数的比值审敛法}
+\begin{theorem}[比值审敛法，达朗贝尔判别法]\label{theorem:无穷级数.正项级数的比值审敛法}
 设\(\s u_i\)为正项级数，如果\[
 \l \frac{u_{n+1}}{u_n}=\rho,
 \]则当\(\rho<1\)时，级数收敛；
@@ -718,7 +767,8 @@ u_n = \frac{2+(-1)^n}{2^n},
 \subsubsection{积分审敛法}
 \begin{theorem}[积分审敛法]\label{theorem:无穷级数.积分审敛法}
 设\(\s u_i\)为正项级数，又设非负函数\(f\)在\([1,+\infty)\)上单调递减，且\[
-u_n = f(n) \quad (n=1,2,\dotsc).
+u_n = f(n)
+\quad(n=1,2,\dotsc).
 \]那么级数\(\s u_i\)收敛的充要条件是：反常积分\(\int_1^{+\infty} f(x) \dd{x}\)收敛.
 \end{theorem}
 
@@ -736,7 +786,8 @@ u_n = f(n) \quad (n=1,2,\dotsc).
 \end{theorem}
 
 \subsection{交错级数及其审敛法}
-所谓\DefineConcept{交错级数}是这样的级数，它的各项是正负交错的，从而可以写成下面的形式：\[
+所谓\DefineConcept{交错级数}（alternating series）是这样的级数，%
+它的各项是正负交错的，从而可以写成下面的形式：\[
 u_1 - u_2 + u_3 - u_4 + \dotsb,
 \]或\[
 -u_1 + u_2 - u_3 + u_4 - \dotsb,
@@ -745,10 +796,14 @@ u_1 - u_2 + u_3 - u_4 + \dotsb,
 \begin{theorem}[莱布尼茨定理]\label{theorem:无穷级数.莱布尼茨定理}
 如果交错级数\(\sum\limits_{n=1}^{\infty} (-1)^{n-1} u_n\ (u_n>0)\)满足条件：
 \begin{enumerate}
-\item \(u_n \geqslant u_{n+1}\ (n=1,2,\dotsc);\)
-\item \(\l {u_n}=0,\)
+\item 级数的一般项的绝对值的数列是单调减少的，%
+即\(u_n \geqslant u_{n+1}\ (n=1,2,\dotsc)\)；
+
+\item 级数的一般项的绝对值的数列收敛于零，%
+即\(\l {u_n}=0\)，
 \end{enumerate}
-则级数收敛，且其和\(s \leqslant u_1\)，其余项\(r_n\)的绝对值\(\abs{r_n} \leqslant u_{n+1}\).
+则级数收敛，且其和\(s \leqslant u_1\)，%
+其余项\(r_n\)的绝对值\(\abs{r_n} \leqslant u_{n+1}\).
 \end{theorem}
 
 \begin{example}\label{example:无穷级数.交错级数1}
@@ -807,7 +862,8 @@ u_{2n} = \frac{1}{3^n} < \frac{1}{2^{n+1}} = u_{2n+1},
 如果级数\(\s u_i\)绝对收敛，则级数\(\s u_i\)收敛.
 \begin{proof}
 令\[
-v_n = \frac{1}{2} (u_n + \abs{u_n}) \quad (n=1,2,\dotsc).
+v_n = \frac{1}{2} (u_n + \abs{u_n})
+\quad(n=1,2,\dotsc).
 \]显然\(v_n \geqslant 0\)且\(v_n \leqslant \abs{u_n}\).
 因级数\(\s \abs{u_i}\)收敛，故由比较审敛法可知，级数\(\s v_i\)收敛，从而级数\(\s 2 v_i\)也收敛.
 而\(u_n = 2 v_n - \abs{u_n}\)，由收敛级数的基本性质可知\[
@@ -830,13 +886,21 @@ w_n = \frac{1}{2} (\abs{u_n} - u_n),
 
 这就说明，对于一般的级数\(\s u_i\)，如果我们用正项级数的审敛法判定级数\(\allowbreak\s \abs{u_i}\)收敛，则原级数收敛.这就使得一大类级数的收敛性判定问题，转化成为正项级数的收敛性判定问题.
 
-一般来说，如果级数\(\s \abs{u_i}\)发散，我们不能断定级数\(\s u_i\)也发散.
-但是，如果我们用比值审敛法或根值审敛法，根据\[
+从\cref{example:无穷级数.交错级数1}可以看出，%
+如果级数\(\sum\limits_{n=1}^{\infty} \abs{u_n}\)发散，%
+我们不能断定级数\(\sum\limits_{n=1}^{\infty} u_n\)也发散.
+但是，如果我们用比值审敛法或根值审敛法，就有如下结论.
+\begin{theorem}\label{theorem:无穷级数.绝对发散的特殊情况}
+当级数\(\sum\limits_{n=1}^{\infty} u_n\)满足\[
 \lim\limits_{n\to\infty} \abs{\frac{u_{n+1}}{u_n}} = \rho > 1
 \quad\text{或}\quad
 \lim\limits_{n\to\infty} \sqrt[n]{\abs{u_n}} = \rho > 1
-\]判定级数\(\s \abs{u_i}\)发散，则我们可以断定级数\(\s u_i\)必定发散.
-这是因为从\(\rho > 1\)可推知\(\abs{u_n} \not\to 0\ (n\to\infty)\)，从而\(u_n \not\to 0\ (n\to\infty)\)，因此级数\(\s u_i\)是发散的.
+\]时，这个级数必定发散.
+\begin{proof}
+这是因为从\(\rho > 1\)可推知\(\abs{u_n} \not\to 0\ (n\to\infty)\)，%
+从而\(u_n \not\to 0\ (n\to\infty)\)，因此级数\(\s u_i\)是发散的.
+\end{proof}
+\end{theorem}
 
 \begin{example}
 已知\(a_n < b_n\ (n=1,2,\dotsc)\)，若级数\(\sum\limits_{n=1}^{\infty} a_n\)与\(\sum\limits_{n=1}^{\infty} b_n\)均收敛，证明：“\(\sum\limits_{n=1}^{\infty} a_n\)绝对收敛”是“\(\sum\limits_{n=1}^{\infty} b_n\)绝对收敛”的充要条件.
@@ -859,21 +923,30 @@ w_n = \frac{1}{2} (\abs{u_n} - u_n),
 绝对收敛级数经改变项的位置后构成的级数也收敛，且与原级数以后相同的和.
 \end{property}
 
-\begin{definition}\label{definition:无穷级数.绝对收敛级数的柯西乘积必收敛}
+\begin{definition}\label{definition:无穷级数.绝对收敛级数的柯西乘积}
 定义级数\(\s u_i\)和\(\s v_i\)的\textbf{柯西乘积}为\[
 u_1 v_1 + (u_1 v_2 + u_2 v_1) + \dotsb + (u_1 v_n + u_2 v_{n-1} + \dotsb + u_n v_1) + \dotsb.
 \]
 \end{definition}
 
-\begin{theorem}
-设级数\(\s u_i\)和\(\s v_i\)都绝对收敛，其和分别为\(s\)和\(\sigma\)，则它们的柯西乘积也是绝对收敛的，且其和为\(s \cdot \sigma\).
+\begin{theorem}\label{theorem:无穷级数.绝对收敛级数的柯西乘积必收敛}
+设级数\(\s u_i\)和\(\s v_i\)都绝对收敛，%
+其和分别为\(s\)和\(\sigma\)，%
+则它们的柯西乘积也是绝对收敛的，且其和为\(s \cdot \sigma\).
 \end{theorem}
 
-\subsection{利用无穷级数构造的函数}
+\section{\texorpdfstring{\(\zeta\)}{\textzeta}函数}
+我们在学习常数项级数时已经知道，%
+p级数在\(p>1\)时是收敛的.
+因此，我们可以基于p级数的和，定义关于\(p\)的函数.
 \begin{definition}
-我们已经知道，p级数在\(p>1\)时是收敛的，故可定义p级数的和关于\(p\)的函数\[
-\zeta(p) = \sum\limits_{n=1}^{\infty} \frac{1}{n^p} \quad (p>1),
-\]称其为\(\zeta\)函数.
+定义：\[
+\zeta(p)
+\defeq
+\sum\limits_{n=1}^{\infty} \frac{1}{n^p}
+\quad(p>1),
+\]
+称其为\(\zeta\)函数.
 \end{definition}
 
 \begin{property}
@@ -889,41 +962,305 @@ u_1 v_1 + (u_1 v_2 + u_2 v_1) + \dotsb + (u_1 v_n + u_2 v_{n-1} + \dotsb + u_n v
 \section{函数项级数}
 \subsection{函数项级数的概念}
 \begin{definition}\label{definition:无穷级数.实函数项级数的概念}
-如果给定一个定义在区间\(I\)上的函数列\[
+给定一个定义在区间\(I\)上的函数列\[
 u_1(x),u_2(x),\dotsc,u_n(x),\dotsc,
-\]则由该函数列构成的表达式\[
+\]
+则由该函数列构成的表达式\[
 u_1(x)+u_2(x)+\dotsb+u_n(x)+\dotsb
-\]称为定义在区间\(I\)上的\textbf{（函数项）无穷级数}，简称\textbf{（函数项）级数}.
+\]
+称为“定义在区间\(I\)上的\textbf{函数项无穷级数}（infinite series with function terms）”，%
+简称\textbf{函数项级数}，%
+记作\(\s u_i(x)\).
 
-对于每一个确定的值\(x_0 \in I\)，函数项级数\(\s u_i(x)\)成为常数项级数\[
-u_1(x_0)+u_2(x_0)+\dotsb+u_n(x_0)+\dotsb.
-\]这个常数项级数可能收敛也可能发散.
-如果常数项级数\[
-\s u_i(x_0) = u_1(x_0),u_2(x_0),\dotsc,u_n(x_0),\dotsc
-\]收敛，则称点\(x_0\)为函数项级数\(\s u_i(x)\)的\textbf{收敛点}；
-反之，如果常数项级数\(\s u_i(x_0)\)发散，就称点\(x_0\)为函数项级数\(\s u_i(x)\)的\textbf{发散点}.
-函数项级数的收敛点的全体称为它的\textbf{收敛域}，发散点的全体称为它的\textbf{发散域}.
+对于每一个确定的值\(x_0 \in I\)，%
+函数项级数\(\s u_i(x)\)成为常数项级数\(\s u_i(x_0)\).
+如果常数项级数\(\s u_i(x_0)\)收敛，%
+则称“点\(x_0\)为函数项级数\(\s u_i(x)\)的\textbf{收敛点}”；
+反之，如果常数项级数\(\s u_i(x_0)\)发散，%
+就称“点\(x_0\)为函数项级数\(\s u_i(x)\)的\textbf{发散点}”.
+函数项级数的收敛点的全体称为它的\textbf{收敛域}（convergence domain），%
+发散点的全体称为它的\textbf{发散域}（divergence domain）.
 
 对应于收敛域内的任意一个数\(x\)，函数项级数成为一个收敛的常数项级数，因而有一个确定的和\(s\).
-这样，在收敛域上，函数项级数的和是\(x\)的函数\(s(x)\)，通常称\(s(x)\)为函数项级数的\textbf{和函数}，其定义域就是级数的收敛域，并写成\[
+这样，在收敛域上，函数项级数的和是\(x\)的函数\(s(x)\)，%
+通常称\(s(x)\)为“函数项级数的\textbf{和函数}”，%
+其定义域就是级数的收敛域，%
+并写成\[
 s(x) = u_1(x)+u_2(x)+\dotsb+u_n(x)+\dotsb.
 \]
 
 将函数项级数\(\s u_i(x)\)的前\(n\)项的部分和记作\(s_n(x)\)，则在收敛域上有\[
 \l s_n(x) = s(x).
-\]记\(r_n(x) = s(x)-s_n(x)\)，\(r_n(x)\)叫做函数项级数的\textbf{余项}（当然，只有当\(x\)在收敛域上时\(r_n(x)\)才有意义），并有\[
-\l r_n(x) = 0.
 \]
+记\(r_n(x) = s(x)-s_n(x)\)，%
+\(r_n(x)\)叫做函数项级数的\textbf{余项}%
+（当然，只有当\(x\)在收敛域上时\(r_n(x)\)才有意义）.
 \end{definition}
 
-\section{幂级数}
-\subsection{幂级数及其收敛性}
-\begin{definition}
-各项均是幂函数的函数项级数，称为\textbf{幂级数}.其形式是\[
-\sum\limits_{i=0}^{\infty}{a_i x^i}
-= a_0 + a_1 x + a_2 x^2 + \dotsb + a_n x^n + \dotsb,
-\]其中常数\(a_0,\v{a}{n},\dotsc\)称为幂级数的\textbf{系数}.
+\begin{property}
+设级数\(\s u_i(x)\)的收敛域为\(C\).
+当\(x \in C\)时，级数的余项满足\[
+\l r_n(x) = 0.
+\]
+\end{property}
+
+\subsection{函数项级数的一致收敛性}
+我们知道，有限个连续函数的和仍然是连续函数，有限个函数的和的导数及积分也分别等于它们的导数及积分的和.但是对于无穷多个函数的和是否也具有这些性质呢？换句话说，无穷多个连续函数的和\(s(x)\)是否仍然是连续函数？无穷多个函数的导数及积分的和是否仍然分别等于它们的和函数的导数及积分呢？我们曾经指出，对于幂级数来说，答案是肯定的.但是对于一般的函数项级数是否都是如此呢？下面来看一个例子.
+\begin{example}
+函数项级数\[
+x + (x^2-x) + (x^3-x^2) + \dotsb + (x^n-x^{n-1}) + \dotsb
+\]的每一项都在\([0,1]\)上连续，其前\(n\)项之和为\[
+s_n(x) = x^n,
+\]因此和函数为\[
+s(x) = \l s_n(x)
+= \left\{ \begin{array}{ll}
+0, & 0 \leqslant x < 1, \\
+1, & x = 1.
+\end{array} \right.
+\]
+\end{example}
+这和函数\(s(x)\)在\(x=1\)处间断.
+由此可见，函数项级数的每一项在\([a,b]\)上连续，%
+并且级数在\([a,b]\)上收敛，%
+其和函数不一定在\([a,b]\)上连续.
+也可以举出这样的例子，%
+函数项级数的每一项的导数及积分所成的级数的和并不等于它们的和函数的导数或积分.
+这就提出了这样一个问题：
+对什么级数，能够从级数的每一项的连续性得出它的和函数的连续性，%
+从级数的每一项的导数及积分所成的级数之和得出原来级数的和函数的导数及积分呢？
+要回答这个问题，就需要引入下面的函数项级数的一致收敛性概念.
+
+\begin{definition}\label{definition:无穷级数.函数项级数的一致收敛性}
+设有函数项级数\(\s u_i(x)\).
+如果对于任意给定的正数\(\varepsilon\)，%
+都存在着一个只依赖于\(\varepsilon\)（即不依赖于\(x\)）的正整数\(N\)，%
+使得当\(n>N\)时，%
+对区间\(I\)上的一切\(x\)，%
+都有不等式\[
+\abs{r_n(x)} = \abs{s(x) - s_n(x)} < \varepsilon
+\]成立，%
+则称“函数项级数\(\s u_i(x)\)在区间\(I\)上\textbf{一致收敛}于和\(s(x)\)”，%
+也称“函数列\(\{s_n(x)\}\)在区间\(I\)上\textbf{一致收敛}于\(s(x)\)”.
 \end{definition}
+以上函数项级数一致收敛的定义在几何上可解释为：
+只要\(n\)充分大，%
+在区间\(I\)上所有曲线\(y = s_n(x)\)将位于%
+\(y = s(x) \pm \varepsilon\)这两条曲线之间%
+（如\cref{figure:无穷级数.函数项级数一致收敛的几何解释}）.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[->](0,0)node[below left]{\(O\)} -- (7,0)node[below]{\(x\)};
+\draw[->](0,0) -- (0,4)node[left]{\(y\)};
+\draw[dashed](1,0) -- (1,3) (6,0) -- (6,3);
+\draw(1,1)--+(-.4,0);
+\draw(1,2)--+(-.4,0);
+\draw(1,3)--+(-.4,0);
+\begin{scope}[<->,xshift=-.2cm]
+\draw(1,1) -- (1,2)node[midway,left]{\(\varepsilon\)};
+\draw(1,2) -- (1,3)node[midway,left]{\(\varepsilon\)};
+\end{scope}
+\begin{scope}[blue]
+\draw[dashed] (1,1) .. controls (2,2) and (3,0) .. (4,1) .. controls (5,2) and (6,1) .. (6,1);
+\draw[yshift=1cm] (1,1) .. controls (2,2) and (3,0) .. (4,1) .. controls (5,2) and (6,1) .. (6,1)node[right]{\(y = s(x)\)};
+\draw[yshift=2cm,dashed] (1,1) .. controls (2,2) and (3,0) .. (4,1) .. controls (5,2) and (6,1) .. (6,1);
+\draw(3.3,3.5)node{\(y = s(x) + \varepsilon\)};
+\draw(3.3,0.4)node{\(y = s(x) - \varepsilon\)};
+\end{scope}
+\draw(1,1.5) .. controls (1.7,5) and (2.5,0) .. (3,2) .. controls (3.3,3.5) and (4.2,1) .. (6,2.6)node[right]{\(y = s_n(x)\)};
+\end{tikzpicture}
+\caption{函数项级数一致收敛的几何解释}
+\label{figure:无穷级数.函数项级数一致收敛的几何解释}
+\end{figure}
+
+\begin{example}
+研究级数\[
+\frac{1}{x+1} + \left(\frac{1}{x+2}-\frac{1}{x+1}\right)
++ \dotsb + \left(\frac{1}{x+n}-\frac{1}{x+n-1}\right) + \dotsb
+\]在区间\([0,+\infty)\)上的一致收敛性.
+\begin{solution}
+级数的前n项和\(s_n(x) = \frac{1}{x+n}\)，因此级数的和\[
+s(x) = \l s_n(x) = \l \frac{1}{x+n} = 0
+\quad(0 \leqslant x < +\infty).
+\]于是，余项的绝对值\[
+\abs{r_n(x)} = \abs{s(x) - s_n(x)}
+= \frac{1}{x+n} \leqslant \frac{1}{n}
+\quad(0 \leqslant x < +\infty).
+\]\(\forall\varepsilon>0\)，取\(N \geqslant \frac{1}{\varepsilon}\)，则当\(n>N\)时，\(\forall x\in[0,+\infty)\)，有\(\abs{r_n(x)} < \varepsilon\).根据定义，所给级数在区间\([0,+\infty)\)上一致收敛于\(s(x)\equiv0\).
+\end{solution}
+\end{example}
+
+\begin{example}
+研究级数\[
+x + (x^2-x) + \dotsb + (x^n-x^{n-1}) + \dotsb
+\]在区间\((0,1)\)上的一致收敛性.
+\begin{solution}
+这级数在区间\((0,1)\)内处处收敛于和\(s(x)\equiv0\)，但并不一致收敛.事实上，这个级数的部分和\(s_n(x) = x^n\).\(\forall n\in\mathbb{N}^+\)，取\(x_n = \frac{1}{\sqrt[n]{2}}\)，于是\[
+s_n(x_n) = x_n^n = \frac{1}{2},
+\]但\(s(x_n) = 0\)，从而\[
+\abs{r_n(x_n)} = \abs{s(x_n) - s_n(x_n)} = \frac{1}{2}.
+\]所以，只要取\(\varepsilon<\frac{1}{2}\)，不论\(n\)多么大，在\((0,1)\)内总存在这样的点\(x_n\)，使得\(\abs{r_n(x_n)}>\varepsilon\)，因此所给级数在\((0,1)\)内不一致收敛.
+
+这表明虽然函数序列\(s_n(x) = x^n\)在\((0,1)\)内处处收敛于\(s(x)\equiv0\)，但\(s_n(x)\)在\((0,1)\)内各点处收敛于零的“快慢”程度是不一致的.
+
+可是\(\forall r\in(0,1)\)，这级数在\([0,r]\)上一致收敛.这是因为当\(x=0\)时，显然\[
+\abs{r_n(x)} = x^n = 0 < \varepsilon;
+\]当\(0 < x \leqslant r\)时，要使\(x^n < \varepsilon\)（不妨设\(\varepsilon < 1\)），只要\(n \ln x < \ln\varepsilon\)或\(n > \frac{\ln\varepsilon}{\ln x}\)；而\(\frac{\ln\varepsilon}{\ln x}\)在\((0,r]\)上的最大值为\(\frac{\ln\varepsilon}{\ln r}\)，故取正整数\(N \geqslant \frac{\ln\varepsilon}{\ln r}\)，则当\(n > N\)时，对\([0,r]\)上的一切\(x\)都有\(x^n < \varepsilon\).
+\end{solution}
+\end{example}
+上例说明了一致收敛性与所讨论的区间有关.
+
+以上两例都是直接根据定义来判定级数的一致收敛性的，现在介绍一个在实用上较方便的判别法.
+\begin{theorem}[魏尔斯特拉斯判别法]\label{theorem:无穷级数.魏尔斯特拉斯判别法}
+如果函数项级数\(\s u_i(x)\)在区间\(I\)上满足条件\begin{enumerate}
+\item \(\abs{u_n(x)} \leqslant a_n \quad(n=1,2,\dotsc)\)；
+\item 正项级数\(\s a_i\)收敛，%
+\end{enumerate}
+则函数项级数\(\s u_i(x)\)在区间\(I\)上一致收敛.
+\begin{proof}
+由条件2，根据\hyperref[theorem:无穷级数.级数的柯西审敛原理]{柯西审敛原理}，%
+\(\forall\varepsilon>0\)，\(\exists N \in \mathbb{N}^+\)，%
+使得当\(n > N\)时，\(\forall p \in \mathbb{N}^+\)，都有\[
+a_{n+1} + a_{n+2} + \dotsb + a_{n+p} < \frac{\varepsilon}{2}.
+\]由条件1，\(\forall x \in I\)，都有\begin{align*}
+&\hspace{-20pt}\abs{u_{n+1}(x) + u_{n+2}(x) + \dotsb + u_{n+p}(x)} \\
+&\leqslant \abs{u_{n+1}(x)} + \abs{u_{n+2}(x)} + \dotsb + \abs{u_{n+p}(x)} \\
+&\leqslant a_{n+1} + a_{n+2} + \dotsb + a_{n+p} < \frac{\varepsilon}{2},
+\end{align*}令\(p\to\infty\)，则由上式得\[
+\abs{r_n(x)} \leqslant \frac{\varepsilon}{2} < \varepsilon.
+\]因此函数项级数\(\s u_i(x)\)在区间\(I\)上一致收敛.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+证明级数\[
+\frac{\sin x}{1^2}
++ \frac{\sin 2^2 x}{2^2}
++ \dotsb
++ \frac{\sin n^2 x}{n^2}
++ \dotsb
+\]在区间\((-\infty,+\infty)\)内一致收敛.
+\begin{proof}
+因为在\((-\infty,+\infty)\)内\[
+\abs{\frac{\sin n^2 x}{n^2}} \leqslant \frac{1}{n^2}
+\quad(n=1,2,\dotsc),
+\]而\(\sum\limits_{n=1}^{\infty} \frac{1}{n^2}\)收敛，%
+故由\hyperref[theorem:无穷级数.魏尔斯特拉斯判别法]{魏尔斯特拉斯判别法}，%
+所给级数在\((-\infty,+\infty)\)内一致收敛.
+\end{proof}
+\end{example}
+
+\subsection{一致收敛级数的基本性质}
+一致收敛级数有如下基本性质.
+\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质1}
+\def\su{\sum\limits_{n=1}^{\infty} u_n(x)}
+如果级数\(\su\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，且\(\su\)在区间\([a,b]\)上一致收敛于\(s(x)\)，则\(s(x)\)在\([a,b]\)上也连续.
+\begin{proof}
+设\(x_0,x\)是\([a,b]\)上任意两点.由等式\[
+s(x) = s_n(x) + r_n(x),
+\qquad
+s(x_0) = s_n(x_0) + r_n(x_0)
+\]得\begin{align*}
+\abs{s(x) - s_(x_0)}
+&= \abs{s_n(x) - s_n(x_0) + r_n(x) - r_n(x_0)} \\
+&\leqslant \abs{s_n(x) - s_n(x_0)} + \abs{r_n(x)} + \abs{r_n(x_0)}.
+\tag1
+\end{align*}
+因为级数\(\su\)一致收敛于\(s(x)\)，所以\(\forall\varepsilon>0\)，必有正整数\(N = N(\varepsilon)\)，使得当\(n>N\)时，\(\forall x \in [a,b]\)，都有\[
+\abs{r_n(x)} < \frac{\varepsilon}{3}.
+\eqno{(2)}
+\]当然，也有\(\abs{r_n(x_0)} < \frac{\varepsilon}{3}\).选定满足大于\(N\)的\(n\)之后，\(s_n(x)\)是有限项连续函数之和，故\(s_n(x)\)在点\(x_0\)连续，从而必有一个\(\delta > 0\)存在，当\(\abs{x - x_0} < \delta\)时，总有\[
+\abs{s_n(x) - s_n(x_0)} < \frac{\varepsilon}{3}.
+\eqno{(3)}
+\]由(1)、(2)、(3)式可见，对任给\(\varepsilon>0\)，必有\(\delta > 0\)，当\(\abs{x - x_0} < \delta\)时，有\[
+\abs{s(x) - s(x_0)} < \varepsilon.
+\]所以\(s(x)\)在点\(x_0\)处连续，而\(x_0\)在\([a,b]\)上是任意的，因此\(s(x)\)在\([a,b]\)上连续.
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质2}
+\def\s{\sum\limits_{n=1}^{\infty}}
+如果级数\(\s u_n(x)\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，且\(\s u_n(x)\)在区间\([a,b]\)上一致收敛于\(s(x)\)，则级数\(\s u_n(x)\)在\([a,b]\)上可以逐项积分，即\[
+\int_{x_0}^x s(x) \dd{x}
+= \s \int_{x_0}^x u_n(x) \dd{x},
+\]其中\(a \leqslant x_0 < x \leqslant b\)，并且上式右端的级数在\([a,b]\)上也一致收敛.
+\begin{proof}
+因为级数\(\s u_n(x)\)在\([a,b]\)上一致收敛，由\cref{theorem:无穷级数.一致收敛级数的基本性质1}，\(s(x)\)和\(r_n(x)\)都在\([a,b]\)上连续，所以积分\(\int_{x_0}^x s(x) \dd{x}\)和\(\int_{x_0}^x r_n(x) \dd{x}\)存在，从而\[
+\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
+= \abs{\int_{x_0}^x r_n(x) \dd{x}}
+\leqslant \int_{x_0}^x \abs{r_n(x)} \dd{x}.
+\]又由级数的一致收敛性，\(\forall\varepsilon>0\)，\(\exists N = N(\varepsilon) \in \mathbb{N}^+\)，使得当\(n > N\)时，\(\forall x \in [a,b]\)，都有\[
+\abs{r_n(x)} < \frac{\varepsilon}{b-a}.
+\]于是，当\(n > N\)时，有\[
+\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
+\leqslant \int_{x_0}^x \abs{r_n(x)} \dd{x}
+< \frac{\varepsilon}{b-a} \cdot (x-x_0)
+\leqslant \varepsilon.
+\]根据极限的定义，有\[
+\int_{x_0}^x s(x) \dd{x}
+= \lim\limits_{n\to\infty} \int_{x_0}^x s_n(x) \dd{x}
+= \lim\limits_{n\to\infty} \sum\limits_{i=1}^n \int_{x_0}^x u_i(x) \dd{x}
+= \sum\limits_{i=1}^{\infty} \int_{x_0}^x u_i(x) \dd{x}.
+\]由于\(N\)只依赖于\(\varepsilon\)而与\(x_0,x\)无关，所以级数\(\sum\limits_{i=1}^{\infty} \int_{x_0}^x u_i(x) \dd{x}\)在\([a,b]\)上一致收敛.
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质3}
+\def\s{\sum\limits_{n=1}^{\infty}}
+如果级数\(\s u_n(x)\)的各项\(u_n(x)\)都具有连续导数\(u'_i(x)\)，且\(\s u_n(x)\)在区间\([a,b]\)上收敛于和\(s(x)\)，它并且级数\(\s u'_n(x)\)在\([a,b]\)上一致收敛，则级数\(\s u_n(x)\)在区间\([a,b]\)上也一致收敛，且可逐项求导，即\[
+s'(x) = \s u'_n(x).
+\]
+\begin{proof}
+由于\(\s u'_n(x)\)在\([a,b]\)上一致收敛，设其和为\(v(x)\)，即\[
+\s u'_n(x) = v(x).
+\]根据\cref{theorem:无穷级数.一致收敛级数的基本性质1} 知，\(v(x)\)在\([a,b]\)上连续.再根据\cref{theorem:无穷级数.一致收敛级数的基本性质2}，级数\(\s u'_n(x)\)可逐项积分，故\[
+\int_{x_0}^x v(x) \dd{x}
+= \s \int_{x_0}^x u'_n(x) \dd{x}
+= \s [u_n(x) - u_n(x_0)],
+\]而\(\s u_n(x) = s(x)\)，\(\s u_n(x_0) = s(x_0)\)，故\[
+\s [u_n(x) - u_n(x_0)] = s(x) - s(x_0),
+\]从而有\[
+\int_{x_0}^x v(x) \dd{x} = s(x) - s(x_0),
+\]其中\(a \leqslant x_0 < x \leqslant b\).上式两端求导，即得关系式\[
+v(x) = s'(x).
+\]
+
+根据\cref{theorem:无穷级数.一致收敛级数的基本性质2}，级数\(\s \int_{x_0}^x u'_n(x) \dd{x}\)在\([a,b]\)上一致收敛，而\[
+\s \int_{x_0}^x u'_n(x) \dd{x} = \s u_n(x) - \s u_n(x_0),
+\]所以\[
+\s u_n(x) = \s \int_{x_0}^x u'_n(x) \dd{x} + \s u_n(x_0).
+\]也就是说，级数\(\s u_n(x)\)在\([a,b]\)上一致收敛.
+\end{proof}
+\end{property}
+
+\section{幂级数}
+\subsection{幂级数的概念}
+\begin{definition}\label{definition:无穷级数.幂级数}
+各项均是幂函数的函数项级数，%
+称为\textbf{泰勒级数}（Taylor series）或\textbf{幂级数}（power series）.
+
+称级数\[
+\sum\limits_{i=0}^{\infty} a_i (x-x_0)^i
+= a_0 + a_1 (x-x_0) + a_2 (x-x_0)^2 + \dotsb + a_n (x-x_0)^n + \dotsb,
+\]为“幂级数的\textbf{一般形式}”.
+称级数\[
+\sum\limits_{i=0}^{\infty} a_i x^i
+= a_0 + a_1 x + a_2 x^2 + \dotsb + a_n x^n + \dotsb,
+\]为“幂级数的\textbf{标准形式}”.
+这里常数\(a_0,\v{a}{n},\dotsc\)称为幂级数的\textbf{系数}.
+\end{definition}
+
+由于幂级数的一般形式只要作变量代换\(t = x - x_0\)就可化为它的标准形式，%
+因此，即便我们取标准形式来讨论，也并不影响一般性.
+
+\subsection{幂级数的收敛性}
+现在我们来讨论：
+对于一个给定的幂级数，%
+它的收敛域与发散域是怎样的？
+即\(x\)取数轴上哪些点时幂级数收敛，%
+取哪些点时幂级数发散？
+这就是幂级数的收敛性问题.
 
 先看一个例子.
 \begin{example}
@@ -942,37 +1279,65 @@ s(x) = u_1(x)+u_2(x)+\dotsb+u_n(x)+\dotsb.
 事实上，这个结论对于一般的幂级数也是成立的.
 我们有如下的定理.
 
-\begin{theorem}[阿贝尔（Abel）定理]\label{theorem:无穷级数.阿贝尔定理}
+\begin{theorem}[阿贝尔定理]\label{theorem:无穷级数.阿贝尔定理}
 如果级数\(\sum\limits_{i=0}^{\infty} a_i x^i\)当\(x=x_0\neq0\)时收敛，则满足\(\abs{x}<\abs{x_0}\)的一切\(x\)可使该幂级数绝对收敛.反之，如果级数\(\sum\limits_{i=0}^{\infty} a_i x^i\)当\(x=x_0\)时发散，则满足\(\abs{x}>\abs{x_0}\)的一切\(x\)均使该幂级数发散.
 \begin{proof}
-先设\(x_0\neq0\)是幂级数\(\s a_i x^i\)的收敛点，即常数项级数\[
+先设\(x_0\neq0\)是幂级数\(\s a_i x^i\)的收敛点，%
+即常数项级数\[
 a_0 + a_1 x_0 + a_2 x_0^2 + \dotsb + a_n x_0^n + \dotsb
-\]收敛.根据级数收敛的必要条件，这时有\[
-\l a_n x_0^n = 0,
-\]于是\(\exists M > 0\)，使得\[
+\]收敛.
+根据级数收敛的必要条件，这时有\[
+\l a_n x_0^n = 0;
+\]
+于是\(\exists M > 0\)，使得\[
 \abs{a_n x_0^n} \leqslant M
-\quad (n=0,1,2,\dotsc).
-\]这样幂级数\(\s a_i x^i\)的一般项的绝对值\[
+\quad(n=0,1,2,\dotsc).
+\]
+这样幂级数\(\s a_i x^i\)的一般项的绝对值\[
 \abs{a_n x^n} = \abs{a_n x_0^n \cdot \frac{x^n}{x_0^n}}
 = \abs{a_n x_0^n} \cdot \abs{\frac{x}{x_0}}^n
 \leqslant M \abs{\frac{x}{x_0}}^n.
-\]因为当\(\abs{x}<\abs{x_0}\)时，等比级数\(\sum\limits_{n=0}^{\infty} M \abs{\frac{x}{x_0}}^n\)收敛，所以级数\(\s \abs{a_i x^i}\)收敛，也就是级数\(\s a_i x^i\)绝对收敛.
+\]
+因为当\(\abs{x}<\abs{x_0}\)时，%
+等比级数\(\sum\limits_{n=0}^{\infty} M \abs{\frac{x}{x_0}}^n\)收敛，%
+所以级数\(\s \abs{a_i x^i}\)收敛，%
+也就是级数\(\s a_i x^i\)绝对收敛.
 
-定理的第二部分可用反证法证明.假设幂级数当\(x=x_0\)时发散而有一点\(x_1\)适合\(\abs{x_1}>\abs{x_0}\)使级数收敛，则根据本定理的第一部分，当\(x=x_0\)时级数应收敛，这与假设矛盾.
+定理的第二部分可用反证法证明.
+假设幂级数当\(x=x_0\)时发散而有一点\(x_1\)适合\(\abs{x_1}>\abs{x_0}\)使级数收敛，%
+则根据本定理的第一部分，当\(x=x_0\)时级数应收敛，这与假设矛盾.
 \end{proof}
 \end{theorem}
 
+\cref{theorem:无穷级数.阿贝尔定理} 表明，%
+如果幂级数在\(x=x_0\)处收敛，%
+则对\(\forall x\in(-\abs{x_0},\abs{x_0})\)，幂级数都收敛；
+如果幂级数在\(x=x_0\)处发散，%
+则对\(\forall x\in\mathbb{R}-[-\abs{x_0},\abs{x_0}]\)，幂级数都发散.
+
+设已给幂级数在数轴上既有收敛点（不仅是原点）也有发散点.
+现在从原点出发沿数轴正方向走，最初只遇到收敛点，然后就只遇到发散点.
+这两部分的界点可能是收敛点，也可能是发散点.
+从原点出发沿数轴负方向走，情形相同.
+利用\cref{theorem:无穷级数.阿贝尔定理} 可以证明：原点两侧的两个界点到原点的距离是相等的.
+像这样，我们就得到以下重要推论.
 \begin{corollary}\label{theorem:无穷级数.阿贝尔定理推论}
 如果幂级数\(\sum\limits_{i=0}^{\infty} a_i x^i\)不是仅在\(x=0\)一点收敛，也不是在整个数轴上都收敛，则必定存在正数\(R\)，使得：\begin{enumerate}
 \item 当\(\abs{x}<R\)时，幂级数绝对收敛；
 \item 当\(\abs{x}>R\)时，幂级数发散；
 \item 当\(\abs{x}=R\)时，幂级数可能收敛也可能发散.
 \end{enumerate}
-\rm
-称这样的正数\(R\)为幂级数的\textbf{收敛半径}.开区间\((-R,R)\)叫做幂级数的\textbf{收敛区间}.再根据幂级数在点\(x = \pm R\)处的收敛性，就可以决定其收敛域是\((-R,R)\)、\([-R,R)\)、\((-R,R]\)或\([-R,R]\)四个区间之一.
-
-如果幂级数只在\(x=0\)处收敛，这时收敛域为\(\{0\}\)，规定收敛半径\(R=0\).如果幂级数对任意实数都收敛，则规定收敛半径\(R=+\infty\)，收敛域为\((-\infty,+\infty)\).
 \end{corollary}
+
+我们称\cref{theorem:无穷级数.阿贝尔定理推论} 中提到的正数\(R\)为“幂级数的\textbf{收敛半径}”.
+称开区间\((-R,R)\)为“幂级数的\textbf{收敛区间}”.
+
+在已知幂级数的收敛半径或收敛区间的情况下，%
+我们可以根据幂级数在点\(x = \pm R\)处的收敛性，%
+就可以决定其收敛域是\((-R,R)\)、\([-R,R)\)、\((-R,R]\)或\([-R,R]\)四个区间之一.
+
+如果幂级数只在\(x=0\)处收敛，这时收敛域为\(\{0\}\)，规定收敛半径\(R=0\).
+如果幂级数对任意实数都收敛，则规定收敛半径\(R=+\infty\)，收敛域为\((-\infty,+\infty)\).
 
 关于幂级数的收敛半径的求法，有下面的定理.
 \begin{theorem}\label{theorem:无穷级数.幂级数的收敛半径的求法}
@@ -989,6 +1354,43 @@ R = \left\{ \begin{array}{ll}
 \]或\[
 R = \l {\abs{\frac{a_n}{a_{n+1}}}}.
 \]
+\begin{proof}
+\def\s{\sum\limits_{n=0}^{\infty}}%
+考察幂级数\(\s a_n x^n\)的各项取绝对值所成的级数\[
+\s \abs{a_n x^n}
+= \abs{a_0} + \abs{a_1 x} + \abs{a_2 x^2} + \dotsb + \abs{a_n x^n} + \dotsb.
+\]
+这级数相邻两项之比为\[
+\frac{\abs{a_{n+1} x^{n+1}}}{\abs{a_n x^n}}
+= \abs{\frac{a_{n+1}}{a_n}} \abs{x}.
+\]
+
+\begin{enumerate}
+	\item 如果极限\(\l \abs{\frac{a_{n+1}}{a_n}} = \rho\neq0\)存在，%
+根据\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}，%
+则当\(\rho \abs{x} < 1\)即\(\abs{x} < \frac{1}{\rho}\)时，%
+级数\(\s \abs{a_n x^n}\)收敛，%
+从而级数\(\s a_n x^n\)绝对收敛；
+再根据\cref{theorem:无穷级数.绝对发散的特殊情况}，%
+当\(\rho \abs{x} > 1\)即\(\abs{x} > \frac{1}{\rho}\)时，%
+级数\(\s \abs{a_n x^n}\)发散，%
+并且\(\exists N\in\mathbb{N}^+, \forall n > N \bigl(
+	\abs{a_{n+1} x^{n+1}} > \abs{a_n x^n}
+\bigr)\).
+	\item 如果\(\rho=0\)，%
+则对\(\forall x\neq0\)，%
+有\(\l \abs{\frac{a_{n+1} x^{n+1}}{a_n x^n}} = 0\)，%
+所以级数\(\s \abs{a_n x^n}\)收敛，%
+从而级数\(\s a_n x^n\)绝对收敛.%
+于是\(R=+\infty\).
+	\item 如果\(\rho=+\infty\)，%
+则对\(\forall x\neq0\)，%
+级数\(\s a_n x^n\)必发散，%
+否则由\cref{theorem:无穷级数.阿贝尔定理} 知道\(\exists x\neq0\)使得\(\s \abs{a_n x^n}\)收敛.
+于是\(R=0\).
+\qedhere
+\end{enumerate}
+\end{proof}
 \end{theorem}
 
 \begin{example}
@@ -1040,7 +1442,7 @@ R = \frac{1}{\rho} = 1.
 \end{example}
 
 \begin{example}
-求幂级数\(\sum\limits{n=0}^{\infty} n! x^n\)的收敛半径.
+求幂级数\(\sum\limits_{n=0}^{\infty} n! x^n\)的收敛半径.
 \begin{solution}
 因为\[
 \rho = \l \abs{\frac{a_{n+1}}{a_n}}
@@ -1052,12 +1454,10 @@ R = \frac{1}{\rho} = 1.
 \begin{example}
 求幂级数\(\sum\limits_{n=0}^{\infty} \frac{(2n)!}{(n!)^2} x^{2n}\)的收敛半径.
 \begin{solution}
-级数缺少奇次幂的项，\cref{theorem:无穷级数.幂级数的收敛半径的求法} 不能直接应用，我们根据\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式} 来求收敛半径：\[
-\l \abs{\frac{
-	\frac{[2(n+1)]!}{[(n+1)!]^2} x^{2(n+1)}
-}{
-	\frac{(2n)!}{(n!)^2} x^{2n}
-}}
+级数缺少奇次幂的项，\cref{theorem:无穷级数.幂级数的收敛半径的求法} 不能直接应用，%
+我们根据\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式} 来求收敛半径：
+\[
+\l \abs{{\frac{[2(n+1)]!}{[(n+1)!]^2} x^{2(n+1)}}\Bigg/{\frac{(2n)!}{(n!)^2} x^{2n}}}
 = \l \abs{\frac{(2n+2)(2n+1)}{(n+1)^2} x^2}
 = 4 x^2.
 \]
@@ -1194,16 +1594,16 @@ x s(x) = \s \frac{x^{i+1}}{i+1}.
 
 利用\cref{theorem:无穷级数.幂级数的和函数的性质3}，逐项求导，并由\[
 \frac{1}{1-x} = 1+x+x^2+\dotsb+x^n+\dotsb
-\quad (-1<x<1),
+\quad(-1<x<1),
 \]得\[
 [x s(x)]'
 = \s \left( \frac{x^{i+1}}{i+1} \right)'
 = \s x^i
 = \frac{1}{1-x}
-\quad (\abs{x}<1).
+\quad(\abs{x}<1).
 \]对上式积分，得\[
 x s(x) = \int_0^x \frac{1}{1-x} \dd{x} = -\ln(1-x)
-\quad (-1 \leqslant x < 1).
+\quad(-1 \leqslant x < 1).
 \]于是，当\(x\neq0\)时，有\(s(x) = -\frac{1}{x} \ln(1-x)\).
 
 而\(s(0)\)可由\(s(0) = a_0 = 1\)得出，或者由和函数的连续性得到，即\[
@@ -1223,8 +1623,9 @@ s(x) = \left\{ \begin{array}{cl}
 设函数\(f(x)\)的定义域为\(D\).
 如果在区间\(I \subseteq D\)内，%
 存在收敛的幂级数\(\sum\limits_{i=0}^{\infty}{a_i x^i}\)使得\[
-f(x) = \sum\limits_{i=0}^{\infty}{a_i x^i}, \quad (x \in I)
-\]成立，则称\textbf{函数\(f(x)\)在区间\(I\)内能展开成幂级数}.
+f(x) = \sum\limits_{i=0}^{\infty}{a_i x^i}
+\quad(x \in I)
+\]成立，则称“函数\(f(x)\)在区间\(I\)内能展开成幂级数”.
 \end{definition}
 
 \begin{definition}
@@ -1259,7 +1660,7 @@ f(x) = \sum\limits_{n=0}^{\infty}{\frac{1}{n!} f^{(n)}(x_0) (x-x_0)^n},
 
 等式\[
 f(x) = \sum\limits_{n=0}^{\infty}{\frac{1}{n!} f^{(n)}(0) x^n}
-\quad (\abs{x} < r)
+\quad(\abs{x} < r)
 \]称为函数\(f(x)\)的\textbf{麦克劳林展开式}.
 \end{definition}
 
@@ -1276,12 +1677,13 @@ f(0),f'(0),f''(0),\dotsc,f^{(n)}(0),\dotsc.
 f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \dotsb + \frac{f^{(n)}(0)}{n!} x^n + \dotsb,
 \]并求出收敛半径\(R\).
 \item 利用余项\(R_n(x)\)的表达式\[
-R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\theta x) x^{n+1} \quad (0 < \theta < 1),
+R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\theta x) x^{n+1}
+\quad(0 < \theta < 1),
 \]考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\l R_n(x)\)是否为零.
 
 如果\(\l R_n(x) = 0\)，则函数\(f(x)\)在区间\((-R,R)\)内的麦克劳林展开式为\[
 f(x) = \sum\limits_{n=0}^{\infty} \frac{1}{n!} f^{(n)}(0) x^n
-\quad (-R < x < R).
+\quad(-R < x < R).
 \]
 
 如果\(\l R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数.
@@ -1304,10 +1706,10 @@ f(x) = \left\{ \begin{array}{ll}
 \begin{solution}
 所给函数的各阶导数为\[
 f^{(n)}(x) = e^x
-\quad (n=1,2,\dotsc),
+\quad(n=1,2,\dotsc),
 \]因此\[
 f^{(n)}(x) = 1
-\quad (n=0,1,2,\dotsc).
+\quad(n=0,1,2,\dotsc).
 \]于是得级数\[
 1+x+\frac{x^2}{2!}+\dotsb+\frac{x^n}{n!}+\dotsb,
 \]它的收敛半径\(R = +\infty\).
@@ -1319,7 +1721,7 @@ f^{(n)}(x) = 1
 \l \abs{R_n(x)} = 0.
 \]于是得展开式\[
 e^x = 1+x+\frac{x^2}{2!}+\dotsb+\frac{x^n}{n!}+\dotsb
-\quad (-\infty<x<+\infty).
+\quad(-\infty<x<+\infty).
 \]
 \end{solution}
 \end{example}
@@ -1342,7 +1744,7 @@ x-\frac{x^3}{3!}+\frac{x^5}{5!}-\dotsb+(-1)^k \frac{x^{2k+1}}{(2k+1)!}+\dotsb,
 \l \frac{\abs{x}^{n+1}}{(n+1)!} = 0.
 \]因而得展开式\[
 \sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\dotsb+(-1)^k \frac{x^{2k+1}}{(2k+1)!}+\dotsb
-\quad (-\infty<x<+\infty).
+\quad(-\infty<x<+\infty).
 \]
 \end{solution}
 \end{example}
@@ -1356,41 +1758,42 @@ a_n = \frac{1}{n!} f^{(n)}(0)
 
 前面我们已经求得的幂级数展开式有\begin{gather}
 e^x = \sum\limits_{n=0}^{\infty} \frac{1}{n!} x^n
-	\quad (-\infty<x<+\infty), \label{equation:无穷级数.幂级数展开式1} \\
+	\quad(-\infty<x<+\infty), \label{equation:无穷级数.幂级数展开式1} \\
 \sin x = \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k+1)!} x^{2k+1}
-	\quad (-\infty<x<+\infty), \label{equation:无穷级数.幂级数展开式2} \\
+	\quad(-\infty<x<+\infty), \label{equation:无穷级数.幂级数展开式2} \\
 \frac{1}{1+x} = \sum\limits_{n=0}^{\infty} (-1)^n x^n
-	\quad (-1<x<1). \label{equation:无穷级数.幂级数展开式3}
+	\quad(-1<x<1). \label{equation:无穷级数.幂级数展开式3}
 \end{gather}
 利用这三个展开式，可以求得许多函数的幂级数展开式.
 例如对\cref{equation:无穷级数.幂级数展开式3} 两边从\(0\)到\(x\)积分，可得
 \begin{equation}\label{equation:无穷级数.幂级数展开式4}
 \ln(1+x) = \sum\limits_{n=0}^{\infty} \frac{(-1)^n}{n+1} x^{n+1}
 = \sum\limits_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} x^n
-\quad (-1<x\leqslant1);
+\quad(-1<x\leqslant1);
 \end{equation}
 
 对\cref{equation:无穷级数.幂级数展开式2} 两边求导，即得
 \begin{equation}\label{equation:无穷级数.幂级数展开式5}
 \cos x = \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k)!} x^{2k}
-\quad (-\infty<x<+\infty);
+\quad(-\infty<x<+\infty);
 \end{equation}
 
 把\cref{equation:无穷级数.幂级数展开式1} 中的\(x\)换成\(x \ln a\)，可得
 \begin{equation}\label{equation:无穷级数.幂级数展开式6}
 a^x = e^{x \ln a} = \sum\limits_{n=0}^{\infty} \frac{\ln^n a}{n!} x^n
-\quad (-\infty<x<+\infty);
+\quad(-\infty<x<+\infty);
 \end{equation}
 
 把\cref{equation:无穷级数.幂级数展开式3} 中的\(x\)换成\(x^2\)，可得
 \begin{equation}\label{equation:无穷级数.幂级数展开式7}
 \frac{1}{1+x^2} = \sum\limits_{n=0}^{\infty} (-1)^n x^{2n}
-\quad (-1<x<1);
+\quad(-1<x<1);
 \end{equation}
 
-对\cref{equation:无穷级数.幂级数展开式7} 从\(0\)到\(x\)积分，可得\begin{equation}
-\arctan x = \sum\limits_{n=0}^{\infty} \frac{(-1)^n}{2n+1} x^{2n+1},
-\quad (-1 \leqslant x \leqslant 1).
+对\cref{equation:无穷级数.幂级数展开式7} 从\(0\)到\(x\)积分，可得
+\begin{equation}
+\arctan x = \sum\limits_{n=0}^{\infty} \frac{(-1)^n}{2n+1} x^{2n+1}
+\quad(-1 \leqslant x \leqslant 1).
 \end{equation}
 
 下面再举几个用间接法把函数展开成幂级数的例子.
@@ -1406,7 +1809,7 @@ f(x) &= (1-x) \sum\limits_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} x^n \\
 &= \sum\limits_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} x^n
 	- \sum\limits_{n=2}^{\infty} \frac{(-1)^n}{n-1} x^n \\
 &= x + \sum\limits_{n=2}^{\infty} \frac{(-1)^{n-1} (2n-1)}{n(n-1)} x^n
-\quad (-1 < x \leqslant 1).
+\quad(-1 < x \leqslant 1).
 \end{split}
 \]
 \end{solution}
@@ -1424,11 +1827,11 @@ f(x) &= (1-x) \sum\limits_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} x^n \\
 \]又由\[
 \cos\left(x-\frac{\pi}{4}\right)
 = 1 - \frac{1}{2!} \left(x-\frac{\pi}{4}\right)^2 + \frac{1}{4!} \left(x-\frac{\pi}{4}\right)^4 - \dotsb
-\quad (-\infty < x < +\infty),
+\quad(-\infty < x < +\infty),
 \]\[
 \sin\left(x-\frac{\pi}{4}\right)
 = \left(x-\frac{\pi}{4}\right) - \frac{1}{3!} \left(x-\frac{\pi}{4}\right)^3 + \frac{1}{5!} \left(x-\frac{\pi}{4}\right)^5 - \dotsb
-\quad (-\infty < x < +\infty),
+\quad(-\infty < x < +\infty),
 \]所以\[
 \sin x = \frac{1}{\sqrt{2}} \left[
 1 + \left(x-\frac{\pi}{4}\right)
@@ -1436,7 +1839,7 @@ f(x) &= (1-x) \sum\limits_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} x^n \\
 - \frac{1}{3!} \left(x-\frac{\pi}{4}\right)^3
 + \dotsb
 \right]
-\quad (-\infty < x < +\infty).
+\quad(-\infty < x < +\infty).
 \]
 \end{solution}
 \end{example}
@@ -1455,15 +1858,15 @@ f(x) &= \frac{1}{x^2+4x+3}
 \]而\[
 \frac{1}{4\left(1+\frac{x-1}{2}\right)}
 = \frac{1}{4} \sum\limits_{n=0}^{\infty} \frac{(-1)^n}{2^n} (x-1)^n
-\quad (-1<x<3),
+\quad(-1<x<3),
 \]\[
 \frac{1}{8\left(1+\frac{x-1}{4}\right)}
 = \frac{1}{8} \sum\limits_{n=0}^{\infty} \frac{(-1)^n}{4^n} (x-1)^n
-\quad (-3<x<5),
+\quad(-3<x<5),
 \]所以\[
 f(x) = \frac{1}{x^2+4x+3}
 = \sum\limits_{n=0}^{\infty} (-1)^n \left(\frac{1}{2^{n+2}}-\frac{1}{2^{2n+3}}\right) (x-1)^n
-\quad (-1<x<3).
+\quad(-1<x<3).
 \]
 \end{solution}
 \end{example}
@@ -1483,11 +1886,11 @@ f(x) = \frac{1}{x^2+4x+3}
 x^n, & n=2k, \\
 -x^n, & n=2k+1,
 \end{array} \right.
-\quad (k\in\mathbb{N}),
+\quad(k\in\mathbb{N}),
 \]所以\[
 \sinh x
-= \sum\limits_{k=0}^{\infty} \frac{1}{n!} x^{2k+1}
-\quad (-\infty<x<+\infty).
+= \sum\limits_{k=0}^{\infty} \frac{1}{(2k+1)!} x^{2k+1}
+\quad(-\infty<x<+\infty).
 \]
 \end{solution}
 \end{example}
@@ -1520,7 +1923,7 @@ f''(0) = m(m-1),
 \abs{\frac{a_{n+1}}{a_n}}
 &= \abs{ \frac{m(m-1)\dotsm(m-n)}{(n+1)!} \Bigg/ \frac{m(m-1)\dotsm(m-n+1)}{n!} } \\
 &= \abs{ \frac{m-n}{n+1} }
-\to 1 \quad (n\to\infty),
+\to 1 \quad(n\to\infty),
 \end{split}
 \]因此，对于任何实数\(m\)这级数在开区间\((-1,1)\)内收敛.
 
@@ -1528,9 +1931,9 @@ f''(0) = m(m-1),
 \begin{split}
 F(x) &= 1+mx+\frac{m(m-1)}{2!}x^2+\dotsb \\
     &\hspace{20pt}+\frac{m(m-1)\dotsm(m-n+1)}{n!}x^n+\dotsb
-    \quad (-1<x<1),
+    \quad(-1<x<1),
 \end{split}
-\]下面证明\(F(x) = (1+x)^m \quad (-1<x<1)\).
+\]下面证明\(F(x) = (1+x)^m\ (-1<x<1)\).
 
 逐项求导，得\[
 F'(x) = m \left[
@@ -1542,7 +1945,7 @@ F'(x) = m \left[
 &\frac{(m-1)\dotsm(m-n+1)}{(n-1)!}
 	+ \frac{(m-1)\dotsm(m-n)}{n!} \\
 &= \frac{m(m-1)\dotsm(m-n+1)}{n!}
-	\quad (n=1,2,\dotsc),
+	\quad(n=1,2,\dotsc),
 \end{split}
 \]可得\[
 \begin{split}
@@ -1552,7 +1955,7 @@ F'(x) = m \left[
 &\hspace{30pt} +\frac{m(m-1)\dotsm(m-n+1)}{n!}x^n+\dotsb
 \Biggr] \\
 &= m F(x)
-\quad (-1<x<1).
+\quad(-1<x<1).
 \end{split}
 \]
 
@@ -1571,7 +1974,7 @@ F(x) = (1+x)^m.
 (1+x)^m
 &= 1+mx+\frac{m(m-1)}{2!}x^2+\dotsb \\
 &\hspace{20pt} +\frac{m(m-1)\dotsm(m-n+1)}{n!}x^n+\dotsb
-\quad (-1<x<1).
+\quad(-1<x<1).
 \end{split}
 \end{equation}
 在区间的端点，展开式是否成立要看\(m\)的数值而定.
@@ -1583,11 +1986,11 @@ F(x) = (1+x)^m.
 对应于\(m=\pm1/2\)的二项展开式分别为\[
 \sqrt{1+x}
 = 1+\frac{1}{2}x-\frac{1}{2\cdot4}x^2+\frac{1\cdot3}{2\cdot4\cdot6}x^3-\frac{1\cdot3\cdot5}{2\cdot4\cdot6\cdot8}x^4+\dotsb
-\quad (-1 \leqslant x \leqslant 1),
+\quad(-1 \leqslant x \leqslant 1),
 \]\[
 \frac{1}{\sqrt{1+x}}
 = 1-\frac{1}{2}x+\frac{1\cdot3}{2\cdot4}x^2-\frac{1\cdot3\cdot5}{2\cdot4\cdot6}x^3+\frac{1\cdot3\cdot5\cdot7}{2\cdot4\cdot6\cdot8}x^4-\dotsb
-\quad (-1 < x \leqslant 1).
+\quad(-1 < x \leqslant 1).
 \]
 
 现在我们可以利用幂级数展开式计算定积分.
@@ -1598,7 +2001,7 @@ F(x) = (1+x)^m.
 \begin{solution}
 由\cref{equation:无穷级数.幂级数展开式2} \[
 \sin x = \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k+1)!} x^{2k+1}
-	\quad (-\infty<x<+\infty),
+	\quad(-\infty<x<+\infty),
 \]有\[
 \frac{\sin\ln x}{\ln x} = \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k+1)!} (\ln x)^{2k},
 \]那么\begin{align*}
@@ -1621,21 +2024,6 @@ F(x) = (1+x)^m.
 \end{align*}
 \end{solution}
 \end{example}
-
-\subsection{幂级数的和函数的求解思路}
-现在我们总结一下，求解幂级数的和函数可以按照以下思路进行：
-\begin{enumerate}
-\item 首先判断幂级数的形式是不是标准型，若不是则应先尝试运用换元法将其化为标准型；
-\item 利用\cref{theorem:无穷级数.幂级数的收敛半径的求法} （或\cref{theorem:无穷级数.正项级数的比值审敛法} 、\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式} 、\cref{theorem:无穷级数.正项级数的根值审敛法} ）求出幂级数的收敛半径，并研究幂级数在边界点\(\pm R\)处的收敛性，定出幂级数的收敛域；
-\item 对幂级数的和函数直接逐项求导（或积分），或者按照以下思路构造一个辅助函数并对它逐项求导（或积分，或比照已知的初等函数的幂级数直接写出和函数）：
-	\begin{enumerate}
-	\item 用幂函数\(x^m\ (m=\pm1,\pm2,\dotsc)\)与幂级数的和函数\(s(x)\)的乘积\(x^m s(x)\)；
-	\item 对幂级数进行适当的拆分；
-	\item 改变求和指标，以舍弃（或添加）有限项.
-	\end{enumerate}
-\item 接着对上一步逐项积分（或求导），可以解出和函数的表达式.
-\end{enumerate}
-在以上步骤中要特别注意和函数或者其辅助函数在收敛区间的边界点的收敛性，以及自变量\(x\)的取值范围.
 
 \begin{example}
 \def\s{\sum\limits_{n=1}^{\infty}}%
@@ -1688,186 +2076,65 @@ y = \sum\limits_{n=0}^{\infty} a_n x^n
 \]的解.
 \end{theorem}
 
-\section{函数项级数的一致收敛性及一致收敛级数的基本性质}
-\subsection{函数项级数的一致收敛性}
-我们知道，有限个连续函数的和仍然是连续函数，有限个函数的和的导数及积分也分别等于它们的导数及积分的和.但是对于无穷多个函数的和是否也具有这些性质呢？换句话说，无穷多个连续函数的和\(s(x)\)是否仍然是连续函数？无穷多个函数的导数及积分的和是否仍然分别等于它们的和函数的导数及积分呢？我们曾经指出，对于幂级数来说，答案是肯定的.但是对于一般的函数项级数是否都是如此呢？下面来看一个例子.
-\begin{example}
-函数项级数\[
-x + (x^2-x) + (x^3-x^2) + \dotsb + (x^n-x^{n-1}) + \dotsb
-\]的每一项都在\([0,1]\)上连续，其前\(n\)项之和为\[
-s_n(x) = x^n,
-\]因此和函数为\[
-s(x) = \l s_n(x)
-= \left\{ \begin{array}{ll}
-0, & 0 \leqslant x < 1, \\
-1, & x = 1.
-\end{array} \right.
+\subsection{重新定义三角函数}
+尽管我们是从\hyperref[definition:函数.三角函数的几何定义]{三角函数的几何定义}出发，%
+计算得到三角函数的幂级数展开式，%
+但是我们也可以反其道行之，将三角函数（特别是正、余弦函数）定义为对应的幂级数，%
+重新建立三角学的基础.
+
+我们将\cref{equation:无穷级数.幂级数展开式2,equation:无穷级数.幂级数展开式5}%
+分别作为正弦函数和余弦函数的定义式：
+\[
+\sin x \defeq \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k+1)!} x^{2k+1}
+\quad(-\infty<x<+\infty),
+\]\[
+\cos x \defeq \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k)!} x^{2k}
+\quad(-\infty<x<+\infty).
 \]
-\end{example}
-这和函数\(s(x)\)在\(x=1\)处间断.由此可见，函数项级数的每一项在\([a,b]\)上连续，并且级数在\([a,b]\)上收敛，其和函数不一定在\([a,b]\)上连续.也可以举出这样的例子，函数项级数的每一项的导数及积分所成的级数的和并不等于它们的和函数的导数或积分.这就提出了这样一个问题：对什么级数，能够从级数的每一项的连续性得出它的和函数的连续性，从级数的每一项的导数及积分所成的级数之和得出原来级数的和函数的导数及积分呢？要回答这个问题，就需要引入下面的函数项级数的一致收敛性概念.
 
-\begin{definition}
-设有函数项级数\(\s u_i(x)\).如果对于任意给定的正数\(\varepsilon\)，都存在着一个只依赖于\(\varepsilon\)（即不依赖于\(x\)）的正整数\(N\)，使得当\(n>N\)时，对区间\(I\)上的一切\(x\)，都有不等式\[
-\abs{r_n(x)} = \abs{s(x) - s_n(x)} < \varepsilon
-\]成立，则称函数项级数\(\s u_i(x)\)在区间\(I\)上一致收敛于和\(s(x)\)，也称函数序列\(\{s_n(x)\}\)在区间\(I\)上一致收敛于\(s(x)\).
-\end{definition}
-以上函数项级数一致收敛的定义在几何上可解释为：只要\(n\)充分大，在区间\(I\)上所有曲线\(y = s_n(x)\)将位于曲线\(y = s(x) \pm \varepsilon\)之间.
+容易验证：
+\((\sin x)' = \cos x\)，%
+\((\cos x)' = - \sin x\)，%
+\(\sin 0 = 0\)，%
+\(\cos 0 = 1\).
 
-\begin{example}
-研究级数\[
-\frac{1}{x+1} + \left(\frac{1}{x+2}-\frac{1}{x+1}\right)
-+ \dotsb + \left(\frac{1}{x+n}-\frac{1}{x+n-1}\right) + \dotsb
-\]在区间\([0,+\infty)\)上的一致收敛性.
-\begin{solution}
-级数的前n项和\(s_n(x) = \frac{1}{x+n}\)，因此级数的和\[
-s(x) = \l s_n(x) = \l \frac{1}{x+n} = 0
-\quad(0 \leqslant x < +\infty).
-\]于是，余项的绝对值\[
-\abs{r_n(x)} = \abs{s(x) - s_n(x)}
-= \frac{1}{x+n} \leqslant \frac{1}{n}
-\quad(0 \leqslant x < +\infty).
-\]\(\forall\varepsilon>0\)，取\(N \geqslant \frac{1}{\varepsilon}\)，则当\(n>N\)时，\(\forall x\in[0,+\infty)\)，有\(\abs{r_n(x)} < \varepsilon\).根据定义，所给级数在区间\([0,+\infty)\)上一致收敛于\(s(x)\equiv0\).
-\end{solution}
-\end{example}
+现在我们来证明恒等式\(\sin^2 x + \cos^2 x \equiv 1\).
+由于\(\sin^2 0 + \cos^2 0 = 0^2 + 1^2 = 1\)，%
+所以只需证函数\(f(x) = \sin^2 x + \cos^2 x\)在\((-\infty,+\infty)\)上是常数函数，%
+即证\(f'(x) = 0\ (-\infty<x<+\infty)\)恒成立；
+由于\(f'(x) = 2 \sin x \cos x - 2 \cos x \sin x \equiv 0\)，%
+自然就有恒等式\(\sin^2 x + \cos^2 x \equiv 1\)成立.
 
-\begin{example}
-研究级数\[
-x + (x^2-x) + \dotsb + (x^n-x^{n-1}) + \dotsb
-\]在区间\((0,1)\)上的一致收敛性.
-\begin{solution}
-这级数在区间\((0,1)\)内处处收敛于和\(s(x)\equiv0\)，但并不一致收敛.事实上，这个级数的部分和\(s_n(x) = x^n\).\(\forall n\in\mathbb{N}^+\)，取\(x_n = \frac{1}{\sqrt[n]{2}}\)，于是\[
-s_n(x_n) = x_n^n = \frac{1}{2},
-\]但\(s(x_n) = 0\)，从而\[
-\abs{r_n(x_n)} = \abs{s(x_n) - s_n(x_n)} = \frac{1}{2}.
-\]所以，只要取\(\varepsilon<\frac{1}{2}\)，不论\(n\)多么大，在\((0,1)\)内总存在这样的点\(x_n\)，使得\(\abs{r_n(x_n)}>\varepsilon\)，因此所给级数在\((0,1)\)内不一致收敛.
-
-这表明虽然函数序列\(s_n(x) = x^n\)在\((0,1)\)内处处收敛于\(s(x)\equiv0\)，但\(s_n(x)\)在\((0,1)\)内各点处收敛于零的“快慢”程度是不一致的.
-
-可是\(\forall r\in(0,1)\)，这级数在\([0,r]\)上一致收敛.这是因为当\(x=0\)时，显然\[
-\abs{r_n(x)} = x^n = 0 < \varepsilon;
-\]当\(0 < x \leqslant r\)时，要使\(x^n < \varepsilon\)（不妨设\(\varepsilon < 1\)），只要\(n \ln x < \ln\varepsilon\)或\(n > \frac{\ln\varepsilon}{\ln x}\)；而\(\frac{\ln\varepsilon}{\ln x}\)在\((0,r]\)上的最大值为\(\frac{\ln\varepsilon}{\ln r}\)，故取正整数\(N \geqslant \frac{\ln\varepsilon}{\ln r}\)，则当\(n > N\)时，对\([0,r]\)上的一切\(x\)都有\(x^n < \varepsilon\).
-\end{solution}
-\end{example}
-上例说明了一致收敛性与所讨论的区间有关.
-
-以上两例都是直接根据定义来判定级数的一致收敛性的，现在介绍一个在实用上较方便的判别法.
-\begin{theorem}[魏尔斯特拉斯（Weierstrass）判别法]\label{theorem:无穷级数.魏尔斯特拉斯判别法}
-如果函数项级数\(\s u_i(x)\)在区间\(I\)上满足条件\begin{enumerate}
-\item \(\abs{u_n(x)} \leqslant a_n \quad(n=1,2,\dotsc)\)；
-\item 正项级数\(\s a_i\)收敛，%
-\end{enumerate}
-则函数项级数\(\s u_i(x)\)在区间\(I\)上一致收敛.
-\begin{proof}
-由条件2，根据\hyperref[theorem:无穷级数.级数的柯西审敛原理]{柯西审敛原理}，\(\forall\varepsilon>0\)，\(\exists N \in \mathbb{N}^+\)，使得当\(n > N\)时，\(\forall p \in \mathbb{N}^+\)，都有\[
-a_{n+1} + a_{n+2} + \dotsb + a_{n+p} < \frac{\varepsilon}{2}.
-\]由条件1，\(\forall x \in I\)，都有\begin{align*}
-&\hspace{-20pt}\abs{u_{n+1}(x) + u_{n+2}(x) + \dotsb + u_{n+p}(x)} \\
-&\leqslant \abs{u_{n+1}(x)} + \abs{u_{n+2}(x)} + \dotsb + \abs{u_{n+p}(x)} \\
-&\leqslant a_{n+1} + a_{n+2} + \dotsb + a_{n+p} < \frac{\varepsilon}{2},
-\end{align*}令\(p\to\infty\)，则由上式得\[
-\abs{r_n(x)} \leqslant \frac{\varepsilon}{2} < \varepsilon.
-\]因此函数项级数\(\s u_i(x)\)在区间\(I\)上一致收敛.
-\end{proof}
-\end{theorem}
-
-\begin{example}
-证明级数\[
-\frac{\sin x}{1^2}
-+ \frac{\sin 2^2 x}{2^2}
-+ \dotsb
-+ \frac{\sin n^2 x}{n^2}
-+ \dotsb
-\]在区间\((-\infty,+\infty)\)内一致收敛.
-\begin{proof}
-因为在\((-\infty,+\infty)\)内\[
-\abs{\frac{\sin n^2 x}{n^2}} \leqslant \frac{1}{n^2}
-\quad(n=1,2,\dotsc),
-\]而\(\sum\limits_{n=1}^{\infty} \frac{1}{n^2}\)收敛，故由\hyperref[theorem:无穷级数.魏尔斯特拉斯判别法]{魏尔斯特拉斯判别法}，所给级数在\((-\infty,+\infty)\)内一致收敛.
-\end{proof}
-\end{example}
-
-\subsection{一致收敛级数的基本性质}
-一致收敛级数有如下基本性质.
-\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质1}
-\def\su{\sum\limits_{n=1}^{\infty} u_n(x)}
-如果级数\(\su\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，且\(\su\)在区间\([a,b]\)上一致收敛于\(s(x)\)，则\(s(x)\)在\([a,b]\)上也连续.
-\begin{proof}
-设\(x_0,x\)是\([a,b]\)上任意两点.由等式\[
-s(x) = s_n(x) + r_n(x),
+现在我们来证明和积互化公式.
+这里我们只挑出两个最基本的和差化积公式作出证明.
+对于其他和积互化公式，我们只需应用初等的代数方法就可以证得.
+例如，要证\[
+\sin(x+y) \equiv \sin x \cos y + \cos x \sin y,
 \qquad
-s(x_0) = s_n(x_0) + r_n(x_0)
-\]得\begin{align*}
-\abs{s(x) - s_(x_0)}
-&= \abs{s_n(x) - s_n(x_0) + r_n(x) - r_n(x_0)} \\
-&\leqslant \abs{s_n(x) - s_n(x_0)} + \abs{r_n(x)} + \abs{r_n(x_0)}.
-\tag1
-\end{align*}
-因为级数\(\su\)一致收敛于\(s(x)\)，所以\(\forall\varepsilon>0\)，必有正整数\(N = N(\varepsilon)\)，使得当\(n>N\)时，\(\forall x \in [a,b]\)，都有\[
-\abs{r_n(x)} < \frac{\varepsilon}{3}.
-\eqno{(2)}
-\]当然，也有\(\abs{r_n(x_0)} < \frac{\varepsilon}{3}\).选定满足大于\(N\)的\(n\)之后，\(s_n(x)\)是有限项连续函数之和，故\(s_n(x)\)在点\(x_0\)连续，从而必有一个\(\delta > 0\)存在，当\(\abs{x - x_0} < \delta\)时，总有\[
-\abs{s_n(x) - s_n(x_0)} < \frac{\varepsilon}{3}.
-\eqno{(3)}
-\]由(1)、(2)、(3)式可见，对任给\(\varepsilon>0\)，必有\(\delta > 0\)，当\(\abs{x - x_0} < \delta\)时，有\[
-\abs{s(x) - s(x_0)} < \varepsilon.
-\]所以\(s(x)\)在点\(x_0\)处连续，而\(x_0\)在\([a,b]\)上是任意的，因此\(s(x)\)在\([a,b]\)上连续.
-\end{proof}
-\end{property}
-
-\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质2}
-\def\s{\sum\limits_{n=1}^{\infty}}
-如果级数\(\s u_n(x)\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，且\(\s u_n(x)\)在区间\([a,b]\)上一致收敛于\(s(x)\)，则级数\(\s u_n(x)\)在\([a,b]\)上可以逐项积分，即\[
-\int_{x_0}^x s(x) \dd{x}
-= \s \int_{x_0}^x u_n(x) \dd{x},
-\]其中\(a \leqslant x_0 < x \leqslant b\)，并且上式右端的级数在\([a,b]\)上也一致收敛.
-\begin{proof}
-因为级数\(\s u_n(x)\)在\([a,b]\)上一致收敛，由\cref{theorem:无穷级数.一致收敛级数的基本性质1}，\(s(x)\)和\(r_n(x)\)都在\([a,b]\)上连续，所以积分\(\int_{x_0}^x s(x) \dd{x}\)和\(\int_{x_0}^x r_n(x) \dd{x}\)存在，从而\[
-\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
-= \abs{\int_{x_0}^x r_n(x) \dd{x}}
-\leqslant \int_{x_0}^x \abs{r_n(x)} \dd{x}.
-\]又由级数的一致收敛性，\(\forall\varepsilon>0\)，\(\exists N = N(\varepsilon) \in \mathbb{N}^+\)，使得当\(n > N\)时，\(\forall x \in [a,b]\)，都有\[
-\abs{r_n(x)} < \frac{\varepsilon}{b-a}.
-\]于是，当\(n > N\)时，有\[
-\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
-\leqslant \int_{x_0}^x \abs{r_n(x)} \dd{x}
-< \frac{\varepsilon}{b-a} \cdot (x-x_0)
-\leqslant \varepsilon.
-\]根据极限的定义，有\[
-\int_{x_0}^x s(x) \dd{x}
-= \lim\limits_{n\to\infty} \int_{x_0}^x s_n(x) \dd{x}
-= \lim\limits_{n\to\infty} \sum\limits_{i=1}^n \int_{x_0}^x u_i(x) \dd{x}
-= \sum\limits_{i=1}^{\infty} \int_{x_0}^x u_i(x) \dd{x}.
-\]由于\(N\)只依赖于\(\varepsilon\)而与\(x_0,x\)无关，所以级数\(\sum\limits_{i=1}^{\infty} \int_{x_0}^x u_i(x) \dd{x}\)在\([a,b]\)上一致收敛.
-\end{proof}
-\end{property}
-
-\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质3}
-\def\s{\sum\limits_{n=1}^{\infty}}
-如果级数\(\s u_n(x)\)的各项\(u_n(x)\)都具有连续导数\(u'_i(x)\)，且\(\s u_n(x)\)在区间\([a,b]\)上收敛于和\(s(x)\)，它并且级数\(\s u'_n(x)\)在\([a,b]\)上一致收敛，则级数\(\s u_n(x)\)在区间\([a,b]\)上也一致收敛，且可逐项求导，即\[
-s'(x) = \s u'_n(x).
+\cos(x+y) \equiv \cos x \cos y - \sin x \sin y
+\]成立，%
+只需构造辅助函数\[
+\varphi(x)
+= \sin(x+y) - (\sin x \cos y + \cos x \sin y),
+\]\[
+\psi(x)
+= \cos(x+y) - (\cos x \cos y - \sin x \sin y),
+\]再证明\(\varphi(x),\psi(x) \equiv 0\).
+令\[
+\rho(x)
+= [\varphi(x)]^2 + [\psi(x)]^2.
 \]
-\begin{proof}
-由于\(\s u'_n(x)\)在\([a,b]\)上一致收敛，设其和为\(v(x)\)，即\[
-\s u'_n(x) = v(x).
-\]根据\cref{theorem:无穷级数.一致收敛级数的基本性质1} 知，\(v(x)\)在\([a,b]\)上连续.再根据\cref{theorem:无穷级数.一致收敛级数的基本性质2}，级数\(\s u'_n(x)\)可逐项积分，故\[
-\int_{x_0}^x v(x) \dd{x}
-= \s \int_{x_0}^x u'_n(x) \dd{x}
-= \s [u_n(x) - u_n(x_0)],
-\]而\(\s u_n(x) = s(x)\)，\(\s u_n(x_0) = s(x_0)\)，故\[
-\s [u_n(x) - u_n(x_0)] = s(x) - s(x_0),
-\]从而有\[
-\int_{x_0}^x v(x) \dd{x} = s(x) - s(x_0),
-\]其中\(a \leqslant x_0 < x \leqslant b\).上式两端求导，即得关系式\[
-v(x) = s'(x).
+并注意到\(\varphi'(x) = \psi(x)\)，%
+\(\psi'(x) = -\varphi'(x)\)，%
+就有\(\rho'(x) \equiv 0\)，%
+也就是说\(\rho(x)\)也是常值函数.
+由于\[
+\rho(0) = [\varphi(0)]^2 + [\psi(0)]^2 = 0,
 \]
-
-根据\cref{theorem:无穷级数.一致收敛级数的基本性质2}，级数\(\s \int_{x_0}^x u'_n(x) \dd{x}\)在\([a,b]\)上一致收敛，而\[
-\s \int_{x_0}^x u'_n(x) \dd{x} = \s u_n(x) - \s u_n(x_0),
-\]所以\[
-\s u_n(x) = \s \int_{x_0}^x u'_n(x) \dd{x} + \s u_n(x_0).
-\]也就是说，级数\(\s u_n(x)\)在\([a,b]\)上一致收敛.
-\end{proof}
-\end{property}
+所以\(\rho(x) \equiv 0\)；%
+又因为\(\varphi(x),\psi(x) \in \mathbb{R}\)，%
+所以\(\varphi(x),\psi(x) \equiv 0\)，%
+也就是说，和积互化公式成立.
 
 \section{傅里叶级数}
 从本节开始，我们讨论由三角函数组成的函数项级数，即所谓\textbf{三角级数}，着重研究如何把函数展开成三角级数.
@@ -1875,58 +2142,90 @@ v(x) = s'(x).
 \subsection{三角级数　三角函数系的正交性}
 我们希望将周期为\(T = \frac{2\pi}{\omega}\)的周期函数用一系列以\(T\)为周期的正弦函数\[
 A_n \sin(n \omega t + \varphi_n)
-\]组成的级数来表示，记为\begin{gather}
-f(t) = A_0 + \sum\limits_{n=1}^{\infty} A_n \sin(n \omega t + \varphi_n), \tag1
-\end{gather}其中\(A_0,A_n,\varphi_n\ (n=1,2,\dotsc)\)都是常数.
+\]组成的级数来表示，记为
+\[
+f(t) = A_0 + \sum\limits_{n=1}^{\infty} A_n \sin(n \omega t + \varphi_n),
+\eqno(1)
+\]
+其中\(A_0,A_n,\varphi_n\ (n=1,2,\dotsc)\)都是常数.
 
-将正弦函数\(A_n \sin(n \omega t + \varphi_n)\)按三角公式变形，得\[
+将周期函数按上述方式展开，它的物理意义是很明确的.
+这就是把一个比较复杂的周期运动看成是许多不同频率的简谐运动的叠加.
+在电学上，这种展开被称为\emph{谐波分析}.
+这里的常数项\(A_0\)称为\(f(t)\)的\emph{直流分量}；
+\(A_1 \sin(\omega t+\varphi_1)\)称为\emph{一次谐波}或\emph{基波}；
+\(A_2 \sin(\omega t+\varphi_2)\)称为\emph{二次谐波}；
+以此类推.
+
+为了以后讨论方便起见，%
+我们将正弦函数\(A_n \sin(n \omega t + \varphi_n)\)按三角公式变形，得\[
 A_n \sin(n \omega t + \varphi_n)
 = A_n \sin\varphi_n \cos(n \omega t) + A_n \cos\varphi_n \sin(n \omega t),
-\]并且令\(\frac{a_0}{2} = A_0\)，\(a_n = A_n \sin\varphi_n\)，\(b_n = A_n \cos\varphi_n\)，\(\omega = \frac{\pi}{l}\)（即\(T = 2l\)），则(1)式右端的级数就可以改写为\begin{gather}
-\frac{a_0}{2} + \sum\limits_{n=1}^{\infty}\left( a_n \cos{\frac{n \pi t}{l}} + b_n \sin{\frac{n \pi t}{l}} \right) \tag2
-\end{gather}
-形如(2)式的级数称为（以\(2l\)为周期的）\textbf{三角级数}，其中\(a_0,a_n,b_n\ (n=1,2,\dotsc)\)都是常数.
+\]并且令\(\frac{a_0}{2} = A_0\)，%
+\(a_n = A_n \sin\varphi_n\)，%
+\(b_n = A_n \cos\varphi_n\)，%
+\(\omega = \frac{\pi}{l}\)（即\(T = 2l\)），%
+则(1)式右端的级数就可以改写为
+\[
+\frac{a_0}{2} + \sum\limits_{n=1}^{\infty}\left( a_n \cos{\frac{n \pi t}{l}} + b_n \sin{\frac{n \pi t}{l}} \right)
+\eqno(2)
+\]
+形如(2)式的级数称为“以\(2l\)为周期的\textbf{三角级数}”，其中\(a_0,a_n,b_n\ (n=1,2,\dotsc)\)都是常数.
 
-令\(x = \frac{\pi t}{l}\)，则(2)式称为\begin{gather}
-\frac{a_0}{2} + \sum\limits_{n=1}^{\infty}( a_n \cos{n x} + b_n \sin{n x} ), \tag3
-\end{gather}
-这就把以\(2l\)为周期的三角级数转换成以\(2\pi\)为周期的三角级数.
+令\(x = \frac{\pi t}{l}\)，则(2)式称为
+\[
+\frac{a_0}{2} + \sum\limits_{n=1}^{\infty}( a_n \cos{n x} + b_n \sin{n x} ),
+\eqno(3)
+\]
+这就把“以\(2l\)为周期的三角级数”转换成“以\(2\pi\)为周期的三角级数”.
+
+下面我们讨论以\(2\pi\)为周期的三角级数(3).
+
+如同讨论幂级数时一样，%
+我们必须讨论三角级数(3)的收敛问题，%
+以及给定周期为\(2\pi\)的周期函数%
+如何把它展开成三角级数(3).
+为此，我们首先介绍三角函数系的正交性.
 
 \begin{definition}
 所谓\textbf{三角函数系}\[
 1, \cos x, \sin x, \cos 2x, \sin 2x, \dotsc, \cos nx, \sin nx, \dotsc
-\]在区间\([-\pi,\pi]\)上\textbf{正交}，是指三角函数系中任意两个不同的函数的乘积在区间\([-\pi,\pi]\)上的积分等于零，即
+\]在区间\([-\pi,\pi]\)上\textbf{正交}，%
+是指三角函数系中任意两个不同的函数的乘积在区间\([-\pi,\pi]\)上的积分等于零，即
 \begin{gather*}
-\tint \cos{nx} \dd{x} = 0 \quad (n=1,2,\dotsc), \\
-\tint \sin{nx} \dd{x} = 0 \quad (n=1,2,\dotsc), \\
-\tint \sin{mx}\cos{nx} \dd{x} = 0 \quad (m,n=1,2,\dotsc), \\
-\tint \cos{mx}\cos{nx} \dd{x} = 0 \quad (m,n=1,2,\dotsc; m \neq n), \\
-\tint \sin{mx}\sin{nx} \dd{x} = 0 \quad (m,n=1,2,\dotsc; m \neq n).
+\tint \cos{nx} \dd{x} = 0 \quad(n=1,2,\dotsc), \\
+\tint \sin{nx} \dd{x} = 0 \quad(n=1,2,\dotsc), \\
+\tint \sin{mx}\cos{nx} \dd{x} = 0 \quad(m,n=1,2,\dotsc), \\
+\tint \cos{mx}\cos{nx} \dd{x} = 0 \quad(m,n=1,2,\dotsc; m \neq n), \\
+\tint \sin{mx}\sin{nx} \dd{x} = 0 \quad(m,n=1,2,\dotsc; m \neq n).
 \end{gather*}
 
 在三角函数系中，两个相同函数的乘积在区间\([-\pi,\pi]\)的积分不等于零，即
 \begin{gather*}
 \tint 1^2 \dd{x} = 2\pi, \\
-\tint \sin^2 nx \dd{x} = \tint \cos^2 nx \dd{x} = \pi \quad (n=1,2,\dotsc).
+\tint \sin^2 nx \dd{x} = \tint \cos^2 nx \dd{x} = \pi \quad(n=1,2,\dotsc).
 \end{gather*}
 \end{definition}
 
 \subsection{函数展开成傅里叶级数}
-\begin{definition}
-设\(f(x)\)是周期为\(2 \pi\)的周期函数，且能展开成三角级数：\[
-f(x) = \frac{a_0}{2} + \sum\limits_{k=1}^{\infty}(a_k \cos{kx} + b_k \sin kx).
-\]
-
+\begin{definition}\label{definition:无穷级数.傅里叶级数}
+%@see: https://mathworld.wolfram.com/FourierSeries.html
+设\(f(x)\)是周期为\(2 \pi\)的周期函数.
 如果积分\[
 a_n = \frac{1}{\pi} \tint f(x) \cos nx \dd{x} \quad(n=0,1,2,\dotsc)
 \]和\[
 b_n = \frac{1}{\pi} \tint f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc)
-\]都存在，这时它们定出的系数\(a_0,a_1,\dotsc,b_1,b_2,\dotsc\)叫做函数\(f(x)\)的\DefineConcept{傅里叶系数}，根据这些系数确定的三角级数\[
+\]都存在，%
+那么它们定出的系数\(a_0,a_1,\dotsc,b_1,b_2,\dotsc\)叫做%
+“函数\(f(x)\)的\DefineConcept{傅里叶系数}（Fourier coefficient）”，%
+根据这些系数确定的三角级数\[
 \frac{a_0}{2} + \sum\limits_{k=1}^{\infty}(a_k \cos{kx} + b_k \sin kx)
-\]称为函数\(f(x)\)的\DefineConcept{傅里叶级数}.
+\]称为“函数\(f(x)\)的\DefineConcept{傅里叶级数}（Fourier series）”.
 \end{definition}
 
-一个定义在\((-\infty,+\infty)\)上周期为\(2\pi\)的函数\(f(x)\)，如果它在一个周期上可积，则一定可以作出\(f(x)\)的傅里叶级数.
+一个定义在\((-\infty,+\infty)\)上周期为\(2\pi\)的函数\(f(x)\)，%
+如果它在一个周期上可积，%
+则一定可以作出\(f(x)\)的傅里叶级数.
 然而函数\(f(x)\)的傅里叶级数是否一定收敛？
 如果它收敛，它是否一定收敛于函数\(f(x)\)？
 一般说来，这两个问题的答案都不是肯定的.
@@ -1943,20 +2242,47 @@ b_n = \frac{1}{\pi} \tint f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc)
 \end{enumerate}
 则\(f(x)\)的傅里叶级数收敛，并且
 \begin{enumerate}
-\item 当\(x\)是\(f(x)\)的连续点时，级数收敛于\(f(x)\)，%
-\item 当\(x\)是\(f(x)\)的间断点时，级数收敛于\(\frac{1}{2} [ f(x^-) + f(x^+) ]\).
+\item 当\(x\)是\(f(x)\)的连续点时，%
+级数收敛于\(f(x)\).
+
+\item 当\(x\)是\(f(x)\)的间断点时，%
+级数收敛于\(\frac{1}{2} [ f(x^-) + f(x^+) ]\)\footnote{%
+函数\(f(x)\)的傅里叶级数在点\(x=\pm\pi\)处收敛于%
+区间端点\(-\pi\)的右极限和\(\pi\)的左极限的算术平均值%
+\(\frac{1}{2} [ f(\pi^-) + f(-\pi^+) ]\).}.
 \end{enumerate}
 \end{theorem}
 
+收敛定理告诉我们：
+只要函数在\([-\pi,\pi]\)上至多有有限个第一类间断点，%
+并且不作无限次振动，%
+函数的傅里叶级数在连续点处就收敛于该点的函数值，%
+在间断点处收敛于该点左、右极限的算术平均值.
 可见，函数展开成傅里叶级数的条件比展开成幂级数的条件低得多.
-记\[
-C = \Set*{ x \given f(x) = \frac{1}{2} [ f(x^-) + f(x^+) ] },
-\]在\(C\)上就成立\(f(x)\)的傅里叶级数展开式\[
+记
+\begin{equation}
+C = \Set*{
+	x \given
+	f(x) = \frac{1}{2} [ f(x^-) + f(x^+) ]
+},
+\end{equation}
+那么在\(C\)上就成立\(f(x)\)的傅里叶级数展开式\[
 f(x) = \frac{a_0}{2} + \sum\limits_{k=1}^{\infty}(a_k \cos{kx} + b_k \sin kx),
 \quad x \in C.
 \]
 
-\begin{example}
+\begin{theorem}
+设以\(2\pi\)为周期的函数\(f(x)\)的傅里叶系数为\(a_n,b_n\)，%
+那么函数\(f(x+h)\ (h\text{是常数})\)的傅里叶系数为\[
+\alpha_n
+= a_n \cos nh + b_n \sin nh,
+\qquad
+\beta_n
+= b_n \cos nh - a_n \sin nh.
+\]
+\end{theorem}
+
+\begin{example}[矩形波的谐波分析]
 设\(f(x)\)是周期为\(2\pi\)的周期函数，它在\([-\pi,\pi)\)上的表达式为\[
 f(x) = \left\{ \begin{array}{cc}
 -1, & -\pi \leqslant x < 0, \\
@@ -1964,20 +2290,20 @@ f(x) = \left\{ \begin{array}{cc}
 \end{array} \right.
 \]将\(f(x)\)展开成傅里叶级数.
 \begin{solution}
-所给函数满足 \hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理} 的条件，它在点\(x = k\pi\ (k=0,\pm1,\pm2,\dotsc)\)处不连续，在其他点处连续；从而由收敛定理知道\(f(x)\)的傅里叶级数收敛，并且当\(x = k\pi\)时，级数收敛于\[
+所给函数满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件，它在点\(x = k\pi\ (k=0,\pm1,\pm2,\dotsc)\)处不连续，在其他点处连续；从而由收敛定理知道\(f(x)\)的傅里叶级数收敛，并且当\(x = k\pi\)时，级数收敛于\[
 \frac{(-1)+1}{2} = 0,
 \]当\(x \neq k\pi\)时，级数收敛于\(f(x)\).
 
 计算傅里叶系数如下：\[
 \begin{split}
 a_n &= \frac{1}{\pi} \tint f(x) \cos nx \dd{x} \\
-&= \frac{1}{\pi} \int_{-\pi}^0 (-1) \cos nx \dd{x}
-	+ \frac{1}{\pi} \int_0^{\pi} 1 \cdot \cos nx \dd{x} \\
-&= 0 \quad (n=0,1,2,\dotsc); \\
+	&= \frac{1}{\pi} \int_{-\pi}^0 (-1) \cos nx \dd{x}
+		+ \frac{1}{\pi} \int_0^{\pi} 1 \cdot \cos nx \dd{x} \\
+&= 0 \quad(n=0,1,2,\dotsc); \\
 b_n &= \frac{1}{\pi} \tint f(x) \sin nx \dd{x} \\
-&= \frac{1}{\pi} \int_{-\pi}^0 (-1) \sin nx \dd{x}
-	+ \frac{1}{\pi} \int_0^{\pi} 1 \cdot \sin nx \dd{x} \\
-&= \frac{2}{n\pi} [1-(-1)^n]
+	&= \frac{1}{\pi} \int_{-\pi}^0 (-1) \sin nx \dd{x}
+		+ \frac{1}{\pi} \int_0^{\pi} 1 \cdot \sin nx \dd{x} \\
+	&= \frac{2}{n\pi} [1-(-1)^n]
 = \left\{ \begin{array}{cl}
 \frac{4}{n\pi}, & n=1,3,5,\dotsc, \\
 0, & n=2,4,6,\dotsc.
@@ -1985,11 +2311,15 @@ b_n &= \frac{1}{\pi} \tint f(x) \sin nx \dd{x} \\
 \end{split}
 \]所以\(f(x)\)的傅里叶展开式为\[
 f(x) = \frac{4}{\pi} \sum\limits_{k=1}^{\infty} \frac{1}{2k-1} \sin(2k-1) x
-\quad (-\infty<x<+\infty;x\neq0,\pm\pi,\pm2\pi,\dotsc).
+\quad(-\infty<x<+\infty;x\neq0,\pm\pi,\pm2\pi,\dotsc).
 \]
 \end{solution}
 \end{example}
-如果把上例中的函数理解为矩形波的波形函数（周期\(T=2\pi\)，振幅\(E=1\)，自变量\(x\)表示时间），那么上面所得到的展开式表明：矩形波是由一系列不同频率的正弦波叠加而成的，这些正弦波的频率依次为基波频率的奇数倍.
+如果把上例中的函数理解为矩形波的波形函数%
+（周期\(T=2\pi\)，振幅\(E=1\)，自变量\(x\)表示时间），%
+那么上面所得到的展开式表明：
+矩形波是由一系列不同频率的正弦波叠加而成的，%
+这些正弦波的频率依次为基波频率的奇数倍.
 
 \begin{example}
 设\(f(x)\)是周期为\(2\pi\)的周期函数，它在\([-\pi,\pi)\)上的表达式为\[
@@ -2000,7 +2330,7 @@ x, & -\pi \leqslant x < 0, \\
 \]
 将\(f(x)\)展成傅里叶级数.
 \begin{solution}
-所给函数满足 \hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理} 的条件.
+所给函数满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件.
 它在点\(x=(2k+1)\pi\ (k=0,\pm1,\pm2,\dotsc)\)处不连续.
 因此，\(f(x)\)的傅里叶级数在\(x=(2k+1)\pi\)处收敛于\[
 \frac{f(\pi^-)+f(-\pi^+)}{2} = \frac{0-\pi}{2} = -\frac{\pi}{2},
@@ -2035,12 +2365,13 @@ f(x) &= -\frac{\pi}{4} + \left(\frac{2}{\pi} \cos x + \sin x\right) \\
 \end{solution}
 \end{example}
 
+\subsection{周期延拓}
 应注意，如果函数\(f(x)\)只在\([-\pi,\pi]\)上有定义，并且满足收敛定理的条件，那么\(f(x)\)也可以展开成傅里叶级数.
 事实上，我们可在\([-\pi,\pi)\)或\((-\pi,\pi]\)外补充函数\(f(x)\)的定义，使它拓广成周期为\(2\pi\)的周期函数\(F(x)\).
 按这种方式拓广函数的定义域的过程称为\DefineConcept{周期延拓}.
 再将\(F(x)\)展开成傅里叶级数.
 最后限制\(x\)在\((-\pi,\pi)\)内，此时\(F(x) \equiv f(x)\)，这样便得到\(f(x)\)的傅里叶级数展开式.
-根据 \hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}，这级数在区间端点\(x=\pm\pi\)处收敛于\(\frac{1}{2} [f(\pi^-) + f(-\pi^+)]\).
+根据\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}，这级数在区间端点\(x=\pm\pi\)处收敛于\(\frac{1}{2} [f(\pi^-) + f(-\pi^+)]\).
 
 \subsection{正项级数和余弦级数}
 一般说来，一个函数的傅里叶级数既含有正弦项，又含有余弦项.
@@ -2071,13 +2402,25 @@ b_n = 0 & (n=1,2,3,\dotsc).
 \frac{a_0}{2} + \sum\limits_{n=1}^{\infty} a_n \cos{nx}.
 \]
 
-在实际应用（如研究某种波动问题，热的传导、扩散问题）中，有时还需要把定义在区间\([0,\pi]\)上的函数\(f(x)\)展开成正弦级数或余弦级数.
+\subsection{奇延拓与偶延拓}
+在实际应用（如研究某种波动问题，热的传导、扩散问题）中，%
+有时还需要把定义在区间\([0,\pi]\)上的函数\(f(x)\)展开成正弦级数或余弦级数.
 根据前面讨论的结果，这类展开问题可以按如下的方法解决：
 \begin{enumerate}
-\item 设函数\(f(x)\)定义在区间\([0,\pi]\)上并且满足 \hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理} 的条件，我们在开区间\((-\pi,0)\)内补充函数\(f(x)\)的定义，得到定义在\((-\pi,\pi]\)上的函数\(F(x)\)，使它在\((-\pi,\pi)\)上成为\cemph{奇函数}\footnote{补充\(f(x)\)的定义使它在\((-\pi,\pi)\)上成为奇函数时，若\(f(0)\neq0\)，则规定\(F(0)=0\).}（或\cemph{偶函数}）.
+\item 设函数\(f(x)\)定义在区间\([0,\pi]\)上%
+并且满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件，%
+我们在开区间\((-\pi,0)\)内补充函数\(f(x)\)的定义，%
+得到定义在\((-\pi,\pi]\)上的函数\(F(x)\)，%
+使它在\((-\pi,\pi)\)上成为\cemph{奇函数}\footnote{%
+补充\(f(x)\)的定义使它在\((-\pi,\pi)\)上成为奇函数时，%
+若\(f(0)\neq0\)，则规定\(F(0)=0\).}%
+（或\cemph{偶函数}）.
 按这种方式拓广函数定义域的过程称为\DefineConcept{奇延拓}（或\DefineConcept{偶延拓}）.
+
 \item 然后将奇延拓（或偶延拓）后的函数展开成傅里叶级数，这个级数必定是正弦级数（或余弦级数）.
-\item 再限制\(x\)在\((0,\pi]\)上，此时\(F(x)\equiv f(x)\)，这样便得到\(f(x)\)的正弦级数（或余弦级数）展开式.
+
+\item 再限制\(x\)在\((0,\pi]\)上，%
+此时\(F(x)\equiv f(x)\)，这样便得到\(f(x)\)的正弦级数（或余弦级数）展开式.
 \end{enumerate}
 
 \begin{example}
@@ -2150,11 +2493,11 @@ a_k \cos kx
 \]
 
 还要注意到，当\(k\in\mathbb{Z}\)时，有以下恒等式成立：\[
-\sin(x+2k\pi) = \sin x, \qquad
-\cos(x+2k\pi) = \cos x,
+\sin(x+2k\pi) \equiv \sin x, \qquad
+\cos(x+2k\pi) \equiv \cos x,
 \]\[
-\sin(x+\overline{2k+1}\pi) = -\sin x, \qquad
-\cos(x+\overline{2k+1}\pi) = -\cos x.
+\sin(x+\overline{2k+1}\pi) \equiv -\sin x, \qquad
+\cos(x+\overline{2k+1}\pi) \equiv -\cos x.
 \]
 
 如果\(f(x-\pi) = -f(x)\)，那么\[
@@ -2167,14 +2510,15 @@ a_k \cos k(x-\pi)
 a_k \cos kx
 + b_k \sin kx
 \right),
-\]即\(
-\frac{a_0}{2} = -\frac{a_0}{2}, \,
-a_k \cos k(x-\pi) = - a_k \cos kx, \,
-b_k \sin k(x-\pi) = - b_k \sin kx, \,
-k=1,2,\dotsc
-\)解得\[
-a_0 = 0,
-a_{2k} = 0,
+\]即\[
+\left\{ \begin{array}{ll}
+\frac{a_0}{2} = -\frac{a_0}{2}, \\
+a_k \cos k(x-\pi) = - a_k \cos kx, &(k=1,2,\dotsc) \\
+b_k \sin k(x-\pi) = - b_k \sin kx, &(k=1,2,\dotsc)
+\end{array} \right.
+\]解得\[
+a_0 = 0, \qquad
+a_{2k} = 0, \qquad
 b_{2k} = 0
 \quad(k=1,2,\dotsc).
 \]
@@ -2189,14 +2533,15 @@ a_k \cos k(x-\pi)
 a_k \cos kx
 + b_k \sin kx
 \right),
-\]即\(
-\frac{a_0}{2} = \frac{a_0}{2}, \,
-a_k \cos k(x-\pi) = a_k \cos kx, \,
-b_k \sin k(x-\pi) = b_k \sin kx, \,
-k=1,2,\dotsc
-\)，解得\[
-a_{2k+1} = 0,
-b_{2k+1} = 0,
+\]即\[
+\left\{ \begin{array}{ll}
+\frac{a_0}{2} = \frac{a_0}{2}, \\
+a_k \cos k(x-\pi) = a_k \cos kx, &(k=1,2,\dotsc) \\
+b_k \sin k(x-\pi) = b_k \sin kx, &(k=1,2,\dotsc)
+\end{array} \right.
+\]解得\[
+a_{2k+1} = 0, \qquad
+b_{2k+1} = 0
 \quad(k=0,1,2,\dotsc).
 \qedhere
 \]
@@ -2209,33 +2554,36 @@ b_{2k+1} = 0,
 \begin{theorem}
 \def\s{\sum\limits_{n=1}^{\infty}}
 \def\f{\frac{n \pi x}{l}}
-设周期为\(2l\)的周期函数\(f(x)\)满足 \hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理} 的条件，%
+设周期为\(2l\)的周期函数\(f(x)\)满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件，%
 则它的傅里叶级数展开式为\[
-f(x) = \frac{a_0}{2} + \s \left( a_n \cos\f + b_n \sin\f \right) \quad (x \in C),
+f(x) = \frac{a_0}{2} + \s \left( a_n \cos\f + b_n \sin\f \right)
+\quad(x \in C),
 \]其中\begin{gather*}
-a_n = \frac{1}{l} \int_{-l}^{l} f(x) \cos\f \dd{x} \quad (n=0,1,2,\dotsc), \\
-b_n = \frac{1}{l} \int_{-1}^{l} f(x) \sin\f \dd{x} \quad (n=1,2,3,\dotsc), \\
+a_n = \frac{1}{l} \int_{-l}^{l} f(x) \cos\f \dd{x}
+\quad(n=0,1,2,\dotsc), \\
+b_n = \frac{1}{l} \int_{-1}^{l} f(x) \sin\f \dd{x}
+\quad(n=1,2,3,\dotsc), \\
 C = \Set*{ x \given f(x) = \frac{1}{2} [ f(x^-) + f(x^+) ] }.
 \end{gather*}
 
 特别地，当\(f(x)\)是奇函数时，\[
 f(x) = \s b_n \sin\frac{n \pi x}{l}
-\quad (x \in C),
+\quad(x \in C),
 \]其中\[
 b_n = \frac{2}{l} \int_0^l f(x) \sin\f \dd{x}
-\quad (n=1,2,3,\dotsc).
+\quad(n=1,2,3,\dotsc).
 \]
 
 当\(f(x)\)是偶函数时，\[
 f(x) = \frac{a_0}{2} + \s a_n \cos\f
-\quad (x \in C),
+\quad(x \in C),
 \]其中\[
 a_n = \frac{2}{l} \int_0^l f(x) \cos\f \dd{x}
-\quad (n=0,1,2,\dotsc).
+\quad(n=0,1,2,\dotsc).
 \]
 \begin{proof}
 作变量代换\(z = \frac{\pi x}{l}\)，于是区间\(-l \leqslant x \leqslant l\)就变换成\(-\pi \leqslant z \leqslant \pi\).
-设函数\(f(x) = f\left(\frac{lz}{\pi}\right) = F(z)\)，从而\(F(z)\)是周期为\(2\pi\)的周期函数，并且它满足 \hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理} 的条件，将\(F(z)\)展开成傅里叶级数\[
+设函数\(f(x) = f\left(\frac{lz}{\pi}\right) = F(z)\)，从而\(F(z)\)是周期为\(2\pi\)的周期函数，并且它满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件，将\(F(z)\)展开成傅里叶级数\[
 F(z) = \frac{a_0}{2} + \sum\limits_{n=1}^{\infty} (a_n \cos nz + b_n \sin nz),
 \]其中\(a_n = \frac{1}{\pi} \tint F(z) \cos nz \dd{z},\ b_n = \frac{1}{\pi} \tint F(z) \sin nz \dd{z}\).
 
@@ -2287,8 +2635,10 @@ b_n = \frac{1}{l} \int_{-l}^l f(x) \sin\frac{n\pi x}{l} \dd{x}.
 设周期为\(2l\)的周期函数\(f(x)\)的傅里叶级数为\[
 \frac{a_0}{2} + \s \left( a_n \cos\f + b_n \sin\f \right),
 \]其中系数\(a_n,b_n\)为\begin{gather*}
-a_n = \frac{1}{l} \int_{-l}^{l} f(x) \cos\f \dd{x} \quad (n=0,1,2,\dotsc), \\
-b_n = \frac{1}{l} \int_{-1}^{l} f(x) \sin\f \dd{x} \quad (n=1,2,\dotsc).
+a_n = \frac{1}{l} \int_{-l}^{l} f(x) \cos\f \dd{x}
+\quad(n=0,1,2,\dotsc), \\
+b_n = \frac{1}{l} \int_{-1}^{l} f(x) \sin\f \dd{x}
+\quad(n=1,2,\dotsc).
 \end{gather*}利用欧拉公式\[
 \cos t = \frac{e^{\iu t}+e^{-\iu t}}{2},
 \qquad
@@ -2326,9 +2676,185 @@ b_n = \frac{1}{l} \int_{-1}^{l} f(x) \sin\f \dd{x} \quad (n=1,2,\dotsc).
 \end{equation}可以求出系数满足
 \begin{equation}\label{equation:无穷级数.傅里叶系数的复数形式}
 c_n = \frac{1}{2l} \int_{-l}^l f(x) \eif- \dd{x}
-\quad (n=0,\pm1,\pm2,\dotsc).
+\quad(n=0,\pm1,\pm2,\dotsc).
 \end{equation}这就是\textbf{傅里叶系数的复数形式}.
 
 傅里叶级数的两种形式，本质上是一样的，但复数形式比较简洁，且只用一个算式计算系数.
+
+\section{本章总结}
+
+我们在本章学习了无穷级数的基本概念.
+
+依据级数的一般项是不是常数，我们将无穷级数分类为%
+\hyperref[definition:无穷级数.常数项级数的定义]{常数项级数}%
+和\hyperref[definition:无穷级数.实函数项级数的概念]{函数项级数}.
+
+常数项级数具有许多重要的历史意义与应用价值.
+一方面，%
+很多常数（例如圆周率\(\pi\)）的严格定义就是依靠级数理论建立的.
+另一方面，%
+由于一个函数项级数\(\sum\limits_{n=1}^{\infty} u_n(x)\)%
+在给定自变量\(x=x_0\)时会成为一个常数项级数\(\sum\limits_{n=1}^{\infty} a_n
+= \sum\limits_{n=1}^{\infty} u_n(x_0)\)，%
+所以常数项级数又是我们研究函数项级数的基础.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{*3l}
+		\hline
+		名称 & 一般项 & 收敛条件 \\ \hline
+		几何级数 & \(a_n = a q^n\ (a\neq0)\) & \(\abs{q}<1\) \\
+		等差级数 & \(a_n = a + n d\) & \(a = d = 0\) \\
+		调和级数 & \(a_n = 1/n\) & 不收敛 \\
+		p级数 & \(a_n = 1/n^s\) & \(s > 1\) \\
+		\hline
+	\end{tabular}
+	\caption{常见的常数项级数及其收敛条件}
+\end{table}
+
+我们注意到，收敛的常数项级数具有许多美妙的性质：
+\begin{enumerate}
+\item 由\cref{theorem:无穷级数.收敛级数性质1} 我们知道，%
+任意一个级数的每一项同乘以一个非零常数后，所得级数的敛散性与原级数一致；
+任意一个级数的每一项同乘以零后，所得级数收敛于零.
+
+\item 由\cref{theorem:无穷级数.收敛级数性质2} 我们知道，%
+任意两个收敛级数相加（或相减），所得级数也收敛；
+一个收敛级数与一个发散级数相加（或相减），所得级数必发散；
+两个发散级数相加（或相减），所得级数可能收敛也可能发散.
+
+\item 由\cref{theorem:无穷级数.收敛级数性质3} 我们知道，%
+在级数中去掉、加上或改变有限项，不会改变级数的收敛性.
+
+\item 由\cref{theorem:无穷级数.收敛级数性质4} 我们知道，%
+对收敛级数的项任意加括号后所成的级数仍收敛，且其和不变；
+如果加括号后所成的级数收敛，则原级数可能收敛也可能发散；
+如果加括号后所成的级数发散，则原级数必定发散.
+
+\item 由\cref{theorem:无穷级数.收敛级数性质5} 我们知道，%
+收敛级数的一般项必定收敛于零，一般项不收敛于零的级数必定发散.
+\end{enumerate}
+
+在判断一个常数项级数是否收敛时，我们有许多工具可供利用：
+\begin{enumerate}
+\item “级数\(\sum\limits_{n=1}^{\infty} u_n\)收敛”的等价命题%
+就是“部分和数列\(\{ s_n = \sum\limits_{i=1}^n u_i \}\)收敛”.
+
+\item
+对于一般的级数，我们可以利用\hyperref[theorem:无穷级数.级数的柯西审敛原理]{柯西审敛原理}.
+
+\item
+对于正项级数，我们知道，“正项级数收敛”的充要条件是“它的部分和数列有界”（\cref{theorem:无穷级数.正项级数收敛的充要条件}）.
+除此以外，我们还有比较审敛法（\cref{theorem:无穷级数.正项级数的比较审敛法}、%
+\cref{theorem:无穷级数.正项级数的比较审敛法的推论}、%
+\cref{theorem:无穷级数.正项级数的比较审敛法的极限形式}），%
+比值审敛法（\cref{theorem:无穷级数.正项级数的比值审敛法}、%
+\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式}），%
+根值审敛法（\cref{theorem:无穷级数.正项级数的根值审敛法}），%
+极限审敛法（\cref{theorem:无穷级数.正项级数的极限审敛法}）等方法，
+可以用于判断正项级数是否收敛.
+
+\item
+对于交错级数，我们可以利用\hyperref[theorem:无穷级数.莱布尼茨定理]{莱布尼茨定理}判断级数的敛散性.
+
+\item
+在某些情况下，为了判断一个常数项级数\(\sum\limits_{n=0}^{\infty} u_n\)是否收敛，%
+我们会首先研究这个级数各项的绝对值所构成的正项级数\(\sum\limits_{n=0}^{\infty} \abs{u_n}\)是否收敛.
+这是因为%
+“级数\(\sum\limits_{n=0}^{\infty} u_n\)绝对收敛”%
+（或者说“级数\(\sum\limits_{n=0}^{\infty} \abs{u_n}\)收敛”）%
+必定有“级数\(\sum\limits_{n=0}^{\infty} u_n\)收敛”（\cref{theorem:无穷级数.绝对收敛级数必定收敛}）；
+尽管反之不然（\cref{theorem:无穷级数.绝对发散的特殊情况}）.
+此外，我们还可以利用两条绝对收敛级数具有的、条件收敛级数不具有的性质，即%
+“绝对收敛级数具有可交换性”（\cref{theorem:无穷级数.绝对收敛级数的可交换性}）%
+和“两个绝对收敛级数的柯西乘积也是绝对收敛的”（\cref{theorem:无穷级数.绝对收敛级数的柯西乘积必收敛}），%
+帮助我们构造辅助级数，用来证明给定的级数是否收敛.
+\end{enumerate}
+
+在研究完常数项级数以后，我们就可以着手研究函数项级数了.
+常见的函数项级数按形式可以分为幂级数和三角级数.
+对于函数项级数，我们最关心的是：
+\begin{enumerate}
+\item 任给一个函数，能否将它展开成函数项级数？
+ 展得的级数的收敛域是什么？
+\item 任给一个函数项级数，能否求出它的和函数？
+ 和函数的定义域是什么？
+\end{enumerate}
+
+
+常见函数的幂级数展开式：
+\begin{gather*}
+e^x = \sum\limits_{n=0}^{\infty} \frac{1}{n!} x^n
+	\quad(-\infty<x<+\infty), \\
+\sin x = \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k+1)!} x^{2k+1}
+	\quad(-\infty<x<+\infty), \\
+\cos x = \sum\limits_{k=0}^{\infty} \frac{(-1)^k}{(2k)!} x^{2k}
+	\quad(-\infty<x<+\infty), \\
+\frac{1}{1+x} = \sum\limits_{n=0}^{\infty} (-1)^n x^n
+	\quad(-1<x<1), \\
+\ln(1+x) = \sum\limits_{n=0}^{\infty} \frac{(-1)^n}{n+1} x^{n+1}
+	\quad(-1<x\leqslant1), \\
+\frac{1}{1+x^2} = \sum\limits_{n=0}^{\infty} (-1)^n x^{2n}
+	\quad(-1<x<1), \\
+\arctan x = \sum\limits_{n=0}^{\infty} \frac{(-1)^n}{2n+1} x^{2n+1}
+	\quad(-1 \leqslant x \leqslant 1), \\
+\sinh x = \sum\limits_{k=0}^{\infty} \frac{1}{(2k+1)!} x^{2k+1}
+	\quad(-\infty<x<+\infty), \\
+(1+x)^m = \sum\limits_{n=0}^{\infty} \frac{m(m-1)\dotsm(m-n+1)}{n!} x^n
+	\quad(-1<x<1,m\in\mathbb{R}).
+\end{gather*}
+
+
+求解幂级数的和函数的具体思路如下：
+\begin{enumerate}
+\item 首先判断幂级数的形式是不是标准型，若不是则应先尝试运用换元法将其化为标准型；
+\item 利用\cref{theorem:无穷级数.幂级数的收敛半径的求法} （或\cref{theorem:无穷级数.正项级数的比值审敛法} 、\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式} 、\cref{theorem:无穷级数.正项级数的根值审敛法} ）求出幂级数的收敛半径，并研究幂级数在边界点\(\pm R\)处的收敛性，定出幂级数的收敛域；
+\item 对幂级数的和函数直接逐项求导（或积分），或者按照以下思路构造一个辅助函数并对它逐项求导（或积分，或比照已知的初等函数的幂级数直接写出和函数）：
+	\begin{enumerate}
+	\item 用幂函数\(x^m\ (m=\pm1,\pm2,\dotsc)\)与幂级数的和函数\(s(x)\)的乘积\(x^m s(x)\)；
+	\item 对幂级数进行适当的拆分；
+	\item 改变求和指标，以舍弃（或添加）有限项.
+	\end{enumerate}
+\item 接着对上一步逐项积分（或求导），可以解出和函数的表达式.
+\end{enumerate}
+在以上步骤中要特别注意和函数或者其辅助函数在收敛区间的边界点的收敛性，以及自变量\(x\)的取值范围.
+
+
+求解任意函数的傅里叶级数展开式的具体思路如下：
+\begin{enumerate}
+\item 对于任意一个周期为\(2\pi\)的函数\(f(x)\)，%
+我们只要计算出它的傅里叶系数\[
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos nx \dd{x}
+\quad(n=0,1,2,\dotsc)
+\]\[
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin nx \dd{x}
+\quad(n=1,2,3,\dotsc)
+\]就可以写出它的傅里叶级数\[
+\frac{a_0}{2} + \sum\limits_{n=1}^{\infty} (a_n \cos nx + b_n \sin nx).
+\quad(x \in C)
+\]
+这里，函数\(f(x)\)的傅里叶级数的收敛域\(C = \Set*{
+	x \given
+	f(x) = \frac{1}{2} [ f(x^-) + f(x^+) ]
+}\).
+
+\item 对于任意一个周期为\(2l\ (l\neq\pi,l>0)\)的函数\(\varphi(t)\)，%
+令\(\frac{x}{\pi} = \frac{t}{l}\)，%
+得到函数\(f(x) = \varphi(xl/\pi)\)，%
+再按上述步骤将\(f(x)\)展开成傅里叶级数，%
+最后利用变量代换得到\(\varphi(t)\)的傅里叶级数.
+
+\item 对于只在闭区间\([-\pi,\pi]\)上有定义的函数\(f(x)\)，%
+我们可以应用周期延拓方法，在原有的定义域以外补充函数定义，%
+再将其展开成傅里叶级数，%
+最后将定义域限制为开区间\((-\pi,\pi)\).
+
+\item 对于只在闭区间\([0,\pi]\)上有定义的函数\(f(x)\)，%
+我们可以应用奇延拓（或偶延拓）方法，在区间\((-\pi,0)\)内补充函数定义，%
+得到定义在\((-\pi,\pi]\)上的函数\(F(x)\)（注意要令\(F(0) = 0\)），%
+使得它在\((-\pi,\pi)\)上成为奇函数（或偶函数），%
+然后将\(F(x)\)展开成傅里叶级数，%
+最后将定义域限制为\((0,\pi]\).
+\end{enumerate}
 
 \endgroup

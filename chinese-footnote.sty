@@ -1,0 +1,10 @@
+\ProvidesPackage{chinese-footnote}  % 中文脚注标号 https://tex.stackexchange.com/questions/639370/how-to-enumerate-footnotes-with-circled-numbers
+
+\newcommand{\fnrad}{.2}% this constant can be adjusted to create more space around the number without changing the size of the circle. Larger value produces more space. That spacing can also be adjusted with an optional argument in case the footnote appears in special positions like a title:
+
+\RequirePackage{scrextend}
+\RequirePackage{tikz}
+\RequirePackage{scalerel}
+
+\newcommand\circled[2][\fnrad]{\kern.5pt\scalerel*{\tikz{\useasboundingbox (-#1,-#1) rectangle (#1,#1);\node{#2};\draw circle[radius=#1];}}{X}\kern.5pt}% uses scalerel to produce a circled number the same height as a capital letter X, which adjusts if the X changes in size (e.g., titles, superscripts, \large
+\deffootnotemark{\textsuperscript{\rm\normalsize\smash{\circled{\thefootnotemark}}}}
