@@ -5,7 +5,7 @@
 \section{对弧长的曲线积分}
 \subsection{对弧长的曲线积分的概念}
 \begin{definition}
-设\(L\)为\(xOy\)面内一条\cemph{光滑}曲线弧，函数\(f(x,y)\)在\(L\)上\cemph{有界}.
+设\(L\)为\(xOy\)面内一条光滑曲线弧，函数\(f(x,y)\)在\(L\)上有界.
 在\(L\)上任意插入一点列\(M_1,M_2,\dotsc,M_{n-1}\)把\(L\)分成\(n\)个小段.
 设第\(i\)个小段的长度为\(\increment s_i\).
 又\(\opair{\xi_i,\eta_i}\)为第\(i\)个小段上任意取定的一点，作乘积\[
@@ -289,7 +289,7 @@ y = a(1 - \cos t)
 \section{对坐标的曲线积分}
 \subsection{对坐标的曲线积分的概念}
 \begin{definition}
-设\(L\)为\(xOy\)面内从点\(A\)到点\(B\)的一条有向光滑曲线弧，函数\(P(x,y)\)和\(Q(x,y)\)在\(L\)上\cemph{有界}.
+设\(L\)为\(xOy\)面内从点\(A\)到点\(B\)的一条有向光滑曲线弧，函数\(P(x,y)\)和\(Q(x,y)\)在\(L\)上有界.
 在\(L\)上沿\(L\)的方向任意插入一点列\[
 M_1\opair{x_1,y_1},
 M_2\opair{x_2,y_2},
@@ -302,18 +302,27 @@ M_{n-1}\opair{x_{n-1},y_{n-1}},
 点\(\opair{\xi_i,\eta_i}\)为\(\arc{M_{i-1} M_i}\)上任意取定的点.
 如果当各小弧段长度的最大值\(\lambda\to0\)时，\[
 \sum\limits_{i=1}^n P(\xi_i,\eta_i) \increment x_i
-\]的极限总存在，则称此极限为函数\(P(x,y)\)在有向曲线弧\(L\)上\textbf{对坐标\(x\)的曲线积分}，记作\(\int_L P(x,y) \dd{x}\).
+\]的极限总存在，%
+则称此极限为“函数\(P(x,y)\)在有向曲线弧\(L\)上对坐标\(x\)的\textbf{曲线积分}”，%
+记作\[\int_L P(x,y) \dd{x}.\]
 类似地，如果\[
 \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n Q(\xi_i,\eta_i) \increment y_i
-\]总存在，则称此极限为函数\(Q(x,y)\)在有向曲线弧\(L\)上\textbf{对坐标\(y\)的曲线积分}，记作\(\int_L Q(x,y) \dd{y}\).即\[
+\]总存在，%
+则称此极限为“函数\(Q(x,y)\)在有向曲线弧\(L\)上对坐标\(y\)的\textbf{曲线积分}”，%
+记作\[\int_L Q(x,y) \dd{y}.\]
+这里，\(P(x,y)\)、\(Q(x,y)\)叫做\textbf{被积函数}，\(L\)叫做\textbf{积分弧段}.
+\end{definition}
+
+我们可以将上述定义简单地总结为以下两个定义式：
+\[
 \int_L P(x,y) \dd{x}
-= \lim\limits_{\lambda\to0}
-	\sum\limits_{i=1}^n P(\xi_i,\eta_i) \increment x_i,
+\defeq \lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n P(\xi_i,\eta_i) \increment x_i.
 \]\[
 \int_L Q(x,y) \dd{y}
-= \lim\limits_{\lambda\to0}
-	\sum\limits_{i=1}^n Q(\xi_i,\eta_i) \increment y_i,
-\]其中\(P(x,y)\)、\(Q(x,y)\)叫做\textbf{被积函数}，\(L\)叫做\textbf{积分弧段}.
+\defeq \lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n Q(\xi_i,\eta_i) \increment y_i.
+\]
 
 以上两个积分也称为\DefineConcept{第二类曲线积分}.
 
@@ -346,8 +355,8 @@ M_{n-1}\opair{x_{n-1},y_{n-1}},
 \int_L P(x,y,z) \dd{x} + Q(x,y,z) \dd{y} + R(x,y,z) \dd{z},
 \]也可写作向量形式\[
 \int_L \mat{F}(x,y,z) \cdot \dd{\mat{r}},
-\]其中\(\mat{F}(x,y,z) = P(x,y,z)\mat{i} + Q(x,y,z)\mat{j} + R(x,y,z)\mat{k}\)为向量值函数，\(\dd{\mat{r}} = \mat{i} \dd{x} + \mat{j} \dd{y} + \mat{k} \dd{z}\).
-\end{definition}
+\]其中\(\mat{F}(x,y,z) = P(x,y,z)\mat{i} + Q(x,y,z)\mat{j} + R(x,y,z)\mat{k}\)为向量值函数，%
+\(\dd{\mat{r}} = \mat{i} \dd{x} + \mat{j} \dd{y} + \mat{k} \dd{z}\).
 
 如果\(L\)（或\(\Gamma\)）是分段光滑的，我们规定函数在有向曲线弧\(L\)（或\(\Gamma\)）上对坐标的曲线积分等于在光滑的各段上对坐标的曲线积分之和.
 
@@ -1028,20 +1037,22 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 \(\opair{\xi_i,\eta_i,\zeta_i}\)是\(\increment S_i\)上任意取定的一点.
 如果当各小块曲面的直径的最大值\(\lambda\to0\)时，极限\[
 \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n R(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{xy}
-\]总存在，则称此极限为\textbf{函数\(R(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(x\)、\(y\)的曲面积分}，%
-记作\(\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y}\)，即\[
+\]总存在，则称此极限为“函数\(R(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(x\)、\(y\)的\textbf{曲面积分}”，%
+记作\[\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y},\]即\[
 \iint_{\Sigma} R(x,y,z) \dd{x}\dd{y}
 =\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n R(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{xy},
 \]其中\(R(x,y,z)\)叫做\textbf{被积函数}，\(\Sigma\)叫做\textbf{积分曲面}.
 
 类似地可以定义%
-\textbf{函数\(P(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(y\)、\(z\)的曲面积分\(\iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}\)}及%
-\textbf{函数\(Q(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(z\)、\(x\)的曲面积分\(\iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}\)}%
-分别为\begin{gather*}
+“函数\(P(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(y\)、\(z\)的\textbf{曲面积分}”\[\iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}\]
+及%
+“函数\(Q(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(z\)、\(x\)的\textbf{曲面积分}”\[\iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}\]
+分别为
+\begin{gather*}
 \iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}
-=\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n P(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{yz}, \\
+	\defeq \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n P(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{yz}, \\
 \iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}
-=\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n Q(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{zx}.
+	\defeq \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n Q(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{zx}.
 \end{gather*}
 
 以上三个曲面积分也称为\textbf{第二类曲面积分}（type II surface integral）.
@@ -1422,7 +1433,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{example}
 
 \begin{example}[三维格林第一公式]
-设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有一阶及二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{v}{\mat{n}}\)为函数\(v(x,y,z)\)沿\(\Sigma\)的\cemph{外法线}方向的方向导数.证明：
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有一阶及二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{v}{\mat{n}}\)为函数\(v(x,y,z)\)沿\(\Sigma\)的外法线方向的方向导数.证明：
 \begin{equation}\label{equation:线积分与面积分.三维格林第一公式}
 \begin{split}
 &\iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} \\
@@ -1440,7 +1451,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 = \pdv{v}{x} \cos\alpha
 + \pdv{v}{y} \cos\beta
 + \pdv{v}{z} \cos\gamma,
-\]其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的\cemph{外法线}向量的方向余弦，于是利用高斯公式即有曲面积分\begin{align*}
+\]其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的外法线向量的方向余弦，于是利用高斯公式即有曲面积分\begin{align*}
 &\hspace{-20pt}\varoiint_{\Sigma} u \pdv{v}{\mat{n}} \dd{S}
 = \varoiint_{\Sigma} u \left(
 \pdv{v}{x} \cos\alpha
@@ -1608,7 +1619,13 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 斯托克斯公式是\hyperref[equation:线积分与面积分.格林公式]{格林公式}的推广.格林公式表达了平面闭区域上的二重积分与其边界曲线上的曲线积分间的关系，而斯托克斯公式则把曲面\(\Sigma\)上的曲面积分与沿着\(\Sigma\)的边界曲线的曲线积分联系起来.这个联系可陈述如下：
 
 \begin{theorem}[斯托克斯公式]
-设\(\Gamma\)为分段光滑的空间有向闭曲线，\(\Sigma\)是以\(\Gamma\)为边界的分片光滑的有向曲面，\(\Gamma\)的正向与\(\Sigma\)的侧符合\cemph{右手规则}\footnote{右手规则是指当右手除拇指外的四指依\(\Gamma\)的绕行方向时，拇指所指的方向与\(\Sigma\)上法向量的指向相同.这时称\(\Gamma\)是有向曲面\(\Sigma\)的\DefineConcept{正向边界曲线}.}，函数\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在曲面\(\Sigma\)（连同边界\(\Gamma\)）上具有一阶连续偏导数，则有
+设\(\Gamma\)为分段光滑的空间有向闭曲线，%
+\(\Sigma\)是以\(\Gamma\)为边界的分片光滑的有向曲面，%
+\(\Gamma\)的正向与\(\Sigma\)的侧符合“右手规则%
+\footnote{右手规则是指当右手除拇指外的四指依\(\Gamma\)的绕行方向时，%
+拇指所指的方向与\(\Sigma\)上法向量的指向相同.
+这时称\(\Gamma\)是有向曲面\(\Sigma\)的\DefineConcept{正向边界曲线}.}”，%
+函数\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在曲面\(\Sigma\)（连同边界\(\Gamma\)）上具有一阶连续偏导数，则有
 \begin{equation}\label{equation:线积分与面积分.斯托克斯公式}
 \begin{split}
 &\hspace{-20pt}\iint_{\Sigma}
