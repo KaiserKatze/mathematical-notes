@@ -683,7 +683,7 @@ x \pdv{f}{x} + y \pdv{f}{y} = n f(x,y).
 \]
 \end{example}
 
-\section{雅克比矩阵与雅克比式}
+\section{雅克比矩阵}
 \subsection{变换的概念}
 在前面我们研究了多元函数和一元向量值函数的微分，现在我们同时增加自变量个数和因变量个数，从而定义变换的概念.
 \begin{definition}
@@ -773,13 +773,18 @@ H_{n1} & H_{n2} & \dots & H_{nn}
 
 \section{隐函数的求导公式}
 \subsection{一个方程的情形}
-在\cref{section:导数与微分.隐函数及由参数方程所确定的函数的导数} 中，我们已经提出了隐函数的概念，并且指出了不经过显化直接由方程\[
+在\cref{section:导数与微分.隐函数及由参数方程所确定的函数的导数} 中，%
+我们已经提出了隐函数的概念，并且指出了不经过显化直接由方程\[
 F(x,y) = 0
 \]求它所确定的隐函数的导数的方法.
 现在介绍隐函数存在定理，并根据多元复合函数的求导法推导出隐函数的导数公式.
 
 \begin{theorem}[隐函数存在定理1]\label{theorem:多元函数微分法.隐函数存在定理1}
-设函数\(F(x,y)\)在点\(P\opair{x_0,y_0}\)的某一邻域内具有连续偏导数，且\(F(x_0,y_0)=0\)，\(F'_y(x_0,y_0) \neq 0\)，则方程\(F(x,y)=0\)在点\(\opair{x_0,y_0}\)的某一邻域内恒能唯一确定一个连续且具有连续导数的函数\(y=f(x)\)，它满足条件\(y_0=f(x_0)\)，并有
+设函数\(F(x,y)\)在点\(P\opair{x_0,y_0}\)的某一邻域内具有连续偏导数，%
+且\(F(x_0,y_0)=0\)，\(F'_y(x_0,y_0) \neq 0\)，%
+则方程\(F(x,y)=0\)在点\(\opair{x_0,y_0}\)的某一邻域内%
+恒能唯一确定一个连续且具有连续导数的函数\(y=f(x)\)，%
+它满足条件\(y_0=f(x_0)\)，并有
 \begin{equation}\label{equation:多元函数微分法.隐函数存在定理1.一阶导数}
 \dv{y}{x} = -\frac{F'_x}{F'_y}.
 \end{equation}
@@ -790,7 +795,9 @@ F(x,y) = 0
 \end{equation}
 \begin{proof}
 假设\(F(x,y)\)在邻域\(G \subseteq K_0=\Set{\abs{x-x_0}\leqslant a}\times\Set{\abs{y-y_0}\leqslant b}\)内具有连续偏导数；%
-又假设\(F'_y(x_0,y_0)>0\)，那么\(\exists a_1\in(0,a),b_1\in(0,b)\)，%
+又假设\(F'_y(x_0,y_0)>0\)，%
+那么\(\exists a_1\in(0,a),
+\exists b_1\in(0,b)\)，%
 使得\(F'_y(x,y)>0\)在闭矩形区域\[
 K_1 = \Set{\abs{x-x_0}\leqslant a_1}\times\Set{\abs{y-y_0}\leqslant b_1}
 \subsetneqq K_0
@@ -798,17 +805,19 @@ K_1 = \Set{\abs{x-x_0}\leqslant a_1}\times\Set{\abs{y-y_0}\leqslant b_1}
 记\(\alpha(y) = F(x_0,y)\ (\abs{y-y_0}\leqslant b_1)\)，%
 则\(\alpha(y)\)在定义域上严格单调递增，且满足\[
 \alpha(y_0-b_1) < 0 = F(x_0,y_0) = \alpha(y_0) < \alpha(y_0+b_1).
-\]又因为\(F(x,y)\)在\(K_1\)上连续，所以存在\(a_2\in(0,a_1]\)，使得\[
-\eval{F}_{(x_0-a_2,x_0+a_2)\times\Set{y_0-b_1}} < 0,
-\qquad
-\eval{F}_{(x_0-a_2,x_0+a_2)\times\Set{y_0+b_1}} > 0.
-\eqno{(1)}
+\]又因为\(F(x,y)\)在\(K_1\)上连续，所以\(\exists a_2\in(0,a_1]\)，使得
+\[
+\begin{aligned}
+\forall\opair{x,y}\in(x_0-a_2,x_0+a_2)\times\Set{y_0-b_1} \bigl[ F(x,y) < 0 \bigr], \\
+\forall\opair{x,y}\in(x_0-a_2,x_0+a_2)\times\Set{y_0+b_1} \bigl[ F(x,y) > 0 \bigr].
+\end{aligned}
+\eqno(1)
 \]
 
 对\(\forall\xi\in(x_0-a_2,x_0+a_2)\)，%
 关于\(y\)的一元函数\(F(\xi,y)\)在\([y_0-b_1,y_0+b_1]\)上连续，严格单调递增，且在端点处异号；
 那么由\hyperref[theorem:极限.闭区间上连续函数的性质.零点定理]{零点定理}可知，%
-存在唯一的\(\eta\in(y_0-b_1,y_0+b_1)\)，使得\(F(\xi,\eta)=0\)成立.
+\(\exists!\eta\in(y_0-b_1,y_0+b_1)\)，使得\(F(\xi,\eta)=0\)成立.
 这样就得到如下函数\[
 f\colon (x_0-a_2,x_0+a_2)\to(y_0-b_1,y_0+b_1), x \mapsto y = f(x),
 \eqno{(2)}
@@ -825,7 +834,7 @@ F(\xi,\eta-\varepsilon) < 0 < F(\xi,\eta+\varepsilon).
 F(x,\eta-\varepsilon) < 0 < F(x,\eta+\varepsilon).
 \]
 再次根据零点定理和 关于\(y\)的一元函数\(F(x,y)\)的严格递增性，%
-可知存在唯一的\(y\in(\eta-\varepsilon,\eta+\varepsilon)\)满足\(F(x,y) = 0\)且\(y = f(x)\)，即\[
+可知\(\exists!y\in(\eta-\varepsilon,\eta+\varepsilon)\)满足\(F(x,y) = 0\)且\(y = f(x)\)，即\[
 \abs{x-\xi}<\delta
 \implies
 \abs{f(x)-f(\xi)}<\varepsilon.

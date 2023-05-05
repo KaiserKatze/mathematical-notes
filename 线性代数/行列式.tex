@@ -3,7 +3,7 @@
 \begin{definition}
 由\(n\)个自然数\(1,2,\dotsc,n\)组成的一个有序数组称为一个\(n\)阶\textbf{排列}.
 
-设\(k_1,k_2,\dotsc,k_n\)是一个\(n\)阶排列，当\(1 \leqslant i<j \leqslant n\)时，如果\(k_i>k_j\)，则称\(k_i,k_j\)构成一个\textbf{逆序}；如果\(k_i<k_j\)，则称\(k_i,k_j\)构成一个\textbf{顺序}.此排列中的逆序的总数叫它的\textbf{逆序数}，记作\(\tau(k_1,k_2,\dotsc,k_n)\).
+设\(\v{k}{n}\)是一个\(n\)阶排列，当\(1 \leqslant i<j \leqslant n\)时，如果\(k_i>k_j\)，则称\(k_i,k_j\)构成一个\textbf{逆序}；如果\(k_i<k_j\)，则称\(k_i,k_j\)构成一个\textbf{顺序}.此排列中的逆序的总数叫它的\textbf{逆序数}，记作\(\tau(\v{k}{n})\).
 
 逆序数为偶数的排列叫\textbf{偶排列}，逆序数为奇数的排列叫\textbf{奇排列}.
 \end{definition}
@@ -21,7 +21,7 @@
 \end{property}
 
 \begin{theorem}
-计算一个排列的逆序数时，排列中的逆序不能重复计算，也不能漏掉.可按公式\(\tau(k_1,k_2,\dotsc,k_n)=m_1+m_2+\dotsb+m_n\)计算，其中\(m_i\)为排列中排在\(k_i\)后面比它小的数的个数.
+计算一个排列的逆序数时，排列中的逆序不能重复计算，也不能漏掉.可按公式\(\tau(\v{k}{n})=m_1+m_2+\dotsb+m_n\)计算，其中\(m_i\)为排列中排在\(k_i\)后面比它小的数的个数.
 \end{theorem}
 
 \begin{property}
@@ -37,7 +37,7 @@
 \end{theorem}
 
 \begin{theorem}
-任意一个\(n\)阶排列\(k_1,k_2,\dotsc,k_n\)都可经一系列对换变成自然顺序排列，且对换的次数\(s\)与\(\tau(k_1,k_2,\dotsc,k_n)\)同奇偶.
+任意一个\(n\)阶排列\(\v{k}{n}\)都可经一系列对换变成自然顺序排列，且对换的次数\(s\)与\(\tau(\v{k}{n})\)同奇偶.
 \end{theorem}
 
 \begin{theorem}
@@ -45,181 +45,208 @@
 \end{theorem}
 
 \begin{example}
-试证：\(\tau(i_1,i_2,\dotsc,i_n)+\tau(i_n,i_{n-1},\dotsc,i_1)=\frac{n(n-1)}{2}\).
+试证：\(\tau(\v{i}{n})+\tau(i_n,i_{n-1},\dotsc,i_1)=\frac{n(n-1)}{2}\).
 \end{example}
 
 \section{行列式}
 \subsection{行列式的概念}
 \begin{definition}
-设\begin{align*}\A = \begin{bmatrix}
+设
+\[
+\A = \begin{bmatrix}
 a_{11} & a_{12} & \dots & a_{1n} \\
 a_{21} & a_{22} & \dots & a_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
 a_{n1} & a_{n2} & \dots & a_{nn}
-\end{bmatrix}\end{align*}
-是数域\(P\)上的一个\(n\)阶方阵，从\(\A\)中取出不同行又不同列的\(n\)个元素作乘积\((-1)^{\tau(j_1,j_2,\dotsc,j_n)} a_{1j_1} a_{2j_2} \dotsm a_{nj_n}\)构成一项，这样的项恰有\(n!\)个，称这\(n!\)项之和为\(\A\)的行列式（determinant），用符号\(\det \A\)，\(\abs{\A}\)，\(\abs{a_{ij}}_{n}\)等表示.
-\end{definition}
-
-\begin{theorem}
-由定义知：
-\begin{align}
-\abs{\A}
-= \begin{vmatrix}
+\end{bmatrix}
+\]
+是数域\(P\)上的一个\(n\)阶方阵.
+从矩阵\(\A\)中取出不同行又不同列的\(n\)个元素作乘积
+\[
+(-1)^{\tau(\v{j}{n})}
+a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n},
+\]
+构成一项；%
+我们可以像这样构造\(n!\)项，%
+并且称这\(n!\)项之和\[
+\sum\limits_{\v{j}{n}}
+(-1)^{\tau(\v{j}{n})}
+a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}
+\]为“矩阵\(\A\)的行列式（determinant）”，%
+记作\[
+\begin{vmatrix}
 a_{11} & a_{12} & \dots & a_{1n} \\
 a_{21} & a_{22} & \dots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
+\vdots & \vdots & & \vdots \\
+a_{n1} & a_{n2} & \dots & a_{nn}
+\end{vmatrix},
+\]或\(\det\A\)，或\(\abs{\A}\)；
+即
+\begin{equation}\label{equation:行列式.行列式的定义式}
+\begin{vmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & & \vdots \\
 a_{n1} & a_{n2} & \dots & a_{nn}
 \end{vmatrix}
-= \sum\limits_{j_1,j_2,\dotsc,j_n}{(-1)^{\tau(j_1,j_2,\dotsc,j_n)} a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}},
-\end{align}
-其中求和指标\(j_1,j_2,\dotsc,j_n\)遍取\(1,2,\dotsc,n\)所有\(n\)阶排列.
+\defeq
+\sum\limits_{\v{j}{n}}
+(-1)^{\tau(\v{j}{n})}
+a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}.
+\end{equation}
+这里，求和指标\(\v{j}{n}\)表示遍取所有\(n\)阶排列.
+
+我们称\cref{equation:行列式.行列式的定义式}
+为“行列式\(\abs{A}\)的\textbf{完全展开式}”.
+\end{definition}
 
 特别地，%
-\begin{align}
+\begin{gather}
 \begin{vmatrix}
 a_{11} & a_{12} \\
 a_{21} & a_{22}
 \end{vmatrix}
-&= a_{11}a_{22} - a_{12}a_{21}
-\end{align}
-\begin{align}
+= a_{11} a_{22} - a_{12} a_{21}, \\
 \begin{vmatrix}
 a_{11} & a_{12} & a_{13} \\
 a_{21} & a_{22} & a_{23} \\
 a_{31} & a_{32} & a_{33}
 \end{vmatrix}
-= (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} \\
-- a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} - a_{11}a_{23}a_{32}) \nonumber
-\end{align}
-\end{theorem}
+= \begin{array}[t]{l}
+(a_{11} a_{22} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} \\
+\hspace{20pt}
+- a_{13} a_{22} a_{31} - a_{12} a_{21} a_{33} - a_{11} a_{23} a_{32})
+\end{array}
+\end{gather}
 
-
-\begin{example}
-设\(\A=(a_{ij})_n\)为上三角阵，试证：\[
-\abs{\A}
-= \begin{vmatrix}
-a_{11} & a_{12} & \dots & a_{1n} \\
-0 & a_{22} & \dots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \dots & a_{nn}
-\end{vmatrix}
-= a_{11} a_{22} \dotsm a_{nn}.
-\]
-\end{example}
-
-\begin{example}
-试证：\[
+我们还可以用数学归纳法证明以下两条公式：
+\begin{gather}
 \begin{vmatrix}
-0 & 0 & \dots & 0 & a_{1n} \\
-0 & 0 & \dots & a_{2\ n-1} & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-0 & a_{n-1\ 2} & \dots & a_{n-1\ n-1} & a_{n-1\ n} \\
-a_{n1} & a_{n2} & \dots & a_{n\ n-1} & a_{nn}
+a_{11} & a_{12} & \dots & a_{1n} \\
+& a_{22} & \dots & a_{2n} \\
+& & \ddots & \vdots \\
+& & & a_{nn}
 \end{vmatrix}
-=(-1)^{\frac{1}{2}n(n-1)} a_{1n} a_{2\ n-1} \dotsm a_{n1}.
-\]
-\end{example}
+= a_{11} a_{22} \dotsm a_{nn}, \\
+\begin{vmatrix}
+& & & & a_{1n} \\
+& & & a_{2,n-1} & a_{2n} \\
+& & & \vdots & \vdots \\
+& a_{n-1,2} & \dots & a_{n-1,n-1} & a_{n-1,n} \\
+a_{n1} & a_{n2} & \dots & a_{n,n-1} & a_{nn}
+\end{vmatrix}
+=(-1)^{\frac{1}{2}n(n-1)} a_{1n} a_{2,n-1} \dotsm a_{n-1,2} a_{n1}.
+\end{gather}
 
 \begin{lemma}
-设\(\A=(a_{ij})_n\)，而\(i_1,i_2,\dotsc,i_n\)与\(j_1,j_2,\dotsc,j_n\)是两个\(n\)阶排列，则\begin{gather}
-(-1)^{\tau(i_1,i_2,\dotsc,i_n)+\tau(j_1,j_2,\dotsc,j_n)}
+设\(\A=(a_{ij})_n\)，而\(\v{i}{n}\)与\(\v{j}{n}\)是两个\(n\)阶排列，则\begin{gather}
+(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
 	a_{i_1j_1} a_{i_2j_2} \dotsm a_{i_nj_n} \tag1
 \end{gather}是\(\abs{\A}\)的项.
 \begin{proof}
 由乘法交换律，(1)式可以经过\(s\)次互换两个因子的次序写成\[
-(-1)^{\tau(i_1,i_2,\dotsc,i_n)+\tau(j_1,j_2,\dotsc,j_n)}
+(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
 	a_{1 l_1} a_{2 l_2} \dotsm a_{n l_n},
-\]其中，\(l_1,l_2,\dotsc,l_n\)是一个\(n\)阶排列.
+\]其中，\(\v{l}{n}\)是一个\(n\)阶排列.
 
-同时，行标排列\(i_1,i_2,\dotsc,i_n\)与列标排列\(j_1,j_2,\dotsc,j_n\)分别经过\(s\)次对换变到\(1,2,\dotsc,n\)与\(l_1,l_2,\dotsc,l_n\)，而它们的奇偶性都分别改变了\(s\)次，总共改变了\(2s\)次（偶数次），故\[
-(-1)^{\tau(i_1,i_2,\dotsc,i_n)+\tau(j_1,j_2,\dotsc,j_n)}
-= (-1)^{\tau(1,2,\dotsc,n)+\tau(l_1,l_2,\dotsc,l_n)}
-= (-1)^{\tau(l_1,l_2,\dotsc,l_n)},
+同时，行标排列\(\v{i}{n}\)与列标排列\(\v{j}{n}\)分别经过\(s\)次对换变到\(1,2,\dotsc,n\)与\(\v{l}{n}\)，而它们的奇偶性都分别改变了\(s\)次，总共改变了\(2s\)次（偶数次），故\[
+(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+= (-1)^{\tau(1,2,\dotsc,n)+\tau(\v{l}{n})}
+= (-1)^{\tau(\v{l}{n})},
 \]这说明(1)式是行列式\(\abs{\A}\)的项.
 \end{proof}
 \end{lemma}
 
 \begin{corollary}
-设\(i_1,i_2,\dotsc,i_n\)是一个确定的\(n\)阶排列，则\[
-\abs{\A} = \sum\limits_{j_1,j_2,\dotsc,j_n}{
-	(-1)^{\tau(i_1,i_2,\dotsc,i_n)+\tau(j_1,j_2,\dotsc,j_n)} a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n}
+设\(\v{i}{n}\)是一个确定的\(n\)阶排列，则\[
+\abs{\A} = \sum\limits_{\v{j}{n}}{
+	(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})} a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n}
 }.
 \]
 \end{corollary}
 
-行列式的项的因子顺序也可按列标的自然序排列，即有：
+行列式的项的因子顺序也可按列标的自然序排列.
 \begin{corollary}
-\(\abs{\A} = \sum\limits_{i_1,i_2,\dotsc,i_n}{(-1)^{\tau(i_1,i_2,\dotsc,i_n)} a_{i_1 1} a_{i_2 2} \dotsm a_{i_n n}}\).
+\(\abs{\A} =
+\sum\limits_{\v{i}{n}}
+(-1)^{\tau(\v{i}{n})} a_{i_1 1} a_{i_2 2} \dotsm a_{i_n n}\).
 \end{corollary}
-这条推论说明了行列式的行与列的地位是相同的（即\(\abs{\A} = \abs{\A^T}\)）.
+这条推论说明了行列式的行与列的地位是相同的（即\(\det\A = \det\A^T\)）.
 
 \begin{example}
 若\(n\)阶行列式\(\det\A\)中为零的元多于\(n^2-n\)个，证明：\(\det\A=0\).
+% TODO
+\end{example}
+
+\begin{example}
+证明：如果\(n\ (n\geqslant2)\)阶矩阵\(\A\)的元素为\(1\)或\(-1\)，则\(\abs{\A}\)必为偶数.
+% TODO
 \end{example}
 
 \subsection{行列式的性质}
 \begin{property}\label{theorem:行列式.性质1}
-设\(\A=(a_{ij})_n\)，则\(\det \A=\det \A^T\).
+设\(\A=(a_{ij})_n\)，则\(\det \A = \det \A^T\).
 \end{property}
 这就说明，行列互换，行列式的值不变.
 
 \begin{property}\label{theorem:行列式.性质2}
-\(\det (\mat{\alpha}_1 \dotso k\mat{\alpha}_j \dotso \mat{\alpha}_n)
-=k\det (\mat{\alpha}_1 \dotso \mat{\alpha}_j \dotso \mat{\alpha}_n)\).
+\(\det (\a_1,\dotsc,k\a_j,\dotsc,\a_n)
+=k \cdot \det (\a_1,\dotsc,\a_j,\dotsc,\a_n)\).
 \end{property}
 这就说明，行列式某列（行）各元素的公因子可以提到行列式外.
 
 \begin{corollary}\label{theorem:行列式.性质2.推论1}
-\(\det (\mat{\alpha}_1 \dotso \z \dotso \mat{\alpha}_n) = 0\).
+\(\det (\a_1,\dotsc,\z,\dotsc,\a_n) = 0\).
 \end{corollary}
 也就是说，如果行列式中某一列（行）元素全为零，则行列式等于零.
 
 \begin{corollary}\label{theorem:行列式.性质2.推论2}
 \(\det (k\A) = k^n \det \A\).
 \end{corollary}
-注意：一般地，\(\det(k\A) \neq k \det\A\).
+
+一般说来，\(\det(k\A) \neq k \det\A\).
 
 \begin{property}\label{theorem:行列式.性质3}
-\(\det (\a_1 \dotso \b + \g \dotso \a_n)
-= \det (\a_1 \dotso \b \dotso \a_n)
-+ \det (\a_1 \dotso \g \dotso \a_n)\).
+\(\det (\a_1,\dotsc,\b + \g,\dotsc,\a_n)
+= \det (\a_1,\dotsc,\b,\dotsc,\a_n)
++ \det (\a_1,\dotsc,\g,\dotsc,\a_n)\).
 \begin{proof}
 \begin{align*}
-\det (\a_1 \dotso \b + \g \dotso \a_n)
-&= \sum\limits_{i_1,i_2,\dotsc,i_n}{
- (-1)^{\tau(i_1,i_2,\dotsc,i_n)}
+\det (\a_1,\dotsc,\b + \g,\dotsc,\a_n)
+&= \sum\limits_{\v{i}{n}}{
+ (-1)^{\tau(\v{i}{n})}
  a_{i_1 1} \dotsm (b_{i_j} + c_{i_j}) \dotsm a_{i_n n}
 } \\
-&= \sum\limits_{i_1,i_2,\dotsc,i_n}{
- (-1)^{\tau(i_1,i_2,\dotsc,i_n)}
+&= \sum\limits_{\v{i}{n}}{
+ (-1)^{\tau(\v{i}{n})}
  a_{i_1 1} \dotsm b_{i_j} \dotsm a_{i_n n}
 } \\
-&\qquad+ \sum\limits_{i_1,i_2,\dotsc,i_n}{
- (-1)^{\tau(i_1,i_2,\dotsc,i_n)}
+&\qquad+ \sum\limits_{\v{i}{n}}{
+ (-1)^{\tau(\v{i}{n})}
  a_{i_1 1} \dotsm c_{i_j} \dotsm a_{i_n n}
 } \\
-&= \det (\a_1 \dotso \b \dotso \a_n)
-+ \det (\a_1 \dotso \g \dotso \a_n).
+&= \det (\a_1,\dotsc,\b,\dotsc,\a_n)
++ \det (\a_1,\dotsc,\g,\dotsc,\a_n).
 \qedhere
 \end{align*}
 \end{proof}
 \end{property}
-注：一般地，\(\det(\mat{\alpha}_1+\mat{\beta}_1,\mat{\alpha}_2+\mat{\beta}_2,\dotsc,\mat{\alpha}_n+\mat{\beta}_n)\)可以拆成\(2^n\)个行列式之和.
+注：一般地，\(\det(\a_1+\b_1,\a_2+\b_2,\dotsc,\a_n+\b_n)\)可以拆成\(2^n\)个行列式之和.
 
 \begin{property}\label{theorem:行列式.性质4}
-\(\det(\mat{\alpha}_1 \dotso \mat{\alpha}_s \dotso \mat{\alpha}_t \dotso \mat{\alpha}_n)
-=-\det(\mat{\alpha}_1 \dotso \mat{\alpha}_t \dotso \mat{\alpha}_s \dotso \mat{\alpha}_n)\).
+\(\det(\a_1,\dotsc,\a_s,\dotsc,\a_t,\dotsc,\a_n)
+=-\det(\a_1,\dotsc,\a_t,\dotsc,\a_s,\dotsc,\a_n)\).
 \end{property}
 也就是说，交换两列（行），行列式变号.
 
 \begin{property}\label{theorem:行列式.性质5}
-\(\det(\mat{\alpha}_1 \dotso k\mat{\alpha} \dotso l\mat{\alpha} \dotso \mat{\alpha}_n) = 0\).
+\(\det(\a_1,\dotsc,k\a,\dotsc,l\a,\dotsc,\a_n) = 0\).
 \end{property}
 这就说明，行列式中若有两列（行）成比例，则行列式等于零.
 
 \begin{property}\label{theorem:行列式.性质6}
-\(\det(\mat{\alpha}_1 \dotso \mat{\alpha}_s \dotso \mat{\alpha}_t \dotso \mat{\alpha}_n)
-= \det(\mat{\alpha}_1 \dotso \mat{\alpha}_s \dotso \mat{\alpha}_t + k\mat{\alpha}_s \dotso \mat{\alpha}_n)\).
+\(\det(\a_1,\dotsc,\a_s,\dotsc,\a_t,\dotsc,\a_n)
+= \det(\a_1,\dotsc,\a_s,\dotsc,\a_t + k\a_s,\dotsc,\a_n)\).
 \end{property}
 这说明，将一列的\(k\)倍加到另一列，行列式的值不变.
 
@@ -303,7 +330,7 @@ k+(n-1)\lambda & \lambda & \lambda & \dots & k
 \end{example}
 
 \section{行列式按行（或列）展开及其计算}
-\subsection{子式的概念}
+\subsection{子式}
 \begin{definition}
 在矩阵\(\A=(a_{ij})_{s \times n}\)中，任取\(k\)行\(k\)列，%
 位于这些行与列交叉处的\(k^2\)个元素按原顺序排成的\(k\)阶矩阵的行列式\[
@@ -318,19 +345,23 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 \end{array}
 \]称为“\(\A\)的一个\(k\)阶\textbf{子式}（minor）”，记作\[
 \MatrixMinor\A{
-i_1,i_2,\dotsc,i_k \\
-j_1,j_2,\dotsc,j_k
+\v{i}{k} \\
+\v{j}{k}
 }.
 \]
 \end{definition}
 
 \begin{property}
-设矩阵\(\A = (a_{ij})_{s \times n}\).如果存在\(r < \min\{s,n\}\)，使得所有\(r\)阶子式都等于零，则对任意\(k > r\)有\(\A\)的所有\(k\)阶子式全为零.
+设矩阵\(\A = (a_{ij})_{s \times n}\).
+如果存在\(r < \min\{s,n\}\)，%
+使得所有\(r\)阶子式都等于零，%
+则对任意\(k > r\)有\(\A\)的所有\(k\)阶子式全为零.
 \end{property}
 
-\subsection{顺序主子式的概念}
+\subsection{顺序主子式}
 \begin{definition}
-设\(\A=(a_{ij})_n\)，\(\A\)位于左上角的子式\[
+设\(\A=(a_{ij})_n\)，%
+\(\A\)位于左上角的子式\[
 D_k = \MatrixMinor\A{
 1,2,\dotsc,k \\
 1,2,\dotsc,k
@@ -344,22 +375,22 @@ a_{k1} & a_{k2} & \dots & a_{kk}
 \]称为\(\A\)的\(k\)阶\textbf{顺序主子式}（ordinal principal minor）.
 \end{definition}
 
-\subsection{余子式、代数余子式的概念}
+\subsection{余子式、代数余子式}
 \begin{definition}
 在\(n\)阶矩阵\(\A=(a_{ij})_n\)中，取定\(k\)行\(k\)列得到一个\(k\)阶子式\[
 \alpha = \MatrixMinor\A{
-i_1,i_2,\dotsc,i_k \\
-j_1,j_2,\dotsc,j_k
+\v{i}{k} \\
+\v{j}{k}
 }.
 \]划去这个\(k\)阶子式所在的行和列，剩下的元素按原顺序排成的\((n-k)\)阶矩阵的行列式称为“子式\(\alpha\)的\textbf{余子式}（cofactor）”，在这个余子式前乘以\((-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}\)得到“子式\(\alpha\)的\textbf{代数余子式}（algebraic cofactor）”.
 令\[\begin{split}
-\{i'_1,i'_2,\dotsc,i'_{n-k}\} &= \{1,2,\dotsc,n\}-\{i_1,i_2,\dotsc,i_k\}, \\
-\{j'_1,j'_2,\dotsc,j'_{n-k}\} &= \{1,2,\dotsc,n\}-\{j_1,j_2,\dotsc,j_k\},
+\{\v{i'}{n-k}\} &= \{1,2,\dotsc,n\}-\{\v{i}{k}\}, \\
+\{\v{j'}{n-k}\} &= \{1,2,\dotsc,n\}-\{\v{j}{k}\},
 \end{split}\]并且\(i'_1<i'_2<\dotsb<i'_{n-k},%
 j'_1<j'_2<\dotsb<j'_{n-k}\)，则子式\(\alpha\)的余子式可以记作\[
 \MatrixMinor\A{
-i'_1,i'_2,\dotsc,i'_{n-k} \\
-j'_1,j'_2,\dotsc,j'_{n-k}
+\v{i'}{n-k} \\
+\v{j'}{n-k}
 }.
 \]
 
@@ -378,21 +409,24 @@ A_{ij}=(-1)^{i+j} M_{ij}
 \]为“\(a_{ij}\)的\textbf{代数余子式}”.
 \end{definition}
 
-\begin{theorem}[Laplace定理]%来源：丘维声-高等代数创新教材上册(P68)
-在\(n\)阶矩阵\(\A\)中，取定第\(i_1,i_2,\dotsc,i_k\)行（\(i_1<i_2<\dotsb<i_k\)），则这\(k\)行元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\)，即\begin{equation}
-\begin{split}
-\abs{\A} = &\sum\limits_{1 \leqslant j_1 < j_2 < \dotsb < j_k \leqslant n}
+\begin{theorem}[拉普拉斯定理]
+%@see: 《高等代数创新教材（上册）》（丘维声） P68. 定理1（Laplace定理）
+在\(n\)阶矩阵\(\A\)中，%
+取定第\(\v{i}{k}\)行（\(i_1<i_2<\dotsb<i_k\)），%
+则这\(k\)行元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\)，%
+即
+\begin{equation}
+\abs{\A} =
+\sum\limits_{1 \leqslant j_1 < j_2 < \dotsb < j_k \leqslant n}
 \MatrixMinor\A{
-i_1,i_2,\dotsc,i_k \\
-j_1,j_2,\dotsc,j_k
-} \\
-&\hspace{20pt}
-\cdot(-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}
+\v{i}{k} \\
+\v{j}{k}
+}
+\cdot(-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}\cdot
 \MatrixMinor\A{
-i'_1,i'_2,\dotsc,i'_{n-k} \\
-j'_1,j'_2,\dotsc,j'_{n-k}
+\v{i'}{n-k} \\
+\v{j'}{n-k}
 }.
-\end{split}
 \end{equation}
 \end{theorem}
 

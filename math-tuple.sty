@@ -1,0 +1,56 @@
+\ProvidesPackage{math-tuple}  % 表现序列
+
+\RequirePackage{xparse}
+\RequirePackage{amssymb}
+\RequirePackage{amsmath}
+\RequirePackage{etoolbox}
+
+\NewDocumentCommand{\AutoTuple}{ m O{1} O{0} O{1} O{0} m O{,} o }{%
+	%@param: #1 核心代数符号【必须】
+	%@param: #2 序列起始指标【默认值：1】
+    %@param: #3 序列起始指标后计数（当“序列起始指标”不是数字时，“序列起始指标后计数”没有效果）【默认值：0】
+	%@param: #4 序列指标步进增量【默认值：1】
+	%@param: #5 序列终止指标前计数（当“序列终止指标”是数字时，“序列终止指标前计数”没有效果）【默认值：0】
+	%@param: #6 序列终止指标【必须】
+	%@param: #7 序列分隔符（可以是逗号、加号等）【默认值：逗号】
+	%@param: #8 核心代数符号的上标【可选】
+	%
+	%@example: \AutoTuple{a}{n} => a_1,a_2,\dotsc,a_n
+	%@example: \AutoTuple{a}{0} => a_1,a_2,\dotsc
+	%@example: \AutoTuple{a}[2][2]{8} => a_2,a_4,a_6,a_8
+	%@example: \AutoTuple{a}[3][-1]{n}[+][T] => a_3^T+a_4^T+\dotsb+a_{n-1}^T+a_n^T
+	\begingroup%
+	\def\eachsuperscript{\IfNoValueTF{#8}{\relax}{^{#8}\relax}}
+		\ifnum0<0#6\relax%“序列终止指标”是一个正数
+            %实际上这里要求“序列起始指标”也是一个正数，尽管并未明说
+			\setcounter{enumi}{#2}%从“序列起始指标”开始计数
+			#1_\theenumi\eachsuperscript%打印序列的首项
+			\addtocounter{enumi}{#4}%步进计数器
+			\whileboolexpr{not test{\ifnumcomp{\value{enumi}}>{#6}}}%循环
+			{#7\allowbreak #1_\theenumi\eachsuperscript\addtocounter{enumi}{#4}}%逐一打印序列的各项
+		\else%
+			\def\AutoTupleDots{\ifx,#7\relax\dotsc\else\dotsb\fi}%
+			#1_{#2}\eachsuperscript%打印序列的首项
+			#7\allowbreak%打印分隔符
+            \ifnum0<0#3\relax%
+                \ifnum0<0#2\relax%
+                    \setcounter{enumi}{#3}%从“序列起始指标后计数”开始计数
+                    \setcounter{enumii}{#2}
+                    \whileboolexpr{test{\ifnumcomp{\value{enumi}}>0}}%循环
+                    {#7\allowbreak #1_\theenumii\eachsuperscript%
+                    \addtocounter{enumii}{#4}\addtocounter{enumi}{-1}}%
+                \fi%
+            \fi%
+			\AutoTupleDots%打印省略号
+			\ifx0#6\relax%“序列终止指标”是零时，不做任何事情
+			\else%
+				\ifnum0>#5\relax%
+					\setcounter{enumi}{#5}%从“序列终止指标前计数”开始计数
+					\whileboolexpr{not test{\ifnumcomp{\value{enumi}}>{-1}}}%循环
+					{#7\allowbreak#1_{#6\theenumi}\eachsuperscript\addtocounter{enumi}{#4}}%逐一打印序列的各项
+				\fi%
+				#7\allowbreak#1_{#6}\eachsuperscript%打印序列的末项
+			\fi%
+		\fi%
+	\endgroup%
+}

@@ -1,6 +1,6 @@
 \chapter{向量与线性方程组}
 \section{线性方程组的表示、消元法}
-\subsection{线性方程组的矩阵形式}
+\subsection{线性方程组的概念}
 \begin{definition}
 称含有\(n\)个未知量\(\v{x}{n}\)的一次方程组
 \begin{equation}\label{equation:线性方程组.线性方程组的代数形式}
@@ -11,7 +11,7 @@ a_{21} x_1 + a_{22} x_2 + \dotsb + a_{2n} x_n = b_2, \\
 a_{s1} x_1 + a_{s2} x_2 + \dotsb + a_{sn} x_n = b_s
 \end{array} \right.
 \end{equation}
-为\(n\)元\textbf{线性方程组}（system of linear equations）；
+为\(n\)元\textbf{线性方程组}（system of linear equations）.
 这里，\(s\)为方程的个数\footnote{%
 在方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 中，%
 方程的数目\(s\)可以等于未知数的数目\(n\)，%
@@ -21,23 +21,6 @@ a_{s1} x_1 + a_{s2} x_2 + \dotsb + a_{sn} x_n = b_s
 （\(i=1,2,\dotsc,s; \allowbreak
 j=1,2,\dotsc,n\)）；
 \(b_i\ (i=1,2,\dotsc,s)\)叫做\textbf{常数项}.
-
-如果存在\(n\)个数\(\v{c}{n}\)满足上述线性方程组，即\[
-a_{i1} c_1 + a_{12} c_2 + \dotsb + a_{in} c_n \equiv b_i
-\quad(i=1,2,\dotsc,s),
-\]则称“线性方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 有解”；
-称这\(n\)个数构成的列向量\((\v{c}{n})^T\)为它的一个\textbf{解}（solution）.
-线性方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 的解的全体构成的集合\(S\)，%
-称为“线性方程组\labelcref{equation:线性方程组.线性方程组的代数形式} 的\textbf{解集}”.
-\end{definition}
-
-\begin{definition}
-解集合相等的两个线性方程组称为\textbf{同解方程组}.
-\end{definition}
-
-\begin{definition}
-称常数项中有非零数的线性方程组为\textbf{非齐次线性方程组}.
-称常数项全为零的线性方程组为\textbf{齐次线性方程组}.
 \end{definition}
 
 \begin{definition}
@@ -51,55 +34,97 @@ a_{n1} & a_{n2} & \dots & a_{nn}
 \]叫做\textbf{系数矩阵}（coefficient matrix）.
 特别地，如果\(s = n\)（即系数矩阵\(\A\)是一个方阵），%
 则系数矩阵的行列式\(\abs{\A}\)叫做\textbf{系数行列式}.
+\end{definition}
 
 为使表述简明，常用向量、矩阵表示线性方程组.
 若记\[
-\mat{X}=\begin{bmatrix}
+\x=\begin{bmatrix}
 x_1 \\ x_2 \\ \vdots \\ x_n
 \end{bmatrix},
 \quad
-\mat{\beta}=\begin{bmatrix}
+\b=\begin{bmatrix}
 b_1 \\ b_2 \\ \vdots \\ b_n
 \end{bmatrix},
 \quad
-\mat{\alpha}_j=\begin{bmatrix}
+\a_j=\begin{bmatrix}
 a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
 \end{bmatrix},
 \quad j=1,2,\dotsc,n.
 \]
-\(\A\)的列分块阵为\(\A = (\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_n)\)，则上述线性方程组有以下几种等价表示：
+\(\A\)的列分块阵为\(\A = (\a_1,\a_2,\dotsc,\a_n)\)，%
+则线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 有以下两种等价表示：
 \begin{enumerate}
-\item 矩阵形式\(\A \mat{X} = \mat{\beta}\)；
-\item 向量形式\(x_1 \mat{\alpha}_1 + x_2 \mat{\alpha}_2 + \dotsb + x_n \mat{\alpha}_n = \mat{\beta}\).
+\item 矩阵形式
+\(\A \x = \b\).
+\item 向量形式
+\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\).
 \end{enumerate}
-对于齐次线性方程组，\(\mat{\beta}=\z\).
-需要注意的是，线性方程组的解集合与数域有关.
 
-若解向量\(\mat{X}=\z\)，则称之为\textbf{零解}；反之，称之为\textbf{非零解}.
+\begin{definition}
+称常数项全为零（即\(\b=\z\)）的线性方程组为\textbf{齐次线性方程组}.
+称常数项中有非零数（即\(\b\neq\z\)）的线性方程组为\textbf{非齐次线性方程组}.
 \end{definition}
+
+\begin{definition}
+如果存在\(n\)个数\(\v{c}{n}\)满足线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式}，即\[
+a_{i1} c_1 + a_{12} c_2 + \dotsb + a_{in} c_n \equiv b_i
+\quad(i=1,2,\dotsc,s),
+\]
+则称“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 有解”，%
+或“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 是相容的”；
+否则，称“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 无解”，%
+或“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 是不相容的”.
+
+称这\(n\)个数\(\v{c}{n}\)构成的列向量\((\v{c}{n})^T\)为%
+线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 的一个\textbf{解}（solution）%
+或\textbf{解向量}（solution vector）.
+线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 的解的全体构成的集合，%
+称为“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 的\textbf{解集}”.
+\end{definition}
+
+\begin{definition}
+元素全为零的解向量称为\textbf{零解}.
+元素不全为零的解向量称为\textbf{非零解}.
+\end{definition}
+
+\begin{theorem}
+任意一个齐次线性方程组都有零解.
+\end{theorem}
+
+\begin{definition}
+解集相等的两个线性方程组称为\textbf{同解方程组}.
+\end{definition}
+
+需要注意的是，线性方程组的解集与数域有关.
+
+\begin{theorem}
+\(n\)元线性方程组的解的情况有且只有三种可能：
+无解、有唯一解、有无穷多个解.
+\end{theorem}
 
 \subsection{克拉默法则}
 \begin{theorem}[克拉默法则]\label{theorem:线性方程组.克拉默法则}
-未知量个数与方程个数相同的线性方程组\[
+给定一个未知量个数与方程个数相同的线性方程组\[
 \left\{
 \begin{array}{l}
-a_{11}x_1 + a_{12}x_2 + \dotsb + a_{1n}x_n = b_1 \\
-a_{21}x_1 + a_{22}x_2 + \dotsb + a_{2n}x_n = b_2 \\
+a_{11}x_1 + a_{12}x_2 + \dotsb + a_{1n}x_n = b_1, \\
+a_{21}x_1 + a_{22}x_2 + \dotsb + a_{2n}x_n = b_2, \\
 \hdotsfor{1} \\
-a_{n1}x_1 + a_{n2}x_2 + \dotsb + a_{nn}x_n = b_n
+a_{n1}x_1 + a_{n2}x_2 + \dotsb + a_{nn}x_n = b_n.
 \end{array}
 \right.
+\eqno(1)
 \]
-如果它的系数行列式\[
+如果它的系数行列式满足\[
 d=\abs{\A}=\begin{vmatrix}
 a_{11} & a_{12} & \dots & a_{1n} \\
 a_{21} & a_{22} & \dots & a_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
 a_{n1} & a_{n2} & \dots & a_{nn}
-\end{vmatrix} \neq 0
+\end{vmatrix} \neq 0,
 \]
-则上述线性方程组存在唯一解：\[
-\mat{X}_0 = \left( \frac{d_1}{d},\frac{d_2}{d},\dotsc,\frac{d_n}{d} \right)^T,
+则线性方程组(1)存在唯一解：\[
+\x_0 = \left( \frac{d_1}{d},\frac{d_2}{d},\dotsc,\frac{d_n}{d} \right)^T,
 \]
 其中\[
 d_k = \begin{vmatrix}
@@ -111,9 +136,11 @@ a_{n1} & \dots & a_{n\ k-1} & b_n & a_{n\ k+1} & \dots & a_{nn}
 \quad k=1,2,\dotsc,n.
 \]
 \begin{proof}
-上述原线性方程组可以改写为矩阵形式\(\A \x = \b\).因为\(d = \abs{\A} \neq 0\)，故\(\A\)可逆，那么线性方程组有唯一解\[
+上述原线性方程组可以改写为矩阵形式\(\A \x = \b\).
+因为\(d = \abs{\A} \neq 0\)，故\(\A\)可逆，那么线性方程组有唯一解\[
 \X0 = \A^{-1} \b = \frac{1}{d} \A^* \b,
-\]其中\(\A^*\)是\(\A\)的伴随矩阵.设\(A_{ij}\)表示\(\A\)中元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式，则行列式\(d_k\)可按第\(k\)列展开，得\[
+\]其中\(\A^*\)是\(\A\)的伴随矩阵.
+设\(A_{ij}\)表示\(\A\)中元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式，则行列式\(d_k\)可按第\(k\)列展开，得\[
 d_k = b_1 A_{1k} + b_2 A_{2k} + \dotsb + b_n A_{nk},
 \quad k=1,2,\dotsc,n,
 \]则\[
@@ -144,22 +171,38 @@ A_{1n} & A_{2n} & \dots & A_{nn}
 如果\(\X0\)是原线性方程组的解，即\(\A \X0 = \b\)，用\(\P\)左乘等式两端得\(\C \X0 = \g\)；反之，若\(\X0\)满足\(\C \X0 = \g\)，用\(\P^{-1}\)左乘等式两端得\(\A \X0 = \b\)，故两方程组同解.
 \end{proof}
 \end{theorem}
-这就是消元法解线性方程组的理论根据.具体化简\(\widetilde{\A}\)时，可用一系列初等行变换将其变成一个较为简单的阶梯形矩阵（或更简单的若尔当阶梯形矩阵）.
+这就是消元法解线性方程组的理论根据.
+具体化简\(\widetilde{\A}\)时，可用一系列初等行变换将其变成一个较为简单的“阶梯形矩阵”（或更简单的“若尔当阶梯形矩阵”）.
 
 \begin{definition}
 称如下形式的\(s \times n\)矩阵\[
 \A = \begin{bmatrix}
-0 & \dots & a_{1 j_1} & \dots & \dots & \dots & \dots & \dots & a_{1n} \\
-0 & \dots & 0 & \dots & a_{2 j_2} & \dots & \dots & \dots & a_{2n} \\
-\vdots & & \vdots & & \vdots & & & & \vdots \\
+0 & \dots & a_{1 j_1} & \dots & a_{1 j_2} & \dots & a_{1 j_r} & \dots & a_{1n} \\
+0 & \dots & 0 & \dots & a_{2 j_2} & \dots & a_{2 j_r} & \dots & a_{2n} \\
+\vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
 0 & \dots & 0 & \dots & 0 & \dots & a_{r j_r} & \dots & a_{rn} \\
 0 & \dots & 0 & \dots & 0 & \dots & 0 & \dots & 0 \\
 \vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
 0 & \dots & 0 & \dots & 0 & \dots & 0 & \dots & 0 \\
 \end{bmatrix}
-\]为\textbf{阶梯形矩阵}（ladder matrix），其中\(a_{1 j_1},a_{2 j_2},\dotsc,a_{r j_r}\)均不为零，\(j_1 < j_2 < \dotsb < j_r\)，\(\A\)的后\(s-r\)行全为零.称\(\A\)的第\(i\)行第一个不为零的元素\(a_{i j_i}\)（\(i=1,2,\dotsc,r\)）为\textbf{非零首元}.
+\]为\textbf{阶梯形矩阵}（ladder matrix），%
+其中\(a_{1 j_1},a_{2 j_2},\dotsc,a_{r j_r}\)均不为零，%
+\(j_1 < j_2 < \dotsb < j_r\)，%
+\(\A\)的后\(s-r\)行全为零.
 
-若阶梯形矩阵\(\A\)的非零行的非零首元全为\(1\)，它们所在列的其余元素全为零，则称\(\A\)为若尔当阶梯形矩阵.
+元素全为\(0\)的行，称为\textbf{零行}.
+元素不全为\(0\)的行，称为\textbf{非零行}.
+
+在非零行中，从左数起，第一个不为\(0\)的元素\(a_{i j_i}\ (i=1,2,\dotsc,r)\)，称为\textbf{主元}或\textbf{非零首元}.
+
+以主元为系数的未知量\(x_{j_1},x_{j_2},\dotsc,x_{j_r}\)，称为\textbf{主变量}；
+不以主元为系数的未知量，称为\textbf{自由未知量}.
+\end{definition}
+
+\begin{definition}
+若阶梯形矩阵\(\A\)的非零行的非零首元全为\(1\)，%
+它们所在列的其余元素全为零，%
+则称\(\A\)为\textbf{若尔当阶梯形矩阵}或\textbf{行约化矩阵}.
 \end{definition}
 % 在Mathematica中可以用RowReduce对矩阵进行初等行变换化为若尔当阶梯形矩阵.
 
@@ -189,19 +232,37 @@ A_{1n} & A_{2n} & \dots & A_{nn}
 \begin{theorem}
 设\(\A\)为\(n\)阶方阵，则齐次线性方程组\(\A\x = \z\)有非零解的充要条件是：\(\abs{\A} = 0\).
 \begin{proof}
-必要性.给定\(\X0 \neq \z\)满足\(\A \X0 = \z\).假设\(\abs{\A} \neq 0\)，由克拉默法则可知方程组有唯一解\(\X0 = \A^{-1} \z = \z\)，矛盾，故\(\abs{\A} = 0\).
+必要性.
+给定\(\X0 \neq \z\)满足\(\A \X0 = \z\).
+假设\(\abs{\A} \neq 0\)，%
+由克拉默法则可知方程组有唯一解\(\X0 = \A^{-1} \z = \z\)，%
+矛盾，%
+故\(\abs{\A} = 0\).
 
-充分性.给定\(\abs{\A} = 0\).当\(n=1\)时，\(\A = \z_{1 \times 1} = 0\)，\(0 \cdot x_1 = 0\)有非零解；假设当\(n=k-1\)时，结论成立；那么当\(n=k\)时，设\(\A\)经初等行变换化为阶梯形矩阵\[
+充分性.
+用数学归纳法证明.
+给定\(\abs{\A} = 0\).
+当\(n=1\)时，\(\A = \z_{1 \times 1} = 0\)，%
+\(0 \cdot x_1 = 0\)有非零解；
+假设当\(n=k-1\geqslant1\)时，%
+结论成立；
+那么当\(n=k\)时，%
+设\(\A\)经初等行变换\(\P\)化为阶梯形矩阵\[
 \B = \begin{bmatrix}
 b & \g \\
 \z & \C \\
 \end{bmatrix} = \P \A,
-\]其中\(\C\)是\(n-1\)阶方阵，\(\P\)是\(n\)阶可逆矩阵.取行列式得\[
+\]
+其中\(\C\)是\(n-1\)阶方阵，\(\P\)是\(n\)阶可逆矩阵.
+取行列式得
+\[
 \abs{\B} = \abs{\P} \abs{\A} = 0 = b \abs{\C}.
 \]
-解同解方程组\(\B \x = \z\).若\(b = 0\)则\((1,0,\dotsc,0)^T\)是一个非零解；若\(b \neq 0\)，则\(\abs{\C} = 0\)，由归纳假设，齐次线性方程组\[
+解同解方程组\(\B \x = \z\).
+若\(b = 0\)则\((1,0,\dotsc,0)^T\)是一个非零解；
+若\(b \neq 0\)，则\(\abs{\C} = 0\)，由归纳假设，齐次线性方程组\[
 \C \begin{bmatrix} x_2 \\ x_3 \\ \vdots \\ x_n \end{bmatrix} = \z
-\]有非零解\((k_2,k_3,\dotsc,k_n)^T\)，代入\(\B \x = \z\)的第一个方程，因为\(x_1\)的系数\(b \neq 0\)，可解出\(x_1\).于是\((k_1,k_2,\dotsc,k_n)^T\)是\(\A \x = \z\)的一个非零解.
+\]有非零解\((k_2,k_3,\dotsc,k_n)^T\)，代入\(\B \x = \z\)的第一个方程，因为\(x_1\)的系数\(b \neq 0\)，可解出\(x_1\).于是\((\v{k}{n})^T\)是\(\A \x = \z\)的一个非零解.
 \end{proof}
 \end{theorem}
 
@@ -209,110 +270,130 @@ b & \g \\
 \begin{corollary}
 方程个数少于未知量个数的齐次线性方程组必有非零解.
 \begin{proof}
-设\(\A \x = \z\)的系数矩阵\(\A \in P^{s \times n}\)（\(s < n\)）.在原方程组的后面添加\(n-s\)个\(0=0\)的方程，解不变，新方程组的系数矩阵为：\[
+设数域\(P\)上的线性方程组\(\A \x = \z\)，%
+它的系数矩阵\(\A \in M_{s \times n}(P)\ (s<n)\).
+在原方程组的后面添加\(n-s\)个\(0=0\)的方程，解不变，新方程组的系数矩阵为：
+\[
 \B_{n} = \begin{bmatrix} \A_{s \times n} \\ \z_{(n-s) \times n} \end{bmatrix},
-\]由于\(s < n\)，有\(\abs{\B} = 0\)，故\(\B \x = \z\)有非零解，从而\(\A \x = \z\)有非零解.
+\]
+由于\(s < n\)，有\(\abs{\B} = 0\)，故\(\B \x = \z\)有非零解，从而\(\A \x = \z\)有非零解.
 \end{proof}
 \end{corollary}
 注：上述推论的逆命题不成立，即方程组有非零解，不能得出未知量个数与方程个数的关系.
 
-\begin{example}
-假设\(t\)个向量\(\v{\mat{\eta}}{t}\)都是齐次线性方程组\(\A \x = \z\)的解，证明：\(\sum\limits_{i=1}^t k_i \mat{\eta}_i\)也是\(\A \x = \z\)的解，其中\(\v{k}{t}\)是\(t\)个任意常数.
-\begin{proof}
-由于\(t\)个向量\(\v{\mat{\eta}}{t}\)都是齐次线性方程组\(\A \x = \z\)的解，即\[
-\A \v i = \z\ (i=1,2,\dotsc,t),
-\]对这些等式左右均乘以\(k_i\)得\[
-\A (k_i \mat{\eta}_i) = k_i \z = \z,
-\]再对这\(t\)个等式左右分别求和可得\[
-\A \sum\limits_{i=1}^t k_i \mat{\eta}_i = \sum\limits_{i=1}^t \A k_i \mat{\eta}_i = \sum\limits_{i=1}^t \z = \z.
-\qedhere
-\]
-\end{proof}
-\end{example}
-
 \section{向量空间}
 \subsection{向量空间}
+取定一个数域\(K\)，%
+设\(n\)是任意给定的一个正整数.
+令\[
+K^n \defeq \Set{ (\v{a}{n}) \given a_i \in K, i=1,2,\dotsc,n }.
+\]
+
+如果\(a_i=b_i\ (i=1,2,\dotsc,n)\)，%
+则称“\(K^n\)中的两个元素\((\v{a}{n})\)与\((\v{b}{n})\)相等”.
+
+在\(K^n\)中规定加法运算如下：
+\[
+(\v{a}{n}) + (\v{b}{n})
+\defeq (a_1+b_1,a_2+b_2,\dotsc,a_n+b_n).
+\]
+
+在\(K\)的元素与\(K^n\)的元素之间规定数量乘法运算如下：
+\[
+k (\v{a}{n})
+\defeq (k a_1,k a_2,\dotsc,k a_n).
+\]
+
+容易验证，上述加法和数量乘法满足下述8条运算法则:
+\begin{enumerate}
+	\item \(\forall \a,\b \in K^n :
+	\a+\b=\b+\a\).
+
+	\item \(\forall \a,\b,\g \in K^n :
+	(\a+\b)+\g=\a+(\b+\g)\).
+
+	\item 记\(\z=\opair{0,0,\dotsc,0}\)，那么\(\z \in K^n\)，且\[
+	\forall\a \in K^n :
+	\a+\z=\a.
+	\]
+	称\(\z\)为“\(K^n\)的\textbf{零元}”.
+
+	\item \(\forall\a=\opair{\v{a}{n}} \in K^n\)，令\[
+	\mat{\eta}
+	\defeq
+	\opair{\v{-a}{n}},
+	\]
+	则\(\mat{\eta} \in K^n\)且\[
+	\a+\mat{\eta}
+	=\mat{\eta}+\a
+	=\z.
+	\]
+	称\(\mat{\eta}\)为“\(\a\)的\textbf{负元}”，%
+	记作\(-\a\)，即\(-\a=\mat{\eta}\).
+
+	\item \(\forall \a \in K^n :
+	1\cdot\a=\a\).
+
+	\item \(\forall \a \in K^n,
+	\forall k,l \in K :
+	k\cdot(l\cdot\a)=(kl)\cdot\a\).
+
+	\item \(\forall \a \in K^n,
+	\forall k,l \in K :
+	(k+l)\cdot\a=k\cdot\a+l\cdot\a\).
+
+	\item \(\forall \a,\b \in K^n,
+	\forall k \in K :
+	k\cdot(\a+\b)=k\cdot\a+k\cdot\b\).
+\end{enumerate}
+
 \begin{definition}
-数域\(K\)上全体\(n\)元组构成的集合\[
-V = \Set{ (\v{a}{n}) \given a_i \in K, i=1,2,\dotsc,n },
-\]连同定义在它上面的加法运算\(+\)和数乘运算\(\cdot\)及其满足的8条运算法则
-\begin{center}
-\begin{minipage}{.9\textwidth}
-\begin{axiom}
-\(\forall \a,\b \in V : \a+\b=\b+\a\).
-\end{axiom}
-\begin{axiom}
-\(\forall \a,\b,\g \in V : (\a+\b)+\g=\a+(\b+\g)\).
-\end{axiom}
-\begin{axiom}
-记\(\z=\opair{0,0,\dotsc,0}\)，那么\(\z \in V\)，且\[
-\forall\a \in V : \a+\z=\a.
-\]称\(\z\)为\textbf{零元素}.
-\end{axiom}
-\begin{axiom}
-\(\forall\a=\opair{\v{a}{n}} \in V\)，令\[
-\mat{\eta}=\opair{\v{-a}{n}},
-\]则\(\mat{\eta} \in V\)且\[
-\a+\mat{\eta}=\mat{\eta}+\a=\z,
-\]称\(\mat{\eta}\)为\(\a\)的\textbf{负元素}，记作\(-\a\)，即\(-\a=\mat{\eta}\).
-\end{axiom}
-\begin{axiom}
-\(1\cdot\a=\a\).
-\end{axiom}
-\begin{axiom}
-\(\forall \a \in V,\forall k,l \in K : k\cdot(l\cdot\a)=(kl)\cdot\a\).
-\end{axiom}
-\begin{axiom}
-\(\forall \a \in V,\forall k,l \in K : (k+l)\cdot\a=k\cdot\a+l\cdot\a\).
-\end{axiom}
-\begin{axiom}
-\(\forall \a,\b \in V,\forall k \in K : k\cdot(\a+\b)=k\cdot\a+k\cdot\b\).
-\end{axiom}
-\end{minipage}
-\end{center}
-一起，称为数域\(K\)上的\(n\)维\textbf{向量空间}（vector space），记作\(K^n\)或\((V,+,\cdot)\).
+数域\(K\)上全体\(n\)元组构成的集合\(K^n\)，%
+连同定义在它上面的加法运算和数量乘法运算，%
+及其满足的8条运算法则一起，%che
+称为“数域\(K\)上的一个\(n\)维\textbf{向量空间}（vector space）”.
 \(K^n\)的元素称为\(n\)维\textbf{向量}.
-对于向量\(\a=\opair{\v{a}{n}}\)，称\(a_i\)是\(\a\)的第\(i\)个\textbf{分量}.
+
+对于\(K^n\)中的任意一个向量\(\a=\opair{\v{a}{n}}\)，%
+称数\(a_i \in K\)为“\(\a\)的第\(i\)个\textbf{分量}”.
 \end{definition}
-
-实数域\(\mathbb{R}\)上的向量空间称为\textbf{实向量空间}，记作\(\mathbb{R}^n\).
-
-复数域\(\mathbb{C}\)上的向量空间称为\textbf{复向量空间}，记作\(\mathbb{C}^n\).
-
-定义了内积的实向量空间\(\mathbb{R}^n\)称为\(n\)维\textbf{欧几里得空间}（Euclidean space）.
-
-定义了内积的复向量空间\(\mathbb{R}^n\)称为\(n\)维\textbf{酉空间}（unitary space）.
 
 在\(n\)维向量空间\(K^n\)中，我们可以额外定义减法运算如下：\[
 \a-\b \defeq \a+(-\b).
 \]
 
 在\(n\)维向量空间\(K^n\)中，容易验证下述4条性质：
-\begin{center}
-\begin{minipage}{.8\textwidth}
 \begin{property}
-\(\forall\a \in K^n : 0\cdot\a=\z\).
+\(\forall\a \in K^n :
+0\cdot\a=\z\).
 \end{property}
-\begin{property}
-\(\forall\a \in K^n : (-1)\cdot\a=-\a\).
-\end{property}
-\begin{property}
-\(\forall k \in K : k\z=\z\).
-\end{property}
-\begin{property}
-\(k=0 \lor \a=\z \implies k\a=\z\).
-\end{property}
-\end{minipage}
-\end{center}
 
+\begin{property}
+\(\forall\a \in K^n :
+(-1)\cdot\a=-\a\).
+\end{property}
+
+\begin{property}
+\(\forall k \in K :
+k\z=\z\).
+\end{property}
+
+\begin{property}
+\(k\a=\z \implies k=0 \lor \a=\z\).
+\end{property}
+
+\begin{definition}
 \(n\)元组写成一行，得\[
-(\v{a}{n}),
-\]称之为\textbf{行向量}；写成一列，得\[
+(\v{a}{n})
+\quad\text{或}\quad
+\begin{bmatrix}
+a_1 & a_2 & \dots & a_n
+\end{bmatrix},
+\]称之为\textbf{行向量}；
+写成一列，得\[
 \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix},
 \]称之为\textbf{列向量}.
-我们称“列向量可以由行向量转置得到”，也就是说，上述这个列向量可以写成\[
-(\v{a}{n})^T.
-\]
+\end{definition}
 
 \(K^n\)可以看成是\(n\)维行向量组成的向量空间，也可以看成是\(n\)维列向量组成的向量空间.
 
@@ -320,29 +401,62 @@ V = \Set{ (\v{a}{n}) \given a_i \in K, i=1,2,\dotsc,n },
 设\(\b,\v{\a}{s}\)都是\(K^n\)中向量.
 若存在\(k_i \in K\ (i=1,2,\dotsc,s)\)，使得\[
 \b = \sum\limits_{i=1}^s k_i \a_i,
-\]则称“\(\b\)是向量组\(\v{\a}{s}\)的一个\textbf{线性组合}（linear combination），\(\v{k}{s}\)是线性组合的\textbf{系数}”，也称“\(\b\)可以由\(\v{\a}{s}\)\textbf{线性表出}”.
+\]
+则称“向量\(\b\)是向量组\(\v{\a}{s}\)的一个\textbf{线性组合}（linear combination）”，%
+称\(\v{k}{s}\)为这个线性组合的\textbf{系数}；%
+也称“向量\(\b\)可以由向量组\(\v{\a}{s}\)\textbf{线性表出}”.
 \end{definition}
 
 \begin{definition}
-\(K^n\)的一个非空子集\(U\)如果满足：\begin{enumerate}
-\item \(\a,\b \in U \implies \a+\b \in U\)，%
-\item \(\a \in U, k \in K \implies k\a \in U\)，%
+\(K^n\)的一个非空子集\(U\)如果满足：
+\begin{enumerate}
+\item \(U\)对\(K^n\)的加法封闭，即
+\(\a,\b \in U \implies \a+\b \in U\)，%
+\item \(U\)对\(K^n\)的数量乘法封闭，即
+\(\a \in U, k \in K \implies k\a \in U\)，%
 \end{enumerate}
-那么称\(U\)是\(K^n\)的一个\textbf{线性子空间}（简称\textbf{子空间}）.
+那么称\(U\)是“\(K^n\)的一个\textbf{线性子空间}”，%
+简称为\textbf{子空间}.
 \end{definition}
 \(\{\z\}\)是\(K^n\)的一个子空间，称之为\textbf{零子空间}.
 \(K^n\)也是其自身的一个子空间.
 
+\begin{example}
+设\(1 \leqslant r < n\).
+证明：集合\[
+U = \Set{ (\v{a}{r},0,\dotsc,0) \given a_i \in K, i=1,2,\dotsc,r }
+\]是\(K^n\)的子空间.
+\begin{proof}
+在\(K\)中任取一个数\(k\)，%
+再在\(U\)中任取两个向量
+\[
+\a = (\v{a}{r},0,\dotsc,0),
+\quad
+\b = (\v{b}{r},0,\dotsc,0),
+\]
+有\[
+\a+\b = (a_1+b_1,a_2+b_2,\dotsc,a_r+b_r,0,\dotsc,0) \in U,
+\]\[
+k \a = (k a_1,k a_2,\dotsc,k a_r,0,\dotsc,0) \in U,
+\]
+因此\(U\)是\(K^n\)的一个子空间.
+\end{proof}
+\end{example}
+
+\begin{definition}
 在\(K^n\)中，向量组\(\v{\a}{s}\)的所有线性组合组成的集合\[
 W = \Set{ k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s \given k_i \in K, i=1,2,\dotsc,s }
 \]是\(K^n\)的一个子空间，%
-称“\(W\)是\(\v{\a}{s}\)生成（或张成）的子空间”，记作\[
+称之为“\(W\)是\(\v{\a}{s}\)生成（或张成）的子空间”，%
+记作\[
 \opair{\v{\a}{s}}.
 \]
+\end{definition}
 
-显然，以下几个命题等价：\begin{enumerate}
-\item 数域\(K\)上的\(n\)元线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解；
-\item \(\b\)可以由\(\v{\a}{n}\)线性表出；
+显然，以下几个命题等价：
+\begin{enumerate}
+\item 数域\(K\)上的\(n\)元线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解.
+\item \(\b\)可以由\(\v{\a}{n}\)线性表出.
 \item \(\b\in\opair{\v{\a}{n}}\).
 \end{enumerate}
 
@@ -354,53 +468,99 @@ W = \Set{ k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s \given k_i \in K, i=1,2,\dotsc
 \end{definition}
 
 \begin{definition}
-设\(n\)个\(n\)维行向量\(\mat{\varepsilon}_i = (e_{i1},e_{i2},\dotsc,e_{in})\ (i=1,2,\dotsc,n)\)满足：\begin{enumerate}
-\item 当\(i \neq j\)时，\(e_{ij} = 0\)；
-\item 当\(i = j\)时，\(e_{ij} = 1\).
-\end{enumerate}
-则称这\(n\)个\(n\)维行向量为\(n\)维行向量空间\(P^{1 \times n}\)的\textbf{基本向量组}.
-类似地定义\(n\)维列向量空间\(P^{n \times 1}\)的基本向量组.
+称满足
+\[
+e_{ij} = \left\{ \begin{array}{ll}
+	1, & i=j, \\
+	0, & i \neq j
+\end{array} \right.
+\]
+的向量组
+\[
+	\e_i = \begin{bmatrix}
+		e_{1i} \\ e_{2i} \\ \vdots \\ e_{ni}
+	\end{bmatrix}
+	\quad(i=1,2,\dotsc,n)
+\]为“\(K^n\)的\textbf{基本向量组}”.
 \end{definition}
 
+\begin{theorem}
+\(K^n\)中任一向量都可由基本向量组唯一地线性表出.
+\begin{proof}
+对于任意一个向量\(\a=(\v{a}{n})^T\)，%
+线性方程组\(x_1 \e_1 + x_2 \e_2 + \dotsb + x_n \e_n = \a\)的系数行列式为
+\[
+\begin{vmatrix}
+	1 & 0 & \dots & 0 \\
+	0 & 1 & \dots & 0 \\
+	\vdots & \vdots & & \vdots \\
+	0 & 0 & \dots & 1
+\end{vmatrix}
+= 1 \neq 0,
+\]
+那么，根据克拉默法则，这个线性方程组有唯一解，%
+于是\(K^n\)中任一向量\(\a\)都能由基本向量组线性表出，且表出方式唯一.
+事实上，由于
+\[
+a_1 \begin{bmatrix}
+1 \\ 0 \\ 0 \\ \vdots \\ 0
+\end{bmatrix}
++ a_2 \begin{bmatrix}
+0 \\ 1 \\ 0 \\ \vdots \\ 0
+\end{bmatrix}
++ \dotsb + a_n \begin{bmatrix}
+0 \\ 0 \\ 0 \\ \vdots \\ 1
+\end{bmatrix}
+= \begin{bmatrix}
+a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_n
+\end{bmatrix},
+\]
+因此，用基本向量组标出向量\(\a\)的方式为
+\[
+\a = a_1 \e_1 + a_2 \e_2 + \dotsb + a_n \e_n.
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+
 \section{向量组的线性相关性}
-判断\(\mat{\beta}\)能否由向量组\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\)线性表出，根据定义就是判断向量方程\[
-\mat{\beta} = x_1 \mat{\alpha}_1 + x_2 \mat{\alpha}_2 + \dotsb + x_s \mat{\alpha}_s
-= (\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s) (x_1,x_2,\dotsc,x_s)^T
+判断\(\b\)能否由向量组\(\v{\a}{s}\)线性表出，根据定义就是判断向量方程\[
+\b
+= x_1 \a_1 + x_2 \a_2 + \dotsb + x_s \a_s
+= (\v{\a}{s}) (x_1,x_2,\dotsc,x_s)^T
 \]有无解.
 如果向量组是列向量组，则该方程对应的增广矩阵为\[
-(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s,\mat{\beta}).
+(\v{\a}{s},\b).
 \]而如果向量组是行向量组，则该方程对应的增广矩阵为\[
-(\mat{\alpha}_1^T,\mat{\alpha}_2^T,\dotsc,\mat{\alpha}_s^T,\mat{\beta}^T).
+(\a_1^T,\a_2^T,\dotsc,\a_s^T,\b^T).
 \]注意上述两种情况下的增广矩阵均为\(n \times (s+1)\)矩阵.
 
 \begin{example}
-\(P^n\)中零向量可由任意向量组\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\)线性表出，因为有恒等式\[
-0 \mat{\alpha}_1 + 0 \mat{\alpha}_2 + \dotsb + 0 \mat{\alpha}_s = \z.
-\]反之，从\(\z = \sum\limits_{i=1}^s{k_i \mat{\alpha}_i}\)不一定能得到\(k_1,k_2,\dotsc,k_s\)全为零的结论.
+\(P^n\)中零向量可由任意向量组\(\v{\a}{s}\)线性表出，因为有恒等式\[
+0 \a_1 + 0 \a_2 + \dotsb + 0 \a_s = \z.
+\]反之，从\(\z = \sum\limits_{i=1}^s{k_i \a_i}\)不一定能得到\(\v{k}{s}\)全为零的结论.
 \end{example}
 
 \begin{definition}
-\def\a#1{\mat{\alpha}_{#1}}
-设\(\a1,\a2,\dotsc,\a s\)是\(P^n\)的一个向量组.
+设\(\AutoTuple{\a}{s}\)是\(P^n\)的一个向量组.
 
 如果存在不全为零的数\(k_i \in P\ (i=1,2,\dotsc,s)\)，使得\[
-\sum\limits_{i=1}^s{k_i \a i}
-= k_1 \a1 + k_2 \a2 + \dotsb + k_s \a s
+\sum\limits_{i=1}^s k_i \a_i
+= k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s
 = \z,
 \]则称该向量组\textbf{线性相关}（linearly dependent）.
 
-如果\(k_1 \a1 + k_2 \a2 + \dotsb + k_s \a s = \z\)必有\(k_1,k_2,\dotsc,k_s\)全为零，则称该向量组\textbf{线性无关}（linearly independent）.
+如果\(k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z\)必有\(\v{k}{s}\)全为零，则称该向量组\textbf{线性无关}（linearly independent）.
 
 规定空集\(\emptyset\)线性无关.
 \end{definition}
-一般来说，判断向量组\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\)的线性相关性，通常是考察向量方程\[
-k_1 \mat{\alpha}_1 + k_2 \mat{\alpha}_2 + \dotsb + k_s \mat{\alpha}_s = \z
-\]有无非零解，或用其他等价条件判断向量组\(\a1,\a2,\dotsc,\a s\)线性无关，或用反证法.
+一般来说，判断向量组\(\AutoTuple{\a}{s}\)的线性相关性，通常是考察向量方程\[
+k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z
+\]有无非零解，或用其他等价条件判断向量组\(\AutoTuple{\a}{s}\)线性无关，或用反证法.
 
 \begin{example}
-\def\a#1{\mat{\alpha}_{#1}}
 含有零向量\(\z\)的向量组总是线性相关的，因为对于向量方程\[
-k \z + k_1 \a1 + k_2 \a2 + \dotsb + k_s \a s = \z,
+k \z + k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z,
 \]总可令\(k\neq0\)而\(k_1=k_2=\dotsb=k_s=0\).
 \end{example}
 
@@ -412,7 +572,7 @@ k \z + k_1 \a1 + k_2 \a2 + \dotsb + k_s \a s = \z,
 令\(k_1 \e_1 + k_2 \e_2 + \dotsb + k_n \e_n = \z\)，即\[
 k_1 (1,0,\dotsc,0) + k_2 (0,1,\dotsc,0) + \dotsb k_n (0,0,\dotsc,1) = \z,
 \]进一步，有\[
-(k_1,k_2,\dotsc,k_n) = (0,0,\dotsc,0),
+(\v{k}{n}) = (0,0,\dotsc,0),
 \]由向量相等的定义，得\(k_1 = 0,k_2 = 0,\dotsc,k_n = 0\)，故\(\e_1,\e_2,\dotsc,\e_n\)线性无关.
 又由于\[
 \a = (\v{a}{n})
@@ -422,11 +582,11 @@ k_1 (1,0,\dotsc,0) + k_2 (0,1,\dotsc,0) + \dotsb k_n (0,0,\dotsc,1) = \z,
 \end{example}
 
 \begin{example}
-设向量组\(A=\{\a_1,\a_2,\dotsc,\a_s\}\)线性无关，\(B=\{\a_1,\a_2,\dotsc,\a_s,\b\}\)线性相关，证明：\(\b\)可由\(A\)线性表出.
+设向量组\(A=\{\v{\a}{s}\}\)线性无关，\(B=\{\v{\a}{s},\b\}\)线性相关，证明：\(\b\)可由\(A\)线性表出.
 \begin{proof}
-由于向量组\(B\)线性相关，则存在不全为零的数\(k_1,k_2,\dotsc,k_s,k\)使得\[
+由于向量组\(B\)线性相关，则存在不全为零的数\(\v{k}{s},k\)使得\[
 k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s + k \b = \z.
-\]假设\(k = 0\)，则\(k_1,k_2,\dotsc,k_s\)不全为零，且有\(k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z\)，即\(A\)线性相关，与题设矛盾，说明\(k \neq 0\).于是\[
+\]假设\(k = 0\)，则\(\v{k}{s}\)不全为零，且有\(k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z\)，即\(A\)线性相关，与题设矛盾，说明\(k \neq 0\).于是\[
 \b = -\frac{1}{k} (k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s).
 \qedhere
 \]
@@ -436,87 +596,122 @@ k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s + k \b = \z.
 \begin{property}
 一个向量\(\a\)构成的向量组线性相关的充要条件是\(\a=\z\).
 \begin{proof}
-必要性.设\(\{\a\}\)线性相关，存在数\(k \neq 0\)使得\(k\a = \z\)，可得\(\a = \z\).
+必要性.
+设\(\{\a\}\)线性相关，存在数\(k \neq 0\)使得\(k\a = \z\)，可得\(\a = \z\).
 
-充分性.设\(\a = \z\)，则\(1\a = \z\)，而数\(1 \neq 0\)，故\(\{\a\}\)线性相关.
+充分性.
+设\(\a = \z\)，则\(1\a = \z\)，而数\(1 \neq 0\)，故\(\{\a\}\)线性相关.
 \end{proof}
 \end{property}
 上述性质的逆否命题是：\(\{\a\}\ \text{线性无关} \iff \a\neq\z\).
 
 \begin{property}
-\def\a#1{\mat{\alpha}_{#1}}
-向量组\(A=\{\a1,\a2,\dotsc,\a s\}\ (s>1)\)线性相关的充要条件是：在\(A\)中，至少有一个向量可由其余\(s-1\)个向量线性表出.
+向量组\(A=\{\AutoTuple{\a}{s}\}\ (s>1)\)线性相关的充要条件是：
+在\(A\)中至少有一个向量可由其余\(s-1\)个向量线性表出.
 \begin{proof}
-必要性.\(\a1,\a2,\dotsc,\a s\)线性相关，则存在不全为零的数\(k_1,k_2,\dotsc,k_s\)，使得\[
-k_1 \a1 + k_2 \a2 + \dotsb + k_s \a s = \z.
-\]必有一个\(k_i \neq 0\)，于是\[
-\a i = -\frac{1}{k_i} (k_1 \a1 + k_2 \a2 + \dotsb + k_{i-1} \a{i-1} + k_{i+1} \a{i+1} + \dotsb + k_s \a s),
-\]即\(\a i\)可由其余\(s-1\)个向量线性表出.
+必要性.
+\(A\)线性相关，则存在不全为零的数\(\v{k}{s}\)，使得\[
+k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z.
+\]
+必有一个\(k_i \neq 0\)，于是\[
+\a_i = -\frac{1}{k_i} (k_1 \a_1 + k_2 \a_2 + \dotsb + k_{i-1} \a_{i-1} + k_{i+1} \a_{i+1} + \dotsb + k_s \a_s),
+\]
+即\(\a_i\)可由其余\(s-1\)个向量线性表出.
 
-充分性.若\(\a i\)可由其余\(s-1\)个向量线性表出，即\[
-\a i = k_1 \a1 + \dotsb + k_{i-1} \a{i-1} + k_{i+1} \a{i+1} + \dotsb + k_s \a s,
-\]则\(k_1,\dotsc,k_{i-1},k_{i+1},\dotsc,k_s\)不全为零，%
+充分性.
+若\(\a_i\)可由其余\(s-1\)个向量线性表出，即\[
+\a_i = k_1 \a_1 + \dotsb + k_{i-1} \a_{i-1} + k_{i+1} \a_{i+1} + \dotsb + k_s \a_s,
+\]
+则\(k_1,\dotsc,k_{i-1},k_{i+1},\dotsc,k_s\)不全为零，%
+且有
+\[
+k_1 \a_1 + \dotsb + k_{i-1} \a_{i-1} + (-1) \a_i + k_{i+1} \a_{i+1} + \dotsb + k_s \a_s = \z,
+\]
+故\(A\)线性相关.
 \end{proof}
 \end{property}
 
 \begin{property}
-\def\a#1{\mat{\alpha}_{#1}}
-若向量组\(A=\{\a1,\a2,\dotsc,\a s\}\)的一个部分组线性相关，则\(A\)线性相关.
+若向量组\(A=\{\AutoTuple{\a}{s}\}\)的一个部分组线性相关，则\(A\)线性相关.
 \begin{proof}
-假设\(A\)的部分组\(B=\{\a1,\a2,\dotsc,\a t\}\)（\(t \leqslant s\)）线性相关，即存在\(t\)个不全为零的数\(k_1,k_2,\dotsc,k_t\)使得\[
-k_1 \a1 + k_2 \a2 + \dotsb + k_t \a t = \z,
-\]故存在\(s\)个不全为零的数\(k_1,k_2,\dotsc,k_t,0,\dotsc,0\)使得\[
-k_1 \a1 + k_2 \a2 + \dotsb + k_t \a t + 0 \a{t+1} + \dotsb + 0 \a s = \z,
-\]于是向量组\(A\)线性相关.
+假设\(A\)的部分组\(B=\{\AutoTuple{\a}{t}\}\ (t \leqslant s)\)线性相关，%
+即存在\(t\)个不全为零的数\(\v{k}{t}\)使得
+\[
+k_1 \a_1 + k_2 \a_2 + \dotsb + k_t \a_t = \z,
+\]
+故存在\(s\)个不全为零的数\(\v{k}{t},0,\dotsc,0\)使得
+\[
+k_1 \a_1 + k_2 \a_2 + \dotsb + k_t \a_t + 0 \a_{t+1} + \dotsb + 0 \a_s = \z;
+\]
+于是向量组\(A\)线性相关.
 \end{proof}
 \end{property}
 
-如果向量组\(A=\{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}\)线性无关，则向量组\(A\)中任意部分组都是线性无关的，进而向量组\(A\)不含零向量.
+如果向量组\(A=\{\v{\a}{s}\}\)线性无关，则向量组\(A\)中任意部分组都是线性无关的，进而向量组\(A\)不含零向量.
 
 \begin{property}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
-设向量组\(\a j=(a_{1j},a_{2j},\dotsc,a_{sj})\ (j=1,2,\dotsc,n)\)线性无关.
-分别在\(\a j\)的后面添加\(m\)个分量得\(\b j=(\a j,b_{j1},b_{j2},\dotsc,b_{jm})\)，则向量组\(\b j\)也线性无关.
+设向量组\(\a_j=(a_{1j},a_{2j},\dotsc,a_{sj})\ (j=1,2,\dotsc,n)\)线性无关.
+分别在\(\a_j\)的后面添加\(m\)个分量得\(\b_j=(\a_j,b_{j1},b_{j2},\dotsc,b_{jm})\)，则向量组\(\b_j\)也线性无关.
 \end{property}
 
 \begin{property}
-\def\a#1{\mat{\alpha}_{#1}}
-\(n\)个\(n\)维列向量\(\a1,\a2,\dotsc,\a n\)线性相关的充要条件是\(n\)阶行列式\[
-\det(\a1,\a2,\dotsc,\a n)=0.
+\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性相关的充要条件是\(n\)阶行列式\[
+\det(\AutoTuple{\a}{n})=0.
 \]
 \end{property}
-根据上述性质可知，\(n\)个\(n\)维列向量\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_n\)线性无关的充要条件是\(n\)阶行列式\[
-\det(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_n)\neq0.
-\]
 
-需要注意的是，当\(s \neq n\)时，\(s\)个\(n\)维向量\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\)不能构成行列式，只能用其他方法判断其线性相关性.
+\begin{property}
+\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性无关的充要条件是\(n\)阶行列式\[
+\det(\AutoTuple{\a}{n})\neq0.
+\]
+\end{property}
+
+需要注意的是，当\(s \neq n\)时，\(s\)个\(n\)维向量\(\v{\a}{s}\)不能构成行列式，只能用其他方法判断其线性相关性.
+
+\begin{theorem}[替换定理]
+设向量组\(\AutoTuple{\a}{s}\)线性无关，%
+向量\(\b=b_1 \a_1 + \dotsb + b_s \a_s\).
+如果\(b_j \neq 0\)，%
+那么用\(\b\)替换\(\a_j\)以后得到的向量组
+\(\AutoTuple{\a}{j-1},\b,\AutoTuple{\a}[j+1]{s}\)
+也线性无关.
+\end{theorem}
 
 \begin{example}
-\def\a#1{\mat{\alpha}_{#1}}
-设\(\A\)是3阶矩阵，\(\a1,\a2,\a3\)为3维列向量组，若\(\A\a1,\A\a2,\A\a3\)线性无关，证明：\(\a1,\a2,\a3\)线性无关，且\(\A\)为可逆矩阵.
+设\(\A\)是3阶矩阵，\(\a_1,\a_2,\a_3\)为3维列向量组，若\(\A\a_1,\A\a_2,\A\a_3\)线性无关，证明：\(\a_1,\a_2,\a_3\)线性无关，且\(\A\)为可逆矩阵.
 \begin{proof}
-因为\(\A\a1,\A\a2,\A\a3\)线性无关，所以齐次线性方程组\[
-x_1 \A\a1 + x_2 \A\a2 + x_3 \A\a3
-= (\A\a1,\A\a2,\A\a3) (x_1,x_2,x_3)^T
+因为\(\A\a_1,\A\a_2,\A\a_3\)线性无关，所以齐次线性方程组\[
+x_1 \A\a_1 + x_2 \A\a_2 + x_3 \A\a_3
+= (\A\a_1,\A\a_2,\A\a_3) (x_1,x_2,x_3)^T
 = \z
 \]只有零解（即\(x_1 = x_2 = x_3 = 0\)），根据克拉默法则，有\[
-\det(\A\a1,\A\a2,\A\a3) \neq 0.
+\det(\A\a_1,\A\a_2,\A\a_3) \neq 0.
 \]
 
-因为\(\det(\A\a1,\A\a2,\A\a3) = \abs{\A} \cdot \det(\a1,\a2,\a3) \neq 0\)，所以\(\abs{\A} \neq 0\)（即\(\A\)是可逆矩阵），且\(\det(\a1,\a2,\a3) \neq 0\)（即齐次线性方程组\(x_1 \a1 + x_2 \a2 + x_3 \a3 = \z\)只有零解，向量组\(\a1,\a2,\a3\)线性无关）.
+因为\(\det(\A\a_1,\A\a_2,\A\a_3) = \abs{\A} \cdot \det(\a_1,\a_2,\a_3) \neq 0\)，所以\(\abs{\A} \neq 0\)（即\(\A\)是可逆矩阵），且\(\det(\a_1,\a_2,\a_3) \neq 0\)（即齐次线性方程组\(x_1 \a_1 + x_2 \a_2 + x_3 \a_3 = \z\)只有零解，向量组\(\a_1,\a_2,\a_3\)线性无关）.
 \end{proof}
 \end{example}
 
 \begin{example}
 证明：\(\mathbb{R}^n\)中的任意正交组线性无关.
 \begin{proof}
-\def\a#1{\mat{\alpha}_{#1}}
-设\(A=\{\a1,\a2,\dotsc,\a m\}\)是\(\mathbb{R}^n\)的一个正交组，令\[
-k_1 \a1 + k_2 \a2 + \dotsb + k_m \a m = \z,
-\]两端分别与\(\a1\)作内积，即\(\vectorinnerproduct{(k_1 \a1 + k_2 \a2 + \dotsb + k_m \a m)}{\a1} = \vectorinnerproduct{\z}{\a1}\)，由内积性质，\[
-k_1 (\vectorinnerproduct{\a1}{\a1}) + k_2 (\vectorinnerproduct{\a2}{\a1}) + \dotsb + k_m (\vectorinnerproduct{\a m}{\a1}) = \vectorinnerproduct{\z}{\a1},
-\]其中\(\vectorinnerproduct{\z}{\a1} = 0\)，\(\vectorinnerproduct{\a j}{\a1} = 0\)（\(j=2,3,\dotsc,m\)），故\(k_1 \vectorinnerproduct{\a1}{\a1} = 0\)，而\(\vectorinnerproduct{\a1}{\a1} > 0\)，所以\(k_1=0\).同理可得\(k_2=k_3=\dotsb=k_m=0\)，从而\(A\)线性无关.
+设\(A=\{\AutoTuple{\a}{m}\}\)是\(\mathbb{R}^n\)的一个正交组，令\[
+k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m = \z,
+\]两端分别与\(\a_1\)作内积，%
+即\(\vectorinnerproduct{(k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m)}{\a_1} = \vectorinnerproduct{\z}{\a_1}\)；
+由内积性质，\[
+k_1 (\vectorinnerproduct{\a_1}{\a_1})
++ k_2 (\vectorinnerproduct{\a_2}{\a_1})
++ \dotsb
++ k_m (\vectorinnerproduct{\a_m}{\a_1})
+= \vectorinnerproduct{\z}{\a_1},
+\]
+其中\(\vectorinnerproduct{\z}{\a_1} = 0\)，%
+\(\vectorinnerproduct{\a_j}{\a_1} = 0\ (j=2,3,\dotsc,m)\)，%
+故\(k_1 \vectorinnerproduct{\a_1}{\a_1} = 0\)，%
+而\(\vectorinnerproduct{\a_1}{\a_1} > 0\)，%
+所以\(k_1=0\).
+同理可得\(k_2=k_3=\dotsb=k_m=0\)，从而\(A\)线性无关.
 \end{proof}
 \end{example}
 
@@ -524,9 +719,9 @@ k_1 (\vectorinnerproduct{\a1}{\a1}) + k_2 (\vectorinnerproduct{\a2}{\a1}) + \dot
 \subsection{向量组的等价关系}
 \begin{definition}
 在\(P^n\)中，如果向量组\[
-\alpha=\{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}
+\alpha=\{\v{\a}{s}\}
 \]的每个向量都可由向量组\[
-\beta=\{\mat{\beta}_1,\mat{\beta}_2,\dotsc,\mat{\beta}_t\}
+\beta=\{\b_1,\b_2,\dotsc,\b_t\}
 \]线性表出，则称\(\alpha\)可由\(\beta\)\textbf{线性表出}.
 
 如果\(\alpha\)与\(\beta\)可以相互线性表出，则称\(\alpha\)与\(\beta\)\textbf{等价}，记作\(\alpha \cong \beta\).
@@ -535,72 +730,77 @@ k_1 (\vectorinnerproduct{\a1}{\a1}) + k_2 (\vectorinnerproduct{\a2}{\a1}) + \dot
 \begin{theorem}
 部分组可由全组线性表出.
 \begin{proof}
-设数域\(P\)上一个向量组\(A=\{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}\)，%
+设数域\(P\)上一个向量组\(A=\{\v{\a}{s}\}\)，%
 从中任取\(t\ (t \leqslant s)\)个向量构成向量组\[
-A'=\{ \mat{\alpha}_1, \mat{\alpha}_2, \dotsc, \mat{\alpha}_t \}.
-\]欲证部分组可由全组线性表出，即证\(\forall \mat{\alpha}_j \in A'\)，\(\exists k_1,k_2,\dotsc,k_j,\dotsc,k_s \in P\)，使得\[
-\mat{\alpha}_j = k_1 \mat{\alpha}_1 + k_2 \mat{\alpha}_2 + \dotsb + k_j \mat{\alpha}_j + \dotsb + k_s \mat{\alpha}_s.
+A'=\{ \a_1, \a_2, \dotsc, \a_t \}.
+\]欲证部分组可由全组线性表出，即证\(\forall \a_j \in A'\)，\(\exists \v{k}{j},\dotsc,k_s \in P\)，使得\[
+\a_j = k_1 \a_1 + k_2 \a_2 + \dotsb + k_j \a_j + \dotsb + k_s \a_s.
 \]
 显然只需要使\(k_j = 1\)，使除了\(k_j\)以外的数都等于0，则上式恒成立.
 \end{proof}
 \end{theorem}
 
 \begin{theorem}
-\(\alpha=\{\v{\mat{\alpha}}{s}\}\ (s>1)\)%
+\(\alpha=\{\v{\a}{s}\}\ (s>1)\)%
 线性相关的充要条件是：
 \(\alpha\)可由某个部分组%
-\[\mat{\alpha}_1,\dotsc,\mat{\alpha}_{i-1},\mat{\alpha}_{i+1},\dotsc,\mat{\alpha}_s\]
+\[\a_1,\dotsc,\a_{i-1},\a_{i+1},\dotsc,\a_s\]
 线性表出.
 \end{theorem}
 
 \begin{theorem}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
-设向量组\(\alpha=\{ \a1,\a2,\dotsc,\a s \}\)可由向量组\(\beta=\{ \b1,\b2,\dotsc,\b t \}\)线性表出；如果\(s>t\)，则\(\alpha\)线性相关.
+设向量组\(A=\{ \AutoTuple{\a}{s} \}\)可由%
+向量组\(B=\{ \AutoTuple{\b}{t} \}\)线性表出；
+如果\(s>t\)，则\(A\)线性相关.
 \begin{proof}
-欲证\(\alpha\)线性相关，须找到不全为零的\(s\)个数\(k_1,k_2,\dots,k_s\)使得\[
-k_1 \a1 + k_2 \a2 + \dotsb + k_s \a s = \z.
+欲证\(A\)线性相关，须找到不全为零的\(s\)个数\(\AutoTuple{k}{s}\)使得\[
+k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z.
 \]
-因为向量组\(\alpha\)可由\(\beta\)线性表出，即有\[
+因为向量组\(A\)可由\(B\)线性表出，即有\[
 \left\{ \begin{array}{l}
-\a1 = c_{11} \b1 + c_{21} \b2 + \dotsb + c_{t1} \b t, \\
-\a2 = c_{12} \b1 + c_{22} \b2 + \dotsb + c_{t2} \b t, \\
+\a_1 = c_{11} \b_1 + c_{21} \b_2 + \dotsb + c_{t1} \b_t, \\
+\a_2 = c_{12} \b_1 + c_{22} \b_2 + \dotsb + c_{t2} \b_t, \\
 \hdotsfor{1} \\
-\a s = c_{1s} \b1 + c_{2s} \b2 + \dotsb + c_{ts} \b t.
+\a_s = c_{1s} \b_1 + c_{2s} \b_2 + \dotsb + c_{ts} \b_t.
 \end{array} \right.
 \]代入可得\[
-\sum\limits_{j=1}^s{ k_j \a j }
-=\sum\limits_{j=1}^s{ k_j \sum\limits_{i=1}^t{c_{ij} \b i} }
-=\sum\limits_{j=1}^s{ \sum\limits_{i=1}^t{k_j c_{ij} \b i} }
-=\sum\limits_{i=1}^t{ \b i \sum\limits_{j=1}^s{k_j c_{ij}} }
+\sum\limits_{j=1}^s k_j \a_j
+=\sum\limits_{j=1}^s k_j \sum\limits_{i=1}^t c_{ij} \b_i
+=\sum\limits_{j=1}^s \sum\limits_{i=1}^t k_j c_{ij} \b_i
+=\sum\limits_{i=1}^t \b_i \sum\limits_{j=1}^s k_j c_{ij}
 =\z.
-\]如此只需证存在不全为零的\(s\)个数\(k_1,k_2,\dots,k_s\)使得对于任意\(i=1,2,\dotsc,t\)都有\[
-\sum\limits_{j=1}^s{k_j c_{ij}} = 0.
-\]而关于\(k_i\)（\(i=1,2,\dotsc,s\)）的齐次线性方程组\[
+\]
+如此只需证存在不全为零的\(s\)个数\(\AutoTuple{k}{s}\)
+使得对于任意\(i=1,2,\dotsc,t\)都有\[
+\sum\limits_{j=1}^s k_j c_{ij} = 0.
+\]
+而关于\(k_i\ (i=1,2,\dotsc,s)\)的齐次线性方程组
+\[
 \left\{ \begin{array}{l}
 c_{11} k_1 + c_{12} k_2 + \dotsb + c_{1s} k_s = 0, \\
 c_{21} k_1 + c_{22} k_2 + \dotsb + c_{2s} k_s = 0, \\
 \hdotsfor{1} \\
 c_{t1} k_1 + c_{t2} k_2 + \dotsb + c_{ts} k_s = 0.
 \end{array} \right.
-\]中方程数\(t\)小于未知量个数\(s\)，必有非零解.
+\]
+中方程数\(t\)小于未知量个数\(s\)，必有非零解.
 \end{proof}
 \end{theorem}
 
 \begin{corollary}
 任意\(n+1\)个\(n\)维向量线性相关.换言之，向量个数大于维数的向量组线性相关.
 \begin{proof}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\e#1{\mat{\varepsilon}_{#1}}
-\(P^n\)中任意\(n+1\)个\(n\)维向量\(\alpha = \{ \a1,\a2,\dotsc,\a n,\a{n+1} \}\)可由基本向量组\(\e1,\e2,\dotsc,\e n\)线性表出，这两个向量组中的向量个数满足\(n+1 > n\)，向量组\(\alpha\)线性相关.
+\(P^n\)中任意\(n+1\)个\(n\)维向量\(\alpha = \{ \v{\a}{n+1} \}\)
+可由基本向量组\(\v{\e}{n}\)线性表出，
+这两个向量组中的向量个数满足\(n+1 > n\)，向量组\(\alpha\)线性相关.
 \end{proof}
 \end{corollary}
 
 \begin{corollary}
 若线性无关向量组\[
-\alpha=\{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}
+\alpha=\{\v{\a}{s}\}
 \]可由向量组\[
-\beta=\{\mat{\beta}_1,\mat{\beta}_2,\dotsc,\mat{\beta}_t\}
+\beta=\{\b_1,\b_2,\dotsc,\b_t\}
 \]线性表出，则\(s \leqslant t\).
 \begin{proof}
 假设\(s > t\)，因为向量组\(\alpha\)可由\(\beta\)线性表出，所以向量组\(\alpha\)线性相关，矛盾，故\(s \leqslant t\).
@@ -610,10 +810,14 @@ c_{t1} k_1 + c_{t2} k_2 + \dotsb + c_{ts} k_s = 0.
 \begin{corollary}
 两个等价的线性无关向量组含有相同的向量个数.
 \begin{proof}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
-设\(A=\{\a1,\a2,\dotsc,\a s\}\)与\(B=\{\b1,\b2,\dotsc,\b t\}\)都线性无关，且\(A \cong B\).
-因为\(A \cong B\)，所以\(A\)可由\(B\)线性表出，所以\(s \leqslant t\)；同理可得\(t \leqslant s\)，于是有\(s = t\).
+设\(A=\{\AutoTuple{\a}{s}\}\)
+与\(B=\{\AutoTuple{\b}{t}\}\)
+都线性无关，且\(A \cong B\).
+因为\(A \cong B\)，%
+所以\(A\)可由\(B\)线性表出，%
+从而\(s \leqslant t\)；
+同理可得\(t \leqslant s\)；
+综上所述，\(s = t\).
 \end{proof}
 \end{corollary}
 
@@ -622,9 +826,9 @@ c_{t1} k_1 + c_{t2} k_2 + \dotsb + c_{ts} k_s = 0.
 \abs{a_{ii}} > \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq i}} \abs{a_{ij}}
 \quad (i=1,2,\dotsc,n)
 \]的\(n\)阶矩阵\(\A = (a_{ij})_n\)称为\DefineConcept{主对角占优矩阵}.
-证明：\(\A\)的列向量组\(\a_1,\a_2,\dotsc,\a_n\)的秩等于\(n\).
+证明：\(\A\)的列向量组\(\v{\a}{n}\)的秩等于\(n\).
 \begin{proof}
-假设\(\a_1,\a_2,\dotsc,\a_n\)线性相关，则在\(K\)中有一组不全为0的数\(k_1,k_2,\dotsc,k_n\)，使得\[
+假设\(\v{\a}{n}\)线性相关，则在\(K\)中有一组不全为0的数\(\v{k}{n}\)，使得\[
 k_1 \a_1 + k_2 \a_2 + \dotsb + k_n \a_n = \z.
 \]不妨设\(\abs{k_l} = \max\{\abs{k_1},\abs{k_2},\dotsc,\abs{k_n}\}\neq0\).
 由\[
@@ -636,13 +840,13 @@ a_{ll} = -\frac{1}{k_l} (k_1 a_{l1} + \dotsb + k_{l-1} a_{l,l-1} + k_{l+1} a_{l,
 \abs{a_{ll}} \leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \frac{\abs{k_j}}{\abs{k_l}} \abs{a_{lj}}
 \leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \abs{a_{lj}}.
 \]这与已知条件矛盾！
-因此\(\a_1,\a_2,\dotsc,\a_n\)线性无关，\(\rank\{\a_1,\a_2,\dotsc,\a_n\} = n\).
+因此\(\v{\a}{n}\)线性无关，\(\rank\{\v{\a}{n}\} = n\).
 \end{proof}
 \end{example}
 
 \subsection{极大（线性）无关组的概念}
 \begin{definition}
-设\(B=\{\mat{\alpha}_{i_1},\mat{\alpha}_{i_2},\dotsc,\mat{\alpha}_{i_r}\}\)是\(A=\{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}\)的一个部分组.
+设\(B=\{\a_{i_1},\a_{i_2},\dotsc,\a_{i_r}\}\)是\(A=\{\v{\a}{s}\}\)的一个部分组.
 如果\begin{enumerate}
 \item \(B\)线性无关，%
 \item \(A\)可由\(B\)线性表出，%
@@ -660,10 +864,14 @@ a_{ll} = -\frac{1}{k_l} (k_1 a_{l1} + \dotsb + k_{l-1} a_{l,l-1} + k_{l+1} a_{l,
 \begin{corollary}
 向量组的任何两个极大无关组等价，且包含相同个数的向量.
 \begin{proof}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
-设\(A=\{\a1,\a2,\dots,\a r\}\)与\(B=\{\b1,\b2,\dotsc,\b t\}\)是某个向量组的两个极大无关组.
-因为向量组的任意向量可由其极大无关组线性表出，所以\(A\)可由\(B\)线性表出，\(B\)也可由\(A\)线性表出，即\(A \cong B\)，进而这两个等价的线性无关向量组含有相同的向量个数.
+设\(A=\{\AutoTuple{\a}{r}\}\)
+与\(B=\{\AutoTuple{\b}{t}\}\)
+是某个向量组的两个极大无关组.
+因为向量组的任意向量可由其极大无关组线性表出，%
+所以\(A\)可由\(B\)线性表出，%
+\(B\)也可由\(A\)线性表出，%
+即\(A \cong B\)，%
+进而这两个等价的线性无关向量组含有相同的向量个数.
 \end{proof}
 \end{corollary}
 
@@ -691,8 +899,8 @@ a_{ll} = -\frac{1}{k_l} (k_1 a_{l1} + \dotsb + k_{l-1} a_{l,l-1} + k_{l+1} a_{l,
 \begin{definition}
 向量组的极大无关组所含向量的个数，称为向量组的\textbf{秩}（rank）.
 记\[
-A = \{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}
-\]的秩为\(\rank A\)或\(r\{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}\).
+A = \{\v{\a}{s}\}
+\]的秩为\(\rank A\)或\(r\{\v{\a}{s}\}\).
 \end{definition}
 
 \begin{property}
@@ -715,28 +923,38 @@ r\{\z,\z,\dotsc,\z\}
 \end{property}
 
 \begin{corollary}
-设向量组\(A=\{\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_s\}\).
+设向量组\(A=\{\v{\a}{s}\}\).
 如果\(\rank{A}<s\)，则向量组\(A\)线性相关；
 如果\(\rank{A}=s\)，则向量组\(A\)线性无关.
 \end{corollary}
 
 \begin{corollary}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
-设向量组\(A=\{\a1,\a2,\dotsc,\a s\}\)可由向量组\(B=\{\b1,\b2,\dotsc,\b t\}\)线性表出，则\(\rank A \leqslant \rank B\).
+设向量组
+\(A=\{\AutoTuple{\a}{s}\}\)
+可由向量组
+\(B=\{\AutoTuple{\b}{t}\}\)
+线性表出，%
+则\(\rank A \leqslant \rank B\).
 \begin{proof}
 设\(\rank A = r\)，\(\rank B = u\).因为\(A\)可由\(B\)线性表出，即\[
-\a k = \sum\limits_{i=1}^t{l_{ki} \b i},
+\a_k = \sum\limits_{i=1}^t l_{ki} \b_i,
 \quad k=1,2,\dotsc,s.
-\]设\(A'=\{\a1,\a2,\dotsc,\a r\}\)和\(B'=\{\b1,\b2,\dotsc,\b u\}\)分别是\(A\)和\(B\)的极大无关组，则\(B\)可由\(B'\)线性表出，即\[
-\b i = \sum\limits_{j=1}^u{b_{ij} \b j},
-\quad i=1,2,\dotsc,t,
+\]
+设\(A'=\{\AutoTuple{\a}{r}\}\)
+和\(B'=\{\AutoTuple{\b}{u}\}\)
+分别是\(A\)和\(B\)的极大无关组，%
+则\(B\)可由\(B'\)线性表出，即\[
+\b_i = \sum\limits_{j=1}^u b_{ij} \b_j,
+\quad i=1,2,\dotsc,t;
 \]所以有\[
-\a k = \sum\limits_{i=1}^t{l_{ki} \sum\limits_{j=1}^u{b_{ij} \b j}}
-= \sum\limits_{i=1}^t{ \sum\limits_{j=1}^u{l_{ki} b_{ij} \b j} }
-= \sum\limits_{j=1}^u{\b j \sum\limits_{i=1}^t{l_{ki} b_{ij}}},
+\a_k = \sum\limits_{i=1}^t l_{ki} \sum\limits_{j=1}^u b_{ij} \b_j
+= \sum\limits_{i=1}^t \sum\limits_{j=1}^u l_{ki} b_{ij} \b_j
+= \sum\limits_{j=1}^u \b_j \sum\limits_{i=1}^t l_{ki} b_{ij},
 \quad k=1,2,\dotsc,s.
-\]特别地，\(A'\)可由\(B'\)线性表出，则有\(r \leqslant u\)，即\(\rank A \leqslant \rank B\).
+\]
+
+特别地，\(A'\)可由\(B'\)线性表出，%
+则有\(r \leqslant u\)，即\(\rank A \leqslant \rank B\).
 \end{proof}
 \end{corollary}
 
@@ -752,36 +970,37 @@ r\{\z,\z,\dotsc,\z\}
 \begin{example}
 证明：在秩为\(r\)的向量组中，任意\(r+1\)个向量必线性相关.
 \begin{proof}
-\def\a#1{\mat{\alpha}_{#1}}
-设向量组\(\a1,\a2,\dotsc,\a s\)的秩为\(r\).
-假设部分组\(\a1,\a2,\dotsc,\a{r+1}\)线性无关，%
+设向量组\(\AutoTuple{\a}{s}\)的秩为\(r\).
+假设部分组\(\AutoTuple{\a}{r+1}\)线性无关，%
 那么\[
-\rank\{\a1,\a2,\dotsc,\a{r+1}\} = r+1.
+\rank\{\AutoTuple{\a}{r+1}\} = r+1.
 \]
 因为部分组总可由全组线性表出，所以部分组的秩总是小于或等于全组的秩，即\[
-r+1 = \rank\{\a1,\a2,\dotsc,\a{r+1}\} \leqslant \rank\{\a1,\a2,\dotsc,\a s\} = r,
-\]矛盾，所以部分组\(\a1,\a2,\dotsc,\a{r+1}\)一定线性相关.
+r+1 = \rank\{\AutoTuple{\a}{r+1}\} \leqslant \rank\{\AutoTuple{\a}{s}\} = r,
+\]矛盾，所以部分组\(\AutoTuple{\a}{r+1}\)一定线性相关.
 \end{proof}
 \end{example}
 
 \begin{example}
-\def\a#1{\mat{\alpha}_{#1}}
-设向量组\(\a1,\a2,\dotsc,\a s\)的秩为\(r\)，如果\(\a1,\a2,\dotsc,\a r\)线性无关，证明：\(\a1,\a2,\dotsc,\a r\)是\(\a1,\a2,\dotsc,\a s\)的一个极大无关组.
+设向量组\(\AutoTuple{\a}{s}\)的秩为\(r\).
+如果\(\AutoTuple{\a}{r}\)线性无关，证明：
+\(\AutoTuple{\a}{r}\)
+是\(\AutoTuple{\a}{s}\)的一个极大无关组.
 \begin{proof}
 设\[
-A=\{\a1,\a2,\dotsc,\a s\},
+A=\{\AutoTuple{\a}{s}\},
 \qquad
-B=\{\a1,\a2,\dotsc,\a r\}.
+B=\{\AutoTuple{\a}{r}\}.
 \]要证\(B\)是\(A\)的一个极大无关组，须证\(A\)的任意向量可由\(B\)线性表出.
 
 \begin{enumerate}
-\item 显然地，\(\a i\ (i=1,2,\dotsc,r)\)可由\(B\)线性表出.
+\item 显然地，\(\a_i\ (i=1,2,\dotsc,r)\)可由\(B\)线性表出.
 
 \item 根据上例，在秩为\(r\)的向量组中，任意\(r+1\)个向量必线性相关，那么向量组\[
-A_i = \{\a1,\a2,\dotsc,\a r,\a i\}\quad(i=r+1,\dotsc,s)
+A_i = \{\AutoTuple{\a}{r},\a_i\}\quad(i=r+1,\dotsc,s)
 \]必线性相关.
 
-又因为\(B\)线性无关，所以\(\a i\ (i=r+1,\dotsc,s)\)可由\(B\)线性表出.
+又因为\(B\)线性无关，所以\(\a_i\ (i=r+1,\dotsc,s)\)可由\(B\)线性表出.
 \end{enumerate}
 
 综上所述，\(A\)的任意向量可由\(B\)线性表出，且\(B\)线性无关，根据极大无关组的定义，\(B\)是\(A\)的一个极大无关组.
@@ -789,17 +1008,29 @@ A_i = \{\a1,\a2,\dotsc,\a r,\a i\}\quad(i=r+1,\dotsc,s)
 \end{example}
 
 \begin{example}
-\def\a#1{\mat{\alpha}_{#1}}
-向量组\(\a1,\a2,\dotsc,\a r,\a{r+1}\)与部分组\(\a1,\a2,\dotsc,\a r\)的秩相等.证明：\(\a{r+1}\)可由\(\a1,\a2,\dotsc,\a r\)线性表出.
+向量组
+\(\AutoTuple{\a}{r+1}\)
+与部分组
+\(\AutoTuple{\a}{r}\)
+的秩相等.
+证明：\(\a_{r+1}\)可由
+\(\AutoTuple{\a}{r}\)
+线性表出.
 \begin{proof}
-记\(A=\{\a1,\a2,\dotsc,\a r,\a{r+1}\}\)，\(B=\{\a1,\a2,\dotsc,\a r\}\).
-设\(B\)的极大无关组为\[
-B'=\{\a1,\a2,\dotsc,\a t\},
+记\(A=\{\AutoTuple{\a}{r+1}\}\)，
+\(B=\{\AutoTuple{\a}{r}\}\).
+设\(B\)的极大无关组为
+\[
+B'=\{\a_1,\a_2,\dotsc,\a_t\},
 \quad 0 \leqslant t \leqslant r.
-\]由题意有\(\rank A = \rank B = \rank B' = \abs{B'} = t\).
+\]
+由题意有
+\(\rank A = \rank B = \rank B' = \abs{B'} = t\).
 
-由上例可知，因为\(\rank A = t\)，而\(B'\)线性无关，所以\(B'\)是\(A\)的一个极大无关组.
-那么向量组\(A\)中的向量\(\a{r+1}\)可以由极大无关组\(B'\)线性表出.
+由上例可知，因为\(\rank A = t\)，%
+而\(B'\)线性无关，%
+所以\(B'\)是\(A\)的一个极大无关组.
+那么向量组\(A\)中的向量\(\a_{r+1}\)可以由极大无关组\(B'\)线性表出.
 又由于\(B'\)是\(B\)的部分组，故\(B'\)可由\(B\)线性表出.
 总而言之，\(A\)可由\(B\)线性表出.
 \end{proof}
@@ -807,41 +1038,49 @@ B'=\{\a1,\a2,\dotsc,\a t\},
 
 \subsection{极大无关组的求解}
 \begin{theorem}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
 设矩阵\[
-\A=(\a1,\a2,\dotsc,\a m)
+\A=(\AutoTuple{\a}{m})
 \]经一系列初等行变换化为矩阵\[
-\B=(\b1,\b2,\dotsc,\b m),
-\]则\(\a{j1},\a{j2},\dotsc,\a{jk}\)为\(\A\)的列极大无关组的充要条件是：
-\(\b{j1},\b{j2},\dotsc,\b{jk}\)为\(\B\)的列极大无关组.
+\B=(\AutoTuple{\b}{m}),
+\]则\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)为\(\A\)的列极大无关组的充要条件是：
+\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)为\(\B\)的列极大无关组.
 \begin{proof}
-矩阵\((\a{j1},\a{j2},\dotsc,\a{jk},\a l)\)经相同的初等行变换化为\((\b{j1},\b{j2},\dotsc,\b{jk},\b l)\)（\(l=1,2,\dotsc,m\)）.考虑以下四个向量形式的线性方程组\begin{gather}
-x_1 \a{j1} + x_2 \a{j2} + \dotsb + x_k \a{jk} = \z \tag1 \\
-x_1 \b{j1} + x_2 \b{j2} + \dotsb + x_k \b{jk} = \z \tag2 \\
-y_1 \a{j1} + y_2 \a{j2} + \dotsb + y_k \a{jk} = \a l \tag3 \\
-y_1 \b{j1} + y_2 \b{j2} + \dotsb + y_k \b{jk} = \b l \tag4
+矩阵\((\a_{j1},\a_{j2},\dotsc,\a_{jk},\a_l)\)经相同的初等行变换化为
+\[
+(\b_{j1},\b_{j2},\dotsc,\b_{jk},\b_l) \quad(l=1,2,\dotsc,m).
+\]
+考虑以下四个向量形式的线性方程组
+\begin{gather}
+x_1 \a_{j1} + x_2 \a_{j2} + \dotsb + x_k \a_{jk} = \z, \tag1 \\
+x_1 \b_{j1} + x_2 \b_{j2} + \dotsb + x_k \b_{jk} = \z, \tag2 \\
+y_1 \a_{j1} + y_2 \a_{j2} + \dotsb + y_k \a_{jk} = \a_l, \tag3 \\
+y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
 \end{gather}
 其中(1)与(2)同解，(3)与(4)同解.
 
-必要性.当\(\a{j1},\a{j2},\dotsc,\a{jk}\)是\(\A\)的列极大无关组时，(1)仅有零解，(3)有解.于是(2)仅有零解，(4)有解，从而\(\b{j1},\b{j2},\dotsc,\b{jk}\)线性无关，\(\b l\)（\(l=1,2,\dotsc,m\)）可由其线性表出，由极大无关组定义，\(\b{j1},\b{j2},\dotsc,\b{jk}\)是\(\B\)的列极大无关组.
+必要性.
+当\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)是\(\A\)的列极大无关组时，%
+(1)仅有零解，(3)有解.于是(2)仅有零解，(4)有解，%
+从而\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)线性无关，%
+\(\b_l\ (l=1,2,\dotsc,m)\)可由其线性表出；
+由极大无关组定义，%
+\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)是\(\B\)的列极大无关组.
 
 同理可证充分性.
 \end{proof}
 \end{theorem}
 
 \begin{example}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
 求列向量组\[
-\a1 = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 0 \end{bmatrix},
-\a2 = \begin{bmatrix} -1 \\ 2 \\ -1 \\ 1 \end{bmatrix},
-\a3 = \begin{bmatrix} 0 \\ -1 \\ 1 \\ -1 \end{bmatrix},
-\a4 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 3 \end{bmatrix},
-\a5 = \begin{bmatrix} 2 \\ -6 \\ 4 \\ 1 \end{bmatrix}
+\a_1 = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 0 \end{bmatrix},
+\a_2 = \begin{bmatrix} -1 \\ 2 \\ -1 \\ 1 \end{bmatrix},
+\a_3 = \begin{bmatrix} 0 \\ -1 \\ 1 \\ -1 \end{bmatrix},
+\a_4 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 3 \end{bmatrix},
+\a_5 = \begin{bmatrix} 2 \\ -6 \\ 4 \\ 1 \end{bmatrix}
 \]的秩与一个极大无关组.
 \begin{solution}
-对矩阵\(\A = (\a1,\a2,\a3,\a4,\a5)\)作初等行变换化为阶梯形矩阵：\begin{align*}
+对矩阵\(\A = (\AutoTuple{\a}{5})\)作初等行变换化为阶梯形矩阵：
+\begin{align*}
 \A &= \begin{bmatrix}
 -1 & -1 & 0 & 1 & 2 \\
 1 & 2 & -1 & -3 & -6 \\
@@ -876,9 +1115,13 @@ y_1 \b{j1} + y_2 \b{j2} + \dotsb + y_k \b{jk} = \b l \tag4
 0 & 0 & 0 & 0 & 0 \\
 \end{bmatrix} = \B.
 \end{align*}
-若按列分块有\(\B = (\b1,\b2,\b3,\b4,\b5)\).阶梯形矩阵\(\B\)有3行不为零，故\[
-\rank\{\a1,\a2,\a3,\a4,\a5\}=3.
-\]又因为\(\B\)的非零首元分别位于1、2、4列，则\(\b1,\b2,\b4\)是\(\B\)的一个列极大无关组，相应地，\(\a1,\a2,\a4\)是\(\A\)的一个列极大无关组，即\(\{\a1,\a2,\a3,\a4,\a5\}\)的极大无关组.
+若按列分块有\(\B = (\AutoTuple{\b}{5})\).
+阶梯形矩阵\(\B\)有3行不为零，故\[
+\rank\{\AutoTuple{\a}{5}\}=3.
+\]又因为\(\B\)的非零首元分别位于1、2、4列，%
+则\(\b1,\b2,\b4\)是\(\B\)的一个列极大无关组，%
+相应地，\(\a1,\a2,\a4\)是\(\A\)的一个列极大无关组，%
+即\(\{\AutoTuple{\a}{5}\}\)的极大无关组.
 \end{solution}
 \end{example}
 
@@ -941,7 +1184,7 @@ y_1 \b{j1} + y_2 \b{j2} + \dotsb + y_k \b{jk} = \b l \tag4
 \begin{property}
 \(\dim K^n = n\).
 \begin{proof}
-基本向量组\(\v{\mat{\varepsilon}}{n}\)是\(K^n\)的一个基.
+基本向量组\(\v{\e}{n}\)是\(K^n\)的一个基.
 \end{proof}
 \end{property}
 
@@ -1035,7 +1278,9 @@ y_1 \b{j1} + y_2 \b{j2} + \dotsb + y_k \b{jk} = \b l \tag4
 \]且\(\A\)没有三阶子式，所以\(\rank\A = 2\).
 
 写出\(\A\)的行向量组\[
-(1,7),\,(2,6),\,(-3,1),
+(1,7), \qquad
+(2,6), \qquad
+(-3,1),
 \]分别转置后，列成一个矩阵（显然就是\(\A^T\)），作初等行变换化成阶梯形矩阵\[
 \A^T = \begin{bmatrix}
 1 & 2 & -3 \\
@@ -1082,15 +1327,17 @@ y_1 \b{j1} + y_2 \b{j2} + \dotsb + y_k \b{jk} = \b l \tag4
 
 \subsection{矩阵的秩、行秩、列秩的关系}
 \begin{lemma}
-\def\a#1{\mat{\alpha}_{#1}}
 设矩阵\(\A = (a_{ij})_{s \times n}\)的列秩等于\(\A\)的列数\(n\)，则\(\A\)行秩、秩都等于\(n\).
 \begin{proof}
 对\(\A\)分别进行列分块与行分块：\[
-\A = (\a1,\a2,\dotsc,\a n)
+\A = (\AutoTuple{\a}{n})
 = \begin{bmatrix} \A_1 \\ \A_2 \\ \vdots \\ \A_s \end{bmatrix}.
 \]由于\(\A\)的列秩等于\(n\)，\(\A\)的列向量组线性无关，故齐次线性方程组\[
-x_1 \a1 + x_2 \a2 + \dotsb + x_n \a n = \z \quad\text{或}\quad \A\x=\z
-\]只有零解；进而有方程个数不小于未知量个数，即\(s \geqslant n\).
+x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \z
+\quad\text{或}\quad
+\A\x=\z
+\]只有零解；
+进而有方程个数不小于未知量个数，即\(s \geqslant n\).
 
 因为\(\A\)的行向量的维数是\(n\)，所以\(\A\)的行秩\(t \leqslant n\).
 设\(\A\)的行极大无关组是\(\A_{i_1},\A_{i_2},\dotsc,\A_{i_t}\).
@@ -1098,23 +1345,42 @@ x_1 \a1 + x_2 \a2 + \dotsb + x_n \a n = \z \quad\text{或}\quad \A\x=\z
 \begin{bmatrix}
 \A_{i_1} \\ \A_{i_2} \\ \vdots \\ \A_{i_t} \\ \z_{(s-t) \times n}
 \end{bmatrix},
-\]于是，\(\A\x=\z\)表示的齐次线性方程组中，非零方程的个数\(t\)小于未知量个数\(n\)，故\(\A\x=\z\)有非零解，与\(\A\x=\z\)只有零解矛盾，所以假设\(t < n\)不成立，可得\(t = n\)，\(\A\)的行秩等于\(n\).又因为\(\A\)的行极大无关组构成\(\A\)的\(n\)阶子式\[
+\]于是，\(\A\x=\z\)表示的齐次线性方程组中，%
+非零方程的个数\(t\)小于未知量个数\(n\)，%
+故\(\A\x=\z\)有非零解，%
+与\(\A\x=\z\)只有零解矛盾，%
+所以假设\(t < n\)不成立，%
+可得\(t = n\)，\(\A\)的行秩等于\(n\).
+又因为\(\A\)的行极大无关组构成\(\A\)的\(n\)阶子式\[
 \begin{vmatrix} \A_{i_1} \\ \A_{i_2} \\ \vdots \\ \A_{i_n} \end{vmatrix} \neq 0,
-\]\(\A\)没有阶数大于\(n\)的子式，故秩\(\A = n\).
+\]
+\(\A\)没有阶数大于\(n\)的子式，故秩\(\A = n\).
 \end{proof}
 \end{lemma}
 
 \begin{theorem}
 矩阵的行秩、列秩、秩都相等.
 \begin{proof}
-\def\r#1{r_{#1}}
-如果矩阵\(\A = \z\)，则结论成立.
+如果矩阵\(\A = \z\)，%
+则结论成立.
 
-当\(\A \neq \z\)时，设\(\r\A = r\)，则\(\A\)的所有\(t\)（\(t > r\)）阶子式全为零，且\(\A\)有一个\(r\)阶子式不为零，该子式的列向量线性无关，添加分量得\(\A\)有\(r\)列线性无关，于是\(\A\)的列秩\(p \geqslant r\)；由引理，\(\A\)的极大无关列构成的矩阵有一非零\(p\)阶子式，也是\(\A\)的子式，故\(p \leqslant r\)，得\(p = r\).
+当\(\A \neq \z\)时，%
+设\(r_{\A} = r\)，%
+则\(\A\)的所有\(t\ (t > r)\)阶子式全为零，%
+且\(\A\)有一个\(r\)阶子式不为零，%
+该子式的列向量线性无关，%
+添加分量得\(\A\)有\(r\)列线性无关，%
+于是\(\A\)的列秩\(p \geqslant r\)；
+由引理，\(\A\)的极大无关列构成的矩阵有一非零\(p\)阶子式，%
+也是\(\A\)的子式，%
+故\(p \leqslant r\)，%
+得\(p = r\).
 
-因此\(\r\A\)等于\(\A\)的列秩.
+因此\(r_{\A}\)等于\(\A\)的列秩.
 
-同样地，将这一结论用于\(\A^T\)，得\(\r{\A^T}\)等于\(\A^T\)的列秩，也就等于\(\A\)的行秩.
+同样地，将这一结论用于\(\A^T\)，%
+得\(r_{\A^T}\)等于\(\A^T\)的列秩，%
+也就等于\(\A\)的行秩.
 \end{proof}
 \end{theorem}
 
@@ -1130,30 +1396,44 @@ x_1 \a1 + x_2 \a2 + \dotsb + x_n \a n = \z \quad\text{或}\quad \A\x=\z
 \begin{theorem}\label{theorem:线性方程组.矩阵乘积的秩}
 矩阵的乘积的秩\(r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\}\).
 \begin{proof}
-\def\b#1{\mat{\beta}_{#1}}
-\def\g#1{\mat{\gamma}_{#1}}
-\def\bs{(\b1,\b2,\dotsc,\b n)}
-\def\gs{(\g1,\g2,\dotsc,\g n)}
 设\(\C = \A\B\)，将\(\C\)、\(\B\)分别进行列分块得\[
-\C = \gs,
+\C = (\AutoTuple{\g}{n}),
 \qquad
-\B = \bs,
+\B = (\AutoTuple{\b}{n}),
 \]则\[
-\gs = \A \bs = (\A\b1,\A\b2,\dotsc,\A\b n),
+(\AutoTuple{\g}{n}) = \A (\AutoTuple{\b}{n}) = (\A\b1,\A\b2,\dotsc,\A\b_n),
 \]于是\[
-\g i = \A \b i,
+\g_i = \A \b_i,
 \quad i=1,2,\dotsc,n.
 \]
 
-若\(\rank\B = t\)，则\(\B\)的任意\(t+1\)个列向量\(\b{k_1},\b{k_2},\dotsc,\b{k_{t+1}}\)线性相关，存在不全为零的数\(l_1,l_2,\dotsc,l_{t+1}\)使得\[
-l_1 \b{k_1} + l_2 \b{k_2} + \dotsb + l_{t+1} \b{k_{t+1}} = \z,
-\]故\[
-l_1 \g{k_1} + l_2 \g{k_2} + \dotsb + l_{t+1} \g{k_{t+1}}
-= \A(l_1 \b{k_1} + l_2 \b{k_2} + \dotsb + l_{t+1} \b{k_{t+1}})
+若\(\rank\B = t\)，%
+则\(\B\)的任意\(t+1\)个列向量
+\(\b_{k_1},\b_{k_2},\dotsc,\b_{k_{t+1}}\)
+线性相关，%
+存在不全为零的数
+\(l_1,l_2,\dotsc,l_{t+1}\)
+使得\[
+l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}} = \z,
+\]
+故\[
+l_1 \g_{k_1} + l_2 \g_{k_2} + \dotsb + l_{t+1} \g_{k_{t+1}}
+= \A(l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}})
 = \z,
-\]即\(\C\)的任意\(t+1\)个列向量线性相关，故\(\A\B\)的列秩小于或等于\(t\)，即\(\rank(\A\B) \leqslant \rank\B\).又\[
-\rank(\A\B) = \rank(\A\B)^T = \rank(\B^T \A^T) \leqslant \rank \A = \rank \A^T,
-\]所以\(r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\}\).
+\]
+即\(\C\)的任意\(t+1\)个列向量线性相关，%
+故\(\A\B\)的列秩小于或等于\(t\)，%
+即\(\rank(\A\B) \leqslant \rank\B\).
+又\[
+\rank(\A\B)
+= \rank(\A\B)^T
+= \rank(\B^T \A^T)
+\leqslant \rank \A
+= \rank \A^T,
+\]所以
+\(r_{\A\B}
+\leqslant
+\min\{r_{\A},r_{\B}\}\).
 \end{proof}
 \end{theorem}
 
@@ -1264,12 +1544,10 @@ r_{\A} = r_{\P^{-1} (\P \A)} \leqslant r_{\P \A} \leqslant r_{\A},
 \rank(\A,\B) \leqslant \rank\A + \rank\B.
 \]
 \begin{proof}
-\def\a#1{\mat{\alpha}_{#1}}
-\def\b#1{\mat{\beta}_{#1}}
-\def\as{\a1,\a2,\dotsc,\a n}
-\def\bs{\b1,\b2,\dotsc,\b m}
-\def\asi{\a{i_1},\a{i_2},\dotsc,\a{i_r}}
-\def\bsj{\b{j_1},\b{j_2},\dotsc,\b{j_t}}
+\def\as{\AutoTuple{\a}{n}}
+\def\bs{\AutoTuple{\b}{m}}
+\def\asi{\a_{i_1},\dotsc,\a_{i_r}}
+\def\bsj{\b_{j_1},\dotsc,\b_{j_t}}
 设\(\rank\A = r\)，\(\rank\B = t\).对\(\A\)、\(\B\)分别按列分块得\[
 \A = (\as),
 \qquad
@@ -1291,8 +1569,13 @@ V_1=\{\as,\bs\}
 \]可由向量组\[
 V_2=\{\asi,\bsj\}
 \]线性表出，则\[
-\rank V_1 \leqslant \rank V_2 \leqslant r+t,
-\]于是\(\rank(\A,\B) = \rank V_1 \leqslant r+t\).
+\rank V_1
+\leqslant
+\rank V_2
+\leqslant
+r+t;
+\]
+于是\(\rank(\A,\B) = \rank V_1 \leqslant r+t\).
 \end{proof}
 \end{example}
 
@@ -1376,7 +1659,8 @@ m \leqslant \rank\A,\rank\B \leqslant m \\
 \item 当\(m > n\)时，\(\abs{\C} = 0\).
 \item 当\(m = n\)时，\(\abs{\C} = \abs{\A} \abs{\B}\).
 \item 当\(m < n\)时，\begin{equation}\label{equation:线性方程组.柯西-比内公式}
-\abs{\C} = \sum\limits_{1 \leqslant i_1 \leqslant i_2 \leqslant \dotsb \leqslant i_m \leqslant n} \MatrixMinor\A{
+\abs{\C} = \sum\limits_{1 \leqslant i_1 \leqslant i_2 \leqslant \dotsb \leqslant i_m \leqslant n}
+\MatrixMinor\A{
 1,2,\dotsc,m \\
 i_1,i_2,\dotsc,i_m
 }
@@ -1428,6 +1712,92 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 
 当\(n>2\)时，\(\rank(\A^T\A) \leqslant \rank\A \leqslant2\)，\(\D = \A^T \A\)不满秩，故由\cref{theorem:线性方程组.矩阵的秩的性质4} 有\(\abs{\D}=0\).
 \end{solution}
+\end{example}
+
+\begin{example}
+设\(\A \in M_{m \times n}(\mathbb{R})\).
+求证：\(\rank\A = \rank(\A\A^T)\).
+\begin{proof}
+设\(\rank\A=r\)，%
+由\hyperref[definition:线性方程组.矩阵的秩的定义]{矩阵的秩的定义}可知，
+\(\A\)有\(r\)阶子式不等于零，即
+\[
+\MatrixMinor\A{
+\v{i}{r} \\
+\v{j}{r}
+} \neq 0.
+\eqno(1)
+\]
+由\hyperref[equation:线性方程组.柯西-比内公式]{柯西-比内公式}可知
+\begin{align*}
+\MatrixMinor{(\A\A^T)}{
+\v{i}{r} \\
+\v{i}{r}
+}
+&= \sum\limits_{1 \leqslant k_1 < k_2 < \dotsb < k_r \leqslant n}
+\MatrixMinor\A{
+\v{i}{r} \\
+\v{k}{r}
+}
+\MatrixMinor{\A^T}{
+\v{k}{r} \\
+\v{i}{r}
+} \\
+&= \sum\limits_{1 \leqslant k_1 < k_2 < \dotsb < k_r \leqslant n}
+\left[
+	\MatrixMinor\A{
+	\v{i}{r} \\
+	\v{k}{r}
+	}
+\right]^2.
+\tag2
+\end{align*}
+因为\(\A \in M_{m \times n}(\mathbb{R})\)，%
+所以\(\A\)的任意子式都是实数，于是有
+\[
+\left[
+	\MatrixMinor\A{
+	\v{i}{r} \\
+	\v{k}{r}
+	}
+\right]^2
+\geqslant 0.
+\eqno(3)
+\]
+由(1)式可知，%
+\[
+\left[
+	\MatrixMinor\A{
+	\v{i}{r} \\
+	\v{j}{r}
+	}
+\right]^2
+> 0.
+\eqno(4)
+\]
+由于在(2)式中，%
+求和指标可以\((\v{k}{r})\)取到\((\v{j}{r})\)，%
+所以(4)式是(2)式中的一项.
+综上所述
+\[
+\MatrixMinor{(\A\A^T)}{
+\v{i}{r} \\
+\v{i}{r}
+}
+=
+\sum\limits_{1 \leqslant k_1 < k_2 < \dotsb < k_r \leqslant n}
+\left[
+	\MatrixMinor\A{
+	\v{i}{r} \\
+	\v{k}{r}
+	}
+\right]^2
+> 0,
+\]
+这就说明\(\rank(\A\A^T) \geqslant r\).
+又因为\(\rank(\A\A^T) \leqslant \rank\A = r\)，%
+所以\(\rank(\A\A^T) = \rank\A = r\).
+\end{proof}
 \end{example}
 
 \begin{example}
@@ -1492,24 +1862,20 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 r_{\A} < n.
 \]
 \begin{proof}
-将\(\A\)按列分块得\(\A = (\a_1,\a_2,\dotsc,\a_n)\)，则原方程可改写为\[
+将\(\A\)按列分块得\(\A = (\v{\a}{n})\)，则原方程可改写为\[
 x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \z,
-\]因此，原方程有非零解的充要条件是\(\a_1,\a_2,\dotsc,\a_n\)线性相关，而其充要条件是\[
-r_{\A} = \rank\{\a_1,\a_2,\dotsc,\a_n\} < n.
+\]因此，原方程有非零解的充要条件是\(\v{\a}{n}\)线性相关，而其充要条件是\[
+r_{\A} = \rank\{\v{\a}{n}\} < n.
 \qedhere
 \]
 \end{proof}
 \end{theorem}
-上述定理的否命题也成立，即：齐次线性方程组\(\A \x = \z\)有零解的充要条件为\[
-r_{\A} = n.
-\]
 
-实际上，当\(s=n\)时，若\(r_{\A} \nless n\)，则\(r_{\A} = n\)，即\(\A\)是可逆矩阵，那么只要在方程组左右两边同乘\(\A^{-1}\)，则可得\[
-\x = \A^{-1} \A \x = \A^{-1} \z = \z,
-\]即原方程组只有零解.
+上述\cref{theorem:线性方程组.齐次线性方程组有非零解的条件及解的结构}
+的否命题“齐次线性方程组\(\A\x=\z\)只有零解的充要条件为\(r_{\A}=n\)”也成立.
 
-\begin{property}
-齐次线性方程组\(\A \x = \z\)的解的任意线性组合也是解.
+\begin{theorem}\label{theorem:线性方程组.齐次线性方程组的解的线性组合也是解}
+齐次线性方程组\(\A\x=\z\)的解的任意线性组合也是解.
 \begin{proof}
 设\(\X1\)与\(\X2\)是齐次线性方程组\(\A \x = \z\)的任意两个解，即\(\A \X1 = \z\)，\(\A \X2 = \z\).又设\(k\)是任意常数，那么有\[
 \A (\X1 + \X2) = \A \X1 + \A \X2 = \z + \z = \z,
@@ -1517,31 +1883,30 @@ r_{\A} = n.
 \A (k \X1) = k (\A \X1) = k \z = \z,
 \]所以\(\X1 + \X2\)与\(k \X1\)都是\(\A \x = \z\)的解.
 \end{proof}
-\end{property}
+\end{theorem}
 
-\begin{definition}
-齐次线性方程组的解集合\(V\)关于向量的加法、数乘构成一个线性空间，%
-称为齐次线性方程组的\textbf{解空间}（space of solution）.
+\begin{definition}\label{definition:线性方程组.齐次线性方程组的解空间}
+齐次线性方程组的解集\(V\)关于向量的加法、数乘构成一个线性空间，%
+称这个线性空间为“齐次线性方程组的\textbf{解空间}（space of solution）”.
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{definition:线性方程组.齐次线性方程组的基础解系}
 已知数域\(P\)上的齐次线性方程组\(\A\x=\z\).
 如果向量组\[
-X=\{\mat{X}_1,\mat{X}_2,\dotsc,\mat{X}_t\}
+X=\{\x_1,\x_2,\dotsc,\x_t\}
 \]满足
 \begin{enumerate}
 \item \(X\)的每个向量都是\(\A\x=\z\)的解；
 \item \(X\)线性无关；
 \item \(\A\x=\z\)的任意一个解都可由向量组\(X\)线性表出，%
 \end{enumerate}
-那么称向量组\(X\)为\(\A\x=\z\)的\textbf{基础解系}（basic set of solutions）.
+那么称向量组\(X\)为“齐次线性方程组\(\A\x=\z\)的\textbf{基础解系}（basic set of solutions）”.
 
-\def\tongjie{ k_1\mat{X}_1+k_2\mat{X}_2+ \dotsb +k_t\mat{X}_t }
-相应地，有齐次线性方程组的解空间为\[
-S = \Set{ \tongjie \given k_1,k_2,\dotsc,k_t \in P }.
-\]称\(\tongjie\)为齐次线性方程组的\textbf{通解}.
-
-齐次线性方程组的基础解系又称为解空间的\textbf{基}.
+\def\tongjie{ k_1\x_1+k_2\x_2+ \dotsb +k_t\x_t }
+相应地，有齐次线性方程组\(\A\x=\z\)的解空间为\[
+S = \Set{ \tongjie \given \v{k}{t} \in P }.
+\]称\(\tongjie\)为“齐次线性方程组\(\A\x=\z\)的\textbf{通解}（general solution）”.
+上述基础解系\(X\)又称为“齐次线性方程组\(\A\x=\z\)的解空间的\textbf{基}”.
 \end{definition}
 
 \begin{theorem}\label{theorem:线性方程组.齐次线性方程组的解向量个数}
@@ -1571,7 +1936,7 @@ b_{r,r+1} & \dots & b_{rn}
 
 记\[
 \x = (x_1,x_2,\dotsc,x_r,x_{r+1},\dotsc,x_n)^T,
-\]将未知量\(x_{r+1},x_{r+2},\dotsc,x_n\)（称为\textbf{自由未知量}）的一组值\((1,0,\dotsc,0)\)代入\[
+\]将自由未知量\(x_{r+1},x_{r+2},\dotsc,x_n\)的一组值\((1,0,\dotsc,0)\)代入\[
 \B \x = \z,
 \]去掉\(0 = 0\)的等式，移项得线性方程组\begin{gather}
 \begin{bmatrix}
@@ -1700,20 +2065,21 @@ x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &+& 4 x_5 &=& 0 \\
 \begin{example}
 设\(\A\)为\(s \times n\)矩阵，\(\B\)为\(n \times m\)矩阵，\(\A\B=\z\).证明：\(r_{\A} + r_{\B} \leqslant n\).
 \begin{proof}
-\def\b#1{\mat{\beta}_{#1}}
 设矩阵\(\B\)与\(\A\B=\z\)右端的零矩阵列分块矩阵分别为\[
-\B=(\b1,\b2,\dotsc,\b m),
+\B=(\AutoTuple{\b}{m}),
 \quad
-\z=(\z,\z,\dotsc,\z)
+\z=(\z,\dotsc,\z)
 \]那么\[
-\A(\b1,\b2,\dotsc,\b m) = (\A\b1,\A\b2,\dotsc,\A\b m) = (\z,\z,\dotsc,\z)
+\A(\AutoTuple{\b}{m})
+= (\A\b_1,\A\b_2,\dotsc,\A\b_m)
+= (\z,\z,\dotsc,\z)
 \]或\[
-\A\b j = \z \quad (j=1,2,\dotsc,m)
-\]即\(\beta=\{\b1,\b2,\dotsc,\b m\}\)是齐次线性方程组\(\A\mat{X}=\z\)解向量组.
+\A\b_j = \z \quad(j=1,2,\dotsc,m)
+\]即\(\beta=\{\AutoTuple{\b}{m}\}\)是齐次线性方程组\(\A\x=\z\)解向量组.
 
-若\(r_{\A}=n\)，则\(\A\mat{X}=\z\)只有零解，\(\B=\z\)，\(r_{\B}=0=n-r_{\A}\).
+若\(r_{\A}=n\)，则\(\A\x=\z\)只有零解，\(\B=\z\)，\(r_{\B}=0=n-r_{\A}\).
 
-若\(r_{\A}<n\)，则\(X=\{\v{\x}{n-r}\}\)是\(\A\mat{X}=\z\)的一个基础解系，则\(\beta\)可由\(X\)线性表出，\(r_{\beta} \leqslant r_{X}\).
+若\(r_{\A}<n\)，则\(X=\{\v{\x}{n-r}\}\)是\(\A\x=\z\)的一个基础解系，则\(\beta\)可由\(X\)线性表出，\(r_{\beta} \leqslant r_{X}\).
 而\(r_{\beta}=r_{\B}\)，\(r_{X}=n-r_{\A}\).
 
 综上所述，\(r_{\A}+r_{\B} \leqslant n\)成立.
@@ -1724,9 +2090,9 @@ x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &+& 4 x_5 &=& 0 \\
 设\(\A\)为\(n\ (n>1)\)阶方阵，\(\A^*\)是\(\A\)的伴随矩阵.
 证明：\[
 r_{\A^*} = \left\{ \begin{array}{cl}
-n, & r_{\A}=n \\
-1, & r_{\A}=n-1 \\
-0, & r_{\A}<n-1
+n, & r_{\A}=n, \\
+1, & r_{\A}=n-1, \\
+0, & r_{\A}<n-1.
 \end{array} \right.
 \]
 \begin{proof}
@@ -1734,7 +2100,7 @@ n, & r_{\A}=n \\
 \begin{enumerate}
 \item 当\(r_{\A} = n\)时，\(\A\)满秩，%
 那么由\cref{theorem:线性方程组.矩阵的秩的性质4} 有\(\abs{\A} \neq 0\)；%
-根据恒等式\labelcref{equation:行列式.伴随矩阵.恒等式1} 有\[
+根据恒等式 \labelcref{equation:行列式.伴随矩阵.恒等式1} 有\[
 \A \A^* = \A^* \A = \abs{\A} \E;
 \]
 根据\cref{theorem:行列式.矩阵乘积的行列式} 有\[
@@ -1749,7 +2115,8 @@ n, & r_{\A}=n \\
 = \frac{\abs{\abs{\A} \E}}{\abs{\A}}
 = \frac{\abs{\A}^n}{\abs{\A}}
 = \abs{\A}^{n-1} \neq 0,
-\]进而有\[
+\]
+进而有\[
 r_{\A^*} = n.
 \]
 
@@ -1757,8 +2124,13 @@ r_{\A^*} = n.
 \(\abs{\A} = 0\)，\(\A \A^* = \z\)，据上例，\[
 r_{\A} + r_{\A^*} \leqslant n
 \implies
-r_{\A^*} \leqslant n - r_{\A} = 1.
-\]又因为\(n > 1 \implies r_{\A} = n-1 > 0\)，所以\(r_{\A} = 1\).
+r_{\A^*}
+\leqslant n - r_{\A}
+= n - (n-1)
+= 1.
+\]
+又因为\(n > 1 \implies r_{\A} = n-1 > 0\)，%
+所以\(r_{\A} = 1\).
 
 \item 当\(r_{\A} < n-1\)时，%
 \(\A\)的所有\(n-1\)阶子式全为零，%
@@ -1829,38 +2201,38 @@ r_{\A^*} \leqslant n - r_{\A} = 1.
 
 \section{非齐次线性方程组有解的条件及解的结构}
 \begin{definition}
-与非齐次线性方程组\(\A\mat{X}=\mat{\beta}\)的系数矩阵相同的齐次线性方程组\(\A\mat{X}=\z\)称为前者的\textbf{导出组}.
+与非齐次线性方程组\(\A\x=\b\)的系数矩阵相同的齐次线性方程组\(\A\x=\z\)称为前者的\textbf{导出组}.
 \end{definition}
 
 \begin{theorem}\label{theorem:线性方程组.非齐次线性方程组有解的条件及解的结构}
 已知数域\(P\)，矩阵\(\A \in P^{s \times n}\).
 
-对于线性方程组\(\A\mat{X}=\mat{\beta}\)，其增广矩阵记为\(\widetilde{\A} = (\A,\mat{\beta})\)，则
+对于线性方程组\(\A\x=\b\)，其增广矩阵记为\(\widetilde{\A} = (\A,\b)\)，则
 \begin{enumerate}
-\item \(\A\mat{X}=\mat{\beta}\ \text{有解} \iff \rank\A=\rank\widetilde{\A}\)；
+\item \(\A\x=\b\ \text{有解} \iff \rank\A=\rank\widetilde{\A}\)；
 
 \item \(\rank\A=\rank\widetilde{\A}=n\)时，非齐次线性方程组有唯一解；
 
 \item \(\rank\A=\rank\widetilde{\A}<n\)时，非齐次线性方程组有无穷多解.
 设\[
-\mat{X}_1,\mat{X}_2,\dotsc,\mat{X}_{n-r}
-\]是导出组\(\A\mat{X}=\z\)的一个基础解系，那么通解为\[
-\mat{X}_0+k_1\mat{X}_1+k_2\mat{X}_2+ \dotsb +k_{n-r}\mat{X}_{n-r},
+\x_1,\x_2,\dotsc,\x_{n-r}
+\]是导出组\(\A\x=\z\)的一个基础解系，那么通解为\[
+\x_0+k_1\x_1+k_2\x_2+ \dotsb +k_{n-r}\x_{n-r},
 \quad
 k_1,k_2,\dotsc,k_{n-r} \in P,
-\]其中\(\mat{X}_0\)是非齐次线性方程组的一个解，称为\textbf{特解}.
+\]其中\(\x_0\)是非齐次线性方程组的一个解，称为\textbf{特解}.
 \end{enumerate}
 \end{theorem}
 
-一般地，对\(\A\mat{X}=\mat{\beta}\)的增广矩阵\[
-\widetilde{\A}=(\A,\mat{\beta})
+一般地，对\(\A\x=\b\)的增广矩阵\[
+\widetilde{\A}=(\A,\b)
 \]施行一系列初等行变换化为阶梯形矩阵\[
-\widetilde{\B}=(\B,\mat{\gamma}),
-\]则\(\A\mat{X}=\mat{\beta}\)与\(\B\mat{X}=\mat{\gamma}\)同解，\(\A\mat{X}=\z\)与\(\B\mat{X}=\z\)同解.
+\widetilde{\B}=(\B,\g),
+\]则\(\A\x=\b\)与\(\B\x=\g\)同解，\(\A\x=\z\)与\(\B\x=\z\)同解.
 
-于是\(\A\mat{X}=\mat{\beta}\)有解的充要条件是\(\rank\B=\rank\widetilde{\B}\).
+于是\(\A\x=\b\)有解的充要条件是\(\rank\B=\rank\widetilde{\B}\).
 
-有解时，求出\(\B\mat{X}=\mat{\gamma}\)的一个特解和\(\B\mat{X}=\z\)的一个基础解系，就可得出\(\A\mat{X}=\mat{\beta}\)的通解.
+有解时，求出\(\B\x=\g\)的一个特解和\(\B\x=\z\)的一个基础解系，就可得出\(\A\x=\b\)的通解.
 
 \begin{example}
 求线性方程组\[
@@ -1898,7 +2270,7 @@ x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &=& 4 \\
 0 & 0 & 0 & 0 & 0
 \end{bmatrix}
 = \widetilde{\B}
-= (\B,\mat{\gamma}),
+= (\B,\g),
 \end{align*}
 故\(\rank\A = \rank\widetilde{\A} = 2\)，于是原方程组有解.
 
@@ -1908,7 +2280,7 @@ x_1 && &-& 2 x_3 &-& 2 x_4 &=& -2 \\
 && 2 x_2 &-& x_3 &-& 4 x_4 &=& -6
 \end{array} \right..
 \]令\(x_3 = 0\)，\(x_4 = 0\)，解得\(x_1 = -2\)，\(x_2 = -3\)，得特解\[
-\mat{X}_0 = (-2,-3,0,0)^T.
+\x_0 = (-2,-3,0,0)^T.
 \]
 
 又因为导出组的基础解系含\(4 - r_{\A} = 2\)个向量.
@@ -1917,10 +2289,10 @@ x_1 && &-& 2 x_3 &-& 2 x_4 &=& -2 \\
 x_1 && &-& 2 x_3 &-& 2 x_4 &=& 0 \\
 && 2 x_2 &-& x_3 &-& 4 x_4 &=& 0
 \end{array} \right.
-\]得基础解系\(\mat{X}_1 = (4,1,2,0)^T\)，\(\mat{X}_2 = (2,2,0,1)^T\).
+\]得基础解系\(\x_1 = (4,1,2,0)^T\)，\(\x_2 = (2,2,0,1)^T\).
 
 于是原方程的通解为\[
-\mat{X} = \mat{X}_0 + k_1 \mat{X}_1 + k_2 \mat{X}_2
+\x = \x_0 + k_1 \x_1 + k_2 \x_2
 = \begin{bmatrix} -2 \\ -3 \\ 0 \\ 0 \end{bmatrix}
 + k_1 \begin{bmatrix} 4 \\ 1 \\ 2 \\ 0 \end{bmatrix}
 + k_2 \begin{bmatrix} 2 \\ 2 \\ 0 \\ 1 \end{bmatrix},
@@ -1975,7 +2347,7 @@ a_1 + a_2 + a_3 \\ a_2 + a_3 \\ a_3 \\ 0
 解线性方程组是线性代数的基本问题之一，现代科学技术方面用到的数学问题也有很多要归结到解线性方程组.
 
 \begin{example}
-设\(\X0\)是非齐次线性方程组\(\A\x=\mat{\beta}\)的一个解，\(\v{\x}{n-r}\)是其导出组\(\A\x=\z\)的一个基础解系.证明：\(\X0,\v{\x}{n-r}\)线性无关.
+设\(\X0\)是非齐次线性方程组\(\A\x=\b\)的一个解，\(\v{\x}{n-r}\)是其导出组\(\A\x=\z\)的一个基础解系.证明：\(\X0,\v{\x}{n-r}\)线性无关.
 \begin{proof}
 因为\(\v{\x}{n-r}\)是其导出组\(\A\x=\z\)的一个基础解系，根据基础解系的定义，显然有\(\v{\x}{n-r}\)线性无关.
 假设\(\X0,\v{\x}{n-r}\)线性相关，那么\(\X0\)可由\(\v{\x}{n-r}\)线性表出，即存在数\(k_1,k_2,\dotsc,k_{n-r}\)使得\[
@@ -1984,7 +2356,7 @@ a_1 + a_2 + a_3 \\ a_2 + a_3 \\ a_3 \\ 0
 &\A\X0 = \A(k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r}) \\
 &= k_1 \A\X1 + k_2 \A\X2 + \dotsb + k_{n-r} \A\X{n-r}
 = \z + \z + \dotsb + \z = \z,
-\end{align*}即\(\X0\)是\(\A\x=\z\)的一个解，这与\(\X0\)是\(\A\x=\mat{\beta}\neq\z\)的一个解矛盾，所以\(\X0,\v{\x}{n-r}\)线性无关.
+\end{align*}即\(\X0\)是\(\A\x=\z\)的一个解，这与\(\X0\)是\(\A\x=\b\neq\z\)的一个解矛盾，所以\(\X0,\v{\x}{n-r}\)线性无关.
 \end{proof}
 \end{example}
 

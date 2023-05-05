@@ -386,7 +386,7 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 \begin{enumerate}
 \item 计算特征多项式\(\abs{\l\E-\A}\)；
 \item 求出\(\abs{\l\E-\A}=0\)的全部根，得\(\A\)的全部特征值\(\v{\lambda}{n}\)；
-\item 对于每个不同的特征值\(\L{j}\)，求出齐次线性方程组\((\L{j} \E - \A)\x = \z\)的一个基础解系\(\v{\x}{t}\)，则\(\A\)的属于\(\L{j}\)的全部特征向量为\(k_1 \X1 + k_2 \X2 + \dotsb + k_t \X t\)（其中\(k_1,k_2,\dotsc,k_t\)是不全为零的任意常数）.
+\item 对于每个不同的特征值\(\L{j}\)，求出齐次线性方程组\((\L{j} \E - \A)\x = \z\)的一个基础解系\(\v{\x}{t}\)，则\(\A\)的属于\(\L{j}\)的全部特征向量为\(k_1 \X1 + k_2 \X2 + \dotsb + k_t \X t\)（其中\(\v{k}{t}\)是不全为零的任意常数）.
 \end{enumerate}
 
 注1：根据高斯代数基本定理，任何\(n\ (n \geqslant 1)\)次多项式至少有一个复数根.
@@ -513,7 +513,7 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 \end{definition}
 
 \subsection{矩阵相似的性质}
-\begin{property}
+\begin{property}\label{theorem:特征值与特征向量.相似关系是等价关系}
 矩阵之间的相似关系，是矩阵集合上的等价关系，因为它满足：
 \begin{enumerate}
 \item 反身性，即对任意矩阵\(\A\)，都有\(\A\sim\A\)；
@@ -533,7 +533,7 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 \end{property}
 
 以下性质是两个矩阵相似的必要条件.
-\begin{property}
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件1}
 若\(\A\sim\B\)，则\(\abs{\A}=\abs{\B}\).
 \begin{proof}
 因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，两端取行列式，得\[
@@ -545,9 +545,10 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 \]
 \end{proof}
 \end{property}
-我们还可以进一步推得如下结论：若\(\A\sim\B\)，则\(\A\)、\(\B\)同为可逆或不可逆.
+我们还可以进一步推得如下结论：
+若\(\A\sim\B\)，则\(\A\)、\(\B\)同为可逆或不可逆.
 
-\begin{property}
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件2}
 若\(\A\sim\B\)，则\(\A^m \sim \B^m\ (m\in\mathbb{N})\).
 \begin{proof}
 因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
@@ -560,7 +561,7 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 \end{property}
 如果\(\A\)、\(\B\)可逆，那么上述结论可以扩展为\(\A^m\sim\B^m\ (m\in\mathbb{Z})\).
 
-\begin{property}
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件3}
 相似矩阵有相同的特征多项式，从而有相同的特征值.
 \begin{proof}
 因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
@@ -570,7 +571,7 @@ r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\} \leqslant \min\{m,n\} < m,
 \end{proof}
 \end{property}
 
-\begin{property}
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件4}
 相似矩阵有相同的迹，即\(\A\sim\B \implies \tr\A=\tr\B\).
 \begin{proof}
 设\[
@@ -648,6 +649,43 @@ a_{n1} & \dots & a_{ni} & a_{nj} + k a_{ni}  & \dots & a_{nn}
 \begin{example}
 特征值相同的矩阵不一定相似.
 例如\(\A=\begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}\)和\(\B=\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}\)的特征值相同，即\(\l=2\)（二重），但\(\A\)与\(\B\)不相似.这是因为\(\B=2\E\)是数乘矩阵，可以和所有二阶矩阵交换，那么对任意二阶可逆矩阵\(\P\)都有\(\P^{-1}\B\P=\B\P^{-1}\P=\B\)，即\(\B\)只能与自身相似，\(\A\)与\(\B\)不相似.
+\end{example}
+
+\begin{example}
+已知矩阵\(\A = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & 0 & 1 \\
+	0 & 1 & x
+\end{bmatrix}\)与\(\B = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & y & 0 \\
+	0 & 0 & -1
+\end{bmatrix}\)相似.
+求\(x\)与\(y\).
+\begin{solution}
+因为\(\A\sim\B\)，所以，由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}，
+\[
+\begin{vmatrix}
+	2 & 0 & 0 \\
+	0 & 0 & 1 \\
+	0 & 1 & x
+\end{vmatrix}
+= -2 = -2y =
+\begin{vmatrix}
+	2 & 0 & 0 \\
+	0 & y & 0 \\
+	0 & 0 & -1
+\end{vmatrix}
+\implies y = 1;
+\]
+又由\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
+\[
+\tr\A = 2+x
+= 1+y = \tr\B
+\implies
+x = 0.
+\]
+\end{solution}
 \end{example}
 
 \subsection{矩阵的对角化}
@@ -1007,16 +1045,16 @@ k_1\L{1}\X1+k_2\L{2}\X2+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\L{m}\X{m}=\z. \tag2
 以下讨论将线性无关向量组改造为规范正交组的施密特正交规范化方法.
 
 \begin{theorem}
-设\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_m\)是\(\mathbb{R}^n\)中的一个线性无关组，令\begin{align*}
-\mat{\beta}_1 &= \mat{\alpha}_1, \\
-\mat{\beta}_k &= \mat{\alpha}_k - \sum\limits_{i=1}^{k-1}
-	\frac{\vectorinnerproduct{\mat{\alpha}_k}{\mat{\beta}_i}}{\vectorinnerproduct{\mat{\beta}_i}{\mat{\beta}_i}} \mat{\beta}_i,
+设\(\a_1,\a_2,\dotsc,\a_m\)是\(\mathbb{R}^n\)中的一个线性无关组，令\begin{align*}
+\b_1 &= \a_1, \\
+\b_k &= \a_k - \sum\limits_{i=1}^{k-1}
+	\frac{\vectorinnerproduct{\a_k}{\b_i}}{\vectorinnerproduct{\b_i}{\b_i}} \b_i,
 \quad k=2,3,\dotsc,m,
 \end{align*}
 再将之单位化（或规范化）得\[
-\mat{\gamma}_k = \frac{1}{\abs{\mat{\beta}_k}}\mat{\beta}_k, \quad k=1,2,\dotsc,m
-\]则\(\mat{\gamma}_1,\mat{\gamma}_2,\dotsc,\mat{\gamma}_m\)是一个规范正交组，且满足
-\(\mat{\alpha}_1,\mat{\alpha}_2,\dotsc,\mat{\alpha}_j\)与\(\mat{\gamma}_1,\mat{\gamma}_2,\dotsc,\mat{\gamma}_j\)等价（\(j=1,2,\dotsc,m\)）.
+\g_k = \frac{1}{\abs{\b_k}}\b_k, \quad k=1,2,\dotsc,m
+\]则\(\g_1,\g_2,\dotsc,\g_m\)是一个规范正交组，且满足
+\(\a_1,\a_2,\dotsc,\a_j\)与\(\g_1,\g_2,\dotsc,\g_j\)等价（\(j=1,2,\dotsc,m\)）.
 \end{theorem}
 
 \subsection{实对称矩阵的对角化}

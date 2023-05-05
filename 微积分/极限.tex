@@ -364,21 +364,39 @@ a-\varepsilon<x_{2k-1}<a+\varepsilon, \qquad a-\varepsilon<x_{2k}<a+\varepsilon
 \end{example}
 
 \section{函数极限}
-\subsection{函数极限的定义}
-\begin{definition}
-设函数\(f(x)\)在点\(x_0\)的某一去心邻域内有定义.如果存在常数\(A\)，对于任意给定的正数\(\varepsilon\)（不论它多么小），总存在正数\(\delta\)，使得当\(x\)满足不等式\(0 < \abs{x-x_0} < \delta\)时，%
-对应的函数值\(f(x)\)都满足不等式\(\abs{f(x)-A}<\varepsilon\)，那么常数A就叫做函数\(f(x)\)当\(x \to x_0\)时的极限，记作\[
-\lim\limits_{x \to x_0}f(x) = A
-\quad \text{或} \quad
-f(x) \to A \quad (x \to x_0).
-\]
+从\hyperref[definition.数列.数列的定义]{数列的定义}可以看出，%
+任意一个数列\(\{x_n\}\)只不过是一个以\(n\)为自变量的函数\(x_n = f(n)\).
+我们只要把数列极限概念中“自变量\(n\)的取值范围是整数的子集”“自变量变化过程是\(n\to\infty\)”等特殊性撇开，%
+就可以引出函数极限的一般概念.
 
-上述对函数极限的定义可以简化为：\[
-\lim\limits_{x \to x_0}f(x) = A
-\iff \forall \varepsilon > 0, \exists \delta > 0 ( 0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \varepsilon).
+\subsection{函数极限的定义}
+\subsubsection*{自变量趋于有限值时函数的极限}
+\begin{definition}\label{definition:极限.函数极限的定义1}
+设函数\(f(x)\)在点\(x_0\)的某一去心邻域内有定义.
+如果存在常数\(A\)，%
+对于任意给定的正数\(\varepsilon\)（不论它多么小），%
+总存在正数\(\delta\)，%
+使得当\(x\)满足不等式\(0 < \abs{x-x_0} < \delta\)时，%
+对应的函数值\(f(x)\)都满足不等式\(\abs{f(x)-A}<\varepsilon\)，%
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\textbf{极限}”，%
+记作
+\[
+\lim\limits_{x \to x_0} f(x) = A
+\quad\text{或}\quad
+f(x) \to A\ (x \to x_0).
 \]
 \end{definition}
 
+上述对函数极限的定义可以简化为：
+\[
+\lim\limits_{x \to x_0}f(x) = A
+\iff
+\forall \varepsilon > 0,
+\exists \delta > 0
+\bigl( 0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \varepsilon \bigr).
+\]
+
+现在我们来根据定义尝试计算一些函数的极限.
 \begin{example}
 证明：\(\lim\limits_{x \to x_0} c = c\)，其中\(c\)为常数.
 \begin{proof}
@@ -434,21 +452,36 @@ f(x) \to A \quad (x \to x_0).
 \end{proof}
 \end{example}
 
-\begin{definition}
-设函数\(f(x)\)在\(x < x_0\)时有定义.如果存在常数\(A\)，对于任意给定的正数\(\varepsilon\)，总存在正数\(\delta\)，使得当\(x\)满足不等式\(-\delta < x - x_0 < 0\)或\(x_0 - \delta < x < x_0\)时，对应的函数值\(f(x)\)都满足不等式\(\abs{f(x) - A} < \varepsilon\)，那么常数\(A\)就叫做函数\(f(x)\)当\(x \to x_0\)时的\textbf{左极限}，记作\[
-\lim\limits_{x \to x_0^-}f(x) = A
-\quad \text{或} \quad
+\begin{definition}\label{definition:极限.函数极限的定义2}
+设函数\(f(x)\)在\(x < x_0\)时有定义.
+如果存在常数\(A\)，%
+对于任意给定的正数\(\varepsilon\)，%
+总存在正数\(\delta\)，%
+使得当\(x\)满足不等式\(-\delta < x - x_0 < 0\)或\(x_0 - \delta < x < x_0\)时，%
+对应的函数值\(f(x)\)都满足不等式\(\abs{f(x) - A} < \varepsilon\)，%
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\textbf{左极限}”，%
+记作\[
+\lim\limits_{x \to x_0^-} f(x) = A
+\quad\text{或}\quad
 f(x_0^-) = A.
 \]
+\end{definition}
 
-类似地，设函数\(f(x)\)在\(x > x_0\)时有定义.如果存在常数\(A\)，对于任意给定的正数\(\varepsilon\)，总存在正数\(\delta\)，使得当\(x\)满足不等式\(0 < x - x_0 < \delta\)或\(x_0 < x < x_0 + \delta\)时，对应的函数值\(f(x)\)都满足不等式\(\abs{f(x) - A} < \varepsilon\)，那么常数\(A\)就叫做函数\(f(x)\)当\(x \to x_0\)时的\textbf{右极限}，记作\[
-\lim\limits_{x \to x_0^+}f(x) = A
-\quad \text{或} \quad
+\begin{definition}\label{definition:极限.函数极限的定义3}
+设函数\(f(x)\)在\(x > x_0\)时有定义.
+如果存在常数\(A\)，%
+对于任意给定的正数\(\varepsilon\)，%
+总存在正数\(\delta\)，%
+使得当\(x\)满足不等式\(0 < x - x_0 < \delta\)或\(x_0 < x < x_0 + \delta\)时，%
+对应的函数值\(f(x)\)都满足不等式\(\abs{f(x) - A} < \varepsilon\)，%
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\textbf{右极限}”，%
+记作\[
+\lim\limits_{x \to x_0^+} f(x) = A
+\quad\text{或}\quad
 f(x_0^+) = A.
 \]
-
-左极限与右极限统称为\textbf{单侧极限}.
 \end{definition}
+左极限与右极限统称为\textbf{单侧极限}.
 
 \begin{theorem}
 函数\(f(x)\)当\(x \to x_0\)时极限存在的充要条件是：其左极限和右极限分别存在且相等，即\[
@@ -473,33 +506,72 @@ x+1, & x>0.
 \end{proof}
 \end{example}
 
-\begin{definition}
-设函数\(f(x)\)当\(\abs{x}\)大于某一正数时有定义.如果存在常数\(A\)，对于任意给定的正数\(\varepsilon\)，总存在正数\(X\)，使得当\(x\)满足不等式\(\abs{x} > X\)时，对应的函数值\(f(x)\)都满足不等式\[
+\subsubsection*{自变量趋于无穷大时函数的极限}
+\begin{definition}\label{definition:极限.函数极限的定义4}
+设函数\(f(x)\)当\(\abs{x}\)大于某一正数时有定义.
+如果存在常数\(A\)，%
+对于任意给定的正数\(\varepsilon\)（不论它多么小），%
+总存在正数\(X\)，%
+使得当\(x\)满足不等式\(\abs{x} > X\)时，%
+对应的函数值\(f(x)\)都满足不等式\[
 \abs{f(x) - A} < \varepsilon,
-\]那么常数\(A\)就叫做\textbf{函数\(f(x)\)当\(x \to \infty\)时的极限}，记作\[
-\lim\limits_{x \to \infty}f(x) = A
-\quad \text{或} \quad
-f(x) \to A \quad (x \to \infty).
+\]那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to \infty\)时的\textbf{极限}”，%
+记作\[
+\lim\limits_{x \to \infty} f(x) = A
+\quad\text{或}\quad
+f(\infty) = A
+\quad\text{或}\quad
+f(x) \to A\ (x \to \infty).
+\]
+\end{definition}
+\cref{definition:极限.函数极限的定义4} 可以简化为：
+\[
+\lim\limits_{x\to\infty} f(x) = A
+\iff
+\forall\varepsilon>0,
+\exists X>0
+\bigl(
+	\abs{x} > X
+	\implies
+	\abs{f(x) - A} < \varepsilon
+\bigr).
+\]
+
+我们只要对\cref{definition:极限.函数极限的定义4} 中的条件稍加改变，%
+就可以得到以下两种不同的极限定义.
+\begin{definition}\label{definition:极限.函数极限的定义5}
+设函数\(f(x)\)在\(x > 0\)时有定义.
+如果存在常数\(A\)，%
+对于任意给定的正数\(\varepsilon\)，%
+总存在正数\(X\)，%
+使得当\(x\)满足不等式\(x > X\)时，%
+对应的函数值\(f(x)\)都满足不等式\[
+\abs{f(x) - A} < \varepsilon,
+\]那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to +\infty\)时的\textbf{极限}”，%
+记作\[
+\lim\limits_{x \to +\infty} f(x) = A
+\quad\text{或}\quad
+f(+\infty) = A
+\quad\text{或}\quad
+f(x) \to A\ (x \to +\infty).
 \]
 \end{definition}
 
-\begin{definition}
-设函数\(f(x)\)在\(x > 0\)时有定义.如果存在常数\(A\)，对于任意给定的正数\(\varepsilon\)，总存在正数\(X\)，使得当\(x\)满足不等式\(x > X\)时，对应的函数值\(f(x)\)都满足不等式\[
+\begin{definition}\label{definition:极限.函数极限的定义6}
+设函数\(f(x)\)在\(x < 0\)时有定义.
+如果存在常数\(A\)，%
+对于任意给定的正数\(\varepsilon\)，%
+总存在正数\(X\)，%
+使得当\(x\)满足不等式\(x < -X\)时，%
+对应的函数值\(f(x)\)都满足不等式\[
 \abs{f(x) - A} < \varepsilon,
-\]那么常数\(A\)就叫做\textbf{函数\(f(x)\)当\(x \to +\infty\)时的极限}，记作\[
-\lim\limits_{x \to +\infty}f(x) = A
-\quad \text{或} \quad
-f(x) \to A \quad (x \to +\infty).
-\]
-\end{definition}
-
-\begin{definition}
-设函数\(f(x)\)在\(x < 0\)时有定义.如果存在常数\(A\)，对于任意给定的正数\(\varepsilon\)，总存在正数\(X\)，使得当\(x\)满足不等式\(x < -X\)时，对应的函数值\(f(x)\)都满足不等式\[
-\abs{f(x) - A} < \varepsilon,
-\]那么常数\(A\)就叫做\textbf{函数\(f(x)\)当\(x \to -\infty\)时的极限}，记作\[
-\lim\limits_{x \to -\infty}f(x) = A
-\quad \text{或} \quad
-f(x) \to A \quad (x \to -\infty).
+\]那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to -\infty\)时的\textbf{极限}”，%
+记作\[
+\lim\limits_{x \to -\infty} f(x) = A
+\quad\text{或}\quad
+f(-\infty) = A
+\quad\text{或}\quad
+f(x) \to A\ (x \to -\infty).
 \]
 \end{definition}
 
@@ -509,7 +581,12 @@ f(x) \to A \quad (x \to -\infty).
 \begin{proof}
 \(\forall\varepsilon>0\)，要证\(\exists X > 0\)，当\(\abs{x}>X\)时，不等式\[
 \abs{\frac{1}{x}-0}<\varepsilon
-\]成立.因这个不等式相当于\(\frac{1}{\abs{x}}<\varepsilon\)或\(\abs{x}>\frac{1}{\varepsilon}\).由此可知，如果取\(X=\frac{1}{\varepsilon}\)，那么当\(\abs{x}>X=\frac{1}{\varepsilon}\)时，不等式\(\abs{\frac{1}{x}-0}<\varepsilon\)成立，这就证明了\(\l \frac{1}{x} = 0\).
+\]成立.
+因这个不等式相当于\(\frac{1}{\abs{x}}<\varepsilon\)或\(\abs{x}>\frac{1}{\varepsilon}\).
+由此可知，如果取\(X=\frac{1}{\varepsilon}\)，%
+那么当\(\abs{x}>X=\frac{1}{\varepsilon}\)时，%
+不等式\(\abs{\frac{1}{x}-0}<\varepsilon\)成立，%
+这就证明了\(\l \frac{1}{x} = 0\).
 \end{proof}
 \end{example}
 
@@ -1301,7 +1378,12 @@ x_n < 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsb + \frac{1}{n!}
 = 3 - \frac{1}{2^{n-1}} < 3,
 \]这就说明数列\(\{x_n\}\)是有界的.
 
-既然数列\(\{x_n\}\)是单调增加的，又是有界的，那么数列\(\{x_n\}\)的极限一定存在，记它的极限值为常数\(e\).再设\(n \leqslant x < n+1\)，则\[
+既然数列\(\{x_n\}\)是单调增加的，%
+又是有界的，%
+那么数列\(\{x_n\}\)的极限一定存在，%
+记它的极限值为常数\(e\).
+
+再设\(n \leqslant x < n+1\)，则\[
 \left(1+\frac{1}{n+1}\right)^n < \left(1+\frac{1}{x}\right)^x < \left(1+\frac{1}{n}\right)^{n+1},
 \]且当\(n\to\infty\)时，\(x\to\infty\)，而\[
 \lim\limits_{n\to\infty}\left(1+\frac{1}{n+1}\right)^n
@@ -1328,13 +1410,8 @@ x_n < 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsb + \frac{1}{n!}
 \end{equation}
 这就说明函数极限\(\lim\limits_{x\to\infty} \left(1+\frac{1}{x}\right)^x\)存在.
 \end{proof}
-
-上面这个例子中提到的数\(e\)是无理数，它的近似值约为2.718.
-
-我们可以定义“以\(e\)为底数的指数函数”为
-\begin{equation}
-e^x \defeq \lim\limits_{n\to\infty} \left(1+\frac{x}{n}\right)^n.
-\end{equation}
+\end{example}
+我们称上面所说的常数\(e\)为“\textbf{欧拉常数} \(e\)”.
 
 另外，利用复合函数的极限运算法则，可得
 \begin{equation}
@@ -1344,12 +1421,10 @@ e^x \defeq \lim\limits_{n\to\infty} \left(1+\frac{x}{n}\right)^n.
 = e.
 \end{equation}
 
-画出函数\(y=\left(1+\frac{1}{x}\right)^x\)（\(x\in(-\infty,-1)\cup(0,+\infty)\)）的图像如\cref{figure:极限.函数(1+1/x)^x的图像}.
-
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=.5]
-% Plot[{E, (1 + 1/x)^x}, {x, -10, 10}, PlotRange -> {0, 10}, AspectRatio -> Automatic, PlotStyle -> {{Dashed, Thin}, Thin}]
+% Mathematica: Plot[{E, (1 + 1/x)^x}, {x, -10, 10}, PlotRange -> {0, 10}, AspectRatio -> Automatic, PlotStyle -> {{Dashed, Thin}, Thin}]
 \begin{axis}[
 xmin=-10,xmax=10,ymin=0,ymax=10,grid=both,width=\textwidth,height=\textwidth,
 xlabel={\(x\)},
@@ -1368,13 +1443,16 @@ y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
 \caption{函数\(y=\left(1+\tfrac{1}{x}\right)^x\)的图像}
 \label{figure:极限.函数(1+1/x)^x的图像}
 \end{figure}
+
+如\cref{figure:极限.函数(1+1/x)^x的图像} 所示，%
+我们可以画出函数\(y=\left(1+\frac{1}{x}\right)^x\ (x<-1 \lor x>0)\)的图像.
 可见，直线\(y=e\)是函数\(y=\left(1+\frac{1}{x}\right)^x\)的图像的水平渐近线.
 另外，易证\[
 \lim\limits_{x\to0^+} \left(1+\frac{1}{x}\right)^x = 1,
-\]\[
+\qquad
 \lim\limits_{x\to1^-} \left(1+\frac{1}{x}\right)^x = +\infty.
 \]
-\end{example}
+
 
 \begin{example}
 求：\(\lim\limits_{x \to \infty}\left(1 - \frac{1}{x}\right)^x\).
@@ -1387,11 +1465,11 @@ y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
 \]
 \end{solution}
 
-画出函数\(y=\left(1-\frac{1}{x}\right)^x\)（\(x\in(-\infty,0)\cup[1,+\infty)\)）的图像如\cref{figure:极限.函数(1-1/x)^x的图像}.
+画出函数\(y=\left(1-\frac{1}{x}\right)^x\ (x<0 \lor x\geqslant1)\)的图像如\cref{figure:极限.函数(1-1/x)^x的图像}.
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=.5]
-% Plot[{1/E, (1 - 1/x)^x}, {x, -10, 10}, PlotRange -> {0, 1}, PlotStyle -> {{Dashed, Thin}, Thin}]
+% Mathematica: Plot[{1/E, (1 - 1/x)^x}, {x, -10, 10}, PlotRange -> {0, 1}, PlotStyle -> {{Dashed, Thin}, Thin}]
 \begin{axis}[
 xmin=-10,xmax=10,ymin=0,ymax=1,grid=both,width=\textwidth,height=\textwidth,
 xlabel={\(x\)},
@@ -1473,6 +1551,23 @@ y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
 \begin{theorem}\label{theorem:极限.函数的柯西极限存在准则}
 函数\(f(x)\)在点\(a\)的极限存在的充要条件是：对于任意给定的正数\(\varepsilon\)，存在正数\(\delta\)，使得当\(0 < \abs{x_1 - a} < \delta\)且\(0 < \abs{x_2 - a} < \delta\)时，就有\(\abs{f(x_1) - f(x_2)} < \varepsilon\).
 \end{theorem}
+
+\section{欧拉常数\texorpdfstring{\(e\)}{e}}
+可以证明，欧拉常数\(e\)是一个无理数，也是一个超越数，它的近似值约为2.718.
+
+我们可以定义“以\(e\)为底数的指数函数”为
+\begin{equation}\label{equation:特殊函数.以e为底数的指数函数的极限定义}
+e^x
+\defeq
+\lim\limits_{n\to\infty} \left(1+\frac{x}{n}\right)^n.
+\end{equation}
+
+我们还可以定义“以\(e\)为底数的对数函数”为
+\begin{equation}\label{equation:特殊函数.以e为底数的对数函数的极限定义}
+\ln x
+\defeq
+\lim\limits_{n\to\infty} n \left( \sqrt[n]{x} - 1 \right).
+\end{equation}
 
 \section{无穷小的比较}
 \subsection{无穷小的比较方法}
@@ -2303,7 +2398,7 @@ m(a) - \varepsilon \leqslant m(x) \leqslant m(a);
 \end{proof}
 \end{example}
 
-\subsection{函数的一致连续性}
+\section{函数的一致连续性}
 \begin{definition}\label{definition:极限.函数的一致连续性}
 设函数\(f(x)\)在区间\(I\)上有定义.
 如果对于任意给定的正数\(\varepsilon\)，%
@@ -2336,13 +2431,13 @@ f \in C_U(I)
 \exists\delta>0,
 \forall x_1,x_2 \in I
 \bigl[
+	\abs{x_1 - x_2} < \delta
+	\implies
 	\abs{f(x_1) - f(x_2)} < \varepsilon
 \bigr];
 \]相反地，有\[
-\begin{split}
-&f \notin C_U(I)
-\iff \\
-&\hbox{\hskip5em}
+f \notin C_U(I)
+\iff
 \exists\varepsilon_0>0,
 \forall\delta>0,
 \exists x_1,x_2 \in I
@@ -2351,53 +2446,72 @@ f \in C_U(I)
 	\land
 	\abs{f(x_1)-f(x_2)}\geqslant\varepsilon_0
 \bigr].
-\end{split}
 \]
 
-需要注意的是，说“函数\(f\)是一致连续的”时一定要讲明定义域.
-某些函数在区间\(I_1\)上不是一致连续的，但在另外的区间\(I_2\)上却一致连续.
+需要注意的是，讲述函数的一致连续性时，一定要讲明它是在哪个区间上一致连续.
+一个函数虽说在区间\(I_1\)上不是一致连续的，但可以在不同的区间\(I_2\)上一致连续.
 
-\begin{example}
+\begin{example}\label{example:极限.无界函数可以是一致连续的}
 证明：函数\(f(x)=x\)在区间\((-\infty,+\infty)\)上是一致连续的.
 \begin{proof}
-因为\(\abs{f(x_1)-f(x_2)}=\abs{x_1-x_2}\)，所以\(\forall\varepsilon>0\)，总可取\(\delta=\varepsilon\)，对于\(\forall x_1,x_2\in\mathbb{R}\)，当\(0<\abs{x_1-x_2}<\delta=\varepsilon\)时，能使不等式\[
+因为\(\abs{f(x_1)-f(x_2)}=\abs{x_1-x_2}\)，%
+所以\(\forall\varepsilon>0\)，%
+总可取\(\delta=\varepsilon\)，%
+对于\(\forall x_1,x_2\in\mathbb{R}\)，%
+当\(0<\abs{x_1-x_2}<\delta=\varepsilon\)时，%
+能使不等式\[
 \abs{f(x_1)-f(x_2)} = \abs{x_1-x_2} < \varepsilon
 \]成立，也就是说\(f(x)\)是一致连续的.
 \end{proof}
 \end{example}
-上例说明，在某区间上无界的函数也可以是一致连续的.
+\cref{example:极限.无界函数可以是一致连续的} 说明：
+无界函数可以是一致连续的.
 
 \begin{example}
 证明：函数\(g(x)=\sin x\)在区间\((-\infty,+\infty)\)上是一致连续的.
 \begin{proof}
-因为\begin{align*}
+因为
+\begin{align*}
 \abs{g(x_1)-g(x_2)}
 &= \abs{\sin x_1 - \sin x_2}
 = 2\abs{\cos\frac{x_1+x_2}{2} \sin\frac{x_1-x_2}{2}} \\
 &\leqslant 2\abs{\sin\frac{x_1-x_2}{2}},
-\end{align*}而当\(\abs{x_1-x_2} \leqslant \pi\)时有\[
+\end{align*}
+而当\(\abs{x_1-x_2} \leqslant \pi\)时有\[
 \abs{\sin\frac{x_1-x_2}{2}} \leqslant \abs{\frac{x_1-x_2}{2}}
-\]成立，所以\(\forall\varepsilon>0\)（设\(\varepsilon<\pi\)），总可取\(\delta=\varepsilon\)，对于\(\forall x_1,x_2\in\mathbb{R}\)，当\(0<\abs{x_1-x_2}<\delta=\varepsilon\)时，能使不等式\[
+\]成立，%
+所以\(\forall\varepsilon>0\)（设\(\varepsilon<\pi\)），%
+总可取\(\delta=\varepsilon\)，%
+对于\(\forall x_1,x_2\in\mathbb{R}\)，%
+当\(0<\abs{x_1-x_2}<\delta=\varepsilon\)时，%
+能使不等式\[
 \abs{g(x_1)-g(x_2)} \leqslant \abs{x_1-x_2} < \varepsilon
-\]成立，也就是说\(g(x)\)是一致连续的.
+\]成立，%
+也就是说\(g(x)\)是一致连续的.
 \end{proof}
 \end{example}
 
 \begin{theorem}\label{theorem:极限.闭区间上连续函数的性质.一致连续函数一定连续}
 如果函数\(f(x)\)在区间\(I\)上一致连续，那么\(f(x)\)在区间\(I\)上连续.
 \begin{proof}
-因为函数\(f(x)\)在区间\(I\)上一致连续，所以有\[
+因为函数\(f(x)\)在区间\(I\)上一致连续，所以有
+\[
 \forall \varepsilon > 0,
 \exists \delta > 0,
 \forall x,x_0 \in I
 \bigl[
-	 \abs{x-x_0}<\delta \implies \abs{f(x)-f(x_0)} < \varepsilon
+	 \abs{x-x_0} < \delta
+	 \implies
+	 \abs{f(x)-f(x_0)} < \varepsilon
 \bigr],
-\]也就是说对\(\forall x_0 \in I\)都有\(\lim\limits_{x \to x_0}f(x) = f(x_0)\)，即\(f(x)\)在区间\(I\)上连续.
+\]
+也就是说对\(\forall x_0 \in I\)都有%
+\(\lim\limits_{x \to x_0} f(x) = f(x_0)\)，%
+即\(f(x)\)在区间\(I\)上连续.
 \end{proof}
 \end{theorem}
 
-\begin{example}
+\begin{example}\label{example:极限.在半开区间连续的函数不一定在该区间上一致连续}
 试证：函数\(f(x) = \frac{1}{x}\)在区间\((0,1]\)上是连续的，但不是一致连续的.
 \begin{proof}
 因为函数\(f(x) = 1/x\)是初等函数，它在区间\((0,1]\)上有定义，所以在\((0,1]\)上是连续的.
@@ -2416,9 +2530,10 @@ x_1 = \frac{1}{n}, \quad x_2 = \frac{1}{n+1},
 \]不符合一致连续的定义，所以\(f(x) = \frac{1}{x}\)在\((0,1]\)上不是一致连续的.
 \end{proof}
 \end{example}
-上例说明，在半开区间连续的函数不一定在该区间上一致连续.
+\cref{example:极限.在半开区间连续的函数不一定在该区间上一致连续} 说明：
+在半开区间连续的函数不一定在该区间上一致连续.
 
-\begin{example}
+\begin{example}\label{example:极限.在开区间上有界且连续的函数不一定在该区间上一致连续}
 证明：函数\(\sin\frac{1}{x}\)在\((0,1)\)上是不一致连续的.
 \begin{proof}
 取\[
@@ -2437,15 +2552,18 @@ s_n,t_n\in(0,1),
 \]这就证明了函数\(\sin\frac{1}{x}\)在\((0,1)\)上不是一致连续的.
 \end{proof}
 \end{example}
-上例说明，在开区间上有界且连续的函数不一定在该区间上一致连续.
+\cref{example:极限.在开区间上有界且连续的函数不一定在该区间上一致连续} 说明：
+在开区间上有界且连续的函数不一定在该区间上一致连续.
 
-\begin{example}
-证明：函数\(h(x)=x \sin x\)在\((-\infty,+\infty)\)上不是一致连续的.
+\begin{example}\label{example:极限.两个一致连续函数的乘积不一定一致连续}
+证明：函数\(h(x) = x \sin x\)在\((-\infty,+\infty)\)上不是一致连续的.
 \end{example}
-上例说明，两个一致连续函数的乘积不一定一致连续.
+\cref{example:极限.两个一致连续函数的乘积不一定一致连续} 说明：
+两个一致连续函数的乘积不一定一致连续.
 
 \begin{theorem}[一致连续函数的四则运算法则]\label{theorem:极限.闭区间上连续函数的性质.一致连续函数的四则运算法则}
-设函数\(f,g \in C_U(I)\)，则\begin{enumerate}
+设函数\(f,g \in C_U(I)\)，则
+\begin{enumerate}
 \item 两个一致连续函数的线性组合也是一致连续的，即\[
 \forall\alpha,\beta\in\mathbb{R} \bigl[ \alpha f + \beta g \in C_U(I) \bigr].
 \]
@@ -2465,7 +2583,8 @@ f \in C[a,b]
 f \in C_U[a,b].
 \]
 \begin{proof}
-用反证法.假设当\(f \in C[a,b]\)时\(f \notin C_U[a,b]\)，那么\[
+用反证法.
+假设当\(f \in C[a,b]\)时\(f \notin C_U[a,b]\)，那么\[
 \exists\delta_0>0,
 \exists\{x_n\},\{y_n\}\subseteq[a,b]
 \bigl[
@@ -2488,17 +2607,29 @@ y_{n_k} \to y_0\in[a,b].
 \end{theorem}
 
 \begin{example}
-设函数\(f(x)\)对于\(\forall x,y \in [a,b]\)，恒有\(\abs{f(x) - f(y)} \leqslant L \abs{x - y}\)，其中常数\(L > 0\)，且\(f(a) \cdot f(b) < 0\).证明：至少有一点\(\xi \in (a,b)\)，使得\(f(\xi) = 0\).
+设函数\(f(x)\)对于\(\forall x,y \in [a,b]\)，%
+恒有\(\abs{f(x) - f(y)} \leqslant L \abs{x - y}\)，%
+其中常数\(L > 0\)，且\(f(a) \cdot f(b) < 0\).
+证明：至少有一点\(\xi \in (a,b)\)，使得\(f(\xi) = 0\).
 \begin{proof}
-因为\(\forall x,y \in [a,b] \implies \abs{f(x) - f(y)} \leqslant L \abs{x - y}\)，对于\(\forall \varepsilon > 0\)，为了使当\(\abs{x - y} < \delta\)时不等式\[
+因为\(\forall x,y \in [a,b] \implies \abs{f(x) - f(y)} \leqslant L \abs{x - y}\)，%
+对于\(\forall \varepsilon > 0\)，%
+为了使当\(\abs{x - y} < \delta\)时不等式\[
 \abs{f(x) - f(y)} \leqslant L \abs{x - y} < \varepsilon
-\]成立，只要\(L \delta = \varepsilon\)或\(\delta = \varepsilon / L\)即可.这说明\(f(x)\)在区间\([a,b]\)上一致连续.再由零点定理可知命题成立.
+\]成立，%
+只要\(L \delta = \varepsilon\)或\(\delta = \varepsilon / L\)即可.
+这说明\(f(x)\)在区间\([a,b]\)上一致连续.
+再由零点定理可知命题成立.
 \end{proof}
 \end{example}
 
 \begin{example}
-试证：若\(f(x)\)在\([a,b]\)上连续，\(a < x_1 < x_2 < \dotsb < x_n < b\)（\(n \geqslant 3\)），则在\((x_1,x_n)\)内至少有一点\(\xi\)，使\[
-f(\xi) = \frac{1}{n} \bigl[ f(x_1) + f(x_2) + \dotsb + f(x_n) \bigr].
+试证：若\(f(x)\)在\([a,b]\)上连续，%
+\(a < x_1 < x_2 < \dotsb < x_n < b \ (n \geqslant 3)\)，%
+则在\((x_1,x_n)\)内至少有一点\(\xi\)，使\[
+f(\xi) = \frac{1}{n} \bigl[
+	f(x_1) + f(x_2) + \dotsb + f(x_n)
+\bigr].
 \]
 \begin{proof}
 根据有界性与最大值最小值定理，因为\(f(x)\)在\([a,b]\)上连续，所以\[
@@ -2514,12 +2645,16 @@ f(\xi) = \frac{1}{n} \bigl[ f(x_1) + f(x_2) + \dotsb + f(x_n) \bigr]
 \end{proof}
 \end{example}
 
-\begin{theorem}\label{theorem:极限.闭区间上连续函数的性质.开区间上的连续函数一致连续的充要条件}
-开区间\(I=(a,b)\)内的连续函数\(f\)一致连续的充要条件是：
+\begin{theorem}\label{theorem:极限.闭区间上连续函数的性质.开区间上的连续函数一致连续的充要条件1}
+设\(f \in C(a,b)\)，%
+则\(f \in C_U(a,b)\)的充要条件是：
 极限\(f(a^+)\)和\(f(b^-)\)都存在.
+\end{theorem}
 
-特别地，若上述开区间\(I=(-\infty,+\infty)\)，那么连续函数\(f\)一致连续的充要条件是：
-极限\(f(+\infty)\)和\(f(-\infty)\)都存在.
+\begin{theorem}\label{theorem:极限.闭区间上连续函数的性质.开区间上的连续函数一致连续的充要条件2}
+设\(f \in C(-\infty,+\infty)\)，%
+则\(f \in C_U(-\infty,+\infty)\)的充要条件是：
+极限\(f(-\infty)\)和\(f(+\infty)\)都存在.
 \end{theorem}
 
 \section{面积原理}
