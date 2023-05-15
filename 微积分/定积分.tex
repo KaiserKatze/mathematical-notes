@@ -308,30 +308,43 @@ f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
 \quad a \leqslant x \leqslant b.
 \]
 \begin{proof}
+我们按\(x\)的取值，分为\(x\in(a,b)\)、\(x=a\)、\(x=b\)三种情况讨论.
+
 若\(x\in(a,b)\)，设\(x + \increment x \in (a,b)\)，则\(\Phi(x)\)在\(x + \increment x\)处的函数值为\[
 \Phi(x + \increment x) = \int_a^{x+\increment x} f(t) \dd{t}.
 \]由此得函数的增量\begin{align*}
-\increment{\Phi}
+\increment\Phi
 &= \Phi(x + \increment x) - \Phi(x) \\
 &= \int_a^{x+\increment x} f(t) \dd{t} - \int_a^x f(t) \dd{t} \\
 &= \int_a^x f(t) \dd{t} + \int_x^{x+\increment x} f(t) \dd{t} - \int_a^x f(t) \dd{t} \\
 &= \int_x^{x+\increment x} f(t) \dd{t}.
 \end{align*}
 再应用积分中值定理，即\(\exists\xi\in( \min\{x,x+\increment x\}, \max\{x,x+\increment x\} )\)，使得\[
-\increment{\Phi} = f(\xi) \increment x.
+\increment\Phi = f(\xi) \increment x.
 \]把上式两端各除以\(\increment x\)，得函数增量与自变量增量的比值\[
-\frac{\increment{\Phi}}{\increment x} = f(\xi).
+\frac{\increment\Phi}{\increment x} = f(\xi).
 \]
 
-由于假设\(f(x)\)在\([a,b]\)上连续，而当\(\increment x\to0\)时，\(\xi \to x\)，因此\[
-\lim\limits_{\increment x\to0} f(\xi) = f(x).
+由于\(f \in C[a,b]\)，而且当\(\increment x\to0\)时\(\xi \to x\)，因此\[
+\lim\limits_{\increment x\to0} \frac{\increment\Phi}{\increment x}
+= \lim\limits_{\increment x\to0} f(\xi)
+= \lim\limits_{\xi \to x} f(\xi)
+= f(x).
 \]
-于是，令\(\increment x\to0\)对上式两端取极限时，左端的极限也应该存在且等于\(f(x)\).这就是说，函数\(\Phi(x)\)的导数存在，并且\[
+这就是说，函数\(\Phi(x)\)的导数存在，并且\[
 \Phi'(x) = f(x).
 \]
 
-若\(x = a\)，取\(\increment x > 0\)，则同理可证\(\Phi'_+(a)=f(a)\)；
-若\(x = b\)，取\(\increment x < 0\)，则同理可证\(\Phi'_-(b)=f(b)\).
+若\(x = a\)，取\(\increment x > 0\)，则同理可证
+\[
+\Phi'_+(a)=f(a).
+\]
+
+若\(x = b\)，取\(\increment x < 0\)，则同理可证
+\[
+\Phi'_-(b)=f(b).
+\qedhere
+\]
 \end{proof}
 \end{theorem}
 
