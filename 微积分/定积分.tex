@@ -98,11 +98,17 @@ S = \sum\limits_{i=1}^n f(\xi_i) \increment x_i,
 
 \subsection{定积分的性质}
 \begin{definition}
-为了以后计算及应用方便起见，对定积分作以下两点补充规定：\begin{enumerate}
-\item 当\(a=b\)时，\(\int_a^b f(x) \dd{x}=0\)；
-\item 当\(a>b\)时，\(\int_a^b f(x) \dd{x}=-\int_b^a{f(x)\dd{x}}\).
-
-由上式可知，交换定积分的上下限时，定积分的绝对值不变而符号相反.
+为了以后计算及应用方便起见，对定积分作以下两点补充规定：
+\begin{enumerate}
+\item 定积分上下限相等时，定积分为零，即
+\begin{equation}\label{equation:定积分.上下限相等的定积分为零}
+    a=b \implies \int_a^b f(x) \dd{x}=0.
+\end{equation}
+\item 交换定积分的上下限，定积分的绝对值不变而符号相反，即
+\begin{equation}\label{equation:定积分.交换上下限改变定积分的符号}
+\int_a^b f(x) \dd{x}
+= - \int_b^a f(x) \dd{x}.
+\end{equation}
 \end{enumerate}
 \end{definition}
 
@@ -391,14 +397,23 @@ F'(x) = F'_1(x) + F'_2(x)
 
 \begin{example}
 计算极限\[
-\lim\limits_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t},
-\]其中\(f\)连续.
+\lim\limits_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t}
+\quad(a\neq0),
+\]其中\(f\)在点\(a\)的邻域内连续.
 \begin{solution}
 显然\[
 \frac{x}{x-a} \int_a^x f(t) \dd{t}
 = \frac{1}{1 - a/x} \int_a^x f(t) \dd{t}.
 \]
-当\(x \to a\)时，\(\int_a^x f(t) \dd{t}\)和\(1 - a/x\)都趋于0；
+
+根据\cref{equation:定积分.上下限相等的定积分为零} 有
+\[
+\lim\limits_{x \to a} \int_a^x f(t) \dd{t} = 0;
+\]
+\[
+\lim\limits_{x \to a} \left( 1 - \frac{a}{x} \right) = 0,
+\]
+
 根据\cref{theorem:定积分.变限积分可导定理}，有\[
 \dv{x} \int_a^x f(t) \dd{t} = f(x);
 \]又有\[
