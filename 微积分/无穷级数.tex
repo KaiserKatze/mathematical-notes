@@ -1047,9 +1047,11 @@ s(x) = \l s_n(x)
 都有关于余项\(r_n(x)\)或部分和\(s_n(x)\)的不等式\[
 \abs{r_n(x)} = \abs{s(x) - s_n(x)} < \varepsilon
 \]成立，%
-则称“函数项级数\(\s u_i(x)\)在区间\(I\)上\textbf{一致收敛}于\(s(x)\)%
-（\(\s u_i(x)\) is \emph{uniformly convergent} to \(s\) for the interval \(I\)）”，%
-或“函数列\(\{s_n(x)\}\)在区间\(I\)上\textbf{一致收敛}于\(s(x)\)”，%
+则称
+函数项级数\(\s u_i(x)\)
+或函数列\(\{s_n(x)\}\)
+“在区间\(I\)上\textbf{一致收敛}于\(s(x)\)%
+（is \emph{uniformly convergent} to \(s\) for the interval \(I\)）”，%
 记为\(u_i(x) \UniformlyConverge s(x)\).
 \end{definition}
 以上函数项级数一致收敛的定义在几何上可解释为：
@@ -1121,6 +1123,7 @@ s_n(x_n) = x_n^n = \frac{1}{2},
 \end{example}
 上例说明了一致收敛性与所讨论的区间有关.
 
+\subsection{魏尔斯特拉斯判别法}
 以上两例都是直接根据定义来判定级数的一致收敛性的，现在介绍一个在实用上较方便的判别法.
 \begin{theorem}[魏尔斯特拉斯判别法]\label{theorem:无穷级数.魏尔斯特拉斯判别法}
 如果函数项级数\(\s u_i(x)\)在区间\(I\)上满足条件\begin{enumerate}
@@ -1161,6 +1164,33 @@ a_{n+1} + a_{n+2} + \dotsb + a_{n+p} < \frac{\varepsilon}{2}.
 \end{proof}
 \end{example}
 
+\subsection{阿贝尔判别法}
+\begin{theorem}[阿贝尔判别法]\label{theorem:无穷级数.阿贝尔判别法}
+如果有
+\begin{enumerate}
+\item 函数项级数\(\s a_i(x)\)在区间\(I\)上一致收敛；
+\item 函数\(b_n(x)\ (n=1,2,\dotsc)\)都有界，且对任意\(x\)组成一个单调序列；
+\end{enumerate}
+那么函数项级数\[
+\s a_i(x) b_i(x)
+\]
+在区间\(I\)上一致收敛.
+\end{theorem}
+
+\subsection{狄利克雷判别法}
+\begin{theorem}[狄利克雷判别法]\label{theorem:无穷级数.狄利克雷判别法}
+如果有
+\begin{enumerate}
+\item 部分和\(\sum\limits_{i=1}^n a_i(x)\)总是有界的；
+\item 序列\(\{b_n(x)\}\)对于任意\(x\)都是单调的，
+且当\(n\to\infty\)时在区间\(I\)上一致地趋于零；
+\end{enumerate}
+那么函数项级数\[
+\s a_i(x) b_i(x)
+\]
+在区间\(I\)上一致收敛.
+\end{theorem}
+
 \subsection{一致收敛级数的基本性质}
 一致收敛级数有如下基本性质.
 \begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质1}
@@ -1190,6 +1220,22 @@ s(x_0) = s_n(x_0) + r_n(x_0)
 \end{property}
 
 \begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质2}
+若函数项级数\(\sum\limits_{n=1}^{\infty} u_n(x)\)在区间\(I\)上内闭一致收敛，且\[
+\lim\limits_{x \to a} u_n(x) = A_n
+\quad(n=1,2,\dotsc),
+\]
+则级数\(\sum\limits_{n=1}^{\infty} A_n\)收敛，且\[
+\lim\limits_{x \to a} \left\{
+	\sum\limits_{n=1}^{\infty} u_n(x)
+\right\}
+= \sum\limits_{n=1}^{\infty} \left\{
+	\vphantom{\sum\limits_{n=1}^{\infty}}
+	\lim\limits_{x \to a} u_n(x)
+\right\}.
+\]
+\end{property}
+
+\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质3}
 \def\s{\sum\limits_{n=1}^{\infty}}
 如果级数\(\s u_n(x)\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，且\(\s u_n(x)\)在区间\([a,b]\)上一致收敛于\(s(x)\)，则级数\(\s u_n(x)\)在\([a,b]\)上可以逐项积分，即\[
 \int_{x_0}^x s(x) \dd{x}
@@ -1216,7 +1262,7 @@ s(x_0) = s_n(x_0) + r_n(x_0)
 \end{proof}
 \end{property}
 
-\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质3}
+\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质4}
 \def\s{\sum\limits_{n=1}^{\infty}}
 如果级数\(\s u_n(x)\)的各项\(u_n(x)\)都具有连续导数\(u'_i(x)\)，且\(\s u_n(x)\)在区间\([a,b]\)上收敛于和\(s(x)\)，它并且级数\(\s u'_n(x)\)在\([a,b]\)上一致收敛，则级数\(\s u_n(x)\)在区间\([a,b]\)上也一致收敛，且可逐项求导，即\[
 s'(x) = \s u'_n(x).
@@ -1224,19 +1270,26 @@ s'(x) = \s u'_n(x).
 \begin{proof}
 由于\(\s u'_n(x)\)在\([a,b]\)上一致收敛，设其和为\(v(x)\)，即\[
 \s u'_n(x) = v(x).
-\]根据\cref{theorem:无穷级数.一致收敛级数的基本性质1} 知，\(v(x)\)在\([a,b]\)上连续.再根据\cref{theorem:无穷级数.一致收敛级数的基本性质2}，级数\(\s u'_n(x)\)可逐项积分，故\[
+\]
+根据\cref{theorem:无穷级数.一致收敛级数的基本性质1} 知，%
+\(v(x)\)在\([a,b]\)上连续.
+再根据\cref{theorem:无穷级数.一致收敛级数的基本性质3}，%
+级数\(\s u'_n(x)\)可逐项积分，故\[
 \int_{x_0}^x v(x) \dd{x}
 = \s \int_{x_0}^x u'_n(x) \dd{x}
 = \s [u_n(x) - u_n(x_0)],
-\]而\(\s u_n(x) = s(x)\)，\(\s u_n(x_0) = s(x_0)\)，故\[
+\]
+而\(\s u_n(x) = s(x)\)，\(\s u_n(x_0) = s(x_0)\)，故\[
 \s [u_n(x) - u_n(x_0)] = s(x) - s(x_0),
-\]从而有\[
+\]
+从而有\[
 \int_{x_0}^x v(x) \dd{x} = s(x) - s(x_0),
-\]其中\(a \leqslant x_0 < x \leqslant b\).上式两端求导，即得关系式\[
+\]
+其中\(a \leqslant x_0 < x \leqslant b\).上式两端求导，即得关系式\[
 v(x) = s'(x).
 \]
 
-根据\cref{theorem:无穷级数.一致收敛级数的基本性质2}，%
+根据\cref{theorem:无穷级数.一致收敛级数的基本性质3}，%
 级数\(\s \int_{x_0}^x u'_n(x) \dd{x}\)在\([a,b]\)上一致收敛，而\[
 \s \int_{x_0}^x u'_n(x) \dd{x} = \s u_n(x) - \s u_n(x_0),
 \]所以\[
@@ -1551,7 +1604,7 @@ a_2 = b_2 c_0 + b_1 c_1 + b_0 c_2, \\
 \subsection{幂级数的和函数的性质}
 \begin{property}\label{theorem:无穷级数.一致收敛的幂级数的性质}
 \def\s{\sum\limits_{n=0}^{\infty}}
-如果幂级数\(\s a_n x^n\)的收敛半径为\(R>0\)，则此级数在\((-R,R)\)内的任一闭区间\([a,b]\)上一致收敛.
+如果幂级数\(\s a_n x^n\)的收敛半径为\(R>0\)，则此级数在\((-R,R)\)内闭一致收敛.
 \end{property}
 进一步还可证明，如果幂级数\(\sum\limits_{n=0}^{\infty} a_n x^n\)在收敛区间的端点收敛，则一致收敛的区间可扩大到包含端点.
 
@@ -1559,7 +1612,11 @@ a_2 = b_2 c_0 + b_1 c_1 + b_0 c_2, \\
 幂级数\(\sum\limits_{i=0}^{\infty} a_i x^i\)的和函数\(s(x)\)在其收敛域\(I\)上连续.
 \end{property}
 
-关于和函数的连续性及逐项可积的结论，由\cref{theorem:无穷级数.一致收敛级数的基本性质1,theorem:无穷级数.一致收敛级数的基本性质2,theorem:无穷级数.一致收敛的幂级数的性质} 立即可得.
+关于和函数的连续性及逐项可积的结论，%
+由\cref{theorem:无穷级数.一致收敛级数的基本性质1,%
+theorem:无穷级数.一致收敛级数的基本性质3,%
+theorem:无穷级数.一致收敛的幂级数的性质}
+立即可得.
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质2}
 幂级数\(\sum\limits_{i=0}^{\infty} a_i x^i\)的和函数\(s(x)\)在其收敛域\(I\)上可积，并有逐项积分公式\[
@@ -1575,7 +1632,8 @@ a_2 = b_2 c_0 + b_1 c_1 + b_0 c_2, \\
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质3}
 \def\s{\sum\limits_{n=0}^{\infty}}
 如果幂级数\(\s a_n x^n\)的收敛半径为\(R>0\)，则其和函数\(s(x)\)在\((-R,R)\)内可导，且有逐项求导公式\[
-s'(x) = \left( \s a_n x^n \right)
+s'(x)
+= \left( \s a_n x^n \right)'
 = \sum\limits_{n=0}^{\infty} (a_n x^n)'
 = \sum\limits_{n=1}^{\infty} n a_n x^{n-1}.
 \]逐项求导后所得到的幂级数与原级数具有相同的收敛半径.
