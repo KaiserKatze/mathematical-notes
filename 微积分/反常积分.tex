@@ -463,7 +463,17 @@ x>Z
 F(x)=\int_a^x f(t) \dd{t}
 \]在\([a,+\infty)\)上有上界，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
 \end{theorem}
+事实上，因为\(f(x)\geqslant0\)，%
+\(F(x)\)在\([a,+\infty)\)上单调增加；
+又因为\(F(x)\)在\([a,+\infty)\)上有上界，%
+故\(F(x)\)在\([a,+\infty)\)上是单调有界的函数.
+按照“区间\([a,+\infty)\)上的单调有界函数\(F(x)\)必有极限\(\lim\limits_{x\to+\infty} F(x)\)”的准则，%
+就可知道极限\[
+\lim\limits_{x\to+\infty} \int_a^x f(t) \dd{t}
+\]存在，即反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
 
+根据 \cref{theorem:定积分.无穷限反常积分的审敛法引理}，%
+对于非负函数的无穷限的反常积分，有以下的比较审敛原理.
 \begin{theorem}[比较审敛原理]\label{theorem:定积分.无穷限反常积分的比较审敛原理}
 设函数\(f(x)\)、\(g(x)\)在区间\([a,+\infty)\)上连续.
 如果\[
@@ -505,6 +515,24 @@ f(x) \geqslant \frac{N}{x} \quad (a \leqslant x < +\infty),
 \]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
 \end{theorem}
 
+\begin{example}\label{example:定积分.高斯积分的收敛性}
+证明：高斯积分\[
+\int_0^{+\infty} e^{-x^2} \dd{x}
+\]收敛.
+\begin{proof}
+因为在区间\([0,+\infty)\)上被积函数\(f(x) = e^{-x^2}\)连续且恒大于零，%
+且极限\[
+\lim\limits_{x\to+\infty} x^2 e^{-x^2}
+= \lim\limits_{x\to+\infty} \frac{x^2}{e^{x^2}}
+\xlongequal{u=x^2} \lim\limits_{u\to+\infty} \frac{u}{e^u}
+= \lim\limits_{u\to+\infty} \frac{1}{e^u}
+= 0,
+\]
+那么根据\cref{theorem:定积分.无穷限反常积分的极限审敛法}，%
+高斯积分\(\int_0^{+\infty} e^{-x^2} \dd{x}\)收敛.
+\end{proof}
+\end{example}
+
 \begin{theorem}\label{theorem:定积分.绝对收敛的无穷限反常积分必收敛}
 设函数\(f(x)\)在区间\([a,+\infty)\)上连续.
 如果反常积分\[
@@ -521,8 +549,11 @@ f(x) \geqslant \frac{N}{x} \quad (a \leqslant x < +\infty),
 设反常积分\(\int_1^{+\infty} f^2(x) \dd{x}\)收敛.
 证明：反常积分\(\int_1^{+\infty} \frac{f(x)}{x} \dd{x}\)绝对收敛.
 \begin{proof}
-因为根据\cref{theorem:不等式.基本不等式1} 有\[
-\frac{\abs{f(x)}}{x} \leqslant \frac{1}{2} \left[
+根据\cref{theorem:不等式.基本不等式1}，%
+在区间\([1,+\infty)\)上有\[
+\abs{\frac{f(x)}{x}}
+= \frac{\abs{f(x)}}{x}
+\leqslant \frac{1}{2} \left[
 	\abs{f(x)}^2 + \frac{1}{x^2}
 \right]
 = \frac{1}{2} f^2(x) + \frac{1}{2x^2}
@@ -743,7 +774,9 @@ G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
 2\int_0^{+\infty} e^{-u^2} \dd{u}
 = \Gamma\left(\frac{1}{2}\right)
 = \sqrt{\pi},
-\]从而\begin{equation}
+\]
+于是我们算得\cref{example:定积分.高斯积分的收敛性} 中的高斯积分的值为
+\begin{equation}
 \int_0^{+\infty} e^{-u^2} \dd{u} = \frac{\sqrt{\pi}}{2}.
 \end{equation}
 \end{enumerate}
