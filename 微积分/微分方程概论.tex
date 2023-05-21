@@ -1587,13 +1587,75 @@ e^x [(-4a+4b) \cos2x + (-4a-4b) \sin2x]
 比较两端同类项系数，有\[
 \left\{ \begin{array}{l}
 	-4a+4b=1, \\
-	-4a-4b=0,
+	-4a-4b=0
+\end{array} \right.
+\quad\text{或}\quad
+\left\{ \begin{array}{l}
+	-a+b=1/4, \\
+	a+b=0,
 \end{array} \right.
 \]
 得\(a = -1/8,
 b = 1/8\).
 因此，所给方程的一个特解为\[
 \hat{y} = \frac{1}{8} e^x (\sin2x - \cos2x).
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(f(x) = \sin x - \int_0^x (x-t) f(t) \dd{t}\)，%
+其中\(f\)是连续函数，求\(f\).
+\begin{solution}
+对\(f\)求导，得\[
+\begin{split}
+f'(x)
+&= \cos x - \dv{x}\left[ x \int_0^x f(t) \dd{t} \right] + \dv{x}\left[\int_0^x t f(t) \dd{t}\right] \\
+&= \cos x - \int_0^x f(t) \dd{t} - x f(x) + x f(x) \\
+&= \cos x - \int_0^x f(t) \dd{t}.
+\end{split}
+\]
+令\(y = \int_0^x f(t) \dd{t}\)，
+得\(y' = f(x)\)，
+\(y'' = f'(x)\).
+于是有微分方程\[
+y'' + y = \cos x.
+\]
+解特征方程\[
+r^2 + 1 = 0
+\]得\(r = \pm\iu\).
+设原方程的特解为\[
+\hat{y} = x(a \cos x + b \sin x),
+\]得\[
+\hat{y}' = (a \cos x + b \sin x)
+			+ x(b \cos x - a \sin x),
+\]\[
+\hat{y}'' = 2(b \cos x - a \sin x)
+			- x(a \cos x + b \sin x).
+\]
+代入原方程，得\[
+2(b \cos x - a \sin x)
+= \cos x,
+\]
+于是\(2b = 1, -2a = 0\)，即\(a=0, b=1/2\)，所以特解为\[
+\hat{y} = \frac{1}{2} x \sin x.
+\]
+那么原方程的通解为\[
+y = C_1 \cos x + C_2 \sin x + \frac{1}{2} x \sin x.
+\]
+那么\[
+f(x) = y'
+= \left( C_2 + \frac{1}{2} x \right) \cos x + \left( \frac{1}{2} - C_1 \right) \sin x,
+\]\[
+\int_0^x (x-t) f(t) \dd{t}
+= -C_1 x + C_2 - \left(\frac{1}{2}x+C_2\right) \cos x + \left(\frac{1}{2}+C_1\right) \sin x.
+\]
+代回题设条件得\[
+\left( C_2 + \frac{1}{2} x \right) \cos x + \left( \frac{1}{2} - C_1 \right) \sin x
+= C_1 x - C_2 + \left(\frac{1}{2} x + C_2\right) \cos x + \left(\frac{1}{2}-C_1\right) \sin x.
+\]
+于是\(C_1 = C_2 = 0\)，因此\[
+f(x) = \frac{1}{2} (x \cos x + \sin x).
 \]
 \end{solution}
 \end{example}
