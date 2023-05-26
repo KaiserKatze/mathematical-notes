@@ -99,11 +99,18 @@
 \label{figure:解析几何.向量的夹角}
 \end{figure}
 
-如果\(\angle(\mat{a},\mat{b}) = 0\)或\(\angle(\mat{a},\mat{b}) = \pi\)，就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{平行}\footnote{%
-如果\(\vec{OA}\)和\(\vec{OB}\)的公共起点\(O\)和终点\(A\)、\(B\)位于同一条直线上，因此两向量平行也称作“两向量\textbf{共线}”.%
+如果\(\angle(\mat{a},\mat{b}) = 0\)或\(\angle(\mat{a},\mat{b}) = \pi\)，%
+就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{平行}\footnote{%
+如果\(\vec{OA}\)和\(\vec{OB}\)的公共起点\(O\)和终点\(A\)、\(B\)位于同一条直线上，%
+因此两向量平行也称作“两向量\textbf{共线}”.
 }”，记作\(\mat{a}\parallel\mat{b}\).
-如果\(\angle(\mat{a},\mat{b}) = \pi/2\)，就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{垂直}”，记作\(\mat{a}\perp\mat{b}\).
-由于零向量与任一向量的夹角\(\theta\)可以在\(0\)到\(\pi\)之间任意取值，因此可以认为零向量与任何向量都平行，也可以认为零向量与任何向量都垂直.
+
+如果\(\angle(\mat{a},\mat{b}) = \pi/2\)，%
+就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{垂直}”，%
+记作\(\mat{a}\perp\mat{b}\).
+由于零向量与任一向量的夹角\(\theta\)可以在\(0\)到\(\pi\)之间任意取值，%
+因此可以认为零向量与任何向量都平行，%
+也可以认为零向量与任何向量都垂直.
 \end{definition}
 
 \begin{definition}
@@ -751,29 +758,34 @@ x_4-x_1 & y_4-y_1 & z_4-z_1
 \end{solution}
 \end{example}
 
-\section{本章总结}
-\begin{table}[ht]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\multicolumn{2}{|c|}{加法} & \multicolumn{2}{c|}{数乘} \\ \hline
-交换律 & \(\mat{a}+\mat{b}=\mat{b}+\mat{a}\) &
-	结合律 & \(\lambda(\mu\mat{a})=\mu(\lambda\mat{a})=(\lambda\mu)\mat{a}\) \\ \hline
-\multirow{2}{*}{结合律} & \multirow{2}{*}{\((\mat{a}+\mat{b})+\mat{c}=\mat{a}+(\mat{b}+\mat{c})\)} &
-	\multirow{2}{*}{分配律} & \((\lambda+\mu)\mat{a}=\lambda\mat{a}+\mu\mat{a}\) \\
- & & & \(\lambda(\mat{a}+\mat{b})=\lambda\mat{a}+\lambda\mat{b}\) \\ \hline
-\multicolumn{2}{|c|}{点乘} & \multicolumn{2}{c|}{叉乘} \\ \hline
-交换律 & \(\mat{a}\cdot\mat{b}=\mat{b}\cdot\mat{a}\) &
-	负交换律 & \(\mat{a}\times\mat{b}=-\mat{b}\times\mat{a}\) \\ \hline
-分配律 & \((\mat{a}+\mat{b})\cdot\mat{c}=\mat{a}\cdot\mat{c}+\mat{b}\cdot{c}\) &
-	分配律 & \((\mat{a}+\mat{b})\times\mat{c}=\mat{a}\times\mat{c}+\mat{b}\times\mat{c}\) \\ \hline
-\multirow{3}{*}{结合律} & \((\lambda\mat{a})\cdot\mat{b}=\lambda(\mat{a}\cdot\mat{b})\) & \multirow{3}{*}{结合律} & \multirow{3}{*}{\((\lambda\mat{a})\times\mat{b}=\mat{a}\times(\lambda\mat{b})=\lambda(\mat{a}\times\mat{b})\)} \\
-	& \(\mat{a}\cdot(\lambda\mat{b})=\lambda(\mat{a}\cdot\mat{b})\) & & \\
-	& \((\lambda\mat{a})\cdot(\mu\mat{b})=\lambda\mu(\mat{a}\cdot\mat{b})\) & & \\
-\hline
-\end{tabular}
-\caption{向量的运算法则}
-\end{table}
+\section{平面坐标变换}
+\subsection{旋转变换}
+设点\(P\)的坐标向量为\((\cos\alpha,\sin\alpha)\)，
+以坐标原点\(O\)为中心，将线段\(OP\)旋转\(\theta\)，
+可以得到一条新的线段\(OQ\)，
+其中点\(Q\)坐标向量可以表示为\((\cos(\alpha+\theta),\sin(\alpha+\theta))\).
+我们还可以利用矩阵将上述关系表示为\[
+\begin{bmatrix}
+	\cos(\alpha+\theta) \\
+	\sin(\alpha+\theta)
+\end{bmatrix}
+= \begin{bmatrix}
+	\cos\theta & -\sin\theta \\
+	\sin\theta & \cos\theta
+\end{bmatrix}
+\begin{bmatrix}
+	\cos\alpha \\
+	\sin\alpha
+\end{bmatrix}.
+\]
+因此我们将矩阵\[
+\begin{bmatrix}
+	\cos\theta & -\sin\theta \\
+	\sin\theta & \cos\theta
+\end{bmatrix}
+\]
+称为“平面旋转算子”.
+
 
 \section{平面直线及其方程}
 \subsection{斜截式方程}
@@ -2298,3 +2310,27 @@ z = r \cos\varphi \\
 \draw[->,ultra thick] (0,0) -- (0,3) node[above]{\(z\)};
 \end{tikzpicture}
 \end{center}
+
+\section{本章总结}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{加法} & \multicolumn{2}{c|}{数乘} \\ \hline
+交换律 & \(\mat{a}+\mat{b}=\mat{b}+\mat{a}\) &
+	结合律 & \(\lambda(\mu\mat{a})=\mu(\lambda\mat{a})=(\lambda\mu)\mat{a}\) \\ \hline
+\multirow{2}{*}{结合律} & \multirow{2}{*}{\((\mat{a}+\mat{b})+\mat{c}=\mat{a}+(\mat{b}+\mat{c})\)} &
+	\multirow{2}{*}{分配律} & \((\lambda+\mu)\mat{a}=\lambda\mat{a}+\mu\mat{a}\) \\
+ & & & \(\lambda(\mat{a}+\mat{b})=\lambda\mat{a}+\lambda\mat{b}\) \\ \hline
+\multicolumn{2}{|c|}{点乘} & \multicolumn{2}{c|}{叉乘} \\ \hline
+交换律 & \(\mat{a}\cdot\mat{b}=\mat{b}\cdot\mat{a}\) &
+	负交换律 & \(\mat{a}\times\mat{b}=-\mat{b}\times\mat{a}\) \\ \hline
+分配律 & \((\mat{a}+\mat{b})\cdot\mat{c}=\mat{a}\cdot\mat{c}+\mat{b}\cdot{c}\) &
+	分配律 & \((\mat{a}+\mat{b})\times\mat{c}=\mat{a}\times\mat{c}+\mat{b}\times\mat{c}\) \\ \hline
+\multirow{3}{*}{结合律} & \((\lambda\mat{a})\cdot\mat{b}=\lambda(\mat{a}\cdot\mat{b})\) & \multirow{3}{*}{结合律} & \multirow{3}{*}{\((\lambda\mat{a})\times\mat{b}=\mat{a}\times(\lambda\mat{b})=\lambda(\mat{a}\times\mat{b})\)} \\
+	& \(\mat{a}\cdot(\lambda\mat{b})=\lambda(\mat{a}\cdot\mat{b})\) & & \\
+	& \((\lambda\mat{a})\cdot(\mu\mat{b})=\lambda\mu(\mat{a}\cdot\mat{b})\) & & \\
+\hline
+\end{tabular}
+\caption{向量的运算法则}
+\end{table}

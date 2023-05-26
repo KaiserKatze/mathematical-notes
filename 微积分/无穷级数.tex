@@ -156,27 +156,19 @@ s_n &= \frac{1}{1\cdot2}+\frac{1}{2\cdot3}+\dotsb+\frac{1}{n(n+1)} \\
 \sin\frac{\pi}{6}+\sin\frac{2\pi}{6}+\dotsb+\sin\frac{n\pi}{6}+\dotsb
 \]的收敛性.
 \begin{solution}
-记\(u_n = \sin\frac{n\pi}{6}\).因为\[
-\begin{split}
-v_n &= 2\sin\frac{\pi}{12} \cdot u_n
-= 2\sin\frac{\pi}{12} \sin\frac{n\pi}{6} \\
-&= \cos(\frac{\pi}{12}-\frac{n\pi}{6}) - \cos(\frac{\pi}{12}+\frac{n\pi}{6}) \\
-&= \cos\frac{\pi-2n\pi}{12} - \cos\frac{\pi+2n\pi}{12},
-\end{split}
+记\(u_n = \sin\frac{n\pi}{6},
+v_n = 2\sin\frac{\pi}{12} \cdot u_n\).
+因为\[
+v_n = \cos\frac{\pi-2n\pi}{12} - \cos\frac{\pi+2n\pi}{12},
 \]\[
-\begin{split}
-\sigma_n &= v_1 + v_2 + \dotsb + v_n \\
-&= \left(\cos\frac{-\pi}{12} - \cos\frac{3\pi}{12}\right)
-	+ \left(\cos\frac{-3\pi}{12} - \cos\frac{5\pi}{12}\right) \\
-	&\qquad+\dotsb+ \left(\cos\frac{\pi-2n\pi}{12} - \cos\frac{\pi+2n\pi}{12}\right) \\
-&= \cos\frac{\pi}{12} - \cos\frac{(2n+1)\pi}{12},
-\end{split}
-\]所以\[
-\begin{split}
-s_n &= \left(2\sin\frac{\pi}{12}\right)^{-1} \cdot \sigma_n \\
-&= \frac{\sqrt{2}}{\sqrt{3}-1} \left[ \frac{\sqrt{3}+1}{2\sqrt{2}} - \cos\frac{(2n+1)\pi}{12} \right] \\
-&= 1+\frac{\sqrt{3}}{2} - \frac{\sqrt{2}}{\sqrt{3}-1} \cos\frac{(2n+1)\pi}{12}.
-\end{split}
+\sigma_n
+= v_1 + v_2 + \dotsb + v_n
+= \cos\frac{\pi}{12} - \cos\frac{(2n+1)\pi}{12},
+\]
+所以\[
+s_n
+= \left(2\sin\frac{\pi}{12}\right)^{-1} \cdot \sigma_n
+= 1+\frac{\sqrt{3}}{2} - \frac{\sqrt{2}}{\sqrt{3}-1} \cos\frac{(2n+1)\pi}{12}.
 \]
 可见\(\lim\limits_{n\to\infty} s_n\)不存在，级数发散.
 \end{solution}
@@ -232,6 +224,23 @@ s_n &= \left(2\sin\frac{\pi}{12}\right)^{-1} \cdot \sigma_n \\
 = 0\)却是收敛的，%
 于是我们还可以看出：
 \color{red}两个发散级数相加（或相减）所得级数可能收敛也可能发散.}
+
+\begin{example}
+已知级数\(\sum\limits_{n=1}^{\infty} (-1)^{n-1} a_n = 2,
+\sum\limits_{n=1}^{\infty} a_{2n-1} = 5\)，%
+求\(\sum\limits_{n=1}^{\infty} a_n\).
+\begin{solution}
+由于\(\sum\limits_{n=1}^{\infty} [a_n + (-1)^{n-1} a_n]
+= 2 \sum\limits_{n=1}^{\infty} a_{2n-1}\)收敛，%
+所以\(\sum\limits_{n=1}^{\infty} a_n\)收敛，且有
+\[
+\sum\limits_{n=1}^{\infty} a_n
+= 2 \sum\limits_{n=1}^{\infty} a_{2n-1}
+- \sum\limits_{n=1}^{\infty} (-1)^{n-1} a_n
+= 10 - 2 = 8.
+\]
+\end{solution}
+\end{example}
 
 \begin{property}\label{theorem:无穷级数.收敛级数性质3}
 在级数中去掉、加上或改变有限项，不会改变级数的收敛性.
