@@ -36,7 +36,7 @@
 必须注意，所谓二重极限存在，是指\(P\opair{x,y}\)以任何方式趋于\(P_0\opair{x_0,y_0}\)时，\(f(x,y)\)都无限接近于\(A\).因此，如果\(P\opair{x,y}\)以某一特殊方式，例如沿着一条定直线或定曲线趋于\(P_0\opair{x_0,y_0}\)时，即使\(f(x,y)\)无限接近于某一确定值，我们还不能由此断定函数的极限存在.
 但是反过来，如果当\(P\opair{x,y}\)以不同方式趋于\(P_0\opair{x_0,y_0}\)时，\(f(x,y)\)趋于不同的值，那么就可以断定这函数的极限不存在.
 
-以上关于二元函数的极限概念，可相应地推广到\(n\)元函数\(u = f(P)\)，即\(u = f(\v{x}{n})\)上去.
+以上关于二元函数的极限概念，可相应地推广到\(n\)元函数\(u = f(P)\)，即\(u = f(\AutoTuple{x}{n})\)上去.
 \begin{definition}
 设\(n\)元函数\(f(\mat{x})\)的定义域为\(D \subseteq \mathbb{R}^n\)，点\(\mat{a}\)是\(D\)的聚点.
 如果存在常数\(A \in \mathbb{R}\)，对于\(\forall\varepsilon>0\)，\(\exists\delta>0\)，使得当\(\mat{x} \in D \cap \mathring{U}(\mat{a},\delta)\)时，都有\[
@@ -267,7 +267,7 @@ f'_y(x,y).
 
 偏导数的概念还可以推广到二元以上的函数.
 \begin{definition}
-设\(n\)元函数\(y=f(\v{x}{n})\)在点\(P\opair{\v{a}{n}}\)的某一邻域内有定义.
+设\(n\)元函数\(y=f(\AutoTuple{x}{n})\)在点\(P\opair{\v{a}{n}}\)的某一邻域内有定义.
 如果极限\[
 \lim\limits_{\increment x_k\to0}
  \frac{f(a_1,\dotsc,a_k+\increment x_k,\dotsc,a_n) - f(a_1,\dotsc,a_k,\dotsc,a_n)}{\increment x_k}
@@ -279,7 +279,7 @@ f'_{x_k}(\v{a}{n}).
 \]
 
 如果函数\(f\)在点\(P\)的某个邻域内每一点处对\(x_k\)的偏导数都存在，且这个偏导函数\[
-f'_{x_k}(\v{x}{n})
+f'_{x_k}(\AutoTuple{x}{n})
 \]在点\(P\)连续，那么称这个偏导数\textbf{连续}.
 \end{definition}
 
@@ -307,7 +307,7 @@ T = \frac{pV}{R}, \qquad \pdv{T}{p} = \frac{V}{R};
 \end{proof}
 \end{example}
 
-我们知道，对一元函数来说，\(\displaystyle\dv{y}{x}\)可看做函数的微分\(\dd{y}\)与自变量的微分\(\dd{x}\)之商.
+我们知道，对一元函数来说，\(\dv{y}{x}\)可看做函数的微分\(\dd{y}\)与自变量的微分\(\dd{x}\)之商.
 而上例表明，偏导数的记号是一个整体记号，不能看作分子与分母之商.
 
 \subsubsection{偏导数的几何意义}
@@ -688,18 +688,12 @@ x \pdv{f}{x} + y \pdv{f}{y} = n f(x,y).
 在前面我们研究了多元函数和一元向量值函数的微分，现在我们同时增加自变量个数和因变量个数，从而定义变换的概念.
 \begin{definition}
 设区域\(D \subseteq \mathbb{R}^n\)，映射\[
-\mat{f}\colon D \to \mathbb{R}^m, \mat{x}=\opair{\v{x}{n}}\mapsto\mat{y}=\opair{y_1,y_2,\dotsc,y_m}
-\]称为从\(n\)维空间\(\mathbb{R}^n\)到\(m\)维空间\(\mathbb{R}^m\)的\DefineConcept{变换}，通常记为\[
+\mat{f}\colon D \to \mathbb{R}^m, \mat{x}=\opair{\AutoTuple{x}{n}}\mapsto\mat{y}=\opair{y_1,y_2,\dotsc,y_m}
+\]称为“从\(\mathbb{R}^n\)到\(\mathbb{R}^m\)的\DefineConcept{变换}”，通常记为\[
 \mat{y} = \mat{f}(\mat{x})
-\quad(\mat{x}\in\mathbb{R}^n,\mat{y}\in\mathbb{R}^m)
-\quad\text{或}\quad
-\left\{ \begin{array}{c}
-y_1 = f_1(\v{x}{n}), \\
-y_2 = f_2(\v{x}{n}), \\
-\hdotsfor{1} \\
-y_m = f_m(\v{x}{n}),
-\end{array} \right.
-\]其中\(D\)称为变换的\textbf{定义域}，%
+\quad(\mat{x}\in\mathbb{R}^n,\mat{y}\in\mathbb{R}^m),
+\]
+其中\(D\)称为变换的\textbf{定义域}，%
 \(\mat{x}\)称为\textbf{自变量}，%
 \(\mat{y}\)称为\textbf{因变量}，%
 \(n\)元函数\(f_1,f_2,\dotsc,f_m\)称为\textbf{分量函数}.
@@ -707,58 +701,37 @@ y_m = f_m(\v{x}{n}),
 
 \subsection{雅克比矩阵}
 \begin{definition}
-如果变换\(\mat{y} = \mat{f}(\mat{x})\)在点\(\mat{x} \in \mathbb{R}^n\)处可微，有\[
-\def\arraystretch{1.5}
-\def\pdvFX#1#2{\pdv{f_{#1}}{x_{#2}} \dd{x_{#2}}}
-\def\eqn#1{\dd{y_{#1}} = \pdvFX{#1}{1} + \pdvFX{#1}{2} + \dotsb + \pdvFX{#1}{n}}
-\left\{ \begin{array}{c}
-\eqn{1}, \\
-\eqn{2}, \\
-\hdotsfor{1} \\
-\eqn{m}.
-\end{array} \right.
-\]显然可以利用一个\(m \times n\)矩阵\[
-\def\arraystretch{1.5}
-\mat{J}
-= \left(
-\begin{bmatrix} \pdv{x_1} \\ \pdv{x_2} \\ \vdots \\ \pdv{x_n} \end{bmatrix}
-\begin{bmatrix} f_1 & f_2 & \dots & f_m \end{bmatrix}
-\right)^T
+如果变换\(\mat{y} = \mat{f}(\mat{x})\)在点\(\mat{x} \in \mathbb{R}^n\)处存在一阶偏导数\[
+J_{ij} = \pdv{f_i}{x_j}
+\quad(i=1,2,\dotsc,m; j=1,2,\dotsc,n),
+\]
+那么称\(m \times n\)矩阵\[
+(J_{ij})_{m \times n}
 = \begin{bmatrix}
-\pdv{f_1}{x_1} & \pdv{f_1}{x_2} & \dots & \pdv{f_1}{x_n} \\
-\pdv{f_2}{x_1} & \pdv{f_2}{x_2} & \dots & \pdv{f_2}{x_n} \\
-\vdots & \vdots & & \vdots \\
-\pdv{f_m}{x_1} & \pdv{f_m}{x_2} & \dots & \pdv{f_m}{x_n} \\
+	J_{11} & J_{12} & \dots & J_{1n} \\
+	J_{21} & J_{22} & \dots & J_{2n} \\
+	\vdots & \vdots & & \vdots \\
+	J_{n1} & J_{n2} & \dots & J_{nn}
 \end{bmatrix},
-\]将\(\mat{y} = \mat{f}(\mat{x})\)的微分形式表示成\[
-\dd{\mat{y}} = \mat{J} \dd{\mat{x}},
-\]其中\[
-\dd{\mat{x}} = \begin{bmatrix}
-\dd{x_1} \\ \dd{x_2} \\ \vdots \\ \dd{x_n}
-\end{bmatrix},
-\qquad
-\dd{\mat{y}} = \begin{bmatrix}
-\dd{y_1} \\ \dd{y_2} \\ \vdots \\ \dd{y_n}
-\end{bmatrix}.
-\]这样的\(m \times n\)矩阵\(\mat{J}\)称为\textbf{雅克比矩阵}.
+\]为“变换\(f\)的\textbf{雅克比矩阵}（Jacobian matrix）”，
+记作\(\dv{\mat{f}}{\mat{x}}\).
 
-特别地，如果\(m = n\)，则把\(n\)阶雅克比矩阵\(\mat{J}\)的行列式\[
-J = \det\mat{J} = {
-\def\arraystretch{1.5}
-\begin{vmatrix}
-\pdv{f_1}{x_1} & \pdv{f_1}{x_2} & \dots & \pdv{f_1}{x_n} \\
-\pdv{f_2}{x_1} & \pdv{f_2}{x_2} & \dots & \pdv{f_2}{x_n} \\
-\vdots & \vdots & & \vdots \\
-\pdv{f_n}{x_1} & \pdv{f_n}{x_2} & \dots & \pdv{f_n}{x_n} \\
-\end{vmatrix}
-}
-\]称为\textbf{雅克比式}，记作\(\displaystyle\jacobi{f_1,f_2,\dotsc,f_n}{\v{x}{n}}\).
+特别地，如果\(m = n\)，则把\(n\)阶雅克比矩阵\((J_{ij})_{m \times n}\)的行列式
+称为“变换\(f\)的\textbf{雅克比式}”，记作\(\jacobi{\AutoTuple{f}{n}}{\AutoTuple{x}{n}}\)，即\[
+\jacobi{\AutoTuple{f}{n}}{\AutoTuple{x}{n}}
+\defeq \begin{vmatrix}
+	J_{11} & J_{12} & \dots & J_{1n} \\
+	J_{21} & J_{22} & \dots & J_{2n} \\
+	\vdots & \vdots & & \vdots \\
+	J_{n1} & J_{n2} & \dots & J_{nn}
+\end{vmatrix}.
+\]
+%@see: https://mathworld.wolfram.com/Jacobian.html
 \end{definition}
-可以说，雅克比矩阵是函数\(\mat{y} = \mat{f}(\mat{x})\)在点\(\mat{x} \in \mathbb{R}^n\)处的\textbf{导数}.
 
 \section{黑森矩阵}
 \begin{definition}
-设函数\(f\colon \mathbb{R}^n \to \mathbb{R}, \mat{x}=\opair{\v{x}{n}} \mapsto y\)在点\(\mat{x} \in \mathbb{R}^n\)处存在二阶偏导数\[
+设函数\(f\colon \mathbb{R}^n \to \mathbb{R}, \mat{x}=\opair{\AutoTuple{x}{n}} \mapsto y\)在点\(\mat{x} \in \mathbb{R}^n\)处存在二阶偏导数\[
 H_{ij} = \pdv[2]{f}{x_i}{x_j}
 \quad(i,j=1,2,\dotsc,n),
 \]那么称\(n\)阶方阵\[
@@ -769,9 +742,8 @@ H_{21} & H_{22} & \dots & H_{2n} \\
 \vdots & \vdots & & \vdots \\
 H_{n1} & H_{n2} & \dots & H_{nn}
 \end{bmatrix}
-\]为函数\(f\)的\textbf{黑森矩阵}（Hessian matrix），%
-记作\(\hessian f(\mat{x})\)或\(\hessian f\)，%
-即\(\laplacian f = (H_{ij})_n\).
+\]为“函数\(f\)的\textbf{黑森矩阵}（Hessian matrix）”，%
+记作\(\hessian f(\mat{x})\)或\(\hessian f\).
 \end{definition}
 
 \section{隐函数的求导公式}
@@ -1261,7 +1233,7 @@ G_x & G_y \\
 \mat{T}\cdot\opair{x-x_0,y-y_0,z-z_0}=0.
 \tag{14}
 \end{gather}
-如果\(\displaystyle\eval{\jacobi{F,G}{y,z}}_M = 0\)，而\(\displaystyle\eval{\jacobi{F,G}{z,x}}_M\)和\(\displaystyle\eval{\jacobi{F,G}{x,y}}_M\)中至少有一个不等于零，我们可得同样的结果.
+如果\(\eval{\jacobi{F,G}{y,z}}_M = 0\)，而\(\eval{\jacobi{F,G}{z,x}}_M\)和\(\eval{\jacobi{F,G}{x,y}}_M\)中至少有一个不等于零，我们可得同样的结果.
 
 \subsection{空间曲线的曲率}
 我们在\cref{section:微分中值定理.曲率} 中研究平面曲线时引入了“曲率”这样一个概念，现在我们将它推广到空间曲线.
@@ -1468,22 +1440,24 @@ f(\vec{O P_0} + t \mat{e}_l) - f(\vec{O P_0})
 = f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)
 \]与\(P\)到\(P_0\)的距离\(\abs{PP_0}=t\)的比值\[
 \frac{f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)}{t}
-\]当\(P\)沿着\(l\)趋于\(P_0\)（即\(t\to0^+\)）时的极限存在，则称此极限为函数\(f(x,y)\)在点\(P_0\)沿方向\(l\)的\textbf{方向导数}，记作\(\displaystyle\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}}\)，即\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}}
+\]当\(P\)沿着\(l\)趋于\(P_0\)（即\(t\to0^+\)）时的极限存在，
+则称此极限为“函数\(f(x,y)\)在点\(P_0\)沿方向\(l\)的\textbf{方向导数}”，
+记作\(\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}}\)，即\[
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}}
 =\lim\limits_{t\to0^+} \frac{f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)}{t}.
 \]
 \end{definition}
 
-从方向导数的定义可知，方向导数\(\displaystyle\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}}\)就是函数\(f(x,y)\)在点\(P_0\opair{x_0,y_0}\)处沿方向\(l\)的变化率.
+从方向导数的定义可知，方向导数\(\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}}\)就是函数\(f(x,y)\)在点\(P_0\opair{x_0,y_0}\)处沿方向\(l\)的变化率.
 若函数\(f(x,y)\)在点\(P_0\opair{x_0,y_0}\)的偏导数存在，那么当\(\mat{e}_l = \mat{i} = \opair{1,0}\)时方向导数存在，且有\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}} = f'_x(x_0,y_0);
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}} = f'_x(x_0,y_0);
 \]当\(\mat{e}_l = \mat{j} = \opair{0,1}\)时方向导数存在，且有\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}} = f'_y(x_0,y_0).
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}} = f'_y(x_0,y_0).
 \]
 
-但反之，若\(\mat{e}_l = \mat{i}\)且\(\displaystyle\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}}\)存在，\(\displaystyle\eval{\pdv{f}{x}}_{\opair{x_0,y_0}}\)未必存在.
+但反之，若\(\mat{e}_l = \mat{i}\)且\(\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}}\)存在，\(\eval{\pdv{f}{x}}_{\opair{x_0,y_0}}\)未必存在.
 例如，函数\(z = \sqrt{x^2+y^2}\)在点\(O\opair{0,0}\)处沿\(l = \mat{i}\)方向的方向导数\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}}
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}}
 = \lim\limits_{t\to0^+} \frac{\sqrt{(0+t)^2+0^2}-\sqrt{0^2+0^2}}{t}
 = \lim\limits_{t\to0^+} \frac{t}{t} = 1,
 \]而偏导数\[
@@ -1495,7 +1469,7 @@ f(\vec{O P_0} + t \mat{e}_l) - f(\vec{O P_0})
 关于方向导数的存在及计算，我们有以下定理.
 \begin{theorem}[充分条件]
 如果函数\(f(x,y)\)在点\(P_0\opair{x_0,y_0}\)可微分，那么函数在该点沿任一方向\(l\)的方向导数存在，且有\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}}
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}}
 =f'_x(x_0,y_0) \cos\alpha + f'_y(x_0,y_0) \cos\beta,
 \]其中\(\cos\alpha\)、\(\cos\beta\)是方向\(l\)的方向余弦.
 \end{theorem}
@@ -1504,11 +1478,11 @@ f(\vec{O P_0} + t \mat{e}_l) - f(\vec{O P_0})
 它在空间一点\(P_0\opair{x_0,y_0,z_0}\)
 沿方向\(\mat{e}_l=\opair{\cos\alpha,\cos\beta,\cos\gamma}\)的
 方向导数为\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0,z_0}}
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0,z_0}}
 =\lim\limits_{t\to0^+} \frac{f(x_0+t\cos\alpha,y_0+t\cos\beta,z_0+t\cos\gamma)-f(x_0,y_0,z_0)}{t}.
 \]
 而且同样可以证明：如果函数\(f(x,y,z)\)在点\(P_0\)处可微分，那么函数\(f(x,y,z)\)在该点沿方向\(\mat{e}_l=\opair{\cos\alpha,\cos\beta,\cos\gamma}\)的方向导数为\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0,z_0}}
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0,z_0}}
 = f'_x(x_0,y_0,z_0) \cos\alpha + f'_y(x_0,y_0,z_0) \cos\beta + f'_z(x_0,y_0,z_0) \cos\gamma.
 \]
 
@@ -1541,7 +1515,7 @@ f'_x(x_0,y_0) \mat{i} + f'_y(x_0,y_0) \mat{j},
 \]这向量称为函数\(f(x,y)\)在点\(P_0\opair{x_0,y_0}\)的\textbf{梯度}，记作\(\grad{f}(x_0,y_0)\)，即\[
 \grad{f}(x_0,y_0)
 = f'_x(x_0,y_0) \mat{i} + f'_y(x_0,y_0) \mat{j},
-\]其中\(\displaystyle\grad = \pdv{x} \mat{i} + \pdv{y} \mat{j}\)称为（二维的）\textbf{向量微分算子}或\textbf{Nabla算子}.
+\]其中\(\grad = \pdv{x} \mat{i} + \pdv{y} \mat{j}\)称为（二维的）\textbf{向量微分算子}或\textbf{Nabla算子}.
 记\[
 \grad{f} = \pdv{f}{x} \mat{i} + \pdv{f}{y} \mat{j}.
 \]
@@ -1550,7 +1524,7 @@ f'_x(x_0,y_0) \mat{i} + f'_y(x_0,y_0) \mat{j},
 \begin{theorem}\label{theorem:多元函数微分法.方向导数与梯度的关系}
 如果函数\(f(x,y)\)在点\(P_0\opair{x_0,y_0}\)可微分，\(\mat{e}_l=\opair{\cos\alpha,\cos\beta}\)是与方向\(\mat{l}\)同向的单位向量，则\begin{equation}
 \begin{split}
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}}
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}}
 &= f'_x(x_0,y_0) \cos\alpha + f'_y(x_0,y_0) \cos\beta \\
 &= \grad{f}(x_0,y_0) \cdot \mat{e}_l
 = \abs{\grad{f}(x_0,y_0)} \cos\theta,
@@ -1561,15 +1535,15 @@ f'_x(x_0,y_0) \mat{i} + f'_y(x_0,y_0) \mat{j},
 特别地，由这关系可知：
 \begin{enumerate}
 \item 当\(\theta=0\)，即\(\mat{e}_l\)和\(\grad{f}(x_0,y_0)\)同向时，函数\(f(x,y)\)增加最快.此时，函数在这个方向的方向导数达到最大值，这个最大值就是梯度的模，即\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}} = \abs{\grad{f}(x_0,y_0)}.
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}} = \abs{\grad{f}(x_0,y_0)}.
 \]这个结果也表示：函数\(f(x,y)\)在一点的梯度\(\grad{f}\)是这样一个向量，它的方向是函数在这点的方向导数取得最大值的方向，它的模就等于方向导数的最大值.
 
 \item 当\(\theta=\pi\)，即\(\mat{e}_l\)和\(\grad{f}(x_0,y_0)\)反向时，函数\((f(x,y)\)减少最快，函数在这个方向的方向导数达到最小值，即\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}} = -\abs{\grad{f}(x_0,y_0)}.
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}} = -\abs{\grad{f}(x_0,y_0)}.
 \]
 
 \item 当\(\theta=\frac{\pi}{2}\)，即\(\mat{e}_l\)和\(\grad{f}(x_0,y_0)\)正交时，函数的变化率为零，即\[
-\eval{\pdv{f}{\mat{l}}}_{\opair{x_0,y_0}} = 0.
+\pdv{f}{\mat{l}}\eval_{\opair{x_0,y_0}} = 0.
 \]
 \end{enumerate}
 
@@ -1601,7 +1575,7 @@ f_x(x_0,y_0,z_0) \mat{i} + f_y(x_0,y_0,z_0) \mat{j} + f_z(x_0,y_0,z_0) \mat{k},
 \]这向量称为函数\(f(x,y,z)\)在点\(P_0\opair{x_0,y_0,z_0}\)的\textbf{梯度}，记作\(\grad{f}(x_0,y_0,z_0)\)，即\[
 \grad{f}(x_0,y_0,z_0)
 = f_x(x_0,y_0) \mat{i} + f_y(x_0,y_0) \mat{j} + f_z(x_0,y_0,z_0) \mat{k},
-\]其中\(\displaystyle\grad = \pdv{x} \mat{i} + \pdv{y} \mat{j} + \pdv{z} \mat{k}\)称为（三维的）\textbf{向量微分算子}或\textbf{Nabla算子}.记\[
+\]其中\(\grad = \pdv{x} \mat{i} + \pdv{y} \mat{j} + \pdv{z} \mat{k}\)称为（三维的）\textbf{向量微分算子}或\textbf{Nabla算子}.记\[
 \grad{f} = \pdv{f}{x} \mat{i} + \pdv{f}{y} \mat{j} + \pdv{f}{z} \mat{k}.
 \]
 \end{definition}
@@ -1927,7 +1901,7 @@ f(2/3,10/27) = -4/729.
 \def\z{\mat{0}}
 
 \begin{theorem}\label{theorem:多元函数微分法.n元函数极值存在的条件}
-设函数\(y = f(\v{x}{n})\)在点\(\X0=(\v{\xi}{n})^T\in\mathbb{R}^n\)的邻域内%
+设函数\(y = f(\AutoTuple{x}{n})\)在点\(\X0=(\v{\xi}{n})^T\in\mathbb{R}^n\)的邻域内%
 存在一阶连续偏导数\(f'_i = \pdv{f}{x_i}\ (i=1,2,\dotsc,n)\)%
 和二阶连续偏导数\(f''_{ij} = \pdv[2]{f}{x_i}{x_j}\ (i,j=1,2,\dotsc,n)\).
 记\(f\)的梯度为\(\grad f(\x) = \left(\pdv{f}{x_1},\pdv{f}{x_2},\dotsc,\pdv{f}{x_n}\right)^T\)，%
@@ -2051,7 +2025,7 @@ f'_y(x,y)+\lambda\varphi'_y(x,y)=0, \\
 \]由这方程组解出\(x,y,\lambda\)，这样得到的\(\opair{x,y}\)就是函数\(f(x,y)\)在附件条件\(\varphi(x,y)=0\)下的可能极值点.
 
 这方法还可以推广到自变量多于两个而条件多于一个的情形.例如，要求函数\[
-f\colon \mathbb{R}^n \to \mathbb{R}, P = \opair{\v{x}{n}} \mapsto u
+f\colon \mathbb{R}^n \to \mathbb{R}, P = \opair{\AutoTuple{x}{n}} \mapsto u
 \]在\(m\)个附加条件\[
 \left\{ \begin{array}{c}
 \varphi_1(P) = 0, \\
@@ -2169,7 +2143,7 @@ M(a,b) = \sum\limits_k [y_k - f(x_k)]^2 = \sum\limits_k [y_k - (a x_k + b)]^2
 
 \def\A{\mat{A}}
 \def\b{\mat{\beta}}
-设\(\A = (a_{ij})_{s \times n} \in M_{s \times n}(\mathbb{R})\)，\(\b = (b_1,b_2,\dotsc,b_s)^T \in \mathbb{R}^s\)，\(\x = (\v{x}{n})^T\)，线性方程组\(\A\x=\b\)无解（即\(\rank(\A,\b)>\rank\A\)）.
+设\(\A = (a_{ij})_{s \times n} \in M_{s \times n}(\mathbb{R})\)，\(\b = (b_1,b_2,\dotsc,b_s)^T \in \mathbb{R}^s\)，\(\x = (\AutoTuple{x}{n})^T\)，线性方程组\(\A\x=\b\)无解（即\(\rank(\A,\b)>\rank\A\)）.
 那么\[
 f(\x) = \abs{\A\x=\b}^2
 = \sum\limits_{i=1}^s (a_{i1} x_1 + a_{i2} x_2 + \dotsb + a_{in} x_n - b_i)^2 > 0.

@@ -7,58 +7,214 @@
 几何图形是由点构成的集合，我们自然地想到能不能用数的集合来代表几何图形.
 这就是解析几何的思想根源.
 
-\section{向量}
-这一节我们首先研究向量的概念，并利用向量给出平面直角坐标系和空间直角坐标系的严格定义.
 
-\subsection{向量的基本概念}
-古人很早就意识到“没有规矩不成方圆\footnote{%
-语出《孟子·离娄章句上》第一节：“离娄之明，公输子之巧，不以规矩，不能成方圆”.}”，%
-即利用圆规确定长短、利用曲尺确定方向，才能够作出各种需要的平面几何图形.
-因此我们需要定义这样一个量：它既有大小，又有方向.
+\section{向量及其线性运算}
+解析几何最基本的方法是坐标法，即建立一个坐标系，使得点可以用有序对或元组来表示，co
+从而可以用方程表示图形，通过方程来研究图形的性质.
+坐标法的优越性在于它利用了数可以进行运算的优点.
+那么，能否把代数运算直接引入几何中来呢？什么样的几何对象能够做运算？
 
+\subsection{向量的概念}
 \begin{definition}
-既有大小又有方向的量，称为\textbf{向量}或\textbf{矢量}（vector）.
+既有大小、又有方向的量，称为\textbf{向量}或\textbf{矢量}（vector）.
 
-通常用黑体字母（如\(\mat{a}\)、\(\mat{r}\)、\(\mat{v}\)、\(\mat{F}\)等），或在字母上面加箭头（如\(\vec{a}\)、\(\vec{r}\)、\(\vec{v}\)、\(\vec{F}\)等）来表记向量.
+与向量相对的，只有大小，没有方向的量，称为\textbf{标量}（scalar
+\footnote{标量的英文scalar的对应的动词scale具有伸缩的意思.
+我们马上会讲到向量与标量相乘的结果还是一个向量；
+只不过当这个标量不为1时，所得的向量与原来的向量相比，大小会发生变化，
+就好像我们对有向线段进行了伸缩变换一样.}）.
+\end{definition}
 
-在几何上，常用一条带箭头的线段（称作\textbf{有向线段}）来表示向量.
-有向线段的长度表示向量的大小，有向线段的方向表示向量的方向.
-如\cref{figure:解析几何.有向线段}，%
-以点\(A\)为起点、点\(B\)为终点的有向线段表示的向量，%
-记作\(\vec{AB}\)；
-它的大小记作\(\abs{\vec{AB}}\).
+我们通常用黑体小写拉丁字母（如\(\mat{a}\)、\(\mat{r}\)、\(\mat{v}\)、\(\mat{F}\)等），
+或在小写拉丁字母上面加箭头（如\(\vec{a}\)、\(\vec{r}\)、\(\vec{v}\)、\(\vec{F}\)等）来表记向量.
 
+对于一个给定的向量\(\mat{a}\)，
+我们也常用“有向线段”\(\vec{AB}\)来表示向量，
+其中用这条线段的长度\(\abs{AB}\)表示\(\mat{a}\)的大小，
+用起点\(A\)到终点\(B\)的指向表示\(\mat{a}\)的方向，
+如\cref{figure:解析几何.有向线段} 所示.
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}
-\draw[->] (0,0)node[left]{\(A\)}-- (3,1)node[right]{\(B\)};
+\begin{tikzpicture}[>=Stealth]
+	\draw[->] (0,0)node[left]{\(A\)}--(3,1)node[right]{\(B\)};
 \end{tikzpicture}
 \caption{有向线段}
 \label{figure:解析几何.有向线段}
 \end{figure}
 
-与向量相对的，只有大小，没有方向的量，称为\textbf{标量}（scalar\footnote{标量的英文scalar的对应的动词scale具有伸缩的意思.我们马上会讲到向量与标量相乘的结果还是一个向量；只不过当这个标量不为1时，所得的向量与原来的向量相比，大小会发生变化，就好像我们对有向线段进行了伸缩变换一样.}）.
-\end{definition}
+规定长度相等、方向相同的有向线段表示同一个向量.
+如\cref{figure:解析几何.有向线段的平移不变性} 所示，
+若有向线段\(\vec{AB}\)表示向量\(\mat{a}\)，
+则\(\vec{AB}\)经过平行移动得到的有向线段\(\vec{CD}\)仍然表示向量\(\mat{a}\)，
+即\(\mat{a} = \vec{AB} = \vec{CD}\).
+换言之，给定两条有向线段，如果其中一条经过平移可以让这两条有向线段的起点和终点分别完全重合，
+那么这两条有向线段表示的是同一个向量.
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+	\draw[dashed] (0,0)--(5,0) (3,1)--(8,1);
+	\draw[->] (0,0)node[left]{\(A\)}--(3,1)node[above left]{\(B\)}node[midway,above left]{\(\mat{a}\)};
+	\draw[->] (5,0)node[below right]{\(C\)}--(8,1)node[right]{\(D\)};
+\end{tikzpicture}
+\caption{}
+\label{figure:解析几何.有向线段的平移不变性}
+\end{figure}
 
-\begin{definition}
-如果两个向量\(\mat{a}\)和\(\mat{b}\)的大小相等，且方向相同，%
-我们就说“向量\(\mat{a}\)和\(\mat{b}\)是\textbf{相等}的”，%
-记作\(\mat{a}=\mat{b}\).
-\end{definition}
-在几何上，我们可以形象地把两个向量相等的现象理解为两条有向线段经过平移以后，两者的起点和终点分别完全重合.
+我们今后把向量的大小称为向量的\textbf{长度}、\textbf{模长}或\textbf{模}，
+记作\(\abs{\mat{a}}\).
 
-\begin{definition}
-向量的大小叫做向量的\textbf{模}.
-\end{definition}
-我们用两条竖线框在向量符号两边，表示该向量的模.
-例如：
-向量\(\vec{AB},\mat{a},\vec{a}\)的模依次记作\(\abs{\vec{AB}},\abs{\mat{a}},\abs{\vec{a}}\).
+如果两个向量\(\mat{a}\)和\(\mat{b}\)的长度相等、方向相同，
+我们就说“向量\(\mat{a}\)和\(\mat{b}\)是\textbf{相等}的”，
+记作\(\mat{a}=\mat{b}\)；
+否则，记\(\mat{a}\neq\mat{b}\).
 
-\begin{definition}
-模等于1的向量叫做\textbf{单位向量}，记作\(\mat{e}\).
-模等于0的向量叫做\textbf{零向量}，记作\(\mat{0}\)或\(\vec{0}\).
-\end{definition}
+长度为零的向量称为\textbf{零向量}，记作\(\mat{0}\).
 看作有向线段时，零向量的起点和终点重合，所以它的方向可以看作是任意的、不确定的.
+相对地，长度不为零的向量称为\textbf{非零向量}.
+
+长度为1的向量称为\textbf{单位向量}，记作\(\mat{e}\).
+任意给定一个向量\(\mat{a}\)，与\(\mat{a}\)同向的单位向量记作\(\mat{a}^0\).
+
+任意给定一个向量\(\mat{a}\)，与\(\mat{a}\)长度相等、方向相反的向量
+称为“\(\mat{a}\)的\textbf{反向量}或\textbf{负向量}”，
+记作\(-\mat{a}\).
+例如，\(\vec{BA}\)是\(\vec{AB}\)的反向量，因此\(\vec{BA} = -\vec{AB}\).
+
+\subsection{向量的加法}
+我们知道，将与点\(A\)重合的点\(P\)移动到点\(B\)再移动到点\(C\)的结果是点\(P\)与点\(C\)重合.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P2 定义1.1
+对于向量\(\mat{a},\mat{b}\)，
+如\cref{figure:解析几何.向量相加的三角形法则} 所示，
+作有向线段\(\vec{AB}\)表示\(\mat{a}\)，
+作有向线段\(\vec{BC}\)表示\(\mat{b}\)，
+把有向线段\(\vec{AC}\)表示的向量\(\mat{c}\)称为
+“向量\(\mat{a}\)与\(\mat{b}\)的\textbf{和}”，
+记作\[
+\vec{AB}+\vec{BC}=\vec{AC}
+\quad\text{或}\quad
+\mat{c}=\mat{a}+\mat{b}.
+\]
+\end{definition}
+由上述公式表示的向量加法规则通常称为“三角形法则”.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[help lines, color=gray!30, dashed] (0,0) grid (5,4);
+\draw [->, ultra thick] (0,0) -- (5,0) node[right]{\(x\)};
+\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
+\coordinate (A) at (1,1);
+\coordinate (B) at (4,2);
+\coordinate (C) at (3,3);
+\begin{scope}[>=Stealth]
+\draw[->] (A)node[left]{\(A\)} -- (B)node[right]{\(B\)}node[midway,below]{\(\mat{a}\)};
+\draw[->] (B) -- (C)node[above]{\(C\)}node[midway,above right]{\(\mat{b}\)};
+\draw[->] (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
+\end{scope}
+\end{tikzpicture}
+\caption{向量加法的三角形法则}
+\label{figure:解析几何.向量相加的三角形法则}
+\end{figure}
+
+向量的加法服从以下运算律：
+\begin{enumerate}
+	\item 结合律，即对于\(\forall \mat{a},\mat{b},\mat{c}\)，有\[
+		(\mat{a}+\mat{b})+\mat{c}
+		= \mat{a}+(\mat{b}+\mat{c}).
+	\]
+
+	\item 交换律，即对于\(\forall \mat{a},\mat{b}\)，有\[
+		\mat{a}+\mat{b} = \mat{b}+\mat{a}.
+	\]
+
+	\item 对于\(\forall \mat{a}\)，有\[
+		\mat{a}+\mat{0}=\mat{a}.
+	\]
+
+	\item 对于\(\forall \mat{a}\)，有\[
+		\mat{a}+(-\mat{a})=\mat{0}.
+	\]
+\end{enumerate}
+这些运算律都可以利用有向线段作图予以证明.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P4 定义1.2
+对于向量\(\mat{a},\mat{b}\)，
+称\(\mat{a}\)与\(\mat{b}\)的负向量\(-\mat{b}\)的和\(\mat{a}+(-\mat{b})\)为
+“向量\(\mat{a}\)与\(\mat{b}\)的\textbf{差}”，记作\(\mat{a}-\mat{b}\)，即\[
+	\mat{a}-\mat{b}
+	\defeq
+	\mat{a}+(-\mat{b}).
+\]
+\end{definition}
+
+\subsection{向量的数量乘法}
+\begin{definition}
+%@see: 《解析几何》（丘维声） P4 定义1.3
+规定：实数\(\lambda\)与向量\(\mat{a}\)的乘积\(\lambda \mat{a}\)还是一个向量，
+它的长度为\[
+\abs{\lambda\mat{a}}
+\defeq
+\abs{\lambda} \abs{\mat{a}},
+\]
+它的方向当\(\lambda>0\)时与\(\mat{a}\)相同，
+当\(\lambda<0\)时与\(\mat{a}\)相反.
+\end{definition}
+
+对于任意向量\(\mat{a}\)，
+由于\(\abs{0 \mat{a}} = 0 \abs{\mat{a}} = 0\)，
+所以\(0 \mat{a} = \mat{0}\).
+同理，对一切实数\(\lambda\)，都有\(\lambda \mat{0} = \mat{0}\).
+
+对于任意非零向量\(\mat{a}\)，
+因为向量\(\abs{\mat{a}}^{-1} \mat{a}\)与\(\mat{a}\)同向，
+且\(\abs{\abs{\mat{a}}^{-1} \mat{a}}
+= \abs{\mat{a}}^{-1} \abs{\mat{a}} = 1\)，
+所以\(\mat{a}^0 = \abs{\mat{a}}^{-1} \mat{a}\).
+像这样，把一个非零向量\(\mat{a}\)乘以它的长度的倒数，
+以得到与它同向的单位向量\(\mat{a}^0\)的过程，称为“把\(\mat{a}\)\textbf{单位化}”.
+
+向量的数量乘法服从以下运算律：
+对于任意向量\(\mat{a},\mat{b}\)和任意实数\(\lambda,\mu\)，有
+\begin{enumerate}
+	\item \(1 \mat{a} = \mat{a}\)；
+	\item \((-1) \mat{a} = -\mat{a}\)；
+	\item \(\lambda(\mu \mat{a}) = (\lambda \mu) \mat{a}\)；
+	\item \((\lambda+\mu) \mat{a} = \lambda \mat{a} + \mu \mat{a}\)；
+	\item \(\lambda (\mat{a}+\mat{b}) = \lambda \mat{a} + \lambda \mat{b}\).
+\end{enumerate}
+
+
+\subsection{共线、共面的向量组}
+
+
+\section{几何空间的线性结构}
+\subsection{向量和点的仿射坐标与直角坐标}
+\subsection{利用坐标实现向量的线性运算}
+\subsection{三点共线的条件}
+\subsection{线段的定比分点}
+
+\section{向量的内积}
+\subsection{射影与分量}
+\subsection{向量的内积的定义与性质}
+\subsection{利用坐标计算向量的内积}
+\subsection{方向角与方向余弦}
+
+\section{向量的外积}
+\subsection{向量的外积的定义}
+\subsection{向量的外积的几何意义、有向平面}
+\subsection{向量的外积的运算规则}
+\subsection{二重外积}
+
+\section{向量的混合积}
+\subsection{向量的混合积的定义、几何意义及性质}
+\subsection{利用坐标计算向量的混合积}
+\subsection{四点共面的条件}
+\subsection{拉格朗日恒等式及其应用}
+\subsection{向量代数在球面三角中的应用}
+
 
 \begin{definition}
 设有两个非零向量\(\mat{a},\mat{b}\).
@@ -118,61 +274,6 @@
 如果它们的公共起点\(O\)和\(k\)个终点都在同一个平面上，则称这\(k\)个向量\textbf{共面}.
 \end{definition}
 
-\subsection{向量的线性运算}
-既然我们说向量与数是相互对应的，自然地就要为向量定义与数类似的四则运算.
-
-\begin{definition}[向量的加法]
-设有两个向量\(\mat{a}\)与\(\mat{b}\)，任取一点\(A\)，作\(\vec{AB}=\mat{a}\)，再以\(B\)为起点，作\(\vec{BC}=\mat{b}\)，连接\(AC\)，那么向量\(\vec{AC}=\mat{c}\)称为向量\(\mat{a}\)与\(\mat{b}\)的\textbf{和}，记作\(\mat{a}+\mat{b}\)，即\[
-\mat{c}=\mat{a}+\mat{b}.
-\]
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\draw[help lines, color=gray!30, dashed] (0,0) grid (5,4);
-\draw [->, ultra thick] (0,0) -- (5,0) node[right]{\(x\)};
-\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
-\coordinate (A) at (1,1);
-\coordinate (B) at (4,2);
-\coordinate (C) at (3,3);
-\draw[->] (A)node[left]{\(A\)} -- (B)node[right]{\(B\)}node[midway,below]{\(\mat{a}\)};
-\draw[->] (B) -- (C)node[above]{\(C\)}node[midway,above right]{\(\mat{b}\)};
-\draw[->] (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
-\end{tikzpicture}
-\caption{向量相加的三角形法则}
-\label{figure:解析几何.向量相加的三角形法则}
-\end{figure}
-\end{definition}
-
-\begin{definition}[负向量]
-设\(\mat{a}\)为一个向量，%
-称与\(\mat{a}\)的模相同而方向相反的向量%
-为“\(\mat{a}\)的\textbf{负向量}”，记作\(-\mat{a}\).
-\end{definition}
-
-\begin{definition}[向量的减法]
-规定两个向量\(\mat{b}\)与\(\mat{a}\)的\textbf{差}为\[
-\mat{b}-\mat{a}=\mat{b}+(-\mat{a}),
-\]即把向量\((-\mat{a})\)加到向量\(\mat{b}\)上，便得\(\mat{b}\)与\(\mat{a}\)的差\(\mat{b}-\mat{a}\).
-
-特别地，当\(\mat{b}=\mat{a}\)时，有\[
-\mat{a}-\mat{a}=\mat{a}+(-\mat{a})=\mat{0}.
-\]
-\end{definition}
-
-\begin{definition}[向量与数的乘法]
-规定：向量\(\mat{a}\)与实数\(\lambda\)的\textbf{乘积}还是一个向量，记作\(\lambda\mat{a}\)；它的模为\[
-\abs{\lambda\mat{a}}=\abs{\lambda}\abs{\mat{a}},
-\]它的方向当\(\lambda>0\)时与\(\mat{a}\)相同，当\(\lambda<0\)时与\(\mat{a}\)相反.
-
-当\(\lambda=0\)时，\(\abs{\lambda\mat{a}}=0\)，即\(\lambda\mat{a}\)为零向量，这是它的方向可以是任意的.
-
-特别地，当\(\lambda=\pm 1\)时，有\[
-1 \mat{a} = \mat{a},
-\qquad
-(-1) \mat{a} = -\mat{a}.
-\]
-\end{definition}
-
 \begin{definition}
 向量相加及数乘向量统称为向量的\textbf{线性运算}.
 \end{definition}
@@ -197,14 +298,12 @@
 数轴\(Ox\)上点\(P\)的坐标为\(x\)的充要条件是：\(\vec{OP}=x\mat{i}\).
 \end{theorem}
 
-\subsection{平面直角坐标系}
 当在平面上引入一个直角坐标系后，平面上的点\(P\)与有序二元实数组\(\opair{x,y}\)之间就建立了一一对应.
 像这样，建立了坐标系的平面称为\textbf{坐标平面}.
 全体实有序对\(\opair{x,y}\)的集合，即\[
 \mathbb{R}^2=\mathbb{R}\times\mathbb{R}=\Set{\opair{x,y} \given x,y\in\mathbb{R}}
 \]就表示坐标平面.
 
-\subsection{空间直角坐标系}
 在空间取定一点\(O\)和三个两两垂直的单位向量\(\mat{i}\)、\(\mat{j}\)、\(\mat{k}\)，%
 就确定了三条都以\(O\)为原点的两两垂直的的数轴，%
 依次记为\(x\)轴（横轴）、\(y\)轴（竖轴）、\(z\)轴（纵轴），%
