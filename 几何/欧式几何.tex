@@ -631,9 +631,65 @@ BC \equiv QR,
 
 现在我们就可以比较角的大小了.
 
-%\begin{theorem}\label{theorem:欧式几何.定理20}
-%\end{theorem}
-% TODO 《几何基础》 P20.
+\begin{theorem}\label{theorem:欧式几何.定理20}
+如\cref{figure:欧式几何.图20}，
+给定任意两个角\(\angle(h,k)\)和\(\angle(p,r)\).
+设迁移\(\angle(h,k)\)到沿着\(p\)，而且在\(p\)的\(r\)侧时，所得到的射线是\(q\)；
+又迁移\(\angle(p,r)\)到沿着\(h\)，而且在\(h\)的\(k\)侧时，所得到的射线是\(l\)；
+这时，若\(q\)在\(\angle(p,r)\)内，则\(l\)在\(\angle(h,k)\)外.
+反之也成立.
+\end{theorem}
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\r}{3}
+		\begin{scope}
+			\draw(0,0)--(\r,0)node[right]{\(h\)};
+			\pgfmathsetmacro{\kx}{\r*cos(45)}
+			\pgfmathsetmacro{\ky}{\r*sin(45)}
+			\draw(0,0)--(\kx,\ky)node[right]{\(k\)};
+			\pgfmathsetmacro{\lx}{\r*cos(60)}
+			\pgfmathsetmacro{\ly}{\r*sin(60)}
+			\draw(0,0)--(\lx,\ly)node[above]{\(l\)};
+		\end{scope}
+		\begin{scope}[xshift=6cm]
+			\draw(0,0)--(\r,0)node[right]{\(p\)};
+			\pgfmathsetmacro{\kx}{\r*cos(45)}
+			\pgfmathsetmacro{\ky}{\r*sin(45)}
+			\draw(0,0)--(\kx,\ky)node[right]{\(q\)};
+			\pgfmathsetmacro{\lx}{\r*cos(60)}
+			\pgfmathsetmacro{\ly}{\r*sin(60)}
+			\draw(0,0)--(\lx,\ly)node[above]{\(r\)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:欧式几何.图20}
+\end{figure}
+
+\begin{definition}
+在\cref{theorem:欧式几何.定理20} 中，
+若\(q\)在\(\angle(p,r)\)内，则称“\(\angle(h,k)\)小于\(\angle(p,r)\)”，记为\(\angle(h,k) < \angle(p,r)\).
+若\(q\)在\(\angle(p,r)\)外，则称“\(\angle(h,k)\)大于\(\angle(p,r)\)”，记为\(\angle(h,k) > \angle(p,r)\).
+\end{definition}
+
+因此，两个角\(\alpha,\beta\)恒恰适合以下三种情形之一：
+\begin{itemize}
+	\item \(\alpha<\beta\)和\(\beta>\alpha\).
+	\item \(\alpha\equiv\beta\).
+	\item \(\alpha>\beta\)和\(\beta<\alpha\).
+\end{itemize}
+
+角的大小的比较有传递性.
+若有下列三种情形
+\begin{itemize}
+	\item \(\alpha>\beta,\beta>\gamma\)，
+	\item \(\alpha>\beta,\beta\equiv\gamma\)，
+	\item \(\alpha\equiv\beta,\beta>\gamma\)，
+\end{itemize}
+之一，则\[
+	\alpha>\gamma.
+\]
 
 \subsection{第四组公理：平行公理}
 \begin{axiom}[平行公理]
