@@ -645,7 +645,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 由于\(\mu>0,\nu>0\)，因此\(1+\mu(1+\nu)\neq0\)，
 从而“三线\(AQ,BR,CP\)共点”等价于“三点\(C,M,P\)共线”，
 等价于\[
-	0 = \begin{vmatrix}
+	0 = \def\arraystretch{1.2} \begin{vmatrix}
 		0 & \frac{1}{1+\mu(1+\nu)} & \frac{\lambda}{1+\lambda} \\
 		1 & \frac{\mu}{1+\mu(1+\nu)} & 0 \\
 		1 & 1 & 1
@@ -659,7 +659,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 利用三线共点的判定定理（切瓦定理）可以证明三角形三条中线相交于一点.
 
 \section{向量的内积}
-关于角度的度量问题如何利用向量来解决？
+关于角的度量问题如何利用向量来解决？
 
 \subsection{射影与分量}
 几何空间\(V\)中，给定一个单位向量\(\mat{e}\)，
@@ -725,6 +725,56 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	\quad\lambda\in\mathbb{R}.
 \end{gather}
 \end{theorem}
+
+\subsection{向量的夹角}
+
+\begin{definition}
+给定两个非零向量\(\mat{a},\mat{b}\).
+如\cref{figure:解析几何.向量的夹角}，
+任取一点\(O\)，作\(\vec{OA}=\mat{a},\vec{OB}=\mat{b}\).
+称\(\angle{AOB}\)为“向量\(\mat{a}\)和\(\mat{b}\)的夹角%
+\footnote{%
+在不强调“由向量\(\mat{a}\)转动到向量\(\mat{b}\)所扫过的角度”时，%
+也就是说当没有规定角度的正负时，%
+两向量间夹角\(\theta\)始终是区间\([0,\pi]\)中的一个值，%
+那么有\(\angle(\mat{a},\mat{b}) \equiv \angle(\mat{b},\mat{a})\)；%
+否则，规定\(\angle(\mat{a},\mat{b}) \equiv -\angle(\mat{b},\mat{a})\).%
+}”，%
+记作\(\angle(\mat{a},\mat{b})\)或\(\angle(\mat{b},\mat{a})\).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\pgfmathsetmacro{\by}{sqrt(3)}
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,0);
+\coordinate (B) at (1,\by);
+\draw[->] (O)node[left]{\(O\)} -- (A)node[right]{\(A\)}node[midway,below]{\(\mat{a}\)};
+\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,above left]{\(\mat{b}\)};
+\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.5,angle radius=4mm]{angle=A--O--B};
+
+\coordinate (O) at (5,0);
+\coordinate (A) at (7,0);
+\coordinate (B) at (4,\by);
+\draw[->] (O)node[left]{\(O\)} -- (A)node[right]{\(A\)}node[midway,below]{\(\mat{a}\)};
+\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,left]{\(\mat{b}\)};
+\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.7,angle radius=3mm]{angle=A--O--B};
+\end{tikzpicture}
+\caption{}
+\label{figure:解析几何.向量的夹角}
+\end{figure}
+
+如果\(\angle(\mat{a},\mat{b}) = 0\)或\(\angle(\mat{a},\mat{b}) = \pi\)，%
+就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{平行}”，记作\(\mat{a}\parallel\mat{b}\).
+
+如果\(\angle(\mat{a},\mat{b}) = \pi/2\)，%
+就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{垂直}”，%
+记作\(\mat{a}\perp\mat{b}\).
+\end{definition}
+
+由于零向量与任一向量的夹角\(\theta\)可以在\(0\)到\(\pi\)之间任意取值，%
+因此可以认为零向量与任何向量都平行，%
+也可以认为零向量与任何向量都垂直.
 
 \subsection{向量的内积的定义与性质}
 \begin{definition}
@@ -1366,56 +1416,6 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 		= \frac{\sin\gamma}{\sin C}.
 	\]
 \end{enumerate}
-
-\begin{definition}
-设有两个非零向量\(\mat{a},\mat{b}\).
-任取空间一点\(O\)，作\(\vec{OA}=\mat{a},\vec{OB}=\mat{b}\).
-规定不超过\(\pi\)的\(\angle{AOB}=\theta\)称为向量\(\mat{a}\)和\(\mat{b}\)的夹角%
-\footnote{%
-“不超过\(\pi\)”也就是夹角\(\theta \in [0,\pi]\).%
-}%
-\footnote{%
-在不强调“由向量\(\mat{a}\)转动到向量\(\mat{b}\)所扫过的角度”时，%
-也就是说当没有规定角度的正负时，%
-两向量间夹角\(\theta\)始终是区间\([0,\pi]\)中的一个值，%
-那么有\(\angle(\mat{a},\mat{b}) \equiv \angle(\mat{b},\mat{a})\)；%
-否则，规定\(\angle(\mat{a},\mat{b}) \equiv -\angle(\mat{b},\mat{a})\).%
-}，%
-记作\(\angle(\mat{a},\mat{b})\)或\(\angle(\mat{b},\mat{a})\)，即\[
-\angle(\mat{a},\mat{b}) \defeq \angle{AOB} = \theta.
-\]
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\pgfmathsetmacro{\by}{sqrt(3)}
-\coordinate (O) at (0,0);
-\coordinate (A) at (2,0);
-\coordinate (B) at (1,\by);
-\draw[->] (O)node[left]{\(O\)} -- (A)node[right]{\(A\)}node[midway,below]{\(\mat{a}\)};
-\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,above left]{\(\mat{b}\)};
-\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.5,angle radius=4mm]{angle=A--O--B};
-
-\coordinate (O) at (5,0);
-\coordinate (A) at (7,0);
-\coordinate (B) at (4,\by);
-\draw[->] (O)node[left]{\(O\)} -- (A)node[right]{\(A\)}node[midway,below]{\(\mat{a}\)};
-\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,left]{\(\mat{b}\)};
-\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.7,angle radius=3mm]{angle=A--O--B};
-\end{tikzpicture}
-\caption{向量的夹角}
-\label{figure:解析几何.向量的夹角}
-\end{figure}
-
-如果\(\angle(\mat{a},\mat{b}) = 0\)或\(\angle(\mat{a},\mat{b}) = \pi\)，%
-就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{平行}”，记作\(\mat{a}\parallel\mat{b}\).
-
-如果\(\angle(\mat{a},\mat{b}) = \pi/2\)，%
-就称“向量\(\mat{a}\)与\(\mat{b}\)\textbf{垂直}”，%
-记作\(\mat{a}\perp\mat{b}\).
-由于零向量与任一向量的夹角\(\theta\)可以在\(0\)到\(\pi\)之间任意取值，%
-因此可以认为零向量与任何向量都平行，%
-也可以认为零向量与任何向量都垂直.
-\end{definition}
 
 在空间取定一点\(O\)和三个两两垂直的单位向量\(\mat{i}\)、\(\mat{j}\)、\(\mat{k}\)，%
 就确定了三条都以\(O\)为原点的两两垂直的的数轴，%
