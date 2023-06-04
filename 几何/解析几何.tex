@@ -3,7 +3,7 @@
 
 在利用函数图像研究初等函数的性质时，我们产生了这么一个观念：
 在平面上建立了平面直角坐标系以后，%
-平面上的点与数（或说由实数\(x\)、\(y\)构成的有序对\(\opair{x,y}\)）是一一对应的.
+平面上的点与数（或说由实数\(x\)、\(y\)构成的有序对\((x,y)\)）是一一对应的.
 几何图形是由点构成的集合，我们自然地想到能不能用数的集合来代表几何图形.
 这就是解析几何的思想根源.
 
@@ -100,22 +100,43 @@
 由上述公式表示的向量加法规则通常称为“三角形法则”.
 
 \begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\draw[help lines, color=gray!30, dashed] (0,0) grid (5,4);
-\draw [->, ultra thick] (0,0) -- (5,0) node[right]{\(x\)};
-\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
-\coordinate (A) at (1,1);
-\coordinate (B) at (4,2);
-\coordinate (C) at (3,3);
-\begin{scope}[>=Stealth]
-\draw[->] (A)node[left]{\(A\)} -- (B)node[right]{\(B\)}node[midway,below]{\(\mat{a}\)};
-\draw[->] (B) -- (C)node[above]{\(C\)}node[midway,above right]{\(\mat{b}\)};
-\draw[->] (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
-\end{scope}
-\end{tikzpicture}
-\caption{向量加法的三角形法则}
-\label{figure:解析几何.向量相加的三角形法则}
+	\centering
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed] (0,0) grid (5,4);
+		\draw [->, ultra thick] (0,0) -- (5,0) node[right]{\(x\)};
+		\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
+		\coordinate (A) at (1,1);
+		\coordinate (B) at (4,2);
+		\coordinate (C) at (3,3);
+		\begin{scope}[>=Stealth,->]
+			\draw (A)node[left]{\(A\)} -- (B)node[right]{\(B\)}node[midway,below]{\(\mat{a}\)};
+			\draw (B) -- (C)node[above]{\(C\)}node[midway,above right]{\(\mat{b}\)};
+			\draw (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{向量加法的三角形法则}
+	\label{figure:解析几何.向量相加的三角形法则}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed] (0,0) grid (6,4);
+		\draw [->, ultra thick] (0,0) -- (6,0) node[right]{\(x\)};
+		\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
+		\coordinate (A) at (2,1);
+		\coordinate (B) at (5,2);
+		\coordinate (C) at (4,3);
+		\coordinate (D) at (1,2);
+		\begin{scope}[>=Stealth,->]
+			\draw (A)node[below]{\(A\)} -- (B)node[midway,below]{\(\mat{a}\)};
+			\draw (A) -- (D)node[midway,left]{\(\mat{b}\)};
+			\draw (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
+		\end{scope}
+		\draw[dashed] (D)node[left]{\(D\)} -- (C)node[above]{\(C\)} -- (B)node[right]{\(B\)};
+	\end{tikzpicture}
+	\caption{向量相加的平行四边形法则}
+	\label{figure:解析几何.向量相加的平行四边形法则}
 \end{figure}
 
 向量的加法服从以下运算律：
@@ -490,6 +511,12 @@ k_1 = k_2 = k_3 = 0.
 向量的坐标等于其终点坐标减去其起点坐标；
 这两句话表明了点的坐标与向量的坐标之间的联系.
 
+必须要注意到：
+虽然点\(M\)与点的向径\(\vec{OM}\)都可以用记号\((x,y,z)^T\)表示，%
+但是它们终归是两个不同的概念，不可混淆.
+因此，在计算前我们必须要注意记号\((x,y,z)^T\)的含义；
+当它表示向量时可以进行运算，当它表示点时就不能进行运算.
+
 \subsection{三点共线的条件}
 \begin{theorem}
 %@see: 《解析几何》（丘维声） P16 命题2.1
@@ -781,7 +808,8 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 %@see: 《解析几何》（丘维声） P26 定义3.1
 给定两个向量\(\mat{a},\mat{b}\)，
 称实数\(\abs{\mat{a}} \abs{\mat{b}} \cos\angle(\mat{a},\mat{b})\)
-为“\(\mat{a}\)与\(\mat{b}\)的\textbf{内积}”，记作\(\mat{a} \cdot \mat{b}\)，即
+为“\(\mat{a}\)与\(\mat{b}\)的\textbf{内积}或\textbf{数量积}”，
+记作\(\mat{a} \cdot \mat{b}\)，即
 \begin{equation}
 	\mat{a} \cdot \mat{b}
 	\defeq
@@ -790,13 +818,22 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 特别地，若\(\mat{a}\)与\(\mat{b}\)中至少有一个是零向量，则\(\mat{a}\cdot\mat{b}=0\).
 \end{definition}
 
-若\(\mat{b}\neq\mat{0}\)，则有\begin{equation}
+若\(\mat{b}\neq\mat{0}\)，则有
+\begin{equation}
 	\mat{a}\cdot\mat{b}
-	= (\mat{a})_{\mat{b}} \abs{\mat{b}}.
+	= (\mat{a})_{\mat{b}} \abs{\mat{b}},
 \end{equation}
+若\(\mat{a}\neq\mat{0}\)，则有
+\begin{equation}
+	\mat{a}\cdot\mat{b}
+	= (\mat{b})_{\mat{a}} \abs{\mat{a}},
+\end{equation}
+由此可见，两向量的内积等于其中一个向量的长度，
+和另一个向量在前者方向上的分量的乘积.
 这表明了向量的内积与分量的关系.
 
-由向量内积的定义式可得\begin{gather}
+由向量内积的定义式可得
+\begin{gather}
 	\abs{\mat{a}} = \sqrt{\mat{a}\cdot\mat{a}}, \\
 	\cos\angle(\mat{a},\mat{b}) = \frac{\mat{a}\cdot\mat{b}}{\abs{\mat{a}} \abs{\mat{b}}},
 	\quad \mat{a}\neq\mat{0},\mat{b}\neq\mat{0}.
@@ -932,7 +969,25 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \]称为“方向\(\mat{a}\)的\textbf{方向角}”；
 把方向角的余弦\(\cos\alpha,\cos\beta,\cos\gamma\)称为
 “方向\(\mat{a}\)的\textbf{方向余弦}”.
-由上可知，\(\mat{a}\)的方向余弦就是与\(\mat{a}\)同向的单位向量\(\mat{a}^0\)的直角坐标，从而有\[
+由上可知，\[
+	\cos\alpha
+	= \frac{\mat{a}\cdot\mat{e}_1}{\abs{\mat{a}}\abs{\mat{e}_1}}
+	= \frac{a_1}{\abs{\mat{a}}},
+	\qquad
+	\cos\beta
+	= \frac{\mat{a}\cdot\mat{e}_2}{\abs{\mat{a}}\abs{\mat{e}_2}}
+	= \frac{a_2}{\abs{\mat{a}}},
+	\qquad
+	\cos\gamma
+	= \frac{\mat{a}\cdot\mat{e}_3}{\abs{\mat{a}}\abs{\mat{e}_3}}
+	= \frac{a_3}{\abs{\mat{a}}},
+\]
+也就是说\(\mat{a}\)的方向余弦就是与\(\mat{a}\)同向的单位向量\(\mat{a}^0\)的直角坐标，即\[
+	(\cos\alpha,\cos\beta,\cos\gamma)^T
+	= \frac{1}{\abs{\mat{a}}} (a_1,a_2,a_3)^T
+	= \frac{1}{\abs{\mat{a}}} \mat{a},
+\]
+从而有\[
 	\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1.
 \]
 
@@ -947,7 +1002,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	= \abs{\mat{a}} \cdot \abs{\mat{b}} \cdot \sin\angle(\mat{a},\mat{b}),
 \end{equation}
 且\(\mat{c}\)与\(\mat{a},\mat{b}\)均垂直，\((\mat{a},\mat{b},\mat{c})\)成右手系，
-则称\(\mat{c}\)为“\(\mat{a}\)与\(\mat{b}\)的\textbf{外积}”，
+则称\(\mat{c}\)为“\(\mat{a}\)与\(\mat{b}\)的\textbf{外积}或\textbf{向量积}”，
 记作\(\mat{a}\times\mat{b}\).
 
 特别地，若\(\mat{a}\)与\(\mat{b}\)中至少有一个是零向量，则\(\mat{a}\times\mat{b}=\mat{0}\).
@@ -1513,356 +1568,6 @@ M
 在\(z\)轴上的点，有\(x=y=0\)；
 坐标原点\(O\)总有\(x=y=z=0\).
 
-\subsection{利用坐标做向量的线性运算}
-利用向量的坐标，可得向量的加法、减法、数乘运算.
-
-设\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，即\[
-\mat{a}=a_x\mat{i}+a_y\mat{j}+a_z\mat{k},
-\qquad
-\mat{b}=b_x\mat{i}+b_y\mat{j}+b_z\mat{k}.
-\]那么，利用向量加法的交换律与结合律以及向量数乘的结合律与分配律，有\[
-\mat{a}+\mat{b}=(a_x+b_x)\mat{i}+(a_y+b_y)\mat{j}+(a_z+b_z)\mat{k},
-\]\[
-\mat{a}-\mat{b}=(a_x-b_x)\mat{i}+(a_y-b_y)\mat{j}+(a_z-b_z)\mat{k},
-\]\[
-\lambda\mat{a}=(\lambda a_x)\mat{i}+(\lambda a_y)\mat{j}+(\lambda a_z)\mat{k}, \quad \lambda\in\mathbb{R},
-\]即\[
-\mat{a}+\mat{b}=\opair{a_x+b_x,a_y+b_y,a_z+b_z},
-\]\[
-\mat{a}-\mat{b}=\opair{a_x-b_x,a_y-b_y,a_z-b_z},
-\]\[
-\lambda\mat{a}=\opair{\lambda a_x,\lambda a_y,\lambda a_z}, \quad \lambda\in\mathbb{R}.
-\]
-由此可见，对向量进行加、减、数乘，只需对向量的各个坐标分别进行相应的数量运算就行了.
-
-\cref{theorem:解析几何.平行定理} 指出，%
-当向量\(\mat{a}\neq\mat{0}\)时，%
-向量\(\mat{b}\parallel\mat{a}\)相当于\(\mat{b}=\lambda\mat{a}\)，%
-坐标表达式为\[
-\opair{b_x,b_y,b_z}=\lambda\opair{a_x,a_y,a_z},
-\]
-这也相当于向量\(\mat{b}\)与\(\mat{a}\)对应的坐标成比例
-\[
-\frac{b_x}{a_x}=\frac{b_y}{a_y}=\frac{b_z}{a_z}. \eqno{(1)}
-\]
-注：当\(a_x\)、\(a_y\)、\(a_z\)有一个为零，例如\(a_x=0\)，\(a_y a_z \neq 0\)，这时(1)式应理解为\[
-b_x = 0 \quad\land\quad \frac{b_y}{a_y}=\frac{b_z}{a_z};
-\]当\(a_x\)、\(a_y\)、\(a_z\)有两个为零，例如\(a_x=a_y=0\)，\(a_z \neq 0\)，这时(1)式应理解为\[
-b_x = b_y = 0.
-\]
-
-必须要注意到：
-虽然点\(M\)与点的向径\(\vec{OM}\)都可以用记号\(\opair{x,y,z}\)表示，%
-但是它们终归是两个不同的概念，不可混淆.
-因此，在计算前我们必须要注意记号\(\opair{x,y,z}\)的含义；
-当它表示向量时可以进行运算，当它表示点时就不能进行运算.
-
-\subsection{向量的模、方向角、投影}
-\subsubsection{模}
-\begin{theorem}
-设向量\(\mat{r} = \opair{x,y,z}\)，那么向量的模的坐标表达式为
-\begin{equation}
-\abs{\mat{r}} = \sqrt{x^2 + y^2 + z^2}.
-\end{equation}
-\begin{proof}
-如\cref{figure:解析几何.向量的坐标分解式}，%
-设\(\vec{OM} = \mat{r}\)，那么有\[
-\mat{r} = \vec{OM}
-= \vec{OP} + \vec{OQ} + \vec{OR}.
-\]
-依据勾股定理可得\[
-\abs{\mat{r}}
-= \abs{OM}
-= \sqrt{\abs{OP}^2+\abs{OQ}^2+\abs{OR}^2}.
-\]
-由\[
-\vec{OP} = x\mat{i}, \qquad
-\vec{OQ} = y\mat{j}, \qquad
-\vec{OR} = z\mat{k},
-\]有\[
-\abs{OP} = \abs{x}, \qquad
-\abs{OQ} = \abs{y}, \qquad
-\abs{OR} = \abs{z},
-\]代入即得.
-\end{proof}
-\end{theorem}
-
-\begin{theorem}
-设点\(A\opair{x_1,y_1,z_1}\)和点\(B\opair{x_2,y_2,z_2}\)，%
-则点\(A\)与点\(B\)间的距离\(\abs{AB}\)就是向量\(\vec{AB}\)的模，即
-\begin{equation}
-\abs{AB}
-= \abs{\vec{AB}}
-= \sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}.
-\end{equation}
-\end{theorem}
-
-\subsubsection{方向角、方向余弦}
-\begin{definition}
-非零向量\(\mat{r}=\opair{x,y,z}\)与三条坐标轴的夹角\(\alpha\)、\(\beta\)、\(\gamma\)%
-称为向量\(\mat{r}\)的\textbf{方向角}，%
-对应的余弦值\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)%
-称为向量\(\mat{r}\)的\textbf{方向余弦}.
-\end{definition}
-
-\begin{theorem}
-\def\r{\abs{\mat{r}}}%
-\def\om{\abs{OM}}%
-非零向量\(\mat{r}=\vec{OM}=\opair{x,y,z}\)的方向余弦为：
-\begin{gather}
-\cos\alpha = \frac{x}{\om} = \frac{x}{\r}, \\
-\cos\beta = \frac{y}{\om} = \frac{y}{\r}, \\
-\cos\gamma = \frac{z}{\om} = \frac{z}{\r}.
-\end{gather}
-
-以\(\mat{r}\)的方向余弦为坐标的向量\[
-\opair{\cos\alpha,\cos\beta,\cos\gamma}
-\]是与\(\mat{r}\)同方向的单位向量\(\mat{e}_r\)，%
-且
-\begin{equation}
-\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1.
-\end{equation}
-\end{theorem}
-
-
-\subsection{数量积、向量积、混合积}
-\subsubsection{数量积}
-\begin{definition}
-设向量\(\mat{a}\)、\(\mat{b}\).
-又设向量\(\mat{a}\)和\(\mat{b}\)的夹角是\(\theta\).
-称实数
-\[
-\abs{\mat{a}}\abs{\mat{b}}\cos\theta
-\]
-为“向量\(\mat{a}\)与\(\mat{b}\)的\textbf{数量积}”，%
-记作\(\mat{a}\cdot\mat{b}\)，%
-即
-\begin{equation}
-\mat{a}\cdot\mat{b} \defeq \abs{\mat{a}}\abs{\mat{b}}\cos\theta.
-\end{equation}
-\end{definition}
-
-由数量积的定义可得：
-当\(\mat{a}\neq\mat{0}\)时，\[
-\mat{a}\cdot\mat{b} = \abs{\mat{a}} \Prj_a\mat{b};
-\]
-当\(\mat{b}\neq\mat{0}\)时，\[
-\mat{a}\cdot\mat{b} = \abs{\mat{b}} \Prj_b\mat{a}.
-\]
-也就是说，两向量的数量积等于其中一个向量的模和另一个向量在前者的方向上的投影的乘积.
-
-\begin{property}
-对于任意向量\(\mat{a}\)，总有：%
-\(\mat{a}\cdot\mat{a} = \abs{\mat{a}}^2\).
-\end{property}
-
-\begin{property}
-对于任意向量\(\mat{a},\mat{b}\)，总有：%
-\(\mat{a}\perp\mat{b} \iff \mat{a}\cdot\mat{b}=0\).
-\end{property}
-
-\begin{theorem}
-设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么
-\begin{equation}
-\mat{a}\cdot\mat{b} = a_x b_x + a_y b_y + a_z b_z.
-\end{equation}
-\end{theorem}
-
-\begin{property}
-非零向量\(\mat{a}\)与\(\mat{b}\)的夹角\(\theta\)满足\begin{equation}
-\cos\theta = \frac{\mat{a}\cdot\mat{b}}{\abs{\mat{a}}\abs{\mat{b}}}.
-\end{equation}
-若设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么\begin{equation}
-\cos\theta = \frac{a_x b_x + a_y b_y + a_z b_z}{\sqrt{a_x^2 + a_y^2 + a_z^2} \sqrt{b_x^2 + b_y^2 + b_z^2}}.
-\end{equation}
-\end{property}
-
-\begin{example}
-在平面直角坐标系下，已知不在同一直线上的三点
-\[
-A\opair{x_1,y_1}, \qquad
-B\opair{x_2,y_2}, \qquad
-C\opair{x_3,y_3}.
-\]
-求\(\triangle ABC\)的面积.
-\begin{solution}
-由\(\vec{AB}=\opair{x_2-x_1,y_2-y_1}\)，\(\vec{AC}=\opair{x_3-x_1,y_3-x_1}\)，可得\begin{align*}
-\cos\angle BAC
-&= \frac{\abs{\vec{AB} \cdot \vec{AC}}}{\abs{\vec{AB}} \abs{\vec{AC}}} \\
-&= \frac{
-\abs{(x_2-x_1)(x_3-x_1)+(y_2-y_1)(y_3-y_1)}
-}{
-\sqrt{(x_2-x_1)^2+(y_2-y_1)^2} \sqrt{(x_3-x_1)^2+(y_3-y_1)^2}
-}, \\
-\sin\angle BAC &= \sqrt{1-(\cos\angle BAC)^2} \\
-&= \sqrt{1-\frac{
-[(x_2-x_1)(x_3-x_1)+(y_2-y_1)(y_3-y_1)]^2
-}{
-[(x_2-x_1)^2+(y_2-y_1)^2][(x_3-x_1)^2+(y_3-y_1)^2]
-}} \\
-&= \frac{
-\abs{(x_2-x_1)(y_3-y_1)-(y_2-y_1)(x_3-x_1)}
-}{
-\sqrt{(x_2-x_1)^2+(y_2-y_1)^2} \sqrt{(x_3-x_1)^2+(y_3-y_1)^2}
-}.
-\end{align*}
-
-那么\begin{align*}
-S_{\triangle ABC} &= \frac{1}{2} b c \sin\angle BAC
-= \frac{1}{2} \abs{\vec{AC}} \abs{\vec{AB}} \sin\angle BAC \\
-&= \frac{1}{2} \abs{(y_3-y_1)(x_2-x_1)-(y_2-y_1)(x_3-x_1)}.
-\end{align*}又因为行列式\[
-\begin{vmatrix}
-x_1 & y_1 & 1 \\
-x_2 & y_2 & 1 \\
-x_3 & y_3 & 1
-\end{vmatrix} = \begin{vmatrix}
-x_1 & y_1 & 1 \\
-x_2-x_1 & y_2-y_1 & 0 \\
-x_3-x_1 & y_3-y_1 & 0
-\end{vmatrix}
-\]按第3列展开后取绝对值就得到上述三角形面积公式，所以\begin{equation}
-S_{\triangle ABC} = \frac{1}{2} \abs{\begin{vmatrix}
-x_1 & y_1 & 1 \\
-x_2 & y_2 & 1 \\
-x_3 & y_3 & 1
-\end{vmatrix}}.
-\end{equation}
-\end{solution}
-\end{example}
-
-\subsubsection{向量积}
-\begin{definition}
-设向量\(\mat{a}\)、\(\mat{b}\)的夹角为\(\theta\).
-定义：如果向量\(\mat{c}\)的模\(\abs{\mat{c}}\)满足
-\begin{equation}
-\abs{\mat{c}} = \abs{\mat{a}}\abs{\mat{b}}\sin\theta,
-\end{equation}
-而\(\mat{c}\)的方向垂直于\(\mat{a}\)和\(\mat{b}\)所决定的平面，%
-\(\mat{c}\)的指向是按\emph{右手规则}%
-从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)来确定的，%
-即当右手的四个手指从\(\mat{a}\)以不超过\(\pi\)的角转向\(\mat{b}\)握拳时，%
-大拇指的朝向就是\(\mat{c}\)的指向，%
-那么称\(\mat{c}\)为\(\mat{a}\)与\(\mat{b}\)的\textbf{向量积}或\textbf{外积}，%
-记作\(\mat{c}=\mat{a}\times\mat{b}\).
-\end{definition}
-
-由向量积的定义可得以下两条简单的性质：
-\begin{property}
-\(\mat{a}\times\mat{a} = \mat{0}\).
-\begin{proof}
-因为向量\(\mat{a}\)与它自己的夹角为\(\theta=0\)，所以\(\abs{\mat{a}\times\mat{a}} = \abs{\mat{a}}^2 \sin0 = 0\).模长为零的向量只有零向量，故\(\mat{a}\times\mat{a} = \mat{0}\).
-\end{proof}
-\end{property}
-一般地，任意两个平行（共线）向量的向量积总是零向量.
-
-\begin{property}
-设\(\mat{a},\mat{b}\)是非零向量，那么\(\mat{a}\parallel\mat{b} \iff \mat{a}\times\mat{b} = \mat{0}\).
-\begin{proof}
-因为\(\mat{a},\mat{b}\)是非零向量，\(\abs{\mat{a}}\neq0\)，\(\abs{\mat{b}}\neq0\)，故由\(\mat{a}\times\mat{b} = \mat{0}\)必有\(\sin\theta=0\)，即\(\theta=0\)或\(\theta=\pi\)，亦即\(\mat{a}\parallel\mat{b}\).反之，如果\(\mat{a}\parallel\mat{b}\)，那么\(\theta=0\)或\(\theta=\pi\)，从而\(\sin\theta=0\)，继而\(\abs{\mat{a}\times\mat{b}}=0\)，即\(\mat{a}\times\mat{b}=\mat{0}\).
-\end{proof}
-\end{property}
-
-\begin{theorem}
-设向量\(\mat{a}=\opair{a_x,a_y,a_z}\)，\(\mat{b}=\opair{b_x,b_y,b_z}\)，那么
-\begin{equation}\label{equation:解析几何.向量积坐标表达式1}
-\mat{a}\times\mat{b}
-= (a_y b_z - a_z b_y) \mat{i}
-	+ (a_z b_x - a_x b_z) \mat{j}
-	+ (a_x b_y - a_y b_x) \mat{k}.
-\end{equation}
-\end{theorem}
-为了方便记忆，\cref{equation:解析几何.向量积坐标表达式1} 可以利用行列式简记为
-\begin{equation}\label{equation:解析几何.向量积坐标表达式2}
-\mat{a}\times\mat{b}
-=
-\begin{vmatrix}
-\mat{i} & \mat{j} & \mat{k} \\
-a_x & a_y & a_z \\
-b_x & b_y & b_z
-\end{vmatrix}
-=
-\mat{i} \begin{vmatrix}
-a_y & a_z \\
-b_y & b_z
-\end{vmatrix}
-- \mat{j} \begin{vmatrix}
-a_x & a_z \\
-b_x & b_z
-\end{vmatrix}
-+ \mat{k} \begin{vmatrix}
-a_x & a_y \\
-b_x & b_y
-\end{vmatrix}.
-\end{equation}
-
-
-\begin{theorem}
-设向量\(\mat{a} = \opair{a_x,a_y,a_z}\)，
-\(\mat{b} = \opair{b_x,b_y,b_z}\)，
-\(\mat{c} = \opair{c_x,c_y,c_z}\)，那么
-\begin{equation}
-\mat{a} \times (\mat{b} \times \mat{c})
-= (\mat{a} \cdot \mat{c}) \mat{b} - (\mat{a} \cdot \mat{b}) \mat{c}.
-\end{equation}
-\end{theorem}
-
-\subsubsection{混合积}
-\begin{definition}
-设向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\).定义混合积：\begin{equation}
-[\ \mat{a}\ \mat{b}\ \mat{c}\ ]
-= (\mat{a}\times\mat{b})\cdot\mat{c}
-= \begin{vmatrix}
-a_x & a_y & a_z \\
-b_x & b_y & b_z \\
-c_x & c_y & c_z
-\end{vmatrix}.
-\end{equation}
-
-向量的混合积的模表示的是以向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)为棱的平行六面体的体积.如果向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)组成右手系，那么混合积的符号为正的；如果\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)组成左手系，那么混合积的符号为负的.
-\end{definition}
-
-\begin{theorem}
-三向量\(\mat{a}\)、\(\mat{b}\)、\(\mat{c}\)共面的充要条件为：\[
-[\ \mat{a}\ \mat{b}\ \mat{c}\ ]
-= (\mat{a}\times\mat{b})\cdot\mat{c}
-= \begin{vmatrix}
-a_x & a_y & a_z \\
-b_x & b_y & b_z \\
-c_x & c_y & c_z
-\end{vmatrix}
-= 0.
-\]
-\end{theorem}
-
-\begin{example}
-已知不在一平面上的四点\[
-A\opair{x_1,y_1,z_1},
-\qquad
-B\opair{x_2,y_2,z_2},
-\qquad
-C\opair{x_3,y_3,z_3},
-\qquad
-D\opair{x_4,y_4,z_4}.
-\]求四面体\(ABCD\)的体积.
-\begin{solution}
-由立体几何知道，四面体的体积\(V\)等于以向量\(\vec{AB}\)、\(\vec{AC}\)和\(\vec{AD}\)为棱的平行六面体的体积的六分之一，因而\[
-V = \frac{1}{6} \abs{ [\ \vec{AB}\ \vec{AC}\ \vec{AD}\ ] }.
-\]
-又因为\begin{align*}
-\vec{AB} = \opair{x_2-x_1,y_2-y_1,z_2-z_1}, \\
-\vec{AC} = \opair{x_3-x_1,y_3-y_1,z_3-z_1}, \\
-\vec{AD} = \opair{x_4-x_1,y_4-y_1,z_4-z_1},
-\end{align*}
-所以\begin{equation}
-V = \frac{1}{6} \abs{ \begin{vmatrix}
-x_2-x_1 & y_2-y_1 & z_2-z_1 \\
-x_3-x_1 & y_3-y_1 & z_3-z_1 \\
-x_4-x_1 & y_4-y_1 & z_4-z_1
-\end{vmatrix} }.
-\end{equation}
-\end{solution}
-\end{example}
 
 \section{平面坐标变换}
 \subsection{旋转变换}
