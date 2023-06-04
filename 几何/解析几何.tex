@@ -352,7 +352,7 @@ k_1 = k_2 = k_3 = 0.
 
 \section{几何空间的线性结构}
 几何空间\(V\)是空间中所有的点组成的集合.
-取一个点\(O\)，以\(O\)为起点的向量称为\textbf{定位向量}.
+取一个点\(O\)，以\(O\)为起点的向量称为“定位向量”.
 所有的定位向量组成的集合与\(V\)有一个一一对应：\(\vec{OM}\)对应于终点\(M\).
 于是\(V\)也可以看成是由所有定位向量组成的集合.
 由于向量\(\vec{OM}\)经过平行移动得到的向量与\(\vec{OM}\)相等，
@@ -369,6 +369,40 @@ k_1 = k_2 = k_3 = 0.
 \end{theorem}
 \cref{theorem:解析几何.向量可由基线性表出} 给出了几何空间\(V\)的线性结构.
 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\coordinate(O)at(0,0);
+		\coordinate(P)at(-1,-1);
+		\coordinate(H)at(-1,1.2);
+		\coordinate(N)at(2,-1);
+		\coordinate(M)at(2,1.2);
+		\coordinate(R)at(0,2.2);
+		\coordinate(K)at(3,2.2);
+		\coordinate(Q)at(3,0);
+		\draw[dashed] (O)--(P) (O)--(Q) (O)--(R);
+		\draw (P)--(N)--(M)--(H)--(P)
+			(H)--(R)--(K)--(Q)--(N)
+			(K)--(M);
+		\begin{scope}[->]
+			\draw(P)--+(-.5,-.5)node[below left]{\(x\)};
+			\draw(Q)--+(.5,0)node[right]{\(y\)};
+			\draw(R)--+(0,.5)node[left]{\(z\)};
+		\end{scope}
+		\draw[dashed,>=Stealth,->](O)--(M);
+		\draw(O)node[below]{\(O\)};
+		\draw(P)node[below]{\(P\)};
+		\draw(H)node[left]{\(H\)};
+		\draw(N)node[below]{\(N\)};
+		\draw(M)node[right]{\(M\)};
+		\draw(R)node[left]{\(R\)};
+		\draw(K)node[right]{\(K\)};
+		\draw(Q)node[below]{\(Q\)};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.向量的坐标分解}
+\end{figure}
+
 \begin{definition}
 %@see: 《解析几何》（丘维声） P13 定义2.1
 几何空间\(V\)中任意三个有次序的不共面的向量
@@ -379,7 +413,7 @@ k_1 = k_2 = k_3 = 0.
 \mat{m} = x \mat{d}_1 + y \mat{d}_2 + z \mat{d}_3,
 \]
 则把三元组\((x,y,z)\)称为
-“\(\mat{m}\)在基\(\mat{d}_1,\mat{d}_2,\mat{d}_3\)下的\textbf{坐标}”，记作\[
+“\(\mat{m}\)（在基\(\mat{d}_1,\mat{d}_2,\mat{d}_3\)下）的\textbf{坐标}”，记作\[
 \begin{bmatrix} x \\ y \\ z \end{bmatrix}
 \quad\text{或}\quad
 (x,y,z)^T.
@@ -395,14 +429,16 @@ k_1 = k_2 = k_3 = 0.
 记作\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)；
 称点\(O\)为\textbf{原点}.
 对于几何空间中任意一点\(M\)，
-把它的定位向量\(\vec{OM}\)在基\(\mat{d}_1,\mat{d}_2,\mat{d}_3\)下的坐标称为
-“点\(M\)在仿射标架\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)中的坐标”.
+把有向线段\(\vec{OM}\)代表的向量称为“点\(M\)的\textbf{定位向量}或\textbf{向径}或\textbf{位矢}”，
+把\(\vec{OM}\)（在基\(\mat{d}_1,\mat{d}_2,\mat{d}_3\)下）的坐标称为
+“点\(M\)（在仿射标架\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)中）的坐标”.
 \end{definition}
 
-根据定义可知，点\(M\)在\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)中的坐标为\((x,y,z)^T\)的充要条件是：
+根据定义可知，点与它的定位向量有相同的坐标；
+也就是说，点\(M\)在\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)中的坐标为\((x,y,z)^T\)的充要条件是：
 \(\vec{OM} = x \mat{d}_1 + y \mat{d}_2 + z \mat{d}_3\).
-以后我们把向量\(\mat{m}\)在基\(\mat{d}_1,\mat{d}_2,\mat{d}_3\)下的坐标也称为
-“\(\mat{m}\)在仿射标架\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)中的坐标”.
+以后我们把向量\(\mat{m}\)（在基\(\mat{d}_1,\mat{d}_2,\mat{d}_3\)下）的坐标也称为
+“\(\mat{m}\)（在仿射标架\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)中）的坐标”.
 
 在几何空间中取定了一个仿射标架后，
 根据\cref{theorem:解析几何.向量可由基线性表出}，
@@ -523,7 +559,7 @@ k_1 = k_2 = k_3 = 0.
 这两句话表明了点的坐标与向量的坐标之间的联系.
 
 必须要注意到：
-虽然点\(M\)与点的向径\(\vec{OM}\)都可以用记号\((x,y,z)^T\)表示，%
+虽然点\(M\)与其定位向量\(\vec{OM}\)都可以用记号\((x,y,z)^T\)表示，%
 但是它们终归是两个不同的概念，不可混淆.
 因此，在计算前我们必须要注意记号\((x,y,z)^T\)的含义；
 当它表示向量时可以进行运算，当它表示点时就不能进行运算.
