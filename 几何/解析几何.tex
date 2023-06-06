@@ -974,7 +974,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 在直角坐标系中，两个向量的内积等于它们的对应坐标的乘积之和，即
 \begin{equation}
 	\mat{a}\cdot\mat{b}
-	= a_1 b_1 + a_2 b_2 + a_3 b_3,
+	= a_1 b_1 y + a_2 b_2 + a_3 b_3,
 \end{equation}
 其中\(\mat{a}=(a_1,a_2,a_3)^T\)，\(\mat{b}=(b_1,b_2,b_3)^T\).
 \end{theorem}
@@ -1666,10 +1666,125 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 即\(ABCD\neq0\)，则此平面与三根坐标轴均相交，且交点不是原点.
 
 \subsubsection{两平面的相关位置}
+两平面的相关位置有三种可能情形：
+\begin{enumerate}
+	\item 相交于一直线；
+	\item 平行；
+	\item 重合.
+\end{enumerate}
+如何从两平面的方程判断它们属于何种情形呢？
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P51 定理1.3
+取定一个仿射标架，设两个平面的方程分别是\[
+	\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0,
+\]\[
+	\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0,
+\]
+则\begin{enumerate}
+	\item \(\alpha_1\)与\(\alpha_2\)相交的充要条件是：
+	两个平面的方程的一次项系数不成比例，即\[
+		\forall k \in \mathbb{R}:
+		(A_2,B_2,C_2) \neq k (A_1,B_1,C_1).
+	\]
+	\item \(\alpha_1\)与\(\alpha_2\)平行的充要条件是：
+	两个平面的方程的一次项系数成比例，但常数项不与这些系数成比例，即\[
+		\exists k \in \mathbb{R}^*:
+		(A_2,B_2,C_2) = k (A_1,B_1,C_1).
+	\]
+	\item \(\alpha_1\)与\(\alpha_2\)重合的充要条件是：
+	两个平面的方程的所有系数成比例，即\[
+		\exists k \in \mathbb{R}^*:
+		(A_2,B_2,C_2,D_2) = k (A_1,B_1,C_1,D_1).
+	\]
+\end{enumerate}
+\end{theorem}
 
 \subsubsection{三平面恰交于一点的条件}
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P52 命题1.1
+设三个平面在仿射坐标系中的方程分别为\[
+	\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0,
+\]\[
+	\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0,
+\]\[
+	\alpha_3: A_3 x + B_3 y + C_3 z + D_3 = 0,
+\]
+则这三个平面恰交于一点的充要条件是\[
+	\begin{vmatrix}
+		A_1 & B_1 & C_1 \\
+		A_2 & B_2 & C_2 \\
+		A_3 & B_3 & C_3
+	\end{vmatrix}
+	\neq 0.
+\]
+\end{theorem}
 
 \subsubsection{有轴平面束}
+几何空间中，经过同一条直线\(l\)的所有平面组成的集合，
+称为\textbf{有轴平面束}，简称\textbf{平面束}；
+直线\(l\)称为“平面束的\textbf{轴}”.
+
+在仿射坐标系中，设相交于直线\(l\)的两个平面的方程分别为\[
+	\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0,
+\]\[
+	\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0,
+\]
+现在我们来研究经过直线\(l\)的平面的方程.
+假设平面\(\alpha\)是经过直线\(l\)的任意一个平面.
+在平面\(\alpha\)上取一个不在直线\(l\)上的点\(P_0(x_0,y_0,z_0)\)，
+那么有\(\neg(P_0 \in \alpha_1 \land P_0 \in \alpha_2)\)成立，
+也就是说\(P_0 \notin \alpha_1 \lor P_0 \notin \alpha_2\)，
+从而\[
+	A_1 x_0 + B_1 y_0 + C_1 z_0 + D_1 \neq 0
+	\lor
+	A_2 x_0 + B_2 y_0 + C_2 z_0 + D_2 \neq 0.
+\]
+记\[
+	\lambda = A_2 x_0 + B_2 y_0 + C_2 z_0 + D_2, \qquad
+	\mu = -(A_1 x_0 + B_1 y_0 + C_1 z_0 + D_1),
+\]
+显然\(\lambda,\mu\)不全为零，于是方程
+\begin{equation}\label{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+	\lambda	(A_1 x + B_1 y + C_1 z + D_1)
+	+ \mu	(A_2 x + B_2 y + C_2 z + D_2) = 0
+\end{equation}
+是三元一次方程，它表示一个平面.
+把\(P_0\)的坐标代入方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+左边可得\(\lambda(-\mu)+\mu\lambda=0\)，
+因此点\(P_0\)在方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程} 表示的平面上.
+直线\(l\)上任一点的坐标同时适合\(\alpha_1,\alpha_2\)的方程，
+从而也适合方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}.
+因此方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+表示的平面经过直线\(l\).yo
+由于直线\(l\)和不在其上的一点\(P_0\)确定一个平面，
+因此方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+表示的平面就是平面\(\alpha\).
+这就证明，以相交平面\(\alpha_1\)和\(\alpha_2\)的交线\(l\)为轴的有轴平面束中的任一平面的方程形如 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}，
+其中\(\lambda,\mu\)不全为零.
+
+反之，设有一个方程形如 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}，
+其中\(\lambda,\mu\)不全为零，则方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+表示一个平面\(\alpha_3\).
+直线\(l\)上任一点的坐标适合\(\alpha_1\)的方程和\(\alpha_2\)的方程，
+从而适合方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}.
+因此，平面\(\alpha_3\)经过直线\(l\)，从而\(\alpha_3\)属于以\(l\)为轴的有轴平面束.
+
+综上所述，我们得到以下定理.
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P53 定理1.4
+在仿射坐标系中，设相交于直线\(l\)的两个平面的方程分别为\[
+	\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0,
+\]\[
+	\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0,
+\]
+则一个平面属于以\(l\)为轴的有轴平面束的充要条件是：
+这个平面的方程形如\[
+	\lambda	(A_1 x + B_1 y + C_1 z + D_1)
+	+ \mu	(A_2 x + B_2 y + C_2 z + D_2) = 0,
+\]
+其中\(\lambda,\mu\)是不全为零的实数.
+\end{theorem}
 
 \subsection{直角坐标系中平面的方程、点到平面的距离}
 
