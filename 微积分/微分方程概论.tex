@@ -10,25 +10,29 @@
 
 \section{微分方程的基本概念}
 \subsection{微分方程的基本概念}
-\begin{definition}
+\begin{definition}\label{definition:微分方程.微分方程的基本概念}
 一般地，含有自变量、未知函数、未知函数的导数（或偏导数）的方程，
 叫做\textbf{微分方程}（differential equation）.
 
-如果微分方程中的未知函数是一元函数\(y = y(x)\)，
-则称其为\textbf{常微分方程}（ordinary differential equation）.
+如果未知函数是一元函数\(y = y(x)\)，
+则称这个微分方程为\textbf{常微分方程}（ordinary differential equation）.
 
-如果微分方程中的未知函数是多元函数\(y = y(\v{x}{m})\)，
-则称其为\textbf{偏微分方程}（partial differential equation）.
+如果未知函数是多元函数\(y = y(\v{x}{m})\)，
+则称这个微分方程为\textbf{偏微分方程}（partial differential equation）.
 
-微分方程中所出现的未知函数的最高阶导数（或偏导数）的阶数，
+未知函数的最高阶导数（或偏导数）的阶数，
 称为“微分方程的\textbf{阶}（order）”.
 \end{definition}
 
-常微分方程的一般形式为：
+本章主要研究常微分方程.
+它的一般形式为：
 \begin{equation}\label{equation:微分方程.微分方程的一般形式}
 F\left( x,y,y',y'',\dotsc,y^{(n)} \right)=0.
 \end{equation}
-根据定义，微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 中所出现的未知函数\(y = y(x)\)的最高阶导数\(y^{(n)}\)的阶数\(n\)就是微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 的阶.
+根据\cref{definition:微分方程.微分方程的基本概念}，
+微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 中所出现的未知函数
+\(y = y(x)\)的最高阶导数\(y^{(n)}\)的阶数\(n\)，
+就是微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 的阶.
 
 如果微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 左边是关于未知函数\(y\)及其导数\(y',y'',\dotsc,y^{(n)}\)的一次有理整式，那么称其为\(n\)阶\textbf{线性常微分方程}（n-th order linear ordinary differential equation）；
 否则称其为\(n\)阶\textbf{非线性常微分方程}（n-th order nonlinear ordinary differential equation）.
@@ -57,7 +61,7 @@ y^{(n)} + a_1(x) \cdot y^{(n-1)}
 于是得到如下的\(n = \max\{\v{n}{k}\}\)阶\textbf{常微分方程组}的一般形式：
 \[
 \def\y#1{y_{#1},y_{#1}',\dotsc,y_{#1}^{(n_#1)}}%
-F_i(x,\y{1},\y{2},\dotsc,\y{k})=0
+F_i\left(x,\y{1},\y{2},\dotsc,\y{k}\right)=0
 \quad(i=1,2,\dotsc,k).
 \]
 
@@ -65,8 +69,9 @@ F_i(x,\y{1},\y{2},\dotsc,\y{k})=0
 \begin{definition}
 设函数\(y=\varphi(x)\)在区间\(I\subseteq\mathbb{R}\)上有\(n\)阶连续导数.
 如果对于\(\forall x \in I\)有\[
-F[x,\varphi(x),\varphi'(x),\dotsc,\varphi^{(n)}(x)]\equiv0,
-\]那么称函数\(y=\varphi(x)\)为“微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 在区间\(I\)上的\DefineConcept{解}（solution）”.
+F\left[x,\varphi(x),\varphi'(x),\dotsc,\varphi^{(n)}(x)\right]\equiv0,
+\]
+那么称函数\(y=\varphi(x)\)为“微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 在区间\(I\)上的\DefineConcept{解}（solution）”.
 
 如果\(n\)阶微分方程的解中含有任意常数\(\v{C}{n}\)，%
 且任意常数的个数与微分方程的阶数相同\footnote{%
@@ -75,9 +80,7 @@ F[x,\varphi(x),\varphi'(x),\dotsc,\varphi^{(n)}(x)]\equiv0,
 或者说，%
 \(\varphi,\varphi',\dotsc,\varphi^{(n-1)}\)%
 关于\(\v{C}{n}\)的“雅克比行列式”不为零，%
-即\[
-\jacobi{\varphi,\varphi',\dotsc,\varphi^{(n-1)}}{\v{C}{n}} \neq 0.
-\]}，%
+即\(\jacobi{\varphi,\varphi',\dotsc,\varphi^{(n-1)}}{\v{C}{n}} \neq 0\).}，%
 这样的解\[
 y = \varphi(x;\v{C}{n})
 \]叫做微分方程的\DefineConcept{通解}（general solution）；
@@ -168,11 +171,10 @@ x = C_1 \cos kt + C_2 \sin kt
 “等度连续”描述的对象是函数系，%
 “一致连续”描述的对象是函数或函数项级数%
 （见\cref{definition:极限.函数的一致连续性} 和%
-\cref{definition:无穷级数.函数项级数的一致收敛性}）.}”.
-
+\cref{definition:无穷级数.函数项级数的一致收敛性}）.}”；
 称\[
 \sup\limits_{F_1,F_2 \in S} \abs{F_1(x)-F_2(x)}
-\]为函数系\(S\)在区间\([a,b]\)上的\textbf{宽度}.
+\]为“函数系\(S\)在区间\([a,b]\)上的\textbf{宽度}”.
 \end{definition}
 
 \begin{lemma}[阿斯科拉-阿尔泽拉引理]\label{theorem:微分方程概论.阿斯科拉-阿尔泽拉引理}

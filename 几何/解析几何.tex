@@ -1665,6 +1665,19 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 容易看出，如果平面的方程 \labelcref{equation:解析几何.平面的一般方程} 的系数全不为零，
 即\(ABCD\neq0\)，则此平面与三根坐标轴均相交，且交点不是原点.
 
+\begin{example}
+%@see: 《解析几何》（丘维声） P54 习题2.1 3.
+证明：经过不共线三点\((x_i,y_i,z_i)\ (i=1,2,3)\)的平面的方程为\[
+	\begin{vmatrix}
+		x & x_1 & x_2 & x_3 \\
+		y & y_1 & y_2 & y_3 \\
+		z & z_1 & z_2 & z_3 \\
+		1 & 1 & 1 & 1
+	\end{vmatrix} = 0.
+\]
+%TODO
+\end{example}
+
 \subsubsection{两平面的相关位置}
 两平面的相关位置有三种可能情形：
 \begin{enumerate}
@@ -1789,16 +1802,214 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \subsection{直角坐标系中平面的方程、点到平面的距离}
 
 \subsubsection{直角坐标系中平面方程的系数的几何意义}
+确定一个平面的条件还可以是：
+一个点和一个与这个平面垂直的非零向量.
+与平面垂直的非零向量称为这个平面的\textbf{法向量}.
+
+取一个直角标架\([O;\mat{e}_1,\mat{e}_2,\mat{e}_3]\).
+我们来求经过点\(M_0(x_0,y_0,z_0)\)，
+且法向量为\(\mat{n}(a,b,C)\)的平面\(\alpha\)的方程.
+点\(M(x,y,z)\)在平面\(\alpha\)上的充要条件是\[
+	\vec{M_0 M} \perp \mat{n},
+\]
+于是有\(\vec{M_0 M} \cdot \mat{n} = 0\)，
+即\[
+	a(x-x_0) + b(y-y_0) + c(z-z_0) = 0,
+\]或\[
+	a x + b y + c z + h = 0,
+\]其中\(h=-(a x_0 + b y_0 + c z_0)\).
+上式就是所求平面\(\alpha\)的方程.
+
+由此可见，在直角坐标系中，
+平面方程的一次项系数组成的向量就是这个平面的一个法向量的坐标.
 
 \subsubsection{点到平面的距离}
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P56 定理2.1
+在直角坐标系中，点\(P_1(x_1,y_1,z_1)\)到平面\[
+	\alpha: A x + B y + C z + D = 0
+\]的距离为
+\begin{equation}
+	d = \frac{\abs{A x_1 + B y_1 + C z_1 + D}}{\sqrt{A^2 + B^2 + C^2}}.
+\end{equation}
+\end{theorem}
 
 \subsubsection{三元一次不等式的几何意义}
+取定一个直角坐标系.
+我们已经知道，坐标适合方程\[
+	A x + B y + C z + D = 0
+\]的点在此方程表示的平面\(\alpha\)上.
+显然，坐标合适不等式
+\begin{equation}\label{equation:解析几何.平面的侧1}
+	A x + B y + C z + D > 0
+\end{equation}
+的点\(P(x,y,z)\)就不在平面\(\alpha\)上.
+设\(P\)到平面\(\alpha\)引的垂线的垂足为\(P_0\)，
+则\(\vec{P_0 P}\)与\(\mat{n}=(A,B,c)\)同向.
+因此，所有坐标适合不等式 \labelcref{equation:解析几何.平面的侧1} 的点，
+都在平面\(\alpha\)的同一侧，即\(\mat{n}\)所指的那一侧.
+同理，所有坐标适合不等式
+\begin{equation}\label{equation:解析几何.平面的侧2}
+	A x + B y + C z + D < 0
+\end{equation}
+的点，也都在平面\(\alpha\)的同一侧，只不过是\((-\mat{n})\)所指的那一侧.
 
-\subsubsection{二面角}
+由上可知，平面\(\alpha\)把空间中的所有不在\(\alpha\)上的点分成了两部分：
+一部分点的坐标都适合不等式 \labelcref{equation:解析几何.平面的侧1}，
+另一部分点的坐标都适合不等式 \labelcref{equation:解析几何.平面的侧2}.
+
+于是，我们可以得到这样的结论：
+两个点\(P_1(x_1,y_1,z_1)\)和\(P_2(x_2,y_2,z_2)\)在平面\(\alpha\)同侧的充要条件是\[
+	(A x_1 + B y_1 + C z_1 + D) (A x_2 + B y_2 + C z_2 + D) > 0.
+\]
+可以证明，这个结论在仿射坐标系中也成立.
+
+\subsubsection{两个平面的夹角}
+两个相交平面的夹角，是指两个平面交成的四个二面角中的任意一个.
+易知其中两个等于两个平面的法向量\(\mat{n}_1,\mat{n}_2\)的夹角\(\angle(\mat{n}_1,\mat{n}_2)\)，
+另外两个等于\(\angle(\mat{n}_1,\mat{n}_2)\)的补角.
+规定两个平行或重合平面的夹角为它们的法向量\(\mat{n}_1,\mat{n}_2\)的夹角或其补角，
+从而等于\(0\)或\(\pi\).
+
+设在直角坐标系中，两个平面的方程分别是\[
+	\alpha_i:
+	A_i x + B_i y + C_i z + D_i = 0,
+	\quad i=1,2.
+\]
+则\(\alpha_1\)与\(\alpha_2\)的一个夹角满足\[
+	\angle(\alpha_1,\alpha_2)
+	= \frac{\mat{n}_1 \cdot \mat{n}_2}{\abs{\mat{n}_1} \abs{\mat{n}_2}}
+	= \frac{A_1 A_2 + B_1 B_2 + C_1 C_2}{\sqrt{A_1^2 + B_1^2 + C_1^2} \sqrt{A_2^2 + B_2^2 + C_2^2}},
+\]
+由此可得，两个平面\(\alpha_1\)与\(\alpha_2\)垂直的充要条件是
+\begin{equation}
+	A_1 A_2 + B_1 B_2 + C_1 C_2 = 0.
+\end{equation}
 
 \subsection{直线的方程、直线与平面的相关位置}
 
 \subsubsection{直线的方程}
+一个点和一个非零向量可以决定一条直线.
+
+取一个仿射标架\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\).
+已知一点\(M_0(x_0,y_0,z_0)\)，
+非零向量\(\mat{\nu}=(X,Y,Z)\).
+现在来求经过点\(M_0\)，且方向向量为\(\mat{\nu}\)的直线\(l\)的方程.
+
+点\(M(x,y,z)\)在直线\(l\)上的充要条件是\(\vec{M_0 M}\)与\(\mat{\nu}\)共线，
+即\(\vec{M_0 M} = t \mat{\nu}\)，其中\(t\)是实数.
+设\(M_0,M\)的定位向量分别用\(\mat{r}_0,\mat{r}\)表示，
+则由上式得
+\begin{equation}\label{equation:解析几何.直线的向量式参数方程}
+	\mat{r} = r_0 + t \mat{\nu}.
+\end{equation}
+\cref{equation:解析几何.直线的向量式参数方程} 称为“直线的\textbf{向量式参数方程}”，
+其中\(t\)是实参数.
+我们可以这样考虑参数\(t\)的几何意义：
+它表示点\(M\)在直线\(l\)上的仿射标架\([M_0;\mat{\nu}]\)中的坐标.
+
+将\cref{equation:解析几何.直线的向量式参数方程} 用坐标写出，可得
+\begin{equation}\label{equation:解析几何.直线的参数方程}
+	\left\{ \begin{array}{l}
+		x = x_0 + t X, \\
+		y = y_0 + t Y, \\
+		z = z_0 + t Z.
+	\end{array} \right.
+\end{equation}
+\cref{equation:解析几何.直线的参数方程} 称为“直线的\textbf{参数方程}”，其中\(t\)是实参数.
+
+下面消去参数\(t\).
+因为\(\mat{\nu}\neq\mat{0}\)，
+必有\(X,Y,Z\)不同时为零.
+若\(X\neq0\)，则\[
+	t = \frac{x - x_0}{X};
+\]
+否则\(x - x_0 = 0\).
+若\(Y\neq0\)，则\[
+	t = \frac{y - y_0}{Y};
+\]
+否则\(y - y_0 = 0\).
+若\(Z\neq0\)，则\[
+	t = \frac{z - z_0}{Z};
+\]
+否则\(z - z_0 = 0\).
+于是，
+若\(X,Y\neq0\)，\(Z=0\)，则有
+\begin{equation}
+	\left\{ \begin{array}{l}
+		\frac{x - x_0}{X}
+		= \frac{y - y_0}{Y}, \\
+		z - z_0 = 0;
+	\end{array} \right.
+\end{equation}
+若\(Y,Z\neq0\)，\(X=0\)，则有
+\begin{equation}
+	\left\{ \begin{array}{l}
+		\frac{y - y_0}{Y}
+		= \frac{z - z_0}{Z}, \\
+		x - x_0 = 0;
+	\end{array} \right.
+\end{equation}
+若\(Z,X\neq0\)，\(Y=0\)，则有
+\begin{equation}
+	\left\{ \begin{array}{l}
+		\frac{x - x_0}{X}
+		= \frac{z - z_0}{Z}, \\
+		y - y_0 = 0;
+	\end{array} \right.
+\end{equation}
+若\(X,Y,Z\neq0\)，则有
+\begin{equation}\label{equation:解析几何.直线的点向式方程}
+	\frac{x - x_0}{X}
+	= \frac{y - y_0}{Y}
+	= \frac{z - z_0}{Z}.
+\end{equation}
+\cref{equation:解析几何.直线的点向式方程}
+称为“直线的\textbf{点向式方程}”，
+或“直线的\textbf{标准方程}”.
+它实际上是联立两个方程而得的方程组.
+
+如果已知直线\(l\)上两点\(M_1(x_1,y_1,z_1)\)和\(M_2(x_2,y_2,z_2)\)，
+则\(\vec{M_1 M_2}\)是\(l\)的一个方向向量，从而\(l\)的方程为
+\begin{equation}\label{equation:解析几何.直线的两点式方程}
+	\frac{x - x_1}{x_2 - x_1}
+	= \frac{y - y_1}{y_2 - y_1}
+	= \frac{z - z_1}{z_2 - z_1}.
+\end{equation}
+\cref{equation:解析几何.直线的两点式方程}
+称为“直线\(l\)的\textbf{两点式方程}”.
+
+任意一条直线可以看成某两个相交平面的交线.
+设直线\(l\)是相交平面\(\alpha_1\)和\(\alpha_2\)的交线，它们的方程分别为\[
+	A_i x + B_i y + C_i z + D_i = 0
+	\quad(i=1,2),
+\]
+这两个方程的一次项系数不成比例，则方程组
+\begin{equation}
+	\left\{ \begin{array}{l}
+		A_1 x + B_1 y + C_1 z + D_1 = 0, \\
+		A_2 x + B_2 y + C_2 z + D_2 = 0
+	\end{array} \right.
+\end{equation}
+就是直线\(l\)的方程，称为“直线\(l\)的一般方程”.
+
+由于直角坐标系是特殊的仿射坐标系，
+所以上述一切结论在直角坐标系中都成立.
+利用右手直角坐标系的特殊性，
+由直线的一般方程写出它的标准方程时，
+求直线\(l\)的方向向量\(\mat{\nu}\)可以更加直观：
+因为\(\mat{\nu}\perp\mat{n}_i\)，
+其中\(\mat{n}_i\)是\(\alpha_i\ (i=1,2)\)的法向量，
+所以可以取\(\mat{\nu}=\mat{n}_1\times\mat{n}_2\).
+由于\(\mat{n}_i = (A_i,B_i,C_i)\)，s
+所以\[
+	\mat{\nu}
+	= \begin{vmatrix}
+		\mat{i} & \mat{j} & \mat{k} \\
+		A_1 & B_1 & C_1 \\
+		A_2 & B_2 & C_2
+	\end{vmatrix}.
+\]
 
 \subsubsection{两条直线的相关位置}
 
