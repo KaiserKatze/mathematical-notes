@@ -2012,14 +2012,152 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \]
 
 \subsubsection{两条直线的相关位置}
+在仿射坐标系中，设直线\(l_i\)经过点\(M_i(x_i,y_i,z_i)\)，
+方向向量为\(\mat{\nu}=(X_i,Y_i,Z_i)\)，\(i=1,2\).
+
+\(l_1\)与\(l_2\)平行的充要条件是
+\(\mat{\nu}_1\)与\(\mat{\nu}_2\)共线，
+但\(\vec{M_1 M_2}\)与\(\mat{\nu}_1\)不共线，
+即存在实数\(\lambda\)，使得\(\mat{\nu}_2 = \lambda \mat{\nu}_1\)；
+但对一切实数\(\mu\)，都有\(\vec{M_1 M_2} \neq \mu \mat{\nu}_1\).
+
+\(l_1\)与\(l_2\)重合的充要条件是
+\(\mat{\nu}_1,\mat{\nu}_2,\vec{M_1 M_2}\)三个向量共线，
+即存在实数\(\lambda,\mu\)，使得\[
+	\mat{\nu}_2 = \lambda \mat{\nu}_1,
+	\qquad
+	\vec{M_1 M_2} = \mu \mat{\nu}_1.
+\]
+
+\(l_1\)与\(l_2\)相交的充要条件是
+\(\mat{\nu}_1,\mat{\nu}_2,\vec{M_1 M_2}\)三个向量共面，
+且\(\mat{\nu}_1\)与\(\mat{\nu}_2\)不共线，即\[
+	\begin{vmatrix}
+		x_2 - x_1 & X_1 & X_2 \\
+		y_2 - y_1 & Y_1 & Y_2 \\
+		z_2 - z_1 & Z_1 & Z_2
+	\end{vmatrix} = 0,
+\]
+且对一切实数\(\lambda\)，都有\(\mat{\nu}_2 \neq \lambda \mat{\nu_1}\).
+
+\(l_1\)与\(l_2\)异面的充要条件是
+\(\mat{\nu}_1,\mat{\nu}_2,\vec{M_1 M_2}\)三个向量不共面，即\[
+	\begin{vmatrix}
+		x_2 - x_1 & X_1 & X_2 \\
+		y_2 - y_1 & Y_1 & Y_2 \\
+		z_2 - z_1 & Z_1 & Z_2
+	\end{vmatrix} \neq 0.
+\]
 
 \subsubsection{直线和平面的相关位置}
+在仿射坐标系中，设直线\(l\)经过点\(M_0(x_0,y_0,z_0)\)，方向向量为\(\mat{\nu}=(X,Y,Z)\)，
+平面\(\alpha\)的方程为\(A x + B y + C z + D = 0\).
+
+\(l\)与\(\alpha\)平行的充要条件是\(\mat{\nu}\)与\(\alpha\)平行，且\(M_0\)不在\(\alpha\)上，
+即\[
+	AX+BY+CZ=0
+	\quad\land\quad
+	Ax_0+By_0+Cz_0+D\neq0.
+\]
+
+\(l\)在平面\(\alpha\)上的充要条件是\(\mat{\nu}\)与\(\alpha\)平行，且\(M_0\)在\(\alpha\)上，
+即\[
+	AX+BY+CZ=0
+	\quad\land\quad
+	Ax_0+By_0+Cz_0+D=0.
+\]
+
+\(l\)与\(\alpha\)相交的充要条件是\(\mat{\nu}\)与\(\alpha\)不平行，即\[
+	AX+BY+CZ\neq0.
+\]
+此时，将\(l\)的参数方程\[
+	\left\{ \begin{array}{l}
+		x = x_0 + tX, \\
+		y = y_0 + tY, \\
+		z = z_0 + tZ
+	\end{array} \right.
+\]
+代入\(\alpha\)的方程中，得\[
+	A(x_0+tX) + B(y_0+tY) + C(z_0+tZ) + D = 0,
+\]
+解得\begin{equation}
+	t = - \frac{Ax_0+By_0+Cz_0+D}{AX+BY+CZ}.
+\end{equation}
+将\(t\)代回到\(l\)的参数方程中，即可求出\(l\)与\(\alpha\)的交点的坐标.
 
 \subsection{点、直线和平面之间的度量关系}
 
 \subsubsection{点到直线的距离}
+如\cref{figure:解析几何.点到直线的距离}，
+设直线\(l\)经过点\(M_0\)，方向向量为\(\mat{\nu}\)，
+则\(l\)外一点\(M\)到直线\(l\)的距离\(d\)，
+是以\(\vec{M_0 M},\mat{\nu}\)为邻边的平行四边形的底边\(\mat{\nu}\)上的高，
+因此有\begin{equation}
+	d = \frac{\abs{\vec{M_0 M} \times \mat{\nu}}}{\mat{\nu}}.
+\end{equation}
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\draw(-1,0)--(3,0)node[right]{\(l\)};
+		\begin{scope}[>=Stealth,->]
+			\draw(0,0)node[below]{\(M_0\)}--(1,2)node[above]{\(M\)};
+			\draw(0,0)--(2,0)node[below]{\(\mat{\nu}\)};
+		\end{scope}
+		\draw(2,0)--++(1,2)--(1,2);
+		\draw[dashed](1,2)--(1,0)node[midway,right]{\(d\)};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.点到直线的距离}
+\end{figure}
 
 \subsubsection{两条直线的距离}
+两条直线上的点之间的最短距离，称为这两条直线的距离.
+
+如果\(l_1 \parallel l_2\)，
+则\(l_1\)上任意一点到\(l_2\)的距离就是\(l_1\)与\(l_2\)的距离；
+如果\(l_1\)与\(l_2\)相交或重合，
+则\(l_1\)与\(l_2\)的距离为零.
+
+设\(l_1\)与\(l_2\)异面，\(l_i\)经过点\(M_i\)，方向向量为\(\mat{\nu}_i\)（\(i=1,2,\)），
+且\(\mat{\nu}_1\)与\(\mat{\nu}_2\)不共线，\(M_1 \neq M_2\).
+我们称同时与两条异面直线\(l_1,l_2\)垂直相交的直线\(l\)为\(l_1,l_2\)的\textbf{公垂线}，
+两个垂足间的线段称为\textbf{公垂线段}.
+
+因为\(\mat{\nu}_1\)与\(\mat{\nu}_2\)不共线，
+所以\(\mat{\nu}_1\)与\(\mat{\nu}_1\times\mat{\nu}_2\)不共线.
+于是点\(M_1\)与两向量\(\mat{\nu}_1\)、\(\mat{\nu}_1\times\mat{\nu}_2\)决定一个平面\(\alpha_1\).
+同理，\(M_2,\mat{\nu}_2,\mat{\nu}_1\times\mat{\nu}_2\)决定一个平面\(\alpha_2\).
+又因为\(\mat{\nu}_1\times(\mat{\nu}_1\times\mat{\nu}_2)\)
+与\(\mat{\nu}_2\times\mat{\nu}_1\times\mat{\nu}_2\)不共线，
+而这两个向量分别是\(\alpha_1\)和\(\alpha_2\)的法向量，
+于是\(\alpha_1\)与\(\alpha_2\)必相交，记交线为\(l\)，其方向向量为\[
+	[\mat{\nu}_1\times(\mat{\nu}_1\times\mat{\nu}_2)]
+	\times[\mat{\nu}_2\times(\mat{\nu}_1\times\mat{\nu}_2)]
+	= \abs{\mat{\nu}_1\times\mat{\nu}_2}^2(\mat{\nu}_1\times\mat{\nu}_2);
+\]
+也就是说，\(\mat{\nu}_1\times\mat{\nu}_2\)是\(l\)的方向向量.
+由于\[
+	\mat{\nu}_1\times\mat{\nu}_2 \perp \mat{\nu}_i,
+	\quad i=1,2,
+\]
+所以\(l \perp l_i\ (i=1,2)\).
+因为\(l\)与\(l_i\)都在\(\alpha_i\)内，
+所以\(l\)与\(l_i\)都相交（\(i=1,2\)）；
+这就是说\(\alpha_1\)与\(\alpha_2\)的交线\(l\)就是\(l_1\)与\(l_2\)的公垂线.
+
+假设另有一条不同于\(l\)的直线\(l'\)也是\(l_1\)与\(l_2\)的公垂线，
+则\(l'\)的方向向量垂直于\(\mat{\nu}_i\ (i=1,2)\)，
+从而\(\mat{\nu}_1\times\mat{\nu}_2\)就是\(l'\)的一个方向向量.
+因为\(l'\)在由\(l_i\)和\(\mat{\nu}_1\times\mat{\nu}_2\)决定的平面\(\alpha_i\ (i=1,2)\)内，
+所以\(l'\)是\(\alpha_1\)与\(\alpha_2\)的交线，即\(l'\)与\(l\)重合，矛盾！
+
+综上所述，任意两条异面直线的公垂线存在且唯一.
+那么两条异面直线\(l_1,l_2\)的公垂线段的长
+\begin{equation}
+	d = \frac{\abs{\vec{M_1 M_2} \cdot \mat{\nu}_1\times\mat{\nu}_2}}{\abs{\mat{\nu}_1\times\mat{\nu}_2}}
+\end{equation}
+就是\(l_1\)与\(l_2\)的距离.
 
 \subsubsection{两条直线所成的角，直线和平面所成的角}
 
