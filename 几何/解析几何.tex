@@ -2119,10 +2119,35 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 如果\(l_1\)与\(l_2\)相交或重合，
 则\(l_1\)与\(l_2\)的距离为零.
 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\draw(0,0)node[below]{\(P_1\)}--(0,2)node[above]{\(P_2\)}node[midway,left]{\(l\)}
+			node[midway,right]{\(\mat{\nu}_1\times\mat{\nu}_2\)};
+		\draw[name path=a](0,0)--(5,-1)node[above left]{\(\alpha_1\)}node[below right]{\(l_1\)}
+			--++(0,2)--(0,2);
+		\path[name path=b](4,1)--++(0,2);
+		\draw[dashed][name intersections={of=a and b}]
+			(0,0)--(4,1)--(intersection-1);
+		\draw(intersection-1)
+			--(4,3)node[above right]{\(l_2\)}node[below left]{\(\alpha_2\)}
+			--(0,2);
+		\begin{scope}[>=Stealth,->]
+		\draw(0,0)--(0,1);
+		\draw(1,-.2)node[below]{\(M_1\)}--(2,-.4)node[below]{\(\mat{\nu}_1\)};
+		\draw(1,2.25)node[above]{\(M_2\)}--(2,2.5)node[above]{\(\mat{\nu}_2\)};
+		\end{scope}
+		\fill(1,-.2)circle(1pt) (1,2.25)circle(1pt);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.异面直线的公垂线段}
+\end{figure}
+
+如\cref{figure:解析几何.异面直线的公垂线段}，
 设\(l_1\)与\(l_2\)异面，\(l_i\)经过点\(M_i\)，方向向量为\(\mat{\nu}_i\)（\(i=1,2,\)），
 且\(\mat{\nu}_1\)与\(\mat{\nu}_2\)不共线，\(M_1 \neq M_2\).
 我们称同时与两条异面直线\(l_1,l_2\)垂直相交的直线\(l\)为\(l_1,l_2\)的\textbf{公垂线}，
-两个垂足间的线段称为\textbf{公垂线段}.
+两个垂足间的线段\(P_1 P_2\)称为\textbf{公垂线段}.
 
 因为\(\mat{\nu}_1\)与\(\mat{\nu}_2\)不共线，
 所以\(\mat{\nu}_1\)与\(\mat{\nu}_1\times\mat{\nu}_2\)不共线.
@@ -2158,6 +2183,31 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	d = \frac{\abs{\vec{M_1 M_2} \cdot \mat{\nu}_1\times\mat{\nu}_2}}{\abs{\mat{\nu}_1\times\mat{\nu}_2}}
 \end{equation}
 就是\(l_1\)与\(l_2\)的距离.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\draw(0,0)--(5,0)node[above left]{\(\alpha\)}--++(1,2)--++(-5,0)--(0,0);
+		\filldraw(1,1)--(1.5,1)circle(1pt)node[below]{\(M_1\)}--(2,1)coordinate(P1)node[below]{\(P_1\)}
+			--(3.5,1)coordinate(Q1)circle(1pt)node[below]{\(Q_1\)}--(4.5,1)node[right]{\(l_1\)};
+		\draw(P1)--++(0,2)coordinate(P2)node[above]{\(P_2\)};
+		\filldraw(1,2.6)--(1.5,2.8)circle(1pt)node[above]{\(M_2\)}--(P2)--(3,3.4)coordinate(Q2)node[above]{\(Q_2\)}
+			--(4.5,4)node[right]{\(l_2\)};
+		\draw(Q1)--(Q2);
+		\filldraw(Q2)--++(0,-2)circle(1pt)coordinate(N)node[left]{\(N\)};
+		\draw[dashed](N)--++(.3,0)coordinate(N1);
+		\draw pic[draw=gray,-,angle radius=0.2cm]{right angle=Q1--P1--P2}
+			pic[draw=gray,-,angle radius=0.2cm]{right angle=P1--P2--Q2}
+			pic[draw=gray,-,angle radius=0.2cm]{right angle=N1--N--Q2};
+		\begin{scope}[>=Stealth,->]
+			\draw(3.9,1)--(4,1)node[above]{\(\mat{\nu}_1\)};
+			\draw(3.9,3.76)--(4,3.8)node[below]{\(\mat{\nu}_2\)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.异面直线的距离就是其公垂线段的长}
+\end{figure}
+
 
 \subsubsection{两条直线所成的角，直线和平面所成的角}
 
