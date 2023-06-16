@@ -1891,6 +1891,10 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \subsubsection{直线的方程}
 一个点和一个非零向量可以决定一条直线.
 
+给定一条直线\(l\)和一个向量\(\mat{a}\)，
+如果直线\(l\)与用来表示向量\(\mat{a}\)的有向线段所在的直线平行，
+则称“向量\(\mat{a}\)是直线\(l\)的\textbf{方向向量}”.
+
 取一个仿射标架\([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\).
 已知一点\(M_0(x_0,y_0,z_0)\)，
 非零向量\(\mat{\nu}=(X,Y,Z)\).
@@ -2048,6 +2052,21 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 		z_2 - z_1 & Z_1 & Z_2
 	\end{vmatrix} \neq 0.
 \]
+
+\begin{example}
+设直线\(l_1: y=k_1 x+b_2\)与\(l_2: y=k_2 x+b_2\)垂直.
+证明：\(k_1 \cdot k_2 = -1\).
+\begin{proof}
+因为直线\(l_1\)与\(l_2\)垂直，所以么它们的方向向量垂直，
+即\(\mat{l}_1 \perp \mat{l}_2\).
+取\(\mat{l}_1 = (1,k_1),\mat{l}_2 = (1,k_2)\)，那么\[
+\mat{l}_1\cdot\mat{l}_2 = 1 \cdot 1 + k_1 \cdot k_2 = 0
+\implies
+k_1 \cdot k_2 = -1.
+\qedhere
+\]
+\end{proof}
+\end{example}
 
 \subsubsection{直线和平面的相关位置}
 在仿射坐标系中，设直线\(l\)经过点\(M_0(x_0,y_0,z_0)\)，方向向量为\(\mat{\nu}=(X,Y,Z)\)，
@@ -2317,97 +2336,6 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	\csc^2\theta = \csc^2\alpha+\csc^2\beta+\csc^2\gamma.
 \]
 %TODO
-\end{example}
-
-\section{平面直线及其方程}
-\subsection{斜截式方程}
-设直线在平面直角坐标系下与横轴正半轴之间的夹角为\(\alpha\)，
-则实数\(k = \tan \alpha\)称为直线的\textbf{斜率}.
-记直线在纵轴上的交点的坐标为\(\opair{0,b}\)，称实数\(b\)为直线的\textbf{截距}.
-
-由此，已知斜率\(k\)和截距\(b\)，则方程\[
-y = k x + b \quad(k,b \in \mathbb{R})
-\]可以确定一条直线.称该方程为直线的\textbf{斜截式方程}.
-
-\subsection{点斜式方程}
-已知直线上一点\(\opair{x_0,y_0}\)和斜率\(k\)，则直线方程为\[
-y-y_0 = k(x-x_0),
-\]称为直线的\textbf{点斜式方程}.
-
-\subsection{截距式方程}
-已知直线与横轴交于\(\opair{a,0}\)，与纵轴交于\(\opair{0,b}\)，则直线方程\[
-\frac{x}{a}+\frac{y}{b}=1 \quad(a,b\in\mathbb{R}^*)
-\]称为直线的\textbf{截距式方程}.
-
-显然，直线的斜截式方程和点斜式方程无法用来表示垂直于\(x\)轴的直线，直线的截距式方程无法用来表示通过原点的直线.
-
-\subsection{一般方程}
-一般地，方程\[
-A x + B y + C = 0 \quad(A^2+B^2>0)
-\]可以确定平面上任意一条直线，其中\(A\)、\(B\)、\(C\)是常数.
-
-\begin{example}
-求与直线\(l: A x + B y + C = 0\)平行的向量.
-\begin{solution}
-在直线\(l\)上任取两点\(\opair{x_1,y_1}\)和\(\opair{x_2,y_2}\)，那么\begin{gather}
-A x_1 + B y_1 + C = 0, \tag1 \\
-A x_2 + B y_2 + C = 0. \tag2
-\end{gather}
-(1)式和(2)式相减得\begin{gather}
-A (x_1-x_2) + B (y_1-y_2) = 0, \tag3
-\end{gather}
-(3)式可以看做一个关于两个变元\((x_1-x_2)\)和\((y_1-y_2)\)的齐次线性方程，它存在非零解\[
-\opair{x_1-x_2,y_1-y_2} = \opair{B,-A}.
-\]
-\end{solution}
-\end{example}
-与平面直线平行的向量称作该直线的\DefineConcept{方向向量}.
-
-\begin{example}
-设直线\(l_1: y=k_1 x+b_2\)与\(l_2: y=k_2 x+b_2\)垂直，证明：\(k_1 \cdot k_2 = -1\).
-\begin{proof}
-因为直线\(l_1\)与\(l_2\)垂直，所以么它们的方向向量垂直，即\(\vec{l}_1 \perp \vec{l}_2\).
-取\(\vec{l}_1 = \opair{1,k_1},\vec{l}_2 = \opair{1,k_2}\)，那么\[
-\vec{l}_1\cdot\vec{l}_2 = 1 \cdot 1 + k_1 \cdot k_2 = 0
-\implies
-k_1 \cdot k_2 = -1.
-\qedhere
-\]
-\end{proof}
-\end{example}
-
-\begin{example}\label{example:解析几何.平面直线外一点到该直线的距离问题}
-平面上任意一点\(P\opair{x_0,y_0}\)到直线\(L: Ax+By+C=0\)的距离为\begin{equation}
-d = \frac{\abs{A x_0 + B y_0 + C}}{\sqrt{A^2 + B^2}}.
-\end{equation}
-\begin{proof}
-设点\(Q\opair{x_1,y_1}\)在直线\(L\)上，那么\[
-A x_1 + B y_1 + C = 0.
-\]\(\vec{PQ} = \opair{x_1 - x_0,y_1 - y_0}\)，而直线\(L: Ax+By+C=0\)的方向向量为\(\vec{l} = \opair{B,-A}\)，又设\(\vec{PQ}\)与\(\vec{l}\)的夹角为\(\theta\)，显然\[
-d = \abs{\vec{PQ}} \sin\theta.
-\]
-建立空间直角坐标系，在\(\vec{PQ}\)和\(\vec{l}\)后加一个维度，即\[
-\vec{PQ} = \opair{x_1 - x_0,y_1 - y_0,0},
-\quad
-\vec{l} = \opair{B,-A,0},
-\]那么\[
-\vec{PQ} \times \vec{l} = \begin{vmatrix}
-\mat{i} & \mat{j} & \mat{k} \\
-x_1 - x_0 & y_1 - y_0 & 0 \\
-B & -A & 0
-\end{vmatrix} = -\bigl[A(x_1 - x_0)+B(y_1 - y_0)\bigr] \mat{k},
-\]\[
-\abs{\vec{PQ} \times \vec{l}}
-= \abs{\vec{PQ}} \abs{\vec{l}} \sin\theta
-= \abs{A(x_1 - x_0)+B(y_1 - y_0)}
-= \abs{A x_0 + B y_0 + C},
-\]所以\[
-d = \abs{\vec{PQ}} \sin\theta
-= \frac{\abs{\vec{PQ} \times \vec{l}}}{\abs{\vec{l}}}
-= \frac{\abs{A x_0 + B y_0 + C}}{\sqrt{A^2+B^2}}.
-\qedhere
-\]
-\end{proof}
 \end{example}
 
 \section{平面二次曲线及其方程}
