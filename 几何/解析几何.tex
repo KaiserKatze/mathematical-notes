@@ -4470,10 +4470,139 @@ y_1 \cdot y_2 = -p^2.
 关键是要画出相应曲面的交线，随之可得所求空间区域.
 
 \section{坐标变换}
+前两节我们再选定的一个坐标系中研究平面、直线和曲面.
+但是，在许多情形下，往往在实现给定的坐标系中一个图形的方程比较复杂，
+这时我们需要选择领一个合适的坐标系，使这个图形的方程变得比较简单.
+为此，就需要研究同一个点在两个坐标系中的坐标之间的关系.
+这样的关系式就称为\textbf{坐标变换公式}.
+我们在本节来研究坐标变换公式及其应用.
+
 \subsection{平面的仿射坐标变换}
 \subsubsection{点的仿射坐标变换公式}
-\subsubsection{向量的仿射坐标变换公式}
+平面上给了两个仿射坐标系：
+\([O;\mat{d}_1,\mat{d}_2]\)
+和\([O';\mat{d}_1',\mat{d}_2']\).
+为方便起见，前一个称为旧坐标系，简记为 I；
+后一个称为新坐标系，简记为 II.
+点或向量在 I 中的坐标称为它的旧坐标，
+在 II 中的坐标称为它的新坐标.
+为了研究同一个点的新旧坐标的关系，
+首先要明确上述两个坐标系的相对位置.
 
+设 II 的原点\(O'\)的旧坐标是\((x_0,y_0)\)，
+基向量\(\mat{d}_1',\mat{d}_2'\)的旧坐标分别是\((a_{11},a_{21})\)和\((a_{12},a_{22})\).
+现在我们来求某一点\(M\)的旧坐标\((x,y)\)与它的新坐标\((x',y')\)之间的关系.
+因为\begin{align*}
+	\vec{OM}
+	&= \vec{O O'} + \vec{O' M}
+	= (x_0 \mat{d}_1 + y_0 \mat{d}_2)
+	+ (x' \mat{d}_1' + y' \mat{d}_2') \\
+	&= (x_0 \mat{d}_1 + y_0 \mat{d}_2)
+	+ x' (a_{11} \mat{d}_1 + a_{21} \mat{d}_2)
+	+ y' (a_{12} \mat{d}_1 + a_{22} \mat{d}_2) \\
+	&= (a_{11} x' + a_{12} y' + x_0) \mat{d}_1
+	+ (a_{21} x' + a_{22} y' + y_0) \mat{d}_2,
+\end{align*}
+所以有\begin{equation}\label{equation:解析几何.平面坐标系的点的仿射坐标变换公式I到II}
+	\left\{ \begin{array}{l}
+		x = a_{11} x' + a_{12} y' + x_0, \\
+		y = a_{21} x' + a_{22} y' + y_0.
+	\end{array} \right.
+\end{equation}
+\cref{equation:解析几何.平面坐标系的点的仿射坐标变换公式I到II}
+称为“平面上坐标系 I 到 II 的点的\textbf{仿射坐标变换公式}”.
+它是一个把任意一点\(M\)的旧坐标\(x,y\)表示成它的新坐标\(x',y'\)的一次多项式.
+
+\begin{theorem}
+平面上点的仿射坐标变换公式 \labelcref{equation:解析几何.平面坐标系的点的仿射坐标变换公式I到II}
+中的系数行列式不等于零，即\[
+	\begin{vmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{vmatrix} \neq 0.
+\]
+\end{theorem}
+
+根据上述定理，如果我们把\cref{equation:解析几何.平面坐标系的点的仿射坐标变换公式I到II}
+看作关于\(x',y'\)的方程组，可以求得唯一解
+\begin{equation}\label{equation:解析几何.平面坐标系的点的仿射坐标变换公式II到I}
+	\left\{ \begin{array}{l}
+		x' = \frac{1}{D} \begin{vmatrix}
+			x - x_0 & a_{12} \\
+			y - y_0 & a_{22}
+		\end{vmatrix}, \\
+		y' = \frac{1}{D} \begin{vmatrix}
+			a_{11} & x - x_0 \\
+			a_{21} & y - y_0
+		\end{vmatrix}.
+	\end{array} \right.
+\end{equation}
+其中\[
+	D = \begin{vmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{vmatrix}.
+\]
+\cref{equation:解析几何.平面坐标系的点的仿射坐标变换公式II到I}
+是把平面上任意一点\(M\)的新坐标\(x',y'\)表示成它的旧坐标\(x,y\)的一次多项式，
+我们称其为“平面上坐标系 II 到 I 的点的仿射坐标变换公式”.
+
+\subsubsection{向量的仿射坐标变换公式}
+现在我们来看平面上的向量\(\mat{m}\)的旧坐标\((u,v)\)与它的新坐标\((u',v')\)之间的关系.
+设\(\mat{m}=\vec{M_1 M_2}\)，
+其中点\(M_i\)的旧坐标为\((x_i,y_i)\)，新坐标为\((x_i',y_i')\)（\(i=1,2\)），
+则有\begin{align*}
+	u &= x_2 - x_1
+	= (a_{11} x_2' + a_{12} y_2' + x_0)
+	- (a_{11} x_1' + a_{12} y_1' + x_0) \\
+	&= a_{11} (x_2' - x_1')
+	+ a_{12} (y_2' - y_1')
+	= a_{11} u' + a_{12} v', \\
+	v &= y_2 - y_1
+	= (a_{21} x_2' + a_{22} y_2' + y_0)
+	- (a_{21} x_1' + a_{22} y_1' + y_0) \\
+	&= a_{21} u' + a_{22} v',
+\end{align*}
+即\begin{equation}\label{equation:解析几何.平面坐标系的向量的仿射坐标变换公式I到II}
+	\left\{ \begin{array}{l}
+		u = a_{11} u' + a_{12} v', \\
+		v = a_{21} u' + a_{22} v'.
+	\end{array} \right.
+\end{equation}
+\cref{equation:解析几何.平面坐标系的向量的仿射坐标变换公式I到II}
+称为“平面上坐标系 I 到 II 的向量的仿射坐标变换公式”.
+它是把任意一个向量\(\mat{m}\)的旧坐标\(u,v\)表示成它的新坐标\(u',v'\)的一次齐次多项式，
+这时与点的坐标变换公式不同的地方.
+平面上的点和向量是有本质区别的两种对象，
+如果只从一个坐标系来看，
+似乎点和向量的坐标都是有序实数对，
+看不出它们的区别；
+但是，如果取两个原点不重合的仿射坐标系，
+通过坐标变换，
+就可以看出两者的显著区别：
+点的坐标变换公式 \labelcref{equation:解析几何.平面坐标系的点的仿射坐标变换公式I到II} 中有常数项，
+而向量的坐标变换公式 \labelcref{equation:解析几何.平面坐标系的向量的仿射坐标变换公式I到II} 中没有常数项.
+
+由于\cref{equation:解析几何.平面坐标系的向量的仿射坐标变换公式I到II}
+中的系数行列式仍然不为零，因此可以反解出
+\begin{equation}\label{equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I}
+	\left\{ \def\arraystretch{1.5} \begin{array}{l}
+		u' = \frac{1}{D} \begin{vmatrix}
+			u & a_{12} \\
+			v & a_{22}
+		\end{vmatrix}, \\
+		v' = \frac{1}{D} \begin{vmatrix}
+			a_{11} & u \\
+			a_{21} & v
+		\end{vmatrix}.
+	\end{array} \right.
+\end{equation}
+这是“平面上坐标系 II 到 I 的向量的仿射坐标变换公式”.
+由\cref{equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I} 看出，
+I 的基向量\(\mat{d}_1,\mat{d}_2\)的 II 坐标分别是\[
+	\frac{1}{D} (a_{22},-a_{21}), \qquad
+	\frac{1}{D} (-a_{12},a_{11}).
+\]
 
 \section{曲面及其方程}
 \subsection{曲面方程的概念}
