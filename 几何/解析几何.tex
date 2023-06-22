@@ -1519,34 +1519,6 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	\]
 \end{enumerate}
 
-\section{平面坐标变换}
-\subsection{旋转变换}
-设点\(P\)的坐标向量为\((\cos\alpha,\sin\alpha)\)，
-以坐标原点\(O\)为中心，将线段\(OP\)旋转\(\theta\)，
-可以得到一条新的线段\(OQ\)，
-其中点\(Q\)坐标向量可以表示为\((\cos(\alpha+\theta),\sin(\alpha+\theta))\).
-我们还可以利用矩阵将上述关系表示为\[
-\begin{bmatrix}
-	\cos(\alpha+\theta) \\
-	\sin(\alpha+\theta)
-\end{bmatrix}
-= \begin{bmatrix}
-	\cos\theta & -\sin\theta \\
-	\sin\theta & \cos\theta
-\end{bmatrix}
-\begin{bmatrix}
-	\cos\alpha \\
-	\sin\alpha
-\end{bmatrix}.
-\]
-因此我们将矩阵\[
-\begin{bmatrix}
-	\cos\theta & -\sin\theta \\
-	\sin\theta & \cos\theta
-\end{bmatrix}
-\]
-称为“平面旋转算子”.
-
 \section{空间的平面和直线}
 本节把坐标法和向量法结合起来，研究空间中平面和直线的方程以及它们的性质.
 
@@ -4712,6 +4684,65 @@ equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I}
 但是由于它是正交矩阵，
 满足\cref{equation:解析几何.直角坐标变换的过渡矩阵的限定条件} 中的三个方程，
 因此只有一个数是自由的.
+下面来详细讨论这一点.
+
+给定平面上的仿射坐标系\([O;\mat{d}_1,\mat{d}_2]\)，
+如果从\(\mat{d}_1\)逆时针旋转小于 180\textdegree 的角便与\(\mat{d}_2\)重合，
+则称这个坐标系为右手坐标系，简称右手系；
+反之，则称之为左手坐标系，简称左手系.
+特别地，对于直角坐标系\([O;\mat{e}_1,\mat{e}_2]\)来说，
+若\(\mat{e}_1\)旋转 90\textdegree 与\(\mat{e}_2\)重合，则为右手系；
+若\(\mat{e}_1\)旋转 -90\textdegree 与\(\mat{e}_2\)重合，则为左手系.
+
+设 I \([O;\mat{e}_1,\mat{e}_2]\)，II \([O';\mat{e}_1',\mat{e}_2']\)都是右手直角坐标系，且\[
+	O'(x_0,y_0), \qquad
+	\mat{e}_1'(a_{11},a_{21}), \qquad
+	\mat{e}_2'(a_{12},a_{22}),
+\]则有{\def\ExprA#1#2{a_{#1#2} = \mat{e}_#2' \cdot \mat{e}_#1 = \cos\angle(\mat{e}_#2',\mat{e}_#1)}
+\begin{align*}
+	\ExprA{1}{1}, \qquad
+	\ExprA{2}{1}, \\
+	\ExprA{1}{2}, \qquad
+	\ExprA{2}{2}.
+\end{align*}}
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[->,scale=2]
+		\draw(0,0)node[below left]{\(O\)}--(1,0)node[right]{\(\mat{e}_1\)};
+		\draw(0,0)--(0,1)node[left]{\(\mat{e}_2\)};
+		\begin{scope}[xshift=1.3cm,yshift=1.3cm]
+			\draw[dashed,-](0,1)coordinate(E2)--(0,0)coordinate(O)--(1,0)coordinate(E1);
+			\draw(0,0)--(.866,.5)coordinate(E11)node[above right]{\(\mat{e}_1'\)};
+			\draw(0,0)--(-.5,.866)coordinate(E22)node[above left]{\(\mat{e}_2'\)};
+			\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.7,angle radius=5mm]{angle=E1--O--E11};
+			\draw pic[draw=orange,-,angle radius=5mm]{angle=E2--O--E22};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.平面坐标变换的过渡矩阵与旋转角的关系}
+\end{figure}
+
+如\cref{figure:解析几何.平面坐标变换的过渡矩阵与旋转角的关系}，
+设\(\mat{e}_1\)逆时针旋转\(\theta\)角便与\(\mat{e}_1'\)重合，
+在\[
+	0 \leqslant \theta < \frac{\pi}{2}, \qquad
+	\frac{\pi}{2} \leqslant \theta < \pi, \qquad
+	\pi \leqslant \theta < \frac{3}{2}\pi, \qquad
+	\frac{3}{2}\pi \leqslant \theta < 2\pi
+\]这四种情况下，总可得\[
+	a_{11} = \cos\theta, \qquad
+	a_{21} = \sin\theta, \qquad
+	a_{12} = -\sin\theta, \qquad
+	a_{22} = \cos\theta,
+\]
+那么 I 到 II 的过渡矩阵为\[
+	\mat{A} = \begin{bmatrix}
+		\cos\theta & -\sin\theta \\
+		\sin\theta & \cos\theta
+	\end{bmatrix}.
+\]
+应该注意到，\(\abs{\mat{A}}=1\).
 
 
 
