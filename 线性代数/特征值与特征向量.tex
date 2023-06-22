@@ -952,24 +952,33 @@ k_1\L{1}\X1+k_2\L{2}\X2+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\L{m}\X{m}=\z. \tag2
 每个\(n\)阶复数矩阵不一定与对角阵相似，但必与一个若尔当形矩阵相似.
 \end{theorem}
 
-\section{实对称矩阵的对角化}
-由上节讨论我们知道，\(n\)阶矩阵分成可对角化与不可对角化两类.
-实际上，矩阵的相似概念与数域有关，矩阵能否对角化也与数域有关.
-因为一般矩阵的特征值是复数，即使\(\A\)的元素都是实数，也可能没有实数特征值.
-例如，\(\A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}\)是一个二阶实矩阵，\(\abs{\l\E-\A}=\begin{vmatrix} \l & 1 \\ -1 & \l \end{vmatrix} = (\l+\iu)(\l-\iu)\)，\(\A\)有两个特征值\(\pm\iu\)，其对应的特征向量是复向量，因此\(\A\)在复数域上可对角化，但不存在可逆实阵\(\P\)使得\(\P^{-1}\A\P\)为对角阵.
-
+\section{正交矩阵，正规矩阵}
 \subsection{正交矩阵的概念与性质}
 \begin{definition}
-在欧几里得空间中，如果向量组\(A=\{\v{\a}{m}\}\)不含零向量，且\(A\)中向量两两正交（即\((\a_i,\a_j)=0\ (i \neq j)\)），则称\(A\)为一个\textbf{正交向量组}，简称\textbf{正交组}.
+在欧几里得空间中，如果
+\begin{enumerate}
+	\item 向量组\(A=\{\AutoTuple{\a}{m}\}\)不含零向量，即\(\z \notin A\)；
+	\item \(A\)中向量两两正交，即\(\a_i \cdot \a_j = 0\ (i \neq j)\)，
+\end{enumerate}
+则称\(A\)为一个\textbf{正交向量组}，简称\textbf{正交组}.
 由单位向量构成的正交组叫做\textbf{规范正交组}或\textbf{标准正交组}.
-称含有\(n\)个向量的规范正交组\(\e_1,\e_2,\dotsc,\e_n\)为\(\mathbb{R}^n\)的一个\textbf{规范正交基}或\textbf{标准正交基}（orthonormal basis）.
+称含有\(n\)个向量的规范正交组
+\[
+	\AutoTuple{\e}{n}
+\]
+为\(\mathbb{R}^n\)的一个\textbf{规范正交基}
+或\textbf{标准正交基}（orthonormal basis）.
 \end{definition}
 
 \begin{definition}
 设\(n\)阶实矩阵\(\Q\)满足\(\Q^T\Q = \Q\Q^T = \E\)，则称\(\Q\)为\textbf{正交矩阵}.
 \end{definition}
 
-由于单位矩阵\(\E\)满足\(\E^T=\E\)，\(\E^T \E = \E \E^T = \E\)，因此\(\E\)也是正交矩阵.
+\begin{example}
+由于单位矩阵\(\E\)满足\(\E^T=\E\)，
+\(\E^T \E = \E \E^T = \E\)，
+因此\(\E\)也是正交矩阵.
+\end{example}
 
 \begin{property}
 正交矩阵\(\Q\)是可逆矩阵，且\(\Q^{-1} = \Q^T\)，\(\abs{\Q} = \pm 1\).
@@ -982,6 +991,14 @@ k_1\L{1}\X1+k_2\L{2}\X2+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\L{m}\X{m}=\z. \tag2
 = \Q^{-1}\E
 = \Q^{-1}\).
 \end{proof}
+\end{property}
+
+\begin{property}
+若\(\A,\B\)都是\(n\)阶正交矩阵，则\(\A\B\)也是正交矩阵.
+\end{property}
+
+\begin{property}
+若\(\A\)是正交矩阵，则\(\A^T\)和\(\A^{-1}\)也是正交矩阵.
 \end{property}
 
 \begin{theorem}
@@ -1049,6 +1066,12 @@ k_1\L{1}\X1+k_2\L{2}\X2+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\L{m}\X{m}=\z. \tag2
 \begin{property}
 实正交矩阵、实对称矩阵、实反对称矩阵都是实正规矩阵.
 \end{property}
+
+\section{实对称矩阵的对角化}
+由上节讨论我们知道，\(n\)阶矩阵分成可对角化与不可对角化两类.
+实际上，矩阵的相似概念与数域有关，矩阵能否对角化也与数域有关.
+因为一般矩阵的特征值是复数，即使\(\A\)的元素都是实数，也可能没有实数特征值.
+例如，\(\A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}\)是一个二阶实矩阵，\(\abs{\l\E-\A}=\begin{vmatrix} \l & 1 \\ -1 & \l \end{vmatrix} = (\l+\iu)(\l-\iu)\)，\(\A\)有两个特征值\(\pm\iu\)，其对应的特征向量是复向量，因此\(\A\)在复数域上可对角化，但不存在可逆实阵\(\P\)使得\(\P^{-1}\A\P\)为对角阵.
 
 \subsection{施密特正交规范化方法}
 以下讨论将线性无关向量组改造为规范正交组的施密特正交规范化方法.
