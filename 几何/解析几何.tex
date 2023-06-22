@@ -4862,6 +4862,100 @@ equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到
 
 上述结论对于任意两个同定向的直角坐标系仍成立，但对于反定向的两个直角坐标系不成立.
 
+\subsection{空间的仿射坐标变换}
+\begin{theorem}\label{theorem:解析几何.空间的仿射坐标变换公式}
+设 I \([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)
+和 II \([O';\mat{d}_1',\mat{d}_2',\mat{d}_3']\)
+都是空间仿射坐标系，
+\(O'\)的 I 坐标是\((x_0,y_0,z_0)\)，
+\(\mat{d}_j'\)的 I 坐标是\((a_{1j},a_{2j},a_{3j})\)（\(j=1,2,3\)），
+则 I 到 II 的点的仿射坐标变换公式为
+\begin{equation}
+	\begin{bmatrix}
+		x \\ y \\ z
+	\end{bmatrix} = \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix} \begin{bmatrix}
+		x' \\ y' \\ z'
+	\end{bmatrix} + \begin{bmatrix}
+		x_0 \\ y_0 \\ z_0
+	\end{bmatrix},
+\end{equation}
+I 到 II 的向量的仿射坐标变换公式为
+\begin{equation}
+	\begin{bmatrix}
+		u_1 \\ u_2 \\ u_3
+	\end{bmatrix} = \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix} \begin{bmatrix}
+		u_1' \\ u_2' \\ u_3'
+	\end{bmatrix},
+\end{equation}
+其中\[
+	\mat{A} = \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+\]称为“I 到 II 的过渡矩阵”，
+它的第\(j\)列是\(\mat{d}_j'\)（\(j=1,2,3\)）的 I 坐标.
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.空间仿射坐标系同定向的充要条件}
+仿射坐标系 I \([O;\mat{d}_1,\mat{d}_2,\mat{d}_3]\)
+到 II \([O';\mat{d}_1',\mat{d}_2',\mat{d}_3']\)的过渡矩阵\(\mat{A}\)是非奇异的，
+并且 I 与 II 同定向的充要条件是\(\abs{A}>0\).
+\end{theorem}
+
+\begin{corollary}
+平面上的两个仿射坐标系 I \([O;\mat{d}_1,\mat{d}_2]\)
+和 II \([O';\mat{d}_1',\mat{d}_2']\)同定向的充要条件是：
+I 到 II 的过渡矩阵\(\mat{A}\)的行列式\(\abs{A}>0\).
+\end{corollary}
+
+\subsection{空间的直角坐标变换}
+\cref{theorem:解析几何.空间的仿射坐标变换公式,%
+theorem:解析几何.空间仿射坐标系同定向的充要条件}
+在直角坐标系中当然也成立，
+现在我们进一步研究直角坐标变换的特殊性.
+
+\begin{theorem}
+设 I \([O;\mat{e}_1,\mat{e}_2,\mat{e}_3]\)
+和 II \([O';\mat{e}_1',\mat{e}_2',\mat{e}_3']\)
+都是直角坐标系，
+则 I 到 II 的过渡矩阵\(\mat{A}\)是正交矩阵，
+从而 II 到 I 的过渡矩阵是\(\mat{A}^T\).
+\end{theorem}
+
+由于正交矩阵的行列式等于\(\pm1\)，
+因此空间的两个直角坐标系同定向的充要条件就是它们的过渡矩阵的行列式等于\(+1\).
+
+\subsection{代数曲面、代数曲线及其次数}
+空间（或平面）的任一点对于不同不同坐标系的坐标是不同的，
+因而作为点的轨迹的图形在不同坐标系中的方程也就不同，但是有
+\begin{theorem}\label{theorem:解析几何.坐标变换时代数图形的不变性}
+若图形\(S\)在仿射坐标系 I 中的方程\(F(x,y,z)=0\)的左端是关于\(x,y,z\)的\(n\)次多项式，
+则\(S\)在任意一个仿射坐标系 II 中的方程\(G(x',y',z')=0\)的左端是关于\(x',y',z'\)的\(n\)次多项式.
+\end{theorem}
+\cref{theorem:解析几何.坐标变换时代数图形的不变性} 说明，
+一个图形的方程的左端是否为多项式，以及这个多项式的次数与坐标系的选择无关，
+它们都是图形本身的性质.
+
+若图形\(S\)的左端是多项式，则称\(S\)为\textbf{代数曲面}，
+并且把这个多项式的次数称为这个代数曲面的\textbf{次数}.
+
+平面上的图形有类似的性质.
+若平面上图形\(S\)的方程\(F(x,y)=0\)的左端是多项式，
+则称\(S\)是\textbf{代数曲线}，
+并且把这个多项式的次数称为这个代数曲线的\textbf{次数}.
+例如，椭圆、双曲线、抛物线在直角坐标系中的标准方程是二次的，
+由此可知，它们不论在哪一个仿射坐标系中的方程也都是二次的，
+所以它们才都被称为二次曲线.
+
 \section{曲面及其方程}
 \subsection{曲面方程的概念}
 \begin{definition}
