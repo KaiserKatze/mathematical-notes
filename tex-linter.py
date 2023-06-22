@@ -36,6 +36,7 @@ if __name__ == "__main__":
     for file in find_all_tex_files():
         with open(file, mode='r', encoding="utf-8") as fd:
             for line_num, line in enumerate(fd.readlines()):
+                line_num += 1  # enumerate 函数给出的序号是从0开始的，行号是从1开始的，进行修正
                 def error(msg):
                     logger.error("{}\n{} 第{}行：\n{}\n".format(msg, file, line_num, line))
                     global is_tex_project_problematic
