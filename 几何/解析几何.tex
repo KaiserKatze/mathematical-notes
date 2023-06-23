@@ -3357,6 +3357,19 @@ y_1 \cdot y_2 = -p^2.
 曲面上的点（可能要除去个别点）便可由数对\((u,v)\)来确定，
 于是称\((u,v)\)为“曲面上的点的\textbf{曲纹坐标}”.
 
+我们可以给出如下定义.
+\begin{definition}
+如果曲面\(S\)与三元方程\[
+	F(x,y,z)=0
+\]满足
+\begin{enumerate}
+	\item 曲面\(S\)上任一点的坐标都满足这个三元方程，
+	\item 不在曲面\(S\)上的点的坐标都不满足这个三元方程，
+\end{enumerate}
+那么，方程\(F(x,y,z)=0\)就叫做“曲面\(S\)的\textbf{方程}”，
+而曲面\(S\)就叫做“方程\(F(x,y,z)=0\)的\textbf{图形}”.
+\end{definition}
+
 由于几何空间中曲线可以看成两个曲面的交线，
 所以它的一般方程就是联立两个三元方程所得的方程组\[
 	\left\{ \begin{array}{l}
@@ -3439,6 +3452,23 @@ y_1 \cdot y_2 = -p^2.
 由此可见，为了得到由\(Oyz\)平面上的曲线\(\Gamma\)绕\(z\)轴旋转所得旋转面的方程，
 只要将母线\(\Gamma\)在\(Oyz\)平面上的方程中的\(y\)改为\(\pm\sqrt{x^2+y^2}\)，保持\(z\)不变.
 坐标平面上的曲线绕坐标轴旋转所得旋转面的方程都有类似的规律.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|}
+	\hline
+	曲线方程 & 旋转轴 & 旋转曲面方程 \\ \hline
+	\multirow{2}{*}{\(f(x,y)=0\)} & \(x\) & \(f(x,\pm\sqrt{y^2+z^2})=0\) \\ \cline{2-3}
+		& \(y\) & \(f(\pm\sqrt{x^2+z^2},y)=0\) \\ \hline
+	\multirow{2}{*}{\(f(y,z)=0\)} & \(y\) & \(f(y,\pm\sqrt{x^2+z^2})=0\) \\ \cline{2-3}
+		& \(z\) & \(f(\pm\sqrt{x^2+y^2},z)=0\) \\ \hline
+	\multirow{2}{*}{\(f(x,z)=0\)} & \(x\) & \(f(x,\pm\sqrt{y^2+z^2})=0\) \\ \cline{2-3}
+		& \(z\) & \(f(\pm\sqrt{x^2+y^2},z)=0\) \\
+	\hline
+	\end{tabular}
+	\caption{}
+\end{table}
+
 
 \begin{example}
 母线\[
@@ -3799,6 +3829,12 @@ y_1 \cdot y_2 = -p^2.
 在前面两小节中，我们为几何特征很明显的球面、旋转面、柱面、锥面建立了各自的方程.
 本小节则对比较简单的二次方程，从方程出发去研究图形的性质.
 
+我们首先给出“二次曲面”的定义：
+\begin{definition}
+把三元二次方程\(F(x,y,z)=0\)所表示的曲面称为\textbf{二次曲面}（quadratic surface）.
+%@see: https://mathworld.wolfram.com/QuadraticSurface.html
+\end{definition}
+
 我们已经知道，二次方程\[
 	\frac{x^2}{a^2}+\frac{y^2}{b^2}-1=0
 \]表示椭圆柱面，
@@ -3818,7 +3854,7 @@ y_1 \cdot y_2 = -p^2.
 	\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1,
 	\quad a,b,c>0
 \end{equation}
-表示的曲面称为\textbf{椭球面}.
+表示的曲面称为\textbf{椭球面}（ellipsoid）.
 它有下述性质：
 \begin{enumerate}
 	\item 对称性.
@@ -3864,12 +3900,24 @@ y_1 \cdot y_2 = -p^2.
 	把平行于\(Oxy\)平面的截口投影到\(Oxy\)平面上得到的投影线称为\textbf{等高线}.
 \end{enumerate}
 
+\begin{example}
+试证：椭球面\[
+S: \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1.
+\]在其上任意一点\(P_0\opair{x_0,y_0,z_0}\)处的切面方程为
+\begin{equation}\label{equation:解析几何.椭球面的切平面}
+\frac{x_0 x}{a^2} + \frac{y_0 y}{b^2} + \frac{z_0 z}{c^2} = 1.
+\end{equation}
+%TODO
+\end{example}
+
 \subsubsection{单叶双曲面}
 方程\begin{equation}\label{equation:解析几何.单叶双曲面}
 	\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1,
 	\quad a,b,c>0
 \end{equation}
-表示的曲面称为\textbf{单叶双曲面}.
+表示的曲面称为\textbf{单叶双曲面}（one-sheeted elliptic hyperboloid）.
+% 下面绘出单叶双曲面的图形：
+% Mathematica: RevolutionPlot3D[{Sec[t], Tan[t]}, {t, -Pi, Pi}, PlotRange -> {-5, 5}]
 它具有下述性质：
 \begin{enumerate}
 	\item 对称性.
@@ -3947,7 +3995,9 @@ y_1 \cdot y_2 = -p^2.
 	\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=-1,
 	\quad a,b,c>0
 \end{equation}
-表示的曲面称为\textbf{双叶双曲面}.
+表示的曲面称为\textbf{双叶双曲面}（two-sheeted elliptic hyperboloid）.
+% 下面绘出双叶双曲面的图形：
+% Mathematica: RevolutionPlot3D[{Tan[t], Sec[t]}, {t, -Pi, Pi}, PlotRange -> {-5, 5}]
 它具有下述性质：
 \begin{enumerate}
 	\item 对称性.
@@ -4199,6 +4249,19 @@ y_1 \cdot y_2 = -p^2.
 	\end{enumerate}
 \end{enumerate}
 我们可以证明二次曲面只有这17种.
+
+不过有的地方也只考虑以下9种曲面是二次曲面：
+\begin{enumerate}
+	\item 椭圆锥面
+	\item 椭球面
+	\item 单叶双曲面
+	\item 双叶双曲面
+	\item 椭圆抛物面
+	\item 双曲抛物面
+	\item 椭圆柱面
+	\item 双曲柱面
+	\item 抛物柱面
+\end{enumerate}
 
 \subsection{直纹面}
 我们看到，柱面和锥面都是由直线组成的.
@@ -4956,213 +5019,7 @@ theorem:解析几何.空间仿射坐标系同定向的充要条件}
 由此可知，它们不论在哪一个仿射坐标系中的方程也都是二次的，
 所以它们才都被称为二次曲线.
 
-\section{曲面及其方程}
-\subsection{曲面方程的概念}
-\begin{definition}
-如果曲面\(S\)与三元方程\begin{gather}
-F(x,y,z)=0 \tag1
-\end{gather}有下述关系：
-\begin{enumerate}
-\item 曲面\(S\)上任一点的坐标都满足方程(1)；
-\item 不在曲面\(S\)上的点的坐标都不满足方程(1).
-\end{enumerate}
-那么，上述三元方程就叫做\textbf{曲面\(S\)的方程}，而曲面\(S\)就叫做该方程的\textbf{图形}.
-\end{definition}
-
-\begin{example}
-建立球心在点\(M_0\opair{x_0,y_0,z_0}\)，半径为\(R\)的球面的方程.
-\begin{solution}
-设\(M\opair{x,y,z}\)是球面上任一点，那么\[
-\abs{M_0 M} = \sqrt{(x-x_0)^2+(y-y_0)^2+(z-z_0)^2} = R
-\]或\((x-x_0)^2+(y-y_0)^2+(z-z_0)^2=R^2\).
-
-特别地，当球心在原点时，\(x_0=y_0=z_0=0\)，从而球面方程为\[
-x^2+y^2+z^2=R^2.
-\]
-\end{solution}
-\end{example}
-
-\begin{example}
-设有点\(A\opair{1,2,3}\)和\(B\opair{2,-1,4}\)，求线段\(AB\)的垂直平分面的方程.
-\begin{solution}
-设\(M\opair{x,y,z}\)为所求平面上任一点，由于\(\abs{AM}=\abs{BM}\)，所以\[
-\sqrt{(x-1)^2+(y-2)^2+(z-3)^2}=\sqrt{(x-2)^2+(x+1)^2+(x-4)^2},
-\]化简得\(2x-6y+2z-7=0\).
-\end{solution}
-\end{example}
-
-\subsection{旋转曲面}
-\begin{definition}
-以一条平面曲线绕其平面上的一条直线旋转一周所成的曲面叫做\textbf{旋转曲面}，旋转的曲线和定直线分别称作旋转曲面的\textbf{母线}和\textbf{轴}.
-\end{definition}
-
-\begin{center}
-\begin{tabular}{c|c|c}
-\hline
-平面曲线方程 & 旋转轴 & 旋转曲面方程 \\ \hline
-\multirow{2}{*}{\(f(x,y)=0\)} & \(x\) & \(f(x,\pm\sqrt{y^2+z^2})=0\) \\ \cline{2-3}
- & \(y\) & \(f(\pm\sqrt{x^2+z^2},y)=0\) \\ \hline
-\multirow{2}{*}{\(f(y,z)=0\)} & \(y\) & \(f(y,\pm\sqrt{x^2+z^2})=0\) \\ \cline{2-3}
- & \(z\) & \(f(\pm\sqrt{x^2+y^2},z)=0\) \\ \hline
-\multirow{2}{*}{\(f(x,z)=0\)} & \(x\) & \(f(x,\pm\sqrt{y^2+z^2})=0\) \\ \cline{2-3}
- & \(z\) & \(f(\pm\sqrt{x^2+y^2},z)=0\) \\
-\hline
-\end{tabular}
-\end{center}
-
-\begin{example}
-直线\(L\)绕另一条与\(L\)相交的直线旋转一周，所得旋转曲面叫做\textbf{圆锥面}.两直线的交点叫做圆锥面的\textbf{顶点}，两直线的夹角\(\alpha\)（\(0<\alpha<\pi/2\)）叫做圆锥面的\textbf{半顶角}.试建立顶点在坐标原点\(O\)，旋转轴为\(z\)轴，半顶角为\(\alpha\)的圆锥面的方程.
-\begin{solution}
-在\(yOz\)坐标面上，直线\(L\)的方程为\begin{gather}
-z = y \cot\alpha, \tag1
-\end{gather}因为旋转轴为\(z\)轴，所以只要将方程(1)中的\(y\)改成\(\pm\sqrt{x^2+y^2}\)，便得到这圆锥面的方程\[
-z = \pm\sqrt{x^2+y^2} \cot\alpha
-\quad \text{或} \quad
-z^2 = a^2(x^2+y^2),
-\]其中\(a=\cot\alpha\).
-\end{solution}
-\end{example}
-
-\subsection{柱面}
-\begin{definition}
-一般地，直线\(L\)沿定曲线\(C\)平行移动形成的轨迹叫做\textbf{柱面}，定曲线\(C\)叫做柱面的\textbf{准线}，动直线\(L\)叫做柱面的\textbf{母线}.
-\end{definition}
-
-\begin{example}
-方程\(x^2+y^2=R^2\)在\(xOy\)面上表示圆心在原点\(O\)，半径为\(R\)的圆；在空间直角坐标系中，它表示以\(z\)轴为轴，以\(x^2+y^2=R^2\)为准线的\textbf{圆柱面}.
-\end{example}
-
-\begin{example}
-方程\(y^2=2x\)表示母线平行于\(z\)轴的柱面，它的准线是\(xOy\)面上的抛物线\(y^2=2x\)，该柱面叫做\textbf{抛物柱面}.
-\end{example}
-
-\begin{example}
-方程\(x-y=0\)表示母线平行于\(z\)轴的柱面，其准线是\(xOy\)面上的直线\(x-y=0\)，所以它是过\(z\)轴的平面.
-\end{example}
-
-一般地，只含\(x\)、\(y\)而缺\(z\)的方程\(F(x,y)=0\)在空间直角坐标系中表示母线平行于\(z\)轴的柱面，其准线是\(xOy\)面上的曲线\(C: F(x,y)=0\).
-
-类似可知，只含\(x\)、\(z\)而缺\(y\)的方程\(G(x,z)=0\)和只含\(y\)、\(z\)而缺\(x\)的方程\(H(y,z)=0\)分别表示母线平行于\(y\)轴和\(x\)轴的柱面.
-
-\subsection{二次曲面}
-\begin{definition}
-把三元二次方程\(F(x,y,z)=0\)所表示的曲面称为\textbf{二次曲面}（quadratic surface）.
-%@see: https://mathworld.wolfram.com/QuadraticSurface.html
-相对地，把平面称为\textbf{一次曲面}.
-\end{definition}
-
-二次曲面总共有九种.下面列举九种二次曲面的标准方程：
-\begin{enumerate}
-\item \textbf{椭圆锥面} \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=z^2\).
-\item \textbf{椭球面}（ellipsoid） \(\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\).
-	特别地，\textbf{旋转椭球面}包括：\begin{enumerate}
-	\item \(\frac{x^2+y^2}{a^2}+\frac{z^2}{c^2}=1\)\footnote{%
-	将球面\(x^2+y^2+z^2=a^2\)沿\(z\)轴方向伸缩\(\frac{c}{a}\)倍便得旋转椭球面\(\frac{x^2+y^2}{a^2}+\frac{z^2}{c^2}=1\)；再沿\(y\)轴方向伸缩\(\frac{b}{a}\)倍，便得椭球面\(\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\).%
-	}.
-	\end{enumerate}
-	显然，球面是旋转椭球面的特殊情形，旋转椭球面是椭球面的特殊情形.
-\item \textbf{单叶双曲面}（one-sheeted (elliptic) hyperboloid） \(\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\).
-\item \textbf{双叶双曲面}（two-sheeted (elliptic) hyperboloid） \(\frac{x^2}{a^2}-\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\).
-	特别地，\textbf{旋转双叶双曲面}：\begin{enumerate}
-	\item \(\frac{x^2}{a^2}-\frac{y^2+z^2}{c^2}=1\)\footnote{%
-	将\(xOz\)面上的双曲线\(\frac{x^2}{a^2}-\frac{z^2}{c^2}=1\)绕\(x\)轴旋转，得旋转双叶双曲面\(\frac{x^2}{a^2}-\frac{y^2+z^2}{c^2}=1\)；再沿\(y\)轴方向伸缩\(\frac{b}{c}\)倍，便得双叶双曲面\(\frac{x^2}{a^2}-\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\).%
-	}.
-	\end{enumerate}
-\item \textbf{椭圆抛物面} \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=z\).
-% Mathematica: RevolutionPlot3D[{Sec[t], Tan[t]}, {t, -Pi, Pi}, PlotRange -> {-5, 5}]
-\item \textbf{双曲抛物面}（又称\textbf{马鞍面}） \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=z\).
-% Mathematica: RevolutionPlot3D[{Tan[t], Sec[t]}, {t, -Pi, Pi}, PlotRange -> {-5, 5}]
-\item \textbf{椭圆柱面} \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\).
-\item \textbf{双曲柱面} \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\).
-\item \textbf{抛物柱面} \(x^2=ay\).
-\end{enumerate}
-
-\begin{example}
-单叶双曲面\[
-\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1
-\]的参数方程为\[
-\left\{ \begin{array}{l}
-x = a \sqrt{1+u^2} \cos v, \\
-y = b \sqrt{1+u^2} \sin v, \\
-z = c u
-\end{array} \right.
-\quad
-v\in[0,2\pi).
-\]
-
-双叶双曲面\[
-\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = -1
-\]的参数方程为\[
-\left\{ \begin{array}{l}
-x = a \sinh u \cos v, \\
-y = b \sinh u \sin v, \\
-z = \pm c \cosh u
-\end{array} \right.
-\quad
-u\in(-\infty,+\infty),
-v\in[0,\pi).
-\]
-\end{example}
-
-\begin{example}
-试证：椭球面\[
-S: \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1.
-\]在其上任意一点\(P_0\opair{x_0,y_0,z_0}\)处的切面方程为
-\begin{equation}\label{equation:解析几何.椭球面的切平面}
-\frac{x_0 x}{a^2} + \frac{y_0 y}{b^2} + \frac{z_0 z}{c^2} = 1.
-\end{equation}
-\end{example}
-
 \section{空间曲线及其方程}
-\subsection{空间曲线的一般方程}
-空间曲线可以看成是两个曲面的交线.设\(F(x,y,z)=0\)和\(G(x,y,z)=0\)是两个曲面的方程，它们的交线为\(C\)，则\(C\)的方程为\begin{gather}
-\left\{ \begin{array}{l}
-F(x,y,z)=0, \\
-G(x,y,z)=0.
-\end{array} \right. \tag1
-\end{gather}
-方程组(1)叫做空间曲线\(C\)的\textbf{一般方程}.
-
-\subsection{空间曲线的参数方程}
-只要将空间曲线\(C\)上动点的坐标\(x\)、\(y\)、\(z\)表示为参数\(t\)的函数：\begin{gather}
-\left\{ \begin{array}{l}
-x=x(t), \\
-y=y(t), \\
-z=z(t).
-\end{array} \right. \tag2
-\end{gather}
-方程组(2)叫做空间曲线\(C\)的\textbf{参数方程}.
-
-\subsection{曲面的参数方程}
-曲面的参数方程通常是含两个参数的方程，形如\begin{gather}
-\left\{ \begin{array}{l}
-x=x(s,t), \\
-y=y(s,t), \\
-z=z(s,t).
-\end{array} \right. \tag3
-\end{gather}
-
-\begin{example}
-空间曲线\[
-\Gamma: \left\{ \begin{array}{l}
-x=\varphi(t), \\
-y=\psi(t), \\
-z=\omega(t),
-\end{array} \right.
-\quad \alpha \leqslant t \leqslant \beta
-\]绕\(z\)轴旋转，所得旋转曲面的方程为\begin{gather}
-\left\{ \begin{array}{l}
-x=\sqrt{[\varphi(t)]^2+[\psi(t)]^2} \cos\theta, \\
-y=\sqrt{[\varphi(t)]^2+[\psi(t)]^2} \sin\theta, \\
-z=\omega(t),
-\end{array} \right.
-\quad \begin{array}{c}
-\alpha \leqslant t \leqslant \beta \\
-0 \leqslant \theta \leqslant 2\pi
-\end{array}. \tag4
-\end{gather}
-\end{example}
-
 \subsection{空间曲线在坐标面上的投影}
 设空间曲线\(C\)的一般方程为\begin{gather}
 \left\{ \begin{array}{l}
