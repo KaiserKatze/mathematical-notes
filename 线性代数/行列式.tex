@@ -345,8 +345,8 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 \end{array}
 \]称为“\(\A\)的一个\(k\)阶\textbf{子式}（minor）”，记作\[
 \MatrixMinor\A{
-\v{i}{k} \\
-\v{j}{k}
+	\v{i}{k} \\
+	\v{j}{k}
 }.
 \]
 \end{definition}
@@ -358,40 +358,60 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 则对任意\(k > r\)有\(\A\)的所有\(k\)阶子式全为零.
 \end{property}
 
+\subsection{主子式}
+\begin{definition}
+设\(\A=(a_{ij})_n\)，%
+\(k\)阶子式\[
+	\MatrixMinor\A{
+		i_1,i_2,\dotsc,i_k \\
+		i_1,i_2,\dotsc,i_k
+	}
+\]
+称为“\(\A\)的\(k\)阶\textbf{主子式}”.
+\end{definition}
+
 \subsection{顺序主子式}
 \begin{definition}
 设\(\A=(a_{ij})_n\)，%
 \(\A\)位于左上角的子式\[
-D_k = \MatrixMinor\A{
-1,2,\dotsc,k \\
-1,2,\dotsc,k
-} = \begin{vmatrix}
-a_{11} & a_{12} & \dots & a_{1k} \\
-a_{21} & a_{22} & \dots & a_{2k} \\
-\vdots & \vdots & \ddots & \vdots \\
-a_{k1} & a_{k2} & \dots & a_{kk}
-\end{vmatrix}
-\quad(1 \leqslant k \leqslant n)
+	D_k = \MatrixMinor\A{
+		1,2,\dotsc,k \\
+		1,2,\dotsc,k
+	}
+	= \begin{vmatrix}
+		a_{11} & a_{12} & \dots & a_{1k} \\
+		a_{21} & a_{22} & \dots & a_{2k} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{k1} & a_{k2} & \dots & a_{kk}
+	\end{vmatrix}
+	\quad(1 \leqslant k \leqslant n)
 \]称为\(\A\)的\(k\)阶\textbf{顺序主子式}（ordinal principal minor）.
 \end{definition}
 
 \subsection{余子式、代数余子式}
 \begin{definition}
 在\(n\)阶矩阵\(\A=(a_{ij})_n\)中，取定\(k\)行\(k\)列得到一个\(k\)阶子式\[
-\alpha = \MatrixMinor\A{
-\v{i}{k} \\
-\v{j}{k}
-}.
-\]划去这个\(k\)阶子式所在的行和列，剩下的元素按原顺序排成的\((n-k)\)阶矩阵的行列式称为“子式\(\alpha\)的\textbf{余子式}（cofactor）”，在这个余子式前乘以\((-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}\)得到“子式\(\alpha\)的\textbf{代数余子式}（algebraic cofactor）”.
+	\alpha = \MatrixMinor\A{
+		\v{i}{k} \\
+		\v{j}{k}
+	}.
+\]
+划去这个\(k\)阶子式所在的行和列，
+剩下的元素按原顺序排成的\((n-k)\)阶矩阵的行列式称为
+“子式\(\alpha\)的\textbf{余子式}（cofactor）”，
+在这个余子式前乘以\((-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}\)
+得到“子式\(\alpha\)的\textbf{代数余子式}（algebraic cofactor）”.
 令\[\begin{split}
 \{\v{i'}{n-k}\} &= \{1,2,\dotsc,n\}-\{\v{i}{k}\}, \\
 \{\v{j'}{n-k}\} &= \{1,2,\dotsc,n\}-\{\v{j}{k}\},
-\end{split}\]并且\(i'_1<i'_2<\dotsb<i'_{n-k},%
-j'_1<j'_2<\dotsb<j'_{n-k}\)，则子式\(\alpha\)的余子式可以记作\[
-\MatrixMinor\A{
-\v{i'}{n-k} \\
-\v{j'}{n-k}
-}.
+\end{split}\]
+并且\(i'_1<i'_2<\dotsb<i'_{n-k},%
+j'_1<j'_2<\dotsb<j'_{n-k}\)，
+则子式\(\alpha\)的余子式可以记作\[
+	\MatrixMinor\A{
+		\v{i'}{n-k} \\
+		\v{j'}{n-k}
+	}.
 \]
 
 特别地，在\(\A\)中，取定第\(i\)行第\(j\)列确定一个元素\(a_{ij}\).
@@ -416,17 +436,17 @@ A_{ij}=(-1)^{i+j} M_{ij}
 则这\(k\)行元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\)，%
 即
 \begin{equation}
-\abs{\A} =
-\sum\limits_{1 \leqslant j_1 < j_2 < \dotsb < j_k \leqslant n}
-\MatrixMinor\A{
-\v{i}{k} \\
-\v{j}{k}
-}
-\cdot(-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}\cdot
-\MatrixMinor\A{
-\v{i'}{n-k} \\
-\v{j'}{n-k}
-}.
+	\abs{\A} =
+	\sum\limits_{1 \leqslant j_1 < j_2 < \dotsb < j_k \leqslant n}
+	\MatrixMinor\A{
+		\v{i}{k} \\
+		\v{j}{k}
+	}
+	\cdot(-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}\cdot
+	\MatrixMinor\A{
+		\v{i'}{n-k} \\
+		\v{j'}{n-k}
+	}.
 \end{equation}
 \end{theorem}
 

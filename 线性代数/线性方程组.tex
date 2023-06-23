@@ -1670,12 +1670,12 @@ m \leqslant \rank\A,\rank\B \leqslant m \\
 \item 当\(m < n\)时，\begin{equation}\label{equation:线性方程组.柯西-比内公式}
 \abs{\C} = \sum\limits_{1 \leqslant i_1 \leqslant i_2 \leqslant \dotsb \leqslant i_m \leqslant n}
 \MatrixMinor\A{
-1,2,\dotsc,m \\
-i_1,i_2,\dotsc,i_m
+	1,2,\dotsc,m \\
+	i_1,i_2,\dotsc,i_m
 }
 \MatrixMinor\B{
-i_1,i_2,\dotsc,i_m \\
-1,2,\dotsc,m
+	i_1,i_2,\dotsc,i_m \\
+	1,2,\dotsc,m
 }.
 \end{equation}
 \rm\cref{equation:线性方程组.柯西-比内公式} 称为\textbf{柯西-比内公式}.
@@ -1691,6 +1691,123 @@ i_1,i_2,\dotsc,i_m \\
 也就是说，矩阵\(\C = \A\B\)不满秩；
 那么根据\cref{theorem:线性方程组.矩阵的秩的性质4} 可知\(\abs{\C} = 0\).
 
+当\(m<n\)时，
+考虑\(m+n\)阶分块矩阵\[
+	\begin{bmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{bmatrix},
+\]
+由于\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{vmatrix}
+	= \abs{\E_n} \abs{\A\B}
+	= \abs{\A\B},
+\]
+所以\[
+	\begin{bmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{bmatrix}
+	\to
+	\begin{bmatrix}
+		E_n & \B \\
+		-\A & \z
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\E_n & \z \\
+		-\A & \E_m
+	\end{bmatrix} \begin{bmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{bmatrix},
+\]\[
+	\begin{vmatrix}
+		E_n & \B \\
+		-\A & \z
+	\end{vmatrix}
+	= \begin{vmatrix}
+		\E_n & \z \\
+		-\A & \E_m
+	\end{vmatrix} \begin{vmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{vmatrix},
+\]从而有\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{vmatrix} = \begin{vmatrix}
+		\E_n & \B \\
+		-\A & \z
+	\end{vmatrix},
+\]
+把上式右端行列式按后\(m\)行展开得\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		-\A & \z
+	\end{vmatrix}
+	= \sum\limits_{1 \leqslant i_1 < \dotsb < i_m \leqslant n}
+	\MatrixMinor{(-\A)}{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	(-1)^{[(n+1)+\dotsb+(n+m)]+(i_1+\dotsb+i_m)}
+	\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)},
+\]
+其中\(\Set{\mu_1,\dotsc,\mu_{n-m}}
+= \Set{1,\dotsc,n}-\Set{i_1,\dotsc,i_s}\)，
+且\(\mu_1<\dotsb<\mu_{n-m}\).
+
+把\(\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)}\)
+按前\(n-m\)行展开得\[
+	\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)}
+	= \abs{\E_{n-m}}
+	(-1)^{(\mu_1+\dotsb+\mu_{n-m})+[1+\dotsb+(n-m)]}
+	\MatrixMinor{\B}{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	}.
+\]
+因此\begin{align*}
+	\begin{vmatrix}
+		\E_n & \B \\
+		-\A & \z
+	\end{vmatrix}
+	&= \sum\limits_{1 \leqslant i_1 < \dotsb < i_m \leqslant n}
+	(-1)^{m+m^2+n+n^2}
+	\MatrixMinor\A{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	\MatrixMinor\B{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	} \\
+	&= \sum\limits_{1 \leqslant i_1 < \dotsb < i_m \leqslant n}
+	\MatrixMinor\A{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	\MatrixMinor\B{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	}.
+\end{align*}
+综上所述，\[
+	\abs{\A\B}
+	= \sum\limits_{1 \leqslant i_1 \leqslant i_2 \leqslant \dotsb \leqslant i_m \leqslant n}
+	\MatrixMinor\A{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	\MatrixMinor\B{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	}.
+\]
 \end{proof}
 \end{theorem}
 
@@ -1745,31 +1862,31 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 \(\A\)有\(r\)阶子式不等于零，即
 \[
 \MatrixMinor\A{
-\v{i}{r} \\
-\v{j}{r}
+	\v{i}{r} \\
+	\v{j}{r}
 } \neq 0.
 \eqno(1)
 \]
 由\hyperref[equation:线性方程组.柯西-比内公式]{柯西-比内公式}可知
 \begin{align*}
 \MatrixMinor{(\A\A^T)}{
-\v{i}{r} \\
-\v{i}{r}
+	\v{i}{r} \\
+	\v{i}{r}
 }
 &= \sum\limits_{1 \leqslant k_1 < k_2 < \dotsb < k_r \leqslant n}
 \MatrixMinor\A{
-\v{i}{r} \\
-\v{k}{r}
+	\v{i}{r} \\
+	\v{k}{r}
 }
 \MatrixMinor{\A^T}{
-\v{k}{r} \\
-\v{i}{r}
+	\v{k}{r} \\
+	\v{i}{r}
 } \\
 &= \sum\limits_{1 \leqslant k_1 < k_2 < \dotsb < k_r \leqslant n}
 \left[
 	\MatrixMinor\A{
-	\v{i}{r} \\
-	\v{k}{r}
+		\v{i}{r} \\
+		\v{k}{r}
 	}
 \right]^2.
 \tag2
@@ -1779,8 +1896,8 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 \[
 \left[
 	\MatrixMinor\A{
-	\v{i}{r} \\
-	\v{k}{r}
+		\v{i}{r} \\
+		\v{k}{r}
 	}
 \right]^2
 \geqslant 0.
@@ -1790,8 +1907,8 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 \[
 \left[
 	\MatrixMinor\A{
-	\v{i}{r} \\
-	\v{j}{r}
+		\v{i}{r} \\
+		\v{j}{r}
 	}
 \right]^2
 > 0.
@@ -1803,15 +1920,15 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 综上所述
 \[
 \MatrixMinor{(\A\A^T)}{
-\v{i}{r} \\
-\v{i}{r}
+	\v{i}{r} \\
+	\v{i}{r}
 }
 =
 \sum\limits_{1 \leqslant k_1 < k_2 < \dotsb < k_r \leqslant n}
 \left[
 	\MatrixMinor\A{
-	\v{i}{r} \\
-	\v{k}{r}
+		\v{i}{r} \\
+		\v{k}{r}
 	}
 \right]^2
 > 0,
