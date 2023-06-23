@@ -12,13 +12,12 @@ info_log_handler = logging.StreamHandler()
 info_log_handler.setLevel(logging.INFO)
 info_log_handler.setFormatter(logging.Formatter("\033[32m%(levelname)s %(message)s\033[0m"))
 info_log_handler.addFilter(lambda record: record.levelno == logging.INFO)
+logger.addHandler(info_log_handler)
 
 error_log_handler = logging.StreamHandler()
 error_log_handler.setLevel(logging.ERROR)
 error_log_handler.setFormatter(logging.Formatter("\033[31m%(levelname)s %(message)s\033[0m"))
 error_log_handler.addFilter(lambda record: record.levelno == logging.ERROR)
-
-logger.addHandler(info_log_handler)
 logger.addHandler(error_log_handler)
 
 
