@@ -1119,8 +1119,8 @@ y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
 阶梯形矩阵\(\B\)有3行不为零，故\[
 \rank\{\AutoTuple{\a}{5}\}=3.
 \]又因为\(\B\)的非零首元分别位于1、2、4列，%
-则\(\b1,\b2,\b4\)是\(\B\)的一个列极大无关组，%
-相应地，\(\a1,\a2,\a4\)是\(\A\)的一个列极大无关组，%
+则\(\b_1,\b_2,\b_4\)是\(\B\)的一个列极大无关组，%
+相应地，\(\a_1,\a_2,\a_4\)是\(\A\)的一个列极大无关组，%
 即\(\{\AutoTuple{\a}{5}\}\)的极大无关组.
 \end{solution}
 \end{example}
@@ -1259,12 +1259,19 @@ y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
 \end{property}
 
 \begin{definition}
-设矩阵\(\A = (a_{ij})_{s \times n}\).\begin{enumerate}
-\item 若\(\rank\A = s\)，则称矩阵\(\A\)为\textbf{行满秩矩阵}.
-\item 若\(\rank\A = n\)，则称矩阵\(\A\)为\textbf{列满秩矩阵}.
-\item 若\(\rank\A = s = n\)，则称方阵\(\A\)为\textbf{满秩矩阵}.
+设矩阵\(\A = (a_{ij})_{s \times n}\).
+\begin{enumerate}
+	\item 若\(\rank\A = s\)，
+	则称“\(\A\)为\textbf{行满秩矩阵}（row full rank matrix）”.
+	\item 若\(\rank\A = n\)，
+	则称“\(\A\)为\textbf{列满秩矩阵}（column full rank matrix）”.
+	\item 若\(\rank\A = s = n\)，
+	则称“\(\A\)是\textbf{满秩矩阵}（full rank matrix）”，
+	或“\(\A\)是\textbf{非退化矩阵}（non-degenerate matrix）”.
 \end{enumerate}
 \end{definition}
+
+应该注意到，“可逆矩阵”“非奇异矩阵”“满秩矩阵”“非退化矩阵”是从不同侧重点对同一类矩阵的四种称谓.
 
 \begin{property}\label{theorem:线性方程组.矩阵的秩的性质4}
 矩阵\(\A\)是满秩矩阵的充要条件是\(\abs{\A}\neq0\).
@@ -1401,7 +1408,7 @@ x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \z
 \qquad
 \B = (\AutoTuple{\b}{n}),
 \]则\[
-(\AutoTuple{\g}{n}) = \A (\AutoTuple{\b}{n}) = (\A\b1,\A\b2,\dotsc,\A\b_n),
+(\AutoTuple{\g}{n}) = \A (\AutoTuple{\b}{n}) = (\A\b_1,\A\b_2,\dotsc,\A\b_n),
 \]于是\[
 \g_i = \A \b_i,
 \quad i=1,2,\dotsc,n.
@@ -1673,6 +1680,18 @@ i_1,i_2,\dotsc,i_m \\
 \end{equation}
 \rm\cref{equation:线性方程组.柯西-比内公式} 称为\textbf{柯西-比内公式}.
 \end{enumerate}
+\begin{proof}
+当\(m=n\)时，
+根据\cref{theorem:行列式.矩阵乘积的行列式}，
+\(\abs{\C} = \abs{\A} \abs{\B}\)总成立.
+
+当\(m>n\)时，
+根据\cref{theorem:线性方程组.矩阵的秩的性质2}，有\[\rank\A,\rank\B \leqslant \min\{m,n\} = n;\]
+再根据\cref{theorem:线性方程组.矩阵乘积的秩}，有\[\rank(\A\B) \leqslant \min\{\rank\A,\rank\B\} = n < m,\]
+也就是说，矩阵\(\C = \A\B\)不满秩；
+那么根据\cref{theorem:线性方程组.矩阵的秩的性质4} 可知\(\abs{\C} = 0\).
+
+\end{proof}
 \end{theorem}
 
 \begin{example}
