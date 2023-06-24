@@ -1,15 +1,62 @@
 \chapter{行列式}
 \section{排列与逆序数}
 \begin{definition}
-\(n\)个自然数\(1,2,\dotsc,n\)按一定顺序排列组成的一个有序数组称为一个\(n\)阶\textbf{排列}.
+\(n\)个自然数\(1,2,\dotsc,n\)按一定顺序排列组成的一个有序数组\[
+	(\v{k}{n})
+\]称为一个\(n\)阶\textbf{排列}，
+其中\(\Set{\v{k}{n}} = \Set{1,2,\dotsc,n}\).
 
-设\(\v{k}{n}\)是一个\(n\)阶排列，当\(1 \leqslant i<j \leqslant n\)时，
-如果\(k_i>k_j\)，则称\(k_i,k_j\)构成一个\textbf{逆序}；如果\(k_i<k_j\)，
-则称\(k_i,k_j\)构成一个\textbf{顺序}.
+当\(1 \leqslant i<j \leqslant n\)时，
+如果\(k_i>k_j\)，则称“\(k_i,k_j\)构成一个\textbf{逆序}”；
+如果\(k_i<k_j\)，则称“\(k_i,k_j\)构成一个\textbf{顺序}”.
 此排列中的逆序的总数叫它的\textbf{逆序数}，记作\(\tau(\v{k}{n})\).
 
 逆序数为偶数的排列叫\textbf{偶排列}，逆序数为奇数的排列叫\textbf{奇排列}.
 \end{definition}
+
+\begin{example}
+在4元排列2341中，2与3形成的数对\((2,3)\)，小的数在前，大的数在后，这一对数构成一个顺序；
+而2与1形成的数对\((2,1)\)，大的数在前，小的数在后，这一对数构成一个逆序.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\foreach \j in {0,...,3} {
+			\fill[ballblue](\j cm+1pt,1pt)rectangle(\j cm+1cm-1pt,1cm-1pt);
+		}
+		\foreach \i in {0,...,3} {
+			\fill[orangepeel](-1pt,-\i cm-1pt)rectangle(-1cm+1pt,-\i cm-1cm+1pt);
+		}
+		\tiny
+		\draw[black](-.5,5pt)node{\(k_i\)}
+				(-5pt,.5)node{\(k_j\)};
+		\normalsize
+		\draw(-.5,-.5)node{2}
+			(-.5,-1.5)node{3}
+			(-.5,-2.5)node{4}
+			(-.5,-3.5)node{1};
+		\draw(.5,.5)node{2}
+			(1.5,.5)node{3}
+			(2.5,.5)node{4}
+			(3.5,.5)node{1};
+		\draw[applegreen](1.5,-.5)node{(2,3)}
+			(2.5,-.5)node{(2,4)}
+			(2.5,-1.5)node{(3,4)};
+		\draw[tangelo](3.5,-.5)node{(2,1)}
+			(3.5,-1.5)node{(3,1)}
+			(3.5,-2.5)node{(4,1)};
+		\draw[black!30,dashed](0,0)--(4,-4);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:行列式.4元排列2341的所有数对}
+\end{figure}
+
+如\cref{figure:行列式.4元排列2341的所有数对}，
+构成逆序的数对有\((2,1),(3,1),(4,1)\)，
+构成顺序的数对有\((2,3),(2,4),(3,4)\)，
+这个4元排列的逆序数是3，即\(\tau(2341)=3\)，
+它是一个奇排列.
+\end{example}
 
 \begin{property}
 \(n\)阶排列共有\(n!\)个.
