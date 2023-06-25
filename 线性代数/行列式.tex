@@ -139,7 +139,7 @@
 	(-1)^{\tau(\v{\nu}{n})} = (-1)^s (-1)^{\tau(\v{\mu}{n})}.
 \]
 
-\begin{theorem}
+\begin{theorem}\label{theorem:行列式.任意排列可化为自然序}
 任意一个\(n\)阶排列\(\v{k}{n}\)都可经一系列对换变成自然顺序排列，
 且对换的次数\(s\)与\(\tau(\v{k}{n})\)同奇偶，即\[
 	(-1)^s = (-1)^{\tau(\v{k}{n})}.
@@ -611,7 +611,76 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 且\(\mu_1<\mu_2<\dotsb<\mu_{n-k},
 \nu_1<\nu_2<\dotsb<\nu_{n-k}\).
 \begin{proof}
+根据\cref{equation:行列式.给定行指标排列下的行列式的完全展开式}，
+给定\(\abs{\A}\)的行指标排列\(\AutoTuple{i}{k},\AutoTuple{\mu}{n-k}\)，
+\(\abs{\A}\)的表达式为\begin{align*}
+	\abs{\A}
+	&= \sum\limits_{\AutoTuple{p}{k},\AutoTuple{q}{n-k}}
+	(-1)^{\tau(\AutoTuple{i}{k},\AutoTuple{\mu}{n-k}) + \tau(\AutoTuple{p}{k},\AutoTuple{q}{n-k})}
+	a_{i_1 p_1} \dotsm a_{i_k p_k}
+	a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}} \\
+	&= \sum\limits_{\AutoTuple{p}{k},\AutoTuple{q}{n-k}}
+	(-1)^{(i_1+\dotsb+i_k) - \frac{1}{2}k(k+1) + \tau(\AutoTuple{p}{k},\AutoTuple{q}{n-k})}
+	a_{i_1 p_1} \dotsm a_{i_k p_k}
+	a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}}.
+\end{align*}
 
+通过任意给定\(\AutoTuple{j}{k}\)，
+其中\(1 \leqslant j_1 < j_2 < \dotsb < j_k \leqslant n\)，
+可以把\(n!\)个\(n\)阶排列分成\(C_n^k\)组，
+对应于\(\AutoTuple{j}{k}\)这一组中的\(n\)阶排列形如\(\AutoTuple{p}{k},\AutoTuple{q}{n-k}\)，
+其中\(\AutoTuple{p}{k}\)是\(\AutoTuple{j}{k}\)形成的\(k\)阶排列，
+\(\AutoTuple{q}{n-k}\)是\(\AutoTuple{\mu}{n-k}\)形成的\(n-k\)阶排列.
+于是对于第\(\AutoTuple{i}{k}\)行，
+通过任意取定\(k\)列，例如第\(\AutoTuple{j}{k}\)列，
+可以把\(\abs{\A}\)的表达式中的\(n!\)项分成\(C_n^k\)组；
+再根据\cref{theorem:行列式.任意排列可化为自然序} 有
+\begin{align*}
+	&\hspace{-20pt}
+	(-1)^{\tau(\AutoTuple{p}{k},\AutoTuple{q}{n-k})}
+	= (-1)^{\tau(\AutoTuple{p}{k})}
+	(-1)^{\tau(\AutoTuple{i}{k},\AutoTuple{q}{n-k})} \\
+	&= (-1)^{\tau(\AutoTuple{p}{k})}
+	(-1)^{[(i_1-1)+(i_2-2)+\dotsb+(i_k-k)] + \tau(\AutoTuple{q}{n-k})} \\
+	&= (-1)^{(i_1+\dotsb+i_k) - \frac{1}{2}k(k+1)}
+	(-1)^{\tau(\AutoTuple{p}{k}) + \tau(\AutoTuple{q}{n-k})},
+\end{align*}
+于是\begin{align*}
+	\abs{\A}
+	&= \sum\limits_{i \leqslant j_1 < \dotsb < j_k \leqslant n}
+			\sum\limits_{\AutoTuple{p}{k}}
+			\sum\limits_{\AutoTuple{q}{n-k}}
+			(-1)^{(i_1+\dotsb+i_k) - \frac{1}{2}k(k+1)}
+			(-1)^{(j_1+\dotsb+j_k) - \frac{1}{2}k(k+1)} \\
+		&\hspace{40pt}\cdot(-1)^{\tau(\AutoTuple{p}{k}) + \tau(\AutoTuple{q}{n-k})}
+			a_{i_1 p_1} \dotsm a_{i_k p_k}
+			a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}} \\
+	&= \sum\limits_{i \leqslant j_1 < \dotsb < j_k \leqslant n}
+		(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
+		\biggl[
+			\biggl(
+				\sum\limits_{\AutoTuple{p}{k}}
+				(-1)^{\tau(\AutoTuple{p}{k})}
+				a_{i_1 p_1} \dotsm a_{i_k p_k}
+			\biggr) \\
+			&\hspace{40pt}\cdot\biggl(
+				\sum\limits_{\AutoTuple{q}{n-k}}
+				(-1)^{\tau(\AutoTuple{q}{n-k})}
+				a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}}
+			\biggr)
+		\biggr] \\
+	&= \sum\limits_{i \leqslant j_1 < \dotsb < j_k \leqslant n}
+		(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
+		\MatrixMinor\A{
+			\AutoTuple{i}{k} \\
+			\AutoTuple{j}{k}
+		}
+		\MatrixMinor\A{
+			\AutoTuple{\mu}{n-k} \\
+			\AutoTuple{\nu}{n-k}
+		}.
+	\qedhere
+\end{align*}
 \end{proof}
 \end{theorem}
 
