@@ -267,21 +267,21 @@ a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}.
 
 我们还可以用数学归纳法证明以下两条公式：
 \begin{gather}
-\begin{vmatrix}
-a_{11} & a_{12} & \dots & a_{1n} \\
-& a_{22} & \dots & a_{2n} \\
-& & \ddots & \vdots \\
-& & & a_{nn}
-\end{vmatrix}
-= a_{11} a_{22} \dotsm a_{nn}, \\
-\begin{vmatrix}
-& & & & a_{1n} \\
-& & & a_{2,n-1} & a_{2n} \\
-& & & \vdots & \vdots \\
-& a_{n-1,2} & \dots & a_{n-1,n-1} & a_{n-1,n} \\
-a_{n1} & a_{n2} & \dots & a_{n,n-1} & a_{nn}
-\end{vmatrix}
-=(-1)^{\frac{1}{2}n(n-1)} a_{1n} a_{2,n-1} \dotsm a_{n-1,2} a_{n1}.
+	\begin{vmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		& a_{22} & \dots & a_{2n} \\
+		& & \ddots & \vdots \\
+		& & & a_{nn}
+	\end{vmatrix}
+	= a_{11} a_{22} \dotsm a_{nn}, \\%
+	\begin{vmatrix}
+		& & & & a_{1n} \\
+		& & & a_{2,n-1} & a_{2n} \\
+		& & & \vdots & \vdots \\
+		& a_{n-1,2} & \dots & a_{n-1,n-1} & a_{n-1,n} \\
+		a_{n1} & a_{n2} & \dots & a_{n,n-1} & a_{nn}
+	\end{vmatrix}
+	=(-1)^{\frac{1}{2}n(n-1)} a_{1n} a_{2,n-1} \dotsm a_{n-1,2} a_{n1}.
 \end{gather}
 
 \begin{lemma}
@@ -297,20 +297,31 @@ a_{n1} & a_{n2} & \dots & a_{n,n-1} & a_{nn}
 	a_{1 l_1} a_{2 l_2} \dotsm a_{n l_n},
 \]其中，\(\v{l}{n}\)是一个\(n\)阶排列.
 
-同时，行标排列\(\v{i}{n}\)与列标排列\(\v{j}{n}\)分别经过\(s\)次对换变到\(1,2,\dotsc,n\)与\(\v{l}{n}\)，而它们的奇偶性都分别改变了\(s\)次，总共改变了\(2s\)次（偶数次），故\[
-(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
-= (-1)^{\tau(1,2,\dotsc,n)+\tau(\v{l}{n})}
-= (-1)^{\tau(\v{l}{n})},
+同时，行标排列\(\v{i}{n}\)与列标排列\(\v{j}{n}\)
+分别经过\(s\)次对换变到\(1,2,\dotsc,n\)与\(\v{l}{n}\)，
+而它们的奇偶性都分别改变了\(s\)次，总共改变了\(2s\)次（偶数次），故\[
+	(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+	= (-1)^{\tau(1,2,\dotsc,n)+\tau(\v{l}{n})}
+	= (-1)^{\tau(\v{l}{n})},
 \]这说明\cref{equation:行列式.行列式的项2} 是行列式\(\abs{\A}\)的项.
 \end{proof}
 \end{lemma}
 
 \begin{corollary}
-设\(\v{i}{n}\)是一个确定的\(n\)阶排列，则\[
-\abs{\A} = \sum\limits_{\v{j}{n}}{
-	(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})} a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n}
-}.
-\]
+给定行指标的一个排列\(\v{i}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
+\begin{equation}\label{equation:行列式.给定行指标排列下的行列式的完全展开式}
+\abs{\A}
+= \sum\limits_{\v{j}{n}}
+(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
+\end{equation}
+或者给定列指标的一个排列\(\v{j}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
+\begin{equation}\label{equation:行列式.给定列指标排列下的行列式的完全展开式}
+	\abs{\A}
+	= \sum\limits_{\v{i}{n}}
+	(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+	a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n}.
+\end{equation}
 \end{corollary}
 
 行列式的项的因子顺序也可按列标的自然序排列.
