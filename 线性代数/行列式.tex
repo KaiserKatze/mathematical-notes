@@ -450,30 +450,33 @@ k+(n-1)\lambda & \lambda & \lambda & \dots & k
 \end{example}
 
 \begin{example}\label{example:行列式.两个向量的乘积矩阵的行列式}
-设\(\a,\b\)是\(n\)维列向量.
+设\(\a=(\v{a}{n})^T,\b=(\v{b}{n})^T\)是\(n\)维列向量.
 求：\(\abs{\a\b^T}\).
 \begin{solution}
-根据\cref{theorem:行列式.性质2}，有\begin{align*}
-\abs{\a\b^T} = \begin{vmatrix}
-\a_1 \b_1 & \a_1 \b_2 & \dots & \a_1 \b_n \\
-\a_2 \b_1 & \a_2 \b_2 & \dots & \a_2 \b_n \\
-\vdots & \vdots & & \vdots \\
-\a_n \b_1 & \a_n \b_2 & \dots & \a_n \b_n
-\end{vmatrix}
-= \a_1 \a_2 \dotsm \a_n \cdot \begin{vmatrix}
-\b_1 & \b_2 & \dots & \b_n \\
-\b_1 & \b_2 & \dots & \b_n \\
-\vdots & \vdots & & \vdots \\
-\b_1 & \b_2 & \dots & \b_n
-\end{vmatrix}.
-\end{align*}而\[
+根据\cref{theorem:行列式.性质2}，
+有\begin{align*}
+	\abs{\a\b^T} = \begin{vmatrix}
+		a_1 b_1 & a_1 b_2 & \dots & a_1 b_n \\
+		a_2 b_1 & a_2 b_2 & \dots & a_2 b_n \\
+		\vdots & \vdots & & \vdots \\
+		a_n b_1 & a_n b_2 & \dots & a_n b_n
+	\end{vmatrix}
+	= a_1 a_2 \dotsm a_n \cdot \begin{vmatrix}
+		b_1 & b_2 & \dots & b_n \\
+		b_1 & b_2 & \dots & b_n \\
+		\vdots & \vdots & & \vdots \\
+		b_1 & b_2 & \dots & b_n
+	\end{vmatrix}.
+\end{align*}
+而\[
 \begin{vmatrix}
-\b_1 & \b_2 & \dots & \b_n \\
-\b_1 & \b_2 & \dots & \b_n \\
-\vdots & \vdots & & \vdots \\
-\b_1 & \b_2 & \dots & \b_n
+	b_1 & b_2 & \dots & b_n \\
+	b_1 & b_2 & \dots & b_n \\
+	\vdots & \vdots & & \vdots \\
+	b_1 & b_2 & \dots & b_n
 \end{vmatrix}
-\]各行成比例，根据\cref{theorem:行列式.性质5}，那么该行列式等于0，可知\(\abs{\a\b^T} = 0\).
+\]各行成比例，
+根据\cref{theorem:行列式.性质5}，那么该行列式等于0，可知\(\abs{\a\b^T} = 0\).
 \end{solution}
 \end{example}
 
@@ -616,16 +619,17 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 \]\[
 \tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n) = j-1+\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n),
 \]于是有\begin{align*}
-\abs{\A}
-&= \sum\limits_{j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
-	(-1)^{\tau(i,1,2,\dotsc,i-1,i+1,\dotsc,n) + \tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)} a_{ij} \prod\limits_{\substack{k=1 \\ k \neq i}}^n a_{k j_k} \\
-&= \sum\limits_{j=1}^n a_{ij} (-1)^{(i-1)+(j-1)}
-	\sum\limits_{j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
-		(-1)^{\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)}
-			\prod\limits_{\substack{k=1 \\ k \neq i}}^n a_{k j_k} \\
-&= \sum\limits_{j=1}^n a_{ij} (-1)^{i+j} M_{ij}
-= \sum\limits_{j=1}^n a_{ij} A_{ij}.
-\qedhere
+	\abs{\A}
+	&= \sum\limits_{j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
+		(-1)^{\tau(i,1,2,\dotsc,i-1,i+1,\dotsc,n) + \tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)}
+		a_{ij} \prod\limits_{\substack{k=1 \\ k \neq i}}^n a_{k j_k} \\
+	&= \sum\limits_{j=1}^n a_{ij} (-1)^{(i-1)+(j-1)}
+		\sum\limits_{j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
+			(-1)^{\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)}
+				\prod\limits_{\substack{k=1 \\ k \neq i}}^n a_{k j_k} \\
+	&= \sum\limits_{j=1}^n a_{ij} (-1)^{i+j} M_{ij}
+	= \sum\limits_{j=1}^n a_{ij} A_{ij}.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{theorem}
@@ -660,21 +664,20 @@ A_{1n} & A_{2n} & \dots & A_{nn}
 \begin{solution}
 设\(\A\)的元素\(a_{ij}\)的代数余子式是\(A_{ij}\)，%
 那么矩阵\(k\A = (b_{ij})_n\)的元素\(b_{ij} = k a_{ij}\)的代数余子式是\[
-B_{ij}
-= (-1)^{i+j} \begin{vmatrix}
-k a_{11} & \dots & k a_{1,j-1} & k a_{1,j+1} & \dots & k a_{1n} \\
-\vdots & & \vdots & \vdots & & \vdots \\
-k a_{i-1,1} & \dots & k a_{i-1,j-1} & k a_{i-1,j+1} & \dots & k a_{i-1,n} \\
-k a_{i+1,1} & \dots & k a_{i+1,j-1} & k a_{i+1,j+1} & \dots & k a_{i+1,n} \\
-\vdots & & \vdots & \vdots & & \vdots \\
-k a_{n1} & \dots & k a_{n,j-1} & k a_{n,j+1} & \dots & k a_{nn} \\
-\end{vmatrix}
-= k^{n-1} A_{ij}.
+	B_{ij}
+	= (-1)^{i+j} \begin{vmatrix}
+		k a_{11} & \dots & k a_{1,j-1} & k a_{1,j+1} & \dots & k a_{1n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		k a_{i-1,1} & \dots & k a_{i-1,j-1} & k a_{i-1,j+1} & \dots & k a_{i-1,n} \\
+		k a_{i+1,1} & \dots & k a_{i+1,j-1} & k a_{i+1,j+1} & \dots & k a_{i+1,n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		k a_{n1} & \dots & k a_{n,j-1} & k a_{n,j+1} & \dots & k a_{nn} \\
+	\end{vmatrix}
+	= k^{n-1} A_{ij}.
 \]
-因此，\(k\A\)的伴随矩阵是\(
-(B_{ji})_n = k^{n-1} (A_{ji})_n
-= k^{n-1} \A^*
-\).
+因此，\(k\A\)的伴随矩阵是
+\((B_{ji})_n = k^{n-1} (A_{ji})_n
+= k^{n-1} \A^*\).
 \end{solution}
 \end{example}
 
@@ -687,41 +690,44 @@ x_1 & x_2 & x_3 & \dots & x_n \\
 x_1^2 & x_2^2 & x_3^2 & \dots & x_n^2 \\
 \vdots & \vdots & \vdots& & \vdots \\
 x_1^{n-1} & x_2^{n-1} & x_3^{n-1} & \dots & x_n^{n-1}
-\end{vmatrix}=\prod\limits_{1 \leqslant j < i \leqslant n}{(x_i-x_j)}.
+\end{vmatrix}=\prod\limits_{1 \leqslant j < i \leqslant n}(x_i-x_j).
 \end{equation}
 \begin{proof}
 利用数学归纳法.
 当\(n=2\)时，\(V_2 = \begin{vmatrix}
 	1 & 1 \\ x_1 & x_2
 \end{vmatrix} = x_2 - x_1\)，结论成立.
-假设\(n=k-1\)时，结论成立，%
-那么当\(n=k\)时，在\(V_k\)中，依次将第\(k-1\)行的\(-x_1\)倍加到第\(k\)行，%
-将第\(k-2\)行的\(-x_1\)倍加到第\(k-1\)行，%
-以此类推，%
-直至把第\(1\)行的\(-x_1\)倍加到第\(2\)行，得\[
-V_k = \begin{vmatrix}
-1 & 1 & 1 & \dots & 1 \\
-0 & x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
-0 & x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
-\vdots & \vdots & \vdots & & \vdots \\
-0 & x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
-\end{vmatrix}_k,
-\]按第一列展开得\begin{align*}
-V_n &= 1 \times (-1)^{1+1} \times \begin{vmatrix}
-x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
-x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
-\vdots & \vdots & & \vdots \\
-x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
-\end{vmatrix}_{k-1} \\
-&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \begin{vmatrix}
-1 & 1 & \dots & 1 \\
-x_2 & x_3 & \dots & x_k \\
-\vdots & \vdots & & \vdots \\
-x_2^{k-2} & x_3^{k-2} & \dots & x_k^{k-2} \\
-\end{vmatrix}_{k-1} \\
-&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \prod\limits_{2 \leqslant j < i \leqslant k}{x_i - x_j} \\
-&= \prod\limits_{1 \leqslant j < i \leqslant k}{x_i - x_j}.
-\qedhere
+
+假设\(n=k-1\)时，结论成立；
+那么当\(n=k\)时，在\(V_k\)中，
+依次将第\(k-1\)行的\(-x_1\)倍加到第\(k\)行，
+将第\(k-2\)行的\(-x_1\)倍加到第\(k-1\)行，
+以此类推，直至把第\(1\)行的\(-x_1\)倍加到第\(2\)行，得\[
+	V_k = \begin{vmatrix}
+		1 & 1 & 1 & \dots & 1 \\
+		0 & x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
+		0 & x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		0 & x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
+	\end{vmatrix}_k,
+\]
+按第一列展开得\begin{align*}
+	V_n &= 1 \times (-1)^{1+1} \times \begin{vmatrix}
+		x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
+		x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
+		\vdots & \vdots & & \vdots \\
+		x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
+	\end{vmatrix}_{k-1} \\
+	&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \begin{vmatrix}
+		1 & 1 & \dots & 1 \\
+		x_2 & x_3 & \dots & x_k \\
+		\vdots & \vdots & & \vdots \\
+		x_2^{k-2} & x_3^{k-2} & \dots & x_k^{k-2} \\
+	\end{vmatrix}_{k-1} \\
+	&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1)
+		\prod\limits_{2 \leqslant j < i \leqslant k}(x_i - x_j) \\
+	&= \prod\limits_{1 \leqslant j < i \leqslant k}(x_i - x_j).
+	\qedhere
 \end{align*}
 \end{proof}
 我们可以从\cref{equation:行列式.范德蒙德行列式} 看出：
@@ -956,7 +962,11 @@ a_1^3 & a_2^3 & a_3^3 & a_4^3
 \end{bmatrix},
 \]显然\[
 D = \det(\A\A^T) = \abs{\A}^2.
-\]而根据\cref{equation:行列式.范德蒙德行列式}，\(\abs{\A} = \prod\limits_{1 \leqslant j < i \leqslant n} (a_i - a_j)\)，故\(D = \prod\limits_{1 \leqslant j < i \leqslant n} (a_i - a_j)^2\).
+\]
+而根据\cref{equation:行列式.范德蒙德行列式}，
+\(\abs{\A}
+= \prod\limits_{1 \leqslant j < i \leqslant n} (a_i - a_j)\)，
+故\(D = \prod\limits_{1 \leqslant j < i \leqslant n} (a_i - a_j)^2\).
 \end{solution}
 \end{example}
 
