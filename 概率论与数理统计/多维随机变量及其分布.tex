@@ -333,6 +333,81 @@ p_{ij} = P(X=x_i,Y=y_j), \quad i,j=1,2,\dotsc,
 P(Z=z_k) = \sum_{g(x_i,y_j)=z_k}{p_{ij}}.
 \]
 
+\begin{example}
+设\((X,Y)\)有二维概率分布
+\begin{center}
+\begin{tikzpicture}
+	\draw[thick](0,0)--(4,0) (0,-4)--+(4,0);
+	\draw(0,-1)--+(4,0) (1,0)--+(0,-4);
+	\draw(1.5,-.5)node{0}
+		(2.5,-.5)node{1}
+		(3.5,-.5)node{2}
+		(.5,-1.5)node{-1}
+		(.5,-2.5)node{0}
+		(.5,-3.5)node{1}
+		(.3,-.7)node{\(X\)}
+		(.7,-.3)node{\(Y\)}
+		(1.5,-1.5)node{\(\tfrac{1}{12}\)}
+		(2.5,-1.5)node{\(\tfrac{2}{12}\)}
+		(3.5,-1.5)node{\(\tfrac{2}{12}\)}
+		(1.5,-2.5)node{\(\tfrac{1}{12}\)}
+		(2.5,-2.5)node{\(\tfrac{1}{12}\)}
+		(3.5,-2.5)node{\(0\)}
+		(1.5,-3.5)node{\(\tfrac{2}{12}\)}
+		(2.5,-3.5)node{\(\tfrac{1}{12}\)}
+		(3.5,-3.5)node{\(\tfrac{2}{12}\)};
+\end{tikzpicture}
+\end{center}
+\(Z=X+Y\)，\(W=\max\{X,Y\}\)，求\(Z,W\)的分布律.
+\begin{solution}
+我们可以根据上面的二维概率分布表格计算不同\(X,Y\)取值下\(Z\)的取值：
+\begin{center}
+\begin{tikzpicture}
+	\draw[thick](0,0)--(4,0) (0,-4)--+(4,0);
+	\draw(0,-1)--+(4,0) (1,0)--+(0,-4);
+	\draw(1.5,-.5)node{0}
+		(2.5,-.5)node{1}
+		(3.5,-.5)node{2}
+		(.5,-1.5)node{-1}
+		(.5,-2.5)node{0}
+		(.5,-3.5)node{1}
+		(.3,-.7)node{\(X\)}
+		(.7,-.3)node{\(Y\)}
+		(1.5,-1.5)node{-1}
+		(2.5,-1.5)node{0}
+		(3.5,-1.5)node{1}
+		(1.5,-2.5)node{0}
+		(2.5,-2.5)node{1}
+		(3.5,-2.5)node{2}
+		(1.5,-3.5)node{1}
+		(2.5,-3.5)node{2}
+		(3.5,-3.5)node{3};
+\end{tikzpicture}
+\end{center}
+由此可知\(Z \in \Set{-1,0,1,2,3}\)，那么
+\def\sp#1{\sum\limits_{x_i+y_j=#1} p_{ij}}
+\begin{align*}
+	&P(Z=-1) = \sp{-1} = \frac{1}{12}, \\
+	&P(Z=0) = \sp{0} = \frac{1}{4}, \\
+	&P(Z=1) = \sp{1} = \frac{5}{12}, \\
+	&P(Z=2) = \sp{2} = \frac{1}{12}, \\
+	&P(Z=3) = \sp{3} = \frac{1}{6},
+\end{align*}
+即\[
+	Z \sim \begin{bmatrix}
+		-1 & 0 & 1 & 2 & 3 \\
+		\frac{1}{12} & \frac{1}{4} & \frac{5}{12} & \frac{1}{12} & \frac{1}{6}
+	\end{bmatrix}.
+\]
+同理可得，\[
+	W \sim \begin{bmatrix}
+		0 & 1 & 2 \\
+		\frac{1}{6} & \frac{1}{2} & \frac{1}{3}
+	\end{bmatrix}.
+\]
+\end{solution}
+\end{example}
+
 \subsection{二维连续型随机变量函数的分布}
 设\((X,Y)\)是二维连续型随机变量，且有密度函数\(f(x,y)\).
 若\(g(x,y)\)是连续函数，则\(Z = g(X,Y)\)是一维连续型随机变量.
@@ -352,7 +427,7 @@ F_Z(z) &= P(Z \leqslant z)
 \begin{example}
 设\((X,Y)\)的密度函数为\[
 f(x,y) = \left\{ \begin{array}{cl}
-xy, & 0 \leqslant x \leqslant 2 \land 0 \leqslant y \leqslant 1, \\
+xy, & 0 \leqslant x \leqslant 2, 0 \leqslant y \leqslant 1, \\
 0, & \text{其他}.
 \end{array} \right.
 \]求\(Z = XY\)的密度.
