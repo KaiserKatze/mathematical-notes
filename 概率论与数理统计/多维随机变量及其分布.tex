@@ -543,6 +543,81 @@ xy, & 0 \leqslant x \leqslant 2, 0 \leqslant y \leqslant 1, \\
 \end{solution}
 \end{example}
 
+\begin{example}
+设\(X,Y\)独立同分布于\(U(0,1)\)，\(Z=\frac{X}{Y}\)，
+求\(Z\)的密度函数.
+\begin{solution}
+由题意有，\((X,Y)\)的密度函数为\[
+	f(x,y) = \begin{cases}
+		1, & 0<x<1,0<y<1, \\
+		0, & \text{其他};
+	\end{cases}
+\]
+\(Z\)的值域为\(R(Z)=(0,+\infty)\).
+对\(\forall z>0\)，有\begin{align*}
+	F_Z(z) &= P(Z \leqslant z) = P\left(\frac{X}{Y} \leqslant z\right) \\
+	&= \iint_{\frac{x}{y} \leqslant z} f(x,y) \dd{x}\dd{y}.
+\end{align*}
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\a}{3}
+		\pgfmathsetmacro{\z}{2}
+		\begin{scope}[>=Stealth,->]
+			\draw(0,0)node[below left]{\(O\)}--(4,0)node[below]{\(x\)};
+			\draw(0,0)--(0,4)node[left]{\(y\)};
+		\end{scope}
+		\pgfmathsetmacro{\pa}{3.1}
+		\pgfmathsetmacro{\pb}{\a*\pa/\z}
+		\draw(0,0)--(\z,\a)--(\pa,\pb)
+			node[left=.5cm]{\(\begin{array}{l}
+			x=yz \\
+			0<z<1
+			\end{array}\)};
+		\draw[dashed](\z,0)node[below]{\(z\)}--(\z,\a);
+		\draw(\a,0)node[below]{\(1\)}--(\a,\a)--(0,\a)node[left]{\(1\)};
+
+		\begin{scope}[xshift=6cm]
+			\pgfmathsetmacro{\z}{5}
+			\begin{scope}[>=Stealth,->]
+				\draw(0,0)node[below left]{\(O\)}--(4,0)node[below]{\(x\)};
+				\draw(0,0)--(0,4)node[left]{\(y\)};
+			\end{scope}
+			\pgfmathsetmacro{\pa}{3.5}
+			\pgfmathsetmacro{\pb}{\pa/\z}
+			\draw(0,0)--(\a,\a/\z)--(\pa,\pb)
+				node[above right]{\(\begin{array}{l}
+				x=yz \\
+				z\geqslant1
+				\end{array}\)};
+			\draw[dashed](0,\a/\z)node[left]{\(\frac{1}{z}\)}--(\a,\a/\z);
+			\draw(\a,0)node[below]{\(1\)}--(\a,\a)--(0,\a)node[left]{\(1\)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例3}
+\end{figure}
+如\cref{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例3}，
+当\(0<z<1\)时，\[
+	F_Z(z)
+	= \int_0^z \dd{x} \int_{\frac{x}{z}}^1 \dd{y}
+	= \frac{z}{2};
+\]
+当\(z\geqslant1\)时，\[
+	F_Z(z)
+	= \int_0^1 \dd{x} \int_{\frac{x}{z}}^1 \dd{y}
+	= 1 - \frac{1}{2z}.
+\]
+于是\[
+	f_Z(z) = F'_Z(z) = \def\arraystretch{1.5} \begin{cases}
+		\frac{1}{2}, & 0<z<1, \\
+		\frac{1}{2z^2}, & z\geqslant1, \\
+		0, & \text{其他}.
+	\end{cases}
+\]
+\end{solution}
+\end{example}
+
 \begin{theorem}[卷积公式]\label{theorem:多维随机变量及其分布.连续型随机变量的卷积公式}
 设二维连续型随机变量\((X,Y)\)有密度函数\(f(x,y)\)，%
 \(Z=X+Y\)，则对任意\(z \in R(Z)\)，有\begin{align}
