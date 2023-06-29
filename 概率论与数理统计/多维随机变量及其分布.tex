@@ -432,15 +432,38 @@ xy, & 0 \leqslant x \leqslant 2, 0 \leqslant y \leqslant 1, \\
 \end{array} \right.
 \]求\(Z = XY\)的密度.
 \begin{solution}
-\(Z\)的值域为\(R(Z)=[0,2]\).
-对\(\forall z\in[0,2]\)，有\[\begin{aligned}
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{scope}[->]
+		\draw(0,0)node[below left]{\(O\)}--(3,0)node[below]{\(x\)};
+		\draw(0,0)--(0,2)node[left]{\(y\)};
+		\end{scope}
+		\draw(0,1)node[left]{\(1\)}--(2,1)--(2,0)node[below]{\(2\)};
+		\pgfmathsetmacro{\z}{1.5}
+		\pgfmathsetmacro{\y}{\z/2}
+		\draw[dashed](\z,0)node[below]{\(z\)}--(\z,1)node[above right]{\(xy=z\)};
+		\pgfmathsetmacro{\a}{3*(2+\z)/4}
+		\pgfmathsetmacro{\r}{.5*sqrt(2.5)*sqrt(4+\z^2)}
+		\pgfmathsetmacro{\sx}{.8}
+		\pgfmathsetmacro{\sy}{\a-sqrt(\r^2-(\sx-\a)^2)}
+		\pgfmathsetmacro{\dx}{2.5}
+		\pgfmathsetmacro{\dy}{\a-sqrt(\r^2-(\dx-\a)^2)}
+		\draw(\sx,\sy)..controls(\z,.85)..(\dx,\dy);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例1}
+\end{figure}
+由题意有，\(Z\)的值域为\(R(Z)=[0,2]\).
+如\cref{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例1}，
+对\(\forall z\in[0,2]\)，有\begin{align*}
 F_Z(z) &= P(Z \leqslant z)
 = P(XY \leqslant z)
 = \iint_{xy \leqslant z} f(x,y) \dd{x}\dd{y} \\
 &= \int_0^z \dd{x} \int_0^1 xy \dd{y}
 	+ \int_z^2 \dd{x} \int_0^{z/x} xy \dd{y} \\
 &= \frac{z^2}{4} + \frac{z^2}{2} (\ln2 - \ln z),
-\end{aligned}\]
+\end{align*}
 于是\[
 f_Z(z) = F_Z'(z)
 = \left\{ \begin{array}{cl}
