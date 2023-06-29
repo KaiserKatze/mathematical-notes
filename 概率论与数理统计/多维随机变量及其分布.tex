@@ -435,9 +435,9 @@ xy, & 0 \leqslant x \leqslant 2, 0 \leqslant y \leqslant 1, \\
 \begin{figure}[ht]
 	\centering
 	\begin{tikzpicture}
-		\begin{scope}[->]
-		\draw(0,0)node[below left]{\(O\)}--(3,0)node[below]{\(x\)};
-		\draw(0,0)--(0,2)node[left]{\(y\)};
+		\begin{scope}[>=Stealth,->]
+			\draw(0,0)node[below left]{\(O\)}--(3,0)node[below]{\(x\)};
+			\draw(0,0)--(0,2)node[left]{\(y\)};
 		\end{scope}
 		\draw(0,1)node[left]{\(1\)}--(2,1)--(2,0)node[below]{\(2\)};
 		\pgfmathsetmacro{\z}{1.5}
@@ -457,19 +457,88 @@ xy, & 0 \leqslant x \leqslant 2, 0 \leqslant y \leqslant 1, \\
 由题意有，\(Z\)的值域为\(R(Z)=[0,2]\).
 如\cref{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例1}，
 对\(\forall z\in[0,2]\)，有\begin{align*}
-F_Z(z) &= P(Z \leqslant z)
-= P(XY \leqslant z)
-= \iint_{xy \leqslant z} f(x,y) \dd{x}\dd{y} \\
-&= \int_0^z \dd{x} \int_0^1 xy \dd{y}
-	+ \int_z^2 \dd{x} \int_0^{z/x} xy \dd{y} \\
-&= \frac{z^2}{4} + \frac{z^2}{2} (\ln2 - \ln z),
+	F_Z(z) &= P(Z \leqslant z)
+	= P(XY \leqslant z)
+	= \iint_{xy \leqslant z} f(x,y) \dd{x}\dd{y} \\
+	&= \int_0^z \dd{x} \int_0^1 xy \dd{y}
+		+ \int_z^2 \dd{x} \int_0^{z/x} xy \dd{y} \\
+	&= \frac{z^2}{4} + \frac{z^2}{2} (\ln2 - \ln z),
 \end{align*}
 于是\[
-f_Z(z) = F_Z'(z)
-= \left\{ \begin{array}{cl}
-z \ln(2/z), & 0<z\leqslant2, \\
-0, & \text{其他}.
-\end{array} \right.
+	f_Z(z) = F_Z'(z)
+	= \left\{ \begin{array}{cl}
+		z \ln(2/z), & 0<z\leqslant2, \\
+		0, & \text{其他}.
+	\end{array} \right.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(X \sim U(0,1)\)，\(Y \sim e(1)\)，且\(X\)与\(Y\)相互独立，\(Z = X+Y\).
+求\(Z\)的密度函数.
+\begin{solution}
+由题意有，\((X,Y)\)的密度函数为\[
+	f(x,y) = \begin{cases}
+		e^{-y}, & 0<x<1,y>0, \\
+		0, & \text{其他};
+	\end{cases}
+\]
+\(Z\)的值域为\(R(Z)=(0,+\infty)\).
+对\(\forall z>0\)，有\begin{align*}
+	F_Z(z) &= P(Z \leqslant z) = P(X+Y \leqslant z) \\
+	&= \iint_{x+y \leqslant z} f(x,y) \dd{x}\dd{y}.
+\end{align*}
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{scope}[>=Stealth,->]
+		\draw(0,0)node[below left]{\(O\)}--(4,0)node[below]{\(x\)};
+		\draw(0,0)--(0,4)node[left]{\(y\)};
+		\end{scope}
+		\pgfmathsetmacro{\z}{2}
+		\draw(0,\z)--(\z,0)node[below]{\(z\)}
+			node[pos=.1,above=5pt,right=5pt]{\(\begin{array}{l}
+			x+y=z \\
+			0<z<1
+			\end{array}\)};
+		\draw(3,0)node[below]{\(1\)}--(3,3);
+
+		\begin{scope}[xshift=6cm]
+		\begin{scope}[>=Stealth,->]
+		\draw(0,0)node[below left]{\(O\)}--(4,0)node[below]{\(x\)};
+		\draw(0,0)--(0,4)node[left]{\(y\)};
+		\end{scope}
+		\pgfmathsetmacro{\z}{3.5}
+		\draw(0,\z)--(\z,0)node[below]{\(z\)}
+			node[pos=.1,above=5pt,right=5pt]{\(\begin{array}{l}
+			x+y=z \\
+			z\geqslant1
+			\end{array}\)};
+		\draw(3,0)node[below]{\(1\)}--(3,3);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例2}
+\end{figure}
+如\cref{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例2}，
+当\(0<z<1\)时，\begin{align*}
+	F_Z(z) &= \int_0^z \dd{x} \int_0^{z-x} e^{-y} \dd{y} \\
+	&= \int_0^z (1-e^{x-z}) \dd{x} \\
+	&= z-1+e^{-z};
+\end{align*}
+当\(z\geqslant1\)时，\begin{align*}
+	F_Z(z) &= \int_0^1 \dd{x} \int_0^{z-x} e^{-y} \dd{y} \\
+	&= \int_0^1 (1-e^{x-z}) \dd{x} \\
+	&= 1-e^{-z}(e-1).
+\end{align*}
+于是\[
+	f_Z(z) = F'_Z(z)
+	= \begin{cases}
+		1 - e^{-z}, & 0<z<1, \\
+		e^{-z}(e-1), & z\geqslant1, \\
+		0, & \text{其他}.
+	\end{cases}
 \]
 \end{solution}
 \end{example}
