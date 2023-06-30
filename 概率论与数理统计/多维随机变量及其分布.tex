@@ -618,7 +618,7 @@ xy, & 0 \leqslant x \leqslant 2, 0 \leqslant y \leqslant 1, \\
 \end{solution}
 \end{example}
 
-\begin{theorem}[卷积公式]\label{theorem:多维随机变量及其分布.连续型随机变量的卷积公式}
+\begin{theorem}\label{theorem:多维随机变量及其分布.连续型随机变量的卷积公式}
 设二维连续型随机变量\((X,Y)\)有密度函数\(f(x,y)\)，%
 \(Z=X+Y\)，则对任意\(z \in R(Z)\)，有\begin{align}
 f_Z(z) &= \int_{-\infty}^{+\infty} f(x,z-x) \dd{x} \\
@@ -633,6 +633,61 @@ f_Z(z) &= \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x) \dd{x} \label{equation:多维
 equation:多维随机变量及其分布.连续型随机变量的卷积公式2}
 称为“（连续型随机变量的）\textbf{卷积公式}”.
 \end{theorem}
+
+\begin{example}
+\((X,Y)\)有密度函数\[
+	f(x,y) = \begin{cases}
+		2-x-y, & 0<x<1,0<y<1, \\
+		0, & \text{其他}.
+	\end{cases}
+\]
+\(Z=X+Y\)，求\(f_Z(z)\).
+\begin{solution}
+由题意有，\(Z\)的值域为\(R(Z)=(0,2)\).
+对\(\forall z\in(0,2)\)，
+由\cref{theorem:多维随机变量及其分布.连续型随机变量的卷积公式}，有\[
+	f_Z(z) = \int_{-\infty}^{+\infty} f(x,z-x) \dd{x}.
+\]
+考虑到被积函数\[
+	f(x,z-x)
+	= 2-x-(z-x)
+	= 2-z,
+	\quad
+	0<x<1,0<y=z-x<1,
+\]
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\a}{3}
+		\begin{scope}[>=Stealth,->]
+			\draw(0,0)node[below left]{\(O\)}
+				--(2*\a,0)node[below]{\(x\)};
+			\draw(0,0)--(0,2.5*\a)node[left]{\(z\)};
+		\end{scope}
+		\draw(0,0)--(1.5*\a,1.5*\a)node[pos=.8,below right]{\(x=z\)};
+		\draw(0,\a)node[left]{1}--(1.5*\a,2.5*\a)node[pos=.8,below right]{\(1+x=z\)};
+		\draw(\a,0)node[below]{1}--(\a,2*\a)--(0,2*\a)node[left]{2};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例4}
+\end{figure}
+
+如\cref{figure:多维随机变量及其分布.二维连续型随机变量函数的分布.例4}，
+当\(0<z<1\)时，\[
+	f_Z(z) = \int_0^z (2-z) \dd{x} = z(2-z);
+\]
+当\(1\leqslant z<2\)时，\[
+	f_Z(z) = \int_{z-1}^1 (2-z) \dd{x} = (2-z)^2.
+\]
+因此，\[
+	f_Z(z) = \begin{cases}
+		z(2-z), & 0<z<1, \\
+		(2-z)^2, & 1\leqslant z<2, \\
+		0, & \text{其他}.
+	\end{cases}
+\]
+\end{solution}
+\end{example}
 
 \section{多维随机变量}
 
