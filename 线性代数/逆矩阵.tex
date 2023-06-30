@@ -1,9 +1,11 @@
 \chapter{矩阵的逆}
 \section{可逆矩阵}
 \begin{definition}
-对于\(n\)阶方阵\(\A\)，如果存在\(n\)阶方阵\(\B\)，使得\[
-\A\B=\B\A=\E
-\]则称“\(\A\)是\textbf{可逆矩阵}（invertible matrix）”，
+对于数域\(K\)上的矩阵\(\A\)，
+如果存在数域\(K\)上的矩阵\(\B\)，使得\[
+\A\B=\B\A=\E,
+\]
+则称“\(\A\)是\textbf{可逆矩阵}（invertible matrix）”，
 或称“\(\A\)\textbf{可逆}”；
 并称\(\B\)为\(\A\)的\textbf{逆矩阵}（inverse matrix），
 记作\(\A^{-1}\)，即\(\A^{-1} = \B\).
@@ -16,10 +18,9 @@
 \end{definition}
 
 \begin{definition}
-\def\Ainv{\A^{-1}}
 若\(\A\)是可逆矩阵，那么规定\begin{equation}
-\A^{-k} = (\Ainv)^k
-= \underbrace{\Ainv\Ainv\dotsm\Ainv}_{k\text{个}}.
+\A^{-k} = (\A^{-1})^k
+= \underbrace{\A^{-1}\A^{-1}\dotsm\A^{-1}}_{k\text{个}}.
 \end{equation}
 \end{definition}
 
@@ -40,12 +41,17 @@
 \end{theorem}
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的唯一性}
-设\(\A\)是可逆矩阵，则它的逆矩阵唯一，且有\(\A^{-1}=\frac{1}{\abs{\A}}\A^*\).
+设\(\A\)是可逆矩阵，则它的逆矩阵存在且唯一，且有\(\A^{-1}=\frac{1}{\abs{\A}}\A^*\).
 \begin{proof}
-在\cref{theorem:逆矩阵.矩阵可逆的充要条件1} 的证明过程中我们看到矩阵\(\B=\frac{1}{\abs{\A}} \A^*\)是可逆矩阵\(\A\)的一个逆矩阵，即\(\A\B=\E\).
+存在性.
+在\cref{theorem:逆矩阵.矩阵可逆的充要条件1} 的证明过程中，
+我们看到矩阵\(\B=\abs{\A}^{-1} \A^*\)是可逆矩阵\(\A\)的一个逆矩阵，即\(\A\B=\E\).
+
+唯一性.
 设矩阵\(\C\)也是\(\A\)的逆矩阵，即\(\C\A=\E\)，于是\[
 \C=\C\E=\C(\A\B)=(\C\A)\B=\E\B=\B.
-\]由此可知，任意可逆矩阵的逆矩阵是唯一的.
+\qedhere
+\]
 \end{proof}
 \end{property}
 
@@ -79,8 +85,10 @@
 设\(\A\)可逆，数\(k\neq0\)，则\(k\A\)可逆，且\((k\A)^{-1}=k^{-1}\A^{-1}\).
 \begin{proof}
 假设矩阵\(\A\)是\(n\)阶可逆矩阵.
-由\cref{theorem:行列式.性质2.推论2}，\(\abs{k\A} = k^n\abs{\A}\).
-因为\(\A\)可逆，\(\abs{\A}\neq0\)，加之\(k\neq0\)，于是\(\abs{k\A}\neq0\)，即\(k\A\)可逆.\[
+由\cref{theorem:行列式.性质2.推论2}，
+\(\abs{k\A} = k^n\abs{\A}\).
+因为\(\A\)可逆，\(\abs{\A}\neq0\)，加之\(k\neq0\)，
+于是\(\abs{k\A}\neq0\)，即\(k\A\)可逆.\[
 (k\A)^{-1} = \frac{1}{\abs{k\A}} (k\A)^*
 \]
 \end{proof}
