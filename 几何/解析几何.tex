@@ -3194,114 +3194,136 @@ y^2 = 2px, \quad p > 0
 
 \item 顶点
 
-抛物线和它的轴的交点叫做抛物线的\textbf{顶点}.在标准方程中，当\(y=0\)时，\(x=0\)，因此标准方程所表示的抛物线的顶点就是坐标原点.
+抛物线和它的轴的交点叫做抛物线的\textbf{顶点}.
+在标准方程中，当\(y=0\)时，\(x=0\)，因此标准方程所表示的抛物线的顶点就是坐标原点.
 
 \item 离心率
 
-抛物线上的点\(P\)与焦点和准线的距离的比，叫做抛物线的\textbf{离心率}，用\(e\)表示.由抛物线的定义，抛物线的离心率为\(e = 1\).
+抛物线上的点\(P\)与焦点和准线的距离的比，叫做抛物线的\textbf{离心率}，用\(e\)表示.
+由抛物线的定义，抛物线的离心率为\(e = 1\).
 \end{enumerate}
 
 \begin{example}
-已知抛物线方程\(C: y^2=2px\)（\(p>0\)）.下面讨论过焦点\(F\opair*{\frac{p}{2},0}\)的直线\(l\)与抛物线的交点个数.
+已知抛物线方程\(C: y^2=2px\ (p>0)\).
+下面讨论过焦点\(F(p/2,0)\)的直线\(l\)与抛物线的交点个数.
 \begin{enumerate}
-\item 当直线\(l\)的方程为\(y=0\)时，代入抛物线方程得\(2px = 0\)，解得\(x=0\).可见直线\(l\)与抛物线\(C\)只有一个交点，即坐标原点\(O\).
-\item 当直线\(l\)的方程为\(x=\frac{p}{2}\)时，代入抛物线方程得\(y^2=2p\cdot\frac{p}{2}=p^2\)，解得\(y=\pm p\).可见直线\(l\)与抛物线\(C\)有两个交点\(P\opair*{\frac{p}{2},p}\)和\(Q\opair*{\frac{p}{2},-p}\).焦点弦长为\(\abs{PQ} = 2p\).
+	\item 当直线\(l\)的方程为\(y=0\)时，
+	代入抛物线方程得\(2px = 0\)，解得\(x=0\).
+	可见直线\(l\)与抛物线\(C\)只有一个交点，即坐标原点\(O\).
 
-\begin{center}
-\begin{tikzpicture}
-%\draw[gray,help lines,dashed] (-3,-3) grid (3,3);
-\draw[thick,->] (-2,0) -> (4,0)node[above]{\(x\)};
-\draw[thick,->] (0,-4) -> (0,4)node[right]{\(y\)};
-\draw (0,0)node[below left]{\(O\)};
-\pgfmathsetmacro{\p}{2}  % 参数p
-\pgfmathsetmacro{\x}{3}
-\pgfmathsetmacro{\y}{sqrt(2*\p*\x)}
-\pgfmathsetmacro{\f}{\p/2}  % 焦点横坐标
-\coordinate (F)at(\f,0);
-\coordinate (2F)at(2\f,0);
-\draw[orange] [rotate=-90](0,0)parabola(\y,\x) [rotate=180](0,0)parabola(\y,-\x);
-\draw[purple] (-\f,-4)--(-\f,4); % 准线
-\draw (2,-3)node[above right]{\(C: y^2 = 2px\)（\(p>0\)）};
-\pgfmathsetmacro{\k}{3}  % 焦点弦 斜率
-\pgfmathsetmacro{\a}{\p/(2*\k^2)}
-\pgfmathsetmacro{\b}{\p/\k}
-\pgfmathsetmacro{\c}{sqrt(\k^2+1)}
-\pgfmathsetmacro{\px}{\a*(\c+1)^2}
-\pgfmathsetmacro{\py}{\b*(\c+1)}
-\pgfmathsetmacro{\qx}{\a*(\c-1)^2}
-\pgfmathsetmacro{\qy}{-\b*(\c-1)}
-\coordinate (P)at(\px,\py);
-\coordinate (Q)at(\qx,\qy);
-\coordinate (P1)at(-\f,\py);
-\coordinate (Q1)at(-\f,\qy);
-\coordinate (K)at(-\f,0);
-\fill (P)circle(2pt)node[below right]{\(P\)}
-	(F)circle(2pt)node[below right]{\(F\)}
-	(Q)circle(2pt)node[right]{\(Q\)};
-\draw[red] (P)--(P1)node[left,black]{\(P_1\)}
-	pic[draw=gray,-,angle radius=0.3cm]{right angle=P--P1--K}
-	(Q)--(Q1)node[left,black]{\(Q_1\)}
-	pic[draw=gray,-,angle radius=0.3cm]{right angle=Q--Q1--K};
-\draw[blue] (P)--(F)--(Q);
-\draw pic["\(\theta\)",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=2F--F--P};
-\end{tikzpicture}
-\end{center}
+	\item 当直线\(l\)的方程为\(x=p/2\)时，
+	代入抛物线方程得\(y^2=2p\cdot(p/2)=p^2\)，解得\(y=\pm p\).
+	可见直线\(l\)与抛物线\(C\)有两个交点\(P(p/2,p)\)和\(Q(p/2,-p)\).
+	焦点弦长为\(\abs{PQ} = 2p\).
 
-\item 当直线\(l\)的方程为\(y=k\left(x-\frac{p}{2}\right)\)（\(k\neq0\)）时，代入抛物线方程得\[
-\left[k \left(x-\frac{p}{2}\right)\right]^2 = 2px,
-\]化简得\begin{gather}
-k^2 x^2 - (k^2 + 2)px + \frac{1}{4} k^2 p^2 = 0, \tag1
-\end{gather}因为\[
-\Delta = [- (k^2 + 2)p]^2 - 4 k^2 \frac{1}{4} k^2 p^2
-= 4 p^2 (k^2 + 1) > 0,
-\]所以(1)式总有两个实根\[
-x_{1,2} = \frac{(k^2+2)p \pm \sqrt\Delta}{2 k^2}
-= \frac{p}{2 k^2} (\sqrt{k^2+1} \pm 1)^2.
-\]可见直线\(l\)与抛物线\(C\)有两个交点\(P\opair*{x_1,y_1}\)和\(Q\opair*{x_2,y_2}\).不妨设\(x_1 > x_2\)，即\[
-x_1 = \frac{(k^2+2)p + \sqrt\Delta}{2 k^2}
-= \frac{p}{2 k^2} (\sqrt{k^2+1} + 1)^2,
-\]\[
-x_2 = \frac{(k^2+2)p - \sqrt\Delta}{2 k^2}
-= \frac{p}{2 k^2} (\sqrt{k^2+1} - 1)^2.
-\]将\(x_{1,2}\)代入抛物线方程得\[
-y^2 = 2 p^2 \frac{(\sqrt{k^2+1}\pm1)^2}{2 k^2}
-= \frac{p^2}{k^2} (\sqrt{k^2+1}\pm1)^2,
-\]\[
-y = \pm \frac{p}{k} (\sqrt{k^2+1}\pm1).
-\]当\(k>0\)时，由\(x_1 > x_2\)可知\(y_1 > 0 > y_2\)，那么\[
-y_1 = \frac{p}{k} (\sqrt{k^2+1}+1),
-\qquad
-y_2 = -\frac{p}{k} (\sqrt{k^2+1}-1).
-\]
-由两点间距离公式，焦点弦长为\begin{equation}
-\abs{PQ} = \sqrt{
-\left(\frac{p}{2 k^2} \cdot 4 \sqrt{k^2+1}\right)^2
-+\left(\frac{p}{k} \cdot 2 \sqrt{k^2+1}\right)^2
-} = 2p \left(1+\frac{1}{k^2}\right).
-\end{equation}若记\(k=\tan\theta\)，则上述弦长公式也可改写为\begin{equation}
-\abs{PQ} = 2p \frac{\tan^2\theta+1}{\tan^2\theta}
-= 2p \frac{\sec^2\theta}{\tan^2\theta}
-= 2p \frac{1}{\sin^2\theta}
-= 2p \csc^2\theta.
-\end{equation}
+	\begin{center}
+		\begin{tikzpicture}
+			%\draw[gray,help lines,dashed] (-3,-3) grid (3,3);
+			\draw[thick,->] (-2,0) -> (4,0)node[above]{\(x\)};
+			\draw[thick,->] (0,-4) -> (0,4)node[right]{\(y\)};
+			\draw (0,0)node[below left]{\(O\)};
+			\pgfmathsetmacro{\p}{2}  % 参数p
+			\pgfmathsetmacro{\x}{3}
+			\pgfmathsetmacro{\y}{sqrt(2*\p*\x)}
+			\pgfmathsetmacro{\f}{\p/2}  % 焦点横坐标
+			\coordinate (F)at(\f,0);
+			\coordinate (2F)at(2\f,0);
+			\draw[orange] [rotate=-90](0,0)parabola(\y,\x) [rotate=180](0,0)parabola(\y,-\x);
+			\draw[purple] (-\f,-4)--(-\f,4); % 准线
+			\draw (2,-3)node[above right]{\(C: y^2 = 2px\)（\(p>0\)）};
+			\pgfmathsetmacro{\k}{3}  % 焦点弦 斜率
+			\pgfmathsetmacro{\a}{\p/(2*\k^2)}
+			\pgfmathsetmacro{\b}{\p/\k}
+			\pgfmathsetmacro{\c}{sqrt(\k^2+1)}
+			\pgfmathsetmacro{\px}{\a*(\c+1)^2}
+			\pgfmathsetmacro{\py}{\b*(\c+1)}
+			\pgfmathsetmacro{\qx}{\a*(\c-1)^2}
+			\pgfmathsetmacro{\qy}{-\b*(\c-1)}
+			\coordinate (P)at(\px,\py);
+			\coordinate (Q)at(\qx,\qy);
+			\coordinate (P1)at(-\f,\py);
+			\coordinate (Q1)at(-\f,\qy);
+			\coordinate (K)at(-\f,0);
+			\fill (P)circle(2pt)node[below right]{\(P\)}
+				(F)circle(2pt)node[below right]{\(F\)}
+				(Q)circle(2pt)node[right]{\(Q\)};
+			\draw[red] (P)--(P1)node[left,black]{\(P_1\)}
+				pic[draw=gray,-,angle radius=0.3cm]{right angle=P--P1--K}
+				(Q)--(Q1)node[left,black]{\(Q_1\)}
+				pic[draw=gray,-,angle radius=0.3cm]{right angle=Q--Q1--K};
+			\draw[blue] (P)--(F)--(Q);
+			\draw pic["\(\theta\)",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=2F--F--P};
+		\end{tikzpicture}
+	\end{center}
 
-现在我们来检验上述弦长公式的正确性.根据抛物线的定义，抛物线上一点到焦点与其到准线的距离相等，故\(\abs{PF} = \abs{P P_1} = x_1 + \frac{p}{2}\)，\(\abs{QF} = \abs{Q Q_1} = x_2 + \frac{p}{2}\)，那么\(\abs{PQ} = \abs{PF}+\abs{QF} = x_1 + x_2 + p\).代入\(x_{1,2}\)，得\begin{align*}
-\abs{PQ} &= \frac{p}{2 k^2} \left[(\sqrt{k^2+1} + 1)^2 + (\sqrt{k^2+1} - 1)^2\right] + p \\
-&= p\left[\frac{2(k^2 + 1) + 2}{2 k^2} + 1\right]
-= p \frac{4k^2 + 4}{2k^2}
-= 2p \left(1+\frac{1}{k^2}\right).
-\end{align*}
+	\item 当直线\(l\)的方程为\(y=k\left(x-\frac{p}{2}\right)\)（\(k\neq0\)）时，代入抛物线方程得\[
+		\left[k \left(x-\frac{p}{2}\right)\right]^2 = 2px,
+	\]
+	化简得\begin{gather}
+		k^2 x^2 - (k^2 + 2)px + \frac{1}{4} k^2 p^2 = 0, \tag1
+	\end{gather}
+	因为\[
+		\Delta = [- (k^2 + 2)p]^2 - 4 k^2 \frac{1}{4} k^2 p^2
+		= 4 p^2 (k^2 + 1) > 0,
+	\]
+	所以(1)式总有两个实根\[
+		x_{1,2} = \frac{(k^2+2)p \pm \sqrt\Delta}{2 k^2}
+		= \frac{p}{2 k^2} (\sqrt{k^2+1} \pm 1)^2.
+	\]
+	可见直线\(l\)与抛物线\(C\)有两个交点\(P(x_1,y_1)\)和\(Q(x_2,y_2)\).
+	不妨设\(x_1 > x_2\)，即\[
+		x_1 = \frac{(k^2+2)p + \sqrt\Delta}{2 k^2}
+		= \frac{p}{2 k^2} (\sqrt{k^2+1} + 1)^2,
+	\]\[
+		x_2 = \frac{(k^2+2)p - \sqrt\Delta}{2 k^2}
+		= \frac{p}{2 k^2} (\sqrt{k^2+1} - 1)^2.
+	\]
+	将\(x_{1,2}\)代入抛物线方程得\[
+		y^2 = 2 p^2 \frac{(\sqrt{k^2+1}\pm1)^2}{2 k^2}
+		= \frac{p^2}{k^2} (\sqrt{k^2+1}\pm1)^2,
+	\]\[
+		y = \pm \frac{p}{k} (\sqrt{k^2+1}\pm1).
+	\]
+	当\(k>0\)时，由\(x_1 > x_2\)可知\(y_1 > 0 > y_2\)，那么\[
+		y_1 = \frac{p}{k} (\sqrt{k^2+1}+1),
+		\qquad
+		y_2 = -\frac{p}{k} (\sqrt{k^2+1}-1).
+	\]
+	由两点间距离公式，焦点弦长为\begin{equation}
+		\abs{PQ} = \sqrt{
+		\left(\frac{p}{2 k^2} \cdot 4 \sqrt{k^2+1}\right)^2
+		+\left(\frac{p}{k} \cdot 2 \sqrt{k^2+1}\right)^2
+		} = 2p \left(1+\frac{1}{k^2}\right).
+	\end{equation}
+	若记\(k=\tan\theta\)，则上述弦长公式也可改写为\begin{equation}
+		\abs{PQ} = 2p \frac{\tan^2\theta+1}{\tan^2\theta}
+		= 2p \frac{\sec^2\theta}{\tan^2\theta}
+		= 2p \frac{1}{\sin^2\theta}
+		= 2p \csc^2\theta.
+	\end{equation}
+
+	现在我们来检验上述弦长公式的正确性.
+	根据抛物线的定义，抛物线上一点到焦点与其到准线的距离相等，
+	故\(\abs{PF} = \abs{P P_1} = x_1 + \frac{p}{2}\)，
+	\(\abs{QF} = \abs{Q Q_1} = x_2 + \frac{p}{2}\)，
+	那么\(\abs{PQ} = \abs{PF}+\abs{QF} = x_1 + x_2 + p\).
+	代入\(x_{1,2}\)，得\begin{align*}
+		\abs{PQ} &= \frac{p}{2 k^2} \left[(\sqrt{k^2+1} + 1)^2 + (\sqrt{k^2+1} - 1)^2\right] + p \\
+		&= p\left[\frac{2(k^2 + 1) + 2}{2 k^2} + 1\right]
+		= p \frac{4k^2 + 4}{2k^2}
+		= 2p \left(1+\frac{1}{k^2}\right).
+	\end{align*}
 \end{enumerate}
 
 另外，可以注意到，\(P\)、\(Q\)两点的坐标满足\begin{equation}
-x_1 \cdot x_2 = \frac{p^2}{4},
-\qquad
-y_1 \cdot y_2 = -p^2.
+	x_1 \cdot x_2 = \frac{p^2}{4},
+	\qquad
+	y_1 \cdot y_2 = -p^2.
 \end{equation}
 
 \(P\)、\(Q\)两点的焦半径\(\abs{FP}\)、\(\abs{FQ}\)满足\begin{equation}
-\frac{1}{\abs{FP}} + \frac{1}{\abs{FB}}
-= \frac{2}{p}.
+	\frac{1}{\abs{FP}} + \frac{1}{\abs{FB}}
+	= \frac{2}{p}.
 \end{equation}
 \end{example}
 
