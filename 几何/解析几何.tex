@@ -5132,18 +5132,42 @@ A_2x+B_2y+C_2z+D_2=0
 d=\frac{\abs{\vec{M_0M}\times\mat{s}}}{\abs{\mat{s}}}.
 \]
 
-\section{极坐标系}
+\section{本章总结}
+\subsection*{向量及其运算}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\multicolumn{2}{|c|}{加法} & \multicolumn{2}{c|}{数乘} \\ \hline
+	交换律 & \(\mat{a}+\mat{b}=\mat{b}+\mat{a}\) &
+		结合律 & \(\lambda(\mu\mat{a})=\mu(\lambda\mat{a})=(\lambda\mu)\mat{a}\) \\ \hline
+	\multirow{2}{*}{结合律} & \multirow{2}{*}{\((\mat{a}+\mat{b})+\mat{c}=\mat{a}+(\mat{b}+\mat{c})\)} &
+		\multirow{2}{*}{分配律} & \((\lambda+\mu)\mat{a}=\lambda\mat{a}+\mu\mat{a}\) \\
+	 & & & \(\lambda(\mat{a}+\mat{b})=\lambda\mat{a}+\lambda\mat{b}\) \\ \hline
+	\multicolumn{2}{|c|}{点乘} & \multicolumn{2}{c|}{叉乘} \\ \hline
+	交换律 & \(\mat{a}\cdot\mat{b}=\mat{b}\cdot\mat{a}\) &
+		负交换律 & \(\mat{a}\times\mat{b}=-\mat{b}\times\mat{a}\) \\ \hline
+	分配律 & \((\mat{a}+\mat{b})\cdot\mat{c}=\mat{a}\cdot\mat{c}+\mat{b}\cdot{c}\) &
+		分配律 & \((\mat{a}+\mat{b})\times\mat{c}=\mat{a}\times\mat{c}+\mat{b}\times\mat{c}\) \\ \hline
+	\multirow{3}{*}{结合律} & \((\lambda\mat{a})\cdot\mat{b}=\lambda(\mat{a}\cdot\mat{b})\) & \multirow{3}{*}{结合律} & \multirow{3}{*}{\((\lambda\mat{a})\times\mat{b}=\mat{a}\times(\lambda\mat{b})=\lambda(\mat{a}\times\mat{b})\)} \\
+		& \(\mat{a}\cdot(\lambda\mat{b})=\lambda(\mat{a}\cdot\mat{b})\) & & \\
+		& \((\lambda\mat{a})\cdot(\mu\mat{b})=\lambda\mu(\mat{a}\cdot\mat{b})\) & & \\
+	\hline
+	\end{tabular}
+	\caption{向量的运算法则}
+\end{table}
+
+\subsection*{常见的坐标系}
 极坐标系是一种平面坐标系.
-极坐标系上的点\(\opair{\rho,\theta}\)与平面直角坐标系上的点\(\opair{x,y}\)存在以下的一一对应关系：\[
+极坐标系上的点\((\rho,\theta)\)与平面直角坐标系上的点\((x,y)\)存在以下的一一对应关系：\[
 \left\{ \begin{array}{l}
-x = \rho\cos\theta \\
-y = \rho\sin\theta \\
+x = \rho\cos\theta, \\
+y = \rho\sin\theta. \\
 \end{array} \right.
 \]
 
-\section{柱面坐标系}
 柱面坐标系是一种空间坐标系.
-柱面坐标系上的点\(\opair{\rho,\theta,z}\)与空间直角坐标系上的点\(\opair{x,y,z}\)存在以下的一一对应关系：\[
+柱面坐标系上的点\((\rho,\theta,z)\)与空间直角坐标系上的点\((x,y,z)\)存在以下的一一对应关系：\[
 \left\{ \begin{array}{l}
 x = \rho\cos\theta \\
 y = \rho\sin\theta \\
@@ -5151,9 +5175,8 @@ z = z \\
 \end{array} \right.
 \]
 
-\section{球面坐标系}
-球面坐标系是一种空间坐标系.
-球面坐标系上的点\(\opair{r,\theta,\varphi}\)与空间直角坐标系上的点\(\opair{x,y,z}\)存在以下的一一对应关系：\[
+球极坐标系是一种空间坐标系.
+球极坐标系上的点\((r,\theta,\varphi)\)与空间直角坐标系上的点\((x,y,z)\)存在以下的一一对应关系：\[
 \left\{ \begin{array}{l}
 x = r \sin\varphi \cos\theta \\
 y = r \sin\varphi \sin\theta \\
@@ -5161,49 +5184,27 @@ z = r \cos\varphi \\
 \end{array} \right.
 \]
 
-\begin{center}
-\begin{tikzpicture}
-\coordinate (O) at (0,0);
-\coordinate (M) at (2,2);
-\coordinate (P) at (2,-1.2);
-\coordinate (A) at (-0.8,-1.2);
-\coordinate (Z) at (0,1);
-
-\draw (O)node[left]{\(O\)}
-		-- (M)node[right]{\(M\)} node[midway,above]{\(r\)}
-		-- (P)node[right]{\(P\)} node[midway,right]{\(z\)}
-		-- (A)node[left]{\(A\)} node[midway,below]{\(y\)}
-		-- (O)node[midway,left]{\(x\)}
-	(O) -- (P)
-	pic["\(\varphi\)",draw=orange,<-,angle eccentricity=1.3,angle radius=0.6cm]{angle=M--O--Z}
-	pic["\(\theta\)",draw=orange,->,angle eccentricity=1.5,angle radius=0.4cm]{angle=A--O--P};
-
-\draw[->,ultra thick] (0,0) -- (-1.5,-2.25) node[right]{\(x\)};
-\draw[->,ultra thick] (0,0) -- (3,0) node[right]{\(y\)};
-\draw[->,ultra thick] (0,0) -- (0,3) node[above]{\(z\)};
-\end{tikzpicture}
-\end{center}
-
-\section{本章总结}
-\begin{table}[ht]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\multicolumn{2}{|c|}{加法} & \multicolumn{2}{c|}{数乘} \\ \hline
-交换律 & \(\mat{a}+\mat{b}=\mat{b}+\mat{a}\) &
-	结合律 & \(\lambda(\mu\mat{a})=\mu(\lambda\mat{a})=(\lambda\mu)\mat{a}\) \\ \hline
-\multirow{2}{*}{结合律} & \multirow{2}{*}{\((\mat{a}+\mat{b})+\mat{c}=\mat{a}+(\mat{b}+\mat{c})\)} &
-	\multirow{2}{*}{分配律} & \((\lambda+\mu)\mat{a}=\lambda\mat{a}+\mu\mat{a}\) \\
- & & & \(\lambda(\mat{a}+\mat{b})=\lambda\mat{a}+\lambda\mat{b}\) \\ \hline
-\multicolumn{2}{|c|}{点乘} & \multicolumn{2}{c|}{叉乘} \\ \hline
-交换律 & \(\mat{a}\cdot\mat{b}=\mat{b}\cdot\mat{a}\) &
-	负交换律 & \(\mat{a}\times\mat{b}=-\mat{b}\times\mat{a}\) \\ \hline
-分配律 & \((\mat{a}+\mat{b})\cdot\mat{c}=\mat{a}\cdot\mat{c}+\mat{b}\cdot{c}\) &
-	分配律 & \((\mat{a}+\mat{b})\times\mat{c}=\mat{a}\times\mat{c}+\mat{b}\times\mat{c}\) \\ \hline
-\multirow{3}{*}{结合律} & \((\lambda\mat{a})\cdot\mat{b}=\lambda(\mat{a}\cdot\mat{b})\) & \multirow{3}{*}{结合律} & \multirow{3}{*}{\((\lambda\mat{a})\times\mat{b}=\mat{a}\times(\lambda\mat{b})=\lambda(\mat{a}\times\mat{b})\)} \\
-	& \(\mat{a}\cdot(\lambda\mat{b})=\lambda(\mat{a}\cdot\mat{b})\) & & \\
-	& \((\lambda\mat{a})\cdot(\mu\mat{b})=\lambda\mu(\mat{a}\cdot\mat{b})\) & & \\
-\hline
-\end{tabular}
-\caption{向量的运算法则}
-\end{table}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\coordinate (O) at (0,0);
+		\coordinate (M) at (2,2);
+		\coordinate (P) at (2,-1.2);
+		\coordinate (A) at (-0.8,-1.2);
+		\coordinate (Z) at (0,1);
+		\draw (O)node[left]{\(O\)}
+				-- (M)node[right]{\(M\)} node[midway,above]{\(r\)}
+				-- (P)node[right]{\(P\)} node[midway,right]{\(z\)}
+				-- (A)node[left]{\(A\)} node[midway,below]{\(y\)}
+				-- (O)node[midway,left]{\(x\)}
+			(O) -- (P)
+			pic["\(\varphi\)",draw=orange,<-,angle eccentricity=1.3,angle radius=0.6cm]{angle=M--O--Z}
+			pic["\(\theta\)",draw=orange,->,angle eccentricity=1.5,angle radius=0.4cm]{angle=A--O--P};
+		\begin{scope}[>=Stealth,->,ultra thick]
+			\draw(0,0) -- (-1.5,-2.25) node[right]{\(x\)};
+			\draw(0,0) -- (3,0) node[right]{\(y\)};
+			\draw(0,0) -- (0,3) node[above]{\(z\)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{球极坐标系}
+\end{figure}
