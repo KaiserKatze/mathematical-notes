@@ -21,12 +21,15 @@ for remote in $(git remote); do
 		echo "[ERROR] Fail git push $remote!" 1>&2
 done
 
+git tag -d $RELEASE_TAG  # 删除标签
+
 export RELEASE_TITLE="Release $RELEASE_TAG"
 export RELEASE_NOTES="Daily update"
 cat github-token.ignore | awk 'match($0,/^\w+/){print $1}' | gh auth login -p ssh --with-token &&\
 	echo "[INFO] Login successfully" &&\
-	gh release create "$RELEASE_TAG" "$OUTPUT_FILE" --latest \
+	gh release create "$RELEASE_TAG" "$OUTPUT_FILE#$OUTPUT_FILE" --latest \
 		--title "$RELEASE_TITLE" \
 		--notes "$RELEASE_NOTES" \
-		-R "$REPO" ||\
+		-R "$REPO" &&\
+	gh auth logout ||\
 	echo "[ERROR] Fail to upload release $RELEASE_TAG!" 1>&2 && exit 1
