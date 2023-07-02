@@ -24,7 +24,7 @@ done
 export RELEASE_TITLE="Release $RELEASE_TAG"
 export RELEASE_NOTES="Daily update"
 cat github-token.ignore | awk 'match($0,/^\w+/){print $1}' | gh auth login -p ssh --with-token &&\
-	&& echo "[INFO] Login successfully" &&\
+	echo "[INFO] Login successfully" &&\
 	gh release create "$RELEASE_TAG" "$OUTPUT_FILE" --latest \
 		--title "$RELEASE_TITLE" \
 		--notes "$RELEASE_NOTES" \
