@@ -8,9 +8,9 @@ fi
 eval $(ssh-agent) && ssh-add || exit 1  # 准备 SSH 密匙
 
 OUTPUT_FILE="数学笔记.pdf"
-mv math.pdf "$OUTPUT_FILE"  # 在本地重命名 texlive 输出的 PDF 文件
+cp math.pdf "$OUTPUT_FILE"  # 在本地重命名 texlive 输出的 PDF 文件
 
-read -p "是否向 Github 上传 PDF 文件？(Y/n)" do_upload_pdf_file
+read -p "是否向 Github 上传 PDF 文件？(Y/n) " do_upload_pdf_file
 
 # 向 Github 推送发行版 PDF 文件
 export REPO="KaiserKatze/mathematical-notes"  # Github 仓库
