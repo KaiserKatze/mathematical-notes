@@ -5,7 +5,9 @@ pid_ssh_agent=$(ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+')
 if [ -n "$pid_ssh_agent" ]; then
 	kill -9 "$pid_ssh_agent"  # 杀死已存在的 SSH Agent 进程
 fi
-eval $(ssh-agent) && ssh-add || exit 1  # 准备 SSH 密匙
+# 准备 SSH 密匙
+eval $(ssh-agent) && ssh-add ||\
+	(echo "[ERROR] Fail to start ssh agent deamon or add ssh key!" 1>&2 && exit 1)
 
 OUTPUT_FILE="数学笔记.pdf"
 cp math.pdf "$OUTPUT_FILE"  # 在本地重命名 texlive 输出的 PDF 文件
@@ -23,6 +25,7 @@ esac
 
 # 开始推送
 for remote in $(git remote); do
+	echo "[INFO] Start pushing to '$(git remote get-url $remote)' ..."
 	git push $remote && git push --tags $remote ||\
 		echo "[ERROR] Fail git push $remote!" 1>&2
 done
