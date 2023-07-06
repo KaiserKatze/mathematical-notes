@@ -124,6 +124,28 @@ N = m_1 \times m_2 \times \dotsm \times m_n
 	A_n^k = n(n-1)\dotsm(n-k+2)(n-k+1).
 \]
 
+接下来我们想求从\(n\)个不同的元素中一次取出\(k\)的组合数.
+我们用符号\(C_n^k\)表示所求组合数.
+每一个这样的组合都由一组\(k\)个不同的元素组成，
+而这组元素本身又可以组成\(k!\)个不同的排列.
+因此\(C_n^k \times k!\)便等于\(n\)个元素一次取\(k\)个的排列数，即\[
+	C_n^k \times k! \equiv A_n^k
+	= n(n-1)(n-2)\dotsm(n-k+2)(n-k+1);
+\]于是\[
+	C_n^k = \frac{A_n^k}{k!}
+	= \frac{n(n-1)(n-2)\dotsm(n-k+2)(n-k+1)}{k!}
+	= \frac{n!}{k! (n-k)!}.
+\]
+
+需要注意到，当\(k=n\)时，有\[
+	A_n^n = \frac{n!}{0!} = n!,
+\]\[
+	C_n^n = \frac{n!}{n! 0!} = \frac{1}{0!};
+\]
+这说明，符号\(0!\)的取值应该等于\(1\).
+这就是为什么我们在\hyperref[definition:数列.阶乘的定义]{阶乘的定义}中特别规定\(0!\equiv1\)的原因.
+%特别地，规定：当\(n < k\)时，\(C_n^k = 0\).
+
 \subsubsection{加法原理}
 如果做一件事，完成它可以有\(n\)类办法，
 在第一类办法中有\(m_1\)种不同的方法，
@@ -148,15 +170,6 @@ N = m_1 + m_2 + \dotsb + m_n
 %\hyperref[theorem:排列组合.抽屉原理]{抽屉原理}有时候也称作\DefineConcept{鸽巢原理}；
 %因它最先是由狄利克雷明确地提出来的，因此也可称其为\DefineConcept{狄利克雷原理}.
 
-
-\begin{definition}
-从\(n\)个相异元素中取出\(k\)个元素，组合数为\[
-\binom{n}{k} =
-C_n^k = \frac{n!}{k!(n-k)!} = \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) \dotsm 1}
-\]
-
-特别地，规定：当\(n < k\)时，\(C_n^k = 0\).
-\end{definition}
 
 \begin{example}
 将\(m+n\)颗小球分为两袋，一袋含\(m\)颗小球，另一袋含\(n\)颗小球，求可能的分法种数.
