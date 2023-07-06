@@ -36,13 +36,55 @@ m/n, & m \pmod n = 0, \\
 因它最先是由狄利克雷明确地提出来的，因此也可称其为\DefineConcept{狄利克雷原理}.
 
 \subsection{排列、组合的基本概念}
-\begin{definition}[排列]
+从若干个元素中取出几个或全部的一种排法，称作是一个\DefineConcept{排列}.
+例如，从\(a,b,c,d\)四个字母里一次取出两个的排列数有12个，即\[
+	\begin{gathered}
+	ab, \quad
+	ac, \quad
+	ad, \quad
+	bc, \quad
+	bd, \quad
+	cd, \\
+	ba, \quad
+	ca, \quad
+	da, \quad
+	cb, \quad
+	db, \quad
+	dc;
+	\end{gathered}
+\]
+其中每一个都代表两个字母的不同的排法.
+
+从若干个元素中取出几个或全部的一种选法，称作是一个\DefineConcept{组合}.
+例如，从\(a,b,c,d\)四个字母里一次取出两个的组合数有6个，即\[
+	ab, \quad
+	ac, \quad
+	ad, \quad
+	bc, \quad
+	bd, \quad
+	cd;
+\]
+其中每一个都代表两个字母的不同的选法.
+
+从这些例子中我们看到，组合仅与每个选法所含元素的个数有关，
+而排列还要考虑元素在每一个排法中的次序.
+例如，从四个字母\(a,b,c,d\)中选三个字母可以得到\(abc\)这样一种组合，
+可以作以下六种不同的排列：\[
+	abc, \quad
+	acd, \quad
+	bca, \quad
+	bac, \quad
+	cab, \quad
+	cba.
+\]
+
+\begin{definition}
 从\(n\)个相异元素中取出\(k\)个元素，排列数为\[
 A_n^k = \frac{n!}{(n-k)!} = n \cdot (n-1) \dotsm (n-k+1)
 \]
 \end{definition}
 
-\begin{definition}[组合]
+\begin{definition}
 从\(n\)个相异元素中取出\(k\)个元素，组合数为\[
 \binom{n}{k} =
 C_n^k = \frac{n!}{k!(n-k)!} = \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) \dotsm 1}
@@ -115,6 +157,17 @@ C_n^k = \frac{n!}{k!(n-k)!} = \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) 
 	n! = x \cdot p! \cdot q! \cdot r!,
 \]即有\[
 	x = \frac{n!}{p! q! r!}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+用数字\(1,2,3,4,3,2,1\)可以组成多少个七位数，且奇数总在奇数位上.
+\begin{solution}
+奇数\(1,3,3,1\)有\(\frac{4!}{2! 2!}\)种方式排列在它们的四个位置上；
+偶数\(2,4,2\)有\(\frac{3!}{2!}\)种方式排列在它们的三个位置上；
+奇数的每一种排列都能与偶数的每一种排列组合，因此，所求排列数为\[
+	\frac{4!}{2! 2!} \times \frac{3!}{2!} = 18.
 \]
 \end{solution}
 \end{example}
