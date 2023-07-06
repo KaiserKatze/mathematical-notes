@@ -370,6 +370,73 @@ C_{n-1}^{k-1} + C_{n-1}^k
 = \frac{n!}{r_1! r_2! \dotsm r_k!}\).
 \end{property}
 
+\begin{example}
+求：当\(k\)取何值时，\(C_n^k\)最大.
+\begin{solution}
+我们首先研究几个特例.
+注意到\[
+	C_2^0 = 1, \qquad
+	C_2^1 = 2, \qquad
+	C_2^2 = 1,
+\]\[
+	C_3^0 = 1, \qquad
+	C_3^1 = 3, \qquad
+	C_3^2 = 3, \qquad
+	C_3^3 = 1,
+\]
+似乎可以总结出如下两条规律：
+\begin{itemize}
+	\item 随着\(k\)逐渐增加，\(C_n^k\)先逐渐增大，再逐渐减小.
+	\item 有的组合数在取邻近的两个不同的\(k\)值时，可能取得同样的最大值.
+\end{itemize}
+下面我们为这两条经验规律给出严格的证明.
+
+因为\[
+	C_n^k = \frac{n(n-1)(n-2)\dotsm(n-k+2)(n-k+1)}{1\cdot2\cdot3\dotsm(k-1)k},
+\]\[
+	C_n^{k-1} = \frac{n(n-1)(n-2)\dotsm(n-k+2)}{1\cdot2\cdot3\dotsm(k-1)},
+\]
+所以\[
+	C_n^k = C_n^{k-1} \cdot \frac{n-k+1}{k}
+	= C_n^{k-1} \cdot \left( \frac{n+1}{k} - 1 \right).
+\]
+令\(C_n^k > C_n^{k-1}\)，化简得\[
+	\frac{n+1}{k} - 1 > 1,
+\]
+考虑到\(0 \leqslant k \leqslant n\)，
+上式又可化简为\(2k < n+1\)，
+即\(k < (n+1)/2\).
+这就是说，当\(0 \leqslant k < (n+1)/2\)时，
+随着\(k\)逐渐增加，\(C_n^k\)逐渐增加；
+当\((n+1)/2 < k \leqslant n\)时，
+随着\(k\)逐渐增加，\(C_n^k\)逐渐减小.
+由此可知，当\(k\)取不大于\((n+1)/2\)的最大整数\(\floor{(n+1)/2}\)时，\(C_n^k\)取得最大值.
+
+若\(n\)为偶数，不妨设\(n = 2m\ (m\in\mathbb{N})\)，则\[
+	\frac{n+1}{2} = \frac{2m+1}{2}
+	= m+\frac{1}{2}.
+\]
+于是，只要取\(k = m = n/2\)，我们便得\(C_n^k\)的最大值：\[
+	C_n^{\frac{n}{2}}.
+\]
+
+若\(n\)为奇数，不妨设\(n = 2m+1\ (m\in\mathbb{N})\)，则\[
+	\frac{n+1}{2} = \frac{2m+2}{2} = m+1.
+\]
+于是，只要取\(k = m+1 = (n+1)/2\)，我们便得\(C_n^k\)的最大值；
+但是，由\cref{theorem:组合数性质1} 可知，\[
+	C_n^{\frac{n+1}{2}}
+	= C_n^{n-\frac{n+1}{2}}
+	= C_n^{\frac{n-1}{2}};
+\]
+于是，在取\(k = (n-1)/2 = m\)时，也可取得\(C_n^k\)的最大值.
+也就是说，当\(k\)取\((n\pm1)/2\)时，我们便得\(C_n^k\)的最大值：\[
+	C_n^{\frac{n+1}{2}}
+	= C_n^{\frac{n-1}{2}}.
+\]
+\end{solution}
+\end{example}
+
 \section{常见代数公式}
 
 \begin{theorem}[平方差、立方差公式]
