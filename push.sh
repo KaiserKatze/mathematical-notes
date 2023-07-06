@@ -9,9 +9,9 @@ fi
 eval $(ssh-agent) && ssh-add ||\
 	(echo "[ERROR] Fail to start ssh agent deamon or add ssh key!" 1>&2 && exit 1)
 
+# 在本地重命名 texlive 输出的 PDF 文件
 OUTPUT_FILE="数学笔记.pdf"
-cp math.pdf "$OUTPUT_FILE" &&\  # 在本地重命名 texlive 输出的 PDF 文件
-	echo "[INFO] 已生成最新版'数学笔记.pdf'文件."
+cp math.pdf "$OUTPUT_FILE" && echo "[INFO] 已生成最新版'数学笔记.pdf'文件."
 
 read -p "是否向 Github 上传 PDF 文件？(Y/n) " do_upload_pdf_file
 
