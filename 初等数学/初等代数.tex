@@ -313,16 +313,63 @@ C_n^{n-k}
 
 \cref{theorem:组合数性质1} 对于简化运算有很大用处.
 
+可以注意到，如果我们把所有组合数\(C_n^k\)按照\(n\)相同的写成一行，再按\(k\)从小到大排列，
+就能得到一个美妙的三角形，如\cref{figure:排列组合.杨辉三角} 所示.
+像这样表示组合数的关系的图示叫做\DefineConcept{杨辉三角}或\DefineConcept{帕斯卡三角}.
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[
+		bino/.style={
+			% The shape:
+			circle,
+			% The size:
+			minimum size=6mm,
+			% The border:
+			very thick,
+			draw=red!50!black!50, % 50% red and 50% black,
+			% and that mixed with 50% white
+			% The filling:
+			top color=white, % a shading that is white at the top...
+			bottom color=red!50!black!20, % and something else at the bottom
+			% Font
+			%font=\itshape
+	}, node distance=5mm]
+		\node(C00)[bino]{1};
+		\node(C10)[bino,below=of C00]{1};
+		\node(C11)[bino,right=of C10]{1};
+		\node(C20)[bino,below=of C10]{1};
+		\node(C21)[bino,right=of C20]{2};
+		\node(C22)[bino,right=of C21]{1};
+		\node(C30)[bino,below=of C20]{1};
+		\node(C31)[bino,right=of C30]{3};
+		\node(C32)[bino,right=of C31]{3};
+		\node(C33)[bino,right=of C32]{1};
+		\node(C40)[bino,below=of C30]{1};
+		\node(C41)[bino,right=of C40]{4};
+		\node(C42)[bino,right=of C41]{6};
+		\node(C43)[bino,right=of C42]{4};
+		\node(C44)[bino,right=of C43]{1};
+		\draw(C00)--(C10)--(C20)--(C30)--(C40)
+			(C00)--(C11)--(C22)--(C33)--(C44);
+		\draw(C10)--(C21)--(C11)
+			(C20)--(C31)--(C21)--(C32)--(C22)
+			(C30)--(C41)--(C31)--(C42)--(C32)--(C43)--(C33);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:排列组合.杨辉三角}
+\end{figure}
+
 \begin{property}\label{theorem:组合数性质2}
 \(C_{n-1}^{k-1} + C_{n-1}^k = C_n^k\).
 \begin{proof}
+直接计算得
 \begin{align*}
-C_{n-1}^{k-1} + C_{n-1}^k
-&= \frac{(n-1)!}{(k-1)! (n-k)!} + \frac{(n-1)!}{k! (n-k-1)!} \\
-&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \left( \frac{1}{n-k} + \frac{1}{k} \right) \\
-&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \frac{n}{(n-k)k}
-= \frac{n!}{k! (n-k)!}
-= C_n^k. \qedhere
+	C_{n-1}^{k-1} + C_{n-1}^k
+	&= \frac{(n-1)!}{(k-1)! (n-k)!} + \frac{(n-1)!}{k! (n-k-1)!} \\
+	&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \left( \frac{1}{n-k} + \frac{1}{k} \right) \\
+	&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \frac{n}{(n-k)k}
+	= \frac{n!}{k! (n-k)!}
+	= C_n^k. \qedhere
 \end{align*}
 \end{proof}
 \end{property}
