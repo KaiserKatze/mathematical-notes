@@ -505,6 +505,66 @@ C_n^{n-k}
 \end{solution}
 \end{example}
 
+\section{二项式定理}
+我们注意到，利用乘法分配律可以得到\begin{align*}
+	(x+a_1)(x+a_2)
+	&= x(x+a_2) + a_1(x+a_2) \\
+	&= x^2 + a_2x + a_1x + a_1a_2 \\
+	&= x^2 + (a_1+a_2)x + a_1a_2;
+\end{align*}
+类似地，有\[
+	(x+a_1)(x+a_2)(x+a_3)
+	= x^3 + (a_1+a_2+a_3)x^2 + (a_1a_2+a_1a_3+a_2a_3)x + a_1a_2a_3;
+\]\[
+	(x+a_1)(x+a_2)(x+a_3)(x+a_4)
+	= \begin{array}[t]{l}
+		x^4 + (a_1+a_2+a_3+a_4)x^3 \\
+		+ (a_1a_2+a_1a_3+a_1a_4+a_2a_3+a_2a_4+a_3a_4)x^2 \\
+		+ (a_1a_2a_3+a_1a_2a_4+a_1a_3a_4+a_2a_3a_4)x^3 + a_1a_2a_3a_4.
+	\end{array}
+\]
+从这些结果里，我们可以总结出如下经验规律：
+\begin{enumerate}
+	\item 等号右边的项数比左边二项因子的个数多1.
+	\item 第一项的\(x\)的指数等于二项因子的个数，
+	以后各项\(x\)的指数依次比前面一项小1.
+	\item 第一项的系数为1；第二项的系数是数\(a,b,c,\dotsc\)的和；
+	第三项的系数是从这\(n\)个数里一次取2个相乘的积的和；
+	第四项的系数是从这\(n\)个数里一次取3个相乘的积的和；
+	以此类推；最后一项是所有这\(n\)个数的乘积.
+\end{enumerate}
+
+利用数学归纳法.
+假设这些规律在左边有\(n-1\)个二项因子的情况下适用，
+即设\[
+	(x+a_1)(x+a_2)\dotsm(x+a_{n-1})
+	= x^{n-1}+p_1 x^{n-2}+p_2 x^{n-3}+\dotsb+p_{n-1},
+\]
+其中\[
+	p_1 = a_1+a_2+\dotsb+a_{n-1},
+	p_2 = a_1a_2+\dotsb+a_2a_3+\dotsb,
+	\dotsc,
+	p_{n-1} = a_1 a_2 \dotsm a_{n-1}.
+\]
+在等式两边再乘以一个因子\(x+a_n\)，则有\[
+	(x+a_1)(x+a_2)\dotsm(x+a_{n-1})(x+a_n)
+	= \begin{array}[t]{l}
+		x^n + (p_1+a_n)x^{n-1}
+		+ (p_2+p_1a_n)x^{n-2} \\
+		+ (p_3+p_2a_n)x^{n-3}
+		+ \dotsb + p_{n-1} a_n.
+	\end{array}
+\]
+由于\(p_1+a_n = (a_1+a_2+\dotsb+a_{n-1})+a_n\)
+是\(n\)个数\(\AutoTuple{a}{n}\)的和，
+\(p_2+p_1a_n = p_2+(a_1+a_2+\dotsb+a_{n-1})a_n\)
+是\(n\)个数\(\AutoTuple{a}{n}\)一次选两个的乘积的和，
+\(p_3+p_2a_n = p_3+(a_1a_2+\dotsb+a_2a_3+\dotsb)a_n\)
+是\(n\)个数\(\AutoTuple{a}{n}\)一次选三个的乘积的和；
+以此类推；\(p_{n-1} a_n = (a_1 a_2 \dotsm a_{n-1})a_n\)
+是所有\(n\)个数\(\AutoTuple{a}{n}\)的乘积.
+因此，上述规律对任意多个二项因子的乘积都成立.
+
 \section{常见代数公式}
 
 \begin{theorem}[平方差、立方差公式]
