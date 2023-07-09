@@ -15,8 +15,11 @@ if [ -z "$(ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+')" ]; then
 fi
 
 # 准备 SSH 密匙
-ssh-add ||\
-	(echo "[ERROR] Fail to start ssh agent deamon or add ssh key!" 1>&2 && exit 1)
+ssh-add
+if [ $? -ne 0 ]; then
+	echo "[ERROR] Fail to start ssh agent deamon or add ssh key!" 1>&2
+	exit 1
+fi
 
 # 在本地重命名 texlive 输出的 PDF 文件
 OUTPUT_FILE="数学笔记.pdf"
