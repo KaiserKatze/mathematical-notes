@@ -3,10 +3,19 @@
 
 pid_ssh_agent=$(ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+')
 if [ -n "$pid_ssh_agent" ]; then
-	kill -9 "$pid_ssh_agent"  # 杀死已存在的 SSH Agent 进程
+	kill -9 "$pid_ssh_agent"
 fi
+
+ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+' | awk '{if(NR>1)print $0}' | while read line
+do
+	kill -9 "$line" && echo "Kill ssh agent(pid=$line)."  # 杀死已存在的 SSH Agent 进程
+done
+if [ -z "$(ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+')" ]; then
+	eval $(ssh-agent) > /dev/null  # 如果一个 SSH Agent 都没有，就创建一个
+fi
+
 # 准备 SSH 密匙
-eval $(ssh-agent) && ssh-add ||\
+ssh-add ||\
 	(echo "[ERROR] Fail to start ssh agent deamon or add ssh key!" 1>&2 && exit 1)
 
 # 在本地重命名 texlive 输出的 PDF 文件
