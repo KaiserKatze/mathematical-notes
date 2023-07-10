@@ -1347,34 +1347,53 @@ t - 1 < \floor{t} \leqslant t,
 不妨设数列\(\{a_n\}\)是单调增加的，即\[
 	a_n \leqslant a_{n+1},
 	\quad n=1,2,\dotsc;
+	\eqno(1)
 \]
 又设\(\{a_n\}\)有界，且\[
 	\abs{a_n} < c,
 	\quad n=1,2,\dotsc.
+	\eqno(2)
 \]
 
 取\[
 	B = \Set{ x \in \mathbb{R} \given x > a_n\ (n=1,2,\dotsc) },
-	\qquad
+	\eqno(3)
+\]\[
 	A = \mathbb{R} - B.
+	\eqno(4)
 \]
 显然\(\Set{A,B}\)是\(\mathbb{R}\)的一个分割.
 设\(\alpha\)是这个分割的界限，
 那么必有\[
 	a_n \leqslant \alpha,
 	\quad n=1,2,\dotsc;
+	\eqno(5)
 \]
 这是因为假设这个数列的某一项\(a_m\)满足\(a_m > \alpha\)，
-依照界限的定义会有\(a_m \in B\)，而这与\(B\)的定义矛盾.
-假设\(\alpha\)不是\(\{a_n\}\)的极限，
-则存在正常数\(\varepsilon\)，使得对任意正整数\(n\)都有\[
+依照界限的定义会有\(a_m \in B\)，而这与\(B\)的定义式(3)矛盾.
+
+假设“\(\alpha\)不是\(\{a_n\}\)的极限”，
+根据数列发散的定义，\[
+	\exists\varepsilon>0,
+	\forall n\in\mathbb{N}^+,
+	\exists n_0>n
+	\bigl( \abs{a_{n_0} - \alpha} > \varepsilon \bigr)
+\]成立；
+由(5)可知，\(\abs{a_{n_0} - \alpha} = \alpha - a_{n_0}\)；
+又因为\(\{a_n\}\)是单调增加的，
+所以\(a_{n_0} \geqslant a_n\)，
+\(-a_{n_0} \leqslant -a_n\)，
+\(\alpha - a_{n_0} \leqslant \alpha - a_n\).
+因此，\(\exists\varepsilon>0\)，对\(\forall n\in\mathbb{N}^+\)，都有\[
 	\alpha - a_n > \varepsilon
 	\quad\text{或}\quad
 	a_n < \alpha - \varepsilon.
+	\eqno(6)
 \]
-按照集合\(B\)的定义，由此可得\(\alpha - \varepsilon \in B\)；
-但由\(\alpha - \varepsilon < \alpha\)可知，\((\alpha - \varepsilon) \in A\)；
-矛盾！因此\(\alpha\)就是数列\(\{a_n\}\)的极限，即\(\lim\limits_{n\to\infty} a_n = \alpha\).
+结合集合\(B\)的定义(3)，由(6)便得\(\alpha - \varepsilon \in B\)；
+但由\(\alpha - \varepsilon < \alpha\)可知，应该有\((\alpha - \varepsilon) \in A\)；
+矛盾！因此假设不成立，\(\alpha\)就是数列\(\{a_n\}\)的极限，
+即\(\lim\limits_{n\to\infty} a_n = \alpha\).
 \end{proof}
 \end{theorem}
 
