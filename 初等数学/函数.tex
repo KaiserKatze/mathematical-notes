@@ -704,10 +704,12 @@ a^{\ln b} = b^{\ln a}.
 \centering
 \begin{tikzpicture}[scale=0.7]
 	\draw[help lines, color=gray!30, dashed] (-8,-2) grid (8,2);
-	\draw[color=orange] (-2*pi,0) sin (-1.5*pi,1) cos (-pi,0) sin (-0.5*pi,-1) cos (0,0) sin (0.5*pi,1) cos (pi,0) sin (1.5*pi,-1) cos (2*pi,0);
+	\draw[color=orange,domain=-2*pi:2*pi,samples=50] plot(\x,{sin(\x r)});
 
-	\draw[->, ultra thick] (-7,0) -- (7,0) node[right]{\(x\)};
-	\draw[->, ultra thick] (0,-2) -- (0,2) node[above]{\(y\)};
+	\begin{scope}[>=Stealth,->,ultra thick]
+		\draw(-7,0) -- (7,0) node[right]{\(x\)};
+		\draw(0,-2) -- (0,2) node[above]{\(y\)};
+	\end{scope}
 	\draw (0.5*pi,0)node[below]{\(\pi/2\)};
 	\draw[dashed, color=gray] (0.5*pi,1) -- (0.5*pi,0);
 	\draw (0,0)node[below right]{\(O\)}
@@ -737,10 +739,12 @@ a^{\ln b} = b^{\ln a}.
 \centering
 \begin{tikzpicture}[scale=0.7]
 	\draw[help lines, color=gray!30, dashed] (-8,-2) grid (8,2);
-	\draw[color=orange] (-2*pi,1) cos (-1.5*pi,0) sin (-pi,-1) cos (-0.5*pi,0) sin (0,1) cos (0.5*pi,0) sin (pi,-1) cos (1.5*pi,0) sin (2*pi,1);
+	\draw[color=orange,domain=-2*pi:2*pi,samples=50] plot(\x,{cos(\x r)});
 
-	\draw[->, ultra thick] (-7,0) -- (7,0) node[right]{\(x\)};
-	\draw[->, ultra thick] (0,-2) -- (0,2) node[above]{\(y\)};
+	\begin{scope}[>=Stealth,->,ultra thick]
+		\draw(-7,0) -- (7,0) node[right]{\(x\)};
+		\draw(0,-2) -- (0,2) node[above]{\(y\)};
+	\end{scope}
 	\draw (1.4,0)node[below]{\(\pi/2\)};
 	\draw[dashed, color=gray] (pi,-1) -- (pi,0);
 	\draw (0,0)node[below right]{\(O\)}
