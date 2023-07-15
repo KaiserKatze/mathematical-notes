@@ -319,11 +319,11 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \(((\neg p) \lor (q))\)等同于\(\neg p \lor q\).
 
 但\[
-p \implies q \land r \implies s
+	p \implies q \land r \implies s
 \]并非\[
-((p \implies q) \land (r \implies s)),
+	((p \implies q) \land (r \implies s)),
 \]而应等同于\[
-((p \implies (q \land r)) \implies s).
+	((p \implies (q \land r)) \implies s).
 \]
 \end{example}
 
@@ -362,11 +362,11 @@ p \implies q \land r \implies s
 \subsection{子集公理}
 \begin{axiom}[子集公理]
 %@see: 《Elements of Set Theory》 P21. Subset Axiom
-对于不涉及\(B\)的每一条命题公式\(\lambda\)，下式是一条公理：\[
-\forall A, \exists B, \forall x \bigl(
-	x \in B \iff x \in A \land \lambda
-\bigr).
-\]
+对于不涉及\(B\)的每一条命题公式\(\lambda\)，命题\[
+	\forall A, \exists B, \forall x \bigl(
+		x \in B \iff x \in A \land \lambda
+	\bigr)
+\]是一条公理.
 \end{axiom}
 子集公理有时候也称作\DefineConcept{分离公理}，%
 它在英语中称作Subset Axioms，%
@@ -388,9 +388,9 @@ B = \Set{ x \in A \given \lambda }.
 \begin{axiom}[空集公理]
 %@see: 《Elements of Set Theory》 P18. Empty Set Axiom
 总存在这样一个集合\(A\)，没有任何元素属于它，即\[
-\exists A, \forall x \bigl( x \notin A \bigr),
+	\exists A, \forall x \bigl( x \notin A \bigr),
 \]或\[
-\exists A, \forall x \bigl( x \in A \iff x \neq x \bigr).
+	\exists A, \forall x \bigl( x \in A \iff x \neq x \bigr).
 \]
 \end{axiom}
 空集公理在英语中称作Empty Set Axiom.
@@ -404,13 +404,18 @@ B = \Set{ x \in A \given \lambda }.
 若是没有这两条公理的帮助，我们就不能说\(\emptyset\)是良定义的.
 
 利用描述法，我们可以重新定义空集如下：\[
-\emptyset \defeq \Set{ x \given x \neq x }.
+	\emptyset \defeq \Set{ x \given x \neq x }.
 \]
 
 \begin{example}
 以空集为元素构成的集合\(\Set{\emptyset}\)不是空集，即\(\Set{\emptyset} \neq \emptyset\).
 这是因为\(\emptyset \in \Set{\emptyset}\)但\(\emptyset \notin \emptyset\).
 \end{example}
+
+当我们说一个集合\(A\)不是空集时，
+\(A\)中必定至少有一个元素，即\[
+	\exists x \bigl( x \in A \bigr).
+\]
 
 \subsection{对集公理}
 \begin{axiom}[对集公理]
@@ -458,7 +463,7 @@ B = \Set{ x \in A \given \lambda }.
 \Set{ x \given x \in A \land x \in B }
 \]为“\(A\)和\(B\)的\DefineConcept{交集}（the intersection of \(A\) and \(B\)）”，%
 简称“\(A\)和\(B\)的\DefineConcept{交}”，%
-记作\(A \cap B\).
+记作\(A \cap B\)或\(AB\).
 \end{definition}
 
 \begin{definition}
@@ -473,20 +478,41 @@ B = \Set{ x \in A \given \lambda }.
 对于任意非空集合\(A\)，%
 存在唯一的集合\(B\)，%
 使得对于任意\(x\)，有\[
-x \in B
-\iff
-\forall a \in A \bigl( x \in a \bigr).
+	x \in B
+	\iff
+	\forall a \in A \bigl( x \in a \bigr).
 \]
+\begin{proof}
+先证集合\(B\)的存在性.
+既然\(A\)是非空集，不妨取定\(c \in A\).
+那么根据子集公理，存在集合\(B\)，使得对于任意\(x\)，都有\[
+	x \in B
+	\iff x \in c \land \bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr];
+\]
+由于\(c\)是任意取定的，且\[
+	\bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr]
+	\implies
+	x \in c,
+\]
+所以也有\[
+	x \in B
+	\iff \forall a \in A \bigl( x \in a \bigr).
+\]
+
+根据外延公理不难得出集合\(B\)的唯一性.
+\end{proof}
 \end{theorem}
 
 \begin{definition}
 设系\(A = \Set{\v{a}{n}}\).
-称集合\(\v{a}{n}\)的并为\(A\)的\DefineConcept{并}，%
+称集合\(\v{a}{n}\)的并\[
+	a_1 \cup a_2 \cup \dotsb \cup a_n
+\]为“\(A\)的\DefineConcept{并}”，
 记作\(\bigcup A\)或\(\bigcup\limits_i a_i\)，即\[
-\bigcup A
-\defeq
-a_1 \cup a_2 \cup \dotsb \cup a_n
-= \Set*{ x \given \exists a \in A \bigl( x \in a \bigr) }.
+	\bigcup A
+	\defeq
+	a_1 \cup a_2 \cup \dotsb \cup a_n
+	= \Set*{ x \given \exists a \in A \bigl( x \in a \bigr) }.
 \]
 \end{definition}
 
@@ -494,11 +520,11 @@ a_1 \cup a_2 \cup \dotsb \cup a_n
 \begin{axiom}[并集公理II]
 对于任意集合\(A\)，总存在一个集合\(B\)，%
 使得集合\(B\)中的元素都是集合\(A\)的子集，即\[
-\forall x \Bigl[
-	x \in B
-	\iff
-	\exists b \in A \bigl( x \in b \bigr)
-\Bigr].
+	\forall x \Bigl[
+		x \in B
+		\iff
+		\exists b \in A \bigl( x \in b \bigr)
+	\Bigr].
 \]
 \end{axiom}
 
@@ -513,24 +539,26 @@ a \cup b \defeq \bigcup\Set{a,b}.
 \begin{example}
 证明：
 \begin{equation}
-\Set{ \Set{x}, \Set{x,y} } \in A
-\implies
-\Set{x,y} \in \bigcup A
-\land
-x,y \in \bigcup\bigcup A.
+	\Set{ \Set{x}, \Set{x,y} } \in A
+	\implies
+	\Set{x,y} \in \bigcup A
+	\land
+	x,y \in \bigcup\bigcup A.
 \end{equation}
 \end{example}
 
 \begin{definition}
 设系\(A = \Set{\v{a}{n}}\).
-称集合\(\v{a}{n}\)的并为\(A\)的\DefineConcept{交}\footnote{%
+称集合\(\v{a}{n}\)的交\[
+	a_1 \cap a_2 \cap \dotsb \cap a_n
+\]为\(A\)的\DefineConcept{交}\footnote{%
 \cref{theorem:集合论.系的交的唯一存在性} 确保了\(\bigcap A\)可以定义为唯一存在的集合\(B\).
 }，%
 记作\(\bigcap A\)或\(\bigcap\limits_i a_i\)，即\[
-\bigcap A
-\defeq
-a_1 \cap a_2 \cap \dotsb \cap a_n
-= \Set*{ x \given \forall a \in A \bigl(x \in a\bigr) }.
+	\bigcap A
+	\defeq
+	a_1 \cap a_2 \cap \dotsb \cap a_n
+	= \Set*{ x \given \forall a \in A \bigl(x \in a\bigr) }.
 \]
 \end{definition}
 
@@ -723,6 +751,26 @@ A = B.
 \begin{solution}
 集合\(\Powerset(A-B)\)包含集合\(A-B\)的所有子集，那么总有\(\emptyset\in\Powerset(A-B)\).
 但是\(\emptyset\notin\Powerset A - \Powerset B\)，所以\(\Powerset(A-B) \neq \Powerset A - \Powerset B\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求非空集合\(S\)的所有单元素子集.
+\begin{solution}
+我们知道\(\Powerset S\)中的元素是\(S\)的全部子集，
+于是我们可以利用子集公理从中找出只有一个元素的集合，将它们重组为一个新的集合\[
+	\Set{ a \in \Powerset S \given a\text{是单元集} }.
+\]
+我们知道，单元素集中有且仅有一个元素，由此可知\[
+	a \neq \emptyset
+	\land
+	\forall u,v \in a \bigl( u = v \bigr).
+\]
+综上所述，非空集合\(S\)的所有单元素子集的集合为\[
+	\Set*{ a \in \Powerset S \given a \neq \emptyset
+	\land
+	\forall u,v \in a \bigl( u = v \bigr) }.
+\]
 \end{solution}
 \end{example}
 
