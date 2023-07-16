@@ -345,7 +345,7 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \section{公理化集合论}
 在本节我们先来介绍集合和元素的概念、集合存在公理，以及集合的运算法则.
 
-\subsection{空集公理，对集公理}
+\subsection{空集公理，对集公理，并集公理}
 让我们想象这样的情景：
 你是一个在原始部落中负责管理仓库的工人学徒.
 今天，猎人们从森林里带回一些猎物，堆放在地面上，让你把它们先分好类再收进仓库.
@@ -398,8 +398,8 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 我们可以说空地是一个空着的集合，或者说“空集”.
 我们还说两只鸟组成一对鸟，或者说“对集”.
 
-从上述生活经验出发，我们认定“空集”和“对集”是一定存在的，
-于是我们可以给出如下的“空集公理”和“对集公理”.
+从上述生活经验出发，我们认定“空集”“对集”和“并集”是一定存在的，
+于是我们可以给出如下的三个公理.
 
 \begin{axiom}[空集公理]\label{axiom:集合论.空集公理}
 %@see: 《Elements of Set Theory》 P18. Empty Set Axiom
@@ -424,11 +424,26 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \]
 \end{axiom}
 
+\begin{axiom}[并集公理I]
+%@see: 《Elements of Set Theory》 P18. Union Axiom, Preliminary Form
+对于任意两个集合\(a\)和\(b\)，
+总存在一个集合\(B\)，它的元素要么属于\(a\)，要么属于\(b\)，即\[
+	\forall a, \forall b, \exists B, \forall x
+	\bigl(
+		x \in B
+		\iff
+		x \in a \lor x \in b
+	\bigr).
+\]
+\end{axiom}
+
 空集公理在英语中称作Empty Set Axiom.
 对集公理在英语中称作Pairing Axiom.
+并集公理在英语中称作Union Axiom, Preliminary Form，
+在德语中称作Axiom der Vereinigung.
 在德语中把对集公理和空集公理并称为Axiom der Elementarmengen.
 
-下面我们给出我们对“空集”和“对集”的正式定义.
+下面我们给出我们对“空集”“对集”和“并集”的正式定义.
 
 \begin{definition}
 不含任何元素的集合称为\DefineConcept{空集}（empty set），记作\(\emptyset\).
@@ -442,35 +457,19 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 称集合\(\Set{ A, B }\)为\(A\)和\(B\)的\DefineConcept{对集}（pair set）.
 \end{definition}
 
+\begin{definition}
+称集合\[
+	\Set{ x \given x \in A \lor x \in B }
+\]为“\(A\)和\(B\)的\DefineConcept{并集}（the union of \(A\) and \(B\)）”，%
+简称“\(A\)和\(B\)的\DefineConcept{并}”，%
+记作\(A \cup B\)或\(A+B\).
+\end{definition}
+
 容易看出，当我们说“集合\(A\)不是空集”或“集合\(A\)是非空集合”时，
 \(A\)中必定至少有一个元素，即\[
 	\exists x \bigl( x \in A \bigr).
 \]
 
-\subsection{并集公理}
-在上一小节的故事中，我们熟悉了怎么怎么比较猎物
-
-\begin{axiom}[并集公理I]
-%@see: 《Elements of Set Theory》 P18. Union Axiom, Preliminary Form
-对于任意集合\(a\)和\(b\)，总存在一个集合\(B\)，它的元素要么属于\(a\)，要么属于\(b\)，即\[
-	\forall a, \forall b, \exists B, \forall x
-	\bigl(
-		x \in B
-		\iff
-		x \in a \lor x \in b
-	\bigr).
-\]
-\end{axiom}
-上述公理在英语中称作Union Axiom, Preliminary Form.
-并集公理在德语中称作Axiom der Vereinigung.
-
-\begin{definition}
-称集合\[
-\Set{ x \given x \in A \lor x \in B }
-\]为“\(A\)和\(B\)的\DefineConcept{并集}（the union of \(A\) and \(B\)）”，%
-简称“\(A\)和\(B\)的\DefineConcept{并}”，%
-记作\(A \cup B\)或\(A+B\).
-\end{definition}
 
 \begin{definition}
 称集合\[
