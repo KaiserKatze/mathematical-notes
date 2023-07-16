@@ -343,108 +343,122 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 
 
 \section{公理化集合论}
-集合论公理统共有十个，在本节我们首先介绍其中六个；
-其中最为重要的当属空集公理、对集公理、并集公理、幂集公理，%
-它们统称为\DefineConcept{集合存在公理}（Set Existence Axioms）.
+在本节我们先来介绍集合和元素的概念、集合存在公理，以及集合的运算法则.
 
-\subsection{外延公理}
-\begin{axiom}[外延公理]
-%@see: 《Elements of Set Theory》 P17. Extensionality Axiom
-如果集合\(A\)与集合\(B\)具有相同的元素，则称“集合\(A\)与集合\(B\)\DefineConcept{相等}”，记作\(A=B\)，即\[
-\forall A, \forall B \Bigl[
-	\forall x \bigl( x \in A \iff x \in B \bigr)
-	\implies A = B
-\Bigr].
-\]
-\end{axiom}
-外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
+\subsection{空集公理，对集公理}
+让我们想象这样的情景：
+你是一个在原始部落中负责管理仓库的工人学徒.
+今天，猎人们从森林里带回一些猎物，堆放在地面上，让你把它们先分好类再收进仓库.
+今天是你上班的第一天，你不知道这些猎物是什么.
+说要分类，你也只能一屁股坐在空地上，面朝这些码放在一起的猎物，一筹莫展.
+正在此时，一位老人颤颤巍巍地走了过来，他正是你的师父.
+你向他询问这些猎物应当如何分类.
 
-\subsection{子集公理}
-\begin{axiom}[子集公理]
-%@see: 《Elements of Set Theory》 P21. Subset Axiom
-对于不涉及\(B\)的每一条命题公式\(\lambda\)，命题\[
-	\forall A, \exists B, \forall x \bigl(
-		x \in B \iff x \in A \land \lambda
-	\bigr)
-\]是一条公理.
-\end{axiom}
-子集公理有时候也称作\DefineConcept{分离公理}，%
-它在英语中称作Subset Axioms，%
-在德语中称作Axiom der Aussonderung.
-正如其名，该定理的作用就是从集合\(A\)中取出适合命题公式\(\lambda\)的元素，组合成新的集合\(B\).
+“你应该首先了解这些猎物具有的特征，”
+在望了一眼这堆猎物以后，你的师父说道，
+“你看，和我们人类一样，这些猎物身上长着眼睛的部位也叫做头部.
+在它们的头上也长有和我们的嘴巴一样用来进食的部位.
+但是，你要注意，有的猎物的‘嘴’的形状与我们的嘴巴不同，它的‘嘴’是尖尖的，
+我们把这类猎物的‘嘴’叫做‘喙’；
+此外这类猎物也长着和我们的脚一样用来站立的部位，但它的‘脚’也是尖尖的，
+我们把这类猎物的‘脚’叫做‘爪子’；
+最后，我们把这类猎物叫做‘鸟’.”
+他掏出水壶，喝上一口水以后，继续说：
+“今天你就学习怎么把‘鸟’从这堆猎物中筛选出来，放在一起.
+其余的猎物我让别人来收拾.”
+紧接着，他缓缓蹲下，捡了一只长着尖喙尖爪的猎物，递给你，
+“这就是‘鸟’，你照着这个样子分类吧！”
+说完这句话，师父站起身来，去其他地方溜达了.
 
-可以看出，子集公理是保障我们采用“描述法”表示集合这一方法论的正当性的基础.
-也就是说，\[
-\Bigl[
-	\forall A, \exists B, \forall x \bigl(
-		x \in B \iff x \in A \land \lambda
-	\bigr)
-\Bigr]
-\quad\iff\quad
-B = \Set{ x \in A \given \lambda }.
-\]
+你伸出左手接住师父递给你的那只鸟，
+再用空着的右手在猎物堆里扒拉，随意地拎出一只猎物.
+你举起双臂，扭动翻转手腕、手肘，
+仔细查看这两只猎物，比较它们的特征是否一致.
+如果两者不同，右手上的猎物没有尖喙尖爪，
+就把它放到身体右侧，和原本堆在地上的猎物隔开一段距离，
+再用右手重新抓一只猎物进行下一轮比较；
+如果两者相同，右手的猎物也有尖喙尖爪，
+就把你左手提着的这只鸟放在身体左侧，也和原本堆在地上的猎物隔开一段距离，
+再把右手抓着的鸟转移到左手上，
+然后用右手重新抓一只猎物进行下一轮比较.
 
-\subsection{空集公理}
-\begin{axiom}[空集公理]
+在过了一会儿后，你发现面前没有需要分类的猎物了，
+于是你把左手拎着的那只鸟也放在身体左侧.
+就这样，你把猎人们放在地上的那堆猎物分成了两小堆，左边这堆全是鸟.
+
+我们经常会像上面这个故事一样，
+把一些事物收集在一起，把这个整体叫做一个“集合”；
+然后把组成集合的这些事物叫做这个集合的“元素”.
+例如，在上面的故事中，在你举起双臂时，
+你双手上抓着的两只鸟组成了一个集合，每只鸟都是这个集合的元素.
+
+另外，根据上面这个故事，我们还可以想到：
+一方面，原本空地上没有任何我们关心的东西，至少在这里我们并不关心空气和尘土；
+另一方面，对于任意两个东西，如果我们觉得这两个东西能分类在一起，就可以把它们分类在一起.
+我们可以说空地是一个空着的集合，或者说“空集”.
+我们还说两只鸟组成一对鸟，或者说“对集”.
+
+从上述生活经验出发，我们认定“空集”和“对集”是一定存在的，
+于是我们可以给出如下的“空集公理”和“对集公理”.
+
+\begin{axiom}[空集公理]\label{axiom:集合论.空集公理}
 %@see: 《Elements of Set Theory》 P18. Empty Set Axiom
-总存在这样一个集合\(A\)，没有任何元素属于它，即\[
-	\exists A, \forall x \bigl( x \notin A \bigr),
-\]或\[
-	\exists A, \forall x \bigl( x \in A \iff x \neq x \bigr).
+总存在这样一个集合\(A\)，没有任何元素属于它\footnote{%
+我们也可以用命题公式\[
+	\exists A, \forall x \bigl( x \in A \iff x \neq x \bigr)
+\]表示“没有任何元素的集合”的存在性.
+它主要利用了“\((x \neq x)\)一定是假命题”这一点.
+}，即\[
+	\exists A, \forall x \bigl( x \notin A \bigr).
 \]
 \end{axiom}
+
+\begin{axiom}[对集公理]\label{axiom:集合论.对集公理}
+%@see: 《Elements of Set Theory》 P18. Pairing Axiom
+对于任意两个元素\(u\)和\(v\)，
+总存在一个集合\(B\)，它的元素只有\(u\)和\(v\)，即\[
+	\forall u, \forall v, \exists B, \forall x
+	\bigl(
+		x \in B \iff x = u \lor x = v
+	\bigr).
+\]
+\end{axiom}
+
 空集公理在英语中称作Empty Set Axiom.
+对集公理在英语中称作Pairing Axiom.
+在德语中把对集公理和空集公理并称为Axiom der Elementarmengen.
+
+下面我们给出我们对“空集”和“对集”的正式定义.
 
 \begin{definition}
 不含任何元素的集合称为\DefineConcept{空集}（empty set），记作\(\emptyset\).
 \end{definition}
-定义空集\(\emptyset\)时一定要注意两点：
-一是“空集”是否存在，这已由空集公理确保；
-二是“空集”是否唯一，这则由外延公理确保.
-若是没有这两条公理的帮助，我们就不能说\(\emptyset\)是良定义的.
-
-利用描述法，我们可以重新定义空集如下：\[
-	\emptyset \defeq \Set{ x \given x \neq x }.
-\]
-
-\begin{example}
-以空集为元素构成的集合\(\Set{\emptyset}\)不是空集，即\(\Set{\emptyset} \neq \emptyset\).
-这是因为\(\emptyset \in \Set{\emptyset}\)但\(\emptyset \notin \emptyset\).
-\end{example}
-
-当我们说一个集合\(A\)不是空集时，
-\(A\)中必定至少有一个元素，即\[
-	\exists x \bigl( x \in A \bigr).
-\]
-
-\subsection{对集公理}
-\begin{axiom}[对集公理]
-%@see: 《Elements of Set Theory》 P18. Pairing Axiom
-对于任意集合\(u\)和\(v\)，总存在一个集合\(B\)，它的元素只有\(u\)和\(v\)，即\[
-\forall u, \forall v, \exists B, \forall x
-\bigl(
-	x \in B \iff x = u \lor x = v
-\bigr).
-\]
-\end{axiom}
-对集公理在英语中称作Pairing Axiom.
-
-在德语中把对集公理和空集公理并称为Axiom der Elementarmengen.
+%定义空集\(\emptyset\)时一定要注意两点：
+%一是“空集”是否存在，这已由空集公理确保；
+%二是“空集”是否唯一，这则由外延公理确保.
+%若是没有这两条公理的帮助，我们就不能说\(\emptyset\)是良定义的.
 
 \begin{definition}
 称集合\(\Set{ A, B }\)为\(A\)和\(B\)的\DefineConcept{对集}（pair set）.
 \end{definition}
 
+容易看出，当我们说“集合\(A\)不是空集”或“集合\(A\)是非空集合”时，
+\(A\)中必定至少有一个元素，即\[
+	\exists x \bigl( x \in A \bigr).
+\]
+
 \subsection{并集公理}
+在上一小节的故事中，我们熟悉了怎么怎么比较猎物
+
 \begin{axiom}[并集公理I]
 %@see: 《Elements of Set Theory》 P18. Union Axiom, Preliminary Form
 对于任意集合\(a\)和\(b\)，总存在一个集合\(B\)，它的元素要么属于\(a\)，要么属于\(b\)，即\[
-\forall a, \forall b, \exists B, \forall x
-\bigl(
-	x \in B
-	\iff
-	x \in a \lor x \in b
-\bigr).
+	\forall a, \forall b, \exists B, \forall x
+	\bigl(
+		x \in B
+		\iff
+		x \in a \lor x \in b
+	\bigr).
 \]
 \end{axiom}
 上述公理在英语中称作Union Axiom, Preliminary Form.
@@ -585,6 +599,56 @@ a \cup b \defeq \bigcup\Set{a,b}.
 \]\[
 \bigcap \bigcup \Set{ \Set{a}, \Set{a,b} } = \bigcap \Set{a,b} = a \cap b.
 \]
+\end{example}
+
+
+\subsection{外延公理}
+\begin{axiom}[外延公理]
+%@see: 《Elements of Set Theory》 P17. Extensionality Axiom
+如果集合\(A\)与集合\(B\)具有相同的元素，
+则称“集合\(A\)与集合\(B\)\DefineConcept{相等}”，
+记作\(A=B\)，即\[
+	\forall A, \forall B \Bigl[
+		\forall x \bigl( x \in A \iff x \in B \bigr)
+		\implies A = B
+	\Bigr].
+\]
+\end{axiom}
+外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
+
+
+\subsection{子集公理}
+\begin{axiom}[子集公理]
+%@see: 《Elements of Set Theory》 P21. Subset Axiom
+对于不涉及\(B\)的每一条命题公式\(\lambda\)，命题\[
+	\forall A, \exists B, \forall x \bigl(
+		x \in B \iff x \in A \land \lambda
+	\bigr)
+\]是一条公理.
+\end{axiom}
+子集公理有时候也称作\DefineConcept{分离公理}，%
+它在英语中称作Subset Axioms，%
+在德语中称作Axiom der Aussonderung.
+正如其名，该定理的作用就是从集合\(A\)中取出适合命题公式\(\lambda\)的元素，组合成新的集合\(B\).
+
+可以看出，子集公理是保障我们采用“描述法”表示集合这一方法论的正当性的基础.
+也就是说，\[
+\Bigl[
+	\forall A, \exists B, \forall x \bigl(
+		x \in B \iff x \in A \land \lambda
+	\bigr)
+\Bigr]
+\quad\iff\quad
+B = \Set{ x \in A \given \lambda }.
+\]
+
+利用描述法，我们可以重新定义空集如下：\[
+	\emptyset \defeq \Set{ x \given x \neq x }.
+\]
+
+\begin{example}
+以空集为元素构成的集合\(\Set{\emptyset}\)不是空集，即\(\Set{\emptyset} \neq \emptyset\).
+这是因为\(\emptyset \in \Set{\emptyset}\)但\(\emptyset \notin \emptyset\).
 \end{example}
 
 \subsection{幂集公理}
