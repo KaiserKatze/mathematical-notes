@@ -1,349 +1,46 @@
 \chapter{集合论与数理逻辑}
 %@see: https://plato.stanford.edu/entries/set-theory/ZF.html
-虽然直到19世纪末德国数学家康托才创立了集合论，但是其实人们很早就开始使用集合的概念并对集合进行运算了.
-在《周易·系辞下》中有这么一句话：“上古结绳而治，后世圣人易之以书契.”
-于是我们想到，古人在农业生产中始终有着对农产品分类、计数的需要，即将同类的产品集中地放置，再用一个符号（绳结或算筹）表示这类产品的数量.
-
-对于分类的标准的探索，或者说对于物的“同一性”与“差异性”的研究，也同样源远流长.
-古希腊哲学家赫拉克利特也提出“太阳每天都是新的”“人不能两次踏进同一条河流”，并认为事物总是在变化的，观念上的同一的物也是不同的；
-后来，罗马哲学家普鲁塔克也提出了著名的忒修斯之船（The Ship of Theseus）悖论.
-但是，我们总能在某种程度上承认一些事物具有相同的性质，并把它们归为一类.
-例如，即使椭圆、双曲线和抛物线在几何形态上存在天差地别，古希腊数学家阿波罗尼仍将它们统称为圆锥曲线，编纂了《圆锥曲线论》.
-为了解决上述问题，一组相对的哲学概念被提出来了，这就是“逻辑同一性”和“实在同一性”.
-简单地说，实在同一性和逻辑同一性都是对事物关系的一种描述，实在同一性要求被比较的事物无法被区分，而逻辑同一性是指两个物在部分的属性上具备某种相同、相等或相似的关系.
-以实在同一性和逻辑同一性作为分类的标准，我们就可以区分事物以构建对立关系，又可以混同事物以构建等价关系.
-
-\section{朴素集合论}
-\subsection{集合的概念}
-\begin{definition}
-我们将一些事物的\DefineConcept{收集}（collection）看成一个整体，%
-将这个整体称为\DefineConcept{集合}（set），简称为\DefineConcept{集}.
-组成这个集合的事物被称为该集合的\DefineConcept{元素}（member，或element），简称\DefineConcept{元}.
-集合常用大写字母（如\(A,B,C,X,Y\)等）表示，元素常用小写字母（如\(a,b,c\)等）表示.
-
-如果元素\(a\)是集合\(A\)的元素，%
-就说“\(a\)是\(A\)的元素（\(a\) is a member of \(A\)）”，%
-或“\(a\)\DefineConcept{属于} \(A\)（\(a\) belongs to \(A\)）”，%
-记作\(a \in A\)\footnote{%
-用来表记“所属关系（membership）”的符号\(\in\)实际上是变形的小写希腊字母\(\varepsilon\)，%
-它是由皮亚诺于 1889 年提出的.}；
-如果\(b\)不是集合\(A\)的元素，%
-就说“\(a\)不是\(A\)的元素（\(b\) is not a member of \(A\)）”，%
-或“\(b\)\DefineConcept{不属于} \(A\)（\(b\) does not belong to \(A\)）”，%
-记作\(b \notin A\).
-\end{definition}
-
-表记集合的方法大致有两类：
-我们可以把集合的全体元素一一列举出来，用以表示集合，这种方法被称为\DefineConcept{列举法}.
-例如由\(3\)个元素\(x,y,z\)组成的集合可以表记为\[
-\{x,y,z\};
-\]而由\(n\)个元素\(a_i\ (i=1,2,\dotsc,n)\)组成的集合可以表记为\[
-\Set{ \v{a}{n} }.
-\]
-我们也可以通过说明集合中的元素都具有的性质，这种方法称为\DefineConcept{描述法}.
-例如若集合\(M\)是由具有某种性质\(P\)的元素\(x\)的全体所组成的，就可表示为\[
-M = \Set{ x \given x\ \text{具有性质}\ P }.
-\]
-
-\begin{property}
-集合具有三种特性：
-\begin{enumerate}
-\item {\bf 确定性}，
-即对于任意一个元素，
-要么它属于某个指定集合，
-要么它不属于该集合，
-二者必居其一；
-
-\item {\bf 互异性}，
-即同一个集合中的元素是互不相同的，
-或者说，在以列举法表记的集合中，
-如果表记同一个元素的符号出现了多次，
-那么可以直接去除多余的符号而对集合的描述没有任何影响；
-
-\item {\bf 无序性}，
-即在以列举法表记的集合中，
-任意改变集合中元素的排列次序，
-它们仍然表示同一个集合.
-\end{enumerate}
-\end{property}
-
-\begin{definition}
-由不是集合的元素组成的集合，叫做\DefineConcept{第一层集}（first-order set）.
-把第一层集当作元素组成的集合，叫做\DefineConcept{第二层集}（second-order set）或\DefineConcept{系}（system）.
-\end{definition}
-
-\begin{figure}[ht]
-\def\subwidth{.5\linewidth}
-\centering
-\begin{subfigure}[b]{\subwidth}
-\centering
-\begin{tikzpicture}
-\path[save path=\pathA](-1,0)circle(2cm);
-\path[save path=\pathB](+1,0)circle(2cm);
-\begin{scope}
-	\clip[use path=\pathA];
-	\fill[black!30][use path=\pathB];
-\end{scope}
-\draw[use path=\pathA];
-\draw[use path=\pathB];
-\draw(0,0)node{\(A \cap B\)};
-\end{tikzpicture}
-\subcaption{集合的交}
-\end{subfigure}%
-\begin{subfigure}[b]{\subwidth}
-\centering
-\begin{tikzpicture}
-\path[save path=\pathA,name path=A](-1,0)circle(2cm);
-\path[save path=\pathB,name path=B](+1,0)circle(2cm);
-\path[fill=black!30][use path=\pathA+\pathB];
-\draw[name intersections={of=A and B}]
-	(intersection-1)arc[start angle=60,end angle=300,radius=2]
-	(intersection-2)arc[start angle=-120,end angle=120,radius=2]
-	(intersection-1);
-\draw(0,0)node{\(A \cup B\)};
-\pgfresetboundingbox
-\path[use as bounding box] (-3,-2)rectangle(3,2);
-\end{tikzpicture}
-\subcaption{集合的并}
-\end{subfigure}%
-
-\begin{subfigure}[b]{\linewidth}
-\centering
-\begin{tikzpicture}
-\path[save path=\pathA,name path=A](-1,0)circle(2cm);
-\path[save path=\pathB,name path=B](+1,0)circle(2cm);
-\begin{scope}
-	\clip[name intersections={of=A and B}]
-		(intersection-1)arc[start angle=60,end angle=300,radius=2]
-		(intersection-2)arc[start angle=-120,end angle=-240,radius=2]
-		(intersection-2);
-	\fill[black!30][use path=\pathA];
-\end{scope}
-\draw[use path=\pathA];
-\draw[use path=\pathB];
-\draw(-2,0)node{\(A-B\)};
-\pgfresetboundingbox
-\path[use as bounding box] (-3,-2)rectangle(3,2);
-\end{tikzpicture}
-\subcaption{集合的差}
-\end{subfigure}%
-\caption{韦恩图}
-\label{figure:集合论.韦恩图}
-\end{figure}
-
-\section{数理逻辑概论}
-\subsection{命题的概念}
-\begin{definition}
-\DefineConcept{命题}（proposition），%
-是指对确定的对象进行判断的“陈述句”.
-我们常用小写字母（如\(p,q\)等）表记命题.
-\end{definition}
-
-\begin{definition}
-如果命题\(p\)的判断正确，%
-那么我们称“命题\(p\)是\DefineConcept{真的}（true）”，%
-或称“命题\(p\)是\DefineConcept{真命题}”，
-或称“；
-如果命题\(p\)的判断错误，%
-那么我们称“命题\(p\)是\DefineConcept{假的}（false）”，%
-或称“命题\(p\)是\DefineConcept{假命题}”.
-\end{definition}
-
-对于一个命题，它要么是真命题，要么是假命题.
-悖论不能作为命题.
-
-我们可以用集合表示命题的真值.
-一般用空集\(\emptyset\)表示假命题，%
-用任意非空集（例如\(\Set{\emptyset}\)）表示真命题.
-
-我们也可以用数字表示命题的真值.
-一般用\(0\)表示假命题，%
-用任意非零整数（例如\(1\)）表示真命题.
-
-\begin{definition}
-\DefineConcept{逻辑联结词}（logical connectives），%
-是指连接命题，对各个命题的真值进行运算的词，%
-例如“\emph{且}”“\emph{或}”“\emph{不}”“\emph{非}”%
-“\emph{如果……那么……}”“\emph{当且仅当}”等.
-\end{definition}
-
-为了将逻辑联结词形式化，我们可以使用符号来代表逻辑联结词.
-
-\begin{table}[bp]
-\centering
-\begin{tabular}{|*{3}{c|}}
-\hline
-{\bf 概念} & {\bf 意义} & {\bf 符号} \\ \hline
-{\bf 否定词}（negative） & 不、非 & \(\neg\) \\ \hline
-{\bf 合取词}（conjunction） & 且、而且、并且 & \(\land\) \\ \hline
-{\bf 析取词}（disjunction） & 或、或者 & \(\lor\) \\ \hline
-{\bf 蕴涵词}（implication） & 如果……那么…… & \(\implies\) \\ \hline
-{\bf 等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
-\end{tabular}
-\caption{逻辑联结词}
-\end{table}
-
-\begin{definition}
-\DefineConcept{简单命题}或\DefineConcept{原子命题}（atom proposition），%
-是指不含有逻辑联结词的命题.
-相反地，\DefineConcept{复合命题}（compound proposition），%
-是指包含了简单命题和逻辑联结词的命题.
-\end{definition}
-
-逻辑联结词具有对命题的真值进行运算的效果，%
-我们可以用\DefineConcept{真值表}来说明其具体效果.
-
-\begin{table}[ht]
-\centering
-\begin{subtable}[ht]{0.9\textwidth}
-\centering
-\begin{tabular}{|c|p{1.5cm}|}
-\hline
-\(p\) & \(\neg p\) \\ \hline
-0 & 1 \\ \hline
-1 & 0 \\ \hline
-\end{tabular}
-\caption{否定词“非”}
-\end{subtable}
-
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \land q\) \\ \hline
-0 & 0 & 0 \\ \hline
-0 & 1 & 0 \\ \hline
-1 & 0 & 0 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{合取词“且”}
-\end{subtable}
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \lor q\) \\ \hline
-0 & 0 & 0 \\ \hline
-0 & 1 & 1 \\ \hline
-1 & 0 & 1 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{析取词“或”}
-\end{subtable}
-
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \implies q\) \\ \hline
-0 & 0 & 1 \\ \hline
-0 & 1 & 1 \\ \hline
-1 & 0 & 0 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{蕴涵词}
-\end{subtable}
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \iff q\) \\ \hline
-0 & 0 & 1 \\ \hline
-0 & 1 & 0 \\ \hline
-1 & 0 & 0 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{等价词}
-\end{subtable}
-
-\caption{单个逻辑联结词逻辑运算结果的真值表}
-\end{table}
-
-\begin{definition}
-如果有“\(p\)成立时\(q\)必成立”，%
-记\(p \implies q\)，%
-称“\(p\)是\(q\)的\DefineConcept{充分条件}”，%
-或称“\(q\)是\(p\)的\DefineConcept{必要条件}”；
-分别称\(p\)和\(q\)为这个命题的\DefineConcept{蕴含前件}和\DefineConcept{蕴含后件}.
-\end{definition}
-
-在自然语言中，条件语句一般都具有内在的联系；
-而数理逻辑中的\emph{蕴含}则仅是命题的连接，不一定具有什么内在联系.
-
-\begin{property}
-只有当“\(p\)为真，且\(q\)为假”时，蕴含式\(p \implies q\)才为假.
-\end{property}
-可以观察发现，\(p \implies q\)的真值表与\(\neg p \land q\)的相同.
-
-\subsection{命题公式及其组成成分}
-\begin{definition}
-\DefineConcept{命题常元}（proposition constant），%
-简称\DefineConcept{常元}（constant），%
-表示具体命题.
-\DefineConcept{命题变元}（proposition variable），%
-简称\DefineConcept{变元}（variable），%
-表示以“真、假”或者“0、1”为取值范围的变量.
-\end{definition}
-
-\begin{definition}
-\DefineConcept{命题公式}（proposition formula），%
-简称为\DefineConcept{公式}（formula），%
-是指由命题常元、命题变元和逻辑联结词组成的命题.
-它有如下的归纳定义：
-\begin{enumerate}
-\item 命题常元和命题变元是命题公式，也称作\DefineConcept{原子公式}或\DefineConcept{原子}；
-\item 设\(A\)、\(B\)为命题公式，那么有\[
-(\neg A),\quad
-(A \land B),\quad
-(A \lor B),\quad
-(A \implies B),\quad
-(A \iff B)
-\]也都是命题公式；
-\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
-\end{enumerate}
-\end{definition}
-
-\begin{example}
-根据定义，\((\neg(p \implies (q \land r)))\)是命题公式.
-\((qp)\)缺少联结词，所以不是命题公式.
-\((p_1 \land (p_2 \land \dotsb))\)是无限的，所以不是命题公式.
-\end{example}
-
-为了简化书写，我们可以规定逻辑联结词的优先级顺序.
-逻辑联结词的优先级为：\[
-\neg,\quad \land,\quad \lor,\quad \implies,\quad \iff.
-\]除非有括号，否则按照命题公式从左到右，按照优先级从高到低的次序结合.
-定义逻辑联结词的优先级的意义在于可以减少命题公式中的括号数量.
-
-\begin{example}
-\(((\neg p) \lor (q))\)等同于\(\neg p \lor q\).
-
-但\[
-	p \implies q \land r \implies s
-\]并非\[
-	((p \implies q) \land (r \implies s)),
-\]而应等同于\[
-	((p \implies (q \land r)) \implies s).
-\]
-\end{example}
-
-\begin{definition}
-如果对于一个公式，不论其命题变元取何值，该公式总为真，%
-则称该公式为\DefineConcept{永真式}或\DefineConcept{重言式}.
-\end{definition}
-
-常见的永真式列举如下：\begin{enumerate}
-\item 肯定后件律 \(p \implies (q \implies p)\)；
-\item 同一律 \(p \implies p\)；
-\item 排中律 \(\neg p \lor p\)；
-\item 矛盾律 \(\neg(\neg p \land p)\)；
-\item 双重否定律 \(\neg\neg p \iff p\).
-\end{enumerate}
-
-
 
 \section{公理化集合论}
+虽然直到19世纪末德国数学家康托才创立了集合论，
+但是其实人们很早就开始使用集合的概念并对集合进行运算了.
+在《周易·系辞下》中有这么一句话：“上古结绳而治，后世圣人易之以书契.”
+于是我们想到，古人在农业生产中始终有着对农产品分类和计数的需要，
+即将同类的产品集中地放置，
+再用一个符记（例如手势、绳结、算筹、文字）表示这类产品的数量.
+
 在本节我们先来介绍集合和元素的概念、集合存在公理，以及集合的运算法则.
+
+\subsection{外延公理}
+要实现对事物的分类，我们应该首先明白这样一点：
+在现实世界中，事物之间的差异与矛盾是根本存在的.
+我们知道，人对事物的认识，是人脑对客观现实的反映.
+如果我们在观测事物时，观测手段十分粗略，
+那么想必很难找出事物之间的差异；
+如果我们在观测事物时，观测手段十分细致，
+那么必然能够找出事物之间的更多差异.
+
+为了解决上述问题，一组相对的哲学概念被提出来了，这就是“逻辑同一性”和“实在同一性”.
+简单地说，实在同一性和逻辑同一性都是对事物关系的一种描述，
+实在同一性要求被比较的事物无法被区分，
+而逻辑同一性是指两个物在部分的属性上具备某种相同、相等或相似的关系.
+以实在同一性和逻辑同一性作为分类的标准，
+我们就可以区分事物以构建对立关系，又可以混同事物以构建等价关系.
+
+
+\begin{axiom}[外延公理]
+%@see: 《Elements of Set Theory》 P17. Extensionality Axiom
+如果集合\(A\)与集合\(B\)具有相同的元素，
+则称“集合\(A\)与集合\(B\)\DefineConcept{相等}”，
+记作\(A=B\)，即\[
+	\forall A, \forall B \Bigl[
+		\forall x \bigl( x \in A \iff x \in B \bigr)
+		\implies A = B
+	\Bigr].
+\]
+\end{axiom}
+外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
+
 
 \subsection{空集公理，对集公理，并集公理}
 让我们想象这样的情景：
@@ -386,11 +83,56 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 于是你把左手拎着的那只鸟也放在身体左侧.
 就这样，你把猎人们放在地上的那堆猎物分成了两小堆，左边这堆全是鸟.
 
+
 我们经常会像上面这个故事一样，
-把一些事物收集在一起，把这个整体叫做一个“集合”；
-然后把组成集合的这些事物叫做这个集合的“元素”.
+把一些事物收集在一起，把这个整体叫做一个\DefineConcept{集合}（set），
+简称为\DefineConcept{集}；
+然后把组成集合的这些事物叫做这个集合的\DefineConcept{元素}（member，或element），
+简称为\DefineConcept{元}.
 例如，在上面的故事中，在你举起双臂时，
 你双手上抓着的两只鸟组成了一个集合，每只鸟都是这个集合的元素.
+又例如，在你把猎物分成两堆以后，这两堆猎物中的每一堆都可以看作一个集合.
+为了方便讨论，我们用大写拉丁字母（如\(A,B,C,X,Y\)等）表示集合，
+用小写拉丁字母（如\(a,b,c,x,y\)等）表示元素.
+由此，我们可以给出一个集合的粗糙的定义.
+
+我们可以看出，集合具有三种特性：
+\begin{enumerate}
+	\item {\bf 确定性}，
+	即对于任意一个元素，
+	要么它属于某个指定集合，
+	要么它不属于该集合，
+	二者必居其一.
+	\begin{itemize}
+		\item 如果“元素\(a\)是集合\(A\)的元素（\(a\) is a \emph{member} of \(A\)，
+		\(a\) is an \emph{element} of \(A\)）”，
+		或“\(a\)\DefineConcept{属于} \(A\)（\(a\) \emph{belongs to} \(A\)）”，
+		记作\(a \in A\)\footnote{%
+		用来表记“所属关系（membership）”的符号\(\in\)实际上是变形的小写希腊字母\(\varepsilon\)，%
+		它是由皮亚诺于 1889 年提出的.}.
+
+		\item 如果“\(b\)不是集合\(A\)的元素（\(b\) is not an element of \(A\)）”，%
+		或“\(b\)\DefineConcept{不属于} \(A\)（\(b\) does not belong to \(A\)）”，%
+		记作\(b \notin A\).
+	\end{itemize}
+
+	\item {\bf 互异性}，
+	即同一个集合中的元素是互不相同的，
+	或者说，在以列举法表记的集合中，
+	如果表记同一个元素的符号出现了多次，
+	那么可以直接去除多余的符号而对集合的描述没有任何影响，即\[
+		\Set{ x, x, y } = \Set{ x, y }.
+	\]
+
+	\item {\bf 无序性}，
+	即在以列举法表记的集合中，
+	任意改变集合中元素的排列次序，
+	它们仍然表示同一个集合，即\[
+		\Set{ y, x } = \Set{ x, y }.
+	\]
+\end{enumerate}
+
+
 
 另外，根据上面这个故事，我们还可以想到：
 一方面，原本空地上没有任何我们关心的东西，至少在这里我们并不关心空气和尘土；
@@ -454,8 +196,33 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 %若是没有这两条公理的帮助，我们就不能说\(\emptyset\)是良定义的.
 
 \begin{definition}
-称集合\(\Set{ A, B }\)为\(A\)和\(B\)的\DefineConcept{对集}（pair set）.
+对于任意给定的元素\(u\)和\(v\)，
+我们用符号\[
+	\Set{ u, v }
+\]表示只有\(u,v\)元素的集合，
+并把这个集合称为“\(u\)和\(v\)的\DefineConcept{对集}（pair set）”.
 \end{definition}
+在对集的定义中，我们没有明确说明元素\(u,v\)是否相同.
+实际上，当\(u=v\)时，\(u\)和\(v\)的对集成为只含一个元素的集合\[
+	\Set{ u } = \Set{ u, v };
+\]
+我们称这种集合为\DefineConcept{单元素集}（singleton）.
+%@see: https://mathworld.wolfram.com/SingletonSet.html
+单元素集是最简单的非空集合.
+
+相对地，当\(u \neq v\)时，
+我们把\(u\)和\(v\)的对集称为\DefineConcept{双元素集}.
+
+利用对集公理和并集公理，我们可以构造任意有限集合.
+例如，给定任意的\(x\)，我们可以定义“单元集”如下：\[
+\{x\} \defeq \{x, x\}.
+\]
+又例如，给定任意的\(\v{x}{3}\)，我们可以定义由这三个元素构成的集合
+\(\{\v{x}{3}\} \defeq \{x_1,x_2\}\cup\{x_3\}\)；
+同样地，我们还可以定义\(\{\v{x}{4}\}\)，以此类推.
+
+可以看出，对集公理和并集公理是保障我们采用“列举法”表示集合这一方法论的正当性的基础.
+
 
 \begin{definition}
 称集合\[
@@ -472,18 +239,42 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 
 
 \begin{definition}
+设系\(A = \Set{\v{a}{n}}\).
+称集合\(\v{a}{n}\)的并\[
+	a_1 \cup a_2 \cup \dotsb \cup a_n
+\]为“\(A\)的\DefineConcept{并}”，
+记作\(\bigcup A\)或\(\bigcup\limits_i a_i\)，即\[
+	\bigcup A
+	\defeq
+	a_1 \cup a_2 \cup \dotsb \cup a_n
+	= \Set*{ x \given \exists a \in A \bigl( x \in a \bigr) }.
+\]
+\end{definition}
+
+为了确保“系的并”这样的集合存在，我们需要改进并集公理，如下：
+\begin{axiom}[并集公理II]
+对于任意集合\(A\)，总存在一个集合\(B\)，%
+使得集合\(B\)中的元素都是集合\(A\)的子集，即\[
+	\forall x \Bigl[
+		x \in B
+		\iff
+		\exists b \in A \bigl( x \in b \bigr)
+	\Bigr].
+\]
+\end{axiom}
+
+于是，原有的对于“集的并”的定义可以修改为\[
+a \cup b \defeq \bigcup\Set{a,b}.
+\]
+
+
+
+\begin{definition}
 称集合\[
 \Set{ x \given x \in A \land x \in B }
 \]为“\(A\)和\(B\)的\DefineConcept{交集}（the intersection of \(A\) and \(B\)）”，%
 简称“\(A\)和\(B\)的\DefineConcept{交}”，%
 记作\(A \cap B\)或\(AB\).
-\end{definition}
-
-\begin{definition}
-称集合\[
-\Set{ x \given x \in A \land x \notin B }
-\]为“\(A\)和\(B\)的\DefineConcept{差集}（the relative complement of \(B\) in \(A\)）”，%
-记作\(A - B\)或\(A \setminus B\).
 \end{definition}
 
 \begin{theorem}\label{theorem:集合论.系的交的唯一存在性}
@@ -517,33 +308,11 @@ M = \Set{ x \given x\ \text{具有性质}\ P }.
 \end{theorem}
 
 \begin{definition}
-设系\(A = \Set{\v{a}{n}}\).
-称集合\(\v{a}{n}\)的并\[
-	a_1 \cup a_2 \cup \dotsb \cup a_n
-\]为“\(A\)的\DefineConcept{并}”，
-记作\(\bigcup A\)或\(\bigcup\limits_i a_i\)，即\[
-	\bigcup A
-	\defeq
-	a_1 \cup a_2 \cup \dotsb \cup a_n
-	= \Set*{ x \given \exists a \in A \bigl( x \in a \bigr) }.
-\]
+称集合\[
+\Set{ x \given x \in A \land x \notin B }
+\]为“\(A\)和\(B\)的\DefineConcept{差集}（the relative complement of \(B\) in \(A\)）”，%
+记作\(A - B\)或\(A \setminus B\).
 \end{definition}
-
-为了确保“系的并”这样的集合存在，我们需要改进并集公理，如下：
-\begin{axiom}[并集公理II]
-对于任意集合\(A\)，总存在一个集合\(B\)，%
-使得集合\(B\)中的元素都是集合\(A\)的子集，即\[
-	\forall x \Bigl[
-		x \in B
-		\iff
-		\exists b \in A \bigl( x \in b \bigr)
-	\Bigr].
-\]
-\end{axiom}
-
-于是，原有的对于“集的并”的定义可以修改为\[
-a \cup b \defeq \bigcup\Set{a,b}.
-\]
 
 \begin{property}
 \(b \in A \implies b \subseteq \bigcup A\).
@@ -600,20 +369,6 @@ a \cup b \defeq \bigcup\Set{a,b}.
 \]
 \end{example}
 
-
-\subsection{外延公理}
-\begin{axiom}[外延公理]
-%@see: 《Elements of Set Theory》 P17. Extensionality Axiom
-如果集合\(A\)与集合\(B\)具有相同的元素，
-则称“集合\(A\)与集合\(B\)\DefineConcept{相等}”，
-记作\(A=B\)，即\[
-	\forall A, \forall B \Bigl[
-		\forall x \bigl( x \in A \iff x \in B \bigr)
-		\implies A = B
-	\Bigr].
-\]
-\end{axiom}
-外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
 
 
 \subsection{子集公理}
@@ -730,15 +485,6 @@ A \subseteq \Powerset \bigcup A;
 并找出使得\(A = \Powerset \bigcup A\)成立的条件.
 \end{example}
 
-利用对集公理和并集公理，我们可以构造任意有限集合.
-例如，给定任意的\(x\)，我们可以定义“单元集（singleton）”如下：\[
-\{x\} \defeq \{x, x\}.
-\]
-又例如，给定任意的\(\v{x}{3}\)，我们可以定义由这三个元素构成的集合
-\(\{\v{x}{3}\} \defeq \{x_1,x_2\}\cup\{x_3\}\)；
-同样地，我们还可以定义\(\{\v{x}{4}\}\)，以此类推.
-
-可以看出，对集公理和并集公理是保障我们采用“列举法”表示集合这一方法论的正当性的基础.
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P22. Theorem 2A
@@ -863,6 +609,66 @@ A = B.
 \]唯一性可通过外延公理证明.
 \end{proof}
 \end{theorem}
+
+
+\begin{figure}[ht]
+	\def\subwidth{.5\linewidth}
+	\centering
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\path[save path=\pathA](-1,0)circle(2cm);
+			\path[save path=\pathB](+1,0)circle(2cm);
+			\begin{scope}
+				\clip[use path=\pathA];
+				\fill[black!30][use path=\pathB];
+			\end{scope}
+			\draw[use path=\pathA];
+			\draw[use path=\pathB];
+			\draw(0,0)node{\(A \cap B\)};
+		\end{tikzpicture}
+		\subcaption{集合的交}
+	\end{subfigure}%
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\path[save path=\pathA,name path=A](-1,0)circle(2cm);
+			\path[save path=\pathB,name path=B](+1,0)circle(2cm);
+			\path[fill=black!30][use path=\pathA+\pathB];
+			\draw[name intersections={of=A and B}]
+				(intersection-1)arc[start angle=60,end angle=300,radius=2]
+				(intersection-2)arc[start angle=-120,end angle=120,radius=2]
+				(intersection-1);
+			\draw(0,0)node{\(A \cup B\)};
+			\pgfresetboundingbox
+			\path[use as bounding box] (-3,-2)rectangle(3,2);
+		\end{tikzpicture}
+		\subcaption{集合的并}
+	\end{subfigure}%
+
+	\begin{subfigure}[b]{\linewidth}
+		\centering
+		\begin{tikzpicture}
+			\path[save path=\pathA,name path=A](-1,0)circle(2cm);
+			\path[save path=\pathB,name path=B](+1,0)circle(2cm);
+			\begin{scope}
+				\clip[name intersections={of=A and B}]
+					(intersection-1)arc[start angle=60,end angle=300,radius=2]
+					(intersection-2)arc[start angle=-120,end angle=-240,radius=2]
+					(intersection-2);
+				\fill[black!30][use path=\pathA];
+			\end{scope}
+			\draw[use path=\pathA];
+			\draw[use path=\pathB];
+			\draw(-2,0)node{\(A-B\)};
+			\pgfresetboundingbox
+			\path[use as bounding box] (-3,-2)rectangle(3,2);
+		\end{tikzpicture}
+		\subcaption{集合的差}
+	\end{subfigure}%
+	\caption{韦恩图}
+	\label{figure:集合论.韦恩图}
+\end{figure}
 
 \begin{property}
 集合的运算满足以下性质：
@@ -2000,3 +1806,221 @@ S \subseteq U(O,r),
 则称“平面区域\(S\)是\DefineConcept{单连通的}（simply-connected）”；
 否则称“平面区域\(S\)是\DefineConcept{复连通的}（multiply-connected）”.
 \end{definition}
+
+
+
+
+
+
+
+
+
+
+\section{数理逻辑概论}
+\subsection{命题的概念}
+\begin{definition}
+\DefineConcept{命题}（proposition），%
+是指对确定的对象进行判断的“陈述句”.
+我们常用小写字母（如\(p,q\)等）表记命题.
+\end{definition}
+
+\begin{definition}
+如果命题\(p\)的判断正确，%
+那么我们称“命题\(p\)是\DefineConcept{真的}（true）”，%
+或称“命题\(p\)是\DefineConcept{真命题}”，
+或称“；
+如果命题\(p\)的判断错误，%
+那么我们称“命题\(p\)是\DefineConcept{假的}（false）”，%
+或称“命题\(p\)是\DefineConcept{假命题}”.
+\end{definition}
+
+对于一个命题，它要么是真命题，要么是假命题.
+悖论不能作为命题.
+
+我们可以用集合表示命题的真值.
+一般用空集\(\emptyset\)表示假命题，%
+用任意非空集（例如\(\Set{\emptyset}\)）表示真命题.
+
+我们也可以用数字表示命题的真值.
+一般用\(0\)表示假命题，%
+用任意非零整数（例如\(1\)）表示真命题.
+
+\begin{definition}
+\DefineConcept{逻辑联结词}（logical connectives），%
+是指连接命题，对各个命题的真值进行运算的词，%
+例如“\emph{且}”“\emph{或}”“\emph{不}”“\emph{非}”%
+“\emph{如果……那么……}”“\emph{当且仅当}”等.
+\end{definition}
+
+为了将逻辑联结词形式化，我们可以使用符号来代表逻辑联结词.
+
+\begin{table}[bp]
+\centering
+\begin{tabular}{|*{3}{c|}}
+\hline
+{\bf 概念} & {\bf 意义} & {\bf 符号} \\ \hline
+{\bf 否定词}（negative） & 不、非 & \(\neg\) \\ \hline
+{\bf 合取词}（conjunction） & 且、而且、并且 & \(\land\) \\ \hline
+{\bf 析取词}（disjunction） & 或、或者 & \(\lor\) \\ \hline
+{\bf 蕴涵词}（implication） & 如果……那么…… & \(\implies\) \\ \hline
+{\bf 等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
+\end{tabular}
+\caption{逻辑联结词}
+\end{table}
+
+\begin{definition}
+\DefineConcept{简单命题}或\DefineConcept{原子命题}（atom proposition），%
+是指不含有逻辑联结词的命题.
+相反地，\DefineConcept{复合命题}（compound proposition），%
+是指包含了简单命题和逻辑联结词的命题.
+\end{definition}
+
+逻辑联结词具有对命题的真值进行运算的效果，%
+我们可以用\DefineConcept{真值表}来说明其具体效果.
+
+\begin{table}[ht]
+\centering
+\begin{subtable}[ht]{0.9\textwidth}
+\centering
+\begin{tabular}{|c|p{1.5cm}|}
+\hline
+\(p\) & \(\neg p\) \\ \hline
+0 & 1 \\ \hline
+1 & 0 \\ \hline
+\end{tabular}
+\caption{否定词“非”}
+\end{subtable}
+
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \land q\) \\ \hline
+0 & 0 & 0 \\ \hline
+0 & 1 & 0 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{合取词“且”}
+\end{subtable}
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \lor q\) \\ \hline
+0 & 0 & 0 \\ \hline
+0 & 1 & 1 \\ \hline
+1 & 0 & 1 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{析取词“或”}
+\end{subtable}
+
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \implies q\) \\ \hline
+0 & 0 & 1 \\ \hline
+0 & 1 & 1 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{蕴涵词}
+\end{subtable}
+\begin{subtable}[ht]{0.45\textwidth}
+\centering
+\begin{tabular}{|*{2}{c|}p{2cm}|}
+\hline
+\(p\) & \(q\) & \(p \iff q\) \\ \hline
+0 & 0 & 1 \\ \hline
+0 & 1 & 0 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{等价词}
+\end{subtable}
+
+\caption{单个逻辑联结词逻辑运算结果的真值表}
+\end{table}
+
+\begin{definition}
+如果有“\(p\)成立时\(q\)必成立”，%
+记\(p \implies q\)，%
+称“\(p\)是\(q\)的\DefineConcept{充分条件}”，%
+或称“\(q\)是\(p\)的\DefineConcept{必要条件}”；
+分别称\(p\)和\(q\)为这个命题的\DefineConcept{蕴含前件}和\DefineConcept{蕴含后件}.
+\end{definition}
+
+在自然语言中，条件语句一般都具有内在的联系；
+而数理逻辑中的\emph{蕴含}则仅是命题的连接，不一定具有什么内在联系.
+
+\begin{property}
+只有当“\(p\)为真，且\(q\)为假”时，蕴含式\(p \implies q\)才为假.
+\end{property}
+可以观察发现，\(p \implies q\)的真值表与\(\neg p \land q\)的相同.
+
+\subsection{命题公式及其组成成分}
+\begin{definition}
+\DefineConcept{命题常元}（proposition constant），%
+简称\DefineConcept{常元}（constant），%
+表示具体命题.
+\DefineConcept{命题变元}（proposition variable），%
+简称\DefineConcept{变元}（variable），%
+表示以“真、假”或者“0、1”为取值范围的变量.
+\end{definition}
+
+\begin{definition}
+\DefineConcept{命题公式}（proposition formula），%
+简称为\DefineConcept{公式}（formula），%
+是指由命题常元、命题变元和逻辑联结词组成的命题.
+它有如下的归纳定义：
+\begin{enumerate}
+\item 命题常元和命题变元是命题公式，也称作\DefineConcept{原子公式}或\DefineConcept{原子}；
+\item 设\(A\)、\(B\)为命题公式，那么有\[
+(\neg A),\quad
+(A \land B),\quad
+(A \lor B),\quad
+(A \implies B),\quad
+(A \iff B)
+\]也都是命题公式；
+\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+根据定义，\((\neg(p \implies (q \land r)))\)是命题公式.
+\((qp)\)缺少联结词，所以不是命题公式.
+\((p_1 \land (p_2 \land \dotsb))\)是无限的，所以不是命题公式.
+\end{example}
+
+为了简化书写，我们可以规定逻辑联结词的优先级顺序.
+逻辑联结词的优先级为：\[
+\neg,\quad \land,\quad \lor,\quad \implies,\quad \iff.
+\]除非有括号，否则按照命题公式从左到右，按照优先级从高到低的次序结合.
+定义逻辑联结词的优先级的意义在于可以减少命题公式中的括号数量.
+
+\begin{example}
+\(((\neg p) \lor (q))\)等同于\(\neg p \lor q\).
+
+但\[
+	p \implies q \land r \implies s
+\]并非\[
+	((p \implies q) \land (r \implies s)),
+\]而应等同于\[
+	((p \implies (q \land r)) \implies s).
+\]
+\end{example}
+
+\begin{definition}
+如果对于一个公式，不论其命题变元取何值，该公式总为真，%
+则称该公式为\DefineConcept{永真式}或\DefineConcept{重言式}.
+\end{definition}
+
+常见的永真式列举如下：\begin{enumerate}
+\item 肯定后件律 \(p \implies (q \implies p)\)；
+\item 同一律 \(p \implies p\)；
+\item 排中律 \(\neg p \lor p\)；
+\item 矛盾律 \(\neg(\neg p \land p)\)；
+\item 双重否定律 \(\neg\neg p \iff p\).
+\end{enumerate}
