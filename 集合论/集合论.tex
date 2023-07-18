@@ -42,7 +42,7 @@
 外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
 
 
-\subsection{空集公理，对集公理，并集公理}
+\subsection{集合存在公理}
 让我们想象这样的情景：
 你是一个在原始部落中负责管理仓库的工人学徒.
 今天，猎人们从森林里带回一些猎物，堆放在地面上，让你把它们先分好类再收进仓库.
@@ -179,13 +179,27 @@
 \]
 \end{axiom}
 
+\begin{axiom}[幂集公理]
+	对于任意集合\(A\)，总存在一个集合\(B\)，\(B\)的全部元素恰好是集合\(A\)的全部子集，即\[
+	\forall A, \exists B, \forall x \bigl[
+		x \in B
+		\iff
+		x \subseteq A
+		\iff
+		\forall t \bigl( t \in x \implies t \in A \bigr)
+	\bigr].
+\]
+\end{axiom}
+
+
 空集公理在英语中称作Empty Set Axiom.
 对集公理在英语中称作Pairing Axiom.
 并集公理在英语中称作Union Axiom, Preliminary Form，
 在德语中称作Axiom der Vereinigung.
 在德语中把对集公理和空集公理并称为Axiom der Elementarmengen.
+幂集公理在英语中称作Power Set Axiom，在德语中称作Axiom der Potenzmenge.
 
-下面我们给出我们对“空集”“对集”和“并集”的正式定义.
+下面我们给出我们对“空集”“对集”“并集”和“幂集”的正式定义.
 
 \begin{definition}
 不含任何元素的集合称为\DefineConcept{空集}（empty set），记作\(\emptyset\).
@@ -239,6 +253,17 @@
 
 
 \begin{definition}
+由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合\(B\)，%
+称作“集合\(A\)的\DefineConcept{幂集}（power set）”，%
+记作\(\Powerset A\)或\(2^A\)或\(\mathcal{P}A\)，即\[
+	\Powerset A
+	\defeq
+	\Set{ x \given x \subseteq A }.
+\]
+\end{definition}
+
+
+\begin{definition}
 设系\(A = \Set{\v{a}{n}}\).
 称集合\(\v{a}{n}\)的并\[
 	a_1 \cup a_2 \cup \dotsb \cup a_n
@@ -250,6 +275,7 @@
 	= \Set*{ x \given \exists a \in A \bigl( x \in a \bigr) }.
 \]
 \end{definition}
+
 
 为了确保“系的并”这样的集合存在，我们需要改进并集公理，如下：
 \begin{axiom}[并集公理II]
@@ -264,7 +290,7 @@
 \end{axiom}
 
 于是，原有的对于“集的并”的定义可以修改为\[
-a \cup b \defeq \bigcup\Set{a,b}.
+	a \cup b \defeq \bigcup\Set{a,b}.
 \]
 
 
@@ -370,6 +396,65 @@ a \cup b \defeq \bigcup\Set{a,b}.
 \end{example}
 
 
+\begin{property}
+%@see: 《Elements of Set Theory》 P26. Exercise 6(a).
+对任意集合\(A\)，总有
+\begin{equation}
+	\bigcup \Powerset A = A.
+\end{equation}
+\begin{proof}
+令\(B = \Powerset A\).
+由并集的定义可知，\[
+	x \in \bigcup B
+	\iff
+	\exists b \in B
+	\bigl(
+		x \in b
+	\bigr).
+	\eqno(1)
+\]
+又由幂集的定义可知，\[
+	b \in B = \Powerset A
+	\iff
+	b \subseteq A.
+	\eqno(2)
+\]
+结合(1)式与(2)式，可知\[
+	x \in \bigcup \Powerset A
+	\iff
+	\exists b \subseteq A
+	\bigl(
+		x \in b
+	\bigr).
+	\eqno(3)
+\]
+于是，若要证\(\bigcup \Powerset A = A\)，
+只需证\(x \in \bigcup \Powerset A \iff x \in A\)，
+即证\[
+	x \in A
+	\iff
+	\exists b \subseteq A
+	\bigl(
+		x \in b
+	\bigr).
+	\eqno(4)
+\]
+(4)式是显然的.
+\end{proof}
+\end{property}
+
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Exercise 6(b).
+证明：对任意集合\(A\)，总有
+\begin{equation}
+	A \subseteq \Powerset \bigcup A;
+\end{equation}
+并找出使得\(A = \Powerset \bigcup A\)成立的条件.
+%TODO
+\end{example}
+
+
 
 \subsection{子集公理}
 \begin{axiom}[子集公理]
@@ -403,86 +488,6 @@ B = \Set{ x \in A \given \lambda }.
 \begin{example}
 以空集为元素构成的集合\(\Set{\emptyset}\)不是空集，即\(\Set{\emptyset} \neq \emptyset\).
 这是因为\(\emptyset \in \Set{\emptyset}\)但\(\emptyset \notin \emptyset\).
-\end{example}
-
-\subsection{幂集公理}
-\begin{axiom}[幂集公理]
-对于任意集合\(A\)，总存在一个集合\(B\)，\(B\)的全部元素恰好是集合\(A\)的全部子集，即\[
-\forall A, \exists B, \forall x \bigl[
-	x \in B
-	\iff
-	x \subseteq A
-	\iff
-	\forall t \bigl( t \in x \implies t \in A \bigr)
-\bigr].
-\]
-\end{axiom}
-幂集公理在英语中称作Power Set Axiom，在德语中称作Axiom der Potenzmenge.
-
-\begin{definition}
-由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合\(B\)，%
-称作“集合\(A\)的\DefineConcept{幂集}（power set）”，%
-记作\(\Powerset A\)或\(2^A\)或\(\mathcal{P}A\)，即\[
-\Powerset A
-\defeq
-\Set{ x \given x \subseteq A }.
-\]
-\end{definition}
-
-\begin{property}
-%@see: 《Elements of Set Theory》 P26. Exercise 6(a).
-对任意集合\(A\)，总有
-\begin{equation}
-\bigcup \Powerset A = A.
-\end{equation}
-\begin{proof}
-令\(B = \Powerset A\).
-由并集的定义可知，\[
-x \in \bigcup B
-\iff
-\exists b \in B
-\bigl(
-	x \in b
-\bigr).
-\eqno(1)
-\]
-又由幂集的定义可知，\[
-b \in B = \Powerset A
-\iff
-b \subseteq A.
-\eqno(2)
-\]
-结合(1)式与(2)式，可知\[
-x \in \bigcup \Powerset A
-\iff
-\exists b \subseteq A
-\bigl(
-	x \in b
-\bigr).
-\eqno(3)
-\]
-于是，若要证\(\bigcup \Powerset A = A\)，%
-只需证\(x \in \bigcup \Powerset A \iff x \in A\)，%
-即证\[
-x \in A
-\iff
-\exists b \subseteq A
-\bigl(
-	x \in b
-\bigr).
-\eqno(4)
-\]
-(4)式是显然的.
-\end{proof}
-\end{property}
-
-\begin{example}
-%@see: 《Elements of Set Theory》 P26. Exercise 6(b).
-证明：对任意集合\(A\)，总有
-\begin{equation}
-A \subseteq \Powerset \bigcup A;
-\end{equation}
-并找出使得\(A = \Powerset \bigcup A\)成立的条件.
 \end{example}
 
 
