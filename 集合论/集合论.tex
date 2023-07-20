@@ -1026,8 +1026,7 @@ A \times B
 
 又例如，我们把“在\(A\)上的\(n\)元\DefineConcept{关系}（n-ary relation）”定义为由\(n\)元组构成的集合.
 我们将二元关系、三元关系、四元关系等等，统称为\DefineConcept{多元关系}.
-由于三元关系（ternary relation, 3-ary relation）可以视作
-\((A \times A) \times A\)或\(A \times (A \times A)\)的子集，
+由于三元关系（ternary relation, 3-ary relation）可以视作\((A \times A) \times A\)的子集，
 所以三元关系也可归结为一种二元关系；
 同理，其他多元关系也都可以看作是二元关系.
 我们当然可以把由一元组构成的集合称为“一元关系（unary relation, 1-ary relation）”，
@@ -1035,50 +1034,60 @@ A \times B
 
 \section{映射}
 \begin{definition}
-设\(X\)和\(Y\)是两个非空集合，%
-如果关系\(f \subseteq X \times Y\)满足%
-对\(X\)中每个元素\(x\)，%
+设\(X\)和\(Y\)是两个非空集合，
+\(f\)是一个\(X\)与\(Y\)之间的二元关系，即\(f \subseteq X \times Y\).
+如果对\(X\)中每个元素\(x\)，
 在\(Y\)中有唯一确定的元素\(y\)与之对应，即\[
-\forall x \in X,
-\exists! y \in Y
-\bigl( x f y \bigr)
-\]则称“\(f\)是从\(X\)到\(Y\)的\DefineConcept{映射}%
-（\(f\) is a function from \(X\) into \(Y\)，%
-或\(f\) maps \(X\) into \(Y\)）”，记作\[
-f\colon X \to Y, x \mapsto y,
+	\forall x \in X,
+	\exists! y \in Y
+	\bigl( x f y \bigr),
+\]
+则称“\(f\)是从\(X\)到\(Y\)的\DefineConcept{映射}%
+（\(f\) is a \emph{function} from \(X\) into \(Y\)）”，
+或称“\(f\)将\(X\)映射到\(Y\)%
+（\(f\) maps \(X\) into \(Y\)）”，
+记作\[
+	f\colon X \to Y, x \mapsto y,
 \]或简记为\[
-f\colon X \to Y;
+	f\colon X \to Y.
 \]
 称\(y\)为“\(x\)（在映射\(f\)下）的\DefineConcept{像}%
-（the \emph{value} of \(f\) at \(x\)）”，%
+（the \emph{value} of \(f\) at \(x\)）”，
 记为\(f(x)\)，即\[
-y = f(x)
-\defeq \bigcup\Set{ y \given \opair{x,y} \in f };
+	y = f(x)
+	\defeq \bigcup\Set{ y \given \opair{x,y} \in f }.
 \]
-称\(x\)为“\(y\)（在映射\(f\)下）的一个\DefineConcept{原像}”；
-集合\(X\)称为“映射\(f\)的\DefineConcept{定义域}”，%
-记作\(D_f\)，即\(D_f = X\)；
-而\(X\)中所有元素的像所组成的集合称为“映射\(f\)的\DefineConcept{值域}”，%
-记作\(R_f\)或\(f(X)\)，即\[\begin{aligned}
-R_f = f(X)
-&\defeq \Set{ y \given \forall x \in X \bigl( x f y \bigr) } \\
-&\subseteq Y.
-\end{aligned}\]
+称\(x\)为“\(y\)（在映射\(f\)下）的一个\DefineConcept{原像}”.
+集合\(X\)称为“映射\(f\)的\DefineConcept{定义域}”，
+记作\(D_f\)，即\(D_f = X\).
+把\(X\)中所有元素的像所组成的集合称为“映射\(f\)的\DefineConcept{值域}”，
+记作\(R_f\)或\(f(X)\)，即\[
+	R_f = f(X)
+	\defeq \Set*{ y \given \forall x \in X \bigl( x f y \bigr) }.
+\]
 \end{definition}
 
 从上述映射的定义中，需要注意的是：
 \begin{enumerate}
-\item 映射是一种特殊的关系.
-\item 构成一个映射必须具备以下三个要素：集合\(X\)，即定义域\(D_f = X\)；集合\(Y\)，即值域的范围\(R_f \subseteq Y\)；对应法则\(f\)，使对每个\(x \in X\)，有唯一确定的\(y=f(x)\)与之对应；
-\item 对\(\forall x \in X\)，元素\(x\)的像\(y\)是唯一的；而对每个\(y \in R_f\)，元素\(y\)的原像不一定是唯一的；映射\(f\)的值域\(R_f\)是\(Y\)的一个子集，即\(R_f \subseteq Y\)，不一定\(R_f = Y\).
+	\item 映射是一种特殊的关系.
+	\item 构成一个映射必须具备以下三个要素：\begin{itemize}
+		\item 集合\(X\)，即定义域\(D_f = X\)；
+		\item 集合\(Y\)，即值域的范围\(R_f \subseteq Y\)；
+		\item 对应法则\(f\)，使对每个\(x \in X\)，有唯一确定的\(y=f(x)\)与之对应；
+	\end{itemize}
+	\item 对\(\forall x \in X\)，元素\(x\)的像\(y\)是唯一的；
+	而对每个\(y \in R_f\)，元素\(y\)的原像不一定是唯一的；
+	映射\(f\)的值域\(R_f\)是\(Y\)的一个子集，即\(R_f \subseteq Y\)，但不一定\(R_f = Y\).
 \end{enumerate}
 
 \begin{example}
-设映射\(f\colon X \to Y\)，\(A \subseteq X\).证明：\(x \in A\)是\(f(x) \in f(A)\)的充分不必要条件.
+设映射\(f\colon X \to Y\)，\(A \subseteq X\).
+证明：\(x \in A\)是\(f(x) \in f(A)\)的充分不必要条件.
 \begin{proof}
 根据值域的定义\[
 f(A) = \Set{ f(x) \given x \in A },
-\]易证充分性\(x \in A \implies f(x) \in f(A)\).
+\]
+易证充分性\(x \in A \implies f(x) \in f(A)\).
 
 设\(A,B\)是\(X\)的非空子集，且\[
 A \cap B = \emptyset,
@@ -1148,6 +1157,7 @@ f(A \cap B) = \fran{x \in A \cap B}
 从非空集\(X\)到它自身的映射又称为\(X\)上的\DefineConcept{变换}；
 从数集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{函数}.
 \end{definition}
+
 
 \begin{definition}
 设\(f\)是\(X\)到\(Y\)的单射，则由定义，对\(\forall y \in R_f\)，有唯一的\(x \in X\)，使得\(f(x) = y\).
