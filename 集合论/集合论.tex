@@ -346,7 +346,7 @@
 
 \begin{example}
 证明：
-\begin{equation}
+\begin{equation}\label{equation:集合论.有序对各元素的取值范围}
 	\Set{ \Set{x}, \Set{x,y} } \in A
 	\implies
 	\Set{x,y} \in \bigcup A
@@ -976,26 +976,29 @@ x,
 如果集合\(A\)满足\[
 	x \in A \iff \exists y \bigl( \opair{x,y} \in \rel{R} \bigr),
 \]
-那么称集合\(A\)为“关系\(\rel{R}\)的\DefineConcept{定义域}（domain）”，记作\(\dom \rel{R}\)，即\[
-	\dom \rel{R}
-	\defeq
-	\Set*{ x \given \opair{x,y} \in \rel{R} }.
-\]
+那么称集合\(A\)为“关系\(\rel{R}\)的\DefineConcept{定义域}（domain）”，记作\(\dom \rel{R}\).
 
 如果集合\(B\)满足\[
 	x \in B \iff \exists t \bigl( \opair{t,x} \in \rel{R} \bigr),
 \]
-那么称集合\(B\)为“关系\(\rel{R}\)的\DefineConcept{值域}（range）”，记作\(\ran \rel{R}\)，即\[
-	\ran \rel{R}
-	\defeq
-	\Set*{ x \given \opair{t,x} \in \rel{R} }.
-\]
+那么称集合\(B\)为“关系\(\rel{R}\)的\DefineConcept{值域}（range）”，记作\(\ran \rel{R}\).
 
 最后，我们把关系\(\rel{R}\)的定义域与它的值域的并集称为
 “关系\(\rel{R}\)的\DefineConcept{域}（field）”，记作\(\fld \rel{R}\)，即\[
 	\fld \rel{R} \defeq \dom \rel{R} \cup \ran \rel{R}.
 \]
 \end{definition}
+
+考虑到\cref{equation:集合论.有序对各元素的取值范围}，
+我们可以利用子集公理，构造关系\(\rel{R}\)的定义域和值域：
+\begin{gather}
+	\dom \rel{R}
+	\defeq
+	\Set*{ x \in \bigcup\bigcup\rel{R} \given \exists y \bigl( \opair{x,y} \in \rel{R} \bigr) }, \\
+	\ran \rel{R}
+	\defeq
+	\Set*{ x \in \bigcup\bigcup\rel{R} \given \exists t \bigl( \opair{t,x} \in \rel{R} \bigr) }.
+\end{gather}
 
 \section{映射}
 \begin{definition}
