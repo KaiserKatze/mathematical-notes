@@ -1044,7 +1044,7 @@ A \times B
 \]
 则称“\(f\)是从\(X\)到\(Y\)的\DefineConcept{映射}%
 （\(f\) is a \emph{function} from \(X\) into \(Y\)）”，
-或称“\(f\)将\(X\)映射到\(Y\)%
+或称“\(f\)将\(X\)映射到\(Y\)里%
 （\(f\) maps \(X\) into \(Y\)）”，
 记作\[
 	f\colon X \to Y, x \mapsto y,
@@ -1063,7 +1063,7 @@ A \times B
 把\(X\)中所有元素的像所组成的集合称为“映射\(f\)的\DefineConcept{值域}”，
 记作\(R_f\)或\(f(X)\)，即\[
 	R_f = f(X)
-	\defeq \Set*{ y \given \forall x \in X \bigl( x f y \bigr) }.
+	\defeq \Set*{ y \given \exists x \in X \bigl( \opair{x,y} \in f \bigr) }.
 \]
 \end{definition}
 
@@ -1075,9 +1075,6 @@ A \times B
 		\item 集合\(Y\)，即值域的范围\(R_f \subseteq Y\)；
 		\item 对应法则\(f\)，使对每个\(x \in X\)，有唯一确定的\(y=f(x)\)与之对应；
 	\end{itemize}
-	\item 对\(\forall x \in X\)，元素\(x\)的像\(y\)是唯一的；
-	而对每个\(y \in R_f\)，元素\(y\)的原像不一定是唯一的；
-	映射\(f\)的值域\(R_f\)是\(Y\)的一个子集，即\(R_f \subseteq Y\)，但不一定\(R_f = Y\).
 \end{enumerate}
 
 \begin{example}
@@ -1085,79 +1082,105 @@ A \times B
 证明：\(x \in A\)是\(f(x) \in f(A)\)的充分不必要条件.
 \begin{proof}
 根据值域的定义\[
-f(A) = \Set{ f(x) \given x \in A },
+	f(A) = \Set{ f(x) \given x \in A },
 \]
 易证充分性\(x \in A \implies f(x) \in f(A)\).
 
 设\(A,B\)是\(X\)的非空子集，且\[
-A \cap B = \emptyset,
-\qquad
-A \cup B = X,
-\qquad
-f(A) = f(B).
+	A \cap B = \emptyset,
+	\qquad
+	A \cup B = X,
+	\qquad
+	f(A) = f(B).
 \]那么有\[
-f(A) = f(B) = f(X) \subseteq Y,
+	f(A) = f(B) = f(X) \subseteq Y,
 \]\[
-f(x) \in f(X) \iff x \in X \iff x \in A \lor x \in B,
+	f(x) \in f(X) \iff x \in X \iff x \in A \lor x \in B,
 \]也即\[
-f(x) \in f(A) \implies x \in A \lor x \in B,
-\]于是\(f(x) \in f(A) \notimplies x \in A\).
+	f(x) \in f(A) \implies x \in A \lor x \in B,
+\]
+于是\(f(x) \in f(A) \notimplies x \in A\).
 \end{proof}
 \end{example}
 
 \begin{example}
 设映射\(f\colon X \to Y\)，\(A \subseteq X\)，\(B \subseteq X\)，试证：\begin{enumerate}
-\item \(f(A \cup B) = f(A) \cup f(B)\)；
-\item \(f(A \cap B) \subseteq f(A) \cap f(B)\).
+	\item \(f(A \cup B) = f(A) \cup f(B)\)；
+	\item \(f(A \cap B) \subseteq f(A) \cap f(B)\).
 \end{enumerate}
 \begin{proof}
 \def\fran#1{ \Set{ f(x) \given #1 } }
 根据值域的定义，有\[
-f(A) = \fran{x \in A},
-\qquad
-f(B) = \fran{x \in B}.
+	f(A) = \fran{x \in A},
+	\qquad
+	f(B) = \fran{x \in B}.
 \]所以\[
-\begin{split}
-f(A) \cup f(B)
-&= \fran{x \in A} \cup \fran{x \in B} \\
-&= \fran{x \in A \lor x \in B} \\
-&= \fran{x \in A \cup B}.
-\end{split}
+	\begin{split}
+		f(A) \cup f(B)
+		&= \fran{x \in A} \cup \fran{x \in B} \\
+		&= \fran{x \in A \lor x \in B} \\
+		&= \fran{x \in A \cup B}.
+	\end{split}
 \]
 
 另一方面，因为\[
-\begin{split}
-&x \in A \cap B
-\iff
-x \in A \lor x \in B \\
-&\implies
-f(x) \in f(A) \lor f(x) \in f(B) \\
-&\iff
-f(x) \in f(A) \cup f(B),
-\end{split}
+	\begin{split}
+		&x \in A \cap B
+		\iff
+		x \in A \lor x \in B \\
+		&\implies
+		f(x) \in f(A) \lor f(x) \in f(B) \\
+		&\iff
+		f(x) \in f(A) \cup f(B),
+	\end{split}
 \]所以\[
-f(A \cap B) = \fran{x \in A \cap B}
-\subseteq f(A) \cup f(B).
-\qedhere
+	f(A \cap B) = \fran{x \in A \cap B}
+	\subseteq f(A) \cup f(B).
+	\qedhere
 \]
 \end{proof}
 \end{example}
 
+我们从映射的定义还可以看出：
+对\(\forall x \in X\)，元素\(x\)的像\(y\)是唯一的；
+而对每个\(y \in R_f\)，元素\(y\)的原像不一定是唯一的；
+映射\(f\)的值域\(R_f\)是\(Y\)的一个子集，即\(R_f \subseteq Y\)，但不一定\(R_f = Y\).
+
 \begin{definition}
-设\(f\)为\(X\)到\(Y\)的映射，即\(f\colon X \to Y\).
-\begin{enumerate}
-\item 如果\(R_f = Y\)，即对\(\forall y \in Y, \exists x \in X: f(x) = y\)，那么称\(f\)为\DefineConcept{满射}或\DefineConcept{上映射}.
-\item 如果对\(\forall x_1, x_2 \in X\)，\(x_1 \neq x_2\)必有\(f(x_1) \neq f(x_2)\)，那么称\(f\)为\DefineConcept{单射}或\DefineConcept{嵌入}.
-\item 如果\(f\)既是单射，又是满射，那么称\(f\)为\DefineConcept{双射}或\DefineConcept{一一映射}.
-\end{enumerate}
+	设\(f\)为\(X\)到\(Y\)的映射，即\(f\colon X \to Y\).
+	\begin{enumerate}
+		\item 如果\(R_f = Y\)，即\[
+			\forall y \in Y, \exists x \in X:
+			f(x) = y,
+		\]
+		那么称“\(f\)是从\(X\)到\(Y\)上的映射%
+		（\(f\) is a function from \(X\) \emph{onto} \(Y\)）”，
+		或称“\(f\)是\DefineConcept{满射}（surjective）”.
+
+		\item 如果对于每个\(x \in X\)有且只有一个\(y \in Y\)与之对应，即\[
+			\forall x_1, x_2 \in X:
+			x_1 \neq x_2
+			\implies
+			f(x_1) \neq f(x_2),
+		\]
+		那么称“\(f\)是\DefineConcept{单射}（injective）或\DefineConcept{嵌入}”.
+
+		\item 如果\(f\)既是单射，又是满射，即\[
+			\forall y \in \ran f,
+			\exists! x \in X:
+			\opair{x,y} \in f,
+		\]
+		那么称“\(f\)是\DefineConcept{双射}（bijective）%
+		或\DefineConcept{一一映射}（one-to-one）%
+		或\DefineConcept{单值的}（single-rooted, single-valued）”.
+	\end{enumerate}
+\end{definition}
 
 映射又称为\DefineConcept{算子}.
 根据集合\(X\)、\(Y\)的不同情形，在不同的数学分支中，映射又有不同的惯用名称.
 例如，从非空集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{泛函}；
-从非空集\(X\)到它自身的映射又称为\(X\)上的\DefineConcept{变换}；
+从非空集\(X\)到\(X\)的映射又称为\(X\)上的\DefineConcept{变换}；
 从数集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{函数}.
-\end{definition}
-
 
 \begin{definition}
 设\(f\)是\(X\)到\(Y\)的单射，则由定义，对\(\forall y \in R_f\)，有唯一的\(x \in X\)，使得\(f(x) = y\).
