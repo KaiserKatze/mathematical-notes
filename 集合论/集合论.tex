@@ -900,14 +900,28 @@ x,
 
 \subsection{关系}
 \begin{definition}
-已知集合\(X\)和集合\(Y\)，集合\[
-\Set{ \opair{x,y} \given x \in X, y \in Y }
-\]称作“\(X\)与\(Y\)之间的\DefineConcept{二元关系}”；
-当\(X = Y\)时，就称之为“\(X\)上的\DefineConcept{二元关系}”.
+给定集合\(X\)和集合\(Y\)，集合\[
+	\Set*{ \opair{x,y} \given x \in X, y \in Y }
+\]
+称作“\(X\)与\(Y\)之间的\DefineConcept{二元关系}（binary relation）”.
 
-如果有序对\(\opair{x,y}\)是关系\(\rel{R}\)的元素（即\(\opair{x,y} \in \rel{R}\)），那么称“\(x\)与\(y\)有\(\rel{R}\)关系”，记作\(x\rel{R}y\)；
-反之，如果\(\opair{x,y} \notin \rel{R}\)，那么称“\(x\)与\(y\)没有\(\rel{R}\)关系”.
+特别地，当\(X = Y\)时，就称之为“\(X\)上的\DefineConcept{二元关系}”.
 \end{definition}
+
+如果有序对\(\opair{x,y}\)是关系\(\rel{R}\)的元素，即\[
+	\opair{x,y} \in \rel{R},
+\]
+那么称“\(x\)与\(y\)有\(\rel{R}\)关系”，
+记作\(x\rel{R}y\)；
+反之，\[
+	\opair{x,y} \notin \rel{R},
+\]
+那么称“\(x\)与\(y\)没有\(\rel{R}\)关系”.
+
+从关系的定义可以看出，关系是有序对的集合.
+即便是看起来毫无意义的，只由一个有序对组成的集合，也可以看成是一个关系.
+我们自然会认为有的关系比别的关系更有意义，
+例如我们马上会提到的“映射”“等价关系”和“偏序关系”.
 
 \begin{definition}
 设\(\rel{R} \subseteq A^2\).
@@ -947,17 +961,29 @@ x,
 
 \begin{definition}
 给定关系\(\rel{R}\).
-我们把集合\[
-	\Set{ x \given \opair{x,y} \in \rel{R} }
-\]称作“关系\(\rel{R}\)的\DefineConcept{定义域}（domain）”，记作\(\dom \rel{R}\).
 
-把集合\[
-	\Set{ y \given \opair{x,y} \in \rel{R} }
-\]称作“关系\(\rel{R}\)的\DefineConcept{值域}（range）”，记作\(\ran \rel{R}\).
+如果集合\(A\)满足\[
+	x \in A \iff \exists y \bigl( \opair{x,y} \in \rel{R} \bigr),
+\]
+那么称集合\(A\)为“关系\(\rel{R}\)的\DefineConcept{定义域}（domain）”，记作\(\dom \rel{R}\)，即\[
+	\dom \rel{R}
+	\defeq
+	\Set*{ x \given \opair{x,y} \in \rel{R} }.
+\]
 
-把集合\[
-	\dom \rel{R} \cup \ran \rel{R}
-\]称作“关系\(\rel{R}\)的\DefineConcept{域}（field）”，记作\(\fld \rel{R}\).
+如果集合\(B\)满足\[
+	x \in B \iff \exists t \bigl( \opair{t,x} \in \rel{R} \bigr),
+\]
+那么称集合\(B\)为“关系\(\rel{R}\)的\DefineConcept{值域}（range）”，记作\(\ran \rel{R}\)，即\[
+	\ran \rel{R}
+	\defeq
+	\Set*{ x \given \opair{t,x} \in \rel{R} }.
+\]
+
+最后，我们把关系\(\rel{R}\)的定义域与它的值域的并集称为
+“关系\(\rel{R}\)的\DefineConcept{域}（field）”，记作\(\fld \rel{R}\)，即\[
+	\fld \rel{R} \defeq \dom \rel{R} \cup \ran \rel{R}.
+\]
 \end{definition}
 
 \section{映射}
