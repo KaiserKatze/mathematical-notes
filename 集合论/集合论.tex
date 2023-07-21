@@ -1032,9 +1032,45 @@ A \times B
 我们当然可以把由一元组构成的集合称为“一元关系（unary relation, 1-ary relation）”，
 但它只是\(A\)的一个子集，根本不满足关系的定义.
 
-\section{映射}
+\subsection{特殊关系}
 \begin{definition}
-设\(X\)和\(Y\)是两个非空集合，
+设\(F\)是关系，那么称集合\[
+	\Set*{ \opair{u,v} \given v F u }
+\]为“关系\(F\)的\DefineConcept{逆}（inverse）”，
+记作\(F^{-1}\).
+\end{definition}
+
+\begin{definition}
+设\(F,G\)都是关系，那么称集合\[
+	\Set*{ \opair{u,v} \given \exists t \bigl( u G t \land t F v \bigr) }
+\]为“关系\(F\)和\(G\)的\DefineConcept{复合}（composition）”，
+记作\(F \circ G\).
+\end{definition}
+
+\begin{definition}
+设\(F\)是关系，\(A\)是集合，那么称集合\[
+	\Set*{ \opair{u,v} \given u F v \land u \in A }
+\]为“关系\(F\)在集合\(A\)上的\DefineConcept{限制}%
+（the \emph{restriction} of \(F\) to \(A\)）”，
+记作\(F \upharpoonright A\).
+\end{definition}
+
+\begin{definition}
+设\(F\)是关系，\(A\)是集合，那么称集合\[
+	\Set*{ v \given \exists u \in A \bigl( u F v \bigr) }
+\]为“集合\(A\)在关系\(F\)下的\DefineConcept{像}%
+（the \emph{image} of \(A\) under \(F\)）”，
+记作\(F\ImageOfSetUnderRelation{A}\).
+\end{definition}
+
+\begin{theorem}
+\(F\ImageOfSetUnderRelation{A} = \ran(F \upharpoonright A)\).
+\end{theorem}
+
+\section{映射}
+\subsection{映射的概念}
+\begin{definition}
+设\(X\)和\(Y\)都是非空集合，
 \(f\)是一个\(X\)与\(Y\)之间的二元关系，即\(f \subseteq X \times Y\).
 如果对\(X\)中每个元素\(x\)，
 在\(Y\)中有唯一确定的元素\(y\)与之对应，即\[
@@ -1141,6 +1177,7 @@ A \times B
 \end{proof}
 \end{example}
 
+\subsection{满射，单射，双射}
 我们从映射的定义还可以看出：
 对\(\forall x \in X\)，元素\(x\)的像\(y\)是唯一的；
 而对每个\(y \in R_f\)，元素\(y\)的原像不一定是唯一的；
@@ -1184,7 +1221,7 @@ A \times B
 	\opair{x,y} \in \rel{R},
 \]
 则称“关系\(\rel{R}\)是\DefineConcept{单值的}（single-rooted, single-valued）”；
-否则称“关系\(\rel{R}\)是\DefineConcept{多值的}”.
+否则称“关系\(\rel{R}\)是\DefineConcept{多值的}（many-valued）”.
 \end{definition}
 
 由此定义，我们也可以说，一一映射是单值的.
@@ -1195,20 +1232,26 @@ A \times B
 从非空集\(X\)到\(X\)的映射又称为\(X\)上的\DefineConcept{变换}；
 从数集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{函数}.
 
+\subsection{逆映射}
 \begin{definition}
-设\(f\)是\(X\)到\(Y\)的单射，则由定义，对\(\forall y \in R_f\)，有唯一的\(x \in X\)，使得\(f(x) = y\).
+设\(f\)是\(X\)到\(Y\)的单射，则由定义，对\(\forall y \in R_f\)，
+有唯一的\(x \in X\)，使得\(f(x) = y\).
 于是，我们可定义一个从\(R_f\)到\(X\)的新映射\(g\)，即\[
-g: R_f \to X,
+	g: R_f \to X,
 \]对每个\(y \in R_f\)，规定\(g(y) = x\).
-映射\(g\)称为\(f\)的\DefineConcept{逆映射}，记作\(f^{-1}\)，其定义域\(D_{f^{-1}} = R_f\)，值域\(R_{f^{-1}} = X\).
+映射\(g\)称为\(f\)的\DefineConcept{逆映射}，记作\(f^{-1}\)，
+其定义域\(D_{f^{-1}} = R_f\)，值域\(R_{f^{-1}} = X\).
 \end{definition}
 
+\subsection{复合映射}
 \begin{definition}
 设有两个映射\[
 g\colon X \to Y_1, \quad f\colon Y_2 \to Z,
 \]其中\(Y_1 \subseteq Y_2\)；
-则由映射\(g\)和\(f\)可以定出一个从\(X\)到\(Z\)的对应法则，它使每个\(x \in X\)映成\(f[g(x)] \in Z\).
-显然，这个对应法则确定了一个从\(X\)到\(Z\)的映射，这个映射称为映射\(g\)和\(f\)构成的\DefineConcept{复合映射}，记作\(f \circ g\)，即\[
+则由映射\(g\)和\(f\)可以定出一个从\(X\)到\(Z\)的对应法则，
+它使每个\(x \in X\)映成\(f[g(x)] \in Z\).
+显然，这个对应法则确定了一个从\(X\)到\(Z\)的映射，
+这个映射称为映射\(g\)和\(f\)构成的\DefineConcept{复合映射}，记作\(f \circ g\)，即\[
 f \circ g: X \to Z,
 \]\[
 (f \circ g)(x) = f[g(x)], \quad x \in X.
