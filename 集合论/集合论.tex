@@ -1032,86 +1032,6 @@ A \times B
 我们当然可以把由一元组构成的集合称为“一元关系（unary relation, 1-ary relation）”，
 但它只是\(A\)的一个子集，根本不满足关系的定义.
 
-\subsection{特殊关系}
-\begin{definition}
-设\(F\)是关系，那么称集合\[
-	\Set*{ \opair{u,v} \given v F u }
-\]为“关系\(F\)的\DefineConcept{逆}（inverse）”，
-记作\(F^{-1}\).
-\end{definition}
-
-\begin{definition}
-设\(F,G\)都是关系，那么称集合\[
-	\Set*{ \opair{u,v} \given \exists t \bigl( u G t \land t F v \bigr) }
-\]为“关系\(F\)和\(G\)的\DefineConcept{复合}（composition）”，
-记作\(F \circ G\).
-\end{definition}
-
-\begin{definition}
-设\(F\)是关系，\(A\)是集合，那么称集合\[
-	\Set*{ \opair{u,v} \given u F v \land u \in A }
-\]为“关系\(F\)在集合\(A\)上的\DefineConcept{限制}%
-（the \emph{restriction} of \(F\) to \(A\)）”，
-记作\(F \upharpoonright A\).
-\end{definition}
-
-\begin{definition}
-设\(F\)是关系，\(A\)是集合，那么称集合\[
-	\Set*{ v \given \exists u \in A \bigl( u F v \bigr) }
-\]为“集合\(A\)在关系\(F\)下的\DefineConcept{像}%
-（the \emph{image} of \(A\) under \(F\)）”，
-记作\(F\ImageOfSetUnderRelation{A}\).
-\end{definition}
-
-我们可以利用子集公理构造出上述四个定义下的所需集合的存在性.
-特别地，
-\(F^{-1} \subseteq \ran F \times \dom F\)，
-\(F \circ G \subseteq \dom G \times \ran F\)，
-\(F \upharpoonright A \subseteq F\)，
-\(F\ImageOfSetUnderRelation{A} \subseteq \ran F\).
-
-例如，我们可以按如下方法正当化“关系\(F\)的逆”的定义：
-根据子集公理，存在集合\(B\)，使得对于任意\(x\)，总有\[
-	x \in B \iff
-	x \in \ran F \times \dom F
-	\land
-	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr),
-\]
-从而有\[
-	x \in B \iff
-	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr).
-\]
-再根据外延公理，可以保证集合\(B\)的唯一性.
-因此我们可以将集合\(B\)记为\(F^{-1}\).
-
-\begin{theorem}
-\(F \upharpoonright \emptyset = \emptyset\).
-\end{theorem}
-
-\begin{theorem}
-\(F\ImageOfSetUnderRelation{A} = \ran(F \upharpoonright A)\).
-\end{theorem}
-
-\begin{definition}
-设\(F\)是关系，\(A\)是集合，那么称集合\[
-	\Set*{ x \in \dom F \given F(x) \in A }
-\]为“集合\(A\)在关系\(F\)下的\DefineConcept{原像}%
-（the \emph{inverse image} of \(A\) under \(F\)）”，
-记作\(F^{-1}\ImageOfSetUnderRelation{A}\).
-\end{definition}
-
-\begin{theorem}
-%@see: 《Elements of Set Theory》 P46. Theorem 3E
-设\(F\)是集合，则有\begin{gather}
-	\dom F^{-1} = \ran F, \\
-	\ran F^{-1} = \dom F.
-\end{gather}
-
-如果\(F\)是关系，则有\begin{equation}
-	(F^{-1})^{-1} = F.
-\end{equation}
-\end{theorem}
-
 \section{映射}
 \subsection{映射的概念}
 \begin{definition}
@@ -1292,24 +1212,6 @@ A \times B
 映射\(f\colon A \to B\)可逆的充要条件是：\(f\)是双射.
 \end{theorem}
 
-\begin{theorem}
-%@see: 《Elements of Set Theory》 P46. Theorem 3F
-设\(F\)是集合，则“\(F^{-1}\)是映射”的充要条件是：\(F\)是单值的.
-
-设\(F\)是关系，则“\(F\)是映射”的充要条件是：\(F^{-1}\)是单值的.
-\end{theorem}
-
-\begin{theorem}
-%@see: 《Elements of Set Theory》 P46. Theorem 3G
-设\(F\)是一一映射.
-如果\(x \in \dom F\)，那么\[
-	F^{-1}(F(x)) = x.
-\]
-如果\(y \in \ran F\)，那么\[
-	F(F^{-1}(y)) = y.
-\]
-\end{theorem}
-
 \subsection{复合映射}
 \begin{definition}
 设有两个映射\[
@@ -1329,6 +1231,117 @@ f \circ g: X \to Z,
 由此可知，映射\(g\)和\(f\)的复合是有顺序的，\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
 即是\(f \circ g\)和\(g \circ f\)都有意义，复合映射\(f \circ g\)和\(g \circ f\)也未必相同.
 \end{definition}
+
+以下定义常用在映射上，有时候也用于关系，但也可以用于任意集合.
+\begin{definition}
+设\(F,G\)都是关系，\(A\)是集合.
+\begin{enumerate}
+	\item 称集合\[
+		\Set*{ \opair{u,v} \given v F u }
+	\]为“关系\(F\)的\DefineConcept{逆}（inverse）”，
+	记作\(F^{-1}\).
+
+	\item 称集合\[
+		\Set*{ \opair{u,v} \given \exists t \bigl( u G t \land t F v \bigr) }
+	\]为“关系\(F\)和\(G\)的\DefineConcept{复合}（composition）”，
+	记作\(F \circ G\).
+
+	\item 称集合\[
+		\Set*{ \opair{u,v} \given u F v \land u \in A }
+	\]为“关系\(F\)在集合\(A\)上的\DefineConcept{限制}%
+	（the \emph{restriction} of \(F\) to \(A\)）”，
+	记作\(F \upharpoonright A\).
+
+	\item 称集合\[
+		\Set*{ v \given \exists u \in A \bigl( u F v \bigr) }
+	\]为“集合\(A\)在关系\(F\)下的\DefineConcept{像}%
+	（the \emph{image} of \(A\) under \(F\)）”，
+	记作\(F\ImageOfSetUnderRelation{A}\).
+\end{enumerate}
+\end{definition}
+
+我们可以利用子集公理构造出上述定义下的所需集合的存在性.
+特别地，
+\(F^{-1} \subseteq \ran F \times \dom F\)，
+\(F \circ G \subseteq \dom G \times \ran F\)，
+\(F \upharpoonright A \subseteq F\)，
+\(F\ImageOfSetUnderRelation{A} \subseteq \ran F\).
+
+例如，我们可以按如下方法正当化“关系\(F\)的逆”的定义：
+根据子集公理，存在集合\(B\)，使得对于任意\(x\)，总有\[
+	x \in B \iff
+	x \in \ran F \times \dom F
+	\land
+	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr),
+\]
+从而有\[
+	x \in B \iff
+	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr).
+\]
+再根据外延公理，可以保证集合\(B\)的唯一性.
+因此我们可以将集合\(B\)记为\(F^{-1}\).
+
+\begin{theorem}
+\(F \upharpoonright \emptyset = \emptyset\).
+\end{theorem}
+
+\begin{theorem}
+\(F\ImageOfSetUnderRelation{A} = \ran(F \upharpoonright A)\).
+\end{theorem}
+
+\begin{definition}
+设\(F\)是关系，\(A\)是集合，那么称集合\[
+	\Set*{ x \in \dom F \given F(x) \in A }
+\]为“集合\(A\)在关系\(F\)下的\DefineConcept{原像}%
+（the \emph{inverse image} of \(A\) under \(F\)）”，
+记作\(F^{-1}\ImageOfSetUnderRelation{A}\).
+\end{definition}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P46. Theorem 3E
+设\(F\)是集合，则有\begin{gather}
+	\dom F^{-1} = \ran F, \\
+	\ran F^{-1} = \dom F.
+\end{gather}
+
+如果\(F\)是关系，则有\begin{equation}
+	(F^{-1})^{-1} = F.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P46. Theorem 3F
+设\(F\)是集合，则“\(F^{-1}\)是映射”的充要条件是：\(F\)是单值的.
+
+设\(F\)是关系，则“\(F\)是映射”的充要条件是：\(F^{-1}\)是单值的.
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P46. Theorem 3G
+设\(F\)是一一映射.
+\begin{enumerate}
+	\item 如果\(x \in \dom F\)，那么\[
+		F^{-1}(F(x)) = x.
+	\]
+
+	\item 如果\(y \in \ran F\)，那么\[
+		F(F^{-1}(y)) = y.
+	\]
+\end{enumerate}
+\begin{proof}
+假设\(x \in \dom F\)，
+那么\(\opair{x,F(x)} \in F\)，且\(\opair{F(x),x} \in F^{-1}\)，
+于是\(F(x) \in \dom F^{-1}\).
+因为\(F\)是一一映射，是单值的，所以\(F^{-1}\)是映射，
+从而\(x = F^{-1}(F(x))\).
+
+如果\(y \in \ran F\)，
+那么根据本定理第1条，以及\((F^{-1})^{-1} = F\)，可知\[
+	F(F^{-1}(y)) = (F^{-1})^{-1}(F^{-1}(y)) = y.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P47. Theorem 3H
