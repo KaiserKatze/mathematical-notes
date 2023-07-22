@@ -1035,6 +1035,14 @@ A \times B
 \section{映射}
 \subsection{映射的概念}
 \begin{definition}
+设\(F\)是关系，如果\[
+	\forall x \in \dom F, \exists! y:
+	x F y,
+\]
+则称“关系\(F\)是一个\DefineConcept{映射}（function）”.
+\end{definition}
+
+\begin{definition}
 设\(X\)和\(Y\)都是非空集合，
 \(f\)是一个\(X\)与\(Y\)之间的二元关系，即\(f \subseteq X \times Y\).
 如果对\(X\)中每个元素\(x\)，
@@ -1185,8 +1193,7 @@ A \times B
 	\exists! x \in X:
 	\opair{x,y} \in \rel{R},
 \]
-则称“关系\(\rel{R}\)是\DefineConcept{单值的}（single-rooted, single-valued）”；
-否则称“关系\(\rel{R}\)是\DefineConcept{多值的}（many-valued）”.
+则称“关系\(\rel{R}\)是\DefineConcept{单根的}（single-rooted）”.
 \end{definition}
 
 由此定义，我们也可以说，一一映射是单值的.
@@ -1196,21 +1203,6 @@ A \times B
 例如，从非空集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{泛函}；
 从非空集\(X\)到\(X\)的映射又称为\(X\)上的\DefineConcept{变换}；
 从数集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{函数}.
-
-\subsection{逆映射}
-\begin{definition}
-设\(f\)是\(X\)到\(Y\)的单射，则由定义，对\(\forall y \in R_f\)，
-有唯一的\(x \in X\)，使得\(f(x) = y\).
-于是，我们可定义一个从\(R_f\)到\(X\)的新映射\(g\)，即\[
-	g: R_f \to X,
-\]对每个\(y \in R_f\)，规定\(g(y) = x\).
-映射\(g\)称为\(f\)的\DefineConcept{逆映射}，记作\(f^{-1}\)，
-其定义域\(D_{f^{-1}} = R_f\)，值域\(R_{f^{-1}} = X\).
-\end{definition}
-
-\begin{theorem}\label{theorem:集合论.映射可逆的充要条件}
-映射\(f\colon A \to B\)可逆的充要条件是：\(f\)是双射.
-\end{theorem}
 
 \subsection{复合映射}
 \begin{definition}
@@ -1240,6 +1232,8 @@ f \circ g: X \to Z,
 		\Set*{ \opair{u,v} \given v F u }
 	\]为“关系\(F\)的\DefineConcept{逆}（inverse）”，
 	记作\(F^{-1}\).
+	特别地，如果\(F^{-1}\)是映射，
+	则称“\(F^{-1}\)是\(F\)的\DefineConcept{逆映射}”.
 
 	\item 称集合\[
 		\Set*{ \opair{u,v} \given \exists t \bigl( u G t \land t F v \bigr) }
@@ -1314,6 +1308,10 @@ f \circ g: X \to Z,
 设\(F\)是集合，则“\(F^{-1}\)是映射”的充要条件是：\(F\)是单值的.
 
 设\(F\)是关系，则“\(F\)是映射”的充要条件是：\(F^{-1}\)是单值的.
+\end{theorem}
+
+\begin{theorem}\label{theorem:集合论.映射可逆的充要条件}
+映射\(f\colon A \to B\)可逆的充要条件是：\(f\)是双射.
 \end{theorem}
 
 \begin{theorem}
