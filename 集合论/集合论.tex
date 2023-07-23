@@ -1300,7 +1300,7 @@ x \in \bigcap B = \bigcap_i b_i
 记作\(F^{-1}\ImageOfSetUnderRelation{A}\).
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.关系的逆的定义域值域以及关系的二重逆}
 %@see: 《Elements of Set Theory》 P46. Theorem 3E
 设\(F\)是集合，则有\begin{gather}
 	\dom F^{-1} = \ran F, \\
@@ -1312,7 +1312,7 @@ x \in \bigcap B = \bigcap_i b_i
 \end{equation}
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.关系及其逆是映射的充要条件}
 %@see: 《Elements of Set Theory》 P46. Theorem 3F
 设\(F\)是集合，则“\(F^{-1}\)是映射”的充要条件是：\(F\)是单根的.
 
@@ -1414,16 +1414,89 @@ x \in \bigcap B = \bigcap_i b_i
 \end{proof}
 \end{theorem}
 
+\begin{axiom}[选择公理(第一种形式)]
+对于任意关系\(R\)，存在映射\(H\)，满足\[
+	H \subseteq R,
+	\quad\text{且}\quad
+	\dom H = \dom R.
+\]
+\end{axiom}
+
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P48. Theorem 3J
 设映射\(F\colon A \to B\)，其中\(A\)是非空集合.
 \begin{enumerate}
-	\item 存在映射\(G\colon B \to A\)（称其为\DefineConcept{左逆}），
-	使得“\(G \circ F\)是\(A\)上的恒等映射”与“\(F\)是一一映射”互为充要条件.
+	\item “存在映射\(G\colon B \to A\)（称其为\DefineConcept{左逆}），
+	使得\(G \circ F\)是\(A\)上的恒等映射\(I_A\)”是“\(F\)是一一映射”的充要条件.
 
-	\item 存在映射\(H\colon B \to A\)（称其为\DefineConcept{右逆}），
-	使得“\(F \circ H\)是\(B\)上的恒等映射”与“\(F\)是满射”互为充要条件.
+	\item “存在映射\(H\colon B \to A\)（称其为\DefineConcept{右逆}），
+	使得\(F \circ H\)是\(B\)上的恒等映射\(I_B\)”是“\(F\)是满射”的充要条件.
 \end{enumerate}
+\begin{proof}
+\begin{enumerate}
+	\item
+	先证充分性.
+	我们假设存在映射\(G\)使得\(G \circ F = I_A\).
+	如果\(F(x) = F(y)\)，那么\[
+		x = G(F(x)) = G(F(y)) = y,
+	\]
+	于是\(F\)是一一映射.
+
+	再证必要性.
+	假设\(F\)是一一映射，
+	那么根据\cref{theorem:集合论.关系的逆的定义域值域以及关系的二重逆,theorem:集合论.关系及其逆是映射的充要条件}，
+	\(F^{-1}\)是一个从\(\ran F\)到\(A\)上的映射.
+	现在我们需要将\(F^{-1}\)延拓为以\(B\)为定义域的映射\(G\).
+	因为\(A\)是非空集合，
+	于是我们可以取定\(a \in A\)，
+	然后令\[
+		G(x) = \left\{ \begin{array}{ll}
+			F^{-1}(x), & x \in \ran F, \\
+			a, & x \in B - \ran F,
+		\end{array} \right.
+	\]或者令\[
+		G = F^{-1} \cup (B - \ran F) \times \Set{a}.
+	\]
+	这个构造出来的映射\(G\)是一个从\(B\)到\(A\)里的映射，
+	且满足\[
+		\dom(G \circ F) = A,
+	\]
+	以及\[
+		\forall x \in A: G(F(x)) = F^{-1}(F(x)) = x,
+	\]
+	于是\(G \circ F = I_A\)成立.
+
+	\item
+	我们还是先证充分性.
+	假设存在映射\(H\)使得\(F \circ H = I_B\).
+	那么\[
+		\forall y \in B: y = F(H(y)),
+	\]
+	从而\(y \in \ran F\)，
+	于是\(\ran F = B\).
+
+	必要性的证明稍显困难.
+	我们不能直接取\(H = F^{-1}\)，
+	因为一般而言\(F\)不会是一一映射，
+	\(F^{-1}\)也不会是一个映射.
+	假设\(F\)将\(A\)映射到\(B\)上，\(\ran F = B\).
+	现在我们需要为每个\(y \in B\)选择某个\(x\)，使得\(F(x) = y\)，然后令\(H(y) = x\)；
+	考虑到\(y \in \ran F\)，这样的\(x\)必定存在.
+	虽然我们知道对于每个\(y\)，存在一个合适的\(x\)，
+	但是我们无法据此构造所求映射\(H\).
+	因此，我们需要引入选择公理.
+	借助选择公理，我们可以令映射\(H\)满足\(H \subseteq F^{-1}\)且\(\dom H = \dom F^{-1} = B\).
+	于是\(H\)满足\[
+		\forall y \in B
+		\bigl[
+		\opair{y,H(y)} \in F^{-1}
+		\iff \opair{H(y),y} \in F
+		\iff F(H(y)) = y
+		\bigr].
+		\qedhere
+	\]
+\end{enumerate}
+\end{proof}
 \end{theorem}
 
 
