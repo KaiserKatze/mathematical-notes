@@ -1210,150 +1210,32 @@ x \in \bigcap B = \bigcap_i b_i
 
 因此，我们可以说，“一个映射是单根的”当且仅当“这个映射是一一映射”.
 
-\begin{example}
-设映射\(f\colon X \to Y\)，\(A \subseteq X\).
-证明：\(x \in A\)是\(f(x) \in f(A)\)的充分不必要条件.
-\begin{proof}
-根据值域的定义\[
-	f(A) = \Set{ f(x) \given x \in A },
-\]
-易证充分性\(x \in A \implies f(x) \in f(A)\).
-
-设\(A,B\)是\(X\)的非空子集，且\[
-	A \cap B = \emptyset,
-	\qquad
-	A \cup B = X,
-	\qquad
-	f(A) = f(B).
-\]那么有\[
-	f(A) = f(B) = f(X) \subseteq Y,
-\]\[
-	f(x) \in f(X) \iff x \in X \iff x \in A \lor x \in B,
-\]也即\[
-	f(x) \in f(A) \implies x \in A \lor x \in B,
-\]
-于是\(f(x) \in f(A) \notimplies x \in A\).
-\end{proof}
-\end{example}
-
-\begin{example}
-设映射\(f\colon X \to Y\)，\(A \subseteq X\)，\(B \subseteq X\)，试证：\begin{enumerate}
-	\item \(f(A \cup B) = f(A) \cup f(B)\)；
-	\item \(f(A \cap B) \subseteq f(A) \cap f(B)\).
-\end{enumerate}
-\begin{proof}
-\def\fran#1{ \Set{ f(x) \given #1 } }
-根据值域的定义，有\[
-	f(A) = \fran{x \in A},
-	\qquad
-	f(B) = \fran{x \in B}.
-\]所以\[
-	\begin{split}
-		f(A) \cup f(B)
-		&= \fran{x \in A} \cup \fran{x \in B} \\
-		&= \fran{x \in A \lor x \in B} \\
-		&= \fran{x \in A \cup B}.
-	\end{split}
-\]
-
-另一方面，因为\[
-	\begin{split}
-		&x \in A \cap B
-		\iff
-		x \in A \lor x \in B \\
-		&\implies
-		f(x) \in f(A) \lor f(x) \in f(B) \\
-		&\iff
-		f(x) \in f(A) \cup f(B),
-	\end{split}
-\]所以\[
-	f(A \cap B) = \fran{x \in A \cap B}
-	\subseteq f(A) \cup f(B).
-	\qedhere
-\]
-\end{proof}
-\end{example}
-
-\subsection{满射，单射，双射}
-正如我们在上一小节讨论的那样，
-对\(\forall x \in X\)，\(x\)的像\(y\)是唯一的；
-而对每个\(y \in \ran f\)，\(y\)的原像不一定是唯一的；
-映射\(f\)的值域\(\ran f\)是\(Y\)的一个子集，
-即\(\ran f \subseteq Y\)，但不一定\(\ran f = Y\).
-
+以下定义的操作通常用在映射上，有时候也用于关系，但也可以用于任意集合.
 \begin{definition}
-	设\(f\)为\(X\)到\(Y\)的映射，即\(f\colon X \to Y\).
-	\begin{enumerate}
-		\item 如果\(R_f = Y\)，即\[
-			\forall y \in Y, \exists x \in X:
-			f(x) = y,
-		\]
-		那么称“\(f\)是\DefineConcept{满射}（surjective）”.
-
-		\item 如果对于每个\(x \in X\)有且只有一个\(y \in Y\)与之对应，即\[
-			\forall x_1, x_2 \in X:
-			x_1 \neq x_2
-			\implies
-			f(x_1) \neq f(x_2),
-		\]
-		那么称“\(f\)是\DefineConcept{单射}（injective）或\DefineConcept{嵌入}”.
-
-		\item 如果\(f\)既是单射，又是满射，即
-		那么称“\(f\)是\DefineConcept{双射}（bijective）”.
-	\end{enumerate}
-\end{definition}
-
-映射又称为\DefineConcept{算子}.
-根据集合\(X\)、\(Y\)的不同情形，在不同的数学分支中，映射又有不同的惯用名称.
-例如，从非空集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{泛函}；
-从非空集\(X\)到\(X\)的映射又称为\(X\)上的\DefineConcept{变换}；
-从数集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{函数}.
-
-\subsection{复合映射}
-\begin{definition}
-设有两个映射\[
-g\colon X \to Y_1, \quad f\colon Y_2 \to Z,
-\]其中\(Y_1 \subseteq Y_2\)；
-则由映射\(g\)和\(f\)可以定出一个从\(X\)到\(Z\)的对应法则，
-它使每个\(x \in X\)映成\(f[g(x)] \in Z\).
-显然，这个对应法则确定了一个从\(X\)到\(Z\)的映射，
-这个映射称为映射\(g\)和\(f\)构成的\DefineConcept{复合映射}，记作\(f \circ g\)，即\[
-f \circ g: X \to Z,
-\]\[
-(f \circ g)(x) = f[g(x)], \quad x \in X.
-\]
-
-由复合映射的定义可知，映射\(g\)和\(f\)构成复合映射的条件是：
-\(g\)的值域\(R_g\)必须包含在\(f\)的定义域内，即\(R_f \subseteq D_f\).否则不能构成复合映射.
-由此可知，映射\(g\)和\(f\)的复合是有顺序的，\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
-即是\(f \circ g\)和\(g \circ f\)都有意义，复合映射\(f \circ g\)和\(g \circ f\)也未必相同.
-\end{definition}
-
-以下定义常用在映射上，有时候也用于关系，但也可以用于任意集合.
-\begin{definition}
-设\(F,G\)都是关系，\(A\)是集合.
+设\(A,F,G\)都是集合.
 \begin{enumerate}
 	\item 称集合\[
 		\Set*{ \opair{u,v} \given v F u }
-	\]为“关系\(F\)的\DefineConcept{逆}（inverse）”，
+	\]为“\(F\)的\DefineConcept{逆}（inverse）”，
 	记作\(F^{-1}\).
+
 	特别地，如果\(F^{-1}\)是映射，
 	则称“\(F^{-1}\)是\(F\)的\DefineConcept{逆映射}”.
 
 	\item 称集合\[
 		\Set*{ \opair{u,v} \given \exists t \bigl( u G t \land t F v \bigr) }
-	\]为“关系\(F\)和\(G\)的\DefineConcept{复合}（composition）”，
+	\]为“\(F\)和\(G\)的\DefineConcept{复合}（composition）”，
 	记作\(F \circ G\).
 
 	\item 称集合\[
 		\Set*{ \opair{u,v} \given u F v \land u \in A }
-	\]为“关系\(F\)在集合\(A\)上的\DefineConcept{限制}%
+	\]为“\(F\)在\(A\)上的\DefineConcept{限制}%
 	（the \emph{restriction} of \(F\) to \(A\)）”，
 	记作\(F \upharpoonright A\).
 
 	\item 称集合\[
 		\Set*{ v \given \exists u \in A \bigl( u F v \bigr) }
-	\]为“集合\(A\)在关系\(F\)下的\DefineConcept{像}%
+	\]为“\(A\)在\(F\)下的\DefineConcept{像}%
 	（the \emph{image} of \(A\) under \(F\)）”，
 	记作\(F\ImageOfSetUnderRelation{A}\).
 \end{enumerate}
@@ -1475,6 +1357,129 @@ f \circ g: X \to Z,
 	使得“\(F \circ H\)是\(B\)上的恒等映射”与“\(F\)是满射”互为充要条件.
 \end{enumerate}
 \end{theorem}
+
+
+
+
+
+\begin{example}
+设映射\(f\colon X \to Y\)，\(A \subseteq X\).
+证明：\(x \in A\)是\(f(x) \in f(A)\)的充分不必要条件.
+\begin{proof}
+根据值域的定义\[
+	f(A) = \Set{ f(x) \given x \in A },
+\]
+易证充分性\(x \in A \implies f(x) \in f(A)\).
+
+设\(A,B\)是\(X\)的非空子集，且\[
+	A \cap B = \emptyset,
+	\qquad
+	A \cup B = X,
+	\qquad
+	f(A) = f(B).
+\]那么有\[
+	f(A) = f(B) = f(X) \subseteq Y,
+\]\[
+	f(x) \in f(X) \iff x \in X \iff x \in A \lor x \in B,
+\]也即\[
+	f(x) \in f(A) \implies x \in A \lor x \in B,
+\]
+于是\(f(x) \in f(A) \notimplies x \in A\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设映射\(f\colon X \to Y\)，\(A \subseteq X\)，\(B \subseteq X\)，试证：\begin{enumerate}
+	\item \(f(A \cup B) = f(A) \cup f(B)\)；
+	\item \(f(A \cap B) \subseteq f(A) \cap f(B)\).
+\end{enumerate}
+\begin{proof}
+\def\fran#1{ \Set{ f(x) \given #1 } }
+根据值域的定义，有\[
+	f(A) = \fran{x \in A},
+	\qquad
+	f(B) = \fran{x \in B}.
+\]所以\[
+	\begin{split}
+		f(A) \cup f(B)
+		&= \fran{x \in A} \cup \fran{x \in B} \\
+		&= \fran{x \in A \lor x \in B} \\
+		&= \fran{x \in A \cup B}.
+	\end{split}
+\]
+
+另一方面，因为\[
+	\begin{split}
+		&x \in A \cap B
+		\iff
+		x \in A \lor x \in B \\
+		&\implies
+		f(x) \in f(A) \lor f(x) \in f(B) \\
+		&\iff
+		f(x) \in f(A) \cup f(B),
+	\end{split}
+\]所以\[
+	f(A \cap B) = \fran{x \in A \cap B}
+	\subseteq f(A) \cup f(B).
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{满射，单射，双射}
+正如我们在上一小节讨论的那样，
+对\(\forall x \in X\)，\(x\)的像\(y\)是唯一的；
+而对每个\(y \in \ran f\)，\(y\)的原像不一定是唯一的；
+映射\(f\)的值域\(\ran f\)是\(Y\)的一个子集，
+即\(\ran f \subseteq Y\)，但不一定\(\ran f = Y\).
+
+\begin{definition}
+	设\(f\)为\(X\)到\(Y\)的映射，即\(f\colon X \to Y\).
+	\begin{enumerate}
+		\item 如果\(R_f = Y\)，即\[
+			\forall y \in Y, \exists x \in X:
+			f(x) = y,
+		\]
+		那么称“\(f\)是\DefineConcept{满射}（surjective）”.
+
+		\item 如果对于每个\(x \in X\)有且只有一个\(y \in Y\)与之对应，即\[
+			\forall x_1, x_2 \in X:
+			x_1 \neq x_2
+			\implies
+			f(x_1) \neq f(x_2),
+		\]
+		那么称“\(f\)是\DefineConcept{单射}（injective）或\DefineConcept{嵌入}”.
+
+		\item 如果\(f\)既是单射，又是满射，即
+		那么称“\(f\)是\DefineConcept{双射}（bijective）”.
+	\end{enumerate}
+\end{definition}
+
+映射又称为\DefineConcept{算子}.
+根据集合\(X\)、\(Y\)的不同情形，在不同的数学分支中，映射又有不同的惯用名称.
+例如，从非空集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{泛函}；
+从非空集\(X\)到\(X\)的映射又称为\(X\)上的\DefineConcept{变换}；
+从数集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{函数}.
+
+\subsection{复合映射}
+\begin{definition}
+设有两个映射\[
+g\colon X \to Y_1, \quad f\colon Y_2 \to Z,
+\]其中\(Y_1 \subseteq Y_2\)；
+则由映射\(g\)和\(f\)可以定出一个从\(X\)到\(Z\)的对应法则，
+它使每个\(x \in X\)映成\(f[g(x)] \in Z\).
+显然，这个对应法则确定了一个从\(X\)到\(Z\)的映射，
+这个映射称为映射\(g\)和\(f\)构成的\DefineConcept{复合映射}，记作\(f \circ g\)，即\[
+f \circ g: X \to Z,
+\]\[
+(f \circ g)(x) = f[g(x)], \quad x \in X.
+\]
+
+由复合映射的定义可知，映射\(g\)和\(f\)构成复合映射的条件是：
+\(g\)的值域\(R_g\)必须包含在\(f\)的定义域内，即\(R_f \subseteq D_f\).否则不能构成复合映射.
+由此可知，映射\(g\)和\(f\)的复合是有顺序的，\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
+即是\(f \circ g\)和\(g \circ f\)都有意义，复合映射\(f \circ g\)和\(g \circ f\)也未必相同.
+\end{definition}
 
 \begin{example}
 设\(f\colon A \to B, g\colon B \to C\).
