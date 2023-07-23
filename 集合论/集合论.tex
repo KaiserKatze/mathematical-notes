@@ -1182,7 +1182,8 @@ x \in \bigcap B = \bigcap_i b_i
 那么称“\(f\)是从\(X\)到\(Y\)上的映射%
 （\(f\) is a function from \(X\) \emph{onto} \(Y\)）”，
 或称“\(f\)将\(X\)映射到\(Y\)上%
-（\(f\) \emph{maps} \(X\) \emph{onto} \(Y\)）”.
+（\(f\) \emph{maps} \(X\) \emph{onto} \(Y\)）”，
+或称“\(f\)是\DefineConcept{满射}（surjective）”.
 我们可以说“任意映射总将它的定义域映射到它的值域上”，
 还可以说“任意映射总把它的定义域映射到以它的值域为子集的任意集合\(B\)里”.
 注意到两种说法的区别，“上”字和“里”字的选用，
@@ -1190,8 +1191,7 @@ x \in \bigcap B = \bigcap_i b_i
 
 如果\[
 	\forall y \in \ran f,
-	\exists! x:
-	x f y,
+	\exists! x \bigl( x f y \bigr),
 \]
 那么称“映射\(f\)是\DefineConcept{一一映射}（one-to-one）”.
 
@@ -1210,6 +1210,48 @@ x \in \bigcap B = \bigcap_i b_i
 
 因此，我们可以说，“一个映射是单根的”当且仅当“这个映射是一一映射”.
 
+如果\[
+	\forall x_1, x_2 \in \dom f
+	\bigl[ x_1 \neq x_2 \implies f(x_1) \neq f(x_2) \bigr],
+\]
+那么称“\(f\)是\DefineConcept{单射}（injective）”.
+由于映射本就是单值的，若它还是单根的，那么这个映射就是单射；
+换句话说，一一映射和单射是相同的概念.
+
+如果\(f\)既是单射，又是满射，即
+那么称“\(f\)是\DefineConcept{双射}（bijective）\footnote{%
+有的书可能会把双射称作一一映射，但是我们不采取这种说法.
+}”.
+
+
+\begin{example}
+设\(f\colon A \to B, g\colon B \to C\).
+证明：\begin{enumerate}
+	\item 如果\(f\)和\(g\)都是单射，那么\(g \circ f\)也是单射；
+	\item 如果\(f\)和\(g\)都是满射，那么\(g \circ f\)也是满射；
+	\item 如果\(f\)和\(g\)都是双射，那么\(g \circ f\)也是双射；
+	\item 如果\(f\)和\(g\)都是可逆映射，那么\(g \circ f\)也是可逆映射.
+\end{enumerate}
+\begin{proof}
+当\(f\)和\(g\)都是单射时.设\(a_1,a_2 \in A\).
+如果\((g \circ f)(a_1) = (g \circ f)(a_2)\)，那么\(g[f(a_1)] = g[f(a_2)]\).
+由于\(g\)是单射，因此\(f(a_1) = f(a_2)\).
+由于\(f\)是单射，因此\(a_1 = a_2\).
+综上，\(g \circ f\)是单射.
+
+当\(f\)和\(g\)都是满射时.任取\(c \in C\).
+由于\(g\)是满射，因此存在\(b \in B\)，使得\(c = g(b)\).
+由于\(f\)是满射，因此存在\(a \in A\)，使得\(b = f(a)\).
+因此\(c = g(b) = g[f(a)] = (g \circ f)(a)\)，也就是说\(g \circ f\)是满射.
+
+双射的情形，根据单射、满射的情形显然成立.
+
+可逆映射的情形，根据双射的情形以及\cref{theorem:集合论.映射可逆的充要条件} 即得.
+\end{proof}
+\end{example}
+
+
+\subsection{逆，复合，限制，像，原像}
 以下定义的操作通常用在映射上，有时候也用于关系，但也可以用于任意集合.
 \begin{definition}
 设\(A,F,G\)都是集合.
@@ -1320,7 +1362,7 @@ x \in \bigcap B = \bigcap_i b_i
 \end{theorem}
 
 \begin{theorem}\label{theorem:集合论.映射可逆的充要条件}
-映射\(f\colon A \to B\)可逆的充要条件是：\(f\)是双射.
+映射\(f\)可逆的充要条件是：\(f\)是双射.
 \end{theorem}
 
 \begin{theorem}
@@ -1392,6 +1434,9 @@ x \in \bigcap B = \bigcap_i b_i
 于是就有\(x \in \dom G\)和\(t = G(x) \in \dom F\).
 \end{proof}
 \end{theorem}
+
+容易看出，映射的复合是有顺序的，\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
+即便两者都有意义，它们也未必相同.
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P47. Theorem 3I
@@ -1579,152 +1624,19 @@ x \in \bigcap B = \bigcap_i b_i
 \end{proof}
 \end{theorem}
 
-
-
-\begin{example}
-设映射\(f\colon X \to Y\)，\(A \subseteq X\).
-证明：\(x \in A\)是\(f(x) \in f(A)\)的充分不必要条件.
-\begin{proof}
-根据值域的定义\[
-	f(A) = \Set{ f(x) \given x \in A },
-\]
-易证充分性\(x \in A \implies f(x) \in f(A)\).
-
-设\(A,B\)是\(X\)的非空子集，且\[
-	A \cap B = \emptyset,
-	\qquad
-	A \cup B = X,
-	\qquad
-	f(A) = f(B).
-\]那么有\[
-	f(A) = f(B) = f(X) \subseteq Y,
-\]\[
-	f(x) \in f(X) \iff x \in X \iff x \in A \lor x \in B,
-\]也即\[
-	f(x) \in f(A) \implies x \in A \lor x \in B,
-\]
-于是\(f(x) \in f(A) \notimplies x \in A\).
-\end{proof}
-\end{example}
-
-\begin{example}
-设映射\(f\colon X \to Y\)，\(A \subseteq X\)，\(B \subseteq X\)，试证：\begin{enumerate}
-	\item \(f(A \cup B) = f(A) \cup f(B)\)；
-	\item \(f(A \cap B) \subseteq f(A) \cap f(B)\).
-\end{enumerate}
-\begin{proof}
-\def\fran#1{ \Set{ f(x) \given #1 } }
-根据值域的定义，有\[
-	f(A) = \fran{x \in A},
-	\qquad
-	f(B) = \fran{x \in B}.
-\]所以\[
-	\begin{split}
-		f(A) \cup f(B)
-		&= \fran{x \in A} \cup \fran{x \in B} \\
-		&= \fran{x \in A \lor x \in B} \\
-		&= \fran{x \in A \cup B}.
-	\end{split}
-\]
-
-另一方面，因为\[
-	\begin{split}
-		&x \in A \cap B
-		\iff
-		x \in A \lor x \in B \\
-		&\implies
-		f(x) \in f(A) \lor f(x) \in f(B) \\
-		&\iff
-		f(x) \in f(A) \cup f(B),
-	\end{split}
-\]所以\[
-	f(A \cap B) = \fran{x \in A \cap B}
-	\subseteq f(A) \cup f(B).
-	\qedhere
-\]
-\end{proof}
-\end{example}
-
-\subsection{满射，单射，双射}
-正如我们在上一小节讨论的那样，
-对\(\forall x \in X\)，\(x\)的像\(y\)是唯一的；
-而对每个\(y \in \ran f\)，\(y\)的原像不一定是唯一的；
-映射\(f\)的值域\(\ran f\)是\(Y\)的一个子集，
-即\(\ran f \subseteq Y\)，但不一定\(\ran f = Y\).
-
-\begin{definition}
-	设\(f\)为\(X\)到\(Y\)的映射，即\(f\colon X \to Y\).
-	\begin{enumerate}
-		\item 如果\(R_f = Y\)，即\[
-			\forall y \in Y, \exists x \in X:
-			f(x) = y,
-		\]
-		那么称“\(f\)是\DefineConcept{满射}（surjective）”.
-
-		\item 如果对于每个\(x \in X\)有且只有一个\(y \in Y\)与之对应，即\[
-			\forall x_1, x_2 \in X:
-			x_1 \neq x_2
-			\implies
-			f(x_1) \neq f(x_2),
-		\]
-		那么称“\(f\)是\DefineConcept{单射}（injective）或\DefineConcept{嵌入}”.
-
-		\item 如果\(f\)既是单射，又是满射，即
-		那么称“\(f\)是\DefineConcept{双射}（bijective）”.
-	\end{enumerate}
-\end{definition}
-
-映射又称为\DefineConcept{算子}.
-根据集合\(X\)、\(Y\)的不同情形，在不同的数学分支中，映射又有不同的惯用名称.
-例如，从非空集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{泛函}；
-从非空集\(X\)到\(X\)的映射又称为\(X\)上的\DefineConcept{变换}；
-从数集\(X\)到数集\(Y\)的映射又称为\(X\)上的\DefineConcept{函数}.
-
-\subsection{复合映射}
-\begin{definition}
-设有两个映射\[
-g\colon X \to Y_1, \quad f\colon Y_2 \to Z,
-\]其中\(Y_1 \subseteq Y_2\)；
-则由映射\(g\)和\(f\)可以定出一个从\(X\)到\(Z\)的对应法则，
-它使每个\(x \in X\)映成\(f[g(x)] \in Z\).
-显然，这个对应法则确定了一个从\(X\)到\(Z\)的映射，
-这个映射称为映射\(g\)和\(f\)构成的\DefineConcept{复合映射}，记作\(f \circ g\)，即\[
-f \circ g: X \to Z,
-\]\[
-(f \circ g)(x) = f[g(x)], \quad x \in X.
-\]
-
-由复合映射的定义可知，映射\(g\)和\(f\)构成复合映射的条件是：
-\(g\)的值域\(R_g\)必须包含在\(f\)的定义域内，即\(R_f \subseteq D_f\).否则不能构成复合映射.
-由此可知，映射\(g\)和\(f\)的复合是有顺序的，\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
-即是\(f \circ g\)和\(g \circ f\)都有意义，复合映射\(f \circ g\)和\(g \circ f\)也未必相同.
-\end{definition}
-
-\begin{example}
-设\(f\colon A \to B, g\colon B \to C\).
-证明：\begin{enumerate}
-\item 如果\(f\)和\(g\)都是单射，那么\(g \circ f\)也是单射；
-\item 如果\(f\)和\(g\)都是满射，那么\(g \circ f\)也是满射；
-\item 如果\(f\)和\(g\)都是双射，那么\(g \circ f\)也是双射；
-\item 如果\(f\)和\(g\)都是可逆映射，那么\(g \circ f\)也是可逆映射.
-\end{enumerate}
-\begin{proof}
-当\(f\)和\(g\)都是单射时.设\(a_1,a_2 \in A\).
-如果\((g \circ f)(a_1) = (g \circ f)(a_2)\)，那么\(g[f(a_1)] = g[f(a_2)]\).
-由于\(g\)是单射，因此\(f(a_1) = f(a_2)\).
-由于\(f\)是单射，因此\(a_1 = a_2\).
-综上，\(g \circ f\)是单射.
-
-当\(f\)和\(g\)都是满射时.任取\(c \in C\).
-由于\(g\)是满射，因此存在\(b \in B\)，使得\(c = g(b)\).
-由于\(f\)是满射，因此存在\(a \in A\)，使得\(b = f(a)\).
-因此\(c = g(b) = g[f(a)] = (g \circ f)(a)\)，也就是说\(g \circ f\)是满射.
-
-双射的情形，根据单射、满射的情形显然成立.
-
-可逆映射的情形，根据双射的情形以及\cref{theorem:集合论.映射可逆的充要条件} 即得.
-\end{proof}
-\end{example}
+\begin{corollary}
+%@see: 《Elements of Set Theory》 P48. Corollary 3L
+设\(G\)是映射，\(A,B\)都是集合.
+\def\G#1{G^{-1}\ImageOfSetUnderRelation{#1}}
+\begin{gather}
+	\G{\bigcup A} = \bigcup\Set*{ \G{a} \given a \in A },
+	\label{equation:集合论.并的原像与原像的并的关系} \\
+	\G{\bigcap A} = \bigcap\Set*{ \G{a} \given a \in A }, \quad A \neq \emptyset,
+	\label{equation:集合论.交的原像与原像的交的关系} \\
+	\G{A - B} = \G{A} - \G{B}.
+	\label{equation:集合论.差的原像与原像的差的关系}
+\end{gather}
+\end{corollary}
 
 \section{等价关系，偏序关系}
 \begin{definition}
