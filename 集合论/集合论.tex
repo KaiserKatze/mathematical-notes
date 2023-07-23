@@ -1088,54 +1088,6 @@ x \in \bigcap B = \bigcap_i b_i
 %TODO
 \end{example}
 
-
-
-
-
-
-
-\begin{definition}
-设\(\rel{R} \subseteq A^2\).
-\begin{itemize}
-	\item 对于\(\forall x \in A\)，若满足\[
-		x\rel{R}x,
-	\]
-	则称“关系\(\rel{R}\)具有\DefineConcept{自反性}（reflexive）”；
-
-	\item 对于\(\forall x,y \in A\)，若\[
-		x\rel{R}y \implies y\rel{R}x,
-	\]
-	则称“关系\(\rel{R}\)具有\DefineConcept{对称性}（symmetric）”；
-
-	\item 对于\(\forall x,y \in A\)，若\[
-		x\rel{R}y \land y\rel{R}x \implies x = y,
-	\]
-	则称“关系\(\rel{R}\)具有\DefineConcept{反对称性}（antisymmetric）”；
-
-	\item 对于\(\forall x,y,z \in A\)，若\[
-		x\rel{R}y \land y\rel{R}z \implies x\rel{R}z,
-	\]
-	则称“关系\(\rel{R}\)具有\DefineConcept{传递性}（transitive）”.
-\end{itemize}
-\end{definition}
-
-\begin{definition}
-已知\(\rel{R} \subseteq A^2\).
-\begin{itemize}
-	\item 如果关系\(\rel{R}\)同时具有自反性、对称性、传递性，
-	则称“关系\(\rel{R}\)是集合\(A\)上的\DefineConcept{等价关系}（equivalence）”.
-
-	\item 如果关系\(\rel{R}\)同时具有自反性、反对称性、传递性，
-	则称“关系\(\rel{R}\)是集合\(A\)上的\DefineConcept{偏序关系}（partial ordering）”.
-\end{itemize}
-\end{definition}
-
-
-
-
-
-
-
 \subsection{多元关系}
 我们可以将“有序对”和“二元关系”的概念分别扩展为“元组”和“多元关系”.
 
@@ -1143,18 +1095,29 @@ x \in \bigcap B = \bigcap_i b_i
 	\opair{x_1,x_2,x_3}
 	\defeq
 	\opair{\opair{x_1,x_2},x_3},
-\]称之为\DefineConcept{三元组}（triple）；
+\]
+称之为\DefineConcept{三元组}（triple）；
 定义\[
 	\opair{x_1,x_2,x_3,x_4}
 	\defeq
 	\opair{\opair{x_1,x_2,x_3},x_4},
-\]称之为\DefineConcept{四元组}（quadruple）.
-特别地，定义\[
-	\opair{x}
+\]
+称之为\DefineConcept{四元组}（quadruple）；
+定义\[
+	\opair{x_1,x_2,x_3,x_4,x_5}
 	\defeq
-	x,
-\]称之为\DefineConcept{一元组}（1-tuple）.
-我们将上述概念统称为\DefineConcept{元组}（n-tuple）.
+	\opair{\opair{x_1,x_2,x_3,x_4},x_5},
+\]
+称之为\DefineConcept{五元组}（quintuple）；
+以此类推，对于任意给定\(n\)，可以定义\(n\)元组（\(n\)-tuple）：\[
+	\opair{x_1,x_2,\dotsc,x_n}
+	\defeq
+	\opair{\opair{x_1,x_2,\dotsc,x_{n-1}},x_n}.
+\]
+为了让我们的定义看起来整齐划一，我们还可以补充定义\[
+	\opair{x} \defeq x,
+\]
+称之为\DefineConcept{一元组}（1-tuple）.
 
 又例如，我们把“在\(A\)上的\(n\)元\DefineConcept{关系}（n-ary relation）”定义为由\(n\)元组构成的集合.
 我们将二元关系、三元关系、四元关系等等，统称为\DefineConcept{多元关系}.
@@ -1533,6 +1496,45 @@ f \circ g: X \to Z,
 可逆映射的情形，根据双射的情形以及\cref{theorem:集合论.映射可逆的充要条件} 即得.
 \end{proof}
 \end{example}
+
+\section{等价关系，偏序关系}
+\begin{definition}
+设\(\rel{R} \subseteq A^2\).
+\begin{itemize}
+	\item 对于\(\forall x \in A\)，若满足\[
+		x\rel{R}x,
+	\]
+	则称“关系\(\rel{R}\)具有\DefineConcept{自反性}（reflexive）”；
+
+	\item 对于\(\forall x,y \in A\)，若\[
+		x\rel{R}y \implies y\rel{R}x,
+	\]
+	则称“关系\(\rel{R}\)具有\DefineConcept{对称性}（symmetric）”；
+
+	\item 对于\(\forall x,y \in A\)，若\[
+		x\rel{R}y \land y\rel{R}x \implies x = y,
+	\]
+	则称“关系\(\rel{R}\)具有\DefineConcept{反对称性}（antisymmetric）”；
+
+	\item 对于\(\forall x,y,z \in A\)，若\[
+		x\rel{R}y \land y\rel{R}z \implies x\rel{R}z,
+	\]
+	则称“关系\(\rel{R}\)具有\DefineConcept{传递性}（transitive）”.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+已知\(\rel{R} \subseteq A^2\).
+\begin{itemize}
+	\item 如果关系\(\rel{R}\)同时具有自反性、对称性、传递性，
+	则称“关系\(\rel{R}\)是集合\(A\)上的\DefineConcept{等价关系}（equivalence）”.
+
+	\item 如果关系\(\rel{R}\)同时具有自反性、反对称性、传递性，
+	则称“关系\(\rel{R}\)是集合\(A\)上的\DefineConcept{偏序关系}（partial ordering）”.
+\end{itemize}
+\end{definition}
+
+
 
 \section{自然数与集合的大小}
 在本节，我们要尝试利用集合论（尤其是空集、幂集和映射的概念）重新构建自然数系统，同时定义集合的大小的概念.
