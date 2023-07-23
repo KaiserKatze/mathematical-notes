@@ -1502,29 +1502,81 @@ x \in \bigcap B = \bigcap_i b_i
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P48. Theorem 3K
 设\(A,B,F\)都是集合.
+\def\F#1{F\ImageOfSetUnderRelation{#1}}
 \begin{enumerate}
 	\item 并的像是像的并：\begin{gather}
-		F\ImageOfSetUnderRelation{A \cup B}
-		= F\ImageOfSetUnderRelation{A} \cup F\ImageOfSetUnderRelation{B}, \\
-		F\ImageOfSetUnderRelation{\bigcup A}
-		= \bigcup\Set{ F\ImageOfSetUnderRelation{a} \given a \in A }.
+		\F{A \cup B}
+		= \F{A} \cup \F{B},
+		\label{equation:集合论.并的像与像的并的关系1} \\
+		\F{\bigcup A}
+		= \bigcup\Set{ \F{a} \given a \in A }.
+		\label{equation:集合论.并的像与像的并的关系2}
 	\end{gather}
 
 	\item 交的像包含于像的交：\begin{gather}
-		F\ImageOfSetUnderRelation{A \cap B}
-		\subseteq F\ImageOfSetUnderRelation{A} \cap F\ImageOfSetUnderRelation{B}, \\
-		F\ImageOfSetUnderRelation{\bigcap A}
-		\subseteq \bigcap\Set{ F\ImageOfSetUnderRelation{a} \given a \in A }.
+		\F{A \cap B}
+		\subseteq \F{A} \cap \F{B},
+		\label{equation:集合论.交的像与像的交的关系1} \\
+		\F{\bigcap A}
+		\subseteq \bigcap\Set{ \F{a} \given a \in A }.
+		\label{equation:集合论.交的像与像的交的关系2}
 		\quad(A \neq \emptyset)
 	\end{gather}
-	当且仅当\(F\)是单根的，以上两式取“=”号.
+	若\(F\)是单根的，则以上两式取“=”号.
 
 	\item 差的像包含像的差：\begin{equation}
-		F\ImageOfSetUnderRelation{A} - F\ImageOfSetUnderRelation{B}
-		\subseteq F\ImageOfSetUnderRelation{A-B}.
+		\F{A} - \F{B}
+		\subseteq \F{A-B}.
+		\label{equation:集合论.差的像与像的差的关系}
 	\end{equation}
-	当且仅当\(F\)是单根的，上式取“=”号.
+	若\(F\)是单根的，则上式取“=”号.
 \end{enumerate}
+\begin{proof}
+\cref{equation:集合论.并的像与像的并的关系1} 证明如下：
+\begin{align*}
+	y \in \F{A \cup B}
+	&\iff \exists x \in A \cup B \bigl( x F y \bigr) \\
+	&\iff \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
+			\lor \bigl[ \exists x \in B \bigl( x F y \bigr) \bigr] \\
+	&\iff y \in \F{A} \lor y \in \F{B}.
+\end{align*}
+
+\cref{equation:集合论.交的像与像的交的关系1} 证明如下：
+\begin{align*}
+	y \in \F{A \cap B}
+	&\iff \exists x \in A \cap B \bigl( x F y \bigr) \\
+	&\implies \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
+			\land \bigl[ \exists x \in B \bigl( x F y \bigr) \bigr] \\
+	&\iff y \in \F{A} \land y \in \F{B}.
+\end{align*}
+注意到中间步骤的\(\implies\)不总是可逆的，
+这时因为虽然有\[
+	\exists x_1 \in A \bigl( x_1 F y \bigr), \qquad
+	\exists x_2 \in B \bigl( x_2 F y \bigr),
+\]
+但是可能\[
+	\not\exists x \in A \cap B \bigl( x F y \bigr).
+\]
+不过，如果\(F\)是单根的，那么必有\(x_1 = x_2 \in A \cap B\)，
+这时候中间步骤的\(\implies\)是可逆的，可以改为\(\iff\).
+
+\cref{equation:集合论.并的像与像的并的关系2,equation:集合论.交的像与像的交的关系2} 分别是
+\cref{equation:集合论.并的像与像的并的关系1,equation:集合论.交的像与像的交的关系1} 的简单推广，
+故略去证明.
+
+\cref{equation:集合论.差的像与像的差的关系} 证明如下：
+\begin{align*}
+	y \in \F{A} - \F{B}
+	&\iff \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
+			\land \neg\bigl[ \exists t \in B \bigl( t F y \bigr) \bigr] \\
+	&\implies \exists x \in A - B \bigl( x F y \bigr) \\
+	&\iff y \in \F{A - B}.
+\end{align*}
+若\(F\)是单根的，则\[
+	\exists! x \bigl( x F y \bigr).
+\]
+这种情况下，中间步骤的\(\implies\)可以改为\(\iff\).
+\end{proof}
 \end{theorem}
 
 
