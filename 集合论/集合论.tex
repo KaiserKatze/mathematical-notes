@@ -1026,7 +1026,7 @@ x \in \bigcap B = \bigcap_i b_i
 从关系的定义可以看出，关系是有序对的集合.
 即便是看起来毫无意义的，只由一个有序对组成的集合，也可以看成是一个关系.
 我们自然会认为有的关系比别的关系更有意义，
-例如我们马上会提到的“映射”“等价关系”和“偏序关系”.
+例如我们马上会提到的“映射”“等价关系”和“排序关系”.
 
 \begin{definition}\label{definition:集合论.定义域与值域的定义}
 设\(R\)是集合.
@@ -1732,8 +1732,8 @@ x \in \bigcap B = \bigcap_i b_i
 那么\(\BigTimes_{i \in I} H(i) \neq \emptyset\).
 \end{axiom}
 
-\section{等价关系，偏序关系}
-\subsection{自反性，对称性，反对称性，传递性}
+\section{等价关系}
+\subsection{等价关系}
 \begin{definition}
 设\(\rel{R}\)是集合\(A\)上的二元关系，即\(\rel{R} \subseteq A^2\).
 \begin{itemize}
@@ -1746,11 +1746,6 @@ x \in \bigcap B = \bigcap_i b_i
 		x\rel{R}y \implies y\rel{R}x,
 	\]
 	则称“关系\(\rel{R}\)具有\DefineConcept{对称性}（symmetric）”；
-
-	\item 对于\(\forall x,y \in A\)，若\[
-		x\rel{R}y \land y\rel{R}x \implies x = y,
-	\]
-	则称“关系\(\rel{R}\)具有\DefineConcept{反对称性}（antisymmetric）”；
 
 	\item 对于\(\forall x,y,z \in A\)，若\[
 		x\rel{R}y \land y\rel{R}z \implies x\rel{R}z,
@@ -1771,16 +1766,10 @@ x \in \bigcap B = \bigcap_i b_i
 %TODO
 \end{example}
 
-\subsection{等价关系，偏序关系}
 \begin{definition}
 设\(\rel{R}\)是集合\(A\)上的二元关系，即\(\rel{R} \subseteq A^2\).
-\begin{itemize}
-	\item 如果\(\rel{R}\)同时具有自反性、对称性、传递性，
-	则称“\(\rel{R}\)是\(A\)上的\DefineConcept{等价关系}（equivalence relation）”.
-
-	\item 如果\(\rel{R}\)同时具有自反性、反对称性、传递性，
-	则称“\(\rel{R}\)是\(A\)上的\DefineConcept{偏序关系}（ordering relation）”.
-\end{itemize}
+如果\(\rel{R}\)同时具有自反性、对称性、传递性，
+则称“\(\rel{R}\)是\(A\)上的\DefineConcept{等价关系}（equivalence relation）”.
 \end{definition}
 
 \subsection{等价类划分}
@@ -2068,12 +2057,15 @@ x \in \bigcap B = \bigcap_i b_i
 \end{theorem}
 上述结论还可以推广到映射是\(F\colon A \times A \to A\)的情形.
 
+\section{排序关系}
+不同于等价关系，\DefineConcept{排序关系}（ordering relation）具有一些别致的性质.
+
 \subsection{线性序}
 \begin{definition}
 设\(A\)是集合，\(\rel{R}\)是\(A\)上的一个二元关系.
 如果\begin{enumerate}
 	\item \(\rel{R}\)具有传递性，
-	\item \(\rel{R}\)在\(A\)上满足\DefineConcept{三一律}（trichotomy），
+	\item \(\rel{R}\)在\(A\)上服从\DefineConcept{三一律}（trichotomy），
 	也就是说，对于\(\forall x,y \in A\)，
 	在以下三个命题中，有且仅有一个是真命题：\[
 		x \rel{R} y, \qquad
@@ -2110,10 +2102,68 @@ x \in \bigcap B = \bigcap_i b_i
 \end{enumerate}
 \end{theorem}
 
+值得注意的是，
+线性序\(\rel{R}\)永远不会给出如下的环形：
+\begin{center}
+	\begin{tikzpicture}
+		\fill(1,0)circle(2pt)coordinate(A0);
+		\fill({cos(72)},{sin(72)})circle(2pt)coordinate(A1);
+		\fill({cos(144)},{sin(144)})circle(2pt)coordinate(A2);
+		\fill({cos(216)},{sin(216)})circle(2pt)coordinate(A3);
+		\fill({cos(288)},{sin(288)})circle(2pt)coordinate(A4);
+		\begin{scope}[->]
+			\draw(A0)arc[start angle=0,end angle=68,radius=1]node[midway,above right]{\(x_1 \rel{R} x_2\)};
+			\draw(A1)arc[start angle=72,end angle=140,radius=1]node[midway,above left]{\(x_2 \rel{R} x_3\)};
+			\draw(A2)arc[start angle=144,end angle=212,radius=1]node[midway,left]{\(x_3 \rel{R} x_4\)};
+			\draw(A3)arc[start angle=216,end angle=284,radius=1]node[midway,below left]{\(x_4 \rel{R} x_5\)};
+			\draw(A4)arc[start angle=288,end angle=356,radius=1]node[midway,below right]{\(x_5 \rel{R} x_1\)};
+		\end{scope}
+	\end{tikzpicture}
+\end{center}
+这是因为，如果我们有这样的环形成立，
+那么根据传递性必有\(x_1 \rel{R} x_1\)，
+而这就与反自反性矛盾！
 
+\begin{example}
+设\(\rel{R}\)是\(A\)上的一个线性序，
+证明：\(\rel{R}^{-1}\)也是\(A\)上的线性序.
+\begin{proof}
+由于\[
+	\bigl( x \rel{R} y \land y \rel{R} z \implies x \rel{R} z \bigr)
+	\iff
+	\bigl( y \rel{R}^{-1} x \land z \rel{R}^{-1} y \implies z \rel{R}^{-1} x \bigr),
+\]
+可知\(\rel{R}^{-1}\)具有传递性.
+又因为\(\rel{R}\)是\(A\)上的线性序，
+所以对于\(\forall x,y \in A\)，以下三个命题\[
+	x \rel{R} y, \qquad
+	x = y, \qquad
+	y \rel{R} x
+\]有且仅有一个成立；
+换句话说，以下三个命题\[
+	y \rel{R}^{-1} x, \qquad
+	x = y, \qquad
+	x \rel{R}^{-1} y
+\]有且仅有一个成立；
+可知\(\rel{R}^{-1}\)服从三一律.
+综上所述，\(\rel{R}^{-1}\)也是\(A\)上的线性序.
+\end{proof}
+\end{example}
 
+\subsection{偏序关系}
+\begin{definition}
+设\(\rel{R}\)是集合\(A\)上的二元关系，即\(\rel{R} \subseteq A^2\).
+对于\(\forall x,y \in A\)，若\[
+	x\rel{R}y \land y\rel{R}x \implies x = y,
+\]
+则称“关系\(\rel{R}\)具有\DefineConcept{反对称性}（antisymmetric）”.
+\end{definition}
 
-
+\begin{definition}
+设\(\rel{R}\)是集合\(A\)上的二元关系，即\(\rel{R} \subseteq A^2\).
+如果\(\rel{R}\)同时具有自反性、反对称性、传递性，
+则称“\(\rel{R}\)是\(A\)上的\DefineConcept{偏序关系}（ordering relation）”.
+\end{definition}
 
 
 
