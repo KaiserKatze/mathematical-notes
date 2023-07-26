@@ -910,11 +910,12 @@ x \in \bigcap B = \bigcap_i b_i
 
 在宣称\cref{definition:集合论.直积} 合法以前，
 我们必须确认它给出的收集\(A \times B\)是不是真的是一个集合.
+设符号\(\lambda(t)\)表示“与\(t\)有关的命题公式”，
 我们在运用描述法记号\[
 	\Set{ t \given \lambda(t) }
 \]表记一个集合时，必须验证是不是真的存在一个集合\(D\)，使得\[
 	\forall t \bigl( t \in D \iff \lambda(t) \bigr)
-\]成立，其中\(\lambda(t)\)表示与\(t\)有关的命题公式.
+\]成立.
 例如，虽然\[
 	\Set{ x \given x = x }
 	\quad\text{和}\quad
@@ -967,19 +968,52 @@ x \in \bigcap B = \bigcap_i b_i
 
 \begin{example}
 %@see: 《Elements of Set Theory》 P38. Exercise 2.(a)
-证明：\begin{equation}
-	A \times (B \cup C) = (A \times B) \cup (A \times C).
-\end{equation}
+%@see: 《Elements of Set Theory》 P65. Exercise 54.
+设\(A,B,C\)是集合.
+证明：\begin{gather}
+	A \times (B \cup C) = (A \times B) \cup (A \times C),
+	\label{equation:集合论.直积分配律1} \\
+	A \times (B \cap C) = (A \times B) \cap (A \times C),
+	\label{equation:集合论.直积分配律2} \\
+	A \times (B - C) = (A \times B) - (A \times C).
+	\label{equation:集合论.直积分配律3}
+\end{gather}
 \begin{proof}
+对\cref{equation:集合论.直积分配律1} 证明如下：
 由于对于任意\(w = \opair{x,y}\)总有
 \begin{align*}
 	w \in A \times (B \cup C)
 	&\iff x \in A \land y \in B \cup C \\
 	&\iff x \in A \land (y \in B \lor y \in C) \\
-	&\iff x \in A \land y \in B \lor x \in A \land y \in C \\
-	&\iff w \in A \times B \lor w \in A \times C,
+	&\iff (x \in A \land y \in B) \lor (x \in A \land y \in C) \\
+	&\iff (w \in A \times B) \lor (w \in A \times C),
 \end{align*}
 那么由外延公理可知\(A \times (B \cup C) = (A \times B) \cup (A \times C)\).
+
+对\cref{equation:集合论.直积分配律2} 证明如下：
+由于对于任意\(w = \opair{x,y}\)总有
+\begin{align*}
+	w \in A \times (B \cap C)
+	&\iff x \in A \land y \in B \cap C \\
+	&\iff x \in A \land (y \in B \land y \in C) \\
+	&\iff (x \in A \land y \in B) \land (x \in A \land y \in C) \\
+	&\iff (w \in A \times B) \land (w \in A \times C),
+\end{align*}
+那么由外延公理可知\(A \times (B \cap C) = (A \times B) \cap (A \times C)\).
+
+对\cref{equation:集合论.直积分配律3} 证明如下：
+由于对于任意\(w = \opair{x,y}\)总有
+\begin{align*}
+	w \in A \times (B - C)
+	&\iff x \in A \land y \in (B - C) \\
+	&\iff x \in A \land (y \in B \land y \notin C) \\
+	&\iff (x \in A \land y \in B \land x \notin A)
+		\lor (x \in A \land y \in B \land y \notin C) \\
+	&\iff (x \in A \land y \in B) \land (x \notin A \lor y \notin C) \\
+	&\iff (x \in A \land y \in B) \land \neg(x \in A \land y \in C) \\
+	&\iff w \in A \times B \land w \notin A \times C,
+\end{align*}
+那么由外延公理可知\(A \times (B - C) = (A \times B) - (A \times C)\).
 \end{proof}
 \end{example}
 
