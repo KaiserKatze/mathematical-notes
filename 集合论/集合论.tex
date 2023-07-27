@@ -305,9 +305,7 @@
 
 \begin{theorem}\label{theorem:集合论.系的交的唯一存在性}
 %@see: 《Elements of Set Theory》 P25. Theorem 2B
-对于任意非空集合\(A\)，%
-存在唯一的集合\(B\)，%
-使得对于任意\(x\)，有\[
+对于任意非空集合\(A\)，存在唯一的集合\(B\)，使得对于任意\(x\)，有\[
 	x \in B
 	\iff
 	\forall a \in A \bigl( x \in a \bigr).
@@ -2263,82 +2261,97 @@ x \in \bigcap B = \bigcap_i b_i
 则称“\(\rel{R}\)是\(A\)上的\DefineConcept{偏序关系}（ordering relation）”.
 \end{definition}
 
-
-
-
-
-
 \section{自然数与集合的大小}
-在本节，我们要尝试利用集合论（尤其是空集、幂集和映射的概念）重新构建自然数系统，同时定义集合的大小的概念.
+一般而言，我们有两种途径，可以引入新的数学研究对象：公理法和构造法.
+我们已经利用公理法引入了集合的概念.
+集合是我们基于数学直觉和日常生活的原始认知之一.
+在处理集合时，我们初步建立了一系列的公理%
+（包括外延公理、对集公理、并集公理、幂集公理、子集公理、选择公理等）.
+
+在本节，我们要尝试引入自然数系统.
+皮亚诺曾经给出过自然数的公理化定义.
+但是我们不采纳公理法，转而采用构造法，
+即基于集合的概念，定义自然数的概念，
+通过对自然数的必要的性质的证明，取代皮亚诺公理体系.
 
 \subsection{归纳集}
 在前面我们看到，利用空集和幂集的概念，我们可以构造出一系列集合如下：
-\[\begin{aligned}
-\emptyset
-&\to
-\Powerset\emptyset = \NaturalSet{1} \\
-&\hspace{1cm}\to
-\Powerset\NaturalSet{1} = \NaturalSet{2} \\
-&\hspace{2cm}\to
-\Powerset\NaturalSet{2} = \NaturalSet{3} \\
-&\hspace{3cm}\to
-\dotsb
-\end{aligned}\]
+\begin{align*}
+	\emptyset
+	&\to
+	\Powerset\emptyset = \NaturalSet{1} \\
+	&\hspace{1cm}\to
+	\Powerset\NaturalSet{1} = \NaturalSet{2} \\
+	&\hspace{2cm}\to
+	\Powerset\NaturalSet{2} = \NaturalSet{3} \\
+	&\hspace{3cm}\to
+	\dotsb
+\end{align*}
 
 于是我们可以作出以下定义：
 \begin{definition}[后继]\label{definition:集合论.后继的定义}
-对于任意集合\(a\)，定义它的\DefineConcept{后继} \(a^+\)如下：\[
-a^+ \defeq a \cup \{a\}.
+对于任意集合\(a\)，把集合\[
+	a \cup \Set{a}
 \]
+称为“\(a\)的\DefineConcept{后继}（successor）”，记为\(a^+\).
 \end{definition}
+
 利用后继的符号，我们就可以将本节开头构造的一系列集合重写为\[
-\emptyset
-\to \emptyset^+
-\to \emptyset^{++}
-\to \emptyset^{+++}
-\to \dotsb
-\]容易发现，这些集合具有以下两个奇妙的性质：\[
-\emptyset
-\in \emptyset^+
-\in \emptyset^{++}
-\in \emptyset^{+++}
-\in \dotsb
+	\emptyset
+	\to \emptyset^+
+	\to \emptyset^{++}
+	\to \emptyset^{+++}
+	\to \dotsb
+\]
+容易发现，这些集合具有以下两个奇妙的性质：\[
+	\emptyset
+	\in \emptyset^+
+	\in \emptyset^{++}
+	\in \emptyset^{+++}
+	\in \dotsb
 \]以及\[
-\emptyset
-\subsetneqq \emptyset^+
-\subsetneqq \emptyset^{++}
-\subsetneqq \emptyset^{+++}
-\subsetneqq \dotsb
+	\emptyset
+	\subsetneqq \emptyset^+
+	\subsetneqq \emptyset^{++}
+	\subsetneqq \emptyset^{+++}
+	\subsetneqq \dotsb
 \]
 
 \begin{definition}[归纳集]\label{definition:集合论.归纳集的定义}
-如果集合\(A\)满足\(\emptyset \in A\)，%
-且“\(A\)对后继封闭（即\(\forall a \in A : a^+ \in A\)）”，%
-则称“集合\(A\)是\DefineConcept{归纳的}（inductive）”，%
+如果集合\(A\)满足
+\begin{itemize}
+	\item 空集是\(A\)的元素，即\[
+		\emptyset \in A,
+	\]
+	\item 且\(A\)对后继封闭，即\[
+		\forall a \in A : a^+ \in A,
+	\]
+\end{itemize}
+则称“集合\(A\)是\DefineConcept{归纳的}（inductive）”，
 或“集合\(A\)是\DefineConcept{归纳集}（inductive set）”.
 \end{definition}
 利用列举法，我们可以将归纳集\(A\)表示为如下的一般形式：\[
-A = \Set{
- \emptyset, \emptyset^+, \emptyset^{++}, \dotsc,
- a, a^+, a^{++}, \dotsc,
- b, b^+, b^{++}, \dotsc
-}.
+	A = \Set{
+		\emptyset, \emptyset^+, \emptyset^{++}, \dotsc,
+		a, a^+, a^{++}, \dotsc,
+		b, b^+, b^{++}, \dotsc
+	}.
 \]
 
 \subsection{无穷公理}
-尽管“归纳集”的概念在形式上有了清晰的定义，%
-我们可以照此方法尝试构造无穷多个不同的集合，%
-但是由于我们尚未建立确保“无穷集”存在的公理，%
-我们就无法证明存在这样一个“拥有无穷多个元素的集合”，%
+尽管“归纳集”的概念在形式上有了清晰的定义，
+我们可以照此方法尝试构造无穷多个不同的集合，
+但是由于我们尚未建立确保“无穷集”存在的公理，
+我们就无法证明存在这样一个“拥有无穷多个元素的集合”，
 因此我们也就不能证明任何“归纳集”真实存在.
 于是我们要用“无穷公理”补上这个漏洞.
 \begin{axiom}[无穷公理]
 总存在一个集合\(A\)是归纳集，即\[
-\exists A \bigl(
-  \emptyset \in A
-  \land
-  \forall a \in A : a^+ \in A
-\bigr).
+	\exists A \bigl(
+		\emptyset \in A
+		\land
+		\forall a \in A : a^+ \in A
+	\bigr).
 \]
 \end{axiom}
 无穷公理在英语中称作Infinity Axiom.
@@ -2346,39 +2359,44 @@ A = \Set{
 \subsection{自然数}
 在无穷公理的加持下，我们终于可以定义自然数的概念了.
 \begin{definition}\label{definition:集合论.自然数的定义}
-如果集合\(a\)属于每一个归纳集，那么称其为\DefineConcept{自然数}（natural number）.
+如果集合\(a\)属于任意一个归纳集，那么称其为\DefineConcept{自然数}（natural number）.
 \end{definition}
 
-下面我们证明所有自然数的收集构成一个集合.
+下面我们证明“所有自然数的收集”构成一个集合.
 \begin{theorem}\label{theorem:集合论.自然数集存在定理}
 %@see: 《Elements of Set Theory》 P68. Theorem 4A
-存在这样一个集合：它的元素都是自然数.
+存在这样一个集合：它的元素都是自然数，任一自然数都是它的元素.
 \begin{proof}
 设\(A\)是一个归纳集（根据无穷公理，总可找到这样的\(A\)）.
 根据子集公理，%
 \[
-\exists w,
-\forall x
-\left(
-\begin{array}{rcl}
-x \in w
-&\iff& x \in A \land x\ \text{属于所有异于\(A\)的其他归纳集} \\
-&\iff& x\ \text{属于所有归纳集}
-\end{array}
-\right).
+	\exists w,
+	\forall x
+	\left(
+		\begin{array}{rcl}
+			x \in w
+			&\iff& x \in A \land x\ \text{属于所有异于\(A\)的其他归纳集} \\
+			&\iff& x\ \text{属于所有归纳集}
+		\end{array}
+	\right).
 \]
-于是集合\(w\)的所有元素都是自然数，%
+于是集合\(w\)的所有元素都是自然数，
 所有的自然数都是集合\(w\)的元素.
 \end{proof}
 \end{theorem}
+可以注意到，这个证明与\cref{theorem:集合论.系的交的唯一存在性} 的证明本质上相同.
+
 这里我们用小写希腊字母\(\omega\)表记所有自然数的集合.
-那么“\(x \in \omega\)”成立，当且仅当“\(x\)是一个自然数”成立；
-又或根据\hyperref[definition:集合论.自然数的定义]{自然数的定义}，当且仅当“\(x\)属于每一个归纳集”成立.
+从\cref{theorem:集合论.自然数集存在定理} 的证明过程可以看出：
+“\(x\)属于自然数集\(\omega\)”成立，
+当且仅当“\(x\)是一个自然数”成立，
+当且仅当“\(x\)属于每一个归纳集”成立.
 
 利用描述法可以将自然数集定义为：
 \[
-\omega
-\defeq \bigcap\Set{ A \given A\ \text{是归纳集} }.
+	\omega
+	\defeq
+	\bigcap\Set{ A \given A\ \text{是归纳集} }.
 \]
 特别注意到“全部归纳集构成的类不是一个集合”！
 
@@ -2388,13 +2406,13 @@ x \in w
 \begin{proof}
 设\(A\)是任意的一个归纳集.
 
-首先，由\hyperref[definition:集合论.归纳集的定义]{归纳集的定义}可知\(\emptyset \in A\)，%
-于是根据\hyperref[definition:集合论.自然数的定义]{自然数的定义}可知\(\emptyset \in \omega\).
+首先，由\hyperref[definition:集合论.归纳集的定义]{归纳集的定义}可知\(\emptyset \in A\)，
+于是\(\emptyset \in \omega\).
 
 其次，对于任意集合\(a\)，\(a \in \omega
-\implies a \in A
+\iff a \in A
 \implies a^+ \in A
-\implies a^+ \in \omega\).
+\iff a^+ \in \omega\).
 
 因此\(\omega\)是归纳集，且\(\omega\)是任意一个归纳集的子集.
 \end{proof}
