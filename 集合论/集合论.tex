@@ -279,8 +279,8 @@
 
 为了确保“系的并”这样的集合存在，我们需要改进并集公理，如下：
 \begin{axiom}[并集公理II]
-对于任意集合\(A\)，总存在一个集合\(B\)，%
-使得集合\(B\)中的元素都是集合\(A\)的子集，即\[
+对于任意集合\(A\)，总存在一个集合\(B\)，
+使得集合\(B\)中的元素恰好是集合\(A\)中的元素的元素，即\[
 	\forall x \Bigl[
 		x \in B
 		\iff
@@ -289,7 +289,12 @@
 \]
 \end{axiom}
 
-于是，原有的对于“集的并”的定义可以修改为\[
+我们可以将\(\bigcup A\)的定义表述为如下形式：\[
+	x \in \bigcup A
+	\iff
+	\exists b \in A \bigl( x \in b \bigr).
+\]
+原有的对于“集的并”的定义可以修改为\[
 	a \cup b \defeq \bigcup\Set{a,b}.
 \]
 
@@ -2269,26 +2274,49 @@ x \in \bigcap B = \bigcap_i b_i
 （包括外延公理、对集公理、并集公理、幂集公理、子集公理、选择公理等）.
 
 在本节，我们要尝试引入自然数系统.
-皮亚诺曾经给出过自然数的公理化定义.
+皮亚诺曾经在1889年给出过自然数的公理化定义.
 但是我们不采纳公理法，转而采用构造法，
 即基于集合的概念，定义自然数的概念，
 通过对自然数的必要的性质的证明，取代皮亚诺公理体系.
 
 \subsection{归纳集}
-在前面我们看到，利用空集和幂集的概念，我们可以构造出一系列集合如下：
-\begin{align*}
-	\emptyset
-	&\to
-	\Powerset\emptyset = \NaturalSet{1} \\
-	&\hspace{1cm}\to
-	\Powerset\NaturalSet{1} = \NaturalSet{2} \\
-	&\hspace{2cm}\to
-	\Powerset\NaturalSet{2} = \NaturalSet{3} \\
-	&\hspace{3cm}\to
-	\dotsb
+尽管自然数乍看之下不像是集合，
+但是我们还是可以构造特定的集合，把它们定义为数字.
+自然数的定义方式多种多样.
+在1908年，策梅洛提议用\[
+	\emptyset, \qquad
+	\Set{\emptyset}, \qquad
+	\Set{\Set{\emptyset}}, \qquad
+	\Set{\Set{\Set{\emptyset}}}, \qquad
+	\dotsc
+\]代表自然数.
+不久以后，冯·诺依曼提出了一种新的构造方式，
+由于其优点，它成为了用集合定义自然数的标准构造.
+冯诺依曼的构造方式的首要原则是把每个自然数看作所有“比它小的自然数”组成的集合.
+我们可以把前四个自然数定义如下：\begin{align*}
+	&0 \defeq \emptyset, \\
+	&1 \defeq \Powerset0 = \Set{0} = \NaturalSet{1}, \\
+	&2 \defeq \Powerset1 = \Set{0,1} = \NaturalSet{2}, \\
+	&3 \defeq \Powerset2 = \Set{0,1,2} = \NaturalSet{3}.
 \end{align*}
+我们可以继续照此方式定义任意多个自然数.
+可以注意到，在集合\(3=\Set{0,1,2}\)中有三个元素\(0,1,2\).
+如果说\(A_3\)表示由所有“具有三个元素的集合”组成的类，
+那么我们可以说集合\(3\)是\(A_3\)的代表.
 
-于是我们可以作出以下定义：
+容易发现，这些表示自然数的集合具有以下两个奇妙的性质：\[
+	0 \in 1 \in 2 \in 3 \in \dotsb,
+\]
+以及\[
+	0 \subseteq 1 \subseteq 2 \subseteq 3 \subseteq \dotsb.
+\]
+
+尽管我们已经给出了前四个自然数的定义，
+也摸索出了定义任意自然数的大致思路，
+但是我们还没有给出自然数的一般性定义.
+也就是说，我们还没有定义由全部自然数组成的集合.
+对于自然数集的确切定义是不能依赖类似由三个点表示的省略号或诸如“以此类推”这样的短语.
+因此，我们首先需要给出一些基本概念的定义.
 \begin{definition}[后继]\label{definition:集合论.后继的定义}
 对于任意集合\(a\)，把集合\[
 	a \cup \Set{a}
@@ -2296,26 +2324,14 @@ x \in \bigcap B = \bigcap_i b_i
 称为“\(a\)的\DefineConcept{后继}（successor）”，记为\(a^+\).
 \end{definition}
 
-利用后继的符号，我们就可以将本节开头构造的一系列集合重写为\[
-	\emptyset
-	\to \emptyset^+
-	\to \emptyset^{++}
-	\to \emptyset^{+++}
-	\to \dotsb
+利用后继符号，我们就可以将之前构造的用来表示自然数的集合重写为\[
+	0=\emptyset, \qquad
+	1=\emptyset^+, \qquad
+	2=\emptyset^{++}, \qquad
+	3=\emptyset^{+++}, \qquad
+	\dotsc
 \]
-容易发现，这些集合具有以下两个奇妙的性质：\[
-	\emptyset
-	\in \emptyset^+
-	\in \emptyset^{++}
-	\in \emptyset^{+++}
-	\in \dotsb
-\]以及\[
-	\emptyset
-	\subsetneqq \emptyset^+
-	\subsetneqq \emptyset^{++}
-	\subsetneqq \emptyset^{+++}
-	\subsetneqq \dotsb
-\]
+可以证明这些集合互不相等，例如\(\emptyset^+\neq\emptyset^{+++}\).
 
 \begin{definition}[归纳集]\label{definition:集合论.归纳集的定义}
 如果集合\(A\)满足
@@ -2330,6 +2346,9 @@ x \in \bigcap B = \bigcap_i b_i
 则称“集合\(A\)是\DefineConcept{归纳的}（inductive）”，
 或“集合\(A\)是\DefineConcept{归纳集}（inductive set）”.
 \end{definition}
+尽管我们还没有给出“无穷”或“无限”的正式定义，
+但是我们还是可以凭借数学直觉非正式地看出任意归纳集都是无限无尽的.
+
 利用列举法，我们可以将归纳集\(A\)表示为如下的一般形式：\[
 	A = \Set{
 		\emptyset, \emptyset^+, \emptyset^{++}, \dotsc,
@@ -2398,7 +2417,7 @@ x \in \bigcap B = \bigcap_i b_i
 	\defeq
 	\bigcap\Set{ A \given A\ \text{是归纳集} }.
 \]
-特别注意到“全部归纳集构成的类不是一个集合”！
+特别注意到：全部归纳集构成的类不是一个集合！
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P69. Theorem 4B
@@ -2410,36 +2429,43 @@ x \in \bigcap B = \bigcap_i b_i
 于是\(\emptyset \in \omega\).
 
 其次，对于任意集合\(a\)，\(a \in \omega
-\iff a \in A
+\implies a \in A
 \implies a^+ \in A
-\iff a^+ \in \omega\).
+\implies a^+ \in \omega\).
 
 因此\(\omega\)是归纳集，且\(\omega\)是任意一个归纳集的子集.
 \end{proof}
 \end{theorem}
 
+既然\(\omega\)是归纳的，
+那么根据归纳集的定义可知，\(0(=\emptyset)\)是自然数集的元素.
+因此\(1(=0^+)\)在自然数集中，同理\(2(=1^+)\)和\(3(=2^+)\)也都在自然数集中.
+于是我们说\(0,1,2,3\)都是自然数.
+非必要的数学对象（即不是自然数的集合）都不在\(\omega\)中，
 我们可以说：自然数集是“最小的”归纳集.
 这句话可以更严谨地表述为下述“归纳原理”.
 \begin{theorem}[归纳原理]
-自然数集\(\omega\)的任意归纳子集总是它自己.
+自然数集\(\omega\)的任意\DefineConcept{归纳子集}（{\rm inductive subset}）总是它自己.
 \end{theorem}
 
 这就引出“数学归纳法”的方法论，即：
-如果我们要证明形如“对于每个自然数\(n\)，涉及\(n\)的命题公式成立”的命题，我们可以基于自然数集\(\omega\)，构造一个集合\[
-T = \Set{ n \in \omega \given \text{“涉及\(n\)的命题公式”} }.
+如果我们要证明形如“对于每个自然数\(n\)，涉及\(n\)的命题公式\(\lambda(n)\)成立”的命题，
+我们可以基于自然数集\(\omega\)，构造一个集合\[
+	T = \Set{ n \in \omega \given \lambda(n) }.
 \]
-如果我们可以证明集合\(T\)是归纳的，那么证明就完成了.
+我们只要证明集合\(T\)是归纳的，
+就能证明命题“对于每个自然数\(n\)，涉及\(n\)的命题公式\(\lambda(n)\)成立”.
 
 我们可以马上利用数学归纳法证明下面这个定理：
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P69. Theorem 4C
-除了\(\emptyset\)以外，所有自然数都是某个自然数的后继.
+除了\(0\)以外，所有自然数都是某个自然数的后继.
 \begin{proof}
 令集合\[
-T = \Set{n \in \omega \given n = \emptyset \lor \exists p \in \omega : n = p^+ },
+	T = \Set*{ n \in \omega \given n = 0 \lor \exists p \in \omega \bigl( n = p^+ \bigr) },
 \]
-则\(\emptyset \in T\)，且\(k \in T \implies k^+ \in T\).
-因此\(T = \omega\).
+则\(0 \in T\)，且\(k \in T \implies k^+ \in T\).
+因此根据归纳原则可知\(T = \omega\).
 \end{proof}
 \end{theorem}
 
@@ -2454,18 +2480,26 @@ x \in a \in A \implies x \in A
 \bigr).
 \]
 \end{definition}
-传递集的概念也可等价地定义为以下三种形式：
+传递集\(A\)也可等价地定义为以下三种形式：
 \begin{enumerate}
 	\item \(\bigcup A \subseteq A\)；
 	\item \(a \in A \implies a \subseteq A\)；
 	\item \(A \subseteq \Powerset A\).
 \end{enumerate}
 
+这里我们要注意区分“关系的传递性”与“传递集”这两个概念，它们是根本不同的！
+
 \begin{example}
-空集\(\emptyset\)是传递集.
+证明：空集\(\emptyset\)是传递集.
 \begin{proof}
-假设空集不是传递集，那么根据传递集的定义可知，\(\exists a \in \emptyset, \exists x \in a (x \notin \emptyset)\).
-但是根据空集公理，空集中根本就不存在满足条件的\(a\)，矛盾，因此空集是传递集.
+假设空集不是传递集，那么根据传递集的定义可知，\[
+	\exists a, \exists x
+	\bigl(
+		x \in a \in \emptyset,
+		x \notin \emptyset
+	\bigr).
+\]
+但是根据空集公理，空集中根本就不存在满足条件的\(a\)，矛盾！因此空集是传递集.
 \end{proof}
 \end{example}
 
@@ -2475,9 +2509,18 @@ x \in a \in A \implies x \in A
 \def\A{\Set{ \emptyset, \b }}%
 集合\(\A\)不是一个传递集，%
 这是因为\[
-\a \in \b \in \A,
-\]\[
-\a \notin \A.
+	\a \in \b \in \A,
+	\quad\text{且}\quad
+	\a \notin \A.
+\]
+\end{example}
+
+\begin{example}
+\(\Set{0,1,5}\)也不是传递集，
+这是因为\[
+	4 \in 5 \in \Set{0,1,5},
+	\quad\text{且}\quad
+	4 \notin \Set{0,1,5}.
 \]
 \end{example}
 
@@ -2485,24 +2528,24 @@ x \in a \in A \implies x \in A
 %@see: 《Elements of Set Theory》 P73. Exercise 2.
 证明：如果\(a\)是传递集，那么\(a^+\)也是传递集.
 \begin{proof}
-因为\(a^+ = a \cup \{a\}\)，%
+根据后继的定义，\(a^+ = a \cup \{a\}\)，
 那么\[
-\forall x( x \in a^+ \implies x = a \lor x \in a ).
+	\forall x( x \in a^+ \implies x = a \lor x \in a ).
 \]
 
-当\(x = a\)时，%
-对于\(\forall t \in x\)，%
-因为\(x = a \subseteq a^+\)，%
+当\(x = a\)时，
+对于\(\forall t \in x\)，
+因为\(x = a \subseteq a^+\)，
 所以\(t \in a^+\).
 
-当\(x \in a\)时，%
+当\(x \in a\)时，
 因为\(a\)是传递集，所以\[
-\forall t
-(
-t \in x \in a
-\implies t \in a \subseteq a^+
-\implies t \in a^+
-).
+	\forall t
+	\bigl(
+		t \in x \in a
+		\implies t \in a \subseteq a^+
+		\implies t \in a^+
+	\bigr).
 \]
 
 综上所述，\(a^+\)也是传递集.
@@ -2540,21 +2583,55 @@ t \in x \in a
 
 \begin{example}
 %@see: 《Elements of Set Theory》 P73. Exercise 4.
-证明：如果\(a\)是传递集，那么\(\bigcup a\)也是传递集.
+证明：如果\(A\)是传递集，那么\(\bigcup A\)也是传递集.
+%TODO
+%\begin{proof}
+%要证\(B = \bigcup A\)也是传递集，即证\[
+%	\forall x, \forall b \left(
+%		x \in b \in B
+%		\implies
+%		x \in B
+%	\right);
+%\]
+%又因为\[
+%	\forall b \left(
+%		b \in B
+%		\iff
+%		\exists a \in A \bigl( b \in a \bigr)
+%	\right),
+%\]
+%所以只需证\[
+%	\forall x, \forall b, \exists a \left(
+%		x \in b \in a \in A
+%		\implies
+%		x \in B
+%	\right);
+%\]
+%
+%因为\(A\)是传递集，\[
+%	\forall x,\forall a \bigl(
+%		x \in a \in A
+%		\implies
+%		x \in A
+%	\bigr).
+%\]
+%\end{proof}
 \end{example}
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P69. Theorem 4E
-如果\(a\)是传递集，那么\(\bigcup a^+ = a\).
-\begin{proof}
-直接计算得\[
-\bigcup a^+
-= \bigcup (a \cup \{a\})
-= \bigcup a \cup \bigcup\{a\}
-= \bigcup a \cup a
-= a.
-\qedhere
+如果\(a\)是传递集，那么\[
+	\bigcup a^+ = a.
 \]
+\begin{proof}
+直接计算得\begin{align*}
+	\bigcup a^+
+	&= \bigcup (a \cup \{a\}) \\
+	&= \bigcup a \cup \bigcup\{a\} \\
+	&= \bigcup a \cup a \\
+	&= a.
+	\qedhere
+\end{align*}
 \end{proof}
 \end{theorem}
 
