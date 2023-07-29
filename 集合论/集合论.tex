@@ -1,4 +1,219 @@
-\chapter{集合论与数理逻辑}
+\chapter{数理逻辑}
+
+\section{数理逻辑概论}
+\subsection{命题的概念}
+\begin{definition}
+\DefineConcept{命题}（proposition），
+是指对确定的对象进行判断的“陈述句”.
+我们常用小写字母（如\(p,q\)等）表记命题.
+\end{definition}
+
+\begin{definition}
+如果命题\(p\)的判断正确，
+那么我们称“命题\(p\)是\DefineConcept{真的}（true）”，
+或称“命题\(p\)是\DefineConcept{真命题}”，
+或称“；
+如果命题\(p\)的判断错误，
+那么我们称“命题\(p\)是\DefineConcept{假的}（false）”，
+或称“命题\(p\)是\DefineConcept{假命题}”.
+\end{definition}
+
+对于一个命题，它要么是真命题，要么是假命题.
+悖论不能作为命题.
+
+我们可以用集合表示命题的真值.
+一般用空集\(\emptyset\)表示假命题，
+用任意非空集（例如\(\Set{\emptyset}\)）表示真命题.
+
+我们也可以用数字表示命题的真值.
+一般用\(0\)表示假命题，
+用任意非零整数（例如\(1\)）表示真命题.
+
+\begin{definition}
+\DefineConcept{逻辑联结词}（logical connectives），
+是指连接命题，对各个命题的真值进行运算的词，
+例如“\emph{且}”“\emph{或}”“\emph{不}”“\emph{非}”%
+“\emph{如果……那么……}”“\emph{当且仅当}”等.
+\end{definition}
+
+为了将逻辑联结词形式化，我们可以使用符号来代表逻辑联结词.
+
+\begin{table}[bp]
+	\centering
+	\begin{tabular}{*3c}
+		\hline
+		{\bf 概念} & {\bf 意义} & {\bf 符号} \\ \hline
+		\DefineConcept{否定词}（negative） & 不、非 & \(\neg\) \\
+		\DefineConcept{合取词}（conjunction） & 且、而且、并且 & \(\land\) \\
+		\DefineConcept{析取词}（disjunction） & 或、或者 & \(\lor\) \\
+		\DefineConcept{蕴涵词}（implication） & 如果……那么…… & \(\implies\) \\
+		\DefineConcept{等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
+	\end{tabular}
+	\caption{逻辑联结词}
+\end{table}
+
+\begin{definition}
+\DefineConcept{简单命题}或\DefineConcept{原子命题}（atom proposition），
+是指不含有逻辑联结词的命题.
+相反地，\DefineConcept{复合命题}（compound proposition），
+是指包含了简单命题和逻辑联结词的命题.
+\end{definition}
+
+逻辑联结词具有对命题的真值进行运算的效果，
+我们可以用\DefineConcept{真值表}来说明其具体效果.
+
+\begin{table}[ht]
+\centering
+\begin{subtable}[ht]{0.9\textwidth}
+	\centering
+	\begin{tabular}{|c|p{1.5cm}|}
+		\hline
+		\(p\) & \(\neg p\) \\ \hline
+		0 & 1 \\ \hline
+		1 & 0 \\ \hline
+	\end{tabular}
+	\caption{否定词“非”}
+\end{subtable}
+
+\begin{subtable}[ht]{0.45\textwidth}
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \land q\) \\ \hline
+		0 & 0 & 0 \\ \hline
+		0 & 1 & 0 \\ \hline
+		1 & 0 & 0 \\ \hline
+		1 & 1 & 1 \\ \hline
+	\end{tabular}
+	\caption{合取词“且”}
+\end{subtable}
+\begin{subtable}[ht]{0.45\textwidth}
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \lor q\) \\ \hline
+		0 & 0 & 0 \\ \hline
+		0 & 1 & 1 \\ \hline
+		1 & 0 & 1 \\ \hline
+		1 & 1 & 1 \\ \hline
+	\end{tabular}
+	\caption{析取词“或”}
+\end{subtable}
+
+\begin{subtable}[ht]{0.45\textwidth}
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \implies q\) \\ \hline
+		0 & 0 & 1 \\ \hline
+		0 & 1 & 1 \\ \hline
+		1 & 0 & 0 \\ \hline
+		1 & 1 & 1 \\ \hline
+	\end{tabular}
+	\caption{蕴涵词}
+\end{subtable}
+\begin{subtable}[ht]{0.45\textwidth}
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \iff q\) \\ \hline
+		0 & 0 & 1 \\ \hline
+		0 & 1 & 0 \\ \hline
+		1 & 0 & 0 \\ \hline
+		1 & 1 & 1 \\ \hline
+	\end{tabular}
+\caption{等价词}
+\end{subtable}
+\caption{单个逻辑联结词逻辑运算结果的真值表}
+\end{table}
+
+\begin{definition}
+如果有“\(p\)成立时\(q\)必成立”，
+记\(p \implies q\)，
+称“\(p\)是\(q\)的\DefineConcept{充分条件}”，
+或称“\(q\)是\(p\)的\DefineConcept{必要条件}”；
+分别称\(p\)和\(q\)为这个命题的\DefineConcept{蕴含前件}和\DefineConcept{蕴含后件}.
+\end{definition}
+
+在自然语言中，条件语句一般都具有内在的联系；
+而数理逻辑中的\emph{蕴含}则仅是命题的连接，不一定具有什么内在联系.
+
+\begin{property}
+只有当“\(p\)为真，且\(q\)为假”时，蕴含式\(p \implies q\)才为假.
+\end{property}
+可以观察发现，\(p \implies q\)的真值表与\(\neg p \land q\)的相同.
+
+\subsection{命题公式及其组成成分}
+\begin{definition}
+\DefineConcept{命题常元}（proposition constant），
+简称\DefineConcept{常元}（constant），
+表示具体命题.
+\DefineConcept{命题变元}（proposition variable），
+简称\DefineConcept{变元}（variable），
+表示以“真、假”或者“0、1”为取值范围的变量.
+\end{definition}
+
+\begin{definition}
+\DefineConcept{命题公式}（proposition formula），
+简称为\DefineConcept{公式}（formula），
+是指由命题常元、命题变元和逻辑联结词组成的命题.
+它有如下的归纳定义：
+\begin{enumerate}
+\item 命题常元和命题变元是命题公式，也称作\DefineConcept{原子公式}或\DefineConcept{原子}；
+\item 设\(A\)、\(B\)为命题公式，那么有\[
+	(\neg A), \qquad
+	(A \land B), \qquad
+	(A \lor B), \qquad
+	(A \implies B), \qquad
+	(A \iff B)
+\]也都是命题公式；
+\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+根据定义，\((\neg(p \implies (q \land r)))\)是命题公式.
+\((qp)\)缺少联结词，所以不是命题公式.
+\((p_1 \land (p_2 \land \dotsb))\)是无限的，所以不是命题公式.
+\end{example}
+
+为了简化书写，我们可以规定逻辑联结词的优先级顺序.
+逻辑联结词的优先级为：\[
+	\neg, \qquad
+	\land, \qquad
+	\lor, \qquad
+	\implies, \qquad
+	\iff.
+\]除非有括号，否则按照命题公式从左到右，按照优先级从高到低的次序结合.
+定义逻辑联结词的优先级的意义在于可以减少命题公式中的括号数量.
+
+\begin{example}
+\(((\neg p) \lor (q))\)等同于\(\neg p \lor q\).
+
+但\[
+	p \implies q \land r \implies s
+\]并非\[
+	((p \implies q) \land (r \implies s)),
+\]而应等同于\[
+	((p \implies (q \land r)) \implies s).
+\]
+\end{example}
+
+\begin{definition}
+如果对于一个公式，不论其命题变元取何值，该公式总为真，%
+则称该公式为\DefineConcept{永真式}或\DefineConcept{重言式}.
+\end{definition}
+
+常见的永真式列举如下：\begin{enumerate}
+	\item 肯定后件律 \(p \implies (q \implies p)\)；
+	\item 同一律 \(p \implies p\)；
+	\item 排中律 \(\neg p \lor p\)；
+	\item 矛盾律 \(\neg(\neg p \land p)\)；
+	\item 双重否定律 \(\neg\neg p \iff p\).
+\end{enumerate}
+
+
+\chapter{集合论}
 %@see: https://plato.stanford.edu/entries/set-theory/ZF.html
 
 \section{公理化集合论}
@@ -527,6 +742,9 @@
 	&\iff x \in \Powerset (A \cup B),
 \end{align*}
 那么根据外延公理可知\(\Powerset (A \cup B) \supseteq \Powerset A \cup \Powerset B\).
+注意到中间步骤的\(\implies\)通常不是可逆的，
+这是因为只要取\(a \subseteq A - B, b \subseteq B - A, x = a \cup b\)，
+就有\(x \subseteq A \cup B\)但是\(x \not\subseteq A \land x \not\subseteq B\).
 
 从上面的证明过程可以看出，
 当\[
@@ -3059,221 +3277,3 @@ S \subseteq U(O,r),
 则称“平面区域\(S\)是\DefineConcept{单连通的}（simply-connected）”；
 否则称“平面区域\(S\)是\DefineConcept{复连通的}（multiply-connected）”.
 \end{definition}
-
-
-
-
-
-
-
-
-
-
-\section{数理逻辑概论}
-\subsection{命题的概念}
-\begin{definition}
-\DefineConcept{命题}（proposition），%
-是指对确定的对象进行判断的“陈述句”.
-我们常用小写字母（如\(p,q\)等）表记命题.
-\end{definition}
-
-\begin{definition}
-如果命题\(p\)的判断正确，%
-那么我们称“命题\(p\)是\DefineConcept{真的}（true）”，%
-或称“命题\(p\)是\DefineConcept{真命题}”，
-或称“；
-如果命题\(p\)的判断错误，%
-那么我们称“命题\(p\)是\DefineConcept{假的}（false）”，%
-或称“命题\(p\)是\DefineConcept{假命题}”.
-\end{definition}
-
-对于一个命题，它要么是真命题，要么是假命题.
-悖论不能作为命题.
-
-我们可以用集合表示命题的真值.
-一般用空集\(\emptyset\)表示假命题，%
-用任意非空集（例如\(\Set{\emptyset}\)）表示真命题.
-
-我们也可以用数字表示命题的真值.
-一般用\(0\)表示假命题，%
-用任意非零整数（例如\(1\)）表示真命题.
-
-\begin{definition}
-\DefineConcept{逻辑联结词}（logical connectives），%
-是指连接命题，对各个命题的真值进行运算的词，%
-例如“\emph{且}”“\emph{或}”“\emph{不}”“\emph{非}”%
-“\emph{如果……那么……}”“\emph{当且仅当}”等.
-\end{definition}
-
-为了将逻辑联结词形式化，我们可以使用符号来代表逻辑联结词.
-
-\begin{table}[bp]
-\centering
-\begin{tabular}{|*{3}{c|}}
-\hline
-{\bf 概念} & {\bf 意义} & {\bf 符号} \\ \hline
-{\bf 否定词}（negative） & 不、非 & \(\neg\) \\ \hline
-{\bf 合取词}（conjunction） & 且、而且、并且 & \(\land\) \\ \hline
-{\bf 析取词}（disjunction） & 或、或者 & \(\lor\) \\ \hline
-{\bf 蕴涵词}（implication） & 如果……那么…… & \(\implies\) \\ \hline
-{\bf 等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
-\end{tabular}
-\caption{逻辑联结词}
-\end{table}
-
-\begin{definition}
-\DefineConcept{简单命题}或\DefineConcept{原子命题}（atom proposition），%
-是指不含有逻辑联结词的命题.
-相反地，\DefineConcept{复合命题}（compound proposition），%
-是指包含了简单命题和逻辑联结词的命题.
-\end{definition}
-
-逻辑联结词具有对命题的真值进行运算的效果，%
-我们可以用\DefineConcept{真值表}来说明其具体效果.
-
-\begin{table}[ht]
-\centering
-\begin{subtable}[ht]{0.9\textwidth}
-\centering
-\begin{tabular}{|c|p{1.5cm}|}
-\hline
-\(p\) & \(\neg p\) \\ \hline
-0 & 1 \\ \hline
-1 & 0 \\ \hline
-\end{tabular}
-\caption{否定词“非”}
-\end{subtable}
-
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \land q\) \\ \hline
-0 & 0 & 0 \\ \hline
-0 & 1 & 0 \\ \hline
-1 & 0 & 0 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{合取词“且”}
-\end{subtable}
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \lor q\) \\ \hline
-0 & 0 & 0 \\ \hline
-0 & 1 & 1 \\ \hline
-1 & 0 & 1 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{析取词“或”}
-\end{subtable}
-
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \implies q\) \\ \hline
-0 & 0 & 1 \\ \hline
-0 & 1 & 1 \\ \hline
-1 & 0 & 0 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{蕴涵词}
-\end{subtable}
-\begin{subtable}[ht]{0.45\textwidth}
-\centering
-\begin{tabular}{|*{2}{c|}p{2cm}|}
-\hline
-\(p\) & \(q\) & \(p \iff q\) \\ \hline
-0 & 0 & 1 \\ \hline
-0 & 1 & 0 \\ \hline
-1 & 0 & 0 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{等价词}
-\end{subtable}
-
-\caption{单个逻辑联结词逻辑运算结果的真值表}
-\end{table}
-
-\begin{definition}
-如果有“\(p\)成立时\(q\)必成立”，%
-记\(p \implies q\)，%
-称“\(p\)是\(q\)的\DefineConcept{充分条件}”，%
-或称“\(q\)是\(p\)的\DefineConcept{必要条件}”；
-分别称\(p\)和\(q\)为这个命题的\DefineConcept{蕴含前件}和\DefineConcept{蕴含后件}.
-\end{definition}
-
-在自然语言中，条件语句一般都具有内在的联系；
-而数理逻辑中的\emph{蕴含}则仅是命题的连接，不一定具有什么内在联系.
-
-\begin{property}
-只有当“\(p\)为真，且\(q\)为假”时，蕴含式\(p \implies q\)才为假.
-\end{property}
-可以观察发现，\(p \implies q\)的真值表与\(\neg p \land q\)的相同.
-
-\subsection{命题公式及其组成成分}
-\begin{definition}
-\DefineConcept{命题常元}（proposition constant），%
-简称\DefineConcept{常元}（constant），%
-表示具体命题.
-\DefineConcept{命题变元}（proposition variable），%
-简称\DefineConcept{变元}（variable），%
-表示以“真、假”或者“0、1”为取值范围的变量.
-\end{definition}
-
-\begin{definition}
-\DefineConcept{命题公式}（proposition formula），%
-简称为\DefineConcept{公式}（formula），%
-是指由命题常元、命题变元和逻辑联结词组成的命题.
-它有如下的归纳定义：
-\begin{enumerate}
-\item 命题常元和命题变元是命题公式，也称作\DefineConcept{原子公式}或\DefineConcept{原子}；
-\item 设\(A\)、\(B\)为命题公式，那么有\[
-(\neg A),\quad
-(A \land B),\quad
-(A \lor B),\quad
-(A \implies B),\quad
-(A \iff B)
-\]也都是命题公式；
-\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
-\end{enumerate}
-\end{definition}
-
-\begin{example}
-根据定义，\((\neg(p \implies (q \land r)))\)是命题公式.
-\((qp)\)缺少联结词，所以不是命题公式.
-\((p_1 \land (p_2 \land \dotsb))\)是无限的，所以不是命题公式.
-\end{example}
-
-为了简化书写，我们可以规定逻辑联结词的优先级顺序.
-逻辑联结词的优先级为：\[
-\neg,\quad \land,\quad \lor,\quad \implies,\quad \iff.
-\]除非有括号，否则按照命题公式从左到右，按照优先级从高到低的次序结合.
-定义逻辑联结词的优先级的意义在于可以减少命题公式中的括号数量.
-
-\begin{example}
-\(((\neg p) \lor (q))\)等同于\(\neg p \lor q\).
-
-但\[
-	p \implies q \land r \implies s
-\]并非\[
-	((p \implies q) \land (r \implies s)),
-\]而应等同于\[
-	((p \implies (q \land r)) \implies s).
-\]
-\end{example}
-
-\begin{definition}
-如果对于一个公式，不论其命题变元取何值，该公式总为真，%
-则称该公式为\DefineConcept{永真式}或\DefineConcept{重言式}.
-\end{definition}
-
-常见的永真式列举如下：\begin{enumerate}
-\item 肯定后件律 \(p \implies (q \implies p)\)；
-\item 同一律 \(p \implies p\)；
-\item 排中律 \(\neg p \lor p\)；
-\item 矛盾律 \(\neg(\neg p \land p)\)；
-\item 双重否定律 \(\neg\neg p \iff p\).
-\end{enumerate}
