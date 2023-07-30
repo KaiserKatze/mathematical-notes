@@ -2835,9 +2835,14 @@ x \in \bigcap B = \bigcap_i b_i
 证明：如果\(a\)是传递集，那么\(a^+\)也是传递集.
 \begin{proof}
 根据后继的定义，\(a^+ = a \cup \{a\}\)，
-那么\[
-	\forall x( x \in a^+ \implies x = a \lor x \in a ).
-\]
+那么总有\(a \in a^+ \lor a \subseteq a^+\)，即\[
+	\forall x
+	\bigl(
+		x \in a^+
+		\implies
+		x = a \lor x \in a
+	\bigr)
+\]恒成立.
 
 当\(x = a\)时，
 对于\(\forall t \in x\)，
@@ -2845,16 +2850,34 @@ x \in \bigcap B = \bigcap_i b_i
 所以\(t \in a^+\).
 
 当\(x \in a\)时，
-因为\(a\)是传递集，所以\[
+因为\[
+	a\ \text{是传递集}
+	\iff
 	\forall t
 	\bigl(
 		t \in x \in a
-		\implies t \in a \subseteq a^+
-		\implies t \in a^+
-	\bigr).
+		\implies
+		t \in a
+	\bigr);
 \]
+又因为\(a \subseteq a^+\)，
+所以\(t \in a \subseteq a^+
+\implies
+t \in a^+\).
 
-综上所述，\(a^+\)也是传递集.
+综上所述，\[
+	\forall t, \forall x
+	\bigl(
+		t \in x \in a^+
+		\implies
+			t \in x = a
+			\lor
+			t \in x \in a
+		\implies
+		t \in a^+
+	\bigr),
+\]
+\(a^+\)也是传递集.
 \end{proof}
 \end{example}
 
