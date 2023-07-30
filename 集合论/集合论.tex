@@ -679,10 +679,10 @@
 \end{example}
 
 
-\begin{example}\label{example:集合论.系的并的幂集包含系}
+\begin{example}
 %@see: 《Elements of Set Theory》 P26. Exercise 6(b).
 证明：对任意集合\(A\)，总有
-\begin{equation}
+\begin{equation}\label{equation:集合论.系的并的幂集包含系}
 	A \subseteq \Powerset \bigcup A;
 \end{equation}
 并找出使得\(A = \Powerset \bigcup A\)成立的条件.
@@ -2775,25 +2775,6 @@ x \in \bigcap B = \bigcap_i b_i
 	A \subseteq \Powerset A.
 	\label{equation:集合论.传递集的定义式4}
 \end{gather}
-这是因为\[
-	\bigcup A \subseteq A
-	\iff
-	\forall x \in \bigcup A \bigl( x \in A \bigr)
-	\iff
-	\forall x, \forall a \bigl( x \in a \in A \implies x \in A \bigr);
-\]
-\[
-	a \in A
-	\implies
-	a \subseteq A
-	\iff
-	\forall x \bigl( x \in a \implies x \in A \bigr);
-\]
-\[
-	A \subseteq \Powerset A
-	\iff
-	\forall a \bigl( a \in A \implies a \in \Powerset A \iff a \subseteq A \bigr).
-\]
 
 这里我们要注意区分“关系的传递性”与“传递集”这两个概念，它们是根本不同的！
 
@@ -2939,37 +2920,19 @@ t \in a^+\).
 %@see: 《Elements of Set Theory》 P73. Exercise 4.
 证明：如果\(A\)是传递集，那么\(\bigcup A\)也是传递集.
 %TODO
-%\begin{proof}
-%要证\(B = \bigcup A\)也是传递集，即证\[
-%	\forall x, \forall b \left(
-%		x \in b \in B
-%		\implies
-%		x \in B
-%	\right);
-%\]
-%又因为\[
-%	\forall b \left(
-%		b \in B
-%		\iff
-%		\exists a \in A \bigl( b \in a \bigr)
-%	\right),
-%\]
-%所以只需证\[
-%	\forall x, \forall b, \exists a \left(
-%		x \in b \in a \in A
-%		\implies
-%		x \in B
-%	\right);
-%\]
-%
-%因为\(A\)是传递集，\[
-%	\forall x,\forall a \bigl(
-%		x \in a \in A
-%		\implies
-%		x \in A
-%	\bigr).
-%\]
-%\end{proof}
+\begin{proof}
+因为\(A\)是传递集，由\cref{equation:集合论.传递集的定义式2} 可知
+\[
+	\bigcup A \subseteq A;
+\]
+又由\cref{equation:集合论.系的并的幂集包含系} 可知\[
+	A \subseteq \Powerset \bigcup A;
+\]
+所以\[
+	\bigcup A \subseteq \Powerset \bigcup A,
+\]
+由\cref{equation:集合论.传递集的定义式4} 可知\(\bigcup A\)是传递集.
+\end{proof}
 \end{example}
 
 \begin{theorem}
