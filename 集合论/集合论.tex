@@ -11,8 +11,7 @@
 \begin{definition}
 如果命题\(p\)的判断正确，
 那么我们称“命题\(p\)是\DefineConcept{真的}（true）”，
-或称“命题\(p\)是\DefineConcept{真命题}”，
-或称“；
+或称“命题\(p\)是\DefineConcept{真命题}”；
 如果命题\(p\)的判断错误，
 那么我们称“命题\(p\)是\DefineConcept{假的}（false）”，
 或称“命题\(p\)是\DefineConcept{假命题}”.
@@ -30,12 +29,22 @@
 用任意非零整数（例如\(1\)）表示真命题.
 
 \begin{definition}
+\DefineConcept{命题常元}（proposition constant），
+简称\DefineConcept{常元}（constant），
+表示具体命题.
+\DefineConcept{命题变元}（proposition variable），
+简称\DefineConcept{变元}（variable），
+表示以“真、假”或者“0、1”为取值范围的变量.
+\end{definition}
+
+\begin{definition}
 \DefineConcept{逻辑联结词}（logical connectives），
 是指连接命题，对各个命题的真值进行运算的词，
 例如“\emph{且}”“\emph{或}”“\emph{不}”“\emph{非}”%
 “\emph{如果……那么……}”“\emph{当且仅当}”等.
 \end{definition}
 
+如\cref{table:数理逻辑.逻辑联结词} 所示，
 为了将逻辑联结词形式化，我们可以使用符号来代表逻辑联结词.
 
 \begin{table}[bp]
@@ -50,10 +59,34 @@
 		\DefineConcept{等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
 	\end{tabular}
 	\caption{逻辑联结词}
+	\label{table:数理逻辑.逻辑联结词}
 \end{table}
 
 \begin{definition}
-\DefineConcept{简单命题}或\DefineConcept{原子命题}（atom proposition），
+\DefineConcept{命题公式}（proposition formula），
+简称为\DefineConcept{公式}（formula），
+是指由命题常元、命题变元和逻辑联结词组成的命题.
+
+命题公式有如下的归纳定义：
+\begin{enumerate}
+	\item 命题常元和命题变元是命题公式，
+	也称作\DefineConcept{原子公式}或\DefineConcept{原子}；
+
+	\item 设\(A\)、\(B\)为命题公式，那么有\[
+		(\neg A), \qquad
+		(A \land B), \qquad
+		(A \lor B), \qquad
+		(A \implies B), \qquad
+		(A \iff B)
+	\]也都是命题公式；
+
+	\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\DefineConcept{简单命题}（simple proposition）%
+或\DefineConcept{原子命题}（atom proposition），
 是指不含有逻辑联结词的命题.
 相反地，\DefineConcept{复合命题}（compound proposition），
 是指包含了简单命题和逻辑联结词的命题.
@@ -63,68 +96,68 @@
 我们可以用\DefineConcept{真值表}来说明其具体效果.
 
 \begin{table}[ht]
-\centering
-\begin{subtable}[ht]{0.9\textwidth}
 	\centering
-	\begin{tabular}{|c|p{1.5cm}|}
-		\hline
-		\(p\) & \(\neg p\) \\ \hline
-		0 & 1 \\ \hline
-		1 & 0 \\ \hline
-	\end{tabular}
-	\caption{否定词“非”}
-\end{subtable}
+	\begin{subtable}[ht]{0.9\textwidth}
+		\centering
+		\begin{tabular}{|c|p{1.5cm}|}
+			\hline
+			\(p\) & \(\neg p\) \\ \hline
+			0 & 1 \\ \hline
+			1 & 0 \\ \hline
+		\end{tabular}
+		\caption{否定词“非”}
+	\end{subtable}
 
-\begin{subtable}[ht]{0.45\textwidth}
-	\centering
-	\begin{tabular}{|*{2}{c|}p{2cm}|}
-		\hline
-		\(p\) & \(q\) & \(p \land q\) \\ \hline
-		0 & 0 & 0 \\ \hline
-		0 & 1 & 0 \\ \hline
-		1 & 0 & 0 \\ \hline
-		1 & 1 & 1 \\ \hline
-	\end{tabular}
-	\caption{合取词“且”}
-\end{subtable}
-\begin{subtable}[ht]{0.45\textwidth}
-	\centering
-	\begin{tabular}{|*{2}{c|}p{2cm}|}
-		\hline
-		\(p\) & \(q\) & \(p \lor q\) \\ \hline
-		0 & 0 & 0 \\ \hline
-		0 & 1 & 1 \\ \hline
-		1 & 0 & 1 \\ \hline
-		1 & 1 & 1 \\ \hline
-	\end{tabular}
-	\caption{析取词“或”}
-\end{subtable}
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \land q\) \\ \hline
+			0 & 0 & 0 \\ \hline
+			0 & 1 & 0 \\ \hline
+			1 & 0 & 0 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+		\caption{合取词“且”}
+	\end{subtable}
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \lor q\) \\ \hline
+			0 & 0 & 0 \\ \hline
+			0 & 1 & 1 \\ \hline
+			1 & 0 & 1 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+		\caption{析取词“或”}
+	\end{subtable}
 
-\begin{subtable}[ht]{0.45\textwidth}
-	\centering
-	\begin{tabular}{|*{2}{c|}p{2cm}|}
-		\hline
-		\(p\) & \(q\) & \(p \implies q\) \\ \hline
-		0 & 0 & 1 \\ \hline
-		0 & 1 & 1 \\ \hline
-		1 & 0 & 0 \\ \hline
-		1 & 1 & 1 \\ \hline
-	\end{tabular}
-	\caption{蕴涵词}
-\end{subtable}
-\begin{subtable}[ht]{0.45\textwidth}
-	\centering
-	\begin{tabular}{|*{2}{c|}p{2cm}|}
-		\hline
-		\(p\) & \(q\) & \(p \iff q\) \\ \hline
-		0 & 0 & 1 \\ \hline
-		0 & 1 & 0 \\ \hline
-		1 & 0 & 0 \\ \hline
-		1 & 1 & 1 \\ \hline
-	\end{tabular}
-\caption{等价词}
-\end{subtable}
-\caption{单个逻辑联结词逻辑运算结果的真值表}
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \implies q\) \\ \hline
+			0 & 0 & 1 \\ \hline
+			0 & 1 & 1 \\ \hline
+			1 & 0 & 0 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+		\caption{蕴涵词}
+	\end{subtable}
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \iff q\) \\ \hline
+			0 & 0 & 1 \\ \hline
+			0 & 1 & 0 \\ \hline
+			1 & 0 & 0 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+	\caption{等价词}
+	\end{subtable}
+	\caption{单个逻辑联结词逻辑运算结果的真值表}
 \end{table}
 
 \begin{definition}
@@ -139,37 +172,21 @@
 而数理逻辑中的\emph{蕴含}则仅是命题的连接，不一定具有什么内在联系.
 
 \begin{property}
-只有当“\(p\)为真，且\(q\)为假”时，蕴含式\(p \implies q\)才为假.
+只有当“\(p\)为真，且\(q\)为假”时，蕴含式\((p \implies q)\)才为假.
 \end{property}
-可以观察发现，\(p \implies q\)的真值表与\(\neg p \land q\)的相同.
-
-\subsection{命题公式及其组成成分}
-\begin{definition}
-\DefineConcept{命题常元}（proposition constant），
-简称\DefineConcept{常元}（constant），
-表示具体命题.
-\DefineConcept{命题变元}（proposition variable），
-简称\DefineConcept{变元}（variable），
-表示以“真、假”或者“0、1”为取值范围的变量.
-\end{definition}
-
-\begin{definition}
-\DefineConcept{命题公式}（proposition formula），
-简称为\DefineConcept{公式}（formula），
-是指由命题常元、命题变元和逻辑联结词组成的命题.
-它有如下的归纳定义：
-\begin{enumerate}
-\item 命题常元和命题变元是命题公式，也称作\DefineConcept{原子公式}或\DefineConcept{原子}；
-\item 设\(A\)、\(B\)为命题公式，那么有\[
-	(\neg A), \qquad
-	(A \land B), \qquad
-	(A \lor B), \qquad
-	(A \implies B), \qquad
-	(A \iff B)
-\]也都是命题公式；
-\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
-\end{enumerate}
-\end{definition}
+可以观察发现，\((p \implies q)\)的真值表与\((p \land (\neg q))\)的恰好相反.
+\begin{table}
+	\centering
+	\begin{tabular}{|*3{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(\neg q\) & \(p \land (\neg q)\) \\ \hline
+		0 & 0 & 1 & 0 \\ \hline
+		0 & 1 & 0 & 0 \\ \hline
+		1 & 0 & 1 & 1 \\ \hline
+		1 & 1 & 0 & 0 \\ \hline
+	\end{tabular}
+	\caption{}
+\end{table}
 
 \begin{example}
 根据定义，\((\neg(p \implies (q \land r)))\)是命题公式.
