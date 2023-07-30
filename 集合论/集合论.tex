@@ -2753,10 +2753,12 @@ x \in \bigcap B = \bigcap_i b_i
 
 \subsection{传递集}
 \begin{definition}\label{definition:集合论.传递集的定义}
-如果集合\(A\)的任一元素的每个元素都是\(A\)的子集，%
-那么称“集合\(A\)是\DefineConcept{传递的}（transitive）”，%
-或称“集合\(A\)是一个\DefineConcept{传递集}（transitive set）”，%
+如果集合\(A\)的任一元素的每个元素都是\(A\)的元素，
+那么称“集合\(A\)是\DefineConcept{传递的}（transitive）”，
+或称“集合\(A\)是一个\DefineConcept{传递集}（transitive set）”，
 即\begin{equation}\label{equation:集合论.传递集的定义式1}
+	A\ \text{是传递集}
+	\iff
 	\forall x, \forall a \bigl(
 		x \in a \in A
 		\implies
@@ -2885,16 +2887,37 @@ t \in a^+\).
 %@see: 《Elements of Set Theory》 P73. Exercise 3.
 证明：“\(a\)是传递集”的充要条件是“\(\Powerset a\)是传递集”.
 \begin{proof}
-充分性.
-根据幂集公理，\(\forall x(x \in \Powerset a \iff x \subseteq a)\)，%
+先证充分性，假设\(\Powerset a\)是传递集.
+根据幂集公理，恒有\[
+	\forall x \bigl(
+		x \in \Powerset a \iff x \subseteq a
+	\bigr)
+	\eqno(1)
+\]成立；
+又因为\(\Powerset a\)是传递集，
+\[
+	\forall t, \forall x \bigl(
+		t \in x \in \Powerset a
+		\implies
+		t \in \Powerset a
+	\bigr);
+	\eqno(2)
+\]
 于是\[
-\forall t, \forall x
-(t \in x \in a \in \Powerset a
-\implies t \in x \subseteq a
-\implies t \in a);
-\]因此\(a\)是传递集.
+	\forall t, \forall x
+	\bigl(
+		t \in x \in a \in \Powerset a
+		\overset{\text{(2)}}{\implies}
+		t \in x \in \Powerset a
+		\overset{\text{(1)}}{\implies}
+		t \in x \subseteq a
+		\implies
+		t \in a
+	\bigr),
+\]
+因此\(a\)是传递集.
 
-必要性.
+再证必要性，假设\(a\)是传递集.
 因为\(a\)是传递集，所以\[
 \forall t, \forall x
 (t \in x \in a \implies t \in a);
