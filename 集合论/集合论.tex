@@ -660,7 +660,7 @@
 \begin{example}
 %@see: 《Elements of Set Theory》 P26. Exercise 6(a).
 证明：对任意集合\(A\)，总有
-\begin{equation}
+\begin{equation}\label{equation:集合论.集的幂集的并等于集}
 	\bigcup \Powerset A = A.
 \end{equation}
 \begin{proof}
@@ -2895,18 +2895,15 @@ t \in a^+\).
 	\eqno(1)
 \]成立；
 又因为\(\Powerset a\)是传递集，
+由\cref{equation:集合论.传递集的定义式2,equation:集合论.集的幂集的并等于集} 可知
 \[
-	\forall t, \forall x \bigl(
-		t \in x \in \Powerset a
-		\implies
-		t \in \Powerset a
-	\bigr);
+	a = \bigcup \Powerset a \subseteq \Powerset a;
 	\eqno(2)
 \]
 于是\[
 	\forall t, \forall x
 	\bigl(
-		t \in x \in a \in \Powerset a
+		t \in x \in a
 		\overset{\text{(2)}}{\implies}
 		t \in x \in \Powerset a
 		\overset{\text{(1)}}{\implies}
@@ -2918,16 +2915,21 @@ t \in a^+\).
 因此\(a\)是传递集.
 
 再证必要性，假设\(a\)是传递集.
-因为\(a\)是传递集，所以\[
-\forall t, \forall x
-(t \in x \in a \implies t \in a);
+由\cref{equation:集合论.传递集的定义式4} 可知
+\[
+	a \subseteq \Powerset a;
+	\eqno(3)
 \]
-而\(\Powerset a = \Set{ y \given y \subseteq a }\)，%
-那么\[
-\forall t, \forall y
-(t \in y \in \Powerset a
-\implies t \in y \subseteq a
-\implies t \in a \in \Powerset a);
+于是\[
+	\forall t, \forall y \bigl(
+		t \in y \in \Powerset a
+		\overset{\text{(1)}}{\implies}
+		t \in y \subseteq a
+		\implies
+		t \in a
+		\overset{\text{(3)}}{\implies}
+		t \in \Powerset a
+	\bigr);
 \]
 因此\(\Powerset a\)也是传递集.
 \end{proof}
