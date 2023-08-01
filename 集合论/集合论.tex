@@ -42,7 +42,7 @@
 我们将上述符号写成一串，就能得到一个\DefineConcept{命题公式}（proposition formula），
 简称为\DefineConcept{公式}（formula）.
 
-我们将满足以下条件的公式称为\DefineConcept{合式公式}（well-formed formula）：
+我们将满足以下条件的公式称为\DefineConcept{合式公式}（well-formed formula）：%wff
 \begin{enumerate}
 	\item 如果\(a\)和\(b\)是自由变元，那么\([a \in b]\)是合式公式.
 	这样的合式公式又被称为是\DefineConcept{原子的}（atomic），
@@ -68,15 +68,24 @@
 		\quad\text{和}\quad
 		(\exists x) \varphi(x)
 	\]都是合式公式，
-	其中\(\varphi(x)\)表示在合式公式\(\varphi\)中，用受限变元\(x\)代替某个自由变元\(a\)从而得到的公式.
+	其中，\(\varphi(x)\)表示在合式公式\(\varphi\)中，
+	用受限变元\(x\)代替某个自由变元\(a\)从而得到的公式.
 	我们将这两个公式分别称为%
 	“通过\DefineConcept{全称量化}变元\(a\)而从\(\varphi\)得到的公式%
 	（the formula obtained from \(\varphi\) by universally quantifying on the variable \(a\)）”%
 	和“通过\DefineConcept{存在量化}变元\(a\)而从\(\varphi\)得到的公式%
 	（the formula obtained from \(\varphi\) by existentially quantifying on the variable \(a\)）”.
+	%If \(\varphi\) is a wff and x is a bound variable,
+	%then \((\forall x) \varphi(x)\) and \((\exists x) \varphi(x)\) are wffs,
+	%where \(\varphi(x)\) is the formula obtained from the wff \(\varphi\)
+	%by replacing each occurrence of some free variable \(a\) by the bound variable \(x\).
+	%We call \((\forall x) \varphi(x)\) and \((\exists x) \varphi(x)\) respectively,
+	%the formula obtained from \(\varphi\) by universally, or existentially,
+	%quantifying on the variable \(a\).
 \end{enumerate}
+任意一条公式，当且仅当它可以由上述三条规则演绎推得时，我们才称其为合式公式.
 
-我们有如下的逻辑公理：
+我们有如下五条逻辑公理：
 \begin{axiom}
 \(\varphi \implies [\psi \implies \varphi]\).
 \end{axiom}
@@ -89,10 +98,28 @@
 \begin{axiom}
 \((\forall x)[\varphi \implies \psi(x)] \implies [\varphi \implies (\forall x) \psi(x)]\)，
 其中，我们量化的自由变元\(a\)没有出现在公式\(\varphi\)中.
+%where the free variable \(a\) on which we are quantifying does not occur in \(\varphi\).
 \end{axiom}
 \begin{axiom}
 \((\forall x) \varphi(x) \implies \varphi(a)\)，
 其中，\(\varphi(a)\)是通过用自由变元\(a\)代替\(\varphi(x)\)中的受限变元\(x\)得到的公式.
+%where \(\varphi(a)\) is the forumla
+%obtained by replacing each occurrence
+%of the bound variable x
+%in \(\varphi(x)\) by the free variable \(a\).
+\end{axiom}
+以及如下两条\DefineConcept{推理规则}（rules of inference）：
+\begin{axiom}
+从\(\varphi\)和\(\varphi \implies \psi\)，可以推断\(\psi\).
+%From \(\varphi\) and \(\varphi \implies \psi\) to infer \(\psi\).
+\end{axiom}
+\begin{axiom}
+从\(\varphi\)，可以推断\((\forall x) \varphi(x)\)，
+其中，\(\varphi(x)\)表示在合式公式\(\varphi\)中，
+用受限变元\(x\)代替某个自由变元从而得到的公式.
+%From \(\varphi\) to infer \((\forall x)\) \varphi(x)
+%where \(\varphi(x)\) is obtained from \(\varphi\)
+%by replacing each occurrence of some free variable by x.
 \end{axiom}
 
 如\cref{table:数理逻辑.逻辑联结词} 所示，
