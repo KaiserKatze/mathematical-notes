@@ -2,51 +2,101 @@
 
 \section{数理逻辑概论}
 \subsection{命题的概念}
-\begin{definition}
 \DefineConcept{命题}（proposition），
 是指对确定的对象进行判断的“陈述句”.
-我们常用小写字母（如\(p,q\)等）表记命题.
-\end{definition}
-
-\begin{definition}
 如果命题\(p\)的判断正确，
 那么我们称“命题\(p\)是\DefineConcept{真的}（true）”，
 或称“命题\(p\)是\DefineConcept{真命题}”；
 如果命题\(p\)的判断错误，
 那么我们称“命题\(p\)是\DefineConcept{假的}（false）”，
 或称“命题\(p\)是\DefineConcept{假命题}”.
-\end{definition}
 
-对于一个命题，它要么是真命题，要么是假命题.
-悖论不能作为命题.
+例如“太阳总从东方升起”“只有在冬天才下雪”都是命题.
+但是，像这样用汉语（或其他人类语言）表述的命题，
+我们可能会因为它含糊不清的语义而无法作出真伪判断.
+因此，数学家创造了一种专门用于逻辑演绎的语言，
+这就是\DefineConcept{形式语言}（formal language）.
 
-我们可以用集合表示命题的真值.
-一般用空集\(\emptyset\)表示假命题，
-用任意非空集（例如\(\Set{\emptyset}\)）表示真命题.
+形式语言是由以下几种符号组成的：
+\begin{enumerate}
+	\item \DefineConcept{自由变元}（free variable），用小写拉丁字母表记.
+	\item \DefineConcept{受限变元}（bound variable），也用小写拉丁字母表记.
+	\item \DefineConcept{谓词}（predicate），目前有且只有一个：\(\in\).
+	\item \DefineConcept{逻辑联结词}（logical connective），包括：\[
+		\neg, \qquad
+		\lor, \qquad
+		\land, \qquad
+		\implies, \qquad
+		\iff, \qquad
+		\forall, \qquad
+		\exists.
+	\]
+	\item \DefineConcept{辅助符号}（auxiliary symbol），包括圆括号和方括号：\[
+		(, \qquad
+		), \qquad
+		[, \qquad
+		].
+	\]
+\end{enumerate}
 
-我们也可以用数字表示命题的真值.
-一般用\(0\)表示假命题，
-用任意非零整数（例如\(1\)）表示真命题.
+我们将上述符号写成一串，就能得到一个\DefineConcept{命题公式}（proposition formula），
+简称为\DefineConcept{公式}（formula）.
 
-\begin{definition}
-\DefineConcept{命题常元}（proposition constant），
-简称\DefineConcept{常元}（constant），
-表示具体命题.
-\DefineConcept{命题变元}（proposition variable），
-简称\DefineConcept{变元}（variable），
-表示以“真、假”或者“0、1”为取值范围的变量.
-\end{definition}
+我们将满足以下条件的公式称为\DefineConcept{合式公式}（well-formed formula）：
+\begin{enumerate}
+	\item 如果\(a\)和\(b\)是自由变元，那么\([a \in b]\)是合式公式.
+	这样的合式公式又被称为是\DefineConcept{原子的}（atomic），
+	或者称这样的公式为\DefineConcept{原子公式}\footnote{%
+	我们可以按公式中是否含有逻辑联结词，将命题公式分为两类：
+	\DefineConcept{简单命题}（simple proposition）%
+	或\DefineConcept{原子命题}（atom proposition），
+	即不含有逻辑联结词的命题公式；
+	以及\DefineConcept{复合命题}（compound proposition），
+	即由简单命题和逻辑联结词构成的命题公式.
+	}.
 
-\begin{definition}
-\DefineConcept{逻辑联结词}（logical connectives），
-是指连接命题，对各个命题的真值进行运算的词，
-例如“\emph{且}”“\emph{或}”“\emph{不}”“\emph{非}”%
-“\emph{如果……那么……}”“\emph{当且仅当}”等.
-\end{definition}
+	\item 如果\(\varphi\)和\(\psi\)是合式公式，那么\[
+		\neg \varphi, \qquad
+		[\varphi \lor \psi], \qquad
+		[\varphi \land \psi], \qquad
+		[\varphi \implies \psi], \qquad
+		[\varphi \iff \psi]
+	\]都是合式公式.
+
+	\item 如果\(\varphi\)是合式公式，\(x\)是受限变元，那么\[
+		(\forall x) \varphi(x)
+		\quad\text{和}\quad
+		(\exists x) \varphi(x)
+	\]都是合式公式，
+	其中\(\varphi(x)\)表示在合式公式\(\varphi\)中，用受限变元\(x\)代替某个自由变元\(a\)从而得到的公式.
+	我们将这两个公式分别称为%
+	“通过\DefineConcept{全称量化}变元\(a\)而从\(\varphi\)得到的公式%
+	（the formula obtained from \(\varphi\) by universally quantifying on the variable \(a\)）”%
+	和“通过\DefineConcept{存在量化}变元\(a\)而从\(\varphi\)得到的公式%
+	（the formula obtained from \(\varphi\) by existentially quantifying on the variable \(a\)）”.
+\end{enumerate}
+
+我们有如下的逻辑公理：
+\begin{axiom}
+\(\varphi \implies [\psi \implies \varphi]\).
+\end{axiom}
+\begin{axiom}
+\([\varphi \implies [\psi \implies \eta]] \implies [[\varphi \implies \psi] \implies [\varphi \implies \eta]]\).
+\end{axiom}
+\begin{axiom}
+\([\neg\varphi \implies \neg\psi] \implies [\psi \implies \varphi]\).
+\end{axiom}
+\begin{axiom}
+\((\forall x)[\varphi \implies \psi(x)] \implies [\varphi \implies (\forall x) \psi(x)]\)，
+其中，我们量化的自由变元\(a\)没有出现在公式\(\varphi\)中.
+\end{axiom}
+\begin{axiom}
+\((\forall x) \varphi(x) \implies \varphi(a)\)，
+其中，\(\varphi(a)\)是通过用自由变元\(a\)代替\(\varphi(x)\)中的受限变元\(x\)得到的公式.
+\end{axiom}
 
 如\cref{table:数理逻辑.逻辑联结词} 所示，
 为了将逻辑联结词形式化，我们可以使用符号来代表逻辑联结词.
-
 \begin{table}[bp]
 	\centering
 	\begin{tabular}{*3c}
@@ -61,36 +111,6 @@
 	\caption{逻辑联结词}
 	\label{table:数理逻辑.逻辑联结词}
 \end{table}
-
-\begin{definition}
-\DefineConcept{命题公式}（proposition formula），
-简称为\DefineConcept{公式}（formula），
-是指由命题常元、命题变元和逻辑联结词组成的命题.
-
-命题公式有如下的归纳定义：
-\begin{enumerate}
-	\item 命题常元和命题变元是命题公式，
-	也称作\DefineConcept{原子公式}或\DefineConcept{原子}；
-
-	\item 设\(A\)、\(B\)为命题公式，那么有\[
-		(\neg A), \qquad
-		(A \land B), \qquad
-		(A \lor B), \qquad
-		(A \implies B), \qquad
-		(A \iff B)
-	\]也都是命题公式；
-
-	\item 只有有限步地引用上述两条所组成的符号串，才是命题公式.
-\end{enumerate}
-\end{definition}
-
-\begin{definition}
-\DefineConcept{简单命题}（simple proposition）%
-或\DefineConcept{原子命题}（atom proposition），
-是指不含有逻辑联结词的命题.
-相反地，\DefineConcept{复合命题}（compound proposition），
-是指包含了简单命题和逻辑联结词的命题.
-\end{definition}
 
 逻辑联结词具有对命题的真值进行运算的效果，
 我们可以用\DefineConcept{真值表}来说明其具体效果.
