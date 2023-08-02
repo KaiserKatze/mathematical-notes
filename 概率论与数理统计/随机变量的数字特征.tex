@@ -430,27 +430,28 @@ E(X^2) = D(X) + [E(X)]^2 = 1 + 1 = 2.
 \end{solution}
 \end{example}
 
-\section{变异系数、原点矩、中心距}
+\section{变异系数，原点矩，中心距}
 \begin{definition}
 若随机变量\(X\)的期望、方差均存在，且\(E(X) \neq 0\)，称\[
 C_v = \frac{\sqrt{D(X)}}{\abs{E(X)}}
 \]为\(X\)的\DefineConcept{变异系数}.
-
-变异系数\(C_v\)衡量了\(X\)取值在\(E(X)\)周围的相对集中程度.
 \end{definition}
+变异系数\(C_v\)衡量了\(X\)取值在\(E(X)\)周围的相对集中程度.
 
 \begin{definition}
 若对非负整数\(k\)，随机变量\(X^k\)存在期望，记作\[
 m_k = E(X^k),
 \]称\(m_k\)为\(X\)的\(k\)阶\DefineConcept{原点矩}.
+\end{definition}
 
+\begin{definition}
 若对非负整数\(k\)，随机变量\([X-E(X)]^k\)存在期望，记作\[
 \mu_k = E[X-E(X)]^k,
 \]称\(\mu_k\)为\(X\)的\(k\)阶\DefineConcept{中心距}.
+\end{definition}
 
 显然有\(E(X) = m_1\)，\(D(X) = \mu_2\).
 而\(m_0 = \mu_0 = 1\).
-\end{definition}
 
 \begin{theorem}
 \begin{align*}
@@ -461,36 +462,43 @@ m_k = E(X^k),
 \end{align*}
 \end{theorem}
 
-\section{协方差和相关系数}
+\section{协方差，相关系数}
 \subsection{协方差}
 给定二维随机变量\((X,Y)\)，一般\(X\)与\(Y\)之间存在一定的关系.
 我们希望有一个数字特征可以用来描述\(X\)与\(Y\)的关系.
-我们知道，当\(X\)与\(Y\)独立时，有\(E(XY) = E(X) E(Y)\)成立，从而\begin{align*}
-&E\bigl\{[X-E(X)][Y-E(Y)]\bigr\} \\
-&= E[XY - Y E(X) - X E(Y) + E(X) E(Y)] \\
+我们知道，当\(X\)与\(Y\)独立时，
+有\(E(XY) = E(X) E(Y)\)成立，
+从而\begin{align*}
+&E((X-E(X))(Y-E(Y))) \\
+&= E(XY - Y E(X) - X E(Y) + E(X) E(Y)) \\
 &= E(XY) - E(Y) E(X) - E(X) E(Y) + E(X) E(Y) \\
 &= E(XY) - E(X) E(Y) = 0.
 \end{align*}
-也就是说，当\(E\bigl\{[X-E(X)][Y-E(Y)]\bigr\} \neq 0\)时，\(X\)与\(Y\)就不独立.
-这就说明，\(E\bigl\{[X-E(X)][Y-E(Y)]\bigr\}\)能在一定程度上刻画\(X\)与\(Y\)的关系.
+也就是说，当\(E((X-E(X))(Y-E(Y))) \neq 0\)时，\(X\)与\(Y\)就不独立.
+这就说明，\(E((X-E(X))(Y-E(Y)))\)能在一定程度上刻画\(X\)与\(Y\)的关系.
 
 \begin{definition}
-对于二维随机变量\((X,Y)\)，若\(E\bigl\{[X-E(X)][Y-E(Y)]\bigr\}\)存在，则称之为\(X\)与\(Y\)的\DefineConcept{协方差}（或\DefineConcept{相关矩}），记为\(\Cov(X,Y)\)，即
+对于二维随机变量\((X,Y)\)，
+若\(E((X-E(X))(Y-E(Y)))\)存在，
+则称之为\(X\)与\(Y\)的\DefineConcept{协方差}（或\DefineConcept{相关矩}），
+记为\(\Cov(X,Y)\)，即
 \begin{equation}\label{equation:随机变量的数字特征.协方差的定义式}
-\Cov(X,Y) = E\bigl\{[X-E(X)][Y-E(Y)]\bigr\}.
+\Cov(X,Y) = E((X-E(X))(Y-E(Y))).
 \end{equation}
 \end{definition}
 
-根据本节前面的推导，不难得到如下的性质：
+根据本节开篇的推导，不难得到如下的性质：
 \begin{property}\label{theorem:随机变量的数字特征.协方差的性质1}
-对于二维随机变量\((X,Y)\)，总有\begin{equation}\label{equation:随机变量的数字特征.协方差的计算式1}
+对于二维随机变量\((X,Y)\)，总有
+\begin{equation}\label{equation:随机变量的数字特征.协方差的计算式1}
 \Cov(X,Y) = E(XY) - E(X) E(Y).
 \end{equation}
 \end{property}
 
 进一步，令\(X = Y\)，则还可以得到：
 \begin{property}\label{theorem:随机变量的数字特征.协方差的性质2}
-对于随机变量\(X\)，总有\begin{equation}\label{equation:随机变量的数字特征.协方差与方差的联系1}
+对于随机变量\(X\)，总有
+\begin{equation}\label{equation:随机变量的数字特征.协方差与方差的联系1}
 \Cov(X,X) = D(X).
 \end{equation}
 \end{property}
