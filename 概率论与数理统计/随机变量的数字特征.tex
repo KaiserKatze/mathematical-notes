@@ -587,54 +587,56 @@ m_k = E(X^k),
 试求选中自己礼品的人数\(X\)的数学期望与方差.
 \begin{solution}
 设随机变量\[
-X_i = \left\{ \begin{array}{ll}
-1, & \text{当第\(i\)个人取出自己的礼品}, \\
-0, & \text{当第\(i\)个人取出别人的礼品},
-\end{array} \right.
-\quad(i=1,2,\dotsc,n)
+    X_i = \left\{ \begin{array}{ll}
+    1, & \text{当第\(i\)个人取出自己的礼品}, \\
+    0, & \text{当第\(i\)个人取出别人的礼品},
+    \end{array} \right.
+    \quad(i=1,2,\dotsc,n)
 \]同分布于\[
-\begin{bmatrix}
-0 & 1 \\
-\frac{1}{n} & 1-\frac{1}{n}
-\end{bmatrix},
+    \begin{bmatrix}
+    0 & 1 \\
+    \frac{1}{n} & 1-\frac{1}{n}
+    \end{bmatrix},
 \]
 即\[
-P(X_i=1) = \frac{1}{n}, \qquad
-P(X_i=0) = 1-\frac{1}{n}
-\quad(i=1,2,\dotsc,n).
+    P(X_i=1) = \frac{1}{n}, \qquad
+    P(X_i=0) = 1-\frac{1}{n}
+    \quad(i=1,2,\dotsc,n).
 \]
 那么其数学期望与方差分别为\[
-E(X_i) = \frac{1}{n},
-\qquad
-D(X_i) = \frac{1}{n}\left(1-\frac{1}{n}\right)
-\quad(i=1,2,\dotsc,n).
+    E(X_i) = \frac{1}{n},
+    \qquad
+    D(X_i) = \frac{1}{n}\left(1-\frac{1}{n}\right)
+    \quad(i=1,2,\dotsc,n).
 \]
 
 在上述假设下，\(n\)个人种选中自己礼品的人数恰好为\[
-X = X_1+X_2+\dotsb+X_n.
+    X = X_1+X_2+\dotsb+X_n.
 \]因此\[
-E(X) = E(X_1)+E(X_2)+\dotsb+E(X_n)
-= n \cdot \frac{1}{n}
-= 1.
+    E(X) = E(X_1)+E(X_2)+\dotsb+E(X_n)
+    = n \cdot \frac{1}{n}
+    = 1.
 \]
 
 由于\(X_i\ (i=1,2,\dotsc,n)\)不是相互独立的，所以\(X\)的方差为\[
-D(X) = \sum\limits_{i=1}^n D(X_i) + 2 \sum\limits_{i<j} \Cov(X_i,X_j).
-\]为了计算\(\Cov(X_i,X_j)\ (i \neq j)\)，我们来考察\(X_i X_j\)的含义：\[
-X_i X_j = \left\{ \begin{array}{ll}
-1, & \text{当第\(i\)个人和第\(j\)个人都恰好取出各自的礼品}, \\
-0, & \text{其他},
-\end{array} \right.
+    D(X) = \sum\limits_{i=1}^n D(X_i) + 2 \sum\limits_{i<j} \Cov(X_i,X_j).
+\]
+为了计算\(\Cov(X_i,X_j)\ (i \neq j)\)，我们来考察\(X_i X_j\)的含义：\[
+    X_i X_j = \left\{ \begin{array}{ll}
+    1, & \text{当第\(i\)个人和第\(j\)个人都恰好取出各自的礼品}, \\
+    0, & \text{其他},
+    \end{array} \right.
 \]于是\[
-E(X_i X_j) = 1 \cdot P(X_i=1,X_j=1)
-= P(X_i=1) \cdot P(X_j=1 \vert X_i=1)
-= \frac{1}{n} \cdot \frac{1}{n-1},
-\]因此\[
-\Cov(X_i,X_j) = \frac{1}{n(n-1)} - \left(\frac{1}{n}\right)^2
-= \frac{1}{n^2(n-1)},
+    E(X_i X_j) = 1 \cdot P(X_i=1,X_j=1)
+    = P(X_i=1) \cdot P(X_j=1 \vert X_i=1)
+    = \frac{1}{n} \cdot \frac{1}{n-1},
+\]
+因此\[
+    \Cov(X_i,X_j) = \frac{1}{n(n-1)} - \left(\frac{1}{n}\right)^2
+    = \frac{1}{n^2(n-1)},
 \]\[
-D(X) = n \cdot \frac{n-1}{n^2} + 2 \cdot \frac{n(n-1)}{2} \cdot \frac{1}{n^2(n-1)}
-= 1.
+    D(X) = n \cdot \frac{n-1}{n^2} + 2 \cdot \frac{n(n-1)}{2} \cdot \frac{1}{n^2(n-1)}
+    = 1.
 \]
 \end{solution}
 由此可见，在配对问题，成对个数的均值与方差都是1，与人数\(n\)无关.
@@ -643,53 +645,61 @@ D(X) = n \cdot \frac{n-1}{n^2} + 2 \cdot \frac{n(n-1)}{2} \cdot \frac{1}{n^2(n-1
 \subsection{均值向量\ 协方差阵}
 \begin{definition}
 对于二维随机变量\((X,Y)\)，称向量\[
-(E(X),E(Y))
-\]为\((X,Y)\)的\DefineConcept{数学期望}或\DefineConcept{均值向量}；
+    (E(X),E(Y))
+\]
+为“\((X,Y)\)的\DefineConcept{数学期望}或\DefineConcept{均值向量}”.
 称矩阵\[
-\mat{V} = \begin{bmatrix}
-D(X) & \Cov(X,Y) \\
-\Cov(Y,X) & D(Y)
-\end{bmatrix}
-\]为\((X,Y)\)的\DefineConcept{协方差阵}.
+    \mat{V} = \begin{bmatrix}
+    D(X) & \Cov(X,Y) \\
+    \Cov(Y,X) & D(Y)
+    \end{bmatrix}
+\]为“\((X,Y)\)的\DefineConcept{协方差阵}”.
 
 一般地，对\(n\)维随机变量\((\v{X}{n})\)，称向量\[
-(E(X_1),E(X_2),\dotsc,E(X_n))
-\]为\((\v{X}{n})\)的\DefineConcept{均值向量}；
+    (E(X_1),E(X_2),\dotsc,E(X_n))
+\]
+为“\((\v{X}{n})\)的\DefineConcept{数学期望}或\DefineConcept{均值向量}”.
 记\[
-\sigma_{ij} = \Cov(X_i,Y_j),
-\quad i,j=1,2,\dotsc,n,
-\]称矩阵\[
-\mat{V} = \begin{bmatrix}
-\sigma_{11} & \sigma_{12} & \dots & \sigma_{1n} \\
-\sigma_{21} & \sigma_{22} & \dots & \sigma_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-\sigma_{n1} & \sigma_{n2} & \dots & \sigma_{nn}
-\end{bmatrix}
-\]为\((\v{X}{n})\)的\DefineConcept{协方差阵}.
+    \sigma_{ij} = \Cov(X_i,Y_j),
+    \quad i,j=1,2,\dotsc,n;
+\]
+称矩阵\[
+    \mat{V} = \begin{bmatrix}
+    \sigma_{11} & \sigma_{12} & \dots & \sigma_{1n} \\
+    \sigma_{21} & \sigma_{22} & \dots & \sigma_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \sigma_{n1} & \sigma_{n2} & \dots & \sigma_{nn}
+    \end{bmatrix}
+\]
+为“\((\v{X}{n})\)的\DefineConcept{协方差阵}”.
 \end{definition}
 
 易见\(\mat{V}\)总是对称阵.
 
 \subsection{标准化随机变量}
 \begin{definition}
-设随机变量\(X\)与\(Y\)的期望、方差都存在，且\(D(X) > 0\)，\(D(Y) > 0\)，则将随机变量\[
-X^* = \frac{X-E(X)}{\sqrt{D(X)}},
-\qquad
-Y^* = \frac{Y-E(Y)}{\sqrt{D(Y)}}
-\]分别称为\(X\)与\(Y\)的\DefineConcept{标准化随机变量}.
+设随机变量\(X\)与\(Y\)的期望、方差都存在，
+且\(D(X) > 0\)，\(D(Y) > 0\)，则将随机变量\[
+    X^* \defeq \frac{X-E(X)}{\sqrt{D(X)}},
+    \qquad
+    Y^* \defeq \frac{Y-E(Y)}{\sqrt{D(Y)}}
+\]
+分别称为\(X\)与\(Y\)的\DefineConcept{标准化随机变量}.
 \end{definition}
 
 \begin{property}\label{theorem:随机变量的数字特征.标准化随机变量的数字特征}
 任意随机变量\(X\)的标准化随机变量\(X^*\)具有以下性质：
 \begin{enumerate}
-\item \(E(X^*)=0\)；
-\item \(D(X^*)=1\).
+    \item \(E(X^*)=0\)；
+    \item \(D(X^*)=1\).
 \end{enumerate}
 \begin{proof}
-由\cref{theorem:随机变量的数字特征.数学期望的性质1} 、\cref{theorem:随机变量的数字特征.常用的方差的计算式} 有：\begin{align*}
-E(X^*) &= \frac{1}{\sigma} E[X-E(X)] = 0, \\
-D(X^*) &= E({X^*}^2) = \frac{1}{\sigma^2} E[X-E(X)] = 1.
-\qedhere
+由\cref{theorem:随机变量的数字特征.数学期望的性质1} 、
+\cref{theorem:随机变量的数字特征.常用的方差的计算式} 有：
+\begin{align*}
+    E(X^*) &= \frac{1}{\sigma} E[X-E(X)] = 0, \\
+    D(X^*) &= E({X^*}^2) = \frac{1}{\sigma^2} E[X-E(X)] = 1.
+    \qedhere
 \end{align*}
 \end{proof}
 \end{property}
@@ -697,20 +707,23 @@ D(X^*) &= E({X^*}^2) = \frac{1}{\sigma^2} E[X-E(X)] = 1.
 \subsection{相关系数}
 \begin{definition}\label{definition:随机变量的数字特征.相关系数}
 设随机变量\(X\)、\(Y\)的标准化随机变量分别为\(X^*\)、\(Y^*\).
-称“\(X^*\)与\(Y^*\)的协方差\(\Cov(X^*,Y^*)\)”为“\(X\)与\(Y\)的\DefineConcept{（线性）相关系数}”，记作\(R(X,Y)\)，即\[
-R(X,Y) = \Cov(X^*,Y^*).
+称“\(X^*\)与\(Y^*\)的协方差\(\Cov(X^*,Y^*)\)”为%
+“\(X\)与\(Y\)的\DefineConcept{（线性）相关系数}”，
+记作\(R(X,Y)\)，即\[
+    R(X,Y) \defeq \Cov(X^*,Y^*).
 \]
 \end{definition}
 
 \begin{theorem}\label{theorem:随机变量的数字特征.相关系数的性质1}
-\(R(X,Y)=E(X^* Y^*)\).
+\(R(X,Y) = E(X^* Y^*)\).
 \begin{proof}
-根据\cref{theorem:随机变量的数字特征.协方差的性质1}和\cref{theorem:随机变量的数字特征.标准化随机变量的数字特征}立即可得.
+根据\cref{theorem:随机变量的数字特征.协方差的性质1,%
+theorem:随机变量的数字特征.标准化随机变量的数字特征} 立即可得.
 \end{proof}
 \end{theorem}
 
 \begin{theorem}\label{theorem:随机变量的数字特征.相关系数的性质2}
-\(R(X,Y)=\frac{\Cov(X,Y)}{\sqrt{D(X)} \sqrt{D(Y)}}\).
+\(R(X,Y) = \frac{\Cov(X,Y)}{\sqrt{D(X)} \sqrt{D(Y)}}\).
 \end{theorem}
 
 \begin{property}
