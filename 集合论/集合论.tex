@@ -3316,15 +3316,17 @@ t \in a^+\).
 \DefineConcept{二元代数运算}（binary arithmetic operation）”.
 \end{definition}
 
+我们首先尝试构造自然数的加法.
+
 任取\(m \in \omega\)，
+根据\hyperref[theorem:集合论.递归定理]{递归定理}%
 易证存在唯一映射\(A_m\colon \omega \to \omega\)满足\[
 	A_m(0) = m; \qquad
 	A_m(n^+) = (A_m(n))^+, \quad n \in \omega.
 \]
-以此为基础，我们可以定义如下的二元代数运算.
 \begin{definition}
 %@see: 《Elements of Set Theory》 P79. Definition
-\DefineConcept{加法}（用符号\(+\)表记）%
+\DefineConcept{加法}（用符号“\(+\)”表记）%
 是定义在自然数集\(\omega\)上的一个二元代数运算，
 它满足：对于任意自然数\(m,n\)，总有\[
 	m + n = A_m(n).
@@ -3349,6 +3351,40 @@ t \in a^+\).
 	m + n^+ = (m+n)^+.
 \end{gather}
 \end{theorem}
+
+接下来我们构造自然数的乘法.
+
+类似于加法的构造，任取\(m \in \omega\)，
+易证存在唯一映射\(M_m\colon \omega \to \omega\)满足\[
+	M_m(0) = 0; \qquad
+	M_m(n^+) = M_m(n) + m, \quad n \in \omega.
+\]
+\begin{definition}
+乘法（用符号“\(\times\)”或“\(\cdot\)”表记）是定义在自然数集\(\omega\)上的一个二元代数运算，
+它满足：对于任意自然数\(m,n\)，总有\[
+	m \times n = M_m(n).
+\]
+\end{definition}
+我们可以把乘法运算写成关系的形式：\[
+	\times \defeq \Set{
+		\opair{\opair{m,n},p}
+		\given
+		m \in \omega
+		\land
+		n \in \omega
+		\land
+		p = M_m(n)
+	}.
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P79. Theorem 4J
+对于任意自然数\(m,n\)，总有\begin{gather}
+	m \cdot 0 = 0, \\
+	m \cdot n^+ = m \cdot n + m.
+\end{gather}
+\end{theorem}
+
 
 \section{实数}
 %TODO
