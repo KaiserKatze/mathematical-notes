@@ -3149,7 +3149,7 @@ t \in a^+\).
 在前一段，我们学会了怎么计算映射\(h\)（前提是这样的映射\(h\)存在）.
 现在我们想要证明存在一个映射\(h\)满足上述条件.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.递归定理}
 %@see: 《Elements of Set Theory》 P73. Recursion Theorem on omega
 设\(A\)是集合，\(a \in A\)，映射\(F\colon A \to A\)，
 那么存在一个唯一的映射\(h\colon \omega \to A\)，使得\[
@@ -3304,8 +3304,54 @@ t \in a^+\).
 \end{enumerate}
 \end{proof}
 \end{theorem}
+我们把\cref{theorem:集合论.递归定理} 称为\DefineConcept{递归定理}.
+
+\subsection{算术运算}
+我们可以利用\hyperref[theorem:集合论.递归定理]{递归定理}定义自然数集上的加法和乘法.
+
+\begin{definition}
+%@see: 《Elements of Set Theory》 P79. Definition
+任给一个映射\(f\colon A^2 \to A\)，
+我们称“\(f\)是定义在集合\(A\)上的一个%
+\DefineConcept{二元代数运算}（binary arithmetic operation）”.
+\end{definition}
+
+任取\(m \in \omega\)，
+易证存在唯一映射\(A_m\colon \omega \to \omega\)满足\[
+	A_m(0) = m; \qquad
+	A_m(n^+) = (A_m(n))^+, \quad n \in \omega.
+\]
+以此为基础，我们可以定义如下的二元代数运算.
+\begin{definition}
+%@see: 《Elements of Set Theory》 P79. Definition
+\DefineConcept{加法}（用符号\(+\)表记）%
+是定义在自然数集\(\omega\)上的一个二元代数运算，
+它满足：对于任意自然数\(m,n\)，总有\[
+	m + n = A_m(n).
+\]
+\end{definition}
+我们可以把加法运算写成关系的形式：\[
+	+ \defeq \Set{
+		\opair{\opair{m,n},p}
+		\given
+		m \in \omega
+		\land
+		n \in \omega
+		\land
+		p = A_m(n)
+	}.
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P79. Theorem 4I
+对于任意自然数\(m,n\)，总有\begin{gather}
+	m + 0 = m, \\
+	m + n^+ = (m+n)^+.
+\end{gather}
+\end{theorem}
 
 \section{实数}
+%TODO
 
 \section{集合的大小}
 \begin{definition}
