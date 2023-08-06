@@ -3105,14 +3105,15 @@ t \in a^+\).
 	a \subseteq \omega
 \bigr)\)，
 只需证集合\[
-T = \Set{n \in \omega \given n \subseteq \omega}
+	T = \Set{n \in \omega \given n \subseteq \omega}
 \]是传递的.
 显然\(\emptyset \in T\).
 假设\(k \in T\)，那么有\[
-k \subseteq \omega
-\land
-\{k\} \subseteq \omega,
-\]同时\(k \cup \{k\} \subseteq \omega\)，从而\(k^+ \in T\).
+	k \subseteq \omega
+	\land
+	\{k\} \subseteq \omega;
+\]
+同时\(k \cup \{k\} \subseteq \omega\)，从而\(k^+ \in T\).
 因此\(T\)是传递的，而自然数集\(\omega\)是传递集.
 \end{proof}
 \end{theorem}
@@ -3120,6 +3121,186 @@ k \subseteq \omega
 每个自然数都是由自然数组成的集合.
 以后我们还可以将这个定理加强为：
 每个自然数都是由比它小的自然数组成的集合.
+
+\subsection{递归}
+考虑一个映射\(h\colon \omega \to A\)，
+我们只知道\(h(0)\)的取值，
+以及映射\(F\colon A \to A\)满足\[
+	h(n^+) = F(h(n))
+	\quad(n\in\omega).
+\]
+由此，虽然我们不知道映射\(h\)的具体表达式，
+但我们总能依次计算出\(h(n)\ (n\in\omega)\)的取值：\[
+	h(0), \qquad
+	h(1) = F(h(0)), \qquad
+	h(2) = F(h(1)), \qquad
+	\dotsc
+\]
+
+接下来，考虑任给一个集合\(A\)，再从中任取一个元素\(a\)，
+以及给定一个映射\(F\colon A \to A\).
+那么我们要怎么证明存在一个映射\(h\colon \omega \to A\)，
+使得\(h(0) = a\)，且对\(\forall n\in\omega\)总有\[
+	h(n^+) = F(h(n)).
+\]
+在前一段，我们学会了怎么计算映射\(h\)（前提是这样的映射\(h\)存在）.
+现在我们想要证明存在一个映射\(h\)满足上述条件.
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P73. Recursion Theorem on omega
+设\(A\)是集合，\(a \in A\)，映射\(F\colon A \to A\)，
+那么存在一个唯一的映射\(h\colon \omega \to A\)，使得\[
+	h(0) = a; \qquad
+	h(n^+) = F(h(n)), \quad n\in\omega.
+\]
+\begin{proof}
+为了方便后续证明，我们首先在这里提出一个概念：
+称“映射\(v\)是\emph{容许的}（acceptable）”，
+当且仅当以下三个条件同时成立：
+\begin{enumerate}[label={(\roman*)}]
+	\item\label{item:集合论.容许映射条件1}
+	\(\dom v \subseteq \omega\)且\(\ran v \subseteq A\)；
+
+	\item\label{item:集合论.容许映射条件2}
+	\(0 \in \dom v
+	\implies
+	v(0) = a\)；
+
+	\item\label{item:集合论.容许映射条件3}
+	对任意\(n \in \omega\)，总有\(n^+ \in \dom v
+	\implies
+	n \in \dom v \land v(n^+) = F(v(n))\).
+\end{enumerate}
+令\(\mathscr{K}\)为所有容许映射的汇集，
+再令\(h = \bigcup \mathscr{K}\)，
+那么有\begin{equation}
+	\begin{split}
+		\opair{n,y} \in h
+		&\iff
+		\opair{n,y}\ \text{是某个容许映射\(v\)的元素} \\
+		&\iff
+		\text{对某个容许映射\(v\)，总有\(v(n) = y\)成立}.
+	\end{split}
+	\tag1
+\end{equation}
+我们要证明\(h\)符合定理的要求，可以将证明细分为四个部分，
+即证明\(h\)是一个映射，且它是容许的，
+它的定义域是整个自然数集，以及这个映射是唯一的：
+\begin{enumerate}
+	\item 我们首先证明\(h\)是映射.
+	%Proving this will, in effect, amount to showing that two acceptable functions
+	%always agree with each other whenever both are defined.
+	%TODO 这句不知道怎么翻译好呢
+	令\[
+		S = \Set{ n \in \omega
+		\given
+		\text{至多只有一个}\ y\ \text{满足}\ \opair{n,y} \in h }.
+	\]
+	我们需要证明\(S\)是归纳集.
+
+	如果\[
+		\opair{0,y_1} \in h
+		\quad\text{且}\quad
+		\opair{0,y_2} \in h,
+	\]
+	那么根据(1)式，存在容许映射\(v_1,v_2\)，使得\[
+		v_1(0) = y_1
+		\quad\text{且}\quad
+		v_2(0) = y_2;
+	\]
+	再根据\hyperref[item:集合论.容许映射条件2]{容许映射条件(ii)} 可知\(y_1 = a = y_2\)，
+	因此\(0 \in S\).
+
+	假设\(k \in S\)，
+	欲证\(k^+ \in S\).
+	朝着这个方向，我们又假设\[
+		\opair{k^+,y_1} \in h
+		\quad\text{且}\quad
+		\opair{k^+,y_2} \in h.
+	\]
+	同样地，必定存在容许映射\(v_1,v_2\)，使得\[
+		v_1(k^+) = y_1
+		\quad\text{且}\quad
+		v_2(k^+) = y_2.
+	\]
+	再根据\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)} 可知\[
+		y_1 = v_1(k^+) = F(v_1(k))
+		\quad\text{且}\quad
+		y_2 = v_2(k^+) = F(v_2(k)).
+	\]
+	又因为\(k \in S\)，
+	我们有\(\opair{k,v_1(k)},\opair{k,v_2(k)} \in h\)，
+	从而有\(v_1(k) = v_2(k)\)，
+	因此\[
+		y_1 = F(v_1(k)) = F(v_2(k)) = y_2,
+	\]
+	这就说明\(k^+ \in S\).
+
+	于是，\(S\)是归纳集，而且它恰好就是自然数集\(\omega\)，
+	从而\(h\)是一个映射.
+
+	\item 现在我们来证明\(h\)是容许的.
+	既然我们已经证明\(h\)是映射，
+	那么根据(1)式，
+	显然有\(\dom h \subseteq \omega\)且\(\ran h \subseteq A\).
+
+	我们先来检验\hyperref[item:集合论.容许映射条件2]{容许映射条件(ii)}.
+	如果\(0 \in \dom h\)，
+	那么必定存在某个容许映射\(v\)满足\(v(0) = h(0)\).
+	既然\(v(0) = a\)，我们就有\(h(0) = a\).
+
+	我们再来检验\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)}.
+	假设\(n^+ \in \dom h\).
+	同样地，必定存在某个容许映射\(v\)满足\(v(n^+) = h(n^+)\).
+	既然\(v\)是容许的，我们就有\(n \in \dom v\)，\(v(n) = h(n)\)，以及\[
+		h(n^+) = F(h(n)) = F(v(n)) = v(n^+).
+	\]
+
+	于是，\(h\)是容许的.
+
+	\item 现在我们来证明\(h\)的定义域是整个自然数集，
+	即\(\dom h = \omega\).
+	实际上我们只需证\(\dom h\)是归纳集.
+	由于映射\(\Set{\opair{0,a}}\)是容许的，
+	所以\(0 \in \dom h\).
+	假设\(k \in \dom h\)，只需证\(k^+ \in \dom h\).
+	如果这条路走不通，那么考虑\[
+		v = h \cup \Set{\opair{k^+,F(h(k))}}.
+	\]
+	易见\(v\)是一个映射，且\(\dom v \subseteq \omega\)，\(\ran v \subseteq A\).
+	因此只需证\(v\)是容许的.
+
+	由于\(v(0) = h(0) = a\)，
+	\hyperref[item:集合论.容许映射条件2]{容许映射条件(ii)} 成立.
+	对于\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)}，
+	可以分为两种情形.
+	如果\(n^+ \in \dom v\ (n^+ \neq k^+)\)，
+	那么\(n^+ \in \dom h\)且\(v(n^+) = h(n^+) = F(h(n)) = F(v(n))\).
+	其他情形当\(n^+ = k^+\)时出现.
+	既然后继是一一映射，那么\(n=k\).
+	根据假设\(k \in \dom h\).
+	因此\[
+		v(k^+) = F(h(k)) = F(v(k))
+	\]
+	且\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)} 成立.
+	可见，\(v\)是容许的.
+	但是，接下来我们有\(v \subseteq h\)，
+	从而\(k^+ \in \dom h\).
+
+	于是，\(\dom h\)是归纳集，且\(\dom h = \omega\).
+
+	\item 最后我们证明\(h\)是唯一的.
+	假设映射\(h_1,h_2\)都符合定理的要求.
+	令\[
+		S = \Set{ n \in \omega \given h_1(n) = h_2(n) }.
+	\]
+	易见\(S\)是归纳集.
+	%TODO 证明“\(S\)是归纳集”的步骤参考本节 Exercise 7
+
+	于是，\(S = \omega\)且\(h_1 = h_2\).
+\end{enumerate}
+\end{proof}
+\end{theorem}
 
 \section{实数}
 
