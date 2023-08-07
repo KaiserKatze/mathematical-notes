@@ -3628,7 +3628,7 @@ t \in a^+\).
 上面的证明过程体现出利用三一律的特定方式：
 要证\(m < n\)成立，只需证其他两种情况\(m = n\)和\(m > n\)不成立.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.自然数的加法的保序性}
 %@see: 《Elements of Set Theory》 P85. Theorem 4N
 设\(m,n,p\)是自然数.
 那么\[
@@ -3662,6 +3662,44 @@ t \in a^+\).
 所以不可能有\(m = n\)（否则会有\(n+p<n+p\)），
 也不可能有\(n < m\)（否则会有\(n+p<m+p<n+p\)），
 于是只有\(m < n\)成立.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:集合论.自然数的乘法的保序性}
+%@see: 《Elements of Set Theory》 P85. Theorem 4N
+设\(m,n,p\)是自然数，\(p \neq 0\).
+那么\[
+	m < n \iff m \cdot p < n \cdot p.
+\]
+\begin{proof}
+首先证\(m < n \implies m \cdot p < n \cdot p\).
+取定\(m \in n \in \omega\)，令\[
+	B = \Set*{
+		q \in \omega
+		\given
+		m \cdot q^+ < n \cdot q^+
+	}.
+\]
+考虑到，对于非零自然数\(p\)，存在自然数\(q\)，使得\(q^+ = p\).
+容易看出，由于\(m \cdot 0^+ = m \cdot 0 + m = m\)，所以\(0 \in B\).
+假设\(k \in B\)，要证\(m \cdot k^{++} < n \cdot k^{++}\).
+对\(m \cdot k^+ < n \cdot k^+\)利用\cref{theorem:集合论.自然数的加法的保序性}，
+便得\begin{align*}
+	m \cdot k^{++}
+	&= m \cdot k^+ + m \\
+	&< n \cdot k^+ + m.
+\end{align*}
+在对\(m < n\)利用\cref{theorem:集合论.自然数的加法的保序性}，
+便得\begin{align*}
+	n \cdot k^+ + m
+	&< n \cdot k^+ + n \\
+	&= n \cdot k^{++}.
+\end{align*}
+这就证明\(k^+ \in B\)，
+从而\(B\)是归纳集，且\(B = \omega\).
+
+\(m \cdot p < n \cdot p \implies m < n\)这部分的证明过程与%
+\cref{theorem:集合论.自然数的加法的保序性} 中第二部分的证明过程完全一致，故略去.
 \end{proof}
 \end{theorem}
 
