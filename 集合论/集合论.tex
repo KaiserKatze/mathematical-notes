@@ -3355,8 +3355,10 @@ t \in a^+\).
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P79. Theorem 4I
 对于任意自然数\(m,n\)，总有\begin{gather}
-	m + 0 = m, \\
+	m + 0 = m;
+	\label{equation:集合论.自然数的加法.性质1} \\%(A1)
 	m + n^+ = (m+n)^+.
+	\label{equation:集合论.自然数的加法.性质2}%(A2)
 \end{gather}
 \end{theorem}
 
@@ -3389,16 +3391,20 @@ t \in a^+\).
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P79. Theorem 4J
 对于任意自然数\(m,n\)，总有\begin{gather}
-	m \cdot 0 = 0, \\
+	m \cdot 0 = 0;
+	\label{equation:集合论.自然数的乘法.性质1} \\%(M1)
 	m \cdot n^+ = m \cdot n + m.
+	\label{equation:集合论.自然数的乘法.性质2}%(M2)
 \end{gather}
 \end{theorem}
 
 我们在定义加法和乘法以后，
 还可以类似地定义自然数的\DefineConcept{乘幂}（exponentiation），
 并且可以给出：对于任意自然数\(m,n\)，总有\begin{gather}
-	m^0 = 1, \quad m \neq 0; \\
+	m^0 = 1, \quad m \neq 0;
+	\label{equation:集合论.自然数的乘幂.性质1} \\%(E1)
 	m^{(n^+)} = m^n \cdot m.
+	\label{equation:集合论.自然数的乘幂.性质2}%(E2)
 \end{gather}
 
 \begin{theorem}
@@ -3621,6 +3627,43 @@ t \in a^+\).
 \end{corollary}
 上面的证明过程体现出利用三一律的特定方式：
 要证\(m < n\)成立，只需证其他两种情况\(m = n\)和\(m > n\)不成立.
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P85. Theorem 4N
+设\(m,n,p\)是自然数.
+那么\[
+	m < n \iff m + p < n + p.
+\]
+\begin{proof}
+首先证\(m < n \implies m + p < n + p\).
+对\(p\)利用数学归纳法，
+取定\(m \in n \in \omega\)，
+令\[
+	A = \Set*{
+		p \in \omega
+		\given
+		m + p < n + p
+	}.
+\]
+显然\(0 \in A\)，且\begin{align*}
+	k \in A
+	&\implies m+k<n+k \\
+	&\implies (m+k)^+<(n+k)^+
+		&(\text{\cref{theorem:集合论.自然数的线性序.引理1}}) \\
+	&\implies m+k^+<n+k^+
+		&(\text{\cref{equation:集合论.自然数的加法.性质2}}) \\
+	&\implies k^+ \in A.
+\end{align*}
+因此\(A\)是归纳集，且\(A = \omega\).
+
+然后证\(m + p < n + p \implies m < n\).
+利用三一律，
+因为\(m + p < n + p\)，
+所以不可能有\(m = n\)（否则会有\(n+p<n+p\)），
+也不可能有\(n < m\)（否则会有\(n+p<m+p<n+p\)），
+于是只有\(m < n\)成立.
+\end{proof}
+\end{theorem}
 
 %TODO
 
