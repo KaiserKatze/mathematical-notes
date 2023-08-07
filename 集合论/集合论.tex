@@ -3523,7 +3523,7 @@ t \in a^+\).
 	T = \Set*{ n \in \omega \given n \notin n }.
 \]
 由于空集中没有元素，于是\(0 \notin 0\)，从而\(0 \in T\).
-再根据\cref{theorem:集合论.自然数的线性序.引理2}，\[
+再根据\cref{theorem:集合论.自然数的线性序.引理1}，\[
 	k \notin k
 	\implies
 	k^+ \notin k^+.
@@ -3532,6 +3532,64 @@ t \in a^+\).
 \end{proof}
 \end{lemma}
 
+\begin{theorem}
+设\(m,n\)是自然数.
+在以下三个命题中，有且仅有一个是真命题：\[
+	m < n, \qquad
+	m = n, \qquad
+	n < m.
+\]
+\begin{proof}
+首先我们证明“三个命题中至多一个成立”.
+如果\(m < n\)和\(m = n\)同时成立，
+那么有\(m < m\)，
+这就违反了\cref{theorem:集合论.自然数的线性序.引理2}.
+另外，如果\(m < n < m\)成立，
+那么根据\(m\)是传递集，
+那么我们回到\(m < m\)这个错误结论了.
+
+接下来只要证明“三个命题中至少一个成立”.
+利用数学归纳法，令\[
+	T = \Set*{
+		n \in \omega
+		\given
+		(\forall m \in \omega)
+		\bigl(
+			m < n
+			\lor
+			m = n
+			\lor
+			n < m
+		\bigr)
+	}.
+\]
+要证\(0 \in T\)，
+只需证\(0 \leqslant m\)对任意\(m \in \omega\)都成立；
+我们可以再次利用数学归纳法，
+显然有\(0 \leqslant 0\)成立；
+同时，若有\(0 \leqslant k\)，那么\(0 < k^+\)；
+由此可知\(0 \in T\).
+然后我们假设\(k \in T\)，再想办法证明\(k^+ \in T\).
+对于任意自然数\(m\)，
+由于\(k \in T\)，我们有\[
+	m \leqslant k
+	\lor
+	k < m;
+\]
+在前一种情形下，有\(m < k^+\)；
+而在后一种情形下，根据\cref{theorem:集合论.自然数的线性序.引理1}，
+我们有\(k^+ < m^+\)，从而有\(k^+ \leqslant m\).
+于是不论在哪种情形下，我们都有\[
+	m < k^+
+	\lor
+	k^+ = m
+	\lor
+	k^+ < m.
+\]
+于是\(k^+ \in T\).
+因此，\(T\)是归纳的.
+\end{proof}
+\end{theorem}
 
 \section{实数}
 %TODO
