@@ -3458,6 +3458,68 @@ t \in a^+\).
 因此上述命题成立.
 \end{example}
 
+现在我们来构造自然数集上的线性序关系.
+我们令\[
+	\in_\omega \defeq \Set*{
+		\opair{m,n} \in \omega \times \omega
+		\given
+		m \in n
+	}.
+\]
+因为任意自然数都是传递集，所以\[
+	\forall m,n,p \in \omega \bigl(
+		m \in n \land n \in p
+		\implies
+		m \in p
+	\bigr),
+\]
+这就可以证明关系\(\in_\omega\)具有传递性；
+接下来只要证明\(\in_\omega\)在\(\omega\)上服从三一律，
+那么它就是\(\omega\)上的线性序.
+我们需要用到下面的引理.
+
+\begin{lemma}
+%@see: 《Elements of Set Theory》 P84. Lemma 4L(a)
+对任意自然数\(m,n\)，总有\[
+	m < n
+	\iff
+	m^+ < n^+.
+\]
+\begin{proof}
+当\(m^+ < n^+\)时，
+有\[
+	m < m^+ \leqslant n,
+\]
+因此，利用传递性，便得\(m < n\).
+
+当\(m < n\)时，
+利用数学归纳法证明，
+构造\[
+	T = \Set*{
+		n \in \omega
+		\given
+		(\forall m < n)
+		m^+ < n^+
+	}.
+\]
+显然\(0 \in T\).
+当\(k \in T\)时，
+要证\(k^+ \in T\)，
+只需证\(m \in k^+ \implies m^+ \in k^{++}\)；
+由\(m \in k^+\)可得\(m = k\)（这种情况下又有\(m^+ = k^+ \in k^{++}\)）
+或\(m \in k\)（这种情况下由于\(k \in T\)，便有\(m^+ \in k^+ \subseteq k^{++}\)）；
+于是不管是哪种情况下我们都有\(m^+ \in k^{++}\)，
+于是证得\(k^+ \in T\).
+因此，\(T\)是归纳的，且与\(\omega\)相等.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+%@see: 《Elements of Set Theory》 P84. Lemma 4L(b)
+没有任何一个自然数是它自己的元素.
+\end{lemma}
+
+
 \section{实数}
 %TODO
 
