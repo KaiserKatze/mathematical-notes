@@ -3714,6 +3714,59 @@ t \in a^+\).
 \cref{theorem:集合论.自然数的消去律}
 又称为“自然数的\DefineConcept{消去律}（cancellation law）”.
 
+\begin{theorem}\label{theorem:集合论.自然数集的良序}
+%@see: 《Elements of Set Theory》 P86. Well Ordering of omega
+设\(A\)是\(\omega\)的一个非空子集.
+存在\(m \in A\)，使得对于\(\forall n \in A\)，总有\[
+	m \leqslant n.
+\]
+\begin{proof}
+首先我们给出如下定义：
+我们把满足本定理的条件的自然数\(m\)称为“\(A\)中最小的数”.
+容易看出，在自然数集\(\omega\)的任意一个非空子集中，最小的数总是唯一的.
+利用反证法，假设\(m_1,m_2\)都是\(A\)中最小的数，
+那么有\(m_1 \leqslant m_2 \land m_2 \leqslant m_1\)，
+从而有\(m_1 = m_2\).
+
+现在我们开始对本定理的证明.
+利用反证法，
+设\(A\)是\(\omega\)的一个子集，且没有一个自然数是\(A\)中最小的数，
+我们可以证明\(A = \emptyset\)，这会与本定理要求的“\(A\)非空”矛盾.
+而为了证明\(A = \emptyset\)，
+只需证\(\omega - A\)是归纳集.
+但是，在利用数学归纳法证明“\(\omega - A\)是归纳集”时，
+需要证明\(k^+ \in \omega - A\)，
+而这个命题不能仅凭\(k \in \omega - A\)得出，
+这是因为我们还需要证明“所有比\(k\)小的自然数也都是\(\omega - A\)的元素”，即\[
+	\forall p \in \omega \bigl(
+		p < k \implies p \in \omega - A
+	\bigr).
+\]
+考虑到这一点，我们就能肯定命题\(k^+ \in \omega - A\)一定成立，
+否则就会有“\(k^+\)是\(A\)中最小的数”，
+这就与我们的假设“没有一个自然数是\(A\)中最小的数”矛盾！
+
+在整理好上面的思路以后，我们构造\[
+	B = \Set*{
+		m \in \omega
+		\given
+		\text{比\(m\)小的自然数不属于\(A\)}
+	}.
+\]
+现在来证明\(B\)是归纳的.
+显然\(0 \in B\).
+假设\(k \in B\)，
+那么，如果\(n < k^+\)，
+则有\(n < k\)（这种情况下，由\(k \in B\)可知\(n \notin A\)）%
+或\(n = k\)（这种情况下，必有\(n \notin A\)，否则根据三一律必有“\(n\)是\(A\)中最小的数”）%
+成立，
+在这两种情况下，\(n\)都不是\(A\)的元素.
+因此，\(k^+ \in B\).
+于是\(B\)是归纳集，从而\(A = \emptyset\).
+\end{proof}
+\end{theorem}
+
+
 %TODO
 
 \section{实数}
