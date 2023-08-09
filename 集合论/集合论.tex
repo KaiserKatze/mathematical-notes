@@ -3785,6 +3785,7 @@ t \in a^+\).
 \end{theorem}
 
 \begin{theorem}[强归纳原理]\label{theorem:集合论.归纳原理2}
+%@see: 《Elements of Set Theory》 P87. Strong Induction Principle for omega
 设\(A\)是\(\omega\)的子集.
 如果\[
 	\forall n \in \omega \Bigl[
@@ -3814,6 +3815,78 @@ t \in a^+\).
 只需证明\(C\)没有最小数.
 
 \section{实数}
+在上一节，我们以集合论为基础，构造了自然数集\(\omega\).
+在这一节，我们继续探索利用集合论构造“实数”的方法.
+
+\subsection{整数}
+我们首先要把自然数集扩张为整数集.
+
+设\(a,b\in\omega\).
+我们把数对\(\opair{a,b}\)称为“\(a\)与\(b\)的\DefineConcept{差}（difference）”，
+记作\(a-b\)\footnote{读作“\(a\)减\(b\)”.}，即\[
+	a-b = \opair{a,b}.
+\]
+
+\begin{definition}
+%@see: 《Elements of Set Theory》 P91. Definition
+我们定义\(\omega\times\omega\)上的关系\(\sim\)如下：
+\[
+	\forall a,b,c,d \in \omega \Bigl[
+		\opair{a,b} \sim \opair{c,d}
+		\iff
+		a+d=b+c
+	\Bigr].
+\]
+\end{definition}
+
+容易看出，关系\(\sim\)的定义域和值域都是自然数对.
+除了通过命题公式给出\(\sim\)的定义以外，
+我们还可以用更直接的形式给出它的定义：
+\[
+	\sim\ \defeq \Set*{
+		\opair{\opair{a,b},\opair{c,d}}
+		\given
+		a+d=b+c \land a,b,c,d\in\omega
+	}.
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P91. Theorem 5ZA
+关系\(\sim\)是\(\omega\times\omega\)上的等价关系.
+\begin{proof}
+容易看出，关系\(\sim\)具有自反性和对称性.
+现在来证\(\sim\)具有传递性.
+设\[
+	\opair{m,n}\sim\opair{p,q}, \qquad
+	\opair{p,q}\sim\opair{r,s}.
+\]
+由定义有\[
+	m+q=n+p, \qquad
+	p+s=q+r;
+\]
+相加得\[
+	m+q+p+s=n+p+q+r;
+\]
+再利用\hyperref[theorem:集合论.自然数的消去律]{消去律}便得\[
+	m+s=n+r;
+\]
+于是\(\opair{m,n}\sim\opair{r,s}\)，\(\sim\)具有传递性.
+综上所述，\(\sim\)是一个等价关系.
+\end{proof}
+\end{theorem}
+
+我们把“‘差’的等价类”叫做\DefineConcept{整数}（integer）.
+于是我们可以构造出“整数集”.
+\begin{definition}
+%@see: 《Elements of Set Theory》 P92. Definition
+称“\(\omega\times\omega\)对\(\sim\)的商集”为\DefineConcept{整数集}，
+记作\(\mathbb{Z}\)，即\[
+	\mathbb{Z} \defeq (\omega\times\omega)/\kern-2pt\sim.
+\]
+\end{definition}
+
+
+
 %TODO
 
 \section{集合的大小}
