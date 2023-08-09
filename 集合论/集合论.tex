@@ -2847,7 +2847,7 @@ x \in \bigcap B = \bigcap_i b_i
 非必要的数学对象（即不是自然数的集合）都不在\(\omega\)中，
 我们可以说：自然数集是“最小的”归纳集.
 这句话可以更严谨地表述为下述“归纳原理”.
-\begin{theorem}[归纳原理]
+\begin{theorem}[归纳原理]\label{theorem:集合论.归纳原理1}
 自然数集\(\omega\)的任意\DefineConcept{归纳子集}（{\rm inductive subset}）总是它自己.
 \end{theorem}
 
@@ -3714,7 +3714,7 @@ t \in a^+\).
 \cref{theorem:集合论.自然数的消去律}
 又称为“自然数的\DefineConcept{消去律}（cancellation law）”.
 
-\begin{theorem}\label{theorem:集合论.自然数集的良序}
+\begin{theorem}[良序原理]\label{theorem:集合论.自然数集的良序}
 %@see: 《Elements of Set Theory》 P86. Well Ordering of omega
 设\(A\)是\(\omega\)的一个非空子集.
 存在\(m \in A\)，使得对于\(\forall n \in A\)，总有\[
@@ -3784,7 +3784,34 @@ t \in a^+\).
 \end{proof}
 \end{theorem}
 
-%TODO
+\begin{theorem}[强归纳原理]\label{theorem:集合论.归纳原理2}
+设\(A\)是\(\omega\)的子集.
+如果\[
+	\forall n \in \omega \Bigl[
+		\forall m \in \omega \bigl( m < n \implies m \in A \bigr)
+		\implies
+		n \in A
+	\Bigr],
+\]
+那么\(A = \omega\).
+\begin{proof}
+用反证法，
+设\(A \neq \omega\)，
+那么\(\omega - A \neq \omega\)，
+那么根据\hyperref[theorem:集合论.自然数集的良序]{良序原理}，
+\(\omega - A\)必有最小数\(m\).
+既如此，所有比\(m\)小的数都在\(A\)中.
+但是定理要求\(m \in A\)，这就与\(m \in \omega - A\)矛盾.
+\end{proof}
+\end{theorem}
+
+良序原理为数学归纳法提供另一种选择.
+假设我们需要证明，某个命题对任意自然数都成立，
+虽然可以像之前一样构造“正例集”（也就是由使命题为真的自然数组成的集合），
+但是也可以构造“反例集”（也就是由使命题为假的自然数组成的集合）\(C\)，
+然后证明这个反例集是空集；
+而要证得\(C = \emptyset\)，
+只需证明\(C\)没有最小数.
 
 \section{实数}
 %TODO
