@@ -1599,12 +1599,49 @@ f(x,y,z) = c
 \end{example}
 
 \begin{theorem}\label{theorem:多元函数微分法.梯度的运算法则}
-设函数\(u(x,y,z)\)和\(v(x,y,z)\)的各个偏导数都存在且连续，则\begin{enumerate}
-\item \(\grad(c u) = c \grad u\)（其中\(c\)为常数）；
-\item \(\grad(u \pm v) = \grad u \pm \grad v\)；
-\item \(\grad(uv) = v \grad u + u \grad v\)；
-\item \(\grad(\frac{u}{v}) = \frac{v \grad u - u \grad v}{v^2}\).
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)的各个偏导数都存在且连续，\(c\)是常数，
+则\begin{enumerate}
+	\item \(\grad(c u) = c \grad u\)；
+	\item \(\grad(u \pm v) = \grad u \pm \grad v\)；
+	\item \(\grad(uv) = v \grad u + u \grad v\)；
+	\item \(\grad(\frac{u}{v}) = \frac{v \grad u - u \grad v}{v^2}\).
 \end{enumerate}
+\begin{proof}
+\def\gradexpr#1{\pdv{#1}{x} \mat{i} + \pdv{#1}{y} \mat{j} + \pdv{#1}{z} \mat{k}}
+直接计算得
+\begin{align*}
+	\grad(c u)
+		&= \gradexpr{(cu)} \\
+		&= c \left( \gradexpr{u} \right) \\
+		&= c \grad u, \\
+	\grad(u \pm v)
+		&= \gradexpr{(u \pm v)} \\
+		&= \left( \pdv{u}{x} \pm \pdv{v}{x} \right) \mat{i}
+		+ \left( \pdv{u}{y} \pm \pdv{v}{y} \right) \mat{j}
+		+ \left( \pdv{u}{z} \pm \pdv{v}{z} \right) \mat{k} \\
+		&= \left( \gradexpr{u} \right) \pm \left( \gradexpr{v} \right) \\
+		&= \grad u \pm \grad v, \\
+	\grad(uv)
+		&= \gradexpr{(uv)} \\
+		&= \left( \pdv{u}{x} v + u \pdv{v}{x} \right) \mat{i}
+		+ \left( \pdv{u}{y} v + u \pdv{v}{y} \right) \mat{j}
+		+ \left( \pdv{u}{z} v + u \pdv{v}{z} \right) \mat{k} \\
+		&= v \left( \gradexpr{u} \right)
+		+ u \left( \gradexpr{v} \right) \\
+		&= v \grad u + u \grad v, \\
+	\grad(\frac{u}{v})
+		&= \gradexpr{(u/v)} \\
+		&= \left( \frac{u'_x v - u v'_x}{v^2} \right) \mat{i}
+		+ \left( \frac{u'_y v - u v'_y}{v^2} \right) \mat{j}
+		+ \left( \frac{u'_z v - u v'_z}{v^2} \right) \mat{k} \\
+		&= \frac{1}{v^2} \left[
+			v \left( \gradexpr{u} \right)
+			- u \left( \gradexpr{v} \right)
+		\right] \\
+		&= \frac{v \grad u - u \grad v}{v^2}.
+	\qedhere
+\end{align*}
+\end{proof}
 \end{theorem}
 
 \subsection{数量场与向量场}
