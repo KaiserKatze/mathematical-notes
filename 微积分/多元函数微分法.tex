@@ -339,7 +339,44 @@ T = \frac{pV}{R}, \qquad \pdv{T}{p} = \frac{V}{R};
 \end{definition}
 
 \begin{theorem}
-如果函数\(z=f(x,y)\)的两个二阶混合偏导数\(\pdv{z}{y}{x}\)及\(\pdv{z}{x}{y}\)在区域\(D\)内连续，那么在该区域内这两个二阶混合偏导数必相等.
+如果函数\(z=f(x,y)\)的两个二阶混合偏导数\(\pdv{z}{y}{x}\)及\(\pdv{z}{x}{y}\)在区域\(D\)内连续，
+那么在该区域内这两个二阶混合偏导数必相等.
+\begin{proof}
+根据偏导数的定义，我们有
+\[
+	\pdv{z(x,y)}{x}
+	= \lim\limits_{\increment x\to0} \frac{f(x+\increment x,y)-f(x,y)}{\increment x},
+\]
+	\[
+	\pdv{z(x,y)}{y}
+	= \lim\limits_{\increment y\to0} \frac{f(x,y+\increment y)-f(x,y)}{\increment y}.
+\]
+于是，我们就有
+\begin{align*}
+	\pdv[2]{z}{x}{y}
+	&= \lim\limits_{\increment y\to0}
+		\frac{1}{\increment y}\left[\pdv{z(x,y+\increment y)}{x} - \pdv{z(x,y)}{x}\right] \\
+	&= \lim\limits_{\increment y\to0}
+		\frac{1}{\increment y}\left[\lim\limits_{\increment x\to0} \frac{f(x+\increment x,y+\increment y)-f(x,y+\increment y)}{\increment x} - \lim\limits_{\increment x\to0} \frac{f(x+\increment x,y)-f(x,y)}{\increment x}\right] \\
+	&= \lim\limits_{\increment y\to0}
+		\frac{1}{\increment y}\left\{\lim\limits_{\increment x\to0} \frac{[f(x+\increment x,y+\increment y)-f(x,y+\increment y)]-[f(x+\increment x,y)-f(x,y)]}{\increment x}\right\} \\
+	&= \lim\limits_{\increment y\to0} \lim\limits_{\increment x\to0}
+		\frac{f(x+\increment x,y+\increment y)-f(x,y+\increment y)-f(x+\increment x,y)+f(x,y)}{\increment x \cdot \increment y}, \\
+	\pdv[2]{z}{y}{x}
+	&= \lim\limits_{\increment x\to0}
+		\frac{1}{\increment x}\left[\pdv{z(x+\increment x,y)}{y} - \pdv{z(x,y)}{y}\right] \\
+	&= \lim\limits_{\increment x\to0}
+		\frac{1}{\increment x}\left[\lim\limits_{\increment y\to0} \frac{f(x+\increment x,y+\increment y)-f(x+\increment x,y)}{\increment y} - \lim\limits_{\increment y\to0} \frac{f(x,y+\increment y)-f(x,y)}{\increment y}\right] \\
+	&= \lim\limits_{\increment x\to0}
+		\frac{1}{\increment x}\left\{\lim\limits_{\increment y\to0} \frac{[f(x+\increment x,y+\increment y)-f(x+\increment x,y)]-[f(x,y+\increment y)-f(x,y)]}{\increment y}\right\} \\
+	&= \lim\limits_{\increment x\to0} \lim\limits_{\increment y\to0}
+		\frac{f(x+\increment x,y+\increment y)-f(x+\increment x,y)-f(x,y+\increment y)+f(x,y)}{\increment x \cdot \increment y}, \\
+\end{align*}
+显然\[
+	\pdv[2]{z}{x}{y} = \pdv[2]{z}{y}{x}.
+	\qedhere
+\]
+\end{proof}
 \end{theorem}
 换句话说，二阶混合偏导数在连续的条件下与求导的次序无关.
 同样地，高阶混合偏导数在连续的条件下也与求导的次序无关.
