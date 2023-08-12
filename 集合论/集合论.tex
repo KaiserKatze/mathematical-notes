@@ -2316,8 +2316,8 @@ x \in \bigcap B = \bigcap_i b_i
 
 利用\cref{theorem:集合论.划分集合获得等价关系}，
 我们学会通过对集合\(A\)的划分诱导出一个等价关系.
-接下来我们可以逆转这一过程，
-依据\(A\)上已知的等价关系，获得\(A\)的划分.
+接下来我们来研究怎么逆转这个过程，
+也就是说，已知\(A\)上的等价关系，求\(A\)的划分.
 
 \begin{definition}
 %@see: 《Elements of Set Theory》 P57. Definition
@@ -2476,7 +2476,7 @@ x \in \bigcap B = \bigcap_i b_i
 现在我们来研究如何在商集上定义映射.
 具体而言，设\(\rel{R}\)是\(A\)上的一个等价关系，
 映射\(F\colon A \to A\).
-我们像知道是否存在一个对应的映射\(\hat{F}\colon A/\rel{R} \to A/\rel{R}\)，
+我们想知道是否存在一个对应的映射\(\hat{F}\colon A/\rel{R} \to A/\rel{R}\)，
 使得对于任意\(x \in A\)，总有\[
 	\hat{F}(\rel{R}[x]) = \rel{R}[F(x)].
 \]
@@ -2497,7 +2497,7 @@ x \in \bigcap B = \bigcap_i b_i
 那么我们称“\(F\)和\(\rel{R}\)\DefineConcept{兼容}%
 （\(F\) is \emph{compatible} with \(\rel{R}\)）”.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.与等价关系兼容的映射的性质}
 %@see: 《Elements of Set Theory》 P60. Theorem 3Q
 设\(\rel{R}\)是\(A\)上的一个等价关系，映射\(F\colon A \to A\).
 如果\(F\)和\(\rel{R}\)兼容，
@@ -3827,7 +3827,7 @@ t \in a^+\).
 	a-b = \opair{a,b}.
 \]
 
-\begin{definition}
+\begin{definition}\label{definition:集合论.自然数的差的等价关系}
 %@see: 《Elements of Set Theory》 P91. Definition
 我们定义\(\omega\times\omega\)上的关系\(\sim\)如下：
 \[
@@ -3870,21 +3870,52 @@ t \in a^+\).
 再利用\hyperref[theorem:集合论.自然数的消去律]{消去律}便得\[
 	m+s=n+r;
 \]
-于是\(\opair{m,n}\sim\opair{r,s}\)，\(\sim\)具有传递性.
-综上所述，\(\sim\)是一个等价关系.
+于是\(\opair{m,n}\sim\opair{r,s}\)，关系\(\sim\)具有传递性.
+综上所述，关系\(\sim\)是一个等价关系.
 \end{proof}
 \end{theorem}
 
-我们把“‘差’的等价类”叫做\DefineConcept{整数}（integer）.
+既然关系\(\sim\)是一个等价关系，
+那么对于任意给定的自然数对\(\opair{m,0}\)，
+我们可以取得它在关系\(\sim\)下唯一的等价类\[
+	[\opair{m,0}] = \Set{
+		\opair{m,0},
+		\opair{m+1,1},
+		\opair{m+2,2},
+		\dotsc
+	};
+\]
+类似地，
+对于任意给定的自然数对\(\opair{0,n}\)，
+我们也可以取得它在关系\(\sim\)下唯一的等价类\[
+	[\opair{0,n}] = \Set{
+		\opair{0,n},
+		\opair{1,n+1},
+		\opair{2,n+2},
+		\dotsc
+	}.
+\]
+像这样，我们把任意两个自然数\(m\)和\(n\)的差\(\opair{m,n}\)%
+在关系\(\sim\)下的等价类叫做一个\DefineConcept{整数}（integer）.
+
 于是我们可以构造出“整数集”.
 \begin{definition}
 %@see: 《Elements of Set Theory》 P92. Definition
 称“\(\omega\times\omega\)对\(\sim\)的商集”为%
 \DefineConcept{整数集}（the set of integers），
 记作\(\mathbb{Z}\)，即\[
-	\mathbb{Z} \defeq (\omega\times\omega)/\kern-2pt\sim.
+	\mathbb{Z} \defeq \IntegerQuotient.
 \]
 \end{definition}
+
+例如，整数\(2\)是等价类\[
+	[\opair{2,0}]
+	= \Set{\opair{2,0},\opair{3,1},\opair{4,2},\dotsc};
+\]
+而整数\((-3)\)是等价类\[
+	[\opair{0,3}]
+	= \Set{\opair{0,3},\opair{1,4},\opair{2,5},\dotsc}.
+\]
 
 \begin{figure}[ht]
 	\centering
@@ -3905,6 +3936,79 @@ t \in a^+\).
 	\end{tikzpicture}
 	\caption{整数是\(\omega\times\omega\)上的“直线”}
 \end{figure}
+
+类比自然数，我们希望在整数集上也能定义加法和乘法.
+
+利用我们从初等代数学到的知识，
+容易验证下式是正确的：\[
+	(m-n)+(p-q) = (m+p)-(n+q).
+\]
+于是我们可以定义整数集上的加法运算：
+\begin{equation}\label{equation:集合论.整数集上的加法运算}
+	[\opair{m,n}] + [\opair{p,q}]
+	\defeq
+	[\opair{m+p,n+q}].
+\end{equation}
+
+\begin{theorem}\label{theorem:集合论.整数集上的加法运算是良定的}
+%@see: 《Elements of Set Theory》 P93. Lemma 5ZB
+如果\(\opair{m,n}\sim\opair{m',n'}\)且\(\opair{p,q}\sim\opair{p',q'}\)，
+那么\[
+	\opair{m+p,n+q}\sim\opair{m'+p',n'+q'}.
+\]
+\begin{proof}%theorem:集合论.有序对的性质1
+根据\cref{definition:集合论.自然数的差的等价关系}，
+\[
+	m+n'=m'+n, \qquad
+	p+q'=p'+q;
+\]
+将上述两式相加得\[
+	m+p+n'+q'=m'+p'+n+q;
+\]
+于是\(\opair{m+p,n+q}\sim\opair{m'+p',n'+q'}\).
+\end{proof}
+\end{theorem}
+\cref{theorem:集合论.整数集上的加法运算是良定的} 说明前面定义的%
+\hyperref[equation:集合论.整数集上的加法运算]{整数集上的加法运算}是正当的.
+换句话说，由于映射\[
+	F\colon ((\omega\times\omega)\times(\omega\times\omega))\to(\omega\times\omega),
+	\opair{\opair{m,n},\opair{p,q}} \mapsto \opair{m+p,n+q}
+\]和关系\(\sim\)兼容，
+那么根据\cref{theorem:集合论.与等价关系兼容的映射的性质}，
+在商集\(\IntegerQuotient\)上，唯一存在映射\(\hat{F}\)（这就是整数集上的加法运算），满足\[
+	\hat{F}([\opair{m,n}],[\opair{p,q}]) = [\opair{m+p,n+q}].
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P94. Lemma 5ZC
+%@see: 《Elements of Set Theory》 P95. Lemma 5ZD
+以下命题恒成立：
+\begin{enumerate}
+	\item 加法交换律\[
+		\forall a,b\in\mathbb{Z} \bigl(
+			a+b=b+a
+		\bigr).
+	\]
+	\item 加法结合律\[
+		\forall a,b\in\mathbb{Z} \bigl(
+			(a+b)+c=a+(b+c)
+		\bigr).
+	\]
+	\item 任意整数加上零不变\[
+		\forall a\in\mathbb{Z} \bigl(
+			a+0=a
+		\bigr),
+	\]
+	其中整数\(0\)定义为以自然数\(0\)构成的有序对的等价类\([\opair{0,0}]\).
+
+	\item 加法可逆\[
+		\forall a\in\mathbb{Z}, \exists b\in\mathbb{Z} \bigl(
+			a+b=0
+		\bigr).
+	\]
+\end{enumerate}
+\end{theorem}
+
 
 %TODO
 
