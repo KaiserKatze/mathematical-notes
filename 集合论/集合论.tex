@@ -3825,6 +3825,7 @@ t \in a^+\).
 在这一节，我们继续探索利用集合论构造“实数”的方法.
 
 \subsection{整数}
+\subsubsection{整数集}
 我们首先要把自然数集扩张为整数集.
 
 设\(a,b\in\omega\).
@@ -3943,6 +3944,7 @@ t \in a^+\).
 	\caption{整数是\(\omega\times\omega\)上的“直线”}
 \end{figure}
 
+\subsubsection{整数集上的加法运算}
 类比自然数，我们希望在整数集上也能定义加法和乘法.
 
 利用我们从初等代数学到的知识，
@@ -4081,6 +4083,62 @@ t \in a^+\).
 \cref{theorem:集合论.整数配上加法成为阿贝尔群}
 说明整数集\(\mathbb{Z}\)配上加法运算就成为一个阿贝尔群！
 在以后学到抽象代数的时候，我们会明白这意味着什么.
+
+\subsubsection{整数集上的乘法运算}
+我们遵循同样的思路，像在研究整数集上的加法运算那样，借助初等代数的知识，注意到\[
+	(m-n)\cdot(p-q)=(mp+nq)-(mq+np).
+\]
+于是我们可以定义整数集上的乘法运算：
+\begin{equation}\label{equation:集合论.整数集上的乘法运算}
+	[\opair{m,n}]\cdot[\opair{p,q}]
+	\defeq [\opair{mp+nq,mq+np}].
+\end{equation}
+同样地，我们还是要验证整数乘法的定义在等价类上是不是良定的.
+也就是要验证映射\[
+	G\colon ((\omega\times\omega)\times(\omega\times\omega))\to(\omega\times\omega),
+	\opair{\opair{m,n},\opair{p,q}} \mapsto \opair{mp+nq,mq+np}
+\]和关系\(\sim\)兼容.
+为此，我们有如下引理.
+\begin{lemma}\label{theorem:集合论.整数集上的乘法运算是良定的}
+%@see: 《Elements of Set Theory》 P96. Lemma 5ZE
+如果\(\opair{m,n}\sim\opair{m',n'}\)且\(\opair{p,q}\sim\opair{p',q'}\)，
+那么\[
+	\opair{mp+nq,mq+np}\sim\opair{m'p'+n'q',m'q'+n'p'}.
+\]
+\begin{proof}
+根据\cref{definition:集合论.自然数的差的等价关系}，
+\[
+	m+n'=m'+n,
+	\eqno(1)
+\]\[
+	p+q'=p'+q;
+	\eqno(2)
+\]
+将(1)式乘以\(p\)倍，得\[
+	mp+n'p=m'p+np;
+	\eqno(3)
+\]
+将(1)式乘以\(q\)倍，得\[
+	m'q+nq=mq+n'q;
+	\eqno(4)
+\]
+将(2)式乘以\(m'\)倍，得\[
+	m'p+m'q'=m'p'+m'q;
+	\eqno(5)
+\]
+将(2)式乘以\(n'\)倍，得\[
+	n'p'+n'q=n'p+n'q';
+	\eqno(6)
+\]
+将(3)(4)(5)(6)这四个式子相加，
+再利用\hyperref[theorem:集合论.自然数的消去律]{消去律}化简，便得\[
+	mp+nq+m'q'+n'p'
+	=np+mq+m'p'+n'q';
+\]
+因此，\(\opair{mp+nq,mq+np}\sim\opair{m'p'+n'q',m'q'+n'p'}\).
+\end{proof}
+\end{lemma}
+
 
 %TODO
 
