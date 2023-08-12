@@ -3999,7 +3999,7 @@ t \in a^+\).
 	\hat{F}([\opair{m,n}],[\opair{p,q}]) = [\opair{m+p,n+q}].
 \]
 
-\begin{theorem}\label{theorem:集合论.整数配上加法成为阿贝尔群}
+\begin{theorem}\label{theorem:集合论.整数加法的运算法则}
 %@see: 《Elements of Set Theory》 P94. Theorem 5ZC
 %@see: 《Elements of Set Theory》 P95. Theorem 5ZD
 以下命题恒成立：
@@ -4016,14 +4016,12 @@ t \in a^+\).
 			(a+b)+c=a+(b+c)
 		\bigr).
 	\end{equation}
-	\item 任意整数加上零不变
+	\item 任意整数加上\(0\defeq[\opair{0,0}]\)不变
 	\begin{equation}\label{equation:集合论.任意整数加上零不变}
 		\forall a\in\mathbb{Z} \bigl(
 			a+0=a
-		\bigr),
+		\bigr).
 	\end{equation}
-	其中整数\(0\)定义为以自然数\(0\)构成的有序对的等价类\([\opair{0,0}]\).
-
 	\item 加法可逆
 	\begin{equation}\label{equation:集合论.整数加法可逆}
 		\forall a\in\mathbb{Z}, \exists! b\in\mathbb{Z} \bigl(
@@ -4080,7 +4078,7 @@ t \in a^+\).
 于是我们证得整数\(b\)的唯一性.
 \end{proof}
 \end{theorem}
-\cref{theorem:集合论.整数配上加法成为阿贝尔群}
+\cref{theorem:集合论.整数加法的运算法则}
 说明整数集\(\mathbb{Z}\)配上加法运算就成为一个阿贝尔群！
 在以后学到抽象代数的时候，我们会明白这意味着什么.
 
@@ -4139,7 +4137,7 @@ t \in a^+\).
 \end{proof}
 \end{lemma}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.整数乘法的运算法则1}
 %@see: 《Elements of Set Theory》 P96. Theorem 5ZF
 以下命题恒成立：
 \begin{enumerate}
@@ -4194,6 +4192,70 @@ t \in a^+\).
 易证\(a \cdot (b + c) = (a \cdot b) + (a \cdot c)\)成立.
 \end{proof}
 \end{theorem}
+
+\begin{theorem}\label{theorem:集合论.整数乘法的运算法则2}
+%@see: 《Elements of Set Theory》 P97. Theorem 5ZG
+以下命题恒成立：\begin{enumerate}
+	\item 任意整数乘上整数\(1\defeq[\opair{1,0}]\)不变，即
+	\begin{equation}\label{equation:集合论.任意整数乘上一不变}
+		\forall a\in\mathbb{Z} \bigl(
+			a \cdot 1 = a
+		\bigr).
+	\end{equation}
+	\item 整数\(1\)与整数\(0\)不相等，即\(1\neq0\).
+	\item 如果\(a \cdot b = 0\)，那么\(a = 0 \lor b = 0\).
+\end{enumerate}
+\begin{proof}
+设\(a=[\opair{m,n}]\)，那么
+\begin{align*}
+	a \cdot 1
+	&= [\opair{m,n}]\cdot[\opair{1,0}] \\
+	&= [\opair{m\cdot1+n\cdot0,m\cdot0+n\cdot1}] \\
+	&= [\opair{m,n}] = a.
+\end{align*}
+于是命题 \labelcref{equation:集合论.任意整数乘上一不变} 成立.
+
+要证整数\(1\)与整数\(0\)不相等，
+即证\([\opair{1,0}]\neq[\opair{0,0}]\)，
+那么只需证\[
+	\opair{0,0}\not\sim\opair{1,0};
+\]
+即证\(0+0\neq0+1\)或\(0\neq1\)，显然成立.
+
+接下来，若要证\(a \cdot b = 0 \implies a = 0 \lor b = 0\)，
+可以用反证法，
+假设\(a,b\)都是非零整数，只需证\(a \cdot b \neq 0\)制造矛盾.
+设\(a=[\opair{m,n}]\)，\(b=[\opair{p,q}]\)，
+其中\(m,n,p,q\)都是自然数.
+那么\[
+	a \cdot b = [\opair{mp+nq,mq+np}].
+\]
+既然\(a\neq0=[\opair{0,0}]\)，
+那么\(m \neq n\)，即有\[
+	m < n \lor n < m;
+	\eqno(1)
+\]
+同理可得\[
+	p < q \lor q < p.
+	\eqno(2)
+\]
+从(1)(2)两式可以得到\(m,n,p,q\)取值的四种不同情况，不过我们总有\[
+	mp+nq \neq mq+np.
+\]
+因此\(a \cdot b \neq 0\).
+\end{proof}
+\end{theorem}
+
+我们可以说\(\opair{\mathbb{Z},+,\cdot}\)构成了%
+\DefineConcept{整环}（integral domain），
+这是因为\begin{enumerate}
+	\item \(\opair{\mathbb{Z},+}\)构成阿贝尔群%
+	（\cref{theorem:集合论.整数加法的运算法则}）.
+	\item 整数乘法遵守交换律和结合律，以及对加法的分配律%
+	（\cref{theorem:集合论.整数乘法的运算法则1}）.
+	\item 整数\(1\)是乘法的单位元，且整数集中不存在零因子%
+	（\cref{theorem:集合论.整数乘法的运算法则2}）.
+\end{enumerate}
 
 %TODO
 
