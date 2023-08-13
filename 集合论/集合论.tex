@@ -3829,14 +3829,9 @@ x \in \bigcap B = \bigcap_i b_i
 %TODO
 \end{example}
 
-\section{实数}
-在上一节，我们以集合论为基础，构造了自然数集\(\omega\).
-在这一节，我们继续探索利用集合论构造“实数”的方法.
-
-\subsection{整数}
-\subsubsection{整数集}
-我们首先要把自然数集扩张为整数集.
-
+\section{整数}
+我们现在把自然数集扩张为整数集.
+\subsection{整数集}
 设\(a,b\in\omega\).
 我们把数对\(\opair{a,b}\)称为“\(a\)与\(b\)的\DefineConcept{差}（difference）”，
 记作\(a-b\)\footnote{读作“\(a\)减\(b\)”.}，即\[
@@ -3953,7 +3948,7 @@ x \in \bigcap B = \bigcap_i b_i
 	\caption{整数是\(\omega\times\omega\)上的“直线”}
 \end{figure}
 
-\subsubsection{整数集上的加法运算}
+\subsection{整数集上的加法运算}
 类比自然数，我们希望在整数集上也能定义加法和乘法.
 
 利用我们从初等代数学到的知识，
@@ -4093,7 +4088,7 @@ x \in \bigcap B = \bigcap_i b_i
 说明整数集\(\mathbb{Z}\)配上加法运算就成为一个阿贝尔群！
 在以后学到抽象代数的时候，我们会明白这意味着什么.
 
-\subsubsection{整数集上的乘法运算}
+\subsection{整数集上的乘法运算}
 我们遵循同样的思路，像在研究整数集上的加法运算那样，借助初等代数的知识，注意到\[
 	(m-n)\cdot(p-q)=(mp+nq)-(mq+np).
 \]
@@ -4268,7 +4263,7 @@ x \in \bigcap B = \bigcap_i b_i
 	（\cref{theorem:集合论.整数乘法的运算法则2}）.
 \end{enumerate}
 
-\subsubsection{整数的序}
+\subsection{整数的序}
 现在我们来为整数构造一个序.
 利用我们从初等代数学到的知识，
 容易验证下式是正确的：\[
@@ -4418,6 +4413,65 @@ x \in \bigcap B = \bigcap_i b_i
 \end{gather*}
 \end{corollary}
 \cref{theorem:集合论.整数的消去律} 又称为“整数的消去律”.
+
+尽管自然数集\(\omega\)并非整数集\(\mathbb{Z}\)的子集，
+但是我们可以在整数集中找到一个子集，它的行为表现都和\(\omega\)一模一样.
+准确地说，我们定义映射\[
+	E\colon \omega\to\mathbb{Z}, n\mapsto[\opair{n,0}].
+\]
+那么我们有\(E(0)=0\)，\(E(1)=1\).
+
+我们可以证明，\(E\)是一个\DefineConcept{同构嵌入}（isomorphic embedding），
+它将\(\opair{\omega,+,\cdot,<}\)嵌入\(\opair{\mathbb{Z},+,\cdot,<}\).
+\begin{theorem}
+\(E\)是一一映射，对\(\forall m,n\in\omega\)总满足
+\begin{gather}
+	E(m+n)=E(m)+E(n),
+	\label{equation:集合论.自然数集到整数集的同构嵌入1} \\
+	E(mn)=E(m) \cdot E(n),
+	\label{equation:集合论.自然数集到整数集的同构嵌入2} \\
+	m<n \iff E(m)<E(n).
+	\label{equation:集合论.自然数集到整数集的同构嵌入3}
+\end{gather}
+\begin{proof}
+因为\begin{align*}
+	E(m)=E(n)
+	&\implies
+	[\opair{m,0}]=[\opair{n,0}] \\
+	&\implies
+	\opair{m,0}\sim\opair{n,0} \\
+	&\implies
+	m=n,
+\end{align*}
+所以\(E\)是一一映射.
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入1} 证明如下：
+\begin{align*}
+	E(m+n)
+	&= [\opair{m+n,0}] \\
+	&= [\opair{m,0}]+[\opair{n,0}] \\
+	&= E(m)+E(n).
+\end{align*}
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入2} 证明如下：
+\begin{align*}
+	E(mn)
+	&= [\opair{mn,0}] \\
+	&= [\opair{m,0}]\cdot[\opair{n,0}] \\
+	&= E(m) \cdot E(n).
+\end{align*}
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入3} 证明如下：
+\begin{align*}
+	m<n
+	&\iff
+	[\opair{m,0}]<[\opair{n,0}] \\
+	&\iff
+	E(m)<E(n).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
 
 %TODO
 
