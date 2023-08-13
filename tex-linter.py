@@ -76,6 +76,9 @@ if __name__ == "__main__":
                 if re.search(r"\\cref\{[^\}]+\}\s+[\uff09\uff0c\uff1b]", line):
                     error("【0004】在 \cref 命令后若紧跟标点符号则不应另行添加空格！")
 
+                if re.search(r"\uff09\s+\\\(", line):
+                    error("【0005】在全角右圆括号与行内数学公式开头命令之间存在空格！")
+
                 prev_line = line
     if not is_tex_project_problematic:
         logger.info("检查完毕，没有任何错误！")
