@@ -3579,78 +3579,81 @@ x \in \bigcap B = \bigcap_i b_i
 上面的证明过程体现出利用三一律的特定方式：
 要证\(m < n\)成立，只需证其他两种情况\(m = n\)和\(m > n\)不成立.
 
-\begin{theorem}\label{theorem:集合论.自然数的加法的保序性}
+\begin{theorem}\label{theorem:集合论.自然数的加法与乘法的保序性}
 %@see: 《Elements of Set Theory》 P85. Theorem 4N
 设\(m,n,p\)是自然数.
-那么\[
-	m < n \iff m + p < n + p.
-\]
+那么\begin{gather}
+	m < n \iff m + p < n + p,
+	\label{equation:集合论.自然数的加法的保序性} \\
+	p \neq 0 \implies \bigl(
+		m < n \iff m \cdot p < n \cdot p
+	\bigr).
+	\label{equation:集合论.自然数的乘法的保序性}
+\end{gather}
 \begin{proof}
-首先证\(m < n \implies m + p < n + p\).
-对\(p\)利用数学归纳法，
-取定\(m \in n \in \omega\)，
-令\[
-	A = \Set*{
-		p \in \omega
-		\given
-		m + p < n + p
-	}.
-\]
-显然\(0 \in A\)，且\begin{align*}
-	k \in A
-	&\implies m+k<n+k \\
-	&\implies (m+k)^+<(n+k)^+
-		&(\text{\cref{theorem:集合论.自然数的线性序.引理1}}) \\
-	&\implies m+k^+<n+k^+
-		&(\text{\cref{equation:集合论.自然数的加法.性质2}}) \\
-	&\implies k^+ \in A.
-\end{align*}
-因此\(A\)是归纳集，且\(A = \omega\).
+对\cref{equation:集合论.自然数的加法的保序性} 的证明如下：
+\begin{enumerate}
+	\item 首先证\(m < n \implies m + p < n + p\).
+	对\(p\)利用数学归纳法，
+	取定\(m \in n \in \omega\)，
+	令\[
+		A = \Set*{
+			p \in \omega
+			\given
+			m + p < n + p
+		}.
+	\]
+	显然\(0 \in A\)，且\begin{align*}
+		k \in A
+		&\implies m+k<n+k \\
+		&\implies (m+k)^+<(n+k)^+
+			&(\text{\cref{theorem:集合论.自然数的线性序.引理1}}) \\
+		&\implies m+k^+<n+k^+
+			&(\text{\cref{equation:集合论.自然数的加法.性质2}}) \\
+		&\implies k^+ \in A.
+	\end{align*}
+	因此\(A\)是归纳集，且\(A = \omega\).
 
-然后证\(m + p < n + p \implies m < n\).
-利用三一律，
-因为\(m + p < n + p\)，
-所以不可能有\(m = n\)（否则会有\(n+p<n+p\)），
-也不可能有\(n < m\)（否则会有\(n+p<m+p<n+p\)），
-于是只有\(m < n\)成立.
-\end{proof}
-\end{theorem}
+	\item 然后证\(m + p < n + p \implies m < n\).
+	利用三一律，
+	因为\(m + p < n + p\)，
+	所以不可能有\(m = n\)（否则会有\(n+p<n+p\)），
+	也不可能有\(n < m\)（否则会有\(n+p<m+p<n+p\)），
+	于是只有\(m < n\)成立.
+\end{enumerate}
 
-\begin{theorem}\label{theorem:集合论.自然数的乘法的保序性}
-%@see: 《Elements of Set Theory》 P85. Theorem 4N
-设\(m,n,p\)是自然数，\(p \neq 0\).
-那么\[
-	m < n \iff m \cdot p < n \cdot p.
-\]
-\begin{proof}
-首先证\(m < n \implies m \cdot p < n \cdot p\).
-取定\(m \in n \in \omega\)，令\[
-	B = \Set*{
-		q \in \omega
-		\given
-		m \cdot q^+ < n \cdot q^+
-	}.
-\]
-考虑到，对于非零自然数\(p\)，存在自然数\(q\)，使得\(q^+ = p\).
-容易看出，由于\(m \cdot 0^+ = m \cdot 0 + m = m\)，所以\(0 \in B\).
-假设\(k \in B\)，要证\(m \cdot k^{++} < n \cdot k^{++}\).
-对\(m \cdot k^+ < n \cdot k^+\)利用\cref{theorem:集合论.自然数的加法的保序性}，
-便得\begin{align*}
-	m \cdot k^{++}
-	&= m \cdot k^+ + m \\
-	&< n \cdot k^+ + m.
-\end{align*}
-在对\(m < n\)利用\cref{theorem:集合论.自然数的加法的保序性}，
-便得\begin{align*}
-	n \cdot k^+ + m
-	&< n \cdot k^+ + n \\
-	&= n \cdot k^{++}.
-\end{align*}
-这就证明\(k^+ \in B\)，
-从而\(B\)是归纳集，且\(B = \omega\).
+对\cref{equation:集合论.自然数的乘法的保序性} 的证明如下：
+\begin{enumerate}
+	\item 首先证\(m < n \implies m \cdot p < n \cdot p\).
+	取定\(m \in n \in \omega\)，令\[
+		B = \Set*{
+			q \in \omega
+			\given
+			m \cdot q^+ < n \cdot q^+
+		}.
+	\]
+	考虑到，对于非零自然数\(p\)，存在自然数\(q\)，使得\(q^+ = p\).
+	容易看出，由于\(m \cdot 0^+ = m \cdot 0 + m = m\)，所以\(0 \in B\).
+	假设\(k \in B\)，要证\(m \cdot k^{++} < n \cdot k^{++}\).
+	对\(m \cdot k^+ < n \cdot k^+\)利用\cref{theorem:集合论.自然数的加法与乘法的保序性}，
+	便得\begin{align*}
+		m \cdot k^{++}
+		&= m \cdot k^+ + m \\
+		&< n \cdot k^+ + m.
+	\end{align*}
+	在对\(m < n\)利用\cref{theorem:集合论.自然数的加法与乘法的保序性}，
+	便得\begin{align*}
+		n \cdot k^+ + m
+		&< n \cdot k^+ + n \\
+		&= n \cdot k^{++}.
+	\end{align*}
+	这就证明\(k^+ \in B\)，
+	从而\(B\)是归纳集，且\(B = \omega\).
 
-\(m \cdot p < n \cdot p \implies m < n\)这部分的证明过程与%
-\cref{theorem:集合论.自然数的加法的保序性} 中第二部分的证明过程完全一致，故略去.
+	\item \(m \cdot p < n \cdot p \implies m < n\)这部分的证明过程与%
+	\cref{equation:集合论.自然数的加法的保序性} 的证明过程完全一致，故略去.
+	\qedhere
+\end{enumerate}
 \end{proof}
 \end{theorem}
 
@@ -4294,13 +4297,13 @@ x \in \bigcap B = \bigcap_i b_i
 	m+q<p+n
 	&\iff
 	m+q+n'+q'<p+n+n'+q'
-		&(\text{\cref{theorem:集合论.自然数的加法的保序性}}) \\
+		&(\text{\cref{theorem:集合论.自然数的加法与乘法的保序性}}) \\
 	&\iff
 	m'+n+q+q'<p'+q+n+n'
 		&(\text{代入上述两个等式}) \\
 	&\iff
 	m'+q'<p'+n'
-		&(\text{\cref{theorem:集合论.自然数的加法的保序性}}).
+		&(\text{\cref{theorem:集合论.自然数的加法与乘法的保序性}}).
 \end{align*}
 \end{proof}
 \end{lemma}
@@ -4324,7 +4327,7 @@ x \in \bigcap B = \bigcap_i b_i
 	m+q+s<r+q+n \\
 	&\implies
 	m+s<r+n
-		&(\text{\cref{theorem:集合论.自然数的加法的保序性}}) \\
+		&(\text{\cref{theorem:集合论.自然数的加法与乘法的保序性}}) \\
 	&\implies
 	a < c.
 \end{align*}
@@ -4369,7 +4372,7 @@ x \in \bigcap B = \bigcap_i b_i
 	\text{\(-b\)是正的}
 \]这三个命题有且仅有一个成立.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.整数的加法与乘法的保序性}
 %@see: 《Elements of Set Theory》 P99. Theorem 5ZJ
 设\(a,b,c\in\mathbb{Z}\).
 那么\begin{gather}
@@ -4389,10 +4392,10 @@ x \in \bigcap B = \bigcap_i b_i
 那么\cref{equation:集合论.整数的加法的保序性} 相当于\[
 	m+q<p+n \iff m+r+q+s<p+r+n+s.
 \]
-而这根据\cref{theorem:集合论.自然数的加法的保序性} 立即可得.
+而这根据\cref{theorem:集合论.自然数的加法与乘法的保序性} 立即可得.
 
 要证\cref{equation:集合论.整数的乘法的保序性}，
-根据\cref{theorem:集合论.自然数的乘法的保序性}，
+根据\cref{theorem:集合论.自然数的加法与乘法的保序性}，
 只需证\[
 	0<c \land a<b \implies a \cdot c < b \cdot c,
 \]
@@ -4405,6 +4408,16 @@ x \in \bigcap B = \bigcap_i b_i
 %TODO Exercise 25 of Chapter 4.
 \end{proof}
 \end{theorem}
+
+\begin{corollary}\label{theorem:集合论.整数的消去律}
+%@see: 《Elements of Set Theory》 P100. Corollary 5ZK
+设\(a,b,c\in\mathbb{Z}\).
+那么\begin{gather*}
+	a+c=b+c \implies a=b, \\
+	a \cdot c = b \cdot c \land c \neq 0 \implies a=b.
+\end{gather*}
+\end{corollary}
+\cref{theorem:集合论.整数的消去律} 又称为“整数的消去律”.
 
 %TODO
 
