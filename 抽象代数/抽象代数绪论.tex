@@ -1,41 +1,107 @@
 \section{抽象代数}
-\subsection{环}
-\begin{definition}
-设\(R\)是一个非空集合，如果\(R\)上定义了两个代数运算，一个叫做加法（记作\(+\)），另一个叫做乘法（记作\(\cdot\)），并且满足下列6条运算法则\begin{enumerate}
-\item 加法交换律，即\[
-\forall a,b \in R \bigl(a+b = b+a\bigr);
-\]
-\item 加法结合律，即\[
-\forall a,b,c \in R \Bigl[(a+b)+c = a+(b+c)\Bigr];
-\]
-\item \(R\)中存在一个元素\(o\)，它满足\[
-\forall a \in R \bigl( a+o = o+a = a \bigr)，%
-\]称其为\(R\)的\DefineConcept{零元};
-\item 任给\(a \in R\)，都有\(b \in R\)，使得\[
-a+b = b+a = o,
-\]把\(b\)称为\(a\)的\DefineConcept{负元}，记作\((-a)\);
-\item 乘法结合律，即\[
-\forall a,b,c \in R \bigl[ (a \cdot b) \cdot c = a \cdot (b \cdot c) \bigr];
-\]
-\item 左分配律，即\[
-\forall a,b,c \in R \bigl[ a \cdot (b+c) = a \cdot b + a \cdot c \bigr],
-\]和右分配律，即\[
-\forall a,b,c \in R \bigl[ (b+c) \cdot a = b \cdot a + c \cdot a \bigr],
-\]
-\end{enumerate}那么称\(R\)是一个\DefineConcept{环}（ring）.
 
-在环上可以定义二元运算\DefineConcept{减法}如下：\[
-a - b \mapsto a + (-b).
+\subsection{群}
+\begin{definition}
+假设在非空集合\(G\)上定义了一个代数运算\(\times\)且它满足：
+\begin{enumerate}
+    \item 结合律，即\[
+        (\forall a \in G)(\forall b \in G)(\forall c \in G)\:
+        (a \times b) \times c = a \times (b \times c).
+    \]
+
+    \item \(G\)中存在\DefineConcept{单位元}，即\[
+        (\exists e \in G)(\forall a \in G)\:
+        e \times a = a \times e = a.
+    \]
+
+    \item 运算\(\times\)可逆，即\[
+        (\forall a \in G)(\exists b \in G)\:
+        b \times a = a \times b = e.
+    \]
+\end{enumerate}
+那么称“\(G\)是一个\DefineConcept{群}（group）”.
+\end{definition}
+
+\begin{definition}
+我们把满足\[
+    (\forall a \in G)\:
+    e \times a = a \times e = a
+\]的元素\(e\)称为\(G\)的单位元.
+\end{definition}
+
+\begin{definition}
+对于任意给定的\(a \in G\)，如果\(b\)满足\[
+    b \times a = a \times b = e,
 \]
+则称“\(b\)是\(a\)的\DefineConcept{逆元}”，记作\(a^{-1}\).
 \end{definition}
 
 \begin{property}
-任一环的零元唯一.
+设\(G\)是一个群.
+那么\(G\)的单位元唯一，\(G\)中每个元素\(a\)的逆元唯一，且\[
+    (a^{-1})^{-1} = a.
+\]
+\end{property}
+
+\begin{definition}
+如果群\(G\)的乘法还满足交换律，
+那么称“\(G\)是\DefineConcept{交换群}%
+或\DefineConcept{阿贝尔群}（Abelian group）”.
+\end{definition}
+
+\subsection{环}
+\begin{definition}
+假设在非空集合\(R\)上定义了两个代数运算，
+一个叫做加法（记作\(+\)），
+另一个叫做乘法（记作\(\cdot\)），
+并且它们满足下列6条运算法则：
+\begin{enumerate}
+    \item 加法交换律，即\[
+        \forall a,b \in R \bigl(a+b = b+a\bigr).
+    \]
+
+    \item 加法结合律，即\[
+        \forall a,b,c \in R \Bigl[(a+b)+c = a+(b+c)\Bigr].
+    \]
+
+    \item \(R\)中存在一个元素\(o\)，它满足\[
+        \forall a \in R \bigl( a+o = o+a = a \bigr);
+    \]
+    称其为\(R\)的\DefineConcept{零元}.
+
+    \item 加法可逆，即\[
+        (\forall a \in R)(\exists b \in R)
+        a+b = b+a = o;
+    \]
+    把\(b\)称为\(a\)的\DefineConcept{负元}，记作\((-a)\).
+
+    \item 乘法结合律，即\[
+        \forall a,b,c \in R
+        \bigl[ (a \cdot b) \cdot c = a \cdot (b \cdot c) \bigr].
+    \]
+
+    \item 左分配律，即\[
+        \forall a,b,c \in R \bigl[ a \cdot (b+c) = a \cdot b + a \cdot c \bigr],
+    \]
+    和右分配律，即\[
+        \forall a,b,c \in R \bigl[ (b+c) \cdot a = b \cdot a + c \cdot a \bigr].
+    \]
+\end{enumerate}
+那么称“\(R\)是一个\DefineConcept{环}（ring）”.
+\end{definition}
+
+在环上可以定义二元运算\DefineConcept{减法}如下：\[
+    a - b \defeq a + (-b).
+\]
+
+\begin{property}
+任意一个环的零元唯一.
 \begin{proof}
 设环\(R\)中有两个零元\(o_1\)和\(o_2\).
 由环的定义，有\[
-o_1 = o_1 + o_2 = o_2 + o_1 = o_2.
-\]也就是说，环\(R\)的零元是唯一的.
+    o_1 = o_1 + o_2 = o_2 + o_1 = o_2.
+\]
+也就是说，环\(R\)的零元是唯一的.
 \end{proof}
 \end{property}
 
@@ -44,12 +110,13 @@ o_1 = o_1 + o_2 = o_2 + o_1 = o_2.
 \begin{proof}
 设环\(R\)中的零元\(o\)的负元是\(x\).
 由环的定义，有\[
-x + o = o + x = x,
+    x + o = o + x = x,
 \]\[
-x + o = o + x = o.
+    x + o = o + x = o.
 \]比较可得\[
-x = o.
-\]这就说明，零元的负元总是它本身.
+    x = o.
+\]
+这就说明，零元的负元总是它本身.
 \end{proof}
 \end{property}
 
@@ -58,10 +125,11 @@ x = o.
 \begin{proof}
 从环\(R\)中任取两元素\(a\)和\(b\).
 由加法交换律和加法结合律，得\[
-[(-a) + (-b)] + [a + b]
-= [(-a) + a] + [(-b) + b]
-= o + o = o,
-\]也就是说\((a+b)\)是\((-a) + (-b)\)的负元.
+    [(-a) + (-b)] + [a + b]
+    = [(-a) + a] + [(-b) + b]
+    = o + o = o,
+\]
+也就是说\((a+b)\)是\((-a) + (-b)\)的负元.
 \end{proof}
 \end{property}
 
@@ -70,35 +138,39 @@ x = o.
 \begin{proof}
 从环\(R\)中任取一元素\(a\)，假设元素\(b\)与元素\(c\)都是\(a\)的负元.
 由环的定义，有\[
-b + a = o,
+    b + a = o,
 \]\[
-c + a = o.
-\]而\((-c) + (-a) = -(c + a) = -o = o\)，那么\[
-(b + a) + [-(c + a)]
-= o + o = o.
+    c + a = o.
+\]
+而\((-c) + (-a) = -(c + a) = -o = o\)，那么\[
+    (b + a) + [-(c + a)]
+    = o + o = o.
 \]又因为\[
-(b + a) + [-(c + a)]
-= (b + a) + [(-c) + (-a)]
-= [b + (-c)] + [a + (-a)]
-= b + (-c),
+    (b + a) + [-(c + a)]
+    = (b + a) + [(-c) + (-a)]
+    = [b + (-c)] + [a + (-a)]
+    = b + (-c),
 \]所以\[
-b + (-c) = o,
+    b + (-c) = o,
 \]\[
-[b + (-c)] + c = b + [(-c) + c] = b = o + c = c,
-\]也就是说，元素\(a\)的负元是唯一的.
+    [b + (-c)] + c = b + [(-c) + c] = b = o + c = c,
+\]
+也就是说，元素\(a\)的负元是唯一的.
 \end{proof}
 \end{property}
 
 \begin{definition}
 如果环\(R\)的乘法满足交换律，即\[
-\forall a,b \in R \bigl( a \cdot b = b \cdot a \bigr),
-\]那么称\(R\)是\DefineConcept{交换环}.
+    \forall a,b \in R \bigl( a \cdot b = b \cdot a \bigr),
+\]
+那么称\(R\)是\DefineConcept{交换环}.
 \end{definition}
 
 \begin{definition}
 如果环\(R\)中有一个元素\(e\)满足\[
-\forall a \in R \bigl( e \cdot a = a \cdot e = a \bigr),
-\]那么称\(e\)是\(R\)的\DefineConcept{单位元}（或\DefineConcept{幺元}）.
+    \forall a \in R \bigl( e \cdot a = a \cdot e = a \bigr),
+\]
+那么称“\(e\)是\(R\)的\DefineConcept{单位元}或\DefineConcept{幺元}”.
 \end{definition}
 
 \begin{property}
@@ -106,48 +178,52 @@ b + (-c) = o,
 \begin{proof}
 设环\(R\)具有单位元\(e_1\)和\(e_2\).
 根据单位元的定义，对\(\forall a \in R\)，有\[
-e_1 = e_1 \cdot e_2 = e_2 \cdot e_1 = e_2,
-\]也就是说，\(R\)的单位元是唯一的.
+    e_1 = e_1 \cdot e_2 = e_2 \cdot e_1 = e_2,
+\]
+也就是说，\(R\)的单位元是唯一的.
 \end{proof}
 \end{property}
 
 \begin{theorem}[乘零定理]
 在环\(R\)中，零元\(o\)满足\[
-\forall a \in R \bigl( o \cdot a = a \cdot o = o \bigr).
+    \forall a \in R \bigl( o \cdot a = a \cdot o = o \bigr).
 \]
 \begin{proof}
 需要利用沟通加法和乘法的桥梁：
 乘法对于加法的左、右分配律，即\[
-o \cdot a = (o + o) \cdot a = o \cdot a + o \cdot a.
+    o \cdot a = (o + o) \cdot a = o \cdot a + o \cdot a.
 \]在上式等号两边加上\(o \cdot a\)的负元\(-o \cdot a\)，得\[
-o \cdot a + (- o \cdot a) = (o \cdot a + o \cdot a) + (- o \cdot a),
+    o \cdot a + (- o \cdot a) = (o \cdot a + o \cdot a) + (- o \cdot a),
 \]\[
-o = o \cdot a.
-\]同理，可证\(a \cdot o = o\).
+    o = o \cdot a.
+\]
+同理，可证\(a \cdot o = o\).
 \end{proof}
 \end{theorem}
 
 \begin{example}
 设\(R\)是有单位元\(e(\neq o)\)的环.
 证明：单位元的负元\((-e)\)满足\[
-(-e)^2=(-e)\cdot(-e)=e.
+    (-e)^2=(-e)\cdot(-e)=e.
 \]
 \begin{proof}
 根据单位元的定义有\[
-e \cdot (-e) = (-e) \cdot e = -e.
+    e \cdot (-e) = (-e) \cdot e = -e.
 \]又由负元的定义有\[
-e + (-e) = o,
+    e + (-e) = o,
 \]在等号左右两边同时右乘\((-e)\)，再由右分配律有\[
--e + (-e)^2 = e \cdot (-e) + (-e) \cdot (-e) = o \cdot (-e) = o,
-\]移项得\((-e)^2 = e\).
+    -e + (-e)^2 = e \cdot (-e) + (-e) \cdot (-e) = o \cdot (-e) = o,
+\]
+移项得\((-e)^2 = e\).
 \end{proof}
 \end{example}
 
 \begin{definition}
 设\(R\)是有单位元\(e(\neq o)\)的环.
 对于\(a \in R\)，如果\[
-\exists b \in R \bigl( a \cdot b = b \cdot a = e \bigr),
-\]那么称\(a\)是一个\DefineConcept{可逆元}（或\DefineConcept{单位}），把\(b\)叫做\(a\)的\DefineConcept{逆元}，记作\(a^{-1}\).
+    \exists b \in R \bigl( a \cdot b = b \cdot a = e \bigr),
+\]那么称“\(a\)是一个\DefineConcept{可逆元}”，
+把\(b\)叫做\(a\)的\DefineConcept{逆元}，记作\(a^{-1}\).
 \end{definition}
 
 \begin{property}
@@ -155,24 +231,27 @@ e + (-e) = o,
 \begin{proof}
 设环\(R\)具有单位元\(e(\neq o)\).
 假设环\(R\)中的任一可逆元\(a\)的逆元为\(b\)和\(c\).由可逆元的定义，有\[
-a \cdot b = b \cdot a = e,
+    a \cdot b = b \cdot a = e,
 \]\[
-a \cdot c = c \cdot a = e.
-\]又由单位元的定义，有\[
-b = b \cdot e
-= b \cdot (a \cdot c)
-= (b \cdot a) \cdot c
-= e \cdot c
-= c,
-\]这就说明，任一可逆元的逆元是唯一的.
+    a \cdot c = c \cdot a = e.
+\]
+又由单位元的定义，有\[
+    b = b \cdot e
+    = b \cdot (a \cdot c)
+    = (b \cdot a) \cdot c
+    = e \cdot c
+    = c,
+\]
+这就说明，任一可逆元的逆元是唯一的.
 \end{proof}
 \end{property}
 
 \begin{definition}
-设\(R\)是一个环.对于\(a \in R\)，%
-如果存在\(c \in R\)且\(c \neq o\)，%
-使得\(a \cdot c = o\)（或\(c \cdot a = o\)），%
-那么称\(a\)是一个\DefineConcept{左零因子}（或\DefineConcept{右零因子}）.
+设\(R\)是一个环.
+对于\(a \in R\)，
+如果存在\(c \in R\)且\(c \neq o\)，
+使得\(a \cdot c = o\)（或\(c \cdot a = o\)），
+那么称\(a\)是一个\DefineConcept{左零因子}或\DefineConcept{右零因子}.
 左、右零因子统称为\DefineConcept{零因子}.
 \end{definition}
 
@@ -184,134 +263,118 @@ b = b \cdot e
 设\(R\)是有单位元\(e(\neq o)\)的环，则\(R\)的零因子不是可逆元.
 \begin{proof}
 设\(a\)是左零因子，则存在\(c \in R\)且\(c \neq o\)，使得\[
-a \cdot c = o.
+    a \cdot c = o.
 \]
 
 假如\(a\)是可逆元，则在上式两边左乘\(a^{-1}\)，再根据乘零定理，得\[
-a^{-1} \cdot (a \cdot c) = a^{-1} \cdot o = o.
-\]根据乘法的结合律和逆元的性质，得\[
-a^{-1} \cdot (a \cdot c) = (a^{-1} \cdot a) \cdot c = e \cdot c = c.
-\]于是\(c = o\)，矛盾，故左零因子\(a\)不是可逆元.同理可得，右零因子不是可逆元.
+    a^{-1} \cdot (a \cdot c) = a^{-1} \cdot o = o.
+\]
+根据乘法的结合律和逆元的性质，得\[
+    a^{-1} \cdot (a \cdot c) = (a^{-1} \cdot a) \cdot c = e \cdot c = c.
+\]
+于是\(c = o\)，矛盾，故左零因子\(a\)不是可逆元.
+同理可得，右零因子不是可逆元.
 \end{proof}
 \end{theorem}
-上述定理的逆否命题是：设\(R\)是有单位元\(e(\neq o)\)的环，则\(R\)的可逆元不是零因子.
+上述定理的逆否命题是：
+设\(R\)是有单位元\(e(\neq o)\)的环，则\(R\)的可逆元不是零因子.
 
 \begin{example}
 要想让可逆元等于零元，唯一的办法是在由一个元素\(o\)构成的集合\(R\)上定义加法和乘法如下：\[
-o + o \mapsto o,
-\qquad
-o \cdot o \mapsto o.
-\]显然元素\(o\)是环\(R\)的单位元和零元.再将原本的可逆元的定义中对环\(R\)的单位元\(e \neq o\)的约束去掉，那么对于环\(R\)上唯一的元素\(o\)，有\[
-\forall x \in R \bigl( x = o \land x \cdot o = o \cdot x = o \bigr),
-\]即元素\(o\)还是环\(R\)的“可逆元”，它的“逆元”是\(o\)本身.
+    o + o \mapsto o,
+    \qquad
+    o \cdot o \mapsto o.
+\]
+显然元素\(o\)是环\(R\)的单位元和零元.
+再将原本的可逆元的定义中对环\(R\)的单位元\(e \neq o\)的约束去掉，
+那么对于环\(R\)上唯一的元素\(o\)，有\[
+    \forall x \in R \bigl( x = o \land x \cdot o = o \cdot x = o \bigr),
+\]
+即元素\(o\)还是环\(R\)的“可逆元”，它的“逆元”是\(o\)本身.
 
 这就说明，在上面对可逆元的定义中，我们必须强调环\(R\)上的单位元\(e\)不是零元.
 \end{example}
 
+\begin{theorem}
+假设在非空集合\(R\)上定义了两种二元运算\(+\)和\(\cdot\)，
+且满足\begin{enumerate}
+    \item \((R,+)\)是阿贝尔群，\((R,\cdot)\)是半群.
+
+    \item 对任意\(a,b,c \in R\)，对\(+\)和\(\cdot\)有分配律成立，即\[
+        a \cdot (b + c) = a \cdot b + a \cdot c,
+    \]\[
+        (b + c) \cdot a = b \cdot a + c \cdot a.
+    \]
+\end{enumerate}
+那么称\(R\)是环.
+\end{theorem}
+
 \subsection{域}
 \begin{definition}
-设\(F\)是一个有单位元\(e(\neq o)\)的交换环，%
-如果\(F\)中每个非零元都是可逆元，%
+设\(F\)是一个有单位元\(e(\neq o)\)的交换环，
+如果\(F\)中每个非零元都是可逆元，
 那么称\(F\)是一个\DefineConcept{域}（field）.
 \end{definition}
 
-\subsection{数域}
-\begin{definition}
-一个数集\(K\)如果满足\begin{enumerate}
-\item \(0,1 \in K\)；
-\item \(K\)对于加、减、乘、除这四种运算封闭，即%
-\(\forall a,b \in K :
-a \pm b,
-a \cdot b \in K,
-\bigl( b \neq 0 \implies a/b \in K \bigr)
-\)；
-\end{enumerate}
-则称\(K\)是一个\DefineConcept{数域}.
-\end{definition}
-容易验证，有理数集\(\mathbb{Q}\)、实数集\(\mathbb{R}\)和复数集\(\mathbb{C}\)都是数域.
-因此我们可以把\(\mathbb{Q}\)、\(\mathbb{R}\)、\(\mathbb{C}\)分别称为有理数域、实数域、复数域.
-
-因为整数集\(\mathbb{Z}\)对除法运算不封闭，%
-即\(\exists a, b \bigl( b \neq 0 \land a/b \notin \mathbb{Z} \bigr)\)，%
-所以整数集不是数域.
-
-除了\(\mathbb{Q}\)、\(\mathbb{R}\)、\(\mathbb{C}\)以外，%
-还有很多数域.
-例如，令{\def\Q{\mathbb{Q}(\sqrt{2})}%
-\[
-\Q
-\defeq
-\Set{ a + b \sqrt{2} \given a,b \in \mathbb{Q} }.
-\]
-显然\(0=0+0\times\sqrt{2}\in\Q\)，%
-\(1=1+0\times\sqrt{2}\in\Q\)，%
-并且容易验证\(\Q\)对于加、减、乘、除这四种运算封闭，%
-因此，\(\Q\)是一个数域.
-}%
-
-\begin{theorem}
-有理数域是最小的数域，即任意数域都包含有理数域.
-\begin{proof}
-设\(K\)是一个数域，则\(0,1 \in K\)，从而
-\[
-2 = 1 + 1 \in K,
-3 = 2 + 1 \in K,
-\dotsc,
-n = (n-1) + 1 \in K.
-\]
-这就是说，任一正整数\(n \in K\).
-又由于\(-n = 0 - n \in K\)，%
-因此任一负整数\(-n \in K\).
-由上可知，\(\mathbb{Z} \subseteq K\).
-于是，任一分数\[
-\frac{a}{b} \in K \quad(a,b\in\mathbb{Z} \land b\neq0).
-\]
-也就是说，\(\mathbb{Q} \subseteq K\).
-\end{proof}
-\end{theorem}
-
-\begin{theorem}
-复数域是最大的数域，即任意数域都包含于复数域.
-\end{theorem}
+%\subsection{数域}
+%\begin{definition}
+%一个数集\(K\)如果满足\begin{enumerate}
+%\item \(0,1 \in K\)；
+%\item \(K\)对于加、减、乘、除这四种运算封闭，即
+%\(\forall a,b \in K :
+%a \pm b,
+%a \cdot b \in K,
+%\bigl( b \neq 0 \implies a/b \in K \bigr)
+%\)；
+%\end{enumerate}
+%则称\(K\)是一个\DefineConcept{数域}.
+%\end{definition}
+%容易验证，有理数集\(\mathbb{Q}\)、实数集\(\mathbb{R}\)和复数集\(\mathbb{C}\)都是数域.
+%因此我们可以把\(\mathbb{Q}\)、\(\mathbb{R}\)、\(\mathbb{C}\)分别称为有理数域、实数域、复数域.
+%
+%因为整数集\(\mathbb{Z}\)对除法运算不封闭，
+%即\(\exists a, b \bigl( b \neq 0 \land a/b \notin \mathbb{Z} \bigr)\)，
+%所以整数集不是数域.
+%
+%除了\(\mathbb{Q}\)、\(\mathbb{R}\)、\(\mathbb{C}\)以外，
+%还有很多数域.
+%例如，令{\def\Q{\mathbb{Q}(\sqrt{2})}
+%\[
+%    \Q
+%    \defeq
+%    \Set{ a + b \sqrt{2} \given a,b \in \mathbb{Q} }.
+%\]
+%显然\(0=0+0\times\sqrt{2}\in\Q\)，
+%\(1=1+0\times\sqrt{2}\in\Q\)，
+%并且容易验证\(\Q\)对于加、减、乘、除这四种运算封闭，
+%因此，\(\Q\)是一个数域.
+%}
+%
+%\begin{theorem}
+%有理数域是最小的数域，即任意数域都包含有理数域.
+%\begin{proof}
+%设\(K\)是一个数域，则\(0,1 \in K\)，从而
+%\[
+%    2 = 1 + 1 \in K,
+%    3 = 2 + 1 \in K,
+%    \dotsc,
+%    n = (n-1) + 1 \in K.
+%\]
+%这就是说，任一正整数\(n \in K\).
+%又由于\(-n = 0 - n \in K\)，%
+%因此任一负整数\(-n \in K\).
+%由上可知，\(\mathbb{Z} \subseteq K\).
+%于是，任一分数\[
+%\frac{a}{b} \in K \quad(a,b\in\mathbb{Z} \land b\neq0).
+%\]
+%也就是说，\(\mathbb{Q} \subseteq K\).
+%\end{proof}
+%\end{theorem}
+%
+%\begin{theorem}
+%复数域是最大的数域，即任意数域都包含于复数域.
+%\end{theorem}
 
 % TODO 什么是有序域？什么是无序域？
 % 复数域是无序域.
 % 有理数域、实数域是有序域.
-
-\subsection{群}
-\begin{definition}
-设\(G\)是一个非空集合.如果在\(G\)上定义了一个代数运算\(\cdot\)，该运算满足
-\begin{enumerate}
-\item 结合律，即\[
-\forall a,b,c \in G \bigl[ (a \cdot b) \cdot c = a \cdot (b \cdot c) \bigr];
-\]
-\item \(G\)中有一个元素\(e\)，使得\[
-\forall a \in G \bigl( e \cdot a = a \cdot e = a \bigr),
-\]称\(e\)是\(G\)的\DefineConcept{单位元}；
-\item 对于\(G\)中每个元素\(a\)，存在\(b \in G\)，使得\[
-b \cdot a = a \cdot b = e,
-\]称\(a\)\DefineConcept{可逆}，把\(b\)称为\(a\)的\DefineConcept{逆元}，记作\(a^{-1}\)，%
-\end{enumerate}
-那么称\(G\)是一个\DefineConcept{群}（group）.
-\end{definition}
-
-\begin{property}
-群\(G\)的单位元唯一，\(G\)中每个元素\(a\)的逆元唯一，且\[
-(a^{-1})^{-1} = a.
-\]
-\end{property}
-
-\begin{definition}
-如果群\(G\)的乘法还满足交换律，那么称\(G\)是\DefineConcept{交换群}（或\DefineConcept{阿贝尔群}）.
-\end{definition}
-
-\begin{theorem}
-设\(R\)是非空集合，如果\(R\)上定义了两种二元运算\(+\)和\(\cdot\)，且满足\begin{enumerate}
-\item \((R,+)\)是Abel群，\((R,\cdot)\)是半群；
-\item 对任意\(a,b,c \in R\)，对\(+\)和\(\cdot\)有分配律成立，即\[
-a \cdot (b + c) = a \cdot b + a \cdot c,
-\]\[
-(b + c) \cdot a = b \cdot a + c \cdot a,
-\]
-\end{enumerate}则称\(R\)是环.
-\end{theorem}
