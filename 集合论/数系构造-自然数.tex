@@ -1,0 +1,1159 @@
+
+\section{自然数}
+一般而言，我们有两种途径，可以引入新的数学研究对象：公理法和构造法.
+我们已经利用公理法引入了集合的概念.
+集合是我们基于数学直觉和日常生活的原始认知之一.
+在处理集合时，我们初步建立了一系列的公理%
+（包括外延公理、对集公理、并集公理、幂集公理、子集公理、选择公理等）.
+
+在本节，我们要尝试引入自然数系统.
+皮亚诺曾经在1889年给出过自然数的公理化定义.
+但是我们不采纳公理法，转而采用构造法，
+即基于集合的概念，定义自然数的概念，
+通过对自然数的必要的性质的证明，取代皮亚诺公理体系.
+
+\subsection{归纳集}
+尽管自然数乍看之下不像是集合，
+但是我们还是可以构造特定的集合，把它们定义为数字.
+自然数的定义方式多种多样.
+在1908年，策梅洛提议用\[
+	\emptyset, \qquad
+	\Set{\emptyset}, \qquad
+	\Set{\Set{\emptyset}}, \qquad
+	\Set{\Set{\Set{\emptyset}}}, \qquad
+	\dotsc
+\]代表自然数.
+不久以后，冯·诺依曼提出了一种新的构造方式，
+由于其优点，它成为了用集合定义自然数的标准构造.
+冯诺依曼的构造方式的首要原则是把每个自然数看作所有“比它小的自然数”组成的集合.
+我们可以把前四个自然数定义如下：\begin{align*}
+	&0 \defeq \emptyset, \\
+	&1 \defeq \Powerset0 = \Set{0} = \NaturalSet{1}, \\
+	&2 \defeq \Powerset1 = \Set{0,1} = \NaturalSet{2}, \\
+	&3 \defeq \Powerset2 = \Set{0,1,2} = \NaturalSet{3}.
+\end{align*}
+我们可以继续照此方式定义任意多个自然数.
+可以注意到，在集合\(3=\Set{0,1,2}\)中有三个元素\(0,1,2\).
+如果说\(A_3\)表示由所有“具有三个元素的集合”组成的类，
+那么我们可以说集合\(3\)是\(A_3\)的代表.
+
+容易发现，这些表示自然数的集合具有以下两个奇妙的性质：\[
+	0 \in 1 \in 2 \in 3 \in \dotsb,
+\]
+以及\[
+	0 \subseteq 1 \subseteq 2 \subseteq 3 \subseteq \dotsb.
+\]
+
+尽管我们已经给出了前四个自然数的定义，
+也摸索出了定义任意自然数的大致思路，
+但是我们还没有给出自然数的一般性定义.
+也就是说，我们还没有定义由全部自然数组成的集合.
+对于自然数集的确切定义是不能依赖类似由三个点表示的省略号或诸如“以此类推”这样的短语.
+因此，我们首先需要给出一些基本概念的定义.
+\begin{definition}[后继]\label{definition:集合论.后继的定义}
+对于任意集合\(a\)，把集合\[
+	a \cup \Set{a}
+\]
+称为“\(a\)的\DefineConcept{后继}（successor）”，记为\(a^+\).
+\end{definition}
+
+利用后继符号，我们就可以将之前构造的用来表示自然数的集合重写为\[
+	0=\emptyset, \qquad
+	1=\emptyset^+, \qquad
+	2=\emptyset^{++}, \qquad
+	3=\emptyset^{+++}, \qquad
+	\dotsc
+\]
+可以证明这些集合互不相等，例如\(\emptyset^+\neq\emptyset^{+++}\).
+
+\begin{definition}[归纳集]\label{definition:集合论.归纳集的定义}
+如果集合\(A\)满足
+\begin{itemize}
+	\item 空集是\(A\)的元素，即\[
+		\emptyset \in A,
+	\]
+	\item 且\(A\)对后继封闭，即\[
+		\forall a \in A : a^+ \in A,
+	\]
+\end{itemize}
+则称“集合\(A\)是\DefineConcept{归纳的}（inductive）”，
+或“集合\(A\)是\DefineConcept{归纳集}（inductive set）”.
+\end{definition}
+尽管我们还没有给出“无穷”或“无限”的正式定义，
+但是我们还是可以凭借数学直觉非正式地看出任意归纳集都是无限无尽的.
+
+利用列举法，我们可以将归纳集\(A\)表示为如下的一般形式：\[
+	A = \Set{
+		\emptyset, \emptyset^+, \emptyset^{++}, \dotsc,
+		a, a^+, a^{++}, \dotsc,
+		b, b^+, b^{++}, \dotsc
+	}.
+\]
+
+\subsection{无穷公理}
+尽管“归纳集”的概念在形式上有了清晰的定义，
+我们可以照此方法尝试构造无穷多个不同的集合，
+但是由于我们尚未建立确保“无穷集”存在的公理，
+我们就无法证明存在这样一个“拥有无穷多个元素的集合”，
+因此我们也就不能证明任何“归纳集”真实存在.
+于是我们要用“无穷公理”补上这个漏洞.
+\begin{axiom}[无穷公理]
+总存在一个集合\(A\)是归纳集，即\[
+	\exists A \bigl(
+		\emptyset \in A
+		\land
+		\forall a \in A : a^+ \in A
+	\bigr).
+\]
+\end{axiom}
+无穷公理在英语中称作Infinity Axiom.
+
+\subsection{自然数}
+在无穷公理的加持下，我们终于可以定义自然数的概念了.
+\begin{definition}\label{definition:集合论.自然数的定义}
+如果集合\(a\)属于任意一个归纳集，那么称其为\DefineConcept{自然数}（natural number）.
+\end{definition}
+
+下面我们证明“所有自然数的收集”构成一个集合.
+\begin{theorem}\label{theorem:集合论.自然数集存在定理}
+%@see: 《Elements of Set Theory》 P68. Theorem 4A
+存在这样一个集合：它的元素都是自然数，任一自然数都是它的元素.
+\begin{proof}
+设\(A\)是一个归纳集（根据无穷公理，总可找到这样的\(A\)）.
+根据子集公理，%
+\[
+	\exists w,
+	\forall x
+	\left(
+		\begin{array}{rcl}
+			x \in w
+			&\iff& x \in A \land x\ \text{属于所有异于\(A\)的其他归纳集} \\
+			&\iff& x\ \text{属于所有归纳集}
+		\end{array}
+	\right).
+\]
+于是集合\(w\)的所有元素都是自然数，
+所有的自然数都是集合\(w\)的元素.
+\end{proof}
+\end{theorem}
+可以注意到，这个证明与\cref{theorem:集合论.系的交的唯一存在性} 的证明本质上相同.
+
+这里我们用小写希腊字母\(\omega\)表记所有自然数的集合.
+从\cref{theorem:集合论.自然数集存在定理} 的证明过程可以看出：
+“\(x\)属于自然数集\(\omega\)”成立，
+当且仅当“\(x\)是一个自然数”成立，
+当且仅当“\(x\)属于每一个归纳集”成立.
+
+利用描述法可以将自然数集定义为：
+\[
+	\omega
+	\defeq
+	\bigcap\Set{ A \given A\ \text{是归纳集} }.
+\]
+特别注意到：全部归纳集构成的类不是一个集合！
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P69. Theorem 4B
+自然数集\(\omega\)是归纳集，且它是任意一个归纳集的子集.
+\begin{proof}
+设\(A\)是任意的一个归纳集.
+
+首先，由\hyperref[definition:集合论.归纳集的定义]{归纳集的定义}可知\(\emptyset \in A\)，
+于是\(\emptyset \in \omega\).
+
+其次，对于任意集合\(a\)，\(a \in \omega
+\implies a \in A
+\implies a^+ \in A
+\implies a^+ \in \omega\).
+
+因此\(\omega\)是归纳集，且\(\omega\)是任意一个归纳集的子集.
+\end{proof}
+\end{theorem}
+
+既然\(\omega\)是归纳的，
+那么根据归纳集的定义可知，\(0(=\emptyset)\)是自然数集的元素.
+因此\(1(=0^+)\)在自然数集中，同理\(2(=1^+)\)和\(3(=2^+)\)也都在自然数集中.
+于是我们说\(0,1,2,3\)都是自然数.
+非必要的数学对象（即不是自然数的集合）都不在\(\omega\)中，
+我们可以说：自然数集是“最小的”归纳集.
+这句话可以更严谨地表述为下述“归纳原理”.
+\begin{theorem}[归纳原理]\label{theorem:集合论.归纳原理1}
+自然数集\(\omega\)的任意\DefineConcept{归纳子集}（{\rm inductive subset}）总是它自己.
+\end{theorem}
+
+这就引出“数学归纳法”的方法论，即：
+如果我们要证明形如“对于每个自然数\(n\)，涉及\(n\)的命题公式\(\lambda(n)\)成立”的命题，
+我们可以基于自然数集\(\omega\)，构造一个集合\[
+	T = \Set{ n \in \omega \given \lambda(n) }.
+\]
+我们只要证明集合\(T\)是归纳的，
+就能证明命题“对于每个自然数\(n\)，涉及\(n\)的命题公式\(\lambda(n)\)成立”.
+
+我们可以马上利用数学归纳法证明下面这个定理：
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P69. Theorem 4C
+除了\(0\)以外，所有自然数都是某个自然数的后继.
+\begin{proof}
+令集合\[
+	T = \Set*{ n \in \omega \given n = 0 \lor \exists p \in \omega \bigl( n = p^+ \bigr) },
+\]
+则\(0 \in T\)，且\(k \in T \implies k^+ \in T\).
+因此根据归纳原则可知\(T = \omega\).
+\end{proof}
+\end{theorem}
+
+\subsection{与皮亚诺公理的比较}
+%TODO
+
+\subsection{传递集}
+\begin{definition}\label{definition:集合论.传递集的定义}
+如果集合\(A\)的任一元素的每个元素都是\(A\)的元素，
+那么称“集合\(A\)是\DefineConcept{传递的}（transitive）”，
+或称“集合\(A\)是一个\DefineConcept{传递集}（transitive set）”，
+即\begin{equation}\label{equation:集合论.传递集的定义式1}
+	\text{\(A\)是传递集}
+	\iff
+	\forall x, \forall a \bigl(
+		x \in a \in A
+		\implies
+		x \in A
+	\bigr).
+\end{equation}
+\end{definition}
+传递集\(A\)也可等价地定义为以下三种形式：
+\begin{align}
+	A\ \text{是传递集}
+	&\iff
+	\bigcup A \subseteq A;
+	\label{equation:集合论.传递集的定义式2} \\
+	&\iff
+	\forall a \bigl( a \in A \implies a \subseteq A \bigr);
+	\label{equation:集合论.传递集的定义式3} \\
+	&\iff
+	A \subseteq \Powerset A.
+	\label{equation:集合论.传递集的定义式4}
+\end{align}
+
+这里我们要注意区分“关系的传递性”与“传递集”这两个概念，它们是根本不同的！
+从今以后，我们还将遭遇类似的情况，总有些概念具有“重复的、相同的名称”.
+实际上，我们常常需要动用阅读理解能力，联系上下文，根据用词，判断某个概念的涵义.
+
+\begin{example}
+证明：空集\(\emptyset\)是传递集.
+\begin{proof}
+假设空集不是传递集，那么根据传递集的定义可知，\[
+	\exists a, \exists x
+	\bigl(
+		x \in a \in \emptyset,
+		x \notin \emptyset
+	\bigr).
+\]
+但是根据空集公理，空集中根本就不存在满足条件的\(a\)，矛盾！因此空集是传递集.
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\a{\Set{\emptyset}}%
+\def\b{\Set{\a}}%
+\def\A{\Set{ \emptyset, \b }}%
+集合\(\A\)不是一个传递集，%
+这是因为\[
+	\a \in \b \in \A,
+	\quad\text{且}\quad
+	\a \notin \A.
+\]
+\end{example}
+
+\begin{example}
+\(\Set{0,1,5}\)也不是传递集，
+这是因为\[
+	4 \in 5 \in \Set{0,1,5},
+	\quad\text{且}\quad
+	4 \notin \Set{0,1,5}.
+\]
+\end{example}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P72. Theorem 4E
+如果\(a\)是传递集，那么\(\bigcup\left( a^+ \right) = a\).
+\begin{proof}
+直接计算得\begin{align*}
+	\bigcup\left( a^+ \right)
+	&= \bigcup (a \cup \{a\}) \\
+	&= \bigcup a \cup \bigcup\Set{a} \\
+	&= \bigcup a \cup a \\
+	&= a.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P72. Theorem 4F
+任一自然数都是传递集.
+\begin{proof}
+用数学归纳法证明.
+首先，\(\emptyset\)是传递集.
+假设自然数\(k\)也是传递集，那么\[
+	\bigcup\left(k^+\right) = k \subseteq k^+,
+\]
+又因为\(k^+\)也是传递集，
+所以每个自然数都是传递集.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P72. Theorem 4G
+自然数集\(\omega\)是传递集.
+\begin{proof}
+用数学归纳法证明.
+欲证\(\forall a \in \omega \bigl(
+	a \subseteq \omega
+\bigr)\)，
+只需证集合\[
+	T = \Set{n \in \omega \given n \subseteq \omega}
+\]是传递的.
+显然\(\emptyset \in T\).
+假设\(k \in T\)，那么有\[
+	k \subseteq \omega
+	\land
+	\{k\} \subseteq \omega;
+\]
+同时\(k \cup \{k\} \subseteq \omega\)，从而\(k^+ \in T\).
+因此\(T\)是传递的，而自然数集\(\omega\)是传递集.
+\end{proof}
+\end{theorem}
+上述定理也可表述为：
+每个自然数都是由自然数组成的集合.
+以后我们还可以将这个定理加强为：
+每个自然数都是由比它小的自然数组成的集合.
+
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 2.
+证明：如果\(a\)是传递集，那么\(a^+\)也是传递集.
+\begin{proof}
+因为\(a\)是传递集，
+\(\bigcup\left( a^+ \right) = a\)，
+而\(a \subseteq a \cup \{a\} = a^+\)，
+所以\[
+	\bigcup\left( a^+ \right) \subseteq a^+;
+\]
+那么根据\hyperref[equation:集合论.传递集的定义式2]{传递集的定义}，\(a^+\)也是传递集.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 3.
+证明：“\(a\)是传递集”的充要条件是“\(\Powerset a\)是传递集”.
+\begin{proof}
+因为\begin{align*}
+	\text{\(a\)是传递集}
+	&\iff
+	a \subseteq \Powerset a
+		&(\text{传递集的定义 \labelcref{equation:集合论.传递集的定义式4}}) \\
+	&\iff
+	a = \bigcup \Powerset a \subseteq \Powerset a
+		&(\text{\cref{equation:集合论.集的幂集的并等于集}}) \\
+	&\iff
+	\text{\(\Powerset a\)是传递集},
+		&(\text{传递集的定义 \labelcref{equation:集合论.传递集的定义式2}})
+\end{align*}
+所以，命题“\(a\)是传递集”与“\(\Powerset a\)是传递集”等价.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 4.
+证明：如果\(A\)是传递集，那么\(\bigcup A\)也是传递集.
+\begin{proof}
+因为\(A\)是传递集，由\cref{equation:集合论.传递集的定义式2} 可知
+\[
+	\bigcup A \subseteq A;
+\]
+又由\cref{equation:集合论.系的并的幂集包含系} 可知\[
+	A \subseteq \Powerset \bigcup A;
+\]
+所以\[
+	\bigcup A \subseteq \Powerset \bigcup A,
+\]
+由\cref{equation:集合论.传递集的定义式4} 可知\(\bigcup A\)是传递集.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 6.
+证明：如果\(\bigcup\left( a^+ \right) = a\)，那么\(a\)是传递集.
+\begin{proof}
+因为\(a \subseteq a \cup \{a\} = a^+\)，
+根据\cref{equation:集合论.集合代数公式17} 可知\[
+	\bigcup a \subseteq \bigcup\left( a^+ \right) = a,
+\]
+那么根据\cref{equation:集合论.传递集的定义式2}，\(a\)是传递集.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P73. Exercise 5.
+设\(\mathscr{A}\)中的每一个元素都是传递集.
+证明：\begin{enumerate}
+	\item \(\bigcup \mathscr{A}\)是传递集.
+	\item 当\(\mathscr{A}\)非空时，\(\bigcap \mathscr{A}\)是传递集.
+\end{enumerate}
+%TODO
+\end{example}
+
+\subsection{自然数的递归}
+考虑一个映射\(h\colon \omega \to A\)，
+我们只知道\(h(0)\)的取值，
+以及映射\(F\colon A \to A\)满足\[
+	h(n^+) = F(h(n))
+	\quad(n\in\omega).
+\]
+由此，虽然我们不知道映射\(h\)的具体表达式，
+但我们总能依次计算出\(h(n)\ (n\in\omega)\)的取值：\[
+	h(0), \qquad
+	h(1) = F(h(0)), \qquad
+	h(2) = F(h(1)), \qquad
+	\dotsc
+\]
+
+接下来，考虑任给一个集合\(A\)，再从中任取一个元素\(a\)，
+以及给定一个映射\(F\colon A \to A\).
+那么我们要怎么证明存在一个映射\(h\colon \omega \to A\)，
+使得\(h(0) = a\)，且对\(\forall n\in\omega\)总有\[
+	h(n^+) = F(h(n)).
+\]
+在前一段，我们学会了怎么计算映射\(h\)（前提是这样的映射\(h\)存在）.
+现在我们想要证明存在一个映射\(h\)满足上述条件.
+
+\begin{theorem}\label{theorem:集合论.自然数集的递归定理}
+%@see: 《Elements of Set Theory》 P73. Recursion Theorem on omega
+设\(A\)是集合，\(a \in A\)，映射\(F\colon A \to A\)，
+那么存在一个唯一的映射\(h\colon \omega \to A\)，使得\[
+	h(0) = a; \qquad
+	h(n^+) = F(h(n)), \quad n\in\omega.
+\]
+\begin{proof}
+为了方便后续证明，我们首先在这里提出一个概念：
+称“映射\(v\)是\emph{容许的}（acceptable）”，
+当且仅当以下三个条件同时成立：
+\begin{enumerate}[label={(\roman*)}]
+	\item\label{item:集合论.容许映射条件1}
+	\(\dom v \subseteq \omega\)且\(\ran v \subseteq A\)；
+
+	\item\label{item:集合论.容许映射条件2}
+	\(0 \in \dom v
+	\implies
+	v(0) = a\)；
+
+	\item\label{item:集合论.容许映射条件3}
+	对任意\(n \in \omega\)，总有\(n^+ \in \dom v
+	\implies
+	n \in \dom v \land v(n^+) = F(v(n))\).
+\end{enumerate}
+令\(\mathscr{K}\)为所有容许映射的汇集，
+再令\(h = \bigcup \mathscr{K}\)，
+那么有\begin{equation}
+	\begin{split}
+		\opair{n,y} \in h
+		&\iff
+		\opair{n,y}\ \text{是某个容许映射\(v\)的元素} \\
+		&\iff
+		\text{对某个容许映射\(v\)，总有\(v(n) = y\)成立}.
+	\end{split}
+	\tag1
+\end{equation}
+我们要证明\(h\)符合定理的要求，可以将证明细分为四个部分，
+即证明\(h\)是一个映射，且它是容许的，
+它的定义域是整个自然数集，以及这个映射是唯一的：
+\begin{enumerate}
+	\item 我们首先证明\(h\)是映射.
+	%Proving this will, in effect, amount to showing that two acceptable functions
+	%always agree with each other whenever both are defined.
+	%TODO 这句不知道怎么翻译好呢
+	令\[
+		S = \Set{ n \in \omega
+		\given
+		\text{至多只有一个}\ y\ \text{满足}\ \opair{n,y} \in h }.
+	\]
+	我们需要证明\(S\)是归纳集.
+
+	如果\[
+		\opair{0,y_1} \in h
+		\quad\text{且}\quad
+		\opair{0,y_2} \in h,
+	\]
+	那么根据(1)式，存在容许映射\(v_1,v_2\)，使得\[
+		v_1(0) = y_1
+		\quad\text{且}\quad
+		v_2(0) = y_2;
+	\]
+	再根据\hyperref[item:集合论.容许映射条件2]{容许映射条件(ii)} 可知\(y_1 = a = y_2\)，
+	因此\(0 \in S\).
+
+	假设\(k \in S\)，
+	欲证\(k^+ \in S\).
+	朝着这个方向，我们又假设\[
+		\opair{k^+,y_1} \in h
+		\quad\text{且}\quad
+		\opair{k^+,y_2} \in h.
+	\]
+	同样地，必定存在容许映射\(v_1,v_2\)，使得\[
+		v_1(k^+) = y_1
+		\quad\text{且}\quad
+		v_2(k^+) = y_2.
+	\]
+	再根据\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)} 可知\[
+		y_1 = v_1(k^+) = F(v_1(k))
+		\quad\text{且}\quad
+		y_2 = v_2(k^+) = F(v_2(k)).
+	\]
+	又因为\(k \in S\)，
+	我们有\(\opair{k,v_1(k)},\opair{k,v_2(k)} \in h\)，
+	从而有\(v_1(k) = v_2(k)\)，
+	因此\[
+		y_1 = F(v_1(k)) = F(v_2(k)) = y_2,
+	\]
+	这就说明\(k^+ \in S\).
+
+	于是，\(S\)是归纳集，而且它恰好就是自然数集\(\omega\)，
+	从而\(h\)是一个映射.
+
+	\item 现在我们来证明\(h\)是容许的.
+	既然我们已经证明\(h\)是映射，
+	那么根据(1)式，
+	显然有\(\dom h \subseteq \omega\)且\(\ran h \subseteq A\).
+
+	我们先来检验\hyperref[item:集合论.容许映射条件2]{容许映射条件(ii)}.
+	如果\(0 \in \dom h\)，
+	那么必定存在某个容许映射\(v\)满足\(v(0) = h(0)\).
+	既然\(v(0) = a\)，我们就有\(h(0) = a\).
+
+	我们再来检验\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)}.
+	假设\(n^+ \in \dom h\).
+	同样地，必定存在某个容许映射\(v\)满足\(v(n^+) = h(n^+)\).
+	既然\(v\)是容许的，我们就有\(n \in \dom v\)，\(v(n) = h(n)\)，以及\[
+		h(n^+) = F(h(n)) = F(v(n)) = v(n^+).
+	\]
+
+	于是，\(h\)是容许的.
+
+	\item 现在我们来证明\(h\)的定义域是整个自然数集，
+	即\(\dom h = \omega\).
+	实际上我们只需证\(\dom h\)是归纳集.
+	由于映射\(\Set{\opair{0,a}}\)是容许的，
+	所以\(0 \in \dom h\).
+	假设\(k \in \dom h\)，只需证\(k^+ \in \dom h\).
+	如果这条路走不通，那么考虑\[
+		v = h \cup \Set{\opair{k^+,F(h(k))}}.
+	\]
+	易见\(v\)是一个映射，且\(\dom v \subseteq \omega\)，\(\ran v \subseteq A\).
+	因此只需证\(v\)是容许的.
+
+	由于\(v(0) = h(0) = a\)，
+	\hyperref[item:集合论.容许映射条件2]{容许映射条件(ii)} 成立.
+	对于\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)}，
+	可以分为两种情形.
+	如果\(n^+ \in \dom v\ (n^+ \neq k^+)\)，
+	那么\(n^+ \in \dom h\)且\(v(n^+) = h(n^+) = F(h(n)) = F(v(n))\).
+	其他情形当\(n^+ = k^+\)时出现.
+	既然后继是一一映射，那么\(n=k\).
+	根据假设\(k \in \dom h\).
+	因此\[
+		v(k^+) = F(h(k)) = F(v(k))
+	\]
+	且\hyperref[item:集合论.容许映射条件3]{容许映射条件(iii)} 成立.
+	可见，\(v\)是容许的.
+	但是，接下来我们有\(v \subseteq h\)，
+	从而\(k^+ \in \dom h\).
+
+	于是，\(\dom h\)是归纳集，且\(\dom h = \omega\).
+
+	\item 最后我们证明\(h\)是唯一的.
+	假设映射\(h_1,h_2\)都符合定理的要求.
+	令\[
+		S = \Set{ n \in \omega \given h_1(n) = h_2(n) }.
+	\]
+	易见\(S\)是归纳集.
+	%TODO 证明“\(S\)是归纳集”的步骤参考本节 Exercise 7
+
+	于是，\(S = \omega\)且\(h_1 = h_2\).
+\end{enumerate}
+\end{proof}
+\end{theorem}
+我们把\cref{theorem:集合论.自然数集的递归定理} 称为\DefineConcept{递归定理}.
+
+\subsection{自然数的算术运算}
+我们可以利用\hyperref[theorem:集合论.自然数集的递归定理]{递归定理}定义自然数集上的加法和乘法.
+
+\begin{definition}
+%@see: 《Elements of Set Theory》 P79. Definition
+任给一个映射\(f\colon A^2 \to A\)，
+我们称“\(f\)是定义在集合\(A\)上的一个%
+\DefineConcept{二元代数运算}（binary arithmetic operation）”.
+\end{definition}
+
+我们首先尝试构造自然数的加法.
+
+任取\(m \in \omega\)，
+根据\hyperref[theorem:集合论.自然数集的递归定理]{递归定理}%
+易证存在唯一映射\(A_m\colon \omega \to \omega\)满足\[
+	A_m(0) = m; \qquad
+	A_m(n^+) = (A_m(n))^+, \quad n \in \omega.
+\]
+\begin{definition}
+%@see: 《Elements of Set Theory》 P79. Definition
+\DefineConcept{加法}（addition，用符号“\(+\)”表记）%
+是定义在自然数集\(\omega\)上的一个二元代数运算，
+它满足：对于任意自然数\(m,n\)，总有\[
+	m + n = A_m(n).
+\]
+\end{definition}
+我们可以把加法运算写成关系的形式：\[
+	+ \defeq \Set*{
+		\opair{\opair{m,n},p}
+		\given
+		m \in \omega
+		\land
+		n \in \omega
+		\land
+		p = A_m(n)
+	}.
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P79. Theorem 4I
+对于任意自然数\(m,n\)，总有\begin{gather}
+	m + 0 = m;
+	\label{equation:集合论.自然数的加法.性质1} \\%(A1)
+	m + n^+ = (m+n)^+.
+	\label{equation:集合论.自然数的加法.性质2}%(A2)
+\end{gather}
+\end{theorem}
+
+接下来我们构造自然数的乘法.
+
+类似于加法的构造，任取\(m \in \omega\)，
+易证存在唯一映射\(M_m\colon \omega \to \omega\)满足\[
+	M_m(0) = 0; \qquad
+	M_m(n^+) = M_m(n) + m, \quad n \in \omega.
+\]
+\begin{definition}
+乘法（multiplication，用符号“\(\times\)”或“\(\cdot\)”表记）%
+是定义在自然数集\(\omega\)上的一个二元代数运算，
+它满足：对于任意自然数\(m,n\)，总有\[
+	m \times n = M_m(n).
+\]
+\end{definition}
+我们可以把乘法运算写成关系的形式：\[
+	\times \defeq \Set*{
+		\opair{\opair{m,n},p}
+		\given
+		m \in \omega
+		\land
+		n \in \omega
+		\land
+		p = M_m(n)
+	}.
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P79. Theorem 4J
+对于任意自然数\(m,n\)，总有\begin{gather}
+	m \cdot 0 = 0;
+	\label{equation:集合论.自然数的乘法.性质1} \\%(M1)
+	m \cdot n^+ = m \cdot n + m.
+	\label{equation:集合论.自然数的乘法.性质2}%(M2)
+\end{gather}
+\end{theorem}
+
+我们在定义加法和乘法以后，
+还可以类似地定义自然数的\DefineConcept{乘幂}（exponentiation），
+并且可以给出：对于任意自然数\(m,n\)，总有\begin{gather}
+	m^0 = 1, \quad m \neq 0;
+	\label{equation:集合论.自然数的乘幂.性质1} \\%(E1)
+	m^{(n^+)} = m^n \cdot m.
+	\label{equation:集合论.自然数的乘幂.性质2}%(E2)
+\end{gather}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P79. Theorem 4K
+对于任意自然数\(m,n,p\)，以下命题恒成立：
+\begin{enumerate}
+	\item 加法结合律（associative law for addition）
+	\begin{equation}\label{equation:集合论.自然数加法结合律}
+		m+(n+p)=(m+n)+p.
+	\end{equation}
+	\item 加法交换律（commutative law for addition）
+	\begin{equation}\label{equation:集合论.自然数加法交换律}
+		m+n=n+m.
+	\end{equation}
+	\item 乘法分配律（distributive law）
+	\begin{equation}\label{equation:集合论.自然数乘法分配律}
+		m \cdot (n+p) = m \cdot n + m \cdot p.
+	\end{equation}
+	\item 乘法结合律（associative law for multiplication）
+	\begin{equation}\label{equation:集合论.自然数乘法结合律}
+		m \cdot (n \cdot p) = (m \cdot n) \cdot p.
+	\end{equation}
+	\item 乘法交换律（commutative law for multiplication）
+	\begin{equation}\label{equation:集合论.自然数乘法交换律}
+		m \cdot n = n \cdot m.
+	\end{equation}
+\end{enumerate}
+\end{theorem}
+这些命题依靠数学归纳法可以轻松得证，故略去证明.
+
+\subsection{自然数的序}
+\begin{definition}
+设\(m,n\)是自然数.
+
+如果\[
+	m \in n,
+\]
+则称“\(m\)\DefineConcept{小于}（less than）\(n\)”（记作\(m < n\)），
+或称“\(n\)\DefineConcept{大于}（greater than）\(m\)”（记作\(n > m\)），
+即\[
+	m \in n
+	\iff m < n
+	\iff n > m.
+\]
+
+如果\[
+	m \in n \lor m = n,
+\]
+则称“\(m\)\DefineConcept{小于或等于}（less than or equal to）\(n\)”（记作\(m \leqslant n\)），
+或称“\(n\)\DefineConcept{大于或等于}（greater than or equal to）\(m\)”（记作\(n \geqslant m\)），
+即\[
+	m < n \lor m = n
+	\iff m \leqslant n
+	\iff n \geqslant m
+	\iff n > m \lor m = n.
+\]
+\end{definition}
+
+容易看出，\[
+	\forall n\in\omega \bigl(
+		x < n
+		\iff
+		x \in \omega \land x \in n
+	\bigr);
+\]
+由于自然数集\(\omega\)是传递集，于是\[
+	x \in n \in \omega \implies x \in \omega,
+\]
+因此，任意自然数都是由比它小的数组成的集合.
+
+现在我们来构造自然数集上的线性序关系.
+我们令\[
+	<\ \defeq \Set*{
+		\opair{m,n} \in \omega \times \omega
+		\given
+		m \in n
+	}.
+\]
+因为任意自然数都是传递集，所以\[
+	\forall m,n,p \in \omega \bigl(
+		m \in n \land n \in p
+		\implies
+		m \in p
+	\bigr),
+\]
+即\[
+	\forall m,n,p \in \omega \bigl(
+		m < n \land n < p
+		\implies
+		m < p
+	\bigr),
+\]
+这就可以证明关系\(<\)具有传递性；
+接下来只要证明\(<\)在\(\omega\)上服从三一律，
+那么它就是\(\omega\)上的线性序.
+我们需要用到下面的引理.
+
+\begin{lemma}\label{theorem:集合论.自然数的线性序.引理1}
+%@see: 《Elements of Set Theory》 P84. Lemma 4L(a)
+对任意自然数\(m,n\)，总有\[
+	m < n
+	\iff
+	m^+ < n^+.
+\]
+\begin{proof}
+当\(m^+ < n^+\)时，
+有\[
+	m < m^+ \leqslant n,
+\]
+因此，利用传递性，便得\(m < n\).
+
+当\(m < n\)时，
+利用数学归纳法证明，
+构造\[
+	T = \Set*{
+		n \in \omega
+		\given
+		(\forall m < n)
+		m^+ < n^+
+	}.
+\]
+显然\(0 \in T\).
+当\(k \in T\)时，
+要证\(k^+ \in T\)，
+只需证\(m \in k^+ \implies m^+ \in k^{++}\)；
+由\(m \in k^+\)可得\(m = k\)（这种情况下又有\(m^+ = k^+ \in k^{++}\)）
+或\(m \in k\)（这种情况下由于\(k \in T\)，便有\(m^+ \in k^+ \subseteq k^{++}\)）；
+于是不管是哪种情况下我们都有\(m^+ \in k^{++}\)，
+于是证得\(k^+ \in T\).
+因此，\(T\)是归纳的，且与\(\omega\)相等.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}\label{theorem:集合论.自然数的线性序.引理2}
+%@see: 《Elements of Set Theory》 P84. Lemma 4L(b)
+没有任何一个自然数是它自己的元素.
+\begin{proof}
+用数学归纳法证明.
+构造\[
+	T = \Set*{ n \in \omega \given n \notin n }.
+\]
+由于空集中没有元素，于是\(0 \notin 0\)，从而\(0 \in T\).
+再根据\cref{theorem:集合论.自然数的线性序.引理1}，\[
+	k \notin k
+	\implies
+	k^+ \notin k^+.
+\]
+因此\(T\)是归纳的，且与\(\omega\)相等.
+\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{theorem:集合论.自然数集的三一律}
+%@see: 《Elements of Set Theory》 P84. Trichotomy Law for omega
+设\(m,n\)是自然数.
+在以下三个命题中，有且仅有一个是真命题：\[
+	m < n, \qquad
+	m = n, \qquad
+	n < m.
+\]
+\begin{proof}
+首先我们证明“三个命题中至多一个成立”.
+如果\(m < n\)和\(m = n\)同时成立，
+那么有\(m < m\)，
+这就违反了\cref{theorem:集合论.自然数的线性序.引理2}.
+另外，如果\(m < n < m\)成立，
+那么根据\(m\)是传递集，
+那么我们回到\(m < m\)这个错误结论了.
+
+接下来只要证明“三个命题中至少一个成立”.
+利用数学归纳法，令\[
+	T = \Set*{
+		n \in \omega
+		\given
+		(\forall m \in \omega)
+		\bigl(
+			m < n
+			\lor
+			m = n
+			\lor
+			n < m
+		\bigr)
+	}.
+\]
+要证\(0 \in T\)，
+只需证\(0 \leqslant m\)对任意\(m \in \omega\)都成立；
+我们可以再次利用数学归纳法，
+显然有\(0 \leqslant 0\)成立；
+同时，若有\(0 \leqslant k\)，那么\(0 < k^+\)；
+由此可知\(0 \in T\).
+然后我们假设\(k \in T\)，再想办法证明\(k^+ \in T\).
+对于任意自然数\(m\)，
+由于\(k \in T\)，我们有\[
+	m \leqslant k
+	\lor
+	k < m;
+\]
+在前一种情形下，有\(m < k^+\)；
+而在后一种情形下，根据\cref{theorem:集合论.自然数的线性序.引理1}，
+我们有\(k^+ < m^+\)，从而有\(k^+ \leqslant m\).
+于是不论在哪种情形下，我们都有\[
+	m < k^+
+	\lor
+	k^+ = m
+	\lor
+	k^+ < m.
+\]
+于是\(k^+ \in T\).
+因此，\(T\)是归纳的.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+%@see: 《Elements of Set Theory》 P85. Corollary 4M
+设\(m,n\)是自然数.
+那么\begin{gather*}
+	m < n \iff m \subsetneqq n, \\
+	m \leqslant n \iff m \subseteq n.
+\end{gather*}
+\begin{proof}
+由于\(n\)是传递集，于是有\[
+	m < n \implies m \subseteq n;
+\]
+再根据\cref{theorem:集合论.自然数的线性序.引理2}，
+这时候同时还有\(m \neq n\)，
+也就是说\(m < n \implies m \subsetneqq n\).
+反过来，当\(m \subsetneqq n\)时，
+那么必有\(m \neq n\)且\(n \notin m\)（不这样的话就会有\(n \in n\)），
+于是根据三一律就有\(m \in n\).
+\end{proof}
+\end{corollary}
+上面的证明过程体现出利用三一律的特定方式：
+要证\(m < n\)成立，只需证其他两种情况\(m = n\)和\(m > n\)不成立.
+
+\begin{theorem}\label{theorem:集合论.自然数的加法与乘法的保序性}
+%@see: 《Elements of Set Theory》 P85. Theorem 4N
+设\(m,n,p\)是自然数.
+那么\begin{gather}
+	m < n \iff m + p < n + p,
+	\label{equation:集合论.自然数的加法的保序性} \\
+	p \neq 0 \implies \bigl(
+		m < n \iff m \cdot p < n \cdot p
+	\bigr).
+	\label{equation:集合论.自然数的乘法的保序性}
+\end{gather}
+\begin{proof}
+对\cref{equation:集合论.自然数的加法的保序性} 的证明如下：
+\begin{enumerate}
+	\item 首先证\(m < n \implies m + p < n + p\).
+	对\(p\)利用数学归纳法，
+	取定\(m \in n \in \omega\)，
+	令\[
+		A = \Set*{
+			p \in \omega
+			\given
+			m + p < n + p
+		}.
+	\]
+	显然\(0 \in A\)，且\begin{align*}
+		k \in A
+		&\implies m+k<n+k \\
+		&\implies (m+k)^+<(n+k)^+
+			&(\text{\cref{theorem:集合论.自然数的线性序.引理1}}) \\
+		&\implies m+k^+<n+k^+
+			&(\text{\cref{equation:集合论.自然数的加法.性质2}}) \\
+		&\implies k^+ \in A.
+	\end{align*}
+	因此\(A\)是归纳集，且\(A = \omega\).
+
+	\item 然后证\(m + p < n + p \implies m < n\).
+	利用三一律，
+	因为\(m + p < n + p\)，
+	所以不可能有\(m = n\)（否则会有\(n+p<n+p\)），
+	也不可能有\(n < m\)（否则会有\(n+p<m+p<n+p\)），
+	于是只有\(m < n\)成立.
+\end{enumerate}
+
+对\cref{equation:集合论.自然数的乘法的保序性} 的证明如下：
+\begin{enumerate}
+	\item 首先证\(m < n \implies m \cdot p < n \cdot p\).
+	取定\(m \in n \in \omega\)，令\[
+		B = \Set*{
+			q \in \omega
+			\given
+			m \cdot q^+ < n \cdot q^+
+		}.
+	\]
+	考虑到，对于非零自然数\(p\)，存在自然数\(q\)，使得\(q^+ = p\).
+	容易看出，由于\(m \cdot 0^+ = m \cdot 0 + m = m\)，所以\(0 \in B\).
+	假设\(k \in B\)，要证\(m \cdot k^{++} < n \cdot k^{++}\).
+	对\(m \cdot k^+ < n \cdot k^+\)利用\cref{theorem:集合论.自然数的加法与乘法的保序性}，
+	便得\begin{align*}
+		m \cdot k^{++}
+		&= m \cdot k^+ + m \\
+		&< n \cdot k^+ + m.
+	\end{align*}
+	在对\(m < n\)利用\cref{theorem:集合论.自然数的加法与乘法的保序性}，
+	便得\begin{align*}
+		n \cdot k^+ + m
+		&< n \cdot k^+ + n \\
+		&= n \cdot k^{++}.
+	\end{align*}
+	这就证明\(k^+ \in B\)，
+	从而\(B\)是归纳集，且\(B = \omega\).
+
+	\item \(m \cdot p < n \cdot p \implies m < n\)这部分的证明过程与%
+	\cref{equation:集合论.自然数的加法的保序性} 的证明过程完全一致，故略去.
+	\qedhere
+\end{enumerate}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:集合论.自然数的消去律}
+%@see: 《Elements of Set Theory》 P86. Corollary 4P
+设\(m,n,p\in\omega\).
+那么\begin{gather*}
+	m + p = n + p \implies m = n; \\
+	m \cdot p = n \cdot p \land p \neq 0 \implies m = n.
+\end{gather*}
+\end{corollary}
+\cref{theorem:集合论.自然数的消去律}
+又称为“自然数的\DefineConcept{消去律}（cancellation law）”.
+
+\begin{theorem}[良序原理]\label{theorem:集合论.自然数集的良序}
+%@see: 《Elements of Set Theory》 P86. Well Ordering of omega
+设\(A\)是\(\omega\)的一个非空子集.
+存在\(m \in A\)，使得对于\(\forall n \in A\)，总有\[
+	m \leqslant n.
+\]
+\begin{proof}
+首先我们给出如下定义：
+我们把满足本定理的条件的自然数\(m\)称为“\(A\)中最小的数”.
+容易看出，在自然数集\(\omega\)的任意一个非空子集中，最小的数总是唯一的.
+利用反证法，假设\(m_1,m_2\)都是\(A\)中最小的数，
+那么有\(m_1 \leqslant m_2 \land m_2 \leqslant m_1\)，
+从而有\(m_1 = m_2\).
+
+现在我们开始对本定理的证明.
+利用反证法，
+设\(A\)是\(\omega\)的一个子集，且没有一个自然数是\(A\)中最小的数，
+我们可以证明\(A = \emptyset\)，这会与本定理要求的“\(A\)非空”矛盾.
+而为了证明\(A = \emptyset\)，
+只需证\(\omega - A\)是归纳集.
+但是，在利用数学归纳法证明“\(\omega - A\)是归纳集”时，
+需要证明\(k^+ \in \omega - A\)，
+而这个命题不能仅凭\(k \in \omega - A\)得出，
+这是因为我们还需要证明“所有比\(k\)小的自然数也都是\(\omega - A\)的元素”，即\[
+	\forall p \in \omega \bigl(
+		p < k \implies p \in \omega - A
+	\bigr).
+\]
+考虑到这一点，我们就能肯定命题\(k^+ \in \omega - A\)一定成立，
+否则就会有“\(k^+\)是\(A\)中最小的数”，
+这就与我们的假设“没有一个自然数是\(A\)中最小的数”矛盾！
+
+在整理好上面的思路以后，我们构造\[
+	B = \Set*{
+		m \in \omega
+		\given
+		\text{比\(m\)小的自然数不属于\(A\)}
+	}.
+\]
+现在来证明\(B\)是归纳的.
+显然\(0 \in B\).
+假设\(k \in B\)，
+那么，如果\(n < k^+\)，
+则有\(n < k\)（这种情况下，由\(k \in B\)可知\(n \notin A\)）%
+或\(n = k\)（这种情况下，必有\(n \notin A\)，否则根据三一律必有“\(n\)是\(A\)中最小的数”）%
+成立，
+在这两种情况下，\(n\)都不是\(A\)的元素.
+因此，\(k^+ \in B\).
+于是\(B\)是归纳集，从而\(A = \emptyset\).
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P87. Corollary 4Q
+不存在这样的映射\(f\colon\omega\to\omega\)，
+使得对\(\forall n \in \omega\)，总有\[
+	f(n^+) < f(n).
+\]
+\begin{proof}
+假设存在这样的映射\(f\colon\omega\to\omega\)，
+使得对\(\forall n \in \omega\)，总有\[
+	f(n^+) < f(n).
+\]
+那么\(\ran f\)会是\(\omega\)的非空子集，
+而且没有一个自然数是\(\ran f\)中最小的数，
+这就与\cref{theorem:集合论.自然数集的良序} 矛盾，
+因此这样的映射不存在.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}[强归纳原理]\label{theorem:集合论.归纳原理2}
+%@see: 《Elements of Set Theory》 P87. Strong Induction Principle for omega
+设\(A\)是\(\omega\)的子集.
+如果\[
+	\forall n \in \omega \Bigl[
+		\forall m \in \omega \bigl( m < n \implies m \in A \bigr)
+		\implies
+		n \in A
+	\Bigr],
+\]
+那么\(A = \omega\).
+\begin{proof}
+用反证法，
+设\(A \neq \omega\)，
+那么\(\omega - A \neq \omega\)，
+那么根据\hyperref[theorem:集合论.自然数集的良序]{良序原理}，
+\(\omega - A\)必有最小数\(m\).
+既如此，所有比\(m\)小的数都在\(A\)中.
+但是定理要求\(m \in A\)，这就与\(m \in \omega - A\)矛盾.
+\end{proof}
+\end{theorem}
+
+良序原理为数学归纳法提供另一种选择.
+假设我们需要证明，某个命题对任意自然数都成立，
+虽然可以像之前一样构造“正例集”（也就是由使命题为真的自然数组成的集合），
+但是也可以构造“反例集”（也就是由使命题为假的自然数组成的集合）\(C\)，
+然后证明这个反例集是空集；
+而要证得\(C = \emptyset\)，
+只需证明\(C\)没有最小数.
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 19.
+设\(m\in\omega\)，\(d\in\omega-\{0\}\).
+证明：\(\exists q,r\in\omega\)，使得\[
+	m=(d \cdot q)+r
+	\land
+	r<d.
+\]
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 20.
+设集合\(A\)是\(\omega\)的非空子集，且\(\bigcup A = A\).
+证明：\(A=\omega\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 21.
+证明：没有一个自然数是它的任一元素的一个子集.
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 22.
+设\(m,p\in\omega\).
+证明：\(m<m+p^+\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 23.
+设\(m,n\in\omega\)，\(m<n\).
+证明：\(\exists p\in\omega\)，使得\[
+	m+p^+=n.
+\]
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 24.
+设\(m,n,p,q\in\omega\)，且\(m+n=p+q\).
+证明：\(m<p \iff q<n\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 25.
+设\(m,n,p,q\in\omega\)，且\(n<m,q<p\).
+证明：\((m \cdot q)+(n \cdot p)<(m \cdot p)+(n \cdot q)\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P88. Exercise 26.
+设\(n\in\omega\)，\(f\colon n^+\to\omega\).
+证明：\(\ran f\)有最大值.
+%TODO
+\end{example}

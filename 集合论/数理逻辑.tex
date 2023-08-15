@@ -1,0 +1,262 @@
+\chapter{数理逻辑}
+
+\section{数理逻辑概论}
+\subsection{命题的概念}
+\DefineConcept{命题}（proposition），
+是指对确定的对象进行判断的陈述句.
+如果命题\(p\)的判断正确，
+那么我们称“命题\(p\)是\DefineConcept{真的}（true）”，
+或称“命题\(p\)是\DefineConcept{真命题}”；
+如果命题\(p\)的判断错误，
+那么我们称“命题\(p\)是\DefineConcept{假的}（false）”，
+或称“命题\(p\)是\DefineConcept{假命题}”.
+
+例如“太阳总从东方升起”“只有在冬天才下雪”“水是液体”“冰是固体”都是命题.
+但是，像这样用汉语（或其他人类语言）表述的命题，
+我们可能会因为它含糊不清的语义而无法作出真伪判断.
+因此，数学家创造了一种专门用于逻辑演绎的语言，
+这就是\DefineConcept{形式语言}（formal language）.
+
+对于复杂的命题，我们可以将其看作是由若干个小命题组合而成的.
+就像汉语中有“而且”“但是”等连接句子的虚词一样，
+形式语言也有扮演相同角色的符号，这就是“逻辑联结词”.
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{*3c}
+		\hline
+		{\bf 概念} & {\bf 意义} & {\bf 符号} \\ \hline
+		\DefineConcept{否定词}（negative） & 不、非 & \(\neg\) \\
+		\DefineConcept{合取词}（conjunction） & 且、而且、并且 & \(\land\) \\
+		\DefineConcept{析取词}（disjunction） & 或、或者 & \(\lor\) \\
+		\DefineConcept{蕴涵词}（implication） & 如果……那么…… & \(\implies\) \\
+		\DefineConcept{等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
+	\end{tabular}
+	\caption{逻辑联结词}
+\end{table}
+
+形式语言是由以下几种符号组成的：
+\begin{enumerate}
+	\item \DefineConcept{自由变元}（free variable），用小写拉丁字母表记.
+	\item \DefineConcept{受限变元}（bound variable），也用小写拉丁字母表记.
+	\item \DefineConcept{谓词}（predicate），目前有且只有一个：\(\in\).
+	\item \DefineConcept{逻辑联结词}（logical connective），包括：\[
+		\neg, \qquad
+		\lor, \qquad
+		\land, \qquad
+		\implies, \qquad
+		\iff, \qquad
+		\forall, \qquad
+		\exists.
+	\]
+	\item \DefineConcept{辅助符号}（auxiliary symbol），包括圆括号和方括号：\[
+		(, \qquad
+		), \qquad
+		[, \qquad
+		].
+	\]
+\end{enumerate}
+
+我们将上述符号写成一串，就能得到一个\DefineConcept{命题公式}（proposition formula），
+简称为\DefineConcept{公式}（formula）.
+
+
+
+为了简化书写，我们可以规定逻辑联结词的优先级顺序.
+逻辑联结词的优先级为：\[
+	\neg, \qquad
+	\land, \qquad
+	\lor, \qquad
+	\implies, \qquad
+	\iff.
+\]
+除非有括号，否则按照命题公式从左到右，按照优先级从高到低的次序结合.
+定义逻辑联结词的优先级的意义在于可以减少命题公式中的括号数量.
+
+\begin{example}
+\([(\neg p) \lor (q)]\)等同于\([\neg p \lor q]\).
+\end{example}
+
+\begin{example}
+\([p \implies q \land r \implies s]\)等同于\([(p \implies (q \land r)) \implies s]\).
+\end{example}
+
+\begin{table}[ht]
+	\centering
+	\begin{subtable}[ht]{0.9\textwidth}
+		\centering
+		\begin{tabular}{|c|p{1.5cm}|}
+			\hline
+			\(p\) & \(\neg p\) \\ \hline
+			0 & 1 \\ \hline
+			1 & 0 \\ \hline
+		\end{tabular}
+		\caption{否定词“非”}
+	\end{subtable}
+
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \land q\) \\ \hline
+			0 & 0 & 0 \\ \hline
+			0 & 1 & 0 \\ \hline
+			1 & 0 & 0 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+		\caption{合取词“且”}
+	\end{subtable}
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \lor q\) \\ \hline
+			0 & 0 & 0 \\ \hline
+			0 & 1 & 1 \\ \hline
+			1 & 0 & 1 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+		\caption{析取词“或”}
+	\end{subtable}
+
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \implies q\) \\ \hline
+			0 & 0 & 1 \\ \hline
+			0 & 1 & 1 \\ \hline
+			1 & 0 & 0 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+		\caption{蕴涵词}
+	\end{subtable}
+	\begin{subtable}[ht]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|*{2}{c|}p{2cm}|}
+			\hline
+			\(p\) & \(q\) & \(p \iff q\) \\ \hline
+			0 & 0 & 1 \\ \hline
+			0 & 1 & 0 \\ \hline
+			1 & 0 & 0 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+	\caption{等价词}
+	\end{subtable}
+	\caption{真值表}
+\end{table}
+
+如果有命题\([p \implies q]\)是真命题，
+则称“\(p\)是\(q\)的\DefineConcept{充分条件}”，
+或称“\(q\)是\(p\)的\DefineConcept{必要条件}”.
+我们把命题\(p\)和命题\(q\)分别称为命题\([p \implies q]\)的\DefineConcept{蕴含前件}和\DefineConcept{蕴含后件}.
+
+可以观察发现，\([p \implies q]\)的真值表与\([p \land \neg q]\)的恰好相反.
+\begin{table}[hb]
+	\centering
+	\begin{tabular}{|*4{c|}}
+		\hline
+		\(p\) & \(q\) & \(\neg q\) & \(p \land \neg q\) \\ \hline
+		0 & 0 & 1 & 0 \\ \hline
+		0 & 1 & 0 & 0 \\ \hline
+		1 & 0 & 1 & 1 \\ \hline
+		1 & 1 & 0 & 0 \\ \hline
+	\end{tabular}
+	\caption{}
+\end{table}
+
+
+
+如果对于一个公式，不论其命题变元取何值，该公式总为真，
+则称该公式为\DefineConcept{永真式}或\DefineConcept{重言式}.
+常见的永真式有：
+\begin{enumerate}
+	\item 肯定后件律 \(p \implies (q \implies p)\)；
+	\item 同一律 \(p \implies p\)；
+	\item 排中律 \(\neg p \lor p\)；
+	\item 矛盾律 \(\neg(\neg p \land p)\)；
+	\item 双重否定律 \(\neg\neg p \iff p\).
+\end{enumerate}
+
+
+\subsection{合式公式}
+我们将满足以下条件的公式称为\DefineConcept{合式公式}（well-formed formula）：%wff
+\begin{enumerate}
+	\item 如果\(a\)和\(b\)是自由变元，那么\([a \in b]\)是合式公式.
+	这样的合式公式又被称为是\DefineConcept{原子的}（atomic），
+	或者称这样的公式为\DefineConcept{原子公式}\footnote{%
+	我们可以按公式中是否含有逻辑联结词，将命题公式分为两类：
+	\DefineConcept{简单命题}（simple proposition）%
+	或\DefineConcept{原子命题}（atom proposition），
+	即不含有逻辑联结词的命题公式；
+	以及\DefineConcept{复合命题}（compound proposition），
+	即由简单命题和逻辑联结词构成的命题公式.
+	}.
+
+	\item 如果\(\varphi\)和\(\psi\)是合式公式，那么\[
+		\neg \varphi, \qquad
+		[\varphi \lor \psi], \qquad
+		[\varphi \land \psi], \qquad
+		[\varphi \implies \psi], \qquad
+		[\varphi \iff \psi]
+	\]都是合式公式.
+
+	\item 如果\(\varphi\)是合式公式，\(x\)是受限变元，那么\[
+		(\forall x) \varphi(x)
+		\quad\text{和}\quad
+		(\exists x) \varphi(x)
+	\]都是合式公式，
+	其中，\(\varphi(x)\)表示在合式公式\(\varphi\)中，
+	用受限变元\(x\)代替某个自由变元\(a\)从而得到的公式.
+	我们将这两个公式分别称为%
+	“通过\DefineConcept{全称量化}变元\(a\)而从\(\varphi\)得到的公式%
+	（the formula obtained from \(\varphi\) by universally quantifying on the variable \(a\)）”%
+	和“通过\DefineConcept{存在量化}变元\(a\)而从\(\varphi\)得到的公式%
+	（the formula obtained from \(\varphi\) by existentially quantifying on the variable \(a\)）”.
+	%If \(\varphi\) is a wff and x is a bound variable,
+	%then \((\forall x) \varphi(x)\) and \((\exists x) \varphi(x)\) are wffs,
+	%where \(\varphi(x)\) is the formula obtained from the wff \(\varphi\)
+	%by replacing each occurrence of some free variable \(a\) by the bound variable \(x\).
+	%We call \((\forall x) \varphi(x)\) and \((\exists x) \varphi(x)\) respectively,
+	%the formula obtained from \(\varphi\) by universally, or existentially,
+	%quantifying on the variable \(a\).
+\end{enumerate}
+任意一条公式，当且仅当它可以由上述三条规则演绎推得时，我们才称其为合式公式.
+
+
+\subsection{逻辑公理，推理规则}
+我们有如下五条逻辑公理：
+\begin{axiom}
+\(\varphi \implies [\psi \implies \varphi]\).
+\end{axiom}
+\begin{axiom}
+\([\varphi \implies [\psi \implies \eta]] \implies [[\varphi \implies \psi] \implies [\varphi \implies \eta]]\).
+\end{axiom}
+\begin{axiom}
+\([\neg\varphi \implies \neg\psi] \implies [\psi \implies \varphi]\).
+\end{axiom}
+\begin{axiom}
+\((\forall x)[\varphi \implies \psi(x)] \implies [\varphi \implies (\forall x) \psi(x)]\)，
+其中，我们量化的自由变元\(a\)没有出现在公式\(\varphi\)中.
+%where the free variable \(a\) on which we are quantifying does not occur in \(\varphi\).
+\end{axiom}
+\begin{axiom}
+\((\forall x) \varphi(x) \implies \varphi(a)\)，
+其中，\(\varphi(a)\)是通过用自由变元\(a\)代替\(\varphi(x)\)中的受限变元\(x\)得到的公式.
+%where \(\varphi(a)\) is the forumla
+%obtained by replacing each occurrence
+%of the bound variable x
+%in \(\varphi(x)\) by the free variable \(a\).
+\end{axiom}
+以及如下两条\DefineConcept{推理规则}（rules of inference）：
+\begin{axiom}
+从\(\varphi\)和\(\varphi \implies \psi\)，可以推断\(\psi\).
+%From \(\varphi\) and \(\varphi \implies \psi\) to infer \(\psi\).
+\end{axiom}
+\begin{axiom}
+从\(\varphi\)，可以推断\((\forall x) \varphi(x)\)，
+其中，\(\varphi(x)\)表示在合式公式\(\varphi\)中，
+用受限变元\(x\)代替某个自由变元从而得到的公式.
+%From \(\varphi\) to infer \((\forall x)\) \varphi(x)
+%where \(\varphi(x)\) is obtained from \(\varphi\)
+%by replacing each occurrence of some free variable by x.
+\end{axiom}

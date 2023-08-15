@@ -1,0 +1,168 @@
+
+\section{实数}
+\subsection{实数的构造}
+\subsubsection{第一种途径：利用柯西列构造实数}
+\begin{definition}
+%@see: 《Elements of Set Theory》 P112.
+设映射\(s\colon \omega\to\mathbb{Q}\)满足\[
+	(\forall\varepsilon\in\mathbb{Q}^+)(\exists k\in\omega)(\forall m>k)(\forall n>k)
+	\abs{s(m) - s(n)}<\varepsilon,
+\]
+则称“\(s\)是一个\DefineConcept{柯西列}（Cauchy sequence）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《Elements of Set Theory》 P112.
+我们把全体柯西列的集合记为\(S\).
+定义关系\(\sim\)：\[
+	r \sim s
+	\iff
+	(\forall\varepsilon\in\mathbb{Q}^+)(\exists k\in\omega)(\forall n>k)
+	\abs{r(n)-s(n)}<\varepsilon,
+\]
+称“柯西列\(r\)和\(s\)等价”.
+\end{definition}
+
+可以证明关系\(\sim\)是柯西列集\(S\)上的等价关系，
+以此为基础我们可以确定一个等价类划分，把它定义为实数.
+\begin{definition}
+%@see: 《Elements of Set Theory》 P112.
+称“\(S\)对\(\sim\)的商集”为\DefineConcept{实数集}（the set of real numbers），
+记作\(\mathbb{R}\)，即\[
+	\mathbb{R} \defeq S/\kern-2pt\sim.
+\]
+\end{definition}
+这种构造实数集的方法归功于康托.
+
+\subsubsection{第二种途径：利用戴德金分割构造实数}
+\begin{definition}
+%@see: 《Elements of Set Theory》 P113. Definition
+设集合\(x \subseteq \mathbb{Q}\).
+如果\begin{enumerate}
+	\item \(\emptyset \neq x \neq \mathbb{Q}\)；
+	\item \(x\)向下封闭（\(x\) is closed downward），即\[
+		q \in x \land r < q \implies r \in x;
+	\]
+	\item \(x\)没有最大元素，
+\end{enumerate}
+那么称“\(x\)是一个\DefineConcept{戴德金分割}（Dedekind cut）”.
+\end{definition}
+
+于是，我们称每个戴德金分割都是一个\DefineConcept{实数}（real number）.
+全体戴德金分割的集合便是实数集.
+
+在戴德金分割途径下，实数的序的定义非常简洁.
+对于任意两个实数\(x\)和\(y\)，定义“小于”关系\(<\)：\[
+	x < y \iff x \subseteq y.
+\]
+换句话说，\[
+	<\ \defeq \Set*{ \opair{x,y}\in\mathbb{R}\times\mathbb{R} \given x \subseteq y }.
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P113. Theorem 5RA
+关系\(<\)是实数集\(\mathbb{R}\)上的线性序.
+\end{theorem}
+
+考虑集合\(A \subseteq \mathbb{R}\).
+如果实数\(x\)满足\[
+	(\forall y \in A)
+	y \leqslant x,
+\]
+那么称“\(x\)是\(A\)的\DefineConcept{上界}（\(x\) is an \emph{upper bound} of \(A\)）”.
+需要注意到，\(x\)本身可能不是\(A\)的元素.
+如果存在实数\(y\)，恰有\(y\)是\(A\)的上界，
+那么称“\(A\)有上界（the set \(A\) is bounded above）”.
+如果\(A\)的上界\(z\)比其他任何上界都要小，
+那么称“\(z\)是\(A\)的\DefineConcept{最小上界}（least upper bound）%
+或\DefineConcept{上确界}（supremum）”，记为\(\sup A\).
+%@see: https://mathworld.wolfram.com/Supremum.html
+
+%\begin{definition}
+%设\(X\)是实数的有界子集.
+%
+%如果\(\forall x \in X\)都有\(x \geqslant m\)，%
+%且对于\(\forall \varepsilon > 0\)都\(\exists \alpha \in X\)使\(\alpha < m + \varepsilon\)成立，%
+%则数\(m\)称为集合\(X\)的\DefineConcept{下确界}，记作\(\inf{x}\).
+%
+%如果\(\forall x \in X\)都有\(x \leqslant M\)，%
+%且对于\(\forall \varepsilon > 0\)都\(\exists \beta \in X\)使\(\beta > M - \varepsilon\)成立，%
+%则数\(M\)称为集合\(X\)的\DefineConcept{上确界}，记作\(\sup{x}\).
+%
+%如果集合\(X\)下方无界，则记\[
+%\inf{x} = -\infty;
+%\]如果集合\(X\)上方无界，则记\[
+%\sup{x} = +\infty.
+%\]
+%\end{definition}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P114. Theorem 5RB
+实数集的任意一个有上界的非空子集总有一个实最小上界.
+\end{theorem}
+这个定理在数学分析中非常重要.
+它可以用来证明在闭区间上的连续函数一定能取得最值.
+
+对于\(\forall x,y\in\mathbb{R}\)，
+我们定义实数集上的加法运算：
+\begin{equation}
+	x + y = \Set{
+		q + r \given q \in x \land r \in y
+	}.
+\end{equation}
+
+\begin{lemma}
+%@see: 《Elements of Set Theory》 P114. Lemma 5RC
+若\(x,y\in\mathbb{R}\)，那么\(x+y\in\mathbb{R}\).
+\end{lemma}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P115. Theorem 5RD
+以下命题恒成立：
+\begin{enumerate}
+	\item 加法交换律
+	\begin{equation}
+		\forall x,y\in\mathbb{R} \bigl(
+			x+y=y+x
+		\bigr).
+	\end{equation}
+	\item 加法结合律
+	\begin{equation}
+		\forall x,y,z\in\mathbb{R} \bigl(
+			(x+y)+z=x+(y+z)
+		\bigr).
+	\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P116. Theorem 5RE
+以下命题恒成立：
+\begin{enumerate}
+	\item \(0\defeq\Set{ r\in\mathbb{Q} \given r<0 }\)是实数.
+	\item 任意实数加上实数\(0\)不变
+	\begin{equation}
+		\forall x\in\mathbb{R} \bigl(
+			x+0=x
+		\bigr).
+	\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+%@see: 《Elements of Set Theory》 P117.
+设\(x\in\mathbb{R}\).
+那么称集合\[
+	\Set{ r \in \mathbb{Q} \given (\exists s>r) -s \notin x }
+\]为“\(x\)的负元”，记作\((-x)\).
+\end{definition}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P117.
+设\(x\in\mathbb{R}\)，那么\begin{enumerate}
+	\item \(-x\in\mathbb{R}\).
+	\item \(x+(-x)=0\).
+\end{enumerate}
+\end{theorem}
+
+%TODO

@@ -1,0 +1,663 @@
+
+\section{整数}
+我们现在把自然数集扩张为整数集.
+\subsection{整数集}
+设\(a,b\in\omega\).
+我们把数对\(\opair{a,b}\)称为“\(a\)与\(b\)的\DefineConcept{差}（difference）”，
+记作\(a-b\)\footnote{读作“\(a\)减\(b\)”.}，即\[
+	a-b = \opair{a,b}.
+\]
+
+\begin{definition}\label{definition:集合论.自然数的差的等价关系}
+%@see: 《Elements of Set Theory》 P91. Definition
+我们定义\(\omega\times\omega\)上的关系\(\sim\)如下：
+\[
+	\forall a,b,c,d \in \omega \Bigl[
+		\opair{a,b} \sim \opair{c,d}
+		\iff
+		a+d=b+c
+	\Bigr].
+\]
+\end{definition}
+
+容易看出，关系\(\sim\)的定义域和值域都是自然数对.
+除了通过命题公式给出\(\sim\)的定义以外，
+我们还可以用更直接的形式给出它的定义：
+\[
+	\sim\ \defeq \Set*{
+		\opair{\opair{a,b},\opair{c,d}}
+		\given
+		a+d=b+c \land a,b,c,d\in\omega
+	}.
+\]
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P91. Theorem 5ZA
+关系\(\sim\)是\(\omega\times\omega\)上的等价关系.
+\begin{proof}
+容易看出，关系\(\sim\)具有自反性和对称性.
+现在来证\(\sim\)具有传递性.
+设\[
+	\opair{m,n}\sim\opair{p,q}, \qquad
+	\opair{p,q}\sim\opair{r,s}.
+\]
+由定义有\[
+	m+q=n+p, \qquad
+	p+s=q+r;
+\]
+相加得\[
+	m+q+p+s=n+p+q+r;
+\]
+再利用\hyperref[theorem:集合论.自然数的消去律]{消去律}便得\[
+	m+s=n+r;
+\]
+于是\(\opair{m,n}\sim\opair{r,s}\)，关系\(\sim\)具有传递性.
+综上所述，关系\(\sim\)是一个等价关系.
+\end{proof}
+\end{theorem}
+
+既然关系\(\sim\)是一个等价关系，
+那么对于任意给定的自然数对\(\opair{m,0}\)，
+我们可以取得它在关系\(\sim\)下唯一的等价类\[
+	[\opair{m,0}] = \Set{
+		\opair{m,0},
+		\opair{m+1,1},
+		\opair{m+2,2},
+		\dotsc
+	};
+\]
+类似地，
+对于任意给定的自然数对\(\opair{0,n}\)，
+我们也可以取得它在关系\(\sim\)下唯一的等价类\[
+	[\opair{0,n}] = \Set{
+		\opair{0,n},
+		\opair{1,n+1},
+		\opair{2,n+2},
+		\dotsc
+	}.
+\]
+像这样，我们把任意两个自然数\(m\)和\(n\)的差\(\opair{m,n}\)%
+在关系\(\sim\)下的等价类叫做一个\DefineConcept{整数}（integer）.
+
+于是我们可以构造出“整数集”.
+\begin{definition}
+%@see: 《Elements of Set Theory》 P92. Definition
+称“\(\omega\times\omega\)对\(\sim\)的商集”为%
+\DefineConcept{整数集}（the set of integers），
+记作\(\mathbb{Z}\)，即\[
+	\mathbb{Z} \defeq \IntegerQuotient.
+\]
+\end{definition}
+
+例如，整数\(2\)是等价类\[
+	[\opair{2,0}]
+	= \Set{\opair{2,0},\opair{3,1},\opair{4,2},\dotsc};
+\]
+而整数\((-3)\)是等价类\[
+	[\opair{0,3}]
+	= \Set{\opair{0,3},\opair{1,4},\opair{2,5},\dotsc}.
+\]
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\draw[help lines, color=gray!30, dashed] (0,0)grid(9,9);
+		\begin{scope}[>=Stealth,->]
+			\draw(0,0)--(0,10);
+			\draw(0,0)--(10,0);
+		\end{scope}
+		\foreach \i in {0,...,9} {
+			\foreach \j in {0,...,9} {
+				\fill (\i,\j)circle(2pt);
+			}
+		}
+		\draw(0,4)--(5,9)node[above right]{\(-4\)};
+		\draw(0,0)--(9,9)node[above right]{\(0\)};
+		\draw(3,0)--(9,6)node[above right]{\(3\)};
+	\end{tikzpicture}
+	\caption{整数是\(\omega\times\omega\)上的“直线”}
+\end{figure}
+
+\subsection{整数集上的加法运算}
+类比自然数，我们希望在整数集上也能定义加法和乘法.
+
+利用我们从初等代数学到的知识，
+容易验证下式是正确的：\[
+	(m-n)+(p-q) = (m+p)-(n+q).
+\]
+于是我们可以定义整数集上的加法运算：
+\begin{equation}\label{equation:集合论.整数集上的加法运算}
+	[\opair{m,n}] + [\opair{p,q}]
+	\defeq
+	[\opair{m+p,n+q}].
+\end{equation}
+虽然已经有了整数加法的定义了，
+但我们还不能确信它是良定的.
+这和我们在讨论\cref{theorem:集合论.与等价关系兼容的映射的性质} 时遇到的情况是一样的.
+我们想要为一对等价类给出加法运算结果的取值，就要分成下面三个步骤：
+\begin{enumerate}
+	\item 从两个等价类中各自取出一个代表\(\opair{m,n}\)和\(\opair{p,q}\)；
+	\item 在这两个代表上作运算，即\[
+		\opair{m,n} + \opair{p,q}
+		= \opair{m+p,n+q};
+	\]
+	\item 构造运算结果的等价类\([\opair{m+p,n+q}]\).
+\end{enumerate}
+
+\begin{lemma}\label{theorem:集合论.整数集上的加法运算是良定的}
+%@see: 《Elements of Set Theory》 P93. Lemma 5ZB
+如果\(\opair{m,n}\sim\opair{m',n'}\)且\(\opair{p,q}\sim\opair{p',q'}\)，
+那么\[
+	\opair{m+p,n+q}\sim\opair{m'+p',n'+q'}.
+\]
+\begin{proof}
+根据\cref{definition:集合论.自然数的差的等价关系}，
+\[
+	m+n'=m'+n, \qquad
+	p+q'=p'+q;
+\]
+将上述两式相加得\[
+	m+p+n'+q'=m'+p'+n+q;
+\]
+于是\(\opair{m+p,n+q}\sim\opair{m'+p',n'+q'}\).
+\end{proof}
+\end{lemma}
+\cref{theorem:集合论.整数集上的加法运算是良定的} 说明前面定义的%
+\hyperref[equation:集合论.整数集上的加法运算]{整数集上的加法运算}是正当的.
+换句话说，由于映射\[
+	F\colon ((\omega\times\omega)\times(\omega\times\omega))\to(\omega\times\omega),
+	\opair{\opair{m,n},\opair{p,q}} \mapsto \opair{m+p,n+q}
+\]和关系\(\sim\)兼容，
+那么根据\cref{theorem:集合论.与等价关系兼容的映射的性质}，
+在商集\(\IntegerQuotient\)上，唯一存在映射\(\hat{F}\)（这就是整数集上的加法运算），满足\[
+	\hat{F}([\opair{m,n}],[\opair{p,q}]) = [\opair{m+p,n+q}].
+\]
+
+\begin{theorem}\label{theorem:集合论.整数加法的运算法则}
+%@see: 《Elements of Set Theory》 P94. Theorem 5ZC
+%@see: 《Elements of Set Theory》 P95. Theorem 5ZD
+以下命题恒成立：
+\begin{enumerate}
+	\item 加法交换律
+	\begin{equation}\label{equation:集合论.整数加法交换律}
+		\forall a,b\in\mathbb{Z} \bigl(
+			a+b=b+a
+		\bigr).
+	\end{equation}
+	\item 加法结合律
+	\begin{equation}\label{equation:集合论.整数加法结合律}
+		\forall a,b,c\in\mathbb{Z} \bigl(
+			(a+b)+c=a+(b+c)
+		\bigr).
+	\end{equation}
+	\item 任意整数加上整数\(0\defeq[\opair{0,0}]\)不变
+	\begin{equation}\label{equation:集合论.任意整数加上零不变}
+		\forall a\in\mathbb{Z} \bigl(
+			a+0=a
+		\bigr).
+	\end{equation}
+	\item 加法可逆
+	\begin{equation}\label{equation:集合论.整数加法可逆}
+		\forall a\in\mathbb{Z}, \exists! b\in\mathbb{Z} \bigl(
+			a+b=0
+		\bigr).
+	\end{equation}
+\end{enumerate}
+\begin{proof}
+首先证明 \labelcref{equation:集合论.整数加法交换律,equation:集合论.整数加法结合律} 这两个命题.
+设\[
+	a = [\opair{m,n}], \qquad
+	b = [\opair{p,q}], \qquad
+	c = [\opair{u,v}],
+\]
+其中\(m,n,p,q,u,v\)是自然数.
+那么\begin{align*}
+	a+b &= [\opair{m,n}]+[\opair{p,q}] \\
+	&= [\opair{m+p,n+q}]	&(\text{\hyperref[equation:集合论.整数集上的加法运算]{整数加法的定义}}) \\
+	&= [\opair{p+m,q+n}]	&(\text{\hyperref[equation:集合论.自然数加法交换律]{自然数加法交换律}}) \\
+	&= [\opair{p,q}]+[\opair{m,n}] \\
+	&= b+a; \\
+	(a+b)+c &= [\opair{m+p,n+q}]+[\opair{u,v}] \\
+	&= [\opair{(m+p)+u,(n+q)+v}] \\
+	&= [\opair{m+(p+u),n+(q+v)}]	&(\text{\hyperref[equation:集合论.自然数加法结合律]{自然数加法结合律}}) \\
+	&= [\opair{m,n}]+[\opair{p+u,q+v}] \\
+	&= a+(b+c);
+\end{align*}
+因此整数加法满足交换律、结合律.
+
+命题 \labelcref{equation:集合论.任意整数加上零不变} 显然成立，
+这是因为对于任意给定的整数\(a = [\opair{m,n}]\)，总有\[
+	a+0
+	= [\opair{m,n}]+[\opair{0,0}]
+	= [\opair{m+0,n+0}]
+	= [\opair{m,n}]
+	= a.
+\]
+
+最后，我们来证明命题 \labelcref{equation:集合论.整数加法可逆}.
+显然，对于任意取定整数\(a = [\opair{m,n}]\)，
+整数\(b = [\opair{n,m}]\)总是满足\[
+	a+b
+	= [\opair{m+n,n+m}]
+	= [\opair{0,0}]
+	= 0.
+\]
+由此，我们不仅证明命题 \labelcref{equation:集合论.整数加法可逆} 中，
+整数\(b\)的存在性，还给出了它的表达式.
+我们再假设\(b,c\)这两个整数分别满足\[
+	a+b=0, \qquad
+	a+c=0;
+\]
+那么\[
+	b=b+(a+c)=(b+a)+c=c.
+\]
+于是我们证得整数\(b\)的唯一性.
+\end{proof}
+\end{theorem}
+
+从上面的证明过程我们得知，
+对于任意给定的一个整数\(a\)，
+满足\(a+b=0\)的整数\(b\)存在且唯一.
+于是，我们可以把\(b\)叫做“\(a\)的\DefineConcept{逆}（inverse）”，
+记作\((-a)\).
+那么有\begin{equation}
+	-[\opair{m,n}]=[\opair{n,m}].
+\end{equation}
+整数的逆为我们提供了\DefineConcept{减法运算}（subtraction operation）：
+\begin{equation}
+	b-a \defeq b+(-a).
+\end{equation}
+
+\cref{theorem:集合论.整数加法的运算法则}
+说明整数集\(\mathbb{Z}\)配上加法运算就成为一个阿贝尔群！
+在以后学到抽象代数的时候，我们会明白这意味着什么.
+
+\subsection{整数集上的乘法运算}
+我们遵循同样的思路，像在研究整数集上的加法运算那样，借助初等代数的知识，注意到\[
+	(m-n)\cdot(p-q)=(mp+nq)-(mq+np).
+\]
+于是我们可以定义整数集上的乘法运算：
+\begin{equation}\label{equation:集合论.整数集上的乘法运算}
+	[\opair{m,n}]\cdot[\opair{p,q}]
+	\defeq [\opair{mp+nq,mq+np}].
+\end{equation}
+同样地，我们还是要验证整数乘法的定义在等价类上是不是良定的.
+也就是要验证映射\[
+	G\colon ((\omega\times\omega)\times(\omega\times\omega))\to(\omega\times\omega),
+	\opair{\opair{m,n},\opair{p,q}} \mapsto \opair{mp+nq,mq+np}
+\]和关系\(\sim\)兼容.
+为此，我们有如下引理.
+\begin{lemma}\label{theorem:集合论.整数集上的乘法运算是良定的}
+%@see: 《Elements of Set Theory》 P96. Lemma 5ZE
+如果\(\opair{m,n}\sim\opair{m',n'}\)且\(\opair{p,q}\sim\opair{p',q'}\)，
+那么\[
+	\opair{mp+nq,mq+np}\sim\opair{m'p'+n'q',m'q'+n'p'}.
+\]
+\begin{proof}
+根据\cref{definition:集合论.自然数的差的等价关系}，
+\[
+	m+n'=m'+n,
+	\eqno(1)
+\]\[
+	p+q'=p'+q;
+	\eqno(2)
+\]
+将(1)式乘以\(p\)倍，得\[
+	mp+n'p=m'p+np;
+	\eqno(3)
+\]
+将(1)式乘以\(q\)倍，得\[
+	m'q+nq=mq+n'q;
+	\eqno(4)
+\]
+将(2)式乘以\(m'\)倍，得\[
+	m'p+m'q'=m'p'+m'q;
+	\eqno(5)
+\]
+将(2)式乘以\(n'\)倍，得\[
+	n'p'+n'q=n'p+n'q';
+	\eqno(6)
+\]
+将(3)(4)(5)(6)这四个式子相加，
+再利用\hyperref[theorem:集合论.自然数的消去律]{消去律}化简，便得\[
+	mp+nq+m'q'+n'p'
+	=np+mq+m'p'+n'q';
+\]
+因此，\(\opair{mp+nq,mq+np}\sim\opair{m'p'+n'q',m'q'+n'p'}\).
+\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{theorem:集合论.整数乘法的运算法则1}
+%@see: 《Elements of Set Theory》 P96. Theorem 5ZF
+以下命题恒成立：
+\begin{enumerate}
+	\item 乘法交换律
+	\begin{equation}\label{equation:集合论.整数乘法交换律}
+		\forall a,b\in\mathbb{Z} \bigl(
+			a \cdot b = b \cdot a
+		\bigr).
+	\end{equation}
+	\item 乘法结合律
+	\begin{equation}\label{equation:集合论.整数乘法结合律}
+		\forall a,b,c\in\mathbb{Z} \bigl(
+			(a \cdot b) \cdot c = a \cdot (b \cdot c)
+		\bigr).
+	\end{equation}
+	\item 乘法分配律
+	\begin{equation}\label{equation:集合论.整数乘法分配律}
+		\forall a,b,c\in\mathbb{Z} \bigl(
+			a \cdot (b + c) = (a \cdot b) + (a \cdot c)
+		\bigr).
+	\end{equation}
+\end{enumerate}
+\begin{proof}
+设\(a=[\opair{m,n}]\)，\(b=[\opair{p,q}]\)，其中\(m,n,p,q\in\omega\).
+那么根据\cref{equation:集合论.整数集上的乘法运算}，\[
+	a \cdot b = [\opair{mp+nq,mq+np}],
+\]\[
+	b \cdot a = [\opair{pm+qn,pn+qm}].
+\]
+根据自然数的\hyperref[equation:集合论.自然数加法交换律]{加法交换律}%
+和\hyperref[equation:集合论.自然数乘法交换律]{乘法交换律}，
+有\(mp+nq=pm+qn\)和\(mq+np=pn+qm\)，
+于是\(a \cdot b = b \cdot a\)成立.
+
+又设\(c=[\opair{r,s}]\)，其中\(r,s\in\omega\).
+那么\[
+	(a \cdot b) \cdot c
+	= [\opair{(mp+nq)r+(mq+np)s,(mp+nq)s+(mq+np)r}],
+\]\[
+	a \cdot (b \cdot c)
+	= [\opair{m(pr+qs)+n(ps+qr),m(ps+qr)+n(pr+qs)}].
+\]
+只要像上面一样，利用自然数的运算法则，
+易证\((a \cdot b) \cdot c = a \cdot (b \cdot c)\).
+
+最后，我们将\(a \cdot (b+c)\)展开，得\[
+	[\opair{m(p+r)+n(q+s),m(q+s)+n(p+r)}];
+\]
+将\((a \cdot b) + (a \cdot c)\)展开，得\[
+	[\opair{mp+nq+mr+ns,mq+np+ms+nr}].
+\]
+易证\(a \cdot (b + c) = (a \cdot b) + (a \cdot c)\)成立.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:集合论.整数乘法的运算法则2}
+%@see: 《Elements of Set Theory》 P97. Theorem 5ZG
+以下命题恒成立：\begin{enumerate}
+	\item 任意整数乘上整数\(1\defeq[\opair{1,0}]\)不变，即
+	\begin{equation}\label{equation:集合论.任意整数乘上一不变}
+		\forall a\in\mathbb{Z} \bigl(
+			a \cdot 1 = a
+		\bigr).
+	\end{equation}
+	\item 整数\(1\)与整数\(0\)不相等，即\(1\neq0\).
+	\item 如果\(a \cdot b = 0\)，那么\(a = 0 \lor b = 0\).
+\end{enumerate}
+\begin{proof}
+设\(a=[\opair{m,n}]\)，那么
+\begin{align*}
+	a \cdot 1
+	&= [\opair{m,n}]\cdot[\opair{1,0}] \\
+	&= [\opair{m\cdot1+n\cdot0,m\cdot0+n\cdot1}] \\
+	&= [\opair{m,n}] = a.
+\end{align*}
+于是命题 \labelcref{equation:集合论.任意整数乘上一不变} 成立.
+
+要证整数\(1\)与整数\(0\)不相等，
+即证\([\opair{1,0}]\neq[\opair{0,0}]\)，
+那么只需证\[
+	\opair{0,0}\not\sim\opair{1,0};
+\]
+即证\(0+0\neq0+1\)或\(0\neq1\)，显然成立.
+
+接下来，若要证\(a \cdot b = 0 \implies a = 0 \lor b = 0\)，
+可以用反证法，
+假设\(a,b\)都是非零整数，只需证\(a \cdot b \neq 0\)制造矛盾.
+设\(a=[\opair{m,n}]\)，\(b=[\opair{p,q}]\)，
+其中\(m,n,p,q\)都是自然数.
+那么\[
+	a \cdot b = [\opair{mp+nq,mq+np}].
+\]
+既然\(a\neq0=[\opair{0,0}]\)，
+那么\(m \neq n\)，即有\[
+	m < n \lor n < m;
+	\eqno(1)
+\]
+同理可得\[
+	p < q \lor q < p.
+	\eqno(2)
+\]
+从(1)(2)两式可以得到\(m,n,p,q\)取值的四种不同情况，不过我们总有\[
+	mp+nq \neq mq+np.
+\]
+因此\(a \cdot b \neq 0\).
+\end{proof}
+\end{theorem}
+
+我们可以说\(\opair{\mathbb{Z},+,\cdot}\)构成了%
+\DefineConcept{整环}（integral domain），
+这是因为\begin{enumerate}
+	\item \(\opair{\mathbb{Z},+}\)构成阿贝尔群%
+	（\cref{theorem:集合论.整数加法的运算法则}）.
+	\item 整数乘法遵守交换律和结合律，以及对加法的分配律%
+	（\cref{theorem:集合论.整数乘法的运算法则1}）.
+	\item 整数\(1\)是乘法的单位元，且整数集中不存在零因子%
+	（\cref{theorem:集合论.整数乘法的运算法则2}）.
+\end{enumerate}
+
+\subsection{整数的序}
+现在我们来为整数构造一个序.
+利用我们从初等代数学到的知识，
+容易验证下式是正确的：\[
+	m-n<p-q \iff m+q<p+n.
+\]
+于是我们可以定义整数集上的序：
+\begin{equation}\label{equation:集合论.整数集上的序}
+	[\opair{m,n}] < [\opair{p,q}]
+	\iff
+	m+q<p+n.
+\end{equation}
+接下来我们想要确认这里定义的序是否不是良定的关系.
+
+\begin{lemma}\label{theorem:集合论.整数集上的序是良定的}
+%@see: 《Elements of Set Theory》 P98. Theorem 5ZH
+如果\(\opair{m,n}\sim\opair{m',n'}\)且\(\opair{p,q}\sim\opair{p',q'}\)，
+那么\[
+	m+q<p+n \iff m'+q'<p'+n'.
+\]
+\begin{proof}
+因为\(\opair{m,n}\sim\opair{m',n'}\)且\(\opair{p,q}\sim\opair{p',q'}\)，所以\[
+	m+n'=m'+n, \qquad
+	p+q'=p'+q.
+\]
+于是\begin{align*}
+	m+q<p+n
+	&\iff
+	m+q+n'+q'<p+n+n'+q'
+		&(\text{\cref{theorem:集合论.自然数的加法与乘法的保序性}}) \\
+	&\iff
+	m'+n+q+q'<p'+q+n+n'
+		&(\text{代入上述两个等式}) \\
+	&\iff
+	m'+q'<p'+n'
+		&(\text{\cref{theorem:集合论.自然数的加法与乘法的保序性}}).
+\end{align*}
+\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{theorem:集合论.整数集上的序是线性序}
+%@see: 《Elements of Set Theory》 P98. Theorem 5ZI
+关系\(<\)是整数集上的线性序.
+\begin{proof}
+要证关系\(<\)是整数集上的线性序，
+即证\(<\)具有传递性，且满足三一律.
+
+先证\(<\)的传递性.
+考虑整数\(a=[\opair{m,n}]\)，\(b=[\opair{p,q}]\)，\(c=[\opair{r,s}]\)，
+那么\begin{align*}
+	a<b \land b<c
+	&\implies
+	m+q<p+n \land p+s<r+q \\
+	&\implies
+	m+q+s<p+n+s \land p+s+n<r+q+n \\
+	&\implies
+	m+q+s<r+q+n \\
+	&\implies
+	m+s<r+n
+		&(\text{\cref{theorem:集合论.自然数的加法与乘法的保序性}}) \\
+	&\implies
+	a < c.
+\end{align*}
+
+再证\(<\)服从三一律.
+要说\[
+	a < b, \qquad
+	a = b, \qquad
+	b < a
+\]这三个命题中有且仅有一个成立，
+等于说\[
+	m+q<p+n, \qquad
+	m+q=p+n, \qquad
+	p+n<m+q
+\]中有且仅有一个成立，
+而这根据\cref{theorem:集合论.自然数集的三一律} 就能得到.
+\end{proof}
+\end{theorem}
+
+\begin{definition}
+设\(a\)是整数.
+如果\[
+	0 < a,
+\]
+那么称“\(a\)是\DefineConcept{正的}（positive）”，
+或称“\(a\)是\DefineConcept{正整数}（positive integer）”.
+反之，如果\[
+	a < 0,
+\]
+那么称“\(a\)是\DefineConcept{负的}（negative）”，
+或称“\(a\)是\DefineConcept{负整数}（negative integer）”.
+\end{definition}
+
+任给一个整数\(b\)，
+容易验证\[
+	b < 0 \iff 0 < -b.
+\]
+于是我们又有如下的三一律：
+\[
+	\text{\(b\)是正的}, \qquad
+	\text{\(b\)是零}, \qquad
+	\text{\(-b\)是正的}
+\]这三个命题有且仅有一个成立.
+
+\begin{theorem}\label{theorem:集合论.整数的加法与乘法的保序性}
+%@see: 《Elements of Set Theory》 P99. Theorem 5ZJ
+设\(a,b,c\in\mathbb{Z}\).
+那么\begin{gather}
+	a<b \iff a+c<b+c,
+	\label{equation:集合论.整数的加法的保序性} \\
+	0<c \implies \bigl(
+		a<b \iff a \cdot c < b \cdot c
+	\bigr).
+	\label{equation:集合论.整数的乘法的保序性}
+\end{gather}
+\begin{proof}
+假设\[
+	a=[\opair{m,n}], \qquad
+	b=[\opair{p,q}], \qquad
+	c=[\opair{r,s}].
+\]
+那么\cref{equation:集合论.整数的加法的保序性} 相当于\[
+	m+q<p+n \iff m+r+q+s<p+r+n+s.
+\]
+而这根据\cref{theorem:集合论.自然数的加法与乘法的保序性} 立即可得.
+
+要证\cref{equation:集合论.整数的乘法的保序性}，
+根据\cref{theorem:集合论.自然数的加法与乘法的保序性}，
+只需证\[
+	0<c \land a<b \implies a \cdot c < b \cdot c,
+\]
+即证\[
+	s<r \land m+q<p+n \implies mr+ns+ps+qr<pr+qs+ms+nr.
+\]
+如果令\(k=m+q, l=p+n\)，那么上式变为\[
+	s<r \land k<l \implies kr+ls<ks+lr.
+\]
+%TODO Exercise 25 of Chapter 4.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:集合论.整数的消去律}
+%@see: 《Elements of Set Theory》 P100. Corollary 5ZK
+设\(a,b,c\in\mathbb{Z}\).
+那么\begin{gather*}
+	a+c=b+c \implies a=b, \\
+	a \cdot c = b \cdot c \land c \neq 0 \implies a=b.
+\end{gather*}
+\end{corollary}
+\cref{theorem:集合论.整数的消去律} 又称为“整数的消去律”.
+
+尽管自然数集\(\omega\)并非整数集\(\mathbb{Z}\)的子集，
+但是我们可以在整数集中找到一个子集，它的行为表现都和\(\omega\)一模一样.
+准确地说，我们定义映射\[
+	E\colon \omega\to\mathbb{Z}, n\mapsto[\opair{n,0}].
+\]
+那么我们有\(E(0)=0\)，\(E(1)=1\).
+
+我们可以证明，\(E\)是一个\DefineConcept{同构嵌入}（isomorphic embedding），
+它将\(\opair{\omega,+,\cdot,<}\)嵌入\(\opair{\mathbb{Z},+,\cdot,<}\).
+\begin{theorem}
+\(E\)是一一映射，对\(\forall m,n\in\omega\)总满足
+\begin{gather}
+	E(m+n)=E(m)+E(n),
+	\label{equation:集合论.自然数集到整数集的同构嵌入1} \\
+	E(mn)=E(m) \cdot E(n),
+	\label{equation:集合论.自然数集到整数集的同构嵌入2} \\
+	m<n \iff E(m)<E(n).
+	\label{equation:集合论.自然数集到整数集的同构嵌入3}
+\end{gather}
+\begin{proof}
+因为\begin{align*}
+	E(m)=E(n)
+	&\implies
+	[\opair{m,0}]=[\opair{n,0}] \\
+	&\implies
+	\opair{m,0}\sim\opair{n,0} \\
+	&\implies
+	m=n,
+\end{align*}
+所以\(E\)是一一映射.
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入1} 证明如下：
+\begin{align*}
+	E(m+n)
+	&= [\opair{m+n,0}] \\
+	&= [\opair{m,0}]+[\opair{n,0}] \\
+	&= E(m)+E(n).
+\end{align*}
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入2} 证明如下：
+\begin{align*}
+	E(mn)
+	&= [\opair{mn,0}] \\
+	&= [\opair{m,0}]\cdot[\opair{n,0}] \\
+	&= E(m) \cdot E(n).
+\end{align*}
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入3} 证明如下：
+\begin{align*}
+	m<n
+	&\iff
+	[\opair{m,0}]<[\opair{n,0}] \\
+	&\iff
+	E(m)<E(n).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+最后，我们还可以给出减法：%@see: P101.
+对于任意自然数\(m,n\)，有\[
+	[\opair{m,n}]=E(m)-E(n).
+\]

@@ -1,0 +1,260 @@
+
+\section{有理数}
+我们现在把整数集\(\mathbb{Z}\)扩张为有理数集\(\mathbb{Q}\).
+这个过程正如我们在上一节将\(\omega\)扩张为\(\mathbb{Z}\)时一样.
+实际上，从\(\mathbb{Z}\)到\(\mathbb{Q}\)的拓展体现在乘法上，
+这就类似于，从\(\omega\)到\(\mathbb{Z}\)的拓展体现在加法上.
+在整数集中，我们得到了加法的逆；
+在有理数集中，我们希望得到乘法的逆.
+
+\subsection{有理数集}
+\begin{definition}
+%@see: 《Elements of Set Theory》 P102. Definition
+设\(\mathbb{Z}^* \defeq \mathbb{Z}-\{0\}\).
+我们定义\(\mathbb{Z}\times\mathbb{Z}^*\)上的关系\(\sim\)如下：
+\[
+	\forall a,c\in\mathbb{Z}, \forall b,d\in\mathbb{Z}^* \Bigl[
+		\opair{a,b} \sim \opair{c,d}
+		\iff
+		a \cdot d = c \cdot b
+	\Bigr].
+\]
+
+把任意一个整数\(a\)和一个非零整数\(b\)的比\(\opair{a,b}\)在关系\(\sim\)下的等价类\[
+	[\opair{a,b}]
+\]叫做一个\DefineConcept{分数}（fraction）.
+
+称“\(\mathbb{Z}\times\mathbb{Z}^*\)对\(\sim\)的商集”为%
+\DefineConcept{有理数集}（the set of rational numbers），
+记作\(\mathbb{Q}\)，即\[
+	\mathbb{Q} \defeq \RationalQuotient.
+\]
+\end{definition}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P102. Theorem 5QA
+关系\(\sim\)是\(\mathbb{Z}\times\mathbb{Z}^*\)上的等价关系.
+\end{theorem}
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\draw[help lines, color=gray!30, dashed] (-9,-9)grid(9,9);
+		\begin{scope}[>=Stealth,->]
+			\draw(0,-10)--(0,10);
+			\draw(-10,0)--(10,0);
+		\end{scope}
+		\foreach \i in {-9,...,9} {
+			\foreach \j in {-9,...,9} {
+				\fill (\i,\j)circle(2pt);
+			}
+		}
+		\draw(-3,-9)--(3,9)node[above right]{\(\tfrac{1}{3}\)};
+		\draw(-5,-9)--(5,9)node[above right]{\(\tfrac{5}{9}\)};
+		\draw(-9,-9)--(9,9)node[above right]{\(1\)};
+		\draw(-9,-3)--(9,3)node[above right]{\(3\)};
+	\end{tikzpicture}
+	\caption{整数是\(\mathbb{Z}\times\mathbb{Z}^*\)上的“直线”}
+\end{figure}
+
+\subsection{有理数集上的加法运算}
+我们定义有理数集上的加法运算：
+\begin{equation}\label{equation:集合论.有理数集上的加法运算}
+	[\opair{a,b}]+[\opair{c,d}]=[\opair{ad+cb,bd}].
+\end{equation}
+
+\begin{lemma}\label{theorem:集合论.有理数集上的加法运算是良定的}
+%@see: 《Elements of Set Theory》 P104. Lemma 5QB
+如果\(\opair{a,b}\sim\opair{a',b'}\)且\(\opair{c,d}\sim\opair{c',d'}\)，那么\[
+	\opair{ad+cb,bd}\sim\opair{a'd'+c'b',b'd'}.
+\]
+\end{lemma}
+
+\begin{theorem}\label{theorem:集合论.有理数加法的运算法则}
+%@see: 《Elements of Set Theory》 P104. Theorem 5QC
+以下命题恒成立：
+\begin{enumerate}
+	\item 加法交换律
+	\begin{equation}\label{equation:集合论.有理数加法交换律}
+		\forall a,b\in\mathbb{Q} \bigl(
+			a+b=b+a
+		\bigr).
+	\end{equation}
+	\item 加法结合律
+	\begin{equation}\label{equation:集合论.有理数加法结合律}
+		\forall a,b,c\in\mathbb{Q} \bigl(
+			(a+b)+c=a+(b+c)
+		\bigr).
+	\end{equation}
+	\item 任意有理数加上有理数\(0\defeq[\opair{0,1}]\)不变
+	\begin{equation}\label{equation:集合论.任意有理数加上零不变}
+		\forall a\in\mathbb{Q} \bigl(
+			a+0=a
+		\bigr).
+	\end{equation}
+	\item 加法可逆
+	\begin{equation}\label{equation:集合论.有理数加法可逆}
+		\forall a\in\mathbb{Q}, \exists! b\in\mathbb{Q} \bigl(
+			a+b=0
+		\bigr).
+	\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\subsection{有理数集上的乘法运算}
+我们定义有理数集上的乘法运算：
+\begin{equation}\label{equation:集合论.有理数集上的乘法运算}
+	[\opair{a,b}]\cdot[\opair{c,d}]=[\opair{ac,bd}].
+\end{equation}
+
+\begin{lemma}\label{theorem:集合论.有理数集上的乘法运算是良定的}
+%@see: 《Elements of Set Theory》 P106. Lemma 5QD
+如果\(\opair{a,b}\sim\opair{a',b'}\)且\(\opair{c,d}\sim\opair{c',d'}\)，那么\[
+	\opair{ac,bd}\sim\opair{a'c',b'd'}.
+\]
+\end{lemma}
+
+\begin{theorem}\label{theorem:集合论.有理数乘法的运算法则}
+%@see: 《Elements of Set Theory》 P106. Theorem 5QE
+%@see: 《Elements of Set Theory》 P107. Theorem 5QF
+%@see: 《Elements of Set Theory》 P107. Corollary 5QG
+以下命题恒成立：
+\begin{enumerate}
+	\item 乘法交换律
+	\begin{equation}\label{equation:集合论.有理数乘法交换律}
+		\forall a,b\in\mathbb{Q} \bigl(
+			a \cdot b = b \cdot a
+		\bigr).
+	\end{equation}
+	\item 乘法结合律
+	\begin{equation}\label{equation:集合论.有理数乘法结合律}
+		\forall a,b,c\in\mathbb{Q} \bigl(
+			(a \cdot b) \cdot c = a \cdot (b \cdot c)
+		\bigr).
+	\end{equation}
+	\item 乘法分配律
+	\begin{equation}\label{equation:集合论.有理数乘法分配律}
+		\forall a,b,c\in\mathbb{Q} \bigl(
+			a \cdot (b + c) = (a \cdot b) + (a \cdot c)
+		\bigr).
+	\end{equation}
+	\item 对\(\forall r\in\mathbb{Q}^*\)，\(\exists! q\in\mathbb{Q}\)，使得\[
+		r \cdot q = 1.
+	\]
+	\item 对\(\forall r,s\in\mathbb{Q}^*\)，\[
+		r \cdot s \neq 0.
+	\]
+	\item 任意有理数乘上有理数\(1\defeq[\opair{1,1}]\)不变，即
+	\begin{equation}\label{equation:集合论.任意有理数乘上一不变}
+		\forall a\in\mathbb{Z} \bigl(
+			a \cdot 1 = a
+		\bigr).
+	\end{equation}
+	\item 有理数\(1\)与有理数\(0\)不相等，即\(1\neq0\).
+	\item 如果\(a \cdot b = 0\)，那么\(a = 0 \lor b = 0\).
+\end{enumerate}
+\end{theorem}
+
+由于对于任意给定的一个非零有理数\(a\)，满足\(a \cdot b = 1\)的有理数\(b\)存在且唯一.
+于是，我们可以把\(b\)叫做“\(a\)的逆”，记作\(a^{-1}\).
+那么有\begin{equation}
+	[\opair{a,b}]^{-1}=[\opair{b,a}].
+\end{equation}
+有理数的逆为我们提供了\DefineConcept{除法运算}（division operation）：
+\begin{equation}
+	s/r \defeq s \cdot (r^{-1}).
+\end{equation}
+
+我们可以说\(\opair{\mathbb{Q},+,\cdot}\)构成了\DefineConcept{有理数域}（rational field）.
+
+\subsection{有理数的序}
+定义有理数集上的序：
+\begin{equation}
+	[\opair{a,b}]<[\opair{c,d}]
+	\iff
+	ad<cb.
+\end{equation}
+
+\begin{lemma}\label{theorem:集合论.有理数集上的序是良定的}
+%@see: 《Elements of Set Theory》 P108. Lemma 5QH
+如果\(\opair{a,b}\sim\opair{a',b'}\)，
+\(\opair{c,d}\sim\opair{c',d'}\)，
+\(b,b',d,d'\in\mathbb{Z}^+\)，
+那么\[
+	ad<cb \iff a'd'<c'b'.
+\]
+\end{lemma}
+
+\begin{theorem}\label{theorem:集合论.有理数集上的序是线性序}
+%@see: 《Elements of Set Theory》 P108. Lemma 5QI
+关系\(<\)是有理数集\(\mathbb{Q}\)上的线性序.
+\end{theorem}
+
+\begin{definition}
+设\(r\)是有理数.
+如果\[
+	0<r,
+\]
+那么称“\(r\)是\DefineConcept{正的}”，
+或称“\(r\)是\DefineConcept{正有理数}”.
+反之，如果\[
+	r<0,
+\]
+那么称“\(r\)是\DefineConcept{负的}”，
+或称“\(r\)是\DefineConcept{负有理数}”.
+\end{definition}
+
+任给一个有理数\(q\)，容易验证\[
+	q < 0
+	\iff
+	0 < -q.
+\]
+于是我们有三一律：\[
+	\text{\(q\)是正的}, \qquad
+	\text{\(q\)是零}, \qquad
+	\text{\(-q\)是正的}
+\]这三个命题有且仅有一个成立.
+
+我们可以定义任意有理数\(r\)的\DefineConcept{绝对值}（absolute value）为：
+\begin{equation}
+	\abs{r} \defeq \left\{ \begin{array}{rl}
+		-r, & \text{\(-r\)是正的}, \\
+		r, & \text{其他}.
+	\end{array} \right.
+\end{equation}
+
+\begin{theorem}\label{theorem:集合论.有理数的加法与乘法的保序性}
+%@see: 《Elements of Set Theory》 P109. Theorem 5QJ
+设\(r,s,t\in\mathbb{Q}\).
+\begin{gather}
+	r<s \iff r+t<s+t,
+	\label{equation:集合论.有理数的加法的保序性} \\
+	0<t \implies \bigl(
+		r<s \iff r \cdot t < s \cdot t
+	\bigr).
+	\label{equation:集合论.有理数的乘法的保序性}
+\end{gather}
+\end{theorem}
+
+\begin{theorem}\label{theorem:集合论.有理数的消去律}
+%@see: 《Elements of Set Theory》 P110. Theorem 5QK
+设\(r,s,t\in\mathbb{Q}\).
+那么\begin{gather*}
+	r+t=s+t \implies r=s, \\
+	r \cdot t = s \cdot t \land t \neq 0 \implies r=s.
+\end{gather*}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P110. Theorem 5QL
+映射\[
+	E\colon \mathbb{Z}\to\mathbb{Q}, a\mapsto[\opair{a,1}]
+\]是一一映射，
+且对\(\forall a,b,c\in\mathbb{Z}\)总满足\begin{gather}
+	E(a+b)=E(a)+E(b), \\
+	E(ab)=E(a) \cdot E(b), \\
+	E(0)=0, \\
+	E(1)=1, \\
+	a<b \iff E(a)<E(b).
+\end{gather}
+\end{theorem}
