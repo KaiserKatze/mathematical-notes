@@ -79,6 +79,12 @@ if __name__ == "__main__":
                 if re.search(r"\uff09\s+\\\(", line):
                     error("【0005】在全角右圆括号与行内数学公式开头命令之间存在空格！")
 
+                if any(re.search(pattern, line) for pattern in [
+                    r"\\hyperref\[[^\]]+\]\{[^\}]+\}\s+?",
+                    r"\s+\\hyperref\[[^\]]+\]\{[^\}]+\}",
+                ]):
+                    error("【0006】在\hyperref命令前后存在空格！")
+
                 prev_line = line
     if not is_tex_project_problematic:
         logger.info("检查完毕，没有任何错误！")
