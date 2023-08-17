@@ -720,6 +720,35 @@ a^{\ln b} = b^{\ln a}.
 \end{gather}
 \end{theorem}
 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\a}{6}
+		\coordinate(O)at(0,0);
+		\pgfmathsetmacro{\t}{30}
+		\draw(O)node[below left]{\(O\)}
+			--(\a,0)coordinate(A)node[below right]{\(A\)}
+			arc[start angle=0,end angle=\t,radius=\a]coordinate(B)node[right]{\(B\)}
+			--(O);
+		\draw(B)--(B|-A)coordinate(C)node[below right]{\(C\)};
+		\draw(B)--(\a,{\a*tan(\t)})coordinate(D)node[above right]{\(D\)}--(\a,0);
+		\pic["\(\theta\)",draw,-,angle eccentricity=1.5,angle radius=6mm]{angle=A--O--B};
+		\begin{scope}[|<->|,black!40,every node/.style={black,midway,sloped}]
+			\def\mark#1#2#3#4#5{%
+				\draw($#1+#4$)--($#2+#4$)node[#3]{$#5$};%
+			}%
+			\mark{(C)}{(B)}{above}{(-5pt,0)}{\sin\theta}
+			\mark{(O)}{(D)}{above}{({(-1em-10pt)*sin(30)},{(1em+10pt)*cos(30)})}{\sec\theta}
+			\mark{(O)}{(B)}{above}{({-5pt*sin(30)},{5pt*cos(30)})}{1}
+			\mark{(O)}{(C)}{below}{(0,-5pt)}{\cos\theta}
+			\mark{(A)}{(D)}{below}{(5pt,0)}{\tan\theta}
+			\mark{(O)}{(A)}{below}{(0,-1em-10pt)}{1}
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+\end{figure}
+
+
 \begin{property}
 %sine
 \begin{figure}[ht]
