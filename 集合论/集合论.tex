@@ -248,6 +248,8 @@
 		\iff
 		x \subseteq A
 		\iff
+		A \supseteq x
+		\iff
 		\forall t \bigl( t \in x \implies t \in A \bigr)
 	\bigr].
 \]
@@ -263,6 +265,7 @@
 
 下面我们给出我们对“空集”“对集”“并集”和“幂集”的正式定义.
 
+\subsection{空集}
 \begin{definition}
 不含任何元素的集合称为\DefineConcept{空集}（empty set），
 记作\(\emptyset\)，即
@@ -284,6 +287,7 @@
 	(\exists x)[x \in A].
 \]
 
+\subsection{对集}
 \begin{definition}
 对于任意给定的元素\(u\)和\(v\)，
 我们用符号\[
@@ -314,23 +318,12 @@
 
 %可以看出，对集公理和并集公理是保障我们采用“列举法”表示集合这一方法论的正当性的基础.
 
+\subsection{并集}
 \begin{definition}
 称\[
 	\Set{ x \given x \in A \lor x \in B }
 \]为“\(A\)和\(B\)的\DefineConcept{并}（the \emph{union} of \(A\) and \(B\)）”，
 记作\(A \cup B\)或\(A+B\).
-\end{definition}
-
-
-\begin{definition}
-由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合，
-称作“集合\(A\)的\DefineConcept{幂集}（power set）”，
-记作\(\Powerset A\)或\(2^A\)或\(\mathcal{P}A\)，
-即\[
-	\Powerset A
-	\defeq
-	\Set{ x \given x \subseteq A }.
-\]
 \end{definition}
 
 
@@ -369,51 +362,6 @@
 	a \cup b \defeq \bigcup\Set{a,b}.
 \]
 
-
-
-\begin{definition}
-称\[
-	\Set{ x \given x \in A \land x \in B }
-\]为“\(A\)和\(B\)的\DefineConcept{交}（the \emph{intersection} of \(A\) and \(B\)）”，
-记作\(A \cap B\)或\(AB\).
-\end{definition}
-
-\begin{theorem}\label{theorem:集合论.系的交的唯一存在性}
-%@see: 《Elements of Set Theory》 P25. Theorem 2B
-对于任意非空集合\(A\)，存在唯一的集合\(B\)，使得对于任意\(x\)，有\[
-	x \in B
-	\iff
-	\forall a \in A \bigl( x \in a \bigr).
-\]
-\begin{proof}
-先证集合\(B\)的存在性.
-既然\(A\)是非空集，不妨取定\(c \in A\).
-那么根据子集公理，存在集合\(B\)，使得对于任意\(x\)，都有\[
-	x \in B
-	\iff x \in c \land \bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr];
-\]
-由于\(c\)是任意取定的，且\[
-	\bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr]
-	\implies
-	x \in c,
-\]
-所以也有\[
-	x \in B
-	\iff \forall a \in A \bigl( x \in a \bigr).
-\]
-
-根据外延公理不难得出集合\(B\)的唯一性.
-\end{proof}
-\end{theorem}
-
-\begin{definition}
-称集合\[
-	\Set{ x \given x \in A \land x \notin B }
-\]为“\(A\)和\(B\)的\DefineConcept{差集}%
-（the \emph{relative complement} of \(B\) in \(A\)）”，
-记作\(A - B\)或\(A \setminus B\).
-\end{definition}
-
 \begin{example}
 %@see: 《Elements of Set Theory》 P26. Example
 如果\(b \in A\)，那么必有\(b \subseteq \bigcup A\)，
@@ -450,42 +398,6 @@
 \end{equation}
 \end{example}
 
-\begin{example}
-%@see: 《Elements of Set Theory》 P26. Example
-因为\[
-	\bigcap\Set{\Set{a},\Set{a,b}}
-	= \Set{a}\cap\Set{a,b}
-	= \Set{a},
-\]
-所以\[
-	\bigcup\bigcap\Set{\Set{a},\Set{a,b}}
-	= \bigcup\Set{a}
-	= a.
-\]
-
-类似有\[
-	\bigcap\bigcup\Set{\Set{a},\Set{a,b}}
-	= \bigcap\Set{a,b}
-	= a \cap b.
-\]
-\end{example}
-
-
-\begin{definition}
-设系\(A = \Set{\v{a}{n}}\).
-称集合\(\v{a}{n}\)的交\[
-	a_1 \cap a_2 \cap \dotsb \cap a_n
-\]为\(A\)的\DefineConcept{交}\footnote{%
-\cref{theorem:集合论.系的交的唯一存在性} 确保了\(\bigcap A\)可以定义为唯一存在的集合\(B\).
-}，%
-记作\(\bigcap A\)或\(\bigcap\limits_i a_i\)，即\[
-	\bigcap A
-	\defeq
-	a_1 \cap a_2 \cap \dotsb \cap a_n
-	= \Set*{ x \given \forall a \in A \bigl(x \in a\bigr) }.
-\]
-\end{definition}
-
 例如，
 \begin{align*}
 	&\bigcup\Set{a,b,c,d} = a \cup b \cup c \cup d. \\
@@ -493,24 +405,18 @@
 	&\bigcup\emptyset = \emptyset.
 \end{align*}
 
-例如，
-\begin{align*}
-	&\bigcap\Set{a} = a. \\
-	&\bigcap\Set{a,b} = a \cap b. \\
-	&\bigcap\Set{a,b,c,d} = a \cap b \cap c \cap d.
-\end{align*}
 
-特别注意到“\(\bigcap\emptyset\)”是未定义的！
-
-\begin{example}
-因为\(\bigcap\Set{ \Set{a}, \Set{a,b} } = \Set{a} \cap \Set{a,b} = \Set{a}\)，%
-所以\[
-\bigcup \bigcap \Set{ \Set{a}, \Set{a,b} } = \bigcup \Set{a} = a;
-\]\[
-\bigcap \bigcup \Set{ \Set{a}, \Set{a,b} } = \bigcap \Set{a,b} = a \cap b.
+\subsection{幂集}
+\begin{definition}
+由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合，
+称作“集合\(A\)的\DefineConcept{幂集}（power set）”，
+记作\(\Powerset A\)或\(2^A\)或\(\mathcal{P}A\)，
+即\[
+	\Powerset A
+	\defeq
+	\Set{ x \given x \subseteq A }.
 \]
-\end{example}
-
+\end{definition}
 
 \begin{example}
 %@see: 《Elements of Set Theory》 P26. Exercise 6(a).
@@ -530,99 +436,6 @@
 	x \in A.
 	\qedhere
 \end{align*}
-\end{proof}
-\end{example}
-
-
-\begin{example}
-%@see: 《Elements of Set Theory》 P26. Exercise 6(b).
-证明：对任意集合\(A\)，总有
-\begin{equation}\label{equation:集合论.系的并的幂集包含系}
-	A \subseteq \Powerset \bigcup A;
-\end{equation}
-并找出使得\(A = \Powerset \bigcup A\)成立的条件.
-\begin{proof}
-因为对于\(\forall a\)，总有\[
-	a \in A
-	\implies
-	a \subseteq \bigcup A
-	\iff
-	a \in \Powerset \bigcup A,
-\]
-所以\[
-	A \subseteq \Powerset \bigcup A.
-\]
-
-从上面的证明过程可以看出，
-当\[
-	\forall a \bigl( a \subseteq \bigcup A \iff a \in A \bigr)
-\]时，就有\(A = \Powerset \bigcup A\)成立.
-
-在\(a \subseteq \bigcup A \implies a \in A\)的前提下，
-由于总有\(\emptyset \subseteq \bigcup A\)成立，
-所以\(\emptyset \in A\)恒成立.
-考虑当\(A = \Set{\emptyset}\)成立时，
-必有\(\bigcup A = \bigcup\Set{\emptyset} = \emptyset\)，
-因此\(\Powerset \bigcup A = \Powerset \emptyset = \Set{\emptyset} = A\).
-%TODO
-\end{proof}
-\end{example}
-
-\begin{example}
-%@see: 《Elements of Set Theory》 P26. Exercise 7(a).
-证明：对任意集合\(A,B\)，总有
-\begin{equation}
-	\Powerset (A \cap B) = \Powerset A \cap \Powerset B.
-\end{equation}
-\begin{proof}
-因为\begin{align*}
-	x \in \Powerset (A \cap B)
-	&\iff x \subseteq A \cap B \\
-	&\iff x \subseteq A \land x \subseteq B \\
-	&\iff x \in \Powerset A \land x \in \Powerset B \\
-	&\iff x \in \Powerset A \cap \Powerset B,
-\end{align*}
-那么根据外延公理可知\(\Powerset (A \cap B) = \Powerset A \cap \Powerset B\).
-\end{proof}
-\end{example}
-
-\begin{example}
-%@see: 《Elements of Set Theory》 P26. Exercise 7(b).
-证明：对任意集合\(A,B\)，总有
-\begin{equation}
-	\Powerset (A \cup B) \supseteq \Powerset A \cup \Powerset B;
-\end{equation}
-并找出使得\(\Powerset (A \cup B) = \Powerset A \cup \Powerset B\)成立的条件.
-\begin{proof}
-因为\begin{align*}
-	x \in \Powerset A \cup \Powerset B
-	&\iff x \in \Powerset A \lor x \in \Powerset B \\
-	&\iff x \subseteq A \lor x \subseteq B \\
-	&\implies x \subseteq A \cup B \\
-	&\iff x \in \Powerset (A \cup B),
-\end{align*}
-那么根据外延公理可知\(\Powerset (A \cup B) \supseteq \Powerset A \cup \Powerset B\).
-注意到中间步骤的\(\implies\)通常不是可逆的，
-这是因为只要取\(a \subseteq A - B, b \subseteq B - A, x = a \cup b\)，
-就有\(x \subseteq A \cup B\)但是\(x \not\subseteq A \land x \not\subseteq B\)，
-因此\(x \subseteq A \cup B \notimplies x \subseteq A \lor x \subseteq B\).
-
-从上面的证明过程可以看出，
-要使\(\Powerset (A \cup B) = \Powerset A \cup \Powerset B\)成立，
-必有\[
-	\forall x \bigl(
-		x \subseteq A \cup B
-		\iff
-		x \subseteq A \lor x \subseteq B
-	\bigr)
-\]成立.
-取\(x = A \cup B\)，
-由\(x \subseteq A \lor x \subseteq B\)
-可得\[
-	A \cup B = A \lor A \cup B = B.
-\]
-因此，当且仅当\(A \cup B \in \Set{A,B}\)时，
-就有\(\Powerset (A \cup B) = \Powerset A \cup \Powerset B\)成立.
 \end{proof}
 \end{example}
 
@@ -769,6 +582,144 @@ B \in B \iff B \notin B,
 \end{solution}
 \end{example}
 
+
+\subsection{交集}
+
+\begin{definition}
+称\[
+	\Set{ x \given x \in A \land x \in B }
+\]为“\(A\)和\(B\)的\DefineConcept{交}（the \emph{intersection} of \(A\) and \(B\)）”，
+记作\(A \cap B\)或\(AB\).
+\end{definition}
+
+\begin{theorem}\label{theorem:集合论.系的交的唯一存在性}
+%@see: 《Elements of Set Theory》 P25. Theorem 2B
+对于任意非空集合\(A\)，存在唯一的集合\(B\)，使得对于任意\(x\)，有\[
+	x \in B
+	\iff
+	\forall a \in A \bigl( x \in a \bigr).
+\]
+\begin{proof}
+先证集合\(B\)的存在性.
+既然\(A\)是非空集，不妨取定\(c \in A\).
+那么根据子集公理，存在集合\(B\)，使得对于任意\(x\)，都有\[
+	x \in B
+	\iff x \in c \land \bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr];
+\]
+由于\(c\)是任意取定的，且\[
+	\bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr]
+	\implies
+	x \in c,
+\]
+所以也有\[
+	x \in B
+	\iff \forall a \in A \bigl( x \in a \bigr).
+\]
+
+根据外延公理不难得出集合\(B\)的唯一性.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Example
+因为\[
+	\bigcap\Set{\Set{a},\Set{a,b}}
+	= \Set{a}\cap\Set{a,b}
+	= \Set{a},
+\]
+所以\[
+	\bigcup\bigcap\Set{\Set{a},\Set{a,b}}
+	= \bigcup\Set{a}
+	= a.
+\]
+
+类似有\[
+	\bigcap\bigcup\Set{\Set{a},\Set{a,b}}
+	= \bigcap\Set{a,b}
+	= a \cap b.
+\]
+\end{example}
+
+\begin{definition}
+设系\(A = \Set{\v{a}{n}}\).
+称集合\(\v{a}{n}\)的交\[
+	a_1 \cap a_2 \cap \dotsb \cap a_n
+\]为\(A\)的\DefineConcept{交}\footnote{%
+\cref{theorem:集合论.系的交的唯一存在性} 确保了\(\bigcap A\)可以定义为唯一存在的集合\(B\).
+}，%
+记作\(\bigcap A\)或\(\bigcap\limits_i a_i\)，即\[
+	\bigcap A
+	\defeq
+	a_1 \cap a_2 \cap \dotsb \cap a_n
+	= \Set*{ x \given \forall a \in A \bigl(x \in a\bigr) }.
+\]
+\end{definition}
+
+例如，
+\begin{align*}
+	&\bigcap\Set{a} = a. \\
+	&\bigcap\Set{a,b} = a \cap b. \\
+	&\bigcap\Set{a,b,c,d} = a \cap b \cap c \cap d.
+\end{align*}
+
+特别注意到“\(\bigcap\emptyset\)”是未定义的！
+
+
+\subsection{差集}
+\begin{definition}
+称集合\[
+	\Set{ x \given x \in A \land x \notin B }
+\]为“\(A\)和\(B\)的\DefineConcept{差集}%
+（the \emph{relative complement} of \(B\) in \(A\)）”，
+记作\(A - B\)或\(A \setminus B\).
+\end{definition}
+
+\begin{example}
+因为\(\bigcap\Set{ \Set{a}, \Set{a,b} } = \Set{a} \cap \Set{a,b} = \Set{a}\)，%
+所以\[
+\bigcup \bigcap \Set{ \Set{a}, \Set{a,b} } = \bigcup \Set{a} = a;
+\]\[
+\bigcap \bigcup \Set{ \Set{a}, \Set{a,b} } = \bigcap \Set{a,b} = a \cap b.
+\]
+\end{example}
+
+
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Exercise 6(b).
+证明：对任意集合\(A\)，总有
+\begin{equation}\label{equation:集合论.系的并的幂集包含系}
+	A \subseteq \Powerset \bigcup A;
+\end{equation}
+并找出使得\(A = \Powerset \bigcup A\)成立的条件.
+\begin{proof}
+因为对于\(\forall a\)，总有\[
+	a \in A
+	\implies
+	a \subseteq \bigcup A
+	\iff
+	a \in \Powerset \bigcup A,
+\]
+所以\[
+	A \subseteq \Powerset \bigcup A.
+\]
+
+从上面的证明过程可以看出，
+当\[
+	\forall a \bigl( a \subseteq \bigcup A \iff a \in A \bigr)
+\]时，就有\(A = \Powerset \bigcup A\)成立.
+
+在\(a \subseteq \bigcup A \implies a \in A\)的前提下，
+由于总有\(\emptyset \subseteq \bigcup A\)成立，
+所以\(\emptyset \in A\)恒成立.
+考虑当\(A = \Set{\emptyset}\)成立时，
+必有\(\bigcup A = \bigcup\Set{\emptyset} = \emptyset\)，
+因此\(\Powerset \bigcup A = \Powerset \emptyset = \Set{\emptyset} = A\).
+%TODO
+\end{proof}
+\end{example}
+
+
 \subsection{集合代数}
 \begin{definition}[全集、补集]
 有时，我们研究某个问题限定在一个大的集合\(U\)中进行，所研究的其他集合都是\(U\)的子集；
@@ -854,53 +805,55 @@ B \in B \iff B \notin B,
 \begin{enumerate}
 \item 交换律（{\rm Commutative laws}）
 \begin{gather}
-A \cap B = B \cap A, \label{equation:集合论.集合代数公式1} \\
-A \cup B = B \cup A. \label{equation:集合论.集合代数公式2}
+	A \cap B = B \cap A, \label{equation:集合论.集合代数公式1-1} \\
+	A \cup B = B \cup A. \label{equation:集合论.集合代数公式1-2}
 \end{gather}
 
 \item 结合律（{\rm Associative laws}）
 \begin{gather}
-(A \cap B) \cap C = A \cap (B \cap C), \label{equation:集合论.集合代数公式3} \\
-(A \cup B) \cup C = A \cup (B \cup C). \label{equation:集合论.集合代数公式4}
+	(A \cap B) \cap C = A \cap (B \cap C), \label{equation:集合论.集合代数公式2-1} \\
+	(A \cup B) \cup C = A \cup (B \cup C). \label{equation:集合论.集合代数公式2-2}
 \end{gather}
 
 \item 分配律（{\rm Distributive laws}）
 \begin{gather}
-(A \cap B) \cup C = (A \cup C) \cap (B \cup C), \label{equation:集合论.集合代数公式5} \\
-(A \cup B) \cap C = (A \cap C) \cup (B \cap C), \label{equation:集合论.集合代数公式6} \\
-A \cup \bigcap \mathscr{B} = \bigcap\Set{A \cup X \given X \in \mathscr{B}}, \quad(\mathscr{B}\neq\emptyset) \label{equation:集合论.集合代数公式5'} \\
-A \cap \bigcup \mathscr{B} = \bigcup\Set{A \cap X \given X \in \mathscr{B}}. \label{equation:集合论.集合代数公式6'}
+	(A \cap B) \cup C = (A \cup C) \cap (B \cup C), \label{equation:集合论.集合代数公式3-1} \\
+	(A \cup B) \cap C = (A \cap C) \cup (B \cap C), \label{equation:集合论.集合代数公式3-2} \\
+	A \cup \bigcap \mathscr{B} = \bigcap\Set{A \cup X \given X \in \mathscr{B}}, \quad(\mathscr{B}\neq\emptyset) \label{equation:集合论.集合代数公式3-3} \\
+	A \cap \bigcup \mathscr{B} = \bigcup\Set{A \cap X \given X \in \mathscr{B}}, \label{equation:集合论.集合代数公式3-4} \\
+	\Powerset (A \cup B) \supseteq \Powerset A \cup \Powerset B, \label{equation:集合论.集合代数公式3-5} \\ %@see: 《Elements of Set Theory》 P26. Exercise 7(b).
+	\Powerset (A \cap B) = \Powerset A \cap \Powerset B. \label{equation:集合论.集合代数公式3-6} %@see: 《Elements of Set Theory》 P26. Exercise 7(a)
 \end{gather}
 
 \item 对偶律（{\rm De Morgan's laws}）（假设\(\mathscr{A}\neq\emptyset\)）
 \begin{gather}
-\overline{A \cap B} = \overline A \cup \overline B, \label{equation:集合论.集合代数公式7} \\
-\overline{A \cup B} = \overline A \cap \overline B, \label{equation:集合论.集合代数公式8} \\
-C - \bigcup\mathscr{A} = \bigcap\Set{C-X \given X\in\mathscr{A}}, \label{equation:集合论.集合代数公式7'} \\
-C - \bigcap\mathscr{A} = \bigcup\Set{C-X \given X\in\mathscr{A}}. \label{equation:集合论.集合代数公式8'}
+	\overline{A \cap B} = \overline A \cup \overline B, \label{equation:集合论.集合代数公式4-1} \\
+	\overline{A \cup B} = \overline A \cap \overline B, \label{equation:集合论.集合代数公式4-2} \\
+	C - \bigcup\mathscr{A} = \bigcap\Set{C-X \given X\in\mathscr{A}}, \label{equation:集合论.集合代数公式4-3} \\
+	C - \bigcap\mathscr{A} = \bigcup\Set{C-X \given X\in\mathscr{A}}. \label{equation:集合论.集合代数公式4-4}
 \end{gather}
 
 \item 与空集\(\emptyset\)和全集\(\Omega\)的运算（假设\(A \subseteq \Omega\)）
 \begin{gather}
-A \cup \emptyset = A, \label{equation:集合论.集合代数公式9} \\
-A \cap \emptyset = \emptyset, \label{equation:集合论.集合代数公式10} \\
-A \cup \Omega = \Omega, \label{equation:集合论.集合代数公式11} \\
-A \cap \Omega = A, \label{equation:集合论.集合代数公式12} \\
-A \cup \overline{A} = \Omega, \label{equation:集合论.集合代数公式13} \\
-A \cap \overline{A} = \emptyset. \label{equation:集合论.集合代数公式14}
+	A \cup \emptyset = A, \label{equation:集合论.集合代数公式5-1} \\
+	A \cap \emptyset = \emptyset, \label{equation:集合论.集合代数公式5-2} \\
+	A \cup \Omega = \Omega, \label{equation:集合论.集合代数公式5-3} \\
+	A \cap \Omega = A, \label{equation:集合论.集合代数公式5-4} \\
+	A \cup \overline{A} = \Omega, \label{equation:集合论.集合代数公式5-5} \\
+	A \cap \overline{A} = \emptyset. \label{equation:集合论.集合代数公式5-6}
 \end{gather}
 
-\item 包含关系的单调性
+\item 包含关系
 \begin{gather}
-A \subseteq B \implies A \cup C \subseteq B \cup C, \label{equation:集合论.集合代数公式15} \\
-A \subseteq B \implies A \cap C \subseteq B \cap C, \label{equation:集合论.集合代数公式16} \\
-A \subseteq B \implies \bigcup A \subseteq \bigcup B, \label{equation:集合论.集合代数公式17} \\
-A \subseteq B \implies \overline{B} \subseteq \overline{A}, \label{equation:集合论.集合代数公式18} \\
-\emptyset \neq A \subseteq B \implies \bigcap B \subseteq \bigcap A. \label{equation:集合论.集合代数公式19}
+	A \subseteq B \implies A \cup C \subseteq B \cup C, \label{equation:集合论.集合代数公式6-1} \\
+	A \subseteq B \implies A \cap C \subseteq B \cap C, \label{equation:集合论.集合代数公式6-2} \\
+	A \subseteq B \implies \bigcup A \subseteq \bigcup B, \label{equation:集合论.集合代数公式6-3} \\
+	A \subseteq B \implies \overline{B} \subseteq \overline{A}, \label{equation:集合论.集合代数公式6-4} \\
+	\emptyset \neq A \subseteq B \implies \bigcap B \subseteq \bigcap A. \label{equation:集合论.集合代数公式6-5}
 \end{gather}
 \end{enumerate}
 \begin{proof}
-对\cref{equation:集合论.集合代数公式1} 证明如下：
+对\cref{equation:集合论.集合代数公式1-1} 证明如下：
 \begin{align*}
 	x \in A \cap B
 	&\iff x \in A \land x \in B \\
@@ -908,7 +861,7 @@ A \subseteq B \implies \overline{B} \subseteq \overline{A}, \label{equation:集�
 	&\iff x \in B \cap A.
 \end{align*}
 
-对\cref{equation:集合论.集合代数公式2} 证明如下：
+对\cref{equation:集合论.集合代数公式1-2} 证明如下：
 \begin{align*}
 	x \in A \cup B
 	&\iff x \in A \lor x \in B \\
@@ -916,7 +869,7 @@ A \subseteq B \implies \overline{B} \subseteq \overline{A}, \label{equation:集�
 	&\iff x \in B \cup A.
 \end{align*}
 
-对\cref{equation:集合论.集合代数公式3} 证明如下：
+对\cref{equation:集合论.集合代数公式2-1} 证明如下：
 \begin{align*}
 	x \in (A \cap B) \cap C
 	&\iff x \in A \cap B \land x \in C \\
@@ -926,7 +879,7 @@ A \subseteq B \implies \overline{B} \subseteq \overline{A}, \label{equation:集�
 	&\iff x \in A \cap (B \cap C).
 \end{align*}
 
-对\cref{equation:集合论.集合代数公式4} 证明如下：
+对\cref{equation:集合论.集合代数公式2-2} 证明如下：
 \begin{align*}
 	x \in (A \cup B) \cup C
 	&\iff x \in A \cup B \lor x \in C \\
@@ -936,7 +889,45 @@ A \subseteq B \implies \overline{B} \subseteq \overline{A}, \label{equation:集�
 	&\iff x \in A \cup (B \cup C).
 \end{align*}
 
-对于\cref{equation:集合论.集合代数公式19}，
+对\cref{equation:集合论.集合代数公式3-5} 证明如下：
+\begin{align*}
+	x \in \Powerset A \cup \Powerset B
+	&\iff x \in \Powerset A \lor x \in \Powerset B \\
+	&\iff x \subseteq A \lor x \subseteq B \\
+	&\implies x \subseteq A \cup B \\
+	&\iff x \in \Powerset (A \cup B),
+\end{align*}
+注意到中间步骤的\(\implies\)通常不是可逆的，
+这是因为只要取\(a \subseteq A - B, b \subseteq B - A, x = a \cup b\)，
+就有\(x \subseteq A \cup B\)但是\(x \not\subseteq A \land x \not\subseteq B\)，
+因此\(x \subseteq A \cup B \notimplies x \subseteq A \lor x \subseteq B\).
+%从上面的证明过程可以看出，
+%要使\(\Powerset (A \cup B) = \Powerset A \cup \Powerset B\)成立，
+%必有\[
+%	\forall x \bigl(
+%		x \subseteq A \cup B
+%		\iff
+%		x \subseteq A \lor x \subseteq B
+%	\bigr)
+%\]成立.
+%取\(x = A \cup B\)，
+%由\(x \subseteq A \lor x \subseteq B\)
+%可得\[
+%	A \cup B = A \lor A \cup B = B.
+%\]
+%因此，当且仅当\(A \cup B \in \Set{A,B}\)时，
+%就有\(\Powerset (A \cup B) = \Powerset A \cup \Powerset B\)成立.
+
+对\cref{equation:集合论.集合代数公式3-6} 证明如下：
+\begin{align*}
+	x \in \Powerset (A \cap B)
+	&\iff x \subseteq A \cap B \\
+	&\iff x \subseteq A \land x \subseteq B \\
+	&\iff x \in \Powerset A \land x \in \Powerset B \\
+	&\iff x \in \Powerset A \cap \Powerset B.
+\end{align*}
+
+对于\cref{equation:集合论.集合代数公式6-5}，
 假设\(x \in A = \Set{\v{a}{0}} \implies x \in B = \Set{\v{b}{0}}\)，%
 那么\begin{align*}
 x \in \bigcap B = \bigcap_i b_i
