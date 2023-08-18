@@ -598,26 +598,26 @@ B \in B \iff B \notin B,
 
 \begin{theorem}\label{theorem:集合论.系的交的唯一存在性}
 %@see: 《Elements of Set Theory》 P25. Theorem 2B
-对于任意非空集合\(A\)，存在唯一的集合\(B\)，使得对于任意\(x\)，有\[
-	x \in B
-	\iff
-	\forall a \in A \bigl( x \in a \bigr).
+对于任意非空集合\(A\)，存在唯一的集合\(B\)，使得\[
+	(\forall x)[x \in B \iff (\forall a)[a \in A \implies x \in a]].
 \]
 \begin{proof}
 先证集合\(B\)的存在性.
 既然\(A\)是非空集，不妨取定\(c \in A\).
 那么根据子集公理，存在集合\(B\)，使得对于任意\(x\)，都有\[
 	x \in B
-	\iff x \in c \land \bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr];
+	\iff
+	x \in c \land (\forall a)[a \in A \implies x \in a];
 \]
-由于\(c\)是任意取定的，且\[
-	\bigl[ \forall a \in A \bigl( x \in a \bigr) \bigr]
+由于\(c\)是从\(A\)中任意取出的一个元素，所以\[
+	(\forall a)[a \in A \implies x \in a]
 	\implies
 	x \in c,
 \]
-所以也有\[
+那么就有\[
 	x \in B
-	\iff \forall a \in A \bigl( x \in a \bigr).
+	\iff
+	(\forall a)[a \in A \implies x \in a].
 \]
 
 根据外延公理不难得出集合\(B\)的唯一性.
@@ -724,32 +724,15 @@ B \in B \iff B \notin B,
 \end{example}
 
 
-\subsection{集合代数}
+\section{集合代数}
 \begin{definition}[全集、补集]
 有时，我们研究某个问题限定在一个大的集合\(U\)中进行，所研究的其他集合都是\(U\)的子集；
 此时我们称集合\(U\)为\DefineConcept{全集}（universe）或\DefineConcept{基本集}.
 
-设集合\(A \subseteq U\)，则称\(U-A\)为\(A\)的\DefineConcept{补集}或\DefineConcept{余集}，记作\(\overline{A}\)，或\(\complement_U A\)，或\(A^C\).
+设集合\(A \subseteq U\)，
+则称\(U-A\)为“\(A\)的\DefineConcept{补集}或\DefineConcept{余集}”，
+记作\(\overline{A}\)，或\(\complement_U A\)，或\(A^C\).
 \end{definition}
-
-\begin{theorem}
-对于任意非空集合\(A\)，总存在唯一的集合\(B\)，使得\[
-\forall x \bigl[
-	x \in B \iff (\forall a \in A) x \in a
-\bigr].
-\]
-\begin{proof}
-从非空集合\(A\)中任取一个元素\(c\).
-根据子集公理，存在集合\(B\)使得\[
-\forall x \left[
-	\begin{array}{rl}
-	x \in B &\iff x \in c \land (\forall a \in A) x \in a \\
-		&\iff (\forall a \in A) x \in a
-	\end{array}
-\right].
-\]唯一性可通过外延公理证明.
-\end{proof}
-\end{theorem}
 
 
 \begin{figure}[ht]
