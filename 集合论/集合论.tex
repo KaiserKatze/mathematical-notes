@@ -45,9 +45,38 @@
 当且仅当“这个对象是一个集合，且它具有这个类定义的性质\(\varphi\)”.
 接下来，要解决罗素悖论，
 我们只需证明\(\Set{ x \given x \notin x }\)%
-是一个\DefineConcept{真类}（proper class）%
-\footnote{指“不是集合的类”.}.
+是一个\DefineConcept{真类}（proper class），
+也就是证明这个类不是集合.
 正因为这个类不是集合，所以它不从属于任何一个类，包括它自己.
+
+\begin{definition}
+我们可以归纳地给出\DefineConcept{广义合式公式}（well-formed formula in the wider sense）的定义：
+\begin{enumerate}
+	\item 如果\(a\)和\(b\)都是自由变元，那么\(a \in b\)是广义合式公式.
+	\item 如果\(\varphi\)和\(\psi\)都是广义合式公式，且\(a\)和\(b\)都是自由变元，
+	那么\[
+		\def\A{\Set{ x \given \psi(x) }}
+		\def\B{\Set{ x \given \varphi(x) }}
+		a \in \A, \qquad
+		\B \in b, \qquad
+		\B \in \A
+	\]都是广义合式公式.
+	\item 如果\(\varphi\)和\(\psi\)都是广义合式公式，
+	那么\[
+		\neg\varphi, \qquad
+		\varphi\land\psi, \qquad
+		\varphi\lor\psi, \qquad
+		\varphi\implies\psi,
+		\varphi\iff\psi
+	\]都是广义合式公式.
+	\item 如果\(\varphi\)是广义合式公式，且\(x\)是受限变元，
+	那么\[
+		(\exists x)\varphi(x)
+		\quad\text{和}\quad
+		(\forall x)\varphi(x)
+	\]都是广义合式公式.
+\end{enumerate}
+\end{definition}
 
 \section{公理化集合论}
 虽然直到19世纪末德国数学家康托才创立了集合论，
