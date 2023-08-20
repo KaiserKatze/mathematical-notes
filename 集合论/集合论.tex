@@ -42,25 +42,18 @@
 每个集合都是一个类，但不是每个类都是一个集合.
 这里，其实我们也把用于表示元素与集合之间从属关系的\(\in\)符号的使用范围拓宽到类上了：
 “一个对象是某个类\(\Set{ x \given \varphi(x) }\)的一个元素”%
-当且仅当“这个对象是一个集合，且它具有这个类定义的性质\(\varphi\)”.
+当且仅当“这个对象是一个集合，且它具有这个类的定义性质\(\varphi\)”.
 接下来，要解决罗素悖论，
 我们只需证明\(\Set{ x \given x \notin x }\)%
 是一个\DefineConcept{真类}（proper class），
 也就是证明这个类不是集合.
 正因为这个类不是集合，所以它不从属于任何一个类，包括它自己.
 
-若要将形如\[
+现在我们来将形如\[
 	\Set{ x \given \varphi(x) }
-\]的符号加入我们的对象语言，
-我们还需要扩大对合式公式的定义，
-并增加公理，约束、管制这些新符号.
-但是，我们不想这么做，
-取而代之的是，
-我们希望利用已然定义的概念来引入类.
-于是我们有必要提供一套行之有效的流程，
-用来将任意一条包含已定义概念的命题公式简化为基本符号.
-
+\]的符号加入我们的对象语言.
 \begin{definition}
+%@see: 《Introduction to Axiomatic Set Theory》 P12. Definition 4.1.
 我们可以归纳地给出\DefineConcept{广义合式公式}（well-formed formula in the wider sense）的定义：
 \begin{enumerate}
 	\item 如果\(a\)和\(b\)都是自由变元，那么\(a \in b\)是广义合式公式.
@@ -87,7 +80,38 @@
 		(\forall x)\varphi(x)
 	\]都是广义合式公式.
 \end{enumerate}
+任意一条公式，当且仅当它可以由上述三条规则演绎推得时，我们才称其为广义合式公式.
 \end{definition}
+
+\begin{definition}
+%@see: 《Introduction to Axiomatic Set Theory》 P12. Definition 4.2.
+设\(\varphi\)和\(\psi\)都是广义合式公式.
+\def\A{\Set{ x \given \varphi(x) }}
+\def\B{\Set{ x \given \psi(x) }}
+那么\begin{enumerate}
+	\item \(a \in \A \defiff \varphi(a)\).
+	\item \(\A \in a \defiff (\exists y)[y \in a \land (\forall z)[z \in y \iff \varphi(z)]]\).
+	\item \(\A \in \B \defiff (\exists y)[y \in \B \land (\forall z)[z \in y \iff \varphi(z)]]\).
+\end{enumerate}
+\end{definition}
+
+任意一条广义合式公式\(\varphi\)总可化简为一条唯一确定的合式公式\(\varphi^*\).
+\begin{definition}
+%@see: 《Introduction to Axiomatic Set Theory》 P12. Definition 4.3.
+设\(\varphi\)和\(\psi\)都是广义合式公式.
+\def\A{\Set{ x \given \varphi(x) }}
+\def\B{\Set{ x \given \psi(x) }}
+那么\begin{enumerate}
+	\item \([a \in b]^* \defiff a \in b\).
+	\item \([a \in \A]^* \defiff \varphi^*(a) \defiff [\varphi(a)]^*\).
+	\item \([\A \in a]^* \defiff (\exists y)[y \in a \land (\forall z)[z \in y \iff \varphi^*(z)]]\).
+	\item \([\A \in \B]^* \defiff (\exists y)[\psi^*(y) \land (\forall z)[z \in y \iff \varphi^*(z)]]\).
+	\item \([\neg\varphi]^* \defiff \neg\varphi^*\).
+	\item \([\varphi\land\psi]^* \defiff \varphi^*\land\psi^*\).
+	\item \([(\forall x)\varphi(x)]^* \defiff (\forall x)\varphi^*(x)\).
+\end{enumerate}
+\end{definition}
+
 
 \section{公理化集合论}
 虽然直到19世纪末德国数学家康托才创立了集合论，
