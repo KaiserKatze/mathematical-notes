@@ -1,11 +1,6 @@
 #!/bin/bash
 # 这个脚本是在开发者本地工作站使用的
 
-pid_ssh_agent=$(ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+')
-if [ -n "$pid_ssh_agent" ]; then
-	kill -9 "$pid_ssh_agent"
-fi
-
 ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+' | awk '{if(NR>1)print $0}' | while read line
 do
 	kill -9 "$line" && echo "Kill ssh agent(pid=$line)."  # 杀死已存在的 SSH Agent 进程
@@ -26,9 +21,10 @@ SOURCE_FILE="math.pdf"
 OUTPUT_FILE="数学笔记.pdf"
 if [[ $(stat --printf="%s" $SOURCE_FILE) -ge $(stat --printf="%s" $OUTPUT_FILE) ]]; then
 	cp "$SOURCE_FILE" "$OUTPUT_FILE" &>/dev/null && echo "[INFO] 已生成最新版'数学笔记.pdf'文件." || echo "[ERROR] 生成最新版'数学笔记.pdf'失败！"
+	read -p "是否向 Github 上传 PDF 文件？(Y/n) " do_upload_pdf_file
+else
+	do_upload_pdf_file="n"
 fi
-
-read -p "是否向 Github 上传 PDF 文件？(Y/n) " do_upload_pdf_file
 
 # 向 Github 推送发行版 PDF 文件
 export REPO="KaiserKatze/mathematical-notes"  # Github 仓库
