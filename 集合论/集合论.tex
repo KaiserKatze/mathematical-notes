@@ -868,6 +868,32 @@ B \in B \iff B \notin B,
 记作\(A - B\)或\(A \setminus B\).
 \end{definition}
 
+\begin{definition}
+设\(A,B\)都是集合.
+称\[
+	(A-B)\cup(B-A)
+\]为“\(A\)与\(B\)的\DefineConcept{对称差}”，
+记作\(A \oplus B\).
+\end{definition}
+
+\begin{theorem}
+\(A \oplus B = (A \cup B)-(A \cap B)\).
+\begin{proof}
+直接计算得
+\begin{align*}
+	x\in(A-B)\cup(B-A)
+	&\iff x \in A-B \lor x \in B-A \\
+	&\iff (x \in A \land x \notin B) \lor (x \in B \land x \notin A) \\
+	&\iff (x \in A \lor (x \in B \land x \notin A)) \land (x \notin B \lor (x \in B \land x \notin A)) \\
+	&\iff (x \in A \lor x \in B) \land (x \notin A \lor x \notin B) \\
+	&\iff (x \in A \lor x \in B) \land \neg(x \in A \land x \in B) \\
+	&\iff x \in A \cup B \land x \notin A \cap B \\
+	&\iff x\in(A \cup B)-(A \cap B).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
 \begin{definition}[全集、补集]
 有时，我们研究某个问题限定在一个大的集合\(U\)中进行，所研究的其他集合都是\(U\)的子集；
 此时我们称集合\(U\)为\DefineConcept{全集}（universe）或\DefineConcept{基本集}.
