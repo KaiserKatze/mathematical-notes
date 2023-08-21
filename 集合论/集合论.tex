@@ -1350,11 +1350,11 @@ B \in B \iff B \notin B,
 它们全体组成的类称为“\(A\)与\(B\)的%
 \DefineConcept{直积}（direct product）%@see: https://mathworld.wolfram.com/DirectProduct.html
 或\DefineConcept{笛卡尔乘积}（Cartesian product）”，
-记为\(A \times B\)，即\[
+记为\(A \times B\)，即\begin{equation}
 	A \times B
 	\defeq
 	\Set*{ \opair{x,y} \given x \in A \land y \in B }.
-\]
+\end{equation}
 \end{definition}
 
 在宣称\cref{definition:集合论.直积} 合法以前，
@@ -1366,36 +1366,38 @@ B \in B \iff B \notin B,
 为此我们给出下述引理.
 \begin{lemma}\label{theorem:集合论.有序对是其坐标元素所在集合的二重幂集的元素}
 %@see: 《Elements of Set Theory》 P37. Lemma 3B
-如果\(x,y \in A\)，那么\[
-	\opair{x,y} \in \Powerset\Powerset A.
-\]
+如果\(x,y \in A\)，那么\(\opair{x,y} \in \Powerset\Powerset A\).
 \begin{proof}
 由\(x,y \in A\)可知\(\{x\},\{x,y\} \subseteq A\)，
 即\(\{x\},\{x,y\} \in \Powerset A\)，
 那么\(\{\{x\},\{x,y\}\} \subseteq \Powerset A\)，
-进一步可得\(\{\{x\},\{x,y\}\} \in \Powerset\Powerset A\).
+进一步可得\(\opair{x,y} = \{\{x\},\{x,y\}\} \in \Powerset\Powerset A\).
 \end{proof}
 \end{lemma}
 
 \begin{theorem}\label{theorem:集合论.直积存在定理}
 %@see: 《Elements of Set Theory》 P38. Corollary 3C
-设\(A,B\)都是集合，那么存在这样一个集合\(C\)，使得\[
-	\opair{x,y} \in C \iff x \in A \land y \in B.
-\]
+设\(A,B\)都是集合，那么存在这样一个集合\(C\)，使得\(C = A \times B\).
 \begin{proof}
+要使\(C = A \times B\)，根据外延公理必有\[
+	w \in C \iff w \in A \times B,
+\]
+再根据直积的定义有\[
+	w \in C \iff w = \opair{x,y} \land x \in A \land y \in B.
+\]
 根据子集公理，我们可以构造集合\[
-	\Set*{
+	C = \Set*{
 		w \in \Powerset\Powerset(A \cup B)
 		\given
 		w = \opair{x,y} \land x \in A \land y \in B
 	}.
 \]
 显然，根据\cref{theorem:集合论.有序对是其坐标元素所在集合的二重幂集的元素}，
-这个集合仅包括我们需要的有序对.
+\(C\)满足定理要求的条件.
 \end{proof}
 \end{theorem}
-依靠\cref{theorem:集合论.直积存在定理}，
-我们就可以正当化先前对\hyperref[definition:集合论.直积]{直积}\(A \times B\)的定义.
+\cref{theorem:集合论.直积存在定理} 告诉我们，
+任意两个集合\(A\)和\(B\)的直积\(A \times B\)也是集合.
 
 容易发现，对于任意集合\(A\)，总有\begin{equation}
 	A \times \emptyset
