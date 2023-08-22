@@ -1,0 +1,755 @@
+
+\section{公理化集合论}
+虽然直到19世纪末德国数学家康托才创立了集合论，
+但是其实人们很早就开始使用集合的概念并对集合进行运算了.
+在《周易·系辞下》中有这么一句话：“上古结绳而治，后世圣人易之以书契.”
+于是我们想到，古人在农业生产中始终有着对农产品分类和计数的需要，
+即将同类的产品集中地放置，
+再用一个符记（例如手势、绳结、算筹、文字）表示这类产品的数量.
+
+在本节我们先来介绍集合和元素的概念、集合存在公理，以及集合的运算法则.
+
+\subsection{外延公理}
+要实现对事物的分类，我们应该首先明白这样一点：
+在现实世界中，事物之间的差异与矛盾是根本存在的.
+我们知道，人对事物的认识，是人脑对客观现实的反映.
+如果我们在观测事物时，观测手段十分粗略，
+那么想必很难找出事物之间的差异；
+如果我们在观测事物时，观测手段十分细致，
+那么必然能够找出事物之间的更多差异.
+
+为了解决上述问题，一组相对的哲学概念被提出来了，这就是“逻辑同一性”和“实在同一性”.
+简单地说，实在同一性和逻辑同一性都是对事物关系的一种描述，
+实在同一性要求被比较的事物无法被区分，
+而逻辑同一性是指两个物在部分的属性上具备某种相同、相等或相似的关系.
+以实在同一性和逻辑同一性作为分类的标准，
+我们就可以区分事物以构建对立关系，又可以混同事物以构建等价关系.
+
+
+\begin{axiom}[外延公理I]
+%@see: 《Elements of Set Theory》 P17. Extensionality Axiom
+如果集合\(A\)与集合\(B\)具有相同的元素，
+则称“集合\(A\)与集合\(B\)\DefineConcept{相等}”，
+记作\(A=B\)，即
+\begin{equation}
+	\forall A, \forall B \Bigl[
+		\forall x \bigl( x \in A \iff x \in B \bigr)
+		\implies
+		A = B
+	\Bigr].
+\end{equation}
+\end{axiom}
+外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
+
+我们也可把“集合相等”表述为
+\begin{equation}
+	(a=b)
+	\defiff
+	(\forall x)[x \in a \iff x \in b].
+\end{equation}
+
+\begin{property}
+设\(a,b,c\)是集合.
+那么有\begin{enumerate}
+	\item\label{item:集合论.集合相等的自反性}
+	自反性，即\(a=a\).
+	\item\label{item:集合论.集合相等的对称性}
+	对称性，即\(a=b \implies b=a\).
+	\item\label{item:集合论.集合相等的传递性}
+	传递性，即\(a=b \land b=c \implies a=c\).
+\end{enumerate}
+\begin{proof}
+证明如下：
+\begin{enumerate}
+	\item \((\forall x)[x \in a \iff x \in a]\).
+	\item \((\forall x)[x \in a \iff x \in b] \implies (\forall x)[x \in b \iff x \in a]\).
+	\item \((\forall x)[x \in a \iff x \in b] \land (\forall x)[x \in b \iff x \in c]
+	\implies (\forall x)[x \in a \iff x \in c]\).
+	\qedhere
+\end{enumerate}
+\end{proof}
+\end{property}
+
+我们对相等性的直观理解源于同一性.
+对于相等性，我们期望的一个基本性质是“两个相等的事物可以用另外两个相等的事物互相替代”.
+也就是说，如果\(a=b\)，那么对于任意事物，可以断言关于\(a\)的任何事情也可以断言关于\(b\)
+特别地，如果某个合式公式对\(a\)成立，那么它也应对\(b\)成立，并且反之亦然，即\[
+	(a=b)\implies[\varphi(a)\iff\varphi(b)],
+\]
+其中\(\varphi(a)\)和\(\varphi(b)\)是%
+用受限变元\(a\)和\(b\)代替合式公式\(\varphi\)中的某个相同的自由变元而取得的.
+
+\begin{axiom}[外延公理II]
+%@see: 《Introduction to Axiomatic Set Theory》 P8. Extensionality Axiom
+设\(A,B,C\)是集合，那么\[
+	A=B \land A \in C \implies B \in C.
+\]
+\end{axiom}
+
+\begin{property}
+设\(A,B,C\)是集合，那么\[
+	A=B \implies [A \in C \iff B \in C].
+\]
+\begin{proof}
+根据外延公理II和\hyperref[item:集合论.集合相等的对称性]{集合相等的对称性}易得.
+\end{proof}
+\end{property}
+
+\begin{theorem}
+\(a=b \implies [\varphi(a)\iff\varphi(b)]\).
+\end{theorem}
+
+外延公理说明一个集合完全由它的元素确定.
+
+
+\subsection{集合存在公理}
+让我们想象这样的情景：
+你是一个在原始部落中负责管理仓库的工人学徒.
+今天，猎人们从森林里带回一些猎物，堆放在地面上，让你把它们先分好类再收进仓库.
+今天是你上班的第一天，你不知道这些猎物是什么.
+说要分类，你也只能一屁股坐在空地上，面朝这些码放在一起的猎物，一筹莫展.
+正在此时，一位老人颤颤巍巍地走了过来，他正是你的师父.
+你向他询问这些猎物应当如何分类.
+
+“你应该首先了解这些猎物具有的特征，”
+在望了一眼这堆猎物以后，你的师父说道，
+“你看，和我们人类一样，这些猎物身上长着眼睛的部位也叫做头部.
+在它们的头上也长有和我们的嘴巴一样用来进食的部位.
+但是，你要注意，有的猎物的‘嘴’的形状与我们的嘴巴不同，它的‘嘴’是尖尖的，
+我们把这类猎物的‘嘴’叫做‘喙’；
+此外这类猎物也长着和我们的脚一样用来站立的部位，但它的‘脚’也是尖尖的，
+我们把这类猎物的‘脚’叫做‘爪子’；
+最后，我们把这类猎物叫做‘鸟’.”
+他掏出水壶，喝上一口水以后，继续说：
+“今天你就学习怎么把‘鸟’从这堆猎物中筛选出来，放在一起.
+其余的猎物我让别人来收拾.”
+紧接着，他缓缓蹲下，捡了一只长着尖喙尖爪的猎物，递给你，
+“这就是‘鸟’，你照着这个样子分类吧！”
+说完这句话，师父站起身来，去其他地方溜达了.
+
+你伸出左手接住师父递给你的那只鸟，
+再用空着的右手在猎物堆里扒拉，随意地拎出一只猎物.
+你举起双臂，扭动翻转手腕、手肘，
+仔细查看这两只猎物，比较它们的特征是否一致.
+如果两者不同，右手上的猎物没有尖喙尖爪，
+就把它放到身体右侧，和原本堆在地上的猎物隔开一段距离，
+再用右手重新抓一只猎物进行下一轮比较；
+如果两者相同，右手的猎物也有尖喙尖爪，
+就把你左手提着的这只鸟放在身体左侧，也和原本堆在地上的猎物隔开一段距离，
+再把右手抓着的鸟转移到左手上，
+然后用右手重新抓一只猎物进行下一轮比较.
+
+在过了一会儿后，你发现面前没有需要分类的猎物了，
+于是你把左手拎着的那只鸟也放在身体左侧.
+就这样，你把猎人们放在地上的那堆猎物分成了两小堆，左边这堆全是鸟.
+
+
+我们经常会像上面这个故事一样，
+把一些事物收集在一起，把这个整体叫做一个\DefineConcept{集合}（set），
+简称为\DefineConcept{集}；
+然后把组成集合的这些事物叫做这个集合的\DefineConcept{元素}（member，或element），
+简称为\DefineConcept{元}.
+例如，在上面的故事中，在你举起双臂时，
+你双手上抓着的两只鸟组成了一个集合，每只鸟都是这个集合的元素.
+又例如，在你把猎物分成两堆以后，这两堆猎物中的每一堆都可以看作一个集合.
+为了方便讨论，我们用大写拉丁字母（如\(A,B,C,X,Y\)等）表示集合，
+用小写拉丁字母（如\(a,b,c,x,y\)等）表示元素.
+由此，我们可以给出一个集合的粗糙的定义.
+
+我们可以看出，集合具有三种特性：
+\begin{enumerate}
+	\item {\bf 确定性}，
+	即对于任意一个元素，
+	要么它属于某个指定集合，
+	要么它不属于该集合，
+	二者必居其一.
+	\begin{itemize}
+		\item 如果“元素\(a\)是集合\(A\)的元素（\(a\) is a \emph{member} of \(A\)，
+		\(a\) is an \emph{element} of \(A\)）”，
+		或“\(a\)\DefineConcept{属于} \(A\)（\(a\) \emph{belongs to} \(A\)）”，
+		记作\(a \in A\)\footnote{%
+		用来表记“所属关系（membership）”的符号\(\in\)实际上是变形的小写希腊字母\(\varepsilon\)，%
+		它是由皮亚诺于 1889 年提出的.}.
+
+		\item 如果“\(b\)不是集合\(A\)的元素（\(b\) is not an element of \(A\)）”，%
+		或“\(b\)\DefineConcept{不属于} \(A\)（\(b\) does not belong to \(A\)）”，%
+		记作\(b \notin A\).
+	\end{itemize}
+
+	\item {\bf 互异性}，
+	即同一个集合中的元素是互不相同的，
+	或者说，在以列举法表记的集合中，
+	如果表记同一个元素的符号出现了多次，
+	那么可以直接去除多余的符号而对集合的描述没有任何影响，即\[
+		\Set{ x, x, y } = \Set{ x, y }.
+	\]
+
+	\item {\bf 无序性}，
+	即在以列举法表记的集合中，
+	任意改变集合中元素的排列次序，
+	它们仍然表示同一个集合，即\[
+		\Set{ y, x } = \Set{ x, y }.
+	\]
+\end{enumerate}
+
+
+
+另外，根据上面这个故事，我们还可以想到：
+一方面，原本空地上没有任何我们关心的东西，至少在这里我们并不关心空气和尘土；
+另一方面，对于任意两个东西，如果我们觉得这两个东西能分类在一起，就可以把它们分类在一起.
+我们可以说空地是一个空着的集合，或者说“空集”.
+我们还说两只鸟组成一对鸟，或者说“对集”.
+
+从上述生活经验出发，我们认定“空集”“对集”和“并集”是一定存在的，
+于是我们可以给出如下的三个公理.
+
+\begin{axiom}[空集公理]\label{axiom:集合论.空集公理}
+%@see: 《Elements of Set Theory》 P18. Empty Set Axiom
+总存在这样一个集合\(A\)，没有任何元素属于它\footnote{%
+我们也可以用命题公式\[
+	\exists A, \forall x \bigl( x \in A \iff x \neq x \bigr)
+\]表示“没有任何元素的集合”的存在性.
+它主要利用了“\((x \neq x)\)一定是假命题”这一点.
+}，即\[
+	\exists A, \forall x \bigl( x \notin A \bigr).
+\]
+\end{axiom}
+
+\begin{axiom}[对集公理]\label{axiom:集合论.对集公理}
+%@see: 《Elements of Set Theory》 P18. Pairing Axiom
+对于任意两个元素\(u\)和\(v\)，
+总存在一个集合\(B\)，它的元素只有\(u\)和\(v\)，即\[
+	\forall u, \forall v, \exists B, \forall x
+	\bigl(
+		x \in B \iff x = u \lor x = v
+	\bigr).
+\]
+\end{axiom}
+
+\begin{axiom}[并集公理I]
+%@see: 《Elements of Set Theory》 P18. Union Axiom, Preliminary Form
+对于任意两个集合\(a\)和\(b\)，
+总存在一个集合\(B\)，它的元素要么属于\(a\)，要么属于\(b\)，即\[
+	\forall a, \forall b, \exists B, \forall x
+	\bigl(
+		x \in B
+		\iff
+		x \in a \lor x \in b
+	\bigr).
+\]
+\end{axiom}
+
+\begin{axiom}[幂集公理]
+	对于任意集合\(A\)，总存在一个集合\(B\)，\(B\)的全部元素恰好是集合\(A\)的全部子集，即\[
+	\forall A, \exists B, \forall x \bigl[
+		x \in B
+		\iff
+		x \subseteq A
+		\iff
+		A \supseteq x
+		\iff
+		\forall t \bigl( t \in x \implies t \in A \bigr)
+	\bigr].
+\]
+\end{axiom}
+
+
+空集公理在英语中称作Empty Set Axiom.
+对集公理在英语中称作Pairing Axiom.
+并集公理在英语中称作Union Axiom, Preliminary Form，
+在德语中称作Axiom der Vereinigung.
+在德语中把对集公理和空集公理并称为Axiom der Elementarmengen.
+幂集公理在英语中称作Power Set Axiom，在德语中称作Axiom der Potenzmenge.
+
+下面我们给出我们对“空集”“对集”“并集”和“幂集”的正式定义.
+
+\subsection{空集}
+\begin{definition}
+不含任何元素的集合称为\DefineConcept{空集}（empty set），
+记作\(\emptyset\)，即
+\begin{equation}
+	\emptyset \defeq \Set{},
+\end{equation}
+或
+\begin{equation}
+	\emptyset \defeq \Set{ x \given x \neq x }.
+\end{equation}
+\end{definition}
+%定义空集\(\emptyset\)时一定要注意两点：
+%一是“空集”是否存在，这已由空集公理确保；
+%二是“空集”是否唯一，这则由外延公理确保.
+%若是没有这两条公理的帮助，我们就不能说\(\emptyset\)是良定义的.
+
+容易看出，当我们说“集合\(A\)不是空集”或“集合\(A\)是非空集合”时，
+\(A\)中必定至少有一个元素，即\[
+	(\exists x)[x \in A].
+\]
+
+\subsection{对集}
+\begin{definition}
+对于任意给定的元素\(u\)和\(v\)，
+我们用符号\[
+	\Set{ u, v }
+\]表示只有\(u,v\)元素的集合，
+并把这个集合称为“\(u\)和\(v\)的\DefineConcept{对集}（pair set）”，即\[
+	\Set{ u, v } \defeq \Set{ x \given x = u \lor x = v }.
+\]
+\end{definition}
+在对集的定义中，我们没有明确说明元素\(u,v\)是否相同.
+实际上，当\(u=v\)时，\(u\)和\(v\)的对集成为只含一个元素的集合\[
+	\Set{ u } = \Set{ u, v };
+\]
+我们称这种集合为\DefineConcept{单元素集}（singleton）.
+%@see: https://mathworld.wolfram.com/SingletonSet.html
+单元素集是最简单的非空集合.
+
+相对地，当\(u \neq v\)时，
+我们把\(u\)和\(v\)的对集\(\Set{u,v}\)称为\DefineConcept{双元素集}.
+
+利用对集公理和并集公理，我们可以构造任意有限集合.
+例如，给定任意的\(x\)，我们可以定义“单元集”如下：\[
+\{x\} \defeq \{x, x\}.
+\]
+又例如，给定任意的\(\v{x}{3}\)，我们可以定义由这三个元素构成的集合
+\[
+	\{\v{x}{3}\} \defeq \{x_1,x_2\}\cup\{x_3\};
+\]
+同样地，我们还可以定义\(\{\v{x}{4}\}\)，以此类推.
+
+%可以看出，对集公理和并集公理是保障我们采用“列举法”表示集合这一方法论的正当性的基础.
+
+\subsection{并集}
+\begin{definition}
+称\[
+	\Set{ x \given x \in A \lor x \in B }
+\]为“\(A\)和\(B\)的\DefineConcept{并}（the \emph{union} of \(A\) and \(B\)）”，
+记作\(A \cup B\)或\(A+B\)，即\[
+	A \cup B \defeq \Set{ x \given x \in A \lor x \in B }.
+\]
+\end{definition}
+
+
+\begin{definition}
+设系\(A = \Set{\v{a}{n}}\).
+称集合\(\v{a}{n}\)的并\[
+	a_1 \cup a_2 \cup \dotsb \cup a_n
+\]为“\(A\)的\DefineConcept{并}”，
+记作\(\bigcup A\)或\(\bigcup\limits_i a_i\)，即\[
+	\bigcup A
+	\defeq
+	a_1 \cup a_2 \cup \dotsb \cup a_n
+	= \Set*{ x \given \exists a \in A \bigl( x \in a \bigr) }.
+\]
+\end{definition}
+
+
+为了确保“系的并”这样的集合存在，我们需要改进并集公理，如下：
+\begin{axiom}[并集公理II]
+对于任意集合\(A\)，总存在一个集合\(B\)，
+使得集合\(B\)中的元素恰好是集合\(A\)中的元素的元素，即\[
+	(\forall x)[
+		x \in B
+		\iff
+		(\exists b)[b \in A \implies x \in b]
+	].
+\]
+\end{axiom}
+
+我们可以将\(\bigcup A\)的定义表述为如下形式：\[
+	x \in \bigcup A
+	\defiff
+	(\exists b)[b \in A \implies x \in b].
+\]
+原有的对于“集的并”的定义可以修改为\[
+	a \cup b \defeq \bigcup\Set{a,b}.
+\]
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Example
+如果\(b \in A\)，那么必有\(b \subseteq \bigcup A\)，
+这是因为对于\(\forall x, \forall b\)，总有\[
+	x \in b \in A
+	\implies
+	x \in \bigcup A;
+\]
+反之则不然，例如\[
+	A = \Set{\Set{1,2,3},\Set{1,4}}
+	\implies
+	\bigcup A = \Set{1,2,3,4},
+\]
+容易看出\(b = \Set{2,3,4} \subseteq \bigcup A\)，但是\(b \notin A\).
+\end{example}
+
+\begin{example}\label{example:集合论.有序对各坐标的取值范围}
+%@see: 《Elements of Set Theory》 P26. Example
+%@see: 《Elements of Set Theory》 P38. Lemma 3D
+如果有\(\Set{ \Set{x}, \Set{x,y} } \in A\)，
+考虑到\(\Set{x,y} \in \Set{ \Set{x}, \Set{x,y} }\)，
+那么有\[
+	\Set{x,y} \in \bigcup A;
+\]
+再考虑到\(x,y \in \Set{x,y}\)，
+进而有\[
+	x,y \in \bigcup\bigcup A.
+\]
+综上所述，我们有
+\begin{equation}
+	\Set{ \Set{x}, \Set{x,y} } \in A
+	\implies
+	x,y \in \bigcup\bigcup A.
+\end{equation}
+\end{example}
+
+例如，
+\begin{align*}
+	&\bigcup\Set{a,b,c,d} = a \cup b \cup c \cup d. \\
+	&\bigcup\Set{a} = a. \\
+	&\bigcup\emptyset = \emptyset.
+\end{align*}
+
+
+\subsection{幂集}
+\begin{definition}
+由集合\(A\)的所有子集（包括空集和集合\(A\)本身）构成的集合，
+称作“集合\(A\)的\DefineConcept{幂集}（power set）”，
+记作\(\Powerset A\)或\(2^A\)或\(\mathcal{P}A\)，
+即\[
+	\Powerset A
+	\defeq
+	\Set{ x \given x \subseteq A }.
+\]
+\end{definition}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Exercise 6(a).
+证明：对任意集合\(A\)，总有
+\begin{equation}\label{equation:集合论.集的幂集的并等于集}
+	\bigcup \Powerset A = A.
+\end{equation}
+\begin{proof}
+不难得到
+\begin{align*}
+	x \in \bigcup \Powerset A
+	&\iff
+	\exists b \in \Powerset A \bigl( x \in b \bigr) \\
+	&\iff
+	\exists b \subseteq A \bigl( x \in b \bigr) \\
+	&\iff
+	x \in A.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\subsection{子集公理}
+\begin{axiom}[子集公理]
+%@see: 《Elements of Set Theory》 P21. Subset Axiom
+对于不涉及\(B\)的每一条命题公式\(\lambda\)，命题\[
+	\forall A, \exists B, \forall x \bigl(
+		x \in B \iff x \in A \land \lambda
+	\bigr)
+\]是一条公理.
+\end{axiom}
+子集公理有时候也称作\DefineConcept{分离公理}，%
+它在英语中称作Subset Axioms，%
+在德语中称作Axiom der Aussonderung.
+正如其名，该定理的作用就是从集合\(A\)中取出适合命题公式\(\lambda\)的元素，组合成新的集合\(B\).
+
+可以看出，子集公理是保障我们采用“描述法”表示集合这一方法论的正当性的基础.
+也就是说，\[
+\Bigl[
+	\forall A, \exists B, \forall x \bigl(
+		x \in B \iff x \in A \land \lambda
+	\bigr)
+\Bigr]
+\quad\iff\quad
+B = \Set{ x \in A \given \lambda }.
+\]
+
+\begin{example}
+以空集为元素构成的集合\(\Set{\emptyset}\)不是空集，即\(\Set{\emptyset} \neq \emptyset\).
+这是因为\(\emptyset \in \Set{\emptyset}\)但\(\emptyset \notin \emptyset\).
+\end{example}
+
+现在我们可以利用子集公理和罗素悖论的论据来证明%
+“包括所有集合的类\(V\)本身不是一个集合”.
+\begin{theorem}\label{theorem:集合论.以所有集合为元素组成的集合不存在}
+%@see: 《Elements of Set Theory》 P22. Theorem 2A
+以所有集合为元素组成的集合不存在.
+\begin{proof}
+设\(A\)是一个集合.
+令\[
+B = \Set{ x \in A \given x \notin x }.
+\]那么有\[
+B \in B
+\iff
+B \in A \land B \notin B.
+\eqno(1)
+\]
+
+假设\(B \in A\)，那么(1)式化为\[
+B \in B \iff B \notin B,
+\]矛盾，故\(B \notin A\).
+
+综上所述，我们总可构造出一个不属于\(A\)的集合\(B\)，因此不存在“以所有集合为元素组成的集合”.
+\end{proof}
+\end{theorem}
+有的人可能会对是否存在以其本身为元素的集合抱有疑问，我们将在后面证明这是不可能的.
+而根据这个结论，在上面的证明中，集合\(B\)实际上与集合\(A\)完全相同.
+
+利用子集定理，我们可以进一步定义子集、真子集、交集等概念.
+\begin{definition}
+设\(A\)、\(B\)是两个集合，
+如果集合\(A\)的元素都是集合\(B\)的元素，
+则称“\(A\)是\(B\)的\DefineConcept{子集}（\(A\) is a \emph{subset} of \(B\)）”，
+记作\(A \subseteq B\)\footnote{读作“\(A\)包含于\(B\)（\(A\) is included in \(B\)）”.}，
+或记作\(B \supseteq A\)\footnote{读作“\(B\)包含\(A\)（\(B\) includes \(A\)）”.}，
+即\[
+	\forall x \in A \bigl( x \in B \bigr)
+	\iff A \subseteq B
+	\iff B \supseteq A.
+\]
+
+若集合\(A \subseteq B\)且\(A \neq B\)，
+则称“\(A\)是\(B\)的\DefineConcept{真子集}%
+（\(A\) is a \emph{proper subset} of \(B\)）”，
+记作\(A \subsetneqq B\)或\(B \supsetneqq A\)，即\[
+	A \subseteq B
+	\land
+	A \neq B
+	\iff
+	A \subsetneqq B
+	\iff
+	B \supsetneqq A.
+\]
+\end{definition}
+
+\begin{theorem}
+任意集合都是其本身的子集，即\[
+	\forall A \bigl( A \subseteq A \bigr).
+\]
+\end{theorem}
+
+\begin{theorem}
+空集\(\emptyset\)是任何集合的子集，即\[
+	\forall A \bigl( \emptyset \subseteq A \bigr);
+\]还是任何非空集合的真子集，即\[
+	\forall A \bigl( A \neq \emptyset \iff \emptyset \subsetneqq A \bigr).
+\]
+\end{theorem}
+
+在学习了从属关系（\(\in\)）和包含关系（\(\subseteq\)）以后，切莫将两者搞混.
+在讨论\(A \in B\)是否成立时，我们是将\(A\)作为一个整体，看它是不是\(B\)中的一个元素.
+在讨论\(A \subseteq B\)是否成立时，我们要将\(A\)打开，检查它里面的所有元素是不是都是\(B\)中的元素.
+
+\begin{theorem}
+如果集合\(A\)与集合\(B\)互为子集，那么集合\(A\)与集合\(B\)相等，即\[
+	A \subseteq B \land B \subseteq A
+	\iff
+	A = B.
+\]
+\end{theorem}
+
+\begin{example}
+\(\Powerset \emptyset = \{ \emptyset \},%
+\Powerset \Set{ \emptyset } = \{ \emptyset, \{ \emptyset \} \}\).
+\end{example}
+
+\begin{example}
+对于任意集合\(A,B\)，试分析\(\Powerset(A-B)\)与\(\Powerset A - \Powerset B\)是否相等.
+\begin{solution}
+集合\(\Powerset(A-B)\)包含集合\(A-B\)的所有子集，
+那么总有\(\emptyset\in\Powerset(A-B)\).
+但是\(\emptyset\notin\Powerset A - \Powerset B\)，
+所以\(\Powerset(A-B) \neq \Powerset A - \Powerset B\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求非空集合\(S\)的所有单元素子集.
+\begin{solution}
+我们知道\(\Powerset S\)中的元素是\(S\)的全部子集，
+于是我们可以利用子集公理从中找出只有一个元素的集合，将它们重组为一个新的集合\[
+	\Set{ a \in \Powerset S \given \text{\(a\)是单元集} }.
+\]
+我们知道，单元素集中有且仅有一个元素，由此可知\[
+	a \neq \emptyset
+	\land
+	\forall u,v \in a \bigl( u = v \bigr).
+\]
+综上所述，非空集合\(S\)的所有单元素子集的集合为\[
+	\Set*{ a \in \Powerset S \given a \neq \emptyset
+	\land
+	\forall u,v \in a \bigl( u = v \bigr) }.
+\]
+\end{solution}
+\end{example}
+
+
+\subsection{交集}
+
+\begin{definition}
+称\[
+	\Set{ x \given x \in A \land x \in B }
+\]为“\(A\)和\(B\)的\DefineConcept{交}（the \emph{intersection} of \(A\) and \(B\)）”，
+记作\(A \cap B\)或\(AB\).
+\end{definition}
+
+\begin{theorem}\label{theorem:集合论.系的交的唯一存在性}
+%@see: 《Elements of Set Theory》 P25. Theorem 2B
+对于任意非空集合\(A\)，存在唯一的集合\(B\)，使得\[
+	(\forall x)[x \in B \iff (\forall a)[a \in A \implies x \in a]].
+\]
+\begin{proof}
+先证集合\(B\)的存在性.
+既然\(A\)是非空集，不妨取定\(c \in A\).
+那么根据子集公理，存在集合\(B\)，使得对于任意\(x\)，都有\[
+	x \in B
+	\iff
+	x \in c \land (\forall a)[a \in A \implies x \in a];
+\]
+由于\(c\)是从\(A\)中任意取出的一个元素，所以\[
+	(\forall a)[a \in A \implies x \in a]
+	\implies
+	x \in c,
+\]
+那么就有\[
+	x \in B
+	\iff
+	(\forall a)[a \in A \implies x \in a].
+\]
+
+根据外延公理不难得出集合\(B\)的唯一性.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Example
+因为\[
+	\bigcap\Set{\Set{a},\Set{a,b}}
+	= \Set{a}\cap\Set{a,b}
+	= \Set{a},
+\]
+所以\[
+	\bigcup\bigcap\Set{\Set{a},\Set{a,b}}
+	= \bigcup\Set{a}
+	= a.
+\]
+
+类似有\[
+	\bigcap\bigcup\Set{\Set{a},\Set{a,b}}
+	= \bigcap\Set{a,b}
+	= a \cap b.
+\]
+\end{example}
+
+\begin{definition}
+设系\(A = \Set{\v{a}{n}}\).
+称集合\(\v{a}{n}\)的交\[
+	a_1 \cap a_2 \cap \dotsb \cap a_n
+\]为\(A\)的\DefineConcept{交}\footnote{%
+\cref{theorem:集合论.系的交的唯一存在性} 确保了\(\bigcap A\)可以定义为唯一存在的集合\(B\).
+}，%
+记作\(\bigcap A\)或\(\bigcap\limits_i a_i\)，即\[
+	\bigcap A
+	\defeq
+	a_1 \cap a_2 \cap \dotsb \cap a_n
+	= \Set*{ x \given (\forall a)[a \in A \implies x \in a] }.
+\]
+\end{definition}
+
+例如，
+\begin{align*}
+	&\bigcap\Set{a} = a. \\
+	&\bigcap\Set{a,b} = a \cap b. \\
+	&\bigcap\Set{a,b,c,d} = a \cap b \cap c \cap d.
+\end{align*}
+
+特别注意到“\(\bigcap\emptyset\)”是未定义的！
+
+\begin{example}
+因为\(\bigcap\Set{ \Set{a}, \Set{a,b} } = \Set{a} \cap \Set{a,b} = \Set{a}\)，%
+所以\[
+\bigcup \bigcap \Set{ \Set{a}, \Set{a,b} } = \bigcup \Set{a} = a;
+\]\[
+\bigcap \bigcup \Set{ \Set{a}, \Set{a,b} } = \bigcap \Set{a,b} = a \cap b.
+\]
+\end{example}
+
+\subsection{差集}
+\begin{definition}
+称集合\[
+	\Set{ x \given x \in A \land x \notin B }
+\]为“\(A\)和\(B\)的\DefineConcept{差集}%
+（the \emph{relative complement} of \(B\) in \(A\)）”，
+记作\(A - B\)或\(A \setminus B\).
+\end{definition}
+
+\begin{definition}
+设\(A,B\)都是集合.
+称\[
+	(A-B)\cup(B-A)
+\]为“\(A\)与\(B\)的\DefineConcept{对称差}”，
+记作\(A \oplus B\).
+\end{definition}
+
+\begin{theorem}
+\(A \oplus B = (A \cup B)-(A \cap B)\).
+\begin{proof}
+直接计算得
+\begin{align*}
+	x\in(A-B)\cup(B-A)
+	&\iff x \in A-B \lor x \in B-A \\
+	&\iff (x \in A \land x \notin B) \lor (x \in B \land x \notin A) \\
+	&\iff (x \in A \lor (x \in B \land x \notin A)) \land (x \notin B \lor (x \in B \land x \notin A)) \\
+	&\iff (x \in A \lor x \in B) \land (x \notin A \lor x \notin B) \\
+	&\iff (x \in A \lor x \in B) \land \neg(x \in A \land x \in B) \\
+	&\iff x \in A \cup B \land x \notin A \cap B \\
+	&\iff x\in(A \cup B)-(A \cap B).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{definition}[全集、补集]
+有时，我们研究某个问题限定在一个大的集合\(U\)中进行，所研究的其他集合都是\(U\)的子集；
+此时我们称集合\(U\)为\DefineConcept{全集}（universe）或\DefineConcept{基本集}.
+
+设集合\(A \subseteq U\)，
+则称\(U-A\)为“\(A\)的\DefineConcept{补集}或\DefineConcept{余集}”，
+记作\(\overline{A}\)，或\(\complement_U A\)，或\(A^C\).
+\end{definition}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P26. Exercise 6(b).
+证明：对任意集合\(A\)，总有
+\begin{equation}\label{equation:集合论.系的并的幂集包含系}
+	A \subseteq \Powerset \bigcup A;
+\end{equation}
+并找出使得\(A = \Powerset \bigcup A\)成立的条件.
+\begin{proof}
+因为对于\(\forall a\)，总有\[
+	a \in A
+	\implies
+	a \subseteq \bigcup A
+	\iff
+	a \in \Powerset \bigcup A,
+\]
+所以\[
+	A \subseteq \Powerset \bigcup A.
+\]
+
+从上面的证明过程可以看出，
+当\[
+	\forall a \bigl( a \subseteq \bigcup A \iff a \in A \bigr)
+\]时，就有\(A = \Powerset \bigcup A\)成立.
+
+在\(a \subseteq \bigcup A \implies a \in A\)的前提下，
+由于总有\(\emptyset \subseteq \bigcup A\)成立，
+所以\(\emptyset \in A\)恒成立.
+考虑当\(A = \Set{\emptyset}\)成立时，
+必有\(\bigcup A = \bigcup\Set{\emptyset} = \emptyset\)，
+因此\(\Powerset \bigcup A = \Powerset \emptyset = \Set{\emptyset} = A\).
+%TODO
+\end{proof}
+\end{example}

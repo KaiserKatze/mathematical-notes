@@ -1,0 +1,395 @@
+
+\section{关系}
+\subsection{无序对、有序对的概念}
+\begin{definition}[无序对]
+由两个元素\(x_1\)和\(x_2\)组成的集合\[
+\Set{x_1, x_2}
+\]称作\DefineConcept{无序对}（unordered pair）.
+\end{definition}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P38. Exercise 1.
+定义：\[
+\opair{x,y,z}^* = \{\{x\},\{x,y\},\{x,y,z\}\}.
+\]找出元素\(u,v,w,x,y,z\)使\[
+\opair{x,y,z}^* = \opair{u,v,w}^*
+\]成立，但\(y \neq v\)或\(z \neq w\).
+\begin{solution}
+取\[
+\opair{1,1,2}^* = \{\{1\},\{1,1\},\{1,1,2\}\} = \{\{1\},\{1,2\}\},
+\]\[
+\opair{1,2,1}^* = \{\{1\},\{1,2\},\{1,2,1\}\} = \{\{1\},\{1,2\}\},
+\]即可满足题设条件.
+\end{solution}
+\end{example}
+
+\begin{definition}[有序对]
+两个元素\(x_1\)和\(x_2\)按一定顺序形成的排列称为\DefineConcept{有序对}，记作\[
+\opair{x_1,x_2}.
+\]
+
+我们可以采用多种方式构造集合用于表记有序对\(\opair{x_1,x_2}\)，例如（由Norbert Wiener于1914年构造的）
+\[
+\Set{ \Set{ \Set{x_1}, \emptyset }, \Set{ \Set{ x_2 } } }.
+\]
+但我们更常用（由Kazimierz Kuratowski于1921年构造的）以下形式
+\[
+\Set{ \Set{x_1}, \Set{x_1, x_2} }.
+\]以后我们都采用第二种形式表记有序对，因此\[
+\opair{x_1,x_2}
+\defeq
+\Set{ \Set{x_1}, \Set{x_1, x_2} }.
+\]
+\end{definition}
+
+有序对具有以下性质.
+\begin{property}\label{theorem:集合论.有序对的性质1}
+%@see: 《Elements of Set Theory》 P36. Theorem 3A
+\(\opair{u,v} = \opair{x,y}\)的充要条件是：\(u=x\)且\(v=y\).
+\begin{proof}
+充分性.
+这个方向的证明是平凡的；
+当\(u=x\)且\(v=y\)时，自然有\[
+	\opair{u,v} = \opair{x,y}.
+\]
+
+必要性.
+当\(\opair{u,v} = \opair{x,y}\)时，根据定义有\[
+	\Set{ \Set{u}, \Set{u, v} }
+	= \Set{ \Set{x}, \Set{x, y} };
+\]于是\[
+	\Set{u} \in \Set{ \Set{x}, \Set{x, y} },
+	\eqno{(1)}
+\]且\[
+	\Set{u,v} \in \Set{ \Set{x}, \Set{x, y} }.
+	\eqno{(2)}
+\]
+从(1)式我们知道，要么等式\[
+	\Set{u} = \Set{x}
+	\eqno{(3)}
+\]成立，要么等式\[
+	\Set{u} = \Set{x,y}
+	\eqno{(4)}
+\]成立；
+从(2)式我们知道，要么等式\[
+	\Set{u,v} = \Set{x}
+	\eqno{(5)}
+\]成立，要么等式\[
+	\Set{u,v} = \Set{x,y}
+	\eqno{(6)}
+\]成立.
+
+首先我们假设(4)式成立，那么有\(u = x = y\)；
+从而有(5)式等价于(6)式，且\(u = v = x = y\)；
+在这种情况下，必要性得证.
+同理，假设(5)式成立，也可证明必要性.
+
+然后我们假设(3)式、(6)式同时成立.
+从(3)式成立我们知道\(u = x\).
+从(6)式成立我们知道\(u = y\)或\(v = y\)；
+第一种情况，即\(u = x\)和\(u = y\)同时成立的情况，已经在(4)式成立时作了讨论.
+第二种情况，即\(u = x\)和\(v = y\)同时成立的情况，立即保证了必要性.
+\end{proof}
+\end{property}
+\cref{theorem:集合论.有序对的性质1} 让我们可以不含糊地将有序对\(\opair{x,y}\)
+中的\(x\)和\(y\)分别称为%
+有序对的\DefineConcept{第一坐标}（first coordinate）%
+和\DefineConcept{第二坐标}（second coordinate）.
+
+\subsection{直积}
+\begin{definition}[直积]\label{definition:集合论.直积}
+设\(A,B\)都是集合.
+在\(A\)中任取一个元素\(x\)，
+在\(B\)中任取一个元素\(y\)，
+组成一个有序对\(\opair{x,y}\)，
+把这样的有序对作为新的元素，
+它们全体组成的类称为“\(A\)与\(B\)的%
+\DefineConcept{直积}（direct product）%@see: https://mathworld.wolfram.com/DirectProduct.html
+或\DefineConcept{笛卡尔乘积}（Cartesian product）”，
+记为\(A \times B\)，即\begin{equation}
+	A \times B
+	\defeq
+	\Set*{ \opair{x,y} \given x \in A \land y \in B }.
+\end{equation}
+\end{definition}
+
+在宣称\cref{definition:集合论.直积} 合法以前，
+我们必须确认它给出的类\(A \times B\)是不是真的是一个集合.
+而要证明\(A \times B\)是一个集合，
+我们就必须找到一个足够大的集合，
+它包括了我们需要的全部有序对，
+然后利用子集公理证明\(A \times B\)是这个集合的子集.
+为此我们给出下述引理.
+\begin{lemma}\label{theorem:集合论.有序对是其坐标元素所在集合的二重幂集的元素}
+%@see: 《Elements of Set Theory》 P37. Lemma 3B
+如果\(x,y \in A\)，那么\(\opair{x,y} \in \Powerset\Powerset A\).
+\begin{proof}
+由\(x,y \in A\)可知\(\{x\},\{x,y\} \subseteq A\)，
+即\(\{x\},\{x,y\} \in \Powerset A\)，
+那么\(\{\{x\},\{x,y\}\} \subseteq \Powerset A\)，
+进一步可得\(\opair{x,y} = \{\{x\},\{x,y\}\} \in \Powerset\Powerset A\).
+\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{theorem:集合论.直积存在定理}
+%@see: 《Elements of Set Theory》 P38. Corollary 3C
+设\(A,B\)都是集合，那么存在这样一个集合\(C\)，使得\(C = A \times B\).
+\begin{proof}
+要使\(C = A \times B\)，根据外延公理必有\[
+	w \in C \iff w \in A \times B,
+\]
+再根据直积的定义有\[
+	w \in C \iff w = \opair{x,y} \land x \in A \land y \in B.
+\]
+根据子集公理，我们可以构造集合\[
+	C = \Set*{
+		w \in \Powerset\Powerset(A \cup B)
+		\given
+		w = \opair{x,y} \land x \in A \land y \in B
+	}.
+\]
+显然，根据\cref{theorem:集合论.有序对是其坐标元素所在集合的二重幂集的元素}，
+\(C\)满足定理要求的条件.
+\end{proof}
+\end{theorem}
+\cref{theorem:集合论.直积存在定理} 告诉我们，
+任意两个集合\(A\)和\(B\)的直积\(A \times B\)也是集合.
+
+容易发现，对于任意集合\(A\)，总有\begin{equation}
+	A \times \emptyset
+	= \emptyset \times A
+	= \emptyset \times \emptyset
+	= \emptyset.
+\end{equation}
+这是因为\((\forall x)[x \notin \emptyset]\).
+
+\begin{example}
+设\(A,B,C\)是集合.
+证明：\begin{equation}
+	A \subseteq B
+	\implies
+	A \times C \subseteq B \times C.
+\end{equation}
+\begin{proof}
+直接计算得
+\begin{align*}
+	A \subseteq B
+	&\iff [x \in A \implies x \in B] \\
+	&\implies [x \in A \land y \in C \implies x \in B \land y \in C] \\
+	&\iff [\opair{x,y} \in A \times C \implies \opair{x,y} \in B \times C] \\
+	&\iff [A \times C \subseteq B \times C].
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P38. Exercise 2.(a)
+%@see: 《Elements of Set Theory》 P65. Exercise 54.
+设\(A,B,C\)是集合.
+证明：\begin{gather}
+	A \times (B \cup C) = (A \times B) \cup (A \times C),
+	\label{equation:集合论.直积分配律1} \\
+	A \times (B \cap C) = (A \times B) \cap (A \times C),
+	\label{equation:集合论.直积分配律2} \\
+	A \times (B - C) = (A \times B) - (A \times C).
+	\label{equation:集合论.直积分配律3}
+\end{gather}
+\begin{proof}
+对\cref{equation:集合论.直积分配律1} 证明如下：
+由于对于任意\(w = \opair{x,y}\)总有
+\begin{align*}
+	w \in A \times (B \cup C)
+	&\iff x \in A \land y \in B \cup C \\
+	&\iff x \in A \land (y \in B \lor y \in C) \\
+	&\iff (x \in A \land y \in B) \lor (x \in A \land y \in C) \\
+	&\iff (w \in A \times B) \lor (w \in A \times C),
+\end{align*}
+那么由外延公理可知\(A \times (B \cup C) = (A \times B) \cup (A \times C)\).
+
+对\cref{equation:集合论.直积分配律2} 证明如下：
+由于对于任意\(w = \opair{x,y}\)总有
+\begin{align*}
+	w \in A \times (B \cap C)
+	&\iff x \in A \land y \in B \cap C \\
+	&\iff x \in A \land (y \in B \land y \in C) \\
+	&\iff (x \in A \land y \in B) \land (x \in A \land y \in C) \\
+	&\iff (w \in A \times B) \land (w \in A \times C),
+\end{align*}
+那么由外延公理可知\(A \times (B \cap C) = (A \times B) \cap (A \times C)\).
+
+对\cref{equation:集合论.直积分配律3} 证明如下：
+由于对于任意\(w = \opair{x,y}\)总有
+\begin{align*}
+	w \in A \times (B - C)
+	&\iff x \in A \land y \in (B - C) \\
+	&\iff x \in A \land (y \in B \land y \notin C) \\
+	&\iff (x \in A \land y \in B \land x \notin A)
+		\lor (x \in A \land y \in B \land y \notin C) \\
+	&\iff (x \in A \land y \in B) \land (x \notin A \lor y \notin C) \\
+	&\iff (x \in A \land y \in B) \land \neg(x \in A \land y \in C) \\
+	&\iff w \in A \times B \land w \notin A \times C,
+\end{align*}
+那么由外延公理可知\(A \times (B - C) = (A \times B) - (A \times C)\).
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P38. Exercise 2.(b)
+证明：如果\(A \times B = A \times C\)且\(A \neq \emptyset\)，则\(B = C\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P38. Exercise 3.
+证明：\(A \times \bigcup B = \bigcup\Set{ A \times X \given X \in B }\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P38. Exercise 5.(a)
+设\(A,B\)都是集合，试证：\(\Set{ \{x\} \times B \given x \in A }\)也是集合.
+\begin{proof}
+由于\(x \in A \implies \{x\} \subseteq A \implies \{x\} \times B \subseteq A \times B\)，
+所以我们可以利用子集公理构造集合\[
+	\Set{ w \in A \times B \given w = \opair{u,v} \land u = x }.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{关系}
+\begin{definition}
+\DefineConcept{关系}（relation）是有序对的集合.
+\end{definition}
+
+如果有序对\(\opair{x,y}\)是关系\(\rel{R}\)的元素，即\[
+	\opair{x,y} \in \rel{R},
+\]
+那么称“\(x\)与\(y\)有\(\rel{R}\)关系”，
+记作\(x\rel{R}y\)；
+反之，\[
+	\opair{x,y} \notin \rel{R},
+\]
+那么称“\(x\)与\(y\)没有\(\rel{R}\)关系”.
+
+给定集合\(X\)和集合\(Y\)，
+如果关系\(\rel{R}\)满足\[
+	\rel{R} \subseteq X \times Y,
+\]
+我们就称“\(\rel{R}\)是\(X\)与\(Y\)之间的\DefineConcept{二元关系}（binary relation）”.
+特别地，当\(X = Y\)时，就称“\(\rel{R}\)是\(X\)上的\DefineConcept{二元关系}”.
+
+从关系的定义可以看出，关系是有序对的集合.
+即便是看起来毫无意义的，只由一个有序对组成的集合，也可以看成是一个关系.
+我们自然会认为有的关系比别的关系更有意义，
+例如我们马上会提到的“映射”“等价关系”和“排序关系”.
+
+\begin{definition}\label{definition:集合论.定义域与值域的定义}
+设\(R\)是集合.
+
+如果集合\(A\)满足\[
+	x \in A \iff (\exists y)[\opair{x,y} \in R],
+\]
+那么称\(A\)为“\(R\)的\DefineConcept{定义域}（domain）”，记作\(\dom R\).
+
+如果集合\(B\)满足\[
+	x \in B \iff (\exists t)[\opair{t,x} \in R],
+\]
+那么称\(B\)为“\(R\)的\DefineConcept{值域}（range）”，记作\(\ran R\).
+
+最后，我们把\(R\)的定义域与它的值域的并集称为
+“\(R\)的\DefineConcept{域}（field）”，记作\(\fld R\)，即\[
+	\fld R \defeq \dom R \cup \ran R.
+\]
+\end{definition}
+
+为了正当化\cref{definition:集合论.定义域与值域的定义}，
+我们必须明确：对于任意集合\(R\)，存在这样一个集合，
+\(R\)中的有序对的第一坐标和第二坐标都是这个集合的元素.
+这个问题类似于我们之前对于直积\(A \times B\)的定义的正当化，
+当时我们证明了\cref{theorem:集合论.直积存在定理}.
+为此，我们给出下述引理，
+可以注意到它与\cref{theorem:集合论.有序对是其坐标元素所在集合的二重幂集的元素} 的关联.
+
+\begin{lemma}
+%@see: 《Elements of Set Theory》 P41. Lemma 3D
+如果\(\opair{x,y} \in A\)，那么\(x,y \in \bigcup\bigcup A\).
+\end{lemma}
+这条引理已经在\cref{example:集合论.有序对各坐标的取值范围} 得到证明.
+利用这条引理，再加上子集公理，我们可以构造集合\(R\)的定义域和值域：
+\begin{gather}
+	\dom R
+	\defeq
+	\Set*{ x \in \bigcup\bigcup R \given (\exists y)[\opair{x,y} \in R] }, \\
+	\ran R
+	\defeq
+	\Set*{ x \in \bigcup\bigcup R \given (\exists t)[\opair{t,x} \in R] }.
+\end{gather}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P41. Exercise 6.
+试证：集合\(A\)是一个关系的充要条件是\[
+	A \subseteq \dom A \times \ran A.
+\]
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P41. Exercise 7.
+试证：给定关系\(\rel{R}\)，总有\[
+	\fld \rel{R} = \bigcup\bigcup \rel{R}.
+\]
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P41. Exercise 8.
+试证：对于任意集合\(A\)，总有\begin{gather}
+	\dom\bigcup A = \bigcup\Set{ \dom\rel{R} \given \rel{R} \in A }, \\
+	\ran\bigcup A = \bigcup\Set{ \ran\rel{R} \given \rel{R} \in A }.
+\end{gather}
+%TODO
+\end{example}
+
+\subsection{多元关系}
+我们可以将“有序对”和“二元关系”的概念分别扩展为“元组”和“多元关系”.
+
+例如定义\[
+	\opair{x_1,x_2,x_3}
+	\defeq
+	\opair{\opair{x_1,x_2},x_3},
+\]
+称之为\DefineConcept{三元组}（triple）；
+定义\[
+	\opair{x_1,x_2,x_3,x_4}
+	\defeq
+	\opair{\opair{x_1,x_2,x_3},x_4},
+\]
+称之为\DefineConcept{四元组}（quadruple）；
+定义\[
+	\opair{x_1,x_2,x_3,x_4,x_5}
+	\defeq
+	\opair{\opair{x_1,x_2,x_3,x_4},x_5},
+\]
+称之为\DefineConcept{五元组}（quintuple）；
+以此类推，对于任意给定\(n\)，可以定义\(n\)元组（\(n\)-tuple）：\[
+	\opair{x_1,x_2,\dotsc,x_n}
+	\defeq
+	\opair{\opair{x_1,x_2,\dotsc,x_{n-1}},x_n}.
+\]
+为了让我们的定义看起来整齐划一，我们还可以补充定义\[
+	\opair{x} \defeq x,
+\]
+称之为\DefineConcept{一元组}（1-tuple）.
+
+我们把“在\(A\)上的\(n\)元\DefineConcept{关系}（n-ary \emph{relation} on \(A\)）”%
+定义为由\(n\)元组构成的集合.
+由于\(A\)上的二元关系是\(A \times A\)的子集，
+以及\(A\)上的三元关系（ternary relation, 3-ary relation）是\((A \times A) \times A\)的子集，
+所以三元关系也可归结为一种二元关系；
+同理，其他\(n\)元关系，只要\(n>1\)，也都可以归结为二元关系.
+虽然在上面对\(n\)元关系的定义中，
+我们也把由\(A\)中包括的一元组构成的集合称为%
+“\(A\)上的一元关系（unary relation, 1-ary relation）”，
+但它只是\(A\)的一个子集，根本不满足关系的定义.

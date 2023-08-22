@@ -1,0 +1,613 @@
+
+\section{映射}
+\subsection{映射的概念}
+\begin{definition}
+设\(F\)是关系，如果\[
+	(\forall x \in \dom F)(\exists! y)[\opair{x,y} \in F],
+\]
+则称“关系\(F\)是一个\DefineConcept{映射}（function）”.
+\end{definition}
+可以从映射的定义中看出，虽然映射也是关系，
+但映射有一般的关系所没有的特殊性质：
+映射是\DefineConcept{单值的}（single-valued）.
+换句话说，对于关系\(F\)，每个\(x\)可能对应若干个\(y\)；
+但是，对于映射\(F\)，每个\(x\)就只对应一个\(y\).
+我们可以把\(x\)与\(y\)这两个元素之间的对应关系记为\(x \mapsto y\).
+
+我们把使得\(xFy\)成立的\(y\)称为“\(x\)（在映射\(F\)下）的\DefineConcept{像}%
+（the \emph{value} of \(F\) at \(x\)）”，
+记为\(F(x)\)，即\[
+	y = f(x);
+\]
+称\(x\)为“\(y\)（在映射\(F\)下）的一个\DefineConcept{原像}”.
+这里用的\(F(x)\)符号是欧拉提出的，
+我们仅当\(F\)是一个映射且\(x\in\dom F\)时使用这个记号.
+不过，我们也可以定义：\[
+	F(x) \defeq \bigcup\Set{ y \given \opair{x,y} \in F }.
+\]
+它对于任意\(F\)和\(x\)都有意义.
+
+映射是如此重要，以至于各家对用于描述映射的术语没有达成统一.
+以下是两种最常采用的术语.
+
+设\(X,Y\)都是集合，
+如果\(f\)是一个映射，且\(\dom f = X\)，\(\ran f \subseteq Y\)，
+则称“\(f\)是从\(X\)到\(Y\)的\DefineConcept{映射}%
+（\(f\) is a function \emph{from} \(X\) \emph{into} \(Y\)）”，
+或称“\(f\)将\(X\)映射到\(Y\)里%
+（\(f\) \emph{maps} \(X\) \emph{into} \(Y\)）”，
+记作\[
+	f\colon X \to Y.
+\]
+如果还有\(\ran f = Y\)，
+那么称“\(f\)是从\(X\)到\(Y\)上的映射%
+（\(f\) is a function from \(X\) \emph{onto} \(Y\)）”，
+或称“\(f\)将\(X\)映射到\(Y\)上%
+（\(f\) \emph{maps} \(X\) \emph{onto} \(Y\)）”，
+或称“\(f\)是\DefineConcept{满射}（surjective）”.
+我们可以说“任意映射总将它的定义域映射到它的值域上”，
+还可以说“任意映射总把它的定义域映射到以它的值域为子集的任意集合\(B\)里”.
+注意到两种说法的区别，“上”字和“里”字的选用，
+不光取决于映射\(f\)本身，还取决于我们讨论的集合\(B\).
+
+如果\[
+	(\forall y \in \ran f)
+	(\exists! x)
+	[\opair{x,y} \in f],
+\]
+那么称“映射\(f\)是\DefineConcept{一一映射}（one-to-one）”.
+
+有时候我们希望把一一映射的概念套用到一般的关系上，
+它们往往不是映射，因此“一一映射”这个用词就显得不那么恰当了.
+为此，我们创造出“单根的”，类比于“单值的”.
+
+\begin{definition}
+如果集合\(R\)满足\[
+	(\forall y \in \ran R)
+	(\exists! x)
+	[\opair{x,y} \in R],
+\]
+则称“\(R\)是\DefineConcept{单根的}（single-rooted）”.
+\end{definition}
+
+因此，我们可以说，“一个映射是单根的”当且仅当“这个映射是一一映射”.
+
+如果\[
+	(\forall x_1, x_2 \in \dom f)
+	[x_1 \neq x_2 \implies f(x_1) \neq f(x_2)],
+\]
+那么称“\(f\)是\DefineConcept{单射}（injective）”.
+由于映射本就是单值的，若它还是单根的，那么这个映射就是单射；
+换句话说，一一映射和单射是相同的概念.
+
+如果\(f\)既是单射，又是满射，即
+那么称“\(f\)是\DefineConcept{双射}（bijective）\footnote{%
+有的书可能会把双射称作一一映射，但是我们不采取这种说法.
+}”.
+
+
+\begin{example}
+设\(f\colon A \to B, g\colon B \to C\).
+证明：\begin{enumerate}
+	\item 如果\(f\)和\(g\)都是单射，那么\(g \circ f\)也是单射；
+	\item 如果\(f\)和\(g\)都是满射，那么\(g \circ f\)也是满射；
+	\item 如果\(f\)和\(g\)都是双射，那么\(g \circ f\)也是双射；
+	\item 如果\(f\)和\(g\)都是可逆映射，那么\(g \circ f\)也是可逆映射.
+\end{enumerate}
+\begin{proof}
+当\(f\)和\(g\)都是单射时.设\(a_1,a_2 \in A\).
+如果\((g \circ f)(a_1) = (g \circ f)(a_2)\)，那么\(g[f(a_1)] = g[f(a_2)]\).
+由于\(g\)是单射，因此\(f(a_1) = f(a_2)\).
+由于\(f\)是单射，因此\(a_1 = a_2\).
+综上，\(g \circ f\)是单射.
+
+当\(f\)和\(g\)都是满射时.任取\(c \in C\).
+由于\(g\)是满射，因此存在\(b \in B\)，使得\(c = g(b)\).
+由于\(f\)是满射，因此存在\(a \in A\)，使得\(b = f(a)\).
+因此\(c = g(b) = g[f(a)] = (g \circ f)(a)\)，也就是说\(g \circ f\)是满射.
+
+双射的情形，根据单射、满射的情形显然成立.
+
+可逆映射的情形，根据双射的情形以及\cref{theorem:集合论.映射可逆的充要条件} 即得.
+\end{proof}
+\end{example}
+
+
+\subsection{逆，复合，限制，像，原像}
+以下定义的操作通常用在映射上，有时候也用于关系，但也可以用于任意集合.
+\begin{definition}
+设\(A,F,G\)都是集合.
+\begin{enumerate}
+	\item 称集合\[
+		\Set*{ \opair{u,v} \given v F u }
+	\]为“\(F\)的\DefineConcept{逆}%
+	（the \emph{inverse} of \(F\)）”，
+	记作\(F^{-1}\).
+
+	特别地，如果\(F^{-1}\)是映射，
+	则称“\(F^{-1}\)是\(F\)的\DefineConcept{逆映射}”.
+
+	\item 称集合\[
+		\Set*{ \opair{u,v} \given \exists t \bigl( u G t \land t F v \bigr) }
+	\]为“\(F\)和\(G\)的\DefineConcept{复合}%
+	（the \emph{composition} of \(F\) and \(G\)）”，
+	记作\(F \circ G\).
+
+	\item 称集合\[
+		\Set*{ \opair{u,v} \given u F v \land u \in A }
+	\]为“\(F\)在\(A\)上的\DefineConcept{限制}%
+	（the \emph{restriction} of \(F\) to \(A\)）”，
+	记作\(F \upharpoonright A\).
+
+	\item 称集合\[
+		\Set*{ v \given \exists u \in A \bigl( u F v \bigr) }
+	\]为“\(A\)在\(F\)下的\DefineConcept{像}%
+	（the \emph{image} of \(A\) \emph{under} \(F\)）”，
+	记作\(F\ImageOfSetUnderRelation{A}\).
+\end{enumerate}
+\end{definition}
+
+当\(F\)是一个映射，且\(A \subseteq \dom F\)时，
+\(F\ImageOfSetUnderRelation{A}\)这个概念可能更容易理解，
+因为这时候\[
+	F\ImageOfSetUnderRelation{A}
+	= \Set{ F(u) \given u \in A }.
+\]
+
+我们可以利用子集公理构造出上述定义下的所需集合的存在性.
+特别地，\[
+	F^{-1} \subseteq \ran F \times \dom F, \qquad
+	F \circ G \subseteq \dom G \times \ran F,
+\]\[
+	F \upharpoonright A \subseteq F, \qquad
+	F\ImageOfSetUnderRelation{A} \subseteq \ran F.
+\]
+
+例如，我们可以按如下方法正当化“关系\(F\)的逆”的定义：
+根据子集公理，存在集合\(B\)，使得对于任意\(x\)，总有\begin{align*}
+	x \in B
+	&\iff
+	x \in \ran F \times \dom F
+	\land
+	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr), \\
+	&\iff
+	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr).
+\end{align*}
+再根据外延公理，可以保证集合\(B\)的唯一性.
+因此我们可以将集合\(B\)记为\(F^{-1}\).
+
+\begin{theorem}
+\(F \upharpoonright \emptyset = \emptyset\).
+\end{theorem}
+
+\begin{theorem}
+\(F\ImageOfSetUnderRelation{A} = \ran(F \upharpoonright A)\).
+\begin{proof}
+根据值域的定义有\begin{align*}
+	v \in \ran(F \upharpoonright A)
+	&\iff
+	\exists u \bigl( \opair{u,v} \in F \upharpoonright A \bigr) \\
+	&\iff
+	\exists u \bigl( u F v \land u \in A \bigr) \\
+	&\iff
+	v \in F\ImageOfSetUnderRelation{A}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{definition}
+设\(F\)是关系，\(A\)是集合，那么称集合\[
+	\Set*{ x \in \dom F \given F(x) \in A }
+\]为“集合\(A\)在关系\(F\)下的\DefineConcept{原像}%
+（the \emph{inverse image} of \(A\) under \(F\)）”，
+记作\(F^{-1}\ImageOfSetUnderRelation{A}\).
+\end{definition}
+
+\begin{theorem}\label{theorem:集合论.关系的逆的定义域值域以及关系的二重逆}
+%@see: 《Elements of Set Theory》 P46. Theorem 3E
+设\(F\)是集合，则有\begin{gather}
+	\dom F^{-1} = \ran F, \\
+	\ran F^{-1} = \dom F.
+\end{gather}
+
+如果\(F\)是关系，则有\begin{equation}
+	(F^{-1})^{-1} = F.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}\label{theorem:集合论.关系及其逆是映射的充要条件}
+%@see: 《Elements of Set Theory》 P46. Theorem 3F
+设\(F\)是集合，则“\(F^{-1}\)是映射”的充要条件是：\(F\)是单根的.
+
+设\(F\)是关系，则“\(F\)是映射”的充要条件是：\(F^{-1}\)是单根的.
+\end{theorem}
+
+\begin{theorem}\label{theorem:集合论.映射可逆的充要条件}
+映射\(f\)可逆的充要条件是：\(f\)是双射.
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P46. Theorem 3G
+设\(F\)是一一映射.
+\begin{enumerate}
+	\item 如果\(x \in \dom F\)，那么\[
+		F^{-1}(F(x)) = x.
+	\]
+
+	\item 如果\(y \in \ran F\)，那么\[
+		F(F^{-1}(y)) = y.
+	\]
+\end{enumerate}
+\begin{proof}
+假设\(x \in \dom F\)，
+那么\(\opair{x,F(x)} \in F\)，且\(\opair{F(x),x} \in F^{-1}\)，
+于是\(F(x) \in \dom F^{-1}\).
+因为\(F\)是一一映射，是单值的，所以\(F^{-1}\)是映射，
+从而\(x = F^{-1}(F(x))\).
+
+如果\(y \in \ran F\)，
+那么根据本定理第1条，以及\((F^{-1})^{-1} = F\)，可知\[
+	F(F^{-1}(y)) = (F^{-1})^{-1}(F^{-1}(y)) = y.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P47. Theorem 3H
+设\(F,G\)都是映射，则\(F \circ G\)是映射，且\[
+	\dom(F \circ G)
+	= \Set*{ x \in \dom G \given G(x) \in \dom F },
+\]\[
+	\forall x \in \dom(F \circ G):
+	(F \circ G)(x) = F(G(x)).
+\]
+\begin{proof}
+要证\(F \circ G\)是一个映射，
+假设有\(x (F \circ G) y\)和\(x (F \circ G) z\)同时成立.
+那么，\(\exists p,q\)，有\[
+	x G p \land p F y
+	\quad\text{和}\quad
+	x G q \land q F z
+\]同时成立.
+既然\(G\)是映射，必有\(p = q\).
+同理，\(F\)是映射，必有\(y = z\).
+因此\(F \circ G\)是映射.
+
+现在再假设\(x \in \dom G\)且\(G(x) \in \dom F\).
+我们必须证明\[
+	x \in \dom(F \circ G)
+	\quad\text{和}\quad
+	(F \circ G)(x) = F(G(x)).
+\]
+我们知道\[
+	\opair{x,G(x)} \in G,
+	\qquad
+	\opair{G(x),F(G(x))} \in F.
+\]
+因此\(\opair{x,F(G(x))} \in F \circ G\).
+
+反过来说，如果\(x \in \dom(F \circ G)\)，
+那么就有\[
+	\exists y, \exists t
+	\bigl( x G t \land t F y \bigr).
+\]
+于是就有\(x \in \dom G\)和\(t = G(x) \in \dom F\).
+\end{proof}
+\end{theorem}
+
+容易看出，映射的复合是有顺序的，\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
+即便两者都有意义，它们也未必相同.
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P65. Exercise 53.
+设\(R,S\)是集合，那么\begin{gather}
+	(R \cup S)^{-1} = R^{-1} \cup S^{-1},
+	\label{equation:集合论.并的逆等于逆的并} \\
+	(R \cap S)^{-1} = R^{-1} \cap S^{-1},
+	\label{equation:集合论.交的逆等于逆的交} \\
+	(R - S)^{-1} = R^{-1} - S^{-1}.
+	\label{equation:集合论.差的逆等于逆的差}
+\end{gather}
+\begin{proof}
+对\cref{equation:集合论.并的逆等于逆的并} 证明如下：
+\begin{align*}
+	\opair{x,y} \in (R \cup S)^{-1}
+	&\iff \opair{y,x} \in R \cup S \\
+	&\iff \opair{y,x} \in R \lor \opair{y,x} \in S \\
+	&\iff \opair{x,y} \in R^{-1} \lor \opair{x,y} \in S^{-1} \\
+	&\iff \opair{x,y} \in R^{-1} \cup S^{-1}.
+\end{align*}
+
+对\cref{equation:集合论.交的逆等于逆的交} 证明如下：
+\begin{align*}
+	\opair{x,y} \in (R \cap S)^{-1}
+	&\iff \opair{y,x} \in R \cap S \\
+	&\iff \opair{y,x} \in R \land \opair{y,x} \in S \\
+	&\iff \opair{x,y} \in R^{-1} \land \opair{x,y} \in S^{-1} \\
+	&\iff \opair{x,y} \in R^{-1} \cap S^{-1}.
+\end{align*}
+
+对\cref{equation:集合论.差的逆等于逆的差} 证明如下：
+\begin{align*}
+	\opair{x,y} \in (R - S)^{-1}
+	&\iff \opair{y,x} \in R - S \\
+	&\iff \opair{y,x} \in R \land \opair{y,x} \notin S \\
+	&\iff \opair{x,y} \in R^{-1} \land \opair{x,y} \notin S^{-1} \\
+	&\iff \opair{x,y} \in R^{-1} - S^{-1}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P47. Theorem 3I
+设\(F,G\)都是集合，那么\[
+	(F \circ G)^{-1} = G^{-1} \circ F^{-1}.
+\]
+\begin{proof}
+易知\((F \circ G)^{-1}\)和\(G^{-1} \circ F^{-1}\)都是关系，且\begin{align*}
+	\opair{x,y} \in (F \circ G)^{-1}
+	&\iff
+	\opair{y,x} \in F \circ G \\
+	&\iff
+	\exists t \bigl( y G t \land t F x \bigr) \\
+	&\iff
+	\exists t \bigl( x F^{-1} t \land t G^{-1} y \bigr) \\
+	&\iff
+	\opair{x,y} \in G^{-1} \circ F^{-1}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{axiom}[选择公理(第一种形式)]
+对于任意关系\(R\)，存在映射\(H\)，满足\[
+	H \subseteq R,
+	\quad\text{且}\quad
+	\dom H = \dom R.
+\]
+\end{axiom}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P48. Theorem 3J
+设映射\(F\colon A \to B\)，其中\(A\)是非空集合.
+\begin{enumerate}
+	\item “存在映射\(G\colon B \to A\)（称其为\DefineConcept{左逆}），
+	使得\(G \circ F\)是\(A\)上的恒等映射\(I_A\)”是“\(F\)是一一映射”的充要条件.
+
+	\item “存在映射\(H\colon B \to A\)（称其为\DefineConcept{右逆}），
+	使得\(F \circ H\)是\(B\)上的恒等映射\(I_B\)”是“\(F\)是满射”的充要条件.
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}
+	\item
+	先证充分性.
+	我们假设存在映射\(G\)使得\(G \circ F = I_A\).
+	如果\(F(x) = F(y)\)，那么\[
+		x = G(F(x)) = G(F(y)) = y,
+	\]
+	于是\(F\)是一一映射.
+
+	再证必要性.
+	假设\(F\)是一一映射，
+	那么根据\cref{theorem:集合论.关系的逆的定义域值域以及关系的二重逆,theorem:集合论.关系及其逆是映射的充要条件}，
+	\(F^{-1}\)是一个从\(\ran F\)到\(A\)上的映射.
+	现在我们需要将\(F^{-1}\)延拓为以\(B\)为定义域的映射\(G\).
+	因为\(A\)是非空集合，
+	于是我们可以取定\(a \in A\)，
+	然后令\[
+		G(x) = \left\{ \begin{array}{ll}
+			F^{-1}(x), & x \in \ran F, \\
+			a, & x \in B - \ran F,
+		\end{array} \right.
+	\]或者令\[
+		G = F^{-1} \cup (B - \ran F) \times \Set{a}.
+	\]
+	这个构造出来的映射\(G\)是一个从\(B\)到\(A\)里的映射，
+	且满足\[
+		\dom(G \circ F) = A,
+	\]
+	以及\[
+		\forall x \in A: G(F(x)) = F^{-1}(F(x)) = x,
+	\]
+	于是\(G \circ F = I_A\)成立.
+
+	\item
+	我们还是先证充分性.
+	假设存在映射\(H\)使得\(F \circ H = I_B\).
+	那么\[
+		\forall y \in B: y = F(H(y)),
+	\]
+	从而\(y \in \ran F\)，
+	于是\(\ran F = B\).
+
+	必要性的证明稍显困难.
+	我们不能直接取\(H = F^{-1}\)，
+	因为一般而言\(F\)不会是一一映射，
+	\(F^{-1}\)也不会是一个映射.
+	假设\(F\)将\(A\)映射到\(B\)上，\(\ran F = B\).
+	现在我们需要为每个\(y \in B\)选择某个\(x\)，使得\(F(x) = y\)，然后令\(H(y) = x\)；
+	考虑到\(y \in \ran F\)，这样的\(x\)必定存在.
+	虽然我们知道对于每个\(y\)，存在一个合适的\(x\)，
+	但是我们无法据此构造所求映射\(H\).
+	因此，我们需要引入选择公理.
+	借助选择公理，我们可以令映射\(H\)满足\(H \subseteq F^{-1}\)且\(\dom H = \dom F^{-1} = B\).
+	于是\(H\)满足\[
+		\forall y \in B
+		\bigl[
+		\opair{y,H(y)} \in F^{-1}
+		\iff \opair{H(y),y} \in F
+		\iff F(H(y)) = y
+		\bigr].
+		\qedhere
+	\]
+\end{enumerate}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P48. Theorem 3K
+设\(A,B,F\)都是集合.
+\def\F#1{F\ImageOfSetUnderRelation{#1}}
+\begin{enumerate}
+	\item 并的像是像的并：\begin{gather}
+		\F{A \cup B}
+		= \F{A} \cup \F{B},
+		\label{equation:集合论.并的像与像的并的关系1} \\
+		\F{\bigcup A}
+		= \bigcup\Set{ \F{a} \given a \in A }.
+		\label{equation:集合论.并的像与像的并的关系2}
+	\end{gather}
+
+	\item 交的像包含于像的交：\begin{gather}
+		\F{A \cap B}
+		\subseteq \F{A} \cap \F{B},
+		\label{equation:集合论.交的像与像的交的关系1} \\
+		\F{\bigcap A}
+		\subseteq \bigcap\Set{ \F{a} \given a \in A }.
+		\label{equation:集合论.交的像与像的交的关系2}
+		\quad(A \neq \emptyset)
+	\end{gather}
+	若\(F\)是单根的，则以上两式取“=”号.
+
+	\item 差的像包含像的差：\begin{equation}
+		\F{A} - \F{B}
+		\subseteq \F{A-B}.
+		\label{equation:集合论.差的像与像的差的关系}
+	\end{equation}
+	若\(F\)是单根的，则上式取“=”号.
+\end{enumerate}
+\begin{proof}
+\cref{equation:集合论.并的像与像的并的关系1} 证明如下：
+\begin{align*}
+	y \in \F{A \cup B}
+	&\iff \exists x \in A \cup B \bigl( x F y \bigr) \\
+	&\iff \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
+			\lor \bigl[ \exists x \in B \bigl( x F y \bigr) \bigr] \\
+	&\iff y \in \F{A} \lor y \in \F{B}.
+\end{align*}
+
+\cref{equation:集合论.交的像与像的交的关系1} 证明如下：
+\begin{align*}
+	y \in \F{A \cap B}
+	&\iff \exists x \in A \cap B \bigl( x F y \bigr) \\
+	&\implies \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
+			\land \bigl[ \exists x \in B \bigl( x F y \bigr) \bigr] \\
+	&\iff y \in \F{A} \land y \in \F{B}.
+\end{align*}
+注意到中间步骤的\(\implies\)不总是可逆的，
+这时因为虽然有\[
+	\exists x_1 \in A \bigl( x_1 F y \bigr), \qquad
+	\exists x_2 \in B \bigl( x_2 F y \bigr),
+\]
+但是可能\[
+	\nexists x \in A \cap B \bigl( x F y \bigr).
+\]
+不过，如果\(F\)是单根的，那么必有\(x_1 = x_2 \in A \cap B\)，
+这时候中间步骤的\(\implies\)是可逆的，可以改为\(\iff\).
+
+\cref{equation:集合论.并的像与像的并的关系2,equation:集合论.交的像与像的交的关系2} 分别是%
+\cref{equation:集合论.并的像与像的并的关系1,equation:集合论.交的像与像的交的关系1} 的简单推广，
+故略去证明.
+
+\cref{equation:集合论.差的像与像的差的关系} 证明如下：
+\begin{align*}
+	y \in \F{A} - \F{B}
+	&\iff \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
+			\land \neg\bigl[ \exists t \in B \bigl( t F y \bigr) \bigr] \\
+	&\implies \exists x \in A - B \bigl( x F y \bigr) \\
+	&\iff y \in \F{A - B}.
+\end{align*}
+若\(F\)是单根的，则\[
+	\exists! x \bigl( x F y \bigr).
+\]
+这种情况下，中间步骤的\(\implies\)可以改为\(\iff\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+%@see: 《Elements of Set Theory》 P48. Corollary 3L
+设\(G\)是映射，\(A,B\)都是集合.
+\def\G#1{G^{-1}\ImageOfSetUnderRelation{#1}}
+\begin{gather}
+	\G{\bigcup A} = \bigcup\Set*{ \G{a} \given a \in A },
+	\label{equation:集合论.并的原像与原像的并的关系} \\
+	\G{\bigcap A} = \bigcap\Set*{ \G{a} \given a \in A }, \quad A \neq \emptyset,
+	\label{equation:集合论.交的原像与原像的交的关系} \\
+	\G{A - B} = \G{A} - \G{B}.
+	\label{equation:集合论.差的原像与原像的差的关系}
+\end{gather}
+\end{corollary}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P53. Exercise 22.(a)
+\def\F#1{F\ImageOfSetUnderRelation{#1}}
+证明：\begin{equation}
+	A \subseteq B \implies \F{A} \subseteq \F{B}.
+\end{equation}
+\begin{proof}
+因为\(A \subseteq B\)，所以\(A \cap B = A\)，
+那么由\cref{equation:集合论.交的像与像的交的关系1} 可知，\[
+	\F{A} = \F{A \cap B} \subseteq \F{A} \cap \F{B} \subseteq \F{B}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P65. Exercise 59.
+设\(A,B,Q\)是集合.
+证明：\begin{gather}
+	Q \upharpoonright (A \cap B)
+	= (Q \upharpoonright A) \cap (Q \upharpoonright B), \\
+	Q \upharpoonright (A - B)
+	= (Q \upharpoonright A)
+	- (Q \upharpoonright B).
+\end{gather}
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P65. Exercise 60.
+设\(A,R,S\)是集合.
+证明：\begin{equation}
+	(R \circ S) \upharpoonright A = R \circ (S \upharpoonright A).
+\end{equation}
+%TODO
+\end{example}
+
+\subsection{指标集}
+\begin{definition}
+设\(F\)是映射，\(I\)是集合，\(\dom F \supseteq I\)，定义：\[
+	\bigcup\limits_{i \in I} F(i) \defeq \bigcup\Set{ F(i) \given i \in I },
+\]\[
+	\bigcap\limits_{i \in I} F(i) \defeq \bigcap\Set{ F(i) \given i \in I }.
+\]
+称\(I\)为“\(\bigcup\limits_{i \in I} F(i)\)、\(\bigcap\limits_{i \in I} F(i)\)的%
+\DefineConcept{指标集}（\emph{index} set）”.
+\end{definition}
+
+\subsection{映射空间}
+对于任意给定的集合\(A,B\)，
+我们可以构造出这样一个收集，
+它是由从\(A\)到\(B\)的映射组成的，定义：\[
+	^AB \defeq \Set{ F \given F\ \text{是从\(A\)到\(B\)的映射} }.
+\]
+我们把这个收集称为“从\(A\)到\(B\)的\DefineConcept{映射空间}”.
+
+因为\(F\colon A \to B\)必有\(F \subseteq A \times B\)，\(F \in \Powerset(A \times B)\)，
+所以我们可以对集合\(\Powerset(A \times B)\)利用子集公理，构造包括全部从\(A\)到\(B\)的映射的集合.
+
+记号\(^AB\)读作“\(B\)前\(A\)（\(B\)-pre-\(A\)）”.
+之所以采取这种表记方式，
+是因为当\(A\)和\(B\)是有限集，且\(\abs{A}=a,\abs{B}=b\)时，
+\(\abs{^AB}=b^a\).
+
+容易看出，对于非空集合\(A\)，总有\(^A\emptyset = \emptyset\)；
+这是因为没有哪个映射会同时有非空的定义域和空的值域.
+另一方面，对于任意集合\(A\)，总有\(^\emptyset A = \Set{\emptyset}\)；
+这是因为“空映射”\(\emptyset\colon \emptyset \to A\)的存在，
+空映射是唯一的以空集为定义域的映射.
+作为特例，我们还有\(^\emptyset\emptyset=\Set{\emptyset}\).

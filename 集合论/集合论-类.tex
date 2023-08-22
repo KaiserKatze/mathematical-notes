@@ -1,0 +1,179 @@
+
+\section{类}
+公理化集合论的一个目标是规避经典悖论，其中之一就是“罗素悖论”.
+这个悖论来源于我们天真地接受了这样一个想法：
+任给一个性质，总存在一个集合，它的元素都满足上述性质.
+例如，给定一个合式公式\(\varphi\)，它只含一个自由变元，存在一个集合，
+所有满足\(\varphi\)的对象都在这个集合里，
+而所有不满足\(\varphi\)的对象都不在这个集合里，也就是说
+\begin{equation}\label{equation:集合论.类的逻辑表示}
+	(\forall x)[x \in a \iff \varphi(x)].
+\end{equation}
+这个原则被称为“抽象公理（Abstraction Axiom）”.
+它曾在弗雷格于1893年所著的《算术基础（Grundgesetze der Arithmetik）》中出现过.
+后来，罗素向弗雷格写信指出，抽象公理会导致悖论.
+
+考虑到\(b \notin b\)是一个合式公式，
+我们用受限变元\(x\)代替自由变元\(b\)，
+代入到“抽象公理”中，作为\(\varphi(x)\).
+然后，我们假设存在一个集合\(a\)使得\[
+	(\forall x)[x \in a \iff x \notin x],
+\]
+那么，特别地，有\[
+	a \in a \iff a \notin a.
+\]
+于是我们得到一个逻辑谬误，
+这是因为根据排中律，要么有\(a \in a\)，要么有\(a \notin a\)，不能二者兼得.
+这就说明“抽象公理”是一个假命题.
+
+我们想要取得“满足某种特定性质的全部对象的汇集”的愿望难以摈弃，
+而如若不拒绝“抽象公理”，则会导致悖论，我们又该怎么办呢？
+策梅洛与弗伦克尔提供了以下解决方案：
+我们把命题公式 \labelcref{equation:集合论.类的逻辑表示} 中的\(a\)称为%
+“具有性质\(\varphi\)的各个事物的\DefineConcept{类}%
+（the \emph{class} of individuals that have the property \(\varphi\)）”，
+并且将它表示为
+\begin{equation}
+	\Set{ x \given \varphi(x) }.
+\end{equation}
+以后我们可以证明，类是对集合这一概念的延伸，
+每个集合都是一个类，但不是每个类都是一个集合.
+这里，其实我们也把用于表示元素与集合之间从属关系的\(\in\)符号的使用范围拓宽到类上了：
+“一个对象是某个类\(\Set{ x \given \varphi(x) }\)的一个元素”%
+当且仅当“这个对象是一个集合，且它具有这个类的定义性质\(\varphi\)”.
+接下来，要解决罗素悖论，
+我们只需证明\(\Set{ x \given x \notin x }\)%
+是一个\DefineConcept{真类}（proper class），
+也就是证明这个类不是集合.
+正因为这个类不是集合，所以它不从属于任何一个类，包括它自己.
+
+现在我们来将形如\[
+	\Set{ x \given \varphi(x) }
+\]的符号加入我们的对象语言.
+\begin{definition}
+%@see: 《Introduction to Axiomatic Set Theory》 P12. Definition 4.1.
+我们可以归纳地给出\DefineConcept{广义合式公式}（well-formed formula in the wider sense）的定义：
+\begin{enumerate}
+	\item 如果\(a\)和\(b\)都是自由变元，那么\(a \in b\)是广义合式公式.
+	\item 如果\(\varphi\)和\(\psi\)都是广义合式公式，且\(a\)和\(b\)都是自由变元，
+	那么\[
+		\def\A{\Set{ x \given \psi(x) }}
+		\def\B{\Set{ x \given \varphi(x) }}
+		a \in \A, \qquad
+		\B \in b, \qquad
+		\B \in \A
+	\]都是广义合式公式.
+	\item 如果\(\varphi\)和\(\psi\)都是广义合式公式，
+	那么\[
+		\neg\varphi, \qquad
+		\varphi\land\psi, \qquad
+		\varphi\lor\psi, \qquad
+		\varphi\implies\psi,
+		\varphi\iff\psi
+	\]都是广义合式公式.
+	\item 如果\(\varphi\)是广义合式公式，且\(x\)是受限变元，
+	那么\[
+		(\exists x)\varphi(x)
+		\quad\text{和}\quad
+		(\forall x)\varphi(x)
+	\]都是广义合式公式.
+\end{enumerate}
+任意一条公式，当且仅当它可以由上述三条规则演绎推得时，我们才称其为广义合式公式.
+\end{definition}
+
+\begin{definition}
+%@see: 《Introduction to Axiomatic Set Theory》 P12. Definition 4.2.
+设\(\varphi\)和\(\psi\)都是广义合式公式.
+\def\A{\Set{ x \given \varphi(x) }}
+\def\B{\Set{ x \given \psi(x) }}
+那么\begin{enumerate}
+	\item \(a \in \A \defiff \varphi(a)\).
+	\item \(\A \in a \defiff (\exists y)[y \in a \land (\forall z)[z \in y \iff \varphi(z)]]\).
+	\item \(\A \in \B \defiff (\exists y)[y \in \B \land (\forall z)[z \in y \iff \varphi(z)]]\).
+\end{enumerate}
+\end{definition}
+
+任意一条广义合式公式\(\varphi\)，
+总\DefineConcept{可化简为}（is reducible to）一条唯一确定的合式公式\(\varphi^*\).
+\begin{definition}\label{definition:集合论.广义合式公式化简为合式公式的方法}
+%@see: 《Introduction to Axiomatic Set Theory》 P12. Definition 4.3.
+设\(\varphi\)和\(\psi\)都是广义合式公式.
+\def\A{\Set{ x \given \varphi(x) }}
+\def\B{\Set{ x \given \psi(x) }}
+那么\begin{enumerate}
+	\item \([a \in b]^* \defiff a \in b\).
+	\item \([a \in \A]^* \defiff \varphi^*(a) \defiff [\varphi(a)]^*\).
+	\item \([\A \in a]^* \defiff (\exists y)[y \in a \land (\forall z)[z \in y \iff \varphi^*(z)]]\).
+	\item \([\A \in \B]^* \defiff (\exists y)[\psi^*(y) \land (\forall z)[z \in y \iff \varphi^*(z)]]\).
+	\item \([\neg\varphi]^* \defiff \neg\varphi^*\).
+	\item \([\varphi\land\psi]^* \defiff \varphi^*\land\psi^*\).
+	\item \([(\forall x)\varphi(x)]^* \defiff (\forall x)\varphi^*(x)\).
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+每一条广义合式公式\(\varphi\)，
+总可按\cref{definition:集合论.广义合式公式化简为合式公式的方法} 约定的规则，
+化简为唯一确定的合式公式\(\varphi^*\).
+\end{theorem}
+
+我们把自由变元和类的符号统称为\DefineConcept{项}（term）.
+\begin{definition}
+如果\(A\)和\(B\)是项，那么\[
+	A=B \defiff (\forall x)[x \in A \iff x \in B].
+\]
+\end{definition}
+
+\begin{theorem}
+\(A \in B \iff (\exists x)[x = A \land x \in B]\).
+\end{theorem}
+
+\begin{theorem}
+如果\(A,B,C\)都是项，那么\begin{enumerate}
+	\item \(A=A\).
+	\item \(A=B \implies B=A\).
+	\item \(A=B \land B=C \implies A=C\).
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+如果\(A\)和\(B\)是项，且\(\varphi\)是广义合式公式，那么\[
+	A=B \implies [\varphi(A)\iff\varphi(B)].
+\]
+\end{theorem}
+
+\begin{theorem}\label{theorem:集合论.集合是类}
+\(a=\Set{ x \given x \in a }\).
+\end{theorem}
+\cref{theorem:集合论.集合是类} 说明“每个集合都是一个类”.
+接下来，我们引入两个谓词：
+用\(\mathfrak{M}(A)\)表示“\(A\)是集合”，
+用\(\mathfrak{Pr}(A)\)表示“\(A\)是真类”，即\[
+	\mathfrak{M}(A) \defiff (\exists x)[x = A],
+\]\[
+	\mathfrak{Pr}(A) \defiff \neg\mathfrak{M}(A).
+\]
+
+\begin{theorem}
+设\(a\)是集合，那么\(\mathfrak{M}(a)\).
+\end{theorem}
+
+\begin{theorem}
+\(A \in \Set{ x \given \varphi(x) } \iff \mathfrak{M}(A) \land \varphi(A)\).
+\end{theorem}
+
+\begin{theorem}
+\def\Ru{\mathrm{Ru}}
+把\[
+	\Ru \defeq \Set{ x \given x \notin x }
+\]称为{\rm\DefineConcept{罗素类}（Russel class）}，
+那么\(\mathfrak{Pr}(\Ru)\).
+\begin{proof}
+由于\(\mathfrak{M}(\Ru)
+\implies
+[\Ru\in\Ru\iff\Ru\notin\Ru]\)矛盾，
+故\(\Ru\)是真类.
+\end{proof}
+\end{theorem}
+鉴于罗素类\(\mathrm{Ru}\)是真类，
+罗素悖论旋即得以解决.
