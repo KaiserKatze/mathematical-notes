@@ -31,13 +31,13 @@
 如果集合\(A\)与\(B\)具有相同的元素，
 则称“\(A\)与\(B\) \DefineConcept{相等}”，
 记作\(A=B\)，即
-\begin{equation}
+\[
 	(\forall A)(\forall B)[
 		(\forall x)[x \in A \iff x \in B]
 		\defiff
 		A=B
 	].
-\end{equation}
+\]
 \end{axiom}
 外延公理在英语中称作Extensionality Axiom，在德语中称作Axiom der Bestimmtheit.
 
@@ -200,11 +200,11 @@
 %@see: 《Elements of Set Theory》 P18. Empty Set Axiom
 总存在这样一个集合\(A\)，没有任何元素属于它\footnote{%
 我们也可以用命题公式\[
-	\exists A, \forall x \bigl( x \in A \iff x \neq x \bigr)
+	(\exists A)(\forall x)[x \in A \iff x \neq x]
 \]表示“没有任何元素的集合”的存在性.
 它主要利用了“\((x \neq x)\)一定是假命题”这一点.
 }，即\[
-	\exists A, \forall x \bigl( x \notin A \bigr).
+	(\exists A)(\forall x)[x \notin A].
 \]
 \end{axiom}
 
@@ -212,10 +212,8 @@
 %@see: 《Elements of Set Theory》 P18. Pairing Axiom
 对于任意两个元素\(u\)和\(v\)，
 总存在一个集合\(B\)，它的元素只有\(u\)和\(v\)，即\[
-	\forall u, \forall v, \exists B, \forall x
-	\bigl(
-		x \in B \iff x = u \lor x = v
-	\bigr).
+	(\forall u)(\forall v)(\exists B)(\forall x)
+	[x \in B \iff x = u \lor x = v].
 \]
 \end{axiom}
 
@@ -284,7 +282,8 @@
 我们用符号\[
 	\Set{ u, v }
 \]表示只有\(u,v\)元素的集合，
-并把这个集合称为“\(u\)和\(v\)的\DefineConcept{对集}（pair set）”，即\[
+并把这个集合称为“\(u\)和\(v\)的\DefineConcept{对集}（pair set）”，
+即\[
 	\Set{ u, v } \defeq \Set{ x \given x = u \lor x = v }.
 \]
 \end{definition}
@@ -295,9 +294,6 @@
 我们称这种集合为\DefineConcept{单元素集}（singleton）.
 %@see: https://mathworld.wolfram.com/SingletonSet.html
 单元素集是最简单的非空集合.
-
-相对地，当\(u \neq v\)时，
-我们把\(u\)和\(v\)的对集\(\Set{u,v}\)称为\DefineConcept{双元素集}.
 
 利用对集公理和并集公理，我们可以构造任意有限集合.
 例如，给定任意的\(x\)，我们可以定义“单元集”如下：\[
