@@ -3,52 +3,61 @@
 \begin{definition}
 假设在非空集合\(R\)上定义了两个代数运算，
 一个叫做加法（记作\(+\)），
-另一个叫做乘法（记作\(\cdot\)），
+另一个叫做乘法（记作\(\times\)），
 并且它们满足下列6条运算法则：
 \begin{enumerate}
     \item 加法交换律，即\[
-        \forall a,b \in R \bigl(a+b = b+a\bigr).
+        (\forall a,b \in R)[a+b = b+a].
     \]
 
     \item 加法结合律，即\[
-        \forall a,b,c \in R \Bigl[(a+b)+c = a+(b+c)\Bigr].
+        (\forall a,b,c \in R)[(a+b)+c = a+(b+c)].
     \]
 
-    \item \(R\)中存在一个元素\(o\)，它满足\[
-        \forall a \in R \bigl( a+o = o+a = a \bigr);
+    \item \(R\)中存在零元，即\[
+        (\exists o \in R)(\forall a \in R)[a+o = o+a = a].
     \]
-    称其为\(R\)的\DefineConcept{零元}.
+
+	这里我们把满足\[
+		o \in G
+		\land
+		(\forall a \in R)[a+o = o+a = a]
+	\]的元素\(o\)称为“\(R\)的\DefineConcept{零元}”.
 
     \item 加法可逆，即\[
-        (\forall a \in R)(\exists b \in R)
-        a+b = b+a = o;
+        (\forall a \in R)(\exists b \in R)[a+b = b+a = o];
     \]
-    把\(b\)称为\(a\)的\DefineConcept{负元}，记作\((-a)\).
+
+	这里我们把满足\[
+		b \in R
+		\land
+        (\forall a \in R)[a+b = b+a = o]
+	\]的元素\(b\)称为“\(a\)的\DefineConcept{负元}”，记作\((-a)\).
 
     \item 乘法结合律，即\[
-        \forall a,b,c \in R
-        \bigl[ (a \cdot b) \cdot c = a \cdot (b \cdot c) \bigr].
+        (\forall a,b,c \in R)
+        [ (a \times b) \times c = a \times (b \times c) ].
     \]
 
     \item 左分配律，即\[
-        \forall a,b,c \in R \bigl[ a \cdot (b+c) = a \cdot b + a \cdot c \bigr],
+        (\forall a,b,c \in R)[ a \times (b+c) = a \times b + a \times c ],
     \]
     和右分配律，即\[
-        \forall a,b,c \in R \bigl[ (b+c) \cdot a = b \cdot a + c \cdot a \bigr].
+        (\forall a,b,c \in R)[ (b+c) \times a = b \times a + c \times a ].
     \]
 \end{enumerate}
 那么称“\(R\)是一个\DefineConcept{环}（ring）”.
 \end{definition}
 
 \begin{theorem}
-假设在非空集合\(R\)上定义了两种二元运算\(+\)和\(\cdot\)，
+假设在非空集合\(R\)上定义了两种二元运算\(+\)和\(\times\)，
 且满足\begin{enumerate}
-    \item \((R,+)\)是阿贝尔群，\((R,\cdot)\)是半群.
+    \item \((R,+)\)是阿贝尔群，\((R,\times)\)是半群.
 
-    \item 对任意\(a,b,c \in R\)，对\(+\)和\(\cdot\)有分配律成立，即\[
-        a \cdot (b + c) = a \cdot b + a \cdot c,
+    \item 对任意\(a,b,c \in R\)，对\(+\)和\(\times\)有分配律成立，即\[
+        a \times (b + c) = a \times b + a \times c,
     \]\[
-        (b + c) \cdot a = b \cdot a + c \cdot a.
+        (b + c) \times a = b \times a + c \times a.
     \]
 \end{enumerate}
 那么称\(R\)是环.
@@ -127,14 +136,14 @@
 \subsection{交换环，单位元}
 \begin{definition}
 如果环\(R\)的乘法满足交换律，即\[
-    \forall a,b \in R \bigl( a \cdot b = b \cdot a \bigr),
+    \forall a,b \in R \bigl( a \times b = b \times a \bigr),
 \]
 那么称\(R\)是\DefineConcept{交换环}.
 \end{definition}
 
 \begin{definition}
 如果环\(R\)中有一个元素\(e\)满足\[
-    \forall a \in R \bigl( e \cdot a = a \cdot e = a \bigr),
+    \forall a \in R \bigl( e \times a = a \times e = a \bigr),
 \]
 那么称“\(e\)是\(R\)的\DefineConcept{单位元}或\DefineConcept{幺元}”.
 \end{definition}
@@ -144,7 +153,7 @@
 \begin{proof}
 设环\(R\)具有单位元\(e_1\)和\(e_2\).
 根据单位元的定义，对\(\forall a \in R\)，有\[
-    e_1 = e_1 \cdot e_2 = e_2 \cdot e_1 = e_2,
+    e_1 = e_1 \times e_2 = e_2 \times e_1 = e_2,
 \]
 也就是说，\(R\)的单位元是唯一的.
 \end{proof}
@@ -153,33 +162,33 @@
 \subsection{乘零定理}
 \begin{theorem}[乘零定理]
 在环\(R\)中，零元\(o\)满足\[
-    \forall a \in R \bigl( o \cdot a = a \cdot o = o \bigr).
+    \forall a \in R \bigl( o \times a = a \times o = o \bigr).
 \]
 \begin{proof}
 需要利用沟通加法和乘法的桥梁：
 乘法对于加法的左、右分配律，即\[
-    o \cdot a = (o + o) \cdot a = o \cdot a + o \cdot a.
-\]在上式等号两边加上\(o \cdot a\)的负元\(-o \cdot a\)，得\[
-    o \cdot a + (- o \cdot a) = (o \cdot a + o \cdot a) + (- o \cdot a),
+    o \times a = (o + o) \times a = o \times a + o \times a.
+\]在上式等号两边加上\(o \times a\)的负元\(-o \times a\)，得\[
+    o \times a + (- o \times a) = (o \times a + o \times a) + (- o \times a),
 \]\[
-    o = o \cdot a.
+    o = o \times a.
 \]
-同理，可证\(a \cdot o = o\).
+同理，可证\(a \times o = o\).
 \end{proof}
 \end{theorem}
 
 \begin{example}
 设\(R\)是有单位元\(e(\neq o)\)的环.
 证明：单位元的负元\((-e)\)满足\[
-    (-e)^2=(-e)\cdot(-e)=e.
+    (-e)^2=(-e)\times(-e)=e.
 \]
 \begin{proof}
 根据单位元的定义有\[
-    e \cdot (-e) = (-e) \cdot e = -e.
+    e \times (-e) = (-e) \times e = -e.
 \]又由负元的定义有\[
     e + (-e) = o,
 \]在等号左右两边同时右乘\((-e)\)，再由右分配律有\[
-    -e + (-e)^2 = e \cdot (-e) + (-e) \cdot (-e) = o \cdot (-e) = o,
+    -e + (-e)^2 = e \times (-e) + (-e) \times (-e) = o \times (-e) = o,
 \]
 移项得\((-e)^2 = e\).
 \end{proof}
@@ -189,7 +198,7 @@
 \begin{definition}
 设\(R\)是有单位元\(e(\neq o)\)的环.
 对于\(a \in R\)，如果\[
-    \exists b \in R \bigl( a \cdot b = b \cdot a = e \bigr),
+    \exists b \in R \bigl( a \times b = b \times a = e \bigr),
 \]那么称“\(a\)是一个\DefineConcept{可逆元}”，
 把\(b\)叫做\(a\)的\DefineConcept{逆元}，记作\(a^{-1}\).
 \end{definition}
@@ -199,15 +208,15 @@
 \begin{proof}
 设环\(R\)具有单位元\(e(\neq o)\).
 假设环\(R\)中的任一可逆元\(a\)的逆元为\(b\)和\(c\).由可逆元的定义，有\[
-    a \cdot b = b \cdot a = e,
+    a \times b = b \times a = e,
 \]\[
-    a \cdot c = c \cdot a = e.
+    a \times c = c \times a = e.
 \]
 又由单位元的定义，有\[
-    b = b \cdot e
-    = b \cdot (a \cdot c)
-    = (b \cdot a) \cdot c
-    = e \cdot c
+    b = b \times e
+    = b \times (a \times c)
+    = (b \times a) \times c
+    = e \times c
     = c,
 \]
 这就说明，任一可逆元的逆元是唯一的.
@@ -219,7 +228,7 @@
 设\(R\)是一个环.
 对于\(a \in R\)，
 如果存在\(c \in R\)且\(c \neq o\)，
-使得\(a \cdot c = o\)（或\(c \cdot a = o\)），
+使得\(a \times c = o\)（或\(c \times a = o\)），
 那么称“\(a\)是一个\DefineConcept{左零因子}或\DefineConcept{右零因子}”.
 左、右零因子统称为\DefineConcept{零因子}.
 \end{definition}
@@ -232,14 +241,14 @@
 设\(R\)是有单位元\(e(\neq o)\)的环，则\(R\)的零因子不是可逆元.
 \begin{proof}
 设\(a\)是左零因子，则存在\(c \in R\)且\(c \neq o\)，使得\[
-    a \cdot c = o.
+    a \times c = o.
 \]
 
 假如\(a\)是可逆元，则在上式两边左乘\(a^{-1}\)，再根据乘零定理，得\[
-    a^{-1} \cdot (a \cdot c) = a^{-1} \cdot o = o.
+    a^{-1} \times (a \times c) = a^{-1} \times o = o.
 \]
 根据乘法的结合律和逆元的性质，得\[
-    a^{-1} \cdot (a \cdot c) = (a^{-1} \cdot a) \cdot c = e \cdot c = c.
+    a^{-1} \times (a \times c) = (a^{-1} \times a) \times c = e \times c = c.
 \]
 于是\(c = o\)，矛盾，故左零因子\(a\)不是可逆元.
 同理可得，右零因子不是可逆元.
@@ -255,12 +264,12 @@
 要想让可逆元等于零元，唯一的办法是在由一个元素\(o\)构成的集合\(R\)上定义加法和乘法如下：\[
     o + o \mapsto o,
     \qquad
-    o \cdot o \mapsto o.
+    o \times o \mapsto o.
 \]
 显然元素\(o\)是环\(R\)的单位元和零元.
 再将原本的可逆元的定义中对环\(R\)的单位元\(e \neq o\)的约束去掉，
 那么对于环\(R\)上唯一的元素\(o\)，有\[
-    \forall x \in R \bigl( x = o \land x \cdot o = o \cdot x = o \bigr),
+    \forall x \in R \bigl( x = o \land x \times o = o \times x = o \bigr),
 \]
 即元素\(o\)还是环\(R\)的“可逆元”，它的“逆元”是\(o\)本身.
 
