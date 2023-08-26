@@ -85,6 +85,13 @@ if __name__ == "__main__":
                 ]):
                     error("【0006】在\hyperref命令前后存在空格！")
 
+                if any(re.search(pattern, line) for pattern in [
+                    r"\\\)\\DefineConcept\{[^\}]+\}",
+                    r"\\DefineConcept\{[^\}]+\}\\\(",
+                    r"\\DefineConcept\{[^\}]+\}$",
+                ]):
+                    error("【0007】在\DefineConcept命令前后存在空格！")
+
                 prev_line = line
     if not is_tex_project_problematic:
         logger.info("检查完毕，没有任何错误！")
