@@ -116,6 +116,7 @@
 \end{corollary}
 
 \section{子群}
+\subsection{子群}
 \begin{definition}
 %@see: 《近世代数》（丘维声，2015） P40. 定义1
 %@see: https://mathworld.wolfram.com/Subgroup.html
@@ -170,6 +171,7 @@
 \end{proof}
 \end{theorem}
 
+\subsection{陪集，拉格朗日定理}
 利用群\(G\)的子群\(H\)可以研究群\(G\)的结构，
 这时因为利用子群\(H\)可以给出集合\(G\)的一个划分.
 为了给出\(G\)的一个划分，需要在\(G\)上建立一个二元等价关系.
@@ -189,6 +191,97 @@
 于是\(a \times c^{-1} \in H\)，从而\(a \sim c\)；
 这就说明\(\sim\)具有传递性.
 综上所述，\(\sim\)是\(G\)上的一个等价关系.
+
+任给\(a \in G\)，
+其等价类为\begin{align*}
+	[a] &= \Set{ x \in G \given x \sim a }
+	= \Set{ x \in G \given x \times a^{-1} \in H }
+	= \Set{ x \in G \given x \times a^{-1} = h \land h \in H } \\
+	&= \Set{ x \in G \given x = h \times a \land h \in H }
+	= \Set{ h \times a \given h \in H }.
+\end{align*}
+我们称\([a]\)为\(H\)的一个\DefineConcept{右陪集}，记为\([a]_\rightarrow\)；
+称\(a\)为它的\DefineConcept{陪集代表}.
+于是\(H\)的全体右陪集组成的集合也就是\(G\)关于子群\(H\)的\DefineConcept{右商集}，
+记为\((G/H)_\rightarrow\)，它是\(G\)的一个划分.
+
+类似地，我们还可以重新定义：\[
+	(a \sim b)
+	\defiff
+	b^{-1} \times a \in H.
+\]
+同理可证新的\(\sim\)也是\(G\)上的一个等价关系.
+任给\(a \in G\)，它的等价类为\begin{align*}
+	[a] &= \Set{ x \in G \given x \sim a }
+	= \Set{ x \in G \given a^{-1} \times x \in H }
+	= \Set{ x \in G \given a^{-1} \times x = h \land h \in H } \\
+	&= \Set{ x \in G \given x = a \times h \land h \in H }
+	= \Set{ a \times h \given h \in H }.
+\end{align*}
+我们称\([a]\)为\(H\)的一个\DefineConcept{左陪集}，记为\([a]_\leftarrow\)；
+称\(a\)为它的\DefineConcept{陪集代表}.
+于是\(H\)的全体左陪集组成的集合也就是\(G\)关于子群\(H\)的\DefineConcept{左商集}，
+记为\((G/H)_\leftarrow\)，它也是\(G\)的一个划分.
+
+现在定义映射\[
+	\sigma\colon (G/H)_\leftarrow \to (G/H)_\rightarrow,
+	[a]_\leftarrow \mapsto [a^{-1}]_\rightarrow.
+\]
+由于\[
+	[a]_\leftarrow = [c]_\leftarrow
+	\iff
+	c^{-1} \times a \in H
+	\iff
+	c^{-1} \times (a^{-1})^{-1} \in H
+	\iff
+	[c^{-1}]_\rightarrow = [a^{-1}]_\rightarrow,
+\]
+因此\(\sigma\)是单射.
+任给\([b]_\rightarrow \in (G/H)_\rightarrow\)，
+有\[
+	\sigma([b^{-1}]_\leftarrow)
+	= ([b^{-1}]_\rightarrow)^{-1}
+	= [b]_\rightarrow,
+\]
+因此\(\sigma\)又是满射，
+从而\(\sigma\)是双射.
+于是左陪集与右陪集的基数相同，即\[
+	\abs{(G/H)_\leftarrow} = \abs{(G/H)_\rightarrow}.
+\]
+由此我们引出下述概念.
+\begin{definition}
+设\(H\)是群\(G\)的一个子群，
+把\((G/H)_\leftarrow\)（或\((G/H)_\rightarrow\)）的基数%
+称为“\(H\)在\(G\)中的\DefineConcept{指数}”，记作\([G:H]\).
+\end{definition}
+
+假设群\(G\)的子群\(H\)在\(G\)中的指数为\([G:H]=r\)，
+则\begin{equation}\label{equation:抽象代数.关于子群的左陪集分解式}
+	G = H \cup [a_1]_\leftarrow \cup [a_2]_\leftarrow \cup \dotsb \cup [a_{r-1}]_\leftarrow,
+\end{equation}
+其中\(H,[a_1]_\leftarrow,[a_2]_\leftarrow,\dotsc,[a_{r-1}]_\leftarrow\)两两互斥.
+我们把\cref{equation:抽象代数.关于子群的左陪集分解式}
+称为“群\(G\)关于子群\(H\)的\DefineConcept{左陪集分解式}”；
+把\(\Set{e,\v{a}{r-1}}\)称为“\(H\)在\(G\)中的\DefineConcept{左陪集代表系}”.
+
+\begin{lemma}
+映射\[
+	\uptau\colon H \to [a]_\leftarrow, h \mapsto a \times h
+\]是双射.
+\end{lemma}
+由此可知，子群\(H\)与它的任一左陪集\([a]_\leftarrow\)的基数相同.
+
+\begin{theorem}[拉格朗日定理]
+设\(G\)是有限群，\(H\)是\(G\)的任一子群，则\[
+	\abs{G} = [G:H] \cdot \abs{H}.
+\]
+\end{theorem}
+拉格朗日定理说明：
+\(G\)的任一子群\(H\)的阶是\(G\)的阶的因数.
+
+\begin{corollary}
+设\(G\)是有限群，则\(G\)的任一元素\(a\)的阶是\(G\)的阶的因数，从而\(a^{\abs{G}}=e\).
+\end{corollary}
 
 \section{群的同态}
 \begin{definition}
