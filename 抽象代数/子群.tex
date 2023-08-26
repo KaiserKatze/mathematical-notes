@@ -5,8 +5,8 @@
 %@see: https://mathworld.wolfram.com/Subgroup.html
 设\(\opair{G,\times}\)是群，
 \(H\)是\(G\)的一个非空子集.
-又设映射\(\otimes\)是\(\times\)在\(H\)上的限制，
-即\(\otimes = \times \upharpoonright H\).
+又设映射\(\otimes\)是\(\times\)在直积\(H \times H\)上的限制，
+即\(\otimes = \times \upharpoonright(H \times H)\).
 如果\(H\)对于运算\(\otimes\)也成为一个群\(\opair{H,\otimes}\)，
 那么称“\(\opair{H,\otimes}\)是\(\opair{G,\times}\)的一个\DefineConcept{子群}”，
 记作\(\opair{H,\otimes} \subseteq \opair{G,\times}\).
@@ -31,14 +31,26 @@
 则\[
 	e' \otimes e' = e';
 \]
+又因为\(\otimes\)是\(\times\)在\(H\)上的限制，
+根据限制的定义可知
+\[
+	(\forall a,b,c)[
+		\opair{\opair{a,b},c} \in \otimes
+		\iff
+		\opair{\opair{a,b},c} \in \times
+		\land
+		\opair{a,b} \in H \times H
+	],
+\]
+于是\[
+	e' \times e' = e';
+\]
 假设\(e'\)在\(G\)中的逆元是\((e')^{-1}\)，
-即\[
-	e' \times (e')^{-1} = e;
+即\(e' \times (e')^{-1} = e\)，
+那么在上式等号两边右乘\((e')^{-1}\)，得\[
+	(e' \times e') \times (e')^{-1} = (e') \times (e')^{-1};
 \]
-那么\[
-	(e' \otimes e') \times (e')^{-1} = (e') \times (e')^{-1};
-\]
-由此可得\(e' \times e = e\)；
+利用结合律可得\(e' \times e = e\)；
 又由于\(e' \times e = e'\)，因此\(e = e'\)；
 这就说明，群\(G\)的单位元\(e\)是\(G\)的子群\(H\)的单位元.
 任给\(b \in H\)，假设\(b\)在\(H\)中的逆元为\(c\)，
