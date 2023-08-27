@@ -410,7 +410,7 @@
 		\dom(G \circ F) = A,
 	\]
 	以及\[
-		\forall x \in A: G(F(x)) = F^{-1}(F(x)) = x,
+		(\forall x \in A)[G(F(x)) = F^{-1}(F(x)) = x],
 	\]
 	于是\(G \circ F = I_A\)成立.
 
@@ -418,7 +418,7 @@
 	我们还是先证充分性.
 	假设存在映射\(H\)使得\(F \circ H = I_B\).
 	那么\[
-		\forall y \in B: y = F(H(y)),
+		(\forall y \in B)[y = F(H(y))],
 	\]
 	从而\(y \in \ran F\)，
 	于是\(\ran F = B\).
@@ -435,12 +435,14 @@
 	因此，我们需要引入选择公理.
 	借助选择公理，我们可以令映射\(H\)满足\(H \subseteq F^{-1}\)且\(\dom H = \dom F^{-1} = B\).
 	于是\(H\)满足\[
-		\forall y \in B
-		\bigl[
-		\opair{y,H(y)} \in F^{-1}
-		\iff \opair{H(y),y} \in F
-		\iff F(H(y)) = y
-		\bigr].
+		(\forall y \in B)
+		[
+			\opair{y,H(y)} \in F^{-1}
+			\iff
+			\opair{H(y),y} \in F
+			\iff
+			F(H(y)) = y
+		].
 		\qedhere
 	\]
 \end{enumerate}
@@ -483,27 +485,27 @@
 \cref{equation:集合论.并的像与像的并的关系1} 证明如下：
 \begin{align*}
 	y \in \F{A \cup B}
-	&\iff \exists x \in A \cup B \bigl( x F y \bigr) \\
-	&\iff \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
-			\lor \bigl[ \exists x \in B \bigl( x F y \bigr) \bigr] \\
+	&\iff (\exists x \in A \cup B)[\opair{x,y} \in F] \\
+	&\iff (\exists x \in A)[\opair{x,y} \in F]
+			\lor (\exists x \in B)[\opair{x,y} \in F] \\
 	&\iff y \in \F{A} \lor y \in \F{B}.
 \end{align*}
 
 \cref{equation:集合论.交的像与像的交的关系1} 证明如下：
 \begin{align*}
 	y \in \F{A \cap B}
-	&\iff \exists x \in A \cap B \bigl( x F y \bigr) \\
-	&\implies \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
-			\land \bigl[ \exists x \in B \bigl( x F y \bigr) \bigr] \\
+	&\iff (\exists x \in A \cap B)[\opair{x,y} \in F] \\
+	&\implies (\exists x \in A)[\opair{x,y} \in F]
+		\land (\exists x \in B)[\opair{x,y} \in F] \\
 	&\iff y \in \F{A} \land y \in \F{B}.
 \end{align*}
 注意到中间步骤的\(\implies\)不总是可逆的，
 这时因为虽然有\[
-	\exists x_1 \in A \bigl( x_1 F y \bigr), \qquad
-	\exists x_2 \in B \bigl( x_2 F y \bigr),
+	(\exists x_1 \in A)[\opair{x_1,y} \in F], \qquad
+	(\exists x_2 \in B)[\opair{x_2,y} \in F],
 \]
 但是可能\[
-	\nexists x \in A \cap B \bigl( x F y \bigr).
+	(\forall x \in A \cap B)[\opair{x,y} \notin F].
 \]
 不过，如果\(F\)是单根的，那么必有\(x_1 = x_2 \in A \cap B\)，
 这时候中间步骤的\(\implies\)是可逆的，可以改为\(\iff\).
@@ -515,13 +517,13 @@
 \cref{equation:集合论.差的像与像的差的关系} 证明如下：
 \begin{align*}
 	y \in \F{A} - \F{B}
-	&\iff \bigl[ \exists x \in A \bigl( x F y \bigr) \bigr]
-			\land \neg\bigl[ \exists t \in B \bigl( t F y \bigr) \bigr] \\
-	&\implies \exists x \in A - B \bigl( x F y \bigr) \\
+	&\iff (\exists x \in A)[\opair{x,y} \in F]
+		\land \neg[(\exists t \in B)[\opair{t,y} \in F]] \\
+	&\implies (\exists x \in A - B)[\opair{x,y} \in F] \\
 	&\iff y \in \F{A - B}.
 \end{align*}
 若\(F\)是单根的，则\[
-	\exists! x \bigl( x F y \bigr).
+	(\exists! x)[\opair{x,y} \in F].
 \]
 这种情况下，中间步骤的\(\implies\)可以改为\(\iff\).
 \end{proof}
