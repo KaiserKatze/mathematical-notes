@@ -18,3 +18,64 @@
 
 可以注意到，双射是等价关系，因此同构也是等价关系.
 恒等映射是自同构.
+
+\subsection{常见的同构}
+我们在前面几节基于集合论构造了自然数集\(\omega\)和整数集\(\mathbb{Z}\)，
+尽管自然数集\(\omega\)并非整数集\(\mathbb{Z}\)的子集，
+但是我们可以在整数集中找到一个子集\(\Set{ x \in \mathbb{Z} \given x \geqslant 0 }\)，
+它的行为表现都和\(\omega\)一模一样.
+准确地说，我们定义映射\[
+	E\colon \omega\to\mathbb{Z}, n\mapsto[\opair{n,0}].
+\]
+那么我们有\(E(0)=0\)，\(E(1)=1\).
+我们下面来证明，\(E\)是一个同构嵌入（isomorphic embedding），%@see: https://mathworld.wolfram.com/Embedding.html
+它将\(\opair{\omega,+,\times,<}\)嵌入\(\opair{\mathbb{Z},+,\times,<}\).
+\begin{theorem}
+\(E\)是一一映射，对\(\forall m,n\in\omega\)总满足
+\begin{gather}
+	E(m+n)=E(m)+E(n),
+	\label{equation:集合论.自然数集到整数集的同构嵌入1} \\
+	E(m \times n)=E(m) \times E(n),
+	\label{equation:集合论.自然数集到整数集的同构嵌入2} \\
+	m<n \iff E(m)<E(n).
+	\label{equation:集合论.自然数集到整数集的同构嵌入3}
+\end{gather}
+\begin{proof}
+因为\begin{align*}
+	E(m)=E(n)
+	&\implies
+	[\opair{m,0}]=[\opair{n,0}] \\
+	&\implies
+	\opair{m,0}\sim\opair{n,0} \\
+	&\implies
+	m=n,
+\end{align*}
+所以\(E\)是一一映射.
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入1} 证明如下：
+\begin{align*}
+	E(m+n)
+	&= [\opair{m+n,0}] \\
+	&= [\opair{m,0}]+[\opair{n,0}] \\
+	&= E(m)+E(n).
+\end{align*}
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入2} 证明如下：
+\begin{align*}
+	E(m \times n)
+	&= [\opair{m \times n,0}] \\
+	&= [\opair{m,0}]\times[\opair{n,0}] \\
+	&= E(m) \times E(n).
+\end{align*}
+
+对\cref{equation:集合论.自然数集到整数集的同构嵌入3} 证明如下：
+\begin{align*}
+	m<n
+	&\iff
+	[\opair{m,0}]<[\opair{n,0}] \\
+	&\iff
+	E(m)<E(n).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
