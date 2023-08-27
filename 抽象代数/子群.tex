@@ -20,7 +20,32 @@
 我们将\(\opair{\{e\},\odot}\)和\(\opair{G,\times}\)%
 统称为“\(\opair{G,\times}\)的\DefineConcept{平凡子群}”.
 
-另外，我们还可以看出，
+\begin{lemma}\label{theorem:抽象代数.群的运算在子集上的限制的不变性}
+设\(\opair{G,\times}\)是群，
+\(H\)是\(G\)的一个非空子集，
+\(\otimes = \times \upharpoonright(H \times H)\)，
+则\[
+	(\forall a,b \in H)[a \otimes b = a \times b].
+\]
+\begin{proof}
+根据限制的定义可知\[
+	(\forall a,b,c)[
+		\opair{\opair{a,b},c} \in \otimes
+		\iff
+		\opair{\opair{a,b},c} \in \times
+		\land
+		\opair{a,b} \in H \times H
+	],
+\]
+于是\[
+	(\forall a,b \in H)
+	[a \otimes b = a \times b].
+	\qedhere
+\]
+\end{proof}
+\end{lemma}
+
+另外，我们还可以从子群的定义中看出，
 如果\(\opair{H,\otimes}\)是群\(\opair{G,\times}\)的一个子群，
 那么根据群和二元代数运算的定义可知，
 \(H\)对\(\otimes\)封闭，即
@@ -32,20 +57,7 @@
 	e' \otimes e' = e';
 \]
 又因为\(\otimes\)是\(\times\)在\(H\)上的限制，
-根据限制的定义可知
-\[
-	(\forall a,b,c)[
-		\opair{\opair{a,b},c} \in \otimes
-		\iff
-		\opair{\opair{a,b},c} \in \times
-		\land
-		\opair{a,b} \in H \times H
-	],
-\]
-于是\[
-	(\forall a,b \in H)
-	[a \otimes b = a \times b],
-\]
+根据\cref{theorem:抽象代数.群的运算在子集上的限制的不变性}，
 从而\[
 	e' \times e' = e';
 \]
