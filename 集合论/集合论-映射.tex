@@ -167,11 +167,11 @@
 根据子集公理，存在集合\(B\)，使得对于任意\(x\)，总有\begin{align*}
 	x \in B
 	&\iff
-	x \in \ran F \times \dom F
+	[x \in \ran F \times \dom F]
 	\land
-	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr), \\
+	(\exists u)(\exists v)[x = \opair{u,v} \land \opair{v,u} \in F], \\
 	&\iff
-	\exists u, \exists v \bigl( x = \opair{u,v} \land v F u \bigr).
+	(\exists u)(\exists v)[x = \opair{u,v} \land \opair{v,u} \in F].
 \end{align*}
 再根据外延公理，可以保证集合\(B\)的唯一性.
 因此我们可以将集合\(B\)记为\(F^{-1}\).
@@ -186,9 +186,9 @@
 根据值域的定义有\begin{align*}
 	v \in \ran(F \upharpoonright A)
 	&\iff
-	\exists u \bigl( \opair{u,v} \in F \upharpoonright A \bigr) \\
+	(\exists u)[\opair{u,v} \in F \upharpoonright A] \\
 	&\iff
-	\exists u \bigl( u F v \land u \in A \bigr) \\
+	(\exists u)[\opair{u,v} \in F \land u \in A] \\
 	&\iff
 	v \in F\ImageOfSetUnderRelation{A}.
 	\qedhere
@@ -265,11 +265,11 @@
 \]
 \begin{proof}
 要证\(F \circ G\)是一个映射，
-假设有\(x (F \circ G) y\)和\(x (F \circ G) z\)同时成立.
-那么，\(\exists p,q\)，有\[
-	x G p \land p F y
+假设有\(\opair{x,y} \in F \circ G\)和\(\opair{x,z} \in F \circ G\)同时成立.
+那么，\[
+	(\exists p)[\opair{x,p} \in G \land \opair{p,y} \in F]
 	\quad\text{和}\quad
-	x G q \land q F z
+	(\exists q)[\opair{x,q} \in G \land \opair{q,z} \in F]
 \]同时成立.
 既然\(G\)是映射，必有\(p = q\).
 同理，\(F\)是映射，必有\(y = z\).
@@ -290,8 +290,8 @@
 
 反过来说，如果\(x \in \dom(F \circ G)\)，
 那么就有\[
-	\exists y, \exists t
-	\bigl( x G t \land t F y \bigr).
+	(\exists y)(\exists t)
+	[\opair{x,t} \in G \land \opair{t,y} \in F].
 \]
 于是就有\(x \in \dom G\)和\(t = G(x) \in \dom F\).
 \end{proof}
@@ -352,9 +352,9 @@
 	&\iff
 	\opair{y,x} \in F \circ G \\
 	&\iff
-	\exists t \bigl( y G t \land t F x \bigr) \\
+	(\exists t)[\opair{y,t} \in G \land \opair{t,x} \in F] \\
 	&\iff
-	\exists t \bigl( x F^{-1} t \land t G^{-1} y \bigr) \\
+	(\exists t)[\opair{x,t} \in F^{-1} \land \opair{t,y} \in G^{-1}] \\
 	&\iff
 	\opair{x,y} \in G^{-1} \circ F^{-1}.
 	\qedhere
