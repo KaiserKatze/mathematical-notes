@@ -21,8 +21,8 @@
 统称为“\(\opair{G,\times}\)的\DefineConcept{平凡子群}”.
 
 \begin{lemma}\label{theorem:抽象代数.群的运算在子集上的限制的不变性}
-设\(\opair{G,\times}\)是群，
-\(H\)是\(G\)的一个非空子集，
+设\(\times\)是定义在\(G\)上的一个二元代数运算，
+\(\emptyset \neq H \subseteq G\)，
 \(\otimes = \times \upharpoonright(H \times H)\)，
 则\[
 	(\forall a,b \in H)[a \otimes b = a \times b].
@@ -37,13 +37,13 @@
 		\opair{a,b} \in H \times H
 	],
 \]
-于是\[
-	(\forall a,b \in H)
-	[a \otimes b = a \times b].
-	\qedhere
-\]
+于是\((\forall a,b \in H)[a \otimes b = a \times b]\).
 \end{proof}
 \end{lemma}
+从\cref{theorem:抽象代数.群的运算在子集上的限制的不变性} 我们可以看出，
+运算的限制\(\otimes\)在新的定义域\(H \times H\)上仍然具有和原本的运算\(\times\)一样的性质.
+如果\(\times\)在\(G \times G\)上服从结合律，那么\(\otimes\)在\(H \times H\)上也服从结合律.
+如果\(\times\)在\(G \times G\)上服从交换律，那么\(\otimes\)在\(H \times H\)上也服从交换律.
 
 另外，我们还可以从子群的定义中看出，
 如果\(\opair{H,\otimes}\)是群\(\opair{G,\times}\)的一个子群，
@@ -121,14 +121,21 @@
 于是\[
 	a \times b = a \otimes b \in H,
 \]
-这就是说\(H\)对\(\otimes\)封闭；
-并且，在\(H\)上（或者说当算元都在\(H\)中时），
-群\(\opair{G,\times}\)的运算就是\(\opair{H,\otimes}\)的运算.
-由于群\(\opair{G,\times}\)的运算满足结合律，因此它在直积\(H \times H\)上的限制也满足结合律.
-上面已证\(G\)的单位元\(e \in H\)，
-从而\(H\)有单位元\(e\)，
-且任给\(b \in H\)，有\(b^{-1} \in H\)，因此\(b\)在\(H\)中有逆元\(b^{-1}\).
-
+这就是说\(H\)对\(\otimes\)封闭，
+或者说\(\otimes\)可以看成是定义在\(H\)上的一个二元代数运算.
+由于运算\(\times\)服从结合律，
+那么作为\(\times\)的限制，
+根据\cref{theorem:抽象代数.群的运算在子集上的限制的不变性}，
+运算\(\otimes\)也服从结合律.
+上面已证\(\opair{G,\times}\)的单位元\(e \in H\)，
+再次利用\cref{theorem:抽象代数.群的运算在子集上的限制的不变性}，
+就有\[
+	(\forall a \in H)[
+		a \otimes e = a \times e = a = e \times a = e \otimes a
+	],
+\]
+这就说明\(e\)是\(\opair{H,\otimes}\)的单位元.
+由上面已证明的结论可知，\(H\)中任一元\(b\)有逆元\(b^{-1}\).
 综上所述，\(H\)是一个群，从而\(H\)是\(G\)的子群.
 \end{proof}
 \end{theorem}
