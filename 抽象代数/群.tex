@@ -1,5 +1,5 @@
 \section{群}
-\subsection{群的概念}
+\subsection{半群}
 \begin{definition}\label{definition:抽象代数.半群的定义}
 设\(G\)是非空集合，
 \(\times\)是定义在\(G\)上的一个二元代数运算，
@@ -11,23 +11,52 @@
 或称“集合\(G\)对于\(\times\)运算成半群”.
 \end{definition}
 
+\subsection{单位元，幺半群}
+下面我们给出左单位元、右单位元的定义，并证明左单位元、右单位元是同一的.
+设\(G\)是非空集合，
+\(\times\)是定义在\(G\)上的一个二元代数运算.
+把满足\[
+	e \in G
+	\land
+	(\forall a \in G)[e \times a = a]
+\]的元素\(e\)称为“\(\opair{G,\times}\)的\DefineConcept{左单位元}（left identity）”；
+把满足\[
+	o \in G
+	\land
+	(\forall a \in G)[a \times o = a]
+\]的元素\(o\)称为“\(\opair{G,\times}\)的\DefineConcept{右单位元}（right identity）”.
+假设左单位元、右单位元都存在，
+那么\[
+	e = e \times o = o,
+\]
+这就是说\(\opair{G,\times}\)的左单位元就是它的右单位元；
+这时候我们把\(\opair{G,\times}\)的左单位元、右单位元合称为%
+“\(\opair{G,\times}\)的\DefineConcept{单位元}（identity）”.
+
 \begin{definition}\label{definition:抽象代数.幺半群的定义}
 设\(\opair{G,\times}\)是半群，
-且\(G\)中存在“单位元”，即\[
+且\(G\)中存在单位元，即\[
 	(\exists e \in G)(\forall a \in G)
 	[e \times a = a \times e = a].
 \]
 那么称“定义了\(\times\)运算的\(G\)集\(\opair{G,\times}\)是一个\DefineConcept{幺半群}（monoid）”，
 或称“集合\(G\)对于\(\times\)运算成幺半群”.
-
-这里我们把满足\[
-	e \in G
-	\land
-    (\forall a \in G)
-    [e \times a = a \times e = a]
-\]的元素\(e\)称为“\(\opair{G,\times}\)的\DefineConcept{单位元}（identity）”.
 \end{definition}
 
+\begin{theorem}\label{theorem:抽象代数.群内单位元唯一}
+幺半群的单位元唯一.
+\begin{proof}
+假设\(e_1\)和\(e_2\)都是幺半群\(\opair{G,\times}\)的单位元.
+根据\hyperref[definition:抽象代数.幺半群的定义]{单位元的定义}有\[
+	(\forall a \in G)[
+		e_1 = e_1 \times e_2 = e_2 \times e_1 = e_2
+	],
+\]
+也就是说，幺半群\(\opair{G,\times}\)的单位元是唯一的.
+\end{proof}
+\end{theorem}
+
+\subsection{逆元，群}
 下面我们给出左逆元、右逆元的定义，并证明幺半群中的左逆元与右逆元是同一的.
 设幺半群\(\opair{G,\times}\)的单位元是\(e\)，任意取定\(a \in G\).
 把满足\[
@@ -57,6 +86,29 @@
 或称“集合\(G\)对于\(\times\)运算成群”.
 \end{definition}
 
+\begin{theorem}\label{theorem:抽象代数.群内任一元的逆元唯一}
+群内任一元素的逆元唯一.
+\begin{proof}
+假设\(\opair{G,\times}\)是群，\(e\)是它的单位元.
+任意取定\(a \in G\).
+又假设\(b\)和\(c\)都是\(a\)的逆元.
+根据\hyperref[definition:抽象代数.群的定义]{逆元的定义}，
+有\[
+    a \times b = b \times a = e,
+\]\[
+    a \times c = c \times a = e.
+\]
+再根据\hyperref[definition:抽象代数.幺半群的定义]{单位元的定义}和结合律，有\begin{align*}
+    b &= b \times e
+	= b \times (a \times c) \\
+    &= (b \times a) \times c \\
+    &= e \times c
+	= c.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
 由\cref{equation:集合论.自然数加法结合律,equation:集合论.自然数乘法结合律}
 以及\cref{equation:集合论.整数加法结合律,equation:集合论.整数乘法结合律}，
 自然数集\(\omega\)、整数集\(\mathbb{Z}\)对于加法、乘法分别成半群，即\[
@@ -85,23 +137,20 @@
 又例如，对于\(\opair{\mathbb{Z},+}\)和\(\opair{\mathbb{Z},\times}\)，
 整数\(0\)、整数\(1\)分别是它们的单位元.
 
-\begin{property}
-设\(\opair{G,\times}\)是群.
-那么\(\opair{G,\times}\)的单位元唯一，
-\(G\)中每个元素\(a\)的逆元唯一，且\[
-    (a^{-1})^{-1} = a.
+\subsection{交换群}
+\begin{definition}
+设\(G\)是非空集合，
+\(\times\)是定义在\(G\)上的一个二元代数运算，
+\(\times\)服从交换律，即\[
+	(\forall a,b \in G)[a \times b = b \times a].
 \]
-\end{property}
-
-\begin{definition}
-如果半群\(\opair{G,\times}\)的乘法还满足交换律，
-那么称“\(\opair{G,\times}\)是\DefineConcept{交换半群}（commutative semigroup）.
-\end{definition}
-
-\begin{definition}
-如果群\(\opair{G,\times}\)的乘法还满足交换律，
-那么称“\(\opair{G,\times}\)是\DefineConcept{交换群}（commutative group）%
-或\DefineConcept{阿贝尔群}（Abelian group）”.
+那么\begin{enumerate}
+	\item 如果\(\opair{G,\times}\)是半群，
+	那么称“\(\opair{G,\times}\)是\DefineConcept{交换半群}（commutative semigroup）”.
+	\item 如果\(\opair{G,\times}\)是群，
+	那么称“\(\opair{G,\times}\)是\DefineConcept{交换群}（commutative group）%
+	或\DefineConcept{阿贝尔群}（Abelian group）”.
+\end{enumerate}
 \end{definition}
 
 由于自然数、整数的加法、乘法都满足交换律，所以\[
@@ -110,43 +159,6 @@
 	\opair{\mathbb{Z},+}, \qquad
 	\opair{\mathbb{Z},\times}
 \]都是交换群.
-
-\subsection{群的性质}
-\begin{theorem}\label{theorem:抽象代数.群内单位元唯一}
-群的单位元唯一.
-\begin{proof}
-假设\(e_1\)和\(e_2\)都是群\(\opair{G,\times}\)的单位元.
-根据\hyperref[definition:抽象代数.幺半群的定义]{单位元的定义}有\[
-	(\forall a \in G)[
-		e_1 = e_1 \times e_2 = e_2 \times e_1 = e_2
-	],
-\]
-也就是说，群\(\opair{G,\times}\)的单位元是唯一的.
-\end{proof}
-\end{theorem}
-
-\begin{theorem}\label{theorem:抽象代数.群内任一元的逆元唯一}
-群内任一元素的逆元唯一.
-\begin{proof}
-假设\(\opair{G,\times}\)是群，\(e\)是它的单位元.
-任意取定\(a \in G\).
-又假设\(b\)和\(c\)都是\(a\)的逆元.
-根据\hyperref[definition:抽象代数.群的定义]{逆元的定义}，
-有\[
-    a \times b = b \times a = e,
-\]\[
-    a \times c = c \times a = e.
-\]
-再根据\hyperref[definition:抽象代数.幺半群的定义]{单位元的定义}和结合律，有\begin{align*}
-    b &= b \times e
-	= b \times (a \times c) \\
-    &= (b \times a) \times c \\
-    &= e \times c
-	= c.
-	\qedhere
-\end{align*}
-\end{proof}
-\end{theorem}
 
 \begin{theorem}
 设\(\opair{G,\times}\)是群.
