@@ -1,10 +1,11 @@
 \section{群}
 \subsection{群的概念}
 \begin{definition}\label{definition:抽象代数.半群的定义}
-假设在非空集合\(G\)上定义了一个代数运算\(\times\)，
-且它满足结合律，即\[
+设\(G\)是非空集合，
+\(\times\)是定义在\(G\)上的一个二元代数运算，
+\(\times\)满足结合律，即\[
 	(\forall a,b,c \in G)
-	[(a \times b) \times c = a \times (b \times c)].
+	[(a \times b) \times c = a \times (b \times c)],
 \]
 那么称“定义了\(\times\)运算的\(G\)集\(\opair{G,\times}\)是一个\DefineConcept{半群}（semigroup）”，
 或称“集合\(G\)对于\(\times\)运算成半群”.
@@ -27,6 +28,25 @@
 \]的元素\(e\)称为“\(\opair{G,\times}\)的\DefineConcept{单位元}（identity）”.
 \end{definition}
 
+下面我们给出左逆元、右逆元的定义，并证明幺半群中的左逆元与右逆元是同一的.
+设幺半群\(\opair{G,\times}\)的单位元是\(e\)，任意取定\(a \in G\).
+把满足\[
+	b \in G
+	\land
+	b \times a = e,
+\]的元素\(b\)称为“\(a\)（在\(G\)中）的\DefineConcept{左逆元}（left inverse）”；
+把满足\[
+	c \in G
+	\land
+	a \times c = e,
+\]的元素\(c\)称为“\(a\)（在\(G\)中）的\DefineConcept{右逆元}（right inverse）”.
+因为\(\times\)服从结合律，再根据单位元的定义，可知\[
+	b = b \times e = b \times (a \times c) = (b \times a) \times c = e \times c = c,
+\]
+这就是说\(a\)的左逆元就是它的右逆元，
+于是我们可以将\(a\)的左逆元、右逆元统称为\DefineConcept{逆元}（inverse），记作\(a^{-1}\).
+%同一个元素在不同集合中、不同运算下可能有不同的逆元
+
 \begin{definition}\label{definition:抽象代数.群的定义}
 设\(\opair{G,\times}\)是幺半群，
 且运算\(\times\)可逆，即\[
@@ -35,15 +55,6 @@
 \]
 那么称“定义了\(\times\)运算的\(G\)集\(\opair{G,\times}\)是一个\DefineConcept{群}（group）”，
 或称“集合\(G\)对于\(\times\)运算成群”.
-
-这里我们把满足\[
-	b \in G
-	\land
-	(\forall a \in G)
-    [b \times a = a \times b = e],
-\]的元素\(b\)称为%
-“\(a\)（在\(G\)中）的\DefineConcept{逆元}（inverse）”，%同一个元素在不同集合中、不同运算下可能有不同的逆元
-记作\(a^{-1}\).
 \end{definition}
 
 由\cref{equation:集合论.自然数加法结合律,equation:集合论.自然数乘法结合律}
