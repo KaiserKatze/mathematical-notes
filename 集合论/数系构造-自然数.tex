@@ -891,13 +891,13 @@
 		n \in \omega
 		\given
 		(\forall m \in \omega)
-		\bigl(
+		[
 			m < n
 			\lor
 			m = n
 			\lor
 			n < m
-		\bigr)
+		]
 	}.
 \]
 要证\(0 \in T\)，
@@ -956,9 +956,7 @@
 那么\begin{gather}
 	m < n \iff m + p < n + p,
 	\label{equation:集合论.自然数的加法的保序性} \\
-	p \neq 0 \implies \bigl(
-		m < n \iff m \cdot p < n \cdot p
-	\bigr).
+	p \neq 0 \implies [m < n \iff m \cdot p < n \cdot p].
 	\label{equation:集合论.自然数的乘法的保序性}
 \end{gather}
 \begin{proof}
@@ -1066,9 +1064,9 @@
 需要证明\(k^+ \in \omega - A\)，
 而这个命题不能仅凭\(k \in \omega - A\)得出，
 这是因为我们还需要证明“所有比\(k\)小的自然数也都是\(\omega - A\)的元素”，即\[
-	\forall p \in \omega \bigl(
+	(\forall p \in \omega)[
 		p < k \implies p \in \omega - A
-	\bigr).
+	].
 \]
 考虑到这一点，我们就能肯定命题\(k^+ \in \omega - A\)一定成立，
 否则就会有“\(k^+\)是\(A\)中最小的数”，
@@ -1150,7 +1148,40 @@
 	\land
 	r<d.
 \]
-%TODO
+\begin{proof}
+用数学归纳法.
+令\[
+	T = \Set{
+		m \in \omega
+		\given
+		(\exists q,r\in\omega)[
+			m=(d \cdot q)+r
+			\land
+			r<d
+		]
+	}.
+\]
+因为只要取\(q=r=0\)，就有\(0=(d\cdot0)+0\land0<d\)成立，所以\(0 \in T\).
+设\(a \in T\)，即\[
+	a = (d \cdot q) + r \land r < d.
+\]
+根据\hyperref[equation:集合论.自然数的加法.性质2]{自然数加法的性质}，有\[
+	a^+ = ((d \cdot q) + r)^+
+	= (d \cdot q) + r^+.
+\]
+注意到\(r^+ \leqslant d\)，
+我们规定：\begin{enumerate}
+	\item 当\(r^+=d\)时，取\(q'=q^+, r'=0\)；
+	\item 当\(r^+<d\)时，取\(q'=q, r'=r^+\).
+\end{enumerate}
+于是有\[
+	a^+ = (d \cdot q') + r'
+	\land
+	r' < d,
+\]
+即\(a^+ \in T\).
+因此\(T\)是传递集，\(T = \omega\).
+\end{proof}
 \end{example}
 
 \begin{example}
