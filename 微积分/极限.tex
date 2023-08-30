@@ -316,10 +316,16 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\varepsilon)} \right]^2},
 \]
 \end{definition}
 上面对上下极限的定义可以利用“\(\varepsilon-N\)语言”更加简洁精确地重新定义为\begin{align*}
-\varliminf\limits_{n\to\infty} x_n = \alpha \in (-\infty,+\infty)
-&\iff \forall\varepsilon>0, \exists N\in\mathbb{N}^+ \bigl( n>N \implies \alpha-\varepsilon < x_n \bigr); \\
-\varlimsup\limits_{n\to\infty} x_n = \beta \in (-\infty,+\infty)
-&\iff \forall\varepsilon>0, \exists N\in\mathbb{N}^+ \bigl( n>N \implies x_n < \beta+\varepsilon \bigr).
+	\varliminf\limits_{n\to\infty} x_n = \alpha
+	&\defiff
+	(\forall\varepsilon>0)
+	(\exists N\in\mathbb{N}^+)
+	[n>N \implies \alpha-\varepsilon < x_n]; \\
+	\varlimsup\limits_{n\to\infty} x_n = \beta
+	&\defiff
+	(\forall\varepsilon>0)
+	(\exists N\in\mathbb{N}^+)
+	[n>N \implies x_n < \beta+\varepsilon].
 \end{align*}
 
 \begin{theorem}[波尔查诺-魏尔斯特拉斯原理]\label{theorem:极限.波尔查诺-魏尔斯特拉斯原理}
@@ -328,12 +334,13 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\varepsilon)} \right]^2},
 
 \begin{theorem}\label{theorem:极限.上下极限的等价定义1}
 数列\(\{x_n\}\)的上下极限满足：\[
-\varliminf\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} \inf\{x_n,x_{n+1},\dotsc\},
+	\varliminf\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} \inf\{x_n,x_{n+1},\dotsc\},
 \]\[
-\varlimsup\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} \sup\{x_n,x_{n+1},\dotsc\}.
+	\varlimsup\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} \sup\{x_n,x_{n+1},\dotsc\}.
 \]
 \end{theorem}
-这也是数列的上下极限的一种等价定义.
+\cref{theorem:极限.上下极限的等价定义1}
+也是数列的上下极限的一种等价定义.
 
 \begin{theorem}[收敛数列与其子列的关系]
 如果数列\(\{x_n\}\)收敛于\(a\)，那么它的任一子列也收敛，且极限也是\(a\).即\[
@@ -402,56 +409,80 @@ a-\varepsilon<x_{2k-1}<a+\varepsilon, \qquad a-\varepsilon<x_{2k}<a+\varepsilon
 
 上述对函数极限的定义可以简化为：
 \[
-\lim\limits_{x \to x_0}f(x) = A
-\iff
-\forall \varepsilon > 0,
-\exists \delta > 0
-\bigl( 0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \varepsilon \bigr).
+	\lim\limits_{x \to x_0}f(x) = A
+	\defiff
+	(\forall \varepsilon > 0)
+	(\exists \delta > 0)
+	[0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \varepsilon].
 \]
 
 现在我们来根据定义尝试计算一些函数的极限.
 \begin{example}
 证明：\(\lim\limits_{x \to x_0} c = c\)，其中\(c\)为常数.
 \begin{proof}
-这里\(\abs{f(x) - A} = \abs{c - c} = 0\)，因此\(\forall \varepsilon > 0\)，可任取\(\delta > 0\)，当\(0 < \abs{x - x_0} < \delta\)时，总能使不等式\[
-\abs{f(x) - A} = \abs{c - c} = 0 < \varepsilon
-\]成立，所以\(\lim\limits_{x \to x_0} c = c\).
+这里\(\abs{f(x) - A} = \abs{c - c} = 0\)，
+因此\(\forall \varepsilon > 0\)，
+可任取\(\delta > 0\)，
+当\(0 < \abs{x - x_0} < \delta\)时，
+总能使不等式\[
+	\abs{f(x) - A} = \abs{c - c} = 0 < \varepsilon
+\]成立，
+所以\(\lim\limits_{x \to x_0} c = c\).
 \end{proof}
 \end{example}
 
 \begin{example}
 证明：\(\lim\limits_{x \to x_0} x = x_0\).
 \begin{proof}
-这里\(\abs{f(x) - A} = \abs{x - x_0}\)，因此\(\forall \varepsilon > 0\)，总可取\(\delta = \varepsilon\)，当\(0 < \abs{x - x_0} < \delta = \varepsilon\)时，能使不等式\(\abs{f(x) - A} = \abs{x - x_0} < \varepsilon\)成立，所以\(\lim\limits_{x \to x_0} x = x_0\).
+这里\(\abs{f(x) - A} = \abs{x - x_0}\)，
+因此\(\forall \varepsilon > 0\)，
+总可取\(\delta = \varepsilon\)，
+当\(0 < \abs{x - x_0} < \delta = \varepsilon\)时，
+能使不等式\(\abs{f(x) - A} = \abs{x - x_0} < \varepsilon\)成立，
+所以\(\lim\limits_{x \to x_0} x = x_0\).
 \end{proof}
 \end{example}
 
 \begin{example}
 证明：\(\lim\limits_{x\to1} 2x-1 = 1\).
 \begin{proof}
-由于\(\abs{f(x) - A} = \abs{(2x-1) - 1} = 2\abs{x-1}\)，为了使\(\abs{f(x) - A} < \varepsilon\)，只要\(\abs{x-1}<\varepsilon/2\).因此\(\forall \varepsilon > 0\)，可取\(\delta = \varepsilon/2\)，则当\(x\)适合不等式\[
-0 < \abs{x-1} < \delta = \frac{\varepsilon}{2}
-\]时，对应的函数值\(f(x)\)就满足不等式\[
-\abs{f(x) - 1} = \abs{(2x-1) - 1} = 2\abs{x-1} < \varepsilon.
-\]从而\(\lim\limits_{x\to1} 2x-1 = 1\).
+由于\(\abs{f(x) - A} = \abs{(2x-1) - 1} = 2\abs{x-1}\)，
+为了使\(\abs{f(x) - A} < \varepsilon\)，
+只要\(\abs{x-1}<\varepsilon/2\).
+因此\(\forall \varepsilon > 0\)，
+可取\(\delta = \varepsilon/2\)，
+则当\(x\)适合不等式\[
+	0 < \abs{x-1} < \delta = \frac{\varepsilon}{2}
+\]时，
+对应的函数值\(f(x)\)就满足不等式\[
+	\abs{f(x) - 1} = \abs{(2x-1) - 1} = 2\abs{x-1} < \varepsilon.
+\]
+从而\(\lim\limits_{x\to1} 2x-1 = 1\).
 \end{proof}
 \end{example}
 
 \begin{example}
 证明：\(\lim\limits_{x\to1} \frac{x^2-1}{x-1} = 2\).
 \begin{proof}
-这里，函数在点\(x=1\)处是没有定义的，但是函数当\(x\to1\)时的极限存在或不存在与之无关.事实上，\(\forall \varepsilon > 0\)，将不等式\[
-\abs{\frac{x^2-1}{x-1} - 2} < \varepsilon
-\]约去非零因子\(x-1\)后，就化为\[
-\abs{(x+1)-2} = \abs{x-1} < \varepsilon,
-\]因此，只要取\(\delta = \varepsilon\)，那么当\(0 < \abs{x-1} < \delta\)时，就有\[
-\abs{\frac{x^2-1}{x-1} - 2} < \varepsilon.
-\]所以\(\lim\limits_{x\to1} \frac{x^2-1}{x-1} = 2\).
+这里，函数在点\(x=1\)处是没有定义的，
+但是函数当\(x\to1\)时的极限存在或不存在与之无关.
+事实上，\(\forall \varepsilon > 0\)，将不等式\[
+	\abs{\frac{x^2-1}{x-1} - 2} < \varepsilon
+\]
+约去非零因子\(x-1\)后，就化为\[
+	\abs{(x+1)-2} = \abs{x-1} < \varepsilon,
+\]
+因此，只要取\(\delta = \varepsilon\)，
+那么当\(0 < \abs{x-1} < \delta\)时，就有\[
+	\abs{\frac{x^2-1}{x-1} - 2} < \varepsilon.
+\]
+所以\(\lim\limits_{x\to1} \frac{x^2-1}{x-1} = 2\).
 \end{proof}
 \end{example}
 
 \begin{example}
-证明：当\(x_0 > 0\)时，\(\lim\limits_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
+证明：当\(x_0 > 0\)时，
+\(\lim\limits_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
 \begin{proof}
 \(\forall \varepsilon > 0\)，
 因为\[
@@ -564,15 +595,15 @@ f(x) \to A\ (x \to \infty).
 \end{definition}
 \cref{definition:极限.函数极限的定义4} 可以简化为：
 \[
-\lim\limits_{x\to\infty} f(x) = A
-\iff
-\forall\varepsilon>0,
-\exists X>0
-\bigl(
-	\abs{x} > X
-	\implies
-	\abs{f(x) - A} < \varepsilon
-\bigr).
+	\lim\limits_{x\to\infty} f(x) = A
+	\defiff
+	(\forall\varepsilon>0)
+	(\exists X>0)
+	[
+		\abs{x} > X
+		\implies
+		\abs{f(x) - A} < \varepsilon
+	].
 \]
 
 我们只要对\cref{definition:极限.函数极限的定义4} 中的条件稍加改变，%
