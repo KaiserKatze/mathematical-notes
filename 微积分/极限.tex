@@ -8,10 +8,10 @@
 总存在正整数\(N\)，
 使得当\(n > N\)时，
 不等式\[
-\abs{x_n - a} < \varepsilon
+	\abs{x_n - a} < \varepsilon
 \]都成立，
 那么就称“数列\(\{x_n\}\)是\DefineConcept{收敛的}（convergent）”；
-又称“常数\(a\)是数列\(\{x_n\}\)的\DefineConcept{极限}”，
+又称“常数\(a\)是数列\(\{x_n\}\)的\DefineConcept{极限}（limit）”，
 或者称“数列\(\{x_n\}\) \DefineConcept{收敛于} \(a\)”，
 记\[
 	\lim\limits_{n\to\infty} x_n = a,
@@ -20,7 +20,7 @@
 \]
 \end{definition}
 上述对数列极限的定义
-（即“数列\(\{a_n\}\)收敛于\(a\)”）
+（即“数列\(\{x_n\}\)收敛于\(a\)”）
 可以简化为：\[
 	\lim\limits_{n\to\infty} x_n = a
 	\iff
@@ -378,17 +378,17 @@ a-\varepsilon<x_{2k-1}<a+\varepsilon, \qquad a-\varepsilon<x_{2k}<a+\varepsilon
 \subsubsection*{自变量趋于有限值时函数的极限}
 \begin{definition}\label{definition:极限.函数极限的定义1}
 设函数\(f(x)\)在点\(x_0\)的某一去心邻域内有定义.
-如果存在常数\(A\)，%
-对于任意给定的正数\(\varepsilon\)（不论它多么小），%
-总存在正数\(\delta\)，%
-使得当\(x\)满足不等式\(0 < \abs{x-x_0} < \delta\)时，%
-对应的函数值\(f(x)\)都满足不等式\(\abs{f(x)-A}<\varepsilon\)，%
-那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\DefineConcept{极限}”，%
+如果存在常数\(A\)，
+对于任意给定的正数\(\varepsilon\)（不论它多么小），
+总存在正数\(\delta\)，
+使得当\(x\)满足不等式\(0 < \abs{x-x_0} < \delta\)时，
+对应的函数值\(f(x)\)都满足不等式\(\abs{f(x)-A}<\varepsilon\)，
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\DefineConcept{极限}”，
 记作
 \[
-\lim\limits_{x \to x_0} f(x) = A
-\quad\text{或}\quad
-f(x) \to A\ (x \to x_0).
+	\lim\limits_{x \to x_0} f(x) = A
+	\quad\text{或}\quad
+	f(x) \to A\ (x \to x_0).
 \]
 \end{definition}
 
@@ -445,15 +445,40 @@ f(x) \to A\ (x \to x_0).
 \begin{example}
 证明：当\(x_0 > 0\)时，\(\lim\limits_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
 \begin{proof}
-\(\forall \varepsilon > 0\)，因为\[
-\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}}
-= \abs{\frac{x - x_0}{\sqrt{x} + \sqrt{x_0}}}
-\leqslant \frac{\abs{x - x_0}}{\sqrt{x_0}},
-\]要使\(\abs{f(x) - A} < \varepsilon\)，只要\(\abs{x - x_0} < \sqrt{x_0} \varepsilon\).
-因为\(f(x)\)在\(x_0\)的去心领域要有定义，所以\(x \geqslant 0\)；而\(x \geqslant 0\)可用\(\abs{x - x_0} < x_0\)保证.
-因此取\(\delta = \min\{x_0,\sqrt{x_0} \varepsilon\}\)，则当\(0 < \abs{x - x_0} < \delta\)时，对应的函数值\(\sqrt{x}\)就满足\[
-\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}} < \varepsilon,
-\]所以\(\lim\limits_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
+\(\forall \varepsilon > 0\)，
+因为\[
+	\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}}
+	= \abs{\frac{x - x_0}{\sqrt{x} + \sqrt{x_0}}}
+	\leqslant \frac{\abs{x - x_0}}{\sqrt{x_0}},
+\]
+那么要使\(0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \varepsilon\)，
+只要\[
+	0 < \abs{x - x_0} < \delta \implies \abs{x - x_0} < \sqrt{x_0} \varepsilon,
+\]
+也即\[
+	\delta \leqslant \sqrt{x_0} \varepsilon.
+	\eqno(1)
+\]
+
+由于我们还要确保\(f\)在\(x_0\)的去心邻域内有定义，
+于是又有\[
+	0 < \abs{x-x_0} < \delta \implies x\geqslant0
+	\quad\text{或}\quad
+	(x_0-\delta,x_0+\delta)\subseteq[0,+\infty),
+\]
+也即\[
+	x_0-\delta\geqslant0
+	\quad\text{或}\quad
+	x_0\geqslant\delta.
+	\eqno(2)
+\]
+
+综上所述，如果取\(\delta = \min\{x_0,\sqrt{x_0} \varepsilon\}\)，
+则当\(0 < \abs{x - x_0} < \delta\)时，
+对应的函数值\(\sqrt{x}\)就满足\[
+	\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}} < \varepsilon,
+\]
+所以\(\lim\limits_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
 \end{proof}
 \end{example}
 
