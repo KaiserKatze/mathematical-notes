@@ -5,7 +5,7 @@
 %@see: 《Elements of Set Theory》 P112.
 设映射\(s\colon \omega\to\mathbb{Q}\)满足\[
 	(\forall\varepsilon\in\mathbb{Q}^+)(\exists k\in\omega)(\forall m>k)(\forall n>k)
-	\abs{s(m) - s(n)}<\varepsilon,
+	[\abs{s(m) - s(n)}<\varepsilon],
 \]
 则称“\(s\)是一个\DefineConcept{柯西列}（Cauchy sequence）”.
 \end{definition}
@@ -15,9 +15,9 @@
 我们把全体柯西列的集合记为\(S\).
 定义关系\(\sim\)：\[
 	r \sim s
-	\iff
+	\defiff
 	(\forall\varepsilon\in\mathbb{Q}^+)(\exists k\in\omega)(\forall n>k)
-	\abs{r(n)-s(n)}<\varepsilon,
+	[\abs{r(n)-s(n)}<\varepsilon],
 \]
 称“柯西列\(r\)和\(s\)等价”.
 \end{definition}
@@ -65,8 +65,7 @@
 
 考虑集合\(A \subseteq \mathbb{R}\).
 如果实数\(x\)满足\[
-	(\forall y \in A)
-	y \leqslant x,
+	(\forall y \in A)[y \leqslant x],
 \]
 那么称“\(x\)是\(A\)的\DefineConcept{上界}（\(x\) is an \emph{upper bound} of \(A\)）”.
 需要注意到，\(x\)本身可能不是\(A\)的元素.
@@ -121,29 +120,27 @@
 \begin{enumerate}
 	\item 加法交换律
 	\begin{equation}
-		\forall x,y\in\mathbb{R} \bigl(
-			x+y=y+x
-		\bigr).
+		(\forall x,y\in\mathbb{R})[x+y=y+x].
 	\end{equation}
 	\item 加法结合律
 	\begin{equation}
-		\forall x,y,z\in\mathbb{R} \bigl(
-			(x+y)+z=x+(y+z)
-		\bigr).
+		(\forall x,y,z\in\mathbb{R})[(x+y)+z=x+(y+z)].
 	\end{equation}
 \end{enumerate}
 \end{theorem}
+
+\begin{definition}
+定义：\(0\defeq\Set{ r\in\mathbb{Q} \given r<0 }\).
+\end{definition}
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P116. Theorem 5RE
 以下命题恒成立：
 \begin{enumerate}
-	\item \(0\defeq\Set{ r\in\mathbb{Q} \given r<0 }\)是实数.
+	\item \(0\)是实数.
 	\item 任意实数加上实数\(0\)不变
 	\begin{equation}
-		\forall x\in\mathbb{R} \bigl(
-			x+0=x
-		\bigr).
+		(\forall x\in\mathbb{R})[x+0=x].
 	\end{equation}
 \end{enumerate}
 \end{theorem}
@@ -157,11 +154,78 @@
 \end{definition}
 
 \begin{theorem}
-%@see: 《Elements of Set Theory》 P117.
+%@see: 《Elements of Set Theory》 P117. Theorem 5RF
 设\(x\in\mathbb{R}\)，那么\begin{enumerate}
 	\item \(-x\in\mathbb{R}\).
 	\item \(x+(-x)=0\).
 \end{enumerate}
 \end{theorem}
 
-%TODO
+\begin{corollary}\label{theorem:集合论.实数的消去律}
+%@see: 《Elements of Set Theory》 P118. Corollary 5RG
+\((\forall x,y,z\in\mathbb{R})[
+	x+z=y+z \implies x=y
+]\).
+\end{corollary}
+
+\begin{theorem}\label{theorem:集合论.实数的加法的保序性}
+%@see: 《Elements of Set Theory》 P118. Theorem 5RH
+\((\forall x,y,z\in\mathbb{R})[
+	x<y \iff x+z<y+z
+]\).
+\end{theorem}
+
+\begin{definition}
+%@see: 《Elements of Set Theory》 P118.
+设\(x\in\mathbb{R}\).
+把\(x \cup -x\)称为“\(x\)的\DefineConcept{绝对值}（absolute value），
+记作\(\abs{x}\)，即\[
+	\abs{x} \defeq x \cup -x.
+\]
+\end{definition}
+
+\begin{definition}
+定义：
+\begin{enumerate}
+	\item 如果\(x,y\)都是非负实数，那么\[
+		x \cdot y
+		\defeq
+		0 \cup \Set{ r \cdot s \given 0 \leqslant r \in x \land 0 \leqslant s \in y }.
+	\]
+
+	\item 如果\(x,y\)都是负实数，那么\[
+		x \cdot y \defeq \abs{x} \cdot \abs{y}.
+	\]
+
+	\item 如果\(x,y\)中一个是负实数一个是非负实数，那么\[
+		x \cdot y \defeq -(\abs{x} \cdot \abs{y}).
+	\]
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+定义：\(1\defeq\Set{ r\in\mathbb{Q} \given r < 1 }\).
+\end{definition}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P119. Theorem 5RI
+以下命题恒成立：
+\begin{enumerate}
+	\item 实数集对乘法封闭\begin{equation}
+		(\forall x,y\in\mathbb{R})[x \cdot y \in \mathbb{R}].
+	\end{equation}
+	\item 乘法结合律\begin{equation}
+		(\forall x,y,z\in\mathbb{R})[(x+y)+z=x+(y+z)].
+	\end{equation}
+	\item 乘法交换律\begin{equation}
+		(\forall x,y\in\mathbb{R})[x+y=y+z].
+	\end{equation}
+	\item 乘法分配律\begin{equation}
+		(\forall x,y,z\in\mathbb{R})[x\cdot(y+z)=x \cdot y+x \cdot z].
+	\end{equation}
+	\item \(0\neq1\).
+	\item \(x\cdot1=x\).
+	\item \((\forall x\in\mathbb{R}^*)(\exists y\in\mathbb{R}^*)[x \cdot y=1]\).
+	\item \(0<z \implies [x<y \iff x \cdot z<y \cdot z]\).
+\end{enumerate}
+\end{theorem}
