@@ -1,7 +1,6 @@
-\chapter{向量与线性方程组}
-\section{线性方程组的表示、消元法}
+\chapter{线性方程组}
+\section{线性方程组}
 \subsection{线性方程组的概念}
-\begin{definition}
 我们把含有\(n\)个未知量\(\v{x}{n}\)的一次方程组
 \begin{equation}\label[equation-system]{equation:线性方程组.线性方程组的代数形式}
 	\left\{ \begin{array}{l}
@@ -11,52 +10,65 @@
 		a_{s1} x_1 + a_{s2} x_2 + \dotsb + a_{sn} x_n = b_s
 	\end{array} \right.
 \end{equation}
-为\(n\)元\DefineConcept{线性方程组}（system of linear equations）.
+称为“\(n\)元\DefineConcept{线性方程组}（system of linear equations）”.
 这里，\(s\)为方程的个数\footnote{%
-在方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 中，%
+在\cref{equation:线性方程组.线性方程组的代数形式} 中，%
 方程的数目\(s\)可以等于未知数的数目\(n\)，%
 也可以不相等（即\(s<n\)或\(s>n\)）.
 }；%
-我们把数\(a_{ij}\ (i=1,2,\dotsc,s; \allowbreak
-j=1,2,\dotsc,n)\)称为“第\(i\)个方程中\(x_j\)的\DefineConcept{系数}”，简称为“系数”；
-把数\(b_i\ (i=1,2,\dotsc,s)\)叫做“第\(i\)个方程的\DefineConcept{常数项}”.
-\end{definition}
+我们把数
+\[
+	a_{ij}
+	\quad(i=1,2,\dotsc,s; j=1,2,\dotsc,n)
+\]
+称为“第\(i\)个方程中\(x_j\)的\DefineConcept{系数}（coefficient）”；
+把数
+\[
+	b_i
+	\quad(i=1,2,\dotsc,s)
+\]
+叫做“第\(i\)个方程的\DefineConcept{常数项}（constant）”.
 
+\subsection{线性方程组的表示}
 \begin{definition}
-由系数按原位置构成的\(s \times n\)矩阵\[
-\A = \begin{bmatrix}
-a_{11} & a_{12} & \dots & a_{1n} \\
-a_{21} & a_{22} & \dots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-a_{n1} & a_{n2} & \dots & a_{nn}
-\end{bmatrix}
+将\cref{equation:线性方程组.线性方程组的代数形式} 的系数按原位置构成的\(s \times n\)矩阵\[
+	\A = \begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn}
+	\end{bmatrix}
 \]叫做\DefineConcept{系数矩阵}（coefficient matrix）.
+
 特别地，如果\(s = n\)（即系数矩阵\(\A\)是一个方阵），%
 则系数矩阵的行列式\(\abs{\A}\)叫做\DefineConcept{系数行列式}.
 \end{definition}
 
 为使表述简明，常用向量、矩阵表示线性方程组.
 若记\[
-\x=\begin{bmatrix}
-x_1 \\ x_2 \\ \vdots \\ x_n
-\end{bmatrix},
-\quad
-\b=\begin{bmatrix}
-b_1 \\ b_2 \\ \vdots \\ b_n
-\end{bmatrix},
-\quad
-\a_j=\begin{bmatrix}
-a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
-\end{bmatrix},
-\quad j=1,2,\dotsc,n.
+	\x=\begin{bmatrix}
+		x_1 \\ x_2 \\ \vdots \\ x_n
+	\end{bmatrix},
+	\quad
+	\b=\begin{bmatrix}
+		b_1 \\ b_2 \\ \vdots \\ b_n
+	\end{bmatrix},
+	\quad
+	\a_j=\begin{bmatrix}
+		a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
+	\end{bmatrix},
+	\quad
+	j=1,2,\dotsc,n.
 \]
 \(\A\)的列分块阵为\(\A = (\a_1,\a_2,\dotsc,\a_n)\)，%
-则线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 有以下两种等价表示：
+则\cref{equation:线性方程组.线性方程组的代数形式} 有以下两种等价表示：
 \begin{enumerate}
-\item 矩阵形式
-\(\A \x = \b\).
-\item 向量形式
-\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\).
+	\item 矩阵形式\[
+		\A \x = \b.
+	\]
+	\item 向量形式\[
+		x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b.
+	\]
 \end{enumerate}
 
 \begin{definition}
@@ -65,20 +77,20 @@ a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
 \end{definition}
 
 \begin{definition}
-如果存在\(n\)个数\(\v{c}{n}\)满足线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式}，即\[
+如果存在\(n\)个数\(\v{c}{n}\)满足\cref{equation:线性方程组.线性方程组的代数形式}，即\[
 a_{i1} c_1 + a_{12} c_2 + \dotsb + a_{in} c_n \equiv b_i
 \quad(i=1,2,\dotsc,s),
 \]
-则称“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 有解”，%
-或“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 是相容的”；
-否则，称“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 无解”，%
-或“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 是不相容的”.
+则称“\cref{equation:线性方程组.线性方程组的代数形式} 有解”，%
+或“\cref{equation:线性方程组.线性方程组的代数形式} 是相容的”；
+否则，称“\cref{equation:线性方程组.线性方程组的代数形式} 无解”，%
+或“\cref{equation:线性方程组.线性方程组的代数形式} 是不相容的”.
 
 称这\(n\)个数\(\v{c}{n}\)构成的列向量\((\v{c}{n})^T\)为%
-线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 的一个\DefineConcept{解}（solution）%
+\cref{equation:线性方程组.线性方程组的代数形式} 的一个\DefineConcept{解}（solution）%
 或\DefineConcept{解向量}（solution vector）.
-线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 的解的全体构成的集合，%
-称为“线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式} 的\DefineConcept{解集}”.
+\cref{equation:线性方程组.线性方程组的代数形式} 的解的全体构成的集合，%
+称为“\cref{equation:线性方程组.线性方程组的代数形式} 的\DefineConcept{解集}”.
 \end{definition}
 
 \begin{definition}
@@ -104,54 +116,54 @@ a_{i1} c_1 + a_{12} c_2 + \dotsb + a_{in} c_n \equiv b_i
 \subsection{克拉默法则}
 \begin{theorem}[克拉默法则]\label{theorem:线性方程组.克拉默法则}
 给定一个未知量个数与方程个数相同的线性方程组\[
-\left\{
-\begin{array}{l}
-a_{11}x_1 + a_{12}x_2 + \dotsb + a_{1n}x_n = b_1, \\
-a_{21}x_1 + a_{22}x_2 + \dotsb + a_{2n}x_n = b_2, \\
-\hdotsfor{1} \\
-a_{n1}x_1 + a_{n2}x_2 + \dotsb + a_{nn}x_n = b_n.
-\end{array}
-\right.
-\eqno(1)
+	\left\{ \begin{array}{l}
+		a_{11}x_1 + a_{12}x_2 + \dotsb + a_{1n}x_n = b_1, \\
+		a_{21}x_1 + a_{22}x_2 + \dotsb + a_{2n}x_n = b_2, \\
+		\hdotsfor{1} \\
+		a_{n1}x_1 + a_{n2}x_2 + \dotsb + a_{nn}x_n = b_n.
+	\end{array} \right.
+	\eqno(1)
 \]
 如果它的系数行列式满足\[
-d=\abs{\A}=\begin{vmatrix}
-a_{11} & a_{12} & \dots & a_{1n} \\
-a_{21} & a_{22} & \dots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-a_{n1} & a_{n2} & \dots & a_{nn}
-\end{vmatrix} \neq 0,
+	d=\abs{\A}=\begin{vmatrix}
+	a_{11} & a_{12} & \dots & a_{1n} \\
+	a_{21} & a_{22} & \dots & a_{2n} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	a_{n1} & a_{n2} & \dots & a_{nn}
+	\end{vmatrix} \neq 0,
 \]
 则线性方程组(1)存在唯一解：\[
-\x_0 = \left( \frac{d_1}{d},\frac{d_2}{d},\dotsc,\frac{d_n}{d} \right)^T,
+	\x_0 = \left( \frac{d_1}{d},\frac{d_2}{d},\dotsc,\frac{d_n}{d} \right)^T,
 \]
 其中\[
-d_k = \begin{vmatrix}
-a_{11} & \dots & a_{1\ k-1} & b_1 & a_{1\ k+1} & \dots & a_{1n} \\
-a_{21} & \dots & a_{2\ k-1} & b_2 & a_{2\ k+1} & \dots & a_{2n} \\
-\vdots & & \vdots & \vdots & \vdots & & \vdots \\
-a_{n1} & \dots & a_{n\ k-1} & b_n & a_{n\ k+1} & \dots & a_{nn}
-\end{vmatrix},
-\quad k=1,2,\dotsc,n.
+	d_k = \begin{vmatrix}
+		a_{11} & \dots & a_{1\ k-1} & b_1 & a_{1\ k+1} & \dots & a_{1n} \\
+		a_{21} & \dots & a_{2\ k-1} & b_2 & a_{2\ k+1} & \dots & a_{2n} \\
+		\vdots & & \vdots & \vdots & \vdots & & \vdots \\
+		a_{n1} & \dots & a_{n\ k-1} & b_n & a_{n\ k+1} & \dots & a_{nn}
+	\end{vmatrix},
+	\quad k=1,2,\dotsc,n.
 \]
 \begin{proof}
 上述原线性方程组可以改写为矩阵形式\(\A \x = \b\).
 因为\(d = \abs{\A} \neq 0\)，故\(\A\)可逆，那么线性方程组有唯一解\[
-\X0 = \A^{-1} \b = \frac{1}{d} \A^* \b,
+	\X0 = \A^{-1} \b = \frac{1}{d} \A^* \b,
 \]其中\(\A^*\)是\(\A\)的伴随矩阵.
-设\(A_{ij}\)表示\(\A\)中元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式，则行列式\(d_k\)可按第\(k\)列展开，得\[
-d_k = b_1 A_{1k} + b_2 A_{2k} + \dotsb + b_n A_{nk},
-\quad k=1,2,\dotsc,n,
-\]则\[
-\X0 = \frac{1}{d} \A^* \b
-= \frac{1}{d} \begin{bmatrix}
-A_{11} & A_{21} & \dots & A_{n1} \\
-A_{12} & A_{22} & \dots & A_{n2} \\
-\vdots & \vdots & \ddots & \vdots \\
-A_{1n} & A_{2n} & \dots & A_{nn}
-\end{bmatrix} \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
-= \frac{1}{d} \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_n \end{bmatrix}.
-\qedhere
+设\(A_{ij}\)表示\(\A\)中元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式，
+则行列式\(d_k\)可按第\(k\)列展开，得\[
+	d_k = b_1 A_{1k} + b_2 A_{2k} + \dotsb + b_n A_{nk},
+	\quad k=1,2,\dotsc,n,
+\]
+则\[
+	\X0 = \frac{1}{d} \A^* \b
+	= \frac{1}{d} \begin{bmatrix}
+		A_{11} & A_{21} & \dots & A_{n1} \\
+		A_{12} & A_{22} & \dots & A_{n2} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		A_{1n} & A_{2n} & \dots & A_{nn}
+	\end{bmatrix} \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+	= \frac{1}{d} \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_n \end{bmatrix}.
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
