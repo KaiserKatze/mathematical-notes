@@ -224,85 +224,80 @@
 \(\{\z\}\)是\(K^n\)的一个子空间，称之为\DefineConcept{零子空间}（zero subspace）.
 \(K^n\)也是其自身的一个子空间.
 
+从上面的讨论知道，在\(K^n\)中，
+向量组\(\AutoTuple{\a}{s}\)的所有线性组合组成的集合\(W\)是\(K^n\)的一个子空间，
+称它为“\(\AutoTuple{\a}{s}\)生成的子空间”，
+记作\[
+	\opair{\AutoTuple{\a}{s}}.
+\]
+
+于是，我们得出结论，以下三个命题等价：
+\begin{enumerate}
+	\item 数域\(K\)上的\(n\)元线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解.
+	\item \(\b\)可以由\(\AutoTuple{\a}{n}\)线性表出.
+	\item \(\b\in\opair{\AutoTuple{\a}{n}}\).
+\end{enumerate}
+
 \begin{example}
 设\(1 \leqslant r < n\).
 证明：集合\[
-U = \Set{ (\v{a}{r},0,\dotsc,0) \given a_i \in K, i=1,2,\dotsc,r }
+	U = \Set{ (\v{a}{r},0,\dotsc,0) \given a_i \in K, i=1,2,\dotsc,r }
 \]是\(K^n\)的子空间.
 \begin{proof}
 在\(K\)中任取一个数\(k\)，%
 再在\(U\)中任取两个向量
 \[
-\a = (\v{a}{r},0,\dotsc,0),
-\quad
-\b = (\v{b}{r},0,\dotsc,0),
+	\a = (\v{a}{r},0,\dotsc,0),
+	\quad
+	\b = (\v{b}{r},0,\dotsc,0),
 \]
 有\[
-\a+\b = (a_1+b_1,a_2+b_2,\dotsc,a_r+b_r,0,\dotsc,0) \in U,
+	\a+\b = (a_1+b_1,a_2+b_2,\dotsc,a_r+b_r,0,\dotsc,0) \in U,
 \]\[
-k \a = (k a_1,k a_2,\dotsc,k a_r,0,\dotsc,0) \in U,
+	k \a = (k a_1,k a_2,\dotsc,k a_r,0,\dotsc,0) \in U,
 \]
 因此\(U\)是\(K^n\)的一个子空间.
 \end{proof}
 \end{example}
 
-\begin{definition}
-在\(K^n\)中，向量组\(\v{\a}{s}\)的所有线性组合组成的集合\[
-W = \Set{ k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s \given k_i \in K, i=1,2,\dotsc,s }
-\]是\(K^n\)的一个子空间，%
-称之为“\(W\)是\(\v{\a}{s}\)生成（或张成）的子空间”，%
-记作\[
-\opair{\v{\a}{s}}.
-\]
-\end{definition}
-
-显然，以下几个命题等价：
-\begin{enumerate}
-\item 数域\(K\)上的\(n\)元线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解.
-\item \(\b\)可以由\(\v{\a}{n}\)线性表出.
-\item \(\b\in\opair{\v{\a}{n}}\).
-\end{enumerate}
-
-\subsection{向量组}
-
-\begin{theorem}
-\(K^n\)中任一向量都可由基本向量组唯一地线性表出.
-\begin{proof}
-对于任意一个向量\(\a=(\v{a}{n})^T\)，%
-线性方程组\(x_1 \e_1 + x_2 \e_2 + \dotsb + x_n \e_n = \a\)的系数行列式为
-\[
-\begin{vmatrix}
-	1 & 0 & \dots & 0 \\
-	0 & 1 & \dots & 0 \\
-	\vdots & \vdots & & \vdots \\
-	0 & 0 & \dots & 1
-\end{vmatrix}
-= 1 \neq 0,
-\]
-那么，根据克拉默法则，这个线性方程组有唯一解，%
-于是\(K^n\)中任一向量\(\a\)都能由基本向量组线性表出，且表出方式唯一.
-事实上，由于
-\[
-a_1 \begin{bmatrix}
-1 \\ 0 \\ 0 \\ \vdots \\ 0
-\end{bmatrix}
-+ a_2 \begin{bmatrix}
-0 \\ 1 \\ 0 \\ \vdots \\ 0
-\end{bmatrix}
-+ \dotsb + a_n \begin{bmatrix}
-0 \\ 0 \\ 0 \\ \vdots \\ 1
-\end{bmatrix}
-= \begin{bmatrix}
-a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_n
-\end{bmatrix},
-\]
-因此，用基本向量组标出向量\(\a\)的方式为
-\[
-\a = a_1 \e_1 + a_2 \e_2 + \dotsb + a_n \e_n.
-\qedhere
-\]
-\end{proof}
-\end{theorem}
+%\begin{theorem}
+%\(K^n\)中任一向量都可由基本向量组唯一地线性表出.
+%\begin{proof}
+%对于任意一个向量\(\a=(\v{a}{n})^T\)，%
+%线性方程组\(x_1 \e_1 + x_2 \e_2 + \dotsb + x_n \e_n = \a\)的系数行列式为
+%\[
+%\begin{vmatrix}
+%	1 & 0 & \dots & 0 \\
+%	0 & 1 & \dots & 0 \\
+%	\vdots & \vdots & & \vdots \\
+%	0 & 0 & \dots & 1
+%\end{vmatrix}
+%= 1 \neq 0,
+%\]
+%那么，根据克拉默法则，这个线性方程组有唯一解，%
+%于是\(K^n\)中任一向量\(\a\)都能由基本向量组线性表出，且表出方式唯一.
+%事实上，由于
+%\[
+%a_1 \begin{bmatrix}
+%1 \\ 0 \\ 0 \\ \vdots \\ 0
+%\end{bmatrix}
+%+ a_2 \begin{bmatrix}
+%0 \\ 1 \\ 0 \\ \vdots \\ 0
+%\end{bmatrix}
+%+ \dotsb + a_n \begin{bmatrix}
+%0 \\ 0 \\ 0 \\ \vdots \\ 1
+%\end{bmatrix}
+%= \begin{bmatrix}
+%a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_n
+%\end{bmatrix},
+%\]
+%因此，用基本向量组标出向量\(\a\)的方式为
+%\[
+%\a = a_1 \e_1 + a_2 \e_2 + \dotsb + a_n \e_n.
+%\qedhere
+%\]
+%\end{proof}
+%\end{theorem}
 
 \section{向量组的线性相关性}
 判断\(\b\)能否由向量组\(\v{\a}{s}\)线性表出，根据定义就是判断向量方程\[
@@ -1015,19 +1010,29 @@ y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
 \dim\opair{\v{\a}{s}} = \rank\{\v{\a}{s}\}.
 \end{equation}
 \end{theorem}
-这里要注意区分“子空间的维数\(\dim\opair{\v{\a}{s}}\)”和“向量组的秩\(\rank\{\v{\a}{s}\}\)”这两个概念：维数是对子空间而言，秩是对向量组而言；在子空间\(\opair{\v{\a}{s}}\)这个集合中有无穷多个向量，而向量组\(\{\v{\a}{s}\}\)这个集合中只有有限个（\(s\)个）向量.
+这里要注意区分“子空间的维数\(\dim\opair{\v{\a}{s}}\)”
+和“向量组的秩\(\rank\{\v{\a}{s}\}\)”这两个概念：
+维数是对子空间而言，秩是对向量组而言；
+在子空间\(\opair{\v{\a}{s}}\)这个集合中有无穷多个向量，
+而向量组\(\{\v{\a}{s}\}\)这个集合中只有有限的\(s\)个向量.
 
-数域\(K\)上任一\(s \times n\)矩阵\(\A\)的列向量组\(\v{\a}{n}\)生成的子空间称为\(\A\)的\DefineConcept{列空间}；\(\A\)的行向量组\(\v{\g}{s}\)生成的子空间称为\(\A\)的\DefineConcept{行空间}.
+数域\(K\)上任一\(s \times n\)矩阵\(\A\)的列向量组\(\v{\a}{n}\)%
+生成的子空间称为\(\A\)的\DefineConcept{列空间}；
+\(\A\)的行向量组\(\v{\g}{s}\)生成的子空间称为\(\A\)的\DefineConcept{行空间}.
 易知，\(\A\)的列（行）空间的维数等于\(\A\)的列（行）向量组的秩.
 
 \section{矩阵的秩}
 \subsection{矩阵的秩的概念与性质}
 \begin{definition}\label{definition:线性方程组.行秩与列秩的定义}
-矩阵的\(\A\)的行向量组、列向量组的秩分别称为\(\A\)的\DefineConcept{行秩}（row rank）、\DefineConcept{列秩}（column rank）.
+矩阵的\(\A\)的行向量组、列向量组的秩分别称为%
+\(\A\)的\DefineConcept{行秩}（row rank）、\DefineConcept{列秩}（column rank）.
 \end{definition}
 
 \begin{definition}\label{definition:线性方程组.矩阵的秩的定义}
-\(\A\)的非零子式的最高阶数\(r\)称为矩阵\(\A\)的\DefineConcept{秩}（rank）\footnote{这种定义方式最早是由西尔维斯特于1851年给出的.}，记为\(\rank\A\)、\(R(\A)\)或\(r_{\A}\).
+\(\A\)的非零子式的最高阶数\(r\)称为
+“矩阵\(\A\)的\DefineConcept{秩}（rank）\footnote{
+这种定义方式最早是由西尔维斯特于1851年给出的.}”，
+记为\(\rank\A\)、\(R(\A)\)或\(r_{\A}\).
 \end{definition}
 
 \begin{property}\label{theorem:线性方程组.矩阵的秩的性质1}
