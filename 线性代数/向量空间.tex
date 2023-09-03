@@ -499,6 +499,8 @@ theorem:解析几何.三向量不共面的充要条件1}.
 \(s\)个\(n\)维向量\(\AutoTuple{\a}{s}\)不能构成行列式，
 只能用其他方法判断其线性相关性.
 
+
+
 \begin{theorem}[替换定理]
 设向量组\(\AutoTuple{\a}{s}\)线性无关，
 \(\b=b_1\a_1+\dotsb+b_s\a_s\).
@@ -509,42 +511,53 @@ theorem:解析几何.三向量不共面的充要条件1}.
 \end{theorem}
 
 \begin{example}
-设\(\A\)是3阶矩阵，\(\a_1,\a_2,\a_3\)为3维列向量组，若\(\A\a_1,\A\a_2,\A\a_3\)线性无关，证明：\(\a_1,\a_2,\a_3\)线性无关，且\(\A\)为可逆矩阵.
+设\(\A\)是3阶矩阵，\(\a_1,\a_2,\a_3\)为3维列向量组，
+若\(\A\a_1,\A\a_2,\A\a_3\)线性无关，
+证明：\(\a_1,\a_2,\a_3\)线性无关，且\(\A\)为可逆矩阵.
 \begin{proof}
 因为\(\A\a_1,\A\a_2,\A\a_3\)线性无关，所以齐次线性方程组\[
-x_1 \A\a_1 + x_2 \A\a_2 + x_3 \A\a_3
-= (\A\a_1,\A\a_2,\A\a_3) (x_1,x_2,x_3)^T
-= \z
-\]只有零解（即\(x_1 = x_2 = x_3 = 0\)），根据克拉默法则，有\[
-\det(\A\a_1,\A\a_2,\A\a_3) \neq 0.
+	x_1 \A\a_1 + x_2 \A\a_2 + x_3 \A\a_3
+	= (\A\a_1,\A\a_2,\A\a_3) (x_1,x_2,x_3)^T
+	= \z
+\]
+只有零解（即\(x_1 = x_2 = x_3 = 0\)），根据克拉默法则，有\[
+	\det(\A\a_1,\A\a_2,\A\a_3) \neq 0.
 \]
 
-因为\(\det(\A\a_1,\A\a_2,\A\a_3) = \abs{\A} \cdot \det(\a_1,\a_2,\a_3) \neq 0\)，所以\(\abs{\A} \neq 0\)（即\(\A\)是可逆矩阵），且\(\det(\a_1,\a_2,\a_3) \neq 0\)（即齐次线性方程组\(x_1 \a_1 + x_2 \a_2 + x_3 \a_3 = \z\)只有零解，向量组\(\a_1,\a_2,\a_3\)线性无关）.
+因为\(\det(\A\a_1,\A\a_2,\A\a_3) = \abs{\A} \cdot \det(\a_1,\a_2,\a_3) \neq 0\)，
+所以\(\abs{\A} \neq 0\)（即\(\A\)是可逆矩阵），
+且\(\det(\a_1,\a_2,\a_3) \neq 0\)%
+（即齐次线性方程组\(x_1 \a_1 + x_2 \a_2 + x_3 \a_3 = \z\)只有零解，
+向量组\(\a_1,\a_2,\a_3\)线性无关）.
 \end{proof}
 \end{example}
 
-\begin{example}
-证明：\(\mathbb{R}^n\)中的任意正交组线性无关.
-\begin{proof}
-设\(A=\{\AutoTuple{\a}{m}\}\)是\(\mathbb{R}^n\)的一个正交组，令\[
-k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m = \z,
-\]两端分别与\(\a_1\)作内积，%
-即\(\vectorinnerproduct{(k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m)}{\a_1} = \vectorinnerproduct{\z}{\a_1}\)；
-由内积性质，\[
-k_1 (\vectorinnerproduct{\a_1}{\a_1})
-+ k_2 (\vectorinnerproduct{\a_2}{\a_1})
-+ \dotsb
-+ k_m (\vectorinnerproduct{\a_m}{\a_1})
-= \vectorinnerproduct{\z}{\a_1},
-\]
-其中\(\vectorinnerproduct{\z}{\a_1} = 0\)，%
-\(\vectorinnerproduct{\a_j}{\a_1} = 0\ (j=2,3,\dotsc,m)\)，%
-故\(k_1 \vectorinnerproduct{\a_1}{\a_1} = 0\)，%
-而\(\vectorinnerproduct{\a_1}{\a_1} > 0\)，%
-所以\(k_1=0\).
-同理可得\(k_2=k_3=\dotsb=k_m=0\)，从而\(A\)线性无关.
-\end{proof}
-\end{example}
+%\begin{example}
+%证明：\(\mathbb{R}^n\)中的任意正交组线性无关.
+%\begin{proof}
+%设\(A=\{\AutoTuple{\a}{m}\}\)是\(\mathbb{R}^n\)的一个正交组，令\[
+%	k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m = \z,
+%\]
+%两端分别与\(\a_1\)作内积，
+%即\[
+%	\vectorinnerproduct{(k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m)}{\a_1}
+%	= \vectorinnerproduct{\z}{\a_1};
+%\]
+%由内积性质，\[
+%	k_1 (\vectorinnerproduct{\a_1}{\a_1})
+%	+ k_2 (\vectorinnerproduct{\a_2}{\a_1})
+%	+ \dotsb
+%	+ k_m (\vectorinnerproduct{\a_m}{\a_1})
+%	= \vectorinnerproduct{\z}{\a_1},
+%\]
+%其中\(\vectorinnerproduct{\z}{\a_1} = 0\)，
+%\(\vectorinnerproduct{\a_j}{\a_1} = 0\ (j=2,3,\dotsc,m)\)，
+%故\(k_1 \vectorinnerproduct{\a_1}{\a_1} = 0\)，
+%而\(\vectorinnerproduct{\a_1}{\a_1} > 0\)，
+%所以\(k_1=0\).
+%同理可得\(k_2=k_3=\dotsb=k_m=0\)，从而\(A\)线性无关.
+%\end{proof}
+%\end{example}
 
 \section{向量组的秩}
 \subsection{向量组的等价关系}
