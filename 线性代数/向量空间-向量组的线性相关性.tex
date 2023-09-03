@@ -1,0 +1,257 @@
+\section{向量组的线性相关性}
+在上一节，我们把线性方程组有没有解的问题归结为：
+常数项列向量\(\b\)能否由系数矩阵的列向量组\(\AutoTuple{\a}{s}\)线性表出.
+那么，如何研究\(K^n\)中一个向量能不能由一个向量组线性表出呢？
+
+\subsection{线性相关性的概念}
+我们首先回顾\cref{theorem:解析几何.两向量共线的充要条件1,%
+theorem:解析几何.三向量共面的充要条件1}，
+以及\cref{theorem:解析几何.两向量不共线的充要条件1,%
+theorem:解析几何.三向量不共面的充要条件1}.
+
+受此启发，我们提出以下两个概念.
+\begin{definition}\label{definition:线性方程组.线性相关与线性无关的定义}
+%@see: 《线性代数》（张慎语、周厚隆） P68 定义6
+设\(A=\Set{\AutoTuple{\a}{s}}\)是\(n\)维向量空间\(K^n\)中的一个向量组.
+
+如果\(K\)中存在不全为零的数\(\AutoTuple{k}{s}\)，使得\[
+	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z,
+\]
+则称“向量组\(A\) \DefineConcept{线性相关}（linearly dependent）”；
+否则，称“向量组\(A\) \DefineConcept{线性无关}（linearly independent）”.
+\end{definition}
+
+显然，从\cref{definition:线性方程组.线性相关与线性无关的定义} 立即可得
+\begin{align*}
+	&\hspace{-20pt}\text{向量组\(A\)线性无关} \\
+	&\iff
+	[k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z
+	\implies
+	k_1 = k_2 = \dotsb = k_s = 0].
+\end{align*}
+
+特别地，我们规定：空集\(\emptyset\)线性无关.
+
+\subsection{线性相关性的判定条件}
+根据线性相关、线性无关的定义和解析几何的结论，
+在几何空间中，共线的两个向量是线性相关的，
+共面的三个向量是线性相关的，
+不共面的三个向量是线性无关的，
+不共线的两个向量是线性无关的.
+
+下面我们再来看几个例子.
+\begin{example}\label{example:线性方程组.含有零向量的向量组线性相关}
+%@see: 《线性代数》（张慎语、周厚隆） P68 例1
+向量空间\(K^n\)中的零向量可以由任意向量组\(\AutoTuple{\b}{t}\)线性表出，
+这是因为恒等式\[
+	0\b_1+0\b_2+\dotsb+0b_t=\z.
+\]
+进一步，
+含有零向量\(\z\)的向量组\[
+	\Set{\z,\AutoTuple{\a}{s}}
+\]总是线性相关的，
+这是因为\[
+	1 \z + 0 \a_1 + 0 \a_2 + \dotsb + 0 \a_s = \z.
+\]
+\end{example}
+
+\begin{example}\label{example:线性方程组.基本向量组线性无关}
+%@see: 《线性代数》（张慎语、周厚隆） P68 例2
+\(K^n\)的基本向量组\(\AutoTuple{\e}{n}\)线性无关.
+\begin{proof}
+令\(k_1 \e_1 + k_2 \e_2 + \dotsb + k_n \e_n = \z\)，即\[
+	k_1 (1,0,\dotsc,0)^T + k_2 (0,1,\dotsc,0)^T + \dotsb k_n (0,0,\dotsc,1)^T = \z.
+\]
+进一步，有\[
+	(\AutoTuple{k}{n})^T = (0,\dotsc,0)^T,
+\]
+于是\(k_1 = k_2 = \dotsb = k_n = 0\)，
+因此\(\e_1,\e_2,\dotsc,\e_n\)线性无关.
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:线性方程组.单向量组线性相关的充要条件}
+证明：一个向量\(\a\)组成的向量组\(\{\a\}\)线性相关的充要条件是\(\a=\z\).
+\begin{proof}
+必要性.
+设\(\{\a\}\)线性相关，存在数\(k \neq 0\)使得\(k\a = \z\)，可得\(\a = \z\).
+
+充分性.
+设\(\a = \z\)，则\(1\a = \z\)，而数\(1 \neq 0\)，故\(\{\a\}\)线性相关.
+\end{proof}
+\end{example}
+我们还可以给出逆否命题：\(\text{向量组\(\{\a\}\)线性无关} \iff \a\neq\z\).
+
+\begin{theorem}\label{theorem:线性方程组.向量组线性相关的充要条件1}
+向量组\(A=\{\AutoTuple{\a}{s}\}\ (s>1)\)线性相关的充要条件是：
+\(A\)中至少有一个向量可由其余\(s-1\)个向量线性表出.
+\begin{proof}
+必要性.
+\(A\)线性相关，则存在不全为零的数\(\AutoTuple{k}{s}\)，使得\[
+	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z.
+\]
+设\(k_i\neq0\ (1 \leqslant i \leqslant s)\)，于是\[
+	\a_i = -\frac{1}{k_i} (
+		k_1 \a_1 + k_2 \a_2 + \dotsb
+		+ k_{i-1} \a_{i-1} + k_{i+1} \a_{i+1}
+		+ \dotsb + k_s \a_s
+	),
+\]
+即\(\a_i\)可由其余\(s-1\)个向量线性表出.
+
+充分性.
+若\(\a_j \in A\)可由其余\(s-1\)个向量线性表出，即\[
+	\a_j = l_1 \a_1 + \dotsb + l_{j-1} \a_{j-1} + l_{j+1} \a_{j+1} + \dotsb + l_s \a_s,
+\]
+移项得\[
+	l_1 \a_1 + \dotsb
+	+ l_{j-1} \a_{j-1} + (-1) \a_j + l_{j+1} \a_{j+1}
+	+ \dotsb + l_s \a_s = \z,
+\]
+上式等号左边的系数中至少有一个数\(-1\neq0\)，
+因此\(A\)线性相关.
+\end{proof}
+\end{theorem}
+
+根据\cref{theorem:线性方程组.向量组线性相关的充要条件1}，我们立即有它的逆否命题成立：
+\begin{corollary}
+向量组\(A=\{\AutoTuple{\a}{s}\}\ (s>1)\)线性无关的充要条件是：
+\(A\)中每一个向量都不能由其余向量线性表出.
+\end{corollary}
+
+\begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P68 例4
+设向量组\(A=\{\AutoTuple{\a}{s}\}\)线性无关，
+\(B=\{\AutoTuple{\a}{s},\b\}\)线性相关.
+证明：\(\b\)可由\(A\)线性表出.
+\begin{proof}
+由于向量组\(B\)线性相关，
+则存在不全为零的数\(\AutoTuple{k}{s},k\)使得\[
+	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s + k \b = \z.
+\]
+假设\(k = 0\)，
+则\(\AutoTuple{k}{s}\)不全为零，
+且有\(k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z\)，
+即\(A\)线性相关，
+与题设矛盾，说明\(k \neq 0\).
+于是\[
+	\b = -\frac{1}{k} (k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s).
+	\qedhere
+\]
+\end{proof}
+利用\cref{theorem:线性方程组.向量组线性相关的充要条件1}
+可以证明，“\(\b\)可由\(A\)线性表出”蕴含“\(B\)线性相关”.
+因此，“\(\b\)可由\(A\)线性表出”是“\(B\)线性相关”成立的充要条件.
+
+再则我们还能得到如下结论：
+设\(A\)线性无关，
+则“\(\b\)不能由\(A\)线性表出”的充要条件是“\(B\)线性无关”.
+\end{example}
+
+\begin{theorem}\label{theorem:线性方程组.部分组线性相关则全组线性相关}
+若向量组\(A=\{\AutoTuple{\a}{s}\}\)的一个部分组线性相关，则\(A\)线性相关.
+\begin{proof}
+假设\(A\)的部分组\(B=\{\AutoTuple{\a}{t}\}\ (t \leqslant s)\)线性相关，
+即存在不全为零的数\(\AutoTuple{k}{t}\)使得\[
+	k_1 \a_1 + k_2 \a_2 + \dotsb + k_t \a_t = \z;
+\]
+从而有\[
+	k_1 \a_1 + k_2 \a_2 + \dotsb + k_t \a_t + 0 \a_{t+1} + \dotsb + 0 \a_s = \z;
+\]
+由于上式等号左边的系数\(\AutoTuple{k}{t},0,\dotsc,0\)不全为零，
+因此向量组\(A\)线性相关.
+\end{proof}
+\end{theorem}
+
+由\cref{theorem:线性方程组.部分组线性相关则全组线性相关} 立即得到：
+\begin{corollary}\label{theorem:线性方程组.全组线性无关则任一部分组线性无关}
+如果向量组\(A\)线性无关，
+那么\(A\)的任意一个部分组也线性无关.
+\end{corollary}
+
+给定\(n\)维向量组\(\AutoTuple{\a}{s}\)，
+为其中的每个向量都添上\(m\)个分量，
+所添分量的位置对于每个向量都一样，
+把得到的\(n+m\)维向量组\(\AutoTuple{\b}{s}\)称为%
+“\(\AutoTuple{\a}{s}\)的\DefineConcept{延伸组}”；
+反过来，把\(\AutoTuple{\a}{s}\)称为%
+“\(\AutoTuple{\b}{s}\)的\DefineConcept{缩短组}”.
+
+如果向量组线性无关，那么它的延伸组也线性无关.
+如果向量组线性相关，那么它的缩短组也线性相关.
+
+\begin{theorem}
+\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性相关的充要条件是：\[
+	\det(\AutoTuple{\a}{n})=0.
+\]
+\end{theorem}
+
+\begin{corollary}
+\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性无关的充要条件是：\[
+	\det(\AutoTuple{\a}{n})\neq0.
+\]
+\end{corollary}
+
+需要注意的是，当\(s \neq n\)时，
+\(s\)个\(n\)维向量\(\AutoTuple{\a}{s}\)不能构成行列式，
+只能用其他方法判断其线性相关性.
+
+
+
+\begin{theorem}[替换定理]
+设向量组\(\AutoTuple{\a}{s}\)线性无关，
+\(\b=b_1\a_1+\dotsb+b_s\a_s\).
+如果\(b_j\neq0\)，
+那么用\(\b\)替换\(\a_j\)以后得到的向量组
+\(\AutoTuple{\a}{j-1},\b,\AutoTuple{\a}[j+1]{s}\)
+也线性无关.
+\end{theorem}
+
+\begin{example}
+设\(\A\)是3阶矩阵，\(\a_1,\a_2,\a_3\)为3维列向量组，
+若\(\A\a_1,\A\a_2,\A\a_3\)线性无关，
+证明：\(\a_1,\a_2,\a_3\)线性无关，且\(\A\)为可逆矩阵.
+\begin{proof}
+因为\(\A\a_1,\A\a_2,\A\a_3\)线性无关，所以齐次线性方程组\[
+	x_1 \A\a_1 + x_2 \A\a_2 + x_3 \A\a_3
+	= (\A\a_1,\A\a_2,\A\a_3) (x_1,x_2,x_3)^T
+	= \z
+\]
+只有零解（即\(x_1 = x_2 = x_3 = 0\)），根据克拉默法则，有\[
+	\det(\A\a_1,\A\a_2,\A\a_3) \neq 0.
+\]
+
+因为\(\det(\A\a_1,\A\a_2,\A\a_3) = \abs{\A} \cdot \det(\a_1,\a_2,\a_3) \neq 0\)，
+所以\(\abs{\A} \neq 0\)（即\(\A\)是可逆矩阵），
+且\(\det(\a_1,\a_2,\a_3) \neq 0\)%
+（即齐次线性方程组\(x_1 \a_1 + x_2 \a_2 + x_3 \a_3 = \z\)只有零解，
+向量组\(\a_1,\a_2,\a_3\)线性无关）.
+\end{proof}
+\end{example}
+
+%\begin{example}
+%证明：\(\mathbb{R}^n\)中的任意正交组线性无关.
+%\begin{proof}
+%设\(A=\{\AutoTuple{\a}{m}\}\)是\(\mathbb{R}^n\)的一个正交组，令\[
+%	k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m = \z,
+%\]
+%两端分别与\(\a_1\)作内积，
+%即\[
+%	\vectorinnerproduct{(k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m)}{\a_1}
+%	= \vectorinnerproduct{\z}{\a_1};
+%\]
+%由内积性质，\[
+%	k_1 (\vectorinnerproduct{\a_1}{\a_1})
+%	+ k_2 (\vectorinnerproduct{\a_2}{\a_1})
+%	+ \dotsb
+%	+ k_m (\vectorinnerproduct{\a_m}{\a_1})
+%	= \vectorinnerproduct{\z}{\a_1},
+%\]
+%其中\(\vectorinnerproduct{\z}{\a_1} = 0\)，
+%\(\vectorinnerproduct{\a_j}{\a_1} = 0\ (j=2,3,\dotsc,m)\)，
+%故\(k_1 \vectorinnerproduct{\a_1}{\a_1} = 0\)，
+%而\(\vectorinnerproduct{\a_1}{\a_1} > 0\)，
+%所以\(k_1=0\).
+%同理可得\(k_2=k_3=\dotsb=k_m=0\)，从而\(A\)线性无关.
+%\end{proof}
+%\end{example}

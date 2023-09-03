@@ -1,0 +1,301 @@
+\section{向量空间}
+为了直接用线性方程组的系数和常数项判断方程组有没有解，有多少解，
+我们再前面给出了用系数行列式判断\(n\)个方程的\(n\)元线性方程组有唯一解的充要条件.
+这一判定方法只适用于方程数目与未知量数目相等的线性方程组；
+而且，当系数行列式等于零时，只能得出方程组无解或有无穷多解的结论，
+没有办法区分什么时候无解，什么时候有无穷多解.
+对于任意的线性方程组，有没有这样一种判定方法：
+直接依据它的系数和常数项，给出它有没有解，有多少解呢？
+为此我们需要探讨和建立线性方程组的进一步的理论.
+这一理论还将使我们弄清楚线性方程组有无穷多个解时解的结构.
+
+\subsection{向量空间}
+设\(K\)是数域，\(n\)是任意给定的一个正整数.
+令\[
+	K^n \defeq \Set{ (\AutoTuple{a}{n}) \given a_i \in K\ (i=1,2,\dotsc,n) }.
+\]
+
+如果\[
+	a_i=b_i
+	\quad(i=1,2,\dotsc,n),
+\]
+则称“\(K^n\)中的两个元素\((\v{a}{n})\)与\((\v{b}{n})\)相等”.
+
+在\(K^n\)中规定“加法”运算如下：
+\begin{equation}\label{equation:向量空间.向量的加法.定义式}
+	(\v{a}{n}) + (\v{b}{n})
+	\defeq (a_1+b_1,a_2+b_2,\dotsc,a_n+b_n).
+\end{equation}
+
+在\(K\)的元素与\(K^n\)的元素之间规定“数量乘法”运算如下：
+\begin{equation}\label{equation:向量空间.向量的数量乘法.定义式}
+	k (\v{a}{n})
+	\defeq (k a_1,k a_2,\dotsc,k a_n).
+\end{equation}
+
+容易验证，上述加法和数量乘法满足下述8条运算法则:
+\begin{enumerate}
+	\item 加法交换律，即\((\forall \a,\b \in K^n)[\a+\b=\b+\a]\).
+
+	\item 加法结合律，即\((\forall \a,\b,\g \in K^n)[(\a+\b)+\g=\a+(\b+\g)]\).
+
+	\item 记\(\z=(0,0,\dotsc,0)\)，\[
+		(\forall\a \in K^n)[\a+\z = \z+\a = \a].
+	\]
+	称\(\z\)为“\(K^n\)的\DefineConcept{零元}（zero element）”.
+
+	\item \(\forall\a=(\AutoTuple{a}{n}) \in K^n\)，令\[
+		-\a \defeq (\AutoTuple{-a}{n}),
+	\]
+	则\(-\a \in K^n\)且\[
+		\a+-\a
+		= -\a+\a
+		= \z;
+	\]
+	称\(-\a\)为“\(\a\)的\DefineConcept{负元}（negative element）”.
+
+	\item \((\forall \a \in K^n)[1 \a=\a]\).
+
+	\item \((\forall \a \in K^n)(\forall k,l \in K)[k (l \a)=(kl) \a]\).
+
+	\item \((\forall \a \in K^n)(\forall k,l \in K)[(k+l) \a=k \a+l \a]\).
+
+	\item \((\forall \a,\b \in K^n)(\forall k \in K)[k (\a+\b)=k \a+k \b]\).
+\end{enumerate}
+
+\begin{definition}
+数域\(K\)上全体\(n\)元组组成的集合\(K^n\)，
+连同定义在它上面的加法运算和数量乘法运算，
+及其满足的8条运算法则一起，
+称为“数域\(K\)上的一个\(n\)维\DefineConcept{向量空间}（vector space）”.
+\(K^n\)的元素称为“\(n\)维\DefineConcept{向量}（vector）”.
+
+对于\(K^n\)中的任意一个向量\(\a=(\AutoTuple{a}{n})\)，
+称数\[
+	a_i\quad(i=1,2,\dotsc,n)
+\]为“\(\a\)的第\(i\)个\DefineConcept{分量}”.
+\end{definition}
+
+在\(n\)维向量空间\(K^n\)中，我们可以额外定义减法运算如下：
+\begin{equation}\label{equation:向量空间.向量的减法.定义式}
+	\a-\b \defeq \a+(-\b).
+\end{equation}
+
+在\(n\)维向量空间\(K^n\)中，容易验证下述4条性质：
+\begin{property}
+\((\forall\a \in K^n)[0\cdot\a=\z]\).
+\end{property}
+
+\begin{property}
+\((\forall\a \in K^n)[(-1)\cdot\a=-\a]\).
+\end{property}
+
+\begin{property}
+\((\forall k \in K)[k\z=\z]\).
+\end{property}
+
+\begin{property}
+\(k\a=\z \implies k=0 \lor \a=\z\).
+\end{property}
+
+把\(n\)元组写成一行，得\[
+	(\AutoTuple{a}{n})
+	\quad\text{或}\quad
+	\begin{bmatrix}
+		a_1 & a_2 & \dots & a_n
+	\end{bmatrix},
+\]
+称之为“\(n\)维\DefineConcept{行向量}（row vector）”.
+
+把\(n\)元组写成一列，得\[
+	\begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix},
+\]
+称之为“\(n\)维\DefineConcept{列向量}（column vector）”；
+不过，我们有时候会为了方便排版，把列向量写成\[
+	(a_1,a_2,\dotsc,a_n)^T.
+\]
+
+\(K^n\)可以看成是\(n\)维行向量组成的向量空间，也可以看成是\(n\)维列向量组成的向量空间.
+两者并没有本质的区别，只是它们的元素的写法不同而已.
+
+
+由有限个\(n\)维行向量构成的集合，称为“\(n\)维\DefineConcept{行向量组}”.
+由有限个\(n\)维列向量构成的集合，称为“\(n\)维\DefineConcept{列向量组}”.
+\(n\)维行向量组和\(n\)维列向量组统称\(n\)维\DefineConcept{向量组}，是\(n\)维向量空间的子集.
+
+称满足
+\[
+	e_{ij} = \left\{ \begin{array}{ll}
+		1, & i=j, \\
+		0, & i \neq j
+	\end{array} \right.
+\]
+的向量组
+\[
+	\e_i = \begin{bmatrix}
+		e_{1i} \\ e_{2i} \\ \vdots \\ e_{ni}
+	\end{bmatrix}
+	\quad(i=1,2,\dotsc,n)
+\]为“\(K^n\)的\DefineConcept{基本向量组}”.
+
+\subsection{线性组合，线性表出}
+%@see: 《线性代数》（张慎语、周厚隆） P67 定义5
+在\(K^n\)中，给定向量组\(\AutoTuple{\a}{s}\)，
+任给\(K\)中一组数\(\AutoTuple{k}{s}\)，
+我们把\[
+	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s
+\]
+称为“向量组\(\AutoTuple{\a}{s}\)的一个\DefineConcept{线性组合}（linear combination）”，
+把\(\AutoTuple{k}{s}\)称为\DefineConcept{系数}；
+
+对于\(\b \in K^n\)，
+如果存在\(K\)中一组数\(\AutoTuple{c}{s}\)，使得\[
+	\b = c_1 \a_1 + c_2 \a_2 + \dotsb + c_s \a_s,
+\]
+则称“\(\b\)可以由\(\AutoTuple{\a}{s}\) \DefineConcept{线性表出}”.
+
+现在，利用向量的加法运算和数量乘法运算，
+我们可以把数域\(K\)上\(n\)元线性方程组 \labelcref{equation:线性方程组.线性方程组的代数形式}
+写成
+\begin{equation}\label{equation:线性方程组.线性方程组的向量形式}
+	x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b,
+\end{equation}
+其中\[
+	\a_j=(a_{1j},a_{2j},\dotsc,a_{sj})^T,
+	\quad
+	j=1,2,\dotsc,n.
+\]
+于是，\begin{align*}
+	&\text{数域\(K\)上线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解} \\
+	&\iff \text{\(K\)中存在一组数\(\AutoTuple{c}{n}\)，使得\(c_1 \a_1 + c_2 \a_2 + \dotsb + c_n \a_n = \b\)成立} \\
+	&\iff \text{\(\b\)可以由\(\AutoTuple{\a}{n}\)线性表出}.
+\end{align*}
+这样我们把线性方程组有没有解的问题归结为：
+常数项列向量\(\b\)能不能由系数矩阵的列向量组线性表出.
+这个结论有两方面的意义：
+一方面，为了从理论上研究线性方程组有没有解，
+就需要去研究\(\b\)能否由\(\AutoTuple{\a}{n}\)线性表出；
+另一方面，对于\(K^n\)中给定的向量组\(\AutoTuple{\a}{n}\)，
+以及给定的\(\b\)，
+为了判断\(\b\)能否由\(\AutoTuple{\a}{n}\)线性表出，
+就可以去判断线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)是否有解.
+
+\subsection{线性子空间}
+在\(K^n\)中，从理论上如何判断任一向量\(\b\)能否由向量组\(\AutoTuple{\a}{n}\)线性表出？
+从线性表出的定义知道，这需要考察\(\b\)是否等于\(\AutoTuple{\a}{n}\)的某一个线性组合.
+为此，我们把\(\AutoTuple{\a}{n}\)的所有线性组合组成一个集合\(W\)，即\[
+	W \defeq \Set{ k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s \given k_i \in K, i=1,2,\dotsc,s }.
+\]
+如果我们能够把\(W\)的结构研究清楚，那么就比较容易判断\(\b\)是否属于\(W\)，
+也就是判断\(\b\)能否由\(\AutoTuple{\a}{n}\)线性表出.
+
+现在我们来研究\(W\)的结构.
+任取\(\a,\g\in W\)，设\[
+	\a=a_1\a_1+a_2\a_2+\dotsb+a_s\a_s, \qquad
+	\g=b_1\a_1+b_2\a_2+\dotsb+b_s\a_s,
+\]
+则\begin{align*}
+	\a+\g
+	&=(a_1\a_1+a_2\a_2+\dotsb+a_s\a_s)+(b_1\a_1+b_2\a_2+\dotsb+b_s\a_s) \\
+	&=(a_1+b_1)\a_1+(a_2+b_2)\a_2+\dotsb+(a_s+b_s)\a_s,
+\end{align*}
+从而\(\a+\g\in W\).
+
+再任取\(k\in W\)，则\begin{align*}
+	k\a
+	&=k(a_1\a_1+a_2\a_2+\dotsb+a_s\a_s) \\
+	&=(ka_1)\a_1+(ka_2)\a_2+\dotsb+(ka_s)\a_s,
+\end{align*}
+从而\(k\a\in W\).
+
+受此启发，我们引出如下概念.
+\begin{definition}
+\(K^n\)的一个非空子集\(U\)如果满足：
+\begin{enumerate}
+	\item \(U\)对\(K^n\)的加法封闭，即\[
+		\a,\b \in U \implies \a+\b \in U;
+	\]
+	\item \(U\)对\(K^n\)的数量乘法封闭，即\[
+		\a \in U, k \in K \implies k\a \in U;
+	\]
+\end{enumerate}
+那么称\(U\)是“\(K^n\)的一个\DefineConcept{线性子空间}（linear subspace）”，
+简称为\DefineConcept{子空间}（subspace）.
+\end{definition}
+\(\{\z\}\)是\(K^n\)的一个子空间，称之为\DefineConcept{零子空间}（zero subspace）.
+\(K^n\)也是其自身的一个子空间.
+
+从上面的讨论知道，在\(K^n\)中，
+向量组\(\AutoTuple{\a}{s}\)的所有线性组合组成的集合\(W\)是\(K^n\)的一个子空间，
+称它为“\(\AutoTuple{\a}{s}\)生成的子空间”，
+记作\[
+	\opair{\AutoTuple{\a}{s}}.
+\]
+
+于是，我们得出结论，以下三个命题等价：
+\begin{enumerate}
+	\item 数域\(K\)上的\(n\)元线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解.
+	\item \(\b\)可以由\(\AutoTuple{\a}{n}\)线性表出.
+	\item \(\b\in\opair{\AutoTuple{\a}{n}}\).
+\end{enumerate}
+
+\begin{example}
+设\(1 \leqslant r < n\).
+证明：集合\[
+	U = \Set{ (\v{a}{r},0,\dotsc,0) \given a_i \in K, i=1,2,\dotsc,r }
+\]是\(K^n\)的子空间.
+\begin{proof}
+在\(K\)中任取一个数\(k\)，%
+再在\(U\)中任取两个向量
+\[
+	\a = (\v{a}{r},0,\dotsc,0),
+	\qquad
+	\b = (\v{b}{r},0,\dotsc,0),
+\]
+有\[
+	\a+\b = (a_1+b_1,a_2+b_2,\dotsc,a_r+b_r,0,\dotsc,0) \in U,
+\]\[
+	k \a = (k a_1,k a_2,\dotsc,k a_r,0,\dotsc,0) \in U,
+\]
+因此\(U\)是\(K^n\)的一个子空间.
+\end{proof}
+\end{example}
+
+%\begin{theorem}
+%\(K^n\)中任一向量都可由基本向量组唯一地线性表出.
+%\begin{proof}
+%对于任意一个向量\(\a=(\v{a}{n})^T\)，%
+%线性方程组\(x_1 \e_1 + x_2 \e_2 + \dotsb + x_n \e_n = \a\)的系数行列式为
+%\[
+%\begin{vmatrix}
+%	1 & 0 & \dots & 0 \\
+%	0 & 1 & \dots & 0 \\
+%	\vdots & \vdots & & \vdots \\
+%	0 & 0 & \dots & 1
+%\end{vmatrix}
+%= 1 \neq 0,
+%\]
+%那么，根据克拉默法则，这个线性方程组有唯一解，%
+%于是\(K^n\)中任一向量\(\a\)都能由基本向量组线性表出，且表出方式唯一.
+%事实上，由于
+%\[
+%a_1 \begin{bmatrix}
+%1 \\ 0 \\ 0 \\ \vdots \\ 0
+%\end{bmatrix}
+%+ a_2 \begin{bmatrix}
+%0 \\ 1 \\ 0 \\ \vdots \\ 0
+%\end{bmatrix}
+%+ \dotsb + a_n \begin{bmatrix}
+%0 \\ 0 \\ 0 \\ \vdots \\ 1
+%\end{bmatrix}
+%= \begin{bmatrix}
+%a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_n
+%\end{bmatrix},
+%\]
+%因此，用基本向量组标出向量\(\a\)的方式为
+%\[
+%\a = a_1 \e_1 + a_2 \e_2 + \dotsb + a_n \e_n.
+%\qedhere
+%\]
+%\end{proof}
+%\end{theorem}

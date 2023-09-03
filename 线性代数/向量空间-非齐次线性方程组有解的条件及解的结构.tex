@@ -1,0 +1,170 @@
+\section{非齐次线性方程组有解的条件及解的结构}
+\begin{definition}
+与非齐次线性方程组\(\A\x=\b\)的系数矩阵相同的齐次线性方程组\(\A\x=\z\)称为前者的\DefineConcept{导出组}.
+\end{definition}
+
+\begin{theorem}\label{theorem:线性方程组.非齐次线性方程组有解的条件及解的结构}
+已知数域\(K\)，矩阵\(\A \in P^{s \times n}\).
+
+对于线性方程组\(\A\x=\b\)，其增广矩阵记为\(\widetilde{\A} = (\A,\b)\)，则
+\begin{enumerate}
+\item \(\A\x=\b\ \text{有解} \iff \rank\A=\rank\widetilde{\A}\)；
+
+\item \(\rank\A=\rank\widetilde{\A}=n\)时，非齐次线性方程组有唯一解；
+
+\item \(\rank\A=\rank\widetilde{\A}<n\)时，非齐次线性方程组有无穷多解.
+设\[
+\x_1,\x_2,\dotsc,\x_{n-r}
+\]是导出组\(\A\x=\z\)的一个基础解系，那么通解为\[
+\x_0+k_1\x_1+k_2\x_2+ \dotsb +k_{n-r}\x_{n-r},
+\quad
+k_1,k_2,\dotsc,k_{n-r} \in P,
+\]其中\(\x_0\)是非齐次线性方程组的一个解，称为\DefineConcept{特解}.
+\end{enumerate}
+\end{theorem}
+
+一般地，对\(\A\x=\b\)的增广矩阵\[
+\widetilde{\A}=(\A,\b)
+\]施行一系列初等行变换化为阶梯形矩阵\[
+\widetilde{\B}=(\B,\g),
+\]则\(\A\x=\b\)与\(\B\x=\g\)同解，\(\A\x=\z\)与\(\B\x=\z\)同解.
+
+于是\(\A\x=\b\)有解的充要条件是\(\rank\B=\rank\widetilde{\B}\).
+
+有解时，求出\(\B\x=\g\)的一个特解和\(\B\x=\z\)的一个基础解系，就可得出\(\A\x=\b\)的通解.
+
+\begin{example}
+求线性方程组\[
+\left\{ \begin{array}{*{9}{r}}
+x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &=& 4 \\
+2 x_1 &-& 2 x_2 &-& 3 x_3 && &=& 2 \\
+4 x_1 &-& 2 x_2 &-& 7 x_3 &-& 4 x_4 &=& -2
+\end{array} \right.
+\]的通解.
+\begin{solution}
+写出增广矩阵\(\widetilde{\A}\)，并作初等行变换化简\begin{align*}
+\widetilde{\A}
+&= \begin{bmatrix}
+1 & -2 & -1 & 2 & 4 \\
+2 & -2 & -3 & 0 & 2 \\
+4 & -2 & -7 & -4 & -2
+\end{bmatrix}
+\xlongrightarrow{\begin{array}{c}
+	-2\times\text{(1行)}+\text{(2行)} \\
+	-4\times\text{(1行)}+\text{(3行)}
+\end{array}}
+\begin{bmatrix}
+1 & -2 & -1 & 2 & 4 \\
+0 & 2 & -1 & -4 & -6 \\
+0 & 6 & -3 & -12 & -18
+\end{bmatrix} \\
+&\to \begin{bmatrix}
+1 & -2 & -1 & 2 & 4 \\
+0 & 2 & -1 & -4 & -6 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\to \begin{bmatrix}
+1 & 0 & -2 & -2 & -2 \\
+0 & 2 & -2 & -4 & -6 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+= \widetilde{\B}
+= (\B,\g),
+\end{align*}
+故\(\rank\A = \rank\widetilde{\A} = 2\)，于是原方程组有解.
+
+解同解方程组\[
+\left\{ \begin{array}{*{9}{c}}
+x_1 && &-& 2 x_3 &-& 2 x_4 &=& -2 \\
+&& 2 x_2 &-& x_3 &-& 4 x_4 &=& -6
+\end{array} \right..
+\]令\(x_3 = 0\)，\(x_4 = 0\)，解得\(x_1 = -2\)，\(x_2 = -3\)，得特解\[
+\x_0 = (-2,-3,0,0)^T.
+\]
+
+又因为导出组的基础解系含\(4 - r_{\A} = 2\)个向量.
+将\(x_3,x_4\)的两组值\((2,0),(0,1)\)分别代入\[
+\left\{ \begin{array}{*{9}{c}}
+x_1 && &-& 2 x_3 &-& 2 x_4 &=& 0 \\
+&& 2 x_2 &-& x_3 &-& 4 x_4 &=& 0
+\end{array} \right.
+\]得基础解系\(\x_1 = (4,1,2,0)^T\)，\(\x_2 = (2,2,0,1)^T\).
+
+于是原方程的通解为\[
+\x = \x_0 + k_1 \x_1 + k_2 \x_2
+= \begin{bmatrix} -2 \\ -3 \\ 0 \\ 0 \end{bmatrix}
++ k_1 \begin{bmatrix} 4 \\ 1 \\ 2 \\ 0 \end{bmatrix}
++ k_2 \begin{bmatrix} 2 \\ 2 \\ 0 \\ 1 \end{bmatrix},
+\]其中\(k_1,k_2\)是任意常数.
+\end{solution}
+\end{example}
+
+\begin{example}
+写出线性方程组\[
+\left\{ \begin{array}{l}
+x_1 - x_2 = a_1 \\
+x_2 - x_3 = a_2 \\
+x_3 - x_4 = a_3 \\
+x_4 - x_1 = a_4
+\end{array} \right.
+\]有解的充要条件，并求解.
+\begin{solution}
+对增广矩阵\(\widetilde{\A}\)作初等行变换化简\begin{align*}
+\widetilde{\A}
+&= \begin{bmatrix}
+1 & -1 & 0 & 0 & a_1 \\
+0 & 1 & -1 & 0 & a_2 \\
+0 & 0 & 1 & -1 & a_3 \\
+-1 & 0 & 0 & 0 & a_4
+\end{bmatrix} \to \begin{bmatrix}
+1 & -1 & 0 & 0 & a_1 \\
+0 & 1 & -1 & 0 & a_2 \\
+0 & 0 & 1 & -1 & a_3 \\
+0 & 0 & 0 & 0 & \sum\limits_{i=1}^4 a_i
+\end{bmatrix} \\
+&\to \begin{bmatrix}
+1 & 0 & 0 & -1 & a_1 + a_2 + a_3 \\
+0 & 1 & 0 & -1 & a_2 + a_3 \\
+0 & 0 & 1 & -1 & a_3 \\
+0 & 0 & 0 & 0 & \sum\limits_{i=1}^4 a_i
+\end{bmatrix}.
+\end{align*}
+可见\(\rank\A = 3\).
+方程组有解的充要条件是\(\rank\widetilde{\A} = \rank\A = 3\)，那么充要条件就是\(\sum\limits_{i=1}^4 a_i = 0\)
+
+当方程组有解时，通解为\[
+\begin{bmatrix}
+a_1 + a_2 + a_3 \\ a_2 + a_3 \\ a_3 \\ 0
+\end{bmatrix} + k \begin{bmatrix}
+1 \\ 1 \\ 1 \\ 1
+\end{bmatrix},
+\]其中\(k\)为任意常数.
+\end{solution}
+\end{example}
+
+至此，我们讨论了线性方程组的解的存在性、解的性质、解的结构及求解方法，建立起了线性方程组的完整理论.
+解线性方程组是线性代数的基本问题之一，现代科学技术方面用到的数学问题也有很多要归结到解线性方程组.
+
+\begin{example}
+设\(\X0\)是非齐次线性方程组\(\A\x=\b\)的一个解，\(\v{\x}{n-r}\)是其导出组\(\A\x=\z\)的一个基础解系.证明：\(\X0,\v{\x}{n-r}\)线性无关.
+\begin{proof}
+因为\(\v{\x}{n-r}\)是其导出组\(\A\x=\z\)的一个基础解系，根据基础解系的定义，显然有\(\v{\x}{n-r}\)线性无关.
+假设\(\X0,\v{\x}{n-r}\)线性相关，那么\(\X0\)可由\(\v{\x}{n-r}\)线性表出，即存在数\(k_1,k_2,\dotsc,k_{n-r}\)使得\[
+\X0 = k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r},
+\]进而有\begin{align*}
+&\A\X0 = \A(k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r}) \\
+&= k_1 \A\X1 + k_2 \A\X2 + \dotsb + k_{n-r} \A\X{n-r}
+= \z + \z + \dotsb + \z = \z,
+\end{align*}即\(\X0\)是\(\A\x=\z\)的一个解，这与\(\X0\)是\(\A\x=\b\neq\z\)的一个解矛盾，所以\(\X0,\v{\x}{n-r}\)线性无关.
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\wA{\widetilde{\A}}
+设线性方程组\(\A\x=\b\)的增广矩阵\(\wA = (\A,\b)\)是一个\(n\)阶可逆矩阵，证明：方程组无解.
+\begin{proof}
+因为\(\wA\)是\(n\)阶方阵，所以\(\A\)是\(n \times (n-1)\)矩阵，从而\(\rank\A \leqslant \min\{n-1,n\} = n-1\).
+又因为\(\wA\)可逆，所以\(\rank\wA = n\).
+因为\(\rank\wA = n > n-1 \geqslant \rank\A\)，所以方程组\(\A\x=\b\)无解.
+\end{proof}
+\end{example}

@@ -1,0 +1,412 @@
+\section{向量组的秩}
+\subsection{向量组的等价关系}
+\begin{definition}
+在\(K^n\)中，如果向量组\[
+	A=\{\AutoTuple{\a}{s}\}
+\]的每个向量都可由向量组\[
+	B=\{\AutoTuple{\b}{t}\}
+\]线性表出，
+则称“\(A\)可由\(B\) \DefineConcept{线性表出}”.
+
+如果\(A\)与\(B\)可以相互线性表出，
+则称\(A\)与\(B\) \DefineConcept{等价}，
+记作\(A \cong B\).
+\end{definition}
+
+\begin{theorem}
+部分组可由全组线性表出.
+\begin{proof}
+设数域\(K\)上一个向量组\(A=\{\AutoTuple{\a}{s}\}\)，%
+从中任取\(t\ (t \leqslant s)\)个向量构成向量组\[
+A'=\{ \a_1, \a_2, \dotsc, \a_t \}.
+\]欲证部分组可由全组线性表出，即证\(\forall \a_j \in A'\)，\(\exists \AutoTuple{k}{j},\dotsc,k_s \in P\)，使得\[
+\a_j = k_1 \a_1 + k_2 \a_2 + \dotsb + k_j \a_j + \dotsb + k_s \a_s.
+\]
+显然只需要使\(k_j = 1\)，使除了\(k_j\)以外的数都等于0，则上式恒成立.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+\(\alpha=\{\AutoTuple{\a}{s}\}\ (s>1)\)%
+线性相关的充要条件是：
+\(\alpha\)可由某个部分组%
+\[\a_1,\dotsc,\a_{i-1},\a_{i+1},\dotsc,\a_s\]
+线性表出.
+\end{theorem}
+
+\begin{theorem}
+设向量组\(A=\{\AutoTuple{\a}{s}\}\)可由%
+\(B=\{\AutoTuple{\b}{t}\}\)线性表出；
+如果\(s>t\)，则\(A\)线性相关.
+\begin{proof}
+欲证\(A\)线性相关，须找到不全为零的\(s\)个数\(\AutoTuple{k}{s}\)使得\[
+	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z.
+\]
+因为向量组\(A\)可由\(B\)线性表出，即有\[
+	\left\{ \begin{array}{l}
+		\a_1 = c_{11} \b_1 + c_{21} \b_2 + \dotsb + c_{t1} \b_t, \\
+		\a_2 = c_{12} \b_1 + c_{22} \b_2 + \dotsb + c_{t2} \b_t, \\
+		\hdotsfor{1} \\
+		\a_s = c_{1s} \b_1 + c_{2s} \b_2 + \dotsb + c_{ts} \b_t.
+	\end{array} \right.
+\]代入可得\[
+	\sum\limits_{j=1}^s k_j \a_j
+	=\sum\limits_{j=1}^s k_j \sum\limits_{i=1}^t c_{ij} \b_i
+	=\sum\limits_{j=1}^s \sum\limits_{i=1}^t k_j c_{ij} \b_i
+	=\sum\limits_{i=1}^t \b_i \sum\limits_{j=1}^s k_j c_{ij}
+	=\z.
+\]
+如此只需证存在不全为零的\(s\)个数\(\AutoTuple{k}{s}\)
+使得对于任意\(i=1,2,\dotsc,t\)都有\[
+	\sum\limits_{j=1}^s k_j c_{ij} = 0.
+\]
+而关于\(k_i\ (i=1,2,\dotsc,s)\)的齐次线性方程组
+\[
+	\left\{ \begin{array}{l}
+		c_{11} k_1 + c_{12} k_2 + \dotsb + c_{1s} k_s = 0, \\
+		c_{21} k_1 + c_{22} k_2 + \dotsb + c_{2s} k_s = 0, \\
+		\hdotsfor{1} \\
+		c_{t1} k_1 + c_{t2} k_2 + \dotsb + c_{ts} k_s = 0.
+	\end{array} \right.
+\]中方程数\(t\)小于未知量个数\(s\)，必有非零解.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+任意\(n+1\)个\(n\)维向量线性相关.
+换言之，向量个数大于维数的向量组线性相关.
+\begin{proof}
+\(P^n\)中任意\(n+1\)个\(n\)维向量\(\alpha = \{ \v{\a}{n+1} \}\)
+可由基本向量组\(\v{\e}{n}\)线性表出，
+这两个向量组中的向量个数满足\(n+1 > n\)，向量组\(\alpha\)线性相关.
+\end{proof}
+\end{corollary}
+
+\begin{corollary}
+若线性无关向量组\[
+\alpha=\{\v{\a}{s}\}
+\]可由向量组\[
+\beta=\{\b_1,\b_2,\dotsc,\b_t\}
+\]线性表出，则\(s \leqslant t\).
+\begin{proof}
+假设\(s > t\)，因为向量组\(\alpha\)可由\(\beta\)线性表出，所以向量组\(\alpha\)线性相关，矛盾，故\(s \leqslant t\).
+\end{proof}
+\end{corollary}
+
+\begin{corollary}
+两个等价的线性无关向量组含有相同的向量个数.
+\begin{proof}
+设\(A=\{\AutoTuple{\a}{s}\}\)
+与\(B=\{\AutoTuple{\b}{t}\}\)
+都线性无关，且\(A \cong B\).
+因为\(A \cong B\)，%
+所以\(A\)可由\(B\)线性表出，%
+从而\(s \leqslant t\)；
+同理可得\(t \leqslant s\)；
+综上所述，\(s = t\).
+\end{proof}
+\end{corollary}
+
+\begin{example}
+在数域\(K\)上，满足\[
+\abs{a_{ii}} > \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq i}} \abs{a_{ij}}
+\quad (i=1,2,\dotsc,n)
+\]的\(n\)阶矩阵\(\A = (a_{ij})_n\)称为\DefineConcept{主对角占优矩阵}.
+证明：\(\A\)的列向量组\(\v{\a}{n}\)的秩等于\(n\).
+\begin{proof}
+假设\(\v{\a}{n}\)线性相关，则在\(K\)中有一组不全为0的数\(\v{k}{n}\)，使得\[
+k_1 \a_1 + k_2 \a_2 + \dotsb + k_n \a_n = \z.
+\]不妨设\(\abs{k_l} = \max\{\abs{k_1},\abs{k_2},\dotsc,\abs{k_n}\}\neq0\).
+由\[
+k_1 a_{l1} + k_2 a_{l2} + \dotsb + k_l a_{ll} + \dotsb + k_n a_{ln} = 0,
+\]可得\[
+a_{ll} = -\frac{1}{k_l} (k_1 a_{l1} + \dotsb + k_{l-1} a_{l,l-1} + k_{l+1} a_{l,l+1} + \dotsb + k_n a_{ln})
+= - \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \frac{k_j}{k_l} a_{lj},
+\]\[
+\abs{a_{ll}} \leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \frac{\abs{k_j}}{\abs{k_l}} \abs{a_{lj}}
+\leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \abs{a_{lj}}.
+\]这与已知条件矛盾！
+因此\(\v{\a}{n}\)线性无关，\(\rank\{\v{\a}{n}\} = n\).
+\end{proof}
+\end{example}
+
+\subsection{极大（线性）无关组的概念}
+\begin{definition}
+设\(B=\{\a_{i_1},\a_{i_2},\dotsc,\a_{i_r}\}\)是\(A=\{\v{\a}{s}\}\)的一个部分组.
+如果\begin{enumerate}
+\item \(B\)线性无关，%
+\item \(A\)可由\(B\)线性表出，%
+\end{enumerate}
+则称\(B\)是\(A\)的一个\DefineConcept{极大（线性）无关组}（maximal independent set）.
+\end{definition}
+
+\begin{property}
+向量组与其极大无关组等价.
+\begin{proof}
+因为作为部分组，极大无关组可由全组线性表出，同时根据极大无关组的定义全组可由极大无关组线性表出，则根据向量组等价的定义可知原向量组与极大无关组等价.
+\end{proof}
+\end{property}
+
+\begin{corollary}
+向量组的任何两个极大无关组等价，且包含相同个数的向量.
+\begin{proof}
+设\(A=\{\AutoTuple{\a}{r}\}\)
+与\(B=\{\AutoTuple{\b}{t}\}\)
+是某个向量组的两个极大无关组.
+因为向量组的任意向量可由其极大无关组线性表出，%
+所以\(A\)可由\(B\)线性表出，%
+\(B\)也可由\(A\)线性表出，%
+即\(A \cong B\)，%
+进而这两个等价的线性无关向量组含有相同的向量个数.
+\end{proof}
+\end{corollary}
+
+\begin{theorem}
+在\(P^n\)中，任意向量组的极大无关组的向量个数不大于\(n\)个.
+\begin{proof}
+根据定义，任意向量组的极大无关组是线性无关的，而向量个数大于维数的向量组总是线性相关，故任意向量组的极大无关组的向量个数总是不大于其维数\(n\)的.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+求向量组\(\{\a\}\)的极大无关组.
+\begin{solution}
+显然有\[
+\Powerset\{\a\} = \{ \emptyset, \{\a\} \},
+\]即\(\{\a\}\)的部分组只有\(\emptyset\)和\(\{\a\}\)，从而它的极大无关组也只能是这两者中的一个.
+
+当\(\a=\z\)时，\(\{\a\}\)线性相关，不能满足极大无关组的定义，故\(\{\a\}\)的极大无关组是\(\emptyset\).
+
+当\(\a\neq\z\)时，\(\{\a\}\)线性无关，所以\(\{\a\}\)的极大无关组是它本身.
+\end{solution}
+\end{example}
+
+\subsection{向量组的秩}
+\begin{definition}
+向量组的极大无关组所含向量的个数，称为向量组的\DefineConcept{秩}（rank）.
+记\[
+A = \{\v{\a}{s}\}
+\]的秩为\(\rank A\)或\(r\{\v{\a}{s}\}\).
+\end{definition}
+
+\begin{property}
+空集\(\emptyset\)的秩为零，即\(\rank\emptyset = 0\).
+\end{property}
+
+\begin{property}
+零向量组的秩为零，即\(r\{\z,\z,\dotsc,\z\}=0\).
+\begin{proof}
+因为向量组本质是向量的集合，所以\[
+\{\z,\z,\dotsc,\z\} = \{\z\},
+\]而由上例知道\(\{\z\}\)的极大无关组是\(\emptyset\)，故\[
+r\{\z,\z,\dotsc,\z\}
+= r\{\z\}
+= \abs{\emptyset}
+= 0.
+\qedhere
+\]
+\end{proof}
+\end{property}
+
+\begin{corollary}
+设向量组\(A=\{\v{\a}{s}\}\).
+如果\(\rank{A}<s\)，则向量组\(A\)线性相关；
+如果\(\rank{A}=s\)，则向量组\(A\)线性无关.
+\end{corollary}
+
+\begin{corollary}
+设向量组
+\(A=\{\AutoTuple{\a}{s}\}\)
+可由向量组
+\(B=\{\AutoTuple{\b}{t}\}\)
+线性表出，%
+则\(\rank A \leqslant \rank B\).
+\begin{proof}
+设\(\rank A = r\)，\(\rank B = u\).因为\(A\)可由\(B\)线性表出，即\[
+\a_k = \sum\limits_{i=1}^t l_{ki} \b_i,
+\quad k=1,2,\dotsc,s.
+\]
+设\(A'=\{\AutoTuple{\a}{r}\}\)
+和\(B'=\{\AutoTuple{\b}{u}\}\)
+分别是\(A\)和\(B\)的极大无关组，%
+则\(B\)可由\(B'\)线性表出，即\[
+\b_i = \sum\limits_{j=1}^u b_{ij} \b_j,
+\quad i=1,2,\dotsc,t;
+\]所以有\[
+\a_k = \sum\limits_{i=1}^t l_{ki} \sum\limits_{j=1}^u b_{ij} \b_j
+= \sum\limits_{i=1}^t \sum\limits_{j=1}^u l_{ki} b_{ij} \b_j
+= \sum\limits_{j=1}^u \b_j \sum\limits_{i=1}^t l_{ki} b_{ij},
+\quad k=1,2,\dotsc,s.
+\]
+
+特别地，\(A'\)可由\(B'\)线性表出，%
+则有\(r \leqslant u\)，即\(\rank A \leqslant \rank B\).
+\end{proof}
+\end{corollary}
+
+\begin{corollary}
+等价向量组的秩相等.秩相等的向量组却不一定等价.
+\begin{proof}
+设向量组\(A\)与\(B\)等价，则\(A\)可由\(B\)线性表出，那么\(\rank A \leqslant \rank B\)；同理可得\(\rank A \geqslant \rank B\)，所以\(\rank A = \rank B\).
+
+设\(A=\{ (0,1) \}\)，\(B=\{ (1,0) \}\)，虽然\(\rank A = \rank B = 1\)，但\(A\)与\(B\)不等价.
+\end{proof}
+\end{corollary}
+
+\begin{example}
+证明：在秩为\(r\)的向量组中，任意\(r+1\)个向量必线性相关.
+\begin{proof}
+设向量组\(\AutoTuple{\a}{s}\)的秩为\(r\).
+假设部分组\(\AutoTuple{\a}{r+1}\)线性无关，%
+那么\[
+\rank\{\AutoTuple{\a}{r+1}\} = r+1.
+\]
+因为部分组总可由全组线性表出，所以部分组的秩总是小于或等于全组的秩，即\[
+r+1 = \rank\{\AutoTuple{\a}{r+1}\} \leqslant \rank\{\AutoTuple{\a}{s}\} = r,
+\]矛盾，所以部分组\(\AutoTuple{\a}{r+1}\)一定线性相关.
+\end{proof}
+\end{example}
+
+\begin{example}
+设向量组\(\AutoTuple{\a}{s}\)的秩为\(r\).
+如果\(\AutoTuple{\a}{r}\)线性无关，证明：
+\(\AutoTuple{\a}{r}\)
+是\(\AutoTuple{\a}{s}\)的一个极大无关组.
+\begin{proof}
+设\[
+A=\{\AutoTuple{\a}{s}\},
+\qquad
+B=\{\AutoTuple{\a}{r}\}.
+\]要证\(B\)是\(A\)的一个极大无关组，须证\(A\)的任意向量可由\(B\)线性表出.
+
+\begin{enumerate}
+\item 显然地，\(\a_i\ (i=1,2,\dotsc,r)\)可由\(B\)线性表出.
+
+\item 根据上例，在秩为\(r\)的向量组中，任意\(r+1\)个向量必线性相关，那么向量组\[
+A_i = \{\AutoTuple{\a}{r},\a_i\}\quad(i=r+1,\dotsc,s)
+\]必线性相关.
+
+又因为\(B\)线性无关，所以\(\a_i\ (i=r+1,\dotsc,s)\)可由\(B\)线性表出.
+\end{enumerate}
+
+综上所述，\(A\)的任意向量可由\(B\)线性表出，且\(B\)线性无关，根据极大无关组的定义，\(B\)是\(A\)的一个极大无关组.
+\end{proof}
+\end{example}
+
+\begin{example}
+向量组
+\(\AutoTuple{\a}{r+1}\)
+与部分组
+\(\AutoTuple{\a}{r}\)
+的秩相等.
+证明：\(\a_{r+1}\)可由
+\(\AutoTuple{\a}{r}\)
+线性表出.
+\begin{proof}
+记\(A=\{\AutoTuple{\a}{r+1}\}\)，
+\(B=\{\AutoTuple{\a}{r}\}\).
+设\(B\)的极大无关组为
+\[
+B'=\{\a_1,\a_2,\dotsc,\a_t\},
+\quad 0 \leqslant t \leqslant r.
+\]
+由题意有
+\(\rank A = \rank B = \rank B' = \abs{B'} = t\).
+
+由上例可知，因为\(\rank A = t\)，%
+而\(B'\)线性无关，%
+所以\(B'\)是\(A\)的一个极大无关组.
+那么向量组\(A\)中的向量\(\a_{r+1}\)可以由极大无关组\(B'\)线性表出.
+又由于\(B'\)是\(B\)的部分组，故\(B'\)可由\(B\)线性表出.
+总而言之，\(A\)可由\(B\)线性表出.
+\end{proof}
+\end{example}
+
+\subsection{极大无关组的求解}
+\begin{theorem}
+设矩阵\[
+\A=(\AutoTuple{\a}{m})
+\]经一系列初等行变换化为矩阵\[
+\B=(\AutoTuple{\b}{m}),
+\]则\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)为\(\A\)的列极大无关组的充要条件是：
+\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)为\(\B\)的列极大无关组.
+\begin{proof}
+矩阵\((\a_{j1},\a_{j2},\dotsc,\a_{jk},\a_l)\)经相同的初等行变换化为
+\[
+(\b_{j1},\b_{j2},\dotsc,\b_{jk},\b_l) \quad(l=1,2,\dotsc,m).
+\]
+考虑以下四个向量形式的线性方程组
+\begin{gather}
+x_1 \a_{j1} + x_2 \a_{j2} + \dotsb + x_k \a_{jk} = \z, \tag1 \\
+x_1 \b_{j1} + x_2 \b_{j2} + \dotsb + x_k \b_{jk} = \z, \tag2 \\
+y_1 \a_{j1} + y_2 \a_{j2} + \dotsb + y_k \a_{jk} = \a_l, \tag3 \\
+y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
+\end{gather}
+其中(1)与(2)同解，(3)与(4)同解.
+
+必要性.
+当\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)是\(\A\)的列极大无关组时，%
+(1)仅有零解，(3)有解.于是(2)仅有零解，(4)有解，%
+从而\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)线性无关，%
+\(\b_l\ (l=1,2,\dotsc,m)\)可由其线性表出；
+由极大无关组定义，%
+\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)是\(\B\)的列极大无关组.
+
+同理可证充分性.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+求列向量组\[
+\a_1 = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 0 \end{bmatrix},
+\a_2 = \begin{bmatrix} -1 \\ 2 \\ -1 \\ 1 \end{bmatrix},
+\a_3 = \begin{bmatrix} 0 \\ -1 \\ 1 \\ -1 \end{bmatrix},
+\a_4 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 3 \end{bmatrix},
+\a_5 = \begin{bmatrix} 2 \\ -6 \\ 4 \\ 1 \end{bmatrix}
+\]的秩与一个极大无关组.
+\begin{solution}
+对矩阵\(\A = (\AutoTuple{\a}{5})\)作初等行变换化为阶梯形矩阵：
+\begin{align*}
+\A &= \begin{bmatrix}
+-1 & -1 & 0 & 1 & 2 \\
+1 & 2 & -1 & -3 & -6 \\
+0 & -1 & 1 & 2 & 4 \\
+0 & 1 & -1 & 3 & 1 \\
+\end{bmatrix}
+\xlongrightarrow{\begin{array}{c}
+(2\text{行}) \addeq 1 \times (1\text{行}) \\
+(4\text{行}) \addeq (3\text{行})
+\end{array}}
+\begin{bmatrix}
+-1 & -1 & 0 & 1 & 2 \\
+0 & 1 & -1 & -2 & -4 \\
+0 & -1 & 1 & 2 & 4 \\
+0 & 0 & 0 & 5 & 5 \\
+\end{bmatrix} \\
+&\xlongrightarrow{\begin{array}{c}
+(3\text{行}) \addeq (2\text{行}) \\
+(4\text{行}) \diveq 5
+\end{array}}
+\begin{bmatrix}
+-1 & -1 & 0 & 1 & 2 \\
+0 & 1 & -1 & -2 & -4 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 1 \\
+\end{bmatrix} \\
+&\xlongrightarrow{\begin{array}{c} \text{交换(3行)与(4行)} \end{array}}
+\begin{bmatrix}
+-1 & -1 & 0 & 1 & 2 \\
+0 & 1 & -1 & -2 & -4 \\
+0 & 0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix} = \B.
+\end{align*}
+若按列分块有\(\B = (\AutoTuple{\b}{5})\).
+阶梯形矩阵\(\B\)有3行不为零，故\[
+\rank\{\AutoTuple{\a}{5}\}=3.
+\]又因为\(\B\)的非零首元分别位于1、2、4列，%
+则\(\b_1,\b_2,\b_4\)是\(\B\)的一个列极大无关组，%
+相应地，\(\a_1,\a_2,\a_4\)是\(\A\)的一个列极大无关组，%
+即\(\{\AutoTuple{\a}{5}\}\)的极大无关组.
+\end{solution}
+\end{example}
