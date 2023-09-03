@@ -1350,9 +1350,10 @@ r_{\A} = r_{\P^{-1} (\P \A)} \leqslant r_{\P \A} \leqslant r_{\A},
 \end{theorem}
 
 \begin{example}
-试证：\[
-\rank\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix} = \rank\A + \rank\B.
-\]
+试证：\begin{equation}
+	\rank\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix} = \rank\A + \rank\B.
+	\label{equation:矩阵的秩.分块矩阵的秩的等式1}
+\end{equation}
 \begin{proof}
 设\(\rank\A = r_1, \rank\B = r_2\)，则存在可逆矩阵\(\P_1,\Q_1,\P_2,\Q_2\)，使得\[
 \P_1 \A \Q_1 = \begin{bmatrix}
@@ -1396,11 +1397,56 @@ r_{\A} = r_{\P^{-1} (\P \A)} \leqslant r_{\P \A} \leqslant r_{\A},
 \end{example}
 
 \begin{example}
-试证：\[
-\rank\begin{bmatrix} \A & \C \\ \z & \B \end{bmatrix} \geqslant \rank\A + \rank\B,
-\qquad
-\rank\begin{bmatrix} \A & \z \\ \D & \B \end{bmatrix} \geqslant \rank\A + \rank\B.
+试证：\begin{gather}
+	\rank\begin{bmatrix} \A & \C \\ \z & \B \end{bmatrix} \geqslant \rank\A + \rank\B,
+	\label{equation:矩阵的秩.分块矩阵的秩的不等式1} \\
+	\rank\begin{bmatrix} \A & \z \\ \D & \B \end{bmatrix} \geqslant \rank\A + \rank\B.
+	\label{equation:矩阵的秩.分块矩阵的秩的不等式2}
+\end{gather}
+\end{example}
+
+\begin{example}
+设\(\A,\B\in M_n(K)\)，\(\A\B=\B\A\)，证明：\[
+	\rank(\A+\B)\leqslant\rank\A+\rank\B-\rank(\A\B).
 \]
+\begin{proof}
+考虑\[
+	\begin{bmatrix}
+		\E & \E \\
+		\z & \E
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A & \z \\
+		\z & \B
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E & -\B \\
+		\E & \A
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A+\B & -\A\B+\B\A \\
+		\B & \B\A
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A+\B & \z \\
+		\B & \A\B
+	\end{bmatrix}.
+\]
+由\cref{equation:矩阵的秩.分块矩阵的秩的等式1,%
+equation:矩阵的秩.分块矩阵的秩的不等式2} 可知\[
+	\rank\A+\rank\B
+	= \rank\begin{bmatrix}
+		\A & \z \\
+		\z & \B
+	\end{bmatrix}
+	\geqslant \rank\begin{bmatrix}
+		\A+\B & \z \\
+		\B & \B\A
+	\end{bmatrix}
+	\geqslant \rank(\A+\B) + \rank(\A\B).
+	\qedhere
+\]
+\end{proof}
 \end{example}
 
 \begin{example}
