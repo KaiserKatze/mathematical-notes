@@ -225,7 +225,7 @@
 映射\(f\)可逆的充要条件是：\(f\)是双射.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.逆映射的计算}
 %@see: 《Elements of Set Theory》 P46. Theorem 3G
 设\(F\)是一一映射.
 \begin{enumerate}
@@ -252,14 +252,14 @@
 \end{proof}
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:集合论.映射的复合也是映射}
 %@see: 《Elements of Set Theory》 P47. Theorem 3H
 设\(F,G\)都是映射，则\(F \circ G\)是映射，且\[
 	\dom(F \circ G)
 	= \Set*{ x \in \dom G \given G(x) \in \dom F },
 \]\[
-	\forall x \in \dom(F \circ G):
-	(F \circ G)(x) = F(G(x)).
+	(\forall x \in \dom(F \circ G))
+	[(F \circ G)(x) = F(G(x))].
 \]
 \begin{proof}
 要证\(F \circ G\)是一个映射，
@@ -295,8 +295,28 @@
 \end{proof}
 \end{theorem}
 
-容易看出，映射的复合是有顺序的，\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
+容易看出，映射的复合是有顺序的，
+\(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
 即便两者都有意义，它们也未必相同.
+
+\begin{example}
+假设\(G\)是某个一一映射，
+那么，根据\cref{theorem:集合论.映射的复合也是映射}，
+\(G^{-1} \circ G\)也是一个映射，
+它的定义域为\[
+	\Set{ x \in \dom G \given G(x) \in \dom G^{-1} }
+	= \dom G,
+\]
+并且，对于\(\forall x \in \dom(G^{-1} \circ G)\)，有\begin{align*}
+	(G^{-1} \circ G)(x) &= G^{-1}(G(x)) \\
+	&= x. &(\text{\cref{theorem:集合论.逆映射的计算}})
+\end{align*}
+因此，\(G^{-1} \circ G\)就是\(I_{\dom G}\)，
+\(\dom G\)上的恒等映射.
+同理，\(G \circ G^{-1}\)是\(I_{\ran G}\)，
+\(\ran G\)上的恒等映射.
+\end{example}
+
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P65. Exercise 53.
