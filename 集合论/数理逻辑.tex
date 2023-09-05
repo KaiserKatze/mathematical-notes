@@ -79,28 +79,8 @@
 非形式地讲，
 我们只要从上述符号中，可重复地选取有限个符号，写成一串，
 就能得到一条\DefineConcept{命题公式}（proposition formula）.
+
 在不引起误解的时候，我们也可将“命题公式”简称为\DefineConcept{公式}（formula）.
-
-
-
-为了简化书写，我们可以规定逻辑联结词的优先级顺序.
-逻辑联结词的优先级为：\[
-	\neg, \qquad
-	\land, \qquad
-	\lor, \qquad
-	\implies, \qquad
-	\iff.
-\]
-除非有括号，否则按照命题公式从左到右，按照优先级从高到低的次序结合.
-定义逻辑联结词的优先级的意义在于可以减少命题公式中的括号数量.
-
-\begin{example}
-\([(\neg p) \lor (q)]\)等同于\([\neg p \lor q]\).
-\end{example}
-
-\begin{example}
-\([p \implies q \land r \implies s]\)等同于\([(p \implies (q \land r)) \implies s]\).
-\end{example}
 
 \begin{table}[ht]
 	\centering
@@ -244,6 +224,105 @@
 \end{enumerate}
 任意一条公式，当且仅当它可以由上述三条规则演绎推得时，我们才称其为合式公式.
 
+\subsection{逻辑联结词的优先级}
+我们解读形式语言的顺序和汉语、英语等常见人类语言一致.
+除非命题公式有括号，否则我们总是按照从左到右的顺序，分析理解形式语言的含义.
+
+在一些比较复杂的命题公式中常常有大量的括号，用来调整我们的解读顺序.
+因此，为了简化书写，减少命题公式中括号的数目，我们可以规定逻辑联结词的优先级顺序：
+\begin{definition}
+设\(\varphi,\psi,\eta\)都是合式公式.
+定义：
+\begin{enumerate}
+	\item \(\varphi
+	\defiff
+	(\varphi)\).
+	\item \((\neg\varphi\land\psi)
+	\defiff
+	((\neg\varphi)\land\psi)\).
+	\item \((\varphi\land\neg\psi)
+	\defiff
+	(\varphi\land(\neg\psi))\).
+	\item \((\neg\varphi\lor\psi)
+	\defiff
+	((\neg\varphi)\lor\psi)\).
+	\item \((\varphi\lor\neg\psi)
+	\defiff
+	(\varphi\lor(\neg\psi))\).
+	\item \((\neg\varphi\implies\psi)
+	\defiff
+	((\neg\varphi)\implies\psi)\).
+	\item \((\varphi\implies\neg\psi)
+	\defiff
+	(\varphi\implies(\neg\psi))\).
+	\item \((\neg\varphi\iff\psi)
+	\defiff
+	((\neg\varphi)\iff\psi)\).
+	\item \((\varphi\iff\neg\psi)
+	\defiff
+	(\varphi\iff(\neg\psi))\).
+	\item \((\varphi\land\psi\lor\eta)
+	\defiff
+	((\varphi\land\psi)\lor\eta)\).
+	\item \((\varphi\lor\psi\land\eta)
+	\defiff
+	(\varphi\lor(\psi\land\eta))\).
+	\item \((\varphi\land\psi\implies\eta)
+	\defiff
+	((\varphi\land\psi)\implies\eta)\).
+	\item \((\varphi\implies\psi\land\eta)
+	\defiff
+	(\varphi\implies(\psi\land\eta))\).
+	\item \((\varphi\land\psi\iff\eta)
+	\defiff
+	((\varphi\land\psi)\iff\eta)\).
+	\item \((\varphi\iff\psi\land\eta)
+	\defiff
+	(\varphi\iff(\psi\land\eta))\).
+	\item \((\varphi\lor\psi\implies\eta)
+	\defiff
+	((\varphi\lor\psi)\implies\eta)\).
+	\item \((\varphi\implies\psi\lor\eta)
+	\defiff
+	(\varphi\implies(\psi\lor\eta))\).
+	\item \((\varphi\lor\psi\iff\eta)
+	\defiff
+	((\varphi\lor\psi)\iff\eta)\).
+	\item \((\varphi\iff\psi\lor\eta)
+	\defiff
+	(\varphi\iff(\psi\lor\eta))\).
+	\item \((\varphi\implies\psi\iff\eta)
+	\defiff
+	((\varphi\implies\psi)\iff\eta)\).
+	\item \((\varphi\iff\psi\implies\eta)
+	\defiff
+	(\varphi\iff(\psi\implies\eta))\).
+\end{enumerate}
+\end{definition}
+非形式地说，逻辑联结词的优先级为：\[
+	\neg, \qquad
+	\land, \qquad
+	\lor, \qquad
+	\implies, \qquad
+	\iff.
+\]
+在这里，最左边的运算符的优先级最高，凡是和其他运算符组合使用时，总要从它开始读起.
+
+\begin{definition}
+设\(\varphi,\psi\)都是合式公式.
+定义：
+\((\neg(\varphi\implies\psi))
+\defiff
+(\varphi\notimplies\psi)\).
+\end{definition}
+
+\begin{example}
+\([(\neg p) \lor (q)]\)等同于\([\neg p \lor q]\).
+\end{example}
+
+\begin{example}
+\([p \implies q \land r \implies s]\)等同于\([(p \implies (q \land r)) \implies s]\).
+\end{example}
 
 \subsection{逻辑公理，推理规则}
 我们有如下五条逻辑公理：
