@@ -20,7 +20,7 @@ a x^2 + 2b xy + c y^2 = d
 \subsection{二次型的基本概念}
 \begin{definition}
 称系数\(a_{ij}\ (1 \leqslant i \leqslant j \leqslant n)\)属于数域\(P\)的\(n\)个变量的二次齐次多项式\begin{equation}\label{equation:二次型.二次型}
-f(\v{x}{n})
+f(\AutoTuple{x}{n})
 = \sum\limits_{i=1}^n \sum\limits_{j=1}^n a_{ij} x_i x_j
 \quad(a_{ji}=a_{ij})
 \end{equation}为数域\(P\)上的一个\(n\)元\DefineConcept{二次型}（quadratic form）\footnote{%
@@ -41,9 +41,9 @@ g(x_1,x_2,x_3) = x_1^2 + 2\sqrt{2} x_1 x_2 + 2 x_1 x_3 + 2 x_2^2 + 4\sqrt{3} x_2
 \begin{definition}
 若\(n\)阶对称矩阵\(\A = (a_{ij})_n\)满足
 \begin{equation}\label{equation:二次型.二次型的矩阵表示}
-f(\v{x}{n}) = \x^T\A\x,
-\end{equation}其中\(\x = (\v{x}{n})^T\)，%
-则称\cref{equation:二次型.二次型的矩阵表示} 为二次型\(f(\v{x}{n})\)的\DefineConcept{矩阵表示}，对称矩阵\(\A\)为\(f\)的\DefineConcept{矩阵}，\(\A\)的秩\(r_{\A}\)为\(f\)的\DefineConcept{秩}.
+f(\AutoTuple{x}{n}) = \x^T\A\x,
+\end{equation}其中\(\x = (\AutoTuple{x}{n})^T\)，%
+则称\cref{equation:二次型.二次型的矩阵表示} 为二次型\(f(\AutoTuple{x}{n})\)的\DefineConcept{矩阵表示}，对称矩阵\(\A\)为\(f\)的\DefineConcept{矩阵}，\(\A\)的秩\(r_{\A}\)为\(f\)的\DefineConcept{秩}.
 \end{definition}
 
 显然，对于任一\(n\)阶矩阵\(\B\)，\(\x^T\B\x\)必定是一个二次型.
@@ -52,10 +52,10 @@ f(\v{x}{n}) = \x^T\A\x,
 \begin{property}
 二次型和它的矩阵是相互唯一确定的.
 \begin{proof}
-对于二次型\(f(\v{x}{n})\)，设非零\(n\)阶对称矩阵\(\A\)和\(\B\)都是\(f\)的矩阵，即\[
+对于二次型\(f(\AutoTuple{x}{n})\)，设非零\(n\)阶对称矩阵\(\A\)和\(\B\)都是\(f\)的矩阵，即\[
 \x^T\A\x
 =\x^T\B\x
-=f(\v{x}{n}),
+=f(\AutoTuple{x}{n}),
 \]则二次型\(\x^T\A\x\)与\(\x^T\B\x\)中\(x_i x_j\)的系数\(2 a_{ij}\)与\(2 b_{ij}\)（\(1 \leqslant i < j \leqslant n\)）必相等，\(x_i^2\)的系数\(a_{ii}\)与\(b_{ii}\)（\(i=1,2,\dotsc,n\)）必相等，故\(\A=\B\).
 \end{proof}
 \end{property}
@@ -132,14 +132,14 @@ y_1 \\ y_2 \\ \vdots \\ y_n
 \end{definition}
 
 \begin{theorem}
-对二次型\(f(\v{x}{n})=\x^T\A\x\)（\(\A=\A^T\)）作可逆线性替换\(\x=\C\y\)，则\(f\)化为新变量的二次型\(g(\v{y}{n})=\y^T\B\y\)，其中\(\B=\C^T\A\C\)为\(g\)的矩阵.
+对二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)（\(\A=\A^T\)）作可逆线性替换\(\x=\C\y\)，则\(f\)化为新变量的二次型\(g(\AutoTuple{y}{n})=\y^T\B\y\)，其中\(\B=\C^T\A\C\)为\(g\)的矩阵.
 \begin{proof}
-\(f(\v{x}{n}) = \x^T\A\x%
+\(f(\AutoTuple{x}{n}) = \x^T\A\x%
 \xlongequal{\x=\C\y} (\C\y)^T\A(\C\y)%
 = \y^T (\C^T\A\C) \y\)，%
 令\(\B = \C^T\A\C\)，由于\(\B^T = (\C^T\A\C)^T = \C^T\A\C = \B\)，以及\(\C\)可逆，所以\(\B\)是对称矩阵.
 \(f\)是二次型，它的矩阵\(\A\neq\z\)，\(\B\cong\A\)，故\(\B\neq\z\).
-于是，\(g(\v{y}{n})=\y^T\B\y\)是二次型，对称矩阵\(\B\)是\(g\)的矩阵.
+于是，\(g(\AutoTuple{y}{n})=\y^T\B\y\)是二次型，对称矩阵\(\B\)是\(g\)的矩阵.
 \end{proof}
 \end{theorem}
 
@@ -237,15 +237,15 @@ y_1 \\ y_2 \\ \vdots \\ y_n
 由\cref{example:二次型.合同矩阵符号相同} 可知，若矩阵\(\A,\B\)合同，则\(\sgn\abs{\A}=\sgn\abs{\B}\).
 
 \begin{example}
-设\(\v{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，%
+设\(\AutoTuple{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，%
 \[
-\A=\diag(\v{d}{n}),
+\A=\diag(\AutoTuple{d}{n}),
 \qquad
 \B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
 \]
 证明：矩阵\(\A,\B\)合同且相似.
 \begin{proof}
-显然\(\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n})\)可由\(\diag(\v{d}{n})\)同时左乘和右乘若干个初等矩阵\[
+显然\(\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n})\)可由\(\diag(\AutoTuple{d}{n})\)同时左乘和右乘若干个初等矩阵\[
 \P(i,j) \quad(1 \leqslant i < j \leqslant n)
 \]得到，又因为\(\P(i,j)^T = \P(i,j)^{-1} = \P(i,j)\)，所以只要令这些初等矩阵的乘积为\(\P\)，就有\[
 \P^{-1} \A \P = \B,
@@ -263,7 +263,7 @@ y_1 \\ y_2 \\ \vdots \\ y_n
 \section{二次型化为标准型的三种方法}
 二次型的基本问题是研究如何通过非退化的线性替换将一个热词性化简为平方和的形式，从而讨论其性质.
 \begin{definition}
-如果二次型\(f(\v{x}{n})=\x^T\A\x\)可以经过非退化的线性替换\(\x=\C\mat{Y}\)化简为\[
+如果二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)可以经过非退化的线性替换\(\x=\C\mat{Y}\)化简为\[
 d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2
 \]的形式，则称上式为二次型\(f\)的\DefineConcept{标准型}或\DefineConcept{规范型}（standard form）.
 \end{definition}
@@ -272,12 +272,12 @@ d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2
 
 \subsection{正交变换法}
 根据\cref{theorem:特征值与特征向量.实对称矩阵3}，对于任何一个实对称矩阵\(\A\)，存在正交矩阵\(\Q\)，使得\[
-\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\v{\lambda}{n}),
-\]即实对称矩阵\(\A\)与对角阵\(\diag(\v{\lambda}{n})\)合同且相似.
+\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}),
+\]即实对称矩阵\(\A\)与对角阵\(\diag(\AutoTuple{\lambda}{n})\)合同且相似.
 
 \begin{theorem}
-对于任一\(n\)元实二次型\(f(\v{x}{n})=\x^T\A\x\)（\(\A=\A^T\)），都存在正交矩阵\(\Q\)，由\(\Q\)构成的线性替换\(\x=\Q\mat{Y}\)（称为\DefineConcept{正交变换}，{\rm orthogonal operator}）将\(f\)化为标准型\[
-f(\v{x}{n})
+对于任一\(n\)元实二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)（\(\A=\A^T\)），都存在正交矩阵\(\Q\)，由\(\Q\)构成的线性替换\(\x=\Q\mat{Y}\)（称为\DefineConcept{正交变换}，{\rm orthogonal operator}）将\(f\)化为标准型\[
+f(\AutoTuple{x}{n})
 \xlongequal{\x=\Q\mat{Y}}
 \lambda_1y_1^2+\lambda_2y_2^2+ \dotsb +\lambda_ny_n^2
 \]其中\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是\(\A\)的全部特征值.
@@ -310,9 +310,9 @@ f(\v{x}{n})
 用正交变换法将二次型化为标准型的步骤如下：
 \begin{enumerate}
 \item 首先根据\(f\)的表达式写出\(f\)的矩阵\(\A\)；
-\item 写出\(f\)矩阵的特征多项式\(\abs{\lambda\E-\A}=0\)，求解\(\A\)的特征值\(\v{\lambda}{n}\)以及对应的特征向量\(\v{\x}{n}\)；
-\item 运用施密特规范化方法将\(\A\)的特征向量正交单位化为\(\v{\g}{n}\)，然后写成正交矩阵\(\Q=(\v{\g}{n})\)；
-\item 计算得出标准型的矩阵\(\B=\Q^T\A\Q=\Q^{-1}\A\Q=\diag(\v{\lambda}{n})\).
+\item 写出\(f\)矩阵的特征多项式\(\abs{\lambda\E-\A}=0\)，求解\(\A\)的特征值\(\AutoTuple{\lambda}{n}\)以及对应的特征向量\(\AutoTuple{\x}{n}\)；
+\item 运用施密特规范化方法将\(\A\)的特征向量正交单位化为\(\AutoTuple{\g}{n}\)，然后写成正交矩阵\(\Q=(\AutoTuple{\g}{n})\)；
+\item 计算得出标准型的矩阵\(\B=\Q^T\A\Q=\Q^{-1}\A\Q=\diag(\AutoTuple{\lambda}{n})\).
 \end{enumerate}
 \endgroup
 
@@ -385,14 +385,14 @@ f(\v{x}{n})
 
 \begin{example}
 设实二次型\[
-f(\v{x}{n})=\x^T\A\x
-\]的矩阵\(\A\)的特征值为\(\v{\lambda}{n}\)，\(c=\max\{\v{\lambda}{n}\}\).
+f(\AutoTuple{x}{n})=\x^T\A\x
+\]的矩阵\(\A\)的特征值为\(\AutoTuple{\lambda}{n}\)，\(c=\max\{\AutoTuple{\lambda}{n}\}\).
 证明：对于任意\(n\)维实向量\(\x\)，都有\[
-f(\v{x}{n}) \leqslant c \x^T\x.
+f(\AutoTuple{x}{n}) \leqslant c \x^T\x.
 \]
 \begin{proof}
-因为\(\A\)是实对称矩阵，即存在正交矩阵\(\Q\)使得\(\Q^T\A\Q = \diag(\v{\lambda}{n})\)，作正交变换\(\x=\Q\y\)，则\(f\)化为标准型\begin{align*}
-f(\v{x}{n}) &= \L{1} y_1^2 + \L{2} y_2^2 + \dotsb + \L{n} y_n^2 \\
+因为\(\A\)是实对称矩阵，即存在正交矩阵\(\Q\)使得\(\Q^T\A\Q = \diag(\AutoTuple{\lambda}{n})\)，作正交变换\(\x=\Q\y\)，则\(f\)化为标准型\begin{align*}
+f(\AutoTuple{x}{n}) &= \L{1} y_1^2 + \L{2} y_2^2 + \dotsb + \L{n} y_n^2 \\
 &\leqslant c y_1^2 + c y_2^2 + \dotsb + c y_n^2
 = c \y^T \y = c \x^T \x.
 \qedhere
@@ -439,8 +439,8 @@ x_3 &= & & & & & y_3
 \end{example}
 
 \begin{theorem}
-对于任一\(n\)元二次型\(f(\v{x}{n})=\x^T\A\x\ (\A=\A^T)\)，都存在非退化的线性替换\(\x=\C\mat{Y}\)，使之成为\[
-f(\v{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
+对于任一\(n\)元二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，都存在非退化的线性替换\(\x=\C\mat{Y}\)，使之成为\[
+f(\AutoTuple{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
 \]
 \begin{proof}
 应用数学归纳法.
@@ -449,7 +449,7 @@ f(\v{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
 假设当\(n=k-1\ (k\geqslant2)\)时结论成立；那么当\(n=k\)时，我们分以下两种情况进行讨论：
 \begin{enumerate}
 \item 若\(f\)的平方项系数不全为零，不妨设\(a_{11}\neq0\)，从而有\begin{align*}
-f(\v{x}{n}) &= a_{11} x_1^2 + 2 x_1 \sum\limits_{j=2}^n a_{1j} x_j + \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j \\
+f(\AutoTuple{x}{n}) &= a_{11} x_1^2 + 2 x_1 \sum\limits_{j=2}^n a_{1j} x_j + \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j \\
 &= a_{11} \left[
 	x_1 + \frac{1}{a_{11}} \sum\limits_{j=2}^n a_{1j} x_j
 \right]^2
@@ -462,7 +462,7 @@ f(\v{x}{n}) &= a_{11} x_1^2 + 2 x_1 \sum\limits_{j=2}^n a_{1j} x_j + \sum\limits
 y_2 = x_2,
 \dotsc,
 y_n = x_n\)，则\[
-f(\v{x}{n}) = a_{11} y_1^2 + g(\v[2]{y}{n}),
+f(\AutoTuple{x}{n}) = a_{11} y_1^2 + g(\v[2]{y}{n}),
 \]
 其中\(g(\v[2]{y}{n})
 = - \frac{1}{a_{11}} \left[
@@ -492,7 +492,7 @@ y_1 \\ y_2 \\ \vdots \\ y_n
 = \P \begin{bmatrix} 1 & \z \\ \z & \Q \end{bmatrix} \begin{bmatrix}
 z_1 \\ z_2 \\ \vdots \\ z_n
 \end{bmatrix}
-\]使得\(f(\v{x}{n}) = a_{11} z_1^2 + d_2 z_2^2 + d_3 z_3^2 + \dotsb + d_n z_n^2\).
+\]使得\(f(\AutoTuple{x}{n}) = a_{11} z_1^2 + d_2 z_2^2 + d_3 z_3^2 + \dotsb + d_n z_n^2\).
 
 \item 若\(f\)不含平方项，则必存在\(1 \leqslant i < j \leqslant n\)使得\(a_{ij}\neq0\)；
 于是\[
@@ -502,10 +502,10 @@ x_j = y_i - y_j \\
 x_k = y_k\ (1 \leqslant k \leqslant n \land k \neq i \land k \neq j)
 \end{array} \right.
 \]是非退化的线性替换，使得\[
-f(\v{x}{n})
-= g(\v{y}{n})
-= a_{ij} y_i^2 - a_{ij} y_j^2 + h(\v{y}{n}),
-\]其中\(h(\v{y}{n})\)是不含平方项的二次型或零多项式，故\(g(\v{y}{n})\)含有平方项，这归结为第一种情形，从而可以化为标准型.
+f(\AutoTuple{x}{n})
+= g(\AutoTuple{y}{n})
+= a_{ij} y_i^2 - a_{ij} y_j^2 + h(\AutoTuple{y}{n}),
+\]其中\(h(\AutoTuple{y}{n})\)是不含平方项的二次型或零多项式，故\(g(\AutoTuple{y}{n})\)含有平方项，这归结为第一种情形，从而可以化为标准型.
 \qedhere
 \end{enumerate}
 \end{proof}
@@ -523,12 +523,12 @@ f(\v{x}{n})
 
 \begin{theorem}
 因为对于任一对称阵\(\A\)，存在可逆矩阵\(\C\)，使得\[
-\C^T\A\C=\diag(\v{d}{n}).
+\C^T\A\C=\diag(\AutoTuple{d}{n}).
 \]
 又因为存在初等矩阵\(\P_1,\P_2,\dotsc,\P_m\)，使得\[
 \C=\P_1\P_2\dotsm\P_m,
 \]那么\[
-\C^T\A\C = (\P_m^T\P_{m-1}^T\dotsm\P_1^T)\A(\P_1\P_2\dotsm\P_m)=\diag(\v{d}{n}).
+\C^T\A\C = (\P_m^T\P_{m-1}^T\dotsm\P_1^T)\A(\P_1\P_2\dotsm\P_m)=\diag(\AutoTuple{d}{n}).
 \]
 
 因为初等矩阵有三类：
@@ -559,17 +559,17 @@ f(\v{x}{n})
 \section{实二次型的分类}
 \subsection{实二次型的分类标准}
 \begin{definition}
-设有\(n\)元实二次型\(f(\v{x}{n}) = \x^T\A\x\)，如果对任意一组不全为零的实数\(\v{c}{n}\)，都有
+设有\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，如果对任意一组不全为零的实数\(\AutoTuple{c}{n}\)，都有
 \begin{enumerate}
-\item \(f(\v{c}{n}) > 0\)，%
+\item \(f(\AutoTuple{c}{n}) > 0\)，%
 则称\(f\)为\DefineConcept{正定的}（positive definite），%
 \(\A\)为\DefineConcept{正定矩阵}；
-\item \(f(\v{c}{n}) \geqslant 0\)，%
+\item \(f(\AutoTuple{c}{n}) \geqslant 0\)，%
 则称\(f\)为\DefineConcept{半正定的}（positive semi-definite）；
-\item \(f(\v{c}{n}) < 0\)，%
+\item \(f(\AutoTuple{c}{n}) < 0\)，%
 则称\(f\)为\DefineConcept{负定的}（negative definite），%
 \(\A\)为\DefineConcept{负定矩阵}；
-\item \(f(\v{c}{n}) \leqslant 0\)，%
+\item \(f(\AutoTuple{c}{n}) \leqslant 0\)，%
 则称\(f\)为\DefineConcept{半负定的}（negative semi-definite）；
 \item 否则（\(f\)既可取正值，又可取负值），%
 称\(f\)为\DefineConcept{不定的}（indefinite）.
@@ -579,7 +579,7 @@ f(\v{x}{n})
 \subsection{惯性定理}
 \begin{theorem}[惯性定理 / Inertial Theorem]\label{theorem:二次型.惯性定理}
 \(n\)元实二次型\[
-f(\v{x}{n}) = \x^T\A\x
+f(\AutoTuple{x}{n}) = \x^T\A\x
 \]经过任意满秩线性变换化为标准型，所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
 \begin{proof}
 \def\z{\mat{Z}}%
@@ -618,18 +618,18 @@ y_{p+1} = 0, \\
 y_n = 0.
 \end{cases}
 \eqno{(4)}
-\]这个方程组中有\(n\)个未知量，\(q+n-p < n\)个方程，于是它有非零解\((\v{y}{p},0,\dotsc,0)^T\)，%
+\]这个方程组中有\(n\)个未知量，\(q+n-p < n\)个方程，于是它有非零解\((\AutoTuple{y}{p},0,\dotsc,0)^T\)，%
 代入(3)式两端，得到左边大于零，右边小于等于零，矛盾，因此\(p \leqslant q\).
 同理又有\(q \leqslant p\)，于是\(p = q\).
 \end{proof}
 \end{theorem}
 
 \begin{corollary}
-任意\(n\)元实二次型\(f(\v{x}{n}) = \x^T\A\x\)，总可经过满秩线性变换化为以下形式的标准型\[
-f(\v{x}{n})
+任意\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，总可经过满秩线性变换化为以下形式的标准型\[
+f(\AutoTuple{x}{n})
 =y_1^2+y_2^2+ \dotsb +y_p^2
 -y_{p+1}^2-\dotsb-y_r^2
-\]称为\(f(\v{x}{n})\)的\DefineConcept{规范型}（{\rm normal form}），且规范型是唯一的.
+\]称为\(f(\AutoTuple{x}{n})\)的\DefineConcept{规范型}（{\rm normal form}），且规范型是唯一的.
 \begin{proof}
 根据惯性定理，\(f\)经过可逆线性替换化为标准型：\[
 f \xlongequal{\x=\D\z} d_1 z_1^2 + d_2 z_2^2 + \dotsb + d_q z_q^2 - d_{q+1} z_{q+1}^2 - \dotsb - d_r z_r^2,
@@ -643,7 +643,7 @@ f \xlongequal{\x=\D\z} y_1^2 + y_2^2 + \dotsb + y_q^2 - y_{q+1}^2 - \dotsb - y_r
 \end{corollary}
 
 \begin{definition}
-在秩为\(r\)的实二次型\(f(\v{x}{n})\)所化成的标准型（或规范型）中，正平方项的项数\(p\)称为\(f\)的\DefineConcept{正惯性指数}（positive index of inertia），负平方项的项数\(q=r-p\)称为\(f\)的\DefineConcept{负惯性指数}（minus index of inertia），正、负惯性指数之差\(d=p-q=2p-r\)称为\(f\)的\DefineConcept{符号差}（signature）.
+在秩为\(r\)的实二次型\(f(\AutoTuple{x}{n})\)所化成的标准型（或规范型）中，正平方项的项数\(p\)称为\(f\)的\DefineConcept{正惯性指数}（positive index of inertia），负平方项的项数\(q=r-p\)称为\(f\)的\DefineConcept{负惯性指数}（minus index of inertia），正、负惯性指数之差\(d=p-q=2p-r\)称为\(f\)的\DefineConcept{符号差}（signature）.
 \end{definition}
 由惯性定理和以上定义可知：可逆线性替换不改变二次型的正、负惯性指数.从而可由二次型的正、负惯性指数确定二次型的类型.
 
@@ -655,11 +655,11 @@ f \xlongequal{\x=\D\z} y_1^2 + y_2^2 + \dotsb + y_q^2 - y_{q+1}^2 - \dotsb - y_r
 
 \subsection{正定矩阵的等价条件}
 \begin{theorem}
-设\(\A\)为\(n\)阶实对称矩阵，\(f(\v{x}{n}) = \x^T\A\x\)，则下列命题相互等价：
+设\(\A\)为\(n\)阶实对称矩阵，\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，则下列命题相互等价：
 \begin{enumerate}
 \item \(\A\)为正定矩阵；
 \item \(\A\)的特征值全是正实数；
-\item \(f(\v{x}{n})\)的正惯性指数\(p=n\)；
+\item \(f(\AutoTuple{x}{n})\)的正惯性指数\(p=n\)；
 \item \(\A \cong \E\)（即，存在可逆实阵\(\C\)，使得\(\C^T\A\C=\E\)）；
 \item 存在可逆实阵\(\P\)，使得\(\A=\P^T\P\).
 \end{enumerate}
@@ -673,7 +673,7 @@ f \xlongequal{\x=\D\z} y_1^2 + y_2^2 + \dotsb + y_q^2 - y_{q+1}^2 - \dotsb - y_r
 \end{corollary}
 
 \begin{theorem}
-\(n\)元实二次型\(f(\v{x}{n}) = \x^T\A\x\)（\(\A=\A^T\)）正定的充要条件是：\(\A\)的各阶顺序主子式均大于零.
+\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)（\(\A=\A^T\)）正定的充要条件是：\(\A\)的各阶顺序主子式均大于零.
 \begin{proof}
 必要性.对于任意不全为零的\(n\)个实数\(c_1,c_2,\dotsc,c_k,0,\dotsc,0\)，总有\[
 f(c_1,c_2,\dotsc,c_k,0,\dotsc,0) = \sum\limits_{i=1}^k \sum\limits_{j=1}^k c_i c_j a_{ij} > 0,
@@ -719,7 +719,7 @@ f \xlongequal{\x=\Q\y} y_1^2 + y_2^2 + \dotsb + y_{n-1}^2 + b y_n^2,
 \end{theorem}
 
 \begin{corollary}
-\(n\)元实二次型\(f(\v{x}{n}) = \x^T\A\x\)（\(\A=\A^T\)）负定的充要条件是：\[
+\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)（\(\A=\A^T\)）负定的充要条件是：\[
 (-1)^k D_k = (-1)^k \begin{vmatrix}
 a_{11} & a_{12} & \dots & a_{1k} \\
 a_{21} & a_{22} & \dots & a_{2k} \\
@@ -734,7 +734,7 @@ a_{k1} & a_{k2} & \dots & a_{kk}
 设\(\A\)为实对称矩阵，证明：当实数\(t\)充分大时，\(t\E+\A\)是正定矩阵.
 \begin{proof}
 因为\(\A\)为实对称矩阵，所以存在正交矩阵\(\Q\)，使得\[
-\Q^T\A\Q = \diag(\v{\lambda}{n}).
+\Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}).
 \]又因为\[
 \Q^T(t\E+\A)\Q
 = \diag(t+\L{1},t+\L{2},\dotsc,t+\L{n}),
@@ -767,8 +767,8 @@ a_{k1} & a_{k2} & \dots & a_{kk}
 设\(\A\)是正定矩阵，试证：存在正定矩阵\(\B\)，使得\(\A=\B^2\).
 \begin{proof}
 设\(\A\)是\(n\)阶正定矩阵，那么存在正交矩阵\(\P\)满足\[
-\P^T\A\P = \diag(\v{\lambda}{n}) = \V,
-\]其中\(\v{\lambda}{n} \in \mathbb{R}^+\).
+\P^T\A\P = \diag(\AutoTuple{\lambda}{n}) = \V,
+\]其中\(\AutoTuple{\lambda}{n} \in \mathbb{R}^+\).
 又设矩阵\(\B\)满足\(\B^2=\A\)，那么\[
 \P^T\A\P = \P^T\B^2\P = \V
 \iff

@@ -7,16 +7,16 @@
 
 \section{点估计}
 \begin{definition}
-设总体\(X\)的分布函数为\(F(x,\theta)\)，其中\(\theta\)为未知参数.从总体\(X\)中抽取样本\(\v{X}{n}\)，其观测值为\(\v{x}{n}\)，构造某个统计量\(\hat{\theta}(\v{X}{n})\)，用它的观测值\(\hat{\theta}(\v{x}{n})\)来估计未知参数\(\theta\)，则称\(\hat{\theta}(\v{x}{n})\)为\(\theta\)的\DefineConcept{估计值}，称\(\hat{\theta}(\v{X}{n})\)为\(\theta\)的\DefineConcept{估计量}.
+设总体\(X\)的分布函数为\(F(x,\theta)\)，其中\(\theta\)为未知参数.从总体\(X\)中抽取样本\(\AutoTuple{X}{n}\)，其观测值为\(\AutoTuple{x}{n}\)，构造某个统计量\(\hat{\theta}(\AutoTuple{X}{n})\)，用它的观测值\(\hat{\theta}(\AutoTuple{x}{n})\)来估计未知参数\(\theta\)，则称\(\hat{\theta}(\AutoTuple{x}{n})\)为\(\theta\)的\DefineConcept{估计值}，称\(\hat{\theta}(\AutoTuple{X}{n})\)为\(\theta\)的\DefineConcept{估计量}.
 
 定义中估计量或估计值称为\(\theta\)的一个\DefineConcept{点估计}.
 点估计量是一个统计量，因而是一个随机变量.
 点估计值是一个数.
 点估计量或点估计值都可以简记为\(\hat{\theta}\).
 
-若\(\theta=(\v{\theta}{k})\)是\(k\)维未知参数向量，则需要构造\(k\)个统计量\[
-\hat{\theta}_i = \hat{\theta}_i(\v{X}{n}) \quad(i=1,2,\dotsc,k)
-\]分别作为\(\v{\theta}{k}\)的\DefineConcept{点估计量}.
+若\(\theta=(\AutoTuple{\theta}{k})\)是\(k\)维未知参数向量，则需要构造\(k\)个统计量\[
+\hat{\theta}_i = \hat{\theta}_i(\AutoTuple{X}{n}) \quad(i=1,2,\dotsc,k)
+\]分别作为\(\AutoTuple{\theta}{k}\)的\DefineConcept{点估计量}.
 \end{definition}
 
 由点估计的定义，任何一个统计量都可以作为未知参数\(\theta\)的一个估计量.
@@ -29,7 +29,7 @@
 由此反解出\(\theta=g(m)\)，再用样本均值\(\overline{X}\)代替\(m\)，就得到\(\theta\)的一个估计量\(\hat{\theta}=g(\overline{X})\).
 这个方法就叫做求估计量的的\DefineConcept{矩估计法}，\(\hat{\theta}=g(\overline{X})\)叫做\(\theta\)的\DefineConcept{矩估计量}.
 
-例如，若总体\(X \sim U(0,\theta)\)，\(\theta\)未知，已知来自总体\(X\)的样本\(\v{X}{n}\).
+例如，若总体\(X \sim U(0,\theta)\)，\(\theta\)未知，已知来自总体\(X\)的样本\(\AutoTuple{X}{n}\).
 由\(m = E(X) = \frac{\theta}{2}\)，得\(\theta=2m\)，从而\(\theta\)的矩估计量为\(\hat{\theta} = 2\overline{X}\).
 
 矩估计法实际上是一种替代估计，是用样本均值\(\overline{X}\)替代参数\(\theta=g(m)\)中的总体均值\(m\)，一般计算都较简单.
@@ -40,9 +40,9 @@
 因而矩估计量是\(\theta\)的一个较合理的估计量.
 
 一般地，若总体\(X\)的分布函数\(F(x,\mat{\theta})\)中，%
-\(\mat{\theta}=(\v{\theta}{k})\)为\(k\)维未知参数，%
+\(\mat{\theta}=(\AutoTuple{\theta}{k})\)为\(k\)维未知参数，%
 且\(X\)的直到\(k\)阶原点矩均存在，则有\[
-\def\m#1{m_{#1} = E(X\ifthenelse{\equal{#1}{1}}{}{^{#1}}) = m_{#1}(\v{\theta}{k})}
+\def\m#1{m_{#1} = E(X\ifthenelse{\equal{#1}{1}}{}{^{#1}}) = m_{#1}(\AutoTuple{\theta}{k})}
 \left\{ \begin{array}{l}
 \m{1}, \\
 \m{2}, \\
@@ -50,8 +50,8 @@
 \m{k}. \\
 \end{array} \right.
 \]
-从上述方程组反解出\(\v{\theta}{k}\)，为\(\v{m}{k}\)的函数，即\[
-\def\g#1{\theta_{#1}=g_{#1}(\v{m}{k})}
+从上述方程组反解出\(\AutoTuple{\theta}{k}\)，为\(\AutoTuple{m}{k}\)的函数，即\[
+\def\g#1{\theta_{#1}=g_{#1}(\AutoTuple{m}{k})}
 \left\{ \begin{array}{l}
 \g{1}, \\
 \g{2}, \\
@@ -59,8 +59,8 @@
 \g{k}. \\
 \end{array} \right.
 \]
-再用\(r\)阶样本原点矩\(A_r = \frac{1}{n} \sum\limits_{i=1}^n{X_i^r}\)，替代上式中的\(m_r\ (r=1,2,\dots,k)\)，则得到\(\v{\theta}{k}\)的矩估计量，即\[
-\def\g#1{\hat{\theta}_{#1}=g_{#1}(\v{A}{k})}
+再用\(r\)阶样本原点矩\(A_r = \frac{1}{n} \sum\limits_{i=1}^n{X_i^r}\)，替代上式中的\(m_r\ (r=1,2,\dots,k)\)，则得到\(\AutoTuple{\theta}{k}\)的矩估计量，即\[
+\def\g#1{\hat{\theta}_{#1}=g_{#1}(\AutoTuple{A}{k})}
 \left\{ \begin{array}{l}
 \g{1}, \\
 \g{2}, \\
@@ -70,7 +70,7 @@
 \]
 
 \begin{example}
-设总体\(X\)服从任何分布，且\(X\)的期望与方差均存在.记\(E(X)=\mu\)，\(D(X)=\sigma^2\)，\(\mu\)、\(\sigma^2\)是两个未知参数.\(\v{X}{n}\)为样本.求\(\mu\)和\(\sigma^2\)的矩估计量.
+设总体\(X\)服从任何分布，且\(X\)的期望与方差均存在.记\(E(X)=\mu\)，\(D(X)=\sigma^2\)，\(\mu\)、\(\sigma^2\)是两个未知参数.\(\AutoTuple{X}{n}\)为样本.求\(\mu\)和\(\sigma^2\)的矩估计量.
 \begin{solution}
 因为有两个未知参数\(\mu\)和\(\sigma^2\)，故有\[
 \left\{ \begin{array}{l}
@@ -105,7 +105,7 @@ m_2=E(X^2)=D(X)+[E(X)]^2=\sigma^2+\mu^2.
 
 \begin{example}
 总体\(X \sim B(N,p)\)，\(N\)已知，而\(p\)未知.
-\(\v{X}{n}\)为样本.
+\(\AutoTuple{X}{n}\)为样本.
 \begin{enumerate}
 \item 求参数\(p\)的矩估计量；
 \item 求总体方差\(\sigma^2\)的矩估计量并将其表示为\(\overline{X}\)的函数.
@@ -124,7 +124,7 @@ m_2=E(X^2)=D(X)+[E(X)]^2=\sigma^2+\mu^2.
 
 \begin{example}
 设总体\(X \sim U(\theta_1,\theta_2)\)，其中\(\theta_1,\theta_2\)是两个未知参数.
-\(\v{X}{n}\)是样本，求\(\theta_1,\theta_2\)的矩估计量.
+\(\AutoTuple{X}{n}\)是样本，求\(\theta_1,\theta_2\)的矩估计量.
 \begin{solution}
 因为\(m\)和\(\sigma^2\)的矩估计量分别为\(\overline{X}\)和\(B_2\)，%
 所以只需把\(\theta_1\)和\(\theta_2\)表示为\(m\)和\(\sigma^2\)的函数.
@@ -157,12 +157,12 @@ m = E(X) = \frac{\theta_1+\theta_2}{2}, \\
 由于矩估计法原则上不要求总体的分布情况，因此未能充分利用已知分布的信息，在样本容量\(n\)较小时估计值可能误差较大.
 
 \subsection{极大似然估计法}
-设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)，其中\(\theta\)是未知参数.当样本\(\v{X}{n}\)得到一组观测值\(\v{x}{n}\)时，由样本的独立同分布性，记样本取得这组观测值的概率为\begin{align*}
+设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)，其中\(\theta\)是未知参数.当样本\(\AutoTuple{X}{n}\)得到一组观测值\(\AutoTuple{x}{n}\)时，由样本的独立同分布性，记样本取得这组观测值的概率为\begin{align*}
 L(\theta)
 &=P(X_1=x_1,X_2=x_2,\dotsc,X_n=x_n) \\
 &=P(X_1=x_1) P(X_2=x_2) \dotsm P(X_n=x_n) \\
 &=\prod_{i=1}^n{p(x_i,\theta)},
-\end{align*}称函数\(L(\theta)\)为\DefineConcept{似然函数}，对于给定的观测值\(\v{x}{n}\)，它是未知参数\(\theta\)的函数.
+\end{align*}称函数\(L(\theta)\)为\DefineConcept{似然函数}，对于给定的观测值\(\AutoTuple{x}{n}\)，它是未知参数\(\theta\)的函数.
 
 极大似然估计法的思想是：随机试验有若干个可能结果，如果在一次试验中某一结果出现了，由小概率事件原理，我们便自然认为这一结果出现的概率较大，从而可以认为这一结果是所有可能结果中出现概率最大的一个.因此\(p\)应该这样估计，即选择\(\hat{p}\)使得上述观测值出现的概率最大.也就是使\(L(\hat{p})\)为\(L(p)\)的最大值.而求\(L(p)\)的最大值点\(\hat{p}\)，可由方程\[
 \dv{p} L(p) = 0
@@ -172,17 +172,17 @@ L(\theta)
 L(\hat{\theta}) = \max L(\theta)
 \]的解.
 
-对于连续型总体\(X\)，\(X\)的概率密度函数为\(f(x,\theta)\)，其中\(\theta\)是未知参数.若取得样本观测值\(\v{x}{n}\)，则因为随机变量\(X_i\)落在点\(x_i\)的领域（设其长度为\(\increment x_i\)）内的概率近似于\(f(x_i,\theta) \increment x_i\)，\(i=1,2,\dotsc,n\)，则样本\((\v{X}{n})\)落在样本观测值\((\v{x}{n})\)邻近的概率近似为\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\).那么\(\theta\)的估计值\(\hat{\theta}\)应使概率\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\)达到最大值.但因为\(\increment x_i\)与\(\theta\)无关，故只要使\(\prod\limits_{i=1}^n{f(x_i,\theta)}\)达到最大值即可.此时，记\[
+对于连续型总体\(X\)，\(X\)的概率密度函数为\(f(x,\theta)\)，其中\(\theta\)是未知参数.若取得样本观测值\(\AutoTuple{x}{n}\)，则因为随机变量\(X_i\)落在点\(x_i\)的领域（设其长度为\(\increment x_i\)）内的概率近似于\(f(x_i,\theta) \increment x_i\)，\(i=1,2,\dotsc,n\)，则样本\((\AutoTuple{X}{n})\)落在样本观测值\((\AutoTuple{x}{n})\)邻近的概率近似为\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\).那么\(\theta\)的估计值\(\hat{\theta}\)应使概率\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\)达到最大值.但因为\(\increment x_i\)与\(\theta\)无关，故只要使\(\prod\limits_{i=1}^n{f(x_i,\theta)}\)达到最大值即可.此时，记\[
 L(\theta) = \prod\limits_{i=1}^n{f(x_i,\theta)},
 \]仍然称\(L(\theta)\)为似然函数.
 
 \begin{definition}
 设总体\(X\)仅含一个未知参数，%
 并且总体的分布律或密度函数已知.
-假设我们已经取得一组样本观测值\(\v{x}{n}\).
+假设我们已经取得一组样本观测值\(\AutoTuple{x}{n}\).
 若存在\(\hat{\theta}\)使得\[
 L(\hat{\theta}) = \max L(\theta),
-\]则称\(\hat{\theta} = \hat{\theta}(\v{x}{n})\)是\(\theta\)的\DefineConcept{极大似然估计值}，而统计量\(\hat{\theta}(\v{X}{n})\)称为\(\theta\)的\DefineConcept{极大似然估计量}.
+\]则称\(\hat{\theta} = \hat{\theta}(\AutoTuple{x}{n})\)是\(\theta\)的\DefineConcept{极大似然估计值}，而统计量\(\hat{\theta}(\AutoTuple{X}{n})\)称为\(\theta\)的\DefineConcept{极大似然估计量}.
 \end{definition}
 
 \begin{definition}
@@ -201,7 +201,7 @@ L(\hat{\theta}) = \max L(\theta),
 \end{theorem}
 
 \begin{example}
-设总体\(X \sim B(N,p)\)，其中\(N\)已知，\(\v{x}{n}\)为样本观测值，求\(p\)及\(m=E(X)\)的极大似然估计.
+设总体\(X \sim B(N,p)\)，其中\(N\)已知，\(\AutoTuple{x}{n}\)为样本观测值，求\(p\)及\(m=E(X)\)的极大似然估计.
 \begin{solution}
 总体\(X\)的分布律为\[
 f(x,p)=C_N^x p^x (1-p)^{N-x}, \quad x=0,1,\dots,N.
@@ -243,7 +243,7 @@ L(p) = \prod\limits_{i=1}^n{f(x_i,p)}
 \begin{proof}
 总体\(X\)的概率分布或密度函数为\[
 f(x,\theta)=e^{\theta x - \varphi(\theta)} h(x),
-\]取得样本观测值\(\v{x}{n}\)，注意\(\theta\)是\(m\)的函数\(\theta(m)\)，故得似然函数\[
+\]取得样本观测值\(\AutoTuple{x}{n}\)，注意\(\theta\)是\(m\)的函数\(\theta(m)\)，故得似然函数\[
 L(m) = \prod\limits_{i=1}^n{e^{\theta(m) x_i -\varphi[\theta(m)]} h(x_i)}
 = e^{\theta(m) \sum\limits_{i=1}^n{x_i - n \varphi[\theta(m)]} \prod\limits_{i=1}^n{h(x_i)}},
 \]\[
@@ -268,7 +268,7 @@ L(m) = \prod\limits_{i=1}^n{e^{\theta(m) x_i -\varphi[\theta(m)]} h(x_i)}
 \end{corollary}
 不难证明，在常见的自然指数分布族分布中，除去二项分布外，它们的方差函数\(V(m)\)在其均值空间中都有单值反函数.比如，对几何分布，\(m=E(X)=\frac{1}{p}\)，\(V(m)=D(X)=\frac{q}{p^2}=m^2-m\)，在\(m>1\)时有单值反函数，故\(V(m)=m^2-m\)的极大似然估计为\(V(\overline{X})=\overline{X}^2 - \overline{X}\).
 
-当总体\(X\)的分布中含有多个未知参数，即\(\mat{\theta}=(\v{\theta}{k})\)时，似然函数为\(L(\mat{\theta})=L(\v{\theta}{k})\)，有对数似然方程组\[
+当总体\(X\)的分布中含有多个未知参数，即\(\mat{\theta}=(\AutoTuple{\theta}{k})\)时，似然函数为\(L(\mat{\theta})=L(\AutoTuple{\theta}{k})\)，有对数似然方程组\[
 \def\g#1{\pdv{\theta_{#1}} \ln L(\mat{\theta}) = 0}
 \left\{ \begin{array}{l}
 \g{1}, \\
@@ -276,10 +276,10 @@ L(m) = \prod\limits_{i=1}^n{e^{\theta(m) x_i -\varphi[\theta(m)]} h(x_i)}
 \dots, \\
 \g{k}. \\
 \end{array} \right.
-\]若对数似然方程组有解\(\v{\hat{\theta}}{k}\)，则它们分别是\(\v{\theta}{k}\)的极大似然估计值.
+\]若对数似然方程组有解\(\v{\hat{\theta}}{k}\)，则它们分别是\(\AutoTuple{\theta}{k}\)的极大似然估计值.
 
 \begin{example}
-设总体\(X \sim N(\mu,\sigma^2)\)，其中\(\mu\)和\(\sigma^2\)都是未知参数.\(\v{x}{n}\)为样本观测值.求\(\mu\)和\(\sigma^2\)的极大似然估计.
+设总体\(X \sim N(\mu,\sigma^2)\)，其中\(\mu\)和\(\sigma^2\)都是未知参数.\(\AutoTuple{x}{n}\)为样本观测值.求\(\mu\)和\(\sigma^2\)的极大似然估计.
 \begin{solution}
 似然函数为\begin{align*}
 L(\mu,\sigma^2)
@@ -311,7 +311,7 @@ L(\mu,\sigma^2)
 需要指出的是，当似然方程或对数似然方程无解时，应从定义考虑求极大似然估计，即选择\(\hat{\theta}\)使得\(L(\hat{\theta})=\max L(\theta)\).
 
 \begin{example}
-设总体\(X \sim U(0,\theta)\)，\(\theta>0\)是未知参数，\(\v{x}{n}\)是样本观测值.求\(\theta\)的极大似然估计.
+设总体\(X \sim U(0,\theta)\)，\(\theta>0\)是未知参数，\(\AutoTuple{x}{n}\)是样本观测值.求\(\theta\)的极大似然估计.
 \begin{solution}
 \(X\)的密度函数为\[
 f(x,\theta) = \left\{ \begin{array}{cl}
@@ -334,7 +334,7 @@ L(\theta) = \prod\limits_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
 
 \subsection{无偏性标准}
 \begin{definition}
-若未知参数\(\theta\)的估计量\(\hat{\theta}=\hat{\theta}(\v{X}{n})\)有\[
+若未知参数\(\theta\)的估计量\(\hat{\theta}=\hat{\theta}(\AutoTuple{X}{n})\)有\[
 E(\hat{\theta})=\theta,
 \]则称\(\hat{\theta}\)是参数\(\theta\)的\DefineConcept{无偏估计量}.反之称为\DefineConcept{有偏估计量}.
 
@@ -347,7 +347,7 @@ b(\hat{\theta}) = E(\hat{\theta}) - \theta
 
 \begin{example}
 设总体\(X\)服从任何分布，且\(E(X)=\mu\)，\(E(X^k)=m_k\)，\(D(X)=\sigma^2\).
-\(\v{X}{n}\)是样本.
+\(\AutoTuple{X}{n}\)是样本.
 证明：样本均值\(\overline{X}\)、样本\(k\)阶原点矩\(A_k\)和样本方差\(S^2\)分别是\(\mu\)、\(m_k\)和\(\sigma^2\)的无偏估计量.
 \begin{proof}
 \(E(A_k)=E\left(\frac{1}{n} \sum\limits_{i=1}^n{X_i^k}\right)
@@ -393,8 +393,8 @@ D(\hat{\theta}_1) \leqslant D(\hat{\theta}),
 
 \begin{example}
 设总体服从任何分布，\(\mu=E(X)\)，\(\sigma^2=D(X)\)是未知阐述.\[
-\v{X}{n}
-\]是样本，\(\v{a}{n}\)是常数.证明：
+\AutoTuple{X}{n}
+\]是样本，\(\AutoTuple{a}{n}\)是常数.证明：
 \begin{enumerate}
 \item 若\(\sum\limits_{i=1}^n{a_i}=1\)，则\(\hat{\mu}=\sum\limits_{i=1}^n{a_i X_i}\)是\(\mu\)的线性无偏估计；
 \item \(\overline{X} = \frac{1}{n} \sum\limits_{i=1}^n{X_i}\)是方差最小的线性无偏估计.
@@ -402,7 +402,7 @@ D(\hat{\theta}_1) \leqslant D(\hat{\theta}),
 \end{example}
 
 \subsection{一致性标准}
-容易看出，估计量\(\hat{\theta}(\v{X}{n})\)与样本容量\(n\)有关，故可记作\(\hat{\theta}(n)\).对\(\hat{\theta}(n)\)的一个自然的要求是，当\(n\)充分大时，\(\hat{\theta}(n)\)的取值与\(\theta\)的误差应充分小，即估计量\(\hat{\theta}(n)\)的取值应稳定在参数\(\theta\)的一个充分小的邻域内.
+容易看出，估计量\(\hat{\theta}(\AutoTuple{X}{n})\)与样本容量\(n\)有关，故可记作\(\hat{\theta}(n)\).对\(\hat{\theta}(n)\)的一个自然的要求是，当\(n\)充分大时，\(\hat{\theta}(n)\)的取值与\(\theta\)的误差应充分小，即估计量\(\hat{\theta}(n)\)的取值应稳定在参数\(\theta\)的一个充分小的邻域内.
 \begin{definition}
 \(\hat{\theta}(n)\)是\(\theta\)的估计量，若\[
 \hat{\theta}(n) \overset{P}{\longrightarrow} \theta,
@@ -434,11 +434,11 @@ M(\hat{\theta}_1) \leqslant M(\hat{\theta}_2),
 
 \subsection{置信区间}
 \begin{definition}
-设总体\(X\)的分布函数\(F(x,\theta)\)中含有未知参数\(\theta\).\(\v{X}{n}\)是来自总体\(X\)的样本.\(\hat{\theta}_1=\hat{\theta}_1(\v{X}{n})\)和\(\hat{\theta}_2=\hat{\theta}_2(\v{X}{n})\)是两个统计量.若对给定的概率\(1-\alpha\)（\(0<\alpha<1\)），有\[
+设总体\(X\)的分布函数\(F(x,\theta)\)中含有未知参数\(\theta\).\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本.\(\hat{\theta}_1=\hat{\theta}_1(\AutoTuple{X}{n})\)和\(\hat{\theta}_2=\hat{\theta}_2(\AutoTuple{X}{n})\)是两个统计量.若对给定的概率\(1-\alpha\)（\(0<\alpha<1\)），有\[
 P(\hat{\theta}_1<\theta<\hat{\theta}_2)=1-\alpha,
 \]则称随机区间\((\hat{\theta}_1,\hat{\theta}_2)\)为参数\(\hat{\theta}\)的置信度为\(1-\alpha\)的\DefineConcept{置信区间}.\(\hat{\theta}_1\)和\(\hat{\theta}_2\)分别称为\DefineConcept{置信下限}和\DefineConcept{置信上限}.\(1-\alpha\)称为\DefineConcept{置信度}（或\DefineConcept{置信水平}）.
 
-若给定样本观测值\(\v{x}{n}\)，代入得到的实数区间\((\hat{\theta}_1,\hat{\theta}_2)\)也叫置信区间.要加以区分时，它们分别叫做\DefineConcept{随机置信区间}和\DefineConcept{实数置信区间}.
+若给定样本观测值\(\AutoTuple{x}{n}\)，代入得到的实数区间\((\hat{\theta}_1,\hat{\theta}_2)\)也叫置信区间.要加以区分时，它们分别叫做\DefineConcept{随机置信区间}和\DefineConcept{实数置信区间}.
 \end{definition}
 
 通常\(\alpha\)很小，使得\(\theta\)落在这个区间外的事件是一个小概率事件，比如\(\alpha\)取0.01、0.05等.一般来说，若\(\alpha\)越小，则\(\theta\)落在\((\hat{\theta}_1,\hat{\theta}_2)\)内的可靠程度越大，但这个区间也就越宽，从而估计的误差也就越大.
@@ -447,11 +447,11 @@ P(\hat{\theta}_1<\theta<\hat{\theta}_2)=1-\alpha,
 
 \subsection{确定置信区间的基本方法步骤}
 \begin{enumerate}
-\item 设\(\v{X}{n}\)是来自总体\(X\)的样本，取一个\(\theta\)的较优的点估计量\(\hat{\theta}=\hat{\theta}(\v{X}{n})\).习惯上，可取\(\theta\)的无偏估计量；
+\item 设\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本，取一个\(\theta\)的较优的点估计量\(\hat{\theta}=\hat{\theta}(\AutoTuple{X}{n})\).习惯上，可取\(\theta\)的无偏估计量；
 \item 由\(\hat{\theta}\)出发，找一个样本函数，\(W=W(\hat{\theta},\theta)\)，其分布已知，且只含一个未知参数\(\theta\)，\(W\)的分位点应能从表中查到；
 \item 查表求得\(W\)的\(\frac{\alpha}{2}\)和\(1-\frac{\alpha}{2}\)分位点\(W_{\frac{\alpha}{2}}\)和\(W_{1-\frac{\alpha}{2}}\)，使得有\(P(W_{\frac{\alpha}{2}}<W<W_{1-\frac{\alpha}{2}})=1-\alpha\)；
 \item 从不等式\(W_{\frac{\alpha}{2}}<W<W_{1-\frac{\alpha}{2}}\)解得等价的不等式\(\hat{\theta}_1 < \theta < \hat{\theta}_2\)，这时有\(P(\hat{\theta}_1 < \theta < \hat{\theta}_2) = 1-\alpha\).于是，\((\hat{\theta}_1,\hat{\theta}_2)\)就是\(\theta\)的置信度为\(1-\alpha\)的随机置信区间；
-\item 若还取得样本观测值\(\v{x}{n}\)，代入可得实数置信区间.
+\item 若还取得样本观测值\(\AutoTuple{x}{n}\)，代入可得实数置信区间.
 \end{enumerate}
 
 这样求得的置信区间称为\DefineConcept{双侧置信区间}.
@@ -459,7 +459,7 @@ P(\hat{\theta}_1<\theta<\hat{\theta}_2)=1-\alpha,
 我们也可根据需要类似地求得\DefineConcept{单侧置信区间}，使\(P(\theta<\hat{\theta}_2)=1-\alpha\)或\(P(\hat{\theta}_1<\theta)=1-\alpha\).
 
 \subsection{一个正态总体下的参数的置信区间}
-本小节中，设总体\(X \sim N(\mu,\sigma^2)\)，\(\v{X}{n}\)是来自总体\(X\)的样本.
+本小节中，设总体\(X \sim N(\mu,\sigma^2)\)，\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本.
 \begin{example}
 已知\(\sigma^2=\sigma_0^2\)，则总体均值\(\mu\)的置信区间为\[
 \left( \overline{X} - u_{1-\frac{\alpha}{2}} \frac{\sigma_0}{\sqrt{n}},\ \overline{X} + u_{1-\frac{\alpha}{2}} \frac{\sigma_0}{\sqrt{n}} \right).
@@ -496,7 +496,7 @@ P(-u_{1-\frac{\alpha}{2}} < U < u_{1-\frac{\alpha}{2}}) = 1-\alpha.
 \end{example}
 
 \subsection{两个正态总体下的参数的置信区间}
-本小节中，设有两个正态总体\(X \sim N(\mu_1,\sigma_1^2\)，\(Y \sim N(\mu_2,\sigma_2^2\).\(\v{X}{n_1}\)和\(\v{Y}{n_2}\)是分别来自\(X\)和\(Y\)的两个独立样本.其样本均值和样本方差分别为\[
+本小节中，设有两个正态总体\(X \sim N(\mu_1,\sigma_1^2\)，\(Y \sim N(\mu_2,\sigma_2^2\).\(\AutoTuple{X}{n_1}\)和\(\AutoTuple{Y}{n_2}\)是分别来自\(X\)和\(Y\)的两个独立样本.其样本均值和样本方差分别为\[
 \overline{X} = \frac{1}{n_1} \sum\limits_{i=1}^{n_1} X_i,
 \quad
 \overline{Y} = \frac{1}{n_2} \sum\limits_{i=1}^{n_2} Y_i,
@@ -530,7 +530,7 @@ S_2^2 = \frac{1}{n_2-1} \sum\limits_{i=1}^{n_2} (Y_i-\overline{Y})^2.
 \subsection{自然指数分布族分布均值参数的置信区间}
 如果总体\(X\)不是服从正态分布，那么样本函数的分布是难于确定的.这样求总体分布中未知参数的置信区间就比较困难.但当样本容量很大时，我们可以根据中心极限定理近似地求出置信区间.
 
-设总体\(X\)服从某个分布，分布函数为\(F(x,\theta)\)，其中\(\theta\)是未知参数，则总体均值\(E(X)=m(\theta)\)和总体方差\(D(X)=\sigma^2(\theta)\)都应该是\(\theta\)的函数.抽取样本\(\v{X}{n}\)，由于\(X_i\)（\(i=1,2,\dotsc,n\)）与总体独立同分布，由中心极限定理，当\(n\)充分大时（一般要求\(n \geqslant 50\)），样本函数\[
+设总体\(X\)服从某个分布，分布函数为\(F(x,\theta)\)，其中\(\theta\)是未知参数，则总体均值\(E(X)=m(\theta)\)和总体方差\(D(X)=\sigma^2(\theta)\)都应该是\(\theta\)的函数.抽取样本\(\AutoTuple{X}{n}\)，由于\(X_i\)（\(i=1,2,\dotsc,n\)）与总体独立同分布，由中心极限定理，当\(n\)充分大时（一般要求\(n \geqslant 50\)），样本函数\[
 U = \frac{\sum\limits_{i=1}^n{X_i} - n m(\theta)}{\sqrt{n} \sigma(\theta)}
 = \frac{\overline{X} - m(\theta)}{\sigma(\theta) / \sqrt{n}}
 \]近似地服从标准正态分布\(N(0,1)\).对于给定的置信度\(1-\alpha\)，有\[
@@ -551,13 +551,13 @@ P(\abs{U}<u_{1-\frac{\alpha}{2}})
 
 \subsection{单侧置信限}
 \begin{definition}
-设总体\(X\)的分布函数\(F(x,\theta)\)中含有未知参数\(\theta\)，\(\v{X}{n}\)是来自总体\(X\)的一个样本.
+设总体\(X\)的分布函数\(F(x,\theta)\)中含有未知参数\(\theta\)，\(\AutoTuple{X}{n}\)是来自总体\(X\)的一个样本.
 
-若存在统计量\(\hat{\theta}_1(\v{X}{n})\)使得\[
+若存在统计量\(\hat{\theta}_1(\AutoTuple{X}{n})\)使得\[
 P(\theta>\hat{\theta}_1)=1-\alpha,
 \]则称\(\hat{\theta}_1\)为参数\(\theta\)的置信度为\(1-\alpha\)的\DefineConcept{单侧置信下限}.
 
-若存在统计量\(\hat{\theta}_2(\v{X}{n})\)使得\[
+若存在统计量\(\hat{\theta}_2(\AutoTuple{X}{n})\)使得\[
 P(\theta<\hat{\theta}_2)=1-\alpha,
 \]则称\(\hat{\theta}_2\)为参数\(\theta\)的置信度为\(1-\alpha\)的\DefineConcept{单侧置信上限}.
 \end{definition}

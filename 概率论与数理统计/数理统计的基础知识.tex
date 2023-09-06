@@ -16,7 +16,7 @@
 因此约定以后提到总体时，将其表记为“总体\(X\)”或“总体\(F(x)\)”.
 
 在抽样试验前，\(n\)个个体的特征\(\{X_n\}\)是与总体同分布的随机变量；
-而在抽样试验后，是\(n\)个数据\(\v{x}{n}\).
+而在抽样试验后，是\(n\)个数据\(\AutoTuple{x}{n}\).
 而一般在总体中抽取的这一小部分个体要对总体有充分的代表性，需要满足以下两个条件：
 \begin{enumerate}
 \item {\bf 随机性}，即总体中每个个体都有同等机会被抽取到，通常可用编号抽签的方法或用随机数表来实现；
@@ -24,28 +24,28 @@
 \end{enumerate}
 
 \begin{definition}
-设随机变量\(\v{X}{n}\)与总体\(X\)独立同分布，则称“\(\v{X}{n}\)为一样本容量为\(n\)的来自总体\(X\)的\DefineConcept{（简单随机）样本}”.
-而\(\v{X}{n}\)的取值\(\v{x}{n}\)叫做\DefineConcept{样本观测值}.
+设随机变量\(\AutoTuple{X}{n}\)与总体\(X\)独立同分布，则称“\(\AutoTuple{X}{n}\)为一样本容量为\(n\)的来自总体\(X\)的\DefineConcept{（简单随机）样本}”.
+而\(\AutoTuple{X}{n}\)的取值\(\AutoTuple{x}{n}\)叫做\DefineConcept{样本观测值}.
 \end{definition}
 
 从总体中进行有放回地抽样，得到的显然是简单随机样本.
 从有限总体中进行不放回地抽样，虽然不是简单随机样本，但当总体个体数\(N\)很大而样本容量\(n\)较小（通常要求\(n/N \leqslant 0.1\)），则可以近似地看作是有放回抽样，因而近似看作是简单随机抽样，即近似地得到简单随机样本.
 
-若将样本看作一个\(n\)维随机变量\((\v{X}{n})\)，则可求出其概率分布或密度.
+若将样本看作一个\(n\)维随机变量\((\AutoTuple{X}{n})\)，则可求出其概率分布或密度.
 
-当总体\(X\)是离散型随机变量，且有分布律\(P(X = x) = p(x)\)，则样本\((\v{X}{n})\)的分布律为\[
+当总体\(X\)是离散型随机变量，且有分布律\(P(X = x) = p(x)\)，则样本\((\AutoTuple{X}{n})\)的分布律为\[
 P(X_1=x_1,X_2=x_2,\dotsc,X_n=x_n)
 = p(x_1) p(x_2) \dotsm p(x_n)
 = \prod_{i=1}^n p(x_i).
 \]
 
-当总体\(X\)是连续型随机变量，且有密度函数\(f(x)\)，则样本\((\v{X}{n})\)的密度函数为\[
-f(\v{x}{n}) = \prod_{i=1}^n f(x_i).
+当总体\(X\)是连续型随机变量，且有密度函数\(f(x)\)，则样本\((\AutoTuple{X}{n})\)的密度函数为\[
+f(\AutoTuple{x}{n}) = \prod_{i=1}^n f(x_i).
 \]
 
 \begin{example}
-总体\(X \sim e(\lambda)\)，\(\v{X}{n}\)为来自总体\(X\)的样本.
-\def\P{P(\min\{\v{X}{n}\}>3)}
+总体\(X \sim e(\lambda)\)，\(\AutoTuple{X}{n}\)为来自总体\(X\)的样本.
+\def\P{P(\min\{\AutoTuple{X}{n}\}>3)}
 求\(\P\).
 \begin{solution}
 \def\intx{\int_3^{+\infty}}
@@ -54,7 +54,7 @@ f(\v{x}{n}) = \prod_{i=1}^n f(x_i).
 \begin{align*}
 &\hspace{-20pt}\P \\
 &= P(X_1>3,X_2>3,\dotsc,X_n>3) \\
-&= \into f(\v{x}{n}) \ddx \\
+&= \into f(\AutoTuple{x}{n}) \ddx \\
 &= \into f(x_1) f(x_2) \dotsm f(x_n) \ddx \\
 &= \left( \intx \lambda e^{-\lambda x_1} \dd{x_1} \right)^n
 = e^{-3n\lambda}.
@@ -68,7 +68,7 @@ f(\v{x}{n}) = \prod_{i=1}^n f(x_i).
 
 \subsection{\texorpdfstring{\(\x\)}{卡方}分布}
 \begin{definition}\label{definition:数理统计的基础知识.卡方分布的定义}
-\(\v{X}{n}\)独立同服从标准正态分布\(N(0,1)\)，称随机变量\[
+\(\AutoTuple{X}{n}\)独立同服从标准正态分布\(N(0,1)\)，称随机变量\[
 \x = \sum\limits_{i=1}^n{X_i^2}
 \]所服从的分布为自由度为\(n\)的  \DefineConcept{\(\x\)分布}\footnote{念作“卡方分布”.}，记为\(\x \sim \x(n)\).
 \end{definition}
@@ -99,7 +99,7 @@ f_Z(z) = \left\{ \begin{array}{cl}
 \end{array} \right.
 \]这正是\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\)的密度函数.
 
-又因为\(\v{X}{n}\)独立同分布，所以\(\v{X^2}{n}\)也独立同分布于\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\).
+又因为\(\AutoTuple{X}{n}\)独立同分布，所以\(\AutoTuple{X^2}{n}\)也独立同分布于\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\).
 再由\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}可知\(\x = X_1^2+X_2^2+\dotsb+X_n^2\)服从\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\).
 \end{proof}
 \end{theorem}
@@ -248,14 +248,14 @@ P\left(\frac{1}{X} < \frac{1}{F_p(n,m)}\right) = 1 - p.
 抽取样本后要对总体的有关问题进行推断，首先需要对数据，即对样本观测值，进行整理、加工，也就是要构造样本的函数.
 
 \begin{definition}
-\def\g#1{g(\v{#1}{n})}
-样本\(\v{X}{n}\)的一个连续函数\(\g{X}\)称为\DefineConcept{样本函数}.
+\def\g#1{g(\AutoTuple{#1}{n})}
+样本\(\AutoTuple{X}{n}\)的一个连续函数\(\g{X}\)称为\DefineConcept{样本函数}.
 若\(\g{X}\)不含任何未知参数，则称\(\g{X}\)为一个\DefineConcept{统计量}.
 而代入样本观测值后\(\g{x}\)叫做\DefineConcept{统计量的观测值}.
 统计量的分布称为\DefineConcept{抽样分布}.
 
 例如，对于总体\(X \sim N(\mu,\sigma^2)\)，\(\sigma^2\)已知，\(\mu\)未知，%
-\(\v{X}{n}\)是来自总体\(X\)的样本，那么\(\sum\limits_{i=1}^n X_i, \sum\limits_{i=1}^n \frac{X_i^2}{\sigma^2}\)是统计量，而\(\sum\limits_{i=1}^n \frac{(X_i-\mu)^2}{\sigma^2}\)是样本函数.
+\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本，那么\(\sum\limits_{i=1}^n X_i, \sum\limits_{i=1}^n \frac{X_i^2}{\sigma^2}\)是统计量，而\(\sum\limits_{i=1}^n \frac{(X_i-\mu)^2}{\sigma^2}\)是样本函数.
 
 常用的统计量如下：
 \begin{center}
@@ -288,7 +288,7 @@ B_2 &= \frac{1}{n} \sum\limits_{i=1}^n{(X_i-\overline{X})^2}
 
 此外，还有一些不常用到的统计量，也罗列于此.
 \begin{definition}
-设\(\v{X}{n}\)是来自某总体的一个样本，称\begin{equation}
+设\(\AutoTuple{X}{n}\)是来自某总体的一个样本，称\begin{equation}
 SK = \frac{B_3}{(B_2)^{3/2}}
 \end{equation}为\DefineConcept{样本偏度}（skewness）.
 \end{definition}
@@ -297,7 +297,7 @@ SK = \frac{B_3}{(B_2)^{3/2}}
 当\(SK < 0\)时，分布的形状是左尾长，称其为“负偏的”.
 
 \begin{definition}
-设\(\v{X}{n}\)是来自某总体的一个样本，称\begin{equation}
+设\(\AutoTuple{X}{n}\)是来自某总体的一个样本，称\begin{equation}
 KU = \frac{B_4}{(B_2)^2} - 3
 \end{equation}为\DefineConcept{样本峰度}（kurtosis）.
 \end{definition}
@@ -309,7 +309,7 @@ KU = \frac{B_4}{(B_2)^2} - 3
 从理论上说，当知道总体分布时，统计量与样本函数的分布都可以确定，但事实上一般确定统计量与样本函数的分布却十分困难.而当总体服从正态分布时，一些常用统计量与样本函数的分布则是容易确定的.我们把常用的统计量与样本函数的分布的结果叫做\DefineConcept{抽样分布定理}.
 
 \begin{example}
-样本\(\v{X}{n}\)来自总体\(X\)，其中\(X\)服从指数分布\(e(\lambda)\)，求样本均值\(\overline{X}\)的分布.
+样本\(\AutoTuple{X}{n}\)来自总体\(X\)，其中\(X\)服从指数分布\(e(\lambda)\)，求样本均值\(\overline{X}\)的分布.
 \begin{solution}
 记\(Y = \frac{1}{n} X\)，则\(Y\)的值域为\(R_Y = (0,+\infty)\).
 对于\(\forall y>0\)，\(Y\)有分布函数\[
@@ -331,7 +331,7 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 
 \subsubsection{一个正态总体下的抽样分布定理}
 \begin{theorem}
-样本\(\v{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\begin{gather}
+样本\(\AutoTuple{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\begin{gather}
 \overline{X} \sim N\left(\mu,\frac{\sigma^2}{n}\right), \\
 \frac{\overline{X}-\mu}{\sigma / \sqrt{n}} \sim N(0,1).
 \end{gather}
@@ -351,14 +351,14 @@ D(\overline{X})=D\left(\frac{1}{n} \sum\limits_{i=1}^n X_i\right) = \frac{1}{n^2
 \end{theorem}
 
 \begin{corollary}
-样本\(\v{X}{n}\)来自任何总体，都有\begin{gather}
+样本\(\AutoTuple{X}{n}\)来自任何总体，都有\begin{gather}
 E(\overline{X}) = E(X), \\
 D(\overline{X}) = \frac{D(X)}{n}.
 \end{gather}
 \end{corollary}
 
 \begin{example}
-样本\(\v{X}{n}\)来自任何总体.试证：\begin{equation}
+样本\(\AutoTuple{X}{n}\)来自任何总体.试证：\begin{equation}
 E(S^2) = \sigma^2.
 \end{equation}
 \begin{proof}
@@ -404,12 +404,12 @@ S^2 = \frac{1}{n-1} \sum\limits_{i=1}^n (X_i-\overline{X})^2,
 虽然一般情况下样本方差的抽样分布不易精确得出，%
 但是总体为\(N(\mu,\sigma^2)\)的样本方差的抽样分布可以精确求出.
 \begin{theorem}\label{theorem:数理统计的基础知识.正态分布总体下样本方差的抽样分布}
-样本\(\v{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\begin{equation}
+样本\(\AutoTuple{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\begin{equation}
 \frac{(n-1)S^2}{\sigma^2} \sim \x(n-1),
 \end{equation}
 且\(\overline{X}\)与\(S^2\)相互独立.
 \begin{proof}
-对样本\((\v{X}{n})\)作线性变换，令\[
+对样本\((\AutoTuple{X}{n})\)作线性变换，令\[
 \left\{ \def\arraystretch{1.5} \begin{array}{l}
 Z_1 = \frac{1}{\sqrt{2}} X_1 - \frac{1}{\sqrt{2}} X_2, \\
 Z_2 = \frac{1}{\sqrt{2\cdot3}} (X_1+X_2) - \frac{2}{\sqrt{2\cdot3}} X_3, \\
@@ -418,18 +418,18 @@ Z_3 = \frac{1}{\sqrt{3\cdot4}} (X_1+X_2+X_3) - \frac{3}{\sqrt{3\cdot4}} X_4, \\
 Z_{n-1} = \frac{1}{\sqrt{(n-1)n}} (X_1+X_2+\dotsb+X_{n-1}) - \frac{n-1}{\sqrt{(n-1)n}} X_n, \\
 Z_n = \frac{1}{\sqrt{n}} (X_1+X_2+\dotsb+X_n) = \sqrt{n} \cdot \overline{X}.
 \end{array} \right.
-\]由于\(\v{X}{n}\)独立同分布于\(N(\mu,\sigma^2)\)，所以\[
+\]由于\(\AutoTuple{X}{n}\)独立同分布于\(N(\mu,\sigma^2)\)，所以\[
 Z_1,Z_2,\dotsc,Z_{n-1} \sim N(0,\sigma^2), \qquad
 Z_n \sim N(\sqrt{n} \mu,\sigma^2),
 \]且\(\Cov(Z_i,Z_j) = 0\ (i \neq j)\).
-这就说明，\(\v{Z}{n}\)相互独立.
+这就说明，\(\AutoTuple{Z}{n}\)相互独立.
 
 由于\[
 \frac{1}{\sigma^2} \sum\limits_{i=1}^n (X_i-\overline{X})^2
 = \frac{1}{\sigma^2} \left( \sum\limits_{i=1}^n X_i^2 - n \overline{X}^2 \right)
 = \frac{1}{\sigma^2} \left( \sum\limits_{i=1}^n Z_i^2 - Z_n^2 \right)
 = \sum\limits_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
-\]且\(\v{Z}{n-1}\)相互独立，且均服从于\(N(0,\sigma^2)\)，所以\(\frac{Z_1}{\sigma},\frac{Z_2}{\sigma},\dotsc,\frac{Z_{n-1}}{\sigma}\)仍相互独立，且均服从于\(N(0,1)\).
+\]且\(\AutoTuple{Z}{n-1}\)相互独立，且均服从于\(N(0,\sigma^2)\)，所以\(\frac{Z_1}{\sigma},\frac{Z_2}{\sigma},\dotsc,\frac{Z_{n-1}}{\sigma}\)仍相互独立，且均服从于\(N(0,1)\).
 那么由\cref{definition:数理统计的基础知识.卡方分布的定义} 可知\[
 \left( \frac{Z_1}{\sigma} \right)^2
 + \left( \frac{Z_2}{\sigma} \right)^2
@@ -438,7 +438,7 @@ Z_n \sim N(\sqrt{n} \mu,\sigma^2),
 \sim \x(n-1),
 \]即\[
 \frac{1}{\sigma^2} \sum\limits_{i=1}^n (X_i-\overline{X})^2 \sim \x(n-1).
-\]又因为\(\v{Z}{n}\)相互独立，且\[
+\]又因为\(\AutoTuple{Z}{n}\)相互独立，且\[
 \frac{1}{\sigma^2} \sum\limits_{i=1}^n (X_i-\overline{X})^2
 = \sum\limits_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
 \qquad
@@ -453,7 +453,7 @@ Z_n \sim N(\sqrt{n} \mu,\sigma^2),
 \]
 
 \begin{theorem}
-样本\(\v{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\[
+样本\(\AutoTuple{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\[
 t = \frac{\overline{X}-\mu}{S / \sqrt{n}} \sim t(n-1).
 \]
 \begin{proof}
@@ -472,7 +472,7 @@ V = \frac{(n-1)S^2}{\sigma^2} \sim \x(n-1),
 由于t分布的极限分布是标准正态分布\(N(0,1)\)，故在上述定理条件下，\(n\)充分大时，\(t = \frac{\overline{X}-\mu}{S / \sqrt{n}}\)近似地服从标准正态分布.
 这个结论还可以推广到非正态总体的情形.
 \begin{theorem}
-对任何总体\(X\)，\(E(X)=\mu\)，\(D(X)=\sigma^2>0\)，\(\v{X}{n}\)为来自总体\(X\)的样本，则当\(n\)充分大时，近似地有\begin{enumerate}
+对任何总体\(X\)，\(E(X)=\mu\)，\(D(X)=\sigma^2>0\)，\(\AutoTuple{X}{n}\)为来自总体\(X\)的样本，则当\(n\)充分大时，近似地有\begin{enumerate}
 \item \(\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)\)；
 \item \(\frac{\overline{X}-\mu}{S/\sqrt{n}} \sim N(0,1)\).
 \end{enumerate}
@@ -503,7 +503,7 @@ F = \frac{S_1^2 / \sigma_1^2}{S_2^2 / \sigma_2^2} \sim F(n_1-1,n_2-1).
 
 \subsubsection{一个任何总体下的抽样分布定理}
 \begin{theorem}
-设样本\(\v{X}{n}\)来自任何总体%
+设样本\(\AutoTuple{X}{n}\)来自任何总体%
 \footnote{所称“任何总体”是指该总体的分布未知，也就是说，它可能是离散的，也可能连续的，可能是均匀分布，也可能是偏态分布.}，%
 该总体的均值、方差分别为\(\mu\)、\(\sigma^2\in(0,+\infty)\)，则当样本量\(n\)充分大时，则\begin{equation}
 \overline{X} \dotsim N\left(\mu,\frac{\sigma^2}{n}\right).

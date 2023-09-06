@@ -2,20 +2,20 @@
 \section{排列与逆序数}
 \begin{definition}
 \(n\)个不同的自然数按一定顺序排列组成的一个有序数组\[
-	(\v{k}{n})
+	(\AutoTuple{k}{n})
 \]称为一个\(n\)阶\DefineConcept{排列}.
 
 当\(1 \leqslant i<j \leqslant n\)时，
 如果\(k_i>k_j\)，则称“\(k_i,k_j\)构成一个\DefineConcept{逆序}”；
 如果\(k_i<k_j\)，则称“\(k_i,k_j\)构成一个\DefineConcept{顺序}”.
-此排列中的逆序的总数叫它的\DefineConcept{逆序数}，记作\(\tau(\v{k}{n})\).
+此排列中的逆序的总数叫它的\DefineConcept{逆序数}，记作\(\tau(\AutoTuple{k}{n})\).
 
 逆序数为偶数的排列叫\DefineConcept{偶排列}，逆序数为奇数的排列叫\DefineConcept{奇排列}.
 \end{definition}
 
 计算一个排列的逆序数时，排列中的逆序不能重复计算，也不能漏掉.
 可按公式\[
-	\tau(\v{k}{n})=m_1+m_2+\dotsb+m_n
+	\tau(\AutoTuple{k}{n})=m_1+m_2+\dotsb+m_n
 \]计算，其中\(m_i\)为排列中排在\(k_i\)后面比它小的数的个数.
 \begin{example}
 在4阶排列2341中，2与3形成的数对\((2,3)\)，小的数在前，大的数在后，这一对数构成一个顺序；
@@ -131,26 +131,26 @@
 \end{corollary}
 我们可以把这个推论表述为如下形式：
 设对换次数为\(s\)，变换前后的排列分别为\[
-	\v{\mu}{n}
+	\AutoTuple{\mu}{n}
 	\quad\text{和}\quad
-	\v{\nu}{n},
+	\AutoTuple{\nu}{n},
 \]
 则\[
-	(-1)^{\tau(\v{\nu}{n})} = (-1)^s (-1)^{\tau(\v{\mu}{n})}.
+	(-1)^{\tau(\AutoTuple{\nu}{n})} = (-1)^s (-1)^{\tau(\AutoTuple{\mu}{n})}.
 \]
 
 \begin{theorem}\label{theorem:行列式.任意排列可化为自然序}
-任意一个\(n\)阶排列\(\v{k}{n}\)都可经一系列对换变成自然顺序排列，
-且对换的次数\(s\)与\(\tau(\v{k}{n})\)同奇偶，即\[
-	(-1)^s = (-1)^{\tau(\v{k}{n})}.
+任意一个\(n\)阶排列\(\AutoTuple{k}{n}\)都可经一系列对换变成自然顺序排列，
+且对换的次数\(s\)与\(\tau(\AutoTuple{k}{n})\)同奇偶，即\[
+	(-1)^s = (-1)^{\tau(\AutoTuple{k}{n})}.
 \]
 \begin{proof}
-设\(n\)阶排列\(\v{k}{n}\)经过\(s\)次对换变成\(1,2,\dotsc,n\).
+设\(n\)阶排列\(\AutoTuple{k}{n}\)经过\(s\)次对换变成\(1,2,\dotsc,n\).
 考虑到\(1,2,\dotsc,n\)是偶排列，
-因此，如果\(\v{k}{n}\)是奇排列，则\(s\)必为奇数，才能把奇排列变成偶排列；
-如果\(\v{k}{n}\)是偶排列，则\(s\)必为偶数，才能保持排列的奇偶性不变.
-显然，如果\(n\)阶排列\(\v{k}{n}\)经过\(s\)次对换变成自然排列\(1,2,\dotsc,n\)，
-那么\(1,2,\dotsc,n\)经过上述\(n\)次对换（次序相反）就变成排列\(\v{k}{n}\).
+因此，如果\(\AutoTuple{k}{n}\)是奇排列，则\(s\)必为奇数，才能把奇排列变成偶排列；
+如果\(\AutoTuple{k}{n}\)是偶排列，则\(s\)必为偶数，才能保持排列的奇偶性不变.
+显然，如果\(n\)阶排列\(\AutoTuple{k}{n}\)经过\(s\)次对换变成自然排列\(1,2,\dotsc,n\)，
+那么\(1,2,\dotsc,n\)经过上述\(n\)次对换（次序相反）就变成排列\(\AutoTuple{k}{n}\).
 \end{proof}
 \end{theorem}
 
@@ -160,7 +160,7 @@
 \end{example}
 
 \begin{example}
-试证：\(\tau(\v{i}{n})+\tau(i_n,i_{n-1},\dotsc,i_1)=\frac{n(n-1)}{2}\).
+试证：\(\tau(\AutoTuple{i}{n})+\tau(i_n,i_{n-1},\dotsc,i_1)=\frac{n(n-1)}{2}\).
 \begin{proof}
 记\(I=\Set{i_1,i_2,\dotsc,i_{n-1},i_n}\).
 对于\(\forall p,q \in I\)，
@@ -199,14 +199,14 @@ a_{n1} & a_{n2} & \dots & a_{nn}
 是数域\(P\)上的一个\(n\)阶方阵.
 从矩阵\(\A\)中取出不同行又不同列的\(n\)个元素作乘积
 \begin{equation}\label{equation:行列式.行列式的项1}
-	(-1)^{\tau(\v{j}{n})}
+	(-1)^{\tau(\AutoTuple{j}{n})}
 	a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n},
 \end{equation}
 构成一项；%
 我们可以像这样构造\(n!\)项，%
 并且称这\(n!\)项之和\[
-\sum\limits_{\v{j}{n}}
-(-1)^{\tau(\v{j}{n})}
+\sum\limits_{\AutoTuple{j}{n}}
+(-1)^{\tau(\AutoTuple{j}{n})}
 a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}
 \]为“矩阵\(\A\)的行列式（determinant）”，%
 记作\[
@@ -226,11 +226,11 @@ a_{21} & a_{22} & \dots & a_{2n} \\
 a_{n1} & a_{n2} & \dots & a_{nn}
 \end{vmatrix}
 \defeq
-\sum\limits_{\v{j}{n}}
-(-1)^{\tau(\v{j}{n})}
+\sum\limits_{\AutoTuple{j}{n}}
+(-1)^{\tau(\AutoTuple{j}{n})}
 a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}.
 \end{equation}
-这里，求和指标\(\v{j}{n}\)表示遍取所有\(n\)阶排列.
+这里，求和指标\(\AutoTuple{j}{n}\)表示遍取所有\(n\)阶排列.
 
 我们称\cref{equation:行列式.行列式的定义式}
 为“行列式\(\abs{A}\)的\DefineConcept{完全展开式}”.
@@ -285,41 +285,41 @@ a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}.
 \end{gather}
 
 \begin{lemma}
-设\(\A=(a_{ij})_n\)，而\(\v{i}{n}\)与\(\v{j}{n}\)是两个\(n\)阶排列，则
+设\(\A=(a_{ij})_n\)，而\(\AutoTuple{i}{n}\)与\(\AutoTuple{j}{n}\)是两个\(n\)阶排列，则
 \begin{equation}\label{equation:行列式.行列式的项2}
-	(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+	(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
 	a_{i_1j_1} a_{i_2j_2} \dotsm a_{i_nj_n}
 \end{equation}
 是\(\abs{\A}\)的项.
 \begin{proof}
 由乘法交换律，\cref{equation:行列式.行列式的项2} 可以经过\(s\)次互换两个因子的次序写成\[
-(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
 	a_{1 l_1} a_{2 l_2} \dotsm a_{n l_n},
-\]其中，\(\v{l}{n}\)是一个\(n\)阶排列.
+\]其中，\(\AutoTuple{l}{n}\)是一个\(n\)阶排列.
 
-同时，行标排列\(\v{i}{n}\)与列标排列\(\v{j}{n}\)
-分别经过\(s\)次对换变到\(1,2,\dotsc,n\)与\(\v{l}{n}\)，
+同时，行标排列\(\AutoTuple{i}{n}\)与列标排列\(\AutoTuple{j}{n}\)
+分别经过\(s\)次对换变到\(1,2,\dotsc,n\)与\(\AutoTuple{l}{n}\)，
 而它们的奇偶性都分别改变了\(s\)次，总共改变了\(2s\)次（偶数次），故\[
-	(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
-	= (-1)^{\tau(1,2,\dotsc,n)+\tau(\v{l}{n})}
-	= (-1)^{\tau(\v{l}{n})},
+	(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
+	= (-1)^{\tau(1,2,\dotsc,n)+\tau(\AutoTuple{l}{n})}
+	= (-1)^{\tau(\AutoTuple{l}{n})},
 \]这说明\cref{equation:行列式.行列式的项2} 是行列式\(\abs{\A}\)的项.
 \end{proof}
 \end{lemma}
 
 \begin{corollary}
-给定行指标的一个排列\(\v{i}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
+给定行指标的一个排列\(\AutoTuple{i}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
 \begin{equation}\label{equation:行列式.给定行指标排列下的行列式的完全展开式}
 \abs{\A}
-= \sum\limits_{\v{j}{n}}
-(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+= \sum\limits_{\AutoTuple{j}{n}}
+(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
 a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
 \end{equation}
-或者给定列指标的一个排列\(\v{j}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
+或者给定列指标的一个排列\(\AutoTuple{j}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
 \begin{equation}\label{equation:行列式.给定列指标排列下的行列式的完全展开式}
 	\abs{\A}
-	= \sum\limits_{\v{i}{n}}
-	(-1)^{\tau(\v{i}{n})+\tau(\v{j}{n})}
+	= \sum\limits_{\AutoTuple{i}{n}}
+	(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
 	a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n}.
 \end{equation}
 
@@ -327,8 +327,8 @@ a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
 这时用行指标所成排列的奇偶性来决定该项前面所带的符号，即
 \begin{equation}\label{equation:行列式.给定列指标为自然序下行列式的完全展开式}
 	\abs{\A} =
-	\sum\limits_{\v{i}{n}}
-	(-1)^{\tau(\v{i}{n})}
+	\sum\limits_{\AutoTuple{i}{n}}
+	(-1)^{\tau(\AutoTuple{i}{n})}
 	a_{i_1 1} a_{i_2 2} \dotsm a_{i_n n}.
 \end{equation}
 \end{corollary}
@@ -375,16 +375,16 @@ a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
 \begin{proof}
 \begin{align*}
 \det (\a_1,\dotsc,\b + \g,\dotsc,\a_n)
-&= \sum\limits_{\v{i}{n}}{
- (-1)^{\tau(\v{i}{n})}
+&= \sum\limits_{\AutoTuple{i}{n}}{
+ (-1)^{\tau(\AutoTuple{i}{n})}
  a_{i_1 1} \dotsm (b_{i_j} + c_{i_j}) \dotsm a_{i_n n}
 } \\
-&= \sum\limits_{\v{i}{n}}{
- (-1)^{\tau(\v{i}{n})}
+&= \sum\limits_{\AutoTuple{i}{n}}{
+ (-1)^{\tau(\AutoTuple{i}{n})}
  a_{i_1 1} \dotsm b_{i_j} \dotsm a_{i_n n}
 } \\
-&\qquad+ \sum\limits_{\v{i}{n}}{
- (-1)^{\tau(\v{i}{n})}
+&\qquad+ \sum\limits_{\AutoTuple{i}{n}}{
+ (-1)^{\tau(\AutoTuple{i}{n})}
  a_{i_1 1} \dotsm c_{i_j} \dotsm a_{i_n n}
 } \\
 &= \det (\a_1,\dotsc,\b,\dotsc,\a_n)
@@ -464,7 +464,7 @@ k+(n-1)\lambda & \lambda & \lambda & \dots & k
 \end{example}
 
 \begin{example}\label{example:行列式.两个向量的乘积矩阵的行列式}
-设\(\a=(\v{a}{n})^T,\b=(\v{b}{n})^T\)是\(n\)维列向量.
+设\(\a=(\AutoTuple{a}{n})^T,\b=(\AutoTuple{b}{n})^T\)是\(n\)维列向量.
 求：\(\abs{\a\b^T}\).
 \begin{solution}
 根据\cref{theorem:行列式.性质2}，
@@ -510,8 +510,8 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 \end{array}
 \]称为“\(\A\)的一个\(k\)阶\DefineConcept{子式}（minor）”，记作\[
 \MatrixMinor\A{
-	\v{i}{k} \\
-	\v{j}{k}
+	\AutoTuple{i}{k} \\
+	\AutoTuple{j}{k}
 }.
 \]
 \end{definition}
@@ -547,17 +547,17 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 在\(n\)阶矩阵\(\A=(a_{ij})_n\)中，
 称子式\[
 	\MatrixMinor\A{
-		\v{\mu}{n-k} \\
-		\v{\nu}{n-k}
+		\AutoTuple{\mu}{n-k} \\
+		\AutoTuple{\nu}{n-k}
 	},
 \]为“子式\(\MatrixMinor\A{
-	\v{i}{k} \\
-	\v{j}{k}
+	\AutoTuple{i}{k} \\
+	\AutoTuple{j}{k}
 }\)的\DefineConcept{余子式}（cofactor）”，
 其中\[
-	\Set{ \v{\mu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \v{i}{k} },
+	\Set{ \AutoTuple{\mu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{i}{k} },
 \]\[
-	\Set{ \v{\nu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \v{j}{k} },
+	\Set{ \AutoTuple{\nu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{j}{k} },
 \]
 且\(\mu_1<\mu_2<\dotsb<\mu_{n-k},
 \nu_1<\nu_2<\dotsb<\nu_{n-k}\).
@@ -565,12 +565,12 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 把\[
 	(-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}
 	\MatrixMinor\A{
-		\v{\mu}{n-k} \\
-		\v{\nu}{n-k}
+		\AutoTuple{\mu}{n-k} \\
+		\AutoTuple{\nu}{n-k}
 	}
 \]称作“子式\(\MatrixMinor\A{
-	\v{i}{k} \\
-	\v{j}{k}
+	\AutoTuple{i}{k} \\
+	\AutoTuple{j}{k}
 }\)的\DefineConcept{代数余子式}（algebraic cofactor）”.
 
 特别地，称子式\[
@@ -750,8 +750,8 @@ x_1^{n-1} & x_2^{n-1} & x_3^{n-1} & \dots & x_n^{n-1}
 \end{proof}
 我们可以从\cref{equation:行列式.范德蒙德行列式} 看出：
 \(n\)阶范德蒙德行列式等于零的充要条件是：
-\(\v{a}{n}\)这\(n\)个数中至少有两个相等.
-因此，如果\(\v{a}{n}\)两两不等，则范德蒙德行列式不等于零.
+\(\AutoTuple{a}{n}\)这\(n\)个数中至少有两个相等.
+因此，如果\(\AutoTuple{a}{n}\)两两不等，则范德蒙德行列式不等于零.
 \end{example}
 
 \begin{example}
@@ -815,7 +815,7 @@ D_n = a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
 \]
 \begin{proof}
 对\(\A\)列分块得\[
-	\A = (\v{\a}{n}),
+	\A = (\AutoTuple{\a}{n}),
 \]
 又令\(n\)维列向量\(\b=(t,t,\dotsc,t)^T\)，
 那么根据\cref{theorem:行列式.性质3,theorem:行列式.性质5} 有
@@ -883,7 +883,7 @@ D_n = a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
 \begin{theorem}[拉普拉斯定理]\label{theorem:行列式.拉普拉斯定理}
 %@see: 《高等代数创新教材（上册）》（丘维声） P68. 定理1（Laplace定理）
 在\(n\)阶矩阵\(\A\)中，
-取定第\(\v{i}{k}\)行
+取定第\(\AutoTuple{i}{k}\)行
 （\(i_1<i_2<\dotsb<i_k\)
 且\(1 \leqslant k < n\)），
 则这\(k\)行元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\)，%
@@ -891,19 +891,19 @@ D_n = a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
 	\abs{\A} =
 	\sum\limits_{1 \leqslant j_1 < j_2 < \dotsb < j_k \leqslant n}
 	\MatrixMinor\A{
-		\v{i}{k} \\
-		\v{j}{k}
+		\AutoTuple{i}{k} \\
+		\AutoTuple{j}{k}
 	}
 	(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
 	\MatrixMinor\A{
-		\v{\mu}{n-k} \\
-		\v{\nu}{n-k}
+		\AutoTuple{\mu}{n-k} \\
+		\AutoTuple{\nu}{n-k}
 	},
 \end{equation}
 其中\[
-	\Set{ \v{\mu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \v{i}{k} },
+	\Set{ \AutoTuple{\mu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{i}{k} },
 \]\[
-	\Set{ \v{\nu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \v{j}{k} },
+	\Set{ \AutoTuple{\nu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{j}{k} },
 \]
 且\(\mu_1<\mu_2<\dotsb<\mu_{n-k},
 \nu_1<\nu_2<\dotsb<\nu_{n-k}\).
