@@ -9,21 +9,74 @@
 即\[
 	(\forall \a \in A)[\a \in \opair{\AutoTuple{\b}{t}}],
 \]
-则称“\(A\)可由\(B\) \DefineConcept{线性表出}”，
-记作\(\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{t}}\).
-
-如果\(A\)与\(B\)可以相互线性表出，
-即\[
-	\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{t}}
-	\land
-	\opair{\AutoTuple{\b}{t}}\subseteq\opair{\AutoTuple{\a}{s}},
-\]
-则称\(A\)与\(B\) \DefineConcept{等价}，
-记作\(A \cong B\).
+则称“\(A\)可由\(B\) \DefineConcept{线性表出}”.
 \end{definition}
 
-“向量组可由另一个向量组线性表出”是向量组之间的一种关系，它具有传递性.
+\begin{theorem}
+非空向量组\(A\)总可由它本身线性表出.
+\begin{proof}
+设\(A=\{\AutoTuple{\a}{s}\}\)，
+显然\[
+	\a_i=0\a_1+\dotsb+0\a_{i-1}+1\a_i+0\a_{i+1}+\dotsb+0\a_s,
+	\quad i=1,2,\dotsc,s;
+\]
+这就是说\(\a_i\ (i=1,2,\dotsc,s)\)可由\(A\)线性表出，即\[
+	\a_i\in\opair{\AutoTuple{\a}{s}},
+	\quad i=1,2,\dotsc,s.
+\]
+于是\(A\)可由\(A\)线性表出，
+即\(\{\AutoTuple{\a}{s}\}\subseteq\opair{\AutoTuple{\a}{s}}\).
+\end{proof}
+\end{theorem}
 
+\begin{theorem}
+如果向量组\(A\)可由\(B\)线性表出，
+那么\(\opair{\AutoTuple{\a}{s}}\)是\(\opair{\AutoTuple{\b}{t}}\)的子集.
+\begin{proof}
+任意取定\(\a\in\opair{\AutoTuple{\a}{s}}\)，
+不妨设\(k_i\in K\ (i=1,2,\dotsc,s)\)满足\[
+	\a = \sum\limits_{i=1}^s k_i \a_i;
+\]
+又设\(l_{ij}\in K\ (i=1,2,\dotsc,s;j=1,2,\dotsc,t)\)满足\[
+	\a_i = \sum\limits_{j=1}^t l_{ij} \b_j,
+	\quad i=1,2,\dotsc,s;
+\]
+那么\[
+	\a = \sum\limits_{i=1}^s k_i \left(
+		\sum\limits_{j=1}^t l_{ij} \b_j
+	\right)
+	= \sum\limits_{j=1}^t \left(
+		\sum\limits_{i=1}^s k_i l_{ij}
+	\right) \b_j,
+\]
+这就是说\(\a\in\opair{\AutoTuple{\b}{t}}\)，
+于是\(\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{t}}\).
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+如果\(\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{t}}\)，
+那么向量组\(\AutoTuple{\a}{s}\)可由\(\AutoTuple{\b}{t}\)线性表出.
+\begin{proof}
+因为\(\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{t}}\)，
+对于任意\(\a\in\opair{\AutoTuple{\a}{s}}\)，总有\(\a\in\opair{\AutoTuple{\b}{t}}\)；
+又因为\(\AutoTuple{\a}{s}\in\opair{\AutoTuple{\a}{s}}\)，
+所以\(\AutoTuple{\a}{s}\in\opair{\AutoTuple{\b}{t}}\).
+\end{proof}
+\end{theorem}
+
+于是，我们可以说：\[
+	\text{向量组\(\AutoTuple{\a}{s}\)可由\(\AutoTuple{\b}{t}\)线性表出}
+	\iff
+	\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{t}}.
+\]
+从而“线性表出”和集合的“包含”关系一样，具有自反性和传递性：
+\begin{enumerate}
+	\item \(\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\a}{s}}\).
+	\item \(\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{r}}\subseteq\opair{\AutoTuple{\g}{m}}
+	\implies\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\g}{m}}\).
+\end{enumerate}
+具体来说，
 假设向量组\(A=\Set{\AutoTuple{\a}{s}}\)可以由向量组\(B=\Set{\AutoTuple{\b}{r}}\)线性表出，
 且\(B\)可以由向量组\(C=\Set{\AutoTuple{\g}{m}}\)线性表出.
 在向量组\(A\)中任取一个向量\(\a_i\)，则\[
@@ -44,6 +97,18 @@
 \]
 于是\(\a_i\)可以由\(C\)线性表出，
 从而\(A\)可以由\(C\)线性表出.
+
+
+\begin{definition}
+如果\(A\)与\(B\)可以相互线性表出，
+即\[
+	\opair{\AutoTuple{\a}{s}}\subseteq\opair{\AutoTuple{\b}{t}}
+	\land
+	\opair{\AutoTuple{\b}{t}}\subseteq\opair{\AutoTuple{\a}{s}},
+\]
+则称\(A\)与\(B\) \DefineConcept{等价}，
+记作\(A \cong B\).
+\end{definition}
 
 “向量组的等价”是向量组之间的一种等价关系，
 这是因为对于任意向量组\(A,B,C\subseteq K^n\)来说，
