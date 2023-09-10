@@ -117,13 +117,15 @@ theorem:向量空间.线性表出2的充分条件}，
 记作\(A \cong B\).
 \end{definition}
 
-“向量组的等价”是向量组之间的一种等价关系，
-这是因为对于任意向量组\(A,B,C\subseteq K^n\)来说，
+\begin{property}\label{theorem:向量空间.向量组的等价的性质}
+对于任意向量组\(A,B,C\subseteq K^n\)来说，
 \begin{enumerate}
-	\item 它具有自反性，即\(A \cong A\).
-	\item 它具有对称性，即\(A \cong B \implies B \cong A\).
-	\item 它具有传递性，即\(A \cong B \land B \cong C \implies A \cong C\).
+	\item “向量组的等价”具有自反性，即\(A \cong A\).
+	\item “向量组的等价”具有对称性，即\(A \cong B \implies B \cong A\).
+	\item “向量组的等价”具有传递性，即\(A \cong B \land B \cong C \implies A \cong C\).
 \end{enumerate}
+\end{property}
+“向量组的等价”是向量组之间的一种等价关系.
 
 另外，应该注意到，即便有\[
 	A \subseteq \Span A = \Span B \supseteq B,
@@ -248,7 +250,7 @@ theorem:向量空间.线性表出2的充分条件}，
 \end{proof}
 \end{corollary}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:向量空间.两个等价的线性无关向量组含有相同的向量个数}
 %@see: 《线性代数》（张慎语、周厚隆） P73 推论3
 两个等价的线性无关向量组含有相同的向量个数.
 \begin{proof}
@@ -263,28 +265,35 @@ theorem:向量空间.线性表出2的充分条件}，
 \end{proof}
 \end{corollary}
 
-\begin{example}
-在数域\(K\)上，满足\[
-\abs{a_{ii}} > \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq i}} \abs{a_{ij}}
-\quad (i=1,2,\dotsc,n)
-\]的\(n\)阶矩阵\(\A = (a_{ij})_n\)称为\DefineConcept{主对角占优矩阵}.
-证明：\(\A\)的列向量组\(\AutoTuple{\a}{n}\)的秩等于\(n\).
-\begin{proof}
-假设\(\AutoTuple{\a}{n}\)线性相关，则在\(K\)中有一组不全为0的数\(\AutoTuple{k}{n}\)，使得\[
-k_1 \a_1 + k_2 \a_2 + \dotsb + k_n \a_n = \z.
-\]不妨设\(\abs{k_l} = \max\{\abs{k_1},\abs{k_2},\dotsc,\abs{k_n}\}\neq0\).
-由\[
-k_1 a_{l1} + k_2 a_{l2} + \dotsb + k_l a_{ll} + \dotsb + k_n a_{ln} = 0,
-\]可得\[
-a_{ll} = -\frac{1}{k_l} (k_1 a_{l1} + \dotsb + k_{l-1} a_{l,l-1} + k_{l+1} a_{l,l+1} + \dotsb + k_n a_{ln})
-= - \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \frac{k_j}{k_l} a_{lj},
-\]\[
-\abs{a_{ll}} \leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \frac{\abs{k_j}}{\abs{k_l}} \abs{a_{lj}}
-\leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \abs{a_{lj}}.
-\]这与已知条件矛盾！
-因此\(\AutoTuple{\a}{n}\)线性无关，\(\rank\{\AutoTuple{\a}{n}\} = n\).
-\end{proof}
-\end{example}
+%\begin{example}
+%在数域\(K\)上，满足\[
+%\abs{a_{ii}} > \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq i}} \abs{a_{ij}}
+%\quad (i=1,2,\dotsc,n)
+%\]的\(n\)阶矩阵\(\A = (a_{ij})_n\)称为\DefineConcept{主对角占优矩阵}.
+%证明：\(\A\)的列向量组\(\AutoTuple{\a}{n}\)的秩等于\(n\).
+%\begin{proof}
+%假设\(\AutoTuple{\a}{n}\)线性相关，
+%则在\(K\)中有一组不全为0的数\(\AutoTuple{k}{n}\)，
+%使得\[
+%	k_1 \a_1 + k_2 \a_2 + \dotsb + k_n \a_n = \z.
+%\]
+%不妨设\(\abs{k_l} = \max\{\abs{k_1},\abs{k_2},\dotsc,\abs{k_n}\}\neq0\).
+%由\[
+%	k_1 a_{l1} + k_2 a_{l2} + \dotsb + k_l a_{ll} + \dotsb + k_n a_{ln} = 0,
+%\]
+%可得\[
+%	a_{ll} = -\frac{1}{k_l} (k_1 a_{l1} + \dotsb + k_{l-1} a_{l,l-1} + k_{l+1} a_{l,l+1} + \dotsb + k_n a_{ln})
+%	= - \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \frac{k_j}{k_l} a_{lj},
+%\]\[
+%	\abs{a_{ll}} \leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \frac{\abs{k_j}}{\abs{k_l}} \abs{a_{lj}}
+%	\leqslant \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq l}} \abs{a_{lj}}.
+%\]
+%这与已知条件矛盾！
+%因此\(\AutoTuple{\a}{n}\)线性无关，
+%\(\rank\{\AutoTuple{\a}{n}\} = n\).
+%\end{proof}
+%\end{example}
+%TODO 后移到【向量的秩】
 
 \subsection{极大线性无关组的概念}
 \begin{definition}\label{definition:线性方程组.极大线性无关组的定义}
@@ -319,16 +328,13 @@ a_{ll} = -\frac{1}{k_l} (k_1 a_{l1} + \dotsb + k_{l-1} a_{l,l-1} + k_{l+1} a_{l,
 
 \begin{corollary}
 %@see: 《线性代数》（张慎语、周厚隆） P73 定理3
-向量组的任何两个极大线性无关组等价，且包含相同个数的向量.
+向量组的任何两个极大线性无关组等价.
 \begin{proof}
-设\(A=\{\AutoTuple{\a}{r}\}\)
-与\(B=\{\AutoTuple{\b}{t}\}\)
-是某个向量组的两个极大线性无关组.
-因为向量组的任意向量可由其极大线性无关组线性表出，%
-所以\(A\)可由\(B\)线性表出，%
-\(B\)也可由\(A\)线性表出，%
-即\(A \cong B\)，%
-进而这两个等价的线性无关向量组含有相同的向量个数.
+设\(A\)与\(B\)是向量组\(C\)的两个极大线性无关组.
+根据\cref{theorem:线性方程组.向量组与其极大线性无关组等价}，
+\(A \cong C\)，\(B \cong C\).
+再由\cref{theorem:向量空间.向量组的等价的性质}，向量组等价具有对称性和传递性，
+于是\(A \cong B\).
 \end{proof}
 \end{corollary}
 
