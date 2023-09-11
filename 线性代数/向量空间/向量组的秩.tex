@@ -523,31 +523,32 @@ B'=\{\a_1,\a_2,\dotsc,\a_t\},
 \subsection{极大线性无关组的求解}
 \begin{theorem}
 设矩阵\[
-\A=(\AutoTuple{\a}{m})
-\]经一系列初等行变换化为矩阵\[
-\B=(\AutoTuple{\b}{m}),
-\]则\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)为\(\A\)的列极大线性无关组的充要条件是：
+	\A=(\AutoTuple{\a}{m})
+\]
+经一系列初等行变换化为矩阵\[
+	\B=(\AutoTuple{\b}{m}),
+\]
+则\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)为\(\A\)的列极大线性无关组的充要条件是：
 \(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)为\(\B\)的列极大线性无关组.
 \begin{proof}
-矩阵\((\a_{j1},\a_{j2},\dotsc,\a_{jk},\a_l)\)经相同的初等行变换化为
-\[
-(\b_{j1},\b_{j2},\dotsc,\b_{jk},\b_l) \quad(l=1,2,\dotsc,m).
+矩阵\((\a_{j1},\a_{j2},\dotsc,\a_{jk},\a_l)\)经相同的初等行变换化为\[
+	(\b_{j1},\b_{j2},\dotsc,\b_{jk},\b_l) \quad(l=1,2,\dotsc,m).
 \]
 考虑以下四个向量形式的线性方程组
 \begin{gather}
-x_1 \a_{j1} + x_2 \a_{j2} + \dotsb + x_k \a_{jk} = \z, \tag1 \\
-x_1 \b_{j1} + x_2 \b_{j2} + \dotsb + x_k \b_{jk} = \z, \tag2 \\
-y_1 \a_{j1} + y_2 \a_{j2} + \dotsb + y_k \a_{jk} = \a_l, \tag3 \\
-y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
+	x_1 \a_{j1} + x_2 \a_{j2} + \dotsb + x_k \a_{jk} = \z, \tag1 \\
+	x_1 \b_{j1} + x_2 \b_{j2} + \dotsb + x_k \b_{jk} = \z, \tag2 \\
+	y_1 \a_{j1} + y_2 \a_{j2} + \dotsb + y_k \a_{jk} = \a_l, \tag3 \\
+	y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
 \end{gather}
 其中(1)与(2)同解，(3)与(4)同解.
 
 必要性.
-当\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)是\(\A\)的列极大线性无关组时，%
-(1)仅有零解，(3)有解.于是(2)仅有零解，(4)有解，%
-从而\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)线性无关，%
+当\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)是\(\A\)的列极大线性无关组时，
+(1)仅有零解，(3)有解.于是(2)仅有零解，(4)有解，
+从而\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)线性无关，
 \(\b_l\ (l=1,2,\dotsc,m)\)可由其线性表出；
-由极大线性无关组定义，%
+由极大线性无关组定义，
 \(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)是\(\B\)的列极大线性无关组.
 
 同理可证充分性.
@@ -556,55 +557,57 @@ y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
 
 \begin{example}
 求列向量组\[
-\a_1 = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 0 \end{bmatrix},
-\a_2 = \begin{bmatrix} -1 \\ 2 \\ -1 \\ 1 \end{bmatrix},
-\a_3 = \begin{bmatrix} 0 \\ -1 \\ 1 \\ -1 \end{bmatrix},
-\a_4 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 3 \end{bmatrix},
-\a_5 = \begin{bmatrix} 2 \\ -6 \\ 4 \\ 1 \end{bmatrix}
+	\a_1 = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 0 \end{bmatrix},
+	\a_2 = \begin{bmatrix} -1 \\ 2 \\ -1 \\ 1 \end{bmatrix},
+	\a_3 = \begin{bmatrix} 0 \\ -1 \\ 1 \\ -1 \end{bmatrix},
+	\a_4 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 3 \end{bmatrix},
+	\a_5 = \begin{bmatrix} 2 \\ -6 \\ 4 \\ 1 \end{bmatrix}
 \]的秩与一个极大线性无关组.
 \begin{solution}
 对矩阵\(\A = (\AutoTuple{\a}{5})\)作初等行变换化为阶梯形矩阵：
 \begin{align*}
-\A &= \begin{bmatrix}
--1 & -1 & 0 & 1 & 2 \\
-1 & 2 & -1 & -3 & -6 \\
-0 & -1 & 1 & 2 & 4 \\
-0 & 1 & -1 & 3 & 1 \\
-\end{bmatrix}
-\xlongrightarrow{\begin{array}{c}
-(2\text{行}) \addeq 1 \times (1\text{行}) \\
-(4\text{行}) \addeq (3\text{行})
-\end{array}}
-\begin{bmatrix}
--1 & -1 & 0 & 1 & 2 \\
-0 & 1 & -1 & -2 & -4 \\
-0 & -1 & 1 & 2 & 4 \\
-0 & 0 & 0 & 5 & 5 \\
-\end{bmatrix} \\
-&\xlongrightarrow{\begin{array}{c}
-(3\text{行}) \addeq (2\text{行}) \\
-(4\text{行}) \diveq 5
-\end{array}}
-\begin{bmatrix}
--1 & -1 & 0 & 1 & 2 \\
-0 & 1 & -1 & -2 & -4 \\
-0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 1 & 1 \\
-\end{bmatrix} \\
-&\xlongrightarrow{\begin{array}{c} \text{交换(3行)与(4行)} \end{array}}
-\begin{bmatrix}
--1 & -1 & 0 & 1 & 2 \\
-0 & 1 & -1 & -2 & -4 \\
-0 & 0 & 0 & 1 & 1 \\
-0 & 0 & 0 & 0 & 0 \\
-\end{bmatrix} = \B.
+	\A &= \begin{bmatrix}
+		-1 & -1 & 0 & 1 & 2 \\
+		1 & 2 & -1 & -3 & -6 \\
+		0 & -1 & 1 & 2 & 4 \\
+		0 & 1 & -1 & 3 & 1 \\
+	\end{bmatrix}
+	\xlongrightarrow{\begin{array}{c}
+		(2\text{行}) \addeq 1 \times (1\text{行}) \\
+		(4\text{行}) \addeq (3\text{行})
+	\end{array}}
+	\begin{bmatrix}
+		-1 & -1 & 0 & 1 & 2 \\
+		0 & 1 & -1 & -2 & -4 \\
+		0 & -1 & 1 & 2 & 4 \\
+		0 & 0 & 0 & 5 & 5 \\
+	\end{bmatrix} \\
+	&\xlongrightarrow{\begin{array}{c}
+		(3\text{行}) \addeq (2\text{行}) \\
+		(4\text{行}) \diveq 5
+	\end{array}}
+	\begin{bmatrix}
+		-1 & -1 & 0 & 1 & 2 \\
+		0 & 1 & -1 & -2 & -4 \\
+		0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 1 & 1 \\
+	\end{bmatrix} \\
+	&\xlongrightarrow{\begin{array}{c} \text{交换(3行)与(4行)} \end{array}}
+	\begin{bmatrix}
+		-1 & -1 & 0 & 1 & 2 \\
+		0 & 1 & -1 & -2 & -4 \\
+		0 & 0 & 0 & 1 & 1 \\
+		0 & 0 & 0 & 0 & 0 \\
+	\end{bmatrix}
+	= \B.
 \end{align*}
 若按列分块有\(\B = (\AutoTuple{\b}{5})\).
 阶梯形矩阵\(\B\)有3行不为零，故\[
-\rank\{\AutoTuple{\a}{5}\}=3.
-\]又因为\(\B\)的非零首元分别位于1、2、4列，%
-则\(\b_1,\b_2,\b_4\)是\(\B\)的一个列极大线性无关组，%
-相应地，\(\a_1,\a_2,\a_4\)是\(\A\)的一个列极大线性无关组，%
+	\rank\{\AutoTuple{\a}{5}\}=3.
+\]
+又因为\(\B\)的非零首元分别位于1、2、4列，
+则\(\b_1,\b_2,\b_4\)是\(\B\)的一个列极大线性无关组，
+相应地，\(\a_1,\a_2,\a_4\)是\(\A\)的一个列极大线性无关组，
 即\(\{\AutoTuple{\a}{5}\}\)的极大线性无关组.
 \end{solution}
 \end{example}
