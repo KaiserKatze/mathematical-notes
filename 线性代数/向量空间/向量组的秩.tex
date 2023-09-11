@@ -380,7 +380,9 @@ theorem:向量空间.线性表出2的充分条件}，
 称为向量组的\DefineConcept{秩}（rank），
 记为\(\rank A\)或\(\rank\{\AutoTuple{\a}{s}\}\)，
 即\[
-	\rank A \defeq \card(\text{\(A\)的任一极大线性无关组}).
+	\text{\(A'\)是\(A\)的极大无关组}
+	\implies
+	[\rank A = \card A'].
 \]
 \end{definition}
 
@@ -402,7 +404,7 @@ theorem:向量空间.线性表出2的充分条件}，
 \end{proof}
 \end{property}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:向量空间.秩与线性相关性的关系}
 %@see: 《线性代数》（张慎语、周厚隆） P73. 推论4
 设向量组\(A=\{\AutoTuple{\a}{s}\}\).
 \begin{enumerate}
@@ -493,13 +495,16 @@ B=\{(1,0)\}\).
 证明：在秩为\(r\)的向量组中，任意\(r+1\)个向量必线性相关.
 \begin{proof}
 设向量组\(\AutoTuple{\a}{s}\)的秩为\(r\).
-假设部分组\(\AutoTuple{\a}{r+1}\)线性无关，%
-那么\[
-\rank\{\AutoTuple{\a}{r+1}\} = r+1.
+假设部分组\(\AutoTuple{\a}{r+1}\)线性无关，
+那么由\cref{theorem:向量空间.秩与线性相关性的关系} 得\[
+	\rank\{\AutoTuple{\a}{r+1}\} = r+1.
 \]
-因为部分组总可由全组线性表出，所以部分组的秩总是小于或等于全组的秩，即\[
+因为部分组总可由全组线性表出（\cref{theorem:线性方程组.部分组可由全组线性表出}），
+所以部分组的秩总是小于或等于全组的秩（\cref{theorem:向量空间.向量组的秩的比较}），
+即\[
 	r+1 = \rank\{\AutoTuple{\a}{r+1}\} \leqslant \rank\{\AutoTuple{\a}{s}\} = r,
-\]矛盾，所以部分组\(\AutoTuple{\a}{r+1}\)一定线性相关.
+\]矛盾，
+所以部分组\(\AutoTuple{\a}{r+1}\)一定线性相关.
 \end{proof}
 \end{example}
 
@@ -510,10 +515,12 @@ B=\{(1,0)\}\).
 是\(\AutoTuple{\a}{s}\)的一个极大线性无关组.
 \begin{proof}
 设\[
-A=\{\AutoTuple{\a}{s}\},
-\qquad
-B=\{\AutoTuple{\a}{r}\}.
-\]要证\(B\)是\(A\)的一个极大线性无关组，须证\(A\)的任意向量可由\(B\)线性表出.
+	A=\{\AutoTuple{\a}{s}\},
+	\qquad
+	B=\{\AutoTuple{\a}{r}\}.
+\]
+要证\(B\)是\(A\)的一个极大线性无关组，
+须证\(A\)的任意向量可由\(B\)线性表出.
 
 \begin{enumerate}
 \item 显然地，\(\a_i\ (i=1,2,\dotsc,r)\)可由\(B\)线性表出.
