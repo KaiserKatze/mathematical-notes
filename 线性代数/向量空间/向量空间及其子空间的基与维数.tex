@@ -158,21 +158,42 @@
 \end{theorem}
 
 \begin{theorem}
-\(K^n\)中，向量组\(\AutoTuple{\a}{s}\)的一个极大线性无关组是%
-这个向量组生成的子空间\(U=\opair{\AutoTuple{\a}{s}}\)的一个基，
+\(K^n\)中，向量组\(A\)的一个极大线性无关组是这个向量组生成的子空间\(\Span A\)的一个基，
 从而
 \begin{equation}\label{equation:线性方程组.子空间的维数与向量组的秩的联系}
-	\dim\opair{\AutoTuple{\a}{s}} = \rank\{\AutoTuple{\a}{s}\}.
+	\dim(\Span A) = \rank A.
 \end{equation}
 %TODO
 \end{theorem}
-这里要注意区分“子空间的维数\(\dim\opair{\AutoTuple{\a}{s}}\)”
-和“向量组的秩\(\rank\{\AutoTuple{\a}{s}\}\)”这两个概念：
+这里要注意区分“子空间的维数\(\dim(\Span A)\)”
+和“向量组的秩\(\rank A\)”这两个概念：
 维数是对子空间而言，秩是对向量组而言；
-在子空间\(\opair{\AutoTuple{\a}{s}}\)这个集合中有无穷多个向量，
-而向量组\(\{\AutoTuple{\a}{s}\}\)这个集合中只有有限的\(s\)个向量.
+在子空间\(\Span A\)这个集合中有无穷多个向量，
+而向量组\(A\)这个集合中只有有限的\(s\)个向量.
 
 数域\(K\)上任一\(s \times n\)矩阵\(\A\)的列向量组\(\AutoTuple{\a}{n}\)%
 生成的子空间称为\(\A\)的\DefineConcept{列空间}；
 \(\A\)的行向量组\(\AutoTuple{\g}{s}\)生成的子空间称为\(\A\)的\DefineConcept{行空间}.
 易知，\(\A\)的列（行）空间的维数等于\(\A\)的列（行）向量组的秩.
+
+\begin{example}
+设\(r < n\).
+证明：\[
+	W = \Set{ (\AutoTuple{a}{r},0,\dotsc,0) \given a_i \in K, i=1,2,\dotsc,r }
+\]是\(K^n\)的子空间.
+\begin{proof}
+显然\(\z\in W\).
+任取\(k\in K\).
+再任取两个向量\[
+	\a = (\AutoTuple{a}{r},0,\dotsc,0), \qquad
+	\b = (\AutoTuple{b}{r},0,\dotsc,0).
+\]
+显然\(\a,\b\in W\)，且有\[
+	\a+\b = (a_1+b_1,a_2+b_2,\dotsc,a_r+b_r,0,\dotsc,0) \in W,
+\]\[
+	k \a = (k a_1,k a_2,\dotsc,k a_r,0,\dotsc,0) \in W;
+\]
+这就是说\(W\)对于加法、数量乘法都封闭.
+因此\(W\)是\(K^n\)的一个子空间.
+\end{proof}
+\end{example}
