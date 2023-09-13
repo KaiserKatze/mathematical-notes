@@ -2,47 +2,44 @@
 古希腊的毕达哥拉斯曾经提出“万物皆数”这一哲学观点，从这一章开始，我们研究如何利用代数方法研究几何问题.
 
 在利用函数图像研究初等函数的性质时，我们产生了这么一个观念：
-在平面上建立了平面直角坐标系以后，%
-平面上的点与数（或说由实数\(x\)、\(y\)构成的有序对\((x,y)\)）是一一对应的.
+在平面上建立了平面直角坐标系以后，
+平面上的点与数是一一对应的，
+或说平面上的点与由实有序对\((x,y)\)一一对应.
 几何图形是由点构成的集合，我们自然地想到能不能用数的集合来代表几何图形.
 这就是解析几何的思想根源.
 
 
 \section{向量及其线性运算}
-解析几何最基本的方法是坐标法，即建立一个坐标系，使得点可以用有序对或元组来表示，co
+解析几何最基本的方法是坐标法，即建立一个坐标系，使得点可以用有序对或元组来表示，
 从而可以用方程表示图形，通过方程来研究图形的性质.
 坐标法的优越性在于它利用了数可以进行运算的优点.
 那么，能否把代数运算直接引入几何中来呢？什么样的几何对象能够做运算？
 
 \subsection{向量的概念}
-\begin{definition}
 既有大小、又有方向的量，称为\DefineConcept{向量}或\DefineConcept{矢量}（vector）.
 
-与向量相对的，只有大小，没有方向的量，称为\DefineConcept{标量}（scalar
-\footnote{标量的英文scalar的对应的动词scale具有伸缩的意思.
-我们马上会讲到向量与标量相乘的结果还是一个向量；
-只不过当这个标量不为1时，所得的向量与原来的向量相比，大小会发生变化，
-就好像我们对有向线段进行了伸缩变换一样.}）.
-\end{definition}
+与向量相对的，只有大小，没有方向的量，称为\DefineConcept{标量}（scalar）.
 
 我们通常用黑体小写拉丁字母（如\(\mat{a}\)、\(\mat{r}\)、\(\mat{v}\)、\(\mat{F}\)等），
 或在小写拉丁字母上面加箭头（如\(\vec{a}\)、\(\vec{r}\)、\(\vec{v}\)、\(\vec{F}\)等）来表记向量.
 
 对于一个给定的向量\(\mat{a}\)，
-我们也常用“有向线段”\(\vec{AB}\)来表示向量，
+我们也常用“有向线段”\(\vec{AB}\)来表示这个向量，
 其中用这条线段的长度\(\abs{AB}\)表示\(\mat{a}\)的大小，
 用起点\(A\)到终点\(B\)的指向表示\(\mat{a}\)的方向，
 如\cref{figure:解析几何.有向线段} 所示.
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[>=Stealth]
-	\draw[->] (0,0)node[left]{\(A\)}--(3,1)node[right]{\(B\)};
+	\draw[->] (0,0)node[left]{\(A\)}--(3,1)node[right]{\(B\)}
+		node[midway,above]{\(\mat{a}\)};
 \end{tikzpicture}
 \caption{有向线段}
 \label{figure:解析几何.有向线段}
 \end{figure}
 
 规定长度相等、方向相同的有向线段表示同一个向量.
+
 如\cref{figure:解析几何.有向线段的平移不变性} 所示，
 若有向线段\(\vec{AB}\)表示向量\(\mat{a}\)，
 则\(\vec{AB}\)经过平行移动得到的有向线段\(\vec{CD}\)仍然表示向量\(\mat{a}\)，
@@ -60,25 +57,29 @@
 \label{figure:解析几何.有向线段的平移不变性}
 \end{figure}
 
-我们今后把向量的大小称为向量的\DefineConcept{长度}、\DefineConcept{模长}或\DefineConcept{模}，
+我们今后把向量的大小称为
+“向量的\DefineConcept{长度}（length）”或“向量的\DefineConcept{模}（modulus）”，
 记作\(\abs{\mat{a}}\).
 
 如果两个向量\(\mat{a}\)和\(\mat{b}\)的长度相等、方向相同，
-我们就说“向量\(\mat{a}\)和\(\mat{b}\)是\DefineConcept{相等}的”，
+我们就说“\(\mat{a}\)和\(\mat{b}\)是\DefineConcept{相等}的”，
+或者说“\(\mat{a}\)等于\(\mat{b}\)”，
 记作\(\mat{a}=\mat{b}\)；
 否则，记\(\mat{a}\neq\mat{b}\).
 
-长度为零的向量称为\DefineConcept{零向量}，记作\(\mat{0}\).
+长度为零的向量称为\DefineConcept{零向量}（zero vector），记作\(\mat{0}\).
 看作有向线段时，零向量的起点和终点重合，所以它的方向可以看作是任意的、不确定的.
 相对地，长度不为零的向量称为\DefineConcept{非零向量}.
 
-长度为1的向量称为\DefineConcept{单位向量}，记作\(\mat{e}\).
+长度为1的向量称为\DefineConcept{单位向量}（identity vector），记作\(\mat{e}\).
+
 任意给定一个向量\(\mat{a}\)，与\(\mat{a}\)同向的单位向量记作\(\mat{a}^0\).
 
-任意给定一个向量\(\mat{a}\)，与\(\mat{a}\)长度相等、方向相反的向量
-称为“\(\mat{a}\)的\DefineConcept{反向量}或\DefineConcept{负向量}”，
+任意给定一个向量\(\mat{a}\)，
+如果向量\(\mat{b}\)正好是与\(\mat{a}\)长度相等、方向相反的向量，
+那么称“\(\mat{b}\)是\(\mat{a}\)的\DefineConcept{负向量}（negative vector）”，
 记作\(-\mat{a}\).
-例如，\(\vec{BA}\)是\(\vec{AB}\)的反向量，因此\(\vec{BA} = -\vec{AB}\).
+例如，\(\vec{BA}\)是\(\vec{AB}\)的负向量，因此\(\vec{BA} = -\vec{AB}\).
 
 \subsection{向量的加法}
 我们知道，将与点\(A\)重合的点\(P\)移动到点\(B\)再移动到点\(C\)的结果是点\(P\)与点\(C\)重合.
