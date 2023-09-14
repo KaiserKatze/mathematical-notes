@@ -1,20 +1,20 @@
 \section{齐次线性方程组有非零解的条件及解的结构}
 \begin{theorem}\label{theorem:线性方程组.齐次线性方程组有非零解的条件及解的结构}
 设\(\A\)是\(s \times n\)矩阵，则齐次线性方程组\(\A\x=\z\)有非零解的充要条件为\[
-r_{\A} < n.
+\rank\A < n.
 \]
 \begin{proof}
 将\(\A\)按列分块得\(\A = (\AutoTuple{\a}{n})\)，则原方程可改写为\[
 x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \z,
 \]因此，原方程有非零解的充要条件是\(\AutoTuple{\a}{n}\)线性相关，而其充要条件是\[
-r_{\A} = \rank\{\AutoTuple{\a}{n}\} < n.
+\rank\A = \rank\{\AutoTuple{\a}{n}\} < n.
 \qedhere
 \]
 \end{proof}
 \end{theorem}
 
 上述\cref{theorem:线性方程组.齐次线性方程组有非零解的条件及解的结构}
-的否命题“齐次线性方程组\(\A\x=\z\)只有零解的充要条件为\(r_{\A}=n\)”也成立.
+的否命题“齐次线性方程组\(\A\x=\z\)只有零解的充要条件为\(\rank\A=n\)”也成立.
 
 \begin{theorem}\label{theorem:线性方程组.齐次线性方程组的解的线性组合也是解}
 齐次线性方程组\(\A\x=\z\)的解的任意线性组合也是解.
@@ -52,9 +52,9 @@ S = \Set{ \tongjie \given \AutoTuple{k}{t} \in P }.
 \end{definition}
 
 \begin{theorem}\label{theorem:线性方程组.齐次线性方程组的解向量个数}
-设\(\A\)是\(s \times n\)矩阵，\(r_{\A} = r < n\)，则齐次线性方程组\(\A\x=\z\)存在基础解系，且基础解系含\(n-r\)个解向量.
+设\(\A\)是\(s \times n\)矩阵，\(\rank\A = r < n\)，则齐次线性方程组\(\A\x=\z\)存在基础解系，且基础解系含\(n-r\)个解向量.
 \begin{proof}
-设\(\A\)经一系列初等行变换化为阶梯形矩阵\(\B\)，则\(r_{\B} = r\)，即\(\B\)的前\(r\)行向量不为零.
+设\(\A\)经一系列初等行变换化为阶梯形矩阵\(\B\)，则\(\rank\B = r\)，即\(\B\)的前\(r\)行向量不为零.
 不失一般性，设\(\B\)的第\(i\)行非零首元为\(b_{ii}\ (i=1,2,\dotsc,r)\)，\[
 \A \to \B = \begin{bmatrix}
 \B_1 & \B_2 \\
@@ -152,7 +152,7 @@ d_1 \\ d_2 \\ \vdots \\ d_r
 \end{theorem}
 
 \begin{corollary}
-设齐次线性方程组\(\A\x=\z\)的系数矩阵\(\A\)是\(s \times n\)矩阵，若\(r_{\A} = r < n\)，则\begin{enumerate}
+设齐次线性方程组\(\A\x=\z\)的系数矩阵\(\A\)是\(s \times n\)矩阵，若\(\rank\A = r < n\)，则\begin{enumerate}
 \item \(\A\x=\z\)的每个基础解系都含有\(n-r\)个解向量；
 \item \(\A\x=\z\)的任意\(n-r+1\)个解向量线性相关；
 \item \(\A\x=\z\)的任意\(n-r\)个线性无关的解都是它的一个基础解系.
@@ -205,7 +205,7 @@ x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &+& 4 x_5 &=& 0 \\
 \cref{theorem:线性方程组.齐次线性方程组的解向量个数} 揭示矩阵\(\A\)的秩与方程\(\A\x=\z\)的基础解系所含向量个数的关系.
 它不仅对\(\A\x=\z\)的求解有重要意义，而且可以用来解决矩阵的秩的一些问题.
 \begin{example}
-设\(\A\)为\(s \times n\)矩阵，\(\B\)为\(n \times m\)矩阵，\(\A\B=\z\).证明：\(r_{\A} + r_{\B} \leqslant n\).
+设\(\A\)为\(s \times n\)矩阵，\(\B\)为\(n \times m\)矩阵，\(\A\B=\z\).证明：\(\rank\A + \rank\B \leqslant n\).
 \begin{proof}
 设矩阵\(\B\)与\(\A\B=\z\)右端的零矩阵列分块矩阵分别为\[
 \B=(\AutoTuple{\b}{m}),
@@ -219,28 +219,29 @@ x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &+& 4 x_5 &=& 0 \\
 \A\b_j = \z \quad(j=1,2,\dotsc,m)
 \]即\(\beta=\{\AutoTuple{\b}{m}\}\)是齐次线性方程组\(\A\x=\z\)解向量组.
 
-若\(r_{\A}=n\)，则\(\A\x=\z\)只有零解，\(\B=\z\)，\(r_{\B}=0=n-r_{\A}\).
+若\(\rank\A=n\)，则\(\A\x=\z\)只有零解，\(\B=\z\)，\(\rank\B=0=n-\rank\A\).
 
-若\(r_{\A}<n\)，则\(X=\{\AutoTuple{\x}{n-r}\}\)是\(\A\x=\z\)的一个基础解系，则\(\beta\)可由\(X\)线性表出，\(r_{\beta} \leqslant r_{X}\).
-而\(r_{\beta}=r_{\B}\)，\(r_{X}=n-r_{\A}\).
+若\(\rank\A<n\)，则\(X=\{\AutoTuple{\x}{n-r}\}\)是\(\A\x=\z\)的一个基础解系，
+则\(\beta\)可由\(X\)线性表出，\(\rank\beta \leqslant \rank X\).
+而\(\rank\beta=\rank\B\)，\(\rank X=n-\rank\A\).
 
-综上所述，\(r_{\A}+r_{\B} \leqslant n\)成立.
+综上所述，\(\rank\A+\rank\B \leqslant n\)成立.
 \end{proof}
 \end{example}
 
 \begin{example}
 设\(\A\)为\(n\ (n>1)\)阶方阵，\(\A^*\)是\(\A\)的伴随矩阵.
 证明：\[
-r_{\A^*} = \left\{ \begin{array}{cl}
-n, & r_{\A}=n, \\
-1, & r_{\A}=n-1, \\
-0, & r_{\A}<n-1.
+\rank\A^* = \left\{ \begin{array}{cl}
+n, & \rank\A=n, \\
+1, & \rank\A=n-1, \\
+0, & \rank\A<n-1.
 \end{array} \right.
 \]
 \begin{proof}
 我们根据矩阵\(\A\)的秩的取值分类讨论.
 \begin{enumerate}
-\item 当\(r_{\A} = n\)时，\(\A\)满秩，%
+\item 当\(\rank\A = n\)时，\(\A\)满秩，%
 那么由\cref{theorem:线性方程组.矩阵的秩的性质4} 有\(\abs{\A} \neq 0\)；%
 根据恒等式 \labelcref{equation:行列式.伴随矩阵.恒等式1} 有\[
 \A \A^* = \A^* \A = \abs{\A} \E;
@@ -259,25 +260,25 @@ n, & r_{\A}=n, \\
 = \abs{\A}^{n-1} \neq 0,
 \]
 进而有\[
-r_{\A^*} = n.
+\rank\A^* = n.
 \]
 
-\item 当\(r_{\A} = n-1 < n\)时，%
+\item 当\(\rank\A = n-1 < n\)时，%
 \(\abs{\A} = 0\)，\(\A \A^* = \z\)，据上例，\[
-r_{\A} + r_{\A^*} \leqslant n
+\rank\A + \rank\A^* \leqslant n
 \implies
-r_{\A^*}
-\leqslant n - r_{\A}
+\rank\A^*
+\leqslant n - \rank\A
 = n - (n-1)
 = 1.
 \]
-又因为\(n > 1 \implies r_{\A} = n-1 > 0\)，%
-所以\(r_{\A} = 1\).
+又因为\(n > 1 \implies \rank\A = n-1 > 0\)，%
+所以\(\rank\A = 1\).
 
-\item 当\(r_{\A} < n-1\)时，%
+\item 当\(\rank\A < n-1\)时，%
 \(\A\)的所有\(n-1\)阶子式全为零，%
 \(\A\)的任意元素代数余子式为零，%
-\(\A^* = \z\)，\(r_{\A^*} = 0\).
+\(\A^* = \z\)，\(\rank\A^* = 0\).
 \end{enumerate}
 \end{proof}
 \end{example}
