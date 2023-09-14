@@ -205,7 +205,7 @@
 则结论成立.
 
 当\(\A \neq \z\)时，
-设\(r_{\A} = r\)，
+设\(\rank\A = r\)，
 则\(\A\)的所有\(t\ (t > r)\)阶子式全为零，
 且\(\A\)有一个\(r\)阶子式不为零，
 该子式的列向量线性无关，
@@ -216,10 +216,10 @@
 故\(p \leqslant r\)，
 得\(p = r\).
 
-因此\(r_{\A}\)等于\(\A\)的列秩.
+因此\(\rank\A\)等于\(\A\)的列秩.
 
 同样地，将这一结论用于\(\A^T\)，
-得\(r_{\A^T}\)等于\(\A^T\)的列秩，
+得\(\rank\A^T\)等于\(\A^T\)的列秩，
 也就等于\(\A\)的行秩.
 \end{proof}
 \end{theorem}
@@ -234,7 +234,7 @@
 \end{theorem}
 
 \begin{theorem}\label{theorem:线性方程组.矩阵乘积的秩}
-矩阵的乘积的秩\(r_{\A\B} \leqslant \min\{r_{\A},r_{\B}\}\).
+矩阵的乘积的秩\(\rank(\A\B) \leqslant \min\{\rank\A,\rank\B\}\).
 \begin{proof}
 设\(\C = \A\B\)，将\(\C\)、\(\B\)分别进行列分块得\[
 \C = (\AutoTuple{\g}{n}),
@@ -271,20 +271,20 @@ l_1 \g_{k_1} + l_2 \g_{k_2} + \dotsb + l_{t+1} \g_{k_{t+1}}
 \leqslant \rank \A
 = \rank \A^T,
 \]所以
-\(r_{\A\B}
+\(\rank(\A\B)
 \leqslant
-\min\{r_{\A},r_{\B}\}\).
+\min\{\rank\A,\rank\B\}\).
 \end{proof}
 \end{theorem}
 
 \begin{corollary}
 设\(\A\)是一个\(s \times n\)矩阵，\(\P\)、\(\Q\)分别是\(s\)阶和\(n\)阶可逆矩阵，则\[
-r_{\A} = r_{\P \A} = r_{\A \Q} = r_{\P \A \Q}.
+\rank\A = \rank(\P\A) = \rank(\A\Q) = \rank(\P\A\Q).
 \]
 \begin{proof}
 因为\(\A = (\P^{-1} \P) \A = \P^{-1} (\P \A)\)，由\cref{theorem:线性方程组.矩阵乘积的秩}，有\[
-r_{\A} = r_{\P^{-1} (\P \A)} \leqslant r_{\P \A} \leqslant r_{\A},
-\]所以\(r_{\A} = r_{\P \A}\)；同理可得\(r_{\A} = r_{\A \Q} = r_{\P \A \Q}\).
+\rank\A = \rank(\P^{-1}(\P\A)) \leqslant \rank(\P\A) \leqslant \rank\A,
+\]所以\(\rank\A = \rank(\P\A)\)；同理可得\(\rank\A = \rank(\A\Q) = \rank(\P\A\Q)\).
 \end{proof}
 \end{corollary}
 
@@ -313,11 +313,11 @@ r_{\A} = r_{\P^{-1} (\P \A)} \leqslant r_{\P \A} \leqslant r_{\A},
 \end{theorem}
 
 \begin{theorem}
-设\(\A\)与\(\B\)都是\(s \times n\)矩阵，则\(\A \cong \B\)的充要条件是：\(r_{\A} = r_{\B}\).
+设\(\A\)与\(\B\)都是\(s \times n\)矩阵，则\(\A \cong \B\)的充要条件是：\(\rank\A = \rank\B\).
 \begin{proof}
-必要性.因为\(\A\)可经一系列初等变换化为\(\B\)，根据\cref{theorem:线性方程组.初等变换不变秩}，初等变换不改变矩阵的秩，所以\(r_{\A} = r_{\B}\).
+必要性.因为\(\A\)可经一系列初等变换化为\(\B\)，根据\cref{theorem:线性方程组.初等变换不变秩}，初等变换不改变矩阵的秩，所以\(\rank\A = \rank\B\).
 
-充分性.已知\(r_{\A} = r_{\B} = r\).对\(\A\)作初等行变换可将其化简为仅前\(r\)行不为零的阶梯形矩阵\(\C\)，同样对\(\C\)作初等列变换可化简为\(\A\)的等价标准型.
+充分性.已知\(\rank\A = \rank\B = r\).对\(\A\)作初等行变换可将其化简为仅前\(r\)行不为零的阶梯形矩阵\(\C\)，同样对\(\C\)作初等列变换可化简为\(\A\)的等价标准型.
 对\(\B\)也可作初等变换化为等价标准型.
 那么存在\(s\)阶可逆矩阵\(\P_1\)和\(\P_2\)，存在\(n\)阶可逆矩阵\(\Q_1\)和\(\Q_2\)，使得\[
 \P_1 \A \Q_1 = \P_2 \A \Q_2 = \begin{bmatrix} \E_r & \z \\ \z & \z \end{bmatrix},
