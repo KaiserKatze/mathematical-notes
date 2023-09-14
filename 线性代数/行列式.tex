@@ -352,44 +352,45 @@ a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
 这就说明，行列互换，行列式的值不变.
 
 \begin{property}\label{theorem:行列式.性质2}
-\(\det (\a_1,\dotsc,k\a_j,\dotsc,\a_n)
-=k \cdot \det (\a_1,\dotsc,\a_j,\dotsc,\a_n)\).
+\(\det(\a_1,\dotsc,k\a_j,\dotsc,\a_n)
+=k \cdot \det(\a_1,\dotsc,\a_j,\dotsc,\a_n)\).
 \end{property}
 这就说明，行列式某列（行）各元素的公因子可以提到行列式外.
 
 \begin{corollary}\label{theorem:行列式.性质2.推论1}
-\(\det (\a_1,\dotsc,\z,\dotsc,\a_n) = 0\).
+\(\det(\a_1,\dotsc,\z,\dotsc,\a_n) = 0\).
 \end{corollary}
 也就是说，如果行列式中某一列（行）元素全为零，则行列式等于零.
 
 \begin{corollary}\label{theorem:行列式.性质2.推论2}
-\(\det (k\A) = k^n \det \A\).
+\(\det(k\A) = k^n \det \A\).
 \end{corollary}
 
-一般说来，\(\det(k\A) \neq k \det\A\).
+应该注意到，一般说来，\(\det(k\A) \neq k \det\A\).
 
 \begin{property}\label{theorem:行列式.性质3}
-\(\det (\a_1,\dotsc,\b + \g,\dotsc,\a_n)
-= \det (\a_1,\dotsc,\b,\dotsc,\a_n)
-+ \det (\a_1,\dotsc,\g,\dotsc,\a_n)\).
+\(\det(\a_1,\dotsc,\b + \g,\dotsc,\a_n)
+= \det(\a_1,\dotsc,\b,\dotsc,\a_n)
++ \det(\a_1,\dotsc,\g,\dotsc,\a_n)\).
 \begin{proof}
+直接计算得
 \begin{align*}
-\det (\a_1,\dotsc,\b + \g,\dotsc,\a_n)
-&= \sum\limits_{\AutoTuple{i}{n}}{
- (-1)^{\tau(\AutoTuple{i}{n})}
- a_{i_1 1} \dotsm (b_{i_j} + c_{i_j}) \dotsm a_{i_n n}
-} \\
-&= \sum\limits_{\AutoTuple{i}{n}}{
- (-1)^{\tau(\AutoTuple{i}{n})}
- a_{i_1 1} \dotsm b_{i_j} \dotsm a_{i_n n}
-} \\
-&\qquad+ \sum\limits_{\AutoTuple{i}{n}}{
- (-1)^{\tau(\AutoTuple{i}{n})}
- a_{i_1 1} \dotsm c_{i_j} \dotsm a_{i_n n}
-} \\
-&= \det (\a_1,\dotsc,\b,\dotsc,\a_n)
-+ \det (\a_1,\dotsc,\g,\dotsc,\a_n).
-\qedhere
+	\det(\a_1,\dotsc,\b + \g,\dotsc,\a_n)
+	&= \sum\limits_{\AutoTuple{i}{n}}{
+	(-1)^{\tau(\AutoTuple{i}{n})}
+	a_{i_1 1} \dotsm (b_{i_j} + c_{i_j}) \dotsm a_{i_n n}
+	} \\
+	&= \sum\limits_{\AutoTuple{i}{n}}{
+	(-1)^{\tau(\AutoTuple{i}{n})}
+	a_{i_1 1} \dotsm b_{i_j} \dotsm a_{i_n n}
+	} \\
+	&\qquad+ \sum\limits_{\AutoTuple{i}{n}}{
+	(-1)^{\tau(\AutoTuple{i}{n})}
+	a_{i_1 1} \dotsm c_{i_j} \dotsm a_{i_n n}
+	} \\
+	&= \det(\a_1,\dotsc,\b,\dotsc,\a_n)
+	+ \det(\a_1,\dotsc,\g,\dotsc,\a_n).
+	\qedhere
 \end{align*}
 \end{proof}
 \end{property}
@@ -424,39 +425,39 @@ a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
 \begin{example}
 计算\(n\)阶行列式\[
 D_n = \begin{vmatrix}
-k & \lambda & \lambda & \dots & \lambda \\
-\lambda & k & \lambda & \dots & \lambda \\
-\lambda & \lambda & k & \dots & \lambda \\
-\vdots & \vdots & \vdots & & \vdots \\
-\lambda & \lambda & \lambda & \dots & k
+	k & \lambda & \lambda & \dots & \lambda \\
+	\lambda & k & \lambda & \dots & \lambda \\
+	\lambda & \lambda & k & \dots & \lambda \\
+	\vdots & \vdots & \vdots & & \vdots \\
+	\lambda & \lambda & \lambda & \dots & k
 \end{vmatrix},
 \quad k\neq\lambda.
 \]
 \begin{solution}
 当\(n>1\)时，有\begin{align*}
-D_n &= \begin{vmatrix}
-k+(n-1)\lambda & \lambda & \lambda & \dots & \lambda \\
-k+(n-1)\lambda & k & \lambda & \dots & \lambda \\
-k+(n-1)\lambda & \lambda & k & \dots & \lambda \\
-\vdots & \vdots & \vdots & & \vdots \\
-k+(n-1)\lambda & \lambda & \lambda & \dots & k
-\end{vmatrix} \\
-&= [k+(n-1)\lambda] \begin{vmatrix}
-1 & \lambda & \lambda & \dots & \lambda \\
-1 & k & \lambda & \dots & \lambda \\
-1 & \lambda & k & \dots & \lambda \\
-\vdots & \vdots & \vdots & & \vdots \\
-1 & \lambda & \lambda & \dots & k
-\end{vmatrix} \\
-&= [k+(n-1)\lambda] \begin{vmatrix}
-1 & \lambda & \lambda & \dots & \lambda \\
-0 & k-\lambda & 0 & \dots & 0 \\
-0 & 0 & k-\lambda & \dots & 0 \\
-\vdots & \vdots & \vdots & & \vdots \\
-0 & 0 & 0 & \dots & k-\lambda
-\end{vmatrix} \\
-&= [k+(n-1)\lambda] (k-\lambda)^{n-1}.
-\tag1
+	D_n &= \begin{vmatrix}
+		k+(n-1)\lambda & \lambda & \lambda & \dots & \lambda \\
+		k+(n-1)\lambda & k & \lambda & \dots & \lambda \\
+		k+(n-1)\lambda & \lambda & k & \dots & \lambda \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		k+(n-1)\lambda & \lambda & \lambda & \dots & k
+	\end{vmatrix} \\
+	&= [k+(n-1)\lambda] \begin{vmatrix}
+		1 & \lambda & \lambda & \dots & \lambda \\
+		1 & k & \lambda & \dots & \lambda \\
+		1 & \lambda & k & \dots & \lambda \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		1 & \lambda & \lambda & \dots & k
+	\end{vmatrix} \\
+	&= [k+(n-1)\lambda] \begin{vmatrix}
+		1 & \lambda & \lambda & \dots & \lambda \\
+		0 & k-\lambda & 0 & \dots & 0 \\
+		0 & 0 & k-\lambda & \dots & 0 \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		0 & 0 & 0 & \dots & k-\lambda
+	\end{vmatrix} \\
+	&= [k+(n-1)\lambda] (k-\lambda)^{n-1}.
+	\tag1
 \end{align*}
 
 当\(n=1\)时，\(D_1 = k\)符合(1)式.
@@ -518,14 +519,14 @@ a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
 
 \begin{property}
 设矩阵\(\A = (a_{ij})_{s \times n}\).
-如果存在\(r < \min\{s,n\}\)，%
-使得所有\(r\)阶子式都等于零，%
+如果存在\(r < \min\{s,n\}\)，
+使得所有\(r\)阶子式都等于零，
 则对任意\(k > r\)有\(\A\)的所有\(k\)阶子式全为零.
 \end{property}
 
 \subsection{主子式，顺序主子式}
 \begin{definition}
-设\(\A=(a_{ij})_n\)，%
+设\(\A=(a_{ij})_n\)，
 \(k\)阶子式\[
 	\MatrixMinor\A{
 		i_1,i_2,\dotsc,i_k \\
