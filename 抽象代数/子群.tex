@@ -14,30 +14,10 @@
 但是，假如我们从\(A\)中取出一个非空子集\(C\)，
 我们能否断言\(f\)在直积\(C \times C\)上的限制具有封闭性呢？
 
-\begin{definition}
-%@see: 《近世代数》（丘维声，2015） P40. 定义1
-%@see: https://mathworld.wolfram.com/Subgroup.html
-设\(\opair{G,\times}\)是群，
-\(H\)是\(G\)的一个非空子集.
-又设映射\(\otimes\)是\(\times\)在直积\(H \times H\)上的限制，
-即\(\otimes = \times \upharpoonright(H \times H)\).
-如果\(H\)对于运算\(\otimes\)也成为一个群\(\opair{H,\otimes}\)，
-那么称“\(\opair{H,\otimes}\)是\(\opair{G,\times}\)的一个\DefineConcept{子群}（subgroup）”，
-记作\(\opair{H,\otimes} \subseteq \opair{G,\times}\).
-\end{definition}
-
-显而易见的是，仅由群\(\opair{G,\times}\)的单位元\(e\)%
-组成的集合\(\{e\}\)对于运算\(\odot\colon \{e\}\times\{e\}\to\{e\}\)%
-也成为一个群\(\opair{\{e\},\odot}\)；
-它是\(\opair{G,\times}\)的一个子群.
-同时，\(\opair{G,\times}\)本身也是\(\opair{G,\times}\)的一个子群.
-我们将\(\opair{\{e\},\odot}\)和\(\opair{G,\times}\)%
-统称为“\(\opair{G,\times}\)的\DefineConcept{平凡子群}”.
-
 \begin{lemma}\label{theorem:抽象代数.群的运算在子集上的限制的不变性}
 设\(\times\)是定义在\(G\)上的一个二元代数运算，
 \(\emptyset \neq H \subseteq G\)，
-\(\otimes = \times \upharpoonright(H \times H)\)，
+\(\otimes = (\times \upharpoonright(H \times H))\)，
 则\[
 	(\forall a,b \in H)[a \otimes b = a \times b].
 \]
@@ -55,13 +35,33 @@
 \end{proof}
 \end{lemma}
 从\cref{theorem:抽象代数.群的运算在子集上的限制的不变性} 我们可以看出，
-运算的限制\(\otimes\)在新的定义域\(H \times H\)上仍然具有和原本的运算\(\times\)一样的性质.
+运算\(\times\)的限制\(\otimes\)在新的定义域\(H \times H\)上仍然具有和原本的运算\(\times\)一样的性质.
 如果\(\times\)在\(G \times G\)上服从结合律，那么\(\otimes\)在\(H \times H\)上也服从结合律.
 如果\(\times\)在\(G \times G\)上服从交换律，那么\(\otimes\)在\(H \times H\)上也服从交换律.
 
+\begin{definition}
+%@see: 《近世代数》（丘维声，2015） P40. 定义1
+%@see: https://mathworld.wolfram.com/Subgroup.html
+设\(\opair{G,\times}\)是群，
+\(H\)是\(G\)的一个非空子集.
+又设映射\(\otimes\)是\(\times\)在直积\(H \times H\)上的限制，
+即\(\otimes = (\times \upharpoonright(H \times H))\).
+如果\(H\)对于运算\(\otimes\)也成为一个群\(\opair{H,\otimes}\)，
+那么称“\(\opair{H,\otimes}\)是\(\opair{G,\times}\)的一个\DefineConcept{子群}（subgroup）”，
+记作\(\opair{H,\otimes} \subseteq \opair{G,\times}\).
+\end{definition}
+
+显而易见的是，仅由群\(\opair{G,\times}\)的单位元\(e\)%
+组成的集合\(E=\{e\}\)对于运算\(\odot=(\times\upharpoonright(E\times E))\)%
+也成为一个群\(\opair{E,\odot}\)；
+它是\(\opair{G,\times}\)的一个子群.
+同时，\(\opair{G,\times}\)本身也是\(\opair{G,\times}\)的一个子群.
+我们将\(\opair{E,\odot}\)和\(\opair{G,\times}\)%
+统称为“\(\opair{G,\times}\)的\DefineConcept{平凡子群}”.
+
 另外，我们还可以从子群的定义中看出，
 如果\(\opair{H,\otimes}\)是群\(\opair{G,\times}\)的一个子群，
-那么根据群和二元代数运算的定义可知，
+那么根据群的定义以及二元代数运算的定义可知，
 \(H\)对\(\otimes\)封闭，即
 \[
 	(\forall a,b \in H)[a \otimes b \in H].
@@ -108,7 +108,7 @@
 \begin{theorem}
 设\(\opair{G,\times}\)是群，
 \(H\)是\(G\)的一个非空子集，
-\(\otimes = \times \upharpoonright(H \times H)\).
+\(\otimes = (\times \upharpoonright(H \times H))\).
 那么“\(\opair{H,\otimes}\)是\(\opair{G,\times}\)的子群”的充要条件是：\[
 	a,b \in H \implies a \times b^{-1} \in H,
 \]
