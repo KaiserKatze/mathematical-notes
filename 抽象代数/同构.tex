@@ -8,15 +8,21 @@
 且\[
 	(\forall a,b \in M)[\sigma(a \times b) = \sigma(a) \otimes \sigma(b)],
 \]
-那么称“\(\sigma\)是一个从\(\opair{M,\times}\)到\(\opair{M',\otimes}\)的\DefineConcept{同构}”；
-还称“\(\opair{M,\times}\)与\(\opair{M',\otimes}\)同构”，
+那么称“\(\sigma\)是一个%
+从\(\opair{M,\times}\)到\(\opair{M',\otimes}\)的%
+\DefineConcept{同构}（isomorphism）”；
+还称“\(\opair{M,\times}\)与\(\opair{M',\otimes}\)同构%
+（\(\opair{M,\times}\) is \emph{isomorphic} to \(\opair{M',\otimes}\)）”，
 记为\(\opair{M,\times} \simeq \opair{M',\otimes}\).
 
-特别地，当\(M=M'\)时，
-称“\(\sigma\)是一个从\(\opair{M,\times}\)到\(\opair{M,\otimes}\)的\DefineConcept{自同构}”.
+特别地，当\(M=M'\)且\(\times=\otimes\)时，
+称“\(\sigma\)是一个\(\opair{M,\times}\)的\DefineConcept{自同构}（automorphism）”.
+%@see: https://mathworld.wolfram.com/Isomorphism.html
+%@see: https://www.britannica.com/science/isomorphism-mathematics
+%@see: https://mathworld.wolfram.com/Automorphism.html
 \end{definition}
 
-可以注意到，双射是等价关系，因此同构也是等价关系.
+可以注意到，由于双射是等价关系，因此同构也是等价关系.
 恒等映射是自同构.
 
 \subsection{常见的同构}
@@ -77,5 +83,46 @@
 	E(m)<E(n).
 	\qedhere
 \end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+设\(G\)是非空集合，
+\(\times\)是定义在\(G\)上的一个二元代数运算.
+\(\opair{G,\times}\)的所有自同构成群.
+\begin{proof}
+设\[
+	S = \Set{ \sigma \given \text{\(\sigma\)是\(\opair{G,\times}\)的自同构} }.
+\]
+显然恒等映射\(i\)是\(\opair{G,\times}\)的自同构，
+它也是\(\opair{S,\circ}\)的单位元，即\[
+	i \circ \sigma = \sigma \circ i = \sigma.
+\]
+
+设\(\rho,\sigma,\tau\)是\(\opair{G,\times}\)的自同构.
+因为\[
+	((\rho\circ\sigma)\circ\tau)(a)
+	= (\rho\circ\sigma)(\tau(a))
+	= \rho(\sigma(\tau(a)))
+	= \rho((\sigma\circ\tau)(a))
+	= (\rho\circ(\sigma\circ\tau))(a),
+\]
+所以运算的复合\(\circ\)满足结合律.
+因为\[
+	(\sigma\circ\tau)(a \times b)
+	= \sigma(\tau(a \times b))
+	= \sigma(\tau(a)\times\tau(b))
+	= (\sigma\circ\tau)(a)\times(\sigma\circ\tau)(b),
+\]
+所以\(\sigma\circ\tau\)是\(\opair{G,\times}\)的自同构.
+又因为\begin{align*}
+	\sigma^{-1}(a \times b)
+	&= \sigma^{-1}((\sigma\circ\sigma^{-1})(a)\times(\sigma\circ\sigma^{-1})(b)) \\
+	&= \sigma^{-1}(\sigma(\sigma^{-1}(a)\times\sigma^{-1}(b))) \\
+	&= \sigma^{-1}(a)\times\sigma^{-1}(b),
+\end{align*}
+所以\(\sigma\)的逆\(\sigma^{-1}\)也是\(\opair{G,\times}\)的自同构.
+
+因此\(\opair{S,\circ}\)是一个群.
 \end{proof}
 \end{theorem}
