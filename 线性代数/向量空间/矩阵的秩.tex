@@ -5,6 +5,7 @@
 最后得到所求向量组的秩.
 
 \begin{definition}\label{definition:线性方程组.行秩与列秩的定义}
+%@see: 《线性代数》（张慎语、周厚隆） P76. 定义11(1)
 设\(\A\)是向量.
 \begin{enumerate}
 	\item \(\A\)的行向量组生成的子空间称为
@@ -28,6 +29,7 @@
 
 \subsection{矩阵的秩}
 \begin{definition}\label{definition:线性方程组.矩阵的秩的定义}
+%@see: 《线性代数》（张慎语、周厚隆） P76. 定义11(2)
 \(\A\)的非零子式的最高阶数称为
 “矩阵\(\A\)的\DefineConcept{秩}（rank）”，
 记为\(\rank\A\).
@@ -61,6 +63,7 @@
 \end{property}
 
 \begin{definition}
+%@see: 《线性代数》（张慎语、周厚隆） P76.
 设矩阵\(\A = (a_{ij})_{s \times n}\).
 \begin{enumerate}
 	\item 若\(\rank\A = s\)，
@@ -146,7 +149,8 @@
 \end{example}
 
 \subsection{矩阵的秩、行秩、列秩的关系}
-\begin{lemma}
+\begin{lemma}\label{theorem:向量空间.矩阵的秩与行秩和列秩的关系.引理}
+%@see: 《线性代数》（张慎语、周厚隆） P77. 引理
 设矩阵\(\A = (a_{ij})_{s \times n}\)的列秩等于\(\A\)的列数\(n\)，
 则\(\A\)行秩、秩都等于\(n\).
 \begin{proof}
@@ -204,38 +208,44 @@
 \end{proof}
 \end{lemma}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:向量空间.矩阵的秩与行秩和列秩的关系.定理}
+%@see: 《线性代数》（张慎语、周厚隆） P77. 定理5
 矩阵的行秩、列秩、秩都相等.
 \begin{proof}
 如果矩阵\(\A = \z\)，
-则结论成立.
+则\(\rank\A=\rank_R\A=\rank_C\A=0\)，
+结论成立.
 
-当\(\A \neq \z\)时，
-设\(\rank\A = r\)，
-则\(\A\)的所有\(t\ (t > r)\)阶子式全为零，
+当\(\A\neq\z\)时，
+设\(\rank\A=r\)，
+则根据\hyperref[definition:线性方程组.矩阵的秩的定义]{矩阵的秩的定义}，
+\(\A\)的所有\(t\ (t > r)\)阶子式全为零；
 且\(\A\)有一个\(r\)阶子式不为零，
-该子式的列向量线性无关，
-添加分量得\(\A\)有\(r\)列线性无关，
-于是\(\A\)的列秩\(p \geqslant r\)；
-由引理，\(\A\)的极大无关列构成的矩阵有一非零\(p\)阶子式，
+从而该\(r\)阶子式的列向量组线性无关，
+它们的延伸组也线性无关，
+\(\A\)有\(r\)列线性无关，
+于是\(\rank_C\A=p \geqslant r\)；
+由\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.引理}，
+\(\A\)的极大线性无关列向量组构成的矩阵有一非零\(p\)阶子式，
 也是\(\A\)的子式，
-故\(p \leqslant r\)，
-得\(p = r\).
-
-因此\(\rank\A\)等于\(\A\)的列秩.
-
+故\(p \leqslant r\)；
+综上得\(p = r\).
+因此\(\rank\A=\rank_C\A\).
 同样地，将这一结论用于\(\A^T\)，
-得\(\rank\A^T\)等于\(\A^T\)的列秩，
-也就等于\(\A\)的行秩.
+得\(\rank\A^T=\rank_C\A^T=\rank_R\A\).
 \end{proof}
 \end{theorem}
 
 \begin{theorem}\label{theorem:线性方程组.初等变换不变秩}
 初等变换不改变矩阵的秩，即\[
-\A\cong\B \implies \rank\A=\rank\B.
+	\A\cong\B \implies \rank\A=\rank\B.
 \]
 \begin{proof}
-因为初等行变换不改变矩阵的列秩；同理，初等列变换不改变矩阵的行秩；所以初等变换不改变矩阵的秩.
+由\cref{theorem:向量空间.利用初等行变换求取列极大线性无关组的依据}，
+初等行变换不改变矩阵的列秩；
+同理，初等列变换不改变矩阵的行秩；
+再由\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.定理}，
+初等变换不改变矩阵的秩.
 \end{proof}
 \end{theorem}
 
