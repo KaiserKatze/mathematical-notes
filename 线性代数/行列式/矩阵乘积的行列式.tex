@@ -1,0 +1,188 @@
+\section{矩阵乘积的行列式}
+\begin{lemma}
+设\(\A\)为\(n\)阶非零方阵，\(\B\)为\(m\)阶非零方阵，\(\C\)为\(m \times n\)矩阵，\(\D\)为\(n \times m\)矩阵，则\begin{align}
+\begin{vmatrix}
+\A & \z \\
+\C & \B
+\end{vmatrix}
+&= \begin{vmatrix}
+\A & \D \\
+\z & \B
+\end{vmatrix}
+= \abs{\A} \abs{\B}, \label{equation:行列式.广义三角阵的行列式1} \\
+\begin{vmatrix}
+\z & \A \\ \B & \C \end{vmatrix}
+&= \begin{vmatrix} \D & \A \\ \B & \z \end{vmatrix}
+= (-1)^{mn} \abs{\A} \abs{\B}. \label{equation:行列式.广义三角阵的行列式2}
+\end{align}
+\end{lemma}
+
+\begin{theorem}[矩阵乘积的行列式定理]\label{theorem:行列式.矩阵乘积的行列式}
+设\(\A\)、\(\B\)都是\(n\)阶矩阵，则\begin{equation}
+\abs{\A\B} = \abs{\A} \abs{\B}.
+\end{equation}
+\end{theorem}
+
+\begin{example}
+设\(\A\)是\(n\)阶矩阵，且\(\A\A^T = \E\)，\(\abs{\A}<0\).证明：\(\abs{\E+\A}=0\).
+\begin{proof}
+等式\(\A\A^T=\E\)的两端取行列式，\(\abs{\A} \abs{\A^T} = \abs{\E}\)，由\(\abs{\A} = \abs{\A^T}\)与\(\abs{\A} < 0\)，得\(\abs{\A}^2 = 1\)，\(\abs{\A} = -1\).故\begin{align*}
+\abs{\E+\A}
+&= \abs{\A\A^T+\A}
+= \abs{\A(\A^T+\E)}
+= \abs{\A} \abs{\A^T+\E} \\
+&= -\abs{(\A^T+\E)^T}
+= -\abs{\A+\E},
+\end{align*}所以\(\abs{\E+\A} = -\abs{\E+\A}\)，\(\abs{\E+\A}=0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A^*\)是\(n\)阶矩阵\(\A\)的伴随矩阵，若\(\abs{\A} \neq 0\)，证明：\(\abs{\A^*} \neq 0\)且\(\abs{\A^*}=\abs{\A}^{n-1}\).
+\begin{proof}
+因为\(\A \A^* = \abs{\A} \E\)，%
+所以\(\abs{\A \A^*} = \abs{\abs{\A} \E} = \abs{\A}^n \abs{\E} = \abs{\A}^n\).
+又因为\(\abs{\A \A^*} = \abs{\A} \abs{\A^*}\)，%
+所以\(\abs{\A^*} = \abs{\A}^{n-1} \neq 0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设矩阵\(\A,\B\)满足\(\abs{\A}=3,\abs{\B}=2,\abs{\A^{-1}+\B}=2\)，试求\(\abs{\A+\B^{-1}}\).
+\begin{solution}
+由于\(\abs{\E+\A\B} = \abs{\A(\A^{-1}+\B)} = \abs{\A} \abs{\A^{-1}+\B} = 6\)，所以\[
+\abs{\A+\B^{-1}}
+= \frac{\abs{(\A+\B^{-1})\B}}{\abs{\B}}
+= \frac{\abs{\A\B+\E}}{\abs{\B}}
+= 3.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+用\(\abs{\A}^2 = \abs{\A} \abs{\A^T}\)的方法计算行列式\[
+\abs{\A} = \begin{vmatrix}
+a & b & c & d \\
+-b & a & d & -c \\
+-c & -d & a & b \\
+-d & c & -b & a
+\end{vmatrix}.
+\]
+\begin{solution}
+因为\begin{align*}
+\abs{\A}^2 &= \abs{\A} \abs{\A^T} = \abs{\A \A^T} \\
+&= \abs{\begin{bmatrix}
+a & b & c & d \\
+-b & a & d & -c \\
+-c & -d & a & b \\
+-d & c & -b & a
+\end{bmatrix} \begin{bmatrix}
+a & -b & -c & -d \\
+b & a & -d & c \\
+c & d & a & -b \\
+d & -c & b & a
+\end{bmatrix}} \\
+&= \abs{(a^2+b^2+c^2+d^2) \E}_4
+= (a^2+b^2+c^2+d^2)^4,
+\end{align*}所以\(\abs{\A} = \pm(a^2+b^2+c^2+d^2)^2\)，再由\(\abs{\A}\)中含有项\(a^4\)，得\[
+\abs{\A} = (a^2+b^2+c^2+d^2)^2.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算：\[
+	D = \begin{vmatrix}
+		a & a & a & a \\
+		a & a & -a & -a \\
+		a & -a & a & -a \\
+		a & -a & -a & a
+	\end{vmatrix}.
+\]
+\begin{solution}
+因为\[
+	\begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 0 \\
+		0 & 0 & 0 & 1
+	\end{bmatrix} \begin{bmatrix}
+		a & a & a & a \\
+		a & a & -a & -a \\
+		a & -a & a & -a \\
+		a & -a & -a & a
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		1 & 1 & 0 & 0 \\
+		1 & 0 & 1 & 0 \\
+		1 & 1 & 1 & 1
+	\end{bmatrix} \begin{bmatrix}
+		a & a & a & a \\
+		0 & -2 a & 0 & -2 a \\
+		0 & 0 & -2 a & -2 a \\
+		0 & 0 & 0 & 4 a
+	\end{bmatrix},
+\]而\[
+	\begin{vmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 0 \\
+		0 & 0 & 0 & 1
+	\end{vmatrix} = -1,
+	\qquad
+	\begin{vmatrix}
+		1 & 0 & 0 & 0 \\
+		1 & 1 & 0 & 0 \\
+		1 & 0 & 1 & 0 \\
+		1 & 1 & 1 & 1
+	\end{vmatrix} = 1,
+\]\[
+	\begin{vmatrix}
+		a & a & a & a \\
+		0 & -2 a & 0 & -2 a \\
+		0 & 0 & -2 a & -2 a \\
+		0 & 0 & 0 & 4 a
+	\end{vmatrix}
+	= a\cdot(-2a)\cdot(-2a)\cdot(4a) = 16a^2,
+\]
+所以\[
+	\begin{vmatrix}
+		a & a & a & a \\
+		a & a & -a & -a \\
+		a & -a & a & -a \\
+		a & -a & -a & a
+	\end{vmatrix}
+	= -16a^2.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(s_k = a_1^k + a_2^k + a_3^k + a_4^k\ (k=1,2,3,4,5,6)\).
+计算：\[
+	D = \begin{vmatrix}
+		4 & s_1 & s_2 & s_3 \\
+		s_1 & s_2 & s_3 & s_4 \\
+		s_2 & s_3 & s_4 & s_5 \\
+		s_3 & s_4 & s_5 & s_6
+	\end{vmatrix}.
+\]
+\begin{solution}
+令矩阵\[
+	\A = \begin{bmatrix}
+		1 & 1 & 1 & 1 \\
+		a_1 & a_2 & a_3 & a_4 \\
+		a_1^2 & a_2^2 & a_3^2 & a_4^2 \\
+		a_1^3 & a_2^3 & a_3^3 & a_4^3
+	\end{bmatrix},
+\]
+显然\[
+	D = \det(\A\A^T) = \abs{\A}^2.
+\]
+而根据\cref{equation:行列式.范德蒙德行列式}，
+\(\abs{\A}
+= \prod\limits_{1 \leq j < i \leq n} (a_i - a_j)\)，
+故\(D = \prod\limits_{1 \leq j < i \leq n} (a_i - a_j)^2\).
+\end{solution}
+\end{example}

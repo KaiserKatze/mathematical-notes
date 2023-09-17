@@ -1,0 +1,494 @@
+\section{行列式按行（或列）展开及其计算}
+\subsection{子式}
+\begin{definition}
+在矩阵\(\A=(a_{ij})_{s \times n}\)中，任取\(k\)行\(k\)列，%
+位于这些行与列交叉处的\(k^2\)个元素按原顺序排成的\(k\)阶矩阵的行列式\[
+\begin{vmatrix}
+a_{i_1,j_1} & a_{i_1,j_2} & \dots & a_{i_1,j_k} \\
+a_{i_2,j_1} & a_{i_2,j_2} & \dots & a_{i_2,j_k} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{i_k,j_1} & a_{i_k,j_2} & \dots & a_{i_k,j_k}
+\end{vmatrix}, \quad \begin{array}{c}
+1 \leq i_1 < i_2 < \dotsb < i_k \leq s; \\
+1 \leq j_1 < j_2 < \dotsb < j_k \leq n
+\end{array}
+\]称为“\(\A\)的一个\(k\)阶\DefineConcept{子式}（minor）”，记作\[
+\MatrixMinor\A{
+	\AutoTuple{i}{k} \\
+	\AutoTuple{j}{k}
+}.
+\]
+\end{definition}
+
+\begin{property}
+设矩阵\(\A = (a_{ij})_{s \times n}\).
+如果存在\(r < \min\{s,n\}\)，
+使得所有\(r\)阶子式都等于零，
+则对任意\(k > r\)有\(\A\)的所有\(k\)阶子式全为零.
+\end{property}
+
+\subsection{主子式，顺序主子式}
+\begin{definition}
+设\(\A=(a_{ij})_n\)，
+\(k\)阶子式\[
+	\MatrixMinor\A{
+		i_1,i_2,\dotsc,i_k \\
+		i_1,i_2,\dotsc,i_k
+	}
+\]
+称为“\(\A\)的\(k\)阶\DefineConcept{主子式}（principal minor）”.
+
+\(\A\)位于左上角的\(k\)阶主子式\[
+	\MatrixMinor\A{
+		1,2,\dotsc,k \\
+		1,2,\dotsc,k
+	}
+\]称为“\(\A\)的\(k\)阶\DefineConcept{顺序主子式}（ordinal principal minor）”.
+\end{definition}
+
+\subsection{余子式、代数余子式}
+\begin{definition}
+在\(n\)阶矩阵\(\A=(a_{ij})_n\)中，
+称子式\[
+	\MatrixMinor\A{
+		\AutoTuple{\mu}{n-k} \\
+		\AutoTuple{\nu}{n-k}
+	},
+\]为“子式\(\MatrixMinor\A{
+	\AutoTuple{i}{k} \\
+	\AutoTuple{j}{k}
+}\)的\DefineConcept{余子式}（cofactor）”，
+其中\[
+	\Set{ \AutoTuple{\mu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{i}{k} },
+\]\[
+	\Set{ \AutoTuple{\nu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{j}{k} },
+\]
+且\(\mu_1<\mu_2<\dotsb<\mu_{n-k},
+\nu_1<\nu_2<\dotsb<\nu_{n-k}\).
+
+把\[
+	(-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}
+	\MatrixMinor\A{
+		\AutoTuple{\mu}{n-k} \\
+		\AutoTuple{\nu}{n-k}
+	}
+\]称作“子式\(\MatrixMinor\A{
+	\AutoTuple{i}{k} \\
+	\AutoTuple{j}{k}
+}\)的\DefineConcept{代数余子式}（algebraic cofactor）”.
+
+特别地，称子式\[
+	\MatrixMinor\A{
+		1,\dotsc,i-1,i+1,\dotsc,n \\
+		1,\dotsc,j-1,j+1,\dotsc,n
+	}
+\]为“元素\(a_{ij}\)的\DefineConcept{余子式}”，记作\(M_{ij}\).
+又称\[
+(-1)^{i+j} M_{ij}
+\]为“\(a_{ij}\)的\DefineConcept{代数余子式}”，记作\(A_{ij}\).
+\end{definition}
+
+\subsection{伴随矩阵}
+\begin{definition}\label{definition:伴随矩阵.伴随矩阵的定义}
+设\(\A=(a_{ij})_n\)，
+\(A_{ij}\)为元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
+以\(A_{ij}\)作为第\(j\)行第\(i\)列元素构成的\(n\)阶矩阵，
+称为\(\A\)的\DefineConcept{伴随矩阵}（adjoint matrix），
+记为\(\A^*\)，即\[
+	\A^*
+	\defeq \begin{bmatrix}
+		A_{11} & A_{21} & \dots & A_{n1} \\
+		A_{12} & A_{22} & \dots & A_{n2} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		A_{1n} & A_{2n} & \dots & A_{nn}
+	\end{bmatrix}.
+\]
+\end{definition}
+
+\begin{theorem}
+设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，则\begin{gather}
+\A \A^* = \A^* \A = \abs{\A} \E, \label{equation:行列式.伴随矩阵.恒等式1} \\
+(\A^*)^T = (\A^T)^*, \label{equation:行列式.伴随矩阵.恒等式2} \\
+(\A\B)^* = \B^* \A^*. \label{equation:行列式.伴随矩阵.恒等式3}
+\end{gather}
+\end{theorem}
+
+\begin{example}
+设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，求\((k\A)^*\).
+\begin{solution}
+设\(\A\)的元素\(a_{ij}\)的代数余子式是\(A_{ij}\)，%
+那么矩阵\(k\A = (b_{ij})_n\)的元素\(b_{ij} = k a_{ij}\)的代数余子式是\[
+	B_{ij}
+	= (-1)^{i+j} \begin{vmatrix}
+		k a_{11} & \dots & k a_{1,j-1} & k a_{1,j+1} & \dots & k a_{1n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		k a_{i-1,1} & \dots & k a_{i-1,j-1} & k a_{i-1,j+1} & \dots & k a_{i-1,n} \\
+		k a_{i+1,1} & \dots & k a_{i+1,j-1} & k a_{i+1,j+1} & \dots & k a_{i+1,n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		k a_{n1} & \dots & k a_{n,j-1} & k a_{n,j+1} & \dots & k a_{nn} \\
+	\end{vmatrix}
+	= k^{n-1} A_{ij}.
+\]
+因此，\(k\A\)的伴随矩阵是
+\((B_{ji})_n = k^{n-1} (A_{ji})_n
+= k^{n-1} \A^*\).
+\end{solution}
+\end{example}
+
+
+\subsection{行列式按一行（或一列）展开}
+\begin{theorem}
+设\(\A=(a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
+\begin{enumerate}
+	\item 行列式等于它的任一行的各元与其代数余子式乘积之和，即\begin{equation}
+		\abs{\A} = \sum\limits_{j=1}^n a_{ij} A_{ij}
+		\quad(i=1,2,\dotsc,n).
+	\end{equation}
+
+	\item 行列式的任一行的各元与另一行对应元素的代数余子式乘积之和为零，即\begin{equation}
+		\sum\limits_{j=1}^n a_{ij} A_{kj} = 0
+		\quad(i \neq k;
+		i,k=1,2,\dotsc,n).
+	\end{equation}
+\end{enumerate}
+\begin{proof}
+注意\[
+\tau(i,1,2,\dotsc,i-1,i+1,\dotsc,n) = i-1,
+\]\[
+\tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n) = j-1+\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n),
+\]于是有\begin{align*}
+	\abs{\A}
+	&= \sum\limits_{j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
+		(-1)^{\tau(i,1,2,\dotsc,i-1,i+1,\dotsc,n) + \tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)}
+		a_{ij} \prod\limits_{\substack{k=1 \\ k \neq i}}^n a_{k j_k} \\
+	&= \sum\limits_{j=1}^n a_{ij} (-1)^{(i-1)+(j-1)}
+		\sum\limits_{j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
+			(-1)^{\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)}
+				\prod\limits_{\substack{k=1 \\ k \neq i}}^n a_{k j_k} \\
+	&= \sum\limits_{j=1}^n a_{ij} (-1)^{i+j} M_{ij}
+	= \sum\limits_{j=1}^n a_{ij} A_{ij}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+由于行列式中行与列的地位平等，因此又可以行列式按某一列展开.
+\begin{theorem}
+设\(\A=(a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
+\begin{enumerate}
+	\item 行列式等于它的任一列的各元与其代数余子式乘积之和，即\begin{equation}
+		\abs{\A} = \sum\limits_{i=1}^n a_{ij} A_{ij}
+		\quad(j=1,2,\dotsc,n).
+	\end{equation}
+
+	\item 行列式的任一列的各元与另一列对应元素的代数余子式乘积之和为零，即\begin{equation}
+		\sum\limits_{i=1}^n a_{ij} A_{ik} = 0
+		\quad(j \neq k;
+		j,k=1,2,\dotsc,n).
+	\end{equation}
+\end{enumerate}
+\end{theorem}
+
+我们可以将上述两个定理中的公式分别改写成以下形式：
+\begin{gather}
+	\sum\limits_{j=1}^n a_{ij} A_{kj} = \left\{ \begin{array}{cl}
+		\abs{\A}, & k = i, \\
+		0, & k \neq i;
+	\end{array} \right.
+	\quad(i=1,2,\dotsc,n) \\%
+	\sum\limits_{i=1}^n a_{ij} A_{ik} = \left\{ \begin{array}{cl}
+		\abs{\A}, & k = j, \\
+		0, & k \neq j.
+	\end{array} \right.
+	\quad(j=1,2,\dotsc,n)
+\end{gather}
+
+\begin{example}
+试证范德蒙德行列式：
+\begin{equation}\label{equation:行列式.范德蒙德行列式}
+V_n = \begin{vmatrix}
+1 & 1 & 1 & \dots & 1 \\
+x_1 & x_2 & x_3 & \dots & x_n \\
+x_1^2 & x_2^2 & x_3^2 & \dots & x_n^2 \\
+\vdots & \vdots & \vdots& & \vdots \\
+x_1^{n-1} & x_2^{n-1} & x_3^{n-1} & \dots & x_n^{n-1}
+\end{vmatrix}=\prod\limits_{1 \leq j < i \leq n}(x_i-x_j).
+\end{equation}
+\begin{proof}
+利用数学归纳法.
+当\(n=2\)时，\(V_2 = \begin{vmatrix}
+	1 & 1 \\ x_1 & x_2
+\end{vmatrix} = x_2 - x_1\)，结论成立.
+
+假设\(n=k-1\)时，结论成立；
+那么当\(n=k\)时，在\(V_k\)中，
+依次将第\(k-1\)行的\(-x_1\)倍加到第\(k\)行，
+将第\(k-2\)行的\(-x_1\)倍加到第\(k-1\)行，
+以此类推，直至把第\(1\)行的\(-x_1\)倍加到第\(2\)行，得\[
+	V_k = \begin{vmatrix}
+		1 & 1 & 1 & \dots & 1 \\
+		0 & x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
+		0 & x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		0 & x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
+	\end{vmatrix}_k,
+\]
+按第一列展开得\begin{align*}
+	V_n &= 1 \times (-1)^{1+1} \times \begin{vmatrix}
+		x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
+		x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
+		\vdots & \vdots & & \vdots \\
+		x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
+	\end{vmatrix}_{k-1} \\
+	&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \begin{vmatrix}
+		1 & 1 & \dots & 1 \\
+		x_2 & x_3 & \dots & x_k \\
+		\vdots & \vdots & & \vdots \\
+		x_2^{k-2} & x_3^{k-2} & \dots & x_k^{k-2} \\
+	\end{vmatrix}_{k-1} \\
+	&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1)
+		\prod\limits_{2 \leq j < i \leq k}(x_i - x_j) \\
+	&= \prod\limits_{1 \leq j < i \leq k}(x_i - x_j).
+	\qedhere
+\end{align*}
+\end{proof}
+我们可以从\cref{equation:行列式.范德蒙德行列式} 看出：
+\(n\)阶范德蒙德行列式等于零的充要条件是：
+\(\AutoTuple{a}{n}\)这\(n\)个数中至少有两个相等.
+因此，如果\(\AutoTuple{a}{n}\)两两不等，则范德蒙德行列式不等于零.
+\end{example}
+
+\begin{example}
+计算\(n\)阶三对角行列式\begin{equation}
+D_n = \begin{vmatrix}
+a+b & ab & \\
+1 & a+b & ab & \\
+ & 1 & a + b & \ddots & \\
+ & & \ddots & \ddots & ab \\
+ & & & 1 & a+b \\
+\end{vmatrix}_n.
+\end{equation}
+\begin{proof}
+将\(D_n\)按第一行展开，得\begin{align*}
+D_n &= (a+b) D_{n-1} - ab \begin{vmatrix}
+1 & ab \\
+0 & a+b & ab \\
+ & 1 & a+b & \ddots \\
+ & & \ddots & \ddots & ab \\
+ & & & 1 & a+b \\
+\end{vmatrix}_{n-1} \\
+&= (a+b) D_{n-1} - ab D_{n-2},
+\end{align*}
+把上式改写为\(D_n - a D_{n-1} = b(D_{n-1} - a D_{n-2})\)，继续递推下去，得\begin{align*}
+D_n - a D_{n-1} &= b(D_{n-1} - a D_{n-2}) = b^2(D_{n-2} - a D_{n-3}) \\
+&= \dotsb = b^{n-2}(D_2 - a D_1) \\
+&= b^{n-2} [(a^2 + ab + b^2) - a(a+b)] = b^n,
+\end{align*}所以\[
+D_n - a D_{n-1} = b^n,
+\]又由\(a\)和\(b\)的对称性可得\[
+D_n - b D_{n-1} = a^n.
+\]
+
+当\(a \neq b\)时，可解得\[
+D_n = \frac{a^{n+1} - b^{n+1}}{a - b}
+= a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
+\]当\(a = b\)时，由\[
+D_n - a D_{n-1} = a^n
+\]可继续递推得\begin{align*}
+D_n &= a D_{n-1} + a^n
+= a(a D_{n-2} + a^{n-1}) + a^n
+= a^2 D_{n-2} + 2 a^n \\
+&= a^3 D_{n-3} + 3 a^n
+= \dotsb
+= (n+1) a^n.
+\end{align*}
+综上所述，对任意\(a,b\in\mathbb{R}\)都有\[
+D_n = a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设矩阵\(\A = (a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\)的代数余子式.
+把\(\A\)的每个元素都加上同一个数\(t\)，
+得到的矩阵记作\(\A(t) = (a_{ij} + t)_n\).
+证明：\[
+	\abs{\A(t)}
+	= \abs{\A} + t \sum\limits_{i=1}^n \sum\limits_{j=1}^n A_{ij}.
+\]
+\begin{proof}
+对\(\A\)列分块得\[
+	\A = (\AutoTuple{\a}{n}),
+\]
+又令\(n\)维列向量\(\b=(t,t,\dotsc,t)^T\)，
+那么根据\cref{theorem:行列式.性质3,theorem:行列式.性质5} 有
+\begin{align*}
+	\abs{\A(t)}
+	&= \abs{(\a_1+\b,\a_2+\b,\dotsc,\a_n+\b)} \\
+	&= \abs{(\a_1,\a_2+\b,\dotsc,\a_n+\b)}
+		+ \abs{(\b,\a_2+\b,\dotsc,\a_n+\b)} \\
+	&= \dotsb = \abs{(\a_1,\a_2,\dotsc,\a_n)}
+		\begin{aligned}[t]
+			&+ \abs{(\b,\a_2,\dotsc,\a_{n-1},\a_n)} \\
+			&+ \abs{(\a_1,\b,\dotsc,\a_{n-1},\a_n)} \\
+			&+ \dotsb
+			+ \abs{(\a_1,\a_2,\dotsc,\a_{n-1},\b)}
+		\end{aligned}
+\end{align*}
+%TODO
+%直接计算得\begin{align*}
+%	\abs{\A(t)}
+%	&=\begin{vmatrix}
+%		a_{11} + t & a_{12} + t & \dots & a_{1n} + t \\
+%		\vdots & \vdots & & \vdots \\
+%		a_{n1} + t & a_{n2} + t & \dots & a_{nn} + t
+%	\end{vmatrix} \\
+%	&= \begin{vmatrix}
+%		a_{11} + t & a_{12} - a_{11} & \dots & a_{1n} - a_{11} \\
+%		\vdots & \vdots & & \vdots \\
+%		a_{n1} + t & a_{n2} - a_{n1} & \dots & a_{nn} - a_{n1}
+%	\end{vmatrix} &(\text{\cref{theorem:行列式.性质6}}) \\
+%	&= \begin{vmatrix}
+%		a_{11} & a_{12} - a_{11} & \dots & a_{1n} - a_{11} \\
+%		\vdots & \vdots & & \vdots \\
+%		a_{n1} & a_{n2} - a_{n1} & \dots & a_{nn} - a_{n1}
+%	\end{vmatrix} + \begin{vmatrix}
+%		t & a_{12} - a_{11} & \dots & a_{1n} - a_{11} \\
+%		\vdots & \vdots & & \vdots \\
+%		t & a_{n2} - a_{n1} & \dots & a_{nn} - a_{n1}
+%	\end{vmatrix} &(\text{\cref{theorem:行列式.性质3}}) \\
+%	&= \begin{vmatrix}
+%		a_{11} & a_{12} & \dots & a_{1n} \\
+%		\vdots & \vdots & & \vdots \\
+%		a_{n1} & a_{n2} & \dots & a_{nn}
+%	\end{vmatrix} + \begin{vmatrix}
+%		t & a_{12} - a_{11} & \dots & a_{1n} - a_{11} \\
+%		\vdots & \vdots & & \vdots \\
+%		t & a_{n2} - a_{n1} & \dots & a_{nn} - a_{n1}
+%	\end{vmatrix} &(\text{\cref{theorem:行列式.性质6}}) \\
+%	&= \abs{\A} + t \begin{vmatrix}
+%		1 & a_{12} - a_{11} & \dots & a_{1n} - a_{11} \\
+%		\vdots & \vdots & & \vdots \\
+%		1 & a_{n2} - a_{n1} & \dots & a_{nn} - a_{n1}
+%	\end{vmatrix}, &(\text{\cref{theorem:行列式.性质2}})
+%\end{align*}
+%因此只需证\[
+%	\begin{vmatrix}
+%		1 & a_{12} - a_{11} & \dots & a_{1n} - a_{11} \\
+%		\vdots & \vdots & & \vdots \\
+%		1 & a_{n2} - a_{n1} & \dots & a_{nn} - a_{n1}
+%	\end{vmatrix} = \sum\limits_{i=1}^n \sum\limits_{j=1}^n A_{ij}.
+%\]
+\end{proof}
+\end{example}
+
+\subsection{行列式按\texorpdfstring{\(k\)}{k}行（或\texorpdfstring{\(k\)}{k}列）展开}
+\begin{theorem}[拉普拉斯定理]\label{theorem:行列式.拉普拉斯定理}
+%@see: 《高等代数创新教材（上册）》（丘维声） P68. 定理1（Laplace定理）
+在\(n\)阶矩阵\(\A\)中，
+取定第\(\AutoTuple{i}{k}\)行
+（\(i_1<i_2<\dotsb<i_k\)
+且\(1 \leq k < n\)），
+则这\(k\)行元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\)，%
+即\begin{equation}
+	\abs{\A} =
+	\sum\limits_{1 \leq j_1 < j_2 < \dotsb < j_k \leq n}
+	\MatrixMinor\A{
+		\AutoTuple{i}{k} \\
+		\AutoTuple{j}{k}
+	}
+	(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
+	\MatrixMinor\A{
+		\AutoTuple{\mu}{n-k} \\
+		\AutoTuple{\nu}{n-k}
+	},
+\end{equation}
+其中\[
+	\Set{ \AutoTuple{\mu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{i}{k} },
+\]\[
+	\Set{ \AutoTuple{\nu}{n-k} } = \Set{ 1,2,\dotsc,n } - \Set{ \AutoTuple{j}{k} },
+\]
+且\(\mu_1<\mu_2<\dotsb<\mu_{n-k},
+\nu_1<\nu_2<\dotsb<\nu_{n-k}\).
+\begin{proof}
+根据\cref{equation:行列式.给定行指标排列下的行列式的完全展开式}，
+给定\(\abs{\A}\)的行指标排列\(\AutoTuple{i}{k},\AutoTuple{\mu}{n-k}\)，
+\(\abs{\A}\)的表达式为\begin{align*}
+	\abs{\A}
+	&= \sum\limits_{\AutoTuple{p}{k},\AutoTuple{q}{n-k}}
+	(-1)^{\tau(\AutoTuple{i}{k},\AutoTuple{\mu}{n-k}) + \tau(\AutoTuple{p}{k},\AutoTuple{q}{n-k})}
+	a_{i_1 p_1} \dotsm a_{i_k p_k}
+	a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}} \\
+	&= \sum\limits_{\AutoTuple{p}{k},\AutoTuple{q}{n-k}}
+	(-1)^{(i_1+\dotsb+i_k) - \frac{1}{2}k(k+1) + \tau(\AutoTuple{p}{k},\AutoTuple{q}{n-k})}
+	a_{i_1 p_1} \dotsm a_{i_k p_k}
+	a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}}.
+\end{align*}
+
+通过任意给定\(\AutoTuple{j}{k}\)，
+其中\(1 \leq j_1 < j_2 < \dotsb < j_k \leq n\)，
+可以把\(n!\)个\(n\)阶排列分成\(C_n^k\)组，
+对应于\(\AutoTuple{j}{k}\)这一组中的\(n\)阶排列形如\(\AutoTuple{p}{k},\AutoTuple{q}{n-k}\)，
+其中\(\AutoTuple{p}{k}\)是\(\AutoTuple{j}{k}\)形成的\(k\)阶排列，
+\(\AutoTuple{q}{n-k}\)是\(\AutoTuple{\mu}{n-k}\)形成的\(n-k\)阶排列.
+于是对于第\(\AutoTuple{i}{k}\)行，
+通过任意取定\(k\)列，例如第\(\AutoTuple{j}{k}\)列，
+可以把\(\abs{\A}\)的表达式中的\(n!\)项分成\(C_n^k\)组；
+再根据\cref{theorem:行列式.任意排列可化为自然序} 有
+\begin{align*}
+	&\hspace{-20pt}
+	(-1)^{\tau(\AutoTuple{p}{k},\AutoTuple{q}{n-k})}
+	= (-1)^{\tau(\AutoTuple{p}{k})}
+	(-1)^{\tau(\AutoTuple{i}{k},\AutoTuple{q}{n-k})} \\
+	&= (-1)^{\tau(\AutoTuple{p}{k})}
+	(-1)^{[(i_1-1)+(i_2-2)+\dotsb+(i_k-k)] + \tau(\AutoTuple{q}{n-k})} \\
+	&= (-1)^{(i_1+\dotsb+i_k) - \frac{1}{2}k(k+1)}
+	(-1)^{\tau(\AutoTuple{p}{k}) + \tau(\AutoTuple{q}{n-k})},
+\end{align*}
+于是\begin{align*}
+	\abs{\A}
+	&= \sum\limits_{i \leq j_1 < \dotsb < j_k \leq n}
+			\sum\limits_{\AutoTuple{p}{k}}
+			\sum\limits_{\AutoTuple{q}{n-k}}
+			(-1)^{(i_1+\dotsb+i_k) - \frac{1}{2}k(k+1)}
+			(-1)^{(j_1+\dotsb+j_k) - \frac{1}{2}k(k+1)} \\
+		&\hspace{40pt}\cdot(-1)^{\tau(\AutoTuple{p}{k}) + \tau(\AutoTuple{q}{n-k})}
+			a_{i_1 p_1} \dotsm a_{i_k p_k}
+			a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}} \\
+	&= \sum\limits_{i \leq j_1 < \dotsb < j_k \leq n}
+		(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
+		\biggl\{
+			\biggl[
+				\sum\limits_{\AutoTuple{p}{k}}
+				(-1)^{\tau(\AutoTuple{p}{k})}
+				a_{i_1 p_1} \dotsm a_{i_k p_k}
+			\biggr] \\
+			&\hspace{40pt}\cdot\biggl[
+				\sum\limits_{\AutoTuple{q}{n-k}}
+				(-1)^{\tau(\AutoTuple{q}{n-k})}
+				a_{\mu_1 q_1} \dotsm a_{\mu_{n-k} q_{n-k}}
+			\biggr]
+		\biggr\} \\
+	&= \sum\limits_{i \leq j_1 < \dotsb < j_k \leq n}
+		(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
+		\MatrixMinor\A{
+			\AutoTuple{i}{k} \\
+			\AutoTuple{j}{k}
+		}
+		\MatrixMinor\A{
+			\AutoTuple{\mu}{n-k} \\
+			\AutoTuple{\nu}{n-k}
+		}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+\cref{theorem:行列式.拉普拉斯定理} 称为“拉普拉斯定理”或“行列式按\(k\)行展开定理”.
+
+由于行列式中行与列的地位平等，因此也有行列式按\(k\)列展开的定理：
+\begin{theorem}\label{theorem:行列式.行列式按k列展开}
+%@see: 《高等代数（第三版）》（丘维声） P52. 定理2
+\(n\)阶行列式\(\abs{\A}\)中，取定\(k\ (1 \leq k < n)\)列，
+则这\(k\)列元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\).
+\end{theorem}

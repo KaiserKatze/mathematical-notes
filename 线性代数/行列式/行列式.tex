@@ -1,0 +1,310 @@
+\section{行列式}
+\subsection{行列式的概念}
+\begin{definition}
+设
+\[
+\A = \begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \dots & a_{nn}
+\end{bmatrix}
+\]
+是数域\(P\)上的一个\(n\)阶方阵.
+从矩阵\(\A\)中取出不同行又不同列的\(n\)个元素作乘积
+\begin{equation}\label{equation:行列式.行列式的项1}
+	(-1)^{\tau(\AutoTuple{j}{n})}
+	a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n},
+\end{equation}
+构成一项；%
+我们可以像这样构造\(n!\)项，%
+并且称这\(n!\)项之和\[
+\sum\limits_{\AutoTuple{j}{n}}
+(-1)^{\tau(\AutoTuple{j}{n})}
+a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}
+\]为“矩阵\(\A\)的行列式（determinant）”，%
+记作\[
+\begin{vmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & & \vdots \\
+a_{n1} & a_{n2} & \dots & a_{nn}
+\end{vmatrix},
+\]或\(\det\A\)，或\(\abs{\A}\)；
+即
+\begin{equation}\label{equation:行列式.行列式的定义式}
+\begin{vmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & & \vdots \\
+a_{n1} & a_{n2} & \dots & a_{nn}
+\end{vmatrix}
+\defeq
+\sum\limits_{\AutoTuple{j}{n}}
+(-1)^{\tau(\AutoTuple{j}{n})}
+a_{1 j_1} a_{2 j_2} \dotsm a_{n j_n}.
+\end{equation}
+这里，求和指标\(\AutoTuple{j}{n}\)表示遍取所有\(n\)阶排列.
+
+我们称\cref{equation:行列式.行列式的定义式}
+为“行列式\(\abs{A}\)的\DefineConcept{完全展开式}”.
+\end{definition}
+
+特别地，%
+一阶行列式为
+\begin{equation}
+	\begin{vmatrix} a \end{vmatrix} = a.
+\end{equation}
+
+二阶行列式为
+\begin{equation}
+	\begin{vmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{vmatrix}
+	= a_{11} a_{22} - a_{12} a_{21}.
+\end{equation}
+
+三阶行列式为
+\begin{equation}
+	\begin{vmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{vmatrix}
+	= \begin{array}[t]{l}
+		(a_{11} a_{22} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} \\
+		\hspace{20pt}
+		- a_{13} a_{22} a_{31} - a_{12} a_{21} a_{33} - a_{11} a_{23} a_{32})
+	\end{array}.
+\end{equation}
+
+我们还可以用数学归纳法证明以下两条公式：
+\begin{gather}
+	\begin{vmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		& a_{22} & \dots & a_{2n} \\
+		& & \ddots & \vdots \\
+		& & & a_{nn}
+	\end{vmatrix}
+	= a_{11} a_{22} \dotsm a_{nn}, \\%
+	\begin{vmatrix}
+		& & & & a_{1n} \\
+		& & & a_{2,n-1} & a_{2n} \\
+		& & & \vdots & \vdots \\
+		& a_{n-1,2} & \dots & a_{n-1,n-1} & a_{n-1,n} \\
+		a_{n1} & a_{n2} & \dots & a_{n,n-1} & a_{nn}
+	\end{vmatrix}
+	=(-1)^{\frac{1}{2}n(n-1)} a_{1n} a_{2,n-1} \dotsm a_{n-1,2} a_{n1}.
+\end{gather}
+
+\begin{lemma}
+设\(\A=(a_{ij})_n\)，而\(\AutoTuple{i}{n}\)与\(\AutoTuple{j}{n}\)是两个\(n\)阶排列，则
+\begin{equation}\label{equation:行列式.行列式的项2}
+	(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
+	a_{i_1j_1} a_{i_2j_2} \dotsm a_{i_nj_n}
+\end{equation}
+是\(\abs{\A}\)的项.
+\begin{proof}
+由乘法交换律，\cref{equation:行列式.行列式的项2} 可以经过\(s\)次互换两个因子的次序写成\[
+(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
+	a_{1 l_1} a_{2 l_2} \dotsm a_{n l_n},
+\]其中，\(\AutoTuple{l}{n}\)是一个\(n\)阶排列.
+
+同时，行标排列\(\AutoTuple{i}{n}\)与列标排列\(\AutoTuple{j}{n}\)
+分别经过\(s\)次对换变到\(1,2,\dotsc,n\)与\(\AutoTuple{l}{n}\)，
+而它们的奇偶性都分别改变了\(s\)次，总共改变了\(2s\)次（偶数次），故\[
+	(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
+	= (-1)^{\tau(1,2,\dotsc,n)+\tau(\AutoTuple{l}{n})}
+	= (-1)^{\tau(\AutoTuple{l}{n})},
+\]这说明\cref{equation:行列式.行列式的项2} 是行列式\(\abs{\A}\)的项.
+\end{proof}
+\end{lemma}
+
+\begin{corollary}
+给定行指标的一个排列\(\AutoTuple{i}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
+\begin{equation}\label{equation:行列式.给定行指标排列下的行列式的完全展开式}
+\abs{\A}
+= \sum\limits_{\AutoTuple{j}{n}}
+(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
+a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
+\end{equation}
+或者给定列指标的一个排列\(\AutoTuple{j}{n}\)，则\(n\)阶矩阵\(\A\)的行列式为
+\begin{equation}\label{equation:行列式.给定列指标排列下的行列式的完全展开式}
+	\abs{\A}
+	= \sum\limits_{\AutoTuple{i}{n}}
+	(-1)^{\tau(\AutoTuple{i}{n})+\tau(\AutoTuple{j}{n})}
+	a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n}.
+\end{equation}
+
+特别地，\(n\)阶行列式\(\abs{\A}\)的每一项可以按列指标成自然序排好位置，
+这时用行指标所成排列的奇偶性来决定该项前面所带的符号，即
+\begin{equation}\label{equation:行列式.给定列指标为自然序下行列式的完全展开式}
+	\abs{\A} =
+	\sum\limits_{\AutoTuple{i}{n}}
+	(-1)^{\tau(\AutoTuple{i}{n})}
+	a_{i_1 1} a_{i_2 2} \dotsm a_{i_n n}.
+\end{equation}
+\end{corollary}
+\cref{equation:行列式.行列式的定义式} 和\cref{equation:行列式.给定列指标为自然序下行列式的完全展开式}
+表明，行列式中行与列的地位是平等的，即\(\abs{\A} = \abs{\A^T}\).
+
+\begin{example}
+若\(n\)阶行列式\(\det\A\)中为零的元多于\(n^2-n\)个，证明：\(\det\A=0\).
+% TODO
+\end{example}
+
+\begin{example}
+证明：如果\(n\ (n\geq2)\)阶矩阵\(\A\)的元素为\(1\)或\(-1\)，则\(\abs{\A}\)必为偶数.
+% TODO
+\end{example}
+
+\subsection{行列式的性质}
+\begin{property}\label{theorem:行列式.性质1}
+设\(\A=(a_{ij})_n\)，则\(\det \A = \det \A^T\).
+\end{property}
+这就说明，行列互换，行列式的值不变.
+
+\begin{property}\label{theorem:行列式.性质2}
+\(\det(\a_1,\dotsc,k\a_j,\dotsc,\a_n)
+=k \cdot \det(\a_1,\dotsc,\a_j,\dotsc,\a_n)\).
+\end{property}
+这就说明，行列式某列（行）各元素的公因子可以提到行列式外.
+
+\begin{corollary}\label{theorem:行列式.性质2.推论1}
+\(\det(\a_1,\dotsc,\z,\dotsc,\a_n) = 0\).
+\end{corollary}
+也就是说，如果行列式中某一列（行）元素全为零，则行列式等于零.
+
+\begin{corollary}\label{theorem:行列式.性质2.推论2}
+\(\det(k\A) = k^n \det \A\).
+\end{corollary}
+
+应该注意到，一般说来，\(\det(k\A) \neq k \det\A\).
+
+\begin{property}\label{theorem:行列式.性质3}
+\(\det(\a_1,\dotsc,\b + \g,\dotsc,\a_n)
+= \det(\a_1,\dotsc,\b,\dotsc,\a_n)
++ \det(\a_1,\dotsc,\g,\dotsc,\a_n)\).
+\begin{proof}
+直接计算得
+\begin{align*}
+	\det(\a_1,\dotsc,\b + \g,\dotsc,\a_n)
+	&= \sum\limits_{\AutoTuple{i}{n}}{
+	(-1)^{\tau(\AutoTuple{i}{n})}
+	a_{i_1 1} \dotsm (b_{i_j} + c_{i_j}) \dotsm a_{i_n n}
+	} \\
+	&= \sum\limits_{\AutoTuple{i}{n}}{
+	(-1)^{\tau(\AutoTuple{i}{n})}
+	a_{i_1 1} \dotsm b_{i_j} \dotsm a_{i_n n}
+	} \\
+	&\qquad+ \sum\limits_{\AutoTuple{i}{n}}{
+	(-1)^{\tau(\AutoTuple{i}{n})}
+	a_{i_1 1} \dotsm c_{i_j} \dotsm a_{i_n n}
+	} \\
+	&= \det(\a_1,\dotsc,\b,\dotsc,\a_n)
+	+ \det(\a_1,\dotsc,\g,\dotsc,\a_n).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{property}
+注：一般地，\(\det(\a_1+\b_1,\a_2+\b_2,\dotsc,\a_n+\b_n)\)可以拆成\(2^n\)个行列式之和.
+
+\begin{property}\label{theorem:行列式.性质4}
+\(\det(\a_1,\dotsc,\a_s,\dotsc,\a_t,\dotsc,\a_n)
+=-\det(\a_1,\dotsc,\a_t,\dotsc,\a_s,\dotsc,\a_n)\).
+\end{property}
+也就是说，交换两列（行），行列式变号.
+
+\begin{property}\label{theorem:行列式.性质5}
+\(\det(\a_1,\dotsc,k\a,\dotsc,l\a,\dotsc,\a_n) = 0\).
+\end{property}
+这就说明，行列式中若有两列（行）成比例，则行列式等于零.
+
+\begin{property}\label{theorem:行列式.性质6}
+\(\det(\a_1,\dotsc,\a_s,\dotsc,\a_t,\dotsc,\a_n)
+= \det(\a_1,\dotsc,\a_s,\dotsc,\a_t + k\a_s,\dotsc,\a_n)\).
+\end{property}
+这说明，将一列的\(k\)倍加到另一列，行列式的值不变.
+
+\begin{example}
+设\(\A\)为奇数阶反对称矩阵，即\(\A^T = -\A\)，则\(\abs{\A}=0\).
+\begin{proof}
+设\(\A = (a_{ij})_n\).因为\(\A^T = -\A\)，根据行列式的性质，有\[
+\abs{\A} = \abs{\A^T} = \abs{-\A} = (-1)^n \abs{\A} = -\abs{\A},
+\]于是\(\abs{\A} = 0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+计算\(n\)阶行列式\[
+D_n = \begin{vmatrix}
+	k & \lambda & \lambda & \dots & \lambda \\
+	\lambda & k & \lambda & \dots & \lambda \\
+	\lambda & \lambda & k & \dots & \lambda \\
+	\vdots & \vdots & \vdots & & \vdots \\
+	\lambda & \lambda & \lambda & \dots & k
+\end{vmatrix},
+\quad k\neq\lambda.
+\]
+\begin{solution}
+当\(n>1\)时，有\begin{align*}
+	D_n &= \begin{vmatrix}
+		k+(n-1)\lambda & \lambda & \lambda & \dots & \lambda \\
+		k+(n-1)\lambda & k & \lambda & \dots & \lambda \\
+		k+(n-1)\lambda & \lambda & k & \dots & \lambda \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		k+(n-1)\lambda & \lambda & \lambda & \dots & k
+	\end{vmatrix} \\
+	&= [k+(n-1)\lambda] \begin{vmatrix}
+		1 & \lambda & \lambda & \dots & \lambda \\
+		1 & k & \lambda & \dots & \lambda \\
+		1 & \lambda & k & \dots & \lambda \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		1 & \lambda & \lambda & \dots & k
+	\end{vmatrix} \\
+	&= [k+(n-1)\lambda] \begin{vmatrix}
+		1 & \lambda & \lambda & \dots & \lambda \\
+		0 & k-\lambda & 0 & \dots & 0 \\
+		0 & 0 & k-\lambda & \dots & 0 \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		0 & 0 & 0 & \dots & k-\lambda
+	\end{vmatrix} \\
+	&= [k+(n-1)\lambda] (k-\lambda)^{n-1}.
+	\tag1
+\end{align*}
+
+当\(n=1\)时，\(D_1 = k\)符合(1)式.
+\end{solution}
+\end{example}
+
+\begin{example}\label{example:行列式.两个向量的乘积矩阵的行列式}
+设\(\a=(\AutoTuple{a}{n})^T,\b=(\AutoTuple{b}{n})^T\)是\(n\)维列向量.
+求：\(\abs{\a\b^T}\).
+\begin{solution}
+根据\cref{theorem:行列式.性质2}，
+有\begin{align*}
+	\abs{\a\b^T} = \begin{vmatrix}
+		a_1 b_1 & a_1 b_2 & \dots & a_1 b_n \\
+		a_2 b_1 & a_2 b_2 & \dots & a_2 b_n \\
+		\vdots & \vdots & & \vdots \\
+		a_n b_1 & a_n b_2 & \dots & a_n b_n
+	\end{vmatrix}
+	= a_1 a_2 \dotsm a_n \cdot \begin{vmatrix}
+		b_1 & b_2 & \dots & b_n \\
+		b_1 & b_2 & \dots & b_n \\
+		\vdots & \vdots & & \vdots \\
+		b_1 & b_2 & \dots & b_n
+	\end{vmatrix}.
+\end{align*}
+而\[
+\begin{vmatrix}
+	b_1 & b_2 & \dots & b_n \\
+	b_1 & b_2 & \dots & b_n \\
+	\vdots & \vdots & & \vdots \\
+	b_1 & b_2 & \dots & b_n
+\end{vmatrix}
+\]各行成比例，
+根据\cref{theorem:行列式.性质5}，那么该行列式等于0，可知\(\abs{\a\b^T} = 0\).
+\end{solution}
+\end{example}

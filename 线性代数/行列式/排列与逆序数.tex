@@ -1,0 +1,184 @@
+\section{排列与逆序数}
+\begin{definition}
+\(n\)个不同的自然数按一定顺序排列组成的一个有序数组\[
+	(\AutoTuple{k}{n})
+\]称为一个\(n\)阶\DefineConcept{排列}.
+
+当\(1 \leq i<j \leq n\)时，
+如果\(k_i>k_j\)，则称“\(k_i,k_j\)构成一个\DefineConcept{逆序}”；
+如果\(k_i<k_j\)，则称“\(k_i,k_j\)构成一个\DefineConcept{顺序}”.
+此排列中的逆序的总数叫它的\DefineConcept{逆序数}，记作\(\tau(\AutoTuple{k}{n})\).
+
+逆序数为偶数的排列叫\DefineConcept{偶排列}，逆序数为奇数的排列叫\DefineConcept{奇排列}.
+\end{definition}
+
+计算一个排列的逆序数时，排列中的逆序不能重复计算，也不能漏掉.
+可按公式\[
+	\tau(\AutoTuple{k}{n})=m_1+m_2+\dotsb+m_n
+\]计算，其中\(m_i\)为排列中排在\(k_i\)后面比它小的数的个数.
+\begin{example}
+在4阶排列2341中，2与3形成的数对\((2,3)\)，小的数在前，大的数在后，这一对数构成一个顺序；
+而2与1形成的数对\((2,1)\)，大的数在前，小的数在后，这一对数构成一个逆序.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\foreach \j in {0,...,3} {
+			\fill[ballblue](\j cm+1pt,1pt)rectangle(\j cm+1cm-1pt,1cm-1pt);
+		}
+		\foreach \i in {0,...,3} {
+			\fill[orangepeel](-1pt,-\i cm-1pt)rectangle(-1cm+1pt,-\i cm-1cm+1pt);
+		}
+		\tiny
+		\draw[black](-.5,5pt)node{\(k_i\)}
+				(-5pt,.5)node{\(k_j\)};
+		\normalsize
+		\draw(-.5,-.5)node{2}
+			(-.5,-1.5)node{3}
+			(-.5,-2.5)node{4}
+			(-.5,-3.5)node{1};
+		\draw(.5,.5)node{2}
+			(1.5,.5)node{3}
+			(2.5,.5)node{4}
+			(3.5,.5)node{1};
+		\draw[applegreen](1.5,-.5)node{(2,3)}
+			(2.5,-.5)node{(2,4)}
+			(2.5,-1.5)node{(3,4)};
+		\draw[tangelo](3.5,-.5)node{(2,1)}
+			(3.5,-1.5)node{(3,1)}
+			(3.5,-2.5)node{(4,1)};
+		\draw[black!30,dashed](0,0)--(4,-4);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:行列式.4阶排列2341的所有数对}
+\end{figure}
+
+如\cref{figure:行列式.4阶排列2341的所有数对}，
+构成逆序的数对有\((2,1),(3,1),(4,1)\)，
+构成顺序的数对有\((2,3),(2,4),(3,4)\)，
+这个4阶排列的逆序数是3，即\(\tau(2341)=3\)，
+它是一个奇排列.
+\end{example}
+
+\begin{property}
+\(n\)阶排列共有\(n!\)个.
+\end{property}
+
+\begin{definition}
+排列\(1,2,\dotsc,n\)由小到大按自然顺序排列，叫做\(n\)阶\DefineConcept{自然排列}.
+\end{definition}
+
+\begin{property}
+自然排列中没有逆序，即\(\tau(1,2,\dotsc,n)=0\).
+\end{property}
+
+\begin{example}
+证明：\(\tau(n,n-1,\dotsc,1)=\frac{n(n-1)}{2}\).
+\begin{proof}
+由于对于排列中的每一个数来说，其后的所有数都比它小，所以\[
+	\tau(n,n-1,\dotsc,1)
+	= (n-1) + (n-2) + \dotsb + 1 + 0
+	= \frac{(n-1)n}{2}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{definition}
+把排列中的两个数的位置互换，其余数字不动，得到另一个排列；
+像这样的变换称为\DefineConcept{对换}.
+\end{definition}
+
+\begin{theorem}
+排列经一次对换后奇偶性改变.
+\begin{proof}
+我们首先讨论对换的两个数在\(n\)阶排列中相邻的情形：
+排列\(k_1,\dotsc,k_i,k_{i+1},\dotsc,k_n\)
+对换\(k_i\)与\(k_{i+1}\)这两个数会得到\(k_1,\dotsc,k_{i+1},k_i,\dotsc,k_n\)；
+除\(k_i,k_{i+1}\)以外的数构成的数对是顺序还是逆序，
+在变换前与变换后是一样的；
+\(k_i\)和\(k_{i+1}\)以外的数与\(k_i\)或\(k_{i+1}\)构成的数对是顺序还是逆序，
+在变换前后也是一样的.
+只有数对\((k_i,k_{i+1})\)，
+如果它在变换前是顺序，那么它在变换后是逆序，
+这时变换后排列的逆序数比变换前排列的逆序数多1，即\[
+	\tau(k_1,\dotsc,k_{i+1},k_i,\dotsc,k_n)
+	= \tau(k_1,\dotsc,k_i,k_{i+1},\dotsc,k_n) + 1;
+\]
+如果它在变换前是逆序，那么它在变换后是顺序，
+这时变换后排列的逆序数比变换前排列的逆序数少1，即\[
+	\tau(k_1,\dotsc,k_{i+1},k_i,\dotsc,k_n)
+	= \tau(k_1,\dotsc,k_i,k_{i+1},\dotsc,k_n) - 1.
+\]
+因此，在对换的两个数在\(n\)阶排列中相邻的情形下，变换前后排列的奇偶性相反.
+
+再讨论一般情形：
+排列\(k_1,\dotsc,k_{i-1},k_i,k_{i+1},\dotsc,k_{j-1},k_j,k_{j+1},\dotsc,k_n\)
+对换\(k_i,k_j\)这两个数会得到
+\(k_1,\dotsc,k_{i-1},k_j,k_{i+1},\dotsc,k_{j-1},k_i,k_{j+1},\dotsc,k_n\)；
+由于这次对换可以视作一系列相邻两数的对换，
+即“对换\(k_i\)与\(k_{i+1}\)”“对换\(k_{i+1}\)与\(k_{i+2}\)”%
+......%
+“对换\(k_{j-2}\)与\(k_{j-1}\)”“对换\(k_{j-1}\)与\(k_j\)”，
+而这就是作了\(s+1+s=2s+1\)次相邻两数的对换，
+像这样奇数次相邻两数的对换回改变排列的奇偶性，也就是说，变换前后排列的奇偶性相反.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+排列经奇数次对换后奇偶性改变，经偶数次对换后奇偶性不变.
+\end{corollary}
+我们可以把这个推论表述为如下形式：
+设对换次数为\(s\)，变换前后的排列分别为\[
+	\AutoTuple{\mu}{n}
+	\quad\text{和}\quad
+	\AutoTuple{\nu}{n},
+\]
+则\[
+	(-1)^{\tau(\AutoTuple{\nu}{n})} = (-1)^s (-1)^{\tau(\AutoTuple{\mu}{n})}.
+\]
+
+\begin{theorem}\label{theorem:行列式.任意排列可化为自然序}
+任意一个\(n\)阶排列\(\AutoTuple{k}{n}\)都可经一系列对换变成自然顺序排列，
+且对换的次数\(s\)与\(\tau(\AutoTuple{k}{n})\)同奇偶，即\[
+	(-1)^s = (-1)^{\tau(\AutoTuple{k}{n})}.
+\]
+\begin{proof}
+设\(n\)阶排列\(\AutoTuple{k}{n}\)经过\(s\)次对换变成\(1,2,\dotsc,n\).
+考虑到\(1,2,\dotsc,n\)是偶排列，
+因此，如果\(\AutoTuple{k}{n}\)是奇排列，则\(s\)必为奇数，才能把奇排列变成偶排列；
+如果\(\AutoTuple{k}{n}\)是偶排列，则\(s\)必为偶数，才能保持排列的奇偶性不变.
+显然，如果\(n\)阶排列\(\AutoTuple{k}{n}\)经过\(s\)次对换变成自然排列\(1,2,\dotsc,n\)，
+那么\(1,2,\dotsc,n\)经过上述\(n\)次对换（次序相反）就变成排列\(\AutoTuple{k}{n}\).
+\end{proof}
+\end{theorem}
+
+\begin{example}
+证明：在全部\(n\)阶排列中，奇偶排列各占一半.
+%TODO
+\end{example}
+
+\begin{example}
+试证：\(\tau(\AutoTuple{i}{n})+\tau(i_n,i_{n-1},\dotsc,i_1)=\frac{n(n-1)}{2}\).
+\begin{proof}
+记\(I=\Set{i_1,i_2,\dotsc,i_{n-1},i_n}\).
+对于\(\forall p,q \in I\)，
+根据排列的定义必有\(p \neq q\)，即有\(p<q\)或\(p>q\)成立.
+因此，对于数对\((i_k,i_{k+1})\)和\((i_{k+1},i_k)\)，
+有且仅有以下两种情况：\begin{itemize}
+	\item \(i_k,i_{k+1}\)构成一个顺序，\(i_{k+1},i_k\)构成一个逆序；
+	\item \(i_k,i_{k+1}\)构成一个逆序，\(i_{k+1},i_k\)构成一个顺序.
+\end{itemize}
+不论是哪种情况，都有\(\tau(i_k,i_{k+1})+\tau(i_{k+1},i_k)=1\).
+
+由上可知，排列\((i_1,i_2,\dotsc,i_{n-1},i_n)\)
+与\((i_n,i_{n-1},\dotsc,i_2,i_1)\)的逆序数之和
+相当于是从集合\(I\)中任取两个数构成一个逆序的取法，
+那么\[
+	\tau(i_1,i_2,\dotsc,i_{n-1},i_n)+\tau(i_n,i_{n-1},\dotsc,i_2,i_1)
+	= C_n^2
+	= \frac{n(n-1)}{2}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
