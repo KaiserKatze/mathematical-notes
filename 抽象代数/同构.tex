@@ -170,7 +170,9 @@
 \end{proof}
 \end{theorem}
 
+\subsection{自同构群}
 \begin{theorem}
+%@see: 《近世代数》（熊全淹） P49. 定理2
 设\(G\)是非空集合，
 \(\times\)是定义在\(G\)上的一个二元代数运算.
 \(\opair{G,\times}\)的所有自同构成群.
@@ -179,7 +181,7 @@
 	S = \Set{ \sigma \given \text{\(\sigma\)是\(\opair{G,\times}\)的自同构} }.
 \]
 由\cref{example:抽象代数.恒等映射是自同构}，
-恒等同构\(i\)是\(\opair{S,\circ}\)的单位元，即\[
+恒等同构\(i\)是\(\opair{S,\circ}\)的单位元，即对于任意映射\(\sigma\)，有\[
 	i \circ \sigma = \sigma \circ i = \sigma.
 \]
 
@@ -191,7 +193,7 @@
 	= \rho((\sigma\circ\tau)(a))
 	= (\rho\circ(\sigma\circ\tau))(a),
 \]
-所以运算的复合\(\circ\)满足结合律.
+所以\(\circ\)满足结合律.
 因为\[
 	(\sigma\circ\tau)(a \times b)
 	= \sigma(\tau(a \times b))
@@ -210,3 +212,32 @@
 因此\(\opair{S,\circ}\)是一个群.
 \end{proof}
 \end{theorem}
+
+\subsection{内同构}
+下面我们来介绍群的一种重要的自同构.
+
+设\(\opair{G,\times}\)是群，\(a\in G\).
+那么映射\(\sigma\colon G\to G, g\mapsto a\times g\times a^{-1}\)
+是\(\opair{G,\times}\)的自同构.
+这是因为，\(g\)的原像是\(a^{-1}\times g\times a\).
+如果\(a\times g\times a^{-1} = a\times h\times a^{-1}\)，
+那么\(g=h\)，
+所以\(\sigma\)是双射.
+再从\(\sigma(g)=a\times g\times a^{-1}\)，
+\(\sigma(h)=a\times h\times a^{-1}\)，
+我们就有\[
+	\sigma(g\times h)
+	= a \times g \times h \times a^{-1}
+	= (a \times g \times a^{-1}) \times (a \times h \times a^{-1})
+	= \sigma(g) \times \sigma(h).
+\]
+
+像这样，由一个给定的元\(a\)决定的自同构\(\sigma\)，
+称为\DefineConcept{内自同构}（inner automorphism），
+简称\DefineConcept{内同构}.
+不是内自同构的自同构称为\DefineConcept{外自同构}（outer automorphism），
+简称\DefineConcept{外同构}.
+把\(\sigma(a)\)叫做“\(g\)用\(a\)得到的\DefineConcept{变形}”，
+还称“\(g\)与\(\sigma(g)\) \DefineConcept{共轭}”.
+%@see: https://mathworld.wolfram.com/InnerAutomorphism.html
+%@see: https://mathworld.wolfram.com/OuterAutomorphism.html
