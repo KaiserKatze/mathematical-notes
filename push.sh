@@ -48,12 +48,12 @@ esac
 # 开始推送
 for remote in $(git remote); do
 	echo "[INFO] Start pushing to '$(git remote get-url $remote)' ..."
-	if [[ -n $(git branch --no-color | grep dev) ]]; then
-		# 推送（除master以外的）特别分支
-		git push -f -u $remote dev
-	else
-		git push $remote :dev
-	fi
+	#if [[ -n $(git branch --no-color | grep dev) ]]; then
+	#	# 推送（除master以外的）特别分支
+	#	git push -f -u $remote dev
+	#else
+	#	git push $remote :dev
+	#fi
 	git push -f $remote && git push -f --tags $remote ||\
 		echo "[ERROR] Fail git push $remote!" 1>&2
 done
