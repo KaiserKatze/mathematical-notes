@@ -151,50 +151,64 @@ f: \mathbb{R}^n \to \mathbb{R},
 
 \section{矩阵的概念与运算}
 \subsection{矩阵的基本概念}
-\begin{definition}[矩阵]
-数域\(P\)中\(s \times n\)个数排成的\(s\)行\(n\)列的矩形表，加上方括号：\[
+数域\(K\)中\(s \times n\)个数排成的\(s\)行\(n\)列的矩形表，加上方括号：\[
 	\begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1n} \\
 		a_{21} & a_{22} & \dots & a_{2n} \\
-		\vdots & \vdots & \ddots & \vdots \\
+		\vdots & \vdots & & \vdots \\
 		a_{s1} & a_{s2} & \dots & a_{sn}
 	\end{bmatrix}
 \]
-称为数域\(P\)上的\(s \times n\)矩阵（matrix），
-通常用一个大写黑体字母如\(\A\)或\(\A_{s \times n}\)表示，
-其中\(s\)称为“矩阵的\DefineConcept{行数}”，
-\(n\)称为“矩阵的\DefineConcept{列数}”.
-有时矩阵也记作\((a_{ij})_{s \times n}\)，
+称为数域\(K\)上的\(s \times n\)矩阵（matrix），
+通常用一个大写黑体字母如\(\A\)或\(\A_{s \times n}\)表示.
+我们把\(s\)称为“矩阵的\DefineConcept{行数}”，
+把\(n\)称为“矩阵的\DefineConcept{列数}”.
+
+上面这个矩阵也记作\((a_{ij})_{s \times n}\)，
 其中\(a_{ij}\ (i=1,2,\dotsc,s;j=1,2,\dotsc,n)\)称为
 “矩阵\(\A\)的第\(i\)行第\(j\)列\DefineConcept{元素}”，
 或“矩阵\(\A\)的\(\opair{i,j}\) \DefineConcept{元素}（entry）”.
-“\(\A\)是数域\(P\)上的\(s \times n\)矩阵”%
-可以记作\(\A \in M_{s \times n}(P)\)或\(\A \in P^{s \times n}\).
 
-当数域\(P\)上的矩阵\(\A_{s \times n}\)的行数等于列数时，
+当数域\(K\)上的矩阵\(\A_{s \times n}\)的行数等于列数时，
 即当\(s=n\)时，
 我们把矩阵\[
 	\A = \begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1n} \\
 		a_{21} & a_{22} & \dots & a_{2n} \\
-		\vdots & \vdots & \ddots & \vdots \\
+		\vdots & \vdots & & \vdots \\
 		a_{n1} & a_{n2} & \dots & a_{nn}
 	\end{bmatrix}
 \]
-称为“\(n\)阶矩阵”或“\(n\)阶方阵”，
-记作\(\A \in M_n(P)\).
+称为“\(n\)阶矩阵”或“\(n\)阶方阵”.
 称\(a_{11},a_{22},\dotsc,a_{nn}\)为
 “\(\A\)的\DefineConcept{主对角线}上的元素”.
+
+为了简化描述，我们定义：\[
+	M_{s \times n}(K)
+	\defeq
+	\Set{
+		\A \given
+		\text{\(\A\)是数域\(K\)上的\(s \times n\)矩阵}
+	},
+\]\[
+	M_n(K)
+	\defeq
+	\Set{
+		\B \given
+		\text{\(\B\)是数域\(K\)上的\(n\)阶矩阵}
+	}.
+\]
 
 如果两个矩阵行数相同且列数相同，
 则称两者\DefineConcept{同型}.
 
 特别地，可以视\(n\)维行向量为\(1 \times n\)矩阵，\(n\)维列向量为\(n \times 1\)矩阵.
-\end{definition}
 
 \subsection{矩阵的线性运算}
 \begin{definition}
-设\(\A=(a_{ij})_{s \times n}\)和\(\B=(b_{ij})_{s \times n}\)是（数域\(P\)上）两个\(s \times n\)（同型）矩阵.
+设\(\A,\B\in M_{s\times n}(K)\)，
+\(\A=(a_{ij})_{s \times n}\)，
+\(\B=(b_{ij})_{s \times n}\).
 如果它们对应的元素分别相等，
 即\[
 	a_{ij} = b_{ij},
@@ -408,12 +422,12 @@ f(\A) \x = a_0 \x + a_1 \A\x + a_2 \A^2 \x + \dotsb + a_k \A^k \x. \tag1
 \end{example}
 
 \subsection{矩阵的转置}
-\begin{definition}[矩阵的转置]
+\begin{definition}
 将矩阵\(\A=(a_{ij})_{s \times n}\)的行、列互换得到矩阵\(\B=(b_{ij})_{n \times s}\)，其中\(b_{ij} = a_{ji}\)，那么称矩阵\(\B\)为\(\A\)的\DefineConcept{转置矩阵}（简称\DefineConcept{转置}，transpose），记为\(\A^T\)（或\(\A'\)）.
 \end{definition}
 矩阵的转置运算可以看作集合\(P^{s \times n}\)到集合\(P^{n \times s}\)的一个映射.
 
-\begin{definition}[矩阵的共轭转置]
+\begin{definition}
 设矩阵\(\A \in M_{s \times n}(\mathbb{C})\).
 将\(\A\)转置后，再对各元素取共轭，
 称为“\(\A\)的\DefineConcept{共轭转置矩阵}（conjugate transpose）”，
