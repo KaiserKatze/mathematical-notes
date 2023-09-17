@@ -6,16 +6,16 @@
 切比雪夫不等式就可以说明这一点.
 \begin{theorem}[切比雪夫不等式]\label{theorem:极限定理.切比雪夫不等式}
 设随机变量\(X\)的数学期望与方差都存在，则对任意\(\varepsilon > 0\)，有\begin{equation}\label{equation:极限定理.切比雪夫不等式1}
-P(\abs{X-E(X)}<\varepsilon) \geqslant 1 - \frac{D(X)}{\varepsilon^2}
+P(\abs{X-E(X)}<\varepsilon) \geq 1 - \frac{D(X)}{\varepsilon^2}
 \end{equation}或\begin{equation}\label{equation:极限定理.切比雪夫不等式2}
-P(\abs{X-E(X)}\geqslant\varepsilon) \leqslant \frac{D(X)}{\varepsilon^2}.
+P(\abs{X-E(X)}\geq\varepsilon) \leq \frac{D(X)}{\varepsilon^2}.
 \end{equation} \labelcref{equation:极限定理.切比雪夫不等式1} 与 \labelcref{equation:极限定理.切比雪夫不等式2} 这两个等价的不等式都叫做\DefineConcept{切比雪夫不等式}.
 \begin{proof}
 设连续型随机变量\(X\)的密度函数\(f(x)\)，则\begin{align*}
-P(\abs{X-E(X)}\geqslant\varepsilon)
-&=\int_{\abs{x-E(X)}\geqslant\varepsilon} f(x) \dd{x}
-\leqslant \int_{\abs{x-E(X)}\geqslant\varepsilon} \frac{[x - E(X)]^2}{\varepsilon^2} f(x) \dd{x} \\
-&\leqslant \int_{-\infty}^{+\infty} \frac{[x-E(X)]^2}{\varepsilon^2} f(x) \dd{x}
+P(\abs{X-E(X)}\geq\varepsilon)
+&=\int_{\abs{x-E(X)}\geq\varepsilon} f(x) \dd{x}
+\leq \int_{\abs{x-E(X)}\geq\varepsilon} \frac{[x - E(X)]^2}{\varepsilon^2} f(x) \dd{x} \\
+&\leq \int_{-\infty}^{+\infty} \frac{[x-E(X)]^2}{\varepsilon^2} f(x) \dd{x}
 =\frac{D(X)}{\varepsilon^2}.
 \qedhere
 \end{align*}
@@ -35,7 +35,7 @@ P(\abs{X-E(X)}\geqslant\varepsilon)
 设随机变量\(X\)表示健康成人男性每一毫升血液中白细胞数，则\(E(X) = 7300\)，\(D(X) = 700^2\)，于是\[
 P(5200 < X < 9400)
 = P(\abs{X - 7300} < 2100)
-\geqslant 1 - \frac{700^2}{2100^2} = \frac{8}{9}
+\geq 1 - \frac{700^2}{2100^2} = \frac{8}{9}
 \approx 0.8889.
 \]
 \end{solution}
@@ -53,8 +53,8 @@ D(X)=0 \implies P[X=E(X)]=1.
 \]
 \begin{proof}
 由\cref{theorem:极限定理.切比雪夫不等式} 可知，对\(\forall\varepsilon>0\)，有\[
-0 \leqslant P[\abs{X-E(X)}\geqslant\varepsilon] \leqslant \frac{D(X)}{\varepsilon^2} = 0,
-\]故有\(P[\abs{X-E(X)}\geqslant\varepsilon] = 0\)或\(P[\abs{X-E(X)}<\varepsilon] = 1\)；
+0 \leq P[\abs{X-E(X)}\geq\varepsilon] \leq \frac{D(X)}{\varepsilon^2} = 0,
+\]故有\(P[\abs{X-E(X)}\geq\varepsilon] = 0\)或\(P[\abs{X-E(X)}<\varepsilon] = 1\)；
 由于\(\varepsilon\)的任意性，\(\varepsilon\to0\)时\(X \to E(X)\)，那么\[
 P[X=E(X)]=1.
 \qedhere
@@ -70,14 +70,14 @@ P[X=E(X)]=1.
 令\(S_k = X_1 + X_2 + \dotsb + X_k\).
 那么，对\(\forall \varepsilon > 0\)，\[
 P\left(
-\max\limits_{1 \leqslant k \leqslant n} \abs{S_k} \geqslant \varepsilon
-\right) \leqslant \frac{E(S_n^2)}{\varepsilon^2}.
+\max\limits_{1 \leq k \leq n} \abs{S_k} \geq \varepsilon
+\right) \leq \frac{E(S_n^2)}{\varepsilon^2}.
 \]
 
-如果还有\(P(\abs{X_i} \leqslant c) = 1\ (i=1,2,\dotsc,n)\)，则\[
+如果还有\(P(\abs{X_i} \leq c) = 1\ (i=1,2,\dotsc,n)\)，则\[
 P\left(
-\max\limits_{1 \leqslant k \leqslant n} \abs{S_k} \geqslant \varepsilon
-\right) \geqslant 1 - \frac{(c+\varepsilon)^2}{E(S_n^2)}.
+\max\limits_{1 \leq k \leq n} \abs{S_k} \geq \varepsilon
+\right) \geq 1 - \frac{(c+\varepsilon)^2}{E(S_n^2)}.
 \]
 %证明@see: 施利亚耶夫的概率，补充和修订第三版，第二卷第8页
 \end{theorem}
@@ -89,8 +89,8 @@ P\left(
 \(s_k^2 = D(S_k) = \sigma_1^2 + \sigma_2^2 + \dotsb + \sigma_k^2\).
 那么，对\(\forall \varepsilon > 0\)，\[
 P\left(
-\max\limits_{1 \leqslant k \leqslant n} \abs{S_k - m_k} < \varepsilon s_n
-\right) \geqslant 1 - \frac{1}{\varepsilon^2}.
+\max\limits_{1 \leq k \leq n} \abs{S_k - m_k} < \varepsilon s_n
+\right) \geq 1 - \frac{1}{\varepsilon^2}.
 \]
 \end{theorem}
 当\(n=1\)时，上述定理化为切比雪夫不等式.
@@ -103,7 +103,7 @@ P\left(
 设\(\{X_n\}\)是一随机变量序列，\(a\)为常数，若对任意\(\varepsilon>0\)，有\[
     \lim\limits_{n\to\infty} P(\abs{X_n-a}<\varepsilon) = 1
     \quad\text{或}\quad
-    \lim\limits_{n\to\infty} P(\abs{X-a}\geqslant\varepsilon) = 0,
+    \lim\limits_{n\to\infty} P(\abs{X-a}\geq\varepsilon) = 0,
 \]
 则称“\(\AutoTuple{X}{n},\dotsc\) \DefineConcept{依概率收敛于} \(a\)”，%
 记为\(X_n \overset{P}{\longrightarrow} a\).
@@ -120,7 +120,7 @@ X_n - \mu_n \overset{P}{\longrightarrow} 0.
 \]
 \begin{proof}
 由切比雪夫不等式，对\(\forall \varepsilon > 0\)，有\[
-1 \geqslant P(\abs{X_n-\mu_n}<\varepsilon) \geqslant 1 - \frac{\sigma_n^2}{\varepsilon^2}.
+1 \geq P(\abs{X_n-\mu_n}<\varepsilon) \geq 1 - \frac{\sigma_n^2}{\varepsilon^2}.
 \]
 当\(n\to\infty\)时，\(\sigma_n^2\to0\)，\(1 - \frac{\sigma_n^2}{\varepsilon^2} \to 1\)，那么有\[
 \lim\limits_{n\to\infty}{P(\abs{X_n-\mu_n}<\varepsilon)=1},
@@ -141,7 +141,7 @@ X_n - \mu_n \overset{P}{\longrightarrow} 0.
 \end{definition}
 
 \begin{theorem}[切比雪夫大数律]\label{theorem:极限定理.大数律.切比雪夫大数律}
-对独立随机变量序列\(\{X_k\}\)，若\(E(X_k)\)、\(D(X_k)\)都存在（\(k=1,2,\dotsc\)）；且有常数\(C\)，使得\(D(X_k) \leqslant C\ (k=1,2,\dotsc)\)，则有\[
+对独立随机变量序列\(\{X_k\}\)，若\(E(X_k)\)、\(D(X_k)\)都存在（\(k=1,2,\dotsc\)）；且有常数\(C\)，使得\(D(X_k) \leq C\ (k=1,2,\dotsc)\)，则有\[
 \frac{1}{n} \sum\limits_{k=1}^n{X_k} - \frac{1}{n} \sum\limits_{k=1}^n{E(X_k)} \overset{P}{\longrightarrow} 0.
 \]
 \begin{proof}
@@ -149,7 +149,7 @@ X_n - \mu_n \overset{P}{\longrightarrow} 0.
 令\(Y_n=\Yn\)，则\[
 \mu_n = E(Y_n) = E\left(\Yn\right) = \frac{1}{n} \sum\limits_{k=1}^n{E(X_k)},
 \]\[
-\sigma_n^2 = D(Y_n) = D\left(\Yn\right) = \frac{1}{n^2} \sum\limits_{k=1}^n{D(X_k)} \leqslant \frac{C}{n},
+\sigma_n^2 = D(Y_n) = D\left(\Yn\right) = \frac{1}{n^2} \sum\limits_{k=1}^n{D(X_k)} \leq \frac{C}{n},
 \]
 故\(n\to\infty\)时，\(\sigma_n^2\to0\)，由\cref{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}，有\[
 Y_n - \mu_n \overset{P}{\longrightarrow} 0,
@@ -176,11 +176,11 @@ Y_n - \mu_n \overset{P}{\longrightarrow} 0,
 不妨令\(E(X_k) = \mu = 0\).
 
 当\(D(X_k)=\sigma^2\)存在时，由切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式2} 可知，对\(\forall\varepsilon>0\)，有\[
-P(\abs{X_i}\geqslant\varepsilon) \leqslant \frac{\sigma^2}{\varepsilon^2}
+P(\abs{X_i}\geq\varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}
 \quad(i=1,2,\dotsc,n).
 \eqno{(1)}
 \]记\(S_n = X_1 + X_2 + \dotsb + X_n\)，那么有\[
-P(\abs{S_n} > \varepsilon) \leqslant \frac{n \sigma^2}{\varepsilon^2}.
+P(\abs{S_n} > \varepsilon) \leq \frac{n \sigma^2}{\varepsilon^2}.
 \eqno{(2)}
 \]令\(\varepsilon = c n\)，则\(n\to\infty\)时，\[
 \frac{n \sigma^2}{\varepsilon^2}
@@ -193,12 +193,12 @@ P(\abs{S_n} > \varepsilon) \leqslant \frac{n \sigma^2}{\varepsilon^2}.
 
 令\[
 U_k = \left\{ \begin{array}{cl}
-X_k, & \abs{X_k} \leqslant \delta n, \\
+X_k, & \abs{X_k} \leq \delta n, \\
 0, & \abs{X_k} > \delta n;
 \end{array} \right.
 \qquad
 V_k = \left\{ \begin{array}{cl}
-0, & \abs{X_k} \leqslant \delta n, \\
+0, & \abs{X_k} \leq \delta n, \\
 X_k, & \abs{X_k} > \delta n;
 \end{array} \right.
 \quad(k=1,2,\dotsc,n).
@@ -218,23 +218,23 @@ a = E(\abs{X_j}) = \sum\limits_j \abs{x_j} f(x_j).
 \eqno{(6)}
 \]随机变量\(U_k\)上界是\(\delta n\)，因此显然有\(E(U_k^2) < a \delta n\).
 又因为\(U_1,\dotsc,U_n\)独立同分布，所以\[
-D(U_1+\dotsb+U_n) = n D(U_1) \leqslant n E(U_1^2) \leqslant a \delta n^2.
+D(U_1+\dotsb+U_n) = n D(U_1) \leq n E(U_1^2) \leq a \delta n^2.
 \eqno{(7)}
 \]另一方面，由\(U_k\)的定义，当\(n\to\infty\)时，\(E(U_k) \to E(X_k) = 0\).
-由此推出：当\(n\)充分大时，\(E[(U_1+\dotsb+U_n)^2] \leqslant 2 a \delta n^2\).
+由此推出：当\(n\)充分大时，\(E[(U_1+\dotsb+U_n)^2] \leq 2 a \delta n^2\).
 由于\[
-P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \varepsilon n \right) \geqslant \frac{8a\delta}{\varepsilon},
+P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \varepsilon n \right) \geq \frac{8a\delta}{\varepsilon},
 \eqno{(8)}
 \]所以(4)式是切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式1} 的直接变形.
 只要\(\delta\)充分小，使得(8)式右边足够小，就有(4)式成立.
 
 至于(5)式，注意到\hyperref[equation:概率论基础.布尔不等式]{布尔不等式}\[
-P(V_1+\dotsb+V_n \neq 0) \leqslant n P(V_1 \neq 0).
+P(V_1+\dotsb+V_n \neq 0) \leq n P(V_1 \neq 0).
 \eqno{(9)}
 \]对\(\forall \delta > 0\)，有\[
 P(V_1 \neq 0) = P(\abs{X_1} > \delta n)
 = \sum\limits_{\abs{x_j} > \delta n} f(x_j)
-\leqslant \frac{1}{\delta n} \sum\limits_{\abs{x_j} > \delta n} \abs{x_j} f(x_j).
+\leq \frac{1}{\delta n} \sum\limits_{\abs{x_j} > \delta n} \abs{x_j} f(x_j).
 \eqno{(10)}
 \]因为(10)式最右边的级数当\(n\to\infty\)时趋于\(0\)，因此(9)式左边当\(n\to\infty\)时也趋于\(0\).
 此结论比(5)式更强.
@@ -297,7 +297,7 @@ Y_n = \frac{\sum\limits_{k=1}^n X_k - n\mu}{\sqrt{n} \sigma}
 = \frac{ \frac{1}{n} \sum\limits_{k=1}^n X_k - \mu}{\sigma / \sqrt{n}}.
 \]设\(F_n(y)\)是\(Y_n\)的分布函数，则对\(\forall y \in \mathbb{R}\)，有\[
 \lim\limits_{n\to\infty} F_n(y)
-= \lim\limits_{n\to\infty} P(Y_n \leqslant y) = \Phi(y),
+= \lim\limits_{n\to\infty} P(Y_n \leq y) = \Phi(y),
 \]其中\(\Phi(y)\)是标准正态分布函数.
 \begin{proof}
 记\(\lambda_i = X_i-\mu\)，则随机变量\(\lambda_i\)独立同分布，且\(E(\lambda_i)=0\)，\(D(\lambda_i)=\sigma^2\).
@@ -326,7 +326,7 @@ Y_n = \frac{\sum\limits_{k=1}^n X_k - n\mu}{\sqrt{n} \sigma}
 \subsection{棣莫弗-拉普拉斯中心极限定理}
 \begin{theorem}[棣莫弗-拉普拉斯中心极限定理]\label{theorem:极限定理.棣莫弗-拉普拉斯中心极限定理}
 设随机变量序列\(\{X_n\}\)中，\(X_n \sim B(n,p)\)，\(q = 1-p\)，则对任意\(x \in \mathbb{R}\)，有\[
-\lim\limits_{n\to\infty} P\left( \frac{X_n - np}{\sqrt{npq}} \leqslant x \right) = \Phi(x).
+\lim\limits_{n\to\infty} P\left( \frac{X_n - np}{\sqrt{npq}} \leq x \right) = \Phi(x).
 \]
 \begin{proof}
 设独立同分布随机变量序列\(\{Y_k\}\)，\(Y_k \sim B(1,p)\)，则\(E(Y_k)=p\)，\(D(Y_k)=pq\).由二项分布可加性可知\[
@@ -334,8 +334,8 @@ X_n = \sum\limits_{k=1}^n{Y_k}.
 \]
 
 由\hyperref[theorem:极限定理.林德伯格-列维中心极限定理]{林德伯格-列维中心极限定理}可得\[
-\lim\limits_{n\to\infty} P\left(\frac{X_n-np}{\sqrt{npq}} \leqslant x\right)
-= \lim\limits_{n\to\infty} P\left(\frac{\sum\limits_{k=1}^n{Y_k}-np}{\sqrt{npq}} \leqslant x\right)
+\lim\limits_{n\to\infty} P\left(\frac{X_n-np}{\sqrt{npq}} \leq x\right)
+= \lim\limits_{n\to\infty} P\left(\frac{\sum\limits_{k=1}^n{Y_k}-np}{\sqrt{npq}} \leq x\right)
 = \Phi(x).
 \qedhere
 \]
@@ -352,19 +352,19 @@ X_n \dotsim N(np,npq).
 
 \begin{corollary}
 设\(X \sim B(n,p)\)，当\(n\)充分大时，有\[
-P(a < X \leqslant b)
+P(a < X \leq b)
 \approx \Phi\left(\frac{b-np}{\sqrt{npq}}\right) - \Phi\left(\frac{a-np}{\sqrt{npq}}\right).
 \]
 \end{corollary}
 
 关于二项分布的中心极限定理及推论，需要做几点说明：
 \begin{enumerate}
-\item 二项分布的泊松近似需要\(p \leqslant 0.1\)，而正态近似对\(p\)无限制；
-\item 二项分布的正态近似中，“\(n\)充分大”一般认为\(n \geqslant 50\)；
+\item 二项分布的泊松近似需要\(p \leq 0.1\)，而正态近似对\(p\)无限制；
+\item 二项分布的正态近似中，“\(n\)充分大”一般认为\(n \geq 50\)；
 \item \(n\)充分大时，\(P(X=a)\)和\(P(X=b)\)都很小，可以忽略不计，从而\[
 P(a < X < b)
-\approx P(a < X \leqslant b)
-\approx P(a \leqslant X < b)
-\approx P(a \leqslant X \leqslant b).
+\approx P(a < X \leq b)
+\approx P(a \leq X < b)
+\approx P(a \leq X \leq b).
 \]
 \end{enumerate}

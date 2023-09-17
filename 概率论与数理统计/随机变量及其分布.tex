@@ -17,11 +17,11 @@
 \end{definition}
 
 \subsection{随机变量的分布函数}
-对于概率\(P(X \in G)\)，最常见的是\(P(a < X \leqslant b)\).而对这一类型的概率，只需求出形如\(P(X \leqslant x)\)的概率即可，这是因为\(P(a < X \leqslant b) = P(X \leqslant b) - P(X \leqslant a)\).
+对于概率\(P(X \in G)\)，最常见的是\(P(a < X \leq b)\).而对这一类型的概率，只需求出形如\(P(X \leq x)\)的概率即可，这是因为\(P(a < X \leq b) = P(X \leq b) - P(X \leq a)\).
 
 \begin{definition}
 设\(X\)是一随机变量，对任意实数\(x\)，定义\[
-F(x) = P(X \leqslant x), \quad x \in \mathbb{R},
+F(x) = P(X \leq x), \quad x \in \mathbb{R},
 \]称\(F(x)\)为随机变量\(X\)的\DefineConcept{分布函数}.
 \end{definition}
 
@@ -32,17 +32,17 @@ F(x) = P(X \leqslant x), \quad x \in \mathbb{R},
 \Omega = \Set{ HH, HT, TH, TT }.
 \]易见，\(X\)取值为\(0,1,2\)，且\(P(X=0) = 1/4\)，\(P(X=1) = 1/2\)，\(P(X=2) = 1/4\).
 
-当\(x < 0\)时，\(F(x) = P(X \leqslant x) = P(\emptyset) = 0\)；
-当\(0 \leqslant x < 1\)时，\(F(x) = P(X \leqslant x) = P(X=0) = 1/4\)；
-当\(1 \leqslant x < 2\)时，\(F(x) = P(X \leqslant x) = P(X=0 \lor X=1) = P(X=0)+P(X=1) = 3/4\)；
-当\(x \geqslant 2\)时，\(F(x) = P(X \leqslant x) = P(\Omega) = 1\).
+当\(x < 0\)时，\(F(x) = P(X \leq x) = P(\emptyset) = 0\)；
+当\(0 \leq x < 1\)时，\(F(x) = P(X \leq x) = P(X=0) = 1/4\)；
+当\(1 \leq x < 2\)时，\(F(x) = P(X \leq x) = P(X=0 \lor X=1) = P(X=0)+P(X=1) = 3/4\)；
+当\(x \geq 2\)时，\(F(x) = P(X \leq x) = P(\Omega) = 1\).
 
 综上所述，\(X\)的分布函数为\[
 F(x) = \left\{ \begin{array}{cl}
 0, & x < 0, \\
-1/4, & 0 \leqslant x < 1, \\
-3/4, & 1 \leqslant x < 2, \\
-1, & x \geqslant 2.
+1/4, & 0 \leq x < 1, \\
+3/4, & 1 \leq x < 2, \\
+1, & x \geq 2.
 \end{array} \right.
 \]
 \end{solution}
@@ -51,9 +51,9 @@ F(x) = \left\{ \begin{array}{cl}
 \begin{property}
 设\(F(x)\)为随机变量\(X\)的分布函数，则
 \begin{enumerate}
-\item 当\(x_1 < x_2\)时，有\(F(x_1) \leqslant F(x_2)\)，即\(F(x)\)单调不减；
-\item \(F(-\infty)=P(X \leqslant -\infty) = \lim\limits_{x \to -\infty}{F(x)} = 0\)，%
-\(F(+\infty)=P(X \leqslant +\infty) = \lim\limits_{x \to +\infty}{F(x)} = 1\)；
+\item 当\(x_1 < x_2\)时，有\(F(x_1) \leq F(x_2)\)，即\(F(x)\)单调不减；
+\item \(F(-\infty)=P(X \leq -\infty) = \lim\limits_{x \to -\infty}{F(x)} = 0\)，%
+\(F(+\infty)=P(X \leq +\infty) = \lim\limits_{x \to +\infty}{F(x)} = 1\)；
 \item \(F(x)\)是右连续的，即对任意\(x\)，有\(F(x^+)=F(x)\)；
 \item 对任意\(x_0\)，\(P(X=x_0)=F(x_0)-F(x_0^-)\).
 \end{enumerate}
@@ -94,7 +94,7 @@ p_1 & p_2 & \dots & p_n & \dots
 \begin{property}\label{theorem:随机变量及其分布.离散型随机变量的密度函数的性质}
 离散型随机变量的概率分布有如下的性质：
 \begin{enumerate}
-\item 非负性：\(p_k \geqslant 0, \quad k = 1,2,\dots\)；
+\item 非负性：\(p_k \geq 0, \quad k = 1,2,\dots\)；
 \item 归一性：\(\sum\limits_{k}{p_k} = 1\).
 \end{enumerate}
 \end{property}
@@ -108,9 +108,9 @@ P(X=x_k) = p_k,
 p_k = P(X=x_k),
 \quad k=1,2,\dotsc,
 \]注意到事件\((X=x_k)\ (k=1,2,\dotsc)\)是两两互斥的，有\begin{equation}
-F(x) = P(X \leqslant x)
-= P\left[ \bigcup_{x_k \leqslant x} (X = x_k) \right]
-= \sum\limits_{x_k \leqslant x} p_k.
+F(x) = P(X \leq x)
+= P\left[ \bigcup_{x_k \leq x} (X = x_k) \right]
+= \sum\limits_{x_k \leq x} p_k.
 \end{equation}
 
 反之，当已知离散型随机变量\(X\)的分布函数\(F(x)\)，则\(X\)的取值点\(x_k\)为\(F(x)\)的间断点，且\(p_k = P(X=x_k)\)为\(F(x)\)在\(x_k\)处的跃度，从而可得\(X\)的概率分布.
@@ -134,7 +134,7 @@ p_k = P(X=k) = p q^{k-1}, \quad k=1,2,\dotsc,
 
 \subsubsection{超几何分布}
 \begin{definition}
-设\(N\)、\(n\)、\(m\)为正整数，且\(n \leqslant N\)，\(m \leqslant N\)，%
+设\(N\)、\(n\)、\(m\)为正整数，且\(n \leq N\)，\(m \leq N\)，%
 若随机变量\(X\)服从分布律\begin{equation}
 p_k = P(X=k) = \frac{C_m^k C_{N-m}^{n-k}}{C_N^n}, \quad k=0,1,\dotsc,n,
 \end{equation}则称\(X\)服从\DefineConcept{超几何分布}，记为\(X \sim H(n,m,N)\)，其中\(n\)、\(n\)、\(m\)为参数.
@@ -169,7 +169,7 @@ P(X=k) = p^k q^{1-k}, \quad k=0,1.
 \begin{solution}
 设\(X\)表示他在20个听力题中选对的题目数，则\(X\)表示20重伯努利试验中“成功”的次数，即\(X \sim B(20, 1/4)\).这样所求的概率为\begin{enumerate}
 \item \(P(X=0) = C_{20}^0 (1/4)^0 (1-1/4)^{20} = 0.003\ 2\).
-\item \(P(X \geqslant 12) = \sum\limits_{k=12}^{20} (1/4)^k (1-1/4)^{20-k} = 0.000\ 9\).
+\item \(P(X \geq 12) = \sum\limits_{k=12}^{20} (1/4)^k (1-1/4)^{20-k} = 0.000\ 9\).
 \end{enumerate}
 \end{solution}
 \end{example}
@@ -218,7 +218,7 @@ P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda}, k=0,1,\dotsc,
 \end{equation}其中\(\lambda > 0\)为常数，则称\(X\)服从泊松分布，记为\(X \sim P(\lambda)\).
 \end{definition}
 
-由泊松定理可见，当\(p\)较小（通常要求\(p \leqslant 0.1\)），而\(n\)较大（通常要求\(n \geqslant 50\)）时，%
+由泊松定理可见，当\(p\)较小（通常要求\(p \leq 0.1\)），而\(n\)较大（通常要求\(n \geq 50\)）时，%
 二项分布的概率函数近似于泊松分布的概率函数，即\[
 P_n(k) = C_n^k p^k (1-p)^{n-k} \approx \frac{\lambda^k}{k!} e^{-\lambda},
 \quad k=0,1,\dotsc,n,
@@ -248,7 +248,7 @@ F(x) = \int_{-\infty}^x f(t) \dd{t},
 \begin{property}\label{theorem:随机变量及其分布.连续型随机变量的密度函数的性质}
 密度函数具有以下两个性质：
 \begin{enumerate}
-\item 非负性：\(f(x) \geqslant 0, \quad x \in (-\infty,+\infty)\)；
+\item 非负性：\(f(x) \geq 0, \quad x \in (-\infty,+\infty)\)；
 \item 规范性：\(\int_{-\infty}^{+\infty} f(x) \dd{x} = 1\).
 \end{enumerate}
 \rm
@@ -260,7 +260,7 @@ F(x) = \int_{-\infty}^x f(t) \dd{t},
 设\(X\)为连续型随机变量，\(F(x)\)和\(f(x)\)分别为\(X\)的分布函数与密度函数，则
 \begin{enumerate}
 \item 对任意常数\(a < b\)，有\[
-P(a < X \leqslant b) = \int_a^b{f(x) \dd{x}};
+P(a < X \leq b) = \int_a^b{f(x) \dd{x}};
 \]
 \item 若\(F(x)\)是连续函数，则在\(f(x)\)的连续点\(x_0\)有\[
 F'(x_0) = f(x_0);
@@ -272,9 +272,9 @@ F'(x_0) = f(x_0);
 定理说明连续型随机变量取任意数值的概率都为0，即\[
 P(X=k) = 0.
 \]从而结论1可以表为\[
-P(a < X \leqslant b)
-= P(a \leqslant X \leqslant b)
-= P(a \leqslant X < b)
+P(a < X \leq b)
+= P(a \leq X \leq b)
+= P(a \leq X < b)
 = P(a < X < b)
 = \int_a^b{f(x) \dd{x}}.
 \]
@@ -301,7 +301,7 @@ f(x) = \left\{ \def\arraystretch{1.5}
 F(x) = \left\{ \def\arraystretch{1.5}
 \begin{array}{cl}
 0, & x < a, \\
-\frac{x-a}{b-a}, & a \leqslant x \leqslant b, \\
+\frac{x-a}{b-a}, & a \leq x \leq b, \\
 1, & x > b. \\
 \end{array} \right.
 \end{equation}
@@ -313,7 +313,7 @@ F(x) = \left\{ \def\arraystretch{1.5}
 f(x) = \left\{ \def\arraystretch{1.5}
 \begin{array}{cl}
 \lambda e^{-\lambda x}, & x > 0, \\
-0, & x \leqslant 0, \\
+0, & x \leq 0, \\
 \end{array} \right.
 \end{equation}其中\(\lambda > 0\)为常数，则称\(X\)服从\DefineConcept{指数分布}，记为\(X \sim e(\lambda)\).
 \end{definition}
@@ -323,7 +323,7 @@ f(x) = \left\{ \def\arraystretch{1.5}
 F(x) = \left\{ \def\arraystretch{1.5}
 \begin{array}{cl}
 1 - e^{-\lambda x}, & x > 0, \\
-0, & x \leqslant 0. \\
+0, & x \leq 0. \\
 \end{array} \right.
 \end{equation}
 \end{theorem}
@@ -343,7 +343,7 @@ f(x) = \left\{
 \def\arraystretch{1.5}
 \begin{array}{cl}
 \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, & x > 0, \\
-0, & x \leqslant 0, \\
+0, & x \leq 0, \\
 \end{array} \right.
 \end{equation}其中\(\alpha > 0\)、\(\beta > 0\)为常数，则称\(X\)服从 \DefineConcept{\(\Gamma\)分布}，记为\(X \sim \Gamma(\alpha,\beta)\).
 \end{definition}
@@ -421,12 +421,12 @@ Z \sim \begin{pmatrix}
 \item 首先依据\(X\)的取值区间，求出\(Y\)的值域\(R(Y)\).
 
 \item 然后求出\(Y\)的分布函数，即对\(\forall y \in R(Y)\)，有\[
-F_Y(y) = P(Y \leqslant y)
-= P[g(X) \leqslant y]
+F_Y(y) = P(Y \leq y)
+= P[g(X) \leq y]
 = P[X \in G(y)]
 = \int_{G(y)} f_X(x) \dd{x},
 \]
-其中\(X \in G(y)\)由\(g(X) \leqslant y\)解出；
+其中\(X \in G(y)\)由\(g(X) \leq y\)解出；
 对\(\forall y \notin R(Y)\)，有\[
 F_Y(y) = 0
 \quad\text{或}\quad

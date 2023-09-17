@@ -326,16 +326,16 @@ L(\mu,\sigma^2)
 \begin{solution}
 \(X\)的密度函数为\[
 f(x,\theta) = \left\{ \begin{array}{cl}
-\theta^{-1}, & 0 \leqslant x \leqslant \theta, \\
+\theta^{-1}, & 0 \leq x \leq \theta, \\
 0, & \text{其他},
 \end{array} \right.
 \]而似然函数为\[
 L(\theta) = \prod\limits_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
 \quad x_i \in [0,\theta], \quad i=1,2,\dotsc,n.
-\]由于似然方程\(\dv{\theta} L(\theta) = -n\theta^{-1-n} = 0\)在\(\theta>0\)无解.所以应该考虑似然估计的定义.因为似然函数\(L(\theta)=\theta^{-n}\)在\(\theta>0\)时为\(\theta\)的单调递减函数，\(\theta\)越小则\(L(\theta)\)越大；但另一方面，\(x_i\in[0,\theta]\)，故有\(\max\limits_{1 \leqslant i \leqslant n} x_i \in [0,\theta]\).故当\(\hat{\theta}=\max\limits_{1 \leqslant i \leqslant n} x_i\)时，\(L(\hat{\theta})=\max L(\theta)\).所以，\(\theta\)的极大似然估计值为\[
-\hat{\theta} = \max\limits_{1 \leqslant i \leqslant n} x_i,
+\]由于似然方程\(\dv{\theta} L(\theta) = -n\theta^{-1-n} = 0\)在\(\theta>0\)无解.所以应该考虑似然估计的定义.因为似然函数\(L(\theta)=\theta^{-n}\)在\(\theta>0\)时为\(\theta\)的单调递减函数，\(\theta\)越小则\(L(\theta)\)越大；但另一方面，\(x_i\in[0,\theta]\)，故有\(\max\limits_{1 \leq i \leq n} x_i \in [0,\theta]\).故当\(\hat{\theta}=\max\limits_{1 \leq i \leq n} x_i\)时，\(L(\hat{\theta})=\max L(\theta)\).所以，\(\theta\)的极大似然估计值为\[
+\hat{\theta} = \max\limits_{1 \leq i \leq n} x_i,
 \]而其极大似然估计量为\[
-\max\limits_{1 \leqslant i \leqslant n} X_i.
+\max\limits_{1 \leq i \leq n} X_i.
 \]
 \end{solution}
 \end{example}
@@ -398,7 +398,7 @@ E(\hat{\sigma}) = E(a \abs{Y})
 \subsection{有效性标准}
 \begin{definition}
 设\(\hat{\theta}_1\)和\(\hat{\theta}_2\)是\(\theta\)的两个无偏估计量.若\[
-D(\hat{\theta}_1) \leqslant D(\hat{\theta}),
+D(\hat{\theta}_1) \leq D(\hat{\theta}),
 \]则称 \DefineConcept{\(\hat{\theta}_1\)比\(\hat{\theta}_2\)更有效}.
 \end{definition}
 
@@ -426,7 +426,7 @@ D(\hat{\theta}_1) \leqslant D(\hat{\theta}),
 M(\hat{\theta}) = E(\hat{\theta} - \theta)^2
 \]为\(\hat{\theta}\)关于\(\theta\)的\DefineConcept{均方误差}.
 若两个估计量\(\hat{\theta}_1\)和\(\hat{\theta}_2\)有\[
-M(\hat{\theta}_1) \leqslant M(\hat{\theta}_2),
+M(\hat{\theta}_1) \leq M(\hat{\theta}_2),
 \]则称 \DefineConcept{\(\hat{\theta}_1\)在均方误差下比\(\hat{\theta}_2\)更有效}.
 \end{definition}
 
@@ -568,7 +568,7 @@ P(-u_{1-\frac{\alpha}{2}} < U < u_{1-\frac{\alpha}{2}}) = 1-\alpha.
 \subsection{自然指数分布族分布均值参数的置信区间}
 如果总体\(X\)不是服从正态分布，那么样本函数的分布是难于确定的.这样求总体分布中未知参数的置信区间就比较困难.但当样本容量很大时，我们可以根据中心极限定理近似地求出置信区间.
 
-设总体\(X\)服从某个分布，分布函数为\(F(x,\theta)\)，其中\(\theta\)是未知参数，则总体均值\(E(X)=m(\theta)\)和总体方差\(D(X)=\sigma^2(\theta)\)都应该是\(\theta\)的函数.抽取样本\(\AutoTuple{X}{n}\)，由于\(X_i\)（\(i=1,2,\dotsc,n\)）与总体独立同分布，由中心极限定理，当\(n\)充分大时（一般要求\(n \geqslant 50\)），样本函数\[
+设总体\(X\)服从某个分布，分布函数为\(F(x,\theta)\)，其中\(\theta\)是未知参数，则总体均值\(E(X)=m(\theta)\)和总体方差\(D(X)=\sigma^2(\theta)\)都应该是\(\theta\)的函数.抽取样本\(\AutoTuple{X}{n}\)，由于\(X_i\)（\(i=1,2,\dotsc,n\)）与总体独立同分布，由中心极限定理，当\(n\)充分大时（一般要求\(n \geq 50\)），样本函数\[
 U = \frac{\sum\limits_{i=1}^n{X_i} - n m(\theta)}{\sqrt{n} \sigma(\theta)}
 = \frac{\overline{X} - m(\theta)}{\sigma(\theta) / \sqrt{n}}
 \]近似地服从标准正态分布\(N(0,1)\).对于给定的置信度\(1-\alpha\)，有\[

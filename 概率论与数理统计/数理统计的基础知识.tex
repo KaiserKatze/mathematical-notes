@@ -42,7 +42,7 @@
 \end{definition}
 
 从总体中进行有放回地抽样，得到的显然是简单随机样本.
-从有限总体中进行不放回地抽样，虽然不是简单随机样本，但当总体个体数\(N\)很大而样本容量\(n\)较小（通常要求\(n/N \leqslant 0.1\)），则可以近似地看作是有放回抽样，因而近似看作是简单随机抽样，即近似地得到简单随机样本.
+从有限总体中进行不放回地抽样，虽然不是简单随机样本，但当总体个体数\(N\)很大而样本容量\(n\)较小（通常要求\(n/N \leq 0.1\)），则可以近似地看作是有放回抽样，因而近似看作是简单随机抽样，即近似地得到简单随机样本.
 
 若将样本看作一个\(n\)维随机变量\((\AutoTuple{X}{n})\)，则可求出其概率分布或密度.
 
@@ -90,16 +90,16 @@ f(\AutoTuple{x}{n}) = \prod_{i=1}^n f(x_i).
 \(\x(n)\)分布等价于\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\)分布，其密度函数为\[
 f(x,n) = \left\{ \begin{array}{cl}
 \frac{1}{2^{n/2} \Gamma(n/2)} x^{\frac{n}{2}-1} e^{-\frac{x}{2}}, & x > 0, \\
-0, & x \leqslant 0.
+0, & x \leq 0.
 \end{array} \right.
 \]
 \begin{proof}
 首先求\(Z=X_1^2\)的分布.
-由于\(Z\)非负，故当\(z \leqslant 0\)时，\(P(Z \leqslant z) = 0\)；
+由于\(Z\)非负，故当\(z \leq 0\)时，\(P(Z \leq z) = 0\)；
 当\(z > 0\)时，\(Z\)的分布函数为\[
-F_Z(z) = P(Z \leqslant z)
-= P(X_1^2 \leqslant z)
-= P(-\sqrt{z} \leqslant X_1 \leqslant \sqrt{z})
+F_Z(z) = P(Z \leq z)
+= P(X_1^2 \leq z)
+= P(-\sqrt{z} \leq X_1 \leq \sqrt{z})
 = F_{X_1}(\sqrt{z}) - F_{X_1}(-\sqrt{z}),
 \]相应的密度函数为\[
 f_Z(z) = \frac{1}{2} z^{-\frac{1}{2}} \left[
@@ -108,7 +108,7 @@ f_{X_1}(\sqrt{z}) + f_{X_2}(-\sqrt{z})
 \]其中\(f_{X_1}(x) = (2\pi)^{-\frac{1}{2}} \exp(-x^2/2)\)为标准正态分布的密度函数，代入即得\[
 f_Z(z) = \left\{ \begin{array}{cl}
 \frac{1}{\sqrt{2\pi}} z^{-\frac{1}{2}} e^{-\frac{z}{2}}, & z>0, \\
-0, & z \leqslant 0.
+0, & z \leq 0.
 \end{array} \right.
 \]这正是\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\)的密度函数.
 
@@ -150,12 +150,12 @@ t(x,n) = \frac{ \Gamma\left(\frac{n+1}{2}\right) }{ \sqrt{n\pi} \Gamma\left(\fra
 \]
 \end{theorem}
 
-由于\(t\)分布的密度函数\(t(x,n)\)是偶函数，容易验证：当\(n=1\)时\(E(t)\)不存在，而当\(n \geqslant 2\)时\(E(t)=0\).
+由于\(t\)分布的密度函数\(t(x,n)\)是偶函数，容易验证：当\(n=1\)时\(E(t)\)不存在，而当\(n \geq 2\)时\(E(t)=0\).
 
 当自由度\(n\to\infty\)时，有\[
 \lim\limits_{n\to\infty} t(x,n) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}},
 \quad x \in \mathbb{R}.
-\]即当\(n\)充分大时（通常需要\(n \geqslant 45\)），\(t\)分布就近似于标准正态分布.
+\]即当\(n\)充分大时（通常需要\(n \geq 45\)），\(t\)分布就近似于标准正态分布.
 
 \subsection{\texorpdfstring{\(F\)}{F}分布}
 \begin{definition}
@@ -170,20 +170,20 @@ F=\frac{X/n}{Y/m}
 \(F\)分布的密度函数为\[
 f(x,n,m) = \left\{ \begin{array}{cl}
 \frac{\Gamma\left(\dfrac{n+m}{2}\right)}{\Gamma\left(\dfrac{n}{2}\right) \Gamma\left(\dfrac{m}{2}\right)} \left(\frac{n}{m}\right)^{\frac{n}{2}} x^{\frac{n}{2}-1} \left(1+\frac{n}{m}x\right)^{-\frac{n+m}{2}}, & x > 0, \\
-0, & x \leqslant 0.
+0, & x \leq 0.
 \end{array} \right.
 \]
 \end{theorem}
 
 \section{分布的分位点}
 当随机变量\(X\)的分布已知时，在概率论中，对给定的实数\(a\)，%
-常需要计算概率\(P(X \leqslant a) = p\).
-而在数理统计中，常常需要对给定的\(0<p<1\)，求出使\(P(X \leqslant a) = p\)成立的实数\(a\).
+常需要计算概率\(P(X \leq a) = p\).
+而在数理统计中，常常需要对给定的\(0<p<1\)，求出使\(P(X \leq a) = p\)成立的实数\(a\).
 
 \begin{definition}
 设随机变量\(X\)的分布函数是\(F\)，\(0<p<1\).
 若实数\(a_p\)满足\[
-	F(a_p) = P(X \leqslant a_p) = p,
+	F(a_p) = P(X \leq a_p) = p,
 \]则称\(a_p\)为“\(X\)（所服从的分布）的\(p\) \DefineConcept{分位点}”.
 
 特别地，\(a_{\frac{1}{2}}\)称为\DefineConcept{中位数}.
@@ -192,7 +192,7 @@ f(x,n,m) = \left\{ \begin{array}{cl}
 \subsection{\texorpdfstring{\(N(0,1)\)分布的\(p\)分位点\(u_p\)}{标准正态分布的p分位点}}
 当随机变量\(X \sim N(0,1)\)时，其\(p\)分位点\(u_p\)满足\[
 \Phi(u_p)
-= P(X \leqslant u_p)
+= P(X \leq u_p)
 = \int_{-\infty}^{u_p} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \dd{x}
 = p.
 \]由于\(\Phi(-x)=1-\Phi(x)\)，可得\(\Phi(-u_p)=1-\Phi(u_p)=1-p=\Phi(u_{1-p})\)，即\begin{equation}
@@ -201,7 +201,7 @@ f(x,n,m) = \left\{ \begin{array}{cl}
 
 \subsection{\texorpdfstring{\(\x(n)\)分布的\(p\)分位点\(\x_p(n)\)}{卡方分布的p分位点}}
 当随机变量\(X \sim \x(n)\)时，其\(p\)分位点\(\x_p(n)\)满足\[
-P(X \leqslant \x_p(n)) = \int_0^{\x_p(n)} f(x,n) \dd{x} = p.
+P(X \leq \x_p(n)) = \int_0^{\x_p(n)} f(x,n) \dd{x} = p.
 \]
 
 当\(n\)充分大（通常只要求\(n>45\)）时，\(\sqrt{2\x}\)近似地服从正态分布\(N(\sqrt{2n-1},1)\)，因此，有近似公式\begin{equation}
@@ -210,7 +210,7 @@ P(X \leqslant \x_p(n)) = \int_0^{\x_p(n)} f(x,n) \dd{x} = p.
 
 \subsection{\texorpdfstring{\(t(n)\)分布的\(p\)分位点\(t_p(n)\)}{t分布的p分位点}}
 当随机变量\(X \sim t(n)\)时，其\(p\)分位点\(t_p\)满足\[
-P(X \leqslant t_p(n))
+P(X \leq t_p(n))
 = \int_{-\infty}^{t_p(n)} t(x,n) \dd{x} = p.
 \]因为\(t\)分布的密度曲线对称于纵轴，从而\(t_p(n)\)有类似\(u_p\)的性质，即\begin{equation}
 -t_p(n)=t_{1-p}(n).
@@ -222,15 +222,15 @@ t_p(n) \approx u_p.
 
 \subsection{\texorpdfstring{\(F(n,m)\)分布的\(p\)分位点\(F_p(n,m)\)}{F分布的p分位点}}
 当随机变量\(X \sim F(n,m)\)时，其\(p\)分位点\(F_p(n,m)\)满足\[
-P(X \leqslant F_p(n,m)) = \int_0^{F_p(n,m)} f(x,n,m) \dd{x} = p.
+P(X \leq F_p(n,m)) = \int_0^{F_p(n,m)} f(x,n,m) \dd{x} = p.
 \]
 
 特别地，当\(p<\frac{1}{2}\)时，有\begin{equation}
 F_p(n,m) = \frac{1}{F_{1-p}(m,n)}.
 \end{equation}
 这是因为，当\(X \sim F(n,m)\)时，\(\frac{1}{X} \sim F(m,n)\)，从而\[
-p = P(X \leqslant F_p(n,m))
-= P\left(\frac{1}{X} \geqslant \frac{1}{F_p(n,m)}\right)
+p = P(X \leq F_p(n,m))
+= P\left(\frac{1}{X} \geq \frac{1}{F_p(n,m)}\right)
 = 1 - P\left(\frac{1}{X} < \frac{1}{F_p(n,m)}\right),
 \]即\[
 P\left(\frac{1}{X} < \frac{1}{F_p(n,m)}\right) = 1 - p.
@@ -326,15 +326,15 @@ KU = \frac{B_4}{(B_2)^2} - 3
 \begin{solution}
 记\(Y = \frac{1}{n} X\)，则\(Y\)的值域为\(R_Y = (0,+\infty)\).
 对于\(\forall y>0\)，\(Y\)有分布函数\[
-F_Y(y) = P(Y \leqslant y)
-= P\left(\frac{1}{n} X \leqslant y\right)
-= P(X \leqslant ny)
+F_Y(y) = P(Y \leq y)
+= P\left(\frac{1}{n} X \leq y\right)
+= P(X \leq ny)
 = \int_0^{ny} \lambda e^{-\lambda x} \dd{x}
 = 1 - e^{-n\lambda y},
 \]密度函数\[
 f_Y(y) = F'_Y(y) = \left\{ \begin{array}{lc}
 n\lambda e^{-n\lambda y}, & y>0, \\
-0, & y \leqslant 0,
+0, & y \leq 0,
 \end{array} \right.
 \]即\(Y=\frac{1}{n}X \sim e(n\lambda)\)，也即\(Y \sim \Gamma(1,n\lambda)\).
 
@@ -390,10 +390,10 @@ E(\overline{X}^2)
 \]\[
 E(\overline{X} X_i)
 = E\left(\frac{1}{n} \sum\limits_{j=1}^n X_j X_i\right)
-= \frac{1}{n} \left[ E(X_i^2) + E\left(\sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq i}} X_i X_j\right) \right],
+= \frac{1}{n} \left[ E(X_i^2) + E\left(\sum\limits_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right) \right],
 \]\[
-E\left(\sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq i}} X_i X_j\right)
-= \sum\limits_{\substack{1 \leqslant j \leqslant n \\ j \neq i}} E(X_i) E(X_j)
+E\left(\sum\limits_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right)
+= \sum\limits_{\substack{1 \leq j \leq n \\ j \neq i}} E(X_i) E(X_j)
 = (n-1) \mu^2,
 \]因此\begin{align*}
 E(S^2) &= \frac{1}{n-1} \sum\limits_{i=1}^n \left\{
