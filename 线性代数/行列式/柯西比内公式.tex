@@ -1,0 +1,163 @@
+\section{柯西--比内公式}
+\begin{theorem}
+已知数域\(K\).
+设矩阵\(\A \in M_{m \times n}(K),
+\B \in M_{n \times m}(K)\).
+如果\(m < n\)，
+那么\begin{equation}\label{equation:线性方程组.柯西-比内公式}
+	\abs{\A\B}
+	= \sum\limits_{1 \leq i_1 < i_2 < \dotsb < i_m \leq n}
+	\MatrixMinor\A{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	\MatrixMinor\B{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	}.
+\end{equation}
+\begin{proof}
+考虑\(m+n\)阶分块矩阵\[
+	\begin{bmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{bmatrix}.
+\]
+由于\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{vmatrix}
+	= \abs{\E_n} \abs{\A\B}
+	= \abs{\A\B},
+\]
+所以\[
+	\begin{bmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{bmatrix}
+	\to
+	\begin{bmatrix}
+		\E_n & \B \\
+		-\A & \z
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\E_n & \z \\
+		-\A & \E_m
+	\end{bmatrix} \begin{bmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{bmatrix},
+\]\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		-\A & \z
+	\end{vmatrix}
+	= \begin{vmatrix}
+		\E_n & \z \\
+		-\A & \E_m
+	\end{vmatrix} \begin{vmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{vmatrix}
+	= \begin{vmatrix}
+		\E_n & \B \\
+		\z & \A\B
+	\end{vmatrix},
+\]
+根据\hyperref[theorem:行列式.拉普拉斯定理]{拉普拉斯定理}，
+把上式最左端行列式按后\(m\)行展开得\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		-\A & \z
+	\end{vmatrix}
+	= \sum\limits_{1 \leq i_1 < \dotsb < i_m \leq n}
+	\MatrixMinor{(-\A)}{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	(-1)^{[(n+1)+\dotsb+(n+m)]+(i_1+\dotsb+i_m)}
+	\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)},
+\]
+其中\(\Set{\mu_1,\dotsc,\mu_{n-m}}
+= \Set{1,\dotsc,n}-\Set{i_1,\dotsc,i_s}\)，
+且\(\mu_1<\dotsb<\mu_{n-m}\).
+
+把\(\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)}\)
+按前\(n-m\)行展开得\[
+	\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)}
+	= \abs{\E_{n-m}}
+	(-1)^{(\mu_1+\dotsb+\mu_{n-m})+[1+\dotsb+(n-m)]}
+	\MatrixMinor{\B}{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	}.
+\]
+因此\begin{align*}
+	\begin{vmatrix}
+		\E_n & \B \\
+		-\A & \z
+	\end{vmatrix}
+	&= \sum\limits_{1 \leq i_1 < \dotsb < i_m \leq n}
+	(-1)^{m+m^2+n+n^2}
+	\MatrixMinor\A{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	\MatrixMinor\B{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	} \\
+	&= \sum\limits_{1 \leq i_1 < \dotsb < i_m \leq n}
+	\MatrixMinor\A{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	\MatrixMinor\B{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	}.
+\end{align*}
+综上所述，\[
+	\abs{\A\B}
+	= \sum\limits_{1 \leq i_1 \leq i_2 \leq \dotsb \leq i_m \leq n}
+	\MatrixMinor\A{
+		1,2,\dotsc,m \\
+		i_1,i_2,\dotsc,i_m
+	}
+	\MatrixMinor\B{
+		i_1,i_2,\dotsc,i_m \\
+		1,2,\dotsc,m
+	}.
+\]
+\end{proof}
+\end{theorem}
+\cref{equation:线性方程组.柯西-比内公式} 称为\DefineConcept{柯西-比内公式}.
+
+
+\begin{example}
+设\(\A = (\B,\C) \in M_{n \times m}(\mathbb{R})\)，
+其中\(\B \in M_{n \times s}(\mathbb{R})\)，
+\(\C \in M_{n \times (m-s)}(\mathbb{R})\).
+证明：\begin{equation}
+\abs{\A^T \A} \leq \abs{\B^T \B} \abs{\C^T \C}.
+\end{equation}
+%TODO
+\end{example}
+
+\begin{example}
+设\(\A = (a_{ij})_n \in M_n(\mathbb{R})\).
+证明：\begin{equation}\label{equation:线性方程组.Hadamard不等式}
+	\abs{\A}^2 \leq \prod\limits_{j=1}^n \sum\limits_{i=1}^n a_{ij}^2.
+\end{equation}
+%TODO
+\end{example}
+
+\begin{example}
+设\(\A = (a_{ij})_n \in M_n(\mathbb{R})\)，
+且\(\abs{a_{ij}} < M\ (i,j=1,2,\dotsc,n)\).
+证明：\begin{equation}
+	\abs{\det\A} \leq M^n n^{n/2}.
+\end{equation}
+%TODO
+\end{example}
