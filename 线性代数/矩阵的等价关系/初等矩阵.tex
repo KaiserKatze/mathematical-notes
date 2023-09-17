@@ -1,0 +1,192 @@
+\section{初等矩阵}
+\subsection{初等变换}
+\begin{definition}
+对矩阵施行以下变换，称为矩阵的\DefineConcept{初等行变换}（elementary row operation）：
+\begin{enumerate}
+\item 互换两行的位置；
+\item 用一非零数\(c\)乘以某行；
+\item 将某行的\(k\)倍加到另一行.
+\end{enumerate}
+类似地，可以定义矩阵的\DefineConcept{初等列变换}（elementary column operation）.
+矩阵的初等行变换、初等列变换统称为矩阵的\DefineConcept{初等变换}（elementary operation）.
+
+我们约定：矩阵\(\A\)经过一次初等行变换\(\sigma_1\)化为矩阵\(\B\)的过程可以表示为在连接矩阵\(\A\)和\(\B\)的箭头上方标记\(\sigma_1\)，即\[
+\A \xlongrightarrow{\sigma_1} \B;
+\]而矩阵\(\A\)经过一次初等列变换\(\sigma_2\)化为矩阵\(\B\)的过程可以表示为在连接矩阵\(\A\)和\(\B\)的箭头下方标记\(\sigma_2\)，即\[
+\A \xlongrightarrow[\sigma_2]{} \B.
+\]
+
+当初等变换的效果是互换两行（列）时，记\[
+i \rightleftharpoons j.
+\]
+当初等变换的效果是用一非零数\(c\)乘以第\(i\)行（列）时，记\[
+(i) \muleq c
+\quad\text{或}\quad
+(i) \diveq \frac{1}{c}.
+\]
+当初等行变换的效果是将第\(j\)行的\(k\)倍加到第\(i\)行时，记\[
+(i) \addeq k \times (j)
+\quad\text{或}\quad
+(i) \subeq -k \times (j).
+\]
+当初等列变换的效果是将第\(i\)列的\(k\)倍加到第\(j\)列时，记\[
+(j) \addeq k \times (i)
+\quad\text{或}\quad
+(j) \subeq -k \times (i).
+\]
+\end{definition}
+
+\subsection{初等矩阵的概念}
+\begin{definition}\label{definition:逆矩阵.矩阵等价}
+若矩阵\(\A\)可以经过一系列初等变换化为矩阵\(\B\)，
+则称“\(\A\)与\(\B\) \DefineConcept{等价}（equivalent）”，
+或“\(\A\)与\(\B\) \DefineConcept{相抵}”，
+记作\(\A\cong\B\).
+\end{definition}
+
+\begin{definition}
+由\(n\)阶单位矩阵\(\E\)经过\emph{一次}初等变换所得矩阵称为\(n\)阶\DefineConcept{初等矩阵}（elementary matrix）.
+\end{definition}
+对应于矩阵的三类初等变换，有三种类型的初等矩阵：
+\begin{enumerate}
+\item 互换\(\E\)的\(i\)，\(j\)两行（列）所得的矩阵\[
+\P(i,j) = \begin{bmatrix}
+\E_{i-1} & & & \\
+& 0 & & 1 & \\
+& & \E_{j-i-1} & & \\
+& 1 & & 0 & \\
+& & & & \E_{n-j}
+\end{bmatrix}_n;
+\]
+\item 用非零数\(c\)乘以\(\E\)的第\(i\)行（列）所得的矩阵\[
+\P(i(c)) = \begin{bmatrix}
+\E_{i-1} & & \\
+& c & \\
+& & \E_{n-i}
+\end{bmatrix}_n;
+\]
+\item 把\(\E\)的第\(j\)行（第\(i\)列）的\(k\)倍加到第\(i\)行（第\(j\)列）所得的矩阵\[
+\P(i,j(k)) = \begin{bmatrix}
+\E_{i-1} & & & \\
+& 1 & & k & \\
+& & \E_{j-i-1} & & \\
+& 0 & & 1 & \\
+& & & & \E_{n-j}
+\end{bmatrix}_n.
+\]
+\end{enumerate}
+
+\subsection{初等矩阵的性质}
+\begin{property}\label{theorem:逆矩阵.初等矩阵的性质1}
+初等矩阵具有以下性质：
+\begin{enumerate}
+\item \(\abs{\P(i,j)}=-1\)；
+\item \(\abs{\P(i(c))}=c\)；
+\item \(\abs{\P(i,j(k))}=1\)；
+\item \(\P(i,j)^T=\P(i,j)\)；
+\item \(\P(i(c))^T=\P(i(c))\)；
+\item \(\P(i,j(k))^T=\P(j,i(k))\)；
+\item \(\P(i,j)^{-1}=\P(i,j)\)；
+\item \(\P(i(c))^{-1}=\P(i(c^{-1}))\)；
+\item \(\P(i,j(k))^{-1}=\P(i,j(-k))\).
+\end{enumerate}
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.初等矩阵的性质2}
+对\(n \times t\)矩阵\(\A\)施行一次初等行变换，相当于用一个相应的\(n\)阶初等矩阵左乘\(\A\)；
+对\(\A\)施行一次初等列变换，相当于用一个相应的\(t\)阶初等矩阵右乘\(\A\).
+\begin{proof}
+用\(n\)阶矩阵\(\P(i,j)\)左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
+\P(i,j) \A = \begin{bmatrix}
+\E_{i-1} \\
+& 0 & & 1 \\
+& & \E_{j-i-1} \\
+& 1 & & 0 \\
+& & & & \E_{n-j}
+\end{bmatrix} \begin{bmatrix}
+\A_1 \\ \a_i \\ \A_2 \\ \a_j \\ \A_3
+\end{bmatrix} = \begin{bmatrix}
+\A_1 \\ \a_j \\ \A_2 \\ \a_i \\ \A_3
+\end{bmatrix},
+\]即\(\A\)交换\(i\)、\(j\)两行.
+
+用\(n\)阶矩阵\(\P(i(c))\)左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
+\P(i(c)) \A = \begin{bmatrix}
+\E_{i-1} \\
+& c \\
+& & \E_{n-i}
+\end{bmatrix} \begin{bmatrix}
+\A_1 \\ \a_i \\ \A_2
+\end{bmatrix} = \begin{bmatrix}
+\A_1 \\ c \a_i \\ a_2
+\end{bmatrix},
+\]即用一非零数\(c\)乘以第\(i\)行.
+
+用\(n\)阶矩阵\(\P(i,j(k))\)（\(i < j\)）左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
+\P(i,j(k)) \A = \begin{bmatrix}
+\E_{i-1} \\
+& 1 & & k \\
+& & \E_{j-i-1} \\
+& 0 & & 1 \\
+& & & & \E_{n-j}
+\end{bmatrix} \begin{bmatrix}
+\A_1 \\ \a_i \\ \A_2 \\ \a_j \\ \A_3
+\end{bmatrix} = \begin{bmatrix}
+\A_1 \\ \a_i + k \a_j \\ \A_2 \\ \a_j \\ \A_3
+\end{bmatrix},
+\]即把\(\A\)第\(j\)行的\(k\)倍加到第\(i\)行.
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:逆矩阵.初等矩阵的性质3}
+初等矩阵可逆.
+\end{property}
+
+\begin{theorem}\label{theorem:逆矩阵.可逆矩阵与初等矩阵的关系}
+设\(\A=(a_{ij})_n\)，则\(\A\)可逆的充要条件是：\(\A\)可经一系列初等行变换化为单位矩阵\(\E_n\)，即\(\A \cong \E_n\).
+\begin{proof}
+\def\Ps{\P_t \P_{t-1} \dotsm \P_2 \P_1}
+存在与\(t\)次初等行变换对应的\(t\)个初等矩阵\(\P_t,\P_{t-1},\dotsc,\P_2,\P_1\)，使\[
+\A \to \E_n = \Ps \A,
+\]则\(\A\)可逆且\(\A^{-1} = \Ps\).
+
+对矩阵\((\A,\E_n)\)作以上初等行变换，则\begin{align*}
+(\A,\E_n) \to &\Ps(\A,\E_n) = \A^{-1}(\A,\E_n) \\
+&= (\A^{-1}\A,\A^{-1}\E_n) = (\E_n,\A^{-1}).
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:逆矩阵.计算逆矩阵的方法}
+如果方阵\(\A\)经\(t\)次初等行变换为\(\E_n\)，%
+那么同样的初等行变换会将\(\E_n\)变为\(\A^{-1}\).
+\end{corollary}
+
+\subsection{应用初等变换求解逆矩阵}
+\begin{corollary}
+可逆矩阵\(\A\)可以表示成若干个初等矩阵的乘积.
+\end{corollary}
+
+\begin{corollary}
+\(n\)阶方阵\(\A\)可逆的充要条件是：\(\A\)可经过一系列初等列变换变为\(\E_n\)，%
+且同样的初等列变换将\(\begin{bmatrix}\A\\\E_n\end{bmatrix}\)变为
+\(\begin{bmatrix}\E_n\\\A^{-1}\end{bmatrix}\).
+\end{corollary}
+
+\begin{theorem}
+设\(\A\)与\(\B\)都是\(s \times n\)矩阵，则\(\A\)与\(\B\)等价的充要条件是：存在\(s\)阶可逆矩阵\(\P\)与\(n\)阶可逆矩阵\(\Q\)，使得\(\B=\P\A\Q\).
+\end{theorem}
+
+\begin{example}
+初等矩阵的逆：
+\begin{enumerate}
+\item \([\P(i,j)]^{-1}=\P(i,j)\)
+\item \([\P(i(c))]^{-1}=\P(i(c^{-1}))\)
+\item \([\P(i,j(k))]^{-1}=\P(i,j(-k))\)
+\end{enumerate}
+\end{example}
+
+\begin{example}
+设\(\A\)和\(\B\)都是可逆矩阵，证明：\(\A\)与\(\B\)等价.
+\end{example}
