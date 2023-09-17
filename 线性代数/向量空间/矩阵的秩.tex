@@ -53,25 +53,7 @@
 \end{property}
 
 \begin{property}\label{theorem:线性方程组.矩阵的秩的性质2}
-设\(\A\)是\(s \times n\)矩阵，则\[
-	0 \leqslant \rank\A \leqslant \min\{s,n\}.
-\]
-\end{property}
-
-\begin{property}\label{theorem:线性方程组.矩阵的秩的性质3}
-设\(s \times n\)矩阵\(\A\)的秩为\(\rank\A = r < \min\{s,n\}\)，
-那么对于\(\forall m > r\)，
-总有\(m\)阶子式全为零，即\[
-	\A\begin{pmatrix}
-		\AutoTuple{i}{m} \\
-		\AutoTuple{j}{m}
-	\end{pmatrix} = 0,
-	\quad
-	\begin{array}{c}
-		1 \leqslant i_1 < i_2 < \dotsb < i_m \leqslant s; \\
-		1 \leqslant j_1 < j_2 < \dotsb < j_m \leqslant n.
-	\end{array}
-\]
+设\(\A\)是\(s \times n\)矩阵，则\(0 \leqslant \rank\A \leqslant \min\{s,n\}\).
 \end{property}
 
 \begin{definition}
@@ -90,9 +72,10 @@
 
 应该注意到，“可逆矩阵”“非奇异矩阵”“满秩矩阵”“非退化矩阵”是从不同侧重点对同一类矩阵的四种称谓.
 
-\begin{property}\label{theorem:线性方程组.矩阵的秩的性质4}
-矩阵\(\A\)是满秩矩阵的充要条件是\(\abs{\A}\neq0\).
-\end{property}
+\begin{theorem}\label{theorem:向量空间.满秩方阵的行列式非零}
+设\(\A\in M_n(K)\).
+\(\A\)是满秩矩阵的充要条件是\(\abs{\A}\neq0\).
+\end{theorem}
 
 \begin{example}
 求矩阵\(\A = \begin{bmatrix} 1 & 7 \\ 2 & 6 \\ -3 & 1 \end{bmatrix}\)的秩、行秩与列秩.
@@ -146,7 +129,8 @@
 根据\(\rank\{\AutoTuple{\a}{3}\}=2\)求出\(a\)的值这种方法以外，
 我们还可以利用本节\hyperref[definition:线性方程组.矩阵的秩的定义]{矩阵的秩的定义}，
 得出\(\rank\A=\dim\opair{\AutoTuple{\a}{3}}=2\)这一结论，
-从而根据\cref{theorem:线性方程组.矩阵的秩的性质3} 可知\(\A\)中任意3阶子式全都为零.
+从而根据\cref{definition:线性方程组.矩阵的秩的定义} 可知，
+\(\A\)中任意3阶子式全都为零.
 对于\(\A\)这么一个\(4\times3\)矩阵，
 任意去掉不含\(a\)的一行（不妨去掉第一行）得到一个行列式必为零：\[
 	\begin{vmatrix}
@@ -608,7 +592,7 @@ m \leqslant \rank\A,\rank\B \leqslant m \\
 根据\cref{theorem:线性方程组.矩阵的秩的性质2}，有\[\rank\A,\rank\B \leqslant \min\{m,n\} = n;\]
 再根据\cref{theorem:线性方程组.矩阵乘积的秩}，有\[\rank(\A\B) \leqslant \min\{\rank\A,\rank\B\} = n < m,\]
 也就是说，矩阵\(\A\B\)不满秩；
-那么根据\cref{theorem:线性方程组.矩阵的秩的性质4} 可知\(\abs{\A\B} = 0\).
+那么根据\cref{theorem:向量空间.满秩方阵的行列式非零} 可知\(\abs{\A\B} = 0\).
 
 当\(m<n\)时，
 考虑\(m+n\)阶分块矩阵\[
@@ -765,7 +749,7 @@ d_{ij} = \cos(\alpha_i-\alpha_j)
 \end{vmatrix} = 1 - \cos^2(\alpha_1-\alpha_2).
 \]
 
-当\(n>2\)时，\(\rank(\A^T\A) \leqslant \rank\A \leqslant2\)，\(\D = \A^T \A\)不满秩，故由\cref{theorem:线性方程组.矩阵的秩的性质4} 有\(\abs{\D}=0\).
+当\(n>2\)时，\(\rank(\A^T\A) \leqslant \rank\A \leqslant2\)，\(\D = \A^T \A\)不满秩，故由\cref{theorem:向量空间.满秩方阵的行列式非零} 有\(\abs{\D}=0\).
 \end{solution}
 \end{example}
 
