@@ -383,11 +383,25 @@ a_1 \\ a_2 \\ \vdots \\ a_n
 \end{example}
 
 \begin{theorem}
-矩阵乘法满足结合律，%
-即对\(\A = (a_{ij})_{s \times n}\)，%
-\(\B = (b_{ij})_{n \times m}\)，%
-\(\C = (c_{ij})_{m \times p}\)，%
-总有\((\A\B)\C = \A(\B\C)\).
+矩阵乘法满足结合律.
+\begin{proof}
+设\(\A = (a_{ij})_{s \times n},
+\B = (b_{ij})_{n \times m},
+\C = (c_{ij})_{m \times r}\).
+显然\((\A\B)\C\)与\(\A(\B\C)\)同型，都是\(s \times r\)矩阵.
+由于\begin{align*}
+	\MatrixEntry{((\A\B)\C)}{i,j}
+	&= \sum\limits_{l=1}^m (\MatrixEntry{(\A\B)}{i,l}) \cdot c_{lj} \\
+	&= \sum\limits_{l=1}^m \left( \sum\limits_{k=1}^n a_{ik} b_{kl} \right) c_{lj} \\
+	&= \sum\limits_{l=1}^m \left( \sum\limits_{k=1}^n a_{ik} b_{kl} c_{lj} \right), \\
+	\MatrixEntry{(\A(\B\C))}{i,j}
+	&= \sum\limits_{k=1}^n a_{ik} \cdot (\MatrixEntry{(\B\C)}{k,j}) \\
+	&= \sum\limits_{k=1}^n a_{ik} \left( \sum\limits_{l=1}^m b_{kl} c_{lj} \right) \\
+	&= \sum\limits_{k=1}^n \left( \sum\limits_{l=1}^m a_{ik} b_{kl} c_{lj} \right) \\
+	&= \sum\limits_{l=1}^m \left( \sum\limits_{k=1}^n a_{ik} b_{kl} c_{lj} \right),
+\end{align*}
+于是\((\A\B)\C = \A(\B\C)\).
+\end{proof}
 \end{theorem}
 
 \begin{definition}
