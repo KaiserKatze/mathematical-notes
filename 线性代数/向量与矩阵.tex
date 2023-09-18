@@ -484,18 +484,29 @@ f(\A) \x = a_0 \x + a_1 \A\x + a_2 \A^2 \x + \dotsb + a_k \A^k \x. \tag1
 	(\A\B)^T = \B^T \A^T.
 \]
 \begin{proof}
-\begin{align*}
-(\A \B)^T_{\opair{i,j}}
-&= (\A \B)_{\opair{j,i}}
-= \A_{\opair{j,*}} \B_{\opair{*,i}}
-= \sum\limits_{k=1}^n a_{jk} b_{ki}, \\
-(\B^T \A^T)_{\opair{i,j}}
-&= \B^T_{\opair{i,*}} \A^T_{\opair{*,j}}
-= (\B_{\opair{*,i}})^T (\A_{\opair{j,*}})^T
-= \sum\limits_{k=1}^n b_{ki} a_{jk}
-= \sum\limits_{k=1}^n a_{jk} b_{ki}.
-\qedhere
-\end{align*}
+假设\[
+	\A=(a_{ij})_{s \times n}
+	=(\AutoTuple{\a}{s})^T, \qquad
+	\B=(b_{ij})_{n \times t}
+	=(\AutoTuple{\b}{t}),
+\]
+其中\(\a_i\in K^n\ (i=1,2,\dotsc,s)\)是行向量，
+\(\b_j\in K^n\ (j=1,2,\dotsc,t)\)是列向量.
+又假设\[
+	\A\B=(c_{ij})_{s \times t}, \qquad
+	\B^T\A^T=(d_{ij})_{t \times s}.
+\]
+那么\[
+	c_{ij}%\(\A\)的第\(i\)行，\(\B\)的第\(j\)列
+	= \a_i\cdot\b_j
+	= \sum\limits_{k=1}^n a_{ik}b_{kj},
+\]\[
+	d_{ij}%\(\B^T\)的第\(i\)行，\(\A^T\)的第\(j\)列
+	= \b_i\cdot\a_j%相当于\(\B\)的第\(i\)列，\(\A\)的第\(j\)行
+	= \sum\limits_{k=1}^n a_{jk}b_{ki},
+\]
+可见\(c_{ij}=d_{ji}\ (i=1,2,\dotsc,s;j=1,2,\dotsc,t)\).
+因此，\((\A\B)^T = \B^T \A^T\).
 \end{proof}
 \end{theorem}
 
