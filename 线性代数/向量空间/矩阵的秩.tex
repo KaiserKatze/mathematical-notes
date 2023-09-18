@@ -212,6 +212,7 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P122. 命题2
 设\(\A \in M_{m \times n}(\mathbb{R})\).
 求证：\begin{equation}
 	\rank\A = \rank(\A\A^T).
@@ -408,50 +409,49 @@
 
 \section{矩阵乘积的秩}
 \begin{theorem}\label{theorem:线性方程组.矩阵乘积的秩}
+%@see: 《线性代数》（张慎语、周厚隆） P78. 定理7
+%@see: 《高等代数（第三版 上册）》（丘维声） P121. 定理1
 设\(\A\in M_{s\times n}(K),
 \B\in M_{n\times m}(K)\)，
 那么\[
 	\rank(\A\B) \leq \min\{\rank\A,\rank\B\}.
 \]
 \begin{proof}
-设\(\C = \A\B\)，将\(\C\)、\(\B\)分别进行列分块得\[
-\C = (\AutoTuple{\g}{n}),
-\qquad
-\B = (\AutoTuple{\b}{n}),
-\]则\[
-(\AutoTuple{\g}{n}) = \A (\AutoTuple{\b}{n}) = (\A\b_1,\A\b_2,\dotsc,\A\b_n),
-\]于是\[
-\g_i = \A \b_i,
-\quad i=1,2,\dotsc,n.
+记\(\C = \A\B\)，
+显然\(\rank(\A\B)=\rank_C\C\).
+将\(\C\)、\(\B\)分别进行列分块得\[
+	\C = (\AutoTuple{\g}{n}),
+	\qquad
+	\B = (\AutoTuple{\b}{n}),
 \]
+则\[
+	(\AutoTuple{\g}{n}) = \A (\AutoTuple{\b}{n}) = (\AutoTuple{\A\b}{n}),
+\]
+于是\(\g_i = \A \b_i\ (i=1,2,\dotsc,n)\).
 
-若\(\rank\B = t\)，
-则\(\B\)的任意\(t+1\)个列向量
-\(\b_{k_1},\b_{k_2},\dotsc,\b_{k_{t+1}}\)
-线性相关，%
-存在不全为零的数
-\(l_1,l_2,\dotsc,l_{t+1}\)
-使得\[
-l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}} = \z,
+假设\(\rank\B = t<m\)，
+那么由\cref{example:向量空间.若部分组向量个数多于全组的秩则部分组必线性相关}，
+\(\B\)的任意\(t+1\)个列向量\(\b_{k_1},\b_{k_2},\dotsc,\b_{k_{t+1}}\)线性相关，
+也就是说，存在不全为零的数\(l_1,l_2,\dotsc,l_{t+1}\in K\)，使得\[
+	l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}} = \z.
 \]
-故\[
-l_1 \g_{k_1} + l_2 \g_{k_2} + \dotsb + l_{t+1} \g_{k_{t+1}}
-= \A(l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}})
-= \z,
+因此\[
+	l_1 \g_{k_1} + l_2 \g_{k_2} + \dotsb + l_{t+1} \g_{k_{t+1}}
+	= \A(l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}})
+	= \z,
 \]
-即\(\C\)的任意\(t+1\)个列向量线性相关，%
-故\(\A\B\)的列秩小于或等于\(t\)，%
+这就是说\(\C\)的任意\(t+1\)个列向量也线性相关，
+那么\(\rank_C\C \ngeq t+1\)，
+\(\rank(\A\B)\leqslant t\)，
 即\(\rank(\A\B) \leq \rank\B\).
-又\[
-\rank(\A\B)
-= \rank(\A\B)^T
-= \rank(\B^T \A^T)
-\leq \rank \A
-= \rank \A^T,
-\]所以
-\(\rank(\A\B)
-\leq
-\min\{\rank\A,\rank\B\}\).
+利用这个结论，我们还可以得到\[
+	\rank(\A\B)
+	= \rank(\A\B)^T
+	= \rank(\B^T \A^T)
+	\leq \rank \A^T
+	= \rank \A.
+\]
+综上所述\(\rank(\A\B) \leq \min\{\rank\A,\rank\B\}\).
 \end{proof}
 \end{theorem}
 
