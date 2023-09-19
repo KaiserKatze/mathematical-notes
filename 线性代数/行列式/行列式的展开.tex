@@ -99,30 +99,33 @@
 称为\(\A\)的\DefineConcept{伴随矩阵}（adjoint matrix），
 记为\(\A^*\)，即\[
 	\A^*
-	\defeq \begin{bmatrix}
+	\defeq
+	\begin{bmatrix}
 		A_{11} & A_{21} & \dots & A_{n1} \\
 		A_{12} & A_{22} & \dots & A_{n2} \\
-		\vdots & \vdots & \ddots & \vdots \\
+		\vdots & \vdots & & \vdots \\
 		A_{1n} & A_{2n} & \dots & A_{nn}
 	\end{bmatrix}.
 \]
 \end{definition}
 
 \begin{theorem}
-设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，则\begin{gather}
-\A \A^* = \A^* \A = \abs{\A} \E, \label{equation:行列式.伴随矩阵.恒等式1} \\
-(\A^*)^T = (\A^T)^*, \label{equation:行列式.伴随矩阵.恒等式2} \\
-(\A\B)^* = \B^* \A^*. \label{equation:行列式.伴随矩阵.恒等式3}
+设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，
+则\begin{gather}
+	\A \A^* = \A^* \A = \abs{\A} \E, \label{equation:行列式.伴随矩阵.恒等式1} \\
+	(\A^*)^T = (\A^T)^*, \label{equation:行列式.伴随矩阵.恒等式2} \\
+	(\A\B)^* = \B^* \A^*. \label{equation:行列式.伴随矩阵.恒等式3}
 \end{gather}
 \end{theorem}
 
 \begin{example}
 设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，求\((k\A)^*\).
 \begin{solution}
-设\(\A\)的元素\(a_{ij}\)的代数余子式是\(A_{ij}\)，%
+设\(\A\)的元素\(a_{ij}\)的代数余子式是\(A_{ij}\)，
 那么矩阵\(k\A = (b_{ij})_n\)的元素\(b_{ij} = k a_{ij}\)的代数余子式是\[
 	B_{ij}
-	= (-1)^{i+j} \begin{vmatrix}
+	= (-1)^{i+j}
+	\begin{vmatrix}
 		k a_{11} & \dots & k a_{1,j-1} & k a_{1,j+1} & \dots & k a_{1n} \\
 		\vdots & & \vdots & \vdots & & \vdots \\
 		k a_{i-1,1} & \dots & k a_{i-1,j-1} & k a_{i-1,j+1} & \dots & k a_{i-1,n} \\
@@ -132,8 +135,8 @@
 	\end{vmatrix}
 	= k^{n-1} A_{ij}.
 \]
-因此，\(k\A\)的伴随矩阵是
-\((B_{ji})_n = k^{n-1} (A_{ji})_n
+因此，\(k\A\)的伴随矩阵是\((B_{ji})_n
+= k^{n-1} (A_{ji})_n
 = k^{n-1} \A^*\).
 \end{solution}
 \end{example}
@@ -141,14 +144,17 @@
 
 \subsection{行列式按一行（或一列）展开}
 \begin{theorem}
-设\(\A=(a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
+设\(\A=(a_{ij})_n\)，
+\(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
 \begin{enumerate}
-	\item 行列式等于它的任一行的各元与其代数余子式乘积之和，即\begin{equation}
+	\item 行列式等于它的任一行的各元与其代数余子式乘积之和，
+	即\begin{equation}
 		\abs{\A} = \sum\limits_{j=1}^n a_{ij} A_{ij}
 		\quad(i=1,2,\dotsc,n).
 	\end{equation}
 
-	\item 行列式的任一行的各元与另一行对应元素的代数余子式乘积之和为零，即\begin{equation}
+	\item 行列式的任一行的各元与另一行对应元素的代数余子式乘积之和为零，
+	即\begin{equation}
 		\sum\limits_{j=1}^n a_{ij} A_{kj} = 0
 		\quad(i \neq k;
 		i,k=1,2,\dotsc,n).
@@ -156,9 +162,10 @@
 \end{enumerate}
 \begin{proof}
 注意\[
-\tau(i,1,2,\dotsc,i-1,i+1,\dotsc,n) = i-1,
+	\tau(i,1,2,\dotsc,i-1,i+1,\dotsc,n) = i-1,
 \]\[
-\tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n) = j-1+\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n),
+	\tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)
+	= j-1+\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n),
 \]于是有\begin{align*}
 	\abs{\A}
 	&= \sum\limits_{j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
