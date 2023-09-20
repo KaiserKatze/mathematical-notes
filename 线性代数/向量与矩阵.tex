@@ -169,91 +169,6 @@
 \]
 \end{definition}
 
-\begin{definition}
-两个\(n\)维复向量\(\a=(\AutoTuple{a}{n})^T\)，
-\(\b=(\AutoTuple{b}{n})^T\)的\DefineConcept{内积}（inner product）定义为复数\[
-	a_1b_1 + a_2b_2 + \dotsb + a_nb_n
-\]记作\(\vectorinnerproduct{\a}{\b}\).
-\end{definition}
-
-\begin{definition}
-若向量\(\a\)与\(\b\)满足\(\vectorinnerproduct{\a}{\b}=0\)，
-则称\(\a\)与\(\b\)正交（orthogonal），
-记作\(\a\perp\b\).
-\end{definition}
-
-\begin{property}
-向量内积具有以下性质：
-\begin{enumerate}
-	\item \(\vectorinnerproduct{\a}{\b} = \vectorinnerproduct{\b}{\a}\)；
-	\item \(\vectorinnerproduct{(\a+\b)}{\g} = \vectorinnerproduct{\a}{\g} + \vectorinnerproduct{\b}{\g}\)；
-	\item \(\vectorinnerproduct{(k\a)}{\b} = k (\vectorinnerproduct{\a}{\b})\)（\(k\in\mathbb{R}\)）；
-	\item \(\a\neq\z \iff \vectorinnerproduct{\a}{\a} > 0\)；\(\a=\z \iff \vectorinnerproduct{\a}{\a} = 0\)；
-	\item \(\vectorinnerproduct{\z}{\a} = 0\)；
-\end{enumerate}
-\end{property}
-
-\subsection{向量的长度（模、范数）与单位向量}
-\begin{definition}
-设\(n\)维向量\(\a = (\AutoTuple{a}{n})\).
-定义向量的\DefineConcept{长度}为\[
-	\sqrt{\vectorinnerproduct{\a}{\a}} = \sqrt{a_1^2+a_2^2+\dotsb+a_n^2}.
-\]同样地可以定义\(n\)维列向量的长度.
-2维向量、3维向量的长度常被称作向量的\DefineConcept{模}（module），记作\(\abs{\a}\).
-高维（\(n > 3\)）向量的长度常被称作向量的\DefineConcept{范数}（norm），记作\(\norm{\a}\).
-\end{definition}
-
-\begin{property}
-显然有向量的长度为非负实数，即\(\abs{\a}\geq0\).
-\end{property}
-
-\begin{definition}
-长度为1的向量被称为\DefineConcept{单位向量}.
-\end{definition}
-
-\begin{definition}
-\def\f{\frac{1}{\abs{\a}}}
-设\(\a\)满足\(\abs{\a}>0\).
-用\(\f\)数乘\(\a\)，
-称为“将\(\a\) \DefineConcept{单位化}”，
-得单位向量\(\f\a\).
-\end{definition}
-
-尽管我们通常出于几何（特别是欧式几何）的考量，
-像上面一样将向量\(\a\)的模（或范数）定义为\(\sqrt{\vectorinnerproduct{\a}{\a}}\)，
-不过我们还可以定义其他形式的模（或范数）.
-观察上面的模（或范数）的定义，我们可以发现，
-向量的模（或范数）实际上是满足以下3条性质的映射
-\(f\colon K^n \to K, \mat{x} \mapsto m\)：
-\begin{enumerate}
-	\item {\bf 非负性}，
-	即\((\forall \mat{x} \in K^n)[f(\mat{x}) \geq 0]\)；
-	\item {\bf 齐次性}，
-	即\((\forall \mat{x} \in K^n)(\forall c \in P)[f(c \mat{x}) = \abs{c} f(\mat{x})]\)；
-	\item {\bf 三角不等式}，
-	即\((\forall \mat{x},\mat{y} \in K^n)[f(\mat{x}+\mat{y}) \leq f(\mat{x}) + f(\mat{y})]\).
-\end{enumerate}
-
-据此我们可以定义p范数如下：
-\begin{definition}\label{definition:向量与矩阵.p范数}
-形如\[
-	f\colon\mathbb{R}^n \to \mathbb{R},
-	\mat{x} = \opair{\AutoTuple{x}{n}}
-	\mapsto
-	\sqrt[p]{\abs{x_1}^p + \abs{x_2}^p + \dotsb + \abs{x_n}^p}
-\]的这一类映射\(f(p)\ (p\geq1)\)，
-称为 \DefineConcept{\(p\)范数}，
-记作\(\norm{\mat{x}}_p\).
-\end{definition}
-
-易证\[
-\begin{array}{lll}
-\norm{\mat{x}}_1 &=& \abs{x_1} + \abs{x_2} + \dotsb + \abs{x_n}, \\
-\norm{\mat{x}}_2 &=& \sqrt{x_1^2 + x_2^2 + \dotsb + x_n^2}, \\
-\norm{\mat{x}}_\infty &=& \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_n}\}.
-\end{array}
-\]
-
 \section{矩阵的线性运算}
 \begin{definition}
 设\(\A,\B\in M_{s\times n}(K)\)，
@@ -867,3 +782,91 @@ a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
     \min\Set{ m\in\mathbb{N}^+ \given \A^m = \z }
 \]为“\(\A\)的\DefineConcept{幂零指数}”.
 \end{definition}
+
+\section{向量的内积}
+\begin{definition}
+设\(\a=(\AutoTuple{a}{n})^T\)和\(\b=(\AutoTuple{b}{n})^T\)都是\(n\)维复向量.
+我们把复数\[
+	a_1b_1 + a_2b_2 + \dotsb + a_nb_n
+\]
+称为“\(\a\)与\(\b\)的\DefineConcept{内积}（inner product）”，
+记作\(\vectorinnerproduct{\a}{\b}\).
+\end{definition}
+
+\begin{definition}
+若向量\(\a\)与\(\b\)满足\(\vectorinnerproduct{\a}{\b}=0\)，
+则称\(\a\)与\(\b\)正交（orthogonal），
+记作\(\a\perp\b\).
+\end{definition}
+
+\begin{property}
+向量内积具有以下性质：
+\begin{enumerate}
+	\item \(\vectorinnerproduct{\a}{\b} = \vectorinnerproduct{\b}{\a}\)；
+	\item \(\vectorinnerproduct{(\a+\b)}{\g} = \vectorinnerproduct{\a}{\g} + \vectorinnerproduct{\b}{\g}\)；
+	\item \(\vectorinnerproduct{(k\a)}{\b} = k (\vectorinnerproduct{\a}{\b})\)（\(k\in\mathbb{R}\)）；
+	\item \(\a\neq\z \iff \vectorinnerproduct{\a}{\a} > 0\)；\(\a=\z \iff \vectorinnerproduct{\a}{\a} = 0\)；
+	\item \(\vectorinnerproduct{\z}{\a} = 0\)；
+\end{enumerate}
+\end{property}
+
+\subsection{向量的长度（模、范数）与单位向量}
+\begin{definition}
+设\(n\)维向量\(\a = (\AutoTuple{a}{n})\).
+定义向量的\DefineConcept{长度}为\[
+	\sqrt{\vectorinnerproduct{\a}{\a}} = \sqrt{a_1^2+a_2^2+\dotsb+a_n^2}.
+\]同样地可以定义\(n\)维列向量的长度.
+2维向量、3维向量的长度常被称作向量的\DefineConcept{模}（module），记作\(\abs{\a}\).
+高维（\(n > 3\)）向量的长度常被称作向量的\DefineConcept{范数}（norm），记作\(\norm{\a}\).
+\end{definition}
+
+\begin{property}
+显然有向量的长度为非负实数，即\(\abs{\a}\geq0\).
+\end{property}
+
+\begin{definition}
+长度为1的向量被称为\DefineConcept{单位向量}.
+\end{definition}
+
+\begin{definition}
+\def\f{\frac{1}{\abs{\a}}}
+设\(\a\)满足\(\abs{\a}>0\).
+用\(\f\)数乘\(\a\)，
+称为“将\(\a\) \DefineConcept{单位化}”，
+得单位向量\(\f\a\).
+\end{definition}
+
+尽管我们通常出于几何（特别是欧式几何）的考量，
+像上面一样将向量\(\a\)的模（或范数）定义为\(\sqrt{\vectorinnerproduct{\a}{\a}}\)，
+不过我们还可以定义其他形式的模（或范数）.
+观察上面的模（或范数）的定义，我们可以发现，
+向量的模（或范数）实际上是满足以下3条性质的映射
+\(f\colon K^n \to K, \mat{x} \mapsto m\)：
+\begin{enumerate}
+	\item {\bf 非负性}，
+	即\((\forall \mat{x} \in K^n)[f(\mat{x}) \geq 0]\)；
+	\item {\bf 齐次性}，
+	即\((\forall \mat{x} \in K^n)(\forall c \in P)[f(c \mat{x}) = \abs{c} f(\mat{x})]\)；
+	\item {\bf 三角不等式}，
+	即\((\forall \mat{x},\mat{y} \in K^n)[f(\mat{x}+\mat{y}) \leq f(\mat{x}) + f(\mat{y})]\).
+\end{enumerate}
+
+据此我们可以定义p范数如下：
+\begin{definition}\label{definition:向量与矩阵.p范数}
+形如\[
+	f\colon\mathbb{R}^n \to \mathbb{R},
+	\mat{x} = \opair{\AutoTuple{x}{n}}
+	\mapsto
+	\sqrt[p]{\abs{x_1}^p + \abs{x_2}^p + \dotsb + \abs{x_n}^p}
+\]的这一类映射\(f(p)\ (p\geq1)\)，
+称为 \DefineConcept{\(p\)范数}，
+记作\(\norm{\mat{x}}_p\).
+\end{definition}
+
+易证\[
+\begin{array}{lll}
+\norm{\mat{x}}_1 &=& \abs{x_1} + \abs{x_2} + \dotsb + \abs{x_n}, \\
+\norm{\mat{x}}_2 &=& \sqrt{x_1^2 + x_2^2 + \dotsb + x_n^2}, \\
+\norm{\mat{x}}_\infty &=& \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_n}\}.
+\end{array}
+\]
