@@ -92,27 +92,73 @@
 	\end{bmatrix}.
 \]
 
+\subsection{矩阵的分块}
+\begin{definition}
+设\(\A\in M_{s \times n}(K)\)；
+给定介于\(1\)和\(s\)之间的两个正整数\(a,b\)，
+以及介于\(1\)和\(n\)之间的两个正整数\(c,d\).
+令\[
+	X=\Set{ x\in\mathbb{Z}^+ \given 1 \leqslant a \leqslant x \leqslant b \leqslant s },
+	\qquad
+	Y=\Set{ y\in\mathbb{Z}^+ \given 1 \leqslant c \leqslant y \leqslant d \leqslant n }.
+\]
+我们把映射\(\A\)在\(X \times Y\)上的限制\[
+	\A\upharpoonright(X \times Y)
+\]称为“\(\A\)的\DefineConcept{子块}”.
+以子块为元素的矩阵称为\DefineConcept{分块矩阵}.
+\end{definition}
+
+我们可以把矩阵\(\A\)分解成如下形式：
+\[
+	\begin{matrix}
+		& \begin{matrix} n_1 & n_2 & \dots & n_r \end{matrix} \\
+			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
+			\A_{11} & \A_{12} & \dots & \A_{1r} \\
+			\A_{21} & \A_{22} & \dots & \A_{2r} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			\A_{t1} & \A_{t2} & \dots & \A_{tr}
+		\end{bmatrix}.
+	\end{matrix}
+\]
+
 \subsection{矩阵的行向量组、列向量组}
-把第\(i\ (i=1,2,\dotsc,s)\)行上的元素取出来，构成一个行向量\[
-	\begin{bmatrix}
+设\(\A\in M_{s \times n}(K)\).
+现在我们以\(\A\)为对象，研究两种特殊的分块方式.
+
+如果我们只把第\(i\ (i=1,2,\dotsc,s)\)行上的元素取出来，
+构成一个行向量\[
+	\a=\begin{bmatrix}
 		a_{i1} & a_{i2} & \dots & a_{in}
 	\end{bmatrix},
 \]
-称之为“\(\A\)的第\(i\) \DefineConcept{行向量}”，
+或者说，我们取\[
+	\a=\A\upharpoonright(\{i\}\times\{1,\dotsc,n\}),
+\]
+那么称“\(\a\)是\(\A\)的第\(i\) \DefineConcept{行向量}”，
 记作\(\MatrixEntry\A{i,*}\).
+
+如果我们只把第\(j\ (j=1,2,\dotsc,n)\)列上的元素取出来，
+构成一个列向量\[
+	\b=\begin{bmatrix}
+		a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
+	\end{bmatrix},
+\]
+或者说，我们取\[
+	\b=\A\upharpoonright(\{1,\dotsc,s\}\times\{j\}),
+\]
+那么称“\(\b\)是\(\A\)的第\(j\) \DefineConcept{列向量}”，
+记作\(\MatrixEntry\A{*,j}\).
+
 把\(\A\)的全部行向量\[
+	\Set{ \a \given \a=\A\upharpoonright(\{i\}\times\{1,\dotsc,n\}), i=1,2,\dotsc,s }
+\]或者说\[
 	\Set{\MatrixEntry\A{1,*},\MatrixEntry\A{2,*},\dotsc,\MatrixEntry\A{s,*}}
 \]
 称为“\(\A\)的\DefineConcept{行向量组}”.
 
-把第\(j\ (j=1,2,\dotsc,n)\)列上的元素取出来，构成一个列向量\[
-	\begin{bmatrix}
-		a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
-	\end{bmatrix},
-\]
-称之为“\(\A\)的第\(j\) \DefineConcept{列向量}”，
-记作\(\MatrixEntry\A{*,j}\).
 把\(\A\)的全部列向量\[
+	\Set{ \b \given \b=\A\upharpoonright(\{1,\dotsc,s\}\times\{j\}), j=1,2,\dotsc,n }
+\]或者说\[
 	\Set{\MatrixEntry\A{*,1},\MatrixEntry\A{*,2},\dotsc,\MatrixEntry\A{*,n}}
 \]
 称为“\(\A\)的\DefineConcept{列向量组}”.
@@ -532,126 +578,86 @@ f(\A) \x = a_0 \x + a_1 \A\x + a_2 \A^2 \x + \dotsb + a_k \A^k \x. \tag1
 \]
 \end{example}
 
-\subsection{矩阵的分块}
-\begin{definition}
-设\(\A\)是\(s \times n\)矩阵，用一些水平线与垂直线（通常不画出来）将\(\A\)分成若干块小矩阵，每一块称为\(\A\)的\DefineConcept{子块}，以子块为元素的矩阵叫\DefineConcept{分块阵}.
-
-将\(\A\)按行分块，\[
-\A=\begin{bmatrix} \A_1 \\ \A_2 \\ \vdots \\ \A_s \end{bmatrix},
-\]其中\(\A_i=(a_{i1},a_{i2},\dotsc,a_{in})\)为\(\A\)的第\(i\)（\(i=1,2,\dotsc,s\)）行（向量）.
-
-将\(\A\)按列分块，\[
-\A=\begin{bmatrix} \a_1 & \a_2 & \dots & \a_n \end{bmatrix},
-\]其中\(\a_j=(a_{1j},a_{2j},\dotsc,a_{sj})^T\)为\(\A\)的第\(j\)（\(j=1,2,\dotsc,n\)）列（向量）.
-
-\(\A\)的分块矩阵的一般形式为\[
-\begin{matrix}
-& \begin{matrix} n_1 & n_2 & \dots & n_r \end{matrix} \\
-\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
-\A_{11} & \A_{12} & \dots & \A_{1r} \\
-\A_{21} & \A_{22} & \dots & \A_{2r} \\
-\vdots & \vdots & \ddots & \vdots \\
-\A_{t1} & \A_{t2} & \dots & \A_{tr}
-\end{bmatrix}
-\end{matrix}
-\]
-\end{definition}
-
-\begin{theorem}
+\subsection{分块矩阵的运算}
 分块阵的运算服从以下规律：
 \begin{enumerate}
-\item {\bf 分块阵的加法}
+	\item {\bf 分块阵的加法}
 
-设\(\A,\B \in P^{s \times n}\)，
-若将\(\A\)、\(\B\)按同样的规则分块为
-\[
-    \A=(\A_{ij})_{t \times r}, \qquad
-    \B=(\B_{ij})_{t \times r},
-\]
-其中\(\A_{ij}\)、\(\B_{ij}\)都是\(s_i \times n_j\)矩阵
-（\(i=1,2,\dotsc,t;\;j=1,2,\dotsc,r\)），
-则\[
-    \A+\B=(\A_{ij}+\B_{ij})_{t \times r}.
-\]
+	设\(\A,\B \in M_{s \times n}(K)\)，
+	若将\(\A\)和\(\B\)按同样的规则分块为\[
+		\A=(\A_{ij})_{t \times r}, \qquad
+		\B=(\B_{ij})_{t \times r},
+	\]
+	其中\(\A_{ij},\B_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
+	则\[
+		\A+\B=(\A_{ij}+\B_{ij})_{t \times r}.
+	\]
 
-\item {\bf 分块阵的数乘}
-\[
-    k\A=(k\A_{ij})_{t \times r}.
-\]
+	\item {\bf 分块阵的数乘}
 
-\item {\bf 分块阵的转置}
-设\(\A=(\A_{ij})_{t \times r}\)，则\[
-    \A^T=(\A_{ji}^T)_{r \times t}.
-\]
-这就是说，在转置分块阵时，要将每个子块转置.
+	设\(\A\in M_{s \times n}(K)\)，
+	若将\(\A\)分块为\[
+		\A=(\A_{ij})_{t \times r},
+	\]
+	其中\(\A_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
+	则\[
+		k\A=(k\A_{ij})_{t \times r}.
+	\]
 
-\item {\bf 分块阵的乘法}
-设\(\A \in P^{s \times n}\)，\(\B \in P^{n \times m}\)，
-若将\(\A\)、\(\B\)分别分块为
-\[
-    \A=(\A_{ij})_{t \times r}, \qquad
-    \B=(\B_{jk})_{r \times p},
-\]
-且\(\A\)的列的分块法与\(\B\)的行的分块法一致，即
-\begin{align*}
-    \A = \begin{matrix}
-        & \begin{matrix} n_1 & n_2 & \dots & n_r \end{matrix} \\
-        \begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
-        \A_{11} & \A_{12} & \dots & \A_{1r} \\
-        \A_{21} & \A_{22} & \dots & \A_{2r} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        \A_{t1} & \A_{t2} & \dots & \A_{tr}
-        \end{bmatrix}
-    \end{matrix}
-    ,\qquad
-    \B = \begin{matrix}
-        & \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
-        \begin{matrix} n_1 \\ n_2 \\ \vdots \\ n_r \end{matrix} & \begin{bmatrix}
-        \B_{11} & \B_{12} & \dots & \B_{1p} \\
-        \B_{21} & \B_{22} & \dots & \B_{2p} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        \B_{r1} & \B_{r2} & \dots & \B_{rp}
-        \end{bmatrix},
-    \end{matrix}
-\end{align*}
-则
-\begin{align*}
-    \A\B = \begin{matrix}
-        & \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
-        \begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
-        \C_{11} & \C_{12} & \dots & \C_{1p} \\
-        \C_{21} & \C_{22} & \dots & \C_{2p} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        \C_{t1} & \C_{t2} & \dots & \C_{tp}
-        \end{bmatrix}
-    \end{matrix}.
-\end{align*}
-其中\(\C_{ij}=\sum\limits_{k=1}^r \A_{ik} \B_{kj}\ (i=1,2,\dotsc,t;\;j=1,2,\dotsc,p)\).
+	\item {\bf 分块阵的转置}
+
+	设\(\A\in M_{s \times n}(K)\)，
+	若将\(\A\)分块为\[
+		\A=(\A_{ij})_{t \times r},
+	\]
+	其中\(\A_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
+	则\[
+		\A^T=(\A_{ji}^T)_{r \times t}.
+	\]
+	这就是说，在转置分块阵时，要将每个子块转置.
+
+	\item {\bf 分块阵的乘法}
+
+	设\(\A\in M_{s \times n}(K),
+	\B\in M_{n \times m}(K)\)，
+	若将\(\A\)、\(\B\)分别分块为\[
+		\A=(\A_{ij})_{t \times r}, \qquad
+		\B=(\B_{jk})_{r \times p},
+	\]
+	且\(\A\)的列的分块法与\(\B\)的行的分块法一致，即\[
+		\A = \begin{matrix}
+			& \begin{matrix} n_1 & n_2 & \dots & n_r \end{matrix} \\
+			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
+			\A_{11} & \A_{12} & \dots & \A_{1r} \\
+			\A_{21} & \A_{22} & \dots & \A_{2r} \\
+			\vdots & \vdots & & \vdots \\
+			\A_{t1} & \A_{t2} & \dots & \A_{tr}
+			\end{bmatrix}
+		\end{matrix},
+		\qquad
+		\B = \begin{matrix}
+			& \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
+			\begin{matrix} n_1 \\ n_2 \\ \vdots \\ n_r \end{matrix} & \begin{bmatrix}
+			\B_{11} & \B_{12} & \dots & \B_{1p} \\
+			\B_{21} & \B_{22} & \dots & \B_{2p} \\
+			\vdots & \vdots & & \vdots \\
+			\B_{r1} & \B_{r2} & \dots & \B_{rp}
+			\end{bmatrix},
+		\end{matrix}
+	\]
+	则\[
+		\A\B = \begin{matrix}
+			& \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
+			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
+			\C_{11} & \C_{12} & \dots & \C_{1p} \\
+			\C_{21} & \C_{22} & \dots & \C_{2p} \\
+			\vdots & \vdots & & \vdots \\
+			\C_{t1} & \C_{t2} & \dots & \C_{tp}
+			\end{bmatrix}
+		\end{matrix}.
+	\]
+	其中\(\C_{ij}=\sum\limits_{k=1}^r \A_{ik} \B_{kj}\ (i=1,2,\dotsc,t;j=1,2,\dotsc,p)\).
 \end{enumerate}
-\end{theorem}
-
-\begin{example}
-设\(\A\)、\(\B\)都是\(n\)阶上三角阵，证明：\(\A\B\)是上三角阵.
-\begin{proof}
-利用数学归纳法.当\(n=1\)时，\(\A=a\)，\(\B=b\)，\(\A\B = ab\)，结论成立.
-假设\(n=k\)时上三角阵的乘积是上三角阵.当\(n=k+1\)时，对矩阵\(\A\)和\(b\)分块如下：\[
-\A = \begin{bmatrix}
-a_{11} & \A_2 \\
-\z & \A_4
-\end{bmatrix},
-\qquad
-\B = \begin{bmatrix}
-b_{11} & \B_2 \\
-\z & \B_4
-\end{bmatrix},
-\]其中\(\A_4\)和\(\B_4\)都是\(k\)阶上三角阵，由归纳假设，\(\A_4 \B_4\)是\(k\)阶上三角阵，则\[
-\A\B = \begin{bmatrix}
-a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
-\z & \A_4 \B_4
-\end{bmatrix},
-\]即\(\A\B\)是\(k+1\)阶上三角阵.
-\end{proof}
-\end{example}
 
 \section{特殊矩阵}
 \subsection{三角矩阵}
@@ -673,6 +679,37 @@ a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
 	简称\DefineConcept{下三角阵}.
 \end{enumerate}
 \end{definition}
+
+\begin{example}
+设\(\A,\B\)都是\(n\)阶上三角阵，证明：\(\A\B\)是上三角阵.
+\begin{proof}
+利用数学归纳法.
+当\(n=1\)时，\(\A=a\)，\(\B=b\)，\(\A\B = ab\)，结论成立.
+
+假设\(n=k\)时上三角阵的乘积是上三角阵.
+当\(n=k+1\)时，对矩阵\(\A\)和\(b\)分块如下：\[
+	\A = \begin{bmatrix}
+		a_{11} & \A_2 \\
+		\z & \A_4
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		b_{11} & \B_2 \\
+		\z & \B_4
+	\end{bmatrix},
+\]
+其中\(\A_4\)和\(\B_4\)都是\(k\)阶上三角阵，
+由归纳假设，\(\A_4 \B_4\)是\(k\)阶上三角阵，
+则\[
+	\A\B = \begin{bmatrix}
+		a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
+		\z & \A_4 \B_4
+	\end{bmatrix},
+\]
+即\(\A\B\)是\(k+1\)阶上三角阵.
+\end{proof}
+\end{example}
+
 
 \subsection{对角矩阵}
 \begin{definition}
