@@ -1,34 +1,123 @@
 \chapter{向量、矩阵及其基本运算}
+\section{矩阵与向量的概念}
+\subsection{矩阵与向量的基本概念}
 %@see: https://math.stackexchange.com/a/1162585/591741
-\section{向量}
-\subsection{向量的概念}
 \begin{definition}
-由\(n\)个数构成的有序数组，若排成一行记作\[
-\a = (\alpha_1, \alpha_2, \dotsc, \alpha_n),
-\]则称为\(n\)维\DefineConcept{行向量}；
-若排成一列记作\[
-\a = \begin{bmatrix}
-a_1 \\ a_2 \\ \vdots \\ a_n
-\end{bmatrix},
-\]则称作\(n\)维\DefineConcept{列向量}.
-并称数\(a_i\)为\(\a\)的第\(i\)个\DefineConcept{分量}（\(i=1,2,\dotsc,n\)）.
-
-\(n\)维行向量和\(n\)维列向量统称为\(n\)维\DefineConcept{向量}（vector），常用小写黑体字母表示.
+设\(s,n\in\mathbb{Z}^+\)，\(K\)是数域.
+我们把从\(\{1,\dotsc,s\}\times\{1,\dotsc,n\}\)到\(K\)的映射，
+称为“数域\(K\)上的\(s \times n\)矩阵（matrix）”.
+通常用一个黑体大写拉丁字母（如\(\A,\B,\C\)等）表示矩阵.
 \end{definition}
 
-\subsection{向量的关系与运算}
-\begin{definition}
-对于\(n\)维向量\(\a = (\AutoTuple{a}{n})\)和\(\b = (\AutoTuple{b}{n})\).
-如果这两个向量对应的分量全部相等，
-即\[
-	a_i = b_i,
-	\quad
-	i=1,2,\dotsc,n;
+为了简化描述，我们定义：\[
+	M_{s \times n}(K)
+	\defeq
+	\Set{
+		\A \given
+		\text{\(\A\)是数域\(K\)上的\(s \times n\)矩阵}
+	}.
 \]
-则称“\(\a\)与\(\b\) \DefineConcept{相等}”，
-记作\(\a = \b\).
-\end{definition}
 
+设\(\A\in M_{s \times n}(K)\).
+我们把\(s\)称为“\(\A\)的\DefineConcept{行数}”，
+把\(n\)称为“\(\A\)的\DefineConcept{列数}”.
+把\[
+	\A(i,j)
+	\quad(i=1,2,\dotsc,s;j=1,2,\dotsc,n)
+\]称为“\(\A\)的\((i,j)\)元素”
+或“\(\A\)的第\(i\)行第\(j\)列\DefineConcept{元素}”.
+
+对于任意给定的两个矩阵\(\A\)和\(\B\)，
+如果它们行数、列数都相同，
+则称“\(\A\)与\(\B\) \DefineConcept{同型}”.
+
+如果矩阵\(\A\)的行数\(s\)恰好等于它的列数\(n\)，
+我们就把它称为“\(n\)阶矩阵”或“\(n\)阶方阵”.
+定义：\[
+	M_n(K)
+	\defeq
+	\Set{
+		\B \given
+		\text{\(\B\)是数域\(K\)上的\(n\)阶矩阵}
+	}.
+\]
+
+设\(\A\in M_n(K)\).
+我们把\(\A(1,1),\A(2,2),\dotsc,\A(n,n)\)称为“\(\A\)的\DefineConcept{主对角线}上的元素”.
+
+我们把行数为\(1\)、列数为\(n\)的矩阵称为“\(n\)维\DefineConcept{行向量}（row vector）”；
+把列数为\(1\)、行数为\(n\)的矩阵称为“\(n\)维\DefineConcept{列向量}（column vector）”.
+\(n\)维行向量和\(n\)维列向量统称为“\(n\)维\DefineConcept{向量}（vector）”.
+通常用一个黑体小写希腊字母（如\(\a,\b,\g\)等）表示向量.
+
+设\(\a\in M_{s \times 1}(K)\).
+我们把\(s\)称为“\(\a\)的\DefineConcept{维数}”.
+定义：\[
+	\a(i) \defeq \a(i,1).
+\]
+把\(\a(i)\ (i=1,2,\dotsc,s)\)称为“\(\a\)的第\(i\)个\DefineConcept{分量}”.
+
+设\(\b\in M_{1 \times n}(K)\).
+把\(n\)称为“\(\b\)的\DefineConcept{维数}”.
+定义：\[
+	\b(i) \defeq \b(1,i).
+\]
+把\(\b(i)\ (i=1,2,\dotsc,n)\)称为“\(\b\)的第\(i\)个\DefineConcept{分量}”.
+
+有时候为了强调矩阵的行数和列数，
+我们会在表示矩阵的字母的右下角标注矩阵的形状，例如，
+如果\(\A\in M_{s \times n}(K)\)，那么我们可以写出\(\A_{s \times n}\)；
+如果\(\B\in M_n(K)\)，那么我们可以写出\(\B_n\).
+
+“矩阵”之所以得名，是因为我们可以把矩阵\(\A\)写成\(s\)行\(n\)列的矩形表，再加上括号：\[
+	\begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{s1} & a_{s2} & \dots & a_{sn}
+	\end{bmatrix},
+\]
+其中\(a_{ij}=\A(i,j)\ (i=1,2,\dotsc,s;j=1,2,\dotsc,n)\).
+有时候为了强调矩阵的元素，
+我们会把\(\A_{s \times n}\)记作\((a_{ij})_{s \times n}\).
+
+类似地，我们把行向量表示为\[
+	\begin{bmatrix}
+		a_1 & a_2 & \dots & a_n
+	\end{bmatrix};
+\]
+把列向量表示为\[
+	\begin{bmatrix}
+		a_1 \\ a_2 \\ \vdots \\ a_n
+	\end{bmatrix}.
+\]
+
+\subsection{矩阵的行向量组、列向量组}
+把第\(i\ (i=1,2,\dotsc,s)\)行上的元素取出来，构成一个行向量\[
+	\begin{bmatrix}
+		a_{i1} & a_{i2} & \dots & a_{in}
+	\end{bmatrix},
+\]
+称之为“\(\A\)的第\(i\) \DefineConcept{行向量}”，
+记作\(\MatrixEntry\A{i,*}\).
+把\(\A\)的全部行向量\[
+	\Set{\MatrixEntry\A{1,*},\MatrixEntry\A{2,*},\dotsc,\MatrixEntry\A{s,*}}
+\]
+称为“\(\A\)的\DefineConcept{行向量组}”.
+
+把第\(j\ (j=1,2,\dotsc,n)\)列上的元素取出来，构成一个列向量\[
+	\begin{bmatrix}
+		a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
+	\end{bmatrix},
+\]
+称之为“\(\A\)的第\(j\) \DefineConcept{列向量}”，
+记作\(\MatrixEntry\A{*,j}\).
+把\(\A\)的全部列向量\[
+	\Set{\MatrixEntry\A{*,1},\MatrixEntry\A{*,2},\dotsc,\MatrixEntry\A{*,n}}
+\]
+称为“\(\A\)的\DefineConcept{列向量组}”.
+
+\section{向量的线性运算}
 \begin{definition}
 对于\(n\)维向量\(\a = (\AutoTuple{a}{n})\)和\(\b = (\AutoTuple{b}{n})\).
 \begin{enumerate}
@@ -165,104 +254,7 @@ a_1 \\ a_2 \\ \vdots \\ a_n
 \end{array}
 \]
 
-\section{矩阵的概念与运算}
-\subsection{矩阵的基本概念}
-数域\(K\)中\(s \times n\)个数排成的\(s\)行\(n\)列的矩形表，加上方括号：\[
-	\begin{bmatrix}
-		a_{11} & a_{12} & \dots & a_{1n} \\
-		a_{21} & a_{22} & \dots & a_{2n} \\
-		\vdots & \vdots & & \vdots \\
-		a_{s1} & a_{s2} & \dots & a_{sn}
-	\end{bmatrix}
-\]
-称为数域\(K\)上的\(s \times n\)矩阵（matrix），
-通常用一个黑体大写拉丁字母（如\(\A,\B,\C\)）表示.
-我们把\(s\)称为“矩阵的\DefineConcept{行数}”，
-把\(n\)称为“矩阵的\DefineConcept{列数}”.
-有时候为了强调矩阵的行数和列数，
-我们会在表示矩阵的字母的右下角标注矩阵的形状，
-例如\(\A_{s \times n}\).
-
-上面这个矩阵也记作\((a_{ij})_{s \times n}\).
-
-我们把\(a_{ij}\ (i=1,2,\dotsc,s;j=1,2,\dotsc,n)\)称为
-“矩阵\(\A\)的第\(i\)行第\(j\)列\DefineConcept{元素}”，
-或“矩阵\(\A\)的\(\opair{i,j}\) \DefineConcept{元素}（entry）”，
-记作\(\MatrixEntry\A{i,j}\).
-
-把第\(i\ (i=1,2,\dotsc,s)\)行上的元素取出来，构成一个行向量\[
-	\begin{bmatrix}
-		a_{i1} & a_{i2} & \dots & a_{in}
-	\end{bmatrix},
-\]
-称之为“\(\A\)的第\(i\) \DefineConcept{行向量}”，
-记作\(\MatrixEntry\A{i,*}\).
-把\(\A\)的全部行向量\[
-	\Set{\MatrixEntry\A{1,*},\MatrixEntry\A{2,*},\dotsc,\MatrixEntry\A{s,*}}
-\]
-称为“\(\A\)的\DefineConcept{行向量组}”.
-
-把第\(j\ (j=1,2,\dotsc,n)\)列上的元素取出来，构成一个列向量\[
-	\begin{bmatrix}
-		a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
-	\end{bmatrix},
-\]
-称之为“\(\A\)的第\(j\) \DefineConcept{列向量}”，
-记作\(\MatrixEntry\A{*,j}\).
-把\(\A\)的全部列向量\[
-	\Set{\MatrixEntry\A{*,1},\MatrixEntry\A{*,2},\dotsc,\MatrixEntry\A{*,n}}
-\]
-称为“\(\A\)的\DefineConcept{列向量组}”.
-
-当一个矩阵的行数\(s\)等于列数\(n\)时，
-我们把这个矩阵称为“\(n\)阶矩阵”或“\(n\)阶方阵”.
-
-对于\(n\)阶矩阵\(\A\)，
-我们把\(a_{11},a_{22},\dotsc,a_{nn}\)称为
-“\(\A\)的\DefineConcept{主对角线}上的元素”.
-
-为了简化描述，我们定义：\[
-	M_{s \times n}(K)
-	\defeq
-	\Set{
-		\A \given
-		\text{\(\A\)是数域\(K\)上的\(s \times n\)矩阵}
-	},
-\]\[
-	M_n(K)
-	\defeq
-	\Set{
-		\B \given
-		\text{\(\B\)是数域\(K\)上的\(n\)阶矩阵}
-	}.
-\]
-并定义：\[
-	M_{s \times n}^*(K) \defeq M_{s \times n}(K)-\{\z\},
-	\qquad
-	M_n^*(K) \defeq M_n(K)-\{\z\}.
-\]
-
-如果两个矩阵行数相同且列数相同，
-则称两者\DefineConcept{同型}.
-
-特别地，可以视\(n\)维行向量为\(1 \times n\)矩阵，\(n\)维列向量为\(n \times 1\)矩阵.
-
-\subsection{矩阵的线性运算}
-\begin{definition}
-设\(\A,\B\in M_{s\times n}(K)\)，
-\(\A=(a_{ij})_{s \times n}\)，
-\(\B=(b_{ij})_{s \times n}\).
-如果它们对应的元素分别相等，
-即\[
-	a_{ij} = b_{ij},
-	\quad
-	i=1,2,\dotsc,s;
-	j=1,2,\dotsc,n;
-\]
-则称“\(\A\)与\(\B\) \DefineConcept{相等}”，
-记作\(\A=\B\).
-\end{definition}
-
+\section{矩阵的线性运算}
 \begin{definition}
 设\(\A,\B\in M_{s\times n}(K)\)，
 \(\A=(a_{ij})_{s \times n}\)，
@@ -300,6 +292,12 @@ a_1 \\ a_2 \\ \vdots \\ a_n
 	\]为\(\A\)的\DefineConcept{负矩阵}，记作\(-\A\).
 \end{enumerate}
 \end{definition}
+
+定义\DefineConcept{非零矩阵}：\[
+	M_{s \times n}^*(K) \defeq M_{s \times n}(K)-\{\z\},
+	\qquad
+	M_n^*(K) \defeq M_n(K)-\{\z\}.
+\]
 
 \begin{theorem}
 矩阵的线性运算满足以下运算规律：
@@ -743,71 +741,77 @@ a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
 \section{特殊矩阵}
 \subsection{三角矩阵}
 \begin{definition}
-设方阵\(\A=(a_{ij})_n\).
-如果\(\A\)满足当\(i>j\)时必有\(a_{ij} = 0\)成立，称之为\DefineConcept{上三角形矩阵}（或\DefineConcept{上三角阵}）.
-如果\(\A\)满足当\(i<j\)时必有\(a_{ij} = 0\)成立，称之为\DefineConcept{下三角形矩阵}（或\DefineConcept{下三角阵}）.
+设\(\A=(a_{ij})_n\).
+\begin{enumerate}
+	\item 如果\(\A\)满足\[
+		a_{ij} = 0
+		\quad(i>j),
+	\]
+	则称之为\DefineConcept{上三角形矩阵}，
+	简称\DefineConcept{上三角阵}.
+
+	\item 如果\(\A\)满足\[
+		a_{ij} = 0
+		\quad(i<j),
+	\]
+	则称之为\DefineConcept{下三角形矩阵}，
+	简称\DefineConcept{下三角阵}.
+\end{enumerate}
 \end{definition}
 
 \subsection{对角矩阵}
 \begin{definition}
-若方阵\(\A=(a_{ij})_n\)满足：
-\begin{enumerate}
-\item 当\(i \neq j\)时，必有\(a_{ij} = 0\)成立；
-\item 存在\(i\)使得\(a_{ii} \neq 0\).
-\end{enumerate}
-则称\(\A\)为\DefineConcept{对角矩阵}，记作\(\diag(a_{11},a_{22},\dotsc,a_{nn})\).
+若方阵\(\A=(a_{ij})_n\)满足：\[
+	[i \neq j \implies a_{ij} = 0]
+	\land
+	(\exists i)[a_{ii}\neq0].
+\]
+则称\(\A\)为\DefineConcept{对角矩阵}，
+记作\(\diag(a_{11},a_{22},\dotsc,a_{nn})\).
 \end{definition}
 
 \subsection{对称矩阵，厄米矩阵}
 \begin{definition}
-若矩阵\(\A \in M_n(\mathbb{C})\)满足\[
+若矩阵\(\A \in M_n(K)\)满足\[
     \A^T = \A,
 \]
 则称\(\A\)为\DefineConcept{对称矩阵}（symmetric matrix）.
 \end{definition}
 
 \begin{definition}
-如果矩阵\(\A \in M_n(\mathbb{C})\)满足\[
+如果矩阵\(\A \in M_n(K)\)满足\[
     \A^H = \A,
 \]
 那么把\(\A\)称为\DefineConcept{厄米矩阵}（Hermitian matrix）.
 \end{definition}
 
-
 \begin{example}
-设矩阵\(\A = (a_{ij})_n \in \mathbb{R}^{n \times n}\)，\(\A \neq \z\)，试证：\(\A \A^T\)为对称矩阵，且\(\A \A^T \neq \z\).
+设矩阵\(\A = (a_{ij})_n\).
+试证：\(\A\A^T\)为对称矩阵.
 \begin{proof}
-因为\((\A \A^T)^T = (\A^T)^T \A^T = \A \A^T\)，所以\(\A \A^T\)是对称矩阵.设\[
-\B = (b_{ij})_n = \A \A^T = \begin{bmatrix}
-a_{11} & a_{12} & a_{13} \\
-a_{21} & a_{22} & a_{23} \\
-a_{31} & a_{32} & a_{33} \\
-\end{bmatrix} \begin{bmatrix}
-a_{11} & a_{21} & a_{31} \\
-a_{12} & a_{22} & a_{32} \\
-a_{13} & a_{23} & a_{33} \\
-\end{bmatrix},
-\]则\[
-b_{ij} = a_{i1} a_{j1} + a_{i2} a_{j2} + a_{i3} a_{j3},
-\quad i,j=1,2,3.
-\]特别地，\(\B\)主对角线上的元素\(b_{ii}\)（\(i=1,2,3\)）是实数的平方和，即\[
-b_{ii} = a_{i1}^2 + a_{i2}^2 + a_{i3}^2 \geq 0,
-\quad i=1,2,3.
-\]因为\(\A \neq \z\)，所以存在\(a_{kl} \neq 0\)，从而有\(b_{kk} > 0\)，故\(\B = \A \A^T \neq \z\).
+因为\((\A \A^T)^T = (\A^T)^T \A^T = \A \A^T\)，所以\(\A \A^T\)是对称矩阵.
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A\)和\(\B\)是同阶对称矩阵，试证：\(\A\B\)是对称矩阵的充要条件是\(\A\B = \B\A\).
+设\(\A\)和\(\B\)是同阶对称矩阵.
+试证：\(\A\B\)是对称矩阵的充要条件是\(\A\B = \B\A\).
 \begin{proof}
-因为\(\A\)和\(\B\)都是对称矩阵，所以\(\A^T = \A\)，\(\B^T = \B\).
-又因为\(\A\B = \B\A\)，\((\A\B)^T = \B^T \A^T = \B\A = \A\B\)，即\(\A\B\)是对称矩阵.
+因为\(\A\)和\(\B\)都是对称矩阵，所以\[
+	\A^T = \A, \qquad
+	\B^T = \B.
+\]
+又因为\(\A\B = \B\A\)，\[
+	(\A\B)^T = \B^T \A^T = \B\A = \A\B,
+\]
+所以\(\A\B\)是对称矩阵.
 \end{proof}
 \end{example}
 
 \subsection{反对称矩阵}
 \begin{definition}
-若方阵\(\A\)满足条件\(\A^T = -\A\)，则称\(\A\)为\DefineConcept{反对称矩阵}（antisymmetric matrix）或\DefineConcept{斜对称矩阵}.
+若方阵\(\A\)满足条件\(\A^T = -\A\)，
+则称\(\A\)为\DefineConcept{反对称矩阵}（antisymmetric matrix）或\DefineConcept{斜对称矩阵}.
 \end{definition}
 
 \begin{property}
