@@ -163,6 +163,38 @@
 \]
 称为“\(\A\)的\DefineConcept{列向量组}”.
 
+\subsection{矩阵的转置}
+\begin{definition}
+设\(\A\in M_{s \times n}(K),
+\B\in M_{n \times s}(K)\).
+如果\[
+	\B(i,j)=\A(j,i),
+	\quad i=1,2,\dotsc,s;j=1,2,\dotsc,n,
+\]
+那么把\(\B\)称为“\(\A\)的\DefineConcept{转置矩阵}（transpose）”，
+记作\(\A^T\).
+\end{definition}
+矩阵的转置运算可以看作一个从\(M_{s \times n}(K)\)到\(M_{n \times s}(K)\)上的映射.
+
+\begin{definition}
+设矩阵\(\A \in M_{s \times n}(\mathbb{C})\).
+将\(\A\)转置后，再对各元素取共轭，
+称为“\(\A\)的\DefineConcept{共轭转置矩阵}（conjugate transpose）”，
+记作\(\A^H\)，即\[
+    \A^H \defeq \overline{\A^T} \equiv \overline{\A}^T.
+\]
+\end{definition}
+
+\begin{property}
+矩阵的转置满足以下性质：
+\begin{enumerate}
+	\item \((\A^T)^T = \A\)；
+	\item \((\A+\B)^T = \A^T + \B^T\)；
+	\item \((k\A)^T = k\A^T \quad(k \in P)\).
+\end{enumerate}
+\end{property}
+
+
 \section{向量的线性运算}
 \begin{definition}
 对于\(n\)维向量\(\a = (\AutoTuple{a}{n})\)和\(\b = (\AutoTuple{b}{n})\).
@@ -278,7 +310,167 @@
 \end{gather}
 \end{theorem}
 
-\subsection{矩阵的乘法}
+\section{特殊矩阵}
+\subsection{三角矩阵}
+\begin{definition}
+设\(\A=(a_{ij})_n\).
+\begin{enumerate}
+	\item 如果\(\A\)满足\[
+		a_{ij} = 0
+		\quad(i>j),
+	\]
+	则称之为\DefineConcept{上三角形矩阵}，
+	简称\DefineConcept{上三角阵}.
+
+	\item 如果\(\A\)满足\[
+		a_{ij} = 0
+		\quad(i<j),
+	\]
+	则称之为\DefineConcept{下三角形矩阵}，
+	简称\DefineConcept{下三角阵}.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+设\(\A,\B\)都是\(n\)阶上三角阵，证明：\(\A\B\)是上三角阵.
+\begin{proof}
+利用数学归纳法.
+当\(n=1\)时，\(\A=a\)，\(\B=b\)，\(\A\B = ab\)，结论成立.
+
+假设\(n=k\)时上三角阵的乘积是上三角阵.
+当\(n=k+1\)时，对矩阵\(\A\)和\(b\)分块如下：\[
+	\A = \begin{bmatrix}
+		a_{11} & \A_2 \\
+		\z & \A_4
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		b_{11} & \B_2 \\
+		\z & \B_4
+	\end{bmatrix},
+\]
+其中\(\A_4\)和\(\B_4\)都是\(k\)阶上三角阵，
+由归纳假设，\(\A_4 \B_4\)是\(k\)阶上三角阵，
+则\[
+	\A\B = \begin{bmatrix}
+		a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
+		\z & \A_4 \B_4
+	\end{bmatrix},
+\]
+即\(\A\B\)是\(k+1\)阶上三角阵.
+\end{proof}
+\end{example}
+
+\subsection{对角矩阵}
+\begin{definition}
+若方阵\(\A=(a_{ij})_n\)满足：\[
+	[i \neq j \implies a_{ij} = 0]
+	\land
+	(\exists i)[a_{ii}\neq0].
+\]
+则称\(\A\)为\DefineConcept{对角矩阵}，
+记作\(\diag(a_{11},a_{22},\dotsc,a_{nn})\).
+\end{definition}
+
+\subsection{对称矩阵，厄米矩阵}
+\begin{definition}
+若矩阵\(\A \in M_n(K)\)满足\[
+    \A^T = \A,
+\]
+则称\(\A\)为\DefineConcept{对称矩阵}（symmetric matrix）.
+\end{definition}
+
+\begin{definition}
+如果矩阵\(\A \in M_n(K)\)满足\[
+    \A^H = \A,
+\]
+那么把\(\A\)称为\DefineConcept{厄米矩阵}（Hermitian matrix）.
+\end{definition}
+
+\begin{example}
+设矩阵\(\A = (a_{ij})_n\).
+试证：\(\A\A^T\)为对称矩阵.
+\begin{proof}
+因为\((\A \A^T)^T = (\A^T)^T \A^T = \A \A^T\)，所以\(\A \A^T\)是对称矩阵.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)和\(\B\)是同阶对称矩阵.
+试证：\(\A\B\)是对称矩阵的充要条件是\(\A\B = \B\A\).
+\begin{proof}
+因为\(\A\)和\(\B\)都是对称矩阵，所以\[
+	\A^T = \A, \qquad
+	\B^T = \B.
+\]
+又因为\(\A\B = \B\A\)，\[
+	(\A\B)^T = \B^T \A^T = \B\A = \A\B,
+\]
+所以\(\A\B\)是对称矩阵.
+\end{proof}
+\end{example}
+
+\subsection{反对称矩阵}
+\begin{definition}
+若方阵\(\A\)满足条件\(\A^T = -\A\)，
+则称\(\A\)为\DefineConcept{反对称矩阵}（antisymmetric matrix）或\DefineConcept{斜对称矩阵}.
+\end{definition}
+
+\begin{property}
+反对称矩阵主对角线上的元素全为零.
+\end{property}
+
+\begin{example}
+零矩阵\(\z\)是唯一一个既是实对称矩阵又是实反对称矩阵的矩阵.
+\begin{proof}
+\(\A^T = \A = -\A \implies 2\A = \A+\A = \z \implies \A = \z\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是一个方阵，证明：\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
+\begin{proof}
+因为\((\A+\A^T)^T = \A^T+\A\)，而\((\A-\A^T)^T = \A^T - \A = -(\A-\A^T)\)，所以\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
+显然有\(\A = \frac{\A + \A^T}{2} + \frac{\A - \A^T}{2}\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是3阶实对称矩阵，\(\B\)是3阶实反对称矩阵，\(\A^2 = \B^2\)，试证：\(\A = \B = \z\).
+\begin{proof}
+设\(\A = (a_{ij})_n\)，\(\B = (b_{ij})_n\).
+因为\(\A = \A^T\)，\(\A^2 = \A^T \A\)，所以\(\A^2\)的\(\opair{i,j}\)元素为\(a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}\).
+因为\(\B = -\B^T\)，\(\B^2 = -\B^T \B\)，所以\(\B^2\)的\(\opair{i,j}\)元素为\(-(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj})\).
+因为\(\A^2 = \B^2\)，所以\[
+a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}
+= -(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj}).
+\]
+
+当\(i=j\)时，上式变为\(
+a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
+= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2)
+\)，又由\(a_{ij},b_{ij} \in \mathbb{R}\)可知\(a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2 \geq 0\)，\(-(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) \leq 0\)，所以\[
+a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
+= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) = 0,
+\]进而有\[
+a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{幂零矩阵}
+\begin{definition}
+设矩阵\(\A \in M_n(K)\).
+若\(\exists m\in\mathbb{N}^+\)，
+使得\(\A^m = \z\)，
+则称“\(\A\)是\DefineConcept{幂零矩阵}”；
+称使得\(\A^m = \z\)成立的最小正整数\[
+    \min\Set{ m\in\mathbb{N}^+ \given \A^m = \z }
+\]为“\(\A\)的\DefineConcept{幂零指数}”.
+\end{definition}
+
+\section{矩阵的乘法}
 \begin{definition}
 设\(\A = (a_{ij})_{s \times n}\)，
 \(\B = (b_{ij})_{n \times m}\)，
@@ -458,34 +650,6 @@ f(\A) \x = a_0 \x + a_1 \A\x + a_2 \A^2 \x + \dotsb + a_k \A^k \x. \tag1
 \end{proof}
 \end{example}
 
-\subsection{矩阵的转置}
-\begin{definition}
-将矩阵\(\A=(a_{ij})_{s \times n}\)的行、列互换，
-得到矩阵\(\B=(b_{ij})_{n \times s}\)，
-其中\(b_{ij} = a_{ji}\)，
-那么把\(\B\)称为“\(\A\)的\DefineConcept{转置矩阵}（transpose）”，
-记作\(\A^T\).
-\end{definition}
-矩阵的转置运算可以看作从\(M_{s \times n}(K)\)到\(M_{n \times s}(K)\)的一个态射.
-
-\begin{definition}
-设矩阵\(\A \in M_{s \times n}(\mathbb{C})\).
-将\(\A\)转置后，再对各元素取共轭，
-称为“\(\A\)的\DefineConcept{共轭转置矩阵}（conjugate transpose）”，
-记作\(\A^H\)，即\[
-    \A^H \defeq \overline{\A^T} \equiv \overline{\A}^T.
-\]
-\end{definition}
-
-\begin{property}
-矩阵的转置满足以下性质：
-\begin{enumerate}
-	\item \((\A^T)^T = \A\)；
-	\item \((\A+\B)^T = \A^T + \B^T\)；
-	\item \((k\A)^T = k\A^T \quad(k \in P)\).
-\end{enumerate}
-\end{property}
-
 \begin{theorem}\label{theorem:矩阵.矩阵乘积的转置}
 设\(\A\in M_{s\times n}(K),
 \B\in M_{n \times t}(K)\)，
@@ -524,301 +688,70 @@ f(\A) \x = a_0 \x + a_1 \A\x + a_2 \A^2 \x + \dotsb + a_k \A^k \x. \tag1
 \end{corollary}
 
 \begin{example}
-设\(\A=\diag(\AutoTuple{a}{n})\)，\(\B=\diag(\AutoTuple{b}{n})\)，试证：\[
-\A \B = \diag(a_1 b_1,a_2 b_2,\dotsc,a_n b_n).
+设\(\A=\diag(\AutoTuple{a}{n}),
+\B=\diag(\AutoTuple{b}{n})\).
+那么\[
+	\A\B = \diag(a_1b_1,a_2b_2,\dotsc,a_nb_n).
 \]
 \end{example}
 
 \begin{example}
-设二阶矩阵\(\A=\begin{bmatrix} 1 & \lambda \\ 0 & 1 \end{bmatrix}\)，试证\(\A^k=\begin{bmatrix} 1 & k\lambda \\ 0 & 1 \end{bmatrix}\).
+设二阶矩阵\(\A=\begin{bmatrix} 1 & \lambda \\ 0 & 1 \end{bmatrix}\).
+试证\(\A^k=\begin{bmatrix} 1 & k\lambda \\ 0 & 1 \end{bmatrix}\).
 \end{example}
 
 \begin{example}
 设\[
-\A = \begin{bmatrix}
-\cos t & \sin t \\
--\sin t & \cos t
-\end{bmatrix}.
-\]令\[
-\B = \begin{bmatrix}
-\cos t & 0 \\
-0 & \cos t
-\end{bmatrix}, \qquad
-\C = \begin{bmatrix}
-0 & \sin t \\
--\sin t & 0
-\end{bmatrix},
-\]则\(\A=\B+\C\).
-因为\[
-\B\C = \begin{bmatrix}
-\cos t & 0 \\
-0 & \cos t
-\end{bmatrix} \begin{bmatrix}
-0 & \sin t \\
--\sin t & 0
-\end{bmatrix} = \begin{bmatrix}
-0 & \cos t \sin t \\
--\cos t \sin t & 0
-\end{bmatrix},
-\]\[
-\C\B = \begin{bmatrix}
-0 & \sin t \\
--\sin t & 0
-\end{bmatrix} \begin{bmatrix}
-\cos t & 0 \\
-0 & \cos t
-\end{bmatrix} = \begin{bmatrix}
-0 & \cos t \sin t \\
--\cos t \sin t & 0
-\end{bmatrix},
-\]所以\(\B\C=\C\B\)，\(\B\)与\(\C\)可交换.
-由牛顿二项式定理有，\[
-\A^n=(\B+\C)^n
-=\sum\limits_{k=0}^n C_n^k \B^{n-k} \C^k.
-\]
-\end{example}
-
-\subsection{分块矩阵的运算}
-分块阵的运算服从以下规律：
-\begin{enumerate}
-	\item {\bf 分块阵的加法}
-
-	设\(\A,\B \in M_{s \times n}(K)\)，
-	若将\(\A\)和\(\B\)按同样的规则分块为\[
-		\A=(\A_{ij})_{t \times r}, \qquad
-		\B=(\B_{ij})_{t \times r},
-	\]
-	其中\(\A_{ij},\B_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
-	则\[
-		\A+\B=(\A_{ij}+\B_{ij})_{t \times r}.
-	\]
-
-	\item {\bf 分块阵的数乘}
-
-	设\(\A\in M_{s \times n}(K)\)，
-	若将\(\A\)分块为\[
-		\A=(\A_{ij})_{t \times r},
-	\]
-	其中\(\A_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
-	则\[
-		k\A=(k\A_{ij})_{t \times r}.
-	\]
-
-	\item {\bf 分块阵的转置}
-
-	设\(\A\in M_{s \times n}(K)\)，
-	若将\(\A\)分块为\[
-		\A=(\A_{ij})_{t \times r},
-	\]
-	其中\(\A_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
-	则\[
-		\A^T=(\A_{ji}^T)_{r \times t}.
-	\]
-	这就是说，在转置分块阵时，要将每个子块转置.
-
-	\item {\bf 分块阵的乘法}
-
-	设\(\A\in M_{s \times n}(K),
-	\B\in M_{n \times m}(K)\)，
-	若将\(\A\)、\(\B\)分别分块为\[
-		\A=(\A_{ij})_{t \times r}, \qquad
-		\B=(\B_{jk})_{r \times p},
-	\]
-	且\(\A\)的列的分块法与\(\B\)的行的分块法一致，即\[
-		\A = \begin{matrix}
-			& \begin{matrix} n_1 & n_2 & \dots & n_r \end{matrix} \\
-			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
-			\A_{11} & \A_{12} & \dots & \A_{1r} \\
-			\A_{21} & \A_{22} & \dots & \A_{2r} \\
-			\vdots & \vdots & & \vdots \\
-			\A_{t1} & \A_{t2} & \dots & \A_{tr}
-			\end{bmatrix}
-		\end{matrix},
-		\qquad
-		\B = \begin{matrix}
-			& \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
-			\begin{matrix} n_1 \\ n_2 \\ \vdots \\ n_r \end{matrix} & \begin{bmatrix}
-			\B_{11} & \B_{12} & \dots & \B_{1p} \\
-			\B_{21} & \B_{22} & \dots & \B_{2p} \\
-			\vdots & \vdots & & \vdots \\
-			\B_{r1} & \B_{r2} & \dots & \B_{rp}
-			\end{bmatrix},
-		\end{matrix}
-	\]
-	则\[
-		\A\B = \begin{matrix}
-			& \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
-			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
-			\C_{11} & \C_{12} & \dots & \C_{1p} \\
-			\C_{21} & \C_{22} & \dots & \C_{2p} \\
-			\vdots & \vdots & & \vdots \\
-			\C_{t1} & \C_{t2} & \dots & \C_{tp}
-			\end{bmatrix}
-		\end{matrix}.
-	\]
-	其中\(\C_{ij}=\sum\limits_{k=1}^r \A_{ik} \B_{kj}\ (i=1,2,\dotsc,t;j=1,2,\dotsc,p)\).
-\end{enumerate}
-
-\section{特殊矩阵}
-\subsection{三角矩阵}
-\begin{definition}
-设\(\A=(a_{ij})_n\).
-\begin{enumerate}
-	\item 如果\(\A\)满足\[
-		a_{ij} = 0
-		\quad(i>j),
-	\]
-	则称之为\DefineConcept{上三角形矩阵}，
-	简称\DefineConcept{上三角阵}.
-
-	\item 如果\(\A\)满足\[
-		a_{ij} = 0
-		\quad(i<j),
-	\]
-	则称之为\DefineConcept{下三角形矩阵}，
-	简称\DefineConcept{下三角阵}.
-\end{enumerate}
-\end{definition}
-
-\begin{example}
-设\(\A,\B\)都是\(n\)阶上三角阵，证明：\(\A\B\)是上三角阵.
-\begin{proof}
-利用数学归纳法.
-当\(n=1\)时，\(\A=a\)，\(\B=b\)，\(\A\B = ab\)，结论成立.
-
-假设\(n=k\)时上三角阵的乘积是上三角阵.
-当\(n=k+1\)时，对矩阵\(\A\)和\(b\)分块如下：\[
 	\A = \begin{bmatrix}
-		a_{11} & \A_2 \\
-		\z & \A_4
+	\cos t & \sin t \\
+	-\sin t & \cos t
+	\end{bmatrix}.
+\]
+令\[
+	\B = \begin{bmatrix}
+		\cos t & 0 \\
+		0 & \cos t
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
-		b_{11} & \B_2 \\
-		\z & \B_4
+	\C = \begin{bmatrix}
+		0 & \sin t \\
+		-\sin t & 0
 	\end{bmatrix},
 \]
-其中\(\A_4\)和\(\B_4\)都是\(k\)阶上三角阵，
-由归纳假设，\(\A_4 \B_4\)是\(k\)阶上三角阵，
-则\[
-	\A\B = \begin{bmatrix}
-		a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
-		\z & \A_4 \B_4
+则\(\A=\B+\C\).
+因为\[
+	\B\C = \begin{bmatrix}
+		\cos t & 0 \\
+		0 & \cos t
+	\end{bmatrix}
+	\begin{bmatrix}
+		0 & \sin t \\
+		-\sin t & 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		0 & \cos t \sin t \\
+		-\cos t \sin t & 0
+	\end{bmatrix},
+\]\[
+	\C\B = \begin{bmatrix}
+		0 & \sin t \\
+		-\sin t & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\cos t & 0 \\
+		0 & \cos t
+	\end{bmatrix}
+	= \begin{bmatrix}
+		0 & \cos t \sin t \\
+		-\cos t \sin t & 0
 	\end{bmatrix},
 \]
-即\(\A\B\)是\(k+1\)阶上三角阵.
-\end{proof}
+所以\(\B\C=\C\B\)，\(\B\)与\(\C\)可交换.
+由牛顿二项式定理有，\[
+	\A^n=(\B+\C)^n
+	=\sum\limits_{k=0}^n C_n^k \B^{n-k} \C^k.
+\]
 \end{example}
-
-
-\subsection{对角矩阵}
-\begin{definition}
-若方阵\(\A=(a_{ij})_n\)满足：\[
-	[i \neq j \implies a_{ij} = 0]
-	\land
-	(\exists i)[a_{ii}\neq0].
-\]
-则称\(\A\)为\DefineConcept{对角矩阵}，
-记作\(\diag(a_{11},a_{22},\dotsc,a_{nn})\).
-\end{definition}
-
-\subsection{对称矩阵，厄米矩阵}
-\begin{definition}
-若矩阵\(\A \in M_n(K)\)满足\[
-    \A^T = \A,
-\]
-则称\(\A\)为\DefineConcept{对称矩阵}（symmetric matrix）.
-\end{definition}
-
-\begin{definition}
-如果矩阵\(\A \in M_n(K)\)满足\[
-    \A^H = \A,
-\]
-那么把\(\A\)称为\DefineConcept{厄米矩阵}（Hermitian matrix）.
-\end{definition}
-
-\begin{example}
-设矩阵\(\A = (a_{ij})_n\).
-试证：\(\A\A^T\)为对称矩阵.
-\begin{proof}
-因为\((\A \A^T)^T = (\A^T)^T \A^T = \A \A^T\)，所以\(\A \A^T\)是对称矩阵.
-\end{proof}
-\end{example}
-
-\begin{example}
-设\(\A\)和\(\B\)是同阶对称矩阵.
-试证：\(\A\B\)是对称矩阵的充要条件是\(\A\B = \B\A\).
-\begin{proof}
-因为\(\A\)和\(\B\)都是对称矩阵，所以\[
-	\A^T = \A, \qquad
-	\B^T = \B.
-\]
-又因为\(\A\B = \B\A\)，\[
-	(\A\B)^T = \B^T \A^T = \B\A = \A\B,
-\]
-所以\(\A\B\)是对称矩阵.
-\end{proof}
-\end{example}
-
-\subsection{反对称矩阵}
-\begin{definition}
-若方阵\(\A\)满足条件\(\A^T = -\A\)，
-则称\(\A\)为\DefineConcept{反对称矩阵}（antisymmetric matrix）或\DefineConcept{斜对称矩阵}.
-\end{definition}
-
-\begin{property}
-反对称矩阵主对角线上的元素全为零.
-\end{property}
-
-\begin{example}
-零矩阵\(\z\)是唯一一个既是实对称矩阵又是实反对称矩阵的矩阵.
-\begin{proof}
-\(\A^T = \A = -\A \implies 2\A = \A+\A = \z \implies \A = \z\).
-\end{proof}
-\end{example}
-
-\begin{example}
-设\(\A\)是一个方阵，证明：\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
-\begin{proof}
-因为\((\A+\A^T)^T = \A^T+\A\)，而\((\A-\A^T)^T = \A^T - \A = -(\A-\A^T)\)，所以\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
-显然有\(\A = \frac{\A + \A^T}{2} + \frac{\A - \A^T}{2}\).
-\end{proof}
-\end{example}
-
-\begin{example}
-设\(\A\)是3阶实对称矩阵，\(\B\)是3阶实反对称矩阵，\(\A^2 = \B^2\)，试证：\(\A = \B = \z\).
-\begin{proof}
-设\(\A = (a_{ij})_n\)，\(\B = (b_{ij})_n\).
-因为\(\A = \A^T\)，\(\A^2 = \A^T \A\)，所以\(\A^2\)的\(\opair{i,j}\)元素为\(a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}\).
-因为\(\B = -\B^T\)，\(\B^2 = -\B^T \B\)，所以\(\B^2\)的\(\opair{i,j}\)元素为\(-(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj})\).
-因为\(\A^2 = \B^2\)，所以\[
-a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}
-= -(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj}).
-\]
-
-当\(i=j\)时，上式变为\(
-a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
-= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2)
-\)，又由\(a_{ij},b_{ij} \in \mathbb{R}\)可知\(a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2 \geq 0\)，\(-(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) \leq 0\)，所以\[
-a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
-= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) = 0,
-\]进而有\[
-a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
-\qedhere
-\]
-\end{proof}
-\end{example}
-
-\subsection{幂零矩阵}
-\begin{definition}
-设矩阵\(\A \in M_n(K)\).
-若\(\exists m\in\mathbb{N}^+\)，
-使得\(\A^m = \z\)，
-则称“\(\A\)是\DefineConcept{幂零矩阵}”；
-称使得\(\A^m = \z\)成立的最小正整数\[
-    \min\Set{ m\in\mathbb{N}^+ \given \A^m = \z }
-\]为“\(\A\)的\DefineConcept{幂零指数}”.
-\end{definition}
 
 \section{向量的内积}
 \begin{definition}
@@ -907,3 +840,84 @@ a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
 \norm{\mat{x}}_\infty &=& \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_n}\}.
 \end{array}
 \]
+
+\section{分块矩阵的运算}
+分块阵的运算服从以下规律：
+\begin{enumerate}
+	\item {\bf 分块阵的加法}
+
+	设\(\A,\B \in M_{s \times n}(K)\)，
+	若将\(\A\)和\(\B\)按同样的规则分块为\[
+		\A=(\A_{ij})_{t \times r}, \qquad
+		\B=(\B_{ij})_{t \times r},
+	\]
+	其中\(\A_{ij},\B_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
+	则\[
+		\A+\B=(\A_{ij}+\B_{ij})_{t \times r}.
+	\]
+
+	\item {\bf 分块阵的数乘}
+
+	设\(\A\in M_{s \times n}(K)\)，
+	若将\(\A\)分块为\[
+		\A=(\A_{ij})_{t \times r},
+	\]
+	其中\(\A_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
+	则\[
+		k\A=(k\A_{ij})_{t \times r}.
+	\]
+
+	\item {\bf 分块阵的转置}
+
+	设\(\A\in M_{s \times n}(K)\)，
+	若将\(\A\)分块为\[
+		\A=(\A_{ij})_{t \times r},
+	\]
+	其中\(\A_{ij}\in M_{s_i \times n_j}(K)\ (i=1,2,\dotsc,t;j=1,2,\dotsc,r)\)，
+	则\[
+		\A^T=(\A_{ji}^T)_{r \times t}.
+	\]
+	这就是说，在转置分块阵时，要将每个子块转置.
+
+	\item {\bf 分块阵的乘法}
+
+	设\(\A\in M_{s \times n}(K),
+	\B\in M_{n \times m}(K)\)，
+	若将\(\A\)、\(\B\)分别分块为\[
+		\A=(\A_{ij})_{t \times r}, \qquad
+		\B=(\B_{jk})_{r \times p},
+	\]
+	且\(\A\)的列的分块法与\(\B\)的行的分块法一致，即\[
+		\A = \begin{matrix}
+			& \begin{matrix} n_1 & n_2 & \dots & n_r \end{matrix} \\
+			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
+			\A_{11} & \A_{12} & \dots & \A_{1r} \\
+			\A_{21} & \A_{22} & \dots & \A_{2r} \\
+			\vdots & \vdots & & \vdots \\
+			\A_{t1} & \A_{t2} & \dots & \A_{tr}
+			\end{bmatrix}
+		\end{matrix},
+		\qquad
+		\B = \begin{matrix}
+			& \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
+			\begin{matrix} n_1 \\ n_2 \\ \vdots \\ n_r \end{matrix} & \begin{bmatrix}
+			\B_{11} & \B_{12} & \dots & \B_{1p} \\
+			\B_{21} & \B_{22} & \dots & \B_{2p} \\
+			\vdots & \vdots & & \vdots \\
+			\B_{r1} & \B_{r2} & \dots & \B_{rp}
+			\end{bmatrix},
+		\end{matrix}
+	\]
+	则\[
+		\A\B = \begin{matrix}
+			& \begin{matrix} m_1 & m_2 & \dots & m_p \end{matrix} \\
+			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
+			\C_{11} & \C_{12} & \dots & \C_{1p} \\
+			\C_{21} & \C_{22} & \dots & \C_{2p} \\
+			\vdots & \vdots & & \vdots \\
+			\C_{t1} & \C_{t2} & \dots & \C_{tp}
+			\end{bmatrix}
+		\end{matrix}.
+	\]
+	其中\(\C_{ij}=\sum\limits_{k=1}^r \A_{ik} \B_{kj}\ (i=1,2,\dotsc,t;j=1,2,\dotsc,p)\).
+\end{enumerate}
