@@ -40,28 +40,6 @@ Powered by \TeX \\
 
 %\everymath{\displaystyle}
 
-%--------------------------------------
-\renewcommand{\v}[3][1]{%
-\begingroup%
-\ifnum0<0#3\relax{%
-  \setcounter{enumi}{#1}%
-  {#2}_{\theenumi}%
-  \stepcounter{enumi}%
-  \whileboolexpr{not test{\ifnumcomp{\value{enumi}}>{#3}}}%
-  {%
-    ,\allowbreak{#2}_{\theenumi}%
-    \stepcounter{enumi}%
-  }%
-}\else%
-  \ifx#30\relax%
-    {#2}_{#1},\allowbreak{#2}_{\number\numexpr#1+1},\allowbreak\dotsc
-  \else
-    {#2}_{#1},\allowbreak{#2}_{\number\numexpr#1+1},\allowbreak\dotsc,\allowbreak{#2}_{#3}%
-  \fi
-\fi\endgroup%
-}% 生成形如“X_1,X_2,\dotsc,X_n”的字符串
-%--------------------------------------
-
 \include{parts/集合论}
 \include{parts/初等数学}
 \include{parts/几何}
