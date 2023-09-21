@@ -66,6 +66,19 @@
 设\(\A\)是\(s \times n\)矩阵，则\(0 \leq \rank\A \leq \min\{s,n\}\).
 \end{property}
 
+\begin{theorem}
+设\(\A\in M_{s \times n}(K)\).
+如果\(\A\)有一个\(k\)阶非零子式，那么\(\rank\A\geqslant k\).
+\begin{proof}
+用反证法.
+假设\(\rank\A<k\)，
+也就是说\(\A\)的非零子式的最高阶数\(r\)小于\(k\)，
+但是根据前提条件，\(\A\)有一个\(k\)阶非零子式，\(k>r\)，
+这就和\hyperref[definition:线性方程组.矩阵的秩的定义]{矩阵的秩的定义}矛盾！
+因此\(\rank\A\geqslant k\).
+\end{proof}
+\end{theorem}
+
 \begin{example}
 求矩阵\(\A = \begin{bmatrix} 1 & 7 \\ 2 & 6 \\ -3 & 1 \end{bmatrix}\)的秩、行秩与列秩.
 \begin{solution}
@@ -110,7 +123,7 @@
 \begin{proof}
 对\(\A\)分别进行列分块与行分块：\[
 	\A = (\AutoTuple{\a}{n})
-	= \begin{bmatrix} \A_1 \\ \A_2 \\ \vdots \\ \A_s \end{bmatrix}.
+	= (\AutoTuple{\A}{s}[,][T])^T.
 \]
 根据\cref{theorem:向量空间.秩与线性相关性的关系}，
 由于\(\rank_C\A=n\)，
