@@ -6,7 +6,7 @@
 		\centering
 		\begin{tikzpicture}
 			\path[save path=\pathA](-1,0)circle(2cm);
-			\path[save path=\pathB](+1,0)circle(2cm);
+			\path[save path=\pathB](1,0)circle(2cm);
 			\begin{scope}
 				\clip[use path=\pathA];
 				\fill[black!30][use path=\pathB];
@@ -20,13 +20,9 @@
 	\begin{subfigure}[b]{\subwidth}
 		\centering
 		\begin{tikzpicture}
-			\path[save path=\pathA,name path=A](-1,0)circle(2cm);
-			\path[save path=\pathB,name path=B](+1,0)circle(2cm);
-			\path[fill=black!30][use path=\pathA+\pathB];
-			\draw[name intersections={of=A and B}]
-				(intersection-1)arc[start angle=60,end angle=300,radius=2]
-				(intersection-2)arc[start angle=-120,end angle=120,radius=2]
-				(intersection-1);
+			\filldraw[fill=black!30,draw=black]
+				(0,{sqrt(3)})arc[start angle=60,end angle=300,radius=2]
+				arc[start angle=240,end angle=480,radius=2];
 			\draw(0,0)node{\(A \cup B\)};
 			\pgfresetboundingbox
 			\path[use as bounding box] (-3,-2)rectangle(3,2);
@@ -40,7 +36,7 @@
 			\fill[black!30](0,{sqrt(3)})arc[start angle=60,end angle=300,radius=2]
 				arc[start angle=240,end angle=120,radius=2];
 			\draw(-1,0)circle(2cm);
-			\draw(+1,0)circle(2cm);
+			\draw(1,0)circle(2cm);
 			\draw(-2,0)node{\(A-B\)};
 			\pgfresetboundingbox
 			\path[use as bounding box] (-3,-2)rectangle(3,2);
