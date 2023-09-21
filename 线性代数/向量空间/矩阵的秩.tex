@@ -37,6 +37,16 @@
 \end{proof}
 \end{theorem}
 
+\begin{definition}
+设矩阵\(\A = (a_{ij})_{s \times n}\).
+\begin{enumerate}
+	\item 若\(\rank_R\A = s\)，
+	则称“\(\A\)为\DefineConcept{行满秩矩阵}（row full rank matrix）”.
+	\item 若\(\rank_C\A = n\)，
+	则称“\(\A\)为\DefineConcept{列满秩矩阵}（column full rank matrix）”.
+\end{enumerate}
+\end{definition}
+
 现在我们来研究一个问题：矩阵的列秩与行秩之间有什么联系？
 
 \subsection{矩阵的秩}
@@ -92,22 +102,124 @@
 \end{solution}
 \end{example}
 
+\subsection{矩阵的秩、行秩、列秩的关系}
+\begin{lemma}\label{theorem:向量空间.矩阵的秩与行秩和列秩的关系.引理}
+%@see: 《线性代数》（张慎语、周厚隆） P77. 引理
+设矩阵\(\A = (a_{ij})_{s \times n}\)的列秩等于\(\A\)的列数\(n\)，
+则\(\A\)行秩、秩都等于\(n\).
+\begin{proof}
+对\(\A\)分别进行列分块与行分块：\[
+	\A = (\AutoTuple{\a}{n})
+	= \begin{bmatrix} \A_1 \\ \A_2 \\ \vdots \\ \A_s \end{bmatrix}.
+\]
+根据\cref{theorem:向量空间.秩与线性相关性的关系}，
+由于\(\rank_C\A=n\)，
+所以\(\A\)的列向量组线性无关，
+也就是说齐次线性方程组\[
+	x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \z
+\]只有零解，或者说\(\A\x=\z\)只有零解.
+进而根据\cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}，
+在\(\A\x=\z\)中，方程个数\(s\)不少于未知量个数\(n\)，即\(s \geq n\).
+
+设\(\rank_R\A=t\).
+根据\cref{theorem:向量空间.子空间维数.命题4}，
+因为\(\A\)的行向量的维数是\(n\)，
+所以\(t \leq n\).
+
+设\(\A\)的行极大线性无关组是
+\(\A_{i_1},\A_{i_2},\dotsc,\A_{i_t}\)，
+其中\(1 \leq i_1 < i_2 < \dotsb < i_t \leq s\).
+
+假设\(t < n\)，
+则\(\A\)可通过初等行变换化为\[
+	\begin{bmatrix}
+		\A_{i_1} \\ \A_{i_2} \\ \vdots \\ \A_{i_t} \\ \z_{(s-t) \times n}
+	\end{bmatrix},
+\]
+于是，\(\A\x=\z\)表示的齐次线性方程组中，
+非零方程的个数\(t\)小于未知量个数\(n\)，
+那么根据\cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}，
+\(\A\x=\z\)有非零解，
+这与我们前面得到的结论“\(\A\x=\z\)只有零解”矛盾，
+所以假设\(t < n\)不成立，
+因此\(t = n\).
+这就是说\[
+	\rank_R\A=\rank_C\A=n.
+\]
+
+既然\(t=n\)，
+那么\(\A\)的行极大线性无关组恰好可以构成一个方阵，
+而这个方阵的行列式为\[
+	d=\begin{vmatrix} \A_{i_1} \\ \A_{i_2} \\ \vdots \\ \A_{i_n} \end{vmatrix}.
+\]
+根据\cref{theorem:线性方程组.克拉默法则}，
+因为\(\A\x=\z\)只有零解作为它的唯一解，
+所以\(d\neq0\).
+于是\(d\)是\(\A\)的一个\(n\)阶非零子式.
+\(\A\)是一个\(s \times n\)矩阵，
+不可能有阶数大于\(n\)的子式，
+因此\(\rank\A = n\).
+\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{theorem:向量空间.矩阵的秩与行秩和列秩的关系.定理}
+%@see: 《线性代数》（张慎语、周厚隆） P77. 定理5
+矩阵的行秩、列秩、秩都相等.
+\begin{proof}
+如果矩阵\(\A = \z\)，
+则\(\rank\A=\rank_R\A=\rank_C\A=0\)，
+结论成立.
+
+当\(\A\neq\z\)时，
+设\(\rank\A=r\)，
+则根据\hyperref[definition:线性方程组.矩阵的秩的定义]{矩阵的秩的定义}，
+\(\A\)的所有\(t\ (t > r)\)阶子式全为零；
+且\(\A\)有一个\(r\)阶子式不为零，
+从而该\(r\)阶子式的列向量组线性无关，
+它们的延伸组也线性无关，
+\(\A\)有\(r\)列线性无关，
+于是\(\rank_C\A=p \geq r\)；
+由\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.引理}，
+\(\A\)的列极大线性无关组构成的矩阵有一非零\(p\)阶子式，
+也是\(\A\)的子式，
+故\(p \leq r\)；
+综上得\(p = r\).
+因此\(\rank\A=\rank_C\A\).
+同样地，将这一结论用于\(\A^T\)，
+得\(\rank\A^T=\rank_C\A^T=\rank_R\A\).
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+设\(\A\)是矩阵，那么\(\rank\A = \rank\A^T\).
+\begin{proof}
+\(\rank\A=\rank_C\A=\rank_R\A^T=\rank\A^T\).
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:线性方程组.初等变换不变秩}
+初等变换不改变矩阵的秩，即\[
+	\A\cong\B \implies \rank\A=\rank\B.
+\]
+\begin{proof}
+由\cref{theorem:向量空间.利用初等行变换求取列极大线性无关组的依据}，
+初等行变换不改变矩阵的列秩；
+同理，初等列变换不改变矩阵的行秩；
+再由\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.定理}，
+初等变换不改变矩阵的秩.
+\end{proof}
+\end{theorem}
+
 \subsection{满秩矩阵}
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P76.
-设矩阵\(\A = (a_{ij})_{s \times n}\).
-\begin{enumerate}
-	\item 若\(\rank\A = s\)，
-	则称“\(\A\)为\DefineConcept{行满秩矩阵}（row full rank matrix）”.
-	\item 若\(\rank\A = n\)，
-	则称“\(\A\)为\DefineConcept{列满秩矩阵}（column full rank matrix）”.
-	\item 若\(\rank\A = s = n\)，
-	则称“\(\A\)是\DefineConcept{满秩矩阵}（full rank matrix）”，
-	或“\(\A\)是\DefineConcept{非退化矩阵}（non-degenerate matrix）”.
-\end{enumerate}
+设矩阵\(\A = (a_{ij})_n\).
+若\(\rank\A = n\)，
+则称“\(\A\)是\DefineConcept{满秩矩阵}（full rank matrix）”，
+或“\(\A\)是\DefineConcept{非退化矩阵}（non-degenerate matrix）”.
 \end{definition}
 
-应该注意到，“可逆矩阵”“非奇异矩阵”“满秩矩阵”“非退化矩阵”是从不同侧重点对同一类矩阵的四种称谓.
+%应该注意到，“可逆矩阵”“非奇异矩阵”“满秩矩阵”“非退化矩阵”是从不同侧重点对同一类矩阵的四种称谓.
 
 \begin{theorem}\label{theorem:向量空间.满秩方阵的行列式非零}
 设\(\A\in M_n(K)\).
@@ -297,115 +409,6 @@
 所以\(\rank(\A\A^T) = \rank\A = r\).
 \end{proof}
 \end{example}
-
-
-\subsection{矩阵的秩、行秩、列秩的关系}
-\begin{lemma}\label{theorem:向量空间.矩阵的秩与行秩和列秩的关系.引理}
-%@see: 《线性代数》（张慎语、周厚隆） P77. 引理
-设矩阵\(\A = (a_{ij})_{s \times n}\)的列秩等于\(\A\)的列数\(n\)，
-则\(\A\)行秩、秩都等于\(n\).
-\begin{proof}
-对\(\A\)分别进行列分块与行分块：\[
-	\A = (\AutoTuple{\a}{n})
-	= \begin{bmatrix} \A_1 \\ \A_2 \\ \vdots \\ \A_s \end{bmatrix}.
-\]
-根据\cref{theorem:向量空间.秩与线性相关性的关系}，
-由于\(\rank_C\A=n\)，
-所以\(\A\)的列向量组线性无关，
-也就是说齐次线性方程组\[
-	x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \z
-\]只有零解，或者说\(\A\x=\z\)只有零解.
-进而根据\cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}，
-在\(\A\x=\z\)中，方程个数\(s\)不少于未知量个数\(n\)，即\(s \geq n\).
-
-设\(\rank_R\A=t\).
-根据\cref{theorem:向量空间.子空间维数.命题4}，
-因为\(\A\)的行向量的维数是\(n\)，
-所以\(t \leq n\).
-
-设\(\A\)的行极大线性无关组是
-\(\A_{i_1},\A_{i_2},\dotsc,\A_{i_t}\)，
-其中\(1 \leq i_1 < i_2 < \dotsb < i_t \leq s\).
-
-假设\(t < n\)，
-则\(\A\)可通过初等行变换化为\[
-	\begin{bmatrix}
-		\A_{i_1} \\ \A_{i_2} \\ \vdots \\ \A_{i_t} \\ \z_{(s-t) \times n}
-	\end{bmatrix},
-\]
-于是，\(\A\x=\z\)表示的齐次线性方程组中，
-非零方程的个数\(t\)小于未知量个数\(n\)，
-那么根据\cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}，
-\(\A\x=\z\)有非零解，
-这与我们前面得到的结论“\(\A\x=\z\)只有零解”矛盾，
-所以假设\(t < n\)不成立，
-因此\(t = n\).
-这就是说\[
-	\rank_R\A=\rank_C\A=n.
-\]
-
-既然\(t=n\)，
-那么\(\A\)的行极大线性无关组恰好可以构成一个方阵，
-而这个方阵的行列式为\[
-	d=\begin{vmatrix} \A_{i_1} \\ \A_{i_2} \\ \vdots \\ \A_{i_n} \end{vmatrix}.
-\]
-根据\cref{theorem:线性方程组.克拉默法则}，
-因为\(\A\x=\z\)只有零解作为它的唯一解，
-所以\(d\neq0\).
-于是\(d\)是\(\A\)的一个\(n\)阶非零子式.
-\(\A\)是一个\(s \times n\)矩阵，
-不可能有阶数大于\(n\)的子式，
-因此\(\rank\A = n\).
-\end{proof}
-\end{lemma}
-
-\begin{theorem}\label{theorem:向量空间.矩阵的秩与行秩和列秩的关系.定理}
-%@see: 《线性代数》（张慎语、周厚隆） P77. 定理5
-矩阵的行秩、列秩、秩都相等.
-\begin{proof}
-如果矩阵\(\A = \z\)，
-则\(\rank\A=\rank_R\A=\rank_C\A=0\)，
-结论成立.
-
-当\(\A\neq\z\)时，
-设\(\rank\A=r\)，
-则根据\hyperref[definition:线性方程组.矩阵的秩的定义]{矩阵的秩的定义}，
-\(\A\)的所有\(t\ (t > r)\)阶子式全为零；
-且\(\A\)有一个\(r\)阶子式不为零，
-从而该\(r\)阶子式的列向量组线性无关，
-它们的延伸组也线性无关，
-\(\A\)有\(r\)列线性无关，
-于是\(\rank_C\A=p \geq r\)；
-由\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.引理}，
-\(\A\)的列极大线性无关组构成的矩阵有一非零\(p\)阶子式，
-也是\(\A\)的子式，
-故\(p \leq r\)；
-综上得\(p = r\).
-因此\(\rank\A=\rank_C\A\).
-同样地，将这一结论用于\(\A^T\)，
-得\(\rank\A^T=\rank_C\A^T=\rank_R\A\).
-\end{proof}
-\end{theorem}
-
-\begin{theorem}
-设\(\A\)是矩阵，那么\(\rank\A = \rank\A^T\).
-\begin{proof}
-\(\rank\A=\rank_C\A=\rank_R\A^T=\rank\A^T\).
-\end{proof}
-\end{theorem}
-
-\begin{theorem}\label{theorem:线性方程组.初等变换不变秩}
-初等变换不改变矩阵的秩，即\[
-	\A\cong\B \implies \rank\A=\rank\B.
-\]
-\begin{proof}
-由\cref{theorem:向量空间.利用初等行变换求取列极大线性无关组的依据}，
-初等行变换不改变矩阵的列秩；
-同理，初等列变换不改变矩阵的行秩；
-再由\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.定理}，
-初等变换不改变矩阵的秩.
-\end{proof}
-\end{theorem}
 
 \section{矩阵乘积的秩}
 \begin{theorem}\label{theorem:线性方程组.矩阵乘积的秩}
