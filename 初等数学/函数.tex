@@ -1023,15 +1023,17 @@ a^{\ln b} = b^{\ln a}.
 	\begin{tikzpicture}[scale=4]
 		\pgfmathsetmacro{\t}{60}
 		\coordinate(C)at({cos(\t)},{sin(\t)});
-		\draw(1,0)coordinate(A)node[right]{\(A\)}arc[start angle=0,end angle=180,radius=1]
+		\draw(1,0)coordinate(A)node[right]{\(A\)}
+			arc[start angle=0,end angle=180,radius=1]
 			coordinate(B)node[left]{\(B\)}--(0,0)coordinate(O)node[below]{\(O\)}
 			--(C)node[above right]{\(C\)};
-		\draw(C)--(C|-A)coordinate(D)node[below]{\(D\)}node[midway,above,rotate=90,orange]{\(\sin\theta\)};
-		\draw(O)--(D)node[midway,below,orange]{\(\cos\theta\)}--(A)node[midway,below,orange]{\(1-\cos\theta\)}--(C)--(B)--(O)node[midway,below,orange]{\(1\)};
-		\draw
+		\draw(C)--(C|-A)coordinate(D)node[below]{\(D\)}
+			node[midway,above,rotate=90,orange]{\(\sin\theta\)};
+		\draw(O)--(D)node[midway,below,orange]{\(\cos\theta\)}
+			--(A)node[midway,below,orange]{\(1-\cos\theta\)}
+			--(C)--(B)--(O)node[midway,below,orange]{\(1\)}
 			pic[draw=gray,angle radius=0.3cm]{right angle=A--D--C}
-			pic[draw=gray,angle radius=0.3cm]{right angle=B--C--A};
-		\draw
+			pic[draw=gray,angle radius=0.3cm]{right angle=B--C--A}
 			pic["\(\theta\)",draw=blue,angle eccentricity=1.7,angle radius=5mm]{angle=D--O--C};
 	\end{tikzpicture}
 	\caption{半角公式的辅助三角形}
@@ -1268,21 +1270,26 @@ F(t) = A \sin(\omega t + \varphi) \quad (-\infty<t<+\infty)
 \end{theorem}
 
 \begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-  \draw[help lines, color=gray!30, dashed] (0,0) grid (4,3);
-  \coordinate (A) at (0,0);
-  \coordinate (B) at (4,0);
-  \coordinate (C) at (4,3);
-  \draw (A)node[left]{\(A\)} -- (B)node[right]{\(B\)}node[midway,below]{\(1\)} -- (C)node[right]{\(C\)}node[midway,right]{\(x\)} -- (A)node[midway,above left]{\(\sqrt{1+x^2}\)} pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]{angle=B--A--C} pic[draw=gray,-,angle radius=0.3cm]{right angle=C--B--A};
-  \draw (5,1.5)node[right]{\(\begin{aligned}
-  &\tan\theta = x \implies \theta = \arctan x, \\
-  &\cos\theta = \cos(\arctan x) = \frac{1}{\sqrt{1+x^2}}, \\
-  &\sin\theta = \sin(\arctan x) = \frac{x}{\sqrt{1+x^2}}, \\
-  &\cot\theta = \cot(\arctan x) = \frac{1}{x}.
-  \end{aligned}\)};
-\end{tikzpicture}
-\caption{三角函数与反三角函数之间的联系}
+	\centering
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed](0,0)grid(4,3);
+		\coordinate(A)at(0,0);
+		\coordinate(B)at(4,0);
+		\coordinate(C)at(4,3);
+		\draw (A)node[left]{\(A\)}
+			--(B)node[right]{\(B\)}node[midway,below]{\(1\)}
+			--(C)node[right]{\(C\)}node[midway,right]{\(x\)}
+			--(A)node[midway,above left]{\(\sqrt{1+x^2}\)}
+			pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]{angle=B--A--C}
+			pic[draw=gray,-,angle radius=0.3cm]{right angle=C--B--A};
+		\draw (5,1.5)node[right]{\(\begin{aligned}
+			&\tan\theta = x \implies \theta = \arctan x, \\
+			&\cos\theta = \cos(\arctan x) = \frac{1}{\sqrt{1+x^2}}, \\
+			&\sin\theta = \sin(\arctan x) = \frac{x}{\sqrt{1+x^2}}, \\
+			&\cot\theta = \cot(\arctan x) = \frac{1}{x}.
+		\end{aligned}\)};
+	\end{tikzpicture}
+	\caption{三角函数与反三角函数之间的联系}
 \end{figure}
 
 \section{双曲函数、反双曲函数}
@@ -1499,17 +1506,17 @@ f(x) = \left\{ \begin{array}{cc}
 \end{definition}
 
 \begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-	\draw[help lines, color=gray!30, dashed] (-4,0) grid (4,2);
-	\draw[->, ultra thick] (-4.5,0) -- (4.5,0) node[right]{\(x\)};
-	\draw[->, ultra thick] (0,-.5) -- (0,2.5) node[above]{\(y\)};
-	\draw (0,0)node[below right]{\(O\)};
-	\draw[orange,ultra thick] (-4,0)--(0,0) (0,1)--(4,1);
-	\draw[draw=orange,fill=orange] (0,1)circle(2pt);
-	\draw[draw=orange,fill=white] (0,0)circle(2pt);
-\end{tikzpicture}
-\caption{单位阶跃函数的图形}
+	\centering
+	\begin{tikzpicture}
+		\draw[help lines,color=gray!30,dashed](-4,0)grid(4,2);
+		\draw[->,ultra thick](-4.5,0)--(4.5,0)node[right]{\(x\)};
+		\draw[->,ultra thick](0,-.5)--(0,2.5)node[above]{\(y\)};
+		\draw (0,0)node[below right]{\(O\)};
+		\draw[orange,ultra thick](-4,0)--(0,0) (0,1)--(4,1);
+		\draw[draw=orange,fill=orange](0,1)circle(2pt);
+		\draw[draw=orange,fill=white](0,0)circle(2pt);
+	\end{tikzpicture}
+	\caption{单位阶跃函数的图形}
 \end{figure}
 
 \subsection{克罗内克\texorpdfstring{\(\delta\)}{\textdelta}函数}
