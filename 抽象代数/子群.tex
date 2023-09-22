@@ -318,3 +318,72 @@
 %\begin{corollary}
 %设\(G\)是有限群，则\(G\)的任一元素\(a\)的阶是\(G\)的阶的因数，从而\(a^{\abs{G}}=e\).
 %\end{corollary}
+
+\section{正规子群}
+\begin{definition}
+设\(\opair{G,\otimes}\)是群，
+\(H \subseteq G,
+K \subseteq G\).
+我们把集合\[
+	\Set{ h \otimes k \given h \in H \land k \in K }
+\]
+称为“\(H\)与\(K\)的\DefineConcept{乘积}”，
+记作\(H \otimes K\).
+\end{definition}
+
+\begin{theorem}
+设\(\opair{G,\otimes}\)是群，
+\(H \subseteq G,
+K \subseteq G,
+L \subseteq G\).
+那么\[
+	H \otimes (K \otimes L)
+	= (H \otimes K) \otimes L.
+\]
+\end{theorem}
+
+\begin{theorem}\label{theorem:抽象代数.正规子群.子群与自身的乘积等于自身}
+设\(\opair{G,\otimes}\)是群，
+\(\opair{H,\otimes} \subseteq \opair{G,\otimes}\).
+那么\[
+	H \otimes H = H.
+\]
+\end{theorem}
+
+应该注意到，\cref{theorem:抽象代数.正规子群.子群与自身的乘积等于自身} 的逆命题并不成立，
+即当\(H \otimes H = H\)时，\(H\)不一定对\(\otimes\)成群.
+譬如，在整数加群\(\opair{\mathbb{Z},+}\)中，正整数集\(\mathbb{Z}^+\)对加法\(+\)并不成群.
+
+对于有限子群的乘积我们有如下定理.
+\begin{theorem}
+设\(H,K\)是群\(\opair{G,\otimes}\)的有限子群.
+那么\[
+	\card(H \otimes K)
+	= \frac{\card H \cdot \card K}{\card(H \cap K)}.
+\]
+\begin{proof}
+取定\(h_1,h_2 \in H\)，\(k_1,k_2 \in K\)，
+使得\(h_1 \otimes k_1 = h_2 \otimes k_2\)，
+在等号两边同时左乘\(h_2^{-1}\)并右乘\(k_1^{-1}\)，
+便有\[
+	h_2^{-1} \otimes h_1 = k_2 \otimes k_1^{-1};
+\]
+令\(d = h_2^{-1} \otimes h_1\)，
+那么\(d \in H \cap K\).
+因此\[
+	h_2 = h_1 \otimes d^{-1}, \qquad
+	k_2 = d \otimes k_1.
+\]
+
+反过来，对于给定的\(h_1 \in H\)和\(k_1 \in K\)，
+任取\(H \cap K\)中的一个元素\(d\)，
+设\(h_2 = h_1 \otimes d^{-1},
+k_2 = d \otimes k_1\)，
+就得到\(h_1 \otimes k_1 = h_2 \otimes k_2\)，
+这就是说，对于任意\(h_1,k_1\)，
+在\(H \otimes K\)中有\(\card(H \cap K)\)个与\(h_1 \otimes k_1\)相等的元素.
+\end{proof}
+\end{theorem}
+
+特别地，当\(H \cap K = \{e\}\)，即当\(\card(H \cap K) = 1\)时，
+\(\card(H \otimes K) = \card H \cdot \card K\).
