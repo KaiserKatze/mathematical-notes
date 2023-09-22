@@ -39,6 +39,11 @@
 如果\(\times\)在\(G \times G\)上服从结合律，那么\(\otimes\)在\(H \times H\)上也服从结合律.
 如果\(\times\)在\(G \times G\)上服从交换律，那么\(\otimes\)在\(H \times H\)上也服从交换律.
 
+但是应该注意到，映射的限制只是限定了它的定义域，并没有限定它的值域，
+因此我们可能会遇到值\(c\)落在\(H\)之外的情形，
+也就是说\(a \otimes b \in(G - H)\)是可能的，
+\(a \otimes b \in H\)不一定成立.
+
 \begin{definition}\label{definition:抽象代数.子群的定义}
 %@see: 《近世代数》（丘维声，2015） P40. 定义1
 %@see: https://mathworld.wolfram.com/Subgroup.html
@@ -51,17 +56,67 @@
 记作\(\opair{H,\otimes} \subseteq \opair{G,\times}\).
 \end{definition}
 
-显而易见的是，仅由群\(\opair{G,\times}\)的单位元\(e\)%
-组成的集合\(E=\{e\}\)对于运算\(\odot=(\times\upharpoonright(E\times E))\)%
-也成为一个群\(\opair{E,\odot}\)；
-它是\(\opair{G,\times}\)的一个子群.
-同时，\(\opair{G,\times}\)本身也是\(\opair{G,\times}\)的一个子群.
-我们将\(\opair{E,\odot}\)和\(\opair{G,\times}\)%
-统称为“\(\opair{G,\times}\)的\DefineConcept{平凡子群}（trivial subgroup）”.
+一方面，仅由群\(\opair{G,\times}\)的单位元\(e\)%
+组成的集合\(E=\{e\}\)对于运算\[
+	\odot=(\times\upharpoonright(E\times E))
+	= \Set{\opair{\opair{e,e},e}}
+\]
+也成为一个群\(\opair{E,\odot}\)，
+那么它就是\(\opair{G,\times}\)的一个子群.
+在这个群中，虽然只有一个元素\(e\)，但是它却满足\[
+	(\forall a \in E)[a \times e = e \times a = e],
+\]
+于是\(e\)是\(\opair{E,\odot}\)的单位元.
+因此，我们可以说群\(\opair{G,\times}\)和子群\(\opair{E,\odot}\)的单位元相同.
 
-如果\(\emptyset \neq H \subset G\)，
-那么称\(\opair{H,\times}\)为\(\opair{G,\times}\)的\DefineConcept{真子群}（proper subgroup），
+另一方面，\(\opair{G,\times}\)本身也是\(\opair{G,\times}\)的一个子群，
+即\(\opair{G,\times}\subseteq\opair{G,\times}\)；
+同样地，群\(\opair{G,\times}\)和子群\(\opair{G,\times}\)的单位元相同.
+
+我们不禁好奇，任意给定一个群，再从中任取一个子群，
+是不是这个群的单位元与它的子群的单位元总是相同的？
+
+\begin{theorem}\label{theorem:抽象代数.子群.群的单位元与其子群的单位元相同}
+设\(\opair{G,\times}\)是群，
+\(\opair{H,\otimes}\subseteq\opair{G,\times}\).
+那么\(\opair{G,\times}\)的单位元与\(\opair{H,\otimes}\)的单位元相同.
+\begin{proof}
+设\(e'\)是\(\opair{H,\otimes}\)的单位元，
+则\[
+	e' \otimes e' = e'.
+\]
+根据子群的定义，\(\otimes = (\times \upharpoonright(H \times H))\)；
+再根据\cref{theorem:抽象代数.群的运算在子集上的限制的不变性}，
+\((\forall a,b \in H)[a \otimes b = a \times b]\)；
+于是\[
+	e' \times e' = e'.
+\]
+设\(e\)是\(\opair{G,\times}\)的单位元.
+假设\(e'\)在\(G\)中的逆元是\((e')^{-1}\)，
+即\(e' \times (e')^{-1} = e\)，
+那么在上式等号两边右乘\((e')^{-1}\)，得\[
+	(e' \times e') \times (e')^{-1} = (e') \times (e')^{-1};
+\]
+利用\(\times\)结合律可得\(e' \times e = e\)；
+又由于\(e' \times e = e'\)，因此\(e = e'\)；
+这就说明，\(e\)是\(\opair{H,\otimes}\)的单位元，
+\(\opair{G,\times}\)的单位元与\(\opair{H,\otimes}\)的单位元相同.
+\end{proof}
+\end{theorem}
+
+\begin{definition}
+设\(\opair{G,\times}\)是群，
+\(e\)是\(\opair{G,\times}\)的单位元.
+我们将\(\opair{\{e\},\times}\)和\(\opair{G,\times}\)
+统称为“\(\opair{G,\times}\)的\DefineConcept{平凡子群}（trivial subgroup）”.
+\end{definition}
+
+\begin{definition}
+设\(\opair{H,\times}\)是群\(\opair{G,\times}\)的子群.
+如果\(H \subset G\)，
+那么称“\(\opair{H,\times}\)是\(\opair{G,\times}\)的\DefineConcept{真子群}（proper subgroup）”，
 记作\(\opair{H,\times}\subset\opair{G,\times}\).
+\end{definition}
 
 从\cref{definition:抽象代数.子群的定义} 看出，
 如果\(\opair{H,\otimes}\)是群\(\opair{G,\times}\)的一个子群，
@@ -69,25 +124,9 @@
 \(H\)对\(\otimes\)封闭，即\[
 	(\forall a,b \in H)[a \otimes b \in H].
 \]
-设\(e'\)是\(\opair{H,\otimes}\)的单位元，
-\(e\)是\(\opair{G,\times}\)的单位元，
-则\[
-	e' \otimes e' = e';
-\]
-又因为\(\otimes = (\times \upharpoonright(H \times H))\)，
-根据\cref{theorem:抽象代数.群的运算在子集上的限制的不变性}，
-\((\forall a,b \in H)[a \otimes b = a \times b]\)，
-从而\[
-	e' \times e' = e';
-\]
-假设\(e'\)在\(G\)中的逆元是\((e')^{-1}\)，
-即\(e' \times (e')^{-1} = e\)，
-那么在上式等号两边右乘\((e')^{-1}\)，得\[
-	(e' \times e') \times (e')^{-1} = (e') \times (e')^{-1};
-\]
-利用结合律可得\(e' \times e = e\)；
-又由于\(e' \times e = e'\)，因此\(e = e'\)；
-这就说明，\(e\)是\(\opair{H,\otimes}\)的单位元.
+由\cref{theorem:抽象代数.子群.群的单位元与其子群的单位元相同} 可知，
+\(\opair{G,\times}\)的单位元与\(\opair{H,\times}\)的单位元相同，
+不妨设它们的单位元为\(e\).
 任给\(b \in H\)，假设\(b\)在\(H\)中的逆元为\(c\)，
 则\[
 	b \times c = c \times b = e;
