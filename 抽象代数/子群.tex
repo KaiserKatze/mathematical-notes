@@ -254,121 +254,23 @@
 %同时它也是唯一一个“无限”循环群.
 
 
-\subsection{陪集，拉格朗日定理}
-利用群\(\opair{G,\times}\)的子群\(\opair{H,\times}\)可以研究群\(\opair{G,\times}\)的结构，
-这时因为利用子群\(\opair{H,\times}\)可以给出集合\(G\)的一个划分.
-而为了给出\(G\)的一个划分，需要在\(G\)上建立一个等价关系，于是我们定义：\[
-	a \sim b
-	\defiff
-	a \times b^{-1} \in H.
+\subsection{群子集乘积}
+我们有时候会研究这样的问题：
+从一个群内的不同子集各取一个元素，
+观察这两个元素的运算结果具备一些什么性质.
+
+我们以整数乘群\(\opair{\mathbb{Z},\times}\)为例.
+取\(H\)为正整数集，\(K\)为负整数集，即\[
+	H = \Set{ h \in \mathbb{Z} \given h > 0 }, \qquad
+	K = \Set{ k \in \mathbb{Z} \given k < 0 },
 \]
-可以验证\(\sim\)是等价关系：
-首先，由于\(a \times a^{-1} = e \in H\)，因此\(a \sim a\)；
-这就说明\(\sim\)具有自反性.
-然后，由\(a \sim b\)可得\(a \times b^{-1} \in H\)；
-那么由\(H \subseteq G\)可知\((a \times b^{-1})^{-1} \in H\)；
-于是\(b \times a^{-1} \in H\)，从而\(b \sim a\)；
-这就说明\(\sim\)具有对称性.
-最后，由\(a \sim b\)和\(b \sim c\)得\(a \times b^{-1} \in H\)和\(b \times c^{-1} \in H\)；
-由于\(H \subseteq G\)，因此\((a \times b^{-1}) \times (b \times c^{-1}) \in H\)；
-于是\(a \times c^{-1} \in H\)，从而\(a \sim c\)；
-这就说明\(\sim\)具有传递性.
-综上所述，\(\sim\)兼具自反性、对称性、传递性，
-所以\(\sim\)是\(G\)上的一个等价关系.
+由于\[
+	(\forall h \in H)(\forall k \in K)[h \times k < 0],
+\]
+所以我们从\(H\)和\(K\)中各取一个元素，算得的乘积组成的集合恰好就是\(K\)，
+这就是我们常说的“正负得负”.
 
-任给\(a \in G\)，
-它在关系\(\sim\)下的等价类为\begin{align*}
-	[a] &= \Set{ x \in G \given x \sim a }
-	= \Set{ x \in G \given x \times a^{-1} \in H }
-	= \Set{ x \in G \given x \times a^{-1} = h \land h \in H } \\
-	&= \Set{ x \in G \given x = h \times a \land h \in H }
-	= \Set{ h \times a \given h \in H }.
-\end{align*}
-%我们称\([a]\)为\(H\)的一个\DefineConcept{右陪集}，记为\([a]_\rightarrow\)；
-%称\(a\)为它的\DefineConcept{陪集代表}.
-%于是\(H\)的全体右陪集组成的集合也就是\(G\)关于子群\(H\)的\DefineConcept{右商集}，
-%记为\((G/H)_\rightarrow\)，它是\(G\)的一个划分.
-%
-%类似地，我们还可以重新定义：\[
-%	(a \sim b)
-%	\defiff
-%	b^{-1} \times a \in H.
-%\]
-%同理可证新的\(\sim\)也是\(G\)上的一个等价关系.
-%任给\(a \in G\)，它的等价类为\begin{align*}
-%	[a] &= \Set{ x \in G \given x \sim a }
-%	= \Set{ x \in G \given a^{-1} \times x \in H }
-%	= \Set{ x \in G \given a^{-1} \times x = h \land h \in H } \\
-%	&= \Set{ x \in G \given x = a \times h \land h \in H }
-%	= \Set{ a \times h \given h \in H }.
-%\end{align*}
-%我们称\([a]\)为\(H\)的一个\DefineConcept{左陪集}，记为\([a]_\leftarrow\)；
-%称\(a\)为它的\DefineConcept{陪集代表}.
-%于是\(H\)的全体左陪集组成的集合也就是\(G\)关于子群\(H\)的\DefineConcept{左商集}，
-%记为\((G/H)_\leftarrow\)，它也是\(G\)的一个划分.
-%
-%现在定义映射\[
-%	\sigma\colon (G/H)_\leftarrow \to (G/H)_\rightarrow,
-%	[a]_\leftarrow \mapsto [a^{-1}]_\rightarrow.
-%\]
-%由于\[
-%	[a]_\leftarrow = [c]_\leftarrow
-%	\iff
-%	c^{-1} \times a \in H
-%	\iff
-%	c^{-1} \times (a^{-1})^{-1} \in H
-%	\iff
-%	[c^{-1}]_\rightarrow = [a^{-1}]_\rightarrow,
-%\]
-%因此\(\sigma\)是单射.
-%任给\([b]_\rightarrow \in (G/H)_\rightarrow\)，
-%有\[
-%	\sigma([b^{-1}]_\leftarrow)
-%	= ([b^{-1}]_\rightarrow)^{-1}
-%	= [b]_\rightarrow,
-%\]
-%因此\(\sigma\)又是满射，
-%从而\(\sigma\)是双射.
-%于是左陪集与右陪集的基数相同，即\[
-%	\abs{(G/H)_\leftarrow} = \abs{(G/H)_\rightarrow}.
-%\]
-%由此我们引出下述概念.
-%\begin{definition}
-%设\(H\)是群\(\opair{G,\times}\)的一个子群，
-%把\((G/H)_\leftarrow\)（或\((G/H)_\rightarrow\)）的基数%
-%称为“\(H\)在\(G\)中的\DefineConcept{指数}”，记作\([G:H]\).
-%\end{definition}
-%
-%假设群\(\opair{G,\times}\)的子群\(H\)在\(G\)中的指数为\([G:H]=r\)，
-%则\begin{equation}\label{equation:抽象代数.关于子群的左陪集分解式}
-%	G = H \cup [a_1]_\leftarrow \cup [a_2]_\leftarrow \cup \dotsb \cup [a_{r-1}]_\leftarrow,
-%\end{equation}
-%其中\(H,[a_1]_\leftarrow,[a_2]_\leftarrow,\dotsc,[a_{r-1}]_\leftarrow\)两两互斥.
-%我们把\cref{equation:抽象代数.关于子群的左陪集分解式}
-%称为“群\(\opair{G,\times}\)关于子群\(H\)的\DefineConcept{左陪集分解式}”；
-%把\(\Set{e,\AutoTuple{a}{r-1}}\)称为“\(H\)在\(G\)中的\DefineConcept{左陪集代表系}”.
-%
-%\begin{lemma}
-%映射\[
-%	\uptau\colon H \to [a]_\leftarrow, h \mapsto a \times h
-%\]是双射.
-%\end{lemma}
-%由此可知，子群\(H\)与它的任一左陪集\([a]_\leftarrow\)的基数相同.
-%
-%\begin{theorem}[拉格朗日定理]
-%设\(G\)是有限群，\(H\)是\(G\)的任一子群，则\[
-%	\abs{G} = [G:H] \cdot \abs{H}.
-%\]
-%\end{theorem}
-%拉格朗日定理说明：
-%\(G\)的任一子群\(H\)的阶是\(G\)的阶的因数.
-%
-%\begin{corollary}
-%设\(G\)是有限群，则\(G\)的任一元素\(a\)的阶是\(G\)的阶的因数，从而\(a^{\abs{G}}=e\).
-%\end{corollary}
-
-\section{正规子群}
-\begin{definition}\label{definition:抽象代数.正规子群.子集乘积的定义}
+\begin{definition}\label{definition:抽象代数.群子集乘积.群子集乘积的定义}
 设\(\opair{G,\otimes}\)是群，
 \(H \subseteq G,
 K \subseteq G\).
@@ -378,19 +280,10 @@ K \subseteq G\).
 称为“\(H\)与\(K\)的\DefineConcept{乘积}”，
 记作\(H \otimes K\).
 \end{definition}
-
-\begin{example}
-我们以整数乘群\(\opair{\mathbb{Z},\times}\)为例.
-取\(H\)为正整数集，\(K\)为负整数集，即\[
-	H = \Set{ h \in \mathbb{Z} \given h > 0 }, \qquad
-	K = \Set{ k \in \mathbb{Z} \given k < 0 },
-\]
-由于\[
-	(\forall h \in H)(\forall k \in K)[h \times k < 0],
-\]
-所以\(H\)与\(K\)的乘积恰好就是\(K\)，
-即\(H \times K = K \subset \mathbb{Z}\).
-\end{example}
+必须要说明的是，这里我们没有像之前一样用\(\opair{G,\times}\)表示群，
+而是用\(\opair{G,\otimes}\)表示群，
+是为了避免把\(H\)与\(K\)的乘积表示成\(H \times K\)，
+因此这会与集合的笛卡尔积产生符号冲突，而我们总是希望能够尽可能规避符号冲突.
 
 \begin{proposition}
 设\(\opair{G,\otimes}\)是群，
@@ -398,7 +291,7 @@ K \subseteq G\).
 K \subseteq G\).
 那么\(H \otimes K \subseteq G\).
 \begin{proof}
-根据\hyperref[definition:抽象代数.正规子群.子集乘积的定义]{子集乘积的定义}，有\[
+根据\hyperref[definition:抽象代数.群子集乘积.群子集乘积的定义]{群子集乘积的定义}，有\[
 	(\forall h)
 	(\forall k)
 	[h \in H \land k \in K \iff h \otimes k \in H \otimes K].
@@ -421,7 +314,7 @@ K \subseteq G\).
 \end{proof}
 \end{proposition}
 
-\begin{proposition}\label{theorem:抽象代数.正规子群.群中子集的乘积满足结合律}
+\begin{proposition}\label{theorem:抽象代数.群子集乘积.群子集乘积满足结合律}
 群中子集的乘积满足结合律.
 \begin{proof}
 设\(\opair{G,\otimes}\)是群，
@@ -438,7 +331,7 @@ L \subseteq G\).
 \end{proof}
 \end{proposition}
 
-\begin{proposition}\label{theorem:抽象代数.正规子群.子群与自身的乘积等于自身}
+\begin{proposition}\label{theorem:抽象代数.群子集乘积.子群与自身的乘积等于自身}
 设\(\opair{G,\otimes}\)是群，
 \(\opair{H,\otimes} \subseteq \opair{G,\otimes}\).
 那么\[
@@ -463,7 +356,7 @@ L \subseteq G\).
 \end{proof}
 \end{proposition}
 
-应该注意到，\cref{theorem:抽象代数.正规子群.子群与自身的乘积等于自身} 的逆命题并不成立，
+应该注意到，\cref{theorem:抽象代数.群子集乘积.子群与自身的乘积等于自身} 的逆命题并不成立，
 即当\(H \otimes H = H\)时，\(H\)不一定对\(\otimes\)成群.
 譬如，在整数加群\(\opair{\mathbb{Z},+}\)中，正整数集\(\mathbb{Z}^+\)对加法\(+\)并不成群.
 
@@ -546,3 +439,127 @@ k_2 = d \otimes k_1\)，
 如果\(\opair{G,\otimes}\)是交换群，
 那么它的子群\(H,K\)的乘积\(H \otimes K\)成群.
 \end{corollary}
+
+\subsection{陪集，拉格朗日定理}
+\begingroup
+\def\RQuotient{G/\kern-2pt\sim}
+\def\LQuotient{G/\kern-2pt\backsim}
+
+利用群\(\opair{G,\otimes}\)的子群\(\opair{H,\otimes}\)可以研究群\(\opair{G,\otimes}\)的结构，
+这时因为利用子群\(\opair{H,\otimes}\)可以给出集合\(G\)的一个划分.
+而为了给出\(G\)的一个划分，需要在\(G\)上建立一个等价关系，于是我们定义：\[
+	a \sim b
+	\defiff
+	a \otimes b^{-1} \in H.
+\]
+可以验证\(\sim\)是等价关系：
+首先，由于\(a \otimes a^{-1} = e \in H\)，因此\(a \sim a\)；
+这就说明\(\sim\)具有自反性.
+然后，由\(a \sim b\)可得\(a \otimes b^{-1} \in H\)；
+那么由\(H \subseteq G\)可知\((a \otimes b^{-1})^{-1} \in H\)；
+于是\(b \otimes a^{-1} \in H\)，从而\(b \sim a\)；
+这就说明\(\sim\)具有对称性.
+最后，由\(a \sim b\)和\(b \sim c\)得\(a \otimes b^{-1} \in H\)和\(b \otimes c^{-1} \in H\)；
+由于\(H \subseteq G\)，因此\((a \otimes b^{-1}) \otimes (b \otimes c^{-1}) \in H\)；
+于是\(a \otimes c^{-1} \in H\)，从而\(a \sim c\)；
+这就说明\(\sim\)具有传递性.
+综上所述，\(\sim\)兼具自反性、对称性、传递性，
+所以\(\sim\)是\(G\)上的一个等价关系.
+
+任给\(a \in G\)，
+它在关系\(\sim\)下的等价类为\begin{align*}
+	[a] &= \Set{ x \in G \given x \sim a }
+	= \Set{ x \in G \given x \otimes a^{-1} \in H }
+	= \Set{ x \in G \given x \otimes a^{-1} = h \land h \in H } \\
+	&= \Set{ x \in G \given x = h \otimes a \land h \in H }
+	= \Set{ h \otimes a \given h \in H }.
+\end{align*}
+可以注意到，这里的等价类\([a]\)等于\(H \otimes \{a\}\).
+我们称\(H \otimes \{a\}\)为“\(H\)的一个\DefineConcept{右陪集}”；
+称\(a\)为它的\DefineConcept{陪集代表}.
+于是\(H\)的全体右陪集组成的集合也就是“\(G\)关于子群\(H\)的\DefineConcept{右商集}”，
+记为\(\RQuotient\)，
+它是\(G\)的一个划分.
+
+类似地，我们还可以重新定义：\[
+	a \backsim b
+	\defiff
+	b^{-1} \otimes a \in H.
+\]
+同理可证\(\backsim\)也是\(G\)上的一个等价关系.
+任给\(a \in G\)，它在关系\(\backsim\)下的等价类为\begin{align*}
+	[a] &= \Set{ x \in G \given x \backsim a }
+	= \Set{ x \in G \given a^{-1} \otimes x \in H }
+	= \Set{ x \in G \given a^{-1} \otimes x = h \land h \in H } \\
+	&= \Set{ x \in G \given x = a \otimes h \land h \in H }
+	= \Set{ a \otimes h \given h \in H }.
+\end{align*}
+可以注意到，这里的等价类\([a]\)等于\(\{a\} \otimes H\).
+我们称\(\{a\} \otimes H\)为“\(H\)的一个\DefineConcept{左陪集}”；
+称\(a\)为它的\DefineConcept{陪集代表}.
+于是\(H\)的全体左陪集组成的集合也就是“\(G\)关于子群\(H\)的\DefineConcept{左商集}”，
+记为\(\LQuotient\)，
+它也是\(G\)的一个划分.
+
+现在定义映射\[
+	\sigma\colon (\LQuotient) \to (\RQuotient),
+	(\{a\} \otimes H) \mapsto (H \otimes \{a^{-1}\}).
+\]
+由于\begin{align*}
+	\{a\} \otimes H = \{c\} \otimes H
+	&\iff
+	c^{-1} \times a \in H \\
+	&\iff
+	c^{-1} \times (a^{-1})^{-1} \in H \\
+	&\iff
+	H \otimes \{c^{-1}\} = H \otimes \{a^{-1}\},
+\end{align*}
+因此\(\sigma\)是单射.
+任给\(H \otimes \{b\} \in \RQuotient\)，
+有\[
+	\sigma(b^{-1} \otimes H)
+	= (H \otimes b^{-1})^{-1}
+	= H \otimes \{b\},
+\]
+因此\(\sigma\)又是满射，
+从而\(\sigma\)是双射.
+于是左陪集与右陪集的基数相同，即\[
+	\card(\LQuotient) = \card(\RQuotient).
+\]
+由此我们引出下述概念.
+\begin{definition}
+设\(\opair{H,\times}\)是群\(\opair{G,\times}\)的一个子群，
+把\(G\)关于子群\(H\)的左商集\(\LQuotient\)的基数
+称为“\(H\)在\(G\)中的\DefineConcept{指数}”，记作\([G:H]\).
+\end{definition}
+
+%假设群\(\opair{G,\times}\)的子群\(H\)在\(G\)中的指数为\([G:H]=r\)，
+%则\begin{equation}\label{equation:抽象代数.关于子群的左陪集分解式}
+%	G = H \cup [a_1]_\leftarrow \cup [a_2]_\leftarrow \cup \dotsb \cup [a_{r-1}]_\leftarrow,
+%\end{equation}
+%其中\(H,[a_1]_\leftarrow,[a_2]_\leftarrow,\dotsc,[a_{r-1}]_\leftarrow\)两两互斥.
+%我们把\cref{equation:抽象代数.关于子群的左陪集分解式}
+%称为“群\(\opair{G,\times}\)关于子群\(H\)的\DefineConcept{左陪集分解式}”；
+%把\(\Set{e,\AutoTuple{a}{r-1}}\)称为“\(H\)在\(G\)中的\DefineConcept{左陪集代表系}”.
+%
+%\begin{lemma}
+%映射\[
+%	\uptau\colon H \to (\{a\} \otimes H), h \mapsto a \times h
+%\]是双射.
+%\end{lemma}
+%由此可知，子群\(H\)与它的任一左陪集\((\{a\} \otimes H)\)的基数相同.
+%
+%\begin{theorem}[拉格朗日定理]
+%设\(G\)是有限群，\(H\)是\(G\)的任一子群，则\[
+%	\abs{G} = [G:H] \cdot \abs{H}.
+%\]
+%\end{theorem}
+%拉格朗日定理说明：
+%\(G\)的任一子群\(H\)的阶是\(G\)的阶的因数.
+%
+%\begin{corollary}
+%设\(G\)是有限群，则\(G\)的任一元素\(a\)的阶是\(G\)的阶的因数，从而\(a^{\abs{G}}=e\).
+%\end{corollary}
+
+
+\endgroup
