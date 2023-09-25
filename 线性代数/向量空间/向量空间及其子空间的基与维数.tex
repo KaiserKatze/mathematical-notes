@@ -1,5 +1,5 @@
 \section{向量空间及其子空间的基与维数}
-\begin{definition}
+\begin{definition}\label{definition:向量空间.子空间的基的定义}
 %@see: 《高等代数（第三版 上册）》（丘维声） P77. 定义1
 设\(U\)是\(K^n\)的一个子空间.
 如果\(A=\{\AutoTuple{\a}{r}\}\subseteq U\)满足\begin{enumerate}
@@ -122,13 +122,6 @@
 \end{proof}
 \end{theorem}
 
-\begin{example}
-设\(\dim U = r\)，\(\AutoTuple{\a}{r} \in U\).
-证明：如果\(U\)中每一个向量都可以由\(\AutoTuple{\a}{r}\)线性表出，
-那么\(\AutoTuple{\a}{r}\)是\(U\)的一个基.
-%TODO
-\end{example}
-
 \begin{theorem}
 %@see: 《高等代数（第三版 上册）》（丘维声） P78. 命题6
 设\(U\)和\(W\)都是\(K^n\)的非零子空间.
@@ -196,5 +189,26 @@
 \]
 这就是说\(W\)对于加法、数量乘法都封闭.
 因此\(W\)是\(K^n\)的一个子空间.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P80. 习题3.4 4.
+设\(\dim U = r\)，且\(\AutoTuple{\a}{r} \in U\).
+证明：如果\(U\)中每一个向量都可以由\(\AutoTuple{\a}{r}\)线性表出，
+那么\(\AutoTuple{\a}{r}\)是\(U\)的一个基.
+\begin{proof}
+由\cref{definition:向量空间.子空间的基的定义}，
+倘若\(U\)中每一个向量都可以由\(\AutoTuple{\a}{r}\)线性表出，
+那么要证\(\AutoTuple{\a}{r}\)是\(U\)的一个基，
+就只需证\(\AutoTuple{\a}{r}\)线性无关.
+
+用反证法.
+假设\(\AutoTuple{\a}{r}\)线性相关，
+那么由\cref{equation:线性方程组.子空间的维数与向量组的秩的联系,theorem:向量空间.秩与线性相关性的关系}，
+有\(\dim\opair{\AutoTuple{\a}{r}}=\rank\{\AutoTuple{\a}{r}\}<r=\dim U\)，
+于是\(\opair{\AutoTuple{\a}{r}} \neq U\)，
+即存在\(\a \in U\)，\(\a\)无法由\(\AutoTuple{\a}{r}\)线性表出，矛盾！
+因此\(\AutoTuple{\a}{r}\)线性无关，也是\(U\)的一个基.
 \end{proof}
 \end{example}
