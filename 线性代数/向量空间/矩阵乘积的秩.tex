@@ -1,0 +1,367 @@
+\section{矩阵乘积的秩}
+\begin{theorem}
+设矩阵\(\A \in M_{m \times n}(K),
+\B \in M_{n \times m}(K)\).
+如果\(m > n\)，
+那么\(\abs{\A\B} = 0\).
+\begin{proof}
+当\(m>n\)时，
+根据\cref{theorem:线性方程组.矩阵的秩的性质2}，有\[
+	\rank\A,\rank\B \leq \min\{m,n\} = n;
+\]
+再根据\cref{theorem:线性方程组.矩阵乘积的秩}，有\[
+	\rank(\A\B) \leq \min\{\rank\A,\rank\B\} = n < m,
+\]
+也就是说，矩阵\(\A\B\)不满秩；
+那么根据\cref{theorem:向量空间.满秩方阵的行列式非零} 可知\(\abs{\A\B} = 0\).
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:线性方程组.矩阵乘积的秩}
+%@see: 《线性代数》（张慎语、周厚隆） P78. 定理7
+%@see: 《高等代数（第三版 上册）》（丘维声） P121. 定理1
+设\(\A\in M_{s\times n}(K),
+\B\in M_{n\times m}(K)\)，
+那么\[
+	\rank(\A\B) \leq \min\{\rank\A,\rank\B\}.
+\]
+\begin{proof}
+记\(\C = \A\B\)，
+显然\(\rank(\A\B)=\rank_C\C\).
+将\(\C\)、\(\B\)分别进行列分块得\[
+	\C = (\AutoTuple{\g}{n}),
+	\qquad
+	\B = (\AutoTuple{\b}{n}),
+\]
+则\[
+	(\AutoTuple{\g}{n}) = \A (\AutoTuple{\b}{n}) = (\AutoTuple{\A\b}{n}),
+\]
+于是\(\g_i = \A \b_i\ (i=1,2,\dotsc,n)\).
+
+假设\(\rank\B = t<m\)，
+那么由\cref{example:向量空间.若部分组向量个数多于全组的秩则部分组必线性相关}，
+\(\B\)的任意\(t+1\)个列向量\(\b_{k_1},\b_{k_2},\dotsc,\b_{k_{t+1}}\)线性相关，
+也就是说，存在不全为零的数\(l_1,l_2,\dotsc,l_{t+1}\in K\)，使得\[
+	l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}} = \z.
+\]
+因此\[
+	l_1 \g_{k_1} + l_2 \g_{k_2} + \dotsb + l_{t+1} \g_{k_{t+1}}
+	= \A(l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}})
+	= \z,
+\]
+这就是说\(\C\)的任意\(t+1\)个列向量也线性相关，
+那么\(\rank_C\C \ngeq t+1\)，
+\(\rank(\A\B)\leqslant t\)，
+即\(\rank(\A\B) \leq \rank\B\).
+利用这个结论，我们还可以得到\[
+	\rank(\A\B)
+	= \rank(\A\B)^T
+	= \rank(\B^T \A^T)
+	\leq \rank \A^T
+	= \rank \A.
+\]
+综上所述\(\rank(\A\B) \leq \min\{\rank\A,\rank\B\}\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+设\(\A\)是一个\(s \times n\)矩阵，\(\P\)、\(\Q\)分别是\(s\)阶和\(n\)阶可逆矩阵，则\[
+\rank\A = \rank(\P\A) = \rank(\A\Q) = \rank(\P\A\Q).
+\]
+\begin{proof}
+因为\(\A = (\P^{-1} \P) \A = \P^{-1} (\P \A)\)，由\cref{theorem:线性方程组.矩阵乘积的秩}，有\[
+\rank\A = \rank(\P^{-1}(\P\A)) \leq \rank(\P\A) \leq \rank\A,
+\]所以\(\rank\A = \rank(\P\A)\)；同理可得\(\rank\A = \rank(\A\Q) = \rank(\P\A\Q)\).
+\end{proof}
+\end{corollary}
+
+\begin{theorem}
+矩阵\(\A\)满足\(\rank\A=r\)的充要条件是：存在可逆矩阵\(\P,\Q\)，使得\[
+\P \A \Q = \begin{bmatrix}
+\E_r & \z \\ \z & \z
+\end{bmatrix} = \B.
+\]\rm
+称矩阵\(\B\)为\(\A\)的\DefineConcept{等价标准型}.
+\begin{proof}
+充分性.如果可逆矩阵\(\P,\Q\)使得\[
+\P\A\Q = \begin{bmatrix}
+\E_r & \z \\ \z & \z
+\end{bmatrix},
+\]
+把上式等号左边的可逆矩阵\(\P\)、\(\Q\)分别视作对矩阵\(\A\)的初等行变换和初等列变换，%
+那么，根据\cref{theorem:线性方程组.初等变换不变秩}，%
+所得矩阵\(\B\)的秩与原矩阵\(\A\)相同，%
+即\[
+\rank\A = \rank\B = r.
+\qedhere
+\]
+%\cref{theorem:线性方程组.非零矩阵可经初等行变换化为若尔当阶梯形矩阵}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+设\(\A\)与\(\B\)都是\(s \times n\)矩阵，则\(\A \cong \B\)的充要条件是：\(\rank\A = \rank\B\).
+\begin{proof}
+必要性.因为\(\A\)可经一系列初等变换化为\(\B\)，根据\cref{theorem:线性方程组.初等变换不变秩}，初等变换不改变矩阵的秩，所以\(\rank\A = \rank\B\).
+
+充分性.已知\(\rank\A = \rank\B = r\).对\(\A\)作初等行变换可将其化简为仅前\(r\)行不为零的阶梯形矩阵\(\C\)，同样对\(\C\)作初等列变换可化简为\(\A\)的等价标准型.
+对\(\B\)也可作初等变换化为等价标准型.
+那么存在\(s\)阶可逆矩阵\(\P_1\)和\(\P_2\)，存在\(n\)阶可逆矩阵\(\Q_1\)和\(\Q_2\)，使得\[
+\P_1 \A \Q_1 = \P_2 \A \Q_2 = \begin{bmatrix} \E_r & \z \\ \z & \z \end{bmatrix},
+\]令\(\P = \P_2^{-1} \P_1\)，\(\Q = \Q_1 \Q_2^{-1}\)，则\(\P\)和\(\Q\)可逆，\(\P \A \Q = \B\)，从而\(\A \cong \B\).
+\end{proof}
+\end{theorem}
+
+\begin{example}
+试证：\begin{equation}
+	\rank\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix} = \rank\A + \rank\B.
+	\label{equation:矩阵的秩.分块矩阵的秩的等式1}
+\end{equation}
+\begin{proof}
+设\(\rank\A = r_1, \rank\B = r_2\)，则存在可逆矩阵\(\P_1,\Q_1,\P_2,\Q_2\)，使得\[
+\P_1 \A \Q_1 = \begin{bmatrix}
+\E_{r_1} & \z \\
+\z & \z
+\end{bmatrix},
+\qquad
+\P_2 \B \Q_2 = \begin{bmatrix}
+\E_{r_2} & \z \\
+\z & \z
+\end{bmatrix},
+\]于是\[
+\begin{bmatrix}
+\P_1 & \z \\
+\z & \P_2
+\end{bmatrix} \begin{bmatrix}
+\A & \z \\
+\z & \B
+\end{bmatrix} \begin{bmatrix}
+\Q_1 & \z \\
+\z & \Q_2
+\end{bmatrix}
+= \begin{bmatrix}
+\P_1 \A \Q_1 & \z \\
+\z & \P_2 \B \Q_2
+\end{bmatrix}
+= \begin{bmatrix}
+\E_{r_1} \\
+& \z \\
+& & \E_{r_2} \\
+& & & \z
+\end{bmatrix}.
+\]显然上式最右端矩阵的秩为\(r_1+r_2\)，而最左端的矩阵\(\begin{bmatrix}
+\P_1 & \z \\
+\z & \P_2
+\end{bmatrix}\)和\(\begin{bmatrix}
+\Q_1 & \z \\
+\z & \Q_2
+\end{bmatrix}\)都是可逆矩阵，与之相乘不改变矩阵\(\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix}\)的秩，说明\(\rank\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix} = r_1 + r_2 = \rank\A + \rank\B\).
+\end{proof}
+\end{example}
+
+\begin{example}
+试证：\begin{gather}
+	\rank\begin{bmatrix} \A & \C \\ \z & \B \end{bmatrix} \geq \rank\A + \rank\B,
+	\label{equation:矩阵的秩.分块矩阵的秩的不等式1} \\
+	\rank\begin{bmatrix} \A & \z \\ \D & \B \end{bmatrix} \geq \rank\A + \rank\B.
+	\label{equation:矩阵的秩.分块矩阵的秩的不等式2}
+\end{gather}
+\end{example}
+
+\begin{example}
+设\(\A,\B\in M_n(K)\)，\(\A\B=\B\A\)，证明：\[
+	\rank(\A+\B)\leq\rank\A+\rank\B-\rank(\A\B).
+\]
+\begin{proof}
+考虑\[
+	\begin{bmatrix}
+		\E & \E \\
+		\z & \E
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A & \z \\
+		\z & \B
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E & -\B \\
+		\E & \A
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A+\B & -\A\B+\B\A \\
+		\B & \B\A
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A+\B & \z \\
+		\B & \A\B
+	\end{bmatrix}.
+\]
+由\cref{equation:矩阵的秩.分块矩阵的秩的等式1,%
+equation:矩阵的秩.分块矩阵的秩的不等式2} 可知\[
+	\rank\A+\rank\B
+	= \rank\begin{bmatrix}
+		\A & \z \\
+		\z & \B
+	\end{bmatrix}
+	\geq \rank\begin{bmatrix}
+		\A+\B & \z \\
+		\B & \B\A
+	\end{bmatrix}
+	\geq \rank(\A+\B) + \rank(\A\B).
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设矩阵\(\A \in M_{s \times n}(P)\)，矩阵\(\B \in M_{s \times m}(P)\)，则
+\begin{equation}
+	\rank(\A,\B) \leq \rank\A + \rank\B.
+\end{equation}
+\begin{proof}
+\def\as{\AutoTuple{\a}{n}}
+\def\bs{\AutoTuple{\b}{m}}
+\def\asi{\a_{i_1},\dotsc,\a_{i_r}}
+\def\bsj{\b_{j_1},\dotsc,\b_{j_t}}
+设\(\rank\A = r\)，\(\rank\B = t\).
+对\(\A\)、\(\B\)分别按列分块得\[
+	\A = (\as),
+	\qquad
+	\B = (\bs),
+\]
+则\[
+	(\A,\B) = (\as,\bs),
+\]且\[
+	\rank\{\as\} = r,
+	\quad
+	\rank\{\bs\} = t.
+\]
+
+由于\(\as\)可由其极大线性无关组\[
+	\asi
+\]线性表出，
+\(\bs\)可由其极大线性无关组\[
+	\bsj
+\]线性表出，
+故\[
+	V_1=\{\as,\bs\}
+\]可由向量组\[
+	V_2=\{\asi,\bsj\}
+\]线性表出，
+则\[
+	\rank V_1
+	\leq
+	\rank V_2
+	\leq
+	r+t;
+\]
+于是\(\rank(\A,\B) = \rank V_1 \leq r+t\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)、\(\B\)都是\(s \times n\)矩阵，证明：\(\rank(\A+\B) \leq \rank\A + \rank\B\).
+\begin{proof}
+\def\asi{\a_{i_1},\a_{i_2},\dotsc,\a_{i_r}}
+\def\bsj{\b_{j_1},\b_{j_2},\dotsc,\b_{j_t}}
+设\(\rank\A = r\)，\(\rank\B = t\).对\(\A\)、\(\B\)分别按列分块得\[
+\A = (\AutoTuple{\a}{n}), \qquad
+\B = (\AutoTuple{\b}{m}),
+\]则\[
+\A + \B = (\a_1 + \b_1,\a_2 + \b_2,\dotsc,\a_n + \b_n).
+\]
+由于\(\AutoTuple{\a}{n}\)可由其极大线性无关组\(\asi\)线性表出，%
+\(\AutoTuple{\b}{m}\)可由其极大线性无关组\(\bsj\)线性表出，%
+故\[
+\a_1 + \b_1,\a_2 + \b_2,\dotsc,\a_n + \b_n
+\]可由向量组\[
+\asi,\bsj
+\]线性表出，%
+结论显然成立.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是\(n\)阶矩阵，证明：\(n \leq \rank(\A + \E) + \rank(\A - \E)\).
+\begin{proof}
+可以证
+\begin{align*}
+\rank(\A + \E) + \rank(\A - \E)
+&= \rank(\A + \E) + \rank[-(\A - \E)] \\
+&\geq \rank\{(\A + \E) + [-(\A - \E)]\} \\
+&= \rank(2\E) = \rank\E = n.
+\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是\(s \times n\)矩阵（\(s \neq n\)），证明：\(\det(\A \A^T) \det(\A^T \A) = 0\).
+\begin{proof}
+由题有，\(\A^T \A\)是\(n\)阶矩阵，\(\A \A^T\)是\(s\)阶矩阵.
+
+当\(s < n\)时，\(\rank(\A^T \A) \leq \min\{ \rank\A, \rank\A^T \} = \rank\A = \rank\A^T \leq \min\{s,n\} = s < n\)，\(n\)阶方阵\(\A^T \A\)不满秩，那么\(\det(\A^T \A) = 0\).
+
+同理，当\(n < s\)时，\(\rank(\A \A^T) \leq \min\{s,n\} = n < s\)，那么\(\det(\A \A^T) = 0\).
+
+综上所述，\(s \neq n\)时总有\(\det(\A \A^T) \det(\A^T \A) = 0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是\(m \times n\)矩阵，\(\B\)是\(n \times m\)矩阵，\(\E\)是\(m\)阶单位矩阵.
+已知\(\A\B = \E\)，求\(\rank\A,\rank\B\).
+\begin{solution}
+假设\(m > n\)，则由\cref{theorem:线性方程组.矩阵的秩的性质2} 可知\[
+\rank\A,\rank\B \leq \min\{m,n\} = n.
+\]再由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\[
+\rank(\A\B) \leq \min\{\rank\A,\rank\B\} \leq n < m.
+\]但\(\rank(\A\B) = \rank\E = m\)，矛盾！
+由此可知，必有\(m \leq n\)，那么\[
+\rank\A,\rank\B \leq \min\{m,n\} = m,
+\]因此\begin{align*}
+m = \rank(\A\B) \leq \min\{\rank\A,\rank\B\} \leq m
+&\implies
+\min\{\rank\A,\rank\B\} = m \\
+&\implies
+m \leq \rank\A,\rank\B \leq m \\
+&\implies \rank\A=\rank\B=m.
+\end{align*}
+\end{solution}
+\end{example}
+
+
+
+\subsection{重要不等式}
+\begin{theorem}[西尔维斯特不等式]
+设\(\A\)是\(m \times n\)矩阵，\(\B\)是\(n \times t\)矩阵.证明：\begin{equation}\label{equation:线性方程组.西尔维斯特不等式}
+\rank\A + \rank\B - n \leq \rank(\A \B).
+\end{equation}
+\begin{proof}
+\def\AA{\P_1 \begin{bmatrix} \E_r & \z \\ \z & \z \end{bmatrix} \Q_1}
+\def\BB{\P_2 \begin{bmatrix} \E_s & \z \\ \z & \z \end{bmatrix} \Q_2}
+\def\CC#1{\C_{#1}}
+设\(\rank\A = r\)，\(\rank\B = s\)，则存在可逆矩阵\(\P_1,\P_2,\Q_1,\Q_2\)使得\[
+\A = \AA,
+\quad
+\B = \BB,
+\]所以\[
+\A \B = \AA \BB.
+\]若\(\Q_1 \P_2 = \begin{bmatrix} \CC1 & \CC2 \\ \CC3 & \CC4 \end{bmatrix}\)（其中\(\CC1\)是\(r \times s\)矩阵），则\[
+\A \B = \P_1 \begin{bmatrix} \CC1 & \z \\ \z & \z \end{bmatrix} \Q_2.
+\]
+注意到从任意一个矩阵中划去一行（或一列），\(\A\)的秩至多减少1，那么可以把\(\CC1\)看作将一个\(n\)阶方阵划去\(n-r\)行，并划去\(n-s\)列得到的，即\[
+\rank\CC1 \geq n - (n-r) - (n-s) = r+s-n,
+\]所以\(\rank\A + \rank\B - n \leq \rank(\A \B) = \rank\CC1\).
+\end{proof}
+\end{theorem}
+
+上面的结果和\cref{theorem:线性方程组.矩阵乘积的秩} 一起可以确定矩阵乘积的秩的区间：\[
+\rank\A + \rank\B - n \leq \rank(\A\B) \leq \min\{\rank\A,\rank\B\}.
+\]
+进一步，如果有\(\A\B=\z\)，那么\[
+\rank\A + \rank\B \leq n.
+\]
+
+我们还可以将\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}进行如下的推广：\begin{equation}\label{equation:线性方程组.弗罗贝尼乌斯不等式}
+\rank(\A\B\C) \geq \rank(\A\B) + \rank(\B\C) - \rank\B.
+\end{equation}称其为\DefineConcept{弗罗贝尼乌斯不等式}.
