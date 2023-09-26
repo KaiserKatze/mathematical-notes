@@ -11,15 +11,15 @@
 \end{definition}
 
 \begin{definition}
-对于\(n\)阶方阵\(\A\)，%
-若\(\abs{\A}=0\)，称“\(\A\)是\DefineConcept{奇异矩阵}（singular matrix）”；%
+对于\(n\)阶方阵\(\A\)，
+若\(\abs{\A}=0\)，称“\(\A\)是\DefineConcept{奇异矩阵}（singular matrix）”；
 若\(\abs{\A} \neq 0\)，称“\(\A\)是\DefineConcept{非奇异矩阵}（non-singular matrix）”.
 \end{definition}
 
 \begin{definition}
 若\(\A\)是可逆矩阵，那么规定\begin{equation}
-\A^{-k} = (\A^{-1})^k
-= \underbrace{\A^{-1}\A^{-1}\dotsm\A^{-1}}_{k\ \text{个}}.
+	\A^{-k} = (\A^{-1})^k
+	= \underbrace{\A^{-1}\A^{-1}\dotsm\A^{-1}}_{k\ \text{个}}.
 \end{equation}
 \end{definition}
 
@@ -33,9 +33,13 @@
 
 充分性.
 设\(\abs{\A}\neq0\)，\(\A^*\)是\(\A\)的伴随矩阵.
-根据\cref{equation:行列式.伴随矩阵.恒等式1}，若令\(\B=\frac{1}{\abs{\A}} \A^*\)，则有\(\A\B = \B\A = \E\)，故由可逆矩阵的定义可知，矩阵\(\A\)可逆，且有\[
-\A^{-1} = \B = \frac{1}{\abs{\A}} \A^*.
-\qedhere
+根据\cref{equation:行列式.伴随矩阵.恒等式1}，
+若令\(\B=\frac{1}{\abs{\A}} \A^*\)，
+则有\(\A\B = \B\A = \E\)，
+故由可逆矩阵的定义可知，矩阵\(\A\)可逆，
+且有\[
+	\A^{-1} = \B = \frac{1}{\abs{\A}} \A^*.
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
@@ -51,8 +55,8 @@
 
 唯一性.
 设矩阵\(\C\)也是\(\A\)的逆矩阵，即\(\C\A=\E\)，于是\[
-\C=\C\E=\C(\A\B)=(\C\A)\B=\E\B=\B.
-\qedhere
+	\C=\C\E=\C(\A\B)=(\C\A)\B=\E\B=\B.
+	\qedhere
 \]
 \end{proof}
 \end{property}
@@ -64,7 +68,8 @@
 从而\(\abs{\A}\neq0,\abs{\B}\neq0\)，\(\A\)、\(\B\)都可逆.
 在\(A\B=\E\)等号两边同时左乘\(\A^{-1}\)得\[
 	\A^{-1}\A\B=\A^{-1}\E,
-\]即\[
+\]
+即\[
 	\B=\A^{-1},
 \]
 也就是说\(\B\)是\(\A\)的逆矩阵；
@@ -302,4 +307,57 @@
 \z & \Q^{-1} \\ \P^{-1} & \z
 \end{bmatrix}\).
 \end{solution}
+\end{example}
+
+
+\section{应用初等变换求解逆矩阵}
+\begin{property}\label{theorem:逆矩阵.初等矩阵的性质3}
+初等矩阵可逆.
+\end{property}
+
+\begin{theorem}\label{theorem:逆矩阵.可逆矩阵与初等矩阵的关系}
+设\(\A=(a_{ij})_n\)，则\(\A\)可逆的充要条件是：
+\(\A\)可经一系列初等行变换化为单位矩阵\(\E_n\)，
+即\(\A \cong \E_n\).
+\begin{proof}
+\def\Ps{\P_t \P_{t-1} \dotsm \P_2 \P_1}
+存在与\(t\)次初等行变换对应的\(t\)个初等矩阵\(\P_t,\P_{t-1},\dotsc,\P_2,\P_1\)，使\[
+	\A \to \E_n = \Ps \A,
+\]则\(\A\)可逆且\(\A^{-1} = \Ps\).
+
+对矩阵\((\A,\E_n)\)作以上初等行变换，则\begin{align*}
+	(\A,\E_n) \to &\Ps(\A,\E_n) = \A^{-1}(\A,\E_n) \\
+	&= (\A^{-1}\A,\A^{-1}\E_n) = (\E_n,\A^{-1}).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:逆矩阵.计算逆矩阵的方法}
+如果方阵\(\A\)经\(t\)次初等行变换为\(\E_n\)，
+那么同样的初等行变换会将\(\E_n\)变为\(\A^{-1}\).
+\end{corollary}
+
+\begin{corollary}
+可逆矩阵\(\A\)可以表示成若干个初等矩阵的乘积.
+\end{corollary}
+
+\begin{corollary}
+\(n\)阶方阵\(\A\)可逆的充要条件是：\(\A\)可经过一系列初等列变换变为\(\E_n\)，
+且同样的初等列变换将\(\begin{bmatrix}\A\\\E_n\end{bmatrix}\)变为
+\(\begin{bmatrix}\E_n\\\A^{-1}\end{bmatrix}\).
+\end{corollary}
+
+\begin{theorem}
+设\(\A\)与\(\B\)都是\(s \times n\)矩阵，则\(\A\)与\(\B\)等价的充要条件是：
+存在\(s\)阶可逆矩阵\(\P\)与\(n\)阶可逆矩阵\(\Q\)，使得\(\B=\P\A\Q\).
+\end{theorem}
+
+\begin{example}
+初等矩阵的逆：
+\begin{enumerate}
+	\item \([\P(i,j)]^{-1}=\P(i,j)\)
+	\item \([\P(i(c))]^{-1}=\P(i(c^{-1}))\)
+	\item \([\P(i,j(k))]^{-1}=\P(i,j(-k))\)
+\end{enumerate}
 \end{example}
