@@ -1,0 +1,282 @@
+\section{矩阵的乘法}
+\begin{definition}
+设\(\A = (a_{ij})_{s \times n}\)，
+\(\B = (b_{ij})_{n \times m}\)，
+\(\C = (c_{ij})_{s \times m}\).
+如果满足\[
+	c_{ij} = \sum\limits_{k=1}^n {a_{ik} b_{kj}},
+	\quad
+	i=1,2,\dotsc,s;j=1,2,\dotsc,m,
+\]
+则称矩阵\(\C\)是\(\A\)与\(\B\)的\DefineConcept{乘积}，
+记作\(\C = \A \B\).
+\end{definition}
+
+\begin{example}
+设\(\A = (\AutoTuple{a}{n})^T\)，
+\(\B = (\AutoTuple{b}{n})\)，
+计算\(\A\B\)和\(\B\A\).
+\begin{solution}
+直接计算得
+\[
+	\A\B = \begin{bmatrix}
+		a_1 b_1 & a_1 b_2 & \dots & a_1 b_n \\
+		a_2 b_1 & a_2 b_2 & \dots & a_2 b_n \\
+		\vdots & \vdots & & \vdots \\
+		a_n b_1 & a_n b_2 & \dots & a_n b_n \\
+	\end{bmatrix},
+\]\[
+	\B\A = \sum\limits_{i=1}^n b_i a_i.
+\]
+\end{solution}
+\end{example}
+
+\begin{definition}
+一般地，矩阵乘法不满足交换律.
+但如果同阶矩阵\(\A = (a_{ij})_n\)和\(\B = (b_{ij})_n\)的乘积满足交换律，
+即\[
+	\A \B = \B \A,
+\]则称“\(\A\)与\(\B\) \DefineConcept{可交换}”.
+\end{definition}
+
+\begin{example}
+举例说明非零矩阵的乘积可能是零矩阵.
+\begin{solution}
+矩阵\[
+	\A = \begin{bmatrix}
+		0 & 0 & 0 \\
+		a_{21} & 0 & 0 \\
+		a_{31} & a_{32} & 0 \\
+	\end{bmatrix}
+	\quad\text{和}\quad
+	\B = \begin{bmatrix}
+		b_{11} & b_{12} & b_{13} \\
+		0 & b_{22} & b_{23} \\
+		0 & 0 & b_{33} \\
+	\end{bmatrix}
+\]都不是零矩阵，但他们的乘积\(\A\B\)是零矩阵.
+\end{solution}
+\end{example}
+
+\begin{example}
+举例说明矩阵方程\(\A \B = \A \C\)与\(\A = \z \lor \B = \C\)不等价，即消去律不成立.
+\end{example}
+
+\begin{theorem}
+矩阵乘法满足结合律.
+\begin{proof}
+设\(\A = (a_{ij})_{s \times n},
+\B = (b_{ij})_{n \times m},
+\C = (c_{ij})_{m \times r}\).
+显然\((\A\B)\C\)与\(\A(\B\C)\)同型，都是\(s \times r\)矩阵.
+由于\begin{align*}
+	\MatrixEntry{((\A\B)\C)}{i,j}
+	&= \sum\limits_{l=1}^m (\MatrixEntry{(\A\B)}{i,l}) \cdot c_{lj} \\
+	&= \sum\limits_{l=1}^m \left( \sum\limits_{k=1}^n a_{ik} b_{kl} \right) c_{lj} \\
+	&= \sum\limits_{l=1}^m \left( \sum\limits_{k=1}^n a_{ik} b_{kl} c_{lj} \right), \\
+	\MatrixEntry{(\A(\B\C))}{i,j}
+	&= \sum\limits_{k=1}^n a_{ik} \cdot (\MatrixEntry{(\B\C)}{k,j}) \\
+	&= \sum\limits_{k=1}^n a_{ik} \left( \sum\limits_{l=1}^m b_{kl} c_{lj} \right) \\
+	&= \sum\limits_{k=1}^n \left( \sum\limits_{l=1}^m a_{ik} b_{kl} c_{lj} \right) \\
+	&= \sum\limits_{l=1}^m \left( \sum\limits_{k=1}^n a_{ik} b_{kl} c_{lj} \right),
+\end{align*}
+于是\((\A\B)\C = \A(\B\C)\).
+\end{proof}
+\end{theorem}
+
+\begin{definition}
+若对角矩阵\(\A=(a_{ij})_n\)总有\[
+	a_{ii} = 1\ (i=1,2,\dotsc,n)
+\]成立，
+则称\(\A\)为\DefineConcept{单位矩阵}，记作\(\E\).
+\end{definition}
+
+\begin{property}
+矩阵的乘法满足以下性质：
+\begin{gather}
+	(\forall\A,\B\in M_{s\times n}(K))(\forall k\in K)[k(\A\B) = (k\A)\B = \A(k\B)], \\
+	(\forall\A,\B,\C\in M_{s\times n}(K))[\A(\B+\C) = \A\B + \A\C], \\
+	(\forall\A,\B,\C\in M_{s\times n}(K))[(\A+\B)\C = \A\C + \B\C], \\
+	(\forall\A\in M_{s\times n}(K))[\z_{q \times s} \A = \z_{q \times n}], \\
+	(\forall\A\in M_{s\times n}(K))[\A \z_{n \times p} = \z_{s \times p}], \\
+	(\forall\A\in M_{s\times n}(K))[\E_s \A = \A], \\
+	(\forall\A\in M_{s\times n}(K))[\A \E_n = \A].
+\end{gather}
+\end{property}
+
+\begin{definition}
+设\(\A\)为\(n\)阶方阵，由乘法结合律，可定义\(\A\)的乘幂.
+规定
+\begin{align*}
+	\A^0 &\defeq \E, \\
+	\A^k &\defeq \underbrace{\A\A\dotsm\A}_{k\text{个}}.
+\end{align*}
+\end{definition}
+
+\begin{theorem}
+指数律成立，即
+\begin{gather}
+	\A^k\A^l = \A^{k+l}, \\
+	(\A^k)^l = \A^{kl}, \quad k,l \in \mathbb{N}.
+\end{gather}
+\end{theorem}
+
+对于同阶方阵\(\A\)、\(\B\)，恒有\begin{equation}
+	(\A\B)^k = \A(\B\A)^{k-1}\B,
+	\quad k \geq 1.
+\end{equation}
+注意，当同阶方阵\(\A\)、\(\B\)不可交换时，通常有\[
+	(\A\B)^k \neq \A^k\B^k.
+\]
+
+\begin{example}
+设\(\A,\B,\C \in M_n(P)\)，则\[
+(\A + \B + \C)^2 = \A^2 + \B^2 + \C^2 + \A\B + \B\A + \A\C + \C\A + \B\C + \C\B.
+\]
+\end{example}
+
+\begin{theorem}
+方阵\(\A\)与\(\A^k\)可交换，与\(f(\A) = \sum\limits_{i=0}^n a_i \A^i\)可交换.
+\end{theorem}
+
+\begin{theorem}
+如果\(g(x)\)和\(h(x)\)是两个多项式，设\(l(x) = g(x) + h(x)\)，\(m(x) = g(x) h(x)\)，则\[
+l(\A) = g(\A) + h(\A),
+\quad
+m(\A) = g(\A) h(\A)
+\]
+\end{theorem}
+
+\begin{example}
+设\(\A,\B,\x \in M_n(P)\).证明：若\(\A\x=\x\B\)，则对任意多项式\[
+f(x) = a_0 + a_1 x + a_2 x^2 + \dotsb + a_k x^k,
+\quad
+a_0,a_1,a_2,\dotsc,a_k \in P,
+\]总有\[
+f(\A) \x = \x f(\B).
+\]
+\begin{proof}
+因为\[
+\A\x = \x\B,
+\]所以\[
+\A^2 \x = \A(\A\x) = \A(\x\B),
+\]\[
+\x \B^2 = (\x\B)\B = (\A\x)\B.
+\]以此类推，可证\[
+\A^n \x = \x \B^n,
+\quad n=1,2,\dotsc.
+\]
+
+因为\[
+f(\A) = a_0 \E + a_1 \A + a_2 \A^2 + \dotsb + a_k \A^k,
+\]根据左分配律，有\begin{gather}
+f(\A) \x = a_0 \x + a_1 \A\x + a_2 \A^2 \x + \dotsb + a_k \A^k \x. \tag1
+\end{gather}同理，根据右分配律，有\begin{gather}
+\x f(\B) = a_0 \x + a_1 \x\B + a_2 \x \B^2 + \dotsb + a_k \x \B^k. \tag2
+\end{gather}
+因为式1与式2中各项逐项相等，故\(f(\A) \x = \x f(\B)\).
+\end{proof}
+\end{example}
+
+\begin{theorem}\label{theorem:矩阵.矩阵乘积的转置}
+设\(\A\in M_{s\times n}(K),
+\B\in M_{n \times t}(K)\)，
+则有\[
+	(\A\B)^T = \B^T \A^T.
+\]
+\begin{proof}
+假设\[
+	\A=(a_{ij})_{s \times n}
+	=(\AutoTuple{\a}{s})^T, \qquad
+	\B=(b_{ij})_{n \times t}
+	=(\AutoTuple{\b}{t}),
+\]
+其中\(\a_i\in K^n\ (i=1,2,\dotsc,s)\)是行向量，
+\(\b_j\in K^n\ (j=1,2,\dotsc,t)\)是列向量.
+又假设\[
+	\A\B=(c_{ij})_{s \times t}, \qquad
+	\B^T\A^T=(d_{ij})_{t \times s}.
+\]
+那么\[
+	c_{ij}%\(\A\)的第\(i\)行，\(\B\)的第\(j\)列
+	= \a_i\cdot\b_j
+	= \sum\limits_{k=1}^n a_{ik}b_{kj},
+\]\[
+	d_{ij}%\(\B^T\)的第\(i\)行，\(\A^T\)的第\(j\)列
+	= \b_i\cdot\a_j%相当于\(\B\)的第\(i\)列，\(\A\)的第\(j\)行
+	= \sum\limits_{k=1}^n a_{jk}b_{ki},
+\]
+可见\(c_{ij}=d_{ji}\ (i=1,2,\dotsc,s;j=1,2,\dotsc,t)\).
+因此，\((\A\B)^T = \B^T \A^T\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+\((\A_1 \A_2 \dotsb \A_n)^T = \A_n^T \dots \A_2^T \A_1^T\).
+\end{corollary}
+
+\begin{example}
+设\(\A=\diag(\AutoTuple{a}{n}),
+\B=\diag(\AutoTuple{b}{n})\).
+那么\[
+	\A\B = \diag(a_1b_1,a_2b_2,\dotsc,a_nb_n).
+\]
+\end{example}
+
+\begin{example}
+设二阶矩阵\(\A=\begin{bmatrix} 1 & \lambda \\ 0 & 1 \end{bmatrix}\).
+试证\(\A^k=\begin{bmatrix} 1 & k\lambda \\ 0 & 1 \end{bmatrix}\).
+\end{example}
+
+\begin{example}
+设\[
+	\A = \begin{bmatrix}
+	\cos t & \sin t \\
+	-\sin t & \cos t
+	\end{bmatrix}.
+\]
+令\[
+	\B = \begin{bmatrix}
+		\cos t & 0 \\
+		0 & \cos t
+	\end{bmatrix},
+	\qquad
+	\C = \begin{bmatrix}
+		0 & \sin t \\
+		-\sin t & 0
+	\end{bmatrix},
+\]
+则\(\A=\B+\C\).
+因为\[
+	\B\C = \begin{bmatrix}
+		\cos t & 0 \\
+		0 & \cos t
+	\end{bmatrix}
+	\begin{bmatrix}
+		0 & \sin t \\
+		-\sin t & 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		0 & \cos t \sin t \\
+		-\cos t \sin t & 0
+	\end{bmatrix},
+\]\[
+	\C\B = \begin{bmatrix}
+		0 & \sin t \\
+		-\sin t & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\cos t & 0 \\
+		0 & \cos t
+	\end{bmatrix}
+	= \begin{bmatrix}
+		0 & \cos t \sin t \\
+		-\cos t \sin t & 0
+	\end{bmatrix},
+\]
+所以\(\B\C=\C\B\)，\(\B\)与\(\C\)可交换.
+由牛顿二项式定理有，\[
+	\A^n=(\B+\C)^n
+	=\sum\limits_{k=0}^n C_n^k \B^{n-k} \C^k.
+\]
+\end{example}

@@ -1,0 +1,159 @@
+\section{特殊矩阵}
+\subsection{三角矩阵}
+\begin{definition}
+设\(\A=(a_{ij})_n\).
+\begin{enumerate}
+	\item 如果\(\A\)满足\[
+		a_{ij} = 0
+		\quad(i>j),
+	\]
+	则称之为\DefineConcept{上三角形矩阵}，
+	简称\DefineConcept{上三角阵}.
+
+	\item 如果\(\A\)满足\[
+		a_{ij} = 0
+		\quad(i<j),
+	\]
+	则称之为\DefineConcept{下三角形矩阵}，
+	简称\DefineConcept{下三角阵}.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+设\(\A,\B\)都是\(n\)阶上三角阵，证明：\(\A\B\)是上三角阵.
+\begin{proof}
+利用数学归纳法.
+当\(n=1\)时，\(\A=a\)，\(\B=b\)，\(\A\B = ab\)，结论成立.
+
+假设\(n=k\)时上三角阵的乘积是上三角阵.
+当\(n=k+1\)时，对矩阵\(\A\)和\(b\)分块如下：\[
+	\A = \begin{bmatrix}
+		a_{11} & \A_2 \\
+		\z & \A_4
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		b_{11} & \B_2 \\
+		\z & \B_4
+	\end{bmatrix},
+\]
+其中\(\A_4\)和\(\B_4\)都是\(k\)阶上三角阵，
+由归纳假设，\(\A_4 \B_4\)是\(k\)阶上三角阵，
+则\[
+	\A\B = \begin{bmatrix}
+		a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
+		\z & \A_4 \B_4
+	\end{bmatrix},
+\]
+即\(\A\B\)是\(k+1\)阶上三角阵.
+\end{proof}
+\end{example}
+
+\subsection{对角矩阵}
+\begin{definition}
+若方阵\(\A=(a_{ij})_n\)满足：\[
+	[i \neq j \implies a_{ij} = 0]
+	\land
+	(\exists i)[a_{ii}\neq0].
+\]
+则称\(\A\)为\DefineConcept{对角矩阵}，
+记作\(\diag(a_{11},a_{22},\dotsc,a_{nn})\).
+\end{definition}
+
+\subsection{对称矩阵，厄米矩阵}
+\begin{definition}
+若矩阵\(\A \in M_n(K)\)满足\[
+    \A^T = \A,
+\]
+则称\(\A\)为\DefineConcept{对称矩阵}（symmetric matrix）.
+\end{definition}
+
+\begin{definition}
+如果矩阵\(\A \in M_n(K)\)满足\[
+    \A^H = \A,
+\]
+那么把\(\A\)称为\DefineConcept{厄米矩阵}（Hermitian matrix）.
+\end{definition}
+
+\begin{example}
+设矩阵\(\A = (a_{ij})_n\).
+试证：\(\A\A^T\)为对称矩阵.
+\begin{proof}
+因为\((\A \A^T)^T = (\A^T)^T \A^T = \A \A^T\)，所以\(\A \A^T\)是对称矩阵.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)和\(\B\)是同阶对称矩阵.
+试证：\(\A\B\)是对称矩阵的充要条件是\(\A\B = \B\A\).
+\begin{proof}
+因为\(\A\)和\(\B\)都是对称矩阵，所以\[
+	\A^T = \A, \qquad
+	\B^T = \B.
+\]
+又因为\(\A\B = \B\A\)，\[
+	(\A\B)^T = \B^T \A^T = \B\A = \A\B,
+\]
+所以\(\A\B\)是对称矩阵.
+\end{proof}
+\end{example}
+
+\subsection{反对称矩阵}
+\begin{definition}
+若方阵\(\A\)满足条件\(\A^T = -\A\)，
+则称\(\A\)为\DefineConcept{反对称矩阵}（antisymmetric matrix）或\DefineConcept{斜对称矩阵}.
+\end{definition}
+
+\begin{property}
+反对称矩阵主对角线上的元素全为零.
+\end{property}
+
+\begin{example}
+零矩阵\(\z\)是唯一一个既是实对称矩阵又是实反对称矩阵的矩阵.
+\begin{proof}
+\(\A^T = \A = -\A \implies 2\A = \A+\A = \z \implies \A = \z\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是一个方阵，证明：\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
+\begin{proof}
+因为\((\A+\A^T)^T = \A^T+\A\)，而\((\A-\A^T)^T = \A^T - \A = -(\A-\A^T)\)，所以\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
+显然有\(\A = \frac{\A + \A^T}{2} + \frac{\A - \A^T}{2}\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是3阶实对称矩阵，\(\B\)是3阶实反对称矩阵，\(\A^2 = \B^2\)，试证：\(\A = \B = \z\).
+\begin{proof}
+设\(\A = (a_{ij})_n\)，\(\B = (b_{ij})_n\).
+因为\(\A = \A^T\)，\(\A^2 = \A^T \A\)，所以\(\A^2\)的\(\opair{i,j}\)元素为\(a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}\).
+因为\(\B = -\B^T\)，\(\B^2 = -\B^T \B\)，所以\(\B^2\)的\(\opair{i,j}\)元素为\(-(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj})\).
+因为\(\A^2 = \B^2\)，所以\[
+a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}
+= -(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj}).
+\]
+
+当\(i=j\)时，上式变为\(
+a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
+= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2)
+\)，又由\(a_{ij},b_{ij} \in \mathbb{R}\)可知\(a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2 \geq 0\)，\(-(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) \leq 0\)，所以\[
+a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
+= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) = 0,
+\]进而有\[
+a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{幂零矩阵}
+\begin{definition}
+设矩阵\(\A \in M_n(K)\).
+若\(\exists m\in\mathbb{N}^+\)，
+使得\(\A^m = \z\)，
+则称“\(\A\)是\DefineConcept{幂零矩阵}”；
+称使得\(\A^m = \z\)成立的最小正整数\[
+    \min\Set{ m\in\mathbb{N}^+ \given \A^m = \z }
+\]为“\(\A\)的\DefineConcept{幂零指数}”.
+\end{definition}
