@@ -1,24 +1,61 @@
 \section{多项式}
-\begin{definition}
+\begin{definition}\label{definition:多项式.多项式的定义}
 设\(K\)是一个数域，
 \(x\)是一个不属于\(K\)的符号.
 任意给定一个非负整数\(n\)，
 在\(K\)中任意取定\(\AutoTuple{a}[0]{n}\)，
-如果表达式\begin{equation}
+如果表达式\begin{equation}\label[polynomial]{equation:多项式.多项式}
 	a_n x^n + a_{n-1} x^{n-1} + \dotsb + a_1 x + a_0
 \end{equation}
 满足\begin{enumerate}
-	\item \(\begin{aligned}[t]
+	\item 两个这种形式的表达式相等当且仅当它们除了系数为零的项以外含有完全相同的项，
+	即\begin{align*}
 		&a_n x^n + a_{n-1} x^{n-1} + \dotsb + a_1 x + a_0
 		= b_n y^n + b_{n-1} y^{n-1} + \dotsb + b_1 y + b_0 \\
 		&\iff
 		(\forall i\in\Set{0,1,\dotsc,n})[a_i = b_i = 0 \lor a_i x^i = b_i y^i].
-	\end{aligned}\)
+	\end{align*}
 	\item 允许从表达式中删去系数为零的项，也允许向表达式中添进系数为零的项，
 \end{enumerate}
-那么称之为“数域\(K\)上的一个一元\DefineConcept{多项式}”，
+那么称之为“数域\(K\)上的一个一元\DefineConcept{多项式}（polynomial）”，
 把\(x\)称为\DefineConcept{不定元}.
 \end{definition}
+
+系数全为零的多项式称为\DefineConcept{零多项式}.
+在\cref{equation:多项式.多项式} 中，
+把\(a_i x^i\)称为“\(i\)次\DefineConcept{项}”，
+把\(a_0\)称为\DefineConcept{零次项}或\DefineConcept{常数项}.
+
+从\cref{definition:多项式.多项式的定义} 知道，
+数域\(K\)上两个一元多项式相等当且仅当它们的同次项的系数都相等.
+
+设\(f(x)\)表示\cref{equation:多项式.多项式}.
+如果\(a_n\neq0\)，
+则称“\(a_n x^n\)是多项式\(f(x)\)的\DefineConcept{首项}”；
+并称“\(f(x)\)的\DefineConcept{次数}是\(n\)”，
+记作\(\deg f\).
+
+零多项式的次数定义为\(-\infty\)，并规定：\begin{gather*}
+	(-\infty)+(-\infty)=-\infty, \\
+	(-\infty)+n=-\infty, \\
+	-\infty<n,
+\end{gather*}
+其中\(n\)是任意非负整数.
+
+零次多项式总是一个常数\(a\)，它满足\(a \in K \land a \neq 0\).
+
+我们把数域\(K\)上的所有一元多项式组成的集合记作\(K[x]\).
+我们可以在\(K[x]\)中规定“加法”与“乘法”运算.
+设\[
+	f(x) = \sum\limits_{i=0}^n a_i x^i, \qquad
+	g(x) = \sum\limits_{i=0}^n b_i x^i,
+\]
+如果\(n \ge m\)，那么\begin{gather}
+	f(x) + g(x) \defeq \sum\limits_{i=0}^n (a_i+b_i) x^i, \\
+	f(x) \cdot g(x) \defeq \sum\limits_{s=0}^{n+m} \left( \sum\limits_{i+j=s} a_i b_j \right) x^s,
+\end{gather}
+我们把\(f(x)+g(x)\)称为“\(f(x)\)与\(g(x)\)的\DefineConcept{和}”，
+把\(f(x) \cdot g(x)\)称为“\(f(x)\)与\(g(x)\)的\DefineConcept{积}”.
 
 \section{贝祖定理}
 \begin{theorem}
