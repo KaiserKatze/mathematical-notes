@@ -12,32 +12,44 @@
 记作\(\C = \A \B\).
 \end{definition}
 
-\begin{example}
-设\(\A = (\AutoTuple{a}{n})^T\)，
-\(\B = (\AutoTuple{b}{n})\)，
-计算\(\A\B\)和\(\B\A\).
-\begin{solution}
-直接计算得
-\[
-	\A\B = \begin{bmatrix}
-		a_1 b_1 & a_1 b_2 & \dots & a_1 b_n \\
-		a_2 b_1 & a_2 b_2 & \dots & a_2 b_n \\
-		\vdots & \vdots & & \vdots \\
-		a_n b_1 & a_n b_2 & \dots & a_n b_n \\
-	\end{bmatrix},
-\]\[
-	\B\A = \sum\limits_{i=1}^n b_i a_i.
+可以注意到，如果我们分别对\(\A\)和\(\B\)做行分块和列分块，得\[
+	\A=(\AutoTuple{\a}{s}[,][T])^T, \qquad
+	\B=(\AutoTuple{\b}{m}),
 \]
-\end{solution}
-\end{example}
+那么有\[
+	c_{ij} = \a_i^T \b_j,
+	\quad
+	i=1,2,\dotsc,s;j=1,2,\dotsc,m.
+\]
+如果我们分别对\(\A\)和\(\B\)做列分块和行分块，
+\begingroup%
+\def\mx{\mat{\xi}}%
+\def\mz{\mat{\zeta}}%
+得\[
+	\A=(\AutoTuple{\mx}{n}), \qquad
+	\B=(\AutoTuple{\mz}{n}[,][T])^T,
+\]
+那么有\[
+	\mx_i \mz_i^T
+	= \begin{bmatrix}
+		a_{1i} b_{i1} & a_{1i} b_{i2} & \dots & a_{1i} b_{im} \\
+		a_{2i} b_{i1} & a_{2i} b_{i2} & \dots & a_{2i} b_{im} \\
+		\vdots & \vdots & & \vdots \\
+		a_{si} b_{i1} & a_{si} b_{i2} & \dots & a_{si} b_{im} \\
+	\end{bmatrix},
+	\quad
+	i=1,2,\dotsc,n,
+\]
+于是\[
+	\A\B=\sum\limits_{i=1}^n \mx_i \mz_i^T.
+\]
+\endgroup%
 
-\begin{definition}
 一般地，矩阵乘法不满足交换律.
 但如果同阶矩阵\(\A = (a_{ij})_n\)和\(\B = (b_{ij})_n\)的乘积满足交换律，
 即\[
 	\A \B = \B \A,
 \]则称“\(\A\)与\(\B\) \DefineConcept{可交换}”.
-\end{definition}
 
 \begin{example}
 举例说明非零矩阵的乘积可能是零矩阵.
