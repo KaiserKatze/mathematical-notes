@@ -70,18 +70,18 @@
 \begin{property}
 任意一个环的零元唯一.
 \begin{proof}
-设环\(R\)中有两个零元\(o_1\)和\(o_2\).
+设环\(\opair{R,+,\times}\)中有两个零元\(o_1\)和\(o_2\).
 由环的定义，有\[
     o_1 = o_1 + o_2 = o_2 + o_1 = o_2.
 \]
-也就是说，环\(R\)的零元是唯一的.
+也就是说，环\(\opair{R,+,\times}\)的零元是唯一的.
 \end{proof}
 \end{property}
 
 \begin{property}
-零元的负元是它本身.
+环中零元的负元是它本身.
 \begin{proof}
-设环\(R\)中的零元\(o\)的负元是\(x\).
+设环\(\opair{R,+,\times}\)中的零元\(o\)的负元是\(x\).
 由环的定义，有\[
     x + o = o + x = x,
 \]\[
@@ -96,7 +96,7 @@
 \begin{property}
 两元素各自负元的和等于两元素和的负元.
 \begin{proof}
-从环\(R\)中任取两元素\(a\)和\(b\).
+从环\(\opair{R,+,\times}\)中任取两元素\(a\)和\(b\).
 由加法交换律和加法结合律，得\[
     [(-a) + (-b)] + [a + b]
     = [(-a) + a] + [(-b) + b]
@@ -109,7 +109,7 @@
 \begin{property}
 任一环中元素的负元唯一.
 \begin{proof}
-从环\(R\)中任取一元素\(a\)，假设元素\(b\)与元素\(c\)都是\(a\)的负元.
+从环\(\opair{R,+,\times}\)中任取一元素\(a\)，假设元素\(b\)与元素\(c\)都是\(a\)的负元.
 由环的定义，有\[
     b + a = o, \qquad
     c + a = o.
@@ -133,23 +133,23 @@
 
 \subsection{交换环，单位元}
 \begin{definition}
-如果环\(R\)的乘法满足交换律，即\[
+如果环\(\opair{R,+,\times}\)的乘法\(\times\)满足交换律，即\[
 	(\forall a,b \in R)[a \times b = b \times a],
 \]
 那么称\(R\)是\DefineConcept{交换环}.
 \end{definition}
 
 \begin{definition}
-如果环\(R\)中有一个元素\(e\)满足\[
-    \forall a \in R \bigl( e \times a = a \times e = a \bigr),
+如果环\(\opair{R,+,\times}\)中有一个元素\(e\)满足\[
+	(\forall a \in R)[e \times a = a \times e = a],
 \]
-那么称“\(e\)是\(R\)的\DefineConcept{单位元}或\DefineConcept{幺元}”.
+那么称“\(e\)是\(R\)的\DefineConcept{单位元}”.
 \end{definition}
 
 \begin{property}
 具有单位元的环的单位元唯一.
 \begin{proof}
-设环\(R\)具有单位元\(e_1\)和\(e_2\).
+设环\(\opair{R,+,\times}\)具有单位元\(e_1\)和\(e_2\).
 根据单位元的定义，对\(\forall a \in R\)，有\[
     e_1 = e_1 \times e_2 = e_2 \times e_1 = e_2,
 \]
@@ -159,7 +159,7 @@
 
 \subsection{乘零定理}
 \begin{theorem}[乘零定理]
-在环\(R\)中，零元\(o\)满足\[
+在环\(\opair{R,+,\times}\)中，零元\(o\)满足\[
     \forall a \in R \bigl( o \times a = a \times o = o \bigr).
 \]
 \begin{proof}
@@ -183,9 +183,11 @@
 \begin{proof}
 根据单位元的定义有\[
     e \times (-e) = (-e) \times e = -e.
-\]又由负元的定义有\[
+\]
+又由负元的定义有\[
     e + (-e) = o,
-\]在等号左右两边同时右乘\((-e)\)，再由右分配律有\[
+\]
+在等号左右两边同时右乘\((-e)\)，再由右分配律有\[
     -e + (-e)^2 = e \times (-e) + (-e) \times (-e) = o \times (-e) = o,
 \]
 移项得\((-e)^2 = e\).
@@ -196,16 +198,17 @@
 \begin{definition}
 设\(R\)是有单位元\(e(\neq o)\)的环.
 对于\(a \in R\)，如果\[
-    \exists b \in R \bigl( a \times b = b \times a = e \bigr),
-\]那么称“\(a\)是一个\DefineConcept{可逆元}”，
+	(\exists b \in R)[a \times b = b \times a = e],
+\]
+那么称“\(a\)是一个\DefineConcept{可逆元}”，
 把\(b\)叫做\(a\)的\DefineConcept{逆元}，记作\(a^{-1}\).
 \end{definition}
 
 \begin{property}
 若\(a\)是可逆元，则\(a\)的逆元唯一.
 \begin{proof}
-设环\(R\)具有单位元\(e(\neq o)\).
-假设环\(R\)中的任一可逆元\(a\)的逆元为\(b\)和\(c\).由可逆元的定义，有\[
+设环\(\opair{R,+,\times}\)具有单位元\(e(\neq o)\).
+假设环\(\opair{R,+,\times}\)中的任一可逆元\(a\)的逆元为\(b\)和\(c\).由可逆元的定义，有\[
     a \times b = b \times a = e,
 \]\[
     a \times c = c \times a = e.
@@ -232,7 +235,7 @@
 \end{definition}
 
 \begin{property}
-在环\(R\)中，零元\(o\)是一个零因子.
+在环\(\opair{R,+,\times}\)中，零元\(o\)是一个零因子.
 \end{property}
 
 \begin{theorem}
@@ -264,12 +267,12 @@
     \qquad
     o \times o \mapsto o.
 \]
-显然元素\(o\)是环\(R\)的单位元和零元.
-再将原本的可逆元的定义中对环\(R\)的单位元\(e \neq o\)的约束去掉，
-那么对于环\(R\)上唯一的元素\(o\)，有\[
+显然元素\(o\)是环\(\opair{R,+,\times}\)的单位元和零元.
+再将原本的可逆元的定义中对环\(\opair{R,+,\times}\)的单位元\(e \neq o\)的约束去掉，
+那么对于环\(\opair{R,+,\times}\)上唯一的元素\(o\)，有\[
     \forall x \in R \bigl( x = o \land x \times o = o \times x = o \bigr),
 \]
-即元素\(o\)还是环\(R\)的“可逆元”，它的“逆元”是\(o\)本身.
+即元素\(o\)还是环\(\opair{R,+,\times}\)的“可逆元”，它的“逆元”是\(o\)本身.
 
-这就说明，在上面对可逆元的定义中，我们必须强调环\(R\)上的单位元\(e\)不是零元.
+这就说明，在上面对可逆元的定义中，我们必须强调环\(\opair{R,+,\times}\)上的单位元\(e\)不是零元.
 \end{example}
