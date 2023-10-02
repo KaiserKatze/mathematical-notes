@@ -146,8 +146,6 @@ a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
 	a_{i_1 1} a_{i_2 2} \dotsm a_{i_n n}.
 \end{equation}
 \end{corollary}
-\cref{equation:行列式.行列式的定义式} 和\cref{equation:行列式.给定列指标为自然序下行列式的完全展开式}
-表明，行列式中行与列的地位是平等的，即\(\abs{\A} = \abs{\A^T}\).
 
 \begin{example}
 若\(n\)阶行列式\(\det\A\)中为零的元多于\(n^2-n\)个，证明：\(\det\A=0\).
@@ -161,49 +159,64 @@ a_{i_1 j_1} a_{i_2 j_2} \dotsm a_{i_n j_n};
 
 \subsection{行列式的性质}
 \begin{property}\label{theorem:行列式.性质1}
-设\(\A=(a_{ij})_n\)，则\(\det \A = \det \A^T\).
+设\(\A \in M_n(K)\)，则\(\det\A=\det\A^T\).
+\begin{proof}
+由\cref{equation:行列式.行列式的定义式,equation:行列式.给定列指标为自然序下行列式的完全展开式}
+立即可得.
+\end{proof}
 \end{property}
 这就说明，行列互换，行列式的值不变.
 
 \begin{property}\label{theorem:行列式.性质2}
-\(\det(\a_1,\dotsc,k\a_j,\dotsc,\a_n)
-=k \cdot \det(\a_1,\dotsc,\a_j,\dotsc,\a_n)\).
+设\(\AutoTuple{\a}{n} \in K^n\)，\(k \in K\).
+那么\[
+	\det(\a_1,\dotsc,k\a_j,\dotsc,\a_n)
+	= k \cdot \det(\a_1,\dotsc,\a_j,\dotsc,\a_n).
+\]
 \end{property}
-这就说明，行列式某列（行）各元素的公因子可以提到行列式外.
+这就说明，行列式某一列（或某一行）各元素的公因子可以提到行列式外.
 
 \begin{corollary}\label{theorem:行列式.性质2.推论1}
-\(\det(\a_1,\dotsc,\z,\dotsc,\a_n) = 0\).
+设\(\AutoTuple{\a}{n} \in K^n\)，
+\(\z\)是\(K^n\)的零向量.
+那么\[
+	\det(\a_1,\dotsc,\z,\dotsc,\a_n) = 0.
+\]
 \end{corollary}
-也就是说，如果行列式中某一列（行）元素全为零，则行列式等于零.
+也就是说，如果行列式中某一列（或某一行）元素全为零，则行列式等于零.
 
 \begin{corollary}\label{theorem:行列式.性质2.推论2}
-\(\det(k\A) = k^n \det \A\).
+设\(k \in K\)，\(\A \in M_n(K)\).
+那么\(\det(k\A) = k^n \det \A\).
 \end{corollary}
 
 应该注意到，一般说来，\(\det(k\A) \neq k \det\A\).
 
 \begin{property}\label{theorem:行列式.性质3}
-\(\det(\a_1,\dotsc,\b + \g,\dotsc,\a_n)
-= \det(\a_1,\dotsc,\b,\dotsc,\a_n)
-+ \det(\a_1,\dotsc,\g,\dotsc,\a_n)\).
+设\(\AutoTuple{\a}{n} \in K^n\)，且\(\b,\g \in K^n\).
+那么\[
+	\det(\a_1,\dotsc,\b + \g,\dotsc,\a_n)
+	= \det(\a_1,\dotsc,\b,\dotsc,\a_n)
+	+ \det(\a_1,\dotsc,\g,\dotsc,\a_n).
+\]
 \begin{proof}
 直接计算得
 \begin{align*}
 	\det(\a_1,\dotsc,\b + \g,\dotsc,\a_n)
 	&= \sum\limits_{\AutoTuple{i}{n}}{
-	(-1)^{\tau(\AutoTuple{i}{n})}
-	a_{i_1 1} \dotsm (b_{i_j} + c_{i_j}) \dotsm a_{i_n n}
+		(-1)^{\tau(\AutoTuple{i}{n})}
+		a_{i_1 1} \dotsm (b_{i_j} + c_{i_j}) \dotsm a_{i_n n}
 	} \\
 	&= \sum\limits_{\AutoTuple{i}{n}}{
-	(-1)^{\tau(\AutoTuple{i}{n})}
-	a_{i_1 1} \dotsm b_{i_j} \dotsm a_{i_n n}
+		(-1)^{\tau(\AutoTuple{i}{n})}
+		a_{i_1 1} \dotsm b_{i_j} \dotsm a_{i_n n}
 	} \\
-	&\qquad+ \sum\limits_{\AutoTuple{i}{n}}{
-	(-1)^{\tau(\AutoTuple{i}{n})}
-	a_{i_1 1} \dotsm c_{i_j} \dotsm a_{i_n n}
+	&\hspace{20pt}+ \sum\limits_{\AutoTuple{i}{n}}{
+		(-1)^{\tau(\AutoTuple{i}{n})}
+		a_{i_1 1} \dotsm c_{i_j} \dotsm a_{i_n n}
 	} \\
 	&= \det(\a_1,\dotsc,\b,\dotsc,\a_n)
-	+ \det(\a_1,\dotsc,\g,\dotsc,\a_n).
+		+ \det(\a_1,\dotsc,\g,\dotsc,\a_n).
 	\qedhere
 \end{align*}
 \end{proof}
