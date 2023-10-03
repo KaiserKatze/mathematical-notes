@@ -236,28 +236,31 @@
 那么当\(n=k\)时，在\(V_k\)中，
 依次将第\(k-1\)行的\(-x_1\)倍加到第\(k\)行，
 将第\(k-2\)行的\(-x_1\)倍加到第\(k-1\)行，
-以此类推，直至把第\(1\)行的\(-x_1\)倍加到第\(2\)行，得\[
+以此类推，直到最后将第1行的\(-x_1\)倍加到第\(2\)行，得\[
 	V_k = \begin{vmatrix}
 		1 & 1 & 1 & \dots & 1 \\
 		0 & x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
 		0 & x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
 		\vdots & \vdots & \vdots & & \vdots \\
 		0 & x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
-	\end{vmatrix}_k,
+	\end{vmatrix};
 \]
-按第一列展开得\begin{align*}
-	V_n &= 1 \times (-1)^{1+1} \times \begin{vmatrix}
+按第1列展开，得\[
+	V_k = 1 \cdot (-1)^{1+1} \cdot \begin{vmatrix}
 		x_2 - x_1 & x_3 - x_1 & \dots & x_k - x_1 \\
 		x_2(x_2 - x_1) & x_3(x_3 - x_1) & \dots & x_k(x_k - x_1) \\
 		\vdots & \vdots & & \vdots \\
 		x_2^{k-2}(x_2 - x_1) & x_3^{k-2}(x_3 - x_1) & \dots & x_k^{k-2}(x_k - x_1) \\
-	\end{vmatrix}_{k-1} \\
-	&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \begin{vmatrix}
+	\end{vmatrix};
+\]
+提取各列公因子，得
+\begin{align*}
+	V_k &= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1) \begin{vmatrix}
 		1 & 1 & \dots & 1 \\
 		x_2 & x_3 & \dots & x_k \\
 		\vdots & \vdots & & \vdots \\
 		x_2^{k-2} & x_3^{k-2} & \dots & x_k^{k-2} \\
-	\end{vmatrix}_{k-1} \\
+	\end{vmatrix} \\
 	&= (x_2 - x_1)(x_3 - x_1)\dotsm(x_k - x_1)
 		\prod\limits_{2 \leq j < i \leq k}(x_i - x_j) \\
 	&= \prod\limits_{1 \leq j < i \leq k}(x_i - x_j).
@@ -265,10 +268,12 @@
 \end{align*}
 \end{proof}
 \end{example}
-我们可以从\cref{equation:行列式.范德蒙德行列式} 看出：
-\(n\)阶范德蒙德行列式等于零的充要条件是：
-\(\AutoTuple{a}{n}\)这\(n\)个数中至少有两个相等.
-因此，如果\(\AutoTuple{a}{n}\)两两不等，则范德蒙德行列式不等于零.
+我们可以从范德蒙德行列式的表达式 \labelcref{equation:行列式.范德蒙德行列式} 看出，
+\(n\)阶范德蒙德行列式\(V_n\)等于零的充要条件是：
+\(\AutoTuple{x}{n}\)这\(n\)个数中至少有两个相等，即\[
+	(\exists b,c\in\Set{\AutoTuple{x}{n}})[b=c].
+\]
+因此，如果\(\AutoTuple{x}{n}\)两两不等，则范德蒙德行列式不等于零.
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P35. 例4
