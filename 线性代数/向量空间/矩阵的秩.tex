@@ -231,77 +231,90 @@
 设\(\A \in M_{s \times n}(K),
 \B \in M_{l \times m}(K)\).
 试证：\begin{equation}
-	\rank\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix} = \rank\A + \rank\B.
-	\label{equation:矩阵的秩.分块矩阵的秩的等式1}
-\end{equation}
-\begin{proof}
-设\(\rank\A = r_1, \rank\B = r_2\)，
-则存在可逆矩阵\(\P_1,\Q_1,\P_2,\Q_2\)，
-使得\[
-	\P_1 \A \Q_1 = \begin{bmatrix}
-		\E_{r_1} & \z \\
-		\z & \z
-	\end{bmatrix},
-	\qquad
-	\P_2 \B \Q_2 = \begin{bmatrix}
-		\E_{r_2} & \z \\
-		\z & \z
-	\end{bmatrix},
-\]
-于是\[
-	\begin{bmatrix}
-		\P_1 & \z \\
-		\z & \P_2
-	\end{bmatrix}
-	\begin{bmatrix}
+	\rank\begin{bmatrix}
 		\A & \z \\
 		\z & \B
 	\end{bmatrix}
+	= \rank\A + \rank\B.
+	\label{equation:矩阵的秩.分块矩阵的秩的等式1}
+\end{equation}
+\begin{proof}
+\def\J{\mat{J}}
+对矩阵\(\begin{bmatrix}
+	\A & \z \\
+	\z & \B
+\end{bmatrix}\)的前\(s\)行、后\(l\)行分别作初等行变换，化成\[
 	\begin{bmatrix}
-		\Q_1 & \z \\
-		\z & \Q_2
-	\end{bmatrix}
-	= \begin{bmatrix}
-		\P_1 \A \Q_1 & \z \\
-		\z & \P_2 \B \Q_2
-	\end{bmatrix}
-	= \begin{bmatrix}
-		\E_{r_1} \\
-		& \z \\
-		& & \E_{r_2} \\
-		& & & \z
-	\end{bmatrix}.
+		\J_r & \z \\
+		\z & \z \\
+		\z & \J_t \\
+		\z & \z
+	\end{bmatrix},
+	\eqno(1)
 \]
-显然上式最右端矩阵的秩为\(r_1+r_2\)，
-而最左端的矩阵\(\begin{bmatrix}
-	\P_1 & \z \\
-	\z & \P_2
-\end{bmatrix}\)和\(\begin{bmatrix}
-	\Q_1 & \z \\
-	\z & \Q_2
-\end{bmatrix}\)都是可逆矩阵，
-与之相乘不改变矩阵\(\begin{bmatrix}
-	\A & \z \\
-	\z & \B
-\end{bmatrix}\)的秩，
-说明\(\rank\begin{bmatrix}
-	\A & \z \\
-	\z & \B
-\end{bmatrix}
-= r_1 + r_2 = \rank\A + \rank\B\).
+其中\(\J_r\)是\(r \times n\)阶的阶梯形矩阵，且\(r\)行都是非零行，\(\rank\A=r\)；
+\(\J_t\)是\(t \times m\)阶的阶梯形矩阵，且\(t\)行都是非零行，\(\rank\B=t\).
+对矩阵(1)作一系列的两行互换，化成\[
+	\begin{bmatrix}
+		\J_r & \z \\
+		\z & \J_t \\
+		\z & \z
+	\end{bmatrix},
+	\eqno(2)
+\]
+矩阵(2)是阶梯形矩阵，它有\(r+t\)个非零行.
+因此\[
+	\rank\begin{bmatrix}
+		\A & \z \\
+		\z & \B
+	\end{bmatrix}
+	= r+t
+	= \rank\A+\rank\B.
+	\qedhere
+\]
 \end{proof}
 \end{example}
 
 \begin{example}
-试证：\begin{gather}
-	\rank\begin{bmatrix} \A & \C \\ \z & \B \end{bmatrix} \geq \rank\A + \rank\B,
-	\label{equation:矩阵的秩.分块矩阵的秩的不等式1} \\
-	\rank\begin{bmatrix} \A & \z \\ \D & \B \end{bmatrix} \geq \rank\A + \rank\B.
-	\label{equation:矩阵的秩.分块矩阵的秩的不等式2}
-\end{gather}
-%TODO
+设\(\A \in M_{s \times n}(K),
+\B \in M_{l \times m}(K),
+\C \in M_{s \times m}(K)\).
+试证：\begin{equation}
+	\rank\begin{bmatrix}
+		\A & \C \\
+		\z & \B
+	\end{bmatrix} \geq \rank\A + \rank\B,
+	\label{equation:矩阵的秩.分块矩阵的秩的不等式}
+\end{equation}
+\begin{proof}
+设\(\rank\A=r,
+\rank\B=t\).
+那么\(\A\)有一个\(r\)阶子矩阵\(\A_1\)，
+使得\(\abs{\A_1}\neq0\)；
+\(\B\)有一个\(t\)阶子矩阵\(\B_1\)，
+使得\(\abs{\B_1}\neq0\).
+从而\(\begin{bmatrix}
+	\A & \C \\
+	\z & \B
+\end{bmatrix}\)有一个\(r+t\)阶子式：\[
+	\begin{vmatrix}
+		\A_1 & \C_1 \\
+		\z & \B_1
+	\end{vmatrix}
+	= \abs{\A_1} \abs{\B_1}
+	\neq 0.
+\]
+因此\[
+	\rank\begin{bmatrix}
+		\A & \C \\
+		\z & \B
+	\end{bmatrix}
+	\geq r+t
+	= \rank\A+\rank\B.
+	\qedhere
+\]
+\end{proof}
 \end{example}
-
 
 \subsection{满秩矩阵}
 \begin{definition}
