@@ -227,6 +227,82 @@
 \end{proof}
 \end{theorem}
 
+\begin{example}
+设\(\A \in M_{s \times n}(K),
+\B \in M_{l \times m}(K)\).
+试证：\begin{equation}
+	\rank\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix} = \rank\A + \rank\B.
+	\label{equation:矩阵的秩.分块矩阵的秩的等式1}
+\end{equation}
+\begin{proof}
+设\(\rank\A = r_1, \rank\B = r_2\)，
+则存在可逆矩阵\(\P_1,\Q_1,\P_2,\Q_2\)，
+使得\[
+	\P_1 \A \Q_1 = \begin{bmatrix}
+		\E_{r_1} & \z \\
+		\z & \z
+	\end{bmatrix},
+	\qquad
+	\P_2 \B \Q_2 = \begin{bmatrix}
+		\E_{r_2} & \z \\
+		\z & \z
+	\end{bmatrix},
+\]
+于是\[
+	\begin{bmatrix}
+		\P_1 & \z \\
+		\z & \P_2
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A & \z \\
+		\z & \B
+	\end{bmatrix}
+	\begin{bmatrix}
+		\Q_1 & \z \\
+		\z & \Q_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\P_1 \A \Q_1 & \z \\
+		\z & \P_2 \B \Q_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\E_{r_1} \\
+		& \z \\
+		& & \E_{r_2} \\
+		& & & \z
+	\end{bmatrix}.
+\]
+显然上式最右端矩阵的秩为\(r_1+r_2\)，
+而最左端的矩阵\(\begin{bmatrix}
+	\P_1 & \z \\
+	\z & \P_2
+\end{bmatrix}\)和\(\begin{bmatrix}
+	\Q_1 & \z \\
+	\z & \Q_2
+\end{bmatrix}\)都是可逆矩阵，
+与之相乘不改变矩阵\(\begin{bmatrix}
+	\A & \z \\
+	\z & \B
+\end{bmatrix}\)的秩，
+说明\(\rank\begin{bmatrix}
+	\A & \z \\
+	\z & \B
+\end{bmatrix}
+= r_1 + r_2 = \rank\A + \rank\B\).
+\end{proof}
+\end{example}
+
+\begin{example}
+试证：\begin{gather}
+	\rank\begin{bmatrix} \A & \C \\ \z & \B \end{bmatrix} \geq \rank\A + \rank\B,
+	\label{equation:矩阵的秩.分块矩阵的秩的不等式1} \\
+	\rank\begin{bmatrix} \A & \z \\ \D & \B \end{bmatrix} \geq \rank\A + \rank\B.
+	\label{equation:矩阵的秩.分块矩阵的秩的不等式2}
+\end{gather}
+%TODO
+\end{example}
+
+
 \subsection{满秩矩阵}
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P76.
