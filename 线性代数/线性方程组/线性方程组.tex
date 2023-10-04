@@ -1,0 +1,150 @@
+\section{线性方程组}
+\subsection{线性方程组的概念}
+我们把含有\(n\)个未知量\(\AutoTuple{x}{n}\)的一次方程组
+\begin{equation}\label[equation-system]{equation:线性方程组.线性方程组的代数形式}
+	\left\{ \begin{array}{l}
+		a_{11} x_1 + a_{12} x_2 + \dotsb + a_{1n} x_n = b_1, \\
+		a_{21} x_1 + a_{22} x_2 + \dotsb + a_{2n} x_n = b_2, \\
+		\hdotsfor{1} \\
+		a_{s1} x_1 + a_{s2} x_2 + \dotsb + a_{sn} x_n = b_s
+	\end{array} \right.
+\end{equation}
+称为“\(n\)元\DefineConcept{线性方程组}（\emph{linear system of equations} in \(n\) variables）”.
+这里，\(s\)为方程的个数\footnote{%
+在\cref{equation:线性方程组.线性方程组的代数形式} 中，
+方程的数目\(s\)可以等于未知数的数目\(n\)，
+也可以不相等（即\(s<n\)或\(s>n\)）.
+}；
+我们把数
+\[
+	a_{ij}
+	\quad(i=1,2,\dotsc,s; j=1,2,\dotsc,n)
+\]
+称为“第\(i\)个方程中\(x_j\)的\DefineConcept{系数}（coefficient）”；
+把数
+\[
+	b_i
+	\quad(i=1,2,\dotsc,s)
+\]
+叫做“第\(i\)个方程的\DefineConcept{常数项}（constant term）”.
+
+\subsection{线性方程组的表示}
+\begin{definition}
+将\cref{equation:线性方程组.线性方程组的代数形式} 的系数按原位置构成的\(s \times n\)矩阵\[
+	\A = \begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn}
+	\end{bmatrix}
+\]叫做\DefineConcept{系数矩阵}（coefficient matrix）.
+
+特别地，如果\(s = n\)（即系数矩阵\(\A\)是一个方阵），
+则系数矩阵的行列式\(\abs{\A}\)叫做\DefineConcept{系数行列式}.
+\end{definition}
+
+为使表述简明，常用向量、矩阵表示线性方程组.
+若记\[
+	\x=\begin{bmatrix}
+		x_1 \\ x_2 \\ \vdots \\ x_n
+	\end{bmatrix},
+	\quad
+	\b=\begin{bmatrix}
+		b_1 \\ b_2 \\ \vdots \\ b_n
+	\end{bmatrix},
+	\quad
+	\a_j=\begin{bmatrix}
+		a_{1j} \\ a_{2j} \\ \vdots \\ a_{sj}
+	\end{bmatrix},
+	\quad
+	j=1,2,\dotsc,n.
+\]
+\(\A\)的列分块阵为\(\A = (\a_1,\a_2,\dotsc,\a_n)\)，
+则\cref{equation:线性方程组.线性方程组的代数形式} 有以下两种等价表示：
+\begin{enumerate}
+	\item 矩阵形式\[
+		\A \x = \b.
+	\]
+	\item 向量形式\[
+		x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b.
+	\]
+\end{enumerate}
+
+\begin{definition}
+称常数项全为零（即\(\b=\z\)）的线性方程组为\DefineConcept{齐次线性方程组}.
+称常数项中有非零数（即\(\b\neq\z\)）的线性方程组为\DefineConcept{非齐次线性方程组}.
+\end{definition}
+
+\begin{definition}
+如果存在\(n\)个数\(\AutoTuple{c}{n}\)满足\cref{equation:线性方程组.线性方程组的代数形式}，即\[
+a_{i1} c_1 + a_{12} c_2 + \dotsb + a_{in} c_n \equiv b_i
+\quad(i=1,2,\dotsc,s),
+\]
+则称“\cref{equation:线性方程组.线性方程组的代数形式} 有解”，
+或“\cref{equation:线性方程组.线性方程组的代数形式} 是相容的”；
+否则，称“\cref{equation:线性方程组.线性方程组的代数形式} 无解”，
+或“\cref{equation:线性方程组.线性方程组的代数形式} 是不相容的”.
+
+称这\(n\)个数\(\AutoTuple{c}{n}\)构成的列向量\((\AutoTuple{c}{n})^T\)为%
+\cref{equation:线性方程组.线性方程组的代数形式} 的一个\DefineConcept{解}（solution）%
+或\DefineConcept{解向量}（solution vector）.
+\cref{equation:线性方程组.线性方程组的代数形式} 的解的全体构成的集合，
+称为“\cref{equation:线性方程组.线性方程组的代数形式} 的\DefineConcept{解集}”.
+\end{definition}
+
+\begin{definition}
+元素全为零的解向量称为\DefineConcept{零解}.
+元素不全为零的解向量称为\DefineConcept{非零解}.
+\end{definition}
+
+\begin{theorem}
+任意一个齐次线性方程组都有零解.
+\end{theorem}
+
+\begin{definition}
+解集相等的两个线性方程组称为\DefineConcept{同解方程组}.
+\end{definition}
+
+\begin{example}
+设\(\A\in M_{s \times n}(\mathbb{R})\).
+证明：齐次线性方程组\(\A\x=\z\)与\((\A^T\A)\x=\z\)同解.
+\begin{proof}
+\def\a{\mat{\xi}}
+\def\b{\mat{\eta}}
+设\(\a\)是\(\A\x=\z\)的任意一个解，
+则\(\A\a=\z\)，于是\[
+	(\A^T\A)\a=\A^T(\A\a)=\A^T\z=\z,
+\]
+这就是说\(\a\)是\((\A^T\A)\x=\z\)的一个解.
+
+又设\(\b\)是\((\A^T\A)\x=\z\)的任意一个解，
+则\[
+	(\A^T\A)\b=\z.
+	\eqno(1)
+\]
+在(1)式等号两边同时左乘\(\b^T\)得\[
+	\b^T(\A^T\A)\b=(\A\b)^T(\A\b)=0.
+	\eqno(2)
+\]
+
+假设\(\A\b=(\AutoTuple{c}{s})^T\).
+由(2)式有\[
+	(\AutoTuple{c}{s}) (\AutoTuple{c}{s})^T
+	= \AutoTuple{c}{n}[+][2]
+	= 0.
+\]
+由于\(\AutoTuple{c}{n}\in\mathbb{R}\)，
+所以\(\AutoTuple{c}{n}[=]=0\)，
+\(\A\b=\z\)，
+这就是说\(\b\)是\(\A\x=\z\)的一个解.
+
+综上所述，\((\A^T\A)\x=\z\)与\(\A\x=\z\)同解.
+\end{proof}
+\end{example}
+
+需要注意的是，线性方程组的解集与数域有关.
+
+\begin{theorem}
+\(n\)元线性方程组的解的情况有且只有三种可能：
+无解、有唯一解、有无穷多个解.
+\end{theorem}

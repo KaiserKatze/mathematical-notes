@@ -1,0 +1,146 @@
+\section{高斯--若尔当消元法}
+\begin{definition}
+在数域\(P\)上，设矩阵\(\A \in P^{s \times n}\)，
+向量\(\x \in P^n\)，
+\(\b \in P^s\).
+由\(n\)元线性方程组\[
+	\A \x = \b
+\]的系数和常数项按原位置构成的\(s \times (n+1)\)矩阵\((\A,\b)\)，
+称为该\(n\)元线性方程组的\DefineConcept{增广矩阵}（augmented matrix），
+记作\(\wA\).
+\end{definition}
+
+\begin{theorem}
+对线性方程组\(\A \x = \b\)的增广矩阵\(\wA = (\A,\b)\)作初等行变换，
+变为\(\widetilde{\C} = (\C,\g)\)，
+则相应的线性方程组\(\C \x = \g\)与原线性方程组同解.
+\begin{proof}
+显然存在可逆矩阵\(\P\)，
+使得\(\wA \to \widetilde{\C} = \P \wA = (\P\A,\P\b)\)，
+\(\C = \P\A\)，\(\g = \P\b\).
+如果\(\X0\)是原线性方程组的解，即\(\A \X0 = \b\)，
+用\(\P\)左乘等式两端得\(\C \X0 = \g\)；
+反之，若\(\X0\)满足\(\C \X0 = \g\)，
+用\(\P^{-1}\)左乘等式两端得\(\A \X0 = \b\)，
+故两方程组同解.
+\end{proof}
+\end{theorem}
+这就是消元法解线性方程组的理论根据.
+具体化简\(\wA\)时，
+可用一系列初等行变换将其变成一个较为简单的“阶梯形矩阵”（或更简单的“若尔当阶梯形矩阵”）.
+
+\begin{definition}
+称如下形式的\(s \times n\)矩阵\[
+	\A = \begin{bmatrix}
+		0 & \dots & a_{1 j_1} & \dots & a_{1 j_2} & \dots & a_{1 j_r} & \dots & a_{1n} \\
+		0 & \dots & 0 & \dots & a_{2 j_2} & \dots & a_{2 j_r} & \dots & a_{2n} \\
+		\vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
+		0 & \dots & 0 & \dots & 0 & \dots & a_{r j_r} & \dots & a_{rn} \\
+		0 & \dots & 0 & \dots & 0 & \dots & 0 & \dots & 0 \\
+		\vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
+		0 & \dots & 0 & \dots & 0 & \dots & 0 & \dots & 0 \\
+	\end{bmatrix}
+\]为\DefineConcept{阶梯形矩阵}（ladder matrix），
+其中\(a_{1 j_1},a_{2 j_2},\dotsc,a_{r j_r}\)均不为零，
+\(j_1 < j_2 < \dotsb < j_r\)，
+\(\A\)的后\(s-r\)行全为零.
+
+元素全为\(0\)的行，称为\DefineConcept{零行}.
+元素不全为\(0\)的行，称为\DefineConcept{非零行}.
+
+在非零行中，从左数起，第一个不为\(0\)的元素\(a_{i j_i}\ (i=1,2,\dotsc,r)\)，
+称为\DefineConcept{主元}（pivot）或\DefineConcept{非零首元}.
+
+以主元为系数的未知量\(x_{j_1},x_{j_2},\dotsc,x_{j_r}\)，
+称为\DefineConcept{主变量}；
+不以主元为系数的未知量，称为\DefineConcept{自由未知量}.
+\end{definition}
+
+\begin{definition}
+若阶梯形矩阵\(\A\)的非零行的非零首元全为\(1\)，
+它们所在列的其余元素全为零，
+则称\(\A\)为\DefineConcept{若尔当阶梯形矩阵}或\DefineConcept{行约化矩阵}.
+\end{definition}
+% 在Mathematica中可以用RowReduce对矩阵进行初等行变换化为若尔当阶梯形矩阵.
+
+\begin{lemma}
+任何一个非零矩阵都可经初等行变换化为阶梯形矩阵.
+\begin{proof}
+设\(\A_{s \times n} \neq \z\)，则\(\A\)经0次或1次交换两行的变换化为\(\B\)，即\[
+	\A \to \B = \begin{bmatrix}
+		0 & \dots & 0 & b_{1 j_1} & \dots & b_{1n} \\
+		0 & \dots & 0 & b_{2 j_1} & \dots & b_{2n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		0 & \dots & 0 & b_{s j_1} & \dots & b_{sn}
+	\end{bmatrix},
+\]
+其中\(b_{1 j_1} \neq 0\).
+分别将\(\B\)的第一行的\(-b_{i j_1}/b_{1 j_1}\)倍加到第\(i\)（\(i=2,3,\dotsc,s\)）行，则\[
+	\B \to \C = \begin{bmatrix}
+		\z & b_{1 j_1} & \B_1 \\
+		\z & \z & \C_1
+	\end{bmatrix},
+\]
+其中\(\C_1\)是\((s-1)\times(n-j_1)\)矩阵，
+再对\(\C\)的后面\(s-1\)行作类似的初等行变换化简.
+因为矩阵行数有限，这样下去，最后总可化为阶梯形矩阵.
+\end{proof}
+\end{lemma}
+
+\begin{corollary}\label{theorem:线性方程组.非零矩阵可经初等行变换化为若尔当阶梯形矩阵}
+任何一个非零矩阵都可经初等行变换化为若尔当阶梯形矩阵.
+\end{corollary}
+
+\begin{theorem}
+设\(\A\)为\(n\)阶方阵，
+则齐次线性方程组\(\A\x = \z\)有非零解的充要条件是：
+\(\abs{\A} = 0\).
+\begin{proof}
+必要性.
+给定\(\X0 \neq \z\)满足\(\A \X0 = \z\).
+假设\(\abs{\A} \neq 0\)，
+由克拉默法则可知方程组有唯一解\(\X0 = \A^{-1} \z = \z\)，
+矛盾，故\(\abs{\A} = 0\).
+
+充分性.
+用数学归纳法证明.
+给定\(\abs{\A} = 0\).
+当\(n=1\)时，\(\A = \z_{1 \times 1} = 0\)，
+\(0 \cdot x_1 = 0\)有非零解；
+假设当\(n=k-1\geq1\)时，结论成立；
+那么当\(n=k\)时，
+设\(\A\)经初等行变换\(\P\)化为阶梯形矩阵\[
+	\B = \begin{bmatrix}
+		b & \g \\
+		\z & \C \\
+	\end{bmatrix} = \P \A,
+\]
+其中\(\C\)是\(n-1\)阶方阵，\(\P\)是\(n\)阶可逆矩阵.
+取行列式得
+\[
+	\abs{\B} = \abs{\P} \abs{\A} = 0 = b \abs{\C}.
+\]
+解同解方程组\(\B \x = \z\).
+若\(b = 0\)则\((1,0,\dotsc,0)^T\)是一个非零解；
+若\(b \neq 0\)，则\(\abs{\C} = 0\)，由归纳假设，齐次线性方程组\[
+	\C \begin{bmatrix} x_2 \\ x_3 \\ \vdots \\ x_n \end{bmatrix} = \z
+\]有非零解\((k_2,k_3,\dotsc,k_n)^T\)，
+代入\(\B \x = \z\)的第一个方程，
+因为\(x_1\)的系数\(b \neq 0\)，可解出\(x_1\).
+于是\((\AutoTuple{k}{n})^T\)是\(\A \x = \z\)的一个非零解.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}
+方程个数少于未知量个数的齐次线性方程组必有非零解.
+\begin{proof}
+设数域\(P\)上的线性方程组\(\A \x = \z\)，
+它的系数矩阵\(\A \in M_{s \times n}(P)\ (s<n)\).
+在原方程组的后面添加\(n-s\)个\(0=0\)的方程，解不变，新方程组的系数矩阵为：
+\[
+	\B_n = \begin{bmatrix} \A_{s \times n} \\ \z_{(n-s) \times n} \end{bmatrix},
+\]
+由于\(s < n\)，有\(\abs{\B} = 0\)，故\(\B \x = \z\)有非零解，从而\(\A \x = \z\)有非零解.
+\end{proof}
+\end{corollary}
+注：上述推论的逆命题不成立，即方程组有非零解，不能得出未知量个数与方程个数的关系.
