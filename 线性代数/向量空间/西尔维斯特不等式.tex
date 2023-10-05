@@ -1,0 +1,141 @@
+\section{西尔维斯特不等式}
+\begin{theorem}
+设\(\A \in M_{s \times n}(K),
+\B \in M_{n \times t}(K)\).
+证明：\begin{equation}\label{equation:线性方程组.西尔维斯特不等式}
+	\rank\A + \rank\B - n \leq \rank(\A\B).
+\end{equation}
+\begin{proof}
+由\cref{equation:矩阵的秩.分块矩阵的秩的等式1}，\[
+	\rank\begin{bmatrix}
+		\E_n & \z \\
+		\z & \A\B
+	\end{bmatrix}
+	= n + \rank(\A\B).
+	\eqno(1)
+\]
+又因为\[
+	\begin{bmatrix}
+		\B & \E_n \\
+		\z & \A
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\E_n & \z \\
+		\A & \E_s
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E_n & \z \\
+		\z & \A\B
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E_n & -\B \\
+		\z & \E_t
+	\end{bmatrix}
+	\begin{bmatrix}
+		\z & \E_s \\
+		-\E_t & \z
+	\end{bmatrix},
+\]
+而\[
+	\begin{bmatrix}
+		\E_n & \z \\
+		\A & \E_s
+	\end{bmatrix}, \qquad
+	\begin{bmatrix}
+		\E_n & -\B \\
+		\z & \E_t
+	\end{bmatrix},
+	\quad\text{和}\quad
+	\begin{bmatrix}
+		\z & \E_s \\
+		-\E_t & \z
+	\end{bmatrix}
+\]这三个矩阵都是满秩矩阵，
+所以\[
+	\rank\begin{bmatrix}
+		\E_n & \z \\
+		\z & \A\B
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\B & \E_n \\
+		\z & \A
+	\end{bmatrix}.
+	\eqno(2)
+\]
+再由\cref{equation:矩阵的秩.分块矩阵的秩的不等式} 有\[
+	\rank\begin{bmatrix}
+		\B & \E_n \\
+		\z & \A
+	\end{bmatrix}
+	\geq \rank\A+\rank\B.
+	\eqno(3)
+\]
+因此，\(\rank\A + \rank\B \leq n + \rank(\A\B)\).
+%@see: https://math.stackexchange.com/a/2414197/591741
+%@see: http://www.m-hikari.com/imf-password2009/33-36-2009/luIMF33-36-2009.pdf
+\end{proof}
+\end{theorem}
+
+我们把\cref{equation:线性方程组.西尔维斯特不等式} 称为“西尔维斯特不等式”.
+
+进一步，如果有\(\A\B=\z\)，那么\[
+	\rank\A + \rank\B \leq n.
+\]
+
+我们还可以将\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}进行如下的推广.
+\begin{theorem}
+\begin{equation}\label{equation:线性方程组.弗罗贝尼乌斯不等式}
+	\rank(\A\B\C) \geq \rank(\A\B) + \rank(\B\C) - \rank\B.
+\end{equation}
+\begin{proof}
+利用初等变换，有\[
+	\begin{bmatrix}
+		\B & \z \\
+		\z & \A\B\C
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		\B & \z \\
+		\A\B & \A\B\C
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		\B & -\B\C \\
+		\A\B & \z
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		\B\C & \B \\
+		\z & \A\B
+	\end{bmatrix},
+\]
+于是\[
+	\rank\B + \rank(\A\B\C)
+	= \rank\begin{bmatrix}
+		\B & \z \\
+		\z & \A\B\C
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\B\C & \B \\
+		\z & \A\B
+	\end{bmatrix}
+	\geq \rank(\A\B) + \rank(\B\C).
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+我们把\cref{equation:线性方程组.弗罗贝尼乌斯不等式} 称为“弗罗贝尼乌斯不等式”.
+
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P143. 习题4.5 4.
+证明：如果\(n\)阶矩阵\(\A\)满足\(\A^2=\E\)（这时称\(\A\)是\DefineConcept{对合矩阵}），则\[
+	\rank(\E+\A)+\rank(\E-\A)=n.
+\]
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P143. 习题4.5 5.
+证明：如果\(n\)阶矩阵\(\A\)满足\(\A^2=\A\)（这时称\(\A\)是\DefineConcept{幂等矩阵}），即\[
+	\rank\A+\rank(\E-\A)=n.
+\]
+%TODO
+\end{example}

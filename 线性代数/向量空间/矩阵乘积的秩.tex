@@ -324,44 +324,6 @@ m \leq \rank\A,\rank\B \leq m \\
 \end{solution}
 \end{example}
 
-
-
-\subsection{重要不等式}
-\begin{theorem}[西尔维斯特不等式]
-设\(\A\)是\(m \times n\)矩阵，\(\B\)是\(n \times t\)矩阵.证明：\begin{equation}\label{equation:线性方程组.西尔维斯特不等式}
-\rank\A + \rank\B - n \leq \rank(\A \B).
-\end{equation}
-\begin{proof}
-\def\AA{\P_1 \begin{bmatrix} \E_r & \z \\ \z & \z \end{bmatrix} \Q_1}
-\def\BB{\P_2 \begin{bmatrix} \E_s & \z \\ \z & \z \end{bmatrix} \Q_2}
-\def\CC#1{\C_{#1}}
-设\(\rank\A = r\)，\(\rank\B = s\)，则存在可逆矩阵\(\P_1,\P_2,\Q_1,\Q_2\)使得\[
-\A = \AA,
-\quad
-\B = \BB,
-\]所以\[
-\A \B = \AA \BB.
-\]若\(\Q_1 \P_2 = \begin{bmatrix} \CC1 & \CC2 \\ \CC3 & \CC4 \end{bmatrix}\)（其中\(\CC1\)是\(r \times s\)矩阵），则\[
-\A \B = \P_1 \begin{bmatrix} \CC1 & \z \\ \z & \z \end{bmatrix} \Q_2.
-\]
-注意到从任意一个矩阵中划去一行（或一列），\(\A\)的秩至多减少1，那么可以把\(\CC1\)看作将一个\(n\)阶方阵划去\(n-r\)行，并划去\(n-s\)列得到的，即\[
-\rank\CC1 \geq n - (n-r) - (n-s) = r+s-n,
-\]所以\(\rank\A + \rank\B - n \leq \rank(\A \B) = \rank\CC1\).
-\end{proof}
-\end{theorem}
-
-上面的结果和\cref{theorem:线性方程组.矩阵乘积的秩} 一起可以确定矩阵乘积的秩的区间：\[
-\rank\A + \rank\B - n \leq \rank(\A\B) \leq \min\{\rank\A,\rank\B\}.
-\]
-进一步，如果有\(\A\B=\z\)，那么\[
-\rank\A + \rank\B \leq n.
-\]
-
-我们还可以将\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}进行如下的推广：\begin{equation}\label{equation:线性方程组.弗罗贝尼乌斯不等式}
-\rank(\A\B\C) \geq \rank(\A\B) + \rank(\B\C) - \rank\B.
-\end{equation}称其为\DefineConcept{弗罗贝尼乌斯不等式}.
-
-
 \begin{example}
 计算行列式\(\det\D\)，其中\[
 \D = \begin{bmatrix}
@@ -526,20 +488,4 @@ m \leq \rank\A,\rank\B \leq m \\
 又因为\(\rank(\A\A^T) \leq \rank\A = r\)，
 所以\(\rank(\A\A^T) = \rank\A = r\).
 \end{proof}
-\end{example}
-
-\begin{example}
-%@see: 《高等代数（第三版 上册）》（丘维声） P143. 习题4.5 4.
-证明：如果\(n\)阶矩阵\(\A\)满足\(\A^2=\E\)（这时称\(\A\)是\DefineConcept{对合矩阵}），则\[
-	\rank(\E+\A)+\rank(\E-\A)=n.
-\]
-%TODO
-\end{example}
-
-\begin{example}
-%@see: 《高等代数（第三版 上册）》（丘维声） P143. 习题4.5 5.
-证明：如果\(n\)阶矩阵\(\A\)满足\(\A^2=\A\)（这时称\(\A\)是\DefineConcept{幂等矩阵}），即\[
-	\rank\A+\rank(\E-\A)=n.
-\]
-%TODO
 \end{example}
