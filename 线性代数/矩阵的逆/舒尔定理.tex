@@ -1,0 +1,175 @@
+\section{舒尔定理}
+\begin{theorem}\label{theorem:逆矩阵.舒尔定理}
+设\(\A\)是\(m\)阶可逆矩阵，
+\(\B,\C,\D\)分别是\(m \times p, n \times m, n \times p\)矩阵，
+则有\begin{gather}
+	\begin{bmatrix}
+		\E_m & \z \\
+		-\C\A^{-1} & \E_n
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A & \B \\
+		\C & \D
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A & \B \\
+		\z & \D - \C \A^{-1} \B
+	\end{bmatrix},
+	\\
+	\begin{bmatrix}
+		\A & \B \\
+		\C & \D
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E_m & -\A^{-1} \B \\
+		\z & \E_p
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A & \z \\
+		\C & \D - \C \A^{-1} \B
+	\end{bmatrix},
+	\\
+	\begin{bmatrix}
+		\E_m & \z \\
+		-\C \A^{-1} & \E_n
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A & \B \\
+		\C & \D
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E_m & -\A^{-1} \B \\
+		\z & \E_p
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A & \z \\
+		\z & \D - \C \A^{-1} \B
+	\end{bmatrix},
+\end{gather}
+\rm
+其中\(\D - \C \A^{-1} \B\)
+称为矩阵\(\begin{bmatrix}
+	\A & \B \\
+	\C & \D
+\end{bmatrix}\)
+关于\(\A\)的\DefineConcept{舒尔补}（Schur complement）.
+\end{theorem}
+我们把\cref{theorem:逆矩阵.舒尔定理} 称为“舒尔定理”.
+
+可以看到只要\(\A\)可逆，
+就能通过初等分块矩阵直接对分块矩阵进行分块对角化，
+而在操作过程中就把一些原本不为0的分块矩阵变成了零矩阵，
+这个过程可以形象地称为“矩阵打洞”，
+即让矩阵出现尽可能多的0.
+
+利用\hyperref[theorem:逆矩阵.舒尔定理]{舒尔定理}可以证明下述行列式降阶定理：
+\begin{theorem}[行列式第一降阶定理]\label{theorem:逆矩阵.行列式第一降阶定理}
+\def\M{\mat{M}}
+设\(\M = \begin{bmatrix}
+	\A & \B \\
+	\C & \D
+\end{bmatrix}\)是方阵.
+\begin{enumerate}
+	\item 若\(\A\)可逆，则\[
+		\abs{\M} = \abs{\A} \abs{\D - \C \A^{-1} \B};
+	\]
+
+	\item 若\(\D\)可逆，则\[
+		\abs{\M} = \abs{\D} \abs{\A - \B \D^{-1} \C};
+	\]
+
+	\item 若\(\A,\D\)均可逆，则\[
+		\abs{\A} \abs{\D - \C \A^{-1} \B}
+		= \abs{\D} \abs{\A - \B \D^{-1} \C}.
+	\]
+\end{enumerate}
+\end{theorem}
+
+\begin{example}\label{example:逆矩阵.行列式降阶定理的重要应用1}
+设\(\A \in M_{s \times n}(K),
+\B \in M_{n \times s}(K)\).
+证明：\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		\A & \E_s
+	\end{vmatrix} = \abs{\E_s - \A\B}.
+\]
+\begin{proof}
+由于\(\E_n,\E_s\)都是单位矩阵，必可逆，
+那么根据\cref{theorem:逆矩阵.行列式第一降阶定理}，有\[
+	\begin{vmatrix}
+		\E_n & \B \\
+		\A & \E_s
+	\end{vmatrix}
+	= \abs{\E_n} \abs{\E_s - \A(\E_n)^{-1}\B}
+	= \abs{\E_s - \A\B}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\M{\mat{M}}
+求解行列式\(\det \M\)，其中\[
+	\M = \begin{bmatrix}
+		1+a_1 b_1 & a_1 b_2 & \dots & a_1 b_n \\
+		a_2 b_1 & 1+a_2 b_2 & \dots & a_2 b_n \\
+		\vdots & \vdots & & \vdots \\
+		a_n b_1 & a_n b_2 & \dots & 1+a_n b_n
+	\end{bmatrix}.
+\]
+\begin{solution}
+记\(\a = (\AutoTuple{a}{n})^T,
+\b = (\AutoTuple{b}{n})\)，
+则\(\M = \E_n + \a\b\).
+
+注意到\(\M = \E_n + \a\b\)形似某个矩阵的舒尔补，因此考虑下面的矩阵：\[
+	\A = \begin{bmatrix}
+		1 & -\b \\
+		\a & \E_n
+	\end{bmatrix}.
+\]由于\[
+	\begin{bmatrix}
+		1 & \z \\
+		-\a & \E_n
+	\end{bmatrix} \A
+	= \begin{bmatrix}
+		1 & \z \\
+		-\a & \E_n
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & -\b \\
+		\a & \E_n
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & -\b \\
+		\z & \M
+	\end{bmatrix},
+\]
+且\[
+	\begin{bmatrix}
+		1 & \b \\
+		\z & \E_n
+	\end{bmatrix} \A
+	= \begin{bmatrix}
+		1 & \b \\
+		\z & \E_n
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & -\b \\
+		\a & \E_n
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1+\a\b & \z \\
+		\a & \E_n
+	\end{bmatrix},
+\]
+所以\[
+	\abs{\A}
+	= \abs{\M}
+	= \abs{1+\a\b}
+	= 1+\a\b
+	= 1 + \sum\limits_{k=1}^n a_k b_k.
+\]
+\end{solution}
+\end{example}
