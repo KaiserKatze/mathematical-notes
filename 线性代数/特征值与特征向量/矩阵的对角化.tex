@@ -1,0 +1,326 @@
+\section{矩阵的对角化}
+\begin{theorem}[矩阵可对角化的充要条件]
+\(n\)阶矩阵\(\A\)相似于对角阵的充要条件为\(\A\)有\(n\)个线性无关的特征向量.
+\begin{proof}
+必要性.
+\(\A\)相似于对角阵，即存在可逆矩阵\(\P\)，使\[
+	\P^{-1}\A\P=\V
+	=\begin{bmatrix}
+		\L{1} \\ & \L{2} \\ & & \ddots \\ & & &\L{n}
+	\end{bmatrix}
+	=\diag(\L{1},\L{2},\dotsc,\L{n}),
+\]
+用\(\P\)左乘上式两端，得\[
+	\A\P=\P\V.
+\]
+将\(\P\)按列分块，则\(\P=(\AutoTuple{\x}{n})\)，
+由于\(\P\)可逆，所以\(\AutoTuple{\x}{n}\)线性无关，有\[
+	\A(\AutoTuple{\x}{n})=(\AutoTuple{\x}{n})\V,
+\]\[
+	(\A\X1,\A\X2,\dotsc,\A\X{n})=(\X1\V,\X2\V,\dotsc,\X{n}\V),
+\]
+于是\[
+	A\X i=\L{i}\X i,
+	\quad i=1,2,\dotsc,n,
+\]
+即\(\AutoTuple{\x}{n}\)是\(\A\)分别对应于\(\AutoTuple{\lambda}{n}\)的\(n\)个线性无关的特征向量.
+
+同理可证充分性.
+\end{proof}
+\end{theorem}
+
+由上述定理的证明可知：
+{\color{red}当\(\P^{-1}\A\P=\V\)时，
+\(\V\)的\(n\)个主对角元是\(\A\)的\(n\)个特征值；
+可逆矩阵\(\P\)的\(n\)个列向量\(\AutoTuple{\x}{n}\)是
+\(\A\)分别属于\(\L{1},\L{2},\dotsc,\L{n}\)的线性无关特征向量.}
+
+\begin{theorem}
+矩阵\(\A\)的属于不同特征值的特征向量线性无关.
+\begin{proof}
+设\(n\)阶矩阵\(\A\)的\(m\)个不同的特征值\(\L{1},\L{2},\dotsc,\L{m}\)
+对应的特征向量分别为\(\AutoTuple{\x}{m}\).
+
+由上述所有特征向量构成的向量组，
+记作\(X_m=\{\AutoTuple{\x}{m}\}\).
+
+当\(m=1\)时，
+由于\(\X1 \neq 0\)，
+故向量组\(X_1=\{\X1\}\)线性无关.
+
+当\(m>1\)时，
+假设\(m-1\)个不同特征值对应的特征向量\(X_{m-1}=\{\AutoTuple{\x}{m-1}\}\)线性无关.
+对于\(m\)个不同特征值对应的特征向量组\(X_m\)，
+令\begin{gather}
+	k_1\X1+k_2\X2+\dotsb+k_m\X{m}=\z,
+	\tag1
+\end{gather}
+由于\(\A\X{j}=\L{j}\X{j}\)，
+用\(\A\)左乘(1)式两端，
+得\begin{gather}
+	k_1\L{1}\X1+k_2\L{2}\X2+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\L{m}\X{m}=\z.
+	\tag2
+\end{gather}
+再用\(\L{m}\)数乘(1)式两端，得\begin{gather}
+	\L{m}k_1\X1+\L{m}k_2\X2+\dotsb+\L{m}k_{m-1}\X{m-1}+\L{m}k_m\X{m}=\z,
+	\tag3
+\end{gather}
+(2)、(3)两式相减，得\begin{gather}
+	(\L{1}-\L{m})k_1\X1+(\L{2}-\L{m})k_2\X2+\dotsb+(\L{m-1}-\L{m})k_{m-1}\X{m-1}=\z.
+	\tag4
+\end{gather}
+根据归纳假设，向量组\(X_{m-1}\)线性无关，
+则\((\L{i}-\L{m})k_i=0\)（\(i=1,2,\dotsc,m-1\)）.
+由于\(\L{i}\neq\L{m}\)（\(i=1,2,\dotsc,m-1\)），
+所以\(k_1=k_2=\dotsb=k_{m-1}=0\)，得\(k_m\X{m}=\z\)，
+但特征向量\(\X{m}\neq\z\)，则\(k_m=0\)，从而向量组\(X_m\)线性无关.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}[矩阵可对角化的充分条件]
+若\(n\)阶矩阵\(\A\)有\(n\)个不同的特征值，则\(\A\)可对角化.
+\end{corollary}
+
+\begin{theorem}
+设\(\L{1},\L{2},\dotsc,\L{m}\)是\(n\)阶矩阵\(\A\)的不同的特征值，
+而\(\X{ij}\ (j=1,2,\dotsc)\)是\(\A\)属于\(\L{i}\ (i=1,2,\dotsc,m)\)的线性无关的特征向量，
+即\[
+	\A \X{ij} = \L{i} \X{ij},
+	\quad i=1,2,\dotsc,m;j=1,2,\dotsc,
+\]
+则\[
+	\X{11},\X{12},\dotsc,\X{21},\X{22},\dotsc,\X{m1},\X{m2},\dotsc
+\]线性无关.
+\end{theorem}
+
+\begin{example}
+设\[
+	\A = \begin{bmatrix}
+		1 & 0 & 0 \\
+		-2 & 5 & -2 \\
+		-2 & 4 & -1
+	\end{bmatrix}.
+\]
+试问：\(\A\)能否对角化？
+若能，则求出可逆矩阵\(\P\)，使\(\P^{-1}\A\P\)为对角形矩阵.
+\begin{solution}
+\(\A\)的特征多项式为\[
+	\abs{\l\E-\A} = \begin{bmatrix}
+		\l-1 & 0 & 0 \\
+		2 & \l-5 & 2 \\
+		2 & -4 & \l+1
+	\end{bmatrix}
+	= (\l-1)^2 (\l-3),
+\]
+则\(\A\)的特征值为\(\L{1}=1\)（二重），\(\L{2}=3\).
+
+当\(\L{1}=1\)时，解齐次线性方程组\((\E-\A)\x=\z\)，\[
+	\E-\A=\begin{bmatrix}
+		0 & 0 & 0 \\
+		2 & -4 & 2 \\
+		2 & -4 & 2
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & -2 & 1 \\
+		0 & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\]
+基础解系为\(\X1 = \begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix},
+\X2 = \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\).
+
+对于\(\L{2}=3\)，解方程组\((3\E-\A)\x=\z\)，\[
+	3\E-\A=\begin{bmatrix}
+		2 & 0 & 0 \\
+		2 & -2 & 2 \\
+		2 & -4 & 4
+	\end{bmatrix} \to \begin{bmatrix}
+		2 & 0 & 0 \\
+		0 & -2 & 2 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\]
+基础解系为\(\X3 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}\).
+
+特征向量\(\X1,\X2,\X3\)线性无关，所以\(\A\)可以对角化.
+令\[
+	\P = \begin{bmatrix} \X1 & \X2 & \X3 \end{bmatrix} = \begin{bmatrix}
+		2 & -1 & 0 \\
+		1 & 0 & 1 \\
+		0 & 1 & 1
+	\end{bmatrix},
+	\quad\text{则有}\quad
+	\P^{-1} \A \P = \begin{bmatrix} 1 \\ & 1 \\ && 3 \end{bmatrix}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(\A = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & 2 & 0 \\
+	0 & 1 & 2
+\end{bmatrix}\)，证明：\(\A\)不可对角化.
+\begin{proof}
+\(\A\)的特征多项式为\[
+	\abs{\l\E-\A} = \begin{vmatrix}
+		\l-2 & 0 & 0 \\
+		0 & \l-2 & 0 \\
+		0 & -1 & \l-2
+	\end{vmatrix} = (\l-2)^2,
+\]
+令\(\abs{\l\E-\A} = 0\)解得特征值\(\L{1}=2\)（三重）.
+由于\(\rank(\L{1}\E-\A)=1\)，
+那么对应于唯一的特征值\(\L{1}=2\)，
+\(\A\)只有两个线性无关的特征向量，
+因而不存在可逆矩阵\(\P\)使得\(\P^{-1}\A\P\)为对角形矩阵.
+\end{proof}
+\end{example}
+
+从上述例子可以看出，当矩阵\(\A\)的某个特征值\(\L0\)为\(k\)重根式，
+对应于\(\L0\)的线性无关的特征向量的个数可能等于\(k\)，
+也可能小于\(k\).这个规律对于一般的矩阵是成立的.
+
+\begin{theorem}
+设\(\L0\)为\(n\)阶矩阵\(\A\)的\(k\)重特征值，
+则属于\(\L0\)的\(\A\)的线性无关的特征向量最多只有\(k\)个.
+\end{theorem}
+
+\begin{theorem}
+\(n\)阶矩阵\(\A\)可对角化的充要条件是：
+对于\(\A\)的每个\(k_i\)重特征值\(\L{i}\)，
+\(\A\)有\(k_i\)个线性无关的特征向量.
+\end{theorem}
+
+\begin{corollary}
+\(n\)阶矩阵\(\A\)可对角化的充要条件是：
+对于\(\A\)的每个\(k_i\)重特征值\(\L{i}\)，
+都有\(\rank(\L{i}\E-\A) = n-k_i\).
+\end{corollary}
+
+\begin{example}
+设\(\A\)、\(\B\)是\(n\)阶矩阵，且\(\A\)可逆，证明：\(\A\B\)与\(\B\A\)相似.
+\begin{proof}
+因为\(\A\)可逆，则\[
+	\B\A
+	=\E\B\A
+	=(\A^{-1}\A)\B\A
+	=\A^{-1}(\A\B)\A,
+\]
+根据定义可得\(\A\B \sim \B\A\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)为可逆矩阵且可对角化，证明：\(\A^{-1}\)也可对角化.
+\begin{proof}
+设存在可逆矩阵\(\P\)使得\begin{gather}
+	\P^{-1}\A\P = \V,
+	\tag1
+\end{gather}
+其中\(\V=\diag(\L{1},\L{2},\dotsc,\L{n})\)，
+\(n\)是矩阵\(\A\)的阶数，
+\(\L{1},\L{2},\dotsc,\L{n}\)是矩阵\(\A\)的特征值.
+显然有\(\abs{\V}
+= \abs{\P^{-1}\A\P}
+= \abs{\P^{-1}}\abs{\A}\abs{\P}
+= (\abs{\P^{-1}}\abs{\P})\abs{\A}
+= 1 \cdot \abs{\A}
+= \abs{\A} \neq 0\)，
+即\(\V\)可逆.
+在(1)式两端左乘\(\P\)得\(\P(\P^{-1}\A\P) = \P\V\)
+即\begin{gather}
+	\A\P = \P\V.
+	\tag2
+\end{gather}
+在(2)式两端左乘\(\P^{-1}\A^{-1}\)，
+右乘\(\V^{-1}\)得\[
+	(\P^{-1}\A^{-1})(\A\P)\V^{-1} = (\P^{-1}\A^{-1})(\P\V)\V^{-1},
+\]
+即\(\V^{-1} = \P^{-1}\A^{-1}\P\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(m\)阶矩阵\(\A\)与\(n\)阶矩阵\(\B\)都可对角化，证明：\(m+n\)阶矩阵\[
+	\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix}
+\]可对角化.
+\begin{proof}
+设存在\(m\)阶可逆矩阵\(\P\)和\(n\)阶可逆矩阵\(\Q\)使得
+\begin{align*}
+	\P^{-1}\A\P &= \V_1 \\
+	\Q^{-1}\B\Q &= \V_2
+\end{align*}
+则可构造矩阵使得\[
+	\begin{bmatrix}
+		\P^{-1} & \z \\
+		\z & \Q^{-1}
+	\end{bmatrix}
+	\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix}
+	\begin{bmatrix}
+		\P & \z \\
+		\z & \Q
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\V_1 & \z \\
+		\z & \V_2
+	\end{bmatrix}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是非零的幂零矩阵，
+即\(\A\neq\z\)，且存在自然数\(m\)，使得\(\A^m=\z\).
+证明：\(\A\)的特征值全为零，且\(\A\)不可以对角化.
+\begin{proof}
+设存在非零列向量\(\X0\)，使得\(\A\X0=\L0\X0\)成立，则\[
+\A^m\X0=\L0^m\X0.
+\]
+令\(\A^m=\z\)，则解\(\A^m\X0=\z=\L0^m\X0\)得\(\L0=0\)，可见\(\A\)的特征值全为零.
+
+假设\(\A\)可以对角化，即存在可逆矩阵\(\P\)使得\[
+	\P^{-1}\A\P = \diag(\L{1},\L{2},\dotsc,\L{n}) = \z.
+\]
+在等式两边同时左乘\(\P\)，并右乘\(\P^{-1}\)，得\[
+	\A = \P(\P^{-1}\A\P)\P^{-1} = \P\z\P^{-1} = \z.
+\]矛盾，故\(\A\)不可以对角化.
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\J{\mat{J}_n}
+形式为\[
+	\J = \begin{bmatrix}
+		\L0 & 0 & 0 & \dots & 0 & 0 \\
+		1 & \L0 & 0 & \dots & 0 & 0 \\
+		0 & 1 & \L0 & \dots & 0 & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+		0 & 0 & 0 & \dots & \L0 & 0 \\
+		0 & 0 & 0 & \dots & 1 & \L0
+	\end{bmatrix}_n
+\]的复数三角形阵称为\DefineConcept{若尔当块}.
+证明：\(n>1\)阶若尔当块不可以对角化.
+\begin{proof}
+令\(\abs{\l\E-\J}=(\lambda-\L0)^n=0\)，解得\(\l=\L0\)（\(n\)重），那么\[
+	\L0\E-\J = \begin{bmatrix}
+		0 \\
+		-1 & 0 \\
+		& -1 & 0 \\
+		& & \ddots & \ddots \\
+		& & & -1 & 0
+	\end{bmatrix}_n,
+\]
+\(\rank(\L0\E-\J)=n-1 > 0\)，
+故当\(n>1\)时\(\J\)不可以对角化.
+\end{proof}
+\end{example}
+
+\begin{definition}
+由若干个若尔当块构成的准对角矩阵称为\DefineConcept{若尔当形矩阵}.
+\end{definition}
+
+\begin{theorem}
+每个\(n\)阶复数矩阵不一定与对角阵相似，但必与一个若尔当形矩阵相似.
+\end{theorem}

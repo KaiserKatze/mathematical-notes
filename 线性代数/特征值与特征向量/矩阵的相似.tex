@@ -1,0 +1,220 @@
+\section{矩阵的相似}
+\subsection{矩阵相似的概念}
+\begin{definition}
+设\(\A\)、\(\B\)是两个\(n\)阶矩阵.若存在可逆矩阵\(\P\)，使得
+\begin{equation}\label{equation:特征值与特征向量.相似矩阵的定义}
+	\P^{-1}\A\P=\B
+\end{equation}
+则称\(\A\)与\(\B\)相似，记作\(\A\sim\B\).
+\end{definition}
+
+\subsection{矩阵相似的性质}
+\begin{property}\label{theorem:特征值与特征向量.相似关系是等价关系}
+矩阵之间的相似关系，是矩阵集合上的等价关系，因为它满足：
+\begin{enumerate}
+	\item 反身性，即对任意矩阵\(\A\)，都有\(\A\sim\A\)；
+	\item 对称性，即若\(\A\sim\B\)，则有\(\B\sim\A\)；
+	\item 传递性，即若\(\A\sim\B\)且\(\B\sim\C\)，则\(\A\sim\C\).
+\end{enumerate}
+\begin{proof}
+在\cref{equation:特征值与特征向量.相似矩阵的定义} 中，
+令\(\A=\B\)、\(\P=\E\)，得\(\E\A\E=\A\)，
+即有相似矩阵的反身性成立.
+
+再在\cref{equation:特征值与特征向量.相似矩阵的定义} 中取\(\Q=\P^{-1}\)，
+得\(\A = \Q^{-1}(\P^{-1}\A\P)\Q = \Q^{-1}\B\Q\)，即有相似矩阵的对称性成立.
+
+设\(\P_1^{-1}\A\P_1=\B,
+\P_2^{-1}\B\P_2=\C\)，
+于是\(\P_2^{-1}(\P_1^{-1}\A\P_1)\P_2=\C\).
+取\(\Q=\P_1\P_2\)，\(\Q\)是可逆矩阵，且\(\Q^{-1}\A\Q=\C\)，所以\(\A\sim\C\)，
+即有相似矩阵的传递性成立.
+\end{proof}
+\end{property}
+
+以下性质是两个矩阵相似的必要条件.
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件1}
+若\(\A\sim\B\)，则\(\abs{\A}=\abs{\B}\).
+\begin{proof}
+因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，
+使得\(\P^{-1}\A\P=\B\)，两端取行列式，得\[
+	\abs{\B} = \abs{\P^{-1}\A\P}
+	= \abs{\P^{-1}}\abs{\A}\abs{\P}
+	= \abs{\P}^{-1}\abs{\A}\abs{\P}
+	= \abs{\A}.
+	\qedhere
+\]
+\end{proof}
+\end{property}
+我们还可以进一步推得如下结论：
+若\(\A\sim\B\)，则\(\A\)、\(\B\)同为可逆或不可逆.
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件2}
+若\(\A\sim\B\)，则\(\A^m \sim \B^m\ (m\in\mathbb{N})\).
+\begin{proof}
+因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
+	(\B)^m = (\P^{-1}\A\P)^m
+	= (\P^{-1}\A\P)(\P^{-1}\A\P)\dotsb(\P^{-1}\A\P)
+	= \P^{-1}\A^m\P.
+	\qedhere
+\]
+\end{proof}
+\end{property}
+如果\(\A\)、\(\B\)可逆，那么上述结论可以扩展为\(\A^m\sim\B^m\ (m\in\mathbb{Z})\).
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件3}
+相似矩阵有相同的特征多项式，从而有相同的特征值.
+\begin{proof}
+因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
+	\abs{\l\E-\B}
+	=\abs{\P^{-1}(\l\E-\A)\P}
+	=\abs{\P^{-1}}\abs{\l\E-\A}\abs{\P}
+	=\abs{\l\E-\A}.
+	\qedhere
+\]
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件4}
+相似矩阵有相同的迹，即\(\A\sim\B \implies \tr\A=\tr\B\).
+\begin{proof}
+设\[
+	\A = (a_{ij})_n
+	= \begin{bmatrix}
+		a_{11} & \dots & a_{1i} & a_{1j}  & \dots & a_{1n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		a_{i1} & \dots & a_{ii} & a_{ij}  & \dots & a_{in} \\
+		\vdots & & \vdots & \vdots  & & \vdots \\
+		a_{j1} & \dots & a_{ji} & a_{jj}  & \dots & a_{jn} \\
+		\vdots & & \vdots & \vdots  & & \vdots \\
+		a_{n1} & \dots & a_{ni} & a_{nj}  & \dots & a_{nn}
+	\end{bmatrix}.
+\]
+
+我们首先考察在成对的初等变换\(\P^{-1}\)、\(\P\)的作用下，
+任意矩阵\(\A\)的迹\(\tr\A\)与\(\P^{-1} \A \P\)的迹\(\tr(\P^{-1} \A \P)\)相比，
+会如何变化：
+\begin{enumerate}
+	\item 令\(\P = \P(i,j)\)，有\(\P^{-1} = \P\)，
+	那么\(\P^{-1} \A \P\)相当于
+	“首先交换\(\A\)的\(i\)、\(j\)两行，然后交换所得矩阵的\(i\)、\(j\)两列”，
+	即\[
+		\P^{-1} \A \P
+		= \begin{bmatrix}
+			a_{11} & \dots & a_{1j} & a_{1i}  & \dots & a_{1n} \\
+			\vdots & & \vdots & \vdots & & \vdots \\
+			a_{j1} & \dots & a_{jj} & a_{ji}  & \dots & a_{jn} \\
+			\vdots & & \vdots & \vdots  & & \vdots \\
+			a_{i1} & \dots & a_{ij} & a_{ii}  & \dots & a_{in} \\
+			\vdots & & \vdots & \vdots  & & \vdots \\
+			a_{n1} & \dots & a_{nj} & a_{ni}  & \dots & a_{nn}
+		\end{bmatrix}.
+	\]
+	可以看到经过变换\(\P(i,j)\)前后两个矩阵的主对角线的元素之和不变.
+
+	\item 令\(\P = \P(i(c))\ (c\neq0)\)，
+	有\(\P^{-1} = \P(i(c^{-1}))\)，
+	那么\(\P^{-1} \A \P\)相当于
+	“首先用\(1/c\)乘以\(\A\)的第\(i\)行，再用\(c\)乘以\(\A\)的第\(i\)列”，
+	即\[
+		\P^{-1} \A \P
+		= \begin{bmatrix}
+			a_{11} & \dots & c a_{1i} & a_{1j}  & \dots & a_{1n} \\
+			\vdots & & \vdots & \vdots & & \vdots \\
+			\frac{1}{c} a_{i1} & \dots & \left( c \cdot \frac{1}{c} \right) a_{ii} & \frac{1}{c} a_{ij}  & \dots & \frac{1}{c} a_{in} \\
+			\vdots & & \vdots & \vdots  & & \vdots \\
+			a_{j1} & \dots & c a_{ji} & a_{jj}  & \dots & a_{jn} \\
+			\vdots & & \vdots & \vdots  & & \vdots \\
+			a_{n1} & \dots & c a_{ni} & a_{nj}  & \dots & a_{nn}
+		\end{bmatrix}.
+	\]
+	可以看到经过变换\(\P(i(c))\)前后两个矩阵的主对角线的元素之和也不变.
+
+	\item 令\(\P = \P(i,j(k))\)，
+	有\(\P^{-1} = \P(i,j(-k))\)，
+	那么\(\P^{-1} \A \P\)相当于
+	“首先将\(\A\)的第\(j\)行的\((-k)\)倍加到第\(i\)行，
+	再将所得矩阵的第\(i\)列的\(k\)倍加到第\(j\)列”，
+	即\[
+		\P^{-1} \A \P
+		= \scalebox{.8}{\(\begin{bmatrix}
+			a_{11} & \dots & a_{1i} & a_{1j} + k a_{1i}  & \dots & a_{1n} \\
+			\vdots & & \vdots & \vdots & & \vdots \\
+			a_{i1} - k a_{j1} & \dots & a_{ii} - k a_{ji} & a_{ij} - k a_{jj} + k(a_{ii} - k a_{ji})  & \dots & a_{in} - k a_{jn} \\
+			\vdots & & \vdots & \vdots  & & \vdots \\
+			a_{j1} & \dots & a_{ji} & a_{jj} + k a_{ji}  & \dots & a_{jn} \\
+			\vdots & & \vdots & \vdots  & & \vdots \\
+			a_{n1} & \dots & a_{ni} & a_{nj} + k a_{ni}  & \dots & a_{nn}
+		\end{bmatrix}\)}.
+	\]
+	可以看到经过变换\(\P(i,j(k))\)前后两个矩阵的主对角线的元素之和还是不变.
+\end{enumerate}
+综上所述，成对的初等变换不改变矩阵的迹.
+由\cref{theorem:逆矩阵.可逆矩阵与初等矩阵的关系} 可知，
+任意可逆矩阵都可以分解为若干个初等矩阵的乘积，
+那么根据上述讨论结果，对于任意可逆矩阵\(\P\)，总有\[
+	\tr(\P^{-1}\A\P) = \tr\A.
+	\qedhere
+\]
+\end{proof}
+\end{property}
+
+\begin{example}
+设矩阵\(\A\)可逆，\(\A^T\)是\(\A\)的转置.
+证明：\(\A\A^T \sim \A^T\A\).
+\begin{proof}
+取\(\P=\A^{-1}\)，
+那么\(\P\A=\A\P=\E\)，\(\A^T = (\P\A)\A^T = \P(\A\A^T)\)，\[
+	\P(\A\A^T)\P^{-1} = \A^T\P^{-1} = \A^T\A,
+\]
+故\(\A\A^T \sim \A^T\A\).
+\end{proof}
+\end{example}
+
+\begin{example}
+特征值相同的矩阵不一定相似.
+例如\(\A=\begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}\)
+和\(\B=\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}\)的特征值相同，
+即\(\l=2\)（二重），但\(\A\)与\(\B\)不相似.
+这是因为\(\B=2\E\)是数乘矩阵，可以和所有二阶矩阵交换，
+那么对任意二阶可逆矩阵\(\P\)都有\(\P^{-1}\B\P=\B\P^{-1}\P=\B\)，
+即\(\B\)只能与自身相似，
+\(\A\)与\(\B\)不相似.
+\end{example}
+
+\begin{example}
+已知矩阵\(\A = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & 0 & 1 \\
+	0 & 1 & x
+\end{bmatrix}\)与\(\B = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & y & 0 \\
+	0 & 0 & -1
+\end{bmatrix}\)相似.
+求\(x\)与\(y\).
+\begin{solution}
+因为\(\A\sim\B\)，所以，由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}，
+\[
+	\begin{vmatrix}
+		2 & 0 & 0 \\
+		0 & 0 & 1 \\
+		0 & 1 & x
+	\end{vmatrix}
+	= -2 = -2y =
+	\begin{vmatrix}
+		2 & 0 & 0 \\
+		0 & y & 0 \\
+		0 & 0 & -1
+	\end{vmatrix}
+	\implies y = 1;
+\]
+又由\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
+\[
+	\tr\A = 2+x
+	= 1+y = \tr\B
+	\implies
+	x = 0.
+\]
+\end{solution}
+\end{example}

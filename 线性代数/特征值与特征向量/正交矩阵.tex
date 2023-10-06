@@ -1,0 +1,127 @@
+\section{正交矩阵}
+\begin{definition}
+在欧几里得空间中，如果
+\begin{enumerate}
+	\item 向量组\(A=\{\AutoTuple{\a}{m}\}\)不含零向量，即\(\z \notin A\)；
+	\item \(A\)中向量两两正交，即\(\a_i \cdot \a_j = 0\ (i \neq j)\)，
+\end{enumerate}
+则称\(A\)为一个\DefineConcept{正交向量组}，简称\DefineConcept{正交组}.
+由单位向量构成的正交组叫做\DefineConcept{规范正交组}或\DefineConcept{标准正交组}.
+称含有\(n\)个向量的规范正交组
+\[
+	\AutoTuple{\e}{n}
+\]
+为\(\mathbb{R}^n\)的一个\DefineConcept{规范正交基}%
+或\DefineConcept{标准正交基}（orthonormal basis）.
+\end{definition}
+
+\begin{definition}
+设\(n\)阶实矩阵\(\Q\)满足\(\Q^T\Q = \Q\Q^T = \E\)，
+则称\(\Q\)为\DefineConcept{正交矩阵}.
+\end{definition}
+
+\begin{example}
+由于单位矩阵\(\E\)满足\(\E^T=\E\)，
+\(\E^T \E = \E \E^T = \E\)，
+因此\(\E\)也是正交矩阵.
+\end{example}
+
+\begin{property}
+正交矩阵\(\Q\)是可逆矩阵，且\(\Q^{-1} = \Q^T\)，\(\abs{\Q} = \pm 1\).
+\begin{proof}
+因为\(1=\abs{\E}=\abs{\Q^T\Q}
+=\abs{\Q^T}\abs{\Q}
+=\abs{\Q}^2\)，
+解得\(\abs{\Q} = \pm 1 \neq 0\)，
+所以\(\Q\)是可逆矩阵.
+又有：\(\Q^T = \E\Q^T = (\Q^{-1}\Q)\Q^T
+= \Q^{-1}(\Q\Q^T)
+= \Q^{-1}\E
+= \Q^{-1}\).
+\end{proof}
+\end{property}
+
+\begin{property}
+若\(\A,\B\)都是\(n\)阶正交矩阵，则\(\A\B\)也是正交矩阵.
+\end{property}
+
+\begin{property}
+若\(\A\)是正交矩阵，则\(\A^T\)和\(\A^{-1}\)也是正交矩阵.
+\end{property}
+
+\begin{theorem}
+正交矩阵\(\Q\)的伴随矩阵\(\Q^*\)满足\[
+	\Q^* = \abs{\Q} \Q^{-1}
+	= \abs{\Q} \Q^T
+	= \left\{ \begin{array}{rc}
+		\Q^T, & \abs{\Q}>0, \\
+		-\Q^T, & \abs{\Q}<0.
+	\end{array} \right.
+\]
+\end{theorem}
+
+\begin{example}
+设\(\Q=(\AutoTuple{\a}{n})\)是\(n\)阶实矩阵，
+则\(\Q\)是正交矩阵的充要条件是\(\AutoTuple{\a}{n}\)是\(\mathbb{R}^{n \times 1}\)的规范正交基.
+\begin{proof}
+在\(\Q\)是\(n\)阶实矩阵的前提下，\begin{align*}
+	&\Q\text{是正交矩阵}
+	\iff \Q^T\Q = \Q\Q^T = \E \\
+	&\iff \E = \begin{bmatrix}
+		\a_1^T \\ \a_2^T \\ \vdots \\ \a_n^T
+	\end{bmatrix} (\AutoTuple{\a}{n})
+	= \begin{bmatrix}
+	\a_1^T \a_1 & \a_1^T \a_2 & \dots & \a_1^T \a_n \\
+	\a_2^T \a_1 & \a_2^T \a_2 & \dots & \a_2^T \a_n \\
+	\vdots & \vdots & & \vdots \\
+	\a_n^T \a_1 & \a_n^T \a_2 & \dots & \a_n^T \a_n
+	\end{bmatrix} \\
+	&\iff \a_i^T \a_j = (\a_i,\a_j)
+	= \left\{ \begin{array}{ll}
+		1, & i=j, \\
+		0, & i \neq j,
+	\end{array} \right. i,j=1,2,\dotsc,n \\
+	&\iff \AutoTuple{\a}{n}\text{是规范正交基}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+可以看出，正交矩阵是由一系列初等矩阵\(\P(i,j)\)的乘积.
+
+\begin{example}
+设\(\A\)是正交矩阵.
+证明：\(\A\)的特征值是模为1的复数.
+\begin{proof}
+设\(\L0\)是\(\A\)的任意一个特征值，
+\(\X0=(\AutoTuple{c}{n})^T\neq\z\)是\(\A\)属于特征值\(\L0\)的特征向量，
+即\begin{gather}
+	\A\X0=\L0\X0,
+	\tag1
+\end{gather}
+取共轭转置，得\begin{gather}
+	\overline{\X0}^T \overline{\A}^T = \overline{\L0} \overline{\X0}^T,
+	\tag2
+\end{gather}
+将(1)式两端分别右乘到(2)式两端，
+得\begin{gather}
+	\overline{\X0}^T \overline{\A}^T \A\X0 = \overline{\L0} \overline{\X0}^T \L0\X0,
+	\tag3
+\end{gather}
+因为\(\A\)是正交矩阵，
+\(\A\)是实矩阵，
+\(\overline{\A}^T = \A^T\)，
+且\(\A^T\A=\A\A^T=\E\)，
+所以\[
+	\overline{\X0}^T \X0 = \overline{\L0} \L0 \overline{\X0}^T \X0,
+\]\[
+	(\overline{\L0} \L0 - 1) \overline{\X0}^T \X0 = 0,
+\]
+又因为\(\overline{\X0}^T \X0
+= \overline{c_1}c_1 + \overline{c_2}c_2 + \dotsb + \overline{c_n}{c_n} > 0\)，
+所以\[
+	\overline{\L0} \L0 = 1,
+\]
+即\(\A\)的特征值\(\L0\)是模为1的复数.
+\end{proof}
+\end{example}
