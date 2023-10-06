@@ -279,6 +279,49 @@
 \end{proof}
 \end{example}
 
+\subsection{满秩矩阵}
+\begin{definition}
+%@see: 《线性代数》（张慎语、周厚隆） P76.
+设矩阵\(\A = (a_{ij})_n\).
+若\(\rank\A = n\)，
+则称“\(\A\)是\DefineConcept{满秩矩阵}（full rank matrix）”，
+或“\(\A\)是\DefineConcept{非退化矩阵}（non-degenerate matrix）”.
+\end{definition}
+
+%应该注意到，“可逆矩阵”“非奇异矩阵”“满秩矩阵”“非退化矩阵”是从不同侧重点对同一类矩阵的四种称谓.
+
+\begin{theorem}\label{theorem:向量空间.满秩方阵的行列式非零}
+%@see: 《高等代数（第三版 上册）》（丘维声） P84. 推论9
+设\(\A\in M_n(K)\).
+\(\A\)是满秩矩阵的充要条件是\(\abs{\A}\neq0\).
+\begin{proof}
+\(\rank\A=n
+\iff \text{\(A\)的非零子式的最高阶数为\(n\)}
+\iff \abs{\A}\neq0\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 上册）》（丘维声） P84. 推论10
+设\(\A\in M_{s \times n}(K)\)且\(\rank\A=r\).
+那么，\(\A\)的\(r\)阶非零子式
+所在的列构成\(\A\)的列向量组的一个极大线性无关组，
+所在的行构成\(\A\)的行向量组的一个极大线性无关组.
+\end{corollary}
+
+现在我们来对\cref{equation:矩阵的秩.分块矩阵的秩的等式1} 做一番推广，
+我们用一个非零矩阵\(\C\)取代分块对角矩阵\(\begin{bmatrix}
+	\A & \z \\
+	\z & \B
+\end{bmatrix}\)的一个副对角，
+得到分块上三角矩阵\(\begin{bmatrix}
+	\A & \C \\
+	\z & \B
+\end{bmatrix}\)或分块下三角矩阵\(\begin{bmatrix}
+	\A & \z \\
+	\C & \B
+\end{bmatrix}\)，
+接下来我们研究这类矩阵的秩的取值范围.
 \begin{example}
 设\(\A \in M_{s \times n}(K),
 \B \in M_{l \times m}(K),
@@ -315,37 +358,7 @@
 	\end{bmatrix}
 	\geq r+t
 	= \rank\A+\rank\B.
-	\qedhere
 \]
+当\(\A\)或\(\B\)满秩时，上式取“\(=\)”.
 \end{proof}
 \end{example}
-
-\subsection{满秩矩阵}
-\begin{definition}
-%@see: 《线性代数》（张慎语、周厚隆） P76.
-设矩阵\(\A = (a_{ij})_n\).
-若\(\rank\A = n\)，
-则称“\(\A\)是\DefineConcept{满秩矩阵}（full rank matrix）”，
-或“\(\A\)是\DefineConcept{非退化矩阵}（non-degenerate matrix）”.
-\end{definition}
-
-%应该注意到，“可逆矩阵”“非奇异矩阵”“满秩矩阵”“非退化矩阵”是从不同侧重点对同一类矩阵的四种称谓.
-
-\begin{theorem}\label{theorem:向量空间.满秩方阵的行列式非零}
-%@see: 《高等代数（第三版 上册）》（丘维声） P84. 推论9
-设\(\A\in M_n(K)\).
-\(\A\)是满秩矩阵的充要条件是\(\abs{\A}\neq0\).
-\begin{proof}
-\(\rank\A=n
-\iff \text{\(A\)的非零子式的最高阶数为\(n\)}
-\iff \abs{\A}\neq0\).
-\end{proof}
-\end{theorem}
-
-\begin{corollary}
-%@see: 《高等代数（第三版 上册）》（丘维声） P84. 推论10
-设\(\A\in M_{s \times n}(K)\)且\(\rank\A=r\).
-那么，\(\A\)的\(r\)阶非零子式
-所在的列构成\(\A\)的列向量组的一个极大线性无关组，
-所在的行构成\(\A\)的行向量组的一个极大线性无关组.
-\end{corollary}
