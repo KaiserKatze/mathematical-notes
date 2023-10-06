@@ -1,92 +1,101 @@
 \section{广义初等变换}
-\subsection{广义初等变换的概念}
-\begin{definition}
-\def\originalmatrix{%
-	\begin{bmatrix}%
-	\A & \B \\
-	\C & \D
-	\end{bmatrix}%
-}%
+设\(\A \in M_{m \times s}(K),
+\B \in M_{m \times t}(K),
+\C \in M_{n \times s}(K),
+\D \in M_{n \times t}(K)\).
+
+\def\OriginalMatrix{
+	\begin{bmatrix}
+		\A & \B \\
+		\C & \D
+	\end{bmatrix}
+}
 分块矩阵有以下三种\DefineConcept{广义初等行变换}：
-\def\originalmatrixTail{%
-	\originalmatrix \begin{matrix} m \\ n \end{matrix}%
-}%
 \begin{enumerate}
-\item 交换两行，\[
-\originalmatrixTail \to \begin{bmatrix}
-\C & \D \\
-\A & \B
-\end{bmatrix} = {\color{red} \begin{bmatrix}
-\z & \E_n \\
-\E_m & \z
-\end{bmatrix}} \originalmatrix
-\]
+	\item 交换两行，\[
+		\OriginalMatrix
+		\mapsto \begin{bmatrix}
+			\C & \D \\
+			\A & \B
+		\end{bmatrix}
+		= {\color{red} \begin{bmatrix}
+			\z & \E_n \\
+			\E_m & \z
+		\end{bmatrix}}
+		\OriginalMatrix.
+	\]
 
-\item 用一个可逆矩阵\(\P_m\)左乘某一行，\[
-\originalmatrixTail \to \begin{bmatrix}
-\P\A & \P\B \\
-\C & \D
-\end{bmatrix} = {\color{red} \begin{bmatrix}
-\P & \z \\
-\z & \E_n
-\end{bmatrix}} \originalmatrix
-\]
+	\item 用一个可逆矩阵\(\P_m\)左乘某一行，\[
+		\OriginalMatrix
+		\mapsto \begin{bmatrix}
+			\P\A & \P\B \\
+			\C & \D
+		\end{bmatrix}
+		= {\color{red} \begin{bmatrix}
+			\P & \z \\
+			\z & \E_n
+		\end{bmatrix}}
+		\OriginalMatrix.
+	\]
 
-\item 用一个矩阵\(\Q_{n \times m}\)左乘某一行后加到另一行，\[
-\originalmatrixTail \to \begin{bmatrix}
-\A & \B \\
-\C+\Q\A & \D+\Q\B
-\end{bmatrix} = {\color{red} \begin{bmatrix}
-\E_m & \z \\
-\Q & \E_n
-\end{bmatrix}} \originalmatrix
-\]
+	\item 用一个矩阵\(\Q_{n \times m}\)左乘某一行后加到另一行，\[
+		\OriginalMatrix
+		\mapsto \begin{bmatrix}
+		\A & \B \\
+		\C+\Q\A & \D+\Q\B
+		\end{bmatrix}
+		= {\color{red} \begin{bmatrix}
+		\E_m & \z \\
+		\Q & \E_n
+		\end{bmatrix}}
+		\OriginalMatrix.
+	\]
 \end{enumerate}
 
 类似地，有\DefineConcept{广义初等列变换}：
-\def\originalmatrixHead{%
-	\overset{\begin{matrix} s & t \end{matrix}}{ \originalmatrix }%
-}%
 \begin{enumerate}
-\item 交换两列，\[
-\originalmatrixHead \to \begin{bmatrix}
-\B & \A \\
-\D & \C
-\end{bmatrix} = \originalmatrix {\color{red} \begin{bmatrix}
-\z & \E_s \\
-\E_t & \z
-\end{bmatrix}}
-\]
+	\item 交换两列，\[
+		\OriginalMatrix
+		\mapsto \begin{bmatrix}
+			\B & \A \\
+			\D & \C
+		\end{bmatrix}
+		= \OriginalMatrix {\color{red} \begin{bmatrix}
+			\z & \E_s \\
+			\E_t & \z
+		\end{bmatrix}}.
+	\]
 
-\item 用一个可逆矩阵\(\P_t\)右乘某一列，\[
-\originalmatrixHead \to \begin{bmatrix}
-\A & \B \P \\
-\C & \D \P
-\end{bmatrix} = \originalmatrix {\color{red} \begin{bmatrix}
-\E_s & \z \\
-\z & \P
-\end{bmatrix}}
-\]
+	\item 用一个可逆矩阵\(\P_t\)右乘某一列，\[
+		\OriginalMatrix
+		\mapsto \begin{bmatrix}
+			\A & \B\P \\
+			\C & \D\P
+		\end{bmatrix}
+		= \OriginalMatrix {\color{red} \begin{bmatrix}
+			\E_s & \z \\
+			\z & \P
+		\end{bmatrix}}.
+	\]
 
-\item 用一个矩阵\(\Q_{t \times s}\)右乘某一列后加到另一列，\[
-\originalmatrixHead \to \begin{bmatrix}
-\A + \B \Q & \B \\
-\C + \D \Q & \D
-\end{bmatrix} = \originalmatrix {\color{red} \begin{bmatrix}
-\E_s & \z \\
-\Q & \E_t
-\end{bmatrix}}
-\]
+	\item 用一个矩阵\(\Q_{t \times s}\)右乘某一列后加到另一列，\[
+		\OriginalMatrix
+		\mapsto \begin{bmatrix}
+			\A + \B\Q & \B \\
+			\C + \D\Q & \D
+		\end{bmatrix}
+		= \OriginalMatrix {\color{red} \begin{bmatrix}
+			\E_s & \z \\
+			\Q & \E_t
+		\end{bmatrix}}.
+	\]
 \end{enumerate}
 
 广义初等行变换与广义初等列变换统称为\DefineConcept{广义初等变换}.
-\end{definition}
 
 类比于初等矩阵，我们定义分块初等矩阵如下：
-\begin{definition}
 将\(n\)阶单位矩阵\(\E\)分为\(m\)块后，
 进行\emph{一次}广义初等变换所得的矩阵称为\DefineConcept{分块初等矩阵}.
-\end{definition}
 
 \begin{property}
 分块初等矩阵都是可逆矩阵.
