@@ -1,4 +1,38 @@
 \section{正交矩阵}
+在平面上取一个直角坐标系\(Oxy\)，
+设向量\(\a,\b\)的坐标分别是\((a_1,a_2),(b_1,b_2)\).
+如果\(\a,\b\)都是单位向量，并且互相垂直，
+那么它们的坐标满足：\[
+	\begin{split}
+		a_1^2+a_2^2=1, \qquad
+		a_1b_1+a_2b_2=0, \\
+		b_1^2+b_2^2=1, \qquad
+		b_1a_1+b_2a_2=0,
+	\end{split}
+\]
+这组等式可以写成一个矩阵等式：\[
+	\begin{bmatrix}
+		a_1 & a_2 \\
+		b_1 & b_2
+	\end{bmatrix}
+	\begin{bmatrix}
+		a_1 & b_1 \\
+		a_2 & b_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{bmatrix}.
+\]
+如果记\(\A=(\a^T,\b^T)\)，
+那么上式又可写为\[
+	\A^T\A=\E.
+\]
+根据\(\a,\b\)的几何意义，
+我们很自然地把矩阵\(\A\)称为“正交矩阵”.
+
+这一节我们来研究正交矩阵的性质，尤其是它的行（列）向量组的特性.
+
 \begin{definition}
 在欧几里得空间中，如果
 \begin{enumerate}
@@ -15,14 +49,27 @@
 或\DefineConcept{标准正交基}（orthonormal basis）.
 \end{definition}
 
-\begin{definition}
-设\(n\)阶实矩阵\(\Q\)满足\(\Q^T\Q = \Q\Q^T = \E\)，
-则称\(\Q\)为\DefineConcept{正交矩阵}.
+\begin{definition}\label{definition:正交矩阵.正交矩阵的定义}
+%@see: 《高等代数（第三版 上册）》（丘维声） P145. 定义1
+设\(\Q \in M_n(\mathbb{R})\).
+若\(\Q\)满足\[
+	\Q^T\Q = \E,
+\]
+则称“\(\Q\)是\DefineConcept{正交矩阵}”.
 \end{definition}
 
+从\cref{definition:正交矩阵.正交矩阵的定义} 可以得出：\begin{align*}
+	&\text{实数域上的方阵\(\A\)是正交矩阵} \\
+	&\iff \A^T\A=\E \\
+	&\iff \text{\(\A\)可逆，并且\(\A^{-1}=\A^T\)} \\
+	&\iff \A\A^T=\E.
+\end{align*}
+
 \begin{example}
-由于单位矩阵\(\E\)满足\(\E^T=\E\)，
-\(\E^T \E = \E \E^T = \E\)，
+由于单位矩阵\(\E\)满足\[
+	\E^T=\E, \qquad
+	\E^T \E = \E \E^T = \E,
+\]
 因此\(\E\)也是正交矩阵.
 \end{example}
 
