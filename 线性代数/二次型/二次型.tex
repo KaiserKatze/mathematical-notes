@@ -1,0 +1,260 @@
+\section{二次型的基本概念}
+我们首先研究平面解析几何中以坐标原点为中心的二次曲线的方程：
+\begin{center}
+\def\arraystretch{1.5}
+\begin{tabular}{cl}
+圆 & \(x^2+y^2=r^2\) \\
+椭圆 & \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\) \\
+双曲线 & \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\) \\
+\end{tabular}
+\end{center}
+
+可以看出，它们都具有\[
+a x^2 + 2b xy + c y^2 = d
+\]的形式.
+在研究二次曲线时，如果得到的方程不是标准方程，我们通常希望通过旋转、平移等几何变换将其化为标准方程，进而判别曲线的形状和几何性质.
+
+\subsection{二次型的基本概念}
+\begin{definition}
+称系数\(a_{ij}\ (1 \leq i \leq j \leq n)\)属于数域\(P\)的\(n\)个变量的二次齐次多项式\begin{equation}\label{equation:二次型.二次型}
+f(\AutoTuple{x}{n})
+= \sum\limits_{i=1}^n \sum\limits_{j=1}^n a_{ij} x_i x_j
+\quad(a_{ji}=a_{ij})
+\end{equation}为数域\(P\)上的一个\(n\)元\DefineConcept{二次型}（quadratic form）\footnote{%
+本章不作特别声明时，“二次型”均指实二次型.}.
+\end{definition}
+
+数域对于一个二次齐次多项式是否成为二次型是决定性的.
+多项式\[
+f(x_1,x_2,x_3) = x_1^2 + 4 x_1 x_2 + 3 x_2^2 + 5 x_2 x_3 - x_3^2
+\]和\[
+g(x_1,x_2,x_3) = x_1^2 + 2\sqrt{2} x_1 x_2 + 2 x_1 x_3 + 2 x_2^2 + 4\sqrt{3} x_2 x_3
+\]都是实数域上的二次型；
+但在有理数域上，只有\(f\)是二次型，\(g\)不是二次型.
+
+前面提到我们希望将一般方程化为标准方程，现在我们就要定义何种形式的方程应该被称为标准方程.
+再次观察平面二次曲线的标准方程可以发现，标准方程的等号左边应该是二次齐次多项式（即若干个变量的平方和），等号右边则应该是任意（非零）常数.
+
+\begin{definition}
+若\(n\)阶对称矩阵\(\A = (a_{ij})_n\)满足
+\begin{equation}\label{equation:二次型.二次型的矩阵表示}
+f(\AutoTuple{x}{n}) = \x^T\A\x,
+\end{equation}其中\(\x = (\AutoTuple{x}{n})^T\)，
+则称\cref{equation:二次型.二次型的矩阵表示} 为二次型\(f(\AutoTuple{x}{n})\)的\DefineConcept{矩阵表示}，
+对称矩阵\(\A\)为\(f\)的\DefineConcept{矩阵}，
+\(\A\)的秩\(\rank\A\)为\(f\)的\DefineConcept{秩}.
+\end{definition}
+
+显然，对于任一\(n\)阶矩阵\(\B\)，\(\x^T\B\x\)必定是一个二次型.
+需要注意的是，矩阵\(\B\)不必是对称矩阵，但“二次型\(\x^T\B\x\)的矩阵”必定是一个对称矩阵.
+
+\begin{property}
+二次型和它的矩阵是相互唯一确定的.
+\begin{proof}
+对于二次型\(f(\AutoTuple{x}{n})\)，设非零\(n\)阶对称矩阵\(\A\)和\(\B\)都是\(f\)的矩阵，即\[
+\x^T\A\x
+=\x^T\B\x
+=f(\AutoTuple{x}{n}),
+\]则二次型\(\x^T\A\x\)与\(\x^T\B\x\)中\(x_i x_j\)的系数\(2 a_{ij}\)与\(2 b_{ij}\)（\(1 \leq i < j \leq n\)）必相等，\(x_i^2\)的系数\(a_{ii}\)与\(b_{ii}\)（\(i=1,2,\dotsc,n\)）必相等，故\(\A=\B\).
+\end{proof}
+\end{property}
+
+\begin{example}
+将\(f(x_1,x_2,x_3) = x_1^2 + 4 x_1 x_2 + 3 x_2^2 + 5 x_2 x_3 - x_3^2\)写成矩阵形式.
+\begin{solution}
+\(f(x_1,x_2,x_3) = \begin{bmatrix}
+x_1 & x_2 & x_3
+\end{bmatrix} \begin{bmatrix}
+1 & 2 & 0 \\
+2 & 3 & \frac{5}{2} \\
+0 & \frac{5}{2} & -1
+\end{bmatrix} \begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}\).
+\end{solution}
+\end{example}
+
+\begin{example}
+写出二次型\(\begin{bmatrix}
+x_1 & x_2 & x_3
+\end{bmatrix} \begin{bmatrix}
+2 & -3 & 1 \\
+1 & 0 & 1 \\
+2 & 11 & 3
+\end{bmatrix} \begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}\)的矩阵.
+\begin{solution}
+注意到矩阵\(\A = \begin{bmatrix}
+2 & -3 & 1 \\
+1 & 0 & 1 \\
+2 & 11 & 3
+\end{bmatrix}\)不是对称矩阵，二次型\(\x^T\A\x\)的矩阵应为\[
+\B = \frac{\A+\A^T}{2} = \begin{bmatrix}
+2 & -1 & \frac{3}{2} \\
+-1 & 0 & 6 \\
+\frac{3}{2} & 6 & 3
+\end{bmatrix}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{线性替换}
+\begin{definition}
+因为平面二次曲线方程通过旋转变换化为标准方程，
+实际上是用新变量的一次式代替原来的变量.
+同样地，使用这种基本的方法来化简一般的\(n\)元二次型，
+作如下的变量替换：\[
+\left\{ \begin{array}{l}
+x_1 = c_{11}y_1 + c_{12}y_2 + \dotsb + c_{1n}y_n \\
+x_2 = c_{21}y_1 + c_{22}y_2 + \dotsb + c_{2n}y_n \\
+\hdotsfor{1} \\
+x_n = c_{n1}y_1 + c_{n2}y_2 + \dotsb + c_{nn}y_n
+\end{array} \right.
+\]写成矩阵形式\[
+\begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
+= \begin{bmatrix} c_{11} & c_{12} & \dots & c_{1n} \\
+c_{21} & c_{22} & \dots & c_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+c_{n1} & c_{n2} & \dots & c_{nn}
+\end{bmatrix}\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_n
+\end{bmatrix}
+\quad\text{或}\quad
+\x=\C\mat{Y}.
+\]
+
+上述变量之间的替换称为\DefineConcept{线性替换}.
+
+当矩阵\(\C=(c_{ij})_n\)可逆时，
+称为\DefineConcept{可逆线性替换}（或\DefineConcept{满秩的线性替换}，或\DefineConcept{非退化的线性替换}等）.
+\end{definition}
+
+\begin{theorem}
+对二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)（\(\A=\A^T\)）作可逆线性替换\(\x=\C\y\)，则\(f\)化为新变量的二次型\(g(\AutoTuple{y}{n})=\y^T\B\y\)，其中\(\B=\C^T\A\C\)为\(g\)的矩阵.
+\begin{proof}
+\(f(\AutoTuple{x}{n}) = \x^T\A\x%
+\xlongequal{\x=\C\y} (\C\y)^T\A(\C\y)%
+= \y^T (\C^T\A\C) \y\)，
+令\(\B = \C^T\A\C\)，由于\(\B^T = (\C^T\A\C)^T = \C^T\A\C = \B\)，以及\(\C\)可逆，所以\(\B\)是对称矩阵.
+\(f\)是二次型，它的矩阵\(\A\neq\z\)，\(\B\cong\A\)，故\(\B\neq\z\).
+于是，\(g(\AutoTuple{y}{n})=\y^T\B\y\)是二次型，对称矩阵\(\B\)是\(g\)的矩阵.
+\end{proof}
+\end{theorem}
+
+\subsection{矩阵合同的概念}
+\begin{definition}
+设\(\A\)和\(\B\)是两个\(n\)阶矩阵，
+若存在可逆矩阵\(\C\)，
+使得\(\B=\C^T\A\C\)，
+则称“\(\A\)与\(\B\) \DefineConcept{合同}（congruent）”%
+或“\(\B\)是\(\A\)的\DefineConcept{合同矩阵}”，
+记为\(\A\simeq\B\).
+\end{definition}
+
+\begin{property}
+矩阵的合同关系是等价关系，即具备下列三条性质：
+\begin{enumerate}
+\item 反身性，\(\A\simeq\A\)；
+\item 对称性，\(\A\simeq\B \implies \B\simeq\A\)；
+\item 传递性，\(\A\simeq\B \land \B\simeq\C \implies \A\simeq\C\).
+\end{enumerate}
+\end{property}
+
+\begin{property}
+合同矩阵与原矩阵等价，即\(\A\simeq\B \implies \A\cong\B\).
+\begin{proof}
+由\hyperref[definition:逆矩阵.矩阵等价]{矩阵等价的定义}显然有.
+\end{proof}
+\end{property}
+
+\begin{property}
+合同矩阵的秩与原矩阵相等，即\(\A\simeq\B \implies \rank\A=\rank\B\).
+\begin{proof}
+由\cref{theorem:线性方程组.初等变换不变秩} 立得.
+\end{proof}
+\end{property}
+
+\begin{property}
+对称矩阵的合同矩阵也是对称的，即\(\A^T = \A, \A\simeq\B \implies \B^T = \B\).
+\begin{proof}
+设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，那么%
+\(\B^T = (\C^T\A\C)^T = \C^T\A^T\C = \C^T\A\C = \B\).
+\end{proof}
+\end{property}
+
+\begin{property}
+矩阵相似是矩阵合同的充分不必要条件，即\[
+\A\sim\B
+\implies
+\A\cong\B.
+\]
+\end{property}
+
+\begin{example}\label{example:二次型.实对称矩阵相似必合同}
+实对称矩阵\(\A\)、\(\B\)相似，证明：\(\A\)与\(\B\)合同.
+\begin{proof}
+因为\(\A\)、\(\B\)都是实对称矩阵，\(\A^T=\A\)，\(\B^T=\B\)，且存在正交矩阵\(\Q_1,\Q_2\)使得\[
+\Q_1^{-1} \A \Q_1 = \Q_1^T \A \Q_1 = \V_1,
+\]\[
+\Q_2^{-1} \B \Q_2 = \Q_2^T \B \Q_2 = \V_2,
+\]其中\(\V_1,\V_2\)是对角阵.
+又因为\(\A\sim\B\)，所以\(\A\)与\(\B\)有相同的特征多项式、特征值，即\(\V_1=\V_2\)，或\[
+\Q_1^{-1} \A \Q_1 = \Q_2^{-1} \B \Q_2,
+\]\[
+(\Q_2 \Q_1^{-1}) \A (\Q_1 \Q_2^{-1}) = \B.
+\]令\(\P = \Q_1 \Q_2^{-1}\)，\(\P^T = (\Q_1 \Q_2^{-1})^T = (\Q_2^{-1})^T \Q_1^T = \Q_2 \Q_1^{-1} = (\Q_1 \Q_2^{-1})^{-1} = \P^{-1}\)，那么\[
+\P^T \A \P = \B,
+\]也就是说\(\A\)与\(\B\)合同.
+\end{proof}
+\end{example}
+
+\begin{example}
+尽管在\cref{example:二次型.实对称矩阵相似必合同} 中我们看到“两个相似的实对称矩阵必定合同”，但两个合同的实对称矩阵未必相似，我们立即可以拿出一个反例：
+\def\diagx(#1){\begin{bmatrix} #1 \\ & #1 \\ && #1 \end{bmatrix}}%
+因为\[
+\diagx(3^{-1/2})^T \diagx(3) \diagx(3^{-1/2}) = \diagx(1),
+\]即\(\A = \diag(3,3,3) \cong \E\)，但\(\tr\A = 9 \neq \tr\E = 3\)，也就是说两个矩阵并不相似.
+\end{example}
+
+\begin{example}\label{example:二次型.合同矩阵符号相同}
+设\(\A\)、\(\B\)、\(\C\)都是可逆矩阵，且满足\(\C^T\A\C=\B\)，
+则\(\abs{\A}\)与\(\abs{\B}\)的符号相同.
+\begin{proof}
+因为\(\B=\C^T\A\C\)，
+所以\(\A\B=\A\C^T\A\C\)，
+进而有\[
+\abs{\A}\abs{\B}
+=\abs{\A\B}
+=\abs{\A\C^T\A\C}
+=\abs{\A}\abs{\C^T}\abs{\A}\abs{\C}
+=\abs{\A}^2\abs{\C}^2.
+\]
+又因为\(\abs{\A} \neq 0\)，\(\abs{\A}^2 > 0\)，\(\abs{\C} \neq 0\)，\(\abs{\C}^2 > 0\)，所以\(\abs{\A}\abs{\B} > 0\)，即\(\abs{\A}\)与\(\abs{\B}\)同号.
+\end{proof}
+\end{example}
+由\cref{example:二次型.合同矩阵符号相同} 可知，若矩阵\(\A,\B\)合同，则\(\sgn\abs{\A}=\sgn\abs{\B}\).
+
+\begin{example}
+设\(\AutoTuple{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，
+\[
+\A=\diag(\AutoTuple{d}{n}),
+\qquad
+\B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
+\]
+证明：矩阵\(\A,\B\)合同且相似.
+\begin{proof}
+显然\(\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n})\)可由\(\diag(\AutoTuple{d}{n})\)同时左乘和右乘若干个初等矩阵\[
+\P(i,j) \quad(1 \leq i < j \leq n)
+\]得到，又因为\(\P(i,j)^T = \P(i,j)^{-1} = \P(i,j)\)，所以只要令这些初等矩阵的乘积为\(\P\)，就有\[
+\P^{-1} \A \P = \B,
+\qquad
+\P^T \A \P = \B.
+\]也就是说\(\A\simeq\B\land\A\sim\B\).
+\end{proof}
+\end{example}
+
+根据\cref{theorem:特征值与特征向量.实对称矩阵3}，任一实对称矩阵都与某个对角阵合同且相似，实际上，我们可以把这个结论推广到复数域上的对称矩阵.
+\begin{theorem}
+任一对称矩阵都合同于某个对角矩阵.
+\end{theorem}

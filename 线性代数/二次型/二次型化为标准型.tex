@@ -1,0 +1,303 @@
+\section{二次型化为标准型的三种方法}
+二次型的基本问题是研究如何通过非退化的线性替换将一个热词性化简为平方和的形式，从而讨论其性质.
+\begin{definition}
+如果二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)可以经过非退化的线性替换\(\x=\C\mat{Y}\)化简为\[
+d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2
+\]的形式，则称上式为二次型\(f\)的\DefineConcept{标准型}或\DefineConcept{规范型}（standard form）.
+\end{definition}
+将二次型化为标准型的问题可以归结为对称矩阵合同于对角阵的问题.
+下面介绍三种化二次型为标准型的方法.
+
+\subsection{正交变换法}
+根据\cref{theorem:特征值与特征向量.实对称矩阵3}，对于任何一个实对称矩阵\(\A\)，存在正交矩阵\(\Q\)，使得\[
+\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}),
+\]即实对称矩阵\(\A\)与对角阵\(\diag(\AutoTuple{\lambda}{n})\)合同且相似.
+
+\begin{theorem}
+对于任一\(n\)元实二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)（\(\A=\A^T\)），都存在正交矩阵\(\Q\)，由\(\Q\)构成的线性替换\(\x=\Q\mat{Y}\)（称为\DefineConcept{正交变换}，{\rm orthogonal operator}）将\(f\)化为标准型\[
+f(\AutoTuple{x}{n})
+\xlongequal{\x=\Q\mat{Y}}
+\lambda_1y_1^2+\lambda_2y_2^2+ \dotsb +\lambda_ny_n^2
+\]其中\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是\(\A\)的全部特征值.
+\end{theorem}
+
+\begin{corollary}
+正交变换的特点之一是保持向量的内积不变，也就是保持向量的长度不变，保持图形的形状不变.
+\begin{proof}
+设\(\Q\)为正交矩阵.
+令\(\x_1=\Q\mat{Y}_1\)，
+\(\x_2=\Q\mat{Y}_2\)，
+必有\begin{align*}
+\vectorinnerproduct{\x_1}{\x_2}
+&=\vectorinnerproduct{(\Q\mat{Y}_1)}{(\Q\mat{Y}_2)}
+=(\Q\mat{Y}_1)^T (\Q\mat{Y}_2)
+=\mat{Y}_1^T \Q^T \Q \mat{Y}_2 \\
+&=\mat{Y}_1^T \E \mat{Y}_2
+=\mat{Y}_1^T \mat{Y}_2
+=\vectorinnerproduct{\mat{Y}_1}{\mat{Y}_2},
+\end{align*}
+又令\(\x_1=\x_2=\x\)，
+\(\mat{Y}_1=\mat{Y}_2=\mat{Y}\)，
+则\(\abs{\x}^2=\abs{\mat{Y}}^2\)，
+\(\abs{\x}=\abs{\mat{Y}}\).
+\end{proof}
+\end{corollary}
+
+\begingroup
+\color{red}
+用正交变换法将二次型化为标准型的步骤如下：
+\begin{enumerate}
+\item 首先根据\(f\)的表达式写出\(f\)的矩阵\(\A\)；
+\item 写出\(f\)矩阵的特征多项式\(\abs{\lambda\E-\A}=0\)，求解\(\A\)的特征值\(\AutoTuple{\lambda}{n}\)以及对应的特征向量\(\AutoTuple{\x}{n}\)；
+\item 运用施密特规范化方法将\(\A\)的特征向量正交单位化为\(\AutoTuple{\g}{n}\)，然后写成正交矩阵\(\Q=(\AutoTuple{\g}{n})\)；
+\item 计算得出标准型的矩阵\(\B=\Q^T\A\Q=\Q^{-1}\A\Q=\diag(\AutoTuple{\lambda}{n})\).
+\end{enumerate}
+\endgroup
+
+\begin{example}
+设\(f(x_1,x_2,x_3) = -x_1^2-x_2^2-7x_3^2-4x_1x_2+8x_1x_3+8x_2x_3\).
+利用正交变换将\(f\)化为标准型，并写出所用的正交变换.
+\begin{solution}
+\def\z{\mat{Z}}%
+\(f\)的矩阵为\[
+\A = \begin{bmatrix}
+-1 & -2 & 4 \\
+-2 & -1 & 4 \\
+4 & 4 & -7
+\end{bmatrix}.
+\]令\[
+\abs{\l\E-\A} = \begin{bmatrix}
+\l+1 & 2 & -4 \\
+2 & \l+1 & -4 \\
+-4 & -4 & \l+7
+\end{bmatrix} = (\l-1)^2 (\l+11) = 0,
+\]解得特征值\(\L1=1\)（二重），\(\L2=-11\).
+
+当\(\l=1\)时，解方程\((\E-\A)\x=\z\)，\[
+\E-\A = \begin{bmatrix}
+2 & 2 & -4 \\
+2 & 2 & -4 \\
+-4 & -4 & 8
+\end{bmatrix} \to \begin{bmatrix}
+2 & 2 & -4 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix},
+\]基础解系为\[
+\X1 = \begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}, \qquad
+\X2 = \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix}.
+\]利用施密特方法将其正交化，得\[
+\y_1=\X1,\qquad
+\y_2=\X2-\frac{\X2\cdot\y_1}{\y_1\cdot\y_1}\y_1=\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix};
+\]再将其单位化，得\[
+\z_1=\frac{1}{\sqrt{2}} \begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}, \qquad
+\z_2=\frac{1}{\sqrt{3}} \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}.
+\]
+
+当\(\l=-11\)时，解方程\((-11\E-\A)\x=\z\)，\[
+-11\E-\A = \begin{bmatrix}
+-10 & 2 & -4 \\
+2 & -10 & -4 \\
+-4 & -4 & -4
+\end{bmatrix} \to \begin{bmatrix}
+1 & 1 & 1 \\
+0 & 2 & 1 \\
+0 & 0 & 0
+\end{bmatrix},
+\]基础解系为\[
+\X3 = \begin{bmatrix} 1 \\ 1 \\ -2 \end{bmatrix},
+\]单位化得\[
+\z_3 = \frac{1}{\sqrt{6}} \begin{bmatrix} 1 \\ 1 \\ -2 \end{bmatrix}.
+\]
+
+令\[
+\Q = (\z_1,\z_2,\z_3) = \begin{bmatrix}
+-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{6}} \\
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{6}} \\
+0 & \frac{1}{\sqrt{3}} & -\frac{2}{\sqrt{6}} \\
+\end{bmatrix},
+\]\(\Q\)是正交矩阵，满足\(\Q^T\A\Q=\Q^{-1}\A\Q=\diag(1,1,-11)\).
+作正交变换\(\x=\Q\y\)，于是\(f\)化为标准型\(y_1^2+y_2^2-11y_3^2\).
+\end{solution}
+\end{example}
+
+\begin{example}
+设实二次型\[
+f(\AutoTuple{x}{n})=\x^T\A\x
+\]的矩阵\(\A\)的特征值为\(\AutoTuple{\lambda}{n}\)，\(c=\max\{\AutoTuple{\lambda}{n}\}\).
+证明：对于任意\(n\)维实向量\(\x\)，都有\[
+f(\AutoTuple{x}{n}) \leq c \x^T\x.
+\]
+\begin{proof}
+因为\(\A\)是实对称矩阵，即存在正交矩阵\(\Q\)使得\(\Q^T\A\Q = \diag(\AutoTuple{\lambda}{n})\)，作正交变换\(\x=\Q\y\)，则\(f\)化为标准型\begin{align*}
+f(\AutoTuple{x}{n}) &= \L{1} y_1^2 + \L{2} y_2^2 + \dotsb + \L{n} y_n^2 \\
+&\leq c y_1^2 + c y_2^2 + \dotsb + c y_n^2
+= c \y^T \y = c \x^T \x.
+\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\subsection{拉格朗日配方法}
+用正交变换能够化实二次型为标准型，这种方法是根据实对称矩阵的性质，求出二次型矩阵的特征值和规范正交的特征向量，条件要求较强.
+当研究一般数域\(P\)上的二次型（包括实二次型）的标准型时，可以用\DefineConcept{拉格朗日配方法}.
+这种方法不用解矩阵特征值问题，只需反复利用以下两个初等代数公式\[
+a^2+2ab+b^2=(a+b)^2 ,\quad a^2-b^2=(a+b)(a-b)
+\]就能将二次型化为标准型.
+
+\begin{example}
+用配方法化二次型\(f(x_1,x_2,x_3)
+= x_1^2 + 2 x_1 x_2 + 2 x_2^2 - 3 x_2 x_3\)为标准型，并求出所用的可逆线性替换.
+\begin{solution}
+首先有
+\begin{align*}
+f(x_1,x_2,x_3)
+&= x_1^2 + 2 x_1 x_2 + 2 x_2^2 - 3 x_2 x_3 \\
+&= x_1^2 + 2 x_1 x_2 + x_2^2 + x_2^2 - 3 x_2 x_3 \\
+&= (x_1 + x_2)^2 + x_2^2 - 3 x_2 x_3 + \frac{9}{4} x_3^2 - \frac{9}{4} x_3^2 \\
+&= (x_1 + x_2)^2 + \left( x_2 - \frac{3}{2} x_3 \right)^2 - \frac{9}{4} x_3^2,
+\end{align*}
+令\[
+\left\{ \def\arraystretch{1.5} \begin{array}{*7r}
+y_1 &= &x_1 &+&x_2 \\
+y_2 &= & & & x_2 & -& \frac{3}{2} x_3 \\
+y_3 &= & & & & & x_3
+\end{array} \right.
+\eqno{(1)}
+\]则\[
+\left\{ \def\arraystretch{1.5} \begin{array}{*7r}
+x_1 &= &y_1 &-&y_2 &-&\frac{3}{2} y_3 \\
+x_2 &= & & & y_2 & +& \frac{3}{2} y_3 \\
+x_3 &= & & & & & y_3
+\end{array} \right.
+\eqno{(2)}
+\]
+(2)是可逆线性替换，使\(f(x_1,x_2,x_3) = y_1^2 + y_2^2 - \frac{9}{4} y_3^2\).
+\end{solution}
+\end{example}
+
+\begin{theorem}
+对于任一\(n\)元二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，都存在非退化的线性替换\(\x=\C\mat{Y}\)，使之成为\[
+f(\AutoTuple{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
+\]
+\begin{proof}
+应用数学归纳法.
+当\(n=1\)时，\(f(x_1) = a_{11} x_1^2 = d_1 y_1^2\)，结论成立.
+
+假设当\(n=k-1\ (k\geq2)\)时结论成立；那么当\(n=k\)时，我们分以下两种情况进行讨论：
+\begin{enumerate}
+\item 若\(f\)的平方项系数不全为零，不妨设\(a_{11}\neq0\)，
+从而有\begin{align*}
+	f(\AutoTuple{x}{n})
+	&= a_{11} x_1^2 + 2 x_1 \sum\limits_{j=2}^n a_{1j} x_j
+		+ \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j \\
+	&= a_{11} \left[
+		x_1 + \frac{1}{a_{11}} \sum\limits_{j=2}^n a_{1j} x_j
+	\right]^2
+	- \frac{1}{a_{11}} \left[
+		\sum\limits_{j=2}^n a_{1j} x_j
+	\right]^2
+	+ \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j,
+\end{align*}
+令\[
+	y_1 = x_1 + \frac{1}{a_{11}} \sum\limits_{j=2}^n a_{1j} x_j, \qquad
+	y_2 = x_2, \qquad
+	\dotsc, \qquad
+	y_n = x_n,
+\]
+则\[
+	f(\AutoTuple{x}{n}) = a_{11} y_1^2 + g(\AutoTuple{y}[2]{n}),
+\]
+其中\(g(\AutoTuple{y}[2]{n})
+= - \frac{1}{a_{11}} \left[
+	\sum\limits_{j=2}^n a_{1j} x_j
+\right]^2
++ \sum\limits_{i=2}^n \sum\limits_{j=2}^n a_{ij} x_i x_j\)%
+是一个\(n-1\)元二次型或零多项式.
+由归纳假设，存在\(n-1\)阶可逆矩阵\(\Q\)，
+得到非退化线性变换\((\AutoTuple{y}[2]{n})^T = \Q (\AutoTuple{z}[2]{n})^T\)，
+使得\[
+	g(\AutoTuple{y}[2]{n})
+	= d_2 z_2^2 + d_3 z_3^2 + \dotsb + d_n z_n^2.
+\]
+记\[
+\P = \begin{bmatrix}
+1 & -a_{11}^{-1} a_{12} & -a_{11}^{-1} a_{13} & \dots & -a_{11}^{-1} a_{1n} \\
+& 1 & 0 & \dots & 0 \\
+& & 1 & \dots & 0 \\
+& & & \ddots & \vdots \\
+& & & & 1
+\end{bmatrix},
+\]则非退化线性替换\[
+\begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix}
+= \P \begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_n
+\end{bmatrix}
+= \P \begin{bmatrix} 1 & \z \\ \z & \Q \end{bmatrix} \begin{bmatrix}
+z_1 \\ z_2 \\ \vdots \\ z_n
+\end{bmatrix}
+\]使得\(f(\AutoTuple{x}{n}) = a_{11} z_1^2 + d_2 z_2^2 + d_3 z_3^2 + \dotsb + d_n z_n^2\).
+
+\item 若\(f\)不含平方项，则必存在\(1 \leq i < j \leq n\)使得\(a_{ij}\neq0\)；
+于是\[
+\left\{ \begin{array}{l}
+x_i = y_i + y_j \\
+x_j = y_i - y_j \\
+x_k = y_k\ (1 \leq k \leq n \land k \neq i \land k \neq j)
+\end{array} \right.
+\]是非退化的线性替换，使得\[
+f(\AutoTuple{x}{n})
+= g(\AutoTuple{y}{n})
+= a_{ij} y_i^2 - a_{ij} y_j^2 + h(\AutoTuple{y}{n}),
+\]其中\(h(\AutoTuple{y}{n})\)是不含平方项的二次型或零多项式，故\(g(\AutoTuple{y}{n})\)含有平方项，这归结为第一种情形，从而可以化为标准型.
+\qedhere
+\end{enumerate}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+任意\(n\)阶对称矩阵\(\A\)都与对角形矩阵合同.
+\end{corollary}
+
+\subsection{初等变换法}
+\begin{definition}
+设\(\P\)为初等矩阵.
+对于任意矩阵\(\B\)，称变换\(\B \to \P^T\B\P\)为对\(\B\)作一次\DefineConcept{合同变换}.
+\end{definition}
+
+\begin{theorem}
+因为对于任一对称阵\(\A\)，存在可逆矩阵\(\C\)，使得\[
+\C^T\A\C=\diag(\AutoTuple{d}{n}).
+\]
+又因为存在初等矩阵\(\P_1,\P_2,\dotsc,\P_m\)，使得\[
+\C=\P_1\P_2\dotsm\P_m,
+\]那么\[
+\C^T\A\C = (\P_m^T\P_{m-1}^T\dotsm\P_1^T)\A(\P_1\P_2\dotsm\P_m)=\diag(\AutoTuple{d}{n}).
+\]
+
+因为初等矩阵有三类：
+\begin{enumerate}
+\item \(\P(i,j)^T\B\P(i,j)=\P(i,j)\B\P(i,j)\)，相当于交换\(\B\)的\(i,j\)两行，再交换\(\P(i,j)\B\)的\(i,j\)两列.
+\item \(\P(i(c))^T\B\P(i(c))=\P(i(c))\B\P(i(c))\)（\(c \neq 0\)），相当于用\(c\)乘\(\B\)的\(i\)行，再用\(c\)乘\(\P(i(c))\B\)的\(i\)列.
+\item \(\P(i,j(k))^T\B\P(i,j(k))=\P(j,i(k))\B\P(i,j(k))\)，相当于将\(\B\)的\(i\)行的\(k\)倍加到\(j\)行，再将\(\P(j,i(k))\B\)的\(i\)列的\(k\)倍加到\(j\)列.
+\end{enumerate}
+可见，对称矩阵\(\A\)可以经过一系列合同变换化为对角形矩阵.
+则\[
+\begin{bmatrix} \A \\ \E \end{bmatrix}
+\to
+\begin{bmatrix} \C^T & \z \\ \z & \E \end{bmatrix}
+\begin{bmatrix} \A \\ \E \end{bmatrix}
+\C = \begin{bmatrix} \C^T\A\C \\ \C \end{bmatrix},
+\]\[
+(\A,\E)
+\to
+\C^T (\A,\E) \begin{bmatrix}
+\C & \z \\
+\z & \E
+\end{bmatrix}
+= (\C^T\A\C,\C^T).
+\]其中\(\C=\P_1\P_2\dotsm\P_m\)，
+即对\(\A\)作一系列合同变换化为对角阵\(\C^T\A\C\)，只对\(\E\)进行列变换，将\(\E\)变成\(\C\)；或者只对\(\E\)作其中的行变换，则将\(\E\)变为\(\C^T\).
+\end{theorem}

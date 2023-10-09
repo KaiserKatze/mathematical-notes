@@ -1,0 +1,233 @@
+\section{实二次型的分类}
+\subsection{实二次型的分类标准}
+\begin{definition}
+设有\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，如果对任意一组不全为零的实数\(\AutoTuple{c}{n}\)，都有
+\begin{enumerate}
+	\item \(f(\AutoTuple{c}{n}) > 0\)，
+	则称“\(f\)是\DefineConcept{正定的}（positive definite）”；
+	把\(\A\)称为\DefineConcept{正定矩阵}（positive definite matrix），
+	记为\(\A\succ\z\).
+
+	\item \(f(\AutoTuple{c}{n}) \geq 0\)，
+	则称“\(f\)是\DefineConcept{半正定的}（positive semi-definite）”；
+	把\(\A\)称为\DefineConcept{半正定矩阵}（positive semi-definite matrix），
+	记为\(\A\succeq\z\).
+
+	\item \(f(\AutoTuple{c}{n}) < 0\)，
+	则称“\(f\)是\DefineConcept{负定的}（negative definite）”，
+	把\(\A\)称为\DefineConcept{负定矩阵}（negative definite matrix），
+	记为\(\A\prec\z\).
+
+	\item \(f(\AutoTuple{c}{n}) \leq 0\)，
+	则称“\(f\)是\DefineConcept{半负定的}（negative semi-definite）”；
+	把\(\A\)称为\DefineConcept{半负定矩阵}（negative semi-definite matrix），
+	记为\(\A\preceq\z\).
+
+	\item 否则（\(f\)既可取正值，又可取负值），
+	称\(f\)是\DefineConcept{不定的}（indefinite）.
+\end{enumerate}
+\end{definition}
+
+\subsection{惯性定理}
+\begin{theorem}\label{theorem:二次型.惯性定理}
+\(n\)元实二次型\[
+f(\AutoTuple{x}{n}) = \x^T\A\x
+\]经过任意满秩线性变换化为标准型，所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
+\begin{proof}
+\def\z{\mat{Z}}%
+设实二次型的秩为\(r\).
+假设\(f\)经过两个不同的可逆线性替换\(\x=\C\y,\x=\D\z\)分别化为标准型\[
+f \xlongequal{\x=\C\y} c_1 y_1^2 + c_2 y_2^2 + \dotsb + c_p y_p^2 - c_{p+1} y_{p+1}^2 - \dotsb - c_r y_r^2,
+\eqno{(1)}
+\]\[
+f \xlongequal{\x=\D\z} d_1 z_1^2 + d_2 z_2^2 + \dotsb + d_q z_q^2 - d_{q+1} z_{q+1}^2 - \dotsb - d_r z_r^2,
+\eqno{(2)}
+\]其中\(c_i,d_i>0\ (i=1,2,\dotsc,r)\).
+
+用反证法.
+设\(p > q\)，由\(\x = \C\y = \D\z\)，\(\D\)可逆，得\(\z = \D^{-1} \C \y\).
+\def\H{\mat{H}}%
+\def\zexpr#1{h_{#1 1} y_1 + h_{#1 2} y_2 + \dotsb + h_{#1 n} y_n}%
+记\(\H = (h_{ij})_n = \B^{-1} \C\)，则\(\z = \H\y\)，即\[
+z_i = \zexpr{i}
+\quad(i=1,2,\dotsc,n).
+\]于是\[\begin{aligned}
+&\hspace{-20pt}
+c_1 y_1^2 + c_2 y_2^2 + \dotsb + c_p y_p^2 - c_{p+1} y_{p+1}^2 - \dotsb - c_r y_r^2 \\
+&= d_1 (\zexpr{1})^2 + d_2 (\zexpr{2})^2 \\
+&\hspace{20pt}+ \dotsb + d_q (\zexpr{q})^2 \\
+&\hspace{20pt}- d_{q+1} (\zexpr{q+1})^2 - \dotsb \\
+&\hspace{20pt}- d_r (\zexpr{r})^2.
+\end{aligned}
+\eqno{(3)}
+\]由此可以构造齐次线性方程组\[
+\begin{cases}
+\zexpr{1} = 0, \\
+\hdotsfor{1} \\
+\zexpr{q} = 0, \\
+y_{p+1} = 0, \\
+\hdotsfor{1} \\
+y_n = 0.
+\end{cases}
+\eqno{(4)}
+\]这个方程组中有\(n\)个未知量，\(q+n-p < n\)个方程，于是它有非零解\((\AutoTuple{y}{p},0,\dotsc,0)^T\)，
+代入(3)式两端，得到左边大于零，右边小于等于零，矛盾，因此\(p \leq q\).
+同理又有\(q \leq p\)，于是\(p = q\).
+\end{proof}
+\end{theorem}
+\cref{theorem:二次型.惯性定理}
+又称为“惯性定理（Inertial Theorem）”.
+
+\begin{corollary}
+任意\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，总可经过满秩线性变换化为以下形式的标准型\[
+f(\AutoTuple{x}{n})
+=y_1^2+y_2^2+ \dotsb +y_p^2
+-y_{p+1}^2-\dotsb-y_r^2
+\]称为\(f(\AutoTuple{x}{n})\)的\DefineConcept{规范型}（{\rm normal form}），且规范型是唯一的.
+\begin{proof}
+根据惯性定理，\(f\)经过可逆线性替换化为标准型：\[
+f \xlongequal{\x=\D\z} d_1 z_1^2 + d_2 z_2^2 + \dotsb + d_q z_q^2 - d_{q+1} z_{q+1}^2 - \dotsb - d_r z_r^2,
+\]其中\(d_i>0\ (i=1,2,\dotsc,r)\).
+令\[
+\C = \D \diag(d_1^{-1/2},\dotsc,d_r^{-1/2},1,\dotsc,1),
+\]则\(\x = \D\z = \C\y\)是可逆线性替换，使得\[
+f \xlongequal{\x=\D\z} y_1^2 + y_2^2 + \dotsb + y_q^2 - y_{q+1}^2 - \dotsb - y_r^2.
+\]二次型的规范型的唯一性可以由惯性定理得到.
+\end{proof}
+\end{corollary}
+
+\begin{definition}
+在秩为\(r\)的实二次型\(f(\AutoTuple{x}{n})\)所化成的标准型（或规范型）中，正平方项的项数\(p\)称为\(f\)的\DefineConcept{正惯性指数}（positive index of inertia），负平方项的项数\(q=r-p\)称为\(f\)的\DefineConcept{负惯性指数}（minus index of inertia），正、负惯性指数之差\(d=p-q=2p-r\)称为\(f\)的\DefineConcept{符号差}（signature）.
+\end{definition}
+由惯性定理和以上定义可知：可逆线性替换不改变二次型的正、负惯性指数.从而可由二次型的正、负惯性指数确定二次型的类型.
+
+\begin{theorem}
+设\(\A\)和\(\B\)是同阶实对称矩阵.这两个矩阵合同的充要条件是两者的秩、正负惯性指数均相等，即\[
+\A\simeq\B \iff \rank\A=\rank\B, p_{\A}=p_{\B}, q_{\A}=q_{\B}.
+\]
+\end{theorem}
+
+\subsection{正定矩阵的等价条件}
+\begin{theorem}
+设\(\A\)为\(n\)阶实对称矩阵，\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，则下列命题相互等价：
+\begin{enumerate}
+\item \(\A\)为正定矩阵；
+\item \(\A\)的特征值全是正实数；
+\item \(f(\AutoTuple{x}{n})\)的正惯性指数\(p=n\)；
+\item \(\A \cong \E\)（即，存在可逆实阵\(\C\)，使得\(\C^T\A\C=\E\)）；
+\item 存在可逆实阵\(\P\)，使得\(\A=\P^T\P\).
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+正定矩阵的行列式大于零.
+\begin{proof}
+因为\(\A\)正定，所以存在可逆实阵\(\P\)，使得\(\A=\P^T\P\)，则\(\abs{\A}=\abs{\P^T\P}=\abs{\P^T}\abs{\P}=\abs{\P}^2>0\).
+\end{proof}
+\end{corollary}
+
+\begin{theorem}
+\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)（\(\A=\A^T\)）正定的充要条件是：\(\A\)的各阶顺序主子式均大于零.
+\begin{proof}
+必要性.对于任意不全为零的\(n\)个实数\(c_1,c_2,\dotsc,c_k,0,\dotsc,0\)，总有\[
+f(c_1,c_2,\dotsc,c_k,0,\dotsc,0) = \sum\limits_{i=1}^k \sum\limits_{j=1}^k c_i c_j a_{ij} > 0,
+\]从而\(k\)元实二次型\(f_k(x_1,x_2,\dotsc,x_k) = \sum\limits_{i=1}^k \sum\limits_{j=1}^k x_i x_j a_{ij}\)正定，而\(f_k\)的矩阵为\(\A_k = (a_{ij})_k\)，那么\(\abs{\A_k} > 0\)（\(k=1,2,\dotsc,n\)）.
+
+充分性.当\(n=1\)时，\(a_{11} > 0\)，\(f_1(x_1) = a_{11} x_1^2\)正定.
+设\(n=k-1\)时结论成立，当\(n=k\)时，将\(\A\)分块得\(\A = \begin{bmatrix}
+\A_{k-1} & \a \\
+\a^T & a_{nn}
+\end{bmatrix}\)，其中\(\A_{k-1}\)为各阶顺序主子式都大于零的\(k-1\)阶实对称矩阵.
+由归纳假设，\(\A_{k-1}\)正定，故存在\(k-1\)阶可逆矩阵\(\Q\)，使得\(\A_{k-1} = \Q^T \Q\)，\(\A_{k-1}\)可逆，\(\A_{k-1}^{-1} = \Q^{-1}(\Q^{-1})^T\)是对称矩阵.
+令\(\P = \begin{bmatrix}
+\Q^{-1} & -\A_{k-1}^{-1} \a \\
+\z & 1
+\end{bmatrix}\)，则\(\P\)可逆，于是\begin{align*}
+\P^T \A \P &= \begin{bmatrix}
+(\Q^{-1})^T & \z \\
+-\a^T \A_{k-1}^{-1} & 1
+\end{bmatrix} \begin{bmatrix}
+\Q^T \Q & \a \\
+\a^T & a_{nn}
+\end{bmatrix} \begin{bmatrix}
+\Q^{-1} & -\A_{k-1}^{-1} \a \\
+\z & 1
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\Q & (\Q^{-1})^T \a \\
+\z & b
+\end{bmatrix} \begin{bmatrix}
+\Q^{-1} & -\A_{k-1}^{-1} \a \\
+\z & 1
+\end{bmatrix}
+= \begin{bmatrix}
+\E_{k-1} & \z \\
+\z & b
+\end{bmatrix} = \B,
+\end{align*}
+其中\(b=a_{nn}-\a^T \A_{k-1}^{-1} \a\).
+由于\(\A\)与\(\B\)合同，\(\abs{\A} > 0\)，得\(\abs{\B} = b > 0\)，作可逆线性替换\(\x = \P\y\)，则\[
+f \xlongequal{\x=\Q\y} y_1^2 + y_2^2 + \dotsb + y_{n-1}^2 + b y_n^2,
+\]故\(f\)的正惯性指数为\(n\)，\(f\)正定.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)（\(\A=\A^T\)）负定的充要条件是：\[
+(-1)^k D_k = (-1)^k \begin{vmatrix}
+a_{11} & a_{12} & \dots & a_{1k} \\
+a_{21} & a_{22} & \dots & a_{2k} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{k1} & a_{k2} & \dots & a_{kk}
+\end{vmatrix} > 0,
+\quad k=1,2,\dotsc,n.
+\]
+\end{corollary}
+
+\begin{example}
+设\(\A\)为实对称矩阵，证明：当实数\(t\)充分大时，\(t\E+\A\)是正定矩阵.
+\begin{proof}
+因为\(\A\)为实对称矩阵，所以存在正交矩阵\(\Q\)，使得\[
+\Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}).
+\]又因为\[
+\Q^T(t\E+\A)\Q
+= \diag(t+\L{1},t+\L{2},\dotsc,t+\L{n}),
+\]所以当\(t+\L{1},t+\L{2},\dotsc,t+\L{n}\)都大于零时，\(t\E+\A\)正定.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)、\(\B\)是同阶正定矩阵，证明：\(\A+\B\)、\(\A^{-1}\)、\(\A^*\)是正定矩阵.
+\begin{proof}
+根据正定矩阵的定义，因为\(\A\)是正定矩阵，任取非零列向量\(\x\)，都有\[
+\x^T\A\x > 0;
+\]同样地，有\(\x^T\B\x > 0\).
+
+又根据矩阵的乘法分配律，有\[
+\x^T(\A+\B)\x = \x^T\A\x + \x^T\B\x > 0
+\]成立，即\(\A+\B\)是正定矩阵.
+
+因为\(\A\)是正定矩阵，存在可逆实阵\(\P\)使得\(\P^T\A\P=\E\)，所以\[
+\A = (\P^T)^{-1}\E\P^{-1} = (\P^T)^{-1}\P^{-1}
+\implies
+\A^{-1} = \P\P^T,
+\]说明\(\A^{-1}\)是正定矩阵.
+
+由逆矩阵的定义，\(\A^{-1}=\frac{1}{\abs{\A}}\A^*\)，那么\(\A^*=\abs{\A}\A^{-1}\)，\(\abs{\A}>0\)，显然\(\A^*\)也是正定矩阵.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\A\)是正定矩阵，试证：存在正定矩阵\(\B\)，使得\(\A=\B^2\).
+\begin{proof}
+设\(\A\)是\(n\)阶正定矩阵，那么存在正交矩阵\(\P\)满足\[
+\P^T\A\P = \diag(\AutoTuple{\lambda}{n}) = \V,
+\]其中\(\AutoTuple{\lambda}{n} \in \mathbb{R}^+\).
+又设矩阵\(\B\)满足\(\B^2=\A\)，那么\[
+\P^T\A\P = \P^T\B^2\P = \V
+\iff
+\B^2 = \P\V\P^T,
+\]
+只需要令\(\B = \P \diag(\sqrt{\L{1}},\sqrt{\L{2}},\dotsc,\sqrt{\L{n}}) \P^T\)即可.
+\end{proof}
+\end{example}
