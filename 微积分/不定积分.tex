@@ -646,18 +646,25 @@ I_2
 \end{example}
 
 \section{有理函数的积分}
-\subsection{有理函数的积分}
 \begin{definition}
-两个（不含公因式的）多项式的商\(\frac{P(x)}{Q(x)}\)称为\DefineConcept{有理函数}，又称\DefineConcept{有理分式}.
-当分子多项式\(P(x)\)的幂次小于分母多项式\(Q(x)\)的幂次时，称这有理函数为\DefineConcept{真分式}；否则称为\DefineConcept{假分式}.
+两个（不含公因式的）多项式的商\(\frac{P(x)}{Q(x)}\)
+称为\DefineConcept{有理函数}，
+又称\DefineConcept{有理分式}.
+当分子多项式\(P(x)\)的幂次小于分母多项式\(Q(x)\)的幂次时，
+称这有理函数为\DefineConcept{真分式}；
+否则称为\DefineConcept{假分式}.
 \end{definition}
 利用多项式的除法，总可以将一个假分式化为一个多项式与一个真分式之和的形式.
 
-对于真分式\(\frac{P(x)}{Q(x)}\)，如果分母可分解为两个多项式的乘积\[
-Q(x)=Q_1(x)Q_2(x)
-\]且\(Q_1(x)\)与\(Q_2(x)\)没有公因式，那么它可分拆成两个真分式之和\[
-\frac{P(x)}{Q(x)} = \frac{P_1(x)}{Q_1(x)} + \frac{P_2(x)}{Q_2(x)}
-\]上述步骤将真分式化为\DefineConcept{部分分式}之和.
+对于真分式\(\frac{P(x)}{Q(x)}\)，
+如果分母可分解为两个多项式的乘积\[
+	Q(x)=Q_1(x)Q_2(x)
+\]
+且\(Q_1(x)\)与\(Q_2(x)\)没有公因式，
+那么它可分拆成两个真分式之和\[
+	\frac{P(x)}{Q(x)} = \frac{P_1(x)}{Q_1(x)} + \frac{P_2(x)}{Q_2(x)}
+\]
+上述步骤将真分式化为\DefineConcept{部分分式}之和.
 
 如果部分分式的分母还能再分解成两个没有公因式的多项式的乘积，那么就可再分拆成更简单的部分分式.
 最后，有理函数的分解式中只出现三类函数：
@@ -666,40 +673,54 @@ Q(x)=Q_1(x)Q_2(x)
 	\item 部分分式\(\frac{P_1(x)}{(x-a)^k}\)；
 	\item 部分分式\(\frac{P_2(x)}{(x^2+px+q)^l}\).
 \end{enumerate}
-其中\(\increment=p^2-4q<0\)，\(P_1(x)\)为小于\(k\)次的多项式，\(P_2(x)\)为小于\(2l\)次的多项式.
+其中\(\increment=p^2-4q<0\)，
+\(P_1(x)\)为小于\(k\)次的多项式，
+\(P_2(x)\)为小于\(2l\)次的多项式.
 
 当\(k=1\)时，\[
-\int \frac{1}{x-a} \dd{x} = \ln\abs{x-a} + C;
-\]当\(k\geq2\)时，\[
-\int \frac{1}{(x-a)^k} \dd{x} = \frac{1}{1-k} (x-a)^{1-k} + C.
+	\int \frac{1}{x-a} \dd{x} = \ln\abs{x-a} + C;
+\]
+当\(k\geq2\)时，\[
+	\int \frac{1}{(x-a)^k} \dd{x} = \frac{1}{1-k} (x-a)^{1-k} + C.
 \]
 
 现在我们研究如何计算\[
-\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}
-\quad(k\in\mathbb{N}^*, p^2-4q<0).
-\]经过配方，得\[
-x^2+px+q = \left(x+\frac{p}{2}\right)^2 + q-\frac{p^2}{4}.
-\]令\(a^2=q-p^2/4\)，利用\(u=x+p/2\)换元，得\[
-\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}
-= A \int \frac{u}{(a^2+u^2)^l} \dd{u}
-+ \left(B - \frac{Ap}{2}\right) \int \frac{1}{(a^2+u^2)^l} \dd{u}.
-\]上式右边第一个不定积分，当\(l=1\)时，\[
-\int \frac{u}{(a^2+u^2)^l} \dd{u}
-= \frac{1}{2} \ln(a^2+u^2) + C;
-\]当\(l\geq2\)时，\[
-\int \frac{u}{(a^2+u^2)^l} \dd{u}
-= \frac{1}{2(1-l)} (a^2+u^2)^{1-l} + C.
-\]而上式右边第二个不定积分（记为\(I_l\ (l=1,2,\dotsc)\)）作分部积分，得\begin{align*}
-I_l &= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{u^2}{(a^2+u^2)^{l+1}} \dd{u} \\
-&= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{a^2+u^2-a^2}{(a^2+u^2)^{l+1}} \dd{u} \\
-&= \frac{u}{(a^2+u^2)^l} + 2l I_l - 2la^2 I_{l+1},
-\end{align*}由此推出\[
-I_{l+1} = \frac{1}{2la^2} \frac{u}{(a^2+u^2)^l} + \frac{2k-1}{2ka^2} I_l
-\quad(l\in\mathbb{N}^*).
-\]这是一个递推公式.反复利用这个公式可以把指标\(l\)降低，最后归结为已知的不定积分.最初的几个是\begin{align*}
-I_1 &= \int \frac{1}{a^2+u^2} \dd{u} = \frac{1}{a} \arctan\frac{u}{a} + C, \\
-I_2 &= \frac{1}{2a^2} \left( \frac{u}{a^2+u^2} + I_1 \right), \\
-I_3 &= \frac{1}{4a^2} \left[ \frac{u}{(a^2+u^2)^2} + 3 I_2 \right].
+	\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}
+	\quad(k\in\mathbb{N}^*, p^2-4q<0).
+\]
+经过配方，得\[
+	x^2+px+q = \left(x+\frac{p}{2}\right)^2 + q-\frac{p^2}{4}.
+\]
+令\(a^2=q-p^2/4\)，利用\(u=x+p/2\)换元，得\[
+	\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}
+	= A \int \frac{u}{(a^2+u^2)^l} \dd{u}
+	+ \left(B - \frac{Ap}{2}\right) \int \frac{1}{(a^2+u^2)^l} \dd{u}.
+\]
+上式右边第一个不定积分，当\(l=1\)时，\[
+	\int \frac{u}{(a^2+u^2)^l} \dd{u}
+	= \frac{1}{2} \ln(a^2+u^2) + C;
+\]
+当\(l\geq2\)时，\[
+	\int \frac{u}{(a^2+u^2)^l} \dd{u}
+	= \frac{1}{2(1-l)} (a^2+u^2)^{1-l} + C.
+\]
+而上式右边第二个不定积分（记为\(I_l\ (l=1,2,\dotsc)\)）作分部积分，
+得\begin{align*}
+	I_l &= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{u^2}{(a^2+u^2)^{l+1}} \dd{u} \\
+	&= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{a^2+u^2-a^2}{(a^2+u^2)^{l+1}} \dd{u} \\
+	&= \frac{u}{(a^2+u^2)^l} + 2l I_l - 2la^2 I_{l+1},
+\end{align*}
+由此推出\[
+	I_{l+1} = \frac{1}{2la^2} \frac{u}{(a^2+u^2)^l} + \frac{2k-1}{2ka^2} I_l
+	\quad(l\in\mathbb{N}^*).
+\]
+这是一个递推公式.
+反复利用这个公式可以把指标\(l\)降低，
+最后归结为已知的不定积分.
+最初的几个是\begin{align*}
+	I_1 &= \int \frac{1}{a^2+u^2} \dd{u} = \frac{1}{a} \arctan\frac{u}{a} + C, \\
+	I_2 &= \frac{1}{2a^2} \left( \frac{u}{a^2+u^2} + I_1 \right), \\
+	I_3 &= \frac{1}{4a^2} \left[ \frac{u}{(a^2+u^2)^2} + 3 I_2 \right].
 \end{align*}
 
 \begin{example}
