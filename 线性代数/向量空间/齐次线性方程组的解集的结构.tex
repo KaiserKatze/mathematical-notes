@@ -40,14 +40,19 @@
 \begin{theorem}\label{theorem:线性方程组.齐次线性方程组的解向量个数}
 %@see: 《高等代数（第三版 上册）》（丘维声） P91. 定理1
 数域\(K\)上\(n\)元齐次线性方程组的解空间\(W\)的维数为\begin{equation}
-	\dim W = n - \rank\A,
+	\dim W = n - r,
 \end{equation}
-其中\(\A\)是方程组的系数矩阵.
+其中\(r\)是方程组的系数矩阵\(\A\)的秩.
 当方程组有非零解时，它的每一个基础解系所含的解向量的数目都等于\(\dim W\).
 \begin{proof}
 设\(\A\)经一系列初等行变换化为阶梯形矩阵\(\B\)，
-则\(\rank\B = r\)，即\(\B\)的前\(r\)行向量不为零.
-不失一般性，设\(\B\)的第\(i\)行非零首元为\(b_{ii}\ (i=1,2,\dotsc,r)\)，\[
+那么由\cref{theorem:线性方程组.初等变换不变秩} 可知\[
+	\rank\B = \rank\A = r,
+\]
+也就是说\(\B\)的前\(r\)行向量不为零.
+
+不失一般性，
+设\(\B\)的第\(i\)行非零首元为\(b_{ii}\ (i=1,2,\dotsc,r)\)，则\[
 	\A \to \B = \begin{bmatrix}
 		\B_1 & \B_2 \\
 		\z & \z
@@ -239,82 +244,6 @@
 而\(\rank\beta=\rank\B\)，\(\rank X=n-\rank\A\).
 
 综上所述，\(\rank\A+\rank\B \leq n\)成立.
-\end{proof}
-\end{example}
-
-\begin{example}
-设\(\A\)为\(n\ (n>1)\)阶方阵，\(\A^*\)是\(\A\)的伴随矩阵.
-证明：\[
-	\rank\A^* = \left\{ \begin{array}{cl}
-		n, & \rank\A=n, \\
-		1, & \rank\A=n-1, \\
-		0, & \rank\A<n-1.
-	\end{array} \right.
-\]
-\begin{proof}
-我们根据矩阵\(\A\)的秩的取值分类讨论.
-\begin{enumerate}
-	\item 当\(\rank\A = n\)时，\(\A\)满秩，
-	那么由\cref{theorem:向量空间.满秩方阵的行列式非零} 有\(\abs{\A} \neq 0\)；
-	根据恒等式 \labelcref{equation:行列式.伴随矩阵.恒等式1} 有\[
-		\A \A^* = \A^* \A = \abs{\A} \E;
-	\]
-	根据\cref{theorem:行列式.矩阵乘积的行列式} 有\[
-		\abs{\A \A^*} = \abs{\A} \abs{\A^*};
-	\]
-	根据\cref{theorem:行列式.性质2.推论2} 有\[
-		\abs{\abs{\A} \E} = \abs{\A}^n \abs{\E} = \abs{\A}^n;
-	\]
-	于是\[
-		\abs{\A^*}
-		= \frac{\abs{\A \A^*}}{\abs{\A}}
-		= \frac{\abs{\abs{\A} \E}}{\abs{\A}}
-		= \frac{\abs{\A}^n}{\abs{\A}}
-		= \abs{\A}^{n-1} \neq 0,
-	\]
-	进而有\[
-		\rank\A^* = n.
-	\]
-
-	\item 当\(\rank\A = n-1 < n\)时，
-	\(\abs{\A} = 0\)，\(\A \A^* = \z\)，
-	据上例，\[
-		\rank\A + \rank\A^* \leq n
-		\implies
-		\rank\A^*
-		\leq n - \rank\A
-		= n - (n-1)
-		= 1.
-	\]
-	又因为\(n > 1 \implies \rank\A = n-1 > 0\)，
-	所以\(\rank\A = 1\).
-
-	\item 当\(\rank\A < n-1\)时，
-	\(\A\)的所有\(n-1\)阶子式全为零，
-	\(\A\)的任意元素代数余子式为零，
-	\(\A^* = \z\)，\(\rank\A^* = 0\).
-\end{enumerate}
-\end{proof}
-\end{example}
-
-\begin{example}
-设\(n\)阶矩阵\(\A\)满足\(\A^2 - 3 \A - 10 \E = \z\)，证明：\[
-	\rank(\A - 5\E) + \rank(\A + 2\E) = n.
-\]
-\begin{proof}
-因为\(\A\)满足\(\A^2 - 3 \A - 10 \E = (\A - 5\E)(\A + 2\E) = \z\)，所以\[
-	\rank(\A - 5\E) + \rank(\A + 2\E) \leq n.
-\]
-又因为\begin{align*}
-	&\rank(\A - 5\E) + \rank(\A + 2\E) \\
-	&\geq \max\{
-		\rank[(\A - 5\E) + (\A + 2\E)],
-		\rank[(5\E - \A) + (\A + 2\E)]
-		\} \\
-	&= \max\{ \rank(2\A - 3\E),\rank(7\E) \}
-	= n,
-\end{align*}
-所以\(\rank(\A - 5\E) + \rank(\A + 2\E) = n\).
 \end{proof}
 \end{example}
 
