@@ -1,6 +1,44 @@
 \section{正交规范化方法}
 在许多实际问题中，我们需要构造正交矩阵，于是我们要设法求标准正交基.
-以下讨论将线性无关向量组改造为规范正交组的施密特正交规范化方法.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[scale=3,>=Stealth,->]
+		\draw(0,0)--(2,1)node[right]{\(\a_2\)};
+		\draw(0,0)--(0,1)node[left]{\(\b_2\)};
+		\draw(2,1)--(0,1)node[midway,above]{\(k\a_1\)};
+		\draw(0,0)--(1,0)node[below]{\(\a_1=\b_1\)};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:正交规范化方法.二维几何空间中两不共线向量的正交规范化}
+\end{figure}
+
+平面上给定两个不共线的向量\(\a_1,\a_2\)，
+如\cref{figure:正交规范化方法.二维几何空间中两不共线向量的正交规范化}，
+我们很容易找到一个正交向量组：\begin{align*}
+	\b_1 &= \a_1, \\
+	\b_2 &= \a_2 + k \a_1,
+\end{align*}
+其中\(k\)是待定系数.
+
+为了求出待定系数\(k\)，
+在上式两边用\(\a_1\)作内积，得\[
+	\b_2\cdot\a_1 = (\a_2+k\a_1)\cdot\a_1.
+\]
+从而\[
+	0=\a_2\cdot\a_1+k\a_1\cdot\a_1.
+\]
+因此\[
+	k=-\frac{\a_2\cdot\a_1}{\a_1\cdot\a_1}.
+\]
+于是\[
+	\b_2 = \a_2 - \frac{\a_2\cdot\a_1}{\a_1\cdot\a_1} \b_1.
+\]
+
+从几何上的这个例子受到启发，
+对于欧几里得空间\(\mathbb{R}^n\)，
+我们可以从一个线性无关的向量组出发，
+构造一个正交向量组.
 
 \begin{theorem}
 设\(\a_1,\a_2,\dotsc,\a_m\)是\(\mathbb{R}^n\)中的一个线性无关组，
