@@ -81,97 +81,120 @@ f(\AutoTuple{x}{n}) = \prod_{i=1}^n f(x_i).
 
 \subsection{\texorpdfstring{\(\x\)}{卡方}分布}
 \begin{definition}\label{definition:数理统计的基础知识.卡方分布的定义}
-\(\AutoTuple{X}{n}\)独立同服从标准正态分布\(N(0,1)\)，称随机变量\[
-\x = \sum\limits_{i=1}^n{X_i^2}
-\]所服从的分布为自由度为\(n\)的  \DefineConcept{\(\x\)分布}\footnote{念作“卡方分布”.}，记为\(\x \sim \x(n)\).
+\(\AutoTuple{X}{n}\)独立同服从标准正态分布\(N(0,1)\)，
+称随机变量\[
+	\x = \sum\limits_{i=1}^n{X_i^2}
+\]所服从的分布为
+“自由度为\(n\)的 \DefineConcept{\(\x\)分布}”
+\footnote{念作“卡方分布”.}，
+记为\(\x \sim \x(n)\).
 \end{definition}
 
 \begin{theorem}\label{theorem:数理统计的基础知识.卡方分布的密度函数}
-\(\x(n)\)分布等价于\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\)分布，其密度函数为\[
-f(x,n) = \left\{ \begin{array}{cl}
-\frac{1}{2^{n/2} \Gamma(n/2)} x^{\frac{n}{2}-1} e^{-\frac{x}{2}}, & x > 0, \\
-0, & x \leq 0.
-\end{array} \right.
+\(\x(n)\)分布等价于\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\)分布，
+其密度函数为\[
+	f(x,n) = \left\{ \begin{array}{cl}
+		\frac{1}{2^{n/2} \Gamma(n/2)} x^{\frac{n}{2}-1} e^{-\frac{x}{2}}, & x > 0, \\
+		0, & x \leq 0.
+	\end{array} \right.
 \]
 \begin{proof}
 首先求\(Z=X_1^2\)的分布.
-由于\(Z\)非负，故当\(z \leq 0\)时，\(P(Z \leq z) = 0\)；
+由于\(Z\)非负，故当\(z \leq 0\)时，
+\(P(Z \leq z) = 0\)；
 当\(z > 0\)时，\(Z\)的分布函数为\[
-F_Z(z) = P(Z \leq z)
-= P(X_1^2 \leq z)
-= P(-\sqrt{z} \leq X_1 \leq \sqrt{z})
-= F_{X_1}(\sqrt{z}) - F_{X_1}(-\sqrt{z}),
-\]相应的密度函数为\[
-f_Z(z) = \frac{1}{2} z^{-\frac{1}{2}} \left[
-f_{X_1}(\sqrt{z}) + f_{X_2}(-\sqrt{z})
-\right],
-\]其中\(f_{X_1}(x) = (2\pi)^{-\frac{1}{2}} \exp(-x^2/2)\)为标准正态分布的密度函数，代入即得\[
-f_Z(z) = \left\{ \begin{array}{cl}
-\frac{1}{\sqrt{2\pi}} z^{-\frac{1}{2}} e^{-\frac{z}{2}}, & z>0, \\
-0, & z \leq 0.
-\end{array} \right.
-\]这正是\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\)的密度函数.
+	F_Z(z) = P(Z \leq z)
+	= P(X_1^2 \leq z)
+	= P(-\sqrt{z} \leq X_1 \leq \sqrt{z})
+	= F_{X_1}(\sqrt{z}) - F_{X_1}(-\sqrt{z}),
+\]
+相应的密度函数为\[
+	f_Z(z) = \frac{1}{2} z^{-\frac{1}{2}} \left[
+		f_{X_1}(\sqrt{z}) + f_{X_2}(-\sqrt{z})
+	\right],
+\]
+其中\(f_{X_1}(x) = (2\pi)^{-\frac{1}{2}} \exp(-x^2/2)\)为标准正态分布的密度函数，代入即得\[
+	f_Z(z) = \left\{ \begin{array}{cl}
+		\frac{1}{\sqrt{2\pi}} z^{-\frac{1}{2}} e^{-\frac{z}{2}}, & z>0, \\
+		0, & z \leq 0.
+	\end{array} \right.
+\]
+这正是\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\)的密度函数.
 
-又因为\(\AutoTuple{X}{n}\)独立同分布，所以\(\AutoTuple{X^2}{n}\)也独立同分布于\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\).
-再由\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}可知\(\x = X_1^2+X_2^2+\dotsb+X_n^2\)服从\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\).
+又因为\(\AutoTuple{X}{n}\)独立同分布，
+所以\(\AutoTuple{X^2}{n}\)也独立同分布于\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\).
+再由 \hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}可知
+\(\x = X_1^2+X_2^2+\dotsb+X_n^2\)服从\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\).
 \end{proof}
 \end{theorem}
 
 \begin{corollary}\label{theorem:数理统计的基础知识.卡方分布的数字特征}
-设\(\x \sim \x(n)\)，则\(E(\x) = n\)，\(D(\x) = 2n\).
+设\(\x \sim \x(n)\)，则
+\begin{gather}
+	E(\x) = n, \\
+	D(\x) = 2n.
+\end{gather}
 \end{corollary}
 
 \begin{theorem}[可加性]\label{theorem:数理统计的基础知识.卡方分布的可加性1}
 设\(\x_1 \sim \x(n_1)\)，\(\x_2 \sim \x(n_2)\)，
-且\(\x_1\)与\(\x_2\)相互独立，则\[
-\x_1 + \x_2 \sim \x(n_1+n_2).
-\]
+且\(\x_1\)与\(\x_2\)相互独立，则\begin{equation}
+	\x_1 + \x_2 \sim \x(n_1+n_2).
+\end{equation}
 \end{theorem}
 
 \begin{corollary}\label{theorem:数理统计的基础知识.卡方分布的可加性2}
 设随机变量序列\(\x_k \sim \x(n_k)\ (k=1,2,\dotsc,n)\)，
-且\(\x_1,\x_2,\dotsc,\x_n\)相互独立，则\[
-\sum\limits_{k=1}^n{\x_k} \sim \x\left(\sum\limits_{k=1}^n{n_k}\right).
-\]
+且\(\x_1,\x_2,\dotsc,\x_n\)相互独立，则\begin{equation}
+	\sum\limits_{k=1}^n \x_k \sim \x\left(\sum\limits_{k=1}^n{n_k}\right).
+\end{equation}
 \end{corollary}
 
 \subsection{\texorpdfstring{\(t\)}{t}分布}
 \begin{definition}
 设随机变量\(X \sim N(0,1)\)，\(Y \sim \x(n)\)，
 且\(X\)与\(Y\)相互独立，称随机变量\[
-t = \frac{X}{\sqrt{Y/n}}
-\]所服从的分布为自由度为\(n\)的  \DefineConcept{\(t\)分布}\footnote{又作“学生氏分布”.}，记为\(t \sim t(n)\).
+	t = \frac{X}{\sqrt{Y/n}}
+\]所服从的分布为
+“自由度为\(n\)的\DefineConcept{\(t\)分布}”
+\footnote{又作“学生氏分布”.}，
+记为\(t \sim t(n)\).
 \end{definition}
 
 \begin{theorem}\label{theorem:数理统计的基础知识.学生氏分布的密度函数}
 \(t\)分布的密度函数为\[
-t(x,n) = \frac{ \Gamma\left(\frac{n+1}{2}\right) }{ \sqrt{n\pi} \Gamma\left(\frac{n}{2}\right) } \left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}},
-\quad x \in \mathbb{R}.
+	t(x,n) = \frac{ \Gamma\left(\frac{n+1}{2}\right) }{ \sqrt{n\pi} \Gamma\left(\frac{n}{2}\right) } \left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}},
+	\quad x \in \mathbb{R}.
 \]
 \end{theorem}
 
 由于\(t\)分布的密度函数\(t(x,n)\)是偶函数，容易验证：当\(n=1\)时\(E(t)\)不存在，而当\(n \geq 2\)时\(E(t)=0\).
 
 当自由度\(n\to\infty\)时，有\[
-\lim\limits_{n\to\infty} t(x,n) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}},
-\quad x \in \mathbb{R}.
-\]即当\(n\)充分大时（通常需要\(n \geq 45\)），\(t\)分布就近似于标准正态分布.
+	\lim\limits_{n\to\infty} t(x,n) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}},
+	\quad x \in \mathbb{R}.
+\]
+当\(n\)充分大时（通常需要\(n \geq 45\)），\(t\)分布就近似于标准正态分布.
 
 \subsection{\texorpdfstring{\(F\)}{F}分布}
 \begin{definition}
 设随机变量\(X \sim \x(n)\)，\(Y \sim \x(m)\)，且\(X\)与\(Y\)独立，称随机变量\[
-F=\frac{X/n}{Y/m}
-\]所服从的分布为自由度为\((n,m)\)的  \DefineConcept{\(F\)分布}，记为\(F \sim F(n,m)\)，其中\(n\)称为\DefineConcept{第一自由度}（或\DefineConcept{分子自由度}），\(m\)称为\DefineConcept{第二自由度}（或\DefineConcept{分母自由度}）.
+	F=\frac{X/n}{Y/m}
+\]所服从的分布为
+“自由度为\((n,m)\)的 \DefineConcept{\(F\)分布}”，
+记为\(F \sim F(n,m)\)，
+其中\(n\)称为\DefineConcept{第一自由度}（或\DefineConcept{分子自由度}），
+\(m\)称为\DefineConcept{第二自由度}（或\DefineConcept{分母自由度}）.
 \end{definition}
 
 显然地，\(F \sim F(n,m) \implies \frac{1}{F} \sim F(m,n)\).
 
 \begin{theorem}
 \(F\)分布的密度函数为\[
-f(x,n,m) = \left\{ \begin{array}{cl}
-\frac{\Gamma\left(\dfrac{n+m}{2}\right)}{\Gamma\left(\dfrac{n}{2}\right) \Gamma\left(\dfrac{m}{2}\right)} \left(\frac{n}{m}\right)^{\frac{n}{2}} x^{\frac{n}{2}-1} \left(1+\frac{n}{m}x\right)^{-\frac{n+m}{2}}, & x > 0, \\
-0, & x \leq 0.
-\end{array} \right.
+	f(x,n,m) = \left\{ \begin{array}{cl}
+		\frac{\Gamma\left(\dfrac{n+m}{2}\right)}{\Gamma\left(\dfrac{n}{2}\right) \Gamma\left(\dfrac{m}{2}\right)} \left(\frac{n}{m}\right)^{\frac{n}{2}} x^{\frac{n}{2}-1} \left(1+\frac{n}{m}x\right)^{-\frac{n+m}{2}}, & x > 0, \\
+		0, & x \leq 0.
+	\end{array} \right.
 \]
 \end{theorem}
 
@@ -240,7 +263,7 @@ P\left(\frac{1}{X} < \frac{1}{F_p(n,m)}\right) = 1 - p.
 
 \section{总结：常见分布的数字特征}
 \begin{center}
-\begin{tabular}{p{4cm}p{4cm}p{4cm}}
+\begin{tabular}{p{3.5cm}|p{4cm}p{4cm}}
 \hline
 & 数学期望 & 方差 \\ \hline
 几何分布\newline\(X \sim G(p)\) & \(E(X) = 1/p\) & \(D(X) = (1-p)/p^2\) \\ \hline
@@ -276,10 +299,10 @@ P\left(\frac{1}{X} < \frac{1}{F_p(n,m)}\right) = 1 - p.
 \hline
 名称 & 统计量 & 观测值 \\ \hline
 样本均值 & \(\overline{X} = \frac{1}{n} \sum\limits_{i=1}^n X_i\)
-    & \(\overline{x} = \frac{1}{n} \sum\limits_{i=1}^n x_i\) \\[.5cm]
+    & \(\overline{x} = \frac{1}{n} \sum\limits_{i=1}^n x_i\) \\[.7cm]
 样本方差 & \(S^2 = \frac{1}{n-1} \sum\limits_{i=1}^n (X_i-\overline{X})^2\)
     & \(s^2 = \frac{1}{n-1} \sum\limits_{i=1}^n (x_i-\overline{x})^2\) \\[.5cm]
-样本标准差 & \(S=\sqrt{S^2}\) & \(s=\sqrt{s^2}\) \\[.5cm]
+样本标准差 & \(S=\sqrt{S^2}\) & \(s=\sqrt{s^2}\) \\[.2cm]
 样本\(k\)阶原点矩 & \(A_k=\frac{1}{n} \sum\limits_{i=1}^n X_i^k\)
     & \(a_k=\frac{1}{n} \sum\limits_{i=1}^n x_i^k\) \\[.5cm]
 样本\(k\)阶中心距 & \(B_k=\frac{1}{n} \sum\limits_{i=1}^n (X_i-\overline{X})^2\)
@@ -319,7 +342,12 @@ KU = \frac{B_4}{(B_2)^2} - 3
 当\(KU < 0\)时，比正态分布来得更平坦.
 
 \subsection{抽样分布定理}
-从理论上说，当知道总体分布时，统计量与样本函数的分布都可以确定，但事实上一般确定统计量与样本函数的分布却十分困难.而当总体服从正态分布时，一些常用统计量与样本函数的分布则是容易确定的.我们把常用的统计量与样本函数的分布的结果叫做\DefineConcept{抽样分布定理}.
+从理论上说，当知道总体分布时，
+统计量与样本函数的分布都可以确定，
+但事实上一般确定统计量与样本函数的分布却十分困难.
+而当总体服从正态分布时，
+一些常用统计量与样本函数的分布则是容易确定的.
+我们把常用的统计量与样本函数的分布的结果叫做\DefineConcept{抽样分布定理}.
 
 \begin{example}
 样本\(\AutoTuple{X}{n}\)来自总体\(X\)，其中\(X\)服从指数分布\(e(\lambda)\)，求样本均值\(\overline{X}\)的分布.
@@ -338,7 +366,10 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 \end{array} \right.
 \]即\(Y=\frac{1}{n}X \sim e(n\lambda)\)，也即\(Y \sim \Gamma(1,n\lambda)\).
 
-注意到\(\overline{X} = \frac{1}{n} X_1 + \frac{1}{n} X_2 + \dotsb + \frac{1}{n} X_n\)，而\(\frac{1}{n} X_i\ (i=1,2,\dotsc,n)\)独立同服从于\(\Gamma(1,n\lambda)\)分布，那么根据\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}，可知\(\overline{X} \sim \Gamma(n,n\lambda)\).
+注意到\(\overline{X} = \frac{1}{n} X_1 + \frac{1}{n} X_2 + \dotsb + \frac{1}{n} X_n\)，
+而\(\frac{1}{n} X_i\ (i=1,2,\dotsc,n)\)独立同服从于\(\Gamma(1,n\lambda)\)分布，
+那么根据 \hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}，
+可知\(\overline{X} \sim \Gamma(n,n\lambda)\).
 \end{solution}
 \end{example}
 
