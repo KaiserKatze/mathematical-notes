@@ -139,3 +139,60 @@ P(\abs{U}>u_{1-\frac{\alpha}{2}})
 	\item 根据样本观测值计算检验统计量的观测值，并与临界值比较，
 	再对拒绝或接受原假设\(H_0\)作出判断.
 \end{enumerate}
+
+\section{正态总体下参数的假设检验}
+\subsection{一个正态总体下参数的假设检验}
+设\(X \sim N(\mu,\sigma^2)\)，
+\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本.
+分别记\(\overline{X},S^2\)为样本均值和样本方差.
+
+\begin{enumerate}
+	\item \(\sigma^2=\sigma_0^2\)已知时，\(\mu\)的检验
+
+	当原假设为\(H_0: \mu=\mu_0\)，且\(H_0\)成立时，
+	由前面的讨论，可知此时检验统计量\[
+		U = \frac{\overline{X}-\mu_0}{\sigma_0/\sqrt{n}} \sim N(0,1),
+	\]
+	且对给定的显著性水平\(\alpha\)，
+	我们已经知道各种备择假设下检验的拒绝域
+	（见\cref{table:假设检验.一个正态总体均值的假设检验表}）.
+	这种检验因检验统计量是\(U\)，故叫做“\(u\)检验”.
+
+	\item \(\sigma^2\)未知时，\(\mu\)的检验
+
+	当原假设为\(H_0: \mu=\mu_0\)，且\(H_0\)成立时，
+	由抽样分布定理，%7.5
+	知检验统计量\[
+		t = \frac{\overline{X}-\mu_0}{S/\sqrt{n}} \sim t(n-1),
+	\]
+	当显著性水平\(\alpha\)取定后，
+	注意到对各种备择假设下拒绝域的方向与备择假设方向一致，
+	与\(\sigma^2\)已知时推导的过程类似，
+	可得各种备择假设下检验的拒绝域
+	（见\cref{table:假设检验.一个正态总体均值的假设检验表}）.
+	这种检验因检验统计量为\(t\)，故叫做“\(t\)检验”.
+\end{enumerate}
+
+\begin{table}[hb]
+	\centering
+	\begin{tabular}{*4c}
+		\hline
+		\multirow{2}{*}{\(H_0\)}
+		& \multirow{2}{*}{\(H_1\)}
+		& \(\sigma^2\)已知
+		& \(\sigma^2\)未知 \\ \cline{3-4}
+		&& \multicolumn{2}{c}{在显著性水平\(\alpha\)下关于\(H_0\)的拒绝域} \\ \hline
+		\multirow{3}{*}{\(\mu=\mu_0\)}
+		& \(\mu\neq\mu_0\)
+		& \(\abs{U}>u_{1-\frac{\alpha}{2}}\)
+		& \(\abs{t}>t_{1-\frac{\alpha}{2}}(n-1)\) \\
+		& \(\mu>\mu_0\)
+		& \(U>u_{1-\alpha}\)
+		& \(t>t_{1-\alpha}(n-1)\) \\
+		& \(\mu<\mu_0\)
+		& \(U<-u_{1-\alpha}\)
+		& \(t<-t_{1-\alpha}(n-1)\) \\ \hline
+	\end{tabular}
+	\caption{一个正态总体均值的假设检验表}
+	\label{table:假设检验.一个正态总体均值的假设检验表}
+\end{table}
