@@ -89,3 +89,43 @@ P(\abs{U}>u_{1-\frac{\alpha}{2}})
 故不拒绝\(H_0\)的概率为\[
 	\beta=P\left(U=\frac{\overline{X}-\mu_0}{\sigma_0/\sqrt{n}} \leq u_{1-\alpha}\right).
 \]
+
+\(\beta\)的值一般不容易求出.
+但是\(E(U)=\frac{\mu-\mu_0}{\sigma_0/\sqrt{n}}\).
+如\cref{figure:假设检验.两类错误}，
+我们有\(\mu=\mu_0\)和\(\mu=\mu_1>\mu_0\)时\(U\)的密度曲线，
+可知\(\alpha+\beta\neq1\)，
+且\(\alpha\)越小\(\beta\)越大，反之亦然.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis y line=none,
+			axis x line=middle,
+			enlarge x limits=0.05,
+			xscale=2,
+		]
+			\def\plotNDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=-7:7]{exp(-(x-#1)^2/(2*#2^2))/(sqrt(2*pi)*#2)}}%
+			\plotNDPDF{-1}{2}{blue};
+			\plotNDPDF{2}{1.6}{orange};
+			\draw[black!30](1,1)--(1,0)node[below,black]{\(u_{1-\alpha}\)};
+			\draw(-1,5pt)--(-1,0);
+			\draw(2,5pt)--(2,0);
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:假设检验.两类错误}
+\end{figure}
+
+这样，我们不能同时使两类错误的概率都减小.
+一般的做法有两种.
+第一种是取定显著性水平\(\alpha\)，
+再增大样本容量\(n\)，
+使得\(\beta\)减少.
+第二种是根据实际问题看哪一种错误后果严重，
+再选取\(\alpha\)的大小.
+如果第一类错误后果严重，则\(\alpha\)可取小一些，
+例如\(\alpha=0.01\)，\(\alpha=0.05\)等.
+如果第二类错误后果严重，则\(\alpha\)可取大一些，
+例如\(\alpha=0.05\)，\(\alpha=0.1\)等.
