@@ -75,52 +75,58 @@
 一般地，若总体\(X\)的分布函数\(F(x,\mat{\theta})\)中，
 \(\mat{\theta}=(\AutoTuple{\theta}{k})\)为\(k\)维未知参数，
 且\(X\)的直到\(k\)阶原点矩均存在，则有\[
-\def\m#1{m_{#1} = E(X\ifthenelse{\equal{#1}{1}}{}{^{#1}}) = m_{#1}(\AutoTuple{\theta}{k})}
-\left\{ \begin{array}{l}
-\m{1}, \\
-\m{2}, \\
-\dots, \\
-\m{k}. \\
-\end{array} \right.
+	\def\m#1{m_{#1} = E(X\ifthenelse{\equal{#1}{1}}{}{^{#1}}) = m_{#1}(\AutoTuple{\theta}{k})}
+	\left\{ \begin{array}{l}
+		\m{1}, \\
+		\m{2}, \\
+		\dots, \\
+		\m{k}. \\
+	\end{array} \right.
 \]
 从上述方程组反解出\(\AutoTuple{\theta}{k}\)，为\(\AutoTuple{m}{k}\)的函数，即\[
-\def\g#1{\theta_{#1}=g_{#1}(\AutoTuple{m}{k})}
-\left\{ \begin{array}{l}
-\g{1}, \\
-\g{2}, \\
-\dots, \\
-\g{k}. \\
-\end{array} \right.
+	\def\g#1{\theta_{#1}=g_{#1}(\AutoTuple{m}{k})}
+	\left\{ \begin{array}{l}
+		\g{1}, \\
+		\g{2}, \\
+		\dots, \\
+		\g{k}. \\
+	\end{array} \right.
 \]
-再用\(r\)阶样本原点矩\(A_r = \frac{1}{n} \sum\limits_{i=1}^n{X_i^r}\)，替代上式中的\(m_r\ (r=1,2,\dots,k)\)，则得到\(\AutoTuple{\theta}{k}\)的矩估计量，即\[
-\def\g#1{\hat{\theta}_{#1}=g_{#1}(\AutoTuple{A}{k})}
-\left\{ \begin{array}{l}
-\g{1}, \\
-\g{2}, \\
-\dots, \\
-\g{k}. \\
-\end{array} \right.
+再用\(r\)阶样本原点矩\(A_r = \frac{1}{n} \sum\limits_{i=1}^n{X_i^r}\)，
+替代上式中的\(m_r\ (r=1,2,\dots,k)\)，
+则得到\(\AutoTuple{\theta}{k}\)的矩估计量，即\[
+	\def\g#1{\hat{\theta}_{#1}=g_{#1}(\AutoTuple{A}{k})}
+	\left\{ \begin{array}{l}
+		\g{1}, \\
+		\g{2}, \\
+		\dots, \\
+		\g{k}. \\
+	\end{array} \right.
 \]
 
 \begin{example}
-设总体\(X\)服从任何分布，且\(X\)的期望与方差均存在.记\(E(X)=\mu\)，\(D(X)=\sigma^2\)，\(\mu\)、\(\sigma^2\)是两个未知参数.\(\AutoTuple{X}{n}\)为样本.求\(\mu\)和\(\sigma^2\)的矩估计量.
+设总体\(X\)服从任何分布，且\(X\)的期望与方差均存在.
+记\(E(X)=\mu\)，\(D(X)=\sigma^2\)，\(\mu\)、\(\sigma^2\)是两个未知参数.
+\(\AutoTuple{X}{n}\)为样本.
+求\(\mu\)和\(\sigma^2\)的矩估计量.
 \begin{solution}
 因为有两个未知参数\(\mu\)和\(\sigma^2\)，故有\[
-\left\{ \begin{array}{l}
-m_1=E(X)=\mu, \\
-m_2=E(X^2)=D(X)+[E(X)]^2=\sigma^2+\mu^2.
-\end{array} \right.
+	\left\{ \begin{array}{l}
+		m_1=E(X)=\mu, \\
+		m_2=E(X^2)=D(X)+[E(X)]^2=\sigma^2+\mu^2.
+	\end{array} \right.
 \]
 解得\[
-\left\{ \begin{array}{l}
-\mu=m_1, \\
-\sigma^2=m_2-m_1^2.
-\end{array} \right.
-\]再用样本一阶、二阶原点矩代替对应总体原点矩，可得矩估计量为\[
-\left\{ \begin{array}{l}
-\hat{\mu}=\overline{X}, \\
-\hat{\sigma}^2=A_2-\overline{X}^2=B_2.
-\end{array} \right.
+	\left\{ \begin{array}{l}
+		\mu=m_1, \\
+		\sigma^2=m_2-m_1^2.
+	\end{array} \right.
+\]
+再用样本一阶、二阶原点矩代替对应总体原点矩，可得矩估计量为\[
+	\left\{ \begin{array}{l}
+		\hat{\mu}=\overline{X}, \\
+		\hat{\sigma}^2=A_2-\overline{X}^2=B_2.
+	\end{array} \right.
 \]
 \end{solution}
 \end{example}
@@ -133,24 +139,30 @@ m_2=E(X^2)=D(X)+[E(X)]^2=\sigma^2+\mu^2.
 
 需要注意的是，参数\(\theta\)的矩估计量可以不唯一.
 
-比如，若总体\(X\)服从自然指数分布族分布，因为总体均值\(m\)的矩估计量为\(\overline{X}\)，这时总体方差\(\sigma^2 = V(m)\)是\(m\)的函数，则\(\sigma^2\)的矩估计量可为\(\hat{\sigma}^2 = V(\overline{X})\)，也可为\(\hat{\sigma}^2 = B_2\).
+比如，若总体\(X\)服从自然指数分布族分布，
+因为总体均值\(m\)的矩估计量为\(\overline{X}\)，
+这时总体方差\(\sigma^2 = V(m)\)是\(m\)的函数，
+则\(\sigma^2\)的矩估计量可为\(\hat{\sigma}^2 = V(\overline{X})\)，
+也可为\(\hat{\sigma}^2 = B_2\).
 足见参数\(\theta\)的矩估计量可以是不唯一的.
 
 \begin{example}
 总体\(X \sim B(N,p)\)，\(N\)已知，而\(p\)未知.
 \(\AutoTuple{X}{n}\)为样本.
 \begin{enumerate}
-\item 求参数\(p\)的矩估计量；
-\item 求总体方差\(\sigma^2\)的矩估计量并将其表示为\(\overline{X}\)的函数.
+	\item 求参数\(p\)的矩估计量；
+	\item 求总体方差\(\sigma^2\)的矩估计量并将其表示为\(\overline{X}\)的函数.
 \end{enumerate}
 \begin{solution}
 \begin{enumerate}
-\item 总体期望为\(m=E(X)=Np\)，故\(p=\frac{m}{N}\)，于是\(p\)的矩估计量为\[
-\hat{p}=\frac{\overline{X}}{N}.
-\]
-\item 总体方差\(\sigma^2=D(X)=Np(1-p)=Np-Np^2=m-\frac{m^2}{N}\)，则\(\sigma^2=V(m)\)的矩估计量为\[
-\hat{\sigma}^2=V(\overline{X})=\overline{X}-\frac{\overline{X}^2}{N}.
-\]
+	\item 总体期望为\(m=E(X)=Np\)，故\(p=\frac{m}{N}\)，
+	于是\(p\)的矩估计量为\[
+		\hat{p}=\frac{\overline{X}}{N}.
+	\]
+	\item 总体方差\(\sigma^2=D(X)=Np(1-p)=Np-Np^2=m-\frac{m^2}{N}\)，
+	则\(\sigma^2=V(m)\)的矩估计量为\[
+		\hat{\sigma}^2=V(\overline{X})=\overline{X}-\frac{\overline{X}^2}{N}.
+	\]
 \end{enumerate}
 \end{solution}
 \end{example}
@@ -162,50 +174,78 @@ m_2=E(X^2)=D(X)+[E(X)]^2=\sigma^2+\mu^2.
 因为\(m\)和\(\sigma^2\)的矩估计量分别为\(\overline{X}\)和\(B_2\)，
 所以只需把\(\theta_1\)和\(\theta_2\)表示为\(m\)和\(\sigma^2\)的函数.
 又因为\[
-\begin{cases}
-m = E(X) = \frac{\theta_1+\theta_2}{2}, \\
-\sigma^2 = D(X) = \frac{(\theta_2-\theta_1)^2}{12},
-\end{cases}
-\]故有\[
-\begin{cases}
-\theta_1+\theta_2 = 2m, \\
-\theta_2-\theta_1 = 2 \sqrt{3\sigma^2}.
-\end{cases}
-\]解得\[
-\begin{cases}
-\theta_1 = m - \sqrt{3\sigma^2}, \\
-\theta_2 = m + \sqrt{3\sigma^2}.
-\end{cases}
+	\begin{cases}
+		m = E(X) = \frac{\theta_1+\theta_2}{2}, \\
+		\sigma^2 = D(X) = \frac{(\theta_2-\theta_1)^2}{12},
+	\end{cases}
+\]
+故有\[
+	\begin{cases}
+		\theta_1+\theta_2 = 2m, \\
+		\theta_2-\theta_1 = 2 \sqrt{3\sigma^2}.
+	\end{cases}
+\]
+解得\[
+	\begin{cases}
+		\theta_1 = m - \sqrt{3\sigma^2}, \\
+		\theta_2 = m + \sqrt{3\sigma^2}.
+	\end{cases}
 \]
 代入\(m\)及\(\sigma^2\)的矩估计量\(\overline{X}\)及\(B_2\)，
 得\(\theta_1,\theta_2\)的矩估计量为\[
-\begin{cases}
-\hat{\theta}_1 = \overline{X} - \sqrt{3 B_2}, \\
-\hat{\theta}_2 = \overline{X} + \sqrt{3 B_2}.
-\end{cases}
+	\begin{cases}
+		\hat{\theta}_1 = \overline{X} - \sqrt{3 B_2}, \\
+		\hat{\theta}_2 = \overline{X} + \sqrt{3 B_2}.
+	\end{cases}
 \]
 \end{solution}
 \end{example}
 
-由于矩估计法原则上不要求总体的分布情况，因此未能充分利用已知分布的信息，在样本容量\(n\)较小时估计值可能误差较大.
+由于矩估计法原则上不要求总体的分布情况，
+因此未能充分利用已知分布的信息，
+在样本容量\(n\)较小时估计值可能误差较大.
 
 \subsection{极大似然估计法}
-设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)，其中\(\theta\)是未知参数.当样本\(\AutoTuple{X}{n}\)得到一组观测值\(\AutoTuple{x}{n}\)时，由样本的独立同分布性，记样本取得这组观测值的概率为\begin{align*}
-L(\theta)
-&=P(X_1=x_1,X_2=x_2,\dotsc,X_n=x_n) \\
-&=P(X_1=x_1) P(X_2=x_2) \dotsm P(X_n=x_n) \\
-&=\prod_{i=1}^n{p(x_i,\theta)},
-\end{align*}称函数\(L(\theta)\)为\DefineConcept{似然函数}，对于给定的观测值\(\AutoTuple{x}{n}\)，它是未知参数\(\theta\)的函数.
+设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)，
+其中\(\theta\)是未知参数.
+当样本\(\AutoTuple{X}{n}\)得到一组观测值\(\AutoTuple{x}{n}\)时，
+由样本的独立同分布性，记样本取得这组观测值的概率为
+\begin{align*}
+	L(\theta)
+	&=P(X_1=x_1,X_2=x_2,\dotsc,X_n=x_n) \\
+	&=P(X_1=x_1) P(X_2=x_2) \dotsm P(X_n=x_n) \\
+	&=\prod_{i=1}^n{p(x_i,\theta)},
+\end{align*}
+称函数\(L(\theta)\)为\DefineConcept{似然函数}，
+对于给定的观测值\(\AutoTuple{x}{n}\)，
+它是未知参数\(\theta\)的函数.
 
-极大似然估计法的思想是：随机试验有若干个可能结果，如果在一次试验中某一结果出现了，由小概率事件原理，我们便自然认为这一结果出现的概率较大，从而可以认为这一结果是所有可能结果中出现概率最大的一个.因此\(p\)应该这样估计，即选择\(\hat{p}\)使得上述观测值出现的概率最大.也就是使\(L(\hat{p})\)为\(L(p)\)的最大值.而求\(L(p)\)的最大值点\(\hat{p}\)，可由方程\[
-\dv{p} L(p) = 0
+极大似然估计法的思想是：
+随机试验有若干个可能结果，如果在一次试验中某一结果出现了，
+由小概率事件原理，我们便自然认为这一结果出现的概率较大，
+从而可以认为这一结果是所有可能结果中出现概率最大的一个.
+因此\(p\)应该这样估计，即选择\(\hat{p}\)使得上述观测值出现的概率最大.
+也就是使\(L(\hat{p})\)为\(L(p)\)的最大值.
+而求\(L(p)\)的最大值点\(\hat{p}\)，可由方程\[
+	\dv{p} L(p) = 0
 \]解得.
 
 一般对于离散型总体，极大似然估计值\(\hat{\theta}\)是满足\[
-L(\hat{\theta}) = \max L(\theta)
+	L(\hat{\theta}) = \max L(\theta)
 \]的解.
 
-对于连续型总体\(X\)，\(X\)的概率密度函数为\(f(x,\theta)\)，其中\(\theta\)是未知参数.若取得样本观测值\(\AutoTuple{x}{n}\)，则因为随机变量\(X_i\)落在点\(x_i\)的领域（设其长度为\(\increment x_i\)）内的概率近似于\(f(x_i,\theta) \increment x_i\)，\(i=1,2,\dotsc,n\)，则样本\((\AutoTuple{X}{n})\)落在样本观测值\((\AutoTuple{x}{n})\)邻近的概率近似为\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\).那么\(\theta\)的估计值\(\hat{\theta}\)应使概率\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\)达到最大值.但因为\(\increment x_i\)与\(\theta\)无关，故只要使\(\prod\limits_{i=1}^n{f(x_i,\theta)}\)达到最大值即可.此时，记\[
+对于连续型总体\(X\)，\(X\)的概率密度函数为\(f(x,\theta)\)，
+其中\(\theta\)是未知参数.若取得样本观测值\(\AutoTuple{x}{n}\)，
+则因为随机变量\(X_i\)落在点\(x_i\)的领域
+（设其长度为\(\increment x_i\)）
+内的概率近似于\(f(x_i,\theta) \increment x_i\ (i=1,2,\dotsc,n)\)，
+则样本\((\AutoTuple{X}{n})\)落在样本观测值\((\AutoTuple{x}{n})\)邻近的概率近似为
+\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\).
+那么\(\theta\)的估计值\(\hat{\theta}\)
+应使概率\(\prod\limits_{i=1}^n{f(x_i,\theta) \increment x_i}\)达到最大值.
+但因为\(\increment x_i\)与\(\theta\)无关，
+故只要使\(\prod\limits_{i=1}^n{f(x_i,\theta)}\)达到最大值即可.
+此时，记\[
 L(\theta) = \prod\limits_{i=1}^n{f(x_i,\theta)},
 \]仍然称\(L(\theta)\)为似然函数.
 
@@ -214,23 +254,32 @@ L(\theta) = \prod\limits_{i=1}^n{f(x_i,\theta)},
 并且总体的分布律或密度函数已知.
 假设我们已经取得一组样本观测值\(\AutoTuple{x}{n}\).
 若存在\(\hat{\theta}\)使得\[
-L(\hat{\theta}) = \max L(\theta),
-\]则称\(\hat{\theta} = \hat{\theta}(\AutoTuple{x}{n})\)是\(\theta\)的\DefineConcept{极大似然估计值}，而统计量\(\hat{\theta}(\AutoTuple{X}{n})\)称为\(\theta\)的\DefineConcept{极大似然估计量}.
+	L(\hat{\theta}) = \max L(\theta),
+\]
+则称\(\hat{\theta} = \hat{\theta}(\AutoTuple{x}{n})\)是
+“\(\theta\)的\DefineConcept{极大似然估计值}”，
+而统计量\(\hat{\theta}(\AutoTuple{X}{n})\)称为
+“\(\theta\)的\DefineConcept{极大似然估计量}”.
 \end{definition}
 
 \begin{definition}
 用于解出使\(L(\theta)\)取得最大值的极大似然估计值\(\hat{\theta}\)的方程\[
-\dv{\theta} L(\theta) = 0
+	\dv{\theta} L(\theta) = 0
 \]称为\DefineConcept{似然方程}.
 
 由于\(\ln L\)和\(L\)在相同的\(\theta\)处取得最大值，有时候也采用方程\[
-\dv{\theta} \ln L(\theta) = 0
-\]以解出极大似然估计值\(\hat{\theta}\)，并称之为\DefineConcept{对数似然方程}.
+	\dv{\theta} \ln L(\theta) = 0,
+\]
+以解出极大似然估计值\(\hat{\theta}\)，
+并称之为\DefineConcept{对数似然方程}.
 \end{definition}
 
 \begin{theorem}
-当总体\(X\)服从单峰分布时，若\emph{似然方程}或\emph{对数似然方程}有解，则其解就是\(\theta\)的极大似然估计值.
-其中\DefineConcept{单峰分布}是指密度函数图像或其概率分布图只有一个峰的分布；除均匀分布以外，常见分布都是单峰分布.
+当总体\(X\)服从单峰分布时，
+若\emph{似然方程}或\emph{对数似然方程}有解，
+则其解就是\(\theta\)的极大似然估计值.
+其中\DefineConcept{单峰分布}是指密度函数图像或其概率分布图只有一个峰的分布；
+除均匀分布以外，常见分布都是单峰分布.
 \end{theorem}
 
 \begin{example}
