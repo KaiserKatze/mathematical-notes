@@ -161,8 +161,8 @@ P(\abs{U}>u_{1-\frac{\alpha}{2}})
 	\item \(\sigma^2\)未知时，\(\mu\)的检验
 
 	当原假设为\(H_0: \mu=\mu_0\)，且\(H_0\)成立时，
-	由抽样分布定理，%7.5
-	知检验统计量\[
+	由抽样分布定理可知，%7.5
+	检验统计量\[
 		t = \frac{\overline{X}-\mu_0}{S/\sqrt{n}} \sim t(n-1),
 	\]
 	当显著性水平\(\alpha\)取定后，
@@ -171,11 +171,23 @@ P(\abs{U}>u_{1-\frac{\alpha}{2}})
 	可得各种备择假设下检验的拒绝域
 	（见\cref{table:假设检验.一个正态总体均值的假设检验表}）.
 	这种检验因检验统计量为\(t\)，故叫做“\(t\)检验”.
+
+	\item \(\mu\)未知时，\(\sigma^2\)的检验.
+
+	当原假设为\(H_0: \sigma^2=\sigma_0^2\)，
+	且\(H_0\)成立时，
+	由抽样分布定理可知，%7.4
+	检验统计量\[
+		\x=\frac{(n-1)S^2}{\sigma_0^2} \sim \x(n-1).
+	\]
+	当显著性水平\(\alpha\)取定后，
+	\cref{table:假设检验.一个正态总体方差的卡方检验} 给出了各种备择假设下检验的拒绝域.
+	这种检验统计量为\(\x\)，故叫做“\(\x\)检验”.
 \end{enumerate}
 
-\begin{table}[hb]
+\begin{table}[ht]
 	\centering
-	\begin{tabular}{*4c}
+	\begin{tabular}{c*3{|c}}
 		\hline
 		\multirow{2}{*}{\(H_0\)}
 		& \multirow{2}{*}{\(H_1\)}
@@ -185,10 +197,10 @@ P(\abs{U}>u_{1-\frac{\alpha}{2}})
 		\multirow{3}{*}{\(\mu=\mu_0\)}
 		& \(\mu\neq\mu_0\)
 		& \(\abs{U}>u_{1-\frac{\alpha}{2}}\)
-		& \(\abs{t}>t_{1-\frac{\alpha}{2}}(n-1)\) \\
+		& \(\abs{t}>t_{1-\frac{\alpha}{2}}(n-1)\) \\ \cline{2-4}
 		& \(\mu>\mu_0\)
 		& \(U>u_{1-\alpha}\)
-		& \(t>t_{1-\alpha}(n-1)\) \\
+		& \(t>t_{1-\alpha}(n-1)\) \\ \cline{2-4}
 		& \(\mu<\mu_0\)
 		& \(U<-u_{1-\alpha}\)
 		& \(t<-t_{1-\alpha}(n-1)\) \\ \hline
@@ -197,7 +209,25 @@ P(\abs{U}>u_{1-\frac{\alpha}{2}})
 	\label{table:假设检验.一个正态总体均值的假设检验表}
 \end{table}
 
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c*2{|c}}
+		\hline
+		\(H_0\) & \(H_1\) & 显著性水平\(\alpha\)下关于\(H_0\)的拒绝域 \\ \hline
+		\multirow{3}{*}{\(\sigma^2=\sigma_0^2\)} & \(\sigma^2\neq\sigma_0^2\)
+		& \(\x<\x_{\frac{\alpha}{2}}(n-1)\)或\(\x>\x_{1-\frac{\alpha}{2}}(n-1)\) \\ \cline{2-3}
+		& \(\sigma^2>\sigma_0^2\)
+		& \(\x>\x_{1-\alpha}(n-1)\) \\ \cline{2-3}
+		& \(\sigma^2<\sigma_0^2\)
+		& \(\x<\x_\alpha(n-1)\) \\
+		\hline
+	\end{tabular}
+	\caption{一个正态总体方差的\(\x\)检验}
+	\label{table:假设检验.一个正态总体方差的卡方检验}
+\end{table}
+
 \begin{example}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P234. 例9.2
 已知某种元件的使用寿命（单位：\(h\)）服从标准差为\(\sigma=120\ h\)的正态分布.
 按要求，该种元件的使用寿命不低于\(1800\ h\)才算合格.
 现在从一批元件中随机抽取36件，测得其平均寿命为\(1750\ h\).
