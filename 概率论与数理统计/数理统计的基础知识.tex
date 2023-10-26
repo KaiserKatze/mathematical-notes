@@ -82,9 +82,10 @@ f(\AutoTuple{x}{n}) = \prod_{i=1}^n f(x_i).
 \subsection{\texorpdfstring{\(\x\)}{卡方}分布}
 \begin{definition}\label{definition:数理统计的基础知识.卡方分布的定义}
 \(\AutoTuple{X}{n}\)独立同服从标准正态分布\(N(0,1)\)，
-称随机变量\[
+称随机变量\begin{equation}
 	\x = \sum\limits_{i=1}^n{X_i^2}
-\]所服从的分布为
+\end{equation}
+所服从的分布为
 “自由度为\(n\)的 \DefineConcept{\(\x\)分布}”
 \footnote{念作“卡方分布”.}，
 记为\(\x \sim \x(n)\).
@@ -123,12 +124,12 @@ f(\AutoTuple{x}{n}) = \prod_{i=1}^n f(x_i).
 
 \begin{theorem}\label{theorem:数理统计的基础知识.卡方分布的密度函数}
 \(\x(n)\)分布等价于\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\)分布，
-其密度函数为\[
+其密度函数为\begin{equation}
 	f(x,n) = \left\{ \begin{array}{cl}
 		\frac{1}{2^{n/2} \Gamma(n/2)} x^{\frac{n}{2}-1} e^{-\frac{x}{2}}, & x > 0, \\
 		0, & x \leq 0.
 	\end{array} \right.
-\]
+\end{equation}
 \begin{proof}
 首先求\(Z=X_1^2\)的分布.
 由于\(Z\)非负，故当\(z \leq 0\)时，
@@ -184,22 +185,30 @@ f(\AutoTuple{x}{n}) = \prod_{i=1}^n f(x_i).
 \subsection{\texorpdfstring{\(t\)}{t}分布}
 \begin{definition}
 设随机变量\(X \sim N(0,1)\)，\(Y \sim \x(n)\)，
-且\(X\)与\(Y\)相互独立，称随机变量\[
+且\(X\)与\(Y\)相互独立，称随机变量\begin{equation}
 	t = \frac{X}{\sqrt{Y/n}}
-\]所服从的分布为
+\end{equation}
+所服从的分布为
 “自由度为\(n\)的\DefineConcept{\(t\)分布}”
 \footnote{又作“学生氏分布”.}，
 记为\(t \sim t(n)\).
 \end{definition}
 
 \begin{theorem}\label{theorem:数理统计的基础知识.学生氏分布的密度函数}
-\(t\)分布的密度函数为\[
-	t(x,n) = \frac{ \Gamma\left(\frac{n+1}{2}\right) }{ \sqrt{n\pi} \Gamma\left(\frac{n}{2}\right) } \left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}},
+\(t\)分布的密度函数为\begin{equation}
+	t(x,n) = \frac{
+		\Gamma\left(\frac{n+1}{2}\right)
+	}{
+		\sqrt{n\pi} \Gamma\left(\frac{n}{2}\right)
+	}
+	\left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}},
 	\quad x \in \mathbb{R}.
-\]
+\end{equation}
 \end{theorem}
 
-由于\(t\)分布的密度函数\(t(x,n)\)是偶函数，容易验证：当\(n=1\)时\(E(t)\)不存在，而当\(n \geq 2\)时\(E(t)=0\).
+由于\(t\)分布的密度函数\(t(x,n)\)是偶函数，容易验证：
+当\(n=1\)时\(E(t)\)不存在，
+而当\(n \geq 2\)时\(E(t)=0\).
 
 当自由度\(n\to\infty\)时，有\[
 	\lim\limits_{n\to\infty} t(x,n) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}},
