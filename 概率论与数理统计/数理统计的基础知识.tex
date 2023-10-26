@@ -90,6 +90,37 @@ f(\AutoTuple{x}{n}) = \prod_{i=1}^n f(x_i).
 记为\(\x \sim \x(n)\).
 \end{definition}
 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			name=ChiSquareDistribution,
+			axis y line=middle,
+			axis x line=middle,
+			enlarge x limits=0.05,
+			enlarge y limits=0.05,
+			xscale=1,
+		]
+			\def\plotCSDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=.1:7]{%首次定义
+				x^(#1-1)*exp(-x/2)/(2^(#1)*#2)
+			}}%
+			\plotCSDPDF{.25}{3.62561}{blue};\label{pgfplots:卡方分布.Chi^2(.5)}
+			\def\plotCSDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=0:7]{%重新定义
+				x^(#1-1)*exp(-x/2)/(2^(#1)*#2)
+			}}%
+			\plotCSDPDF{1.5}{0.886227}{orange};\label{pgfplots:卡方分布.Chi^2(3)}
+			\plotCSDPDF{2.5}{1.32934}{green};\label{pgfplots:卡方分布.Chi^2(5)}
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,below left=0.5em]
+		at(ChiSquareDistribution.north east){\small\begin{tabular}{cl}
+			\ref{pgfplots:卡方分布.Chi^2(.5)} & \(\x(0.5)\) \\
+			\ref{pgfplots:卡方分布.Chi^2(3)} & \(\x(3)\) \\
+			\ref{pgfplots:卡方分布.Chi^2(5)} & \(\x(5)\) \\
+		\end{tabular}};
+	\end{tikzpicture}
+	\caption{\(\x\)分布的密度函数}
+\end{figure}
+
 \begin{theorem}\label{theorem:数理统计的基础知识.卡方分布的密度函数}
 \(\x(n)\)分布等价于\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\)分布，
 其密度函数为\[
