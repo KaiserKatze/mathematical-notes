@@ -123,21 +123,30 @@ f(\xi,\eta) = \zeta,
 这里介绍一种计算二重积分的方法，即把二重积分化为两次单积分（即两次定积分）来计算.
 
 \subsubsection{利用直角坐标系计算二重积分}
-\begin{theorem}[X型区域]
 如\cref{figure:二重积分.X型区域}，
-设积分区域\(D\)可以用一组不等式
+设积分区域\(D\)可以用不等式
 \[
 	a \leq x \leq b, \qquad
-	\varphi_1(x) \leq y \leq \varphi_2(x),
+	\varphi_1(x) \leq y \leq \varphi_2(x)
 \]来表示，
 其中函数\(\varphi_1(x),\varphi_2(x)\)在区间\([a,b]\)上连续，
 那么有\[
 	\iint_D f(x,y) \dd{\sigma}
-	=\int_a^b \dd{x} \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y}.
+	= \int_a^b \left[ \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y} \right] \dd{x}.
 \]
-\end{theorem}
-X型区域\(D\)的特点是：
-任一穿过\(D\)内部且平行于\(y\)轴的直线与\(D\)的边界相交不多于两点.
+
+上式右端的积分叫做“先对\(y\)、后对\(x\)的二次积分”.
+就是说，先把\(x\)看做常数，把\(f(x,y)\)只看做\(y\)的函数，
+并对\(y\)计算从\(\varphi_1(x)\)到\(\varphi_2(x)\)的定积分；
+然后把算得的结果（是\(x\)的函数）对\(x\)计算在区间\([a,b]\)上的定积分.
+这个先对\(y\)、后对\(x\)的二次积分也常记作\[
+	\int_a^b \dd{x} \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y}.
+\]
+因此也有\[
+	\iint_D f(x,y) \dd{\sigma}
+	= \int_a^b \dd{x} \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y}.
+\]
+这就是把二重积分化为先对\(y\)、后对\(x\)的二次积分的公式.
 
 \begin{figure}[ht]
 	\centering
@@ -166,31 +175,50 @@ X型区域\(D\)的特点是：
 	\label{figure:二重积分.X型区域}
 \end{figure}
 
-\begin{theorem}[Y型区域]
-设积分区域\(D\)可以用不等式\[
+类似地，设积分区域\(D\)可以用不等式\[
 	\psi_1(y) \leq x \leq \psi_2(y), \qquad
-	c \leq y \leq d,
+	c \leq y \leq d
 \]来表示，
-其中函数\(\psi_1(x),\psi_2(x)\)在区间\([c,d]\)上连续，
+其中函数\(\psi_1(y),\psi_2(y)\)在区间\([c,d]\)上连续，
 那么就有\[
+	\iint_D f(x,y) \dd{\sigma}
+	= \int_c^d \left[ \int_{\psi_1(y)}^{\psi_2(y)} f(x,y) \dd{x} \right] \dd{y}.
+\]
+上式右端的积分叫做“先对\(x\)、后对\(y\)的二次积分”，
+这个积分也常记作\[
+	\int_c^d \dd{y} \int_{\psi_1(y)}^{\psi_2(y)} f(x,y) \dd{x}.
+\]
+因此又有\[
 	\iint_D f(x,y) \dd{\sigma}
 	= \int_c^d \dd{y} \int_{\psi_1(y)}^{\psi_2(y)} f(x,y) \dd{x}.
 \]
-\end{theorem}
+这就是把二重积分化为先对\(x\)、后对\(y\)的二次积分的公式.
+
+X型区域\(D\)的特点是：
+任一穿过\(D\)内部且平行于\(y\)轴的直线与\(D\)的边界相交不多于两点.
 Y型区域\(D\)的特点是：
 任一穿过\(D\)内部且平行于\(x\)轴的直线与\(D\)的边界相交不多于两点.
 
-\begin{corollary}
-如果积分区域\(D\)既是X型的，又是Y型的，则有\[
-\int_a^b \dd{x}
- \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y}
-=\int_c^d \dd{y}
- \int_{\psi_1(x)}^{\psi_2(x)} f(x,y) \dd{x}.
+如果积分区域\(D\)既是X型的，可用不等式\[
+	a \leq x \leq b, \qquad
+	\varphi_1(x) \leq y \leq \varphi_2(x)
+\]表示，
+又是Y型的，可用不等式\[
+	\psi_1(y) \leq x \leq \psi_2(y), \qquad
+	c \leq y \leq d
+\]表示，
+则有\[
+	\int_a^b \dd{x}
+	\int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y}
+	=\int_c^d \dd{y}
+	\int_{\psi_1(y)}^{\psi_2(y)} f(x,y) \dd{x}.
+\]
+上式表明，这两个不同次序的二次积分相等，因为它们都等于同一个二重积分\[
+	\iint_D f(x,y) \dd\sigma.
 \]
 
 但是，在化二重积分为二次积分时，为了计算简便，需要选择恰当的二次积分的顺序.
 这时，既要考虑积分区域\(D\)的形状，又要考虑被积函数\(f(x,y)\)的特性.
-\end{corollary}
 
 \subsubsection{利用极坐标计算二重积分}
 有些二重积分，积分区域\(D\)的边界曲线用极坐标方程来表示比较方便，且被积函数用极坐标变量\(\rho\)、\(\theta\)表达比较简单.这时，就可以考虑利用极坐标来计算二重积分.
