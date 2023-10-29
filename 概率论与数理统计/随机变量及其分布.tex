@@ -286,9 +286,11 @@ P(X=k) = p^k q^{1-k}, \quad k=0,1.
 
 由泊松定理可见，当\(p\)较小（通常要求\(p \leq 0.1\)），而\(n\)较大（通常要求\(n \geq 50\)）时，
 二项分布的概率函数近似于泊松分布的概率函数，即\[
-P_n(k) = C_n^k p^k (1-p)^{n-k} \approx \frac{\lambda^k}{k!} e^{-\lambda},
-\quad k=0,1,\dotsc,n,
-\]其中\(\lambda = n p\).
+	P_n(k) = C_n^k p^k (1-p)^{n-k}
+	\approx \frac{\lambda^k}{k!} e^{-\lambda},
+	\quad k=0,1,\dotsc,n,
+\]
+其中\(\lambda = n p\).
 
 \subsubsection{帕斯卡分布}
 \begin{definition}
@@ -308,9 +310,12 @@ P(X=k) = C_{k-1}^{r-1} p^r (1-p)^{k-r},
 \section{连续型随机变量及其分布}
 \subsection{连续型随机变量及其概率密度函数}
 \begin{definition}
-设随机变量\(X\)的分布函数为\(F(x)\)，若存在一个非负函数\(f(x)\)，使得对任意实数\(x\)，有\[
-F(x) = \int_{-\infty}^x f(t) \dd{t},
-\]则称\(X\)为\DefineConcept{连续型随机变量}，
+设随机变量\(X\)的分布函数为\(F(x)\)，
+若存在一个非负函数\(f(x)\)，
+使得对任意实数\(x\)，有\[
+	F(x) = \int_{-\infty}^x f(t) \dd{t},
+\]
+则称\(X\)为\DefineConcept{连续型随机变量}，
 \(f(x)\)称为\(X\)的\DefineConcept{概率密度函数}，
 简称为\DefineConcept{密度函数}或\DefineConcept{密度}.
 \end{definition}
@@ -318,35 +323,38 @@ F(x) = \int_{-\infty}^x f(t) \dd{t},
 \begin{property}\label{theorem:随机变量及其分布.连续型随机变量的密度函数的性质}
 密度函数具有以下两个性质：
 \begin{enumerate}
-\item 非负性：\(f(x) \geq 0, \quad x \in (-\infty,+\infty)\)；
-\item 规范性：\(\int_{-\infty}^{+\infty} f(x) \dd{x} = 1\).
+	\item 非负性：\(f(x) \geq 0, \quad x \in (-\infty,+\infty)\)；
+	\item 规范性：\(\int_{-\infty}^{+\infty} f(x) \dd{x} = 1\).
 \end{enumerate}
-\rm
-这两个性质也是密度函数的特征，即若任何一个函数\(g(x)\)具有以上两个性质，
-则\(g(x)\)必是某一个连续型随机变量的密度函数.
 \end{property}
+这两个性质也是密度函数的特征，
+即若任何一个函数\(g(x)\)具有以上两个性质，
+则\(g(x)\)必是某一个连续型随机变量的密度函数.
 
 \begin{theorem}
 设\(X\)为连续型随机变量，\(F(x)\)和\(f(x)\)分别为\(X\)的分布函数与密度函数，则
 \begin{enumerate}
-\item 对任意常数\(a < b\)，有\[
-P(a < X \leq b) = \int_a^b{f(x) \dd{x}};
-\]
-\item 若\(F(x)\)是连续函数，则在\(f(x)\)的连续点\(x_0\)有\[
-F'(x_0) = f(x_0);
-\]
-\item 对任意常数\(C\)，有\(P(X=C) = 0\).
+	\item 对任意常数\(a < b\)，有\[
+		P(a < X \leq b) = \int_a^b{f(x) \dd{x}};
+	\]
+
+	\item 若\(F(x)\)是连续函数，则在\(f(x)\)的连续点\(x_0\)有\[
+		F'(x_0) = f(x_0);
+	\]
+
+	\item 对任意常数\(C\)，有\(P(X=C) = 0\).
 \end{enumerate}
 \end{theorem}
 
 定理说明连续型随机变量取任意数值的概率都为0，即\[
-P(X=k) = 0.
-\]从而结论1可以表为\[
-P(a < X \leq b)
-= P(a \leq X \leq b)
-= P(a \leq X < b)
-= P(a < X < b)
-= \int_a^b{f(x) \dd{x}}.
+	P(X=k) = 0.
+\]
+从而结论1可以表为\[
+	P(a < X \leq b)
+	= P(a \leq X \leq b)
+	= P(a \leq X < b)
+	= P(a < X < b)
+	= \int_a^b f(x) \dd{x}.
 \]
 由此可见，一个连续型随机变量\(X\)的密度函数可在有限个点上取值不同，
 这样并不影响\(X\)的分布函数，从而密度函数不唯一.
@@ -356,12 +364,15 @@ P(a < X \leq b)
 \subsubsection{均匀分布}
 \begin{definition}
 设随机变量\(X\)的密度函数为\begin{equation}
-f(x) = \left\{ \def\arraystretch{1.5}
-\begin{array}{cl}
-\frac{1}{b-a}, & x \in (a,b), \\
-0, & x \in (-\infty,a) \cup (b,+\infty), \\
-\end{array} \right.
-\end{equation}则称\(X\)在区间\([a,b]\)上服从\DefineConcept{均匀分布}，记为\(X \sim U(a,b)\)，其中\(a < b\).
+	f(x) = \left\{ \def\arraystretch{1.5}
+	\begin{array}{cl}
+		\frac{1}{b-a}, & x \in (a,b), \\
+		0, & x \in (-\infty,a) \cup (b,+\infty), \\
+	\end{array} \right.
+\end{equation}
+则称\(X\)在区间\([a,b]\)上服从\DefineConcept{均匀分布}，
+记为\(X \sim U(a,b)\)，
+其中\(a < b\).
 
 一般地，把密度函数大于0的区间叫做连续型随机变量的取值区间.
 \end{definition}
