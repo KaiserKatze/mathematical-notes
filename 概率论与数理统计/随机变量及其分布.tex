@@ -231,18 +231,29 @@ P(X=k) = p^k q^{1-k}, \quad k=0,1.
 	\quad k=0,1,\dotsc.
 \end{equation}
 \begin{proof}
-因为\[
-	P(X_n=k) = C_n^k p_n^k (1-p_n)^{n-k}
+因为\begin{align*}
+	P(X_n=k) &= C_n^k p_n^k (1-p_n)^{n-k}
 	= \frac{1}{k!} n(n-1)\dotsm(n-k+1)
 	\left(\frac{\lambda}{n}\right)^k
-	\left(1-\frac{\lambda}{n}\right)^{n-k},
-\]
+	\left(1-\frac{\lambda}{n}\right)^{n-k} \\
+	&= \frac{1}{k!}
+	\cdot \frac{n(n-1)\dotsm(n-k+1)}{n^k}
+	\cdot \lambda^k
+	\cdot \left(1-\frac{\lambda}{n}\right)^n
+	\cdot \left(1-\frac{\lambda}{n}\right)^{-k},
+\end{align*}
 其中\(\lambda\)是与\(n\)无关的数，
 而\(k\)是任意给定的非负整数，
 从而\[
-	\lim\limits_{n\to\infty} \frac{n(n-1)\dotsm(n-k+1)}{n^k} = 1,
+	\lim\limits_{n\to\infty} \frac{n(n-1)\dotsm(n-k+1)}{n^k}
+	= \lim\limits_{n\to\infty} \frac{n}{n}
+	\cdot \lim\limits_{n\to\infty} \frac{n-1}{n}
+	\dotsm \lim\limits_{n\to\infty} \frac{n-k+1}{n}
+	= 1^k = 1,
 \]\[
-	\lim\limits_{n\to\infty} \left(1-\frac{\lambda}{n}\right)^{-k} = 1,
+	\lim\limits_{n\to\infty} \left(1-\frac{\lambda}{n}\right)^{-k}
+	= \left(1-\lim\limits_{n\to\infty} \frac{\lambda}{n}\right)^{-k}
+	= 1^{-k} = 1,
 \]\[
 	\lim\limits_{n\to\infty} \left(1-\frac{\lambda}{n}\right)^n
 	= \lim\limits_{n\to\infty}
