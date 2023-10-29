@@ -437,6 +437,37 @@ P(X > t + \tau \vert X > t) = P(X > \tau).
 
 指数分布\(e(\lambda)\)等价于\(\Gamma\)分布\(\Gamma(1,\lambda)\).
 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			name=GammaDistribution,
+			axis y line=middle,
+			axis x line=middle,
+			enlarge x limits=0.05,
+			enlarge y limits=0.05,
+			ymax=.5,
+			ymin=0,
+		]
+			\def\plotGDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=0:10]{%定义
+				(2^(#1))*(x^(#1-1))*exp(-2*x)/(#2)
+			}}%
+			\plotGDPDF{1}{1}{blue};\label{pgfplots:伽马分布.Gamma(1,2)}
+			\plotGDPDF{4}{6}{orange};\label{pgfplots:伽马分布.Gamma(4,2)}
+			\plotGDPDF{6}{120}{green};\label{pgfplots:伽马分布.Gamma(6,2)}
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,below left=0.5em]
+		at(GammaDistribution.north east){\small\begin{tabular}{cl}
+			\ref{pgfplots:伽马分布.Gamma(1,2)} & \(\Gamma(1,2)\) \\
+			\ref{pgfplots:伽马分布.Gamma(4,2)} & \(\Gamma(4,2)\) \\
+			\ref{pgfplots:伽马分布.Gamma(6,2)} & \(\Gamma(6,2)\) \\
+		\end{tabular}};
+	\end{tikzpicture}
+	\caption{\(\Gamma\)分布的密度函数}
+	% Mathematica: Plot[Table[PDF[GammaDistribution[\[Alpha], .5], x], {\[Alpha], {1, 4, 6}}] // Evaluate, {x, 0, 20}, PlotRange -> {0, .5}, Filling -> Axis]
+\end{figure}
+
+
 \begin{definition}
 若一个元件或系统的寿命\(X\)满足一个连续型分布，\(X \sim F(t)\)，
 则其可靠度函数定义为\[
