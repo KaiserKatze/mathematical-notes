@@ -121,16 +121,47 @@ f(\xi,\eta) = \zeta,
 
 \subsubsection{利用直角坐标系计算二重积分}
 \begin{theorem}[X型区域]
-设积分区域\(D\)可以用不等式\begin{gather*}
-a \leq x \leq b, \\
-\varphi_1(x) \leq y \leq \varphi_2(x),
-\end{gather*}来表示，其中函数\(\varphi_1(x)\)、\(\varphi_2(x)\)在区间\([a,b]\)上连续，那么有\[
-\iint_D f(x,y) \dd{\sigma}
-=\int_a^b \dd{x} \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y}.
+如\cref{figure:二重积分.X型区域}，
+设积分区域\(D\)可以用一组不等式
+\[
+	a \leq x \leq b, \qquad
+	\varphi_1(x) \leq y \leq \varphi_2(x),
+\]来表示，
+其中函数\(\varphi_1(x),\varphi_2(x)\)在区间\([a,b]\)上连续，
+那么有\[
+	\iint_D f(x,y) \dd{\sigma}
+	=\int_a^b \dd{x} \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \dd{y}.
 \]
 \end{theorem}
 X型区域\(D\)的特点是：
 任一穿过\(D\)内部且平行于\(y\)轴的直线与\(D\)的边界相交不多于两点.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=1,xmax=3.1,
+			axis lines=middle,
+			ticks=none,
+			enlarge x limits=0.05,
+			enlarge y limits=0.5,
+			xlabel=$x$,
+			ylabel=$y$,
+		]
+			\coordinate(A)at(1,{sin(2 r)+2});
+			\coordinate(B)at(3,{sin(6 r)+2});
+			\draw[dashed,black!30](A)--(1,0)node[below,black]{\(a\)}
+				(B)--(3,0)node[below,black]{\(b\)};
+			\addplot[color=blue,samples=100,smooth,domain=1:3]{sin(\x r)+3};
+			\addplot[color=blue,samples=100,smooth,domain=1:3]{sin(2*\x r)+2};
+			\draw[blue](A)--(1,{sin(1 r)+3})
+				(B)--(3,{sin(3 r)+3});
+			\draw(2,{(sin(1 r)+sin(2 r)+sin(3 r)+sin(6 r))*.25+2.5})node{\(D\)};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:二重积分.X型区域}
+\end{figure}
 
 \begin{theorem}[Y型区域]
 设积分区域\(D\)可以用不等式\begin{gather*}
