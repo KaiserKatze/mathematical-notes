@@ -727,25 +727,32 @@ V &= \iiint_{\Omega} r^2 \sin\varphi \dd{r} \dd{\varphi} \dd{\theta} \\
 利用雅克比式，可以把二重积分的换元法推广到多元函数上.
 \begin{theorem}
 若连续可微函数\[
-\mat{y} = f(\mat{x})
-\quad(\mat{x},\mat{y}\in\mathbb{R}^n)
-\]把\(O x_1 x_2 \dotso x_n\)空间内的有界闭区域\(\Omega\)单值地映射成\(O' y_1 y_2 \dotso y_n\)空间内的有界闭区域\(\Omega'\)，并且在闭区域\(\Omega'\)内雅克比行列式\[
-J = \det\mat{J}
-= \jacobi{f_1,f_2,\dotsc,f_n}{\AutoTuple{x}{n}}
-= {
-\def\arraystretch{1.5}
-\begin{vmatrix}
-\pdv{f_1}{x_1} & \pdv{f_1}{x_2} & \dots & \pdv{f_1}{x_n} \\
-\pdv{f_2}{x_1} & \pdv{f_2}{x_2} & \dots & \pdv{f_2}{x_n} \\
-\vdots & \vdots & \ddots & \vdots \\
-\pdv{f_n}{x_1} & \pdv{f_n}{x_2} & \dots & \pdv{f_n}{x_n} \\
-\end{vmatrix}
-}
-\neq 0,
-\]则有如下的积分换元公式\begin{equation}
+	\mat{y} = f(\mat{x})
+	\quad(\mat{x},\mat{y}\in\mathbb{R}^n)
+\]
+把\(O x_1 x_2 \dotso x_n\)空间内的有界闭区域\(\Omega\)
+单值地映射成\(O' y_1 y_2 \dotso y_n\)空间内的有界闭区域\(\Omega'\)，
+并且在闭区域\(\Omega'\)内雅克比行列式\[
+	J = \det\mat{J}
+	= \jacobi{f_1,f_2,\dotsc,f_n}{\AutoTuple{x}{n}}
+	= { \def\arraystretch{1.5} \begin{vmatrix}
+		\pdv{f_1}{x_1} & \pdv{f_1}{x_2} & \dots & \pdv{f_1}{x_n} \\
+		\pdv{f_2}{x_1} & \pdv{f_2}{x_2} & \dots & \pdv{f_2}{x_n} \\
+		\vdots & \vdots & & \vdots \\
+		\pdv{f_n}{x_1} & \pdv{f_n}{x_2} & \dots & \pdv{f_n}{x_n} \\
+	\end{vmatrix} }
+	\neq 0,
+\]
+则有如下的积分换元公式\begin{equation}
 \begin{split}
-&\idotsint\limits_{\Omega} F(\AutoTuple{y}{n}) \dd{y_1}\dd{y_2}\dotsm\dd{y_n} \\
-&\hspace{20pt}= \idotsint\limits_{\Omega} F(\AutoTuple{x}{n}) \abs{J} \dd{x_1}\dd{x_2}\dotsm\dd{x_n}.
+	&\idotsint\limits_{\Omega}
+		F(\AutoTuple{y}{n})
+		\dd{y_1}\dd{y_2}\dotsm\dd{y_n} \\
+	&\hspace{20pt}=
+		\idotsint\limits_{\Omega}
+		F(\AutoTuple{x}{n})
+		\abs{J}
+		\dd{x_1}\dd{x_2}\dotsm\dd{x_n}.
 \end{split}
 \end{equation}
 \end{theorem}
@@ -759,63 +766,75 @@ J = \det\mat{J}
 \lim\limits_{n\to\infty} \sum\limits_{i=1}^n \sum\limits_{j=1}^n \frac{n}{(n+i)(n^2+j^2)}.
 \]
 \begin{solution}
-首先观察极限
-\begin{align*}
-&\hspace{-20pt}
-\lim\limits_{n\to\infty} \sum\limits_{i=1}^n \sum\limits_{j=1}^n \frac{n}{(n+i)(n^2+j^2)} \\
-&= \lim\limits_{n\to\infty} \sum\limits_{i=1}^n \sum\limits_{j=1}^n \frac{1}{n^2} \frac{n^3}{(n+i)(n^2+j^2)} \\
-&= \lim\limits_{n\to\infty} \sum\limits_{i=1}^n \sum\limits_{j=1}^n \frac{1}{n^2} \left[\left(1+\frac{i}{n}\right)\left(1+\frac{j^2}{n^2}\right)\right]^{-1},
+首先观察极限\begin{align*}
+	&\hspace{-20pt}
+	\lim\limits_{n\to\infty}
+		\sum\limits_{i=1}^n
+		\sum\limits_{j=1}^n \frac{n}{(n+i)(n^2+j^2)} \\
+	&= \lim\limits_{n\to\infty}
+		\sum\limits_{i=1}^n
+		\sum\limits_{j=1}^n \frac{1}{n^2} \frac{n^3}{(n+i)(n^2+j^2)} \\
+	&= \lim\limits_{n\to\infty}
+		\sum\limits_{i=1}^n
+		\sum\limits_{j=1}^n \frac{1}{n^2}
+		\left[
+			\left(1+\frac{i}{n}\right)
+			\left(1+\frac{j^2}{n^2}\right)
+		\right]^{-1},
 \end{align*}
 考虑当\(i=j=1\)时，\(\frac{i}{n},\frac{j}{n}\to0\ (n\to\infty)\)；
 当\(i=j=n\)时，\(\frac{i}{n}=\frac{j}{n}=1\)；
-那么可以将所求极限视作函数\(\frac{1}{1+x}\cdot\frac{1}{1+y^2}\)在区域\([0,1]\times[0,1]\)上的积分\[
-\int_0^1 \dd{x} \int_0^1 \frac{1}{(1+x)(1+y^2)} \dd{y}
-= \int_0^1 \frac{1}{1+x} \dd{x} \int_0^1 \frac{1}{1+y^2} \dd{y}.
+那么可以将所求极限视作函数\(\frac{1}{1+x}\cdot\frac{1}{1+y^2}\)
+在区域\([0,1]\times[0,1]\)上的积分\[
+	\int_0^1 \dd{x} \int_0^1 \frac{1}{(1+x)(1+y^2)} \dd{y}
+	= \int_0^1 \frac{1}{1+x} \dd{x} \int_0^1 \frac{1}{1+y^2} \dd{y}.
 \]
 \end{solution}
 \end{example}
 
 \subsection{曲面的面积}
-设两平面\(\Pi_1\)、\(\Pi_2\)的夹角为\(\theta\ (0<\theta<\pi/2)\)（如\cref{figure:重积分.平面区域的投影}），
+设两平面\(\Pi_1\)、\(\Pi_2\)的夹角为\(\theta\ (0<\theta<\pi/2)\)
+（如\cref{figure:重积分.平面区域的投影}），
 \(\Pi_1\)上的闭区域\(D\)在\(\Pi_2\)上的投影区域为\(D_0\)，
 则\(D\)的面积\(A\)与\(D_0\)的面积\(\sigma\)满足\[
-A = \frac{\sigma}{\cos\theta}.
+	A = \frac{\sigma}{\cos\theta}.
 \]
-事实上，先假定\(D\)是矩形闭区域，且其一边平行于平面\(\Pi_1\)、\(\Pi_2\)的交线\(l\)，
+事实上，先假定\(D\)是矩形闭区域，
+且其一边平行于平面\(\Pi_1\)、\(\Pi_2\)的交线\(l\)，
 两条边的边长分别为\(a\)、\(b\)，则\(D_0\)也是矩形闭区域，
 且边长分别为\(a\)、\(b \cos\theta\)，从而\[
-\sigma = ab\cos\theta = A \cos\theta.
+	\sigma = ab\cos\theta = A \cos\theta.
 \]
 
 \begin{figure}[ht]
-\centering
-\begin{tikzpicture}[scale=2]
-\draw[name path=upper](0,0)--++(1,-1)node[midway,below left]{\(l\)}coordinate(p1)
-	--++(2,2)coordinate(p2)
-	--++(-1,1)node[below]{\(\Pi_1\)}
-	--++(-2,-2);
-\path[name path=horizon](1,0)--++(2,0);
-\draw[name intersections={of=upper and horizon},dashed]
-	(intersection-1)--(0,0);
-\draw(p1)--++(3,0)coordinate(p3)
-	--++(-1,1)node[below]{\(\Pi_2\)}
-	--(intersection-1);
-\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]{angle=p3--p1--p2};
-\draw(1.6,.9)coordinate(A)
-	--++(.3,-.3)coordinate(B)node[midway,below left]{\(a\)}
-	--++(.2,.2)coordinate(C)node[midway,below right]{\(b\)}
-	--++(-.3,.3)coordinate(D)
-	--++(-.2,-.2);
-\begin{scope}[dashed]
-\draw(A)--++(0,-1.4)coordinate(A1);
-\draw(B)--++(0,-1.4)coordinate(B1);
-\draw(C)--++(0,-1.4-.2)coordinate(C1);
-\draw(D)--++(0,-1.4-.2)coordinate(D1);
-\end{scope}
-\draw(A1)--(B1)node[midway,below left]{\(a\)}--(C1)node[midway,below]{\(b \cos\theta\)}--(D1)--(A1);
-\end{tikzpicture}
-\caption{平面区域的投影}
-\label{figure:重积分.平面区域的投影}
+	\centering
+	\begin{tikzpicture}[scale=2]
+		\draw[name path=upper](0,0)--++(1,-1)node[midway,below left]{\(l\)}coordinate(p1)
+			--++(2,2)coordinate(p2)
+			--++(-1,1)node[below]{\(\Pi_1\)}
+			--++(-2,-2);
+		\path[name path=horizon](1,0)--++(2,0);
+		\draw[name intersections={of=upper and horizon},dashed]
+			(intersection-1)--(0,0);
+		\draw(p1)--++(3,0)coordinate(p3)
+			--++(-1,1)node[below]{\(\Pi_2\)}
+			--(intersection-1);
+		\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]{angle=p3--p1--p2};
+		\draw(1.6,.9)coordinate(A)
+			--++(.3,-.3)coordinate(B)node[midway,below left]{\(a\)}
+			--++(.2,.2)coordinate(C)node[midway,below right]{\(b\)}
+			--++(-.3,.3)coordinate(D)
+			--++(-.2,-.2);
+		\begin{scope}[dashed]
+		\draw(A)--++(0,-1.4)coordinate(A1);
+		\draw(B)--++(0,-1.4)coordinate(B1);
+		\draw(C)--++(0,-1.4-.2)coordinate(C1);
+		\draw(D)--++(0,-1.4-.2)coordinate(D1);
+		\end{scope}
+		\draw(A1)--(B1)node[midway,below left]{\(a\)}--(C1)node[midway,below]{\(b \cos\theta\)}--(D1)--(A1);
+	\end{tikzpicture}
+	\caption{平面区域的投影}
+	\label{figure:重积分.平面区域的投影}
 \end{figure}
 
 \begin{theorem}
