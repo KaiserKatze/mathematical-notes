@@ -234,27 +234,36 @@ Y型区域\(D\)的特点是：
 把\(D\)划分为\(n\)个小闭区域.
 除了包含边界点的一些小闭区域外，其他小闭区域的面积\(\increment\sigma_i\)可计算如下：
 \begin{align*}
-\increment\sigma_i
-&= \frac{1}{2} (\rho_i+\increment\rho_i)^2 \cdot \increment\theta_i
-- \frac{1}{2} \rho_i^2 \cdot \increment\theta_i \\
-&= \frac{1}{2} (2\rho_i + \increment\rho_i) \increment\rho_i \cdot \increment\theta_i \\
-&= \frac{\rho_i + (\rho_i+\increment\rho_i)}{2} \cdot \increment\rho_i \cdot \increment\theta_i \\
-&= \overline{\rho}_i \cdot \increment\rho_i \cdot \increment\theta_i,
+	\increment\sigma_i
+	&= \frac{1}{2} (\rho_i+\increment\rho_i)^2 \cdot \increment\theta_i
+	- \frac{1}{2} \rho_i^2 \cdot \increment\theta_i \\
+	&= \frac{1}{2} (2\rho_i + \increment\rho_i) \increment\rho_i \cdot \increment\theta_i \\
+	&= \frac{\rho_i + (\rho_i+\increment\rho_i)}{2}
+		\cdot \increment\rho_i \cdot \increment\theta_i \\
+	&= \overline{\rho}_i \cdot \increment\rho_i \cdot \increment\theta_i,
 \end{align*}
 其中\(\overline{\rho}_i\)表示相邻两端圆弧的半径的平均值.
-在这小闭区域内取圆周\(\rho = \overline{\rho}_i\)上的一点\(\opair{\overline{\rho}_i,\overline{\theta}_i}\)，该点的直角坐标设为\(\opair{\xi_i,\eta_i}\)，则由直角坐标系与极坐标系之间的关系有\(\xi_i = \overline{\rho}_i \cos\overline{\theta}_i,
+在这小闭区域内取圆周\(\rho = \overline{\rho}_i\)上的
+一点\(\opair{\overline{\rho}_i,\overline{\theta}_i}\)，
+该点的直角坐标设为\(\opair{\xi_i,\eta_i}\)，
+则由直角坐标系与极坐标系之间的关系有\(\xi_i = \overline{\rho}_i \cos\overline{\theta}_i,
 \eta_i = \overline{\rho}_i \sin\overline{\theta}_i\).
 于是\[
-\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i) \increment\sigma_i
-= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\overline{\rho}_i \cos\overline{\theta}_i,\overline{\rho}_i \sin\overline{\theta}_i) \overline{\rho}_i \cdot \increment\rho_i \cdot \increment\theta_i,
-\]即\[
-\iint_D f(x,y) \dd{\sigma}
-= \iint_D f(\rho\cos\theta,\rho\sin\theta) \rho \dd{\rho} \dd{\theta}.
+	\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i) \increment\sigma_i
+	= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n
+	f(\overline{\rho}_i \cos\overline{\theta}_i,\overline{\rho}_i \sin\overline{\theta}_i)
+	\overline{\rho}_i \cdot \increment\rho_i \cdot \increment\theta_i,
+\]
+即\[
+	\iint_D f(x,y) \dd{\sigma}
+	= \iint_D f(\rho\cos\theta,\rho\sin\theta) \rho \dd{\rho} \dd{\theta}.
 \]
 
-这里我们把点\(\opair{\rho,\theta}\)看作在同一平面上的点\(\opair{x,y}\)的极坐标表示，所以上式右端的积分区域仍然记作\(D\).
+这里我们把点\(\opair{\rho,\theta}\)看作在同一平面上的点\(\opair{x,y}\)的极坐标表示，
+所以上式右端的积分区域仍然记作\(D\).
 
-由于在直角坐标系中\(\iint_D f(x,y) \dd{\sigma}\)也常记作\(\iint_D f(x,y) \dd{x} \dd{y}\)，所以上式又可以写成
+由于在直角坐标系中\(\iint_D f(x,y) \dd{\sigma}\)也常记作\(\iint_D f(x,y) \dd{x} \dd{y}\)，
+所以上式又可以写成
 \begin{equation}\label{equation:线性方程组.二重积分坐标变换公式}
 \iint_D f(x,y) \dd{x} \dd{y}
 = \iint_D f(\rho\cos\theta,\rho\sin\theta) \rho \dd{\rho} \dd{\theta},
