@@ -230,6 +230,32 @@ Y型区域\(D\)的特点是：
 	= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i) \increment\sigma_i
 \]来研究一下这个和的极限在极坐标系中的形式.
 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{polaraxis}[
+			ticks=none,
+			enlarge y limits=0.05,
+			axis x line=none,
+			axis y line=middle,
+			xmin=0,xmax=90,
+			xlabel=A,
+		]
+			\addplot[color=blue,samples=100,smooth,domain=20:40]{sin(3*x)};
+			\draw[dashed,black!30](20,{sin(60)})coordinate(A)
+				--(0,0)node[above right,black]{\(O\)}coordinate(O)
+				--(40,{sin(120)})coordinate(B);
+			\addplot[color=blue,samples=100,smooth,domain=20:40]{1.1-.5*sin(3*x)};
+			\draw[blue](A)--(20,{1.1-.5*sin(60)})coordinate(C)
+				(B)--(40,{1.1-.5*sin(120)})coordinate(D);
+			\draw(30,{.75*sin(90)})node{\(D\)};
+			\coordinate(P)at(0,1);
+			\draw pic["$\alpha$",draw=orange,->,angle eccentricity=1.5,angle radius=5mm]{angle=P--O--A};
+			\draw pic["$\beta$",draw=orange,->,angle eccentricity=1.3,angle radius=10mm]{angle=P--O--B};
+		\end{polaraxis}
+	\end{tikzpicture}
+\end{figure}
+
 假定从极点\(O\)出发且穿过闭区域\(D\)内部的射线与\(D\)的边界曲线相交不多于两点.
 我们用以极点为中心的一族同心圆\(\rho = \text{常数}\)，
 以及从极点出发的一族射线\(\theta = \text{常数}\)，
