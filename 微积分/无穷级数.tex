@@ -2725,7 +2725,8 @@ b_n = \frac{1}{l} \int_{-l}^l f(x) \sin\frac{n\pi x}{l} \dd{x}.
 \end{example}
 
 \subsection{傅里叶级数的复数形式}
-\def\s{\sum\limits_{n=1}^\infty }
+\begingroup
+\def\s{\sum\limits_{n=1}^\infty}
 \def\f{\frac{n \pi x}{l}}
 \def\eif#1{e^{#1\iu\f}}
 
@@ -2733,53 +2734,63 @@ b_n = \frac{1}{l} \int_{-l}^l f(x) \sin\frac{n\pi x}{l} \dd{x}.
 在电子技术中，经常应用这种形式.
 
 设周期为\(2l\)的周期函数\(f(x)\)的傅里叶级数为\[
-\frac{a_0}{2} + \s \left( a_n \cos\f + b_n \sin\f \right),
-\]其中系数\(a_n,b_n\)为\begin{gather*}
-a_n = \frac{1}{l} \int_{-l}^{l} f(x) \cos\f \dd{x}
-\quad(n=0,1,2,\dotsc), \\
-b_n = \frac{1}{l} \int_{-1}^{l} f(x) \sin\f \dd{x}
-\quad(n=1,2,\dotsc).
-\end{gather*}利用欧拉公式\[
-\cos t = \frac{e^{\iu t}+e^{-\iu t}}{2},
-\qquad
-\sin t = \frac{e^{\iu t}-e^{-\iu t}}{2},
-\]可将级数化为\[
-\begin{split}
-&\frac{a_0}{2} + \s \left[
-	\frac{a_n}{2} \left( \eif{} + \eif- \right)
-	-\frac{\iu b_n}{2} \left( \eif{} - \eif- \right)
-\right] \\
-&\hspace{10pt}= \frac{a_0}{2} \s \left[
-	\frac{a_n - \iu b_n}{2} \eif{}
-	+ \frac{a_n + \iu b_n}{2} \eif-
-\right].
+	\frac{a_0}{2} + \s \left( a_n \cos\f + b_n \sin\f \right),
+\]
+其中系数\(a_n,b_n\)为\begin{gather*}
+	a_n = \frac{1}{l} \int_{-l}^{l} f(x) \cos\f \dd{x}
+	\quad(n=0,1,2,\dotsc), \\
+	b_n = \frac{1}{l} \int_{-1}^{l} f(x) \sin\f \dd{x}
+	\quad(n=1,2,\dotsc).
+\end{gather*}
+利用欧拉公式\[
+	\cos t = \frac{e^{\iu t}+e^{-\iu t}}{2},
+	\qquad
+	\sin t = \frac{e^{\iu t}-e^{-\iu t}}{2},
+\]
+可将级数化为\[
+	\begin{split}
+		&\frac{a_0}{2} + \s \left[
+			\frac{a_n}{2} \left( \eif{} + \eif- \right)
+			-\frac{\iu b_n}{2} \left( \eif{} - \eif- \right)
+		\right] \\
+		&\hspace{10pt}= \frac{a_0}{2} \s \left[
+			\frac{a_n - \iu b_n}{2} \eif{}
+			+ \frac{a_n + \iu b_n}{2} \eif-
+		\right].
+	\end{split}
+\]
+记\[
+	\frac{a_0}{2} = c_0,
+	\qquad
+	\frac{a_n-\iu b_n}{2} = c_n,
+	\qquad
+	\frac{a_n+\iu b_n}{2} = c_{-n},
+\]
+其中\(n=1,2,\dotsc\)，
+则可进一步化为\[
+	\begin{split}
+		&c_0 + \s \left(
+			c_n \eif{} + c_{-n} \eif-
+		\right) \\
+		&\hspace{10pt}= (c_n \eif{})_{n=0}
+		+ \s \left(
+			c_n \eif{} + c_{-n} \eif-
+	\right).
 \end{split}
-\]记\[
-\frac{a_0}{2} = c_0,
-\qquad
-\frac{a_n-\iu b_n}{2} = c_n,
-\qquad
-\frac{a_n+\iu b_n}{2} = c_{-n},
-\]其中\(n=1,2,\dotsc\)，则可进一步化为\[
-\begin{split}
-&c_0 + \s \left(
-	c_n \eif{} + c_{-n} \eif-
-\right) \\
-&\hspace{10pt}= (c_n \eif{})_{n=0}
-+ \s \left(
-	c_n \eif{} + c_{-n} \eif-
-\right).
-\end{split}
-\]即得\DefineConcept{傅里叶级数的复数形式}\footnote{这是一个罗朗级数.}为
+\]
+即得\DefineConcept{傅里叶级数的复数形式}\footnote{这是一个罗朗级数.}为
 \begin{equation}\label{equation:无穷级数.傅里叶级数的复数形式}
-\sum\limits_{n=-\infty}^{+\infty} c_n \eif{}.
-\end{equation}可以求出系数满足
+	\sum\limits_{n=-\infty}^{+\infty} c_n \eif{}.
+\end{equation}
+可以求出系数满足
 \begin{equation}\label{equation:无穷级数.傅里叶系数的复数形式}
-c_n = \frac{1}{2l} \int_{-l}^l f(x) \eif- \dd{x}
-\quad(n=0,\pm1,\pm2,\dotsc).
-\end{equation}这就是\DefineConcept{傅里叶系数的复数形式}.
+	c_n = \frac{1}{2l} \int_{-l}^l f(x) \eif- \dd{x}
+	\quad(n=0,\pm1,\pm2,\dotsc).
+\end{equation}
+这就是\DefineConcept{傅里叶系数的复数形式}.
 
 傅里叶级数的两种形式，本质上是一样的，但复数形式比较简洁，且只用一个算式计算系数.
+\endgroup
 
 \section{本章总结}
 
