@@ -3,14 +3,15 @@
 本章主要介绍点集拓扑学，它为几何学提供了基本语言.
 
 \section{度量空间}
-根据\cref{definition:极限.函数在一点的连续性} 我们知道，函数\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x_0\in\mathbb{R}\)处连续当且仅当\[
-\forall\varepsilon>0,
-\exists\delta>0
-\bigl(
-\abs{x - x_0}<\delta
-\implies
-\abs{f(x) - f(x_0)} < \varepsilon
-\bigr).
+根据\cref{definition:极限.函数在一点的连续性} 我们知道，
+函数\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x_0\in\mathbb{R}\)处连续当且仅当\[
+	(\forall\varepsilon>0)
+	(\exists\delta>0)
+	[
+		\abs{x - x_0}<\delta
+		\implies
+		\abs{f(x) - f(x_0)} < \varepsilon
+	].
 \]
 在这个定义中只涉及两个实数之间的距离（即两个实数之差的绝对值）这个概念.
 为了验证一个函数在某点处的连续性往往只要用到关于上述距离的最基本的性质，而与实数的其他性质无关.
@@ -21,17 +22,18 @@
 \begin{definition}
 设\(X\)是一个集合，映射\(\rho\colon X \times X\to\mathbb{R}\).
 如果对于\(\forall x,y,z \in X\)，总有\begin{enumerate}
-\item {\bf 正定性}，即\[
-\rho(x,y)\geq0,
-\]其中\(\rho(x,y)=0\)当且仅当\(x=y\)；
+	\item {\bf 正定性}，即\[
+		\rho(x,y)\geq0,
+	\]
+	其中\(\rho(x,y)=0\)当且仅当\(x=y\)；
 
-\item {\bf 对称性}，即\[
-\rho(x,y) = \rho(y,x);
-\]
+	\item {\bf 对称性}，即\[
+		\rho(x,y) = \rho(y,x);
+	\]
 
-\item {\bf 三角不等式}，即\[
-\rho(x,z) \leq \rho(x,y) + \rho(y,z);
-\]
+	\item {\bf 三角不等式}，即\[
+		\rho(x,z) \leq \rho(x,y) + \rho(y,z);
+	\]
 \end{enumerate}
 那么称“映射\(\rho\)是集合\(X\)的一个\DefineConcept{度量}（metric）”；
 称实数\(\rho(x,y)\)为“从点\(x\)到点\(y\)的\DefineConcept{距离}（distance）”.
@@ -53,48 +55,56 @@
 
 \subsection{常见的度量空间}
 \begin{example}[实数空间\(\mathbb{R}\)]
-对于实数集\(\mathbb{R}\)，定义映射\(\rho\colon\mathbb{R}\times\mathbb{R}\to\mathbb{R}\)如下：\[
-\rho(x,y) = \abs{x-y},
-\quad x,y\in\mathbb{R}.
+对于实数集\(\mathbb{R}\)，
+定义映射\(\rho\colon\mathbb{R}\times\mathbb{R}\to\mathbb{R}\)如下：\[
+	\rho(x,y) = \abs{x-y},
+	\quad x,y\in\mathbb{R}.
 \]显然\(\rho\)是\(\mathbb{R}\)的一个度量，因此\((\mathbb{R},\rho)\)是一个度量空间.
-特别地，这个度量空间被称为\DefineConcept{实数空间}或\DefineConcept{直线}，称度量\(\rho\)为\(\mathbb{R}\)的\DefineConcept{通常度量}.
+特别地，这个度量空间被称为\DefineConcept{实数空间}或\DefineConcept{直线}，
+称度量\(\rho\)为\(\mathbb{R}\)的\DefineConcept{通常度量}.
 \end{example}
 
 \begin{example}[\(n\)维欧式空间\(\mathbb{R}^n\)]
-对于实数集\(\mathbb{R}\)的\(n\)重笛卡尔积\(\mathbb{R}^n\)，定义映射\(\rho\colon\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}\)如下：\[
-\rho(\mat{x},\mat{y}) = \sqrt{\sum\limits_{i=1}^n (x_i-y_i)^2},
-\quad \mat{x}=(\AutoTuple{x}{n}),\mat{y}=(\AutoTuple{y}{n})\in\mathbb{R}^n.
-\]显然\(\rho\)是\(\mathbb{R}^n\)的一个度量，因此\((\mathbb{R}^n,\rho)\)是一个度量空间.
-特别地，这个度量空间被称为（\(n\)维）\DefineConcept{欧式空间}，称度量\(\rho\)为\(\mathbb{R}^n\)的\DefineConcept{通常度量}.
+对于实数集\(\mathbb{R}\)的\(n\)重笛卡尔积\(\mathbb{R}^n\)，
+定义映射\(\rho\colon\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}\)如下：\[
+	\rho(\mat{x},\mat{y}) = \sqrt{\sum\limits_{i=1}^n (x_i-y_i)^2},
+	\quad \mat{x}=(\AutoTuple{x}{n}),\mat{y}=(\AutoTuple{y}{n})\in\mathbb{R}^n.
+\]
+显然\(\rho\)是\(\mathbb{R}^n\)的一个度量，
+因此\((\mathbb{R}^n,\rho)\)是一个度量空间.
+特别地，这个度量空间被称为（\(n\)维）\DefineConcept{欧式空间}，
+称度量\(\rho\)为\(\mathbb{R}^n\)的\DefineConcept{通常度量}.
 2维欧式空间通常称为（欧式）平面.
 \end{example}
 
 \begin{example}[希尔伯特空间\(\mathbb{H}\)]
 构造由所有的平方收敛的实数序列构成的集合，并记为\[
-\mathbb{H}
-= \Set*{
-\mat{x}=(\AutoTuple{x}{0})
-\given
-x_i\in\mathbb{R},
-i\in\mathbb{N}^+;
-\sum\limits_{i=1}^\infty x_i^2<\infty
-}.
-\]定义映射\(\rho\colon\mathbb{H}\times\mathbb{H}\to\mathbb{R}\)如下：\[
-\rho(\mat{x},\mat{y}) = \sqrt{\sum\limits_{i=1}^\infty (x_i-y_i)^2},
-\quad \mat{x}=(\AutoTuple{x}{0}),\mat{y}=(\AutoTuple{y}{0})\in\mathbb{H}.
-\]可以证明\(\rho\)是\(\mathbb{H}\)的一个度量，因此\((\mathbb{H},\rho)\)是一个度量空间.
-特别地，这个度量空间被称为\DefineConcept{希尔伯特空间}，称度量\(\rho\)为\(\mathbb{H}\)的\DefineConcept{通常度量}.
+	\mathbb{H}
+	= \Set*{
+		\mat{x}=(\AutoTuple{x}{0})
+		\given
+		x_i\in\mathbb{R},
+		i\in\mathbb{N}^+;
+		\sum\limits_{i=1}^\infty x_i^2<\infty
+	}.
+\]
+定义映射\(\rho\colon\mathbb{H}\times\mathbb{H}\to\mathbb{R}\)如下：\[
+	\rho(\mat{x},\mat{y}) = \sqrt{\sum\limits_{i=1}^\infty (x_i-y_i)^2},
+	\quad \mat{x}=(\AutoTuple{x}{0}),\mat{y}=(\AutoTuple{y}{0})\in\mathbb{H}.
+\]
+可以证明\(\rho\)是\(\mathbb{H}\)的一个度量，
+因此\((\mathbb{H},\rho)\)是一个度量空间.
+特别地，这个度量空间被称为\DefineConcept{希尔伯特空间}，
+称度量\(\rho\)为\(\mathbb{H}\)的\DefineConcept{通常度量}.
 \end{example}
 
 \begin{example}[离散度量空间]
 设\((X,\rho)\)是一个度量空间.
 如果总有\[
-\forall x \in X,
-\exists \delta_x > 0,
-\forall y \in X - \{x\}
-\bigl[
-\rho(x,y) > \delta_x
-\bigr]
+	(\forall x \in X)
+	(\exists \delta_x > 0)
+	(\forall y \in X - \{x\})
+	[\rho(x,y) > \delta_x]
 \]成立，则称\((X,\rho)\)是离散的.
 
 例如，设\(X\)是任意一个集合，映射\(\rho\colon X \times X\to\mathbb{R}\)满足\[
