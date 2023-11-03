@@ -6,8 +6,10 @@
 \def\tint{\int_{-\pi}^{\pi}}
 
 \chapter{无穷级数}
-无穷级数是高等数学的一个重要组成部分；它是表示函数，研究函数性质，以及进行数值计算的一种工具.
-本章先讨论常数项级数，介绍无穷级数的一些基本内容，然后讨论函数项级数，着重讨论如何将函数展开成幂级数和三角级数的问题.
+无穷级数是高等数学的一个重要组成部分；
+它是表示函数，研究函数性质，以及进行数值计算的一种工具.
+本章先讨论常数项级数，介绍无穷级数的一些基本内容，然后讨论函数项级数，
+着重讨论如何将函数展开成幂级数和三角级数的问题.
 
 \section{常数项级数的概念和性质}
 人们认识事物在数量方面的特性，往往有一个由近似到精确的过程.
@@ -16,29 +18,36 @@
 例如计算半径为\(R\)的圆面积\(A\)，具体做法如下：
 如\cref{figure:无穷级数.用内接正多边形覆盖圆}，
 作圆的内接正六边形，算出这六边形的面积\(a_1\)，它是圆面积\(A\)的一个粗糙的近似值.
-为了比较准确地计算出\(A\)的值，我们以这个正六边形的每一边为底分别作一个顶点在圆周上的等腰三角形，算出这六个等腰三角形的面积之和\(a_2\).
+为了比较准确地计算出\(A\)的值，
+我们以这个正六边形的每一边为底分别作一个顶点在圆周上的等腰三角形，
+算出这六个等腰三角形的面积之和\(a_2\).
 那么\(a_1+a_2\)（即内接正十二边形的面积）就是\(A\)的一个较好的近似值.
-同样地，在这正十二边形的每一边上分别作一个顶点在圆周上的等腰三角形，算出这十二个等腰三角形的面积之和\(a_3\).
+同样地，在这正十二边形的每一边上分别作一个顶点在圆周上的等腰三角形，
+算出这十二个等腰三角形的面积之和\(a_3\).
 那么\(a_1+a_2+a_3\)（即内接正二十四边形的面积）是\(A\)的一个更好的近似值.
 如此继续下去，内接\(3\cdot2^n\)边形的面积就逐步逼近圆面积：\[
-A \approx a_1 + a_2 + \dotsb + a_n.
+	A \approx a_1 + a_2 + \dotsb + a_n.
 \]
 
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
 		\pgfmathsetmacro{\radius}{4}
-		\pgfmathsetmacro{\pax}{\radius/2}
-		\pgfmathsetmacro{\pay}{\radius*sin(60)}
-		\pgfmathsetmacro{\pbx}{\radius*cos(30)}
-		\pgfmathsetmacro{\pby}{\radius*sin(30)}
-		\begin{scope}[cyan]
-		\draw(\radius,0)--(-\pax,\pay)--(-\pax,-\pay)--(\radius,0);
-		\draw(\radius,0)--(\pax,\pay)--(-\pax,\pay)--(-\radius,0)--(-\pax,-\pay)--(\pax,-\pay)--(\radius,0);
-		\draw(\radius,0)--(\pbx,\pby)--(\pax,\pay)--(0,4)--(-\pax,\pay)--(-\pbx,\pby)--(-\radius,0)--(-\pbx,-\pby)--(-\pax,-\pay)--(0,-4)--(\pax,-\pay)--(\pbx,-\pby)--(\radius,0);
+		\def\PlotPolygon#1{
+			\foreach \i in {1,...,#1}{
+				\draw({\radius*cos(\i*360/#1)},{\radius*sin(\i*360/#1)})
+				--({\radius*cos((\i-1)*360/#1)},{\radius*sin((\i-1)*360/#1)});
+			}
+		}
+		\begin{scope}
+			\PlotPolygon{3}
+			\PlotPolygon{6}
+			\PlotPolygon{12}
 		\end{scope}
-		\draw(0,0)circle(\radius)node[left]{\(O\)}--(\radius,0)node[midway,above]{\(R\)};
+		\draw(0,0)circle(\radius)node[left]{\(O\)}
+			--(\radius,0)node[midway,above]{\(R\)};
 		\fill(0,0)circle(1pt);
+
 	\end{tikzpicture}
 	\caption{用内接正多边形覆盖圆}
 	\label{figure:无穷级数.用内接正多边形覆盖圆}
