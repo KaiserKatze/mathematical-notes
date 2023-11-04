@@ -835,7 +835,7 @@ I = \int_0^1 \pi \left(1-e^{-\rho^2}\right) \rho\dd{\rho}
 称为\DefineConcept{曲线积分的基本公式}.
 
 \section{对面积的曲面积分}
-\subsection{对面积的曲线积分的概念}
+\subsection{对面积的曲面积分的概念}
 \begin{definition}
 设曲面\footnote{以后都假定曲面的边界曲线是分段光滑的闭曲线，且曲面有界.}%
 \(\Sigma\)是光滑的\footnote{如果曲面上各点处都具有切平面，则称该曲面是光滑的.
@@ -851,19 +851,25 @@ I = \int_0^1 \pi \left(1-e^{-\rho^2}\right) \rho\dd{\rho}
 这和的极限总存在，
 则称此极限为
 “函数\(f(x,y,z)\)在曲面\(\Sigma\)上\DefineConcept{对面积的曲面积分}”
-或“函数\(f(x,y,z)\)在曲面\(\Sigma\)上的\DefineConcept{第一类曲面积分}（type I surface integral）”，
-记作\(\iint_{\Sigma}{f(x,y,z)\dd{S}}\)，即\[
-	\iint_{\Sigma} f(x,y,z)\dd{S}
-	= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i) \increment S_i,
+或“函数\(f(x,y,z)\)在曲面\(\Sigma\)上的\DefineConcept{第一类曲面积分}
+（type I surface integral）”，
+记作\(\iint_\Sigma{f(x,y,z)\dd{S}}\)，
+即\[
+	\iint_\Sigma f(x,y,z)\dd{S}
+	\defeq
+	\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i) \increment S_i,
 \]
 其中\(f(x,y,z)\)叫做\DefineConcept{被积函数}，
 \(\Sigma\)叫做\DefineConcept{积分曲面}.
 
-如果曲面\(\Sigma\)是分片光滑的，我们规定函数在\(\Sigma\)上对面积的曲面积分等于函数在光滑的各片曲面上对面积的曲面积分之和.
+如果曲面\(\Sigma\)是分片光滑的，
+我们规定：
+函数在\(\Sigma\)上对面积的曲面积分，
+等于函数在光滑的各片曲面上对面积的曲面积分之和.
 \end{definition}
 我们指出，当被积函数\(f(x,y,z)\)在光滑曲面\(\Sigma\)上连续时，对面积的曲面积分是存在的.
 
-\subsection{对面积的曲线积分的性质}
+\subsection{对面积的曲面积分的性质}
 由对面积的曲面积分的定义可知，它具有与对弧长的曲线积分相类似的性质，这里不再赘述.
 
 \subsection{对面积的曲面积分的计算法}
@@ -873,14 +879,18 @@ I = \int_0^1 \pi \left(1-e^{-\rho^2}\right) \rho\dd{\rho}
 函数\(z=z(x,y)\)在\(D_{xy}\)上具有连续偏导数，
 被积函数\(f(x,y,z)\)在\(\Sigma\)上连续.
 那么有\[
-\iint_{\Sigma}{f(x,y,z)\dd{S}}
+\iint_\Sigma{f(x,y,z)\dd{S}}
 =\iint_{D_{xy}}{f[x,y,z(x,y)] \sqrt{1+[z'_x(x,y)]^2+[z'_y(x,y)]^2} \dd{x}\dd{y}}.
 \]
 \end{theorem}
 这就是把对面积的曲面积分化为二重积分的公式.
-在计算时，只要把变量\(z\)换为\(z(x,y)\)，\(\dd{S}\)换为\(\sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y}\)，再确定\(\Sigma\)在\(xOy\)面上的投影区域\(D_{xy}\)，这样就把对面积的曲面积分化为二重积分了.
+在计算时，只要把变量\(z\)换为\(z(x,y)\)，\(\dd{S}\)换为
+\(\sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y}\)，
+再确定\(\Sigma\)在\(xOy\)面上的投影区域\(D_{xy}\)，
+这样就把对面积的曲面积分化为二重积分了.
 
-如果积分曲面\(\Sigma\)由方程\(x=x(y,z)\)或\(y=y(z,x)\)给出，也可类似地把对面积的曲面积分化为相应的二重积分.
+如果积分曲面\(\Sigma\)由方程\(x=x(y,z)\)或\(y=y(z,x)\)给出，
+也可类似地把对面积的曲面积分化为相应的二重积分.
 
 可以将上述对面积的曲面积分的计算法总结为如下更一般的方法.
 \begin{theorem}
@@ -889,127 +899,153 @@ I = \int_0^1 \pi \left(1-e^{-\rho^2}\right) \rho\dd{\rho}
 \quad \opair{u,v} \in D
 \]给出，函数\(\mat{r}(u,v)\)在\(D\)上具有连续偏导数，
 被积函数\(f(x,y,z)\)在\(\Sigma\)上连续，那么有\[
-\iint_{\Sigma} f(x,y,z) \dd{S}
+\iint_\Sigma f(x,y,z) \dd{S}
 = \iint_D f[\mat{r}(u,v)] \abs{\mat{r}'_u \times \mat{r}'_v} \dd{\sigma}.
 \]
 \end{theorem}
-这里，参数\(u\)、\(v\)可以代换为\(x\)、\(y\)、\(z\)中任意两个，区域\(D\)可以代换为\(D_{xy}\)、\(D_{yz}\)或\(D_{zx}\).
+这里，参数\(u\)、\(v\)可以代换为\(x\)、\(y\)、\(z\)中任意两个，
+区域\(D\)可以代换为\(D_{xy}\)、\(D_{yz}\)或\(D_{zx}\).
 
 \begin{example}
-计算曲面积分\(\iint_{\Sigma} \frac{\dd{S}}{z}\)，其中\(\Sigma\)是球面\(x^2+y^2+z^2=a^2\)被平面\(z = h\ (0<h<a)\)截出的顶部.
+计算曲面积分\(\iint_\Sigma \frac{\dd{S}}{z}\)，
+其中\(\Sigma\)是球面\(x^2+y^2+z^2=a^2\)被平面\(z = h\ (0<h<a)\)截出的顶部.
 \begin{solution}
 \(\Sigma\)的方程为\(z = \sqrt{a^2-x^2-y^2}\).
 \(\Sigma\)在\(xOy\)面上的投影区域\(D_{xy}\)为圆形闭区域\[
-\Set{\opair{x,y} \given x^2+y^2 \leq a^2-h^2}.
-\]又\[
-\sqrt{1+(z'_x)^2+(z'_y)^2} = \frac{a}{\sqrt{a^2-x^2-y^2}},
-\]所以\[
-\iint_{\Sigma} \frac{\dd{S}}{z}
-= \iint_{D_{xy}} \frac{a\dd{x}\dd{y}}{a^2-x^2-y^2}.
-\]利用极坐标，得\[
-\iint_{\Sigma} \frac{\dd{S}}{z}
-= \iint_{D_{xy}} \frac{a\rho\dd{\rho}\dd{\theta}}{a^2-\rho^2}
-= a \int_0^{2\pi} \dd{\theta} \int_0^{\sqrt{a^2-h^2}} \frac{\rho\dd{\rho}}{a^2-\rho^2}
-= 2\pi a \ln\frac{a}{h}.
+	\Set{\opair{x,y} \given x^2+y^2 \leq a^2-h^2}.
+\]
+又\[
+	\sqrt{1+(z'_x)^2+(z'_y)^2} = \frac{a}{\sqrt{a^2-x^2-y^2}},
+\]
+所以\[
+	\iint_\Sigma \frac{\dd{S}}{z}
+	= \iint_{D_{xy}} \frac{a\dd{x}\dd{y}}{a^2-x^2-y^2}.
+\]
+利用极坐标，得\[
+	\iint_\Sigma \frac{\dd{S}}{z}
+	= \iint_{D_{xy}} \frac{a\rho\dd{\rho}\dd{\theta}}{a^2-\rho^2}
+	= a \int_0^{2\pi} \dd{\theta} \int_0^{\sqrt{a^2-h^2}} \frac{\rho\dd{\rho}}{a^2-\rho^2}
+	= 2\pi a \ln\frac{a}{h}.
 \]
 \end{solution}
 \end{example}
 
 \begin{example}
-计算\(\varoiint_{\Sigma} xyz \dd{S}\)，其中\(\Sigma\)是由平面\(x=0\)、\(y=0\)、\(z=0\)及\(x+y+z=1\)所围成的四面体的整个边界曲面.
+计算\(\varoiint_\Sigma xyz \dd{S}\)，
+其中\(\Sigma\)是由平面\(x=0\)、\(y=0\)、\(z=0\)及\(x+y+z=1\)所围成的四面体的整个边界曲面.
 \begin{solution}
-整个边界曲面\(\Sigma\)在平面\(x=0\)、\(y=0\)、\(z=0\)及\(x+y+z=1\)上的部分依次记为\(\AutoTuple{\Sigma}{4}\)，于是\[
-\varoiint_{\Sigma} xyz \dd{S}
-= \varoiint_{\Sigma_1} xyz \dd{S}
-+ \varoiint_{\Sigma_2} xyz \dd{S}
-+ \varoiint_{\Sigma_3} xyz \dd{S}
-+ \varoiint_{\Sigma_4} xyz \dd{S}.
+整个边界曲面\(\Sigma\)在平面\(x=0\)、\(y=0\)、\(z=0\)及\(x+y+z=1\)上的部分
+依次记为\(\AutoTuple{\Sigma}{4}\)，于是\[
+	\varoiint_\Sigma xyz \dd{S}
+	= \varoiint_{\Sigma_1} xyz \dd{S}
+	+ \varoiint_{\Sigma_2} xyz \dd{S}
+	+ \varoiint_{\Sigma_3} xyz \dd{S}
+	+ \varoiint_{\Sigma_4} xyz \dd{S}.
 \]
 由于在\(\AutoTuple{\Sigma}{3}\)上，被积函数\(f(x,y,z)=xyz\)均为零，所以\[
-\varoiint_{\Sigma_1} xyz \dd{S}
-= \varoiint_{\Sigma_2} xyz \dd{S}
-= \varoiint_{\Sigma_3} xyz \dd{S}
-= 0.
+	\varoiint_{\Sigma_1} xyz \dd{S}
+	= \varoiint_{\Sigma_2} xyz \dd{S}
+	= \varoiint_{\Sigma_3} xyz \dd{S}
+	= 0.
 \]
 
 在\(\Sigma_4\)上，\(z=1-x-y\)，\(z'_x = z'_y = -1\)，所以\[
-\sqrt{1+(z'_x)^2+(z'_y)^2}
-= \sqrt{1+(-1)^2+(-1)^2}
-= \sqrt{3},
-\]从而\[
-\varoiint_{\Sigma} xyz \dd{S}
-= \varoiint_{\Sigma_4} xyz \dd{S}
-= \iint_{D_{xy}} \sqrt{3} xy (1-x-y) \dd{x} \dd{y},
-\]其中\(D_{xy}\)是\(\Sigma_4\)在\(xOy\)面上的投影区域，即由直线\(x=0\)、\(y=0\)及\(x+y=1\)所围成的闭区域.
+	\sqrt{1+(z'_x)^2+(z'_y)^2}
+	= \sqrt{1+(-1)^2+(-1)^2}
+	= \sqrt{3},
+\]
+从而\[
+	\varoiint_\Sigma xyz \dd{S}
+	= \varoiint_{\Sigma_4} xyz \dd{S}
+	= \iint_{D_{xy}} \sqrt{3} xy (1-x-y) \dd{x} \dd{y},
+\]
+其中\(D_{xy}\)是\(\Sigma_4\)在\(xOy\)面上的投影区域，
+即由直线\(x=0\)、\(y=0\)及\(x+y=1\)所围成的闭区域.
 因此\[
-\varoiint_{\Sigma} xyz \dd{S}
-= \sqrt{3} \int_0^1 x \dd{x} \int_0^{1-x} y (1-x-y) \dd{y}
-= \frac{\sqrt{3}}{120}.
+	\varoiint_\Sigma xyz \dd{S}
+	= \sqrt{3} \int_0^1 x \dd{x} \int_0^{1-x} y (1-x-y) \dd{y}
+	= \frac{\sqrt{3}}{120}.
 \]
 \end{solution}
 \end{example}
 
 \begin{example}
-设点\(P\)是椭球面\(S: x^2 + y^2 + z^2 - yz = 1\)上的动点，若\(S\)在点\(P\)处的切平面与\(xOy\)面垂直，求点\(P\)的轨迹\(C\)，并计算曲面积分\[
-I = \iint_{\Sigma} \frac{(x+\sqrt{3}) \abs{y-2z}}{\sqrt{4+y^2+z^2-4yz}} \dd{S},
-\]其中\(\Sigma\)是椭球面\(S\)位于曲线\(C\)上方的部分.
+设点\(P\)是椭球面\(S: x^2 + y^2 + z^2 - yz = 1\)上的动点，
+若\(S\)在点\(P\)处的切平面与\(xOy\)面垂直，求点\(P\)的轨迹\(C\)，并计算曲面积分\[
+	I = \iint_\Sigma \frac{(x+\sqrt{3}) \abs{y-2z}}{\sqrt{4+y^2+z^2-4yz}} \dd{S},
+\]
+其中\(\Sigma\)是椭球面\(S\)位于曲线\(C\)上方的部分.
 \begin{solution}
 设\(F(x,y,z) = x^2 + y^2 + z^2 - yz - 1\).
 求导得\[
-F'_x = 2x, \qquad
-F'_y = 2y - z, \qquad
-F'_z = 2z - y,
-\]那么\(S\)在点\(P\opair{x,y,z}\)处的切向量为\(\mat{n} = \opair{2x,2y-z,2z-y}\).
-因为点\(P\)处的切平面与\(xOy\)面垂直，所以法向量\(\mat{n}\)与\(xOy\)面的法向量\(\opair{0,0,1}\)垂直，\[
-2x\cdot0 + (2y-z)\cdot0+(2z-y)\cdot1=0
-\quad\text{或}\quad
-2z-y=0.
-\]因此，轨迹\(C\)的方程是\[
-\begin{cases}
-x^2 + y^2 + z^2 - yz = 1, \\
-2z-y=0.
-\end{cases}
-\]消去轨迹\(C\)方程中的\(z\)，得到\(C\)在\(xOy\)面上的投影为\[
-C_{xy}: x^2+\frac{3}{4}y^2=1.
-\]又因为\[
-z'_x = - \frac{F'_x}{F'_z} = \frac{2x}{y-2z}, \qquad
-z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
-\]\begin{align*}
-\dd{S} &= \sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y} \\
-&= \sqrt{1+\left(\frac{2x}{y-2z}\right)^2+\left(\frac{2y-z}{y-2z}\right)^2} \dd{x}\dd{y} \\
-&= \frac{\sqrt{4x^2+5y^2+5z^2-8yz}}{\abs{y-2z}} \dd{x}\dd{y} \\
-&= \frac{\sqrt{4+y^2+z^2-4yz}}{\abs{y-2z}} \dd{x}\dd{y},
-\end{align*}所以\begin{align*}
-&\hspace{-20pt}
-\iint_{\Sigma} \frac{(x+\sqrt{3}) \abs{y-2z}}{\sqrt{4+y^2+z^2-4yz}} \dd{S} \\
-&= \iint_{x^2+\frac{3}{4}y^2\leq1} \frac{(x+\sqrt{3}) \abs{y-2z}}{\sqrt{4+y^2+z^2-4yz}} \cdot \frac{\sqrt{4+y^2+z^2-4yz}}{\abs{y-2z}} \dd{x}\dd{y} \\
-&= \iint_{x^2+\frac{3}{4}y^2\leq1} (x+\sqrt{3}) \dd{x}\dd{y} \\
-&= \sqrt{3} \iint_{x^2+\frac{3}{4}y^2\leq1} \dd{x}\dd{y}
-= 2\pi.
+	F'_x = 2x, \qquad
+	F'_y = 2y - z, \qquad
+	F'_z = 2z - y,
+\]
+那么\(S\)在点\(P\opair{x,y,z}\)处的切向量为\(\mat{n} = \opair{2x,2y-z,2z-y}\).
+因为点\(P\)处的切平面与\(xOy\)面垂直，
+所以法向量\(\mat{n}\)与\(xOy\)面的法向量\(\opair{0,0,1}\)垂直，\[
+	2x\cdot0 + (2y-z)\cdot0+(2z-y)\cdot1=0
+	\quad\text{或}\quad
+	2z-y=0.
+\]
+因此，轨迹\(C\)的方程是\[
+	\begin{cases}
+		x^2 + y^2 + z^2 - yz = 1, \\
+		2z-y=0.
+	\end{cases}
+\]
+消去轨迹\(C\)方程中的\(z\)，得到\(C\)在\(xOy\)面上的投影为\[
+	C_{xy}: x^2+\frac{3}{4}y^2=1.
+\]
+又因为\[
+	z'_x = - \frac{F'_x}{F'_z} = \frac{2x}{y-2z}, \qquad
+	z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
+\]
+\begin{align*}
+	\dd{S} &= \sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y} \\
+	&= \sqrt{1+\left(\frac{2x}{y-2z}\right)^2+\left(\frac{2y-z}{y-2z}\right)^2} \dd{x}\dd{y} \\
+	&= \frac{\sqrt{4x^2+5y^2+5z^2-8yz}}{\abs{y-2z}} \dd{x}\dd{y} \\
+	&= \frac{\sqrt{4+y^2+z^2-4yz}}{\abs{y-2z}} \dd{x}\dd{y},
+\end{align*}
+所以\begin{align*}
+	&\hspace{-20pt}
+	\iint_\Sigma \frac{(x+\sqrt{3}) \abs{y-2z}}{\sqrt{4+y^2+z^2-4yz}} \dd{S} \\
+	&= \iint_{x^2+\frac{3}{4}y^2\leq1} \frac{(x+\sqrt{3}) \abs{y-2z}}{\sqrt{4+y^2+z^2-4yz}}
+		\cdot \frac{\sqrt{4+y^2+z^2-4yz}}{\abs{y-2z}} \dd{x}\dd{y} \\
+	&= \iint_{x^2+\frac{3}{4}y^2\leq1} (x+\sqrt{3}) \dd{x}\dd{y} \\
+	&= \sqrt{3} \iint_{x^2+\frac{3}{4}y^2\leq1} \dd{x}\dd{y}
+	= 2\pi.
 \end{align*}
 \end{solution}
 \end{example}
 
 \subsection{利用对称性简化第一类曲面积分的计算}
 设积分曲面\(\Sigma\)关于\(xOy\)面对称.
-若被积函数\(f(x,y,z)\)是关于\(z\)的偶函数，即\(f(x,y,-z) = f(x,y,z)\)，则\[
-\iint_{\Sigma} f(x,y,z) \dd{S} = 2 \iint_{D_{xy}} f[x,y,z(x,y)] \sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y};
-\]若被积函数\(f(x,y,z)\)是关于\(z\)的奇函数，即\(f(x,y,-z) = -f(x,y,z)\)，则\[
-\iint_{\Sigma} f(x,y,z) \dd{S} = 0.
+若被积函数\(f(x,y,z)\)是关于\(z\)的偶函数，
+即\(f(x,y,-z) = f(x,y,z)\)，则\[
+	\iint_\Sigma f(x,y,z) \dd{S}
+	= 2 \iint_{D_{xy}} f[x,y,z(x,y)] \sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y};
+\]
+若被积函数\(f(x,y,z)\)是关于\(z\)的奇函数，
+即\(f(x,y,-z) = -f(x,y,z)\)，则\[
+	\iint_\Sigma f(x,y,z) \dd{S} = 0.
 \]
 
-类似地，可以得出，在积分曲面关于\(yOz\)面或\(zOx\)面对称，而被积函数\(f(x,y,z)\)是关于\(x\)或\(y\)的奇函数或偶函数的情形下，第一类曲面积分的简化计算公式.
+类似地，可以得出，在积分曲面关于\(yOz\)面或\(zOx\)面对称，
+而被积函数\(f(x,y,z)\)是关于\(x\)或\(y\)的奇函数或偶函数的情形下，
+第一类曲面积分的简化计算公式.
 
 \begin{example}
-计算\(\varoiint_{\Sigma} x^2 \dd{S}\)，其中\(\Sigma: x^2+y^2+z^2=a^2\).
+计算\(\varoiint_\Sigma x^2 \dd{S}\)，其中\(\Sigma: x^2+y^2+z^2=a^2\).
 \begin{solution}
 利用对称性可得\begin{align*}
-\varoiint_{\Sigma} x^2 \dd{S}
-&= \frac{1}{3} \varoiint_{\Sigma} (x^2+y^2+z^2) \dd{S} \\
-&= \frac{1}{3} \varoiint_{\Sigma} a^2 \dd{S}
-= \frac{a^2}{3} \varoiint_{\Sigma} \dd{S} \\
-&= \frac{a^2}{3} \cdot 4\pi a^2
-= \frac{4}{3} \pi a^4.
+	\varoiint_\Sigma x^2 \dd{S}
+	&= \frac{1}{3} \varoiint_\Sigma (x^2+y^2+z^2) \dd{S} \\
+	&= \frac{1}{3} \varoiint_\Sigma a^2 \dd{S}
+	= \frac{a^2}{3} \varoiint_\Sigma \dd{S} \\
+	&= \frac{a^2}{3} \cdot 4\pi a^2
+	= \frac{4}{3} \pi a^4.
 \end{align*}
 \end{solution}
 \end{example}
@@ -1017,7 +1053,9 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 \section{对坐标的曲面积分}
 \subsection{对坐标的曲面积分的概念}
 通常我们遇到的曲面都是双侧的.
-例如由方程\(z = z(x,y)\)表示的曲面，有上侧与下侧之分\footnote{按惯例，这里假定\(z\)轴竖直向上.}；又例如，一张包围某一空间区域的闭曲面，有外侧与内侧之分.
+例如由方程\(z = z(x,y)\)表示的曲面，
+有上侧与下侧之分\footnote{按惯例，这里假定\(z\)轴竖直向上.}；
+又例如，一张包围某一空间区域的闭曲面，有外侧与内侧之分.
 以后我们总假定所考虑的曲面是双侧的.
 
 在讨论对坐标的曲面积分时，需要制定曲面的侧.
@@ -1054,15 +1092,23 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 \(\increment S_i\)在\(xOy\)面上的投影为\((\increment S_i)_{xy}\)，
 \(\opair{\xi_i,\eta_i,\zeta_i}\)是\(\increment S_i\)上任意取定的一点.
 如果当各小块曲面的直径的最大值\(\lambda\to0\)时，极限\[
-	\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n R(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{xy}
+	\lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n
+	R(\xi_i,\eta_i,\zeta_i)
+	(\increment S_i)_{xy}
 \]总存在，
-则称此极限为“函数\(R(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(x\)、\(y\)的\DefineConcept{曲面积分}”，
+则称此极限为
+“函数\(R(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(x\)、\(y\)的\DefineConcept{曲面积分}”，
 记作\[
-	\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y},
+	\iint_\Sigma R(x,y,z) \dd{x}\dd{y},
 \]
 即\[
-	\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y}
-	=\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n R(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{xy},
+	\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
+	\defeq
+	\lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n
+	R(\xi_i,\eta_i,\zeta_i)
+	(\increment S_i)_{xy},
 \]
 其中\(R(x,y,z)\)叫做\DefineConcept{被积函数}，\(\Sigma\)叫做\DefineConcept{积分曲面}.
 
@@ -1070,11 +1116,11 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 “函数\(P(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(y\)、\(z\)的\DefineConcept{曲面积分}”
 及“函数\(Q(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(z\)、\(x\)的\DefineConcept{曲面积分}”
 分别为\begin{gather*}
-	\iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}
+	\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
 	\defeq
 	\lim\limits_{\lambda\to0}
 	\sum\limits_{i=1}^n P(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{yz}, \\
-	\iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}
+	\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
 	\defeq
 	\lim\limits_{\lambda\to0}
 	\sum\limits_{i=1}^n Q(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{zx}.
@@ -1087,18 +1133,18 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 我们指出，当\(P(x,y,z),Q(x,y,z),R(x,y,z)\)在有向光滑曲面\(\Sigma\)上连续时，对坐标的曲面积分是存在的.
 
 一般地，可以将\[
-\iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}
-+\iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}
-+\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y}
+\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
++\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
++\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
 \]合并写成\[
-\iint_{\Sigma}{P(x,y,z)\dd{y}\dd{z}+Q(x,y,z)\dd{z}\dd{x}+R(x,y,z)\dd{x}\dd{y}}.
+\iint_\Sigma{P(x,y,z)\dd{y}\dd{z}+Q(x,y,z)\dd{z}\dd{x}+R(x,y,z)\dd{x}\dd{y}}.
 \]
 
 \subsection{对坐标的曲面积分的性质}
 对坐标的曲面积分具有与对坐标的曲线积分相类似的一些性质.
 \begin{property}
 如果把\(\Sigma\)分成\(\Sigma_1\)和\(\Sigma_2\)，则\begin{align*}
-&\iint_{\Sigma}{P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}} \\
+&\iint_\Sigma{P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}} \\
 &\qquad=\iint_{\Sigma_1}{P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}} \\
 &\qquad\quad+\iint_{\Sigma_2}{P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}}.
 \end{align*}
@@ -1106,9 +1152,9 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 
 \begin{property}
 设\(\Sigma\)是有向曲面，\(\Sigma^-\)表示与\(\Sigma\)取相反侧的有向曲面，则\begin{gather*}
-\iint_{\Sigma^-} P(x,y,z) \dd{y}\dd{z} = -\iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}, \\
-\iint_{\Sigma^-} Q(x,y,z) \dd{z}\dd{x} = -\iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}, \\
-\iint_{\Sigma^-} R(x,y,z) \dd{x}\dd{y} = -\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y}.
+\iint_{\Sigma^-} P(x,y,z) \dd{y}\dd{z} = -\iint_\Sigma P(x,y,z) \dd{y}\dd{z}, \\
+\iint_{\Sigma^-} Q(x,y,z) \dd{z}\dd{x} = -\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}, \\
+\iint_{\Sigma^-} R(x,y,z) \dd{x}\dd{y} = -\iint_\Sigma R(x,y,z) \dd{x}\dd{y}.
 \end{gather*}
 \end{property}
 
@@ -1120,7 +1166,7 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 如果\(\Sigma\)由\(z=z(x,y)\)给出，
 且\(z=z(x,y)\)在\(D_{xy}\)上具有一阶连续偏导数，
 则有\begin{equation}\label{equation:线积分与面积分.第二类曲面积分的计算式1}
-\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y}
+\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
 = \sgn\cos\gamma \cdot \iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
 \end{equation}
 \(\sgn\cos\gamma\)的取值可以这样判定 —— 当积分曲面为\(\Sigma\)上侧时，上式等号右侧取正号；当积分曲面为\(\Sigma\)下侧时，上式等号右侧取负号.
@@ -1128,7 +1174,7 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 如果\(\Sigma\)由\(y=y(z,x)\)给出，
 且\(y=y(z,x)\)在\(D_{zx}\)上具有一阶连续偏导数，
 则有\begin{equation}\label{equation:线积分与面积分.第二类曲面积分的计算式2}
-\iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}
+\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
 = \sgn\cos\beta \cdot \iint_{D_{zx}} Q[x,y(z,x),z] \dd{z}\dd{x}.
 \end{equation}
 \(\sgn\cos\beta\)的取值可以这样判定 —— 当积分曲面为\(\Sigma\)右侧时，上式等号右侧取正号；当积分曲面为\(\Sigma\)左侧时，上式等号右侧取负号.
@@ -1136,7 +1182,7 @@ z'_y = - \frac{F'_y}{F'_z} = \frac{2y-z}{y-2z},
 如果\(\Sigma\)由\(x=x(y,z)\)给出，
 且\(x=x(y,z)\)在\(D_{yz}\)上具有一阶连续偏导数，
 则有\begin{equation}\label{equation:线积分与面积分.第二类曲面积分的计算式3}
-\iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}
+\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
 = \sgn\cos\alpha \cdot \iint_{D_{yz}} P[x(y,z),y,z] \dd{y}\dd{z}.
 \end{equation}
 \(\sgn\cos\alpha\)的取值可以这样判定 —— 当积分曲面为\(\Sigma\)前侧时，上式等号右侧取正号；当积分曲面为\(\Sigma\)后侧时，上式等号右侧取负号.
@@ -1159,7 +1205,7 @@ z'_u & z'_v
 且被积函数\[
 \mat{F}(x,y,z) = P(x,y,z) \mat{i} + Q(x,y,z) \mat{j} + R(x,y,z) \mat{k}
 \]在\(\Sigma\)上连续，那么有\[
-\iint_{\Sigma} \mat{F} \cdot \dd{\mat{S}}
+\iint_\Sigma \mat{F} \cdot \dd{\mat{S}}
 = \pm \iint_D \left[
 	P \jacobi{y,z}{u,v}
 	+ Q \jacobi{z,x}{u,v}
@@ -1170,7 +1216,7 @@ z'_u & z'_v
 
 \begin{example}
 计算曲面积分\[
-\iint_{\Sigma} x^2 \dd{y}\dd{z} + y^2 \dd{z}\dd{x} + z^2 \dd{x}\dd{y},
+\iint_\Sigma x^2 \dd{y}\dd{z} + y^2 \dd{z}\dd{x} + z^2 \dd{x}\dd{y},
 \]其中\(\Sigma\)是长方体\(\Omega = \Set{
 \opair{x,y,z} \given
 0 \leq x \leq a,
@@ -1188,33 +1234,33 @@ z'_u & z'_v
 \(\Sigma_6: y=0\ (0 \leq x \leq a, 0 \leq z \leq c)\)的左侧. \\
 \end{tabular}\end{center}
 除\(\Sigma_3\)、\(\Sigma_4\)外，其余四片曲面在\(yOz\)面上的投影为零，因此\[
-\iint_{\Sigma} x^2 \dd{y}\dd{z}
+\iint_\Sigma x^2 \dd{y}\dd{z}
 = \iint_{\Sigma_3} x^2 \dd{y}\dd{z}
 + \iint_{\Sigma_4} x^2 \dd{y}\dd{z}.
 \]应用\cref{equation:线积分与面积分.第二类曲面积分的计算式3} 就有\[
-\iint_{\Sigma} x^2 \dd{y}\dd{z}
+\iint_\Sigma x^2 \dd{y}\dd{z}
 = \iint_{D_{yz}} a^2 \dd{y}\dd{z}
 - \iint_{D_{yz}} 0^2 \dd{y}\dd{z}
 = a^2 bc.
 \]同理可得\[
-\iint_{\Sigma} y^2 \dd{z}\dd{x}
+\iint_\Sigma y^2 \dd{z}\dd{x}
 = b^2 ac,
 \]\[
-\iint_{\Sigma} z^2 \dd{x}\dd{y}
+\iint_\Sigma z^2 \dd{x}\dd{y}
 = c^2 ab.
 \]于是所求曲面积分为\((a+b+c) abc\).
 \end{solution}
 \end{example}
 
 \begin{example}
-计算曲面积分\(\iint_{\Sigma} xyz \dd{x}\dd{y}\)，其中\(\Sigma\)是球面\(x^2+y^2+z^2=1\)外侧在\(x\geq0,y\geq0\)的部分.
+计算曲面积分\(\iint_\Sigma xyz \dd{x}\dd{y}\)，其中\(\Sigma\)是球面\(x^2+y^2+z^2=1\)外侧在\(x\geq0,y\geq0\)的部分.
 \begin{solution}
 把\(\Sigma\)分为\(\Sigma_1\)和\(\Sigma_2\)两部分，其中\(\Sigma_1\)的方程为\[
 z = -\sqrt{1-x^2-y^2},
 \]而\(\Sigma_2\)的方程为\[
 z = \sqrt{1-x^2-y^2}.
 \]因此\begin{align*}
-\iint_{\Sigma} xyz \dd{x}\dd{y}
+\iint_\Sigma xyz \dd{x}\dd{y}
 &= \iint_{\Sigma_1} xyz \dd{x}\dd{y}
 + \iint_{\Sigma_2} xyz \dd{x}\dd{y} \\
 &= -\iint_{D_{xy}} xy (-\sqrt{1-x^2-y^2}) \dd{x}\dd{y}
@@ -1229,7 +1275,7 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 &= \int_0^{\pi/2} \sin2\theta \dd{\theta} \int_0^1 \rho^3 \sqrt{1-\rho^2} \dd{\rho} \\
 &= 1 \cdot \frac{2}{15} = \frac{2}{15},
 \end{align*}
-从而\(\iint_{\Sigma} xyz \dd{x}\dd{y} = \frac{2}{15}\).
+从而\(\iint_\Sigma xyz \dd{x}\dd{y} = \frac{2}{15}\).
 \end{solution}
 \end{example}
 
@@ -1239,13 +1285,13 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 	f(x,y,-z) = f(x,y,z),
 \]
 则\[
-	\iint_{\Sigma} f(x,y,z) \dd{x}\dd{y} = 0;
+	\iint_\Sigma f(x,y,z) \dd{x}\dd{y} = 0;
 \]
 若被积函数\(f(x,y,z)\)是关于\(z\)的奇函数，即\[
 	f(x,y,-z) = -f(x,y,z),
 \]
 则\[
-	\iint_{\Sigma} f(x,y,z) \dd{x}\dd{y} = \pm2 \iint_{D_{xy}} f[x,y,z(x,y)] \dd{x}\dd{y}.
+	\iint_\Sigma f(x,y,z) \dd{x}\dd{y} = \pm2 \iint_{D_{xy}} f[x,y,z(x,y)] \dd{x}\dd{y}.
 \]
 
 类似地，可以得出，在积分曲面关于\(yOz\)面或\(zOx\)面对称，
@@ -1255,7 +1301,7 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 \section{两类曲面积分之间的联系}
 设有向曲面\(\Sigma\)由方程\(z = z(x,y)\)给出，\(\Sigma\)在\(xOy\)面上的投影区域为\(D_{xy}\)，函数\(z = z(x,y)\)在\(D_{xy}\)上具有一阶连续偏导数，\(R(x,y,z)\)在\(\Sigma\)上连续.
 如果\(\Sigma\)取上侧，则由对坐标的曲面积分计算公式有\[
-\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y} = \iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
+\iint_\Sigma R(x,y,z) \dd{x}\dd{y} = \iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
 \]
 
 另一方面，因上述有向曲面\(\Sigma\)的法向量的方向余弦为\[
@@ -1265,53 +1311,53 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 \]\[
 \cos\gamma=\frac{1}{\sqrt{1+(z'_x)^2+(z'_y)^2}},
 \]故由对面积的曲面积分计算公式有\[
-\iint_{\Sigma} R(x,y,z) \cos\gamma \dd{S}
+\iint_\Sigma R(x,y,z) \cos\gamma \dd{S}
 = \iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
 \]由此可见，有\[
-\iint_{\Sigma} R(x,y,z) \dd{x}\dd{y}
-= \iint_{\Sigma} R(x,y,z) \cos\gamma \dd{S}.
+\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
+= \iint_\Sigma R(x,y,z) \cos\gamma \dd{S}.
 \eqno{(1)}
 \]
 
 如果\(\Sigma\)取下侧，则\[
-\iint_{\Sigma} R(x,y,z) \cos\gamma \dd{S}
+\iint_\Sigma R(x,y,z) \cos\gamma \dd{S}
 = -\iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
 \]但这时\(\cos\gamma=\frac{-1}{\sqrt{1+(z'_x)^2+(z'_y)^2}}\)，因此(1)式仍成立.
 
 类似地可推得\[
-\iint_{\Sigma} P(x,y,z) \dd{y}\dd{z}
+\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
 = \iint_{D_{yz}} P(x,y,z) \cos\alpha \dd{S},
 \eqno{(2)}
 \]\[
-\iint_{\Sigma} Q(x,y,z) \dd{z}\dd{x}
+\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
 = \iint_{D_{zx}} Q(x,y,z) \cos\beta \dd{S}.
 \eqno{(3)}
 \]
 
 合并(1)、(2)、(3)式，得两类曲面积分之间的如下联系：
 \begin{equation}\label{equation:线积分与面积分.两类曲面积分之间的联系}
-\iint_{\Sigma} P \dd{y}\dd{z} + Q \dd{z}\dd{x} + R \dd{x}\dd{y}
-=\iint_{\Sigma} (P\cos\alpha+Q\cos\beta+R\cos\gamma) \dd{S},
+\iint_\Sigma P \dd{y}\dd{z} + Q \dd{z}\dd{x} + R \dd{x}\dd{y}
+=\iint_\Sigma (P\cos\alpha+Q\cos\beta+R\cos\gamma) \dd{S},
 \end{equation}
 其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是有向曲面\(\Sigma\)在点\(\opair{x,y,z}\)处的法向量的方向余弦.
 
 两类曲面积分之间的联系也可写成如下的向量形式：
 \begin{equation}\label{equation:线积分与面积分.两类曲面积分之间的联系的向量形式}
-\iint_{\Sigma} \mat{A} \cdot \dd{\mat{S}}
-=\iint_{\Sigma} \mat{A} \cdot \mat{n} \dd{S},
+\iint_\Sigma \mat{A} \cdot \dd{\mat{S}}
+=\iint_\Sigma \mat{A} \cdot \mat{n} \dd{S},
 \end{equation}
 其中\(\mat{A}=\opair{P,Q,R}\)，
 \(\mat{n}=\opair{\cos\alpha,\cos\beta,\cos\gamma}\)为有向曲面\(\Sigma\)在点\(\opair{x,y,z}\)处的单位法向量，
 \(\dd{\mat{S}} = \mat{n}\dd{S} = \opair{\dd{y}\dd{z},\dd{z}\dd{x},\dd{x}\dd{y}}\)称为\DefineConcept{有向曲面元}.
 
 \begin{example}
-\def\ys{\iint_{\Sigma} (z^2+x) \dd{y}\dd{z} - z \dd{x}\dd{y}}%
+\def\ys{\iint_\Sigma (z^2+x) \dd{y}\dd{z} - z \dd{x}\dd{y}}%
 计算曲面积分\(\ys\)，其中\(\Sigma\)是旋转抛物面\(z = \frac{1}{2}(x^2+y^2)\)介于平面\(z=0\)和\(z=2\)之间的部分的下侧.
 \begin{solution}
 由两类曲面积分之间的联系 \labelcref{equation:线积分与面积分.两类曲面积分之间的联系}，可得\[
-\iint_{\Sigma} (z^2+x) \dd{y}\dd{z}
-= \iint_{\Sigma} (z^2+x) \cos\alpha \dd{S}
-= \iint_{\Sigma} (z^2+x) \frac{\cos\alpha}{\cos\gamma} \dd{x}\dd{y}.
+\iint_\Sigma (z^2+x) \dd{y}\dd{z}
+= \iint_\Sigma (z^2+x) \cos\alpha \dd{S}
+= \iint_\Sigma (z^2+x) \frac{\cos\alpha}{\cos\gamma} \dd{x}\dd{y}.
 \]在曲面\(\Sigma\)上，有\[
 \cos\alpha
 = \frac{x}{\sqrt{1+x^2+y^2}},
@@ -1320,7 +1366,7 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 = \frac{-1}{\sqrt{1+x^2+y^2}}.
 \]故\[
 \ys
-= \iint_{\Sigma} [(z^2+x)(-x) - z] \dd{x}\dd{y}.
+= \iint_\Sigma [(z^2+x)(-x) - z] \dd{x}\dd{y}.
 \]
 再按对坐标的曲面积分的计算法，便得\[
 \ys
@@ -1351,8 +1397,8 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 \begin{equation}\label{equation:线积分与面积分.高斯公式}
 	\begin{split}
 		\iiint_{\Omega} \left(\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}\right)\dd{v}
-		&=\varoiint_{\Sigma} P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y} \\
-		&=\varoiint_{\Sigma} (P\cos\alpha+Q\cos\beta+R\cos\gamma)\dd{S},
+		&=\varoiint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y} \\
+		&=\varoiint_\Sigma (P\cos\alpha+Q\cos\beta+R\cos\gamma)\dd{S},
 	\end{split}
 \end{equation}
 这里\(\Sigma\)是\(\Omega\)的整个边界曲面的外侧，
@@ -1388,19 +1434,19 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 \]因为\(\Sigma_3\)上任意一块曲面在\(xOy\)面上的投影为零，所以直接根据对坐标的曲面积分的定义可知\[
 \iint_{\Sigma_3} R(x,y,z) \dd{x}\dd{y} = 0.
 \]把以上三个式子相加，得\[
-\varoiint_{\Sigma} R(x,y,z) \dd{x}\dd{y}
+\varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}
 = \iint_{D_{xy}} \left\{
 	R[x,y,z_2(x,y)] - R[x,y,z_1(x,y)]
 \right\} \dd{x}\dd{y}.
 \eqno{(2)}
 \]比较(1)、(2)两式，得\[
-\iiint_{\Omega} \pdv{R}{z} \dd{v} = \varoiint_{\Sigma} R(x,y,z) \dd{x}\dd{y}.
+\iiint_{\Omega} \pdv{R}{z} \dd{v} = \varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}.
 \]
 
 如果穿过\(\Omega\)内部且平行于\(x\)轴的直线以及平行于\(y\)轴的直线与\(\Omega\)的边界曲面\(\Sigma\)的交点也都恰好是两个，那么类似地可得\[
-\iiint_{\Omega} \pdv{P}{x} \dd{v} = \varoiint_{\Sigma} P(x,y,z) \dd{y}\dd{z},
+\iiint_{\Omega} \pdv{P}{x} \dd{v} = \varoiint_\Sigma P(x,y,z) \dd{y}\dd{z},
 \]\[
-\iiint_{\Omega} \pdv{Q}{y} \dd{v} = \varoiint_{\Sigma} Q(x,y,z) \dd{z}\dd{x},
+\iiint_{\Omega} \pdv{Q}{y} \dd{v} = \varoiint_\Sigma Q(x,y,z) \dd{z}\dd{x},
 \]再把以上三个式子两端分别相加，即得高斯公式 \labelcref{equation:线积分与面积分.高斯公式}.
 
 在上述证明中，我们对闭区域\(\Omega\)作了这样的限制，即穿过\(\Omega\)内部且平行于坐标轴的直线与\(\Omega\)的边界曲面\(\Sigma\)的交点恰好是两点.
@@ -1411,7 +1457,7 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 
 \begin{example}
 利用高斯公式计算曲面积分\[
-\varoiint_{\Sigma} (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z},
+\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z},
 \]其中\(\Sigma\)为柱面\(x^2+y^2=1\)及平面\(z=0,z=3\)所围成的空间闭区域\(\Omega\)的整个边界曲面的外侧.
 \begin{solution}
 记\(P=(y-z)x\)，\(Q=0\)，\(R=x-y\)，那么\[
@@ -1421,7 +1467,7 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 \qquad
 \pdv{R}{z} = 0,
 \]利用高斯公式把所给曲面积分化为三重积分，再利用柱面坐标计算三重积分，得\begin{align*}
-&\hspace{-20pt}\varoiint_{\Sigma} (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z}
+&\hspace{-20pt}\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z}
 = \iiint_{\Omega} (y-z) \dd{x}\dd{y}\dd{z} \\
 &= \iiint_{\Omega} (\rho\sin\theta-z)\rho\dd{\rho}\dd{\theta}\dd{z}
 = \int_0^{2\pi} \dd{\theta} \int_0^1 \rho\dd{\rho} \int_0^3 (\rho\sin\theta-z) \dd{z}
@@ -1432,7 +1478,7 @@ x^2+y^2\leq1 \quad(x\geq0,y\geq0).
 
 \begin{example}
 设空间有界区域\(\Omega\)中，柱面\(x^2+y^2=1\)与平面\(z=0\)和\(x+z=1\)围成，\(\Sigma\)为\(\Omega\)边界曲面的外侧，计算曲面积分\[
-I = \varoiint_{\Sigma} 2xz \dd{y}\dd{z} + xz \cos y \dd{z}\dd{x} + 3yz \sin x \dd{x}\dd{y}.
+I = \varoiint_\Sigma 2xz \dd{y}\dd{z} + xz \cos y \dd{z}\dd{x} + 3yz \sin x \dd{x}\dd{y}.
 \]
 \begin{solution}
 利用高斯公式可得
@@ -1472,7 +1518,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \begin{equation}\label{equation:线积分与面积分.三维格林第一公式}
 \begin{split}
 &\iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} \\
-&\hspace{30pt}=\varoiint_{\Sigma} u \pdv{v}{n} \dd{S}
+&\hspace{30pt}=\varoiint_\Sigma u \pdv{v}{n} \dd{S}
 -\iiint_{\Omega} \left(
 \pdv{u}{x} \pdv{v}{x}
 +\pdv{u}{y} \pdv{v}{y}
@@ -1487,33 +1533,33 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 + \pdv{v}{y} \cos\beta
 + \pdv{v}{z} \cos\gamma,
 \]其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的外法线向量的方向余弦，于是利用高斯公式即有曲面积分\begin{align*}
-&\hspace{-20pt}\varoiint_{\Sigma} u \pdv{v}{\mat{n}} \dd{S}
-= \varoiint_{\Sigma} u \left(
+&\hspace{-20pt}\varoiint_\Sigma u \pdv{v}{\mat{n}} \dd{S}
+= \varoiint_\Sigma u \left(
 \pdv{v}{x} \cos\alpha
 + \pdv{v}{y} \cos\beta
 + \pdv{v}{z} \cos\gamma
 \right) \dd{S} \\
-&= \varoiint_{\Sigma} \left[
+&= \varoiint_\Sigma \left[
 \left( u \pdv{v}{x} \right) \cos\alpha
 + \left( u \pdv{v}{y} \right) \cos\beta
 + \left( u \pdv{v}{z} \right) \cos\gamma
 \right] \dd{S} \\
-&= \varoiint_{\Sigma} \left[
+&= \varoiint_\Sigma \left[
 \pdv{x} \left( u \pdv{v}{x} \right)
 + \pdv{y} \left( u \pdv{v}{y} \right)
 + \pdv{z} \left( u \pdv{v}{z} \right)
 \right] \dd{x}\dd{y}\dd{z} \\
-&= \varoiint_{\Sigma} \left[
+&= \varoiint_\Sigma \left[
 \left( \pdv{u}{x} \pdv{v}{x} + u \pdv[2]{v}{x} \right)
 + \left( \pdv{u}{y} \pdv{v}{y} + u \pdv[2]{v}{y} \right)
 + \left( \pdv{u}{z} \pdv{v}{z} + u \pdv[2]{v}{z} \right)
 \right] \dd{x}\dd{y}\dd{z} \\
-&= \varoiint_{\Sigma} \left(
+&= \varoiint_\Sigma \left(
 \pdv{u}{x} \pdv{v}{x}
 + \pdv{u}{y} \pdv{v}{y}
 + \pdv{u}{z} \pdv{v}{z}
 \right) \dd{x}\dd{y}\dd{z}
-+ \varoiint_{\Sigma} u \laplacian{v} \dd{x}\dd{y}\dd{z},
++ \varoiint_\Sigma u \laplacian{v} \dd{x}\dd{y}\dd{z},
 \end{align*}将上式右端第一个积分移至左端便得\cref{equation:线积分与面积分.三维格林第一公式}.
 \end{proof}
 \end{example}
@@ -1521,7 +1567,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{u}{\mat{n}}\)、\(\pdv{v}{\mat{n}}\)依次为函数\(u\)、\(v\)沿\(\Sigma\)的外法线方向的方向导数.证明：
 \begin{equation}\label{equation:线积分与面积分.三维格林第二公式}
 \iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z}
-=\varoiint_{\Sigma} \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}.
+=\varoiint_\Sigma \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}.
 \end{equation}
 \begin{proof}
 \def\Io{\iiint_{\Omega} \left(%
@@ -1539,9 +1585,9 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 + \pdv{v}{y} \cos\beta
 + \pdv{v}{z} \cos\gamma,
 \end{align*}其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的外法线向量的方向余弦，于是利用\hyperref[equation:线积分与面积分.三维格林第一公式]{三维格林第一公式}即有曲面积分\begin{align*}
-&\hspace{-5pt}\varoiint_{\Sigma} \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}
-= \varoiint_{\Sigma} u \pdv{v}{\mat{n}} \dd{S}
-- \varoiint_{\Sigma} v \pdv{u}{\mat{n}} \dd{S} \\
+&\hspace{-5pt}\varoiint_\Sigma \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}
+= \varoiint_\Sigma u \pdv{v}{\mat{n}} \dd{S}
+- \varoiint_\Sigma v \pdv{u}{\mat{n}} \dd{S} \\
 &= \left[ \iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} + I \right]
 - \left[ \iiint_{\Omega} v \laplacian{u} \dd{x}\dd{y}\dd{z} + I \right] \\
 &= \iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z},
@@ -1562,7 +1608,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 
 \begin{theorem}\label{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
 设\(G\)是空间二维单连通区域，\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在\(G\)内具有一阶连续偏导数，则曲面积分\[
-\iint_{\Sigma} P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
+\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
 \]在\(G\)内与所取曲面\(\Sigma\)无关而只决定于\(\Sigma\)的边界曲线（或沿\(G\)内任一闭曲面的曲面积分为零）的充要条件是\[
 \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z} = 0
 \]在\(G\)内恒成立.
@@ -1573,13 +1619,13 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 设有向量场\[
 \mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k},
 \]其中函数\(P\)、\(Q\)、\(R\)均具有一阶连续偏导数，\(\Sigma\)是场内一片有向曲面，\(\mat{n}\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的单位法向量，则积分\[
-\iint_{\Sigma}{\mat{A}\cdot\mat{n}\dd{S}}
+\iint_\Sigma{\mat{A}\cdot\mat{n}\dd{S}}
 \]称为向量场\(\mat{A}\)通过曲面\(\Sigma\)向着指定侧的\DefineConcept{通量}（或\DefineConcept{流量}）.
 \end{definition}
 由两类曲面积分的关系，通量又可表达为\[
-\iint_{\Sigma} \mat{A}\cdot\mat{n}\dd{S}
-=\iint_{\Sigma} \mat{A}\cdot\dd{\mat{S}}
-=\iint_{\Sigma} P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}.
+\iint_\Sigma \mat{A}\cdot\mat{n}\dd{S}
+=\iint_\Sigma \mat{A}\cdot\dd{\mat{S}}
+=\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}.
 \]
 
 \begin{definition}[平面上的散度]
@@ -1603,7 +1649,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{theorem}
 
 \begin{definition}[空间中的散度]
-\def\defofdiv{\lim\limits_{\Omega \to M} \frac{1}{V} \varoiint_{\Sigma} \mat{A}(x,y,z) \cdot \dd{\mat{S}}}%
+\def\defofdiv{\lim\limits_{\Omega \to M} \frac{1}{V} \varoiint_\Sigma \mat{A}(x,y,z) \cdot \dd{\mat{S}}}%
 设\[
 \mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k}
 \]是定义在空间闭区域\(\Omega\)内的向量场，
@@ -1632,7 +1678,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 
 现在利用散度的概念，\cref{equation:线积分与面积分.高斯公式} 可以改写为
 \begin{equation}\label{equation:线积分与面积分.高斯公式1}
-	\iiint_{\Omega} \div{\mat{A}} \dd{v} = \varoiint_{\Sigma} \mat{A} \cdot \dd{\mat{S}};
+	\iiint_{\Omega} \div{\mat{A}} \dd{v} = \varoiint_\Sigma \mat{A} \cdot \dd{\mat{S}};
 \end{equation}
 而\cref{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
 可以改写为“沿任意闭曲面的曲面积分为零的充要条件是向量场散度为零”.
@@ -1643,7 +1689,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 我们建立如下的坐标系：\(xOy\)面与液面重合，\(z\)轴铅锤向下.
 浸没在液体中的物体所占据的空间闭区域\(\Omega\)的边界曲面\(\Sigma\)上任意一点\(M\opair{x,y,z}\)的邻近小区域\(\dd{\sigma}\)所受的压力大小等于从它到液面间这部分液体（柱）的重力大小，即为\(\rho g z \dd{\sigma}\)，而方向是\(\mat{n}=\cos\alpha\mat{i}+\cos\beta\mat{j}+\cos\gamma\mat{k}\)（即\(\Sigma\)的单位内法向量），其中\(\rho\)是液体的密度，\(\sigma\)是液体（柱）的底面积，\(g\)是重力加速度大小.
 从而整个物体所受浮力为\begin{align*}
-\mat{F} &= \varoiint_{\Sigma} \rho g z (\cos\alpha\mat{i}+\cos\beta\mat{j}+\cos\gamma\mat{k}) \dd{\sigma} \\
+\mat{F} &= \varoiint_\Sigma \rho g z (\cos\alpha\mat{i}+\cos\beta\mat{j}+\cos\gamma\mat{k}) \dd{\sigma} \\
 &= \rho g \iint_{\Omega} \left(\pdv{x}+\pdv{y}+\pdv{z}\right) z \dd{v} \\
 &= \rho g \iint_{\Omega} \dd{v}
 = \rho g V,
@@ -1665,7 +1711,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 函数\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在曲面\(\Sigma\)（连同边界\(\Gamma\)）上具有一阶连续偏导数，则有
 \begin{equation}\label{equation:线积分与面积分.斯托克斯公式}
 \begin{split}
-&\hspace{-20pt}\iint_{\Sigma}
+&\hspace{-20pt}\iint_\Sigma
 	\left( \pdv{R}{y} - \pdv{Q}{z} \right)\dd{y}\dd{z}
 	+\left( \pdv{P}{z} - \pdv{R}{x} \right)\dd{z}\dd{x}
 	+\left( \pdv{Q}{x} - \pdv{P}{y} \right)\dd{x}\dd{y} \\
@@ -1675,7 +1721,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{theorem}
 
 为了便于记忆，利用行列式记号把斯托克斯公式写成\[
-\iint_{\Sigma} \begin{vmatrix}
+\iint_\Sigma \begin{vmatrix}
 \dd{y}\dd{z} & \dd{z}\dd{x} & \dd{x}\dd{y} \\
 \pdv{x} & \pdv{y} & \pdv{z} \\
 P & Q & R \\
@@ -1684,7 +1730,7 @@ P & Q & R \\
 \]把其中的行列式按第一行展开，并把\(\pdv{y}\)与\(R\)的“积”理解为\(\pdv{R}{y}\)，并以此类推.
 
 利用两类曲面积分间的联系，可得斯托克斯公式的另一形式\[
-\iint_{\Sigma} \begin{vmatrix}
+\iint_\Sigma \begin{vmatrix}
 \cos\alpha & \cos\beta & \cos\gamma \\
 \pdv{x} & \pdv{y} & \pdv{z} \\
 P & Q & R \\
@@ -1693,14 +1739,14 @@ P & Q & R \\
 \]其中\(\mat{n}=\opair{\cos\alpha,\cos\beta,\cos\gamma}\)为有向曲面\(\Sigma\)在点\(\opair{x,y,z}\)处的单位法向量.
 
 如果我们再进一步借用分块矩阵的记法，则可将斯托克斯公式写成\[
-\iint_{\Sigma} \begin{vmatrix}
+\iint_\Sigma \begin{vmatrix}
 \dd{\mat{S}} \\
 \grad \\
 \mat{A}
 \end{vmatrix}
 = \oint_{\Gamma} \mat{A} \cdot \dd{\mat{r}}
 \quad\text{或}\quad
-\iint_{\Sigma} \begin{vmatrix}
+\iint_\Sigma \begin{vmatrix}
 \mat{n} \\
 \grad \\
 \mat{A}
@@ -1709,7 +1755,7 @@ P & Q & R \\
 \]
 
 如果\(\Sigma\)是\(xOy\)面上的一块平面闭区域，斯托克斯公式就变成格林公式.因此，格林公式是斯托克斯公式的一种特殊情形，即\[
-\iint_{\Sigma} \begin{vmatrix}
+\iint_\Sigma \begin{vmatrix}
 0 & 0 & \dd{x}\dd{y} \\
 \pdv{x} & \pdv{y} & \pdv{z} \\
 P & Q & 0 \\
@@ -1795,9 +1841,9 @@ P & Q & R \\
 P & Q & R \\
 \end{vmatrix}.
 \]于是，斯托克斯公式可以写成下面的向量形式\[
-\iint_{\Sigma} \curl{\mat{A}} \cdot \mat{n} \dd{S} = \oint_L \mat{A} \cdot \mat{\tau} \dd{s}
+\iint_\Sigma \curl{\mat{A}} \cdot \mat{n} \dd{S} = \oint_L \mat{A} \cdot \mat{\tau} \dd{s}
 \]或\[
-\iint_{\Sigma} \curl{\mat{A}} \cdot \dd{\mat{S}} = \oint_L \mat{A} \cdot \dd{\mat{s}}.
+\iint_\Sigma \curl{\mat{A}} \cdot \dd{\mat{S}} = \oint_L \mat{A} \cdot \dd{\mat{s}}.
 \]上式表明：向量场\(\mat{A}\)沿有向闭曲线\(\Gamma\)的环流量等于向量场\(\mat{A}\)的旋度通过曲面\(\Sigma\)的通量，这里\(\Gamma\)的正向与\(\Sigma\)的侧应符合右手规则.
 
 \begin{example}
