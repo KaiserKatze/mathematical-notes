@@ -841,7 +841,6 @@ a^{\ln b} = b^{\ln a}.
 	\centering
 	\begin{tikzpicture}[scale=.5]
 		\begin{axis}[
-			xmin=-10,xmax=10,
 			restrict y to domain=-20:20,
 			ymin=-10,ymax=10,
 			grid=both,width=\textwidth,height=\textwidth,
@@ -850,17 +849,16 @@ a^{\ln b} = b^{\ln a}.
 			ylabel={\(y\)},
 			enlarge x limits=0.1,
 			enlarge y limits=0.1,
-			axis lines = middle,
 			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
 			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+			xmin=-4.7124, xmax=4.7124,
+			xtick={-4.7124,-1.5708,...,10},
+			xticklabels={$-\frac{3\pi}{2}$,$-\frac{\pi}{2}$,$\frac{\pi}{2}$,$\frac{3\pi}{2}$},
 		]
-			\addplot[color=blue,samples=50,smooth,domain={-7*pi/2}:{-5*pi/2},variable=\x]{tan(\x r)};
-			\addplot[color=blue,samples=50,smooth,domain={-5*pi/2}:{-3*pi/2},variable=\x]{tan(\x r)};
-			\addplot[color=blue,samples=50,smooth,domain={-3*pi/2}:{-pi/2},variable=\x]{tan(\x r)};
-			\addplot[color=blue,samples=50,smooth,domain={-pi/2}:{pi/2},variable=\x]{tan(\x r)};
-			\addplot[color=blue,samples=50,smooth,domain={pi/2}:{3*pi/2},variable=\x]{tan(\x r)};
-			\addplot[color=blue,samples=50,smooth,domain={3*pi/2}:{5*pi/2},variable=\x]{tan(\x r)};
-			\addplot[color=blue,samples=50,smooth,domain={5*pi/2}:{7*pi/2},variable=\x]{tan(\x r)};
+			\foreach \i in {-5,-3,...,3} {
+				\addplot[color=blue,samples=50,smooth,domain={\i*pi/2}:{(\i+2)*pi/2},variable=\x]
+				{tan(\x r)};
+			}
 		\end{axis}
 	\end{tikzpicture}
 	\caption{正切函数的图形}
