@@ -1047,63 +1047,82 @@ y = \psi(t)
 现在来计算这曲线弧的长度.
 
 取参数\(t\)为积分变量，它的变化区间为\([\alpha,\beta]\).
-相应于\([\alpha,\beta]\)上任一小区间\([t,t+\dd{t}]\)的小弧段的长度\(\increment s\)近似等于对应的弦的长度\(\sqrt{(\increment x)^2+(\increment y)^2}\)，因为\[
-\increment x = \varphi(t+\dd{t})-\varphi(t) \approx \dd{x} = \varphi'(t) \dd{t},
+相应于\([\alpha,\beta]\)上任一小区间\([t,t+\dd{t}]\)的小弧段的长度\(\increment s\)
+近似等于对应的弦的长度\(\sqrt{(\increment x)^2+(\increment y)^2}\)，
+因为\[
+	\increment x
+	= \varphi(t+\dd{t})-\varphi(t)
+	\approx \dd{x}
+	= \varphi'(t) \dd{t},
 \]\[
-\increment y = \psi(t+\dd{t})-\psi(t) \approx \dd{y} = \psi'(t) \dd{t},
-\]所以，\(\increment s\)的近似值（弧微分）即弧长元素为\[
-\dd{s} = \sqrt{(\dd{x})^2 + (\dd{y})^2}
-= \sqrt{\varphi'^2(t) + \psi'^2(t)} \dd{t}.
-\]于是所求弧长为\begin{equation}
-s = \int_{\alpha}^{\beta} \sqrt{\varphi'^2(t) + \psi'^2(t)} \dd{t}.
+	\increment y
+	= \psi(t+\dd{t})-\psi(t)
+	\approx \dd{y}
+	= \psi'(t) \dd{t},
+\]
+所以，\(\increment s\)的近似值（弧微分）即弧长元素为\[
+	\dd{s} = \sqrt{(\dd{x})^2 + (\dd{y})^2}
+	= \sqrt{(\varphi'(t))^2 + (\psi'(t))^2} \dd{t}.
+\]
+于是所求弧长为\begin{equation}
+	s = \int_{\alpha}^{\beta} \sqrt{(\varphi'(t))^2 + (\psi'(t))^2} \dd{t}.
 \end{equation}
 
 当曲线弧由直角坐标方程\[
 y = f(x) \quad(a \leq x \leq b)
 \]给出，其中\(f(x)\)在\([a,b]\)上具有一阶连续导数，这时曲线弧有参数方程\[
-\left\{ \begin{array}{l}
-x = x, \\
-y = f(x)
-\end{array} \right.
-\quad(\alpha \leq t \leq \beta),
-\]从而所求弧长为\begin{equation}
-s = \int_a^b \sqrt{1+(y')^2} \dd{x}.
+	\left\{ \begin{array}{l}
+		x = x, \\
+		y = f(x)
+	\end{array} \right.
+	\quad(\alpha \leq t \leq \beta),
+\]
+从而所求弧长为\begin{equation}
+	s = \int_a^b \sqrt{1+(y')^2} \dd{x}.
 \end{equation}
 
 当曲线弧由极坐标方程\[
-\rho=\rho(x)
-\quad(\alpha \leq \theta \leq \beta)
-\]给出，其中\(\rho(\theta)\)在\([\alpha,\beta]\)上具有连续导数，则由直角坐标与极坐标的关系可得\[
-\left\{ \begin{array}{c}
-x = \rho(\theta) \cos\theta, \\
-y = \rho(\theta) \sin\theta
-\end{array} \right.
-\quad(\alpha \leq \theta \leq \beta).
+	\rho=\rho(\theta)
+	\quad(\alpha \leq \theta \leq \beta)
+\]给出，其中\(\rho(\theta)\)在\([\alpha,\beta]\)上具有连续导数，
+则由直角坐标与极坐标的关系可得\[
+	\left\{ \begin{array}{c}
+		x = \rho(\theta) \cos\theta, \\
+		y = \rho(\theta) \sin\theta
+	\end{array} \right.
+	\quad(\alpha \leq \theta \leq \beta).
 \]
 这就是以极角\(\theta\)为参数的曲线弧的参数方程.
 而\[
-x'(\theta) = \rho'(\theta) \cos\theta - \rho(\theta) \sin\theta,
+	x'(\theta) = \rho'(\theta) \cos\theta - \rho(\theta) \sin\theta,
 \]\[
-y'(\theta) = \rho'(\theta) \sin\theta + \rho(\theta) \cos\theta.
+	y'(\theta) = \rho'(\theta) \sin\theta + \rho(\theta) \cos\theta.
 \]
-于是，弧长元素为\[
-ds = \sqrt{[x'(\theta)]^2 + [y'(\theta)]^2} \dd{\theta}
-= \sqrt{\rho^2(\theta) + \rho'^2(\theta)} \dd{\theta}.
-\]从而所求弧长为\begin{equation}
-s = \int_{\alpha}^{\beta} \sqrt{\rho^2(\theta) + \rho'^2(\theta)} \dd{\theta}.
+于是，弧长元素为\begin{align*}
+	\dd{s}
+	&= \sqrt{(x'(\theta))^2 + (y'(\theta))^2} \dd{\theta} \\
+	&= \sqrt{(\rho' \cos\theta - \rho \sin\theta)^2
+		+ (\rho' \sin\theta + \rho \cos\theta)^2} \dd{\theta} \\
+	&= \sqrt{(\rho')^2\cos^2\theta-2\rho'\rho\cos\theta\sin\theta+\rho^2\sin^2\theta
+		+ (\rho')^2\sin^2\theta+2\rho'\rho\sin\theta\cos\theta+\rho^2\cos^2\theta} \dd{\theta} \\
+	&= \sqrt{\rho^2 + (\rho')^2} \dd{\theta}.
+\end{align*}
+从而所求弧长为\begin{equation}
+	s = \int_{\alpha}^{\beta} \sqrt{\rho^2(\theta) + (\rho'(\theta))^2} \dd{\theta}.
 \end{equation}
 
 \begin{example}
 求阿基米德螺线\(\rho=a\theta\ (a>0)\)相应于\(0\leq\theta\leq2\pi\)一段的弧长.
 \begin{solution}
 弧长元素为\[
-\dd{s} = \sqrt{(a\theta)^2 + a^2} \dd{\theta}
-= a\sqrt{\theta^2+1} \dd{\theta},
-\]于是所求弧长为\[
-s = a \int_0^{2\pi} \sqrt{1+\theta^2} \dd{\theta}
-= \frac{a}{2} \left[
-2\pi\sqrt{1+4\pi^2} + \ln(2\pi+\sqrt{1+4\pi^2})
-\right].
+	\dd{s} = \sqrt{(a\theta)^2 + a^2} \dd{\theta}
+	= a\sqrt{\theta^2+1} \dd{\theta},
+\]
+于是所求弧长为\[
+	s = a \int_0^{2\pi} \sqrt{1+\theta^2} \dd{\theta}
+	= \frac{a}{2} \left[
+	2\pi\sqrt{1+4\pi^2} + \ln(2\pi+\sqrt{1+4\pi^2})
+	\right].
 \]
 \end{solution}
 \end{example}
@@ -1112,11 +1131,12 @@ s = a \int_0^{2\pi} \sqrt{1+\theta^2} \dd{\theta}
 求对数螺线\(\rho=e^{\theta}\)相应于\(0\leq\theta\leq\pi\)一段的弧长.
 \begin{solution}
 弧长元素为\[
-\dd{s} = \sqrt{e^{2\theta}+e^{2\theta}} \dd{\theta}
-= \sqrt{2}e^{\theta} \dd{\theta},
-\]于是所求弧长为\[
-s = \sqrt{2} \int_0^{\pi} e^{\theta} \dd{\theta}
-= \sqrt{2} (e^{\pi}-1).
+	\dd{s} = \sqrt{e^{2\theta}+e^{2\theta}} \dd{\theta}
+	= \sqrt{2}e^{\theta} \dd{\theta},
+\]
+于是所求弧长为\[
+	s = \sqrt{2} \int_0^{\pi} e^{\theta} \dd{\theta}
+	= \sqrt{2} (e^{\pi}-1).
 \]
 \end{solution}
 \end{example}
@@ -1129,17 +1149,21 @@ s = \sqrt{2} \int_0^{\pi} e^{\theta} \dd{\theta}
 \leq
 \left[ \int_a^b f^2(x) \dd{x} \right] \left[ \int_a^b g^2(x) \dd{x} \right].
 \end{equation}
-若函数\(f,g \in C[a,b]\)，则上式“\(=\)”当且仅当“存在不全为零的常数\(\alpha\)和\(\beta\)，使得\(\alpha f(x) = \beta g(x)\)”成立.
+若函数\(f,g \in C[a,b]\)，
+则上式“\(=\)”当且仅当“存在不全为零的常数\(\alpha\)和\(\beta\)，
+使得\(\alpha f(x) = \beta g(x)\)”成立.
 \begin{proof}
-因为对任意实数\(t\)，总有\begin{align*}
-&\hspace{-20pt}\int_a^b f^2(x) \dd{x}
-+ 2t \int_a^b f(x) g(x) \dd{x}
-+ t^2 \int_a^b g^2(x) \dd{x} \\
-&= \int_a^b [ f(x) + t g(x) ]^2 \dd{x}
-\geq \int_a^b 0 \dd{x} = 0
-\tag1
-\end{align*}成立.
-将(1)式视作关于\(t\)的一元二次多项式，假设二次项系数\(\int_a^b g^2(x) \dd{x} > 0\)，由于该多项式是非负的，故其判别式非正，即\[
+因为对任意实数\(t\)，总有\[
+	\int_a^b f^2(x) \dd{x}
+	+ 2t \int_a^b f(x) g(x) \dd{x}
+	+ t^2 \int_a^b g^2(x) \dd{x}
+	= \int_a^b [ f(x) + t g(x) ]^2 \dd{x}
+	\geq \int_a^b 0 \dd{x} = 0
+	\eqno(1)
+\]成立.
+将(1)式视作关于\(t\)的一元二次多项式，
+假设二次项系数\(\int_a^b g^2(x) \dd{x} > 0\)，
+由于该多项式是非负的，故其判别式非正，即\[
 \left[ 2 \int_a^b f(x) g(x) \dd{x} \right]^2
 - 4 \left[ \int_a^b g^2(x) \dd{x} \right] \left[ \int_a^b f^2(x) \dd{x} \right] \leq 0,
 \]移项并化简，可得\cref{equation:定积分.柯西-施瓦茨不等式}.
