@@ -235,6 +235,48 @@
 	\label{figure:函数.余弦函数的图形}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\begin{axis}[
+			name=Cosine,
+			xmin=0,xmax=10,
+			restrict y to domain=-2:2,
+			ymin=-1,ymax=1,
+			grid=both,width=\textwidth,height=\textwidth,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			axis lines = middle,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+			xtick={0,1.5708,3.1416,...,10},
+			xticklabels={
+				$\relax$,
+				$\frac{\pi}{2}$,
+				$\pi\vphantom{\frac12}$,
+				$\frac{3\pi}{2}$,
+				$2\pi\vphantom{\frac12}$,
+				$\frac{5\pi}{2}$,
+				$3\pi\vphantom{\frac12}$,
+			},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=0:10,variable=\x]
+				{cos(.5*\x r)};\label{pgfplots:余弦函数.cos(x/2)}
+			\addplot[color=orange,samples=50,smooth,domain=0:10,variable=\x]
+				{cos(\x r)};\label{pgfplots:余弦函数.cos(x)}
+			\addplot[color=green,samples=50,smooth,domain=0:10,variable=\x]
+				{cos(2*\x r)};\label{pgfplots:余弦函数.cos(2*x)}
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,right=1em]at(Cosine.east){\small\begin{tabular}{cl}
+		\ref{pgfplots:余弦函数.cos(x/2)} & \(\cos(x/2)\) \\
+		\ref{pgfplots:余弦函数.cos(x)} & \(\cos x\) \\
+		\ref{pgfplots:余弦函数.cos(2*x)} & \(\cos2x\) \\
+		\end{tabular}};
+	\end{tikzpicture}
+	\caption{}
+\end{figure}
+
 \begin{property}
 如\cref{figure:函数.余弦函数的图形}，
 可以观察得出余弦函数的若干性质.
