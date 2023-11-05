@@ -852,8 +852,16 @@ a^{\ln b} = b^{\ln a}.
 			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
 			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
 			xmin=-4.7124, xmax=4.7124,
-			xtick={-4.7124,-1.5708,...,10},
-			xticklabels={$-\frac{3\pi}{2}$,$-\frac{\pi}{2}$,$\frac{\pi}{2}$,$\frac{3\pi}{2}$},
+			xtick={-4.7124,-3.1416,-1.5708,...,10},
+			xticklabels={
+				$-\frac{3\pi}{2}$,
+				$-\pi\vphantom{\frac{1}{2}}$,
+				$-\frac{\pi}{2}$,
+				$\relax$,%不能去掉\relax
+				$\frac{\pi}{2}$,
+				$\pi\vphantom{\frac{1}{2}}$,
+				$\frac{3\pi}{2}$,
+			},
 		]
 			\foreach \i in {-5,-3,...,3} {
 				\addplot[color=blue,samples=50,smooth,domain={\i*pi/2}:{(\i+2)*pi/2},variable=\x]
@@ -874,6 +882,39 @@ a^{\ln b} = b^{\ln a}.
 	\item 正切函数是奇函数，其图形关于坐标原点\(O\)中心对称，满足\(\tan(-x)=-\tan x\).
 \end{enumerate}
 \end{property}
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\begin{axis}[
+			restrict y to domain=-20:20,
+			ymin=-10,ymax=10,
+			grid=both,width=\textwidth,height=\textwidth,
+			axis lines=middle,
+			xlabel={\(x\)},
+			ylabel={\(y\)},
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			xmin=-4.7124, xmax=4.7124,
+			xtick={-4.7124,-3.1416,-1.5708,...,10},
+			xticklabels={
+				$-\frac{3\pi}{2}$,
+				$-\pi\vphantom{\frac{1}{2}}$,
+				$-\frac{\pi}{2}$,
+				$\relax$,%不能去掉\relax
+				$\frac{\pi}{2}$,
+				$\pi\vphantom{\frac{1}{2}}$,
+				$\frac{3\pi}{2}$,
+			},
+		]
+		\foreach \i in {-2,-1,0,1} {
+			\addplot[color=blue,samples=50,smooth,domain={\i*pi}:{(\i+1)*pi},variable=\x]
+			{cot(\x r)};
+		}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{余切函数的图形}
+\end{figure}
 
 \subsection{和积互化公式}
 \begin{theorem}[和积互化公式]
