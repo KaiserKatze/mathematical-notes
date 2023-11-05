@@ -1,0 +1,204 @@
+\section{斯托克斯公式，环流量与旋度}
+\subsection{斯托克斯公式}
+斯托克斯公式是\hyperref[equation:线积分与面积分.格林公式]{格林公式}的推广.格林公式表达了平面闭区域上的二重积分与其边界曲线上的曲线积分间的关系，而斯托克斯公式则把曲面\(\Sigma\)上的曲面积分与沿着\(\Sigma\)的边界曲线的曲线积分联系起来.这个联系可陈述如下：
+
+\begin{theorem}[斯托克斯公式]
+设\(\Gamma\)为分段光滑的空间有向闭曲线，
+\(\Sigma\)是以\(\Gamma\)为边界的分片光滑的有向曲面，
+\(\Gamma\)的正向与\(\Sigma\)的侧符合“右手规则%
+\footnote{右手规则是指当右手除拇指外的四指依\(\Gamma\)的绕行方向时，
+拇指所指的方向与\(\Sigma\)上法向量的指向相同.
+这时称\(\Gamma\)是有向曲面\(\Sigma\)的\DefineConcept{正向边界曲线}.}”，
+函数\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在曲面\(\Sigma\)（连同边界\(\Gamma\)）上具有一阶连续偏导数，则有
+\begin{equation}\label{equation:线积分与面积分.斯托克斯公式}
+\begin{split}
+&\hspace{-20pt}\iint_\Sigma
+	\left( \pdv{R}{y} - \pdv{Q}{z} \right)\dd{y}\dd{z}
+	+\left( \pdv{P}{z} - \pdv{R}{x} \right)\dd{z}\dd{x}
+	+\left( \pdv{Q}{x} - \pdv{P}{y} \right)\dd{x}\dd{y} \\
+&= \oint_{\Gamma} P\dd{x}+Q\dd{y}+R\dd{z}.
+\end{split}
+\end{equation}
+\end{theorem}
+
+为了便于记忆，利用行列式记号把斯托克斯公式写成\[
+\iint_\Sigma \begin{vmatrix}
+\dd{y}\dd{z} & \dd{z}\dd{x} & \dd{x}\dd{y} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P & Q & R \\
+\end{vmatrix}
+= \oint_{\Gamma} P\dd{x}+Q\dd{y}+R\dd{z},
+\]把其中的行列式按第一行展开，并把\(\pdv{y}\)与\(R\)的“积”理解为\(\pdv{R}{y}\)，并以此类推.
+
+利用两类曲面积分间的联系，可得斯托克斯公式的另一形式\[
+\iint_\Sigma \begin{vmatrix}
+\cos\alpha & \cos\beta & \cos\gamma \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P & Q & R \\
+\end{vmatrix} \dd{S}
+= \oint_{\Gamma} P\dd{x}+Q\dd{y}+R\dd{z},
+\]其中\(\mat{n}=\opair{\cos\alpha,\cos\beta,\cos\gamma}\)为有向曲面\(\Sigma\)在点\(\opair{x,y,z}\)处的单位法向量.
+
+如果我们再进一步借用分块矩阵的记法，则可将斯托克斯公式写成\[
+\iint_\Sigma \begin{vmatrix}
+\dd{\mat{S}} \\
+\grad \\
+\mat{A}
+\end{vmatrix}
+= \oint_{\Gamma} \mat{A} \cdot \dd{\mat{r}}
+\quad\text{或}\quad
+\iint_\Sigma \begin{vmatrix}
+\mat{n} \\
+\grad \\
+\mat{A}
+\end{vmatrix} \dd{S}
+= \oint_{\Gamma} \mat{A} \cdot \dd{\mat{r}}.
+\]
+
+如果\(\Sigma\)是\(xOy\)面上的一块平面闭区域，斯托克斯公式就变成格林公式.因此，格林公式是斯托克斯公式的一种特殊情形，即\[
+\iint_\Sigma \begin{vmatrix}
+0 & 0 & \dd{x}\dd{y} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P & Q & 0 \\
+\end{vmatrix}
+= \oint_{\Gamma} P\dd{x}+Q\dd{y}.
+\]
+
+\subsection{空间曲线积分与路径无关的条件}
+\begin{theorem}\label{theorem:线积分与面积分.空间曲线积分与路径无关的条件}
+设空间区域\(G\)是一维单连通区域，函数\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在\(G\)内具有一阶连续偏导数，则空间曲线积分\(\int_{\Gamma}{P\dd{x}+Q\dd{y}+R\dd{z}}\)在\(G\)内与路径无关（或沿\(G\)内任意闭曲线的曲线积分为零）的充要条件是\[
+\pdv{P}{y}=\pdv{Q}{x}, \qquad
+\pdv{Q}{z}=\pdv{R}{y}, \qquad
+\pdv{R}{x}=\pdv{P}{z}
+\]在\(G\)内恒成立.
+\end{theorem}
+
+\begin{theorem}
+设区域\(G\)是空间一维单连通区域，
+函数\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在\(G\)内具有一阶连续偏导数，
+则表达式\(P\dd{x}+Q\dd{y}+R\dd{z}\)在\(G\)内成为某一函数\(u(x,y,z)\)的全微分，即\begin{align*}
+u(x,y,z)
+&= \int_{\opair{x_0,y_0,z_0}}^{\opair{x,y,z}}
+ P\dd{x}+Q\dd{y}+R\dd{z} \\
+&= \int_{x_0}^x P(x,y_0,z_0) \dd{x}
++ \int_{y_0}^y Q(x,y,z_0) \dd{y}
++ \int_{z_0}^z R(x,y,z) \dd{z}
+\end{align*}的充要条件是\[
+\pdv{P}{y}=\pdv{Q}{x}, \qquad
+\pdv{Q}{z}=\pdv{R}{y}, \qquad
+\pdv{R}{x}=\pdv{P}{z}
+\]在\(G\)内恒成立.
+\end{theorem}
+
+\subsection{环流量与旋度}
+\begin{definition}
+设有向量场\[
+\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k},
+\]其中函数\(P\)、\(Q\)、\(R\)均连续，\(\Gamma\)是\(\mat{A}\)的定义域内的一条分段光滑的有向闭曲线，\(\mat{\tau}\)是\(\Gamma\)在点\(\opair{x,y,z}\)处的单位切向量，则积分\[
+\oint_{\Gamma}{\mat{A}\cdot\mat{\tau}\dd{s}}
+\]称为向量场\(\mat{A}\)沿有向闭曲线\(\Gamma\)的\DefineConcept{环流量}.
+\end{definition}
+由两类曲线积分的关系，环流量又可表达为\[
+\oint_{\Gamma}{\mat{A}\cdot\mat{\tau}\dd{s}}
+=\oint_{\Gamma}{\mat{A}\cdot\dd{\mat{r}}}
+=\oint_{\Gamma}{P\dd{x}+Q\dd{y}+R\dd{z}}.
+\]
+
+\begin{definition}
+设有向量场\[
+\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k},
+\]其中函数\(P\)、\(Q\)、\(R\)均具有一阶连续偏导数，则向量\[
+\left( \pdv{R}{y} - \pdv{Q}{z} \right)\mat{i}
++\left( \pdv{P}{z} - \pdv{R}{x} \right)\mat{j}
++\left( \pdv{Q}{x} - \pdv{P}{y} \right)\mat{k}
+\]称为向量场\(\mat{A}\)的\DefineConcept{旋度}，记作\(\curl{\mat{A}}\)或\(\operatorname{rot}\mat{A}\)，即\[
+\curl{\mat{A}}
+=\left( \pdv{R}{y} - \pdv{Q}{z} \right)\mat{i}
++\left( \pdv{P}{z} - \pdv{R}{x} \right)\mat{j}
++\left( \pdv{Q}{x} - \pdv{P}{y} \right)\mat{k}.
+\]
+\end{definition}
+
+为了便于记忆，利用行列式记号把旋度公式改写为\[
+\curl{\mat{A}}
+=\begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P & Q & R \\
+\end{vmatrix},
+\]把其中的行列式按第一行展开，并把\(\pdv{y}\)与\(R\)的“积”理解为\(\pdv{R}{y}\)，并以此类推.
+
+\begin{definition}
+如果向量场\(\mat{A}\)的旋度\(\curl{\mat{A}}\)处处为零，则称向量场\(\mat{A}\)为\DefineConcept{无旋场}.一个无源、无旋的向量场称为\DefineConcept{调和场}.
+\end{definition}
+调和场是物理学中一类重要的向量场，这种场与调和函数有密切的关系.
+
+设斯托克斯公式中有向曲面\(\Sigma\)在点\(\opair{x,y,z}\)处的单位法向量为\[
+\mat{n} = \cos\alpha \mat{i} + \cos\beta \mat{j} + \cos\gamma \mat{k},
+\]则\[
+(\curl{\mat{A}}) \cdot \mat{n} = \begin{vmatrix}
+\cos\alpha & \cos\beta & \cos\gamma \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P & Q & R \\
+\end{vmatrix}.
+\]于是，斯托克斯公式可以写成下面的向量形式\[
+\iint_\Sigma \curl{\mat{A}} \cdot \mat{n} \dd{S} = \oint_L \mat{A} \cdot \mat{\tau} \dd{s}
+\]或\[
+\iint_\Sigma \curl{\mat{A}} \cdot \dd{\mat{S}} = \oint_L \mat{A} \cdot \dd{\mat{s}}.
+\]上式表明：向量场\(\mat{A}\)沿有向闭曲线\(\Gamma\)的环流量等于向量场\(\mat{A}\)的旋度通过曲面\(\Sigma\)的通量，这里\(\Gamma\)的正向与\(\Sigma\)的侧应符合右手规则.
+
+\begin{example}
+证明：\(\curl(\mat{a}+\mat{b}) = \curl\mat{a} + \curl\mat{b}\).
+\begin{proof}
+因为\[
+\curl\mat{a} = \begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P_1 & Q_1 & R_1
+\end{vmatrix},
+\qquad
+\curl\mat{b} = \begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P_2 & Q_2 & R_2
+\end{vmatrix},
+\]所以\begin{align*}
+\curl\mat{a} + \curl\mat{b}
+&= \begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P_1 & Q_1 & R_1
+\end{vmatrix} + \begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P_2 & Q_2 & R_2
+\end{vmatrix} \\
+&= \begin{vmatrix}
+\mat{i} & \mat{j} & \mat{k} \\
+\pdv{x} & \pdv{y} & \pdv{z} \\
+P_1 + P_2 & Q_1 + Q_2 & R_1 + R_2
+\end{vmatrix} \\
+&= \curl(\mat{a}+\mat{b}). \qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(u = u(x,y,z)\)具有二阶连续偏导数，求\(\curl(\grad u)\).
+\begin{solution}
+因为\[
+\grad u = \pdv{u}{x} \mat{i} + \pdv{u}{y} \mat{j} + \pdv{u}{z} \mat{k},
+\]所以\[
+\curl(\grad u)
+= \left( \pdv[2]{u}{z}{y} - \pdv[2]{u}{y}{z} \right) \mat{i}
++ \left( \pdv[2]{u}{x}{z} - \pdv[2]{u}{z}{x} \right) \mat{j}
++ \left( \pdv[2]{u}{y}{x} - \pdv[2]{u}{x}{y} \right) \mat{k}.
+\]又因为\(u(x,y,z)\)的二阶偏导数是连续的，那么\[
+\pdv[2]{u}{z}{y} = \pdv[2]{u}{y}{z},
+\qquad
+\pdv[2]{u}{x}{z} = \pdv[2]{u}{z}{x},
+\qquad
+\pdv[2]{u}{y}{x} = \pdv[2]{u}{x}{y},
+\]因此\(\curl(\grad u) = \mat{0}\).
+\end{solution}
+\end{example}

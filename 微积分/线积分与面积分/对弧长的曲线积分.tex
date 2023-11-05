@@ -1,0 +1,283 @@
+\section{对弧长的曲线积分}
+\subsection{对弧长的曲线积分的概念}
+\begin{definition}
+设\(L\)为\(xOy\)面内一条光滑曲线弧，函数\(f(x,y)\)在\(L\)上有界.
+在\(L\)上任意插入一点列\(M_1,M_2,\dotsc,M_{n-1}\)把\(L\)分成\(n\)个小段.
+设第\(i\)个小段的长度为\(\increment s_i\).
+又\(\opair{\xi_i,\eta_i}\)为第\(i\)个小段上任意取定的一点，作乘积\[
+f(\xi_i,\eta_i) \increment s_i \quad(i=1,2,\dotsc,n),
+\]并作和\(\sum\limits_{i=1}^n f(\xi_i,\eta_i) \increment s_i\)，如果当各小弧段的长度的最大值\(\lambda\to0\)时，这和的极限总存在，则称此极限为函数\(f(x,y)\)在曲线弧\(L\)上\DefineConcept{对弧长的曲线积分}或\DefineConcept{第一类曲线积分}，记作\(\int_L f(x,y) \dd{s}\)，即\[
+\int_L f(x,y) \dd{s}
+= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i) \increment s_i,
+\]其中\(f(x,y)\)叫做\DefineConcept{被积函数}，\(L\)叫做\DefineConcept{积分弧段}.
+
+类似地，函数\(f(x,y,z)\)在空间曲线弧\(\Gamma\)上对弧长的曲线积分定义为\[
+\int_{\Gamma} f(x,y,z) \dd{s}
+=\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i) \increment s_i.
+\]
+
+如果平面曲线\(L\)或空间曲线\(\Gamma\)是分段光滑%
+\footnote{%
+所谓“分段光滑”，是指积分弧段\(L\)（或\(\Gamma\)）可以分成有限段，而每一段都是光滑的.%
+}%
+的，我们规定函数在函数在曲线弧\(L\)或\(\Gamma\)上对弧长的曲线积分等于在光滑的各段上对弧长的曲线积分之和.
+例如，设\(L\)可分成两段光滑曲线弧\(L_1\)及\(L_2\)（记作\(L=L_1+L_2\)），就规定
+\[
+\int_{L_1+L_2} f(x,y) \dd{s}
+= \int_{L_1} f(x,y) \dd{s}
++ \int_{L_2} f(x,y) \dd{s}.
+\]
+有时候也将上式右端写成\[
+\left( \int_{L_1} + \int_{L_2} \right) f(x,y) \dd{s}.
+\]
+
+如果\(L\)是闭曲线，那么函数\(f(x,y)\)在闭曲线\(L\)上对弧长的曲线积分记为\[
+\oint_L f(x,y) \dd{s}.
+\]
+\end{definition}
+
+\subsection{对弧长的曲线积分的性质}
+\begin{property}\label{theorem:线积分与面积分.第一类曲线积分性质1}
+设\(\alpha\)、\(\beta\)为常数，则\[
+\int_L [\alpha f(x,y) + \beta g(x,y)] \dd{s}
+= \alpha \int_L f(x,y) \dd{s}
++ \beta \int_L g(x,y) \dd{s}.
+\]
+\end{property}
+
+\begin{property}\label{theorem:线积分与面积分.第一类曲线积分性质2}
+若积分弧段\(L\)可分成两段光滑曲线弧\(L_1\)和\(L_2\)，则\[
+\int_L f(x,y) \dd{s}
+=\int_{L_1} f(x,y) \dd{s}
++\int_{L_2} f(x,y) \dd{s}.
+\]
+\end{property}
+
+\begin{property}\label{theorem:线积分与面积分.第一类曲线积分性质3}
+设在\(L\)上\(f(x,y) \leq g(x,y)\)，则\[
+\int_L f(x,y) \dd{s}
+\leq
+\int_L g(x,y) \dd{s}.
+\]
+
+特别地，有\[
+\abs{\int_L f(x,y) \dd{s}} \leq \int_L \abs{f(x,y)} \dd{s}.
+\]
+\end{property}
+
+\subsection{对弧长的曲线积分的计算法}
+\begin{theorem}
+设二元函数\(f(x,y)\)在平面曲线弧\(L\)上有定义且连续，\(L\)的参数方程为\[
+\left\{ \begin{array}{l}
+x = \varphi(t), \\
+y = \psi(t) \\
+\end{array} \right.
+\qquad
+(\alpha \leq t \leq \beta),
+\]其中\(\varphi(t)\)、\(\psi(t)\)在\([\alpha,\beta]\)上具有一阶连续导数，
+且\([\varphi'(t)]^2+[\psi'(t)]^2 \neq 0\)，
+则曲线积分\(\int_L f(x,y) \dd{s}\)存在，
+且\begin{equation}\label{equation:线积分与面积分.第一类曲线积分的计算式1}
+\int_L f(x,y) \dd{s}
+= \int_{\alpha}^{\beta} f[\varphi(t),\psi(t)] \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2} \dd{t}
+\quad(\alpha<\beta).
+\end{equation}
+\begin{proof}
+假定当参数\(t\)由\(\alpha\)变至\(\beta\)时，
+\(L\)上的点\(M\opair{x,y}\)依点\(A\)至点\(B\)的方向描出曲线\(L\).
+在\(L\)上取一列点\[
+A=M_0,M_1,M_2,\dotsc,M_{n-1},M_n=B,
+\]它们对应于一列单调增加的参数值\[
+\alpha=t_0<t_1<t_2<\dotsb<t_{n-1}<t_n=\beta.
+\]根据对弧长的曲线积分的定义，有\[
+\int_L f(x,y) \dd{s} = \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i,\eta_i) \increment s_i.
+\]设点\(\opair{\xi_i,\eta_i}\)对应于参数值\(\tau_i\)，
+即\(\xi_i=\varphi(\tau_i)\)、\(\eta_i=\psi(\tau_i)\)，
+这里\(t_{i-1}\leq\tau_i\leq t_i\).
+由于\[
+\increment s_i = \int_{t_{i-1}}^{t_i} \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2} \dd{t},
+\]应用积分中值定理，有\[
+\increment s_i = \sqrt{[\varphi'(\tau'_i)]^2+[\psi'(\tau'_i)]^2} \increment t_i,
+\]其中\(\increment t_i = t_i - t_{i-1}\)，
+\(t_{i-1} \leq \tau'_i \leq t_i\).
+于是\[
+\int_L f(x,y) \dd{s}
+= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f[\varphi(\tau_i),\psi(\tau_i)] \sqrt{[\varphi'(\tau'_i)]^2+[\psi'(\tau'_i)]^2} \increment t_i.
+\]由于函数\(\sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}\)在闭区间\([\alpha,\beta]\)上连续，
+我们可以把上式中的\(\tau'_i\)换成\(\tau_i\)
+\footnote{这里利用了函数\(\sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}\)在闭区间\([\alpha,\beta]\)上的一致连续性.}，
+从而\[
+\int_L f(x,y) \dd{s}
+= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f[\varphi(\tau_i),\psi(\tau_i)] \sqrt{[\varphi'(\tau_i)]^2+[\psi'(\tau_i)]^2} \increment t_i.
+\]上式右端的和的极限就是函数\(f[\varphi(t),\psi(t)] \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}\)在区间\([\alpha,\beta]\)上的定积分，
+由于这个函数在\([\alpha,\beta]\)上连续，
+所以这个定积分是存在的，
+因此上式左端的曲线积分\(\int_L f(x,y) \dd{s}\)也存在，
+并且有\[
+\int_L f(x,y) \dd{s}
+=\int_{\alpha}^{\beta}
+ f[\varphi(t),\psi(t)]
+ \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}
+ \dd{t}
+\quad(\alpha<\beta).
+\qedhere
+\]
+\end{proof}
+\end{theorem}
+\cref{equation:线积分与面积分.第一类曲线积分的计算式1} 表明，
+计算对弧长的曲线积分\(\int_L f(x,y) \dd{s}\)时，
+只要把\(x\)、\(y\)、\(\dd{s}\)依次换为\(\varphi(t)\)、\(\psi(t)\)、\(\sqrt{[\varphi'(t)]^2+[\psi'(t)]^2} \dd{t}\)，
+然后从\(\alpha\)到\(\beta\)作定积分就行了，
+这里必须注意，定积分的下限\(\alpha\)一定要小于上限\(\beta\)！
+这是因为，从上述推导中可以看出，由于小弧段的长度\(\increment s_i\)总是正的，
+从而\(\increment t_i > 0\)，所以定积分的下限\(\alpha\)一定小于上限\(\beta\).
+
+如果曲线\(L\)由方程\[
+y = \psi(x)
+\quad(x_0 \leq x \leq X)
+\]给出，那么可以把这种情形看做特殊的参数方程\[
+x = t,
+y = \psi(t)
+\quad(x_0 \leq t \leq X)
+\]的情形，从而由\cref{equation:线积分与面积分.第一类曲线积分的计算式1} 得出
+\begin{equation}
+\int_L f(x,y) \dd{s}
+= \int_{x_0}^X f[x,\psi(x)] \sqrt{1+[\psi'(x)]^2} \dd{x}
+\quad(x_0 < X).
+\end{equation}
+
+类似地，如果曲线\(L\)由方程\[
+x = \varphi(y)
+\quad(y_0 \leq y \leq Y)
+\]给出，则有
+\begin{equation}
+\int_L f(x,y) \dd{s}
+= \int_{y_0}^Y f[\varphi(y),y] \sqrt{1+[\varphi'(y)]^2} \dd{y}
+\quad(y_0 < Y).
+\end{equation}
+
+\cref{equation:线积分与面积分.第一类曲线积分的计算式1} 可推广到第一类曲线积分的积分弧段是空间曲线弧\(\Gamma\)的情形.
+\begin{theorem}
+设三元函数\(f(x,y,z)\)在空间曲线弧\(\Gamma\)上有定义且连续，\(\Gamma\)的参数方程为\[
+\left\{ \begin{array}{l}
+x = \varphi(t), \\
+y = \psi(t), \\
+z = \omega(t) \\
+\end{array} \right.
+\qquad
+(\alpha \leq t \leq \beta),
+\]其中\(\varphi(t)\)、\(\psi(t)\)、\(\omega(t)\)在\([\alpha,\beta]\)上具有一阶连续导数，
+且\([\varphi'(t)]^2+[\psi'(t)]^2+[\omega'(t)]^2 \neq 0\)，
+则曲线积分\(\int_{\Gamma} f(x,y,z) \dd{s}\)存在，
+且\begin{equation}\label{equation:线积分与面积分.第一类曲线积分的计算式2}
+\begin{aligned}
+&\hspace{-20pt}
+\int_{\Gamma} f(x,y,z) \dd{s} \\
+&= \int_{\alpha}^{\beta} f[\varphi(t),\psi(t),\omega(t)] \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2+[\omega'(t)]^2} \dd{t}
+\quad(\alpha<\beta).
+\end{aligned}
+\end{equation}
+\end{theorem}
+
+\begin{example}
+计算半径为\(R\)、中心角为\(2\alpha\)、线密度为\(\mu=1\)的圆弧\(L\)对于它的对称轴的转动惯量和质心坐标.
+\begin{solution}
+以圆弧\(L\)的圆心为极点，经过圆弧的中点作极轴，建立极坐标系，那么\[
+L: \left\{ \begin{array}{l}
+x = R\cos\theta, \\
+y = R\sin\theta
+\end{array} \right.
+\quad(-\alpha\leq\theta\leq\alpha).
+\]
+
+圆弧\(L\)的转动惯量为\[
+I = \int_L y^2 \dd{s}
+= \int_{-\alpha}^{\alpha} (R\sin\theta)^2 R\dd{\theta}
+= R^3 (\alpha + \sin\alpha \cos\alpha).
+\]
+
+又由\[
+M = \int_L \mu \dd{s} = L = 2\alpha R,
+\]\[
+\overline{x}
+= \frac{1}{M} \int_L x \mu \dd{s}
+= \frac{1}{M} \int_{-\alpha}^{\alpha} R\cos\theta R\dd{\theta}
+= \frac{\sin\alpha}{\alpha}R,
+\]\[
+\overline{y}
+= \frac{1}{M} \int_L y \mu \dd{s}
+= \frac{1}{M} \int_{-\alpha}^{\alpha} R\sin\theta R\dd{\theta}
+= 0,
+\]圆弧\(L\)的质心坐标为\[
+\opair*{\frac{\sin\alpha}{\alpha}R,0}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设围线\(L\)是圆周\(x^2+y^2=a^2\)，直线\(y=x\)和\(x\)轴在第一象限内所围成的扇形的整个边界.求\[
+\oint_L e^{\sqrt{x^2+y^2}} \dd{s}.
+\]
+\begin{solution}
+将\(L\)分为\[
+L_1: \left\{ \begin{array}{l}
+x = t, \\
+y = 0
+\end{array} \right.
+\quad(0 \leq t \leq a),
+\]\[
+L_2: \left\{ \begin{array}{l}
+x = a \cos t, \\
+y = a \sin t
+\end{array} \right.
+\quad(0 \leq t \leq \frac{\pi}{4}),
+\]\[
+L_3: \left\{ \begin{array}{l}
+x = t, \\
+y = t
+\end{array} \right.
+\quad(0 \leq t \leq \frac{a}{\sqrt{2}})
+\]三段，分段积分，得\[
+\int_{L_1} e^{\sqrt{x^2+y^2}} \dd{s}
+= \int_0^a e^t \dd{t}
+= e^a-1,
+\]\[
+\int_{L_2} e^{\sqrt{x^2+y^2}} \dd{s}
+= \int_0^{\pi/4} e^a a \dd{t}
+= a e^a \frac{\pi}{4},
+\]\[
+\int_{L_3} e^{\sqrt{x^2+y^2}} \dd{s}
+= \int_0^{a/\sqrt{2}} e^{\sqrt{2}t} \sqrt{2} \dd{t}
+= e^a-1,
+\]所以\begin{align*}
+\oint_L e^{\sqrt{x^2+y^2}} \dd{s}
+&= \int_{L_1} e^{\sqrt{x^2+y^2}} \dd{s}
++ \int_{L_2} e^{\sqrt{x^2+y^2}} \dd{s}
++ \int_{L_3} e^{\sqrt{x^2+y^2}} \dd{s} \\
+&= e^a \left(\frac{\pi}{4}a + 2\right) - 2.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+设\[
+L: \left\{ \begin{array}{l}
+x = a(t - \sin t), \\
+y = a(1 - \cos t)
+\end{array} \right.
+\quad(0 \leq t \leq 2\pi).
+\]求\(\int_L y^2 \dd{s}\).
+\begin{solution}
+因为\(x'_t = a(1 - \cos t)\)，\(y'_t = a \sin t\)，所以\begin{align*}
+\int_L y^2 \dd{s}
+&= \int_0^{2\pi} a^2(1 - \cos t)^2 \sqrt{a^2(1 - \cos t)^2 + a^2 \sin^2 t} \dd{t} \\
+&= \sqrt{2} a^3 \int_0^{2\pi} (1 - \cos t)^2 \sqrt{1 - \cos t} \dd{t} \\
+&= 2\sqrt{2} a^3 \int_0^{2\pi}
+ \left(2 \sin^2 \frac{t}{2}\right)^2 \sqrt{2} \sin\frac{t}{2} \dd(\frac{t}{2}) \\
+&= -16 a^3 \int_0^{2\pi} \left(1 - \cos^2 \frac{t}{2}\right)^2 \dd(\cos\frac{t}{2}) \\
+&\xlongequal{u=\cos(t/2)}
+-16a^3 \int_1^{-1} (1-u^2)^2 \dd{u}
+= \frac{256a^3}{15}.
+\end{align*}
+\end{solution}
+\end{example}

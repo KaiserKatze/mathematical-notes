@@ -1,0 +1,87 @@
+\section{两类曲面积分之间的联系}
+设有向曲面\(\Sigma\)由方程\(z = z(x,y)\)给出，\(\Sigma\)在\(xOy\)面上的投影区域为\(D_{xy}\)，函数\(z = z(x,y)\)在\(D_{xy}\)上具有一阶连续偏导数，\(R(x,y,z)\)在\(\Sigma\)上连续.
+如果\(\Sigma\)取上侧，则由对坐标的曲面积分计算公式有\[
+\iint_\Sigma R(x,y,z) \dd{x}\dd{y} = \iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
+\]
+
+另一方面，因上述有向曲面\(\Sigma\)的法向量的方向余弦为\[
+\cos\alpha=\frac{-z'_x}{\sqrt{1+(z'_x)^2+(z'_y)^2}},
+\]\[
+\cos\beta=\frac{-z'_y}{\sqrt{1+(z'_x)^2+(z'_y)^2}},
+\]\[
+\cos\gamma=\frac{1}{\sqrt{1+(z'_x)^2+(z'_y)^2}},
+\]故由对面积的曲面积分计算公式有\[
+\iint_\Sigma R(x,y,z) \cos\gamma \dd{S}
+= \iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
+\]由此可见，有\[
+\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
+= \iint_\Sigma R(x,y,z) \cos\gamma \dd{S}.
+\eqno{(1)}
+\]
+
+如果\(\Sigma\)取下侧，则\[
+\iint_\Sigma R(x,y,z) \cos\gamma \dd{S}
+= -\iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
+\]但这时\(\cos\gamma=\frac{-1}{\sqrt{1+(z'_x)^2+(z'_y)^2}}\)，因此(1)式仍成立.
+
+类似地可推得\[
+\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
+= \iint_{D_{yz}} P(x,y,z) \cos\alpha \dd{S},
+\eqno{(2)}
+\]\[
+\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
+= \iint_{D_{zx}} Q(x,y,z) \cos\beta \dd{S}.
+\eqno{(3)}
+\]
+
+合并(1)、(2)、(3)式，得两类曲面积分之间的如下联系：
+\begin{equation}\label{equation:线积分与面积分.两类曲面积分之间的联系}
+\iint_\Sigma P \dd{y}\dd{z} + Q \dd{z}\dd{x} + R \dd{x}\dd{y}
+=\iint_\Sigma (P\cos\alpha+Q\cos\beta+R\cos\gamma) \dd{S},
+\end{equation}
+其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是有向曲面\(\Sigma\)在点\(\opair{x,y,z}\)处的法向量的方向余弦.
+
+两类曲面积分之间的联系也可写成如下的向量形式：
+\begin{equation}\label{equation:线积分与面积分.两类曲面积分之间的联系的向量形式}
+\iint_\Sigma \mat{A} \cdot \dd{\mat{S}}
+=\iint_\Sigma \mat{A} \cdot \mat{n} \dd{S},
+\end{equation}
+其中\(\mat{A}=\opair{P,Q,R}\)，
+\(\mat{n}=\opair{\cos\alpha,\cos\beta,\cos\gamma}\)为有向曲面\(\Sigma\)在点\(\opair{x,y,z}\)处的单位法向量，
+\(\dd{\mat{S}} = \mat{n}\dd{S} = \opair{\dd{y}\dd{z},\dd{z}\dd{x},\dd{x}\dd{y}}\)称为\DefineConcept{有向曲面元}.
+
+\begin{example}
+\def\ys{\iint_\Sigma (z^2+x) \dd{y}\dd{z} - z \dd{x}\dd{y}}%
+计算曲面积分\(\ys\)，其中\(\Sigma\)是旋转抛物面\(z = \frac{1}{2}(x^2+y^2)\)介于平面\(z=0\)和\(z=2\)之间的部分的下侧.
+\begin{solution}
+由两类曲面积分之间的联系 \labelcref{equation:线积分与面积分.两类曲面积分之间的联系}，可得\[
+\iint_\Sigma (z^2+x) \dd{y}\dd{z}
+= \iint_\Sigma (z^2+x) \cos\alpha \dd{S}
+= \iint_\Sigma (z^2+x) \frac{\cos\alpha}{\cos\gamma} \dd{x}\dd{y}.
+\]在曲面\(\Sigma\)上，有\[
+\cos\alpha
+= \frac{x}{\sqrt{1+x^2+y^2}},
+\qquad
+\cos\gamma
+= \frac{-1}{\sqrt{1+x^2+y^2}}.
+\]故\[
+\ys
+= \iint_\Sigma [(z^2+x)(-x) - z] \dd{x}\dd{y}.
+\]
+再按对坐标的曲面积分的计算法，便得\[
+\ys
+= - \iint_{D_{xy}} \left\{
+	\left[
+		\frac{1}{4} (x^2+y^2)^2
+		+ x
+	\right] \cdot (-x)
+	- \frac{1}{2} (x^2+y^2)
+\right\} \dd{x}\dd{y}.
+\]因为\(\iint_{D_{xy}} \frac{1}{4} x(x^2+y^2)^2 \dd{x}\dd{y} = 0\)，所以\begin{align*}
+\ys
+&= \iint_{D_{xy}} \left[x^2+\frac{1}{2}(x^2+y^2)\right] \dd{x}\dd{y} \\
+&= \int_0^{2\pi} \dd{\theta} \int_0^2 \left(\rho^2 \cos^2\theta + \frac{1}{2} \rho^2\right) \rho \dd{\rho}
+= 8\pi.
+\end{align*}
+\end{solution}
+\end{example}

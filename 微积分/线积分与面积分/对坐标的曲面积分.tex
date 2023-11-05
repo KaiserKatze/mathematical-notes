@@ -1,0 +1,247 @@
+\section{对坐标的曲面积分}
+\subsection{对坐标的曲面积分的概念}
+通常我们遇到的曲面都是双侧的.
+例如由方程\(z = z(x,y)\)表示的曲面，
+有上侧与下侧之分\footnote{按惯例，这里假定\(z\)轴竖直向上.}；
+又例如，一张包围某一空间区域的闭曲面，有外侧与内侧之分.
+以后我们总假定所考虑的曲面是双侧的.
+
+在讨论对坐标的曲面积分时，需要制定曲面的侧.
+我们可以通过曲面上的法向量的指向来定出曲面的侧.
+例如，对于曲面\(z = z(x,y)\)，如果取它的法向量\(\mat{n}\)的指向朝上，我们就认为取定曲面的上侧；
+又如，对于闭曲面如果取它的法向量的指向朝外，我们就认为取定曲面的外侧.
+这种取定了法向量亦即选定了侧的曲面，就称为\DefineConcept{有向曲面}.
+
+设\(\Sigma\)是有向曲面.
+在\(\Sigma\)上取一小块曲面\(\increment S\)，
+把\(\increment S\)投影到\(xOy\)面上得一投影区域，
+这投影区域的面积记为\((\increment\sigma)_{xy}\).
+假定\(\increment S\)上各点处的法向量
+与\(z\)轴的夹角\(\gamma\)的余弦\(\cos\gamma\)有相同的符号
+（即\(\cos\gamma\)都是正的或都是负的）.
+我们规定\(\increment S\)在\(xOy\)面上的投影\((\increment S)_{xy}\)为\[
+	(\increment S)_{xy}
+	= \sgn\cos\gamma \cdot (\increment \sigma)_{xy}
+	= \left\{ \begin{array}{cc}
+	(\increment \sigma)_{xy}, & \cos\gamma > 0, \\
+	-(\increment \sigma)_{xy}, & \cos\gamma < 0, \\
+	0, & \cos\gamma \equiv 0.
+	\end{array} \right.
+\]
+其中，\(\cos\gamma \equiv 0\)也就是\((\increment \sigma)_{xy} = 0\)的情形.
+\(\increment S\)在\(xOy\)面上的投影\((\increment S)_{xy}\)
+实际就是\(\increment S\)在\(xOy\)面上的投影区域的面积附以一定的正负号.
+类似地可以定义\(\increment S\)在\(yOz\)面及\(zOx\)面上的
+投影\((\increment S)_{yz}\)和\((\increment S)_{zx}\).
+
+设\(\Sigma\)为光滑的有向曲面，函数\(R(x,y,z)\)在\(\Sigma\)上有界.
+把\(\Sigma\)任意分成\(n\)块小曲面\(\increment S_i\)%
+（\(\increment S_i\)同时又表示第\(i\)块小曲面的面积），
+\(\increment S_i\)在\(xOy\)面上的投影为\((\increment S_i)_{xy}\)，
+\(\opair{\xi_i,\eta_i,\zeta_i}\)是\(\increment S_i\)上任意取定的一点.
+如果当各小块曲面的直径的最大值\(\lambda\to0\)时，极限\[
+	\lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n
+	R(\xi_i,\eta_i,\zeta_i)
+	(\increment S_i)_{xy}
+\]总存在，
+则称此极限为
+“函数\(R(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(x\)、\(y\)的\DefineConcept{曲面积分}”，
+记作\[
+	\iint_\Sigma R(x,y,z) \dd{x}\dd{y},
+\]
+即\[
+	\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
+	\defeq
+	\lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n
+	R(\xi_i,\eta_i,\zeta_i)
+	(\increment S_i)_{xy},
+\]
+其中\(R(x,y,z)\)叫做\DefineConcept{被积函数}，\(\Sigma\)叫做\DefineConcept{积分曲面}.
+
+类似地可以定义
+“函数\(P(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(y\)、\(z\)的\DefineConcept{曲面积分}”
+及“函数\(Q(x,y,z)\)在有向曲面\(\Sigma\)上对坐标\(z\)、\(x\)的\DefineConcept{曲面积分}”
+分别为\begin{gather*}
+	\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
+	\defeq
+	\lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n P(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{yz}, \\
+	\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
+	\defeq
+	\lim\limits_{\lambda\to0}
+	\sum\limits_{i=1}^n Q(\xi_i,\eta_i,\zeta_i) (\increment S_i)_{zx}.
+\end{gather*}
+
+以上三个曲面积分也称为\DefineConcept{第二类曲面积分}（type II surface integral）.
+
+如果\(\Sigma\)是分片光滑的有向曲面，我们规定函数在\(\Sigma\)上对坐标的曲面积分等于函数在各片光滑曲面上对坐标的曲面积分之和.
+
+我们指出，当\(P(x,y,z),Q(x,y,z),R(x,y,z)\)在有向光滑曲面\(\Sigma\)上连续时，对坐标的曲面积分是存在的.
+
+一般地，可以将\[
+\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
++\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
++\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
+\]合并写成\[
+\iint_\Sigma{P(x,y,z)\dd{y}\dd{z}+Q(x,y,z)\dd{z}\dd{x}+R(x,y,z)\dd{x}\dd{y}}.
+\]
+
+\subsection{对坐标的曲面积分的性质}
+对坐标的曲面积分具有与对坐标的曲线积分相类似的一些性质.
+\begin{property}
+如果把\(\Sigma\)分成\(\Sigma_1\)和\(\Sigma_2\)，则\begin{align*}
+&\iint_\Sigma{P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}} \\
+&\qquad=\iint_{\Sigma_1}{P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}} \\
+&\qquad\quad+\iint_{\Sigma_2}{P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}}.
+\end{align*}
+\end{property}
+
+\begin{property}
+设\(\Sigma\)是有向曲面，\(\Sigma^-\)表示与\(\Sigma\)取相反侧的有向曲面，则\begin{gather*}
+\iint_{\Sigma^-} P(x,y,z) \dd{y}\dd{z} = -\iint_\Sigma P(x,y,z) \dd{y}\dd{z}, \\
+\iint_{\Sigma^-} Q(x,y,z) \dd{z}\dd{x} = -\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}, \\
+\iint_{\Sigma^-} R(x,y,z) \dd{x}\dd{y} = -\iint_\Sigma R(x,y,z) \dd{x}\dd{y}.
+\end{gather*}
+\end{property}
+
+\subsection{对坐标的曲面积分的计算法}
+\begin{theorem}
+设被积函数\(P(x,y,z)\)、\(Q(x,y,z)\)和\(R(x,y,z)\)在\(\Sigma\)上连续.
+又设积分曲面\(\Sigma\)的单位法向量为\(\mat{n} = \opair{\cos\alpha,\cos\beta,\cos\gamma}\).
+
+如果\(\Sigma\)由\(z=z(x,y)\)给出，
+且\(z=z(x,y)\)在\(D_{xy}\)上具有一阶连续偏导数，
+则有\begin{equation}\label{equation:线积分与面积分.第二类曲面积分的计算式1}
+\iint_\Sigma R(x,y,z) \dd{x}\dd{y}
+= \sgn\cos\gamma \cdot \iint_{D_{xy}} R[x,y,z(x,y)] \dd{x}\dd{y}.
+\end{equation}
+\(\sgn\cos\gamma\)的取值可以这样判定 —— 当积分曲面为\(\Sigma\)上侧时，上式等号右侧取正号；当积分曲面为\(\Sigma\)下侧时，上式等号右侧取负号.
+
+如果\(\Sigma\)由\(y=y(z,x)\)给出，
+且\(y=y(z,x)\)在\(D_{zx}\)上具有一阶连续偏导数，
+则有\begin{equation}\label{equation:线积分与面积分.第二类曲面积分的计算式2}
+\iint_\Sigma Q(x,y,z) \dd{z}\dd{x}
+= \sgn\cos\beta \cdot \iint_{D_{zx}} Q[x,y(z,x),z] \dd{z}\dd{x}.
+\end{equation}
+\(\sgn\cos\beta\)的取值可以这样判定 —— 当积分曲面为\(\Sigma\)右侧时，上式等号右侧取正号；当积分曲面为\(\Sigma\)左侧时，上式等号右侧取负号.
+
+如果\(\Sigma\)由\(x=x(y,z)\)给出，
+且\(x=x(y,z)\)在\(D_{yz}\)上具有一阶连续偏导数，
+则有\begin{equation}\label{equation:线积分与面积分.第二类曲面积分的计算式3}
+\iint_\Sigma P(x,y,z) \dd{y}\dd{z}
+= \sgn\cos\alpha \cdot \iint_{D_{yz}} P[x(y,z),y,z] \dd{y}\dd{z}.
+\end{equation}
+\(\sgn\cos\alpha\)的取值可以这样判定 —— 当积分曲面为\(\Sigma\)前侧时，上式等号右侧取正号；当积分曲面为\(\Sigma\)后侧时，上式等号右侧取负号.
+\end{theorem}
+
+可以将上述对坐标的曲面积分的计算法总结为如下更一般的方法.
+\begin{theorem}
+设积分曲面\(\Sigma\)由二元向量值参数方程\[
+\mat{r}(u,v) = x(u,v) \mat{i} + y(u,v) \mat{j} + z(u,v) \mat{k},
+\quad \opair{u,v} \in D
+\]给出，这里\(D\)是\(uv\)平面上具有分段光滑边界的有界闭区域，
+且\(\mat{r}\colon D \to \Sigma\)是具有一阶连续偏导数的单值函数，
+且雅克比矩阵\[
+\mat{J} = \begin{bmatrix}
+x'_u & x'_v \\
+y'_u & y'_v \\
+z'_u & z'_v
+\end{bmatrix}
+\]是满秩的，
+且被积函数\[
+\mat{F}(x,y,z) = P(x,y,z) \mat{i} + Q(x,y,z) \mat{j} + R(x,y,z) \mat{k}
+\]在\(\Sigma\)上连续，那么有\[
+\iint_\Sigma \mat{F} \cdot \dd{\mat{S}}
+= \pm \iint_D \left[
+	P \jacobi{y,z}{u,v}
+	+ Q \jacobi{z,x}{u,v}
+	+ R \jacobi{x,y}{u,v}
+\right] \dd{u}\dd{u}.
+\]
+\end{theorem}
+
+\begin{example}
+计算曲面积分\[
+\iint_\Sigma x^2 \dd{y}\dd{z} + y^2 \dd{z}\dd{x} + z^2 \dd{x}\dd{y},
+\]其中\(\Sigma\)是长方体\(\Omega = \Set{
+\opair{x,y,z} \given
+0 \leq x \leq a,
+0 \leq y \leq b,
+0 \leq z \leq c
+}\)的整个表面的外侧.
+\begin{solution}
+把有向曲面\(\Sigma\)分成以下六部分：
+\begin{center}\begin{tabular}{l}
+\(\Sigma_1: z=c\ (0 \leq x \leq a, 0 \leq y \leq b)\)的上侧； \\
+\(\Sigma_2: z=0\ (0 \leq x \leq a, 0 \leq y \leq b)\)的下侧； \\
+\(\Sigma_3: x=a\ (0 \leq y \leq b, 0 \leq z \leq c)\)的前侧； \\
+\(\Sigma_4: x=0\ (0 \leq y \leq b, 0 \leq z \leq c)\)的后侧； \\
+\(\Sigma_5: y=b\ (0 \leq x \leq a, 0 \leq z \leq c)\)的右侧； \\
+\(\Sigma_6: y=0\ (0 \leq x \leq a, 0 \leq z \leq c)\)的左侧. \\
+\end{tabular}\end{center}
+除\(\Sigma_3\)、\(\Sigma_4\)外，其余四片曲面在\(yOz\)面上的投影为零，因此\[
+\iint_\Sigma x^2 \dd{y}\dd{z}
+= \iint_{\Sigma_3} x^2 \dd{y}\dd{z}
++ \iint_{\Sigma_4} x^2 \dd{y}\dd{z}.
+\]应用\cref{equation:线积分与面积分.第二类曲面积分的计算式3} 就有\[
+\iint_\Sigma x^2 \dd{y}\dd{z}
+= \iint_{D_{yz}} a^2 \dd{y}\dd{z}
+- \iint_{D_{yz}} 0^2 \dd{y}\dd{z}
+= a^2 bc.
+\]同理可得\[
+\iint_\Sigma y^2 \dd{z}\dd{x}
+= b^2 ac,
+\]\[
+\iint_\Sigma z^2 \dd{x}\dd{y}
+= c^2 ab.
+\]于是所求曲面积分为\((a+b+c) abc\).
+\end{solution}
+\end{example}
+
+\begin{example}
+计算曲面积分\(\iint_\Sigma xyz \dd{x}\dd{y}\)，其中\(\Sigma\)是球面\(x^2+y^2+z^2=1\)外侧在\(x\geq0,y\geq0\)的部分.
+\begin{solution}
+把\(\Sigma\)分为\(\Sigma_1\)和\(\Sigma_2\)两部分，其中\(\Sigma_1\)的方程为\[
+z = -\sqrt{1-x^2-y^2},
+\]而\(\Sigma_2\)的方程为\[
+z = \sqrt{1-x^2-y^2}.
+\]因此\begin{align*}
+\iint_\Sigma xyz \dd{x}\dd{y}
+&= \iint_{\Sigma_1} xyz \dd{x}\dd{y}
++ \iint_{\Sigma_2} xyz \dd{x}\dd{y} \\
+&= -\iint_{D_{xy}} xy (-\sqrt{1-x^2-y^2}) \dd{x}\dd{y}
++ \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y} \\
+&= 2 \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y}.
+\end{align*}
+其中\(D_{xy}\)是\(\Sigma_1,\Sigma_2\)在\(xOy\)面上的投影区域，就是位于第一象限内的扇形\[
+x^2+y^2\leq1 \quad(x\geq0,y\geq0).
+\]利用极坐标计算这个二重积分如下：\begin{align*}
+2 \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y}
+&= 2 \iint_{D_{xy}} \rho^2 \sin\theta \cos\theta \sqrt{1-\rho^2} \rho\dd{\rho}\dd{\theta} \\
+&= \int_0^{\pi/2} \sin2\theta \dd{\theta} \int_0^1 \rho^3 \sqrt{1-\rho^2} \dd{\rho} \\
+&= 1 \cdot \frac{2}{15} = \frac{2}{15},
+\end{align*}
+从而\(\iint_\Sigma xyz \dd{x}\dd{y} = \frac{2}{15}\).
+\end{solution}
+\end{example}
+
+\subsection{利用对称性简化第二类曲面积分的计算}
+设积分曲面\(\Sigma\)关于\(xOy\)面对称.
+若被积函数\(f(x,y,z)\)是关于\(z\)的偶函数，即\[
+	f(x,y,-z) = f(x,y,z),
+\]
+则\[
+	\iint_\Sigma f(x,y,z) \dd{x}\dd{y} = 0;
+\]
+若被积函数\(f(x,y,z)\)是关于\(z\)的奇函数，即\[
+	f(x,y,-z) = -f(x,y,z),
+\]
+则\[
+	\iint_\Sigma f(x,y,z) \dd{x}\dd{y} = \pm2 \iint_{D_{xy}} f[x,y,z(x,y)] \dd{x}\dd{y}.
+\]
+
+类似地，可以得出，在积分曲面关于\(yOz\)面或\(zOx\)面对称，
+而被积函数\(f(x,y,z)\)是关于\(x\)或\(y\)的奇函数或偶函数的情形下，
+第二类曲面积分的简化计算公式.

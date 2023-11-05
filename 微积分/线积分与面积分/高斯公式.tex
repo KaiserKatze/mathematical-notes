@@ -1,0 +1,310 @@
+\section{高斯公式，通量与散度}
+\subsection{高斯公式}
+格林公式表达了平面闭区域上的二重积分与其边界曲线上的曲线积分之间的关系，
+而高斯公式表达了空间闭区域上的三重积分与其边界曲面上的曲面积分之间的关系，
+这个关系可以陈述如下：
+\begin{theorem}
+设空间闭区域\(\Omega\)是由分片光滑的闭曲面\(\Sigma\)所围成；
+在\(\Omega\)上，函数\(P,Q,R\)都具有一阶连续偏导数，则有
+\begin{equation}\label{equation:线积分与面积分.高斯公式}
+	\begin{split}
+		\iiint_{\Omega} \left(\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}\right)\dd{v}
+		&=\varoiint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y} \\
+		&=\varoiint_\Sigma (P\cos\alpha+Q\cos\beta+R\cos\gamma)\dd{S},
+	\end{split}
+\end{equation}
+这里\(\Sigma\)是\(\Omega\)的整个边界曲面的外侧，
+\(\cos\alpha,\cos\beta,\cos\gamma\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的法向量的方向余弦.
+
+\rm\cref{equation:线积分与面积分.高斯公式} 叫做\DefineConcept{高斯公式}.
+\begin{proof}
+设闭区域\(\Omega\)在\(xOy\)面上的投影区域为\(D_{xy}\).
+假定穿过\(\Omega\)内部且平行于\(z\)轴的直线与\(\Omega\)的边界曲面\(\Sigma\)的交点恰好是两个.
+这样就可以将\(\Sigma\)分为\(\AutoTuple{\Sigma}{3}\)三部分，
+其中\(\Sigma_1\)、\(\Sigma_2\)分别由方程\(z=z_1(x,y)\)、\(z=z_2(x,y)\)给定，
+这里\(z_1(x,y) \leq z_2(x,y)\)，
+\(\Sigma_1\)取下侧，\(\Sigma_2\)取上侧；
+\(\Sigma_3\)是以\(D_{xy}\)的边界曲线为准线、母线平行于\(z\)轴的柱面上的一部分，取外侧.
+
+根据三重积分的计算法，有\[\begin{aligned}
+\iiint_{\Omega} \pdv{R}{z} \dd{v}
+&= \iint_{D_{xy}} \left[
+	\int_{z_1(x,y)}^{z_2(x,y)} \pdv{R}{z} \dd{z}
+\right] \dd{x}\dd{y} \\
+&= \iint_{D_{xy}} \left\{
+	R[x,y,z_2(x,y)] - R[x,y,z_1(x,y)]
+\right\} \dd{x}\dd{y}.
+\end{aligned}
+\eqno{(1)}
+\]
+根据曲面积分的计算法，有\[
+\iint_{\Sigma_1} R(x,y,z) \dd{x}\dd{y}
+= -\iint_{D_{xy}} R[x,y,z_1(x,y)] \dd{x}\dd{y}.
+\]\[
+\iint_{\Sigma_2} R(x,y,z) \dd{x}\dd{y}
+= \iint_{D_{xy}} R[x,y,z_2(x,y)] \dd{x}\dd{y}.
+\]因为\(\Sigma_3\)上任意一块曲面在\(xOy\)面上的投影为零，所以直接根据对坐标的曲面积分的定义可知\[
+\iint_{\Sigma_3} R(x,y,z) \dd{x}\dd{y} = 0.
+\]把以上三个式子相加，得\[
+\varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}
+= \iint_{D_{xy}} \left\{
+	R[x,y,z_2(x,y)] - R[x,y,z_1(x,y)]
+\right\} \dd{x}\dd{y}.
+\eqno{(2)}
+\]比较(1)、(2)两式，得\[
+\iiint_{\Omega} \pdv{R}{z} \dd{v} = \varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}.
+\]
+
+如果穿过\(\Omega\)内部且平行于\(x\)轴的直线以及平行于\(y\)轴的直线与\(\Omega\)的边界曲面\(\Sigma\)的交点也都恰好是两个，那么类似地可得\[
+\iiint_{\Omega} \pdv{P}{x} \dd{v} = \varoiint_\Sigma P(x,y,z) \dd{y}\dd{z},
+\]\[
+\iiint_{\Omega} \pdv{Q}{y} \dd{v} = \varoiint_\Sigma Q(x,y,z) \dd{z}\dd{x},
+\]再把以上三个式子两端分别相加，即得高斯公式 \labelcref{equation:线积分与面积分.高斯公式}.
+
+在上述证明中，我们对闭区域\(\Omega\)作了这样的限制，即穿过\(\Omega\)内部且平行于坐标轴的直线与\(\Omega\)的边界曲面\(\Sigma\)的交点恰好是两点.
+如果\(\Omega\)不满足这样的条件，可以引进几张辅助曲面，把\(\Omega\)分为有限个闭区域，使得每个闭区域满足这样的条件，并注意到沿辅助曲面相反两侧的两个曲面积分的绝对值相等而符号相反，相加时正好抵消，因此\cref{equation:线积分与面积分.高斯公式} 对于这样的闭区域仍然是正确的.
+\end{proof}
+\end{theorem}
+
+
+\begin{example}
+利用高斯公式计算曲面积分\[
+\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z},
+\]其中\(\Sigma\)为柱面\(x^2+y^2=1\)及平面\(z=0,z=3\)所围成的空间闭区域\(\Omega\)的整个边界曲面的外侧.
+\begin{solution}
+记\(P=(y-z)x\)，\(Q=0\)，\(R=x-y\)，那么\[
+\pdv{P}{x} = y-z,
+\qquad
+\pdv{Q}{y} = 0,
+\qquad
+\pdv{R}{z} = 0,
+\]利用高斯公式把所给曲面积分化为三重积分，再利用柱面坐标计算三重积分，得\begin{align*}
+&\hspace{-20pt}\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z}
+= \iiint_{\Omega} (y-z) \dd{x}\dd{y}\dd{z} \\
+&= \iiint_{\Omega} (\rho\sin\theta-z)\rho\dd{\rho}\dd{\theta}\dd{z}
+= \int_0^{2\pi} \dd{\theta} \int_0^1 \rho\dd{\rho} \int_0^3 (\rho\sin\theta-z) \dd{z}
+= -\frac{9\pi}{2}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+设空间有界区域\(\Omega\)中，柱面\(x^2+y^2=1\)与平面\(z=0\)和\(x+z=1\)围成，\(\Sigma\)为\(\Omega\)边界曲面的外侧，计算曲面积分\[
+I = \varoiint_\Sigma 2xz \dd{y}\dd{z} + xz \cos y \dd{z}\dd{x} + 3yz \sin x \dd{x}\dd{y}.
+\]
+\begin{solution}
+利用高斯公式可得
+\begin{align*}
+I &= \iiint_{\Omega} \left[ \pdv{x}(2xz) + \pdv{y}(xz \cos y) + \pdv{z}(3yz \sin x) \right] \dd{v} \\
+&= \iiint_{\Omega} (2z - xz \sin y + 3y \sin x) \dd{v}.
+\end{align*}
+注意到积分区域\(\Omega\)关于\(xOz\)面对称，那么\[
+\iiint_{\Omega} xz \sin y \dd{v} = 0,
+\qquad
+\iiint_{\Omega} 3y \sin x \dd{v} = 0;
+\]因此\begin{align*}
+I &= 2 \iiint_{\Omega} z \dd{x}\dd{y}\dd{z}
+= 2 \iint_{D_{xy}} \dd{x}\dd{y} \int_0^{1-x} z \dd{z} \\
+&= \iint_{D_{xy}} (1-x)^2 \dd{x}\dd{y}
+= \iint_{D_{xy}} (1-2x+x^2) \dd{x}\dd{y} \\
+&= \iint_{D_{xy}} \dd{x}\dd{y}
+- 2 \iint_{D_{xy}} x \dd{x}\dd{y}
++ \iint_{D_{xy}} x^2 \dd{x}\dd{y},
+\end{align*}
+其中\(D_{xy} = \Set{\opair{x,y} \given x^2+y^2\leq1}\).
+注意到\(\iint_{D_{xy}} \dd{x}\dd{y}\)是区域\(D_{xy}\)的面积，取值为\(\pi\cdot1^2=\pi\)；
+又有\(\iint_{D_{xy}} x \dd{x}\dd{y}\)中积分区域\(D_{xy}\)关于\(x\)轴对称，且被积函数\(x\)是奇函数，那么\(\iint_{D_{xy}} x \dd{x}\dd{y} = 0\)；
+同时，由于\(D_{xy}\)关于原点对称，\[
+\iint_{D_{xy}} x^2 \dd{x}\dd{y} = \iint_{D_{xy}} y^2 \dd{x}\dd{y},
+\]所以\begin{align*}
+I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
+&= \pi + \frac{1}{2}
+	\int_0^{2\pi} \dd{\theta} \int_0^1 \rho^2 \cdot \rho\dd{\rho}
+= \frac{5}{4} \pi.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}[三维格林第一公式]
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有一阶及二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{v}{\mat{n}}\)为函数\(v(x,y,z)\)沿\(\Sigma\)的外法线方向的方向导数.证明：
+\begin{equation}\label{equation:线积分与面积分.三维格林第一公式}
+\begin{split}
+&\iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} \\
+&\hspace{30pt}=\varoiint_\Sigma u \pdv{v}{n} \dd{S}
+-\iiint_{\Omega} \left(
+\pdv{u}{x} \pdv{v}{x}
++\pdv{u}{y} \pdv{v}{y}
++\pdv{u}{z} \pdv{v}{z}
+\right) \dd{x}\dd{y}\dd{z},
+\end{split}
+\end{equation}其中符号\(\laplacian = \pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}\)为\DefineConcept{拉普拉斯算子}.
+\begin{proof}
+因为方向导数\[
+\pdv{v}{\mat{n}}
+= \pdv{v}{x} \cos\alpha
++ \pdv{v}{y} \cos\beta
++ \pdv{v}{z} \cos\gamma,
+\]其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的外法线向量的方向余弦，于是利用高斯公式即有曲面积分\begin{align*}
+&\hspace{-20pt}\varoiint_\Sigma u \pdv{v}{\mat{n}} \dd{S}
+= \varoiint_\Sigma u \left(
+\pdv{v}{x} \cos\alpha
++ \pdv{v}{y} \cos\beta
++ \pdv{v}{z} \cos\gamma
+\right) \dd{S} \\
+&= \varoiint_\Sigma \left[
+\left( u \pdv{v}{x} \right) \cos\alpha
++ \left( u \pdv{v}{y} \right) \cos\beta
++ \left( u \pdv{v}{z} \right) \cos\gamma
+\right] \dd{S} \\
+&= \varoiint_\Sigma \left[
+\pdv{x} \left( u \pdv{v}{x} \right)
++ \pdv{y} \left( u \pdv{v}{y} \right)
++ \pdv{z} \left( u \pdv{v}{z} \right)
+\right] \dd{x}\dd{y}\dd{z} \\
+&= \varoiint_\Sigma \left[
+\left( \pdv{u}{x} \pdv{v}{x} + u \pdv[2]{v}{x} \right)
++ \left( \pdv{u}{y} \pdv{v}{y} + u \pdv[2]{v}{y} \right)
++ \left( \pdv{u}{z} \pdv{v}{z} + u \pdv[2]{v}{z} \right)
+\right] \dd{x}\dd{y}\dd{z} \\
+&= \varoiint_\Sigma \left(
+\pdv{u}{x} \pdv{v}{x}
++ \pdv{u}{y} \pdv{v}{y}
++ \pdv{u}{z} \pdv{v}{z}
+\right) \dd{x}\dd{y}\dd{z}
++ \varoiint_\Sigma u \laplacian{v} \dd{x}\dd{y}\dd{z},
+\end{align*}将上式右端第一个积分移至左端便得\cref{equation:线积分与面积分.三维格林第一公式}.
+\end{proof}
+\end{example}
+\begin{example}[三维格林第二公式]
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{u}{\mat{n}}\)、\(\pdv{v}{\mat{n}}\)依次为函数\(u\)、\(v\)沿\(\Sigma\)的外法线方向的方向导数.证明：
+\begin{equation}\label{equation:线积分与面积分.三维格林第二公式}
+\iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z}
+=\varoiint_\Sigma \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}.
+\end{equation}
+\begin{proof}
+\def\Io{\iiint_{\Omega} \left(%
+\pdv{u}{x} \pdv{v}{x}%
++\pdv{u}{y} \pdv{v}{y}%
++\pdv{u}{z} \pdv{v}{z}%
+\right) \dd{x}\dd{y}\dd{z}}%
+因为方向导数\begin{align*}
+\pdv{u}{\mat{n}}
+&= \pdv{u}{x} \cos\alpha
++ \pdv{u}{y} \cos\beta
++ \pdv{u}{z} \cos\gamma, \\
+\pdv{v}{\mat{n}}
+&= \pdv{v}{x} \cos\alpha
++ \pdv{v}{y} \cos\beta
++ \pdv{v}{z} \cos\gamma,
+\end{align*}其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的外法线向量的方向余弦，于是利用\hyperref[equation:线积分与面积分.三维格林第一公式]{三维格林第一公式}即有曲面积分\begin{align*}
+&\hspace{-5pt}\varoiint_\Sigma \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}
+= \varoiint_\Sigma u \pdv{v}{\mat{n}} \dd{S}
+- \varoiint_\Sigma v \pdv{u}{\mat{n}} \dd{S} \\
+&= \left[ \iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} + I \right]
+- \left[ \iiint_{\Omega} v \laplacian{u} \dd{x}\dd{y}\dd{z} + I \right] \\
+&= \iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z},
+\end{align*}其中\(I = \Io\).
+\end{proof}
+\end{example}
+
+\subsection{沿任意闭曲面的曲面积分为零的条件}
+\begin{definition}
+对于空间区域\(G\)，如果\(G\)内任一闭曲面所围成的区域全属于\(G\)，则称\(G\)是\DefineConcept{空间二维单连通区域}；如果\(G\)内任一闭曲线总可以张成一片完全属于\(G\)的曲面，则称\(G\)为\DefineConcept{空间一维单连通区域}.
+\end{definition}
+
+\begin{example}
+球面所围成的区域既是空间二维单连通的，又是空间一维单连通的.
+环面所围成的区域是空间二维单连通的，但不是空间一维单连通的.
+两个同心球面之间的区域是空间一维单连通的，但不是空间二维单连通的.
+\end{example}
+
+\begin{theorem}\label{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
+设\(G\)是空间二维单连通区域，\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在\(G\)内具有一阶连续偏导数，则曲面积分\[
+\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
+\]在\(G\)内与所取曲面\(\Sigma\)无关而只决定于\(\Sigma\)的边界曲线（或沿\(G\)内任一闭曲面的曲面积分为零）的充要条件是\[
+\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z} = 0
+\]在\(G\)内恒成立.
+\end{theorem}
+
+\subsection{通量与散度}
+\begin{definition}
+设有向量场\[
+\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k},
+\]其中函数\(P\)、\(Q\)、\(R\)均具有一阶连续偏导数，\(\Sigma\)是场内一片有向曲面，\(\mat{n}\)是\(\Sigma\)在点\(\opair{x,y,z}\)处的单位法向量，则积分\[
+\iint_\Sigma{\mat{A}\cdot\mat{n}\dd{S}}
+\]称为向量场\(\mat{A}\)通过曲面\(\Sigma\)向着指定侧的\DefineConcept{通量}（或\DefineConcept{流量}）.
+\end{definition}
+由两类曲面积分的关系，通量又可表达为\[
+\iint_\Sigma \mat{A}\cdot\mat{n}\dd{S}
+=\iint_\Sigma \mat{A}\cdot\dd{\mat{S}}
+=\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}.
+\]
+
+\begin{definition}[平面上的散度]
+\def\defofdiv{\lim\limits_{D \to M} \frac{1}{S} \oint_C \mat{A}(x,y) \cdot \dd{\mat{s}}}%
+设\[
+\mat{A}(x,y)=P(x,y)\mat{i}+Q(x,y)\mat{j}
+\]是定义在平面闭区域\(D\)内的向量场，
+\(C\)是\(D\)的边界曲线的正向，
+\(D\)的面积\(S = \iint_{D} \dd{\sigma}\).
+对于\(D\)内一点\(M\)，称极限\[
+\defofdiv
+\]为向量场\(\mat{A}\)在点\(M\)的（二维）\DefineConcept{散度}（或\DefineConcept{通量密度}），记作\(\div{\mat{A}}\)或\(\operatorname{div}\mat{A}\)，即\[
+\div{\mat{A}} = \defofdiv.
+\]
+\end{definition}
+
+\begin{theorem}
+向量场\(\mat{A}(x,y)=P(x,y)\mat{i}+Q(x,y)\mat{j}\)的在点\(\opair{x,y}\)的散度为\[
+\div{\mat{A}} = \pdv{P}{x}+\pdv{Q}{y}.
+\]
+\end{theorem}
+
+\begin{definition}[空间中的散度]
+\def\defofdiv{\lim\limits_{\Omega \to M} \frac{1}{V} \varoiint_\Sigma \mat{A}(x,y,z) \cdot \dd{\mat{S}}}%
+设\[
+\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k}
+\]是定义在空间闭区域\(\Omega\)内的向量场，
+\(\Sigma\)是\(\Omega\)的边界曲面的外侧，
+\(\Omega\)的体积\(V = \iiint_{\Omega} \dd{v}\).
+对于\(\Omega\)内一点\(M\)，称极限\[
+\defofdiv
+\]为向量场\(\mat{A}\)在点\(M\)的（三维）\DefineConcept{散度}（或\DefineConcept{通量密度}），记作\(\div{\mat{A}}\)或\(\operatorname{div}\mat{A}\)，即\[
+\div{\mat{A}} = \defofdiv.
+\]
+\end{definition}
+
+\begin{theorem}
+向量场\(\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k}\)的在点\(\opair{x,y,z}\)的散度为\[
+\div{\mat{A}} = \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}.
+\]
+\end{theorem}
+
+\begin{definition}
+若在点\(M\)处\(\div{\mat{A}}>0\)，则称点\(M\)为向量场\(\mat{A}\)的\DefineConcept{源}（或\DefineConcept{正源}）；%
+若在点\(M\)处\(\div{\mat{A}}<0\)，则称点\(M\)为向量场\(\mat{A}\)的\DefineConcept{漏}（或\DefineConcept{负源}）；%
+若在点\(M\)处\(\div{\mat{A}}=0\)，则称向量场\(\mat{A}\)在点\(M\)处\DefineConcept{无源}.
+
+如果向量场\(\mat{A}\)的散度\(\div{\mat{A}}\)处处为零，则称向量场\(\mat{A}\)为\DefineConcept{无源场}.
+\end{definition}
+
+现在利用散度的概念，\cref{equation:线积分与面积分.高斯公式} 可以改写为
+\begin{equation}\label{equation:线积分与面积分.高斯公式1}
+	\iiint_{\Omega} \div{\mat{A}} \dd{v} = \varoiint_\Sigma \mat{A} \cdot \dd{\mat{S}};
+\end{equation}
+而\cref{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
+可以改写为“沿任意闭曲面的曲面积分为零的充要条件是向量场散度为零”.
+
+\begin{example}
+利用高斯公式推证阿基米德原理：浸没在液体中的物体所受液体的压力的合力（即浮力）的方向铅直向上，其大小等于这物体所排开的液体的重力.
+\begin{proof}
+我们建立如下的坐标系：\(xOy\)面与液面重合，\(z\)轴铅锤向下.
+浸没在液体中的物体所占据的空间闭区域\(\Omega\)的边界曲面\(\Sigma\)上任意一点\(M\opair{x,y,z}\)的邻近小区域\(\dd{\sigma}\)所受的压力大小等于从它到液面间这部分液体（柱）的重力大小，即为\(\rho g z \dd{\sigma}\)，而方向是\(\mat{n}=\cos\alpha\mat{i}+\cos\beta\mat{j}+\cos\gamma\mat{k}\)（即\(\Sigma\)的单位内法向量），其中\(\rho\)是液体的密度，\(\sigma\)是液体（柱）的底面积，\(g\)是重力加速度大小.
+从而整个物体所受浮力为\begin{align*}
+\mat{F} &= \varoiint_\Sigma \rho g z (\cos\alpha\mat{i}+\cos\beta\mat{j}+\cos\gamma\mat{k}) \dd{\sigma} \\
+&= \rho g \iint_{\Omega} \left(\pdv{x}+\pdv{y}+\pdv{z}\right) z \dd{v} \\
+&= \rho g \iint_{\Omega} \dd{v}
+= \rho g V,
+\end{align*}其中\(V\)是物体所排开的液体的体积.
+\end{proof}
+\end{example}

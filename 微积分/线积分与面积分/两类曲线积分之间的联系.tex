@@ -1,0 +1,55 @@
+\section{两类曲线积分之间的联系}
+\begingroup
+\def\lenTau{\sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}}
+\def\fTau#1{\frac{#1}{\lenTau}}
+\def\funcParam{[\varphi(t),\psi(t)]}
+
+设有向曲线弧\(L\)的起点为\(A\)，终点为\(B\).曲线弧\(L\)由参数方程\[
+\begin{cases}
+x = \varphi(t), \\
+y = \psi(t)
+\end{cases}
+\]给出，起点\(A\)、终点\(B\)分别对应参数\(\alpha\)、\(\beta\)，且\(\alpha < \beta\).
+又设函数\(\varphi(t)\)、\(\psi(t)\)在闭区间\([\alpha,\beta]\)上具有一阶连续导数，
+且\([\varphi'(t)]^2+[\psi'(t)]^2 \neq 0\)，
+又函数\(P(x,y)\)、\(Q(x,y)\)在\(L\)上连续.
+那么有向曲线弧\(L\)的在点\(M\opair{\varphi(t),\psi(t)}\)处的切向量为\[
+\mat{\tau} = \varphi'(t) \mat{i} + \psi'(t) \mat{j},
+\]它的方向余弦为\[
+\cos\alpha=\fTau{\varphi'(t)},
+\qquad
+\cos\beta=\fTau{\psi'(t)}.
+\]
+
+由对坐标的曲线积分计算公式和对弧长的曲线积分的计算公式有
+\begin{align*}
+&\hspace{-20pt}\int_L{\opair{P(x,y),Q(x,y)}\cdot\frac{\mat{\tau}}{\abs{\mat{\tau}}}\dd{s}} \\
+&=\int_L{[P(x,y)\cos\alpha+Q(x,y)\cos\beta]\dd{s}} \\
+&=\int_{\alpha}^{\beta} \biggl\{ {P\funcParam\fTau{\varphi'(t)}} \\
+	&\hspace{45pt}+{Q\funcParam\fTau{\psi'(t)}} \biggr\} \lenTau \dd{t} \\
+&=\int_{\alpha}^{\beta} \left\{
+		P\funcParam\varphi'(t) + Q\funcParam\psi'(t)
+	\right\} \dd{t} \\
+&=\int_L{P(x,y)\dd{x}+Q(x,y)\dd{y}}.
+\end{align*}
+\endgroup
+
+由此可见，平面曲线\(L\)上的两类曲线积分之间有如下联系：
+\begin{equation}\label{equation:线积分与面积分.平面曲线上两类曲线积分之间的联系}
+\int_L{P\dd{x}+Q\dd{y}}
+=\int_L{(P\cos\alpha+Q\cos\beta)\dd{s}},
+\end{equation}
+其中\(\alpha(x,y)\)、\(\beta(x,y)\)为有向曲线弧\(L\)在点\(\opair{x,y}\)处的切向量的方向角.
+
+类似地可知，空间曲线\(\Gamma\)上的两类曲线积分之间有如下联系：
+\begin{equation}\label{equation:线积分与面积分.空间曲线上两类曲线积分之间的联系}
+\int_{\Gamma}{P\dd{x}+Q\dd{y}+R\dd{z}}
+=\int_{\Gamma}{(P\cos\alpha+Q\cos\beta+R\cos\gamma)\dd{s}},
+\end{equation}其中\(\alpha\)、\(\beta\)、\(\gamma\)为有向曲线弧\(\Gamma\)在点\(\opair{x,y,z}\)处的切向量的方向角.
+
+两类曲线积分之间的联系也可用向量的形式表达.
+例如，空间曲线\(\Gamma\)上的两类曲线积分之间的联系可写成如下形式：
+\begin{equation}\label{equation:线积分与面积分.空间曲线上两类曲线积分之间的联系的向量形式}
+\int_{\Gamma}{\mat{A} \cdot \dd{\mat{r}}}
+= \int_{\Gamma}{\mat{A} \cdot \mat{\tau} \dd{s}},
+\end{equation}其中\(\mat{A}=\opair{P,Q,R}\)，\(\mat{\tau}=\opair{\cos\alpha,\cos\beta,\cos\gamma}\)为有向曲线弧\(\Gamma\)在点\(\opair{x,y,z}\)处的单位切向量，\(\dd{\mat{r}}=\mat{\tau}\dd{s}=\opair{\dd{x},\dd{y},\dd{z}}\)称为\DefineConcept{有向曲线元}.
