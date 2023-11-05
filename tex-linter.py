@@ -35,19 +35,21 @@ def find_all_tex_files():
 if __name__ == "__main__":
     is_tex_project_problematic = False
     error_counter = 0
+
+    def error(msg, _file, _line_num, _prev_line, _line):
+        logger.error("{}\n{} 第{}行：\n\t{}>>>\t{}".format(msg, _file, _line_num, _prev_line, _line))
+        global is_tex_project_problematic, error_counter
+        is_tex_project_problematic = True
+        error_counter += 1
+
     for file in find_all_tex_files():
         with open(file, mode='r', encoding="utf-8") as fd:
             prev_line = ""
             for line_num, line in enumerate(fd.readlines()):
                 line_num += 1  # enumerate 函数给出的序号是从0开始的，行号是从1开始的，进行修正
-                def error(msg):
-                    logger.error("{}\n{} 第{}行：\n\t{}>>>\t{}".format(msg, file, line_num, prev_line, line))
-                    global is_tex_project_problematic, error_counter
-                    is_tex_project_problematic = True
-                    error_counter += 1
 
                 if re.search(r"\s+\\cref\b", line):
-                    error("【0001】\cref 命令前不应有空格！")
+                    error("【0001】\cref 命令前不应有空格！", file, line_num, prev_line, line)
 
                 if re.search(r"^\\cref\b", line):
                     if re.search(r"%[^$]+$", prev_line):
@@ -63,7 +65,7 @@ if __name__ == "__main__":
                         continue  # 前一行最后一个字符是句号，没关系
                     if re.search(r"\uff0c$", prev_line):
                         continue  # 前一行最后一个字符是逗号，没关系
-                    error("【0002】\cref 命令前不应换行！")
+                    error("【0002】\cref 命令前不应换行！", file, line_num, prev_line, line)
 
                 if re.search(r"\\labelcref\b", line):
                     if re.search(r" \\labelcref\b", line):
@@ -71,26 +73,26 @@ if __name__ == "__main__":
                     if re.search(r"^\\labelcref\b", line) \
                         and not re.search(r"%[^$]+$", prev_line):
                         continue  # 换行的情况下不必另外添加空格，且上一行末尾不是由`%`结束的
-                    error("【0003】\labelcref 命令前应添加空格！")
+                    error("【0003】\labelcref 命令前应添加空格！", file, line_num, prev_line, line)
 
                 if re.search(r"\\cref\{[^\}]+\}\s+[\uff09\uff0c\uff1b]", line):
-                    error("【0004】在 \cref 命令后若紧跟标点符号则不应另行添加空格！")
+                    error("【0004】在 \cref 命令后若紧跟标点符号则不应另行添加空格！", file, line_num, prev_line, line)
 
                 if re.search(r"\uff09\s+\\\(", line):
-                    error("【0005】在全角右圆括号与行内数学公式开头命令之间存在空格！")
+                    error("【0005】在全角右圆括号与行内数学公式开头命令之间存在空格！", file, line_num, prev_line, line)
 
                 if any(re.search(pattern, line) for pattern in [
                     r"\\hyperref\[[^\]]+\]\{[^\}]+\}\s+?",
                     r"\s+\\hyperref\[[^\]]+\]\{[^\}]+\}",
                 ]):
-                    error("【0006】在\hyperref命令前后存在空格！")
+                    error("【0006】在\hyperref命令前后存在空格！", file, line_num, prev_line, line)
 
                 if any(re.search(pattern, line) for pattern in [
                     r"\\\)\\DefineConcept\{[^\}]+\}",
                     r"\\DefineConcept\{[^\}]+\}\\\(",
                     r"\\DefineConcept\{[^\}]+\}$",
                 ]):
-                    error("【0007】在\DefineConcept命令前后存在空格！")
+                    error("【0007】在\DefineConcept命令前后存在空格！", file, line_num, prev_line, line)
 
                 prev_line = line
     if not is_tex_project_problematic:
