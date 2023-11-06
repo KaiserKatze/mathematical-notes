@@ -87,7 +87,7 @@
 	\begin{tikzpicture}[scale=.5]
 		\begin{axis}[
 			xmin=-10,xmax=10,
-			restrict y to domain=-100:100,
+			ymin=-10,ymax=10,
 			grid=both,width=\textwidth,height=\textwidth,
 			axis lines=middle,
 			xlabel={\(x\)},
@@ -97,12 +97,15 @@
 			axis lines = middle,
 			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
 			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+			ytick={-1,1},
 		]
-			\addplot[color=blue,samples=50,smooth,domain=-10:-.5]{(exp(x)+exp(-x))/(exp(x)-exp(-x))};
-			\addplot[color=blue,samples=50,smooth,domain=.5:10]{(exp(x)+exp(-x))/(exp(x)-exp(-x))};
+			\addplot[color=blue,samples=50,smooth,domain=-10:-.1]
+				{(exp(x)+exp(-x))/(exp(x)-exp(-x))};
+			\addplot[color=blue,samples=50,smooth,domain=.1:10]
+				{(exp(x)+exp(-x))/(exp(x)-exp(-x))};
 		\end{axis}
 	\end{tikzpicture}
-	\caption{双曲余切函数的图形}
+	\caption{双曲余切函数\(y=\coth x\)的图形}
 	\label{figure:函数.双曲余切函数的图形}
 \end{figure}
 
