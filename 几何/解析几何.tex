@@ -99,48 +99,68 @@
 \]
 \end{definition}
 由上述公式表示的向量加法规则通常称为\DefineConcept{三角形法则}（triangle law）.
-
-如\cref{figure:解析几何.向量相加的平行四边形法则}，
-我们还有\DefineConcept{平行四边形法则}（parallelogram law）.
-
-\begin{figure}[ht]
-	\centering
-	\begin{tikzpicture}
-		\draw[help lines, color=gray!30, dashed] (0,0) grid (5,4);
-		\draw [->, ultra thick] (0,0) -- (5,0) node[right]{\(x\)};
-		\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
-		\coordinate (A) at (1,1);
-		\coordinate (B) at (4,2);
-		\coordinate (C) at (3,3);
-		\begin{scope}[>=Stealth,->]
-			\draw (A)node[left]{\(A\)} -- (B)node[right]{\(B\)}node[midway,below]{\(\mat{a}\)};
-			\draw (B) -- (C)node[above]{\(C\)}node[midway,above right]{\(\mat{b}\)};
-			\draw (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
-		\end{scope}
-	\end{tikzpicture}
-	\caption{向量加法的三角形法则}
-	\label{figure:解析几何.向量相加的三角形法则}
-\end{figure}
+除此以外，我们还有\DefineConcept{平行四边形法则}（parallelogram law），
+如\cref{figure:解析几何.向量相加的平行四边形法则}.
 
 \begin{figure}[ht]
 	\centering
-	\begin{tikzpicture}
-		\draw[help lines, color=gray!30, dashed] (0,0) grid (6,4);
-		\draw [->, ultra thick] (0,0) -- (6,0) node[right]{\(x\)};
-		\draw [->, ultra thick] (0,0) -- (0,4) node[above]{\(y\)};
-		\coordinate (A) at (2,1);
-		\coordinate (B) at (5,2);
-		\coordinate (C) at (4,3);
-		\coordinate (D) at (1,2);
-		\begin{scope}[>=Stealth,->]
-			\draw (A)node[below]{\(A\)} -- (B)node[midway,below]{\(\mat{a}\)};
-			\draw (A) -- (D)node[midway,left]{\(\mat{b}\)};
-			\draw (A) -- (C)node[midway,above left]{\(\mat{a}+\mat{b}\)};
-		\end{scope}
-		\draw[dashed] (D)node[left]{\(D\)} -- (C)node[above]{\(C\)} -- (B)node[right]{\(B\)};
-	\end{tikzpicture}
-	\caption{向量相加的平行四边形法则}
-	\label{figure:解析几何.向量相加的平行四边形法则}
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\pgfmathsetmacro{\xmax}{5}
+			\pgfmathsetmacro{\xmin}{0}
+			\pgfmathsetmacro{\ymax}{4}
+			\pgfmathsetmacro{\ymin}{0}
+			\draw[help lines,color=gray!30,dashed](\xmin,\ymin)grid(\xmax,\ymax);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(\xmin,0)--(\xmax,0)node[right]{\(x\)};
+				\draw(0,\ymin)--(0,\ymax)node[above]{\(y\)};
+			\end{scope}
+			\coordinate(A)at(1,1);
+			\coordinate(B)at(4,2);
+			\coordinate(C)at(3,3);
+			\begin{scope}[>=Stealth,->]
+				\draw[blue](A)node[black,left]{\(A\)}
+					--(B)node[black,right]{\(B\)}node[black,midway,below]{\(\mat{a}\)};
+				\draw[blue](B)
+					--(C)node[black,above]{\(C\)}node[black,midway,above right]{\(\mat{b}\)};
+				\draw[red](A)--(C)node[black,midway,above left]{\(\mat{a}+\mat{b}\)};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{向量加法的三角形法则}
+		\label{figure:解析几何.向量相加的三角形法则}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\pgfmathsetmacro{\xmax}{6}
+			\pgfmathsetmacro{\xmin}{0}
+			\pgfmathsetmacro{\ymax}{4}
+			\pgfmathsetmacro{\ymin}{0}
+			\draw[help lines,color=gray!30,dashed](\xmin,\ymin)grid(\xmax,\ymax);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(\xmin,0)--(\xmax,0)node[right]{\(x\)};
+				\draw(0,\ymin)--(0,\ymax)node[above]{\(y\)};
+			\end{scope}
+			\coordinate(A)at(2,1);
+			\coordinate(B)at(5,2);
+			\coordinate(C)at(4,3);
+			\coordinate(D)at(1,2);
+			\begin{scope}[>=Stealth,->]
+				\draw[blue](A)node[black,below]{\(A\)}
+					--(B)node[black,midway,below]{\(\mat{a}\)};
+				\draw[blue](A)--(D)node[black,midway,left]{\(\mat{b}\)};
+				\draw[red](A)--(C)node[black,midway,above left]{\(\mat{a}+\mat{b}\)};
+			\end{scope}
+			\draw[dashed](D)node[black,left]{\(D\)}
+				--(C)node[black,above]{\(C\)}
+				--(B)node[black,right]{\(B\)};
+		\end{tikzpicture}
+		\caption{向量相加的平行四边形法则}
+		\label{figure:解析几何.向量相加的平行四边形法则}
+	\end{subfigure}
+	\caption{}
 \end{figure}
 
 向量的加法服从以下运算律：
