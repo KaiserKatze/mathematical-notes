@@ -806,7 +806,8 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 过点\(O\)做一个平面\(\pi\)与\(l\)垂直，
 在平面\(\pi\)上取两个互相垂直的单位向量\(\mat{e}_1,\mat{e}_2\)，
 则\([O;\mat{e}_1,\mat{e}_2,\mat{e}]\)是几何空间\(V\)的一个直角坐标系.
-于是，任给一个向量\(\mat{a}\)，它总可唯一地分解成\[
+于是，如\cref{figure:解析几何.内射影与外射影}，
+任给一个向量\(\mat{a}\)，它总可唯一地分解成\[
 	\mat{a}
 	= x \mat{e}_1 + y \mat{e}_2 + z \mat{e}
 	= \mat{a}_2 + \mat{a}_1,
@@ -819,6 +820,69 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 或“\(\mat{a}\)在方向向量为\(\mat{e}\)的轴\(l\)上的\DefineConcept{正投影}”，
 记作\(\Prj_{\mat{e}}(\mat{a})\)；
 把\(\mat{a}_2\)称为“\(\mat{a}\)沿方向\(\mat{e}\)下的\DefineConcept{外射影}”.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\coordinate(O)at(0,0);
+		\coordinate(A)at(2,0);
+		\coordinate(B)at(1,2);
+		\draw[red,dashed](B)--(O-|B)coordinate(C)
+			(B)--(B-|O)coordinate(D);
+		\draw pic[draw=gray,-,angle radius=0.2cm]{right angle=A--O--D};
+		\begin{scope}[->,>=Stealth]
+			\draw[ultra thick](O)--(A)node[right]{\(\mat{e}\)};
+			\draw[ultra thick](O)--(B)node[right]{\(\mat{a}\)};
+			\draw[red](O)--(C)node[below]{\(\mat{a}_1\)};
+			\draw[red](O)--(D)node[left]{\(\mat{a}_2\)};
+		\end{scope}
+		\fill(O)circle(1pt);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.内射影与外射影}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\coordinate(O)at(0,0);
+			\coordinate(A)at(2,0);
+			\coordinate(B)at(1,2);
+			\draw[red,dashed](B)--(O-|B)coordinate(C);
+			\begin{scope}[->,>=Stealth]
+				\draw[ultra thick](O)--(A)node[right]{\(\mat{v}\)};
+				\draw[ultra thick](O)--(B)node[left]{\(\mat{u}\)};
+				\draw[red](O)--(C)node[below]{\(\Prj_{\mat{v}}\mat{u}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]
+				{angle=A--O--B};
+			\fill(O)circle(1pt);
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\coordinate(O)at(0,0);
+			\coordinate(A)at(2,0);
+			\coordinate(B)at(-1,2);
+			\draw[red,dashed](B)--(O-|B)coordinate(C);
+			\begin{scope}[->,>=Stealth]
+				\draw[ultra thick](O)--(A)node[right]{\(\mat{v}\)};
+				\draw[ultra thick](O)--(B)node[left]{\(\mat{u}\)};
+				\draw[red](O)--(C)node[below]{\(\Prj_{\mat{v}}\mat{u}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]
+				{angle=A--O--B};
+				\fill(O)circle(1pt);
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\caption{}
+\end{figure}
 
 \begin{theorem}
 %@see: 《解析几何》（丘维声） P24 命题3.1
