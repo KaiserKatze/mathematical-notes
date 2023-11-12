@@ -90,6 +90,34 @@ a^b = \underbrace{a \times a \times \dotsm \times a}_{b\text{次}} = \prod\limit
 	\caption{}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=1.5]
+		\begin{axis}[
+			xmin=-5,xmax=5,
+			ymin=-5,ymax=5,
+			enlargelimits,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+		]
+			\begin{scope}[samples=50,smooth]
+				\begin{scope}[domain=-5:-.1]
+					\addplot[color=blue]{1/x};
+					\addplot[color=orange]{1/(x^2)};
+					\addplot[color=green,domain=-5:-.6]{1/(x^3)};
+				\end{scope}
+				\begin{scope}[domain=.1:5]
+					\addplot[color=blue]{1/x};
+					\addplot[color=orange]{1/(x^2)};
+					\addplot[color=green,domain=.6:5]{1/(x^3)};
+				\end{scope}
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+\end{figure}
+
 \subsection{指数函数的概念}
 \begin{definition}[指数函数]
 形如\(y=a^x\ (a>0 \land a \neq 1)\)的函数，称为以\(a\)为底的\DefineConcept{指数函数}.
