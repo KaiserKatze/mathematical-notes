@@ -1202,17 +1202,41 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 
 \begin{figure}[ht]
 	\centering
-	\begin{tikzpicture}
-		\coordinate(O)at(0,0);
-		\fill[black!30,rotate=-7](-2.5,-2)--++(5,0)--++(2,3.5)--++(-5,0)--(-2.5,-2);
-		\begin{scope}[->,>=Stealth,ultra thick]
-			\draw(O)--(1.5,-1.5)coordinate(A)node[right]{\(\mat{a}\)};
-			\draw(O)--(2,.7)coordinate(B)node[right]{\(\mat{b}\)};
-			\draw[red](O)--(0,2.5)node[black,right]{\(\mat{c}=\mat{a}\times\mat{b}\)};
-		\end{scope}
-		\draw pic["\(\theta\)",draw=orange,->,angle eccentricity=1.5,angle radius=1cm]
-			{angle=A--O--B};
-	\end{tikzpicture}
+	\def\subwidth{.4\textwidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}[scale=.9]
+			\coordinate(O)at(0,0);
+			\fill[black!30,rotate=-7](-2.5,-2)--++(5,0)--++(2,3.5)--++(-5,0)--(-2.5,-2);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(O)--(1.5,-1.5)coordinate(A)node[right]{\(\mat{a}\)};
+				\draw(O)--(2,.7)coordinate(B)node[right]{\(\mat{b}\)};
+				\draw[red](O)--(0,3)node[black,right]{\(\mat{a}\times\mat{b}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,->,angle eccentricity=1.5,angle radius=1cm]
+				{angle=A--O--B};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}[scale=.9]
+			\coordinate(O)at(0,0);
+			\fill[black!30,rotate=-7,name path=u]
+				(-2.5,-2)--++(5,0)--++(2,3.5)--++(-5,0)--(-2.5,-2);
+			\path[name path=v](O)--(0,-3);
+			\draw[name intersections={of=u and v}]
+				[red,dashed,ultra thick](O)--(intersection-1);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(O)--(1.5,-1.5)coordinate(A)node[right]{\(\mat{a}\)};
+				\draw(O)--(2,.7)coordinate(B)node[right]{\(\mat{b}\)};
+				\draw[red](intersection-1)--(0,-3)node[black,right]{\(\mat{b}\times\mat{a}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,<-,angle eccentricity=1.5,angle radius=1cm]
+				{angle=A--O--B};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
 	\caption{}
 \end{figure}
 
