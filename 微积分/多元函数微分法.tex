@@ -989,11 +989,28 @@ H_{n1} & H_{n2} & \dots & H_{nn}
 与\cref{theorem:多元函数微分法.隐函数存在定理1} 一样，
 我们同样可以由三元函数\(F(x,y,z)\)的性质来断定
 由方程\(F(x,y,z) = 0\)所确定的二元函数\(z = f(x,y)\)的存在以及这个函数的性质.
-于是有以下定理：
+
+我们将显函数代入方程中，得恒等式\[
+	F(x,y,f(x,y))=0,
+\]
+将上式两端分别对\(x\)和\(y\)求导，
+应用复合函数求导法则，得\[
+	\pdv{F}{x} + \pdv{F}{z} \pdv{z}{x} = 0, \qquad
+	\pdv{F}{y} + \pdv{F}{z} \pdv{z}{y} = 0.
+\]
+如果\(F'_z\)连续，且\(F'_z(x_0,y_0,z_0)\neq0\)，
+所以存在点\((x_0,y_0,z_0)\)的一个邻域，
+在这个邻域内\(F'_z\neq0\)，
+于是得\[
+	\pdv{z}{x}=-\frac{F'_x}{F'_z}, \qquad
+	\pdv{z}{y}=-\frac{F'_y}{F'_z}.
+\]
+
+我们依照这个思路给出下面的定理.
 \begin{theorem}[隐函数存在定理2]\label{theorem:多元函数微分法.隐函数存在定理2}
-设函数\(F(x,y,z)\)在点\(P\opair{x_0,y_0,z_0}\)的某一邻域内具有连续偏导数，
+设函数\(F(x,y,z)\)在点\(P(x_0,y_0,z_0)\)的某一邻域内具有连续偏导数，
 且\(F(x_0,y_0,z_0)=0\)，\(F'_z(x_0,y_0,z_0) \neq 0\)，
-则方程\(F(x,y,z)=0\)在点\(\opair{x_0,y_0,z_0}\)的某一邻域内
+则方程\(F(x,y,z)=0\)在点\((x_0,y_0,z_0)\)的某一邻域内
 恒能唯一确定一个连续且具有连续偏导数的函数\(z=f(x,y)\)，
 它满足条件\(z_0=f(x_0,y_0)\)，并有
 \begin{equation}\label{equation:多元函数微分法.隐函数存在定理2.一阶偏导数}
@@ -1068,7 +1085,7 @@ e^{-y^2} (1+y') = 0.
 我们不仅增加方程中变量的个数，而且增加方程的个数.
 
 \begin{theorem}[隐函数存在定理3]\label{theorem:多元函数微分法.隐函数存在定理3}
-设\(F(x,y,u,v)\)、\(G(x,y,u,v)\)在点\(P\opair{x_0,y_0,u_0,v_0}\)的某一邻域内具有对各个变量的连续偏导数，又\[
+设\(F(x,y,u,v)\)、\(G(x,y,u,v)\)在点\(P(x_0,y_0,u_0,v_0)\)的某一邻域内具有对各个变量的连续偏导数，又\[
 \left\{ \begin{array}{c}
 F(x_0,y_0,u_0,v_0)=0, \\
 G(x_0,y_0,u_0,v_0)=0,
@@ -1081,12 +1098,12 @@ J=\jacobi{F,G}{u,v}={
 \pdv{G}{u} & \pdv{G}{v}
 \end{vmatrix}
 }
-\]在点\(P\opair{x_0,y_0,u_0,v_0}\)不等于零，则方程组\[
+\]在点\(P(x_0,y_0,u_0,v_0)\)不等于零，则方程组\[
 \left\{ \begin{array}{c}
 F(x,y,u,v)=0, \\
 G(x,y,u,v)=0,
 \end{array} \right.
-\]在点\(\opair{x_0,y_0,u_0,v_0}\)的某一邻域内恒能唯一确定一组连续且具有连续偏导数的函数\(u=u(x,y)\)、\(v=v(x,y)\)，它们满足条件\(u_0=u(x_0,y_0)\)，\(v_0=v(x_0,y_0)\)，并有
+\]在点\((x_0,y_0,u_0,v_0)\)的某一邻域内恒能唯一确定一组连续且具有连续偏导数的函数\(u=u(x,y)\)、\(v=v(x,y)\)，它们满足条件\(u_0=u(x_0,y_0)\)，\(v_0=v(x_0,y_0)\)，并有
 \begin{equation}\label{equation:多元函数微分法.隐函数存在定理3.一阶偏导数}
 \begin{split}
 \pdv{u}{x}
@@ -1249,7 +1266,7 @@ t \in [\alpha,\beta].
 \tag7
 \end{gather}这里假定(7)式的三个函数\(\varphi\)，\(\psi\)和\(\omega\)都在\([\alpha,\beta]\)上可导，且三个导数不同时为零.
 
-设点\(M\opair{x_0,y_0,z_0}\)在曲线\(\Gamma\)上，对应的参数为\(t_0\).
+设点\(M(x_0,y_0,z_0)\)在曲线\(\Gamma\)上，对应的参数为\(t_0\).
 记\[
 \mat{f}(t)=\opair{\varphi(t),\psi(t),\omega(t)},
 \quad t\in[\alpha,\beta].
@@ -1264,7 +1281,7 @@ t \in [\alpha,\beta].
 \tag8
 \end{gather}
 
-通过点\(M\)且与切线垂直的平面称为曲线\(\Gamma\)在点\(M\)处的法平面，它是通过点\(M\opair{x_0,y_0,z_0}\)且以\(\mat{T}=\mat{f}'(t_0)\)为法向量的平面，因此\DefineConcept{法平面方程}为\[
+通过点\(M\)且与切线垂直的平面称为曲线\(\Gamma\)在点\(M\)处的法平面，它是通过点\(M(x_0,y_0,z_0)\)且以\(\mat{T}=\mat{f}'(t_0)\)为法向量的平面，因此\DefineConcept{法平面方程}为\[
 \varphi'(t_0) \cdot (x-x_0) + \psi'(t_0) \cdot (y-y_0) + \omega'(t_0) \cdot (z-z_0) = 0
 \]或\begin{gather}
 \mat{T}\cdot\opair{x-x_0,y-y_0,z-z_0}=0.
@@ -1284,12 +1301,12 @@ z = \psi(x). \\
 \end{array} \right.
 \]若\(\varphi(x)\)，\(\psi(x)\)都在\(x=x_0\)处可导，那么根据上面的讨论可知，\[
 \mat{T} = \opair{1,\psi'(x_0),\omega'(x_0)},
-\]因此曲线\(\Gamma\)在点\(M\opair{x_0,y_0,z_0}\)处的切线方程为\begin{gather}
+\]因此曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为\begin{gather}
 \frac{x-x_0}{1}
 =\frac{y-y_0}{\varphi'(x_0)}
 =\frac{z-z_0}{\psi'(x_0)}.
 \tag{10}
-\end{gather}在点\(M\opair{x_0,y_0,z_0}\)处的法平面方程为\[
+\end{gather}在点\(M(x_0,y_0,z_0)\)处的法平面方程为\[
 (x-x_0) + \psi'(x_0) \cdot (y-y_0) + \omega'(x_0) \cdot (z-z_0) = 0
 \]或\begin{gather}
 \mat{T}\cdot\opair{x-x_0,y-y_0,z-z_0}=0.
@@ -1302,10 +1319,10 @@ F(x,y,z)=0, \\
 G(x,y,z)=0
 \end{array} \right.
 \tag{12}
-\end{gather}的形式给出，\(M\opair{x_0,y_0,z_0}\)是曲线\(\Gamma\)上的一个点.
+\end{gather}的形式给出，\(M(x_0,y_0,z_0)\)是曲线\(\Gamma\)上的一个点.
 又设\(F\)、\(G\)有对各个变量的连续偏导数，且\[
-\eval{\jacobi{F,G}{y,z}}_{\opair{x_0,y_0,z_0}} \neq 0.
-\]这时方程组(12)在点\(M\opair{x_0,y_0,z_0}\)的某一邻域内确定了一组函数\(y=\varphi(x)\)和\(z=\psi(x)\).
+\eval{\jacobi{F,G}{y,z}}_{(x_0,y_0,z_0)} \neq 0.
+\]这时方程组(12)在点\(M(x_0,y_0,z_0)\)的某一邻域内确定了一组函数\(y=\varphi(x)\)和\(z=\psi(x)\).
 要求曲线\(\Gamma\)在点\(M\)处的切线方程和法平面方程，只要求出\(\varphi'(x_0)\)、\(\psi'(x_0)\)，然后代入(10)、(11)两式就行了.
 为此，我们在恒等式\[
 F[x,\varphi(x),\psi(x)] \equiv 0,
@@ -1331,7 +1348,7 @@ J = \jacobi{F,G}{y,z} \neq 0,
 \varphi'(x_0) = {\eval{\jacobi{F,G}{z,x}}_M}\Bigg/{\eval{\jacobi{F,G}{y,z}}_M},
 \qquad
 \psi'(x_0) = {\eval{\jacobi{F,G}{x,y}}_M}\Bigg/{\eval{\jacobi{F,G}{y,z}}_M},
-\]分子分母中带下标\(M\)的行列式表达行列式在点\(M\opair{x_0,y_0,z_0}\)的值.
+\]分子分母中带下标\(M\)的行列式表达行列式在点\(M(x_0,y_0,z_0)\)的值.
 把上面的切向量\(\mat{T}\)乘以\(J\)，得\begin{align*}
 \mat{T}_1 &= \opair*{
  \eval{\jacobi{F,G}{y,z}}_M,
@@ -1354,7 +1371,7 @@ G_x & G_y \\
 },
 \end{align*}
 这也是曲线\(\Gamma\)在点\(M\)处的一个切向量.
-由此可以写出曲线\(\Gamma\)在点\(M\opair{x_0,y_0,z_0}\)处的切线方程为\begin{gather}
+由此可以写出曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为\begin{gather}
 \frac{x-x_0}{\begin{vmatrix}
 F_y & F_z \\
 G_y & G_z \\
@@ -1370,7 +1387,7 @@ G_x & G_y \\
 \tag{13}
 \end{gather}
 
-曲线\(\Gamma\)在点\(M\opair{x_0,y_0,z_0}\)处的法平面方程为\[
+曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的法平面方程为\[
 \begin{vmatrix}
 F_y & F_z \\
 G_y & G_z \\
@@ -1442,7 +1459,7 @@ F(x,y,z)=0
 \tag{15}
 \end{gather}的情形，然后把由显式给出的曲面方程\(z = f(x,y)\)作为它的特殊情形.
 
-设曲面\(\Sigma\)由方程(15)给出，\(M\opair{x_0,y_0,z_0}\)是曲面\(\Sigma\)上的一点，并设函数\(F(x,y,z)\)的偏导数在该点连续且不同时为零.
+设曲面\(\Sigma\)由方程(15)给出，\(M(x_0,y_0,z_0)\)是曲面\(\Sigma\)上的一点，并设函数\(F(x,y,z)\)的偏导数在该点连续且不同时为零.
 在曲面\(\Sigma\)上，通过点\(M\)任意引一条曲线\(\Gamma\)，假设曲线\(\Gamma\)的参数方程为\begin{gather}
 x = \varphi(t),
 y = \psi(t),
@@ -1450,7 +1467,7 @@ z = \omega(t)
 \quad (\alpha \leq t \leq \beta),
 \tag{16}
 \end{gather}
-\(t = t_0\)对应于点\(M\opair{x_0,y_0,z_0}\)且\(\varphi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)不全为零，则由(8)式可得这曲线的切线方程为\[
+\(t = t_0\)对应于点\(M(x_0,y_0,z_0)\)且\(\varphi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)不全为零，则由(8)式可得这曲线的切线方程为\[
 \frac{x-x_0}{\varphi'(t_0)}
 =\frac{y-y_0}{\psi'(t_0)}
 =\frac{z-z_0}{\omega'(t_0)}.
@@ -1459,7 +1476,7 @@ z = \omega(t)
 我们现在要证明，在曲面\(\Sigma\)上通过点\(M\)且在点\(M\)处具有切线的任何曲线，它们在点\(M\)处的切线都在同一个平面上.
 事实上，因为曲线\(\Gamma\)完全在曲面\(\Sigma\)上，所以有恒等式\[
 F[\varphi(t),\psi(t),\omega(t)] \equiv 0,
-\]又因\(F(x,y,z)\)在点\(\opair{x_0,y_0,z_0}\)处有连续偏导数，且\(\varphi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)都存在，所以这恒等式左边的复合函数在\(t = t_0\)时有全导数，且这全导数等于零，即\[
+\]又因\(F(x,y,z)\)在点\((x_0,y_0,z_0)\)处有连续偏导数，且\(\varphi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)都存在，所以这恒等式左边的复合函数在\(t = t_0\)时有全导数，且这全导数等于零，即\[
 \eval{\dv{t} F[\varphi(t),\psi(t),\omega(t)]}_{t=t_0} = 0,
 \]即有\begin{gather}
 F'_x(x_0,y_0,z_0) \varphi'(t_0)
@@ -1486,7 +1503,7 @@ F'_x(x_0,y_0,z_0) (x-x_0)
 \tag{18}
 \end{gather}
 
-通过点\(M\opair{x_0,y_0,z_0}\)且垂直于切平面(18)的直线称为曲面在该点的\DefineConcept{法线}.
+通过点\(M(x_0,y_0,z_0)\)且垂直于切平面(18)的直线称为曲面在该点的\DefineConcept{法线}.
 法线方程是\begin{gather}
 \frac{x-x_0}{F'_x(x_0,y_0,z_0)}
 =\frac{y-y_0}{F'_y(x_0,y_0,z_0)}
@@ -1507,7 +1524,7 @@ F'_x(x,y,z) = f'_x(x,y),
 F'_y(x,y,z) = f'_y(x,y),
 \qquad
 F'_z(x,y,z) = -1.
-\]于是，当函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在点\((x_0,y_0)\)连续时，曲面(20)在点\(M\opair{x_0,y_0,z_0}\)处的法向量为\[
+\]于是，当函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在点\((x_0,y_0)\)连续时，曲面(20)在点\(M(x_0,y_0,z_0)\)处的法向量为\[
 \mat{n}=\opair{f'_x(x,y),f'_y(x,y),-1},
 \]切平面方程为\[
 \mat{n}\cdot\opair{x-x_0,y-y_0,z-z_0}=0,
@@ -1530,7 +1547,7 @@ F(x,y,z) = 0
 G(x,y,z) = 0
 \]的交线\(\Gamma\)在\(xOy\)面上的投影的切线方程.
 \begin{solution}
-因为两曲面在点\(P_0\opair{x_0,y_0,z_0}\)处的法向量分别是\(\mat{n}_F = \opair{F'_x(P_0),F'_y(P_0),F'_z(P_0)}\)和\(\mat{n}_G = \opair{G'_x(P_0),G'_y(P_0),G'_z(P_0)}\)，故交线在点\(P_0\)处的切向量为\[
+因为两曲面在点\(P_0(x_0,y_0,z_0)\)处的法向量分别是\(\mat{n}_F = \opair{F'_x(P_0),F'_y(P_0),F'_z(P_0)}\)和\(\mat{n}_G = \opair{G'_x(P_0),G'_y(P_0),G'_z(P_0)}\)，故交线在点\(P_0\)处的切向量为\[
 \mat{\tau}
 = \mat{n}_F \times \mat{n}_G
 = \begin{vmatrix}
@@ -1633,7 +1650,7 @@ f(\vec{O P_0} + t \mat{e}_l) - f(\vec{O P_0})
 \end{theorem}
 
 类似地，对于三元函数\(f(x,y,z)\)来说，
-它在空间一点\(P_0\opair{x_0,y_0,z_0}\)沿方向\[
+它在空间一点\(P_0(x_0,y_0,z_0)\)沿方向\[
 	\mat{e}_l = (\cos\alpha,\cos\beta,\cos\gamma)
 \]的方向导数为\[
 	\pdv{f}{\mat{l}}\eval_{P_0}
@@ -1756,10 +1773,10 @@ f(x,y) = c.
 上面讨论的梯度概念可以类似地推广到三元函数的情形.
 \begin{definition}
 设三元函数\(f(x,y,z)\)在空间区域\(G\)内具有一阶连续偏导数，
-则对\(\forall P_0\opair{x_0,y_0,z_0} \in G\)，
+则对\(\forall P_0(x_0,y_0,z_0) \in G\)，
 都可定出一个向量\[
 f_x(x_0,y_0,z_0) \mat{i} + f_y(x_0,y_0,z_0) \mat{j} + f_z(x_0,y_0,z_0) \mat{k},
-\]这向量称为函数\(f(x,y,z)\)在点\(P_0\opair{x_0,y_0,z_0}\)的\DefineConcept{梯度}，记作\(\grad f(x_0,y_0,z_0)\)，即\[
+\]这向量称为函数\(f(x,y,z)\)在点\(P_0(x_0,y_0,z_0)\)的\DefineConcept{梯度}，记作\(\grad f(x_0,y_0,z_0)\)，即\[
 \grad f(x_0,y_0,z_0)
 = f_x(x_0,y_0) \mat{i} + f_y(x_0,y_0) \mat{j} + f_z(x_0,y_0,z_0) \mat{k},
 \]其中\(\grad = \pdv{x} \mat{i} + \pdv{y} \mat{j} + \pdv{z} \mat{k}\)称为（三维的）\DefineConcept{向量微分算子}或\DefineConcept{Nabla算子}.记\[
@@ -1771,7 +1788,7 @@ f_x(x_0,y_0,z_0) \mat{i} + f_y(x_0,y_0,z_0) \mat{j} + f_z(x_0,y_0,z_0) \mat{k},
 
 如果我们引进曲面\[
 f(x,y,z) = c
-\]为函数\(f(x,y,z)\)的\DefineConcept{等值面}的概念，则可得函数\(f(x,y,z)\)在一点\(\opair{x_0,y_0,z_0}\)的梯度\(\grad f(x_0,y_0,z_0)\)的方向就是等值面\(f(x,y,z) = c\)在该点的法线方向\(\mat{n}\)，而梯度的模\(\abs{\grad f(x_0,y_0,z_0)}\)就是函数沿这个法线方向的方向导数\(\pdv{f}{\mat{n}}\).
+\]为函数\(f(x,y,z)\)的\DefineConcept{等值面}的概念，则可得函数\(f(x,y,z)\)在一点\((x_0,y_0,z_0)\)的梯度\(\grad f(x_0,y_0,z_0)\)的方向就是等值面\(f(x,y,z) = c\)在该点的法线方向\(\mat{n}\)，而梯度的模\(\abs{\grad f(x_0,y_0,z_0)}\)就是函数沿这个法线方向的方向导数\(\pdv{f}{\mat{n}}\).
 
 \begin{example}
 求\(\grad \frac{1}{x^2+y^2}\).
