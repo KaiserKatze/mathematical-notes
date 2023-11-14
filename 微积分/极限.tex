@@ -958,7 +958,7 @@ x_i \in I \quad (i=1,2,\dotsc,n),
 \end{proof}
 \end{example}
 
-\section{极限的运算法则}
+\section{极限的运算法则}\label{section:极限.极限的运算法则}
 在下面的讨论中，记号“\(\lim\)”下面没有标明自变量的变化过程，实际上，下面的定理对\(x \to x_0\)及\(x \to \infty\)都是成立的.在论证时，我们只证明了\(x \to x_0\)的情形，只要把\(\delta\)改成\(X\)，把\(0<\abs{x-x_0}<\delta\)改成\(\abs{x}>X\)，就可得\(x \to \infty\)情形的证明.
 
 \subsection{无穷小的四则运算法则}
@@ -1734,7 +1734,28 @@ e^x
 \end{equation}
 
 \section{无穷小的比较}
-\subsection{无穷小的比较方法}
+在\cref{section:极限.极限的运算法则}中我们已经知道，
+两个无穷小的和、差、积仍旧是无穷小.
+但是，关于两个无穷小的商，却会出息不同的情况.
+例如，当\(x\to0\)时，
+\(3x\)、\(x^2\)、\(\sin x\)都是无穷小，
+而\[
+	\lim_{x\to0}\frac{x^2}{3x}=0, \qquad
+	\lim_{x\to0}\frac{3x}{x^2}=\infty, \qquad
+	\lim_{x\to0}\frac{\sin x}{3x}=\frac{1}{3}.
+\]
+两个无穷小之比的极限的各种不同情况，
+反映了不同的无穷小趋于零的“快慢”程度.
+就上面几个例子来说，
+在\(x\to0\)的过程中，
+\(x^2\to0\)比\(3x\to0\)要“快些”，
+反过来说\(3x\to0\)比\(x^2\to0\)要“慢些”，
+而\(\sin x\to0\)与\(x\to0\)“快慢相仿”.
+
+下面，我们就无穷小之比的极限存在或为无穷大时，来说明两个无穷小之间的比较.
+应当注意，下面的\(\alpha\)及\(\beta\)都是在同一个自变量的变化过程中的无穷小，
+且\(\alpha\neq0\)，\(\lim\frac{\beta}{\alpha}\)也是在这个变化过程中的极限.
+
 \begin{definition}
 \newcommand{\lf}[1][]{\lim \frac{\beta}{\alpha^{#1}}}
 设\(\alpha\)和\(\beta\)都是在同一个自变量的变化过程中的无穷小，且\(\alpha\neq0\).
@@ -1764,34 +1785,6 @@ o(\alpha) = \Set*{ \beta \given \lim \frac{\beta}{\alpha} = 0 }.
 因为\(\lim\limits_{x\to0} \frac{1-\cos x}{x^2} = \frac{1}{2}\)，所以当\(x\to0\)时，\(1-\cos x\)是关于\(x\)的二阶无穷小.
 
 因为\(\lim\limits_{x\to0} \frac{\sin x}{x} = 1\)，所以当\(x\to0\)时，\(\sin x\)与\(x\)是等价无穷小，即\(\sin x \sim x\ (x\to0)\).
-\end{example}
-
-\begin{example}
-因为\[
-\lim\limits_{n\to\infty} n^k \cdot o\left(\frac{1}{n^k}\right)
-= \lim\limits_{n\to\infty} n^{k-l} \left[ n^l \cdot o\left(\frac{1}{n^k}\right) \right] = 0,
-\]所以\begin{equation}
-n^l \cdot o\left(\frac{1}{n^k}\right) = o\left(\frac{1}{n^{k-l}}\right) \quad(n\to\infty).
-\end{equation}
-\end{example}
-
-\begin{example}
-\def\l{\lim\limits_{n\to\infty}}
-考虑到\[
-\l \frac{o(n^2) + o(n^3)}{n^3}
-= \l \frac{1}{n}\cdot\frac{o(n^2)}{n^2} + \l \frac{o(n^3)}{n^3}
-= 0 + 0 = 0,
-\]可以推断\[
-q > p \implies o(n^p) + o(n^q) = o(n^q)\ (n\to\infty).
-\]
-
-考虑到\[
-\l \frac{o(n^2) \cdot o(n^3)}{n^5}
-= \l \frac{o(n^2)}{n^2}\cdot\frac{o(n^3)}{n^3}
-= 0,
-\]可以推断\begin{equation}
-o(n^p) \cdot o(n^q) = o(n^{p+q}).
-\end{equation}
 \end{example}
 
 \begin{example}
@@ -1829,60 +1822,43 @@ o(n^p) \cdot o(n^q) = o(n^{p+q}).
 
 \begin{theorem}\label{theorem:极限.无穷小的比较2}
 设\(\alpha\sim\alpha'\)，\(\beta\sim\beta'\)，且\(\lim\frac{\beta'}{\alpha'}\)存在，则\[
-\lim\frac{\beta}{\alpha}=\lim\frac{\beta'}{\alpha'}.
+	\lim\frac{\beta}{\alpha}=\lim\frac{\beta'}{\alpha'}.
 \]
 \begin{proof}
-由\(\alpha\sim\alpha'\)和\(\beta\sim\beta'\)有\(\lim\frac{\alpha'}{\alpha} = 1\)，\(\lim\frac{\beta}{\beta'} = 1\)，因此\[
-\lim\frac{\beta}{\alpha}
-= \lim \left( \frac{\beta}{\beta'} \cdot \frac{\beta'}{\alpha'} \cdot \frac{\alpha'}{\alpha} \right)
-= \lim\frac{\beta}{\beta'} \cdot \lim \frac{\beta'}{\alpha'} \cdot \lim\frac{\alpha'}{\alpha}
-= 1 \cdot \lim \frac{\beta'}{\alpha'} \cdot 1
-= \lim \frac{\beta'}{\alpha'}.
-\qedhere
+由\(\alpha\sim\alpha'\)和\(\beta\sim\beta'\)有\(\lim\frac{\alpha'}{\alpha} = 1\)，
+\(\lim\frac{\beta}{\beta'} = 1\)，
+因此\[
+	\lim\frac{\beta}{\alpha}
+	= \lim \left(
+		\frac{\beta}{\beta'}
+		\cdot \frac{\beta'}{\alpha'}
+		\cdot \frac{\alpha'}{\alpha}
+	\right)
+	= \lim\frac{\beta}{\beta'}
+		\cdot \lim \frac{\beta'}{\alpha'}
+		\cdot \lim\frac{\alpha'}{\alpha}
+	= 1 \cdot \lim \frac{\beta'}{\alpha'} \cdot 1
+	= \lim \frac{\beta'}{\alpha'}.
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
 
 \begin{theorem}[和差取大规则]\label{theorem:极限.无穷小的比较3}
 设\(\beta=o(\alpha)\)，则\(\alpha\pm\beta\sim\alpha\).
-\begin{proof}
-显然有\[
-\lim \frac{\alpha\pm\beta}{\alpha}
-= \lim \frac{\alpha\pm o(\alpha)}{\alpha}
-= \lim \frac{\alpha}{\alpha} \pm \lim \frac{o(\alpha)}{\alpha}
-= 1 \pm 0 = 1.
-\qedhere
-\]
-\end{proof}
 \end{theorem}
 
 \begin{theorem}[和差代替规则]\label{theorem:极限.无穷小的比较4}
 设\(\alpha\sim\alpha'\)，\(\beta\sim\beta'\)，\(\beta\)与\(\alpha\)不是等价无穷小，则\[
-\alpha\pm\beta\sim\alpha'\pm\beta',
-\qquad
-\lim \frac{\alpha\pm\beta}{\gamma} = \lim \frac{\alpha'\pm\beta'}{\gamma}.
+	\alpha\pm\beta\sim\alpha'\pm\beta'.
 \]
-\begin{proof}
-既然\(\alpha\)与\(\beta\)不是等价无穷小，不妨设\(\beta\)是比\(\alpha\)高阶的无穷小，即\(\beta = o(\alpha)\)，那么由\hyperref[theorem:极限.无穷小的比较3]{和差取大规则}有\(\alpha\pm\beta \sim \alpha\).
-又由\cref{theorem:极限.无穷小的比较2} 可知\[
-\lim \frac{\alpha'\pm\beta'}{\alpha'}
-= 1 \pm \lim \frac{\beta'}{\alpha'}
-= 1 \pm \lim \frac{\beta}{\alpha}
-= \lim \frac{\alpha\pm\beta}{\alpha}
-= 1,
-\]即\(\alpha'\pm\beta' \sim \alpha'\).
-那么由等价无穷小关系的传递性，可知\(\alpha\pm\beta \sim \alpha'\pm\beta'\).
-\end{proof}
 \end{theorem}
 
 \begin{theorem}[因式代替规则]\label{theorem:极限.无穷小的比较5}
 设\(\alpha\sim\beta\)，且函数\(\varphi\)有界或\(\lim\varphi\)存在，则\[
-\lim \alpha \varphi = \lim \beta \varphi,
-\quad\text{即}\quad
-\alpha \varphi \sim \beta \varphi.
+	\alpha \varphi \sim \beta \varphi.
 \]
 \end{theorem}
-这里其实说明无穷小与有界函数之积也是无穷小.
 
 \begin{property}\label{theorem:极限.无穷小的比较6}
 无穷小的等价关系具有以下性质：
@@ -1892,32 +1868,6 @@ o(n^p) \cdot o(n^q) = o(n^{p+q}).
 \item {\bf 传递性}，即\(\alpha \sim \beta, \beta \sim \gamma \implies \alpha \sim \gamma\).
 \end{enumerate}
 \end{property}
-
-\subsection{常见的等价无穷小}
-常见的等价无穷小有：
-\begin{enumerate}
-\item \(\sin x \sim \tan x \sim \arcsin x \sim \arctan x \sim \ln(1+x) \sim e^x-1 \sim x\ (x\to0)\)；
-\item \(\sqrt[n]{1+x} - 1 \sim \frac{1}{n} x\ (x\to0)\)；
-\item \(\forall a\in\mathbb{R}^*: (1+x)^a-1 \sim ax\ (x\to0)\)；
-\item \(1 - \cos x \sim \frac{1}{2} x^2\ (x\to0)\)；
-\item \(a^x - 1 \sim x \ln a\ (x\to0)\).
-\end{enumerate}
-
-\begin{example}
-证明：若函数\(\alpha,\beta\)满足\(\lim \alpha\beta = 0\)且\(\lim \beta = 0\)，则\[
-(1+\beta)^{\alpha} - 1 \sim \alpha\beta \quad(\beta\to0).
-\]
-\begin{proof}
-因为\(\ln(1+\beta) \sim \beta\ (\beta\to0)\)，所以\[
-(1+\beta)^{\alpha} - 1
-= e^{\alpha \ln(1+\beta)} - 1
-\sim e^{\alpha\beta} - 1
-\sim \alpha\beta
-\quad(\beta\to0).
-\qedhere
-\]
-\end{proof}
-\end{example}
 
 \section{施托尔茨定理}
 
@@ -2970,7 +2920,19 @@ f(\xi) = \frac{1}{n} \bigl[ f(x_1) + f(x_2) + \dotsb + f(x_n) \bigr]
 
 \section{本章总结}
 现在总结一下本章介绍的解极限常用公式、方法：
-化简、计算极限的方法包括：根式有理化，计算非零因子，拆分极限存在的项，提取公因子，利用等价无穷小或泰勒公式进行等价替换，幂指函数的指数化，换元法（如倒代换等），洛必达法则.
+化简、计算极限的方法包括：
+根式有理化，计算非零因子，拆分极限存在的项，
+提取公因子，利用等价无穷小或泰勒公式进行等价替换，
+幂指函数的指数化，换元法（如倒代换等），洛必达法则.
+
+常见的等价无穷小有：
+\begin{enumerate}
+	\item \(\sin x \sim \tan x \sim \arcsin x \sim \arctan x \sim \ln(1+x) \sim e^x-1 \sim x\ (x\to0)\)；
+	\item \(\sqrt[n]{1+x} - 1 \sim \frac{1}{n} x\ (x\to0)\)；
+	\item \(\forall a\in\mathbb{R}^*: (1+x)^a-1 \sim ax\ (x\to0)\)；
+	\item \(1 - \cos x \sim \frac{1}{2} x^2\ (x\to0)\)；
+	\item \(a^x - 1 \sim x \ln a\ (x\to0)\).
+\end{enumerate}
 
 \begin{example}\label{example:极限.解极限常用公式方法.例1}
 证明：\(\lim\limits_{n\to\infty} \frac{1^p+2^p+\dotsb+n^p}{n^{p+1}} = \frac{1}{p+1}\ (p\in\mathbb{N})\).
