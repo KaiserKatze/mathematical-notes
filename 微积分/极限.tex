@@ -970,40 +970,6 @@ f(x) = a_n, \quad x\in\left[\frac{1}{n+1},\frac{1}{n}\right), n=1,2,\dotsc.
 \end{proof}
 \end{example}
 
-\subsection{渐近线}
-\begin{definition}
-利用函数极限可以定义函数图形的\DefineConcept{渐近线}：\begin{enumerate}
-\item 如果\(\lim\limits_{x \to \infty}f(x) = A\)，则直线\(y = A\)是函数\(f(x)\)的图形的\DefineConcept{水平渐近线}.
-\item 如果\(\lim\limits_{x \to x_0}f(x) = \infty\)，则直线\(x = x_0\)是函数\(f(x)\)的图形的\DefineConcept{铅直渐近线}.
-\item 如果存在直线\(L: y = kx+b\ (k \neq 0)\)，使得当\(x \to \infty\)（或\(x \to +\infty\)，或\(x \to -\infty\)）时，曲线\(y = f(x)\)上的动点\(M\opair{x,y}\)到直线\(L\)的距离\(d(M,L)\to0\)，则称\(L\)为曲线\(y = f(x)\)的\DefineConcept{斜渐近线}.
-\end{enumerate}
-\end{definition}
-
-\begin{theorem}
-直线\(L: y = kx+b\)为曲线\(y = f(x)\)的渐近线的充要条件是：\[
-k = \lim\limits_{x \to \omega} \frac{f(x)}{x},
-\qquad
-b = \lim\limits_{x \to \omega} \bigl[ f(x) - kx \bigr],
-\]其中\(\omega\)可以是\(\infty\)、\(+\infty\)或\(-\infty\).
-\end{theorem}
-
-\begin{example}
-求出曲线\(C: y = x \ln\left(e+\frac{1}{x-1}\right)\)的渐近线方程.
-\begin{solution}
-设直线\(L: y = kx+b\)为曲线\(C\)的渐近线，则\begin{align*}
-k &= \lim\limits_{x\to\infty} \frac{x \ln\left(e+\frac{1}{x-1}\right)}{x}
-= \lim\limits_{x\to\infty} \ln\left(e+\frac{1}{x-1}\right)
-= 1, \\
-b &= \lim\limits_{x\to\infty} \left[ x \ln\left(e+\frac{1}{x-1}\right) - kx \right]
-= \lim\limits_{x\to\infty} x \left[ \ln\left(e+\frac{1}{x-1}\right) - 1 \right] \\
-&= \lim\limits_{x\to\infty} x \ln\left[1+\frac{1}{e(x-1)}\right]
-= \lim\limits_{x\to\infty} \frac{x}{e(x-1)}
-= 1/e.
-\end{align*}
-因此，曲线\(C\)的渐近线方程为\(y = x + 1/e\).
-\end{solution}
-\end{example}
-
 \section{极限的运算法则}
 在下面的讨论中，记号“\(\lim\)”下面没有标明自变量的变化过程，实际上，下面的定理对\(x \to x_0\)及\(x \to \infty\)都是成立的.在论证时，我们只证明了\(x \to x_0\)的情形，只要把\(\delta\)改成\(X\)，把\(0<\abs{x-x_0}<\delta\)改成\(\abs{x}>X\)，就可得\(x \to \infty\)情形的证明.
 
@@ -2963,6 +2929,48 @@ f(\xi) = \frac{1}{n} \bigl[ f(x_1) + f(x_2) + \dotsb + f(x_n) \bigr]
 则\(f \in C_U(-\infty,+\infty)\)的充要条件是：
 极限\(f(-\infty)\)和\(f(+\infty)\)都存在.
 \end{theorem}
+
+\section{平面曲线的渐近线}
+\begin{definition}
+利用函数极限可以定义函数图形的\DefineConcept{渐近线}：
+\begin{enumerate}
+	\item 如果\(\lim\limits_{x \to \infty}f(x) = A\)，
+	则直线\(y = A\)是函数\(f(x)\)的图形的\DefineConcept{水平渐近线}.
+	\item 如果\(\lim\limits_{x \to x_0}f(x) = \infty\)，
+	则直线\(x = x_0\)是函数\(f(x)\)的图形的\DefineConcept{铅直渐近线}.
+	\item 如果存在直线\(L: y = kx+b\ (k \neq 0)\)，
+	使得当\(x \to \infty\)（或\(x \to +\infty\)，
+	或\(x \to -\infty\)）时，
+	曲线\(y = f(x)\)上的动点\(M\opair{x,y}\)到直线\(L\)的距离\(d(M,L)\to0\)，
+	则称\(L\)为曲线\(y = f(x)\)的\DefineConcept{斜渐近线}.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+直线\(L: y = kx+b\)为曲线\(y = f(x)\)的渐近线的充要条件是：\[
+	k = \lim\limits_{x\to\omega} \frac{f(x)}{x},
+	\qquad
+	b = \lim\limits_{x\to\omega} (f(x) - kx),
+\]
+其中\(\omega\in\Set{\infty,+\infty,-\infty}\).
+\end{theorem}
+
+\begin{example}
+求出曲线\(C: y = x \ln\left(e+\frac{1}{x-1}\right)\)的渐近线方程.
+\begin{solution}
+设直线\(L: y = kx+b\)为曲线\(C\)的渐近线，则\begin{align*}
+	k &= \lim\limits_{x\to\infty} \frac{x \ln\left(e+\frac{1}{x-1}\right)}{x}
+	= \lim\limits_{x\to\infty} \ln\left(e+\frac{1}{x-1}\right)
+	= 1, \\
+	b &= \lim\limits_{x\to\infty} \left[ x \ln\left(e+\frac{1}{x-1}\right) - kx \right]
+	= \lim\limits_{x\to\infty} x \left[ \ln\left(e+\frac{1}{x-1}\right) - 1 \right] \\
+	&= \lim\limits_{x\to\infty} x \ln\left[1+\frac{1}{e(x-1)}\right]
+	= \lim\limits_{x\to\infty} \frac{x}{e(x-1)}
+	= \frac{1}{e}.
+\end{align*}
+因此，曲线\(C\)的渐近线方程为\(y = x + \frac{1}{e}\).
+\end{solution}
+\end{example}
 
 \section{本章总结}
 现在总结一下本章介绍的解极限常用公式、方法：
