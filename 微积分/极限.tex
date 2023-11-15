@@ -1268,6 +1268,32 @@ a_0/b_0, & m=n, \\
 \end{proof}
 \end{example}
 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-4*pi,xmax=4*pi,
+			ymin=-.5,ymax=1.2,
+			width=\textwidth,
+			height=.3\textheight,
+			grid=both,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlargelimits,
+			axis lines=middle,
+			xtick={3.14,6.28,9.42,-3.14,-6.28,-9.42},
+			xticklabels={$\pi$,$2\pi$,$3\pi$,$-\pi$,$-2\pi$,$-3\pi$},
+		]
+			\begin{scope}[samples=50,thick,red]
+				\addplot[domain=.01:4*pi]{sin(deg(x))/x};
+				\addplot[domain=-4*pi:-.01]{sin(deg(x))/x};
+			\end{scope}
+			\filldraw[draw=black,fill=white](0,1)circle(1pt);
+		\end{axis}
+	\end{tikzpicture}
+	\caption{函数\(y=\frac{\sin x}{x}\)的图像}
+\end{figure}
+
 \begin{example}
 \def\l{\lim\limits_{x\to0}}
 求：\(\l \frac{\tan x}{x}\).
