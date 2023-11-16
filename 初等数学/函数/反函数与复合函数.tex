@@ -22,24 +22,27 @@
 
 \begin{figure}[ht]
 	\centering
-	\begin{tikzpicture}[scale=.5]
+	\begin{tikzpicture}
 		\begin{axis}[
-			xmin=0,xmax=10,
+			xmin=0,xmax=5,
+			ymin=0,ymax=5,
 			restrict y to domain=0:10,
-			ymin=0,ymax=10,
-			grid=both,width=\textwidth,height=\textwidth,
+			grid=both,
+			axis equal=true,
 			axis lines=middle,
 			xlabel=$x$,
 			ylabel=$y$,
-			enlarge x limits=0.1,
-			enlarge y limits=0.1,
-			axis lines = middle,
-			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
-			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+			axis lines=middle,
 		]
-			\addplot[color=blue,samples=50,smooth,domain=0:10]{exp(x)};
-			\addplot[color=blue,samples=50,smooth,domain=1:10]{ln(x)};
+			\begin{scope}[color=blue,samples=50,smooth]
+				\addplot[domain=0:10]{exp(x)};
+				\addplot[domain=1:10]{ln(x)};
+			\end{scope}
 			\addplot[color=black,dashed,domain=.5:8]{x};
+			\filldraw(2.2,{ln(2.2)})circle(2pt)node[below]{$P$}
+				--({ln(2.2)},2.2)circle(2pt)node[left]{$Q$};
+			\draw(4.5,{ln(4.5)})node[above left]{$y=f(x)$}
+				({ln(4.5)},4.5)node[below right]{$y=f^{-1}(x)$};
 		\end{axis}
 	\end{tikzpicture}
 	\caption{}\label{figure:函数.直接函数与反函数的图形的对称性}
