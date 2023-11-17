@@ -213,12 +213,12 @@ f(\xi_i)\geq0.
 \int_a^b f(x) \dd{x} \leq \int_a^b g(x) \dd{x}.
 \]
 \begin{proof}
-令\(\varphi(x) = g(x) - f(x)\).
-因为\(f(x) \leq g(x)\)，所以\(\varphi(x) \geq 0\).
+令\(\phi(x) = g(x) - f(x)\).
+因为\(f(x) \leq g(x)\)，所以\(\phi(x) \geq 0\).
 由\cref{theorem:定积分.定积分性质5} 得\[
-\int_a^b \varphi(x) \dd{x} \geq 0,
+\int_a^b \phi(x) \dd{x} \geq 0,
 \]又由\cref{theorem:定积分.定积分性质1} 得\[
-\int_a^b \varphi(x) \dd{x}
+\int_a^b \phi(x) \dd{x}
 = \int_a^b [g(x) - f(x)] \dd{x}
 = \int_a^b g(x) \dd{x} - \int_a^b f(x) \dd{x},
 \]所以\[
@@ -384,19 +384,19 @@ f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
 因此，我们就有可能通过原函数来计算定积分.
 
 \begin{example}
-设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(\varphi(x)\)和\(\psi(x)\)可导.证明：\[
-F(x) = \int_{\psi(x)}^{\varphi(x)} f(t) \dd{t}
+设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(\phi(x)\)和\(\psi(x)\)可导.证明：\[
+F(x) = \int_{\psi(x)}^{\phi(x)} f(t) \dd{t}
 \]在\([a,b]\)上可导，且其导数为\begin{equation}\label{equation:定积分.含参变量积分的导数1}
-F'(x) = \dv{x} \int_{\psi(x)}^{\varphi(x)} f(t) \dd{t}
-= f[\varphi(x)] \varphi'(x) - f[\psi(x)] \psi'(x).
+F'(x) = \dv{x} \int_{\psi(x)}^{\phi(x)} f(t) \dd{t}
+= f[\phi(x)] \phi'(x) - f[\psi(x)] \psi'(x).
 \end{equation}
 \begin{proof}
-令\(F_1(x) = \int_{\xi}^{\varphi(x)} f(t) \dd{t}\)，\(u = \varphi(x)\)，设函数\(G(x)\)是被积函数\(f(x)\)的一个原函数，那么\[
-F_1(x) = G[\varphi(x)] - G(\xi),
+令\(F_1(x) = \int_{\xi}^{\phi(x)} f(t) \dd{t}\)，\(u = \phi(x)\)，设函数\(G(x)\)是被积函数\(f(x)\)的一个原函数，那么\[
+F_1(x) = G[\phi(x)] - G(\xi),
 \]从而\begin{align*}
 F'_1(x) = \dv{x} F_1(x)
-&= \dv{x} G[\varphi(x)] - \dv{x} G(\xi) = \dv{G}{u} \dv{u}{x} - 0 \\
-&= f(u) \varphi'(x) = f[\varphi(x)] \varphi'(x).
+&= \dv{x} G[\phi(x)] - \dv{x} G(\xi) = \dv{G}{u} \dv{u}{x} - 0 \\
+&= f(u) \phi'(x) = f[\phi(x)] \phi'(x).
 \end{align*}
 同样地，令\(F_2(x) = \int_{\psi(x)}^{\xi} f(t) \dd{t}\)，\(v = \psi(x)\)，则有\[
 F'_2(x) = \dv{x} F_2(x) = -\dv{x} \int_{\xi}^{\psi(x)} f(x) \dd{t}
@@ -404,7 +404,7 @@ F'_2(x) = \dv{x} F_2(x) = -\dv{x} \int_{\xi}^{\psi(x)} f(x) \dd{t}
 \]
 因为\(F(x) = F_1(x) + F_2(x)\)，所以\[
 F'(x) = F'_1(x) + F'_2(x)
-= f[\varphi(x)] \varphi'(x) - f[\psi(x)] \psi'(x).
+= f[\phi(x)] \phi'(x) - f[\psi(x)] \psi'(x).
 \qedhere
 \]
 \end{proof}
@@ -577,18 +577,18 @@ F'(x) = \frac{x f(x) \fv - f(x) \fu}{\fvv}
 \subsection{定积分的换元法}
 为了说明如何用换元法来计算定积分，先证明下面的定理.
 \begin{theorem}\label{theorem:定积分.定积分的换元法}
-假设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(x = \varphi(t)\)满足条件：
+假设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(x = \phi(t)\)满足条件：
 \begin{enumerate}
-\item \(\varphi(\alpha) = a\)，\(\varphi(\beta)=b\)；
-\item \(\varphi(t)\)在\([\alpha,\beta]\)上具有连续导数，且其值域\footnote{当\(\varphi(t)\)的值域\(R_{\varphi}\)超出\([a,b]\)，但\(\varphi(t)\)满足其余条件时，只要\(f(x)\)在\(R_{\varphi}\)上连续，则定理的结论仍成立.}\(R_\varphi = [a,b]\),
+\item \(\phi(\alpha) = a\)，\(\phi(\beta)=b\)；
+\item \(\phi(t)\)在\([\alpha,\beta]\)上具有连续导数，且其值域\footnote{当\(\phi(t)\)的值域\(R_{\phi}\)超出\([a,b]\)，但\(\phi(t)\)满足其余条件时，只要\(f(x)\)在\(R_{\phi}\)上连续，则定理的结论仍成立.}\(R_\phi = [a,b]\),
 \end{enumerate}
 则有\[
-\int_a^b f(x)\dd{x} = \int_{\alpha}^{\beta} f[\varphi(t)] \varphi'(t) \dd{t}.
+\int_a^b f(x)\dd{x} = \int_{\alpha}^{\beta} f[\phi(t)] \phi'(t) \dd{t}.
 \eqno{(1)}
 \]
 \begin{proof}
 由假设可知，
-被积函数\(f(x)\)和\(f[\varphi(t)] \varphi'(t)\)都是连续的，
+被积函数\(f(x)\)和\(f[\phi(t)] \phi'(t)\)都是连续的，
 因此不仅(1)式两边的定积分都存在，
 而且由\hyperref[theorem:定积分.原函数存在定理]{原函数存在定理}知道，
 被积函数的原函数也都存在.
@@ -596,41 +596,41 @@ F'(x) = \frac{x f(x) \fv - f(x) \fu}{\fvv}
 假设\(F(x)\)是\(f(x)\)的一个原函数，则\[
 	\int_a^b f(x) \dd{x} = F(b) - F(a).
 \]
-另一方面，记\(\Phi(t) = F[\varphi(t)]\)，
-它是由\(F(x)\)与\(x=\varphi(t)\)复合而成的函数.
+另一方面，记\(\Phi(t) = F[\phi(t)]\)，
+它是由\(F(x)\)与\(x=\phi(t)\)复合而成的函数.
 由复合函数求导法则，得\[
 	\Phi'(t) = \dv{F}{x} \dv{x}{t}
-	= f(x) \varphi'(t)
-	= f[\varphi(t)] \varphi'(t).
+	= f(x) \phi'(t)
+	= f[\phi(t)] \phi'(t).
 \]
-这表明\(\Phi(t)\)是\(f[\varphi(t)] \varphi'(t)\)的一个原函数，
+这表明\(\Phi(t)\)是\(f[\phi(t)] \phi'(t)\)的一个原函数，
 因此有\[
-	\int_{\alpha}^{\beta} f[\varphi(t)] \varphi'(t) \dd{t}
+	\int_{\alpha}^{\beta} f[\phi(t)] \phi'(t) \dd{t}
 	= \Phi(\beta) - \Phi(\alpha).
 \]
-又由\(\Phi(t) = F[\varphi(t)]\)，
-\(\varphi(\alpha) = a\)，
-\(\varphi(\beta) = b\)，
+又由\(\Phi(t) = F[\phi(t)]\)，
+\(\phi(\alpha) = a\)，
+\(\phi(\beta) = b\)，
 可得\[
 	\Phi(\beta) - \Phi(\alpha)
-	= F[\varphi(\beta)] - F[\varphi(\alpha)]
+	= F[\phi(\beta)] - F[\phi(\alpha)]
 	= F(b) - F(a).
 \]
 所以\[
 	\int_a^b f(x) \dd{x}
 	= F(b) - F(a)
 	= \Phi(\beta) - \Phi(\alpha)
-	= \int_{\alpha}^{\beta} f[\varphi(t)] \varphi'(t) \dd{t}.
+	= \int_{\alpha}^{\beta} f[\phi(t)] \phi'(t) \dd{t}.
 	\qedhere
 \]
 \end{proof}
 \end{theorem}
 在定积分\(\int_a^b f(x) \dd{x}\)中的\(\dd{x}\)，本来是整个定积分记号中不可分割的一部分，但由上述定理可知，在一定条件下，它确实可以作为微分记号来对待.
-这就是说，应用换元公式时，如果把\(\int_a^b f(x) \dd{x}\)中的\(x\)换成\(\varphi(t)\)，则\(\dd{x}\)就换成\(\varphi'(t) \dd{t}\)，这正好是\(x = \varphi(t)\)的微分\(\dd{x}\).
+这就是说，应用换元公式时，如果把\(\int_a^b f(x) \dd{x}\)中的\(x\)换成\(\phi(t)\)，则\(\dd{x}\)就换成\(\phi'(t) \dd{t}\)，这正好是\(x = \phi(t)\)的微分\(\dd{x}\).
 
 应用换元公式时，有两点值得注意：\begin{enumerate}
-\item 用\(x = \varphi(t)\)把原来变量\(x\)代换成新变量\(t\)时，积分限也要换成相应于新变量\(t\)的积分限；
-\item 求出\(f[\varphi(t)] \varphi'(t)\)的一个原函数\(\Phi(t)\)后，不必像计算不定积分那样再要把\(\Phi(t)\)变换成原来变量\(x\)的函数，而只要把新变量\(t\)的上、下限分别代入\(\Phi(t)\)中然后相减就行了.
+\item 用\(x = \phi(t)\)把原来变量\(x\)代换成新变量\(t\)时，积分限也要换成相应于新变量\(t\)的积分限；
+\item 求出\(f[\phi(t)] \phi'(t)\)的一个原函数\(\Phi(t)\)后，不必像计算不定积分那样再要把\(\Phi(t)\)变换成原来变量\(x\)的函数，而只要把新变量\(t\)的上、下限分别代入\(\Phi(t)\)中然后相减就行了.
 \end{enumerate}
 
 \begin{example}
@@ -988,27 +988,27 @@ I_n = \int_0^{\pi} x \sin^n x \dd{x}
 \subsection{极坐标下的图形面积}
 某些平面图形，用极坐标来计算它们的面积比较方便.
 
-设由曲线\(\rho = \varphi(\theta)\)及射线\(\theta=\alpha\)、\(\theta=\beta\)围成一个平面图形（特别地，称其为“曲边扇形”），
+设由曲线\(\rho = \phi(\theta)\)及射线\(\theta=\alpha\)、\(\theta=\beta\)围成一个平面图形（特别地，称其为“曲边扇形”），
 现在要计算它的面积.
-这里，\(\varphi(\theta)\)在\([\alpha,\beta]\)上连续，且\(\varphi(\theta)\geq0\).
+这里，\(\phi(\theta)\)在\([\alpha,\beta]\)上连续，且\(\phi(\theta)\geq0\).
 
 由于当\(\theta\)在\([\alpha,\beta]\)上变动时，
-极径\(\rho=\varphi(\theta)\)也随之变动，
+极径\(\rho=\phi(\theta)\)也随之变动，
 因此所求图形的面积不能直接利用扇形面积计算公式\[
     A = \frac{1}{2} R^2 \theta
 \]来计算.
 
 取极角\(\theta\)为积分变量，它的变化区间为\([\alpha,\beta]\).
 相应于任一小区间\([\theta,\theta+\dd{\theta}]\)的窄曲边扇形的面积可以用
-半径为\(\rho=\varphi(\theta)\)、中心角为\(\dd{\theta}\)的扇形的面积来近似代替，
+半径为\(\rho=\phi(\theta)\)、中心角为\(\dd{\theta}\)的扇形的面积来近似代替，
 从而得到这窄曲边扇形面积的近似值，即曲边扇形的面积元素\[
     \dd{A}
-    = \frac{1}{2} [\varphi(\theta)]^2 \dd{\theta}.
+    = \frac{1}{2} [\phi(\theta)]^2 \dd{\theta}.
 \]
 考虑到\(A = \int \dd{A}\)，
-只要以\(\frac{1}{2} [\varphi(\theta)]^2 \dd{\theta}\)为被积表达式，
+只要以\(\frac{1}{2} [\phi(\theta)]^2 \dd{\theta}\)为被积表达式，
 在闭区间\([\alpha,\beta]\)上作定积分，便得所求曲边扇形的面积为\[
-A = \int_{\alpha}^{\beta} \frac{1}{2} [\varphi(\theta)]^2 \dd{\theta}.
+A = \int_{\alpha}^{\beta} \frac{1}{2} [\phi(\theta)]^2 \dd{\theta}.
 \]
 
 \subsection{旋转体的体积}
@@ -1046,11 +1046,11 @@ A=M_0,M_1,M_2,\dotsc,M_{n-1},M_n=B,
 
 设曲线弧由参数方程\[
 \left\{ \begin{array}{l}
-x = \varphi(t), \\
+x = \phi(t), \\
 y = \psi(t)
 \end{array} \right.
 \quad(\alpha \leq t \leq \beta)
-\]给出，其中\(\varphi(t)\)、\(\psi(t)\)在\([\alpha,\beta]\)上具有连续导数，且\(\varphi'(t)\)、\(\psi'(t)\)不同时为零.
+\]给出，其中\(\phi(t)\)、\(\psi(t)\)在\([\alpha,\beta]\)上具有连续导数，且\(\phi'(t)\)、\(\psi'(t)\)不同时为零.
 现在来计算这曲线弧的长度.
 
 取参数\(t\)为积分变量，它的变化区间为\([\alpha,\beta]\).
@@ -1058,9 +1058,9 @@ y = \psi(t)
 近似等于对应的弦的长度\(\sqrt{(\increment x)^2+(\increment y)^2}\)，
 因为\[
 	\increment x
-	= \varphi(t+\dd{t})-\varphi(t)
+	= \phi(t+\dd{t})-\phi(t)
 	\approx \dd{x}
-	= \varphi'(t) \dd{t},
+	= \phi'(t) \dd{t},
 \]\[
 	\increment y
 	= \psi(t+\dd{t})-\psi(t)
@@ -1069,10 +1069,10 @@ y = \psi(t)
 \]
 所以，\(\increment s\)的近似值（弧微分）即弧长元素为\[
 	\dd{s} = \sqrt{(\dd{x})^2 + (\dd{y})^2}
-	= \sqrt{(\varphi'(t))^2 + (\psi'(t))^2} \dd{t}.
+	= \sqrt{(\phi'(t))^2 + (\psi'(t))^2} \dd{t}.
 \]
 于是所求弧长为\begin{equation}
-	s = \int_{\alpha}^{\beta} \sqrt{(\varphi'(t))^2 + (\psi'(t))^2} \dd{t}.
+	s = \int_{\alpha}^{\beta} \sqrt{(\phi'(t))^2 + (\psi'(t))^2} \dd{t}.
 \end{equation}
 
 当曲线弧由直角坐标方程\[
@@ -1243,25 +1243,25 @@ c(x-a), & x\in\left[a,c\right], \\
 \subsection{贝尔曼-格朗沃尔不等式}
 \begin{theorem}[贝尔曼-格朗沃尔不等式]\label{theorem:定积分.贝尔曼-格朗沃尔不等式}
 %https://www.sciencedirect.com/topics/engineering/gronwall-bellman-inequality
-设\(f(x),g(x),\varphi(x)\)为\([a,b]\)上的连续函数，\(g(x)\)单调递增，\(\varphi(x)\geq0\)，且\[
-\forall x \in [a,b] : f(x) \leq g(x) + \int_a^x \varphi(t) f(t) \dd{t},
+设\(f(x),g(x),\phi(x)\)为\([a,b]\)上的连续函数，\(g(x)\)单调递增，\(\phi(x)\geq0\)，且\[
+\forall x \in [a,b] : f(x) \leq g(x) + \int_a^x \phi(t) f(t) \dd{t},
 \]那么\[
-\forall x \in [a,b] : f(x) \leq g(x) e^{\int_a^x \varphi(s) \dd{s}}.
+\forall x \in [a,b] : f(x) \leq g(x) e^{\int_a^x \phi(s) \dd{s}}.
 \]
 \begin{proof}
-设\(F(x) = \int_a^x \varphi(t) f(t) \dd{t}\)，则\[
-F'(x) = \varphi(x) f(x) \leq \varphi(x) g(x) + \varphi(x) F(x),
-\]移项得\(F'(x) - \varphi(x) F(x) \leq \varphi(x) g(x)\)，于是\[
-\dv{x}\left[F(x) e^{-\int_a^x \varphi(t) \dd{t}}\right]
-\leq \varphi(x) g(x) e^{-\int_a^x \varphi(t) \dd{t}},
+设\(F(x) = \int_a^x \phi(t) f(t) \dd{t}\)，则\[
+F'(x) = \phi(x) f(x) \leq \phi(x) g(x) + \phi(x) F(x),
+\]移项得\(F'(x) - \phi(x) F(x) \leq \phi(x) g(x)\)，于是\[
+\dv{x}\left[F(x) e^{-\int_a^x \phi(t) \dd{t}}\right]
+\leq \phi(x) g(x) e^{-\int_a^x \phi(t) \dd{t}},
 \]\[
-F(x) \leq \int_a^x \varphi(t) g(t) e^{\int_t^x \varphi(s) \dd{s}} \dd{t}.
+F(x) \leq \int_a^x \phi(t) g(t) e^{\int_t^x \phi(s) \dd{s}} \dd{t}.
 \]由于\(g(x)\)单调递增，根据\hyperref[theorem:定积分.积分中值定理2]{积分第二中值定理}，有\begin{align*}
 f(x) &\leq g(x) + F(x)
-\leq g(x) + \int_a^x \varphi(t) g(t) e^{\int_t^x \varphi(s) \dd{s}} \dd{t} \\
-&\leq g(x) + g(x) \int_a^x \varphi(t) e^{\int_t^x \varphi(s) \dd{s}} \dd{t} \\
-&= g(x) + g(x) \left[-e^{\int_t^ \varphi(s) \dd{s}}\right]_a^x \\
-&= g(x) e^{\int_a^x \varphi(s) \dd{s}}.
+\leq g(x) + \int_a^x \phi(t) g(t) e^{\int_t^x \phi(s) \dd{s}} \dd{t} \\
+&\leq g(x) + g(x) \int_a^x \phi(t) e^{\int_t^x \phi(s) \dd{s}} \dd{t} \\
+&= g(x) + g(x) \left[-e^{\int_t^ \phi(s) \dd{s}}\right]_a^x \\
+&= g(x) e^{\int_a^x \phi(s) \dd{s}}.
 \qedhere
 \end{align*}
 \end{proof}
