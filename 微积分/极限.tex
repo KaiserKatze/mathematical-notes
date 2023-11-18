@@ -2722,23 +2722,53 @@ f(a_n) < 0 < f(b_n),
 如果连续曲线弧\(y = f(x)\)的两个端点位于\(x\)轴的不同侧，那么这段曲线弧与\(x\)轴至少有一个交点.
 
 \begin{theorem}[介值定理]\label{theorem:极限.闭区间上连续函数的性质.介值定理1}
+%@see: 《高等数学（第六版 上册）》 P72 定理3
 设函数\(f(x)\)在闭区间\([a,b]\)上连续，且在这区间的端点取不同的函数值\[
-f(a) = A, \qquad
-f(b) = B,
-\]那么，对于\(\forall C \in (A,B)\)，\(\exists \xi \in (a,b)\)，使得\[
-f(\xi) = C.
+	f(a) = A
+	\quad\text{及}\quad
+	f(b) = B.
 \]
+那么，对于\(A\)与\(B\)之间的任意一个数\(C\)，
+在开区间\((a,b)\)内至少有一个点\(\xi\)，使得\[
+	f(\xi)=C
+	\quad(a<\xi<b).
+\]
+\begin{proof}
+设\(\phi(x)=f(x)-C\)，
+则\(\phi(x)\)在闭区间\([a,b]\)上连续，
+且\(\phi(a)=A-C\)与\(\phi(b)=B-C\)异号.
+根据零点定理，开区间\((a,b)\)内至少有一点\(\xi\)使得\[
+	\phi(\xi)=0
+	\quad(a<\xi<b).
+\]
+又\(\phi(\xi)=f(\xi)-C\)，
+因此由上式即得\[
+	f(\xi)=C
+	\quad(a<\xi<b).
+	\qedhere
+\]
+\end{proof}
 \end{theorem}
 \cref{theorem:极限.闭区间上连续函数的性质.介值定理1} 的几何意义是：
 连续曲线弧\(y=f(x)\)与水平直线\(y=C\)至少相交于一点.
 
 \begin{corollary}\label{theorem:极限.闭区间上连续函数的性质.介值定理2}
+%@see: 《高等数学（第六版 上册）》 P72 推论
+在闭区间上连续的函数必取得介于最大值\(M\)与最小值\(m\)之间的任何值.
+\begin{proof}
 设函数\(f \in C[a,b]\)，取\[
-M=\max_{a \leq x \leq b} f(x), \qquad
-m=\min_{a \leq x \leq b} f(x),
-\]则对\(\forall\mu\in(m,M)\)，\(\exists\xi\in(a,b)\)满足\(f(\xi)=\mu\).
+	M=\max_{a \leq x \leq b} f(x), \qquad
+	m=\min_{a \leq x \leq b} f(x),
+\]
+假设\(m=f(x_1)\)，\(M=f(x_2)\)，且\(m \neq M\)，\(x_1 \neq x_2\).
+在闭区间\([\min\{x_1,x_2\},\max\{x_1,x_2\}]\)上应用介值定理，
+于是有\[
+	(\forall\mu\in(m,M))(\exists\xi\in(a,b))
+	[f(\xi)=\mu].
+	\qedhere
+\]
+\end{proof}
 \end{corollary}
-这就是说：在闭区间上连续的函数必取得介于最大值\(M\)与最小值\(m\)之间的任何值.
 
 \begin{corollary}
 如果\(I\)是区间，且\(f\in C(I)\)，则\(f(I)\)也是区间.
