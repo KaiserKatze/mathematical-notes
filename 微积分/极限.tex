@@ -1678,16 +1678,6 @@ x_n < 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsb + \frac{1}{n!}
 \end{example}
 
 \subsection{柯西极限存在准则}
-\begin{definition}
-对于任意一个函数\(f\colon X\to\mathbb{R}\)，
-集合\(E \subseteq X\)，
-定义：\[
-	\amp(f;E)
-	\defeq
-	\sup_{x_1,x_2 \in E}\abs{f(x_1)-f(x_2)},
-\]
-称为“函数\(f\)在集合\(E\)上的\DefineConcept{振幅}”.
-\end{definition}
 
 \begin{theorem}[柯西极限存在准则]\label{theorem:极限.数列的柯西极限存在准则}
 数列\(\{x_n\}\)收敛的充分必要条件是：
@@ -1720,39 +1710,28 @@ x_n < 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsb + \frac{1}{n!}
 \end{theorem}
 柯西极限存在准则有时也叫作\emph{柯西审敛原理}.
 
-它可以用“\(\varepsilon-\delta\)”语言表示如下.
-数列\(\{x_n\}\)收敛的充分必要条件是：\[
-\forall\varepsilon>0,
-\exists N\in\mathbb{N}^+,
-\forall n,m \geq N
-\bigl(
-	\abs{x_n-x_m}<\varepsilon
-\bigr)
-\]或\[
-\forall\varepsilon>0,
-\exists N\in\mathbb{N}^+
-\bigl[
-	n>N
-	\implies
-	\forall p\in\mathbb{N}^+
-	\bigl(
-		\abs{x_{n+1} + x_{n+2} + \dotsb + x_{n+p}} < \varepsilon
-	\bigr)
-\bigr].
-\]
-
-那么它的逆否命题可以表达如下.
-数列\(\{x_n\}\)发散的充分必要条件是：\[
-\exists\varepsilon_0>0,\forall N\in\mathbb{N}^+ \bigl[
-	n > N
-	\land
-	\exists p\in\mathbb{N}^+ \bigl(
-		\abs{x_{n+1} + x_{n+2} + \dotsb + x_{n+p}} \geq \varepsilon_0
-	\bigr)
-\bigr].
+它可以用“\(\varepsilon-\delta\)”语言表示为：\[
+	\text{数列\(\{x_n\}\)收敛}
+	\iff
+	(\forall\varepsilon>0)
+	(\exists N\in\mathbb{N}^+)
+	(\forall n,m \geq N)
+	[\abs{x_n-x_m}<\varepsilon].
 \]
 
 类似地，函数极限也有自己的柯西审敛原理.
+
+\begin{definition}
+对于任意一个函数\(f\colon X\to\mathbb{R}\)，
+集合\(E \subseteq X\)，
+定义：\[
+	\amp(f;E)
+	\defeq
+	\sup_{x_1,x_2 \in E}\abs{f(x_1)-f(x_2)},
+\]
+称为“函数\(f\)在集合\(E\)上的\DefineConcept{振幅}”.
+\end{definition}
+
 \begin{theorem}\label{theorem:极限.函数的柯西极限存在准则}
 函数\(f(x)\)在点\(a\)的极限存在的充要条件是：对于任意给定的正数\(\varepsilon\)，存在正数\(\delta\)，使得当\(0 < \abs{x_1 - a} < \delta\)且\(0 < \abs{x_2 - a} < \delta\)时，就有\(\abs{f(x_1) - f(x_2)} < \varepsilon\).
 \end{theorem}
