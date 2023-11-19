@@ -1307,6 +1307,7 @@ a_0/b_0, & m=n, \\
 		\end{axis}
 	\end{tikzpicture}
 	\caption{函数\(y=\frac{\sin x}{x}\)的图像}
+	\label{figure:极限.函数[y=sin(x)/x]的图像}
 \end{figure}
 
 \begin{example}
@@ -2232,16 +2233,70 @@ C - \varepsilon <
 则称“函数\(f(x)\)在点\(x_0\)不连续”，
 称“点\(x_0\)是函数\(f(x)\)的\DefineConcept{不连续点}或\DefineConcept{间断点}（discontinuity）”.
 
-\begin{definition}
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-10,xmax=10,
+			ymin=-1,ymax=1,
+			grid=both,
+			width=\textwidth,
+			height=6cm,
+			xlabel=$x$,
+			ylabel=$y$,
+			axis lines=middle,
+		]
+			\begin{scope}[samples=200,smooth,thick,red]
+				\addplot[domain=-10:-.1]{1/x};
+				\addplot[domain=+.1:+10]{1/x};
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:极限.无穷间断点}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-1.5,xmax=1.5,
+			ymin=-1,ymax=1,
+			grid=both,
+			width=\textwidth,
+			height=6cm,
+			xlabel=$x$,
+			ylabel=$y$,
+			axis lines=middle,
+			ytick={-1,1},
+			xtick={-2/pi,-1/pi,1/pi,2/pi},
+			xticklabels={$-\frac{2}{\pi}$,$-\frac{1}{\pi}$,$\frac{1}{\pi}$,$\frac{2}{\pi}$},
+		]
+			\begin{scope}[samples=200,smooth,thick,red]
+				\addplot[domain=-5/pi:-.1]{sin(deg(1/x))};
+				\addplot[domain=+.1:+5/pi]{sin(deg(1/x))};
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:极限.振荡间断点}
+\end{figure}
+
 如果\(\lim\limits_{x \to x_0}f(x) = \infty\)，
 则称点\(x_0\)为函数的\DefineConcept{无穷间断点}.
+如\cref{figure:极限.无穷间断点}，
+点\(x=0\)是函数\(y=\frac{1}{x}\)的无穷间断点.
 
 如果\(f(x)\)在点\(x_0\)的某一邻域是有界的，
 但其左、右极限均不存在，则称点\(x_0\)为函数的\DefineConcept{振荡间断点}.
+如\cref{figure:极限.振荡间断点}，
+点\(x=0\)是函数\(y=\sin\frac{1}{x}\)的振荡间断点.
 
 如果\(f(x)\)在点\(x_0\)没有定义，
 \(\lim\limits_{x \to x_0}f(x) = A\)，
 则称点\(x_0\)为函数的\DefineConcept{可去间断点}（removable discontinuity）.
+如\cref{figure:极限.函数[y=sin(x)/x]的图像}，
+点\(x=0\)是函数\(y=\frac{\sin x}{x}\)的可去间断点.
 
 如果\(f(x)\)在点\(x_0\)的左、右极限存在但不相等，
 即\(\lim\limits_{x \to x_0^-}f(x) \neq \lim\limits_{x \to x_0^+}f(x)\)，
@@ -2251,7 +2306,7 @@ C - \varepsilon <
 但左极限\(f(x_0^-)\)及右极限\(f(x_0^+)\)都存在，
 那么\(x_0\)称为函数\(f(x)\)的\DefineConcept{第一类间断点}（discontinuity of the first kind）.
 不是第一类间断点的间断点，称为\DefineConcept{第二类间断点}（discontinuity of the second kind）.
-\end{definition}
+
 显然，可去间断点、跳跃间断点是第一类间断点，
 无穷间断点、振荡间断点是第二类间断点.
 
