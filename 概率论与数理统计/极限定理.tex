@@ -2,21 +2,21 @@
 本章介绍概率论中的极限定理，即大数律和中心极限定理，藉此给出“频率\(f_n(A)\)随试验次数\(n\)增多而逐渐收敛于概率\(P(A)\)”的严格描述.
 
 \section{切比雪夫不等式}
-由于随机变量\(X\)的方差\(D(X)\)刻画了\(X\)取值集中在期望\(E(X)\)周围的程度，故对任意\(\varepsilon>0\)，事件\((\abs{X - E(X)} < \varepsilon)\)的概率与\(D(X)\)有关，且\(D(X)\)越小，这个概率就应越大.
+由于随机变量\(X\)的方差\(D(X)\)刻画了\(X\)取值集中在期望\(E(X)\)周围的程度，故对任意\(\epsilon>0\)，事件\((\abs{X - E(X)} < \epsilon)\)的概率与\(D(X)\)有关，且\(D(X)\)越小，这个概率就应越大.
 切比雪夫不等式就可以说明这一点.
 \begin{theorem}[切比雪夫不等式]\label{theorem:极限定理.切比雪夫不等式}
-设随机变量\(X\)的数学期望与方差都存在，则对任意\(\varepsilon > 0\)，有\begin{equation}\label{equation:极限定理.切比雪夫不等式1}
-P(\abs{X-E(X)}<\varepsilon) \geq 1 - \frac{D(X)}{\varepsilon^2}
+设随机变量\(X\)的数学期望与方差都存在，则对任意\(\epsilon > 0\)，有\begin{equation}\label{equation:极限定理.切比雪夫不等式1}
+P(\abs{X-E(X)}<\epsilon) \geq 1 - \frac{D(X)}{\epsilon^2}
 \end{equation}或\begin{equation}\label{equation:极限定理.切比雪夫不等式2}
-P(\abs{X-E(X)}\geq\varepsilon) \leq \frac{D(X)}{\varepsilon^2}.
+P(\abs{X-E(X)}\geq\epsilon) \leq \frac{D(X)}{\epsilon^2}.
 \end{equation}
 \begin{proof}
 设连续型随机变量\(X\)的密度函数\(f(x)\)，则\begin{align*}
-P(\abs{X-E(X)}\geq\varepsilon)
-&=\int_{\abs{x-E(X)}\geq\varepsilon} f(x) \dd{x}
-\leq \int_{\abs{x-E(X)}\geq\varepsilon} \frac{[x - E(X)]^2}{\varepsilon^2} f(x) \dd{x} \\
-&\leq \int_{-\infty}^{+\infty} \frac{[x-E(X)]^2}{\varepsilon^2} f(x) \dd{x}
-=\frac{D(X)}{\varepsilon^2}.
+P(\abs{X-E(X)}\geq\epsilon)
+&=\int_{\abs{x-E(X)}\geq\epsilon} f(x) \dd{x}
+\leq \int_{\abs{x-E(X)}\geq\epsilon} \frac{[x - E(X)]^2}{\epsilon^2} f(x) \dd{x} \\
+&\leq \int_{-\infty}^{+\infty} \frac{[x-E(X)]^2}{\epsilon^2} f(x) \dd{x}
+=\frac{D(X)}{\epsilon^2}.
 \qedhere
 \end{align*}
 \end{proof}
@@ -28,7 +28,7 @@ P(\abs{X-E(X)}\geq\varepsilon)
 
 应用切比雪夫不等式，当随机变量\(X\)的分布未知，而\(E(X)\)、\(D(X)\)已知时，
 可对事件\[
-(\abs{X-E(X)}<\varepsilon)
+(\abs{X-E(X)}<\epsilon)
 \]发生的概率进行粗略估计.
 
 \begin{example}
@@ -56,10 +56,10 @@ P(5200 < X < 9400)
 D(X)=0 \implies P[X=E(X)]=1.
 \]
 \begin{proof}
-由\cref{theorem:极限定理.切比雪夫不等式} 可知，对\(\forall\varepsilon>0\)，有\[
-0 \leq P[\abs{X-E(X)}\geq\varepsilon] \leq \frac{D(X)}{\varepsilon^2} = 0,
-\]故有\(P[\abs{X-E(X)}\geq\varepsilon] = 0\)或\(P[\abs{X-E(X)}<\varepsilon] = 1\)；
-由于\(\varepsilon\)的任意性，\(\varepsilon\to0\)时\(X \to E(X)\)，那么\[
+由\cref{theorem:极限定理.切比雪夫不等式} 可知，对\(\forall\epsilon>0\)，有\[
+0 \leq P[\abs{X-E(X)}\geq\epsilon] \leq \frac{D(X)}{\epsilon^2} = 0,
+\]故有\(P[\abs{X-E(X)}\geq\epsilon] = 0\)或\(P[\abs{X-E(X)}<\epsilon] = 1\)；
+由于\(\epsilon\)的任意性，\(\epsilon\to0\)时\(X \to E(X)\)，那么\[
 P[X=E(X)]=1.
 \qedhere
 \]
@@ -72,16 +72,16 @@ P[X=E(X)]=1.
 \begin{theorem}
 设随机变量\(\AutoTuple{X}{n}\)相互独立，且\(E(X_k) = 0, E(X_k^2) < +\infty, i=1,2,\dotsc,n\).
 令\(S_k = X_1 + X_2 + \dotsb + X_k\).
-那么，对\(\forall \varepsilon > 0\)，\[
+那么，对\(\forall \epsilon > 0\)，\[
 P\left(
-\max_{1 \leq k \leq n} \abs{S_k} \geq \varepsilon
-\right) \leq \frac{E(S_n^2)}{\varepsilon^2}.
+\max_{1 \leq k \leq n} \abs{S_k} \geq \epsilon
+\right) \leq \frac{E(S_n^2)}{\epsilon^2}.
 \]
 
 如果还有\(P(\abs{X_i} \leq c) = 1\ (i=1,2,\dotsc,n)\)，则\[
 P\left(
-\max_{1 \leq k \leq n} \abs{S_k} \geq \varepsilon
-\right) \geq 1 - \frac{(c+\varepsilon)^2}{E(S_n^2)}.
+\max_{1 \leq k \leq n} \abs{S_k} \geq \epsilon
+\right) \geq 1 - \frac{(c+\epsilon)^2}{E(S_n^2)}.
 \]
 %证明@see: 施利亚耶夫的概率，补充和修订第三版，第二卷第8页
 \end{theorem}
@@ -91,30 +91,30 @@ P\left(
 令\(S_k = X_1 + X_2 + \dotsb + X_k\)，
 \(m_k = E(S_k) = \mu_1 + \mu_2 + \dotsb + \mu_k\)，
 \(s_k^2 = D(S_k) = \sigma_1^2 + \sigma_2^2 + \dotsb + \sigma_k^2\).
-那么，对\(\forall \varepsilon > 0\)，\[
+那么，对\(\forall \epsilon > 0\)，\[
 P\left(
-\max_{1 \leq k \leq n} \abs{S_k - m_k} < \varepsilon s_n
-\right) \geq 1 - \frac{1}{\varepsilon^2}.
+\max_{1 \leq k \leq n} \abs{S_k - m_k} < \epsilon s_n
+\right) \geq 1 - \frac{1}{\epsilon^2}.
 \]
 \end{theorem}
 当\(n=1\)时，上述定理化为切比雪夫不等式.
-对\(n>1\)的情形，切比雪夫不等式只是对概率\(P(\abs{S_n - m_n} < \varepsilon s_n)\)给出了一样的界.
+对\(n>1\)的情形，切比雪夫不等式只是对概率\(P(\abs{S_n - m_n} < \epsilon s_n)\)给出了一样的界.
 因此柯尔莫哥洛夫不等式是比较强的.
 
 \section{大数律}
 我们现在来定义随机变量序列的“收敛性”.
 \begin{definition}
-设\(\{X_n\}\)是一随机变量序列，\(a\)为常数，若对任意\(\varepsilon>0\)，有\[
-    \lim\limits_{n\to\infty} P(\abs{X_n-a}<\varepsilon) = 1
+设\(\{X_n\}\)是一随机变量序列，\(a\)为常数，若对任意\(\epsilon>0\)，有\[
+    \lim\limits_{n\to\infty} P(\abs{X_n-a}<\epsilon) = 1
     \quad\text{或}\quad
-    \lim\limits_{n\to\infty} P(\abs{X-a}\geq\varepsilon) = 0,
+    \lim\limits_{n\to\infty} P(\abs{X-a}\geq\epsilon) = 0,
 \]
 则称“\(\AutoTuple{X}{n},\dotsc\) \DefineConcept{依概率收敛于} \(a\)”，
 记为\(X_n \overset{P}{\longrightarrow} a\).
 \end{definition}
 
 依概率收敛的直观意义是：
-当\(n\)充分大时，虽不能保证必有不等式\(\abs{X_n-a}<\varepsilon\)成立，但事件\((\abs{X_n-a}<\varepsilon)\)发生的概率充分接近于1，即\(X_n\)的取值与\(a\)以极大的概率充分接近.
+当\(n\)充分大时，虽不能保证必有不等式\(\abs{X_n-a}<\epsilon\)成立，但事件\((\abs{X_n-a}<\epsilon)\)发生的概率充分接近于1，即\(X_n\)的取值与\(a\)以极大的概率充分接近.
 
 由切比雪夫不等式，立即可以得到一个随机变量序列依概率收敛的充分条件.
 \begin{theorem}\label{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}
@@ -123,11 +123,11 @@ P\left(
 X_n - \mu_n \overset{P}{\longrightarrow} 0.
 \]
 \begin{proof}
-由切比雪夫不等式，对\(\forall \varepsilon > 0\)，有\[
-1 \geq P(\abs{X_n-\mu_n}<\varepsilon) \geq 1 - \frac{\sigma_n^2}{\varepsilon^2}.
+由切比雪夫不等式，对\(\forall \epsilon > 0\)，有\[
+1 \geq P(\abs{X_n-\mu_n}<\epsilon) \geq 1 - \frac{\sigma_n^2}{\epsilon^2}.
 \]
-当\(n\to\infty\)时，\(\sigma_n^2\to0\)，\(1 - \frac{\sigma_n^2}{\varepsilon^2} \to 1\)，那么有\[
-\lim\limits_{n\to\infty}{P(\abs{X_n-\mu_n}<\varepsilon)=1},
+当\(n\to\infty\)时，\(\sigma_n^2\to0\)，\(1 - \frac{\sigma_n^2}{\epsilon^2} \to 1\)，那么有\[
+\lim\limits_{n\to\infty}{P(\abs{X_n-\mu_n}<\epsilon)=1},
 \]
 即\(X_n - \mu_n \overset{P}{\longrightarrow} 0\).
 \end{proof}
@@ -179,15 +179,15 @@ Y_n - \mu_n \overset{P}{\longrightarrow} 0,
 \begin{proof}
 不妨令\(E(X_k) = \mu = 0\).
 
-当\(D(X_k)=\sigma^2\)存在时，由切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式2} 可知，对\(\forall\varepsilon>0\)，有\[
-P(\abs{X_i}\geq\varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}
+当\(D(X_k)=\sigma^2\)存在时，由切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式2} 可知，对\(\forall\epsilon>0\)，有\[
+P(\abs{X_i}\geq\epsilon) \leq \frac{\sigma^2}{\epsilon^2}
 \quad(i=1,2,\dotsc,n).
 \eqno{(1)}
 \]记\(S_n = X_1 + X_2 + \dotsb + X_n\)，那么有\[
-P(\abs{S_n} > \varepsilon) \leq \frac{n \sigma^2}{\varepsilon^2}.
+P(\abs{S_n} > \epsilon) \leq \frac{n \sigma^2}{\epsilon^2}.
 \eqno{(2)}
-\]令\(\varepsilon = c n\)，则\(n\to\infty\)时，\[
-\frac{n \sigma^2}{\varepsilon^2}
+\]令\(\epsilon = c n\)，则\(n\to\infty\)时，\[
+\frac{n \sigma^2}{\epsilon^2}
 = \frac{\sigma^2}{c^2 n} \to 0.
 \]
 
@@ -208,11 +208,11 @@ X_k, & \abs{X_k} > \delta n;
 \quad(k=1,2,\dotsc,n).
 \eqno{(3)}
 \]显然\(X_k = U_k + V_k\).
-现在只要证明，对\(\forall\varepsilon>0\)，可取常数\(\delta\)，使得\(n\to\infty\)时有\[
-P\left(\abs{U_1+\dotsb+U_n} > \frac{1}{2} \varepsilon n\right) \to 0,
+现在只要证明，对\(\forall\epsilon>0\)，可取常数\(\delta\)，使得\(n\to\infty\)时有\[
+P\left(\abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n\right) \to 0,
 \eqno{(4)}
 \]\[
-P\left(\abs{V_1+\dotsb+V_n} > \frac{1}{2} \varepsilon n\right) \to 0.
+P\left(\abs{V_1+\dotsb+V_n} > \frac{1}{2} \epsilon n\right) \to 0.
 \eqno{(5)}
 \]
 
@@ -227,7 +227,7 @@ D(U_1+\dotsb+U_n) = n D(U_1) \leq n E(U_1^2) \leq a \delta n^2.
 \]另一方面，由\(U_k\)的定义，当\(n\to\infty\)时，\(E(U_k) \to E(X_k) = 0\).
 由此推出：当\(n\)充分大时，\(E[(U_1+\dotsb+U_n)^2] \leq 2 a \delta n^2\).
 由于\[
-P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \varepsilon n \right) \geq \frac{8a\delta}{\varepsilon},
+P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n \right) \geq \frac{8a\delta}{\epsilon},
 \eqno{(8)}
 \]所以(4)式是切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式1} 的直接变形.
 只要\(\delta\)充分小，使得(8)式右边足够小，就有(4)式成立.

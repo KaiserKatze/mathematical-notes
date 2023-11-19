@@ -247,10 +247,10 @@ F_{Y \vert X}(y \vert x_i) = P(Y \leq y \vert X=x_i) = \sum_{y_j \leq y}{\frac{p
 
 \subsection{连续型随机变量的条件密度函数}
 \begin{definition}
-设\((X,Y)\)为二维连续型随机变量.若对任意\(\varepsilon > 0\)，有\[
-P(y - \varepsilon < Y \leq y + \varepsilon) > 0,
+设\((X,Y)\)为二维连续型随机变量.若对任意\(\epsilon > 0\)，有\[
+P(y - \epsilon < Y \leq y + \epsilon) > 0,
 \]且对\(x\in\mathbb{R}\)，极限\[
-\lim\limits_{\varepsilon\to0^+} P(X \leq x \vert y - \varepsilon < Y \leq y + \varepsilon)
+\lim\limits_{\epsilon\to0^+} P(X \leq x \vert y - \epsilon < Y \leq y + \epsilon)
 \]存在，
 则称该极限为“连续型随机变量\(Y=y\)条件下\(X\)的\DefineConcept{条件分布函数}”，
 记为\(F_{X \vert Y}(x \vert y)\)或\(P(X \leq x \vert Y = y)\).
@@ -277,12 +277,12 @@ f_{Y \vert X}(y \vert x) = \frac{f(x,y)}{f_X(x)}, \label{equation:多维随机�
 和“\(Y\)关于\(X\)的\DefineConcept{条件密度函数}”.
 \begin{proof}
 不妨设\(f(x,y)\)连续，\(f_Y(y)\)连续且\(f_Y(y)>0\)，
-\def\l{\lim\limits_{\varepsilon\to0^+}}%
+\def\l{\lim\limits_{\epsilon\to0^+}}%
 那么\begin{align*}
 F_{X \vert Y}(x \vert y)
-&= \l \frac{P(X \leq x, y - \varepsilon < Y \leq y + \varepsilon)}{P(y - \varepsilon < Y \leq y + \varepsilon)} \\
-&= \l \frac{F(x,y+\varepsilon) - F(x,y-\varepsilon)}{F_Y(y+\varepsilon) - F_Y(y-\varepsilon)} \\
-&= \l \frac{[F(x,y+\varepsilon) - F(x,y-\varepsilon)] \frac{1}{2 \varepsilon}}{[F_Y(y+\varepsilon) - F_Y(y-\varepsilon)] \frac{1}{2 \varepsilon}} \\
+&= \l \frac{P(X \leq x, y - \epsilon < Y \leq y + \epsilon)}{P(y - \epsilon < Y \leq y + \epsilon)} \\
+&= \l \frac{F(x,y+\epsilon) - F(x,y-\epsilon)}{F_Y(y+\epsilon) - F_Y(y-\epsilon)} \\
+&= \l \frac{[F(x,y+\epsilon) - F(x,y-\epsilon)] \frac{1}{2 \epsilon}}{[F_Y(y+\epsilon) - F_Y(y-\epsilon)] \frac{1}{2 \epsilon}} \\
 &= \pdv{F(x,y)}{y} \bigg/ F_Y'(y)
 = \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)} \dd{u}.
 \qedhere
