@@ -45,31 +45,56 @@
 服从自己的“零点定理”和“介值定理”.
 
 \begin{theorem}[达布零点定理]\label{theorem:微分中值定理.达布定理1}
-设函数\(f \in D(a,b)\).
-如果点\(x_1,x_2\ (a<x_1<x_2<b)\)满足\(f'(x_1) \cdot f'(x_2) < 0\)，
-那么\(\exists\xi\in(x_1,x_2)\)使得\[
-	f'(\xi) = 0.
+设函数\(f \in D(a,b)\)，\(a<x_1<x_2<b\).
+如果\(f'(x_1) \cdot f'(x_2) < 0\)，
+那么\[
+	(\exists\xi\in(x_1,x_2))
+	[f'(\xi) = 0].
 \]
 \begin{proof}
 不妨设\(f'(x_1)<0,f'(x_2)>0\).
+那么根据\hyperref[theorem:极限.函数极限的局部保号性1]{函数极限的局部保号性}，
+\(\exists\delta_1,\delta_2>0\)，
+使得\[
+	U(x_1,\delta_1),U(x_2,\delta_2)\subset(a,b),
+\]
+且\[
+	\begin{split}
+		(\forall x \in U(x_1,\delta_1))
+		\left[\frac{f(x)-f(x_1)}{x-x_1}<0\right], \\
+		(\forall x \in U(x_2,\delta_2))
+		\left[\frac{f(x)-f(x_2)}{x-x_2}>0\right].
+	\end{split}
+\]
 
-显然\(\exists\delta_1,\delta_2>0\)，
-使得\(U(x_1,\delta_1),U(x_2,\delta_2)\subseteq(a,b)\),且\[
-	(\forall x \in U(x_1,\delta_1))
-	\left[\frac{f(x)-f(x_1)}{x-x_1}<0\right],
-\]\[
-	(\forall x \in U(x_2,\delta_2))
-	\left[\frac{f(x)-f(x_2)}{x-x_2}>0\right].
+任取实数\(\alpha \in U(x_1,\delta_1)\)和\(\beta \in U(x_2,\delta_2)\)，
+使得\(x_1<\alpha<\beta<x_2\)，
+由上可知\[
+	\begin{split}
+		\frac{f(\alpha)-f(x_1)}{\alpha-x_1}<0
+		\iff
+		f(\alpha)-f(x_1)<0
+		\iff
+		f(\alpha)<f(x_1), \\
+		\frac{f(\beta)-f(x_2)}{\beta-x_2}>0
+		\iff
+		f(\beta)-f(x_2)<0
+		\iff
+		f(\beta)<f(x_2).
+	\end{split}
 \]
-因此\(\exists\alpha,\beta\in(x_1,x_2)\)且\(\alpha<\beta\)使得\[
-	f(\alpha)<f(x_1) \land f(\beta)<f(x_2).
-\]
-由于\(f \in C[x_1,x_2]\)，
-故\(\exists\xi\in[\alpha,\beta]\subseteq(x_1,x_2)\)满足\[
+
+由于\(f \in D(a,b)\)而\([\alpha,\beta]\subset[x_1,x_2]\subset(a,b)\)，
+所以\(f \in D[\alpha,\beta]\)，
+那么根据\cref{theorem:导数与微分.函数可导性与连续性的关系}
+有\(f \in C[\alpha,\beta]\).
+根据\hyperref[theorem:极限.最值定理]{魏尔斯特拉斯最值定理}，
+有\[
+	(\exists\xi\in[\alpha,\beta])
 	(\forall x\in[\alpha,\beta])
 	[f(\xi) \leq f(x)].
 \]
-那么利用\cref{theorem:微分中值定理.费马引理} 可知\(f'(\xi)=0\).
+那么利用\hyperref[theorem:微分中值定理.费马引理]{费马引理}可知\(f'(\xi)=0\).
 \end{proof}
 \end{theorem}
 
