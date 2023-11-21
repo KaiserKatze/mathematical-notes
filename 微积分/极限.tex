@@ -45,7 +45,9 @@
 		\lim\limits_{n\to\infty} x_n = a \\
 		&\defiff
 		(\forall \epsilon > 0)
-		(\exists N\in\mathbb{N}^+)[
+		(\exists N\in\mathbb{N})
+		(\forall n\in\mathbb{N})
+		[
 			n > N
 			\implies
 			\abs{x_n - a} < \epsilon
@@ -335,13 +337,23 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\epsilon)} \right]^2},
 	\varliminf\limits_{n\to\infty} x_n = \alpha
 	&\defiff
 	(\forall\epsilon>0)
-	(\exists N\in\mathbb{N}^+)
-	[n>N \implies \alpha-\epsilon < x_n]; \\
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		\alpha-\epsilon < x_n
+	]; \\
 	\varlimsup\limits_{n\to\infty} x_n = \beta
 	&\defiff
 	(\forall\epsilon>0)
-	(\exists N\in\mathbb{N}^+)
-	[n>N \implies x_n < \beta+\epsilon].
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		x_n < \beta+\epsilon
+	].
 \end{align*}
 
 \begin{theorem}[波尔查诺-魏尔斯特拉斯原理]\label{theorem:极限.波尔查诺-魏尔斯特拉斯原理}
@@ -402,7 +414,10 @@ a-\epsilon<x_{2k-1}<a+\epsilon, \qquad a-\epsilon<x_{2k}<a+\epsilon
 \section{函数极限}
 从\hyperref[definition.数列.数列的定义]{数列的定义}可以看出，
 任意一个数列\(\{x_n\}\)只不过是一个以\(n\)为自变量的函数\(x_n = f(n)\).
-我们只要把数列极限概念中“自变量\(n\)的取值范围是整数的子集”“自变量变化过程是\(n\to\infty\)”等特殊性撇开，
+我们只要把数列极限概念中
+“自变量\(n\)的取值范围是整数的子集”
+“自变量变化过程是\(n\to\infty\)”
+等特殊性撇开，
 就可以引出函数极限的一般概念.
 
 \subsection{函数极限的定义}
@@ -833,28 +848,56 @@ x_i \in I \quad (i=1,2,\dotsc,n),
 \]
 \begin{proof}
 必要性.
-因为\(\lim\limits_{x \to x_0} f(x) = A\)，所以\[
-\forall \epsilon > 0, \exists \delta > 0 \bigl[
-	0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \epsilon
-\bigr].
+因为\(\lim\limits_{x \to x_0} f(x) = A\)，
+所以\[
+	(\forall \epsilon > 0)
+	(\exists \delta > 0)
+	(\forall x\in\Dx)
+	[
+		0 < \abs{x - x_0} < \delta
+		\implies
+		\abs{f(x) - A} < \epsilon
+	].
 \]
-对于已经取定的\(\delta\)，只要\(\lim\limits_{n \to \infty}x_n = x_0\)，那么\[
-\exists N\in\mathbb{N}^+ \bigl(
-	n > N \implies 0 < \abs{x_n - x_0} < \delta
-\bigr).
-\]这样，当\(n> N\)时，有\(\abs{f(x_n) - A} < \epsilon\)，即\(\lim\limits_{n \to \infty} f(x_n) = A\).
+对于已经取定的\(\delta\)，
+只要\(\lim\limits_{n \to \infty}x_n = x_0\)，
+那么\[
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		0 < \abs{x_n - x_0} < \delta
+	].
+\]
+这样，当\(n> N\)时，有\(\abs{f(x_n) - A} < \epsilon\)，
+即\(\lim\limits_{n \to \infty} f(x_n) = A\).
 
 充分性.
 用反证法，假设\(\lim\limits_{x \to x_0} f(x) = A\)不成立，那么，\[
-\exists \epsilon_0 > 0, \forall \delta > 0, \exists \xi\in\mathring{U}(x_0,\delta) \bigl[
-	\abs{f(\xi) - A} > \epsilon_0
-\bigr].
+	(\exists \epsilon_0 > 0)
+	(\forall \delta > 0)
+	(\exists \xi\in\mathring{U}(x_0,\delta))
+	[
+		\abs{f(\xi) - A} > \epsilon_0
+	].
 \]
-由上，依次取\(\delta = 1,\frac{1}{2},\dotsc,\frac{1}{n},\dotsc\)，可得一系列\(\xi\)取值构成的数列\(\{\xi_n\}\).因为\(0 < \abs{\xi_n - x_0} < \frac{1}{n}\)，所以\(\lim\limits_{n \to \infty} \xi_n = x_0\)，进而有\(\lim\limits_{n \to \infty} f(\xi_n) = A\)，即\[
-\forall \epsilon > 0, \exists N > 0 \bigl(
-	n > N \implies \abs{f(\xi_n) - A} < \epsilon
-\bigr).
-\]这就与\(\abs{f(\xi) - A} > \epsilon_0\)矛盾.
+由上，依次取\(\delta = 1,\frac{1}{2},\dotsc,\frac{1}{n},\dotsc\)，
+可得一系列\(\xi\)取值构成的数列\(\{\xi_n\}\).
+因为\(0 < \abs{\xi_n - x_0} < \frac{1}{n}\)，
+所以\(\lim\limits_{n \to \infty} \xi_n = x_0\)，
+进而有\(\lim\limits_{n \to \infty} f(\xi_n) = A\)，
+即\[
+	(\forall \epsilon > 0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{f(\xi_n) - A} < \epsilon
+	].
+\]
+这就与\(\abs{f(\xi) - A} > \epsilon_0\)矛盾.
 \end{proof}
 \end{theorem}
 海涅定理也称作\DefineConcept{归结原则}.
@@ -1234,9 +1277,15 @@ a_0/b_0, & m=n, \\
 \]成立.
 
 综上所述，\[
-	\forall\epsilon>0,
-	\exists N\in\mathbb{N}^+
-	\bigl( n > N \implies \abs{x_n - a} < \epsilon \bigr);
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{x_n - a} < \epsilon
+	]
+	\bigl(  \bigr);
 \]
 这就证明了\(\lim\limits_{n\to\infty} x_n = a\).
 \end{proof}
@@ -1729,7 +1778,7 @@ x_n < 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsb + \frac{1}{n!}
 	\text{数列\(\{x_n\}\)收敛}
 	\iff
 	(\forall\epsilon>0)
-	(\exists N\in\mathbb{N}^+)
+	(\exists N\in\mathbb{N})
 	(\forall n,m \geq N)
 	[\abs{x_n-x_m}<\epsilon].
 \]

@@ -531,20 +531,32 @@ l = \l \frac{u_n}{v_n}.
 \item 如果\(l\in(0,+\infty]\)，且级数\(\s v_i\)发散，则级数\(\s u_i\)发散.
 \end{enumerate}
 \begin{proof}
-如果\(\l {\frac{u_n}{v_n}}=l\in[0,+\infty)\)，那么由极限定义可知，对\(\epsilon=1\)，\(\exists N\in\mathbb{N}^+\)，当\(n>N\)时，有\[
-\frac{u_n}{v_n} < l+1,
-\]即\(u_n < (l+1) v_n\).
-而级数\(\s v_i\)收敛，根据\cref{theorem:无穷级数.正项级数的比较审敛法的推论} 可知，级数\(\s u_i\)收敛.
+如果\(\l {\frac{u_n}{v_n}}=l\in[0,+\infty)\)，
+那么由极限定义可知，对\(\epsilon=1\)，
+\(\exists N\in\mathbb{N}\)，
+对于\(\forall n\in\mathbb{N}\)，
+只要\(n>N\)，就有\[
+	\frac{u_n}{v_n} < l+1,
+\]
+即\(u_n < (l+1) v_n\).
+而级数\(\s v_i\)收敛，
+根据\cref{theorem:无穷级数.正项级数的比较审敛法的推论} 可知，
+级数\(\s u_i\)收敛.
 
-如果\(\l {\frac{u_n}{v_n}}=l\in(0,+\infty]\)，那么极限\(\l \frac{v_n}{u_n}\)存在.
-如果级数\(\s u_i\)收敛，则由上可知必有级数\(\s v_i\)收敛，但已知级数\(s v_i\)发散，因此级数\(\s u_i\)不可能收敛，即级数\(\s u_i\)发散.
+如果\(\l {\frac{u_n}{v_n}}=l\in(0,+\infty]\)，
+那么极限\(\l \frac{v_n}{u_n}\)存在.
+如果级数\(\s u_i\)收敛，则由上可知必有级数\(\s v_i\)收敛，
+但已知级数\(s v_i\)发散，因此级数\(\s u_i\)不可能收敛，即级数\(\s u_i\)发散.
 \end{proof}
 \end{theorem}
 
-极限形式的比较审敛法，在两个正项级数的一般项均趋于零的情况下，其实是比较它们的一般项作为无穷小量的阶.
+极限形式的比较审敛法，在两个正项级数的一般项均趋于零的情况下，
+其实是比较它们的一般项作为无穷小量的阶.
 定理表明，当\(n \to \infty\)时，
-如果\(u_n\)是与\(v_n\)同阶或是比\(v_n\)高阶的无穷小，而级数\(\s v_i\)收敛，则级数\(\s u_i\)收敛；
-如果\(u_n\)是与\(v_n\)同阶或是比\(v_n\)低阶的无穷小，而级数\(\s v_i\)发散，则级数\(\s u_i\)发散.
+如果\(u_n\)是与\(v_n\)同阶或是比\(v_n\)高阶的无穷小，
+而级数\(\s v_i\)收敛，则级数\(\s u_i\)收敛；
+如果\(u_n\)是与\(v_n\)同阶或是比\(v_n\)低阶的无穷小，
+而级数\(\s v_i\)发散，则级数\(\s u_i\)发散.
 
 \begin{example}
 判断级数\(\sum\limits_{n=1}^\infty \sin\frac{1}{n}\)的收敛性.
@@ -1489,28 +1501,36 @@ R = \l {\abs{\frac{a_n}{a_{n+1}}}}.
 
 \begin{enumerate}
 	\item 如果极限\(\l \abs{\frac{a_{n+1}}{a_n}} = \rho\neq0\)存在，
-根据\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}，
-则当\(\rho \abs{x} < 1\)即\(\abs{x} < \frac{1}{\rho}\)时，
-级数\(\s \abs{a_n x^n}\)收敛，
-从而级数\(\s a_n x^n\)绝对收敛；
-再根据\cref{theorem:无穷级数.绝对发散的特殊情况}，
-当\(\rho \abs{x} > 1\)即\(\abs{x} > \frac{1}{\rho}\)时，
-级数\(\s \abs{a_n x^n}\)发散，
-并且\(\exists N\in\mathbb{N}^+, \forall n > N \bigl(
-	\abs{a_{n+1} x^{n+1}} > \abs{a_n x^n}
-\bigr)\).
+	根据\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}，
+	则当\(\rho \abs{x} < 1\)即\(\abs{x} < \frac{1}{\rho}\)时，
+	级数\(\s \abs{a_n x^n}\)收敛，
+	从而级数\(\s a_n x^n\)绝对收敛；
+	再根据\cref{theorem:无穷级数.绝对发散的特殊情况}，
+	当\(\rho \abs{x} > 1\)即\(\abs{x} > \frac{1}{\rho}\)时，
+	级数\(\s \abs{a_n x^n}\)发散，
+	并且\[
+		(\exists N\in\mathbb{N})
+		(\forall n\in\mathbb{N})
+		[
+			n > N
+			\implies
+			\abs{a_{n+1} x^{n+1}} > \abs{a_n x^n}
+		].
+	\]
+
 	\item 如果\(\rho=0\)，
-则对\(\forall x\neq0\)，
-有\(\l \abs{\frac{a_{n+1} x^{n+1}}{a_n x^n}} = 0\)，
-所以级数\(\s \abs{a_n x^n}\)收敛，
-从而级数\(\s a_n x^n\)绝对收敛.%
-于是\(R=+\infty\).
-	\item 如果\(\rho=+\infty\)，
-则对\(\forall x\neq0\)，
-级数\(\s a_n x^n\)必发散，
-否则由\cref{theorem:无穷级数.阿贝尔定理} 知道\(\exists x\neq0\)使得\(\s \abs{a_n x^n}\)收敛.
-于是\(R=0\).
-\qedhere
+	则对\(\forall x\neq0\)，
+	有\(\l \abs{\frac{a_{n+1} x^{n+1}}{a_n x^n}} = 0\)，
+	所以级数\(\s \abs{a_n x^n}\)收敛，
+	从而级数\(\s a_n x^n\)绝对收敛.
+	于是\(R=+\infty\).
+		\item 如果\(\rho=+\infty\)，
+	则对\(\forall x\neq0\)，
+	级数\(\s a_n x^n\)必发散，
+	否则由\cref{theorem:无穷级数.阿贝尔定理} 知道，
+	\(\exists x\neq0\)使得\(\s \abs{a_n x^n}\)收敛.
+	于是\(R=0\).
+	\qedhere
 \end{enumerate}
 \end{proof}
 \end{theorem}
