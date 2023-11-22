@@ -934,22 +934,67 @@ g'(x) = \cos x - x \sin x - \cos x = -x \sin x < 0\ (0<x<\frac{\pi}{2}),
 
 
 \subsection{曲线的凹凸性与拐点}
-\begin{definition}[曲线的凹凸性]
-设\(f(x)\)在区间\(I\)上连续，
-对\(I\)上任意不同两点\(x_1\)、\(x_2\)，
-如果恒有\[f\left(\frac{x_1+x_2}{2}\right) < \frac{f(x_1)+f(x_2)}{2},\]
-那么称“\(f(x)\)在\(I\)上的图形是（向上）凹的（convex）”，
-或称“\(f(x)\)是\(I\)上的\DefineConcept{凹函数}”；
-如果恒有\[f\left(\frac{x_1+x_2}{2}\right) > \frac{f(x_1)+f(x_2)}{2},\]
-那么称“\(f(x)\)在\(I\)上的图形是（向上）凸的（concave）”，
-或称“\(f(x)\)是\(I\)上的\DefineConcept{凸函数}”.
-\end{definition}
-更一般地，对于\(\forall x_1,x_2 \in I\)，\(\forall \lambda \in (0,1)\)，若\[
-f[\lambda x_1 + (1-\lambda) x_2] < \lambda f(x_1) + (1 - \lambda) f(x_2)
-\]成立，则称“\(f(x)\)是\((x_1,x_2)\)上的凹函数”；
+\begin{definition}
+%@see: 《数学分析》（卓里奇） P202. 定义1.
+%@see: 《数学分析》（卓里奇） P203. 定义2.
+设函数\(f\colon D\to\mathbb{R}\)，其中\(D=(a,b)\subset\mathbb{R}\).
+
 若\[
-f[\lambda x_1 + (1-\lambda) x_2] > \lambda f(x_1) + (1-\lambda) f(x_2)
-\]成立，则称“\(f(x)\)是\((x_1,x_2)\)上的凸函数”.
+	(\forall x_1,x_2 \in D)
+	(\forall \lambda \in [0,1])
+	[
+		f(\lambda x_1 + (1-\lambda) x_2)
+		\leq
+		\lambda f(x_1) + (1-\lambda) f(x_2)
+	],
+\]
+则称“\(f(x)\)是\((a,b)\)上的\DefineConcept{凹函数}（convex function）”.
+
+若\[
+	(\forall x_1,x_2 \in D)
+	(\forall \lambda \in [0,1])
+	[
+		f(\lambda x_1 + (1-\lambda) x_2)
+		\geq
+		\lambda f(x_1) + (1-\lambda) f(x_2)
+	],
+\]
+则称“\(f(x)\)是\((a,b)\)上的\DefineConcept{凸函数}（concave function）”.
+
+若\[
+	(\forall x_1,x_2 \in D)
+	[
+		x_1 \neq x_2
+		\implies
+		(\forall \lambda \in (0,1))
+		[
+			f(\lambda x_1 + (1-\lambda) x_2)
+			<
+			\lambda f(x_1) + (1-\lambda) f(x_2)
+		]
+	],
+\]
+则称“\(f(x)\)是\((a,b)\)上的\DefineConcept{严格凹函数}”.
+
+若\[
+	(\forall x_1,x_2 \in D)
+	[
+		x_1 \neq x_2
+		\implies
+		(\forall \lambda \in (0,1))
+		[
+			f(\lambda x_1 + (1-\lambda) x_2)
+			>
+			\lambda f(x_1) + (1-\lambda) f(x_2)
+		]
+	],
+\]
+则称“\(f(x)\)是\((a,b)\)上的\DefineConcept{严格凸函数}”.
+%@see: https://mathworld.wolfram.com/ConvexFunction.html
+%@see: https://mathworld.wolfram.com/ConcaveFunction.html
+\end{definition}
+
+
 
 \begin{theorem}[曲线凹凸的判定]\label{theorem:微分中值定理.曲线凹凸的判定}
 设\(f(x)\)在\([a,b]\)上连续，在\((a,b)\)内具有一阶和二阶导数，那么
