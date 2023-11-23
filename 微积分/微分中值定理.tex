@@ -242,6 +242,7 @@ x_n &= 1 + \frac{1}{2} + \dotsb + \frac{1}{n} - \ln n \\
 服从自己的“零点定理”和“介值定理”.
 
 \begin{theorem}[达布零点定理]\label{theorem:微分中值定理.达布定理1}
+%@see: 《数学分析教程》（史济怀） P150. 定理3.4.5(1)
 设函数\(f \in D(a,b)\)，\(a<x_1<x_2<b\).
 如果\(f'(x_1) \cdot f'(x_2) < 0\)，
 那么\[
@@ -298,6 +299,7 @@ x_n &= 1 + \frac{1}{2} + \dotsb + \frac{1}{n} - \ln n \\
 
 我们可以将\cref{theorem:微分中值定理.达布定理1} 作一番推广.
 \begin{theorem}[达布介值定理]\label{theorem:微分中值定理.达布定理2}
+%@see: 《数学分析教程》（史济怀） P150. 定理3.4.5(1)
 设函数\(f \in D[a,b]\)，且\(f'(a) < f'(b)\).
 那么\(\forall\lambda\in(f'(A),f'(b))\)，\(\exists\xi\in(a,b)\)，
 使得\[
@@ -313,6 +315,35 @@ x_n &= 1 + \frac{1}{2} + \dotsb + \frac{1}{n} - \ln n \\
 	F'(\xi)=0,
 \]
 即\(f'(x) = \lambda\).
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数学分析教程》（史济怀） P150. 定理3.4.5(2)
+设\(f \in D[a,b]\)，那么导函数\(f'\)没有第一类间断点.
+\begin{proof}
+用反证法.
+设\(x_0\)是\(f'\)的一个第一类间断点，
+那么\(f'(x_0^+)\)和\(f'(x_0^-)\)都存在.
+
+因为\(f \in D[a,b]\)，
+由\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}，
+可得\[
+	f'(x_0)
+	= f'_+(x_0)
+	= \lim_{x \to x_0^+} \frac{f(x)-f(x_0)}{x-x_0}
+	= \lim_{x \to x_0^+} \frac{f'(\xi) (x-x_0)}{x-x_0}
+	= \lim_{x \to x_0^+} f'(\xi)
+	\quad(x_0<\xi<x).
+\]
+由于当\(x \to x_0^+\)时，\(\xi \to x_0^+\)，
+且已知\(f'(x_0^+)\)存在，
+所以有\[
+	f'(x_0)=f'(x_0^+).
+\]
+同理可证\(f'(x_0)=f'(x_0^-)\).
+由此可知\(f'\)在点\(x_0\)连续，
+而这与\(x_0\)是\(f'\)的间断点矛盾！
 \end{proof}
 \end{theorem}
 
