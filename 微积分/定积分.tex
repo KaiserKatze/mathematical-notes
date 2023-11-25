@@ -1226,49 +1226,58 @@ y = f(x) \quad(a \leq x \leq b)
 
 \subsection{欧庇尔不等式}
 \begin{theorem}[欧庇尔不等式]\label{theorem:定积分.欧庇尔不等式}
-设函数\(f(x)\)在\([a,b]\)上有连续导数，\(f(a)=f(b)=0\)，则\begin{equation}\label{equation:定积分.Opial不等式}
-\int_a^b \abs{f(x) f'(x)} \dd{x}
-\leq \frac{b-a}{4}
-\int_a^b [f'(x)]^2 \dd{x}.
+设函数\(f(x)\)在\([a,b]\)上有连续导数，\(f(a)=f(b)=0\)，
+则\begin{equation}\label{equation:定积分.Opial不等式}
+	\int_a^b \abs{f(x) f'(x)} \dd{x}
+	\leq \frac{b-a}{4}
+	\int_a^b [f'(x)]^2 \dd{x}.
 \end{equation}
 \begin{proof}
 由于\(f(a)=f(b)=0\)，所以\begin{enumerate}
-\item 当\(x \in \left[a,c\right]\)时，\(\abs{f(x)} = \abs{\int_a^x f'(t) \dd{t}} \leq \int_a^x \abs{f'(t)} \dd{t} = F(x)\)；
-\item 当\(x \in \left[c,b\right]\)时，\(\abs{f(x)} = \abs{\int_b^x f'(t) \dd{t}} \leq \int_b^x \abs{f'(t)} \dd{t} = G(x)\),
-\end{enumerate}其中\(c=\frac{a+b}{2}\).从而，\begin{align*}
-\int_a^b \abs{f(x) f'(x)} \dd{x}
-&= \int_a^c \abs{f(x) f'(x)} \dd{x}
-    + \int_c^b \abs{f(x) f'(x)} \dd{x} \\
-&\leq \int_a^c F(x) F'(x) \dd{x}
-    + \int_c^b G(x) G'(x) \dd{x} \\
-&= \frac{1}{2} \left[ F^2(c) + G^2(c) \right].
-\end{align*}分别代入\(F(x)\)与\(G(x)\)的表达式，可得\[
-F^2(c) = \left( \int_a^c \abs{f'(t)} \dd{t} \right)^2,
-\qquad
-G^2(c) = \left( \int_c^b \abs{f'(t)} \dd{t} \right)^2.
-\]根据\hyperref[equation:定积分.柯西-施瓦茨不等式]{柯西-施瓦茨不等式}，有\begin{align*}
-&\hspace{-20pt}\int_a^b{\abs{f(x) f'(x)} \dd{x}}
-\leq \frac{1}{2} \left[
-    F^2(c)
-    + G^2(c)
-    \right] \\
-&= \frac{1}{2} \left[
-    \left(\int_a^c{\abs{f'(t)}\dd{t}}\right)^2
-    +\left(\int_c^b{\abs{f'(t)}\dd{t}}\right)^2
-    \right] \\
-&\leq \frac{1}{2} \left\{
-    \int_a^c{1^2 \dd{x}}
-    \int_a^c{[f'(x)]^2 \dd{x}}
-    +\int_c^b{1^2 \dd{x}}
-    \int_c^b{[f'(x)]^2 \dd{x}}
-    \right\} \\
-&= \frac{b-a}{4} \int_a^b{[f'(x)]^2 \dd{x}}.
+	\item 当\(x \in \left[a,c\right]\)时，
+	\(\abs{f(x)} = \abs{\int_a^x f'(t) \dd{t}} \leq \int_a^x \abs{f'(t)} \dd{t} = F(x)\)；
+	\item 当\(x \in \left[c,b\right]\)时，
+	\(\abs{f(x)} = \abs{\int_b^x f'(t) \dd{t}} \leq \int_b^x \abs{f'(t)} \dd{t} = G(x)\),
+\end{enumerate}
+其中\(c=\frac{a+b}{2}\).
+从而，\begin{align*}
+	\int_a^b \abs{f(x) f'(x)} \dd{x}
+	&= \int_a^c \abs{f(x) f'(x)} \dd{x}
+		+ \int_c^b \abs{f(x) f'(x)} \dd{x} \\
+	&\leq \int_a^c F(x) F'(x) \dd{x}
+		+ \int_c^b G(x) G'(x) \dd{x} \\
+	&= \frac{1}{2} \left[ F^2(c) + G^2(c) \right].
+\end{align*}
+分别代入\(F(x)\)与\(G(x)\)的表达式，
+可得\[
+	F^2(c) = \left( \int_a^c \abs{f'(t)} \dd{t} \right)^2,
+	\qquad
+	G^2(c) = \left( \int_c^b \abs{f'(t)} \dd{t} \right)^2.
+\]
+根据\hyperref[equation:定积分.柯西-施瓦茨不等式]{柯西-施瓦茨不等式}，
+有\begin{align*}
+	&\hspace{-20pt}\int_a^b{\abs{f(x) f'(x)} \dd{x}}
+	\leq \frac{1}{2} \left[
+		F^2(c)
+		+ G^2(c)
+		\right] \\
+	&= \frac{1}{2} \left[
+		\left(\int_a^c{\abs{f'(t)}\dd{t}}\right)^2
+		+\left(\int_c^b{\abs{f'(t)}\dd{t}}\right)^2
+		\right] \\
+	&\leq \frac{1}{2} \left\{
+		\int_a^c{1^2 \dd{x}}
+		\int_a^c{[f'(x)]^2 \dd{x}}
+		+\int_c^b{1^2 \dd{x}}
+		\int_c^b{[f'(x)]^2 \dd{x}}
+		\right\} \\
+	&= \frac{b-a}{4} \int_a^b{[f'(x)]^2 \dd{x}}.
 \end{align*}
 \cref{equation:定积分.Opial不等式} 当且仅当\[
-f(x) = \left\{ \begin{array}{cl}
-c(x-a), & x\in\left[a,c\right], \\
--c(x-b), & x\in\left[c,b\right],
-\end{array} \right.
+	f(x) = \left\{ \begin{array}{cl}
+		c(x-a), & x\in\left[a,c\right], \\
+		-c(x-b), & x\in\left[c,b\right],
+	\end{array} \right.
 \]时取等号，其中\(c\neq0\).
 \end{proof}
 \end{theorem}
