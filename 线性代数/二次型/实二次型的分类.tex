@@ -1,76 +1,97 @@
 \section{实二次型的分类}
 \subsection{实二次型的分类标准}
 \begin{definition}
-设有\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，如果对任意一组不全为零的实数\(\AutoTuple{c}{n}\)，都有
+设有\(n\)元实二次型\(f(\x) = \x^T\A\x\).
 \begin{enumerate}
-	\item \(f(\AutoTuple{c}{n}) > 0\)，
+	\item 如果\[
+		(\forall\x\in\mathbb{R}^n-\{\z\})
+		[f(\x) > 0],
+	\]
 	则称“\(f\)是\DefineConcept{正定的}（positive definite）”；
 	把\(\A\)称为\DefineConcept{正定矩阵}（positive definite matrix），
 	记为\(\A\succ\z\).
 
-	\item \(f(\AutoTuple{c}{n}) \geq 0\)，
+	\item 如果\[
+		(\forall\x\in\mathbb{R}^n-\{\z\})
+		[f(\x) \geq 0],
+	\]
 	则称“\(f\)是\DefineConcept{半正定的}（positive semi-definite）”；
 	把\(\A\)称为\DefineConcept{半正定矩阵}（positive semi-definite matrix），
 	记为\(\A\succeq\z\).
 
-	\item \(f(\AutoTuple{c}{n}) < 0\)，
+	\item 如果\[
+		(\forall\x\in\mathbb{R}^n-\{\z\})
+		[f(\x) < 0],
+	\]
 	则称“\(f\)是\DefineConcept{负定的}（negative definite）”，
 	把\(\A\)称为\DefineConcept{负定矩阵}（negative definite matrix），
 	记为\(\A\prec\z\).
 
-	\item \(f(\AutoTuple{c}{n}) \leq 0\)，
+	\item 如果\[
+		(\forall\x\in\mathbb{R}^n-\{\z\})
+		[f(\x) \leq 0],
+	\]
 	则称“\(f\)是\DefineConcept{半负定的}（negative semi-definite）”；
 	把\(\A\)称为\DefineConcept{半负定矩阵}（negative semi-definite matrix），
 	记为\(\A\preceq\z\).
 
-	\item 否则（\(f\)既可取正值，又可取负值），
-	称\(f\)是\DefineConcept{不定的}（indefinite）.
+	\item 否则，称\(f\)是\DefineConcept{不定的}（indefinite）.
 \end{enumerate}
 \end{definition}
 
 \subsection{惯性定理}
 \begin{theorem}\label{theorem:二次型.惯性定理}
-\(n\)元实二次型\[
-f(\AutoTuple{x}{n}) = \x^T\A\x
-\]经过任意满秩线性变换化为标准型，所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
+\(n\)元实二次型\(f(\x) = \x^T\A\x\)经过任意满秩线性变换化为标准型，
+所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
 \begin{proof}
-\def\z{\mat{Z}}%
+\def\z{\mat{z}}%
 设实二次型的秩为\(r\).
 假设\(f\)经过两个不同的可逆线性替换\(\x=\C\y,\x=\D\z\)分别化为标准型\[
-f \xlongequal{\x=\C\y} c_1 y_1^2 + c_2 y_2^2 + \dotsb + c_p y_p^2 - c_{p+1} y_{p+1}^2 - \dotsb - c_r y_r^2,
-\eqno{(1)}
+	f \xlongequal{\x=\C\y}
+	c_1 y_1^2 + c_2 y_2^2 + \dotsb + c_p y_p^2 - c_{p+1} y_{p+1}^2 - \dotsb - c_r y_r^2,
+	\eqno{(1)}
 \]\[
-f \xlongequal{\x=\D\z} d_1 z_1^2 + d_2 z_2^2 + \dotsb + d_q z_q^2 - d_{q+1} z_{q+1}^2 - \dotsb - d_r z_r^2,
-\eqno{(2)}
-\]其中\(c_i,d_i>0\ (i=1,2,\dotsc,r)\).
+	f \xlongequal{\x=\D\z}
+	d_1 z_1^2 + d_2 z_2^2 + \dotsb + d_q z_q^2 - d_{q+1} z_{q+1}^2 - \dotsb - d_r z_r^2,
+	\eqno{(2)}
+\]
+其中\(c_i,d_i>0\ (i=1,2,\dotsc,r)\).
 
 用反证法.
 设\(p > q\)，由\(\x = \C\y = \D\z\)，\(\D\)可逆，得\(\z = \D^{-1} \C \y\).
 \def\H{\mat{H}}%
 \def\zexpr#1{h_{#1 1} y_1 + h_{#1 2} y_2 + \dotsb + h_{#1 n} y_n}%
-记\(\H = (h_{ij})_n = \B^{-1} \C\)，则\(\z = \H\y\)，即\[
-z_i = \zexpr{i}
-\quad(i=1,2,\dotsc,n).
-\]于是\[\begin{aligned}
-&\hspace{-20pt}
-c_1 y_1^2 + c_2 y_2^2 + \dotsb + c_p y_p^2 - c_{p+1} y_{p+1}^2 - \dotsb - c_r y_r^2 \\
-&= d_1 (\zexpr{1})^2 + d_2 (\zexpr{2})^2 \\
-&\hspace{20pt}+ \dotsb + d_q (\zexpr{q})^2 \\
-&\hspace{20pt}- d_{q+1} (\zexpr{q+1})^2 - \dotsb \\
-&\hspace{20pt}- d_r (\zexpr{r})^2.
-\end{aligned}
-\eqno{(3)}
-\]由此可以构造齐次线性方程组\[
-\begin{cases}
-\zexpr{1} = 0, \\
-\hdotsfor{1} \\
-\zexpr{q} = 0, \\
-y_{p+1} = 0, \\
-\hdotsfor{1} \\
-y_n = 0.
-\end{cases}
-\eqno{(4)}
-\]这个方程组中有\(n\)个未知量，\(q+n-p < n\)个方程，于是它有非零解\((\AutoTuple{y}{p},0,\dotsc,0)^T\)，
+记\(\H = (h_{ij})_n = \B^{-1} \C\)，
+则\(\z = \H\y\)，
+即\[
+	z_i = \zexpr{i}
+	\quad(i=1,2,\dotsc,n).
+\]
+于是\[
+	\begin{aligned}
+		&\hspace{-40pt}
+		c_1 y_1^2 + c_2 y_2^2 + \dotsb
+			+ c_p y_p^2 - c_{p+1} y_{p+1}^2 - \dotsb - c_r y_r^2 \\
+		&\hspace{-20pt}= d_1 (\zexpr{1})^2 + d_2 (\zexpr{2})^2 \\
+		&+ \dotsb + d_q (\zexpr{q})^2 \\
+		&- d_{q+1} (\zexpr{q+1})^2 - \dotsb \\
+		&- d_r (\zexpr{r})^2.
+	\end{aligned}
+	\eqno{(3)}
+\]
+由此可以构造齐次线性方程组\[
+	\begin{cases}
+		\zexpr{1} = 0, \\
+		\hdotsfor{1} \\
+		\zexpr{q} = 0, \\
+		y_{p+1} = 0, \\
+		\hdotsfor{1} \\
+		y_n = 0.
+	\end{cases}
+	\eqno{(4)}
+\]
+这个方程组中有\(n\)个未知量，\(q+n-p < n\)个方程，
+于是它有非零解\((\AutoTuple{y}{p},0,\dotsc,0)^T\)，
 代入(3)式两端，得到左边大于零，右边小于等于零，矛盾，因此\(p \leq q\).
 同理又有\(q \leq p\)，于是\(p = q\).
 \end{proof}
