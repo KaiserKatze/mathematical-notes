@@ -11,8 +11,8 @@
 对于平面区域\(D\)的边界曲线\(C = \partial D\)，
 我们规定\(C\)的方向如下：
 
-设坐标平面的\(x\)轴、\(y\)轴对应的基向量分别为\(\mat{e}_x\)和\(\mat{e}_y\)，
-令\(\mat{e}_z = \mat{e}_x \times \mat{e}_y\).任取点\(P \in C\)，
+设坐标平面的\(x\)轴、\(y\)轴对应的基向量分别为\(\vb{e}_x\)和\(\vb{e}_y\)，
+令\(\vb{e}_z = \vb{e}_x \times \vb{e}_y\).任取点\(P \in C\)，
 则可得与曲线切于点\(P\)的直线\(L\).
 
 在点\(P\)取一个半径\(r\)足够小的去心邻域，
@@ -22,16 +22,16 @@
 	Q \in I(D) \cap \mathring{U}(P,r).
 \]
 
-任意取一个与直线\(L\)平行的单位向量\(\mat{e}_L\).
-令\(\Phi = (\mat{e}_z \times \mat{e}_L) \cdot \vec{PQ}\).
+任意取一个与直线\(L\)平行的单位向量\(\vb{e}_L\).
+令\(\Phi = (\vb{e}_z \times \vb{e}_L) \cdot \vec{PQ}\).
 如果\[
 \Phi < 0,
 \]
-则称“单位向量\(\mat{e}_L\)的方向为曲线\(C\)在点\(P\)处的正方向”；
+则称“单位向量\(\vb{e}_L\)的方向为曲线\(C\)在点\(P\)处的正方向”；
 反之，如果\[
 	\Phi > 0,
 \]
-则称“单位向量\(\mat{e}_L\)的方向为曲线\(C\)在点\(P\)处的负方向”.
+则称“单位向量\(\vb{e}_L\)的方向为曲线\(C\)在点\(P\)处的负方向”.
 \end{definition}
 如\cref{figure:线积分与面积分.平面区域的边界曲线与其取向}，
 平面区域\(D\)的边界是曲线\(L\)和曲线\(l\)的并集\(L+l\).
@@ -144,27 +144,27 @@
 分段光滑的曲线\(L\)为\(D\)的正向边界曲线.
 证明：\begin{gather}
 	\iint_D v \laplacian{u} \dd{x}\dd{y}
-	= - \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y} + \oint_L v \pdv{u}{\mat{n}} \dd{s};
+	= - \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y} + \oint_L v \pdv{u}{\vb{n}} \dd{s};
 	\label{equation:线积分与面积分.二维格林第一公式} \\
 	\iint_D (u \laplacian v - v \laplacian u) \dd{x}\dd{y}
-	= \oint_L \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{s},
+	= \oint_L \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{s},
 	\label{equation:线积分与面积分.二维格林第二公式}
 \end{gather}
-其中\(\pdv{u}{\mat{n}}\)、\(\pdv{v}{\mat{n}}\)分别是\(u\)、\(v\)沿\(L\)的外法线向量\(\mat{n}\)的方向导数，
+其中\(\pdv{u}{\vb{n}}\)、\(\pdv{v}{\vb{n}}\)分别是\(u\)、\(v\)沿\(L\)的外法线向量\(\vb{n}\)的方向导数，
 二维拉普拉斯算子\(\laplacian = \pdv[2]{x} + \pdv[2]{y}\).
 \begin{proof}
 因为方向导数\[
-\pdv{u}{\mat{n}}
+\pdv{u}{\vb{n}}
 = \pdv{u}{x} \cos\alpha
 + \pdv{u}{y} \cos\beta,
 \qquad
-\pdv{v}{\mat{n}}
+\pdv{v}{\vb{n}}
 = \pdv{v}{x} \cos\alpha
 + \pdv{v}{y} \cos\beta,
 \]其中\(\cos\alpha\)、\(\cos\beta\)是\(L\)在点\(\opair{x,y}\)处的外法线向量的方向余弦，
-那么\(L\)在该点处的正向单位切向量为\(\mat{\tau} = \opair{-\cos\beta,\cos\alpha}\)，
+那么\(L\)在该点处的正向单位切向量为\(\vb{\tau} = \opair{-\cos\beta,\cos\alpha}\)，
 于是利用格林公式可得\begin{align*}
-\oint_L v \pdv{u}{\mat{n}} \dd{s}
+\oint_L v \pdv{u}{\vb{n}} \dd{s}
 &= \oint_L v \left(
 \pdv{u}{x} \cos\alpha
 + \pdv{u}{y} \cos\beta
@@ -274,29 +274,29 @@
 
 \subsection{曲线积分的基本定理}
 \begin{definition}
-若曲线积分\(\int_L \mat{F}\cdot\dd{\mat{r}}\)在区域\(G\)内与积分路径无关，
-则称向量场\(\mat{F}\)为\DefineConcept{保守场}.
+若曲线积分\(\int_L \vb{F}\cdot\dd{\vb{r}}\)在区域\(G\)内与积分路径无关，
+则称向量场\(\vb{F}\)为\DefineConcept{保守场}.
 \end{definition}
 
 下面的定理给出了平面曲线积分与路径无关的另一种形式的条件，
 并为计算保守场中的曲线积分提供了一种简便的方法.
 \begin{theorem}[曲线积分的基本定理]\label{theorem:线积分与面积分.曲线积分的基本定理}
-设\(\mat{F}(x,y)=P(x,y)\mat{i}+Q(x,y)\mat{j}\)是平面区域\(G\)内的一个向量场，
+设\(\vb{F}(x,y)=P(x,y)\vb{i}+Q(x,y)\vb{j}\)是平面区域\(G\)内的一个向量场，
 \(P(x,y)\)、\(Q(x,y)\)都在\(G\)内连续，
-且存在一个数量函数\(f(x,y)\)，使得\(\mat{F}=\grad f\)，
-则曲线积分\(\int_L\mat{F}\cdot\dd{\mat{r}}\)在\(G\)内与路径无关，且
+且存在一个数量函数\(f(x,y)\)，使得\(\vb{F}=\grad f\)，
+则曲线积分\(\int_L\vb{F}\cdot\dd{\vb{r}}\)在\(G\)内与路径无关，且
 \begin{equation}\label{equation:线积分与面积分.曲线积分的基本公式}
-	\int_L \mat{F} \cdot \dd{\mat{r}}
+	\int_L \vb{F} \cdot \dd{\vb{r}}
 	= f(B)-f(A),
 \end{equation}
 其中\(L\)是位于\(G\)内起点为\(A\)、终点为\(B\)的任一分段光滑曲线.
 \end{theorem}
 
 \cref{theorem:线积分与面积分.曲线积分的基本定理} 表明，
-对于势场\(\mat{F}\)，
-曲线积分\(\int_L \mat{F}\cdot\dd{\mat{r}}\)的值仅依赖于它的势函数\(f\)在路径\(L\)的两端点的值，
+对于势场\(\vb{F}\)，
+曲线积分\(\int_L \vb{F}\cdot\dd{\vb{r}}\)的值仅依赖于它的势函数\(f\)在路径\(L\)的两端点的值，
 而不依赖于两点间的路径，
-即积分\(\int_L \mat{F}\cdot\dd{\mat{r}}\)在\(G\)内与路径无关.
+即积分\(\int_L \vb{F}\cdot\dd{\vb{r}}\)在\(G\)内与路径无关.
 也就是说：势场是保守场.
 
 \cref{equation:线积分与面积分.曲线积分的基本公式}

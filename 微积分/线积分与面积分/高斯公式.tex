@@ -126,7 +126,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{example}
 
 \begin{example}[三维格林第一公式]
-设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有一阶及二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{v}{\mat{n}}\)为函数\(v(x,y,z)\)沿\(\Sigma\)的外法线方向的方向导数.证明：
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有一阶及二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{v}{\vb{n}}\)为函数\(v(x,y,z)\)沿\(\Sigma\)的外法线方向的方向导数.证明：
 \begin{equation}\label{equation:线积分与面积分.三维格林第一公式}
 \begin{split}
 &\iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} \\
@@ -140,12 +140,12 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{equation}其中符号\(\laplacian = \pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}\)为\DefineConcept{拉普拉斯算子}.
 \begin{proof}
 因为方向导数\[
-\pdv{v}{\mat{n}}
+\pdv{v}{\vb{n}}
 = \pdv{v}{x} \cos\alpha
 + \pdv{v}{y} \cos\beta
 + \pdv{v}{z} \cos\gamma,
 \]其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\((x,y,z)\)处的外法线向量的方向余弦，于是利用高斯公式即有曲面积分\begin{align*}
-&\hspace{-20pt}\varoiint_\Sigma u \pdv{v}{\mat{n}} \dd{S}
+&\hspace{-20pt}\varoiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
 = \varoiint_\Sigma u \left(
 \pdv{v}{x} \cos\alpha
 + \pdv{v}{y} \cos\beta
@@ -176,10 +176,10 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{proof}
 \end{example}
 \begin{example}[三维格林第二公式]
-设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{u}{\mat{n}}\)、\(\pdv{v}{\mat{n}}\)依次为函数\(u\)、\(v\)沿\(\Sigma\)的外法线方向的方向导数.证明：
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{u}{\vb{n}}\)、\(\pdv{v}{\vb{n}}\)依次为函数\(u\)、\(v\)沿\(\Sigma\)的外法线方向的方向导数.证明：
 \begin{equation}\label{equation:线积分与面积分.三维格林第二公式}
 \iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z}
-=\varoiint_\Sigma \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}.
+=\varoiint_\Sigma \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{S}.
 \end{equation}
 \begin{proof}
 \def\Io{\iiint_{\Omega} \left(%
@@ -188,18 +188,18 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 +\pdv{u}{z} \pdv{v}{z}%
 \right) \dd{x}\dd{y}\dd{z}}%
 因为方向导数\begin{align*}
-\pdv{u}{\mat{n}}
+\pdv{u}{\vb{n}}
 &= \pdv{u}{x} \cos\alpha
 + \pdv{u}{y} \cos\beta
 + \pdv{u}{z} \cos\gamma, \\
-\pdv{v}{\mat{n}}
+\pdv{v}{\vb{n}}
 &= \pdv{v}{x} \cos\alpha
 + \pdv{v}{y} \cos\beta
 + \pdv{v}{z} \cos\gamma,
 \end{align*}其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\((x,y,z)\)处的外法线向量的方向余弦，于是利用\hyperref[equation:线积分与面积分.三维格林第一公式]{三维格林第一公式}即有曲面积分\begin{align*}
-&\hspace{-5pt}\varoiint_\Sigma \left( u \pdv{v}{\mat{n}} - v \pdv{u}{\mat{n}} \right) \dd{S}
-= \varoiint_\Sigma u \pdv{v}{\mat{n}} \dd{S}
-- \varoiint_\Sigma v \pdv{u}{\mat{n}} \dd{S} \\
+&\hspace{-5pt}\varoiint_\Sigma \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{S}
+= \varoiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
+- \varoiint_\Sigma v \pdv{u}{\vb{n}} \dd{S} \\
 &= \left[ \iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} + I \right]
 - \left[ \iiint_{\Omega} v \laplacian{u} \dd{x}\dd{y}\dd{z} + I \right] \\
 &= \iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z},
@@ -229,82 +229,82 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \subsection{通量与散度}
 \begin{definition}
 设有向量场\[
-	\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k},
+	\vb{A}(x,y,z)=P(x,y,z)\vb{i}+Q(x,y,z)\vb{j}+R(x,y,z)\vb{k},
 \]
 其中函数\(P\)、\(Q\)、\(R\)均具有一阶连续偏导数，
 \(\Sigma\)是场内一片有向曲面，
-\(\mat{n}\)是\(\Sigma\)在点\((x,y,z)\)处的单位法向量，
+\(\vb{n}\)是\(\Sigma\)在点\((x,y,z)\)处的单位法向量，
 我们把积分\[
-	\iint_\Sigma{\mat{A}\cdot\mat{n}\dd{S}}
-\]称为“向量场\(\mat{A}\)通过曲面\(\Sigma\)向着指定侧的\DefineConcept{通量}”.
+	\iint_\Sigma{\vb{A}\cdot\vb{n}\dd{S}}
+\]称为“向量场\(\vb{A}\)通过曲面\(\Sigma\)向着指定侧的\DefineConcept{通量}”.
 \end{definition}
 由两类曲面积分的关系，通量又可表达为\[
-	\iint_\Sigma \mat{A}\cdot\mat{n}\dd{S}
-	=\iint_\Sigma \mat{A}\cdot\dd{\mat{S}}
+	\iint_\Sigma \vb{A}\cdot\vb{n}\dd{S}
+	=\iint_\Sigma \vb{A}\cdot\dd{\vb{S}}
 	=\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}.
 \]
 
 \begin{definition}[平面上的散度]
-\def\defofdiv{\lim\limits_{D \to M} \frac{1}{S} \oint_C \mat{A}(x,y) \cdot \dd{\mat{s}}}%
+\def\defofdiv{\lim\limits_{D \to M} \frac{1}{S} \oint_C \vb{A}(x,y) \cdot \dd{\vb{s}}}%
 设\[
-	\mat{A}(x,y)=P(x,y)\mat{i}+Q(x,y)\mat{j}
+	\vb{A}(x,y)=P(x,y)\vb{i}+Q(x,y)\vb{j}
 \]是定义在平面闭区域\(D\)内的向量场，
 \(C\)是\(D\)的边界曲线的正向，
 \(D\)的面积\(S = \iint_{D} \dd{\sigma}\).
 对于\(D\)内一点\(M\)，把极限\[
 	\defofdiv
-\]称为“向量场\(\mat{A}\)在点\(M\)的（二维）\DefineConcept{散度}（或\DefineConcept{通量密度}）”，
-记作\(\div{\mat{A}}\)或\(\operatorname{div}\mat{A}\)，即\[
-	\div{\mat{A}} \defeq \defofdiv.
+\]称为“向量场\(\vb{A}\)在点\(M\)的（二维）\DefineConcept{散度}（或\DefineConcept{通量密度}）”，
+记作\(\div{\vb{A}}\)或\(\operatorname{div}\vb{A}\)，即\[
+	\div{\vb{A}} \defeq \defofdiv.
 \]
 \end{definition}
 
 \begin{proposition}
 二维向量场
-\(\mat{A}(x,y)=P(x,y)\mat{i}+Q(x,y)\mat{j}\)
+\(\vb{A}(x,y)=P(x,y)\vb{i}+Q(x,y)\vb{j}\)
 在点\(\opair{x,y}\)的散度为\[
-	\div{\mat{A}} = \pdv{P}{x}+\pdv{Q}{y}.
+	\div{\vb{A}} = \pdv{P}{x}+\pdv{Q}{y}.
 \]
 \end{proposition}
 
 \begin{definition}[空间中的散度]
-\def\defofdiv{\lim\limits_{\Omega \to M} \frac{1}{V} \varoiint_\Sigma \mat{A}(x,y,z) \cdot \dd{\mat{S}}}%
+\def\defofdiv{\lim\limits_{\Omega \to M} \frac{1}{V} \varoiint_\Sigma \vb{A}(x,y,z) \cdot \dd{\vb{S}}}%
 设\[
-\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k}
+\vb{A}(x,y,z)=P(x,y,z)\vb{i}+Q(x,y,z)\vb{j}+R(x,y,z)\vb{k}
 \]是定义在空间闭区域\(\Omega\)内的向量场，
 \(\Sigma\)是\(\Omega\)的边界曲面的外侧，
 \(\Omega\)的体积\(V = \iiint_{\Omega} \dd{v}\).
 对于\(\Omega\)内一点\(M\)，称极限\[
 	\defofdiv
-\]为“向量场\(\mat{A}\)在点\(M\)的（三维）\DefineConcept{散度}（或\DefineConcept{通量密度}）”，
-记作\(\div{\mat{A}}\)或\(\operatorname{div}\mat{A}\)，即\[
-	\div{\mat{A}} \defeq \defofdiv.
+\]为“向量场\(\vb{A}\)在点\(M\)的（三维）\DefineConcept{散度}（或\DefineConcept{通量密度}）”，
+记作\(\div{\vb{A}}\)或\(\operatorname{div}\vb{A}\)，即\[
+	\div{\vb{A}} \defeq \defofdiv.
 \]
 \end{definition}
 
 \begin{proposition}
 三维向量场
-\(\mat{A}(x,y,z)=P(x,y,z)\mat{i}+Q(x,y,z)\mat{j}+R(x,y,z)\mat{k}\)
+\(\vb{A}(x,y,z)=P(x,y,z)\vb{i}+Q(x,y,z)\vb{j}+R(x,y,z)\vb{k}\)
 在点\((x,y,z)\)的散度为\[
-	\div{\mat{A}} = \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}.
+	\div{\vb{A}} = \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}.
 \]
 \end{proposition}
 
 \begin{definition}
-若在点\(M\)处\(\div{\mat{A}}>0\)，
-则称点\(M\)为向量场\(\mat{A}\)的\DefineConcept{源}（或\DefineConcept{正源}）；
-若在点\(M\)处\(\div{\mat{A}}<0\)，
-则称点\(M\)为向量场\(\mat{A}\)的\DefineConcept{漏}（或\DefineConcept{负源}）；
-若在点\(M\)处\(\div{\mat{A}}=0\)，
-则称向量场\(\mat{A}\)在点\(M\)处\DefineConcept{无源}.
+若在点\(M\)处\(\div{\vb{A}}>0\)，
+则称点\(M\)为向量场\(\vb{A}\)的\DefineConcept{源}（或\DefineConcept{正源}）；
+若在点\(M\)处\(\div{\vb{A}}<0\)，
+则称点\(M\)为向量场\(\vb{A}\)的\DefineConcept{漏}（或\DefineConcept{负源}）；
+若在点\(M\)处\(\div{\vb{A}}=0\)，
+则称向量场\(\vb{A}\)在点\(M\)处\DefineConcept{无源}.
 
-如果向量场\(\mat{A}\)的散度\(\div{\mat{A}}\)处处为零，
-则称向量场\(\mat{A}\)为\DefineConcept{无源场}.
+如果向量场\(\vb{A}\)的散度\(\div{\vb{A}}\)处处为零，
+则称向量场\(\vb{A}\)为\DefineConcept{无源场}.
 \end{definition}
 
 现在利用散度的概念，\cref{equation:线积分与面积分.高斯公式} 可以改写为
 \begin{equation}\label{equation:线积分与面积分.高斯公式1}
-	\iiint_{\Omega} \div{\mat{A}} \dd{v} = \varoiint_\Sigma \mat{A} \cdot \dd{\mat{S}};
+	\iiint_{\Omega} \div{\vb{A}} \dd{v} = \varoiint_\Sigma \vb{A} \cdot \dd{\vb{S}};
 \end{equation}
 而\cref{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
 可以改写为“沿任意闭曲面的曲面积分为零的充要条件是向量场散度为零”.
@@ -318,15 +318,15 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 浸没在液体中的物体所占据的空间闭区域\(\Omega\)的边界曲面\(\Sigma\)上
 任意一点\(M(x,y,z)\)的邻近小区域\(\dd{\sigma}\)所受的压力大小
 等于从它到液面间这部分液体（柱）的重力大小，即为\(\rho g z \dd{\sigma}\)，
-而方向是\(\mat{n}=\cos\alpha\mat{i}+\cos\beta\mat{j}+\cos\gamma\mat{k}\)
+而方向是\(\vb{n}=\cos\alpha\vb{i}+\cos\beta\vb{j}+\cos\gamma\vb{k}\)
 （即\(\Sigma\)的单位内法向量），
 其中\(\rho\)是液体的密度，
 \(\sigma\)是液体（柱）的底面积，
 \(g\)是重力加速度大小.
 从而整个物体所受浮力为\begin{align*}
-	\mat{F}
+	\vb{F}
 	&= \varoiint_\Sigma \rho g z
-		(\cos\alpha\mat{i}+\cos\beta\mat{j}+\cos\gamma\mat{k}) \dd{\sigma} \\
+		(\cos\alpha\vb{i}+\cos\beta\vb{j}+\cos\gamma\vb{k}) \dd{\sigma} \\
 	&= \rho g \iint_{\Omega} \left(\pdv{x}+\pdv{y}+\pdv{z}\right) z \dd{v} \\
 	&= \rho g \iint_{\Omega} \dd{v}
 	= \rho g V,
