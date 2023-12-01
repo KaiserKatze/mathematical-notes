@@ -173,43 +173,60 @@
 	= \oint_L \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{s},
 	\label{equation:线积分与面积分.二维格林第二公式}
 \end{gather}
-其中\(\pdv{u}{\vb{n}}\)、\(\pdv{v}{\vb{n}}\)分别是\(u\)、\(v\)沿\(L\)的外法线向量\(\vb{n}\)的方向导数，
+其中\(\pdv{u}{\vb{n}}\)、\(\pdv{v}{\vb{n}}\)
+分别是\(u\)、\(v\)沿\(L\)的外法线向量\(\vb{n}\)的方向导数，
 二维拉普拉斯算子\(\laplacian = \pdv[2]{x} + \pdv[2]{y}\).
 \begin{proof}
 因为方向导数\[
-\pdv{u}{\vb{n}}
-= \pdv{u}{x} \cos\alpha
-+ \pdv{u}{y} \cos\beta,
-\qquad
-\pdv{v}{\vb{n}}
-= \pdv{v}{x} \cos\alpha
-+ \pdv{v}{y} \cos\beta,
+	\pdv{u}{\vb{n}}
+	= \pdv{u}{x} \cos\alpha
+	+ \pdv{u}{y} \cos\beta,
+	\qquad
+	\pdv{v}{\vb{n}}
+	= \pdv{v}{x} \cos\alpha
+	+ \pdv{v}{y} \cos\beta,
 \]其中\(\cos\alpha\)、\(\cos\beta\)是\(L\)在点\((x,y)\)处的外法线向量的方向余弦，
-那么\(L\)在该点处的正向单位切向量为\(\vb{\tau} = \opair{-\cos\beta,\cos\alpha}\)，
+那么\(L\)在该点处的正向单位切向量为\(\vb{\tau} = (-\cos\beta,\cos\alpha)\)，
 于是利用格林公式可得\begin{align*}
-\oint_L v \pdv{u}{\vb{n}} \dd{s}
-&= \oint_L v \left(
-\pdv{u}{x} \cos\alpha
-+ \pdv{u}{y} \cos\beta
-\right) \dd{s} \\
-&= \oint_L \left( - v \pdv{u}{y} \right) \dd{x}
-	+ \left( v \pdv{u}{x} \right) \dd{y} \\
-&= \iint_D \left[
-	\pdv{x} \left( v \pdv{u}{x} \right)
-	- \pdv{y} \left( - v \pdv{u}{y} \right)
-	\right] \dd{x}\dd{y} \\
-&= \iint_D \left(
-	\pdv{v}{x} \pdv{u}{x}
-	+ v \pdv[2]{u}{x}
-	+ \pdv{v}{y} \pdv{u}{y}
-	+ v \pdv[2]{u}{y}
-	\right) \dd{x}\dd{y} \\
-&= \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y}
-	+ \iint_D v \laplacian{u} \dd{x}\dd{y},
+	\oint_L v \pdv{u}{\vb{n}} \dd{s}
+	&= \oint_L v \left(
+	\pdv{u}{x} \cos\alpha
+	+ \pdv{u}{y} \cos\beta
+	\right) \dd{s} \\
+	&= \oint_L \left( - v \pdv{u}{y} \right) \dd{x}
+		+ \left( v \pdv{u}{x} \right) \dd{y} \\
+	&= \iint_D \left[
+		\pdv{x} \left( v \pdv{u}{x} \right)
+		- \pdv{y} \left( - v \pdv{u}{y} \right)
+		\right] \dd{x}\dd{y} \\
+	&= \iint_D \left(
+		\pdv{v}{x} \pdv{u}{x}
+		+ v \pdv[2]{u}{x}
+		+ \pdv{v}{y} \pdv{u}{y}
+		+ v \pdv[2]{u}{y}
+		\right) \dd{x}\dd{y} \\
+	&= \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y}
+		+ \iint_D v \laplacian{u} \dd{x}\dd{y},
 \end{align*}
-移项可得\cref{equation:线积分与面积分.二维格林第一公式}.
-而\cref{equation:线积分与面积分.二维格林第二公式} 可由\cref{equation:线积分与面积分.二维格林第一公式} 推得，
-故略去.
+移项可得\[
+	\iint_D v \laplacian{u} \dd{x}\dd{y}
+	= - \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y}
+	+ \oint_L v \pdv{u}{\vb{n}} \dd{s}.
+	\eqno(1)
+\]
+同理可得\[
+	\iint_D u \laplacian{v} \dd{x}\dd{y}
+	= - \iint_D (\grad v \cdot \grad u) \dd{x}\dd{y}
+	+ \oint_L u \pdv{v}{\vb{n}} \dd{s}.
+	\eqno(2)
+\]
+(2)式与(1)式相减便得\[
+	\iint_D (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}
+	= \oint_L \left(
+		u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}}
+	\right) \dd{s}.
+	\qedhere
+\]
 \end{proof}
 \end{example}
 
