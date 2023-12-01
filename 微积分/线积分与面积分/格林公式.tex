@@ -232,7 +232,7 @@
 
 \begin{example}
 设函数\(f(x,y)\)在区域\(D=\Set{(x,y) \given x^2+y^2\leq1}\)上具有二阶连续偏导数，
-且\(\pdv[2]{f}{x}+\pdv[2]{f}{y}=e^{-(x^2+y^2)}\)，
+且\(\laplacian{f}=e^{-(x^2+y^2)}\)，
 求二重积分\(I=\iint_D\left(x\pdv{f}{x}+y\pdv{f}{y}\right)\dd{x}\dd{y}\).
 \begin{solution}
 考虑区域\(D\)的形状，将积分\(I\)化为在极坐标系下的积分，
@@ -246,14 +246,16 @@
 考虑到\(\dd{x}=\dd(\rho\cos\theta),
 \dd{y}=\dd(\rho\sin\theta)\)，
 所以\[
-	I = \int_0^1 \rho\dd{\rho} \oint_{L_{\rho}: x^2+y^2=\rho^2} \pdv{f}{x}\dd{y}-\pdv{f}{y}\dd{x}.
+	I = \int_0^1 \rho\dd{\rho} \oint_{L_\rho} \pdv{f}{x}\dd{y}-\pdv{f}{y}\dd{x}.
 \]
+其中\(L_\rho: x^2+y^2=\rho^2\).
+令\(D_\rho = \Set{ (x,y) \given x^2+y^2\leq\rho^2 }\)，
 应用\hyperref[equation:线积分与面积分.格林公式]{格林公式}，
 则有\begin{align*}
-	\oint_{L_{\rho}: x^2+y^2=\rho^2} \pdv{f}{x}\dd{y}-\pdv{f}{y}\dd{x}
-	&= \iint_{D_{\rho}: x^2+y^2\leq\rho^2} \left(\pdv[2]{f}{x}+\pdv[2]{f}{y}\right) \dd{\sigma} \\
-	&= \iint_{D_{\rho}: x^2+y^2\leq\rho^2} e^{-(x^2+y^2)} \dd{\sigma} \\
-	&= \int_0^{2\pi} \dd{\theta} \int_0^{\rho} e^{-\rho^2} \rho\dd{\rho} \\
+	\oint_{L_\rho} \pdv{f}{x}\dd{y}-\pdv{f}{y}\dd{x}
+	&= \iint_{D_\rho} \laplacian{f} \dd{x}\dd{y} \\
+	&= \iint_{D_\rho} e^{-(x^2+y^2)} \dd{x}\dd{y} \\
+	&= \int_0^{2\pi} \dd{\theta} \int_0^\rho e^{-r^2} r\dd{r} \\
 	&= \pi \left(1-e^{-\rho^2}\right).
 \end{align*}
 那么\[
