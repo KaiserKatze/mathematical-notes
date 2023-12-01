@@ -181,37 +181,42 @@
 \begin{example}
 证明：\(\curl(\mat{a}+\mat{b}) = \curl\mat{a} + \curl\mat{b}\).
 \begin{proof}
-因为\[
-	\curl\mat{a} = \begin{vmatrix}
-		\mat{i} & \mat{j} & \mat{k} \\
-		\pdv{x} & \pdv{y} & \pdv{z} \\
-		P_1 & Q_1 & R_1
-	\end{vmatrix},
-	\qquad
-	\curl\mat{b} = \begin{vmatrix}
-		\mat{i} & \mat{j} & \mat{k} \\
-		\pdv{x} & \pdv{y} & \pdv{z} \\
-		P_2 & Q_2 & R_2
-	\end{vmatrix},
+设\[
+	\mat{a}=P_1\mat{i}+Q_1\mat{j}+R_1\mat{k}, \qquad
+	\mat{b}=P_2\mat{i}+Q_2\mat{j}+R_2\mat{k}
 \]
-所以\begin{align*}
-	\curl\mat{a} + \curl\mat{b}
-	&= \begin{vmatrix}
-		\mat{i} & \mat{j} & \mat{k} \\
-		\pdv{x} & \pdv{y} & \pdv{z} \\
-		P_1 & Q_1 & R_1
-	\end{vmatrix} + \begin{vmatrix}
-		\mat{i} & \mat{j} & \mat{k} \\
-		\pdv{x} & \pdv{y} & \pdv{z} \\
-		P_2 & Q_2 & R_2
-	\end{vmatrix} \\
-	&= \begin{vmatrix}
-		\mat{i} & \mat{j} & \mat{k} \\
-		\pdv{x} & \pdv{y} & \pdv{z} \\
-		P_1 + P_2 & Q_1 + Q_2 & R_1 + R_2
-	\end{vmatrix} \\
-	&= \curl(\mat{a}+\mat{b}). \qedhere
-\end{align*}
+那么\[
+	\curl{\mat{a}}
+	=\left( \pdv{R_1}{y} - \pdv{Q_1}{z} \right)\mat{i}
+	+\left( \pdv{P_1}{z} - \pdv{R_1}{x} \right)\mat{j}
+	+\left( \pdv{Q_1}{x} - \pdv{P_1}{y} \right)\mat{k},
+\]\[
+	\curl{\mat{b}}
+	=\left( \pdv{R_2}{y} - \pdv{Q_2}{z} \right)\mat{i}
+	+\left( \pdv{P_2}{z} - \pdv{R_2}{x} \right)\mat{j}
+	+\left( \pdv{Q_2}{x} - \pdv{P_2}{y} \right)\mat{k},
+\]
+所以{\def\arraystretch{1.5}
+\begin{align*}
+	\curl{\mat{a}} + \curl{\mat{b}}
+	&= \begin{bmatrix}
+		\pdv{R_1}{y} - \pdv{Q_1}{z} \\
+		\pdv{P_1}{z} - \pdv{R_1}{x} \\
+		\pdv{Q_1}{x} - \pdv{P_1}{y}
+	\end{bmatrix}
+	+ \begin{bmatrix}
+		\pdv{R_2}{y} - \pdv{Q_2}{z} \\
+		\pdv{P_2}{z} - \pdv{R_2}{x} \\
+		\pdv{Q_2}{x} - \pdv{P_2}{y}
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
+		\pdv{y}(R_1+R_2) - \pdv{z}(Q_1+Q_2) \\
+		\pdv{z}(P_1+P_2) - \pdv{x}(R_1+R_2) \\
+		\pdv{x}(Q_1+Q_2) - \pdv{y}(P_1+P_2)
+	\end{bmatrix}
+	= \curl(\mat{a}+\mat{b}).
+	\qedhere
+\end{align*}}
 \end{proof}
 \end{example}
 
