@@ -139,90 +139,107 @@
 可以将上述对坐标的曲面积分的计算法总结为如下更一般的方法.
 \begin{theorem}
 设积分曲面\(\Sigma\)由二元向量值参数方程\[
-\vb{r}(u,v) = x(u,v) \vb{i} + y(u,v) \vb{j} + z(u,v) \vb{k},
-\quad \opair{u,v} \in D
-\]给出，这里\(D\)是\(uv\)平面上具有分段光滑边界的有界闭区域，
+	\vb{r}(u,v) = x(u,v) \vb{i} + y(u,v) \vb{j} + z(u,v) \vb{k},
+	\quad (u,v) \in D
+\]给出，
+这里\(D\)是\(uv\)平面上具有分段光滑边界的有界闭区域，
 且\(\vb{r}\colon D \to \Sigma\)是具有一阶连续偏导数的单值函数，
 且雅克比矩阵\[
-\vb{J} = \begin{bmatrix}
-x'_u & x'_v \\
-y'_u & y'_v \\
-z'_u & z'_v
-\end{bmatrix}
+	\vb{J} = \begin{bmatrix}
+		x'_u & x'_v \\
+		y'_u & y'_v \\
+		z'_u & z'_v
+	\end{bmatrix}
 \]是满秩的，
 且被积函数\[
-\vb{F}(x,y,z) = P(x,y,z) \vb{i} + Q(x,y,z) \vb{j} + R(x,y,z) \vb{k}
-\]在\(\Sigma\)上连续，那么有\[
-\iint_\Sigma \vb{F} \cdot \dd{\vb{S}}
-= \pm \iint_D \left[
-	P \jacobi{y,z}{u,v}
-	+ Q \jacobi{z,x}{u,v}
-	+ R \jacobi{x,y}{u,v}
-\right] \dd{u}\dd{u}.
+	\vb{F}(x,y,z) = P(x,y,z) \vb{i} + Q(x,y,z) \vb{j} + R(x,y,z) \vb{k}
+\]在\(\Sigma\)上连续，
+那么有\[
+	\iint_\Sigma \vb{F} \cdot \dd{\vb{S}}
+	= \pm \iint_D \left[
+		P \jacobi{y,z}{u,v}
+		+ Q \jacobi{z,x}{u,v}
+		+ R \jacobi{x,y}{u,v}
+	\right] \dd{u}\dd{u}.
 \]
 \end{theorem}
 
 \begin{example}
 计算曲面积分\[
-\iint_\Sigma x^2 \dd{y}\dd{z} + y^2 \dd{z}\dd{x} + z^2 \dd{x}\dd{y},
-\]其中\(\Sigma\)是长方体\(\Omega = \Set{
-(x,y,z) \given
-0 \leq x \leq a,
-0 \leq y \leq b,
-0 \leq z \leq c
+	\iint_\Sigma x^2 \dd{y}\dd{z} + y^2 \dd{z}\dd{x} + z^2 \dd{x}\dd{y},
+\]
+其中\(\Sigma\)是长方体\(\Omega = \Set{
+	(x,y,z)
+	\given
+	0 \leq x \leq a,
+	0 \leq y \leq b,
+	0 \leq z \leq c
 }\)的整个表面的外侧.
 \begin{solution}
 把有向曲面\(\Sigma\)分成以下六部分：
-\begin{center}\begin{tabular}{l}
-\(\Sigma_1: z=c\ (0 \leq x \leq a, 0 \leq y \leq b)\)的上侧； \\
-\(\Sigma_2: z=0\ (0 \leq x \leq a, 0 \leq y \leq b)\)的下侧； \\
-\(\Sigma_3: x=a\ (0 \leq y \leq b, 0 \leq z \leq c)\)的前侧； \\
-\(\Sigma_4: x=0\ (0 \leq y \leq b, 0 \leq z \leq c)\)的后侧； \\
-\(\Sigma_5: y=b\ (0 \leq x \leq a, 0 \leq z \leq c)\)的右侧； \\
-\(\Sigma_6: y=0\ (0 \leq x \leq a, 0 \leq z \leq c)\)的左侧. \\
-\end{tabular}\end{center}
-除\(\Sigma_3\)、\(\Sigma_4\)外，其余四片曲面在\(yOz\)面上的投影为零，因此\[
-\iint_\Sigma x^2 \dd{y}\dd{z}
-= \iint_{\Sigma_3} x^2 \dd{y}\dd{z}
-+ \iint_{\Sigma_4} x^2 \dd{y}\dd{z}.
-\]应用\cref{equation:线积分与面积分.第二类曲面积分的计算式3} 就有\[
-\iint_\Sigma x^2 \dd{y}\dd{z}
-= \iint_{D_{yz}} a^2 \dd{y}\dd{z}
-- \iint_{D_{yz}} 0^2 \dd{y}\dd{z}
-= a^2 bc.
-\]同理可得\[
-\iint_\Sigma y^2 \dd{z}\dd{x}
-= b^2 ac,
+\begin{center}
+	\begin{tabular}{l}
+		\(\Sigma_1: z=c\ (0 \leq x \leq a, 0 \leq y \leq b)\)的上侧； \\
+		\(\Sigma_2: z=0\ (0 \leq x \leq a, 0 \leq y \leq b)\)的下侧； \\
+		\(\Sigma_3: x=a\ (0 \leq y \leq b, 0 \leq z \leq c)\)的前侧； \\
+		\(\Sigma_4: x=0\ (0 \leq y \leq b, 0 \leq z \leq c)\)的后侧； \\
+		\(\Sigma_5: y=b\ (0 \leq x \leq a, 0 \leq z \leq c)\)的右侧； \\
+		\(\Sigma_6: y=0\ (0 \leq x \leq a, 0 \leq z \leq c)\)的左侧. \\
+	\end{tabular}
+\end{center}
+除\(\Sigma_3\)、\(\Sigma_4\)外，
+其余四片曲面在\(yOz\)面上的投影为零，
+因此\[
+	\iint_\Sigma x^2 \dd{y}\dd{z}
+	= \iint_{\Sigma_3} x^2 \dd{y}\dd{z}
+	+ \iint_{\Sigma_4} x^2 \dd{y}\dd{z}.
+\]
+应用\cref{equation:线积分与面积分.第二类曲面积分的计算式3} 就有\[
+	\iint_\Sigma x^2 \dd{y}\dd{z}
+	= \iint_{D_{yz}} a^2 \dd{y}\dd{z}
+	- \iint_{D_{yz}} 0^2 \dd{y}\dd{z}
+	= a^2 bc.
+\]
+同理可得\[
+	\iint_\Sigma y^2 \dd{z}\dd{x}
+	= b^2 ac,
 \]\[
-\iint_\Sigma z^2 \dd{x}\dd{y}
-= c^2 ab.
-\]于是所求曲面积分为\((a+b+c) abc\).
+	\iint_\Sigma z^2 \dd{x}\dd{y}
+	= c^2 ab.
+\]
+于是所求曲面积分为\((a+b+c) abc\).
 \end{solution}
 \end{example}
 
 \begin{example}
-计算曲面积分\(\iint_\Sigma xyz \dd{x}\dd{y}\)，其中\(\Sigma\)是球面\(x^2+y^2+z^2=1\)外侧在\(x\geq0,y\geq0\)的部分.
+计算曲面积分\(\iint_\Sigma xyz \dd{x}\dd{y}\)，
+其中\(\Sigma\)是球面\(x^2+y^2+z^2=1\)外侧在\(x\geq0,y\geq0\)的部分.
 \begin{solution}
-把\(\Sigma\)分为\(\Sigma_1\)和\(\Sigma_2\)两部分，其中\(\Sigma_1\)的方程为\[
-z = -\sqrt{1-x^2-y^2},
-\]而\(\Sigma_2\)的方程为\[
-z = \sqrt{1-x^2-y^2}.
-\]因此\begin{align*}
-\iint_\Sigma xyz \dd{x}\dd{y}
-&= \iint_{\Sigma_1} xyz \dd{x}\dd{y}
-+ \iint_{\Sigma_2} xyz \dd{x}\dd{y} \\
-&= -\iint_{D_{xy}} xy (-\sqrt{1-x^2-y^2}) \dd{x}\dd{y}
-+ \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y} \\
-&= 2 \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y}.
+把\(\Sigma\)分为\(\Sigma_1\)和\(\Sigma_2\)两部分，
+其中\(\Sigma_1\)的方程为\[
+	z = -\sqrt{1-x^2-y^2},
+\]
+而\(\Sigma_2\)的方程为\[
+	z = \sqrt{1-x^2-y^2}.
+\]
+因此\begin{align*}
+	\iint_\Sigma xyz \dd{x}\dd{y}
+	&= \iint_{\Sigma_1} xyz \dd{x}\dd{y}
+	+ \iint_{\Sigma_2} xyz \dd{x}\dd{y} \\
+	&= -\iint_{D_{xy}} xy (-\sqrt{1-x^2-y^2}) \dd{x}\dd{y}
+	+ \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y} \\
+	&= 2 \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y}.
 \end{align*}
-其中\(D_{xy}\)是\(\Sigma_1,\Sigma_2\)在\(xOy\)面上的投影区域，就是位于第一象限内的扇形\[
-x^2+y^2\leq1 \quad(x\geq0,y\geq0).
-\]利用极坐标计算这个二重积分如下：\begin{align*}
-2 \iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y}
-&= 2 \iint_{D_{xy}} \rho^2 \sin\theta \cos\theta \sqrt{1-\rho^2} \rho\dd{\rho}\dd{\theta} \\
-&= \int_0^{\pi/2} \sin2\theta \dd{\theta} \int_0^1 \rho^3 \sqrt{1-\rho^2} \dd{\rho} \\
-&= 1 \cdot \frac{2}{15} = \frac{2}{15},
-\end{align*}
+其中\(D_{xy}\)是\(\Sigma_1,\Sigma_2\)在\(xOy\)面上的投影区域，
+就是位于第一象限内的扇形\[
+	x^2+y^2\leq1 \quad(x\geq0,y\geq0).
+\]
+利用极坐标计算这个二重积分如下：\[
+	\iint_{D_{xy}} xy \sqrt{1-x^2-y^2} \dd{x}\dd{y}
+	= \int_0^{\frac\pi2} \sin\theta \cos\theta \dd{\theta}
+		\int_0^1 \rho^3 \sqrt{1-\rho^2} \dd{\rho}
+	= \frac{1}{15},
+\]
 从而\(\iint_\Sigma xyz \dd{x}\dd{y} = \frac{2}{15}\).
 \end{solution}
 \end{example}
