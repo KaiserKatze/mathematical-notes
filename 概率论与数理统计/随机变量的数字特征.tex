@@ -150,32 +150,34 @@ E(Z) = E[g(X,Y)] = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y) f(x,
 
 \begin{example}
 设随机变量\(X\)的密度函数为\[
-f(x) = \left\{ \begin{array}{cl}
-\frac{x}{a^2} \exp(-\frac{x^2}{2a^2}), & x>0, \\
-0, & x \leq 0.
-\end{array} \right.
-\]又设\(Y = 1/X\)，求\(E(Y)\).
+	f(x) = \left\{ \begin{array}{cl}
+		\frac{x}{a^2} \exp(-\frac{x^2}{2a^2}), & x>0, \\
+		0, & x \leq 0.
+	\end{array} \right.
+\]
+又设\(Y = 1/X\)，求\(E(Y)\).
 \begin{solution}
 当\(X>0\)时，\(Y>0\)；
 此时\(Y\)的分布函数为\[\begin{aligned}
-F_Y(y)
-&= P(Y \leq y)
-= P(1/X \leq y)
-= P(X \geq 1/y)
-= 1 - P(X < 1/y) \\
-&= 1 - \int_0^{1/y} \frac{x}{a^2} \exp(-\frac{x^2}{2a^2}) \dd{x}
-= \exp(-\frac{1}{2a^2y^2});
+	F_Y(y)
+	&= P(Y \leq y)
+	= P(1/X \leq y)
+	= P(X \geq 1/y)
+	= 1 - P(X < 1/y) \\
+	&= 1 - \int_0^{1/y} \frac{x}{a^2} \exp(-\frac{x^2}{2a^2}) \dd{x}
+	= \exp(-\frac{1}{2a^2y^2});
 \end{aligned}\]
 而密度函数为\[
-f_Y(y) = F_Y'(y)
-= \frac{1}{a^2 y^3} \exp(-\frac{1}{2a^2y^2}).
-\]那么\[\begin{aligned}
-E(Y)
-&= \int_{-\infty}^{+\infty} y f_Y(y) \dd{y}
-= \int_0^{+\infty} \frac{1}{a^2 y^2} \exp(-\frac{1}{2a^2y^2}) \dd{y} \\
-&= \int_{+\infty}^0 -\frac{1}{\sqrt{2} a} t^{-\frac{1}{2}} e^{-t} \dd{t}
-= \frac{1}{\sqrt{2} a} \Gamma\left(\frac{1}{2}\right)
-= \sqrt{\frac{\pi}{2a^2}}.
+	f_Y(y) = F_Y'(y)
+	= \frac{1}{a^2 y^3} \exp(-\frac{1}{2a^2y^2}).
+\]
+那么\[\begin{aligned}
+	E(Y)
+	&= \int_{-\infty}^{+\infty} y f_Y(y) \dd{y}
+	= \int_0^{+\infty} \frac{1}{a^2 y^2} \exp(-\frac{1}{2a^2y^2}) \dd{y} \\
+	&= \int_{+\infty}^0 -\frac{1}{\sqrt{2} a} t^{-\frac{1}{2}} e^{-t} \dd{t}
+	= \frac{1}{\sqrt{2} a} \Gamma\left(\frac{1}{2}\right)
+	= \sqrt{\frac{\pi}{2a^2}}.
 \end{aligned}\]
 \end{solution}
 \end{example}
@@ -184,28 +186,29 @@ E(Y)
 \begin{property}\label{theorem:随机变量的数字特征.数学期望的性质1}
 设\(C\)是常数，随机变量\(X\)存在数学期望\(E(X)\)，则有：
 \begin{enumerate}
-\item \(E(C) = C\)；
-\item \(E(C X) = C E(X)\)；
-\item \(E(X+Y) = E(X)+E(Y)\).
+	\item \(E(C) = C\)；
+	\item \(E(C X) = C E(X)\)；
+	\item \(E(X+Y) = E(X)+E(Y)\).
 \end{enumerate}
 \end{property}
 
 \begin{property}[线性性质]\label{theorem:随机变量的数字特征.数学期望的性质2}
 设\(\AutoTuple{X}{n}\)是\(n\)个随机变量，
-\(C_1,C_2,\dotsc,C_n,b\)是\(n+1\)个常数，则有\[
-E\left(\sum\limits_{i=1}^n C_i X_i + b\right)
-=\sum\limits_{i=1}^n C_i E(X_i) + b.
+\(C_1,C_2,\dotsc,C_n,b\)是\(n+1\)个常数，
+则有\[
+	E\left(\sum\limits_{i=1}^n C_i X_i + b\right)
+	=\sum\limits_{i=1}^n C_i E(X_i) + b.
 \]
 \end{property}
 
 \begin{property}\label{theorem:随机变量的数字特征.数学期望的性质3}
 若随机变量\(X\)与\(Y\)相互独立，则\[
-E(X Y) = E(X) E(Y).
+	E(X Y) = E(X) E(Y).
 \]
 
 一般地，若随机变量\(\AutoTuple{X}{n}\)相互独立，则\[
-E\left( \prod_{i=1}^n{X_i} \right)
-= \prod_{i=1}^n{E(X_i)}.
+	E\left( \bigcap_{i=1}^n X_i \right)
+	= \prod_{i=1}^n E(X_i).
 \]
 \end{property}
 
@@ -215,22 +218,25 @@ E\left( \prod_{i=1}^n{X_i} \right)
 由数学期望的定义有\[
 E(X) = \sum\limits_{k=0}^n k C_n^k p^k (1-p)^{n-k},
 \]其中\[
-k C_n^k = k \frac{n!}{k! (n-k)!}
-= n \frac{(n-1)!}{(k-1)! (n-k)!}
-= n C_{n-1}^{k-1}.
-\]代回原式，得\begin{align*}
-E(X) &= np \sum\limits_{k=1}^n C_{n-1}^{k-1} p^{k-1} (1-p)^{n-k} \\
-&= np \sum\limits_{k=0}^n C_{n-1}^k p^k (1-p)^{n-1-k} \\
-&= np[p+(1-p)]^{n-1} = np.
+	k C_n^k = k \frac{n!}{k! (n-k)!}
+	= n \frac{(n-1)!}{(k-1)! (n-k)!}
+	= n C_{n-1}^{k-1}.
+\]
+代回原式，得\begin{align*}
+	E(X) &= np \sum\limits_{k=1}^n C_{n-1}^{k-1} p^{k-1} (1-p)^{n-k} \\
+	&= np \sum\limits_{k=0}^n C_{n-1}^k p^k (1-p)^{n-1-k} \\
+	&= np[p+(1-p)]^{n-1} = np.
 \qedhere
 \end{align*}
 \end{proof}
 \begin{proof}[证法二]
-令\(\AutoTuple{X}{n}\)独立同服从于0-1分布\(B(1,p)\)，由\hyperref[theorem:多维随机变量及其分布.二项分布的可加性3]{二项分布可加性}，知\[
-X = X_1 + X_2 + \dotsb + X_n.
-\]那么由\cref{theorem:随机变量的数字特征.0-1分布的数学期望} 可知\[
-E(X) = \sum\limits_{i=1}^n E(X_i) = np.
-\qedhere
+令\(\AutoTuple{X}{n}\)独立同服从于0-1分布\(B(1,p)\)，
+由\hyperref[theorem:多维随机变量及其分布.二项分布的可加性3]{二项分布可加性}，知\[
+	X = X_1 + X_2 + \dotsb + X_n.
+\]
+那么由\cref{theorem:随机变量的数字特征.0-1分布的数学期望} 可知\[
+	E(X) = \sum\limits_{i=1}^n E(X_i) = np.
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
