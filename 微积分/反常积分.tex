@@ -908,100 +908,115 @@ G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
 \subsubsection{伽马函数的斯特林近似}
 \begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理1}
 对任意的\(x>0\)，有不等式\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理1}
-0 < \left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x}) - 1 < \frac{1}{12}\left(\frac{1}{x}-\frac{1}{x+1}\right).
+0 < \left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x}) - 1
+< \frac{1}{12}\left(\frac{1}{x}-\frac{1}{x+1}\right).
 \end{equation}
 \begin{proof}
 由于\[
-\ln\frac{1+x}{1-x}
-= 2 \sum\limits_{k=0}^\infty \frac{x^{2k+1}}{2k+1}
-\quad(-1<x<1),
-\]所以\begin{align*}
-\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x})
-&= \frac{2x+1}{2} \ln({1+\frac{1}{2x+1}}\Bigg/{1-\frac{1}{2x+1}}) \\
-&= \frac{2x+1}{2} \cdot
-2 \sum\limits_{k=0}^\infty \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k+1} \\
-&= \sum\limits_{k=0}^\infty \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k},
-\end{align*}从而\[
-\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x}) - 1
-= \frac{1}{3} \left(\frac{1}{2x+1}\right)^2
-+ \frac{1}{5} \left(\frac{1}{2x+1}\right)^4
-+ \dotsb.
-\]显然上式（当\(x>0\)时）恒大于零；另外，上式右边小于\begin{align*}
-&\hspace{-20pt}
-\frac{1}{3} \left(\frac{1}{2x+1}\right)^2 \left[
-1 + \left(\frac{1}{2x+1}\right)^2 + \left(\frac{1}{2x+1}\right)^4 + \dotsb
-\right] \\
-&= \frac{1}{3} \left(\frac{1}{2x+1}\right)^2 \left[
-1 - \left(\frac{1}{2x+1}\right)^2
-\right]^{-1}
-= \frac{1}{3} \frac{1}{4x^2 + 4x}
-= \frac{1}{12} \left(\frac{1}{x} - \frac{1}{x+1}\right).
-\qedhere
+	\ln\frac{1+x}{1-x}
+	= 2 \sum\limits_{k=0}^\infty \frac{x^{2k+1}}{2k+1}
+	\quad(-1<x<1),
+\]
+所以\begin{align*}
+	\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x})
+	&= \frac{2x+1}{2} \ln\frac{
+		1+\frac{1}{2x+1}
+	}{
+		1-\frac{1}{2x+1}
+	} \\
+	&= \frac{2x+1}{2} \cdot
+	2 \sum\limits_{k=0}^\infty \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k+1} \\
+	&= \sum\limits_{k=0}^\infty \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k},
+\end{align*}
+从而\[
+	\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x}) - 1
+	= \frac{1}{3} \left(\frac{1}{2x+1}\right)^2
+	+ \frac{1}{5} \left(\frac{1}{2x+1}\right)^4
+	+ \dotsb.
+\]
+显然上式（当\(x>0\)时）恒大于零；
+另外，上式右边小于\begin{align*}
+	&\hspace{-20pt}
+	\frac{1}{3} \left(\frac{1}{2x+1}\right)^2 \left[
+	1 + \left(\frac{1}{2x+1}\right)^2 + \left(\frac{1}{2x+1}\right)^4 + \dotsb
+	\right] \\
+	&= \frac{1}{3} \left(\frac{1}{2x+1}\right)^2 \left[
+	1 - \left(\frac{1}{2x+1}\right)^2
+	\right]^{-1}
+	= \frac{1}{3} \frac{1}{4x^2 + 4x}
+	= \frac{1}{12} \left(\frac{1}{x} - \frac{1}{x+1}\right).
+	\qedhere
 \end{align*}
 \end{proof}
 \end{lemma}
 
 \begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理2}
-对任意的\(x>0\)，有\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理2}
-0 < \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x} < \frac{1}{12 x}.
+对任意的\(x>0\)，
+有\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理2}
+	0 < \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x} < \frac{1}{12 x}.
 \end{equation}
 \begin{proof}
 计算得\begin{align*}
-\int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x}
-&= \sum\limits_{k=0}^\infty \int_k^{k+1} \frac{k - t + 1/2}{t + x} \dd{t} \\
-&= \sum\limits_{k=0}^\infty \left[
-\left(k + \frac{1}{2} + x\right) \ln(1 + \frac{1}{k + x}) - 1
-\right].
+	\int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x}
+	&= \sum\limits_{k=0}^\infty \int_k^{k+1} \frac{k - t + 1/2}{t + x} \dd{t} \\
+	&= \sum\limits_{k=0}^\infty \left[
+	\left(k + \frac{1}{2} + x\right) \ln(1 + \frac{1}{k + x}) - 1
+	\right].
 \end{align*}
-在 \labelcref{equation:定积分.伽马函数的斯特灵近似.引理1} 中，用\((k+x)\)代替\(x\)，则得\begin{align*}
-0 &< \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x} \\
-&< \frac{1}{12} \sum\limits_{k=0}^\infty \left(\frac{1}{k+x} - \frac{1}{k+x+1}\right) \\
-&= \frac{1}{12} \left[
-\left(\frac{1}{x} - \frac{1}{x+1}\right) + \left(\frac{1}{x+1} - \frac{1}{x+2}\right) + \dotsb
-\right]
-= \frac{1}{12x}.
-\qedhere
+在 \labelcref{equation:定积分.伽马函数的斯特灵近似.引理1} 中，
+用\((k+x)\)代替\(x\)，
+则得\begin{align*}
+	0 &< \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{x} \\
+	&< \frac{1}{12} \sum\limits_{k=0}^\infty \left(\frac{1}{k+x}
+		- \frac{1}{k+x+1}\right) \\
+	&= \frac{1}{12} \left[
+		\left(\frac{1}{x} - \frac{1}{x+1}\right)
+		+ \left(\frac{1}{x+1} - \frac{1}{x+2}\right) + \dotsb
+	\right]
+	= \frac{1}{12x}.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{lemma}
 
 \begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理3}
-对任意的\(n\in\mathbb{N}^+\)和\(x>0\)，有\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理3}
-\begin{split}
-\int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
-&= \left(n+x+\frac{1}{2}\right) \ln(n+x) \\
-&\hspace{20pt}
-- \left(\frac{1}{2}+x\right) \ln x
-- \sum\limits_{k=1}^n \ln(k+x) - n.
-\end{split}
+对任意的\(n\in\mathbb{N}^+\)和\(x>0\)，
+有\begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理3}
+	\begin{split}
+		\int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
+		&= \left(n+x+\frac{1}{2}\right) \ln(n+x) \\
+		&\hspace{20pt}
+		- \left(\frac{1}{2}+x\right) \ln x
+		- \sum\limits_{k=1}^n \ln(k+x) - n.
+	\end{split}
 \end{equation}
 \begin{proof}
 直接计算得\begin{align*}
-&\hspace{-5pt}
-\int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
-= \sum\limits_{k=0}^{n-1} \int_k^{k+1} \left(
-\frac{k + 1/2 + x}{t + x} - 1
-\right) \dd{t} \\
-&= \sum\limits_{k=0}^{n-1} \left[
-\left(k + \frac{1}{2} + x\right)
-\left(\ln\overline{k+1+x} - \ln\overline{k+x}\right)
-- 1
-\right] \\
-&= \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+1+x)
-- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
-- n \\
-&= \sum\limits_{k=1}^n \left(k - \frac{1}{2} + x\right) \ln(k+x)
-- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
-- n \\
-&= \sum\limits_{k=1}^n \left(k + \frac{1}{2} + x\right) \ln(k+x)
-- \sum\limits_{k=1}^n \ln(k+x)
-- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
-- n \\
-&= \left(n + \frac{1}{2} + x\right) \ln(n+x)
-- \left(\frac{1}{2} + x\right) \ln x
-- \sum\limits_{k=1}^n \ln(k+x)
-- n.
-\qedhere
+	&\hspace{-5pt}
+		\int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
+		= \sum\limits_{k=0}^{n-1} \int_k^{k+1} \left(
+			\frac{k + 1/2 + x}{t + x} - 1
+		\right) \dd{t} \\
+	&= \sum\limits_{k=0}^{n-1} \left[
+			\left(k + \frac{1}{2} + x\right)
+			\left(\ln\overline{k+1+x} - \ln\overline{k+x}\right)
+			- 1
+		\right] \\
+	&= \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+1+x)
+		- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
+		- n \\
+	&= \sum\limits_{k=1}^n \left(k - \frac{1}{2} + x\right) \ln(k+x)
+		- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
+		- n \\
+	&= \sum\limits_{k=1}^n \left(k + \frac{1}{2} + x\right) \ln(k+x)
+		- \sum\limits_{k=1}^n \ln(k+x)
+		- \sum\limits_{k=0}^{n-1} \left(k + \frac{1}{2} + x\right) \ln(k+x)
+		- n \\
+	&= \left(n + \frac{1}{2} + x\right) \ln(n+x)
+		- \left(\frac{1}{2} + x\right) \ln x
+		- \sum\limits_{k=1}^n \ln(k+x)
+		- n.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{lemma}
