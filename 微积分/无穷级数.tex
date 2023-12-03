@@ -1,7 +1,6 @@
 \begingroup
 \def\s{\sum\limits_{i=1}^\infty }
 \renewcommand{\s}[1][1]{\sum\limits_{i=#1}^\infty}%
-\def\l{\lim\limits_{n\to\infty}}
 \def\tint{\int_{-\pi}^{\pi}}
 
 \chapter{无穷级数}
@@ -80,7 +79,7 @@
 我们把\(s_n\)称为级数\(\sum\limits_{n=1}^\infty u_n\)的\DefineConcept{部分和}（partial sum）.
 
 如果级数\(\sum\limits_{n=1}^\infty u_n\)的部分和数列\(\{s_n\}\)有极限\(s\)，即\[
-	\l s_n = s,
+	\lim\limits_{n\to\infty} s_n = s,
 \]
 则称“无穷级数\(\sum\limits_{n=1}^\infty u_n\) \DefineConcept{收敛}（converge）”，
 这时极限\(s\)叫做这级数的\DefineConcept{和}（sum），并写成\[
@@ -105,7 +104,7 @@
 \]
 其中\(u_1=s_1\)，\(u_n=s_n-s_{n-1}\ (n \geq 2)\).
 按定义，级数\(\sum\limits_{n=1}^\infty u_n\)与数列\(\{s_n\}\)同时收敛或同时发散，且在收敛时，有\[
-	\s u_i = \l s_n,
+	\s u_i = \lim\limits_{n\to\infty} s_n,
 \]
 即\(\sum\limits_{n=1}^\infty u_n = \lim\limits_{n\to\infty} \sum\limits_{i=1}^n u_n\).
 
@@ -117,14 +116,14 @@
 其中\(a \neq 0\)，\(q\)叫做\DefineConcept{级数的公比}.
 试讨论上述等比级数的收敛性.
 \begin{solution}
-当\(q = 1\)时，则部分和\(s_n=na\)，那么\(\l s_n = \l na = \infty\)，即级数发散.
+当\(q = 1\)时，则部分和\(s_n=na\)，那么\(\lim\limits_{n\to\infty} s_n = \lim\limits_{n\to\infty} na = \infty\)，即级数发散.
 
 当\(q \neq 1\)，则\[
 s_n = \frac{a(1-q^n)}{1-q} = \frac{a}{1-q} - \frac{aq^n}{1-q}.
 \]
-当\(\abs{q} < 1\)时由于\(\l q^n=0\)，从而\(\l s_n=\frac{a}{1-q}\)，
+当\(\abs{q} < 1\)时由于\(\lim\limits_{n\to\infty} q^n=0\)，从而\(\lim\limits_{n\to\infty} s_n=\frac{a}{1-q}\)，
 因此级数收敛，其和为\(\frac{a}{1-q}\).
-当\(\abs{q} > 1\)时由于\(\l q^n=\infty\)，从而\(\l s_n=\infty\)，即级数发散.
+当\(\abs{q} > 1\)时由于\(\lim\limits_{n\to\infty} q^n=\infty\)，从而\(\lim\limits_{n\to\infty} s_n=\infty\)，即级数发散.
 当\(q = -1\)时，级数变为\(a-a+a-a+\dotsb\)，
 显然\(s_n\)随着\(n\)为奇数或为偶数而等于\(a\)或等于零，从而\(s_n\)的极限不存在，这是级数也发散.
 
@@ -139,7 +138,7 @@ s_n = \frac{a(1-q^n)}{1-q} = \frac{a}{1-q} - \frac{aq^n}{1-q}.
 \begin{proof}
 级数的部分和为\[
 s_n = 1+2+3+\dotsb+n = \frac{n(n+1)}{2}.
-\]显然，\(\l s_n=\infty\)，级数是发散的.
+\]显然，\(\lim\limits_{n\to\infty} s_n=\infty\)，级数是发散的.
 \end{proof}
 \end{example}
 从上例也可看出：
@@ -163,7 +162,7 @@ s_n = 1+2+3+\dotsb+n = \frac{n(n+1)}{2}.
 	&= 1-\frac{1}{n+1}.
 \end{align*}
 从而\[
-	\l s_n = \l \left(1-\frac{1}{n+1}\right) = 1,
+	\lim\limits_{n\to\infty} s_n = \lim\limits_{n\to\infty} \left(1-\frac{1}{n+1}\right) = 1,
 \]
 即该级数收敛，它的和为\(1\).
 \end{solution}
@@ -176,7 +175,7 @@ s_n = 1+2+3+\dotsb+n = \frac{n(n+1)}{2}.
 设级数\(\sum\limits_{n=1}^\infty u_n\)与级数\(\s k u_i\)的部分和分别为\(s_n\)与\(\sigma_n\)，则\[
 	\sigma_n = k u_1 + k u_2 + \dotsb + k u_n = k(u_1 + u_2 + \dotsb + u_n) = k s_n,
 \]\[
-	\l\sigma_n = \l k s_n = k \l s_n = ks,
+	\lim\limits_{n\to\infty}\sigma_n = \lim\limits_{n\to\infty} k s_n = k \lim\limits_{n\to\infty} s_n = ks,
 \]
 也就是说，级数\(\s k u_i\)收敛于\(ks\).
 
@@ -225,7 +224,7 @@ s_n
 &= s_n \pm \sigma_n,
 \end{split}
 \]于是\[
-\l \tau_n = \l (s_n \pm \sigma_n) = s + \sigma.
+\lim\limits_{n\to\infty} \tau_n = \lim\limits_{n\to\infty} (s_n \pm \sigma_n) = s + \sigma.
 \]
 
 这就表明级数\(\s (u_i \pm v_i)\)收敛于\(s \pm \sigma\).
@@ -236,19 +235,18 @@ s_n
 
 \begin{example}
 \def\s#1{\sum\limits_{#1}^\infty }
-\def\l{\lim\limits_{n\to\infty}}
 设级数\(\s{n=0} u_n\)收敛，\(\s{n=0} v_n\)发散.
 试证：级数\(\s{n=0} (u_n \pm v_n)\)发散.
 \begin{proof}
 设级数\(\s{n=0} u_n\)与\(\s{n=0} v_n\)的部分和分别为\(s_n\)和\(\sigma_n\)，又设\[
-\l s_n = s.
+\lim\limits_{n\to\infty} s_n = s.
 \]
 假设级数\(\s{n=0} (u_n \pm v_n)\)收敛，且\[
-\l (s_n \pm \sigma_n) = s+\sigma,
+\lim\limits_{n\to\infty} (s_n \pm \sigma_n) = s+\sigma,
 \]那么根据\hyperref[theorem:极限.极限的四则运算法则]{极限的四则运算法则}\[
-\l \pm\sigma_n
-= \l [(s_n \pm \sigma_n) - s_n]
-= \l (s_n \pm \sigma_n) - \l s_n
+\lim\limits_{n\to\infty} \pm\sigma_n
+= \lim\limits_{n\to\infty} [(s_n \pm \sigma_n) - s_n]
+= \lim\limits_{n\to\infty} (s_n \pm \sigma_n) - \lim\limits_{n\to\infty} s_n
 = (s + \sigma) - s
 = \sigma,
 \]也就是说\(\{\pm\sigma_n\}\)（即\(\pm\s{n=0} v_n\)）收敛，矛盾！
@@ -327,17 +325,17 @@ u_{k+1}+u_{k+2}+\dotsb+u_{k+n}+\dotsb.
 
 \begin{property}[级数收敛的必要条件]\label{theorem:无穷级数.收敛级数性质5}
 如果级数\(\sum\limits_{n=1}^\infty u_n\)收敛，则它的一般项\(u_n\)满足\[
-\l u_n = 0.
+\lim\limits_{n\to\infty} u_n = 0.
 \]
 \begin{proof}
-设级数\(\sum\limits_{n=1}^\infty u_n\)的部分和为\(s_n\)，且\(\l s_n = s\)，则\[
-\l u_n = \l(s_n - s_{n-1}) = \l s_n - \l s_{n-1} = s - s = 0.
+设级数\(\sum\limits_{n=1}^\infty u_n\)的部分和为\(s_n\)，且\(\lim\limits_{n\to\infty} s_n = s\)，则\[
+\lim\limits_{n\to\infty} u_n = \lim\limits_{n\to\infty}(s_n - s_{n-1}) = \lim\limits_{n\to\infty} s_n - \lim\limits_{n\to\infty} s_{n-1} = s - s = 0.
 \qedhere
 \]
 \end{proof}
 \end{property}
 
-根据\cref{theorem:无穷级数.收敛级数性质5} 可知，如果\(\l u_n \neq 0\)，那么\(\sum\limits_{n=1}^\infty u_n\)一定发散.
+根据\cref{theorem:无穷级数.收敛级数性质5} 可知，如果\(\lim\limits_{n\to\infty} u_n \neq 0\)，那么\(\sum\limits_{n=1}^\infty u_n\)一定发散.
 例如，级数\[
 \frac{1}{2}-\frac{2}{3}+\frac{3}{4}-\dotsb+(-1)^{n-1}\frac{n}{n+1}+\dotsb,
 \]它的一般项\(u_n = (-1)^{n-1} \frac{n}{n+1}\)当\(n\to\infty\)时不趋于零，因此该级数是发散的.
@@ -349,19 +347,19 @@ u_{k+1}+u_{k+2}+\dotsb+u_{k+n}+\dotsb.
 \s u_i = 1+\frac{1}{2}+\frac{1}{3}+\dotsb+\frac{1}{n}+\dotsb
 \]是发散的.
 \begin{proof}
-虽然调和级数的一般项\(\l u_n = \l 1/n = 0\)，但是它是发散的.
+虽然调和级数的一般项\(\lim\limits_{n\to\infty} u_n = \lim\limits_{n\to\infty} 1/n = 0\)，但是它是发散的.
 现在我们用反证法证明.
 
-假设级数\(\sum\limits_{n=1}^\infty u_n\)收敛.设级数的部分和为\(s_n\)，且\(\l s_n = s\).
-显然，对级数\(\sum\limits_{n=1}^\infty u_n\)的部分和\(s_{2n}\)也有\(\l s_{2n} = s\).
+假设级数\(\sum\limits_{n=1}^\infty u_n\)收敛.设级数的部分和为\(s_n\)，且\(\lim\limits_{n\to\infty} s_n = s\).
+显然，对级数\(\sum\limits_{n=1}^\infty u_n\)的部分和\(s_{2n}\)也有\(\lim\limits_{n\to\infty} s_{2n} = s\).
 于是\[
-\l {s_{2n}-s_n} = \l s_{2n} - \l s_n = s - s = 0.
+\lim\limits_{n\to\infty} {s_{2n}-s_n} = \lim\limits_{n\to\infty} s_{2n} - \lim\limits_{n\to\infty} s_n = s - s = 0.
 \]但另一方面\[
 s_{2n} - s_n = \frac{1}{n+1}+\frac{1}{n+2}+\dotsb+\frac{1}{2n}
 > \underbrace{\frac{1}{2n}+\frac{1}{2n}+\dotsb+\frac{1}{2n}}_{n\text{项}}
 = \frac{1}{2},
 \]\[
-\l {s_{2n}-s_n} \neq 0,
+\lim\limits_{n\to\infty} {s_{2n}-s_n} \neq 0,
 \]与假设矛盾，说明级数\(\sum\limits_{n=1}^\infty u_n\)必定发散.
 \end{proof}
 \end{example}
@@ -427,7 +425,7 @@ s_{2n} - s_n = \frac{1}{n+1}+\frac{1}{n+2}+\dotsb+\frac{1}{2n}
 级数\(\sum\limits_{n=1}^\infty u_n\)必定收敛于某个正数\(s\)，
 且\(s_n \leq s \leq M\).
 
-反之，如果正项级数\(\sum\limits_{n=1}^\infty u_n\)收敛于和\(s\)，即\(\l s_n = s\)，
+反之，如果正项级数\(\sum\limits_{n=1}^\infty u_n\)收敛于和\(s\)，即\(\lim\limits_{n\to\infty} s_n = s\)，
 根据\hyperref[theorem:极限.收敛数列的有界性]{收敛数列的有界性}可知，
 数列\(\{s_n\}\)有界.
 \end{proof}
@@ -530,13 +528,13 @@ s_n &= 1 + \sum\limits_{k=2}^n{\frac{1}{k^p}}
 \subsubsection{比较审敛法的极限形式}
 \begin{theorem}[比较审敛法的极限形式]\label{theorem:无穷级数.正项级数的比较审敛法的极限形式}
 设\(\sum\limits_{n=1}^\infty u_n\)和\(\sum\limits_{n=1}^\infty v_n\)都是正项级数，记\[
-l = \l \frac{u_n}{v_n}.
+l = \lim\limits_{n\to\infty} \frac{u_n}{v_n}.
 \]\begin{enumerate}
 \item 如果\(l\in[0,+\infty)\)，且级数\(\sum\limits_{n=1}^\infty v_n\)收敛，则级数\(\sum\limits_{n=1}^\infty u_n\)收敛；
 \item 如果\(l\in(0,+\infty]\)，且级数\(\sum\limits_{n=1}^\infty v_n\)发散，则级数\(\sum\limits_{n=1}^\infty u_n\)发散.
 \end{enumerate}
 \begin{proof}
-如果\(\l {\frac{u_n}{v_n}}=l\in[0,+\infty)\)，
+如果\(\lim\limits_{n\to\infty} {\frac{u_n}{v_n}}=l\in[0,+\infty)\)，
 那么由极限定义可知，对\(\epsilon=1\)，
 \(\exists N\in\mathbb{N}\)，
 对于\(\forall n\in\mathbb{N}\)，
@@ -548,8 +546,8 @@ l = \l \frac{u_n}{v_n}.
 根据\cref{theorem:无穷级数.正项级数的比较审敛法的推论} 可知，
 级数\(\sum\limits_{n=1}^\infty u_n\)收敛.
 
-如果\(\l {\frac{u_n}{v_n}}=l\in(0,+\infty]\)，
-那么极限\(\l \frac{v_n}{u_n}\)存在.
+如果\(\lim\limits_{n\to\infty} {\frac{u_n}{v_n}}=l\in(0,+\infty]\)，
+那么极限\(\lim\limits_{n\to\infty} \frac{v_n}{u_n}\)存在.
 如果级数\(\sum\limits_{n=1}^\infty u_n\)收敛，则由上可知必有级数\(\sum\limits_{n=1}^\infty v_n\)收敛，
 但已知级数\(s v_i\)发散，因此级数\(\sum\limits_{n=1}^\infty u_n\)不可能收敛，即级数\(\sum\limits_{n=1}^\infty u_n\)发散.
 \end{proof}
@@ -567,7 +565,7 @@ l = \l \frac{u_n}{v_n}.
 判断级数\(\sum\limits_{n=1}^\infty \sin\frac{1}{n}\)的收敛性.
 \begin{solution}
 因为\[
-\l \frac{\sin(1/n)}{1/n} = 1 > 0,
+\lim\limits_{n\to\infty} \frac{\sin(1/n)}{1/n} = 1 > 0,
 \]而级数\(\sum\limits_{n=1}^\infty \frac{1}{n}\)发散，可知级数\(\sum\limits_{n=1}^\infty \sin\frac{1}{n}\)发散.
 \end{solution}
 \end{example}
@@ -578,7 +576,7 @@ l = \l \frac{u_n}{v_n}.
 \]的收敛性.
 \begin{solution}
 记\(u_n = \frac{1}{2n-1}\)，取\(v_n = \frac{1}{n}\).因为\[
-\l \frac{u_n}{v_n} = \l \frac{n}{2n-1} = \l \frac{1}{2-1/n} = \frac{1}{2} > 0,
+\lim\limits_{n\to\infty} \frac{u_n}{v_n} = \lim\limits_{n\to\infty} \frac{n}{2n-1} = \lim\limits_{n\to\infty} \frac{1}{2-1/n} = \frac{1}{2} > 0,
 \]而级数\(\sum\limits_{n=1}^\infty \frac{1}{n}\)发散，所以级数\(\sum\limits_{n=1}^\infty \frac{1}{2n-1}\)发散.
 \end{solution}
 \end{example}
@@ -590,9 +588,9 @@ l = \l \frac{u_n}{v_n}.
 \begin{solution}
 记\(u_n = \frac{1+n}{1+n^2}\)，取\(v_n = \frac{1}{1+n}\).
 因为\[
-\l \frac{u_n}{v_n}
-= \l \frac{(1+n)^2}{1+n^2}
-= \l \frac{n^2 + 2n + 1}{n^2 + 1}
+\lim\limits_{n\to\infty} \frac{u_n}{v_n}
+= \lim\limits_{n\to\infty} \frac{(1+n)^2}{1+n^2}
+= \lim\limits_{n\to\infty} \frac{n^2 + 2n + 1}{n^2 + 1}
 = 1 > 0,
 \]而\(\sum\limits_{n=1}^\infty v_n\)发散，所以级数\(\sum\limits_{n=1}^\infty \frac{1+n}{1+n^2}\)发散.
 \end{solution}
@@ -605,7 +603,7 @@ l = \l \frac{u_n}{v_n}.
 \begin{solution}
 记\(u_n = \frac{1}{(n+1)(n+4)}\)，取\(v_n = \frac{1}{n^2}\).
 因为\[
-\l \frac{u_n}{v_n} = \l \frac{n^2}{(n+1)(n+4)} = 1,
+\lim\limits_{n\to\infty} \frac{u_n}{v_n} = \lim\limits_{n\to\infty} \frac{n^2}{(n+1)(n+4)} = 1,
 \]而级数\(\sum\limits_{n=1}^\infty v_n\)收敛，所以级数\(\sum\limits_{n=1}^\infty \frac{1+n}{1+n^2}\)收敛.
 \end{solution}
 \end{example}
@@ -618,8 +616,8 @@ l = \l \frac{u_n}{v_n}.
 \begin{solution}
 记\(u_n = \sin\frac{\pi}{2^n}\)，取\(v_n = \frac{\pi}{2^n}\).
 因为\[
-\l \frac{u_n}{v_n}
-= \l \frac{\sin(\pi/2^n)}{\pi/2^n} = 1,
+\lim\limits_{n\to\infty} \frac{u_n}{v_n}
+= \lim\limits_{n\to\infty} \frac{\sin(\pi/2^n)}{\pi/2^n} = 1,
 \]而级数\(\sum\limits_{n=1}^\infty v_n\)收敛，所以级数\(\sum\limits_{n=1}^\infty \sin\frac{\pi}{2^n}\)收敛.
 \end{solution}
 \end{example}
@@ -630,9 +628,9 @@ l = \l \frac{u_n}{v_n}.
 将所给正项级数与等比级数比较，我们能得到在实用上很方便的比值审敛法和根值审敛法.
 \begin{theorem}[比值审敛法，达朗贝尔判别法]\label{theorem:无穷级数.正项级数的比值审敛法}
 设\(\sum\limits_{n=1}^\infty u_n\)为正项级数，如果\[
-\l \frac{u_{n+1}}{u_n}=\rho,
+\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n}=\rho,
 \]则当\(\rho<1\)时，级数收敛；
-当\(\rho>1\)时或当\(\l \frac{u_{n+1}}{u_n}=\infty\)时，级数发散；
+当\(\rho>1\)时或当\(\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n}=\infty\)时，级数发散；
 当\(\rho=1\)时，级数可能收敛也可能发散.
 \begin{proof}
 当\(\rho<1\).取一个适当小的正数\(\epsilon\)，使得\(\rho+\epsilon=r<1\)，根据极限定义，存在正整数\(m\)，当\(n \geq m\)时有不等式\[
@@ -649,13 +647,13 @@ u_{m+k} < r^k u_m,
 根据极限定义，当\(n \geq m\)时有不等式\[
 \frac{u_{n+1}}{u_n} > \rho-\epsilon > 1,
 \]也就是\(u_{n+1}>u_n\).所以当\(n \geq m\)时，级数的一般项\(u_n\)是逐渐增大的，从而\[
-\l u_n \neq 0.
+\lim\limits_{n\to\infty} u_n \neq 0.
 \]根据\cref{theorem:无穷级数.收敛级数性质5} （即级数收敛的必要条件）可知，级数\(\sum\limits_{n=1}^\infty u_n\)发散.
 
-类似地，可以证明当\(\l \frac{u_{n+1}}{u_n} = \infty\)时，级数\(\sum\limits_{n=1}^\infty u_n\)发散.
+类似地，可以证明当\(\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n} = \infty\)时，级数\(\sum\limits_{n=1}^\infty u_n\)发散.
 
 当\(\rho = 1\)时，级数可能收敛也可能发散.例如p级数不论\(p\)为何值都有\[
-\l \frac{u_{n+1}}{u_n} = \l \frac{1/(n+1)^p}{1/n^p} = 1.
+\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n} = \lim\limits_{n\to\infty} \frac{1/(n+1)^p}{1/n^p} = 1.
 \]但我们知道，当\(p>1\)时p级数收敛，当\(p\leq1\)时p级数发散，因此只根据\(\rho=1\)不能判定级数的收敛性.
 \end{proof}
 \end{theorem}
@@ -666,7 +664,7 @@ u_{m+k} < r^k u_m,
 \]是收敛的，并估计以级数的部分和\(s_n\)近似代替和\(s\)所产生的误差.
 \begin{solution}
 因为\[
-\l \frac{u_{n+1}}{u_n} = \l \frac{(n-1)!}{n!} = \l \frac{1}{n} = 0 < 1,
+\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n} = \lim\limits_{n\to\infty} \frac{(n-1)!}{n!} = \lim\limits_{n\to\infty} \frac{1}{n} = 0 < 1,
 \]根据比值审敛法可知，该级数收敛.
 
 以该级数的部分和近似代替和\(s\)所产生的的误差为\[
@@ -691,8 +689,8 @@ u_{m+k} < r^k u_m,
 \]的收敛性.
 \begin{solution}
 记\(u_n = \myfrac[n]\).因为\[
-\l \frac{u_{n+1}}{u_n}
-= \l \frac{3}{2}\cdot\frac{n}{n+1}
+\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n}
+= \lim\limits_{n\to\infty} \frac{3}{2}\cdot\frac{n}{n+1}
 = \frac{3}{2} > 1,
 \]所以级数发散.
 \end{solution}
@@ -703,8 +701,8 @@ u_{m+k} < r^k u_m,
 判断级数\(\s \frac{n^2}{3^n}\)的收敛性.
 \begin{solution}
 记\(u_n = \frac{n^2}{3^n}\).因为\[
-\l \frac{u_{n+1}}{u_n}
-= \l \frac{1}{3} \cdot \frac{(n+1)^2}{n^2}
+\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n}
+= \lim\limits_{n\to\infty} \frac{1}{3} \cdot \frac{(n+1)^2}{n^2}
 = \frac{1}{3} < 1,
 \]所以级数收敛.
 \end{solution}
@@ -717,11 +715,11 @@ u_{m+k} < r^k u_m,
 \begin{solution}
 记\(u_n = \un\).因为\[
 \begin{split}
-\l \frac{u_{n+1}}{u_n}
-&= \l 2(n+1) \cdot \frac{n^n}{(n+1)^{n+1}} \\
-&= 2 \cdot \l \frac{n^n}{(n+1)^n}
-= 2 \cdot \l \frac{1}{\left(1+\frac{1}{n}\right)^n} \\
-&= 2 \left[ \l \left(1+\frac{1}{n}\right)^n \right]^{-1}
+\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n}
+&= \lim\limits_{n\to\infty} 2(n+1) \cdot \frac{n^n}{(n+1)^{n+1}} \\
+&= 2 \cdot \lim\limits_{n\to\infty} \frac{n^n}{(n+1)^n}
+= 2 \cdot \lim\limits_{n\to\infty} \frac{1}{\left(1+\frac{1}{n}\right)^n} \\
+&= 2 \left[ \lim\limits_{n\to\infty} \left(1+\frac{1}{n}\right)^n \right]^{-1}
 = \frac{2}{e} < 1,
 \end{split}
 \]所以级数收敛.
@@ -747,12 +745,12 @@ u_{m+k} < r^k u_m,
 \right).
 \]于是\[
 \begin{split}
-\l \frac{u_{n+1}}{u_n}
-&= \l \frac{n+1}{n} \frac{1}{2} \left(
+\lim\limits_{n\to\infty} \frac{u_{n+1}}{u_n}
+&= \lim\limits_{n\to\infty} \frac{n+1}{n} \frac{1}{2} \left(
 	1-\tan^2\frac{\pi}{2^{n+2}}
 \right) \\
-&= \frac{1}{2} \cdot \l \frac{n+1}{n} \cdot \left(
-	1 - \l \tan^2\frac{\pi}{2^{n+2}}
+&= \frac{1}{2} \cdot \lim\limits_{n\to\infty} \frac{n+1}{n} \cdot \left(
+	1 - \lim\limits_{n\to\infty} \tan^2\frac{\pi}{2^{n+2}}
 \right) \\
 &= \frac{1}{2} \cdot 1 \cdot (1 - 0) = \frac{1}{2} < 1.
 \end{split}
@@ -782,9 +780,9 @@ u_{m+k} < r^k u_m,
 \subsubsection{根值审敛法}
 \begin{theorem}[根值审敛法，柯西判别法]\label{theorem:无穷级数.正项级数的根值审敛法}
 设\(\sum\limits_{n=1}^\infty u_n\)为正项级数，如果\[
-\l \sqrt[n]{u_n}=\rho,
+\lim\limits_{n\to\infty} \sqrt[n]{u_n}=\rho,
 \]则当\(\rho<1\)时，级数收敛；
-当\(\rho>1\)时或当\(\l \sqrt[n]{u_n}=+\infty\)时，级数发散；
+当\(\rho>1\)时或当\(\lim\limits_{n\to\infty} \sqrt[n]{u_n}=+\infty\)时，级数发散；
 当\(\rho=1\)时，级数可能收敛也可能发散.
 \end{theorem}
 在根值审敛法中可以把\(\lim\limits_{n\to\infty}\)替换为\(\varlimsup\limits_{n\to\infty}\).
@@ -796,11 +794,11 @@ u_{m+k} < r^k u_m,
 记\[
 u_n = \frac{2+(-1)^n}{2^n},
 \]显然有\[
-\l \sqrt[n]{u_n}
-= \l \frac{1}{2} \sqrt[n]{2+(-1)^n}
-= \l \frac{1}{2} \exp{\frac{1}{n} \ln[2+(-1)^n]},
-\]因为\(\ln[2+(-1)^n] \in \{ 0, \ln3 \}\)有界，故\(\l \frac{1}{n} \ln[2+(-1)^n] = 0\)，从而\[
-\l \sqrt[n]{u_n} = \frac{1}{2} < 1.
+\lim\limits_{n\to\infty} \sqrt[n]{u_n}
+= \lim\limits_{n\to\infty} \frac{1}{2} \sqrt[n]{2+(-1)^n}
+= \lim\limits_{n\to\infty} \frac{1}{2} \exp{\frac{1}{n} \ln[2+(-1)^n]},
+\]因为\(\ln[2+(-1)^n] \in \{ 0, \ln3 \}\)有界，故\(\lim\limits_{n\to\infty} \frac{1}{n} \ln[2+(-1)^n] = 0\)，从而\[
+\lim\limits_{n\to\infty} \sqrt[n]{u_n} = \frac{1}{2} < 1.
 \]根据根值审敛法可知，级数\(\s u_n\)收敛.
 \end{proof}
 \end{example}
@@ -810,8 +808,8 @@ u_n = \frac{2+(-1)^n}{2^n},
 \begin{theorem}[极限审敛法]\label{theorem:无穷级数.正项级数的极限审敛法}
 设\(\sum\limits_{n=1}^\infty u_n\)为正项级数.
 \begin{enumerate}
-\item 当\(\l n^p u_n = l\in[0,+\infty)\)，且\(p>1\)时，级数\(\sum\limits_{n=1}^\infty u_n\)收敛；
-\item 当\(\l n^p u_n = l\in(0,+\infty]\)，且\(p\leq1\)时，级数\(\sum\limits_{n=1}^\infty u_n\)发散.
+\item 当\(\lim\limits_{n\to\infty} n^p u_n = l\in[0,+\infty)\)，且\(p>1\)时，级数\(\sum\limits_{n=1}^\infty u_n\)收敛；
+\item 当\(\lim\limits_{n\to\infty} n^p u_n = l\in(0,+\infty]\)，且\(p\leq1\)时，级数\(\sum\limits_{n=1}^\infty u_n\)发散.
 \end{enumerate}
 \end{theorem}
 
@@ -820,8 +818,8 @@ u_n = \frac{2+(-1)^n}{2^n},
 判定级数\(\s \ln(1+\frac{1}{n^2})\)的收敛性.
 \begin{solution}
 因\(\ln(1+\frac{1}{n^2}) \sim \frac{1}{n^2}\ (n\to\infty)\)，故\[
-\l n^2 u_n = \l n^2 \ln(1+\frac{1}{n^2})
-= \l n^2 \cdot \frac{1}{n^2} = 1,
+\lim\limits_{n\to\infty} n^2 u_n = \lim\limits_{n\to\infty} n^2 \ln(1+\frac{1}{n^2})
+= \lim\limits_{n\to\infty} n^2 \cdot \frac{1}{n^2} = 1,
 \]根据极限审敛法可知，所给级数收敛.
 \end{solution}
 \end{example}
@@ -831,8 +829,8 @@ u_n = \frac{2+(-1)^n}{2^n},
 判定级数\(\s \sqrt{n+1} \left(1-\cos\frac{\pi}{n}\right)\)的收敛性.
 \begin{solution}
 因为\(1 - \cos x \sim \frac{1}{2} x^2\ (x\to0)\)，故\[
-\l n^{3/2} \sqrt{n+1} \cdot \left(1-\cos\frac{\pi}{n}\right)
-= \l n^2 \sqrt{\frac{n+1}{n}} \cdot \frac{1}{2} \left(\frac{\pi}{n}\right)^2
+\lim\limits_{n\to\infty} n^{3/2} \sqrt{n+1} \cdot \left(1-\cos\frac{\pi}{n}\right)
+= \lim\limits_{n\to\infty} n^2 \sqrt{\frac{n+1}{n}} \cdot \frac{1}{2} \left(\frac{\pi}{n}\right)^2
 = \frac{1}{2} \pi^2,
 \]根据极限审敛法可知，所给级数收敛.
 \end{solution}
@@ -874,7 +872,7 @@ u_1 - u_2 + u_3 - u_4 + \dotsb,
 即\(u_n \geq u_{n+1}\ (n=1,2,\dotsc)\)；
 
 \item 级数的一般项的绝对值的数列收敛于零，
-即\(\l {u_n}=0\)，
+即\(\lim\limits_{n\to\infty} {u_n}=0\)，
 \end{enumerate}
 则级数收敛，且其和\(s \leq u_1\)，
 其余项\(r_n\)的绝对值\(\abs{r_n} \leq u_{n+1}\).
@@ -915,11 +913,10 @@ u_{2n} = \frac{1}{3^n} < \frac{1}{2^{n+1}} = u_{2n+1},
 
 \begin{example}
 \def\s{\sum\limits_{n=1}^\infty }%
-\def\l{\lim\limits_{n\to\infty}}%
 设\(u_n = \frac{(-1)^n}{\sqrt{n}}\).
 试讨论级数\(\s u_n\)和\(\s u_n^2\)的敛散性.
 \begin{proof}
-因为\(u_n u_{n+1} < 0\),\(\abs{u_n} > \abs{u_{n+1}}\)，\(\l \abs{u_n} = 0\)，那么根据\cref{theorem:无穷级数.莱布尼茨定理} 可知\(\s u_n\)收敛.
+因为\(u_n u_{n+1} < 0\),\(\abs{u_n} > \abs{u_{n+1}}\)，\(\lim\limits_{n\to\infty} \abs{u_n} = 0\)，那么根据\cref{theorem:无穷级数.莱布尼茨定理} 可知\(\s u_n\)收敛.
 但是\(\s u_n^2 = \s \frac{1}{n}\)是调和级数，发散.
 \end{proof}
 \end{example}
@@ -1070,7 +1067,7 @@ s(x) = u_1(x)+u_2(x)+\dotsb+u_n(x)+\dotsb.
 \]
 
 将函数项级数\(\sum\limits_{n=1}^\infty u_n(x)\)的前\(n\)项的部分和记作\(s_n(x)\)，则在收敛域上有\[
-\l s_n(x) = s(x).
+\lim\limits_{n\to\infty} s_n(x) = s(x).
 \]
 记\(r_n(x) = s(x)-s_n(x)\)，
 \(r_n(x)\)叫做函数项级数的\DefineConcept{余项}%
@@ -1080,7 +1077,7 @@ s(x) = u_1(x)+u_2(x)+\dotsb+u_n(x)+\dotsb.
 \begin{property}
 设级数\(\sum\limits_{n=1}^\infty u_n(x)\)的收敛域为\(C\).
 当\(x \in C\)时，级数的余项满足\[
-\l r_n(x) = 0.
+\lim\limits_{n\to\infty} r_n(x) = 0.
 \]
 \end{property}
 
@@ -1092,7 +1089,7 @@ x + (x^2-x) + (x^3-x^2) + \dotsb + (x^n-x^{n-1}) + \dotsb
 \]的每一项都在\([0,1]\)上连续，其前\(n\)项之和为\[
 s_n(x) = x^n,
 \]因此和函数为\[
-s(x) = \l s_n(x)
+s(x) = \lim\limits_{n\to\infty} s_n(x)
 = \left\{ \begin{array}{ll}
 0, & 0 \leq x < 1, \\
 1, & x = 1.
@@ -1168,7 +1165,7 @@ s(x) = \l s_n(x)
 \]在区间\([0,+\infty)\)上的一致收敛性.
 \begin{solution}
 级数的前n项和\(s_n(x) = \frac{1}{x+n}\)，因此级数的和\[
-s(x) = \l s_n(x) = \l \frac{1}{x+n} = 0
+s(x) = \lim\limits_{n\to\infty} s_n(x) = \lim\limits_{n\to\infty} \frac{1}{x+n} = 0
 \quad(0 \leq x < +\infty).
 \]于是，余项的绝对值\[
 \abs{r_n(x)} = \abs{s(x) - s_n(x)}
@@ -1426,7 +1423,7 @@ v(x) = s'(x).
 a_0 + a_1 x_0 + a_2 x_0^2 + \dotsb + a_n x_0^n + \dotsb
 \]收敛.
 根据级数收敛的必要条件，这时有\[
-\l a_n x_0^n = 0;
+\lim\limits_{n\to\infty} a_n x_0^n = 0;
 \]
 于是\(\exists M > 0\)，使得\[
 \abs{a_n x_0^n} \leq M
@@ -1481,7 +1478,7 @@ a_0 + a_1 x_0 + a_2 x_0^2 + \dotsb + a_n x_0^n + \dotsb
 关于幂级数的收敛半径的求法，有下面的定理.
 \begin{theorem}\label{theorem:无穷级数.幂级数的收敛半径的求法}
 如果\[
-\l \abs{\frac{a_{n+1}}{a_n}} = \rho,
+\lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \rho,
 \]其中\(a_n\)、\(a_{n+1}\)是幂级数\(\sum\limits_{i=0}^\infty {a_i x^i}\)的相邻两项的系数，
 则这幂级数的收敛半径为\[
 \def\arraystretch{1.5}
@@ -1491,7 +1488,7 @@ R = \left\{ \begin{array}{ll}
 0, & \rho = +\infty \\
 \end{array} \right.
 \]或\[
-R = \l {\abs{\frac{a_n}{a_{n+1}}}}.
+R = \lim\limits_{n\to\infty} {\abs{\frac{a_n}{a_{n+1}}}}.
 \]
 \begin{proof}
 \def\s{\sum\limits_{n=0}^\infty }%
@@ -1505,7 +1502,7 @@ R = \l {\abs{\frac{a_n}{a_{n+1}}}}.
 \]
 
 \begin{enumerate}
-	\item 如果极限\(\l \abs{\frac{a_{n+1}}{a_n}} = \rho\neq0\)存在，
+	\item 如果极限\(\lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \rho\neq0\)存在，
 	根据\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}，
 	则当\(\rho \abs{x} < 1\)即\(\abs{x} < \frac{1}{\rho}\)时，
 	级数\(\s \abs{a_n x^n}\)收敛，
@@ -1525,7 +1522,7 @@ R = \l {\abs{\frac{a_n}{a_{n+1}}}}.
 
 	\item 如果\(\rho=0\)，
 	则对\(\forall x\neq0\)，
-	有\(\l \abs{\frac{a_{n+1} x^{n+1}}{a_n x^n}} = 0\)，
+	有\(\lim\limits_{n\to\infty} \abs{\frac{a_{n+1} x^{n+1}}{a_n x^n}} = 0\)，
 	所以级数\(\s \abs{a_n x^n}\)收敛，
 	从而级数\(\s a_n x^n\)绝对收敛.
 	于是\(R=+\infty\).
@@ -1546,8 +1543,8 @@ x-\frac{x^2}{2}+\frac{x^3}{3}-\dotsb+(-1)^{n-1}\frac{x^n}{n}+\dotsb
 \]的收敛半径与收敛域.
 \begin{solution}
 因为\[
-\rho = \l \abs{\frac{a_{n+1}}{a_n}}
-= \l \frac{n}{n+1} = 1,
+\rho = \lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+= \lim\limits_{n\to\infty} \frac{n}{n+1} = 1,
 \]所以收敛半径\[
 R = \frac{1}{\rho} = 1.
 \]
@@ -1580,9 +1577,9 @@ R = \frac{1}{\rho} = 1.
 \]的收敛域.
 \begin{solution}
 因为\[
-\rho = \l \abs{\frac{a_{n+1}}{a_n}}
-= \l \frac{n!}{(n+1)!}
-= \l \frac{1}{n+1}
+\rho = \lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+= \lim\limits_{n\to\infty} \frac{n!}{(n+1)!}
+= \lim\limits_{n\to\infty} \frac{1}{n+1}
 = 0,
 \]所以收敛半径\(R = +\infty\)，从而收敛域是\((-\infty,+\infty)\).
 \end{solution}
@@ -1592,8 +1589,8 @@ R = \frac{1}{\rho} = 1.
 求幂级数\(\sum\limits_{n=0}^\infty n! x^n\)的收敛半径.
 \begin{solution}
 因为\[
-\rho = \l \abs{\frac{a_{n+1}}{a_n}}
-= \l \frac{(n+1)!}{n!} = +\infty,
+\rho = \lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+= \lim\limits_{n\to\infty} \frac{(n+1)!}{n!} = +\infty,
 \]所以收敛半径\(R = 0\)，即级数仅在点\(x = 0\)处收敛.
 \end{solution}
 \end{example}
@@ -1604,8 +1601,8 @@ R = \frac{1}{\rho} = 1.
 级数缺少奇次幂的项，\cref{theorem:无穷级数.幂级数的收敛半径的求法} 不能直接应用，
 我们根据\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式} 来求收敛半径：
 \[
-\l \abs{{\frac{[2(n+1)]!}{[(n+1)!]^2} x^{2(n+1)}}\Bigg/{\frac{(2n)!}{(n!)^2} x^{2n}}}
-= \l \abs{\frac{(2n+2)(2n+1)}{(n+1)^2} x^2}
+\lim\limits_{n\to\infty} \abs{{\frac{[2(n+1)]!}{[(n+1)!]^2} x^{2(n+1)}}\Bigg/{\frac{(2n)!}{(n!)^2} x^{2n}}}
+= \lim\limits_{n\to\infty} \abs{\frac{(2n+2)(2n+1)}{(n+1)^2} x^2}
 = 4 x^2.
 \]
 
@@ -1621,7 +1618,7 @@ R = \frac{1}{\rho} = 1.
 令\(t = x-1\)，上述级数变为\[
 \sum\limits_{n=1}^\infty \frac{t^n}{2^n \cdot n}.
 \]因为\[
-\rho = \l \abs{\frac{a_{n+1}}{a_n}} = \l \frac{2^n \cdot n}{2^{n+1} \cdot (n+1)} = \frac{1}{2},
+\rho = \lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \lim\limits_{n\to\infty} \frac{2^n \cdot n}{2^{n+1} \cdot (n+1)} = \frac{1}{2},
 \]所以收敛半径\(R_t = 2\)，而原级数的收敛区间为\(-1<x<3\).
 
 当\(x=3\)时，级数成为\(\sum\limits_{n=1}^\infty \frac{1}{n}\)，这级数发散；
@@ -1730,7 +1727,7 @@ s'(x)
 求幂级数\(\s \frac{x^i}{i+1}\)的和函数.
 \begin{solution}
 先求收敛域.由\[
-\l \abs{\frac{a_{n+1}}{a_n}} = \l \frac{n+1}{n+2} = 1,
+\lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \lim\limits_{n\to\infty} \frac{n+1}{n+2} = 1,
 \]得收敛半径\(R=1\).
 
 在端点\(x = -1\)处，幂级数成为\(\s \frac{(-1)^i}{i+1}\)，是收敛的交错级数；
@@ -1809,7 +1806,7 @@ f(x) = \sum\limits_{n=0}^\infty {\frac{1}{n!} f^{(n)}(x_0) (x-x_0)^n},
 设函数\(f(x)\)在点\(x_0\)的某一邻域\(U(x_0)\)内具有各阶导数，
 则\(f(x)\)在该邻域内能展开成泰勒级数的充要条件是：
 在该邻域内\(f(x)\)的泰勒公式中的余项\(R_n(x)\)满足\[
-\l R_n(x) = 0,
+\lim\limits_{n\to\infty} R_n(x) = 0,
 \quad x \in U(x_0).
 \]
 \end{theorem}
@@ -1845,14 +1842,14 @@ f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \dotsb + \frac{f^{(n)}(0)}{n!} x^n + \d
 \item 利用余项\(R_n(x)\)的表达式\[
 R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\theta x) x^{n+1}
 \quad(0 < \theta < 1),
-\]考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\l R_n(x)\)是否为零.
+\]考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\lim\limits_{n\to\infty} R_n(x)\)是否为零.
 
-如果\(\l R_n(x) = 0\)，则函数\(f(x)\)在区间\((-R,R)\)内的麦克劳林展开式为\[
+如果\(\lim\limits_{n\to\infty} R_n(x) = 0\)，则函数\(f(x)\)在区间\((-R,R)\)内的麦克劳林展开式为\[
 f(x) = \sum\limits_{n=0}^\infty \frac{1}{n!} f^{(n)}(0) x^n
 \quad(-R < x < R).
 \]
 
-如果\(\l R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数.
+如果\(\lim\limits_{n\to\infty} R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数.
 \end{enumerate}
 }
 
@@ -1887,7 +1884,7 @@ f^{(n)}(x) = 1
 \abs{R_n(x)} = \abs{\frac{e^{\xi}}{(n+1)!} x^{n+1}}
 < e^{\abs{x}} \cdot \frac{\abs{x}^{n+1}}{(n+1)!}.
 \]因为\(e^{\abs{x}}\)有限，而\(\frac{\abs{x}^{n+1}}{(n+1)!}\)是收敛级数\(\sum\limits_{n=0}^\infty \frac{\abs{x}^{n+1}}{(n+1)!}\)的一般项，所以当\(n\to\infty\)时，\(e^{\abs{x}} \cdot \frac{\abs{x}^{n+1}}{(n+1)!}\to0\)，即\[
-\l \abs{R_n(x)} = 0.
+\lim\limits_{n\to\infty} \abs{R_n(x)} = 0.
 \]于是得展开式\[
 e^x = 1+x+\frac{x^2}{2!}+\dotsb+\frac{x^n}{n!}+\dotsb
 \quad(-\infty<x<+\infty).
@@ -1910,7 +1907,7 @@ x-\frac{x^3}{3!}+\frac{x^5}{5!}-\dotsb+(-1)^k \frac{x^{2k+1}}{(2k+1)!}+\dotsb,
 = \abs{ \frac{x^{n+1}}{(n+1)!} \sin\left[\xi+\frac{n+1}{2}\pi\right] }
 \leq \frac{\abs{x}^{n+1}}{(n+1)!}.
 \]而\[
-\l \frac{\abs{x}^{n+1}}{(n+1)!} = 0.
+\lim\limits_{n\to\infty} \frac{\abs{x}^{n+1}}{(n+1)!} = 0.
 \]因而得展开式\[
 \sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\dotsb+(-1)^k \frac{x^{2k+1}}{(2k+1)!}+\dotsb
 \quad(-\infty<x<+\infty).
@@ -2982,15 +2979,15 @@ f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \dotsb + \frac{f^{(n)}(0)}{n!} x^n + \d
 R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\theta x) x^{n+1}
 \quad(0 < \theta < 1),
 \]
-考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\l R_n(x)\)是否为零.
+考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\lim\limits_{n\to\infty} R_n(x)\)是否为零.
 \begin{enumerate}
-	\item 如果\(\l R_n(x) = 0\)，
+	\item 如果\(\lim\limits_{n\to\infty} R_n(x) = 0\)，
 则函数\(f(x)\)在区间\((-R,R)\)内的麦克劳林展开式为
 \[
 f(x) = \sum\limits_{n=0}^\infty \frac{1}{n!} f^{(n)}(0) x^n
 \quad(-R < x < R).
 \]
-	\item 如果\(\l R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数%
+	\item 如果\(\lim\limits_{n\to\infty} R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数%
 	（以后在学习了复变函数的级数表示之后，我们可以将这类函数展开为罗朗级数）.
 \end{enumerate}
 \end{enumerate}
