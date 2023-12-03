@@ -1,0 +1,428 @@
+\section{函数展开成幂级数}
+前面讨论了幂级数的收敛域及其和函数的性质.
+但在许多应用中，我们遇到的却是相反的问题：
+给定函数\(f(x)\)，
+要考虑它是否能在某个区间内“展开成幂级数”，
+就是说，是否能找到这样一个幂级数，它在某区间内收敛，且其和恰好就是给定的函数\(f(x)\).
+如果能找到这样的幂级数，我们就说“函数\(f(x)\)在该区间内能展开成幂级数”，
+也说“这个幂级数在该区间内表达了函数\(f(x)\)”.
+
+\subsection{泰勒展式}
+\begin{definition}
+设函数\(f(x)\)的定义域为\(D\).
+如果在区间\(I \subseteq D\)内，
+存在收敛的幂级数\(\sum\limits_{i=0}^\infty {a_i x^i}\)使得\[
+f(x) = \sum\limits_{i=0}^\infty {a_i x^i}
+\quad(x \in I)
+\]成立，则称“函数\(f(x)\)在区间\(I\)内能展开成幂级数”.
+\end{definition}
+
+\begin{definition}
+级数\[
+\sum\limits_{n=0}^\infty \frac{1}{n!} f^{(n)}(x_0) (x-x_0)^n
+\]
+为“函数\(f(x)\)在点\(x_0\)处的\DefineConcept{泰勒级数}（Taylor series）”.
+
+等式\[
+f(x) = \sum\limits_{n=0}^\infty {\frac{1}{n!} f^{(n)}(x_0) (x-x_0)^n},
+\quad x \in U(x_0).
+\]称为函数\(f(x)\)在点\(x_0\)处的\DefineConcept{泰勒展开式}.
+\end{definition}
+
+可以看出，函数\(f(x)\)在\(U(x_0)\)内能展开成幂级数的充要条件为：
+泰勒级数\[
+\sum\limits_{n=0}^\infty {\frac{1}{n!} f^{(n)}(x_0) (x-x_0)^n}
+\]在\(U(x_0)\)内收敛，且收敛到\(f(x)\).
+但是“泰勒级数收敛到函数\(f(x)\)”这一叙述非常模糊，所以我们有以下定理：
+\begin{theorem}
+设函数\(f(x)\)在点\(x_0\)的某一邻域\(U(x_0)\)内具有各阶导数，
+则\(f(x)\)在该邻域内能展开成泰勒级数的充要条件是：
+在该邻域内\(f(x)\)的泰勒公式中的余项\(R_n(x)\)满足\[
+\lim\limits_{n\to\infty} R_n(x) = 0,
+\quad x \in U(x_0).
+\]
+\end{theorem}
+
+\begin{definition}
+级数\[
+\sum\limits_{n=0}^\infty \frac{1}{n!} f^{(n)}(0) x^n
+\]称为函数\(f(x)\)的\DefineConcept{麦克劳林级数}.
+
+等式\[
+f(x) = \sum\limits_{n=0}^\infty {\frac{1}{n!} f^{(n)}(0) x^n}
+\quad(\abs{x} < r)
+\]称为函数\(f(x)\)的\DefineConcept{麦克劳林展开式}.
+\end{definition}
+
+\begin{theorem}
+若函数\(f(x)\)在区间\(I\)内能展开成幂级数，
+则它的幂级数展开式是唯一的.
+\end{theorem}
+
+{\color{red}
+要把函数\(f(x)\)展开成麦克劳林级数，可以按照下列步骤进行：
+\begin{enumerate}
+\item 求出函数\(f(x)\)的各阶导数\[
+f'(x),f''(x),\dotsc,f^{(n)}(x),\dotsc.
+\]如果在\(x=0\)处某阶导数不存在，就停止展开，因为这就说明函数\(f(x)\)不能展开为麦克劳林级数.
+\item 求出函数及其各阶导数在\(x=0\)处的值：\[
+f(0),f'(0),f''(0),\dotsc,f^{(n)}(0),\dotsc.
+\]
+\item 写出幂级数\[
+f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \dotsb + \frac{f^{(n)}(0)}{n!} x^n + \dotsb,
+\]并求出收敛半径\(R\).
+\item 利用余项\(R_n(x)\)的表达式\[
+R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\theta x) x^{n+1}
+\quad(0 < \theta < 1),
+\]考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\lim\limits_{n\to\infty} R_n(x)\)是否为零.
+
+如果\(\lim\limits_{n\to\infty} R_n(x) = 0\)，则函数\(f(x)\)在区间\((-R,R)\)内的麦克劳林展开式为\[
+f(x) = \sum\limits_{n=0}^\infty \frac{1}{n!} f^{(n)}(0) x^n
+\quad(-R < x < R).
+\]
+
+如果\(\lim\limits_{n\to\infty} R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数.
+\end{enumerate}
+}
+
+需要注意的是，不要错误地认为“如果一个函数的泰勒级数在点\(x_0\)处收敛，那么该级数就一定收敛到这个函数”.
+\begin{example}\label{example:无穷级数.函数的泰勒级数不一定收敛到函数}
+最常见的例子是：\[
+f(x) = \left\{ \begin{array}{ll}
+e^{-1/x^2}, & x\neq0, \\
+0, & x=0.
+\end{array} \right.
+\]
+根据导数的定义，以及\(\forall k\in\mathbb{R}: x^k e^{-1/x^2} \to 0\ (x\to0)\)，
+可知\(f^{(n)}(0) = 0\ (n=0,1,2,\dotsc)\).
+于是，函数\(f\)在点\(x=0\)处的泰勒级数的每一项都是零，其和恒等于零；
+只不过，当\(x\neq0\)时，\(f(x)\neq0\).
+\end{example}
+
+\begin{example}
+将函数\(f(x) = e^x\)展开成\(x\)的幂级数.
+\begin{solution}
+所给函数的各阶导数为\[
+f^{(n)}(x) = e^x
+\quad(n=1,2,\dotsc),
+\]因此\[
+f^{(n)}(x) = 1
+\quad(n=0,1,2,\dotsc).
+\]于是得级数\[
+1+x+\frac{x^2}{2!}+\dotsb+\frac{x^n}{n!}+\dotsb,
+\]它的收敛半径\(R = +\infty\).
+
+对于任何有限的数\(x\)和\(\xi\)（\(\xi\)在\(0\)与\(x\)之间），余项的绝对值为\[
+\abs{R_n(x)} = \abs{\frac{e^{\xi}}{(n+1)!} x^{n+1}}
+< e^{\abs{x}} \cdot \frac{\abs{x}^{n+1}}{(n+1)!}.
+\]因为\(e^{\abs{x}}\)有限，而\(\frac{\abs{x}^{n+1}}{(n+1)!}\)是收敛级数\(\sum\limits_{n=0}^\infty \frac{\abs{x}^{n+1}}{(n+1)!}\)的一般项，所以当\(n\to\infty\)时，\(e^{\abs{x}} \cdot \frac{\abs{x}^{n+1}}{(n+1)!}\to0\)，即\[
+\lim\limits_{n\to\infty} \abs{R_n(x)} = 0.
+\]于是得展开式\[
+e^x = 1+x+\frac{x^2}{2!}+\dotsb+\frac{x^n}{n!}+\dotsb
+\quad(-\infty<x<+\infty).
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+将函数\(f(x) = \sin x\)展开成\(x\)的幂级数.
+\begin{solution}
+所给函数的各阶导数为\[
+f^{(n)}(x) = \sin\left(x + n\cdot\frac{\pi}{2}\right)
+\quad(n=1,2,\dotsc),
+\]易见\(f^{(n)}(0)\)依顺序循环地取\(0,1,0,-1,\dotsc\)，于是得级数\[
+x-\frac{x^3}{3!}+\frac{x^5}{5!}-\dotsb+(-1)^k \frac{x^{2k+1}}{(2k+1)!}+\dotsb,
+\]它的收敛半径\(R=+\infty\).
+
+对于任何有限的数\(x\)和\(\xi\)（\(\xi\)在\(0\)与\(x\)之间），余项的绝对值为\[
+\abs{R_n(x)}
+= \abs{ \frac{x^{n+1}}{(n+1)!} \sin\left[\xi+\frac{n+1}{2}\pi\right] }
+\leq \frac{\abs{x}^{n+1}}{(n+1)!}.
+\]而\[
+\lim\limits_{n\to\infty} \frac{\abs{x}^{n+1}}{(n+1)!} = 0.
+\]因而得展开式\[
+\sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\dotsb+(-1)^k \frac{x^{2k+1}}{(2k+1)!}+\dotsb
+\quad(-\infty<x<+\infty).
+\]
+\end{solution}
+\end{example}
+
+以上将函数展开成幂级数的例子，是直接按公式\[
+a_n = \frac{1}{n!} f^{(n)}(0)
+\]计算幂级数的系数，最后考察余项\(R_n(x)\)是否趋于零.
+这种直接展开的方法计算量较大，而且研究余项即使在初等函数中也不是一件容易的事.
+下面介绍间接展开的方法，这就是利用一些已知的函数展开式，通过幂级数的运算（如四则运算、逐项求导、逐项积分）以及变量代换等，将所给函数展开成幂级数.
+这样做不但计算简单，而且可以避免研究余项.
+
+前面我们已经求得的幂级数展开式有\begin{gather}
+e^x = \sum\limits_{n=0}^\infty \frac{1}{n!} x^n
+	\quad(-\infty<x<+\infty), \label{equation:无穷级数.幂级数展开式1} \\
+\sin x = \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} x^{2k+1}
+	\quad(-\infty<x<+\infty), \label{equation:无穷级数.幂级数展开式2} \\
+\frac{1}{1+x} = \sum\limits_{n=0}^\infty (-1)^n x^n
+	\quad(-1<x<1). \label{equation:无穷级数.幂级数展开式3}
+\end{gather}
+利用这三个展开式，可以求得许多函数的幂级数展开式.
+例如对\cref{equation:无穷级数.幂级数展开式3} 两边从\(0\)到\(x\)积分，可得
+\begin{equation}\label{equation:无穷级数.幂级数展开式4}
+\ln(1+x) = \sum\limits_{n=0}^\infty \frac{(-1)^n}{n+1} x^{n+1}
+= \sum\limits_{n=1}^\infty \frac{(-1)^{n-1}}{n} x^n
+\quad(-1<x\leq1);
+\end{equation}
+
+对\cref{equation:无穷级数.幂级数展开式2} 两边求导，即得
+\begin{equation}\label{equation:无穷级数.幂级数展开式5}
+\cos x = \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k)!} x^{2k}
+\quad(-\infty<x<+\infty);
+\end{equation}
+
+把\cref{equation:无穷级数.幂级数展开式1} 中的\(x\)换成\(x \ln a\)，可得
+\begin{equation}\label{equation:无穷级数.幂级数展开式6}
+a^x = e^{x \ln a} = \sum\limits_{n=0}^\infty \frac{\ln^n a}{n!} x^n
+\quad(-\infty<x<+\infty);
+\end{equation}
+
+把\cref{equation:无穷级数.幂级数展开式3} 中的\(x\)换成\(x^2\)，可得
+\begin{equation}\label{equation:无穷级数.幂级数展开式7}
+\frac{1}{1+x^2} = \sum\limits_{n=0}^\infty (-1)^n x^{2n}
+\quad(-1<x<1);
+\end{equation}
+
+对\cref{equation:无穷级数.幂级数展开式7} 从\(0\)到\(x\)积分，可得
+\begin{equation}
+\arctan x = \sum\limits_{n=0}^\infty \frac{(-1)^n}{2n+1} x^{2n+1}
+\quad(-1 \leq x \leq 1).
+\end{equation}
+
+下面再举几个用间接法把函数展开成幂级数的例子.
+
+\begin{example}
+把函数\(f(x) = (1-x) \ln(1+x)\)展开成\(x\)的幂级数.
+\begin{solution}
+由\cref{equation:无穷级数.幂级数展开式4} 得\[
+\begin{split}
+f(x) &= (1-x) \sum\limits_{n=1}^\infty \frac{(-1)^{n-1}}{n} x^n \\
+&= \sum\limits_{n=1}^\infty \frac{(-1)^{n-1}}{n} x^n
+	- \sum\limits_{n=1}^\infty \frac{(-1)^{n-1}}{n} x^{n+1} \\
+&= \sum\limits_{n=1}^\infty \frac{(-1)^{n-1}}{n} x^n
+	- \sum\limits_{n=2}^\infty \frac{(-1)^n}{n-1} x^n \\
+&= x + \sum\limits_{n=2}^\infty \frac{(-1)^{n-1} (2n-1)}{n(n-1)} x^n
+\quad(-1 < x \leq 1).
+\end{split}
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+将函数\(\sin x\)展开成\(\left(x-\frac{\pi}{4}\right)\)的幂级数.
+\begin{solution}
+因为\[
+\begin{split}
+\sin x &= \sin\left[\frac{\pi}{4}+\left(x-\frac{\pi}{4}\right)\right] \\
+&= \sin\frac{\pi}{4} \cos\left(x-\frac{\pi}{4}\right) + \cos\frac{\pi}{4} \sin\left(x-\frac{\pi}{4}\right) \\
+&= \frac{1}{\sqrt{2}} \left[\cos\left(x-\frac{\pi}{4}\right) + \sin\left(x-\frac{\pi}{4}\right)\right],
+\end{split}
+\]又由\[
+\cos\left(x-\frac{\pi}{4}\right)
+= 1 - \frac{1}{2!} \left(x-\frac{\pi}{4}\right)^2 + \frac{1}{4!} \left(x-\frac{\pi}{4}\right)^4 - \dotsb
+\quad(-\infty < x < +\infty),
+\]\[
+\sin\left(x-\frac{\pi}{4}\right)
+= \left(x-\frac{\pi}{4}\right) - \frac{1}{3!} \left(x-\frac{\pi}{4}\right)^3 + \frac{1}{5!} \left(x-\frac{\pi}{4}\right)^5 - \dotsb
+\quad(-\infty < x < +\infty),
+\]所以\[
+\sin x = \frac{1}{\sqrt{2}} \left[
+1 + \left(x-\frac{\pi}{4}\right)
+- \frac{1}{2!} \left(x-\frac{\pi}{4}\right)^2
+- \frac{1}{3!} \left(x-\frac{\pi}{4}\right)^3
++ \dotsb
+\right]
+\quad(-\infty < x < +\infty).
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+将函数\(f(x) = \frac{1}{x^2+4x+3}\)展开成\((x-1)\)的幂级数.
+\begin{solution}
+因为\[
+\begin{split}
+f(x) &= \frac{1}{x^2+4x+3}
+= \frac{1}{(x+1)(x+3)} \\
+&= \frac{1}{2(1+x)} - \frac{1}{2(3+x)} \\
+&= \frac{1}{4\left(1+\frac{x-1}{2}\right)}
+- \frac{1}{8\left(1+\frac{x-1}{4}\right)},
+\end{split}
+\]而\[
+\frac{1}{4\left(1+\frac{x-1}{2}\right)}
+= \frac{1}{4} \sum\limits_{n=0}^\infty \frac{(-1)^n}{2^n} (x-1)^n
+\quad(-1<x<3),
+\]\[
+\frac{1}{8\left(1+\frac{x-1}{4}\right)}
+= \frac{1}{8} \sum\limits_{n=0}^\infty \frac{(-1)^n}{4^n} (x-1)^n
+\quad(-3<x<5),
+\]所以\[
+f(x) = \frac{1}{x^2+4x+3}
+= \sum\limits_{n=0}^\infty (-1)^n \left(\frac{1}{2^{n+2}}-\frac{1}{2^{2n+3}}\right) (x-1)^n
+\quad(-1<x<3).
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+将函数\(\sinh x = \frac{e^x - e^{-x}}{2}\)展开成\(x\)的幂级数，并求展开式成立的区间.
+\begin{solution}
+由\cref{equation:无穷级数.幂级数展开式1} 可知，\[
+\sinh x
+= \frac{e^x - e^{-x}}{2}
+= \frac{1}{2} \left[
+\sum\limits_{n=0}^\infty \frac{1}{n!} x^n
+- \sum\limits_{n=0}^\infty \frac{1}{n!} (-x)^n
+\right].
+\]因为\[
+(-x)^n = \left\{ \begin{array}{cl}
+x^n, & n=2k, \\
+-x^n, & n=2k+1,
+\end{array} \right.
+\quad(k\in\mathbb{N}),
+\]所以\[
+\sinh x
+= \sum\limits_{k=0}^\infty \frac{1}{(2k+1)!} x^{2k+1}
+\quad(-\infty<x<+\infty).
+\]
+\end{solution}
+\end{example}
+
+最后，再举一个用直接法展开的例子.
+
+\begin{example}
+将函数\(f(x) = (1+x)^m\)展开成\(x\)的幂级数，其中\(m\)为任意实数.
+\begin{solution}
+\(f(x)\)的各阶导数为\[
+\begin{split}
+&f'(x) = m (1+x)^{m-1},
+f''(x) = m(m-1) (1+x)^{m-2},
+\dotsc, \\
+&f^{(n)}(x) = m(m-1)(m-2)\dotsm(m-n+1) (1+x)^{m-n},
+\dotsc,
+\end{split}
+\]所以\[
+\begin{split}
+&f(0) = 1,
+f'(0) = m,
+f''(0) = m(m-1),
+\dotsc, \\
+&f^{(n)}(0) = m(m-1)\dotsm(m-n+1),\dotsc,
+\end{split}
+\]于是得级数\[
+1+mx+\frac{m(m-1)}{2!}x^2+\dotsb+\frac{m(m-1)\dotsm(m-n+1)}{n!}x^n+\dotsb
+\]这级数相邻的系数之比的绝对值\[
+\begin{split}
+\abs{\frac{a_{n+1}}{a_n}}
+&= \abs{ \frac{m(m-1)\dotsm(m-n)}{(n+1)!} \Bigg/ \frac{m(m-1)\dotsm(m-n+1)}{n!} } \\
+&= \abs{ \frac{m-n}{n+1} }
+\to 1 \quad(n\to\infty),
+\end{split}
+\]因此，对于任何实数\(m\)这级数在开区间\((-1,1)\)内收敛.
+
+为了避免直接研究余项，设这级数在开区间\((-1,1)\)内收敛到函数\(F(x)\)：\[
+\begin{split}
+F(x) &= 1+mx+\frac{m(m-1)}{2!}x^2+\dotsb \\
+    &\hspace{20pt}+\frac{m(m-1)\dotsm(m-n+1)}{n!}x^n+\dotsb
+    \quad(-1<x<1),
+\end{split}
+\]下面证明\(F(x) = (1+x)^m\ (-1<x<1)\).
+
+逐项求导，得\[
+F'(x) = m \left[
+    1+\frac{m-1}{1}x+\dotsb+\frac{(m-1)\dotsm(m-n+1)}{(n-1)!}x^{n-1}+\dotsb
+\right],
+\]两边各乘以\((1+x)\)，并把含有\(x^n\ (n=1,2,\dotsc)\)的两项合并起来.
+根据\cref{theorem:组合数性质2} \[
+\begin{split}
+&\frac{(m-1)\dotsm(m-n+1)}{(n-1)!}
+	+ \frac{(m-1)\dotsm(m-n)}{n!} \\
+&= \frac{m(m-1)\dotsm(m-n+1)}{n!}
+	\quad(n=1,2,\dotsc),
+\end{split}
+\]可得\[
+\begin{split}
+(1+x) F'(x)
+&= m \Biggl[
+1+mx+\frac{m(m-1)}{2!}x^2+\dotsb \\
+&\hspace{30pt} +\frac{m(m-1)\dotsm(m-n+1)}{n!}x^n+\dotsb
+\Biggr] \\
+&= m F(x)
+\quad(-1<x<1).
+\end{split}
+\]
+
+现在令\(\phi(x) = \frac{F(x)}{(1+x)^m}\)，于是\(\phi(0) = F(0) = 1\)，且\[
+\begin{split}
+\phi'(x)
+&= \frac{(1+x)^m F'(x) - m(1+x)^{m-1} F(x)}{(1+x)^{2m}} \\
+&= \frac{(1+x)^{m-1} [(1+x) F'(x) - m F(x)]}{(1+x)^{2m}}
+= 0,
+\end{split}
+\]所以\(\phi(x)\)是常数函数.又因为\(\phi(0) = 1\)，所以\(\phi(x) = 1\)，即\[
+F(x) = (1+x)^m.
+\]因此原级数在区间\((-1,1)\)内有展开式\begin{equation}
+\label{equation:无穷级数.二项展开式}
+\begin{split}
+(1+x)^m
+&= 1+mx+\frac{m(m-1)}{2!}x^2+\dotsb \\
+&\hspace{20pt} +\frac{m(m-1)\dotsm(m-n+1)}{n!}x^n+\dotsb
+\quad(-1<x<1).
+\end{split}
+\end{equation}
+在区间的端点，展开式是否成立要看\(m\)的数值而定.
+\end{solution}
+\end{example}
+
+特殊地，当\(m\)为正整数时，级数为\(x\)的\(m\)次多项式，这就是代数学中的二项式定理.
+
+对应于\(m=\pm1/2\)的二项展开式分别为\[
+\sqrt{1+x}
+= 1+\frac{1}{2}x-\frac{1}{2\cdot4}x^2+\frac{1\cdot3}{2\cdot4\cdot6}x^3-\frac{1\cdot3\cdot5}{2\cdot4\cdot6\cdot8}x^4+\dotsb
+\quad(-1 \leq x \leq 1),
+\]\[
+\frac{1}{\sqrt{1+x}}
+= 1-\frac{1}{2}x+\frac{1\cdot3}{2\cdot4}x^2-\frac{1\cdot3\cdot5}{2\cdot4\cdot6}x^3+\frac{1\cdot3\cdot5\cdot7}{2\cdot4\cdot6\cdot8}x^4-\dotsb
+\quad(-1 < x \leq 1).
+\]
+
+现在我们可以利用幂级数展开式计算定积分.
+\begin{example}
+计算\[
+\int_0^1 \frac{\sin\ln x}{\ln x} \dd{x}.
+\]
+\begin{solution}
+由\cref{equation:无穷级数.幂级数展开式2} \[
+\sin x = \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} x^{2k+1}
+	\quad(-\infty<x<+\infty),
+\]有\[
+\frac{\sin\ln x}{\ln x} = \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} (\ln x)^{2k},
+\]那么\begin{align*}
+\int_0^1 \frac{\sin\ln x}{\ln x} \dd{x}
+&= \int_0^1 \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} (\ln x)^{2k} \dd{x} \\
+&= \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} \int_0^1 (\ln x)^{2k} \dd{x} \\
+&\xlongequal{\ln x = -t}
+	\sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!}
+	\int_{+\infty}^0 (-t)^{2k} \cdot (-e^{-t}) \dd{t} \\
+&= \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!}
+	\int^{+\infty}_0 e^{-t} t^{2k} \dd{t} \\
+&= \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} \Gamma(2k+1) \\
+&= \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} (2k)! \\
+&= \sum\limits_{k=0}^\infty (-1)^k \frac{1}{2k+1} \\
+&= \sum\limits_{k=0}^\infty (-1)^k \int_0^1 u^{2k} \dd{u} \\
+&= \int_0^1 \sum\limits_{k=0}^\infty (-u^2)^k \dd{u} \\
+&= \int_0^1 \frac{1}{1-(-u^2)} \dd{u} \\
+&= \left(\arctan u\right)_0^1
+= \frac{\pi}{4}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求幂级数\(\sum\limits_{n=1}^\infty \frac{(-1)^{n-1}}{2n-1} x^{2n}\)的收敛域及和函数.
+\end{example}

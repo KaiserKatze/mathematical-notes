@@ -1,0 +1,105 @@
+\section{函数的幂级数展开式的应用}
+\subsection{微分方程的幂级数解法}
+这里，我们简单介绍一阶微分方程和二阶齐次线性微分方程的幂级数解法.
+
+\subsubsection{一阶微分方程的幂级数解法}
+为求一阶微分方程\[
+\dv{y}{x} = f(x,y)
+\]满足初始条件\(\eval{y}_{x=x_0} = y_0\)的特解，如果其中函数\(f(x,y)\)是\((x-x_0),(y-y_0)\)的多项式\[
+f(x,y) = a_{00} + a_{10} (x-x_0) + a_{01} (y-y_0) + \dotsb + a_{lm} (x-x_0)^l (y-y_0)^m.
+\]那么可以设所求特解可展开为\((x-x_0)\)的幂级数：\[
+y = y_0 + a_1 (x-x_0) + a_2 (x-x_0)^2 + \dotsb + a_n (x-x_0)^n + \dotsb,
+\]其中\(a_1,a_2,\dotsc\)是待定系数.
+把上式代入微分方程中，便得一恒等式，比较所得恒等式两端\((x-x_0)\)的同次幂的系数，就可定出常数\(a_1,a_2,\dotsc\)，以这些常数为系数的级数在其收敛区间内就是所求一阶微分方程满足初始条件的通解.
+
+\begin{example}
+求方程\(\dv{y}{x} = x + y^2\)满足\(\eval{y}_{x=0}=0\)的特解.
+\begin{solution}
+这时\(x_0=y_0=0\)，故设\[
+y = a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \dotsb,
+\]把\(y\)及\(y'\)的幂级数展开式代入原方程，得\begin{align*}
+a_1 + 2a_2 x + 3a_3 x^2 + 4a_4 x^3 + \dotsb
+&= x + (a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \dotsb)^2 \\
+&= x + a_1^2 x^2 + 2a_1a_2 x^3 + (a_2^2 + 2a_1a_3) x^4 + \dotsb,
+\end{align*}
+比较上式两边\(x\)的同次幂的系数，得\[
+a_1 = 0, \qquad
+a_2 = \frac{1}{2}, \qquad
+a_3 = 0, \qquad
+a_4 = 0, \qquad
+a_5 = \frac{1}{20},
+\]于是\[
+y = \frac{1}{2} x^2 + \frac{1}{20} x^5 + \dotsb.
+\]
+\end{solution}
+\end{example}
+
+\subsubsection{二阶齐次线性微分方程的幂级数解法}
+关于二阶齐次线性方程\[
+y'' + P(x) y' + Q(x) y = 0
+\]用幂级数求解的问题，我们先叙述一个定理：
+\begin{theorem}
+如果二阶齐次线性方程中的系数\(P(x)\)与\(Q(x)\)可在\(-R<x<R\)内展开为\(x\)的幂级数，那么在\(-R<x<R\)内方程必有形如\[
+y = \sum\limits_{n=0}^\infty a_n x^n
+\]的解.
+\end{theorem}
+
+\subsection{重新定义三角函数}
+尽管我们是从\hyperref[definition:函数.三角函数的几何定义]{三角函数的几何定义}出发，
+计算得到三角函数的幂级数展开式，
+但是我们也可以反其道行之，将三角函数（特别是正、余弦函数）定义为对应的幂级数，
+重新建立三角学的基础.
+
+我们将\cref{equation:无穷级数.幂级数展开式2,equation:无穷级数.幂级数展开式5}
+分别作为正弦函数和余弦函数的定义式：
+\[
+	\sin x \defeq \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} x^{2k+1}
+	\quad(-\infty<x<+\infty),
+\]\[
+	\cos x \defeq \sum\limits_{k=0}^\infty \frac{(-1)^k}{(2k)!} x^{2k}
+	\quad(-\infty<x<+\infty).
+\]
+
+容易验证：
+\((\sin x)' = \cos x\)，
+\((\cos x)' = - \sin x\)，
+\(\sin 0 = 0\)，
+\(\cos 0 = 1\).
+
+现在我们来证明恒等式\(\sin^2 x + \cos^2 x \equiv 1\).
+由于\(\sin^2 0 + \cos^2 0 = 0^2 + 1^2 = 1\)，
+所以只需证函数\(f(x) = \sin^2 x + \cos^2 x\)在\((-\infty,+\infty)\)上是常数函数，
+即证\(f'(x) = 0\ (-\infty<x<+\infty)\)恒成立；
+由于\(f'(x) = 2 \sin x \cos x - 2 \cos x \sin x \equiv 0\)，
+自然就有恒等式\(\sin^2 x + \cos^2 x \equiv 1\)成立.
+
+现在我们来证明和积互化公式.
+这里我们只挑出两个最基本的和差化积公式作出证明.
+对于其他和积互化公式，我们只需应用初等的代数方法就可以证得.
+例如，要证\[
+\sin(x+y) \equiv \sin x \cos y + \cos x \sin y,
+\qquad
+\cos(x+y) \equiv \cos x \cos y - \sin x \sin y
+\]成立，
+只需构造辅助函数\[
+\phi(x)
+= \sin(x+y) - (\sin x \cos y + \cos x \sin y),
+\]\[
+\psi(x)
+= \cos(x+y) - (\cos x \cos y - \sin x \sin y),
+\]再证明\(\phi(x),\psi(x) \equiv 0\).
+令\[
+\rho(x)
+= [\phi(x)]^2 + [\psi(x)]^2.
+\]
+并注意到\(\phi'(x) = \psi(x)\)，
+\(\psi'(x) = -\phi'(x)\)，
+就有\(\rho'(x) \equiv 0\)，
+也就是说\(\rho(x)\)也是常值函数.
+由于\[
+\rho(0) = [\phi(0)]^2 + [\psi(0)]^2 = 0,
+\]
+所以\(\rho(x) \equiv 0\)；
+又因为\(\phi(x),\psi(x) \in \mathbb{R}\)，
+所以\(\phi(x),\psi(x) \equiv 0\)，
+也就是说，和积互化公式成立.
