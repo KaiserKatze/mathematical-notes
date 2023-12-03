@@ -1413,7 +1413,7 @@ s(x_0) = s_n(x_0) + r_n(x_0)
 = a_0 + a_1 (x-x_0) + a_2 (x-x_0)^2 + \dotsb + a_n (x-x_0)^n + \dotsb,
 \]为“幂级数的\DefineConcept{一般形式}”.
 称级数\[
-\sum\limits_{i=0}^\infty a_i x^i
+\sum\limits_{n=0}^\infty a_n x^n
 = a_0 + a_1 x + a_2 x^2 + \dotsb + a_n x^n + \dotsb,
 \]为“幂级数的\DefineConcept{标准形式}”.
 这里常数\(a_0,\AutoTuple{a}{n},\dotsc\)称为幂级数的\DefineConcept{系数}.
@@ -1448,7 +1448,10 @@ s(x_0) = s_n(x_0) + r_n(x_0)
 我们有如下的定理.
 
 \begin{theorem}[阿贝尔定理]\label{theorem:无穷级数.阿贝尔定理}
-如果级数\(\sum\limits_{i=0}^\infty a_i x^i\)当\(x=x_0\neq0\)时收敛，则满足\(\abs{x}<\abs{x_0}\)的一切\(x\)可使该幂级数绝对收敛.反之，如果级数\(\sum\limits_{i=0}^\infty a_i x^i\)当\(x=x_0\)时发散，则满足\(\abs{x}>\abs{x_0}\)的一切\(x\)均使该幂级数发散.
+如果级数\(\sum\limits_{n=0}^\infty a_n x^n\)当\(x=x_0\neq0\)时收敛，
+则满足\(\abs{x}<\abs{x_0}\)的一切\(x\)可使该幂级数绝对收敛.
+反之，如果级数\(\sum\limits_{n=0}^\infty a_n x^n\)当\(x=x_0\)时发散，
+则满足\(\abs{x}>\abs{x_0}\)的一切\(x\)均使该幂级数发散.
 \begin{proof}
 先设\(x_0\neq0\)是幂级数\(\sum\limits_{n=1}^\infty a_n x^n\)的收敛点，
 即常数项级数\[
@@ -1458,17 +1461,17 @@ a_0 + a_1 x_0 + a_2 x_0^2 + \dotsb + a_n x_0^n + \dotsb
 \lim\limits_{n\to\infty} a_n x_0^n = 0;
 \]
 于是\(\exists M > 0\)，使得\[
-\abs{a_n x_0^n} \leq M
-\quad(n=0,1,2,\dotsc).
+	\abs{a_n x_0^n} \leq M
+	\quad(n=0,1,2,\dotsc).
 \]
 这样幂级数\(\sum\limits_{n=1}^\infty a_n x^n\)的一般项的绝对值\[
-\abs{a_n x^n} = \abs{a_n x_0^n \cdot \frac{x^n}{x_0^n}}
-= \abs{a_n x_0^n} \cdot \abs{\frac{x}{x_0}}^n
-\leq M \abs{\frac{x}{x_0}}^n.
+	\abs{a_n x^n} = \abs{a_n x_0^n \cdot \frac{x^n}{x_0^n}}
+	= \abs{a_n x_0^n} \cdot \abs{\frac{x}{x_0}}^n
+	\leq M \abs{\frac{x}{x_0}}^n.
 \]
 因为当\(\abs{x}<\abs{x_0}\)时，
 等比级数\(\sum\limits_{n=0}^\infty M \abs{\frac{x}{x_0}}^n\)收敛，
-所以级数\(\s \abs{a_i x^i}\)收敛，
+所以级数\(\sum\limits_{n=1} \abs{a_n x^n}\)收敛，
 也就是级数\(\sum\limits_{n=1}^\infty a_n x^n\)绝对收敛.
 
 定理的第二部分可用反证法证明.
@@ -1490,7 +1493,7 @@ a_0 + a_1 x_0 + a_2 x_0^2 + \dotsb + a_n x_0^n + \dotsb
 利用\cref{theorem:无穷级数.阿贝尔定理} 可以证明：原点两侧的两个界点到原点的距离是相等的.
 像这样，我们就得到以下重要推论.
 \begin{corollary}\label{theorem:无穷级数.阿贝尔定理推论}
-如果幂级数\(\sum\limits_{i=0}^\infty a_i x^i\)不是仅在\(x=0\)一点收敛，也不是在整个数轴上都收敛，则必定存在正数\(R\)，使得：\begin{enumerate}
+如果幂级数\(\sum\limits_{n=0}^\infty a_n x^n\)不是仅在\(x=0\)一点收敛，也不是在整个数轴上都收敛，则必定存在正数\(R\)，使得：\begin{enumerate}
 \item 当\(\abs{x}<R\)时，幂级数绝对收敛；
 \item 当\(\abs{x}>R\)时，幂级数发散；
 \item 当\(\abs{x}=R\)时，幂级数可能收敛也可能发散.
@@ -1664,7 +1667,7 @@ R = \frac{1}{\rho} = 1.
 
 \subsection{幂级数的运算}
 设幂级数\[
-\sum\limits_{i=0}^\infty a_i x^i
+\sum\limits_{n=0}^\infty a_n x^n
 = a_0 + a_1 x + a_2 x^2 + \dotsb + a_n x^n + \dotsb
 \]和\[
 \sum\limits_{i=0}^\infty b_i x^i
@@ -1673,19 +1676,19 @@ R = \frac{1}{\rho} = 1.
 对于这两个幂级数，可以进行下列四则运算：
 
 \begin{definition}[幂级数的加法]
-\(\left(\sum\limits_{i=0}^\infty a_i x^i\right)
+\(\left(\sum\limits_{n=0}^\infty a_n x^n\right)
 + \left(\sum\limits_{i=0}^\infty b_i x^i\right)
 = \sum\limits_{i=0}^\infty (a_i+b_i) x^i\).
 \end{definition}
 
 \begin{definition}[幂级数的减法]
-\(\left(\sum\limits_{i=0}^\infty a_i x^i\right)
+\(\left(\sum\limits_{n=0}^\infty a_n x^n\right)
 - \left(\sum\limits_{i=0}^\infty b_i x^i\right)
 = \sum\limits_{i=0}^\infty (a_i-b_i) x^i\).
 \end{definition}
 
 \begin{definition}[幂级数的乘法]
-\(\left(\sum\limits_{i=0}^\infty a_i x^i\right)
+\(\left(\sum\limits_{n=0}^\infty a_n x^n\right)
 \cdot \left(\sum\limits_{i=0}^\infty b_i x^i\right)
 = \sum\limits_{i=0}^\infty \left(
 	\sum\limits_{j=0}^{i} a_j b_{i-j}
@@ -1695,13 +1698,13 @@ R = \frac{1}{\rho} = 1.
 \begin{definition}[幂级数的除法]
 记\[
 \frac{
-	\sum\limits_{i=0}^\infty a_i x^i
+	\sum\limits_{n=0}^\infty a_n x^n
 }{
 	\sum\limits_{i=0}^\infty b_i x^i
 }
 = \sum\limits_{i=0}^\infty c_i x^i,
 \]假设\(b_0 \neq 0\).
-为了决定系数\(c_0,c_1,\dotsc,c_n,\dotsc\)，可以将级数\(\sum\limits_{i=0}^\infty b_i x^i\)与\(\sum\limits_{i=0}^\infty c_i x^i\)相乘，并令乘积中各项的系数分别等于级数\(\sum\limits_{i=0}^\infty a_i x^i\)中同次幂的系数，即得\[
+为了决定系数\(c_0,c_1,\dotsc,c_n,\dotsc\)，可以将级数\(\sum\limits_{i=0}^\infty b_i x^i\)与\(\sum\limits_{i=0}^\infty c_i x^i\)相乘，并令乘积中各项的系数分别等于级数\(\sum\limits_{n=0}^\infty a_n x^n\)中同次幂的系数，即得\[
 \begin{array}{l}
 a_0 = b_0 c_0, \\
 a_1 = b_1 c_0 + b_0 c_1, \\
@@ -1721,7 +1724,7 @@ a_2 = b_2 c_0 + b_1 c_1 + b_0 c_2, \\
 进一步还可证明，如果幂级数\(\sum\limits_{n=0}^\infty a_n x^n\)在收敛区间的端点收敛，则一致收敛的区间可扩大到包含端点.
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质1}
-幂级数\(\sum\limits_{i=0}^\infty a_i x^i\)的和函数\(s(x)\)在其收敛域\(I\)上连续.
+幂级数\(\sum\limits_{n=0}^\infty a_n x^n\)的和函数\(s(x)\)在其收敛域\(I\)上连续.
 \end{property}
 
 关于和函数的连续性及逐项可积的结论，
@@ -1731,9 +1734,9 @@ theorem:无穷级数.一致收敛的幂级数的性质}
 立即可得.
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质2}
-幂级数\(\sum\limits_{i=0}^\infty a_i x^i\)的和函数\(s(x)\)在其收敛域\(I\)上可积，并有逐项积分公式\[
+幂级数\(\sum\limits_{n=0}^\infty a_n x^n\)的和函数\(s(x)\)在其收敛域\(I\)上可积，并有逐项积分公式\[
 \int_0^x s(x) \dd{x}
-=\int_0^x \left[\sum\limits_{i=0}^\infty a_i x^i\right] \dd{x}
+=\int_0^x \left[\sum\limits_{n=0}^\infty a_n x^n\right] \dd{x}
 =\sum\limits_{i=0}^\infty \int_0^x a_i x^i \dd{x}
 =\sum\limits_{i=0}^\infty \frac{a_i}{i+1} x^{i+1}.
 \]
@@ -1752,7 +1755,7 @@ s'(x)
 \end{property}
 逐项求导后所得到的幂级数虽然和原级数有相同的收敛半径，但可能有不同的收敛域，这是因为逐项求导后所得到的幂级数在边界点处的收敛性可能发生改变.
 
-反复利用上述结论可得：幂级数\(\sum\limits_{i=0}^\infty a_i x^i\)的和函数\(s(x)\)在其收敛区间\((-R,R)\)内具有任意阶导数.
+反复利用上述结论可得：幂级数\(\sum\limits_{n=0}^\infty a_n x^n\)的和函数\(s(x)\)在其收敛区间\((-R,R)\)内具有任意阶导数.
 
 
 \begin{example}
