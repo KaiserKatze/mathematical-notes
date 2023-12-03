@@ -42,18 +42,18 @@ E(X) &= \sum\limits_{k=0}^\infty {k p_k}
 \begin{theorem}\label{theorem:随机变量的数字特征.几何分布的数学期望}
 设\(X \sim G(p)\)，则\(E(X) = \frac{1}{p}\).
 \begin{proof}
-\def\s{\sum\limits_{k=1}^\infty }%
 记\(q = 1-p\)，则\(p_k = pq^{k-1}\ (k=1,2,\dotsc)\)，
 \begin{align*}
-E(X) &= \s k p_k
-= \s k p q^{k-1}
-= p \s k q^{k-1}
-= p \s \dv{q^k}{q} \\
-&= p \dv{q}(\s q^k)
-= p \dv{q}(\frac{q}{1-q})
-= \frac{p}{(1-q)^2}
-= \frac{1}{p}.
-\qedhere
+	E(X)
+	&= \sum\limits_{k=1}^\infty k p_k
+	= \sum\limits_{k=1}^\infty k p q^{k-1}
+	= p \sum\limits_{k=1}^\infty k q^{k-1}
+	= p \sum\limits_{k=1}^\infty \dv{q^k}{q} \\
+	&= p \dv{q}(\sum\limits_{k=1}^\infty q^k)
+	= p \dv{q}(\frac{q}{1-q})
+	= \frac{p}{(1-q)^2}
+	= \frac{1}{p}.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{theorem}
@@ -61,44 +61,51 @@ E(X) &= \s k p_k
 \begin{theorem}
 设\(X \sim H(n,m,N)\)，则\(E(X) = \frac{n m}{N}\).
 \begin{proof}
-\def\s#1{\sum\limits_{k=#1}^\infty }%
 直接计算得\[
-E(X) = \s0 k \frac{C_m^k C_{N-m}^{n-k}}{C_N^n}
-= n \frac{m}{N} \s1 \frac{C_{m-1}^{k-1} C_{N-m}^{n-k}}{C_{N-1}^{n-1}}
-= n \frac{m}{N}.
-\qedhere
+	E(X)
+	= \sum\limits_{k=0}^\infty
+		k \frac{C_m^k C_{N-m}^{n-k}}{C_N^n}
+	= n \frac{m}{N}
+		\sum\limits_{k=1}^\infty
+			\frac{C_{m-1}^{k-1} C_{N-m}^{n-k}}{C_{N-1}^{n-1}}
+	= n \frac{m}{N}.
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
 
 应该注意到，并非所有离散型分布都存在数学期望.
 我们构造某个随机变量\(X\)的概率分布如下：\[
-p_k = P(X=k) = \frac{6}{(\pi k)^2}
-\quad(k=1,2,\dotsc).
-\]容易验证该分布的非负性与归一性.
-然而该分布的数学期望不存在，这是因为\[
-\sum\limits_{k=1}^\infty k p_k
-= \sum\limits_{k=1}^\infty k \frac{6}{(\pi k)^2}
-= \sum\limits_{k=1}^\infty \frac{6}{\pi^2 k}
+	p_k = P(X=k) = \frac{6}{(\pi k)^2}
+	\quad(k=1,2,\dotsc).
+\]
+容易验证该分布的非负性与归一性.
+然而该分布的数学期望不存在，
+这是因为\[
+	\sum\limits_{k=1}^\infty k p_k
+	= \sum\limits_{k=1}^\infty k \frac{6}{(\pi k)^2}
+	= \sum\limits_{k=1}^\infty \frac{6}{\pi^2 k}
 \]不收敛.
 
 \subsubsection{连续型随机变量的数学期望}
 \begin{definition}
 设连续型随机变量\(X\)的密度为\(f(x)\)，
 若反常积分\(\int_{-\infty}^{+\infty} x f(x) \dd{x}\)绝对收敛，
-则称这个积分为\(X\)的数学期望，记为\[
-E(X) = \int_{-\infty}^{+\infty} x f(x) \dd{x}.
+则称这个积分为\(X\)的数学期望，
+记为\[
+	E(X) = \int_{-\infty}^{+\infty} x f(x) \dd{x}.
 \]
 \end{definition}
 
 \begin{theorem}\label{theorem:随机变量的数字特征.伽马分布的数学期望}
-设\(X \sim \Gamma(\alpha,\beta)\)，则\(E(X)=\frac{\alpha}{\beta}\).
+设\(X \sim \Gamma(\alpha,\beta)\)，
+则\(E(X)=\frac{\alpha}{\beta}\).
 \begin{proof}
 \begin{align*}
 E(X)
 &= \int_{-\infty}^{+\infty} x f(x) \dd{x}
-= \int_0^{+\infty}{ x \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x}} \\
-&= \frac{1}{\beta \Gamma(\alpha)} \int_0^{+\infty} (\beta x)^{\alpha} e^{-(\beta x)} \dd(\beta x)
+= \int_0^{+\infty} x \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
+&= \frac{1}{\beta \Gamma(\alpha)} \int_0^{+\infty} (\beta x)^\alpha e^{-(\beta x)} \dd(\beta x)
 = \frac{\Gamma(\alpha + 1)}{\beta \Gamma(\alpha)}
 = \frac{\alpha}{\beta}.
 \qedhere
@@ -324,7 +331,7 @@ D(X)
 \def\inti{\int_0^{+\infty}}%
 直接计算得
 \begin{align*}
-E(X^2) &= \int_0^{+\infty} x^2 \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
+E(X^2) &= \int_0^{+\infty} x^2 \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
 &= \frac{1}{\beta^2 \Gamma(\alpha)} \int_0^{+\infty} (\beta x)^{\alpha+1} e^{-(\beta x)} \dd(\beta x) \\
 &= \frac{\Gamma(\alpha+2)}{\beta^2 \Gamma(\alpha)}
 = \frac{(\alpha+1) \alpha \Gamma(\alpha)}{\beta^2 \Gamma(\alpha)}
