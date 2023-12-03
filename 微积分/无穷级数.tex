@@ -1745,44 +1745,61 @@ s'(x)
 
 
 \begin{example}
-求幂级数\(\s \frac{x^i}{i+1}\)的和函数.
+求幂级数\(\sum\limits_{n=1} \frac{x^n}{n+1}\)的和函数.
 \begin{solution}
-先求收敛域.由\[
-\lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \lim\limits_{n\to\infty} \frac{n+1}{n+2} = 1,
+先求收敛域.
+由\[
+	\lim\limits_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+	= \lim\limits_{n\to\infty} \frac{n+1}{n+2}
+	= 1,
 \]得收敛半径\(R=1\).
 
-在端点\(x = -1\)处，幂级数成为\(\s \frac{(-1)^i}{i+1}\)，是收敛的交错级数；
-在端点\(x = 1\)处，幂级数成为\(\s \frac{1}{i+1}\)，是发散的.
+在端点\(x = -1\)处，
+幂级数成为\(\sum\limits_{n=1} \frac{(-1)^n}{n+1}\)，
+是收敛的交错级数；
+在端点\(x = 1\)处，
+幂级数成为\(\sum\limits_{n=1} \frac{1}{n+1}\)，
+是发散的.
 因此收敛域是\(I = [-1,1)\).
 
 设和函数为\(s(x)\)，即\[
-s(x) = \s \frac{x^i}{i+1},
-\quad x\in[-1,1).
-\]于是\[
-x s(x) = \s \frac{x^{i+1}}{i+1}.
+	s(x) = \sum\limits_{n=1} \frac{x^n}{n+1},
+	\quad x\in[-1,1).
+\]
+于是\[
+	x s(x) = \sum\limits_{n=1} \frac{x^{n+1}}{n+1}.
 \]
 
 利用\cref{theorem:无穷级数.幂级数的和函数的性质3}，逐项求导，并由\[
-\frac{1}{1-x} = 1+x+x^2+\dotsb+x^n+\dotsb
-\quad(-1<x<1),
-\]得\[
-[x s(x)]'
-= \s \left( \frac{x^{i+1}}{i+1} \right)'
-= \s x^i
-= \frac{1}{1-x}
-\quad(\abs{x}<1).
-\]对上式积分，得\[
-x s(x) = \int_0^x \frac{1}{1-x} \dd{x} = -\ln(1-x)
-\quad(-1 \leq x < 1).
-\]于是，当\(x\neq0\)时，有\(s(x) = -\frac{1}{x} \ln(1-x)\).
+	\frac{1}{1-x} = 1+x+x^2+\dotsb+x^n+\dotsb
+	\quad(-1<x<1),
+\]
+得\[
+	[x s(x)]'
+	= \sum\limits_{n=1} \left( \frac{x^{n+1}}{n+1} \right)'
+	= \sum\limits_{n=1} x^n
+	= \frac{1}{1-x}
+	\quad(\abs{x}<1).
+\]
+对上式积分，
+得\[
+	x s(x) = \int_0^x \frac{1}{1-x} \dd{x} = -\ln(1-x)
+	\quad(-1 \leq x < 1).
+\]
+于是，当\(x\neq0\)时，有\(s(x) = -\frac{1}{x} \ln(1-x)\).
 
-而\(s(0)\)可由\(s(0) = a_0 = 1\)得出，或者由和函数的连续性得到，即\[
-s(0) = \lim\limits_{x\to0} s(x) = \lim\limits_{x\to0} \left[ -\frac{1}{x} \ln(1-x) \right] = 1.
-\]故\[
-s(x) = \left\{ \begin{array}{cl}
--\frac{1}{x} \ln(1-x), & x\in[-1,0)\cup(0,1), \\
-1, & x=0.
-\end{array} \right.
+而\(s(0)\)可由\(s(0) = a_0 = 1\)得出，
+或者由和函数的连续性得到，即\[
+	s(0)
+	= \lim\limits_{x\to0} s(x)
+	= \lim\limits_{x\to0} \left[ -\frac{1}{x} \ln(1-x) \right]
+	= 1.
+\]
+故\[
+	s(x) = \left\{ \begin{array}{cl}
+		-\frac{1}{x} \ln(1-x), & x\in[-1,0)\cup(0,1), \\
+		1, & x=0.
+	\end{array} \right.
 \]
 \end{solution}
 \end{example}
