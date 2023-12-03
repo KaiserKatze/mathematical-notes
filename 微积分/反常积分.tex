@@ -314,55 +314,46 @@ definition:定积分.无穷限的反常积分的定义3}
 
 \subsection{无界函数的反常积分的概念}
 \begin{definition}\label{definition:定积分.无界函数的反常积分的定义1}
-\def\LimitFormOfImproperIntegralB{\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}}%
-设函数\(f\colon(a,b]\to\mathbb{R}\)，且\[
-	\lim_{\epsilon\to a^+} f(x) = \infty;
+设函数\(f\colon(a,b]\to\mathbb{R}\)满足\[
+	\lim_{x \to a^+} f(x) = \infty;
 \]
 但是对于\(\forall\epsilon\in(0,b-a)\)，
 函数\(f\)在\([a+\epsilon,b]\)上可积.
 
 如果极限\[
-	\LimitFormOfImproperIntegralB
+	\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}
 \]存在且有限，
 那么把这个极限称为“函数\(f(x)\)在\((a,b]\)上的\DefineConcept{广义积分}”，
 记作\(\int_a^b f(x) \dd{x}\)；
 我们还称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{收敛}”；
-另外，我们把点\(a\)称为“积分\(\int_a^b f(x) \dd{x}\)的\DefineConcept{瑕点}”.
+另外，我们把点\(a\)称为“反常积分\(\int_a^b f(x) \dd{x}\)的\DefineConcept{瑕点}”.
 
 否则，称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{发散}”.
 \end{definition}
 
-\begin{definition}\label{definition:定积分.无界函数的反常积分的定义2}
-设函数\(f\)在\([a,b)\)上连续，点\(b\)为\(f\)的瑕点.
-取\(t < b\)，如果极限\[
-\lim\limits_{t \to b^-} \int_a^t f(x) \dd{x}
-\]存在，
-则定义
-\begin{equation}
-\int_a^b f(x) \dd{x}
-\defeq
-\lim\limits_{t \to b^-} \int_a^t f(x) \dd{x};
-\end{equation}
-否则，就称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{发散}”.
-\end{definition}
-
-\begin{definition}\label{definition:定积分.无界函数的反常积分的定义3}
-设函数\(f\)在\([a,c)\cup(c,b]\)上连续，点\(c\)为\(f\)的瑕点.
-如果两个反常积分\[
-\int_a^c f(x) \dd{x}
-\quad\text{与}\quad
-\int_c^b f(x) \dd{x}
-\]都收敛，则定义
-\begin{equation}
-\begin{split}
-\int_a^b f(x) \dd{x}
-&\defeq \int_a^c f(x) \dd{x} + \int_c^b f(x) \dd{x} \\
-&\equiv \lim\limits_{t \to c^-} \int_a^t f(x) \dd{x}
-	+ \lim\limits_{t \to c^+} \int_t^b f(x) \dd{x};
-\end{split}
-\end{equation}
-否则，就称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{发散}”.
-\end{definition}
+类似地，当\(b\)是瑕点时，
+我们也可以定义反常积分\[
+	\int_a^b f(x) \dd{x}
+	\defeq
+	\lim_{\epsilon\to0^+} \int_a^{b-\epsilon} f(x) \dd{x}.
+\]
+当\(a\)和\(b\)都是瑕点时，
+那么任取一点\(c\in(a,b)\)，我们定义\begin{align*}
+	\int_a^b f(x) \dd{x}
+	&\defeq
+	\int_a^c f(x) \dd{x}
+	+ \int_c^b f(x) \dd{x} \\
+	&= \lim_{\epsilon\to0^+} \int_{a+\epsilon}^c f(x) \dd{x}
+	+ \lim_{\epsilon\to0^+} \int_c^{b-\epsilon} f(x) \dd{x}.
+\end{align*}
+当开区间\((a,b)\)内一点\(d\)是瑕点时，
+我们定义\begin{align*}
+	\int_a^b f(x) \dd{x}
+	&\defeq \int_a^d f(x) \dd{x}
+		+ \int_d^b f(x) \dd{x} \\
+	&= \lim_{\epsilon\to0^+} \int_a^{d-\epsilon} f(x) \dd{x}
+		+ \lim_{\epsilon\to0^+} \int_{d+\epsilon}^b f(x) \dd{x}.
+\end{align*}
 
 \subsection{无界函数的反常积分的计算法}
 计算无界函数的反常积分，也可借助于牛顿--莱布尼茨公式.
@@ -1167,9 +1158,7 @@ B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)}.
 我们在本章学习了无穷限的反常积分和无界函数的反常积分这两类反常积分的基本概念%
 （\cref{definition:定积分.无穷限的反常积分的定义1,%
 definition:定积分.无穷限的反常积分的定义3%
-}，以及\cref{definition:定积分.无界函数的反常积分的定义1,%
-definition:定积分.无界函数的反常积分的定义2,%
-definition:定积分.无界函数的反常积分的定义3}）.
+}，以及\cref{definition:定积分.无界函数的反常积分的定义1}）.
 它们是对常义积分的定义的扩展.
 
 我们可以利用莱布尼茨公式
