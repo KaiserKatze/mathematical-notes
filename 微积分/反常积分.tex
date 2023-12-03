@@ -5,7 +5,8 @@
 相对地，原本的定积分又称作常义积分.
 
 \section{无穷限的反常积分}
-反常积分可以分为“无穷限的反常积分”和“无界函数的反常积分”两大类，
+反常积分（improper integral）
+可以分为“无穷限的反常积分”和“无界函数的反常积分”两大类，
 本节讨论第一类反常积分，
 即积分区间无界的积分.
 
@@ -289,26 +290,46 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{example}
 
 \section{无界函数的反常积分}
-如果函数\(f\)在点\(a\)的任一邻域内都无界，
-那么点\(a\)称为函数\(f\)的\DefineConcept{瑕点}（也称无穷间断点、\DefineConcept{无界间断点}）.
-无界函数的反常积分又称为\DefineConcept{瑕积分}%
-或\DefineConcept{第二类反常积分}.
+本节我们讨论第二类反常积分 --- “无界函数的反常积分”.
+
+先看一个具体的例子.
+表达式\[
+	\int_0^1 \frac{\dd{x}}{\sqrt{x}}
+\]在黎曼积分的意义下是没有意义的，
+因为被积函数\(\frac{1}{\sqrt{x}}\)在\(0\)的右邻域无界，
+于是我们把点\(x=0\)称为这个积分的“瑕点”.
+但是，对于\(\forall\epsilon\in(0,1)\)，积分\[
+	\int_\epsilon^1 \frac{\dd{x}}{\sqrt{x}}
+\]是有意义的，
+它是一个带有变动下限\(\epsilon\)的积分.
+由于极限\[
+	\lim_{\epsilon\to0^+} \int_\epsilon^1 \frac{\dd{x}}{\sqrt{x}}
+	= \lim_{\epsilon\to0^+} 2\sqrt{x}\eval_\epsilon^1
+	= 2 \lim_{\epsilon\to0^+} (1-\sqrt\epsilon)
+	= 2
+\]存在且有限，
+我们就定义\[
+	\int_0^1 \frac{\dd{x}}{\sqrt{x}}=2.
+\]
+
 \subsection{无界函数的反常积分的概念}
 \begin{definition}\label{definition:定积分.无界函数的反常积分的定义1}
-设函数\(f\)在\((a,b]\)上连续，点\(a\)为\(f\)的瑕点.
-取\(t > a\)，如果极限\[
-\lim\limits_{t \to a^+} \int_t^b f(x) \dd{x}
-\]存在，
-则称此极限为“函数\(f(x)\)在\((a,b]\)上的\DefineConcept{反常积分}”，
-仍然记作\(\int_a^b f(x) \dd{x}\)，
-即
-\begin{equation}
-\int_a^b f(x) \dd{x}
-\defeq
-\lim\limits_{t \to a^+} \int_t^b f(x) \dd{x}.
-\end{equation}
-这时也称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{收敛}”.
-如果上述极限不存在，则称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{发散}”.
+\def\LimitFormOfImproperIntegralB{\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}}%
+设函数\(f\colon(a,b]\to\mathbb{R}\)，且\[
+	\lim_{\epsilon\to a^+} f(x) = \infty;
+\]
+但是对于\(\forall\epsilon\in(0,b-a)\)，
+函数\(f\)在\([a+\epsilon,b]\)上可积.
+
+如果极限\[
+	\LimitFormOfImproperIntegralB
+\]存在且有限，
+那么把这个极限称为“函数\(f(x)\)在\((a,b]\)上的\DefineConcept{广义积分}”，
+记作\(\int_a^b f(x) \dd{x}\)；
+我们还称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{收敛}”；
+另外，我们把点\(a\)称为“积分\(\int_a^b f(x) \dd{x}\)的\DefineConcept{瑕点}”.
+
+否则，称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{发散}”.
 \end{definition}
 
 \begin{definition}\label{definition:定积分.无界函数的反常积分的定义2}
