@@ -1328,35 +1328,51 @@ s(x_0) = s_n(x_0) + r_n(x_0)
 \end{property}
 
 \begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质3}
-\def\s{\sum\limits_{n=1}^\infty }
-如果级数\(\sum\limits_{n=1}^\infty u_n(x)\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，且\(\sum\limits_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上一致收敛于\(s(x)\)，则级数\(\sum\limits_{n=1}^\infty u_n(x)\)在\([a,b]\)上可以逐项积分，即\[
-\int_{x_0}^x s(x) \dd{x}
-= \s \int_{x_0}^x u_n(x) \dd{x},
-\]其中\(a \leq x_0 < x \leq b\)，并且上式右端的级数在\([a,b]\)上也一致收敛.
+如果级数\(\sum\limits_{n=1}^\infty u_n(x)\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，
+且\(\sum\limits_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上一致收敛于\(s(x)\)，
+则级数\(\sum\limits_{n=1}^\infty u_n(x)\)在\([a,b]\)上可以逐项积分，
+即\[
+	\int_{x_0}^x s(x) \dd{x}
+	= \sum\limits_{n=1}^\infty \int_{x_0}^x u_n(x) \dd{x},
+\]
+其中\(a \leq x_0 < x \leq b\)，并且上式右端的级数在\([a,b]\)上也一致收敛.
 \begin{proof}
-因为级数\(\sum\limits_{n=1}^\infty u_n(x)\)在\([a,b]\)上一致收敛，由\cref{theorem:无穷级数.一致收敛级数的基本性质1}，\(s(x)\)和\(r_n(x)\)都在\([a,b]\)上连续，所以积分\(\int_{x_0}^x s(x) \dd{x}\)和\(\int_{x_0}^x r_n(x) \dd{x}\)存在，从而\[
-\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
-= \abs{\int_{x_0}^x r_n(x) \dd{x}}
-\leq \int_{x_0}^x \abs{r_n(x)} \dd{x}.
-\]又由级数的一致收敛性，\(\forall\epsilon>0\)，\(\exists N = N(\epsilon) \in \mathbb{N}^+\)，使得当\(n > N\)时，\(\forall x \in [a,b]\)，都有\[
-\abs{r_n(x)} < \frac{\epsilon}{b-a}.
-\]于是，当\(n > N\)时，有\[
-\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
-\leq \int_{x_0}^x \abs{r_n(x)} \dd{x}
-< \frac{\epsilon}{b-a} \cdot (x-x_0)
-\leq \epsilon.
-\]根据极限的定义，有\[
-\int_{x_0}^x s(x) \dd{x}
-= \lim\limits_{n\to\infty} \int_{x_0}^x s_n(x) \dd{x}
-= \lim\limits_{n\to\infty} \sum\limits_{i=1}^n \int_{x_0}^x u_i(x) \dd{x}
-= \sum\limits_{i=1}^\infty \int_{x_0}^x u_i(x) \dd{x}.
-\]由于\(N\)只依赖于\(\epsilon\)而与\(x_0,x\)无关，所以级数\(\sum\limits_{i=1}^\infty \int_{x_0}^x u_i(x) \dd{x}\)在\([a,b]\)上一致收敛.
+因为级数\(\sum\limits_{n=1}^\infty u_n(x)\)在\([a,b]\)上一致收敛，
+由\cref{theorem:无穷级数.一致收敛级数的基本性质1}，
+\(s(x)\)和\(r_n(x)\)都在\([a,b]\)上连续，
+所以积分\(\int_{x_0}^x s(x) \dd{x}\)和\(\int_{x_0}^x r_n(x) \dd{x}\)存在，
+从而\[
+	\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
+	= \abs{\int_{x_0}^x r_n(x) \dd{x}}
+	\leq \int_{x_0}^x \abs{r_n(x)} \dd{x}.
+\]
+又由级数的一致收敛性，
+\(\forall\epsilon>0\)，
+\(\exists N = N(\epsilon) \in \mathbb{N}^+\)，
+使得当\(n > N\)时，
+\(\forall x \in [a,b]\)，
+都有\[
+	\abs{r_n(x)} < \frac{\epsilon}{b-a}.
+\]
+于是，当\(n > N\)时，有\[
+	\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
+	\leq \int_{x_0}^x \abs{r_n(x)} \dd{x}
+	< \frac{\epsilon}{b-a} \cdot (x-x_0)
+	\leq \epsilon.
+\]
+根据极限的定义，有\[
+	\int_{x_0}^x s(x) \dd{x}
+	= \lim\limits_{n\to\infty} \int_{x_0}^x s_n(x) \dd{x}
+	= \lim\limits_{n\to\infty} \sum\limits_{i=1}^n \int_{x_0}^x u_i(x) \dd{x}
+	= \sum\limits_{n=1}^\infty \int_{x_0}^x u_n(x) \dd{x}.
+\]
+由于\(N\)只依赖于\(\epsilon\)而与\(x_0,x\)无关，
+所以级数\(\sum\limits_{n=1}^\infty \int_{x_0}^x u_n(x) \dd{x}\)在\([a,b]\)上一致收敛.
 \end{proof}
 \end{property}
 
 \begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质4}
-\def\s{\sum\limits_{n=1}^\infty }
-如果级数\(\sum\limits_{n=1}^\infty u_n(x)\)的各项\(u_n(x)\)都具有连续导数\(u'_i(x)\)，
+如果级数\(\sum\limits_{n=1}^\infty u_n(x)\)的各项\(u_n(x)\)都具有连续导数\(u'_n(x)\)，
 且\(\sum\limits_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上收敛于和\(s(x)\)，
 它并且级数\(\sum\limits_{n=1} u'_n(x)\)在\([a,b]\)上一致收敛，
 则级数\(\sum\limits_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上也一致收敛，且可逐项求导，
