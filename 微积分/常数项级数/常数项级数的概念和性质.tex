@@ -77,33 +77,53 @@
 \end{definition}
 
 \begin{example}\label{example:无穷级数.等比级数的收敛性}
-无穷级数\[
-	\sum\limits_{n=1}^\infty a q^n
-	\quad(a\neq0)
-\]
+级数\(\sum\limits_{n=0}^\infty q^n\)
 叫做\DefineConcept{等比级数}或\DefineConcept{几何级数}.
-我们把常数\(q\)叫做“级数\(\sum\limits_{n=1}^\infty a q^n\)的\DefineConcept{公比}”.
+我们把常数\(q\)叫做“级数\(\sum\limits_{n=0}^\infty q^n\)的\DefineConcept{公比}”.
 试讨论上述等比级数的收敛性.
 \begin{solution}
-当\(q = 1\)时，则部分和\(s_n=na\)，
-那么\(\lim\limits_{n\to\infty} s_n
-= \lim\limits_{n\to\infty} na = \infty\)，即级数发散.
+根据\(q\)的取值范围，分情况讨论.
+\begin{enumerate}
+	\item 当\(q = 1\)时，则部分和为\[
+		\sum\limits_{i=0}^n q^n
+		= n,
+	\]
+	那么\(\lim\limits_{n\to\infty} \sum\limits_{i=0}^n q^n
+	= \lim\limits_{n\to\infty} n
+	= \infty\)，
+	即级数发散.
 
-当\(q \neq 1\)，则\[
-	s_n = \frac{a(1-q^n)}{1-q}
-	= \frac{a}{1-q} - \frac{aq^n}{1-q}.
-\]
-当\(\abs{q} < 1\)时，
-由于\(\lim\limits_{n\to\infty} q^n=0\)，
-从而\(\lim\limits_{n\to\infty} s_n=\frac{a}{1-q}\)，
-因此级数收敛，其和为\(\frac{a}{1-q}\).
-当\(\abs{q} > 1\)时，
-由于\(\lim\limits_{n\to\infty} q^n=\infty\)，
-从而\(\lim\limits_{n\to\infty} s_n=\infty\)，
-即级数发散.
-当\(q = -1\)时，级数变为\(a-a+a-a+\dotsb\)，
-显然\(s_n\)随着\(n\)为奇数或为偶数而等于\(a\)或等于零，
-从而\(s_n\)的极限不存在，这是级数也发散.
+	\item 当\(q \neq 1\)，
+	根据\cref{theorem:等比数列.前n项和} 有\[
+		\sum\limits_{i=0}^n q^n
+		= \frac{1-q^n}{1-q}
+		= \frac{1}{1-q} - \frac{q^n}{1-q}.
+	\]
+	\begin{enumerate}
+		\item 当\(\abs{q} < 1\)时，
+		由于\(\lim\limits_{n\to\infty} q^n=0\)，
+		从而\(\lim\limits_{n\to\infty} \sum\limits_{i=0}^n q^n
+		=\frac{a}{1-q}\)，
+		因此级数收敛，
+		其和为\(\frac{a}{1-q}\).
+
+		\item 当\(\abs{q} > 1\)时，
+		由于\(\lim\limits_{n\to\infty} q^n=\infty\)，
+		从而\(\lim\limits_{n\to\infty} \sum\limits_{i=0}^n q^n
+		=\infty\)，
+		级数发散.
+
+		\item 当\(q = -1\)时，部分和为\[
+			\sum\limits_{i=0}^n q^n
+			= \begin{cases}
+				1, & \text{\(n\)是偶数}, \\
+				0, & \text{\(n\)是奇数}.
+			\end{cases}
+		\]
+		根据\cref{theorem:子列极限.数列收敛的充要条件}，
+		\(\sum\limits_{i=0}^n q^n\)的极限不存在，级数发散.
+	\end{enumerate}
+\end{enumerate}
 
 综上所述，{\color{red}当\(\abs{q} < 1\)时，几何级数收敛；
 当\(\abs{q} \geq 1\)时，几何级数发散.}
