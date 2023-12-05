@@ -133,149 +133,193 @@
 \end{enumerate}
 \end{definition}
 
-下面讨论定积分的性质.下列各性质中积分上下限的大小，如不特别指明，均不加限制；并假定各性质中所列出的定积分都是存在的.
+下面讨论定积分的性质.
+下列各性质中积分上下限的大小，
+如不特别指明，均不加限制；
+并假定各性质中所列出的定积分都是存在的.
 \begin{property}\label{theorem:定积分.定积分性质1}
+%@see: 《高等数学（第六版 上册）》 P231. 性质1
 \(\int_a^b [f(x) \pm g(x)] \dd{x}
 = \int_a^b f(x) \dd{x} \pm \int_a^b g(x) \dd{x}\).
 \begin{proof}
-显然有\[
-\begin{split}
-\int_a^b [f(x) \pm g(x)] \dd{x}
-&= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n [f(\xi_i) \pm g(\xi_i)] \increment x_i \\
-&= \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n f(\xi_i) \increment x_i
-	\pm \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n g(\xi_i) \increment x_i \\
-&= \int_a^b f(x) \dd{x} \pm \int_a^b g(x) \dd{x}.
-\qedhere
-\end{split}
-\]
+显然有\begin{align*}
+	\int_a^b [f(x) \pm g(x)] \dd{x}
+	&= \lim\limits_{\lambda\to0}
+		\sum\limits_{i=1}^n [f(\xi_i) \pm g(\xi_i)] \increment x_i \\
+	&= \lim\limits_{\lambda\to0}
+		\sum\limits_{i=1}^n f(\xi_i) \increment x_i
+		\pm
+		\lim\limits_{\lambda\to0}
+		\sum\limits_{i=1}^n g(\xi_i) \increment x_i \\
+	&= \int_a^b f(x) \dd{x} \pm \int_a^b g(x) \dd{x}.
+	\qedhere
+\end{align*}
 \end{proof}
 \end{property}
 上述性质对任意有限个函数都是成立的.
 
 \begin{property}\label{theorem:定积分.定积分性质2}
-\(\int_a^b{kf(x)\dd{x}}=k\int_a^b f(x) \dd{x}\)（其中\(k\)是不随\(x\)变化的数）.
+%@see: 《高等数学（第六版 上册）》 P231. 性质2
+对于任意实数\(k\)，
+总有\(\int_a^b k f(x) \dd{x}
+=k\int_a^b f(x) \dd{x}\).
 \end{property}
 
 \begin{property}\label{theorem:定积分.定积分性质3}
-设\(a < c < b\)，则\(\int_a^b f(x) \dd{x}
-= \int_a^c{f(x)\dd{x}} + \int_c^b{f(x)\dd{x}}\).
+%@see: 《高等数学（第六版 上册）》 P231. 性质3
+\(\int_a^b f(x) \dd{x}
+= \int_a^c f(x) \dd{x}
++ \int_c^b f(x) \dd{x}\).
 \end{property}
 上述性质表明定积分对于积分区间具有“可加性”.
 
-\begin{example}
-设连续函数\(f(x)\)满足\(f(x+2)-f(x)=x\)，且\(\int_0^2 f(x) \dd{x} = 0\)，求\(\int_1^3 f(x) \dd{x}\).
-\begin{solution}
-由\cref{theorem:定积分.定积分性质3} 有，\[
-\int_1^3 f(x) \dd{x}
-= \int_1^2 f(x) \dd{x}
-+ \int_2^3 f(x) \dd{x}.
-\]而\[
-\int_2^3 f(x) \dd{x}
-\xlongequal{x=t+2} \int_0^1 f(t+2) \dd{t} \\
-= \int_0^1 [f(t) + t] \dd{t} \\
-= \int_0^1 f(t) \dd{t} + \frac{1}{2},
-\]因此\[
-\int_1^3 f(x) \dd{x}
-= \int_1^2 f(x) \dd{x}
-+ \int_0^1 f(t) \dd{t} + \frac{1}{2}
-= \int_0^2 f(x) \dd{x} + \frac{1}{2}
-= \frac{1}{2}.
-\]
-\end{solution}
-\end{example}
+%\begin{example}
+%设连续函数\(f(x)\)满足\(f(x+2)-f(x)=x\)，
+%且\(\int_0^2 f(x) \dd{x} = 0\)，
+%求\(\int_1^3 f(x) \dd{x}\).
+%\begin{solution}
+%由\cref{theorem:定积分.定积分性质3} 有，\[
+%\int_1^3 f(x) \dd{x}
+%= \int_1^2 f(x) \dd{x}
+%+ \int_2^3 f(x) \dd{x}.
+%\]而\[
+%\int_2^3 f(x) \dd{x}
+%\xlongequal{x=t+2} \int_0^1 f(t+2) \dd{t} \\
+%= \int_0^1 [f(t) + t] \dd{t} \\
+%= \int_0^1 f(t) \dd{t} + \frac{1}{2},
+%\]因此\[
+%\int_1^3 f(x) \dd{x}
+%= \int_1^2 f(x) \dd{x}
+%+ \int_0^1 f(t) \dd{t} + \frac{1}{2}
+%= \int_0^2 f(x) \dd{x} + \frac{1}{2}
+%= \frac{1}{2}.
+%\]
+%\end{solution}
+%\end{example}
 
 \begin{property}\label{theorem:定积分.定积分性质4}
-\(\int_a^b 1 \dd{x} = \int_a^b \dd{x} = b-a\).
+%@see: 《高等数学（第六版 上册）》 P232. 性质4
+\(\int_a^b 1 \dd{x}
+= \int_a^b \dd{x}
+= b-a\).
 \end{property}
 
 \begin{property}\label{theorem:定积分.定积分性质5}
+%@see: 《高等数学（第六版 上册）》 P232. 性质5
 如果在区间\([a,b]\)上，\(f(x) \geq 0\)，则\(\int_a^b f(x) \dd{x} \geq 0\).
 \begin{proof}
-因为\(f(x) \geq 0\)，所以在区间\([a,b]\)上任取\(n\)个分点\(\AutoTuple{x}{n}\)使之满足\[
-a = x_0 \leq x_1 \leq x_2 \leq \dotsb \leq x_n \leq x_{n+1} = b,
-\]在各个小区间上任取一点\(\xi_i\in[x_i,x_{i+1}]\ (i=0,1,2,\dotsc,n)\)，就有\[
-f(\xi_i)\geq0.
+因为\(f(x) \geq 0\)，
+所以在区间\([a,b]\)上任取\(n\)个分点\(\AutoTuple{x}{n}\)使之满足\[
+	a = x_0 \leq x_1 \leq x_2 \leq \dotsb \leq x_n \leq x_{n+1} = b,
+\]
+在各个小区间上任取一点\(\xi_i\in[x_i,x_{i+1}]\ (i=0,1,2,\dotsc,n)\)，
+就有\[
+	f(\xi_i)\geq0.
 \]
 
-又因为小区间\([x_i,x_{i+1}]\)的长度\(\increment x_i = x_{i+1}-x_i \geq 0\ (i=0,1,2,\dotsc,n)\)，因此\[
-\sum\limits_{i=0}^n f(\xi_i) \increment x_i \geq 0,
-\]令\(\lambda = \max\{\increment x_0, \increment x_1, \dotsc, \increment x_n\}\)，则由极限的保号性可得\[
-\int_a^b f(x) \dd{x} = \lim\limits_{\lambda\to0} \sum\limits_{i=0}^n f(\xi_i) \increment x_i \geq 0.
-\qedhere
+又因为小区间\([x_i,x_{i+1}]\)的长度
+\(\increment x_i = x_{i+1}-x_i \geq 0\ (i=0,1,2,\dotsc,n)\)，
+因此\[
+	\sum\limits_{i=0}^n f(\xi_i) \increment x_i \geq 0,
+\]
+令\(\lambda = \max\{\increment x_0, \increment x_1, \dotsc, \increment x_n\}\)，
+则由极限的保号性可得\[
+	\int_a^b f(x) \dd{x}
+	= \lim\limits_{\lambda\to0} \sum\limits_{i=0}^n f(\xi_i) \increment x_i \geq 0.
+	\qedhere
 \]
 \end{proof}
 \end{property}
 上述性质表明定积分具有“保号性”.
 
 \begin{example}
-比较\(\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t}\)与\(\int_0^1 t^n \abs{\ln t} \dd{t}\)的大小（\(n=1,2,\dotsc\)）.
+比较\(\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t}\)
+与\(\int_0^1 t^n \abs{\ln t} \dd{t}\)的大小（\(n=1,2,\dotsc\)）.
 \begin{solution}
 直接相减得
 \begin{align*}
-&\hspace{-20pt}
-\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t} - \int_0^1 t^n \abs{\ln t} \dd{t} \\
-&= \int_0^1 [\abs{\ln t} \ln^n(1+t) - t^n \abs{\ln t}] \dd{t} \\
-&= \int_0^1 \abs{\ln t} [\ln^n(1+t) - t^n] \dd{t}.
+	&\hspace{-20pt}
+	\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t} - \int_0^1 t^n \abs{\ln t} \dd{t} \\
+	&= \int_0^1 [\abs{\ln t} \ln^n(1+t) - t^n \abs{\ln t}] \dd{t} \\
+	&= \int_0^1 \abs{\ln t} [\ln^n(1+t) - t^n] \dd{t}.
 \end{align*}
 注意到\(\ln t\)的自然定义域为\(t > 0\).
-当\(0 < t \leq 1\)时，\(\ln(1+t) < t\)，\(\ln^n(1+t) < t^n\)，\[
-\abs{\ln t} [\ln^n(1+t) - t^n] < 0,
+当\(0 < t \leq 1\)时，
+\(\ln(1+t) < t\)，
+\(\ln^n(1+t) < t^n\)，
+\[
+	\abs{\ln t} [\ln^n(1+t) - t^n] < 0,
 \]\[
-\int_0^1 \abs{\ln t} [\ln^n(1+t) - t^n] \dd{t} < 0,
+	\int_0^1 \abs{\ln t} [\ln^n(1+t) - t^n] \dd{t} < 0,
 \]\[
-\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t} < \int_0^1 t^n \abs{\ln t} \dd{t}.
+	\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t} < \int_0^1 t^n \abs{\ln t} \dd{t}.
 \]
 \end{solution}
 \end{example}
 
 \begin{corollary}\label{theorem:定积分.定积分性质5推论1}
+%@see: 《高等数学（第六版 上册）》 P232. 推论1
 如果在区间\([a,b]\)上，\(f(x) \leq g(x)\)，则\[
-\int_a^b f(x) \dd{x} \leq \int_a^b g(x) \dd{x}.
+	\int_a^b f(x) \dd{x} \leq \int_a^b g(x) \dd{x}.
 \]
 \begin{proof}
 令\(\phi(x) = g(x) - f(x)\).
 因为\(f(x) \leq g(x)\)，所以\(\phi(x) \geq 0\).
 由\cref{theorem:定积分.定积分性质5} 得\[
-\int_a^b \phi(x) \dd{x} \geq 0,
-\]又由\cref{theorem:定积分.定积分性质1} 得\[
-\int_a^b \phi(x) \dd{x}
-= \int_a^b [g(x) - f(x)] \dd{x}
-= \int_a^b g(x) \dd{x} - \int_a^b f(x) \dd{x},
-\]所以\[
-\int_a^b g(x) \dd{x} - \int_a^b f(x) \dd{x} \geq 0,
-\]从而有\[
-\int_a^b g(x) \dd{x} \geq \int_a^b f(x) \dd{x}.
-\qedhere
+	\int_a^b \phi(x) \dd{x} \geq 0,
+\]
+又由\cref{theorem:定积分.定积分性质1} 得\[
+	\int_a^b \phi(x) \dd{x}
+	= \int_a^b [g(x) - f(x)] \dd{x}
+	= \int_a^b g(x) \dd{x} - \int_a^b f(x) \dd{x},
+\]
+所以\[
+	\int_a^b g(x) \dd{x} - \int_a^b f(x) \dd{x} \geq 0,
+\]
+从而有\[
+	\int_a^b g(x) \dd{x} \geq \int_a^b f(x) \dd{x}.
+	\qedhere
 \]
 \end{proof}
 \end{corollary}
 
 \begin{corollary}\label{theorem:定积分.定积分性质5推论2}
+%@see: 《高等数学（第六版 上册）》 P233. 推论2
 当\(a<b\)时，\(\abs{\int_a^b f(x) \dd{x}} \leq \int_a^b \abs{f(x)} \dd{x}\).
 \begin{proof}
 因为\[
--\abs{f(x)} \leq f(x) \leq \abs{f(x)},
-\]那么由\cref{theorem:定积分.定积分性质5推论1} 和\cref{theorem:定积分.定积分性质2} 可得\[
--\int_a^b \abs{f(x)} \dd{x}
-\leq
-\int_a^b f(x) \dd{x}
-\leq
-\int_a^b \abs{f(x)} \dd{x},
-\]即\[
-\abs{\int_a^b f(x) \dd{x}} \leq \int_a^b \abs{f(x)} \dd{x}.
-\qedhere
+	-\abs{f(x)} \leq f(x) \leq \abs{f(x)},
+\]
+那么由\cref{theorem:定积分.定积分性质5推论1,theorem:定积分.定积分性质2} 可得\[
+	-\int_a^b \abs{f(x)} \dd{x}
+	\leq
+	\int_a^b f(x) \dd{x}
+	\leq
+	\int_a^b \abs{f(x)} \dd{x},
+\]
+即\[
+	\abs{\int_a^b f(x) \dd{x}} \leq \int_a^b \abs{f(x)} \dd{x}.
+	\qedhere
 \]
 \end{proof}
 \end{corollary}
 
 \begin{property}\label{theorem:定积分.定积分性质6}
-设\(M\)及\(m\)分别是函数\(f(x)\)在区间\([a,b]\)上的最大值及最小值，则\[
-m(b-a) \leq \int_a^b f(x) \dd{x} \leq M(b-a).
+%@see: 《高等数学（第六版 上册）》 P233. 性质6
+设\(M\)及\(m\)分别是函数\(f(x)\)在区间\([a,b]\)上的最大值及最小值，
+则\[
+	m(b-a) \leq \int_a^b f(x) \dd{x} \leq M(b-a).
 \]
 \begin{proof}
-因为\(m \leq f(x) \leq M\)，所以由上述推论，得\[
-m(b-a) = \int_a^b m \dd{x} \leq \int_a^b f(x) \dd{x} \leq \int_a^b M \dd{x} = M(b-a).
-\qedhere
+因为\(m \leq f(x) \leq M\)，
+所以由上述推论，
+得\[
+	m(b-a)
+	= \int_a^b m \dd{x}
+	\leq \int_a^b f(x) \dd{x}
+	\leq \int_a^b M \dd{x}
+	= M(b-a).
+	\qedhere
 \]
 \end{proof}
 \end{property}
@@ -283,27 +327,41 @@ m(b-a) = \int_a^b m \dd{x} \leq \int_a^b f(x) \dd{x} \leq \int_a^b M \dd{x} = M(
 
 \subsection{积分中值定理}
 \begin{theorem}[定积分中值定理]\label{theorem:定积分.积分中值定理0}
-设函数\(f(x)\)在积分区间\([a,b]\)上连续，则\(\exists\xi\in[a,b]\)，使下式成立：\[
-\int_a^b f(x) \dd{x} = (b-a) f(\xi).
-\]这个公式称为\DefineConcept{积分中值公式}.
+设函数\(f(x)\)在积分区间\([a,b]\)上连续，
+则\(\exists\xi\in[a,b]\)，
+使\[
+	\int_a^b f(x) \dd{x} = (b-a) f(\xi)
+\]成立.
+\rm
+这个公式称为\DefineConcept{积分中值公式}.
 \end{theorem}
 显然，积分中值公式不论\(a<b\)或\(a>b\)都是成立的.
 
 按积分中值公式所得\[
-f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
-\]称为函数\(f(x)\)在区间\([a,b]\)上的\DefineConcept{平均值}.
+	f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
+\]
+称为函数\(f(x)\)在区间\([a,b]\)上的\DefineConcept{平均值}.
 
 \begin{theorem}[积分第一中值定理]\label{theorem:定积分.积分中值定理1}
 若\(f,g \in R[a,b]\)，
 且\(\forall x\in[a,b] : g(x) \gtrless 0\)，
-那么\(\exists\mu\in\left[\inf\limits_{a \leq x \leq b} f(x),\sup\limits_{a \leq x \leq b} f(x)\right]\)，使得\[
-\int_a^b f(x) g(x) \dd{x} = \mu \int_a^b g(x) \dd{x}.
+那么\(\exists\mu\in\left[
+	\inf\limits_{a \leq x \leq b} f(x),
+	\sup\limits_{a \leq x \leq b} f(x)
+\right]\)，
+使得\[
+	\int_a^b f(x) g(x) \dd{x} = \mu \int_a^b g(x) \dd{x}.
 \]
 \end{theorem}
 
 \begin{corollary}\label{theorem:定积分.积分中值定理1推论1}
-若\(f \in C[a,b]\)，\(g \in R[a,b]\)，\(g(x) \gtrless 0\)，那么\(\exists\xi\in[a,b]\)，使得\[
-\int_a^b f(x) g(x) \dd{x} = f(\xi) \int_a^b g(x) \dd{x}.
+若\(f \in C[a,b]\)，
+\(g \in R[a,b]\)，
+\(g(x) \gtrless 0\)，
+那么\(\exists\xi\in[a,b]\)，
+使得\[
+	\int_a^b f(x) g(x) \dd{x}
+	= f(\xi) \int_a^b g(x) \dd{x}.
 \]
 \end{corollary}
 
