@@ -57,23 +57,23 @@
 证明：对于任意\(k>1\)，有\[
 	\sum_{n=1}^\infty \frac{a_n}{s_n^k} < +\infty.
 \]
-%TODO
-%\begin{proof}
-%因为\[
-%	\frac{a_n}{s_n^k}
-%	= \frac{s_n-s_{n-1}}{s_n^k}
-%	< \frac{s_n-s_{n-1}}{s_{n-1} s_n^{k-1}}
-%	= \frac{1}{s_{n-1} s_n^{k-2}} - \frac{1}{s_n^{k-1}}
-%	< \frac{1}{s_{n-1}^{k-1}} - \frac{1}{s_n^{k-1}},
-%\]
-%所以\[
-%	\sum\limits_{i=2}^n \frac{a_i}{s_i^k}
-%	< \frac{1}{s_1^{k-1}} - \frac{1}{s_n^{k-1}}
-%	< \frac{1}{a_1^{k-1}},
-%\]
-%这就是说部分和\(\sum\limits_{i=1}^n \frac{a_i}{s_i^k}\)有界，
-%因此，正项级数\(\sum\limits_{n=1}^\infty a_n\)收敛.
-%\end{proof}
+\begin{proof}
+当\(k>1\)时，
+有\begin{align*}
+	\sum_{i=2}^n \frac{a_i}{s_i^k}
+	&= \sum_{i=2}^n \frac{s_i-s_{i-1}}{s_i^k} \\
+	&= \sum_{i=2}^n \frac{1}{s_i^k} \int_{s_{i-1}}^{s_i} \dd{x}
+			&(\text{\cref{theorem:定积分.定积分性质4}}) \\
+	&\leq \sum_{i=2}^n \int_{s_{i-1}}^{s_i} \frac{1}{x^k} \dd{x}
+			&(\text{\cref{theorem:定积分.定积分性质6}}) \\
+	&= \int_{s_1}^{s_n} \frac{1}{x^k} \dd{x}
+			&(\text{\cref{theorem:定积分.定积分性质3}}) \\
+	&\leq \int_{s_1}^{+\infty} \frac{1}{x^k} \dd{x}
+	< +\infty,
+			&(\text{\cref{example:定积分.p积分}})
+\end{align*}
+可见该级数的部分和有界，因此该级数收敛.
+\end{proof}
 \end{example}
 
 \subsubsection{比较审敛法}
