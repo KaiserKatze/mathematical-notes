@@ -274,8 +274,10 @@ n^4
 \section{等比数列}
 \begin{definition}
 如果数列\(\{a_n\}\)满足\[
-a_n = a_1 q^{n-1} \quad(q\neq1),
-\]则称该数列为\DefineConcept{等比数列}或\DefineConcept{几何数列}（geometrical progression），
+	a_n = a q^{n-1} \quad(a\neq0,q\neq1),
+\]
+则称该数列为\DefineConcept{等比数列}
+或\DefineConcept{几何数列}（geometrical progression），
 其中\(q\)称作\DefineConcept{公比}.
 
 等比数列的递推公式为\(\frac{a_n}{a_{n-1}} = q\ (n \geq 2)\).
@@ -283,34 +285,45 @@ a_n = a_1 q^{n-1} \quad(q\neq1),
 
 \begin{property}[等比数列求和]\label{theorem:等比数列.前n项和}
 设数列\(\{a_n\}\)为等比数列\[
-	a_n = a_1 q^{n-1} \qquad (q \neq 1)
+	a_n = a q^{n-1} \qquad (q \neq 1)
 \]
 则有\[
-	S_n = \sum\limits_{i=1}^n a_i
+	\sum\limits_{i=1}^n a_i
 	= \left\{ \begin{array}{cl}
-		\frac{a_1 (q^n-1)}{q-1}, & q \neq 1, \\
+		\frac{a (q^n-1)}{q-1}, & q \neq 1, \\
 		na, & q = 1.
 	\end{array} \right.
 \]
 \begin{proof}
+记\(S_n = \sum\limits_{i=1}^n a_i\).
+
 当\(q = 1\)时，显然有\(S_n = na\).
+
 当\(q \neq 1\)时，有\[
 	q S_n
 	= aq+aq^2+aq^3+\dotsb+aq^n,
+	\eqno(1)
 \]\[
 	S_{n+1}
 	= a+aq+aq^2+\dotsb+aq^{n-1}+aq^n,
+	\eqno(2)
 \]
-因此\[
+用(2)式减去(1)式便得\[
 	S_{n+1} - q S_n
 	= a.
+	\eqno(3)
 \]
-又因为\(S_{n+1} - S_n = aq^n\)，所以\[
+又因为\[
+	S_{n+1} - S_n = aq^n,
+	\eqno(4)
+\]
+用(4)式减去(3)式，得\[
 	(q-1) S_n
 	= (S_{n+1} - S_n) - (S_{n+1} - q S_n)
 	= aq^n - a
 	= a(q^n - 1),
-\]\[
+\]
+整理得\[
 	S_n = \frac{a(q^n - 1)}{q-1}.
 	\qedhere
 \]
