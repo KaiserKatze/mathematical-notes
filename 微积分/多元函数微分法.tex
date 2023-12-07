@@ -2081,64 +2081,75 @@ f(x) &= f(x_0) + f'(x_0) (x-x_0) \\
 
 \begin{theorem}\label{theorem:多元函数微分法.二元函数的泰勒公式}
 \def\oprt#1{\left(h\pdv{x}+k\pdv{y}\right)\ifx\relax#1\relax\else^{#1}\fi}
-设\(z=f(x,y)\)在点\(P_0(x_0,y_0)\)的某一邻域\(U(P_0)\)内连续且有直到\((n+1)\)阶的连续偏导数，点\(\opair{x_0+h,y_0+k} \in U(P_0)\)，则有
-\begin{gather}
-f(x_0+h,y_0+k) = p_n + R_n,
-\tag1
+设\(z=f(x,y)\)在点\(P_0(x_0,y_0)\)的某一邻域\(U(P_0)\)内连续且有直到\((n+1)\)阶的连续偏导数，
+点\((x_0+h,y_0+k) \in U(P_0)\)，
+则有\begin{gather}
+	f(x_0+h,y_0+k) = p_n + R_n,
+	\tag1
 \end{gather}
-其中\begin{gather}
-\label{equation:多元函数微分法.二元函数的泰勒多项式}
-\begin{split}
-p_n(x_0,y_0)
-&=f(x_0,y_0)
- + \oprt{} f(x_0,y_0) \\
-&\hspace{20pt}+ \frac{1}{2!} \oprt{2} f(x_0,y_0) \\
-&\hspace{20pt}+ \dotsb + \frac{1}{n!} \oprt{n} f(x_0,y_0),
-\end{split}
-\tag2
+其中\begin{gather}\label{equation:多元函数微分法.二元函数的泰勒多项式}
+	\begin{split}
+		p_n(x_0,y_0)
+		&=f(x_0,y_0)
+		+ \oprt{} f(x_0,y_0) \\
+		&\hspace{20pt}+ \frac{1}{2!} \oprt{2} f(x_0,y_0) \\
+		&\hspace{20pt}+ \dotsb + \frac{1}{n!} \oprt{n} f(x_0,y_0),
+	\end{split}
+	\tag2
 \end{gather}
-\begin{gather}
-\label{equation:多元函数微分法.二元函数的泰勒公式的拉格朗日型余项}
-R_n = \frac{1}{(n+1)!} \oprt{n+1} f(x_0+\theta h,y_0+\theta k)
-\quad (0 < \theta < 1),
-\tag3
-\end{gather}\[
-\oprt{m} f(x_0,y_0)
-\equiv
-\sum\limits_{p=0}^{m} C_m^p h^p k^{m-p}
- \eval{\frac{\partial^m f}{\partial x^p \partial y^{m-p}}}_{(x_0,y_0)},
-\quad m=1,2,\dotsc,
+\begin{gather}\label{equation:多元函数微分法.二元函数的泰勒公式的拉格朗日型余项}
+	R_n = \frac{1}{(n+1)!} \oprt{n+1} f(x_0+\theta h,y_0+\theta k)
+	\quad (0 < \theta < 1),
+	\tag3
+\end{gather}
+\[
+	\oprt{m} f(x_0,y_0)
+	\defeq
+	\sum\limits_{p=0}^{m} C_m^p h^p k^{m-p}
+		\eval{
+			\frac{\partial^m f}{\partial x^p \partial y^{m-p}}
+		}_{(x_0,y_0)},
+	\quad m=1,2,\dotsc,
 \]
 
-公式(1)称为二元函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)的\(n\)阶\DefineConcept{泰勒公式}，多项式(2)称为\DefineConcept{泰勒多项式}，而\(R_n\)的表达式(3)称为\DefineConcept{拉格朗日型余项}.
+公式(1)称为
+“二元函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)的\(n\)阶\DefineConcept{泰勒公式}”，
+多项式(2)称为\DefineConcept{泰勒多项式}，
+而\(R_n\)的表达式(3)称为\DefineConcept{拉格朗日型余项}.
 \end{theorem}
-由二元函数的泰勒公式可知，以泰勒多项式\(p_n\)近似表达函数\(f(x_0+h,y_0+k)\)时，其误差为\(\abs{R_n}\).
-由假设，函数的各\((n+1)\)阶偏导数都连续，故它们的绝对值在点\((x_0,y_0)\)的某一邻域内斗不超过某一正常数\(M\).于是，有如下的误差估计式\begin{gather}
-\begin{split}
-\abs{R_n}
-&\leq \frac{M}{(n+1)!} (\abs{h}+\abs{k})^{n+1}
-= \frac{M}{(n+1)!} \rho^{n+1} \left( \frac{\abs{h}}{\rho} + \frac{\abs{k}}{\rho} \right)^{n+1} \\
-&\leq \frac{M}{(n+1)!} (\sqrt{2})^{n+1} \rho^{n+1},
-\end{split}
-\tag4
+由二元函数的泰勒公式可知，
+以泰勒多项式\(p_n\)近似表达函数\(f(x_0+h,y_0+k)\)时，
+其误差为\(\abs{R_n}\).
+由假设，函数的各\((n+1)\)阶偏导数都连续，
+故它们的绝对值在点\((x_0,y_0)\)的某一邻域内斗不超过某一正常数\(M\).
+于是，有如下的误差估计式\begin{gather}
+	\begin{split}
+		\abs{R_n}
+		&\leq \frac{M}{(n+1)!} (\abs{h}+\abs{k})^{n+1}
+		= \frac{M}{(n+1)!} \rho^{n+1}
+			\left( \frac{\abs{h}}{\rho} + \frac{\abs{k}}{\rho} \right)^{n+1} \\
+		&\leq \frac{M}{(n+1)!} (\sqrt{2})^{n+1} \rho^{n+1},
+	\end{split}
+	\tag4
 \end{gather}其中\(\rho=\sqrt{h^2+k^2}\).
 
 由(4)式可知，误差\(\abs{R_n}\)是当\(\rho\to0\)时比\(\rho^n\)高阶的无穷小.
 
-当\(n=0\)时，公式(1)成为\begin{gather}
-\label{equation:多元函数微分法.二元函数的拉格朗日中值公式}
-\begin{split}
-f(x_0+h,y_0+k)
-&=f(x_0,y_0)
-+h f'_x(x_0+\theta h,y_0+\theta k) \\
-&\hspace{20pt}+k f'_y(x_0+\theta h,y_0+\theta k)
-\end{split}
-\quad(0<\theta<1).
-\tag5
+当\(n=0\)时，公式(1)成为
+\begin{gather}\label{equation:多元函数微分法.二元函数的拉格朗日中值公式}
+	\begin{split}
+		f(x_0+h,y_0+k)
+		&=f(x_0,y_0)
+		+h f'_x(x_0+\theta h,y_0+\theta k) \\
+		&\hspace{20pt}+k f'_y(x_0+\theta h,y_0+\theta k)
+	\end{split}
+	\quad(0<\theta<1).
+	\tag5
 \end{gather}上式称为\DefineConcept{二元函数的拉格朗日中值公式}.
 由(5)式即可得以下结论：
 
-如果函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在某一区域内都恒等于零，则函数\(f(x,y)\)在该区域内为一常数.
+如果函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在某一区域内都恒等于零，
+则函数\(f(x,y)\)在该区域内为一常数.
 
 \begin{example}
 求函数\(f(x,y) = \ln(1+x+y)\)在点\((0,0)\)的三阶泰勒公式.
@@ -2196,7 +2207,8 @@ e^{h(h^2+k^2)} = 1 + o(\sqrt{h^2+k^2}).
 \increment z = f(h,k) = \frac{1 - e^{h(h^2+k^2)}}{h^2+k^2}
 = 0 \cdot h + 0 \cdot k + \frac{o(\sqrt{h^2+k^2})}{h^2+k^2},
 \end{align*}
-因为\(\frac{o(\sqrt{h^2+k^2})}{h^2+k^2}\)是\(\sqrt{h^2+k^2}\)的无穷小，所以\(f\)在点\((0,0)\)可微.
+因为\(\frac{o(\sqrt{h^2+k^2})}{h^2+k^2}\)是\(\sqrt{h^2+k^2}\)的无穷小，
+所以\(f\)在点\((0,0)\)可微.
 \end{proof}
 \end{example}
 
