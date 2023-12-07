@@ -575,8 +575,8 @@ l\pdv{T}{l}+g\pdv{T}{g}
 记作\(\dd{z}\)，即\[
 \dd{z} = A \increment x + B \increment y.
 \]可以把\(\dd{z}\)视作%
-向量\(\opair{A,B}\)与\(\opair{\increment x,\increment y}\)的内积，
-视\(\rho\)为向量\(\opair{\increment x,\increment y}\)的模.
+向量\((A,B)\)与\((\increment x,\increment y)\)的内积，
+视\(\rho\)为向量\((\increment x,\increment y)\)的模.
 
 如果函数在区域\(D\)内各点处都可微分，那么称这函数在\(D\)内\DefineConcept{可微分}.
 \end{definition}
@@ -595,7 +595,7 @@ l\pdv{T}{l}+g\pdv{T}{g}
 
 \begin{corollary}
 如果函数\(z=f(x,y)\)在点\((x,y)\)具有偏导数\(f'_x(x,y)\)和\(f'_y(x,y)\)，且满足\[
-\lim\limits_{\opair{\increment x,\increment y}\to(0,0)}
+\lim\limits_{(\increment x,\increment y)\to(0,0)}
  \frac{[f(x+\increment x,y+\increment y)-f(x,y)]-[f'_x(x,y) \increment x + f'_y(x,y) \increment y]}{\sqrt{(\increment x)^2+(\increment y)^2}} = 0,
 \]那么它就在该点可微.
 \end{corollary}
@@ -612,7 +612,7 @@ f(x,y) = \left\{ \begin{array}{cl}
 \]在点\((0,0)\)处有\(f'_x(0,0) = f'_y(0,0) = 0\)，所以\[
 \increment z - [f'_x(0,0) \cdot \increment x + f'_y(0,0) \cdot \increment y]
 = \frac{\increment x \cdot \increment y}{\sqrt{(\increment x)^2+(\increment y)^2}},
-\]如果考虑点\(P'\opair{\increment x,\increment y}\)沿着直线\(y=x\)趋于\((0,0)\)，则\[
+\]如果考虑点\(P'(\increment x,\increment y)\)沿着直线\(y=x\)趋于\((0,0)\)，则\[
 \frac{1}{\rho} \frac{\increment x \cdot \increment y}{\sqrt{(\increment x)^2+(\increment y)^2}}
 = \frac{\increment x \cdot \increment y}{(\increment x)^2+(\increment y)^2}
 = \frac{(\increment x)^2}{2(\increment x)^2}
@@ -1215,7 +1215,7 @@ H_{n1} & H_{n2} & \dots & H_{nn}
 	\tag3
 \end{gather}
 或\begin{gather}
-	\vb{r}=\opair{f_1(t),f_2(t),\dotsc,f_n(t)}, \quad t \in D,
+	\vb{r}=(f_1(t),f_2(t),\dotsc,f_n(t)), \quad t \in D,
 	\tag4
 \end{gather}
 其中数集\(D\)称为函数的\DefineConcept{定义域}，
@@ -1228,49 +1228,75 @@ H_{n1} & H_{n2} & \dots & H_{nn}
 
 为简单起见，以下将一元向量值函数简称为向量值函数，并把普通的实值函数称为数量函数.
 
-根据\(\mathbb{R}^3\)中的向量的线性运算及向量的模的概念，可以类似于定义数量函数的极限、连续、导数等概念的形式来定义向量值函数的相应概念：
+根据\(\mathbb{R}^3\)中的向量的线性运算及向量的模的概念，
+可以类似于定义数量函数的极限、连续、导数等概念的形式来定义向量值函数的相应概念：
 \begin{definition}
-设向量值函数\(\vb{f}(t)\)在点\(t_0\)的某一去心邻域内有定义，如果存在一个常向量\(\vb{r}_0\)，对于任意给定的正数\(\epsilon\)，总存在正数\(\delta\)，使得当\(t\)满足\(0 < \abs{t-t_0} < \delta\)时，对应的函数值\(\vb{f}(t)\)都满足不等式\[
-\norm{\vb{f}(t)-\vb{r}_0} < \epsilon,
-\]那么，常向量\(\vb{r}_0\)就叫做\DefineConcept{向量值函数\(\vb{f}(t)\)当\(t \to t_0\)时的极限}，记作\[
-\lim\limits_{t \to t_0} \vb{f}(t) = \vb{r}_0.
+设向量值函数\(\vb{f}(t)\)在点\(t_0\)的某一去心邻域内有定义，
+如果存在一个常向量\(\vb{r}_0\)，
+对于任意给定的正数\(\epsilon\)，
+总存在正数\(\delta\)，
+使得当\(t\)满足\(0 < \abs{t-t_0} < \delta\)时，
+对应的函数值\(\vb{f}(t)\)都满足不等式\[
+	\norm{\vb{f}(t)-\vb{r}_0} < \epsilon,
+\]
+那么，常向量\(\vb{r}_0\)就叫做
+“向量值函数\(\vb{f}(t)\)当\(t \to t_0\)时的\DefineConcept{极限}”，
+记作\[
+	\lim\limits_{t \to t_0} \vb{f}(t) = \vb{r}_0.
 \]
 \end{definition}
 
 \begin{theorem}
-\def\l{\lim\limits_{t \to t_0}}
 向量值函数\(\vb{f}(t)\)当\(t \to t_0\)时的极限存在的充要条件是：
-\(\vb{f}(t)\)的全部分量函数\(f_1(t),f_2(t),\dotsc,f_n(t)\)当\(t \to t_0\)的极限都存在.
+\(\vb{f}(t)\)的全部分量函数\(f_1(t),f_2(t),\dotsc,f_n(t)\)
+当\(t \to t_0\)的极限都存在.
 
-在函数\(\vb{f}(t)\)当\(t \to t_0\)时的极限存在时，其极限为\begin{gather}
-\l \vb{f}(t) = \opair{\l f_1(t),\l f_2(t),\dotsc,\l f_n(t)}.
-\tag5
+在函数\(\vb{f}(t)\)当\(t \to t_0\)时的极限存在时，
+其极限为\begin{gather}
+	\lim\limits_{t \to t_0} \vb{f}(t)
+	= \left(
+			\lim\limits_{t \to t_0} f_1(t),
+			\lim\limits_{t \to t_0} f_2(t),
+			\dotsc,
+			\lim\limits_{t \to t_0} f_n(t)
+		\right).
+	\tag5
 \end{gather}
 \end{theorem}
 
 \begin{definition}[向量值函数的连续性]
 设向量值函数\(\vb{f}(t)\)在点\(t_0\)的某一邻域内有定义，若\[
-\lim\limits_{t \to t_0} \vb{f}(t) = \vb{f}(t_0),
-\]则称\DefineConcept{向量值函数\(\vb{f}(t)\)在\(t_0\)连续}.
+	\lim\limits_{t \to t_0} \vb{f}(t) = \vb{f}(t_0),
+\]
+则称“向量值函数\(\vb{f}(t)\)在\(t_0\) \DefineConcept{连续}”.
 
-若\(\vb{f}(t)\)在区域\(D\)中的每一点处都连续，则称\(\vb{f}(t)\)在\(D\)上连续，并称\(\vb{f}(t)\)是\(D\)上的\DefineConcept{连续函数}.
+若\(\vb{f}(t)\)在区域\(D\)中的每一点处都连续，
+则称\(\vb{f}(t)\)在\(D\)上连续，
+并称\(\vb{f}(t)\)是\(D\)上的\DefineConcept{连续函数}.
 \end{definition}
 
 \begin{theorem}
 向量值函数\(\vb{f}(t)\)在\(t_0\)连续的充要条件为：
 \(\vb{f}(t)\)的全部分量函数\[
-f_1(t),f_2(t),\dotsc,f_n(t)
+	f_1(t),f_2(t),\dotsc,f_n(t)
 \]都在\(t_0\)连续.
 \end{theorem}
 
 \begin{definition}
-设向量值函数\(\vb{r}=\vb{f}(t)\)在点\(t_0\)的某一邻域内有定义，如果\[
-\lim\limits_{\increment t\to0} \frac{\increment \vb{r}}{\increment t}
-= \lim\limits_{\increment t\to0} \frac{\vb{f}(t_0+\increment t)-\vb{f}(t_0)}{\increment t}
-\]存在，那么就称这个极限向量为向量值函数\(\vb{r}=\vb{f}(t)\)在\(t_0\)处的\DefineConcept{导数}或\DefineConcept{导向量}，记作\[
-\vb{f}'(t_0)
-\quad\text{或}\quad
-\eval{\dv{\vb{r}}{t}}_{t=t_0}.
+设向量值函数\(\vb{r}=\vb{f}(t)\)在点\(t_0\)的某一邻域内有定义，
+如果\[
+	\lim\limits_{\increment t\to0}
+		\frac{\increment \vb{r}}{\increment t}
+	= \lim\limits_{\increment t\to0}
+		\frac{\vb{f}(t_0+\increment t)-\vb{f}(t_0)}{\increment t}
+\]存在，
+那么就称这个极限向量为
+“向量值函数\(\vb{r}=\vb{f}(t)\)在\(t_0\)处的\DefineConcept{导数}
+或\DefineConcept{导向量}”，
+记作\[
+	\vb{f}'(t_0)
+	\quad\text{或}\quad
+	\eval{\dv{\vb{r}}{t}}_{t=t_0}.
 \]
 
 若\(\vb{f}(t)\)在区域\(D\)中的每一点\(t\)处都存在导向量\(\vb{f}'(t)\)，那么就称\(\vb{f}(t)\)在\(D\)上\DefineConcept{可导}.
@@ -1281,44 +1307,51 @@ f_1(t),f_2(t),\dotsc,f_n(t)
 \(\vb{f}(t)\)的全部分量函数\[
 f_1(t),f_2(t),\dotsc,f_n(t)
 \]都在\(t_0\)可导.
+\end{theorem}
 
+\begin{theorem}
 当\(\vb{f}(t)\)在\(t_0\)可导时，其导数为
-\begin{gather}
-\vb{f}'(t_0)=\opair{f_1'(t),f_2'(t),\dotsc,f_n'(t)}.
-\tag6
-\end{gather}
+\begin{equation}
+	\vb{f}'(t_0)
+	= (f_1'(t),f_2'(t),\dotsc,f_n'(t)).
+\end{equation}
 \end{theorem}
 
 \begin{theorem}
-\def\l{\lim\limits_{t \to t_0}}
-设\(\vb{f}(t) = \opair{f_1(t),f_2(t),f_3(t)}\)，\(\vb{g}(t) = \opair{g_1(t),g_2(t),g_3(t)}\)，\[
-\l \vb{f}(t) = \vb{u},
-\qquad
-\l \vb{g}(t) = \vb{v},
-\]那么\[
-\l [\vb{f}(t) \times \vb{g}(t)]
-= \vb{u} \times \vb{v}.
+设\(\vb{f}(t) = (f_1(t),f_2(t),f_3(t))\)，
+\(\vb{g}(t) = (g_1(t),g_2(t),g_3(t))\)，
+\[
+	\lim\limits_{t \to t_0} \vb{f}(t) = \vb{u},
+	\qquad
+	\lim\limits_{t \to t_0} \vb{g}(t) = \vb{v},
 \]
-\end{theorem}
-
-\begin{theorem}
-设\(\vb{u}(t)\)、\(\vb{v}(t)\)是可导的向量值函数，那么\begin{gather}
-\dv{t} [\vb{u}(t) \pm \vb{v}(t)] = \vb{u}'(t) \pm \vb{v}'(t); \\
-\dv{t} [\vb{u}(t) \cdot \vb{v}(t)] = \vb{u}'(t) \cdot \vb{v}(t) + \vb{u}(t) \cdot \vb{v}'(t); \\
-\dv{t} [\vb{u}(t) \times \vb{v}(t)] = \vb{u}'(t) \times \vb{v}(t) + \vb{u}(t) \times \vb{v}'(t).
-\end{gather}
+那么\[
+	\lim\limits_{t \to t_0} [\vb{f}(t) \times \vb{g}(t)]
+	= \vb{u} \times \vb{v}.
+\]
 \end{theorem}
 
 向量值函数的导数运算法则与数量函数的导数运算法则的形式相同：
 \begin{theorem}[向量值函数的导数运算法则]
-设\(\vb{u}(t)\)、\(\vb{v}(t)\)是可导的向量值函数，\(\vb{C}\)是常向量，\(c\)是任一常数，\(\phi(t)\)是可导的数量函数，则\begin{align}
-&\dv{t} \vb{C} = \vb{0}, \\
-&\dv{t} [c \vb{u}(t)] = c \vb{u}'(t), \\
-&\dv{t} [\vb{u}(t) \pm \vb{v}(t)] = \vb{u}'(t) + \vb{v}'(t), \\
-&\dv{t} [\phi(t) \vb{u}(t)] = \phi'(t) \vb{u}(t) + \phi(t) \vb{u}'(t), \\
-&\dv{t} [\vb{u}(t) \cdot \vb{v}(t)] = \vb{u}'(t) \cdot \vb{v}(t) + \vb{u}(t) \cdot \vb{v}'(t), \\
-&\dv{t} [\vb{u}(t) \times \vb{v}(t)] = \vb{u}'(t) \times \vb{v}(t) + \vb{u}(t) \times \vb{v}'(t), \\
-&\dv{t} \vb{u}[\phi(t)] = \phi'(t) \vb{u}'[\phi(t)].
+设\(\vb{u}(t)\)、\(\vb{v}(t)\)是可导的向量值函数，
+\(\vb{C}\)是常向量，
+\(c\)是任一常数，
+\(\phi(t)\)是可导的数量函数，
+则\begin{align}
+	&\dv{t} \vb{C}
+		= \vb{0}, \\
+	&\dv{t} [c \vb{u}(t)]
+		= c \vb{u}'(t), \\
+	&\dv{t} [\vb{u}(t) \pm \vb{v}(t)]
+		= \vb{u}'(t) + \vb{v}'(t), \\
+	&\dv{t} [\phi(t) \vb{u}(t)]
+		= \phi'(t) \vb{u}(t) + \phi(t) \vb{u}'(t), \\
+	&\dv{t} [\vb{u}(t) \cdot \vb{v}(t)]
+		= \vb{u}'(t) \cdot \vb{v}(t) + \vb{u}(t) \cdot \vb{v}'(t), \\
+	&\dv{t} [\vb{u}(t) \times \vb{v}(t)]
+		= \vb{u}'(t) \times \vb{v}(t) + \vb{u}(t) \times \vb{v}'(t), \\
+	&\dv{t} \vb{u}[\phi(t)]
+		= \phi'(t) \vb{u}'[\phi(t)].
 \end{align}
 \end{theorem}
 
@@ -1336,49 +1369,65 @@ t \in [\alpha,\beta].
 
 设点\(M(x_0,y_0,z_0)\)在曲线\(\Gamma\)上，对应的参数为\(t_0\).
 记\[
-\vb{f}(t)=\opair{\phi(t),\psi(t),\omega(t)},
-\quad t\in[\alpha,\beta].
-\]由向量值函数的导向量的几何意义知，向量
+	\vb{f}(t)
+	= (\phi(t),\psi(t),\omega(t)),
+	\quad t\in[\alpha,\beta].
+\]
+由向量值函数的导向量的几何意义知，向量
 \begin{equation}
-\vb{T} = \vb{f}'(t_0) = \opair{\phi'(t_0),\psi'(t_0),\omega'(t_0)}.
+	\vb{T}
+	= \vb{f}'(t_0)
+	= (\phi'(t_0),\psi'(t_0),\omega'(t_0)).
 \end{equation}
-就是曲线\(\Gamma\)在点\(M\)处的一个切向量，从而曲线\(\Gamma\)在点\(M\)处的\DefineConcept{切线方程}为\begin{gather}
-\frac{x-x_0}{\phi'(t_0)}
-=\frac{y-y_0}{\psi'(t_0)}
-=\frac{z-z_0}{\omega'(t_0)}.
-\tag8
+就是曲线\(\Gamma\)在点\(M\)处的一个切向量，
+从而曲线\(\Gamma\)在点\(M\)处的切线方程为
+\begin{gather}
+	\frac{x-x_0}{\phi'(t_0)}
+	=\frac{y-y_0}{\psi'(t_0)}
+	=\frac{z-z_0}{\omega'(t_0)}.
+	\tag8
 \end{gather}
 
-通过点\(M\)且与切线垂直的平面称为曲线\(\Gamma\)在点\(M\)处的法平面，它是通过点\(M(x_0,y_0,z_0)\)且以\(\vb{T}=\vb{f}'(t_0)\)为法向量的平面，因此\DefineConcept{法平面方程}为\[
-\phi'(t_0) \cdot (x-x_0) + \psi'(t_0) \cdot (y-y_0) + \omega'(t_0) \cdot (z-z_0) = 0
-\]或\begin{gather}
-\vb{T}\cdot\opair{x-x_0,y-y_0,z-z_0}=0.
-\tag9
+通过点\(M\)且与切线垂直的平面称为曲线\(\Gamma\)在点\(M\)处的法平面，
+它是通过点\(M(x_0,y_0,z_0)\)且以\(\vb{T}=\vb{f}'(t_0)\)为法向量的平面，
+因此法平面方程为\[
+	\phi'(t_0) \cdot (x-x_0) + \psi'(t_0) \cdot (y-y_0) + \omega'(t_0) \cdot (z-z_0) = 0
+\]
+或\begin{gather}
+	\vb{T}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag9
 \end{gather}
 
 若空间曲线\(\Gamma\)的方程以\[
-\left\{ \begin{array}{l}
-y = \phi(x), \\
-z = \psi(x) \\
-\end{array} \right.
-\]的形式给出，取\(x\)为参数，它就可以表为参数方程的形式\[
-\left\{ \begin{array}{l}
-x = x, \\
-y = \phi(x), \\
-z = \psi(x). \\
-\end{array} \right.
-\]若\(\phi(x)\)，\(\psi(x)\)都在\(x=x_0\)处可导，那么根据上面的讨论可知，\[
-\vb{T} = \opair{1,\psi'(x_0),\omega'(x_0)},
-\]因此曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为\begin{gather}
-\frac{x-x_0}{1}
-=\frac{y-y_0}{\phi'(x_0)}
-=\frac{z-z_0}{\psi'(x_0)}.
-\tag{10}
-\end{gather}在点\(M(x_0,y_0,z_0)\)处的法平面方程为\[
-(x-x_0) + \psi'(x_0) \cdot (y-y_0) + \omega'(x_0) \cdot (z-z_0) = 0
+	\left\{ \begin{array}{l}
+		y = \phi(x), \\
+		z = \psi(x)
+	\end{array} \right.
+\]的形式给出，
+取\(x\)为参数，
+它就可以表为参数方程的形式\[
+	\left\{ \begin{array}{l}
+		x = x, \\
+		y = \phi(x), \\
+		z = \psi(x).
+	\end{array} \right.
+\]
+若\(\phi(x),\psi(x)\)都在\(x=x_0\)处可导，
+那么根据上面的讨论可知，\[
+	\vb{T} = (1,\phi'(x_0),\psi'(x_0)),
+\]
+因此曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为
+\begin{gather}
+	\frac{x-x_0}{1}
+	=\frac{y-y_0}{\phi'(x_0)}
+	=\frac{z-z_0}{\psi'(x_0)}.
+	\tag{10}
+\end{gather}
+曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的法平面方程为\[
+	(x-x_0) + \psi'(x_0) \cdot (y-y_0) + \omega'(x_0) \cdot (z-z_0) = 0
 \]或\begin{gather}
-\vb{T}\cdot\opair{x-x_0,y-y_0,z-z_0}=0.
-\tag{11}
+	\vb{T}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag{11}
 \end{gather}
 
 设空间曲线\(\Gamma\)的方程以\begin{gather}
@@ -1393,106 +1442,156 @@ G(x,y,z)=0
 \]这时方程组(12)在点\(M(x_0,y_0,z_0)\)的某一邻域内确定了一组函数\(y=\phi(x)\)和\(z=\psi(x)\).
 要求曲线\(\Gamma\)在点\(M\)处的切线方程和法平面方程，只要求出\(\phi'(x_0)\)、\(\psi'(x_0)\)，然后代入(10)、(11)两式就行了.
 为此，我们在恒等式\[
-F[x,\phi(x),\psi(x)] \equiv 0,
-\]\[
-G[x,\phi(x),\psi(x)] \equiv 0
-\]两边分别对\(x\)求全导数，得\[
-\def\arraystretch{1.5}
-\left\{ \begin{array}{l}
-\pdv{F}{x} + \pdv{F}{y} \pdv{y}{x} + \pdv{F}{z} \pdv{z}{x} = 0, \\
-\pdv{G}{x} + \pdv{G}{y} \pdv{y}{x} + \pdv{G}{z} \pdv{z}{x} = 0.
-\end{array} \right.
-\]由假设可知，在点\(M\)的某个邻域内\[
-J = \jacobi{F,G}{y,z} \neq 0,
-\]故可解得\[
-\dv{y}{x} = \frac{1}{J} \jacobi{F,G}{z,x},
-\qquad
-\dv{z}{x} = \frac{1}{J} \jacobi{F,G}{x,y}.
+	F[x,\phi(x),\psi(x)] \equiv 0,
+	\quad\text{和}\quad
+	G[x,\phi(x),\psi(x)] \equiv 0
+\]两边分别对\(x\)求全导数，
+得\[
+	\left\{ \def\arraystretch{1.5} \begin{array}{l}
+		\pdv{F}{x} + \pdv{F}{y} \dv{y}{x} + \pdv{F}{z} \dv{z}{x} = 0, \\
+		\pdv{G}{x} + \pdv{G}{y} \dv{y}{x} + \pdv{G}{z} \dv{z}{x} = 0.
+	\end{array} \right.
+\]
+由假设可知，
+在点\(M\)的某个邻域内\[
+	J = \jacobi{F,G}{y,z} \neq 0,
+\]
+故可解得\[
+	\dv{y}{x} = \frac{1}{J} \jacobi{F,G}{z,x},
+	\qquad
+	\dv{z}{x} = \frac{1}{J} \jacobi{F,G}{x,y}.
 \]
 
 于是\[
-\vb{T} = \opair{1,\phi'(x_0),\psi'(x_0)}
-\]是曲线\(\Gamma\)在点\(M\)处的一个切向量，这里\[
-\phi'(x_0) = {\eval{\jacobi{F,G}{z,x}}_M}\Bigg/{\eval{\jacobi{F,G}{y,z}}_M},
-\qquad
-\psi'(x_0) = {\eval{\jacobi{F,G}{x,y}}_M}\Bigg/{\eval{\jacobi{F,G}{y,z}}_M},
-\]分子分母中带下标\(M\)的行列式表达行列式在点\(M(x_0,y_0,z_0)\)的值.
+	\vb{T} = (1,\phi'(x_0),\psi'(x_0))
+\]是曲线\(\Gamma\)在点\(M\)处的一个切向量，
+这里\[
+	\phi'(x_0)
+	= \frac{
+			\begin{vmatrix}
+				F'_z & F'_x \\
+				G'_z & G'_x
+			\end{vmatrix}_M
+		}{
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_M
+		},
+	\qquad
+	\psi'(x_0)
+	= \frac{
+			\begin{vmatrix}
+				F'_x & F'_y \\
+				G'_x & G'_y
+			\end{vmatrix}_M
+		}{
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_M
+		},
+\]
+分子分母中带下标\(M\)的行列式表达行列式在点\(M(x_0,y_0,z_0)\)的值.
 把上面的切向量\(\vb{T}\)乘以\(J\)，得\begin{align*}
-\vb{T}_1 &= \opair*{
- \eval{\jacobi{F,G}{y,z}}_M,
- \eval{\jacobi{F,G}{z,x}}_M,
- \eval{\jacobi{F,G}{x,y}}_M
-} \\
-&= \opair*{
-\begin{vmatrix}
-F_y & F_z \\
-G_y & G_z \\
-\end{vmatrix}_M,
-\begin{vmatrix}
-F_z & F_x \\
-G_z & G_x \\
-\end{vmatrix}_M,
-\begin{vmatrix}
-F_x & F_y \\
-G_x & G_y \\
-\end{vmatrix}_M
-},
+	\vb{T}_1
+	&= \left(
+		\begin{vmatrix}
+			F'_y & F'_z \\
+			G'_y & G'_z \\
+		\end{vmatrix}_M,
+		\begin{vmatrix}
+			F'_z & F'_x \\
+			G'_z & G'_x \\
+		\end{vmatrix}_M,
+		\begin{vmatrix}
+			F'_x & F'_y \\
+			G'_x & G'_y \\
+		\end{vmatrix}_M
+	\right) \\
+	&= \begin{vmatrix}
+		\vb{i} & \vb{j} & \vb{k} \\
+		F'_x & F'_y & F'_z \\
+		G'_x & G'_y & G'_z
+	\end{vmatrix}
+	,
 \end{align*}
 这也是曲线\(\Gamma\)在点\(M\)处的一个切向量.
 由此可以写出曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为\begin{gather}
-\frac{x-x_0}{\begin{vmatrix}
-F_y & F_z \\
-G_y & G_z \\
-\end{vmatrix}_M}
-=\frac{y-y_0}{\begin{vmatrix}
-F_z & F_x \\
-G_z & G_x \\
-\end{vmatrix}_M}
-=\frac{z-z_0}{\begin{vmatrix}
-F_x & F_y \\
-G_x & G_y \\
-\end{vmatrix}_M}.
-\tag{13}
+	\frac{x-x_0}{\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z \\
+	\end{vmatrix}_M}
+	=\frac{y-y_0}{\begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x \\
+	\end{vmatrix}_M}
+	=\frac{z-z_0}{\begin{vmatrix}
+		F'_x & F'_y \\
+		G'_x & G'_y \\
+	\end{vmatrix}_M}.
+	\tag{13}
 \end{gather}
 
 曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的法平面方程为\[
-\begin{vmatrix}
-F_y & F_z \\
-G_y & G_z \\
-\end{vmatrix}_M
-(x-x_0)
-+ \begin{vmatrix}
-F_z & F_x \\
-G_z & G_x \\
-\end{vmatrix}_M
-(y-y_0)
-+ \begin{vmatrix}
-F_x & F_y \\
-G_x & G_y \\
-\end{vmatrix}_M
-(z-z_0) = 0
+	\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z \\
+	\end{vmatrix}_M
+	(x-x_0)
+	+ \begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x \\
+	\end{vmatrix}_M
+	(y-y_0)
+	+ \begin{vmatrix}
+		F'_x & F'_y \\
+		G'_x & G'_y \\
+	\end{vmatrix}_M
+	(z-z_0)
+	= 0
 \]或\begin{gather}
-\vb{T}\cdot\opair{x-x_0,y-y_0,z-z_0}=0.
-\tag{14}
+	\vb{T}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag{14}
 \end{gather}
-如果\(\eval{\jacobi{F,G}{y,z}}_M = 0\)，而\(\eval{\jacobi{F,G}{z,x}}_M\)和\(\eval{\jacobi{F,G}{x,y}}_M\)中至少有一个不等于零，我们可得同样的结果.
+如果\(\eval{\jacobi{F,G}{y,z}}_M = 0\)，
+而\(\eval{\jacobi{F,G}{z,x}}_M\)和\(\eval{\jacobi{F,G}{x,y}}_M\)中至少有一个不等于零，
+我们可得同样的结果.
 
 \subsection{空间曲线的曲率}
-我们在\cref{section:微分中值定理.曲率} 中研究平面曲线时引入了“曲率”这样一个概念，现在我们将它推广到空间曲线.
+我们在\cref{section:微分中值定理.曲率}中研究平面曲线时引入了“曲率”这样一个概念，
+现在我们将它推广到空间曲线.
 
 设空间曲线\(\Gamma: \vb{r} = \vb{r}(t)\ (\alpha \leq t \leq \beta)\)是一段光滑曲线.
-当参数\(t = t_0\)时，曲线\(\Gamma\)上动点\(P\)的坐标为\(\vb{r}\)，而点\(P\)处的切向量为\(\vb{r}'(t_0)\)\footnote{向量\(\vb{r}'(t_0)\)不一定是单位向量！}.
-记向量\(\vb{r}'(t_0)\)与\(\vb{r}'(t_0+\increment t)\)之间的夹角为\(\increment\theta\)，记\(\vb{r}(t_0)\)与\(\vb{r}(t_0+\increment t)\)之间的弧长为\(\increment s\).如果极限\[
-\lim\limits_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }
-\]存在，就称此极限为曲线\(\Gamma\)在点\(P\)处的\DefineConcept{曲率}，记为\(K(t_0)\)，即\[
-K(t_0) = \lim\limits_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }.
-\]因此\begin{align*}
-\norm{ \dv{\vb{\tau}}{s} }
-&= \norm{ \lim\limits_{\increment s \to 0} \frac{\vb{\tau}(s+\increment s) - \vb{\tau}(s)}{\increment s} } \\
-&= \lim\limits_{\increment s \to 0} \frac{\norm{\vb{\tau}(s+\increment s) - \vb{\tau}(s)}}{\abs{\increment s}} \\
-&= \lim\limits_{\increment s \to 0} \abs{ \frac{2 \sin(\increment\theta / 2)}{\increment s} } \\
-&= \lim\limits_{\increment s \to 0} \left( \abs{ \frac{2 \sin(\increment\theta / 2)}{\increment\theta/2} } \cdot \abs{ \frac{\increment\theta}{\increment s} } \right) \\
-&= \lim\limits_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }.
+当参数\(t = t_0\)时，曲线\(\Gamma\)上动点\(P\)的坐标为\(\vb{r}\)，
+而点\(P\)处的切向量为\(\vb{r}'(t_0)\)\footnote{向量\(\vb{r}'(t_0)\)不一定是单位向量！}.
+记向量\(\vb{r}'(t_0)\)与\(\vb{r}'(t_0+\increment t)\)之间的夹角为\(\increment\theta\)，
+记\(\vb{r}(t_0)\)与\(\vb{r}(t_0+\increment t)\)之间的弧长为\(\increment s\).如果极限\[
+	\lim\limits_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }
+\]存在，
+就称此极限为曲线\(\Gamma\)在点\(P\)处的\DefineConcept{曲率}，
+记为\(K(t_0)\)，
+即\[
+	K(t_0)
+	= \lim\limits_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }.
+\]
+因此\begin{align*}
+	\norm{ \dv{\vb{\tau}}{s} }
+	&= \norm{
+			\lim\limits_{\increment s \to 0}
+				\frac{\vb{\tau}(s+\increment s) - \vb{\tau}(s)}{\increment s}
+		} \\
+	&= \lim\limits_{\increment s \to 0}
+		\frac{\norm{\vb{\tau}(s+\increment s) - \vb{\tau}(s)}}{\abs{\increment s}} \\
+	&= \lim\limits_{\increment s \to 0}
+		\abs{ \frac{2 \sin(\increment\theta / 2)}{\increment s} } \\
+	&= \lim\limits_{\increment s \to 0}
+		\left(
+			\abs{ \frac{2 \sin(\increment\theta / 2)}{\increment\theta/2} }
+			\cdot \abs{ \frac{\increment\theta}{\increment s} }
+		\right) \\
+	&= \lim\limits_{\increment s \to 0}
+		\abs{ \frac{\increment\theta}{\increment s} }.
 \end{align*}
 又因为\(\vb{\tau} = \dv{\vb{r}}{s}\)，所以\(\norm{ \dv{\vb{\tau}}{s} } = \norm{ \dv{s}( \dv{\vb{r}}{s} ) } = \norm{ \dv[2]{\vb{r}}{s} }\)，那么上式又可写作\begin{equation}
 \norm{ \dv[2]{\vb{r}}{s} }
@@ -1555,67 +1654,81 @@ F'_x(x_0,y_0,z_0) \phi'(t_0)
 \end{gather}
 
 引入向量\begin{equation}
-\vb{n}=\opair*{F'_x(x_0,y_0,z_0),F'_y(x_0,y_0,z_0),F'_z(x_0,y_0,z_0)},
-\end{equation}则(17)式表示曲线(16)在点\(M\)处的切向量\[
-\vb{T} = \opair{\phi'(t_0),\psi'(t_0),\omega'(t_0)}
+	\vb{n}=(F'_x(x_0,y_0,z_0),F'_y(x_0,y_0,z_0),F'_z(x_0,y_0,z_0)),
+\end{equation}
+则(17)式表示曲线(16)在点\(M\)处的切向量\[
+	\vb{T} = (\phi'(t_0),\psi'(t_0),\omega'(t_0))
 \]与向量\(\vb{n}\)垂直.
-因为曲线(16)是曲面上通过点\(M\)的任意一条曲线，它们在点\(M\)的切线都与同一个向量\(\vb{n}\)垂直，所以曲面上通过点\(M\)的一切曲线在点\(M\)的切线都在同一个平面上.
+因为曲线(16)是曲面上通过点\(M\)的任意一条曲线，
+它们在点\(M\)的切线都与同一个向量\(\vb{n}\)垂直，
+所以曲面上通过点\(M\)的一切曲线在点\(M\)的切线都在同一个平面上.
 这个平面称为曲面\(\Sigma\)在点\(M\)的\DefineConcept{切平面}.
 这切平面的方程是\[
-F'_x(x_0,y_0,z_0) (x-x_0)
-+ F'_y(x_0,y_0,z_0) (y-y_0)
-+ F'_z(x_0,y_0,z_0) (z-z_0)
-= 0.
+	F'_x(x_0,y_0,z_0) (x-x_0)
+	+ F'_y(x_0,y_0,z_0) (y-y_0)
+	+ F'_z(x_0,y_0,z_0) (z-z_0)
+	= 0.
 \]或\begin{gather}
-\vb{n}\cdot\opair{x-x_0,y-y_0,z-z_0}=0.
-\tag{18}
+	\vb{n}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag{18}
 \end{gather}
 
 通过点\(M(x_0,y_0,z_0)\)且垂直于切平面(18)的直线称为曲面在该点的\DefineConcept{法线}.
 法线方程是\begin{gather}
-\frac{x-x_0}{F'_x(x_0,y_0,z_0)}
-=\frac{y-y_0}{F'_y(x_0,y_0,z_0)}
-=\frac{z-z_0}{F'_z(x_0,y_0,z_0)}.
-\tag{19}
+	\frac{x-x_0}{F'_x(x_0,y_0,z_0)}
+	=\frac{y-y_0}{F'_y(x_0,y_0,z_0)}
+	=\frac{z-z_0}{F'_z(x_0,y_0,z_0)}.
+	\tag{19}
 \end{gather}
 
-垂直于曲面上切平面的向量称为曲面的\DefineConcept{法向量}.向量\(\vb{n}\)就是曲面\(\Sigma\)在点\(M\)处的一个法向量.
+垂直于曲面上切平面的向量称为曲面的\DefineConcept{法向量}.
+向量\(\vb{n}\)就是曲面\(\Sigma\)在点\(M\)处的一个法向量.
 
 
 现在来考虑曲面方程\begin{gather}
-z = f(x,y)
-\tag{20}
+	z = f(x,y)
+	\tag{20}
 \end{gather}
 令\(F(x,y,z)=f(x,y)-z=0\)，可见\[
-F'_x(x,y,z) = f'_x(x,y),
-\qquad
-F'_y(x,y,z) = f'_y(x,y),
-\qquad
-F'_z(x,y,z) = -1.
-\]于是，当函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在点\((x_0,y_0)\)连续时，曲面(20)在点\(M(x_0,y_0,z_0)\)处的法向量为\[
-\vb{n}=\opair{f'_x(x,y),f'_y(x,y),-1},
-\]切平面方程为\[
-\vb{n}\cdot\opair{x-x_0,y-y_0,z-z_0}=0,
+	F'_x(x,y,z) = f'_x(x,y),
+	\qquad
+	F'_y(x,y,z) = f'_y(x,y),
+	\qquad
+	F'_z(x,y,z) = -1.
+\]
+于是，当函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在点\((x_0,y_0)\)连续时，
+曲面(20)在点\(M(x_0,y_0,z_0)\)处的法向量为\[
+	\vb{n}=\opair{f'_x(x,y),f'_y(x,y),-1},
+\]
+切平面方程为\[
+	\vb{n}\cdot(x-x_0,y-y_0,z-z_0)=0,
 \]或\begin{gather}
-z-z_0 = f'_x(x_0,y_0) (x-x_0) + f'_y(x_0,y_0) (y-y_0).
-\tag{21}
-\end{gather}而法线方程为\begin{gather}
-\frac{x-x_0}{f'_x(x_0,y_0)}
-=\frac{y-y_0}{f'_y(x_0,y_0)}
-=\frac{z-z_0}{-1}.
-\tag{22}
+	z-z_0 = f'_x(x_0,y_0) (x-x_0) + f'_y(x_0,y_0) (y-y_0).
+	\tag{21}
 \end{gather}
-这里顺便指出，方程(21)右端恰好是函数\(z = f(x,y)\)在点\((x_0,y_0)\)的全微分，而左端是切平面上点的竖坐标的增量.
-因此，函数\(z = f(x,y)\)在点\((x_0,y_0)\)的全微分，在集合上表示曲面\(z = f(x,y)\)在点\(M\)出的切平面上点的竖坐标的增量.
+而法线方程为\begin{gather}
+	\frac{x-x_0}{f'_x(x_0,y_0)}
+	=\frac{y-y_0}{f'_y(x_0,y_0)}
+	=\frac{z-z_0}{-1}.
+	\tag{22}
+\end{gather}
+这里顺便指出，
+方程(21)右端恰好是函数\(z = f(x,y)\)在点\((x_0,y_0)\)的全微分，
+而左端是切平面上点的竖坐标的增量.
+因此，函数\(z = f(x,y)\)在点\((x_0,y_0)\)的全微分，
+在集合上表示曲面\(z = f(x,y)\)在点\(M\)出的切平面上点的竖坐标的增量.
 
 \begin{example}
 求曲面\[
-F(x,y,z) = 0
-\quad\text{和}\quad
-G(x,y,z) = 0
+	F(x,y,z) = 0
+	\quad\text{和}\quad
+	G(x,y,z) = 0
 \]的交线\(\Gamma\)在\(xOy\)面上的投影的切线方程.
 \begin{solution}
-因为两曲面在点\(P_0(x_0,y_0,z_0)\)处的法向量分别是\(\vb{n}_F = \opair{F'_x(P_0),F'_y(P_0),F'_z(P_0)}\)和\(\vb{n}_G = \opair{G'_x(P_0),G'_y(P_0),G'_z(P_0)}\)，故交线在点\(P_0\)处的切向量为\[
+因为两曲面在点\(P_0(x_0,y_0,z_0)\)处的法向量分别是
+\(\vb{n}_F = \opair{F'_x(P_0),F'_y(P_0),F'_z(P_0)}\)
+和\(\vb{n}_G = \opair{G'_x(P_0),G'_y(P_0),G'_z(P_0)}\)，
+故交线在点\(P_0\)处的切向量为\[
 \vb{\tau}
 = \vb{n}_F \times \vb{n}_G
 = \begin{vmatrix}
@@ -1669,18 +1782,20 @@ G'_z(P_0) & G'_x(P_0)
 	\vb{e}_l=(\cos\alpha,\cos\beta)
 \]是与\(l\)同方向的单位向量.
 射线\(l\)的参数方程为\[
-\left\{ \begin{array}{l}
-x=x_0+t\cos\alpha \\
-y=y_0+t\cos\beta
-\end{array} \right., \qquad (t \geq 0).
+	\left\{ \begin{array}{l}
+		x=x_0+t\cos\alpha, \\
+		y=y_0+t\cos\beta
+	\end{array} \right.
+	\quad(t \geq 0).
 \]
 
 设函数\(z=f(x,y)\)在点\(P_0(x_0,y_0)\)的某个邻域\(U(P_0)\)内有定义，点\[
-P\opair{x_0+t\cos\alpha,y_0+t\cos\beta}
-\]为\(l\)上另一点，且\(P \in U(P_0)\).
+	P(x_0+t\cos\alpha,y_0+t\cos\beta)
+\]为\(l\)上另一点，
+且\(P \in U(P_0)\).
 如果函数增量\[
-f(\vec{O P_0} + t \vb{e}_l) - f(\vec{O P_0})
-= f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)
+	f(\vec{O P_0} + t \vb{e}_l) - f(\vec{O P_0})
+	= f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)
 \]与\(P\)到\(P_0\)的距离\(\abs{PP_0}=t\)的比值\[
 \frac{f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)}{t}
 \]当\(P\)沿着\(l\)趋于\(P_0\)（即\(t\to0^+\)）时的极限存在，
@@ -1692,10 +1807,14 @@ f(\vec{O P_0} + t \vb{e}_l) - f(\vec{O P_0})
 \end{definition}
 
 从方向导数的定义可知，方向导数\(\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}\)就是函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)处沿方向\(l\)的变化率.
-若函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)的偏导数存在，那么当\(\vb{e}_l = \vb{i} = \opair{1,0}\)时方向导数存在，且有\[
-\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = f'_x(x_0,y_0);
-\]当\(\vb{e}_l = \vb{j} = \opair{0,1}\)时方向导数存在，且有\[
-\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = f'_y(x_0,y_0).
+若函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)的偏导数存在，
+那么当\(\vb{e}_l = \vb{i} = (1,0)\)时方向导数存在，
+且有\[
+	\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = f'_x(x_0,y_0);
+\]
+当\(\vb{e}_l = \vb{j} = (0,1)\)时方向导数存在，
+且有\[
+	\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = f'_y(x_0,y_0).
 \]
 
 但反之，若\(\vb{e}_l = \vb{i}\)且\(\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}\)存在，\(\eval{\pdv{f}{x}}_{(x_0,y_0)}\)未必存在.
@@ -1733,22 +1852,29 @@ f(\vec{O P_0} + t \vb{e}_l) - f(\vec{O P_0})
 \]
 
 \begin{example}
-求函数\(z = x e^{2y}\)在点\(P\opair{1,0}\)处沿从点\(P\)到点\(Q\opair{2,-1}\)的方向的方向导数.
+求函数\(z = x e^{2y}\)在点\(P(1,0)\)处沿从点\(P\)到点\(Q\opair{2,-1}\)的方向的方向导数.
 \begin{solution}
 这里方向\(l\)即向量\(\vec{PQ} = \opair{1,-1}\)的方向，与\(l\)同向的单位向量为\[
-\vb{e}_l = \opair*{\frac{1}{\sqrt{2}},\frac{-1}{\sqrt{2}}}.
-\]因为函数可微分，且\[
-\eval{\pdv{z}{x}}_{\opair{1,0}}
-= \eval{e^{2y}}_{\opair{1,0}}
-= 1,
-\qquad
-\eval{\pdv{z}{y}}_{\opair{1,0}}
-= \eval{2xe^{2y}}_{\opair{1,0}}
-= 2,
-\]故所求方向导数为\[
-\eval{\pdv{z}{\vb{l}}}_{\opair{1,0}}
-= 1 \cdot \frac{1}{\sqrt{2}} + 2 \cdot \frac{-1}{\sqrt{2}}
-= \frac{\sqrt{2}}{2}.
+	\vb{e}_l
+	= \left(
+		\frac{1}{\sqrt{2}},
+		\frac{-1}{\sqrt{2}}
+	\right).
+\]
+因为函数可微分，
+且\[
+	\eval{\pdv{z}{x}}_{(1,0)}
+	= \eval{e^{2y}}_{(1,0)}
+	= 1,
+	\qquad
+	\eval{\pdv{z}{y}}_{(1,0)}
+	= \eval{2xe^{2y}}_{(1,0)}
+	= 2,
+\]
+故所求方向导数为\[
+	\eval{\pdv{z}{\vb{l}}}_{(1,0)}
+	= 1 \cdot \frac{1}{\sqrt{2}} + 2 \cdot \frac{-1}{\sqrt{2}}
+	= \frac{\sqrt{2}}{2}.
 \]
 \end{solution}
 \end{example}
@@ -2223,7 +2349,7 @@ e^{h(h^2+k^2)} = 1 + o(\sqrt{h^2+k^2}).
 		f'_y(x,y) = -3y^2+6y = 0,
 	\end{array} \right.
 \]
-求得驻点为\(\opair{1,0},\opair{1,2},\opair{-3,0},\opair{-3,2}\).
+求得驻点为\((1,0),\opair{1,2},\opair{-3,0},\opair{-3,2}\).
 
 再求出二阶偏导数\[
 	f''_{xx}(x,y) = 6x+6,
@@ -2233,8 +2359,8 @@ e^{h(h^2+k^2)} = 1 + o(\sqrt{h^2+k^2}).
 	f''_{yy}(x,y) = -6y+6.
 \]
 
-在点\(\opair{1,0}\)处，\(AC-B^2=12\cdot6>0\)，又\(A=12>0\)，
-所以函数在\(\opair{1,0}\)处有极小值\(f(1,0)=-5\)；
+在点\((1,0)\)处，\(AC-B^2=12\cdot6>0\)，又\(A=12>0\)，
+所以函数在\((1,0)\)处有极小值\(f(1,0)=-5\)；
 在点\(\opair{1,2}\)处，\(AC-B^2=12\cdot(-6)<0\)，
 所以点\(\opair{1,2}\)不是极值点；
 在点\(\opair{-3,0}\)处，\(AC-B^2=(-12)\cdot6<0\)，
