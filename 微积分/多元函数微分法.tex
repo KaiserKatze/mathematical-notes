@@ -1729,29 +1729,40 @@ F'_x(x_0,y_0,z_0) \phi'(t_0)
 \(\vb{n}_F = \opair{F'_x(P_0),F'_y(P_0),F'_z(P_0)}\)
 和\(\vb{n}_G = \opair{G'_x(P_0),G'_y(P_0),G'_z(P_0)}\)，
 故交线在点\(P_0\)处的切向量为\[
-\vb{\tau}
-= \vb{n}_F \times \vb{n}_G
-= \begin{vmatrix}
-\vb{i} & \vb{j} & \vb{k} \\
-F'_x(P_0) & F'_y(P_0) & F'_z(P_0) \\
-G'_x(P_0) & G'_y(P_0) & G'_z(P_0)
-\end{vmatrix}.
-\]交线在\(xOy\)面的投影曲线\(\Gamma_{xy}\)在点\(P_0\)处对应的投影点\(P'_0(x_0,y_0)\)处的切向量\(\vb{\tau}_{xy}\)与\(\vb{\tau}\)相比缺少\(z\)分量，也就是说\[
-\vb{\tau}_{xy} = \opair*{\begin{vmatrix}
-F'_y(P_0) & F'_z(P_0) \\
-G'_y(P_0) & G'_z(P_0)
-\end{vmatrix}, -\begin{vmatrix}
-F'_x(P_0) & F'_z(P_0) \\
-G'_x(P_0) & G'_z(P_0)
-\end{vmatrix}}.
-\]那么所求投影的切线方程为\[
-C: \frac{x - x_0}{\begin{vmatrix}
-F'_y(P_0) & F'_z(P_0) \\
-G'_y(P_0) & G'_z(P_0)
-\end{vmatrix}} = \frac{y - y_0}{\begin{vmatrix}
-F'_z(P_0) & F'_x(P_0) \\
-G'_z(P_0) & G'_x(P_0)
-\end{vmatrix}}.
+	\vb{\tau}
+	= \vb{n}_F \times \vb{n}_G
+	= \begin{vmatrix}
+		\vb{i} & \vb{j} & \vb{k} \\
+		F'_x & F'_y & F'_z \\
+		G'_x & G'_y & G'_z
+	\end{vmatrix}_{P_0}.
+\]
+交线在\(xOy\)面的投影曲线\(\Gamma_{xy}\)
+在点\(P_0\)处对应的投影点\(P'_0(x_0,y_0)\)处的切向量\(\vb{\tau}_{xy}\)
+与\(\vb{\tau}\)相比缺少\(z\)分量，
+也就是说\[
+	\vb{\tau}_{xy}
+	= \left(
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_{P_0},
+			\begin{vmatrix}
+				F'_z & F'_x \\
+				G'_z & G'_x
+			\end{vmatrix}_{P_0}
+		\right).
+\]
+那么所求投影的切线方程为\[
+	C:
+	\frac{x - x_0}{\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z
+	\end{vmatrix}_{P_0}}
+	= \frac{y - y_0}{\begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x
+	\end{vmatrix}_{P_0}}.
 \]
 \end{solution}
 \end{example}
@@ -1759,14 +1770,18 @@ G'_z(P_0) & G'_x(P_0)
 \begin{example}
 求曲面\(\Gamma: z = x + 2y + \ln(1+x^2+y^2)\)在点\((0,0,0)\)处的切平面方程.
 \begin{solution}
-记\(F(x,y,z) = x + 2y - z + \ln(1+x^2+y^2)\)，那么曲面\(\Gamma\)在点\((x,y,z)\)处的法向量为\[
-\vb{n} = \opair{F'_x,F'_y,F'_z}
-= \opair*{
-1 + \frac{2x}{1+x^2+y^2},
-2 + \frac{2y}{1+x^2+y^2},
--1
-},
-\]即在点\((0,0,0)\)处的法向量为\(\opair{1,2,-1}\)，从而切平面方程为\(x+2y-z=0\).
+记\(F(x,y,z) = x + 2y - z + \ln(1+x^2+y^2)\)，
+那么曲面\(\Gamma\)在点\((x,y,z)\)处的法向量为\[
+	\vb{n}
+	= (F'_x,F'_y,F'_z)
+	= \left(
+		1 + \frac{2x}{1+x^2+y^2},
+		2 + \frac{2y}{1+x^2+y^2},
+		-1
+	\right),
+\]
+即在点\((0,0,0)\)处的法向量为\((1,2,-1)\)，
+从而切平面方程为\(x+2y-z=0\).
 \end{solution}
 \end{example}
 
