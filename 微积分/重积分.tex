@@ -892,34 +892,43 @@ A = \iint_{D_{zx}} \sqrt{1 + \left(\pdv{y}{z}\right)^2 + \left(\pdv{y}{x}\right)
 求半径为\(R\)的球的表面积.
 \begin{solution}
 \def\z{\sqrt{R^2-x^2-y^2}}
-取上半球面方程为\(z = \z\)，则它在\(xOy\)面上的投影区域为\[
-D = \Set{(x,y) \given x^2+y^2 \leq R^2}.
-\]由\[
-\pdv{z}{x} = \frac{-x}{\z},
-\qquad
-\pdv{z}{y} = \frac{-y}{\z},
-\]得\[
-\sqrt{1 + \left(\pdv{y}{z}\right)^2 + \left(\pdv{y}{x}\right)^2}
-= \frac{R}{\z}.
-\]因为这函数在闭区域\(D\)上无界，我们不能直接应用曲面面积公式，所以先取区域\[
-D_1 = \Set{(x,y) \given x^2+y^2 \leq r^2}
-\quad(0<r<R)
-\]为积分区域，算出相应于\(D_1\)上的球面面积\[
-A_1 = \iint_{D_1} \frac{R}{\z} \dd{x}\dd{y}
-\]后，令\(r \to R\)取\(A_1\)的极限就得半球面的面积.
+取上半球面方程为\(z = \z\)，
+则它在\(xOy\)面上的投影区域为\[
+	D = \Set{(x,y) \given x^2+y^2 \leq R^2}.
+\]
+由\[
+	\pdv{z}{x} = \frac{-x}{\z},
+	\qquad
+	\pdv{z}{y} = \frac{-y}{\z},
+\]
+得\[
+	\sqrt{1 + \left(\pdv{y}{z}\right)^2 + \left(\pdv{y}{x}\right)^2}
+	= \frac{R}{\z}.
+\]
+因为这函数在闭区域\(D\)上无界
+，我们不能直接应用曲面面积公式，
+所以先取区域\[
+	D_1 = \Set{(x,y) \given x^2+y^2 \leq r^2}
+	\quad(0<r<R)
+\]为积分区域，
+算出相应于\(D_1\)上的球面面积\[
+	A_1 = \iint_{D_1} \frac{R}{\z} \dd{x}\dd{y}
+\]后，
+令\(r \to R\)取\(A_1\)的极限就得半球面的面积.
 
 \def\zz{\sqrt{R^2-\rho^2}}
 利用极坐标，得\[
-A_1 = \iint_{D_1} \frac{R}{\zz} \rho\dd{\rho}\dd{\theta}
-= R \int_0^{2\pi} \dd{\theta} \int_0^r \frac{\rho \dd{\rho}}{\zz}
-= 2\pi R(R-\sqrt{R^2-r^2}),
+	A_1 = \iint_{D_1} \frac{R}{\zz} \rho\dd{\rho}\dd{\theta}
+	= R \int_0^{2\pi} \dd{\theta} \int_0^r \frac{\rho \dd{\rho}}{\zz}
+	= 2\pi R(R-\sqrt{R^2-r^2}),
 \]
-\def\l{\lim\limits_{r \to R}}
-于是\begin{equation}
-A = \l A_1
-= \l 2\pi R(R-\sqrt{R^2-r^2})
-= 2\pi R^2.
-\end{equation}
+\def\l{}
+于是上半球面的表面积为\[
+	\lim\limits_{r \to R} A_1
+	= \lim\limits_{r \to R} 2\pi R(R-\sqrt{R^2-r^2})
+	= 2\pi R^2.
+\]
+因此完整的球面的表面积为\(4\pi R^2\).
 \end{solution}
 \end{example}
 
