@@ -1,166 +1,182 @@
 \section{对坐标的曲线积分}
 \subsection{对坐标的曲线积分的概念}
 \begin{definition}
-设\(L\)为\(xOy\)面内从点\(A\)到点\(B\)的一条有向光滑曲线弧，函数\(P(x,y)\)和\(Q(x,y)\)在\(L\)上有界.
+设\(L\)为\(xOy\)面内从点\(A\)到点\(B\)的一条有向光滑曲线弧，
+函数\(P(x,y)\)和\(Q(x,y)\)在\(L\)上有界.
 在\(L\)上沿\(L\)的方向任意插入一点列\[
-M_1\opair{x_1,y_1},
-M_2\opair{x_2,y_2},
-\dotsc,
-M_{n-1}\opair{x_{n-1},y_{n-1}},
-\]把\(L\)分成\(n\)个有向小弧段\[
-\arc{M_{i-1} M_i} \quad (i=1,2,\dotsc,n; M_0 = A, M_n = B).
+	M_1(x_1,y_1),
+	M_2(x_2,y_2),
+	\dotsc,
+	M_{n-1}(x_{n-1},y_{n-1}),
 \]
-设\(\increment x_i = x_i - x_{i-1}\)，\(\increment y_i = y_i - y_{i-1}\)，
+把\(L\)分成\(n\)个有向小弧段\[
+	\arc{M_{i-1} M_i} \quad (i=1,2,\dotsc,n; M_0 = A, M_n = B).
+\]
+设\(\increment x_i = x_i - x_{i-1}\)，
+\(\increment y_i = y_i - y_{i-1}\)，
 点\(\opair{\xi_i,\eta_i}\)为\(\arc{M_{i-1} M_i}\)上任意取定的点.
 如果当各小弧段长度的最大值\(\lambda\to0\)时，\[
-\sum\limits_{i=1}^n P(\xi_i,\eta_i) \increment x_i
+	\sum\limits_{i=1}^n P(\xi_i,\eta_i) \increment x_i
 \]的极限总存在，
-则称此极限为“函数\(P(x,y)\)在有向曲线弧\(L\)上对坐标\(x\)的\DefineConcept{曲线积分}”，
-记作\[\int_L P(x,y) \dd{x}.\]
+则称此极限为
+“函数\(P(x,y)\)在有向曲线弧\(L\)上对坐标\(x\)的\DefineConcept{曲线积分}”，
+记作\[
+	\int_L P(x,y) \dd{x}.
+\]
 类似地，如果\[
-\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n Q(\xi_i,\eta_i) \increment y_i
+	\lim\limits_{\lambda\to0} \sum\limits_{i=1}^n Q(\xi_i,\eta_i) \increment y_i
 \]总存在，
 则称此极限为“函数\(Q(x,y)\)在有向曲线弧\(L\)上对坐标\(y\)的\DefineConcept{曲线积分}”，
-记作\[\int_L Q(x,y) \dd{y}.\]
-这里，\(P(x,y)\)、\(Q(x,y)\)叫做\DefineConcept{被积函数}，\(L\)叫做\DefineConcept{积分弧段}.
-\end{definition}
-
-我们可以将上述定义简单地总结为以下两个定义式：
-\[
-\int_L P(x,y) \dd{x}
-\defeq \lim\limits_{\lambda\to0}
-	\sum\limits_{i=1}^n P(\xi_i,\eta_i) \increment x_i.
-\]\[
-\int_L Q(x,y) \dd{y}
-\defeq \lim\limits_{\lambda\to0}
-	\sum\limits_{i=1}^n Q(\xi_i,\eta_i) \increment y_i.
+记作\[
+	\int_L Q(x,y) \dd{y}.
 \]
-
+这里，\(P(x,y)\)、\(Q(x,y)\)叫做\DefineConcept{被积函数}，
+\(L\)叫做\DefineConcept{积分弧段}.
+\end{definition}
 以上两个积分也称为\DefineConcept{第二类曲线积分}.
 
-上述定义可以类似地推广到积分弧段为空间有向曲线弧\(\Gamma\)的情形：
-\begingroup
-\def\intgamma#1#2{\int_\Gamma #1(x,y,z) \dd{#2} = \lim\limits_{\lambda\to0} \sum\limits_{i=1}^n #1(\xi_i,\eta_i,\zeta_i) \increment #2_i}
-\begin{gather*}
-\intgamma{P}{x}, \\
-\intgamma{Q}{y}, \\
-\intgamma{R}{z}.
-\end{gather*}
-\endgroup
+上述定义可以类似地推广到积分弧段为空间有向曲线弧\(\Gamma\)的情形.
 
-如果平面曲线\(L\)或空间曲线\(\Gamma\)是分段光滑的，我们规定函数在函数在有向曲线弧\(L\)或\(\Gamma\)上对坐标的曲线积分等于在光滑的各段上对坐标的曲线积分之和.
+如果平面曲线\(L\)或空间曲线\(\Gamma\)是分段光滑的，
+我们规定函数在函数在有向曲线弧\(L\)或\(\Gamma\)上对坐标的曲线积分
+等于在光滑的各段上对坐标的曲线积分之和.
 
 指向与有向曲线弧的方向一致的切向量称为\DefineConcept{有向曲线弧的切向量}.
 
 一般地，可以将\[
-\int_L P(x,y) \dd{x} + \int_L Q(x,y) \dd{y}
+	\int_L P(x,y) \dd{x} + \int_L Q(x,y) \dd{y}
 \]合并写作\[
-\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}.
-\]也可将其写作向量形式\[
-\int_L \vb{F}(x,y) \cdot \dd{\vb{r}},
-\]其中\(\vb{F}(x,y) = P(x,y) \vb{i} + Q(x,y) \vb{j}\)为向量值函数，
+	\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}.
+\]
+也可将其写作向量形式\[
+	\int_L \vb{F}(x,y) \cdot \dd{\vb{r}},
+\]
+其中\(\vb{F}(x,y) = P(x,y) \vb{i} + Q(x,y) \vb{j}\)为向量值函数，
 \(\dd{\vb{r}} = \vb{i} \dd{x} + \vb{j} \dd{y}\).
 
 类似地，把\[
-\int_L P(x,y,z) \dd{x} + \int_L Q(x,y,z) \dd{y} + \int_L R(x,y,z) \dd{z}
+	\int_L P(x,y,z) \dd{x} + \int_L Q(x,y,z) \dd{y} + \int_L R(x,y,z) \dd{z}
 \]合并写作\[
-\int_L P(x,y,z) \dd{x} + Q(x,y,z) \dd{y} + R(x,y,z) \dd{z},
-\]也可写作向量形式\[
-\int_L \vb{F}(x,y,z) \cdot \dd{\vb{r}},
-\]其中\(\vb{F}(x,y,z) = P(x,y,z)\vb{i} + Q(x,y,z)\vb{j} + R(x,y,z)\vb{k}\)为向量值函数，
+	\int_L P(x,y,z) \dd{x} + Q(x,y,z) \dd{y} + R(x,y,z) \dd{z},
+\]
+也可写作向量形式\[
+	\int_L \vb{F}(x,y,z) \cdot \dd{\vb{r}},
+\]
+其中\(\vb{F}(x,y,z) = P(x,y,z)\vb{i} + Q(x,y,z)\vb{j} + R(x,y,z)\vb{k}\)为向量值函数，
 \(\dd{\vb{r}} = \vb{i} \dd{x} + \vb{j} \dd{y} + \vb{k} \dd{z}\).
 
-如果\(L\)（或\(\Gamma\)）是分段光滑的，我们规定函数在有向曲线弧\(L\)（或\(\Gamma\)）上对坐标的曲线积分等于在光滑的各段上对坐标的曲线积分之和.
+如果\(L\)（或\(\Gamma\)）是分段光滑的，
+我们规定函数在有向曲线弧\(L\)
+（或\(\Gamma\)）上对坐标的曲线积分等于在光滑的各段上对坐标的曲线积分之和.
 
 \subsection{对坐标的曲线积分的性质}
 根据上述曲线积分的定义，可以导出对坐标的曲线积分的一些性质.
-为了表达简便起见，我们用向量形式表达，并假定其中的向量值函数在曲线\(L\)上连续%
-\footnote{向量值函数\(\vb{F}(x,y)\)在曲线\(L\)上连续是指：%
-对\(L\)上任意一点\(M_0\)，当\(L\)上的动点\(M(x,y)\)沿\(L\)趋于\(M_0\)时，有\(\abs{\vb{F}(x,y)-\vb{F}(x_0,y_0)}\to0\).%
-若\(\vb{F}(x,y)=P(x,y)\vb{i}+Q(x,y)\vb{j}\)，则\(\vb{F}(x,y)\)在\(L\)上连续等价于\(P(x,y),Q(x,y)\)均在\(L\)上连续.}.
+为了表达简便起见，我们用向量形式表达，并假定其中的向量值函数在曲线\(L\)上连续
+\footnote{向量值函数\(\vb{F}(x,y)\)在曲线\(L\)上连续是指：
+对\(L\)上任意一点\(M_0\)，当\(L\)上的动点\(M(x,y)\)沿\(L\)趋于\(M_0\)时，
+有\(\abs{\vb{F}(x,y)-\vb{F}(x_0,y_0)}\to0\).
+若\(\vb{F}(x,y)=P(x,y)\vb{i}+Q(x,y)\vb{j}\)，
+则\(\vb{F}(x,y)\)在\(L\)上连续等价于\(P(x,y),Q(x,y)\)均在\(L\)上连续.}.
 
 \begin{property}\label{theorem:线积分与面积分.第二类曲线积分性质1}
-设\(\alpha\)、\(\beta\)为常数，则\[
-\int_L [\alpha \vb{F}_1(x,y) + \beta \vb{F}_2(x,y)] \cdot \dd{\vb{r}}
-= \alpha \int_L \vb{F}_1(x,y) \cdot \dd{\vb{r}}
-+ \beta \int_L \vb{F}_2(x,y) \cdot \dd{\vb{r}}.
+设\(\alpha\)、\(\beta\)为常数，
+则\[
+	\int_L [\alpha \vb{F}_1(x,y) + \beta \vb{F}_2(x,y)] \cdot \dd{\vb{r}}
+	= \alpha \int_L \vb{F}_1(x,y) \cdot \dd{\vb{r}}
+	+ \beta \int_L \vb{F}_2(x,y) \cdot \dd{\vb{r}}.
 \]
 \end{property}
 
 \begin{property}\label{theorem:线积分与面积分.第二类曲线积分性质2}
 若有向曲线弧\(L\)可分为两段光滑有向曲线弧\(L_1\)和\(L_2\)，则\[
-\int_L \vb{F}(x,y) \cdot \dd{\vb{r}}
-= \int_{L_1} \vb{F}(x,y) \cdot \dd{\vb{r}}
-+ \int_{L_2} \vb{F}(x,y) \cdot \dd{\vb{r}}.
+	\int_L \vb{F}(x,y) \cdot \dd{\vb{r}}
+	= \int_{L_1} \vb{F}(x,y) \cdot \dd{\vb{r}}
+	+ \int_{L_2} \vb{F}(x,y) \cdot \dd{\vb{r}}.
 \]
 \end{property}
 
 \begin{property}\label{theorem:线积分与面积分.第二类曲线积分性质3}
-设\(L\)是有向光滑曲线弧，\(L^-\)是\(L\)的反向曲线弧，则\[
-\int_{L^-} \vb{F}(x,y) \cdot \dd{\vb{r}}
-= - \int_L \vb{F}(x,y) \cdot \dd{\vb{r}}.
+设\(L\)是有向光滑曲线弧，
+\(L^-\)是\(L\)的反向曲线弧，则\[
+	\int_{L^-} \vb{F}(x,y) \cdot \dd{\vb{r}}
+	= - \int_L \vb{F}(x,y) \cdot \dd{\vb{r}}.
 \]
 \end{property}
-\cref{theorem:线积分与面积分.第二类曲线积分性质3} 表明，当积分弧段的方向改变时，对坐标的曲线积分要改变符号.
+\cref{theorem:线积分与面积分.第二类曲线积分性质3} 表明，
+当积分弧段的方向改变时，对坐标的曲线积分要改变符号.
 因此关于对坐标的曲线积分，我们必须注意积分弧段的方向.
 
-这一性质是对坐标的曲线积分所特有的，对弧长的曲线积分不具有这一性质.
-同时，对坐标的曲线积分也不具有对弧长的曲线积分所具有的\cref{theorem:线积分与面积分.第一类曲线积分性质3}.
+这一性质是对坐标的曲线积分所特有的，
+对弧长的曲线积分不具有这一性质.
+同时，对坐标的曲线积分也不具有
+对弧长的曲线积分所具有的\cref{theorem:线积分与面积分.第一类曲线积分性质3}.
 
 \subsection{对坐标的曲线积分的计算法}
 \begin{theorem}
 设\(P(x,y)\)、\(Q(x,y)\)在有向曲线弧\(L\)上有定义且连续，
 \(L\)的参数方程为\[
-\left\{ \begin{array}{l}
-x = \phi(t), \\
-y = \psi(t), \\
-\end{array} \right.
-\]当参数\(t\)单调地由\(\alpha\)变到\(\beta\)时，
+	\left\{ \begin{array}{l}
+		x = \phi(t), \\
+		y = \psi(t), \\
+	\end{array} \right.
+\]
+当参数\(t\)单调地由\(\alpha\)变到\(\beta\)时，
 点\(M(x,y)\)从\(L\)的起点\(A\)沿\(L\)运动到终点\(B\)，
 \(\phi(t)\)、\(\psi(t)\)在以\(\alpha\)及\(\beta\)为端点的闭区间上具有一阶连续导数，
 且\[
-[\phi'(t)]^2+[\psi'(t)]^2 \neq 0,
-\]则曲线积分\(\int_L{P(x,y)\dd{x} + Q(x,y)\dd{y}}\)存在，
+	[\phi'(t)]^2+[\psi'(t)]^2 \neq 0,
+\]
+则曲线积分\(\int_L{P(x,y)\dd{x} + Q(x,y)\dd{y}}\)存在，
 且\begin{equation}\label{equation:线积分与面积分.第二类曲线积分的计算式1}
-\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}
-= \int_\alpha^\beta \left\{ \def\arraystretch{.7}\begin{array}{l}
-P[\phi(t),\psi(t)] \phi'(t) \\
-\hspace{5pt}+ Q[\phi(t),\psi(t)] \psi'(t)
-\end{array} \right\} \dd{t}.
+	\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}
+	= \int_\alpha^\beta
+		\left\{ \def\arraystretch{.7}\begin{array}{l}
+			P[\phi(t),\psi(t)] \phi'(t) \\
+			\hspace{5pt}+ Q[\phi(t),\psi(t)] \psi'(t)
+		\end{array} \right\} \dd{t}.
 \end{equation}
 \end{theorem}
-\cref{equation:线积分与面积分.第二类曲线积分的计算式1} 表明，计算对坐标的曲线积分\[
-\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}
-\]时，只要把\(x\)、\(y\)、\(\dd{x}\)、\(\dd{y}\)依次换为\(\phi(t)\)、\(\psi(t)\)、\(\phi'(t) \dd{t}\)、\(\psi'(t) \dd{t}\)，然后从\(L\)的起点所对应的参数值\(\alpha\)到\(L\)的终点所对应的参数值\(\beta\)作定积分就行了.
-这里必须注意，下限\(\alpha\)对应于\(L\)的起点，上限\(\beta\)对应于\(L\)的终点，\(\alpha\)不一定小于\(\beta\).
+\cref{equation:线积分与面积分.第二类曲线积分的计算式1} 表明，
+计算对坐标的曲线积分\[
+	\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}
+\]时，
+只要把\(x\)、\(y\)、\(\dd{x}\)、\(\dd{y}\)
+依次换为\(\phi(t)\)、\(\psi(t)\)、\(\phi'(t) \dd{t}\)、\(\psi'(t) \dd{t}\)，
+然后从\(L\)的起点所对应的参数值\(\alpha\)到\(L\)的终点所对应的参数值\(\beta\)作定积分就行了.
+这里必须注意，下限\(\alpha\)对应于\(L\)的起点，
+上限\(\beta\)对应于\(L\)的终点，
+\(\alpha\)不一定小于\(\beta\).
 
 如果\(L\)由方程\(y = \psi(x)\)或\(x = \phi(y)\)给出，
 可以看作参数方程的特殊情形.
-例如，当\(L\)由\(y = \psi(x)\)给出时，\cref{equation:线积分与面积分.第二类曲线积分的计算式1} 成为\[
-\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}
-= \int_\alpha^\beta \left\{
-	P[x,\psi(x)] + Q[x,\psi(x)] \psi'(x)
-\right\} \dd{x}.
+例如，当\(L\)由\(y = \psi(x)\)给出时，
+\cref{equation:线积分与面积分.第二类曲线积分的计算式1} 成为\[
+	\int_L P(x,y) \dd{x} + Q(x,y) \dd{y}
+	= \int_\alpha^\beta \left\{
+		P[x,\psi(x)] + Q[x,\psi(x)] \psi'(x)
+	\right\} \dd{x}.
 \]
 
 \cref{equation:线积分与面积分.第二类曲线积分的计算式1} 可以推广到空间曲线\(\Gamma\)由参数方程\[
-x=\phi(t), \qquad
-y=\psi(t), \qquad
-z=\omega(t)
-\]给出的情形，这一便得到
+	x=\phi(t), \qquad
+	y=\psi(t), \qquad
+	z=\omega(t)
+\]给出的情形，
+这一便得到
 \begin{equation}\label{equation:线积分与面积分.第二类曲线积分的计算式2}
-\int_L \left[ \def\arraystretch{.7}\begin{array}{l}
-	P(x,y,z)\dd{x} \\
-	\hspace{5pt}+ Q(x,y,z)\dd{y} \\
-	\hspace{10pt}+ R(x,y,z)\dd{z}
-\end{array} \right]
-= \int_\alpha^\beta \left\{\def\arraystretch{.7}\begin{array}{l}
-P[\phi(t),\psi(t),\omega(t)] \phi'(t) \\
-\hspace{5pt}+ Q[\phi(t),\psi(t),\omega(t)] \psi'(t) \\
-\hspace{10pt}+ R[\phi(t),\psi(t),\omega(t)] \omega'(t)
-\end{array} \right\} \dd{t}.
+	\int_L \left[ \def\arraystretch{.7}\begin{array}{l}
+		P(x,y,z)\dd{x} \\
+		\hspace{5pt}+ Q(x,y,z)\dd{y} \\
+		\hspace{10pt}+ R(x,y,z)\dd{z}
+	\end{array} \right]
+	= \int_\alpha^\beta \left\{\def\arraystretch{.7}\begin{array}{l}
+	P[\phi(t),\psi(t),\omega(t)] \phi'(t) \\
+	\hspace{5pt}+ Q[\phi(t),\psi(t),\omega(t)] \psi'(t) \\
+	\hspace{10pt}+ R[\phi(t),\psi(t),\omega(t)] \omega'(t)
+	\end{array} \right\} \dd{t}.
 \end{equation}
-这里下限\(\alpha\)对应\(\Gamma\)的起点，上限\(\beta\)对应\(\Gamma\)的终点.
+这里下限\(\alpha\)对应\(\Gamma\)的起点，
+上限\(\beta\)对应\(\Gamma\)的终点.
 
 \begin{example}
 设\(L\)为抛物线\(y^2 = x\)上从点\(A\opair{1,-1}\)到点\(B\opair{1,1}\)的一段弧.
