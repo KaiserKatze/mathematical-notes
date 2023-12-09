@@ -323,12 +323,20 @@ x \dv{u}{x} = \phi(u) - u.
 \end{example}
 
 \begin{example}
-设曲线\(y = y(x)\ (x>0)\)经过点\((1,2)\)，该曲线上任一点\(P(x,y)\)到\(y\)轴的距离等于该点处的切线在\(y\)轴上的截距.
+设曲线\(y = y(x)\ (x>0)\)经过点\((1,2)\)，
+该曲线上任一点\(P(x,y)\)到\(y\)轴的距离等于该点处的切线在\(y\)轴上的截距.
 求曲线方程\(y(x)\).
 \begin{solution}
-设\((x,y)\)处的切线方程为\(Y-y=y'(X-x)\)，令\(X=0\)得\(Y=y-y'x\)，这就是切线在\(y\)轴上的截距，因此得到微分方程\(x = y-y'x\).
-整理得\(\frac{y}{x}-1=y'\)，可见这是一个齐次方程，解得\(y=x(C-\ln x)\ (x>0)\).
-代入\(y(1)=2\)，得\(C=2\)，于是曲线方程为\(y=x(2-\ln x)\).
+设\((x,y)\)处的切线方程为\(Y-y=y'(X-x)\)，
+令\(X=0\)得\(Y=y-y'x\)，
+这就是切线在\(y\)轴上的截距，
+因此得到微分方程\(x = y-y'x\).
+整理得\(\frac{y}{x}-1=y'\)，
+可见这是一个齐次方程，
+解得\(y=x(C-\ln x)\ (x>0)\).
+代入\(y(1)=2\)，
+得\(C=2\)，
+于是曲线方程为\(y=x(2-\ln x)\).
 \end{solution}
 \end{example}
 
@@ -337,7 +345,55 @@ x \dv{u}{x} = \phi(u) - u.
 它的形状由\(xOy\)坐标面上的一条曲线\(L\)绕\(x\)轴旋转而成.
 按照工程师对聚光镜性能的要求，从点\(O\)处发出的一切光线，经它反射后都与旋转轴平行.
 求曲线\(L\)的方程.
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-3.5,xmax=5,
+			ymin=0,ymax=5,
+			axis equal=true,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			xtick=\empty,
+			ytick=\empty,
+		]
+			\pgfmathsetmacro{\pMx}{1}
+			\pgfmathsetmacro{\pMy}{sqrt(4*(\pMx+1))}
+			\pgfmathsetmacro{\pSx}{\pMx+3}
+			\pgfmathsetmacro{\dvM}{2*\pMx/sqrt(4*(\pMx+1))}
+			\pgfmathsetmacro{\pTx}{4}
+			\pgfmathsetmacro{\pTy}{\pMy+\dvM*(\pTx-\pMx)}
+			\pgfmathsetmacro{\pAx}{\pMx-\pMy/\dvM}
+			\pgfmathsetmacro{\pNx}{\dvM*\pMy+\pMx}
+			\draw[red](0,0)node[black,below left]{$O$}coordinate(O)
+				--(\pMx,\pMy)node[black,above left]{$M$}coordinate(M)
+				--(\pSx,\pMy)coordinate(S)node[black,below]{$S$};
+			\draw(4,4)node{$L$};
+			\begin{scope}[color=black!30]
+				\draw(M)--(\pTx,\pTy)coordinate(T)node[black,above right]{$T$};
+				\draw(M)--(\pAx,0)coordinate(A)node[black,below]{$A$};
+				\draw(M)--(M|-O)coordinate(P)node[black,below]{$P$};
+				\draw(M)--(\pNx,0)coordinate(N)node[black,below]{$N$};
+			\end{scope}
+			\begin{scope}[angle eccentricity=2,angle radius=.4cm]
+				\draw pic["$\alpha$",draw=orange,-]{angle=P--A--M};
+				\draw pic["$\alpha$",draw=orange,-]{angle=S--M--T};
+				\draw pic["$\alpha$",draw=orange,-]{angle=A--M--O};
+				\draw pic[draw=brown,angle radius=.2cm]{right angle=N--P--M};
+				\draw pic[draw=brown,angle radius=.2cm]{right angle=N--M--T};
+			\end{scope}
+			\begin{scope}[color=blue,smooth]
+				\addplot[domain=-1:0,samples=100]{sqrt(4*(x+1))};
+				\addplot[domain=0:10,samples=50]{sqrt(4*(x+1))};
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:微分方程.齐次方程.例图1}
+\end{figure}
 \begin{solution}
+如\cref{figure:微分方程.齐次方程.例图1}，建立平面直角坐标系.
 根据对称性，我们只考虑曲线方程中\(y\geq0\)的部分.
 设点\(M(x,y)\)是\(L\)上任意一点，
 点\(O\)发出的某条光线经点\(M\)反射后是一条与\(x\)轴平行的直线\(MS\).
