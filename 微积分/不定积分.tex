@@ -187,12 +187,15 @@ F'(u) = f(u),
 \begin{example}
 求\(\int x \sqrt{1-x^2} \dd{x}\).
 \begin{solution}
-令\(u=1-x^2\)，则\(\dd{u} = -2x\dd{x}\)，\(-\frac{1}{2}\dd{u} = x\dd{x}\)，因此\begin{align*}
-\int x \sqrt{1-x^2} \dd{x}
-&= \int u^{\frac{1}{2}} \left(-\frac{1}{2}\right) \dd{u}
-= -\frac{1}{2} \frac{u^{\frac{3}{2}}}{\frac{3}{2}} + C \\
-&= -\frac{1}{3} u^{\frac{3}{2}} + C
-= -\frac{1}{3} (1-x^2)^{\frac{3}{2}} + C.
+令\(u=1-x^2\)，
+则\(\dd{u} = -2x\dd{x}\)，
+\(-\frac{1}{2}\dd{u} = x\dd{x}\)，
+因此\begin{align*}
+	\int x \sqrt{1-x^2} \dd{x}
+	&= \int u^{\frac{1}{2}} \left(-\frac{1}{2}\right) \dd{u}
+	= -\frac{1}{2} \frac{u^{\frac{3}{2}}}{\frac{3}{2}} + C \\
+	&= -\frac{1}{3} u^{\frac{3}{2}} + C
+	= -\frac{1}{3} (1-x^2)^{\frac{3}{2}} + C.
 \end{align*}
 \end{solution}
 \end{example}
@@ -201,10 +204,10 @@ F'(u) = f(u),
 求\(\int \frac{1}{a^2+x^2} \dd{x}\).
 \begin{solution}
 \begin{align*}
-\int \frac{1}{a^2+x^2} \dd{x}
-&= \int \frac{1}{a^2} \cdot \frac{1}{1+\left(\frac{x}{a}\right)^2} \dd{x} \\
-&= \frac{1}{a} \int \frac{1}{1+\left(\frac{x}{a}\right)^2} \dd(\frac{x}{a})
-= \frac{1}{a} \arctan\frac{x}{a} + C.
+	\int \frac{1}{a^2+x^2} \dd{x}
+	&= \int \frac{1}{a^2} \cdot \frac{1}{1+\left(\frac{x}{a}\right)^2} \dd{x} \\
+	&= \frac{1}{a} \int \frac{1}{1+\left(\frac{x}{a}\right)^2} \dd(\frac{x}{a})
+	= \frac{1}{a} \arctan\frac{x}{a} + C.
 \end{align*}
 \end{solution}
 \end{example}
@@ -213,10 +216,10 @@ F'(u) = f(u),
 求\(\int \frac{\dd{x}}{\sqrt{a^2-x^2}}\ (a>0)\).
 \begin{solution}
 \[
-\int \frac{\dd{x}}{\sqrt{a^2-x^2}}
-= \int \frac{1}{a} \frac{\dd{x}}{\sqrt{1-\left(\frac{x}{a}\right)^2}}
-= \int \frac{\dd(\frac{x}{a})}{\sqrt{1-\left(\frac{x}{a}\right)^2}}
-= \arcsin\frac{x}{a} + C.
+	\int \frac{\dd{x}}{\sqrt{a^2-x^2}}
+	= \int \frac{1}{a} \frac{\dd{x}}{\sqrt{1-\left(\frac{x}{a}\right)^2}}
+	= \int \frac{\dd(\frac{x}{a})}{\sqrt{1-\left(\frac{x}{a}\right)^2}}
+	= \arcsin\frac{x}{a} + C.
 \]
 \end{solution}
 \end{example}
@@ -225,13 +228,36 @@ F'(u) = f(u),
 求\(\int \frac{1}{x^2 - a^2} \dd{x}\).
 \begin{solution}
 因为\[
-\frac{1}{x^2 - a^2} = \frac{1}{2a} \left(\frac{1}{x-a} - \frac{1}{x+a}\right),
-\]所以\begin{align*}
-\int \frac{1}{x^2 - a^2} \dd{x}
-&= \frac{1}{2a} \int \left(\frac{1}{x-a} - \frac{1}{x+a}\right) \dd{x} \\
-&= \frac{1}{2a} \left[ \int \frac{\dd(x-a)}{x-a} - \int \frac{\dd(x+a)}{x+a} \right] \\
-&= \frac{1}{2a} ( \ln\abs{x-a} - \ln\abs{x+a} ) + C \\
-&= \frac{1}{2a} \ln\abs{\frac{x-a}{x+a}} + C.
+	\frac{1}{x^2 - a^2}
+	= \frac{1}{2a} \left(\frac{1}{x-a} - \frac{1}{x+a}\right),
+\]
+所以\begin{align*}
+	\int \frac{1}{x^2 - a^2} \dd{x}
+	&= \frac{1}{2a} \int \left(\frac{1}{x-a} - \frac{1}{x+a}\right) \dd{x} \\
+	&= \frac{1}{2a} \left[ \int \frac{\dd(x-a)}{x-a} - \int \frac{\dd(x+a)}{x+a} \right] \\
+	&= \frac{1}{2a} ( \ln\abs{x-a} - \ln\abs{x+a} ) + C \\
+	&= \frac{1}{2a} \ln\abs{\frac{x-a}{x+a}} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \sin mx \cos nx \dd{x}\).
+\begin{solution}
+由\cref{equation:函数.三角函数.和积互化公式7}，
+\[
+	\sin mx \cos nx
+	= \frac{1}{2} [\sin(m+n)x + \sin(m-n)x],
+\]
+于是\begin{align*}
+	\int \sin mx \cos nx \dd{x}
+	&= \frac{1}{2} \left[
+		\int \sin(m+n)x \dd{x}
+		+ \int \sin(m-n)x \dd{x}
+	\right] \\
+	&= -\frac{\cos(m+n)x}{2(m+n)}
+		- \frac{\cos(m-n)x}{2(m-n)}
+		+ C.
 \end{align*}
 \end{solution}
 \end{example}
