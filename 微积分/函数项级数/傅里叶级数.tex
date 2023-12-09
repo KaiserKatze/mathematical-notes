@@ -286,127 +286,221 @@ b_n = 0 & (n=1,2,3,\dotsc).
 此时\(F(x)\equiv f(x)\)，这样便得到\(f(x)\)的正弦级数（或余弦级数）展开式.
 \end{enumerate}
 
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{.4\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.9]
+			\begin{axis}[
+				enlargelimits=.2,
+				xmin=-pi,xmax=pi,
+				ymin=-1,ymax=1,
+				axis lines=middle,
+				xlabel=$x$,
+				ylabel=$y$,
+				xtick={-pi,-.5*pi,.5*pi,pi},
+				xticklabels={$-\pi\vphantom{\frac12}$,$-\frac12\pi$,$\frac12\pi$,$\pi\vphantom{\frac12}$},
+			]
+				\begin{scope}[color=blue,samples=50,smooth]
+					\addplot[domain=0:{.5*pi}]{cos(deg(x))};
+					\addplot[domain={.5*pi}:{pi}]{0};
+
+					\addplot[domain=0:{-.5*pi}]{cos(deg(x))};
+					\addplot[domain={-.5*pi}:{-pi}]{0};
+				\end{scope}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:傅里叶级数.偶延拓1}
+	\end{subfigure}~\begin{subfigure}[b]{.4\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=.9]
+			\begin{axis}[
+				enlargelimits=.2,
+				xmin=-pi,xmax=pi,
+				ymin=-1,ymax=1,
+				axis lines=middle,
+				xlabel=$x$,
+				ylabel=$y$,
+				xtick={-pi,-.5*pi,.5*pi,pi},
+				xticklabels={$-\pi\vphantom{\frac12}$,$-\frac12\pi$,$\frac12\pi$,$\pi\vphantom{\frac12}$},
+			]
+				\begin{scope}[color=blue,samples=50,smooth]
+					\addplot[domain=0:{.5*pi}]{cos(deg(x))};
+					\addplot[domain={.5*pi}:{pi}]{0};
+
+					\addplot[domain=0:{-.5*pi}]{-cos(deg(x))};
+					\addplot[domain={-.5*pi}:{-pi}]{0};
+				\end{scope}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:傅里叶级数.奇延拓1}
+	\end{subfigure}
+	\caption{}
+\end{figure}
+
 \begin{example}
 将函数\[
-f(x) = \left\{ \begin{array}{cc}
-\cos x, & 0 \leq x < \frac{\pi}{2}, \\
-0, & \frac{\pi}{2} \leq x \leq \pi
-\end{array} \right.
+	f(x) = \left\{ \begin{array}{cc}
+		\cos x, & 0 \leq x < \frac{\pi}{2}, \\
+		0, & \frac{\pi}{2} \leq x \leq \pi
+	\end{array} \right.
 \]分别展开成正弦级数和余弦级数.
 \begin{solution}
-先展开成正弦级数.为此对函数\(f(x)\)作奇延拓，那么傅里叶系数为\begin{align*}
-b_n &= \frac{2}{\pi} \int_0^{\pi} f(x) \sin nx \dd{x}
-= \frac{2}{\pi} \int_0^{\frac{\pi}{2}} \cos x \sin nx \dd{x} \\
-&= \frac{1}{\pi} \int_0^{\frac{\pi}{2}} [\sin(n-1)x + \sin(n+1)x] \dd{x} \\
-&= \frac{1}{\pi} \left[ -\frac{1}{n-1} \cos(n-1)x - \frac{1}{n+1} \cos(n+1)x \right]_0^{\frac{\pi}{2}} \\
-&= \frac{1}{\pi} \left( \frac{1}{n-1} + \frac{1}{n+1} - \frac{1}{n-1} \cos\frac{n-1}{2}\pi - \frac{1}{n+1} \cos\frac{n+1}{2}\pi \right) \\
-&= \frac{1}{\pi} \left( \frac{2n}{n^2-1} - \frac{1}{n-1} \sin\frac{n\pi}{2} + \frac{1}{n+1}\sin\frac{n\pi}{2} \right) \\
-&= \frac{2}{\pi(n^2-1)} \left(n-\sin\frac{n\pi}{2}\right)
-	\quad(n=2,3,\dotsc); \\
-b_1 &= \frac{2}{\pi} \int_0^{\pi} f(x) \sin x \dd{x}
-= \frac{2}{\pi} \int_0^{\pi} \cos x \sin x \dd{x} = \frac{1}{\pi}.
+先展开成正弦级数.
+为此对函数\(f(x)\)作奇延拓，
+如\cref{figure:傅里叶级数.奇延拓1}，
+那么傅里叶系数为\begin{align*}
+	b_n &= \frac{2}{\pi} \int_0^{\pi} f(x) \sin nx \dd{x}
+	= \frac{2}{\pi}
+		\int_0^{\frac{\pi}{2}} \cos x \sin nx \dd{x} \\
+	&= \frac{1}{\pi}
+		\int_0^{\frac{\pi}{2}} [\sin(n-1)x + \sin(n+1)x] \dd{x} \\
+	&= \frac{1}{\pi}
+		\left[
+			-\frac{1}{n-1} \cos(n-1)x - \frac{1}{n+1} \cos(n+1)x
+		\right]_0^{\frac{\pi}{2}} \\
+	&= \frac{1}{\pi}
+		\left(
+			\frac{1}{n-1}
+			+ \frac{1}{n+1}
+			- \frac{1}{n-1} \cos\frac{n-1}{2}\pi
+			- \frac{1}{n+1} \cos\frac{n+1}{2}\pi
+		\right) \\
+	&= \frac{1}{\pi}
+		\left(
+			\frac{2n}{n^2-1}
+			- \frac{1}{n-1}
+			\sin\frac{n\pi}{2}
+			+ \frac{1}{n+1}\sin\frac{n\pi}{2}
+		\right) \\
+	&= \frac{2}{\pi(n^2-1)} \left(n-\sin\frac{n\pi}{2}\right)
+		\quad(n=2,3,\dotsc); \\
+	b_1 &= \frac{2}{\pi} \int_0^{\pi} f(x) \sin x \dd{x}
+	= \frac{2}{\pi} \int_0^{\pi} \cos x \sin x \dd{x} = \frac{1}{\pi}.
 \end{align*}
 从而\(f(x)\)的正弦级数展开式为\[
-f(x) = \frac{1}{\pi} \left[ \sin x + 2\sum\limits_{n=2}^\infty \frac{1}{n^2-1} \left(n-\sin\frac{n\pi}{2}\right) \sin nx \right]
-\quad(0 < x \leq \pi).
+f(x) = \frac{1}{\pi} \left[
+		\sin x
+		+ 2\sum\limits_{n=2}^\infty
+			\frac{1}{n^2-1} \left(n-\sin\frac{n\pi}{2}\right) \sin nx
+	\right]
+	\quad(0 < x \leq \pi).
 \]
 在端点\(x=0\)处级数收敛到令，它不等于\(f(0)\).
 
-再展开成余弦级数.为此对函数\(f(x)\)作偶延拓，那么傅里叶系数为\begin{align*}
-a_n &= \frac{2}{\pi} \int_0^{\pi} f(x) \cos nx \dd{x}
-= \frac{2}{\pi} \int_0^{\frac{\pi}{2}} \cos x \cos nx \dd{x} \\
-&= \frac{1}{\pi} \int_0^{\frac{\pi}{2}} [\cos(n-1)x + \cos(n+1)x] \dd{x} \\
-&= \frac{1}{\pi} \left[ \frac{1}{n-1} \sin\frac{n-1}{2}\pi + \frac{1}{n+1} \sin\frac{n+1}{2}\pi \right] \\
-&= \frac{2}{\pi(n^2-1)} \sin\frac{n-1}{2}\pi \\
-&= \left\{ \begin{array}{cl}
-0, & n=2k-1 \land n\neq1, \\
-\frac{2(-1)^{k-1}}{\pi(4k^2-1)}, & n=2k;
-\end{array} \right. \\
-a_1 &= \frac{2}{\pi} \int_0^{\frac{\pi}{2}} \cos^2 x \dd{x}
-= \frac{1}{\pi} \int_0^{\frac{\pi}{2}} (1+\cos 2x) \dd{x}
-= \frac{1}{2}.
+再展开成余弦级数.
+为此对函数\(f(x)\)作偶延拓，
+如\cref{figure:傅里叶级数.偶延拓1}，
+那么傅里叶系数为\begin{align*}
+	a_n &= \frac{2}{\pi} \int_0^{\pi} f(x) \cos nx \dd{x}
+	= \frac{2}{\pi} \int_0^{\frac{\pi}{2}} \cos x \cos nx \dd{x} \\
+	&= \frac{1}{\pi} \int_0^{\frac{\pi}{2}} [\cos(n-1)x + \cos(n+1)x] \dd{x} \\
+	&= \frac{1}{\pi} \left[
+			\frac{1}{n-1} \sin\frac{n-1}{2}\pi
+			+ \frac{1}{n+1} \sin\frac{n+1}{2}\pi
+		\right] \\
+	&= \frac{2}{\pi(n^2-1)} \sin\frac{n-1}{2}\pi \\
+	&= \left\{ \begin{array}{cl}
+		0, & n=2k-1 \land n\neq1, \\
+		\frac{2(-1)^{k-1}}{\pi(4k^2-1)}, & n=2k;
+	\end{array} \right. \\
+	a_1 &= \frac{2}{\pi} \int_0^{\frac{\pi}{2}} \cos^2 x \dd{x}
+	= \frac{1}{\pi} \int_0^{\frac{\pi}{2}} (1+\cos 2x) \dd{x}
+	= \frac{1}{2}.
 \end{align*}
 从而\(f(x)\)的余弦级数展开式为\[
-f(x) = \frac{1}{\pi} + \frac{1}{2} \cos x + \frac{2}{\pi} \sum\limits_{k=1}^\infty \frac{(-1)^k-1}{4k^2-1} \cos 2kx
-\quad(0 \leq x \leq \pi).
+	f(x) = \frac{1}{\pi} + \frac{1}{2} \cos x + \frac{2}{\pi}
+		\sum\limits_{k=1}^\infty \frac{(-1)^k-1}{4k^2-1} \cos 2kx
+	\quad(0 \leq x \leq \pi).
 \]
 \end{solution}
 \end{example}
 
 \begin{example}
-设周期函数\(f(x)\)的周期为\(2\pi\)，证明：\begin{enumerate}
-\item 如果\(f(x-\pi) = -f(x)\)，则\(f(x)\)的傅里叶系数满足\[
-a_0 = 0,
-a_{2k} = 0,
-b_{2k} = 0
-\quad(k=1,2,\dotsc);
+设周期函数\(f(x)\)的周期为\(2\pi\)，
+证明：\begin{enumerate}
+\item 如果\(f(x-\pi) = -f(x)\)，
+则\(f(x)\)的傅里叶系数满足\[
+	a_0 = 0,
+	a_{2k} = 0,
+	b_{2k} = 0
+	\quad(k=1,2,\dotsc);
 \]
-\item 如果\(f(x-\pi) = f(x)\)，则\(f(x)\)的傅里叶系数满足\[
-a_{2k+1} = 0,
-b_{2k+1} = 0
-\quad(k=0,1,2,\dotsc).
+\item 如果\(f(x-\pi) = f(x)\)，
+则\(f(x)\)的傅里叶系数满足\[
+	a_{2k+1} = 0,
+	b_{2k+1} = 0
+	\quad(k=0,1,2,\dotsc).
 \]
 \end{enumerate}
 \begin{proof}
 写出函数\(f(x)\)的傅里叶级数如下：\[
-f(x) = \frac{a_0}{2} + \sum\limits_{k=1}^\infty \left(
-a_k \cos kx
-+ b_k \sin kx
-\right).
+	f(x) = \frac{a_0}{2}
+	+ \sum\limits_{k=1}^\infty \left(
+		a_k \cos kx
+		+ b_k \sin kx
+	\right).
 \]
 
 还要注意到，当\(k\in\mathbb{Z}\)时，有以下恒等式成立：\[
-\sin(x+2k\pi) \equiv \sin x, \qquad
-\cos(x+2k\pi) \equiv \cos x,
+	\sin(x+2k\pi) \equiv \sin x, \qquad
+	\cos(x+2k\pi) \equiv \cos x,
 \]\[
-\sin(x+\overline{2k+1}\pi) \equiv -\sin x, \qquad
-\cos(x+\overline{2k+1}\pi) \equiv -\cos x.
+	\sin(x+\overline{2k+1}\pi) \equiv -\sin x, \qquad
+	\cos(x+\overline{2k+1}\pi) \equiv -\cos x.
 \]
 
-如果\(f(x-\pi) = -f(x)\)，那么\[
-\frac{a_0}{2} + \sum\limits_{k=1}^\infty \left[
-a_k \cos k(x-\pi)
-+ b_k \sin k(x-\pi)
-\right]
-=
--\frac{a_0}{2} - \sum\limits_{k=1}^\infty \left(
-a_k \cos kx
-+ b_k \sin kx
-\right),
-\]即\[
-\left\{ \begin{array}{ll}
-\frac{a_0}{2} = -\frac{a_0}{2}, \\
-a_k \cos k(x-\pi) = - a_k \cos kx, &(k=1,2,\dotsc) \\
-b_k \sin k(x-\pi) = - b_k \sin kx, &(k=1,2,\dotsc)
-\end{array} \right.
-\]解得\[
-a_0 = 0, \qquad
-a_{2k} = 0, \qquad
-b_{2k} = 0
-\quad(k=1,2,\dotsc).
+如果\(f(x-\pi) = -f(x)\)，
+那么\[
+	\frac{a_0}{2} + \sum\limits_{k=1}^\infty \left[
+		a_k \cos k(x-\pi)
+		+ b_k \sin k(x-\pi)
+	\right]
+	=
+	-\frac{a_0}{2} - \sum\limits_{k=1}^\infty \left(
+		a_k \cos kx
+		+ b_k \sin kx
+	\right),
+\]
+即\[
+	\left\{ \begin{array}{ll}
+		\frac{a_0}{2} = -\frac{a_0}{2}, \\
+		a_k \cos k(x-\pi) = - a_k \cos kx, &(k=1,2,\dotsc) \\
+		b_k \sin k(x-\pi) = - b_k \sin kx, &(k=1,2,\dotsc)
+	\end{array} \right.
+\]
+解得\[
+	a_0 = 0, \qquad
+	a_{2k} = 0, \qquad
+	b_{2k} = 0
+	\quad(k=1,2,\dotsc).
 \]
 
 如果\(f(x-\pi) = f(x)\)，那么\[
-\frac{a_0}{2} + \sum\limits_{k=1}^\infty \left[
-a_k \cos k(x-\pi)
-+ b_k \sin k(x-\pi)
-\right]
-=
-\frac{a_0}{2} + \sum\limits_{k=1}^\infty \left(
-a_k \cos kx
-+ b_k \sin kx
-\right),
-\]即\[
-\left\{ \begin{array}{ll}
-\frac{a_0}{2} = \frac{a_0}{2}, \\
-a_k \cos k(x-\pi) = a_k \cos kx, &(k=1,2,\dotsc) \\
-b_k \sin k(x-\pi) = b_k \sin kx, &(k=1,2,\dotsc)
-\end{array} \right.
-\]解得\[
-a_{2k+1} = 0, \qquad
-b_{2k+1} = 0
-\quad(k=0,1,2,\dotsc).
-\qedhere
+	\frac{a_0}{2} + \sum\limits_{k=1}^\infty \left[
+		a_k \cos k(x-\pi)
+		+ b_k \sin k(x-\pi)
+	\right]
+	=
+	\frac{a_0}{2} + \sum\limits_{k=1}^\infty \left(
+		a_k \cos kx
+		+ b_k \sin kx
+	\right),
+\]
+即\[
+	\left\{ \begin{array}{ll}
+		\frac{a_0}{2} = \frac{a_0}{2}, \\
+		a_k \cos k(x-\pi) = a_k \cos kx, &(k=1,2,\dotsc) \\
+		b_k \sin k(x-\pi) = b_k \sin kx, &(k=1,2,\dotsc)
+	\end{array} \right.
+\]
+解得\[
+	a_{2k+1} = 0, \qquad
+	b_{2k+1} = 0
+	\quad(k=0,1,2,\dotsc).
+	\qedhere
 \]
 \end{proof}
 \end{example}
