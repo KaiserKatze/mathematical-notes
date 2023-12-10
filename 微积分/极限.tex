@@ -305,17 +305,39 @@ N = \ceil*{\left[ \frac{k}{\ln(1+\epsilon)} \right]^2},
 \end{example}
 
 \begin{example}
-\def\l{\lim\limits_{n\to\infty}}
-设数列\(\{x_n\}\)有界，又\(\l y_n = 0\)，证明：\(\l x_n y_n = 0\).
+%@see: 《高等数学（第六版 上册）》 P31. 习题1-2 5.
+设数列\(\{x_n\}\)有界，又\(\lim_{n\to\infty} y_n = 0\).
+证明：\(\lim_{n\to\infty} x_n y_n = 0\).
 \begin{proof}
-由数列\(\{x_n\}\)有界，\(
-\exists M > 0, \forall x_n (\abs{x_n} \leq M)
-\).
-
-因为\(\l y_n = 0\)，所以对\(\forall \epsilon > 0\)，\(\exists N_0 \in \mathbb{N}^+\)，使得当\(n>N_0\)时，\(\abs{y_n - 0} = \abs{y_n} < \frac{\epsilon}{M}\)成立，进而有\[
-\abs{x_n y_n - 0} = \abs{x_n y_n} = \abs{x_n} \abs{y_n} < M \cdot \frac{\epsilon}{M} = \epsilon.
-\qedhere
+因为\[
+	\text{数列\(\{x_n\}\)有界}
+	\iff
+	(\exists M>0)
+	(\forall n\in\mathbb{N})
+	[\abs{x_n} \leq M],
 \]
+又因为\(\lim_{n\to\infty} y_n = 0\)，
+所以\[
+	(\forall \epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{l}
+			n>N
+			\implies
+			\abs{y_n - 0}
+				= \abs{y_n}
+				< \frac{\epsilon}{M} \\
+			\implies
+			\abs{x_n y_n - 0}
+			= \abs{x_n y_n}
+			= \abs{x_n} \abs{y_n}
+			< M \cdot \frac{\epsilon}{M}
+			= \epsilon
+		\end{array}
+	\right].
+\]
+因此\(\lim_{n\to\infty} x_n y_n = 0\).
 \end{proof}
 \end{example}
 
