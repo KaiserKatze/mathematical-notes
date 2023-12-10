@@ -760,43 +760,45 @@ f(x) \to A\ (x \to -\infty).
 \end{corollary}
 
 \begin{example}
-设函数\(f(x)\)在区间\((0,+\infty)\)上单调减少，证明：若\[
-\lim_{x\to+\infty}f(x)=A,
-\]则\(f(x)>A\)恒成立.
+设函数\(f(x)\)在区间\((0,+\infty)\)上单调减少.
+证明：若\(\lim_{x\to+\infty} f(x) = A\)，
+则\((\forall x\in(0,+\infty))[f(x)>A]\).
 \begin{proof}
-假设\[
-\exists x_0 > 0 \bigl[
-	f(x_0) < A
-\bigr],
-\]那么\[
-\forall x > x_0 \bigl[
-	f(x) < f(x_0) < A
-\bigr].
-\]而\[
-f(x) - A < f(x_0) - A < 0
-\implies
-\abs{f(x) - A} > \abs{f(x_0) - A} > 0,
-\]所以\[
-\forall x > x_0 \bigl[
-	\abs{f(x) - A} > \abs{f(x_0) - A} > 0
-\bigr].
-\]而这又与\[
-\lim_{x\to+\infty}f(x)=A
-\iff
-\forall \epsilon > 0, \exists X > 0 \bigl[
-	x > X \implies \abs{f(x) - A} < \epsilon
-\bigr]
-\]矛盾，说明\(\forall x_0 > 0 \bigl[
-	f(x_0) > A
-\bigr]\).
+用反证法.
+假设\((\exists x_0\in(0,+\infty))[f(x_0)<A]\)，
+那么\[
+	(\forall x\in(x_0,+\infty))
+	\left[
+		\begin{array}{l}
+			f(x)<f(x_0)<A \\
+			\iff
+			f(x) - A < f(x_0) - A < 0 \\
+			\implies
+			\abs{f(x) - A} > \abs{f(x_0) - A} > 0
+		\end{array}
+	\right].
+\]
+但是这与\[
+	\lim_{x\to+\infty} f(x) = A
+	\iff
+	(\forall \epsilon>0)
+	(\exists X>0)
+	(\forall x>0)
+	[
+		x > X
+		\implies
+		\abs{f(x) - A} < \epsilon
+	]
+\]矛盾，
+说明\((\forall x_0 > 0)[f(x_0) > A]\).
 \end{proof}
 \end{example}
 
 \begin{theorem}[函数极限的保序性]\label{theorem:极限.函数极限的保序性}
 若函数\(f(x)\)和\(g(x)\)在区间\(I\)上满足\(f(x) \leq g(x)\)，那么有\[
-\varlimsup_{x \to a} f(x) \leq \varlimsup_{x \to a} g(x),
+	\varlimsup_{x \to a} f(x) \leq \varlimsup_{x \to a} g(x),
 \]\[
-\varliminf_{x \to a} f(x) \leq \varliminf_{x \to a} g(x).
+	\varliminf_{x \to a} f(x) \leq \varliminf_{x \to a} g(x).
 \]
 \end{theorem}
 
