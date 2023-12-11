@@ -347,9 +347,13 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 	\vb{F}
 	&= \varoiint_\Sigma \rho g z
 		(\cos\alpha\vb{i}+\cos\beta\vb{j}+\cos\gamma\vb{k}) \dd{S} \\
-	&= \rho g \iiint_\Omega \left(\pdv{x}+\pdv{y}+\pdv{z}\right) z \dd{v} \\
-	&= \rho g \iiint_\Omega \dd{v}
-	= \rho g V,
+	&= \rho g {\def\arraystretch{1.5} \begin{bmatrix}
+			-\iiint_\Omega \left( \pdv{z}{x} + \pdv{0}{y} + \pdv{0}{z} \right) \dd{v} \\
+			-\iiint_\Omega \left( \pdv{0}{x} + \pdv{z}{y} + \pdv{0}{z} \right) \dd{v} \\
+			-\iiint_\Omega \left( \pdv{0}{x} + \pdv{0}{y} + \pdv{z}{z} \right) \dd{v}
+		\end{bmatrix}} \\
+	&= -\rho g \iiint_\Omega \dd{v} \vb{k}
+	= -\rho g V \vb{k},
 \end{align*}
 其中\(V\)是物体所排开的液体的体积.
 \end{proof}
