@@ -126,90 +126,106 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{example}
 
 \begin{example}[三维格林第一公式]
-设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有一阶及二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{v}{\vb{n}}\)为函数\(v(x,y,z)\)沿\(\Sigma\)的外法线方向的方向导数.证明：
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有一阶及二阶连续偏导数，
+\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，
+\(\pdv{v}{\vb{n}}\)为函数\(v(x,y,z)\)沿\(\Sigma\)的外法线方向的方向导数.
+证明：
 \begin{equation}\label{equation:线积分与面积分.三维格林第一公式}
-\begin{split}
-&\iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} \\
-&\hspace{30pt}=\varoiint_\Sigma u \pdv{v}{n} \dd{S}
--\iiint_{\Omega} \left(
-\pdv{u}{x} \pdv{v}{x}
-+\pdv{u}{y} \pdv{v}{y}
-+\pdv{u}{z} \pdv{v}{z}
-\right) \dd{x}\dd{y}\dd{z},
-\end{split}
-\end{equation}其中符号\(\laplacian = \pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}\)为\DefineConcept{拉普拉斯算子}.
+	\iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z}
+	= \varoiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
+	- \iiint_{\Omega} (\grad u \cdot \grad v) \dd{x}\dd{y}\dd{z},
+\end{equation}
+其中符号\(\laplacian = \pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}\)为\DefineConcept{拉普拉斯算子}.
 \begin{proof}
 因为方向导数\[
-\pdv{v}{\vb{n}}
-= \pdv{v}{x} \cos\alpha
-+ \pdv{v}{y} \cos\beta
-+ \pdv{v}{z} \cos\gamma,
-\]其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\((x,y,z)\)处的外法线向量的方向余弦，于是利用高斯公式即有曲面积分\begin{align*}
-&\hspace{-20pt}\varoiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
-= \varoiint_\Sigma u \left(
-\pdv{v}{x} \cos\alpha
-+ \pdv{v}{y} \cos\beta
-+ \pdv{v}{z} \cos\gamma
-\right) \dd{S} \\
-&= \varoiint_\Sigma \left[
-\left( u \pdv{v}{x} \right) \cos\alpha
-+ \left( u \pdv{v}{y} \right) \cos\beta
-+ \left( u \pdv{v}{z} \right) \cos\gamma
-\right] \dd{S} \\
-&= \varoiint_\Sigma \left[
-\pdv{x} \left( u \pdv{v}{x} \right)
-+ \pdv{y} \left( u \pdv{v}{y} \right)
-+ \pdv{z} \left( u \pdv{v}{z} \right)
-\right] \dd{x}\dd{y}\dd{z} \\
-&= \varoiint_\Sigma \left[
-\left( \pdv{u}{x} \pdv{v}{x} + u \pdv[2]{v}{x} \right)
-+ \left( \pdv{u}{y} \pdv{v}{y} + u \pdv[2]{v}{y} \right)
-+ \left( \pdv{u}{z} \pdv{v}{z} + u \pdv[2]{v}{z} \right)
-\right] \dd{x}\dd{y}\dd{z} \\
-&= \varoiint_\Sigma \left(
-\pdv{u}{x} \pdv{v}{x}
-+ \pdv{u}{y} \pdv{v}{y}
-+ \pdv{u}{z} \pdv{v}{z}
-\right) \dd{x}\dd{y}\dd{z}
-+ \varoiint_\Sigma u \laplacian{v} \dd{x}\dd{y}\dd{z},
-\end{align*}将上式右端第一个积分移至左端便得\cref{equation:线积分与面积分.三维格林第一公式}.
+	\pdv{v}{\vb{n}}
+	= \pdv{v}{x} \cos\alpha
+	+ \pdv{v}{y} \cos\beta
+	+ \pdv{v}{z} \cos\gamma,
+\]
+其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是
+\(\Sigma\)在点\((x,y,z)\)处的外法线向量的方向余弦，
+于是利用高斯公式即有曲面积分\begin{align*}
+	&\hspace{-20pt}\varoiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
+	= \varoiint_\Sigma u \left(
+			\pdv{v}{x} \cos\alpha
+			+ \pdv{v}{y} \cos\beta
+			+ \pdv{v}{z} \cos\gamma
+		\right) \dd{S} \\
+	&= \varoiint_\Sigma \left[
+			\left( u \pdv{v}{x} \right) \cos\alpha
+			+ \left( u \pdv{v}{y} \right) \cos\beta
+			+ \left( u \pdv{v}{z} \right) \cos\gamma
+		\right] \dd{S} \\
+	&= \varoiint_\Sigma \left[
+			\pdv{x} \left( u \pdv{v}{x} \right)
+			+ \pdv{y} \left( u \pdv{v}{y} \right)
+			+ \pdv{z} \left( u \pdv{v}{z} \right)
+		\right] \dd{x}\dd{y}\dd{z} \\
+	&= \iiint_\Omega \left[
+			\left( \pdv{u}{x} \pdv{v}{x} + u \pdv[2]{v}{x} \right)
+			+ \left( \pdv{u}{y} \pdv{v}{y} + u \pdv[2]{v}{y} \right)
+			+ \left( \pdv{u}{z} \pdv{v}{z} + u \pdv[2]{v}{z} \right)
+		\right] \dd{x}\dd{y}\dd{z} \\
+	&= \iiint_\Omega \left(
+			\pdv{u}{x} \pdv{v}{x}
+			+ \pdv{u}{y} \pdv{v}{y}
+			+ \pdv{u}{z} \pdv{v}{z}
+		\right) \dd{x}\dd{y}\dd{z}
+		+ \iiint_\Omega u \laplacian{v} \dd{x}\dd{y}\dd{z},
+\end{align*}
+将上式右端第一个积分移至左端便得\cref{equation:线积分与面积分.三维格林第一公式}.
 \end{proof}
 \end{example}
+
 \begin{example}[三维格林第二公式]
-设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有二阶连续偏导数，\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，\(\pdv{u}{\vb{n}}\)、\(\pdv{v}{\vb{n}}\)依次为函数\(u\)、\(v\)沿\(\Sigma\)的外法线方向的方向导数.证明：
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)在闭区域\(\Omega\)上具有二阶连续偏导数，
+\(\Sigma\)是闭区域\(\Omega\)的整个边界曲面，
+\(\pdv{u}{\vb{n}}\)、\(\pdv{v}{\vb{n}}\)依次为函数\(u\)、\(v\)沿\(\Sigma\)的外法线方向的方向导数.
+证明：
 \begin{equation}\label{equation:线积分与面积分.三维格林第二公式}
-\iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z}
-=\varoiint_\Sigma \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{S}.
+	\iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z}
+	=\varoiint_\Sigma \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{S}.
 \end{equation}
 \begin{proof}
 \def\Io{\iiint_{\Omega} \left(%
-\pdv{u}{x} \pdv{v}{x}%
-+\pdv{u}{y} \pdv{v}{y}%
-+\pdv{u}{z} \pdv{v}{z}%
+	\pdv{u}{x} \pdv{v}{x}%
+	+\pdv{u}{y} \pdv{v}{y}%
+	+\pdv{u}{z} \pdv{v}{z}%
 \right) \dd{x}\dd{y}\dd{z}}%
 因为方向导数\begin{align*}
-\pdv{u}{\vb{n}}
-&= \pdv{u}{x} \cos\alpha
-+ \pdv{u}{y} \cos\beta
-+ \pdv{u}{z} \cos\gamma, \\
-\pdv{v}{\vb{n}}
-&= \pdv{v}{x} \cos\alpha
-+ \pdv{v}{y} \cos\beta
-+ \pdv{v}{z} \cos\gamma,
-\end{align*}其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是\(\Sigma\)在点\((x,y,z)\)处的外法线向量的方向余弦，于是利用\hyperref[equation:线积分与面积分.三维格林第一公式]{三维格林第一公式}即有曲面积分\begin{align*}
-&\hspace{-5pt}\varoiint_\Sigma \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{S}
-= \varoiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
-- \varoiint_\Sigma v \pdv{u}{\vb{n}} \dd{S} \\
-&= \left[ \iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} + I \right]
-- \left[ \iiint_{\Omega} v \laplacian{u} \dd{x}\dd{y}\dd{z} + I \right] \\
-&= \iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z},
-\end{align*}其中\(I = \Io\).
+	\pdv{u}{\vb{n}}
+	&= \pdv{u}{x} \cos\alpha
+	+ \pdv{u}{y} \cos\beta
+	+ \pdv{u}{z} \cos\gamma, \\
+	\pdv{v}{\vb{n}}
+	&= \pdv{v}{x} \cos\alpha
+	+ \pdv{v}{y} \cos\beta
+	+ \pdv{v}{z} \cos\gamma,
+\end{align*}
+其中\(\cos\alpha\)、\(\cos\beta\)、\(\cos\gamma\)是
+\(\Sigma\)在点\((x,y,z)\)处的外法线向量的方向余弦，
+于是利用\hyperref[equation:线积分与面积分.三维格林第一公式]{三维格林第一公式}即
+有曲面积分\begin{align*}
+	&\hspace{-5pt}
+	\varoiint_\Sigma \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{S}
+	= \varoiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
+		- \varoiint_\Sigma v \pdv{u}{\vb{n}} \dd{S} \\
+	&= \left[ \iiint_{\Omega} u \laplacian{v} \dd{x}\dd{y}\dd{z} + I \right]
+		- \left[ \iiint_{\Omega} v \laplacian{u} \dd{x}\dd{y}\dd{z} + I \right] \\
+	&= \iiint_{\Omega} (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}\dd{z},
+\end{align*}
+其中\(I = \Io\).
 \end{proof}
 \end{example}
 
 \subsection{沿任意闭曲面的曲面积分为零的条件}
 \begin{definition}
-对于空间区域\(G\)，如果\(G\)内任一闭曲面所围成的区域全属于\(G\)，则称\(G\)是\DefineConcept{空间二维单连通区域}；如果\(G\)内任一闭曲线总可以张成一片完全属于\(G\)的曲面，则称\(G\)为\DefineConcept{空间一维单连通区域}.
+如果空间区域\(G\)内任一闭曲面所围成的区域全属于\(G\)，
+则称\(G\)是\DefineConcept{空间二维单连通区域}.
+
+如果空间区域\(G\)内任一闭曲线总可以张成一片完全属于\(G\)的曲面，
+则称\(G\)为\DefineConcept{空间一维单连通区域}.
 \end{definition}
 
 \begin{example}
@@ -219,10 +235,14 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \end{example}
 
 \begin{theorem}\label{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
-设\(G\)是空间二维单连通区域，\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在\(G\)内具有一阶连续偏导数，则曲面积分\[
-\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
-\]在\(G\)内与所取曲面\(\Sigma\)无关而只决定于\(\Sigma\)的边界曲线（或沿\(G\)内任一闭曲面的曲面积分为零）的充要条件是\[
-\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z} = 0
+设\(G\)是空间二维单连通区域，
+\(P(x,y,z)\)、\(Q(x,y,z)\)、\(R(x,y,z)\)在\(G\)内具有一阶连续偏导数，
+则曲面积分\[
+	\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
+\]
+在\(G\)内与所取曲面\(\Sigma\)无关而只决定于\(\Sigma\)的边界曲线
+（或沿\(G\)内任一闭曲面的曲面积分为零）的充要条件是\[
+	\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z} = 0
 \]在\(G\)内恒成立.
 \end{theorem}
 
