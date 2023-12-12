@@ -79,18 +79,30 @@ E(X) &= \sum_{k=0}^\infty {k p_k}
 \end{proof}
 \end{theorem}
 
+\subsubsection{数学期望不存在的离散型分布 --- \texorpdfstring{\(\zeta(2)\)}{\textzeta(2)}分布}
 应该注意到，并非所有离散型分布都存在数学期望.
-我们构造某个随机变量\(X\)的概率分布如下：\[
-	p_k = P(X=k) = \frac{6}{(\pi k)^2}
-	\quad(k=1,2,\dotsc).
+
+\begin{definition}
+若随机变量\(X\)的分布为\[
+	P(X=k) = \frac{1}{k^n} \zeta(n),
+	\quad k=1,2,\dotsc,
 \]
-容易验证该分布的非负性与归一性.
-然而该分布的数学期望不存在，
-这是因为\[
+其中\(n>1\)，
+则称“\(X\)服从 \DefineConcept{\(\zeta\)分布}”，
+记作\(X \sim \zeta(n)\).
+\end{definition}
+
+\begin{proposition}
+\(\zeta\)分布\(\zeta(2)\)的数学期望不存在.
+\begin{proof}
+因为级数\[
 	\sum_{k=1}^\infty k p_k
-	= \sum_{k=1}^\infty k \frac{6}{(\pi k)^2}
-	= \sum_{k=1}^\infty \frac{6}{\pi^2 k}
-\]不收敛.
+	= \sum_{k=1}^\infty k \cdot \frac{1}{k^2} \zeta(n)
+	= \frac{6}{\pi^2} \sum_{k=1}^\infty \frac1k
+\]发散，
+所以\(\zeta(2)\)的数学期望不存在.
+\end{proof}
+\end{proposition}
 
 \subsubsection{连续型随机变量的数学期望}
 \begin{definition}
@@ -128,6 +140,7 @@ E(X)
 设\(X \sim e(\lambda)\)，则\(E(X) = \frac{1}{\lambda}\).
 \end{theorem}
 
+\subsubsection{数学期望不存在的连续型分布 --- 柯西分布}
 同样应该注意到，并非所有连续型分布都存在数学期望.
 下面我们给出一类分布，这类分布没有数学期望.
 
