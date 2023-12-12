@@ -150,6 +150,36 @@ E(X)
 那么\(\tan X \sim C(0,1)\).
 \end{proposition}
 
+\begin{proposition}
+柯西分布的数学期望不存在.
+\begin{proof}
+要想知道柯西分布的数学期望是否存在，
+我们就需要检验反常积分\[
+	\int_{-\infty}^{+\infty} \abs{x} f(x) \dd{x}
+	= \int_{-\infty}^0 (-x) f(x) \dd{x}
+	+ \int_0^{+\infty} x f(x) \dd{x}
+\]是否收敛.
+因为\begin{align*}
+	\int x f(x) \dd{x}
+	&= \int \frac{b x \dd{x}}{\pi[(x-a)^2+b^2]} \\
+	%&\xlongequal{u=x-a} \int \frac{b (u+a) \dd{u}}{\pi(u^2+b^2)} \\
+	%&= \frac{b}{\pi} \left[
+	%	a \int \frac{\dd{u}}{u^2+b^2}
+	%	+ \int \frac{u \dd{u}}{u^2+b^2}
+	%\right] \\
+	%&= \frac{b}{\pi} \left[
+	%	\frac{a}{b} \arctan\frac{u}{b}
+	%	+ \frac12 \ln(u^2+b^2)
+	%\right] + C \\
+	%&= \frac{a}{\pi} \arctan\frac{u}{b} + \frac{b}{2\pi} \ln(u^2+b^2) + C \\
+	&= \frac{a}{\pi} \arctan\frac{x-a}{b} + \frac{b}{2\pi} \ln[(x-a)^2+b^2] + C,
+\end{align*}
+其中\(\arctan\frac{x-a}{b}\)有界，
+而\(\ln[(x-a)^2+b^2]\to\infty\ (x\to\infty)\)，
+所以\(\int_{-\infty}^{+\infty} \abs{x} f(x) \dd{x}\)发散.
+\end{proof}
+\end{proposition}
+
 \subsubsection{随机变量的函数的数学期望}
 \begin{theorem}\label{theorem:随机变量的数字特征.一维随机变量的函数的数学期望}
 设\(X\)为随机变量，\(y=g(x)\)是\(x\)的（分段）连续函数或单调函数，则对\(Y=g(X)\)，
