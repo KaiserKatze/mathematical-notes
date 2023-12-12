@@ -148,6 +148,62 @@ E(X)
 \begin{proposition}
 如果随机变量\(X \sim U(-\pi,\pi)\)，
 那么\(\tan X \sim C(0,1)\).
+\begin{proof}
+因为\(X \sim U(-\pi,\pi)\)，
+所以\(X\)的密度为\[
+	f_X(x) = \frac{1}{2\pi}
+	\quad(-\pi<x<\pi).
+\]
+令\(Y = \tan X\)，
+那么\(Y\)的取值区间为\((-\infty,+\infty)\)，
+\(Y\)的分布函数为\[
+	F_Y(y)
+	= P(Y \leq y)
+	= P(\tan X \leq y).
+\]
+当\(y\leq0\)时，有\[
+	P(\tan X \leq y)
+	= P\left(-\frac\pi2 < X \leq \arctan y\right)
+	+ P\left(\frac\pi2 < X \leq \pi + \arctan y\right).
+\]
+当\(y>0\)时，有\[
+	P(\tan X \leq y)
+	= P\left(-\pi < X \leq \arctan y - \pi\right)
+	+ P\left(-\frac\pi2 < X \leq \arctan y\right)
+	+ P\left(\frac\pi2 < X \leq \pi\right).
+\]
+因为\[
+	P\left(-\frac\pi2 < X \leq \arctan y\right)
+	= \int_{-\frac\pi2}^{\arctan y} f_X(x) \dd{x}
+	= \frac{1}{2\pi} \left(\arctan y + \frac\pi2\right),
+\]\[
+	P\left(\frac\pi2 < X \leq \pi + \arctan y\right)
+	= \int_{\frac\pi2}^{\pi + \arctan y} f_X(x) \dd{x}
+	= \frac{1}{2\pi} \left(\arctan y + \frac\pi2\right),
+\]\[
+	P\left(-\pi < X \leq \arctan y - \pi\right)
+	= \int_{-\pi}^{\arctan y - \pi} f_X(x) \dd{x}
+	= \frac{1}{2\pi} \arctan y,
+\]\[
+	P\left(\frac\pi2 < X \leq \pi\right)
+	= \int_{\frac\pi2}^\pi f_X(x) \dd{x}
+	= \frac{1}{2\pi} \cdot \frac\pi2
+	= \frac14,
+\]
+所以\[
+	P(\tan X \leq y)
+	= \left\{ \def\arraystretch{1.5} \begin{array}{cl}
+		\frac1\pi \left(\arctan y + \frac\pi2\right), & y\leq0, \\
+		\frac1\pi \arctan y + \frac12, & y>0.
+	\end{array} \right.
+\]
+因此\[
+	f_Y(y) = F'_Y(y)
+	= \frac1\pi \cdot \frac{1}{1+y^2},
+	\quad y\in\mathbb{R},
+\]
+这就是说\(Y = \tan X \sim C(0,1)\).
+\end{proof}
 \end{proposition}
 
 \begin{proposition}
