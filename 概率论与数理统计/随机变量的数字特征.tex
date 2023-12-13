@@ -348,17 +348,21 @@ E(Z) = E[g(X,Y)] = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y) f(x,
 设\(X \sim B(n,p)\)，则\(E(X) = np\).
 \begin{proof}[证法一]
 由数学期望的定义有\[
-E(X) = \sum_{k=0}^n k C_n^k p^k (1-p)^{n-k},
-\]其中\[
+	E(X) = \sum_{k=0}^n k C_n^k p^k (1-p)^{n-k},
+\]
+其中\[
 	k C_n^k = k \frac{n!}{k! (n-k)!}
 	= n \frac{(n-1)!}{(k-1)! (n-k)!}
 	= n C_{n-1}^{k-1}.
 \]
 代回原式，得\begin{align*}
-	E(X) &= np \sum_{k=1}^n C_{n-1}^{k-1} p^{k-1} (1-p)^{n-k} \\
-	&= np \sum_{k=0}^n C_{n-1}^k p^k (1-p)^{n-1-k} \\
-	&= np[p+(1-p)]^{n-1} = np.
-\qedhere
+	E(X)
+	&= np \sum_{k=1}^n C_{n-1}^{k-1} p^{k-1} (1-p)^{n-k} \\
+	&= np \sum_{k=0}^{n-1} C_{n-1}^k p^k (1-p)^{n-1-k} \\
+	&= np[p+(1-p)]^{n-1}
+		\tag{二项式定理} \\
+	&= np.
+	\qedhere
 \end{align*}
 \end{proof}
 \begin{proof}[证法二]
