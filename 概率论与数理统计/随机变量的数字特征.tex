@@ -816,24 +816,23 @@ m_k = E(X^k),
     \vb{V} = \begin{bmatrix}
     \sigma_{11} & \sigma_{12} & \dots & \sigma_{1n} \\
     \sigma_{21} & \sigma_{22} & \dots & \sigma_{2n} \\
-    \vdots & \vdots & \ddots & \vdots \\
+    \vdots & \vdots & & \vdots \\
     \sigma_{n1} & \sigma_{n2} & \dots & \sigma_{nn}
     \end{bmatrix}
 \]
 为“\((\AutoTuple{X}{n})\)的\DefineConcept{协方差阵}”.
 \end{definition}
 
-易见\(\vb{V}\)总是对称阵.
+易见协方差阵\(\vb{V}\)总是对称阵.
 
 \subsection{标准化随机变量}
 \begin{definition}
-设随机变量\(X\)与\(Y\)的期望、方差都存在，
-且\(D(X) > 0\)，\(D(Y) > 0\)，则将随机变量\[
-    X^* \defeq \frac{X-E(X)}{\sqrt{D(X)}},
-    \qquad
-    Y^* \defeq \frac{Y-E(Y)}{\sqrt{D(Y)}}
+设随机变量\(X\)的期望、方差都存在，
+且\(D(X) > 0\)，
+则将随机变量\[
+    \frac{X-E(X)}{\sqrt{D(X)}}
 \]
-分别称为\(X\)与\(Y\)的\DefineConcept{标准化随机变量}.
+称为“随机变量\(X\)的\DefineConcept{标准化随机变量}”.
 \end{definition}
 
 \begin{property}\label{theorem:随机变量的数字特征.标准化随机变量的数字特征}
@@ -843,11 +842,20 @@ m_k = E(X^k),
     \item \(D(X^*)=1\).
 \end{enumerate}
 \begin{proof}
-由\cref{theorem:随机变量的数字特征.数学期望的性质1,%
-theorem:随机变量的数字特征.常用的方差的计算式} 有：
-\begin{align*}
-    E(X^*) &= \frac{1}{\sigma} E[X-E(X)] = 0, \\
-    D(X^*) &= E({X^*}^2) = \frac{1}{\sigma^2} E[X-E(X)] = 1.
+设\(X\)的标准差为\(\sqrt{D(X)}=\sigma\).
+那么\begin{align*}
+    E(X^*)
+	&= E\left(\frac{X-E(X)}{\sigma}\right) \\
+	&= \frac1\sigma E(X-E(X))
+		\tag{\cref{theorem:随机变量的数字特征.数学期望的性质1}} \\
+	&= \frac1\sigma (E(X) - E(X))
+	= 0, \\
+    D(X^*)
+	&= E((X^*)^2)
+		\tag{\cref{theorem:随机变量的数字特征.常用的方差的计算式}} \\
+	&= E\left(\frac{(X-E(X))^2}{\sigma^2}\right) \\
+	&= \frac{1}{\sigma^2} E(X-E(X))^2
+	= 1.
     \qedhere
 \end{align*}
 \end{proof}
