@@ -296,25 +296,29 @@ P(V_1 \neq 0) = P(\abs{X_1} > \delta n)
 \end{theorem}
 
 \subsection{伯努利大数律}
-\begin{corollary}[伯努利大数律]\label{theorem:极限定理.大数律.伯努利大数律}
-在\(n\)次伯努利试验中，事件\(A\)发生了\(n_A\)次（即事件\(A\)发生的频率为\(f_n(A)=n_A / n\)），且\(A\)发生的概率为\(p=P(A)\)，则\[
-f_n(A) \toP p.
+\begin{theorem}[伯努利大数律]\label{theorem:极限定理.大数律.伯努利大数律}
+假设在\(n\)次伯努利试验中，
+事件\(A\)发生了\(X\)次；
+而\(A\)发生的概率为\(p\)，
+则\[
+	\frac{X}{n} \toP p.
 \]
 \begin{proof}
 令随机变量\(X_k\)为\[
-X_k = \left\{ \begin{array}{cl}
-1, & \text{事件\(A\)在第\(k\)次试验中发生}, \\
-0, & \text{事件\(A\)在第\(k\)次试验中不发生}, \\
-\end{array} \right.
-\]则\(\AutoTuple{X}{k}\)独立同服从于\(B(1,p)\)分布，且\(E(X_k)=p\)，\(D(X_k)=p(1-p)\).
-注意\(f_n(A)=\overline{X}=\frac{1}{n} \sum_{k=1}^n{X_k}\)，从而由独立同分布大数律，有\[
-f_n(A) \toP p = P(A).
-\qedhere
+	X_k = \left\{ \begin{array}{cl}
+		1, & \text{事件\(A\)在第\(k\)次试验中发生}, \\
+		0, & \text{事件\(A\)在第\(k\)次试验中不发生}, \\
+	\end{array} \right.
 \]
+则\(\AutoTuple{X}{k}\)独立同服从于\(B(1,p)\)分布，
+且\(E(X_k)=p\)，
+\(D(X_k)=p(1-p)\).
+注意\(\frac{X}{n}
+= \frac{1}{n} \sum_{k=1}^n X_k\)，
+从而由\hyperref[theorem:极限定理.大数律.独立同分布大数律]{独立同分布大数律}
+有\(\frac{X}{n} \toP p\).
 \end{proof}
-\end{corollary}
-这个推论则指明了“频概关系”，即频率\(f_n(A)\)的稳定值\(P(A)\)实际上是频率依概率收敛于\(P(A)\).
-这样，在实际应用中，\(n\)较大时，可用频率\(f_n(A)\)估计\(A\)发生的概率\(P(A)\).
+\end{theorem}
 
 \begin{example}
 随机变量序列\(\{X_n\}\)独立同服从于指数分布\(e(3)\)，记\(Y_n = \frac{1}{n} \sum_{k=1}^n X_k^2\).
