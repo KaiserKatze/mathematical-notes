@@ -5,7 +5,8 @@
 由于随机变量\(X\)的方差\(D(X)\)刻画了\(X\)取值集中在期望\(E(X)\)周围的程度，故对任意\(\epsilon>0\)，事件\((\abs{X - E(X)} < \epsilon)\)的概率与\(D(X)\)有关，且\(D(X)\)越小，这个概率就应越大.
 切比雪夫不等式就可以说明这一点.
 \begin{theorem}[切比雪夫不等式]\label{theorem:极限定理.切比雪夫不等式}
-设随机变量\(X\)的数学期望与方差都存在，则对任意\(\epsilon > 0\)，有\begin{equation}\label{equation:极限定理.切比雪夫不等式1}
+设随机变量\(X\)的数学期望与方差都存在，则对任意\(\epsilon > 0\)，
+有\begin{equation}\label{equation:极限定理.切比雪夫不等式1}
 P(\abs{X-E(X)}<\epsilon) \geq 1 - \frac{D(X)}{\epsilon^2}
 \end{equation}或\begin{equation}\label{equation:极限定理.切比雪夫不等式2}
 P(\abs{X-E(X)}\geq\epsilon) \leq \frac{D(X)}{\epsilon^2}.
@@ -109,25 +110,38 @@ P\left(
     \quad\text{或}\quad
     \lim_{n\to\infty} P(\abs{X-a}\geq\epsilon) = 0,
 \]
-则称“\(\AutoTuple{X}{n},\dotsc\) \DefineConcept{依概率收敛于} \(a\)”，
+则称“\(\{X_n\}\) \DefineConcept{依概率收敛于} \(a\)”，
 记为\(X_n \overset{P}{\longrightarrow} a\).
 \end{definition}
 
 依概率收敛的直观意义是：
-当\(n\)充分大时，虽不能保证必有不等式\(\abs{X_n-a}<\epsilon\)成立，但事件\((\abs{X_n-a}<\epsilon)\)发生的概率充分接近于1，即\(X_n\)的取值与\(a\)以极大的概率充分接近.
+当\(n\)充分大时，
+虽不能保证必有不等式\(\abs{X_n-a}<\epsilon\)成立，
+但事件\((\abs{X_n-a}<\epsilon)\)发生的概率充分接近于1，
+即\(X_n\)的取值与\(a\)以极大的概率充分接近.
 
-由切比雪夫不等式，立即可以得到一个随机变量序列依概率收敛的充分条件.
+由切比雪夫不等式，
+立即可以得到一个随机变量序列依概率收敛的充分条件.
 \begin{theorem}\label{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}
-随机变量序列\(\{X_n\}\)中，若\(E(X_n)=\mu_n\)、\(D(X_n)=\sigma_n^2\)存在；
-且\(n\to\infty\)时，有\(\sigma_n^2\to0\)，则\[
-X_n - \mu_n \overset{P}{\longrightarrow} 0.
+随机变量序列\(\{X_n\}\)中，
+若\(E(X_n)\)和\(D(X_n)\)都存在，
+且\(\lim_{n\to\infty} D(X_n) = 0\)，
+则\[
+	X_n - \mu_n \overset{P}{\longrightarrow} 0.
 \]
 \begin{proof}
-由切比雪夫不等式，对\(\forall \epsilon > 0\)，有\[
-1 \geq P(\abs{X_n-\mu_n}<\epsilon) \geq 1 - \frac{\sigma_n^2}{\epsilon^2}.
+设\(E(X_n)=\mu_n\)，
+\(D(X_n)=\sigma_n^2\).
+由\hyperref[equation:极限定理.切比雪夫不等式1]{切比雪夫不等式}，
+对\(\forall \epsilon > 0\)，
+有\[
+	1 \geq P(\abs{X_n-\mu_n}<\epsilon) \geq 1 - \frac{\sigma_n^2}{\epsilon^2}.
 \]
-当\(n\to\infty\)时，\(\sigma_n^2\to0\)，\(1 - \frac{\sigma_n^2}{\epsilon^2} \to 1\)，那么有\[
-\lim_{n\to\infty}{P(\abs{X_n-\mu_n}<\epsilon)=1},
+当\(n\to\infty\)时，
+\(\sigma_n^2\to0\)，
+\(1 - \frac{\sigma_n^2}{\epsilon^2} \to 1\)，
+那么由\hyperref[theorem:极限.夹逼准则]{夹逼准则}有\[
+	\lim_{n\to\infty} P(\abs{X_n-\mu_n}<\epsilon)=1,
 \]
 即\(X_n - \mu_n \overset{P}{\longrightarrow} 0\).
 \end{proof}
@@ -150,21 +164,39 @@ X_n - \mu_n \overset{P}{\longrightarrow} 0.
 \end{definition}
 
 \begin{theorem}[切比雪夫大数律]\label{theorem:极限定理.大数律.切比雪夫大数律}
-对独立随机变量序列\(\{X_k\}\)，若\(E(X_k)\)、\(D(X_k)\)都存在（\(k=1,2,\dotsc\)）；且有常数\(C\)，使得\(D(X_k) \leq C\ (k=1,2,\dotsc)\)，则有\[
-\frac{1}{n} \sum_{k=1}^n{X_k} - \frac{1}{n} \sum_{k=1}^n{E(X_k)} \overset{P}{\longrightarrow} 0.
-\]
+对独立随机变量序列\(\{X_n\}\)，
+若\(E(X_n)\ (n=1,2,\dotsc)\)都存在，
+而\(D(X_n)\ (n=1,2,\dotsc)\)都存在且有界，
+则\(\{X_n\}\)服从大数律.
 \begin{proof}
+因为\(D(X_n)\ (n=1,2,\dotsc)\)都存在且有界，
+不妨假设存在常数\(C\)，
+使得\[
+	D(X_k) \leq C
+	\quad(k=1,2,\dotsc).
+\]
 \def\Yn{\frac{1}{n} \sum_{k=1}^n{X_k}}
 令\(Y_n=\Yn\)，则\[
-\mu_n = E(Y_n) = E\left(\Yn\right) = \frac{1}{n} \sum_{k=1}^n{E(X_k)},
+	\mu_n
+	= E(Y_n)
+	= E\left(\Yn\right)
+	= \frac{1}{n} \sum_{k=1}^n{E(X_k)},
 \]\[
-\sigma_n^2 = D(Y_n) = D\left(\Yn\right) = \frac{1}{n^2} \sum_{k=1}^n{D(X_k)} \leq \frac{C}{n},
+	\sigma_n^2
+	= D(Y_n)
+	= D\left(\Yn\right)
+	= \frac{1}{n^2} \sum_{k=1}^n{D(X_k)} \leq \frac{C}{n},
 \]
-故\(n\to\infty\)时，\(\sigma_n^2\to0\)，由\cref{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}，有\[
-Y_n - \mu_n \overset{P}{\longrightarrow} 0,
-\]即\[
-\frac{1}{n} \sum_{k=1}^n{X_k} - \frac{1}{n} \sum_{k=1}^n{E(X_k)} \overset{P}{\longrightarrow} 0.
-\qedhere
+故\(n\to\infty\)时，\(\sigma_n^2\to0\)，
+由\cref{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}，
+有\[
+	Y_n - \mu_n \overset{P}{\longrightarrow} 0,
+\]
+即\[
+	\frac{1}{n} \sum_{k=1}^n{X_k}
+	- \frac{1}{n} \sum_{k=1}^n{E(X_k)}
+	\overset{P}{\longrightarrow} 0.
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
