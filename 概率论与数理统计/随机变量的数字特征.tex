@@ -22,14 +22,14 @@
 我们称“随机变量\(X\)的数学期望不存在”.
 \end{definition}
 
-\begin{theorem}\label{theorem:随机变量的数字特征.0-1分布的数学期望}
+\begin{proposition}\label{theorem:随机变量的数字特征.0-1分布的数学期望}
 设\(X \sim B(1,p)\)，则\(E(X) = p\).
 \begin{proof}
 由数学期望的定义有，\(E(X) = 0 \cdot (1-p) + 1 \cdot p = p\).
 \end{proof}
-\end{theorem}
+\end{proposition}
 
-\begin{theorem}\label{theorem:随机变量的数字特征.泊松分布的数学期望}
+\begin{proposition}\label{theorem:随机变量的数字特征.泊松分布的数学期望}
 设\(X \sim P(\lambda)\)，则\(E(X) = \lambda\).
 \begin{proof}
 由\(p_k = P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda}\ (k=0,1,2,\dotsc)\)可得
@@ -43,9 +43,9 @@
 	\qedhere
 \end{align*}
 \end{proof}
-\end{theorem}
+\end{proposition}
 
-\begin{theorem}\label{theorem:随机变量的数字特征.几何分布的数学期望}
+\begin{proposition}\label{theorem:随机变量的数字特征.几何分布的数学期望}
 设\(X \sim G(p)\)，则\(E(X) = \frac{1}{p}\).
 \begin{proof}
 记\(q = 1-p\)，则\(p_k = pq^{k-1}\ (k=1,2,\dotsc)\)，
@@ -62,9 +62,9 @@
 	\qedhere
 \end{align*}
 \end{proof}
-\end{theorem}
+\end{proposition}
 
-\begin{theorem}
+\begin{proposition}
 设\(X \sim H(n,m,N)\)，则\(E(X) = \frac{n m}{N}\).
 \begin{proof}
 直接计算得\[
@@ -78,7 +78,7 @@
 	\qedhere
 \]
 \end{proof}
-\end{theorem}
+\end{proposition}
 
 \subsubsection{数学期望不存在的离散型分布 --- \texorpdfstring{\(\zeta(2)\)}{\textzeta(2)}分布}
 应该注意到，并非所有离散型分布都存在数学期望.
@@ -435,50 +435,54 @@ D(X) &= E[X-E(X)]^2
 \end{proof}
 \end{corollary}
 
-\begin{theorem}
-设\(X \sim P(\lambda)\)，则\(D(X) = \lambda\).
+\begin{proposition}
+设\(X \sim P(\lambda)\)，
+则\(D(X) = \lambda\).
 \begin{proof}
-直接计算得
-\begin{align*}
-E[X(X-1)]
-&= \sum_{k=0}^\infty {k(k-1) \frac{\lambda^k}{k!} e^{-\lambda}}
-= \lambda^2 e^{-\lambda} \sum_{k=2}^\infty {\frac{\lambda^{k-2}}{(k-2)!}} \\
-&\xlongequal{n=k-1} \lambda^2 e^{-\lambda} \sum_{n=0}^\infty {\frac{\lambda^n}{n!}}
-= \lambda^2 e^{-\lambda} e^\lambda = \lambda^2. \\
-D(X)
-&= E(X^2) - [E(X)]^2
-= E[X(X-1)] + E(X) - [E(X)]^2 \\
-&= \lambda^2 + \lambda - \lambda^2 = \lambda.
-\qedhere
+直接计算得\begin{align*}
+	E[X(X-1)]
+	&= \sum_{k=0}^\infty {k(k-1) \frac{\lambda^k}{k!} e^{-\lambda}}
+	= \lambda^2 e^{-\lambda} \sum_{k=2}^\infty {\frac{\lambda^{k-2}}{(k-2)!}} \\
+	&\xlongequal{n=k-1} \lambda^2 e^{-\lambda} \sum_{n=0}^\infty {\frac{\lambda^n}{n!}}
+	= \lambda^2 e^{-\lambda} e^\lambda = \lambda^2. \\
+	D(X)
+	&= E(X^2) - [E(X)]^2
+	= E[X(X-1)] + E(X) - [E(X)]^2 \\
+	&= \lambda^2 + \lambda - \lambda^2 = \lambda.
+	\qedhere
 \end{align*}
 \end{proof}
-\end{theorem}
+\end{proposition}
 
-\begin{theorem}
-设\(X \sim \Gamma(\alpha,\beta)\)，则\(D(X) = \frac{\alpha}{\beta^2}\).
+\begin{proposition}
+设\(X \sim \Gamma(\alpha,\beta)\)，
+则\(D(X) = \frac{\alpha}{\beta^2}\).
 \begin{proof}
 \def\inti{\int_0^{+\infty}}%
 直接计算得
 \begin{align*}
-E(X^2) &= \int_0^{+\infty} x^2 \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
-&= \frac{1}{\beta^2 \Gamma(\alpha)} \int_0^{+\infty} (\beta x)^{\alpha+1} e^{-(\beta x)} \dd(\beta x) \\
-&= \frac{\Gamma(\alpha+2)}{\beta^2 \Gamma(\alpha)}
-= \frac{(\alpha+1) \alpha \Gamma(\alpha)}{\beta^2 \Gamma(\alpha)}
-= \frac{(\alpha+1) \alpha}{\beta^2}. \\
-D(X) &= E(X^2) - [E(X)]^2
-= \frac{\alpha (\alpha+1)}{\beta^2} - \left( \frac{\alpha}{\beta} \right)^2
-= \frac{\alpha}{\beta^2}.
-\qedhere
+	E(X^2) &= \int_0^{+\infty} x^2
+		\frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
+	&= \frac{1}{\beta^2 \Gamma(\alpha)}
+		\int_0^{+\infty} (\beta x)^{\alpha+1} e^{-(\beta x)} \dd(\beta x) \\
+	&= \frac{\Gamma(\alpha+2)}{\beta^2 \Gamma(\alpha)}
+	= \frac{(\alpha+1) \alpha \Gamma(\alpha)}{\beta^2 \Gamma(\alpha)}
+	= \frac{(\alpha+1) \alpha}{\beta^2}. \\
+	D(X) &= E(X^2) - [E(X)]^2
+	= \frac{\alpha (\alpha+1)}{\beta^2} - \left( \frac{\alpha}{\beta} \right)^2
+	= \frac{\alpha}{\beta^2}.
+	\qedhere
 \end{align*}
 \end{proof}
-\end{theorem}
+\end{proposition}
 
-\begin{theorem}
-设\(X \sim e(\lambda)\)，则\(D(X) = \frac{1}{\lambda^2}\).
+\begin{proposition}\label{theorem:方差.指数分布的方差}
+设\(X \sim e(\lambda)\)，
+则\(D(X) = \frac{1}{\lambda^2}\).
 \begin{proof}
 既然\(e(\lambda) = \Gamma(1,\lambda)\)，结果不言自喻.
 \end{proof}
-\end{theorem}
+\end{proposition}
 
 \subsection{方差的性质}
 \begin{property}\label{theorem:随机变量的数字特征.方差的性质1}
