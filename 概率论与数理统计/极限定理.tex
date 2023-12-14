@@ -413,19 +413,25 @@ P(V_1 \neq 0) = P(\abs{X_1} > \delta n)
 由独立同分布的中心极限定理，我们可以得到二项分布的中心极限定理.
 \subsection{棣莫弗--拉普拉斯中心极限定理}
 \begin{theorem}[棣莫弗--拉普拉斯中心极限定理]\label{theorem:极限定理.棣莫弗--拉普拉斯中心极限定理}
-设随机变量序列\(\{X_n\}\)中，\(X_n \sim B(n,p)\)，\(q = 1-p\)，则对任意\(x \in \mathbb{R}\)，有\[
-\lim_{n\to\infty} P\left( \frac{X_n - np}{\sqrt{npq}} \leq x \right) = \Phi(x).
+设随机变量序列\(\{X_n\}\)独立同分布于\(B(n,p)\)，
+记\[
+	Y_n = \frac{X_n - np}{\sqrt{np(1-p)}},
 \]
+则标准正态分布是\(\{Y_n\}\)的极限分布.
 \begin{proof}
-设独立同分布随机变量序列\(\{Y_k\}\)，\(Y_k \sim B(1,p)\)，则\(E(Y_k)=p\)，\(D(Y_k)=pq\).由二项分布可加性可知\[
-X_n = \sum_{k=1}^n{Y_k}.
+设独立同分布随机变量序列\(\{Y_k\}\)，
+\(Y_k \sim B(1,p)\)，
+则\(E(Y_k)=p\)，
+\(D(Y_k)=pq\).
+由二项分布可加性可知\[
+	X_n = \sum_{k=1}^n Y_k.
 \]
 
 由\hyperref[theorem:极限定理.林德伯格--列维中心极限定理]{林德伯格--列维中心极限定理}可得\[
-\lim_{n\to\infty} P\left(\frac{X_n-np}{\sqrt{npq}} \leq x\right)
-= \lim_{n\to\infty} P\left(\frac{\sum_{k=1}^n{Y_k}-np}{\sqrt{npq}} \leq x\right)
-= \Phi(x).
-\qedhere
+	\lim_{n\to\infty} P\left(\frac{X_n-np}{\sqrt{npq}} \leq x\right)
+	= \lim_{n\to\infty} P\left(\frac{\sum_{k=1}^n{Y_k}-np}{\sqrt{npq}} \leq x\right)
+	= \Phi(x).
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
