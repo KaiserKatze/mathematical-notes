@@ -333,16 +333,26 @@ Z = \frac{(a+bX)-(a+b\mu)}{-b\sigma}=-\frac{X-\mu}{\sigma},
 \begin{definition}
 设二维随机变量\((X,Y)\)有二维密度函数
 \begin{equation}
-	f(x,y) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-r^2}} \exp[- u(x,y)]
+	f(x,y) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-r^2}}
+		\exp\left[- u\left(
+			\frac{x-\mu_1}{\sigma_1},
+			\frac{y-\mu_2}{\sigma_2}
+		\right)\right]
 	\quad(x,y)\in\mathbb{R}^2,
 \end{equation}
 其中\[
 	u(x,y)
-	= \frac{1}{2(1-r^2)} \left[
-			\frac{(x-\mu_1)^2}{\sigma_1^2}
-			-2r\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}
-			+\frac{(y-\mu_2)^2}{\sigma_2^2}
-		\right],
+	= \frac{1}{2(1-r^2)}
+	\begin{bmatrix}
+		x & y
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & -r \\
+		-r & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix},
 \]
 \(\mu_1\in\mathbb{R},
 \mu_2\in\mathbb{R},
@@ -361,11 +371,10 @@ r\in(-1,1)\)是参数，
 	Y \sim N(\mu_2,\sigma_2^2).
 \]
 \begin{proof}
-首先有
-\begin{align*}
-f_X(x) &= \int_{-\infty}^{+\infty} f(x,y) \dd{y} \\
-&= \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-r^2}}
-	\int_{-\infty}^{+\infty} e^{-u(x,y)} \dd{y},
+首先有\begin{align*}
+	f_X(x) &= \int_{-\infty}^{+\infty} f(x,y) \dd{y} \\
+	&= \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-r^2}}
+		\int_{-\infty}^{+\infty} e^{-u(x,y)} \dd{y},
 \end{align*}
 其中\begin{align*}
 	u(x,y)
