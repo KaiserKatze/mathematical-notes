@@ -823,52 +823,76 @@ G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
 \end{proposition}
 
 \subsubsection{伽马函数的性质}
-\begin{property}
-\(\Gamma\)函数具有以下性质：
-\begin{enumerate}
-\item {\bf 递推公式}：\begin{equation}\label{equation:伽马函数.递推公式}
+\begin{property}[递推公式]
+\begin{equation}\label{equation:伽马函数.递推公式}
 	\Gamma(s+1) = s \Gamma(s) \quad (s > 0).
 \end{equation}
+\end{property}
 
-因为\(\Gamma(1) = \int_0^{+\infty} e^{-x} \dd{x} = 1\)，反复运用递推公式，便有\begin{equation}\label{equation:定积分.伽马函数与阶乘的联系}
-\Gamma(n+1) = n! \quad (n\in\mathbb{N}^+),
-\end{equation}所以，我们可以把\(\Gamma\)函数看成是阶乘的推广.
+\begin{proposition}
+\(\Gamma(1) = \int_0^{+\infty} e^{-x} \dd{x} = 1\).
+\end{proposition}
 
-\item 当\(s\to0^+\)时，\(\Gamma(s) \to +\infty\).
+\begin{proposition}
+\begin{equation}\label{equation:定积分.伽马函数与阶乘的联系}
+	\Gamma(n+1) = n!
+	\quad n\in\mathbb{N}^+.
+\end{equation}
+\end{proposition}
 
-\item \(\Gamma\)函数在\(s > 0\)时连续，且有各阶连续导数.
+\begin{proposition}
+\(\Gamma(s) \to +\infty\ (s\to0^+)\).
+\end{proposition}
 
-\item \(\Gamma(s) > 0\ (s>0)\).
+\begin{proposition}
+\(\Gamma\)函数在\(s > 0\)时连续，且有各阶连续导数.
+\end{proposition}
 
-\item {\bf 余元公式}：\begin{equation}\label{equation:定积分.余元公式}
+\begin{proposition}
+\(\Gamma(s) > 0\ (s>0)\).
+\end{proposition}
+
+\begin{property}[余元公式]
+\begin{equation}\label{equation:定积分.余元公式}
 	\Gamma(s) \cdot \Gamma(1-s)
 	= \frac{\pi}{\sin{\pi s}} \quad (0 < s < 1).
 \end{equation}
-
-当\(s = \frac{1}{2}\)时，由余元公式可得\begin{equation}
-\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}.
-\end{equation}
-
-\item 在\(\Gamma(s) = \int_0^{+\infty} e^{-x} x^{s-1} \dd{x}\)中，作代换\(x = u^2\)，有\begin{equation}\label{equation:定积分.伽马函数.中间步骤1}
-\Gamma(s) = 2 \int_0^{+\infty} e^{-u^2} u^{2s-1} \dd{u}.
-\end{equation}
-再令\(2s-1 = t\)或\(s = (1+t)/2\)，即有\begin{equation}
-\int_0^{+\infty} e^{-u^2} u^t \dd{u}
-= \frac{1}{2} \Gamma\left(\frac{1+t}{2}\right)
-\quad (t > -1).
-\end{equation}
-
-在 \labelcref{equation:定积分.伽马函数.中间步骤1} 中，令\(s=1/2\)，得\[
-2\int_0^{+\infty} e^{-u^2} \dd{u}
-= \Gamma\left(\frac{1}{2}\right)
-= \sqrt{\pi},
-\]
-于是我们算得\cref{example:定积分.高斯积分的收敛性} 中的高斯积分的值为
-\begin{equation}
-\int_0^{+\infty} e^{-u^2} \dd{u} = \frac{\sqrt{\pi}}{2}.
-\end{equation}
-\end{enumerate}
 \end{property}
+
+\begin{corollary}
+\(\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}\).
+\begin{proof}
+在\cref{equation:定积分.余元公式} 中取\(s = \frac12\)即得.
+\end{proof}
+\end{corollary}
+
+\begin{example}
+利用伽马函数计算\(\int_0^{+\infty} e^{-u^2} \dd{u}\).
+\begin{solution}
+在\(\Gamma(s) = \int_0^{+\infty} e^{-x} x^{s-1} \dd{x}\)中，
+作代换\(x = u^2\)，
+有\begin{equation}\label{equation:定积分.伽马函数.中间步骤1}
+	\Gamma(s) = 2 \int_0^{+\infty} e^{-u^2} u^{2s-1} \dd{u}.
+\end{equation}
+再令\(2s-1 = t\)或\(s = \frac{1+t}{2}\)，
+即有\begin{equation}
+	\int_0^{+\infty} e^{-u^2} u^t \dd{u}
+	= \frac{1}{2} \Gamma\left(\frac{1+t}{2}\right)
+	\quad (t > -1).
+\end{equation}
+
+在 \labelcref{equation:定积分.伽马函数.中间步骤1} 中，
+令\(s=\frac12\)，
+得\[
+	2\int_0^{+\infty} e^{-u^2} \dd{u}
+	= \Gamma\left(\frac{1}{2}\right)
+	= \sqrt{\pi},
+\]
+于是我们算得\cref{example:定积分.高斯积分的收敛性} 中的高斯积分的值为\begin{equation}
+	\int_0^{+\infty} e^{-u^2} \dd{u} = \frac{\sqrt{\pi}}{2}.
+\end{equation}
+\end{solution}
+\end{example}
 
 \begin{example}
 证明：\begin{equation}
