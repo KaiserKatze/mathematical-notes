@@ -468,72 +468,77 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 
 \subsubsection{一个正态总体下的抽样分布定理}
 \begin{theorem}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P179. 定理7.3
 样本\(\AutoTuple{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\begin{gather}
 \overline{X} \sim N\left(\mu,\frac{\sigma^2}{n}\right), \\
 \frac{\overline{X}-\mu}{\sigma / \sqrt{n}} \sim N(0,1).
 \end{gather}
-\begin{proof}
-因为\[
-	E(\overline{X})
-	= E\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
-	= \frac{1}{n} \sum_{i=1}^n E(X_i)
-	= \mu,
-\]\[
-	D(\overline{X})
-	= D\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
-	= \frac{1}{n^2} \sum_{i=1}^n D(X_i)
-	= \frac{\sigma^2}{n}.
-\]
+% \begin{proof}
+% 因为\[
+% 	E(\overline{X})
+% 	= E\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
+% 	= \frac{1}{n} \sum_{i=1}^n E(X_i)
+% 	= \mu,
+% \]\[
+% 	D(\overline{X})
+% 	= D\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
+% 	= \frac{1}{n^2} \sum_{i=1}^n D(X_i)
+% 	= \frac{\sigma^2}{n}.
+% \]
 
-又由\hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布可加性}可得\[
-	\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i
-	\sim N\left(\mu,\frac{\sigma^2}{n}\right).
-	\qedhere
-\]
-\end{proof}
+% 又由\hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布可加性}可得\[
+% 	\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i
+% 	\sim N\left(\mu,\frac{\sigma^2}{n}\right).
+% 	\qedhere
+% \]
+% \end{proof}
 \end{theorem}
 
 \begin{corollary}
-样本\(\AutoTuple{X}{n}\)来自任何总体，都有\begin{gather}
-E(\overline{X}) = E(X), \\
-D(\overline{X}) = \frac{D(X)}{n}.
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P180. 推论
+样本\(\AutoTuple{X}{n}\)来自任何总体，
+都有\begin{gather}
+	E(\overline{X}) = E(X), \\
+	D(\overline{X}) = \frac{D(X)}{n}.
 \end{gather}
 \end{corollary}
 
 \begin{example}
-样本\(\AutoTuple{X}{n}\)来自任何总体.试证：\begin{equation}
-E(S^2) = \sigma^2.
+样本\(\AutoTuple{X}{n}\)来自任何总体.
+试证：\begin{equation}
+	E(S^2) = \sigma^2.
 \end{equation}
 \begin{proof}
 显然\begin{align*}
-E(S^2)
-&= E\left[\frac{1}{n-1} \sum_{i=1}^n (X_i-\overline{X})^2\right]
-= \frac{1}{n-1} \sum_{i=1}^n E(X_i-\overline{X})^2 \\
-&= \frac{1}{n-1} \sum_{i=1}^n \left[ E(X_i^2) + E(\overline{X}^2) - 2 E(\overline{X} X_i) \right],
+	E(S^2)
+	&= E\left[\frac{1}{n-1} \sum_{i=1}^n (X_i-\overline{X})^2\right]
+	= \frac{1}{n-1} \sum_{i=1}^n E(X_i-\overline{X})^2 \\
+	&= \frac{1}{n-1} \sum_{i=1}^n \left[ E(X_i^2) + E(\overline{X}^2) - 2 E(\overline{X} X_i) \right],
 \end{align*}
 其中\[
-E(X_i^2) = E(X^2) = D(X) + [E(X)]^2 = \sigma^2 + \mu^2,
+	E(X_i^2) = E(X^2) = D(X) + [E(X)]^2 = \sigma^2 + \mu^2,
 \]\[
-E(\overline{X}^2)
-= D(\overline{X}) + [E(\overline{X})]^2
-= \frac{\sigma^2}{n} + \mu^2,
+	E(\overline{X}^2)
+	= D(\overline{X}) + [E(\overline{X})]^2
+	= \frac{\sigma^2}{n} + \mu^2,
 \]\[
-E(\overline{X} X_i)
-= E\left(\frac{1}{n} \sum_{j=1}^n X_j X_i\right)
-= \frac{1}{n} \left[ E(X_i^2) + E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right) \right],
+	E(\overline{X} X_i)
+	= E\left(\frac{1}{n} \sum_{j=1}^n X_j X_i\right)
+	= \frac{1}{n} \left[ E(X_i^2) + E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right) \right],
 \]\[
-E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right)
-= \sum_{\substack{1 \leq j \leq n \\ j \neq i}} E(X_i) E(X_j)
-= (n-1) \mu^2,
-\]因此\begin{align*}
-E(S^2) &= \frac{1}{n-1} \sum_{i=1}^n \left\{
-\sigma^2 + \mu^2
-+ \frac{1}{n} \sigma^2 + \mu^2
-- 2 \frac{1}{n} \left[ \sigma^2 + \mu^2 + (n-1)\mu^2 \right]
-\right\} \\
-&= \frac{1}{n-1} n \cdot \frac{n-1}{n} \sigma^2
-= \sigma^2.
-\qedhere
+	E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right)
+	= \sum_{\substack{1 \leq j \leq n \\ j \neq i}} E(X_i) E(X_j)
+	= (n-1) \mu^2,
+\]
+因此\begin{align*}
+	E(S^2) &= \frac{1}{n-1} \sum_{i=1}^n \left\{
+	\sigma^2 + \mu^2
+	+ \frac{1}{n} \sigma^2 + \mu^2
+	- 2 \frac{1}{n} \left[ \sigma^2 + \mu^2 + (n-1)\mu^2 \right]
+	\right\} \\
+	&= \frac{1}{n-1} n \cdot \frac{n-1}{n} \sigma^2
+	= \sigma^2.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{example}
