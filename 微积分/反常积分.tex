@@ -891,21 +891,22 @@ G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
 
 \begin{example}
 证明：\[
-\Gamma\left(\frac{2k+1}{2}\right)
-= \frac{1 \times 3 \times 5 \times \dotsm \times (2k-1) \times \sqrt{\pi}}{2^k},
-\]其中\(k\in\mathbb{N}^+\).
+	\Gamma\left(\frac{2k+1}{2}\right)
+	= \sqrt{\pi} \cdot \frac{(2k-1)!!}{2^k},
+\]
+其中\(k\in\mathbb{N}^+\).
 \begin{proof}
-因为\[
-\Gamma\left(\frac{2k+1}{2}\right)
-= \Gamma\left(\frac{2k-1}{2}+1\right)
-= \frac{2k-1}{2} \Gamma\left(\frac{2k-1}{2}\right),
-\]且\(\Gamma(1/2) = \sqrt{\pi}\)，所以\[
-\begin{split}
-\Gamma\left(\frac{2k+1}{2}\right)
-&= \frac{2k-1}{2} \cdot \frac{2k-3}{2} \cdot \dotsm \cdot \frac{3}{2} \cdot \frac{1}{2} \cdot \Gamma\left(\frac{1}{2}\right) \\
-&= \frac{1 \times 3 \times 5 \times \dotsm \times (2k-1) \times \sqrt{\pi}}{2^k}.
-\qedhere
-\end{split}
+由\cref{equation:伽马函数.递推公式} 有\[
+	\Gamma\left(\frac{2k+1}{2}\right)
+	= \Gamma\left(\frac{2k-1}{2}+1\right)
+	= \frac{2k-1}{2} \cdot \Gamma\left(\frac{2k-1}{2}\right),
+\]
+又因为\(\Gamma\left(\frac12\right) = \sqrt{\pi}\)，
+所以\[
+	\Gamma\left(\frac{2k+1}{2}\right)
+	= \Gamma\left(\frac12\right) \cdot \prod_{i=1}^k \frac{2i-1}{2}
+	= \sqrt{\pi} \cdot \frac{(2k-1)!!}{2^k}.
+	\qedhere
 \]
 \end{proof}
 \end{example}
