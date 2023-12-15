@@ -899,43 +899,50 @@ G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
 
 \begin{example}
 试证：\begin{equation}\label{equation:定积分.伽马函数与双阶乘的联系1}
-2 \times 4 \times 6 \times\dotsm\times (2n) = 2^n \cdot \Gamma(n+1).
+	(2n)!! = 2^n \cdot \Gamma(n+1).
 \end{equation}
 \begin{proof}
-由\cref{equation:定积分.伽马函数与阶乘的联系} 有，\[
-\begin{split}
-2 \times 4 \times 6 \times\dotsm\times (2n)
-&= (2 \cdot 1) \times (2 \cdot 2) \times (2 \cdot 3) \times\dotsm\times (2 \cdot n) \\
-&= 2^n \cdot (1 \times 2 \times\dotsm\times n)
-= 2^n \cdot \Gamma(n+1).
-\qedhere
-\end{split}
-\]
+因为\begin{align*}
+	(2n)!!
+	&= \prod_{k=1}^n 2k
+		\tag{双阶乘的定义} \\
+	&= 2^n \cdot \prod_{k=1}^n k \\
+	&= 2^n \cdot n!
+		\tag{阶乘的定义} \\
+	&= 2^n \cdot \Gamma(n+1),
+		\tag{\cref{equation:定积分.伽马函数与阶乘的联系}}
+\end{align*}
+所以\cref{equation:定积分.伽马函数与双阶乘的联系1} 对任意整数\(n\)都成立.
 \end{proof}
 \end{example}
 
-
 \begin{example}
 试证：\begin{equation}\label{equation:定积分.伽马函数与双阶乘的联系2}
-1 \times 3 \times 5 \times\dotsm\times (2n-1) = \frac{\Gamma(2n)}{2^{n-1} \cdot \Gamma(n)}.
+	(2n-1)!! = \frac{\Gamma(2n)}{2^{n-1} \cdot \Gamma(n)}.
 \end{equation}
 \begin{proof}
 由\cref{equation:定积分.伽马函数与阶乘的联系} 有，\[
-(2n)! = \Gamma(2n+1) \quad(n\in\mathbb{N}).
-\]又因为\[
-\begin{split}
-(2n)! &= 1 \times 2 \times 3 \times\dotsm\times (2n-1) \times (2n) \\
-&= [1 \times 3 \times 5 \times\dotsm\times (2n-1)]
-	\times [2 \times 4 \times 6 \times\dotsm\times (2n)] \\
-&= [1 \times 3 \times 5 \times\dotsm\times (2n-1)] \times 2^n \cdot \Gamma(n+1),
-\end{split}
-\]所以\[
-1 \times 3 \times 5 \times\dotsm\times (2n-1)
-= \frac{\Gamma(2n+1)}{2^n \cdot \Gamma(n+1)} \\
-= \frac{2n \cdot \Gamma(2n)}{2^n \cdot n\Gamma(n)}
-= \frac{\Gamma(2n)}{2^{n-1} \cdot \Gamma(n)}.
-\qedhere
+	(2n)! = \Gamma(2n+1).
 \]
+又因为\begin{align*}
+	(2n)!
+	&= \prod_{k=1}^{2n} k \\
+	&= \left(\prod_{k=1}^n 2k\right)
+		\cdot \left[\prod_{k=1}^n (2k-1)\right] \\
+	&= (2k)!! \cdot (2n-1)!!
+		\tag{双阶乘的定义} \\
+	&= 2^n \cdot \Gamma(n+1) \cdot (2n-1)!!,
+		\tag{\cref{equation:定积分.伽马函数与双阶乘的联系1}}
+\end{align*}
+所以\[
+	\Gamma(2n+1)
+	= 2^n \cdot \Gamma(n+1) \cdot (2n-1)!!,
+\]
+因此\[
+	(2n-1)!!
+	= \frac{\Gamma(2n+1)}{2^n \cdot \Gamma(n+1)}.
+\]
+也就是说，\cref{equation:定积分.伽马函数与双阶乘的联系2} 对任意整数\(n\)都成立.
 \end{proof}
 \end{example}
 
