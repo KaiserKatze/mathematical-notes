@@ -552,52 +552,66 @@ S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i-\overline{X})^2,
 虽然一般情况下样本方差的抽样分布不易精确得出，
 但是总体为\(N(\mu,\sigma^2)\)的样本方差的抽样分布可以精确求出.
 \begin{theorem}\label{theorem:数理统计的基础知识.正态分布总体下样本方差的抽样分布}
-样本\(\AutoTuple{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，则\begin{equation}
-\frac{(n-1)S^2}{\sigma^2} \sim \x(n-1),
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P180. 定理7.4
+样本\(\AutoTuple{X}{n}\)来自正态总体\(N(\mu,\sigma^2)\)，
+则\begin{equation}
+	\frac{(n-1)S^2}{\sigma^2} \sim \x(n-1),
 \end{equation}
 且\(\overline{X}\)与\(S^2\)相互独立.
 \begin{proof}
-对样本\((\AutoTuple{X}{n})\)作线性变换，令\[
-\left\{ \def\arraystretch{1.5} \begin{array}{l}
-Z_1 = \frac{1}{\sqrt{2}} X_1 - \frac{1}{\sqrt{2}} X_2, \\
-Z_2 = \frac{1}{\sqrt{2\cdot3}} (X_1+X_2) - \frac{2}{\sqrt{2\cdot3}} X_3, \\
-Z_3 = \frac{1}{\sqrt{3\cdot4}} (X_1+X_2+X_3) - \frac{3}{\sqrt{3\cdot4}} X_4, \\
-\hdotsfor{1} \\
-Z_{n-1} = \frac{1}{\sqrt{(n-1)n}} (X_1+X_2+\dotsb+X_{n-1}) - \frac{n-1}{\sqrt{(n-1)n}} X_n, \\
-Z_n = \frac{1}{\sqrt{n}} (X_1+X_2+\dotsb+X_n) = \sqrt{n} \cdot \overline{X}.
-\end{array} \right.
-\]由于\(\AutoTuple{X}{n}\)独立同分布于\(N(\mu,\sigma^2)\)，所以\[
-Z_1,Z_2,\dotsc,Z_{n-1} \sim N(0,\sigma^2), \qquad
-Z_n \sim N(\sqrt{n} \mu,\sigma^2),
-\]且\(\Cov(Z_i,Z_j) = 0\ (i \neq j)\).
+对样本\((\AutoTuple{X}{n})\)作线性变换，
+令\[
+	\left\{ \def\arraystretch{1.5} \begin{array}{l}
+		Z_1 = \frac{1}{\sqrt{2}} X_1 - \frac{1}{\sqrt{2}} X_2, \\
+		Z_2 = \frac{1}{\sqrt{2\cdot3}} (X_1+X_2) - \frac{2}{\sqrt{2\cdot3}} X_3, \\
+		Z_3 = \frac{1}{\sqrt{3\cdot4}} (X_1+X_2+X_3) - \frac{3}{\sqrt{3\cdot4}} X_4, \\
+		\hdotsfor{1} \\
+		Z_{n-1} = \frac{1}{\sqrt{(n-1)n}} (X_1+X_2+\dotsb+X_{n-1}) - \frac{n-1}{\sqrt{(n-1)n}} X_n, \\
+		Z_n = \frac{1}{\sqrt{n}} (X_1+X_2+\dotsb+X_n) = \sqrt{n} \cdot \overline{X}.
+	\end{array} \right.
+\]
+由于\(\AutoTuple{X}{n}\)独立同分布于\(N(\mu,\sigma^2)\)，
+所以\[
+	Z_1,Z_2,\dotsc,Z_{n-1} \sim N(0,\sigma^2), \qquad
+	Z_n \sim N(\sqrt{n} \mu,\sigma^2),
+\]
+且\(\Cov(Z_i,Z_j) = 0\ (i \neq j)\).
 这就说明，\(\AutoTuple{Z}{n}\)相互独立.
 
 由于\[
-\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2
-= \frac{1}{\sigma^2} \left( \sum_{i=1}^n X_i^2 - n \overline{X}^2 \right)
-= \frac{1}{\sigma^2} \left( \sum_{i=1}^n Z_i^2 - Z_n^2 \right)
-= \sum_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
-\]且\(\AutoTuple{Z}{n-1}\)相互独立，且均服从于\(N(0,\sigma^2)\)，所以\(\frac{Z_1}{\sigma},\frac{Z_2}{\sigma},\dotsc,\frac{Z_{n-1}}{\sigma}\)仍相互独立，且均服从于\(N(0,1)\).
+	\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2
+	= \frac{1}{\sigma^2} \left( \sum_{i=1}^n X_i^2 - n \overline{X}^2 \right)
+	= \frac{1}{\sigma^2} \left( \sum_{i=1}^n Z_i^2 - Z_n^2 \right)
+	= \sum_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
+\]
+且\(\AutoTuple{Z}{n-1}\)相互独立，
+且均服从于\(N(0,\sigma^2)\)，
+所以\(\frac{Z_1}{\sigma},\frac{Z_2}{\sigma},\dotsc,\frac{Z_{n-1}}{\sigma}\)仍相互独立，
+且均服从于\(N(0,1)\).
 那么由\cref{definition:数理统计的基础知识.卡方分布的定义} 可知\[
-\left( \frac{Z_1}{\sigma} \right)^2
-+ \left( \frac{Z_2}{\sigma} \right)^2
-+ \dotsb
-+ \left( \frac{Z_{n-1}}{\sigma} \right)^2
-\sim \x(n-1),
+	\left( \frac{Z_1}{\sigma} \right)^2
+	+ \left( \frac{Z_2}{\sigma} \right)^2
+	+ \dotsb
+	+ \left( \frac{Z_{n-1}}{\sigma} \right)^2
+	\sim \x(n-1),
 \]即\[
-\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2 \sim \x(n-1).
-\]又因为\(\AutoTuple{Z}{n}\)相互独立，且\[
-\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2
-= \sum_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
-\qquad
-\overline{X} = \frac{1}{\sqrt{n}} Z_n,
-\]所以\(\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2\)与\(\overline{X}\)独立.
+	\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2 \sim \x(n-1).
+\]
+又因为\(\AutoTuple{Z}{n}\)相互独立，
+且\[
+	\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2
+	= \sum_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
+	\qquad
+	\overline{X} = \frac{1}{\sqrt{n}} Z_n,
+\]
+所以\(\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2\)与\(\overline{X}\)独立.
 \end{proof}
 \end{theorem}
-注意\(\frac{(n-1) S^2}{\sigma^2}\)有两个等价的表达式，即\[
-\frac{(n-1) S^2}{\sigma^2}
-= \frac{1}{\sigma^2} \sum_{i=1}^n (X_i - \overline{X})^2
-= \frac{n B_2}{\sigma^2}.
+注意\(\frac{(n-1) S^2}{\sigma^2}\)有两个等价的表达式，
+即\[
+	\frac{(n-1) S^2}{\sigma^2}
+	= \frac{1}{\sigma^2} \sum_{i=1}^n (X_i - \overline{X})^2
+	= \frac{n B_2}{\sigma^2}.
 \]
 
 \begin{theorem}
