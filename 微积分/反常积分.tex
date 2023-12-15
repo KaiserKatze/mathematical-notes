@@ -801,6 +801,27 @@ G(s,z) = \int_z^{+\infty} t^{s-1} e^{-t} \dd{t}
 G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
 \]称为\DefineConcept{广义不完全伽马函数}.
 
+\begin{proposition}
+伽马函数的导数为\begin{equation}
+	\dv{s} \Gamma(s)
+	= \int_0^{+\infty} t^{s-1} e^{-t} \ln t \dd{t}.
+\end{equation}
+\begin{proof}
+由导数的定义有\begin{align*}
+	\Gamma'(s)
+	&= \lim_{h\to0} \frac{\Gamma(s+h)-\Gamma(s)}{h} \\
+	&= \lim_{h\to0} \frac{
+			\int_0^{+\infty} t^{(s+h)-1} e^{-t} \dd{t}
+			- \int_0^{+\infty} t^{s-1} e^{-t} \dd{t}
+		}{h} \\
+	&= \lim_{h\to0}
+		\int_0^{+\infty} t^{s-1} \frac{t^h - 1}{h} e^{-t} \dd{t} \\
+	&= \int_0^{+\infty} t^{s-1} e^{-t} \ln t \dd{t}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
 \subsubsection{伽马函数的性质}
 \begin{property}
 \(\Gamma\)函数具有以下性质：
