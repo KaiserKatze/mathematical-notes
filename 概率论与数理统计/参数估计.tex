@@ -416,19 +416,22 @@
 \begin{solution}
 似然函数为\begin{align*}
 	L(\mu,\sigma^2)
-	&= \prod_{i=1}^n{f(x_i,\mu,\sigma^2)}
-	= \prod_{i=1}^n{\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}} \\
+	&= \prod_{i=1}^n f(x_i,\mu,\sigma^2)
+	= \prod_{i=1}^n
+		\frac{1}{\sqrt{2\pi}\sigma}
+		e^{-\frac{(x_i-\mu)^2}{2\sigma^2}} \\
 	&= (2\pi\sigma^2)^{-\frac{n}{2}}
-	\exp[-\frac{1}{2\sigma^2} \sum_{i=1}^n{(x_i-\mu)^2}],
+		\exp[-\frac{1}{2\sigma^2} \sum_{i=1}^n{(x_i-\mu)^2}],
 \end{align*}
-\[
+取对数，得\[
 	\ln L(\mu,\sigma^2)
 	= -\frac{n}{2} (\ln{2\pi} + \ln \sigma^2)
 	- \frac{1}{2\sigma^2} \sum_{i=1}^n{(x_i-\mu)^2},
-\]从而有\[
+\]
+从而有\[
 	\left\{ \begin{array}{l}
-	\pdv{\mu} \ln L(\mu,\sigma^2) = \frac{1}{\sigma^2} \sum_{i=1}^n{(x_i-\mu)} = 0, \\
-	\pdv{\sigma^2} \ln L(\mu,\sigma^2) = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n{(x_i-\mu)^2} = 0.
+		\pdv{\mu} \ln L(\mu,\sigma^2) = \frac{1}{\sigma^2} \sum_{i=1}^n{(x_i-\mu)} = 0, \\
+		\pdv{\sigma^2} \ln L(\mu,\sigma^2) = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n{(x_i-\mu)^2} = 0.
 	\end{array} \right.
 \]
 解得\(\mu\)及\(\sigma^2\)的极大似然估计值为\[
