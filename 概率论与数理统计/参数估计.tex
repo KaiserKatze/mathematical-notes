@@ -283,32 +283,46 @@
 设总体\(X \sim B(N,p)\)，其中\(N\)已知，\(\AutoTuple{x}{n}\)为样本观测值，求\(p\)及\(m=E(X)\)的极大似然估计.
 \begin{solution}
 总体\(X\)的分布律为\[
-f(x,p)=C_N^x p^x (1-p)^{N-x}, \quad x=0,1,\dots,N.
-\]故似然函数为\[
-L(p) = \prod_{i=1}^n{f(x_i,p)}
-= \prod_{i=1}^n{C_N^{x_i} p^{x_i} (1-p)^{N-{x_i}}}
-= p^{\sum_{i=1}^n{x_i}} (1-p)^{nN-\sum_{i=1}^n{x_i}} \prod_{i=1}^n{C_N^{x_i}},
-\]\[
-\ln L(p)
-= \sum_{i=1}^n{x_i \ln p}
-+ \left(nN - \sum_{i=1}^n{x_i}\right) \ln(1-p)
-+ \ln \prod_{i=1}^n{C_N^{x_i}}.
-\]得对数似然方程\[
-\dv{p} \ln L(p)
-= \frac{1}{p} \sum_{i=1}^n{x_i}
-- \frac{1}{1-p} \left(nN - \sum_{i=1}^n{x_i}\right)
-= 0,
-\]解得\(p\)的极大似然估计值为\[
-\hat{p} = \frac{1}{nN} \sum_{i=1}^n{x_i}
-= \frac{\overline{x}}{N},
-\]其中\(\overline{x}=\frac{1}{n}\sum_{i=1}^n{x_i}\).而\(p\)的极大似然估计量为\[
-\hat{p} = \frac{\overline{X}}{N}.
+	f(x,p)
+	= C_N^x p^x (1-p)^{N-x},
+	\quad x=0,1,\dots,N.
+\]
+故似然函数为\[
+	L(p)
+	= \prod_{i=1}^n f(x_i,p)
+	= \prod_{i=1}^n C_N^{x_i} p^{x_i} (1-p)^{N-x_i}
+	= p^{\sum_{i=1}^n x_i}
+		(1-p)^{nN-\sum_{i=1}^n x_i}
+		\prod_{i=1}^n C_N^{x_i},
+\]
+取对数，得\[
+	\ln L(p)
+	= \sum_{i=1}^n x_i \ln p
+	+ \left(nN - \sum_{i=1}^n{x_i}\right) \ln(1-p)
+	+ \sum_{i=1}^n \ln C_N^{x_i}.
+\]
+求导得\[
+	\dv{p} \ln L(p)
+	= \frac{1}{p} \sum_{i=1}^n{x_i}
+	- \frac{1}{1-p} \left(nN - \sum_{i=1}^n{x_i}\right).
+\]
+建立对数似然方程\(\dv{p} \ln L(p) = 0\)，
+解得\(p\)的极大似然估计值为\[
+	\hat{p}
+	= \frac{1}{nN} \sum_{i=1}^n x_i
+	= \frac{\overline{x}}{N},
+\]
+其中\(\overline{x}=\frac{1}{n}\sum_{i=1}^n{x_i}\).
+而\(p\)的极大似然估计量为\[
+	\hat{p} = \frac{\overline{X}}{N}.
 \]
 
-又因为\(m=E(X)=Np\)，故\(m\)的极大似然估计值为\[
-\hat{m} = N\hat{p} = \overline{x},
-\]而\(m\)的极大似然估计量为\[
-\hat{m} = \overline{X}.
+又因为\(m=E(X)=Np\)，
+故\(m\)的极大似然估计值为\[
+	\hat{m} = N\hat{p} = \overline{x},
+\]
+而\(m\)的极大似然估计量为\[
+	\hat{m} = \overline{X}.
 \]
 \end{solution}
 \end{example}
