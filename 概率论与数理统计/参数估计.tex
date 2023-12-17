@@ -669,15 +669,35 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 则称“\(\hat{\theta}_1\)在均方误差下比\(\hat{\theta}_2\)更\DefineConcept{有效}”.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:参数估计.估计量的均方误差-方差-偏差的关系}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P203. 定理8.2
 \(M(\hat{\theta}) = D(\hat{\theta}) + b^2(\hat{\theta})
 = D(\hat{\theta}) + [E(\hat{\theta}) - \theta]^2.\)
+\begin{proof}
+直接计算得\begin{align*}
+	M(\hat{\theta})
+	&= E(\hat{\theta} - \theta)^2
+	= E\left\{
+		[\hat{\theta} - E(\hat{\theta})]
+		+ [E(\hat{\theta}) - \theta]
+	\right\}^2 \\
+	&= E[\hat{\theta} - E(\hat{\theta})]^2
+	+ [E(\hat{\theta}) - \theta]^2
+	+ 2[E(\hat{\theta}) - \theta][E(\hat{\theta}) - E(\hat{\theta})] \\
+	&= D(\hat{\theta}) + [E(\hat{\theta}) - \theta]^2
+	= D(\hat{\theta}) + b^2(\hat{\theta}).
+	\qedhere
+\end{align*}
+\end{proof}
 \end{theorem}
-若\(\hat{\theta}\)是\(\theta\)的无偏估计，则偏差\(b(\hat{\theta})=0\)，
+从\cref{theorem:参数估计.估计量的均方误差-方差-偏差的关系} 可以看出，
+若\(\hat{\theta}\)是\(\theta\)的无偏估计量，
+则偏差\(b(\hat{\theta})=0\)，
 从而\(M(\hat{\theta})=D(\hat{\theta})\).
-这样的\(\theta\)的无偏估计量\(\hat{\theta}_1\)与\(\hat{\theta}_2\)之间均方误差的比较就成了方差的比较.
-所以\emph{有效性标准}是\emph{均方误差标准}的特殊情况.但用均方误差可以比较两个有偏估计量之间，
+这样的\(\theta\)的无偏估计量
+\(\hat{\theta}_1\)与\(\hat{\theta}_2\)之间均方误差的比较就成了方差的比较.
+所以\emph{有效性标准}是\emph{均方误差标准}的特殊情况.
+但用均方误差可以比较两个有偏估计量之间，
 或一个无偏估计量与一个有偏估计量之间的有效性.
 
 \begin{example}
