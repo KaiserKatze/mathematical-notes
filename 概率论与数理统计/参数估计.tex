@@ -701,8 +701,55 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 或一个无偏估计量与一个有偏估计量之间的有效性.
 
 \begin{example}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P204. 例8.11
 设总体\(X \sim N(\mu,\sigma^2)\)，其中\(\mu\)和\(\sigma^2\)是未知参数.
-请比较无偏估计量\(\sigma_1^2=S^2\)和极大似然估计量\(\sigma_2^2=B_2\)的均方误差.
+比较\(\sigma_1^2=S^2\)和\(\sigma_2^2=B_2\)这两个估计量关于\(\sigma^2\)的均方误差.
+\begin{solution}
+因为\(E(\hat{\sigma}_1^2)
+= E(S^2)
+= \sigma^2\)，
+所以\[
+	M(\hat{\sigma}_1^2)
+	= M(S^2)
+	= D(S^2).
+\]
+但是由抽样分布定理可知\[
+	\frac{(n-1) S^2}{\sigma^2}
+	\sim
+	\x(n-1),
+\]
+于是\[
+	D\left[\frac{(n-1) S^2}{\sigma^2}\right]
+	= \frac{(n-1)^2}{\sigma^4} D(S^2)
+	= 2(n-1),
+\]
+故得到\[
+	M(\hat{\sigma}_1^2)
+	= D(S^2)
+	= \frac{2\sigma^4}{n-1}.
+\]
+又因为\[
+	E(\hat{\sigma}_2^2)
+	= E(B_2)
+	= E\left(\frac{n-1}{n} S^2\right)
+	= \frac{n-1}{n} \sigma^2,
+\]\[
+	D(\hat{\sigma}_2^2)
+	= D(B_2)
+	= D\left(\frac{n-1}{n} S^2\right)
+	= \frac{(n-1)^2}{n^2} D(S^2)
+	= \frac{2(n-1)}{n^2} \sigma^4,
+\]
+故\[
+	M(\hat{\sigma}_2^2)
+	= D(\hat{\sigma}_2^2) + b^2(\hat{\sigma}_2^2)
+	= \frac{2n-1}{n^2} \sigma^4.
+\]
+由于\(\frac{2}{n-1} > \frac{2n-1}{n^2}\)，所以\[
+	M(\hat{\sigma}_2^2) < M(\hat{\sigma}_1^2).
+\]
+由此可见，在均方误差意义下，\(B_2\)比\(S^2\)更有效.
+\end{solution}
 \end{example}
 
 \section{区间估计}
