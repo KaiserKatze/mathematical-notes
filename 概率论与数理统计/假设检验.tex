@@ -149,17 +149,25 @@ P(\abs{U}>u_{1-\frac{\alpha}{2}})
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
+			xmin=-3,xmax=5,
 			axis y line=none,
 			axis x line=middle,
-			enlarge x limits=0.05,
+			enlarge x limits=0.1,
 			xscale=2,
+			xtick={-1,1,2},
+			xticklabels={
+				$\mu_0$,
+				$u_{1-\alpha}$,
+				$\frac{\mu_1-\mu_0}{\sigma_0/\sqrt{n}}$,
+			},
 		]
-			\def\plotNDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=-7:7]{exp(-(x-#1)^2/(2*#2^2))/(sqrt(2*pi)*#2)}}%
+			\def\plotNDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=-7:7]%
+				{exp(-(x-#1)^2/(2*#2^2))/(sqrt(2*pi)*#2)}}%
 			\plotNDPDF{-1}{2}{blue};
 			\plotNDPDF{2}{1.6}{orange};
-			\draw[black!30](1,1)--(1,0)node[below,black]{\(u_{1-\alpha}\)};
-			\draw(-1,5pt)--(-1,0);
-			\draw(2,5pt)--(2,0);
+			\draw[black!30](1,1)--(1,0);
+			\draw(0,15pt)node[black]{$\beta$};
+			\draw(1.5,15pt)node[black]{$\alpha$};
 		\end{axis}
 	\end{tikzpicture}
 	\caption{}
