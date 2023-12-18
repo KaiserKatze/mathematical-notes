@@ -181,15 +181,14 @@ Y_n \toP b\)，
 \begin{theorem}[切比雪夫大数律]\label{theorem:极限定理.大数律.切比雪夫大数律}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P160. 定理6.3
 对独立随机变量序列\(\{X_n\}\)，
-若\(E(X_n)\ (n=1,2,\dotsc)\)都存在，
-而\(D(X_n)\ (n=1,2,\dotsc)\)都存在且有界，
+若\(E(X_n)\ (n=1,2,\dotsc)\)和\(D(X_n)\ (n=1,2,\dotsc)\)都存在且有限，
 则\[
 	\frac{1}{n} \sum_{i=1}^n X_i
 	- \frac{1}{n} \sum_{i=1}^n E(X_i)
 	\toP 0.
 \]
 \begin{proof}
-因为\(D(X_n)\ (n=1,2,\dotsc)\)都存在且有界，
+因为\(D(X_n)\ (n=1,2,\dotsc)\)都存在且有限，
 不妨假设存在常数\(C\)，
 使得\[
 	D(X_k) \leq C
@@ -220,12 +219,25 @@ Y_n \toP b\)，
 \end{proof}
 \end{theorem}
 
+我们只要在\hyperref[theorem:极限定理.大数律.切比雪夫大数律]{切比雪夫大数律}中，
+代入\(E(X_n) = \mu\ (n=1,2,\dotsc)\)，
+就有\[
+	\frac{1}{n} \sum_{i=1}^n E(X_i)
+	= \frac{1}{n} \sum_{i=1}^n \mu
+	= \mu,
+\]
+从而有\[
+	\frac{1}{n} \sum_{i=1}^n X_i - \mu \toP 0
+	\quad\text{即}\quad
+	\frac{1}{n} \toP \mu.
+\]
+于是我们得到以下推论.
 \begin{corollary}[独立同分布大数律]\label{theorem:极限定理.大数律.独立同分布大数律}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P161. 推论1
 设\(\{X_k\}\)是独立同分布随机变量序列，
 且\[
-	E(X_k)=\mu, \qquad
-	D(X_k)=\sigma^2,
+	E(X_k)=\mu < +\infty, \qquad
+	D(X_k)=\sigma^2 < +\infty,
 	\quad k=1,2,\dotsc,
 \]
 则\[
