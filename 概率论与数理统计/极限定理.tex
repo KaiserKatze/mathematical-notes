@@ -252,24 +252,36 @@ Y_n \toP b\)，
 比如在测量一物体的长度时，取多次测量的平均值.
 
 \subsection{辛钦大数律}
+前面罗列的大数律都要求随机变量的方差存在并满足某种性质，
+但是对于独立同分布随机变量序列来说，
+我们可以不需要随机变量的方差存在.
 \begin{theorem}[辛钦大数律]\label{theorem:极限定理.大数律.辛钦大数律}
 %@see: https://www.math.pku.edu.cn/teachers/litj/notes/appl_stoch/Lect5_slides.pdf
-设\(\{X_k\}\)是独立同分布随机变量序列，且\(E(X_k)=\mu\ (k=1,2,\dotsc)\)，则\[
-\overline{X} \toP \mu.
+设\(\{X_k\}\)是独立同分布随机变量序列，
+且\(E(X_k)=\mu\ (k=1,2,\dotsc)\)，
+则\[
+	\overline{X} \toP \mu.
 \]
 \begin{proof}
 不妨令\(E(X_k) = \mu = 0\).
 
-当\(D(X_k)=\sigma^2\)存在时，由切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式2} 可知，对\(\forall\epsilon>0\)，有\[
-P(\abs{X_i}\geq\epsilon) \leq \frac{\sigma^2}{\epsilon^2}
-\quad(i=1,2,\dotsc,n).
-\eqno{(1)}
-\]记\(S_n = X_1 + X_2 + \dotsb + X_n\)，那么有\[
-P(\abs{S_n} > \epsilon) \leq \frac{n \sigma^2}{\epsilon^2}.
-\eqno{(2)}
-\]令\(\epsilon = c n\)，则\(n\to\infty\)时，\[
-\frac{n \sigma^2}{\epsilon^2}
-= \frac{\sigma^2}{c^2 n} \to 0.
+当\(D(X_k)=\sigma^2\)存在时，
+由切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式2} 可知，
+对\(\forall\epsilon>0\)，
+有\[
+	P(\abs{X_i}\geq\epsilon) \leq \frac{\sigma^2}{\epsilon^2}
+	\quad(i=1,2,\dotsc,n).
+	\eqno{(1)}
+\]
+记\(S_n = X_1 + X_2 + \dotsb + X_n\)，
+那么有\[
+	P(\abs{S_n} > \epsilon) \leq \frac{n \sigma^2}{\epsilon^2}.
+	\eqno{(2)}
+\]
+令\(\epsilon = c n\)，
+则\(n\to\infty\)时，\[
+	\frac{n \sigma^2}{\epsilon^2}
+	= \frac{\sigma^2}{c^2 n} \to 0.
 \]
 
 当\(D(X_k)\)不存在时，证明较难.
@@ -277,56 +289,66 @@ P(\abs{S_n} > \epsilon) \leq \frac{n \sigma^2}{\epsilon^2}.
 此法是一种证明各种极限定理的标准方法.
 
 令\[
-U_k = \left\{ \begin{array}{cl}
-X_k, & \abs{X_k} \leq \delta n, \\
-0, & \abs{X_k} > \delta n;
-\end{array} \right.
-\qquad
-V_k = \left\{ \begin{array}{cl}
-0, & \abs{X_k} \leq \delta n, \\
-X_k, & \abs{X_k} > \delta n;
-\end{array} \right.
-\quad(k=1,2,\dotsc,n).
-\eqno{(3)}
-\]显然\(X_k = U_k + V_k\).
-现在只要证明，对\(\forall\epsilon>0\)，可取常数\(\delta\)，使得\(n\to\infty\)时有\[
-P\left(\abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n\right) \to 0,
-\eqno{(4)}
+	U_k = \left\{ \begin{array}{cl}
+		X_k, & \abs{X_k} \leq \delta n, \\
+		0, & \abs{X_k} > \delta n;
+	\end{array} \right.
+	\qquad
+	V_k = \left\{ \begin{array}{cl}
+		0, & \abs{X_k} \leq \delta n, \\
+		X_k, & \abs{X_k} > \delta n;
+	\end{array} \right.
+	\quad(k=1,2,\dotsc,n).
+	\eqno{(3)}
+\]
+显然\(X_k = U_k + V_k\).
+现在只要证明，对\(\forall\epsilon>0\)，
+可取常数\(\delta\)，
+使得\(n\to\infty\)时有\[
+	P\left(\abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n\right) \to 0,
+	\eqno{(4)}
 \]\[
-P\left(\abs{V_1+\dotsb+V_n} > \frac{1}{2} \epsilon n\right) \to 0.
-\eqno{(5)}
+	P\left(\abs{V_1+\dotsb+V_n} > \frac{1}{2} \epsilon n\right) \to 0.
+	\eqno{(5)}
 \]
 
-假设\(X_j\)可能的取值为\(x_1,x_2,\dotsc\)，且其对应的概率为\(f(x_j)\ (j=1,2,\dotsc)\).
+假设\(X_j\)可能的取值为\(x_1,x_2,\dotsc\)，
+且其对应的概率为\(f(x_j)\ (j=1,2,\dotsc)\).
 令\[
-a = E(\abs{X_j}) = \sum_j \abs{x_j} f(x_j).
-\eqno{(6)}
-\]随机变量\(U_k\)上界是\(\delta n\)，因此显然有\(E(U_k^2) < a \delta n\).
+	a = E(\abs{X_j}) = \sum_j \abs{x_j} f(x_j).
+	\eqno{(6)}
+\]
+随机变量\(U_k\)上界是\(\delta n\)，
+因此显然有\(E(U_k^2) < a \delta n\).
 又因为\(U_1,\dotsc,U_n\)独立同分布，所以\[
-D(U_1+\dotsb+U_n) = n D(U_1) \leq n E(U_1^2) \leq a \delta n^2.
-\eqno{(7)}
-\]另一方面，由\(U_k\)的定义，当\(n\to\infty\)时，\(E(U_k) \to E(X_k) = 0\).
+	D(U_1+\dotsb+U_n) = n D(U_1) \leq n E(U_1^2) \leq a \delta n^2.
+	\eqno{(7)}
+\]
+另一方面，由\(U_k\)的定义，当\(n\to\infty\)时，\(E(U_k) \to E(X_k) = 0\).
 由此推出：当\(n\)充分大时，\(E[(U_1+\dotsb+U_n)^2] \leq 2 a \delta n^2\).
 由于\[
-P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n \right) \geq \frac{8a\delta}{\epsilon},
-\eqno{(8)}
-\]所以(4)式是切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式1} 的直接变形.
+	P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n \right)
+	\geq \frac{8a\delta}{\epsilon},
+	\eqno{(8)}
+\]
+所以(4)式是切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式1} 的直接变形.
 只要\(\delta\)充分小，使得(8)式右边足够小，就有(4)式成立.
 
 至于(5)式，注意到\hyperref[equation:概率论基础.布尔不等式]{布尔不等式}\[
-P(V_1+\dotsb+V_n \neq 0) \leq n P(V_1 \neq 0).
-\eqno{(9)}
-\]对\(\forall \delta > 0\)，有\[
-P(V_1 \neq 0) = P(\abs{X_1} > \delta n)
-= \sum_{\abs{x_j} > \delta n} f(x_j)
-\leq \frac{1}{\delta n} \sum_{\abs{x_j} > \delta n} \abs{x_j} f(x_j).
-\eqno{(10)}
-\]因为(10)式最右边的级数当\(n\to\infty\)时趋于\(0\)，因此(9)式左边当\(n\to\infty\)时也趋于\(0\).
+	P(V_1+\dotsb+V_n \neq 0) \leq n P(V_1 \neq 0).
+	\eqno{(9)}
+\]
+对\(\forall \delta > 0\)，有\[
+	P(V_1 \neq 0) = P(\abs{X_1} > \delta n)
+	= \sum_{\abs{x_j} > \delta n} f(x_j)
+	\leq \frac{1}{\delta n} \sum_{\abs{x_j} > \delta n} \abs{x_j} f(x_j).
+	\eqno{(10)}
+\]
+因为(10)式最右边的级数当\(n\to\infty\)时趋于\(0\)，
+因此(9)式左边当\(n\to\infty\)时也趋于\(0\).
 此结论比(5)式更强.
 \end{proof}
 \end{theorem}
-
-我们也常把\hyperref[theorem:极限定理.大数律.辛钦大数律]{辛钦大数律}称作\DefineConcept{弱大数律}.
 
 \subsection{伯努利大数律}
 \begin{theorem}[伯努利大数律]\label{theorem:极限定理.大数律.伯努利大数律}
