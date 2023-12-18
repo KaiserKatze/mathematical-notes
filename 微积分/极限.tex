@@ -900,68 +900,11 @@ x_i \in I \quad (i=1,2,\dotsc,n),
 
 \section{函数极限与数列极限的关系，海涅定理}
 \begin{theorem}[海涅定理]\label{theorem:极限.海涅定理}
-\def\Dx{\mathring{U}(x_0,r)}%
-设函数\(f\colon \Dx\to\mathbb{R}\)，常数\(A\in\mathbb{R}\).
-极限\(\lim_{x \to x_0} f(x) = A\)的充分必要条件是：\[
-\forall \{x_n\}\subseteq\Dx \left[
-	\lim_{n \to \infty} x_n = x_0
-	\implies
-	\lim_{n \to \infty} f(x_n) = A
-\right].
-\]
-\begin{proof}
-必要性.
-因为\(\lim_{x \to x_0} f(x) = A\)，
-所以\[
-	(\forall \epsilon > 0)
-	(\exists \delta > 0)
-	(\forall x\in\Dx)
-	[
-		0 < \abs{x - x_0} < \delta
-		\implies
-		\abs{f(x) - A} < \epsilon
-	].
-\]
-对于已经取定的\(\delta\)，
-只要\(\lim_{n \to \infty}x_n = x_0\)，
-那么\[
-	(\exists N\in\mathbb{N})
-	(\forall n\in\mathbb{N})
-	[
-		n > N
-		\implies
-		0 < \abs{x_n - x_0} < \delta
-	].
-\]
-这样，当\(n> N\)时，有\(\abs{f(x_n) - A} < \epsilon\)，
-即\(\lim_{n \to \infty} f(x_n) = A\).
-
-充分性.
-用反证法，假设\(\lim_{x \to x_0} f(x) = A\)不成立，那么，\[
-	(\exists \epsilon_0 > 0)
-	(\forall \delta > 0)
-	(\exists \xi\in\mathring{U}(x_0,\delta))
-	[
-		\abs{f(\xi) - A} > \epsilon_0
-	].
-\]
-由上，依次取\(\delta = 1,\frac{1}{2},\dotsc,\frac{1}{n},\dotsc\)，
-可得一系列\(\xi\)取值构成的数列\(\{\xi_n\}\).
-因为\(0 < \abs{\xi_n - x_0} < \frac{1}{n}\)，
-所以\(\lim_{n \to \infty} \xi_n = x_0\)，
-进而有\(\lim_{n \to \infty} f(\xi_n) = A\)，
-即\[
-	(\forall \epsilon > 0)
-	(\exists N\in\mathbb{N})
-	(\forall n\in\mathbb{N})
-	[
-		n > N
-		\implies
-		\abs{f(\xi_n) - A} < \epsilon
-	].
-\]
-这就与\(\abs{f(\xi) - A} > \epsilon_0\)矛盾.
-\end{proof}
+%@see: 《数学分析教程》（史济怀） P70 定理2.4.1
+设函数\(f\colon D\to\mathbb{R}\)，点\(x_0 \in D\).
+函数\(f\)在点\(x_0\)有极限\(A\)的充分必要条件是：
+对于任何一个收敛于\(x_0\)的数列\(\{x_n \neq x_0\ (n=1,2,\dotsc)\}\)，
+函数列\(\{f(x_n)\}\)有极限\(A\).
 \end{theorem}
 海涅定理也称作\DefineConcept{归结原则}.
 
