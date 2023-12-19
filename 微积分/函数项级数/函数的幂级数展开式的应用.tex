@@ -36,13 +36,77 @@ y = \frac{1}{2} x^2 + \frac{1}{20} x^5 + \dotsb.
 
 \subsubsection{二阶齐次线性微分方程的幂级数解法}
 关于二阶齐次线性方程\[
-y'' + P(x) y' + Q(x) y = 0
+	y'' + P(x) y' + Q(x) y = 0
 \]用幂级数求解的问题，我们先叙述一个定理：
 \begin{theorem}
-如果二阶齐次线性方程中的系数\(P(x)\)与\(Q(x)\)可在\(-R<x<R\)内展开为\(x\)的幂级数，那么在\(-R<x<R\)内方程必有形如\[
-y = \sum_{n=0}^\infty a_n x^n
+如果二阶齐次线性方程中的系数\(P(x)\)与\(Q(x)\)
+可在\(-R<x<R\)内展开为\(x\)的幂级数，
+那么在\(-R<x<R\)内方程必有形如\[
+	y = \sum_{n=0}^\infty a_n x^n
 \]的解.
 \end{theorem}
+
+\begin{example}
+求微分方程\(y''-xy=0\)满足初始条件\(\eval{y}_{x=0}=0\)和\(\eval{y'}_{x=0}=1\)的特解.
+\begin{solution}
+这里\(P(x)=0, Q(x)=-x\)在整个数轴上满足定理的条件.
+因此不妨设所求的解\(y(x)\)展开成\(x\)的幂级数为\[
+	y = \sum_{n=0}^\infty a_n x^n.
+\]
+由条件\(\eval{y}_{x=0}=0\)，
+得\(a_0=0\).
+对幂级数逐项求导，有\[
+	y' = \sum_{n=1}^\infty n a_n x^{n-1},
+\]
+由条件\(\eval{y'}_{x=0}=1\)，
+得\(a_1=1\).
+于是所求特解\(y\)及\(y'\)的展开式成为\[
+	y = x + \sum_{n=2}^\infty a_n x^n,
+\]\[
+	y' = 1 + \sum_{n=2}^\infty n a_n x^{n-1}.
+\]
+再次逐项求导，得\[
+	y'' = \sum_{n=2}^\infty n(n-1) a_n x^{n-2}.
+\]
+将\(y,y',y''\)代入原方程，
+得\[
+	\sum_{n=2}^\infty n(n-1) a_n x^{n-2}
+	- x \left( x + \sum_{n=2}^\infty a_n x^n \right)
+	= 0,
+\]
+按\(x\)的升幂顺序，合并同类项，得\[
+	2 a_2 + 3\cdot2 a_3 x + (4\cdot3 a_4 - 1) x^2
+	+ (5\cdot4 a_5 - a_2) x^3 + (6\cdot5 a_6 - a_3) x^4
+	+ \dotsb + [(n+2)(n+1) a_{n+2} - a_{n-1}] x^n + \dotsb
+	= 0.
+\]
+因为上式是恒等式，
+所以上式左端各项的系数必全为零，
+于是又\[
+	a_2 = 0,
+	a_3 = 0,
+	a_4 = \frac{1}{4\cdot3},
+	a_5 = 0,
+	a_6 = 0,
+	\dotsc,
+\]
+一般地，\[
+	a_{n+2} = \frac{a_{n-1}}{(n+2)(n+1)}
+	\quad(n=3,4,\dotsc).
+\]
+可以推得\[
+	a_{3m+1} = \frac{1}{(3m+1)(3m) \dotsm 7\cdot6\cdot4\cdot3}
+	\quad(m=1,2,\dotsc).
+\]
+于是所求特解为\[
+	y = x + \frac{x^4}{4\cdot3} + \frac{x^7}{7\cdot6\cdot4\cdot3}
+	+ \frac{x^{10}}{10\cdot9\cdot7\cdot6\cdot4\cdot3}
+	+ \dotsb
+	+ \frac{x^{3m+1}}{(3m+1)(3m) \dotsm 7\cdot6\cdot4\cdot3}
+	+ \dotsb.
+\]
+\end{solution}
+\end{example}
 
 \subsection{重新定义三角函数}
 尽管我们是从\hyperref[definition:函数.三角函数的几何定义]{三角函数的几何定义}出发，
