@@ -58,27 +58,50 @@
 则称“\(\Q\)是\DefineConcept{正交矩阵}”.
 \end{definition}
 
+\begin{property}
+若\(\A,\B\)都是\(n\)阶正交矩阵，
+则\begin{enumerate}
+	\item \(\A\)的行列式\(\abs{\A}\)要么等于\(1\)，要么等于\(-1\)，即
+	\begin{equation}\label{equation:正交矩阵.正交矩阵的行列式}
+		\abs{\A}\in\Set{-1,1}.
+	\end{equation}
+
+	\item \(\A\)可逆.
+
+	\item \(A\)的转置\(\A^T\)以及它的逆\(\A^{-1}\)满足
+	\begin{equation}\label{equation:正交矩阵.正交矩阵的转置等于正交矩阵的逆}
+		\A^{-1}=\A^T.
+	\end{equation}
+
+	\item \(\A\B\)也是正交矩阵.
+\end{enumerate}
+\begin{proof}
 在正交矩阵的定义式 \labelcref{equation:正交矩阵.正交矩阵的定义式} 等号两端分别取行列式，
-利用\cref{theorem:行列式.矩阵乘积的行列式,theorem:行列式.性质1} 得
-\begin{equation}\label{equation:正交矩阵.正交矩阵的行列式}
-	\abs{\Q}^2
-	=\abs{\Q^T}\abs{\Q\vphantom{^T}}
-	=\abs{\Q^T\Q}
+利用\cref{theorem:行列式.矩阵乘积的行列式,theorem:行列式.性质1} 得\[
+	\abs{\A}^2
+	=\abs{\A^T}\abs{\A\vphantom{^T}}
+	=\abs{\A^T\A}
 	=\abs{\E}
 	=1,
-\end{equation}
-于是\(\abs{\Q}\neq0\).
+\]
+于是\(\abs{\A}\neq0\)，
+\(\A\)是非奇异矩阵.
 根据\cref{theorem:逆矩阵.矩阵可逆的充要条件1} 我们知道，任一正交矩阵可逆.
-再根据\cref{definition:可逆矩阵.可逆矩阵的定义}\[
-	\Q^{-1}\Q=\E,
+再根据\cref{definition:可逆矩阵.可逆矩阵的定义} 有\[
+	\A^{-1}\A=\E,
 \]
 将上式与\cref{equation:正交矩阵.正交矩阵的定义式} 比较，
-可知\begin{equation}\label{equation:正交矩阵.正交矩阵的转置等于正交矩阵的逆}
-	\Q^T=\Q^{-1}.
-\end{equation}
-那么由\(\Q\Q^{-1}=\E\)便得\begin{equation}
-	\Q\Q^T=\E.
-\end{equation}
+可知\(\A^{-1}=\A^T\).
+那么由\(\A\A^{-1}=\E\)便得\[
+	\A\A^T=\E.
+\]
+利用结合律，便得
+\((\A\B)(\A\B)^T
+= \A(\B\B^T)\A^T
+= \A\E\A^T
+= \E\).
+\end{proof}
+\end{property}
 
 \begin{example}
 由于单位矩阵\(\E\)满足\[
@@ -88,32 +111,9 @@
 因此\(\E\)也是正交矩阵.
 \end{example}
 
-\begin{property}\label{theorem:正交矩阵.正交矩阵的行列式}
-设\(\Q\)是正交矩阵，则\(\abs{\Q} = \pm1\).
-\begin{proof}
-由\cref{equation:正交矩阵.正交矩阵的行列式}
-得\(\abs{\Q} = \pm 1\).
-\end{proof}
-\end{property}
-
-\begin{property}
-若\(\A,\B\)都是\(n\)阶正交矩阵，则\(\A\B\)也是正交矩阵.
-\begin{proof}
-\((\A\B)(\A\B)^T
-= \A(\B\B^T)\A^T
-= \A\E\A^T
-= \E\).
-\end{proof}
-\end{property}
-
-\begin{property}
-若\(\A\)是正交矩阵，则\(\A^T\)和\(\A^{-1}\)也是正交矩阵.
-\end{property}
-
-\begin{theorem}
+\begin{proposition}
 正交矩阵\(\Q\)的伴随矩阵\(\Q^*\)满足\[
-	\Q^* = \abs{\Q} \Q^{-1}
-	= \abs{\Q} \Q^T
+	\Q^*
 	= \left\{ \begin{array}{rc}
 		\Q^T, & \abs{\Q}>0, \\
 		-\Q^T, & \abs{\Q}<0.
@@ -124,10 +124,10 @@
 可知\(\Q^* = \abs{\Q} \Q^{-1}\).
 再由\cref{equation:正交矩阵.正交矩阵的转置等于正交矩阵的逆}
 可知\(\Q^* = \abs{\Q} \Q^T\).
-最后由\cref{theorem:正交矩阵.正交矩阵的行列式}
+最后由\cref{equation:正交矩阵.正交矩阵的行列式}
 就有\(\Q^* = \pm\Q^T\).
 \end{proof}
-\end{theorem}
+\end{proposition}
 
 \begin{example}
 设\(\Q=(\AutoTuple{\a}{n})\)是\(n\)阶实矩阵，
