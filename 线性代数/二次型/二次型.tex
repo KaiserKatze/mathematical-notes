@@ -195,14 +195,77 @@ x_1 \\ x_2 \\ x_3
 \end{proof}
 \end{property}
 
-\begin{property}
-矩阵相似是矩阵合同的充分不必要条件，
-即\[
-	\A\sim\B
-	\implies
-	\A\simeq\B.
+% \begin{property}
+% 矩阵相似是矩阵合同的充分不必要条件，
+% 即\[
+% 	\A\sim\B
+% 	\implies
+% 	\A\simeq\B.
+% \]
+% \end{property}
+
+\begin{proposition}\label{theorem:矩阵合同.合同矩阵的行列式的关系}
+设\(n\)阶矩阵\(\A,\B,\C\)满足\(\B=\C^T\A\C^T\)，
+则\[
+	\abs{\A}\abs{\C}^2
+	=\abs{\B}.
 \]
-\end{property}
+\begin{proof}
+根据\cref{theorem:行列式.性质1,theorem:行列式.矩阵乘积的行列式}，
+必有\[
+	\abs{\B}
+	=\abs{\C^T\A\C}
+	=\abs{\C^T}\abs{\A}\abs{\C}
+	=\abs{\A}\abs{\C}^2.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{example}
+相似的两个矩阵不一定合同.
+例如，矩阵\(\A=\begin{bmatrix}
+	1 & 1 \\
+	0 & 2
+\end{bmatrix}\)
+和\(\B=\begin{bmatrix}
+	0 & -1 \\
+	2 & 3
+\end{bmatrix}\)相似，
+这是因为可逆矩阵\(\P=\begin{bmatrix}
+	1 & 0 \\
+	-1 & -1
+\end{bmatrix}\)满足\(\P^{-1}\A\P=\B\).
+现在假设存在矩阵\(\Q=\begin{bmatrix}
+	a & b \\
+	c & d
+\end{bmatrix}\)使得\(\Q^T\A\Q=\B\).
+那么有\[
+	\Q^T\A\Q-\B
+	=\begin{bmatrix}
+		a^2+ac+2c^2 & 1+ab+ad+2cd \\
+		-2+ab+bc+2cd & -3+b^2+bd+2d^2
+	\end{bmatrix}
+	=\vb0,
+\]
+得到关于\(a,b,c,d\)的方程组
+\begin{align*}
+	\left\{ \begin{array}{l}
+		a^2+ac+2c^2 = 0, \\
+		1+ab+ad+2cd = 0, \\
+		-2+ab+bc+2cd = 0, \\
+		-3+b^2+bd+2d^2 = 0,
+	\end{array} \right.
+	\tag*{$\begin{matrix}(1)\\(2)\\(3)\\(4)\end{matrix}$}
+\end{align*}
+(2)式减去(3)式得\[
+	3+ad-bc=0,
+\]
+这就是说\(\abs{\Q}=-3\).
+但是根据\cref{theorem:矩阵合同.合同矩阵的行列式的关系}，
+因为\(\abs{\A}=\abs{\B}=2\)，所以\(\abs{\Q}^2=1\).
+矛盾！因此\(\A\)与\(\B\)不合同！
+\end{example}
 
 \begin{example}\label{example:二次型.实对称矩阵相似必合同}
 实对称矩阵\(\A\)、\(\B\)相似，证明：\(\A\)与\(\B\)合同.
