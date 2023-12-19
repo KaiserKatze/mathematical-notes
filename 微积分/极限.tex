@@ -1964,6 +1964,47 @@ o(\alpha) = \Set*{ \beta \given \lim \frac{\beta}{\alpha} = 0 }.
 \end{proof}
 \end{theorem}
 
+\begin{proposition}
+设\(\alpha,\beta,\gamma\)都是在同一个自变量的变化过程中的无穷小，
+\(\alpha\neq0,
+\gamma\neq0\)，
+且\[
+	\lim\frac{\beta}{\alpha^p}=c_1\in(0,+\infty), \qquad
+	\lim\frac{\gamma}{\alpha^q}=c_2\in(0,+\infty).
+\]
+那么：\begin{enumerate}
+	\item 若\(p>q\)，
+	则\(\beta\)是比\(\gamma\)高阶的无穷小.
+
+	\item 若\(p=q\)，
+	则\(\beta\)是比\(\gamma\)同阶的无穷小.
+
+	\item 若\(p<q\)，
+	则\(\beta\)是比\(\gamma\)低阶的无穷小.
+\end{enumerate}
+
+\begin{proof}
+容易得到\begin{align*}
+	\lim\frac{\beta}{\gamma}
+	&= \lim\left(
+			\frac{\beta}{\alpha^p}
+			\frac{\alpha^p}{\alpha^q}
+			\frac{\alpha^q}{\gamma}
+		\right) \\
+	&= \lim\frac{\beta}{\alpha^p}
+		\cdot \lim\frac{\alpha^p}{\alpha^q}
+		\cdot \lim\frac{\alpha^q}{\gamma} \\
+	&= c_1 \cdot \lim\alpha^{p-q} \cdot c_2^{-1}
+	= \frac{c_1}{c_2} \lim\alpha^{p-q}.
+	\tag1
+\end{align*}
+注意到\(\lim\alpha=0\).
+当\(p>q\)时，(1)式等于\(0\)，\(\beta\)是比\(\gamma\)高阶的无穷小，即\(\beta=o(\gamma)\).
+当\(p=q\)时，(1)式等于\(\frac{c_1}{c_2}\)，\(\beta\)是比\(\gamma\)同阶的无穷小.
+当\(p<q\)时，(1)式等于\(\infty\)，\(\beta\)是比\(\gamma\)低阶的无穷小，即\(\gamma=o(\beta)\).
+\end{proof}
+\end{proposition}
+
 \begin{theorem}[和差取大规则]\label{theorem:极限.无穷小的比较3}
 设\(\beta=o(\alpha)\)，则\(\alpha\pm\beta\sim\alpha\).
 \end{theorem}
