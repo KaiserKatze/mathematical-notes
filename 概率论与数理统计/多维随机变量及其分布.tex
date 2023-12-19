@@ -296,14 +296,20 @@ P(y - \epsilon < Y \leq y + \epsilon) > 0,
 设二维连续型随机变量\((X,Y)\)有二维密度\(f(x,y)\)，
 从而\(X\)及\(Y\)有边缘密度\(f_X(x)\)、\(f_Y(y)\)，则
 \begin{align*}
-F_{X \vert Y}(x \vert y) = \int_{-\infty}^{x} \frac{f(u,y)}{f_Y(y)}\dd{u}, \quad x \in \mathbb{R}; \\
-F_{Y \vert X}(y \vert x) = \int_{-\infty}^{y} \frac{f(x,v)}{f_X(x)}\dd{v}, \quad y \in \mathbb{R}.
+	F_{X \vert Y}(x \vert y)
+	= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)}\dd{u}, \quad x \in \mathbb{R}; \\
+	F_{Y \vert X}(y \vert x)
+	= \int_{-\infty}^y \frac{f(x,v)}{f_X(x)}\dd{v}, \quad y \in \mathbb{R}.
 \end{align*}
 
 那么，相应的密度函数
 \begin{gather}
-f_{X \vert Y}(x \vert y) = \frac{f(x,y)}{f_Y(y)}, \label{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系1} \\
-f_{Y \vert X}(y \vert x) = \frac{f(x,y)}{f_X(x)}, \label{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系2}
+	f_{X \vert Y}(x \vert y)
+	= \frac{f(x,y)}{f_Y(y)},
+		\label{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系1} \\
+	f_{Y \vert X}(y \vert x)
+	= \frac{f(x,y)}{f_X(x)},
+		\label{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系2}
 \end{gather}
 分别称为“\(X\)关于\(Y\)的\DefineConcept{条件密度函数}”%
 和“\(Y\)关于\(X\)的\DefineConcept{条件密度函数}”.
@@ -311,21 +317,21 @@ f_{Y \vert X}(y \vert x) = \frac{f(x,y)}{f_X(x)}, \label{equation:多维随机�
 不妨设\(f(x,y)\)连续，\(f_Y(y)\)连续且\(f_Y(y)>0\)，
 \def\l{\lim_{\epsilon\to0^+}}%
 那么\begin{align*}
-F_{X \vert Y}(x \vert y)
-&= \l \frac{P(X \leq x, y - \epsilon < Y \leq y + \epsilon)}{P(y - \epsilon < Y \leq y + \epsilon)} \\
-&= \l \frac{F(x,y+\epsilon) - F(x,y-\epsilon)}{F_Y(y+\epsilon) - F_Y(y-\epsilon)} \\
-&= \l \frac{[F(x,y+\epsilon) - F(x,y-\epsilon)] \frac{1}{2 \epsilon}}{[F_Y(y+\epsilon) - F_Y(y-\epsilon)] \frac{1}{2 \epsilon}} \\
-&= \pdv{F(x,y)}{y} \bigg/ F_Y'(y)
-= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)} \dd{u}.
-\qedhere
+	F_{X \vert Y}(x \vert y)
+	&= \l \frac{P(X \leq x, y - \epsilon < Y \leq y + \epsilon)}{P(y - \epsilon < Y \leq y + \epsilon)} \\
+	&= \l \frac{F(x,y+\epsilon) - F(x,y-\epsilon)}{F_Y(y+\epsilon) - F_Y(y-\epsilon)} \\
+	&= \l \frac{[F(x,y+\epsilon) - F(x,y-\epsilon)] \frac{1}{2 \epsilon}}{[F_Y(y+\epsilon) - F_Y(y-\epsilon)] \frac{1}{2 \epsilon}} \\
+	&= \pdv{F(x,y)}{y} \bigg/ F_Y'(y)
+	= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)} \dd{u}.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{theorem}
 
 \begin{corollary}
 已知边缘密度函数和条件密度函数，可以求出二维密度，即\[
-f(x,y) = f_Y(y) \cdot f_{X \vert Y}(x \vert y)
-= f_X(x) \cdot f_{Y \vert X}(y \vert x).
+	f(x,y) = f_Y(y) \cdot f_{X \vert Y}(x \vert y)
+	= f_X(x) \cdot f_{Y \vert X}(y \vert x).
 \]
 \end{corollary}
 
