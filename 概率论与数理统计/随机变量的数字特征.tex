@@ -334,15 +334,36 @@ E(Z) = E[g(X,Y)] = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y) f(x,
 \end{property}
 
 \begin{property}\label{theorem:随机变量的数字特征.数学期望的性质3}
-若随机变量\(X\)与\(Y\)相互独立，则\[
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P113. 性质(5)
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P148. 定理3.3.3
+若随机变量\(X\)与\(Y\)相互独立，
+则\begin{equation}
 	E(X Y) = E(X) E(Y).
-\]
+\end{equation}
+\begin{proof}
+在连续场合，设二维随机变量\((X,Y)\)的联合密度函数为\(f(x,y)\).
+因为\(X\)与\(Y\)相互独立，所以\(f(x,y) = f_X(x) \cdot f_Y(y)\)，
+其中\(f_X(x)\)是\(X\)的边缘密度函数，\(f_Y(y)\)是\(Y\)的边缘密度函数.
+那么\begin{align*}
+	E(XY)
+	&= \int_{-\infty}^{+\infty} x y f(x,y) \dd{x}\dd{y} \\
+	&= \int_{-\infty}^{+\infty} x y f_X(x) f_Y(y) \dd{x}\dd{y} \\
+	&= \int_{-\infty}^{+\infty} x f_X(x) \dd{x}
+		\int_{-\infty}^{+\infty} y f_Y(y) \dd{y} \\
+	&= E(X) E(Y).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{property}
 
-一般地，若随机变量\(\AutoTuple{X}{n}\)相互独立，则\[
+\begin{corollary}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P113. 性质(5)
+若随机变量\(\AutoTuple{X}{n}\)相互独立，
+则\begin{equation}
 	E\left( \bigcap_{i=1}^n X_i \right)
 	= \prod_{i=1}^n E(X_i).
-\]
-\end{property}
+\end{equation}
+\end{corollary}
 
 \begin{theorem}
 设\(X \sim B(n,p)\)，则\(E(X) = np\).
