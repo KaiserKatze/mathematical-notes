@@ -1,0 +1,205 @@
+\section{矩阵合同的概念}
+\begin{definition}
+%@see: 《线性代数》（张慎语、周厚隆） P118. 定义2
+设\(\A\)和\(\B\)是两个\(n\)阶矩阵，
+若存在可逆矩阵\(\C\)，
+使得\(\B=\C^T\A\C\)，
+则称“\(\A\)与\(\B\) \DefineConcept{合同}（congruent）”
+或“\(\B\)是\(\A\)的\DefineConcept{合同矩阵}”，
+记为\(\A\simeq\B\).
+\end{definition}
+
+\begin{property}
+%@see: 《线性代数》（张慎语、周厚隆） P118.
+矩阵的合同关系是等价关系，即具备下列三条性质：
+\begin{enumerate}
+	\item {\bf 反身性}：\(\A\simeq\A\)；
+	\item {\bf 对称性}：\(\A\simeq\B \implies \B\simeq\A\)；
+	\item {\bf 传递性}：\(\A\simeq\B \land \B\simeq\C \implies \A\simeq\C\).
+\end{enumerate}
+\end{property}
+
+\begin{property}
+合同矩阵与原矩阵等价，即\(\A\simeq\B \implies \A\cong\B\).
+\begin{proof}
+由\hyperref[definition:逆矩阵.矩阵等价]{矩阵等价的定义}显然有.
+\end{proof}
+\end{property}
+
+\begin{property}
+%@see: 《线性代数》（张慎语、周厚隆） P119. 习题6.1 2(2)选项(A)
+合同矩阵的秩与原矩阵相等，即\(\A\simeq\B \implies \rank\A=\rank\B\).
+\begin{proof}
+由\cref{theorem:线性方程组.初等变换不变秩} 立得.
+\end{proof}
+\end{property}
+
+\begin{property}
+对称矩阵的合同矩阵也是对称的，
+即\[
+	\A^T = \A
+	\implies
+	[\A\simeq\B \implies \B^T = \B].
+\]
+\begin{proof}
+设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，
+那么\(\B^T = (\C^T\A\C)^T = \C^T\A^T\C = \C^T\A\C = \B\).
+\end{proof}
+\end{property}
+
+\begin{proposition}\label{theorem:矩阵合同.合同矩阵的行列式的关系}
+设\(n\)阶矩阵\(\A,\B,\C\)满足\(\B=\C^T\A\C^T\)，
+则\[
+	\abs{\A}\abs{\C}^2
+	=\abs{\B}.
+\]
+\begin{proof}
+根据\cref{theorem:行列式.性质1,theorem:行列式.矩阵乘积的行列式}，
+必有\[
+	\abs{\B}
+	=\abs{\C^T\A\C}
+	=\abs{\C^T}\abs{\A}\abs{\C}
+	=\abs{\A}\abs{\C}^2.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《线性代数》（张慎语、周厚隆） P119. 习题6.1 2(2)选项(B)
+合同矩阵的行列式同号，即\(\A\simeq\B\implies\sgn\abs{\A}=\sgn\abs{\B}\).
+\begin{proof}
+设\(n\)阶矩阵\(\A,\B,\C\)满足\(\B=\C^T\A\C^T\)，
+由\cref{theorem:矩阵合同.合同矩阵的行列式的关系} 有\[
+	\abs{\A}\abs{\B}
+	=\abs{\A}(\abs{\A}\abs{\C}^2)
+	=\abs{\A}^2\abs{\C}^2 \geq 0.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{example}
+相似的两个矩阵不一定合同.
+例如，矩阵\(\A=\begin{bmatrix}
+	1 & 1 \\
+	0 & 2
+\end{bmatrix}\)
+和\(\B=\begin{bmatrix}
+	0 & -1 \\
+	2 & 3
+\end{bmatrix}\)相似，
+这是因为可逆矩阵\(\P=\begin{bmatrix}
+	1 & 0 \\
+	-1 & -1
+\end{bmatrix}\)满足\(\P^{-1}\A\P=\B\).
+现在假设存在矩阵\(\Q=\begin{bmatrix}
+	a & b \\
+	c & d
+\end{bmatrix}\)使得\(\Q^T\A\Q=\B\).
+那么有\[
+	\Q^T\A\Q-\B
+	=\begin{bmatrix}
+		a^2+ac+2c^2 & 1+ab+ad+2cd \\
+		-2+ab+bc+2cd & -3+b^2+bd+2d^2
+	\end{bmatrix}
+	=\vb0,
+\]
+得到关于\(a,b,c,d\)的方程组
+\begin{align*}
+	\left\{ \begin{array}{l}
+		a^2+ac+2c^2 = 0, \\
+		1+ab+ad+2cd = 0, \\
+		-2+ab+bc+2cd = 0, \\
+		-3+b^2+bd+2d^2 = 0,
+	\end{array} \right.
+	\tag*{$\begin{matrix}(1)\\(2)\\(3)\\(4)\end{matrix}$}
+\end{align*}
+(2)式减去(3)式得\[
+	3+ad-bc=0,
+\]
+这就是说\(\abs{\Q}=-3\).
+但是根据\cref{theorem:矩阵合同.合同矩阵的行列式的关系}，
+因为\(\abs{\A}=\abs{\B}=2\)，所以\(\abs{\Q}^2=1\).
+矛盾！因此\(\A\)与\(\B\)不合同！
+\end{example}
+
+\begin{example}\label{example:矩阵合同.合同矩阵不一定相似}
+合同的两个矩阵不一定相似.
+例如，矩阵\(\A=\begin{bmatrix}
+	1 & 0 \\
+	0 & 1
+\end{bmatrix}\)与\(\B=\begin{bmatrix}
+	4 & 0 \\
+	0 & 1
+\end{bmatrix}\)合同，
+这是因为可逆矩阵\(\Q=\begin{bmatrix}
+	2 & 0 \\
+	0 & 1
+\end{bmatrix}\)满足\(\Q^T\A\Q=\B\).
+但是\(\tr\A=2 \neq \tr\B = 5\)，
+根据\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
+\(\A\)与\(\B\)必不相似！
+\end{example}
+
+\begin{proposition}\label{thoerem:二次型.实对称矩阵相似必合同}
+设\(\A,\B\)都是实对称矩阵，
+则“\(\A\)与\(\B\)相似”是“\(\A\)与\(\B\)合同”的充分不必要条件.
+\begin{proof}
+因为\(\A\)、\(\B\)都是实对称矩阵，
+\(\A^T=\A\)，
+\(\B^T=\B\)，
+且存在正交矩阵\(\Q_1,\Q_2\)使得\[
+	\Q_1^{-1} \A \Q_1 = \Q_1^T \A \Q_1 = \V_1,
+\]\[
+	\Q_2^{-1} \B \Q_2 = \Q_2^T \B \Q_2 = \V_2,
+\]
+其中\(\V_1,\V_2\)是对角阵.
+又因为\(\A\sim\B\)，
+所以\(\A\)与\(\B\)有相同的特征多项式、特征值，
+即\(\V_1=\V_2\)，
+或\[
+	\Q_1^{-1} \A \Q_1 = \Q_2^{-1} \B \Q_2,
+\]\[
+	(\Q_2 \Q_1^{-1}) \A (\Q_1 \Q_2^{-1}) = \B.
+\]
+令\(\P = \Q_1 \Q_2^{-1}\)，
+\(\P^T = (\Q_1 \Q_2^{-1})^T
+= (\Q_2^{-1})^T \Q_1^T
+= \Q_2 \Q_1^{-1}
+= (\Q_1 \Q_2^{-1})^{-1}
+= \P^{-1}\)，
+那么\[
+	\P^T \A \P = \B,
+\]
+也就是说\(\A\)与\(\B\)合同.
+
+再根据\cref{example:矩阵合同.合同矩阵不一定相似}，合同的两个实对称矩阵未必相似.
+因此，对于实对称矩阵\(\A,\B\)而言，
+“\(\A\)与\(\B\)相似”是“\(\A\)与\(\B\)合同”的充分不必要条件.
+\end{proof}
+\end{proposition}
+
+\begin{example}
+设\(\AutoTuple{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，
+\[
+\A=\diag(\AutoTuple{d}{n}),
+\qquad
+\B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
+\]
+证明：矩阵\(\A,\B\)合同且相似.
+\begin{proof}
+显然\(\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n})\)可由\(\diag(\AutoTuple{d}{n})\)同时左乘和右乘若干个初等矩阵\[
+\P(i,j) \quad(1 \leq i < j \leq n)
+\]得到，又因为\(\P(i,j)^T = \P(i,j)^{-1} = \P(i,j)\)，所以只要令这些初等矩阵的乘积为\(\P\)，就有\[
+\P^{-1} \A \P = \B,
+\qquad
+\P^T \A \P = \B.
+\]也就是说\(\A\simeq\B\land\A\sim\B\).
+\end{proof}
+\end{example}
+
+根据\cref{theorem:特征值与特征向量.实对称矩阵3}，任一实对称矩阵都与某个对角阵合同且相似，实际上，我们可以把这个结论推广到复数域上的对称矩阵.
+\begin{theorem}
+任一对称矩阵都合同于某个对角矩阵.
+\end{theorem}
