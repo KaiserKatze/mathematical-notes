@@ -701,10 +701,32 @@ D(X)=\frac{\alpha}{\beta^2}\)，
 \end{property}
 
 \begin{theorem}
-设\(D(X) = \sigma_1^2, D(Y) = \sigma_2^2\)，则
-\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P151. 定理3.3.6
+设\(D(X) = \sigma_1^2,
+D(Y) = \sigma_2^2\)，
+则\begin{equation}\label{equation:随机变量的数字特征.协方差不等式1}
     [\Cov(X,Y)]^2 \leq \sigma_1^2 \sigma_2^2.
 \end{equation}
+\begin{proof}
+如果\(\sigma_1^2=0\)，
+那么由\cref{theorem:大数律.方差为零的随机变量的性质} 可知，\(X\)几乎处处是常数；
+而由\cref{theorem:随机变量的数字特征.协方差的性质3} 可知，常数与\(Y\)的协方差必为零；
+于是\cref{equation:随机变量的数字特征.协方差不等式1} 两端都是零，
+因此\cref{equation:随机变量的数字特征.协方差不等式1} 成立.
+
+如果\(\sigma_1^2>0\)，
+因为\[
+	E\{t[X-E(X)]+[Y-E(Y)]\}^2
+	= t^2 \sigma_1^2
+	+ 2t \Cov(X,Y)
+	+ \sigma_2^2
+	\geq 0,
+\]
+所以这个关于\(t\)的二次三项式的判别式非正，即\[
+	[2\Cov(X,Y)]^2 - 4 \sigma_1^2 \sigma_2^2 \leq 0,
+\]
+移项便得\cref{equation:随机变量的数字特征.协方差不等式1}.
+\end{proof}
 \end{theorem}
 
 现在我们对\cref{theorem:随机变量的数字特征.方差的性质2} 做一番推广.
@@ -940,6 +962,7 @@ theorem:随机变量的数字特征.标准化随机变量的数字特征} 立即
 当满足\(R(X,Y) = -1\)时，
 称“\(X\)与\(Y\) \DefineConcept{完全负线性相关}”.
 
+%FIXME 后学的内容（正态分布）在前面章节（随机变量的数字特征）引用了，需要调整顺序
 显然地，当\(X\)与\(Y\)相互独立时，必有\(X\)与\(Y\)不相关.
 但当\(X\)与\(Y\)不相关时，却不必然有\(X\)与\(Y\)相互独立.
 例如，设\(X \sim N(0,1)\)，\(Y=X^2\)，于是有\[
