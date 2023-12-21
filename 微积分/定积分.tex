@@ -851,15 +851,18 @@ F'(x) = \frac{x f(x) \fv - f(x) \fu}{\fvv}
 \begin{example}
 设\(f \in C[0,1]\).
 证明：\begin{enumerate}
-	\item \(\int_0^{\pi/2} f(\sin x) \dd{x} = \int_0^{\pi/2} f(\cos x) \dd{x}\)；
-	\item \(\int_0^\pi x f(\sin x) \dd{x} = \frac{\pi}{2} \int_0^\pi f(\sin x) \dd{x}\).
+	\item \(\int_0^{\frac\pi2} f(\sin x) \dd{x}
+	= \int_0^{\frac\pi2} f(\cos x) \dd{x}\).
+
+	\item \(\int_0^\pi x f(\sin x) \dd{x}
+	= \frac{\pi}{2} \int_0^\pi f(\sin x) \dd{x}\).
 \end{enumerate}
 \begin{proof}
 显然有\begin{align*}
-	\int_0^{\pi/2} f(\sin x) \dd{x}
+	\int_0^{\frac\pi2} f(\sin x) \dd{x}
 	&\xlongequal{x = \pi/2-t}
-		\int_{\pi/2}^0 f\left[\sin(\frac{\pi}{2}-t)\right] \dd(\frac{\pi}{2}-t) \\
-	&= \int_0^{\pi/2} f(\cos x) \dd{x}.
+		\int_{\frac\pi2}^0 f\left[\sin(\frac{\pi}{2}-t)\right] \dd(\frac{\pi}{2}-t) \\
+	&= \int_0^{\frac\pi2} f(\cos x) \dd{x}.
 \end{align*}
 
 因为\begin{align*}
@@ -1001,9 +1004,9 @@ I_n = \int_0^{\frac{\pi}{2}} \sin^n x \dd{x}
 由于\[
 \begin{split}
 I_n &= -\int_0^{\frac{\pi}{2}} \sin^{n-1} x \dd(\cos x) \\
-&= [-\cos x \sin^{n-1} x]_0^{\pi/2}
-	+ (n-1) \int_0^{\pi/2} \sin^{n-2} x \cos^2 x \dd{x} \\
-&= (n-1) \int_0^{\pi/2} \sin^{n-2} x (1-\sin^2 x) \dd{x} \\
+&= [-\cos x \sin^{n-1} x]_0^{\frac\pi2}
+	+ (n-1) \int_0^{\frac\pi2} \sin^{n-2} x \cos^2 x \dd{x} \\
+&= (n-1) \int_0^{\frac\pi2} \sin^{n-2} x (1-\sin^2 x) \dd{x} \\
 &= (n-1) I_{n-2} - (n-1) I_n,
 \end{split}
 \]所以\[
@@ -1029,14 +1032,14 @@ I_{2k+1} = \frac{2k}{2k+1} \cdot \frac{2k-2}{2k-1} \cdot \dotsm \cdot \frac{6}{7
 
 下面特别就\cref{equation:定积分.点火公式} 做一点点展开.
 \begin{example}
-证明：\(\lim_{n\to\infty} \int_0^{\pi/2} \sin^n x \dd{x} = 0\).
+证明：\(\lim_{n\to\infty} \int_0^{\frac\pi2} \sin^n x \dd{x} = 0\).
 \begin{proof}
 因为\(\sin^n\frac{\pi}{2}=1\)，
 所以对于任意\(n\)总有函数\(\sin^n x\)在点\(\frac{\pi}{2}\)的左邻域取值接近\(1\).
 另一方面，对于固定的\(x\)取值，只要\(x<\frac{\pi}{2}\)，
 则当\(n\)增加时函数值\(\sin^n x\)就很快趋于\(0\).
 接下来我们就采用这样的“分而治之”的方法证明
-\(\lim_{n\to\infty} \int_0^{\pi/2} \sin^n x \dd{x} = 0\).
+\(\lim_{n\to\infty} \int_0^{\frac\pi2} \sin^n x \dd{x} = 0\).
 
 当\(0<x<\frac{\pi}{2}\)时，\(0<\sin x<1\).
 \(\forall\epsilon>0\)（不妨设\(\epsilon<\pi\)）.
@@ -1050,9 +1053,9 @@ I_{2k+1} = \frac{2k}{2k+1} \cdot \frac{2k-2}{2k-1} \cdot \dotsm \cdot \frac{6}{7
 	\frac{\pi}{2} \sin^n\frac{\pi-\epsilon}{2},
 \]
 因此\[
-	0 \leq \int_0^{\pi/2} \sin^n x \dd{x}
+	0 \leq \int_0^{\frac\pi2} \sin^n x \dd{x}
 	= \int_0^{(\pi-\epsilon)/2} \sin^n x \dd{x}
-	+ \int_{(\pi-\epsilon)/2}^{\pi/2} \sin^n x \dd{x}
+	+ \int_{(\pi-\epsilon)/2}^{\frac\pi2} \sin^n x \dd{x}
 	\leq \frac{\pi}{2} \sin^n\frac{\pi-\epsilon}{2} + \frac{\epsilon}{2}.
 \]
 由\(0<\sin\frac{\pi-\epsilon}{2}<1\)，
@@ -1066,11 +1069,11 @@ I_{2k+1} = \frac{2k}{2k+1} \cdot \frac{2k-2}{2k-1} \cdot \dotsm \cdot \frac{6}{7
 			&\implies
 			0<\frac{\pi}{2} \sin^n\frac{\pi-\epsilon}{2}<\frac{\epsilon}{2} \\
 			&\implies
-			0 \leq \int_0^{\pi/2} \sin^n x \dd{s} < \epsilon.
+			0 \leq \int_0^{\frac\pi2} \sin^n x \dd{s} < \epsilon.
 		\end{array}
 	\right]
 \]
-这就证明了\(\lim_{n\to\infty} \int_0^{\pi/2} \sin^n x \dd{x} = 0\).
+这就证明了\(\lim_{n\to\infty} \int_0^{\frac\pi2} \sin^n x \dd{x} = 0\).
 \end{proof}
 \end{example}
 
