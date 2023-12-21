@@ -781,47 +781,72 @@ F'(x) = \frac{x f(x) \fv - f(x) \fu}{\fvv}
 \end{solution}
 \end{example}
 
-\begin{corollary}
+\begin{proposition}\label{theorem:定积分.利用对称性简化计算1}
 设\(f \in C[-a,a]\).
 \begin{enumerate}
-\item 若函数\(f(x)\)在区间\([-a,a]\)上是偶函数，则\[
-\int_{-a}^a f(x) \dd{x} = 2 \int_0^a f(x) \dd{x};
-\]
+	\item 若函数\(f(x)\)在区间\([-a,a]\)上是偶函数，
+	则\[
+		\int_{-a}^a f(x) \dd{x}
+		= 2 \int_0^a f(x) \dd{x};
+	\]
 
-\item 若函数\(f(x)\)在区间\([-a,a]\)上是奇函数，则\[
-\int_{-a}^a f(x) \dd{x} = 0.
-\]
+	\item 若函数\(f(x)\)在区间\([-a,a]\)上是奇函数，
+	则\[
+		\int_{-a}^a f(x) \dd{x} = 0.
+	\]
 \end{enumerate}
 \begin{proof}
 由\cref{theorem:定积分.定积分性质3} 有\[
-\int_{-a}^a f(x) \dd{x} = \int_{-a}^0 f(x) \dd{x} + \int_0^a f(x) \dd{x}.
-\]又由定积分的补充定义有\[
-\int_{-a}^0 f(x) \dd{x}
-\xlongequal{t=-x} \int_a^0 f(-t) \dd(-t)
-= \int_0^a f(-x) \dd{x}.
-\]故由\cref{theorem:定积分.定积分性质1} 有\[
-\int_{-a}^a f(x) \dd{x}
-= \int_0^a f(-x) \dd{x} + \int_0^a f(x) \dd{x}
-= \int_0^a [f(-x) + f(x)] \dd{x}.
+	\int_{-a}^a f(x) \dd{x}
+	= \int_{-a}^0 f(x) \dd{x} + \int_0^a f(x) \dd{x}.
+\]
+又由定积分的补充定义有\[
+	\int_{-a}^0 f(x) \dd{x}
+	\xlongequal{t=-x} \int_a^0 f(-t) \dd(-t)
+	= \int_0^a f(-x) \dd{x}.
+\]
+故由\cref{theorem:定积分.定积分性质1} 有\[
+	\int_{-a}^a f(x) \dd{x}
+	= \int_0^a f(-x) \dd{x} + \int_0^a f(x) \dd{x}
+	= \int_0^a [f(-x) + f(x)] \dd{x}.
 \]
 
+接下来我们对函数\(f\)分情况讨论.
 \begin{enumerate}
-\item 若\(f(x)\)是偶函数，则\[
-f(x) + f(-x) = 2 f(x),
-\]从而\[
-\int_{-a}^a f(x) \dd{x} = 2 \int_0^a f(x) \dd{x};
-\]
+	\item 若\(f(x)\)是偶函数，则\[
+		f(x) + f(-x) = 2 f(x),
+	\]
+	从而\[
+		\int_{-a}^a f(x) \dd{x} = 2 \int_0^a f(x) \dd{x};
+	\]
 
-\item 若\(f(x)\)是奇函数，则\[
-f(x) + f(-x) = 0,
-\]从而\[
-\int_{-a}^a f(x) \dd{x} = 0.
-\qedhere
-\]
+	\item 若\(f(x)\)是奇函数，则\[
+		f(x) + f(-x) = 0,
+	\]
+	从而\[
+		\int_{-a}^a f(x) \dd{x} = 0.
+		\qedhere
+	\]
 \end{enumerate}
 \end{proof}
-\end{corollary}
-常用上例的结论简化奇、偶函数在对称于原点的区间上的定积分.
+\end{proposition}
+
+\begin{remark}
+常用\cref{theorem:定积分.利用对称性简化计算1} 简化奇、偶函数在对称于原点的区间上的定积分.
+
+当积分区间不是关于原点对称的区间时，
+我们可以利用坐标变换公式，
+对被积函数换元，
+将积分区间平移，把它变成对称于原点的区间.
+
+当我们处理非奇非偶函数函数\(f\)时，
+可以利用公式\[
+	g(x) = \frac{f(x) - f(-x)}{2}, \qquad
+	h(x) = \frac{f(x) + f(-x)}{2}
+\]
+将\(f\)中的奇函数\(g\)和偶函数\(h\)分别抽离出，
+再利用\cref{theorem:定积分.利用对称性简化计算1} 简化计算.
+\end{remark}
 
 \begin{example}
 设\(f \in C[0,1]\).证明：\begin{enumerate}
