@@ -11,18 +11,22 @@
 	\eqno(1)
 \]
 如果它的系数行列式满足\[
-	d=\abs{\A}=\begin{vmatrix}
+	d
+	=\begin{vmatrix}
 	a_{11} & a_{12} & \dots & a_{1n} \\
 	a_{21} & a_{22} & \dots & a_{2n} \\
 	\vdots & \vdots & \ddots & \vdots \\
 	a_{n1} & a_{n2} & \dots & a_{nn}
-	\end{vmatrix} \neq 0,
+	\end{vmatrix}
+	\neq 0,
 \]
 则线性方程组(1)存在唯一解：\[
-	\x_0 = \left( \frac{d_1}{d},\frac{d_2}{d},\dotsc,\frac{d_n}{d} \right)^T,
+	\x_0
+	= \left( \frac{d_1}{d},\frac{d_2}{d},\dotsc,\frac{d_n}{d} \right)^T,
 \]
 其中\[
-	d_k = \begin{vmatrix}
+	d_k
+	= \begin{vmatrix}
 		a_{11} & \dots & a_{1\ k-1} & b_1 & a_{1\ k+1} & \dots & a_{1n} \\
 		a_{21} & \dots & a_{2\ k-1} & b_2 & a_{2\ k+1} & \dots & a_{2n} \\
 		\vdots & & \vdots & \vdots & \vdots & & \vdots \\
@@ -30,26 +34,27 @@
 	\end{vmatrix},
 	\quad k=1,2,\dotsc,n.
 \]
-\begin{proof}
-上述原线性方程组可以改写为矩阵形式\(\A \x = \b\).
-因为\(d = \abs{\A} \neq 0\)，故\(\A\)可逆，那么线性方程组有唯一解\[
-	\X0 = \A^{-1} \b = \frac{1}{d} \A^* \b,
-\]其中\(\A^*\)是\(\A\)的伴随矩阵.
-设\(A_{ij}\)表示\(\A\)中元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式，
-则行列式\(d_k\)可按第\(k\)列展开，得\[
-	d_k = b_1 A_{1k} + b_2 A_{2k} + \dotsb + b_n A_{nk},
-	\quad k=1,2,\dotsc,n,
-\]
-则\[
-	\X0 = \frac{1}{d} \A^* \b
-	= \frac{1}{d} \begin{bmatrix}
-		A_{11} & A_{21} & \dots & A_{n1} \\
-		A_{12} & A_{22} & \dots & A_{n2} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		A_{1n} & A_{2n} & \dots & A_{nn}
-	\end{bmatrix} \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
-	= \frac{1}{d} \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_n \end{bmatrix}.
-	\qedhere
-\]
-\end{proof}
+%TODO 在不借助矩阵记号的情况下可能需要数学归纳法证明？
+% \begin{proof}
+% 上述原线性方程组可以改写为矩阵形式\(\A \x = \b\).
+% 因为\(d = \abs{\A} \neq 0\)，故\(\A\)可逆，那么线性方程组有唯一解\[
+% 	\X0 = \A^{-1} \b = \frac{1}{d} \A^* \b,
+% \]其中\(\A^*\)是\(\A\)的伴随矩阵.
+% 设\(A_{ij}\)表示\(\A\)中元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式，
+% 则行列式\(d_k\)可按第\(k\)列展开，得\[
+% 	d_k = b_1 A_{1k} + b_2 A_{2k} + \dotsb + b_n A_{nk},
+% 	\quad k=1,2,\dotsc,n,
+% \]
+% 则\[
+% 	\X0 = \frac{1}{d} \A^* \b
+% 	= \frac{1}{d} \begin{bmatrix}
+% 		A_{11} & A_{21} & \dots & A_{n1} \\
+% 		A_{12} & A_{22} & \dots & A_{n2} \\
+% 		\vdots & \vdots & \ddots & \vdots \\
+% 		A_{1n} & A_{2n} & \dots & A_{nn}
+% 	\end{bmatrix} \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+% 	= \frac{1}{d} \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_n \end{bmatrix}.
+% 	\qedhere
+% \]
+% \end{proof}
 \end{theorem}
