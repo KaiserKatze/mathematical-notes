@@ -230,16 +230,19 @@
 
 \begin{example}\label{example:可逆矩阵.分块上三角矩阵的逆}
 %@see: 《线性代数》（张慎语、周厚隆） P46. 例5
-设\(\A\)、\(\B\)都是\(n\)阶可逆矩阵，\(\C\)是\(n\)阶矩阵.
+设\(\A \in M_s(K),
+\B \in M_n(K),
+\C \in M_{s \times n}(K)\)，
+\(\A\)和\(\B\)都可逆.
 证明：矩阵\[
 	\vb{M} = \begin{bmatrix}
 		\A & \C \\
-		\z & \B
+		\vb0 & \B
 	\end{bmatrix}
 \]可逆，且\[
 	\vb{M}^{-1} = \begin{bmatrix}
 		\A^{-1} & -\A^{-1} \C \B^{-1} \\
-		\z & \B^{-1}
+		\vb0 & \B^{-1}
 	\end{bmatrix}.
 \]
 \begin{proof}
@@ -249,15 +252,15 @@
 令\(\vb{M}\x=\E\)，即\[
 	\begin{bmatrix}
 		\A & \C \\
-		\z & \B
+		\vb0 & \B
 	\end{bmatrix}
 	\begin{bmatrix}
 		\x_1 & \x_2 \\
 		\x_3 & \x_4
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E & \z \\
-		\z & \E
+		\E & \vb0 \\
+		\vb0 & \E
 	\end{bmatrix}
 \]则\[
 	\begin{bmatrix}
@@ -265,26 +268,26 @@
 		\B\x_3 & \B\x_4
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E & \z \\
-		\z & \E
+		\E & \vb0 \\
+		\vb0 & \E
 	\end{bmatrix}
 \]
 进而有\[
 	\left\{ \begin{array}{l}
 		\A\x_1+\C\x_3 = \E \\
-		\A\x_2+\C\x_4 = \z \\
-		\B\x_3 = \z \\
+		\A\x_2+\C\x_4 = \vb0 \\
+		\B\x_3 = \vb0 \\
 		\B\x_4 = \E
 	\end{array} \right.
 \]
 由第4式可得\(\x_4 = \B^{-1}\).
 代入第2式得\(\A\x_2=-\C\B^{-1}\)，
 \(\x_2=-\A^{-1}\C\B^{-1}\).
-用\(\B^{-1}\)左乘第3式左右两端，\(\B^{-1}\B\x_3=\x_3=\z\).
+用\(\B^{-1}\)左乘第3式左右两端，\(\B^{-1}\B\x_3=\x_3=\vb0\).
 则第1式化为\(\A\x_1=\E\)，显然\(\x_1=\A^{-1}\)，所以\[
 	\vb{M}^{-1} = \x = \begin{bmatrix}
 		\A^{-1} & -\A^{-1}\C\B^{-1} \\
-		\z & \B^{-1}
+		\vb0 & \B^{-1}
 	\end{bmatrix}.
 	\qedhere
 \]
@@ -295,11 +298,11 @@
 从\cref{example:可逆矩阵.分块上三角矩阵的逆} 的结论\[
 	\begin{bmatrix}
 		\A & \C \\
-		\z & \B
+		\vb0 & \B
 	\end{bmatrix}^{-1}
 	= \begin{bmatrix}
 		\A^{-1} & -\A^{-1} \C \B^{-1} \\
-		\z & \B^{-1}
+		\vb0 & \B^{-1}
 	\end{bmatrix}
 \]出发，
 只要再利用\cref{theorem:逆矩阵.转置矩阵的逆与逆矩阵的转置}
@@ -311,7 +314,7 @@
 	\end{bmatrix}^{-1}
 	= \begin{bmatrix}
 		\A^{-1} & \vb0 \\
-		-\A^{-1} \C \B^{-1} & \B^{-1}
+		-\B^{-1} \C \A^{-1} & \B^{-1}
 	\end{bmatrix}.
 \]
 
@@ -332,6 +335,46 @@
 	= \begin{bmatrix}
 		-\B^{-1}\C\A^{-1} & \B^{-1} \\
 		\A^{-1} & \vb0
+	\end{bmatrix}.
+\]
+
+我们还可以进一步利用
+\(\A^* = \abs{\A} \A^{-1}\)，
+得到\[
+	\begin{bmatrix}
+		\A & \C \\
+		\vb0 & \B
+	\end{bmatrix}^*
+	= \begin{bmatrix}
+		\abs{\B} \A^* & -\A^*\C\B^* \\
+		\vb0 & \abs{\A} \B^*
+	\end{bmatrix},
+\]\[
+	\begin{bmatrix}
+		\A & \vb0 \\
+		\C & \B
+	\end{bmatrix}^*
+	= \begin{bmatrix}
+		\abs{\B} \A^* & \vb0 \\
+		-\B^* \C \A^* & \abs{\A} \B^*
+	\end{bmatrix},
+\]\[
+	\begin{bmatrix}
+		\C & \A \\
+		\B & \vb0
+	\end{bmatrix}^*
+	= (-1)^{mn} \begin{bmatrix}
+		\vb0 & \abs{\A} \B^* \\
+		\abs{\B} \A^* & -\A^*\C\B^*
+	\end{bmatrix},
+\]\[
+	\begin{bmatrix}
+		\vb0 & \A \\
+		\B & \C
+	\end{bmatrix}^*
+	= (-1)^{mn} \begin{bmatrix}
+		-\B^*\C\A^* & \abs{\A} \B^* \\
+		\abs{\B} \A^* & \vb0
 	\end{bmatrix}.
 \]
 \end{remark}
