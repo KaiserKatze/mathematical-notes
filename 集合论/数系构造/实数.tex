@@ -8,7 +8,20 @@
 这也是我们本节要着重学习的内容.
 
 \subsection{实数的构造}
+实际上，我们已经有了好几种方法，可以用来构造实数.
+一种方式是利用十进制展开，
+用一个整数和一串无限的数字序列
+（相当于从\(\omega\)到\(\{0,1,2,3,4,5,6,7,8,9\}\)的映射）
+来确定一个实数.
+
 \subsubsection*{第一种途径：利用柯西列构造实数}
+一种更常用的实数构造方法是
+利用有理数列（即从\(\omega\)到\(\mathbb{Q}\)的映射）
+去逼近一个实数，
+然后把所有收敛的有理数列收集在一起，
+取这个集合对一个等价关系（我们把收敛到同一个实数的两个有理数列看成是等价的）的商集.
+这就是柯西用来构造实数的技巧.
+
 \begin{definition}
 %@see: 《Elements of Set Theory》 P112.
 设映射\(s\colon \omega\to\mathbb{Q}\)满足\[
@@ -42,14 +55,28 @@
 这种构造实数集的方法归功于康托.
 
 \subsubsection*{第二种途径：利用戴德金分割构造实数}
+还有一种构造实数系的方法，叫做戴德金分割.
+柯西法与戴德金法这两种构造实数的方法各有其优劣.
+戴德金分割的优点在于：
+它可以简单明了地定义实数和实数的序.
+但戴德金分割的乘法却差强人意，
+验证戴德金分割的乘法运算律甚是无趣.
+利用柯西列构造的实数则胜在它的通用性，
+这是因为它不仅仅可以用在有理数系中，
+还可以用在任意的度量空间中.
+
 \begin{definition}
 %@see: 《Elements of Set Theory》 P113. Definition
 设集合\(x \subseteq \mathbb{Q}\).
 如果\begin{enumerate}
-	\item \(\emptyset \neq x \neq \mathbb{Q}\)；
-	\item \(x\)向下封闭（\(x\) is closed downward），即\[
+	\item \(x\)是\(\mathbb{Q}\)的非空真子集，
+	即\(\emptyset \neq x \neq \mathbb{Q}\)；
+
+	\item \(x\)向下封闭（\(x\) is closed downward），
+	即\[
 		q \in x \land r < q \implies r \in x;
 	\]
+
 	\item \(x\)没有最大元素，
 \end{enumerate}
 那么称“\(x\)是一个\DefineConcept{戴德金分割}（Dedekind cut）”.
@@ -83,11 +110,15 @@
 如果\(A\)的上界\(z\)比其他任何上界都要小，
 那么称“\(z\)是\(A\)的\DefineConcept{最小上界}（least upper bound）”.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:实数.实数存在最小上界}
 %@see: 《Elements of Set Theory》 P114. Theorem 5RB
 实数集的任意一个有上界的非空子集总有一个实最小上界.
 \end{theorem}
-这个定理在数学分析中非常重要.
+\cref{theorem:实数.实数存在最小上界}
+指出的“实数系存在最小上界”这一性质，
+是将实数域与其他有序域区分开来的重要特征.
+
+这个定理在数学分析中也非常重要.
 它可以用来证明在闭区间上的连续函数一定能取得最值.
 
 \begin{definition}
