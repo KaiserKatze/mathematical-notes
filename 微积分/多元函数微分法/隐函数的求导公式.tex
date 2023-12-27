@@ -1,0 +1,302 @@
+\section{隐函数的求导公式}
+\subsection{一个方程的情形}
+在\cref{section:导数与微分.隐函数及由参数方程所确定的函数的导数}中，
+我们已经提出了隐函数的概念，并且指出了不经过显化直接由方程\[
+	F(x,y) = 0
+\]求它所确定的隐函数的导数的方法.
+现在介绍隐函数存在定理，并根据多元复合函数的求导法推导出隐函数的导数公式.
+
+要想由方程\(F(x,y)=0\)求出\(\dv{y}{x}\)，
+我们可以假设这个方程确定的函数为\(y=f(x)\)，并将函数代入方程中，得恒等式\[
+	F(x,f(x))=0,
+\]
+其左端可以看作是\(x\)的一个复合函数.
+要想求这个函数的全导数，由于恒等式两端求导后仍然恒等，即得\[
+	\pdv{F}{x}+\pdv{F}{y}\dv{y}{x}=0.
+\]
+如果\(F'_y\)连续，且\(F'_y(x_0,y_0)\neq0\)，
+那么存在\((x_0,y_0)\)的一个邻域，在其中\(F'_y\neq0\)，
+于是得\[
+	\dv{y}{x}=-\frac{F'_x}{F'_y}.
+\]
+
+我们依照这个思路给出下面的定理，并给出严格的证明.
+
+\begin{theorem}[隐函数存在定理1]\label{theorem:多元函数微分法.隐函数存在定理1}
+设函数\(F(x,y)\)在点\(P(x_0,y_0)\)的某一邻域内具有连续偏导数，
+且\(F(x_0,y_0)=0\)，\(F'_y(x_0,y_0) \neq 0\)，
+则方程\(F(x,y)=0\)在点\((x_0,y_0)\)的某一邻域内%
+恒能唯一确定一个连续且具有连续导数的函数\(y=f(x)\)，
+它满足条件\(y_0=f(x_0)\)，并有
+\begin{equation}\label{equation:多元函数微分法.隐函数存在定理1.一阶导数}
+	\dv{y}{x} = -\frac{F'_x}{F'_y}.
+\end{equation}
+\begin{proof}
+假设\(F(x,y)\)在邻域
+\(G \subseteq K_0=\Set{\abs{x-x_0}\leq a}\times\Set{\abs{y-y_0}\leq b}\)内具有连续偏导数；
+又假设\(F'_y(x_0,y_0)>0\)，
+那么\(\exists a_1\in(0,a),
+\exists b_1\in(0,b)\)，
+使得\(F'_y(x,y)>0\)在闭矩形区域\[
+	K_1 = \Set{\abs{x-x_0}\leq a_1}\times\Set{\abs{y-y_0}\leq b_1}
+	\subset K_0
+\]上恒成立.
+记\(\alpha(y) = F(x_0,y)\ (\abs{y-y_0}\leq b_1)\)，
+则\(\alpha(y)\)在定义域上严格单调递增，且满足\[
+	\alpha(y_0-b_1) < 0 = F(x_0,y_0) = \alpha(y_0) < \alpha(y_0+b_1).
+\]
+又因为\(F(x,y)\)在\(K_1\)上连续，所以\(\exists a_2\in(0,a_1]\)，使得
+\[
+	\begin{aligned}
+		\forall(x,y)\in(x_0-a_2,x_0+a_2)\times\Set{y_0-b_1} \bigl[ F(x,y) < 0 \bigr], \\
+		\forall(x,y)\in(x_0-a_2,x_0+a_2)\times\Set{y_0+b_1} \bigl[ F(x,y) > 0 \bigr].
+	\end{aligned}
+	\eqno(1)
+\]
+
+对\(\forall\xi\in(x_0-a_2,x_0+a_2)\)，
+关于\(y\)的一元函数\(F(\xi,y)\)在\([y_0-b_1,y_0+b_1]\)上连续，严格单调递增，且在端点处异号；
+那么由\hyperref[theorem:极限.零点定理]{零点定理}可知，
+\(\exists!\eta\in(y_0-b_1,y_0+b_1)\)，使得\(F(\xi,\eta)=0\)成立.
+这样就得到如下函数\[
+	f\colon (x_0-a_2,x_0+a_2)\to(y_0-b_1,y_0+b_1), x \mapsto y = f(x),
+	\eqno{(2)}
+\]
+它满足恒等式\(F(x,f(x))=0\)且\(y_0=f(x_0)\).
+
+既然对\(\forall\xi\in(x_0-a_2,x_0+a_2)\)，有\(F(\xi,\eta)=0\)，其中\(\eta = f(\xi)\)；
+那么，由(1)式可知，\[
+	(\forall\epsilon\in(0,b_1])
+	[F(\xi,\eta-\epsilon) < 0 < F(\xi,\eta+\epsilon)].
+\]
+利用函数\(F(x,y)\)在\(K_1\)上的连续性可知，\[
+	(\forall\epsilon\in(0,b_1])
+	(\exists\delta>0)
+	(\forall x\in(\xi-\delta,\xi+\delta))
+	[F(x,\eta-\epsilon) < 0 < F(x,\eta+\epsilon)].
+\]
+再次根据零点定理和 关于\(y\)的一元函数\(F(x,y)\)的严格递增性，
+可知\(\exists!y\in(\eta-\epsilon,\eta+\epsilon)\)
+满足\(F(x,y) = 0\)且\(y = f(x)\)，即\[
+	\abs{x-\xi}<\delta
+	\implies
+	\abs{f(x)-f(\xi)}<\epsilon.
+	\eqno{(3)}
+\]
+这就说明，函数\(f(x)\)在点\(\xi\)连续.
+
+取充分小的\(\increment x\)，使之满足\(\xi+\increment x\in(x_0-a_2,x_0+a_2)\).
+记\(\increment y = f(\xi+\increment x) - \eta\)，那么\[
+	F(\xi,\eta) = 0 = F(\xi+\increment x,\eta+\increment y).
+\]
+根据微分中值定理 ，\(\exists\theta\in(0,1)\)满足\[\begin{aligned}
+	0 &= F(\xi+\increment x,\eta+\increment y) - F(\xi,\eta) \\
+	&= F'_x(\xi+\theta\increment x,\eta+\theta\increment y) \increment x
+	+ F'_y(\xi+\theta\increment x,\eta+\theta\increment y) \increment y.
+\end{aligned}\]
+因为在\(K_1\)上偏导数\(F'_y(x,y)>0\)，因此\[
+	\frac{\increment y}{\increment x}
+	= - \frac{F'_x(\xi+\theta\increment x,\eta+\theta\increment y)}
+	{F'_y(\xi+\theta\increment x,\eta+\theta\increment y)},
+\]
+于是\[
+	f'(\xi) = \lim_{\increment x\to0} \frac{\increment y}{\increment x}
+	= - \frac{F'_x(\xi,\eta)}{F'_y(\xi,\eta)}.
+	\eqno{(4)}
+\]
+从上述等式可以看出，函数\(f(x)\)在点\(\xi\)处具有连续导数.
+\end{proof}
+\end{theorem}
+
+在\cref{theorem:多元函数微分法.隐函数存在定理1} 的条件下，
+如果\(F(x,y)\)的二阶偏导数也都连续，
+我们可以把\cref{equation:多元函数微分法.隐函数存在定理1.一阶导数} 两端
+看作\(x\)的复合函数而再一次求导，即得\begin{align}
+	\dv[2]{y}{x}
+	&= \pdv{x}\left(-\frac{F'_x}{F'_y}\right)
+	+ \pdv{y}\left(-\frac{F'_x}{F'_y}\right) \dv{y}{x} \notag\\
+	&= -\frac{F''_{xx}F'_y-F''_{yx}F'_x}{(F'_y)^2}
+	- \frac{F''_{xy}F'_y-F''_{yy}F'_x}{(F'_y)^2}
+	\left(-\frac{F'_x}{F'_y}\right) \notag\\
+	&= -\frac{F''_{xx}(F'_y)^2-2F''_{xy}F'_xF'_y+F''_{yy}(F'_x)^2}{(F'_y)^3}.
+\end{align}%\label{equation:多元函数微分法.隐函数存在定理1.二阶导数}
+
+隐函数存在定理还可以推广到多元函数.
+既然一个二元函数可以确定一个一元隐函数，那么一个三元方程\[
+	F(x,y,z) = 0
+\]就有可能确定一个二元隐函数.
+
+与\cref{theorem:多元函数微分法.隐函数存在定理1} 一样，
+我们同样可以由三元函数\(F(x,y,z)\)的性质来断定
+由方程\(F(x,y,z) = 0\)所确定的二元函数\(z = f(x,y)\)的存在以及这个函数的性质.
+
+我们将显函数代入方程中，得恒等式\[
+	F(x,y,f(x,y))=0,
+\]
+将上式两端分别对\(x\)和\(y\)求导，
+应用复合函数求导法则，得\[
+	\pdv{F}{x} + \pdv{F}{z} \pdv{z}{x} = 0, \qquad
+	\pdv{F}{y} + \pdv{F}{z} \pdv{z}{y} = 0.
+\]
+如果\(F'_z\)连续，且\(F'_z(x_0,y_0,z_0)\neq0\)，
+所以存在点\((x_0,y_0,z_0)\)的一个邻域，
+在这个邻域内\(F'_z\neq0\)，
+于是得\[
+	\pdv{z}{x}=-\frac{F'_x}{F'_z}, \qquad
+	\pdv{z}{y}=-\frac{F'_y}{F'_z}.
+\]
+
+我们依照这个思路给出下面的定理.
+\begin{theorem}[隐函数存在定理2]\label{theorem:多元函数微分法.隐函数存在定理2}
+设函数\(F(x,y,z)\)在点\(P(x_0,y_0,z_0)\)的某一邻域内具有连续偏导数，
+且\(F(x_0,y_0,z_0)=0\)，\(F'_z(x_0,y_0,z_0) \neq 0\)，
+则方程\(F(x,y,z)=0\)在点\((x_0,y_0,z_0)\)的某一邻域内
+恒能唯一确定一个连续且具有连续偏导数的函数\(z=f(x,y)\)，
+它满足条件\(z_0=f(x_0,y_0)\)，并有
+\begin{equation}\label{equation:多元函数微分法.隐函数存在定理2.一阶偏导数}
+	\pdv{z}{x}=-\frac{F'_x}{F'_z},
+	\qquad
+	\pdv{z}{y}=-\frac{F'_y}{F'_z}.
+\end{equation}
+\end{theorem}
+
+\begin{example}
+设\(f(x,y,z) = e^x + y^2 z\)，
+其中\(z=z(x,y)\)是由方程\(x+y+z+xyz=0\)所确定的隐函数，
+求\(f'_x(0,1,-1)\).
+\begin{solution}
+记\(F(x,y,z) = x+y+z+xyz\).
+那么\[
+	\pdv{F}{x} = 1+yz, \qquad
+	\pdv{F}{z} = 1+xy,
+\]
+从而\[
+	\pdv{z}{x} = -\frac{F'_x}{F'_z}
+	= -\frac{1+yz}{1+xy}.
+\]
+那么\[
+	\pdv{f}{x}
+	= e^x + y^2 \pdv{z}{x}
+	= e^x - y^2 \frac{1+yz}{1+xy},
+\]
+代入得\[
+	f'_x(0,1,-1) = 1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(x^2+y^2+z^2-4z=0\)，求\(\pdv[2]{z}{x}\).
+\begin{solution}
+设\(F(x,y,z) = x^2+y^2+z^2-4z\)，则\(F'_x = 2x\)，\(F'_z = 2z-4\).
+当\(z\neq2\)时，有\[
+	\pdv{z}{x} = -\frac{2x}{2z-4} = \frac{x}{2-z}.
+\]
+再一次对\(x\)求偏导数，得\[
+	\pdv[2]{z}{x}
+	= \frac{1}{(2-z)^2} \left[ (2-z)+x\pdv{z}{x} \right]
+	= \frac{(2-z)^2+x^2}{(2-z)^3}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设可导函数\(y = y(x)\)由方程\[
+\int_0^{x+y} e^{-t^2} \dd{t}
+= \int_0^x x \sin t^2 \dd{t}
+\]确定，求\(\eval{\dv{y}{x}}_{x=0}\).
+\begin{solution}
+方程对\(x\)求导得\[
+	e^{-(x+y)^2} \cdot (1+y')
+	= \int_0^x \sin t^2 \dd{t} + x \sin x^2,
+\]
+其中\(y' = \dv{y}{x}\)，又令\(x=0\)，得\[
+	e^{-y^2} (1+y') = 0.
+\]
+
+在原积分方程中令\(x=0\)，得\[
+	\int_0^y e^{-t^2} \dd{t} = 0,
+\]
+因为被积函数\(e^{-t^2}\)在\((-\infty,+\infty)\)恒大于零，故必有\(y = 0\).
+
+因此\(e^0 (1+y') = 0 \implies y'=-1\).
+\end{solution}
+\end{example}
+
+\subsection{方程组的情形}
+下面我们将隐函数存在定理作另一方面的推广.
+我们不仅增加方程中变量的个数，而且增加方程的个数.
+
+例如，考虑方程组\[
+	\left\{ \begin{array}{c}
+		F(x,y,u,v)=0, \\
+		G(x,y,u,v)=0.
+	\end{array} \right.
+\]
+这时，在四个变量中，一般只能有两个变量独立自由变化，
+因此这个方程组就有可能确定两个二元函数.
+在这种情况下，我们可以由函数\(F,G\)的性质来断定
+由这个方程组所确定的两个二元函数
+\(u=u(x,y)\)和\(v=v(x,y)\)的存在，以及它们的性质.
+
+我们将显函数代入方程组中，得恒等式\[
+	F(x,y,u(x,y),v(x,y))=0, \qquad
+	G(x,y,u(x,y),v(x,y))=0,
+\]
+将恒等式两端分别对\(x\)求导，应用复合函数求导法则，得\[
+	\left\{ \def\arraystretch{1.6} \begin{array}{l}
+		\pdv{F}{x}+\pdv{F}{u}\pdv{u}{x}+\pdv{F}{v}\pdv{v}{x}=0, \\
+		\pdv{G}{x}+\pdv{G}{u}\pdv{u}{x}+\pdv{G}{v}\pdv{v}{x}=0.
+	\end{array} \right.
+\]
+这是关于\(\pdv{u}{x},\pdv{v}{x}\)的线性方程组.
+如果在点\(P(x_0,y_0,u_0,v_0)\)的某一邻域内，
+系数行列式\(J=\jacobi{F,G}{u,v}\)不等于零，
+那么这个线性方程组有唯一解\[
+	\pdv{u}{x} = -\frac{1}{J} \jacobi{F,G}{x,v}, \qquad
+	\pdv{v}{x} = -\frac{1}{J} \jacobi{F,G}{u,x}.
+\]
+同理可得\[
+	\pdv{u}{y} = -\frac{1}{J} \jacobi{F,G}{y,v}, \qquad
+	\pdv{v}{y} = -\frac{1}{J} \jacobi{F,G}{u,y}.
+\]
+
+我们依照这个思路给出下面的定理.
+\begin{theorem}[隐函数存在定理3]\label{theorem:多元函数微分法.隐函数存在定理3}
+设\(F(x,y,u,v),G(x,y,u,v)\)
+在点\(P(x_0,y_0,u_0,v_0)\)的某一邻域内具有对各个变量的连续偏导数；
+又\[
+	F(x_0,y_0,u_0,v_0)=0, \qquad
+	G(x_0,y_0,u_0,v_0)=0;
+\]
+且雅克比式\(\jacobi{F,G}{u,v}\)在点\(P(x_0,y_0,u_0,v_0)\)不等于零，即\[
+	\jacobi{F,G}{u,v}\eval_P \neq0;
+\]
+则方程组\[
+	\left\{ \begin{array}{c}
+		F(x,y,u,v)=0, \\
+		G(x,y,u,v)=0,
+	\end{array} \right.
+\]
+在点\((x_0,y_0,u_0,v_0)\)的某一邻域内恒能唯一确定一组连续且具有连续偏导数的函数
+\[
+	u=u(x,y), \qquad
+	v=v(x,y),
+\]
+它们满足条件\(u_0=u(x_0,y_0)\)，\(v_0=v(x_0,y_0)\)，并有
+\begin{equation}\label{equation:多元函数微分法.隐函数存在定理3.一阶偏导数}
+	\begin{split}
+		\pdv{u}{x}
+		= -\frac{1}{J} \pdv{(F,G)}{(x,v)},
+		\qquad
+		\pdv{v}{x}
+		= -\frac{1}{J} \pdv{(F,G)}{(u,x)},
+		\\
+		\pdv{u}{y}
+		= -\frac{1}{J} \pdv{(F,G)}{(y,v)},
+		\qquad
+		\pdv{v}{y}
+		= -\frac{1}{J} \pdv{(F,G)}{(u,y)}.
+	\end{split}
+\end{equation}
+\end{theorem}

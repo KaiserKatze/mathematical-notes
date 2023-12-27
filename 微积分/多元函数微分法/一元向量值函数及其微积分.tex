@@ -1,0 +1,200 @@
+\section{一元向量值函数及其微积分}
+我们先在本节介绍一元向量值函数及其导数，
+再在下一节讨论多元函数微分学的几何应用.
+
+\subsection{向量值函数}
+假设空间曲线\(\Gamma\)满足参数方程 \labelcref{equation:解析几何.曲线的参数方程}.
+我们可以把方程 \labelcref{equation:解析几何.曲线的参数方程} 改写成向量形式.
+若记\[
+	\vb{r}=x\vb{i}+y\vb{j}+z\vb{k},
+	\qquad
+	\vb{f}(t)=x(t)\vb{i}+y(t)\vb{j}+z(t)\vb{k},
+\]
+则方程 \labelcref{equation:解析几何.曲线的参数方程}
+就成为向量方程\begin{equation}\label{equation:解析几何.曲面的参数方程.向量形式}
+	\vb{r}=\vb{f}(t),
+	\quad \alpha \leq t \leq \beta.
+\end{equation}
+
+方程 \labelcref{equation:解析几何.曲面的参数方程.向量形式}
+确定了一个映射\(\vb{f}\colon [\alpha,\beta]\to\mathbb{R}^3\).
+由于这个映射将每一个\(t\in[\alpha,\beta]\)映成一个向量\(\vb{f}(t)\in\mathbb{R}^3\)，
+故称这映射为一元向量值函数.
+一般地，有如下定义：
+\begin{definition}
+设数集\(D \subseteq \mathbb{R}\)，
+\(\vb{e}_1,\vb{e}_2,\dotsc,\vb{e}_n\)是\(\mathbb{R}^n\)的一组基.
+称映射\(\vb{f}\colon D\to\mathbb{R}^n\)为\DefineConcept{一元向量值函数}，
+通常记为\begin{equation}\label{equation:一元实变向量值函数.向量形式}
+	\vb{r}=\vb{f}(t),
+	\quad t \in D,
+\end{equation}
+或\begin{equation}
+	\vb{r}=f_1(t)\vb{e}_1+f_2(t)\vb{e}_2+\dotsb+f_n(t)\vb{e}_n,
+	\quad t \in D,
+\end{equation}
+或\begin{equation}
+	\vb{r}=(f_1(t),f_2(t),\dotsc,f_n(t)),
+	\quad t \in D,
+\end{equation}
+其中数集\(D\)称为函数的\DefineConcept{定义域}，
+\(t\)称为\DefineConcept{自变量}，
+\(\vb{r}\)称为\DefineConcept{因变量}，
+\(f_n(t)\)称为\DefineConcept{分量函数}（component function）.
+\end{definition}
+一元向量值函数是普通一元函数的推广.
+现在，自变量\(t\)依然取实数值，但因变量\(\vb{r}\)不取实数值，而取值为\(n\)维向量.
+
+为简单起见，以下将一元向量值函数简称为向量值函数，并把普通的实值函数称为数量函数.
+
+\subsection{向量值函数的极限}
+根据\(\mathbb{R}^3\)中的向量的线性运算及向量的模的概念，
+可以类似于定义数量函数的极限、连续、导数等概念的形式来定义向量值函数的相应概念：
+\begin{definition}
+设向量值函数\(\vb{f}(t)\)在点\(t_0\)的某一去心邻域内有定义，
+如果存在一个常向量\(\vb{r}_0\)，
+对于任意给定的正数\(\epsilon\)，
+总存在正数\(\delta\)，
+使得当\(t\)满足\(0 < \abs{t-t_0} < \delta\)时，
+对应的函数值\(\vb{f}(t)\)都满足不等式\[
+	\norm{\vb{f}(t)-\vb{r}_0} < \epsilon,
+\]
+那么，常向量\(\vb{r}_0\)就叫做
+“向量值函数\(\vb{f}(t)\)当\(t \to t_0\)时的\DefineConcept{极限}”，
+记作\[
+	\lim_{t \to t_0} \vb{f}(t) = \vb{r}_0.
+\]
+\end{definition}
+
+\begin{theorem}
+向量值函数\(\vb{f}(t)\)当\(t \to t_0\)时的极限存在的充分必要条件是：
+\(\vb{f}(t)\)的全部分量函数\(f_1(t),f_2(t),\dotsc,f_n(t)\)
+当\(t \to t_0\)的极限都存在.
+
+在函数\(\vb{f}(t)\)当\(t \to t_0\)时的极限存在时，
+其极限为\begin{gather}
+	\lim_{t \to t_0} \vb{f}(t)
+	= \left(
+			\lim_{t \to t_0} f_1(t),
+			\lim_{t \to t_0} f_2(t),
+			\dotsc,
+			\lim_{t \to t_0} f_n(t)
+		\right).
+	\tag5
+\end{gather}
+\end{theorem}
+
+\subsection{向量值函数的连续性}
+\begin{definition}[向量值函数的连续性]
+设向量值函数\(\vb{f}(t)\)在点\(t_0\)的某一邻域内有定义，
+若\[
+	\lim_{t \to t_0} \vb{f}(t) = \vb{f}(t_0),
+\]
+则称“向量值函数\(\vb{f}(t)\)在\(t_0\) \DefineConcept{连续}”.
+
+若\(\vb{f}(t)\)在区域\(D\)中的每一点处都连续，
+则称\(\vb{f}(t)\)在\(D\)上连续，
+并称\(\vb{f}(t)\)是\(D\)上的\DefineConcept{连续函数}.
+\end{definition}
+
+\begin{theorem}
+向量值函数\(\vb{f}(t)\)在\(t_0\)连续的充分必要条件为：
+\(\vb{f}(t)\)的全部分量函数\[
+	f_1(t),f_2(t),\dotsc,f_n(t)
+\]都在\(t_0\)连续.
+\end{theorem}
+
+我们可以把一元向量值函数连续性的概念推广到变换上.
+\begin{definition}
+设区域\(D \subseteq \mathbb{R}^n\)，
+变换\(\vb{F}\colon D \to \mathbb{R}^m\).
+如果\[
+	\lim_{\substack{
+		\vb{x}\to\vb{a} \\
+		\vb{x} \in D
+	}} \vb{F}(\vb{x})
+	= \vb{F}(\vb{a}),
+\]
+则称“变换\(\vb{F}(\vb{x})\)在\(\vb{a}\) \DefineConcept{连续}”.
+\end{definition}
+
+\begin{theorem}
+变换\(\vb{F}(\vb{x})\)在\(\vb{a}\)连续的充分必要条件为：
+\(\vb{F}(\vb{x})\)的全部分量函数\[
+	f_1(\vb{x}),f_2(\vb{x}),\dotsc,f_n(\vb{x})
+\]都在\(\vb{a}\)连续.
+\end{theorem}
+
+\subsection{向量值函数的导数}
+\begin{definition}
+设向量值函数\(\vb{r}=\vb{f}(t)\)在点\(t_0\)的某一邻域内有定义，
+如果\[
+	\lim_{\increment t\to0}
+		\frac{\increment \vb{r}}{\increment t}
+	= \lim_{\increment t\to0}
+		\frac{\vb{f}(t_0+\increment t)-\vb{f}(t_0)}{\increment t}
+\]存在，
+那么就称这个极限向量为
+“向量值函数\(\vb{r}=\vb{f}(t)\)在\(t_0\)处的\DefineConcept{导数}
+或\DefineConcept{导向量}”，
+记作\[
+	\vb{f}'(t_0)
+	\quad\text{或}\quad
+	\eval{\dv{\vb{r}}{t}}_{t=t_0}.
+\]
+
+若\(\vb{f}(t)\)在区域\(D\)中的每一点\(t\)处都存在导向量\(\vb{f}'(t)\)，那么就称\(\vb{f}(t)\)在\(D\)上\DefineConcept{可导}.
+\end{definition}
+
+\begin{theorem}
+向量值函数\(\vb{r}=\vb{f}(t)\)在\(t_0\)可导的充分必要条件是：
+\(\vb{f}(t)\)的全部分量函数\[
+f_1(t),f_2(t),\dotsc,f_n(t)
+\]都在\(t_0\)可导.
+\end{theorem}
+
+\begin{theorem}
+当\(\vb{f}(t)\)在\(t_0\)可导时，其导数为
+\begin{equation}
+	\vb{f}'(t_0)
+	= (f_1'(t),f_2'(t),\dotsc,f_n'(t)).
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+设\(\vb{f}(t) = (f_1(t),f_2(t),f_3(t))\)，
+\(\vb{g}(t) = (g_1(t),g_2(t),g_3(t))\)，
+\[
+	\lim_{t \to t_0} \vb{f}(t) = \vb{u},
+	\qquad
+	\lim_{t \to t_0} \vb{g}(t) = \vb{v},
+\]
+那么\[
+	\lim_{t \to t_0} [\vb{f}(t) \times \vb{g}(t)]
+	= \vb{u} \times \vb{v}.
+\]
+\end{theorem}
+
+向量值函数的导数运算法则与数量函数的导数运算法则的形式相同：
+\begin{theorem}[向量值函数的导数运算法则]
+设\(\vb{u}(t)\)、\(\vb{v}(t)\)是可导的向量值函数，
+\(\vb{C}\)是常向量，
+\(c\)是任一常数，
+\(\phi(t)\)是可导的数量函数，
+则\begin{align}
+	&\dv{t} \vb{C}
+		= \vb{0}, \\
+	&\dv{t} [c \vb{u}(t)]
+		= c \vb{u}'(t), \\
+	&\dv{t} [\vb{u}(t) \pm \vb{v}(t)]
+		= \vb{u}'(t) + \vb{v}'(t), \\
+	&\dv{t} [\phi(t) \vb{u}(t)]
+		= \phi'(t) \vb{u}(t) + \phi(t) \vb{u}'(t), \\
+	&\dv{t} [\vb{u}(t) \cdot \vb{v}(t)]
+		= \vb{u}'(t) \cdot \vb{v}(t) + \vb{u}(t) \cdot \vb{v}'(t), \\
+	&\dv{t} [\vb{u}(t) \times \vb{v}(t)]
+		= \vb{u}'(t) \times \vb{v}(t) + \vb{u}(t) \times \vb{v}'(t), \\
+	&\dv{t} \vb{u}[\phi(t)]
+		= \phi'(t) \vb{u}'[\phi(t)].
+\end{align}
+\end{theorem}

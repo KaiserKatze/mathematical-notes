@@ -1,0 +1,100 @@
+\section{全微分}
+\subsection{全微分的定义}
+\begin{definition}
+设函数\(z=f(x,y)\)在点\((x,y)\)的某邻域内有定义，如果函数在点\((x,y)\)的全增量\[
+\increment z = f(x+\increment x,y+\increment y)-f(x,y)
+\]可表示为\[
+\increment z = A \increment x + B \increment y + o(\rho),
+\]其中\(A\)、\(B\)不依赖于\(\increment x\)、\(\increment y\)而仅与\(x\)、\(y\)有关，
+\(\rho=\sqrt{(\increment x)^2+(\increment y)^2}\)，
+则称函数\(z=f(x,y)\)在点\((x,y)\) \DefineConcept{可微分}，
+而\(A \increment x + B \increment y\)称为函数\(z=f(x,y)\)在点\((x,y)\)的\DefineConcept{全微分}，
+记作\(\dd{z}\)，即\[
+\dd{z} = A \increment x + B \increment y.
+\]可以把\(\dd{z}\)视作%
+向量\((A,B)\)与\((\increment x,\increment y)\)的内积，
+视\(\rho\)为向量\((\increment x,\increment y)\)的模.
+
+如果函数在区域\(D\)内各点处都可微分，那么称这函数在\(D\)内\DefineConcept{可微分}.
+\end{definition}
+
+\begin{theorem}
+如果函数\(z=f(x,y)\)在点\((x,y)\)可微分，那么这函数在该点必定连续.
+\end{theorem}
+
+\begin{theorem}[必要条件]\label{theorem:多元函数微分法.二元函数可微的必要条件}
+如果函数\(z=f(x,y)\)在点\((x,y)\)可微分，
+则该函数在点\((x,y)\)的偏导数\(\pdv{z}{x}\)、\(\pdv{z}{y}\)必定存在，
+且函数\(z=f(x,y)\)在点\((x,y)\)的全微分为\[
+\dd{z} = \pdv{z}{x} \increment x + \pdv{z}{y} \increment y.
+\]
+\end{theorem}
+
+\begin{corollary}
+如果函数\(z=f(x,y)\)在点\((x,y)\)具有偏导数\(f'_x(x,y)\)和\(f'_y(x,y)\)，且满足\[
+\lim_{(\increment x,\increment y)\to(0,0)}
+ \frac{[f(x+\increment x,y+\increment y)-f(x,y)]-[f'_x(x,y) \increment x + f'_y(x,y) \increment y]}{\sqrt{(\increment x)^2+(\increment y)^2}} = 0,
+\]那么它就在该点可微.
+\end{corollary}
+
+我们知道，一元函数在某点的导数存在是微分存在的充分必要条件.
+但对于多元函数来说，情形就不同了.
+当函数的各偏导数都存在时，虽然能形式地写出\(\pdv{z}{x} \increment x + \pdv{z}{y} \increment y\)，但它与\(\increment z\)之差并不一定是较\(\rho\)高阶的无穷小，因此它不一定是函数的全微分.
+换句话说，各偏导数的存在只是全微分存在的必要条件而不是充分条件.
+例如，函数\[
+f(x,y) = \left\{ \begin{array}{cl}
+\frac{xy}{\sqrt{x^2+y^2}}, & x^2+y^2 \neq 0, \\
+0, & x^2+y^2 = 0
+\end{array} \right.
+\]在点\((0,0)\)处有\(f'_x(0,0) = f'_y(0,0) = 0\)，所以\[
+\increment z - [f'_x(0,0) \cdot \increment x + f'_y(0,0) \cdot \increment y]
+= \frac{\increment x \cdot \increment y}{\sqrt{(\increment x)^2+(\increment y)^2}},
+\]如果考虑点\(P'(\increment x,\increment y)\)沿着直线\(y=x\)趋于\((0,0)\)，则\[
+\frac{1}{\rho} \frac{\increment x \cdot \increment y}{\sqrt{(\increment x)^2+(\increment y)^2}}
+= \frac{\increment x \cdot \increment y}{(\increment x)^2+(\increment y)^2}
+= \frac{(\increment x)^2}{2(\increment x)^2}
+= \frac{1}{2},
+\]它不能随\(\rho\to0\)而趋于\(0\)，这表示\(\rho\to0\)时，\[
+\increment z - [f'_x(0,0) \cdot \increment x + f'_y(0,0) \cdot \increment y]
+\]并不是较\(\rho\)高阶的无穷小，因此函数在点\((0,0)\)处的全微分并不存在，即函数在点\((0,0)\)处是不可微分的.
+
+\begin{theorem}[充分条件]\label{theorem:多元函数微分法.二元函数可微的充分条件}
+如果函数\(z=f(x,y)\)的偏导数\(\pdv{z}{x}\)、\(\pdv{z}{y}\)在点\((x,y)\)连续，则函数在该点可微分.
+\end{theorem}
+
+以上关于二元函数全微分的定义及可微分的必要条件和充分条件，可以完全类似地推广到三元和三元以上的多元函数.
+
+习惯上，我们将自变量的增量\(\increment x\)、\(\increment y\)分别记作\(\dd{x}\)、\(\dd{y}\)，并分别称为自变量\(x\)、\(y\)的微分.这样，函数\(z=f(x,y)\)的全微分就可写为\[
+\dd{z}=\pdv{z}{x}\dd{x}+\pdv{z}{y}\dd{y}.
+\]
+
+通常把“二元函数的全微分等于它的两个偏微分之和”这件事称为二元函数的微分符合\DefineConcept{叠加原理}.
+
+叠加原理也适用于二元以上的函数的情形.
+例如，如果三元函数\(u = f(x,y,z)\)可微分，那么它的全微分就等于它的三个偏微分之和，即\[
+\dd{u} = \pdv{u}{x} \dd{x} + \pdv{u}{y} \dd{y} + \pdv{u}{z} \dd{z}.
+\]
+
+\subsection{全微分在近似计算中的应用}
+由二元函数的全微分的定义及关于全微分存在的充分条件可知，当二元函数\(z = f(x,y)\)在点\(P(x,y)\)的两个偏导数\(f'_x(x,y),f'_y(x,y)\)连续，并且\(\abs{\increment x},\abs{\increment y}\)都较小时，就有近似等式\[
+\increment z \approx \dd{z} = f'_x(x,y) \increment x + f'_y(x,y) \increment y.
+\]上式也可以写成\[
+f(x+\increment x,y+\increment y) \approx f(x,y) + f'_x(x,y) \increment x + f'_y(x,y) \increment y.
+\]
+
+\begin{example}
+计算\((1.04)^{2.02}\)的近似值.
+\begin{solution}
+设函数\(f(x,y) = x^y\).
+显然，要计算的值就是函数在\(x=1.04,y=2.02\)时的函数值\(f(1.04,2.02)\).
+取\(x=1,y=2,\increment x=0.04,\increment y=0.02\).由于\[
+f(1,2)=1,
+\]\[
+f'_x(x,y) = y x^{y-1}, \qquad f'_y(x,y) = x^y \ln x,
+\]\[
+f'_x(1,2) = 2, \qquad f'_y(1,2) = 0,
+\]所以，有\[
+(1.04)^{2.02} \approx 1 + 2 \times 0.04 + 0 \times 0.02 = 1.08.
+\]
+\end{solution}
+\end{example}

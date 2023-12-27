@@ -1,0 +1,59 @@
+\section{最小二乘法}
+许多科学、工程问题常常需要根据两个或者多个变量的几次实验数据
+来找出这些变量的（近似）关系式（称这些依据实验数据建立的近似关系式为经验公式）.
+在建立经验公式的过程中，经常使用线性数学模型拟合实验数据.
+但是在测量时因为受到了各种条件的限制，我们往往得到的是一个不相容（无解）的线性方程组，
+不过我们可以采用“最小二乘法”求出线性方程组的近似解.
+
+我们首先考虑只有两个变量（一个作为自变量，一个作为因变量）的情形.
+
+已知点列\(\{P_n\}\).
+假设点列中的所有点\((x_k,y_k)\ (k=1,2,\dotsc,n)\)都近似满足直线方程\[
+	f(x) = a x + b,
+\]
+再根据偏差的平方和\[
+	M(a,b) = \sum_k [y_k - f(x_k)]^2 = \sum_k [y_k - (a x_k + b)]^2
+\]为最小的条件来选择常数\(a,b\).
+
+令\[
+	\left\{ \begin{array}{l}
+		\pdv{M}{a} = -2 \sum_k [y_k - (a x_k + b)] x_k = 0, \\
+		\pdv{M}{b} = -2 \sum_k [y_k - (a x_k + b)] = 0,
+	\end{array} \right.
+\]
+那么有\begin{equation}\label{equation:最小二乘法.关于a和b的代数方程组}
+	\left\{ \begin{array}{l}
+		\sum_k x_k y_k = a \sum_k x_k^2 + b \sum_n x_k, \\
+		\sum_k y_k = a \sum_k x_k + b n. \\
+	\end{array} \right.
+\end{equation}
+现在只要首先将\[
+	\sum_k x_k, \qquad
+	\sum_k x_k^2, \qquad
+	\sum_k x_k y_k, \qquad
+	\sum_k y_k
+\]计算出来，
+代入代数方程组 \labelcref{equation:最小二乘法.关于a和b的代数方程组}，
+即可解出合适的\(a\)和\(b\)使得\(M(a,b)\)取得最小值.
+
+现在我们将上面的方法推广到有\(n\)个自变量和\(s\)个因变量的情形.
+
+设\(\vb{A} \in M_{s \times n}(\mathbb{R})\)，
+\(\vb{\beta} \in \mathbb{R}^s\)，
+\(\vb{x} \in \mathbb{R}^n\)，
+线性方程组\(\vb{A}\vb{x}=\vb{\beta}\)无解，
+即\(\rank(\vb{A},\vb{\beta})>\rank\vb{A}\)，
+定义函数\[
+	M(\vb{x})
+	\defeq
+	\norm{\vb{A}\vb{x}-\vb{\beta}}^2,
+\]
+求得它的梯度\(\grad M(\vb{x})\)，
+再令\[
+	\grad M(\vb{x}) = 0,
+\]
+解得\(\vb{x}=\vb{x}_0\)，
+它就可以使\(f(\vb{x})\)取得最小值.
+我们把像这样的\(\vb{x}_0\)称为\DefineConcept{最小二乘解}.
+
+\endgroup

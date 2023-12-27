@@ -1,0 +1,273 @@
+\section{偏导数}
+\subsection{偏导数的定义及其计算法}
+\subsubsection{偏导数的概念}
+\begin{definition}
+设函数\(z=f(x,y)\)在点\((x_0,y_0)\)的某一邻域内有定义，
+当\(y\)固定在\(y_0\)而\(x\)在\(x_0\)处有增量\(\increment x\)时，
+相应的函数有增量\[
+	f(x_0+\increment x,y_0)-f(x_0,y_0).
+\]
+如果\[
+	\lim_{\increment x\to0}
+	\frac{f(x_0+\increment x,y_0)-f(x_0,y_0)}{\increment x}
+\]存在，
+则称此极限为
+“函数\(z=f(x,y)\)
+在点\((x_0,y_0)\)处
+对\(x\)的\DefineConcept{偏导数}（partial derivative）”，记作\[
+	\pdv{z}{x}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
+	\pdv{f}{x}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
+	z'_x\eval_{\substack{x=x_0 \\ y=y_0}}
+	\quad\text{或}\quad
+	f'_x(x_0,y_0).
+\]
+
+类似地，可以定义函数\(z=f(x,y)\)在点\((x_0,y_0)\)处对\(y\)的偏导数\[
+	\lim_{\increment y\to0} \frac{f(x_0,y_0+\increment y)-f(x_0,y_0)}{\increment y},
+\]
+记作\[
+	\pdv{z}{y}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
+	\pdv{f}{y}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
+	z'_y\eval_{\substack{x=x_0 \\ y=y_0}} \quad
+	\text{或}\quad
+	f'_y(x_0,y_0).
+\]
+
+如果函数\(z=f(x,y)\)在区域\(D\)内每一点\((x,y)\)处对\(x\)的偏导数都存在，
+那么这个偏导数就是\(x\)、\(y\)的函数，
+它就称为函数\(z=f(x,y)\)对自变量\(x\)的\DefineConcept{偏导函数}，记作\[
+	\pdv{z}{x},\quad
+	\pdv{f}{x},\quad
+	z'_x \quad
+	\text{或}\quad
+	f'_x(x,y).
+\]
+
+类似地，可以定义函数\(z=f(x,y)\)对自变量\(y\)的偏导函数，记作\[
+	\pdv{z}{y},\quad
+	\pdv{f}{y},\quad
+	z'_y \quad
+	\text{或}\quad
+	f'_y(x,y).
+\]
+\end{definition}
+
+偏导数的概念还可以推广到二元以上的函数.
+\begin{definition}
+设\(n\)元函数\(y=f(\AutoTuple{x}{n})\)在点\(P\opair{\AutoTuple{a}{n}}\)的某一邻域内有定义.
+如果极限\[
+	\lim_{\increment x_k\to0}
+	\frac{f(a_1,\dotsc,a_k+\increment x_k,\dotsc,a_n)-f(a_1,\dotsc,a_k,\dotsc,a_n)}
+	{\increment x_k}
+	\quad (k=1,2,\dotsc,n)
+\]存在，
+则称此极限为“函数\(f\)在点\(P\)处对\(x_k\)的\DefineConcept{偏导数}”，记作\[
+	\pdv{f}{x_k}\eval_{\vb{x}=\vb{a}}
+	\quad\text{或}\quad
+	f'_{x_k}(\AutoTuple{a}{n}).
+\]
+
+如果函数\(f\)在点\(P\)的某个邻域内每一点处对\(x_k\)的偏导数都存在，
+且这个偏导函数\[
+	f'_{x_k}(\AutoTuple{x}{n})
+\]在点\(P\)连续，
+那么称这个偏导数\DefineConcept{连续}.
+\end{definition}
+
+可以证明，在计算任意二元函数\(f(x,y)\)在点\((x_0,y_0)\)处的偏导数
+（以\(\eval{\pdv{f}{x}}_{(x_0,y_0)}\)为例）时，
+可以先将不变量\(y_0\)代入，
+将问题转化为计算一元函数\(z = f(x, y_0)\)的导数\(\eval{\dv{z}{x}}_{x=x_0}\).
+
+\begin{example}
+已知理想气体的状态方程\[
+pV = RT,
+\]其中\(R\)为常量，求证：\[
+\pdv{p}{V} \cdot \pdv{V}{T} \cdot \pdv{T}{p} = -1.
+\]
+\begin{proof}
+因为\[
+p = \frac{RT}{V}, \qquad \pdv{p}{V} = -\frac{RT}{V^2};
+\]\[
+V = \frac{RT}{p}, \qquad \pdv{V}{T} = \frac{R}{p};
+\]\[
+T = \frac{pV}{R}, \qquad \pdv{T}{p} = \frac{V}{R};
+\]所以\[
+\pdv{p}{V} \cdot \pdv{V}{T} \cdot \pdv{T}{p}
+= -\frac{RT}{V^2} \cdot \frac{R}{p} \cdot \frac{V}{R}
+= -\frac{RT}{pV} = -1.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+我们知道，对一元函数来说，\(\dv{y}{x}\)可看做函数的微分\(\dd{y}\)与自变量的微分\(\dd{x}\)之商.
+而上例表明，偏导数的记号是一个整体记号，不能看作分子与分母之商.
+
+\subsubsection{偏导数的几何意义}
+二元函数\(z=f(x,y)\)在点\((x_0,y_0)\)的偏导数有下述几何意义.
+偏导数\(f'_x(x_0,y_0)\)的几何意义是曲面\(z=f(x,y)\)被平面\(y=y_0\)所截得的曲线在点\(M_0\opair{x_0,y_0,f(x_0,y_0)}\)处的切线对\(x\)轴的斜率.
+
+\subsubsection{偏导数与连续性的关系}
+我们已经知道，如果一元函数在某点具有导数，则它在该点必定连续.
+但对于多元函数来说，即使各偏导数在某点都存在，也不能保证函数在该点连续.
+这是因为各偏导数存在只能保证点\(P\)沿着平行于坐标轴的方向趋于\(P_0\)时，函数值\(f(P)\)趋于\(f(P_0)\)，但不能保证点\(P\)按任何方式趋于\(P_0\)时，函数值\(f(P)\)都趋于\(f(P_0)\).
+
+\subsection{高阶偏导数}
+\begin{definition}
+设函数\(z=f(x,y)\)在区域\(D\)内具有偏导数\[
+\pdv{z}{x} = f_x(x,y), \qquad
+\pdv{z}{y} = f_y(x,y).
+\]如果\(f'_x(x,y)\)和\(f'_y(x,y)\)在区域\(D\)内的偏导数也存在，则称它们是函数\(z=f(x,y)\)的\DefineConcept{二阶偏导数}.
+按照对变量求导次序的不同有下列四个二阶偏导数：
+\begin{gather*}
+\pdv{x}(\pdv{z}{x}) = \pdv[2]{z}{x} = f''_{xx}(x,y),
+\qquad
+\pdv{y}(\pdv{z}{x}) = \pdv{z}{x}{y} = f''_{xy}(x,y), \\
+\pdv{x}(\pdv{z}{y}) = \pdv{z}{y}{x} = f''_{yx}(x,y),
+\qquad
+\pdv{y}(\pdv{z}{y}) = \pdv[2]{z}{y} = f''_{yy}(x,y),
+\end{gather*}
+其中\(f''_{xy}(x,y)\)和\(f''_{yx}(x,y)\)称为\DefineConcept{混合偏导数}.
+二阶及二阶以上的偏导数统称为\DefineConcept{高阶偏导数}.
+\end{definition}
+
+\begin{theorem}
+如果函数\(z=f(x,y)\)的两个二阶混合偏导数\(\pdv{z}{y}{x}\)及\(\pdv{z}{x}{y}\)在区域\(D\)内连续，
+那么在该区域内这两个二阶混合偏导数必相等.
+\begin{proof}
+根据偏导数的定义，我们有
+\[
+	\pdv{z(x,y)}{x}
+	= \lim_{\increment x\to0} \frac{f(x+\increment x,y)-f(x,y)}{\increment x},
+\]
+	\[
+	\pdv{z(x,y)}{y}
+	= \lim_{\increment y\to0} \frac{f(x,y+\increment y)-f(x,y)}{\increment y}.
+\]
+于是，我们就有
+\begin{align*}
+	\pdv[2]{z}{x}{y}
+	&= \lim_{\increment y\to0}
+		\frac{1}{\increment y}\left[\pdv{z(x,y+\increment y)}{x} - \pdv{z(x,y)}{x}\right] \\
+	&= \lim_{\increment y\to0}
+		\frac{1}{\increment y}\left[\lim_{\increment x\to0} \frac{f(x+\increment x,y+\increment y)-f(x,y+\increment y)}{\increment x} - \lim_{\increment x\to0} \frac{f(x+\increment x,y)-f(x,y)}{\increment x}\right] \\
+	&= \lim_{\increment y\to0}
+		\frac{1}{\increment y}\left\{\lim_{\increment x\to0} \frac{[f(x+\increment x,y+\increment y)-f(x,y+\increment y)]-[f(x+\increment x,y)-f(x,y)]}{\increment x}\right\} \\
+	&= \lim_{\increment y\to0} \lim_{\increment x\to0}
+		\frac{f(x+\increment x,y+\increment y)-f(x,y+\increment y)-f(x+\increment x,y)+f(x,y)}{\increment x \cdot \increment y}, \\
+	\pdv[2]{z}{y}{x}
+	&= \lim_{\increment x\to0}
+		\frac{1}{\increment x}\left[\pdv{z(x+\increment x,y)}{y} - \pdv{z(x,y)}{y}\right] \\
+	&= \lim_{\increment x\to0}
+		\frac{1}{\increment x}\left[\lim_{\increment y\to0} \frac{f(x+\increment x,y+\increment y)-f(x+\increment x,y)}{\increment y} - \lim_{\increment y\to0} \frac{f(x,y+\increment y)-f(x,y)}{\increment y}\right] \\
+	&= \lim_{\increment x\to0}
+		\frac{1}{\increment x}\left\{\lim_{\increment y\to0} \frac{[f(x+\increment x,y+\increment y)-f(x+\increment x,y)]-[f(x,y+\increment y)-f(x,y)]}{\increment y}\right\} \\
+	&= \lim_{\increment x\to0} \lim_{\increment y\to0}
+		\frac{f(x+\increment x,y+\increment y)-f(x+\increment x,y)-f(x,y+\increment y)+f(x,y)}{\increment x \cdot \increment y}, \\
+\end{align*}
+显然\[
+	\pdv[2]{z}{x}{y} = \pdv[2]{z}{y}{x}.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+换句话说，二阶混合偏导数在连续的条件下与求导的次序无关.
+同样地，高阶混合偏导数在连续的条件下也与求导的次序无关.
+
+\begin{example}
+验证函数\(z = \ln\sqrt{x^2+y^2}\)满足方程\[
+\pdv[2]{z}{x} + \pdv[2]{z}{y} = 0.
+\]
+\begin{proof}
+因为\(z = \ln\sqrt{x^2+y^2} = \frac{1}{2} \ln(x^2+y^2)\)，所以\[
+\pdv{z}{x} = \frac{x}{x^2+y^2},
+\qquad
+\pdv{z}{y} = \frac{y}{x^2+y^2},
+\]\[
+\pdv[2]{z}{x} = \frac{(x^2+y^2)-x\cdot2x}{(x^2+y^2)^2}
+= \frac{y^2-x^2}{(x^2+y^2)^2},
+\]\[
+\pdv[2]{z}{y} = \frac{(x^2+y^2)-y\cdot2y}{(x^2+y^2)^2}
+= \frac{x^2-y^2}{(x^2+y^2)^2},
+\]因此\[
+\pdv[2]{z}{x} + \pdv[2]{z}{y}
+= \frac{y^2-x^2}{(x^2+y^2)^2} + \frac{x^2-y^2}{(x^2+y^2)^2}
+= 0.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+证明函数\(u = \frac{1}{r}\)满足方程\[
+\pdv[2]{u}{x} + \pdv[2]{u}{y} + \pdv[2]{u}{z} = 0,
+\]其中\(r = \sqrt{x^2+y^2+z^2}\).
+\begin{proof}
+显然有\[
+\pdv{u}{x} = -\frac{1}{r^2}\cdot\pdv{r}{x}
+= -\frac{1}{r^2}\cdot\frac{x}{r}
+= -\frac{x}{r^3},
+\]\[
+\pdv[2]{u}{x} = -\frac{1}{r^3} + \frac{3x}{r^4}\cdot\pdv{r}{x}
+= -\frac{1}{r^3} + \frac{3x^2}{r^5}.
+\]由于函数关于自变量的对称性，所以\[
+\pdv[2]{u}{y} = -\frac{1}{r^3} + \frac{3y^2}{r^5},
+\qquad
+\pdv[2]{u}{z} = -\frac{1}{r^3} + \frac{3z^2}{r^5},
+\]因此\[
+\pdv[2]{u}{x} + \pdv[2]{u}{y} + \pdv[2]{u}{z}
+= -\frac{3}{r^3} + 3\frac{x^2+y^2+z^2}{r^5}
+= -\frac{3}{r^3} + 3\frac{r^2}{r^5} = 0.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+验证函数\(r = \sqrt{x^2+y^2+z^2}\)满足\[
+\pdv[2]{r}{x} + \pdv[2]{r}{y} + \pdv[2]{r}{z} = \frac{2}{r}.
+\]
+\begin{proof}
+显然有\[
+\pdv{r}{x} = \frac{2x}{2\sqrt{x^2+y^2+z^2}} = \frac{x}{\sqrt{x^2+y^2+z^2}},
+\]\[
+\pdv[2]{r}{x} = \frac{\sqrt{x^2+y^2+z^2}-x\frac{2x}{2\sqrt{x^2+y^2+z^2}}}{x^2+y^2+z^2}
+= \frac{1}{r} - \frac{x^2}{r^3},
+\]由于函数关于自变量的对称性，所以\[
+\pdv[2]{r}{y} = \frac{1}{r} - \frac{y^2}{r^3},
+\qquad
+\pdv[2]{r}{z} = \frac{1}{r} - \frac{z^2}{r^3},
+\]因此\[
+\pdv[2]{r}{x} + \pdv[2]{r}{y} + \pdv[2]{r}{z}
+= \frac{3}{r} - \frac{x^2+y^2+z^2}{r^3}
+= \frac{2}{r}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+验证函数\(T = 2\pi\sqrt{\frac{l}{g}}\)满足方程\(l\pdv{T}{l}+g\pdv{T}{g}=0\).
+\begin{solution}
+因为\[
+\pdv{T}{l} = 2\pi \frac{1}{2\sqrt{l/g}} \frac{1}{g}
+= \pi \frac{1}{\sqrt{gl}},
+\]\[
+\pdv{T}{g} = 2\pi \frac{1}{2\sqrt{l/g}} l \left(-\frac{1}{g^2}\right)
+= -\pi \frac{\sqrt{gl}}{g^2},
+\]所以\[
+l\pdv{T}{l}+g\pdv{T}{g}
+= l \cdot \pi \frac{1}{\sqrt{gl}} - g \cdot \pi \frac{\sqrt{gl}}{g^2}
+= \pi \sqrt{\frac{l}{g}} - \pi \sqrt{\frac{l}{g}} = 0.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+验证函数\(z = \exp[-\left(\frac{1}{x}+\frac{1}{y}\right)]\)满足方程\(x^2 \pdv{z}{x} + y^2 \pdv{z}{y} = 2z\).
+\end{example}
+
+\begin{example}
+验证函数\(y = e^{-k n^2 t}\)满足方程\(\pdv{y}{t} = k \pdv[2]{y}{x}\).
+\end{example}

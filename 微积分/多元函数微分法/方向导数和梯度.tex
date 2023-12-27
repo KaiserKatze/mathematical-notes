@@ -1,0 +1,279 @@
+\section{方向导数和梯度}
+\subsection{方向导数}
+偏导数反映的是函数沿坐标轴方向的变化率.
+但许多物理现象告诉我们，只考虑函数沿坐标轴方向的变化率是不够的.
+例如，热空气要向冷的地方流动，气象学中就要确定大气温度、气压沿着某些方向的变化率.
+因此我们有必要来讨论函数沿任一指定方向的变化率问题.
+
+\begin{definition}
+设\(l\)是\(xOy\)平面上以\(P_0(x_0,y_0)\)为始点的一条射线，向量\[
+	\vb{e}_l=(\cos\alpha,\cos\beta)
+\]是与\(l\)同方向的单位向量.
+射线\(l\)的参数方程为\[
+	\left\{ \begin{array}{l}
+		x=x_0+t\cos\alpha, \\
+		y=y_0+t\cos\beta
+	\end{array} \right.
+	\quad(t \geq 0).
+\]
+
+设函数\(z=f(x,y)\)在点\(P_0(x_0,y_0)\)的某个邻域\(U(P_0)\)内有定义，点\[
+	P(x_0+t\cos\alpha,y_0+t\cos\beta)
+\]为\(l\)上另一点，
+且\(P \in U(P_0)\).
+如果函数增量\[
+	f(\vec{O P_0} + t \vb{e}_l) - f(\vec{O P_0})
+	= f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)
+\]与\(P\)到\(P_0\)的距离\(\abs{PP_0}=t\)的比值\[
+\frac{f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)}{t}
+\]当\(P\)沿着\(l\)趋于\(P_0\)（即\(t\to0^+\)）时的极限存在，
+则称此极限为“函数\(f(x,y)\)在点\(P_0\)沿方向\(l\)的\DefineConcept{方向导数}”，
+记作\(\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}\)，即\[
+\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}
+=\lim_{t\to0^+} \frac{f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)}{t}.
+\]
+\end{definition}
+
+从方向导数的定义可知，方向导数\(\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}\)就是函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)处沿方向\(l\)的变化率.
+若函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)的偏导数存在，
+那么当\(\vb{e}_l = \vb{i} = (1,0)\)时方向导数存在，
+且有\[
+	\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = f'_x(x_0,y_0);
+\]
+当\(\vb{e}_l = \vb{j} = (0,1)\)时方向导数存在，
+且有\[
+	\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = f'_y(x_0,y_0).
+\]
+
+但反之，若\(\vb{e}_l = \vb{i}\)且\(\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}\)存在，\(\eval{\pdv{f}{x}}_{(x_0,y_0)}\)未必存在.
+例如，函数\(z = \sqrt{x^2+y^2}\)在点\(O(0,0)\)处沿\(l = \vb{i}\)方向的方向导数\[
+\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}
+= \lim_{t\to0^+} \frac{\sqrt{(0+t)^2+0^2}-\sqrt{0^2+0^2}}{t}
+= \lim_{t\to0^+} \frac{t}{t} = 1,
+\]而偏导数\[
+\eval{\pdv{f}{x}}_{(x_0,y_0)}
+= \lim_{\increment x\to0} \frac{\sqrt{(0+\increment x)^2+0^2}-\sqrt{0^2-0^2}}{\increment x}
+= \lim_{\increment x\to0} \frac{\abs{\increment x}}{\increment x}
+\]不存在.
+
+关于方向导数的存在及计算，我们有以下定理.
+\begin{theorem}[充分条件]
+如果函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)可微分，那么函数在该点沿任一方向\(l\)的方向导数存在，且有\[
+\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}
+=f'_x(x_0,y_0) \cos\alpha + f'_y(x_0,y_0) \cos\beta,
+\]其中\(\cos\alpha\)、\(\cos\beta\)是方向\(l\)的方向余弦.
+\end{theorem}
+
+类似地，对于三元函数\(f(x,y,z)\)来说，
+它在空间一点\(P_0(x_0,y_0,z_0)\)沿方向\[
+	\vb{e}_l = (\cos\alpha,\cos\beta,\cos\gamma)
+\]的方向导数为\[
+	\pdv{f}{\vb{l}}\eval_{P_0}
+	= \lim_{t\to0^+}
+	\frac{f(x_0+t\cos\alpha,y_0+t\cos\beta,z_0+t\cos\gamma)-f(x_0,y_0,z_0)}{t}.
+\]
+而且同样可以证明：如果函数\(f(x,y,z)\)在点\(P_0\)处可微分，那么函数\(f(x,y,z)\)在该点沿方向\[
+	\vb{e}_l = (\cos\alpha,\cos\beta,\cos\gamma)
+\]的方向导数为\[
+\pdv{f}{\vb{l}}\eval_{P_0}
+= f'_x(x_0,y_0,z_0) \cos\alpha + f'_y(x_0,y_0,z_0) \cos\beta + f'_z(x_0,y_0,z_0) \cos\gamma.
+\]
+
+\begin{example}
+求函数\(z = x e^{2y}\)在点\(P(1,0)\)处沿从点\(P\)到点\(Q\opair{2,-1}\)的方向的方向导数.
+\begin{solution}
+这里方向\(l\)即向量\(\vec{PQ} = \opair{1,-1}\)的方向，与\(l\)同向的单位向量为\[
+	\vb{e}_l
+	= \left(
+		\frac{1}{\sqrt{2}},
+		\frac{-1}{\sqrt{2}}
+	\right).
+\]
+因为函数可微分，
+且\[
+	\eval{\pdv{z}{x}}_{(1,0)}
+	= \eval{e^{2y}}_{(1,0)}
+	= 1,
+	\qquad
+	\eval{\pdv{z}{y}}_{(1,0)}
+	= \eval{2xe^{2y}}_{(1,0)}
+	= 2,
+\]
+故所求方向导数为\[
+	\eval{\pdv{z}{\vb{l}}}_{(1,0)}
+	= 1 \cdot \frac{1}{\sqrt{2}} + 2 \cdot \frac{-1}{\sqrt{2}}
+	= \frac{\sqrt{2}}{2}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{梯度}
+与方向导数有关联的一个概念是函数的梯度.
+\begin{definition}
+设二元函数\(f(x,y)\)在平面区域\(D\)内具有一阶连续偏导数，
+那么对于\(D\)内每一点\(P_0\allowbreak(x_0,y_0)\)，
+我们把向量\[
+	\begin{bmatrix}
+		f'_x(x_0,y_0) \\
+		f'_y(x_0,y_0)
+	\end{bmatrix},
+\]称为“函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)的\DefineConcept{梯度}（gradient）”，
+记作\(\grad f(x_0,y_0)\)，即\[
+	\grad f(x_0,y_0)
+	\defeq
+	\begin{bmatrix}
+		f'_x(x_0,y_0) \\
+		f'_y(x_0,y_0)
+	\end{bmatrix}.
+\]
+
+我们把\(\grad = \left(\pdv{x},\pdv{y}\right)^T\)
+称为（二维的）\DefineConcept{向量微分算子}.
+定义：对于任意一个二元函数\(z=f(x,y)\)，有\[
+	\grad f
+	\defeq
+	(f'_x,f'_y)^T.
+\]
+\end{definition}
+
+\begin{theorem}\label{theorem:多元函数微分法.方向导数与梯度的关系}
+如果函数\(f(x,y)\)在点\(P_0(x_0,y_0)\)可微分，
+\(\vb{e}_l=(\cos\alpha,\cos\beta)\)是与方向\(\vb{l}\)同向的单位向量，
+则\begin{equation}
+	\begin{split}
+		\pdv{f}{\vb{l}}\eval_{(x_0,y_0)}
+		&= f'_x(x_0,y_0) \cos\alpha + f'_y(x_0,y_0) \cos\beta \\
+		&= \grad f(x_0,y_0) \cdot \vb{e}_l
+		= \abs{\grad f(x_0,y_0)} \cos\theta,
+	\end{split}
+\end{equation}
+其中\(\theta\)是\(\grad f(x_0,y_0)\)和\(\vb{e}_l\)间的夹角.
+\end{theorem}
+这一关系式表明了函数在一点的梯度与函数在这点的方向导数间的关系.
+特别地，由这关系可知：
+\begin{enumerate}
+	\item 当\(\theta=0\)，即\(\vb{e}_l\)和\(\grad f(x_0,y_0)\)同向时，
+	函数\(f(x,y)\)增加最快.
+	此时，函数在这个方向的方向导数达到最大值，
+	这个最大值就是梯度的模，即\[
+		\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = \abs{\grad f(x_0,y_0)}.
+	\]
+	这个结果也表示：函数\(f(x,y)\)在一点的梯度\(\grad f\)是这样一个向量，
+	它的方向是函数在这点的方向导数取得最大值的方向，它的模就等于方向导数的最大值.
+
+	\item 当\(\theta=\pi\)，即\(\vb{e}_l\)和\(\grad f(x_0,y_0)\)反向时，
+	函数\(f(x,y)\)减少最快，函数在这个方向的方向导数达到最小值，即\[
+		\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = -\abs{\grad f(x_0,y_0)}.
+	\]
+
+	\item 当\(\theta=\frac{\pi}{2}\)，
+	即\(\vb{e}_l\)和\(\grad f(x_0,y_0)\)正交时，
+	函数的变化率为零，即\[
+		\pdv{f}{\vb{l}}\eval_{(x_0,y_0)} = 0.
+	\]
+\end{enumerate}
+
+我们知道，一般说来二元函数\(z = f(x,y)\)在几何上表示一个曲面，
+这曲面被平面\(z = c\)（\(c\)是常数）所截得的曲线\(L\)的方程为\[
+\left\{ \begin{array}{l}
+z = f(x,y), \\
+z = c.
+\end{array} \right.
+\]这条曲线\(L\)在\(xOy\)面上的投影是一条平面曲线\(L^*\)，它在\(xOy\)平面直角坐标系中的方程为\[
+f(x,y) = c.
+\]对于曲线\(L^*\)上的一切点，已给函数的函数值都是\(c\)，所以我们称平面曲线\(L^*\)为函数\(z = f(x,y)\)的\DefineConcept{等值线}.
+
+若\(f'_x\)和\(f'_y\)不同时为零，则等值线\(f(x,y) = c\)上任一点\(P_0(x_0,y_0)\)处的一个单位法向量为\[
+\vb{n}
+= \frac{\opair{f'_x(x_0,y_0),f'_y(x_0,y_0)}}{\sqrt{[f'_x(x_0,y_0)]^2+[f'_y(x_0,y_0)]^2}}
+= \frac{\grad f(x_0,y_0)}{\abs{\grad f(x_0,y_0)}}.
+\]
+这表明函数\(f(x,y)\)在一点\((x_0,y_0)\)的梯度\(\grad f(x_0,y_0)\)的方向就是等值线\(f(x,y) = c\)在该点的法线方向\(\vb{n}\)，而梯度的模\(\abs{\grad f(x_0,y_0)}\)就是沿这个法线方向的方向导数\(\pdv{f}{\vb{n}}\)，于是有\[
+\grad f(x_0,y_0) = \pdv{f}{\vb{n}} \frac{\vb{n}}{\abs{\vb{n}}}.
+\]
+
+上面讨论的梯度概念可以类似地推广到三元函数的情形.
+\begin{definition}
+设三元函数\(f(x,y,z)\)在空间区域\(G\)内具有一阶连续偏导数，
+则对\(\forall P_0(x_0,y_0,z_0) \in G\)，
+都可定出一个向量\[
+f_x(x_0,y_0,z_0) \vb{i} + f_y(x_0,y_0,z_0) \vb{j} + f_z(x_0,y_0,z_0) \vb{k},
+\]这向量称为函数\(f(x,y,z)\)在点\(P_0(x_0,y_0,z_0)\)的\DefineConcept{梯度}，记作\(\grad f(x_0,y_0,z_0)\)，即\[
+\grad f(x_0,y_0,z_0)
+= f_x(x_0,y_0) \vb{i} + f_y(x_0,y_0) \vb{j} + f_z(x_0,y_0,z_0) \vb{k},
+\]其中\(\grad = \pdv{x} \vb{i} + \pdv{y} \vb{j} + \pdv{z} \vb{k}\)称为（三维的）\DefineConcept{向量微分算子}或\DefineConcept{Nabla算子}.记\[
+\grad f = \pdv{f}{x} \vb{i} + \pdv{f}{y} \vb{j} + \pdv{f}{z} \vb{k}.
+\]
+\end{definition}
+
+经过与二元函数的情形完全相似的讨论可知，三元函数\(f(x,y,z)\)在一点的梯度\(\grad f\)是这样一个向量，它的方向是函数\(f(x,y,z)\)在这点的方向导数取得最大值的方向，它的模就等于方向导数的最大值.
+
+如果我们引进曲面\[
+f(x,y,z) = c
+\]为函数\(f(x,y,z)\)的\DefineConcept{等值面}的概念，则可得函数\(f(x,y,z)\)在一点\((x_0,y_0,z_0)\)的梯度\(\grad f(x_0,y_0,z_0)\)的方向就是等值面\(f(x,y,z) = c\)在该点的法线方向\(\vb{n}\)，而梯度的模\(\abs{\grad f(x_0,y_0,z_0)}\)就是函数沿这个法线方向的方向导数\(\pdv{f}{\vb{n}}\).
+
+\begin{example}
+求\(\grad \frac{1}{x^2+y^2}\).
+\begin{solution}
+记\(f(x,y) = \frac{1}{x^2+y^2}\).因为\(\pdv{f}{x} = -\frac{2x}{(x^2+y^2)^2}\)，\(\pdv{f}{y} = -\frac{2y}{(x^2+y^2)^2}\)，所以\[
+\grad f(x,y) = -\frac{2}{(x^2+y^2)^2} (x \vb{i} + y \vb{j}).
+\]
+\end{solution}
+\end{example}
+
+\begin{theorem}\label{theorem:多元函数微分法.梯度的运算法则}
+设函数\(u(x,y,z)\)和\(v(x,y,z)\)的各个偏导数都存在且连续，\(c\)是常数，
+则\begin{enumerate}
+	\item \(\grad(c u) = c \grad u\)；
+	\item \(\grad(u \pm v) = \grad u \pm \grad v\)；
+	\item \(\grad(uv) = v \grad u + u \grad v\)；
+	\item \(\grad(\frac{u}{v}) = \frac{v \grad u - u \grad v}{v^2}\).
+\end{enumerate}
+\begin{proof}
+\def\gradexpr#1{\pdv{#1}{x} \vb{i} + \pdv{#1}{y} \vb{j} + \pdv{#1}{z} \vb{k}}
+直接计算得
+\begin{align*}
+	\grad(c u)
+		&= \gradexpr{(cu)} \\
+		&= c \left( \gradexpr{u} \right) \\
+		&= c \grad u, \\
+	\grad(u \pm v)
+		&= \gradexpr{(u \pm v)} \\
+		&= \left( \pdv{u}{x} \pm \pdv{v}{x} \right) \vb{i}
+		+ \left( \pdv{u}{y} \pm \pdv{v}{y} \right) \vb{j}
+		+ \left( \pdv{u}{z} \pm \pdv{v}{z} \right) \vb{k} \\
+		&= \left( \gradexpr{u} \right) \pm \left( \gradexpr{v} \right) \\
+		&= \grad u \pm \grad v, \\
+	\grad(uv)
+		&= \gradexpr{(uv)} \\
+		&= \left( \pdv{u}{x} v + u \pdv{v}{x} \right) \vb{i}
+		+ \left( \pdv{u}{y} v + u \pdv{v}{y} \right) \vb{j}
+		+ \left( \pdv{u}{z} v + u \pdv{v}{z} \right) \vb{k} \\
+		&= v \left( \gradexpr{u} \right)
+		+ u \left( \gradexpr{v} \right) \\
+		&= v \grad u + u \grad v, \\
+	\grad(\frac{u}{v})
+		&= \gradexpr{(u/v)} \\
+		&= \left( \frac{u'_x v - u v'_x}{v^2} \right) \vb{i}
+		+ \left( \frac{u'_y v - u v'_y}{v^2} \right) \vb{j}
+		+ \left( \frac{u'_z v - u v'_z}{v^2} \right) \vb{k} \\
+		&= \frac{1}{v^2} \left[
+			v \left( \gradexpr{u} \right)
+			- u \left( \gradexpr{v} \right)
+		\right] \\
+		&= \frac{v \grad u - u \grad v}{v^2}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\subsection{数量场与向量场}
+\begin{definition}
+如果对于空间区域\(G\)内的任一点\(M\)，都有一个确定的数量值\(f(M)\)，则称在这空间区域\(G\)内确定了一个\DefineConcept{数量场}.一个数量场可用一个数量值函数\(f(M)\)来确定.
+
+如果与点\(M\)相对应的是一个向量值函数\(\vb{F}(M)\)，则称在这空间区域\(G\)内确定了一个\DefineConcept{向量场}.一个向量场可用一个向量值函数\(\vb{F}(M)\)来确定.
+
+若向量场\(\vb{F}(M)\)是某个数量值函数\(f(M)\)的梯度，则称\(f(M)\)是向量场\(\vb{F}(M)\)的一个\DefineConcept{势函数}，并称向量场\(\vb{F}(M)\)为\DefineConcept{势场}.
+\end{definition}
+由此可知，由数量值函数\(f(M)\)产生的梯度场\(\grad f(M)\)是一个势场.
+但任意一个向量场并不一定都是势场，因为它不一定是某个数量值函数的梯度.

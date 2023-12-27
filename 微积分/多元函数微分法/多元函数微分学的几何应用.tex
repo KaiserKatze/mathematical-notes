@@ -1,0 +1,435 @@
+\section{多元函数微分学的几何应用}
+\subsection{空间曲线的切线与法平面}
+设空间曲线\(\Gamma\)的参数方程为\begin{gather}
+\left\{ \begin{array}{c}
+x = \phi(t), \\
+y = \psi(t), \\
+z = \omega(t), \\
+\end{array} \right.
+\quad
+t \in [\alpha,\beta].
+\tag7
+\end{gather}这里假定(7)式的三个函数\(\phi\)，\(\psi\)和\(\omega\)都在\([\alpha,\beta]\)上可导，且三个导数不同时为零.
+
+设点\(M(x_0,y_0,z_0)\)在曲线\(\Gamma\)上，对应的参数为\(t_0\).
+记\[
+	\vb{f}(t)
+	= (\phi(t),\psi(t),\omega(t)),
+	\quad t\in[\alpha,\beta].
+\]
+由向量值函数的导向量的几何意义知，向量
+\begin{equation}
+	\vb{T}
+	= \vb{f}'(t_0)
+	= (\phi'(t_0),\psi'(t_0),\omega'(t_0)).
+\end{equation}
+就是曲线\(\Gamma\)在点\(M\)处的一个切向量，
+从而曲线\(\Gamma\)在点\(M\)处的切线方程为
+\begin{gather}
+	\frac{x-x_0}{\phi'(t_0)}
+	=\frac{y-y_0}{\psi'(t_0)}
+	=\frac{z-z_0}{\omega'(t_0)}.
+	\tag8
+\end{gather}
+
+通过点\(M\)且与切线垂直的平面称为曲线\(\Gamma\)在点\(M\)处的法平面，
+它是通过点\(M(x_0,y_0,z_0)\)且以\(\vb{T}=\vb{f}'(t_0)\)为法向量的平面，
+因此法平面方程为\[
+	\phi'(t_0) \cdot (x-x_0) + \psi'(t_0) \cdot (y-y_0) + \omega'(t_0) \cdot (z-z_0) = 0
+\]
+或\begin{gather}
+	\vb{T}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag9
+\end{gather}
+
+若空间曲线\(\Gamma\)的方程以\[
+	\left\{ \begin{array}{l}
+		y = \phi(x), \\
+		z = \psi(x)
+	\end{array} \right.
+\]的形式给出，
+取\(x\)为参数，
+它就可以表为参数方程的形式\[
+	\left\{ \begin{array}{l}
+		x = x, \\
+		y = \phi(x), \\
+		z = \psi(x).
+	\end{array} \right.
+\]
+若\(\phi(x),\psi(x)\)都在\(x=x_0\)处可导，
+那么根据上面的讨论可知，\[
+	\vb{T} = (1,\phi'(x_0),\psi'(x_0)),
+\]
+因此曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为
+\begin{gather}
+	\frac{x-x_0}{1}
+	=\frac{y-y_0}{\phi'(x_0)}
+	=\frac{z-z_0}{\psi'(x_0)}.
+	\tag{10}
+\end{gather}
+曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的法平面方程为\[
+	(x-x_0) + \psi'(x_0) \cdot (y-y_0) + \omega'(x_0) \cdot (z-z_0) = 0
+\]或\begin{gather}
+	\vb{T}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag{11}
+\end{gather}
+
+设空间曲线\(\Gamma\)的方程以\begin{gather}
+\left\{ \begin{array}{l}
+F(x,y,z)=0, \\
+G(x,y,z)=0
+\end{array} \right.
+\tag{12}
+\end{gather}的形式给出，\(M(x_0,y_0,z_0)\)是曲线\(\Gamma\)上的一个点.
+又设\(F\)、\(G\)有对各个变量的连续偏导数，且\[
+\eval{\jacobi{F,G}{y,z}}_{(x_0,y_0,z_0)} \neq 0.
+\]这时方程组(12)在点\(M(x_0,y_0,z_0)\)的某一邻域内确定了一组函数\(y=\phi(x)\)和\(z=\psi(x)\).
+要求曲线\(\Gamma\)在点\(M\)处的切线方程和法平面方程，只要求出\(\phi'(x_0)\)、\(\psi'(x_0)\)，然后代入(10)、(11)两式就行了.
+为此，我们在恒等式\[
+	F[x,\phi(x),\psi(x)] \equiv 0,
+	\quad\text{和}\quad
+	G[x,\phi(x),\psi(x)] \equiv 0
+\]两边分别对\(x\)求全导数，
+得\[
+	\left\{ \def\arraystretch{1.5} \begin{array}{l}
+		\pdv{F}{x} + \pdv{F}{y} \dv{y}{x} + \pdv{F}{z} \dv{z}{x} = 0, \\
+		\pdv{G}{x} + \pdv{G}{y} \dv{y}{x} + \pdv{G}{z} \dv{z}{x} = 0.
+	\end{array} \right.
+\]
+由假设可知，
+在点\(M\)的某个邻域内\[
+	J = \jacobi{F,G}{y,z} \neq 0,
+\]
+故可解得\[
+	\dv{y}{x} = \frac{1}{J} \jacobi{F,G}{z,x},
+	\qquad
+	\dv{z}{x} = \frac{1}{J} \jacobi{F,G}{x,y}.
+\]
+
+于是\[
+	\vb{T} = (1,\phi'(x_0),\psi'(x_0))
+\]是曲线\(\Gamma\)在点\(M\)处的一个切向量，
+这里\[
+	\phi'(x_0)
+	= \frac{
+			\begin{vmatrix}
+				F'_z & F'_x \\
+				G'_z & G'_x
+			\end{vmatrix}_M
+		}{
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_M
+		},
+	\qquad
+	\psi'(x_0)
+	= \frac{
+			\begin{vmatrix}
+				F'_x & F'_y \\
+				G'_x & G'_y
+			\end{vmatrix}_M
+		}{
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_M
+		},
+\]
+分子分母中带下标\(M\)的行列式表达行列式在点\(M(x_0,y_0,z_0)\)的值.
+把上面的切向量\(\vb{T}\)乘以\(J\)，得\begin{align*}
+	\vb{T}_1
+	&= \left(
+		\begin{vmatrix}
+			F'_y & F'_z \\
+			G'_y & G'_z \\
+		\end{vmatrix}_M,
+		\begin{vmatrix}
+			F'_z & F'_x \\
+			G'_z & G'_x \\
+		\end{vmatrix}_M,
+		\begin{vmatrix}
+			F'_x & F'_y \\
+			G'_x & G'_y \\
+		\end{vmatrix}_M
+	\right) \\
+	&= \begin{vmatrix}
+		\vb{i} & \vb{j} & \vb{k} \\
+		F'_x & F'_y & F'_z \\
+		G'_x & G'_y & G'_z
+	\end{vmatrix}
+	,
+\end{align*}
+这也是曲线\(\Gamma\)在点\(M\)处的一个切向量.
+由此可以写出曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为\begin{gather}
+	\frac{x-x_0}{\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z \\
+	\end{vmatrix}_M}
+	=\frac{y-y_0}{\begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x \\
+	\end{vmatrix}_M}
+	=\frac{z-z_0}{\begin{vmatrix}
+		F'_x & F'_y \\
+		G'_x & G'_y \\
+	\end{vmatrix}_M}.
+	\tag{13}
+\end{gather}
+
+曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的法平面方程为\[
+	\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z \\
+	\end{vmatrix}_M
+	(x-x_0)
+	+ \begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x \\
+	\end{vmatrix}_M
+	(y-y_0)
+	+ \begin{vmatrix}
+		F'_x & F'_y \\
+		G'_x & G'_y \\
+	\end{vmatrix}_M
+	(z-z_0)
+	= 0
+\]或\begin{gather}
+	\vb{T}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag{14}
+\end{gather}
+如果\(\eval{\jacobi{F,G}{y,z}}_M = 0\)，
+而\(\eval{\jacobi{F,G}{z,x}}_M\)和\(\eval{\jacobi{F,G}{x,y}}_M\)中至少有一个不等于零，
+我们可得同样的结果.
+
+\subsection{空间曲线的曲率}
+我们在\cref{section:微分中值定理.曲率}中研究平面曲线时引入了“曲率”这样一个概念，
+现在我们将它推广到空间曲线.
+
+设空间曲线\(\Gamma: \vb{r} = \vb{r}(t)\ (\alpha \leq t \leq \beta)\)是一段光滑曲线.
+当参数\(t = t_0\)时，曲线\(\Gamma\)上动点\(P\)的坐标为\(\vb{r}\)，
+而点\(P\)处的切向量为\(\vb{r}'(t_0)\)\footnote{向量\(\vb{r}'(t_0)\)不一定是单位向量！}.
+记向量\(\vb{r}'(t_0)\)与\(\vb{r}'(t_0+\increment t)\)之间的夹角为\(\increment\theta\)，
+记\(\vb{r}(t_0)\)与\(\vb{r}(t_0+\increment t)\)之间的弧长为\(\increment s\).如果极限\[
+	\lim_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }
+\]存在，
+就称此极限为曲线\(\Gamma\)在点\(P\)处的\DefineConcept{曲率}，
+记为\(K(t_0)\)，
+即\[
+	K(t_0)
+	= \lim_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }.
+\]
+因此\begin{align*}
+	\norm{ \dv{\vb{\tau}}{s} }
+	&= \norm{
+			\lim_{\increment s \to 0}
+				\frac{\vb{\tau}(s+\increment s) - \vb{\tau}(s)}{\increment s}
+		} \\
+	&= \lim_{\increment s \to 0}
+		\frac{\norm{\vb{\tau}(s+\increment s) - \vb{\tau}(s)}}{\abs{\increment s}} \\
+	&= \lim_{\increment s \to 0}
+		\abs{ \frac{2 \sin(\increment\theta / 2)}{\increment s} } \\
+	&= \lim_{\increment s \to 0}
+		\left(
+			\abs{ \frac{2 \sin(\increment\theta / 2)}{\increment\theta/2} }
+			\cdot \abs{ \frac{\increment\theta}{\increment s} }
+		\right) \\
+	&= \lim_{\increment s \to 0}
+		\abs{ \frac{\increment\theta}{\increment s} }.
+\end{align*}
+又因为\(\vb{\tau} = \dv{\vb{r}}{s}\)，所以\(\norm{ \dv{\vb{\tau}}{s} } = \norm{ \dv{s}( \dv{\vb{r}}{s} ) } = \norm{ \dv[2]{\vb{r}}{s} }\)，那么上式又可写作\begin{equation}
+\norm{ \dv[2]{\vb{r}}{s} }
+= \lim_{\increment s \to 0} \abs{ \frac{\increment\theta}{\increment s} }.
+\end{equation}
+
+假设空间曲线\(\Gamma\)由参数方程\(\vb{r} = \vb{r}(t)\)给出.由于位矢\(\vb{r}\)对弧长\(s\)的一阶、二阶导数分别为\[
+\dv{\vb{r}}{s} = \dv{\vb{r}}{t} \dv{t}{s},
+\qquad
+\dv[2]{\vb{r}}{s} = \dv[2]{\vb{r}}{t} \left(\dv{t}{s}\right)^2 + \dv{\vb{r}}{t} \dv[2]{t}{s}.
+\]将以上两式对应的两边分别作向量积，得\[
+\dv{\vb{r}}{s} \times \dv[2]{\vb{r}}{s}
+= \left(\dv{\vb{r}}{t} \times \dv[2]{\vb{r}}{t}\right) \cdot \left(\dv{t}{s}\right)^3.
+\]由于\(\dv{\vb{r}}{s}\)是单位向量，所以\(\dv{\vb{r}}{s} \cdot \dv{\vb{r}}{s} = 1\)，再对\(s\)求导，得\[
+\dv{s}( \dv{\vb{r}}{s} \cdot \dv{\vb{r}}{s} )
+= \dv[2]{\vb{r}}{s} \cdot \dv{\vb{r}}{s} + \dv{\vb{r}}{s} \cdot \dv[2]{\vb{r}}{s}
+= 2 \left( \dv{\vb{r}}{s} \cdot \dv[2]{\vb{r}}{s} \right)
+= 0,
+\]也就是说向量\(\dv{\vb{r}}{s}\)与\(\dv[2]{\vb{r}}{s}\)互相正交，所以曲线\(\Gamma\)的曲率为\[
+K(t) = \norm{ \dv[2]{\vb{r}}{s} }
+= \norm{ \dv{\vb{r}}{s} \times \dv[2]{\vb{r}}{s} }
+= \norm{ \dv{\vb{r}}{t} \times \dv[2]{\vb{r}}{t} } \cdot \abs{ \dv{t}{s} }^3.
+\]但因\(\norm{ \dd{\vb{r}} } = \abs{ \dd{s} }\)，\(\abs{ \dv{s}{t} } = \norm{ \dv{\vb{r}}{t} }\)，所以\[
+\abs{ \dv{t}{s} }^3 = \norm{ \dv{\vb{r}}{t} }^{-3}.
+\]由此得出曲率为\begin{equation}
+K(t) = \frac{ \norm{ \vb{r}'_t \times \vb{r}''_t } }{ \norm{ \vb{r}'_t }^3 }.
+\end{equation}
+
+\subsection{曲面的切平面与法线}
+我们先讨论由隐式给出设曲面方程\begin{gather}
+F(x,y,z)=0
+\tag{15}
+\end{gather}的情形，然后把由显式给出的曲面方程\(z = f(x,y)\)作为它的特殊情形.
+
+设曲面\(\Sigma\)由方程(15)给出，\(M(x_0,y_0,z_0)\)是曲面\(\Sigma\)上的一点，并设函数\(F(x,y,z)\)的偏导数在该点连续且不同时为零.
+在曲面\(\Sigma\)上，通过点\(M\)任意引一条曲线\(\Gamma\)，假设曲线\(\Gamma\)的参数方程为\begin{gather}
+x = \phi(t),
+y = \psi(t),
+z = \omega(t)
+\quad (\alpha \leq t \leq \beta),
+\tag{16}
+\end{gather}
+\(t = t_0\)对应于点\(M(x_0,y_0,z_0)\)且\(\phi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)不全为零，则由(8)式可得这曲线的切线方程为\[
+\frac{x-x_0}{\phi'(t_0)}
+=\frac{y-y_0}{\psi'(t_0)}
+=\frac{z-z_0}{\omega'(t_0)}.
+\]
+
+我们现在要证明，在曲面\(\Sigma\)上通过点\(M\)且在点\(M\)处具有切线的任何曲线，它们在点\(M\)处的切线都在同一个平面上.
+事实上，因为曲线\(\Gamma\)完全在曲面\(\Sigma\)上，所以有恒等式\[
+F[\phi(t),\psi(t),\omega(t)] \equiv 0,
+\]又因\(F(x,y,z)\)在点\((x_0,y_0,z_0)\)处有连续偏导数，且\(\phi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)都存在，所以这恒等式左边的复合函数在\(t = t_0\)时有全导数，且这全导数等于零，即\[
+\eval{\dv{t} F[\phi(t),\psi(t),\omega(t)]}_{t=t_0} = 0,
+\]即有\begin{gather}
+F'_x(x_0,y_0,z_0) \phi'(t_0)
++ F'_y(x_0,y_0,z_0) \psi'(t_0)
++ F'_z(x_0,y_0,z_0) \omega'(t_0)
+= 0.
+\tag{17}
+\end{gather}
+
+引入向量\begin{equation}
+	\vb{n}=(F'_x(x_0,y_0,z_0),F'_y(x_0,y_0,z_0),F'_z(x_0,y_0,z_0)),
+\end{equation}
+则(17)式表示曲线(16)在点\(M\)处的切向量\[
+	\vb{T} = (\phi'(t_0),\psi'(t_0),\omega'(t_0))
+\]与向量\(\vb{n}\)垂直.
+因为曲线(16)是曲面上通过点\(M\)的任意一条曲线，
+它们在点\(M\)的切线都与同一个向量\(\vb{n}\)垂直，
+所以曲面上通过点\(M\)的一切曲线在点\(M\)的切线都在同一个平面上.
+这个平面称为曲面\(\Sigma\)在点\(M\)的切平面.
+这切平面的方程是\[
+	F'_x(x_0,y_0,z_0) (x-x_0)
+	+ F'_y(x_0,y_0,z_0) (y-y_0)
+	+ F'_z(x_0,y_0,z_0) (z-z_0)
+	= 0.
+\]或\begin{gather}
+	\vb{n}\cdot(x-x_0,y-y_0,z-z_0)=0.
+	\tag{18}
+\end{gather}
+
+通过点\(M(x_0,y_0,z_0)\)且垂直于切平面(18)的直线称为曲面在该点的法线.
+法线方程是\begin{gather}
+	\frac{x-x_0}{F'_x(x_0,y_0,z_0)}
+	=\frac{y-y_0}{F'_y(x_0,y_0,z_0)}
+	=\frac{z-z_0}{F'_z(x_0,y_0,z_0)}.
+	\tag{19}
+\end{gather}
+
+垂直于曲面上切平面的向量称为曲面的法向量.
+向量\(\vb{n}\)就是曲面\(\Sigma\)在点\(M\)处的一个法向量.
+
+
+现在来考虑曲面方程\begin{gather}
+	z = f(x,y)
+	\tag{20}
+\end{gather}
+令\(F(x,y,z)=f(x,y)-z=0\)，可见\[
+	F'_x(x,y,z) = f'_x(x,y),
+	\qquad
+	F'_y(x,y,z) = f'_y(x,y),
+	\qquad
+	F'_z(x,y,z) = -1.
+\]
+于是，当函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在点\((x_0,y_0)\)连续时，
+曲面(20)在点\(M(x_0,y_0,z_0)\)处的法向量为\[
+	\vb{n}=\opair{f'_x(x,y),f'_y(x,y),-1},
+\]
+切平面方程为\[
+	\vb{n}\cdot(x-x_0,y-y_0,z-z_0)=0,
+\]或\begin{gather}
+	z-z_0 = f'_x(x_0,y_0) (x-x_0) + f'_y(x_0,y_0) (y-y_0).
+	\tag{21}
+\end{gather}
+而法线方程为\begin{gather}
+	\frac{x-x_0}{f'_x(x_0,y_0)}
+	=\frac{y-y_0}{f'_y(x_0,y_0)}
+	=\frac{z-z_0}{-1}.
+	\tag{22}
+\end{gather}
+这里顺便指出，
+方程(21)右端恰好是函数\(z = f(x,y)\)在点\((x_0,y_0)\)的全微分，
+而左端是切平面上点的竖坐标的增量.
+因此，函数\(z = f(x,y)\)在点\((x_0,y_0)\)的全微分，
+在集合上表示曲面\(z = f(x,y)\)在点\(M\)出的切平面上点的竖坐标的增量.
+
+\begin{example}
+求曲面\[
+	F(x,y,z) = 0
+	\quad\text{和}\quad
+	G(x,y,z) = 0
+\]的交线\(\Gamma\)在\(xOy\)面上的投影的切线方程.
+\begin{solution}
+因为两曲面在点\(P_0(x_0,y_0,z_0)\)处的法向量分别是
+\[
+	\vb{n}_F
+	= (F'_x(P_0),F'_y(P_0),F'_z(P_0))
+	\quad\text{和}\quad
+	\vb{n}_G
+	= (G'_x(P_0),G'_y(P_0),G'_z(P_0)),
+\]
+故交线在点\(P_0\)处的切向量为\[
+	\vb{\tau}
+	= \vb{n}_F \times \vb{n}_G
+	= \begin{vmatrix}
+		\vb{i} & \vb{j} & \vb{k} \\
+		F'_x & F'_y & F'_z \\
+		G'_x & G'_y & G'_z
+	\end{vmatrix}_{P_0}.
+\]
+交线在\(xOy\)面的投影曲线\(\Gamma_{xy}\)
+在点\(P_0\)处对应的投影点\(P'_0(x_0,y_0)\)处的切向量\(\vb{\tau}_{xy}\)
+与\(\vb{\tau}\)相比缺少\(z\)分量，
+也就是说\[
+	\vb{\tau}_{xy}
+	= \left(
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_{P_0},
+			\begin{vmatrix}
+				F'_z & F'_x \\
+				G'_z & G'_x
+			\end{vmatrix}_{P_0}
+		\right).
+\]
+那么所求投影的切线方程为\[
+	C:
+	\frac{x - x_0}{\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z
+	\end{vmatrix}_{P_0}}
+	= \frac{y - y_0}{\begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x
+	\end{vmatrix}_{P_0}}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求曲面\(\Gamma: z = x + 2y + \ln(1+x^2+y^2)\)在点\((0,0,0)\)处的切平面方程.
+\begin{solution}
+记\(F(x,y,z) = x + 2y - z + \ln(1+x^2+y^2)\)，
+那么曲面\(\Gamma\)在点\((x,y,z)\)处的法向量为\[
+	\vb{n}
+	= (F'_x,F'_y,F'_z)
+	= \left(
+		1 + \frac{2x}{1+x^2+y^2},
+		2 + \frac{2y}{1+x^2+y^2},
+		-1
+	\right),
+\]
+即在点\((0,0,0)\)处的法向量为\((1,2,-1)\)，
+从而切平面方程为\(x+2y-z=0\).
+\end{solution}
+\end{example}

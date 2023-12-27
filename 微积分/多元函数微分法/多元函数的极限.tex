@@ -1,0 +1,201 @@
+\section{多元函数的极限}
+\subsection{重极限的概念}
+\begin{definition}
+设二元函数\(f(P)=f(x,y)\)的定义域为\(D\)，\(P_0(x_0,y_0)\)是\(D\)的聚点.
+如果存在常数\(A\)，对于\(\forall \epsilon > 0\)，\(\exists \delta > 0\)，
+使得当\(P(x,y) \in D \cap \mathring{U}(P_0,\delta)\)时，都有\[
+	\abs{f(P)-A} = \abs{f(x,y)-A} < \epsilon
+\]成立，
+那么称常数\(A\)为“函数\(f(x,y)\)当\((x,y)\to(x_0,y_0)\)时的\DefineConcept{极限}”，记作\[
+	\lim_{(x,y)\to(x_0,y_0)} f(x,y) = A
+	\quad\text{或}\quad
+	\lim_{P \to P_0} f(P) = A.
+\]
+
+为了区别于一元函数的极限，我们把二元函数的极限叫做\DefineConcept{二重极限}.
+\end{definition}
+
+\begin{example}
+设\(f(x,y) = (x^2+y^2) \sin\frac{1}{x^2+y^2}\)，求证：\(\lim_{(x,y)\to(0,0)} f(x,y) = 0\).
+\begin{solution}
+这里函数\(f(x,y)\)的定义域为\(D = \mathbb{R}^2 - \Set{(0,0)}\)，点\(O(0,0)\)为\(D\)的聚点.因为\[
+\abs{f(x,y)-0}
+= \abs{(x^2+y^2) \sin\frac{1}{x^2+y^2} - 0}
+\leq x^2+y^2,
+\]可见，\(\forall\epsilon>0\)，取\(\delta=\sqrt{\epsilon}\)，则当\[
+0 < \sqrt{(x-0)^2+(y-0)^2} < \delta,
+\]即\(P(x,y) \in D \cap \mathring{U}(O,\delta)\)时，总有\[
+\abs{f(x,y)-0} < \epsilon
+\]成立，所以\[
+\lim_{(x,y)\to(0,0)} f(x,y) = 0.
+\]
+\end{solution}
+\end{example}
+
+必须注意，所谓二重极限存在，
+是指\(P(x,y)\)以任何方式趋于\(P_0(x_0,y_0)\)时，\(f(x,y)\)都无限接近于\(A\).
+因此，如果\(P(x,y)\)以某一特殊方式，
+例如沿着一条定直线或定曲线趋于\(P_0(x_0,y_0)\)时，
+即使\(f(x,y)\)无限接近于某一确定值，
+我们还不能由此断定函数的极限存在.
+但是反过来，如果当\(P(x,y)\)以不同方式趋于\(P_0(x_0,y_0)\)时，
+\(f(x,y)\)趋于不同的值，那么就可以断定这函数的极限不存在.
+
+以上关于二元函数的极限概念，可相应地推广到\(n\)元函数\(u = f(P)\)，
+即\(u = f(\AutoTuple{x}{n})\)上去.
+\begin{definition}
+设\(n\)元函数\(f(\vb{x})\)的定义域为\(D \subseteq \mathbb{R}^n\)，点\(\vb{a}\)是\(D\)的聚点.
+如果存在常数\(A \in \mathbb{R}\)，
+对于\(\forall\epsilon>0\)，
+\(\exists\delta>0\)，
+使得当\(\vb{x} \in D \cap \mathring{U}(\vb{a},\delta)\)时，
+都有\[
+	\abs{f(\vb{x}) - A} < \epsilon
+\]成立，
+则称常数\(A\)为“函数\(f(\vb{x})\)当\(\vb{x}\to\vb{a}\)时的\DefineConcept{极限}”，记作\[
+	\lim_{\vb{x}\to\vb{a}} f(\vb{x}) = A.
+\]
+\end{definition}
+
+多元函数的极限遵从与一元函数类似的性质与极限运算法则，
+例如\hyperref[theorem:极限.函数极限的唯一性]{唯一性}、
+\hyperref[theorem:极限.函数极限的局部有界性]{局部有界性}、
+\hyperref[theorem:极限.函数极限的局部保号性1]{局部保号性}、
+\hyperref[theorem:极限.海涅定理]{海涅定理}、
+\hyperref[theorem:极限.夹逼准则]{夹逼准则}、
+\hyperref[theorem:极限.极限的四则运算法则]{四则运算法则}.
+
+\begin{example}
+\def\l{\lim_{(x,y)\to(0,2)}}
+求\(\l \frac{\sin(xy)}{x}\).
+\begin{solution}
+函数\(\frac{\sin(xy)}{x}\)的定义域为\[
+	D = \Set{ (x,y) \given x\neq0, y\in\mathbb{R} },
+\]点\(P_0(0,2)\)为\(D\)的聚点.
+
+由积的极限运算法则，得\[
+	\l \frac{\sin(xy)}{x}
+	= \l \left[ \frac{\sin(xy)}{xy} \cdot y \right]
+	= \lim_{xy\to0} \frac{\sin(xy)}{xy} \cdot \lim_{y\to2} y
+	= 1 \cdot 2 = 2.
+\]
+\end{solution}
+\end{example}
+
+\subsection{累次极限的概念}
+\begin{definition}
+设二元函数\(f(x,y)\)的定义域是\(D = D_1 \times D_2 \subseteq \mathbb{R}^2\)，
+点\(x_0\)、\(y_0\)分别是\(D_1\)、\(D_2\)的聚点.
+如果对\(\forall y_1 \in D_2 - \{y_0\}\)，关于\(x\)的一元函数\(f(x,y_1)\)的极限\[
+	\lim_{\substack{x \to x_0 \\ (x \in D_1)}} f(x,y_1)
+\]存在，
+且极限\[
+	\lim_{\substack{y \to y_0 \\ (y \in D_2)}}
+	\lim_{\substack{x \to x_0 \\ (x \in D_1)}} f(x,y)
+\]也存在，
+则称后者为
+“\(f(x,y)\)在点\((x_0,y_0)\)先\(x\)后\(y\)的\DefineConcept{累次极限}（repeated limit）”，
+简记为\[
+	\lim_{y \to y_0} \lim_{x \to x_0} f(x,y).
+\]
+
+类似地，可以定义先\(y\)后\(x\)的累次极限\[
+	\lim_{x \to x_0} \lim_{y \to y_0} f(x,y).
+\]
+\end{definition}
+
+二元函数的累次极限不总是存在的.
+例如，对于函数\(f(x,y)=\frac{1}{xy}\)来说，
+它在点\((0,0)\)的两类累次极限都不存在.
+又如，对于函数\(g(x,y)=\frac{x}{y}\)来说，
+它在点\((0,0)\)先\(x\)后\(y\)的累次极限存在\[
+	\lim_{y\to0}\lim_{x\to0}\frac{x}{y}
+	=\lim_{y\to0}0
+	=0;
+\]
+但是它在点\((0,0)\)先\(y\)后\(x\)的累次极限不存在，
+这是因为\[
+	\lim_{y\to0}\frac{x}{y}=\infty.
+\]
+
+\begin{example}
+重极限和累次极限的关系是很复杂的.
+\begin{enumerate}
+	\item 有时候，重极限存在，但两个累次极限都不存在.
+	比如\[
+		f(x,y) = \left\{ \begin{array}{cl}
+			x \sin(1/y) + y \sin(1/x), & x\neq0 \land y\neq0, \\
+			0, & x=0 \lor y=0.
+		\end{array} \right.
+	\]的重极限\[
+		\lim_{(x,y)\to(0,0)} f(x,y) = 0.
+	\]
+
+	\item 有时候，重极限存在，但两个累次极限中一个存在而另一个不存在.
+	比如\[
+		g(x,y) = \left\{ \begin{array}{cl}
+			x \sin(1/y), & y\neq0, \\
+			0, & y=0.
+		\end{array} \right.
+	\]的重极限\[
+		\lim_{(x,y)\to(0,0)} g(x,y) = 0;
+	\]
+	又有\[
+		\lim_{y\to0} \lim_{x\to0} g(x,y) = 0,
+	\]
+	而\[
+		\lim_{x\to0} \lim_{y\to0} g(x,y)
+	\]不存在.
+
+	\item 有时候，两个累次极限都存在且相等，但重极限不存在.
+	比如\[
+		h(x,y) = \left\{ \begin{array}{cl}
+			\frac{xy}{x^2+y^2}, & (x,y)\neq(0,0), \\
+			0, & (x,y)=(0,0).
+		\end{array} \right.
+	\]的重极限不存在；
+	而\[
+		\lim_{x\to0} \lim_{y\to0} h(x,y)
+		= \lim_{y\to0} \lim_{x\to0} h(x,y) = 0.
+	\]
+
+	\item 有时候，两个累次极限都存在，但不相等.
+	比如\[
+		\phi(x,y) = \frac{x^2(1+x^2) - y^2(1+y^2)}{x^2+y^2}
+	\]的两个累次极限分别为\[
+		\lim_{x\to0} \lim_{y\to0} \phi(x,y) = 1,
+		\qquad
+		\lim_{y\to0} \lim_{x\to0} \phi(x,y) = -1.
+	\]
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+设二元函数\(f(x,y)\)在点\((x_0,y_0)\)处存在重极限\[
+	\lim_{(x,y)\to(x_0,y_0)} f(x,y) = A \in \mathbb{R}.
+\]\begin{enumerate}
+	\item 如果当\(y \neq y_0\)时存在极限\[
+		\lim_{x \to x_0} f(x,y) = \psi(y),
+	\]
+	则\(f(x,y)\)在点\((x_0,y_0)\)处的先\(x\)后\(y\)的累次极限存在，且\[
+		\lim_{y \to y_0} \lim_{x \to x_0} f(x,y)
+		= \lim_{y \to y_0} \psi(y) = A.
+	\]
+
+	\item 如果当\(x \neq x_0\)时存在极限\[
+		\lim_{y \to y_0} f(x,y) = \phi(y),
+	\]
+	则\(f(x,y)\)在点\((x_0,y_0)\)处的先\(y\)后\(x\)的累次极限存在，且\[
+		\lim_{x \to x_0} \lim_{y \to y_0} f(x,y)
+		= \lim_{x \to x_0} \phi(y) = A.
+	\]
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+如果两个累次极限和重极限都存在，则三者必定相等.
+\end{corollary}
+
+\begin{corollary}
+如果两个累次极限都存在但不相等，则重极限必定不存在.
+\end{corollary}
