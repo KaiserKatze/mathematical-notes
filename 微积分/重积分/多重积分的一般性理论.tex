@@ -1,0 +1,59 @@
+\section{多重积分的一般性理论}
+\subsection{重积分化为累次积分}
+\begin{theorem}[富比尼定理]
+设区域\(X\subseteq\mathbb{R}^m, Y\subseteq\mathbb{R}^n\).
+如果函数\(f\colon X \times Y \to \mathbb{R}\)在\(X \times Y\)上可积，则\(f\)的重积分与累次积分同时存在且彼此相等，即\[
+\int_{X \times Y} f(x,y) \dd{x}\dd{y}
+= \int_X \dd{x} \int_Y f(x,y) \dd{y}
+= \int_Y \dd{y} \int_X f(x,y) \dd{x}.
+\]
+\end{theorem}
+
+\begin{corollary}
+如果函数\(f\in\mathcal{R}(X \times Y)\)，则（在勒贝格意义下）%
+对于几乎所有的值\(x \in X\)，积分\(\int_Y f(x,y) \dd{y}\)存在；%
+对于几乎所有的值\(y \in Y\)，积分\(\int_X f(x,y) \dd{x}\)存在.
+\end{corollary}
+
+\begin{corollary}
+\newcommand\intx[2][]{\int_{a_{#2}}^{b_{#2}} #1 \dd{x_{#2}}}%
+如果区间\(I \subseteq \mathbb{R}^n\)是闭区域\(I_i = [a_i,b_i]\ (i=1,2,\dotsc,n)\)的直积，则\[
+	\int_I f(x) \dd{x}
+	= \intx{n} \intx{n-1} \dotso \intx[f(\AutoTuple{x}{n})]{1}.
+\]
+\end{corollary}
+
+\subsection{重积分中的变量代换}
+利用雅克比式，可以把二重积分的换元法推广到多元函数上.
+\begin{theorem}
+若连续可微函数\[
+	\vb{y} = f(\vb{x})
+	\quad(\vb{x},\vb{y}\in\mathbb{R}^n)
+\]
+把\(O x_1 x_2 \dotso x_n\)空间（新坐标空间）内的有界闭区域\(\Omega\)
+单值地映射成\(O' y_1 y_2 \dotso y_n\)空间（旧坐标空间）内的有界闭区域\(\Omega'\)，
+并且在闭区域\(\Omega'\)内雅克比行列式\[
+	J = \det\vb{J}
+	= \jacobi{f_1,f_2,\dotsc,f_n}{\AutoTuple{x}{n}}
+	= { \def\arraystretch{1.5} \begin{vmatrix}
+		\pdv{f_1}{x_1} & \pdv{f_1}{x_2} & \dots & \pdv{f_1}{x_n} \\
+		\pdv{f_2}{x_1} & \pdv{f_2}{x_2} & \dots & \pdv{f_2}{x_n} \\
+		\vdots & \vdots & & \vdots \\
+		\pdv{f_n}{x_1} & \pdv{f_n}{x_2} & \dots & \pdv{f_n}{x_n} \\
+	\end{vmatrix} }
+	\neq 0,
+\]
+则有如下的积分换元公式\begin{equation}
+\begin{split}
+	&\idotsint_{\Omega'}
+		F(\AutoTuple{y}{n})
+		\dd{y_1}\dd{y_2}\dotsm\dd{y_n} \\
+	&\hspace{20pt}=
+		\idotsint_\Omega
+		F(\AutoTuple{x}{n})
+		\abs{J}
+		\dd{x_1}\dd{x_2}\dotsm\dd{x_n}.
+\end{split}
+\end{equation}
+\end{theorem}
+利用上述积分换元公式可以将复杂的被积函数化简，也可以将复杂的积分区域化为更具对称性的积分区域.

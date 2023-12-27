@@ -1,0 +1,207 @@
+\section{重积分的应用}
+\subsection{曲面的面积}
+设两平面\(\Pi_1\)、\(\Pi_2\)的夹角为\(\theta\ (0<\theta<\pi/2)\)
+（如\cref{figure:重积分.平面区域的投影}），
+\(\Pi_1\)上的闭区域\(D\)在\(\Pi_2\)上的投影区域为\(D_0\)，
+则\(D\)的面积\(A\)与\(D_0\)的面积\(\sigma\)满足\[
+	A = \frac{\sigma}{\cos\theta}.
+\]
+事实上，先假定\(D\)是矩形闭区域，
+且其一边平行于平面\(\Pi_1\)、\(\Pi_2\)的交线\(l\)，
+两条边的边长分别为\(a\)、\(b\)，则\(D_0\)也是矩形闭区域，
+且边长分别为\(a\)、\(b \cos\theta\)，从而\[
+	\sigma = ab\cos\theta = A \cos\theta.
+\]
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[scale=2]
+		\draw[name path=upper](0,0)--++(1,-1)node[midway,below left]{\(l\)}coordinate(p1)
+			--++(2,2)coordinate(p2)
+			--++(-1,1)node[below]{\(\Pi_1\)}
+			--++(-2,-2);
+		\path[name path=horizon](1,0)--++(2,0);
+		\draw[name intersections={of=upper and horizon},dashed]
+			(intersection-1)--(0,0);
+		\draw(p1)--++(3,0)coordinate(p3)
+			--++(-1,1)node[below]{\(\Pi_2\)}
+			--(intersection-1);
+		\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]{angle=p3--p1--p2};
+		\draw(1.6,.9)coordinate(A)
+			--++(.3,-.3)coordinate(B)node[midway,below left]{\(a\)}
+			--++(.2,.2)coordinate(C)node[midway,below right]{\(b\)}
+			--++(-.3,.3)coordinate(D)
+			--++(-.2,-.2);
+		\begin{scope}[dashed]
+		\draw(A)--++(0,-1.4)coordinate(A1);
+		\draw(B)--++(0,-1.4)coordinate(B1);
+		\draw(C)--++(0,-1.4-.2)coordinate(C1);
+		\draw(D)--++(0,-1.4-.2)coordinate(D1);
+		\end{scope}
+		\draw(A1)--(B1)node[midway,below left]{\(a\)}--(C1)node[midway,below]{\(b \cos\theta\)}--(D1)--(A1);
+	\end{tikzpicture}
+	\caption{平面区域的投影}
+	\label{figure:重积分.平面区域的投影}
+\end{figure}
+
+\begin{theorem}
+设曲面\(S\)由方程\[
+z=f(x,y)
+\]给出，\(D_{xy}\)为曲面\(S\)在\(xOy\)面上的投影区域，
+函数\(f(x,y)\)在\(D_{xy}\)上具有连续偏导数\(f'_x(x,y)\)和\(f'_y(x,y)\).
+那么曲面\(S\)面积元素\(\dd{A}\)为\[
+\dd{A} = \sqrt{1 + [f'_x(x,y)]^2 + [f'_y(x,y)]^2} \dd{\sigma}.
+\]
+
+曲面\(S\)的面积为\begin{align}
+A &= \iint_{D_{xy}} \sqrt{1 + [f'_x(x,y)]^2 + [f'_y(x,y)]^2} \dd{\sigma} \nonumber \\
+&= \iint_{D_{xy}} \sqrt{1 + \left(\pdv{z}{x}\right)^2 + \left(\pdv{z}{y}\right)^2} \dd{x}\dd{y}.
+\end{align}
+\end{theorem}
+
+设曲面的方程为\(x=g(y,z)\)或\(y=h(z,x)\)，
+可分别把曲面投影到\(yOz\)面上（投影区域记作\(D_{yz}\)）或\(zOx\)面上（投影区域记作\(D_{zx}\)），
+类似地可得\begin{equation}
+A = \iint_{D_{yz}} \sqrt{1 + \left(\pdv{x}{y}\right)^2 + \left(\pdv{x}{z}\right)^2} \dd{y}\dd{z},
+\end{equation}或\begin{equation}
+A = \iint_{D_{zx}} \sqrt{1 + \left(\pdv{y}{z}\right)^2 + \left(\pdv{y}{x}\right)^2} \dd{z}\dd{x}.
+\end{equation}
+
+\begin{example}
+求半径为\(R\)的球的表面积.
+\begin{solution}
+\def\z{\sqrt{R^2-x^2-y^2}}
+取上半球面方程为\(z = \z\)，
+则它在\(xOy\)面上的投影区域为\[
+	D = \Set{(x,y) \given x^2+y^2 \leq R^2}.
+\]
+由\[
+	\pdv{z}{x} = \frac{-x}{\z},
+	\qquad
+	\pdv{z}{y} = \frac{-y}{\z},
+\]
+得\[
+	\sqrt{1 + \left(\pdv{y}{z}\right)^2 + \left(\pdv{y}{x}\right)^2}
+	= \frac{R}{\z}.
+\]
+因为这函数在闭区域\(D\)上无界
+，我们不能直接应用曲面面积公式，
+所以先取区域\[
+	D_1 = \Set{(x,y) \given x^2+y^2 \leq r^2}
+	\quad(0<r<R)
+\]为积分区域，
+算出相应于\(D_1\)上的球面面积\[
+	A_1 = \iint_{D_1} \frac{R}{\z} \dd{x}\dd{y}
+\]后，
+令\(r \to R\)取\(A_1\)的极限就得半球面的面积.
+
+\def\zz{\sqrt{R^2-\rho^2}}
+利用极坐标，得\[
+	A_1 = \iint_{D_1} \frac{R}{\zz} \rho\dd{\rho}\dd{\theta}
+	= R \int_0^{2\pi} \dd{\theta} \int_0^r \frac{\rho \dd{\rho}}{\zz}
+	= 2\pi R(R-\sqrt{R^2-r^2}),
+\]
+\def\l{}
+于是上半球面的表面积为\[
+	\lim_{r \to R} A_1
+	= \lim_{r \to R} 2\pi R(R-\sqrt{R^2-r^2})
+	= 2\pi R^2.
+\]
+因此完整的球面的表面积为\(4\pi R^2\).
+\end{solution}
+\end{example}
+
+\begin{theorem}[利用曲面的参数方程求曲面的面积]
+设曲面\(S\)由参数方程\[
+	\left\{ \begin{array}{l}
+		x = x(u,v), \\
+		y = y(u,v), \\
+		z = z(u,v) \\
+	\end{array} \right.
+	\quad
+	(u,v) \in D
+\]给出，
+其中\(D\)是一个平面有界闭区域，
+又\(x(u,v), y(u,v), z(u,v)\)在\(D\)上具有连续的一阶偏导数，
+且\[
+	\jacobi{x,y}{u,v}, \qquad
+	\jacobi{y,z}{u,v}, \qquad
+	\jacobi{z,x}{u,v}
+\]不全为零，
+则曲面\(S\)的面积为
+\begin{equation}\label{equation:重积分.曲面的面积计算公式}
+	A = \iint_D \sqrt{E G - F^2} \dd{u}\dd{v},
+\end{equation}
+其中\begin{align*}
+	E &= (x'_u)^2 + (y'_u)^2 + (z'_u)^2, \\
+	F &= x'_u \cdot x'_v + y'_u \cdot y'_v + z'_u \cdot z'_v, \\
+	G &= (x'_v)^2 + (y'_v)^2 + (z'_v)^2.
+\end{align*}
+\rm
+我们把\(E,F,G\)称为“曲面\(S\)的\DefineConcept{高斯系数}”.
+\end{theorem}
+
+\cref{equation:重积分.曲面的面积计算公式} 也可记作\[
+	A = \iint_D \sqrt{\det(\vb{J}^T \vb{J})} \dd{u}\dd{v},
+\]
+其中\(\vb{J}\)是雅克比矩阵，即\[
+	\vb{J} = \begin{bmatrix}
+		x'_u & x'_v \\
+		y'_u & y'_v \\
+		z'_u & z'_v
+	\end{bmatrix}.
+\]
+定理的条件“\(\jacobi{x,y}{u,v},
+\jacobi{y,z}{u,v},
+\jacobi{z,x}{u,v}\)
+这三个雅克比行列式不全为零”
+则可以用“雅克比矩阵\(\vb{J}\)满秩”等价代替.
+
+\subsection{物体的质心}
+\begin{theorem}
+设物体占有空间有界闭区域\(\Omega\)，
+其在点\((x,y,z)\)处的密度为\[
+	\rho=\rho(x,y,z)
+\]
+（假定\(\rho(x,y,z)\)在\(\Omega\)上连续），
+则其质心坐标为\begin{equation}
+	\frac{1}{M} \iiint_\Omega \vb{r} \rho \dd{v},
+\end{equation}
+其中\(M = \iiint_\Omega \rho \dd{v}\)，
+\(\vb{r} = (x,y,z)^T\).
+\end{theorem}
+
+\subsection{物体的转动惯量}
+\begin{theorem}
+设物体占有空间有界闭区域\(\Omega\)，其在点\((x,y,z)\)处的密度为\[
+\rho=\rho(x,y,z)
+\]（假定\(\rho(x,y,z)\)在\(\Omega\)上连续），则其相对于\(x\)、\(y\)、\(z\)轴的转动惯量为\begin{align}
+I_x &= \iiint_\Omega (y^2+z^2) \rho(x,y,z) \dd{v}, \\
+I_y &= \iiint_\Omega (z^2+x^2) \rho(x,y,z) \dd{v}, \\
+I_z &= \iiint_\Omega (x^2+y^2) \rho(x,y,z) \dd{v}.
+\end{align}
+\end{theorem}
+
+\subsection{引力}
+\begin{theorem}
+设引力常数为\(G\)，
+物体占有空间有界闭区域\(\Omega\)，
+它在点\((x,y,z)\)处的密度为\[
+	\rho=\rho(x,y,z),
+\]
+并假定\(\rho(x,y,z)\)在\(\Omega\)上连续，
+则它对于物体外一点\(P_0(x_0,y_0,z_0)\)处的
+单位质量的质点的引力为\begin{equation}
+	\vb{F}
+	= -G \iiint_\Omega \frac{\rho}{\abs{\vb{r}}^3} \vb{r} \dd{v},
+\end{equation}
+其中\(\vb{r}
+= (x_0-x,y_0-y,z_0-z)^T\).
+\end{theorem}
+
+如果考虑平面薄片对薄片外一点\(P_0(x_0,y_0,z_0)\)处的单位质量的质点的引力，
+设平面薄片占有\(xOy\)平面上的有界闭区域\(D\)，
+其面密度为\(\mu(x,y)\)，
+那么只要将上式中的体密度\(\rho(x,y,z)\)换成面密度\(\rho(x,y)\)，
+将\(\Omega\)上的三重积分换成\(D\)上的二重积分，
+就可得到相应的计算公式.

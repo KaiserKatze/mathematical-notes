@@ -1,0 +1,283 @@
+\section{含参变量的积分}
+\subsection{含参变量积分的概念与性质}
+设\(f(x,y)\)是矩形（闭区域）\(R = [a,b]\times[c,d]\)上的连续函数.
+在\([a,b]\)上任意取定\(x\)的一个值，于是\(f(x,y)\)是变量\(y\)在\([c,d]\)上的一个一元连续函数，从而积分\[
+\int_c^d f(x,y) \dd{y}
+\]存在，这个积分的值依赖于取定的\(x\)的值.
+当\(x\)的值改变时，一般来说这个积分的值也跟着改变.
+这个积分确定一个定义在\([a,b]\)上的关于\(x\)的函数，若将其记为\(\phi(x)\)，则有\[
+\phi(x) = \int_c^d f(x,y) \dd{y}
+\quad(a \leq x \leq b).
+\]这里变量\(x\)在积分过程中看作是一个常量，通常称其为\DefineConcept{参变量}，因此上式右端是一个含参变量\(x\)的积分，这个积分确定关于\(x\)的一个函数\(\phi(x)\).
+下面讨论关于\(\phi(x)\)的一些性质.
+
+\begin{theorem}
+如果函数\(f(x,y)\)在矩形\(R=[a,b]\times[c,d]\)上连续，
+那么函数\[
+\phi(x) = \int_c^d{f(x,y)\dd{y}}, \quad a \leq x \leq b
+\]在\([a,b]\)上也连续.
+\end{theorem}
+
+\begin{theorem}
+如果函数\(f(x,y)\)在矩形\(R=[a,b]\times[c,d]\)上连续，则\[
+\int_a^b\left[\int_c^d f(x,y) \dd{y}\right] \dd{x}
+=\int_c^d\left[\int_a^b f(x,y) \dd{x}\right] \dd{y}.
+\]
+\end{theorem}
+上式也可写成\[
+\int_a^b \dd{x} \int_c^d f(x,y) \dd{y}
+=\int_c^d \dd{y} \int_a^b f(x,y) \dd{x}.
+\]
+
+\begin{theorem}
+如果函数\(f(x,y)\)及其偏导数\(f'_x(x,y)\)都在矩形\(R=[a,b]\times[c,d]\)上连续，那么函数\[
+\phi(x) = \int_c^d f(x,y) \dd{y}
+\quad(a \leq x \leq b)
+\]在\([a,b]\)上可微，并且\[
+\phi'(x) = \dv{x} \int_c^d f(x,y) \dd{y}
+= \int_c^d f'_x(x,y) \dd{y}.
+\]
+\end{theorem}
+
+\begin{theorem}
+如果函数\(f(x,y)\)在矩形\(R=[a,b]\times[c,d]\)上连续，
+函数\(\alpha(x)\)与\(\beta(x)\)在区间\([a,b]\)上连续，且\[
+x \in [a,b] \implies \alpha(x),\beta(x) \in [c,d],
+\]则函数\[
+\Phi(x) = \int_{\alpha(x)}^{\beta(x)} f(x,y)\dd{y}
+\quad(a \leq x \leq b)
+\]在\([a,b]\)上也连续.
+\end{theorem}
+
+\begin{theorem}
+如果函数\(f(x,y)\)及其偏导数\(f'_x(x,y)\)都在矩形\(R=[a,b]\times[c,d]\)上连续，
+函数\(\alpha(x)\)与\(\beta(x)\)在区间\([a,b]\)上可微，且\[
+x \in [a,b] \implies \alpha(x),\beta(x) \in [c,d],
+\]则函数\[
+\Phi(x) = \int_{\alpha(x)}^{\beta(x)} f(x,y)\dd{y}
+\quad(a \leq x \leq b)
+\]在\([a,b]\)上也可微，且\begin{align*}
+\Phi'(x) &= \dv{x} \int_{\alpha(x)}^{\beta(x)} f(x,y) \dd{y} \\
+&= \int_{\alpha(x)}^{\beta(x)} f'_x(x,y) \dd{y}
+	+ f[x,\beta(x)] \cdot \beta'(x)
+	- f[x,\alpha(x)] \cdot \alpha'(x).
+\end{align*}
+\end{theorem}
+上式也被称为\DefineConcept{莱布尼茨公式}.
+
+\begin{example}
+设\(F(x) = \int_x^{x^2} \frac{\sin xy}{y} \dd{y}\)，求\(F'(x)\).
+\begin{solution}
+应用莱布尼茨公式，得\begin{align*}
+F'(x) &= \int_x^{x^2} \cos xy \dd{y}
++ \frac{\sin x^3}{x^2} \cdot 2x
+- \frac{\sin x^2}{x} \cdot 1 \\
+&= \left[ \frac{\sin xy}{x} \right]_x^{x^2}
++ \frac{2 \sin x^3}{x}
+- \frac{\sin x^2}{x}
+= \frac{3 \sin x^3 - 2 \sin x^2}{x}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(I = \int_0^1 \frac{x^b-x^a}{\ln x} \dd{x}\ (0<a<b)\).
+\begin{solution}
+因为\[
+\int_a^b x^y \dd{y}
+= \left[ \frac{x^y}{\ln x} \right]_a^b
+= \frac{x^b - x^a}{\ln x},
+\]所以\[
+I = \int_0^1 \dd{x} \int_a^b x^y \dd{y}.
+\]这里函数\(f(x,y) = x^y\)在矩形\(R=[0,1]\times[a,b]\)上连续，那么只要交换积分次序，就有\[
+I = \int_a^b \dd{y} \int_0^1 x^y \dd{x}
+= \int_a^b \left[\frac{x^{y+1}}{y+1}\right]_0^1 \dd{y}
+= \int_a^b \frac{1}{y+1} \dd{y}
+= \ln\frac{b+1}{a+1}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算定积分\(I = \int_0^1 \frac{\ln(1+x)}{1+x^2} \dd{x}\).
+\begin{solution}
+考虑含参变量\(\alpha\)的积分所确定的函数\[
+\phi(\alpha) = \int_0^1 \frac{\ln(1+\alpha x)}{1+x^2} \dd{x}.
+\]显然，\(\phi(0) = 0\)，\(\phi(1) = I\).
+对\(\phi(\alpha)\)求导得\[
+\phi'(\alpha)
+= \int_0^1 \frac{x}{(1+\alpha x)(1+x^2)} \dd{x}.
+\]把被积函数分解为部分分式，得到\[
+\frac{x}{(1+\alpha x)(1+x^2)}
+= \frac{1}{1+\alpha^2} \left[
+\frac{-\alpha}{1+\alpha x}
++ \frac{x}{1+x^2}
++ \frac{\alpha}{1+x^2}
+\right].
+\]于是\begin{align*}
+\phi'(\alpha)
+&= \frac{1}{1+\alpha^2} \left[
+\int_0^1 \frac{-\alpha \dd{x}}{1+\alpha x}
++ \int_0^1 \frac{x \dd{x}}{1+x^2}
++ \int_0^1 \frac{\alpha \dd{x}}{1+x^2}
+\right] \\
+&= \frac{1}{1+\alpha^2} \left[
+-\ln(1+\alpha)
++ \frac{1}{2} \ln2
++ \alpha \cdot \frac{\pi}{4}
+\right],
+\end{align*}
+上式在\([0,1]\)上对\(\alpha\)积分，得到\begin{align*}
+I &= \phi(1)-\phi(0)
+= \int_0^1 \phi'(\alpha) \dd{\alpha} \\
+&= - \int_0^1 \frac{\ln(1+\alpha)}{1+\alpha^2} \dd{\alpha}
++ \frac{1}{2} \ln2 \int_0^1 \frac{\dd{\alpha}}{1+\alpha^2}
++ \frac{\pi}{4} \int_0^1 \frac{\alpha}{1+\alpha^2} \dd{\alpha} \\
+&= -I + \frac{\ln2}{2} \cdot \frac{\pi}{4} + \frac{\pi}{4}\cdot\frac{\ln2}{2}
+= -I + \frac{\pi}{4} \ln2,
+\end{align*}
+解得\(I = \frac{\pi}{8} \ln2\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求函数\(f(x) = \int_1^{x^2} (x^2-t) e^{-t^2} \dd{t}\)的单调区间与极值.
+\begin{solution}
+求导得\[
+\dv{f}{x}
+= \int_1^{x^2} \pdv{x} (x^2-t) e^{-t^2} \dd{t}
+= 2x \int_1^{x^2} e^{-t^2} \dd{t}.
+\]
+因为\(e^{-t^2}>0\ (-\infty<t<+\infty)\)，所以根据\cref{theorem:定积分.定积分性质5}，当\(x^2>1\)时，有\[
+\int_1^{x^2} e^{-t^2} \dd{t} > 0;
+\]当\(x^2 \leq 1\)时，有\[
+\int_1^{x^2} e^{-t^2} \dd{t} \leq 0.
+\]那么\begin{center}
+\begin{tabular}{c|*7c}
+\hline
+\(x\) & \((-\infty,-1)\) & \(-1\) & \((-1,0)\) & \(0\) & \((0,1)\) & \(1\) & \((1,+\infty)\) \\ \hline
+\(f'(x)\) & \(-\) & \(0\) & \(+\) & \(0\) & \(-\) & \(0\) & \(+\) \\
+\(f(x)\) & \(\searrow\) & \(0\) & \(\nearrow\) & \((1-e^{-1})/2\) & \(\searrow\) & \(0\) & \(\nearrow\) \\
+\hline
+\end{tabular}
+\end{center}
+也就是说，函数\(f\)在区间\((-\infty,-1)\cup(0,1)\)上单调减少，在区间\((-1,0)\cup(1,+\infty)\)上单调增加，在点\(\pm1\)处取得极小值\(0\)，在点\(0\)处取得极大值\(\frac{1-e^{-1}}{2}\).
+\end{solution}
+\end{example}
+本例若利用\cref{theorem:定积分.定积分性质1} 将\[
+\int_1^{x^2} (x^2-t) e^{-t^2} \dd{t}
+\]拆开成\[
+x^2 \int_1^{x^2} e^{-t^2} \dd{t}
+\quad\text{和}\quad
+\int_1^{x^2} t e^{-t^2} \dd{t}
+\]两个部分，再分别对\(x\)求导，也可以求出\(\dv{f}{x}\).
+
+\begin{example}%《高等数学（第六版 下册）》习题10-5 1.(1)
+计算极限\(\lim_{x\to0} \int_x^{x+1} \frac{\dd{y}}{1+x^2+y^2}\).
+\begin{solution}
+记\[
+	f(t) = \int_x^{x+t} \frac{\dd{y}}{1+x^2+y^2},
+\]
+求导得\begin{align*}
+	f'(t)
+	&= \int_x^{x+t} \pdv{t}(\frac{1}{1+x^2+y^2}) \dd{y}
+	+ \frac{1}{1+x^2+(x+t)^2} \cdot 1
+	- \frac{1}{1+x^2+x^2} \cdot 0 \\
+	&= \frac{1}{1+x^2+(x+t)^2}.
+\end{align*}
+因为\(f(0) = 0\)，
+所以
+\begin{align*}
+	&\hspace{-20pt}
+	\int_x^{x+1} \frac{\dd{y}}{1+x^2+y^2}
+	= f(1) \\
+	&= f(1) - f(0)
+	= \int_0^1 f'(t) \dd{t} \\
+	&= \int_0^1 \frac{\dd{t}}{1+x^2+(x+t)^2} \\
+	&= \frac{1}{\sqrt{1+x^2}}
+		\int_0^1 \left[1+\frac{(x+t)^2}{1+x^2}\right]^{-1} \dd(\frac{x+t}{\sqrt{1+x^2}}) \\
+	&= \frac{1}{\sqrt{1+x^2}}
+		\left(\arctan\frac{x+t}{\sqrt{1+x^2}}\right)_0^1 \\
+	&= \frac{1}{\sqrt{1+x^2}}
+		\left(
+			\arctan\frac{x+1}{\sqrt{1+x^2}}
+			- \arctan\frac{x}{\sqrt{1+x^2}}
+		\right).
+\end{align*}
+因此\[
+	\lim_{x\to0} \int_x^{x+1} \frac{\dd{y}}{1+x^2+y^2}
+	= \lim_{x\to0} f(1)
+	= \lim_{x\to0} \frac{1}{\sqrt{1+x^2}} \left(
+		\arctan\frac{x+1}{\sqrt{1+x^2}}
+		- \arctan\frac{x}{\sqrt{1+x^2}}
+	\right)
+	= \frac{\pi}{4}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}%《高等数学（第六版 下册）》习题10-5 1.(2)
+\def\l{\lim_{x\to0}}%
+计算极限\(\l \int_{-1}^1 \sqrt{x^2+y^2} \dd{y}\).
+\begin{solution}
+设\[
+f(t)
+=\frac{1}{2} \int_{-t}^t \sqrt{x^2+y^2} \dd{y}
+=\int_0^t \sqrt{x^2+y^2} \dd{y},
+\]
+求导得\[
+f'(t)
+= \int_0^t \pdv{t} \sqrt{x^2+y^2} \dd{y}
+	+ \sqrt{x^2+t^2} \cdot 1
+= \sqrt{x^2+t^2}.
+\]又因为\(f(0) = 0\)，所以\begin{align*}
+\frac{1}{2} \int_{-1}^1 \sqrt{x^2+y^2} \dd{t}
+&=f(1) - f(0)
+= \int_0^1 f'(t) \dd{t}
+= \int_0^1 \sqrt{x^2+t^2} \dd{t} \\
+&= \left[
+\frac{t}{2} \sqrt{x^2+t^2} + \frac{x^2}{2} \ln(t+\sqrt{x^2+t^2})
+\right]_0^1 \\
+&= \frac{1}{2} \sqrt{x^2+1} + \frac{x^2}{2} \left[ \ln(1+\sqrt{x^2+1}) - \ln\abs{x} \right]
+\end{align*}
+从而\[
+\l \int_{-1}^1 \sqrt{x^2+y^2} \dd{y}
+= \l \left[
+\sqrt{x^2+1}
++ x^2 \ln(1+\sqrt{x^2+1}) - x^2 \ln\abs{x}
+\right]
+= 1.
+\]
+\end{solution}
+\end{example}
+
+之前我们讲到，在计算反常积分时，
+可以直接利用反常积分的定义
+以及牛顿--莱布尼茨公式.
+除此以外，我们还可以从含参变量积分的思路处理复杂的反常积分问题.
+
+\begin{example}
+证明反常积分\[
+I = \int_0^{+\infty} \frac{\sin x}{x} \dd{x}
+\]收敛，并计算它的值.
+\begin{proof}
+令\(I(a) = \int_0^{+\infty} \frac{\sin x}{x} e^{-ax} \dd{x}\ (a>0)\)，
+于是\(I(0) = I\).
+求导得\[
+	I'(a) = \dv{a} I(a)
+	= \int_0^{+\infty} \frac{\sin x}{x} e^{-ax} (-x) \dd{x}
+	= - \int_0^{+\infty} e^{-ax} \sin x \dd{x}
+	= - \frac{1}{a^2+1},
+\]
+再积分得\[
+	I(a) = -\arctan a + C,
+\]
+其中\(C\)是待定常数.
+令\(a\to+\infty\)，
+得\(\arctan a\to\frac{\pi}{2}\)，
+\(\int_0^{+\infty} \frac{\sin x}{x} e^{-ax} \dd{x} \to 0\)，
+所以\(C = \frac{\pi}{2}\).
+因此\(I = I(0) = \frac{\pi}{2}\).
+\end{proof}
+\end{example}
+上述反常积分又称为狄利克雷积分，利用留数定理也可以求出它的值.
