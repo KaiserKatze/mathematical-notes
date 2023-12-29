@@ -213,21 +213,57 @@
 		= \phi'(t) \vb{u}'[\phi(t)].
 \end{align}
 \begin{proof}
-设\(\vb{u}(t) = (u_1(t),u_2(t),\dotsc,u_n(t))\)，
-\(\vb{v}(t) = (v_1(t),v_2(t),\dotsc,v_n(t))\).
-那么\[
-	\vb{u}(t) \cdot \vb{v}(t)
-	= u_1(t) v_1(t) + \dotsb + u_n(t) v_n(t),
-\]
-于是\begin{align*}
+设\(\increment\vb{u} = \vb{u}(t+\increment t) - \vb{u}(t)\)，
+\(\increment\vb{v} = \vb{v}(t+\increment t) - \vb{v}(t)\)，
+则\begin{align*}
 	\dv{t} [\vb{u}(t) \cdot \vb{v}(t)]
-	&= [u_1'(t) v_1(t) + u_1(t) v_1'(t)]
-		+ \dotsb + [u_n'(t) v_n(t) + u_n(t) v_n'(t)] \\
-	&= [u_1'(t) v_1(t) + \dotsb + u_n'(t) v_n(t)]
-		+ [u_1(t) v_1'(t) + \dotsb + u_n(t) v_n'(t)] \\
-	&= \vb{u}'(t) \cdot \vb{v}(t) + \vb{u}(t) \cdot \vb{v}'(t).
-	\qedhere
+	&= \lim_{\increment t\to0}
+		\frac{
+			\vb{u}(t+\increment t) \cdot \vb{v}(t+\increment t)
+			- \vb{u}(t) \cdot \vb{v}(t)
+		}{
+			\increment t
+		} \\
+	&= \lim_{\increment t\to0}
+		\frac{
+			[\vb{u}(t) + \increment\vb{u}] \cdot [\vb{v}(t) + \increment\vb{v}]
+			- \vb{u}(t) \cdot \vb{v}(t)
+		}{
+			\increment t
+		} \\
+	&= \lim_{\increment t\to0}
+		\frac{
+			[\vb{u}(t) \cdot \vb{v}(t) + \increment\vb{u} \cdot \vb{v}(t)
+			+ \vb{u}(t) \cdot \increment\vb{v} + \increment\vb{u} \cdot \increment\vb{v}]
+			- \vb{u}(t) \cdot \vb{v}(t)
+		}{
+			\increment t
+		}
+		\tag{\hyperref[equation:解析几何.内积的线性性2]{线性性}} \\
+	&= \lim_{\increment t\to0}
+		\frac{
+			\vb{u}(t) \cdot \increment\vb{v} + \increment\vb{u} \cdot \vb{v}(t)
+			+ \increment\vb{u} \cdot \increment\vb{v}
+		}{
+			\increment t
+		} \\
+	&= \lim_{\increment t\to0} \left[
+		\vb{u}(t) \cdot \frac{\increment\vb{v}}{\increment t}
+		+ \frac{\increment\vb{u}}{\increment t} \cdot \vb{v}(t)
+		+ \increment t \frac{\increment\vb{u}}{\increment t}
+			\cdot \frac{\increment\vb{v}}{\increment t}
+	\right]
+		\tag{\hyperref[equation:解析几何.内积的线性性1]{线性性}} \\
+	&= \vb{u}(t) \cdot \vb{v}'(t) + \vb{u}'(t) \cdot \vb{v}(t).
 \end{align*}
+注意到，在上述证明过程中，我们只运用了向量的数量积的双线性性，
+因此，这个证明对任意一个同样具有双线性性的二元代数运算也同样有用.
+由于向量的向量积也具有双线性性，
+所以\[
+	\dv{t} [\vb{u}(t) \times \vb{v}(t)]
+	= \vb{u}'(t) \times \vb{v}(t) + \vb{u}(t) \times \vb{v}'(t).
+	\qedhere
+\]
 \end{proof}
 \end{theorem}
 
