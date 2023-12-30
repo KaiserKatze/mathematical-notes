@@ -120,15 +120,34 @@
 \begin{theorem}
 设\(\vb{f}(t) = (f_1(t),f_2(t),f_3(t))\)，
 \(\vb{g}(t) = (g_1(t),g_2(t),g_3(t))\)，
-\[
-	\lim_{t \to t_0} \vb{f}(t) = \vb{u},
-	\qquad
-	\lim_{t \to t_0} \vb{g}(t) = \vb{v},
-\]
+\(\lim_{t \to t_0} \vb{f}(t) = \vb{u}\)，
+\(\lim_{t \to t_0} \vb{g}(t) = \vb{v}\)，
 那么\[
 	\lim_{t \to t_0} [\vb{f}(t) \times \vb{g}(t)]
 	= \vb{u} \times \vb{v}.
 \]
+\begin{proof}
+直接计算得\begin{align*}
+	\lim_{t \to t_0} [\vb{f}(t) \times \vb{g}(t)]
+	&= \lim_{t \to t_0} \begin{bmatrix}
+		f_2(t) g_3(t) - f_3(t) g_2(t) \\
+		f_3(t) g_1(t) - f_1(t) g_3(t) \\
+		f_1(t) g_2(t) - f_2(t) g_1(t) \\
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
+		\lim_{t \to t_0} [f_2(t) g_3(t) - f_3(t) g_2(t)] \\
+		\lim_{t \to t_0} [f_3(t) g_1(t) - f_1(t) g_3(t)] \\
+		\lim_{t \to t_0} [f_1(t) g_2(t) - f_2(t) g_1(t)] \\
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
+		f_2(t_0) g_3(t_0) - f_3(t_0) g_2(t_0) \\
+		f_3(t_0) g_1(t_0) - f_1(t_0) g_3(t_0) \\
+		f_1(t_0) g_2(t_0) - f_2(t_0) g_1(t_0) \\
+	\end{bmatrix} \\
+	&= \vb{u} \times \vb{v}.
+	\qedhere
+\end{align*}
+\end{proof}
 \end{theorem}
 
 我们可以把一元向量值函数连续性的概念推广到变换上.
