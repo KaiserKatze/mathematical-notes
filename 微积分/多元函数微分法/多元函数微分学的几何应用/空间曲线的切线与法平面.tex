@@ -1,0 +1,211 @@
+\subsection{空间曲线的切线与法平面}
+假设空间曲线\(\Gamma\)满足参数方程 \labelcref{equation:解析几何.曲线的参数方程}
+\[
+	\vb{r}
+	= \vb{f}(t)
+	= (x(t),y(t),z(t)),
+	\quad \alpha \leq t \leq \beta.
+\]
+其中\(\vb{f}\)的分量函数\(x(t),y(t),z(t)\)在\([\alpha,\beta]\)上都可导，
+且它们的导数\(x'(t),y'(t),z'(t)\)不同时为零.
+
+设点\(M(x_0,y_0,z_0)\)在曲线\(\Gamma\)上，对应的参数为\(t_0\).
+由向量值函数的导向量的几何意义知，
+向量\begin{equation}
+	\vb{T}
+	= \vb{f}'(t_0)
+	= (x'(t_0),y'(t_0),z'(t_0)).
+\end{equation}
+就是曲线\(\Gamma\)在点\(M\)处的一个切向量，
+从而曲线\(\Gamma\)在点\(M\)处的切线方程为
+\begin{equation}
+	\begin{bmatrix}
+		x \\
+		y \\
+		z
+	\end{bmatrix}
+	= \lambda \begin{bmatrix}
+		x'(t_0) \\
+		y'(t_0) \\
+		z'(t_0)
+	\end{bmatrix}
+	+ \begin{bmatrix}
+		x_0 \\
+		y_0 \\
+		z_0
+	\end{bmatrix},
+	\quad \lambda\in\mathbb{R},
+\end{equation}
+或
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲线的切线方程}
+	\frac{x-x_0}{x'(t_0)}
+	=\frac{y-y_0}{y'(t_0)}
+	=\frac{z-z_0}{z'(t_0)}.
+\end{equation}
+
+我们知道，通过点\(M\)且与切线垂直的平面，就是曲线\(\Gamma\)在点\(M\)处的法平面.
+它是通过点\(M(x_0,y_0,z_0)\)且以\(\vb{T}=\vb{f}'(t_0)\)为法向量的平面，
+因此法平面方程为\begin{equation}
+	\vb{T}\cdot(x-x_0,y-y_0,z-z_0)=0
+\end{equation}
+或\begin{equation}
+	x'(t_0) \cdot (x-x_0) + y'(t_0) \cdot (y-y_0) + z'(t_0) \cdot (z-z_0) = 0.
+\end{equation}
+
+若空间曲线\(\Gamma\)的方程以\[
+	\left\{ \begin{array}{l}
+		y = \phi(x), \\
+		z = \psi(x)
+	\end{array} \right.
+\]的形式给出，
+取\(x\)为参数，
+它就可以表为参数方程的形式\[
+	\left\{ \begin{array}{l}
+		x = x, \\
+		y = \phi(x), \\
+		z = \psi(x).
+	\end{array} \right.
+\]
+若\(\phi(x),\psi(x)\)都在\(x=x_0\)处可导，
+那么根据上面的讨论可知，\[
+	\vb{T} = (1,\phi'(x_0),\psi'(x_0)),
+\]
+因此曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲线的切线方程.变式1}
+	\frac{x-x_0}{1}
+	=\frac{y-y_0}{\phi'(x_0)}
+	=\frac{z-z_0}{\psi'(x_0)}.
+\end{equation}
+曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的法平面方程为
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲线的法平面方程.变式1}
+	(x-x_0) + \phi'(x_0) \cdot (y-y_0) + \psi'(x_0) \cdot (z-z_0) = 0
+\end{equation}
+
+假设空间曲线\(\Gamma\)满足一般方程 \labelcref{equation:解析几何.曲线的一般方程}
+\[
+	\left\{ \begin{array}{l}
+		F(x,y,z) = 0, \\
+		G(x,y,z) = 0,
+	\end{array} \right.
+\]
+\(M(x_0,y_0,z_0)\)是曲线\(\Gamma\)上的一个点.
+又设\(F\)、\(G\)有对各个变量的连续偏导数，
+且\[
+	\eval{\jacobi{F,G}{y,z}}_{(x_0,y_0,z_0)} \neq 0.
+\]
+这时方程组 \labelcref{equation:解析几何.曲线的一般方程}
+在点\(M(x_0,y_0,z_0)\)的某一邻域内确定了一组函数\(y=\phi(x)\)和\(z=\psi(x)\).
+要求曲线\(\Gamma\)在点\(M\)处的切线方程和法平面方程，
+只要求出\(\phi'(x_0)\)、\(\psi'(x_0)\)，
+然后代入\cref{equation:多元函数微分学的几何应用.曲线的切线方程.变式1,equation:多元函数微分学的几何应用.曲线的法平面方程.变式1} 就行了.
+为此，我们在恒等式\[
+	F[x,\phi(x),\psi(x)] = 0,
+	\quad\text{和}\quad
+	G[x,\phi(x),\psi(x)] = 0
+\]两边分别对\(x\)求全导数，
+得\[
+	\left\{ \def\arraystretch{1.5} \begin{array}{l}
+		\pdv{F}{x} + \pdv{F}{y} \dv{y}{x} + \pdv{F}{z} \dv{z}{x} = 0, \\
+		\pdv{G}{x} + \pdv{G}{y} \dv{y}{x} + \pdv{G}{z} \dv{z}{x} = 0.
+	\end{array} \right.
+\]
+由假设可知，
+在点\(M\)的某个邻域内\[
+	J = \jacobi{F,G}{y,z} \neq 0,
+\]
+故可解得\[
+	\dv{y}{x} = \frac{1}{J} \jacobi{F,G}{z,x},
+	\qquad
+	\dv{z}{x} = \frac{1}{J} \jacobi{F,G}{x,y}.
+\]
+
+于是\(\vb{T} = (1,\phi'(x_0),\psi'(x_0))\)是曲线\(\Gamma\)在点\(M\)处的一个切向量，
+这里\[
+	\phi'(x_0)
+	= \frac{
+			\begin{vmatrix}
+				F'_z & F'_x \\
+				G'_z & G'_x
+			\end{vmatrix}_M
+		}{
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_M
+		},
+	\qquad
+	\psi'(x_0)
+	= \frac{
+			\begin{vmatrix}
+				F'_x & F'_y \\
+				G'_x & G'_y
+			\end{vmatrix}_M
+		}{
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_M
+		},
+\]
+分子分母中带下标\(M\)的行列式表达行列式在点\(M(x_0,y_0,z_0)\)的值.
+把上面的切向量\(\vb{T}\)乘以\(J\)，得\begin{align*}
+	\vb{T}_1
+	&= \left(
+		\begin{vmatrix}
+			F'_y & F'_z \\
+			G'_y & G'_z \\
+		\end{vmatrix}_M,
+		\begin{vmatrix}
+			F'_z & F'_x \\
+			G'_z & G'_x \\
+		\end{vmatrix}_M,
+		\begin{vmatrix}
+			F'_x & F'_y \\
+			G'_x & G'_y \\
+		\end{vmatrix}_M
+	\right) \\
+	&= \begin{vmatrix}
+		\vb{i} & \vb{j} & \vb{k} \\
+		F'_x & F'_y & F'_z \\
+		G'_x & G'_y & G'_z
+	\end{vmatrix}
+	,
+\end{align*}
+这也是曲线\(\Gamma\)在点\(M\)处的一个切向量.
+由此可以写出曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的切线方程为
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲线的切线方程.变式2}
+	\frac{x-x_0}{\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z \\
+	\end{vmatrix}_M}
+	=\frac{y-y_0}{\begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x \\
+	\end{vmatrix}_M}
+	=\frac{z-z_0}{\begin{vmatrix}
+		F'_x & F'_y \\
+		G'_x & G'_y \\
+	\end{vmatrix}_M}.
+\end{equation}
+曲线\(\Gamma\)在点\(M(x_0,y_0,z_0)\)处的法平面方程为
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲线的法平面方程.变式2}
+	\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z \\
+	\end{vmatrix}_M
+	(x-x_0)
+	+ \begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x \\
+	\end{vmatrix}_M
+	(y-y_0)
+	+ \begin{vmatrix}
+		F'_x & F'_y \\
+		G'_x & G'_y \\
+	\end{vmatrix}_M
+	(z-z_0)
+	= 0.
+\end{equation}
+如果\(\eval{\jacobi{F,G}{y,z}}_M = 0\)，
+而\(\eval{\jacobi{F,G}{z,x}}_M\)和\(\eval{\jacobi{F,G}{x,y}}_M\)中至少有一个不等于零，
+我们可得同样的结果.

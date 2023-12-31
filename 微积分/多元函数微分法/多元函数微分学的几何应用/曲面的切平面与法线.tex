@@ -1,0 +1,186 @@
+\subsection{曲面的切平面与法线}
+我们先讨论由隐式给出的曲面方程 \labelcref{equation:解析几何.曲面的一般方程}
+\[
+	F(x,y,z) = 0
+\]的情形，
+然后把由显式给出的曲面方程\(z = f(x,y)\)作为它的特殊情形.
+
+设曲面\(\Sigma\)由方程 \labelcref{equation:解析几何.曲面的一般方程} 给出，
+\(M(x_0,y_0,z_0)\)是曲面\(\Sigma\)上的一点，
+并设函数\(F(x,y,z)\)的偏导数在该点连续且不同时为零.
+在曲面\(\Sigma\)上，通过点\(M\)任意引一条曲线\(\Gamma\)，
+假设曲线\(\Gamma\)的参数方程为
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤1}
+	x = \phi(t),
+	y = \psi(t),
+	z = \omega(t)
+	\quad (\alpha \leq t \leq \beta),
+\end{equation}
+\(t = t_0\)对应于点\(M(x_0,y_0,z_0)\)，
+且\(\phi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)不全为零，
+则由\cref{equation:多元函数微分学的几何应用.曲线的切线方程}
+可得这曲线的切线方程为\[
+	\frac{x-x_0}{\phi'(t_0)}
+	=\frac{y-y_0}{\psi'(t_0)}
+	=\frac{z-z_0}{\omega'(t_0)}.
+\]
+
+我们现在要证明，
+在曲面\(\Sigma\)上通过点\(M\)且在点\(M\)处具有切线的任何曲线，
+它们在点\(M\)处的切线都在同一个平面上.
+事实上，因为曲线\(\Gamma\)完全在曲面\(\Sigma\)上，
+即\(\Gamma \subseteq \Sigma\)，
+所以有恒等式\[
+	F[\phi(t),\psi(t),\omega(t)] = 0
+	\quad(\alpha \leq t \leq \beta),
+\]
+又因\(F(x,y,z)\)在点\((x_0,y_0,z_0)\)处有连续偏导数，
+且\(\phi'(t_0)\)、\(\psi'(t_0)\)、\(\omega'(t_0)\)都存在，
+所以这恒等式左边的复合函数在\(t = t_0\)时有全导数，
+且这全导数等于零，
+即\[
+	\eval{\dv{t} F[\phi(t),\psi(t),\omega(t)]}_{t=t_0} = 0,
+\]
+即有\begin{equation}\label{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤2}
+	F'_x(x_0,y_0,z_0) \phi'(t_0)
+	+ F'_y(x_0,y_0,z_0) \psi'(t_0)
+	+ F'_z(x_0,y_0,z_0) \omega'(t_0)
+	= 0.
+\end{equation}
+
+引入向量\begin{equation}
+	\vb{n}=(F'_x(x_0,y_0,z_0),F'_y(x_0,y_0,z_0),F'_z(x_0,y_0,z_0)),
+\end{equation}
+则\cref{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤2} 表示
+曲线 \labelcref{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤1}
+在点\(M\)处的切向量\[
+	\vb{T} = (\phi'(t_0),\psi'(t_0),\omega'(t_0))
+\]与向量\(\vb{n}\)垂直.
+因为曲线 \labelcref{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤1}
+是曲面上通过点\(M\)的任意一条曲线，
+它们在点\(M\)的切线都与同一个向量\(\vb{n}\)垂直，
+所以曲面上通过点\(M\)的一切曲线在点\(M\)的切线都在同一个平面\(\tau\)上.
+这个平面\(\tau\)就是曲面\(\Sigma\)在点\(M\)的切平面.
+这切平面\(\tau\)的方程是
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲面的切平面方程}
+	F'_x(x_0,y_0,z_0) (x-x_0)
+	+ F'_y(x_0,y_0,z_0) (y-y_0)
+	+ F'_z(x_0,y_0,z_0) (z-z_0)
+	= 0.
+\end{equation}
+曲面\(\Sigma\)在点\(M(x_0,y_0,z_0)\)的法线的方程是
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲面的法线方程}
+	\frac{x-x_0}{F'_x(x_0,y_0,z_0)}
+	=\frac{y-y_0}{F'_y(x_0,y_0,z_0)}
+	=\frac{z-z_0}{F'_z(x_0,y_0,z_0)}.
+\end{equation}
+我们知道，
+垂直于曲面上切平面的向量称为曲面的法向量.
+向量\(\vb{n}\)就是曲面\(\Sigma\)在点\(M\)处的一个法向量.
+
+现在来考虑曲面方程
+\begin{equation}\label{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤3}
+	z = f(x,y)
+\end{equation}
+令\(F(x,y,z)=f(x,y)-z\)，
+得\(F(x,y,z)=0\)，
+可见\[
+	F'_x(x,y,z) = f'_x(x,y),
+	\qquad
+	F'_y(x,y,z) = f'_y(x,y),
+	\qquad
+	F'_z(x,y,z) = -1.
+\]
+于是，当函数\(f(x,y)\)的偏导数\(f'_x(x,y)\)、\(f'_y(x,y)\)在点\((x_0,y_0)\)连续时，
+曲面 \labelcref{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤3}
+在点\(M(x_0,y_0,z_0)\)处的法向量为\[
+	\vb{n}=(f'_x(x,y),f'_y(x,y),-1),
+\]
+切平面方程为\begin{equation}\label{equation:多元函数微分学的几何应用.曲面的切平面方程.变式1}
+	z-z_0 = f'_x(x_0,y_0) (x-x_0) + f'_y(x_0,y_0) (y-y_0).
+\end{equation}
+而法线方程为\begin{equation}\label{equation:多元函数微分学的几何应用.曲面的法线方程.变式1}
+	\frac{x-x_0}{f'_x(x_0,y_0)}
+	=\frac{y-y_0}{f'_y(x_0,y_0)}
+	=\frac{z-z_0}{-1}.
+\end{equation}
+如果用\(\alpha,\beta,\gamma\)表示
+曲面 \labelcref{equation:多元函数微分学的几何应用.曲面上的曲线.中间步骤3} 的方向角，
+并假定法向量与\(z\)轴的正向所成的角\(\gamma\)是锐角，
+则法向量的方向余弦为\[
+	\cos\alpha=\frac{-f'_x}{\sqrt{1+(f'_x)^2+(f'_y)^2}}, \qquad
+	\cos\beta=\frac{-f'_y}{\sqrt{1+(f'_x)^2+(f'_y)^2}}, \qquad
+	\cos\alpha=\frac{1}{\sqrt{1+(f'_x)^2+(f'_y)^2}}.
+\]
+
+\begin{example}
+求曲面\[
+	F(x,y,z) = 0
+	\quad\text{和}\quad
+	G(x,y,z) = 0
+\]的交线\(\Gamma\)在\(xOy\)面上的投影的切线方程.
+\begin{solution}
+因为两曲面在点\(P_0(x_0,y_0,z_0)\)处的法向量分别是
+\[
+	\vb{n}_F
+	= (F'_x(P_0),F'_y(P_0),F'_z(P_0))
+	\quad\text{和}\quad
+	\vb{n}_G
+	= (G'_x(P_0),G'_y(P_0),G'_z(P_0)),
+\]
+故交线在点\(P_0\)处的切向量为\[
+	\vb{\tau}
+	= \vb{n}_F \times \vb{n}_G
+	= \begin{vmatrix}
+		\vb{i} & \vb{j} & \vb{k} \\
+		F'_x & F'_y & F'_z \\
+		G'_x & G'_y & G'_z
+	\end{vmatrix}_{P_0}.
+\]
+交线在\(xOy\)面的投影曲线\(\Gamma_{xy}\)
+在点\(P_0\)处对应的投影点\(P'_0(x_0,y_0)\)处的切向量\(\vb{\tau}_{xy}\)
+与\(\vb{\tau}\)相比缺少\(z\)分量，
+也就是说\[
+	\vb{\tau}_{xy}
+	= \left(
+			\begin{vmatrix}
+				F'_y & F'_z \\
+				G'_y & G'_z
+			\end{vmatrix}_{P_0},
+			\begin{vmatrix}
+				F'_z & F'_x \\
+				G'_z & G'_x
+			\end{vmatrix}_{P_0}
+		\right).
+\]
+那么所求投影的切线方程为\[
+	C:
+	\frac{x - x_0}{\begin{vmatrix}
+		F'_y & F'_z \\
+		G'_y & G'_z
+	\end{vmatrix}_{P_0}}
+	= \frac{y - y_0}{\begin{vmatrix}
+		F'_z & F'_x \\
+		G'_z & G'_x
+	\end{vmatrix}_{P_0}}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求曲面\(\Gamma: z = x + 2y + \ln(1+x^2+y^2)\)在点\((0,0,0)\)处的切平面方程.
+\begin{solution}
+记\(F(x,y,z) = x + 2y - z + \ln(1+x^2+y^2)\)，
+那么曲面\(\Gamma\)在点\((x,y,z)\)处的法向量为\[
+	\vb{n}
+	= (F'_x,F'_y,F'_z)
+	= \left(
+		1 + \frac{2x}{1+x^2+y^2},
+		2 + \frac{2y}{1+x^2+y^2},
+		-1
+	\right),
+\]
+即在点\((0,0,0)\)处的法向量为\((1,2,-1)\)，
+从而切平面方程为\(x+2y-z=0\).
+\end{solution}
+\end{example}
