@@ -314,6 +314,64 @@
 （当且仅当\(a=b=c\)时取“\(=\)”号）.
 \end{corollary}
 
+现在我们对\cref{theorem:不等式.基本不等式2推论,theorem:不等式.基本不等式3推论} 作进一步推广.
+\begin{proposition}
+设\(\AutoTuple{x}{n}\geq0\)，
+则\[
+	\frac{x_1+\dotsb+x_n}{n} \geq \sqrt[n]{x_1 \dotsm x_n}.
+\]
+该不等式当且仅当\(x_1=\dotsb=x_n\)时取“\(=\)”号.
+\begin{proof}
+用向前向后数学归纳法.
+记\begin{align*}
+	A_n &= \frac{x_1+\dotsb+x_n}{n}, \\
+	G_n &= \sqrt[n]{x_1 \dotsm x_n}.
+\end{align*}
+当\(n=2\)时，
+由\cref{theorem:不等式.基本不等式2推论}
+有\(G_2 \leq A_2\).
+现在假设当\(n=k\)时，有\(G_k \leq A_k\)成立.
+那么当\(n=2k\)时，就有\begin{align*}
+	G_{2k}
+	&= \sqrt[2k]{x_1 \dotsm x_{2k}} \\
+	&= \sqrt[k]{
+		\sqrt{x_1 x_2} \dotsm \sqrt{x_{2k-1} x_{2k}}
+	} \\
+	&\leq \frac1k (
+		\sqrt{x_1 x_2} + \dotsb + \sqrt{x_{2k-1} x_{2k}}
+	) \\
+	&\leq \frac1k \left[
+		\frac12(x_1 + x_2) + \dotsb + \frac12(x_{2k-1} + x_{2k})
+	\right] \\
+	&= \frac{1}{2k} (x_1 + \dotsb + x_{2k})
+	= A_{2k}.
+\end{align*}
+这就是说，当\(n\)是\(2\)的幂时，不等式\(G_n \leq A_n\)成立.
+
+下面证明，当\(n=k\)时，若\(G_k \leq A_k\)成立，则\(G_{k-1} \leq A_{k-1}\)成立.
+令\[
+	\sqrt[k]{x_1 \dotsm x_{k-1} \cdot t}
+	= \sqrt[k-1]{x_1 \dotsm x_{k-1}},
+\]
+得\(t^{\frac1k}
+= (x_1 \dotsm x_{k-1})^{\frac{1}{k(k-1)}}\)，
+即\(t = \sqrt[k-1]{x_1 \dotsm x_{k-1}}\).
+那么根据归纳假设\(G_k \leq A_k\)，
+就有\[
+	t = \sqrt[k]{x_1 \dotsm x_{k-1} \cdot t}
+	\leq \frac1k (x_1 + \dotsb + x_{k-1} + t),
+\]
+移项得\[
+	\frac{k-1}{k} t
+	= \left(1-\frac1k\right) t
+	\leq \frac1k (x_1 + \dotsb + x_{k-1}),
+\]
+整理得\(\sqrt[k-1]{x_1 \dotsm x_{k-1}}
+= t \leq \frac{1}{k-1} (x_1 + \dotsb + x_{k-1})\)，
+\(G_{k-1} \leq A_{k-1}\)成立.
+\end{proof}
+\end{proposition}
+
 \begin{theorem}[均值不等式]\label{theorem:不等式.均值不等式}
 如果\(\AutoTuple{x}{n}\in\mathbb{R}^+\)，那么
 \begin{equation}
