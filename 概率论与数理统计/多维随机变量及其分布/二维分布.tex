@@ -1,0 +1,155 @@
+\section{二维随机变量及其分布函数}
+\subsection{二维随机变量及其分布函数}
+\begin{definition}
+设\(X\)与\(Y\)是定义在同一样本空间\(\Omega\)上的两个随机变量，
+则称\((X,Y)\)为二维\DefineConcept{随机变量}（或\DefineConcept{随机向量}）.
+\end{definition}
+
+\begin{definition}
+设\((X,Y)\)是二维随机变量，对任意实数\(x\)，\(y\)，称\begin{equation}\label{equation:多维随机变量及其分布.二维分布函数的定义式}
+F(x,y) = P(X \leq x, Y \leq y)
+\end{equation}为二维随机变量\((X,Y)\)的\DefineConcept{二维分布函数}，
+或称之为\(X\)与\(Y\)的\DefineConcept{联合分布函数}.
+\end{definition}
+
+\begin{property}
+\(P(x_1 < X \leq x_2, y_1 < Y \leq y_2)
+= F(x_2,y_2) - F(x_2,y_1) - F(x_1,y_2) + F(x_1,y_1)\).
+\end{property}
+
+\begin{property}
+设\(F(x,y)\)为随机变量\((X,Y)\)的分布函数，则
+\begin{enumerate}
+	\item \(F(x,y)\)分别关于\(x\)及\(y\)单调不减，即
+	当\(x_1 < x_2\)时，有\(F(x_1,y) \leq F(x_2,y)\)；
+	当\(y_1 < y_2\)时，有\(F(x,y_1) \leq F(x,y_2)\).
+
+	\item \(F(-\infty,-\infty)=F(-\infty,y)=F(x,-\infty)=0\)，\(F(+\infty,+\infty)=1\).
+
+	\item \(F(x,y)\)关于\(x\)及\(y\)都右连续，即对任意实数\(x\)、\(y\)有
+	\(F(x^+,y)=F(x,y)\)和\(F(x,y^+)=F(x,y)\)成立.
+
+	\item 对任意\(x_1 < x_2\)、\(y_1 < y_2\)有\[
+		P(x_1 < X \leq x_2, y_1 < Y \leq y_2)
+		= F(x_2,y_2) - F(x_2,y_1) - F(x_1,y_2) + F(x_1,y_1)
+		\geq 0.
+	\]
+\end{enumerate}
+\end{property}
+
+需要指出，上述四点也是二维分布函数的特征，也就是说，
+任何一个二元函数只要满足这四点就是某二维随机变量的分布函数.
+
+\section{二维离散型随机变量及其概率分布}
+
+\subsection{二维离散型随机变量及其概率分布的概念与性质}
+\begin{definition}
+如果二维随机变量\((X,Y)\)只取有限个或可数无穷个点对\((x_i,y_i)\ (i,j=1,2,\dotsc)\)，
+则称\((X,Y)\)为\DefineConcept{二维离散型随机变量}.
+\end{definition}
+
+\begin{definition}
+设二维离散型随机变量\((X,Y)\)所有可能取值为\((x_i,y_i)\ (i,j=1,2,\dotsc)\)，记\[
+p_{ij} = P(X = x_i, Y = y_j), \quad i,j = 1,2,\dotsc,
+\]则称上式为\((X,Y)\)的\DefineConcept{二维概率分布}或\DefineConcept{二维概率分布律}，
+或称为\(X\)与\(Y\)的\DefineConcept{联合概率分布}.
+\end{definition}
+
+二维概率分布可以用\cref{table:多维随机变量及其分布.二维概率分布} 表示.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|*5c}
+	& \(y_1\) & \(y_2\) & \(\dots\) & \(y_j\) & \(\dots\) \\ \hline
+\(x_1\) & \(p_{11}\) & \(p_{12}\) & \(\dots\) & \(p_{1j}\) & \(\dotsc\) \\
+\(x_2\) & \(p_{21}\) & \(p_{22}\) & \(\dots\) & \(p_{2j}\) & \(\dotsc\) \\
+\(\vdots\) & \(\vdots\) & \(\vdots\) & & \(\vdots\) \\
+\(x_i\) & \(p_{i1}\) & \(p_{i2}\) & \(\dots\) & \(p_{ij}\) & \(\dotsc\) \\
+\(\vdots\) & \(\vdots\) & \(\vdots\) & & \(\vdots\) \\
+\end{tabular}
+\caption{\((X,Y)\)的二维概率分布}
+\label{table:多维随机变量及其分布.二维概率分布}
+\end{table}
+
+\begin{property}
+二维离散型随机变量的概率分布有如下的性质：
+\begin{enumerate}
+	\item {\bf 非负性}：
+	\(p_{ij} \geq 0\ (i,j=1,2,\dotsc)\)；
+
+	\item {\bf 规范性}：
+	\(\sum_{i,j} p_{ij} = 1\).
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+对于任意一个二维点集\(G\)，对任意二维离散型随机变量\((X,Y)\)可以求事件\(((X,Y) \in G)\)的概率，即\[
+P\left[(X,Y) \in G\right] = \sum_{(x_i,y_j) \in G} p_{ij}.
+\]
+
+特别地，二维离散型随机变量\((X,Y)\)的二维分布函数可用概率分布求出，即\[
+F(x,y) = \sum_{x_i \leq x}\sum_{y_j \leq y} p_{ij},
+\]且有\[
+p_{ij} = F(x_i,y_j) - F(x_i,y_{j-1}) - F(x_{i-1},y_j) + F(x_{i-1},y_{j-1}), \quad i,j = 1,2,\dotsc,
+\]其中，规定\(x_0 = y_0 = -\infty\).
+\end{theorem}
+
+\subsection{重要的二维离散型分布 —— 三项分布}
+\begin{definition}
+在\(n\)重独立试验中，若每次试验只有\(A_1\)、\(A_2\)、\(A_3\)三个可能结果，
+且\(0 < p_i = P(A_i) < 1\ (i=1,2,3)\)，则\(p_1 + p_2 + p_3 = 1\).
+令随机变量\(X\)及\(Y\)分别表示\(n\)次试验中\(A_1\)与\(A_2\)发生的次数，
+则\(X\)与\(Y\)的联合概率分布为\[
+P(X=k_1,Y=k_2) = \frac{n!}{k_1! k_2! (n-k_1-k_2)!} p_1^{k_1} p_2^{k_2} p_3^{n-k_1-k_2},
+\]其中\(k_1+k_2 = 0,1,\dotsc,n\)，\(k_1 \geq 0\)，\(k_2 \geq 0\)，
+并称\((X,Y)\)服从参数为\(p _1\)、\(p_2\)、\(n\)的\DefineConcept{三项分布}，记为\((X,Y) \sim T(n;p_1,p_2)\).
+\end{definition}
+
+\section{二维连续型随机变量及其密度函数}
+
+\subsection{二维连续型随机变量及其密度函数的概念与性质}
+
+\begin{definition}
+设二维随机变量\((X,Y)\)有分布函数\(F(x,y)\)，如果存在二元非负函数\(f(x,y)\)，使得对任意实数\(x\)、\(y\)有\[
+F(x,y) = \int_{-\infty}^x \int_{-\infty}^y f(u,v) \dd{u} \dd{v},
+\]则称\((X,Y)\)是\DefineConcept{二维连续型随机变量}，称\(f(x,y)\)为\((X,Y)\)的\DefineConcept{二维概率密度函数}，
+或称为\(X\)与\(Y\)的\DefineConcept{联合密度函数}，简称为\DefineConcept{密度函数}或\DefineConcept{密度}.
+\end{definition}
+
+\begin{property}
+二维连续型随机变量的密度函数有如下的性质：
+\begin{enumerate}
+	\item {\bf 非负性}：
+	\((\forall (x,y)\in\mathbb{R}^2)[f(x,y) \geq 0]\)；
+
+	\item {\bf 规范性}：
+	\(F(+\infty,+\infty) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x,y) \dd{x} \dd{y} = 1\).
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+设二维连续型随机变量\((X,Y)\)有密度函数\(f(x,y)\)，则
+\begin{enumerate}
+	\item \(F(x,y)\)是连续函数且在\(f(x,y)\)的连续点\((x,y)\)，有\[
+		f(x,y) = \pdv{F(x,y)}{x}{y};
+	\]
+
+	\item 对平面上任意区域\(G \subseteq \mathbb{R}^2\)，若\(f(x,y)\)在\(G\)上可积，有\[
+		P\left[(X,Y) \in G\right] = \iint_G{f(x,y) \dd{x}\dd{y}};
+	\]
+
+	\item 对平面上任一条曲线\(L\)，有\[
+		P\left[(X,Y) \in L\right] = 0.
+	\]
+\end{enumerate}
+\end{theorem}
+
+\subsection{重要的二维连续型分布 —— 均匀分布}
+\begin{definition}
+令\(G\)是平面上一个有界区域，若二维随机变量\((X,Y)\)有密度函数\[
+f(x,y) = \left\{ \begin{array}{ll}
+\frac{1}{m(G)}, & (x,y) \in G, \\
+0, & \text{其他}, \\
+\end{array} \right.
+\]其中\(m(G)\)为\(G\)的面积，则称\((X,Y)\)为在\(G\)上的\DefineConcept{均匀分布}，记为\((X,Y) \sim U(G)\).
+\end{definition}

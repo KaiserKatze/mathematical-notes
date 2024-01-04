@@ -1,0 +1,70 @@
+\section{最大值、最小值的分布}
+\begin{theorem}
+设随机变量\(\AutoTuple{X}{n}\)相互独立，
+且\(X_i\)有分布函数\(F_i(x_i)\ (i=1,2,\dotsc,n)\)，
+则最大值\(M=\max\{\AutoTuple{X}{n}\}\)的分布函数为
+\begin{equation}
+	F_M(x) = F_1(x) F_2(x) \dotsm F_n(x);
+\end{equation}
+最小值\(N=\min\{\AutoTuple{X}{n}\}\)的分布函数为
+\begin{equation}
+	F_N(x) = 1 - [1-F_1(x)][1-F_2(x)]\dotsm[1-F_n(x)].
+\end{equation}
+\begin{proof}
+显然有：
+\begin{align*}
+	F_M(x) &= P(\max\{\AutoTuple{X}{n}\} \leq x) \\
+	&= P(X_1 \leq x,X_2 \leq x,\dotsc,X_n \leq x) \\
+	&= P(X_1 \leq x) P(X_2 \leq x) \dotsm P(X_n \leq x) \\
+	&= F_1(x) F_2(x) \dotsm F_n(x); \\
+	F_N(x) &= P(\min\{\AutoTuple{X}{n}\} \leq x) \\
+	&= 1 - P(\min\{\AutoTuple{X}{n}\} > x) \\
+	&= 1 - P(X_1 > x,X_2 > x,\dotsc,X_n > x) \\
+	&= 1 - P(X_1 > x) P(X_2 > x) \dotsm P(X_n > x) \\
+	&= 1 - [1-F_1(x)][1-F_2(x)]\dotsm[1-F_n(x)].
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P137. 定理3.2.1
+设随机变量\(\AutoTuple{X}{n}\)独立同分布，
+它们的分布函数为\(F(x)\)，密度函数为\(f(x)\).
+那么这些随机变量的最大值\(M=\max\{\AutoTuple{X}{n}\}\)
+和它们最小值\(N=\min\{\AutoTuple{X}{n}\}\)的分布函数分别为
+\begin{gather}
+	F_M(x) = [F(x)]^n, \\
+	F_N(x) = 1-[1-F(x)]^n.
+\end{gather}
+\(M\)和\(N\)的密度函数分别为
+\begin{gather}
+	f_M(x) = n [F(x)]^{n-1} f(x), \\
+	f_N(x) = n [1-F(x)]^{n-1} f(x).
+\end{gather}
+\end{corollary}
+
+\begin{example}
+设\(\AutoTuple{X}{n}\)独立同分布于\(U(0,1)\)，求它们的最大值、最小值分布的分布函数.
+\begin{solution}
+均匀分布\(U(0,1)\)的分布函数为\[
+F(x) = \left\{ \begin{array}{cc}
+0, & x \leq 0, \\
+x, & 0 < x < 1, \\
+1, & x \geq 1.
+\end{array} \right.
+\]于是最大值\(M\)与最小值\(N\)的分布函数分别为\[
+F_M(x) = \left\{ \begin{array}{cc}
+0, & x \leq 0, \\
+x^n, & 0 < x < 1, \\
+1, & x \geq 1.
+\end{array} \right.
+\qquad
+F_N(x) = \left\{ \begin{array}{cc}
+0, & x \leq 0, \\
+1-(1-x)^n, & 0 < x < 1, \\
+1, & x \geq 1.
+\end{array} \right.
+\]
+\end{solution}
+\end{example}

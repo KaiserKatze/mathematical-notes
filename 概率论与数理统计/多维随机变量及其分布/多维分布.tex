@@ -1,0 +1,97 @@
+\section{多维随机变量}
+
+\subsection{多维随机变量的概念与定义}
+\begin{definition}
+设\(\AutoTuple{X}{n}\)是\(n\)个定义在同一样本空间\(\Omega\)上的随机变量，
+则称\((\AutoTuple{X}{n})\)为\(n\)维\DefineConcept{随机变量}.
+\end{definition}
+
+\begin{definition}
+设\((\AutoTuple{X}{n})\)为\(n\)维\DefineConcept{随机变量}，
+称\(n\)元函数\[
+F(\AutoTuple{x}{n})
+= P(X_1 \leq x_1,X_2 \leq x_2,\dotsc,X_n \leq x_n)
+\]为\((\AutoTuple{X}{n})\)的\(n\)维\DefineConcept{分布函数}.
+\end{definition}
+
+\begin{definition}
+记\(F_i(x_i)\)为\(X_i\)的边缘分布函数.
+若对任意实数\(\AutoTuple{x}{n}\)，有\[
+F(\AutoTuple{x}{n}) = F_1(x_1) F_2(x_2) \dotsm F_n(x_n),
+\]则称“随机变量\((\AutoTuple{X}{n})\) \DefineConcept{相互独立}”.
+\end{definition}
+
+\subsection{n维离散型随机变量}
+\begin{definition}
+若\((\AutoTuple{X}{n})\)是\(n\)个定义在同一样本空间\(\Omega\)上的离散型随机变量，
+则称\((\AutoTuple{X}{n})\)为 \DefineConcept{\(n\)维离散型随机变量}，且称\[
+p_{i_1 i_2 \dotso i_n}
+= P(X_1=x_{i_1},X_2=x_{i_2},\dotsc,X_n=x_{i_n}),
+\quad i_1,i_2,\dotsc,i_n=1,2,\dotsc
+\]为\((\AutoTuple{X}{n})\)的 \DefineConcept{\(n\)维概率分布}.
+\end{definition}
+
+\begin{property}
+\(n\)维概率分布具有以下性质：
+\begin{enumerate}
+\item \(p_{i_1 i_2 \dotso i_n} \geq 0\);
+\item \(\sum_{i_1,i_2,\dotsc,i_n}{p_{i_1 i_2 \dotso i_n}} = 1\).
+\end{enumerate}
+\end{property}
+
+\begin{definition}
+在\(N\)重独立试验中，若每次试验有\(n+1\)种可能结果\(A_1,A_2,\dotsc,A_{n+1}\)，
+且\[
+	0<p_i=P(A_i)<1\ (i=1,2,\dotsc,n+1),
+	\qquad
+	\sum_{i=1}^{n+1}{p_i}=1.
+\]
+令\(X_i\)表示\(N\)重独立试验中\(A_i\ (i=1,2,\dotsc,n)\)发生的次数，
+则\((\AutoTuple{X}{n})\)所服从的分布称为\DefineConcept{多项分布}，
+记为\((\AutoTuple{X}{n}) \sim M(N;p_1,p_2,\dotsc,p_n)\).
+其概率分布为\[
+P(X_1=k_1,X_2=k_2,\dotsc,X_n=k_n)
+= \frac{N!}{k_1! k_2!\dotsm k_{n+1}!} p_1^{k_1} p_2^{k_2} \dotsm p_n^{k_n} p_{n+1}^{k_{n+1}},
+\]
+其中\(0 \leq k_i \leq N\ (i=1,2,\dotsc,n+1)\)，
+且\(k_1 + k_2 + \dotsb + k_n + k_{n+1} = N\).
+\end{definition}
+
+\subsection{n维连续型随机变量}
+\begin{definition}
+若有\(n\)元非负函数\(f(\AutoTuple{x}{n})\)存在，使得\(n\)维随机变量\[
+\vb{\Xi} = (\AutoTuple{X}{n})
+\]的分布函数表示为\[
+F(\AutoTuple{x}{n})
+= \int_{-\infty}^{x_1} \int_{-\infty}^{x_2} \dotsi \int_{-\infty}^{x_n}
+	f(u_1,u_2,\dotsc,u_n) \dd{u_1} \dd{u_2} \dotsm \dd{u_n},
+\]则称\((\AutoTuple{X}{n})\)是 \DefineConcept{\(n\)维连续型随机变量}，称\(f\)为\(\vb{\Xi}\)的 \DefineConcept{\(n\)维概率密度函数}.
+\end{definition}
+
+\begin{property}
+\(n\)维概率密度函数具有以下性质：
+\begin{enumerate}
+\item \(\forall \AutoTuple{x}{n};\quad f(\AutoTuple{x}{n}) \geq 0\)；
+\item \(\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \dotsi \int_{-\infty}^{+\infty} f(u_1,u_2,\dotsc,u_n) \dd{u_1} \dd{u_2} \dotsm \dd{u_n}\).
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+设\((\AutoTuple{X}{n})\)有\(n\)维密度函数\(f(\AutoTuple{x}{n})\)，
+\(X_i\)有边缘密度\(f_i(x_i)\ (i=1,2,\dotsc,n)\)，则：
+\(\AutoTuple{X}{n}\)相互独立的充分必要条件是\[
+f(\AutoTuple{x}{n})
+= f_1(x_1) f_2(x_2) \dotsm f_n(x_n).
+\]
+\end{theorem}
+
+\begin{definition}
+设\(G\)是\(\mathbb{R}^n\)中一个可求度量的区域，
+当\(n\)维随机变量\((\AutoTuple{X}{n})\)有密度函数\[
+f(\AutoTuple{x}{n}) = \left\{ \begin{array}{ll}
+\frac{1}{m(G)}, & (\AutoTuple{x}{n}) \in G, \\
+0, & \text{其他}, \\
+\end{array} \right.
+\]其中\(m(G)\)为\(G\)的度量，
+称\((\AutoTuple{X}{n})\)服从\(G\)上的\DefineConcept{均匀分布}.
+\end{definition}

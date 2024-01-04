@@ -1,0 +1,139 @@
+\section{条件分布与条件密度}
+当二维随机变量\((X,Y)\)中\(X\)与\(Y\)不独立时，
+随机变量\(X\)与\(Y\)应有一定的相互影响的关系，
+即当\(P(Y = y) > 0\)时，
+通常有\(P(X \leq x \vert Y = y) \neq P(X \leq x)\).
+可以看出，条件概率\(P(X \leq x \vert Y = y)\)一般受\(y\)的影响.
+于是我们把\[
+	F_{X \vert Y}(x \vert y)
+	\defeq
+	P(X \leq x \vert Y = y)
+	\quad(x\in\mathbb{R})
+\]称为“\(Y=y\)条件下\(X\)的\DefineConcept{条件分布函数}”.
+
+\subsection{离散型随机变量的条件分布}
+\begin{definition}
+对于任意\(y_j\)，若\(P(Y=y_j) = p_{*j} > 0\)，称\[
+	P(X=x_i \vert Y=y_j) = \frac{p_{ij}}{p_{*j}}, \quad i=1,2,\dotsc
+\]为\(Y=y_j\)条件下\(X\)的\DefineConcept{条件概率分布}.
+
+同理，对于任意\(x_i\)，若\(P(X=x_i) = p_{i*} > 0\)，称\[
+	P(Y=y_j \vert X=x_i) = \frac{p_{ij}}{p_{i*}}, \quad j=1,2,\dotsc
+\]为\(X=x_i\)条件下\(Y\)的\DefineConcept{条件概率分布}.
+\end{definition}
+
+\begin{property}
+离散型随机变量的条件概率分布有如下性质：
+\begin{enumerate}
+	\item \(P(X=x_i \vert Y=y_j) \geq 0, \quad i=1,2,\dotsc;\)
+	\item \(\sum_{i}{P(X=x_i \vert Y=y_j)} = \sum_{i}{\frac{p_{ij}}{p_{*j}}} = 1.\)
+\end{enumerate}
+可见，条件概率分布也是离散型概率分布.
+\end{property}
+
+\begin{theorem}
+对任意\(x\)、\(y\)，由条件分布可得条件分布函数的表示：
+\begin{align*}
+	F_{X \vert Y}(x \vert y_j)
+	= P(X \leq x \vert Y=y_j)
+	= \sum_{x_i \leq x}{\frac{p_{ij}}{p_{*j}}}, \\
+	F_{Y \vert X}(y \vert x_i)
+	= P(Y \leq y \vert X=x_i)
+	= \sum_{y_j \leq y}{\frac{p_{ij}}{p_{i*}}}.
+\end{align*}
+\end{theorem}
+
+\subsection{连续型随机变量的条件密度函数}
+\begin{definition}
+设\((X,Y)\)为二维连续型随机变量.若对任意\(\epsilon > 0\)，有\[
+	P(y - \epsilon < Y \leq y + \epsilon) > 0,
+\]
+且对\(x\in\mathbb{R}\)，
+极限\[
+	\lim_{\epsilon\to0^+} P(X \leq x \vert y - \epsilon < Y \leq y + \epsilon)
+\]存在，
+则称该极限为“连续型随机变量\(Y=y\)条件下\(X\)的\DefineConcept{条件分布函数}”，
+记为\[
+	F_{X \vert Y}(x \vert y)
+	\quad\text{或}\quad
+	P(X \leq x \vert Y = y).
+\]
+
+类似地，可以定义“连续型随机变量\(X=x\)条件下\(Y\)的\DefineConcept{条件分布函数}”，
+记为\[
+	F_{Y \vert X}(y \vert x)
+	\quad\text{或}\quad
+	P(Y \leq y \vert X = x).
+\]
+\end{definition}
+
+\begin{theorem}
+设二维连续型随机变量\((X,Y)\)有二维密度\(f(x,y)\)，
+从而\(X\)及\(Y\)有边缘密度\(f_X(x)\)、\(f_Y(y)\)，则
+\begin{align*}
+	F_{X \vert Y}(x \vert y)
+	= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)}\dd{u}, \quad x \in \mathbb{R}; \\
+	F_{Y \vert X}(y \vert x)
+	= \int_{-\infty}^y \frac{f(x,v)}{f_X(x)}\dd{v}, \quad y \in \mathbb{R}.
+\end{align*}
+
+那么，相应的密度函数
+\begin{gather}
+	f_{X \vert Y}(x \vert y)
+	= \frac{f(x,y)}{f_Y(y)},
+		\label{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系1} \\
+	f_{Y \vert X}(y \vert x)
+	= \frac{f(x,y)}{f_X(x)},
+		\label{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系2}
+\end{gather}
+分别称为“\(X\)关于\(Y\)的\DefineConcept{条件密度函数}”%
+和“\(Y\)关于\(X\)的\DefineConcept{条件密度函数}”.
+\begin{proof}
+不妨设\(f(x,y)\)连续，\(f_Y(y)\)连续且\(f_Y(y)>0\)，
+\def\l{\lim_{\epsilon\to0^+}}%
+那么\begin{align*}
+	F_{X \vert Y}(x \vert y)
+	&= \l \frac{P(X \leq x, y - \epsilon < Y \leq y + \epsilon)}{P(y - \epsilon < Y \leq y + \epsilon)} \\
+	&= \l \frac{F(x,y+\epsilon) - F(x,y-\epsilon)}{F_Y(y+\epsilon) - F_Y(y-\epsilon)} \\
+	&= \l \frac{[F(x,y+\epsilon) - F(x,y-\epsilon)] \frac{1}{2 \epsilon}}{[F_Y(y+\epsilon) - F_Y(y-\epsilon)] \frac{1}{2 \epsilon}} \\
+	&= \pdv{F(x,y)}{y} \bigg/ F_Y'(y)
+	= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)} \dd{u}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+已知边缘密度函数和条件密度函数，可以求出二维密度，即\[
+	f(x,y) = f_Y(y) \cdot f_{X \vert Y}(x \vert y)
+	= f_X(x) \cdot f_{Y \vert X}(y \vert x).
+\]
+\end{corollary}
+
+\begin{example}
+设\(X \sim U(0,1)\)；对\(\forall x\in(0,1)\)，当\(X=x\)时，\(Y \sim U(x^2,1)\)，求\(P(X > Y)\).
+\begin{solution}
+\(X\)的密度函数为\[
+f_X(x) = \left\{ \begin{array}{cl}
+1, & 0<x<1, \\
+0, & \text{其他}.
+\end{array} \right.
+\]当\(X=x\in(0,1)\)时，\(Y\)有条件密度\[
+f_{Y \vert X}(y \vert x)
+= \left\{ \begin{array}{cl}
+\frac{1}{1-x^2}, & x^2<y<1, \\
+0, & \text{其他}.
+\end{array} \right.
+\]因此\[
+f(x,y) = f_X(x) \cdot f_{Y \vert X}(y \vert x)
+= \left\{ \begin{array}{cl}
+\frac{1}{1-x^2}, & 0<x<1 \land x^2<y<1, \\
+0, & \text{其他}.
+\end{array} \right.
+\]\[
+P(X > Y)
+= \int_0^1 \dd{x} \int_{x^2}^x \frac{1}{1-x^2} \dd{y}
+= 1 - \ln2.
+\]
+\end{solution}
+\end{example}

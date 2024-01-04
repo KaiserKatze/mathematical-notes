@@ -1,0 +1,85 @@
+\section{边缘分布及随机变量的独立性}
+\subsection{边缘分布函数与随机变量的独立性}
+\begin{definition}
+二维随机变量\((X,Y)\)的分量\(X\)、\(Y\)均可看作一维随机变量.
+这两个分量各自的分布函数\(F_X(x)\)、\(F_Y(y)\)，
+相对于二维分布函数\(F(x,y)\)而被分别称为\(X\)与\(Y\)的\DefineConcept{边缘分布函数}.
+\end{definition}
+
+\begin{theorem}
+设\(F(x,y)\)为二维随机变量\((X,Y)\)的二维分布函数，
+则\(X\)与\(Y\)的边缘分布函数\(F_X(x)\)、\(F_Y(y)\)有
+\begin{align*}
+	F_X(x) &= F(x,+\infty), \quad x \in \mathbb{R}; \\
+	F_Y(y) &= F(+\infty,y), \quad y \in \mathbb{R}.
+\end{align*}
+\end{theorem}
+
+\begin{definition}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P132. 定义3.2.1
+设\(\AutoTuple{X}{n}\)是\(n\)维随机变量.
+若对任意\(n\)个实数\(\AutoTuple{x}{n}\)，
+\(n\)个事件\((X_1 \leq x_1),\dotsc,(X_n \leq x_n)\)相互独立，
+即有\[
+	P(X_1 \leq x_1,\dotsc,X_n \leq x_n)
+	= P(X_1 \leq x_1) \dotsm P(X_n \leq x_n)
+\]
+或\[
+	F(x_1,\dotsc,x_n)
+	= F_1(x_1) \dotsm F_n(x_n),
+\]
+其中\(F\)是\(n\)维随机变量\(\AutoTuple{X}{n}\)的联合分布函数，
+而\(F_1,\dotsc,F_n\)分别是\(X_1,\dotsc,X_n\)的边缘分布函数，
+则称“\(n\)个随机变量\(\AutoTuple{X}{n}\)~\DefineConcept{相互独立}”；
+否则称“\(n\)个随机变量\(\AutoTuple{X}{n}\)~\DefineConcept{不相互独立}”
+或“\(n\)个随机变量\(\AutoTuple{X}{n}\)~\DefineConcept{相依}”.
+\end{definition}
+
+\begin{theorem}
+设随机变量\(X\)与\(Y\)相互独立，且\(g(x)\)与\(h(y)\)均是连续函数，
+则\(X_1 = g(X)\)与\(Y_1 = h(Y)\)也相互独立.
+\end{theorem}
+
+\subsection{二维离散型随机变量的边缘分布及独立性}
+\begin{definition}
+设\((X,Y)\)是二维离散型随机变量，有二维概率分布\[
+p_{ij} = P(X=x_i,Y=y_j), \quad i,j=1,2,\dotsc.
+\]显然此时\(X\)与\(Y\)都是一维离散型随机变量，各有分布律
+\begin{align*}
+p_{i*} &= P(X=x_i), \quad i=1,2,\dotsc; \\
+p_{*j} &= P(Y=y_j), \quad j=1,2,\dotsc.
+\end{align*}
+相对于二维概率分布，\(X\)与\(Y\)各自的分布叫做\DefineConcept{边缘概率分布}，简称\DefineConcept{边缘分布}.
+\end{definition}
+
+\begin{theorem}
+设\((X,Y)\)是二维离散型随机变量，有二维概率分布\[
+p_{ij} = P(X=x_i,Y=y_j), \quad i,j=1,2,\dotsc.
+\]分量\(X\)与\(Y\)的边缘分布可由二维概率分布求出，即
+\begin{align*}
+p_{i*} = \sum_{j}{p_{ij}}, \quad i=1,2,\dotsc; \\
+p_{*j} = \sum_{i}{p_{ij}}, \quad j=1,2,\dotsc.
+\end{align*}
+\end{theorem}
+
+\begin{theorem}
+设\((X,Y)\)是二维离散型随机变量，有二维概率分布\[
+p_{ij} = P(X=x_i,Y=y_j), \quad i,j=1,2,\dotsc,
+\]则随机变量\(X\)与\(Y\)相互独立的充分必要条件是：\[
+p_{ij} = p_{i*} p_{*j}, \quad i,j=1,2,\dotsc.
+\]
+\end{theorem}
+
+\subsection{二维连续型随机变量的边缘密度及独立性}
+\begin{theorem}
+设二维连续型随机变量\((X,Y)\)的二维密度为\(f(x,y)\)，
+\(X\)与\(Y\)的边缘密度分别为\(f_X(x)\)和\(f_Y(y)\)，则
+\begin{align*}
+	f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \dd{y}, \\
+	f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \dd{x}.
+\end{align*}
+
+而\(X\)与\(Y\)相互独立的充分必要条件是：\[
+	f(x,y) = f_X(x) f_Y(y).
+\]在三个密度函数的公共连续点上成立.
+\end{theorem}

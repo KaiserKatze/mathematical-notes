@@ -1,0 +1,86 @@
+\section{分布的可加性}
+\begin{definition}
+当\(\AutoTuple{X}{n}\)相互独立且具有同一类型分布时，
+若\(X_1+X_2+\dotsb+X_n\)也服从这一类型的分布，
+就称这种类型的分布具有\DefineConcept{可加性}.
+\end{definition}
+
+\subsection{二项分布的可加性}
+\begin{theorem}\label{theorem:多维随机变量及其分布.二项分布的可加性1}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P91. 定理3.11
+\(X \sim B(n,p)\)，
+\(Y \sim B(m,p)\)，
+且\(X\)与\(Y\)相互独立，
+则\[
+	X+Y \sim B(n+m,p).
+\]
+\begin{proof}
+记\(Z = X+Y\).
+\(Z\)的取值为\([0,n+m]\cap\mathbb{N}\).
+事件\((Z=k)\)可以表示为\[
+	(Z=k)
+	= \bigcup_{r=0}^k (X=r,Y=k-r)
+	\quad(k=0,1,\dotsc,n+m).
+\]
+注意上式右端为\(k+1\)个两两互斥事件之并，
+再注意到\(X\)与\(Y\)独立，
+则\begin{align*}
+	P(Z=k)
+	&= \sum_{r=0}^k P(X=r,Y=k-r) \\
+	&= \sum_{r=0}^k P(X=r) P(Y=k-r) \\
+	&= \sum_{r=0}^k C_n^r p^r (1-p)^{n-r} \cdot C_m^{k-r} p^{k-r} (1-p)^{m-k+r} \\
+	&= p^k (1-p)^{n+m-k} \sum_{r=0}^k C_n^r C_m^{k-r} \\
+	&= C_{n+m}^k p^k (1-p)^{n+m-k},
+	\quad k=0,1,\dotsc,n+m.
+\end{align*}
+于是\(Z \sim B(n+m,p)\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:多维随机变量及其分布.二项分布的可加性2}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P92. 推论1
+设\(X_i \sim B(n_i,p)\ (i=1,2,\dotsc,n)\)，
+且\(\AutoTuple{X}{n}\)相互独立，
+则\[
+	X_1+X_2+\dotsb+X_n \sim B\left(\sum_{i=1}^n n_i,p\right).
+\]
+\end{corollary}
+
+\begin{corollary}\label{theorem:多维随机变量及其分布.二项分布的可加性3}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P92. 推论2
+设\(X_i\ (i=1,2,\dotsc,n)\)独立同分布于\(0-1\)分布\(B(1,p)\)，则\[
+	X_1+X_2+\dotsb+X_n \sim B(n,p).
+\]
+\end{corollary}
+
+\subsection{泊松分布的可加性}
+\begin{theorem}\label{theorem:多维随机变量及其分布.泊松分布的可加性1}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P92. 定理3.12
+设\(X \sim P(\lambda_1)\)，
+\(Y \sim P(\lambda_2)\)，
+且\(X\)与\(Y\)相互独立，
+则\[
+	X+Y \sim P(\lambda_1 + \lambda_2).
+\]
+\end{theorem}
+
+\begin{corollary}\label{theorem:多维随机变量及其分布.泊松分布的可加性2}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P92. 推论
+设\(X_i \sim P(\lambda_i)\ (i=1,2,\dotsc,n)\)，
+且\(\AutoTuple{X}{n}\)相互独立，
+则\[
+	X_1+X_2+\dotsb+X_n \sim P\left(\sum_{i=1}^n \lambda_i\right).
+\]
+\end{corollary}
+
+\subsection{\texorpdfstring{\(\Gamma\)分布的可加性}{伽马分布的可加性}}
+\begin{theorem}\label{theorem:多维随机变量及其分布.伽马分布的可加性1}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P93. 定理3.14
+设随机变量\(X_i \sim \Gamma(\alpha_i,\beta)\ (i=1,2,\dotsc,n)\)，
+且\(\AutoTuple{X}{n}\)相互独立，
+则\[
+	X_1+X_2+\dotsb+X_n
+	\sim
+	\Gamma\left(\sum_{i=1}^n \alpha_i,\beta\right).
+\]
+\end{theorem}
