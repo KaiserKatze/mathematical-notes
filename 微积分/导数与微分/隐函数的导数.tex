@@ -1,0 +1,282 @@
+\section{隐函数及由参数方程所确定的函数的导数}\label{section:导数与微分.隐函数及由参数方程所确定的函数的导数}
+\subsection{隐函数的导数}
+\begin{definition}
+形如\(y=f(x)\)的函数，在等号左端是因变量的符号，而右端是含有自变量的式子，当自变量取定义域内任一值时，由这个式子能确定对应的函数.用这种方式表达的函数叫做\DefineConcept{显函数}.
+相对地，形如\(g(x,y)=0\)的函数，称为\DefineConcept{隐函数}.
+把一个隐函数化为显函数，叫做\DefineConcept{隐函数的显化}.
+\end{definition}
+
+\begin{example}
+例如从方程\(x+y^3-1=0\)解出\(y=\sqrt[3]{1-x}\)，就把隐函数化成了显函数.
+\end{example}
+
+\begin{example}
+求由方程\(e^y + xy - e = 0\)所确定的隐函数的导数\(\displaystyle\dv{y}{x}\).
+\begin{solution}
+把方程两边分别对\(x\)求导得\[
+\dv{x}(e^y+xy-e) = e^y \dv{y}{x} + y + x \dv{y}{x} = 0,
+\]解得\[
+\dv{y}{x} = -\frac{y}{x+e^y},
+\quad x+e^y \neq 0.
+\]在这个结果中，分式中的\(y=y(x)\)是由方程\(e^y + xy - e = 0\)所确定的隐函数.
+\end{solution}
+\end{example}
+
+\begin{example}
+求椭圆\(\frac{x^2}{16}+\frac{y^2}{9}=1\)在点\(\left(2,\frac32\sqrt3\right)\)处的切线方程.
+\begin{solution}
+由导数的几何意义可知，所求切线的斜率为\[
+k = \eval{y'}_{x=2}.
+\]
+
+椭圆方程的两边分别对\(x\)求导，得\[
+\frac{x}{8}+\frac{2}{9}y\dv{y}{x}=0,
+\]\[
+\dv{y}{x}=-\frac{9x}{16y}.
+\eqno{(1)}
+\]
+
+当\(x=2\)时，\(y=\frac{3}{2}\sqrt3\)，代入(1)式可得\[
+\eval{\dv{y}{x}}_{x=2}=-\frac{\sqrt3}{4}.
+\]于是所求的切线方程为\[
+y-\frac{3}{2}\sqrt3 = -\frac{\sqrt3}{4}(x-2),
+\]即\[
+\sqrt3 x + 4 y - 8\sqrt3 = 0.
+\]
+\end{solution}
+\end{example}
+
+\begin{lemma}
+设函数\(y=\ln\abs{x}\).当\(x\neq0\)时，\(y'=1/x\).
+\end{lemma}
+
+在某些场合，利用所谓\emph{对数求导法}求导数比用通常的方法简便些，
+它适用于求解函数的积、商，根式形式、幂形式、指数形式或幂指形式的函数.
+这种方法是先在\(y=f(x)\)的两边取对数，然后再求出\(y\)的导数\(y'\).
+但要注意，因为对数运算要求其真数必须大于零（即\(\log_a x \implies x>0\)），
+所以在使用对数求导法时，一定要注意\(f(x)\)的定义域.
+
+\begin{example}
+求\(y=x^{\sin x}\ (x>0)\)的导数.
+\begin{solution}
+因为\(x > 0\)，
+所以\(y=x^{\sin x} > 0\).
+对函数等式两边取对数得\[
+	\ln y = \sin x \ln x,
+\]
+对上式两边求导得\[
+	\frac{y'}{y} = \cos x \ln x + \sin x \frac{1}{x},
+\]\[
+	y' = x^{\sin x} \left( \cos x \ln x + \frac{\sin x}{x} \right).
+\]
+\end{solution}
+\end{example}
+
+\begin{theorem}
+对于一般形式的幂指函数\[
+	y = u^v, \quad u > 0,
+\]
+如果\(u=u(x),v=v(x)\)都可导，则\[
+	y' = \dv{x}e^{v \ln u} = u^v \left( v' \ln u + \frac{u'v}{u} \right).
+\]
+\end{theorem}
+这里一定要注意\(u>0\)这个条件，它是函数\(\ln u\)对定义域的要求.
+
+\begin{example}
+求\(y=\sqrt{\frac{(x-1)(x-2)}{(x-3)(x-4)}}\)的导数.
+\begin{solution}
+由\(\frac{(x-1)(x-2)}{(x-3)(x-4)}\geq0\)
+得\(x \in (-\infty,1]\cup[2,3)\cup(4,+\infty)\).
+这就是函数\(y=y(x)\)的定义域.
+
+当\(x>4\)时，对函数式两边取对数，得\[
+	\ln y = \frac{1}{2} \bigl[
+		\ln(x-1)+\ln(x-2)-\ln(x-3)-\ln(x-4)
+	\bigr],
+\]
+上式两边对\(x\)求导，得\[
+	\frac{y'}{y} = \frac{1}{2} \left(
+		\frac{1}{x-1} + \frac{1}{x-2} - \frac{1}{x-3} - \frac{1}{x-4}
+	\right),
+\]
+于是\[
+	y' = \frac{y}{2} \left(
+		\frac{1}{x-1} + \frac{1}{x-2} - \frac{1}{x-3} - \frac{1}{x-4}
+	\right).
+\]
+
+当\(x<1\)时，对原函数变形得\(y=\sqrt{\frac{(1-x)(2-x)}{(3-x)(4-x)}}\)；
+当\(2<x<3\)时，对原函数变形得\(y=\sqrt{\frac{(x-1)(x-2)}{(3-x)(4-x)}}\)；
+用同样的方法可得与上面相同的结果.
+\end{solution}
+\end{example}
+
+\begin{example}
+已知双曲线\(C: y^2 = 2px\ (p>0)\)，
+过它的焦点弦\(PQ\)的两个端点作它的两条切线，求这两条切线的交点的坐标.
+\begin{solution}
+如\cref{figure:导数与微分.抛物线[y^2=2px]的焦点弦与切线}，
+设直线\(l: y=k\left(x-\frac{p}{2}\right)\)（不妨设\(k>0\)）
+与双曲线\(C\)相交于\(P(x_1,y_1)\)和\(Q(x_2,y_2)\)两点.
+那么\[
+	x_1 = \frac{p}{2 k^2} (\sqrt{k^2+1} + 1)^2,
+	\qquad
+	y_1 = \frac{p}{k} (1+\sqrt{k^2+1}),
+\]\[
+	x_2 = \frac{p}{2 k^2} (\sqrt{k^2+1} - 1)^2,
+	\qquad
+	y_2 = \frac{p}{k} (1-\sqrt{k^2+1}).
+\]
+
+隐函数\(y^2 = 2px\)对\(x\)求导，得\[
+	2 y \dv{y}{x} = 2 p,
+\]
+整理得\[
+	\dv{y}{x} = \frac{p}{y},
+\]
+所以\[
+	k_1 = \eval{\dv{y}{x}}_P
+	= \frac{k}{1+\sqrt{k^2+1}},
+	\qquad
+	k_2 = \eval{\dv{y}{x}}_Q
+	= \frac{k}{1-\sqrt{k^2+1}}.
+\]
+
+那么抛物线过点\(P\)和点\(Q\)的切线的方程为\[
+	l_1: y-y_1 = k_1 (x-x_1),
+\]\[
+	l_2: y-y_2 = k_2 (x-x_2).
+\]
+联立切线方程，消去\(y\)，得\[
+	y_1 + k_1(x - x_1) = y_2 + k_2(x - x_2),
+\]
+移项得\[
+	(k_1 - k_2) x = y_2 - y_1 + k_1 x_1 - k_2 x_2,
+\]
+解得\[
+	x_0 = \frac{y_2 - y_1 + k_1 x_1 - k_2 x_2}{k_1 - k_2}
+	= -\frac{p}{2},
+\]
+代入得\[
+	y_0 = y_1 + k_1(x_0 - x_1)
+	= \frac{p}{k}.
+\]
+综上所述，所求的交点坐标为\[
+	\left(-\frac{p}{2},\frac{p}{k}\right).
+\]
+\end{solution}
+\end{example}
+\begin{figure}[ht]
+	\centering
+	\pgfmathsetmacro{\p}{1}%参数p
+	\pgfmathsetmacro{\f}{\p/2}%焦点横坐标
+	\pgfmathsetmacro{\k}{3}%焦点弦斜率k
+	\pgfmathsetmacro{\a}{\p/(2*\k^2)}
+	\pgfmathsetmacro{\b}{\p/\k}
+	\pgfmathsetmacro{\c}{sqrt(\k^2+1)}
+	\pgfmathsetmacro{\pa}{\a*(\c+1)^2}% x_1
+	\pgfmathsetmacro{\pb}{\b*(\c+1)}% y_1
+	\pgfmathsetmacro{\qa}{\a*(\c-1)^2}% x_2
+	\pgfmathsetmacro{\qb}{-\b*(\c-1)}% y_2
+	\pgfmathsetmacro{\sa}{-\p/2}% x_0
+	\pgfmathsetmacro{\sb}{\p/\k}% y_0
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-2,xmax=2,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+		]
+			\coordinate(F)at(\f,0);
+			\coordinate(X)at(10,0);
+			\coordinate(P)at(\pa,\pb);
+			\coordinate(Q)at(\qa,\qb);
+			\coordinate(S)at(\sa,\sb);
+			\draw[purple](-\f,-4)--(-\f,4);%准线
+			\draw(2,-3)node[above right]{$C$};
+			\begin{scope}[color=orange,samples=100,smooth]
+				\addplot[domain=0:10]{sqrt(2*\p*x)};
+				\addplot[domain=0:10]{-sqrt(2*\p*x)};
+			\end{scope}
+			\draw[blue](P)--(F)--(Q);
+			\draw(P)--(S)--(Q);
+			\draw pic["$\theta$",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=X--F--P};
+			\fill(P)circle(2pt)node[below]{$P$}
+				(F)circle(2pt)node[below]{$F$}
+				(Q)circle(2pt)node[right]{$Q$}
+				(S)circle(2pt)node[left]{$S$};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:导数与微分.抛物线[y^2=2px]的焦点弦与切线}
+\end{figure}
+
+\subsection{由参数方程所确定的函数的导数}
+对于参数方程\[
+	\left\{ \begin{array}{l}
+		x = \phi(t), \\
+		y = \psi(t),
+	\end{array} \right.
+\]
+若函数\(x = \phi(t)\)具有单调连续反函数\(t=\phi^{-1}(x)\)，
+且该反函数可与函数\(y = \psi(t)\)构成复合函数，
+那么由上述参数方程所确定的函数可以看成是
+由函数\(y=\psi(t)\)、\(t=\phi^{-1}(x)\)复合而成的函数\(y=\psi(\phi^{-1}(x))\).
+现在，要计算这个复合函数的导数.
+为此再假定函数\(x = \phi(t)\)和\(y = \psi(t)\)都可导，且\(\phi'(t) \neq 0\).
+于是根据复合函数的求导法则与反函数的求导法则，就有
+\begin{equation}\label{equation:导数.参数方程确定的函数的一阶导数}
+	\dv{y}{x}
+	= \dv{y}{t} \cdot \dv{t}{x}
+	= \frac{\psi'(t)}{\phi'(t)}.
+\end{equation}
+这就是上述参数方程所确定的\(x\)的函数的导数公式.
+
+如果函数\(x = \phi(t)\)和\(y = \psi(t)\)还都是二阶可导的，
+那么有二阶导数公式
+\begin{equation}\label{equation:导数.参数方程确定的函数的二阶导数}
+	\begin{split}
+		\dv[2]{y}{x}
+		&= \dv{x}(\dv{y}{x})
+		= \dv{t}(\dv{y}{x}) \cdot \dv{t}{x} \\
+		&= \frac{\psi''(t) \phi'(t) - \psi'(t) \phi''(t)}{(\phi'(t))^3}.
+	\end{split}
+\end{equation}
+
+\begin{example}
+计算由摆线的参数方程\[
+	\left\{ \begin{array}{l}
+		x=a(t-\sin t), \\
+		y=a(1-\cos t)
+	\end{array} \right.
+\]所确定的函数\(y=y(x)\)的二阶导数.
+\begin{solution}
+求导得\[
+	\dv{x}{t}=a(1-\cos t), \qquad
+	\dv{y}{t}=a\sin t.
+\]
+令\(\dv{x}{t}\neq0\)，
+得\(a(1-\cos t)\neq0\)，
+\(\cos t\neq1\)，
+即\[
+	t\neq 2n\pi
+	\quad(n\in\mathbb{Z}).
+\]
+因此\[
+	\dv{y}{x}
+	=\frac{y'(t)}{x'(t)}
+	=\frac{a\sin t}{a(1-\cos t)}
+	=\frac{\sin t}{1-\cos t}
+	=\cot\frac{t}{2}
+	\quad(t\neq 2n\pi,n\in\mathbb{Z}).
+\]
+再求导，得\begin{align*}
+	\dv[2]{y}{x}
+	&=\dv{t}(\cot\frac{t}{2})\cdot\frac{1}{x'(t)}
+	=\frac{-1}{2\sin^2\frac{t}{2}}
+	\cdot\frac{1}{a(1-\cos t)} \\
+	&=-\frac{1}{a(1-\cos t)^2}
+	\quad(t\neq 2n\pi,n\in\mathbb{Z}).
+\end{align*}
+\end{solution}
+\end{example}

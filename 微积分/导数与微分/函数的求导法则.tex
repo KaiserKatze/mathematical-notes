@@ -1,0 +1,210 @@
+\section{函数的求导法则}
+\subsection{函数的和、差、积、商的求导法则}
+\begin{theorem}
+如果函数\(u=u(x)\)和\(v=v(x)\)都在点\(x\)具有导数，
+那么它们的和、差、积、商（除分母为零的点外）都在点\(x\)具有导数，且
+\begin{enumerate}
+	\item \((u \pm v)' = u' \pm v'\)；
+	\item \((uv)' = u'v + uv'\)；
+	\item \(\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}\ (v \neq 0)\).
+\end{enumerate}
+\begin{proof}
+显然有
+\begin{enumerate}
+\item 函数\(u\)和\(v\)都在\(x\)可导，
+也就是说\(u'(x)\)和\(v'(x)\)都存在，
+所以利用\cref{theorem:极限.极限的四则运算法则} 便得
+\begin{align*}
+&[u(x) \pm v(x)]'
+=\lim_{\increment x\to0} \frac{[u(x+\increment x) \pm v(x+\increment x)]-[u(x) \pm v(x)]}{\increment x} \\
+&=\lim_{\increment x\to0} \frac{u(x+\increment x)-u(x)}{\increment x} \pm \lim_{\increment x\to0} \frac{v(x+\increment x)-v(x)}{\increment x} \\
+&=u'(x) \pm v'(x).
+\end{align*}
+
+\item 因为\(v\)在点\(x\)可导，所以\(v\)在点\(x\)连续，于是\[
+	\lim_{\increment x\to0} v(x+\increment x)
+	= v\left(x+\lim_{\increment x\to0} \increment x\right)
+	= v(x).
+\]
+因此
+\begin{align*}
+&[u(x) v(x)]'
+=\lim_{\increment x\to0} \frac{u(x+\increment x) v(x+\increment x) - u(x) v(x)}{\increment x} \\
+&=\lim_{\increment x\to0} \left[
+ \frac{u(x+\increment x) - u(x)}{\increment x} v(x+\increment x) + u(x) \frac{v(x+\increment x) - v(x)}{\increment x}
+ \right] \\
+&=\lim_{\increment x\to0} \frac{u(x+\increment x) - u(x)}{\increment x} %
+ \lim_{\increment x\to0} v(x+\increment x) %
+ + u(x) \lim_{\increment x\to0} \frac{v(x+\increment x)-v(x)}{\increment x} \\
+&=u'(x) v(x) + u(x) v'(x).
+\end{align*}
+
+\item 因为函数\(u\)和\(v\)都在\(x\)连续，
+所以利用\cref{theorem:极限.连续函数的极限1} 便得
+\begin{align*}
+&\left[ \frac{u(x)}{v(x)} \right]'
+= \lim_{\increment x\to0} \frac{1}{\increment x} \left[
+ \frac{u(x+\increment x)}{v(x+\increment x)} - \frac{u(x)}{v(x)}
+ \right] \\
+&= \lim_{\increment x\to0} \frac{u(x+\increment x) v(x) - u(x) v(x+\increment x)}{v(x+\increment x) v(x) \increment x} \\
+&= \lim_{\increment x\to0} \frac{[u(x+\increment x) - u(x)] v(x) - u(x) [v(x+\increment x) - v(x)]}{v(x+\increment x) v(x) \increment x} \\
+&= \lim_{\increment x\to0} \frac{1}{v(x+\increment x) v(x)} \left[
+ \frac{u(x+\increment x) - u(x)}{\increment x} v(x) - u(x) \frac{v(x+\increment x) - v(x)}{\increment x}
+ \right] \\
+&= \frac{u'(x) v(x) - u(x) v'(x)}{v^2(x)}.
+\qedhere
+\end{align*}
+\end{enumerate}
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+如果函数\(u=u(x)\)在点\(x\)具有导数，那么\[
+(C u)' = C u'.
+\]
+\end{corollary}
+
+\begin{corollary}
+如果函数\(u=u(x)\)、\(v=v(x)\)和\(w=w(x)\)都在点\(x\)具有导数，那么\[
+(uvw)' = [(uv)w]' = (uv)'w + (uv)w' = u'vw + uv'w + uvw'.
+\]
+\end{corollary}
+
+\begin{example}
+求正切函数\(y=\tan x\)的导数.
+\begin{solution}
+\((\tan x)'
+= \left(\frac{\sin x}{\cos x}\right)'
+= \frac{(\sin x)' \cos x - \sin x (\cos x)'}{(\cos x)^2}
+= \frac{\cos^2 x + \sin^2 x}{\cos^2 x}
+= \frac{1}{\cos^2 x}
+= \sec^2 x\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求正割函数\(y=\sec x\)的导数.
+\begin{solution}
+\((\sec x)'
+= \left(\frac{1}{\cos x}\right)'
+= \frac{(1)' \cdot \cos x - 1 \cdot (\cos x)'}{(\cos x)^2}
+= \frac{\sin x}{\cos^2 x}
+= \sec x \tan x\).
+\end{solution}
+\end{example}
+
+\subsection{反函数的求导法则}
+\begin{theorem}
+如果函数\(x=f(y)\)在区间\(I_y\)内单调、可导且\(f'(y) \neq 0\)，则它的反函数\(y=f^{-1}(x)\)在区间\(I_x=\{x \mid x=f(y), y \in I_y\}\)内也可导，且\[
+[f^{-1}(x)]'=\frac{1}{f'(y)}
+\quad\text{或}\quad
+\dv{y}{x} = \left(\dv{x}{y}\right)^{-1}.
+\]
+
+简单地说，反函数\(y=f^{-1}(x)\)的导数等于直接函数\(x=f(y)\)导数的倒数.
+\end{theorem}
+
+\begin{example}
+求\(y=\arcsin x\ (-1<x<1)\)的导数.
+\begin{solution}
+由直接函数\(x=\sin y\)，有\[
+	\dv{x}{y}
+	= \dv{y} \sin y
+	= \cos y,
+\]则\[
+	(\arcsin x)'
+	= \dv{y}{x}
+	= \left(\dv{x}{y}\right)^{-1}
+	= \frac{1}{\cos y}.
+\]
+因为\(y \in (-\frac{\pi}{2},\frac{\pi}{2})\)，
+\(\cos y \in (0,1]\)，
+所以\(\cos y = \sqrt{1 - \sin^2 y} = \sqrt{1 - x^2}\)，
+则\[
+	(\arcsin x)' = \frac{1}{\sqrt{1 - x^2}}.
+\]
+\end{solution}
+\end{example}
+
+类似地，可得\[
+	(\arccos x)' = \frac{-1}{\sqrt{1 - x^2}}.
+\]
+
+\begin{example}
+求\(y=\arctan x\)和\(y=\arccot x\)的导数.
+\begin{solution}
+由直接函数\(x=\tan y\)，有\[
+	\dv{x}{y}
+	= \dv{y} \tan y
+	= \sec^2 y
+	= 1 + \tan^2 y
+	= 1 + x^2,
+\]
+那么\[
+	(\arctan x)' = \frac{1}{1+x^2}.
+\]
+\end{solution}
+\end{example}
+
+类似地，可得\[
+	(\arccot x)' = \frac{-1}{1+x^2}.
+\]
+
+\begin{example}
+求\(y=\log_a x\)的导数，其中\(a\in(0,1)\cup(1,+\infty)\).
+\begin{solution}
+由直接函数\(x=a^y\)，有\[
+	\dv{x}{y} = \dv{y} a^y = a^y \ln a \neq 0,
+\]
+那么\[
+	(\log_a x)' = \frac{1}{a^y \ln a} = \frac{1}{x \ln a}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{复合函数的求导法则}
+\begin{theorem}
+如果\(u=g(x)\)在点\(x\)可导，而\(y=f(u)\)在点\(u=g(x)\)可导，则复合函数\(y=f[g(x)]\)在点\(x\)可导，且其导数为\[
+\dv{y}{x} = f'(u) \cdot g'(x)
+\quad\text{或}\quad
+\dv{y}{x} = \dv{y}{u} \cdot \dv{u}{x}.
+\]
+\end{theorem}
+复合函数的求导法则可以推广到多个中间变量的情形.
+设\(y=f(u)\)，\(u=\phi(v)\)，\(v=\psi(x)\)，则复合函数\(y=f\{\phi[\psi(x)]\}\)的导数为\[
+\dv{y}{x} = \dv{y}{u} \cdot \dv{u}{v} \cdot \dv{v}{x}.
+\]
+
+上述复合函数的求导公式也称作\DefineConcept{链式法则}（chain rule）.
+
+\subsection{行列式函数的求导法则}
+\begin{theorem}
+\def\f#1{f_{#1}(x)}%
+\def\g#1{f_{#1}'(x)}%
+设函数\[
+f(x) = \begin{vmatrix}
+\f{11} & \f{12} & \dots & \f{1n} \\
+\vdots & \vdots & & \vdots \\
+\f{i1} & \f{i2} & \dots & \f{in} \\
+\vdots & \vdots & & \vdots \\
+\f{n1} & \f{n2} & \dots & \f{nn}
+\end{vmatrix}
+\]的任意分量函数都可导（即\(\f{ij}\ (i,j=1,2,\dotsc,n)\)可导），那么\(f(x)\)可导，且\[
+\dv{x} f(x) = \sum_{i=1}^n \begin{vmatrix}
+\f{11} & \f{12} & \dots & \f{1n} \\
+\vdots & \vdots & & \vdots \\
+\g{i1} & \g{i2} & \dots & \g{in} \\
+\vdots & \vdots & & \vdots \\
+\f{n1} & \f{n2} & \dots & \f{nn}
+\end{vmatrix}.
+\]
+\end{theorem}
+
+\subsection{对数导数}
+\begin{definition}
+设函数\(f\colon I \to \mathbb{R}, f \in D(I)\)，
+我们把\[
+	\dv{x} \ln f(x)
+\]称为“函数\(f\)的\DefineConcept{对数导数}（logarithmic derivative）”.
+%@see: https://mathworld.wolfram.com/LogarithmicDerivative.html
+\end{definition}

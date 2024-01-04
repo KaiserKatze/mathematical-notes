@@ -1,0 +1,368 @@
+\section{导数的基本概念}
+\subsection{导数的定义}
+\begin{definition}
+设函数\(y=f(x)\)在点\(x_0\)的某个邻域内有定义，
+当自变量\(x\)在\(x_0\)处取得增量\(\increment x\)（点\(x_0+\increment x\)仍在该邻域内）时，
+相应的函数取得增量\(\increment y = f(x_0 + \increment x) - f(x_0)\)；
+如果\(\increment y\)与\(\increment x\)之比当\(\increment x\to0\)时的极限存在，
+则称“函数\(y=f(x)\)在点\(x_0\)处\DefineConcept{可导}”，
+或“\(f(x)\)在点\(x_0\)具有导数”，
+或“\(f(x)\)在点\(x_0\)导数存在”；
+并称这个极限为“函数\(y=f(x)\)在点\(x_0\)处的导数”，
+记为\(f'(x_0)\)，即
+\begin{equation}
+	f'(x_0)
+	= \lim_{\increment x\to0} \frac{\increment y}{\increment x}
+	= \lim_{\increment x\to0} \frac{f(x_0+\increment x)-f(x_0)}{\increment x}
+\end{equation}
+也可记作
+\[
+	y'\eval_{x=x_0}, \qquad
+	\dv{y}{x}\eval_{x=x_0}, \qquad
+	\dv{f(x)}{x}\eval_{x=x_0}, \quad\text{或}\quad
+	\left[\dv{x} f(x)\right]_{x=x_0}.
+\]
+\end{definition}
+
+导数的定义式可取不同的形式，如\begin{equation}
+	f'(x_0) = \lim_{x \to x_0}\frac{f(x) - f(x_0)}{x - x_0}.
+\end{equation}
+
+\begin{definition}
+称极限\[
+	\lim_{h\to0^-} \frac{f(x_0+h)-f(x_0)}{h}
+\]为“函数\(f(x)\)在点\(x_0\)处的\DefineConcept{左导数}（left-sided derivative）”，
+记作\(f'_-(x_0)\).
+
+称极限\[
+	\lim_{h\to0^+} \frac{f(x_0+h)-f(x_0)}{h}
+\]为“函数\(f(x)\)在点\(x_0\)处的\DefineConcept{右导数}（right-sided derivative）”，
+记作\(f'_+(x_0)\).
+
+左导数和右导数统称\DefineConcept{单侧导数}（one-sided derivative）.
+\end{definition}
+
+\begin{theorem}[导数存在的充分必要条件]
+函数\(f(x)\)在点\(x_0\)处可导的充分必要条件是%
+其左导数\(f'_-(x_0)\)和右导数\(f'_+(x_0)\)都存在且相等.
+\end{theorem}
+
+\begin{definition}
+如果函数\(y = f(x)\)在开区间\((a,b)\)内的每点处都可导，
+就称“函数\(f(x)\)在开区间\((a,b)\)内可导”.
+
+如果函数\(f(x)\)在开区间\((a,b)\)内可导，
+且\(f'_+(a)\)及\(f'_-(b)\)都存在，
+就说“函数\(f(x)\)在闭区间\([a,b]\)上可导”.
+\end{definition}
+
+\begin{definition}
+设函数\(y = f(x)\)在区间\(I\)内的每点处都可导，
+即对于\(\forall x_0 \in I\)，都对应着\(f(x_0)\)的一个确定的导数值\(f'(x_0)\).
+这样就构成一个新的函数，这个函数叫做原来函数\(y = f(x)\)的\DefineConcept{导函数}（简称导数），
+记作\[
+	y', \qquad
+	f'(x), \qquad
+	\dv{y}{x}, \qquad
+	\dv{f(x)}{x}
+	\quad\text{或}\quad
+	\dv{x} f(x).
+\]
+\end{definition}
+
+\begin{definition}\label{definition:函数族.可导函数族}
+由区间\(I\)上全部的可导函数组成的集合，称作\DefineConcept{可导函数族}，
+记作\(D(I)\)\footnote{当\(I=(a,b)\)时，可改写为\(D(a,b)\)，以此类推.}，
+即\[
+	D(I)
+	\defeq
+	\Set*{
+		f\in\mathbb{R}^I
+		\given
+		(\forall x \in I)
+		[\text{\(f\)在点\(x\)处可导}]
+	}.
+\]
+\end{definition}
+
+\begin{proposition}
+设\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x\)可导，
+则\[
+	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
+	= f'(x).
+\]
+\begin{proof}
+令\(t=-h\)，
+则\[
+	\lim_{h\to0^+} \frac{f(x)-f(x-h)}{h}
+	= \lim_{t\to0^-} \frac{f(x)-f(x+t)}{-t}
+	= \lim_{t\to0^-} \frac{f(x+t)-f(x)}{t},
+\]\[
+	\lim_{h\to0^-} \frac{f(x)-f(x-h)}{h}
+	= \lim_{t\to0^+} \frac{f(x)-f(x+t)}{-t}
+	= \lim_{t\to0^+} \frac{f(x+t)-f(x)}{t},
+\]
+又因为\[
+	\lim_{t\to0^-} \frac{f(x+t)-f(x)}{t}
+	= \lim_{t\to0^+} \frac{f(x+t)-f(x)}{t}
+	= f'(x),
+\]
+所以\[
+	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
+	= \lim_{h\to0^+} \frac{f(x)-f(x-h)}{h}
+	= \lim_{h\to0^-} \frac{f(x)-f(x-h)}{h}
+	= f'(x).
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+设\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x\)可导，
+\(\lambda>0\)是常数，
+则\[
+	\lim_{h\to0} \frac{f(x+\lambda h)-f(x)}{h}
+	= \lambda f'(x).
+\]
+\begin{proof}
+直接计算得\begin{align*}
+	\lim_{h\to0} \frac{f(x+\lambda h)-f(x)}{h}
+	&= \lambda \lim_{h\to0} \frac{f(x+\lambda h)-f(x)}{\lambda h} \\
+	&\xlongequal{t=\lambda h}
+		\lambda \lim_{t\to0} \frac{f(x+t)-f(x)}{t}
+	= \lambda f'(x).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{example}
+求函数\(f(x) = C\)的导数，其中\(C\)为常数.
+\begin{solution}
+\(f'(x)
+= \lim_{h\to0}\frac{C-C}{h}
+= 0\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求函数\(f(x) = x^n\)在\(x=a\)处的导数，其中\(a\in\mathbb{R},
+n\in\mathbb{N}^+\).
+\begin{solution}
+\(f'(a)
+= \lim_{x \to a}\frac{x^n-a^n}{x-a}
+= \lim_{x \to a}(x^{n-1}+ax^{n-2}+\dotsb+a^{n-1})
+= na^{n-1}\).
+\end{solution}
+\end{example}
+
+更一般地，对于幂函数\(y=x^{\mu}\ (\mu\in\mathbb{R})\)，有\begin{equation}
+	(x^{\mu})' = \mu x^{\mu-1}.
+\end{equation}
+
+\begin{example}
+求函数\(f(x) = \sin x\)的导数.
+\begin{solution}
+\(f'(x) = \lim_{h\to0}\frac{\sin(x+h)-\sin x}{h}
+= \lim_{h\to0}{\cos(x+\frac{h}{2}) \frac{\sin(h/2)}{h/2}}
+= \cos x\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求函数\(f(x) = a^x\ (a > 0 \land a \neq 1)\)的导数.
+\begin{solution}
+\(f'(x)
+= \lim_{h\to0}\frac{a^{x+h}-a^x}{h}
+= a^x \lim_{h\to0}\frac{a^h-1}{h}
+= a^x \ln a\).
+\end{solution}
+
+特别地，当\(a=e\)时，因\(\ln e = 1\)，故有\[
+	(e^x)' = e^x.
+\]
+\end{example}
+
+\begin{example}
+求函数\(f(x) = \log_a x\ (a > 0 \land a \neq 1)\)的导数.
+\begin{solution}
+\(f'(x)
+= \lim_{h\to0}\frac{\log_a(x+h)-\log_a x}{h}
+= \lim_{h\to0}{\frac{1}{h} \log_a\frac{x+h}{x}}
+= \frac{1}{x} \lim_{h\to0}\frac{\log_a(1+h/x)}{h/x}
+= \frac{1}{x \ln a}\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求函数\(f(x) = \abs{x}\)在\(x=0\)处的导数.
+\begin{solution}
+\(\frac{f(0+h)-f(0)}{h} = \frac{\abs{h}-0}{h} = \frac{\abs{h}}{h}\).
+
+当\(h < 0\)时，\(\frac{\abs{h}}{h} = -1\)，
+故\(\lim_{h\to0^-}\frac{f(0+h)-f(0)}{h}
+= \lim_{h\to0^-}\frac{\abs{h}}{h} = -1\).
+
+当\(h > 0\)时，\(\frac{\abs{h}}{h} = 1\)，
+故\(\lim_{h\to0^+}\frac{f(0+h)-f(0)}{h}
+= \lim_{h\to0^+}\frac{\abs{h}}{h} = 1\).
+
+综上，\(\lim_{h\to0}\frac{f(0+h)-f(0)}{h}\)不存在，即函数\(f(x) = \abs{x}\)在\(x = 0\)处不可导.
+\end{solution}
+\end{example}
+
+\subsection{导数的几何意义}
+\begin{theorem}
+曲线\(y=f(x)\)在点\(M(x_0,y_0)\)处的\DefineConcept{切线方程}为\[
+	y-y_0=f'(x_0)(x-x_0).
+\]
+
+过切点\(M(x_0,y_0)\)且与切线垂直的直线叫做曲线\(y=f(x)\)在点\(M\)处的\DefineConcept{法线}.
+如果\(f'(x_0) \neq 0\)，则法线的斜率为\(-\frac{1}{f'(x_0)}\)，从而法线方程为\[
+	y-y_0=-\frac{1}{f'(x_0)}(x-x_0);
+\]
+而如果\(f'(x_0) = 0\)，则法线方程为\(x = x_0\).
+\end{theorem}
+
+\subsection{函数可导性与连续性的关系}
+\begin{theorem}\label{theorem:导数与微分.函数可导性与连续性的关系}
+如果函数\(y = f(x)\)在点\(x_0\)处可导，
+则函数在该点必连续.
+\begin{proof}
+因为函数\(y = f(x)\)在点\(x_0\)处可导，所以极限\[
+	f'(x_0) = \lim_{x \to x_0}\frac{f(x)-f(x_0)}{x-x_0} = A
+\]存在，
+也就是说\[
+	(\forall \epsilon_1 > 0)
+	(\exists \delta_1 > 0)
+	\left[
+		0 < \abs{x-x_0} < \delta_1
+		\implies
+		\abs{\frac{f(x)-f(x_0)}{x-x_0} - A} < \epsilon_1
+	\right].
+\]
+
+由\(\abs{\frac{f(x)-f(x_0)}{x-x_0} - A} < \epsilon_1\)
+可得\[
+	\abs{\abs{f(x)-f(x_0)} - \abs{A(x-x_0)}}
+	\leq \abs{f(x)-f(x_0) - A(x-x_0)}
+	< \epsilon_1 \abs{x-x_0},
+\]\[
+	\abs{f(x)-f(x_0)} < (\abs{A} + \epsilon_1) \abs{x-x_0},
+\]
+只要取\(\epsilon_2 = (\abs{A} + \epsilon_1) \abs{x-x_0}\)
+即有\(\abs{f(x)-f(x_0)} < \epsilon_2\).
+\end{proof}
+\end{theorem}
+借用\cref{definition:函数族.连续函数族} 和\cref{definition:函数族.可导函数族} 的记号，
+可以将\cref{theorem:导数与微分.函数可导性与连续性的关系} 描述为：\[
+	D(I) \subseteq C(I).
+\]
+
+但是，一个函数在某点连续却不一定在该点可导.
+\begin{example}
+函数\(y=f(x)=\sqrt[3]x\)
+在区间\((-\infty,+\infty)\)内连续，
+但是在点\(x=0\)处不可导.
+这是因为在点\(x=0\)处有\[
+	\frac{f(0+h)-f(0)}{h}
+	=\frac{\sqrt[3]{h}-0}{h}
+	=\frac{1}{h^{2/3}}>0,
+\]
+因而，
+\(\lim_{h\to0} \frac{f(0+h)-f(0)}{h}
+=\lim_{h\to0} \frac{1}{h^{2/3}}
+=\infty\)，
+即导数为无穷大（导数不存在）.
+这事实在图形中表现为：
+曲线\(y=\sqrt[3]x\)在原点具有垂直于\(x\)轴的切线\(x=0\).
+\end{example}
+
+\begin{example}
+函数\(y=\sqrt{x^2}\)（即\(y=\abs{x}\)）
+在\((-\infty,+\infty)\)内连续，
+但是在\(x=0\)处不可导，
+曲线\(y=\sqrt{x^2}\)在原点没有切线.
+这是因为\[
+	\lim_{x\to0^+} \frac{f(x)-f(0)}{x-0}
+	= \lim_{x\to0^+} \frac{x-0}{x-0}
+	= 1,
+\]
+而\[
+	\lim_{x\to0^-} \frac{f(x)-f(0)}{x-0}
+	= \lim_{x\to0^-} \frac{(-x)-0}{x-0}
+	= -1.
+\]
+\end{example}
+
+\begin{remark}
+函数在某一点连续是函数在该点可导的必要不充分条件.
+\end{remark}
+
+% \begin{example}
+% 函数\[
+% 	W(x) = \lim_{n\to\infty} \sum_{k=0}^n a^k \cos(b^k \pi x),
+% \]称为\DefineConcept{魏尔斯特拉斯函数}，
+% 它的参数\(a\)和\(b\)满足\(0<a<1, b\in\Set{ p \given p = 2q+1, q\in\mathbb{N} }, ab > 1+\frac{3}{2}\pi\).
+% 可以证明，魏尔斯特拉斯函数在定义域上处处连续而又处处不可导.
+% \end{example}
+
+\subsection{导函数的间断点}
+\begin{example}
+对函数\[
+	f(x) = \left\{ \begin{array}{cl}
+		x+1, & x>0, \\
+		x-1, & x\leq0
+	\end{array} \right.
+\]求导得\[
+	f'(x) = 1
+	\quad(x\neq0).
+\]
+显然点\(x=0\)是导函数\(f'\)的可去间断点.
+\end{example}
+
+\begin{example}
+对函数\[
+	f(x) = \abs{x}
+\]求导得\[
+	f'(x) = \left\{ \begin{array}{cl}
+		1, & x>0, \\
+		-1, & x<0.
+	\end{array} \right.
+\]
+显然点\(x=0\)是导函数\(f'\)的跳跃间断点.
+\end{example}
+
+\begin{example}
+对函数\[
+	f(x) = \frac1x
+\]求导得\[
+	f'(x) = -\frac1{x^2}.
+\]
+显然点\(x=0\)是导函数\(f'\)的无穷间断点.
+\end{example}
+
+\begin{example}
+对函数\[
+	f(x) = \left\{ \begin{array}{cl}
+		x^2 \sin\frac1x, & x \neq 0, \\
+		0, & x = 0
+	\end{array} \right.
+\]求导得\[
+	f'(x) = \left\{ \begin{array}{cl}
+		2x \sin\frac1x - \cos\frac1x, & x \neq 0, \\
+		0, & x = 0.
+	\end{array} \right.
+\]
+由于点\(x=0\)是函数\(\phi(x)=\cos\frac1x\)的振荡间断点，
+而\(\lim_{x\to0} x \sin\frac1x = 0\)，
+所以点\(x=0\)也是导函数\(f'\)的振荡间断点.
+\end{example}
+
+\begin{proposition}
+如果函数\(f\)在区间\((a,b)\)内可导，
+那么\(f\)的导函数\(f'\)在\((a,b)\)内
+不可能存在可去间断点、跳跃间断点和无穷间断点，
+只可能存在振荡间断点.
+%TODO 需要证明、例子
+\end{proposition}

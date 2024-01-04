@@ -1,0 +1,117 @@
+\section{高阶导数}
+\subsection{函数的\texorpdfstring{\(n\)}{n}阶导数}
+\begin{definition}
+一般地，函数\(y=f(x)\)的导数\(y'=f'(x)\)仍然是\(x\)的函数.
+我们把\(y'=f'(x)\)的导数叫做函数\(y=f(x)\)的\DefineConcept{二阶导数}，
+记作\[
+	y''
+	\quad\text{或}\quad
+	\dv[2]{y}{x},
+	\]
+即\[
+	y''=(y')'
+	\quad\text{或}\quad
+	\dv[2]{y}{x}=\dv{x}(\dv{y}{x}).
+\]
+
+相应地，把\(y=f(x)\)的导数\(y'(x)\)叫做函数\(y=f(x)\)的\DefineConcept{一阶导数}.
+
+类似地，二阶导数的导数叫做\DefineConcept{三阶导数}，记作\[
+	y'''
+	\quad\text{或}\quad
+	\dv[3]{y}{x};
+\]
+三阶导数的导数叫做\DefineConcept{四阶导数}，记作\[
+	y^{(4)}
+	\quad\text{或}\quad
+	\dv[4]{y}{x};
+\]
+以此类推，\((n-1)\)阶导数的导数叫做 \DefineConcept{\(n\)阶导数}，记作\[
+	y^{(n)}
+	\quad\text{或}\quad
+	\dv[n]{y}{x}.
+\]
+二阶及二阶以上的导数统称\DefineConcept{高阶导数}.
+
+特别地，规定：\[
+	f^{(0)}(x) = f(x).
+\]
+
+函数\(y=f(x)\)具有\(n\)阶导数，也常说成“函数\(f(x)\)为\(n\)阶可导”.
+\end{definition}
+
+\begin{theorem}
+设\(u=u(x)\)和\(v=v(x)\)都\(n\)阶可导，则
+\begin{equation}
+	(u \pm v)^{(n)} = u^{(n)} \pm v^{(n)}.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+设\(u=u(x)\)和\(v=v(x)\)都\(n\)阶可导，则
+\begin{equation}\label{equation:导数与微分.莱布尼茨公式}
+	(u v)^{(n)}
+	= \sum_{k=0}^n C_n^k u^{(n-k)} v^{(k)}.
+\end{equation}
+\end{theorem}
+\cref{equation:导数与微分.莱布尼茨公式} 称为\DefineConcept{莱布尼茨公式}.
+
+\begin{definition}\label{definition:函数族.n阶可导函数族}
+由区间\(I\)上全部的\(n\)阶可导函数组成的集合，
+称作\(n\)阶\DefineConcept{可导函数族}，
+记作\(D^n(I)\)，即\[
+	D^n(I)
+	\defeq
+	\Set*{
+		f\in\mathbb{R}^I
+		\given
+		(\forall i\in[0,n-1]\cap\mathbb{Z})
+		[f^{(i)} \in D(I)]
+	}.
+\]
+\end{definition}
+
+\begin{definition}\label{definition:函数族.n阶连续可导函数族}
+由区间\(I\)上全部的\(n\)阶连续可导函数组成的集合，
+称作\(n\)阶\DefineConcept{连续可导函数族}，
+记作\(C^n(I)\)，即\[
+	C^n(I)
+	\defeq
+	\Set*{
+		f\in\mathbb{R}^I
+		\given
+		[f\in D^n(I)]
+		\land
+		[f^{(n)}\in C(I)]
+	}.
+\]
+\end{definition}
+
+\begin{theorem}
+如果函数\(f(x)\)在点\(x\)处具有\(n\)阶导数，
+那么\(f(x)\)在点\(x\)的某一邻域内必定具有一切低于\(n\)阶的导数.
+\end{theorem}
+换句话说，\(
+C(I) \supseteq
+D(I) = D^1(I) \supseteq
+C^1(I) \supseteq
+D^2(I) \supseteq
+C^2(I) \supseteq
+D^3(I) \supseteq
+\dotsb
+\).
+
+\subsection{光滑函数}
+\begin{definition}\label{definition:函数族.光滑函数族}
+定义：\[
+	D^\infty (I) \defeq \bigcap_{n\geq1} D^n(I),
+\]\[
+	C^\infty (I) \defeq \bigcap_{n\geq1} C^n(I).
+\]
+
+称函数\(f \in C^\infty (I)\)为\(I\)上的\DefineConcept{光滑函数}（smooth function）.
+\end{definition}
+
+\begin{property}\label{theorem:函数族.光滑函数族的性质1}
+\(D^\infty (I) = C^\infty (I)\).
+\end{property}
