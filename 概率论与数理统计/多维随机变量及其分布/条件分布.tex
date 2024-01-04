@@ -108,15 +108,34 @@
 \def\l{\lim_{\epsilon\to0^+}}%
 那么\begin{align*}
 	F_{X \vert Y}(x \vert y)
-	&= \l \frac{P(X \leq x, y - \epsilon < Y \leq y + \epsilon)}{P(y - \epsilon < Y \leq y + \epsilon)} \\
-	&= \l \frac{F(x,y+\epsilon) - F(x,y-\epsilon)}{F_Y(y+\epsilon) - F_Y(y-\epsilon)} \\
-	&= \l \frac{[F(x,y+\epsilon) - F(x,y-\epsilon)] \frac{1}{2 \epsilon}}{[F_Y(y+\epsilon) - F_Y(y-\epsilon)] \frac{1}{2 \epsilon}} \\
-	&= \pdv{F(x,y)}{y} \bigg/ F_Y'(y)
-	= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)} \dd{u}.
+	&= \lim_{\epsilon\to0^+}
+		P(X \leq x \vert y - \epsilon < Y \leq y + \epsilon) \\
+	&= \lim_{\epsilon\to0^+}
+		\frac{
+			P(X \leq x, y - \epsilon < Y \leq y + \epsilon)
+		}{
+			P(y - \epsilon < Y \leq y + \epsilon)
+		} \\
+	&= \lim_{\epsilon\to0^+}
+		\frac{
+			F(x,y+\epsilon) - F(x,y-\epsilon)
+		}{
+			F_Y(y+\epsilon) - F_Y(y-\epsilon)
+		} \\
+	&= \lim_{\epsilon\to0^+}
+		\frac{
+			[F(x,y+\epsilon) - F(x,y-\epsilon)] \frac{1}{2 \epsilon}
+		}{
+			[F_Y(y+\epsilon) - F_Y(y-\epsilon)] \frac{1}{2 \epsilon}
+		} \\
+	&= \pdv{F(x,y)}{y} \bigg/ F_Y'(y) \\
+	&= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)} \dd{u}.
 	\qedhere
 \end{align*}
 \end{proof}
 \end{theorem}
+
+可以证明，条件分布函数也是分布函数.
 
 \begin{corollary}
 已知边缘密度函数和条件密度函数，可以求出二维密度，即\[
