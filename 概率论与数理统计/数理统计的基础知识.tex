@@ -122,27 +122,30 @@
 	F_Z(z) = P(Z \leq z)
 	= P(X_1^2 \leq z)
 	= P(-\sqrt{z} \leq X_1 \leq \sqrt{z})
-	= F_{X_1}(\sqrt{z}) - F_{X_1}(-\sqrt{z}),
+	= \Phi(\sqrt{z}) - \Phi(-\sqrt{z}),
 \]
-相应的密度函数为\[
-	f_Z(z) = \frac{1}{2} z^{-\frac{1}{2}} \left[
-		f_{X_1}(\sqrt{z}) + f_{X_2}(-\sqrt{z})
+其中\(\Phi\)是标准正态分布的分布函数.
+于是\(Z\)的密度函数为\[
+	f_Z(z)
+	= F_Z'(z)
+	= \frac12 z^{-\frac12} \left[
+		\phi(\sqrt{z}) + \phi(-\sqrt{z})
 	\right],
 \]
-其中\(f_{X_1}(x) = (2\pi)^{-\frac{1}{2}} \exp(\frac{-x^2}{2})\)为标准正态分布的密度函数，
+其中\(\phi(x) = \frac{1}{\sqrt{2\pi}} \exp(-\frac{x^2}{2})\)为标准正态分布的密度函数.
 代入即得\[
 	f_Z(z) = \left\{ \begin{array}{cl}
-		\frac{1}{\sqrt{2\pi}} z^{-\frac{1}{2}} e^{-\frac{z}{2}}, & z>0, \\
+		\frac{1}{\sqrt{2\pi}} z^{-\frac12} e^{-\frac{z}{2}}, & z>0, \\
 		0, & z \leq 0.
 	\end{array} \right.
 \]
-这正是\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\)的密度函数.
+这正是\(\Gamma\left(\frac12,\frac12\right)\)的密度函数.
 
 又因为\(\AutoTuple{X}{n}\)独立同分布，
-所以\(\AutoTuple{X^2}{n}\)也独立同分布于\(\Gamma\left(\frac{1}{2},\frac{1}{2}\right)\).
+所以\(\AutoTuple{X^2}{n}\)也独立同分布于\(\Gamma\left(\frac12,\frac12\right)\).
 
 再由~\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}可知
-\(\x = X_1^2+X_2^2+\dotsb+X_n^2\)服从\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\).
+\(\x = X_1^2+X_2^2+\dotsb+X_n^2\)服从\(\Gamma\left(\frac{n}{2},\frac12\right)\).
 \end{proof}
 \end{theorem}
 
