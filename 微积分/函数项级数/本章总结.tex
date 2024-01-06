@@ -202,7 +202,22 @@ f(x) = \sum_{n=0}^\infty \frac{1}{n!} f^{(n)}(0) x^n
 求解任意函数的傅里叶级数展开式的具体思路如下：
 \begin{enumerate}
 \item 对于任意一个周期为\(2\pi\)的函数\(f(x)\)，
-我们只要计算出它的傅里叶系数\[
+我们只要利用积分表，
+例如\begin{gather*}
+	\int x \sin ax \dd{x}
+	= \frac{1}{a^2} \sin ax - \frac{1}{a} x \cos ax + C, \\
+	\int x^2 \sin ax \dd{x}
+	= -\frac{1}{a} x^2\cos ax + \frac{2}{a^2} x\sin ax + \frac{2}{a^3} \cos ax + C, \\
+	\int x \cos ax \dd{x}
+	= \frac{1}{a^2} \cos ax + \frac{1}{a} x \sin ax + C, \\
+	\int x^2 \cos ax \dd{x}
+	= \frac{1}{a} x^2 \sin ax + \frac{2}{a^2} x \cos ax - \frac{2}{a^3} \sin ax + C, \\
+	\int e^{ax} \sin bx \dd{x}
+	= \frac{1}{a^2+b^2} e^{ax} (a \sin bx - b \cos bx) + C, \\
+	\int e^{ax} \cos bx \dd{x}
+	= \frac{1}{a^2+b^2} e^{ax} (b \sin bx + a \cos bx) + C,
+\end{gather*}
+计算出它的傅里叶系数\[
 a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos nx \dd{x}
 \quad(n=0,1,2,\dotsc),
 \]\[
