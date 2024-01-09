@@ -5,12 +5,17 @@
 
 \subsection{原函数与不定积分的概念}
 \begin{definition}
-如果在区间\(I\)上，可导函数\(F(x)\)的导函数为\(f(x)\)，即对任一\(x \in I\)，都有\[
-F'(x)=f(x) \quad\text{或}\quad \dd{F(x)}=f(x) \dd{x},
-\]那么函数\(F(x)\)就称为\(f(x)\)（或\(f(x) \dd{x}\)）在区间\(I\)上的\DefineConcept{原函数}.
+如果在区间\(I\)上，可导函数\(F(x)\)的导函数为\(f(x)\)，
+即对任一\(x \in I\)，都有\[
+	F'(x)=f(x) \quad\text{或}\quad \dd{F(x)}=f(x) \dd{x},
+\]
+那么函数\(F(x)\)就称为
+“\(f(x)\)（或\(f(x) \dd{x}\)）在区间\(I\)上的\DefineConcept{原函数}”.
 \end{definition}
 
-关于原函数，我们首先要问：一个函数具备什么条件，才能保证它的原函数一定存在？这个问题将在下一章中讨论，这里先介绍一个结论.
+关于原函数，我们首先要问：
+一个函数具备什么条件，才能保证它的原函数一定存在？
+这个问题将在下一章中讨论，这里先介绍一个结论.
 \begin{theorem}[原函数存在定理]%提前叙述该定理.参见\cref{theorem:定积分.原函数存在定理}
 如果函数\(f(x)\)在区间\(I\)上连续，
 那么在区间\(I\)上存在可导函数\(F(x)\)，使对任一\(x \in I\)都有\[
@@ -20,60 +25,90 @@ F'(x)=f(x) \quad\text{或}\quad \dd{F(x)}=f(x) \dd{x},
 \end{theorem}
 下面还要说明两点.
 
-第一，如果\(f(x)\)在区间\(I\)上有原函数，即有一个函数\(F(x)\)，使对任一\(x \in I\)，都有\(F'(x) = f(x)\)，那么，对任何常数\(C\)，显然也有\[
-[F(x) + C]' = f(x),
-\]即对任何常数\(C\)，函数\(F(x) + C\)也是\(f(x)\)的原函数.这说明，如果\(f(x)\)有一个原函数，那么\(f(x)\)就有无限多个原函数.
+第一，如果\(f(x)\)在区间\(I\)上有原函数，
+即有一个函数\(F(x)\)，
+使对任一\(x \in I\)，
+都有\(F'(x) = f(x)\)，
+那么，对任何常数\(C\)，显然也有\[
+	[F(x) + C]' = f(x),
+\]即对任何常数\(C\)，函数\(F(x) + C\)也是\(f(x)\)的原函数.
+这说明，如果\(f(x)\)有一个原函数，那么\(f(x)\)就有无限多个原函数.
 
-第二，如果在区间\(I\)上\(F(x)\)是\(f(x)\)的一个原函数，那么\(f(x)\)的其他原函数与\(F(x)\)有什么关系？
+第二，如果在区间\(I\)上\(F(x)\)是\(f(x)\)的一个原函数，
+那么\(f(x)\)的其他原函数与\(F(x)\)有什么关系？
 
-设\(\Phi(x)\)是\(f(x)\)的另一个原函数，即对任一\(x \in I\)有\[
-\Phi'(x) = f(x),
-\]于是\[
-[\Phi(x) - F(x)]' = \Phi'(x) - F'(x) = f(x) - f(x) = 0.
-\]在前面章节已经知道，在一个区间上导数恒为零的函数必为常数，所以\[
-\Phi(x) - F(x) = C_0,
-\]其中\(C_0\)是某个常数.这就表明\(\Phi(x)\)与\(F(x)\)只差一个常数.因此，当\(C\)为任意的常数时，表达式\(F(x) + C\)就可表示\(f(x)\)的任意一个原函数.也就是说，\(f(x)\)的全体原函数所组成的集合，就是函数族\[
-\Set{ F(x) + C \given C \in (-\infty,\infty) }.
+设\(\Phi(x)\)是\(f(x)\)的另一个原函数，
+即对任一\(x \in I\)有\[
+	\Phi'(x) = f(x),
+\]
+于是\[
+	[\Phi(x) - F(x)]' = \Phi'(x) - F'(x) = f(x) - f(x) = 0.
+\]
+在前面章节已经知道，
+在一个区间上导数恒为零的函数必为常数，所以\[
+	\Phi(x) - F(x) = C_0,
+\]
+其中\(C_0\)是某个常数.这就表明\(\Phi(x)\)与\(F(x)\)只差一个常数.
+因此，当\(C\)为任意的常数时，
+表达式\(F(x) + C\)就可表示\(f(x)\)的任意一个原函数.
+也就是说，\(f(x)\)的全体原函数所组成的集合，就是函数族\[
+	\Set{ F(x) + C \given C \in (-\infty,\infty) }.
 \]
 
 \begin{definition}
-在区间\(I\)上，函数\(f(x)\)的带有任意常数项的原函数称为\(f(x)\)（或\(f(x) \dd{x}\)）在区间\(I\)上的\DefineConcept{不定积分}，记作\[
-\int f(x) \dd{x},
-\]其中记号\(\int\)称为\DefineConcept{积分号}，\(f(x)\)称为\DefineConcept{被积函数}，\(f(x)\dd{x}\)称为\DefineConcept{被积表达式}，\(x\)称为\DefineConcept{积分变量}.
+在区间\(I\)上，
+函数\(f(x)\)的带有任意常数项的原函数
+称为\(f(x)\)（或\(f(x) \dd{x}\)）在区间\(I\)上的\DefineConcept{不定积分}，
+记作\[
+	\int f(x) \dd{x},
+\]
+其中记号\(\int\)称为\DefineConcept{积分号}，
+\(f(x)\)称为\DefineConcept{被积函数}，
+\(f(x)\dd{x}\)称为\DefineConcept{被积表达式}，
+\(x\)称为\DefineConcept{积分变量}.
 \end{definition}
-由此定义及前面的说明可知，如果\(F(x)\)是\(f(x)\)在区间\(I\)上的一个原函数，那么\(F(x) + C\)就是\(f(x)\)的不定积分，即\[
-\int f(x) \dd{x} = F(x) + C.
+由此定义及前面的说明可知，
+如果\(F(x)\)是\(f(x)\)在区间\(I\)上的一个原函数，
+那么\(F(x) + C\)就是\(f(x)\)的不定积分，
+即\[
+	\int f(x) \dd{x} = F(x) + C.
 \]
 因而不定积分\(\int f(x) \dd{x}\)可以表示\(f(x)\)的任意一个原函数.
 
-
 对初等函数来说，在其定义区间上，它的原函数一定存在，但原函数不一定都是初等函数，如\[
-\int e^{-x^2} \dd{x}, \qquad
-\int \frac{\sin x}{x} \dd{x}, \qquad
-\int \frac{\dd{x}}{\ln{x}}, \qquad
-\int \frac{\dd{x}}{\sqrt{1+x^4}}
+	\int e^{-x^2} \dd{x}, \qquad
+	\int \frac{\sin x}{x} \dd{x}, \qquad
+	\int \frac{\dd{x}}{\ln{x}}, \qquad
+	\int \frac{\dd{x}}{\sqrt{1+x^4}}
 \]
 等等，它们的原函数就都不是初等函数.
 
 \begin{example}
 求\(\int \frac{\dd{x}}{x}\).
 \begin{solution}
-当\(x > 0\)时，由于\((\ln x)' = \frac{1}{x}\)，所以\(\ln x\)是\(\frac{1}{x}\)在区间\((0,+\infty)\)内的一个原函数.因此，在\((0,+\infty)\)内，\[
+当\(x > 0\)时，由于\((\ln x)' = \frac{1}{x}\)，
+所以\(\ln x\)是\(\frac{1}{x}\)在区间\((0,+\infty)\)内的一个原函数.
+因此，在\((0,+\infty)\)内，\[
 \int \frac{\dd{x}}{x} = \ln x + C_1.
 \]
 
-当\(x < 0\)时，由于\([\ln(-x)]' = \frac{1}{-x} \cdot (-1) = \frac{1}{x}\)，所以\(\ln(-x)\)是\(\frac{1}{x}\)在\((-\infty,0)\)内的一个原函数.因此，在\((-\infty,0)\)内，\[
-\int \frac{\dd{x}}{x} = \ln(-x) + C_2.
+当\(x < 0\)时，
+由于\([\ln(-x)]' = \frac{1}{-x} \cdot (-1) = \frac{1}{x}\)，
+所以\(\ln(-x)\)是\(\frac{1}{x}\)在\((-\infty,0)\)内的一个原函数.
+因此，在\((-\infty,0)\)内，\[
+	\int \frac{\dd{x}}{x} = \ln(-x) + C_2.
 \]
 
-把在\(x > 0\)及\(x < 0\)内的结果合起来，可写作\begin{equation}
-\int \frac{\dd{x}}{x} = \left\{ \begin{array}{lc}
-\ln x + C_1, & x>0, \\
-\ln(-x) + C_2, & x<0.
-\end{array} \right.
+把在\(x > 0\)及\(x < 0\)内的结果合起来，
+可写作\begin{equation}
+	\int \frac{\dd{x}}{x} = \left\{ \begin{array}{lc}
+		\ln x + C_1, & x>0, \\
+		\ln(-x) + C_2, & x<0.
+	\end{array} \right.
 \end{equation}
-虽然常数\(C_1\)和\(C_2\)的取值可以是独立的，但在不严谨的情况下，为方便记忆，上式也可写作\begin{equation}
-\int \frac{\dd{x}}{x} = \ln\abs{x} + C.
+虽然常数\(C_1\)和\(C_2\)的取值可以是独立的，
+但在不严谨的情况下，为方便记忆，上式也可写作\begin{equation}
+	\int \frac{\dd{x}}{x} = \ln\abs{x} + C.
 \end{equation}
 \end{solution}
 \end{example}
@@ -103,7 +138,9 @@ F'(x)=f(x) \quad\text{或}\quad \dd{F(x)}=f(x) \dd{x},
 \subsection{不定积分的性质}
 \begin{property}
 设函数\(f(x)\)及\(g(x)\)的原函数存在，则\[
-\int \bigl[f(x) + g(x)\bigr] \dd{x} = \int f(x) \dd{x} + \int g(x) \dd{x}.
+	\int \bigl[f(x) + g(x)\bigr] \dd{x}
+	= \int f(x) \dd{x}
+	+ \int g(x) \dd{x}.
 \]
 \end{property}
 这个性质对于有限个函数都是成立的.
@@ -112,10 +149,10 @@ F'(x)=f(x) \quad\text{或}\quad \dd{F(x)}=f(x) \dd{x},
 求\(\int \tan^2 x \dd{x}\).
 \begin{solution}
 根据三角恒等式\(\tan^2 x + 1 = \sec^2 x\)，有\[
-\int \tan^2 x \dd{x}
-= \int (\sec^2 x - 1) \dd{x}
-= \int \sec^2 x \dd{x} - \int \dd{x}
-= \tan x - x + C.
+	\int \tan^2 x \dd{x}
+	= \int (\sec^2 x - 1) \dd{x}
+	= \int \sec^2 x \dd{x} - \int \dd{x}
+	= \tan x - x + C.
 \]
 \end{solution}
 \end{example}
