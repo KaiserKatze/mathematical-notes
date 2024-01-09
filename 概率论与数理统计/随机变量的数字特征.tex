@@ -972,8 +972,48 @@ theorem:随机变量的数字特征.标准化随机变量的数字特征} 立即
 
 \begin{theorem}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P155. 定理3.3.9
-\(R(X,Y) = \pm\)的充分必要条件是：
+\(R(X,Y) = \pm1\)的充分必要条件是：
 在\(X\)与\(Y\)之间几乎处处有线性关系.
+\begin{proof}
+设\(D(X) = \sigma_X,
+D(Y) = \sigma_Y\).
+
+充分性.
+若\(Y=aX+b\)，
+则\(\sigma_Y^2=a^2\sigma_X^2\)，
+从而\[
+	\Cov(X,Y)
+	= \Cov(X,aX+b)
+	= a\Cov(X,X)
+	= a\sigma_X^2,
+\]
+于是\[
+	R(X,Y)
+	= \frac{\Cov(X,Y)}{\sigma_X \sigma_Y}
+	= \frac{a \sigma_X^2}{\abs{a} \sigma_X^2}
+	= \left\{ \begin{array}{rl}
+		1, & a>0, \\
+		-1, & a<0.
+	\end{array} \right.
+\]
+
+必要性.
+由于\begin{align*}
+	D\left(\frac{X}{\sigma_X} \pm \frac{Y}{\sigma_Y}\right)
+	&= \frac1{\sigma_X^2} D(X) + \frac1{\sigma_Y^2} D(Y)
+		\pm \frac2{\sigma_X \sigma_Y} \Cov(X,Y) \\
+	&= 2[1 \pm R(X,Y)],
+\end{align*}
+所以，
+当\(R(X,Y)=1\)时，
+有\(D\left(\frac{X}{\sigma_X} - \frac{Y}{\sigma_Y}\right) = 0\)，
+故\(P\left(\frac{X}{\sigma_X} - \frac{Y}{\sigma_Y} = c\right) = 1\)；
+当\(R(X,Y)=-1\)时，
+有\(D\left(\frac{X}{\sigma_X} + \frac{Y}{\sigma_Y}\right) = 0\)，
+故\(P\left(\frac{X}{\sigma_X} + \frac{Y}{\sigma_Y} = c\right) = 1\).
+综上所述，当\(R(X,Y)=\pm1\)时，
+在\(X\)与\(Y\)之间几乎处处有线性关系.
+\end{proof}
 \end{theorem}
 
 \begin{theorem}
