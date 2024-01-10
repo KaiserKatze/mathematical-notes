@@ -475,6 +475,7 @@ I = \frac{1}{2} \iint_D [ f(x,y) + f(y,x) ] \dd{x}\dd{y}
 
 \subsubsection{二重积分的换元法}
 \begin{theorem}
+%@see: 《高等数学（第六版 下册）》 P149. 定理
 设二元函数\(f(x,y)\)在\(xOy\)平面上的闭区域\(D\)上连续，
 变换\[
 	T\colon \left\{ \begin{array}{l}
@@ -484,86 +485,93 @@ I = \frac{1}{2} \iint_D [ f(x,y) + f(y,x) ] \dd{x}\dd{y}
 \]将\(uOv\)平面上的闭区域\(G\)变为\(xOy\)平面上的\(D\)，
 且满足：\begin{enumerate}
 	\item \(x(u,v)\)、\(y(u,v)\)在\(G\)上具有一阶连续偏导数；
-	\item 在\(G\)上雅克比式\(J = \jacobi{x,y}{u,v} \neq 0\)；
+	\item 在\(G\)上雅克比式\(J(u,v) = \jacobi{x,y}{u,v}\)恒不等于零；
 	\item 变换\(T\colon G \to D\)是一一映射，
 \end{enumerate}
 则有\begin{equation}\label{equation:重积分.二重积分的换元公式}
-\iint_D f(x,y) \dd{x} \dd{y}
-=\iint_G f[x(u,v),y(u,v)] \cdot \abs{J} \dd{u} \dd{v}.
+	\iint_D f(x,y) \dd{x} \dd{y}
+	=\iint_G f[x(u,v),y(u,v)] \cdot \abs{J(u,v)} \dd{u} \dd{v}.
 \end{equation}
-%证明@see: 《高等数学（第六版 下册）》P149
+%TODO
 \end{theorem}
 \cref{equation:重积分.二重积分的换元公式} 称为\DefineConcept{二重积分的换元公式}.
-这里我们指出，如果雅克比式\(J\)只在\(G\)内个别点上，或一条曲线上为零，而在其他点上不为零，那么换元公式 \labelcref{equation:重积分.二重积分的换元公式} 仍成立.
+这里我们指出，
+如果雅克比式\(J\)只在\(G\)内个别点上，或一条曲线上为零，而在其他点上不为零，
+那么换元公式 \labelcref{equation:重积分.二重积分的换元公式} 仍成立.
 
-\vspace{1cm}
-
-在变换为极坐标\(x = \rho \cos\theta, y = \rho \sin\theta\)的特殊情形下，雅克比式\[
-J = \jacobi{x,y}{\rho,\theta}
-= {\def\arraystretch{1.5}
-\begin{vmatrix}
-\pdv{x}{\rho} & \pdv{x}{\theta} \\
-\pdv{y}{\rho} & \pdv{y}{\theta}
-\end{vmatrix}}
-= \begin{vmatrix}
-\cos\theta & -\rho \sin\theta \\
-\sin\theta & \rho \cos\theta
-\end{vmatrix}
-= \rho
-\]仅在\(\rho = 0\)处为零，故不论闭区域\(G\)是否含有极点，换元公式仍成立，即有\[
+在变换为极坐标\(x = \rho \cos\theta, y = \rho \sin\theta\)的特殊情形下，
+雅克比式\[
+	J = \jacobi{x,y}{\rho,\theta}
+	= {\def\arraystretch{1.5}
+	\begin{vmatrix}
+		\pdv{x}{\rho} & \pdv{x}{\theta} \\
+		\pdv{y}{\rho} & \pdv{y}{\theta}
+	\end{vmatrix}}
+	= \begin{vmatrix}
+		\cos\theta & -\rho \sin\theta \\
+		\sin\theta & \rho \cos\theta
+	\end{vmatrix}
+	= \rho
+\]仅在\(\rho = 0\)处为零，
+故不论闭区域\(G\)是否含有极点，换元公式仍成立，即有\[
 \iint_D f(x,y) \dd{x} \dd{y}
 = \iint_G f(\rho \cos\theta,\rho \sin\theta) \rho \dd{\rho} \dd{\theta},
 \]这里\(G\)是\(D\)在直角坐标平面\(\rho O \theta\)上的对应区域.
-尽管在\cref{equation:线性方程组.二重积分坐标变换公式} 中，用来表记积分区域的符号是\(D\)而非\(G\)，但当积分区域\(D\)用极坐标表示时，其形式就与上式右端的形式完全等同了.
+尽管在\cref{equation:线性方程组.二重积分坐标变换公式} 中，
+用来表记积分区域的符号是\(D\)而非\(G\)，
+但当积分区域\(D\)用极坐标表示时，
+其形式就与上式右端的形式完全等同了.
 
 \begin{example}
-计算\(\iint_D \exp(\frac{y-x}{y+x}) \dd{x} \dd{y}\)，其中\(D\)是由\(x\)轴、\(y\)轴和直线\(x+y=2\)所围成的闭区域.
+计算\(\iint_D \exp(\frac{y-x}{y+x}) \dd{x} \dd{y}\)，
+其中\(D\)是由\(x\)轴、\(y\)轴和直线\(x+y=2\)所围成的闭区域.
 \begin{solution}
 令\(u = y-x, v = y+x\)，则\(x = \frac{v-u}{2}, y = \frac{v+u}{2}\).
 那么作变换可得\(xOy\)平面上的闭区域\(D\)和它在\(uOv\)平面上的对应区域\(G\)如下图所示.
 
 \begin{figure}[ht]
-\def\subwidth{.5\linewidth}
-\begin{subfigure}[b]{\subwidth}
-\centering
-\begin{tikzpicture}
-\draw[thick,->] (0,0) -> (3,0)node[above]{\(x\)};
-\draw[thick,->] (0,0) -> (0,3)node[right]{\(y\)};
-\draw (.5,.5)node{\(D\)};
-\draw (0,0)node[below left]{\(O\)};
-\draw (0,2)--(2,0)node[midway,right]{\(x+y=2\)};
-\end{tikzpicture}
-\subcaption{}
-\end{subfigure}%
-\begin{subfigure}[b]{\subwidth}
-\centering
-\begin{tikzpicture}
-\draw[thick,->] (-3,0) -> (3,0)node[above]{\(u\)};
-\draw[thick,->] (0,0) -> (0,3)node[right]{\(v\)};
-\draw (.5,1.5)node{\(G\)};
-\draw (0,0)node[below left]{\(O\)};
-\draw (0,0)--(2,2)node[midway,right]{\(u=v\)}
-    --(-2,2)node[midway,above right]{\(v=2\)}
-    --(0,0)node[midway,left]{\(u=-v\)};
-\end{tikzpicture}
-\subcaption{}
-\end{subfigure}%
-\caption{}
+	\def\subwidth{.5\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\draw[thick,->] (0,0) -> (3,0)node[above]{\(x\)};
+			\draw[thick,->] (0,0) -> (0,3)node[right]{\(y\)};
+			\draw (.5,.5)node{\(D\)};
+			\draw (0,0)node[below left]{\(O\)};
+			\draw (0,2)--(2,0)node[midway,right]{\(x+y=2\)};
+		\end{tikzpicture}
+		\subcaption{}
+	\end{subfigure}%
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\draw[thick,->] (-3,0) -> (3,0)node[above]{\(u\)};
+			\draw[thick,->] (0,0) -> (0,3)node[right]{\(v\)};
+			\draw (.5,1.5)node{\(G\)};
+			\draw (0,0)node[below left]{\(O\)};
+			\draw (0,0)--(2,2)node[midway,right]{\(u=v\)}
+				--(-2,2)node[midway,above right]{\(v=2\)}
+				--(0,0)node[midway,left]{\(u=-v\)};
+		\end{tikzpicture}
+		\subcaption{}
+	\end{subfigure}%
+	\caption{}
 \end{figure}
 
 雅克比式为\[
-J = \jacobi{x,y}{u,v}
-= \def\arraystretch{1.5} \begin{vmatrix}
--\frac{1}{2} & \frac{1}{2} \\
-\frac{1}{2} & \frac{1}{2}
-\end{vmatrix}
-= - \frac{1}{2}.
-\]那么\begin{align*}
-\iint_D \exp(\frac{y-x}{y+x}) \dd{x} \dd{y}
-&= \iint_G e^{\frac{u}{v}} \abs{-\frac{1}{2}} \dd{u} \dd{v} \\
-&= \frac{1}{2} \int_0^2 \dd{v} \int_{-v}^v e^{\frac{u}{v}} \dd{u} \\
-&= \frac{1}{2} \int_0^2 \left( e - e^{-1} \right) v \dd{v}
-= e - e^{-1}.
+	J = \jacobi{x,y}{u,v}
+	= \def\arraystretch{1.5} \begin{vmatrix}
+	-\frac12 & \frac12 \\
+	\frac12 & \frac12
+	\end{vmatrix}
+	= - \frac12.
+\]
+那么\begin{align*}
+	\iint_D \exp(\frac{y-x}{y+x}) \dd{x} \dd{y}
+	&= \iint_G e^{\frac{u}{v}} \abs{-\frac12} \dd{u} \dd{v} \\
+	&= \frac12 \int_0^2 \dd{v} \int_{-v}^v e^{\frac{u}{v}} \dd{u} \\
+	&= \frac12 \int_0^2 \left( e - e^{-1} \right) v \dd{v}
+	= e - e^{-1}.
 \end{align*}
 \end{solution}
 \end{example}
@@ -573,17 +581,22 @@ J = \jacobi{x,y}{u,v}
 其中\(D\)是椭圆\(\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\ (a,b>0)\)所围成的闭区域.
 \begin{solution}
 作广义极坐标变换\[
-\left\{ \begin{array}{l}
-x = a \rho \cos\theta, \\
-y = b \rho \sin\theta.
-\end{array} \right.
+	\left\{ \begin{array}{l}
+		x = a \rho \cos\theta, \\
+		y = b \rho \sin\theta.
+	\end{array} \right.
 \]
-在这变换下，与\(D\)对应的闭区域为\(G = \Set{\opair{\rho,\theta} \given 0\leq\rho\leq1,0\leq\theta\leq2\pi}\)，雅克比式\[
-J = \jacobi{x,y}{\rho,\theta} = ab\rho.
-\]由于\(J\)仅当\(\rho=0\)时为零，所以换元公式仍成立，从而有\[
-\iint_D \sqrt{1 - \frac{x^2}{a^2} - \frac{y^2}{b^2}} \dd{x} \dd{y}
-= \iint_G \sqrt{1-\rho^2} ab\rho \dd{\rho} \dd{\theta}
-= \frac{2}{3} \pi ab.
+在这变换下，与\(D\)对应的闭区域为
+\(G = \Set{\opair{\rho,\theta} \given 0\leq\rho\leq1,0\leq\theta\leq2\pi}\)，
+雅克比式\[
+	J = \jacobi{x,y}{\rho,\theta} = ab\rho.
+\]
+由于\(J\)仅当\(\rho=0\)时为零，
+所以换元公式仍成立，
+从而有\[
+	\iint_D \sqrt{1 - \frac{x^2}{a^2} - \frac{y^2}{b^2}} \dd{x} \dd{y}
+	= \iint_G \sqrt{1-\rho^2} ab\rho \dd{\rho} \dd{\theta}
+	= \frac23 \pi ab.
 \]
 \end{solution}
 \end{example}
