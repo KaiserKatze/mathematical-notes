@@ -1,0 +1,212 @@
+\section{次序统计量及其分布}
+次序统计量是另一类常用的统计量，
+由它还可以派生出一些有用的统计量.
+
+\subsection{次序统计量的概念}
+%@see: 《概率论与数理统计》（茆诗松） P210.
+设\(\AutoTuple{X}{n}\)是取自总体\(X\)的一个样本，
+其观测值为\(\AutoTuple{x}{n}\).
+我们可以按从小到大的顺序排列这些样本观测值：\[
+	x_{(1)} \leq \dotsb \leq x_{(n)}.
+\]
+我们上面的第\(i\)个值\(x_{(i)}\)称为统计量\(X_{(i)}\)的观测值，
+称\(X_{(1)},\dotsc,X_{(n)}\)为该样本的\DefineConcept{次序统计量}.
+特别地，把\(X_{(1)}\)称为该样本的\DefineConcept{最小次序统计量}，
+把\(X_{(n)}\)称为该样本的\DefineConcept{最大次序统计量}.
+
+可以看出，次序统计量与样本完全不相同，
+具体体现在以下几个方面：
+\begin{enumerate}
+	\item 各个次序统计量的分布是不同的.
+	\item 任意两个次序统计量的联合分布也是不同的.
+	\item 任意两个次序统计量是不相互独立的.
+\end{enumerate}
+
+\subsection{一个次序统计量的抽样分布}
+只要总体的分布已知，
+那么若干个次序统计量的联合分布都是可以求出的.
+下面仅就总体\(X\)是连续型分布的情况进行讨论.
+
+设总体\(X\)的分布函数为\(F(x)\)，
+概率密度函数为\(f(x)\)，
+\(\AutoTuple{X}{n}\)是取自总体\(X\)的一个样本.
+我们来求第\(k\)个次序统计量\(X_{(k)}\)的概率密度函数和概率分布函数.
+
+注意到样本中有两个或两个以上分量落在无穷小区间\((x,x+\increment x]\)内的概率为\(0\)，
+因而考虑第\(k\)个次序统计量\(X_{(k)}\)落在无穷小区间\((x,x+\increment x]\)内这一事件，
+它等价于“在容量为\(n\)的样本中，
+有\(k-1\)个分量小于或等于\(x\)，
+有\(1\)个分量落在\((x,x+\increment x]\)内，
+余下\(n-k\)个分量均大于\((x+\increment x]\)”.
+又因为任一样本的分量小于或等于\(x\)的概率为\(F(x)\)，
+大于\((x+\increment x]\)的概率为\(1 - F(x+\increment x)\)，
+落在\((x,x+\increment x]\)内的概率为\(F(x+\increment x) - F(x)\)，
+而将这\(n\)个分量分成这样的三组，
+总的分法有\(\frac{n!}{(k-1)! (n-k)!}\)种，
+所以\(X_{(k)}\)落在\((x,x+\increment x]\)内的概率为
+\begin{align*}
+	&F_k(x+\increment x) - F_k(x) \\
+	&= \frac{n!}{(k-1)! (n-k)!} [F(x)]^{k-1} [F(x+\increment x) - F(x)] [1-F(x+\increment x)]^{n-k},
+\end{align*}
+其中\(F_k\)表示\(X_{(k)}\)的分布函数；
+在上式等号两边同除以\(\increment x\)，
+并令\(\increment x\to0\)，
+则有\begin{align*}
+	f_k(x)
+	&= \lim_{\increment x\to0} \frac{F_k(x+\increment x) - F_k(x)}{\increment x} \\
+	&= \frac{n!}{(k-1)! (n-k)!} [F(x)]^{k-1} f(x) [1-F(x)]^{n-k}.
+\end{align*}
+这就是说，第\(k\)个次序统计量\(X_{(k)}\)的概率密度函数为
+\begin{equation}\label{equation:次序统计量.第k个次序统计量的概率密度函数}
+%@see: 《概率论与数理统计》（茆诗松） P212. 公式(4.3.1)
+	f_k(x)
+	= \frac{n!}{(k-1)! (n-k)!} [F(x)]^{k-1} [1-F(x)]^{n-k} f(x).
+\end{equation}
+
+特别地，
+在\cref{equation:次序统计量.第k个次序统计量的概率密度函数} 中取\(k=n\)，
+可得最大次序统计量的概率密度函数为
+\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松） P213. 公式(4.3.2)
+	f_n(x)
+	= n [F(x)]^{n-1} f(x),
+\end{equation}
+概率分布函数为
+\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松） P213. 公式(4.3.3)
+	F_n(x)
+	= n [F(x)]^n.
+\end{equation}
+在\cref{equation:次序统计量.第k个次序统计量的概率密度函数} 中取\(k=1\)，
+可得最小次序统计量的概率密度函数为
+\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松） P213. 公式(4.3.4)
+	f_1(x)
+	= n [1-F(x)]^{n-1} f(x),
+\end{equation}
+概率分布函数为
+\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松） P213. 公式(4.3.5)
+	F_1(x)
+	= 1 - [1 - F(x)]^n.
+\end{equation}
+
+\subsection{最大次序统计量与最小次序统计量的联合抽样分布}
+易见\(X_{(1)}\)与\(X_{(n)}\)的联合密度函数为
+\begin{align*}
+	f_{1n}(y_1,y_n)
+	&= \lim_{\substack{
+		\increment y_1\to0 \\
+		\increment y_n\to0
+	}} \frac{
+		P(y_1 < X_{(1)} \leq y_1+\increment y_1,
+		  y_n < X_{(n)} \leq y_n+\increment y_n)
+	}{\increment y_1 \cdot \increment y_n}.
+\end{align*}
+这里，事件\((y_1 < X_{(1)} \leq y_1+\increment y_1,
+y_n < X_{(n)} \leq y_n+\increment y_n)\)
+等价于“容量为\(n\)的样本中，
+有\(1\)个落在区间\((y_1,y_1+\increment y_1]\)内，
+有\(1\)个落在区间\((y_n,y_n+\increment y_n]\)内，
+其余\(n-2\)个落在区间\((y_1+\increment y_1,y_n]\)内”，
+于是\begin{align*}
+	&\hspace{-20pt}
+	P(y_1 < X_{(1)} \leq y_1+\increment y_1,
+	  y_n < X_{(n)} \leq y_n+\increment y_n) \\
+	&= \frac{n!}{1! (n-2)! 1!}
+		[F(y_1+\increment y_1) - F(y_1)]
+		[F(y_n) - F(y_1+\increment y_1)]^{n-2}
+		[F(y_n+\increment y_n) - F(y_n)].
+\end{align*}
+由于\(F\)可微，
+所以\begin{align*}
+	\lim_{\increment y_1\to0}
+	\frac{F(y_1+\increment y_1) - F(y_1)}{\increment y_1}
+	= f(y_1); \\
+	\lim_{\increment y_n\to0}
+	\frac{F(y_n+\increment y_n) - F(y_n)}{\increment y_n}
+	= f(y_n);
+\end{align*}
+那么
+\begin{equation}\label{equation:次序统计量.最大次序统计量与最小次序统计量的联合密度函数}
+%@see: 《概率论与数理统计》（茆诗松） P214. 公式(4.3.6)
+	f_{1n}(y_1,y_n)
+	= n(n-1) f(y_1) [F(y_n) - F(y_1)]^{n-2} f(y_n).
+\end{equation}
+
+\subsection{样本极差}
+\begin{definition}
+%@see: 《概率论与数理统计》（茆诗松） P215. 定义4.3.2
+样本最大次序统计量与样本最小次序统计量之差，
+称为\DefineConcept{样本极差}，
+简称\DefineConcept{极差}.
+\end{definition}
+极差表示样本取值范围的大小，
+也反映了总体取值分散于集中的程度.
+一般说来，若总体的标准差\(\sigma\)较大，
+从中取出的样本的极差也会大一些；
+若总体的标准差\(\sigma\)较小，
+那么从中取出的样本的极差也会小一些.
+反过来也是如此，
+若极差较大，表明总体取值较分散，
+那么总体的标准差也较大；
+若极差较小，表明总体取值相对集中一些，
+从而总体的标准差较小.
+
+在实际中，
+极差常在小样本（容量\(n\leq10\)）的场合使用，
+而在大样本场合很少使用.
+这是因为极差仅使用了样本中两个极端点的信息，
+而把中间的信息都丢弃了，
+当样本容量越大时，
+丢弃的信息也就越多，
+从而留下的信息就过少，
+其使用价值就不大了.
+
+当总体分布为正态分布\(N(\mu,\sigma^2)\)时，
+由\cref{equation:次序统计量.最大次序统计量与最小次序统计量的联合密度函数}
+可求出容量为\(n\)时，
+样本极差
+\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松） P215. 公式(4.3.7)
+	R_n
+	= X_{(n)} - X_{(1)}
+\end{equation}
+的密度函数为
+\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松） P215. 公式(4.3.8)
+	r_n(x)
+	= \frac{n(n-1)}{2\pi\sigma^2}
+	\int_{-\infty}^{+\infty} \left[
+		\Phi\left(
+			\frac{y+x-\mu}{\sigma}
+		\right)
+		- \Phi\left(
+			\frac{y-\mu}{\sigma}
+		\right)
+	\right]^{n-2}
+	e^{
+		-\frac{(y+x-\mu)^2}{2\sigma^2}
+		-\frac{(y-\mu)^2}{2\sigma^2}
+	}
+	\dd{y},
+	\quad x>0,
+\end{equation}
+其中\(\Phi\)是标准正态分布函数.
+此时\(R_n\)的数学期望为
+\begin{equation}
+%@see: 《概率论与数理统计》（茆诗松） P215. 公式(4.3.9)
+	E(R_n)
+	= \sigma d_n,
+\end{equation}
+其中\[
+	d_n
+	= \frac{n(n-1)}{2\pi}
+	\int_0^{+\infty} u \dd{u}
+	\int_{-\infty}^{+\infty}
+	[\Phi(u+v) - \Phi(v)]^{n-2}
+	\exp[
+		-\frac{(u+v)^2+v^2}{2}
+	]
+	\dd{v}
+\]是一个仅与\(n\)有关的常数.
