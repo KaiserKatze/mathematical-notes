@@ -210,3 +210,67 @@ y_n < X_{(n)} \leq y_n+\increment y_n)\)
 	]
 	\dd{v}
 \]是一个仅与\(n\)有关的常数.
+
+\subsection{分布的分位点}
+当随机变量\(X\)的分布已知时，在概率论中，对给定的实数\(a\)，
+常需要计算概率\(P(X \leq a) = p\).
+而在数理统计中，常常需要对给定的\(0<p<1\)，求出使\(P(X \leq a) = p\)成立的实数\(a\).
+
+\begin{definition}
+设随机变量\(X\)的分布函数是\(F\)，\(0<p<1\).
+若实数\(a_p\)满足\begin{equation}
+	F(a_p) = P(X \leq a_p) = p,
+\end{equation}
+则称\(a_p\)为“\(X\)（所服从的分布）的\(p\) \DefineConcept{分位点}”.
+
+特别地，\(a_{\frac{1}{2}}\)称为\DefineConcept{中位数}.
+\end{definition}
+
+\subsubsection{\texorpdfstring{\(N(0,1)\)分布的\(p\)分位点\(u_p\)}{标准正态分布的p分位点}}
+当随机变量\(X \sim N(0,1)\)时，其\(p\)分位点\(u_p\)满足\[
+\Phi(u_p)
+= P(X \leq u_p)
+= \int_{-\infty}^{u_p} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \dd{x}
+= p.
+\]由于\(\Phi(-x)=1-\Phi(x)\)，可得\(\Phi(-u_p)=1-\Phi(u_p)=1-p=\Phi(u_{1-p})\)，即\begin{equation}
+-u_p=u_{1-p}.
+\end{equation}
+
+\subsubsection{\texorpdfstring{\(\x(n)\)分布的\(p\)分位点\(\x_p(n)\)}{卡方分布的p分位点}}
+当随机变量\(X \sim \x(n)\)时，其\(p\)分位点\(\x_p(n)\)满足\[
+P(X \leq \x_p(n)) = \int_0^{\x_p(n)} f(x,n) \dd{x} = p.
+\]
+
+当\(n\)充分大（通常只要求\(n>45\)）时，\(\sqrt{2\x}\)近似地服从正态分布\(N(\sqrt{2n-1},1)\)，因此，有近似公式\begin{equation}
+\x_p(n) \approx \frac{1}{2}\left(u_p+\sqrt{2n-1}\right)^2.
+\end{equation}
+
+\subsubsection{\texorpdfstring{\(t(n)\)分布的\(p\)分位点\(t_p(n)\)}{t分布的p分位点}}
+当随机变量\(X \sim t(n)\)时，其\(p\)分位点\(t_p\)满足\[
+P(X \leq t_p(n))
+= \int_{-\infty}^{t_p(n)} t(x,n) \dd{x} = p.
+\]因为\(t\)分布的密度曲线对称于纵轴，从而\(t_p(n)\)有类似\(u_p\)的性质，即\begin{equation}
+-t_p(n)=t_{1-p}(n).
+\end{equation}
+
+因为\(t\)分布的极限分布是标准正态分布，所以当\(n\to\infty\)（通常只要求\(n>45\)）时，有\[
+t_p(n) \approx u_p.
+\]
+
+\subsubsection{\texorpdfstring{\(F(n,m)\)分布的\(p\)分位点\(F_p(n,m)\)}{F分布的p分位点}}
+当随机变量\(X \sim F(n,m)\)时，其\(p\)分位点\(F_p(n,m)\)满足\[
+P(X \leq F_p(n,m)) = \int_0^{F_p(n,m)} f(x,n,m) \dd{x} = p.
+\]
+
+特别地，当\(p<\frac{1}{2}\)时，有\begin{equation}
+F_p(n,m) = \frac{1}{F_{1-p}(m,n)}.
+\end{equation}
+这是因为，当\(X \sim F(n,m)\)时，\(\frac{1}{X} \sim F(m,n)\)，从而\[
+p = P(X \leq F_p(n,m))
+= P\left(\frac{1}{X} \geq \frac{1}{F_p(n,m)}\right)
+= 1 - P\left(\frac{1}{X} < \frac{1}{F_p(n,m)}\right),
+\]即\[
+P\left(\frac{1}{X} < \frac{1}{F_p(n,m)}\right) = 1 - p.
+\]由\(p\)分位点定义可知，\[
+\frac{1}{F_p(n,m)} = F_{1-p}(m,n).
+\]
