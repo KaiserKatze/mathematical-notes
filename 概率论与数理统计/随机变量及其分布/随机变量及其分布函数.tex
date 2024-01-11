@@ -1,0 +1,71 @@
+\section{随机变量及其分布函数}
+\subsection{随机变量}
+讨论随机线性的统计规律性，需要我们从数量的角度来研究随机现象，
+从而需要在随机试验的可能结果与数之间建立一个对应关系.
+
+许多随机试验的一个可能结果是用一个数来表示的，
+这样可在试验结果与数之间建立一个自然的恒等映射.
+
+\begin{definition}
+设\(\Omega\)为一试验的样本空间.
+如果对每一个样本点\(\omega \in \Omega\)，
+规定一个实数\(X(\omega)\)，
+这样就定义了一个定义域为\(\Omega\)的实值函数，
+称\(X\)为\DefineConcept{随机变量}（random variable）.
+通常用大写字母\(X,Y,Z\)等表示随机变量.
+
+一般地，设\(G\)是一个数集，
+用\(\Set{\omega \given X(\omega) \in G}\)表示随机变量取值在\(G\)中的样本点构成的事件，
+简记为\((X \in G)\)，从而该事件的概率可以表示为\(P(X \in G)\).
+\end{definition}
+
+\subsection{随机变量的分布函数}
+对于概率\(P(X \in G)\)，最常见的是\(P(a < X \leq b)\).
+而对这一类型的概率，只需求出形如\(P(X \leq x)\)的概率即可，
+这是因为\(P(a < X \leq b) = P(X \leq b) - P(X \leq a)\).
+
+\begin{definition}
+设\(X\)是一随机变量，对任意实数\(x\)，定义\[
+	F(x) = P(X \leq x),
+	\quad x \in \mathbb{R},
+\]
+称“\(F\)是随机变量\(X\)的\DefineConcept{分布函数}”.
+\end{definition}
+
+\begin{example}
+在一个试验中投掷一枚均匀硬币两次，
+设随机变量\(X\)表示“试验中出现硬币正面的次数”.
+求\(X\)的分布函数\(F(x)\).
+\begin{solution}
+设硬币正面记作\(H\)，反面记作\(T\)，那么试验的样本空间为\[
+	\Omega = \Set{ HH, HT, TH, TT }.
+\]
+易见，\(X\)取值为\(0,1,2\)，且\(P(X=0) = 1/4\)，\(P(X=1) = 1/2\)，\(P(X=2) = 1/4\).
+
+当\(x < 0\)时，\(F(x) = P(X \leq x) = P(\emptyset) = 0\)；
+当\(0 \leq x < 1\)时，\(F(x) = P(X \leq x) = P(X=0) = 1/4\)；
+当\(1 \leq x < 2\)时，\(F(x) = P(X \leq x) = P(X=0 \lor X=1) = P(X=0)+P(X=1) = 3/4\)；
+当\(x \geq 2\)时，\(F(x) = P(X \leq x) = P(\Omega) = 1\).
+
+综上所述，\(X\)的分布函数为\[
+	F(x) = \left\{ \begin{array}{cl}
+		0, & x < 0, \\
+		1/4, & 0 \leq x < 1, \\
+		3/4, & 1 \leq x < 2, \\
+		1, & x \geq 2.
+	\end{array} \right.
+\]
+\end{solution}
+\end{example}
+
+\begin{property}
+设\(F(x)\)为随机变量\(X\)的分布函数，则
+\begin{enumerate}
+	\item 当\(x_1 < x_2\)时，有\(F(x_1) \leq F(x_2)\)，即\(F(x)\)单调不减；
+	\item \(F(-\infty)=P(X \leq -\infty) = \lim_{x \to -\infty}{F(x)} = 0\)，
+	\(F(+\infty)=P(X \leq +\infty) = \lim_{x \to +\infty}{F(x)} = 1\)；
+	\item \(F(x)\)是右连续的，即对任意\(x\)，有\(F(x^+)=F(x)\)；
+	\item 对任意\(x_0\)，\(P(X=x_0)=F(x_0)-F(x_0^-)\).
+\end{enumerate}
+\end{property}
+需要指出，上述前三点也是分布函数的特征，即任何一个函数只要满足这三点就是某随机变量的分布函数.

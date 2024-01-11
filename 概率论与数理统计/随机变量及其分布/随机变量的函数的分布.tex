@@ -1,0 +1,81 @@
+\section{随机变量的函数的分布}
+在实际应用中，常常遇到随机变量的函数.
+如一个圆柱状工件的半径为\(X\)，则工件截面积为\(\pi X^2\).
+一般地，随机变量\(X\)的函数\(Y=g(X)\)是一个样本空间到实数域的复合函数，所以\(Y\)也是随机变量.
+因此有依据\(X\)的分布求出\(Y\)的分布的问题.
+这样的问题在离散的情形下较为简单，在连续的情形下较为复杂.
+
+\subsection{求解离散型随机变量函数的概率分布的基本方法步骤}
+设随机变量\(X\)的概率分布为\(p_k = P(X = x_k)\ (k=1,2,\dotsc)\)，
+则\(Y = g(X)\)的概率分布为\[
+P(Y = y_j) = \sum_{g(x_k) = y_j} p_k
+\quad(j=1,2,\dotsc).
+\]
+
+\begin{example}
+设随机变量\(X\)的概率分布为\[
+X \sim \begin{pmatrix}
+-1 & 0 & 1 & 2 \\
+0.2 & 0.3 & 0.3 & 0.2
+\end{pmatrix},
+\]\(Y=X^2\)，\(Z=\frac{X^3+1}{2}\)，求\(Y,Z\)的概率分布.
+\begin{solution}
+由于\(X\in\{-1,0,1,2\}\)，所以\(Y\in\{0,1,4\}\)，\begin{align*}
+P(Y=0) &= P(X=0) = 0.3, \\
+P(Y=1) &= P(X=-1 \lor X=1) \\
+	&= P(X=-1) + P(X=1)
+	= 0.5, \\
+P(Y=4) &= P(X=2) = 0.2,
+\end{align*}
+从而\[
+Y \sim \begin{pmatrix}
+0 & 1 & 4 \\
+0.3 & 0.5 & 0.2
+\end{pmatrix}.
+\]
+
+同理，\(Z\in\Set{0,\frac{1}{2},1,\frac{9}{2}}\)，且\begin{align*}
+P(Z=0) &= P(X=-1) = 0.2, \\
+P(Z=1/2) &= P(X=0) = 0.3, \\
+P(Z=1) &= P(X=1) = 0.3, \\
+P(Z=9/2) &= P(X=2) = 0.2,
+\end{align*}
+从而\[
+Z \sim \begin{pmatrix}
+0 & \frac{1}{2} & 1 & \frac{9}{2} \\
+0.2 & 0.3 & 0.3 & 0.2
+\end{pmatrix}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{求解连续型随机变量函数的密度函数的基本方法步骤}
+设随机变量\(X\)的密度函数为\(f_X(x)\)，
+要求\(Y = g(X)\)的密度函数，
+\begin{enumerate}
+	\item 首先依据\(X\)的取值区间，
+	求出\(Y\)的值域\(R(Y)\).
+
+	\item 然后求出\(Y\)的分布函数，
+	即对\(\forall y \in R(Y)\)，
+	有\[
+		F_Y(y) = P(Y \leq y)
+		= P[g(X) \leq y]
+		= P[X \in G(y)]
+		= \int_{G(y)} f_X(x) \dd{x},
+	\]
+	其中\(G(y) = \Set{ x\in\mathbb{R} \given g(x) \leq y }\).
+	对\(\forall y \notin R(Y)\)，
+	有\[
+		F_Y(y) = 0
+		\quad\text{或}\quad
+		F_Y(y) = 1.
+	\]
+
+	\item 对\(Y\)的分布函数求导，得\[
+		f_Y(y) = \left\{ \begin{array}{cl}
+			F_Y'(y), & y \in R(Y), \\
+			0, & y \notin R(Y).
+		\end{array} \right.
+	\]
+\end{enumerate}
