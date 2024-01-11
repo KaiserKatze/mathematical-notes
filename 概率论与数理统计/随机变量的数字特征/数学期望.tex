@@ -1,0 +1,420 @@
+\section{数学期望}
+\subsection{数学期望的定义及计算}
+\subsubsection{离散型随机变量的数学期望}
+\begin{definition}
+设离散型随机变量\(X\)的概率分布为\[
+	P(X=x_k) = p_k
+	\quad(k=1,2,\dotsc).
+\]
+若级数\(\sum_{k=1}^\infty x_k p_k\)绝对收敛，
+则称这个级数为“随机变量\(X\)的\DefineConcept{数学期望}”，
+简称为“\(X\)的\DefineConcept{期望}”，
+记为\(E(X)\)，
+即\begin{equation}\label{equation:随机变量的数字特征.数学期望的定义式}
+	E(X) \defeq \sum_{k=1}^\infty x_k p_k.
+\end{equation}
+
+由于数学期望是\(X\)取值的加权平均，
+我们也把\(E(X)\)叫做\(X\)的\DefineConcept{均值}.
+
+若级数\(\sum_{k=1}^\infty x_k p_k\)不绝对收敛，
+我们称“随机变量\(X\)的数学期望不存在”.
+\end{definition}
+
+\begin{proposition}\label{theorem:随机变量的数字特征.0-1分布的数学期望}
+设\(X \sim B(1,p)\)，则\(E(X) = p\).
+\begin{proof}
+由数学期望的定义有，\(E(X) = 0 \cdot (1-p) + 1 \cdot p = p\).
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:随机变量的数字特征.泊松分布的数学期望}
+设\(X \sim P(\lambda)\)，则\(E(X) = \lambda\).
+\begin{proof}
+由\(p_k = P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda}\ (k=0,1,2,\dotsc)\)可得
+\begin{align*}
+	E(X) &= \sum_{k=0}^\infty k p_k
+	= \sum_{k=0}^\infty k \cdot \frac{\lambda^k}{k!} e^{-\lambda}
+	= \lambda e^{-\lambda} \sum_{k=1}^\infty \frac{\lambda^{k-1}}{(k-1)!} \\
+	&= \lambda e^{-\lambda} \sum_{k=0}^\infty \frac{\lambda^k}{k!}
+	= \lambda e^{-\lambda} e^\lambda
+	= \lambda.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:随机变量的数字特征.几何分布的数学期望}
+设\(X \sim G(p)\)，则\(E(X) = \frac{1}{p}\).
+\begin{proof}
+记\(q = 1-p\)，则\(p_k = pq^{k-1}\ (k=1,2,\dotsc)\)，
+\begin{align*}
+	E(X)
+	&= \sum_{k=1}^\infty k p_k
+	= \sum_{k=1}^\infty k p q^{k-1}
+	= p \sum_{k=1}^\infty k q^{k-1}
+	= p \sum_{k=1}^\infty \dv{q^k}{q} \\
+	&= p \dv{q}(\sum_{k=1}^\infty q^k)
+	= p \dv{q}(\frac{q}{1-q})
+	= \frac{p}{(1-q)^2}
+	= \frac{1}{p}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+设\(X \sim H(n,m,N)\)，则\(E(X) = \frac{n m}{N}\).
+\begin{proof}
+直接计算得\[
+	E(X)
+	= \sum_{k=0}^\infty
+		k \frac{C_m^k C_{N-m}^{n-k}}{C_N^n}
+	= n \frac{m}{N}
+		\sum_{k=1}^\infty
+			\frac{C_{m-1}^{k-1} C_{N-m}^{n-k}}{C_{N-1}^{n-1}}
+	= n \frac{m}{N}.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\subsubsection{数学期望不存在的离散型分布 --- \texorpdfstring{\(\zeta(2)\)}{\textzeta(2)}分布}
+应该注意到，并非所有离散型分布都存在数学期望.
+
+\begin{definition}
+若随机变量\(X\)的分布为\[
+	P(X=k) = \frac{1}{k^n} \zeta(n),
+	\quad k=1,2,\dotsc,
+\]
+其中\(n>1\)，
+则称“\(X\)服从 \DefineConcept{\(\zeta\)分布}”，
+记作\(X \sim \zeta(n)\).
+\end{definition}
+
+\begin{proposition}
+\(\zeta\)分布\(\zeta(2)\)的数学期望不存在.
+\begin{proof}
+因为级数\[
+	\sum_{k=1}^\infty k p_k
+	= \sum_{k=1}^\infty k \cdot \frac{1}{k^2} \zeta(n)
+	= \frac{6}{\pi^2} \sum_{k=1}^\infty \frac1k
+\]发散，
+所以\(\zeta(2)\)的数学期望不存在.
+\end{proof}
+\end{proposition}
+
+\subsubsection{连续型随机变量的数学期望}
+\begin{definition}
+设连续型随机变量\(X\)的密度为\(f(x)\).
+若反常积分\(\int_{-\infty}^{+\infty} x f(x) \dd{x}\)绝对收敛，
+则称这个积分为“随机变量\(X\)的\DefineConcept{数学期望}”，
+简称为“\(X\)的\DefineConcept{期望}”，
+记为\(E(X)\)，
+即\begin{equation}
+	E(X) \defeq \int_{-\infty}^{+\infty} x f(x) \dd{x}.
+\end{equation}
+
+若反常积分\(\int_{-\infty}^{+\infty} x f(x) \dd{x}\)不绝对收敛，
+则我们称“随机变量\(X\)的数学期望不存在”.
+\end{definition}
+
+\begin{theorem}\label{theorem:期望.伽马分布的期望}
+设\(X \sim \Gamma(\alpha,\beta)\)，
+则\(E(X)=\frac{\alpha}{\beta}\).
+\begin{proof}
+\begin{align*}
+E(X)
+&= \int_{-\infty}^{+\infty} x f(x) \dd{x}
+= \int_0^{+\infty} x \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
+&= \frac{1}{\beta \Gamma(\alpha)} \int_0^{+\infty} (\beta x)^\alpha e^{-(\beta x)} \dd(\beta x)
+= \frac{\Gamma(\alpha + 1)}{\beta \Gamma(\alpha)}
+= \frac{\alpha}{\beta}.
+\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+指数分布\(e(\lambda)\)等价于\(\Gamma\)分布\(\Gamma(1,\lambda)\)，故有：
+\begin{theorem}\label{theorem:随机变量的数字特征.指数分布的数学期望}
+设\(X \sim e(\lambda)\)，则\(E(X) = \frac{1}{\lambda}\).
+\end{theorem}
+
+\subsubsection{数学期望不存在的连续型分布 --- 柯西分布}
+同样应该注意到，并非所有连续型分布都存在数学期望.
+下面我们给出一类分布，这类分布没有数学期望.
+
+\begin{definition}
+如果随机变量\(X\)的密度函数为\[
+	f(x) = \frac{b}{\pi[(x-a)^2+b^2]}
+	\quad(x\in\mathbb{R}),
+\]
+那么称“\(X\)服从\DefineConcept{柯西--洛伦兹分布}”，
+记作\(X \sim C(a,b)\)，
+其中参数\(a\)称为这个分布的\DefineConcept{位置参数}或\DefineConcept{定位参数}，
+参数\(b\ (b>0)\)称为这个分布的\DefineConcept{尺寸参数}或\DefineConcept{尺度参数}.
+
+我们常把这类分布简称为\DefineConcept{柯西分布}.
+特别地，我们把\(C(0,1)\)称为\DefineConcept{标准柯西分布}.
+\end{definition}
+
+\begin{proposition}
+如果随机变量\(X \sim U(-\pi,\pi)\)，
+那么\(\tan X \sim C(0,1)\).
+\begin{proof}
+因为\(X \sim U(-\pi,\pi)\)，
+所以\(X\)的密度为\[
+	f_X(x) = \frac{1}{2\pi}
+	\quad(-\pi<x<\pi).
+\]
+令\(Y = \tan X\)，
+那么\(Y\)的取值区间为\((-\infty,+\infty)\)，
+\(Y\)的分布函数为\[
+	F_Y(y)
+	= P(Y \leq y)
+	= P(\tan X \leq y).
+\]
+当\(y\leq0\)时，有\[
+	P(\tan X \leq y)
+	= P\left(-\frac\pi2 < X \leq \arctan y\right)
+	+ P\left(\frac\pi2 < X \leq \pi + \arctan y\right).
+\]
+当\(y>0\)时，有\[
+	P(\tan X \leq y)
+	= P\left(-\pi < X \leq \arctan y - \pi\right)
+	+ P\left(-\frac\pi2 < X \leq \arctan y\right)
+	+ P\left(\frac\pi2 < X \leq \pi\right).
+\]
+因为\[
+	P\left(-\frac\pi2 < X \leq \arctan y\right)
+	= \int_{-\frac\pi2}^{\arctan y} f_X(x) \dd{x}
+	= \frac{1}{2\pi} \left(\arctan y + \frac\pi2\right),
+\]\[
+	P\left(\frac\pi2 < X \leq \pi + \arctan y\right)
+	= \int_{\frac\pi2}^{\pi + \arctan y} f_X(x) \dd{x}
+	= \frac{1}{2\pi} \left(\arctan y + \frac\pi2\right),
+\]\[
+	P\left(-\pi < X \leq \arctan y - \pi\right)
+	= \int_{-\pi}^{\arctan y - \pi} f_X(x) \dd{x}
+	= \frac{1}{2\pi} \arctan y,
+\]\[
+	P\left(\frac\pi2 < X \leq \pi\right)
+	= \int_{\frac\pi2}^\pi f_X(x) \dd{x}
+	= \frac{1}{2\pi} \cdot \frac\pi2
+	= \frac14,
+\]
+所以\[
+	P(\tan X \leq y)
+	= \left\{ \def\arraystretch{1.5} \begin{array}{cl}
+		\frac1\pi \left(\arctan y + \frac\pi2\right), & y\leq0, \\
+		\frac1\pi \arctan y + \frac12, & y>0.
+	\end{array} \right.
+\]
+因此\[
+	f_Y(y) = F'_Y(y)
+	= \frac1\pi \cdot \frac{1}{1+y^2},
+	\quad y\in\mathbb{R},
+\]
+这就是说\(Y = \tan X \sim C(0,1)\).
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+柯西分布的数学期望不存在.
+\begin{proof}
+要想知道柯西分布的数学期望是否存在，
+我们就需要检验反常积分\[
+	\int_{-\infty}^{+\infty} \abs{x} f(x) \dd{x}
+	= \int_{-\infty}^0 (-x) f(x) \dd{x}
+	+ \int_0^{+\infty} x f(x) \dd{x}
+\]是否收敛.
+因为\begin{align*}
+	\int x f(x) \dd{x}
+	&= \int \frac{b x \dd{x}}{\pi[(x-a)^2+b^2]} \\
+	%&\xlongequal{u=x-a} \int \frac{b (u+a) \dd{u}}{\pi(u^2+b^2)} \\
+	%&= \frac{b}{\pi} \left[
+	%	a \int \frac{\dd{u}}{u^2+b^2}
+	%	+ \int \frac{u \dd{u}}{u^2+b^2}
+	%\right] \\
+	%&= \frac{b}{\pi} \left[
+	%	\frac{a}{b} \arctan\frac{u}{b}
+	%	+ \frac12 \ln(u^2+b^2)
+	%\right] + C \\
+	%&= \frac{a}{\pi} \arctan\frac{u}{b} + \frac{b}{2\pi} \ln(u^2+b^2) + C \\
+	&= \frac{a}{\pi} \arctan\frac{x-a}{b} + \frac{b}{2\pi} \ln[(x-a)^2+b^2] + C,
+\end{align*}
+其中\(\arctan\frac{x-a}{b}\)有界，
+而\(\ln[(x-a)^2+b^2]\to\infty\ (x\to\infty)\)，
+所以\(\int_{-\infty}^{+\infty} \abs{x} f(x) \dd{x}\)发散.
+\end{proof}
+\end{proposition}
+
+\subsubsection{随机变量的函数的数学期望}
+\begin{theorem}\label{theorem:随机变量的数字特征.一维随机变量的函数的数学期望}
+设\(X\)为随机变量，\(y=g(x)\)是\(x\)的（分段）连续函数或单调函数，则对\(Y=g(X)\)，
+\begin{enumerate}
+\item 若\(X\)是\DefineConcept{离散型}的，其分布律为\(p_k = P(X=x_k)\ (k=1,2,\dotsc)\)
+且级数\(\sum_{k=1}^\infty g(x_k) p_k\)绝对收敛，则有\[
+E(Y) = E[g(X)] = \sum_{k=1}^\infty {g(x_k) p_k};
+\]
+\item 若\(X\)是\DefineConcept{连续型}的，其密度函数为\(f(x)\)，
+且反常积分\(\int_{-\infty}^{+\infty} g(x) f(x) \dd{x}\)绝对收敛，则有\[
+E(Y) = E[g(X)] = \int_{-\infty}^{+\infty} g(x) f(x) \dd{x}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{theorem:随机变量的数字特征.二维随机变量的函数的数学期望}
+设\((X,Y)\)为二维随机变量，\(z=g(x,y)\)是\((x,y)\)的（分区域）连续函数，则对\(Z=g(X,Y)\)，\begin{enumerate}
+\item 若\((X,Y)\)为\DefineConcept{离散型}，其二维概率分布为\[
+p_{ij} = P(X=x_i,Y=y_j), \quad i,j=1,2,\dotsc,
+\]且级数\(\sum_i \sum_j g(x_i,y_j) p_{ij}\)绝对收敛，则有\[
+E(Z) = E[g(X,Y)] = \sum_i \sum_j g(x_i,y_j) p_{ij};
+\]
+\item 若\((X,Y)\)为\DefineConcept{连续型}，其二维密度函数为\(f(x,y)\)，且反常积分\[
+\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y) f(x,y) \dd{x}\dd{y}
+\]绝对收敛，则有\[
+E(Z) = E[g(X,Y)] = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y) f(x,y) \dd{x}\dd{y}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+设随机变量\(X\)的密度函数为\[
+	f(x) = \left\{ \begin{array}{cl}
+		\frac{x}{a^2} \exp(-\frac{x^2}{2a^2}), & x>0, \\
+		0, & x \leq 0.
+	\end{array} \right.
+\]
+又设\(Y = 1/X\)，求\(E(Y)\).
+\begin{solution}
+当\(X>0\)时，\(Y>0\)；
+此时\(Y\)的分布函数为\[\begin{aligned}
+	F_Y(y)
+	&= P(Y \leq y)
+	= P(1/X \leq y)
+	= P(X \geq 1/y)
+	= 1 - P(X < 1/y) \\
+	&= 1 - \int_0^{1/y} \frac{x}{a^2} \exp(-\frac{x^2}{2a^2}) \dd{x}
+	= \exp(-\frac{1}{2a^2y^2});
+\end{aligned}\]
+而密度函数为\[
+	f_Y(y) = F_Y'(y)
+	= \frac{1}{a^2 y^3} \exp(-\frac{1}{2a^2y^2}).
+\]
+那么\begin{align*}
+	E(Y)
+	&= \int_{-\infty}^{+\infty} y f_Y(y) \dd{y}
+	= \int_0^{+\infty} \frac{1}{a^2 y^2} \exp(-\frac{1}{2a^2y^2}) \dd{y} \\
+	&= \int_{+\infty}^0 -\frac{1}{\sqrt{2} a} t^{-\frac{1}{2}} e^{-t} \dd{t}
+	= \frac{1}{\sqrt{2} a} \Gamma\left(\frac{1}{2}\right)
+	= \sqrt{\frac{\pi}{2a^2}}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\subsection{数学期望的性质}
+\begin{property}\label{theorem:随机变量的数字特征.数学期望的性质1}
+设\(C\)是常数，随机变量\(X\)和\(Y\)的数学期望都存在，则有：
+\begin{enumerate}
+	\item \(E(C) = C\)；
+	\item \(E(C X) = C \cdot E(X)\)；
+	\item \(E(X+Y) = E(X)+E(Y)\).
+\end{enumerate}
+\end{property}
+
+\begin{property}[线性性质]\label{theorem:随机变量的数字特征.数学期望的性质2}
+设\(\AutoTuple{X}{n}\)都是随机变量，
+而\(C_1,C_2,\dotsc,C_n,b\)都是常数，
+则有\[
+	E\left(\sum_{i=1}^n C_i X_i + b\right)
+	=\sum_{i=1}^n C_i E(X_i) + b.
+\]
+\end{property}
+
+\begin{property}\label{theorem:随机变量的数字特征.数学期望的性质3}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P113. 性质(5)
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P148. 定理3.3.3
+若随机变量\(X\)与\(Y\)相互独立，
+则\begin{equation}
+	E(X Y) = E(X) E(Y).
+\end{equation}
+\begin{proof}
+在连续场合，设二维随机变量\((X,Y)\)的联合密度函数为\(f(x,y)\).
+因为\(X\)与\(Y\)相互独立，所以\(f(x,y) = f_X(x) \cdot f_Y(y)\)，
+其中\(f_X(x)\)是\(X\)的边缘密度函数，\(f_Y(y)\)是\(Y\)的边缘密度函数.
+那么\begin{align*}
+	E(XY)
+	&= \int_{-\infty}^{+\infty} x y f(x,y) \dd{x}\dd{y} \\
+	&= \int_{-\infty}^{+\infty} x y f_X(x) f_Y(y) \dd{x}\dd{y} \\
+	&= \int_{-\infty}^{+\infty} x f_X(x) \dd{x}
+		\int_{-\infty}^{+\infty} y f_Y(y) \dd{y} \\
+	&= E(X) E(Y).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{property}
+
+\begin{corollary}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P113. 性质(5)
+若随机变量\(\AutoTuple{X}{n}\)相互独立，
+则\begin{equation}
+	E\left( \bigcap_{i=1}^n X_i \right)
+	= \prod_{i=1}^n E(X_i).
+\end{equation}
+\end{corollary}
+
+\begin{theorem}
+设\(X \sim B(n,p)\)，则\(E(X) = np\).
+\begin{proof}[证法一]
+由数学期望的定义有\[
+	E(X) = \sum_{k=0}^n k C_n^k p^k (1-p)^{n-k},
+\]
+其中\[
+	k C_n^k = k \frac{n!}{k! (n-k)!}
+	= n \frac{(n-1)!}{(k-1)! (n-k)!}
+	= n C_{n-1}^{k-1}.
+\]
+代回原式，得\begin{align*}
+	E(X)
+	&= np \sum_{k=1}^n C_{n-1}^{k-1} p^{k-1} (1-p)^{n-k} \\
+	&= np \sum_{k=0}^{n-1} C_{n-1}^k p^k (1-p)^{n-1-k} \\
+	&= np[p+(1-p)]^{n-1}
+		\tag{二项式定理} \\
+	&= np.
+	\qedhere
+\end{align*}
+\end{proof}
+\begin{proof}[证法二]
+令\(\AutoTuple{X}{n}\)独立同服从于0-1分布\(B(1,p)\)，
+由\hyperref[theorem:多维随机变量及其分布.二项分布的可加性3]{二项分布可加性}，知\[
+	X = X_1 + X_2 + \dotsb + X_n.
+\]
+那么由\cref{theorem:随机变量的数字特征.0-1分布的数学期望} 可知\[
+	E(X) = \sum_{i=1}^n E(X_i) = np.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{example}
+设随机变量\(X\)服从参数为1的泊松分布，求\(E\abs{X-E(X)}\).
+\begin{solution}
+因为\(X \sim P(1)\)，\(E(X) = 1\)，所以\[
+\abs{X-E(X)} = \left\{ \begin{array}{cl}
+1, & X=0, \\
+X - 1, & X=1,2,\dotsc.
+\end{array} \right.
+\]因此\begin{align*}
+E\abs{X-E(X)}
+&= 1 \cdot P(X=0)
++ \sum_{k=1}^\infty (k-1) \cdot P(X=k) \\
+&= 1 \cdot P(X=0)
++ \sum_{k=0}^\infty (k-1) \cdot P(X=k)
+- (0-1) \cdot P(X=0) \\
+&= 2 \cdot P(X=0)
++ E(X-1).
+\end{align*}
+又因为\(P(X=0)=1/e\)，\(E(X-1) = 0\)，所以\(E\abs{X-E(X)} = 2/e\).
+\end{solution}
+\end{example}

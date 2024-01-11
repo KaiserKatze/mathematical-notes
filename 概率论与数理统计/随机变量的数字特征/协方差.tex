@@ -1,0 +1,237 @@
+\section{协方差}
+\subsection{协方差}
+给定二维随机变量\((X,Y)\)，一般\(X\)与\(Y\)之间存在一定的关系.
+我们希望有一个数字特征可以用来描述\(X\)与\(Y\)的关系.
+我们知道，当\(X\)与\(Y\)独立时，
+有\(E(XY) = E(X) E(Y)\)成立，
+从而\begin{align*}
+    &E((X-E(X))(Y-E(Y))) \\
+    &= E(XY - Y E(X) - X E(Y) + E(X) E(Y)) \\
+    &= E(XY) - E(Y) E(X) - E(X) E(Y) + E(X) E(Y) \\
+    &= E(XY) - E(X) E(Y) = 0.
+\end{align*}
+也就是说，当\(E((X-E(X))(Y-E(Y))) \neq 0\)时，\(X\)与\(Y\)就不独立.
+这就说明，\(E((X-E(X))(Y-E(Y)))\)能在一定程度上刻画\(X\)与\(Y\)的关系.
+
+\begin{definition}
+对于二维随机变量\((X,Y)\)，
+若\(E((X-E(X))(Y-E(Y)))\)存在，
+则称之为\(X\)与\(Y\)的\DefineConcept{协方差}（或\DefineConcept{相关矩}），
+记为\(\Cov(X,Y)\)，即
+\begin{equation}\label{equation:随机变量的数字特征.协方差的定义式}
+    \Cov(X,Y) \defeq E((X-E(X))(Y-E(Y))).
+\end{equation}
+\end{definition}
+
+根据本节开篇的推导，不难得到如下的性质：
+\begin{property}\label{theorem:随机变量的数字特征.协方差的性质1}
+对于二维随机变量\((X,Y)\)，总有
+\begin{equation}\label{equation:随机变量的数字特征.协方差的计算式1}
+    \Cov(X,Y) = E(XY) - E(X) E(Y).
+\end{equation}
+\end{property}
+
+进一步，令\(X = Y\)，则还可以得到：
+\begin{property}\label{theorem:随机变量的数字特征.协方差的性质2}
+对于随机变量\(X\)，总有
+\begin{equation}\label{equation:随机变量的数字特征.协方差与方差的联系1}
+    \Cov(X,X) = D(X).
+\end{equation}
+\end{property}
+
+\begin{property}\label{theorem:随机变量的数字特征.协方差的性质3}
+设\(X\)、\(Y\)、\(Z\)以及\(X_i\)、\(Y_j\)均为随机变量，则有：
+\begin{enumerate}
+    \item \(\Cov(X,Y)=\Cov(Y,X)\)；
+    \item \(\Cov(X,a)=0\)（\(a\)是常数）；
+    \item \(\Cov(aX,bY)=ab\Cov(X,Y)\)（\(a\)、\(b\)是常数）；
+    \item \(\Cov(X+Y,Z)=\Cov(X,Z)+\Cov(Y,Z)\)；
+    \item \(\Cov\left(\sum_{i=1}^n{a_i X_i},\sum_{j=1}^m{b_j Y_j}\right)
+    = \sum_{i=1}^n \sum_{j=1}^m {a_i b_j \Cov(X_i,Y_j)}\)（\(a_i\)、\(b_j\)是常数）；
+    \item 若\(X\)与\(Y\)相互独立，则\(\Cov(X,Y)=0\).
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P151. 定理3.3.6
+设\(D(X) = \sigma_1^2,
+D(Y) = \sigma_2^2\)，
+则\begin{equation}\label{equation:随机变量的数字特征.协方差不等式1}
+    [\Cov(X,Y)]^2 \leq \sigma_1^2 \sigma_2^2.
+\end{equation}
+\begin{proof}
+如果\(\sigma_1^2=0\)，
+那么由\cref{theorem:大数律.方差为零的随机变量的性质} 可知，\(X\)几乎处处是常数；
+而由\cref{theorem:随机变量的数字特征.协方差的性质3} 可知，常数与\(Y\)的协方差必为零；
+于是\cref{equation:随机变量的数字特征.协方差不等式1} 两端都是零，
+因此\cref{equation:随机变量的数字特征.协方差不等式1} 成立.
+
+如果\(\sigma_1^2>0\)，
+因为\[
+	E\{t[X-E(X)]+[Y-E(Y)]\}^2
+	= t^2 \sigma_1^2
+	+ 2t \Cov(X,Y)
+	+ \sigma_2^2
+	\geq 0,
+\]
+所以这个关于\(t\)的二次三项式的判别式非正，即\[
+	[2\Cov(X,Y)]^2 - 4 \sigma_1^2 \sigma_2^2 \leq 0,
+\]
+移项便得\cref{equation:随机变量的数字特征.协方差不等式1}.
+\end{proof}
+\end{theorem}
+
+现在我们对\cref{theorem:随机变量的数字特征.方差的性质2} 做一番推广.
+\begin{theorem}
+设随机变量\(X\)、\(Y\)的方差\(D(X)\)、\(D(Y)\)都存在，
+且它们的协方差\(\Cov(X,Y)\)也存在，
+那么\begin{equation}
+    D(X \pm Y) = D(X) + D(Y) \pm 2 \Cov(X,Y).
+\end{equation}
+\begin{proof}
+由方差的定义可知
+\begin{align*}
+    D(X \pm Y)
+    &= E[(X \pm Y) - E(X \pm Y)]^2 \\
+    &= E\bigl\{[X - E(X)] \pm [Y - E(Y)]\bigr\}^2 \\
+    &= E\bigl\{
+    [X - E(X)]^2 + [Y - E(Y)]^2 - 2 [X - E(X)][Y - E(Y)]
+    \bigr\} \\
+    &= E[X - E(X)]^2 + E[Y - E(Y)]^2 - 2 E[X - E(X)][Y - E(Y)] \\
+    &= D(X) + D(Y) \pm 2 \Cov(X,Y).
+    \qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+我们可以进一步将上述定理推广到任意有限个随机变量相加的情形：
+\begin{corollary}
+设随机变量\(\AutoTuple{X}{n}\)的方差\(D(X_i)\ (i=1,2,\dotsc,n)\)、
+协方差\(\Cov(X_i,X_j)\ (i,j=1,2,\dotsc,n)\)都存在，
+那么\begin{equation}
+    D\left( \sum_{i=1}^n X_i \right)
+    = \sum_{i=1}^n D(X_i)
+    + 2 \sum_{i<j} \Cov(X_i,X_j).
+\end{equation}
+\end{corollary}
+
+\begin{example}
+设二维随机向量\((X,Y)\)的联合密度函数为\[
+    p(x,y) = \left\{ \begin{array}{cl}
+    3x, & 0<y<x<1, \\
+    0, & \text{其他}.
+    \end{array} \right.
+\]
+求协方差\(\Cov(X,Y)\).
+\begin{solution}
+根据\cref{equation:随机变量的数字特征.协方差的计算式1} 可以直接计算得：
+\begin{align*}
+    E(XY)
+    &= \int_0^1 \dd{x} \int_0^x xy \cdot 3x \dd{y}
+    = \frac{3}{10}, \\
+    E(X)
+    &= \int_0^1 \dd{x} \int_0^x x \cdot 3x \dd{y}
+    = \frac{3}{4}, \\
+    E(Y)
+    &= \int_0^1 \dd{x} \int_0^x y \cdot 3x \dd{y}
+    = \frac{3}{8}, \\
+    \Cov(X,Y)
+    &= E(XY) - E(X) E(Y)
+    = \frac{3}{160}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}[配对问题]
+有\(n\)个人，每人将自己的礼品扔入同一箱中，把礼品充分混合后，每人再随机从中选取一个.
+试求选中自己礼品的人数\(X\)的数学期望与方差.
+\begin{solution}
+设随机变量\[
+    X_i = \left\{ \begin{array}{ll}
+    1, & \text{当第\(i\)个人取出自己的礼品}, \\
+    0, & \text{当第\(i\)个人取出别人的礼品},
+    \end{array} \right.
+    \quad(i=1,2,\dotsc,n)
+\]同分布于\[
+    \begin{bmatrix}
+    0 & 1 \\
+    \frac{1}{n} & 1-\frac{1}{n}
+    \end{bmatrix},
+\]
+即\[
+    P(X_i=1) = \frac{1}{n}, \qquad
+    P(X_i=0) = 1-\frac{1}{n}
+    \quad(i=1,2,\dotsc,n).
+\]
+那么其数学期望与方差分别为\[
+    E(X_i) = \frac{1}{n},
+    \qquad
+    D(X_i) = \frac{1}{n}\left(1-\frac{1}{n}\right)
+    \quad(i=1,2,\dotsc,n).
+\]
+
+在上述假设下，\(n\)个人种选中自己礼品的人数恰好为\[
+    X = X_1+X_2+\dotsb+X_n.
+\]因此\[
+    E(X) = E(X_1)+E(X_2)+\dotsb+E(X_n)
+    = n \cdot \frac{1}{n}
+    = 1.
+\]
+
+由于\(X_i\ (i=1,2,\dotsc,n)\)不是相互独立的，所以\(X\)的方差为\[
+    D(X) = \sum_{i=1}^n D(X_i) + 2 \sum_{i<j} \Cov(X_i,X_j).
+\]
+为了计算\(\Cov(X_i,X_j)\ (i \neq j)\)，我们来考察\(X_i X_j\)的含义：\[
+    X_i X_j = \left\{ \begin{array}{ll}
+    1, & \text{当第\(i\)个人和第\(j\)个人都恰好取出各自的礼品}, \\
+    0, & \text{其他},
+    \end{array} \right.
+\]于是\[
+    E(X_i X_j) = 1 \cdot P(X_i=1,X_j=1)
+    = P(X_i=1) \cdot P(X_j=1 \vert X_i=1)
+    = \frac{1}{n} \cdot \frac{1}{n-1},
+\]
+因此\[
+    \Cov(X_i,X_j) = \frac{1}{n(n-1)} - \left(\frac{1}{n}\right)^2
+    = \frac{1}{n^2(n-1)},
+\]\[
+    D(X) = n \cdot \frac{n-1}{n^2} + 2 \cdot \frac{n(n-1)}{2} \cdot \frac{1}{n^2(n-1)}
+    = 1.
+\]
+\end{solution}
+由此可见，在配对问题，成对个数的均值与方差都是1，与人数\(n\)无关.
+\end{example}
+
+\subsection{均值向量\ 协方差阵}
+\begin{definition}
+对于二维随机变量\((X,Y)\)，称向量\[
+    (E(X),E(Y))
+\]
+为“\((X,Y)\)的\DefineConcept{数学期望}或\DefineConcept{均值向量}”.
+称矩阵\[
+    \vb{V} = \begin{bmatrix}
+    D(X) & \Cov(X,Y) \\
+    \Cov(Y,X) & D(Y)
+    \end{bmatrix}
+\]为“\((X,Y)\)的\DefineConcept{协方差阵}”.
+
+一般地，对\(n\)维随机变量\((\AutoTuple{X}{n})\)，称向量\[
+    (E(X_1),E(X_2),\dotsc,E(X_n))
+\]
+为“\((\AutoTuple{X}{n})\)的\DefineConcept{数学期望}或\DefineConcept{均值向量}”.
+记\[
+    \sigma_{ij} = \Cov(X_i,Y_j),
+    \quad i,j=1,2,\dotsc,n;
+\]
+称矩阵\[
+    \vb{V} = \begin{bmatrix}
+    \sigma_{11} & \sigma_{12} & \dots & \sigma_{1n} \\
+    \sigma_{21} & \sigma_{22} & \dots & \sigma_{2n} \\
+    \vdots & \vdots & & \vdots \\
+    \sigma_{n1} & \sigma_{n2} & \dots & \sigma_{nn}
+    \end{bmatrix}
+\]
+为“\((\AutoTuple{X}{n})\)的\DefineConcept{协方差阵}”.
+\end{definition}
+
+易见协方差阵\(\vb{V}\)总是对称阵.
