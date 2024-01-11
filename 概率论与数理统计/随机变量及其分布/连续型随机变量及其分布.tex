@@ -157,7 +157,6 @@ P(X > t + \tau \vert X > t) = P(X > \tau).
 	% Mathematica: Plot[Table[PDF[GammaDistribution[\[Alpha], .5], x], {\[Alpha], {1, 4, 6}}] // Evaluate, {x, 0, 20}, PlotRange -> {0, .5}, Filling -> Axis]
 \end{figure}
 
-
 \begin{definition}
 若一个元件或系统的寿命\(X\)满足一个连续型分布，\(X \sim F(t)\)，
 则其可靠度函数定义为\[
@@ -186,3 +185,192 @@ r(t) = \frac{f(t)}{R(t)}.
 记为\(X \sim B(\alpha,\beta)\).
 %@see: https://mathworld.wolfram.com/BetaDistribution.html
 \end{definition}
+
+\subsubsection{正态分布}
+\begin{definition}\label{definition:正态分布.标准正态分布的定义}
+若随机变量\(X\)的概率密度函数为
+\begin{equation}\label{equation:正态分布与自然指数分布族.标准正态分布的密度函数}
+	\phi(x) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}},
+	\quad x \in \mathbb{R},
+\end{equation}
+则称“\(X\)服从\DefineConcept{标准正态分布}（standard normal distribution）”，
+记为\(X \sim N(0,1)\).
+
+\begin{figure}[ht]%标准正态分布的密度函数
+	\centering
+	\begin{tikzpicture}
+		% Mathematica: Plot[1/Sqrt[2 \[Pi]] Exp[-(x^2/2)], {x, -5, 5}]
+		\begin{axis}[
+				xmin=-5.1,xmax=5.1,
+				axis lines=middle,
+				xlabel=$x$,
+				ylabel=$y$,
+				xscale=2,
+				enlarge x limits=0.05,
+				enlarge y limits=0.1,
+				x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=north},
+				y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south east},
+			]
+			\addplot[color=blue,samples=30,smooth,domain=-5:5]{exp(-x^2/2)/sqrt(2*pi)};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{标准正态分布\(N(0,1)\)的密度函数的图形}
+	\label{figure:正态分布与自然指数分布族.标准正态分布的密度函数}
+\end{figure}
+
+
+标准正态分布随机变量\(X\)的分布函数记为\(\Phi(x)\)，有\begin{equation}\label{equation:正态分布与自然指数分布族.标准正态分布的分布函数}
+\Phi(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \dd{t}.
+\end{equation}
+\end{definition}
+
+\begin{property}
+由于密度函数\(\phi(x)\)是偶函数，故分布函数\(\Phi(x)\)满足：
+\begin{enumerate}
+\item \(\Phi(0) = \frac{1}{2}\)；
+\item \(\Phi(-x) = 1 - \Phi(x)\).
+\end{enumerate}
+\end{property}
+
+\begin{definition}\label{definition:正态分布.正态分布的定义}
+设\(\mu,\sigma\in\mathbb{R}^+\)是常数，若随机变量\(X\)满足\[
+	\frac{X-\mu}{\sigma} \sim N(0,1),
+\]
+则称“\(X\)服从参数为\(\mu\)、\(\sigma^2\)的\DefineConcept{正态分布}（normal distribution）%
+\footnote{%
+正态分布又称为\DefineConcept{高斯分布}，它的图形称为\DefineConcept{钟形曲线}（bell curve）.
+}”，
+记为\(X \sim N(\mu,\sigma^2)\).
+\end{definition}
+
+\begin{theorem}
+设\(X \sim N(\mu,\sigma^2)\)，则
+\begin{enumerate}
+	\item \(X\)的分布函数为\[
+		F(x) = \Phi\left(\frac{x-\mu}{\sigma}\right),
+		\quad x\in\mathbb{R};
+	\]
+	\item \(P(a < X \leq b) = \Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)\);
+	\item \(X\)的概率密度函数为\[
+		f(x) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+		\quad x\in\mathbb{R}.
+	\]
+\end{enumerate}
+\begin{proof}
+\(X\)的分布函数为\[
+	F(x) = P(X \leq x)
+	= P\left(\frac{X-\mu}{\sigma}\leq\frac{x-\mu}{\sigma}\right)
+	= \Phi\left(\frac{x-\mu}{\sigma}\right), \quad x\in\mathbb{R};
+\]
+由\cref{equation:正态分布与自然指数分布族.标准正态分布的分布函数} 可知，
+\(\Phi\left(\frac{x-\mu}{\sigma}\right)\)处处连续可微，
+从而\begin{align*}
+	f(x) &= F'(x) = \Phi'\left(\frac{x-\mu}{\sigma}\right)
+	= \frac{1}{\sigma} \phi\left(\frac{x-\mu}{\sigma}\right) \\
+	&= \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+	\quad x\in\mathbb{R}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{figure}[ht]%正态分布的密度函数
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			name=NormalDistribution,
+			xmin=-5.1,xmax=7.1,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			xscale=2,
+			enlarge x limits=0.05,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=north},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south east},
+		]
+			\def\plotNDPDF#1#2#3{\addplot[color=#3,samples=100,smooth,domain=-5:7]{exp(-(x-#1)^2/(2*#2^2))/(sqrt(2*pi)*#2)}}%
+			\plotNDPDF{1}{0.25}{blue};\label{pgfplots:正态分布与自然指数分布族.N(1,0.25)}
+			\plotNDPDF{1}{1}{orange};\label{pgfplots:正态分布与自然指数分布族.N(1,1)}
+			\plotNDPDF{1}{2}{pink};\label{pgfplots:正态分布与自然指数分布族.N(1,2)}
+			\plotNDPDF{-1}{0.25}{green};\label{pgfplots:正态分布与自然指数分布族.N(-1,0.25)}
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,above left=0.5em]at(NormalDistribution.north east){\small\begin{tabular}{cl}
+		\ref{pgfplots:正态分布与自然指数分布族.N(1,0.25)} & \(N(1,0.25)\) \\
+		\ref{pgfplots:正态分布与自然指数分布族.N(1,1)} & \(N(1,1)\) \\
+		\ref{pgfplots:正态分布与自然指数分布族.N(1,2)} & \(N(1,2)\) \\
+		\ref{pgfplots:正态分布与自然指数分布族.N(-1,0.25)} & \(N(-1,0.25)\) \\
+		\end{tabular}};
+	\end{tikzpicture}
+	\caption{正态分布\(N(\mu,\sigma^2)\)的密度函数的图形}
+	\label{figure:正态分布与自然指数分布族.正态分布的密度函数}
+\end{figure}
+
+\begin{property}
+观察正态分布\(N(\mu,\sigma^2)\)的%
+密度函数图像 \labelcref{figure:正态分布与自然指数分布族.正态分布的密度函数} 可知：
+\begin{enumerate}
+	\item 其密度函数\(f(x)\)对称于\(x=\mu\)；
+	\item 密度函数曲线顶点为\(\max\{f(x)\}=\frac{1}{\sqrt{2\pi}\sigma}\)；
+	\item 密度函数曲线以\(x\)轴为渐近线，且在\(\mu\pm\sigma\)处有拐点；
+	\item \(\sigma\)不变，\(\mu\)改变，曲线平移但曲线形态不变，故\(\mu\)又称为位置参数；
+	\(\mu\)不变，\(\sigma\)改变，曲线对称轴不变，但曲线形态改变，\(\sigma\)越小，曲线越高越瘦；
+	反之\(\sigma\)越大，曲线越矮越胖，故\(\sigma\)又称为刻度参数.
+\end{enumerate}
+\end{property}
+
+\begin{example}
+设\(X \sim N(0,1)\).试证：\(Y=-X\)也服从标准正态分布.
+\begin{proof}
+\(Y\)的分布函数\(F(y)\)可表为
+\begin{align*}
+	F(y) &= P(Y \leq y) = P(-X \leq y) = P(X \geq -y) \\
+	&= 1 - \Phi(-y) = \Phi(y),
+\end{align*}
+故\(Y \sim N(0,1)\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(X \sim N(\mu,\sigma^2)\).
+求\(X\)落在\((\mu-3\sigma,\mu+3\sigma)\)内的概率.
+\begin{solution}
+\begin{align*}
+	P(\mu-3\sigma<X<\mu+3\sigma)
+	&= \Phi\left(\frac{\mu+3\sigma-\mu}{\sigma}\right)
+	- \Phi\left(\frac{\mu-3\sigma-\mu}{\sigma}\right) \\
+	&= \Phi(3) - \Phi(-3) = 2\Phi(3) - 1 \\
+	&= 2 \times 0.998\ 7 - 1 = 0.997\ 4.
+\end{align*}
+\end{solution}
+\end{example}
+由此可见，\(X\)落在\((\mu-3\sigma,\mu+3\sigma)\)区间外的概率不到\(0.003\).
+一般认为这个事件的概率是极小的.
+因此在实际应用中我们常把区间\((\mu-3\sigma,\mu+3\sigma)\)看作\(X\)的实际取值区间，这就是正态分布所谓的“\(3\sigma\)原则”.
+
+\begin{example}
+设随机变量\(X \sim N(0,1)\)，求随机变量\(Y = X^2\)的概率密度.
+\begin{solution}
+\(X\)的密度函数为\[
+	\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}},
+	\quad -\infty < x < +\infty.
+\]
+
+\(Y\)有值域\(R(Y) = [0,+\infty)\)，
+对\(\forall y \geq 0\)，
+有\(Y\)分布函数为\[
+	F_Y(y) = P(Y \leq y) = P(X^2 \leq y)
+	= P(-\sqrt{y} \leq X \leq \sqrt{y})
+	= \int_{-\sqrt{y}}^{\sqrt{y}}{\frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \dd{x}};
+\]
+而当\(y < 0\)时，
+显然有\(F_Y(y) = P(Y \leq y) = P(\emptyset) = 0\).
+于是有\[
+f_Y(y) = F'_Y(y) = \left\{ \begin{array}{ll}
+\frac{1}{\sqrt{2\pi}} y^{-\frac{1}{2}} e^{-\frac{y}{2}}, & y > 0, \\
+0, & y \leq 0.
+\end{array} \right.
+\]
+由此可知，\(Y \sim \Gamma\left(\frac{1}{2},\frac{1}{2}\right)\).
+\end{solution}
+\end{example}
