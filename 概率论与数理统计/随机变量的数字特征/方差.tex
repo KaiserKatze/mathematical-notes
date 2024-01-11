@@ -179,3 +179,82 @@ E(X^2) = D(X) + [E(X)]^2 = 1 + 1 = 2.
 \]
 \end{solution}
 \end{example}
+
+\begin{proposition}\label{theorem:正态分布与自然指数分布族.正态分布的数字特征}
+设随机变量\(X \sim N(\mu,\sigma^2)\)，
+则\(X\)的期望与方差分别为\[
+	E(X) = \mu,
+	\qquad
+	D(X) = \sigma^2.
+\]
+\begin{proof}
+设\(Y \sim N(0,1)\)，则有\begin{align*}
+	E(Y) &= \int_{-\infty}^{+\infty} y \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \dd{y} = 0, \\
+	D(Y) &= E(Y^2)
+	= \int_{-\infty}^{+\infty} y^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \dd{y} \\
+	&= \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} y^2 e^{-\frac{y^2}{2}} \dd{y} \\
+	&\xlongequal{t=y^2/2} \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} 2 t e^{-t} \frac{\sqrt{2}}{2} t^{-\frac{1}{2}} \dd{t} \\
+	&=\frac{2}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{1}{2}} e^{-t} \dd{t} \\
+	&= \frac{2}{\sqrt{\pi}} \Gamma\left(\frac{3}{2}\right)
+	= \frac{2}{\sqrt{\pi}} \cdot \frac{1}{2} \Gamma\left(\frac{1}{2}\right)
+	= 1.
+\end{align*}
+由\hyperref[definition:正态分布.正态分布的定义]{正态分布的定义}可知，
+\(Y = \frac{X-\mu}{\sigma}\)，
+\(X = \sigma Y + \mu\)，
+从而\[
+	E(X) = E(\sigma Y + \mu) = \sigma E(Y) + \mu = \mu,
+\]\[
+	D(X) = D(\sigma Y + \mu) = \sigma^2 D(Y) = \sigma^2.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{example}
+设随机变量\(X\)的分布函数为\[
+	F(x) = \frac{3}{10} \Phi(x) + \frac{7}{10} \Phi\left(\frac{x-1}{2}\right),
+\]
+其中\(\Phi(x)\)是标准正态分布的分布函数，求\(E(X)\).
+\begin{solution}
+对\(F(x)\)求导得\[
+	f(x) = F'(x)
+	= \frac{3}{10} \phi(x)
+		+ \frac{7}{10} \phi\left(\frac{x-1}{2}\right) \frac{1}{2},
+\]
+其中\(\phi(x)\)是标准正态分布的密度函数.
+那么\begin{align*}
+	E(X) &= \int_{-\infty}^{+\infty} x f(x) \dd{x} \\
+	&= \int_{-\infty}^{+\infty} x \frac{3}{10} \phi(x) \dd{x}
+	+ \int_{-\infty}^{+\infty} x \frac{7}{10} \phi\left(\frac{x-1}{2}\right) \frac{1}{2} \dd{x} \\
+	&\xlongequal{y=(x-1)/2} \frac{3}{10} \cdot 0
+	+ \frac{7}{10} \int_{-\infty}^{+\infty} (2y+1) \phi(y) \dd{y}
+	= \frac{7}{10}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{proposition}\label{theorem:正态分布与自然指数分布族.正态分布的线性性质}
+设随机变量\(X \sim N(\mu,\sigma^2)\)，
+当\(b \neq 0\)时，
+有\begin{equation}
+	Y = a+bX \sim N(a+b\mu,b^2\sigma^2).
+\end{equation}
+\begin{proof}
+令\[
+	Z = \frac{Y-(a+b\mu)}{\abs{b}\sigma}.
+\]
+
+当\(b > 0\)时，\[
+	Z = \frac{(a+bX)-(a+b\mu)}{b\sigma}=\frac{X-\mu}{\sigma},
+\]
+故\(Z \sim N(0,1)\).
+
+当\(b < 0\)时，\[
+Z = \frac{(a+bX)-(a+b\mu)}{-b\sigma}=-\frac{X-\mu}{\sigma},
+\]
+故\(Z \sim N(0,1)\).
+
+综上所述，\(Y \sim N(a+b\mu,b^2\sigma^2)\).
+\end{proof}
+\end{proposition}
