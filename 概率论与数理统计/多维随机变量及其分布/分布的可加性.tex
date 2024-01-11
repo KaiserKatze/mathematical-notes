@@ -84,3 +84,49 @@
 	\Gamma\left(\sum_{i=1}^n \alpha_i,\beta\right).
 \]
 \end{theorem}
+
+\subsection{正态分布的可加性}
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.正态分布的可加性1}
+设\(X \sim N(\mu_1,\sigma_1^2)\)，
+\(Y \sim N(\mu_2,\sigma_2^2)\)，
+且\(X\)与\(Y\)相互独立，
+则\begin{equation}
+	X+Y \sim N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2).
+\end{equation}
+\end{theorem}
+
+\begin{corollary}\label{theorem:正态分布与自然指数分布族.正态分布的可加性2}
+设随机变量\(\AutoTuple{X}{n}\)相互独立，且\[
+	X_i \sim N(\mu_i,\sigma_i^2),
+	\quad i=1,2,\dotsc,n,
+\]
+且\(C_1,C_2,\dotsc,C_n\)为常数，
+则\begin{equation}
+	\sum_{i=1}^n {C_i X_i}
+	\sim N\left(
+	\sum_{i=1}^n {C_i \mu_i},
+	\sum_{i=1}^n {C_i^2 \sigma_i^2}
+	\right).
+\end{equation}
+\end{corollary}
+
+\begin{example}
+设\(\AutoTuple{X}{n}\)独立同分布于\(N(\mu,\sigma^2)\)，试计算其算术平均数\[
+	\overline{X} = \frac{1}{n} (X_1+X_2+\dotsb+X_n)
+\]的分布.
+\begin{solution}
+由\hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布的卷积公式}可知\[
+	X_1+X_2+\dotsb+X_n \sim N(n\mu,n\sigma^2).
+\]又由\hyperref[theorem:正态分布与自然指数分布族.正态分布的线性性质]{正态分布的线性性}可知\[
+	\overline{X} = \frac{1}{n} (X_1+X_2+\dotsb+X_n) \sim N\left(\mu,\frac{\sigma^2}{n}\right).
+\]
+\end{solution}
+由此可见，\(n\)个独立同分布于正态分布\(N(\mu,\sigma^2)\)
+的随机变量的算术平均数\(\overline{X}\)仍服从正态分布，
+其均值与原分布的均值\(\mu\)相同；
+但其方差缩小了\(n\)倍，变为\(\sigma^2/n\)；
+其标准差缩小了\(\sqrt{n}\)倍，
+变为\(\sigma/\sqrt{n}\).
+这表明\(\overline{X}\)的分布更加集中，
+这也是为什么在测量物体的尺寸时我们应该多次读数并取算术平均值.
+\end{example}
