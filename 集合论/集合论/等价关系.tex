@@ -46,21 +46,22 @@
 	\text{\(\rel{R}\)具有对称性}. \\
 	\rel{R}\circ\rel{R} \subseteq \rel{R}
 	&\iff
-	(\forall x,y \in A)
-	[
-		x(\rel{R}\circ\rel{R})y
-		\implies
-		x\rel{R}y
-	] \\
-	&\iff
 	(\forall x,z \in A)
-	(\exists y \in A)
+	[
+		(\exists y \in A)[x\rel{R}y \land y\rel{R}z]
+		\iff
+		x(\rel{R}\circ\rel{R})z
+		\implies
+		x\rel{R}z
+	] \\
+	&\iff%FIXME 这里我还不太理解怎样才能把(\exists y \in A)改写成(\forall y \in A)
+	(\forall x,y,z \in A)
 	[
 		x\rel{R}y \land y\rel{R}z
 		\implies
 		x\rel{R}z
 	] \\
-	&\iff%FIXME 这里我还不太理解怎样才能把(\exists y \in A)改写成(\forall y \in A)
+	&\iff
 	\text{\(\rel{R}\)具有传递性}.
 	\qedhere
 \end{align*}
