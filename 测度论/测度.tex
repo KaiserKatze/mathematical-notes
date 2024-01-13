@@ -252,6 +252,51 @@
 \]
 \end{proposition}
 
+\begin{example}
+%@see: 《实变函数论》（周民强） P14. 例1
+设\(X\)是非空集合，
+且\(f\colon \Powerset X \to \Powerset X\).
+若\[
+	(\forall A,B \in \Powerset X)
+	[
+		A \subseteq B
+		\implies
+		f\ImageOfSetUnderRelation{A} \subseteq f\ImageOfSetUnderRelation{B}
+	],
+\]
+则\[
+	(\exists T)
+	[
+		T \subseteq \Powerset X
+		\implies
+		f\ImageOfSetUnderRelation{T} = T
+	].
+\]
+\begin{proof}
+令\[
+	S = \Set{ A \in \Powerset X \given A \subseteq f\ImageOfSetUnderRelation{A} },
+	\qquad
+	T = \bigcup_{A \in S} A,
+\]
+则有\(f\ImageOfSetUnderRelation{T} = T\).
+
+因为\(A \in S\)，\(A \subseteq f\ImageOfSetUnderRelation{A}\)，
+从而由\(A \subseteq T\)
+可得\(f\ImageOfSetUnderRelation{A} \subseteq f\ImageOfSetUnderRelation{T}\).
+根据\(A \in S\)推出\(A \subseteq f\ImageOfSetUnderRelation{T}\)，
+这就导致\[
+	\bigcup_{A \in S} A \subseteq f\ImageOfSetUnderRelation{T},
+	\qquad
+	T \subseteq f\ImageOfSetUnderRelation{T}.
+\]
+
+另一方面，又从\(T \subseteq f\ImageOfSetUnderRelation{T}\)
+可知\(f\ImageOfSetUnderRelation{T} \subseteq f\ImageOfSetUnderRelation{f\ImageOfSetUnderRelation{T}}\).
+这说明\(f\ImageOfSetUnderRelation{T} \in S\)，
+我们又有\(f\ImageOfSetUnderRelation{T} \subseteq T\).
+\end{proof}
+\end{example}
+
 \subsection{集族的封闭性}
 %@see: 《测度论讲义（第三版）》（严加安） P2. 1.1.6
 \begin{definition}[集族的封闭性]
