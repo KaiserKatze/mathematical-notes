@@ -29,10 +29,49 @@
 %@see: 《Elements of Set Theory》 P61. Exercise 33.
 设\(\rel{R}\)是集合\(A\)上的二元关系.
 证明：\begin{enumerate}
-	\item \(\rel{R}\)具有对称性的充分必要条件是\(\rel{R}^{-1} \subseteq \rel{R}\).
-	\item \(\rel{R}\)具有传递性的充分必要条件是\(\rel{R}\circ\rel{R} \subseteq \rel{R}\).
-	\item \(\rel{R}\)同时具有对称性和传递性的充分必要条件是\(\rel{R} = \rel{R}^{-1}\circ\rel{R}\).
+	\item \(\rel{R}\)具有对称性的充分必要条件是
+	\(\rel{R}^{-1} \subseteq \rel{R}\).
+	\item \(\rel{R}\)具有传递性的充分必要条件是
+	\(\rel{R}\circ\rel{R} \subseteq \rel{R}\).
 \end{enumerate}
+\begin{proof}
+易见
+\begin{align*}
+	\rel{R}^{-1} \subseteq \rel{R}
+	&\iff
+	(\forall x,y \in A)[
+		y\rel{R}x \iff x\rel{R}^{-1}y \implies x\rel{R}y
+	] \\
+	&\iff
+	\text{\(\rel{R}\)具有对称性}. \\
+	\rel{R}\circ\rel{R} \subseteq \rel{R}
+	&\iff
+	(\forall x,y \in A)
+	[
+		x(\rel{R}\circ\rel{R})y
+		\implies
+		x\rel{R}y
+	] \\
+	&\iff
+	(\forall x,z \in A)
+	(\exists y \in A)
+	[
+		x\rel{R}y \land y\rel{R}z
+		\implies
+		x\rel{R}z
+	] \\
+	&\iff%FIXME 这里我还不太理解怎样才能把(\exists y \in A)改写成(\forall y \in A)
+	\text{\(\rel{R}\)具有传递性}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P61. Exercise 33.
+设\(\rel{R}\)是集合\(A\)上的二元关系.
+证明：\(\rel{R}\)同时具有对称性和传递性的充分必要条件是
+\(\rel{R} = \rel{R}^{-1}\circ\rel{R}\).
 %TODO
 \end{example}
 
