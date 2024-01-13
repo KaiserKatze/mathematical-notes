@@ -247,6 +247,61 @@
 \end{align*}
 \end{proposition}
 
+\begin{lemma}\label{theorem:基数.集合在映射下的分解}
+%@see: 《实变函数论》（周民强） P15. 引理1.4
+设映射\(f\colon A \to B,
+g\colon B \to A\)，
+则存在集合\(X_1,X_2,Y_1,Y_2\)，
+使得\begin{enumerate}
+	\item \(\{X_1,X_2\}\)是\(A\)的一个划分，
+	\(\{Y_1,Y_2\}\)是\(B\)的一个划分，
+	\item \(X_1\)在\(f\)下的像为\(f\ImageOfSetUnderRelation{X_1}=Y_1\)，
+	\(Y_2\)在\(g\)下的像为\(g\ImageOfSetUnderRelation{Y_2}=X_2\).
+\end{enumerate}
+\begin{proof}
+我们首先作出如下定义：
+设\(E\)是\(A\)的一个子集（不妨假定\(B - f\ImageOfSetUnderRelation{E} \neq \emptyset\)），
+若\[
+	E \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{E}} = \emptyset,
+	\eqno(1)
+\]
+则称“\(E\)是\(A\)中的\DefineConcept{分离集}”.
+
+现将\(A\)中的分离集的全体记为\(\Gamma\).
+令\(X_1 = \bigcup \Gamma\).
+我们有\(X_1 \in \Gamma\).%TODO 为什么？
+事实上，
+对于\(\forall E \in \Gamma\)，
+由于\(X_1 \supseteq E\)，
+故从(1)式可知\(E \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_1}} = \emptyset\)，
+从而有\(X_1 \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_1}} = \emptyset\).
+这说明\(X_1\)不光是\(A\)中的分离集，而且是\(\Gamma\)中对包含关系\(\subseteq\)的最大元.
+
+现在令\(f\ImageOfSetUnderRelation{X_1}=Y_1,
+B-Y_1=Y_2,
+g\ImageOfSetUnderRelation{Y_2}=X_2\).
+首先知道\(B=Y_1 \cup Y_2\).
+其次，由于\(X_1 \cap X_2 = \emptyset\)，
+故又易得\(X_1 \cup X_2 = A\).
+事实上，若不然，那么\(\exists a \in A\)，
+使得\(a \notin X_1 \cup X_2\).
+现在取\(X_3 = X_1 \cup \{a\}\)，
+我们有\[
+	Y_1 = f\ImageOfSetUnderRelation{X_1} \subseteq f\ImageOfSetUnderRelation{X_3},
+	\qquad
+	Y_2 \supseteq B - f\ImageOfSetUnderRelation{X_3},
+\]
+从而知\(X_2 \supseteq g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_3}}\).
+这就是说\[
+	X_1 \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_3}} = \emptyset.
+\]
+由此可得\[
+	X_3 \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_3}} = \emptyset.
+\]
+这与“\(X_1\)是\(\Gamma\)的最大元”相矛盾！
+\end{proof}
+\end{lemma}
+
 \begin{theorem}\label{theorem:集合论.施罗德--伯恩斯坦定理}
 %@see: 《Elements of Set Theory》 P147. Schroder-Bernstein Theorem(a)
 设\(A,B\)都是集合，则\[
