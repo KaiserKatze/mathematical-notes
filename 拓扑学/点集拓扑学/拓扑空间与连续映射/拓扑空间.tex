@@ -1,0 +1,269 @@
+\section{拓扑空间}
+从\cref{theorem:度量空间.度量空间下的连续映射与邻域的联系} 可以看出：
+度量空间之间的一个映射是否是连续的，或者在某一点处是否是连续的，
+本质上只与度量空间中的开集有关（这是因为邻域是通过开集定义的）.
+这就导致我们可以抛弃度量这个概念，
+参照\hyperref[theorem:度量空间.开集的性质]{度量空间中开集的基本性质}，
+抽象出拓扑空间和拓扑空间之间的连续映射的概念.
+于是，\cref{theorem:度量空间.度量空间下的连续映射与邻域的联系}
+成为了我们把度量空间和度量空间之间的连续映射的概念推广为拓扑空间和拓扑空间之间的连续映射的出发点.
+
+\subsection{拓扑与拓扑空间的概念}
+\begin{definition}\label{definition:拓扑学.开集公理定义的拓扑空间}
+已知非空集合\(X\).
+\(\T\)\footnote{\(\T\)是德文尖角体（Fraktur）的拉丁字母T.}
+是\(X\)的一个子集族，
+即\(\T \subseteq \Powerset X\).
+若有\begin{enumerate}
+	\item \(\emptyset,X \in \T\)；
+	\item \(\T\)的有限交仍然属于\(\T\)，
+	即\(A,B \in \T \implies A \cap B \in \T\)；
+	\item \(\T\)的任意并仍然属于\(\T\)，
+	即\(\T_1 \subseteq \T \implies \bigcup_{A \in \T_1} A \in \T\)；
+\end{enumerate}
+则称“\(\T\)为\(X\)的一个\DefineConcept{拓扑}”，
+称“集合\(X\)是一个（相对于拓扑\(\T\)而言的）\DefineConcept{拓扑空间}（topological space）”，
+记作\((X,\T)\).
+\(\T\)的任一元素都称为“拓扑空间\((X,\T)\)中的一个\DefineConcept{开集}（open set）”.
+\end{definition}
+如果我们将\cref{definition:拓扑学.开集公理定义的拓扑空间} 中的三个条件
+与\cref{theorem:度量空间.开集的性质} 的三个结论对照一下，
+并将“\(U\)属于\(\T\)”读作“\(U\)是一个开集”，
+便会发现两者实际上是一样的.
+
+只要经过简单的归纳立即可见，
+\cref{definition:拓扑学.开集公理定义的拓扑空间} 中的第二个条件蕴含着以下结论：\[
+	\AutoTuple{A}{n}\in\T\ (n\geq1)
+	\implies
+	A_1 \cap A_2 \cap \dotsb \cap A_n \in \T.
+\]
+
+此外，如果在\cref{definition:拓扑学.开集公理定义的拓扑空间} 中的第三个条件中令\(\T_1=\emptyset\)，
+就会得到\(\emptyset = \bigcup_{A\in\T_1} A \in \T\)，
+而这一点在第一个条件中已经做了规定.
+因此我们在验证任意集合\(X\)的一个子集族是否可以是\(X\)的一个拓扑，
+在验证第三个条件是否满足时，总可以假定\(\T_1\neq\emptyset\).
+
+现在首先将度量空间纳入拓扑空间的范畴.
+
+设\((X,\rho)\)是一个度量空间.
+令\(\T_\rho\)是由\(X\)中的所有开集构成的集族.
+根据\cref{theorem:度量空间.开集的性质} 可知\((X,\T_\rho)\)是\(X\)的一个拓扑.
+我们称\(\T_\rho\)为“\(X\)的由度量\(\rho\)诱导出来的拓扑”
+\footnote{%
+以后如果没有特别说明，当提到度量空间\((X,\rho)\)的拓扑时，指的就是拓扑\(\T_\rho\)；
+在称度量空间\((X,\rho)\)为拓扑空间时，指的就是拓扑空间\((X,\T_\rho)\).
+}.
+此外，我们约定：
+如果没有另外说明，当我们提到度量空间\((X,\rho)\)的拓扑时，
+指的就是拓扑\(\T_\rho\)；
+在提到度量空间\((X,\rho)\)是拓扑空间时，
+指的就是拓扑空间\((X,\T_\rho)\).
+
+因此，实数空间\(\mathbb{R}\)、
+\(n\)维欧式空间\(\mathbb{R}^n\)（特别是欧式平面\(\mathbb{R}^2\)）
+和希尔伯特空间\(\mathbb{H}\)都可以叫做拓扑空间，
+它们各自的拓扑分别是由各自的通常度量所诱导出来的拓扑.
+
+\subsection{常见的拓扑空间}
+度量空间是拓扑空间中最为重要的一类.
+于此，我们再举出一些拓扑空间的例子.
+
+\begin{example}[平庸空间]
+设\(X\)是一个集合.
+令\(\T=\{X,\emptyset\}\).
+容易验证，\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\DefineConcept{平庸拓扑}；
+称拓扑空间\((X,\T)\)为一个\DefineConcept{平庸空间}.
+在平庸空间\((X,\T)\)中，有且仅有两个开集，即\(X\)本身和空集\(\emptyset\).
+\end{example}
+
+\begin{example}[离散空间]
+设\(X\)是一个集合.
+令\(\T=\Powerset X\).
+容易验证\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\DefineConcept{离散拓扑}；
+称拓扑空间\((X,\T)\)为一个\DefineConcept{离散空间}.
+在离散空间\((X,\T)\)中，\(X\)的每一个子集都是开集.
+\end{example}
+
+\begin{example}\label{example:拓扑学.常见的拓扑空间3}
+设\(X = \{a,b,c\}\).
+令\[
+\T = \{
+	\emptyset,
+	\{a\},
+	\{a,b\},
+	\{a,b,c\}
+\}.
+\]
+容易验证\(\T\)是\(X\)的一个拓扑，因此\((X,\T)\)是一个拓扑空间，但这个拓扑空间既不是平庸空间也不是离散空间.
+\end{example}
+
+\begin{example}[有限补空间]
+设\(X\)是一个集合.
+令\[
+\T = \Set{ U \subseteq X \given \text{\((X-U)\)是\(X\)的一个有限子集} } \cup \{\emptyset\}.
+\]
+
+因为\(X \subseteq X\)，\(X - X = \emptyset\)是\(X\)的一个有限子集，
+所以\(X \in \T\).
+再根据这里对\(\T\)的定义，还有\(\emptyset \in \T\).
+
+设\(A,B\in\T\).
+如果\(A\)和\(B\)之中有一个是空集，
+则\(A \cap B = \emptyset \in \T\)；
+如果\(A\)和\(B\)都不是空集，
+\(X - (A \cap B) = (X - A) \cup (X - B)\)是\(X\)的一个有限子集，
+所以\(A \cap B \in \T\).
+
+设\(\T_1 \subseteq \T\)，令\(\T_2 = \T_1 - \{ \emptyset \}\).
+显然有\[
+\bigcup_{A \in \T_1} A
+= \bigcup_{A \in \T_2} A.
+\]
+如果\(\T_2 = \emptyset\)，则\[
+\bigcup_{A \in \T_1} A
+= \bigcup_{A \in \T_2} A
+= \emptyset \in \T;
+\]
+如果\(\T_2 \neq \emptyset\)，
+则对\(\forall A_0 \in \T_2\)，\[
+X - \bigcup_{A \in \T_1} A
+= X - \bigcup_{A \in \T_2} A
+= \bigcap_{A \in \T_2} (X - A)
+\subseteq X - A_0
+\]是\(X\)的一个有限子集；
+所以\(\bigcup_{A \in \T_1} A \in \T\).
+
+综上所述，\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\DefineConcept{有限补拓扑}；
+称拓扑空间\((X,\T)\)为一个\DefineConcept{有限补空间}.
+\end{example}
+
+\begin{example}[可数补空间]
+设\(X\)是一个集合.
+令\[
+\T = \Set{ U \subseteq X \given \text{\((X-U)\)是\(X\)的一个可数子集} } \cup \{\emptyset\}.
+\]
+可以验证\(\T\)是\(X\)的一个拓扑，称其为\(X\)的\DefineConcept{可数补拓扑}；
+称拓扑空间\((X,\T)\)为一个\DefineConcept{可数补空间}.
+\end{example}
+
+\subsection{可度量化空间}
+一个令人关心的问题是，
+拓扑空间是否真的要比度量空间的范围更广一些？
+是否每一个拓扑空间的拓扑都可以由某一个度量诱导出来？
+
+\begin{definition}
+设\((X,\T)\)是一个拓扑空间.
+如果存在\(X\)的一个度量\(\rho\)使得拓扑\(\T\)就是由度量\(\rho\)诱导出来的拓扑\(\T_\rho\)，则称“拓扑空间\((X,\T)\)是一个\DefineConcept{可度量化空间}”，或称“拓扑空间\((X,\T)\)是\DefineConcept{可度量化的}”.
+\end{definition}
+
+根据这个定义，前述问题即是：
+是否每一个拓扑空间都是可度量化空间？
+我们知道，每一个只含有限个点的度量空间作为拓扑空间都是离散空间.
+然而一个平庸空间如果含有多余一个点的话，它肯定不是离散空间，
+因此含有多余一个点的有限的平庸空间不是可度量化的.
+\cref{example:拓扑学.常见的拓扑空间3} 给出的那个空间只含有三个点，但它既非离散空间也非可度量化空间.
+由此可见，拓扑空间比度量空间的范围要更加广泛.
+进一步的问题是，满足什么条件的拓扑空间是可度量化的？
+这是点集拓扑学中的重要问题之一，以后我们将专门讨论.
+
+\subsection{拓扑空间之间的连续映射}
+下面我们参考\cref{definition:度量空间.连续映射的概念}
+和\cref{theorem:度量空间.度量空间下的连续映射与邻域的联系}，
+将度量空间之间的连续映射的概念推广为拓扑空间之间的连续映射.
+
+\begin{definition}\label{definition:拓扑学.拓扑空间之间的连续映射}
+设\(X\)、\(Y\)是两个拓扑空间.
+映射\(f\colon X \to Y\).
+如果\(Y\)中每一个开集\(U\)的原像\(f^{-1}(U)\)是\(X\)中的一个开集，
+则称“映射\(f\)是从\(X\)到\(Y\)的一个\DefineConcept{连续映射}”，
+简称“映射\(f\) \DefineConcept{连续}”.
+\end{definition}
+结合\cref{definition:拓扑学.拓扑空间之间的连续映射} 和\cref{theorem:度量空间.度量空间下的连续映射与邻域的联系} 可知：
+当\(X\)、\(Y\)是两个度量空间时，如果映射\(f\colon X \to Y\)是从度量空间\(X\)到度量空间\(Y\)的一个连续映射，那么它也是从拓扑空间\(X\)到拓扑空间\(Y\)的一个连续映射；反之亦然.
+注意到这里提到的拓扑都是指诱导拓扑.
+
+下面我们给出连续映射的最重要的性质.
+
+\begin{theorem}\label{theorem:拓扑学.拓扑空间之间的连续映射的性质}
+设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
+\begin{enumerate}
+\item 恒同映射\(i_X\colon X \to X\)是一个连续映射；
+\item 如果映射\(f\colon X \to Y\)和\(g\colon Y \to Z\)都是连续映射，则复合映射\(g \circ f\colon X \to Z\)也是连续映射.
+\end{enumerate}
+\begin{proof}
+如果\(U\)是\(X\)的一个开集，则\(i_X^{-1}(U) = U\)当然也是\(X\)的开集，所以\(i_X\)连续.
+
+设\(W\)是\(Z\)的一个开集.
+由于\(g\)连续，\(g^{-1}(W)\)是\(Y\)的开集；
+又由于\(f\)连续，故\(f^{-1}(g^{-1}(W))\)是\(X\)的开集；
+因此，\[
+(g \circ f)^{-1}(W) = f^{-1}(g^{-1}(W))
+\]是\(X\)的开集，\(g \circ f\)连续.
+\end{proof}
+\end{theorem}
+
+\subsection{同胚映射}
+在数学的许多分支学科中都要涉及两种基本对象.
+例如在线性代数中我们考虑线性空间和线性变换，
+在群论中我们考虑群和同态，
+在集合论中我们考虑集合和映射，
+在不同的几何学中考虑各自的图形和各自的变换等.
+并且对于后者都要提出一类来予以重点研究，
+例如线性代数中的（线性）同构、
+群论中的同构、
+集合论中的双射
+以及欧式几何中的刚体运动（即平移、旋转）等.
+
+既然我们已经提出了两种基本对象（即拓扑空间和连续映射），
+那么我们也要从连续映射中挑出重要的一类来进行特别研究.
+
+\begin{definition}\label{definition:拓扑学.同胚映射的概念}
+%@see: 《点集拓扑讲义》（熊金城） P60
+设\(X,Y\)是两个拓扑空间.
+如果映射\(f\colon X \to Y\)是一个双射，
+并且\(f\)和逆映射\(f^{-1}\)都是连续的，
+那么称\(f\)为一个\DefineConcept{同胚映射}（homeomorphism），
+简称\DefineConcept{同胚}；
+又称“\(X\)与\(Y\)是\DefineConcept{同胚的}（homeomorphic）”，
+或“\(X\)与\(Y\)同胚”，或“\(X\)同胚于\(Y\)”，记作\(X \cong Y\).
+%@see: https://mathworld.wolfram.com/Homeomorphism.html
+\end{definition}
+
+粗略地说，同胚的两个空间实际上就是两个具有相同拓扑结构的空间.
+
+\begin{theorem}\label{theorem:拓扑学.同胚映射的性质}
+设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
+\begin{enumerate}
+\item 恒同映射\(i_X\colon X \to X\)是一个同胚；
+\item 如果映射\(f\colon X \to Y\)是一个同胚，则逆映射\(f^{-1}\colon Y \to X\)也是同胚；
+\item 如果映射\(f\colon X \to Y\)、\(g\colon Y \to Z\)都是同胚，则复合映射\(g \circ f\colon X \to Z\)也是同胚.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.同胚关系是等价关系}
+设\(X\)、\(Y\)、\(Z\)都是拓扑空间，那么
+\begin{enumerate}
+\item \(X\)与\(X\)同胚；
+\item 如果\(X\)与\(Y\)同胚，则\(Y\)与\(X\)同胚；
+\item 如果\(X\)与\(Y\)同胚、\(Y\)与\(Z\)同胚，则\(X\)与\(Z\)同胚.
+\end{enumerate}
+\end{theorem}
+根据\cref{theorem:拓扑学.同胚关系是等价关系}，我们可以说：
+在任意给定的一个由拓扑空间组成的族中，两个拓扑空间是否同胚这一关系是一个等价关系
+\footnote{%
+之所以不说“在由全体拓扑空间组成的族中，
+两个拓扑空间是否同胚这一关系是一个等价关系”，
+是因为“由全体拓扑空间组成的族”这样一个概念会引起逻辑矛盾：
+若记这个族为\(T\)，令\(\widetilde{T} = \Set{ X \given (X,\T) \in T }\)，
+赋予\(\widetilde{T}\)以平庸拓扑\(\T_0\)，于是\((\widetilde{T},\T_0) \in T\)，
+从而\(\widetilde{T} \in \widetilde{T}\).
+这就产生了“一个集合是它自己的元素”的悖论.
+}.
+因此同胚关系将这个拓扑空间族分为互不相交的等价类，使得属于同一类的拓扑空间彼此同胚，属于不同类的拓扑空间彼此不同配.
+
+拓扑空间的某种性质\(P\)，如果为某一个拓扑空间所具有，则必为与其同胚的任何一个拓扑空间所具有，
+那么称此性质\(P\)是一个\DefineConcept{拓扑不变性质}.
+换言之，拓扑不变性质就是彼此同胚的拓扑空间所共有的性质.
+
+{\color{red} 拓扑学的中心任务就是研究拓扑不变性质.}

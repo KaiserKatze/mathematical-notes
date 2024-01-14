@@ -1,0 +1,343 @@
+\section{度量空间}
+根据\cref{definition:极限.函数在一点的连续性} 我们知道，
+函数\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x_0\in\mathbb{R}\)处连续当且仅当\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	[
+		\abs{x - x_0}<\delta
+		\implies
+		\abs{f(x) - f(x_0)} < \epsilon
+	].
+\]
+在这个定义中只涉及两个实数之间的距离（即两个实数之差的绝对值）这个概念.
+为了验证一个函数在某点处的连续性往往只要用到关于上述距离的最基本的性质，而与实数的其他性质无关.
+关于多元函数的连续性情形也完全类似.
+在此之前，我们一直是依靠几何直觉理解“距离”的概念，从现在开始，我们要抽象出度量和度量空间的概念.
+
+\subsection{度量与度量空间的概念}
+\begin{definition}
+%@see: 《数学分析》（卓里奇） P1. 定义1.
+%@see: 《点集拓扑讲义》（熊金城） P45. 定义2.1.1
+设\(X\)是一个集合，映射\(\rho\colon X \times X\to\mathbb{R}\).
+如果对于\(\forall x,y,z \in X\)，总有\begin{enumerate}
+	\item \(\rho(x,y)=0 \iff x=y\)；
+
+	\item {\bf 对称性}，即\[
+		\rho(x,y) = \rho(y,x);
+	\]
+
+	\item {\bf 三角不等式}，即\[
+		\rho(x,z) \leq \rho(x,y) + \rho(y,z);
+	\]
+\end{enumerate}
+那么称“映射\(\rho\)是集合\(X\)的一个\DefineConcept{度量}（metric）”；
+称实数\(\rho(x,y)\)为“从点\(x\)到点\(y\)的\DefineConcept{距离}（distance）”.
+\end{definition}
+% TODO 注意将“度量”与“测度（measure）”作区别
+%@see: https://math.stackexchange.com/questions/1402847/
+%@see: https://mathworld.wolfram.com/Measure.html
+
+我们指出，如果在度量的第三个条件的三角不等式中取\(x=z\)，便得\[
+	\rho(x,x)\leq\rho(x,y)+\rho(y,x),
+\]
+则利用度量的前两个条件可以得到\(\rho(x,x)=0,\rho(y,x)=\rho(x,y)\)，
+于是\(0\leq2\rho(x,y)\)
+即\(\rho(x,y)\geq0\).
+也就是说，对于任意两点\(x,y\)，它们的距离是非负的.
+
+应该注意到，给定任意一个集合，我们总可以找出无穷多个满足上述三个条件的映射.
+例如，给定集合\(X\)，对于\(x,y \in X\)，令\[
+	d(x,y) = \left\{ \begin{array}{cl}
+		c, & x \neq y, \\
+		0, & x=y,
+	\end{array} \right.
+\]
+可以看出，对于任意\(c\in\mathbb{R}^+\)，
+映射\(d\)总是集合\(X\)的一个度量.
+
+\begin{definition}
+给定集合\(X\)，如果映射\(\rho\)是集合\(X\)的一个度量，
+那么称“集合\(X\)是一个对于度量\(\rho\)而言的\DefineConcept{度量空间}（metric space）”，
+记为\((X,\rho)\).
+%@see: https://mathworld.wolfram.com/MetricSpace.html
+\end{definition}
+
+当前文已经说明了度量\(\rho\)，省略它不至于引起混淆时，可以简称“\(X\)是一个度量空间”.
+
+\subsection{常见的度量空间}
+\begin{example}[实数空间\(\mathbb{R}\)]
+对于实数集\(\mathbb{R}\)，
+定义映射\(\rho\colon\mathbb{R}\times\mathbb{R}\to\mathbb{R}\)如下：\[
+	\rho(x,y) = \abs{x-y},
+	\quad x,y\in\mathbb{R}.
+\]
+显然\(\rho\)是\(\mathbb{R}\)的一个度量，
+因此\((\mathbb{R},\rho)\)是一个度量空间.
+特别地，这个度量空间被称为\DefineConcept{实数空间}或\DefineConcept{直线}，
+称度量\(\rho\)为“\(\mathbb{R}\)的\DefineConcept{通常度量}（usual metric）”.
+\end{example}
+
+我们可以假设一个定义在\([0,+\infty)\)上的非负函数\(f(x)\)，
+当且仅当\(x=0\)时\(f(x)=0\).
+如果函数\(f(x)\)严格上凸，
+则对于\(\forall x,y\in\mathbb{R}\)，只要取\[
+	d(x,y)=f(\abs{x-y}),
+\]
+就得到\(\mathbb{R}\)的一个度量.
+
+特别地，可以取\(d(x,y)=\sqrt{\abs{x-y}}\)
+或\(d(x,y)=\frac{\abs{x-y}}{1+\abs{x-y}}\).
+
+可以验证，在度量\(d(x,y)=\frac{\abs{x-y}}{1+\abs{x-y}}\)下，
+数轴上任意两点之间的距离都小于\(1\).
+
+\begin{example}[欧式空间\(\mathbb{R}^n\)]
+对于实数集\(\mathbb{R}\)的\(n\)重笛卡尔积\(\mathbb{R}^n\)，
+定义映射\(\rho\colon\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}\)如下：\[
+	\rho(\vb{x},\vb{y})
+	= \sqrt{\sum_{i=1}^n (x_i-y_i)^2},
+	\quad \vb{x}=(\AutoTuple{x}{n}),\vb{y}=(\AutoTuple{y}{n})\in\mathbb{R}^n.
+\]
+显然\(\rho\)是\(\mathbb{R}^n\)的一个度量，
+因此\((\mathbb{R}^n,\rho)\)是一个度量空间.
+特别地，这个度量空间被称为（\(n\)维）\DefineConcept{欧式空间}，
+称度量\(\rho\)为\(\mathbb{R}^n\)的\DefineConcept{通常度量}.
+2维欧式空间通常称为（欧式）平面.
+\end{example}
+
+\begin{example}
+对于\(\mathbb{R}^n\)，除了通常度量以外，我们还可以定义\[
+	d_p(\vb{x},\vb{y})
+	= \left(\sum_{i=1}^n \abs{x_i-y_i}^p\right)^{\frac{1}{p}},
+	\quad \vb{x}=(\AutoTuple{x}{n}),\vb{y}=(\AutoTuple{y}{n})\in\mathbb{R}^n,
+\]
+其中\(p\geq1\).
+利用\hyperref[theorem:不等式.闵可夫斯基不等式]{闵可夫斯基不等式}%
+可以证明\(d_p\)是\(\mathbb{R}^n\)的一个度量，
+因此\((\mathbb{R}^n,d_p)\)也是一个度量空间，
+把\(d_p\)称为\(\mathbb{R}^n\)的\DefineConcept{闵氏度量}.
+\end{example}
+
+\begin{example}
+对于闭区间上的连续函数族\(C[a,b]\)，任给其中两个函数\(f,g\)，
+定义：\[
+	d(f,g)=\max_{a \leq x \leq b} \abs{f(x)-g(x)}.
+\]
+我们把\(d\)称为\(C[a,b]\)的\DefineConcept{一致度量}%
+或\DefineConcept{一致收敛性度量}%
+或\DefineConcept{切比雪夫度量}.
+在利用多项式代替任意给定函数以所需精度进行近似计算时，
+可以用度量\(d\)刻画近似计算得精度.
+
+我们还可以定义\[
+	d_p(f,g)=\left[\int_a^b\abs{f-g}^p(x)\dd{x}\right]^{\frac{1}{p}}.
+\]
+当\(p=1\)时，我们把\(d_p\)称为\DefineConcept{积分度量}；
+当\(p=2\)时，我们把它称为\DefineConcept{均方差度量}；
+当\(p=+\infty\)时，我们把它称为\DefineConcept{一致度量}.
+
+我们常把度量空间\((C[a,b],d_p)\)简记为\(C_p[a,b]\)，
+把度量空间\((C[a,b],d)\)简记为\(C_\infty[a,b]\).
+\end{example}
+
+\begin{example}[希尔伯特空间\(\mathbb{H}\)]
+构造由所有的平方收敛的实数序列构成的集合，并记为\[
+	\mathbb{H}
+	= \Set*{
+		\vb{x}=(\AutoTuple{x}{0})
+		\given
+		x_i\in\mathbb{R},
+		i\in\mathbb{N}^+;
+		\sum_{i=1}^\infty x_i^2<\infty
+	}.
+\]
+定义映射\(\rho\colon\mathbb{H}\times\mathbb{H}\to\mathbb{R}\)如下：\[
+	\rho(\vb{x},\vb{y}) = \sqrt{\sum_{i=1}^\infty (x_i-y_i)^2},
+	\quad \vb{x}=(\AutoTuple{x}{0}),\vb{y}=(\AutoTuple{y}{0})\in\mathbb{H}.
+\]
+可以证明\(\rho\)是\(\mathbb{H}\)的一个度量，
+因此\((\mathbb{H},\rho)\)是一个度量空间.
+特别地，这个度量空间被称为\DefineConcept{希尔伯特空间}，
+称度量\(\rho\)为\(\mathbb{H}\)的\DefineConcept{通常度量}.
+\end{example}
+
+\begin{example}[离散度量空间]
+设\((X,\rho)\)是一个度量空间.
+如果总有\[
+	(\forall x \in X)
+	(\exists \delta_x > 0)
+	(\forall y \in X - \{x\})
+	[\rho(x,y) > \delta_x]
+\]成立，则称\((X,\rho)\)是离散的.
+
+例如，设\(X\)是任意一个集合，映射\(\rho\colon X \times X\to\mathbb{R}\)满足\[
+\rho(x,y) = \left\{ \begin{array}{ll}
+0, & x=y, \\
+1, & x\neq y.
+\end{array} \right.
+\]容易验证\(\rho\)是\(X\)的一个离散的度量，或者说度量空间\((X,\rho)\)是离散的.
+\end{example}
+
+\subsection{球形邻域的概念与性质}
+\begin{definition}\label{definition:度量空间.球形邻域的概念}
+设\((X,\rho)\)是一个度量空间，\(x \in X\).
+对于\(\forall\epsilon>0\)，集合\[
+	\Set{ y \in X \given \rho(x,y) < \epsilon }
+\]
+称为“一个以\(x\)为\DefineConcept{中心}、以\(\epsilon\)为\DefineConcept{半径}的\DefineConcept{球形邻域}”
+或“\(x\)的一个\(\epsilon\)-邻域”，
+记作\(B(x,\epsilon)\)或\(B_{\epsilon}(x)\)；
+不特别强调球形邻域的半径\(\epsilon\)时，
+可以简称其为“\(x\)的一个球形邻域”.
+\end{definition}
+
+\begin{theorem}\label{theorem:度量空间.球形邻域的性质}
+设\((X,\rho)\)是一个度量空间.
+取\(x \in X\).
+\(x\)的球形邻域具有以下基本性质：
+\begin{enumerate}
+	\item 点\(x\)至少有一个球形邻域，
+	并且点\(x\)属于它的每一个球形邻域；
+	\item 对于点\(x\)的任意两个球形邻域，
+	存在\(x\)的球形邻域同时包含于两者；
+	\item 如果\(y \in X\)属于\(x\)的某一个球形邻域，
+	则\(y\)有一个球形邻域包含于\(x\)的这个球形邻域.
+\end{enumerate}
+\end{theorem}
+
+\subsection{开集的概念与性质}
+\begin{definition}\label{definition:度量空间.开集的概念}
+设\(A\)是度量空间\(X\)的一个子集.
+如果\(A\)中的每一个点都有一个球形邻域包含于\(A\)，
+即\[
+	(\forall a \in A)
+	(\exists\epsilon>0)
+	[B(a,\epsilon) \subseteq A],
+\]
+则称“\(A\)是度量空间\(X\)中的一个\DefineConcept{开集}（open set）”.
+\end{definition}
+
+\begin{example}
+实数空间\(\mathbb{R}\)中，所有的开区间，不论是有限的还是无限的，都是开集；
+闭区间或半开半闭区间都不是\(\mathbb{R}\)中的开集.
+\end{example}
+
+\begin{theorem}\label{theorem:度量空间.开集的性质}
+度量空间\(X\)中的开集具有以下性质：
+\begin{enumerate}
+\item 集合\(X\)本身和空集\(\emptyset\)都是开集；
+\item 任意两个开集的交也是一个开集；
+\item 任意一个开集族的并是一个开集；
+\item 任意一个球形邻域都是开集.
+\end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+设\((X,\rho)\)是一个度量空间，\(x \in X\).
+对于\(\forall\epsilon>0\)，集合\[
+	\Set{ y \in X \given \rho(x,y) > \epsilon }
+\]总是度量空间\(X\)的一个开集.
+\end{proposition}
+
+有时候为了方便讨论问题，我们将球形邻域的概念稍稍作一点推广.
+\begin{definition}\label{definition:度量空间.邻域的概念}
+设\(x\)是度量空间\(X\)中的一个点，集合\(U \subseteq X\).
+如果存在一个开集\(V\)满足条件\(x \in V \subseteq U\)，
+就称“\(U\)是点\(x\)的一个\DefineConcept{邻域}”.
+\end{definition}
+下面这个定理为邻域的定义提供了一个等价的说法，并且表明从球形邻域推广到邻域是自然的事情.
+\begin{theorem}
+设\(x\)是度量空间\(X\)中的一个点，则\(X\)的子集\(U\)是\(x\)的一个邻域的充分必要条件是：
+\(x\)有某一个球形邻域包含于\(U\).
+\end{theorem}
+
+\subsection{度量空间的直积}
+\begingroup
+\def\A{X_1}\def\B{X_2}
+\def\dA{d_1}\def\dB{d_2}
+\def\X{(x_1,x_2)}
+\def\Y{(x_1',x_2')}
+\def\dAA{d_1(x_1,x_1')}
+\def\dBB{d_2(x_2,x_2')}
+设\((X_1,d_1)\)和\((X_2,d_2)\)是两个度量空间，
+就可以在直积\(X_1 \times X_2\)中引入度量\(d\).
+最常用的方法如下.
+
+设\(\X,\Y\in X_1 \times X_2\).
+取\[
+	d(\X,\Y)
+	\defeq
+	\sqrt{[\dAA]^2+[\dBB]^2},
+\]
+或\[
+	d(\X,\Y)
+	\defeq
+	\dAA+\dBB,
+\]
+或\[
+	d(\X,\Y)
+	\defeq
+	\max\{\dAA,\dBB\}.
+\]
+容易看出，我们在上述每一种情形下都得到\(X_1 \times X_2\)上的度量.
+
+\begin{definition}
+设\((X_1,d_1)\)和\((X_2,d_2)\)是两个度量空间，
+\(d\)是在\(X_1 \times X_2\)中引入的度量，
+则称“度量空间\((X_1 \times X_2,d)\)是\((X_1,d_1)\)和\((X_2,d_2)\)的\DefineConcept{直积}”.
+\end{definition}
+
+\begin{example}
+我们可以认为平面\(\mathbb{R}^2\)是两条直线\(\mathbb{R}\)的直积，
+而欧式空间\(\mathbb{R}^3\)是\(\mathbb{R}^2\)与\(\mathbb{R}\)的直积.
+\end{example}
+\endgroup
+
+\subsection{度量空间之间的连续映射}
+现在我们把分析学中的连续函数的概念推广为度量空间之间的连续映射.
+
+\begin{definition}\label{definition:度量空间.连续映射的概念}
+设\(X\)和\(Y\)是两个度量空间.
+映射\(f\colon X \to Y\).
+取\(x_0 \in X\).
+如果对于\(f(x_0)\)的任何一个球形邻域\(B(f(x_0),\epsilon)\)，
+存在\(x_0\)的某一个球形邻域\(B(x_0,\delta)\)，
+使得\(f(B(x_0,\delta)) \subseteq B(f(x_0),\epsilon)\)，
+则称“映射\(f\)在点\(x_0\)处是连续的”.
+
+如果映射\(f\)在\(X\)的每一个点\(x \in X\)处连续，则称“\(f\)是一个\DefineConcept{连续映射}”.
+\end{definition}
+以上的这个定义是分析学中函数连续性定义的纯粹形式推广.
+因为如果设\(\rho\)和\(\sigma\)分别是度量空间\(X\)与\(Y\)中的度量，
+则“映射\(f\)在点\(x_0\)处连续”可以说成\[
+\forall\epsilon>0,
+\exists\delta>0
+\bigl[
+\rho(x,x_0)<\delta
+\implies
+\sigma(f(x),f(x_0))<\epsilon
+\bigr].
+\]
+
+\begin{theorem}\label{theorem:度量空间.度量空间下的连续映射与邻域的联系}
+设\(X\)、\(Y\)是两个度量空间.
+映射\(f\colon X \to Y\).
+取\(x_0 \in X\).
+那么\[
+\text{\(f\)在点\(x_0\)处是连续的}
+\iff
+\text{\(f(x_0)\)的每一个邻域的原像是\(x_0\)的一个邻域},
+\]\[
+\text{\(f\)是连续的}
+\iff
+\text{\(Y\)中的每一个开集的原像是\(X\)中的一个开集}.
+\]
+\end{theorem}
+
+%现在我们就明白了，对于积分的每一种定义都基于一种度量：
+%黎曼积分基于若尔当度量，
+%勒贝格积分基于勒贝格度量.
+
+\begingroup
+\def\T{\mathfrak T}%
+\def\oT{\overline{\mathfrak T}}%

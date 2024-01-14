@@ -1,0 +1,241 @@
+\section{导集、闭集和闭包}
+\begin{definition}\label{definition:拓扑学.聚点与孤立点的概念}
+%@see: 《点集拓扑讲义》（熊金城） P67. 定义2.4.1
+设\(X\)是拓扑空间，\(A \subseteq X\).
+如果点\(x \in X\)的每一个邻域\(U\)中总有异于\(x\)而属于\(A\)的点，
+即\(U \cap (A - \{x\}) \neq \emptyset\)，
+则称“点\(x\)是集合\(A\)的\DefineConcept{聚点}”.
+集合\(A\)的所有聚点构成的集合称为\(A\)的\DefineConcept{导集}，记作\(D(A)\).
+
+如果\(x \in A\)不是\(A\)的聚点，
+即存在\(x\)的一个邻域\(U\)使得\(U \cap (A - \{x\}) = \emptyset\)，
+则称\(x\)为“\(A\)的一个\DefineConcept{孤立点}”.
+\end{definition}
+
+在\cref{definition:拓扑学.聚点与孤立点的概念} 中，
+聚点、导集以及孤立点的定义无一例外地依赖于它所在的拓扑空间的那个给定的拓扑.
+因此，当我们在讨论问题时，
+如果涉及了多个拓扑而又提及聚点或孤立点时，
+我们必须明确说明所称的聚点或孤立点是相对于哪个拓扑而言，不容许产生任何混响.
+由于我们将要定义的许多概念绝大多数都是依赖于给定拓扑的，
+因此类似于这里谈到的问题，今后几乎时时刻刻都会发生，
+即便以后不作特别说明，也请留意这一问题.
+
+应该注意到，尽管在欧式空间中我们已经定义过聚点、孤立点的概念，
+但绝不要以为某些在欧式空间中有效的聚点或孤立点的性质对一般的拓扑空间都有效.
+
+\begin{example}[离散空间中的聚点]\label{example:拓扑学.离散空间中的聚点}
+%@see: 《点集拓扑讲义》（熊金城） P67. 例2.4.1
+设\(X\)是一个离散空间，\(A\)是\(X\)的一个任意子集.
+由于\(X\)中的每一个单点集都是开集，因此如果\(x \in X\)，
+则\(x\)有一个邻域\(\{x\}\)使得\(\{x\}\cap(A-\{x\})=\emptyset\)，
+于是\(x\)不是\(A\)的聚点，\(A\)没有聚点，从而\(A\)的导集是空集，即\(D(A)=\emptyset\).
+\end{example}
+
+\begin{example}[平庸空间中的聚点]\label{example:拓扑学.平庸空间中的聚点}
+%@see: 《点集拓扑讲义》（熊金城） P68. 例2.4.2
+设\(X\)是一个平庸空间，\(A\)是\(X\)中的一个任意子集.
+我们可以分三种情况讨论.
+\begin{enumerate}
+	\item 设\(\abs{A} = 0\).
+	那么\(A = \emptyset\).
+	这时\(A\)显然没有聚点，亦即\(D(A) = \emptyset\).
+
+	\item 设\(\abs{A} = 1\).
+	不妨设\(A = \{x_0\}\).
+	如果\(x \in X\)，\(x \neq x_0\)，点\(x\)只有唯一的一个邻域\(X\).
+	这时\(x_0 \in X \cap (A - \{x\})\)，
+	所以\(X \cap (A - \{x\}) \neq \emptyset\).
+	因此\(x\)是\(A\)的一个凝聚点，即\(x \in D(A)\).
+	然而对于\(x_0\)的唯一邻域\(X\)，
+	有\(X \cap (A - \{x_0\}) = \emptyset\)，
+	所以\(x_0 \notin D(A)\).
+	于是\(D(A) = X - A\).
+
+	\item 设\(\abs{A} > 1\).
+	这时\(X\)中的每一个点都是\(A\)的聚点，即\(D(A) = X\).
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义》（熊金城） P68. 定理2.4.1
+设\(X\)是一个拓扑空间，\(A \subseteq X\)，则
+\begin{enumerate}
+	\item \(D(\emptyset) = \emptyset\).
+	\item \(A \subseteq B \implies D(A) \subseteq D(B)\).
+	\item \(D(A \cup B) = D(A) \cup D(B)\).
+	\item \(D(D(A)) \subseteq A \cup D(A)\).
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}\label{definition:拓扑学.闭集的概念}
+%@see: 《点集拓扑讲义》（熊金城） P69. 定义2.4.2
+设\(X\)是一个拓扑空间，\(A \subseteq X\).
+如果\(A\)的每一个聚点都属于\(A\)，即\(D(A) \subseteq A\)，
+则称\(A\)是“拓扑空间\(X\)中的一个\DefineConcept{闭集}”.
+\end{definition}
+
+例如，根据\cref{example:拓扑学.离散空间中的聚点,example:拓扑学.平庸空间中的聚点} 中的讨论可见，
+离散空间中的任何一个子集都是闭集，而平庸空间中的任何一个非空真子集都不是闭集.
+
+\begin{theorem}\label{theorem:拓扑学.成为闭集的充分必要条件1}
+%@see: 《点集拓扑讲义》（熊金城） P69. 定理2.4.2
+设\(X\)是一个拓扑空间，\(A \subseteq X\)，
+则\(A\)是一个闭集当且仅当\(A\)的补集\(X - A\)是一个开集.
+\end{theorem}
+
+\begin{example}[实数空间\(\mathbb{R}\)中的闭集]
+%@see: 《点集拓扑讲义》（熊金城） P70. 例2.4.3
+设\(a,b\in\mathbb{R}\)，\(a<b\).
+闭区间\([a,b]\)是实数空间\(\mathbb{R}\)中的一个闭集，
+因为\([a,b]\)的补集\(\mathbb{R}-[a,b]
+=(-\infty,a)\cup(b,+\infty)\)是一个开集.
+同理，\((-\infty,a]\)、\([b,+\infty)\)和\((-\infty,+\infty)\)也都是闭集.
+但是，开区间\((a,b)\)却不是闭集，这是因为\(a\)是\(a,b\)的一个聚点，但\(a\notin(a,b)\).
+同理，\((a,b]\)、\([a,b)\)、\((-\infty,a)\)和\((b,+\infty)\)都不是闭集.
+\end{example}
+
+\begin{theorem}\label{theorem:拓扑学.闭集族的性质}
+%@see: 《点集拓扑讲义》（熊金城） P70. 定理2.4.3
+设\(X\)是一个拓扑空间，\(F\)为所有闭集构成的族，则
+\begin{enumerate}
+	\item \(\emptyset,X \in F\)；
+	\item \(A,B \in F \implies A \cup B \in F\)；
+	\item \(\emptyset \neq F_1 \subseteq F\)
+	\footnote{%
+		这里特别要求\(F_1 \neq \emptyset\)的原因在于
+		当\(F_1 = \emptyset\)时所涉及的交运算没有定义.
+	}，则\(\bigcap_{A \in F_1} A \in F\).
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}\label{definition:拓扑学.闭包的概念}
+%@see: 《点集拓扑讲义》（熊金城） P71. 定义2.4.3
+设\(X\)是一个拓扑空间，\(A \subseteq X\).
+集合\(A\)及其导集\(D(A)\)的并\(A \cup D(A)\)称为“集合\(A\)的\DefineConcept{闭包}”，记作\(\overline{A}\).
+\end{definition}
+
+\begin{property}\label{theorem:拓扑学.一点属于闭包的充分必要条件}
+设\(X\)是一个拓扑空间，\(A \subseteq X\).
+\(x \in \overline{A}\)的充分必要条件是：
+对\(x\)的任一邻域\(U\)有\(U \cap A \neq \emptyset\).
+\end{property}
+
+\begin{theorem}\label{theorem:拓扑学.成为闭集的充分必要条件2}
+%@see: 《点集拓扑讲义》（熊金城） P71. 定理2.4.4
+拓扑空间\(X\)的子集\(A\)是闭集的充分必要条件是：\(A = \overline{A}\).
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.闭包的性质}
+%@see: 《点集拓扑讲义》（熊金城） P71. 定理2.4.5
+设\(X\)是一个拓扑空间，\(A,B \subseteq X\)，有
+\begin{enumerate}
+	\item \(\overline{\emptyset} = \emptyset\).
+	\item \(A \subseteq \overline{A}\).
+	\item \(\overline{A \cup B} = \overline{A} \cup \overline{B}\).
+	\item \(\overline{\overline{A}} = \overline{A}\).
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{theorem:拓扑学.拓扑空间子集闭包都是闭集}
+%@see: 《点集拓扑讲义》（熊金城） P72. 定理2.4.6
+拓扑空间\(X\)的任一子集\(A\)的闭包\(\overline{A}\)都是闭集.
+\end{corollary}
+
+\begin{theorem}\label{theorem:拓扑学.集合的闭包是含有该集的最小闭集}
+%@see: 《点集拓扑讲义》（熊金城） P72. 定理2.4.7
+设\(X\)是一个拓扑空间，\(F\)为所有闭集构成的族，
+则对于\(X\)的每一个子集\(A\)，有\[
+\overline{A}
+= \bigcap_{B \in F, B \supseteq A} B
+\equiv \bigcap_{B \in \Set{ B_1 \in F \given B_1 \supseteq A}} B,
+\]
+也就是说，集合\(A\)的闭包等于包含\(A\)的所有闭集之交.
+\end{theorem}
+由此可见，\(\overline{A}\)是一个包含着\(A\)的闭集，
+它又包含于任何一个包含\(A\)的闭集之中；
+在这种意义下我们说：
+一个集合的闭包乃是包含着这个集合的最小的闭集.
+
+以上由一个集合求取它的闭包的步骤可以理解为空间\(X\)的幂集\(\Powerset X\)到自身的一个映射，
+集合\(A \subseteq X\)在这个映射下的像便是\(A\)的闭包\(\overline{A}\).
+
+\begin{definition}\label{definition:拓扑学.闭包运算的概念}
+%@see: 《点集拓扑讲义》（熊金城） P73. 定义2.4.4
+设\(X\)是一个集合.
+如果映射\(c^*\colon \Powerset X \to \Powerset X\)满足条件：
+对于\(\forall A,B \in \Powerset X\)，\begin{enumerate}
+	\item \(c^*(\emptyset) = \emptyset\)；
+	\item \(A \subseteq c^*(A)\)；
+	\item \(c^*(A \cup B) = c^*(A) \cup c^*(B)\)；
+	\item \(c^*(c^*(A)) = c^*(A)\)，
+\end{enumerate}
+则称其为\(X\)的一个\DefineConcept{闭包运算}.
+\end{definition}
+\cref{definition:拓扑学.闭包运算的概念} 中给出的四个条件通常被称为“库拉托夫斯基闭包公理”.
+
+根据\cref{theorem:拓扑学.闭包的性质}，
+将拓扑空间\(X\)的子集\(A\)映射为它的闭包\(\overline{A}\)的那个
+从\(X\)的幂集\(\Powerset X\)到自身的映射便是一个闭包运算，
+即这个映射满足库拉托夫斯基闭包公理.
+不仅如此，下面的\cref{theorem:拓扑学.闭包公理与拓扑是等价的}
+说明库拉托夫斯基闭包公理和我们定义拓扑的三个条件等价.
+在一些点集拓扑发展的早期出现的文献就是从闭包运算出发来建立拓扑空间这一概念的.
+
+\begin{theorem}\label{theorem:拓扑学.闭包公理与拓扑是等价的}
+%@see: 《点集拓扑讲义》（熊金城） P73. 定理2.4.8
+设\(X\)是一个集合，映射\(c^*\colon \Powerset X \to \Powerset X\)是集合\(X\)的一个闭包运算，
+那么存在\(X\)的唯一一个拓扑\(\T\)，使得在拓扑空间\((X,\T)\)中，
+对于\(\forall A \subseteq X\)，总有\(c^*(A) = \overline{A}\).
+\end{theorem}
+
+在度量空间中，集合的聚点、导集和闭包等概念都可以通过度量来刻画.
+
+\begin{definition}\label{definition:拓扑学.点到点集的距离}
+%@see: 《点集拓扑讲义》（熊金城） P75. 定义2.4.5
+\def\d{\inf_{y \in A} \rho(x,y)}%
+设\((X,\rho)\)是一个度量空间，\(A\)是\(X\)的非空子集，取定一点\(x \in X\).
+称实数\(\d\)
+为“点\(x\)到\(A\)的\DefineConcept{距离}”，记作\(\rho(x,A)\)，即\[
+\rho(x,A) \defeq \d.
+\]
+\end{definition}
+
+\begin{theorem}
+设\((X,\rho)\)是一个度量空间，\(A\)是\(X\)的非空子集，取定一点\(x \in X\).
+\(\rho(x,A) = 0\)的充分必要条件是：
+对于\(\forall\epsilon\in\mathbb{R}^+\)，\(\exists y \in A\)，
+使得\(\rho(x,y)<\epsilon\).
+\end{theorem}
+
+\begin{corollary}
+设\((X,\rho)\)是一个度量空间，\(A\)是\(X\)的非空子集，取定一点\(x \in X\).
+\(\rho(x,A) = 0\)的充分必要条件是：
+对于\(x\)的任一邻域\(U\)，总有\(U \cap A \neq \emptyset\).
+\end{corollary}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义》（熊金城） P75. 定理2.4.9
+设\(A\)是度量空间\((X,\rho)\)中的一个非空子集，则
+\begin{enumerate}
+	\item \(x \in d(A)\)当且仅当\(\rho(x,A-\{x\})=0\)；
+	\item \(x \in \overline{A}\)当且仅当\(\rho(x,A)=0\).
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义》（熊金城） P75. 定理2.4.10
+设\(X\)和\(Y\)是两个拓扑空间，映射\(f\colon X \to Y\)，则以下命题等价：
+\begin{enumerate}
+	\item \(f\)是一个连续映射；
+	\item \(Y\)中的任何一个闭集的原像\(f^{-1}\ImageOfSetUnderRelation{B}\)是一个闭集；
+	\item 对于\(X\)中的任何一个子集\(A\)，\(A\)的闭包的像包含于\(A\)的像的闭包，
+	即\(f\ImageOfSetUnderRelation{\overline{A}}
+	\subseteq
+	\overline{f\ImageOfSetUnderRelation{A}}\)；
+	\item 对于\(Y\)中的任何一个子集\(B\)，\(B\)的闭包的原像包含\(B\)的原像的闭包，
+	即\(f^{-1}\ImageOfSetUnderRelation{\overline{B}}
+	\supseteq
+	\overline{f^{-1}\ImageOfSetUnderRelation{B}}\).
+\end{enumerate}
+\end{theorem}

@@ -1,0 +1,79 @@
+\section{内部、外部与边界}
+\begin{definition}\label{definition:拓扑学.内部的概念}
+%@see: 《点集拓扑讲义》（熊金城） P77. 定义2.5.1
+设\(X\)是一个拓扑空间，\(A \subseteq X\).
+如果\(A\)是点\(x \in A\)的一个邻域，则称“点\(x\)是集合\(A\)的一个\DefineConcept{内点}”.
+集合\(A\)的所有内点构成的集合称为“\(A\)的\DefineConcept{内部}”，记作\(I(A)\).
+\end{definition}
+
+\begin{theorem}\label{theorem:拓扑学.内部与闭包的联系}
+%@see: 《点集拓扑讲义》（熊金城） P78 定理2.5.1
+设\(X\)是一个拓扑空间，\(A \subseteq X\)，则\[
+I(A) = X - \overline{X - A}, \qquad
+\overline{A} = X - I(X - A).
+\]
+\end{theorem}
+
+关于内部的基本性质，我们有与闭包的性质
+（\cref{theorem:拓扑学.成为闭集的充分必要条件2,%
+theorem:拓扑学.闭包的性质,%
+theorem:拓扑学.拓扑空间子集闭包都是闭集,%
+theorem:拓扑学.集合的闭包是含有该集的最小闭集}）
+完全对偶的一组定理，即以下的\cref{theorem:拓扑学.成为开集的充分必要条件2,%
+theorem:拓扑学.内部的性质,%
+theorem:拓扑学.拓扑空间子集内部都是开集,%
+theorem:拓扑学.集合的内部是含于该集的最大开集}.
+这些定理的证明过程都是将闭包的相应性质通过\cref{theorem:拓扑学.内部与闭包的联系}
+转化为内部的性质.
+
+\begin{theorem}\label{theorem:拓扑学.成为开集的充分必要条件2}
+%@see: 《点集拓扑讲义》（熊金城） P78 定理2.5.2
+拓扑空间\(X\)的子集\(A\)是开集的充分必要条件是：\(A = I(A)\).
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.内部的性质}
+%@see: 《点集拓扑讲义》（熊金城） P78 定理2.5.3
+设\(X\)是一个拓扑空间，则对于\(\forall A,B \subseteq X\)，有
+\begin{enumerate}
+	\item \(I(X) = X\)；
+	\item \(A \supseteq I(A)\)；
+	\item \(I(A \cap B) = I(A) \cap I(B)\)；
+	\item \(I(I(A)) = I(A)\).
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.拓扑空间子集内部都是开集}
+%@see: 《点集拓扑讲义》（熊金城） P79 定理2.5.4
+拓扑空间\(X\)的任一子集\(A\)的内部\(I(A)\)都是开集.
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.集合的内部是含于该集的最大开集}
+%@see: 《点集拓扑讲义》（熊金城） P79 定理2.5.5
+设\((X,\T)\)是一个拓扑空间，则对于\(\forall A \subseteq X\)，有\[
+I(A) = \bigcup_{B \in \T, B \subseteq A} B,
+\]
+即集合\(A\)的内部等于包含于\(A\)的所有开集之并.
+\end{theorem}
+
+由\cref{theorem:拓扑学.集合的内部是含于该集的最大开集}
+可见，集合\(A\)的内部\(I(A)\)是一个包含于\(A\)的开集，
+它又包含着任何一个包含于\(A\)的开集.
+在这种意义下我们说
+一个集合的内部乃是包含于这个集合的最大的开集.
+
+与我们在前一节中处理闭包运算时的情形一样，
+求取一个集合的内部也可以理解为从拓扑空间\(X\)的幂集到其自身的一个映射，
+它将每一个\(A \in \Powerset X\)映射为\(I(A)\).
+也同样可以像定义闭包运算一样定义内部运算，并由内部运算导出拓扑和拓扑空间的概念.
+同样地，映射的连续性也可通过内部这个概念作出等价的描述.
+
+\begin{definition}\label{definition:拓扑学.边界的概念}
+设\(X\)是一个拓扑空间，\(A \subseteq X\).
+取定一点\(x \in X\)，
+如果在\(x\)的任一邻域\(U\)中既有\(A\)中的点，又有\(X - A\)中的点，
+即既有\(U \cap A \neq \emptyset\)，又有\(U \cap (X-A) \neq \emptyset\)，
+则称“\(x\)是集合\(A\)的一个\DefineConcept{边界点}”.
+集合\(A\)的全体边界点构成的集合称为集合\(A\)的边界，记作\(\partial A\).
+\end{definition}
+
+\endgroup

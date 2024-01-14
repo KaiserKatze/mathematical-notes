@@ -1,0 +1,111 @@
+\section{邻域，邻域系}
+\begin{definition}\label{definition:拓扑学.邻域的概念}
+%@see: 《点集拓扑讲义》（熊金城） P63. 定理2.3.1
+设\((X,\T)\)是一个拓扑空间，任意取定一点\(x \in X\).
+如果\(U \subseteq X\)满足：
+\(\exists V \in \T\)，
+使得\(x \in V \subseteq U\)，
+则称\(U\)是“点\(x\)的一个\DefineConcept{邻域}”.
+
+点\(x\)的所有邻域构成的\(X\)的子集族称为“点\(x\)的\DefineConcept{邻域系}”.
+\end{definition}
+
+易见，如果\(U\)是包含着点\(x\)的一个开集，
+那么它一定是\(x\)的一个邻域，
+于是我们称\(U\)为“点\(x\)的一个\DefineConcept{开邻域}”.
+
+应当注意，当我们把一个度量空间看作拓扑空间时，
+空间的拓扑是由度量诱导出来的拓扑，
+而一个集合是不是一个某一个点的邻域，
+无论是按\cref{definition:度量空间.邻域的概念}，
+还是按\cref{definition:拓扑学.邻域的概念}，
+都是一回事.
+
+\begin{theorem}\label{theorem:拓扑学.成为开集的充分必要条件1}
+%@see: 《点集拓扑讲义》（熊金城） P64. 定理2.3.1
+设\((X,\T)\)是一个拓扑空间，\(U \subseteq X\).
+\(U\)是开集的充分必要条件是：
+\(U\)是它的每一点的邻域，即对于\(\forall x \in U\)，\(U\)都是\(x\)的一个邻域.
+\begin{proof}
+充分性.
+\begin{enumerate}
+	\item 如果\(U\)是空集，当然\(U\)是一个开集.
+
+	\item 如果\(U\neq\emptyset\)，
+	由于对于\(\forall x \in U\)，\(\exists V_x \in \T\)，
+	使得\(x \in V_x \subseteq U\)，
+	所以\[
+	U \equiv \bigcup_{x \in U} \{ x \}
+	\subseteq \bigcup_{x \in U} V_x
+	\subseteq U.
+	\]
+	故\(U = \bigcup_{x \in U} V_x \subseteq \T\).
+	根据\hyperref[definition:拓扑学.开集公理定义的拓扑空间]{拓扑的定义}，\(U\)是一个开集.
+	\qedhere
+\end{enumerate}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.邻域系的基本性质}
+%@see: 《点集拓扑讲义》（熊金城） P64. 定理2.3.2
+设\(X\)是一个拓扑空间.
+设\(A_x\)是任意一点\(x \in X\)的邻域系，则
+\begin{enumerate}
+	\item \(A_x \neq \emptyset\)；
+	\item 如果\(U \in A_x\)，则\(x \in U\)；
+	\item 如果\(U,V \in A_x\)，则\(U \cap V \in A_x\)；
+	\item 如果\(U \in A_x\)且\(U \subseteq V\)，则\(V \in A_x\)；
+	\item 如果\(U \in A_x\)，则\(\exists V \in A_x\)满足：\[
+		V \subseteq U
+		\quad\land\quad
+		\forall y \in V \bigl( V \in A_y \bigr).
+	\]
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.从邻域系出发定义拓扑}
+%@see: 《点集拓扑讲义》（熊金城） P65. 定理2.3.3
+设\(X\)是一个集合.
+又设对于\(\forall x \in X\)，指定\(X\)的一个子集族\(A_x\)，
+并且它们满足\cref{theorem:拓扑学.邻域系的基本性质} 中的全部条件，
+则\(X\)有唯一的一个拓扑\(\T\)使得对于\(\forall x \in X\)，
+子集族\(A_x\)恰是点\(x\)在拓扑空间\((X,\T)\)中的邻域系.
+\end{theorem}
+
+\cref{theorem:拓扑学.从邻域系出发定义拓扑}
+表明，我们完全可以从邻域系的概念出发来建立拓扑空间理论.
+这种做法在点集拓扑发展的早期常被采用，并且在一定程度上显得更加自然一些，
+但不如现在流行的、从开集概念出发定义拓扑的做法来得简洁.
+
+现在我们来讲度量空间之间的连续映射在一点处的连续性的概念推广到拓扑空间之间的映射中去.
+
+\begin{definition}
+%@see: 《点集拓扑讲义》（熊金城） P66. 定义2.3.2
+设\(X\)和\(Y\)是两个拓扑空间.
+映射\(f\colon X \to Y\).
+取定一点\(x \in X\).
+如果\(f(x) \in Y\)的每一个邻域\(U\)的原像\(f^{-1}(U)\)是\(x \in X\)的一个邻域，
+则称映射\(f\)是“一个在点\(x\)处连续的映射”，
+或称“映射\(f\)在点\(x\)处连续”.
+\end{definition}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义》（熊金城） P66. 定理2.3.4
+设\(X,Y,Z\)都是拓扑空间，则
+\begin{enumerate}
+	\item 恒同映射\(i_X\colon X \to X\)在\(\forall x \in X\)处连续；
+	\item 如果\(f\colon X \to Y\)在点\(x \in X\)处连续，
+	\(g\colon Y \to Z\)在点\(f(x)\)处连续，
+	则\(g \circ f\colon X \to Z\)在点\(x\)处连续.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.连续性在局部与整体的连续}
+%@see: 《点集拓扑讲义》（熊金城） P66. 定理2.3.5
+设\(X\)和\(Y\)是拓扑空间，映射\(f\colon X \to Y\)，
+则映射\(f\)连续的充分必要条件是：
+对于\(\forall x \in X\)，映射\(f\)在点\(x\)处连续.
+\end{theorem}
+
+\cref{theorem:拓扑学.连续性在局部与整体的连续}
+建立了“局部的”连续性概念和“整体的”连续性概念之间的联系.
