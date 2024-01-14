@@ -30,6 +30,42 @@
 %TODO
 \end{example}
 
+\begin{example}\label{example:基数.幂集与特征函数空间等势}
+%@see: 《Elements of Set Theory》 P131. Example
+证明：对于任意集合\(A\)，
+总有\(A\)的幂集\(\Powerset A\)与映射空间\(2^A\)等势.
+\begin{proof}
+对于\(A\)的每个子集\(a\)，
+定义从\(A\)到\(\{0,1\}\)的映射\[
+	f_a(x) = \left\{ \begin{array}{cl}
+		1, & x \in a, \\
+		0, & x \in A - a.
+	\end{array} \right.
+\]
+注意到\(2=\{0,1\}\)，
+于是\(f_a \in 2^A\).
+再定义映射\[
+	H\colon \Powerset A \to 2^A,
+	a \mapsto f_a.
+\]
+对于\(\forall a,b \in \Powerset A\)，
+只要\(a \neq b\)，
+就\(\exists x \in A\)，
+满足\(x \in a\)，但不满足\(x \in b\)，
+这就使得\(f_a(x) = 1\)而\(f_b(x) = 0\)，
+于是\(f_a \neq f_b\)，
+由此可见\(H\)是单射.
+又因为对于\(\forall g \in 2^A\)，
+若记\(G = \Set{ x \in A \given g(x) = 1 }\)，
+则必有\((\forall x \in A - G)[g(x) = 0]\)，
+于是\(H(G) = g\)，
+即\(g \in \ran H\).
+由\(g\)的任意性可知\(\ran H = 2^A\)，
+因此\(H\)是满射.
+既然\(H\)是双射，那么\(\Powerset A \approx 2^A\).
+\end{proof}
+\end{example}
+
 \begin{example}
 全体完全平方数组成的集合与自然数集\(\omega\)等势.
 \end{example}
