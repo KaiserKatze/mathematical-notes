@@ -305,11 +305,12 @@
 
 为了给出一个一般性结论，我们先了解这样一个概念：
 如果\[
-	\forall x,y \in A \bigl(
+	(\forall x,y \in A)
+	[
 		x \rel{R} y
 		\implies
 		\opair{F(x),F(y)} \in \rel{R}
-	\bigr),
+	],
 \]
 那么我们称“\(F\)和\(\rel{R}\) \DefineConcept{兼容}%
 （\(F\) is \emph{compatible} with \(\rel{R}\)）”.
@@ -319,28 +320,37 @@
 设\(\rel{R}\)是\(A\)上的一个等价关系，映射\(F\colon A \to A\).
 如果\(F\)和\(\rel{R}\)兼容，
 那么存在一个唯一的映射\(\hat{F}\colon A/\rel{R} \to A/\rel{R}\)，使得\[
-	\forall x \in A:
-	\hat{F}(\rel{R}[x]) = \rel{R}[F(x)].
+	(\forall x \in A)
+	[
+		\hat{F}(\rel{R}[x]) = \rel{R}[F(x)]
+	].
 \]
 如果\(F\)和\(\rel{R}\)不兼容，
 那么不存在映射\(\hat{F}\)满足上述条件.
 \begin{proof}
 首先假设\(F\)和\(\rel{R}\)不兼容，即\[
-	\exists x,y \in A \bigl(
-		x \rel{R} y,
+	(\exists x,y \in A)
+	[
+		x \rel{R} y
+		\land
 		\opair{F(x),F(y)} \notin \rel{R}
-	\bigr),
+	],
 \]
 也即\[
-	\exists x,y \in A \bigl(
-		\rel{R}[x] = \rel{R}[y],
+	(\exists x,y \in A)
+	[
+		\rel{R}[x] = \rel{R}[y]
+		\land
 		\rel{R}[F(x)] \neq \rel{R}[F(y)]
-	\bigr).
+	].
 \]
 而要使\[
-	\forall x \in A:
-	\hat{F}(\rel{R}[x]) = \rel{R}[F(x)]
-\]成立，必须有\[
+	(\forall x \in A)
+	[
+		\hat{F}(\rel{R}[x]) = \rel{R}[F(x)]
+	]
+\]成立，
+必须有\[
 	\hat{F}(\rel{R}[x])
 	= \rel{R}[F(x)]
 	\quad\text{和}\quad
