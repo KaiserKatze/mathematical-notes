@@ -106,6 +106,50 @@
 证明：\(\rel{R}\)同时具有对称性和传递性的充分必要条件是
 \(\rel{R} = \rel{R}^{-1}\circ\rel{R}\).
 %TODO
+\begin{proof}
+先证充分性.
+由\cref{theorem:集合论.复合的逆.推论1}
+可知\((\rel{R}^{-1}\circ\rel{R})^{-1}=\rel{R}^{-1}\circ\rel{R}\)，
+即\(\rel{R}^{-1}\circ\rel{R}\)具有对称性.
+于是\[
+	\rel{R}=\rel{R}^{-1}\circ\rel{R}
+	\implies
+	\text{\(\rel{R}\)具有对称性}.
+\]
+又因为\[
+	\text{\(\rel{R}\)具有对称性} \iff \rel{R}^{-1}=\rel{R},
+\]
+所以\[
+	\rel{R}=\rel{R}^{-1}\circ\rel{R}
+	=\rel{R}\circ\rel{R}
+	\implies
+	\text{\(\rel{R}\)具有传递性}.
+\]
+
+再证必要性.
+容易看出\begin{align*}
+	\text{\(\rel{R}\)同时具有对称性和传递性}
+	&\iff
+	\rel{R}^{-1}=\rel{R}
+	\land
+	\rel{R}\circ\rel{R}\subseteq\rel{R} \\
+	&\implies
+	\rel{R}^{-1}\circ\rel{R}\subseteq\rel{R}.
+\end{align*}
+任取\(\opair{x,y}\in\rel{R}\).
+因为\(\rel{R}\)具有对称性，
+所以\(y\rel{R}x\)，
+从而\(x\rel{R}^{-1}y\).
+又因为\(\rel{R}\)具有传递性，
+于是\(\rel{R}\)具有自反性，
+即\(y\rel{R}y\).
+于是由\(x\rel{R}^{-1}y\)和\(y\rel{R}y\)
+可得\(x(\rel{R}^{-1}\circ\rel{R})y\).
+这就是说，由\(x\rel{R}y\)可得\(x(\rel{R}^{-1}\circ\rel{R})y\)，
+根据外延公理可知\(\rel{R}\subseteq\rel{R}^{-1}\circ\rel{R}\).
+因此\(\rel{R}^{-1}\circ\rel{R}=\rel{R}\).
+\end{proof}
+%@see: https://math.stackexchange.com/a/3978349/591741
 \end{example}
 
 \subsection{等价关系}
