@@ -1,7 +1,7 @@
 \chapter{参数估计}
 在实际应用中，
-一个总体\(X\)的分布函数往往含有未知参数或未知参数向量\(\theta\)，
-从而可记总体分布函数为\(F(x,\theta)\).
+一个总体\(X\)的分布函数往往含有未知参数\(\theta\)或未知参数向量\(\vb\theta\)，
+从而可记总体分布函数为\(F(x,\theta)\)或\(F(x,\vb\theta)\).
 解决实际问题时需要了解未知参数或未知参数向量，
 因此可以利用样本提供的信息，
 对未知参数或未知参数向量有一个基本的估计.
@@ -11,38 +11,16 @@
 
 在点估计中，我们要构造一个统计量
 \(\hat{\theta}=\hat{\theta}(\AutoTuple{X}{n})\)，
-然后用\(\hat{\theta}\)去估计\(\theta\).
+作为未知参数\(\theta\)的\DefineConcept{点估计量}.
+然后把它的样本观测值\(\hat{\theta}(\AutoTuple{x}{n})\)
+作为未知参数\(\theta\)的\DefineConcept{点估计值}.
+在点估计问题中，我们常用以下两类方法：矩估计法和极大似然估计法.
 
 在区间估计中，我们要构造两个统计量\(\hat{\theta}_1\)和\(\hat{\theta}_2\)，
 且\(\hat{\theta}_1<\hat{\theta}_2\)，
 然后以区间\([\hat{\theta}_1,\hat{\theta}_2]\)的形式给出对未知参数\(\theta\)的估计.
 
-\section{点估计}
-\begin{definition}
-设总体\(X\)的分布函数为\(F(x,\theta)\)，
-其中\(\theta\)为未知参数.
-从总体\(X\)中抽取样本\(\AutoTuple{X}{n}\)，
-其观测值为\(\AutoTuple{x}{n}\)，
-构造某个统计量\(\hat{\theta}(\AutoTuple{X}{n})\)，
-用它的观测值\(\hat{\theta}(\AutoTuple{x}{n})\)来估计未知参数\(\theta\)，
-则称\(\hat{\theta}(\AutoTuple{x}{n})\)为\(\theta\)的\DefineConcept{估计值}，
-称\(\hat{\theta}(\AutoTuple{X}{n})\)为\(\theta\)的\DefineConcept{估计量}.
-
-定义中估计量或估计值称为\(\theta\)的一个\DefineConcept{点估计}.
-点估计量是一个统计量，因而是一个随机变量.
-点估计值是一个数.
-点估计量或点估计值都可以简记为\(\hat{\theta}\).
-
-若\(\theta=(\AutoTuple{\theta}{k})\)是\(k\)维未知参数向量，则需要构造\(k\)个统计量\[
-\hat{\theta}_i = \hat{\theta}_i(\AutoTuple{X}{n}) \quad(i=1,2,\dotsc,k)
-\]分别作为\(\AutoTuple{\theta}{k}\)的\DefineConcept{点估计量}.
-\end{definition}
-
-由点估计的定义，任何一个统计量都可以作为未知参数\(\theta\)的一个估计量.
-但一个估计量是否合理，则需要一定的概率统计理论和意义的基础.
-下面介绍两个合乎一定概率统计理论和意义的求估计量的方法.
-
-\subsection{矩估计法}
+\section{矩估计法}
 1900年，卡尔·皮尔逊提出一个替换原则：用样本矩去替换总体矩.
 后来人们就称此为“矩估计法”.
 
@@ -137,17 +115,6 @@
 其中\(\hat{\theta}\)为\(\theta\)的矩估计量.
 \end{theorem}
 
-\begin{remark}
-矩估计量可以不唯一.
-
-比如，若总体\(X\)服从自然指数分布族分布，
-因为总体均值\(m\)的矩估计量为\(\overline{X}\)，
-这时总体方差\(\sigma^2 = V(m)\)是\(m\)的函数，
-则\(\sigma^2\)的矩估计量可以是\(\hat{\sigma}^2 = V(\overline{X})\)，
-也可以是\(\hat{\sigma}^2 = B_2\).
-足见参数\(\theta\)的矩估计量可以是不唯一的.
-\end{remark}
-
 \begin{example}
 总体\(X \sim B(N,p)\)，\(N\)已知，而\(p\)未知.
 \(\AutoTuple{X}{n}\)为样本.
@@ -203,11 +170,29 @@
 \end{solution}
 \end{example}
 
+\begin{remark}
+矩估计法用样本矩估计总体矩.
+由于它采纳的统计思想简单明确，
+而且不需要提前知道总体的分布，
+所以它得到了广泛的应用.
+这是矩估计法的优点.
+
+反过来说，
 由于矩估计法原则上不要求总体的分布情况，
 因此未能充分利用已知分布的信息，
-在样本容量\(n\)较小时估计值可能误差较大.
+在样本容量\(n\)较小时，
+估计值可能误差较大.
+再者，矩估计量可以不唯一.
+比如，若总体\(X\)服从自然指数分布族分布，
+因为总体均值\(m\)的矩估计量为\(\overline{X}\)，
+这时总体方差\(\sigma^2 = V(m)\)是\(m\)的函数，
+则\(\sigma^2\)的矩估计量可以是\(\hat{\sigma}^2 = V(\overline{X})\)，
+也可以是\(\hat{\sigma}^2 = B_2\).
+足见参数\(\theta\)的矩估计量可以是不唯一的.
+这就是矩估计法的缺点.
+\end{remark}
 
-\subsection{极大似然估计法}
+\section{极大似然估计法}
 设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)，
 其中\(\theta\)是未知参数.
 当样本\(\AutoTuple{X}{n}\)得到一组观测值\(\AutoTuple{x}{n}\)时，
@@ -485,7 +470,7 @@ L(\theta) = \prod_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
 \end{solution}
 \end{example}
 
-\section{估计量的评选标准}
+\section{点估计量的评选标准}
 我们已经知道，任何一个统计量都可以作为一个未知参数的估计量.
 对于同一参数的多种估计量，采用哪一种更好呢？这就需要一定的标准来做评价.
 
