@@ -1,0 +1,202 @@
+\section{点的分类}
+\subsection{基本概念}
+\begin{definition}\label{definition:拓扑学.点的分类}
+%@see: 《点集拓扑讲义》（熊金城） P63. 定义2.3.1
+%@see: 《点集拓扑讲义》（熊金城） P67. 定义2.4.1
+%@see: 《点集拓扑讲义》（熊金城） P71. 定义2.4.3
+%@see: 《点集拓扑讲义》（熊金城） P77. 定义2.5.1
+%@see: 《点集拓扑讲义》（熊金城） P80. 定义2.5.2
+%@see: 《基础拓扑学讲义》（尤承业） P15. 定义1.3
+%@see: 《基础拓扑学讲义》（尤承业） P17. 定义1.4
+设\((X,\T)\)是一个拓扑空间，
+\(A \subseteq X\).
+
+对于任意取定的一点\(x \in X\)，
+如果\(A\)满足\[
+	(\exists U\in\T)
+	[x \in U \subseteq A],
+\]
+则称“\(x\)是\(A\)的一个\DefineConcept{内点}”，
+称“\(A\)是点\(x\)的一个\DefineConcept{邻域}”.
+
+\(X\)中任意一点\(x\)的所有邻域构成的\(X\)的子集族，
+称为“\(x\)的\DefineConcept{邻域系}”.
+
+集合\(A\)的所有内点构成的集合，
+称为“\(A\)的\DefineConcept{内部}”，
+记作\(A^\circ\).
+
+对于任意取定的一点\(x \in X\)，
+如果\(x\)的每一个邻域\(U\)中总有异于\(x\)而属于\(A\)的点，
+即\[
+	U \cap (A - \{x\}) \neq \emptyset,
+\]
+则称“\(x\)是\(A\)的\DefineConcept{聚点}”；
+否则，称“\(x\)是\(A\)的一个\DefineConcept{孤立点}”.
+
+集合\(A\)的所有聚点构成的集合，
+称为“\(A\)的\DefineConcept{导集}”，
+记作\(A'\).
+
+我们把集合\(A\)及其导集\(A'\)的并\(A \cup A'\)
+称为“集合\(A\)的\DefineConcept{闭包}”，
+记作\(\overline{A}\).
+
+如果在\(x\)的任一邻域\(U\)中既有\(A\)中的点，又有\(X - A\)中的点，
+即\[
+	U \cap A \neq \emptyset
+	\land
+	U \cap (X-A) \neq \emptyset,
+\]
+则称“\(x\)是集合\(A\)的一个\DefineConcept{边界点}”.
+
+集合\(A\)的全体边界点构成的集合，
+称为“\(A\)的\DefineConcept{边界}”，
+记作\(\partial A\).
+\end{definition}
+
+\begin{remark}
+应当注意，当我们把一个度量空间看作拓扑空间时，
+空间的拓扑是由度量诱导出来的拓扑，
+而一个集合是不是一个某一个点的邻域，
+无论是按\cref{definition:度量空间.邻域的概念}，
+还是按\cref{definition:拓扑学.点的分类}，
+都是一回事.
+\end{remark}
+
+\subsection{邻域系的性质}
+\begin{theorem}\label{theorem:拓扑学.邻域系的基本性质}
+%@see: 《点集拓扑讲义》（熊金城） P64. 定理2.3.2
+设\(X\)是一个拓扑空间.
+设\(A_x\)是任意一点\(x \in X\)的邻域系，则
+\begin{enumerate}
+	\item \(A_x \neq \emptyset\)；
+	\item 如果\(U \in A_x\)，则\(x \in U\)；
+	\item 如果\(U,V \in A_x\)，则\(U \cap V \in A_x\)；
+	\item 如果\(U \in A_x\)且\(U \subseteq V\)，则\(V \in A_x\)；
+	\item 如果\(U \in A_x\)，则\(\exists V \in A_x\)满足：\[
+		V \subseteq U
+		\quad\land\quad
+		(\forall y \in V)
+		[V \in A_y].
+	\]
+\end{enumerate}
+\end{theorem}
+
+\subsection{内部的性质}
+\begin{property}
+%@see: 《基础拓扑学讲义》（尤承业） P16. 命题1.3
+设\(X\)是一个拓扑空间，\(A,B \subseteq X\)，则\begin{enumerate}
+	\item \(A \subseteq B \implies A^\circ \subseteq B^\circ\).
+	\item \(A^\circ\)是包含于\(A\)的所有开集的并集，
+	或者说\(A^\circ\)是包含于\(A\)的最大开集.
+	\item \(A=A^\circ \iff \text{\(A\)是开集}\).
+	\item \((A \cap B)^\circ = A^\circ \cap B^\circ\).
+	\item \((A \cup B)^\circ \supseteq A^\circ \cup B^\circ\).
+\end{enumerate}
+%TODO proof
+\end{property}
+
+\subsection{聚点和导集的性质}
+在\cref{definition:拓扑学.点的分类} 中，
+聚点、导集以及孤立点的定义无一例外地依赖于它所在的拓扑空间的那个给定的拓扑.
+因此，当我们在讨论问题时，
+如果涉及了多个拓扑而又提及聚点或孤立点时，
+我们必须明确说明所称的聚点或孤立点是相对于哪个拓扑而言，不容许产生任何混响.
+由于我们将要定义的许多概念绝大多数都是依赖于给定拓扑的，
+因此类似于这里谈到的问题，今后几乎时时刻刻都会发生，
+即便以后不作特别说明，也请留意这一问题.
+
+应该注意到，尽管在欧式空间中我们已经定义过聚点、孤立点的概念，
+但绝不要以为某些在欧式空间中有效的聚点或孤立点的性质对一般的拓扑空间都有效.
+
+\begin{example}[离散空间中的聚点]\label{example:拓扑学.离散空间中的聚点}
+%@see: 《点集拓扑讲义》（熊金城） P67. 例2.4.1
+设\(X\)是一个离散空间，\(A\)是\(X\)的一个任意子集.
+由于\(X\)中的每一个单点集都是开集，因此如果\(x \in X\)，
+则\(x\)有一个邻域\(\{x\}\)使得\(\{x\}\cap(A-\{x\})=\emptyset\)，
+于是\(x\)不是\(A\)的聚点，\(A\)没有聚点，从而\(A\)的导集是空集，即\(D(A)=\emptyset\).
+\end{example}
+
+\begin{example}[平庸空间中的聚点]\label{example:拓扑学.平庸空间中的聚点}
+%@see: 《点集拓扑讲义》（熊金城） P68. 例2.4.2
+设\(X\)是一个平庸空间，\(A\)是\(X\)中的一个任意子集.
+我们可以分三种情况讨论.
+\begin{enumerate}
+	\item 设\(\abs{A} = 0\).
+	那么\(A = \emptyset\).
+	这时\(A\)显然没有聚点，亦即\(D(A) = \emptyset\).
+
+	\item 设\(\abs{A} = 1\).
+	不妨设\(A = \{x_0\}\).
+	如果\(x \in X\)，\(x \neq x_0\)，点\(x\)只有唯一的一个邻域\(X\).
+	这时\(x_0 \in X \cap (A - \{x\})\)，
+	所以\(X \cap (A - \{x\}) \neq \emptyset\).
+	因此\(x\)是\(A\)的一个凝聚点，即\(x \in D(A)\).
+	然而对于\(x_0\)的唯一邻域\(X\)，
+	有\(X \cap (A - \{x_0\}) = \emptyset\)，
+	所以\(x_0 \notin D(A)\).
+	于是\(D(A) = X - A\).
+
+	\item 设\(\abs{A} > 1\).
+	这时\(X\)中的每一个点都是\(A\)的聚点，即\(D(A) = X\).
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义》（熊金城） P68. 定理2.4.1
+设\(X\)是一个拓扑空间，\(A,B \subseteq X\)，则
+\begin{enumerate}
+	\item \(\emptyset' = \emptyset\).
+	\item \(A \subseteq B \implies A' \subseteq B'\).
+	\item \((A \cup B)' = A' \cup B'\).
+	\item \((A')' \subseteq A \cup A'\).
+\end{enumerate}
+\end{theorem}
+
+\subsection{闭包与内部的关系}
+\begin{theorem}
+%@see: 《基础拓扑学讲义》（尤承业） P17. 命题1.4
+设\(X\)是一个拓扑空间，\(A,B \subseteq X\).
+若\(A\)与\(B\)互为补集，
+即\(A \cup B = X\)，
+则\(A\)的闭包\(\overline{A}\)与\(B\)的内部\(B^\circ\)互为补集，
+即\(\overline{A} \cup B^\circ = X\).
+%TODO proof
+\end{theorem}
+
+\subsection{闭包的性质}
+\begin{property}\label{theorem:拓扑学.闭包的性质}
+%@see: 《点集拓扑讲义》（熊金城） P71. 定理2.4.4
+%@see: 《点集拓扑讲义》（熊金城） P71. 定理2.4.5
+%@see: 《基础拓扑学讲义》（尤承业） P17. 命题1.5
+设\(X\)是一个拓扑空间，\(A,B \subseteq X\).
+\begin{enumerate}
+	\item \(\overline{\emptyset} = \emptyset\).
+	\item \(A \subseteq \overline{A}\).
+	\item \(\overline{\overline{A}} = \overline{A}\).
+	\item \(A \subseteq B \implies \overline{A} \subseteq \overline{B}\).
+	\item \(\overline{A}\)是所有包含\(A\)的闭集的交集，
+	或者说\(\overline{A}\)是包含\(A\)的最小闭集.
+	\item \(\overline{A}=A \iff \text{\(A\)是闭集}\).
+	\item \(\overline{A \cup B} = \overline{A} \cup \overline{B}\).
+	\item \(\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}\).
+\end{enumerate}
+%TODO proof
+\end{property}
+
+\subsection{闭包运算}
+\begin{definition}\label{definition:拓扑学.闭包运算的概念}
+%@see: 《点集拓扑讲义》（熊金城） P73. 定义2.4.4
+设\(X\)是一个集合.
+如果映射\(c^*\colon \Powerset X \to \Powerset X\)满足条件：
+对于\(\forall A,B \in \Powerset X\)，\begin{enumerate}
+	\item \(c^*(\emptyset) = \emptyset\)；
+	\item \(A \subseteq c^*(A)\)；
+	\item \(c^*(A \cup B) = c^*(A) \cup c^*(B)\)；
+	\item \(c^*(c^*(A)) = c^*(A)\)，
+\end{enumerate}
+则称其为\(X\)的一个\DefineConcept{闭包运算}.
+\end{definition}
+\cref{definition:拓扑学.闭包运算的概念} 中给出的四个条件，
+通常被称为“库拉托夫斯基闭包公理”.
