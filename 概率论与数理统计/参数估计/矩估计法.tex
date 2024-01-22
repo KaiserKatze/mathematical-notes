@@ -1,0 +1,171 @@
+\section{矩估计法}
+1900年，卡尔·皮尔逊提出一个替换原则：用样本矩去替换总体矩.
+后来人们就称此为“矩估计法”.
+
+设总体\(X\)有分布函数\(F(x,\theta)\)，其中\(\theta\)为一维未知参数.
+若\(E(X)\)存在，则\(E(X)=m\)一般是\(\theta\)的函数，即\(m=m(\theta)\).
+由此反解出\(\theta=g(m)\)，
+再用样本均值\(\overline{X}\)代替\(m\)，
+就得到\(\theta\)的一个估计量\(\hat{\theta}=g(\overline{X})\).
+这个方法就叫做求估计量的的\DefineConcept{矩估计法}，
+\(\hat{\theta}=g(\overline{X})\)叫做\(\theta\)的\DefineConcept{矩估计量}.
+
+例如，若总体\(X \sim U(0,\theta)\)，\(\theta\)未知，
+已知来自总体\(X\)的样本\(\AutoTuple{X}{n}\).
+由\(m = E(X) = \frac{\theta}{2}\)，得\(\theta=2m\)，
+从而\(\theta\)的矩估计量为\(\hat{\theta} = 2\overline{X}\).
+
+矩估计法实际上是一种替代估计，
+是用样本均值\(\overline{X}\)替代参数\(\theta=g(m)\)中的总体均值\(m\)，
+一般计算都较简单.
+
+矩估计法的合理性在于：
+当\(E(X)=m\)，\(D(X)=\sigma^2\)存在时，
+由辛钦大数律，有\(\overline{X} \toP m\).
+于是样本容量\(n\)较大时，\(\overline{X}\)的取值与\(m\)会充分接近；
+用\(\overline{X}\)替换\(m\)后，
+矩估计量\(\hat{\theta}=g(\overline{X})\)的取值会与被估计的参数\(\theta=g(m)\)充分接近，
+其估计误差在概率意义下会充分小.
+因而矩估计量是\(\theta\)的一个较合理的估计量.
+
+一般地，若总体\(X\)的分布函数\(F(x,\vb{\theta})\)中，
+\(\vb{\theta}=(\AutoTuple{\theta}{k})\)为\(k\)维未知参数，
+且\(X\)的直到\(k\)阶原点矩均存在，则有\[
+	\def\m#1{m_{#1} = E(X\ifthenelse{\equal{#1}{1}}{}{^{#1}}) = m_{#1}(\AutoTuple{\theta}{k})}
+	\left\{ \begin{array}{l}
+		\m{1}, \\
+		\m{2}, \\
+		\hdotsfor{1} \\
+		\m{k}. \\
+	\end{array} \right.
+\]
+从上述方程组反解出\(\AutoTuple{\theta}{k}\)，为\(\AutoTuple{m}{k}\)的函数，即\[
+	\def\g#1{\theta_{#1}=g_{#1}(\AutoTuple{m}{k})}
+	\left\{ \begin{array}{l}
+		\g{1}, \\
+		\g{2}, \\
+		\hdotsfor{1} \\
+		\g{k}. \\
+	\end{array} \right.
+\]
+再用\(r\)阶样本原点矩\(A_r = \frac{1}{n} \sum_{i=1}^n{X_i^r}\)，
+替代上式中的\(m_r\ (r=1,2,\dots,k)\)，
+则得到\(\AutoTuple{\theta}{k}\)的矩估计量，即\[
+	\def\g#1{\hat{\theta}_{#1}=g_{#1}(\AutoTuple{A}{k})}
+	\left\{ \begin{array}{l}
+		\g{1}, \\
+		\g{2}, \\
+		\hdotsfor{1} \\
+		\g{k}. \\
+	\end{array} \right.
+\]
+
+\begin{example}
+设总体\(X\)服从任何分布，且\(X\)的期望与方差均存在.
+记\(E(X)=\mu\)，\(D(X)=\sigma^2\)，\(\mu\)、\(\sigma^2\)是两个未知参数.
+\(\AutoTuple{X}{n}\)为样本.
+求\(\mu\)和\(\sigma^2\)的矩估计量.
+\begin{solution}
+因为有两个未知参数\(\mu\)和\(\sigma^2\)，故有\[
+	\left\{ \begin{array}{l}
+		m_1=E(X)=\mu, \\
+		m_2=E(X^2)=D(X)+[E(X)]^2=\sigma^2+\mu^2.
+	\end{array} \right.
+\]
+解得\[
+	\left\{ \begin{array}{l}
+		\mu=m_1, \\
+		\sigma^2=m_2-m_1^2.
+	\end{array} \right.
+\]
+再用样本一阶、二阶原点矩代替对应总体原点矩，可得矩估计量为\[
+	\left\{ \begin{array}{l}
+		\hat{\mu}=\overline{X}, \\
+		\hat{\sigma}^2=A_2-\overline{X}^2=B_2.
+	\end{array} \right.
+\]
+\end{solution}
+\end{example}
+
+\begin{theorem}
+若\(\eta = g(\theta)\)是未知参数\(\theta\)的连续函数（即\(\eta\)也是一个未知参数），
+那么\(\eta\)的矩估计量为\(\hat{\eta}=g(\hat{\theta})\)，
+其中\(\hat{\theta}\)为\(\theta\)的矩估计量.
+\end{theorem}
+
+\begin{example}
+总体\(X \sim B(N,p)\)，\(N\)已知，而\(p\)未知.
+\(\AutoTuple{X}{n}\)为样本.
+\begin{enumerate}
+	\item 求参数\(p\)的矩估计量；
+	\item 求总体方差\(\sigma^2\)的矩估计量并将其表示为\(\overline{X}\)的函数.
+\end{enumerate}
+\begin{solution}
+\begin{enumerate}
+	\item 总体期望为\(m=E(X)=Np\)，故\(p=\frac{m}{N}\)，
+	于是用\(\overline{X}\)代\(m\)，得\(p\)的矩估计量为\[
+		\hat{p}=\frac{\overline{X}}{N}.
+	\]
+	\item 总体方差\(\sigma^2=D(X)=Np(1-p)=Np-Np^2=m-\frac{m^2}{N}\)，
+	则用\(\overline{X}\)代\(m\)，得\(\sigma^2=V(m)\)的矩估计量为\[
+		\hat{\sigma}^2=V(\overline{X})=\overline{X}-\frac{\overline{X}^2}{N}.
+	\]
+\end{enumerate}
+\end{solution}
+\end{example}
+
+\begin{example}
+设总体\(X \sim U(\theta_1,\theta_2)\)，其中\(\theta_1,\theta_2\)是两个未知参数.
+\(\AutoTuple{X}{n}\)是样本，求\(\theta_1,\theta_2\)的矩估计量.
+\begin{solution}
+因为\(m\)和\(\sigma^2\)的矩估计量分别为\(\overline{X}\)和\(B_2\)，
+所以只需把\(\theta_1\)和\(\theta_2\)表示为\(m\)和\(\sigma^2\)的函数.
+又因为\[
+	\begin{cases}
+		m = E(X) = \frac{\theta_1+\theta_2}{2}, \\
+		\sigma^2 = D(X) = \frac{(\theta_2-\theta_1)^2}{12},
+	\end{cases}
+\]
+故有\[
+	\begin{cases}
+		\theta_1+\theta_2 = 2m, \\
+		\theta_2-\theta_1 = 2 \sqrt{3\sigma^2}.
+	\end{cases}
+\]
+解得\[
+	\begin{cases}
+		\theta_1 = m - \sqrt{3\sigma^2}, \\
+		\theta_2 = m + \sqrt{3\sigma^2}.
+	\end{cases}
+\]
+代入\(m\)及\(\sigma^2\)的矩估计量\(\overline{X}\)及\(B_2\)，
+得\(\theta_1,\theta_2\)的矩估计量为\[
+	\begin{cases}
+		\hat{\theta}_1 = \overline{X} - \sqrt{3 B_2}, \\
+		\hat{\theta}_2 = \overline{X} + \sqrt{3 B_2}.
+	\end{cases}
+\]
+\end{solution}
+\end{example}
+
+\begin{remark}
+矩估计法用样本矩估计总体矩.
+由于它采纳的统计思想简单明确，
+而且不需要提前知道总体的分布，
+所以它得到了广泛的应用.
+这是矩估计法的优点.
+
+反过来说，
+由于矩估计法原则上不要求总体的分布情况，
+因此未能充分利用已知分布的信息，
+在样本容量\(n\)较小时，
+估计值可能误差较大.
+再者，矩估计量可以不唯一.
+比如，若总体\(X\)服从自然指数分布族分布，
+因为总体均值\(m\)的矩估计量为\(\overline{X}\)，
+这时总体方差\(\sigma^2 = V(m)\)是\(m\)的函数，
+则\(\sigma^2\)的矩估计量可以是\(\hat{\sigma}^2 = V(\overline{X})\)，
+也可以是\(\hat{\sigma}^2 = B_2\).
+足见参数\(\theta\)的矩估计量可以是不唯一的.
+这就是矩估计法的缺点.
+\end{remark}

@@ -1,0 +1,275 @@
+\section{点估计量的评选标准}
+我们已经知道，任何一个统计量都可以作为一个未知参数的估计量.
+对于同一参数的多种估计量，采用哪一种更好呢？这就需要一定的标准来做评价.
+
+\subsection{无偏性标准}
+\begin{definition}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P200. 定义8.3
+若未知参数\(\theta\)的估计量\(\hat{\theta}=\hat{\theta}(\AutoTuple{X}{n})\)满足\[
+	E(\hat{\theta})=\theta,
+\]
+则称“\(\hat{\theta}\)是参数\(\theta\)的\DefineConcept{无偏估计量}”.
+否则称“\(\hat{\theta}\)是参数\(\theta\)的\DefineConcept{有偏估计量}”.
+
+对有偏估计量\(\hat{\theta}\)，
+我们把\[
+	E(\hat{\theta}) - \theta
+\]称为\(\hat{\theta}\)的\DefineConcept{偏差}（bias），
+记作\(b(\hat{\theta})\).
+
+若样本容量\(n\to\infty\)时，有\(b(\hat{\theta})\to0\)，
+则称“\(\hat{\theta}\)是\(\theta\)的\DefineConcept{渐进无偏估计量}”.
+\end{definition}
+
+\begin{example}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P200. 例8.9
+设总体\(X\)服从任何分布，
+且\(E(X)=\mu\)，\(E(X^k)=m_k\)，\(D(X)=\sigma^2\).
+\(\AutoTuple{X}{n}\)是样本.
+证明：样本均值\(\overline{X}\)、样本\(k\)阶原点矩\(A_k\)和样本方差\(S^2\)分别是
+\(\mu\)、\(m_k\)和\(\sigma^2\)的无偏估计量.
+\begin{proof}
+因为\(E(A_k)
+= E\left(\frac{1}{n} \sum_{i=1}^n X_i^k\right)
+= \frac{1}{n} \sum_{i=1}^n E(X_i^k)
+= E(X^k)
+= m_k\)，
+所以\(A_k\)是\(m_k\)的无偏估计量.
+
+特别地，
+由\cref{equation:统计量.均值-1阶原点矩的关系}，
+有\(\overline{X} = A_1\)，
+于是\(E(\overline{X})
+= E(A_1)
+= m_1
+= \mu\)，
+因此，\(\overline{X}\)是\(\mu\)的无偏估计量.
+
+由\cref{equation:统计量.2阶中心矩-2阶原点矩-均值的关系}
+有\(B_2 = A_2 - \overline{X}^2\)；
+由\cref{equation:统计量.方差-2阶中心矩的关系}
+有\(S^2 = \frac{n}{n-1} B_2\)；
+所以\[
+	E(S^2)
+	= E\left(\frac{n}{n-1} B_2\right)
+	= \frac{n}{n-1} E(A_2-\overline{X}^2)
+	= \frac{n}{n-1}[E(A_2)-E(\overline{X}^2)].
+\]
+由于\(E(A_2)
+= E(X^2)
+= D(X) + [E(X)]^2
+= \sigma^2 + \mu^2\)，
+所以\[
+	E(\overline{X}^2)
+	= D(\overline{X}) + [E(\overline{X})]^2
+	= \frac{\sigma^2}{n} + \mu^2,
+\]
+那么有\[
+	E(S^2)
+	= \frac{n}{n-1} \left(\sigma^2 + \mu^2 - \frac{\sigma^2}{n} - \mu^2\right)
+	= \sigma^2.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+设总体\(X\)服从任何分布，
+且\(E(X)=\mu\in[0,+\infty)\)，
+\(D(X)=\sigma^2\in(0,+\infty)\).
+\(\AutoTuple{X}{n}\)是样本.
+证明：样本2阶中心矩\(B_2\)是\(\sigma^2\)的渐进无偏估计量.
+\begin{proof}
+因为\[
+	E(B_2)
+	= E\left(\frac{n-1}{n} S^2\right)
+	= \frac{n-1}{n} E(S^2)
+	= \left(1-\frac{1}{n}\right) \sigma^2
+	< \sigma^2,
+\]
+所以\(B_2\)是\(\sigma^2\)的有偏估计量.
+又因为\[
+	\lim_{n\to\infty} [E(B_2) - \sigma^2]
+	= -\lim_{n\to\infty} \frac{\sigma^2}{n}
+	= 0,
+\]
+所以\(B_2\)是\(\sigma^2\)的渐进无偏估计量.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(X_1,X_2\)是来自总体\(N(\mu,\sigma^2)\)的简单随机样本，其中\(\sigma\ (\sigma>0)\)是未知参数.
+若\(\hat{\sigma} = a\abs{X_1-X_2}\)是\(\sigma\)的无偏估计量，求\(a\)的取值.
+\begin{solution}
+由正态分布的可加性，有\(X_1-X_2 \sim N(0,2\sigma^2)\).
+令\(Y = X_1-X_2\)，则\(Y\)的概率密度为\[
+f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \sigma^2}).
+\]从而\[
+	E(\hat{\sigma}) = E(a \abs{Y})
+	= a \int_{-\infty}^{+\infty} \abs{y} f(y) \dd{y}
+	= a \frac{2 \sigma}{\sqrt{\pi}}.
+\]
+因为\(\hat{\sigma} = a\abs{X_1-X_2}\)是\(\sigma\)的无偏估计量，
+所以\(E(\hat{\sigma}) = \sigma\)，代入上式，解得\(a = \sqrt{\pi}/2\).
+\end{solution}
+\end{example}
+
+\subsection{有效性标准}
+\begin{definition}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P201. 定义8.4
+设\(\hat{\theta}_1\)和\(\hat{\theta}_2\)是\(\theta\)的两个无偏估计量.
+若\[
+	D(\hat{\theta}_1) \leq D(\hat{\theta}_2),
+\]
+则称“\(\hat{\theta}_1\)比\(\hat{\theta}_2\)更\DefineConcept{有效}”.
+\end{definition}
+
+\begin{example}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P202. 例8.10
+设总体服从任何分布，\(\mu=E(X)\)，\(\sigma^2=D(X)\)是未知参数.
+\(\AutoTuple{X}{n}\)是样本，
+\(\AutoTuple{a}{n}\)是常数.
+证明：
+\begin{enumerate}
+	\item 若\(\sum_{i=1}^n a_i=1\)，
+	则\(\sum_{i=1}^n a_i X_i\)是\(\mu\)的无偏估计量；
+
+	\item 在所有可能的\(\sum_{i=1}^n a_i X_i\)中，
+	\(\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i\)是最有效的无偏估计量.
+\end{enumerate}
+%TODO
+\end{example}
+
+\subsection{一致性标准}
+容易看出，估计量\(\hat{\theta}(\AutoTuple{X}{n})\)与样本容量\(n\)有关，
+故可将其看作一个关于\(n\)的函数\(\hat{\theta}(n)\).
+对\(\hat{\theta}(n)\)的一个自然的要求是，
+当\(n\)充分大时，\(\hat{\theta}(n)\)的取值与\(\theta\)的误差应充分小，
+即估计量\(\hat{\theta}(n)\)的取值应稳定在参数\(\theta\)的一个充分小的邻域内.
+
+\begin{definition}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P202. 定义8.5
+\(\hat{\theta}(n)\)是\(\theta\)的估计量，若\[
+	\hat{\theta}(n) \toP \theta,
+\]
+则称“\(\hat{\theta}(n)\)是\(\theta\)的\DefineConcept{一致估计量}或\DefineConcept{相合估计量}”.
+\end{definition}
+
+由\hyperref[theorem:极限定理.大数律.辛钦大数律]{辛钦大数律}，
+可知当总体\(X\)有\(D(X^k)\)存在时，
+则样本\(k\)阶原点矩\(A_k \toP E(X^k) = m_k\)，
+也就是说，样本\(k\)阶原点矩是总体\(k\)阶原点矩的一致估计量.
+特别地，样本均值\(\overline{X}\)是总体数学期望\(\mu = E(X)\)的一致估计量.
+
+此外，当样本方差\(S^2\)的方差\(D(S^2) \to 0\ (n\to\infty)\)时，
+由\cref{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}
+有\(S^2 - E(S^2) = S^2 - \sigma^2 \toP 0\)，
+从而样本方差\(S^2\)是总体方差\(\sigma^2\)的一致估计量.
+
+\subsection{均方误差标准}
+\begin{definition}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P203. 定义8.6
+对于总体\(X\)的未知参数\(\theta\)，\(\hat{\theta}\)是\(\theta\)的估计量.
+把\[
+	M(\hat{\theta}) = E(\hat{\theta} - \theta)^2
+\]称为“\(\hat{\theta}\)关于\(\theta\)的\DefineConcept{均方误差}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P203. 定义8.6
+设\(\hat{\theta}_1\)和\(\hat{\theta}_2\)都是\(\theta\)的估计量，
+\(M(\hat{\theta}_1)\)和\(M(\hat{\theta}_2)\)
+分别是\(\hat{\theta}_1\)和\(\hat{\theta}_2\)关于\(\theta\)的均方误差.
+若\[
+	M(\hat{\theta}_1) \leq M(\hat{\theta}_2),
+\]
+则称“\(\hat{\theta}_1\)在均方误差下比\(\hat{\theta}_2\)更\DefineConcept{有效}”.
+\end{definition}
+
+\begin{theorem}\label{theorem:参数估计.估计量的均方误差-方差-偏差的关系}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P203. 定理8.2
+估计量\(\hat{\theta}\)的方差\(D(\hat{\theta})\)、
+偏差\(b(\hat{\theta})\)
+和它关于\(\theta\)的均方误差\(M(\hat{\theta})\)有以下关系：
+\begin{equation}
+	M(\hat{\theta}) = D(\hat{\theta}) + b^2(\hat{\theta})
+	= D(\hat{\theta}) + [E(\hat{\theta}) - \theta]^2.
+\end{equation}
+\begin{proof}
+直接计算得\begin{align*}
+	M(\hat{\theta})
+	&= E(\hat{\theta} - \theta)^2
+	= E\left\{
+		[\hat{\theta} - E(\hat{\theta})]
+		+ [E(\hat{\theta}) - \theta]
+	\right\}^2 \\
+	&= E[\hat{\theta} - E(\hat{\theta})]^2
+	+ [E(\hat{\theta}) - \theta]^2
+	+ 2[E(\hat{\theta}) - \theta][E(\hat{\theta}) - E(\hat{\theta})] \\
+	&= D(\hat{\theta}) + [E(\hat{\theta}) - \theta]^2
+	= D(\hat{\theta}) + b^2(\hat{\theta}).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+从\cref{theorem:参数估计.估计量的均方误差-方差-偏差的关系} 可以看出，
+若\(\hat{\theta}\)是\(\theta\)的无偏估计量，
+则偏差\(b(\hat{\theta})=0\)，
+从而\(M(\hat{\theta})=D(\hat{\theta})\).
+这样的\(\theta\)的无偏估计量
+\(\hat{\theta}_1\)与\(\hat{\theta}_2\)之间均方误差的比较就成了方差的比较.
+所以\emph{有效性标准}是\emph{均方误差标准}的特殊情况.
+但用均方误差可以比较两个有偏估计量之间，
+或一个无偏估计量与一个有偏估计量之间的有效性.
+
+\begin{example}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P204. 例8.11
+设总体\(X \sim N(\mu,\sigma^2)\)，其中\(\mu\)和\(\sigma^2\)是未知参数.
+比较\(\sigma_1^2=S^2\)和\(\sigma_2^2=B_2\)这两个估计量关于\(\sigma^2\)的均方误差.
+\begin{solution}
+因为\(E(\hat{\sigma}_1^2)
+= E(S^2)
+= \sigma^2\)，
+所以\[
+	M(\hat{\sigma}_1^2)
+	= M(S^2)
+	= D(S^2).
+\]
+但是由抽样分布定理可知\[
+	\frac{(n-1) S^2}{\sigma^2}
+	\sim
+	\x(n-1),
+\]
+于是\[
+	D\left[\frac{(n-1) S^2}{\sigma^2}\right]
+	= \frac{(n-1)^2}{\sigma^4} D(S^2)
+	= 2(n-1),
+\]
+故得到\[
+	M(\hat{\sigma}_1^2)
+	= D(S^2)
+	= \frac{2\sigma^4}{n-1}.
+\]
+又因为\[
+	E(\hat{\sigma}_2^2)
+	= E(B_2)
+	= E\left(\frac{n-1}{n} S^2\right)
+	= \frac{n-1}{n} \sigma^2,
+\]\[
+	D(\hat{\sigma}_2^2)
+	= D(B_2)
+	= D\left(\frac{n-1}{n} S^2\right)
+	= \frac{(n-1)^2}{n^2} D(S^2)
+	= \frac{2(n-1)}{n^2} \sigma^4,
+\]
+故\[
+	M(\hat{\sigma}_2^2)
+	= D(\hat{\sigma}_2^2) + b^2(\hat{\sigma}_2^2)
+	= \frac{2n-1}{n^2} \sigma^4.
+\]
+由于\(\frac{2}{n-1} > \frac{2n-1}{n^2}\)，所以\[
+	M(\hat{\sigma}_2^2) < M(\hat{\sigma}_1^2).
+\]
+由此可见，在均方误差意义下，\(B_2\)比\(S^2\)更有效.
+\end{solution}
+\end{example}

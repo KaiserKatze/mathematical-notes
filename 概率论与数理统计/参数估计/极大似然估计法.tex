@@ -1,0 +1,277 @@
+\section{极大似然估计法}
+设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)，
+其中\(\theta\)是未知参数.
+当样本\(\AutoTuple{X}{n}\)得到一组观测值\(\AutoTuple{x}{n}\)时，
+由样本的独立同分布性，记样本取得这组观测值的概率为
+\begin{align*}
+	L(\theta)
+	&\defeq P\left(\bigcap_{i=1}^n(X_i=x_i)\right) \\
+	&= \prod_{i=1}^n P(X_i=x_i) \\
+	&= \prod_{i=1}^n p(x_i,\theta),
+\end{align*}
+称函数\(L(\theta)\)为“未知参数\(\theta\)的\DefineConcept{似然函数}”.
+
+极大似然估计法的思想是：
+随机试验有若干个可能结果，如果在一次试验中某一结果出现了，
+由小概率事件原理，我们便自然认为这一结果出现的概率较大，
+从而可以认为这一结果是所有可能结果中出现概率最大的一个.
+因此\(p\)应该这样估计，即选择\(\hat{p}\)使得上述观测值出现的概率最大.
+也就是使\(L(\hat{p})\)为\(L(p)\)的最大值.
+而求\(L(p)\)的最大值点\(\hat{p}\)，可由方程\[
+	\dv{p} L(p) = 0
+\]解得.
+
+\begin{definition}
+设总体\(X\)仅含一个未知参数，
+并且总体的分布律或密度函数已知.
+假设我们已经取得一组样本观测值\(\AutoTuple{x}{n}\).
+若存在\(\hat{\theta}\)使得\[
+	L(\hat{\theta}) = \max_\theta L(\theta),
+\]
+则称\(\hat{\theta} = \hat{\theta}(\AutoTuple{x}{n})\)是
+“\(\theta\)的\DefineConcept{极大似然估计值}”，
+而统计量\(\hat{\theta}(\AutoTuple{X}{n})\)称为
+“\(\theta\)的\DefineConcept{极大似然估计量}”.
+\end{definition}
+
+对于连续型总体\(X\)，\(X\)的概率密度函数为\(f(x,\theta)\)，
+其中\(\theta\)是未知参数.若取得样本观测值\(\AutoTuple{x}{n}\)，
+则因为随机变量\(X_i\)落在点\(x_i\)的邻域
+（设其长度为\(\increment x_i\)）
+内的概率近似于\[
+	f(x_i,\theta) \increment x_i
+	\quad(i=1,2,\dotsc,n),
+\]
+则样本\((\AutoTuple{X}{n})\)落在样本观测值\((\AutoTuple{x}{n})\)邻域的概率近似为\[
+	\prod_{i=1}^n f(x_i,\theta) \increment x_i.
+\]
+那么\(\theta\)的估计值\(\hat{\theta}\)
+应使概率\(\prod_{i=1}^n f(x_i,\theta) \increment x_i\)达到最大值.
+但因为\(\increment x_i\)与\(\theta\)无关，
+故只要使\(\prod_{i=1}^n{f(x_i,\theta)}\)达到最大值即可.
+此时，记\[
+	L(\theta) \defeq \prod_{i=1}^n{f(x_i,\theta)},
+\]
+仍然称\(L(\theta)\)为似然函数.
+
+\begin{definition}
+用于解出使\(L(\theta)\)取得最大值的极大似然估计值\(\hat{\theta}\)的方程\[
+	\dv{\theta} L(\theta) = 0
+\]称为\DefineConcept{似然方程}.
+
+由于\(\ln L\)和\(L\)在相同的\(\theta\)处取得最大值，有时候也采用方程\[
+	\dv{\theta} \ln L(\theta) = 0,
+\]
+以解出极大似然估计值\(\hat{\theta}\)，
+并称之为\DefineConcept{对数似然方程}.
+\end{definition}
+
+当总体\(X\)服从单峰分布\footnote{%
+“单峰分布”是指密度函数图像或其概率分布图只有一个峰的分布.
+除均匀分布以外，常见分布都是单峰分布.}时，
+若似然方程或对数似然方程有解，
+则其解就是\(\theta\)的极大似然估计值.
+
+\begin{example}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P196. 例8.6
+设总体\(X \sim B(N,p)\)，
+其中\(N\)已知，
+\(\AutoTuple{x}{n}\)为样本观测值，
+求\(p\)及\(m=E(X)\)的极大似然估计.
+\begin{solution}
+总体\(X\)的分布律为\[
+	f(x,p)
+	= C_N^x p^x (1-p)^{N-x},
+	\quad x=0,1,\dots,N.
+\]
+故似然函数为\[
+	L(p)
+	= \prod_{i=1}^n f(x_i,p)
+	= \prod_{i=1}^n C_N^{x_i} p^{x_i} (1-p)^{N-x_i}
+	= p^{\sum_{i=1}^n x_i}
+		(1-p)^{nN-\sum_{i=1}^n x_i}
+		\prod_{i=1}^n C_N^{x_i},
+\]
+取对数，得\[
+	\ln L(p)
+	= \sum_{i=1}^n x_i \ln p
+	+ \left(nN - \sum_{i=1}^n{x_i}\right) \ln(1-p)
+	+ \sum_{i=1}^n \ln C_N^{x_i}.
+\]
+求导得\[
+	\dv{p} \ln L(p)
+	= \frac{1}{p} \sum_{i=1}^n{x_i}
+	- \frac{1}{1-p} \left(nN - \sum_{i=1}^n{x_i}\right).
+\]
+建立对数似然方程\(\dv{p} \ln L(p) = 0\)，
+解得\(p\)的极大似然估计值为\[
+	\hat{p}
+	= \frac{1}{nN} \sum_{i=1}^n x_i
+	= \frac{\overline{x}}{N},
+\]
+其中\(\overline{x}=\frac{1}{n}\sum_{i=1}^n{x_i}\).
+而\(p\)的极大似然估计量为\[
+	\hat{p} = \frac{\overline{X}}{N}.
+\]
+
+又因为\(m=E(X)=Np\)，
+故\(m\)的极大似然估计值为\[
+	\hat{m} = N\hat{p} = \overline{x},
+\]
+而\(m\)的极大似然估计量为\[
+	\hat{m} = \overline{X}.
+\]
+\end{solution}
+\end{example}
+
+注意当\(N\)已知时，二项分布\(B(N,p)\)属于自然指数分布族.
+这个例子关于“\(m\)的极大似然估计量为\(\overline{X}\)”的结论
+对一般的自然指数分布族也成立.
+
+\begin{theorem}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P197. 定理8.1
+若总体\(X\)服从自然指数分布族分布，
+则均值参数\(m=E(X)\)的极大似然估计量为样本均值，
+即\[
+	\hat{m}=\overline{X}.
+\]
+\begin{proof}
+总体\(X\)的概率分布或密度函数为\[
+	f(x,\theta)=e^{\theta x - \phi(\theta)} h(x),
+\]
+取得样本观测值\(\AutoTuple{x}{n}\)，
+注意\(\theta\)是\(m\)的函数\(\theta(m)\)，故得似然函数\[
+	L(m) = \prod_{i=1}^n e^{\theta(m) x_i -\phi[\theta(m)]} h(x_i)
+	= \exp\left\{
+		\theta(m) \sum_{i=1}^n[x_i - n \phi(\theta(m))]
+		\prod_{i=1}^n{h(x_i)}
+	\right\},
+\]\[
+	\ln L(m)
+	= \theta(m) \sum_{i=1}^n x_i - n \phi[\theta(m)]
+	+ \ln \prod_{i=1}^n{h(x_i)},
+\]
+
+令\[
+	\dv{m} \ln L(m)
+	= \theta'(\theta) \sum_{i=1}^n{x_i}
+	- n \phi'[\theta(m)] \theta'(m) = 0,
+\]
+由于\(\phi'(\theta) = m\)，
+\(\dv{m}{\theta} = \phi''(\theta) = D(X) > 0\)，
+从而\(\theta'(m) = \dv{\theta}{m} > 0\)，所以\[
+	\sum_{i=1}^n{x_i} - nm = 0.
+\]
+可见\(m\)的极大似然估计值为\[
+	\hat{m} = \overline{x},
+\]
+其极大似然估计量为\[
+	\hat{m} = \overline{X}.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+这样，对自然指数分布族，
+均值参数\(m\)的矩估计量与极大似然估计量都是样本均值\(\overline{X}\).
+而且，当总体方差函数\(\sigma^2=V(m)\)有单值反函数时，
+方差函数\(V(m)\)的极大似然估计量为\(V(\overline{X})\).
+不难证明，在常见的自然指数分布族分布中，除去二项分布外，
+它们的方差函数\(V(m)\)在其均值空间中都有单值反函数.
+比如，对几何分布，\(m=E(X)=\frac{1}{p}\)，\(V(m)=D(X)=\frac{q}{p^2}=m^2-m\)，
+在\(m>1\)时有单值反函数，
+故\(V(m)=m^2-m\)的极大似然估计为\(V(\overline{X})=\overline{X}^2 - \overline{X}\).
+
+当总体\(X\)的分布中含有多个未知参数，
+即\(\vb{\theta}=(\AutoTuple{\theta}{k})\)时，
+似然函数为\[
+	L(\vb{\theta})
+	= L(\AutoTuple{\theta}{k}).
+\]
+于是我们有若干个对数似然方程，
+需要建立对数似然方程组\[
+	\def\g#1{\pdv{\theta_{#1}} \ln L(\vb{\theta}) = 0}
+	\left\{ \def\arraystretch{1.5} \begin{array}{l}
+		\g{1}, \\
+		\g{2}, \\
+		\hdotsfor{1} \\
+		\g{k}. \\
+	\end{array} \right.
+\]
+若对数似然方程组有解\(\hat{\vb\theta}=(\AutoTuple{\hat{\theta}}{k})\)，
+则它们分别是\(\vb\theta=(\AutoTuple{\theta}{k})\)的极大似然估计值.
+
+\begin{example}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P198. 例8.7
+设总体\(X \sim N(\mu,\sigma^2)\)，
+其中\(\mu\)和\(\sigma^2\)都是未知参数.
+\(\AutoTuple{x}{n}\)为样本观测值.
+求\(\mu\)和\(\sigma^2\)的极大似然估计.
+\begin{solution}
+似然函数为\begin{align*}
+	L(\mu,\sigma^2)
+	&= \prod_{i=1}^n f(x_i,\mu,\sigma^2)
+	= \prod_{i=1}^n
+		\frac{1}{\sqrt{2\pi}\sigma}
+		e^{-\frac{(x_i-\mu)^2}{2\sigma^2}} \\
+	&= (2\pi\sigma^2)^{-\frac{n}{2}}
+		\exp[-\frac{1}{2\sigma^2} \sum_{i=1}^n{(x_i-\mu)^2}],
+\end{align*}
+取对数，得\[
+	\ln L(\mu,\sigma^2)
+	= -\frac{n}{2} (\ln{2\pi} + \ln \sigma^2)
+	- \frac{1}{2\sigma^2} \sum_{i=1}^n{(x_i-\mu)^2},
+\]
+从而有\[
+	\left\{ \begin{array}{l}
+		\pdv{\mu} \ln L(\mu,\sigma^2) = \frac{1}{\sigma^2} \sum_{i=1}^n{(x_i-\mu)} = 0, \\
+		\pdv{(\sigma^2)} \ln L(\mu,\sigma^2) = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n{(x_i-\mu)^2} = 0.
+	\end{array} \right.
+\]
+解得\(\mu\)及\(\sigma^2\)的极大似然估计值为\[
+	\left\{ \begin{array}{l}
+	\hat{\mu} = \overline{x}, \\
+	\hat{\sigma^2} = \frac{1}{n} \sum_{i=1}^n{(x_i-\overline{x})^2} = b_2,
+	\end{array} \right.
+\]
+而其极大似然估计量为\[
+	\left\{ \begin{array}{l}
+		\hat{\mu} = \overline{X}, \\
+		\hat{\sigma^2} = \frac{1}{n} \sum_{i=1}^n{(X_i-\overline{X})^2} = B_2.
+	\end{array} \right.
+\]
+\end{solution}
+\end{example}
+由上可知，当总体\(X \sim N(\mu,\sigma^2)\)时，
+\(\mu\)和\(\sigma^2\)的矩估计量与极大似然估计量是相同的.
+
+需要指出的是，当似然方程或对数似然方程无解时，应从定义考虑求极大似然估计，
+即选择\(\hat{\theta}\)使得\(L(\hat{\theta})=\max L(\theta)\).
+
+\begin{example}
+设总体\(X \sim U(0,\theta)\)，\(\theta>0\)是未知参数，
+\(\AutoTuple{x}{n}\)是样本观测值.
+求\(\theta\)的极大似然估计.
+\begin{solution}
+\(X\)的密度函数为\[
+f(x,\theta) = \left\{ \begin{array}{cl}
+\theta^{-1}, & 0 \leq x \leq \theta, \\
+0, & \text{其他},
+\end{array} \right.
+\]而似然函数为\[
+L(\theta) = \prod_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
+\quad x_i \in [0,\theta], \quad i=1,2,\dotsc,n.
+\]由于似然方程\(\dv{\theta} L(\theta) = -n\theta^{-1-n} = 0\)在\(\theta>0\)无解.
+所以应该考虑似然估计的定义.
+因为似然函数\(L(\theta)=\theta^{-n}\)在\(\theta>0\)时为\(\theta\)的单调递减函数，
+\(\theta\)越小则\(L(\theta)\)越大；但另一方面，\(x_i\in[0,\theta]\)，
+故有\(\max_{1 \leq i \leq n} x_i \in [0,\theta]\).
+故当\(\hat{\theta}=\max_{1 \leq i \leq n} x_i\)时，
+\(L(\hat{\theta})=\max L(\theta)\).
+所以，\(\theta\)的极大似然估计值为\[
+\hat{\theta} = \max_{1 \leq i \leq n} x_i,
+\]而其极大似然估计量为\[
+\max_{1 \leq i \leq n} X_i.
+\]
+\end{solution}
+\end{example}

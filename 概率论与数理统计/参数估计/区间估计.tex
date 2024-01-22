@@ -1,0 +1,257 @@
+\section{区间估计}
+从总体\(X\)中取得样本观测值后，由参数的点估计方法，可以求得未知参数\(\theta\)的估计值.
+但由于样本的随机性，我们知道一般这个估计值与参数的真实值\(\theta\)有误差，但不知道误差在什么范围内.
+因而我们希望能够找出一个区间，使得参数\(\theta\)落入该区间的概率是可以计算的.
+这样我们就能在一定的可靠程度下得出估计值可能的最大误差.
+这就是区间估计的思想.
+
+\subsection{置信区间}
+\begin{definition}\label{definition:参数估计.置信区间的定义}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P205. 定义8.7
+设总体\(X\)的分布函数\(F(x,\theta)\)中含有未知参数\(\theta\).
+\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本.
+\(\hat{\theta}_1=\hat{\theta}_1(\AutoTuple{X}{n})\)%
+和\(\hat{\theta}_2=\hat{\theta}_2(\AutoTuple{X}{n})\)是两个统计量.
+若对给定的概率\(1-\alpha\ (0<\alpha<1)\)，有\[
+	P(\hat{\theta}_1<\theta<\hat{\theta}_2)=1-\alpha,
+\]
+则称随机区间\((\hat{\theta}_1,\hat{\theta}_2)\)为
+“参数\(\hat{\theta}\)的置信度为\(1-\alpha\)的\DefineConcept{置信区间}”.
+\(\hat{\theta}_1\)称为\DefineConcept{置信下限}.
+\(\hat{\theta}_2\)称为\DefineConcept{置信上限}.
+\(1-\alpha\)称为\DefineConcept{置信度}或\DefineConcept{置信水平}.
+\end{definition}
+
+若给定样本观测值\(\AutoTuple{x}{n}\)，
+代入\(\hat{\theta}_1,\hat{\theta}_2\)，
+得到的实数区间\((\hat{\theta}_1',\hat{\theta}_2')\)也叫置信区间.
+要加以区分时，它们分别叫做\DefineConcept{随机置信区间}和\DefineConcept{实数置信区间}.
+
+通常\(\alpha\)很小，使得\(\theta\)落在这个区间外的事件是一个小概率事件，
+比如\(\alpha\)取0.01、0.05等.一般来说，若\(\alpha\)越小，
+则\(\theta\)落在\((\hat{\theta}_1,\hat{\theta}_2)\)内的可靠程度越大，
+但这个区间也就越宽，从而估计的误差也就越大.
+
+根据\cref{definition:参数估计.置信区间的定义}，
+随机置信区间的意义是：\(\theta\)落入\((\hat{\theta}_1,\hat{\theta}_2)\)内的概率为\(1-\alpha\).
+而实数置信区间的意义是：当样本容量\(n\)固定时，若我们做\(N\)次抽样，
+第\(k\)次得到的样本观测值\(x_{1k},x_{2k},\dotsc,x_{nk}\)，
+这样随机地得到\(N\)个实数置信区间\((\hat{\theta}_{1k},\hat{\theta}_{2k})\ (k=1,2,\dots,N)\)；
+而这\(N\)个区间中，有的包含参数\(\theta\)的真值，有的不包含.
+但当置信度为\(1-\alpha\)时，
+这\(N\)个区间中包含有参数\(\theta\)的真值的区间大约占\(100(1-\alpha)\%\).
+例如，取\(N=1~000,\alpha=0.05\)，
+那么在\(1~000\)个实数置信区间中，
+不包含参数真值的大约有\(50\)个.
+
+\subsection{确定置信区间的基本方法步骤}
+我们不禁想要知道，
+对于给定的置信度\(1-\alpha\)，
+怎样根据样本来确定参数\(\theta\)的置信区间\((\hat{\theta}_1,\hat{\theta}_2)\)？
+这就是参数\(\theta\)的区间估计问题.
+它的基本方法步骤是：
+\begin{enumerate}
+	\item 设\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本，
+	取一个\(\theta\)的较优的点估计量\(\hat{\theta}=\hat{\theta}(\AutoTuple{X}{n})\).
+	习惯上，可取\(\theta\)的无偏估计量.
+
+	\item 由\(\hat{\theta}\)出发，
+	找一个样本函数\(W=W(\hat{\theta},\theta)\).
+	我们要求\(W\)的分布已知，且只含一个未知参数\(\theta\)，
+	并且\(W\)的分位点应能从分布表中查到.
+
+	\item 查表求得\(W\)的两个分位点\(W_{\frac{\alpha}{2}}\)和\(W_{1-\frac{\alpha}{2}}\)，
+	使得\(P(W_{\frac{\alpha}{2}}<W<W_{1-\frac{\alpha}{2}})=1-\alpha\).
+
+	\item 从不等式\(W_{\frac{\alpha}{2}}<W<W_{1-\frac{\alpha}{2}}\)
+	解得等价的不等式\(\hat{\theta}_1 < \theta < \hat{\theta}_2\)，
+	这时有\(P(\hat{\theta}_1 < \theta < \hat{\theta}_2) = 1-\alpha\).
+	于是，\((\hat{\theta}_1,\hat{\theta}_2)\)
+	就是\(\theta\)的置信度为\(1-\alpha\)的随机置信区间.
+
+	\item 若还取得样本观测值\(\AutoTuple{x}{n}\)，代入可得实数置信区间.
+\end{enumerate}
+
+这样求得的置信区间称为\DefineConcept{双侧置信区间}.
+
+我们也可根据需要类似地求得\DefineConcept{单侧置信区间}，
+使\(P(\theta<\hat{\theta}_2)=1-\alpha\)或\(P(\hat{\theta}_1<\theta)=1-\alpha\).
+
+\subsection{一个正态总体下的参数的置信区间}
+本小节中，设总体\(X \sim N(\mu,\sigma^2)\)，\(\AutoTuple{X}{n}\)是来自总体\(X\)的样本.
+\begin{example}
+已知\(\sigma^2=\sigma_0^2\)，
+则总体均值\(\mu\)的置信区间为\[
+	\left( \overline{X} - u_{1-\frac{\alpha}{2}} \frac{\sigma_0}{\sqrt{n}},
+	\overline{X} + u_{1-\frac{\alpha}{2}} \frac{\sigma_0}{\sqrt{n}} \right).
+\]
+\begin{proof}
+\def\U{\frac{\overline{X}-\mu}{\sigma_0 / \sqrt{n}}}
+由于\(\overline{X}\)是\(\mu\)的无偏估计，故可取样本函数\(U=\U\).
+根据\cref{equation:抽样分布定理.一个正态总体的抽样分布2} 有\[
+	U \sim N(0,1).
+\]
+
+对于给定的置信度\(1-\alpha\)，
+由\(P(u_{\frac{\alpha}{2}} < U < u_{1-\frac{\alpha}{2}})=1-\alpha\)，
+注意\(-u_{1-\frac{\alpha}{2}} = u_{\frac{\alpha}{2}}\)，
+有\[
+	P(-u_{1-\frac{\alpha}{2}} < U < u_{1-\frac{\alpha}{2}}) = 1-\alpha.
+\]
+
+由不等式\[
+	-u_{1-\frac{\alpha}{2}} < U=\U < u_{1-\frac{\alpha}{2}}
+\]解得等价的不等式\[
+	\overline{X} - u_{1-\frac{\alpha}{2}} \frac{\sigma_0}{\sqrt{n}}
+	< \mu <
+	\overline{X} + u_{1-\frac{\alpha}{2}} \frac{\sigma_0}{\sqrt{n}}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+\(\sigma^2\)未知，则总体均值\(\mu\)的置信区间为\[
+	\left( \overline{X} - t_{1-\frac{\alpha}{2}}(n-1) \frac{S}{\sqrt{n}},
+	\overline{X} + t_{1-\frac{\alpha}{2}}(n-1) \frac{S}{\sqrt{n}} \right).
+\]
+\begin{proof}
+因为\(\sigma^2\)未知，
+我们只能根据\cref{equation:抽样分布定理.一个正态总体的抽样分布4}
+选择样本函数\[
+	t = \frac{\overline{X}-\mu}{S / \sqrt{n}} \sim t(n-1).
+\]
+由不等式\[
+	-t_{1-\frac\alpha2}(n-1)
+	= t_{\frac\alpha2}(n-1)
+	< \frac{\overline{X}-\mu}{S/\sqrt{n}}
+	< t_{1-\frac\alpha2}(n-1)
+\]
+解得等价不等式\[
+	\overline{X} - t_{1-\frac\alpha2}(n-1) \frac{S}{\sqrt{n}}
+	< \mu < \overline{X} + t_{1-\frac\alpha2}(n-1) \frac{S}{\sqrt{n}}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+\(\mu\)未知，则总体方差\(\sigma^2\)的置信区间为\[
+	\left( \frac{(n-1)S^2}{\chi_{1-\frac{\alpha}{2}}^2(n-1)},
+	\frac{(n-1)S^2}{\chi_{\frac{\alpha}{2}}^2(n-1)} \right).
+\]
+\begin{proof}
+因为\(\mu\)未知，而\(S^2\)是\(\sigma^2\)的无偏估计量，
+那么根据\cref{equation:抽样分布定理.一个正态总体的抽样分布3}
+选择样本函数\[
+	\x = \frac{(n-1)S^2}{\sigma^2} \sim \x(n-1).
+\]
+由不等式\[
+	\x_{\frac\alpha2}(n-1)
+	< \frac{(n-1)S^2}{\sigma^2}
+	< \x_{1-\frac\alpha2}(n-1)
+\]
+解得等价不等式\[
+	\frac{(n-1)S^2}{\x_{1-\frac\alpha2}(n-1)}
+	< \sigma^2
+	< \frac{(n-1)S^2}{\x_{\frac\alpha2}(n-1)}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{两个正态总体下的参数的置信区间}
+本小节中，设有两个正态总体\(X \sim N(\mu_1,\sigma_1^2)\)，
+\(Y \sim N(\mu_2,\sigma_2^2)\).
+\(\AutoTuple{X}{n_1}\)和\(\AutoTuple{Y}{n_2}\)是分别来自\(X\)和\(Y\)的两个独立样本.
+其样本均值和样本方差分别为\[
+	\overline{X} = \frac{1}{n_1} \sum_{i=1}^{n_1} X_i,
+	\quad
+	\overline{Y} = \frac{1}{n_2} \sum_{i=1}^{n_2} Y_i,
+	\]\[
+	S_1^2 = \frac{1}{n_1-1} \sum_{i=1}^{n_1} (X_i-\overline{X})^2, \quad
+	S_2^2 = \frac{1}{n_2-1} \sum_{i=1}^{n_2} (Y_i-\overline{Y})^2.
+\]
+
+\begin{example}
+\(\sigma_1^2\)、\(\sigma_2^2\)都已知，
+则总体均值差\(\mu_1-\mu_2\)的置信区间为\[
+	\left(\overline{X}-\overline{Y}-\delta,\ \overline{X}-\overline{Y}+\delta\right),
+\]
+其中\[
+	\delta = u_{1-\frac{\alpha}{2}} \sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}.
+\]
+\end{example}
+
+\begin{example}
+\(\sigma_1^2\)与\(\sigma_2^2\)都未知，
+但\(\sigma_1^2=\sigma_2^2=\sigma^2\)，
+则\(\mu_1-\mu_2\)的置信区间为\[
+	\left(\overline{X}-\overline{Y}-\delta,\ \overline{X}-\overline{Y}+\delta\right),
+\]
+其中\[
+	\delta = t_{1-\frac{\alpha}{2}} S_w \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}.
+\]
+\end{example}
+
+\begin{example}
+当\(\mu_1\)、\(\mu_2\)、\(\sigma_1^2\)、\(\sigma_2^2\)都未知时，
+总体方差比\(\sigma_1^2/\sigma_2^2\)的置信区间为\[
+	\left(
+		\frac{S_1^2}{S_2^2 F_{1-\frac{\alpha}{2}}},
+		\frac{S_1^2}{S_2^2 F_{\frac{\alpha}{2}}}
+	\right).
+\]
+\end{example}
+
+\subsection{自然指数分布族分布均值参数的置信区间}
+如果总体\(X\)不是服从正态分布，那么样本函数的分布是难于确定的.
+这样求总体分布中未知参数的置信区间就比较困难.
+但当样本容量很大时，我们可以根据中心极限定理近似地求出置信区间.
+
+设总体\(X\)服从某个分布，分布函数为\(F(x,\theta)\)，
+其中\(\theta\)是未知参数，
+则总体均值\(E(X)=m(\theta)\)和总体方差\(D(X)=\sigma^2(\theta)\)都应该是\(\theta\)的函数.
+抽取样本\(\AutoTuple{X}{n}\)，由于\(X_i\ (i=1,2,\dotsc,n)\)与总体独立同分布，
+由中心极限定理，当\(n\)充分大时（一般要求\(n \geq 50\)），样本函数\[
+	U = \frac{\sum_{i=1}^n{X_i} - n m(\theta)}{\sqrt{n} \sigma(\theta)}
+	= \frac{\overline{X} - m(\theta)}{\sigma(\theta) / \sqrt{n}}
+\]近似地服从标准正态分布\(N(0,1)\).
+对于给定的置信度\(1-\alpha\)，有\[
+	P(\abs{U}<u_{1-\frac{\alpha}{2}})
+	= P\left(
+		\abs{\frac{\overline{X} - m(\theta)}{\sigma(\theta) / \sqrt{n}}}<u_{1-\frac{\alpha}{2}}
+	\right)
+	\approx 1-\alpha.
+\]
+若能从不等式\[
+	\abs{\frac{\overline{X} - m(\theta)}{\sigma(\theta) / \sqrt{n}}}<u_{1-\frac{\alpha}{2}}
+\]
+解得等价的不等式\[
+	\hat{\theta}_1 < \theta < \hat{\theta}_2,
+\]
+则\((\hat{\theta}_1, \hat{\theta}_2)\)就是\(\theta\)的近似的\(1-\alpha\)置信区间.
+
+对于非正态总体\(X\)，较常见的是\(X\)服从自然指数分布族分布.
+常见的参数情形是均值参数，则可从不等式\[
+	\abs{\frac{\overline{X} - m}{\sqrt{V(m) / n}}}<u_{1-\frac{\alpha}{2}}
+\]
+解得\[
+	\hat{m}_1 < m < \hat{m}_2.
+\]
+
+\subsection{单侧置信限}
+\begin{definition}
+设总体\(X\)的分布函数\(F(x,\theta)\)中含有未知参数\(\theta\)，
+\(\AutoTuple{X}{n}\)是来自总体\(X\)的一个样本.
+
+若存在统计量\(\hat{\theta}_1(\AutoTuple{X}{n})\)使得\[
+	P(\theta>\hat{\theta}_1)=1-\alpha,
+\]
+则称“\(\hat{\theta}_1\)是参数\(\theta\)的置信度为\(1-\alpha\)的\DefineConcept{单侧置信下限}”.
+
+若存在统计量\(\hat{\theta}_2(\AutoTuple{X}{n})\)使得\[
+	P(\theta<\hat{\theta}_2)=1-\alpha,
+\]
+则称“\(\hat{\theta}_2\)是参数\(\theta\)的置信度为\(1-\alpha\)的\DefineConcept{单侧置信上限}”.
+\end{definition}
