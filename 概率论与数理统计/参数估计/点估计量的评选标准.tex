@@ -203,16 +203,40 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 则称“\(\hat{\theta}(n)\)是\(\theta\)的\DefineConcept{一致估计量}或\DefineConcept{相合估计量}”.
 \end{definition}
 
+\begin{theorem}\label{theorem:参数估计.一致估计量的连续函数也是一致估计量}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P235. 定理5.2.3
+设\(\AutoTuple{\hat\theta}{k}\)分别是\(\AutoTuple{\theta}{k}\)的一致估计量.
+若\(g(\AutoTuple{\theta}{k})\)是\(k\)个参数的连续函数，
+则\(g(\AutoTuple{\hat\theta}{k})\)是\(g(\AutoTuple{\theta}{k})\)的一致估计量.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P235. 例5.2.6
+矩估计量都是一致估计量.
+\begin{proof}
+首先，
 由\hyperref[theorem:极限定理.大数律.辛钦大数律]{辛钦大数律}，
 可知当总体\(X\)有\(D(X^k)\)存在时，
-则样本\(k\)阶原点矩\(A_k \toP E(X^k) = m_k\)，
-也就是说，样本\(k\)阶原点矩是总体\(k\)阶原点矩的一致估计量.
+样本\(k\)阶原点矩\(A_k = \frac1n \sum_{i=1}^k X_i^k\)
+依概率收敛于总体\(k\)阶原点矩\(E(X^k) = \mu_k\)，
+即\(A_k \toP m_k\).
+这就是说，样本\(k\)阶原点矩是总体\(k\)阶原点矩的一致估计量.
 特别地，样本均值\(\overline{X}\)是总体数学期望\(\mu = E(X)\)的一致估计量.
 
 此外，当样本方差\(S^2\)的方差\(D(S^2) \to 0\ (n\to\infty)\)时，
 由\cref{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}
 有\(S^2 - E(S^2) = S^2 - \sigma^2 \toP 0\)，
 从而样本方差\(S^2\)是总体方差\(\sigma^2\)的一致估计量.
+
+其次，由于总体\(k\)阶中心矩\(\nu_k\)
+可以表示为总体的前\(k\)阶原点矩的连续函数：\[
+	\nu_k = g(\AutoTuple{\mu}{k}),
+\]
+所以由\cref{theorem:参数估计.一致估计量的连续函数也是一致估计量}
+可知\(g(\AutoTuple{A}{k})\)是\(g(\AutoTuple{\mu}{k})\)的一致估计量.
+\end{proof}
+\end{corollary}
 
 \subsection{均方误差标准}
 \begin{definition}
