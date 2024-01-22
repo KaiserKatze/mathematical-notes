@@ -23,6 +23,7 @@
 
 \begin{example}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P200. 例8.9
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P230. 例5.2.2
 设总体\(X\)服从任何分布，
 且\(E(X)=\mu\)，\(E(X^k)=m_k\)，\(D(X)=\sigma^2\).
 \(\AutoTuple{X}{n}\)是样本.
@@ -94,6 +95,53 @@
 	= 0,
 \]
 所以\(B_2\)是\(\sigma^2\)的渐进无偏估计量.
+\end{proof}
+\end{example}
+
+虽然我们已经证明了样本方差\(S^2\)是总体方差\(\sigma^2\)的无偏估计，
+但是样本标准差\(S\)不是总体标准差\(\sigma\)的无偏估计.
+下面的例子说明了这一点.
+\begin{example}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P231. 例5.2.3
+设\(\AutoTuple{X}{n}\)是来自正态总体\(N(\mu,\sigma^2)\)的一个样本，
+其中\(\mu\)未知，
+证明：样本标准差\(S\)的倍数\(\hat{\sigma} = C_n S\)是总体标准差\(\sigma\)的无偏估计，
+其中\[
+	C_n = \sqrt{\frac{n-1}2} \cdot \frac{\Gamma\left(\frac{n-1}2\right)}{\Gamma\left(\frac{n}2\right)}.
+\]
+\begin{proof}
+令\[
+	Y = \frac{(n-1)S^2}{\sigma^2},
+	\eqno(1)
+\]
+则\(Y \sim \chi^2(n-1)\)，
+\(Y\)的密度函数为\[
+	f_Y(y) = \frac1{2^{\frac{n-1}2} \Gamma\left(\frac{n-1}2\right)} y^{\frac{n-1}2-1} e^{-\frac{y}2},
+	\quad y>0,
+\]
+从而\begin{align*}
+	E(\sqrt{Y})
+	&= \int_{-\infty}^{+\infty} y^{\frac12} f_Y(y) \dd{y} \\
+	&= \frac1{2^{\frac{n-1}2} \Gamma\left(\frac{n-1}2\right)} \int_0^{+\infty} y^{\frac{n}2-1} e^{-\frac{y}2} \dd{y} \\
+	&= \frac{2^{\frac{n}2} \Gamma\left(\frac{n}2\right)}
+	{2^{\frac{n-1}2} \Gamma\left(\frac{n-1}2\right)}
+	= \sqrt2 \cdot \frac{\Gamma\left(\frac{n}2\right)}{\Gamma\left(\frac{n-1}2\right)}.
+\end{align*}
+
+又由(1)式有\[
+	\sqrt{Y} = \frac{\sqrt{n-1}}{\sigma} S,
+\]
+于是\[
+	E(\sqrt{Y})
+	= \frac{\sqrt{n-1}}{\sigma} E(S),
+\]
+那么\[
+	E(S)
+	= \frac{\sigma}{\sqrt{n-1}} E(\sqrt{Y})
+	= \sqrt{\frac2{n-1}} \cdot \frac{\Gamma\left(\frac{n}2\right)}{\Gamma\left(\frac{n-1}2\right)} \sigma
+	= \frac{\sigma}{C_n}.
+\]
+这就是说\(\hat{\sigma} = C_n S\)是\(\sigma\)的无偏估计.
 \end{proof}
 \end{example}
 
