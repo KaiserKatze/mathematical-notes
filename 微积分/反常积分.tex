@@ -836,26 +836,57 @@ f(x) \geq \frac{N}{x - a} \quad (a < x \leq b),
 \end{proposition}
 
 \subsection{伽马函数的性质}
-\begin{property}[递推公式]
+\begin{property}
+对于任意\(s > 0\)，总有
 \begin{equation}\label{equation:伽马函数.递推公式}
-	\Gamma(s+1) = s \Gamma(s) \quad (s > 0).
+	\Gamma(s+1) = s \Gamma(s).
 \end{equation}
+\begin{proof}
+应用分部积分法，
+有\begin{align*}
+	\Gamma(s+1)
+	&= \int_0^{+\infty} t^s e^{-t} \dd{t} \\
+	&= -\int_0^{+\infty} t^s \dd(e^{-t}) \\
+	&= \left[-t^s e^{-t}\right]_0^{+\infty}
+		+ s \int_0^{+\infty} t^{s-1} e^{-t} \dd{t} \\
+	&= s \Gamma(s).
+	\qedhere
+\end{align*}
+\end{proof}
 \end{property}
 
-\begin{proposition}
-\(\Gamma(1) = \int_0^{+\infty} e^{-x} \dd{x} = 1\).
-\end{proposition}
+\begin{property}
+\(\Gamma(1) = 1\).
+\begin{proof}
+\(\Gamma(1)
+= \int_0^{+\infty} e^{-x} \dd{x}
+= \left(-e^{-x}\right)_0^{+\infty}
+= 1\).
+\end{proof}
+\end{property}
 
-\begin{proposition}
+\begin{property}
 对于\(n\in\mathbb{N}\)，
 有\begin{equation}\label{equation:定积分.伽马函数与阶乘的联系}
 	\Gamma(n+1) = n!.
 \end{equation}
-\end{proposition}
+\begin{proof}
+对\hyperref[equation:伽马函数.递推公式]{递推公式}运用数学归纳法即可.
+\end{proof}
+\end{property}
 
-\begin{proposition}
-\(\Gamma(s) \to +\infty\ (s\to0^+)\).
-\end{proposition}
+\begin{property}
+\(\Gamma(s)\to+\infty\ (s\to0^+)\).
+\begin{proof}
+因为\[
+	\Gamma(s) = \frac{\Gamma(s+1)}{s},
+	\qquad
+	\Gamma(1) = 1,
+\]
+所以当\(s\to0^+\)时，
+\(\Gamma(s)\to+\infty\).
+\end{proof}
+\end{property}
 
 \begin{proposition}
 \(\Gamma\)函数在\(s > 0\)时连续，且有各阶连续导数.
@@ -880,7 +911,7 @@ f(x) \geq \frac{N}{x - a} \quad (a < x \leq b),
 \end{corollary}
 
 \begin{example}
-利用伽马函数计算\(\int_0^{+\infty} e^{-u^2} \dd{u}\).
+利用伽马函数计算高斯积分\(\int_0^{+\infty} e^{-u^2} \dd{u}\).
 \begin{solution}
 在\(\Gamma(s) = \int_0^{+\infty} e^{-x} x^{s-1} \dd{x}\)中，
 作代换\(x = u^2\)，
@@ -1051,7 +1082,8 @@ f(x) \geq \frac{N}{x - a} \quad (a < x \leq b),
 
 \subsection{勒让德倍量公式}
 \begin{theorem}[勒让德倍量公式]
-\begin{equation}\label{equation:定积分.勒让德倍量公式}
+对于\(\forall n\in\mathbb{N}^+\)，
+总有\begin{equation}\label{equation:定积分.勒让德倍量公式}
 \sqrt{\pi} \cdot \Gamma(2n)
 = 2^{2n-1} \cdot \Gamma(n) \cdot \Gamma\left(n+\frac{1}{2}\right).
 \end{equation}
