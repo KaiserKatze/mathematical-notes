@@ -1325,25 +1325,30 @@ y = f(x) \quad(a \leq x \leq b)
 则\begin{equation}\label{equation:定积分.柯西--施瓦茨不等式}
 	\left[ \int_a^b f(x) g(x) \dd{x} \right]^2
 	\leq
-	\left[ \int_a^b f^2(x) \dd{x} \right] \left[ \int_a^b g^2(x) \dd{x} \right].
+	\int_a^b f^2(x) \dd{x} \int_a^b g^2(x) \dd{x}.
 \end{equation}
 若函数\(f,g \in C[a,b]\)，
 则上式“\(=\)”当且仅当“存在不全为零的常数\(\alpha\)和\(\beta\)，
 使得\(\alpha f(x) = \beta g(x)\)”成立.
 \begin{proof}
-因为对任意实数\(t\)，总有\[
+因为对任意实数\(t\)，
+总有\begin{align*}
+	&\hspace{-20pt}
 	\int_a^b f^2(x) \dd{x}
 	+ 2t \int_a^b f(x) g(x) \dd{x}
-	+ t^2 \int_a^b g^2(x) \dd{x}
-	= \int_a^b [ f(x) + t g(x) ]^2 \dd{x}
-	\geq \int_a^b 0 \dd{x} = 0
-	\eqno(1)
-\]成立.
+	+ t^2 \int_a^b g^2(x) \dd{x} \\
+	&= \int_a^b [ f(x) + t g(x) ]^2 \dd{x}
+	\geq \int_a^b 0 \dd{x}
+	= 0
+	\tag1
+\end{align*}
+成立.
 将(1)式视作关于\(t\)的一元二次多项式，
 假设二次项系数\(\int_a^b g^2(x) \dd{x} > 0\)，
 由于该多项式是非负的，故其判别式非正，即\[
 	\left[ 2 \int_a^b f(x) g(x) \dd{x} \right]^2
-	- 4 \left[ \int_a^b g^2(x) \dd{x} \right] \left[ \int_a^b f^2(x) \dd{x} \right] \leq 0,
+	- 4 \int_a^b g^2(x) \dd{x} \int_a^b f^2(x) \dd{x}
+	\leq 0,
 \]移项并化简，
 可得\cref{equation:定积分.柯西--施瓦茨不等式}.
 如果二次项系数\(\int_a^b g^2(x) \dd{x} = 0\)，
