@@ -123,14 +123,29 @@
 设\(X \sim \Gamma(\alpha,\beta)\)，
 则\(E(X)=\frac{\alpha}{\beta}\).
 \begin{proof}
-\begin{align*}
-E(X)
-&= \int_{-\infty}^{+\infty} x f(x) \dd{x}
-= \int_0^{+\infty} x \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
-&= \frac{1}{\beta \Gamma(\alpha)} \int_0^{+\infty} (\beta x)^\alpha e^{-(\beta x)} \dd(\beta x)
-= \frac{\Gamma(\alpha + 1)}{\beta \Gamma(\alpha)}
-= \frac{\alpha}{\beta}.
-\qedhere
+直接计算得\begin{align*}
+	E(X)
+	&= \int_{-\infty}^{+\infty} x f(x) \dd{x}
+	= \int_0^{+\infty} x \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} \dd{x} \\
+	&= \frac{1}{\beta \Gamma(\alpha)} \int_0^{+\infty} (\beta x)^\alpha e^{-(\beta x)} \dd(\beta x)
+	= \frac{\Gamma(\alpha + 1)}{\beta \Gamma(\alpha)}
+	= \frac{\alpha}{\beta}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:期望.贝塔分布的期望}
+设\(X \sim B(p,q)\)，
+则\(E(X)=\frac{p}{p+q}\).
+\begin{proof}
+直接计算得\begin{align*}
+	E(X) &= \frac{\Gamma(p+q)}{\Gamma(p) \Gamma(q)}
+		\int_0^1 x^{p+1-1} (1-x)^{q-1} \dd{x} \\
+	&= \frac{\Gamma(p+q)}{\Gamma(p) \Gamma(q)}
+		\frac{\Gamma(p+1) \Gamma(q)}{\Gamma(p+q+1)} \\
+	&= \frac{p}{p+q}.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{theorem}
