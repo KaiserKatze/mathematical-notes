@@ -396,66 +396,30 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 \end{example}
 
 \begin{example}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P233. 例5.2.5
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P236. 习题5.2 7.
 设\(\AutoTuple{X}{n}\)是取自正态总体\(N(\mu,\sigma^2)\)的一个样本.
 样本的偏差平方和\(Q=\sum_{i=1}^n (X_i-\overline{X})^2\)含有正态方差\(\sigma^2\)的信息.
 现要求在形如\(c Q\)（其中\(c\)是正常数）的估计量中寻找\(c\)，
 使\(c Q\)在均方误差准则下是\(\sigma^2\)的最优估计.
 %TODO
-% \begin{solution}
-% 因为\(Q = (n-1) S^2\)，
-% \(E(Q) = (n-1) \sigma^2\)，
-% 所以\begin{align*}
-% 	D(Q)
-% 	&= \sum_{i=1}^n D(X_i-\overline{X})^2 \\
-% 	&= \sum_{i=1}^n [D(X_i^2) + 4 D(X_i \overline{X}) + D(\overline{X}^2)]
-% \end{align*}
-% \(E(Q^2) = D(Q) + E^2(Q)
-% = \)，
-% 所以\begin{align*}
-% 	M(c Q)
-% 	&= E(cQ - \sigma^2)^2
-% 	= c^2 E(Q^2) - 2c \sigma^2 E(Q) + \sigma^4 \\
-% 	&= c^2 E(Q^2) + [1-2c(n-1)] \sigma^4
-% \end{align*}
-% \end{solution}
+\begin{solution}
+因为\(Q = (n-1) S^2\)，
+\(E(Q) = (n-1) \sigma^2\)，
+\(D(Q) = 2(n-1) \sigma^4\)，
+\(E(Q^2) = D(Q) + E^2(Q)
+= (n-1)(n+1) \sigma^4\)，
+所以\[
+	M(c Q)
+	= E(cQ - \sigma^2)^2
+	= c^2 E(Q^2) - 2c \sigma^2 E(Q) + \sigma^4.
+\]
+我们把上式看成是关于\(c\)的二次函数，
+易知当\(c = \frac{\sigma^2 E(Q)}{E(Q^2)} = \frac1{n+1}\)时，
+\(M(cQ)\)取得最小值，
+也就是说\(\frac{Q}{n+1}\)是在均方误差准则下\(\sigma^2\)的最优估计.
+\end{solution}
 \end{example}
-
-\begin{example}
-%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P233. 例5.2.5
-设\(\AutoTuple{X}{n}\)是来自正态总体\(N(\mu,\sigma^2)\)的一个样本.
-利用\(\chi^2\)分布的性质可知其偏差平方和
-\(Q = \sum_{k=1}^n (X_k - \overline{X})^2\)
-的数学期望和方差分别是\[
-	E(Q) = (n-1) \sigma^2, \qquad
-	D(Q) = 2(n-1) \sigma^4.
-\]
-现在构造如下三个估计量：\[
-	S^2 = \frac{Q}{n-1}, \qquad
-	S_n^2 = \frac{Q}{n}, \qquad
-	S_{n+1}^2 = \frac{Q}{n+1}.
-\]
-这三个估计量的偏差平方、方差、均方误差如\cref{table:参数估计.估计量在不同评选标准下的表现1}.
-\begin{table}[ht]
-	\centering
-	\begin{tblr}{*4c}
-		\hline
-		& \(S^2\) & \(S_n^2\) & \(S_{n+1}^2\) \\ \hline
-		\(\delta^2/\sigma^4\) & \(0\) & \(1/n^2\) & \(4/(n+1)^2\) \\
-		\(D(\cdot)/\sigma^4\) & \(2/(n-1)\) & \(2(n-1)/n^2\) & \(2(n-1)/(n+1)^2\) \\
-		\(MSE(\cdot)/\sigma^4\) & \(2/(n-1)\) & \((2n-1)/n^2\) & \(2/(n+1)\) \\
-		\hline
-	\end{tblr}
-	\caption{}
-	\label{table:参数估计.估计量在不同评选标准下的表现1}
-\end{table}
-可以看出，\(S^2\)虽然是\(\sigma^2\)的无偏估计量，
-但他的方差和均方误差并不小，
-故从均方误差标准看，它并不优良.
-\(S_n^2\)和\(S_{n+1}^2\)都不是\(\sigma^2\)的无偏估计量，
-但是在均方误差标准下都优于\(S^2\).
-
 由此可见，从不同侧面取考察估计量的好坏会得出不同的结论.
 因此我们在讨论估计浪的好坏时，必须明确我们所遵循的准则是什么.
 至于具体采用哪个评选标准，则需要根据实际问题来确定.
-\end{example}
