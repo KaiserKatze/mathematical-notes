@@ -174,6 +174,44 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P235. 习题5.2 2.
+设总体\(X\)具有数学期望\(\mu\)与方差\(\sigma^2\)，
+\((X_{11},X_{12},\dotsc,X_{1n})\)与\((X_{21},X_{22},\dotsc,X_{2m})\)
+是取自该总体的两个独立样本，
+试证\[
+	S^2 = \frac1{n+m-2} \left[
+		\sum_{i=1}^n (X_{1i}-\overline{X}_1)^2
+		+ \sum_{i=1}^m (X_{2i}-\overline{X}_2)^2
+	\right]
+\]是\(\sigma^2\)的无偏估计，
+其中\(\overline{X}_1 = \frac1n \sum_{i=1}^n X_{1i},
+\overline{X}_2 = \frac1m \sum_{i=1}^m X_{2i}\).
+\begin{proof}
+令\[
+	S^2_1 = \frac1{n-1} \sum_{i=1}^n (X_{1i}-\overline{X}_1)^2, \qquad
+	S^2_2 = \frac1{m-1} \sum_{i=1}^m (X_{2i}-\overline{X}_2)^2,
+\]
+则\(E(S^2_1)=E(S^2_2)=\sigma^2\)
+且\[
+	S^2 = \frac1{n+m-2} \left[
+		(n-1) S^2_1
+		+ (m-1) S^2_2
+	\right],
+\]
+从而\begin{align*}
+	E(S^2)
+	&= \frac1{n+m-2} \left[
+		(n-1) E(S^2_1)
+		+ (m-1) E(S^2_2)
+	\right] \\
+	&= \frac1{n+m-2} (n+m-2) \sigma^2
+	= \sigma^2.
+\end{align*}
+因此\(S^2\)是\(\sigma^2\)的无偏估计量.
+\end{proof}
+\end{example}
+
 \subsection{有效性标准}
 \begin{definition}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P201. 定义8.4
