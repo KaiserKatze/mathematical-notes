@@ -218,8 +218,25 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 其中\(\mu\)已知，\(\sigma^2\)未知.
 \(X_1,\dotsc,X_n\)是样本.
 证明：\(\hat\sigma
-= \frac1n \frac{\frac\pi2} \sum_{i=1}^n \abs{X_i - \mu}\)是\(\sigma\)的无偏估计量.
-%TODO
+= \frac1n \sqrt{\frac\pi2} \sum_{i=1}^n \abs{X_i - \mu}\)是\(\sigma\)的无偏估计量.
+\begin{proof}
+记\(Y_n = X_n-\mu\)，
+则\(Y_n \sim N(0,\sigma^2)\)，
+那么\begin{align*}
+	E\abs{Y_n}
+	&= \int_{-\infty}^{+\infty}
+	\abs{y} \frac1{\sqrt{2\pi} \sigma}
+	e^{-\frac{y^2}{2\sigma^2}} \dd{y} \\
+	&= \frac{\sqrt2}{\sqrt\pi \sigma} \int_0^{+\infty}
+	y e^{-\frac{y^2}{2\sigma^2}} \dd{y}
+	= \sqrt{\frac2\pi} \sigma,
+\end{align*}
+于是\(E(\hat\sigma)
+= E\left(\frac1n \sqrt{\frac\pi2} \sum_{i=1}^n \abs{Y_n}\right)
+= \frac1n \sqrt{\frac\pi2} \sum_{i=1}^n E\abs{Y_n}
+= \sigma\)，
+\(\hat\sigma\)是\(\sigma\)的无偏估计.
+\end{proof}
 \end{example}
 
 \subsection{有效性标准}
