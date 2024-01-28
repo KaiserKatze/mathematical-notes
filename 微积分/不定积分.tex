@@ -409,37 +409,39 @@
 \end{remark}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P197 例13
 求\(\int \tan x \dd{x}\).
 \begin{solution}
-由\cref{equation:三角函数.正切与正余弦的关系}，
-\[
-	\tan x = \frac{\sin x}{\cos x},
-\]
-所以\begin{align}
+由\cref{equation:三角函数.正切与正余弦的关系}
+有\(\tan x = \frac{\sin x}{\cos x}\)，
+所以\begin{align*}
 	\int \tan x \dd{x}
 	&= \int \frac{\sin x}{\cos x} \dd{x}
-	= - \int \frac{1}{\cos x} \dd(\cos x)
-	\nonumber \\
+	= - \int \frac{1}{\cos x} \dd(\cos x) \\
 	&= - \ln\abs{\cos x} + C.
-\end{align}
+\end{align*}
 \end{solution}
 \end{example}
 
+%@see: 《高等数学（第六版 上册）》 P198
+类似地可得\(\int \cot x \dd{x} = \ln\abs{\sin x} + C\).
+
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P198 例14
 求\(\int \cos^2 x \dd{x}\).
 \begin{solution}
-直接计算得
-\begin{align*}
+\(\begin{aligned}[t]
 	\int \cos^2 x \dd{x}
 	&= \int \frac{1 + \cos 2x}{2} \dd{x}
 	= \frac{1}{2} \left( \int \dd{x} + \int \cos 2x \dd{x} \right) \\
 	&= \frac{1}{2} \int \dd{x} + \frac{1}{4} \int \cos 2x \dd(2x) \\
 	&= \frac{x}{2} + \frac{\sin 2x}{4} + C.
-\end{align*}
+\end{aligned}\)
 \end{solution}
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P198 例15
 求\(\int \sin^2 x \cos^4 x \dd{x}\).
 \begin{solution}
 \(\begin{aligned}[t]
@@ -465,6 +467,7 @@
 \end{remark}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P198 例16
 求\(\int \sec^6x \dd{x}\).
 \begin{solution}
 \(\begin{aligned}[t]
@@ -488,6 +491,7 @@
 \end{remark}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P199 例18
 求\(\int \csc x \dd{x}\).
 \begin{solution}
 直接计算得
@@ -503,6 +507,7 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P199 例19
 求\(\int \sec x \dd{x}\).
 \begin{solution}
 直接计算得\begin{align*}
@@ -534,12 +539,13 @@
 \end{remark}
 
 \subsection{第二类换元法}
-
 \begin{theorem}
+%@see: 《高等数学（第六版 上册）》 P201 定理2
 设\(x = \psi(t)\)是单调的、可导的函数，
 并且\(\psi'(t) \neq 0\).又设\(f[\psi(t)] \psi'(t)\)具有原函数，
 则有换元公式\[
-	\int f(x) \dd{x} = \left[ \int f[\psi(t)] \psi'(t) \dd{t} \right]_{t=\psi^{-1}(x)},
+	\int f(x) \dd{x}
+	= \left[ \int f[\psi(t)] \psi'(t) \dd{t} \right]_{t=\psi^{-1}(x)},
 \]
 其中\(t=\psi^{-1}(x)\)是\(x=\psi(t)\)的反函数.
 \begin{proof}
@@ -562,8 +568,11 @@
 \end{theorem}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P201 例21
 求\(\int \sqrt{a^2 - x^2} \dd{x}\).
 \begin{solution}
+求这个积分的困难在于根式\(\sqrt{a^2-x^2}\)，
+但我们可以利用三角恒等式\(\sin^2t+\cos^2t=1\)来化去根式.
 设\(x = a \sin t\ (-\frac{\pi}{2} < x < \frac{\pi}{2})\)，
 那么\(t = \arcsin\frac{x}{a}\)，
 \(\sqrt{a^2 - x^2} = \sqrt{a^2 - a^2 \sin^2 t} = a \cos t\)，
@@ -584,17 +593,16 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P202 例22
 求\(\int \frac{\dd{x}}{\sqrt{x^2 + a^2}}\ (a>0)\).
 \begin{solution}
+和上例类似，这里我们可以利用三角恒等式\(1+\tan^2t=\sec^2t\)来化去根式.
 设\(x = a \tan t\ (-\frac{\pi}{2} < t < \frac{\pi}{2})\)，
-那么\[
-	\sqrt{x^2 + a^2}
-	= \sqrt{a^2 + a^2 \tan^2 t}
-	= a \sqrt{1 + \tan^2 t}
-	= a \sec t,
-\]\[
-	\dd{x} = a \sec^2 t \dd{t},
-\]
+那么\(\sqrt{x^2 + a^2}
+= \sqrt{a^2 + a^2 \tan^2 t}
+= a \sqrt{1 + \tan^2 t}
+= a \sec t\)，
+\(\dd{x} = a \sec^2 t \dd{t}\)，
 于是\[
 	\int \frac{\dd{x}}{\sqrt{x^2 + a^2}}
 	= \int \frac{a \sec^2 t}{a \sec t} \dd{t}
@@ -614,6 +622,7 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P202 例23
 求\(\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}\ (a>0)\).
 \begin{solution}
 首先要注意被积函数的定义域是\((-\infty,-a)\cup(a,+\infty)\)，
@@ -662,6 +671,12 @@
 \]
 \end{solution}
 \end{example}
+
+\begin{remark}
+如果被积函数含有\(\sqrt{a^2 - x^2}\)，可以作代换\(x = a \sin t\)化去根式；
+如果被积函数含有\(\sqrt{x^2 + a^2}\)，可以作代换\(x=a \tan t\)化去根式；
+如果被积函数含有\(\sqrt{x^2 - a^2}\)，可以作代换\(x=\pm a \sec t\)化去根式.
+\end{remark}
 
 \begin{example}
 求\(\int \frac{\sqrt{a^2 - x^2}}{x^4} \dd{x}\).
@@ -1047,63 +1062,63 @@ I_2
 \begingroup
 \def\intx#1{\int #1\dd{x}}%
 \begin{gather}
-\intx{k} = kx + C \\
-\intx{x^\mu} = \frac{x^{\mu + 1}}{\mu + 1} + C \quad (\mu \neq -1) \\
-\intx{\frac{1}{x}} = \ln\abs{x} + C \\
-\intx{\frac{1}{1 + x^2}} = \arctan x + C \\
-\intx{\frac{1}{\sqrt{1 - x^2}}} = \arcsin x + C \\
-\intx{\cos x} = \sin x + C \\
-\intx{\sin x} = -\cos x + C \\
-\intx{\sec^2 x} = \tan x + C \\
-\intx{\csc^2 x} = -\cot x + C \\
-\intx{\sec x \tan x} = \sec x + C \\
-\intx{\csc x \cot x} = -\csc x + C \\
-\intx{e^x} = e^x + C \\
-\intx{a^x} = \frac{a^x}{\ln a} + C \\
-\intx{\sinh x} = \cosh x + C \\
-\intx{\cosh x} = \sinh x + C \\
-\intx{\tan x} = -\ln\abs{\cos x} + C \\
-\intx{\cot x} = \ln\abs{\sin x} + C \\
-\intx{\sec x} = \ln\abs{\sec x + \tan x} + C \\
-\intx{\csc x} = \ln\abs{\csc x - \cot x} + C \\
-\intx{\frac{1}{a^2 + x^2}} = \frac{1}{a} \arctan\frac{x}{a} + C \\
-\intx{\frac{1}{x^2 - a^2}} = \frac{1}{2a} \ln\abs{\frac{x - a}{x + a}} + C \\
-\intx{\frac{1}{\sqrt{a^2 - x^2}}} = \arcsin\frac{x}{a} + C \\
-\intx{\frac{1}{\sqrt{x^2 + a^2}}} = \ln(x + \sqrt{x^2 + a^2}) + C \\
-\intx{\frac{1}{\sqrt{x^2 - a^2}}} = \ln\abs{x + \sqrt{x^2 - a^2}} + C
+	\intx{k} = kx + C \\
+	\intx{x^\mu} = \frac{x^{\mu + 1}}{\mu + 1} + C \quad (\mu \neq -1) \\
+	\intx{\frac{1}{x}} = \ln\abs{x} + C \\
+	\intx{\frac{1}{1 + x^2}} = \arctan x + C \\
+	\intx{\frac{1}{\sqrt{1 - x^2}}} = \arcsin x + C \\
+	\intx{\cos x} = \sin x + C \\
+	\intx{\sin x} = -\cos x + C \\
+	\intx{\sec^2 x} = \tan x + C \\
+	\intx{\csc^2 x} = -\cot x + C \\
+	\intx{\sec x \tan x} = \sec x + C \\
+	\intx{\csc x \cot x} = -\csc x + C \\
+	\intx{e^x} = e^x + C \\
+	\intx{a^x} = \frac{a^x}{\ln a} + C \\
+	\intx{\sinh x} = \cosh x + C \\
+	\intx{\cosh x} = \sinh x + C \\
+	\intx{\tan x} = -\ln\abs{\cos x} + C \\
+	\intx{\cot x} = \ln\abs{\sin x} + C \\
+	\intx{\sec x} = \ln\abs{\sec x + \tan x} + C \\
+	\intx{\csc x} = \ln\abs{\csc x - \cot x} + C \\
+	\intx{\frac{1}{a^2 + x^2}} = \frac{1}{a} \arctan\frac{x}{a} + C \\
+	\intx{\frac{1}{x^2 - a^2}} = \frac{1}{2a} \ln\abs{\frac{x - a}{x + a}} + C \\
+	\intx{\frac{1}{\sqrt{a^2 - x^2}}} = \arcsin\frac{x}{a} + C \\
+	\intx{\frac{1}{\sqrt{x^2 + a^2}}} = \ln(x + \sqrt{x^2 + a^2}) + C \\
+	\intx{\frac{1}{\sqrt{x^2 - a^2}}} = \ln\abs{x + \sqrt{x^2 - a^2}} + C
 \end{gather}
 \endgroup
 
 \subsection{积分技巧}
-\begin{example}
 一般的，对于积分\(\int f(ax+b) \dd{x}\)，总可作变换\(u=ax+b\)，把它作为\[
-\int f(ax+b) \dd{x}
-= \int \frac{1}{a} f(ax+b) \dd{(ax+b)} \\
-= \frac{1}{a} \left[ \int f(u) \dd{u} \right]_{u=ax+b}.
+	\int f(ax+b) \dd{x}
+	= \int \frac{1}{a} f(ax+b) \dd{(ax+b)} \\
+	= \frac{1}{a} \left[ \int f(u) \dd{u} \right]_{u=ax+b}.
 \]
-\end{example}
 
-\begin{example}
-一般的，对于\(\sin^{2k+1} x \cos^n x\)或\(\sin^n x \cos^{2k+1} x\ (k \in \mathbb{N})\)型函数的积分，总可依次作变换\(u=\cos x\)或\(u=\sin x\)，利用恒等式\(\sin^2 x + \cos^2 x \equiv 1\)求得结果.
+一般的，对于\(\sin^{2k+1} x \cos^n x\)
+或\(\sin^n x \cos^{2k+1} x\ (k \in \mathbb{N})\)型函数的积分，
+总可依次作变换\(u=\cos x\)或\(u=\sin x\)，
+利用恒等式\(\sin^2 x + \cos^2 x \equiv 1\)求得结果.
 \begin{align*}
-\int \sin^{2k+1} x \cos^n x \dd{x}
-&= - \int \sin^{2k} x \cos^n x \cdot \sin x \dd{x} \\
-&= - \int (1-\cos^2 x)^k \cos^n x \dd(\cos x), \\
-\int \sin^n x \cos^{2k+1} x \dd{x}
-&= \int \sin^n x \cos^{2k} x \cdot \cos x \dd{x} \\
-&= \int \sin^n x (1-\sin^2 x)^k \dd(\sin x).
+	\int \sin^{2k+1} x \cos^n x \dd{x}
+	&= - \int \sin^{2k} x \cos^n x \cdot \sin x \dd{x} \\
+	&= - \int (1-\cos^2 x)^k \cos^n x \dd(\cos x), \\
+	\int \sin^n x \cos^{2k+1} x \dd{x}
+	&= \int \sin^n x \cos^{2k} x \cdot \cos x \dd{x} \\
+	&= \int \sin^n x (1-\sin^2 x)^k \dd(\sin x).
 \end{align*}
-\end{example}
 
-\begin{example}
-一般的，对于\(\sin^{2k} x \cos^{2l} x\ (k,l \in \mathbb{N})\)型函数，总可利用三角恒等式\(\sin^2 x = \frac{1}{2}(1-\cos 2x)\)，\(\cos^2 x = \frac{1}{2}(1+\cos 2x)\)化成\(\cos 2x\)的多项式，求得结果.\[
-\int \sin^{2k} x \cos^{2l} x \dd{x}
-= \int \left[\frac{1}{2}(1-\cos 2x)\right]^k \left[\frac{1}{2}(1+\cos 2x)\right]^l \dd{x}
-= \int f(\cos 2x) \dd{x}.
+一般的，对于\(\sin^{2k} x \cos^{2l} x\ (k,l \in \mathbb{N})\)型函数，
+总可利用三角恒等式\(\sin^2 x = \frac{1}{2}(1-\cos 2x)\)，
+\(\cos^2 x = \frac{1}{2}(1+\cos 2x)\)化成\(\cos 2x\)的多项式，求得结果.
+例如：\[
+	\int \sin^{2k} x \cos^{2l} x \dd{x}
+	= \int \left[\frac{1}{2}(1-\cos 2x)\right]^k
+		\left[\frac{1}{2}(1+\cos 2x)\right]^l \dd{x}
+	= \int f(\cos 2x) \dd{x}.
 \]
-\end{example}
 
-\begin{example}
 一般的，对于\(\tan^n x \sec^{2k} x\)
 或\(\tan^{2k+1} x \sec^n x\ (k \in \mathbb{N}^+)\)型函数的积分，
 可依次作变换\(u=\tan x\)或\(u=\sec x\)，
@@ -1112,36 +1127,42 @@ I_2
 \(\dd(\sec x) = \sec x \tan x \dd{x}\)，
 求得结果.
 \begin{align*}
-\int \tan^n x \sec^{2k} x \dd{x}
-&=\int \tan^n x\sec^{2k-2} x \cdot \sec^2 x \dd{x} \\
-&=\int \tan^n x(1+\tan^2 x)^{k-1} \dd(\tan x), \\
-\int \tan^{2k+1} x \sec^n x \dd{x}
-&=\int \tan^{2k} x \sec^{n-1} x \cdot \sec x\tan x\dd{x} \\
-&=\int (\sec^2 x - 1)^k \sec^{n-1} x \dd(\sec x).
+	\int \tan^n x \sec^{2k} x \dd{x}
+	&=\int \tan^n x\sec^{2k-2} x \cdot \sec^2 x \dd{x} \\
+	&=\int \tan^n x(1+\tan^2 x)^{k-1} \dd(\tan x), \\
+	\int \tan^{2k+1} x \sec^n x \dd{x}
+	&=\int \tan^{2k} x \sec^{n-1} x \cdot \sec x\tan x\dd{x} \\
+	&=\int (\sec^2 x - 1)^k \sec^{n-1} x \dd(\sec x).
 \end{align*}
-\end{example}
 
-\begin{example}
-如果被积函数含有\(\sqrt{a^2 - x^2}\)，可以作代换\(x = a \sin t\)化去根式；如果被积函数含有\(\sqrt{x^2 + a^2}\)，可以作代换\(x=a \tan t\)化去根式；如果被积函数含有\(\sqrt{x^2 - a^2}\)，可以作代换\(x=\pm a \sec t\)化去根式.
+如果被积函数含有\(\sqrt{a^2 - x^2}\)，可以作代换\(x = a \sin t\)化去根式；
+如果被积函数含有\(\sqrt{x^2 + a^2}\)，可以作代换\(x=a \tan t\)化去根式；
+如果被积函数含有\(\sqrt{x^2 - a^2}\)，可以作代换\(x=\pm a \sec t\)化去根式.
 
 如果被积函数有高次多项式，可以首先利用平方差公式和平方和公式对其配方.
 
-当被积函数含有\(\sqrt{x^2 \pm a^2}\)时，为了化去根式，除采用三角代换\(x = a \tan t\)或\(x = \pm a \sec t\)外，还可利用公式\(\cosh^2 t - \sinh^2 t = 1\)，采用双曲代换\(x = a \sinh t\)和\(x = \pm a \cosh t\)来化去根式.
-\end{example}
+当被积函数含有\(\sqrt{x^2 \pm a^2}\)时，为了化去根式，
+除采用三角代换\(x = a \tan t\)或\(x = \pm a \sec t\)外，
+还可利用公式\(\cosh^2 t - \sinh^2 t = 1\)，
+采用双曲代换\(x = a \sinh t\)和\(x = \pm a \cosh t\)来化去根式.
 
-\begin{example}
-如果被积函数是分式，且积分变量在分子中的最高幂次比其在分母中的最高幂次要低2次或3次，则可利用倒代换技巧，即令\(t=\frac{1}{x}\).
-\end{example}
+如果被积函数是分式，
+且积分变量在分子中的最高幂次比其在分母中的最高幂次要低2次或3次，
+则可利用倒代换技巧，
+即令\(t=\frac{1}{x}\).
 
-\begin{example}
-如果被积函数是幂函数和正（余）弦函数或幂函数和指数函数的乘积，就可以考虑用分部积分法，并设幂函数为\(u\).这样每用一次分部积分法就可使幂次降低一次.
+如果被积函数是幂函数和正（余）弦函数或幂函数和指数函数的乘积，
+就可以考虑用分部积分法，并设幂函数为\(u\).
+这样每用一次分部积分法就可使幂次降低一次.
 
-如果被积函数是幂函数和对数函数或幂函数和反三角函数的乘积，也可以考虑用分部积分法，并设对数函数或反三角函数为\(u\).
-\end{example}
+如果被积函数是幂函数和对数函数或幂函数和反三角函数的乘积，
+也可以考虑用分部积分法，并设对数函数或反三角函数为\(u\).
 
-\begin{example}
-如果被积函数中含有简单根式\(\sqrt[n]{ax+b}\)或\(\sqrt[n]{\frac{ax+b}{cx+d}}\)，可以令这个简单根式为\(u\)，即\begin{align*}
-u=\sqrt[n]{ax+b} &\implies x=\frac{1}{a}(u^n-b) \\
-u=\sqrt[n]{\frac{ax+b}{cx+d}} &\implies x=\frac{u^nd-b}{a-u^nc}
-\end{align*}由于这样的变换具有反函数，且反函数是\(u\)的有理函数，因此原积分可以化为有理函数的积分.
-\end{example}
+如果被积函数中含有简单根式\(\sqrt[n]{ax+b}\)或\(\sqrt[n]{\frac{ax+b}{cx+d}}\)，
+可以令这个简单根式为\(u\)，
+即\begin{align*}
+	u=\sqrt[n]{ax+b} &\implies x=\frac{1}{a}(u^n-b) \\
+	u=\sqrt[n]{\frac{ax+b}{cx+d}} &\implies x=\frac{u^nd-b}{a-u^nc}
+\end{align*}
+由于这样的变换具有反函数，且反函数是\(u\)的有理函数，
+因此原积分可以化为有理函数的积分.
