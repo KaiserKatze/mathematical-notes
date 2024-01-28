@@ -65,12 +65,19 @@ P(5200 < X < 9400)
 	D(X)=0 \implies P[X=E(X)]=1.
 \]
 \begin{proof}
-由\cref{theorem:极限定理.切比雪夫不等式} 可知，对\(\forall\epsilon>0\)，有\[
-0 \leq P[\abs{X-E(X)}\geq\epsilon] \leq \frac{D(X)}{\epsilon^2} = 0,
-\]故有\(P[\abs{X-E(X)}\geq\epsilon] = 0\)或\(P[\abs{X-E(X)}<\epsilon] = 1\)；
-由于\(\epsilon\)的任意性，\(\epsilon\to0\)时\(X \to E(X)\)，那么\[
-P[X=E(X)]=1.
-\qedhere
+由\cref{theorem:极限定理.切比雪夫不等式} 可知，
+对\(\forall\epsilon>0\)，
+有\[
+	0 \leq P[\abs{X-E(X)}\geq\epsilon]
+	\leq \frac{D(X)}{\epsilon^2}
+	= 0,
+\]
+故有\(P[\abs{X-E(X)}\geq\epsilon] = 0\)或\(P[\abs{X-E(X)}<\epsilon] = 1\)；
+由于\(\epsilon\)的任意性，
+\(\epsilon\to0\)时\(X \to E(X)\)，
+那么\[
+	P[X=E(X)]=1.
+	\qedhere
 \]
 \end{proof}
 \end{theorem}
@@ -80,20 +87,35 @@ P[X=E(X)]=1.
 
 \section{柯尔莫哥洛夫不等式}
 \begin{theorem}
-设随机变量\(\AutoTuple{X}{n}\)相互独立，
-且\(E(X_k) = 0, E(X_k^2) < +\infty, i=1,2,\dotsc,n\).
-令\(S_k = X_1 + X_2 + \dotsb + X_k\).
+%@see: 《概率（第三版）（第二卷）》（施利亚耶夫） P8 柯尔莫哥洛夫不等式 a)
+设独立随机变量序列\(\{X_n\}\)满足：\begin{enumerate}
+	\item \(E(X_k) = 0\ (k=1,2,\dotsc,n)\)，
+	\item \(E(X_k^2)\ (k=1,2,\dotsc,n)\)存在且有限.
+\end{enumerate}
+令\(S_k = X_1 + \dotsb + X_k\ (k=1,2,\dotsc,n)\).
 那么，对\(\forall \epsilon > 0\)，
 有\[
 	P\left(\max_{1 \leq k \leq n} \abs{S_k} \geq \epsilon\right)
 	\leq \frac{E(S_n^2)}{\epsilon^2}.
 \]
+%TODO proof
+\end{theorem}
 
-如果还有\(P(\abs{X_i} \leq c) = 1\ (i=1,2,\dotsc,n)\)，则\[
+\begin{theorem}
+%@see: 《概率（第三版）（第二卷）》（施利亚耶夫） P8 柯尔莫哥洛夫不等式 b)
+设独立随机变量序列\(\{X_n\}\)满足：\begin{enumerate}
+	\item \(E(X_k) = 0\ (k=1,2,\dotsc,n)\)，
+	\item \(E(X_k^2)\ (k=1,2,\dotsc,n)\)存在且有限，
+	\item \(\{X_n\}\)几乎处处有界，
+	即\(P(\abs{X_k} \leq c) = 1\ (k=1,2,\dotsc,n)\).
+\end{enumerate}
+令\(S_k = X_1 + \dotsb + X_k\ (k=1,2,\dotsc,n)\).
+那么，对\(\forall \epsilon > 0\)，
+有\[
 	P\left(\max_{1 \leq k \leq n} \abs{S_k} \geq \epsilon\right)
 	\geq 1 - \frac{(c+\epsilon)^2}{E(S_n^2)}.
 \]
-%证明@see: 施利亚耶夫的概率，补充和修订第三版，第二卷第8页
+%TODO proof
 \end{theorem}
 
 \begin{theorem}
