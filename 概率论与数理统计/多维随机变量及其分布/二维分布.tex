@@ -225,6 +225,7 @@
 
 \subsubsection{二维正态分布}
 \begin{definition}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P145 定义5.3
 设二维随机变量\((X,Y)\)有二维密度函数
 \begin{equation}
 	f(x,y) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-r^2}}
@@ -258,6 +259,7 @@ r\in(-1,1)\)是参数，
 \end{definition}
 
 \begin{theorem}\label{theorem:正态分布与自然指数分布族.性质1}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P145 定理5.6
 若\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，
 则对应的边缘分布均为正态分布，且\[
 	X \sim N(\mu_1,\sigma_1^2),
@@ -304,8 +306,10 @@ f_Y(y)
 \end{theorem}
 
 \begin{theorem}\label{theorem:正态分布与自然指数分布族.性质2}
-若\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，则\[
-R(X,Y) = r.
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P146
+若\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，
+则\[
+	R(X,Y) = r.
 \]
 \begin{proof}
 根据\cref{theorem:随机变量的数字特征.相关系数的性质1}，
@@ -350,80 +354,108 @@ R(X,Y) = r.
 \end{theorem}
 
 \begin{corollary}\label{theorem:正态分布与自然指数分布族.性质3}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P146 定理5.7
 设\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，
 则\(X\)与\(Y\)相互独立的充分必要条件为\(r=0\)（\(X\)与\(Y\)不相关）.
+\begin{proof}
+当\(X\)与\(Y\)相互独立时，
+由\cref{theorem:相关系数.两个独立随机变量的相关系数等于零}
+可知\(R(X,Y)=0\).
+
+当\(R(X,Y)=0\)时，
+由二维正态分布的定义可知，
+\begin{align*}
+	f(x,y)
+	&= \frac1{2\pi\sigma_1\sigma_2} \exp\left\{
+		-\frac12 \left[
+			\frac{(x-\mu_1)^2}{\sigma_1^2}
+			+\frac{(y-\mu_2)^2}{\sigma_2^2}
+		\right]
+	\right\} \\
+	&= \frac1{\sqrt{2\pi}\sigma_1} \exp[-\frac{(x-\mu_1)^2}{2\sigma_1^2}]
+		\cdot \frac1{\sqrt{2\pi}\sigma_2} \exp[-\frac{(y-\mu_2)^2}{2\sigma_2^2}] \\
+	&= f_X(x) \cdot f_Y(y),
+\end{align*}
+\(X\)与\(Y\)相互独立.
+\end{proof}
 \end{corollary}
 
 二维正态分布的条件分布仍然是正态分布.
 \begin{example}\label{theorem:正态分布与自然指数分布族.性质4}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P147 例5.7
 设二维随机变量\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\).
-求解条件密度函数\[
-f_{X \vert Y}(x \vert y)
-\]的解析式.
+求条件密度\(f_{X \vert Y}(x \vert y)\).
 \begin{solution}
 \def\A{\frac{1}{\sqrt{2\pi}\sigma_1\sqrt{1-r^2}}}%
 \def\B{\frac{1}{2(1-r^2)}}%
 直接计算得\begin{align*}
-&f_{X \vert Y}(x \vert y) = \frac{f(x,y)}{f_Y(y)} \\
-&= \A
-	\exp\Biggl\{
-		- \B
-		\left[
-			\frac{(x-\mu_1)^2}{\sigma_1^2}
-			- 2r\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}
-			+ r^2\frac{(y-\mu_2)^2}{\sigma_2^2}
-		\right]
-	\Biggr\} \\
-&= \A
-	\exp\left\{
-		- \B
-		\left[
-			\frac{x-\mu_1}{\sigma_1}
-			- r\frac{y-\mu_2}{\sigma_2}
-		\right]^2
-	\right\} \\
-&= \A
-	\exp\left\{
-		- \B
-		\frac{1}{\sigma_1^2}
-		\left[
-			x - \mu_1
-			- r\frac{\sigma_1}{\sigma_2}(y-\mu_2)
-		\right]^2
-	\right\}.
+	&f_{X \vert Y}(x \vert y) = \frac{f(x,y)}{f_Y(y)} \\
+	&= \A
+		\exp\Biggl\{
+			- \B
+			\left[
+				\frac{(x-\mu_1)^2}{\sigma_1^2}
+				- 2r\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}
+				+ r^2\frac{(y-\mu_2)^2}{\sigma_2^2}
+			\right]
+		\Biggr\} \\
+	&= \A
+		\exp\left\{
+			- \B
+			\left[
+				\frac{x-\mu_1}{\sigma_1}
+				- r\frac{y-\mu_2}{\sigma_2}
+			\right]^2
+		\right\} \\
+	&= \A
+		\exp\left\{
+			- \B
+			\frac{1}{\sigma_1^2}
+			\left[
+				x - \mu_1
+				- r\frac{\sigma_1}{\sigma_2}(y-\mu_2)
+			\right]^2
+		\right\}.
 \end{align*}
-这个条件密度函数恰好是期望为\(\mu_1+r\frac{\sigma_1}{\sigma_2}(y-\mu_2)\)，方差为\(\sigma_1^2(1-r^2)\)的正态分布的密度函数.
+这个条件密度函数恰好是期望为\(\mu_1+r\frac{\sigma_1}{\sigma_2}(y-\mu_2)\)，
+方差为\(\sigma_1^2(1-r^2)\)的正态分布的密度函数.
 \end{solution}
 \end{example}
 
 \begin{theorem}\label{theorem:正态分布与自然指数分布族.二维随机变量服从二维正态分布的充分必要条件}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P147 定理5.8
 二维随机变量\((X,Y)\)服从二维正态分布的充分必要条件是：
 \(X\)与\(Y\)的任意非零线性组合\(Z=aX+bY\)服从一维正态分布，
 即\(Z \sim N(E(Z),D(Z))\).
 \end{theorem}
 
 \begin{example}
-设\((X,Y) \sim N\left(2,3;4,9;\frac{1}{2}\right)\)，\(Z = \frac{1}{2} X - \frac{1}{3} Y\)，求\(E(\abs{Z})\).
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P147 例5.8
+设\((X,Y) \sim N\left(2,3;4,9;\frac{1}{2}\right)\)，
+\(Z = \frac{1}{2} X - \frac{1}{3} Y\)，
+求\(E(\abs{Z})\).
 \begin{solution}
 由\cref{theorem:正态分布与自然指数分布族.性质1} 有\[
-X \sim N(2,4), \qquad
-Y \sim N(3,9),
-\]且相关系数\(R(X,Y) = 1/2\)，于是\[
-\Cov(X,Y) = R(X,Y) \sqrt{D(X)} \sqrt{D(Y)} = 3.
+	X \sim N(2,4), \qquad
+	Y \sim N(3,9),
+\]且相关系数\(R(X,Y) = 1/2\)，
+于是\[
+	\Cov(X,Y) = R(X,Y) \sqrt{D(X)} \sqrt{D(Y)} = 3.
 \]\[
-E(Z) = \frac{1}{2} E(X) - \frac{1}{3} E(Y) = 0.
+	E(Z) = \frac{1}{2} E(X) - \frac{1}{3} E(Y) = 0.
 \]\[
-D(Z) = \frac{1}{4} D(X) + \frac{1}{9} D(Y)
-	- 2 \cdot \frac{1}{2} \cdot \frac{1}{3} \Cov(X,Y)
-= 1.
+	D(Z) = \frac{1}{4} D(X) + \frac{1}{9} D(Y)
+		- 2 \cdot \frac{1}{2} \cdot \frac{1}{3} \Cov(X,Y)
+	= 1.
 \]
-由\cref{theorem:正态分布与自然指数分布族.二维随机变量服从二维正态分布的充分必要条件} 有\begin{align*}
-E(\abs{Z})
-&= \int_{-\infty}^{+\infty} \abs{z} \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} \dd{z}
-= \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} z e^{-\frac{z^2}{2}} \dd{z} \\
-&= \frac{\sqrt{2}}{\sqrt{\pi}} \int_0^{+\infty} \dd(-e^{-\frac{z^2}{2}})
-= \sqrt{\frac{2}{\pi}} \left(-e^{-\frac{z^2}{2}}\right)_0^{+\infty}
-= \sqrt{\frac{2}{\pi}}.
+由\cref{theorem:正态分布与自然指数分布族.二维随机变量服从二维正态分布的充分必要条件}
+有\begin{align*}
+	E(\abs{Z})
+	&= \int_{-\infty}^{+\infty} \abs{z} \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} \dd{z}
+	= \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} z e^{-\frac{z^2}{2}} \dd{z} \\
+	&= \frac{\sqrt{2}}{\sqrt{\pi}} \int_0^{+\infty} \dd(-e^{-\frac{z^2}{2}})
+	= \sqrt{\frac{2}{\pi}} \left(-e^{-\frac{z^2}{2}}\right)_0^{+\infty}
+	= \sqrt{\frac{2}{\pi}}.
 \end{align*}
 \end{solution}
 \end{example}
@@ -433,57 +465,63 @@ E(\abs{Z})
 求关于\(a\)的一元二次方程\(a^2 + 2aX + Y = 0\)有实根的概率.
 \begin{solution}
 根据均匀分布和指数分布的定义，\[
-f_X(x) = \left\{ \begin{array}{cl}
-1, & x\in(0,1), \\
-0, & \text{其他};
-\end{array} \right.
-\qquad
-f_Y(y) = \left\{ \begin{array}{cl}
-\frac{1}{2} e^{-\frac{1}{2} y}, & y>0, \\
-0, & y \leq 0.
-\end{array} \right.
+	f_X(x) = \left\{ \begin{array}{cl}
+		1, & x\in(0,1), \\
+		0, & \text{其他};
+	\end{array} \right.
+	\qquad
+	f_Y(y) = \left\{ \begin{array}{cl}
+		\frac{1}{2} e^{-\frac{1}{2} y}, & y>0, \\
+		0, & y \leq 0.
+	\end{array} \right.
 \]
-因为随机变量\(X\)、\(Y\)相互独立，所以\(X\)与\(Y\)的联合密度函数为\[
-f(x,y) = f_X(x) \cdot f_Y(y)
-= \left\{ \begin{array}{cl}
-\frac{1}{2} e^{-\frac{1}{2} y}, & 0<x<1 \land y>0, \\
-0, & \text{其他}.
-\end{array} \right.
+因为随机变量\(X\)、\(Y\)相互独立，
+所以\(X\)与\(Y\)的联合密度函数为\[
+	f(x,y) = f_X(x) \cdot f_Y(y)
+	= \left\{ \begin{array}{cl}
+		\frac{1}{2} e^{-\frac{1}{2} y}, & 0<x<1 \land y>0, \\
+		0, & \text{其他}.
+	\end{array} \right.
 \]
 
 一元二次方程有实根的概率为\begin{align*}
-P[(2X)^2 - 4Y \geq 0]
-&= P(X^2 \geq Y)
-= \int_0^1 \dd{x} \int_0^{x^2} \frac{1}{2} e^{-\frac{1}{2} y} \dd{y} \\
-&= 1 - \sqrt{2\pi} \left[ \Phi(1) - \frac{1}{2} \right]
-\approx 0.144376.
+	P[(2X)^2 - 4Y \geq 0]
+	&= P(X^2 \geq Y)
+	= \int_0^1 \dd{x} \int_0^{x^2} \frac{1}{2} e^{-\frac{1}{2} y} \dd{y} \\
+	&= 1 - \sqrt{2\pi} \left[ \Phi(1) - \frac{1}{2} \right]
+	\approx 0.144~376.
 \end{align*}
 \end{solution}
 \end{example}
 
 \begin{example}
 设二维随机变量\((X,Y)\)的概率密度为\[
-f(x,y) = A e^{-2x^2+2xy-y^2}, \quad x,y\in\mathbb{R},
-\]求常数\(A\)及条件概率密度\(f_{Y \vert X}(y \vert x)\).
+	f(x,y) = A e^{-2x^2+2xy-y^2}, \quad x,y\in\mathbb{R},
+\]
+求常数\(A\)及条件概率密度\(f_{Y \vert X}(y \vert x)\).
 \begin{solution}
 先求\(X\)的边缘密度函数，有\begin{align*}
-f_X(x) &= \int_{-\infty}^{+\infty} f(x,y) \dd{y} \\
-&= \int_{-\infty}^{+\infty} A e^{-2x^2+2xy-y^2} \dd{y} \\
-&= A e^{-x^2} \int_{-\infty}^{+\infty} e^{-(y-x)^2} \dd{y} \\
-&= A e^{-x^2} \sqrt{\pi} \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi} \sqrt{\frac{1}{2}}} e^{\frac{-(y-x)^2}{2 \cdot \frac{1}{2}}} \dd{y} \\
-&= A \sqrt{\pi} e^{-x^2}.
+	f_X(x) &= \int_{-\infty}^{+\infty} f(x,y) \dd{y} \\
+	&= \int_{-\infty}^{+\infty} A e^{-2x^2+2xy-y^2} \dd{y} \\
+	&= A e^{-x^2} \int_{-\infty}^{+\infty} e^{-(y-x)^2} \dd{y} \\
+	&= A e^{-x^2} \sqrt{\pi} \int_{-\infty}^{+\infty}
+		\frac{1}{\sqrt{2\pi} \sqrt{\frac{1}{2}}}
+		e^{\frac{-(y-x)^2}{2 \cdot \frac{1}{2}}} \dd{y} \\
+	&= A \sqrt{\pi} e^{-x^2}.
 \end{align*}
-由\hyperref[theorem:随机变量及其分布.连续型随机变量的密度函数的性质]{规范性}和重要积分公式 \labelcref{equation:重积分.常用积分2} 可知\[
-\int_{-\infty}^{+\infty} f_X(x) \dd{x}
-= A \sqrt{\pi} \int_{-\infty}^{+\infty} e^{-x^2} \dd{x}
-= A \pi = 1,
-\]因此，\(A = \frac{1}{\pi}\).
+由\hyperref[theorem:随机变量及其分布.连续型随机变量的密度函数的性质]{规范性}%
+和重要积分公式 \labelcref{equation:重积分.常用积分2} 可知\[
+	\int_{-\infty}^{+\infty} f_X(x) \dd{x}
+	= A \sqrt{\pi} \int_{-\infty}^{+\infty} e^{-x^2} \dd{x}
+	= A \pi = 1,
+\]
+因此，\(A = \frac{1}{\pi}\).
 那么根据\cref{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系2} 有\[
-f_{Y \vert X}(y \vert x)
-= \frac{f(x,y)}{f_X(x)}
-= \frac{\frac{1}{\pi} e^{-2x^2+2xy-y^2}}{\frac{1}{\pi} \sqrt{\pi} e^{-x^2}}
-= \frac{1}{\sqrt{\pi}} e^{-(x-y)^2},
-\quad y\in\mathbb{R}.
+	f_{Y \vert X}(y \vert x)
+	= \frac{f(x,y)}{f_X(x)}
+	= \frac{\frac{1}{\pi} e^{-2x^2+2xy-y^2}}{\frac{1}{\pi} \sqrt{\pi} e^{-x^2}}
+	= \frac{1}{\sqrt{\pi}} e^{-(x-y)^2},
+	\quad y\in\mathbb{R}.
 \]
 \end{solution}
 \end{example}
