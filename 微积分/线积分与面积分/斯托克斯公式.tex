@@ -71,6 +71,61 @@
 	= \oint_\Gamma P\dd{x}+Q\dd{y}.
 \]
 
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P240 例1
+利用斯托克斯公式计算曲线积分\(\oint_\Gamma z\dd{x}+x\dd{y}+y\dd{z}\)，
+其中\(\Gamma\)是平面\(x+y+z=1\)被三个坐标面所截成的三角形的整个边界，
+它的正向与这个平面三角形\(\Sigma\)上侧的法向量之间符合右手规则.
+\begin{solution}
+按斯托克斯公式，有\[
+	\oint_\Gamma z\dd{x}+x\dd{y}+y\dd{z}
+	= \iint_\Sigma \dd{y}\dd{z}+\dd{z}\dd{x}+\dd{x}\dd{y}.
+\]
+而\begin{gather*}
+	\iint_\Sigma \dd{y}\dd{z} = \iint_{D_{yz}} \dd\sigma = \frac12, \\
+	\iint_\Sigma \dd{z}\dd{x} = \iint_{D_{zx}} \dd\sigma = \frac12, \\
+	\iint_\Sigma \dd{x}\dd{y} = \iint_{D_{xy}} \dd\sigma = \frac12,
+\end{gather*}
+其中\(D_{yz},D_{zx},D_{xy}\)分别是\(\Sigma\)在\(yOZ,zOx,xOy\)面上的投影区域，
+因此\[
+	\oint_\Gamma z\dd{x}+x\dd{y}+y\dd{z} = \frac32.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P240 例2
+利用斯托克斯公式计算曲线积分\[
+	I = \oint_\Gamma (y^2-z^2)\dd{x}+(z^2-x^2)\dd{y}+(x^2-y^2)\dd{z},
+\]
+其中\(\Gamma\)是用平面\(x+y+z=\frac32\)
+截立方体\(\Set{(x,y,z)\given0\leq x\leq1,0\leq y\leq1,0\leq z\leq1}\)的表面所得的截口，
+若从\(Ox\)轴的正向看去，取逆时针方向.
+\begin{solution}
+取\(\Sigma\)为平面\(x+y+z=\frac32\)的上侧被\(\Gamma\)所围成的部分，
+\(\Sigma\)的单位法向量\(\vb{n}=\frac1{\sqrt3}(1,1,1)\)，
+即\(\cos\alpha=\cos\beta=\cos\gamma=\frac1{\sqrt3}\).
+按斯托克斯公式，有\begin{align*}
+	I &= \iint_\Sigma \begin{vmatrix}
+		\frac1{\sqrt3} & \frac1{\sqrt3} & \frac1{\sqrt3} \\
+		\pdv{x} & \pdv{y} & \pdv{z} \\
+		y^2-z^2 & z^2-x^2 & x^2-y^2
+	\end{vmatrix} \dd{S} \\
+	&= -\frac4{\sqrt3} \iint_\Sigma (x+y+z) \dd{S}.
+\end{align*}
+因为在\(\Sigma\)上\(x+y+z=\frac32\)，
+所以\[
+	I = -\frac4{\sqrt3} \cdot \frac32 \iint_\Sigma \dd{S}
+	= -2\sqrt3 \iint_{D_{xy}} \sqrt3 \dd{x}\dd{y}
+	= -6 \sigma_{xy},
+\]
+其中\(D_{xy}\)是\(\Sigma\)在\(xOy\)平面上的投影区域，
+\(\sigma_{xy}\)是\(D_{xy}\)的面积.
+因\(\sigma_{xy} = 1-2\times\frac18=\frac34\)，
+故\(I=-\frac92\).
+\end{solution}
+\end{example}
+
 \subsection{空间曲线积分与路径无关的条件}
 \begin{theorem}\label{theorem:线积分与面积分.空间曲线积分与路径无关的条件}
 设空间区域\(G\)是一维单连通区域，
