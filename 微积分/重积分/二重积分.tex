@@ -286,7 +286,7 @@ Y型区域\(D\)的特点是：
 	= \iint_D f(\rho\cos\theta,\rho\sin\theta) \rho \dd{\rho} \dd{\theta}.
 \]
 
-这里我们把点\(\opair{\rho,\theta}\)看作在同一平面上的点\((x,y)\)的极坐标表示，
+这里我们把点\((\rho,\theta)\)看作在同一平面上的点\((x,y)\)的极坐标表示，
 所以上式右端的积分区域仍然记作\(D\).
 
 由于在直角坐标系中\(\iint_D f(x,y) \dd{\sigma}\)也常记作\(\iint_D f(x,y) \dd{x} \dd{y}\)，
@@ -490,7 +490,7 @@ I = \frac{1}{2} \iint_D [ f(x,y) + f(y,x) ] \dd{x}\dd{y}
 \end{enumerate}
 则有\begin{equation}\label{equation:重积分.二重积分的换元公式}
 	\iint_D f(x,y) \dd{x} \dd{y}
-	=\iint_G f[x(u,v),y(u,v)] \cdot \abs{J(u,v)} \dd{u} \dd{v}.
+	= \iint_G f[x(u,v),y(u,v)] \cdot \abs{J(u,v)} \dd{u} \dd{v}.
 \end{equation}
 %TODO
 \end{theorem}
@@ -502,9 +502,9 @@ I = \frac{1}{2} \iint_D [ f(x,y) + f(y,x) ] \dd{x}\dd{y}
 现在让我们回头来看，
 在将直角坐标系变换为极坐标\(x = \rho \cos\theta, y = \rho \sin\theta\)的特殊情形下，
 任意一点\((\rho,\theta)\)的雅克比式为\[
-	J = \jacobi{x,y}{\rho,\theta}
-	= {\def\arraystretch{1.5}
-	\begin{vmatrix}
+	J(u,v)
+	= \jacobi{x,y}{\rho,\theta}
+	= {\def\arraystretch{1.5} \begin{vmatrix}
 		\pdv{x}{\rho} & \pdv{x}{\theta} \\
 		\pdv{y}{\rho} & \pdv{y}{\theta}
 	\end{vmatrix}}
@@ -562,7 +562,8 @@ I = \frac{1}{2} \iint_D [ f(x,y) + f(y,x) ] \dd{x}\dd{y}
 \end{figure}
 
 雅克比式为\[
-	J = \jacobi{x,y}{u,v}
+	J(u,v)
+	= \jacobi{x,y}{u,v}
 	= \def\arraystretch{1.5} \begin{vmatrix}
 	-\frac12 & \frac12 \\
 	\frac12 & \frac12
@@ -571,8 +572,8 @@ I = \frac{1}{2} \iint_D [ f(x,y) + f(y,x) ] \dd{x}\dd{y}
 \]
 那么\begin{align*}
 	\iint_D \exp(\frac{y-x}{y+x}) \dd{x} \dd{y}
-	&= \iint_G e^{\frac{u}{v}} \abs{-\frac12} \dd{u} \dd{v} \\
-	&= \frac12 \int_0^2 \dd{v} \int_{-v}^v e^{\frac{u}{v}} \dd{u} \\
+	&= \iint_G \exp(\frac{u}{v}) \abs{-\frac12} \dd{u} \dd{v} \\
+	&= \frac12 \int_0^2 \dd{v} \int_{-v}^v \exp(\frac{u}{v}) \dd{u} \\
 	&= \frac12 \int_0^2 \left( e - e^{-1} \right) v \dd{v}
 	= e - e^{-1}.
 \end{align*}
@@ -590,7 +591,7 @@ I = \frac{1}{2} \iint_D [ f(x,y) + f(y,x) ] \dd{x}\dd{y}
 	\end{array} \right.
 \]
 在这变换下，与\(D\)对应的闭区域为
-\(G = \Set{\opair{\rho,\theta} \given 0\leq\rho\leq1,0\leq\theta\leq2\pi}\)，
+\(G = \Set{(\rho,\theta) \given 0\leq\rho\leq1,0\leq\theta\leq2\pi}\)，
 雅克比式\[
 	J = \jacobi{x,y}{\rho,\theta} = ab\rho.
 \]
