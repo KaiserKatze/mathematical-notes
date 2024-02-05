@@ -81,16 +81,17 @@
 \end{align*}
 
 \begin{example}
-\def\ys{\iint_\Sigma (z^2+x) \dd{y}\dd{z} - z \dd{x}\dd{y}}%
-计算曲面积分\(\ys\)，其中\(\Sigma\)是
-旋转抛物面\(z = \frac{1}{2}(x^2+y^2)\)介于平面\(z=0\)和\(z=2\)之间的部分的下侧.
+%@see: 《高等数学（第六版 下册）》 P228 例3
+计算曲面积分\(I=\iint_\Sigma (z^2+x) \dd{y}\dd{z} - z \dd{x}\dd{y}\)，
+其中\(\Sigma\)是旋转抛物面\(z = \frac{1}{2}(x^2+y^2)\)介于平面\(z=0\)和\(z=2\)之间的部分的下侧.
 \begin{solution}
 由两类曲面积分之间的联系 \labelcref{equation:线积分与面积分.两类曲面积分之间的联系}，可得\[
 	\iint_\Sigma (z^2+x) \dd{y}\dd{z}
-	= \iint_\Sigma (z^2+x) \cos\alpha \dd{S}
 	= \iint_\Sigma (z^2+x) \frac{\cos\alpha}{\cos\gamma} \dd{x}\dd{y}.
 \]
-在曲面\(\Sigma\)上，有\[
+在曲面\(\Sigma\)上，
+有\(z'_x = x, z'_y = y\)，
+从而\[
 	\cos\alpha
 	= \frac{x}{\sqrt{1+x^2+y^2}},
 	\qquad
@@ -98,12 +99,12 @@
 	= \frac{-1}{\sqrt{1+x^2+y^2}}.
 \]
 故\[
-	\ys
-	= \iint_\Sigma [(z^2+x)(-x) - z] \dd{x}\dd{y}.
+	I = \iint_\Sigma [(z^2+x)(-x) - z] \dd{x}\dd{y}.
 \]
-再按对坐标的曲面积分的计算法，便得\[
-	\ys
-	= - \iint_{D_{xy}} \left\{
+再按对坐标的曲面积分的计算法，
+代入\(z = \frac{1}{2}(x^2+y^2)\)，
+便得\[
+	I = - \iint_{D_{xy}} \left\{
 		\left[
 			\frac{1}{4} (x^2+y^2)^2
 			+ x
@@ -113,11 +114,13 @@
 \]
 因为\(\iint_{D_{xy}} \frac{1}{4} x(x^2+y^2)^2 \dd{x}\dd{y} = 0\)，
 所以\begin{align*}
-	\ys
+	I
 	&= \iint_{D_{xy}} \left[x^2+\frac{1}{2}(x^2+y^2)\right] \dd{x}\dd{y} \\
 	&= \int_0^{2\pi} \dd{\theta}
 		\int_0^2 \left(\rho^2 \cos^2\theta + \frac{1}{2} \rho^2\right) \rho \dd{\rho}
 	= 8\pi.
 \end{align*}
+% Mathematica: Plot3D[1/2 (x^2 + y^2), {x, -2, 2}, {y, -2, 2}, PlotRange -> {0, 2}]
+% Mathematica: Integrate[Integrate[(r^2 Cos[t]^2 + 1/2 r^2) r, {r, 0, 2}], {t, 0, 2 Pi}]
 \end{solution}
 \end{example}
