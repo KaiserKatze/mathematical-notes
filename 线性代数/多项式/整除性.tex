@@ -204,7 +204,7 @@ g(x)=x-1\)，
 \cref{theorem:多项式.带余除法} 中的\(h(x)\)称为“\(g(x)\)除\(f(x)\)的\DefineConcept{商式}”，
 \(r(x)\)称为“\(g(x)\)除\(f(x)\)的\DefineConcept{余式}”.
 
-\begin{corollary}
+\begin{corollary}\label{theorem:多项式.带余除法.推论}
 %@see: 《高等代数（第三版 下册）》（丘维声） P12 推论4
 设\(f,g \in K[x]\)，且\(g(x) \neq 0\)，
 则\(g(x) \mid f(x)\)当且仅当\(g(x)\)除\(f(x)\)的余式为零.
@@ -235,6 +235,39 @@ g(x)=x-1\)，
 	\iff
 	\text{在\(F[x]\)中成立\(g(x) \mid f(x)\)}.
 \]
+\begin{proof}
+必要性.
+假设在\(K[x]\)中，\(g(x) \mid f(x)\)，
+则存在\(h(x) \in K[x]\)，
+使得\(f(x) = h(x) g(x)\).
+由于\(K \subseteq F\)，
+因此\(f(x),g(x),h(x) \in K[x]\).
+从而在\(F[x]\)中，\(g(x) \mid f(x)\).
+
+充分性.
+假设在\(F[x]\)中，\(g(x) \mid f(x)\).
+我们分以下两种情况讨论：\begin{enumerate}
+	\item 当\(g(x)\neq0\)时，
+	在\(K[x]\)中作带余除法，
+	有\(h(x),r(x) \in K[x]\)，
+	使得\[
+		f(x) = h(x) g(x) + r(x), \qquad
+		\deg r(x) < \deg g(x).
+	\]
+	由于\(f(x),g(x),h(x),r(x) \in F[x]\)，
+	因此上式也可以看成是在\(F[x]\)中的带余除法.
+	由于在\(F[x]\)中，
+	\(g(x) \mid f(x)\)，
+	因此根据\cref{theorem:多项式.带余除法.推论}
+	得\(r(x) = 0\).
+	从而在\(K[x]\)中，有\(g(x) \mid f(x)\).
+
+	\item 当\(g(x)=0\)时，
+	从\(g(x) \mid f(x)\)得\(f(x)=0\).
+	从而在\(K[x]\)中，也有\(g(x) \mid f(x)\).
+\end{enumerate}
+综上所述，在\(K[x]\)中，总有\(g(x) \mid f(x)\).
+\end{proof}
 \end{proposition}
 
 \cref{theorem:多项式.整除性不随数域的扩大而改变} 表明，整除性不随数域的扩大而改变.
