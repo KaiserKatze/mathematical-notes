@@ -1,0 +1,367 @@
+\section{正规子群}
+\subsection{群子集乘积}
+我们有时候会研究这样的问题：
+从一个群内的不同子集各取一个元素，
+观察这两个元素的运算结果具备一些什么性质.
+
+我们以整数乘群\(\opair{\mathbb{Z},\times}\)为例.
+取\(H\)为正整数集，\(K\)为负整数集，即\[
+	H = \Set{ h \in \mathbb{Z} \given h > 0 }, \qquad
+	K = \Set{ k \in \mathbb{Z} \given k < 0 },
+\]
+由于\[
+	(\forall h \in H)(\forall k \in K)[h \times k < 0],
+\]
+所以我们从\(H\)和\(K\)中各取一个元素，算得的乘积组成的集合恰好就是\(K\)，
+这就是我们常说的“正负得负”.
+
+\begin{definition}\label{definition:抽象代数.群子集乘积.群子集乘积的定义}
+设\(\opair{G,\otimes}\)是群，
+\(H \subseteq G,
+K \subseteq G\).
+我们把集合\[
+	\Set{ h \otimes k \given h \in H \land k \in K }
+\]
+称为“\(H\)与\(K\)的\DefineConcept{乘积}”，
+记作\(H \otimes K\).
+\end{definition}
+必须要说明的是，这里我们没有像之前一样用\(\opair{G,\times}\)表示群，
+而是用\(\opair{G,\otimes}\)表示群，
+是为了避免把\(H\)与\(K\)的乘积表示成\(H \times K\)，
+因此这会与集合的笛卡尔积产生符号冲突，而我们总是希望能够尽可能规避符号冲突.
+
+\begin{proposition}
+设\(\opair{G,\otimes}\)是群，
+\(H \subseteq G,
+K \subseteq G\).
+那么\(H \otimes K \subseteq G\).
+\begin{proof}
+根据\hyperref[definition:抽象代数.群子集乘积.群子集乘积的定义]{群子集乘积的定义}，有\[
+	(\forall h)
+	(\forall k)
+	[h \in H \land k \in K \iff h \otimes k \in H \otimes K].
+	\eqno(1)
+\]
+再根据\hyperref[definition:集合论.子集的定义]{子集的定义}，有\[
+	(\forall h)
+	[H \subseteq G \iff (h \in H \implies h \in G)],
+	\qquad
+	(\forall k)
+	[K \subseteq G \iff (k \in K \implies k \in G)],
+\]
+所以\[
+	(\forall h)
+	(\forall k)
+	[h \in H \land k \in K \implies h,k \in G \implies h \otimes k \in G].
+	\eqno(2)
+\]
+于是由(1)(2)两式可知\(a \in h \otimes k \implies a \in G\)，\(H \otimes K \subseteq G\).
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:抽象代数.群子集乘积.群子集乘积满足结合律}
+群中子集的乘积满足结合律.
+\begin{proof}
+设\(\opair{G,\otimes}\)是群，
+\(H \subseteq G,
+K \subseteq G,
+L \subseteq G\).
+因为\[
+	(\forall h \in H)
+	(\forall k \in K)
+	(\forall l \in L)
+	[h \otimes (k \otimes l) = (h \otimes k) \otimes l],
+\]
+所以\(H \otimes (K \otimes L) = (H \otimes K) \otimes L\).
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:抽象代数.群子集乘积.子群与自身的乘积等于自身}
+设\(\opair{G,\otimes}\)是群，
+\(\opair{H,\otimes} \subseteq \opair{G,\otimes}\).
+那么\[
+	H \otimes H = H.
+\]
+\begin{proof}
+由于\(\opair{H,\otimes}\subseteq\opair{G,\otimes}\)，
+所以\(H\)对\(\otimes\)封闭，即\[
+	(\forall h,k \in H)
+	[h \otimes k \in H];
+\]
+于是\(H \otimes H \subseteq H\).
+
+设\(e\)是\(\opair{G,\otimes}\)的单位元.
+因为\[
+	(\forall h \in H)
+	[h \otimes e = h],
+\]
+所以\(H = H \otimes \{e\} \subseteq H \otimes H\).
+
+综上所述，\(H \otimes H = H\).
+\end{proof}
+\end{proposition}
+
+应该注意到，\cref{theorem:抽象代数.群子集乘积.子群与自身的乘积等于自身} 的逆命题并不成立，
+即当\(H \otimes H = H\)时，\(H\)不一定对\(\otimes\)成群.
+譬如，在整数加群\(\opair{\mathbb{Z},+}\)中，正整数集\(\mathbb{Z}^+\)对加法\(+\)并不成群.
+
+对于有限子群的乘积我们有如下定理.
+\begin{theorem}
+%@see: 《近世代数》（熊全淹） P35 定理1
+设\(H,K\)是群\(\opair{G,\otimes}\)的有限子群.
+那么\[
+	\card(H \otimes K)
+	= \frac{\card H \cdot \card K}{\card(H \cap K)}.
+\]
+\begin{proof}
+取定\(h_1,h_2 \in H\)，\(k_1,k_2 \in K\)，
+使得\(h_1 \otimes k_1 = h_2 \otimes k_2\)，
+在等号两边同时左乘\(h_2^{-1}\)并右乘\(k_1^{-1}\)，
+便有\[
+	h_2^{-1} \otimes h_1 = k_2 \otimes k_1^{-1};
+\]
+令\(d = h_2^{-1} \otimes h_1\)，
+那么\(d \in H \cap K\).
+因此\[
+	h_2 = h_1 \otimes d^{-1}, \qquad
+	k_2 = d \otimes k_1.
+\]
+
+反过来，对于给定的\(h_1 \in H\)和\(k_1 \in K\)，
+任取\(H \cap K\)中的一个元素\(d\)，
+设\(h_2 = h_1 \otimes d^{-1},
+k_2 = d \otimes k_1\)，
+就得到\(h_1 \otimes k_1 = h_2 \otimes k_2\)，
+这就是说，对于任意\(h_1,k_1\)，
+在\(H \otimes K\)中有\(\card(H \cap K)\)个与\(h_1 \otimes k_1\)相等的元素.
+\end{proof}
+\end{theorem}
+
+特别地，当\(H \cap K = \{e\}\)，即当\(\card(H \cap K) = 1\)时，
+\(\card(H \otimes K) = \card H \cdot \card K\).
+
+假设\(H,K\)都是\(\opair{G,\otimes}\)的子群，
+\(H\)和\(K\)的乘积\(H \otimes K\)通常不一定成群.
+于是我们想要知道，在什么条件下，\(H \otimes K\)也能成群？
+
+\begin{theorem}\label{theorem:群的子集的乘积成群的充分必要条件}
+%@see: 《近世代数》（熊全淹） P36 定理2
+群\(\opair{G,\otimes}\)的子群\(H,K\)的乘积\(H \otimes K\)成群的充分必要条件是：
+\(H\)与\(K\)可交换.
+\begin{proof}
+首先我们假设\(H \otimes K\)成群，
+任取\(h \in H\)，任取\(k \in K\)，
+因为\(K \otimes H\)中的元素\(k \otimes h\)
+是\(H \otimes K\)中元素\(h^{-1} \otimes k^{-1}\)的逆元，
+所以\(k \otimes h \in H \otimes K\)，
+因此\(K \otimes H \subseteq H \otimes K\).
+哟因为\((h\ otimes k)^{-1} \in H \otimes K\)，
+于是\(h \otimes k \in K \otimes H\)，
+所以\(H \otimes K \subseteq K \otimes H\).
+综上，\(H \otimes K = K \otimes H\)；
+也就是说，假如\(H \otimes K\)成群，那么\(H\)与\(K\)可交换.
+
+反过来，假如\(H \otimes K = K \otimes H\)，
+那么\(H \otimes K\)中任一元\(h \otimes k\)的逆元\(k^{-1} \otimes h^{-1}\)
+在\(K \otimes H = H \otimes K\)中，
+又因为\[
+	H \otimes K \otimes H \otimes K
+	= H \otimes H \otimes K \otimes K
+	= H \otimes K,
+\]
+所以\(H \otimes K\)中任意两元的乘积仍然在\(H \otimes K\)中，
+于是\(H \otimes K\)成群.
+\end{proof}
+\end{theorem}
+
+应该注意到，\cref{theorem:群的子集的乘积成群的充分必要条件} 所说的“\(H\)与\(K\)可交换”
+指的是\(H \otimes K\)和\(K \otimes K\)这两个集合相等，
+并不意味着元素的乘积也同样相等：\[
+	(\forall h \in H)(\forall k \in K)[h \otimes k = k \otimes h].
+\]
+
+\begin{corollary}
+交换群\(\opair{G,\otimes}\)的任意两个子群\(H,K\)的乘积仍然是一个子群.
+\end{corollary}
+
+我们知道，
+\(H \otimes K\)包含在由\(H,K\)生成的群\(\opair{H,K}\)中.
+当\(H \otimes K\)成群时，
+由\(H,K\)生成的群就是\(H \otimes K\)，
+即\(\opair{H,K} = H \otimes K\)，
+也就是说，\(H \otimes K\)是\(\opair{G,\otimes}\)中包含\(H,K\)的最小子群.
+
+假如\(\opair{G,\otimes}\)是加群，
+只要\(H,K\)是子群，
+自然\(H \otimes K\)也是子群，
+这时仍然把\(H \otimes K\)写成\((H,K)\)，
+叫做“\(H\)和\(K\)的和”.
+
+\subsection{陪集，拉格朗日定理}
+\begingroup
+\def\RQuotient{G/\kern-2pt\sim}
+\def\LQuotient{G/\kern-2pt\backsim}
+
+利用群\(\opair{G,\otimes}\)的子群\(\opair{H,\otimes}\)可以研究群\(\opair{G,\otimes}\)的结构，
+这时因为利用子群\(\opair{H,\otimes}\)可以给出集合\(G\)的一个划分.
+而为了给出\(G\)的一个划分，需要在\(G\)上建立一个等价关系，于是我们定义：\[
+	a \sim b
+	\defiff
+	a \otimes b^{-1} \in H.
+\]
+可以验证\(\sim\)是等价关系：
+首先，由于\(a \otimes a^{-1} = e \in H\)，因此\(a \sim a\)；
+这就说明\(\sim\)具有自反性.
+然后，由\(a \sim b\)可得\(a \otimes b^{-1} \in H\)；
+那么由\(H \subseteq G\)可知\((a \otimes b^{-1})^{-1} \in H\)；
+于是\(b \otimes a^{-1} \in H\)，从而\(b \sim a\)；
+这就说明\(\sim\)具有对称性.
+最后，由\(a \sim b\)和\(b \sim c\)得\(a \otimes b^{-1} \in H\)和\(b \otimes c^{-1} \in H\)；
+由于\(H \subseteq G\)，因此\((a \otimes b^{-1}) \otimes (b \otimes c^{-1}) \in H\)；
+于是\(a \otimes c^{-1} \in H\)，从而\(a \sim c\)；
+这就说明\(\sim\)具有传递性.
+综上所述，\(\sim\)兼具自反性、对称性、传递性，
+所以\(\sim\)是\(G\)上的一个等价关系.
+
+任给\(a \in G\)，
+它在关系\(\sim\)下的等价类为\begin{align*}
+	[a] &= \Set{ x \in G \given x \sim a }
+	= \Set{ x \in G \given x \otimes a^{-1} \in H }
+	= \Set{ x \in G \given x \otimes a^{-1} = h \land h \in H } \\
+	&= \Set{ x \in G \given x = h \otimes a \land h \in H }
+	= \Set{ h \otimes a \given h \in H }.
+\end{align*}
+可以注意到，这里的等价类\([a]\)等于\(H \otimes \{a\}\).
+我们称\(H \otimes \{a\}\)为“\(H\)的一个\DefineConcept{右陪集}”；
+称\(a\)为它的\DefineConcept{陪集代表}.
+于是\(H\)的全体右陪集组成的集合也就是“\(G\)关于子群\(H\)的\DefineConcept{右商集}”，
+记为\(\RQuotient\)，
+它是\(G\)的一个划分.
+
+类似地，我们还可以重新定义：\[
+	a \backsim b
+	\defiff
+	b^{-1} \otimes a \in H.
+\]
+同理可证\(\backsim\)也是\(G\)上的一个等价关系.
+任给\(a \in G\)，它在关系\(\backsim\)下的等价类为\begin{align*}
+	[a] &= \Set{ x \in G \given x \backsim a }
+	= \Set{ x \in G \given a^{-1} \otimes x \in H }
+	= \Set{ x \in G \given a^{-1} \otimes x = h \land h \in H } \\
+	&= \Set{ x \in G \given x = a \otimes h \land h \in H }
+	= \Set{ a \otimes h \given h \in H }.
+\end{align*}
+可以注意到，这里的等价类\([a]\)等于\(\{a\} \otimes H\).
+我们称\(\{a\} \otimes H\)为“\(H\)的一个\DefineConcept{左陪集}”；
+称\(a\)为它的\DefineConcept{陪集代表}.
+于是\(H\)的全体左陪集组成的集合也就是“\(G\)关于子群\(H\)的\DefineConcept{左商集}”，
+记为\(\LQuotient\)，
+它也是\(G\)的一个划分.
+
+现在定义映射\[
+	\sigma\colon (\LQuotient) \to (\RQuotient),
+	(\{a\} \otimes H) \mapsto (H \otimes \{a^{-1}\}).
+\]
+由于\begin{align*}
+	\{a\} \otimes H = \{c\} \otimes H
+	&\iff
+	c^{-1} \times a \in H \\
+	&\iff
+	c^{-1} \times (a^{-1})^{-1} \in H \\
+	&\iff
+	H \otimes \{c^{-1}\} = H \otimes \{a^{-1}\},
+\end{align*}
+因此\(\sigma\)是单射.
+任给\(H \otimes \{b\} \in \RQuotient\)，
+有\[
+	\sigma(b^{-1} \otimes H)
+	= (H \otimes b^{-1})^{-1}
+	= H \otimes \{b\},
+\]
+因此\(\sigma\)又是满射，
+从而\(\sigma\)是双射.
+于是左陪集与右陪集的基数相同，即\[
+	\card(\LQuotient) = \card(\RQuotient).
+\]
+由此我们引出下述概念.
+\begin{definition}
+%@see: 《近世代数》（丘维声，2015） P42 定义2
+%@see: 《近世代数》（熊全淹） P38 定义2
+设\(H\)是群\(G\)的一个子群，
+把\(G\)关于\(H\)的左商集\(\LQuotient\)的基数\(\card(\LQuotient)\)
+称为“\(H\)在\(G\)中的\DefineConcept{指数}”，
+记作\([G:H]\).
+\end{definition}
+
+假设群\(\opair{G,\otimes}\)的子群\(H\)在\(G\)中的指数为\([G:H]=r\)，则有
+\begin{equation}\label{equation:抽象代数.关于子群的左陪集分解式}
+%@see: 《近世代数》（丘维声，2015） P43 公式(1)
+	G = H \cup (\{a_1\} \otimes H)
+	\cup (\{a_2\} \otimes H)
+	\cup \dotsb
+	\cup (\{a_{r-1}\} \otimes H),
+\end{equation}
+其中\(H,(\{a_1\} \otimes H),(\{a_2\} \otimes H),\dotsc,(\{a_{r-1}\} \otimes H)\)两两互斥.
+
+我们把\cref{equation:抽象代数.关于子群的左陪集分解式}
+称为“群\(G\)关于子群\(H\)的\DefineConcept{左陪集分解式}”；
+把\(\Set{e,\AutoTuple{a}{r-1}}\)称为“\(H\)在\(G\)中的\DefineConcept{左陪集代表系}”.
+
+\begin{lemma}
+%@see: 《近世代数》（丘维声，2015） P43
+设\(\opair{H,\otimes}\)是群\(\opair{G,\otimes}\)的子群，
+那么\begin{enumerate}
+	\item 从\(H\)到它的任一左陪集的映射\[
+		\tau\colon H \to (\{a\} \otimes H), h \mapsto a \otimes h
+	\]是双射.
+
+	\item 子群\(H\)与它的任一左陪集的基数相同，
+	即\(\card H = \card(\{a\} \otimes H)\).
+\end{enumerate}
+\end{lemma}
+
+\begin{theorem}[拉格朗日定理]
+%@see: 《近世代数》（丘维声，2015） P43 定理1
+设\(\opair{G,\otimes}\)是有限群，\(H\)是\(G\)的任一子群，则\[
+	\card G = [G:H] \cdot \card H.
+\]
+\begin{proof}
+设\([G:H]=r\)，
+则由\cref{equation:抽象代数.关于子群的左陪集分解式} 得\begin{align*}
+	\card G
+	&= \card H + \card(\{a_1\} \otimes H) + \dotsb + \card(\{a_{r-1}\} \otimes H) \\
+	&= \card H + \card H + \dotsb + \card H \\
+	&= r \card H.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+拉格朗日定理说明：
+\(G\)的任一子群\(H\)的阶是\(G\)的阶的因数.
+
+\begin{corollary}
+设\(G\)是有限群，则\(G\)的任一元素\(a\)的阶是\(G\)的阶的因数，从而\(a^{\card G}=e\).
+\end{corollary}
+
+
+\endgroup%end subsection{陪集，拉格朗日定理}
+
+\subsection{正规子群}
+一般地，\(H\)的左陪集不一定是它的右陪集.
+假如\(H\)的一个左陪集同时又是它的右陪集，
+也就是说对于任一元\(a\)，
+我们有\(a\)与\(H\)可交换，即\(\{a\} \otimes H = H \otimes \{a\}\).
+\begin{definition}
+%@see: 《近世代数》（丘维声，2015） P53 定义3
+%@see: 《近世代数》（熊全淹） P40 定义3
+假如群\(\opair{G,\otimes}\)的子群\(H\)满足：
+\(H\)的任一左陪集同时也是它的右陪集，即\[
+	(\forall a\in G)[\{a\} \otimes H = H \otimes \{a\}],
+\]
+那么称“\(H\)是\(G\)的\DefineConcept{正规子群}”，
+记作\(H \triangleleft G\).
+\end{definition}
+
+设\(e\)是\(G\)的单位元，
+那么\(\{e\}\)和\(G\)都是\(G\)的正规子群，
+我们称它们为\DefineConcept{平凡正规子群}.
