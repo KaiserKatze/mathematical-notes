@@ -110,10 +110,95 @@ g(x)=x-1\)，
 %@see: 《高等代数（第三版 下册）》（丘维声） P11 定理3
 对于\(K[x]\)中任意两个多项式\(f(x)\)与\(g(x)\)，其中\(g(x)\neq0\)，
 则在\(K[x]\)中存在唯一的一对多项式\(h(x),r(x)\)，使得\[
-	f(x)=h(x) g(x) + r(x)
-	\land
+	f(x) = h(x) g(x) + r(x),
+	\qquad
 	\deg r(x) < \deg g(x).
 \]
+\begin{proof}
+存在性.
+假设被除式\(f(x)\)的次数为\(n\)，
+除式\(g(x)\)的次数为\(m\)，
+即\(\deg f(x)=n\in\mathbb{N}\)，
+\(\deg g(x)=m\in\mathbb{N}\).
+让我们分情况讨论：\begin{enumerate}
+	\item[情形1]
+	当\(m=0\)时，
+	除式\(g(x)\)是零次多项式，
+	不妨设\(g(x)\)等于\(K\)中某个非零常数\(b\).
+	于是\[
+		f(x) = \left[ \frac1b f(x) \right] + 0,
+		\qquad
+		\deg 0 < \deg g(x).
+	\]
+
+	\item[情形2]
+	当\(m>0\)且\(\deg f(x) = n < m\)时，
+	有\[
+		f(x) = 0 g(x) + f(x), \qquad
+		\deg f(x) < \deg g(x).
+	\]
+
+	\item[情形3]
+	当\(m>0\)且\(\deg f(x) = n \geq m\)时，
+	对被除式\(f(x)\)的次数\(n\)运用数学归纳法.
+
+	假设对于次数小于\(n\)的被除式，
+	命题的存在性部分成立.
+	现在来看\(n\)次多项式\(f(x)\).
+
+	设\(f(x),g(x)\)的首项分别是\(a_n x^n,b_m x^m\).
+	于是\(a_n b_m^{-1} x^{n-m} g(x)\)的首项是\(a_n x^n\).
+	令\(f_1(x) = f(x) - a_n b_m^{-1} x^{n-m} g(x)\)，
+	则\(\deg f_1(x) < n\).
+	根据归纳假设，
+	存在\(h_1(x),r_1(x) \in K[x]\)，
+	使得\[
+		f_1(x) = h_1(x) g(x) + r_1(x), \qquad
+		\deg r_1(x) < \deg g(x).
+	\]
+	于是\begin{align*}
+		f(x)
+		&= f_1(x) + a_n b_m^{-1} x^{n-m} g(x) \\
+		&= [h_1(x) + a_n b_m^{-1} x^{n-m}] g(x) + r_1(x).
+	\end{align*}
+	因此，只需要令\(h(x) = h_1(x) + a_n b_m^{-1} x^{n-m}\)，
+	就有\[
+		f(x) = h(x) g(x) + r_1(x),
+		\qquad
+		\deg r_1(x) < \deg g(x).
+	\]
+\end{enumerate}
+
+唯一性.
+设\(h(x),r(x),h'(x),r'(x) \in K[x]\)，
+使得\begin{gather*}
+	f(x) = h(x) g(x) + r(x), \qquad \deg r(x) < \deg g(x), \\
+	f(x) = h'(x) g(x) + r'(x), \qquad \deg r'(x) < \deg g(x).
+\end{gather*}
+于是有\[
+	h(x) g(x) + r(x)
+	= h'(x) g(x) + r'(x),
+\]
+即\[
+	[h(x) - h'(x)] g(x) = r'(x) - r(x).
+\]
+那么\begin{align*}
+	\deg[h(x) - h'(x)] + \deg g(x)
+	&= \deg[r'(x) - r(x)] \\
+	&\leq \max\{
+		\deg r'(x),
+		\deg r(x)
+	\}
+	< \deg g(x).
+\end{align*}
+假设\(h(x) \neq h'(x)\)，
+那么由上式可知\[
+	\deg[h(x) - h'(x)] < 0,
+\]
+矛盾！
+因此必有\(h(x) = h'(x)\).
+从而又有\(r(x) = r'(x)\).
+\end{proof}
 \end{theorem}
 
 \cref{theorem:多项式.带余除法} 中的\(h(x)\)称为“\(g(x)\)除\(f(x)\)的\DefineConcept{商式}”，
