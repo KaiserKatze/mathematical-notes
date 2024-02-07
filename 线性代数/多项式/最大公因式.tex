@@ -201,13 +201,40 @@
 	= (a f(x),b g(x)).
 \]
 
-\begin{proposition}
-%@see: 《高等代数（第三版 下册）》（丘维声） P17
-设\(f,g \in K[x]\)且不全为零，
-则对于\(a,b \in K-\{0\}\)，有\[
-	(f(x), g(x)) = (a f(x), b g(x)).
+\begin{example}
+设\(f(x)=x^3+x^2-7x+2,
+g(x)=3x^2-5x-2\)，
+求\((f(x),g(x))\)，
+并且把它表示成\(f(x)\)与\(g(x)\)的倍式和.
+\begin{solution}
+根据上面的结论，在作辗转相除时，
+可以用适当的非零数去乘被除式或者除式，简化计算.
+\[
+	\begin{array}{r|*3r|*4r|l}
+		3x+1 & 3x^2 & -5x & -2 & 3x^3 & +3x^2 & -21x & +6 & x+\frac83
+		& 3x^2 & -6x && 3x^3 & -5x^2 & -2x \\ \cline{2-8}
+		&& x & -2 && 8x^2 & -19x & +6 \\
+		&& x & -2 && 8x^2 & -\frac{40}3x & -\frac{16}3 \\ \cline{2-8}
+		&&& 0 &&& -\frac{17}3x & +\frac{34}3 \\
+		&&& &&& x & -2 \\
+	\end{array}
 \]
-\end{proposition}
+因为最后一个不等于零的余式是\(r_1(x) = -\frac{17}3x + \frac{34}3\)，
+所以\[
+	(f(x),g(x)) = x-2.
+\]
+把上述辗转相除过程写出来就是\begin{align*}
+	3 f(x) = \left(x+\frac83\right) g(x) + r_1(x), \\
+	g(x) = (3x+1) \left[-\frac3{17} r_1(x)] + 0.
+\end{align*}
+于是\begin{align*}
+	(f(x),g(x))
+	&= -\frac3{17} r_1(x) \\
+	&= -\frac3{17} \left[3 f(x) - \left(x+\frac83\right) g(x)\right] \\
+	&= -\frac9{17} f(x) + \frac1{17} (3x+8) g(x).
+\end{align*}
+\end{solution}
+\end{example}
 
 \begin{definition}\label{definition:多项式.互素}
 %@see: 《高等代数（第三版 下册）》（丘维声） P18 定义2
