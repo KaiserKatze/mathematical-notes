@@ -282,7 +282,7 @@ g(x)=3x^2-5x-2\)，
 
 利用\cref{theorem:多项式.两个多项式互素的充分必要条件} 可以证明关于互素的多项式的一些重要性质.
 
-\begin{property}
+\begin{property}\label{theorem:多项式.互素.性质1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P19 性质1
 在\(K[x]\)中，如果\[
 	f(x) \mid g(x) h(x)
@@ -690,6 +690,54 @@ g(x) = q(x) (f(x),g(x))\)，
 	\deg v(x) < \deg f(x).
 \end{gather*}
 %TODO proof
+\begin{proof}
+令\(h=(f,g)\).
+设\(f = ph,
+g = qh\)，
+其中\(p,q \in K[x]\).
+因为\begin{gather*}
+	\text{$f$与$g$互素}
+	\iff
+	h=1
+	\iff
+	\deg h=0, \\
+	\text{$f,g$是非零多项式}
+	\implies
+	\deg h\geq0,
+\end{gather*}
+所以有\([\text{$f$与$g$不互素}
+\iff
+\deg h>0]\)成立.
+
+先证必要性.
+假设\(f\)与\(g\)不互素，
+那么\(h\neq0\).
+于是可以从方程\(
+	uf
+	= uph
+	= vqh
+	= vg
+\)中消去\(h\)
+得\(up=vq\).
+容易看出，当\(u=q,v=p\)时，就有\(uf=vg\)成立.
+又因为\(\deg f=\deg(ph)=\deg p+\deg h\)，
+而\(\deg h>0\)，
+所以\(\deg v=\deg f-\deg h<\deg f\)；
+同理\(\deg u<\deg g\).
+
+再证充分性.
+% 假设\(uf=vg,\deg u<\deg g,\deg v<\deg f\).
+用反证法.
+假设\(f\)与\(g\)互素，
+且\(uf=vg\).
+根据\cref{theorem:多项式.互素.性质1}，
+由于\(f \mid uf\)，
+所以\(f \mid vg\)，
+从而\(f \mid v\)，
+那么必有\(\deg f \leq \deg v\).
+同理可得\(g \mid u\)，
+继而必有\(\deg g \leq \deg u\).
+\end{proof}
 \end{example}
 
 \section{最小公倍式}
