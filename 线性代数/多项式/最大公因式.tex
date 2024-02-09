@@ -620,14 +620,55 @@ g(x) = q(x) (f(x),g(x))\)，
 设\(f,g \in K[x]\)，
 并且\(a,b,c,d \in K\)满足\(ad-bc\neq0\).
 证明：\((af+bg,cf+dg)=(f,g)\).
-%TODO proof
 \begin{proof}
-设\(u \mid af+bg\)且\(u \mid cf+dg\).
-于是\(u \mid f\)且\(u \mid g\).
-这就证明\[
+由\cref{theorem:多项式.整除的线性性}
+可知\[
+	u \mid f \land u \mid g
+	\implies
+	u \mid af+bg,
+	u \mid cf+dg,
+\]
+于是\[
+	\Set{ u \given \text{$u$是$f$与$g$的公因式} }
+	\subseteq
+	\Set{ u \given \text{$u$是$af+bg$与$cf+dg$的公因式} }.
+\]
+现在来证\[
+	\Set{ u \given \text{$u$是$af+bg$与$cf+dg$的公因式} }
+	\subseteq
+	\Set{ u \given \text{$u$是$f$与$g$的公因式} }.
+\]
+令\[
+	p(af+bg)+q(cf+dg)
+	= (pa+qc)f+(pb+qd)g
+	= f+g,
+\]
+建立关于\(p,q\)的线性方程组\[
+	\left\{ \begin{array}{l}
+		ap+cq=1, \\
+		bp+dq=1.
+	\end{array} \right.
+\]
+因为系数行列式\(\begin{vmatrix}
+	a & c \\
+	b & d
+\end{vmatrix}\neq0\)，
+所以上述线性方程组有唯一解.
+这就是说\[
+	u \mid af+bg \land u \mid cf+dg
+	\implies
+	u \mid f \land u \mid g.
+\]
+综上所述，我们有\[
 	\Set{ u \given \text{$u$是$af+bg$与$cf+dg$的公因式} }
 	= \Set{ u \given \text{$u$是$f$与$g$的公因式} }.
 \]
+那么由\cref{theorem:多项式.最大公因式.命题1}
+可知\[
+	\Set{ u \given \text{$u$是$af+bg$与$cf+dg$的最大公因式} }
+	= \Set{ u \given \text{$u$是$f$与$g$的最大公因式} },
+\]
+因此\((af+bg,cf+dg)=(f,g)\).
 \end{proof}
 \end{example}
 
