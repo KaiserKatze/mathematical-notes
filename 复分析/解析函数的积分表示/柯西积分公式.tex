@@ -1,0 +1,245 @@
+\section{柯西积分公式}
+\subsection{柯西积分公式}
+\begin{theorem}\label{theorem:解析函数的积分表示.柯西积分公式}
+设区域\(D\)的边界\(C\)是围线（或复围线）；
+\(f(z)\)在\(D\)内解析，
+在\(\overline{D}=D+C\)上连续，
+则\begin{enumerate}
+	\item 对\(D\)内任意一点\(z\)，
+	有\begin{equation}\label{equation:解析函数的积分表示.柯西积分公式}
+		f(z)
+		= \frac{1}{2\pi\iu}
+		\int_C \frac{f(\zeta)}{\zeta-z} \dd{\zeta},
+	\end{equation}
+	上式称为\DefineConcept{柯西积分公式}；
+
+	\item \(f(z)\)在\(D\)内有各阶导数，
+	且\begin{equation}\label{equation:解析函数的积分表示.柯西高阶导数公式}
+		f^{(n)}(z)
+		= \frac{n!}{2\pi\iu}
+		\int_C \frac{f(\zeta)}{(\zeta-z)^{n+1}} \dd{\zeta}
+		\quad (n=1,2,\dots),
+	\end{equation}
+	上式称为\DefineConcept{柯西高阶导数公式}.
+\end{enumerate}
+\begin{proof}
+在区域\(D\)内任意取定一点\(z\)，
+以\(z\)为中心、\(r\)为半径作一小圆周\(C_r\)，
+使\(C_r\)及其内部都含于\(D\)内.
+设\(D_1\)是由\(C\)及\(C_r\)所围成的区域.
+显然，函数\(\frac{f(\zeta)}{\zeta-z}\)在\(D_1\)内解析，
+在\(\overline{D_1}\)上连续.
+由多连通区域上柯西积分定理，
+有\[
+	\int_C \frac{f(\zeta)}{\zeta-z} \dd{\zeta}
+	= \int_{C_r} \frac{f(\zeta)}{\zeta-z} \dd{\zeta}.
+\]
+又由\(\lim_{\zeta \to z} (\zeta-z) \frac{f(\zeta)}{\zeta-z} = f(z)\)，
+有\[
+	\int_{C_r} \frac{f(\zeta)}{\zeta-z} \dd{\zeta} = 2\pi\iu f(z).
+\]
+从而有\[
+	f(z) = \frac{1}{2\pi\iu} \int_C \frac{f(\zeta)}{\zeta-z} \dd{\zeta}.
+\]
+
+当\(n=1\)时，
+在\(D\)内任意取定一点\(z_0\)，
+在\(z_0\)的邻近任取一点\(z \in D\)，
+则\begin{align*}
+	f(z)-f(z_0)
+	&= \frac{1}{2\pi\iu}
+		\int_C \left[
+			\frac{f(\zeta)}{\zeta-z}
+			- \frac{f(\zeta)}{\zeta-z_0}
+		\right] \dd{\zeta} \\
+	&= \frac{z-z_0}{2\pi\iu}
+		\int_C \frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)} \dd{\zeta},
+\end{align*}
+于是\begin{align*}
+	&\hspace{-20pt}
+		\frac{f(z)-f(z_0)}{z-z_0}
+		- \frac{1}{2\pi\iu}
+		\int_C \frac{f(\zeta)}{(\zeta-z_0)^2} \dd{\zeta} \\
+	&=\frac{1}{2\pi\iu}
+		\int_C f(\zeta)
+		\left[
+			\frac{1}{(\zeta-z)(\zeta-z_0)}-\frac{1}{(\zeta-z_0)^2}
+		\right] \dd{\zeta} \\
+	&=\frac{z-z_0}{2\pi\iu}
+		\int_C \frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)^2} \dd{\zeta}.
+\end{align*}
+
+由于\(\lim_{z \to z_0} z-z_0 = 0\)，
+要证明\[
+	f'(z_0) = \lim_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}
+	= \frac{1}{2\pi\iu} \int_C \frac{f(\zeta)}{(\zeta-z_0)^2} \dd{\zeta},
+\]
+只需要证明\(\int_C \frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)^2} \dd{\zeta}\)在点\(z_0\)的邻域内有界.
+
+为此，由于\(f(z)\)在\(\overline{D}\)上连续，
+设在\(C\)上有\(\abs{f(z)} \leq M\)，
+点\(z_0\)到\(C\)的距离为\(d\)，
+则\(\zeta \in C\)时，
+\(\abs{\zeta-z_0} \geq d\).
+若\(z \in N_{\frac{d}{2}}(z_0)\)，
+有\(\abs{z-z_0} \leq \frac{d}{2}\)，
+则对于\(\zeta \in C\)
+有\begin{align*}
+	\abs{\zeta-z}
+	&= \abs{(\zeta-z_0)-(z-z_0)} \\
+	&\geq \abs{ \abs{\zeta-z_0} - \abs{z-z_0} } \\
+	&= \abs{\zeta-z_0} - \abs{z-z_0} \\
+	&\geq d - \frac{d}{2} = \frac{d}{2},
+\end{align*}
+所以有\[
+	\abs{\int_C \frac{f(\zeta)}{(\zeta-z)(\zeta-z_0)^2} \dd{\zeta}}
+	\leq \frac{M}{(d/2) d^2} L
+	= \frac{2ML}{d^3},
+\]
+其中\(L\)是围线\(C\)的长度.
+因为\(z_0\)是\(D\)内任意一点，
+于是得到当\(n=1\)时\[
+	f'(z) = \frac{1}{2\pi\iu} \int_C{\frac{f(\zeta)}{(\zeta-z)^2}\dd{\zeta}}
+\]成立.
+利用数学归纳法可以进一步证明\(n=2,3,\dots\)情况下命题依然成立.
+\end{proof}
+\end{theorem}
+
+\hyperref[equation:解析函数的积分表示.柯西积分公式]{柯西积分公式}表明，
+一个在区域内解析并连续到边界的函数，
+它在边界上的值决定了它在区域内任一点的值.
+因此，人们称柯西积分公式为解析函数的积分表达式.
+从柯西积分公式可以看出，
+解析函数的函数值之间有着密切的联系.
+这是解析函数不同于一般函数的一个显著特性.
+积分是涉及函数整体性质的一个概念；
+函数在一点的值应只涉及孤立点这一局部.
+柯西积分公式把整体和局部联系起来，
+可以帮助我们详细地研究解析函数的各种局部性质.
+
+必须注意的是，\cref{theorem:解析函数的积分表示.柯西积分公式} 中的围线\(C\)可以是复围线，
+这时\(C\)所围的区域\(D\)是多连通区域，
+\cref{equation:解析函数的积分表示.柯西积分公式,equation:解析函数的积分表示.柯西高阶导数公式} 中的积分也是复围线上的积分.
+其正面与在\cref{theorem:解析函数的积分表示.柯西积分公式} 中把\(C\)视作单围线时的证明方法完全一致.
+
+\subsection{柯西积分公式的若干推论}
+\begin{corollary}\label{theorem:解析函数的积分表示.柯西积分公式推论1}
+若函数\(f(z)\)在区域\(D\)内解析，
+则\(f(z)\)在\(D\)内有任意阶导数.
+\end{corollary}
+\cref{theorem:解析函数的积分表示.柯西积分公式推论1}
+表明了我们曾多次提到的一个事实：
+解析函数在其解析的区域内是无穷次可微的，
+且求任意阶导数后所得到的函数仍是该区域内的解析函数.
+这也就是我们曾经说过的：
+对于复变函数来说，
+在一个区域内一阶可微就蕴含着任意阶可微.
+较之实函数，这是解析函数的一个最鲜明的特征.
+
+\begin{corollary}\label{theorem:解析函数的积分表示.柯西积分公式推论2}
+函数\(f(z)=u(x,y)+\iu v(x,y)\)在区域\(D\)内解析的充分必要条件为：
+\begin{enumerate}
+	\item 二元实函数\(u(x,y)\)和\(v(x,y)\)的偏导数
+	\(u'_x\)、\(u'_y\)、\(v'_x\)和\(v'_y\)在区域\(D\)内连续；
+
+	\item \(u(x,y)\)和\(v(x,y)\)在区域\(D\)内处处满足C-R条件.
+\end{enumerate}
+\end{corollary}
+\cref{theorem:解析函数的积分表示.柯西积分公式推论2} 是刻画解析函数的第二个等价定理.
+
+\begin{theorem}[莫雷拉定理]\label{theorem:解析函数的积分表示.莫雷拉定理}
+若函数\(f(z)\)在单连通区域\(D\)内连续，
+且对\(D\)内的任一围线\(C\)有\[
+	\int_C f(z) \dd{z} = 0,
+\]
+则\(f(z)\)在\(D\)内解析.
+\end{theorem}
+对单连通区域内连续复变函数而言，
+\hyperref[theorem:解析函数的积分表示.莫雷拉定理]{莫雷拉定理}是柯西积分定理的逆定理.
+
+\begin{theorem}\label{theorem:解析函数的积分表示.柯西积分公式推论3}
+函数\(f(z)\)在区域\(D\)内解析的充分必要条件为：
+\begin{enumerate}
+	\item \(f(z)\)在区域\(D\)内连续；
+
+	\item 对任一围线\(C\)，
+	只要\(C\)及其内部全含于\(D\)内，
+	就有\(\int_C f(z) \dd{z} = 0\).
+\end{enumerate}
+\end{theorem}
+\cref{theorem:解析函数的积分表示.柯西积分公式推论3} 是刻画解析函数的第三个等价定理.
+
+\begin{theorem}[柯西不等式]
+若函数\(f(z)\)在圆\(K: \abs{z-a}<R\)内解析，
+且\(\abs{f(z)} \leq M\)，
+则\begin{equation}\label{theorem:解析函数的积分表示.柯西不等式}
+	\abs{f^{(n)}(a)} \leq \frac{n! M}{R^n}
+	\quad(n=1,2,\dots).
+\end{equation}
+\end{theorem}
+\cref{theorem:解析函数的积分表示.柯西不等式} 是对解析函数各阶导数模的估计式，
+表明解析函数在解析点\(a\)的各阶导数模的估计与它的解析区域的大小密切相关.
+
+\begin{definition}
+在整个复平面上解析的函数称为\DefineConcept{整函数}（entire function）.
+\end{definition}
+在有的书上，整函数是这样定义的：
+若函数\(f(z)\)除了无穷远点外，
+在\(\mathbb{C}\)上是全纯的，
+则称\(f(z)\)是一个整函数.
+
+\begin{example}
+常函数、多项式函数、\(e^z\)、\(\cos z\)和\(\sin z\)都是整函数.
+\end{example}
+
+\begin{definition}
+若函数\(f(z)\)除了无穷远点外，
+在\(\mathbb{C}\)上只有极点（极点的可以是有限个，也可以是无限个），
+则称\(f(z)\)是一个\DefineConcept{亚纯函数}（meromorphic function）.
+\end{definition}
+
+\begin{example}
+所有的整函数都是亚纯函数.
+有理分式函数\(f(z) = \frac{P_n(z)}{Q_m(z)}\)也是亚纯函数.
+\end{example}
+
+\begin{theorem}[刘维尔定理]\label{theorem:解析函数的积分表示.刘维尔定理}
+若\(f(z)\)是有界的整函数，
+则\(f(z)\)必为常数.
+\begin{proof}
+因为\(f(z)\)有界，
+所以\(\abs{f(z)} \leq M\)在\(z\)平面上恒成立，
+在圆\(\abs{z-a}<R\)内自然也成立.
+由柯西不等式得\[
+	\abs{f'(z)} \leq \frac{M}{R}.
+\]
+令\(R\to+\infty\)，
+得到\(f'(z)=0\)恒成立，
+即\(f(z)\)是常数.
+\end{proof}
+\end{theorem}
+\hyperref[theorem:解析函数的积分表示.刘维尔定理]{刘维尔定理}的逆定理（即“常函数是有界整函数”）也成立.
+刘维尔定理的逆否定理“非常数的整函数必无界”自然也成立.
+
+\begin{theorem}[解析函数的平均值定理]\label{theorem:解析函数的积分表示.平均值定理}
+若函数\(f(z)\)在圆\(\abs{z-z_0}<R\)内解析，
+在闭圆\(\abs{z-z_0} \leq R\)上连续，
+则\[
+	f(z_0)
+	= \frac{1}{2\pi} \int_0^{2\pi} f(z_0+Re^{\iu\phi}) \dd{\phi},
+\]
+即\(f(z)\)在圆心\(z_0\)的值等于它在圆周上的值的算术平均数.
+\end{theorem}
+
+\begin{theorem}[最大模定理]\label{theorem:解析函数的积分表示.最大模定理}
+若函数\(f(z)\)在区域\(D\)内解析，
+且不为常数，
+则\(\abs{f(z)}\)在\(D\)内取不到最大值.
+\end{theorem}
+
+\begin{corollary}\label{theorem:解析函数的积分表示.最大模定理推论}
+若函数\(f(z)\)在有界区域\(D\)内解析，
+在闭区域\(\overline{D}\)上连续，
+并且不为常数，
+则\(\abs{f(z)}\)只能在\(D\)的边界上达到最大值.
+\end{corollary}

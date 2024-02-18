@@ -1,0 +1,124 @@
+\section{复变函数的积分}
+\subsection{积分的定义和计算方法}
+为了叙述简便而又不妨碍实际应用，
+今后除特别声明外，
+我们谈到曲线时一律是指光滑或逐段光滑的曲线.
+其中，逐段光滑的简单闭曲线简称为\DefineConcept{围线}.
+
+\begin{definition}
+设有向曲线\(C: z = z(t)\ (\alpha \leq t \leq \beta)\)
+以\(a = z(\alpha)\)为起点，
+\(b = z(\beta)\)为终点.
+又设函数\(f(z)\)沿\(C\)有定义.
+在\(C\)上沿着\(C\)从\(a\)到\(b\)的方向
+（此为实参数增大的方向，通常作为\(C\)的正方向）
+任取\(n-1\)个分点\[
+	z_0 = a,\ z_1,\dots,\ z_{n-1},\ z_n = b
+\]
+把曲线\(C\)分成\(n\)个小弧段.
+在每个小弧段\(\Arc{z_{k-1} z_k}\)上任取一点\(\zeta_k\)，
+求和得\[
+	S_n = \sum_{k=1}^n{f(\zeta_k) \increment z_k},
+\]
+其中\(\increment z_k = z_k - z_{k-1}\).
+记\(\lambda = \max\{\abs{\increment z_1},\abs{\increment z_2},\dots,\abs{\increment z_n}\}\).
+若\(\lambda\to0\)（分点无限增多，且这些弧段长度均趋于零）时，
+上述和式的极限\(\lim_{n\to\infty}S_n\)存在且趋于确定的极限\(J\)，
+那么称函数\(f(z)\)沿\(C\) \DefineConcept{可积}，
+称\(J\)为函数\(f(z)\)沿\(C\)（从\(a\)到\(b\)）的\DefineConcept{积分}，
+记作\(\int_C f(z) \dd{z}\)，
+即\[
+	\int_C f(z) \dd{z} = J = \lim_{\lambda\to0} \sum_{k=1}^n{f(\zeta_k) \increment z_k}.
+\]
+其中\(C\)称为\DefineConcept{积分路径}.
+\(\int_C f(z) \dd{z}\)表示沿\(C\)的正方向的积分，
+而\(\int_{C^-}{f(z)\dd{z}}\)表示沿\(C\)的负方向的积分.
+\end{definition}
+
+\begin{theorem}
+如果函数\(f(z)=u(x,y)+\iu v(x,y)\)沿曲线\(C\)连续，
+则\(f(z)\)沿\(C\)可积，
+且\[
+	\int_C f(z) \dd{z}
+	= \int_C u(x,y)\dd{x} - v(x,y)\dd{y}
+	+ \iu \int_C v(x,y)\dd{x} + u(x,y)\dd{y}.
+\]
+
+为了便于记忆，上式也可写成\[
+\int_C f(z) \dd{z} = \int_C{(u+\iu v)(\dd{x}+\iu\dd{y})}.
+\]
+\end{theorem}
+
+\begin{corollary}
+如果\(\int_C f(z) \dd{z}\)沿有向光滑曲线\(C\)连续.曲线\(C\)的方程为\[
+z = z(t) = x(t) + \iu y(t), \quad \alpha \leq t \leq \beta,
+\]那么有\[
+\int_C f(z) \dd{z} = \int_\alpha^\beta f[z(t)] z'(t) \dd{t}.
+\]称上式为复积分的\DefineConcept{变量代换公式}.
+\end{corollary}
+
+\begin{example}
+设\(n\in\mathbb{Z}\)，\(C\)是以\(a\)为心，\(R\)为半径的圆周.求：\[
+I = \int_C \frac{\dd{z}}{(z-a)^n}.
+\]
+\begin{solution}
+由于圆周\(C\)的参数方程为\[
+z-a=Re^{\iu\theta}, \quad 0 \leq \theta \leq 2\pi,
+\]所以\(\dd{z}=\iu R e^{\iu\theta} \dd{\theta}\).
+
+当\(n=1\)时，\[
+\int_C \frac{\dd{z}}{z-a}
+= \int_0^{2\pi}{\frac{\iu R e^{\iu\theta} \dd{\theta}}{R e^{\iu\theta}}}
+= \iu \int_0^{2\pi}\dd{\theta}
+= 2\pi\iu.
+\]
+
+当\(n \neq 1\)时，\begin{align*}
+\int_C{\frac{\dd{z}}{(z-a)^n}}
+&= \int_0^{2\pi}{
+	\frac{
+		\iu R e^{\iu\theta} \dd{\theta}
+	}{
+		R^n e^{\iu n \theta}
+	}
+}
+= \frac{\iu}{R^{n-1}} \int_0^{2\pi}{e^{-\iu(n-1)\theta}\dd{\theta}} \\
+&= \frac{\iu}{R^{n-1}} \left[
+	\int_0^{2\pi}{\cos(n-1)\theta\dd{\theta}}
+	-\iu \int_0^{2\pi}{\sin(n-1)\theta\dd{\theta}}
+	\right]
+= 0.
+\end{align*}
+也就是说，\begin{equation}\label{equation:解析函数的积分表示.重要积分1}
+\int_C \frac{\dd{z}}{(z-a)^n} = \left\{ \begin{array}{cl}
+2\pi\iu, & n=1, \\
+0, & n\in\mathbb{Z}-\{1\}.
+\end{array} \right.
+\end{equation}
+\end{solution}
+\end{example}
+
+\subsection{复积分的基本性质}
+\begin{property}
+设\(f(z)\)和\(g(z)\)沿曲线\(C\)连续，则\begin{enumerate}
+\item \(\int_C a f(z) \dd{z} = a \int_C f(z) \dd{z}, a\in\mathbb{C}\)；
+\item \(\int_C [f(z) \pm g(z)] \dd{z} = \int_C f(z) \dd{z} \pm \int_C g(z) \dd{z}\)；
+\item \(\int_C f(z) \dd{z} = \int_{C_1} f(z) \dd{z} + \int_{C_2} f(z) \dd{z}\)，其中\(C\)由曲线\(C_1\)和\(C_2\)衔接而成；
+\item \(\int_{C^-} f(z) \dd{z} = -\int_C f(z) \dd{z}\).
+\end{enumerate}
+\end{property}
+
+\begin{theorem}
+设\(f(z)\)和\(g(z)\)沿曲线\(C\)连续，则\[
+\abs{\int_C f(z) \dd{z}}
+\leq \int_C{\abs{f(z)}\abs{\dd{z}}}
+= \int_C{\abs{f(z)}\dd{s}},
+\]其中\(\abs{\dd{z}}=\dd{s}=\sqrt{(\dd{x})^2+(\dd{y})^2}\)表示弧长的微分.
+\end{theorem}
+
+\begin{corollary}[积分估值定理]\label{theorem:解析函数的积分表示.积分估值定理}
+若存在\(M > 0\)，使在曲线\(C\)上\(\abs{f(z)} \leq M\)，曲线\(C\)的长为\(L\)，则有\begin{equation}\label{equation:解析函数的积分表示.长大不等式}
+\abs{\int_C f(z) \dd{z}} \leq ML.
+\end{equation}\rm
+因为\cref{equation:解析函数的积分表示.长大不等式} 是关于弧长\(L\)和函数\(f\)的模（大小）\(\abs{f(z)}\)的不等式，所以又称之为\DefineConcept{长大不等式}.
+\end{corollary}

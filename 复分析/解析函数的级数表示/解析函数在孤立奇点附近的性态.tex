@@ -1,0 +1,294 @@
+\section{解析函数在孤立奇点附近的性态}
+\subsection{有限孤立奇点的情形}
+\subsubsection{孤立奇点的分类}
+现在我们利用罗朗展开对解析函数的孤立奇点进行分类，并讨论解析函数在各类孤立奇点附近的性态.
+设\(a\)为函数\(f(z)\)的有限孤立奇点，
+\(f(z)\)在去心邻域\(0<\abs{z-a}<R\)内的罗朗展式为\[
+	f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n
+	= \sum_{n=0}^\infty c_n (z-a)^n
+	+ \sum_{n=1}^\infty c_{-n} (z-a)^{-n}.
+\]
+我们已经知道，
+级数\(\sum_{n=0}^\infty c_n (z-a)^n\)
+称为\(f(z)\)在点\(a\)的解析部分，
+其和函数\(\phi(z)\)在包括点\(a\)的邻域\(\abs{z-a}<R\)内是解析的，
+故\(f(z)\)在点\(a\)的奇异性质完全体现在\(f(z)\)的罗朗展式的复幂项部分.
+这就是为什么级数\(\sum_{n=1}^\infty c_{-n} (z-a)^{-n}\)又被称为奇异部分.
+
+现在根据奇异部分仅可能出现的三种情况，
+将\(f(z)\)的有限孤立奇点作如下分类：
+\begin{definition}
+设\(a\)是\(f(z)\)的有限孤立奇点.
+\begin{enumerate}
+	\item 若\(f(z)\)在点\(a\)的奇异部分为零，
+	则称“\(a\)是\(f(z)\)的\DefineConcept{可去奇点}”.
+
+	{\footnotesize
+	函数\(f(z)\)在可去奇点的去心邻域内的罗朗展式只有非负幂项的解析部分\[
+		c_0 + c_1 (z-a) + c_2 (z-a)^2 + \dotsb,
+	\]
+	而这解析部分的和函数\(\phi(z)\)在包括点\(a\)在内的邻域\(K\)内解析，
+	且\(\phi(a) = c_0\).
+	于是，在这去心邻域内，\(f(z) = \phi(z)\).
+	只要我们适当补充或改变\(f(z)\)在点\(a\)的定义，
+	使得\(f(a) = \phi(a)\)，
+	那么\(f(z)\)在邻域\(N_R(a)\)内就没有奇点了.
+	}
+
+	\item 若\(f(z)\)在点\(a\)的奇异部分为有限多项，
+	并假设最小复幂项为\((z-a)\)的\((-m)\)次幂项，
+	即\[
+		\frac{c_{-m}}{(z-a)^m} + \frac{c_{-(m-1)}}{(z-a)^{m-1}}
+		+ \dotsb + \frac{c_{-1}}{z-a}
+		\quad(c_{-m}\neq0),
+	\]
+	则称“\(a\)是\(f(z)\)的\(m\)阶\DefineConcept{极点}”.
+	特别地，一阶极点又称为\DefineConcept{简单极点}.
+
+	\item 若\(f(z)\)在点\(a\)的奇异部分有无限多项，
+	则称“\(a\)是\(f(z)\)的\DefineConcept{本性奇点}（essential singularity）”.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+点\(z=0\)是函数\(f(z) = \frac{\sin z}{z}\)的可去奇点.
+只要补充定义\(f(z) = \lim_{z\to0} \frac{\sin z}{z} = 1\)，
+即规定\[
+	f(z) = \left\{ \begin{array}{cc}
+		\frac{\sin z}{z}, & z\neq0, \\
+		1, & z=0,
+	\end{array} \right.
+\]
+则\(f(z)\)在\(z=0\)就解析了.
+\end{example}
+
+\subsubsection{可去奇点的判定}
+\begin{theorem}\label{theorem:解析函数的级数表示.可去奇点的特征}
+若点\(a\)为\(f(z)\)的孤立奇点，
+则下列几个命题是等价的：
+\begin{enumerate}
+	\item 点\(a\)是\(f(z)\)的可去奇点，\(f(z)\)在点\(a\)的奇异部分为零；
+	\item \(\lim_{z \to a} f(z) = c_0\ (\abs{c_0} < +\infty)\)；
+	\item \(f(z)\)在点\(a\)的某去心邻域内有界.
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{极点的判定}
+\begin{theorem}\label{theorem:解析函数的级数表示.极点的特征}
+若\(a\)为\(f(z)\)的孤立奇点，则下列几个命题是等价的：
+\begin{enumerate}
+	\item 点\(a\)是\(f(z)\)的\(m\)阶极点，
+	\(f(z)\)在点\(a\)的奇异部分为\[
+		\frac{c_{-m}}{(z-a)^m}
+		+ \frac{c_{-(m-1)}}{(z-a)^{m-1}}
+		+ \dotsb + \frac{c_{-1}}{z-a}
+		\quad(c_{-m}\neq0);
+	\]
+
+	\item \(f(z)\)在点\(a\)的某去心邻域内能表成\[
+		f(z) = \frac{\lambda(z)}{(z-a)^m},
+	\]
+	其中\(\lambda(z)\)在点\(a\)的邻域内解析，
+	且\(\lambda(a)\neq0\)；
+
+	\item 点\(a\)是\(g(z) = \frac{1}{f(z)}\)的可去奇点，
+	将\(a\)作为\(g(z)\)的解析点看待时，
+	点\(a\)为\(g(z)\)的\(m\)阶零点.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{theorem:解析函数的级数表示.孤立奇点成为极点的充分必要条件1}
+\(f(z)\)的孤立奇点\(a\)是极点的充分必要条件是：\[
+	\lim_{z \to a} f(z) = \infty.
+\]
+\begin{proof}
+“点\(a\)是\(f(z)\)的（\(m\)阶）极点”
+等价于“点\(a\)是\(g(z) = \frac{1}{f(z)}\)的（\(m\)阶）零点”，
+也就等价于“\(\lim_{z \to a} f(z) = \infty\)”.
+\end{proof}
+\end{corollary}
+\cref{theorem:解析函数的级数表示.孤立奇点成为极点的充分必要条件1} 的缺点是不能指明极点的阶数.
+
+\subsubsection{本性奇点的判定}
+\begin{theorem}
+\(f(z)\)的孤立奇点\(a\)是本性奇点的充分必要条件是：
+不存在有限或无限的极限\(\lim_{z \to a} f(z)\).
+\end{theorem}
+
+\subsubsection{皮卡定理}
+\begin{theorem}[皮卡定理]
+解析函数在本性奇点的去心邻域内无穷多次地取到每个有限复值，
+至多可能除一个值（称为\DefineConcept{皮卡例外值}）.
+\end{theorem}
+皮卡定理深刻、准确地揭示了解析函数在其本性奇点邻近取值的奇异性.
+上述定理还有另一种表述方式，即“任何不为常数的整函数，除去可能的一个值外，取遍所有（有限）的复数值.”
+
+又因为整函数是在复平面上不取无穷远点的亚纯函数，
+从而皮卡定理可以推广到任意的亚纯函数：
+\begin{theorem}
+\(\mathbb{C}\)上的任意不为常数的亚纯函数，
+除去可能的两个值外，
+取遍\(\overline{\mathbb{C}}\)的所有值.
+\end{theorem}
+
+\begin{example}
+点\(z=0\)是函数\(f(z) = e^{1/z}\)的一个孤立奇点.
+在去心邻域\(0<\abs{z}<+\infty\)内，
+\(f(z) = e^{1/z}\)的罗朗展式为\[
+	e^{1/z}
+	= 1 + \frac{1}{z}
+	+ \frac{1}{2!} \frac{1}{z^2}
+	+ \dotsb
+	+ \frac{1}{n!} \frac{1}{z^n}
+	+ \dotsb.
+\]
+该展开式中含有无穷多个负次幂项，
+因此\(z=0\)是\(e^{1/z}\)的本性奇点.
+又因为\(e^{1/z}\neq0\)，
+所以\(z=0\)是\(e^{1/z}\)的皮卡例外值.
+对任意有限非零复数\(A\)，
+若取\(z_n = \frac{1}{\ln A + 2n\pi\iu}\)，
+则\(\lim_{n\to\infty} z_n = 0\)，
+且\[
+	f(z_n) = A
+	\quad(n=1,2,\dotsc).
+\]
+这表示在\(z=0\)附近，
+\(f(z) = e^{1/z}\)可以无穷多次地取到事先给定的任何有限非零复数\(A\).
+于是可以想见函数\(e^{1/z}\)在\(z=0\)附近取值的奇异性了.
+\end{example}
+
+总之，上述定理，
+不仅反映了解析函数在孤立奇点附近的性态，
+同时也指出了判别奇点类型的方法.
+下面就如何使用它们判别奇点类型举几个例子.
+
+\begin{example}
+证明\(z=0\)是\(f(z) = \frac{1}{z} (e^z-1)\)的可去奇点.
+\begin{proof}[证法一]
+用罗朗展开证明.
+
+显然，\(z=0\)是\(f(z) = \frac{1}{z} (e^z-1)\)的孤立奇点.
+在去心邻域\(0<\abs{z}<+\infty\)内将\(f(z)\)作罗朗展开，
+得\[
+	\frac{e^z-1}{z}
+	= \frac{1}{z} \left( \sum_{n=0}^\infty \frac{z^n}{n!} - 1 \right)
+	= \frac{1}{z} \sum_{n=1}^\infty \frac{z^n}{n!}
+	= \sum_{n=1}^\infty \frac{z^{n-1}}{n!}
+	= 1 + \frac{z}{2!} + \frac{z^2}{3!} + \dotsb,
+\]
+由此可见\(\frac{1}{z} (e^z-1)\)在点\(z=0\)的奇异部分为零，
+也就是说点\(z=0\)是它的可去奇点.
+\end{proof}
+\begin{proof}[证法二]
+用极限关系证明.
+
+由于\(\lim_{z\to0} \frac{1}{z} (e^z-1) = \lim_{z\to0} e^z = 1\)是有限复数，
+那么根据\cref{theorem:解析函数的级数表示.可去奇点的特征}，
+\(z=0\)就是\(\frac{e^z-1}{z}\)的可去奇点.
+\end{proof}
+\end{example}
+
+\subsection{解析函数在无穷远点附近的性态}
+由于函数\(f(z)\)在无穷远点\(\infty\)总是没有定义的，
+所以无穷远点\(\infty\)总是函数\(f(z)\)的奇点.
+
+\begin{definition}
+若函数\(f(z)\)在无穷远点\(\infty\)的去心邻域\[
+	0 \leq r < \abs{z} < +\infty
+\]内解析，
+则称点\(\infty\)为\(f(z)\)的一个孤立奇点.
+若点\(\infty\)是\(f(z)\)的奇点的聚点，
+则称点\(\infty\)为\(f(z)\)的非孤立奇点.
+\end{definition}
+
+设点\(\infty\)是\(f(z)\)的孤立奇点，
+则作倒变换\(z = 1/\zeta\)，
+得函数\[
+	\phi(\zeta) = f(1/\zeta) = f(z)
+\]
+在\(\zeta\)平面上原点\(\zeta=0\)的去心邻域\(D: 0<\abs{\zeta}<\frac{1}{r}\)内解析，
+\(\zeta=0\)为函数\(\phi(\zeta)\)的孤立奇点.
+于是，通过对函数\(\phi(\zeta)\)在有限孤立奇点\(\zeta=0\)的去心邻域\(D\)内性态的讨论，
+我们就可以得到函数\(f(z)\)在无穷远点\(\infty\)附近的性态.
+\begin{definition}\label{definition:解析函数的级数表示.无穷远处孤立奇点的分类}
+若\(\zeta=0\)为\(\phi(\zeta)=f(1/\zeta)\)的可去奇点（视为解析点），
+则称\(z=\infty\)为\(f(z)\)的可去奇点（解析点）；
+若\(\zeta=0\)为\(\phi(\zeta)\)的\(m\)阶极点，
+则称\(z=\infty\)为\(f(z)\)的\(m\)阶极点；
+若\(\zeta=0\)为\(\phi(\zeta)\)的本性奇点，
+则称\(z=\infty\)为\(f(z)\)的本性奇点.
+\end{definition}
+
+前面在介绍分式线性变换时，
+我们曾按广义连续性来定义函数在点\(\infty\)处的值：
+定义\(f(\infty) = \lim_{z\to\infty} f(z)\).
+但在点\(\infty\)没有定义差商，
+因此我们没有定义函数在无穷远点处的可微性.
+现在依据\cref{definition:解析函数的级数表示.无穷远处孤立奇点的分类}，
+我们可以将“函数\(f(z)\)在点\(\infty\)解析”定义为：
+点\(\infty\)为\(f(z)\)的可去奇点，
+且定义\(f(\infty) = \lim_{z\to\infty} f(z)\).
+
+设由方程\[
+	\phi(\zeta) = f(1/\zeta) = f(z)
+\]
+确定的函数\(\phi(\zeta)\)在去心邻域\(0<\abs{\zeta}<1/r\)内的罗朗展式为\[
+	\phi(\zeta) = \sum_{n=-\infty}^\infty c_n \zeta^n.
+\]
+将变量\(\zeta\)换为\(z\)，
+就得到\(f(z)\)在无穷远点去心邻域\(r<\abs{z}<+\infty\)内的罗朗展式\[
+	f(z) = \sum_{n=-\infty}^\infty c_n (1/z)^n
+	= \sum_{n=-\infty}^\infty b_n z^n,
+\]
+其中\(b_n = c_{-n}\ (n=0,\pm1,\pm2,\dotsc)\).
+也就是说，\(\phi(\zeta)\)在原点去心邻域的展式中的复幂项系数，
+与\(f(z)\)在无穷远点去心邻域的展式中的相应正幂项系数相等，
+而前者展式中的正幂项系数与后者相应复幂项系数相等.
+根据这个关系，应用对有限孤立奇点的讨论结果，我们知道：
+\begin{align*}
+	\text{\(z=\infty\)是\(f(z)\)的可去奇点}
+	&\iff
+	\text{\(f(z)\)的罗朗展式中不含\(z\)的正次幂} \\
+	&\iff
+	\lim_{z\to\infty} f(z) = A~\text{是有限复数}, \\
+	\text{\(z=\infty\)是\(f(z)\)的\(m\)阶极点}
+	&\iff
+	\text{\(f(z)\)的罗朗展式中只有有限个正次幂且其最高次幂是\(m\)} \\
+	&\iff
+	\lim_{z\to\infty} f(z) = \infty, \\
+	\text{\(z=\infty\)是\(f(z)\)的本性奇点}
+	&\iff
+	\text{\(f(z)\)的罗朗展式中有无限多个正次幂} \\
+	&\iff
+	\lim_{z\to\infty} f(z)~\text{不存在}.
+\end{align*}
+
+\begin{example}
+多项式函数\[
+	P(z) = a_0 z^n + a_1 z^{n-1} + \dotsb + a_n
+	\quad(a_0\neq0)
+\]以无穷远点\(\infty\)为\(n\)阶极点.
+\end{example}
+
+\begin{example}
+有理分式函数\[
+	f(z) = \frac{a_0 z^n + a_1 z^{n-1} + \dotsb + a_n}{b_0 z^m + b_1 z^{m-1} + \dotsb + b_m}
+	\quad(a_0\neq0,b_0\neq0)
+\]
+当\(m \geq n\)时，
+\(\lim_{z\to\infty} f(z) = 0\)
+或\(\lim_{z\to\infty} f(z) = \frac{a_0}{b_0}\)，
+因此\(\infty\)是\(f(z)\)的解析点；
+当\(m<n\)时，
+利用多项式的降幂除法，
+可求得\(f(z)\)在点\(\infty\)的罗朗展式为\[
+	f(z) = \frac{a_0}{b_0} z^{n-m} + \dotsb
+	\quad(\frac{a_0}{b_0}\neq0),
+\]
+因此\(\infty\)是\(f(z)\)的\(n-m\)阶极点.
+\end{example}
+
+\begin{example}
+无穷远点\(\infty\)是指数函数\(f(z) = e^z\)的本性奇点.
+\end{example}

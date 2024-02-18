@@ -1,0 +1,232 @@
+\section{幂级数}
+\subsection{幂级数的概念}
+\begin{definition}
+各项均是幂函数的复函数项级数，称为\DefineConcept{幂级数}.
+其形式是\[
+	\sum_{n=0}^\infty c_n z^n
+	= c_0 + c_1 z + c_2 z^2 + \dotsb,
+\]
+其中复常数\(c_0,c_1,c_2,\dotsc\)称为“幂级数的\DefineConcept{系数}”.
+\end{definition}
+
+\subsection{阿贝尔定理}
+\begin{theorem}[阿贝尔定理]\label{theorem:解析函数的级数表示.阿贝尔定理}
+若幂级数\(\sum_{n=0}^\infty c_n z^n\)在\(z_0 \neq 0\)处收敛，
+则它在圆\(\abs{z} < \abs{z_0}\)内绝对收敛且内闭一致收敛.
+\begin{proof}
+因\(\sum_{n=0}^\infty c_n z_0^n\)收敛，
+故\(\lim_{n\to\infty} c_n z_0^n = 0\)，
+从而\[
+	(\exists M > 0)
+	(\forall n \in \mathbb{N})
+	[\abs{c_n z_0^n} \leq M],
+\]
+进而有\[
+	\abs{c_n z^n}
+	= \abs{c_n z_0^n \cdot \frac{z^n}{z_0^n}}
+	\leq M \abs{\frac{z}{z_0}}^n.
+\]
+当\(\abs{z} < \abs{z_0}\)时，
+有\(\abs{\frac{z}{z_0}} < 1\).
+把\(z\)视为固定的复数时，
+由\cref{example:无穷级数.等比级数的收敛性} 可知
+实等比级数\(\sum_{n=0}^\infty \abs{\frac{z}{z_0}}^n\)收敛，
+所以根据\hyperref[theorem:无穷级数.正项级数的比较审敛法]{正项级数的比较审敛法}可知，
+实幂级数\(\sum_{n=0}^\infty \abs{c_n z^n}\)
+在圆\(\abs{z} < \abs{z_0}\)内收敛，
+也就是说复幂级数\(\sum_{n=0}^\infty c_n z^n\)
+在圆\(\abs{z} < \abs{z_0}\)内绝对收敛.
+
+在闭圆\(\abs{z} \leq k \abs{z_0}\ (0<k<1)\)内，
+有\(\abs{c_n z^n} \leq M k^n\).
+因为实等比级数\(\sum_{n=0}^\infty k^n\)收敛，
+所以根据\hyperref[theorem:无穷级数.优级数准则]{优级数准则}可知，
+复幂级数\(\sum_{n=0}^\infty c_n z^n\)
+在闭圆\(\abs{z} \leq k \abs{z_0}\)一致收敛，
+故复幂级数\(\sum_{n=0}^\infty c_n z^n\)
+在圆\(\abs{z} < \abs{z_0}\)内闭一致收敛.
+\end{proof}
+\end{theorem}
+阿贝尔定理表明，
+若幂级数\(\sum_{n=0}^\infty c_n z^n\)
+在点\(z = z_0 \neq 0\)处收敛，
+则它在圆\(\abs{z} < \abs{z_0}\)内绝对收敛；
+特别地，当\(0 \leq r < \abs{z_0}\)时
+正项级数\(\sum_{n=0}^\infty \abs{c_n} r^n\)收敛.
+若幂级数\(\sum_{n=0}^\infty c_n z^n\)
+在点\(z = z_0\)处发散，
+则它在圆\(\abs{z} > \abs{z_0}\)外发散；
+特别地，当\(r > \abs{z_0}\)时
+正项级数\(\sum_{n=0}^\infty \abs{c_n} r^n\)发散.
+
+我们可以看出，
+对于级数\(\sum_{n=0}^\infty c_n z^n\)，
+可能存在一个圆\[
+	K: \abs{z} < R,
+\]使得该级数在\(K\)内绝对收敛，
+而在\(K\)外发散.
+这个圆\(K\)称为该幂级数的\DefineConcept{收敛圆}，
+数\(R\)称为\DefineConcept{收敛半径}.
+
+可以证明，复级数\(\sum_{n=0}^\infty c_n z^n\)的收敛半径\(R\)
+恰好就是与之相应的实系数的幂级数\(\sum_{n=0}^\infty \abs{c_n} r^n\)的收敛半径.
+
+\begin{theorem}\label{theorem:解析函数的级数表示.复幂级数的收敛半径的求法}
+若幂级数\(\sum_{n=0}^\infty c_n z^n\)的系数\(c_n\)满足\[
+	\lim_{n\to\infty} \abs{\frac{c_{n+1}}{c_n}} = \rho
+\]或\[
+	\lim_{n\to\infty} \sqrt[n]{\abs{c_n}} = \rho
+\]或\[
+	\varlimsup_{n\to\infty} \sqrt[n]{\abs{c_n}} = \rho,
+\]
+则这幂级数的收敛半径为\[
+	\def\arraystretch{1.5}
+	R = \left\{ \begin{array}{ll}
+		\frac{1}{\rho}, & \rho \in (0,+\infty), \\
+		+\infty, & \rho = 0, \\
+		0, & \rho = +\infty \\
+	\end{array} \right.
+\]
+\end{theorem}
+对于幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)，
+上述求收敛半径的定理仍然成立，
+其收敛圆为\[
+	\abs{z-a}<R.
+\]
+
+若\(0<R<+\infty\)，
+那么当\(\abs{z-a} \leq r < R\)时，
+有\[
+	\abs{c_n (z-a)^n} \leq \abs{c_n} r^n,
+\]
+级数\(\sum_{n=0}^\infty \abs{c_n} r^n\)收敛，
+所以\(\sum_{n=0}^\infty c_n (z-a)^n\)
+在\(\abs{z-a} \leq r\)上一致收敛，
+而\(r\)可以任意接近于\(R\).
+因此由\hyperref[theorem:解析函数的级数表示.魏尔斯特拉斯定理]{魏尔斯特拉斯定理}，
+幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)的和函数\(F(z)\)
+在圆\(\abs{z-a}<R\)内解析，
+而且\[
+	f^{(k)}(z) = k! c_k + (k+1)k\dotsm2c_{k+1}(z-a)+\dotsb.
+\]
+特别地，令\(z=a\)，得\[
+	c_k = \frac{1}{k!} f^{(k)}(a)
+	\quad(k=0,1,2,\dotsc).
+\]
+
+若\(R=+\infty\)，则幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)在整个复平面\(C\)上绝对收敛，在任意闭圆\(\abs{z} \leq r\)上一致收敛，和函数\(F(z)\)在\(C\)上解析，等等.综上所述，有以下结果：
+\begin{theorem}\label{theorem:解析函数的级数表示.幂级数的和函数的性质}
+设幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)的和函数是\(F(z)\)，
+收敛圆是\(K: \abs{z-a}<R\ (0<R<+\infty)\).
+\begin{enumerate}
+	\item 和函数\(F(z)\)在其收敛圆\(K\)内解析；
+
+	\item 在收敛圆\(K\)内，
+	幂级数\[
+		F(z) = \sum_{n=0}^\infty c_n (z-a)^n
+	\]
+	可以逐项求任意阶导数，
+	得\begin{equation}
+		f^{(p)}(z) = \sum_{n=p}^\infty n(n-1)\dotsm(n-p+1) c_n (z-a)^{n-p}
+		\quad(p=0,1,2,\dotsc),
+	\end{equation}
+	且其收敛半径不变；
+
+	\item 幂级数的系数\(c_n\)可以用和函数\(F(z)\)
+	在收敛圆圆心\(z=a\)处的相应阶导数表出，
+	即\begin{equation}
+		c_n = \frac{1}{n!} f^{(n)}(a)
+		\quad(n=0,1,2,\dotsc);
+	\end{equation}
+
+	\item 沿收敛圆\(K\)内的任一简单曲线\(\gamma \subseteq K\)，
+	可逐项积分，
+	得\begin{equation}
+		\int_\gamma F(z) \dd{z}
+		= \sum_{n=0}^\infty c_n \int_\gamma (z-a)^n \dd{z},
+	\end{equation}
+	且收敛半径不变.
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+求幂级数\(\sum_{n=0}^\infty \frac{z^n}{n}\)的收敛半径、收敛圆以及和函数.
+\begin{solution}
+收敛半径为\[
+	R = \lim_{n\to\infty} \abs{\frac{c_n}{c_{n+1}}}
+	= \lim_{n\to\infty} \frac{n}{n+1}
+	= 1.
+\]
+收敛圆为\(\abs{z} < 1\).
+
+设在\(\abs{z} < 1\)内，
+幂级数\(\sum_{n=0}^\infty \frac{z^n}{n}\)的和函数\(F(z)\).
+由\cref{theorem:解析函数的级数表示.幂级数的和函数的性质} 可得\[
+	F'(z) = \sum_{n=1}^\infty z^{n-1}
+	= \sum_{n=0}^\infty z^n
+	= \frac{1}{1-z}
+	\quad(\abs{z} < 1).
+\]
+令\(1-z = \zeta\)，
+有\[
+	F'(1-\zeta) = \frac{1}{\zeta}
+	\quad(\abs{\zeta-1}<1).
+\]
+在\(\abs{\zeta-1}<1\)内沿着\(1\)到\(\zeta\)的路径积分，
+可得\[
+	\int_1^{\zeta} F'(1-\zeta) \dd{\zeta}
+	= \int_1^{\zeta} \frac{1}{\zeta} \dd{\zeta},
+\]\[
+	F(0) - F(1-\zeta)
+	= \ln \zeta,
+\]
+其中\(-\pi < \arg \zeta < \pi\).
+由于\(F(0) = 0\)，
+所以和函数\[
+	F(z) = -\ln(1-z)
+	\quad(\abs{z}<1, -\pi < \arg(1-z) < \pi).
+\]
+\end{solution}
+\end{example}
+注意，前面的讨论没有涉及到幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)
+在收敛圆周\(\abs{z-a}=R\ (0<R<+\infty)\)上的收敛性.
+在\(\abs{z-a}=R\)上，
+幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)
+既可以是点点收敛，也可以是点点发散，
+还可以在一部分点上收敛而在其余点上发散.
+例如，级数\(\sum_{n=1}^\infty \frac{z^n}{n^2}\)的收敛半径\(R=1\)；
+在\(\abs{z}=1\)上，
+\(\sum_{n=1}^\infty \abs{\frac{z^n}{n^2}}
+= \sum_{n=1}^\infty \frac{1}{n^2}\)收敛，
+因此\(\sum_{n=1}^\infty \frac{z^n}{n^2}\)
+在\(\abs{z}=1\)上处处绝对收敛.
+又例如级数\(\sum_{n=0}^\infty z^n\)
+在\(\abs{z}=1\)上点点发散，
+因为这时一般项\(z^n\)的模\(\abs{z^n}\)恒为\(1\)而不趋于零.
+再例如级数\(\sum_{n=1}^\infty \frac{z^n}{n}\)的收敛半径\(R=1\)；
+它在圆周\(\abs{z}=1\)上只在点\(z=1\)处发散，
+而在其他各点\(z = e^{\iu\theta}\ (0<\theta<2\pi)\)上，
+有\[
+	\sum_{n=1}^\infty \frac{z^n}{n}
+	= \sum_{n=1}^\infty \frac{\cos n\theta}{n}
+	+ \iu\sum_{n=1}^\infty \frac{\sin n\theta}{n},
+\]
+由于它的实部、虚部级数都收敛，
+因此它在圆周\(\abs{z}=1\)上除去点\(z=1\)外处处收敛.
+
+但我们要特别之处的是：
+纵使幂级数在其收敛圆周上处处收敛，
+其和函数在收敛圆周上仍然至少有一个奇点.
+例如级数\(\sum_{n=1}^\infty \frac{z^n}{n^2}\)
+虽然在\(\abs{z}=1\)上处处绝对收敛，
+从而在闭圆\(\abs{z}\leq1\)上一致收敛，
+且其一般项\(\frac{z^n}{n^2}\)在复平面上都是解析的，
+因此根据\hyperref[theorem:解析函数的级数表示.魏尔斯特拉斯定理]{魏尔斯特拉斯定理}，
+级数\(\sum_{n=1}^\infty \frac{z^n}{n^2}\)
+在\(\abs{z}<1\)内的和函数\(F(z)\)的导数为\[
+	F'(z) = 1 + \frac{z}{2} + \frac{z^2}{3} + \dotsb + \frac{z^{n-1}}{n} + \dotsb.
+\]
+当\(z\)从单位元内沿实轴趋于\(1\)时，
+\(F'(z)\)趋于\(+\infty\).
+而我们知道，解析函数在其解析点处是无穷次可微的，
+所以\(z=1\)是和函数\(F(z)\)的一个奇点.

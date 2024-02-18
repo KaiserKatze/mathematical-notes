@@ -1,0 +1,415 @@
+\section{解析函数的泰勒展开式}
+\subsection{泰勒定理}
+我们已经知道，任意一个收敛半径为正数的幂级数，其和函数在收敛圆内是解析的，下面的泰勒定理表明其逆命题也成立.
+\begin{theorem}\label{theorem:解析函数的级数表示.泰勒定理}
+\def\G{\Gamma_\rho}
+设\(f(z)\)在区域\(D\)内解析，
+取\(a \in D\)，
+只要开圆\(K: \abs{z-a}<R\)满足\(K \subseteq D\)，
+则\(f(z)\)在圆\(K\)内能展开成幂级数\[
+	f(z) = \sum_{n=0}^\infty c_n (z-a)^n,
+	\eqno(1)
+\]
+其中\[
+	c_n = \frac{1}{2\pi\iu} \int_{\G} \frac{f(\zeta)}{(\zeta-a)^{n+1}} \dd{\zeta}
+	= \frac{f^{(n)}(a)}{n!}
+	\quad (n=0,1,2,\dotsc);
+	\eqno(2)
+\]\[
+	\G: \abs{\zeta-a} = \rho \in (0,R).
+\]
+而且上述展开式是唯一的，
+也就是说，
+如果\[
+	(\forall r > 0)
+	[
+		\abs{z-a} < r
+		\implies
+		f(z)
+		= \sum_{n=0}^\infty b_n (z-a)^n
+		= \sum_{n=0}^\infty c_n (z-a)^n
+	],
+\]
+那么\(\forall n\in\mathbb{N} : b_n = c_n\).
+
+\rm
+(1)式称为函数\(f(z)\)在点\(a\)的\DefineConcept{泰勒展式}，
+(2)式称为展式的\DefineConcept{泰勒系数}，
+而由(2)式确定系数的幂级数称为\DefineConcept{泰勒级数}.
+\begin{proof}
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[rotate=10]
+		\draw circle(2cm);
+		\draw[dashed] circle(1.8cm);
+		\draw (1,.1)node{\(K\)};
+		\fill (0,0)circle(2pt)node[below]{\(a\)};
+		\fill (-1,1)circle(2pt)node[below]{\(z\)};
+		\pgfmathsetmacro{\ta}{40}
+		\pgfmathsetmacro{\xa}{2*sin(\ta)}
+		\pgfmathsetmacro{\ya}{-2*cos(\ta)}
+		\pgfmathsetmacro{\ua}{\ta-90}
+		\pgfmathsetmacro{\va}{\ta-160}
+		\pgfmathsetmacro{\ub}{\va-180}
+		\pgfmathsetmacro{\vb}{-70}
+		\draw (\xa,\ya)arc[start angle=\ua,end angle=\va,radius=-1]
+			arc[start angle=\ub,end angle=\vb,radius=-3]
+			arc[start angle=\vb,end angle=-49,radius=-13.5];
+		\draw (5,0)node[right]{\(D\)};
+	\end{tikzpicture}
+	\caption{解析函数\(f(z)\)在解析区域\(D\)内任一点\(a\)处的收敛圆\(K\)}
+	\label{figure:解析函数的级数表示.解析函数在解析区域内任一点处的收敛圆}
+\end{figure}
+设\(z\)是圆\(K\)内任意取定的点，
+总有一个圆周\(\G: \abs{\zeta-a} = \rho \in (0,R)\)
+可以使得点\(z\)含在\(\G\)（\cref{figure:解析函数的级数表示.解析函数在解析区域内任一点处的收敛圆} 中虚线表\(\G\)）内部.
+由\hyperref[equation:解析函数的积分表示.柯西积分公式]{柯西积分公式}得\[
+	f(z) = \frac{1}{2\pi\iu} \int_{\G} \frac{f(\zeta)}{\zeta-z} \dd{\zeta}.
+\]
+
+为了得到\(f(z)\)的幂级数展式，
+关键在于将\(\frac{1}{\zeta-z}\)（柯西核）展为几何级数.
+为此，将\(\frac{1}{\zeta-z}\)变形为\[
+	\frac{1}{\zeta-z}
+	= \frac{1}{(\zeta-a)-(z-a)}
+	= \frac{1}{\zeta-a} \cdot \left(1 - \frac{z-a}{\zeta-a}\right)^{-1}.
+\]
+当\(\zeta \in \G\)时，
+由于\(\abs{\frac{z-a}{\zeta-a}}<1\)，
+那么\[
+	\frac{1}{1-u} = \sum_{n=0}^\infty u^n
+	\quad(\abs{u}<1),
+\]\[
+	\left(1 - \frac{z-a}{\zeta-a}\right)^{-1}
+	= \sum_{n=0}^\infty \left(\frac{z-a}{\zeta-a}\right)^n.
+\]
+因此\[
+	\frac{f(\zeta)}{\zeta-z}
+	= \frac{f(\zeta)}{\zeta-a} \cdot \left(1 - \frac{z-a}{\zeta-a}\right)^{-1}
+	= \frac{f(\zeta)}{\zeta-a} \cdot \sum_{n=0}^\infty \left(\frac{z-a}{\zeta-a}\right)^n.
+\]
+级数\(\sum_{n=0}^\infty \left(\frac{z-a}{\zeta-a}\right)^n\)
+在\(\G\)上（关于\(\zeta\)）是一致收敛的，
+与\(\G\)上的有界函数\(\frac{f(\zeta)}{\zeta-a}\)相乘，
+仍然是\(\G\)上的一致收敛级数，
+于是\(\frac{f(\zeta)}{\zeta-z}\)可表成在\(\G\)上一致收敛的级数：\[
+	\frac{f(\zeta)}{\zeta-z}
+	= \sum_{n=0}^\infty (z-a)^n \cdot \frac{f(\zeta)}{(\zeta-a)^{n+1}}.
+\]
+将上式沿\(\G\)积分，
+再乘以\(\frac{1}{2\pi\iu}\)，
+根据\cref{theorem:解析函数的级数表示.一致收敛级数的基本性质2} 得\[
+	f(z) = \frac{1}{2\pi\iu} \int_{\G} \frac{f(\zeta)}{\zeta-z} \dd{\zeta}
+	= \sum_{n=0}^\infty (z-a)^n \cdot \frac{1}{2\pi\iu} \int_{\G} \frac{f(\zeta)}{(\zeta-a)^{n+1}}.
+\]
+由\cref{equation:解析函数的积分表示.柯西高阶导数公式} 可知，\[
+	\frac{1}{2\pi\iu} \int_{\G} \frac{f(\zeta)}{(\zeta-a)^{n+1}} \dd{\zeta}
+	= \frac{f^{(n)}(a)}{n!},
+\]
+故\[
+	f(z) = \sum_{n=0}^\infty c_n (z-a)^n.
+\]
+
+下面证明展式是唯一的.
+假设\[
+	f(z) = \sum_{n=0}^\infty b_n (z-a)^n,
+	\quad z \in K: \abs{z-a}<R.
+\]
+根据\cref{theorem:解析函数的级数表示.幂级数的和函数的性质}，\[
+	b_n = \frac{f^{(n)}(a)}{n!} = c_n \quad (n\in\mathbb{N}),
+\]
+故展式是唯一的.
+\end{proof}
+\end{theorem}
+显然，幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)的收敛半径应当大于或等于\(R\)，
+否则\[
+	f(z) = \sum_{n=0}^\infty c_n (z-a)^n
+\]将不能在圆\(K\)内成立.
+至于幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)的收敛半径能取多大，
+当系数\(c_n\)确定后，
+可由\cref{theorem:解析函数的级数表示.复幂级数的收敛半径的求法} 确定其收敛半径.
+另外，前面我们曾经指出：
+对收敛半径为有限正数的幂级数，
+它在收敛圆内的和函数在收敛圆周上至少有一个奇点.
+由此我们得到确定幂级数收敛半径的另一个方法：
+
+设\(f(z)\)在点\(a\)解析，
+又设\(f(z)\)在点\(a\)的某邻域内的幂级数展式为
+\(f(z) = \sum_{n=0}^\infty c_n (z-a)^n\)，
+再设点\(b\)是\(f(z)\)奇点中距离点\(a\)最近的一个奇点，
+则点\(a\)与点\(b\)间的距离\(\abs{a-b}\)
+就是幂级数\(\sum_{n=0}^\infty c_n (z-a)^n\)的收敛半径.
+
+根据上述求解收敛半径的方法，
+泰勒定理中圆\(K\)的半径\(R\)，
+不论区域\(D\)是单连通区域还是多连通区域，
+最多可取为点\(a\)到解析区域\(D\)的边界的距离.
+其实，为保证圆\(K\)含于\(D\)，
+半径\(R\)最多也只能取为这个距离.
+
+由泰勒展式的唯一性证明过程，
+及泰勒级数的定义，立即可以得到下述推论.
+\begin{corollary}
+任何收敛半径为正数的幂级数都是它的和函数在收敛圆内的泰勒展式.
+\end{corollary}
+
+综合\cref{theorem:解析函数的级数表示.幂级数的和函数的性质}
+和\cref{theorem:解析函数的级数表示.泰勒定理}，
+可以得出刻画解析函数的第四个等价定理：
+\begin{theorem}
+“函数\(f(z)\)在区域\(D\)内解析”的充分必要条件是“\(f(z)\)在\(D\)内任一点\(a\)的邻域内可展成\(z-a\)的幂级数”.
+\end{theorem}
+
+\subsection{常见初等函数的泰勒展式}
+\subsubsection{直接法求泰勒展式}
+\begin{example}
+求\(f(z) = e^z\)在点\(z = 0\)处的泰勒展开式.
+\begin{solution}
+\(f(z) = e^z\)在\(z\)平面解析，
+\(f^{(n)}(z) = e^z\).
+在\(z = 0\)处的泰勒系数\[
+	c_n = \frac{1}{n!} f^{(n)}(0) = \frac{1}{n!}
+	\quad(n=0,1,2,\dotsc),
+\]
+于是\(f(z) = e^z\)在点\(z = 0\)处的泰勒展式为
+\begin{equation}\label{equation:解析函数的级数表示.指数函数的泰勒展式}
+	e^z = \sum_{n=0}^\infty \frac{z^n}{n!}
+	\quad(\abs{z} < +\infty).
+\end{equation}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(f(z) = \Ln(1+z)\)的各个分支在点\(z = 0\)的泰勒展开式，
+并指出展开式成立范围.
+\begin{solution}
+多值函数\(f(z) = \Ln(1+z)\)
+以\(z = -1\)及\(z = \infty\)为支点，
+将\(z\)平面沿负实轴从\(-1\)到\(\infty\)割破.
+在这样得到的区域\(G\)内，
+\(\Ln(1+z)\)可以分出无穷多个单值解析分支：\[
+	f_k(z) = \ln(1+z) + 2k\pi\iu
+	\quad(k=0,\pm1,\pm2,\dotsc).
+\]
+无论哪一个分支，
+与\(z = 0\)距离最近的奇点都是\(z = -1\).
+因此，泰勒定理中圆\(K\)的半径可取为\(1\).
+
+先取\(\Ln(1+z)\)的主值\(f_0(z) = \ln(1+z)\)，
+在单位圆\(\abs{z}<1\)内作泰勒展开.
+为此先计算泰勒系数，
+由于\[
+	f'_0(z) = \frac{1}{1+z},
+	\dotsc,
+	f^{(n)}_0(z) = (-1)^{n-1} \frac{(n-1)!}{(1+z)^n},
+\]
+所以泰勒系数为\[
+	c_n = \frac{1}{n!} f^{(n)}_0(0) = \frac{(-1)^{n-1}}{n}
+	\quad(n=1,2,\dotsc).
+\]
+因为\(f_0(z) = \ln(1+z)\)是主值，
+即\(1+z\)取正实数时\(\ln(1+z)\)取实数值，
+于是有\(c_0 = f_0(0) = 0\).
+这样，\(f_0(z) = \ln(1+z)\)在\(z = 0\)点的泰勒展式为
+\begin{equation}\label{equation:解析函数的级数表示.对数函数的泰勒展式}
+	\begin{split}
+		\ln(1+z)
+		&= z
+		- \frac{z^2}{2}
+		+ \frac{z^3}{3}
+		- \dotsb
+		+ (-1)^{n-1} \frac{z^n}{n}
+		+ \dotsb \\
+		&= \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n} z^n
+	\end{split}
+	\quad (\abs{z} < 1).
+\end{equation}
+故\(f(z) = \Ln(1+z)\)的各个单值解析分支在点\(z = 0\)处的泰勒展式为\[
+	f_k(z) = 2k\pi\iu + \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n} z^n
+	\quad (\abs{z} < 1; k=0,\pm1,\pm2,\dotsc).
+\]
+\end{solution}
+\end{example}
+
+\subsubsection{间接法求泰勒展式}
+\begin{example}
+将下列函数在\(z = 0\)展成幂级数：
+
+(1)\(\cos z\)； \hfill (2)\(\sin z\)； \hfill (3)\(e^z \cos z\)； \hfill (4)\(e^z \sin z\).
+\begin{solution}
+四个函数都在整个\(z\)平面上解析，
+将要求得的幂级数的收敛范围都应是\[
+	\abs{z}<+\infty.
+\]
+
+(1)利用\(e^z\)的展开式 \labelcref{equation:解析函数的级数表示.指数函数的泰勒展式}，
+\[
+	\cos z = \frac{1}{2} (e^{\iu z} + e^{-\iu z})
+	= \frac{1}{2} \sum_{n=0}^\infty \frac{(\iu z)^n}{n!} + \frac{1}{2} \sum_{n=0}^\infty \frac{(-\iu z)^n}{n!},
+\]
+注意到右端两个技术的奇次方项互相抵消，
+故得\begin{equation}\label{equation:解析函数的级数表示.余弦函数的泰勒展式}
+	\cos z = \sum_{n=0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}
+	\quad(\abs{z}<+\infty).
+\end{equation}
+
+(2)与(1)类似可得\begin{equation}\label{equation:解析函数的级数表示.正弦函数的泰勒展式}
+	\sin z = \sum_{n=0}^\infty \frac{(-1)^n z^{2n+1}}{(2n+1)!}
+	\quad(\abs{z}<+\infty).
+\end{equation}
+
+(3)因为\[
+	e^z \cos z = e^z \cdot \frac{1}{2} (e^{\iu z} + e^{-\iu z})
+	= \frac{1}{2} \left[e^{(1+\iu)z} + e^{(1-\iu)z}\right],
+\]
+利用\(e^z\)的展开式 \labelcref{equation:解析函数的级数表示.指数函数的泰勒展式}，
+得\begin{align*}
+	e^z \cos z
+	&= \frac{1}{2} \left[
+			\sum_{n=0}^\infty \frac{(1+\iu)^n}{n!} z^n
+			+ \sum_{n=0}^\infty \frac{(1-\iu)^n}{n!} z^n
+		\right] \\
+	&= \frac{1}{2} \sum_{n=0}^\infty \frac{1}{n!} [(1+\iu)^n+(1-\iu)^n] z^n
+	\quad(\abs{z}<+\infty).
+\end{align*}
+由于\(1+\iu=\sqrt{2} e^{\frac{\pi\iu}{4}}\)，
+\(1-\iu=\sqrt{2} e^{-\frac{\pi\iu}{4}}\)，
+代入上式得\begin{equation}
+	\begin{split}
+		e^z \cos z
+		&= \frac{1}{2}
+			\sum_{n=0}^\infty
+			\frac{(\sqrt{2})^n}{n!}
+			(e^{\frac{n\pi}{4}\iu}+e^{-\frac{n\pi}{4}\iu}) z^n \\
+		&= \sum_{n=0}^\infty \frac{(\sqrt{2})^n \cos\frac{n\pi}{4}}{n!} z^n
+		\quad(\abs{z}<+\infty).
+	\end{split}
+\end{equation}
+
+(4)可用与(3)同样的方法求解.
+但由于\(e^z\)及\(\sin z\)的已知泰勒展式均在\(\abs{z}<+\infty\)内是绝对收敛级数，
+故其柯西乘积也绝对收敛，
+所以我们用级数的乘法运算求解\(e^z \sin z\)较为方便.
+由\[
+	e^z = \sum_{n=0}^\infty \frac{z^n}{n!},
+	\qquad
+	\sin z = \sum_{n=0}^\infty \frac{(-1)^n z^{2n+1}}{(2n+1)!},
+\]
+可按对角线方法得出\[
+	e^z \sin z
+	= z + z^2 + \frac{1}{3} z^3 - \frac{1}{30} z^5 + \dotsb
+	\quad(\abs{z}<+\infty).
+\]
+\end{solution}
+\end{example}
+
+\subsection{解析函数零点的孤立性及唯一性定理}
+下面利用泰勒展式研究解析函数的零点.
+\begin{definition}\label{definition:解析函数的级数表示.零点}
+设函数\(f(z)\)在点\(a\)的某邻域\(N(a)\)内解析.
+若\(f(a)=0\)，
+则称\(a\)是解析函数\(f(z)\)的\DefineConcept{零点}.
+若\(f(a)=f'(a)=f''(a)=\dotsb=f^{(m-1)}(a)=0\)，
+但\(f^{(m)}(a)\neq0\)，
+则称\(a\)是解析函数\(f(z)\)的\(m\)阶零点.
+特别地，\(m=1\)阶零点\(a\)（即\(f'(a)=0\)），
+又称为\(f(z)\)的简单零点.
+\end{definition}
+
+若\(f(z)\)在邻域\(N(a)\)内解析，不恒为零，
+则\(a\)为\(f(z)\)的\(m\)阶零点时，
+\(f(z)\)在\(N(a)\)内的泰勒展式形式为\[
+	f(z) = c_m (z-a)^m + c_{m+1} (z-a)^{m+1} + \dotsb \quad(c_m\neq0).
+\]
+右端提取公因式\((z-a)^m\)，
+并记\[
+	\phi(z) = c_m + c_{m+1} (z-a) + \dotsb,
+\]
+容易证明\(\phi(z)\)在邻域\(N(a)\)内解析，
+且\(\phi(a)\neq0\).
+于是在邻域\(N(a)\)内有\[
+	f(z) = (z-a)^m \phi(z).
+\]
+反之，当\(f(z)\)在\(N(a)\)内解析，
+并能表成上述形式时，
+由泰勒定理中的关系式\[
+	c_n = \frac{1}{n!} f^{(n)}(a),
+\]
+立即可知\(a\)是\(f(z)\)的\(m\)阶零点.
+于是有下述定理：
+\begin{theorem}\label{theorem:解析函数的级数表示.零点定理}
+“不恒为零的解析函数\(f(z)\)以\(a\)为\(m\)阶零点”的充分必要条件是：
+在\(a\)点的邻域\(N(a)\)内有\[
+	f(z) = (z-a)^m \phi(z)
+\]成立，
+其中\(\phi(z)\)在邻域\(N(a)\)内解析，
+且\(\phi(a)\neq0\).
+\end{theorem}
+
+一个实变可微函数的零点不一定是孤立的.
+例如实变函数\[
+	f(x) = \left\{ \begin{array}{cl}
+		x^2 \sin\frac{1}{x}, & x\neq0, \\
+		0, & x=0
+	\end{array} \right.
+\]在点\(x=0\)可微，
+且以\(x=0\)为一个零点.
+但点列\(x = \pm\frac{1}{n\pi}\ (n=1,2,\dotsc)\)也是它的零点，
+并以\(x = 0\)为聚点，
+所以\(x = 0\)不是一个孤立的零点.
+
+但在复变函数中，我们有如下定理：
+\begin{theorem}\label{theorem:解析函数的级数表示.解析函数的零点的孤立性}
+不恒为零的解析函数的零点必是孤立的.
+\begin{proof}
+设\(a\)为解析函数\(f(z)\)的\(m\)阶零点，
+则由\cref{theorem:解析函数的级数表示.零点定理}，
+在邻域\(N_R(a)\)内有\[
+	f(z) = (z-a)^m \phi(z),
+\]
+其中\(\phi(z)\)在\(N_R(a)\)内解析，
+且\(\phi(a)\neq0\).
+从而由\(\phi(z)\)在点\(a\)的连续性可知，
+必定存在邻域\(N_r(a)\)，在\(N_r(a)\)内\(\phi(z)\neq0\).
+故\(f(z)\)在\(N_r(a)\)内没有异于点\(a\)的其他零点.
+\end{proof}
+\end{theorem}
+
+由上可得以下推论：
+\begin{corollary}
+设函数\(f(z)\)在邻域\(N_R(a)\)内解析，
+且在\(N_R(a)\)内有\(f(z)\)的一列零点\(\{z_n\}\ (z_n \neq a)\)收敛于\(a\)，
+则\(f(z)\)在\(N_R(a)\)内必恒为零.
+\end{corollary}
+
+\begin{theorem}[唯一性定理]\label{theorem:解析函数的级数表示.唯一性定理}
+设函数\(f_1(z)\)和\(f_2(z)\)在区域\(D\)内解析，
+且在\(D\)内有一个收敛于\(a \in D\)的点列\(\{z_n\}\ (z_n \neq a)\)，
+且\(f_1(z_n) = f_2(z_n)\)，
+则在\(D\)内有\(f_1(z) \equiv f_2(z)\).
+\end{theorem}
+
+若\cref{theorem:解析函数的级数表示.唯一性定理} 中的
+点列\(\{z_n\}\)取\(D\)的一个子区域（或一段弧），
+定理的结论自然仍就成立.
+从而一切在实轴上成立的恒等式，
+只要恒等式两边的函数在复平面\(\mathbb{C}\)上解析，
+则恒等式在整个复平面上就成立.
+
+对于一个不加限制条件的分布函数，
+我们不能从其定义域中某一部分的取值情况来确定其他部分的值.
+对于连续函数也只能说，
+相邻两点的函数值相差很小.
+对于解析函数来说就完全不同了.
+从上面的\hyperref[theorem:解析函数的级数表示.唯一性定理]{唯一性定理}我们看到，
+解析函数在其解析区域中某点邻域内的取值情况决定着它在其他部分的值，
+即在区域\(D\)内的局部值决定了函数在区域\(D\)内整体的值.
+以前由\hyperref[equation:解析函数的积分表示.柯西积分公式]{柯西积分公式}，
+曾经使我们知道，
+从解析函数在区域边界\(C\)上的值可以确定它在\(C\)的内部的一切值.
+现在又知道，
+解析函数在区域内部的局部值确定了区域内整体的值.
+因此\hyperref[theorem:解析函数的级数表示.唯一性定理]{唯一性定理}可以
+看成\hyperref[equation:解析函数的积分表示.柯西积分公式]{柯西积分公式}的补充定理，
+都揭示了解析函数的本质特性，
+都是解析函数论中最基本的定理.

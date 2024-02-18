@@ -1,0 +1,345 @@
+\section{解析函数的罗朗展开式}
+\subsection{罗朗级数、罗朗定理}
+%@see: https://mathworld.wolfram.com/LaurentSeries.html
+\begin{definition}
+形如\begin{equation}\label{equation:解析函数的级数表示.罗朗级数}
+\begin{split}
+\sum_{n=-\infty}^\infty c_n (z-a)^n
+&\defeq \sum_{n=-\infty}^{-1} c_n (z-a)^n + \sum_{n=0}^\infty c_n (z-a)^n \\
+&\defeq \sum_{n=1}^\infty c_{-n} (z-a)^{-n} + \sum_{n=0}^\infty c_n (z-a)^n
+\end{split}
+\end{equation}的级数称为\DefineConcept{罗朗级数}，
+其中\(a\)及\(c_n\ (n=0,\pm1,\dotsc)\)是复常数.
+\end{definition}
+显然，当\(c_{-n}=0\ (n=1,2,\dotsc)\)时，
+形式上罗朗级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 就化为了幂级数.
+可以说罗朗级数是由两个幂级数组成的.
+若级数\[
+	\sum_{n=0}^\infty c_n (z-a)^n
+	\quad\text{和}\quad
+	\sum_{n=1}^\infty c_{-n} (z-a)^{-n}
+\]都在点\(z_0\)收敛，
+则称罗朗级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 在点\(z_0\)收敛.
+记罗朗级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 的和函数为\(f(z)\).
+称级数\[
+	\sum_{n=0}^\infty c_n (z-a)^n
+\]为“\(f(z)\)在点\(a\)的\DefineConcept{解析部分}或\DefineConcept{正则部分}”.
+称级数\[
+	\sum_{n=1}^\infty c_{-n} (z-a)^{-n}
+\]为“\(f(z)\)在点\(a\)的\DefineConcept{主要部分}或\DefineConcept{奇异部分}”.
+
+设级数\(\sum_{n=0}^\infty c_n (z-a)^n\)的收敛半径为\(R \in (0,+\infty)\)，
+则它在圆\(\abs{z-a}<R\)内绝对收敛、内闭一致收敛，
+它的和函数\(\phi(z)\)在圆\(\abs{z-a}<R\)内解析.
+
+记\(\zeta = \frac{1}{z-a}\).
+设级数\(\sum_{n=1}^\infty c_{-n} (z-a)^{-n} = \sum_{n=1}^\infty c_{-n} \zeta^n\)的
+收敛半径为\(\lambda \in (0,+\infty)\)，
+则它在圆\(\abs{\zeta} < \lambda\)内绝对收敛、内闭一致收敛.
+换言之，级数\(\sum_{n=1}^\infty c_{-n} (z-a)^{-n}\)
+在\(r = \frac{1}{\lambda} < \abs{z-a} < +\infty\)内绝对收敛、内闭一致收敛，
+它的和函数\(\psi(z)\)在\(r < \abs{z-a} < +\infty\)内解析.
+
+结合上面的论述，我们来讨论一下级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 的敛散性：
+\begin{enumerate}
+	\item 当\(r > R\)时，
+	级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 处处发散；
+
+	\item 当\(r = R\)时，
+	级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 在区域\(\abs{z-a} \neq R\)上是发散的，
+	而它在圆\(\abs{z-a}=R\)上则有三种可能性：
+	\begin{enumerate}
+		\item 它在圆上处处收敛.
+		例如级数\(\sum_{\substack{n=-\infty \\ n\neq0}}^\infty \frac{z^n}{n^2}\)
+		在圆\(\abs{z}=1\)上处处收敛；
+
+		\item 它在圆上处处发散.
+		例如级数\(\sum_{n=-\infty}^\infty z^n\)
+		在圆\(\abs{z}=1\)上处处发散；
+
+		\item 它在圆上有的点收敛，有的点发散.
+		例如级数\(\sum_{\substack{n=-\infty \\ n\neq0}}^\infty \frac{z^n}{n}\)
+		在圆\(\abs{z}=1\)上除点\(z=1\)外处处收敛；
+	\end{enumerate}
+
+	\item 当\(r < R\)时，
+	级数 \labelcref{equation:解析函数的级数表示.罗朗级数}
+	在圆环\(H: r < \abs{z-a} < R\)内绝对收敛且内闭一致收敛，
+	在\(H\)外发散.
+	圆环\(H\)称为罗朗级数的\DefineConcept{收敛圆环}.
+
+	特别地，当\(r = 0\)且\(R = +\infty\)时，
+	级数 \labelcref{equation:解析函数的级数表示.罗朗级数}
+	在复平面\(\mathbb{C}\)上除点\(a\)外处处收敛.
+
+	根据\hyperref[theorem:解析函数的级数表示.魏尔斯特拉斯定理]{魏尔斯特拉斯定理}，
+	罗朗级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 的和函数在其收敛圆环\(H\)内是解析的，
+	且可在\(H\)内逐项求任意阶导数.
+\end{enumerate}
+
+现在我们把罗朗级数 \labelcref{equation:解析函数的级数表示.罗朗级数}
+在点\(a\)的解析部分与主要部分的和函数\(\phi(z)\)与\(\psi(z)\)分别表述为\[
+	\def\arraystretch{2}
+	\begin{array}{ll}
+		\phi(z) = \sum_{n=0}^\infty c_n (z-a)^n & (\abs{z-a}<R), \\
+		\psi(z) = \sum_{n=1}^\infty c_{-n} (z-a)^{-n} & (r < \abs{z-a} < +\infty).
+	\end{array}
+\]
+显然，\(\phi(z)\)在\(\abs{z-a}<R\)内解析，
+\(\psi(z)\)在\(r<\abs{z-a}<+\infty\)内解析.
+当\(r \leq R\)时，
+罗朗级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 的和函数\(f(z)\)满足\[
+	f(z) = \phi(z) + \psi(z),
+\]
+且\(f(z)\)在\(r<\abs{z-a}<R\)内解析.
+
+综上所述，我们有以下定理.
+\begin{theorem}
+设罗朗级数 \labelcref{equation:解析函数的级数表示.罗朗级数} 的收敛圆环为\(H: r < \abs{z-a} < R\)，
+则它在\(H\)内绝对收敛且内闭一致收敛，
+它的和函数\(f(z)\)在\(H\)内解析，
+且\[
+	f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n
+\]在\(H\)内可逐项求任意阶导数.
+\end{theorem}
+
+上述定理的逆定理也成立.
+\begin{theorem}[罗朗定理]\label{theorem:解析函数的级数表示.罗朗定理}
+在圆环\(H: 0 \leq r < \abs{z-a} < R < +\infty\)内解析的函数\(f(z)\)
+必定可以展成罗朗级数\begin{equation}\label{equation:解析函数的级数表示.罗朗展式}
+	f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n,
+\end{equation}
+其中\begin{equation}\label{equation:解析函数的级数表示.罗朗系数}
+	c_n = \frac{1}{2\pi\iu} \int_{\abs{z-a}=\rho} \frac{f(\zeta)}{(\zeta-a)^{n+1}} \dd{\zeta}
+	\quad(r<\rho<R).
+\end{equation}
+并且展式 \labelcref{equation:解析函数的级数表示.罗朗展式} 是唯一的
+（即\(f(z)\)和圆环\(H\)唯一地决定了系数\(c_n\)）.
+\end{theorem}
+\cref{equation:解析函数的级数表示.罗朗展式}
+称为“函数\(f(z)\)在圆环\(H\)内的\DefineConcept{罗朗展式}”，
+\cref{equation:解析函数的级数表示.罗朗系数}
+称为该展式的\DefineConcept{罗朗系数}.
+
+在\cref{theorem:解析函数的级数表示.罗朗定理} 中，
+当给定函数\(f(z)\)在点\(a\)解析时，
+收敛圆环\(H\)就退化成收敛圆\(K: \abs{z-a}<R\).
+这时，罗朗定理就退化为\hyperref[theorem:解析函数的级数表示.泰勒定理]{泰勒定理}，
+而罗朗系数 \labelcref{equation:解析函数的级数表示.罗朗系数} 就是泰勒系数.
+也只有这时，罗朗系数除了有积分形式以外，
+还有微分形式\[
+	c_n = \frac{f^{(n)}(a)}{n!}.
+\]
+也只有这时，罗朗级数才退化为泰勒级数.
+因此，泰勒级数是罗朗级数的特殊情形，
+即\(c_{-n} = 0\ (n=1,2,\dotsc)\)的情形.
+
+在求一些初等函数的罗朗展式时，
+一般来说，不采用通过罗朗系数公式 \labelcref{equation:解析函数的级数表示.罗朗系数} 计算\(c_n\)的“直接法”，
+而主要采用“间接法”，
+即根据罗朗展式的唯一性，
+通过各种代数运算或分析运算以及变量代换等方法，
+应用已知的一些初等函数的泰勒展式，
+来求出所给函数的罗朗展式.
+所以，把函数展开成罗朗级数时，泰勒级数仍然是基础.
+
+\begin{example}
+求函数\(f(z) = \frac{1}{(z-1)(z-2)}\)在适当区域内的展式.
+\begin{solution}
+\(f(z)\)在\(z\)平面上只有两个奇点：\(z=1\)及\(z=2\).
+因此，就\(f(z)\)的解析区域来说，
+\(z\)平面可分成如下三个互不相交的解析区域：
+\begin{enumerate}
+	\item 圆\(D_1: \abs{z}<1\)；
+	\item 圆环\(D_2: 1<\abs{z}<2\)；
+	\item 圆环\(D_3: 2<\abs{z}<+\infty\).
+\end{enumerate}
+其中\(D_1\)是单连通区域，
+\(D_2\)、\(D_3\)都是以\(z=0\)为中心的不同的圆环.
+下面在这三个区域内分别求\(f(z)\)的展开式.
+
+首先将\(f(z)\)分解成部分分式：\[
+	f(z) = \frac{1}{z-2} - \frac{1}{z-1}.
+\]
+那么\begin{enumerate}
+	\item 在\(D_1\)内，
+	\(\abs{\frac{z}{2}}<1\)，
+	利用几何级数公式得\[
+		f(z) = \frac{1}{1-z} - \frac{1}{2 (1-z/2)}
+		= \sum_{n=0}^\infty \left(1 - \frac{1}{2^{n+1}}\right) z^n,
+	\]
+	这就是\(f(z)\)在\(D_1\)内的泰勒展式.
+
+	\item 在\(D_2\)内，
+	\(\abs{\frac{1}{z}}<1\)，
+	\(\abs{\frac{z}{2}}<1\)，
+	\begin{align*}
+		f(z) &= -\frac{1}{2}\cdot\frac{1}{1-z/2}
+			- \frac{1}{z}\cdot\frac{1}{1-1/z} \\
+		&= -\frac{1}{2} \sum_{n=0}^\infty \frac{z^n}{2^n}
+			- \frac{1}{z} \sum_{n=1}^\infty \frac{1}{z^{n-1}} \\
+		&= -\sum_{n=0}^\infty \frac{z^n}{2^{n+1}}
+			- \sum_{n=1}^\infty \frac{1}{z^n},
+	\end{align*}
+	这就是\(f(z)\)在\(D_2\)内的罗朗展式.
+
+	\item 在\(D_3\)内，
+	\(\abs{\frac{1}{z}}<1\)，
+	\(\abs{\frac{2}{z}}<1\)，
+	故\begin{align*}
+		f(z) &= \frac{1}{z}\cdot\frac{1}{1-2/z}
+			- \frac{1}{z}\cdot\frac{1}{1-1/z} \\
+		&= \frac{1}{z} \sum_{n=0}^\infty \frac{2^n}{z^n}
+			- \frac{1}{z} \sum_{n=0}^\infty \frac{1}{z^n} \\
+		&= \sum_{n=2}^\infty \frac{2^{n-1}-1}{z^n},
+	\end{align*}
+	这就是\(f(z)\)在\(D_3\)内的罗朗展式.
+\end{enumerate}
+\end{solution}
+由此例我们看到，
+当函数\(f(z)\)及其解析的圆环取定以后，
+根据罗朗展式的唯一性，
+虽然其罗朗展式的系数\(c_n\ (n=0,\pm1,\dotsc)\)是唯一确定的，
+但计算\(c_n\)的方法并不唯一，
+不一定非得用\cref{equation:解析函数的级数表示.罗朗系数} 来计算罗朗系数.
+\(c_n\)的唯一性保证我们可以用任何简便的方法来计算\(c_n\).
+另外，此例还表明：
+同一函数在不同圆环内的罗朗展式不同.
+\end{example}
+
+\subsection{在孤立奇点去心邻域内的罗朗展式}
+\begin{definition}
+若\(f(z)\)在点\(a\)的某一去心邻域内解析，
+但在点\(a\)不解析，
+则称\(a\)为\(f(z)\)的\DefineConcept{孤立奇点}.
+若\(a\)是\(f(z)\)的一个奇点，
+且在点\(a\)的任意邻域内\(f(z)\)总还有除点\(a\)以外的其他奇点，
+则称点\(a\)为\(f(z)\)的\DefineConcept{非孤立奇点}.
+\end{definition}
+
+\begin{example}
+点\(z=0\)是函数\(f(z) = \frac{1}{z}\)的孤立奇点，
+是函数\(g(z) = \frac{1}{\sin(1/z)}\)的非孤立奇点.
+\end{example}
+
+\begin{example}
+函数\(f(z) = \frac{1}{(z-1)(z-2)}\)
+在\(z\)平面只有两个孤立奇点\(z=1\)和\(z=2\).
+分别求\(f(z)\)在这两个点的去心邻域内的罗朗展式.
+\begin{solution}
+在去心邻域\(0<\abs{z-1}<1\)内\[
+	f(z) = -\frac{1}{z-1} + \frac{1}{(z-1)-1} \\
+	= -\frac{1}{z-1} - \sum_{n=0}^\infty (z-1)^n.
+\]
+
+在去心邻域\(0<\abs{z-2}<1\)内\[
+	f(z) = \frac{1}{z-2} - \frac{1}{1+(z-2)}
+	= \frac{1}{z-2} - \sum_{n=0}^\infty (-1)^n (z-2)^n.
+\]
+\end{solution}
+\end{example}
+
+在用间接法进行罗朗展开时，常常要用到罗朗级数的加法和乘法：
+\begin{theorem}[罗朗级数的加法]
+设\(F(z)\)在环域\(H: r < \abs{z-a} < R\)内解析，
+且\(F(z) = f(z) + g(z)\)，
+\(f(z)\)与\(g(z)\)在环域\(H\)内的罗朗展式分别为\[
+	f(z) = \sum_{n=-\infty}^\infty a_n (z-a)^n
+	\quad\text{和}\quad
+	g(z) = \sum_{n=-\infty}^\infty b_n (z-a)^n,
+\]
+则在\(H\)内\[
+	F(z) = \sum_{n=-\infty}^\infty (a_n+b_n) (z-a)^n.
+\]
+\end{theorem}
+
+\begin{theorem}[罗朗级数的乘法]
+设\(F(z) = f(z) g(z)\)在环域\(H: r < \abs{z-a} < R\)内解析，
+且\(f(z)\)与\(g(z)\)在\(H\)内的罗朗展式分别为\[
+	f(z) = \sum_{n=-\infty}^\infty a_n (z-a)^n
+	\quad\text{和}\quad
+	g(z) = \sum_{n=-\infty}^\infty b_n (z-a)^n,
+\]
+则在\(H\)内\[
+	F(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n,
+\]
+其中\[
+	c_n = \sum_{k=-\infty}^\infty a_k b_{n-k},
+	\quad n=0,\pm1,\dotsc.
+\]
+\end{theorem}
+
+\begin{example}
+\def\fe{e^{\frac{t}{2} \left(z-\frac{1}{z}\right)}}
+设\(t\)是实参数，
+求函数\(f(z) = \fe\)在点\(z=0\)的罗朗展式.
+\def\s#1{\sum_{#1}^\infty }%
+\def\sk{\s{k=0} \frac{1}{k!} \left(\frac{t}{2}\right)^k z^k}%
+\def\sl{\s{l=0} \frac{1}{l!} \left(-\frac{t}{2}\right)^l \left(\frac{1}{z}\right)^l}%
+\begin{solution}
+除\(z=0\)外，
+\(f\)在\(z\)平面解析，
+在去心邻域\(0<\abs{z}<+\infty\)内，
+有\[
+	\fe = \left[ \sk \right] \cdot \left[ \sl \right].
+	\eqno(1)
+\]
+记\(A = \sk\)，\(B = \sl\).
+
+对于任意固定的\(t\)，
+(1)式右边的两个级数当\(\abs{z}>0\)都绝对收敛，
+所以应用罗朗级数的乘法公式，可以任意方式合并同幂项.
+
+为了得到乘积中某个正幂项\(z^n\ (n\geq0)\)，
+应将\(B\)中的各项分别与\(A\)中的第\(k=l+n\)项相乘，
+即得\[
+	\s{n=0} \left[ \s{l=0} \frac{(-1)^l}{l!(l+n)!} \left(\frac{t}{2}\right)^{2l+n} \right] z^n;
+\]
+
+而为了得到乘积中某个负幂项\(z^{-m}\ (m>0)\)，
+应将\(A\)中的各项分别与\(B\)中的第\(l=k+m\)项相乘，
+即得\[
+	\s{m=1} \left[ (-1)^m \s{k=0} \frac{(-1)^k}{k! (k+m)!} \left(\frac{t}{2}\right)^{2k+m} \right] z^{-m}.
+\]
+把\(-m\)改记为\(n\)，
+\(k\)改记为\(l\)，
+则\begin{align*}
+	\fe &= \s{n=0}
+	\left[
+		\s{l=0}
+		\frac{(-1)^l}{l!(l+n)!}
+		\left(\frac{t}{2}\right)^{2l+n}
+	\right]
+	z^n \\
+	&\hspace{20pt}
+	\sum_{n=-1}^{-\infty}
+	\left[
+		(-1)^n
+		\s{l=0}
+		\frac{(-1)^l}{l!(l-n)!}
+		\left(\frac{t}{2}\right)^{2l-n}
+	\right]
+	z^n \\
+	&= \sum_{n=-\infty}^\infty J_n(t) z^n,
+\end{align*}
+其中\begin{equation}
+	J_n(t) = \left\{ \begin{array}{rl}
+		\s{l=0} \frac{(-1)^l}{l!(l+n)!} \left(\frac{t}{2}\right)^{2l+n},
+			& n=0,1,2,\dotsc, \\
+		(-1)^n \s{l=0} \frac{(-1)^l}{l!(l-n)!} \left(\frac{t}{2}\right)^{2l-n},
+			& n=-1,-2,\dotsc.
+	\end{array} \right.
+\end{equation}
+可以说\[
+	J_{-n}(t) = (-1)^n J_n(t),
+	\quad n=1,2,\dotsc.
+\]
+
+把\(J_n(t)\)称为“\(n\)阶\DefineConcept{贝塞尔函数}”
+把\(J_{-n}(t)\)称为“\(-n\)阶\DefineConcept{贝塞尔函数}”.
+使用达朗贝尔公式，
+不难求得表示\(J_n(t)\)的幂级数的收敛半径为\(+\infty\).
+这样，如果把\(t\)看成复变数，
+则\(J_n(t)\)和\(J_{-n}(t)\)都在全平面\(\mathbb{C}\)上解析.
+\end{solution}
+\end{example}
