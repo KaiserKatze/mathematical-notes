@@ -1,0 +1,292 @@
+\section{辐角原理及其应用}
+这一节讨论在留数理论基础上建立起来的辐角原理，利用它可以解决一些解析函数的零点个数及分布问题.
+
+\subsection{零点与极点个数定理}
+\begin{lemma}
+设\(a,b\)分别是函数\(f(z)\)的\(n\)阶零点和\(m\)阶极点，
+则\(a,b\)都是函数\(\frac{f'(z)}{f(z)}\)的一阶极点，
+且\[
+	\Res_{z=a} \frac{f'(z)}{f(z)} = n,
+	\qquad
+	\Res_{z=b} \frac{f'(z)}{f(z)} = -m.
+\]
+\begin{proof}
+设\(a\)是\(f(z)\)的\(n\)阶零点，
+则在点\(a\)的邻域\(U(a)\)内有\[
+	f(z) = (z-a)^n g(z),
+\]
+其中\(g(z)\)在\(N(a)\)内解析，且\(g(z)\neq0\).
+于是\begin{align*}
+	f'(z) &= n(z-a)^{n-1} g(z) + (z-a)^n g'(z), \\
+	\frac{f'(z)}{f(z)} &= \frac{n}{z-a} + \frac{g'(z)}{g(z)}.
+\end{align*}
+由于\(\frac{g'(z)}{g(z)}\)在点\(a\)的邻域\(N(a)\)内解析，
+故由上式得出\(a\)必是\(\frac{f'(z)}{f(z)}\)的一阶极点，
+且\(\Res_{z=a} \frac{f'(z)}{f(z)} = n\).
+
+若\(b\)是\(f(z)\)的\(m\)阶极点，
+则在点\(b\)的去心邻域\(\mathring{U}(b)\)内有\[
+	f(z) = \frac{h(z)}{(z-b)^m},
+\]
+其中\(h(z)\)在点\(b\)的邻域\(U(b)\)内解析，
+且\(h(b)\neq0\).
+由此易得\[
+	\frac{f'(z)}{f(z)}
+	= \frac{-m}{z-b} + \frac{h'(z)}{h(z)},
+\]
+而\(\frac{h'(z)}{h(z)}\)在点\(b\)的邻域\(U(b)\)内解析.
+故\(b\)必是\(\frac{f'(z)}{f(z)}\)的一阶极点，
+且\[
+	\Res_{z=b} \frac{f'(z)}{f(z)} = -m.
+	\qedhere
+\]
+\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{theorem:留数定理.零点与极点个数定理}%定理5.3.1
+设函数\(f(z)\)在围线\(C\)上解析且不为零，
+在\(C\)的内部除可能有极点外是解析的，
+则\begin{equation}\label{equation:留数定理.零点与极点个数定理1}
+	\frac{1}{2\pi\iu}
+	\int_C \frac{f'(z)}{f(z)} \dd{z}
+	= N(f,C) - P(f,C),
+\end{equation}
+其中\(N(f,C)\)与\(P(f,C)\)分别表示
+\(f(z)\)在\(C\)内部的零点与极点的个数
+（一个\(n\)阶零点算作\(n\)个零点，而一个\(m\)阶极点算作\(m\)个极点）.
+\end{theorem}
+\cref{theorem:留数定理.零点与极点个数定理} 被称为{解析函数的零点与极点个数定理}.
+
+\begin{example}
+计算积分\[
+	I = \int_{\abs{z}=4} \frac{z^9}{z^{10}-1} \dd{z}.
+\]
+\begin{solution}
+设\(f(z) = z^{10}-1\)，
+则\(f(z)\)在\(C: \abs{z}=4\)上解析且不等于零；
+又因\(f(z)\)在\(\abs{z}<4\)内解析，
+且有10个零点、0个极点，
+即\[
+	N(f,C) = 10, \qquad P(f,C) = 0.
+\]
+所以\begin{align*}
+	I &= \frac{1}{10} \int_{\abs{z}=4} \frac{z^9}{z^{10}-1} \dd{z}
+	= \frac{1}{10} \int_{\abs{z}=4} \frac{(z^{10}-1)'}{z^{10}-1} \dd{z} \\
+	&= \frac{1}{10} \cdot 2\pi\iu (10-0) = 2\pi\iu.
+\end{align*}
+\end{solution}
+\end{example}
+
+\subsection{辐角原理及其应用}
+\cref{theorem:留数定理.零点与极点个数定理} 的几何解释就称为辐角原理.
+当变换\(w = f(z)\)满足\cref{theorem:留数定理.零点与极点个数定理} 的条件时，
+它把\(z\)平面上围线\(C: z = z(t)\ (\alpha \leq t \leq \beta)\)
+变成\(w\)平面上有向闭曲线\(\Gamma: w = f[z(t)]\ (\alpha \leq t \leq \beta)\).
+由于\(z \in C\)时，
+\(f(z)\neq0\)，
+所以\(w\)平面上曲线\(\Gamma\)不过原点.
+于是\begin{equation}\label{equation:留数定理.辐角原理及其应用1}
+	\frac{1}{2\pi\iu} \int_C \frac{f'(z)}{f(z)} \dd{z}
+	= \frac{1}{2\pi\iu} \int_\Gamma \frac{\dd{w}}{w}.
+\end{equation}
+
+需要注意的是，虽然原象曲线\(C\)是简单闭曲线，
+但其象曲线\(\Gamma\)只能肯定是有向闭曲线，
+\(\Gamma\)未必是简单闭曲线.
+当\(\Gamma\)是简单闭曲线时，
+在\(\Gamma\)内部含有原点的情况下，
+我们知道\cref{equation:留数定理.辐角原理及其应用1} 右端积分为\(1\)；
+在\(\Gamma\)内部不含原点的情况下，
+\cref{equation:留数定理.辐角原理及其应用1} 右端积分为\(0\).
+当\(\Gamma\)是一般的不过原点有向闭曲线时，
+由\[
+	\frac{1}{2\pi\iu} \int_\Gamma \frac{\dd{w}}{w}
+	= \frac{1}{2\pi\iu} \int_\Gamma \dd(\ln w)
+	= \frac{1}{2\pi\iu} \left[ \int_\Gamma \dd(\ln\abs{w}) + \iu \int_\Gamma \dd(\arg w) \right],
+\]
+函数\(\ln\abs{w}\)是\(w\)的单值函数.
+\(w\)从\(w_0\)起沿\(\Gamma\)连续变动回到\(w_0\)时\[
+	\int_\Gamma \dd(\ln\abs{w})
+	= \ln\abs{w_0} - \ln\abs{w_0} = 0,
+\]
+得到\begin{equation}\label{equation:留数定理.辐角原理及其应用2}
+	\frac{1}{2\pi\iu} \int_\Gamma \frac{\dd{w}}{w}
+	= \frac{1}{2\pi} \int_\Gamma \dd(\arg w).
+\end{equation}
+上式右端是\(w\)沿\(\Gamma\)连续变化回到出发点时它的辐角增量除以\(2\pi\)，
+也就是说，上式左端\(\frac{1}{2\pi\iu} \int_\Gamma \frac{\dd{w}}{w}\)
+等于\(\Gamma\)绕原点的圈数（或称为\(\Gamma\)关于原点的环绕次数）.
+因为\(\Gamma\)是闭曲线，故这个“圈数”总是整数.
+\begin{equation}\label{equation:留数定理.辐角原理及其应用3}
+	\frac{1}{2\pi} \int_\Gamma \dd(\arg w)
+	= \frac{1}{2\pi} \increment_\Gamma \arg w
+	= \frac{1}{2\pi} \increment_C \arg f(z).
+\end{equation}
+综合\cref{equation:留数定理.零点与极点个数定理1,equation:留数定理.辐角原理及其应用1,equation:留数定理.辐角原理及其应用2,equation:留数定理.辐角原理及其应用3}，
+得到\begin{equation}\label{equation:留数定理.辐角原理及其应用4}
+	N(f,C)-P(f,C) = \frac{1}{2\pi} \increment_C \arg f(z).
+\end{equation}
+
+这样，\cref{theorem:留数定理.零点与极点个数定理} 的几何解释就是：
+在\cref{theorem:留数定理.零点与极点个数定理} 的条件下，
+函数\(f(z)\)在围线\(C\)内部的零点个数与极点个数之差，
+等于当\(z\)沿\(C\)的正向绕行一周后\(f(z)\)的辐角改变量\(\increment_C \arg f(z)\)除以\(2\pi\)，
+或者说，等于象曲线关于象平面原点的环绕次数，
+即\cref{equation:留数定理.辐角原理及其应用4} 成立.
+
+特别地，若\(f(z)\)在围线\(C\)上及\(C\)之内部解析，
+且\(f(z)\)在\(C\)上不为零，
+则\begin{equation}\label{equation:留数定理.辐角原理及其应用5}
+	N(f,C) = \frac{1}{2\pi} \increment_C \arg f(z).
+\end{equation}
+
+\begin{example}
+函数\[
+	f(z) = \frac{(z^2+1)(z-4)}{\sin^4 z}
+\]
+在圆周\(C: \abs{z}=3\)的内部有两个1阶零点\(z=\pm\iu\)和一个4阶极点\(z=0\)，
+故\[
+	N=N(f,C)=2, \qquad P=P(f,C)=4,
+\]
+所以\[
+	\increment_C \arg f(z) = 2\pi(N - P) = -4\pi.
+\]
+也就是说，当动点\(z\)沿\(\abs{z}=3\)的正向绕行一周后，
+\(w = f(z)\)的辐角增量为\(-4\pi\).
+或者说，\(z\)平面上动点\(z\)沿圆周\(\abs{z}=3\)的正向行进一周时，
+\(w\)平面上象点\(w\)将围绕原点\(w=0\)按顺时针方向绕行两周.
+\end{example}
+
+\begin{theorem}[儒歇定理]
+设函数\(f(z)\)及\(g(z)\)在围线\(C\)及其内部解析，
+且在\(C\)上有不等式\(\abs{f(z)}>\abs{g(z)}\)成立，
+则在\(C\)内部\(f(z)+g(z)\)与\(f(z)\)的零点个数相等，
+即\[
+	N(f+g,C) = N(f,C).
+\]
+\begin{proof}
+由于在\(C\)上有\(\abs{f(z)}>\abs{g(z)}\geq0\)，从而\[
+\abs{f(z)+g(z)}\geq\abs{f(z)}-\abs{g(z)}>0,
+\]故\(f(z)\)及\(f(z)+g(z)\)在\(C\)上均无零点；
+又因\(f(z)\)及\(f(z)+g(z)\)均在围线\(C\)及其内部解析，
+从而它们都满足\cref{theorem:留数定理.零点与极点个数定理} 的条件.
+于是由\cref{equation:留数定理.辐角原理及其应用5}，
+下面只需证明\begin{equation}\label{equation:留数定理.辐角原理及其应用6}
+	\increment_C \arg[f(z)+g(z)] = \increment_C \arg f(z).
+\end{equation}
+由于\[
+	f(z)+g(z) = f(z) \left[1+\frac{g(z)}{f(z)}\right],
+\]
+则有\begin{equation}\label{equation:留数定理.辐角原理及其应用7}
+	\increment_C \arg[f(z)+g(z)]
+	= \increment_C \arg f(z)
+	+ \increment_C \arg\left[1+\frac{g(z)}{f(z)}\right].
+\end{equation}
+因在\(C\)上\(\abs{f(z)}>\abs{g(z)}\)，
+当\(z\)沿\(C\)变动时\(\abs{\frac{g(z)}{f(z)}}<1\).
+经变换\(\eta=1+\frac{g(z)}{f(z)}\)
+将\(z\)平面上的围线\(C\)
+变成\(\eta\)平面上的闭曲线\(\Gamma\)之后，
+\(\Gamma\)将全含于圆周\(\abs{\eta-1}=1\)的内部.
+注意到原点\(\eta=0\)并不在圆周\(\abs{\eta-1}=1\)的内部，
+于是当\(z\)沿\(C\)变动一周时，
+\(\eta\)平面上闭曲线\(\Gamma\)不会围着\(\eta=0\)绕行，
+故\[
+	\increment_C \arg\left[1+\frac{g(z)}{f(z)}\right] = 0.
+\]
+由\cref{equation:留数定理.辐角原理及其应用7}
+即知\cref{equation:留数定理.辐角原理及其应用6} 成立.
+再应用\cref{equation:留数定理.辐角原理及其应用5}
+即得\[
+	N(f+g,C) = N(f,C).
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{example}
+应用儒歇定理证明代数基本定理：
+在复数域\footnote{需要注意的是，这里将代数方程限定在复数域上是非常必要的；
+这是因为如果我们将数集扩大到四元数环甚至八元数环（无法满足域的定义的数集）上，
+则代数方程的根的数量将会大于它的次数.}上，
+任一\(n\)次方程\[
+	P_n(z) = a_0 z^n + a_1 z^{n-1} + \dotsb + a_{n-1} z + a_n = 0 \quad(a_0\neq0)
+\]有且仅有\(n\)个根（规定\(n\)重根算作\(n\)个根）.
+\begin{proof}
+令\(f(z)=a_0 z^n\)，\(g(z)=P_n(z)-f(z)\).
+由于\(\lim_{z\to\infty} \frac{g(z)}{f(z)} = 0\)，
+故当\(R\)充分大时，
+例如取\[
+	R > \max\left\{\frac{\abs{a_1}+\dotsb+\abs{a_n}}{\abs{a_0}},1\right\},
+\]在圆周\(C: \abs{z}=R\)上有\[
+	\abs{\frac{g(z)}{f(z)}} < 1
+	\quad\text{或}\quad
+	\abs{g(z)}<\abs{f(z)},
+\]
+从而根据儒歇定理，
+\(P_n(z)=f(z)+g(z)\)与\(f(z)\)在\(C\)的内部有相同个数的零点.
+而\(f(z)=a_0 z^n=0\)在\(\abs{z}<R\)内只有一个\(n\)重根\(z=0\).
+因此原\(n\)次方程\(P_n(z)=0\)在\(\abs{z}<R\)内有\(n\)个根.
+
+另外，在圆周\(C\)或其外部区域\(D: \abs{z}\geq R\)上，
+任取一点\(z_0\)，
+则有\(\abs{z_0}=R_0 \geq R\)，
+于是\begin{align*}
+	\abs{P_n(z_0)}
+	&= \abs{a_0 z_0^n + a_1 z_0^{n-1} + \dotsb + a_{n-1} z_0 + a_n} \\
+	&\geq \abs{a_0 z_0^n} - \abs{a_1 z_0^{n-1} + \dotsb + a_{n-1} z_0 + a_n} \\
+	&\geq \abs{a_0} R_0^n - (\abs{a_1} R_0^{n-1} + \dotsb + \abs{a_n}) \\
+	&> \abs{a_0} R_0^n - (\abs{a_1} + \dotsb + \abs{a_n}) R_0^{n-1} \\
+	&> \abs{a_0} R_0^n - \abs{a_0} R_0^n = 0,
+\end{align*}
+这说明原\(n\)次方程\(P_n(z)=0\)在圆周\(C\)上及其外部区域\(D\)都没有根.
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(n\)次多项式\[
+	P_n(z) = a_0 z^n + a_1 z^{n-1} + \dotsb + a_{n-1} z + a_n = 0 \quad(a_0\neq0)
+\]满足\[
+	\abs{a_k} > \abs{a_0} + \dotsb + \abs{a_{k-1}} + \abs{a_{k+1}} + \dotsb + \abs{a_n}.
+\]
+试证：\(P_n(z)=0\)在单位圆\(\abs{z}<1\)内有\(n-k\)个根.
+\begin{proof}
+取\(f(z) = a_k z^{n-k}\)，\(g(z) = P_n(z) - f(z)\).
+易证在单位圆周\(\abs{z}=1\)上有\(\abs{f(z)}>\abs{g(z)}\).
+由儒歇定理知，
+\(P_n(z) = f(z) + g(z)\)与\(f(z)\)
+在\(\abs{z}<1\)内的零点个数相同，
+因此，在\(\abs{z}<1\)内，
+\(P_n(z) = 0\)和\(f(z) = 0\)一样都只有\(n-k\)个根.
+\end{proof}
+\end{example}
+
+下面应用儒歇定理证明单叶解析函数的一个重要性质.
+\begin{theorem}%定理5.3.3
+若函数\(f(z)\)在区域\(D\)内单叶解析，则在\(D\)内\(f'(z)\neq0\).
+\begin{proof}
+用反证法.
+设在\(D\)内有点\(z_0\)使\(f'(z_0)=\lim_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}=0\)，
+则\(z_0\)必是\(f(z)-f(z_0)\)的一个\(n\ (n\geq2)\)阶零点.
+由\hyperref[theorem:解析函数的级数表示.解析函数的零点的孤立性]{零点的孤立性}，
+必存在\(\delta>0\)，
+使在圆周\(C: \abs{z-z_0}=\delta\)上\(f(z)-f(z_0)\neq0\)，
+且在\(C\)的内部\(f(z)-f(z_0)\)及\(f'(z)\)没有异于\(z_0\)的零点.
+
+记\(m = \inf_{z \in C} \abs{f(z) - f(z_0)}\).
+则存在常数\(a\in\mathbb{C}\)，
+当\(0<\abs{-a}<m\)时，
+由儒歇定理，
+\(f(z)-f(z_0)-a\)在\(C\)的内部也恰好有\(n\)个零点.
+但这些零点都不是多重零点，
+这是因为\(f'(z)\)在\(C\)的内部除去\(z_0\)外无其他零点，
+而\(z_0\)显然不是\(f(z)-f(z_0)-a\)的零点.
+
+设\(f(z)-f(z_0)-a\)在\(C\)内部的\(n\)个相异零点为\(z_1,z_2,\dotsc,z_n\).
+于是\[
+	f(z_k) = f(z_0) + a \quad(k=1,2,\dotsc,n).
+\]
+但这与\(f(z)\)的单叶性假设相矛盾，
+故在区域\(D\)内\(f'(z)\neq0\).
+\end{proof}
+\end{theorem}

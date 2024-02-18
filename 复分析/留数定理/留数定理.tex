@@ -1,0 +1,398 @@
+\section{留数定理}
+\subsection{留数的定义及计算方法}
+我们知道，若有限点\(a\)是函数\(f(z)\)的解析点，
+围线\(\Gamma\)全在点\(a\)的某邻域内并包围点\(a\)，
+则根据\hyperref[theorem:解析函数的积分表示.柯西积分定理]{柯西积分定理}，
+有\[
+	\int_\Gamma f(z) \dd{z} = 0.
+\]
+
+若有限点\(a\)是\(f(z)\)的一个孤立奇点，
+则当围线\(\Gamma\)全在点\(a\)的某去心邻域\(U(a,R)\)内且包围点\(a\)时，
+积分\(\int_\Gamma f(z) \dd{z}\)的值通常不为零.
+事实上，设在点\(a\)的某去心邻域\(\mathring{U}(a,R)\)内，
+\(f(z)\)的罗朗展式为\[
+	f(z) = \sum_{n=-\infty}^{+\infty} C_n (z-a)^n,
+\]
+其中\(C_n\ (n=0,\pm1,\pm2,\dotsc)\)是复常数.
+将上式等号两端沿\(\Gamma\)积分，
+并利用\hyperref[theorem:解析函数的级数表示.一致收敛级数的基本性质2]{逐项积分定理}及
+重要积分 \labelcref{equation:解析函数的积分表示.重要积分1} \[
+	\int_\Gamma (z-a)^n \dd{z} = \left\{ \begin{array}{cl}
+		2\pi\iu, & n=-1, \\
+		0,& n\in\mathbb{Z}-\{-1\},
+	\end{array} \right.
+\]
+可得\[
+	\int_\Gamma f(z) \dd{z} = 2\pi\iu C_{-1}.
+\]
+也就是说，将\(f(z)\)的罗朗展式沿围线\(\Gamma\)积分后
+将会只留下\((z-a)\)的负一次幂项积分不为零，
+其余所有项积分通通为零.
+
+由此可见，\(C_{-1}\)在罗朗展式的各个系数中具有独特的地位.
+若不计因子\(2\pi\iu\)，
+它实质上表现的是围线积分\(\int_\Gamma f(z) \dd{z}\)的值.
+
+\begin{definition}
+设有限点\(a\)为函数\(f(z)\)的一个孤立奇点，
+设\(f(z)\)在点\(a\)的去心邻域\(\mathring{U}(a,R)\)内解析，
+取围线\(\Gamma: \abs{z-a}=\rho\in(0,R)\)，
+把积分\[
+	\frac{1}{2\pi\iu} \int_\Gamma f(z) \dd{z}
+\]
+称为“\(f(z)\)在点\(a\)的\DefineConcept{留数}（residue）”，
+记作\(\Res_{z=a} f(z)\)，
+即\begin{equation}\label{equation:留数定理.留数定义1}
+	\Res_{z=a} f(z)
+	\defeq
+	\frac{1}{2\pi\iu} \int_\Gamma f(z) \dd{z}
+	\quad(0<\rho<R).
+\end{equation}
+\end{definition}
+
+根据\hyperref[theorem:解析函数的积分表示.多连通区域的柯西积分定理]{多连通区域上的柯西积分定理}以及前面的讨论可知，\begin{equation}\label{equation:留数定理.留数定义2}
+	\Res_{z=a} f(z) = C_{-1},
+\end{equation}
+其中\(C_{-1}\)为\(f(z)\)在点\(a\)去心邻域内罗朗展式的负一次幂系数.
+显然，\cref{equation:留数定理.留数定义2} 也可作为\(f(z)\)在其孤立奇点\(a\)处的留数定义.
+
+\begin{definition}
+设\(z=\infty\)是函数\(f(z)\)的孤立奇点，
+设\(f(z)\)在点\(\infty\)的去心邻域\(0 \leq r < \abs{z} < +\infty\)内解析.
+取围线\(\Gamma: \abs{z} = \rho\in(r,+\infty)\)，
+把积分\[
+	\frac{1}{2\pi\iu} \int_{\Gamma^-} f(z) \dd{z}
+\]称为“\(f(z)\)在无穷远点\(\infty\)的\DefineConcept{留数}”，
+记为\(\Res_{z=\infty} f(z)\)，
+即\begin{equation}\label{equation:留数定理.留数定义3}
+	\Res_{z=\infty} f(z)
+	\defeq
+	\frac{1}{2\pi\iu} \int_{\Gamma^-} f(z) \dd{z}.
+\end{equation}
+\end{definition}
+
+假设\(f(z)\)在孤立奇点\(\infty\)的去心邻域内可展成罗朗级数\[
+	f(z) = \sum_{n=-\infty}^\infty C_n z^n,
+\]
+其中\(C_n\ (n=0,\pm1,\pm2,\dotsc)\)是复常数.
+由\hyperref[theorem:解析函数的级数表示.一致收敛级数的基本性质2]{逐项积分定理}及重要积分 \labelcref{equation:解析函数的积分表示.重要积分1} 可知，
+\begin{equation}\label{equation:留数定理.留数定义4}
+	\Res_{z=\infty} f(z) = - C_{-1}.
+\end{equation}
+也就是说，\(\Res_{z=\infty} f(z)\)等于\(f(z)\)在点\(\infty\)的罗朗展式中\(\frac{1}{z}\)项系数的相反数.
+
+这样，当我们知道点\(a\)是\(f(z)\)的孤立奇点时，
+不论点\(a\)是有限点还是\(\infty\)，
+也不论点\(a\)是三类孤立奇点中的哪一种，
+我们总可以用罗朗展开的方法，
+按\cref{equation:留数定理.留数定义2}
+或\cref{equation:留数定理.留数定义4}
+求出\(f(z)\)在点\(a\)的留数.
+
+\begin{property}
+若\(a\)是可去奇点，
+且\(a\neq\infty\)，
+则有\(\Res_{z=a} f(z) = 0\).
+\end{property}
+
+\begin{example}
+函数\(f(z) = 1 + \frac{1}{z}\)在无穷远点\(\infty\)处解析，
+但\(\Res_{z=\infty} f(z) = -1\).
+此例说明，无穷远点\(\infty\)作为任意复变函数\(f(z)\)的可去奇点时，
+\(f(z)\)的留数不一定是零.
+\end{example}
+
+\begin{property}
+若\(a\neq\infty\)是\(f(z)\)的\(m\ (m\geq1)\)阶极点，
+则\(f(z)\)在点\(a\)的留数为
+\begin{equation}\label{equation:留数定理.函数在极点的留数1}
+	\Res_{z=a} f(z)
+	= \frac{1}{(m-1)!} \lim_{z \to a} \dv[m-1]{z} \{ (z-a)^m f(z) \}.
+\end{equation}
+特别地，当\(m=1\)时，
+\begin{equation}\label{equation:留数定理.函数在极点的留数2}
+	\Res_{z=a} f(z)
+	= \lim_{z \to a} [(z-a) f(z)].
+\end{equation}
+\begin{proof}
+当有限点\(a\)为\(f(z)\)的\(m\)阶极点时，
+\(f(z)\)在点的去心邻域内可表成
+\begin{equation}\label{equation:留数定理.函数在极点的留数.辅助1式}
+	f(z) = \frac{1}{(z-a)^m} g(z),
+\end{equation}
+其中\(g(z)\)在点\(a\)是解析的，
+且\(g(a)\neq0\)，
+\(g(z)\)在点\(a\)的邻域内可展成泰勒级数\[
+	g(z) = \sum_{n=0}^\infty \frac{1}{n!} g^{(n)}(a) (z-a)^n,
+\]
+于是由\hyperref[equation:解析函数的积分表示.柯西高阶导数公式]{柯西高阶导数公式}
+\begin{equation}\label{equation:留数定理.函数在极点的留数.辅助2式}
+	\Res_{z=a} f(z) = C_{-1}
+	= \frac{1}{2\pi\iu} \int_{\abs{z-a}=\rho} \frac{g(z)}{(z-a)^m} \dd{z}
+	= \frac{1}{(m-1)!} g^{(m-1)}(a).
+\end{equation}
+由于\cref{equation:留数定理.函数在极点的留数.辅助1式} 中的\(g(z)\)在点\(a\)解析，
+所以\[
+	g^{(m-1)}(a) = \lim_{z \to a} g^{(m-1)}(z)
+	= \lim_{z \to a} [(z-a)^m f(z)],
+\]
+因此\cref{equation:留数定理.函数在极点的留数.辅助2式}
+即\cref{equation:留数定理.函数在极点的留数1}.
+
+当\((z-a)^m f(z)\)中的\((z-a)^m\)因子能从\(f(z)\)中消去时，
+就在消去后直接用\cref{equation:留数定理.函数在极点的留数.辅助2式}
+计算\(\Res_{z=a} f(z)\)，
+否则才用极限等式 \labelcref{equation:留数定理.函数在极点的留数1} 计算.
+这样做较为省事一些.
+
+若\(f(z) = \frac{\phi(z)}{\psi(z)}\)，
+\(\phi(z)\)及\(\psi(z)\)在点\(a\)解析，
+且\(\phi(a)\neq0\)，
+\(\psi(a)=0\)，
+\(\psi'(a)\neq0\)，
+则\(a\)为\(f(z)\)的一阶极点，
+于是\[
+	\Res_{z=a} f(z)
+	= \lim_{z \to a} (z-a) \frac{\phi(z)}{\psi(z)}
+	= \lim_{z \to a} \frac{\phi(z)}{\frac{\psi(z)-\psi(a)}{z-a}}
+	= \frac{\phi(a)}{\psi'(a)},
+\]
+即\begin{equation}\label{equation:留数定理.函数在极点的留数3}
+	\Res_{z=a} f(z)
+	= \frac{\phi(a)}{\psi'(a)}.
+\end{equation}
+这也是计算一阶极点留数的一个简便公式.
+\end{proof}
+\end{property}
+
+\subsection{留数定理}
+\begin{theorem}[柯西留数定理]\label{theorem:留数定理.柯西留数定理}
+若\(f(z)\)在围线或复围线\(\Gamma\)所围区域\(D\)内
+除有限个奇点\(\AutoTuple{a}{n}\)外解析，
+在闭域\(\overline{D}=D+\Gamma\)上除\(\AutoTuple{a}{n}\)外连续，
+则\begin{equation}\label{equation:留数定理.柯西留数定理}
+	\int_\Gamma f(z) \dd{z}
+	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} f(z).
+\end{equation}
+\begin{proof}
+在\(D\)内以\(a_k\ (k=1,2,\dotsc,n)\)为中心作半径充分小的圆周\(\Gamma_k\)，
+使得每个\(\Gamma_k\)都在其余小圆周的外部，
+即\[
+	I(\Gamma_i) \cap I(\Gamma_j) = \emptyset\ (i \neq j),
+\]
+而所有的小圆周又都在\(D\)的内部，
+即\[
+	\bigcup_k I(\Gamma_k) \subseteq I(\Gamma).
+\]
+由\hyperref[theorem:解析函数的积分表示.多连通区域的柯西积分定理]{多连通区域上的柯西积分定理}，
+有\[
+	\int_\Gamma f(z) \dd{z}
+	= \sum_{k=1}^n \int_{\Gamma_k} f(z) \dd{z}.
+\]
+但按留数定义\[
+	\int_{\Gamma_k} f(z) \dd{z} = 2\pi\iu \Res_{z=a_k} f(z).
+\]
+所以\cref{theorem:留数定理.柯西留数定理} 成立.
+\end{proof}
+\end{theorem}
+柯西留数定理把计算围线积分的整体问题，
+化成了计算围线内部各孤立奇点处留数的局部问题.
+这是留数定理的实质.
+这里也表现了解析函数的特性.
+利用这种特性，一方面可以用来计算围线积分；
+另一方面，我们后面将看到，可以用来考查解析函数的零点分布状况.
+
+\begin{theorem}\label{theorem:留数定理.孤立奇点的留数之和}
+若\(f(z)\)在全平面\(\mathbb{C}\)上除有限个点\(\AutoTuple{a}{n}\)外解析，
+点\(\infty\)也为\(f(z)\)的孤立奇点，
+则\begin{equation}\label{equation:留数定理.孤立奇点的留数之和}
+	\sum_{k=1}^n \Res_{z=a_k} f(z) + \Res_{z=\infty} f(z) = 0.
+\end{equation}
+也就是说，\(f(z)\)所有孤立奇点的留数之和为零.
+\begin{proof}
+以原点为心，作半径\(R\)充分大的圆周\(\Gamma\)，
+使得\(\Gamma\)的内部包括\(\AutoTuple{a}{n}\).
+由\cref{theorem:留数定理.柯西留数定理}，\[
+	\int_\Gamma f(z) \dd{z}
+	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} f(z).
+\]
+而\[
+	\frac{1}{2\pi\iu} \int_\Gamma f(z) \dd{z}
+	= -\Res_{z=\infty} f(z),
+\]
+所以立即得到\cref{equation:留数定理.孤立奇点的留数之和}.
+\end{proof}
+\end{theorem}
+
+\cref{theorem:留数定理.柯西留数定理}
+有时也称为“有界区域上的留数定理”，
+而\cref{theorem:留数定理.孤立奇点的留数之和}
+则称为“扩充平面\(\mathbb{C}_\infty\)上的留数定理”.
+当点\(\AutoTuple{a}{n}\)上的留数容易求出，
+而点\(\infty\)处的留数难于计算时，
+可以用\cref{theorem:留数定理.孤立奇点的留数之和}
+来计算点\(\infty\)处的留数.
+
+除用\cref{equation:留数定理.柯西留数定理}
+和\cref{equation:留数定理.孤立奇点的留数之和}
+计算在点\(\infty\)处的留数外，
+还可以用公式\begin{equation}
+	\Res_{z=\infty} f(z)
+	= -\Res_{\zeta=0}
+	\left[
+		f\left(\frac{1}{\zeta}\right) \frac{1}{\zeta^2}
+	\right]
+\end{equation}来计算.
+这是因为经变量代换\(z = \frac{1}{\zeta}\)之后，
+\(z\)沿\(\abs{z}=\rho\)正方向行进时，
+\(\zeta\)沿\(\abs{\zeta}=\frac{1}{\rho}\)的负方向行进，
+故\begin{align*}
+	\Res_{z=\infty} f(z)
+	&= -\frac{1}{2\pi\iu}
+		\int_{\abs{z}=\rho} f(z) \dd{z} \\
+	&= -\frac{1}{2\pi\iu}
+		\int_{\abs{\zeta}=1/\rho}
+		f\left(\frac{1}{\zeta}\right)
+		\frac{1}{\zeta^2} \dd{\zeta} \\
+	&= -\Res_{\zeta=0} \left[ f\left(\frac{1}{\zeta}\right) \frac{1}{\zeta^2} \right].
+\end{align*}
+
+\begin{example}
+求函数\[
+	f(z) = \frac{e^{\iu mz}}{1+z^2} \quad(m\in\mathbb{R}^*)
+\]在所有孤立奇点处的留数.
+\begin{solution}
+容易看出，\(z=\pm\iu\)是\(f(z) = \frac{e^{\iu mz}}{1+z^2}\)的一阶极点，
+\(z=\infty\)是\(f(z)\)的本性奇点，
+使用\cref{equation:留数定理.函数在极点的留数.辅助2式}，
+得\[
+	\Res_{z=\iu} f(z)
+	= \eval{\frac{e^{\iu mz}}{z+\iu}}_{z=\iu}
+	= \frac{e^{-m}}{2\iu}
+	= -\frac{\iu}{2} e^{-m},
+\]\[
+	\Res_{z=-\iu} f(z)
+	= \eval{\frac{e^{\iu mz}}{z-\iu}}_{z=-\iu}
+	= \frac{\iu}{2} e^m.
+\]
+应用\cref{theorem:留数定理.孤立奇点的留数之和} 得\[
+	\Res_{z=\infty} f(z)
+	= -\left[ \Res_{z=\iu} f(z) + \Res_{z=-\iu} f(z) \right]
+	= -\iu \sinh m.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求函数\[
+	f(z) = \frac{\sin 2z}{(z+1)^3}
+\]在所有孤立奇点处的留数.
+\begin{solution}
+可以求出，点\(z=-1\)是\(f(z)\)的3阶极点，
+点\(z=\infty\)是\(f(z)\)的本性奇点.
+于是\[
+	\Res_{z=-1} f(z)
+	= \frac{1}{2!} \left[ \dv[2]{z}(\sin 2z) \right]_{z=-1}
+	= 2 \sin 2,
+\]
+从而\(\Res_{z=\infty} f(z) = -2 \sin 2\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求函数\[
+	f(z) = \frac{(z^2-1)^2}{z^2(z-\alpha)(z-\beta)}
+	\quad(\alpha\beta=1, \alpha\neq\beta)
+\]在所有孤立奇点处的留数.
+\begin{solution}
+可以求出，点\(\alpha,\beta\)是\(f(z)\)的一阶极点，
+点\(z=0\)是\(f(z)\)的二阶极点，
+点\(z=\infty\)是\(f(z)\)的可去奇点.
+令\(f(\infty)=1\)后，
+\(f(z)\)在\(z=\infty\)解析.
+从而\[
+	\Res_{z=\alpha} f(z)
+	= \eval{ \frac{(z^2-1)^2}{z^2(z-\beta)} }_{z=\alpha}
+	= \frac{(\alpha^2-1)^2}{\alpha^2(\alpha-\beta)}
+	= \alpha-\beta,
+\]\[
+	\Res_{z=\beta} f(z)
+	= \eval{ \frac{(z^2-1)^2}{z^2(z-\alpha)} }_{z=\beta}
+	= \frac{(\beta^2-1)^2}{\beta^2(\beta-\alpha)}
+	= \beta-\alpha.
+\]
+为了求出\(f(z)\)在点\(z=0\)的留数，
+将\(f(z)\)表成\[
+	f(z) = \frac{1}{z^2} \cdot \frac{(z^2-1)^2}{(z-\alpha)(z-\beta)}
+	= \frac{1}{z^2} g(z),
+\]
+其中\(g(z) = \frac{(z^2-1)^2}{(z-\alpha)(z-\beta)}\).
+我们看到，只要求出\(g(z)\)在\(z=0\)的泰勒展式中的一次幂系数\(g'(0)\)，
+就可求得\(\Res_{z=0} f(z)\).
+这是因为这时在\(z=0\)的去心邻域内，
+\(f(z)\)的罗朗展式为\begin{align*}
+	f(z) &= \frac{1}{z^2}
+		\left[
+			g(0) + g'(0) z
+			+ \frac{g''(0)}{2!} z^2
+			+ \frac{g'''(0)}{3!} z^3
+			+ \dotsb
+		\right] \\
+	&= \frac{g(0)}{z^2}
+		+ \frac{g'(0)}{z}
+		+ \frac{g''(0)}{2!}
+		+ \frac{g'''(0)}{3!} z
+		+ \dotsb,
+\end{align*}
+所以\(\Res_{z=0} f(z) = g'(0)\).
+现在将\(g(z)\)在\(z=0\)作泰勒展开，
+得\begin{align*}
+	g(z) &= \frac{(z^2-1)^2}{\alpha-\beta}
+		\left(\frac{1}{z-\alpha}-\frac{1}{z-\beta}\right) \\
+	&= (z^2-1)^2 \frac{1}{\alpha-\beta}
+		\left[
+			\frac{1}{\beta} \left(1+\frac{z}{\beta}+\dotsb\right)
+			- \frac{1}{\alpha} \left(1+\frac{z}{\alpha}+\dotsb\right)
+		\right] \\
+	&= (z^2-1)^2 \frac{1}{\alpha-\beta}
+		\left[
+			\left(\frac{1}{\beta}-\frac{1}{\alpha}\right)
+			+ \left(\frac{1}{\beta^2}-\frac{1}{\alpha^2}\right) z
+			+ \dotsb
+		\right].
+\end{align*}
+
+由此可见\(z\)的一次幂系数是
+\(\frac{1}{\alpha-\beta} \left(\frac{1}{\beta^2}-\frac{1}{\alpha^2}\right)
+= \alpha+\beta\)，
+所以\[
+	\Res_{z=0} f(z) = \alpha+\beta.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算：\[
+	\int_{\abs{z}=n} \tan \pi z \dd{z}
+	\quad(n\in\mathbb{N}^+).
+\]
+\begin{solution}
+由于函数\(f(z) = \tan \pi z = \frac{\sin \pi z}{\cos \pi z}\)
+只以\(z=k+\frac{1}{2}\ (k=0,\pm1,\dotsc)\)为一阶极点.
+由\cref{equation:留数定理.函数在极点的留数3}，得\[
+	\Res_{z=k+1/2} f(z)
+	= \eval{\frac{\sin \pi z}{(\cos \pi z)'}}_{z=k+1/2}
+	= -\frac{1}{\pi}.
+\]
+
+在圆周\(\abs{z}=n\)的内部，\(\tan \pi z\)有\(2n\)个极点，
+即\(k + \frac{1}{2}\ (k=0,\pm1,\dotsc,\pm(n+1),-n)\)，
+故由留数定理，得\[
+	\int_{\abs{z}=n} f(z) \dd{z}
+	= 2\pi\iu \sum_{\abs{k+\frac{1}{2}}<n} \Res_{z=k+1/2} f(z)
+	= 2\pi\iu \left(-\frac{2n}{\pi}\right)
+	= -4n\iu.
+\]
+\end{solution}
+\end{example}
