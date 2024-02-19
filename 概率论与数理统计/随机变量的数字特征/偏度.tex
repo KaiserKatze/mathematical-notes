@@ -8,8 +8,9 @@
 \]称为“\(X\)的\DefineConcept{偏度}”，
 记作\(\beta_s\).
 
-当\(\beta_s>0\)时，称这个分布是\DefineConcept{正偏}或\DefineConcept{右偏}；
-当\(\beta_s<0\)时，称这个分布是\DefineConcept{负偏}或\DefineConcept{左偏}.
+当\(\beta_s>0\)时，称这个分布是\DefineConcept{正偏的}或\DefineConcept{右偏的}；
+当\(\beta_s<0\)时，称这个分布是\DefineConcept{负偏的}或\DefineConcept{左偏的}；
+当\(\beta_s=0\)时，称这个分布是\DefineConcept{不偏的}.
 当一个分布的偏度不等于零时，我们称这个分布为\DefineConcept{偏态分布}.
 \end{definition}
 
@@ -18,3 +19,42 @@
 当分布密度函数\(f(x)\)的图形关于它的数学期望\(E(X)\)定出的直线\(x=E(X)\)对称，
 即\(f(E(X)-x)=f(E(X)+x)\)时，其三阶中心矩\(\mu_3\)必为零，从而它的偏度为零.
 作为特例，正态分布\(N(\mu,\sigma^2)\)关于\(E(X)=\mu\)是对称的，故正态分布的偏度都是零.
+
+偏度\(\beta_s\)是以分布的标准差的三次方\([D(X)]^{3/2}\)为单位，
+来度量三阶中心矩大小的，从而消去了量纲，使其更具有可比性.
+简单地说，分布的三阶中心矩\(mu_3\)决定偏度的符号，
+而分布的标准差\(\sqrt{\mu_2}\)决定偏度的大小.
+
+\begin{example}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P108 例2.5.2
+讨论三个贝塔分布\(B(2,8),B(8,2),B(5,5)\)的偏度.
+\begin{solution}
+设随机变量\(X\)服从贝塔分布\(B(a,b)\)，
+那么\begin{gather*}
+	E(X) = \frac{a}{a+b}, \\
+	E(X^2) = \frac{a(a+1)}{(a+b)(a+b+1)}, \\
+	E(X^3) = \frac{a(a+1)(a+2)}{(a+b)(a+b+1)(a+b+2)}.
+\end{gather*}
+于是，我们可以列出\cref{table:偏度.例表1}.
+\begin{table}[ht]
+	\centering
+	\begin{tblr}{*4c}
+		\hline
+		\(X\) & \(B(2,8)\) & \(B(8,2)\) & \(B(5,5)\) \\
+		\hline
+		\(E(X)\) & \(1/5\) & \(4/5\) & \(1/2\) \\
+		\(E(X^2)\) & \(3/55\) & \(36/55\) & \(3/11\) \\
+		\(E(X^3)\) & \(1/55\) & \(6/11\) & \(7/44\) \\
+		\(\mu_3\) & \(2/(55\times25)\) & \(-2/(55\times25)\) & 0 \\
+		\(\sqrt{D(X)}\) & \(2/(5\sqrt{11})\) & \(2/(5\sqrt{11})\) & \(\sqrt{1/44}\) \\
+		\(\beta_s\) & \(\sqrt{11}/4\approx0.8292\) & \(-\sqrt{11}/4\approx-0.8292\) & \(0\) \\
+		\hline
+	\end{tblr}
+	\caption{}
+	\label{table:偏度.例表1}
+\end{table}
+可以看出，\(B(2,8)\)是正偏的、右偏的，
+\(B(8,2)\)是负偏的、左偏的，
+\(B(5,5)\)是不偏的.
+\end{solution}
+\end{example}
