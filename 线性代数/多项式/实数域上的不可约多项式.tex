@@ -4,7 +4,7 @@
 其中\(a,b\)都是实数，
 因此我们可以利用复数域上多项式的信息来研究实数域上的不可约多项式.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:实数域上的不可约多项式.多项式的复根的共轭也是根}
 %@see: 《高等代数（第三版 下册）》（丘维声） P40 定理1
 设\(f(x)\)是实系数多项式，
 如果\(c\)是\(f(x)\)的一个复根，
@@ -20,5 +20,55 @@
 	a_n \overline{c}^n+a_{n-1} \overline{c}^{n-1}+\dotsb+a_1 \overline{c}+a_0=0,
 \]
 因此\(\overline{c}\)是\(f(x)\)的一个复根.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P40 定理2
+实数域上的不可约多项式都是一次多项式或判别式小于零的二次多项式.
+\begin{proof}
+设\(f(x)\in\mathbb{R}[x]\)是不可约的.
+把\(f(x)\)看成复系数多项式，
+根据代数基本定理，
+\(f(x)\)有一个复根\(c\).
+
+如果\(c\)是实数，
+则\(f(x)\)是\(\mathbb{R}[x]\)中有一次因式\(x-c\).
+因为\(f(x)\)不可约，
+所以一定有\(f(x) \sim (x-c)\)，
+从而有\(f(x)=a(x-c)\)，
+其中\(a\)是非零实数，
+因此\(f(x)\)是一次多项式.
+
+如果\(c\)是虚数，
+根据\cref{theorem:实数域上的不可约多项式.多项式的复根的共轭也是根}，
+\(\overline{c}\)也是\(f(x)\)的一个复根.
+由于\(c\neq\overline{c}\)，
+所以\((x-c,x-\overline{c})=1\).
+在\(\mathbb{C}[x]\)中，
+\((x-c) \mid f(x),
+(x-\overline{c}) \mid f(x)\)，
+从而根据\cref{theorem:多项式.互素.性质2} 得\[
+	(x-c)(x-\overline{c}) \mid f(x).
+\]
+于是\[
+	(x-c)(x-\overline{c})
+	=x^2-(c+\overline{c})x+c\overline{c},
+\]
+而\(c+\overline{c}\)和\(c\overline{c}\)都是实数.
+既然在\(\mathbb{C}[x]\)中
+有\([x^2-(c+\overline{c})x+c\overline{c}] \mid f(x)\)，
+所以在\(\mathbb{R}[x]\)中
+也有\([x^2-(c+\overline{c})x+c\overline{c}] \mid f(x)\).
+由于\(f(x)\)在\(\mathbb{R}[x]\)中不可约，
+因此\(f(x)=a[x^2-(c+\overline{c})x+c\overline{c}]\)，
+其中\(a\)是非零实数；
+又因为\begin{align*}
+	&\text{实系数二次多项式$f(x)=ax^2+bx+c$不可约} \\
+	&\iff \text{$f(x)$在$\mathbb{R}[x]$中没有一次因式} \\
+	&\iff \text{$f(x)$没有实根} \\
+	&\iff b^2-4ac<0,
+\end{align*}
+因此\(f(x)\)是判别式小于零的二次多项式.
 \end{proof}
 \end{theorem}
