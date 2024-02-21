@@ -462,3 +462,51 @@ g(x)=x-1\)，
 \]
 \end{solution}
 \end{example}
+
+%@see: https://zhuanlan.zhihu.com/p/634579122
+%@see: https://mathworld.wolfram.com/SyntheticDivision.html
+在上面这个例子中，
+我们利用\DefineConcept{综合除法}（synthetic division）
+求出了用一次多项式\(g(x)=x-c\)
+去除任一多项式\(f(x)=a_n x^n+a_{n-1} x^{n-1}+\dotsb+a_1 x+a_0\)的商式和余式.
+实际上综合除法是基于带余除法和待定系数法建立了一种简易算法.
+不妨设\[
+	f(x)=(x-c) q(x)+r,
+\]
+其中\(q(x)=b_{n-1} x^{n-1}+b_{n-2} x^{n-2}+\dotsb+b_1 x+b_0\).
+那么有\[
+	f(x)
+	=b_{n-1} x^n
+	+(b_{n-2}-c b_{n-1}) x^{n-1}
+	+(b_{n-3}-c b_{n-2}) x^{n-2}
+	+\dotsb
+	+(b_0-c b_1) x
+	+(r-c b_0).
+\]
+将上式与\(f(x)=a_n x^n+a_{n-1} x^{n-1}+\dotsb+a_1 x+a_0\)比较可得\[
+	\left\{ \begin{array}{l}
+		a_n=b_{n-1}, \\
+		a_{n-1}=b_{n-2}-c b_{n-1}, \\
+		a_{n-2}=b_{n-3}-c b_{n-2}, \\
+		\hdotsfor1, \\
+		a_1=b_0-c b_1, \\
+		a_0=r-c b_0,
+	\end{array} \right.
+	\quad\text{即}\quad
+	\left\{ \begin{array}{l}
+		b_{n-1}=a_n, \\
+		b_{n-2}=a_{n-1}+c b_{n-1}, \\
+		b_{n-3}=a_{n-2}+c b_{n-2}, \\
+		\hdotsfor1 \\
+		b_0=a_1+c b_1, \\
+		r=a_0+c b_0.
+	\end{array} \right.
+\]
+于是我们可以列出下表：\[
+	\begin{array}{r|*5c}
+		& a_n & a_{n-1} & \dots & a_1 & a_0 \\
+		c && c a_n & \dots & c b_1 & c b_0 \\ \cline{2-6}
+		& a_n=b_{n-1} & a_{n-1}+c a_n=b_{n-2} & \dots & a_1+c b_1=b_0 & a_0+c b_0=r
+	\end{array}
+\]
+这就是综合除法的原理.
