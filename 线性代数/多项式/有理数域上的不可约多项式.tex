@@ -175,7 +175,7 @@
 \end{proof}
 \end{theorem}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:多项式.有理数域上的不可约多项式.本原多项式的分解.推论}
 %@see: 《高等代数（第三版 下册）》（丘维声） P43 推论2
 如果一个次数大于零的整系数多项式在\(\mathbb{Q}\)上可约，
 则它可以分解成两个次数比它低的整系数多项式的乘积.
@@ -372,3 +372,77 @@ f(-1)=-4\neq0\)，
 它们都是单根.
 \end{solution}
 \end{example}
+
+下面来探索次数大于1的整系数多项式在\(\mathbb{Q}\)上不可约的条件.
+我们来剖析两个例子：
+\(x^2+4x+4=(x+2)^2\)，
+因此它在\(\mathbb{Q}\)上可约.
+\(x^2+4x+6\)的虚根为\(-2\pm\sqrt2\iu\)，
+因此它没有有理根，在\(\mathbb{Q}\)上不可约.
+\(x^2+4x+4\)与\(x^2+4x+6\)的共同点是
+有素数2整除常数项和一次项系数，2不能整除首项系数；
+不同点是2的平方能整除\(x^2+4x+4\)的常数项4，
+2的平方不能整除\(x^2+4x+6\)的常数项6.
+
+\begin{theorem}[艾森斯坦判别法]
+设\[
+	f(x)=a_n x^n+\dotsb+a_1 x+a_0
+\]是一个次数\(n\)大于零的整系数多项式.
+如果存在一个素数\(p\)，
+使得\begin{enumerate}
+	\item \(p \mid a_i\ (i=0,1,\dotsc,n-1)\)；
+	\item \(p \nmid a_n\)；
+	\item \(p^2 \nmid a_0\)，
+\end{enumerate}
+则\(f(x)\)在\(\mathbb{Q}\)上不可约.
+\begin{proof}
+用反证法.
+假设\(f(x)\)在\(\mathbb{Q}\)上可约，
+则根据\cref{theorem:多项式.有理数域上的不可约多项式.本原多项式的分解.推论} 得\[
+	f(x)=(b_m x^m+\dotsb+b_1 x+b_0)(c_l x^l+\dotsb+c_1 x+c_0),
+	\eqno(1)
+\]
+其中\(b_i,c_j\in\mathbb{Z}\ (i=0,1,\dotsc,m;j=0,1,\dotsc,l),
+b_m\neq0,
+c_l\neq0,
+m<n,
+l<n,
+m+l=n\).
+因此\[
+	a_n=b_m c_l, \qquad
+	a_0=b_0 c_0.
+\]
+已知\(p \mid a_0\)，
+所以\(p \mid b_0\)或\(p \mid c_0\).
+又因为\(p^2 \nmid a_0\)，
+所以\(p\)不能同时整除\(b_0\)和\(c_0\).
+不妨设\(p \mid b_0\)但\(p \nmid c_0\).
+因为\(p \nmid a_n\)，
+所以\(p \nmid b_m\).
+假设\(b_0,b_1,\dotsc,b_m\)中第一个不能被\(p\)整除的是\(b_k\)，
+即\[
+	p \mid b_0,
+	p \mid b_1,
+	\dotsc,
+	p \mid b_{k-1},
+	p \nmid b_k,
+	\qquad
+	0<k\leq m.
+	\eqno(2)
+\]
+比较(1)式两边\(x^k\)的系数，
+得\[
+	a_k=b_k c_0+b_{k-1} c_1+\dotsb+b_1 c_{k-1}+b_0 c_k.
+	\eqno(3)
+\]
+因为\(k\leq m<n\)，
+所以\(p \mid a_k\).
+于是从(2)(3)两式得
+\(p \mid b_k c_0,
+p \mid c_0\)，
+矛盾！
+因此\(f(x)\)在\(\mathbb{Q}\)上不可约.
+\end{proof}
+%@see: https://brilliant.org/wiki/eisensteins-irreducibility-criterion/
+%@see: https://maa.org/sites/default/files/pdf/upload_library/22/Ford/Cox-2012.pdf
+\end{theorem}
