@@ -1,0 +1,100 @@
+\section{多元多项式环}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P50 定义1
+设\(K\)是一个数域，
+用不属于\(K\)的\(n\)个符号\(\AutoTuple{x}{n}\)作表达式\[
+	\sum_{\AutoTuple{i}{n}}
+	a_{i_1 \dotsm i_n}
+	x_1^{i_1} \dotsm x_n^{i_n},
+\]
+其中\(a_{i_1 \dotsm i_n} \in K\)，
+\(\AutoTuple{i}{n}\)是非负整数，
+上式中的每一项称为一个\DefineConcept{单项式}，
+上式称为\DefineConcept{数域\(K\)上的\(n\)元多项式}.
+如果它具有下述性质：
+只有有限多个单项式的系数不为零，
+并且两个这种形式的表达式相等当且仅当它们除去系数为零的单项式外含有完全相同的单项式，
+而系数为零的单项式允许任意删去或添入.
+这时，符号\(\AutoTuple{x}{n}\)称为\(n\)个\DefineConcept{无关不定元}.
+
+在数域\(K\)上的\(n\)元多项式中，
+如果两个单项式的幂指数都对应相等，
+则称这两个单项式为\DefineConcept{同类项}.
+我们约定\(n\)元多项式中的单项式都是不同类的，
+即要把同类项合并成一项.
+
+如果数域\(K\)上一个\(n\)元多项式的所有系数全为零，
+则称它为\DefineConcept{零多项式}，记为\(0\).
+
+我们把\(i_1+\dotsb+i_n\)
+称为“单项式\(a_{i_1 \dotsm i_n}
+x_1^{i_1} \dotsm x_n^{i_n}\)的\DefineConcept{次数}”.
+
+一个\(n\)元多项式\(f(x_1,\dotsc,x_n)\)的系数不为零的单项式的次数的最大值，
+称为“\(f(x_1,\dotsc,x_n)\)的\DefineConcept{次数}”.
+
+零多项式的全次数规定为\(-\infty\).
+\end{definition}
+
+\begin{example}
+\(5x_1^4+3x_1^3x_2+2x_1x_2x_3^2+x_2^3+x_2x_3\)
+是3元4次多项式，
+其中单项式\(5x_1^4,3x_1^3x_2,2x_1x_2x_3^2\)的次数都是4.
+\end{example}
+
+数域\(K\)上所有\(n\)元多项式组成的集合，
+记作\(K[x_1,\dotsc,x_n]\).
+
+在\(K[x_1,\dotsc,x_n]\)中定义加法与乘法如下：
+\begin{gather}
+	\begin{split}
+		&\hspace{-20pt}
+		\sum_{\AutoTuple{i}{n}}
+		a_{i_1 \dotsm i_n}
+		x_1^{i_1} \dotsm x_n^{i_n}
+		+
+		\sum_{\AutoTuple{i}{n}}
+		b_{i_1 \dotsm i_n}
+		x_1^{i_1} \dotsm x_n^{i_n} \\
+		&\defeq
+		\sum_{\AutoTuple{i}{n}}
+		(a_{i_1 \dotsm i_n} + b_{i_1 \dotsm i_n})
+		x_1^{i_1} \dotsm x_n^{i_n},
+	\end{split} \\
+	\begin{split}
+		&\hspace{-20pt}
+		\left(
+		\sum_{\AutoTuple{i}{n}}
+		a_{i_1 \dotsm i_n}
+		x_1^{i_1} \dotsm x_n^{i_n}
+		\right) \left(
+		\sum_{\AutoTuple{j}{n}}
+		b_{j_1 \dotsm j_n}
+		x_1^{j_1} \dotsm x_n^{j_n}
+		\right) \\
+		&\defeq
+		\sum_{\AutoTuple{s}{n}}
+		c_{s_1 \dotsm s_n}
+		x_1^{s_1} \dotsm x_n^{s_n},
+	\end{split}
+\end{gather}
+其中\begin{equation}
+	c_{s_1 \dotsm s_n}
+	= \sum_{i_1+j_1=s_1}
+	\sum_{i_2+j_2=s_2}
+	\dotso
+	\sum_{i_n+j_n=s_n}
+	a_{i_1 \dotsm i_n}
+	b_{j_1 \dotsm j_n}.
+\end{equation}
+不难验证\(K[x_1,\dotsc,x_n]\)对于如上定义的加法与乘法成为一个环.
+它的零元是零多项式.
+它有单位元，即零次多项式\(1\).
+它是交换环.
+我们把这个环称为\DefineConcept{数域\(K\)上的\(n\)元多项式环}.
+
+显然有\begin{equation}
+	\deg(f+g)
+	\leq
+	\max\{\deg f,\deg g\}.
+\end{equation}
