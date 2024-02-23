@@ -315,6 +315,7 @@ x_1^{i_1} \dotsm x_n^{i_n}\)的\DefineConcept{次数}”.
 和数域\(K\)上的一元多项式环\(K[x]\)具有通用性质一样，
 数域\(K\)上的\(n\)元多项式环\(K[x_1,\dotsc,x_n]\)也具有通用性质：
 \begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P53 定理4
 设\(K\)是一个数域，
 \(R\)是一个带有单位元\(e\)的交换环，
 并且\(R\)有一个子环\(R_1\)（含有\(e\)），
@@ -395,3 +396,54 @@ x_1^{i_1} \dotsm x_n^{i_n}\)的\DefineConcept{次数}”.
 \]
 这种由数域\(K\)上的\(n\)元多项式确定的\(K\)上的\(n\)元函数
 称为\DefineConcept{数域\(K\)上的\(n\)元多项式函数}.
+
+对于数域\(K\)上的两个\(n\)元多项式
+\(f(x_1,\dotsc,x_n)\)和\(g(x_1,\dotsc,x_n)\)，
+如果它们相等，
+则它们确定的\(n\)元多项式函数\(f\)与\(g\)也相等；
+反之亦然.
+
+\begin{lemma}
+%@see: 《高等代数（第三版 下册）》（丘维声） P54 引理1
+设\(h(x_1,\dotsc,x_n)\)是数域\(K\)上的一个\(n\)元多项式，
+如果\(h(x_1,\dotsc,x_n)\neq0\),
+则\(h\)不是零函数.
+\begin{proof}
+对不定元的数目\(n\)运用数学归纳法.
+当\(n=1\)时，
+由于数域\(K\)上非零的一元多项式\(h(x)\)给出的函数不是零函数，
+因此存在\(c \in K\)使得\(h(c)\neq0\).
+
+假设命题对\(K[x_1,\dotsc,x_{n-1}]\)中的多项式成立，
+现在看\(K[x_1,\dotsc,x_n]\)中的多项式\(h(x_1,\dotsc,x_n)\).
+把\(h(x_1,\dotsc,x_n)\)写成\[
+	h(x_1,\dotsc,x_n)
+	=u_0(x_1,\dotsc,x_{n-1})
+	+u_1(x_1,\dotsc,x_{n-1})
+	+\dotsb
+	+u_s(x_1,\dotsc,x_{n-1}) x_n^s,
+\]
+其中\(u_i(x_1,\dotsc,x_{n-1}) \in K[x_1,\dotsc,x_{n-1}]\ (i=0,1,\dotsc,s)\)，
+且\(u_s(x_1,\dotsc,x_{n-1})\neq0\).
+根据归纳假设，\(u_s\)不是零函数，
+因此存在\(c_1,\dotsc,c_{n-1} \in K\)
+使得\(u_s(c_1,\dotsc,c_{n-1})\neq0\).
+于是一元多项式环\(K[x_n]\)中的多项式\[
+	h(c_1,\dotsc,c_{n-1},x_n)
+	=u_0(c_1,\dotsc,c_{n-1})
+	+u_1(c_1,\dotsc,c_{n-1}) x_n
+	+\dotsb
+	+u_s(c_1,\dotsc,c_{n-1}) x_n^s
+\]是非零多项式，
+因此存在\(c_n \in K\)，
+使得\[
+	h(c_1,\dotsc,c_n)
+	=u_0(c_1,\dotsc,c_{n-1})
+	+u_1(c_1,\dotsc,c_{n-1}) c_n
+	+\dotsb
+	+u_s(c_1,\dotsc,c_{n-1}) c_n^s
+	\neq0.
+	\qedhere
+\]
+\end{proof}
+\end{lemma}
