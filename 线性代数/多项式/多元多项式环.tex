@@ -512,4 +512,72 @@ x_1^{i_1} \dotsm x_n^{i_n}\)的\DefineConcept{次数}”.
 	f(t x_1,\dotsc,t x_n)
 	= t^m f(x_1,\dotsc,x_n).
 \]
+\begin{proof}
+必要性.
+设\(f(x_1,\dotsc,x_n)\)是\(m\)次齐次多项式，
+即\[
+	f(x_1,\dotsc,x_n)
+	=\sum_{i_1,\dotsc,i_n}
+	a_{i_1 \dotsm i_n}
+	x_1^{i_1} \dotsm x_n^{i_n},
+	\qquad
+	i_1+\dotsb+i_n=m.
+\]
+任取\(t \in K\)，
+不定元\(x_1,\dotsc,x_n\)用\(t x_1,\dotsc,t x_n\)代入，
+从上式得\begin{align*}
+	f(t x_1,\dotsc,t x_n)
+	&=\sum_{i_1,\dotsc,i_n}
+	a_{i_1 \dotsm i_n}
+	(t x_1)^{i_1} \dotsm (t x_n)^{i_n} \\
+	&=t^{i_1+\dotsb+i_n}
+	\sum_{i_1,\dotsc,i_n}
+	a_{i_1 \dotsm i_n}
+	x_1^{i_1} \dotsm x_n^{i_n} \\
+	&=t^m f(x_1,\dotsc,x_n).
+\end{align*}
+
+充分性.
+设对\(\forall t \in K\)，
+有\(f(t x_1,\dotsc,t x_n)
+= t^m f(x_1,\dotsc,x_n)\).
+设\(\deg f=s\)，
+则可将\(f(x_1,\dotsc,x_n)\)写成\[
+	f=f_0+\dotsb+f_s,
+\]
+其中\(f_i\)是\(f\)的\(i\)次齐次成分.
+任取\(t \in K\)，
+\(x_1,\dotsc,x_n\)用\(t x_1,\dotsc,t x_n\)代入，
+从上式得出\[
+	f(t x_1,\dotsc,t x_n)
+	=f_0(t x_1,\dotsc,t x_n)
+	+f_1(t x_1,\dotsc,t x_n)
+	+\dotsb
+	+f_s(t x_1,\dotsc,t x_n),
+\]
+那么由必要性的结论以及充分性的假设得\[
+	t^m f(x_1,\dotsc,x_n)
+	=f_0(x_1,\dotsc,x_n)
+	+t f_1(x_1,\dotsc,x_n)
+	+\dotsb
+	+t^s f_s(x_1,\dotsc,x_n).
+\]
+于是根据\(K[x_1,\dotsc,x_n]\)中两个多项式相等的规定，
+我们得到\[
+	t^m f_i(x_1,\dotsc,x_n)
+	= t^i f_i(x_1,\dotsc,x_n),
+	\quad
+	i=0,1,\dotsc,s.
+\]
+对于\(\forall i \in \{0,1,\dotsc,s\}-\{m\}\)，
+如果\(f_i\neq0\)，
+则从上式两边消去\(f_i\)得\((\forall t \in K)[t^m=t^i]\).
+由\cref{theorem:多项式.多项式函数是否相等取决于多项式是否相等}
+得\(x^m=x^i\)，
+这与\(i \neq m\)矛盾！
+因此当\(i \neq m\)时必有\(f_i=0\).
+所以\(f=f_m\).
+已知\(f\neq0\)，
+因此\(f\)是\(m\)次齐次多项式.
+\end{proof}
 \end{theorem}
