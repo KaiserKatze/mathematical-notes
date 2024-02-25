@@ -146,4 +146,91 @@ x_2x_3^2\)这六项.
 对于\(K[x_1,\dotsc,x_n]\)中任意一个对称多项式\(f(x_1,\dotsc,x_n)\)，
 都存在\(K[x_1,\dotsc,x_n]\)中唯一的一个多项式\(g(x_1,\dotsc,x_n)\)，
 使得\(f(x_1,\dotsc,x_n)=g(\sigma_1,\dotsc,\sigma_n)\).
+\begin{proof}
+存在性.
+采取首项消去法.
+设对称多项式\(f(x_1,\dotsc,x_n)\)的首项是\(a x_1^{l_1} \dotsm x_n^{l_n}\)，
+其中\(a\neq0\)，且\(l_1 \geq \dotsb \geq l_n\).
+为了消去\(f(x_1,\dotsc,x_n)\)的首项，
+同时又要出现\(\sigma_1,\dotsc,\sigma_n\)，
+我们作多项式\[
+	\phi_1(x_1,\dotsc,x_n)
+	= a \sigma_1^{l_1-l_2} \sigma_2^{l_2-l_3}
+	\dotsm \sigma_{n-1}^{l_{n-1}-l_n} \sigma_n^{l_n},
+\]
+因为\(K[x_1,\dotsc,x_n]\)中对称多项式的乘积还是对称多项式，
+所以\(\phi_1(x_1,\dotsc,x_n)\)是对称多项式.
+又由于多项式的乘积的首项等于它们的首项的乘积，
+因此\(\phi_1(x_1,\dotsc,x_n)\)的首项是\begin{align*}
+	&a x_1^{l_1-l_2} (x_1 x_2)^{l_2-l_3}
+	\dotsm (x_1 x_2 \dotsm x_{n-1})^{l_{n-1}-l_n}
+	(x_1 x_2 \dotsm x_{n-1} x_n)^{l_n} \\
+	&= a x_1^{l_1} x_2^{l_2} \dotsm x_{n-1}^{l_{n-1}} x_n^{l_n},
+\end{align*}
+它等于\(f(x_1,\dotsc,x_n)\)的首项.
+令\[
+	f_1(x_1,\dotsc,x_n)
+	=f(x_1,\dotsc,x_n)
+	-\phi_1(x_1,\dotsc,x_n),
+\]
+则\(f\)的首项的幂指数组先于\(f_1\)的首项的幂指数组，
+并且由于对称多项式的差仍是对称多项式，
+所以\(f_1(x_1,\dotsc,x_n)\)是\(K[x_1,\dotsc,x_n]\)中的对称多项式.
+
+对\(f_1(x_1,\dotsc,x_n)\)重复上述做法，
+我们又得到\(K[x_1,\dotsc,x_n]\)中的一个对称多项式\[
+	f_2(x_1,\dotsc,x_n)
+	=f_1(x_1,\dotsc,x_n)
+	-\phi_2(x_1,\dotsc,x_n),
+\]
+其中\(\phi_2(x_1,\dotsc,x_n)\)是\(\sigma_1,\dotsc,\sigma_n\)的适当方幂的乘积，
+并且其系数等于\(f_1\)的首项系数，
+\(f_1\)的首项的幂指数组先于\(f_2\)的首项的幂指数组.
+
+如此继续下去，我们得到\(K[x_1,\dotsc,x_n]\)中一系列的对称多项式\[
+	f,
+	f_1=f-\phi_1,
+	f_2=f_1-\phi_2,
+	\dotsc,
+	f_i=f_{i-1}-\phi_i,
+	\dotsc,
+\]
+它们的首项的幂指数组一个比一个小，
+其中\(\phi_i\)是\(\sigma_1,\dotsc,\sigma_n\)的适当方幂的乘积，
+并且其系数等于\(f_{i-1}\)的首项系数.
+设\(f_i\)的首项的幂指数组为\((p_1,\dotsc,p_n)\)，
+则\((l_1,\dotsc,l_n)>(p_1,\dotsc,p_n)\)，
+于是\(l_1 \geq p_1\).
+又因为\(f_i\)是对称多项式，
+所以\(p_1 \geq \dotsb \geq p_n\).
+因此\(l_1 \geq p_1 \geq p_2 \geq \dotsb p_n\).
+满足这个条件的非负整数组\((p_1,\dotsc,p_n)\)只有有限多个，
+因此上述对称多项式序列中只能有有限多个\(f_i\)不为零，
+换言之，存在正整数\(s\)，使得\(f_s=0\).
+于是\[
+	f_1=f-\phi_1,
+	f_2=f_1-\phi_2,
+	\dotsc,
+	f_{s-1}=f_{s-2}-\phi_{s-1},
+	f_s=f_{s-1}-\phi_s=0,
+\]
+从而得到\[
+	f=\phi_1+\dotsb+\phi_s.
+\]
+
+设\(\phi_i(x_1,\dotsc,x_n)
+=a_i \sigma_1^{t_{i1}} \dotsm \sigma_n^{t_{in}}\)，
+令\[
+	g(x_1,\dotsc,x_n)
+	=\sum_{i=1}^s a_i x_1^{t_{i1}} \dotsm x_n^{t_{in}}
+	\in K[x_1,\dotsc,x_n],
+\]
+则\begin{align*}
+	g(\sigma_1,\dotsc,\sigma_n)
+	&=\sum_{i=1}^s a_i \sigma_1^{t_{i1}} \dotsm \sigma_n^{t_{in}} \\
+	&=\sum_{i=1}^s \phi_i(x_1,\dotsc,x_n) \\
+	&=f(x_1,\dotsc,x_n).
+\end{align*}
+存在性成立.
+\end{proof}
 \end{theorem}
