@@ -1,0 +1,211 @@
+\section{事件的独立性及伯努利概型}
+\subsection{事件的独立性}
+从上一节可以发现，一般有\(P(A \vert B) \neq P(A)\)，
+即事件\(B\)发生后会影响事件\(A\)发生的概率，
+但也有例外的情形.
+
+例如一袋中有3个白球7个红球，有放回地取两次球，每次一球.
+\(A_i\)表示“第\(i\)次取红球”，\(i=1,2\).
+此时显然有\(P(A_2) = P(A_2 \vert A_1) = \frac{7}{10}\).
+这表明\(A_1\)是否发生不影响\(A_2\)的发生.
+
+一般地，如果\(P(B) > 0\)，且\(P(A \vert B) = P(A)\)时，
+则事件\(B\)的发生不影响事件\(A\)的发生.
+若还有\(P(A) > 0\)，
+则必有\(P(B \vert A) = P(B)\).
+这是因为\(P(A \vert B) = \frac{P(AB)}{P(B)} = P(A)\)，
+则有\(P(AB) = P(A) P(B)\)，
+从而\(P(B \vert A) = \frac{P(AB)}{P(A)} = P(B)\).
+
+可见事件彼此间的影响是相互的.
+事件\(A\)与\(B\)的某一个发生不影响另一个发生的情形
+称为事件\(A\)与\(B\)相互独立，
+这等价于\(P(AB) = P(A) P(B)\).
+于是我们定义：
+
+\begin{definition}
+对同一试验的任意两事件\(A\)、\(B\)，
+若\[
+	P(AB) = P(A) P(B),
+\]
+则称“事件\(A\)与\(B\) \DefineConcept{相互独立}”.
+\end{definition}
+
+注意，“\(A\)与\(B\)相互独立”
+和“\(A\)与\(B\)互斥”是两个不同的概念.
+事实上，只要\(P(A) > 0\)，\(P(B) > 0\)，
+“\(A\)与\(B\)相互独立”和“\(A\)与\(B\)互斥”这两种情况绝不会同时出现.
+这是因为当“\(A\)与\(B\)相互独立”时，
+\(P(AB) = P(A) P(B) > 0\)，
+这就与“\(A\)与\(B\)互斥”时
+\(AB = \emptyset\)，
+\(P(AB) = 0\)相矛盾.
+
+设试验的样本空间为\(\Omega\)，
+显然\(P(\Omega) = 1,
+P(\emptyset) = 0\).
+因为对于任意事件\(A\)，
+\(A \Omega = A\)，
+\(A \emptyset = \emptyset\)，
+那么\[
+	P(A \Omega) = P(A) = P(A) P(\Omega), \qquad
+	P(A \emptyset) = P(\emptyset) = P(A) P(\emptyset),
+\]
+所以\(A\)与\(\Omega\)、\(A\)与\(\emptyset\)都相互独立.
+
+\begin{theorem}
+若事件\(A\)与\(B\)相互独立，
+则\(A\)与\(\overline{B}\)，
+\(\overline{A}\)与\(B\)，
+\(\overline{A}\)与\(\overline{B}\)也相互独立.
+\begin{proof}
+因为\(A\overline{B}=A(\Omega-B)=A-AB\)，
+\(P(AB)=P(A)P(B)\)，
+所以\[
+	P(A\overline{B})
+	= P(A) - P(AB)
+	= P(A) - P(A) P(B)
+	= P(A) [1 - P(B)]
+	= P(A) P(\overline{B}),
+\]
+从而\(A\)与\(\overline{B}\)相互独立.
+根据对称性易证\(\overline{A}\)与\(B\)，
+\(\overline{A}\)与\(\overline{B}\)也都相互独立.
+\end{proof}
+\end{theorem}
+
+相互独立的概念可推广到多个事件的情形.
+\begin{definition}
+设\(A_1,A_2,\dotsc,A_n\ (n \geq 2)\)是\(n\)个事件，
+若任取两事件\(A_i,A_j\ (i \neq j)\)，
+有\[
+	P(A_i A_j) = P(A_i) P(A_j),
+\]
+则称“这\(n\)个事件\DefineConcept{两两独立}”.
+\end{definition}
+
+\begin{definition}
+设\(A_1,A_2,\dotsc,A_n\ (n \geq 2)\)是\(n\)个事件，
+若对其中任意\(k\ (2 \leq k \leq n)\)个事件\(A_{i_1},A_{i_2},\dotsc,A_{i_k}\)
+有\[
+	P(A_{i_1} A_{i_2} \dotsm A_{i_k})
+	= P(A_{i_1}) P(A_{i_2}) \dotsm P(A_{i_k}),
+\]
+则称“这\(n\)个事件\DefineConcept{相互独立}”.
+\end{definition}
+
+\begin{theorem}
+如果\(n\)个事件相互独立，
+则必有这\(n\)个事件两两独立；反之不然.
+\end{theorem}
+
+由定义判断\(n\)个事件的相互独立性，
+需要验证\(C_n^2+C_n^3+\dotsb+C_n^n=2^n-n-1\)个等式.
+因此，在应用中，通常由实际意义判断事件的相互独立性.
+
+概率论中，
+通常把概率小于0.05的事件叫做\DefineConcept{小概率事件}.
+小概率事件有两个特点：
+第一，小概率事件在一次试验中几乎不可能发生；
+第二，小概率事件在大量重复试验中几乎必定会至少发生一次.
+
+\begin{example}
+设\(0<P(B)<1\).
+证明：\(A\)与\(B\)相互独立的充分必要条件为
+\(P(A \vert B) = P(A \vert \overline{B})\).
+\begin{proof}
+必要性.
+当\(A\)与\(B\)独立时，
+有\(P(A \vert B) = P(A)\).
+而此时，\(A\)与\(\overline{B}\)也独立，
+有\(P(A \vert \overline{B}) = P(A)\).
+因此\(P(A \vert B) = P(A \vert \overline{B})\).
+
+充分性.
+若\(P(A \vert B) = P(A \vert \overline{B})\)，
+有\[
+	\frac{P(AB)}{P(B)}
+	= \frac{P(A\overline{B})}{P(\overline{B})}
+	= \frac{P(A)-P(AB)}{1-P(B)},
+\]\[
+	P(AB) [1-P(B)] = P(B) [P(A)-P(AB)],
+\]\[
+	P(AB) = P(A) P(B),
+\]
+即\(A\)与\(B\)相互独立.
+\end{proof}
+\end{example}
+
+\subsection{伯努利概型}
+\begin{definition}
+将随机试验重复进行\(n\)次，若各次试验的结果互不影响，
+即每次试验各可能结果出现的概率都不依赖其他各次试验的结果，
+这样的试验称为\(n\)重\DefineConcept{独立试验}.
+
+特别地，\(n\)重\DefineConcept{独立试验}中，若每次试验结果只有两个，
+即\(A\)与\(\overline{A}\)，且\(0 < P(A) < 1\)，
+则这样的试验称为\(n\)重\DefineConcept{伯努利试验}，
+相应的数学模型叫做\DefineConcept{伯努利概型}.
+\end{definition}
+
+对于伯努利概型，
+我们需要计算\(A\)在\(n\)次试验中恰好发生\(k\)次的概率.
+
+\begin{theorem}[二项概率]
+在\(n\)重伯努利试验中，
+设\(A\)在各次试验中发生的概率为\(p = P(A)\ (0 < p < 1)\)，
+则在\(n\)次试验中\(A\)恰好发生\(k\)次的概率为\begin{equation}
+	P_n(k) = C_n^k p^k (1-p)^{n-k}, \quad k=0,1,\dotsc,n.
+\end{equation}
+\begin{proof}
+设事件\(A_i\)表示“\(A\)在第\(i\)次试验发生”，
+则\(P(A_i)=p\)，
+\(P(\overline{A_i})=1-p\)，
+\(i=1,2,\dotsc,n\)，
+且各\(A_i\)相互独立.
+由此可知，
+\(A\)在\(n\)次试验中某指定\(k\)次
+（如前\(k\)次）
+试验中发生而在其余\(n-k\)次试验中不发生的概率为\[
+	P(A_1 \dotsm A_k \overline{A_{k+1}} \dotsm \overline{A_n})
+	= P(A_1) \dotsm P(A_k) P(\overline{A_{k+1}}) \dotsm P(\overline{A_n})
+	= p^k (1-p)^{n-k}.
+\]
+由于\(A\)在\(n\)次试验中恰好发生\(k\)次
+共有\(C_n^k\)种指定\(k\)次试验\(A\)发生的方式，
+且这\(C_n^k\)种指定的方式是两两互斥的，
+从而有概率的可加性，
+知\[
+	P_n(k) = C_n^k p^k (1-p)^{n-k},
+	\quad k=0,1,\dotsc,n.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+由于\(P_n(k)\)正好是二项式\([p+(1-p)]^n\)展开式中的第\(k+1\)项，
+所以通常称\(P_n(k)\)为\DefineConcept{二项概率}.
+同时也可看出，
+二项概率\(P_n(k)\)满足\begin{equation}
+	\sum_{k=0}^n P_n(k)
+	= \sum_{k=0}^n C_n^k p^k (1-p)^{n-k} = 1.
+\end{equation}
+
+在\(n\)重独立试验中，
+若每次试验有\(k\)个结果\(A_1,A_2,\dotsc,A_k\)，
+我们来求\(n\)次试验中\(A_i\)各发生\(r_i\)次概率.
+
+\begin{theorem}[多项概率]
+在\(n\)重独立试验中，
+每次试验可能的结果是\(A_1,A_2,\dotsc,A_k\)，
+且\(0 < p_i = P(A_i) < 1\ (i=1,2,\dotsc,k)\)，
+且\(p_1+p_2+\dotsb+p_k=1\)，
+则\(A_1,A_2,\dotsc,A_k\)在\(n\)次试验中
+各发生\(r_1,r_2,\dotsc,r_k\)次的概率为
+\begin{equation}\label{equation:概率论基础.多项概率公式}
+	\frac{n!}{r_1! r_2! \dotsm r_k!}
+	p_1^{r_1} p_2^{r_2} \dotsm p_k^{r_k},
+\end{equation}
+其中\(r_1+r_2+\dotsb+r_k=n\).
+\end{theorem}
+\cref{equation:概率论基础.多项概率公式}
+叫做\DefineConcept{多项概率公式}.

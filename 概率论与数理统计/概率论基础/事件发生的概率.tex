@@ -1,0 +1,203 @@
+\section{事件发生的概率}
+\subsection{频率的概念及性质}
+对于一个事件，除去必然事件与不可能事件外，
+它在一次试验中有可能发生，
+也有可能不发生.
+为了揭示这些事件内在的统计规律性，
+往往需要知道这些事件在一次试验中发生的可能性的大小，
+以便更好地认识客观事物.
+比如医学工作者在研制一种新药的过程中，
+需要做临床试验测试其是否有效，
+可否投入临床使用.
+
+为了刻画事件在一次试验中发生的可能性，我们首先引入频率的概念.
+
+\begin{definition}
+在\(n\)次重复试验中，
+若事件\(A\)发生了\(k\)次，
+则称\(k\)为事件\(A\)发生的频数，
+称\(\frac{k}{n}\)为事件\(A\)发生的频率，
+记作\(f_n(A)\)，
+即\[
+	f_n(A) = \frac{k}{n}.
+\]
+\end{definition}
+
+\begin{property}
+由定义可知，频率有如下性质：
+\begin{enumerate}
+	\item \(0 \leq f_n(A) \leq 1\)；
+
+	\item \(f_n(\Omega) = 1\)，\(f_n(\emptyset) = 0\)；
+
+	\item 若\(A_1,A_2,\dotsc,A_r\)为\(r\)个两两互斥的事件，
+	则\[
+		f_n\left( \bigcup_{i=1}^r A_i \right)
+		= \sum_{i=1}^r f_n(A_i).
+	\]
+\end{enumerate}
+\end{property}
+
+由于事件\(A\)在\(n\)次试验中发生的频率是
+\(A\)发生的频数与试验次数\(n\)之比，
+频率大小表示了\(A\)发生的频繁程度.
+频率越大，事件\(A\)在\(n\)次试验中发生得越频繁，
+就意味着\(A\)在一次试验中发生的可能性越大.
+因此，频率在一定程度上可以反映事件发生可能性的大小.
+
+但是，另一方面频率具有不客观性.我们来看下面列出的数据：
+\begin{example}
+历史上，许多著名的统计学家做过“抛硬币”试验，得到如下数据：
+\begin{center}
+	\begin{tblr}{c|c|c|c}
+	\hline
+	试验者 & 抛硬币次数\(n\) & 正面朝上次数\(n_A\) & 频率\(f_n(A)\) \\ \hline
+	Buffon & 4 040 & 2 048 & 0.506 9 \\
+	Fisher & 10 000 & 4 979 & 0.497 9 \\
+	Pearson & 12 000 & 6 019 & 0.501 6 \\
+	Pearson & 24 000 & 12 012 & 0.500 5 \\ \hline
+	\end{tblr}
+\end{center}
+\end{example}
+可以看出，频率具有波动性.
+当试验次数\(n\)不同时，
+频率不相同（事实上，即便试验次数\(n\)相同，
+不同的实验者得到的频率也未必相同）.
+进一步仔细观察这两组数据可以发现，
+当\(n\)较小时，频率波动较大；
+而当\(n\)较大时，频率波动越来越小，
+且频率总稳定在一个客观数量附近，
+例如“抛硬币”试验中频率的稳定值是\(0.5\).
+
+\subsection{概率的公理化定义及性质}
+在实践中，我们通常不可能，
+也无必要对每个事件做大量的试验来获取频率的稳定值.
+历史上，数学家是在不同的概率模型下给出事件概率的计算公式，
+再抽象地公理化地定义概率.
+
+\begin{definition}
+设\(\Omega\)为一个试验的样本空间.
+对\(\Omega\)中任意一个事件\(A\)，
+对应一个实数\(P(A)\).
+若这个集合函数\(P\)满足以下三个条件，
+则称“\(P(A)\)是事件\(A\)发生的\DefineConcept{概率}（probability）”：
+\begin{enumerate}
+	\item 非负性：
+	\begin{equation}
+	P(A) \geq 0;
+	\end{equation}
+
+	\item 规范性：
+	\begin{equation}
+	P(\Omega) = 1;
+	\end{equation}
+
+	\item 可列可加性：
+	若\(A_1,A_2,\dotsc,A_n,\dotsc\)可列个两两互斥的事件，
+	则\begin{equation}
+		P\left(\bigcup_{i=1}^\infty A_i\right)
+		= \sum_{i=1}^\infty P(A_i).
+	\end{equation}
+\end{enumerate}
+\end{definition}
+这个概率的公理化定义是苏联科学家柯尔莫哥洛夫在1933年给出的.
+
+由概率的定义，可得概率有如下性质：
+\begin{property}
+\begin{equation}
+	P(\emptyset) = 0.
+\end{equation}
+\end{property}
+
+\begin{property}[有限可加性]
+若\(n\)个事件\(A_1,A_2,\dotsc,A_n\)两两互斥，
+则\begin{equation}
+	P\left(\bigcup_{i=1}^n A_i\right)
+	= \sum_{i=1}^n P(A_i).
+\end{equation}
+\end{property}
+
+\begin{property}
+\begin{equation}
+	P(\overline{A}) = 1 - P(A).
+\end{equation}
+\end{property}
+
+\begin{property}[概率的减法]
+\begin{equation}
+	P(A - B) = P(A) - P(AB).
+\end{equation}
+
+特别地，若\(B \subseteq A\)，有
+\begin{equation}
+	P(A - B) = P(A) - P(B),
+\end{equation}
+且
+\begin{equation}
+	P(A) \geq P(B).
+\end{equation}
+\begin{proof}
+由事件\(A\)满足：\[
+	A = A \Omega
+	= A(B+\overline{B})
+	= AB+A\overline{B},
+\]
+故\[
+	P(A) = P(AB)+P(A\overline{B}),
+\]
+进而有\[
+	P(A-B) = P(A\overline{B}) = P(A) - P(AB).
+\]
+
+当\(B \subseteq A\)时，
+\(B = BB \subseteq AB\)；
+又由\(AB \subseteq B\)，
+所以\(AB = B\)，
+进而有\[
+	P(A-B) = P(A) - P(B).
+	\qedhere
+\]
+\end{proof}
+\end{property}
+
+\begin{property}
+对任意事件\(A\)，
+有\begin{equation}
+	P(A) \leq 1.
+\end{equation}
+\end{property}
+
+\begin{theorem}[概率的加法]
+对任意两事件\(A,B\)，
+有\begin{equation}
+	P(A \cup B) = P(A) + P(B) - P(AB).
+\end{equation}
+\end{theorem}
+
+\begin{corollary}
+对任意三事件\(A,B,C\)，
+有\begin{equation}
+	P(A \cup B \cup C)
+	= P(A) + P(B) + P(C)
+	- P(AB) - P(AC) - P(BC)
+	+ P(ABC).
+\end{equation}
+\end{corollary}
+
+\begin{theorem}
+对任意两事件\(A,B\)，
+有\begin{equation}
+	P(A \cup B) \leq P(A) + P(B).
+\end{equation}
+\end{theorem}
+
+\begin{corollary}[布尔不等式]
+对任意多个事件\(A_i\ (i=1,2,\dotsc)\)，
+不等式\begin{equation}\label{equation:概率论基础.布尔不等式}
+	P\left(\bigcup_i A_i\right)
+	\leq
+	\sum_i P(A_i)
+\end{equation}
+成立，
+当且仅当“\(A_1,A_2,\dotsc\)两两互斥”时取“\(=\)”.
+\end{corollary}

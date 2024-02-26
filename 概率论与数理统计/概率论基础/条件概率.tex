@@ -1,0 +1,230 @@
+\section{条件概率}
+\subsection{条件概率的概念}
+\begin{definition}\label{definition:条件概率.条件概率的概念}
+设\(A,B\)是样本空间\(\Omega\)中的两个事件，
+且\(P(B) > 0\)，
+我们把\[
+	\frac{P(AB)}{P(B)}
+\]称为“在事件\(B\)已发生的条件下，事件\(A\)发生的概率”，
+或简称“\(A\)对\(B\)的\DefineConcept{条件概率}”，
+记作\(P(A \vert B)\)，
+即\begin{equation}
+	P(A \vert B)
+	\defeq
+	\frac{P(AB)}{P(B)}.
+\end{equation}
+\end{definition}
+
+\begin{property}
+条件概率有如下性质：
+\begin{enumerate}
+	\item \(P(A \vert B) \geq 0\)；
+
+	\item \(P(\Omega \vert B) = 1\)；
+
+	\item 若事件\(A_1,A_2,\dotsc,A_n,\dotsc\)两两互斥，
+	则\[
+		P\left(\bigcup_{i=1}^\infty A_i \Bigg\vert B\right)
+		= \sum_{i=1}^\infty {P(A_i \vert B)}.
+	\]
+\end{enumerate}
+\begin{proof}
+性质3推导如下：
+当\(A_1,A_2,\dotsc,A_n,\dotsc\)两两互斥的，
+则\(A_1 B,A_2 B,\dotsc,A_n B,\dotsc\)也两两互斥.
+从而由条件概率定义及概率的可列可加性，
+有\begin{align*}
+	P\left(\bigcup_{i=1}^\infty A_i \Bigg\vert B\right)
+	&= \frac{1}{P(B)} P\left[\left(\displaystyle\bigcup_{i=1}^\infty A_i\right) B\right]
+	= \frac{1}{P(B)} P\left(\displaystyle\bigcup_{i=1}^\infty {A_i B}\right) \\
+	&= \sum_{i=1}^\infty {\frac{P(A_i B)}{P(B)}}
+	= \sum_{i=1}^\infty {P(A_i \vert B)}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{property}
+
+当事件\(B\)给定时，
+\(P(A \vert B)\)是事件\(A\)的集合函数.
+而上述三个性质正好是概率定义中三个公理化条件，
+于是条件概率也是概率.
+这样，条件概率满足概率的一切性质，如：
+
+\begin{property}
+\(P(\overline{A} \vert B)
+= 1 - P(A \vert B)\).
+\end{property}
+
+\begin{property}
+\(P(A \cup B \vert C)
+= P(A \vert C) + P(B \vert C) - P(AB \vert C)\).
+\end{property}
+
+\begin{example}
+历史资料表明，
+某地区从某次特大洪水发生以后在30年内发生特大洪水的概率为80\%，
+在40年内发生特大洪水的概念为85\%.
+问现在已30年无特大洪水的该地区，
+在未来10年内将发生特大洪水的概率是多少？
+\begin{solution}
+设\(A\)表示“该地区从某次特大洪水后30年内无特大洪水”，
+\(B\)表示“该地区从某次特大洪水后40年内无特大洪水”，
+则\(P(A) = 0.2\)，\(P(B) = 0.15\).
+因为\(B \subseteq A\)使得\(AB = B\)，
+那么所求概率为\[
+	P(\overline{B} \vert A)
+	= 1 - P(B \vert A)
+	= 1 - \frac{P(AB)}{P(A)}
+	= 1 - \frac{P(B)}{P(A)}
+	= 1 - \frac{0.15}{0.2}
+	= 0.25.
+\]
+\end{solution}
+\end{example}
+
+\subsection{乘法公式}
+\begin{theorem}[概率的乘法]
+当\(P(A) > 0\)，
+\(P(B) > 0\)，
+由条件概率的定义有\begin{equation}
+	P(AB) = P(A) P(B \vert A) = P(B) P(A \vert B),
+\end{equation}
+上式称为\DefineConcept{乘法公式}.
+
+一般地，设\(A_1,A_2,\dotsc,A_n\)是\(n\)个事件，
+且\(P(A_1 A_2 \dotsm A_{n-1}) > 0\)，
+则有乘法公式的一般形式为\begin{equation}
+	P(A_1 A_2 \dotsm A_n)
+	= P(A_1) P(A_2 \vert A_1) P(A_3 \vert A_1 A_2) \dotsm P(A_n \vert A_1 A_2 \dotsm A_{n-1}).
+\end{equation}
+\end{theorem}
+
+\begin{example}
+一个小组有10名同学，其中4名女同学.
+每周依次有一名同学收作业.
+求第一、二周是女同学，
+第三、四周是男同学收作业的概率.
+\begin{solution}
+设\(A_i = \Set{\text{第\(i\)周由女同学收作业}}\ (i=1,2,3,4)\)，
+则有\begin{align*}
+	P(A_1 A_2 \overline{A}_3 \overline{A}_4)
+	&= P(A_1) P(A_2 \vert A_1)
+	P(\overline{A}_3 \vert A_1 A_2)
+	P(\overline{A}_4 \vert A_1 A_2 \overline{A}_3) \\
+	&= \frac{4}{10} \times \frac{3}{9} \times \frac{6}{8} \times \frac{5}{7} = \frac{1}{14}.
+\end{align*}
+\end{solution}
+\end{example}
+
+\subsection{全概率公式与贝叶斯公式}
+\begin{theorem}
+设\(A_1,A_2,\dotsc,A_n\)为样本空间\(\Omega\)的一个完备事件组，
+且\[
+	P(A_i) > 0 \quad(i=1,2,\dotsc,n).
+\]
+设\(B\)是任一事件，
+则：
+\begin{enumerate}
+	\item {\bf 全概率公式}：\begin{equation}
+		P(B) = \sum_{i=1}^n P(A_i) P(B \vert A_i);
+	\end{equation}
+
+	\item {\bf 贝叶斯公式}：
+	若\(P(B) > 0\)，
+	还有\begin{equation}
+		P(A_i \vert B) = \frac{P(A_i) P(B \vert A_i)}{P(B)}
+		= \frac{P(A_i) P(B \vert A_i)}{\sum_{j=1}^n P(A_j) P(B \vert A_j)},
+		\quad i = 1,2,\dotsc,n.
+	\end{equation}
+\end{enumerate}
+\begin{proof}
+全概率公式和贝叶斯公式的成立是显然的.
+因为\(B = B \Omega
+= B(A_1 \cup A_2 \cup \dotsb \cup A_n)
+= A_1 B \cup A_2 B \cup \dotsb A_n B\)，
+所以\[
+	P(B) = P\left(\bigcup_{i=1}^n A_i B\right)
+	= \sum_{i=1}^n P(A_i B)
+	= \sum_{i=1}^n P(A_i) P(B \vert A_i).
+\]
+
+又因为\(P(A_i \vert B)
+= \frac{P(A_i B)}{P(B)}\)，
+而\(P(B \vert A_i)
+= \frac{P(A_i B)}{P(A_i)}\)，
+所以\[
+	P(A_i \vert B) = \frac{P(A_i) P(B \vert A_i)}{P(B)}.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+构成完备事件组的每个事件\(A_i\)的发生，
+都有可能引起事件\(B\)的发生，
+故可视\(A_i\)为引起事件\(B\)发生的“原因事件”，
+\(B\)视为“结果事件”.
+只要知道各“原因事件”发生的概率，
+且知道“原因事件”\(A_i\)发生后引起“结果事件”\(B\)发生的条件概率，
+则可求出\(B\)发生的概率.
+
+如果我们\(P(A_i)\)称为\(A_i\)的\DefineConcept{先验概率}，
+\(P(A_i \vert B)\)称为\(A_i\)的\DefineConcept{后验概率}.
+这就是当我们已知“结果事件”\(B\)发生后，
+追究是由哪一个“原因事件”引发的概率，
+从而由后验概率做出贝叶斯决策.
+
+在应用全概率公式与贝叶斯公式时，
+选择完备事件组较为常见的情形有两种：
+\begin{enumerate}
+	\item 将某过程的第一个步骤的所有情况作为完备事件组；
+
+	\item 将某先决事件\(A\)与\(\overline{A}\)作为完备事件组.
+\end{enumerate}
+
+\begin{example}
+一盒中装有12个球，其中8个是新球.
+第一次比赛从盒中任取2个球，
+使用后放入盒中.
+第二次比赛时，
+再从盒中任取两球，
+求\begin{enumerate}
+	\item 第二次取出2个新球的概率；
+	\item 已知第二次取出2个新球，而第一次仅取出一个新球的概率.
+\end{enumerate}
+\begin{solution}
+设\(B\)表示“第二次取出2个新球”，
+\(A_i\)表示“第一次取出2个球中有\(i\)个新球”，
+\(i=0,1,2\)，
+则\(A_0,A_1,A_2\)是第一次取球的完备事件组，
+且\[
+	P(A_0) = \frac{C_4^2}{C_{12}^2} = \frac{1}{11},
+	\quad
+	P(A_1) = \frac{C_4^1 C_8^1}{C_{12}^2} = \frac{16}{33},
+	\quad
+	P(A_2) = \frac{C_8^2}{C_{12}^2} = \frac{14}{33},
+	\]\[
+	P(B \vert A_0) = \frac{C_8^2}{C_{12}^2} = \frac{14}{33},
+	\quad
+	P(B \vert A_1) = \frac{C_7^2}{C_{12}^2} = \frac{7}{22},
+	\quad
+	P(B \vert A_2) = \frac{C_6^2}{C_{12}^2} = \frac{5}{22}.
+\]
+
+由全概率公式，
+有\begin{align*}
+	P(B) &= P(A_0) P(B \vert A_0)
+		+ P(A_1) P(B \vert A_1)
+		+ P(A_2) P(B \vert A_2) \\
+	&= \frac{1}{11} \times \frac{14}{33}
+		+ \frac{16}{33} \times \frac{7}{22}
+		+ \frac{14}{33} \times \frac{5}{22}
+	= 0.289~3.
+\end{align*}
+
+由贝叶斯公式，有\[
+	P(A_1 \vert B) = \frac{P(A_1) P(B \vert A_1)}{P(B)}
+	= \frac{\frac{16}{33} \times \frac{7}{22}}{0.289~3}
+	= 0.533~3.
+\]
+\end{solution}
+\end{example}
