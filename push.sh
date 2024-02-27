@@ -5,6 +5,8 @@ get_ssh_agent_pid() {
 	ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+'
 }
 
+GITHUB_TOKEN="github-token.ignore"
+
 pid_ssh_agent=($(get_ssh_agent_pid))  # 获取 SSH Agent 进程的 PID，并保存到数组中
 echo "[INFO] 正在运行的 SSH Agent 进程共计${#pid_ssh_agent[@]}个."
 for ((i = 0; i < ${#pid_ssh_agent[@]}; i++)); do
@@ -35,6 +37,10 @@ if [[ ! -f "$OUTPUT_FILE" || $(stat --printf="%s" $SOURCE_FILE) -ge $(( $(stat -
 else
 	do_upload_pdf_file="n"
 fi
+# 如果没有 Github token 文件，那么不上传 PDF 文件
+if [[ ! -f "$GITHUB_TOKEN" ]]; then
+	do_upload_pdf_file="n"
+fi
 
 # 向 Github 推送发行版 PDF 文件
 export REPO="KaiserKatze/mathematical-notes"  # Github 仓库
@@ -63,7 +69,7 @@ case $do_upload_pdf_file in
 		git tag -d $RELEASE_TAG  # 删除标签
 		export RELEASE_TITLE="Release $RELEASE_TAG"
 		export RELEASE_NOTES="Daily update"
-		cat github-token.ignore | awk 'match($0,/^\w+/){print $1}' | gh auth login -p ssh --with-token &&\
+		cat $GITHUB_TOKEN | awk 'match($0,/^\w+/){print $1}' | gh auth login -p ssh --with-token &&\
 			echo "[INFO] Login successfully" &&\
 			gh release create "$RELEASE_TAG" "$OUTPUT_FILE#$OUTPUT_FILE" --latest \
 				--title "$RELEASE_TITLE" \
@@ -71,5 +77,10 @@ case $do_upload_pdf_file in
 				-R "$REPO" &&\
 			gh auth logout ||\
 			echo "[ERROR] Fail to upload release $RELEASE_TAG!" 1>&2 && exit 1
+
+		for remote in $(git remote); do
+			echo "[INFO] Remove temporary tag from '$(git remote get-url $remote)' ..."
+			git push $remote ":$RELEASE_TAG"
+		done
 	;;
 esac
