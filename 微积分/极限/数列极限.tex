@@ -1,0 +1,473 @@
+\section{数列极限}
+极限的概念是由于求某些实际问题的精确解答而产生的.
+例如，我国数学家刘徽利用圆内接正多边形来推算圆的面积的方法 --- 割圆术，
+就是极限思想在几何学上的应用.
+
+\subsection{数列极限的定义}
+\begin{definition}
+设\(\{x_n\}\)为一数列.
+如果存在常数\(a\)，
+对于任意给定的正数\(\epsilon\)（不论它多么小），
+总存在正整数\(N\)，
+使得当\(n > N\)时，
+不等式\[
+	\abs{x_n - a} < \epsilon
+\]都成立，
+那么就称“数列\(\{x_n\}\)是\DefineConcept{收敛的}（convergent）”
+或“数列\(\{x_n\}\) \DefineConcept{收敛}（converge）”；
+称常数\(a\)为“\(\{x_n\}\)的\DefineConcept{极限}（limit）”
+或“数列\(\{x_n\}\) \DefineConcept{收敛于} \(a\)”，
+记\[
+	\lim_{n\to\infty} x_n = a,
+\]或\[
+	x_n \to a \quad (n \to \infty).
+\]
+否则，称“数列\(\{x_n\}\)没有极限”
+或“数列\(\{x_n\}\)是\DefineConcept{发散的}（divergent）”
+或“数列\(\{x_n\}\) \DefineConcept{发散}（diverge）”
+或“极限\(\lim_{n\to\infty} x_n\)不存在”.
+\end{definition}
+
+上面定义中正数\(\epsilon\)可以任意给定是很重要的，
+因为只有这样，不等式\[
+	\abs{x_n - a} < \epsilon
+\]才能表达出\(x_n\)与\(a\)“无限接近”的意思.
+此外还应注意到：
+定义中的正整数\(N\)是与任意给定的正数\(\epsilon\)有关的，
+它随着\(\epsilon\)的给定而选定.
+
+利用形式逻辑的语言，我们可以将上述定义简化为：
+\[
+	\begin{split}
+		\text{数列\(\{x_n\}\)收敛于\(a\)}
+		&\defiff
+		\lim_{n\to\infty} x_n = a \\
+		&\defiff
+		(\forall \epsilon > 0)
+		(\exists N\in\mathbb{N})
+		(\forall n\in\mathbb{N})
+		[
+			n > N
+			\implies
+			\abs{x_n - a} < \epsilon
+		]; \\
+		\text{数列\(\{x_n\}\)收敛}
+		&\defiff
+		(\exists x\in\mathbb{R})
+		\left[\lim_{n\to\infty} x_n = x\right].
+	\end{split}
+\]
+并且我们有\[
+	\text{数列\(\{x_n\}\)发散}
+	\iff
+	(\forall a \in \mathbb{R})
+	(\exists \epsilon_0 > 0)
+	(\forall N \in \mathbb{N}^+)
+	(\exists n_0 > N)[
+		\abs{a_{n_0} - a} > \epsilon_0
+	].
+\]
+
+\begin{proposition}
+设\(a,b\)是实常数，对于数列\(\{x_n\}\)，
+有\[
+	\lim_{n\to\infty} x_n = a
+	\iff
+	\lim_{n\to\infty} (x_n + b) = a + b.
+\]
+\begin{proof}
+根据数列极限的定义有\begin{align*}
+	&\lim_{n\to\infty} x_n = a \\
+	&\iff
+	(\forall \epsilon > 0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{x_n - a} < \epsilon
+	] \\
+	&\iff
+	(\forall \epsilon > 0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{(x_n+b) - (a+b)} < \epsilon
+	] \\
+	&\iff
+	\lim_{n\to\infty} (x_n+b) = a+b.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{example}
+证明数列\[
+2,\frac{1}{2},\frac{4}{3},\frac{3}{4},\dotsc,\frac{n+(-1)^{n-1}}{n},\dotsc
+\]的极限是1.
+\begin{proof}
+由于\[
+\abs{x_n - 1}
+= \abs{\frac{n+(-1)^{n-1}}{n}-1}
+= \abs{\frac{(-1)^{n-1}}{n}}
+= \frac{1}{n},
+\]所以为使\(\abs{x_n - 1} < \epsilon\)，须取\(\frac{1}{n} < \epsilon\)或\(\frac{1}{\epsilon} < n\).
+也就是说，对于\(\forall \epsilon > 0\)，取\(N = \floor*{\frac{1}{\epsilon}}\)，则当\(n > N\)时，就有\(\abs{x_n - a} < \epsilon\)，即\(\lim_{n\to\infty}\frac{n+(-1)^{n-1}}{n}=1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+已知\(x_n = \frac{(-1)^n}{(n+1)^2}\)，证明数列\(\Set{x_n}\)的极限是\(0\).
+\begin{proof}
+因为\(\abs{x_n - a} = \abs{\frac{(-1)^n}{(n+1)^2}-0} = \frac{1}{(n+1)^2} < \frac{1}{n+1}\)，所以对于\(\forall\epsilon>0\)（设\(\epsilon<1\)），只要\(\frac{1}{n+1}<\epsilon\)或\(n>\frac{1}{\epsilon}-1\)，不等式\(\abs{x_n-a}<\epsilon\)必定成立.所以，取\(N=\floor*{\frac{1}{\epsilon}-1}\)，则当\(n>N\)时就有\(\abs{x_n - a}<\epsilon\)，即\(\lim_{n\to\infty}\frac{(-1)^n}{(n+1)^2}=0\).
+\end{proof}
+\end{example}
+
+在利用数列极限的定义来论证某个数\(a\)是数列\(\{x_n\}\)的极限时，
+重要的是对于任意给定的正数\(\epsilon\)，要能够指出定义中所说的这种正整数\(N\)确实存在，
+但没有必要去求最小的\(N\).
+如果知道\(\abs{x_n-a}\)小于某个量（这个量是\(n\)的一个函数），
+那么当这个量小于\(\epsilon\)时，\(\abs{x_n-a}<\epsilon\)当然也成立.
+若令这个量小于\(\epsilon\)来定出\(N\)比较方便的话，就可采用这种方法.
+
+\begin{example}
+设\(\abs{q}<1\)，证明等比数列\[
+1,q,q^2,\dotsc,q^{n-1},\dotsc
+\]的极限是\(0\).
+\begin{proof}
+对于\(\forall\epsilon>0\)（设\(\epsilon<1\)），因为\(\abs{x_n-0}=\abs{q^{n-1}-0}=\abs{q}^{n-1}\)，要使\(\abs{x_n-0}<\epsilon\)，只要\(\abs{q}^{n-1}<\epsilon\).取自然对数得\((n-1)\ln\abs{q}<\ln\epsilon\).因为\(\abs{q}<1\)，\(\ln\abs{q}<0\)，故\(n>1+\frac{\ln\epsilon}{\ln\abs{q}}\).取\(N=\floor*{1+\frac{\ln\epsilon}{\ln\abs{q}}}\)，则当\(n>N\)时，就有\(\abs{q^{n-1}-0}<\epsilon\)，即
+\begin{equation}
+\lim_{n\to\infty}q^{n-1}=0
+\quad(\abs{q}<1).
+\end{equation}
+由此可知，当\(\abs{q}<1\)时，等比数列\(1,q,q^2,\dotsc,q^{n-1},\dotsc\)的极限是\(0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\begin{equation}
+\lim_{n\to\infty} \sqrt[n]{n^k} = 1
+\quad(k\in\mathbb{N}^+).
+\end{equation}
+\begin{proof}
+要证\(\forall\epsilon>0\)，\(\exists N > 0\)，使得当\(n > N\)时，
+\[
+\abs{\sqrt[n]{n^k} - 1} < \epsilon.
+\eqno(1)
+\]
+
+因为\(n \geq 1\)，\(n^k \geq 1\)，\(\sqrt[n]{n^k} \geq 1\)，所以(1)式等价于\[
+\abs{\sqrt[n]{n^k} - 1} = \sqrt[n]{n^k} - 1 < \epsilon,
+\]也即\(\sqrt[n]{n^k} < 1 + \epsilon\)，\(\sqrt[n]{n} < \sqrt[k]{1+\epsilon}\)，
+\[
+\frac{1}{n} \ln n < \frac{1}{k} \ln(1+\epsilon);
+\eqno(2)
+\]
+又因为\(\ln n < \sqrt{n}\)，所以只要有\[
+\frac{1}{n} \ln n < \frac{1}{n} \sqrt{n} = \frac{1}{\sqrt{n}} \leq \frac{1}{k} \ln(1+\epsilon)
+\]或
+\[
+n \geq \left[ \frac{k}{\ln(1+\epsilon)} \right]^2
+\eqno(3)
+\]
+成立即有(2)式成立，那么取\[
+N = \ceil*{\left[ \frac{k}{\ln(1+\epsilon)} \right]^2},
+\]就对\(\forall\epsilon>0\)，\(\exists N > 0\)，使得当\(n > N\)时，有\[
+\abs{\sqrt[n]{n^k} - 1} < \epsilon
+\]成立.
+\end{proof}
+\end{example}
+
+\begin{proposition}\label{theorem:极限.数列的绝对值的极限}
+设数列\(\{x_n\}\)的极限\(\lim_{n\to\infty} x_n\)存在，
+则\(\lim_{n\to\infty} \abs{x_n} = \abs{\lim_{n\to\infty} x_n}\).
+\begin{proof}
+假设\(\lim_{n\to\infty} x_n = a\)，
+那么对于\(\forall\epsilon>0\)，
+\(\exists N\in\mathbb{N}\)，
+\(\forall n\in\mathbb{N}\)，
+当\(n>N\)时，有\(\abs{x_n - a} < \epsilon\)；
+由\hyperref[theorem:不等式.三角不等式2]{三角不等式}有
+\(\abs{\abs{x_n} - \abs{a}} \leq \abs{x_n - a}\)；
+于是当\(n>N\)时，有\(\abs{\abs{x_n} - \abs{a}} < \epsilon\)，
+也就是说\(\lim_{n\to\infty} \abs{x_n} = \abs{a}\).
+\end{proof}
+\end{proposition}
+
+\subsection{收敛数列的性质}
+\begin{theorem}[极限的唯一性]\label{theorem:极限.收敛数列的唯一性}
+如果数列\(\{x_n\}\)收敛，那么它的极限唯一.
+\begin{proof}
+用反证法.
+假设当\(n\to\infty\)时，同时有\(x_n \to a\)及\(x_n \to b\)，且\(a < b\).
+取\(\epsilon = \frac{b-a}{2}\).
+因为\(\lim_{n\to\infty}x_n = a\)，所以有
+\[
+	(\exists N_1\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[n > N_1 \implies \abs{x_n - a} < \frac{b-a}{2}\right]
+	\eqno(1)
+\]成立.
+
+同理，因为\(\lim_{n\to\infty}x_n = b\)，所以有
+\[
+	(\exists N_2 \in \mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[n > N_2 \implies \abs{x_n - b} < \frac{b-a}{2}\right]
+	\eqno(2)
+\]成立.
+
+取\(N = \max\{N_1,N_2\}\)，则当\(n > N\)时，上述两个不等式应同时成立.
+但由(1)式有\(x_n<\frac{a+b}{2}\)，由(2)式有\(x_n>\frac{a+b}{2}\)，
+矛盾，故收敛数列的极限必定唯一.
+\end{proof}
+\end{theorem}
+
+\begin{example}\label{example:极限.振荡数列不存在极限}
+证明数列\(x_n=(-1)^{n+1}\ (n=1,2,\dotsc)\)是发散的.
+\begin{proof}
+假设这级数收敛，则它具有唯一的极限\(\lim_{n\to\infty}x_n = a\).
+按数列极限的定义，对于\(\epsilon=1/2\)，\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，\(\abs{x_n-a}<1/2\)或\(x_n\in\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)成立.
+但这是不可能的，因为\(n\to\infty\)时，\(x_n\)无休止地一再重复取得\(1\)和\(-1\)这两个数，而这两个数不可能同时属于长度为\(1\)的开区间\(\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)内，因此这数列发散.
+\end{proof}
+\end{example}
+
+\begin{theorem}[收敛数列的有界性]\label{theorem:极限.收敛数列的有界性}
+如果数列\(\{x_n\}\)收敛，
+那么数列\(\{x_n\}\)一定有界.
+\begin{proof}
+既然数列\(\{x_n\}\)收敛，
+不妨设\(\lim_{n\to\infty}x_n = a\).
+根据数列极限的定义，
+对于\(\epsilon = 1\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+不等式\(\abs{x_n - a} < 1\)都成立.
+于是，
+当\(n > N\)时，
+\[
+	\abs{x_n} = \abs{(x_n - a) + a} \leq \abs{x_n - a} + \abs{a} < 1 + \abs{a}.
+\]
+取\(M = \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_N},1+\abs{a}\}\)，
+那么数列\(\{x_n\}\)中的一切\(x_n\)都满足不等式\[
+	\abs{x_n} \leq M.
+\]
+这就证明了数列\(\{x_n\}\)是有界的.
+\end{proof}
+\end{theorem}
+
+根据\cref{theorem:极限.收敛数列的有界性} 立即有以下推论.
+\begin{corollary}
+如果数列\(\{x_n\}\)是无界的，那么数列\(\{x_n\}\)一定发散.
+\end{corollary}
+但是，如果数列\(\{x_n\}\)有界，却不能断定数列\(\{x_n\}\)一定收敛.
+例如，在\cref{example:极限.振荡数列不存在极限} 中，数列\[
+1,-1,1,\dotsc,(-1)^{n+1},\dotsc
+\]有界，但它是发散的.
+于是我们可以说：数列有界是数列收敛的必要不充分条件.
+
+\begin{theorem}[收敛数列的保号性]\label{theorem:极限.收敛数列的保号性}
+如果\(\lim_{n\to\infty}x_n = a\)，
+且\(a \gtrless 0\)，
+那么\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+都有\(x_n \gtrless 0\).
+\begin{proof}
+当\(a > 0\)时，
+由数列极限的定义，
+对\(\epsilon = \frac{a}{2} > 0\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+有\(\abs{x_n - a} < \frac{a}{2}\)，
+从而\(x_n > a - \frac{a}{2} = \frac{a}{2} > 0\).
+
+同样地，
+当\(a < 0\)时，
+对\(\epsilon = -\frac{a}{2} > 0\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+有\(\abs{x_n - a} < -\frac{a}{2}\)，
+从而\(x_n < a - \frac{a}{2} = \frac{a}{2} < 0\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}
+如果数列\(\{x_n\}\)从某项起有\(x_n \geq 0\)（或\(x_n \leq 0\)），且\(\lim_{n\to\infty}x_n = a\)，那么\(a \geq 0\)（或\(a \leq 0\)）.
+\begin{proof}
+设当\(n > N_1\ (N_1 \in \mathbb{N}^+)\)时有\(x_n \geq 0\).用反证法.假设\(\lim_{n\to\infty}x_n = a < 0\)，则由收敛数列的保号性定理可知，\(\exists N_2 \in \mathbb{N}^+\)，当\(n > N_2\)时，有\(x_n < 0\).取\(N = \max\{N_1,N_2\}\)，当\(n > N\)时，按假定有\(x_n \geq 0\)，又由保号性可得\(x_n < 0\)，这引起矛盾，所以必有\(a \geq 0\).
+\end{proof}
+\end{corollary}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P31 习题1-2 5.
+设数列\(\{x_n\}\)有界，又\(\lim_{n\to\infty} y_n = 0\).
+证明：\(\lim_{n\to\infty} x_n y_n = 0\).
+\begin{proof}
+因为\[
+	\text{数列\(\{x_n\}\)有界}
+	\iff
+	(\exists M>0)
+	(\forall n\in\mathbb{N})
+	[\abs{x_n} \leq M],
+\]
+又因为\(\lim_{n\to\infty} y_n = 0\)，
+所以\[
+	(\forall \epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{l}
+			n>N
+			\implies
+			\abs{y_n - 0}
+				= \abs{y_n}
+				< \frac{\epsilon}{M} \\
+			\implies
+			\abs{x_n y_n - 0}
+			= \abs{x_n y_n}
+			= \abs{x_n} \abs{y_n}
+			< M \cdot \frac{\epsilon}{M}
+			= \epsilon
+		\end{array}
+	\right].
+\]
+因此\(\lim_{n\to\infty} x_n y_n = 0\).
+\end{proof}
+\end{example}
+
+\subsection{子列极限与上下极限}
+上、下极限是数列极限的必要组成部分，
+它们各有三种等价的描述方式，
+或者说三种等价的定义.
+给定一种定义后，
+其余两种定义的内容可以命题或定理的形式得到证明.
+
+\begin{definition}
+在数列\(\{x_n\}\)中任意抽取无限多项并保持这些项在原数列\(\{x_n\}\)中的先后次序，
+这样得到的一个数列\[
+	x_{p_1},x_{p_2},\dotsc,x_{p_n},\dotsc
+	\quad(1 \leq p_1 < p_2 < \dotsb)
+\]
+称为原数列\(\{x_n\}\)的\DefineConcept{子数列}（或\DefineConcept{子列}）.
+\end{definition}
+
+\begin{definition}
+若子列\(\{x_{p_n}\}\)满足\[
+	\lim_{n\to\infty} x_{p_n} = \xi,
+\]
+则称数\(\xi\)为“数列\(\{x_n\}\)的\DefineConcept{子列极限}（或极限点、聚点）”.
+
+数列\(\{x_n\}\)的最小子列极限称为“数列\(x_n\)的\DefineConcept{下极限}”，
+记作\[
+	\varliminf_{n\to\infty} x_n
+	\quad\text{或}\quad
+	\liminf_{n\to\infty} x_n.
+\]
+
+数列\(\{x_n\}\)的最大子列极限称为“数列\(x_n\)的\DefineConcept{上极限}”，
+记作\[
+	\varlimsup_{n\to\infty} x_n
+	\quad\text{或}\quad
+	\limsup_{n\to\infty} x_n.
+\]
+\end{definition}
+上面对上下极限的定义可以利用“\(\epsilon-N\)语言”更加简洁精确地重新定义为\begin{align*}
+	\varliminf_{n\to\infty} x_n = \alpha
+	&\defiff
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		\alpha-\epsilon < x_n
+	]; \\
+	\varlimsup_{n\to\infty} x_n = \beta
+	&\defiff
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		x_n < \beta+\epsilon
+	].
+\end{align*}
+
+\begin{theorem}[波尔查诺--魏尔斯特拉斯原理]\label{theorem:极限.波尔查诺--魏尔斯特拉斯原理}
+任何有界数列至少有一个有限的子列极限.
+\end{theorem}
+
+\begin{theorem}\label{theorem:极限.上下极限的等价定义1}
+数列\(\{x_n\}\)的上下极限满足：\[
+	\varliminf_{n\to\infty} x_n
+	= \lim_{n\to\infty} \inf\{x_n,x_{n+1},\dotsc\},
+\]\[
+	\varlimsup_{n\to\infty} x_n
+	= \lim_{n\to\infty} \sup\{x_n,x_{n+1},\dotsc\}.
+\]
+\end{theorem}
+\cref{theorem:极限.上下极限的等价定义1}
+也是数列的上下极限的一种等价定义.
+
+\begin{theorem}[收敛数列与其子列的关系]\label{theorem:子列极限.数列收敛的充分必要条件}
+%@see: 《高等数学（第六版 上册）》 P30 定理4
+如果数列\(\{x_n\}\)收敛于\(a\)，
+那么它的任一子列也收敛于\(a\).
+\begin{proof}
+设数列\(\{x_{n_k}\}\)是数列\(\{x_n\}\)的任一子数列.
+由于\(\lim_{n\to\infty}x_n = a\)，
+故\(\forall \epsilon > 0\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+\(\abs{x_n - a} < \epsilon\)成立.
+取\(K = N\)，
+则当\(k > K\)时，
+由\(n_k > n_K \geq N\)
+得\(\abs{x_{n_k} - a} < \epsilon\)，
+也就是说\(\lim_{k\to\infty}x_{n_k} = a\).
+\end{proof}
+\end{theorem}
+由此可知，如果数列\(\{x_n\}\)的两个子列收敛于不同的极限，那么数列\(\{x_n\}\)是发散的.
+例如数列\(\{x_n=(-1)^{n+1}\}\)的子数列\(\{x_{2k-1}\}\)收敛于\(1\)，
+而其子数列\(\{x_{2k}\}\)收敛于\(-1\)，因此数列\(\{x_n\}\)是发散的.
+同时这个例子也说明，一个发散的数列也可能有收敛的子数列.
+
+\begin{corollary}
+对于数列\(\{x_n\}\)，总有\[
+	\lim_{n\to\infty} x_n = a
+	\iff
+	\varliminf_{n\to\infty} x_n
+	= \varlimsup_{n\to\infty} x_n
+	= a.
+\]
+\end{corollary}
+
+\begin{example}
+\def\l{\lim_{n\to\infty}}
+若\(\l u_n = a\)，证明\(\l \abs{u_n} = \abs{a}\).并举例说明：如果数列\(\{\abs{x_n}\}\)有极限，但数列\(\{x_n\}\)未必有极限.
+\begin{proof}
+因为\(\l u_n = a\)，所以对\(\forall\epsilon>0\)，\(\exists N \in \mathbb{N}^+\)，使得当\(n>N\)时，有\(\abs{u_n-a}<\epsilon\)成立.
+根据三角不等式有\(\abs{\abs{u_n}-\abs{a}} \leq \abs{u_n-a}\)，显然当\(n>N\)时，也有\(\abs{\abs{u_n}-\abs{a}}<\epsilon\)成立，即\(\l \abs{u_n} = \abs{a}\).
+
+根据前面的例子，数列\(x_n = (-1)^{n+1}\)发散，但\(\abs{x_n} = \abs{(-1)^{n+1}} = 1\)收敛，说明如果数列\(\{\abs{x_n}\}\)有极限，但数列\(\{x_n\}\)未必有极限.
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\l#1{\lim_{#1\to\infty}}
+对于数列\(\{x_n\}\)，若\(\l{k}x_{2k-1}=a\)，\(\l{k}x_{2k}=a\)，证明：\(\l{n}x_n=a\).
+\begin{proof}
+因为\(\l{k}x_{2k-1}=a\)，所以对于\(\forall\epsilon>0\)，\(\exists N_1 \in \mathbb{N}^+\)，当\(k>N_1\)时，有\(\abs{x_{2k-1}-a}<\epsilon\)成立.
+
+因为\(\l{k}x_{2k}=a\)，所以对于\(\forall\epsilon>0\)，\(\exists N_2 \in \mathbb{N}^+\)，当\(k>N_2\)时，有\(\abs{x_{2k}-a}<\epsilon\)成立.
+
+对于\(\forall\epsilon>0\)，取\(N = \max\{N_1,N_2\}\)，当\(k>N\)时，同时有\[
+\abs{x_{2k-1}-a}<\epsilon, \qquad \abs{x_{2k}-a}<\epsilon
+\]即\[
+a-\epsilon<x_{2k-1}<a+\epsilon, \qquad a-\epsilon<x_{2k}<a+\epsilon
+\]成立，那么当\(n>N\)时，\(a-\epsilon<x_n<a+\epsilon\)或\(\abs{x_n-a}<\epsilon\)成立，也就是说\(\l{n}x_n=a\).
+\end{proof}
+\end{example}

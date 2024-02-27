@@ -1,0 +1,85 @@
+\section{无穷小与无穷大}
+\subsection{无穷小}
+\begin{definition}
+如果函数\(f(x)\)当\(x \to x_0\)（或\(x \to \infty\)）时的极限为零，那么称函数\(f(x)\)为当\(x \to x_0\)（或\(x \to \infty\)）时的\DefineConcept{无穷小}.
+
+特别地，以零为极限的数列\(\{x_n\}\)称为\(n \to \infty\)时的\DefineConcept{无穷小}.
+\end{definition}
+
+根据无穷小的定义，零是唯一可以作为无穷小的常数.
+
+\begin{theorem}
+在自变量的同一变化过程\(x \to x_0\)（或\(x \to \infty\)）中，函数\(f(x)\)具有极限\(A\)的充分必要条件是：\(f(x) = A + \alpha\)，其中\(\alpha\)是无穷小.
+\end{theorem}
+
+\subsection{无穷大}
+\begin{definition}
+设函数\(f(x)\)在\(x_0\)的某一去心邻域内有定义（或\(\abs{x}\)大于某一正数时有定义）.如果对于任意给定的正数\(M\)，总存在正数\(\delta\)（或正数\(X\)），只要\(x\)满足不等式\(0 < \abs{x - x_0} < \delta\)（或\(\abs{x} > X\)），对应的函数值\(f(x)\)总满足不等式\begin{gather}
+\abs{f(x)} > M, \tag1
+\end{gather}则称函数\(f(x)\)为当\(x \to x_0\)（或\(x \to \infty\)）时的\DefineConcept{无穷大}，记作\[
+\lim_{x \to x_0}f(x) = \infty
+\quad\text{（或} \lim_{x \to \infty}f(x) = \infty \text{）}.
+\]
+
+这里若将条件不等式(1)换成\(f(x) > M\)，则称函数\(f(x)\)为当\(x \to x_0\)（或\(x \to \infty\)）时的\DefineConcept{正无穷大}，记作\[
+\lim_{x \to x_0}f(x) = +\infty
+\quad\text{（或} \lim_{x \to \infty}f(x) = +\infty \text{）}.
+\]
+
+同样地，若将条件不等式(1)换成\(f(x) < -M\)，则称函数\(f(x)\)为当\(x \to x_0\)（或\(x \to \infty\)）时的\DefineConcept{负无穷大}，记作\[
+\lim_{x \to x_0}f(x) = -\infty
+\quad\text{（或} \lim_{x \to \infty}f(x) = -\infty \text{）}.
+\]
+\end{definition}
+必须注意，无穷大（\(\infty\)）不是数.
+
+\begin{example}
+证明：\(\lim_{x\to1}\frac{1}{x-1}=\infty\).
+\begin{proof}
+\(\forall M>0\).要使当\(0<\abs{x-1}<\delta\)时，\(\abs{\frac{1}{x-1}}>M\)成立，只要\(\abs{x-1}<\frac{1}{M}\)，所以取\(\delta=\frac{1}{M}\)即可.这就证明了\(\lim_{x\to1}\frac{1}{x-1}=\infty\).
+\end{proof}
+\end{example}
+
+无穷大与无穷小之间有一种简单的关系，即：
+\begin{theorem}\label{theorem:极限.无穷大与无穷小的关系}
+在自变量的同一变化过程中，如果\(f(x)\)为无穷大，则\(\frac{1}{f(x)}\)为无穷小；反之，如果\(f(x)\)为无穷小，且\(f(x) \neq 0\)，则\(\frac{1}{f(x)}\)为无穷大.
+\end{theorem}
+
+显然，当一个函数是无穷大时，必有该函数无界；但当一个函数无界时，却不一定有该函数是无穷大.
+\begin{example}
+证明：函数\(f(x) = \frac{1}{x} \sin\frac{1}{x}\)在区间\((0,1]\)上无界，但该函数不是\(x\to0^+\)时的无穷大.
+\begin{proof}
+要证函数\(y = \frac{1}{x} \sin\frac{1}{x}\)在区间\((0,1]\)上无界，只需证\[
+\forall M > 0, \exists x \in (0,1] : \abs{f(x)} > M.
+\]
+
+取数列\(u_n = \frac{\pi}{2} + n\pi\ (n=0,1,2,\dotsc)\)，那么恒有\(\abs{\sin u_n} = 1\)和\[
+1 < u_0 < u_1 < \dotsb < u_n < \dotsb,
+\]\[
+0 < \dotsb < \frac{1}{u_n} < \dotsb < \frac{1}{u_1} < \frac{1}{u_0} < 1
+\]成立.
+易证\(
+\forall M > 0 \bigl(
+	n > M/\pi \implies u_n > M
+\bigr)
+\)，也就是说数列\(\{u_n\}\)无界.
+
+由于\[
+\abs{f(x)} = \abs{\frac{1}{x} \sin\frac{1}{x}}
+= \abs{\frac{1}{x}} \abs{\sin\frac{1}{x}}
+= \frac{1}{x} \abs{\sin\frac{1}{x}},
+\]\[
+\abs{f(1/u_n)}
+= u_n \abs{\sin u_n} \equiv u_n,
+\]所以函数值数列\(\{\abs{f(1/u_n)}\}\)也无界，自然地函数\(f(x)\)也无界.
+
+
+假设\(f(x)\)是\(x\to0^+\)时的无穷大，那么\[
+\forall M > 0, \exists \delta > 0 \bigl[
+0 < x < \delta \implies \abs{f(x)} > M
+\bigr].
+\]取数列\(v_n = n\pi\ (n=1,2,\dotsc)\)，那么\(v_n > 1\)和\(\sin v_n = 0\)恒成立.由函数值\[
+\abs{f(1/v_n)} = v_n \abs{\sin v_n} \equiv 0
+\]构成的数列\(\{\abs{f(1/v_n)}\}\)恒小于任意正数，与假设矛盾，说明\(f(x)\)不是\(x\to0^+\)时的无穷大.
+\end{proof}
+\end{example}

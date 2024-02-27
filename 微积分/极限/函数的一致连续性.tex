@@ -1,0 +1,282 @@
+\section{函数的一致连续性}
+\begin{definition}\label{definition:极限.函数的一致连续性}
+设函数\(f(x)\)在区间\(I\)上有定义.
+如果对于任意给定的正数\(\epsilon\)，
+总存在着正数\(\delta\)，
+使得对于区间\(I\)上的任意两点\(x_1\)、\(x_2\)，
+当\(\abs{x_1 - x_2} < \delta\)时，就有\[
+	\abs{f(x_1) - f(x_2)} < \epsilon,
+\]
+那么称“函数\(f(x)\)在区间\(I\)上是\DefineConcept{一致连续的}（uniformly continuous）”.
+\end{definition}
+函数的一致连续性表示：
+不论在区间\(I\)的任何部分，
+只要自变量的两个数值接近到一定程度，
+就可使对应的两个函数值达到所指定的接近程度.
+
+\begin{definition}\label{definition:函数族.一致连续函数族}
+定义：区间\(I\)上一致连续函数族\[
+	C_U(I)
+	\defeq
+	\Set{
+		f\in\mathbb{R}^I
+		\given
+		\text{\(f\)在区间\(I\)上是一致连续的}
+	}.
+\]
+\end{definition}
+
+已知函数\(f\colon I\to\mathbb{R}\).
+上述对函数一致连续性的定义可以简化为：\[
+	f \in C_U(I)
+	\iff
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x_1,x_2 \in I)
+	[
+		\abs{x_1 - x_2} < \delta
+		\implies
+		\abs{f(x_1) - f(x_2)} < \epsilon
+	];
+\]
+相反地，有\[
+	f \notin C_U(I)
+	\iff
+	(\exists\epsilon_0>0)
+	(\forall\delta>0)
+	(\exists x_1,x_2 \in I)
+	[
+		\abs{x_1-x_2}<\delta
+		\land
+		\abs{f(x_1)-f(x_2)}\geq\epsilon_0
+	].
+\]
+
+需要注意的是，讲述函数的一致连续性时，一定要讲明它是在哪个区间上一致连续.
+一个函数虽说在区间\(I_1\)上不是一致连续的，但可以在不同的区间\(I_2\)上一致连续.
+
+\begin{example}\label{example:极限.无界函数可以是一致连续的}
+证明：函数\(f(x)=x\)在区间\((-\infty,+\infty)\)上是一致连续的.
+\begin{proof}
+因为\(\abs{f(x_1)-f(x_2)}=\abs{x_1-x_2}\)，
+所以\(\forall\epsilon>0\)，
+总可取\(\delta=\epsilon\)，
+对于\(\forall x_1,x_2\in\mathbb{R}\)，
+当\(0<\abs{x_1-x_2}<\delta=\epsilon\)时，
+能使不等式\[
+\abs{f(x_1)-f(x_2)} = \abs{x_1-x_2} < \epsilon
+\]成立，也就是说\(f(x)\)是一致连续的.
+\end{proof}
+\end{example}
+\cref{example:极限.无界函数可以是一致连续的} 说明：
+无界函数可以是一致连续的.
+
+\begin{example}
+证明：函数\(g(x)=\sin x\)在区间\((-\infty,+\infty)\)上是一致连续的.
+\begin{proof}
+因为
+\begin{align*}
+\abs{g(x_1)-g(x_2)}
+&= \abs{\sin x_1 - \sin x_2}
+= 2\abs{\cos\frac{x_1+x_2}{2} \sin\frac{x_1-x_2}{2}} \\
+&\leq 2\abs{\sin\frac{x_1-x_2}{2}},
+\end{align*}
+而当\(\abs{x_1-x_2} \leq \pi\)时有\[
+\abs{\sin\frac{x_1-x_2}{2}} \leq \abs{\frac{x_1-x_2}{2}}
+\]成立，
+所以\(\forall\epsilon>0\)（设\(\epsilon<\pi\)），
+总可取\(\delta=\epsilon\)，
+对于\(\forall x_1,x_2\in\mathbb{R}\)，
+当\(0<\abs{x_1-x_2}<\delta=\epsilon\)时，
+能使不等式\[
+\abs{g(x_1)-g(x_2)} \leq \abs{x_1-x_2} < \epsilon
+\]成立，
+也就是说\(g(x)\)是一致连续的.
+\end{proof}
+\end{example}
+
+\begin{theorem}\label{theorem:极限.闭区间上连续函数的性质.一致连续函数一定连续}
+如果函数\(f(x)\)在区间\(I\)上一致连续，那么\(f(x)\)在区间\(I\)上连续.
+\begin{proof}
+因为函数\(f(x)\)在区间\(I\)上一致连续，
+只要任意取定一点\(x_0 \in I\)，
+就有\[
+	(\forall \epsilon > 0)
+	(\exists \delta > 0)
+	(\forall x,x_0 \in I)
+	[
+		\abs{x-x_0} < \delta
+		\implies
+		\abs{f(x)-f(x_0)} < \epsilon
+	],
+\]
+这就是说，函数\(f\)在区间\(I\)内任意一点\(x_0\)连续，
+因此\(f\)在区间\(I\)上连续.
+\end{proof}
+\end{theorem}
+
+\begin{example}\label{example:极限.在半开区间连续的函数不一定在该区间上一致连续}
+试证：函数\(f(x) = \frac{1}{x}\)在区间\((0,1]\)上是连续的，但不是一致连续的.
+\begin{proof}
+因为函数\(f(x) = 1/x\)是初等函数，它在区间\((0,1]\)上有定义，所以在\((0,1]\)上是连续的.
+假定\(f(x) = 1/x\)是\((0,1]\)上一致连续，那么\(\forall \epsilon \in (0,1)\)，\(\exists \delta > 0\)，使得对于\(\forall x_1,x_2 \in (0,1]\)，当\(\abs{x_1 - x_2} < \delta\)时，就有\(\abs{f(x_1) - f(x_2)} < \epsilon\).
+
+现在取原点附近的两点\[
+x_1 = \frac{1}{n}, \quad x_2 = \frac{1}{n+1},
+\]其中\(n\in\mathbb{N}^+\)，显然\(x_1,x_2 \in (0,1]\)上.因\[
+\abs{x_1 - x_2} = \abs{\frac{1}{n} - \frac{1}{n+1}}
+= \frac{1}{n(n+1)},
+\]故只要\(n\)取得足够大，总能使\(\abs{x_1 - x_2} < \delta\).但这时有\[
+\abs{f(x_1) - f(x_2)}
+= \abs{\frac{1}{1/n} - \frac{1}{1/(n+1)}}
+= \abs{n - (n+1)}
+= 1 > \epsilon,
+\]不符合一致连续的定义，所以\(f(x) = \frac{1}{x}\)在\((0,1]\)上不是一致连续的.
+\end{proof}
+\end{example}
+\cref{example:极限.在半开区间连续的函数不一定在该区间上一致连续} 说明：
+在半开区间连续的函数不一定在该区间上一致连续.
+
+\begin{example}\label{example:极限.在开区间上有界且连续的函数不一定在该区间上一致连续}
+证明：函数\(\sin\frac{1}{x}\)在\((0,1)\)上是不一致连续的.
+\begin{proof}
+取\[
+s_n = \frac{1}{2n\pi+\pi/2},
+\qquad
+t_n = \frac{1}{2n\pi},
+\]故\[
+s_n,t_n\in(0,1),
+\quad n\in\mathbb{N}^*.
+\]我们有\[
+0 < t_n - s_n = \frac{\pi/2}{2n\pi(2n\pi+\pi/2)} < \frac{1}{2n\pi} < \frac{1}{n},
+\]但是\[
+\abs{\sin\frac{1}{t_n} - \sin\frac{1}{s_n}}
+= \abs{\sin(2n\pi) - \sin(2n\pi+\frac{\pi}{2})}
+= 1.
+\]这就证明了函数\(\sin\frac{1}{x}\)在\((0,1)\)上不是一致连续的.
+\end{proof}
+\end{example}
+\cref{example:极限.在开区间上有界且连续的函数不一定在该区间上一致连续} 说明：
+在开区间上有界且连续的函数不一定在该区间上一致连续.
+
+\begin{example}\label{example:极限.两个一致连续函数的乘积不一定一致连续}
+证明：函数\(h(x) = x \sin x\)在\((-\infty,+\infty)\)上不是一致连续的.
+\end{example}
+\cref{example:极限.两个一致连续函数的乘积不一定一致连续} 说明：
+两个一致连续函数的乘积不一定一致连续.
+
+\begin{theorem}[一致连续函数的四则运算法则]\label{theorem:极限.闭区间上连续函数的性质.一致连续函数的四则运算法则}
+设函数\(f,g \in C_U(I)\)，则
+\begin{enumerate}
+\item 两个一致连续函数的线性组合也是一致连续的，即\[
+\forall\alpha,\beta\in\mathbb{R} \bigl[ \alpha f + \beta g \in C_U(I) \bigr].
+\]
+
+\item 如果\(f,g\)在\(I\)上有界，则\(f \cdot g \in C_U(I)\).
+
+\item 如果\(f\)在\(I\)上有界，且\(\exists\epsilon_0 \bigl( x \in I \implies g \geq \epsilon_0 \bigr)\)，则\[
+\frac{f}{g} \in C_U(I).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[一致连续性定理]\label{theorem:极限.一致连续性定理}
+如果函数\(f(x)\)在闭区间\([a,b]\)上连续，
+那么它在该区间上一致连续，
+即\[
+	f \in C[a,b]
+	\implies
+	f \in C_U[a,b].
+\]
+\begin{proof}
+用反证法.
+假设当\(f \in C[a,b]\)时\(f \notin C_U[a,b]\)，那么\[
+	(\exists\delta_0>0)
+	(\exists\{x_n\},\{y_n\}\subseteq[a,b])
+	[
+		x_n-y_n\to0
+		\land
+		\abs{f(x_n)-f(y_n)}\geq\epsilon_0
+	].
+\]
+
+由于\(\{y_n\}\)有界，可以找到收敛子列\(\{y_{n_k}\}\)满足\[
+	y_{n_k} \to y_0\in[a,b].
+\]
+
+取\(x_{n_k} = y_{n_k} + (x_{n_k} - y_{n_k})
+\to y_0 + 0 = y_0\)，
+得到\[
+	0 < \epsilon_0 \leq \abs{f(x_{n_k})-f(y_{n_k})}
+	\to \abs{f(y_0)-f(y_0)} = 0.
+\]矛盾，
+说明函数\(f\)在\([a,b]\)上定是一致连续的.
+\end{proof}
+\end{theorem}
+我们也把\hyperref[theorem:极限.一致连续性定理]{一致连续性定理}称为\DefineConcept{康托--海涅定理}.
+
+\begin{example}
+设函数\(f(x)\)对于\(\forall x,y \in [a,b]\)，
+恒有\(\abs{f(x) - f(y)} \leq L \abs{x - y}\)，
+其中常数\(L > 0\)，且\(f(a) \cdot f(b) < 0\).
+证明：至少有一点\(\xi \in (a,b)\)，使得\(f(\xi) = 0\).
+\begin{proof}
+因为\(\forall x,y \in [a,b] \implies \abs{f(x) - f(y)} \leq L \abs{x - y}\)，
+对于\(\forall \epsilon > 0\)，
+为了使当\(\abs{x - y} < \delta\)时不等式\[
+\abs{f(x) - f(y)} \leq L \abs{x - y} < \epsilon
+\]成立，
+只要\(L \delta = \epsilon\)或\(\delta = \epsilon / L\)即可.
+这说明\(f(x)\)在区间\([a,b]\)上一致连续.
+再由零点定理可知命题成立.
+\end{proof}
+\end{example}
+
+\begin{example}
+试证：若\(f(x)\)在\([a,b]\)上连续，
+\(a < x_1 < x_2 < \dotsb < x_n < b \ (n \geq 3)\)，
+则在\((x_1,x_n)\)内至少有一点\(\xi\)，使\[
+f(\xi) = \frac{1}{n} \bigl[
+	f(x_1) + f(x_2) + \dotsb + f(x_n)
+\bigr].
+\]
+\begin{proof}
+根据有界性与最大值最小值定理，因为\(f(x)\)在\([a,b]\)上连续，所以\[
+\forall x \in [a,b] :
+	\alpha \leq f(x) \leq \beta,
+\]其中\(\alpha = \min f(x)\)，\(\beta = \max f(x)\)；那么\[
+n \alpha \leq f(x_1) + f(x_2) + \dotsb + f(x_n) \leq n \beta,
+\]\[
+\alpha \leq \frac{1}{n} \bigl[f(x_1) + f(x_2) + \dotsb + f(x_n)\bigr] \leq \beta.
+\]根据介值定理，在\([a,b]\)上必存在一点\(\xi\)使得\[
+f(\xi) = \frac{1}{n} \bigl[ f(x_1) + f(x_2) + \dotsb + f(x_n) \bigr]
+\]成立.
+\end{proof}
+\end{example}
+
+\begin{theorem}\label{theorem:极限.闭区间上连续函数的性质.开区间上的连续函数一致连续的充分必要条件1}
+设\(f \in C(a,b)\)，
+则\(f \in C_U(a,b)\)的充分必要条件是：
+极限\(f(a^+)\)和\(f(b^-)\)都存在.
+\end{theorem}
+
+\begin{theorem}\label{theorem:极限.闭区间上连续函数的性质.开区间上的连续函数一致连续的充分必要条件2}
+设\(f \in C(-\infty,+\infty)\)，
+则\(f \in C_U(-\infty,+\infty)\)的充分必要条件是：
+极限\(f(-\infty)\)和\(f(+\infty)\)都存在.
+\end{theorem}
+
+\begin{definition}
+对于任意一个函数\(f\colon X\to\mathbb{R}\)，
+集合\(E \subseteq X\)，
+我们把\[
+	\sup_{\substack{
+		\abs{x_1-x_2}<\delta \\
+		x_1,x_2 \in E
+	}}\abs{f(x_1)-f(x_2)},
+\]
+称为“函数\(f\)的\DefineConcept{连续模}”，
+记为\(\amp(f;E;\delta)\).
+\end{definition}
+
+我们可以用连续模来度量一个函数的一致连续性.

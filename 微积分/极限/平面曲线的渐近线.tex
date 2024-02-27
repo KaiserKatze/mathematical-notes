@@ -1,0 +1,67 @@
+\section{平面曲线的渐近线}
+\begin{definition}
+利用函数极限可以定义函数图形的\DefineConcept{渐近线}：
+\begin{enumerate}
+	\item 如果\(\lim_{x \to \infty}f(x) = A\)，
+	则直线\(y = A\)是函数\(f(x)\)的图形的\DefineConcept{水平渐近线}.
+	\item 如果\(\lim_{x \to x_0}f(x) = \infty\)，
+	则直线\(x = x_0\)是函数\(f(x)\)的图形的\DefineConcept{铅直渐近线}.
+	\item 给定\(\omega\in\Set{\infty,+\infty,-\infty}\)，
+	如果存在直线\(L: y = kx+b\ (k \neq 0)\)，
+	使得当\(x\to\omega\)时，
+	曲线\(y = f(x)\)上的动点\(M(x,y)\)到直线\(L\)的距离\(d(M,L)\to0\)，
+	则称\(L\)为曲线\(y = f(x)\)的\DefineConcept{斜渐近线}.
+\end{enumerate}
+\end{definition}
+
+显然，\(\vb{\nu}=(1,k,0)\)是直线\(L: y=kx+b\)的一个方向向量.
+取直线\(L\)上一点\(M_0(0,b,0)\).
+根据\cref{equation:解析几何.点到直线的距离}，
+点\(M(x,y)\)到直线\(L\)的距离为\[
+	d(M,L)=\frac{\abs{\vec{M_0M}\times\vb{\nu}}}{\abs{\vb{\nu}}}
+	=\frac{
+		\abs{kx-f(x)+b}
+	}{
+		\sqrt{1+k^2}
+	}.
+\]
+为了使得\[
+	\lim_{x\to+\infty} \frac{\abs{kx-f(x)+b}}{\sqrt{1+k^2}} = 0
+\]成立，
+考虑到\(k\)是常数，必有\(\abs{kx-f(x)+b}\)是\(x\to+\infty\)时的无穷小，
+这等价于\[
+	\lim_{x\to+\infty} [kx-f(x)] = -b.
+\]
+因此，我们又有\[
+	\lim_{x\to+\infty} \frac{f(x)-kx}{x}=0,
+\]
+即\[
+	\lim_{x\to+\infty} \frac{f(x)}{x}=k.
+\]
+
+于是我们得到以下命题.
+\begin{proposition}
+直线\(L: y = kx+b\)为曲线\(y = f(x)\)的渐近线的充分必要条件是：\[
+	k = \lim_{x\to\omega} \frac{f(x)}{x},
+	\qquad
+	b = \lim_{x\to\omega} \left[f(x) - kx\right],
+\]
+其中\(\omega\in\Set{\infty,+\infty,-\infty}\).
+\end{proposition}
+
+\begin{example}
+求出曲线\(C: y = x \ln\left(e+\frac{1}{x-1}\right)\)的渐近线方程.
+\begin{solution}
+设直线\(L: y = kx+b\)为曲线\(C\)的渐近线，则\begin{align*}
+	k &= \lim_{x\to\infty} \frac{x \ln\left(e+\frac{1}{x-1}\right)}{x}
+	= \lim_{x\to\infty} \ln\left(e+\frac{1}{x-1}\right)
+	= 1, \\
+	b &= \lim_{x\to\infty} \left[ x \ln\left(e+\frac{1}{x-1}\right) - kx \right]
+	= \lim_{x\to\infty} x \left[ \ln\left(e+\frac{1}{x-1}\right) - 1 \right] \\
+	&= \lim_{x\to\infty} x \ln\left[1+\frac{1}{e(x-1)}\right]
+	= \lim_{x\to\infty} \frac{x}{e(x-1)}
+	= \frac{1}{e}.
+\end{align*}
+因此，曲线\(C\)的渐近线方程为\(y = x + \frac{1}{e}\).
+\end{solution}
+\end{example}

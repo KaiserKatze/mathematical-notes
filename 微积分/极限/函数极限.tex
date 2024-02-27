@@ -1,0 +1,462 @@
+\section{函数极限}
+从\hyperref[definition:数列.数列的定义]{数列的定义}可以看出，
+任意一个数列\(\{x_n\}\)只不过是一个以\(n\)为自变量的函数\(x_n = f(n)\).
+我们只要把数列极限概念中
+“自变量\(n\)的取值范围是整数的子集”
+“自变量变化过程是\(n\to\infty\)”
+等特殊性撇开，
+就可以引出函数极限的一般概念.
+
+\subsection{函数极限的定义}
+\subsubsection*{自变量趋于有限值时函数的极限}
+\begin{definition}\label{definition:极限.函数极限的定义1}
+对于函数\(f\colon D\to\mathbb{R}\)，
+取\(x_0 \in D\)，
+如果存在常数\(A\in\mathbb{R}\)，
+对于任意给定的正数\(\epsilon\)（不论它多么小），
+总存在正数\(\delta\)，
+使得当\(x\)满足不等式\(0 < \abs{x-x_0} < \delta\)时，
+对应的函数值\(f(x)\)都满足不等式\(\abs{f(x)-A}<\epsilon\)，
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\DefineConcept{极限}”，
+记作
+\[
+	\lim_{\substack{x \to x_0 \\ x \in D}} f(x) = A,
+	\quad\text{或}\quad
+	f(x) \to A\ (x \to x_0; x \in D);
+\]
+有时候也简记为
+\[
+	\lim_{x \to x_0} f(x) = A,
+	\quad\text{或}\quad
+	f(x) \to A\ (x \to x_0).
+\]
+\end{definition}
+
+上述对函数极限的定义可以简化为：
+\[
+	\lim_{\substack{x \to x_0 \\ x \in D}} f(x) = A
+	\defiff
+	(\forall \epsilon > 0)
+	(\exists \delta > 0)
+	(\forall x \in D)
+	[0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \epsilon].
+\]
+
+现在我们来根据定义尝试计算一些函数的极限.
+\begin{example}
+证明：\(\lim_{x \to x_0} c = c\)，其中\(c\)为常数.
+\begin{proof}
+这里\(\abs{f(x) - A} = \abs{c - c} = 0\)，
+因此\(\forall \epsilon > 0\)，
+可任取\(\delta > 0\)，
+当\(0 < \abs{x - x_0} < \delta\)时，
+总能使不等式\[
+	\abs{f(x) - A} = \abs{c - c} = 0 < \epsilon
+\]成立，
+所以\(\lim_{x \to x_0} c = c\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x \to x_0} x = x_0\).
+\begin{proof}
+这里\(\abs{f(x) - A} = \abs{x - x_0}\)，
+因此\(\forall \epsilon > 0\)，
+总可取\(\delta = \epsilon\)，
+当\(0 < \abs{x - x_0} < \delta = \epsilon\)时，
+能使不等式\(\abs{f(x) - A} = \abs{x - x_0} < \epsilon\)成立，
+所以\(\lim_{x \to x_0} x = x_0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x\to1} 2x-1 = 1\).
+\begin{proof}
+由于\(\abs{f(x) - A} = \abs{(2x-1) - 1} = 2\abs{x-1}\)，
+为了使\(\abs{f(x) - A} < \epsilon\)，
+只要\(\abs{x-1}<\epsilon/2\).
+因此\(\forall \epsilon > 0\)，
+可取\(\delta = \epsilon/2\)，
+则当\(x\)适合不等式\[
+	0 < \abs{x-1} < \delta = \frac{\epsilon}{2}
+\]时，
+对应的函数值\(f(x)\)就满足不等式\[
+	\abs{f(x) - 1} = \abs{(2x-1) - 1} = 2\abs{x-1} < \epsilon.
+\]
+从而\(\lim_{x\to1} 2x-1 = 1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x\to1} \frac{x^2-1}{x-1} = 2\).
+\begin{proof}
+这里，函数在点\(x=1\)处是没有定义的，
+但是函数当\(x\to1\)时的极限存在或不存在与之无关.
+事实上，\(\forall \epsilon > 0\)，将不等式\[
+	\abs{\frac{x^2-1}{x-1} - 2} < \epsilon
+\]
+约去非零因子\(x-1\)后，就化为\[
+	\abs{(x+1)-2} = \abs{x-1} < \epsilon,
+\]
+因此，只要取\(\delta = \epsilon\)，
+那么当\(0 < \abs{x-1} < \delta\)时，就有\[
+	\abs{\frac{x^2-1}{x-1} - 2} < \epsilon.
+\]
+所以\(\lim_{x\to1} \frac{x^2-1}{x-1} = 2\).
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:极限.根式函数在某一点的极限}
+证明：当\(x_0 > 0\)时，
+\(\lim_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
+\begin{proof}
+\(\forall \epsilon > 0\)，
+因为\[
+	\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}}
+	= \abs{\frac{x - x_0}{\sqrt{x} + \sqrt{x_0}}}
+	\leq \frac{\abs{x - x_0}}{\sqrt{x_0}},
+\]
+那么要使\(0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \epsilon\)，
+只要\[
+	0 < \abs{x - x_0} < \delta \implies \abs{x - x_0} < \sqrt{x_0} \epsilon,
+\]
+也即\[
+	\delta \leq \sqrt{x_0} \epsilon.
+	\eqno(1)
+\]
+
+由于我们还要确保\(f\)在\(x_0\)的去心邻域内有定义，
+于是又有\[
+	0 < \abs{x-x_0} < \delta \implies x\geq0
+	\quad\text{或}\quad
+	(x_0-\delta,x_0+\delta)\subseteq[0,+\infty),
+\]
+也即\[
+	x_0-\delta\geq0
+	\quad\text{或}\quad
+	x_0\geq\delta.
+	\eqno(2)
+\]
+
+综上所述，如果取\(\delta = \min\{x_0,\sqrt{x_0} \epsilon\}\)，
+则当\(0 < \abs{x - x_0} < \delta\)时，
+对应的函数值\(\sqrt{x}\)就满足\[
+	\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}} < \epsilon,
+\]
+所以\(\lim_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
+\end{proof}
+\end{example}
+
+\begin{definition}\label{definition:极限.函数极限的定义2}
+设函数\(f(x)\)在\(x < x_0\)时有定义.
+如果存在常数\(A\)，
+对于任意给定的正数\(\epsilon\)，
+总存在正数\(\delta\)，
+使得当\(x\)满足不等式\(-\delta < x - x_0 < 0\)或\(x_0 - \delta < x < x_0\)时，
+对应的函数值\(f(x)\)都满足不等式\(\abs{f(x) - A} < \epsilon\)，
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\DefineConcept{左极限}”，
+记作\[
+\lim_{x \to x_0^-} f(x) = A
+\quad\text{或}\quad
+f(x_0^-) = A.
+\]
+\end{definition}
+
+\begin{definition}\label{definition:极限.函数极限的定义3}
+设函数\(f(x)\)在\(x > x_0\)时有定义.
+如果存在常数\(A\)，
+对于任意给定的正数\(\epsilon\)，
+总存在正数\(\delta\)，
+使得当\(x\)满足不等式\(0 < x - x_0 < \delta\)或\(x_0 < x < x_0 + \delta\)时，
+对应的函数值\(f(x)\)都满足不等式\(\abs{f(x) - A} < \epsilon\)，
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to x_0\)时的\DefineConcept{右极限}”，
+记作\[
+\lim_{x \to x_0^+} f(x) = A
+\quad\text{或}\quad
+f(x_0^+) = A.
+\]
+\end{definition}
+左极限与右极限统称为\DefineConcept{单侧极限}.
+
+\begin{theorem}
+函数\(f(x)\)当\(x \to x_0\)时极限存在的充分必要条件是：其左极限和右极限分别存在且相等，即\[
+f(x_0^-) = f(x_0^+).
+\]
+\end{theorem}
+
+\begin{example}
+证明：函数\[
+f(x) = \left\{ \begin{array}{lc}
+x-1, & x<0, \\
+0, & x=0, \\
+x+1, & x>0.
+\end{array} \right.
+\]当\(x\to0\)时\(f(x)\)的极限不存在.
+\begin{proof}
+易证\[
+\lim_{x\to0^-} f(x) = \lim_{x\to0^-} x-1 = -1,
+\]而\[
+\lim_{x\to0^+} f(x) = \lim_{x\to0^+} x+1 = 1,
+\]因为左、右极限存在但不相等，所以\(\lim_{x\to0}\)不存在.
+\end{proof}
+\end{example}
+
+\subsubsection*{自变量趋于无穷大时函数的极限}
+\begin{definition}\label{definition:极限.函数极限的定义4}
+设函数\(f(x)\)当\(\abs{x}\)大于某一正数时有定义.
+如果存在常数\(A\)，
+对于任意给定的正数\(\epsilon\)（不论它多么小），
+总存在正数\(X\)，
+使得当\(x\)满足不等式\(\abs{x} > X\)时，
+对应的函数值\(f(x)\)都满足不等式\[
+\abs{f(x) - A} < \epsilon,
+\]那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to \infty\)时的\DefineConcept{极限}”，
+记作\[
+\lim_{x \to \infty} f(x) = A
+\quad\text{或}\quad
+f(\infty) = A
+\quad\text{或}\quad
+f(x) \to A\ (x \to \infty).
+\]
+\end{definition}
+\cref{definition:极限.函数极限的定义4} 可以简化为：
+\[
+	\lim_{x\to\infty} f(x) = A
+	\defiff
+	(\forall\epsilon>0)
+	(\exists X>0)
+	[
+		\abs{x} > X
+		\implies
+		\abs{f(x) - A} < \epsilon
+	].
+\]
+
+我们只要对\cref{definition:极限.函数极限的定义4} 中的条件稍加改变，
+就可以得到以下两种不同的极限定义.
+\begin{definition}\label{definition:极限.函数极限的定义5}
+设函数\(f(x)\)在\(x > 0\)时有定义.
+如果存在常数\(A\)，
+对于任意给定的正数\(\epsilon\)，
+总存在正数\(X\)，
+使得当\(x\)满足不等式\(x > X\)时，
+对应的函数值\(f(x)\)都满足不等式\[
+	\abs{f(x) - A} < \epsilon,
+\]
+那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to +\infty\)时的\DefineConcept{极限}”，
+记作\[
+	\lim_{x \to +\infty} f(x) = A
+	\quad\text{或}\quad
+	f(+\infty) = A
+	\quad\text{或}\quad
+	f(x) \to A\ (x \to +\infty).
+\]
+\end{definition}
+
+\begin{definition}\label{definition:极限.函数极限的定义6}
+设函数\(f(x)\)在\(x < 0\)时有定义.
+如果存在常数\(A\)，
+对于任意给定的正数\(\epsilon\)，
+总存在正数\(X\)，
+使得当\(x\)满足不等式\(x < -X\)时，
+对应的函数值\(f(x)\)都满足不等式\[
+\abs{f(x) - A} < \epsilon,
+\]那么常数\(A\)就叫做“函数\(f(x)\)当\(x \to -\infty\)时的\DefineConcept{极限}”，
+记作\[
+\lim_{x \to -\infty} f(x) = A
+\quad\text{或}\quad
+f(-\infty) = A
+\quad\text{或}\quad
+f(x) \to A\ (x \to -\infty).
+\]
+\end{definition}
+
+\begin{example}
+\def\l{\lim_{x\to\infty}}
+证明：\(\l \frac{1}{x} = 0\).
+\begin{proof}
+\(\forall\epsilon>0\)，要证\(\exists X > 0\)，当\(\abs{x}>X\)时，不等式\[
+\abs{\frac{1}{x}-0}<\epsilon
+\]成立.
+因这个不等式相当于\(\frac{1}{\abs{x}}<\epsilon\)或\(\abs{x}>\frac{1}{\epsilon}\).
+由此可知，如果取\(X=\frac{1}{\epsilon}\)，
+那么当\(\abs{x}>X=\frac{1}{\epsilon}\)时，
+不等式\(\abs{\frac{1}{x}-0}<\epsilon\)成立，
+这就证明了\(\l \frac{1}{x} = 0\).
+\end{proof}
+\end{example}
+
+\subsection{函数极限的性质}
+与收敛数列的性质相比较，可得函数极限的一些相应的性质.它们都可以根据函数极限的定义，运用类似于证明收敛数列性质的方法加以证明.由于函数极限的定义按自变量的变化过程不同有各种形式，下面仅以“\(\lim_{x \to x_0}f(x)\)”这种形式为代表给出关于函数极限性质的一些定理，并就其中的几个给出证明.至于其他形式的极限的性质及其证明，只要相应地做一些修改即可得出.
+
+\begin{theorem}[函数极限的唯一性]\label{theorem:极限.函数极限的唯一性}
+如果\(\lim_{x \to x_0}f(x)\)存在，那么这极限唯一.
+\end{theorem}
+
+\begin{theorem}[函数极限的局部有界性]\label{theorem:极限.函数极限的局部有界性}
+如果\(\lim_{x \to x_0}f(x) = A\)，那么存在常数\(M>0\)和\(\delta>0\)，
+使得当\(0<\abs{x-x_0}<\delta\)时，有\(\abs{f(x)} \leq M\).
+\begin{proof}
+因为\(\lim_{x \to x_0}f(x) = A\)，所以若取\(\epsilon = 1\)，则\(\exists \delta > 0\)，当\(0 < \abs{x - x_0} < \delta\)时，有\[
+\abs{f(x) - A} < 1 \implies \abs{f(x)} \leq \abs{f(x) - A} + \abs{A} < \abs{A} + 1.
+\]记\(M = \abs{A} + 1\)即可.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}[函数极限的局部保号性]\label{theorem:极限.函数极限的局部保号性1}
+如果\(\lim_{x \to x_0}f(x)=A\)，且\(A \gtrless 0\)，那么存在常数\(\delta>0\)，使得当\(0<\abs{x-x_0}<\delta\)时，有\(f(x) \gtrless 0\).
+\begin{proof}
+就\(A > 0\)的情形证明.因为\(\lim_{x \to x_0}f(x) = A > 0\)，所以若取\(\epsilon = \frac{A}{2} > 0\)，则\(\exists \delta > 0\)，当\(0 < \abs{x - x_0} < \delta\)时，有\[
+\abs{f(x) - A} < \epsilon = \frac{A}{2}
+\implies f(x) > A - \frac{A}{2} = \frac{A}{2} > 0.
+\]类似地可以证明\(A < 0\)的情形.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{theorem:极限.函数极限的局部保号性2}
+%@see: 《高等数学（第六版 上册）》 P37 定理3'
+设\(D\)是一个区间，
+函数\(f\colon D\to\mathbb{R}\)，
+点\(x_0 \in D\).
+如果\(\lim_{x \to x_0} f(x) = A \neq 0\)，
+那么\[
+	(\exists \delta>0)
+	(\forall x)
+	\left[
+		0<\abs{x-x_0}<\delta
+		\implies
+		\abs{f(x)}>\frac12\abs{A}.
+	\right].
+\]
+\end{theorem}
+
+\begin{corollary}\label{theorem:极限.函数极限的局部保号性3}
+%@see: 《高等数学（第六版 上册）》 P37 推论
+设\(D\)是一个区间，
+函数\(f\colon D\to\mathbb{R}\)，
+点\(x_0 \in D\)，
+且\(\lim_{x \to x_0} f(x) = A\).
+\begin{enumerate}
+	\item 如果\((\forall x \in D)[f(x) \geq 0]\)，则\(A \geq 0\).
+	\item 如果\((\forall x \in D)[f(x) \leq 0]\)，则\(A \leq 0\).
+\end{enumerate}
+\end{corollary}
+
+\begin{example}
+设函数\(f(x)\)在区间\((0,+\infty)\)上单调减少.
+证明：若\(\lim_{x\to+\infty} f(x) = A\)，
+则\((\forall x\in(0,+\infty))[f(x)>A]\).
+\begin{proof}
+用反证法.
+假设\((\exists x_0\in(0,+\infty))[f(x_0)<A]\)，
+那么\[
+	(\forall x\in(x_0,+\infty))
+	\left[
+		\begin{array}{l}
+			f(x)<f(x_0)<A \\
+			\iff
+			f(x) - A < f(x_0) - A < 0 \\
+			\implies
+			\abs{f(x) - A} > \abs{f(x_0) - A} > 0
+		\end{array}
+	\right].
+\]
+但是这与\[
+	\lim_{x\to+\infty} f(x) = A
+	\iff
+	(\forall \epsilon>0)
+	(\exists X>0)
+	(\forall x>0)
+	[
+		x > X
+		\implies
+		\abs{f(x) - A} < \epsilon
+	]
+\]矛盾，
+说明\((\forall x_0 > 0)[f(x_0) > A]\).
+\end{proof}
+\end{example}
+
+\begin{theorem}[函数极限的保序性]\label{theorem:极限.函数极限的保序性}
+若函数\(f(x)\)和\(g(x)\)在区间\(I\)上满足\(f(x) \leq g(x)\)，那么有\[
+	\varlimsup_{x \to a} f(x) \leq \varlimsup_{x \to a} g(x),
+\]\[
+	\varliminf_{x \to a} f(x) \leq \varliminf_{x \to a} g(x).
+\]
+\end{theorem}
+
+\begin{example}
+\def\l{\lim_{n\to+\infty}}
+根据函数极限的定义证明：\(\l\frac{\sin x}{\sqrt x} = 0\).
+\begin{proof}
+\(\forall \epsilon>0\)，要证\(\exists X > 0\)，当\(x > X\)时，不等式\[
+\abs{\frac{\sin x}{\sqrt x} - 0} = \frac{\abs{\sin x}}{\sqrt x}
+\leq \frac{1}{\sqrt x} < \epsilon
+\]成立.因这个不等式相当于\(\sqrt x > 1/\epsilon\)或\(x > 1/\epsilon^2\)，由此可知，如果取\(X = 1/\epsilon^2\)，那么当\(x > X = \frac{1}{\epsilon^2}\)时，不等式\(\abs{\frac{\sin x}{\sqrt x} - 0} < \epsilon\)成立，这就证明了\(\l\frac{\sin x}{\sqrt x} = 0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\l#1{\lim_{x\to#1}}
+证明：\(\l0\abs{x}=0\).
+\begin{proof}
+先证\(\l{0^+}\abs{x}=0\).
+\(\forall \epsilon>0\)，要证\(\exists \delta > 0\)，当\(0<x<\delta\)时，不等式\[
+\abs{\abs{x} - 0} = x < \epsilon
+\]成立，只需令\(\delta = \epsilon\)即可.
+
+再证\(\l{0^-}\abs{x}=0\).
+\(\forall \epsilon>0\)，要证\(\exists \delta > 0\)，当\(-\delta<x<0\)时，不等式\[
+\abs{\abs{x} - 0} = -x < \epsilon
+\quad \text{或} \quad
+x > -\epsilon
+\]成立，只需令\(\delta = \epsilon\)即可.
+
+因为\(\l{0^+}\abs{x}=\l{0^-}\abs{x}=0\)，所以\(\l0\abs{x}=0\).
+\end{proof}
+\end{example}
+
+\subsection{子列极限与上下极限}
+\begin{definition}\label{definition:极限.函数的子列极限和上下极限}
+设函数\(f(x)\)在区间\(I\)上有定义.
+如果数列\(\{x_n\}\)满足\[
+	x_i \in I \quad (i=1,2,\dotsc,n),
+\]且数列极限\(\lim_{n\to\infty}{x_n} = a\)，
+则称极限\(\lim_{n\to\infty}{f(x_n)}\)为
+“函数\(f(x)\)在点\(a\)的\DefineConcept{子列极限}”.
+
+这些子列极限中的最小值称作“函数\(f(x)\)在点\(a\)的\DefineConcept{下极限}”，
+记作\[
+	\varliminf_{x \to a} f(x)
+	\quad\text{或}\quad
+	\liminf_{x \to a} f(x).
+\]
+
+这些子列极限中的最大值称作“函数\(f(x)\)在点\(a\)的\DefineConcept{上极限}”，
+记作\[
+	\varlimsup_{x \to a} f(x)
+	\quad\text{或}\quad
+	\limsup_{x \to a} f(x).
+\]
+\end{definition}
+
+\begin{property}
+函数\(f(x)\)的上、下极限满足：\begin{gather}
+\varlimsup_{x \to a} f(x) = \lim_{\delta\to0^+} \sup_{0<\abs{x-a}<\delta} f(x), \\
+\varliminf_{x \to a} f(x) = \lim_{\delta\to0^+} \inf_{0<\abs{x-a}<\delta} f(x).
+\end{gather}
+\end{property}
+
+\begin{theorem}
+任意函数\(f(x)\)的上下极限总满足\[
+\varliminf_{x \to a} f(x) \leq \varlimsup_{x \to a} f(x).
+\]
+\end{theorem}
+
+\begin{theorem}
+函数\(f(x)\)当\(x \to x_0\)时极限存在的充分必要条件是：其上极限和下极限相等，即\[
+\varlimsup_{x \to a} f(x) = \varliminf_{x \to a} f(x) = A
+\iff
+\lim_{x \to a} f(x) = A.
+\]
+\end{theorem}

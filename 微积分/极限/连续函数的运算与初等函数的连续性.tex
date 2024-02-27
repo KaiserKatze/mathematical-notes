@@ -1,0 +1,211 @@
+\section{连续函数的运算与初等函数的连续性}
+\subsection{连续函数的和、差、积、商的连续性}
+\begin{theorem}\label{theorem:极限.连续函数的极限1}
+%@see: 《高等数学（第六版 上册）》 P66 定理1
+设函数\(f\)和\(g\)在点\(x_0\)连续，
+则它们的和（差）\(f \pm g\)、
+积\(f \cdot g\)及商\(\frac{f}{g}\ (g(x_0)\neq0)\)都在点\(x_0\)连续.
+\end{theorem}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P66 例1
+因为\[
+	\tan x=\frac{\sin x}{\cos x}, \qquad
+	\cot x=\frac{\cos x}{\sin x},
+\]
+而由\cref{example:极限.正弦函数在实数域上连续} 可知，
+\(\sin x\)和\(\cos x\)都在区间\((-\infty,+\infty)\)内连续，
+故由\cref{theorem:极限.连续函数的极限1} 可知，
+\(\tan x\)和\(\cot x\)在它们的定义域内是连续的.
+\end{example}
+
+\begin{example}
+设函数\(f,g\)在\(x_0\)的某一邻域内有定义，
+且\(\lim_{x\to x_0}f(x),
+\lim_{x\to x_0}\frac{f(x)}{g(x)}\)存在，
+而\(\lim_{x\to x_0}g(x)=0\).
+证明：\(\lim_{x\to x_0}f(x)=0\).
+\begin{proof}
+直接计算得\[
+	\lim_{x\to x_0}f(x)
+	= \lim_{x\to x_0}\left[
+		g(x) \cdot \frac{f(x)}{g(x)}
+	\right]
+	= \lim_{x\to x_0}g(x) \cdot \lim_{x\to x_0}\frac{f(x)}{g(x)}
+	= 0 \cdot \lim_{x\to x_0}\frac{f(x)}{g(x)} = 0.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{反函数与复合函数的连续性}
+\begin{theorem}\label{theorem:极限.连续函数的极限2}
+%@see: 《高等数学（第六版 上册）》 P66 定理2
+如果函数\(y = f(x)\)在区间\(I_x\)上单调增加（或单调减少）且连续，
+那么它的反函数\(x = f^{-1}(y)\)
+也在\(I_y = \Set{ y\in\mathbb{R} \given y = f(x) \land x \in I_x }\)
+上单调增加（或单调减少）且连续.
+\end{theorem}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P66 例2
+由于\(y=\sin x\)在闭区间\(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)上单调增加且连续，
+所以它的反函数\(y=\arcsin x\)在闭区间\([-1,1]\)上也是单调增加且连续的.
+同样，应用\cref{theorem:极限.连续函数的极限2} 可证：
+\begin{enumerate}
+	\item \(y=\arccos x\)在闭区间\([-1,1]\)上单调减少且连续；
+	\item \(y=\arctan x\)在区间\((-\infty,+\infty)\)内单调增加且连续；
+	\item \(y=\arccot x\)在区间\((-\infty,+\infty)\)内单调减少且连续.
+\end{enumerate}
+总之，反三角函数\(\arcsin x,\arccos x,\arctan x,\arccot x\)在它们的定义域内都是连续的.
+\end{example}
+
+\begin{theorem}\label{theorem:极限.连续函数的极限3}
+%@see: 《高等数学（第六版 上册）》 P66 定理3
+\def\D{D_{f \circ g}}
+设函数\(y = f[g(x)]\)由函数\(u = g(x)\)与函数\(y = f(u)\)复合而成，
+函数\(y = f(u)\)在\(u = u_0\)连续.
+\begin{enumerate}
+	\item 若\(\mathring{U}(x_0) \subseteq \D\)
+	且\(\lim_{x \to x_0}g(x) = u_0\)，则\[
+		\lim_{x \to x_0}f[g(x)]
+		= \lim_{u \to u_0}f(u) = f(u_0)
+		= f\left[ \lim_{x \to x_0} g(x) \right].
+	\]
+
+	\item 若\(\mathring{U}(\infty) \subseteq \D\)
+	且\(\lim_{x\to\infty}g(x) = u_0\)，则\[
+		\lim_{x \to \infty}f[g(x)]
+		= \lim_{u \to u_0}f(u) = f(u_0)
+		= f\left[ \lim_{x \to \infty} g(x) \right].
+	\]
+\end{enumerate}
+\end{theorem}
+这条定理说明，在上述给定条件下，求复合函数\(f[g(x)]\)的极限时，
+函数符号\(f\)与极限号\(\lim\)可以交换次序.
+
+\begin{theorem}\label{theorem:极限.连续函数的极限4}
+%@see: 《高等数学（第六版 上册）》 P66 定理4
+设函数\(y = f[g(x)]\)是由函数\(u = g(x)\)与函数\(y = f(u)\)复合而成，
+\(U(x_0) \subseteq D_{f \circ g}\).
+若函数\(u = g(x)\)在\(x = x_0\)连续，且\(g(x_0) = u_0\)，
+而函数\(y = f(u)\)在\(u = u_0\)连续，
+则复合函数\(y = f[g(x)]\)在\(x = x_0\)也连续.
+\begin{proof}
+因为“\(g(x_0) = u_0\)”表明“\(g(x)\)在点\(x_0\)连续”，
+于是由\cref{theorem:极限.连续函数的极限3} 的情形一可知\[
+	\lim_{x \to x_0}f[g(x)]
+	= f(u_0) = f[g(x_0)],
+\]
+这就证明了复合函数\(f[g(x)]\)在点\(x_0\)连续.
+\end{proof}
+\end{theorem}
+
+\subsection{初等函数的连续性}
+\begin{theorem}\label{theorem:极限.连续函数的极限5}
+基本初等函数在其定义域内都是连续的.
+\end{theorem}
+
+\begin{corollary}\label{theorem:极限.连续函数的极限6}
+一切初等函数在其定义区间（即包含在定义域内的区间）内都是连续的.
+\end{corollary}
+
+\begin{example}
+求：\(\lim_{x\to0}\frac{\log_a (1+x)}{x}\).
+\begin{solution}
+\(
+\lim_{x\to0}\frac{\log_a (1+x)}{x}
+= \lim_{x\to0}\log_a (1+x)^{\frac{1}{x}}
+= \log_a \lim_{x\to0}(1+x)^{\frac{1}{x}}
+= \log_a e
+= \frac{1}{\ln a}.
+\)
+\end{solution}
+\end{example}
+
+\begin{example}
+求：\(\lim_{x\to0}\frac{a^x - 1}{x}\).
+\begin{solution}
+\(
+\lim_{x\to0}\frac{a^x - 1}{x}
+\xlongequal{t=a^x-1} \lim_{t\to0}\frac{t}{\log_a (1+t)}
+= \ln a.
+\)
+\end{solution}
+\end{example}
+
+\begin{proposition}
+%@see: 《高等数学（第六版 上册）》 P69 习题1-9 2.
+设函数\(f(x)\)和\(g(x)\)在点\(x_0\)连续，
+则\[
+	\phi(x)=\max\{f(x),g(x)\}, \qquad
+	\psi(x)=\min\{f(x),g(x)\}
+\]在点\(x_0\)也连续.
+\begin{proof}
+因为\[
+	\phi(x)=\frac{f(x)+g(x)}{2}+\frac{\abs{f(x)-g(x)}}{2}, \qquad
+	\psi(x)=\frac{f(x)+g(x)}{2}-\frac{\abs{f(x)-g(x)}}{2},
+\]
+所以\(\phi(x)\)和\(\psi(x)\)在点\(x_0\)也连续.
+\end{proof}
+\end{proposition}
+
+\begin{theorem}\label{theorem:极限.连续函数的极限7}
+对于幂指函数\(y = u(x)^{v(x)}\ (u(x) > 0\)且\(u(x) \not\equiv 1)\)，如果\(\lim u(x) = a > 0\)，\(\lim v(x) = b\)，那么\[
+\lim u(x)^{v(x)} = a^b.
+\]
+\end{theorem}
+
+\begin{example}
+\def\l{\lim_{n\to\infty}}
+计算：\(\l \sin^2(\pi\sqrt{n^2+3n})\).
+\begin{solution}
+\def\a{\pi(\sqrt{n^2+3n}-\sqrt{n^2})}
+显然有\begin{align*}
+&\l \sin^2(\pi\sqrt{n^2+3n}) \\
+&= \l \sin^2[n\pi+\a] \\
+&= \l \left\{ \sin(n\pi) \cos\left[\a\right] + \cos(n\pi) \sin\left[\a\right] \right\}^2 \\
+&= \l \sin^2\left[\a\right] \\
+&= \l \sin^2\left( \pi \cdot \frac{3n}{\sqrt{n^2+3n}+n} \right) \\
+&= \sin^2 \left( \pi \cdot \l \frac{3n}{\sqrt{n^2+3n}+n} \right) \\
+&= \sin^2 \frac{3\pi}{2}
+= 1.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(x_1=10\)，\(x_{n+1}=\sqrt{6+x_n}\ (n=1,2,\dotsc)\).
+试证：数列\(\{x_n\}\)极限存在，并求此极限.
+\begin{solution}
+由\(x_1=10\)，
+\(x_2=\sqrt{6+x_1}=\sqrt{16}=4\)，
+可知\(x_1>x_2\).
+因此我们猜想数列\(\{x_n\}\)是单调递减数列.
+假设\(n=k\)时有\(x_k>x_{k+1}\)成立，
+那么\[
+	x_{k+1}=\sqrt{6+x_k}>\sqrt{6+x_{k+1}}=x_{k+2},
+\]
+所以利用数学归纳法便知\(x_n>x_{n+1}\ (n=1,2,\dotsc)\).
+
+同理，由于\(x_{n+1}=\sqrt{6+x_n}\)，
+所以利用数学归纳法便知\(x_n>0\ (n=1,2,\dotsc)\).
+
+根据\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}，
+数列\(\{x_n\}\)有极限.
+
+设\(\lim_{n\to\infty}x_n=x\).
+对\(x_{n+1}=\sqrt{6+x_n}\)两边取极限，
+得\[
+	\lim_{n\to\infty}x_{n+1}=x, \qquad
+	\lim_{n\to\infty}\sqrt{6+x_n}
+	=\sqrt{6+\lim_{n\to\infty}x_n}
+	=\sqrt{6+x},
+\]
+于是\(x=\sqrt{6+x}\)，
+从而\(x^2-x-6=0\)，
+\((x-3)(x+2)=0\)，
+解得\(x=3\)或\(x=-2\)(舍去).
+这就是说\(\lim_{n\to\infty}x_n=3\).
+\end{solution}
+\end{example}

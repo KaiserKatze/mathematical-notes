@@ -1,0 +1,58 @@
+\section{函数极限与数列极限的关系，海涅定理}
+\begin{theorem}[海涅定理]\label{theorem:极限.海涅定理}
+%@see: 《数学分析教程》（史济怀） P70 定理2.4.1
+设函数\(f\colon D\to\mathbb{R}\)，点\(x_0 \in D\).
+函数\(f\)在点\(x_0\)有极限\(A\)的充分必要条件是：
+对于任何一个收敛于\(x_0\)的数列\(\{x_n \neq x_0\ (n=1,2,\dotsc)\}\)，
+函数列\(\{f(x_n)\}\)有极限\(A\).
+\end{theorem}
+海涅定理也称作\DefineConcept{归结原则}.
+
+这里要注意定理的条件\(x_n \neq x_0\)，
+因为只要没有这个条件就不能保证海涅定理的结果成立，下面我们举例说明.
+设\[
+	f(x) = \left\{ \begin{array}{cl}
+		2, & x\neq0, \\
+		1, & x=0.
+	\end{array} \right.
+\]
+又设点\(x_0\)与数列\(\{x_n\}\)满足\(x_0=x_n=0\ (n=1,2,\dotsc)\).
+那么有\[
+	\lim_{n\to\infty} x_n = 0,
+	\quad\text{和}\quad
+	\lim_{x\to0} f(x) = 2,
+\]
+但是\[
+	\lim_{n\to\infty} f(x_n) = \lim_{n\to\infty} f(0) = 1.
+\]这就说明不总有\[
+	\lim_{n\to\infty} f(x_n)
+	= \lim_{x \to x_0} f(x)
+\]成立.
+
+\begin{example}
+函数\(f(x)\)在\((-\infty,+\infty)\)内单调有界，
+数列\(\{x_n\}\)收敛，
+但函数列\(\{f(x_n)\}\)不一定收敛.
+例如，取函数\[
+	f(x) = \left\{ \begin{array}{rl}
+		1 & x\geq0, \\
+		-1, & x<0,
+	\end{array} \right.
+\]
+和数列\(x_n = \frac{(-1)^n}{n}\)，
+容易看出\(\varlimsup_{n\to\infty} f(x_n) = 1\)
+和\(\varliminf_{n\to\infty} f(x_n) = -1\)，
+于是\(\lim_{n\to\infty} f(x_n)\)发散.
+\end{example}
+
+\begin{example}
+函数\(f(x)\)在\((-\infty,+\infty)\)内单调有界，
+函数列\(\{f(x_n)\}\)单调或收敛，
+但数列\(\{x_n\}\)不一定收敛.
+例如，取\[
+	f(x) = \arctan x,
+\]
+和数列\(x_n = n\)，
+容易看出\(\{f(x_n)\}\)单调且收敛，
+但是\(\{x_n\}\)不收敛.
+\end{example}
