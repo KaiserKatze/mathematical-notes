@@ -347,3 +347,85 @@ x_2x_3^2\)这六项.
 % 对称多项式基本定理指出，
 % \end{solution}
 \end{example}
+
+如果给定的对称多项式不是齐次的，
+那么可以把它表示成它的齐次成分的和.
+将其中每一个齐次成分看作一个对称多项式，
+按照上述做法计算，
+最后把所得结果相加即可.
+
+对称多项式基本定理的一个重要应用是，
+研究数域\(K\)上的一个多项式
+在复数域中有没有重根.
+
+设数域\(K\)上首项系数为1的多项式\[
+	f(x)=x^n+a_{n-1} x^{n-1}+\dotsb+a_1 x+a_0
+\]在复数域中的\(n\)个根为\(c_1,\dotsc,c_n\).
+记\[
+	D(c_1,\dotsc,c_n)
+	\defeq
+	\prod_{1\leq j<i\leq n} (c_i-c_j)^2,
+\]
+容易看出\begin{align*}
+	&\text{$f(x)$在复数域中有重根} \\
+	&\iff
+	D(c_1,\dotsc,c_n)=0.
+\end{align*}
+
+\(f(x)\)的\(n\)个复根\(c_1,\dotsc,c_n\)是未知的，
+于是我们想用\(f(x)\)的系数来表示\(D(c_1,\dotsc,c_n)\).
+根据韦达公式有\[
+	\left\{ \begin{array}{l}
+		-a_{n-1}
+		=c_1+\dotsb+c_n
+		=\sigma_1(c_1,\dotsc,c_n), \\
+		a_{n-1}
+		=\sum_{1\leq i<j\leq n} c_i c_j
+		=\sigma_2(c_1,\dotsc,c_n), \\
+		\hdotsfor1, \\
+		(-1)^n a_0
+		=c_1 \dotsm c_n
+		=\sigma_n(c_1,\dotsc,c_n).
+	\end{array} \right.
+\]
+受此启发，
+如果\(D(c_1,\dotsc,c_n)\)能够用\(\sigma_1(c_1,\dotsc,c_n),
+\dotsc,
+\sigma_n(c_1,\dotsc,c_n)\)表示出来，
+那么它就能够用\(f(x)\)的系数\(a_{n-1},a_{n-2},\dotsc,a_0\)表示出来.
+注意到\(D(c_1,\dotsc,c_n)\)是关于\(c_1,\dotsc,c_n\)对称的表达式，
+因此自然会想到运用对称多项式基本定理.
+
+根据对称多项式基本定理，
+数域\(K\)上\(n\)元对称多项式\[
+	D(x_1,\dotsc,x_n)
+	=\prod_{1\leq j<i\leq n} (x_i-x_j)^2
+\]
+存在\(K[x_1,\dotsc,x_n]\)中唯一的一个多项式\(g(x_1,\dotsc,x_n)\)，
+使得\[
+	D(x_1,\dotsc,x_n)
+	=g(\sigma_1,\dotsc,\sigma_n).
+\]
+不定元\(x_1,\dotsc,x_n\)分别用\(c_1,\dotsc,c_n\)代入，
+于是有\[
+	D(c_1,\dotsc,c_n)
+	=g(-a_{n-1},a_{n-2},\dotsc,(-1)^n a_0).
+\]
+因此我们有以下结论.
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P63 命题4
+数域\(K\)上首项系数为\(1\)的\(n\)次多项式\[
+	f(x)=x^n+a_{n-1} x^{n-1}+\dotsb+a_1 x+a_0
+\]
+在复数域中有重根的充分必要条件为\[
+	g(-a_{n-1},a_{n-2},\dotsc,(-1)^n a_0)=0.
+\]
+\end{proposition}
+
+我们把\(f(x)\)的系数\(a_{n-1},a_{n-2},\dotsc,a_0\)的多项式\[
+	g(-a_{n-1},a_{n-2},\dotsc,(-1)^n a_0)
+\]称为“\(f(x)\)的\DefineConcept{判别式}”，
+记作\(D(f)\).
+
+现在我们来求\(f(x)\)的判别式\(D(f)\).
