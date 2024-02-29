@@ -1,4 +1,5 @@
 \section{对称多项式}
+\subsection{对称多项式}
 观察下述三元多项式\(f(x_1,x_2,x_3)\)有什么特点？
 \[
 	f(x_1,x_2,x_3)
@@ -46,6 +47,7 @@ x_2x_3^2\)这六项.
 
 容易看出，零多项式和零次多项式都是对称多项式.
 
+\subsection{初等对称多项式}
 在\(K[x_1,\dotsc,x_n]\)中，
 我们来构造含有项\(x_1\)且项数最少的对称多项式.
 由定义可知，
@@ -85,6 +87,7 @@ x_2x_3^2\)这六项.
 \(\sigma_i(x_1,\dotsc,x_n)\ (i=1,\dotsc,n)\)
 统称为\(n\)元\DefineConcept{初等对称多项式}.
 
+\subsection{对称多项式环}
 下面我们把数域\(K\)上所有\(n\)元对称多项式组成的集合记为\(W\).
 我们想要知道\(W\)的结构是怎样的.
 
@@ -354,6 +357,7 @@ x_2x_3^2\)这六项.
 按照上述做法计算，
 最后把所得结果相加即可.
 
+\subsection{复数域上的多项式的重根的存在性}
 对称多项式基本定理的一个重要应用是，
 研究数域\(K\)上的一个多项式
 在复数域中有没有重根.
@@ -429,3 +433,107 @@ x_2x_3^2\)这六项.
 记作\(D(f)\).
 
 现在我们来求\(f(x)\)的判别式\(D(f)\).
+\begin{align*}
+	D(f)
+	&= g(-a_{n-1},a_{n-2},\dotsc,(-1)^n a_0) \\
+	&= D(c_1,\dotsc,c_n) \\
+	&= \prod_{1\leq j<i\leq n} (c_i-c_j)^2.
+\end{align*}
+表达式\(\prod_{1\leq j<i\leq n} (c_i-c_j)^2\)使人联想起范德蒙德行列式\[
+	\begin{vmatrix}
+		1 & 1 & 1 & \dots & 1 \\
+		x_1 & x_2 & x_3 & \dots & x_n \\
+		x_1^2 & x_2^2 & x_3^2 & \dots & x_n^2 \\
+		\vdots & \vdots & \vdots& & \vdots \\
+		x_1^{n-1} & x_2^{n-1} & x_3^{n-1} & \dots & x_n^{n-1}
+	\end{vmatrix}
+	= \prod_{1 \leq j < i \leq n}(x_i-x_j).
+\]
+若记\[
+	\vb{V}(x_1,\dotsc,x_n) = \begin{bmatrix}
+		1 & 1 & 1 & \dots & 1 \\
+		x_1 & x_2 & x_3 & \dots & x_n \\
+		x_1^2 & x_2^2 & x_3^2 & \dots & x_n^2 \\
+		\vdots & \vdots & \vdots& & \vdots \\
+		x_1^{n-1} & x_2^{n-1} & x_3^{n-1} & \dots & x_n^{n-1}
+	\end{bmatrix},
+\]
+考虑到\(\abs{\vb{V}(x_1,\dotsc,x_n)}=\abs{\vb{V}^T(x_1,\dotsc,x_n)}\)，
+于是有\begin{align*}
+	D(f)
+	&= \prod_{1\leq j<i\leq n} (c_i-c_j)^2 \\
+	&= \abs{\vb{V}(c_1,\dotsc,c_n)} \abs{\vb{V}^T(c_1,\dotsc,c_n)} \\
+	&= \abs{\vb{V}(c_1,\dotsc,c_n) \vb{V}^T(c_1,\dotsc,c_n)}.
+\end{align*}
+于是\begin{align}
+	D(f)
+	&= \abs{
+		\begin{bmatrix}
+			1 & 1 & \dots & 1 \\
+			c_1 & c_2 & \dots & c_n \\
+			\vdots & \vdots && \vdots \\
+			c_1^{n-1} & c_2^{n-1} & \dots & c_n^{n-1}
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 & c_1 & \dots & c_1^{n-1} \\
+			1 & c_2 & \dots & c_2^{n-1} \\
+			\vdots & \vdots && \vdots \\
+			1 & c_n & \dots & c_n^{n-1}
+		\end{bmatrix}
+	} \notag \\
+	&= \begin{vmatrix}
+		n & \sum_{i=1}^n c_i & \dots & \sum_{i=1}^n c_i^{n-1} \\
+		\sum_{i=1}^n c_i & \sum_{i=1}^n c_i^2 & \dots & \sum_{i=1}^n c_i^n \\
+		\vdots & \vdots && \vdots \\
+		\sum_{i=1}^n c_i^{n-1} & \sum_{i=1}^n c_i^n & \dots & \sum_{i=1}^n c_i^{2n-2}
+	\end{vmatrix}.
+	\label{equation:多项式.对称多项式.范德蒙德}
+\end{align}
+上式表明，
+为了求出\(D(f)\)，
+就需要计算\[
+	\sum_{i=1}^n c_i^k,
+	\quad k=0,1,\dotsc,2n-2.
+\]
+由于\(f(x)\)的\(n\)个复根\(c_1,\dotsc,c_n\)是未知的，
+因此必须想办法通过\(f(x)\)的系数来计算\(\sum_{i=1}^n c_i^k\).
+由于\(\sum_{i=1}^n c_i^k\)是对称多项式，
+因此仍然想到运用对称多项式基本定理.
+为此我们考虑下列\(n\)元对称多项式\[
+	s_k(x_1,\dotsc,x_n)
+	=x_1^k+\dotsb+x_n^k,
+	\quad k=0,1,2,\dotsc.
+\]
+这些\(n\)元对称多项式称为\DefineConcept{幂和}.
+
+根据对称多项式基本定理，
+幂和\(s_k\)能表示成初等对称多项式的多项式.
+具体的表示方法可以用递推公式求出.
+
+当\(1\leq k\leq n\)时，
+\begin{equation}\label{equation:多项式.对称多项式.牛顿公式1}
+	s_k
+	- \sigma_1 s_{k-1}
+	+ \sigma_2 s_{k-2}
+	+ \dotsb
+	+ (-1)^{k-1} \sigma_{k-1} s_1
+	+ (-1)^k k \sigma_k
+	=0;
+\end{equation}
+当\(k>n\)时，
+\begin{equation}\label{equation:多项式.对称多项式.牛顿公式2}
+	s_k
+	- \sigma_1 s_{k-1}
+	+ \sigma_2 s_{k-2}
+	+ \dotsb
+	+ (-1)^{n-1} \sigma_{n-1} s_{k-n+1}
+	+ (-1)^n \sigma_n s_{k-n}
+	=0.
+\end{equation}
+我们把\cref{equation:多项式.对称多项式.牛顿公式1,equation:多项式.对称多项式.牛顿公式2}
+并称为\DefineConcept{牛顿公式}.
+
+利用牛顿公式，
+可以从\(s_{k-1}(c_1,\dotsc,c_n),\dotsc,s_1(c_1,\dotsc,c_n)\)
+以及\(\sigma_1(c_1,\dotsc,c_n),\dotsc,\sigma_n(c_1,\dotsc,c_n)\)
+计算出\(s_k(c_1,\dotsc,c_n)\).
