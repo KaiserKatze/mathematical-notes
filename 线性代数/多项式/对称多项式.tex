@@ -460,12 +460,14 @@ x_2x_3^2\)这六项.
 \]
 考虑到\(\abs{\vb{V}(x_1,\dotsc,x_n)}=\abs{\vb{V}^T(x_1,\dotsc,x_n)}\)，
 于是有\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P64 公式(26)
 	D(f)
 	&= \prod_{1\leq j<i\leq n} (c_i-c_j)^2 \\
 	&= \abs{\vb{V}(c_1,\dotsc,c_n)} \abs{\vb{V}^T(c_1,\dotsc,c_n)} \\
 	&= \abs{\vb{V}(c_1,\dotsc,c_n) \vb{V}^T(c_1,\dotsc,c_n)}.
 \end{align*}
 于是\begin{align}
+%@see: 《高等代数（第三版 下册）》（丘维声） P64 公式(27)
 	D(f)
 	&= \abs{
 		\begin{bmatrix}
@@ -492,6 +494,7 @@ x_2x_3^2\)这六项.
 上式表明，
 为了求出\(D(f)\)，
 就需要计算\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P64 公式(28)
 	\sum_{i=1}^n c_i^k,
 	\quad k=0,1,\dotsc,2n-2.
 \]
@@ -500,6 +503,7 @@ x_2x_3^2\)这六项.
 由于\(\sum_{i=1}^n c_i^k\)是对称多项式，
 因此仍然想到运用对称多项式基本定理.
 为此我们考虑下列\(n\)元对称多项式\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P65 公式(29)
 	s_k(x_1,\dotsc,x_n)
 	=x_1^k+\dotsb+x_n^k,
 	\quad k=0,1,2,\dotsc.
@@ -512,6 +516,7 @@ x_2x_3^2\)这六项.
 
 当\(1\leq k\leq n\)时，
 \begin{equation}\label{equation:多项式.对称多项式.牛顿公式1}
+%@see: 《高等代数（第三版 下册）》（丘维声） P65 公式(30)
 	s_k
 	- \sigma_1 s_{k-1}
 	+ \sigma_2 s_{k-2}
@@ -522,6 +527,7 @@ x_2x_3^2\)这六项.
 \end{equation}
 当\(k>n\)时，
 \begin{equation}\label{equation:多项式.对称多项式.牛顿公式2}
+%@see: 《高等代数（第三版 下册）》（丘维声） P65 公式(31)
 	s_k
 	- \sigma_1 s_{k-1}
 	+ \sigma_2 s_{k-2}
@@ -537,3 +543,51 @@ x_2x_3^2\)这六项.
 可以从\(s_{k-1}(c_1,\dotsc,c_n),\dotsc,s_1(c_1,\dotsc,c_n)\)
 以及\(\sigma_1(c_1,\dotsc,c_n),\dotsc,\sigma_n(c_1,\dotsc,c_n)\)
 计算出\(s_k(c_1,\dotsc,c_n)\).
+再从\cref{equation:多项式.对称多项式.范德蒙德}
+就可以求出\(f(x)\)的判别式\(D(f)\).
+
+多项式\(f(x)\)的判别式\(D(f)\)也称为方程\(f(x)=0\)的判别式.
+
+\begin{remark}
+在上述讨论中，\(f(x)\)的首项系数是1.
+如果\(f(x)\)的首项系数是\(a_n\)，
+则可以先对\(a_n^{-1} f(x)\)运用上述方法，
+求出它的判别式\(D(a_n^{-1} f)\)，
+然后规定\(f(x)\)的判别式为
+\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P65 公式(32)
+	D(f)
+	\defeq
+	a_n^{2n-2} D(a_n^{-1} f).
+\end{equation}
+\end{remark}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P65 例3
+求数域\(K\)上二次方程\(f(x)=x^2+bx+c=0\)的判别式.
+\begin{solution}
+设\(f(x)\)的复根是\(c_1,c_2\)，
+则\[
+	\sigma_1(c_1,c_2)=-b, \qquad
+	\sigma_2(c_1,c_2)=c.
+\]
+根据牛顿公式有\[
+	s_1=\sigma_1, \qquad
+	s_2=\sigma_1 s_1 - 2\sigma_2
+	=\sigma_1^2-2\sigma_2,
+\]
+于是\[
+	s_1(c_1,c_2)=-b, \qquad
+	s_2(c_1,c_2)=b^2-2c,
+\]
+因此\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P65 公式(33)
+	D(f)
+	=\begin{vmatrix}
+		2 & -b \\
+		-b & b^2-2c
+	\end{vmatrix}
+	=b^2-4c.
+\]
+\end{solution}
+\end{example}
