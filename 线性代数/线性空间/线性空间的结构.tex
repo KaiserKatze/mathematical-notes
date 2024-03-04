@@ -1,94 +1,131 @@
 \section{线性空间的结构}
 \subsection{线性空间的概念与性质}
 \begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P72 定义1
 设\(V\)是一个非空集合，
-\(F\)是一个数域，
-定义两种运算：
-\begin{enumerate}
-	\item {\bf 加法}：
-	\(\forall \a,\b \in V\)，
-	\(V\)中有唯一的元素\(\vb{\delta}\)与之对应，
-	称为\(\a\)与\(\b\)之和，
-	记作\(\a+\b\)；
+\(F\)是一个域.
 
-	\item {\bf 数乘}：
-	\(\forall k \in F\)，
-	\(\forall \a \in V\)，
-	\(V\)中有唯一的元素与之对应，记作\(k\a\).
-\end{enumerate}
+定义代数运算\(V\times V\to V,\opair{\a,\b}\mapsto\g\)，
+记作\(\g=\a+\b\)，
+叫做\DefineConcept{加法}.
 
-如果\emph{加法}与\emph{数乘}满足以下八条公理，
-即\(\forall \a,\b,\g \in V\)，
-\(\forall k,l \in F\)，
-有
+定义运算\(F\times V\to V,\opair{k,\a}\mapsto\b\)，
+记作\(\b=k\a\)，
+叫做\DefineConcept{纯量乘法}.
 
+如果\emph{加法}与\emph{纯量乘法}满足以下八条公理：
 \begin{center}
 	\begin{minipage}{.8\textwidth}
 		\begin{axiom}
-		\(\a+\b=\b+\a\).
+		\((\forall\a,\b\in V)
+		[\a+\b=\b+\a]\).
 		\end{axiom}
 		\begin{axiom}
-		\((\a+\b)+\g=\a+(\b+\g)\).
+		\((\forall\a,\b,\g\in V)
+		[(\a+\b)+\g=\a+(\b+\g)]\).
 		\end{axiom}
 		\begin{axiom}
-		\(\exists \z \in V (\forall\a \in V \implies \a+\z=\a)\)，
-		\(\z\)称为\DefineConcept{零元素}.
+		\(\vb0\in V
+		\land
+		(\forall\a \in V)
+		[\a+\vb0=\a]\)，
+		把\(\vb0\)称为“\(V\)的\DefineConcept{零元}”.
 		\end{axiom}
 		\begin{axiom}
-		\(\forall\a \in V, \exists \vb{\eta} \in V (\a+\vb{\eta}=\z)\)，
-		\(\vb{\eta}\)称为\(\a\)的\DefineConcept{负元素}，
-		记作\(\vb{\eta} = -\a\).
+		\((\forall\a \in V)
+		(\exists \vb\eta \in V)
+		[\a+\vb\eta=\vb0]\)，
+		\(\vb\eta\)称为“\(\a\)的\DefineConcept{负元}”，
+		记作\(-\a\).
 		\end{axiom}
 		\begin{axiom}
-		\(1\a=\a\).
+		\((\forall\a\in V)[1\a=\a]\)，
+		其中\(1\)是\(F\)的单位元.
 		\end{axiom}
 		\begin{axiom}
-		\(k(l\a)=(kl)\a\).
+		\((\forall\a\in V)
+		(\forall k,l\in F)
+		[k(l\a)=(kl)\a]\).
 		\end{axiom}
 		\begin{axiom}
-		\(k(\a+\b)=k\a+k\b\).
+		\((\forall\a\in V)
+		(\forall k,l\in F)
+		[(k+l)\a=k\a+l\a]\).
+		\end{axiom}
+		\begin{axiom}
+		\((\forall\a,\b\in V)
+		(\forall k\in F)
+		[k(\a+\b)=k\a+k\b]\).
 		\end{axiom}
 	\end{minipage}
 \end{center}
-
-则称\(V\)为数域\(F\)上的\DefineConcept{线性空间}（linear space）.
-\(V\)中的元素称为\DefineConcept{向量}（vector）\nolinebreak.
+则称“\(V\)是域\(F\)上的\DefineConcept{线性空间}（linear space）”，
+把\(V\)中的元素称为\DefineConcept{向量}（vector），
+把加法与纯量乘法这两种运算统称为\DefineConcept{线性运算}.
 
 特别地，当\(F = \mathbb{R}\)时，称\(V\)为\DefineConcept{实线性空间}；
 当\(F = \mathbb{C}\)时，称\(V\)为\DefineConcept{复线性空间}.
 \end{definition}
 
 \begin{example}
-下面列举一些常见的线性空间.
-实线性空间与复线性空间是代数结构完全不同的两个线性空间.
-集合\(\mathbb{R}^{n \times 1}\)关于向量的加法、实数与向量的数乘构成实线性空间.
-集合\(\mathbb{R}^{s \times n}\)关于矩阵的加法、实数与矩阵的数乘构成实线性空间.
-全体实系数多项式关于多项式的加法、实数与多项式的乘法（数乘）构成实线性空间.
+下面列举一些常见的线性空间：\begin{itemize}
+	\item 实线性空间与复线性空间
+	是代数结构完全不同的两个线性空间.
+
+	复数域\(\mathbb{C}\)
+	可以看成是实数域\(\mathbb{R}\)上的一个线性空间，
+	其加法是复数的加法，
+	其数量乘法是实数与复数的乘法.
+
+	任一数域\(K\)都可以看成是自身上的线性空间.
+
+	\item 集合\(\mathbb{R}^{n \times 1}\)关于向量的加法、实数与向量的纯量乘法构成实线性空间.
+
+	\item 集合\(\mathbb{R}^{s \times n}\)关于矩阵的加法、实数与矩阵的纯量乘法构成实线性空间.
+
+	\item 映射空间\(\mathbb{R}^X\)
+	对函数的加法，以及实数与函数的数量乘法，
+	成为实线性空间.
+
+	特别地，一元多项式环\(K[x]\)
+	对多项式的加法，以及数与多项式的乘法，
+	成为实线性空间.
+\end{itemize}
 \end{example}
 
-\begin{example}
-设\(\A \in P^{s \times n}\)，
-齐次线性方程组\(\A\x=\z\)的解集\(W\)关于向量加法及数乘构成数域\(P\)上的线性空间，
-所以\(W\)又称为\(\A\x=\z\)的\DefineConcept{解空间}.
-特别地，当\(\rank\A=n\)时，\(\A\x=\z\)只有零解，
-解空间\(W\)只有零向量.
-只含零向量的空间称为\DefineConcept{零空间}，记为\(\{\z\}\).
-\end{example}
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P74
+设\(V\)是域\(F\)上的任一线性空间.
+\begin{enumerate}
+	\item \(V\)的零元是唯一的.
+	\item \(V\)中每个元素的负元是唯一的.
+	\item \((\forall\a\in V)[0\a=\vb0]\).
+	\item \((\forall k\in F)[k\vb0=\vb0]\).
+	\item \(k\a=\vb0 \implies k=0 \lor \a=\vb0\).
+	\item \((\forall\a\in V)[(-1)\a=-\a]\).
+\end{enumerate}
+\end{property}
+
+只含零元的线性空间\(\{\vb0\}\)
+称为\DefineConcept{零空间}.
 
 \begin{definition}
-设\(V\)是数域\(P\)上的线性空间，\(W \subseteq V\)是一个非空集合.
-如果\(W\)关于\(V\)中的加法及数乘运算也构成数域\(P\)上的线性空间，则称\(W\)是\(V\)的一个\DefineConcept{子空间}（subspace）.
+设\(V\)是数域\(K\)上的线性空间，
+\(W \subseteq V\)是一个非空集合.
+如果\(W\)关于\(V\)中的加法及纯量乘法运算
+也构成数域\(K\)上的线性空间，
+则称“\(W\)是\(V\)的一个\DefineConcept{子空间}（subspace）”.
 \end{definition}
 
 \begin{theorem}\label{theorem:线性空间.子空间的判定}
 设\(W\)是线性空间\(V\)的非空子集.
-如果\(W\)关于\(V\)的加法与数乘运算封闭，即\[
-\forall \a,\b \in W,
-\forall k \in P
-\bigl(
-\a+\b, k \a \in W
-\bigr),
-\]则称\(W\)是\(V\)的子空间.
+如果\(W\)关于\(V\)的加法与纯量乘法运算封闭，
+即\[
+	(\forall\a,\b\in W)
+	(\forall k\in K)
+	[\a+\b,k\a\in W],
+\]
+则\(W\)是\(V\)的子空间.
 \end{theorem}
 
 \begin{example}
