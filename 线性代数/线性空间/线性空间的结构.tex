@@ -109,6 +109,7 @@
 \end{enumerate}
 \end{property}
 
+\subsection{线性空间的线性关系}
 设\(\AutoTuple{\a}{s}\)是\(V\)中一个向量组，
 任给\(F\)中一组元素\(\AutoTuple{k}{s}\)，
 向量\(k_1\a_1+\dotsb+k_s\a_s\)
@@ -193,6 +194,7 @@
 \end{enumerate}
 \end{property}
 
+\subsection{线性空间的基与维数}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P76 定义5
 设\(a\)是向量组\(A\)的部分组.
@@ -244,7 +246,7 @@
 如果
 \(S\)线性无关，
 且\(V\)可以由\(S\)线性表出，
-则称“\(S\)是\(V\)的一个\DefineConcept{基}”.
+则称“\(S\)是\(V\)的一个\DefineConcept{基}（basis）”.
 \end{definition}
 
 \begin{property}
@@ -350,8 +352,10 @@
 可以唯一地表成\(\AutoTuple{\a}{n}\)的线性组合.
 \end{property}
 
-我们把\(\a\)由基\(\AutoTuple{\a}{n}\)线性表出的系数
-组成的\(n\)元有序组\((\AutoTuple{\a}{n})\)下的坐标.
+\subsection{向量的坐标，过渡矩阵}
+我们把向量\(\a\)由基\(\AutoTuple{\a}{n}\)线性表出的系数
+组成的\(n\)元有序组\((\AutoTuple{\a}{n})\)
+称为“向量\(\a\)在基\(\AutoTuple{\a}{n}\)下的\DefineConcept{坐标}（coordinate）”.
 通常把向量的坐标写成列向量形式.
 
 由上可知，有限维线性空间\(V\)中给定一个基，
@@ -359,130 +363,75 @@
 从而\(V\)的结构就很清楚了.
 因此，基是研究线性空间的结构的第一条途径.
 
-\begin{definition}
-设\(V\)是数域\(K\)上的线性空间，
-\(W \subseteq V\)是一个非空集合.
-如果\(W\)关于\(V\)中的加法及纯量乘法运算
-也构成数域\(K\)上的线性空间，
-则称“\(W\)是\(V\)的一个\DefineConcept{子空间}（subspace）”.
-\end{definition}
+\(n\)维线性空间\(V\)中给定两个基，
+我们想要知道，\(V\)中每一个向量分别在这两个基下的坐标有什么关系.
 
-\begin{theorem}\label{theorem:线性空间.子空间的判定}
-设\(W\)是线性空间\(V\)的非空子集.
-如果\(W\)关于\(V\)的加法与纯量乘法运算封闭，
-即\[
-	(\forall\a,\b\in W)
-	(\forall k\in K)
-	[\a+\b,k\a\in W],
+设\(\AutoTuple{\a}{n}\)和\(\AutoTuple{\b}{n}\)是\(V\)的两个基，
+\(V\)中向量\(\a\)在这两个基下的坐标分别为\[
+	\vb{X}=(\AutoTuple{x}{n})^T, \qquad
+	\vb{Y}=(\AutoTuple{y}{n})^T.
 \]
-则\(W\)是\(V\)的子空间.
-\end{theorem}
+为了求\(\vb{X}\)与\(\vb{Y}\)之间的关系，
+首先把这两个基之间的关系搞清楚.
+由于\(\AutoTuple{\a}{n}\)是\(V\)的一个基，
+因此有\[
+	\left\{ \begin{array}{l}
+		\b_1=a_{11} \a_1+a_{21} \a_2+\dotsb+a_{n1} \a_n, \\
+		\b_2=a_{12} \a_1+a_{22} \a_2+\dotsb+a_{n2} \a_n, \\
+		\hdotsfor1, \\
+		\b_n=a_{1n} \a_1+a_{2n} \a_2+\dotsb+a_{nn} \a_n.
+	\end{array} \right.
+\]
+为了使推导过程简洁，
+我们可以把上式写成\[
+	(\AutoTuple{\b}{n})
+	=
+	(\AutoTuple{\a}{n})
+	\vb{A},
+\]
+其中\[
+	\vb{A}=\begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn}
+	\end{bmatrix}.
+\]
+我们把\(\vb{A}\)称为
+“基\(\AutoTuple{\a}{n}\)到基\(\AutoTuple{\b}{n}\)的\DefineConcept{过渡矩阵}”.
 
-\begin{example}
-设\(V\)是数域\(P\)上的线性空间.
-在线性空间\(V\)中取定\(s\)个向量\[
-\AutoTuple{\a}{s}
-\]组成向量组\(A\).证明：集合\[
-W = \Set{ k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s \given k_i \in P, i=1,2,\dotsc,s }
-\]是\(V\)的子空间.
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P80 命题14
+设\(\AutoTuple{\a}{n}\)是\(V\)的一个基，
+且\((\AutoTuple{\b}{n})=(\AutoTuple{\a}{n})\vb{A}\)，
+则\(\AutoTuple{\b}{n}\)是\(V\)的一个基
+当且仅当\(\vb{A}\)是可逆矩阵.
 \begin{proof}
-首先\(W\)是\(V\)的非空子集.其次\(\forall \a,\b \in W\)有\[
-\a = k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s,
-\qquad
-\b = p_1 \a_1 + p_2 \a_2 + \dotsb + p_s \a_s,
-\]故\[
-\a+\b = (k_1+p_1)\a_1 + (k_2+p_2)\a_2 + \dotsb + (k_s+p_s)\a_s \in W;
-\]同理可证\(\forall \a \in W, \forall k \in P\)有\(k\a \in W\).
-由\cref{theorem:线性空间.子空间的判定}，\(W\)是\(V\)的子空间.
+由于\(\AutoTuple{\a}{n}\)线性无关，
+并且有\begin{align*}
+	k_1 \b_1+\dotsb+k_n \b_n
+	&=(\AutoTuple{\b}{n}) (\AutoTuple{k}{n})^T \\
+	&=(\AutoTuple{\a}{n}) \vb{A} (\AutoTuple{k}{n})^T,
+\end{align*}
+因此\begin{align*}
+	&\text{$\AutoTuple{\b}{n}$是$V$的一个基}
+	\iff \text{$\AutoTuple{\b}{n}$线性无关} \\
+	&\iff
+	k_1 \b_1+\dotsb+k_n \b_n=\vb0
+	\implies
+	k_1=\dotsb=k_n=0 \\
+	&\iff
+	(\AutoTuple{\a}{n}) \vb{A} (\AutoTuple{k}{n})^T=\vb0
+	\implies
+	(\AutoTuple{k}{n})^T=\vb0 \\
+	&\iff
+	\vb{A} (\AutoTuple{k}{n})^T=\vb0
+	\implies
+	(\AutoTuple{k}{n})^T=\vb0 \\
+	&\iff \text{齐次线性方程组$\vb{A}\vb{X}=\vb0$只有零解} \\
+	&\iff \abs{\vb{A}}\neq0
+	\iff \text{$\vb{A}$是可逆矩阵}.
+	\qedhere
+\end{align*}
 \end{proof}
-集合\(W\)称为\(A\)的\DefineConcept{生成空间}（spanning space），记作\(L(\AutoTuple{\a}{s})\).
-\end{example}
-
-\subsection{线性空间的基与维数}
-\begin{definition}
-\def\B{\mathcal{B}}%
-设\(V\)是数域\(P\)上的线性空间，如果\begin{enumerate}
-\item \(\e_1,\e_2,\dotsc,\e_n \in V\)；
-\item 向量组\(\B = \{ \e_1,\e_2,\dotsc,\e_n \}\)线性无关；
-\item 在\(V\)中任取一个向量\(\a\)，\(\a\)总可由向量组\(\B\)线性表出，即\[
-\a = k_1 \e_1 + k_2 \e_2 + \dotsb + k_n \e_n,
-\]
-\end{enumerate}
-则称\(\B\)是\(V\)的一个\DefineConcept{基}（basis）.
-称系数\(\AutoTuple{k}{n}\)为\(\a\)在基\(\B\)下的\DefineConcept{坐标}（coordinate）.
-称整数\(n\)为\(V\)的\DefineConcept{维数}，记作\(\dim V = n\).
-\end{definition}
-
-\begin{definition}
-\def\B{\mathcal{B}}%
-\def\Ba{\B_\alpha}%
-\def\Bb{\B_\beta}%
-设\[
-\Ba = \{ \AutoTuple{\a}{n} \}
-\quad\text{和}\quad
-\Bb = \{ \AutoTuple{\b}{n} \}
-\]是\(V^n\)的两组基.
-
-显然，对基\(\Bb\)中的每个向量\(\b_1\)，可以求出其在基\(\Ba\)下的坐标：\[
-\b_i = \Ba \P_i \quad(i=1,2,\dotsc,n),
-\]其中\(\P_i = (p_{i1},p_{i2},\dotsc,p_{in})^T \in F^n\ (i=1,2,\dotsc,n)\).
-
-若矩阵\(\P = (p_{ij})_n = (\P_1,\P_2,\dotsc,\P_n)\)满足\[
-(\AutoTuple{\b}{n}) = (\AutoTuple{\a}{n}) \P,
-\]则称矩阵\(\P\)是基\(\Ba\)到基\(\Bb\)的\DefineConcept{过渡矩阵}（或\DefineConcept{变换矩阵}）.
-\end{definition}
-
-\begin{example}
-设\(\a_1,\a_2,\a_3\)是\(\mathbb{R}^3\)的一组基，
-求：基\(\a_1,\frac{1}{2}\a_2,\frac{1}{3}\a_3\)
-到基\(\a_1+\a_2,\a_2+\a_3,\a_3+\a_1\)的过渡矩阵.
-\begin{solution}
-设所求过渡矩阵为\(\P\)，则根据定义有\[
-\begin{bmatrix}
-\a_1 & \frac{1}{2}\a_2 & \frac{1}{3}\a_3
-\end{bmatrix} \P
-= \begin{bmatrix}
-\a_1+\a_2 & \a_2+\a_3 & \a_3+\a_1
-\end{bmatrix},
-\]即\[
-\begin{bmatrix}
-\a_1 & \a_2 & \a_3
-\end{bmatrix} \begin{bmatrix}
-1 \\
-& \frac{1}{2} \\
-&& \frac{1}{3}
-\end{bmatrix} \P
-= \begin{bmatrix}
-\a_1 & \a_2 & \a_3
-\end{bmatrix} \begin{bmatrix}
-1 & 0 & 1 \\
-1 & 1 & 0 \\
-0 & 1 & 1
-\end{bmatrix},
-\]所以\[
-\P = \begin{bmatrix}
-1 \\
-& \frac{1}{2} \\
-&& \frac{1}{3}
-\end{bmatrix}^{-1} \begin{bmatrix}
-1 & 0 & 1 \\
-1 & 1 & 0 \\
-0 & 1 & 1
-\end{bmatrix}
-= \begin{bmatrix}
-1 \\
-& 2 \\
-&& 3
-\end{bmatrix} \begin{bmatrix}
-1 & 0 & 1 \\
-1 & 1 & 0 \\
-0 & 1 & 1
-\end{bmatrix}
-= \begin{bmatrix}
-1 & 0 & 1 \\
-2 & 2 & 0 \\
-0 & 3 & 3
-\end{bmatrix}.
-\]
-\end{solution}
-\end{example}
+\end{proposition}
