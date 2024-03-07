@@ -217,3 +217,92 @@
 \end{align*}
 \end{proof}
 \end{proposition}
+
+\begin{theorem}[子空间的维数公式]
+%@see: 《高等代数（第三版 下册）》（丘维声） P85 定理9
+设\(V_1,V_2\)都是域\(F\)上线性空间\(V\)的有限维子空间，
+则\(V_1 \cap V_2,V_1+V_2\)也都是有限维的子空间，
+并且\[
+	\dim V_1+\dim V_2
+	=\dim(V_1+V_2)
+	+\dim(V_1 \cap V_2).
+\]
+\begin{proof}
+由于\(V_1 \cap V_2 \subseteq V_1\)，
+因此\(\dim(V_1 \cap V_2) \leq \dim V_1\).
+设\[
+	\dim V_1=n_1, \qquad
+	\dim V_2=n_2, \qquad
+	\dim(V_1 \cap V_2)=m.
+\]
+在\(V_1 \cap V_2\)中取一个基\(\AutoTuple{\a}{m}\)，
+把它分别扩充成\(V_1,V_2\)的一个基：\[
+	\AutoTuple{\a}{m},\AutoTuple{\b}{n_1-m}, \qquad
+	\AutoTuple{\a}{m},\AutoTuple{\g}{n_2-m},
+\]
+于是\begin{align*}
+	V_1+V_2
+	&=\opair{\AutoTuple{\a}{m},\AutoTuple{\b}{n_1-m}}
+	+\opair{\AutoTuple{\a}{m},\AutoTuple{\g}{n_2-m}} \\
+	&=\opair{
+		\AutoTuple{\a}{m},
+		\AutoTuple{\b}{n_1-m},
+		\AutoTuple{\g}{n_2-m}
+	}.
+\end{align*}
+我们希望证明
+\(\AutoTuple{\a}{m},
+\AutoTuple{\b}{n_1-m},
+\AutoTuple{\g}{n_2-m}\)
+是\(V_1+V_2\)的一个基，
+从而得出\begin{align*}
+	\dim(V_1+V_2)
+	&=m+(n_1-m)+(n_2-m) \\
+	&=n_1+n_2-m \\
+	&=\dim V_1+\dim V_2-\dim(V_1 \cap V_2).
+\end{align*}
+假设等式\[
+	k_1\a_1+\dotsb+k_m\a_m
+	+p_1\b_1+\dotsb+p_{n_1-m}\b_{n_1-m}
+	+q_1\g_1+\dotsb+q_{n_2-m}\g_{n_2-m}
+	=\vb0
+	\eqno(1)
+\]成立，
+则\[
+	q_1\g_1+\dotsb+q_{n_2-m}\g_{n_2-m}
+	=-k_1\a_1-\dotsb-k_m\a_m
+	-p_1\b_1-\dotsb-p_{n_1-m}\b_{n_1-m}.
+\]
+注意到上式左边的向量属于\(V_2\)，
+右边的向量属于\(V_1\)，
+从而左边的向量属于\(V_1 \cap V_2\)，
+因此它可由\(\AutoTuple{\a}{m}\)线性表出：\[
+	q_1\g_1+\dotsb+q_{n_2-m}\g_{n_2-m}
+	=l_1\a_1+\dotsb+l_m\a_m,
+\]
+移项得\[
+	l_1\a_1+\dotsb+l_m\a_m
+	-q_1\g_1-\dotsb-q_{n_2-m}\g_{n_2-m}
+	=\vb0.
+\]
+由于\(\AutoTuple{\a}{m},\AutoTuple{\g}{n_2-m}\)是\(V_2\)的一个基，
+因此从上式得出\[
+	l_1=\dotsb=l_m=0, \qquad
+	q_1=\dotsb=q_{n_2-m}=0.
+\]
+代入(1)式，得\[
+	k_1\a_1+\dotsb+k_m\a_m
+	+p_1\b_1+\dotsb+p_{n_1-m}\b_{n_1-m}
+	=\vb0.
+\]
+同理可得\[
+	k_1=\dotsb=k_m=0, \qquad
+	p_1=\dotsb=p_{n_1-m}=0.
+\]
+因此
+\(\AutoTuple{\a}{m},
+\AutoTuple{\b}{n_1-m},
+\AutoTuple{\g}{n_2-m}\)
+线性无关.
+\end{proof}
+\end{theorem}
