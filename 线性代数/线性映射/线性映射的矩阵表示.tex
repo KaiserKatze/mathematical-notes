@@ -1,6 +1,7 @@
 \section{线性映射的矩阵表示}
 在本节，我们学习如何利用矩阵研究线性映射.
 
+\subsection{用矩阵表示一个有限维线性空间上的线性变换}
 设\(V\)是域\(F\)上的\(n\)维线性空间，
 \(\vb{A}\)是\(V\)上的一个线性变换.
 我们知道，\(\vb{A}\)被它在\(V\)上的一个基的作用决定.
@@ -35,3 +36,91 @@
 	\vb{A}(\a_1,\a_2,\dotsc,\a_n)
 	=(\a_1,\a_2,\dotsc,\a_n)A.
 \]
+这就是一个\(n\)阶矩阵\(A\)
+是\(V\)上线性变换\(\vb{A}\)
+在基\(\AutoTuple{\a}{n}\)下的矩阵的充分必要条件.
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P117 例1
+在\(\mathbb{R}^\mathbb{R}\)中，
+设\(V=\opair{1,\sin x,\cos x}\)，
+证明：
+导数\(\vb{D}\)是\(V\)上的线性变换，
+写出\(\vb{D}\)在基\(1,\sin x,\cos x\)下的矩阵.
+\begin{proof}
+因为\[
+	\vb{D}(k_1\cdot1+k_2\cdot\sin x+k_3\cos x)
+	=-k_3\sin x+k_2\cos x
+	\in V,
+\]
+所以\(\vb{D}\)是\(V\)上的线性变换.
+因为\[
+	\left\{ \begin{array}{l}
+		\vb{D}1
+		=0
+		=0\cdot1+0\cdot\sin x+0\cdot\cos x, \\
+		\vb{D}\sin x
+		=\cos x
+		=0\cdot1+0\cdot\sin x+1\cdot\cos x, \\
+		\vb{D}\cos x
+		=-\sin x
+		=0\cdot1+(-1)\cdot\sin x+0\cdot\cos x,
+	\end{array} \right.
+\]
+所以\(\vb{D}\)在基\(1,\sin x,\cos x\)下的矩阵是\[
+	D=\begin{bmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & -1 \\
+		0 & 1 & 0
+	\end{bmatrix}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\subsection{用矩阵表示两个有限维线性空间之间的线性映射}
+上例说明，\(n\)维线性空间\(V\)上的线性变换可以用矩阵来表示.
+下面我们来讨论两个有限维线性空间之间的线性映射能不能用矩阵来表示.
+
+设\(V\)和\(V'\)分别是域\(F\)上\(n\)维、\(s\)维线性空间，
+\(\vb{A}\)是\(V\)到\(V'\)的一个线性映射.
+在\(V\)中取一个基\(\AutoTuple{\a}{n}\)，
+在\(V'\)中取一个基\(\AutoTuple{\b}{s}\)，
+由于\(\vb{A}\a_i\in V'\)，
+因此\(\vb{A}\a_i\)可以
+由\(V'\)的基\(\AutoTuple{\b}{s}\)唯一地线性表出：\[
+	\left\{ \begin{array}{l}
+		\vb{A}\a_1=a_{11}\b_1+a_{21}\b_2+\dotsb+a_{s1}\b_s, \\
+		\vb{A}\a_1=a_{11}\b_1+a_{22}\b_2+\dotsb+a_{s1}\b_s, \\
+		\hdotsfor1, \\
+		\vb{A}\a_n=a_{1n}\b_1+a_{2n}\b_2+\dotsb+a_{sn}\b_s.
+	\end{array} \right.
+\]
+我们可以在形式上把上式写成\[
+	(\vb{A}\a_1,\vb{A}\a_2,\dotsc,\vb{A}\a_n)
+	=(\b_1,\b_2,\dotsc,\b_s)
+	\begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots && \vdots \\
+		a_{s1} & a_{s2} & \dots & a_{sn}
+	\end{bmatrix}.
+\]
+我们把上式右端的\(s\times n\)阶矩阵\((a_{ij})_{s\times n}\)记作\(A\)，
+把它称为“线性映射\(\vb{A}\)
+在\(V\)的基\(\AutoTuple{\a}{n}\)
+和\(V'\)的基\(\AutoTuple{\b}{s}\)
+下的矩阵”.
+\(A\)的第\(j\ (j=1,2,\dotsc,n)\)列是
+\(\vb{A}\a_j\)在基\(\AutoTuple{\b}{s}\)下的坐标.
+因此\(A\)由线性映射\(\vb{A}\)唯一决定.
+如果我们再把\((\vb{A}\a_1,\vb{A}\a_2,\dotsc,\vb{A}\a_n)\)
+简记为\(\vb{A}(\a_1,\a_2,\dotsc,\a_n)\)，
+那么上式可以化为\[
+	\vb{A}(\a_1,\a_2,\dotsc,\a_n)
+	=(\b_1,\b_2,\dotsc,\b_s)A.
+\]
+这就是一个\(s\times n\)矩阵\(A\)
+是\(V\)到\(V'\)的线性映射\(\vb{A}\)
+在\(V\)的基\(\AutoTuple{\a}{n}\)
+和\(V'\)的基\(\AutoTuple{\b}{s}\)下的矩阵的充分必要条件.
