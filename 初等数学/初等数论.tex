@@ -42,10 +42,20 @@
 
 \begin{definition}
 如果正整数\(x\)只能被1或它自己整除\footnote{特别地，我们规定1不是素数.}，
-那么称\(x\)为\DefineConcept{素数}或\DefineConcept{质数}（prime number），
+那么称\(x\)为\DefineConcept{素数}或\DefineConcept{质数}（prime number）；
 否则称之为\DefineConcept{合数}（composite number）.
+\end{definition}
+这就是说：\[
+	\text{$x$是素数}
+	\defiff
+	(\forall y)(\forall z)
+	[y \cdot z=x \implies y=1 \lor z=1].
+\]
+
+\begin{definition}
 如果正整数\(x\)与\(y\)除了1以外没有其他公因子，
 就称“\(x\)与\(y\) \DefineConcept{互素}（或\DefineConcept{互质}）”.
+\end{definition}
 
 全体素数的集合，
 记作\(\mathbb{S}\)，
@@ -59,7 +69,6 @@
 		[y \neq x \implies (x,y)=1]
 	}.
 \]
-\end{definition}
 
 \begin{theorem}
 如果一个正整数\(a\)能整除正整数的乘积\(bc\)，且\(a\)与其中一个因子\(b\)互素，
@@ -99,14 +108,20 @@
 第二个素数是3，接下来是5、7、11……
 我们不禁发问，素数的个数究竟是有限的，还是无限的.
 \begin{theorem}
-素数有无穷多个.
+素数有无穷多个，
+即\[
+	(\forall x)(\exists y)[y>x \land \text{$y$是素数}].
+\]
 \begin{proof}
 用反证法\footnote{这个证法是由古希腊数学家欧几里得给出的.}.
 假设素数只有\(k\)个，分别是\(\AutoTuple{p}{k}\)，且\(p_1 < p_2 < \dotsb < p_k\).
 显然，数\(\truediv{p_1 p_2 \dotsm p_k}{p_i}\ (i=1,2,\dotsc,k)\).
 但数\[
-N = 1 + p_1 p_2 \dotsm p_k
-\]与\(p_i\ (i=1,2,\dotsc,k)\)相除总余1，这就说明数\(N\)要么是一个素数，要么是一个可以被区间\((p_k,N)\)内的一个正整数\(M\)整除的合数，总之素数的个数大于\(k\).
+	N = 1 + p_1 p_2 \dotsm p_k
+\]与\(p_i\ (i=1,2,\dotsc,k)\)相除总余1，
+这就说明数\(N\)要么是一个素数，
+要么是一个可以被区间\((p_k,N)\)内的一个正整数\(M\)整除的合数，
+总之素数的个数大于\(k\).
 以此类推，可知素数必然有无穷多个.
 \end{proof}
 \end{theorem}
