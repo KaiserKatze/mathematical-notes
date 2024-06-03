@@ -232,8 +232,8 @@ f(x+\increment x) - f(x)
 \begin{theorem}[柯西中值定理]\label{theorem:微分中值定理.柯西中值定理}
 如果函数\(f(x)\)及\(F(x)\)满足
 \begin{enumerate}
-	\item 在闭区间\([a,b]\)上连续（即\(f \in C[a,b]\)）；
-	\item 在开区间\((a,b)\)内可导（即\(f \in D(a,b)\)）；
+	\item 在闭区间\([a,b]\)上连续（即\(f,g \in C[a,b]\)）；
+	\item 在开区间\((a,b)\)内可导（即\(f,g \in D(a,b)\)）；
 	\item 对\(\forall x\in(a,b)\)，有\(F'(x) \neq 0\)，
 \end{enumerate}
 那么在\((a,b)\)内至少有一点\(\xi\)，使等式
@@ -241,6 +241,29 @@ f(x+\increment x) - f(x)
 \frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f'(\xi)}{F'(\xi)}
 \end{equation}
 成立.
+\begin{proof}
+因为\(F(b)-F(a)=F'(\eta)(b-a)\ (a<\eta<b)\)，
+根据假定\(F'(\eta)\neq0\)，
+又\(b-a\neq0\)，
+所以\(F(b)-F(a)\neq0\).
+令\[
+	\phi(x)=f(x)-f(a)-\frac{f(b)-f(a)}{F(b)-F(a)}[F(x)-F(a)].
+\]
+不难得\(\phi(a)=\phi(b)=0\)，
+\(\phi\in C[a,b]\cap D(a,b)\)，
+且\[
+	\phi'(x)=f'(x)-\frac{f(b)-f(a)}{F(b)-F(a)}\cdot F'(x).
+\]
+根据\hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}可知，
+在\(\exists\xi(a,b)\)使得\(\phi'(\xi)=0\)，
+即\[
+	f'(\xi)-\frac{f(b)-f(a)}{F(b)-F(a)}\cdot F'(\xi)=0,
+\]
+亦即\[
+	\frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f'(\xi)}{F'(\xi)}.
+	\qedhere
+\]
+\end{proof}
 \end{theorem}
 
 我们把\hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}、
