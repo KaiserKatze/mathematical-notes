@@ -40,6 +40,43 @@
 \end{lemma}
 
 \subsection{罗尔定理}
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,xmax=8,
+			ymin=0,ymax=3,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			ticks=none,
+		]
+			\addplot[domain=1:7.283,color=blue]{.5*sin(deg(x-1))+2};
+			\draw(1,2)coordinate(A)node[left]{$A$}
+				(1,0)coordinate(a)node[below]{$a$}
+				(2.571,2.5)coordinate(C)node[above]{$C$}
+				(2.571,0)coordinate(c)node[below]{$\xi$}
+				(5.713,1.5)node[below]{$D$}
+				(7.283,2)coordinate(B)node[right]{$B$}
+				(7.283,0)coordinate(b)node[below]{$b$};
+			\draw[dashed,black!30](1,2)--(7.283,2)
+				(A)--(a) (C)--(c) (B)--(b);
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:微分中值定理.罗尔定理的几何意义}
+\end{figure}
+
+观察\cref{figure:微分中值定理.罗尔定理的几何意义}，
+设曲线弧\(\Arc{AB}\)是函数\(y=f(x)\ (a\leq x\leq b)\)的图形.
+这是一条连续的曲线弧，除端点外，处处有不垂直于\(x\)的切线，
+且两个端点的纵坐标相等，即\(f(a)=f(b)\).
+可以发现在曲线弧的最高点\(C\)处或最低点\(D\)处，曲线有水平的切线.
+如果记\(C\)的横坐标为\(\xi\)，那么就有\(f'(\xi)=0\).
+现在用分析语言把这个几何现象描述出来，就可得下面的罗尔定理.
+
 \begin{theorem}[罗尔定理]\label{theorem:微分中值定理.罗尔定理}
 如果函数\(f(x)\)满足
 \begin{enumerate}
