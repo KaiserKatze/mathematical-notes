@@ -441,17 +441,21 @@ f(x+\increment x) - f(x)
 \end{theorem}
 
 \section{洛必达法则}
-如果当\(x \to a\)（或\(x \to \infty\)）时，两个函数\(f(x)\)与\(F(x)\)都趋于零或都趋于无穷大，那么极限\(\lim\frac{f(x)}{F(x)}\)可能存在，也可能不存在.通常把这种极限叫做\DefineConcept{未定式}，并简记为\(\frac{0}{0}\)或\(\frac{\infty}{\infty}\).
+如果当\(x \to a\)（或\(x \to \infty\)）时，
+两个函数\(f(x)\)与\(F(x)\)都趋于零或都趋于无穷大，
+那么极限\(\lim\frac{f(x)}{F(x)}\)可能存在，也可能不存在.
+通常把这种极限叫做\DefineConcept{未定式}，
+并简记为\(\frac{0}{0}\)或\(\frac{\infty}{\infty}\).
 对于这类极限，即是它存在也不能用“商的极限等于极限的商”这一法则.
 下面我们将根据柯西中值定理来推出求这类极限的一种简便且重要的方法.
 
 我们着重讨论\(x \to a\)时的未定式\(\frac{0}{0}\)的情形，关于这情形有以下定理：
 \begin{theorem}\label{theorem:微分中值定理.洛必达法则1}
-设\begin{enumerate}
+设\begin{itemize}
 	\item \(\lim_{x\to a} f(x) = \lim_{x\to a} F(x) = 0\)；
 	\item 在点\(a\)的某去心邻域内，\(f'(x)\)及\(F'(x)\)都存在且\(F'(x) \neq 0\)；
 	\item \(\lim_{x \to a} \frac{f'(x)}{F'(x)}\)存在（或为无穷大），
-\end{enumerate}
+\end{itemize}
 那么\[
 	\lim_{x \to a} \frac{f(x)}{F(x)}
 	= \lim_{x \to a} \frac{f'(x)}{F'(x)}.
@@ -487,33 +491,53 @@ f(x+\increment x) - f(x)
 且可以此类推.
 
 \begin{example}
-\def\l{\lim_{x\to0}}
-\def\a{\l\frac{\sin ax}{\sin bx}}
-求\(\a\ (b \neq 0)\).
+%@see: 《高等数学（第六版 上册）》 P136 例1
+求\(\lim_{x\to0} \frac{\sin ax}{\sin bx}\ (b \neq 0)\).
 \begin{solution}
-\(\a = \l\frac{a \cos ax}{b \cos bx} = \frac{a}{b}\).
+\(\lim_{x\to0} \frac{\sin ax}{\sin bx}
+= \lim_{x\to0} \frac{a \cos ax}{b \cos bx}
+= \frac{a}{b}\).
 \end{solution}
 \end{example}
 
 \begin{example}
-\def\l{\lim_{x\to1}}
-\def\a{\l\frac{x^3-3x+2}{x^3-x^2-x+1}}
-求\(\a\).
+%@see: 《高等数学（第六版 上册）》 P136 例2
+求\(\lim_{x\to1} \frac{x^3-3x+2}{x^3-x^2-x+1}\).
 \begin{solution}
-\(\a = \l\frac{3x^2-3}{3x^2-2x-1} = \l\frac{6x}{6x-2} = \frac{6}{4} = \frac{3}{2}\).
+\(\lim_{x\to1} \frac{x^3-3x+2}{x^3-x^2-x+1}
+= \lim_{x\to1} \frac{3x^2-3}{3x^2-2x-1}
+= \lim_{x\to1} \frac{6x}{6x-2}
+= \frac32\).
+\end{solution}
+\end{example}
+
+\begin{remark}
+在上例中，\(\lim_{x\to1} \frac{6x}{6x-2}\)已经不是未定式，
+不能再对它应用洛必达法则，否则会导致错误结果.
+以后在使用洛必达法则时，一定要经常注意极限是否还是未定式，
+如果不是未定式，就不能应用洛必达法则.
+\end{remark}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P136 例3
+求\(\lim_{x\to0} \frac{x-\sin x}{x^3}\).
+\begin{solution}
+\(\lim_{x\to0} \frac{x-\sin x}{x^3}
+= \lim_{x\to0} \frac{1-\cos x}{3x^2}
+= \lim_{x\to0} \frac{\sin x}{6x}
+= \frac16\).
 \end{solution}
 \end{example}
 
 \begin{example}
-\def\l{\lim_{x\to0}}
-\def\a{\l\frac{x-\sin x}{x^3}}
-求\(\a\).
+求\(\lim_{x\to-\frac\pi2} (\sec x+\tan x)\).
 \begin{solution}
-\(\a = \l\frac{1-\cos x}{3x^2} = \l\frac{\sin x}{6x} = \frac{1}{6}\).
+\(\lim_{x\to-\frac\pi2} (\sec x+\tan x)
+= \lim_{x\to-\frac\pi2} \frac{1+\sin x}{\cos x}
+= \lim_{x\to-\frac\pi2} \frac{\cos x}{-\sin x}
+= 0\).
 \end{solution}
 \end{example}
-
-在使用洛必达法则时，一定要经常注意极限是否还是未定式，如果不是未定式，就不能应用洛必达法则.
 
 我们指出，对于\(x\to\infty\)时的未定式\(\frac{0}{0}\)以及对于\(x \to a\)或\(x\to\infty\)时的未定式\(\frac{\infty}{\infty}\)，也有相应的洛必达法则.
 例如，对于\(x\to\infty\)时的未定式\(\frac{0}{0}\)有以下定理.
