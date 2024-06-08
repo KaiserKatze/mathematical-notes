@@ -178,6 +178,7 @@
 \end{example}
 
 \begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P37 例2.2.4
 证明：\begin{equation}
 	\lim_{n\to\infty} \sqrt[n]{n} = 1.
 \end{equation}
@@ -221,6 +222,54 @@
 \(\exists N > 0\)，
 使得当\(n > N\)时，
 有\(\abs{\sqrt[n]{n} - 1} < \epsilon\)成立.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P37 例2.2.6
+设\(\lim_{n\to\infty} a_n = a\).
+证明：\(\lim_{n\to\infty} \frac{a_1+a_2+\dotsb+a_n}{n} = a\).
+\begin{proof}
+当\(a=0\)时，
+有\[
+	\lim_{n\to\infty} a_n = 0
+	\iff
+	(\forall\epsilon>0)
+	(\exists N_1\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[n>N_1 \implies \abs{a_n}<\frac\epsilon2\right].
+\]
+由于\(a_1 + a_2 + \dotsb + a_{N_1}\)是与\(n\)无关的常量，
+因此\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		n>N
+		\implies
+		\abs{\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}} < \frac\epsilon2
+	\right].
+\]
+于是利用三角不等式可得\begin{align*}
+	\abs{\frac{a_1 + a_2 + \dotsb + a_n}{n}}
+	&= \abs{
+		\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}
+		+ \frac{a_{N_1+1} + a_{N_1+2} + \dotsb + a_n}{n}
+	} \\
+	&\leq \abs{\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}}
+	+ \abs{\frac{a_{N_1+1} + a_{N_1+2} + \dotsb + a_n}{n}} \\
+	&< \frac\epsilon2 + \frac\epsilon2
+	= \epsilon.
+\end{align*}
+
+当\(a\neq0\)时，
+显然\(\lim_{n\to\infty} (a_n - a) = 0\)，
+于是\[
+	\lim_{n\to\infty} \left(\frac{a_1+a_2+\dotsb+a_n}{n}-a\right)
+	= \lim_{n\to\infty} \frac{(a_1-a)+(a_2-a)+\dotsb+(a_n-a)}{n}
+	= 0,
+\]
+也就是说\(\lim_{n\to\infty} \frac{a_1+a_2+\dotsb+a_n}{n} = a\).
 \end{proof}
 \end{example}
 
