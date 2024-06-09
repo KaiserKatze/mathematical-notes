@@ -12,11 +12,17 @@
 \begin{figure}[ht]
 	\centering
 	\begin{tikzpicture}
-		\draw[help lines, color=gray!30, dashed] (-4,0) grid (4,4);
-		\draw[->, ultra thick] (-4.5,0) -- (4.5,0) node[right]{\(x\)};
-		\draw[->, ultra thick] (0,-0.5) -- (0,4.5) node[above]{\(y\)};
-		\draw (0,0)node[below right]{\(O\)};
-		\draw[orange,ultra thick] (-4,4)--(0,0)--(4,4);
+		\begin{axis}[
+			xmin=-5,xmax=5,
+			ymin=0,ymax=5,
+			grid=both,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			axis equal=true,
+		]
+			\addplot[color=blue,samples at={-5,0,5}]{abs(x)};
+		\end{axis}
 	\end{tikzpicture}
 	\caption{绝对值函数\(\abs{x}\)的图形}
 \end{figure}
