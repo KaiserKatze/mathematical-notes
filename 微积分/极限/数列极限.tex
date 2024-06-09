@@ -372,6 +372,50 @@
 于是我们可以说：
 数列有界是数列收敛的必要不充分条件.
 
+\begin{theorem}[收敛数列的保序性]\label{theorem:极限.收敛数列的保序性}
+%@see: 《数学分析（上册）》（陈纪修） P39 定理2.2.3
+设数列\(\{x_n\},\{y_n\}\)均收敛.
+若\(\lim_{n\to\infty} x_n = a,
+\lim_{n\to\infty} y_n = b\)，
+且\(a < b\)，
+则存在正整数\(N\)，当\(n>N\)时，
+有\(x_n < y_n\).
+\begin{proof}
+取\(\epsilon=\frac{b-a}2>0\)，
+则\[
+	\lim_{n\to\infty} x_n = a
+	\implies
+	(\exists N_1\in\mathbb{N})(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{rl}
+			n>N_1
+			&\implies
+			\abs{x_n - a} < \epsilon = \frac{b-a}2 \\
+			&\implies
+			x_n < a + \frac{b-a}2 = \frac{a+b}2
+		\end{array}
+	\right],
+\]\[
+	\lim_{n\to\infty} y_n = b
+	\implies
+	(\exists N_2\in\mathbb{N})(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{rl}
+			n>N_2
+			&\implies
+			\abs{y_n - b} < \epsilon = \frac{b-a}2 \\
+			&\implies
+			y_n > b - \frac{b-a}2 = \frac{a+b}2
+		\end{array}
+	\right],
+\]
+于是，取\(N = \max\{N_1,N_2\}\)，
+则对\(\forall n\in\mathbb{N}\)，
+只要\(n>N\)，
+就有\(x_n < \frac{a+b}2 < y_n\).
+\end{proof}
+\end{theorem}
+
 \begin{theorem}[收敛数列的保号性]\label{theorem:极限.收敛数列的保号性}
 如果\(\lim_{n\to\infty}x_n = a\)，
 且\(a \gtrless 0\)，
