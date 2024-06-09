@@ -242,15 +242,18 @@
 由于\(a_1 + a_2 + \dotsb + a_{N_1}\)是与\(n\)无关的常量，
 因此\[
 	(\forall\epsilon>0)
-	(\exists N\in\mathbb{N})
+	(\exists N_2\in\mathbb{N})
 	(\forall n\in\mathbb{N})
 	\left[
-		n>N
+		n>N_2
 		\implies
 		\abs{\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}} < \frac\epsilon2
 	\right].
 \]
-于是利用三角不等式可得\begin{align*}
+于是利用三角不等式可得，
+对于\(\forall\epsilon>0\)，
+当\(n>N=\max\{N_1,N_2\}\)时，
+有\begin{align*}
 	\abs{\frac{a_1 + a_2 + \dotsb + a_n}{n}}
 	&= \abs{
 		\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}
@@ -258,7 +261,8 @@
 	} \\
 	&\leq \abs{\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}}
 	+ \abs{\frac{a_{N_1+1} + a_{N_1+2} + \dotsb + a_n}{n}} \\
-	&< \frac\epsilon2 + \frac\epsilon2
+	&< \frac\epsilon2 + \frac1n (n-N_1) \frac\epsilon2
+	< \frac\epsilon2 + \frac\epsilon2
 	= \epsilon.
 \end{align*}
 
