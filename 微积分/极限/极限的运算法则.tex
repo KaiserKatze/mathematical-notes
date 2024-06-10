@@ -99,6 +99,62 @@
 \]
 \end{corollary}
 
+\begin{remark}
+数列极限的四则运算法则只能推广到有限个数列相加或相乘的情况，
+不能随意推广到无限个数列上去.
+例如，若将\cref{theorem:极限.数列极限的四则运算法则} 随意推广，
+可能会得出极限\[
+	\lim_{n\to\infty} \left(
+		\frac1{\sqrt{n^2+1}}
+		+ \frac1{\sqrt{n^2+2}}
+		+ \dotsb + \frac1{\sqrt{n^2+n}}
+	\right)
+\]为\(0\)的错误结论；
+但是，由于\[
+	\frac{n}{\sqrt{n^2+n}}
+	< \frac1{\sqrt{n^2+1}}
+	+ \frac1{\sqrt{n^2+2}}
+	+ \dotsb + \frac1{\sqrt{n^2+n}}
+	< \frac{n}{\sqrt{n^2+1}},
+\]
+利用\hyperref[theorem:极限.夹逼准则]{夹逼准则}可知该极限其实为\(1\).
+\end{remark}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P44 例2.2.12
+设\(a_n>0\)，\(\lim_{n\to\infty} a_n = a\)，证明：
+\(\lim_{n\to\infty} \sqrt[n]{a_1 a_2 \dotsm a_n} = a\).
+\begin{proof}
+应用\hyperref[theorem:不等式.均值不等式]{均值不等式}可得\[
+	\frac{a_1+a_2+\dotsb+a_n}n
+	\geq \sqrt[n]{a_1 a_2 \dotsm a_n}
+	\geq n\left(\frac1{a_1}+\frac1{a_2}+\dotsb+\frac1{a_n}\right)^{-1}
+	> 0.
+\]
+由\cref{example:极限.数列的算术平均的极限} 我们已经知道
+\(\lim_{n\to\infty} \frac{a_1+a_2+\dotsb+a_n}{n} = a\).
+要想利用\hyperref[theorem:极限.夹逼准则]{夹逼准则}证明上述问题，
+就必须证明上面不等式中\(\sqrt[n]{a_1 a_2 \dotsm a_n}\)右边的数列极限也等于\(a\).
+
+下面按\(a\)的不同取值，分两种情况讨论：
+\begin{itemize}
+	\item 当\(a=0\)时，
+	有\(\sqrt[n]{a_1 a_2 \dotsm a_n} > 0 = a\).
+
+	\item 当\(a>0\)时，
+	由\hyperref[theorem:极限.数列极限的四则运算法则]{数列极限的四则运算法则}可知
+	\(\lim_{n\to\infty} \frac1{a_n} = \frac1a\)，
+	故\[
+		\lim_{n\to\infty} \frac1n \left(\frac1{a_1}+\frac1{a_2}+\dotsb+\frac1{a_n}\right) = \frac1a,
+	\]
+	从而
+	\(\lim_{n\to\infty} n\left(\frac1{a_1}+\frac1{a_2}+\dotsb+\frac1{a_n}\right)^{-1} = a\).
+\end{itemize}
+在上述两种情况下，\(\sqrt[n]{a_1 a_2 \dotsm a_n}\)右边的数列极限都等于\(a\)，
+所以\(\lim_{n\to\infty} \sqrt[n]{a_1 a_2 \dotsm a_n} = a\).
+\end{proof}
+\end{example}
+
 \subsection{函数极限的四则运算法则}
 在下面的讨论中，记号“\(\lim\)”下面没有标明自变量的变化过程，
 实际上，下面的定理对\(x \to x_0\)及\(x \to \infty\)都是成立的.
