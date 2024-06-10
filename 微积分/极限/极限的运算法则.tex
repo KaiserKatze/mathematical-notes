@@ -185,12 +185,25 @@
 \begin{example}
 %@see: 《数学分析（上册）》（陈纪修） P45 习题 9.(7)
 求极限\(\lim_{n\to\infty} \sqrt[n]{\frac1{n!}}\).
-\begin{solution}
+\begin{solution}[解法一]
 因为\(\lim_{n\to\infty} \frac1n = 0\)，
 所以由\cref{example:极限.收敛数列前n项积的n次方根} 可知
 \(\lim_{n\to\infty} \sqrt[n]{\frac1{n!}}
 = \lim_{n\to\infty} \sqrt[n]{\frac11 \cdot \frac12 \dotsm \frac1n}
 = 0\).
+\end{solution}
+\begin{solution}[解法二]
+注意到\[
+	\left(\frac1{n!}\right)^2
+	= \prod_{k=1}^n \frac1{(n-k+1)k},%首尾相乘
+\]
+而\(\frac1{(n-k+1)k} \leq \frac1n\)，
+\(\prod_{k=1}^n \frac1{(n-k+1)k} \leq \frac1{n^n}\)，
+\(\frac1{n!} \leq \sqrt{\frac1{n^n}}\)，
+\(0 < \sqrt[n]{\frac1{n!}} \leq \frac1{\sqrt{n}}\)，
+加之\(\lim_{n\to\infty} \frac1{\sqrt{n}} = 0\)，
+因此根据\hyperref[theorem:极限.夹逼准则]{夹逼准则}可得
+\(\lim_{n\to\infty} \sqrt[n]{\frac1{n!}} = 0\).
 \end{solution}
 \end{example}
 
