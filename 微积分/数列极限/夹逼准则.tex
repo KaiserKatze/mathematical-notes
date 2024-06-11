@@ -1,0 +1,170 @@
+\section{夹逼准则}
+\begin{theorem}\label{theorem:极限.夹逼准则}
+%@see: 《数学分析（上册）》（陈纪修） P41 定理2.2.4
+%@see: 《高等数学（第六版 上册）》 P50 准则I
+如果数列\(\{x_n\}\)、\(\{y_n\}\)及\(\{z_n\}\)满足
+\begin{itemize}
+	\item \((\exists n_0\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[y_n \leq x_n \leq z_n]\)，
+	\item \(\lim_{n\to\infty} y_n = \lim_{n\to\infty} z_n = a\)，
+\end{itemize}
+那么\(\lim_{n\to\infty} x_n = a\).
+\begin{proof}
+因为\(\lim_{n\to\infty} y_n = a\)，
+\(\lim_{n\to\infty} z_n = a\)，
+根据数列极限的定义，
+有\[
+	(\forall\epsilon>0)
+	(\exists N_1,N_2\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{l}
+			n > N_1 \implies \abs{y_n - a} < \epsilon, \\
+			n > N_2 \implies \abs{z_n - a} < \epsilon
+		\end{array}
+	\right].
+\]
+
+现在取\(N = \max\{n_0,N_1,N_2\}\)，
+那么，当\(n > N\)时，有\[
+	\left\{ \begin{array}{l}
+		\abs{y_n - a} < \epsilon, \\
+		\abs{z_n - a} < \epsilon,
+	\end{array} \right.
+	\quad\text{或}\quad
+	\left\{ \begin{array}{l}
+		a - \epsilon < y_n, \\
+		z_n < a + \epsilon
+	\end{array} \right.
+\]同时成立.
+
+又因当\(n > N\)时，有\[
+	a - \epsilon < y_n \leq x_n \leq z_n < a + \epsilon,
+\]即\[
+	\abs{x_n - a} < \epsilon
+\]成立.
+
+综上所述，\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{x_n - a} < \epsilon
+	];
+\]
+这就证明了\(\lim_{n\to\infty} x_n = a\).
+\end{proof}
+\end{theorem}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P41 例2.2.7
+求数列\(\{\sqrt{n+1}-\sqrt{n}\}\)的极限.
+\begin{solution}
+首先我们有\[
+	\sqrt{n+1}-\sqrt{n}
+	= \frac{(\sqrt{n+1}-\sqrt{n})(\sqrt{n+1}+\sqrt{n})}{\sqrt{n+1}+\sqrt{n}}
+	= \frac1{\sqrt{n+1}+\sqrt{n}}.
+\]
+由于\[
+	0 < \frac1{\sqrt{n+1}+\sqrt{n}} < \frac1{\sqrt{n}}, \qquad
+	\lim_{n\to\infty} 0 = \lim_{n\to\infty} \frac1{\sqrt{n}} = 0,
+\]
+所以利用\hyperref[theorem:极限.夹逼准则]{夹逼准则}可得
+\(\lim_{n\to\infty} (\sqrt{n+1}-\sqrt{n}) = 0\).
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P42 例2.2.8
+证明：\[
+	\lim_{n\to\infty} (a_1^n + a_2^n + \dotsb + a_p^n)^{\frac1n}
+	= \max_{1\leq i\leq p} \{a_i\},
+\]
+其中\(a_i\geq0\ (i=1,2,\dotsc,p)\).
+\begin{proof}
+不失一般性，设\(a_1 = \max_{1\leq i\leq p} \{a_i\}\)，
+于是\[
+	a_1 \leq (a_1^n + a_2^n + \dotsb + a_p^n)^{\frac1n} \leq a_1 \sqrt[n]{p}.
+\]
+因为\(\lim_{n\to\infty} \sqrt[n]{p} = 1\)，
+所以\(\lim_{n\to\infty} a_1 \sqrt[n]{p} = a_1\).
+利用\hyperref[theorem:极限.夹逼准则]{夹逼准则}可得\[
+	\lim_{n\to\infty} (a_1^n + a_2^n + \dotsb + a_p^n)^{\frac1n} = a_1.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\begin{equation}
+	\lim_{n\to\infty} \sqrt[n]{k n} = 1
+	\quad(k>0).
+\end{equation}
+\begin{proof}
+当\(n \geq 3\)时，
+将\(\sqrt[n]{k n}\)看作一个\(k\)、两个\(\sqrt{n}\)与\(n-3\)个\(1\)的几何平均值，
+则有\[
+	1 \leq \sqrt[n]{k n} = (k \cdot \sqrt{n}^2 \cdot 1^{n-3})^{1/n}
+	< \frac{k + 2\sqrt{n} + n-3}{n}
+	= 1 + \frac{2}{\sqrt{n}} + \frac{k-3}{n}.
+\]
+因为\[
+	\lim_{n\to\infty} 1
+	= \lim_{n\to\infty} \left(1 + \frac{2}{\sqrt{n}} + \frac{k-3}{n}\right) = 1,
+\]
+由夹逼定理可得\(\lim_{n\to\infty} \sqrt[n]{k n} = 1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+求：\(\lim_{n\to\infty} \frac{1 \cdot 3 \cdot 5 \dotsm (2n-1)}{2 \cdot 4 \cdot 6 \dotsm (2n)}\).
+\begin{solution}
+因为\((2n)^2 = 4n^2 > 4n^2-1 = (2n-1)(2n+1)\)，\(2n > \sqrt{(2n-1)(2n+1)}\)，
+所以\[
+	2 > \sqrt{1 \cdot 3},
+	4 > \sqrt{3 \cdot 5},
+	6 > \sqrt{5 \cdot 7},
+	\dotsc,
+\]
+故\[
+	\frac{1 \cdot 3 \cdot 5 \dotsm (2n-1)}{2 \cdot 4 \cdot 6 \dotsm (2n)}
+	< \frac{1 \cdot 3 \cdot 5 \dotsm (2n-1)}{\sqrt{1 \cdot 3} \sqrt{3 \cdot 5} \sqrt{5 \cdot 7} \dotsm \sqrt{(2n-1)(2n+1)}}
+	= \frac{1}{\sqrt{2n+1}}.
+\]
+
+因为\(0 < \frac{1 \cdot 3 \cdot 5 \dotsm (2n-1)}{2 \cdot 4 \cdot 6 \dotsm (2n)} < \frac{1}{\sqrt{2n+1}}\)，
+而\[
+	\lim_{n\to\infty}0 = \lim_{n\to\infty}\frac{1}{\sqrt{2n+1}} = 0,
+\]
+所以\(\lim_{n\to\infty}\frac{1 \cdot 3 \cdot 5 \dotsm (2n-1)}{2 \cdot 4 \cdot 6 \dotsm (2n)} = 0\).
+\end{solution}
+\end{example}
+
+\begin{proposition}
+设数列\(\{x_n\}\)满足\[
+	\lim_{n\to\infty} \frac{x_{n+1}}{x_n} = \rho \in (-1,1),
+\]
+那么\(\lim_{n\to\infty} x_n = 0\).
+\begin{proof}
+因为\(\lim_{n\to\infty} \frac{x_{n+1}}{x_n} = \rho\)，
+所以根据数列极限的定义，
+\(\forall\epsilon>0\)，
+\(\exists N\in\mathbb{N}\)，
+\(\forall n\in\mathbb{N}\)，
+只要\(n > N\)，
+就有\(\rho-\epsilon < \frac{x_{n+1}}{x_n} < \rho+\epsilon\).
+取\(r=\max\{\abs{\rho-\epsilon},\abs{\rho+\epsilon}\}\)，
+那么有\(\abs{\frac{x_{n+1}}{x_n}} < r\)，
+即\(\abs{x_{n+1}} < r \abs{x_n}\)，
+于是\(0 \leq \abs{x_{n+k}} < r^k \abs{x_n}\ (k=1,2,\dotsc)\)，
+而\[
+	\lim_{k\to\infty} r^k \abs{x_n} = 0,
+\]
+那么根据\hyperref[theorem:极限.夹逼准则]{夹逼准则}，
+\(\lim_{k\to\infty} \abs{x_{n+k}} = 0\)，
+因此\(\lim_{n\to\infty} x_n = 0\).
+\end{proof}
+\end{proposition}

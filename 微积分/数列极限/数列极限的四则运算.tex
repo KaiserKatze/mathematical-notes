@@ -1,0 +1,193 @@
+\section{数列极限的四则运算}
+\begin{theorem}\label{theorem:极限.数列极限的四则运算法则}
+%@see: 《高等数学（第六版 上册）》 P45 定理4
+%@see: 《数学分析（上册）》（陈纪修） P42 定理2.2.5
+设数列\(\{x_n\}\)和\(\{y_n\}\)
+满足\(\lim_{n\to\infty} x_n = A\)
+和\(\lim_{n\to\infty} y_n = B\)，
+那么\begin{enumerate}
+	\item \(\lim_{n\to\infty} (x_n \pm y_n) = A \pm B\)；
+	\item \(\lim_{n\to\infty} (x_n \cdot y_n) = A \cdot B\)；
+	\item 当\(y_n \neq 0\ (n=1,2,\dotsc,)\)且\(B \neq 0\)时，
+	\(\lim_{n\to\infty}{\frac{x_n}{y_n}}=\frac{A}{B}\).
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+%@see: 《数学分析（上册）》（陈纪修） P42 定理2.2.5
+设\(\lim_{n\to\infty} x_n = A,
+\lim_{n\to\infty} y_n = B\)，
+\(a,b\)是常数，
+则\(\lim_{n\to\infty} (a x_n + b y_n) = a A + b B\).
+\end{corollary}
+
+\begin{example}\label{example:极限.常数的方根的极限2}
+%@see: 《数学分析（上册）》（陈纪修） P43 例2.2.10
+设\(a>0\)，证明：\(\lim_{n\to\infty} \sqrt[n]{a} = 1\).
+\begin{proof}
+在\cref{example:极限.常数的方根的极限1} 中我们已经证明
+当\(a>1\)时\(\lim_{n\to\infty} \sqrt[n]{a} = 1\).
+当\(a=1\)时，\(\sqrt[n]{a}\)恒等于\(1\)，从而也有\(\lim_{n\to\infty} \sqrt[n]{a} = 1\).
+现在考虑\(0<a<1\)，这时\(\frac1a>1\)，从而\(\lim_{n\to\infty} \sqrt[n]{\frac1a} = 1\)，
+那么利用\hyperref[theorem:极限.数列极限的四则运算法则]{极限的四则运算法则}可得
+\(\lim_{n\to\infty} \sqrt[n]{a}
+= \lim_{n\to\infty} \frac1{\sqrt[n]{1/a}} = 1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P43 例2.2.11
+求极限\(\lim_{n\to\infty} n(\sqrt{n^2+1}-\sqrt{n^2-1})\).
+\begin{solution}
+直接计算得\begin{align*}
+	\lim_{n\to\infty} n(\sqrt{n^2+1}-\sqrt{n^2-1})
+	&= \lim_{n\to\infty} \frac{2n}{\sqrt{n^2+1}+\sqrt{n^2-1}} \\
+	&= \lim_{n\to\infty} \frac2{\sqrt{1+(1/n)^2}+\sqrt{1-(1/n)^2}}
+	= 1.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{corollary}
+%@see: 《数学分析（上册）》（陈纪修） P43
+设\(\lim_{n\to\infty} x_{in} = A_i\ (i=1,2,\dotsc,m)\)，
+则\[
+	\lim_{n\to\infty} \sum_{i=1}^m x_{in} = \sum_{i=1}^m A_i,
+\]\[
+	\lim_{n\to\infty} \prod_{i=1}^m x_{in} = \prod_{i=1}^m A_i.
+\]
+\end{corollary}
+
+\begin{remark}
+数列极限的四则运算法则只能推广到有限个数列相加或相乘的情况，
+不能随意推广到无限个数列上去.
+例如，若将\cref{theorem:极限.数列极限的四则运算法则} 随意推广，
+可能会得出极限\[
+	\lim_{n\to\infty} \left(
+		\frac1{\sqrt{n^2+1}}
+		+ \frac1{\sqrt{n^2+2}}
+		+ \dotsb + \frac1{\sqrt{n^2+n}}
+	\right)
+\]为\(0\)的错误结论；
+但是，由于\[
+	\frac{n}{\sqrt{n^2+n}}
+	< \frac1{\sqrt{n^2+1}}
+	+ \frac1{\sqrt{n^2+2}}
+	+ \dotsb + \frac1{\sqrt{n^2+n}}
+	< \frac{n}{\sqrt{n^2+1}},
+\]
+利用\hyperref[theorem:极限.夹逼准则]{夹逼准则}可知该极限其实为\(1\).
+\end{remark}
+
+\begin{example}\label{example:极限.收敛数列前n项积的n次方根}
+%@see: 《数学分析（上册）》（陈纪修） P44 例2.2.12
+设\(a_n>0\)，\(\lim_{n\to\infty} a_n = a\)，证明：
+\(\lim_{n\to\infty} \sqrt[n]{a_1 a_2 \dotsm a_n} = a\).
+\begin{proof}
+应用\hyperref[theorem:不等式.均值不等式]{均值不等式}可得\[
+	\frac{a_1+a_2+\dotsb+a_n}n
+	\geq \sqrt[n]{a_1 a_2 \dotsm a_n}
+	\geq n\left(\frac1{a_1}+\frac1{a_2}+\dotsb+\frac1{a_n}\right)^{-1}
+	> 0.
+\]
+由\cref{example:极限.数列的算术平均的极限} 我们已经知道
+\(\lim_{n\to\infty} \frac{a_1+a_2+\dotsb+a_n}{n} = a\).
+要想利用\hyperref[theorem:极限.夹逼准则]{夹逼准则}证明上述问题，
+就必须证明上面不等式中\(\sqrt[n]{a_1 a_2 \dotsm a_n}\)右边的数列极限也等于\(a\).
+
+下面按\(a\)的不同取值，分两种情况讨论：
+\begin{itemize}
+	\item 当\(a=0\)时，
+	有\(\sqrt[n]{a_1 a_2 \dotsm a_n} > 0 = a\).
+
+	\item 当\(a>0\)时，
+	由\hyperref[theorem:极限.数列极限的四则运算法则]{数列极限的四则运算法则}可知
+	\(\lim_{n\to\infty} \frac1{a_n} = \frac1a\)，
+	故\[
+		\lim_{n\to\infty} \frac1n \left(\frac1{a_1}+\frac1{a_2}+\dotsb+\frac1{a_n}\right) = \frac1a,
+	\]
+	从而
+	\(\lim_{n\to\infty} n\left(\frac1{a_1}+\frac1{a_2}+\dotsb+\frac1{a_n}\right)^{-1} = a\).
+\end{itemize}
+在上述两种情况下，\(\sqrt[n]{a_1 a_2 \dotsm a_n}\)右边的数列极限都等于\(a\)，
+所以\(\lim_{n\to\infty} \sqrt[n]{a_1 a_2 \dotsm a_n} = a\).
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P45 习题 8.(1)
+求极限\(\lim_{n\to\infty} \sqrt[n]{1+\frac12+\dotsb+\frac1n}\).
+\begin{solution}
+首先我们有\(1 \leq 1+\frac12+\dotsb+\frac1n \leq n\)，
+因为\(\lim_{n\to\infty} \sqrt[n]{1} = \lim_{n\to\infty} \sqrt[n]{n} = 1\)，
+所以\[
+	\lim_{n\to\infty} \sqrt[n]{1+\frac12+\dotsb+\frac1n} = 1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P45 习题 8.(2)
+求极限\(\lim_{n\to\infty} \left(\frac1{n+\sqrt1}+\frac1{n+\sqrt2}+\dotsb+\frac1{n+\sqrt{n}}\right)\).
+\begin{solution}
+首先有\(\frac{n}{n+\sqrt{n}}
+\leq \frac1{n+\sqrt1}+\frac1{n+\sqrt2}+\dotsb+\frac1{n+\sqrt{n}}
+\leq \frac{n}{n+1}\).
+因为\[
+	\lim_{n\to\infty} \frac{n}{n+\sqrt{n}}
+	= \lim_{n\to\infty} \frac{n}{n+1} = 1,
+\]
+所以\(\lim_{n\to\infty} \left(\frac1{n+\sqrt1}+\frac1{n+\sqrt2}+\dotsb+\frac1{n+\sqrt{n}}\right) = 1\).
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P45 习题 9.(7)
+求极限\(\lim_{n\to\infty} \sqrt[n]{\frac1{n!}}\).
+\begin{solution}[解法一]
+因为\(\lim_{n\to\infty} \frac1n = 0\)，
+所以由\cref{example:极限.收敛数列前n项积的n次方根} 可知
+\(\lim_{n\to\infty} \sqrt[n]{\frac1{n!}}
+= \lim_{n\to\infty} \sqrt[n]{\frac11 \cdot \frac12 \dotsm \frac1n}
+= 0\).
+\end{solution}
+\begin{solution}[解法二]
+注意到\[
+	\left(\frac1{n!}\right)^2
+	= \prod_{k=1}^n \frac1{(n-k+1)k},%首尾相乘
+\]
+而\(\frac1{(n-k+1)k} \leq \frac1n\)，
+\(\prod_{k=1}^n \frac1{(n-k+1)k} \leq \frac1{n^n}\)，
+\(\frac1{n!} \leq \sqrt{\frac1{n^n}}\)，
+\(0 < \sqrt[n]{\frac1{n!}} \leq \frac1{\sqrt{n}}\)，
+加之\(\lim_{n\to\infty} \frac1{\sqrt{n}} = 0\)，
+因此根据\hyperref[theorem:极限.夹逼准则]{夹逼准则}可得
+\(\lim_{n\to\infty} \sqrt[n]{\frac1{n!}} = 0\).
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P45 习题 9.(8)
+求极限\(\lim_{n\to\infty} \left(1-\frac1{2^2}\right) \left(1-\frac1{3^2}\right) \dotsm \left(1-\frac1{n^2}\right)\).
+\begin{solution}
+直接计算得\begin{align*}
+	&\hspace{-20pt}
+	\lim_{n\to\infty} \left(1-\frac1{2^2}\right) \left(1-\frac1{3^2}\right) \dotsm \left(1-\frac1{n^2}\right) \\
+	&= \lim_{n\to\infty} \frac{1\cdot3}{2^2} \cdot \frac{2\cdot4}{3^2} \cdot \frac{3\cdot5}{4^2} \dotsm \frac{(n-2)n}{(n-1)^2} \cdot \frac{(n-1)(n+1)}{n^2} \\
+	&= \lim_{n\to\infty} \frac{2n(n+1)}{2^2 n^2}
+	= \lim_{n\to\infty} \frac{n+1}{2n}
+	= \frac12.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P45 习题 9.(9)
+求极限\(\lim_{n\to\infty} \sqrt[n]{n \ln n}\).
+\begin{solution}
+因为\(n < n \ln n < n^2\ (n\geq3)\)，
+\(\lim_{n\to\infty} \sqrt[n]{n}
+= \lim_{n\to\infty} \sqrt[n]{n^2} = 1\)，
+所以\(\lim_{n\to\infty} \sqrt[n]{n \ln n} = 1\).
+\end{solution}
+\end{example}
