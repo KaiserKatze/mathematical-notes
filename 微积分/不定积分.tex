@@ -585,7 +585,7 @@
 但我们可以利用三角恒等式\[
 	\sin^2t+\cos^2t=1
 \]来化去根式.
-设\(x = a \sin t\ (-\frac{\pi}{2} < x < \frac{\pi}{2})\)，
+设\(x = a \sin t\ (-\frac\pi2 < x < \frac\pi2)\)，
 那么\[
 	\sqrt{a^2 - x^2}
 	= \sqrt{a^2 - a^2 \sin^2 t}
@@ -622,7 +622,7 @@
 	\tan^2t+1=\sec^2t
 \]来化去根式.
 注意到被积函数的定义域为\((-\infty,+\infty)\)，
-故可设\(x = a \tan t\ (-\frac{\pi}{2} < t < \frac{\pi}{2})\)，
+故可设\(x = a \tan t\ (-\frac\pi2 < t < \frac\pi2)\)，
 这时\(\sec t > 0\)，
 那么\[
 	\sqrt{x^2 + a^2}
@@ -639,12 +639,12 @@
 	= \ln\abs{\sec t + \tan t} + C_1.
 \]
 将\(\tan t = \frac{x}{a}\)和\(\sec t = \frac{\sqrt{x^2+a^2}}{a}\)代回上式，
-考虑到当\(-\frac{\pi}{2} < t < \frac{\pi}{2}\)时有\(\sec t + \tan t > 0\)，
-所以\[
+考虑到当\(-\frac\pi2 < t < \frac\pi2\)时有\(\sec t + \tan t > 0\)，
+所以\begin{align}
 	\int \frac{\dd{x}}{\sqrt{x^2 + a^2}}
-	= \ln( \frac{x}{a} + \frac{\sqrt{x^2 + a^2}}{a} ) + C_1
-	= \ln(x + \sqrt{x^2 + a^2}) + C,
-\]
+	&= \ln( \frac{x}{a} + \frac{\sqrt{x^2 + a^2}}{a} ) + C_1 \notag \\
+	&= \ln(x + \sqrt{x^2 + a^2}) + C,
+\end{align}
 其中\(C = C_1 - \ln a\).
 \end{solution}
 \end{example}
@@ -660,62 +660,69 @@
 	\int\frac{\dd{x}}{\sqrt{x^2+a^2}}
 	&= \int\frac{a\cosh t}{a\cosh t}\dd{t}
 	= \int\dd{t}
-	= t+C \\
-	&= \arsinh\frac{x}{a} + C \\
-	&= \ln[\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^2+1}] + C \\
-	&= \ln(x+\sqrt{x^2+a^2})+C_1,
+	= t+C_1 \\
+	&= \arsinh\frac{x}{a} + C_1
+	= \ln\left[\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^2+1}\right] + C_1 \\
+	&= \ln(x+\sqrt{x^2+a^2})+C,
 \end{align*}
-其中\(C_1=C-\ln a\).
+其中\(C=C_1-\ln a\).
 \end{remark}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P202 例23
 求\(\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}\ (a>0)\).
 \begin{solution}
-首先要注意被积函数的定义域是\((-\infty,-a)\cup(a,+\infty)\)，
+首先要注意被积函数的定义域是\(\Set{ x \given x^2-a^2\geq0 }=(-\infty,-a)\cup(a,+\infty)\)，
 故须分别在这两个区间求解不定积分.
 
-当\(x > a\)时，
-设\(x = a \sec t\ (0 < t < \frac{\pi}{2})\)，
-那么\[
-	\sqrt{x^2 - a^2} = \sqrt{a^2 \sec^2 t - a^2} = a \sqrt{\sec^2 t - 1} = a \tan t,
-\]\[
-	\dd{x} = a \sec t \tan t \dd{t},
-\]
-于是\begin{align*}
-	\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
-	&= \int \frac{a \sec t \tan t \dd{t}}{a \tan t}
-	= \int \sec t \dd{t} \\
-	&= \ln(\sec t + \tan t) + C.
-\end{align*}
-又因为\(\tan t = \frac{1}{a} \sqrt{x^2 - a^2}\)，
-所以\[
-	\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
-	= \ln( \frac{x}{a} + \frac{\sqrt{x^2 - a^2}}{a} ) + C
-	= \ln( x + \sqrt{x^2 - a^2} ) + C_1,
-\]
-其中\(C_1 = C - \ln a\).
+\begin{itemize}
+	\item 当\(x > a\)时，
+	设\(x = a \sec t\ (0 < t < \frac\pi2)\)，
+	那么\[
+		\sqrt{x^2 - a^2} = \sqrt{a^2 \sec^2 t - a^2} = a \sqrt{\sec^2 t - 1} = a \tan t,
+	\]\[
+		\dd{x} = a \sec t \tan t \dd{t},
+	\]
+	于是\[
+		\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
+		= \int \frac{a \sec t \tan t \dd{t}}{a \tan t}
+		= \int \sec t \dd{t}
+		= \ln\abs{\sec t + \tan t} + C_3.
+	\]
+	将\(\sec t = \frac{x}{a}\)和\(\tan t = \frac{\sqrt{x^2-a^2}}{a}\)代回上式，
+	考虑到当\(0<t<\frac\pi2\)时有\(\sec t + \tan t > 0\)，
+	所以\[
+		\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
+		= \ln( \frac{x}{a} + \frac{\sqrt{x^2 - a^2}}{a} ) + C_3
+		= \ln( x + \sqrt{x^2 - a^2} ) + C_1,
+	\]
+	其中\(C_1 = C_3 - \ln a\).
 
-当\(x < -a\)时，
-令\(x = -u\)，
-那么\(u > a\)，
-由上可知\begin{align*}
+	\item 当\(x < -a\)时，
+	令\(x = -u\)，
+	可得\(u > a\)，
+	如此便把问题归结为上述第一种情形：\begin{align*}
+		\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
+		&= -\int \frac{\dd{u}}{\sqrt{u^2 - a^2}}
+		= -\ln(u + \sqrt{u^2 - a^2}) + C_4 \\
+		&= -\ln(-x + \sqrt{x^2 - a^2}) + C_4
+		= \ln\frac1{-x + \sqrt{x^2 - a^2}} + C_4 \\
+		&= \ln\frac{-x - \sqrt{x^2 - a^2}}{a^2} + C_4
+		= \ln(-x - \sqrt{x^2 - a^2}) + C_2,
+	\end{align*}
+	其中\(C_2 = C_4 - 2 \ln a\).
+\end{itemize}
+综上所述，\begin{equation}
 	\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
-	&= -\int \frac{\dd{u}}{\sqrt{u^2 - a^2}}
-	= -\ln(u + \sqrt{u^2 - a^2}) + C \\
-	&= -\ln(-x + \sqrt{x^2 - a^2}) + C \\
-	&= \ln\frac{1}{-x + \sqrt{x^2 - a^2}} + C \\
-	&= \ln\frac{-x - \sqrt{x^2 - a^2}}{(-x)^2 - \sqrt{x^2 - a^2}^2} + C \\
-	&= \ln\frac{-x - \sqrt{x^2 - a^2}}{a^2} + C \\
-	&= \ln(-x - \sqrt{x^2 - a^2}) + C_1,
-\end{align*}
-其中\(C_1 = C - 2 \ln a\).
-
-把\(x > a\)和\(x < -a\)的结果合起来，
-可写作\[
+	= \left\{ \def\arraystretch{1.2} \begin{array}{cl}
+		\ln(x+\sqrt{x^2-a^2}) + C_1, & x>a, \\
+		\ln(-x-\sqrt{x^2-a^2}) + C_2, & x<-a.
+	\end{array} \right.
+\end{equation}
+为了方便记忆，我们通常把上面的分段函数简记为\begin{equation}
 	\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
 	= \ln\abs{x + \sqrt{x^2 - a^2}} + C.
-\]
+\end{equation}
 \end{solution}
 \end{example}
 
