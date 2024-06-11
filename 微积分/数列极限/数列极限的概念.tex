@@ -1,0 +1,343 @@
+\section{数列极限}
+\subsection{数列极限的概念}
+\begin{definition}
+设\(\{x_n\}\)为一数列.
+如果存在常数\(a\)，
+对于任意给定的正数\(\epsilon\)（不论它多么小），
+总存在正整数\(N\)，
+使得当\(n > N\)时，
+不等式\(\abs{x_n - a} < \epsilon\)都成立，
+那么就称“数列\(\{x_n\}\)是\DefineConcept{收敛的}（convergent）”
+或“数列\(\{x_n\}\) \DefineConcept{收敛}（converge）”；
+称常数\(a\)为“\(\{x_n\}\)的\DefineConcept{极限}（limit）”；
+又称“数列\(\{x_n\}\) \DefineConcept{收敛于} \(a\)”；
+记为\(\lim_{n\to\infty} x_n = a\)
+或\(x_n\to a\ (n\to\infty)\).
+否则，称“数列\(\{x_n\}\)没有极限”
+或“数列\(\{x_n\}\)是\DefineConcept{发散的}（divergent）”
+或“数列\(\{x_n\}\) \DefineConcept{发散}（diverge）”
+或“极限\(\lim_{n\to\infty} x_n\)不存在”.
+\end{definition}
+
+上面定义中正数\(\epsilon\)可以任意给定是很重要的，
+因为只有这样，不等式\(\abs{x_n - a} < \epsilon\)才能表达出\(x_n\)与\(a\)“无限接近”的意思.
+此外还应注意到：
+定义中的正整数\(N\)是与任意给定的正数\(\epsilon\)有关的，
+它随着\(\epsilon\)的给定而选定.
+
+利用形式逻辑的语言，我们可以将上述定义简化为：
+\[
+	\begin{split}
+		\text{数列\(\{x_n\}\)收敛于\(a\)}
+		&\defiff
+		\lim_{n\to\infty} x_n = a \\
+		&\defiff
+		(\forall \epsilon > 0)
+		(\exists N\in\mathbb{N})
+		(\forall n\in\mathbb{N})
+		[
+			n > N
+			\implies
+			\abs{x_n - a} < \epsilon
+		]; \\
+		\text{数列\(\{x_n\}\)收敛}
+		&\defiff
+		(\exists a\in\mathbb{R})
+		\left[\lim_{n\to\infty} x_n = a\right].
+	\end{split}
+\]
+并且我们有\[
+	\text{数列\(\{x_n\}\)发散}
+	\iff
+	(\forall a \in \mathbb{R})
+	(\exists\epsilon>0)
+	(\forall N\in\mathbb{N})
+	(\exists n > N)
+	[
+		\abs{a_n - a} > \epsilon
+	].
+\]
+
+\begin{proposition}
+设\(a,b\)是实常数，对于数列\(\{x_n\}\)，
+有\[
+	\lim_{n\to\infty} x_n = a
+	\iff
+	\lim_{n\to\infty} (x_n + b) = a + b.
+\]
+\begin{proof}
+根据数列极限的定义有\begin{align*}
+	&\lim_{n\to\infty} x_n = a \\
+	&\iff
+	(\forall \epsilon > 0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{x_n - a} < \epsilon
+	] \\
+	&\iff
+	(\forall \epsilon > 0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{(x_n+b) - (a+b)} < \epsilon
+	] \\
+	&\iff
+	\lim_{n\to\infty} (x_n+b) = a+b.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{example}
+证明数列\[
+2,\frac{1}{2},\frac{4}{3},\frac{3}{4},\dotsc,\frac{n+(-1)^{n-1}}{n},\dotsc
+\]的极限是1.
+\begin{proof}
+由于\[
+\abs{x_n - 1}
+= \abs{\frac{n+(-1)^{n-1}}{n}-1}
+= \abs{\frac{(-1)^{n-1}}{n}}
+= \frac{1}{n},
+\]所以为使\(\abs{x_n - 1} < \epsilon\)，须取\(\frac{1}{n} < \epsilon\)或\(\frac{1}{\epsilon} < n\).
+也就是说，对于\(\forall \epsilon > 0\)，取\(N = \floor*{\frac{1}{\epsilon}}\)，则当\(n > N\)时，就有\(\abs{x_n - a} < \epsilon\)，即\(\lim_{n\to\infty}\frac{n+(-1)^{n-1}}{n}=1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+已知\(x_n = \frac{(-1)^n}{(n+1)^2}\)，证明数列\(\Set{x_n}\)的极限是\(0\).
+\begin{proof}
+因为\(\abs{x_n - a} = \abs{\frac{(-1)^n}{(n+1)^2}-0} = \frac{1}{(n+1)^2} < \frac{1}{n+1}\)，所以对于\(\forall\epsilon>0\)（设\(\epsilon<1\)），只要\(\frac{1}{n+1}<\epsilon\)或\(n>\frac{1}{\epsilon}-1\)，不等式\(\abs{x_n-a}<\epsilon\)必定成立.所以，取\(N=\floor*{\frac{1}{\epsilon}-1}\)，则当\(n>N\)时就有\(\abs{x_n - a}<\epsilon\)，即\(\lim_{n\to\infty}\frac{(-1)^n}{(n+1)^2}=0\).
+\end{proof}
+\end{example}
+
+在利用数列极限的定义来论证某个数\(a\)是数列\(\{x_n\}\)的极限时，
+重要的是对于任意给定的正数\(\epsilon\)，要能够指出定义中所说的这种正整数\(N\)确实存在，
+但没有必要去求最小的\(N\).
+如果知道\(\abs{x_n-a}\)小于某个量（这个量是\(n\)的一个函数），
+那么当这个量小于\(\epsilon\)时，\(\abs{x_n-a}<\epsilon\)当然也成立.
+若令这个量小于\(\epsilon\)来定出\(N\)比较方便的话，就可采用这种方法.
+
+\begin{example}
+设\(\abs{q}<1\)，证明等比数列\[
+1,q,q^2,\dotsc,q^{n-1},\dotsc
+\]的极限是\(0\).
+\begin{proof}
+对于\(\forall\epsilon>0\)（设\(\epsilon<1\)），
+因为\(\abs{x_n-0}=\abs{q^{n-1}-0}=\abs{q}^{n-1}\)，
+要使\(\abs{x_n-0}<\epsilon\)，
+只要\(\abs{q}^{n-1}<\epsilon\).
+取自然对数得\((n-1)\ln\abs{q}<\ln\epsilon\).
+因为\(\abs{q}<1\)，
+\(\ln\abs{q}<0\)，
+故\(n>1+\frac{\ln\epsilon}{\ln\abs{q}}\).
+取\(N=\floor*{1+\frac{\ln\epsilon}{\ln\abs{q}}}\)，
+则当\(n>N\)时，
+就有\(\abs{q^{n-1}-0}<\epsilon\)，
+即
+\begin{equation}
+	\lim_{n\to\infty}q^{n-1}=0
+	\quad(\abs{q}<1).
+\end{equation}
+由此可知，当\(\abs{q}<1\)时，
+等比数列\(1,q,q^2,\dotsc,q^{n-1},\dotsc\)的极限是\(0\).
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:极限.常数的方根的极限1}
+%@see: 《数学分析（上册）》（陈纪修） P36 例2.2.3
+设\(a>1\)，证明：\(\lim_{n\to\infty} \sqrt[n]{a} = 1\).
+\begin{proof}
+记\(y_n=\sqrt[n]{a}-1\).
+因为\(a>1\)，所以对于\(n\geq1\)总有\(\sqrt[n]{a}>1\)，即\(y_n>0\).
+应用二项式定理，有\[
+	a = (1+y_n)^n
+	= 1 + n y_n + \frac{n(n-1)}2 y_n^2 + \dotsb + y_n^n
+	> 1 + n y_n,
+\]
+于是\(\abs{\sqrt[n]{a}-1} = \abs{y_n} < \frac{a-1}{n}\).
+那么对于\(\forall\epsilon>0\)，只要取\(N=\ceil*{\frac{a-1}{\epsilon}}\)，
+当\(n>N\)时就有\(\abs{\sqrt[n]{a}-1} < \frac{a-1}{n} < \epsilon\)成立.
+同理可证当\(0<a<1\)时，也有\(\lim_{n\to\infty} \sqrt[n]{a} = 1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P37 例2.2.4
+证明：\begin{equation}
+	\lim_{n\to\infty} \sqrt[n]{n} = 1.
+\end{equation}
+\begin{proof}
+要证\(\lim_{n\to\infty} \sqrt[n]{n} = 1\)，
+只需证对于\(\forall\epsilon>0\)，
+\(\exists N > 0\)，
+使得当\(n > N\)时，
+有\[
+	\abs{\sqrt[n]{n} - 1} < \epsilon.
+	\eqno(1)
+\]
+
+因为\(n \geq 1\)，
+\(\sqrt[n]{n} \geq 1\)，
+所以(1)式等价于\[
+	\abs{\sqrt[n]{n} - 1}
+	= \sqrt[n]{n} - 1
+	< \epsilon,
+\]
+也即\(\sqrt[n]{n} < 1 + \epsilon\)，
+取对数得\[
+	\frac{1}{n} \ln n < \ln(1+\epsilon);
+	\eqno(2)
+\]
+又因为\(\ln n < \sqrt{n}\)，
+所以只要有\[
+	\frac{1}{n} \ln n
+	< \frac{1}{n} \sqrt{n}
+	= \frac{1}{\sqrt{n}}
+	\leq \ln(1+\epsilon)
+	\quad\text{或}\quad
+	n \geq \left[ \frac1{\ln(1+\epsilon)} \right]^2
+	\eqno(3)
+\]
+成立即有(2)式成立，
+那么取\[
+	N = \ceil*{\left[ \frac1{\ln(1+\epsilon)} \right]^2},
+\]
+就对\(\forall\epsilon>0\)，
+\(\exists N > 0\)，
+使得当\(n > N\)时，
+有\(\abs{\sqrt[n]{n} - 1} < \epsilon\)成立.
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:极限.数列的算术平均的极限}
+%@see: 《数学分析（上册）》（陈纪修） P37 例2.2.6
+设\(\lim_{n\to\infty} a_n = a\).
+证明：\(\lim_{n\to\infty} \frac{a_1+a_2+\dotsb+a_n}{n} = a\).
+\begin{proof}
+下面按\(a\)的不同取值，分两种情况讨论：
+\begin{itemize}
+	\item 当\(a=0\)时，
+	有\[
+		\lim_{n\to\infty} a_n = 0
+		\iff
+		(\forall\epsilon>0)
+		(\exists N_1\in\mathbb{N})
+		(\forall n\in\mathbb{N})
+		\left[n>N_1 \implies \abs{a_n}<\frac\epsilon2\right].
+	\]
+	由于\(a_1 + a_2 + \dotsb + a_{N_1}\)是与\(n\)无关的常量，
+	因此\[
+		(\forall\epsilon>0)
+		(\exists N_2\in\mathbb{N})
+		(\forall n\in\mathbb{N})
+		\left[
+			n>N_2
+			\implies
+			\abs{\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}} < \frac\epsilon2
+		\right].
+	\]
+	于是利用三角不等式（\cref{theorem:不等式.三角不等式1,theorem:不等式.三角不等式1.推论1}）可得，
+	对于\(\forall\epsilon>0\)，
+	当\(n>N=\max\{N_1,N_2\}\)时，
+	有\begin{align*}
+		\abs{\frac{a_1 + a_2 + \dotsb + a_n}{n}}
+		&= \abs{
+			\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}
+			+ \frac{a_{N_1+1} + a_{N_1+2} + \dotsb + a_n}{n}
+		} \\
+		&\leq \abs{\frac{a_1 + a_2 + \dotsb + a_{N_1}}{n}}
+		+ \abs{\frac{a_{N_1+1} + a_{N_1+2} + \dotsb + a_n}{n}} \\
+		&< \frac\epsilon2 + \frac1n (n-N_1) \frac\epsilon2
+		< \frac\epsilon2 + \frac\epsilon2
+		= \epsilon.
+	\end{align*}
+
+	\item 当\(a\neq0\)时，
+	显然\(\lim_{n\to\infty} (a_n - a) = 0\)，
+	于是\[
+		\lim_{n\to\infty} \left(\frac{a_1+a_2+\dotsb+a_n}{n}-a\right)
+		= \lim_{n\to\infty} \frac{(a_1-a)+(a_2-a)+\dotsb+(a_n-a)}{n}
+		= 0,
+	\]
+	也就是说\(\lim_{n\to\infty} \frac{a_1+a_2+\dotsb+a_n}{n} = a\).
+	\qedhere
+\end{itemize}
+\end{proof}
+\end{example}
+
+\begin{proposition}\label{theorem:极限.数列的绝对值的极限}
+设数列\(\{x_n\}\)的极限\(\lim_{n\to\infty} x_n\)存在，
+则\(\lim_{n\to\infty} \abs{x_n} = \abs{\lim_{n\to\infty} x_n}\).
+\begin{proof}
+假设\(\lim_{n\to\infty} x_n = a\)，
+那么对于\(\forall\epsilon>0\)，
+\(\exists N\in\mathbb{N}\)，
+\(\forall n\in\mathbb{N}\)，
+当\(n>N\)时，有\(\abs{x_n - a} < \epsilon\)；
+由\hyperref[theorem:不等式.三角不等式2]{三角不等式}有
+\(\abs{\abs{x_n} - \abs{a}} \leq \abs{x_n - a}\)；
+于是当\(n>N\)时，有\(\abs{\abs{x_n} - \abs{a}} < \epsilon\)，
+也就是说\(\lim_{n\to\infty} \abs{x_n} = \abs{a}\).
+\end{proof}
+\end{proposition}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P45 习题 4.
+设\(k\in\mathbb{N}^+\).
+证明：\(\lim_{n\to\infty} x_n = a \iff \lim_{n\to\infty} x_{n+k} = a\).
+\begin{proof}
+假设\(\lim_{n\to\infty} x_n = a\).
+根据定义，对于\(\forall\epsilon>0\)，
+存在正整数\(N\)，只要\(n>N\)，就有\(\abs{x_n-a}<\epsilon\).
+因为\(n+k>n\)，所以\(\abs{x_{n+k}-a}<\epsilon\)必然成立，
+从而有\(\lim_{n\to\infty} x_{n+k} = a\).
+
+假设\(\lim_{n\to\infty} x_{n+k} = a\).
+同样根据定义，对于\(\forall\epsilon>0\)，
+存在正整数\(N\)，只要\(n>N\)，
+或者说只要\(m=n+k>N+k\)，
+就有\(\abs{x_m-a}<\epsilon\)，
+于是有\(\lim_{m\to\infty} x_m = a\).
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P45 习题 5.
+%@see: 《高等数学（第六版 上册）》 P31 习题1-2 6.
+设\(\lim_{k\to\infty} x_{2k} = \lim_{k\to\infty} x_{2k+1} = a\)，
+证明：\(\lim_{n\to\infty} x_n = a\).
+\begin{proof}
+由于\begin{gather*}
+	\lim_{k\to\infty} x_{2k} = a
+	\iff
+	(\forall\epsilon>0)
+	(\exists N_1\in\mathbb{N})
+	(\forall k\in\mathbb{N})
+	[
+		k>N_1
+		\implies
+		\abs{x_{2k}-a}<\epsilon
+	], \\
+	\lim_{k\to\infty} x_{2k+1} = a
+	\iff
+	(\forall\epsilon>0)
+	(\exists N_2\in\mathbb{N})
+	(\forall k\in\mathbb{N})
+	[
+		k>N_2
+		\implies
+		\abs{x_{2k+1}-a}<\epsilon
+	],
+\end{gather*}
+所以，只要\(k>N=\max\{N_1,N_2\}\)，
+就有\(\abs{x_{2k}-a}<\epsilon\)和\(\abs{x_{2k+1}-a}<\epsilon\)同时成立；
+这就是说，只要\(n>2N+1\)，
+就有\(\abs{x_n-a}<\epsilon\)成立；
+因此\(\lim_{n\to\infty} x_n = a\).
+\end{proof}
+\end{example}
