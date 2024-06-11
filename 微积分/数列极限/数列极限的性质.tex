@@ -1,0 +1,230 @@
+\section{数列极限的性质}
+\begin{theorem}[极限的唯一性]\label{theorem:极限.收敛数列的唯一性}
+%@see: 《高等数学（第六版 上册）》 P28 定理1
+%@see: 《数学分析（上册）》（陈纪修） P39 定理2.2.1
+如果数列\(\{x_n\}\)收敛，那么它的极限唯一.
+\begin{proof}
+用反证法.
+假设当\(n\to\infty\)时，同时有\(x_n \to a\)及\(x_n \to b\)，且\(a < b\).
+取\(\epsilon = \frac{b-a}{2}\).
+因为\(\lim_{n\to\infty}x_n = a\)，所以有
+\[
+	(\exists N_1\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[n > N_1 \implies \abs{x_n - a} < \frac{b-a}{2}\right]
+	\eqno(1)
+\]成立.
+
+同理，因为\(\lim_{n\to\infty}x_n = b\)，所以有
+\[
+	(\exists N_2 \in \mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[n > N_2 \implies \abs{x_n - b} < \frac{b-a}{2}\right]
+	\eqno(2)
+\]成立.
+
+取\(N = \max\{N_1,N_2\}\)，则当\(n > N\)时，上述两个不等式应同时成立.
+但由(1)式有\(x_n<\frac{a+b}{2}\)，由(2)式有\(x_n>\frac{a+b}{2}\)，
+矛盾，故收敛数列的极限必定唯一.
+\end{proof}
+\end{theorem}
+
+\begin{example}\label{example:极限.振荡数列不存在极限}
+证明数列\(x_n=(-1)^{n+1}\ (n=1,2,\dotsc)\)是发散的.
+\begin{proof}
+假设这级数收敛，则它具有唯一的极限\(\lim_{n\to\infty}x_n = a\).
+按数列极限的定义，对于\(\epsilon=1/2\)，\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，\(\abs{x_n-a}<1/2\)或\(x_n\in\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)成立.
+但这是不可能的，因为\(n\to\infty\)时，\(x_n\)无休止地一再重复取得\(1\)和\(-1\)这两个数，而这两个数不可能同时属于长度为\(1\)的开区间\(\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)内，因此这数列发散.
+\end{proof}
+\end{example}
+
+\begin{theorem}[收敛数列的有界性]\label{theorem:极限.收敛数列的有界性}
+%@see: 《高等数学（第六版 上册）》 P29 定理2
+%@see: 《数学分析（上册）》（陈纪修） P39 定理2.2.2
+如果数列\(\{x_n\}\)收敛，
+那么数列\(\{x_n\}\)一定有界.
+\begin{proof}
+既然数列\(\{x_n\}\)收敛，
+不妨设\(\lim_{n\to\infty}x_n = a\).
+根据数列极限的定义，
+对于\(\epsilon = 1\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+不等式\(\abs{x_n - a} < 1\)都成立.
+于是，
+当\(n > N\)时，
+\[
+	\abs{x_n} = \abs{(x_n - a) + a} \leq \abs{x_n - a} + \abs{a} < 1 + \abs{a}.
+\]
+取\(M = \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_N},1+\abs{a}\}\)，
+那么数列\(\{x_n\}\)中的一切\(x_n\)都满足不等式\[
+	\abs{x_n} \leq M.
+\]
+这就证明了数列\(\{x_n\}\)是有界的.
+\end{proof}
+\end{theorem}
+
+根据\cref{theorem:极限.收敛数列的有界性} 立即有以下推论.
+\begin{corollary}
+如果数列\(\{x_n\}\)是无界的，那么数列\(\{x_n\}\)一定发散.
+\end{corollary}
+但是，如果数列\(\{x_n\}\)有界，却不能断定数列\(\{x_n\}\)一定收敛.
+例如，在\cref{example:极限.振荡数列不存在极限} 中，
+数列\[
+	1,-1,1,\dotsc,(-1)^{n+1},\dotsc
+\]有界，
+但它是发散的.
+于是我们可以说：
+数列有界是数列收敛的必要不充分条件.
+
+\begin{theorem}[收敛数列的保序性]\label{theorem:极限.收敛数列的保序性}
+%@see: 《数学分析（上册）》（陈纪修） P39 定理2.2.3
+设数列\(\{x_n\},\{y_n\}\)均收敛.
+若\(\lim_{n\to\infty} x_n = a,
+\lim_{n\to\infty} y_n = b\)，
+且\(a < b\)，
+则存在正整数\(N\)，当\(n>N\)时，
+有\(x_n < y_n\).
+\begin{proof}
+取\(\epsilon=\frac{b-a}2>0\)，
+则\[
+	\lim_{n\to\infty} x_n = a
+	\implies
+	(\exists N_1\in\mathbb{N})(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{rl}
+			n>N_1
+			&\implies
+			\abs{x_n - a} < \epsilon = \frac{b-a}2 \\
+			&\implies
+			x_n < a + \frac{b-a}2 = \frac{a+b}2
+		\end{array}
+	\right],
+\]\[
+	\lim_{n\to\infty} y_n = b
+	\implies
+	(\exists N_2\in\mathbb{N})(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{rl}
+			n>N_2
+			&\implies
+			\abs{y_n - b} < \epsilon = \frac{b-a}2 \\
+			&\implies
+			y_n > b - \frac{b-a}2 = \frac{a+b}2
+		\end{array}
+	\right],
+\]
+于是，取\(N = \max\{N_1,N_2\}\)，
+则对\(\forall n\in\mathbb{N}\)，
+只要\(n>N\)，
+就有\(x_n < \frac{a+b}2 < y_n\).
+\end{proof}
+\end{theorem}
+
+\begin{corollary}[收敛数列的保号性]\label{theorem:极限.收敛数列的保号性}
+%@see: 《高等数学（第六版 上册）》 P29 定理3
+%@see: 《数学分析（上册）》（陈纪修） P40 推论
+设\(\lim_{n\to\infty}x_n = a\).
+\begin{itemize}
+	\item 若\(a > 0\)，
+	那么\((\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n>N \implies x_n > 0]\).
+
+	\item 若\(a < 0\)，
+	那么\((\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n>N \implies x_n < 0]\).
+\end{itemize}
+\begin{proof}
+当\(a > 0\)时，
+由数列极限的定义，
+对\(\epsilon = \frac{a}{2} > 0\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+有\(\abs{x_n - a} < \frac{a}{2}\)，
+从而\(x_n > a - \frac{a}{2} = \frac{a}{2} > 0\).
+
+同样地，
+当\(a < 0\)时，
+对\(\epsilon = -\frac{a}{2} > 0\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+有\(\abs{x_n - a} < -\frac{a}{2}\)，
+从而\(x_n < a - \frac{a}{2} = \frac{a}{2} < 0\).
+\end{proof}
+\end{corollary}
+
+需要注意到，\cref{theorem:极限.收敛数列的保序性} 的逆命题不成立，
+也就是说，由\[
+	\lim_{n\to\infty} x_n = a, \qquad
+	\lim_{n\to\infty} y_n = b, \qquad
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n>N \implies x_n < y_n]
+\]这三个条件，
+无法推出\(a<b\)的结论.
+数列\(\{x_n = 1/n\}\)和\(\{y_n = 2/n\}\)就是例子.
+因此，我们只能得到如下结论：
+\begin{proposition}\label{theorem:极限.夹逼准则.引理}
+%@see: 《数学分析（上册）》（陈纪修） P41
+设\(\lim_{n\to\infty} x_n = a,
+\lim_{n\to\infty} y_n = b\).
+若\((\exists N\in\mathbb{N})
+(\forall n\in\mathbb{N})
+[n>N \implies x_n < y_n]\)，
+则\(a \leq b\).
+\end{proposition}
+
+\begin{corollary}
+%@see: 《高等数学（第六版 上册）》 P30 推论
+设\(\lim_{n\to\infty} x_n = a\).
+\begin{itemize}
+	\item 若\((\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n > N \implies x_n \geq 0]\)，
+	那么\(a \geq 0\).
+
+	\item 若\((\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n > N \implies x_n \leq 0]\)，
+	那么\(a \leq 0\).
+\end{itemize}
+\end{corollary}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P31 习题1-2 5.
+设数列\(\{x_n\}\)有界，又\(\lim_{n\to\infty} y_n = 0\).
+证明：\(\lim_{n\to\infty} x_n y_n = 0\).
+\begin{proof}
+因为\[
+	\text{数列\(\{x_n\}\)有界}
+	\iff
+	(\exists M>0)
+	(\forall n\in\mathbb{N})
+	[\abs{x_n} \leq M],
+\]
+又因为\(\lim_{n\to\infty} y_n = 0\)，
+所以\[
+	(\forall \epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{l}
+			n>N
+			\implies
+			\abs{y_n - 0}
+				= \abs{y_n}
+				< \frac{\epsilon}{M} \\
+			\implies
+			\abs{x_n y_n - 0}
+			= \abs{x_n y_n}
+			= \abs{x_n} \abs{y_n}
+			< M \cdot \frac{\epsilon}{M}
+			= \epsilon
+		\end{array}
+	\right].
+\]
+因此\(\lim_{n\to\infty} x_n y_n = 0\).
+\end{proof}
+\end{example}
