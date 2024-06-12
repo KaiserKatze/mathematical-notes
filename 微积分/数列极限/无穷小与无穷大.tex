@@ -1,0 +1,109 @@
+\section{无穷小与无穷大}
+\begin{definition}
+%@see: 《数学分析（第五版 上册）》（华东师范大学） P25 定义2
+若数列\(\{x_n\}\)满足\(\lim_{n\to\infty} x_n = 0\)，
+则称“\(\{x_n\}\)是\DefineConcept{无穷小}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《数学分析（上册）》（陈纪修） P46 定义2.3.1
+%@see: 《数学分析（第五版 上册）》（华东师范大学） P25 定义3
+若数列\(\{x_n\}\)满足\[
+	(\forall G>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n > N \implies \abs{x_n} > G],
+\]
+则称“\(\{x_n\}\)是\DefineConcept{无穷大}”，
+记作\(\lim_{n\to\infty} x_n = \infty\)或\(x_n\to\infty\ (n\to\infty)\).
+
+若数列\(\{x_n\}\)满足\[
+	(\forall G>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n > N \implies x_n > G],
+\]
+则称“\(\{x_n\}\)是\DefineConcept{正无穷大}”，
+记作\(\lim_{n\to\infty} x_n = +\infty\)或\(x_n\to+\infty\ (n\to\infty)\).
+
+若数列\(\{x_n\}\)满足\[
+	(\forall G>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n > N \implies x_n < -G],
+\]
+则称“\(\{x_n\}\)是\DefineConcept{负无穷大}”，
+记作\(\lim_{n\to\infty} x_n = -\infty\)或\(x_n\to-\infty\ (n\to\infty)\).
+\end{definition}
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P46 例2.3.1
+设\(\abs{q}>1\)，证明\(\{q^n\}\)是无穷大.
+\begin{proof}
+对\(\forall G>1\)，
+取\(N=\ceil*{\frac{\ln G}{\ln\abs{q}}}\)，
+于是对\(\forall n>N\)
+有\(\abs{q}^n > \abs{q}^N \geq \abs{q}^{\frac{\ln G}{\ln\abs{q}}} = G\).
+因此\(\{q^n\}\)是无穷大.
+\end{proof}
+\end{example}
+
+\begin{theorem}
+%@see: 《数学分析（上册）》（陈纪修） P47 定理2.3.1
+设\(x_n\neq0\)，
+则\(\{x_n\}\)是无穷大的充分必要条件是\(\{1/x_n\}\)是无穷小.
+\begin{proof}
+设\(\{x_n\}\)是无穷大.
+对\(\forall\epsilon>0\)，
+取\(G = \frac1\epsilon\)，
+那么\[
+	\text{\(\{x_n\}\)是无穷大}
+	\implies
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		n>N
+		\implies
+		\abs{x_n} > G = \frac1\epsilon
+		\implies
+		\abs{\frac1{x_n}} < \epsilon
+	\right],
+\]
+即\(\{1/x_n\}\)是无穷小.
+
+反过来，设\(\{1/x_n\}\)是无穷小.
+对\(\forall G>0\)，
+取\(\epsilon = \frac1G\)，
+那么\[
+	\text{\(\{1/x_n\}\)是无穷小}
+	\implies
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		n>N
+		\implies
+		\abs{\frac1{x_n}} < \epsilon = \frac1G
+		\implies
+		\abs{x_n} > G
+	\right],
+\]
+即\(\{x_n\}\)是无穷大.
+\end{proof}
+\end{theorem}
+
+关于无穷大的运算，如下的性质是显然的：
+同号无穷大之和仍然是该符号的无穷大，
+而异号无穷大之差是与被减无穷大的符号相同的无穷大，
+无穷大与有界量之和或之差仍然是无穷大，
+同号无穷大之积是正无穷大，
+异号无穷大之积是负无穷大，
+\begin{gather*}
+	(+\infty) + (+\infty) = +\infty, \\
+	(-\infty) + (-\infty) = -\infty, \\
+	(+\infty) - (-\infty) = +\infty, \\
+	(-\infty) - (+\infty) = -\infty, \\
+	(+\infty) \cdot (+\infty) = +\infty, \\
+	(-\infty) \cdot (-\infty) = +\infty, \\
+	(+\infty) \cdot (-\infty) = -\infty, \\
+	(-\infty) \cdot (+\infty) = -\infty.
+\end{gather*}
