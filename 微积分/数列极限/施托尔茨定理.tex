@@ -1,9 +1,12 @@
 \section{施托尔茨定理}
 \begin{theorem}[施托尔茨定理I]\label{theorem:极限.施托尔茨定理1}
+%@see: 《数学分析（上册）》（陈纪修） P49 定理2.3.3
 设数列\(\{x_n\},\{y_n\}\).
 若\(\{y_n\}\)是严格单调增加的正无穷大，
 且\[
-	\lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n} = C\in[-\infty,+\infty],
+	\lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n}
+	= C
+	\in[-\infty,+\infty],
 \]
 那么有\[
 	\lim_{n\to\infty} \frac{x_n}{y_n}
@@ -49,7 +52,9 @@
 设数列\(\{x_n\},\{y_n\}\).
 若\(\{x_n\}\)是无穷小，
 \(\{y_n\}\)是严格单调减少的无穷小，且\[
-	\lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n} = C\in[-\infty,+\infty],
+	\lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n}
+	= C
+	\in[-\infty,+\infty],
 \]
 那么有\[
 	\lim_{n\to\infty} \frac{x_n}{y_n}
@@ -59,13 +64,32 @@
 
 % 施托尔茨定理实际上是离散形式的洛必达法则，它适用于\(\frac{0}{0}\)、\(\frac{\infty}{\infty}\)或\(\frac{*}{\infty}\)三种情形.
 
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P50
+利用施托尔茨定理重新证明\cref{example:极限.数列的算术平均的极限}.
+\begin{proof}
+令\(x_n=a_1+a_2+\dotsb+a_n,y_n=n\)，
+由\cref{theorem:极限.施托尔茨定理1} 有\[
+	\lim_{n\to\infty} \frac{x_n}{y_n}
+	= \lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n}
+	= \lim_{n\to\infty} \frac{a_{n+1}}{1}
+	= a.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
 \begin{example}\label{example:极限.解极限常用公式方法.例1}
+%@see: 《数学分析（上册）》（陈纪修） P50 例2.3.4
 证明：\(\lim_{n\to\infty} \frac{1^p+2^p+\dotsb+n^p}{n^{p+1}}
 = \frac{1}{p+1}\ (p\in\mathbb{N})\).
 \begin{proof}
-根据施托尔茨公式和牛顿二项式定理，有\begin{align*}
-	\lim_{n\to\infty} \frac{1^p+2^p+\dotsb+n^p}{n^{p+1}}
-	&= \lim_{n\to\infty} \frac{(n+1)^p}{(n+1)^{p+1} - n^{p+1}} \\
+令\(x_n=1^p+2^p+\dotsb+n^p,
+y_n=n^{p+1}\)，
+由\cref{theorem:极限.施托尔茨定理1} 有\begin{align*}
+	\lim_{n\to\infty} \frac{x_n}{y_n}
+	&= \lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n}
+	= \lim_{n\to\infty} \frac{(n+1)^p}{(n+1)^{p+1} - n^{p+1}} \\
 	&= \lim_{n\to\infty} \frac{n^p + p n^{p-1} + \dotsb + 1}
 		{(p+1) n^p + \frac{1}{2} (p+1) p n^{p-1} + \dotsb + 1} \\
 	&= \frac{1}{p+1}.
