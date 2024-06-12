@@ -1,0 +1,75 @@
+\section{施托尔茨定理}
+\begin{theorem}[施托尔茨定理I]\label{theorem:极限.施托尔茨定理1}
+设数列\(\{x_n\},\{y_n\}\).
+若\(\{y_n\}\)是严格单调增加的正无穷大，
+且\[
+	\lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n} = C\in[-\infty,+\infty],
+\]
+那么有\[
+	\lim_{n\to\infty} \frac{x_n}{y_n}
+	= C.
+\]
+% \begin{proof}%TODO
+% 设\(\lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n} = C\in(-\infty,+\infty)\)，
+% 故对\(\forall\epsilon>0\)，\(\exists N>0\)，当\(n > N\)时，有\[
+% \abs{\frac{x_{n+1}-x_n}{y_{n+1}-y_n} - C} < \epsilon
+% \]成立，即\[
+% C - \epsilon < \frac{x_{n+1}-x_n}{y_{n+1}-y_n} < C + \epsilon;
+% \]
+% 由于\[
+% \frac{
+% (x_{N+1}-x_N)
+% + (x_{N+2}-x_{N+1})
+% + \dotsb
+% + (x_{n+1}-x_n)
+% }{
+% (y_{N+1}-y_N)
+% + (y_{N+2}-y_{N+1})
+% + \dotsb
+% + (y_{n+1}-y_n)
+% }
+% = \frac{x_{n+1}-x_N}{y_{n+1}-y_N},
+% \]再根据\cref{example:不等式.不同浓度的溶液的混合}，于是有\[
+% C - \epsilon <
+% \frac{x_{n+1}-x_N}{y_{n+1}-y_N}
+% < C + \epsilon;
+% \]进而有\[
+% \lim_{n\to\infty} \frac{x_{n+1}-x_N}{y_{n+1}-y_N}
+% = \lim_{n\to\infty} \frac{\frac{x_{n+1}}{y_{n+1}}-\frac{x_N}{y_{n+1}}}{1-\frac{y_N}{y_{n+1}}}
+% = C;
+% \]又因为\(\lim_{n\to\infty} y_n = +\infty\)，
+% 注意到\(x_N\)、\(y_N\)是不随\(n\)变化的常数，
+% 于是有\(\lim_{n\to\infty} \frac{x_N}{y_{n+1}}
+% = \lim_{n\to\infty} \frac{y_N}{y_{n+1}}
+% = 0\)，从而有\(\lim_{n\to\infty} \frac{x_{n+1}}{y_{n+1}} = C\).
+% \end{proof}
+\end{theorem}
+
+\begin{theorem}[施托尔茨定理II]\label{theorem:极限.施托尔茨定理2}
+设数列\(\{x_n\},\{y_n\}\).
+若\(\{x_n\}\)是无穷小，
+\(\{y_n\}\)是严格单调减少的无穷小，且\[
+	\lim_{n\to\infty} \frac{x_{n+1}-x_n}{y_{n+1}-y_n} = C\in[-\infty,+\infty],
+\]
+那么有\[
+	\lim_{n\to\infty} \frac{x_n}{y_n}
+	= C.
+\]
+\end{theorem}
+
+% 施托尔茨定理实际上是离散形式的洛必达法则，它适用于\(\frac{0}{0}\)、\(\frac{\infty}{\infty}\)或\(\frac{*}{\infty}\)三种情形.
+
+\begin{example}\label{example:极限.解极限常用公式方法.例1}
+证明：\(\lim_{n\to\infty} \frac{1^p+2^p+\dotsb+n^p}{n^{p+1}}
+= \frac{1}{p+1}\ (p\in\mathbb{N})\).
+\begin{proof}
+根据施托尔茨公式和牛顿二项式定理，有\begin{align*}
+	\lim_{n\to\infty} \frac{1^p+2^p+\dotsb+n^p}{n^{p+1}}
+	&= \lim_{n\to\infty} \frac{(n+1)^p}{(n+1)^{p+1} - n^{p+1}} \\
+	&= \lim_{n\to\infty} \frac{n^p + p n^{p-1} + \dotsb + 1}
+		{(p+1) n^p + \frac{1}{2} (p+1) p n^{p-1} + \dotsb + 1} \\
+	&= \frac{1}{p+1}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
