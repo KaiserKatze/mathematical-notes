@@ -1,0 +1,72 @@
+\section{收敛准则}
+\subsection{单调有界数列收敛定理}
+\begin{theorem}\label{theorem:极限.数列的单调有界定理}
+%@see: 《高等数学（第六版 上册）》 P52 准则II
+%@see: 《数学分析（上册）》（陈纪修） P52 定理2.4.1
+单调有界数列必有极限.
+\begin{proof}
+不妨设数列\(\{a_n\}\)是单调增加的，
+即\[
+	a_n \leq a_{n+1},
+	\quad n=1,2,\dotsc;
+	\eqno(1)
+\]
+又设\(\{a_n\}\)有界，
+且\[
+	\abs{a_n} < c,
+	\quad n=1,2,\dotsc.
+	\eqno(2)
+\]
+
+现在我们把连续统分成两个集合\(A\)和\(B\)，
+把大于所有\(a_n\)的任何实数（例如数\(c\)）放入集合\(B\)，
+而把其余的所有实数放入\(A\)，即取\[
+	B = \Set{ x \in \mathbb{R} \given x > a_n\ (n=1,2,\dotsc) },
+	\eqno(3)
+\]\[
+	A = \mathbb{R} - B.
+	\eqno(4)
+\]
+显然\(\Set{A,B}\)是\(\mathbb{R}\)的一个分割.
+设\(\alpha\)是这个分割的界限，
+那么必有\[
+	a_n \leq \alpha,
+	\quad n=1,2,\dotsc;
+	\eqno(5)
+\]
+这是因为假设这个数列的某一项\(a_m\)满足\(a_m > \alpha\)，
+依照界限的定义会有\(a_m \in B\)，而这与\(B\)的定义式(3)矛盾.
+
+假设“\(\alpha\)不是\(\{a_n\}\)的极限”，
+根据数列发散的定义，\[
+	(\exists\epsilon>0)
+	(\forall n\in\mathbb{N}^+)
+	(\exists n_0>n)
+	[\abs{a_{n_0} - \alpha} > \epsilon]
+\]成立；
+由(5)可知，\(\abs{a_{n_0} - \alpha} = \alpha - a_{n_0}\)；
+又因为\(\{a_n\}\)是单调增加的，
+所以\(a_{n_0} \geq a_n\)，
+\(-a_{n_0} \leq -a_n\)，
+\(\alpha - a_{n_0} \leq \alpha - a_n\).
+因此，\(\exists\epsilon>0\)，对\(\forall n\in\mathbb{N}^+\)，都有\[
+	\alpha - a_n > \epsilon
+	\quad\text{或}\quad
+	a_n < \alpha - \epsilon.
+	\eqno(6)
+\]
+结合集合\(B\)的定义(3)，
+由(6)便得\(\alpha - \epsilon \in B\)；
+但由\(\alpha - \epsilon < \alpha\)可知，应该有\((\alpha - \epsilon) \in A\)；
+矛盾！因此假设不成立，\(\alpha\)就是数列\(\{a_n\}\)的极限，
+即\(\lim_{n\to\infty} a_n = \alpha\).
+\end{proof}
+\end{theorem}
+
+由\cref{theorem:极限.收敛数列的有界性} 可知，收敛的数列一定有界.
+但是，我们也知道，有界的数列不一定收敛，例如\[
+	\{ x_n = \sin n \}, \qquad
+	\{ y_n = (-1)^n \}.
+\]
+现在\cref{theorem:极限.数列的单调有界定理} 表明：
+如果数列不仅有界，而且是单调的，那么这数列的极限必定存在，也就是这数列一定收敛.
