@@ -2,7 +2,6 @@
 
 %\usepackage{showframe}%在页面中绘制框线（DEBUG用）
 
-\usepackage{siunitx}%国际单位
 \usepackage{textcomp}%需要COPYLEFT符号
 \usepackage{xcolor,latexcolors}%颜色
 \usepackage{etoolbox}%循环测试\whileboolexpr
@@ -114,6 +113,9 @@ nosort%禁止压缩引用
 \usepackage{physics}%http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/physics/physics.pdf
 % Must be loaded after pkg{amsmath}
 \let\vb\boldsymbol%覆盖定义
+
+\usepackage{siunitx}%国际单位
+\AtBeginDocument{\RenewCommandCopy\qty\SI}%`siunitx'包与`physics'包有冲突，`\qty'命令会被自动禁用，只有利用左边这条命令才能启用`siunitx'包的`\qty'命令
 
 \usepackage{extarrows}%necessary for \xlongequal
 \def\toP{\xlongrightarrow{P}}%依概率收敛于
