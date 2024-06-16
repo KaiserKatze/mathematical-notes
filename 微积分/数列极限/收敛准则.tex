@@ -214,6 +214,7 @@ y_n=\left(1+\frac1n\right)^{n+1}\).
 
 \subsection{闭区间套定理}
 \begin{definition}\label{definition:极限.闭区间套的定义}
+%@see: 《数学分析（上册）》（陈纪修） P60 定义2.4.1
 闭区间序列\(\{[a_n,b_n]\}\)如果满足
 \begin{enumerate}
 	\item \([a_{n+1},b_{n+1}] \subseteq [a_n,b_n]\ (n=1,2,\dotsc)\)；
@@ -222,7 +223,8 @@ y_n=\left(1+\frac1n\right)^{n+1}\).
 就称该序列为\DefineConcept{闭区间套}（nested intervals）.
 \end{definition}
 
-\begin{theorem}\label{definition:极限.闭区间套定理}
+\begin{theorem}[闭区间套定理]\label{definition:极限.闭区间套定理}
+%@see: 《数学分析（上册）》（陈纪修） P60 定理2.4.2
 如果序列\(\{[a_n,b_n]\}\)是闭区间套，
 那么\[
 	(\exists!\xi\in\mathbb{R})
@@ -267,3 +269,240 @@ y_n=\left(1+\frac1n\right)^{n+1}\).
 例如，令\(a_n = 0, b_n = \frac1n\)，
 易见\(\lim_{n\to\infty} a_n = \lim_{n\to\infty} b_n = 0\)，
 但是\(0\)不属于任何一个开区间\((a_n,b_n)\).
+
+\subsection{子列极限}
+上、下极限是数列极限的必要组成部分，
+它们各有三种等价的描述方式，
+或者说三种等价的定义.
+给定一种定义后，
+其余两种定义的内容可以命题或定理的形式得到证明.
+
+\begin{definition}
+若数列\(\{x_n\}\)的子列\(\{x_{n_k}\}\)满足\[
+	\lim_{k\to\infty} x_{n_k} = \xi,
+\]
+则称数\(\xi\)为“数列\(\{x_n\}\)的\DefineConcept{子列极限}（或\DefineConcept{极限点}、\DefineConcept{聚点}）”.
+\end{definition}
+
+\begin{theorem}\label{theorem:子列极限.数列收敛的充分必要条件}
+%@see: 《高等数学（第六版 上册）》 P30 定理4
+%@see: 《数学分析（上册）》（陈纪修） P62 定理2.4.4
+如果数列\(\{x_n\}\)收敛于\(a\)，
+那么它的任一子列也收敛于\(a\).
+\begin{proof}
+设数列\(\{x_{n_k}\}\)是数列\(\{x_n\}\)的任一子数列.
+由于\(\lim_{n\to\infty}x_n = a\)，
+故\(\forall \epsilon > 0\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，
+\(\abs{x_n - a} < \epsilon\)成立.
+取\(K = N\)，
+则当\(k > K\)时，
+由\(n_k > n_K \geq N\)
+得\(\abs{x_{n_k} - a} < \epsilon\)，
+也就是说\(\lim_{k\to\infty}x_{n_k} = a\).
+\end{proof}
+\end{theorem}
+
+\cref{theorem:子列极限.数列收敛的充分必要条件} 经常被用来判断一个数列是否发散.
+\begin{corollary}
+%@see: 《高等数学（第六版 上册）》 P30
+%@see: 《数学分析（上册）》（陈纪修） P62 推论
+如果数列\(\{x_n\}\)的两个子列收敛于不同的极限，那么数列\(\{x_n\}\)是发散的.
+\end{corollary}
+
+\begin{example}\label{example:极限.负1的次幂组成的数列发散}
+%@see: 《高等数学（第六版 上册）》 P30
+数列\(\{x_n=(-1)^{n+1}\}\)的子数列\(\{x_{2k-1}\}\)收敛于\(1\)，
+而其子数列\(\{x_{2k}\}\)收敛于\(-1\)，因此数列\(\{x_n\}\)是发散的.
+同时这个例子也说明，一个发散的数列也可能有收敛的子数列.
+\end{example}
+
+\subsection{上极限与下极限}
+我们介绍两种特殊的子列极限.
+\begin{definition}
+数列\(\{x_n\}\)的最小子列极限称为“数列\(x_n\)的\DefineConcept{下极限}”，
+记作\[
+	\varliminf_{n\to\infty} x_n
+	\quad\text{或}\quad
+	\liminf_{n\to\infty} x_n.
+\]
+\end{definition}
+
+\begin{definition}
+数列\(\{x_n\}\)的最大子列极限称为“数列\(x_n\)的\DefineConcept{上极限}”，
+记作\[
+	\varlimsup_{n\to\infty} x_n
+	\quad\text{或}\quad
+	\limsup_{n\to\infty} x_n.
+\]
+\end{definition}
+上面对上下极限的定义可以利用“\(\epsilon-N\)语言”更加简洁精确地重新定义为\begin{align*}
+	\varliminf_{n\to\infty} x_n = \alpha
+	&\defiff
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		\alpha-\epsilon < x_n
+	]; \\
+	\varlimsup_{n\to\infty} x_n = \beta
+	&\defiff
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		x_n < \beta+\epsilon
+	].
+\end{align*}
+
+\begin{theorem}\label{theorem:极限.上下极限的等价定义1}
+数列\(\{x_n\}\)的上下极限满足：\[
+	\varliminf_{n\to\infty} x_n
+	= \lim_{n\to\infty} \inf\{x_n,x_{n+1},\dotsc\},
+\]\[
+	\varlimsup_{n\to\infty} x_n
+	= \lim_{n\to\infty} \sup\{x_n,x_{n+1},\dotsc\}.
+\]
+\end{theorem}
+\cref{theorem:极限.上下极限的等价定义1}
+也是数列的上下极限的一种等价定义.
+
+由\cref{theorem:子列极限.数列收敛的充分必要条件} 立即可得如下结论.
+\begin{corollary}
+对于数列\(\{x_n\}\)，
+总有\[
+	\lim_{n\to\infty} x_n = a
+	\iff
+	\varliminf_{n\to\infty} x_n
+	= \varlimsup_{n\to\infty} x_n
+	= a.
+\]
+\end{corollary}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P31 习题1-2 4.
+若\(\lim_{n\to\infty} u_n = a\)，
+证明\(\lim_{n\to\infty} \abs{u_n} = \abs{a}\).
+并举例说明：
+如果数列\(\{\abs{x_n}\}\)有极限，
+但数列\(\{x_n\}\)未必有极限.
+\begin{proof}
+因为\(\lim_{n\to\infty} u_n = a\)，
+所以对\(\forall\epsilon>0\)，
+\(\exists N \in \mathbb{N}^+\)，
+使得当\(n>N\)时，
+有\(\abs{u_n-a}<\epsilon\)成立.
+根据三角不等式有\(\abs{\abs{u_n}-\abs{a}} \leq \abs{u_n-a}\)，
+显然当\(n>N\)时，
+也有\(\abs{\abs{u_n}-\abs{a}}<\epsilon\)成立，
+即\(\lim_{n\to\infty} \abs{u_n} = \abs{a}\).
+
+根据\cref{example:极限.负1的次幂组成的数列发散}，
+数列\(x_n = (-1)^{n+1}\)发散，
+但\(\abs{x_n} = \abs{(-1)^{n+1}} = 1\)收敛，
+说明如果数列\(\{\abs{x_n}\}\)有极限，
+但数列\(\{x_n\}\)未必有极限.
+\end{proof}
+\end{example}
+
+\subsection{波尔查诺--魏尔斯特拉斯定理}
+现在我们来回答本节提出的第二个问题：
+如果把单调性这一条件去掉，只考虑数列是有界的，
+则只能得到下面这个稍弱的结论.
+\begin{theorem}[波尔查诺--魏尔斯特拉斯定理]\label{theorem:极限.波尔查诺--魏尔斯特拉斯定理}
+%@see: 《数学分析（上册）》（陈纪修） P63 定理2.4.5
+任何有界数列至少有一个有限的子列极限.
+\begin{proof}
+设数列\(\{x_n\}\)有界，
+那么存在实数\(a_1,b_1\)使得\((\forall n\in\mathbb{N}^+)[a_1 \leq x_n \leq b_1]\).
+将闭区间\([a_1,b_1]\)等分为两个小区间\([a_1,c_1]\)和\([c_1,b_1]\)，
+这里\(c_1=\frac{a_1+b_1}2\)，
+则其中至少有一个含有数列\(\{x_n\}\)中的无穷多项，把它记为\([a_2,b_2]\).
+再把闭区间\([a_2,b_2]\)等分为两个小区间\([a_2,c_2]\)和\([c_2,b_2]\)，
+这里\(c_2=\frac{a_2+b_2}2\)，
+同样其中至少有一个含有输了\(\{x_n\}\)中的无穷多项，把它记为\([a_3,b_3]\).
+这样的步骤可以一直做下去，于是得到一个闭区间套\(\{[a_k,b_k]\}\)，
+其中每一个闭区间\([a_k,b_k]\)中都含有数列\(\{x_n\}\)中的无穷多项.
+
+根据\hyperref[definition:极限.闭区间套定理]{闭区间套定理}，
+存在实数\(\xi\)满足\(\lim_{k\to\infty} a_k = \lim_{k\to\infty} b_k = \xi\).
+现在证明数列\(\{x_n\}\)必有一个子列收敛于实数\(\xi\).
+
+首先在\([a_1,b_1]\)中选取\(\{x_n\}\)中的某一项，记为\(x_{n_1}\).
+然后在\([a_2,b_2]\)中选取位于\(x_{n_1}\)后的某一项，记为\(x_{n_2}\).
+以此类推，我们就得到了数列\(\{x_n\}\)的一个子列\(\{x_{n_k}\}\)，
+它满足\((\forall k\in\mathbb{N}^+)[a_k \leq x_{n_k} \leq b_k]\).
+利用\hyperref[theorem:极限.夹逼准则]{夹逼准则}得到\(\lim_{k\to\infty} x_{n_k} = \xi\).
+\end{proof}
+\end{theorem}
+
+当数列无界时，也有与\cref{theorem:极限.波尔查诺--魏尔斯特拉斯定理} 相对应的结论.
+\begin{theorem}
+%@see: 《数学分析（上册）》（陈纪修） P63 定理2.4.6
+若\(\{x_n\}\)是一个无界数列，
+则存在子列\(\{x_{n_k}\}\)，
+使得\(\lim_{k\to\infty} x_{n_k} = \infty\).
+\begin{proof}
+由于\(\{x_n\}\)无界，
+因此对于\(\forall M>0\)，
+\(\{x_n\}\)中必定存在无穷多个\(x_n\)，
+满足\(\abs{x_n}>M\)，
+否则可以得出\(\{x_n\}\)有界的结论.
+
+令\(M_1=1\)，则存在\(x_{n_1}\)，使得\(\abs{x_{n_1}}>1\).
+再令\(M_2=1\)，因为在\(\{x_n\}\)中有无穷多项满足\(\abs{x_n}>2\)，
+可以取到排在\(x_{n_1}\)之后的\(x_{n_2}\)，使得\(\abs{x_{n_2}}>2\).
+以此类推，便可得到\(\{x_n\}\)的一个子列\(\{x_{n_k}\}\)，
+满足\((\forall k\in\mathbb{N}^+)[\abs{x_{n_k}}>k]\).
+由定义可知\(\lim_{k\to\infty} x_{n_k} = \infty\).
+\end{proof}
+\end{theorem}
+
+\subsection{柯西极限存在准则}
+前面已经指出，从数列\(\{x_n\}\)本身的特征直接判断它是否收敛是一个很有意义的重要问题.
+但是\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}只是给出了判断数列收敛的一个充分不必要条件.
+但是许多收敛数列并非单调的，所以我们有必要从数列本身出发来寻找其收敛的充分必要条件.
+
+\begin{definition}
+%@see: 《数学分析（上册）》（陈纪修） P64 定义2.4.3
+如果数列\(\{x_n\}\)满足\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n,m\in\mathbb{N})
+	[n > N \land m > N \implies \abs{x_n - x_m} < \epsilon],
+\]
+则称“数列\(\{x_n\}\)是一个\DefineConcept{基本数列}”.
+\end{definition}
+
+\begin{theorem}\label{theorem:极限.数列的柯西极限存在准则}
+%@see: 《高等数学（第六版 上册）》 P55 柯西极限存在准则
+%@see: 《数学分析（上册）》（陈纪修） P65 定理2.4.7
+数列\(\{x_n\}\)收敛的充分必要条件是：
+\(\{x_n\}\)是基本数列.
+\begin{proof}
+必要性.
+设\(\lim_{n\to\infty}x_n = a\).
+由数列极限的定义，
+对于\(\forall\epsilon>0\)，
+\(\exists N \in \mathbb{N}^+\)，
+当\(n > N\)时，有\[
+	\abs{x_n - a} < \frac{\epsilon}{2};
+\]
+同样地，当\(m > N\)时，有\[
+	\abs{x_m - a} < \frac{\epsilon}{2}.
+\]
+因此，当\(n > N\)且\(m > N\)时，有\[
+	\abs{x_n - x_m} = \abs{(x_n - a) - (x_m - a)}
+	\leq \abs{x_n - a} + \abs{x_m - a}
+	< \frac{\epsilon}{2} + \frac{\epsilon}{2}
+	= \epsilon.
+	\qedhere
+\]
+%TODO 未证充分性
+\end{proof}
+\end{theorem}
