@@ -211,3 +211,59 @@ y_n=\left(1+\frac1n\right)^{n+1}\).
 即\[
 	e \defeq \lim_{n\to\infty} \left(1+\frac1n\right)^n.
 \]
+
+\subsection{闭区间套定理}
+\begin{definition}\label{definition:极限.闭区间套的定义}
+闭区间序列\(\{[a_n,b_n]\}\)如果满足
+\begin{enumerate}
+	\item \([a_{n+1},b_{n+1}] \subseteq [a_n,b_n]\ (n=1,2,\dotsc)\)；
+	\item \(\lim_{n\to\infty} (b_n - a_n) = 0\)，
+\end{enumerate}
+就称该序列为\DefineConcept{闭区间套}（nested intervals）.
+\end{definition}
+
+\begin{theorem}\label{definition:极限.闭区间套定理}
+如果序列\(\{[a_n,b_n]\}\)是闭区间套，
+那么\[
+	(\exists!\xi\in\mathbb{R})
+	\left[
+		\xi \in \bigcap_{i=1}^\infty [a_i,b_i]
+		\land
+		\lim_{n\to\infty} a_n = \lim_{n\to\infty} b_n = \xi
+	\right].
+\]
+\begin{proof}
+根据闭区间套的定义，我们有\[
+	a_1 \leq a_2 \leq \dotsb \leq a_{n-1} \leq a_n
+	< b_n \leq b_{n-1} \leq \dotsb \leq b_2 \leq b_1.
+\]
+显然数列\(\{a_n\}\)单调增加且有上界\(b_1\)，
+数列\(\{b_n\}\)单调减少而有下界\(\{a_1\}\).
+根据\hyperref[theorem:极限.数列的单调有界定理]{数列的单调有界定理}，
+\(\{a_n\}\)与\(\{b_n\}\)都收敛.
+
+设\(\lim_{n\to\infty} a_n = \xi\)，
+则\[
+	\lim_{n\to\infty} b_n
+	= \lim_{n\to\infty} [(b_n - a_n) + a_n]
+	= \lim_{n\to\infty} (b_n - a_n) + \lim_{n\to\infty} a_n
+	= \xi.
+\]
+由于\(\xi\)是\(\{a_n\}\)的值域的上确界，
+也是\(\{b_n\}\)的值域的下确界，
+于是有\(a_n \leq \xi \leq b_n\ (n=1,2,\dotsc)\)，
+即\(\xi\)属于所有的闭区间\([a_n,b_n]\).
+假设另有实数\(\eta\)属于所有的闭区间\([a_n,b_n]\)，
+则也有\(a_n \leq \eta \leq b_n\ (n=1,2,\dotsc)\).
+令\(n\to\infty\)，
+由\hyperref[theorem:极限.夹逼准则]{夹逼准则}得到\(\eta=\lim_{n\to\infty} a_n=\xi\).
+这就说明满足结论的实数\(\xi\)是唯一的.
+\end{proof}
+\end{theorem}
+
+需要指出，如果将\cref{definition:极限.闭区间套定理} 条件中的闭区间套改为开区间套，
+则数列\(\{a_n\},\{b_n\}\)依然收敛于同一个极限\(\xi\)，
+但是这个\(\xi\)可能不属于任何一个开区间\((a_n,b_n)\).
+例如，令\(a_n = 0, b_n = \frac1n\)，
+易见\(\lim_{n\to\infty} a_n = \lim_{n\to\infty} b_n = 0\)，
+但是\(0\)不属于任何一个开区间\((a_n,b_n)\).
