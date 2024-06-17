@@ -562,3 +562,36 @@ y_n=\left(1+\frac1n\right)^{n+1}\).
 值得注意的是有理数集\(\mathbb{Q}\)不具有完备性.
 例如，数列\(\left\{\left(1+\frac1n\right)^n\right\}\)是由有理数构成的基本数列，
 但是它的极限\(e\)并不是有理数（我们将在以后给出严格证明）.%TODO: 证明e不是有理数
+
+\begin{example}
+%@see: 《数学分析（上册）》（陈纪修） P66 例2.4.14
+设数列\(\{x_n\}\)满足压缩性条件\[
+	\abs{x_{n+1} - x_n}
+	\leq k \abs{x_n - x_{n-1}},
+	\quad 0<k<1, n=2,3,\dotsc,
+\]
+证明：\(\{x_n\}\)收敛.
+\begin{proof}
+对于\(\forall n\in\mathbb{N}^+\)，有\[
+	\abs{x_{n+1} - x_n}
+	\leq k \abs{x_n - x_{n-1}}
+	\leq k^2 \abs{x_{n-1} - x_{n-2}}
+	\leq \dotsb
+	\leq k^{n-1} \abs{x_2 - x_1}.
+\]
+设\(m > n\)，
+则\begin{align*}
+	\abs{x_m - x_n}
+	&\leq \abs{x_m - x_{m-1}}
+	+ \abs{x_{m-1} - x_{m-2}}
+	+ \dotsb + \abs{x_{n+1} - x_n} \\
+	&\leq k^{m-2} \abs{x_2 - x_1}
+	+ k^{m-3} \abs{x_2 - x_1}
+	+ \dotsb + k^{n-1} \abs{x_2 - x_1} \\
+	&< \frac{k^{n-1}}{1-k} \abs{x_2 - x_1},
+\end{align*}
+因为\(0<k<1\)，
+所以\(\lim_{n\to\infty} \frac{k^{n-1}}{1-k} \abs{x_2 - x_1} = 0\)，
+于是\(\{x_n\}\)是基本数列，必定收敛.
+\end{proof}
+\end{example}
