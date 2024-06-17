@@ -1,0 +1,153 @@
+\section{函数极限的概念}
+从\hyperref[definition:数列.数列的定义]{数列的定义}可以看出，
+任意一个数列\(\{x_n\}\)只不过是一个以\(n\)为自变量的函数\(x_n = f(n)\).
+我们只要把数列极限概念中
+“自变量\(n\)的取值范围是整数的子集”
+“自变量变化过程是\(n\to\infty\)”
+等特殊性撇开，
+就可以引出函数极限的一般概念.
+
+% \subsubsection*{自变量趋于有限值时函数的极限}
+\begin{definition}\label{definition:极限.函数极限的定义1}
+%@see: 《高等数学（第六版 上册）》 P32 定义1
+%@see: 《数学分析（上册）》（陈纪修） P71 定义3.1.1
+设函数\(f\colon D\to\mathbb{R}\)在点\(x_0\)的某个去心邻域中有定义，
+即\[
+	(\exists\rho>0)
+	[\mathring{U}(x_0,\rho) \subseteq D].
+\]
+如果存在常数\(A\in\mathbb{R}\)，
+对于任意给定的正数\(\epsilon\)（不论它多么小），
+总存在正数\(\delta\)，
+使得当\(x\)满足不等式\(0 < \abs{x-x_0} < \delta\)时，
+总有不等式\(\abs{f(x)-A}<\epsilon\)成立，
+那么常数\(A\)就叫做“函数\(f\)当\(x \to x_0\)时的\DefineConcept{极限}”
+或“函数\(f\)在点\(x_0\)的\DefineConcept{极限}”，
+记作\[
+	\lim_{\substack{x \to x_0 \\ x \in D}} f(x) = A,
+	\quad\text{或}\quad
+	f(x) \to A\ (x \to x_0; x \in D);
+\]
+有时候也简记为\[
+	\lim_{x \to x_0} f(x) = A,
+	\quad\text{或}\quad
+	f(x) \to A\ (x \to x_0).
+\]
+如果不存在具有上述性质的实数\(A\)，
+则称函数\(f\)在点\(x_0\)的极限不存在.
+\end{definition}
+
+上述对函数极限的定义可以简化为：\[
+	\lim_{\substack{x \to x_0 \\ x \in D}} f(x) = A
+	\defiff
+	(\forall \epsilon > 0)
+	(\exists \delta > 0)
+	(\forall x \in D)
+	[0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \epsilon].
+\]
+
+现在我们来根据定义尝试计算一些函数的极限.
+
+\begin{example}
+证明：\(\lim_{x \to x_0} c = c\)，其中\(c\)为常数.
+\begin{proof}
+这里\(\abs{f(x) - A} = \abs{c - c} = 0\)，
+因此\(\forall \epsilon > 0\)，
+可任取\(\delta > 0\)，
+当\(0 < \abs{x - x_0} < \delta\)时，
+总能使不等式\[
+	\abs{f(x) - A} = \abs{c - c} = 0 < \epsilon
+\]成立，
+所以\(\lim_{x \to x_0} c = c\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x \to x_0} x = x_0\).
+\begin{proof}
+这里\(\abs{f(x) - A} = \abs{x - x_0}\)，
+因此\(\forall \epsilon > 0\)，
+总可取\(\delta = \epsilon\)，
+当\(0 < \abs{x - x_0} < \delta = \epsilon\)时，
+能使不等式\(\abs{f(x) - A} = \abs{x - x_0} < \epsilon\)成立，
+所以\(\lim_{x \to x_0} x = x_0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x\to1} (2x-1) = 1\).
+\begin{proof}
+由于\(\abs{f(x) - A} = \abs{(2x-1) - 1} = 2\abs{x-1}\)，
+为了使\(\abs{f(x) - A} < \epsilon\)，
+只要\(\abs{x-1}<\epsilon/2\).
+因此\(\forall \epsilon > 0\)，
+可取\(\delta = \epsilon/2\)，
+则当\(x\)适合不等式\[
+	0 < \abs{x-1} < \delta = \frac{\epsilon}{2}
+\]时，
+对应的函数值\(f(x)\)就满足不等式\[
+	\abs{f(x) - 1} = \abs{(2x-1) - 1} = 2\abs{x-1} < \epsilon.
+\]
+从而\(\lim_{x\to1} 2x-1 = 1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x\to1} \frac{x^2-1}{x-1} = 2\).
+\begin{proof}
+这里，函数在点\(x=1\)处是没有定义的，
+但是函数当\(x\to1\)时的极限存在或不存在与之无关.
+事实上，\(\forall \epsilon > 0\)，将不等式\[
+	\abs{\frac{x^2-1}{x-1} - 2} < \epsilon
+\]
+约去非零因子\(x-1\)后，就化为\[
+	\abs{(x+1)-2} = \abs{x-1} < \epsilon,
+\]
+因此，只要取\(\delta = \epsilon\)，
+那么当\(0 < \abs{x-1} < \delta\)时，就有\[
+	\abs{\frac{x^2-1}{x-1} - 2} < \epsilon.
+\]
+所以\(\lim_{x\to1} \frac{x^2-1}{x-1} = 2\).
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:极限.根式函数在某一点的极限}
+证明：当\(x_0 > 0\)时，
+\(\lim_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
+\begin{proof}
+\(\forall \epsilon > 0\)，
+因为\[
+	\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}}
+	= \abs{\frac{x - x_0}{\sqrt{x} + \sqrt{x_0}}}
+	\leq \frac{\abs{x - x_0}}{\sqrt{x_0}},
+\]
+那么要使\(0 < \abs{x - x_0} < \delta \implies \abs{f(x) - A} < \epsilon\)，
+只要\[
+	0 < \abs{x - x_0} < \delta \implies \abs{x - x_0} < \sqrt{x_0} \epsilon,
+\]
+也即\[
+	\delta \leq \sqrt{x_0} \epsilon.
+	\eqno(1)
+\]
+
+由于我们还要确保\(f\)在\(x_0\)的去心邻域内有定义，
+于是又有\[
+	0 < \abs{x-x_0} < \delta \implies x\geq0
+	\quad\text{或}\quad
+	(x_0-\delta,x_0+\delta)\subseteq[0,+\infty),
+\]
+也即\[
+	x_0-\delta\geq0
+	\quad\text{或}\quad
+	x_0\geq\delta.
+	\eqno(2)
+\]
+
+综上所述，如果取\(\delta = \min\{x_0,\sqrt{x_0} \epsilon\}\)，
+则当\(0 < \abs{x - x_0} < \delta\)时，
+对应的函数值\(\sqrt{x}\)就满足\[
+	\abs{f(x) - A} = \abs{\sqrt{x} - \sqrt{x_0}} < \epsilon,
+\]
+所以\(\lim_{x \to x_0}\sqrt{x} = \sqrt{x_0}\).
+\end{proof}
+\end{example}
