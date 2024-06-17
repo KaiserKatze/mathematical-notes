@@ -486,23 +486,72 @@ y_n=\left(1+\frac1n\right)^{n+1}\).
 \(\{x_n\}\)是基本数列.
 \begin{proof}
 必要性.
-设\(\lim_{n\to\infty}x_n = a\).
-由数列极限的定义，
-对于\(\forall\epsilon>0\)，
-\(\exists N \in \mathbb{N}^+\)，
-当\(n > N\)时，有\[
-	\abs{x_n - a} < \frac{\epsilon}{2};
+设\(\lim_{n\to\infty} x_n = a\).
+由数列极限的定义有\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n,m\in\mathbb{N})
+	\left[\def\arraystretch{1.2}
+		\begin{array}{c}
+			n > N \implies \abs{x_n - a} < \frac\epsilon2 \\
+			m > N \implies \abs{x_m - a} < \frac\epsilon2
+		\end{array}
+	\right],
 \]
-同样地，当\(m > N\)时，有\[
-	\abs{x_m - a} < \frac{\epsilon}{2}.
+于是\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n,m\in\mathbb{N})
+	[
+		n > N \land m > N
+		\implies
+		\abs{x_m - x_n}
+		% = \abs{(x_m - a) - (x_n - a)}
+		\leq \abs{x_m - a} + \abs{x_n - a}
+		< \epsilon
+	].
 \]
-因此，当\(n > N\)且\(m > N\)时，有\[
-	\abs{x_n - x_m} = \abs{(x_n - a) - (x_m - a)}
-	\leq \abs{x_n - a} + \abs{x_m - a}
-	< \frac{\epsilon}{2} + \frac{\epsilon}{2}
-	= \epsilon.
-	\qedhere
+
+充分性.
+取\(\epsilon_0 = 1\)，
+因为\(\{x_n\}\)是基本数列，
+所以\[
+	(\exists N_0\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N_0
+		\implies
+		\abs{x_n - x_{N_0+1}} < 1.
+	]
 \]
-%TODO 未证充分性
+令\(M = \max\{\abs{x_1},\abs{x_2},\dotsc,\abs{x_{N_0}},\abs{x_{N_0+1}}+1\}\)，
+则\[
+	(\forall n\in\mathbb{N})
+	[\abs{x_n} \leq M],
+\]
+这就说明基本数列必定有界.
+那么由\hyperref[theorem:极限.波尔查诺--魏尔斯特拉斯定理]{波尔查诺--魏尔斯特拉斯定理}，
+在数列\(\{x_n\}\)中必有收敛子列\(\{x_{n_k}\}\)，使得\[
+	\lim_{k\to\infty} x_{n_k} = \xi.
+\]
+因为\(\{x_n\}\)是基本数列，
+所以\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n,m\in\mathbb{N})
+	\left[
+		n > N \land m > N
+		\implies
+		\abs{x_n - x_m} < \frac\epsilon2
+	\right].
+\]
+在上式中取\(x_m = x_{n_k}\)，其中\(k\)充分大，满足\(n_k > N\)，
+并且令\(k\to\infty\)，
+于是由\cref{theorem:极限.夹逼准则.引理} 得到\[
+	\abs{x_n - \xi}
+	\leq \frac\epsilon2
+	< \epsilon,
+\]
+这就说明\(\{x_n\}\)收敛.
 \end{proof}
 \end{theorem}
