@@ -930,6 +930,69 @@ f(x) \geq \frac{N}{x - a} \quad (a < x \leq b),
 	\Gamma(s) \cdot \Gamma(1-s)
 	= \frac{\pi}{\sin{\pi s}} \quad (0 < s < 1).
 \end{equation}
+\begin{proof}
+由\cref{equation:定积分.伽马函数与贝塔函数的关系} 有\[
+	\Gamma(s) \cdot \Gamma(1-s)
+	= B(s,1-s)
+	= \int_0^1 t^{s-1} (1-t)^{-s} \dd{t}
+	= \int_0^1 \frac1t \left(\frac{t}{1-t}\right)^s \dd{t}.
+\]
+令\(x=\frac{t}{1-t}\)，
+则\(t=\frac{x}{1+x}\)，
+\(\dd{t}=\frac1{(1+x)^2} \dd{x}\)，
+于是\[
+	\Gamma(s) \cdot \Gamma(1-s)
+	= \int_0^{+\infty} \frac{1+x}{x} \cdot x^s \cdot \frac1{(1+x)^2} \dd{x}
+	= \int_0^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}.
+\]
+记\(I_1 = \int_0^1 \frac{x^{s-1}}{1+x} \dd{x},
+I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
+则\(\Gamma(s) \cdot \Gamma(1-s) = I_1 + I_2\).
+
+对于\(I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
+可令\(x = \frac1t\)，
+则\(I_2
+= \int_0^1 \frac{t^{-s}}{1+t} \dd{t}
+= \int_0^1 \frac{x^{-s}}{1+x} \dd{x}\).
+于是\begin{align*}
+	I_1 + I_2
+	&= \int_0^1 \frac{x^{s-1} + x^{-s}}{1+x} \dd{x}
+	= \int_0^1 (x^{s-1} + x^{-s}) \sum_{k=0}^\infty (-x)^k \dd{x} \\%FIXME: 这里用到了函数项级数，但是函数项级数在后续章节，尚未介绍！
+	&= \int_0^1 \sum_{k=0}^\infty (-1)^k x^{k+s-1} \dd{x}
+	+ \int_0^1 \sum_{k=0}^\infty (-1)^k x^{k-s} \dd{x} \\
+	&= \sum_{k=0}^\infty \frac{(-1)^k}{k+s}
+	+ \sum_{k=0}^\infty \frac{(-1)^k}{k-s+1} \\
+	&= \frac1s
+	+ \sum_{k=1}^\infty \frac{(-1)^k}{k+s}
+	+ \sum_{k=1}^\infty \frac{(-1)^{k-1}}{k-s} \\
+	&= \frac1s + \sum_{k=1}^\infty \frac{(-1)^k \cdot 2s}{s^2-k^2}.
+\end{align*}
+
+记\(f(x)=\cos(sx)\).
+将\(f\)展开，得\[
+	\cos(sx) = \frac{a_0}2 + \sum_{n=1}^\infty (a_n \cos(nx) + b_n \sin(nx)),
+\]
+其中\begin{gather*}
+	a_n = \frac1\pi \int_{-\pi}^\pi \cos(sx) \cos(nx) \dd{x}
+	= \frac{(-1)^n \cdot 2s \cdot \sin(\pi s)}{\pi(s^2-n^2)}, \\
+	b_n = \frac1\pi \int_{-\pi}^\pi \cos(sx) \sin(nx) \dd{x} = 0.
+\end{gather*}
+于是\[
+	\cos(sx) = \frac{\sin(\pi s)}{\pi s}
+	+ \sum_{n=1}^\infty \frac{(-1)^n \cdot 2s \cdot \sin(\pi s)}{\pi(s^2-n^2)} \cdot \cos(nx).
+\]
+令\(x=0\)，
+得\(1 = \frac{\sin(\pi s)}{\pi s}
++ \frac{\sin(\pi s)}{\pi} \sum_{n=1}^\infty \frac{(-1)^n \cdot 2s}{s^2-n^2}\)，
+即\(\sum_{n=1}^\infty \frac{(-1)^n \cdot 2s}{s^2-n^2} = \frac{\pi}{\sin(\pi s)} - \frac1s\).
+
+由上可知\[
+	\Gamma(s) \cdot \Gamma(1-s)
+	= \frac{\pi}{\sin(\pi s)}.
+	\qedhere
+\]
+%@see: 【余元公式的证明推导过程】https://www.bilibili.com/video/BV17M4m1m7ZH
+\end{proof}
 \end{property}
 
 \begin{corollary}
