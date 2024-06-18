@@ -2,10 +2,74 @@
 \begin{theorem}[海涅定理]\label{theorem:极限.海涅定理}
 %@see: 《数学分析（上册）》（陈纪修） P78 定理3.1.5
 %@see: 《数学分析教程》（史济怀） P70 定理2.4.1
-设函数\(f\colon D\to\mathbb{R}\)，点\(x_0 \in D\).
-函数\(f\)在点\(x_0\)有极限\(A\)的充分必要条件是：
-对于任何一个收敛于\(x_0\)的数列\(\{x_n \neq x_0\ (n=1,2,\dotsc)\}\)，
-函数列\(\{f(x_n)\}\)有极限\(A\).
+设函数\(f\colon D\to\mathbb{R}\).
+\(\lim_{x \to x_0} f(x) = A\)的充分必要条件是：
+任何一个收敛于\(x_0\)的数列\(\{x_n \neq x_0\ (n=1,2,\dotsc)\}\)
+总满足\(\lim_{n\to\infty} f(x_n) = A\).
+\begin{proof}
+必要性.
+由\(\lim_{x \to x_0} f(x) = A\)可知\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x\in D)
+	[
+		0<\abs{x-x_0}<\delta
+		\implies
+		\abs{f(x)-A}<\epsilon
+	].
+\]
+因为\(\lim_{n\to\infty} x_n = x_0\)，
+且\(x_n \neq x_0\ (n=1,2,\dotsc)\)，
+所以\[
+	(\forall\delta>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		0<\abs{x_n-x_0}<\delta
+		\implies
+		\abs{f(x_n)-A}<\epsilon
+	],
+\]
+即\(\lim_{n\to\infty} f(x_n) = A\).
+
+充分性.
+用反证法.
+我们知道，命题“函数\(f\)在点\(x_0\)的极限是\(A\)”可以表述为\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x\in D)
+	[
+		0<\abs{x-x_0}<\delta
+		\implies
+		\abs{f(x)-A}<\epsilon
+	],
+\]
+那么它的否命题“函数\(f\)在点\(x_0\)的极限不是\(A\)”可以表述为\[
+	(\exists\epsilon_0>0)
+	(\forall\delta>0)
+	(\exists x\in D)
+	[
+		0<\abs{x-x_0}<\delta
+		\implies
+		\abs{f(x)-A}\geq\epsilon_0
+	].
+\]
+于是\[
+	(\forall n\in\mathbb{N}^+)
+	(\exists x_n\in D)
+	\left[
+		0<\abs{x_n-x_0}<\frac1n
+		\implies
+		\abs{f(x_n)-A}\geq\epsilon_0
+	\right],
+\]
+如此，我们就找到了一个数列\(\{x_n\}\)
+满足\(x_n\neq x_0\ (n=1,2,\dotsc)\)且\(\lim_{n\to\infty} x_n = x_0\)，
+但是\(\{f(x_n)\}\)不可能满足\(\lim_{n\to\infty} f(x_n) = A\).
+由此推翻假设，得到\(\lim_{x\to x_0} f(x) = A\).
+\end{proof}
 \end{theorem}
 海涅定理也称作\DefineConcept{归结原则}.
 
