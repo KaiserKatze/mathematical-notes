@@ -1,5 +1,5 @@
 \section{夹逼准则}
-\begin{theorem}
+\begin{theorem}\label{theorem:函数极限.夹逼准则}
 %@see: 《数学分析（上册）》（陈纪修） P76 定理3.1.3
 %@see: 《高等数学（第六版 上册）》 P50 准则I'
 设函数\(f,g,h\)满足\begin{itemize}
@@ -85,8 +85,55 @@
 	\cos x < \frac{\sin x}{x} < 1.
 \]
 因为\(\lim_{x\to0}\cos x = 1\)，
-所以由\hyperref[theorem:极限.夹逼准则]{夹逼准则}可知，
+所以由\hyperref[theorem:数列极限.夹逼准则]{夹逼准则}可知，
 \(\lim_{x\to0} \frac{\sin x}{x} = 1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x\to0} \sqrt[n]{1+x} = 1\).
+\begin{proof}
+函数\(\sqrt[n]{1+x}\)的定义域是\(\Set{ x \given 1+x\geq 0 } = [-1,+\infty)\).
+
+当\(x > 0\)时，
+因为\(1 < \sqrt[n]{1+x} < 1+x\)，
+且\(\lim_{x\to0^+} 1 = \lim_{x\to0^+}(1+x) = 1\)，
+所以\[
+	\lim_{x\to0^+} \sqrt[n]{1+x} = 1;
+\]
+
+当\(-1 < x < 0\)时，
+因为\(1+x < \sqrt[n]{1+x} < 1\)，
+且\(\lim_{x\to0^-} 1 = \lim_{x\to0^-}(1+x) = 1\)，
+所以\[
+	\lim_{x\to0^-} \sqrt[n]{1+x} = 1.
+\]
+
+综上，\(\lim_{x\to0} \sqrt[n]{1+x} = 1\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(\lim_{x\to0^+} x \floor*{\frac1x} = 1\).
+\begin{proof}
+令\(t=1/x\)，
+那么\[
+	x \floor*{\frac1x} = \frac{1}{t} \floor{t}.
+\]
+又因为\[
+	t - 1 < \floor{t} \leq t,
+\]\[
+	1 - \frac{1}{t} < \frac{1}{t} \floor{t} \leq 1;
+\]
+而\[
+	\lim_{t\to+\infty} 1 - \frac{1}{t} = 1,
+	\quad
+	\lim_{t\to+\infty} 1 = 1,
+\]
+所以\[
+	\lim_{x\to0^+} x \floor*{\frac1x} = \lim_{t\to+\infty} \frac{1}{t} \floor{t} = 1.
+	\qedhere
+\]
 \end{proof}
 \end{example}
 
@@ -153,3 +200,61 @@
 % \]
 % \end{solution}
 % \end{example}
+
+\begin{example}[重要极限II]
+试证：\begin{equation}
+	\lim_{x \to \infty} \left(1+\frac1x\right)^x = e.
+\end{equation}
+\begin{proof}
+在\cref{section:极限.无理数e}我们已经知道，
+数列\(x_n = \left(1+\frac1n\right)^n\)单调增加且有上界，收敛于\(e\).
+
+当\(n\geq1\)时，
+对于\(\forall x\in[n,n+1)\)，
+必有\[
+	\left(1+\frac1{n+1}\right)^n
+	< \left(1+\frac1x\right)^x
+	< \left(1+\frac1n\right)^{n+1},
+\]
+且当\(n\to\infty\)时，
+\(x\to+\infty\)，
+而\[
+	\lim_{n\to\infty} \left(1+\frac1{n+1}\right)^n
+	= \lim_{n\to\infty} \frac{\left(1+\dfrac1{n+1}\right)^{n+1}}{1+\dfrac1{n+1}}
+	= \frac{\lim\limits_{n\to\infty} \left(1+\dfrac1{n+1}\right)^{n+1}}{\lim\limits_{n\to\infty} \left(1+\dfrac1{n+1}\right)}
+	= \frac{e}1
+	= e,
+\]\[
+	\lim_{n\to\infty} \left(1+\frac1n\right)^{n+1}
+	= \lim_{n\to\infty} \left[\left(1+\frac1n\right)^n\cdot\left(1+\frac1n\right)\right]
+	= \lim_{n\to\infty} \left(1+\frac1n\right)^n \cdot \lim_{n\to\infty} \left(1+\frac1n\right)
+	= e \cdot 1
+	= e,
+\]
+应用\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}可得\[
+	\lim_{x\to+\infty} \left(1+\frac1x\right)^x = e.
+\]
+令\(x=-(t+1)\)，
+则\(x\to-\infty\)时，
+\(t\to+\infty\)，
+从而\begin{align*}
+	\lim_{x\to-\infty} \left(1+\frac1x\right)^x
+	&= \lim_{t\to+\infty} \left(1-\frac{1}{t+1}\right)^{-(t+1)}
+	= \lim_{t\to+\infty} \left(\frac{t}{t+1}\right)^{-(t+1)} \\
+	&= \lim_{t\to+\infty} \left(1+\frac1t\right)^{t+1}
+	= \lim_{t\to+\infty} \left[\left(1+\frac1t\right)^t\cdot\left(1+\frac1t\right)\right]
+	= e.
+\end{align*}
+
+综上所述，根据\cref{theorem:函数极限.极限与单侧极限的关系2}，
+由于\[
+	\lim_{x\to+\infty}\left(1+\frac1x\right)^x
+	= \lim_{x\to-\infty}\left(1+\frac1x\right)^x
+	= e,
+\]
+所以\[
+	\lim_{x\to\infty} \left(1+\frac1x\right)^x = e.
+	\qedhere
+\]
+\end{proof}
+\end{example}
