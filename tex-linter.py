@@ -107,12 +107,23 @@ def scan_math_environments(_file):
 # `\uff0c` 是全角逗号 ，
 # `\uff1b` 是全角分号 ；
 if __name__ == "__main__":
+    pattern_env1 = re.compile(r'\\begin\{([^\}]+)\}')
+    pattern_env2 = re.compile(r'\\end\{([^\}]+)\}')
+
     for file in find_all_tex_files():
         scan_math_environments(file)
+
+        environment_counter = {}  # 对形如 `\begin{...}` 和 `\end{...}` 的控制序列计数
 
         with open(file, mode='r', encoding="utf-8") as fd:
             prev_line = ""
             for line_num, line in enumerate(fd.readlines()):
+
+                for token in re.findall(pattern_env1, line):
+                    environment_counter[token] = environment_counter.get(token, 0) + 1
+                for token in re.findall(pattern_env2, line):
+                    environment_counter[token] = environment_counter.get(token, 0) - 1
+
                 line_num += 1  # enumerate 函数给出的序号是从0开始的，行号是从1开始的，进行修正
                 total_line_counter += 1
 
@@ -163,6 +174,13 @@ if __name__ == "__main__":
                     error("【0007】在\DefineConcept命令前后存在空格！", file, line_num, prev_line, line)
 
                 prev_line = line
+
+        # 按计数结果，对不为零的计数，报警
+        for k, v in environment_counter.items():
+            if v == 0:
+                continue
+            error(f"【1000】环境 `{k}` 计数为 {v}，请检查文件 '{file_path}'!")
+
     if not is_tex_project_problematic:
         logger.info("检查完毕，没有任何错误！")
         logger.info("本次扫描总计{}行.".format(total_line_counter))
