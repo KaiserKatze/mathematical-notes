@@ -10,78 +10,69 @@
 \begin{theorem}\label{theorem:极限.函数的柯西极限存在准则}
 %@see: 《数学分析（上册）》（陈纪修） P85 定理3.1.6
 设函数\(f\colon D\to\mathbb{R}\).
-\begin{align*}
-	\text{\(\lim_{x \to a} f(x)\)存在且有限}
-	&\iff
-	\begin{array}[t]{l}
-		(\forall\epsilon>0)
-		(\exists\delta>0)
-		(\forall x_1,x_2\in D)\\ \relax
-		[
-			0 < \abs{x_1 - a} < \delta \land 0 < \abs{x_2 - a} < \delta
+函数极限\(\lim_{x\to+\infty} f(x)\)存在且有限的充分必要条件是：\[
+	(\forall\epsilon>0)
+	(\exists X>0)
+	(\forall x_1,x_2\in D)\\ \relax
+	[
+		x_1 > X \land x_2 > X
+		\implies
+		\abs{f(x_1) - f(x_2)} < \epsilon
+	].
+\]
+\begin{proof}
+必要性.
+假设\(\lim_{x\to+\infty} f(x) = A\)，
+则\[
+	(\forall\epsilon>0)
+	(\exists X>0)
+	(\forall x_1,x_2\in D)
+	\left[
+		\begin{array}{l}
+			x_1 > X \land x_2 > X \\
+			\implies
+			\abs{f(x_1) - A} < \frac\epsilon2
+			\land
+			\abs{f(x_2) - A} < \frac\epsilon2 \\
 			\implies
 			\abs{f(x_1) - f(x_2)} < \epsilon
-		],
-	\end{array} \\
-	\text{\(\lim_{x \to a^+} f(x)\)存在且有限}
-	&\iff
-	\begin{array}[t]{l}
-		(\forall\epsilon>0)
-		(\exists\delta>0)
-		(\forall x_1,x_2\in D)\\ \relax
-		[
-			0 < x_1 - a < \delta \land 0 < x_2 - a < \delta
-			\implies
-			\abs{f(x_1) - f(x_2)} < \epsilon
-		],
-	\end{array} \\
-	\text{\(\lim_{x \to a^-} f(x)\)存在且有限}
-	&\iff
-	\begin{array}[t]{l}
-		(\forall\epsilon>0)
-		(\exists\delta>0)
-		(\forall x_1,x_2\in D)\\ \relax
-		[
-			-\delta < x_1 - a < 0 \land -\delta < x_2 - a < 0
-			\implies
-			\abs{f(x_1) - f(x_2)} < \epsilon
-		],
-	\end{array} \\
-	\text{\(\lim_{x\to\infty} f(x)\)存在且有限}
-	&\iff
-	\begin{array}[t]{l}
-		(\forall\epsilon>0)
-		(\exists X>0)
-		(\forall x_1,x_2\in D)\\ \relax
-		[
-			\abs{x_1} > X \land \abs{x_2} > X
-			\implies
-			\abs{f(x_1) - f(x_2)} < \epsilon
-		],
-	\end{array} \\
-	\text{\(\lim_{x\to+\infty} f(x)\)存在且有限}
-	&\iff
-	\begin{array}[t]{l}
-		(\forall\epsilon>0)
-		(\exists X>0)
-		(\forall x_1,x_2\in D)\\ \relax
-		[
-			x_1 > X \land x_2 > X
-			\implies
-			\abs{f(x_1) - f(x_2)} < \epsilon
-		],
-	\end{array} \\
-	\text{\(\lim_{x\to-\infty} f(x)\)存在且有限}
-	&\iff
-	\begin{array}[t]{l}
-		(\forall\epsilon>0)
-		(\exists X>0)
-		(\forall x_1,x_2\in D)\\ \relax
-		[
-			x_1 < -X \land x_2 < -X
-			\implies
-			\abs{f(x_1) - f(x_2)} < \epsilon
-		].
-	\end{array}
-\end{align*}
+		\end{array}
+	\right].
+\]
+
+充分性.
+假设\[
+	(\forall\epsilon>0)
+	(\exists X>0)
+	(\forall x_1,x_2\in D)
+	[
+		x_1 > X \land x_2 > X
+		\implies
+		\abs{f(x_1) - f(x_2)} < \epsilon
+	].
+\]
+任意选取数列\(\{x_n\}\)，使得\(\lim_{n\to+\infty} x_n = +\infty\)，
+则对于上述\(X\)有\[
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		x_n > X
+	].
+\]
+于是根据假设可知，对于上述\(X\)有\[
+	(\exists N\in\mathbb{N})
+	(\forall m,n\in\mathbb{N})
+	\left[
+		n > N \land m > N
+		\implies
+		x_n > X \land x_m > X
+		\implies
+		\abs{f(x_n) - f(x_m)} < \epsilon
+	\right],
+\]
+这说明\(\{f(x_n)\}\)是基本数列，必定收敛.
+根据海涅定理，可知\(\lim_{x\to+\infty} f(x)\)存在且有限.
+\end{proof}
 \end{theorem}
