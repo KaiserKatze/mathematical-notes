@@ -101,4 +101,59 @@
 	(\exists B\in\mathcal{B})
 	[\amp(f;B)<\epsilon].
 \]
+\begin{proof}
+必要性.
+假设\(\lim_\mathcal{B} f(x) = A \in \mathbb{R}\)，
+则\[
+	(\forall\epsilon>0)
+	(\exists B\in\mathcal{B})
+	(\forall x\in B)
+	[
+		\abs{f(x)-A}<\epsilon/3
+	].
+\]
+那么\[
+	(\forall x_1,x_2\in\mathcal{B})
+	\left[
+		\abs{f(x_1)-f(x_2)}
+		< \abs{f(x_1)-A}+\abs{f(x_2)-A}
+		< 2\epsilon/3
+	\right],
+\]
+于是\(\amp(f;B)<\epsilon\).
+
+充分性.
+假设\[
+	(\forall\epsilon>0)
+	(\exists B\in\mathcal{B})
+	[\amp(f;B)<\epsilon].
+\]
+依次取\(\epsilon=1,\frac12,\dotsc,\frac1n,\dotsc\)，
+我们得到基\(\mathcal{B}\)的一系列元素\(B_1,B_2,\dotsc,B_n,\dotsc\)，
+它们满足\[
+	\amp(f;B_n)<\frac1n.
+	\eqno(1)
+\]
+因为\(B_n\neq\emptyset\)，
+所以在每个\(B_n\)中可以取一个点\(x_n\)，
+我们就得到了数列\(\{x_n\}\).
+又因为\(B_n \cap B_m \neq \emptyset\)，
+所以只要取\(x \in B_n \cap B_m\)，
+就有\[
+	\abs{f(x_n) - f(x_m)}
+	\leq \abs{f(x_n) - f(x)} + \abs{f(x) - f(x_m)}
+	< \frac1n + \frac1m,
+	\eqno(2)
+\]
+这就说明数列\(\{f(x_n)\}\)是基本数列.
+根据\hyperref[theorem:极限.数列的柯西极限存在准则]{数列的柯西极限存在准则}，
+数列\(\{f(x_n)\}\)存在极限.
+假设\(\lim_{n\to\infty} f(x_n) = A\).
+那么根据\cref{theorem:数列极限.夹逼准则.引理}，
+当\(m\to\infty\)时，
+从(2)式推出\(\abs{f(x_n)-A}\leq\frac1n\).
+再利用(1)式，就可得到：
+如果\(n>N=\ceil{2/\epsilon}+1\)，
+则\((\forall x\in B_n)[\abs{f(x)-A}<\epsilon]\).
+\end{proof}
 \end{theorem}
