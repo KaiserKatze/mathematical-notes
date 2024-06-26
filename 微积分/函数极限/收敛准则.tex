@@ -96,7 +96,7 @@
 \begin{theorem}
 %@see: 《数学分析（第7版 第一卷）》（卓里奇） P109 定理4（函数极限存在的柯西准则）
 设\(\mathcal{B}\)是\(X\)中的基.
-函数\(f\in\mathbb{R}^X\)在基\(\mathcal{B}\)上有极限的充分必要条件是：\[
+函数\(f\in\mathbb{R}^X\)在基\(\mathcal{B}\)上的极限存在且有限 的充分必要条件是：\[
 	(\forall\epsilon>0)
 	(\exists B\in\mathcal{B})
 	[\amp(f;B)<\epsilon].
@@ -142,11 +142,11 @@
 我们就得到了数列\(\{x_n\}\).
 又因为由\hyperref[definition:函数极限.滤子基的定义]{基的定义}有
 \(B_n \cap B_m \neq \emptyset\)，
-所以只要取\(x \in B_n \cap B_m\)，
+所以只要取辅助点\(\xi \in B_n \cap B_m\)，
 根据\hyperref[theorem:不等式.三角不等式1]{三角不等式}，
 就有\[
 	\abs{f(x_n) - f(x_m)}
-	\leq \abs{f(x_n) - f(x)} + \abs{f(x) - f(x_m)}
+	\leq \abs{f(x_n) - f(\xi)} + \abs{f(\xi) - f(x_m)}
 	< \frac1n + \frac1m,
 	\eqno(2)
 \]
@@ -156,9 +156,44 @@
 假设\(\lim_{n\to\infty} f(x_n) = A\).
 那么根据\cref{theorem:数列极限.夹逼准则.引理}，
 当\(m\to\infty\)时，
-从(2)式推出\(\abs{f(x_n)-A}\leq\frac1n\).
-再利用(1)式，就可得到：
-如果\(n>N=\ceil{2/\epsilon}+1\)，
-则\((\forall x\in B_n)[\abs{f(x)-A}<\epsilon]\).
+从(2)式推出\[
+	\abs{f(x_n)-A}\leq\frac1n.
+	\eqno(3)
+\]
+于是对于\(\forall x\in B_n\)有\begin{align*}
+	\abs{f(x)-A}
+	&\leq \abs{f(x)-f(x_n)}+\abs{f(x_n)-A} \\
+	&\leq \amp(f;B_n)+\abs{f(x_n)-A} \\
+	&< \frac1n+\frac1n
+	= \frac2n.
+	\tag4
+\end{align*}
+要证\(\lim_\mathcal{B} f(x) = A\)，
+需证\[
+	(\forall V(A))
+	(\exists B\in\mathcal{B})
+	[f(B) \subseteq V(A)],
+\]
+或\[
+	(\forall\delta>0)
+	(\exists B\in\mathcal{B})
+	(\forall x\in B)
+	[\abs{f(x)-A}<\delta],
+\]
+或\[
+	(\forall\delta>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		(\forall x\in B_n)
+		[\abs{f(x)-A}<\delta]
+	].
+\]
+现在要使\(\abs{f(x)-A}<\delta\)成立，
+由(4)式可知只需\(\frac2n<\delta\)或\(n>\frac2\delta\)成立，
+因此，当\(n>N=\ceil*{\frac2\delta}\)时，
+就有\((\forall x\in B_n)[\abs{f(x)-A}<\delta]\).
 \end{proof}
 \end{theorem}
