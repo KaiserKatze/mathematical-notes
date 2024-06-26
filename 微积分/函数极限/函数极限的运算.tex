@@ -92,3 +92,30 @@
 \]
 \end{solution}
 \end{example}
+
+\begin{theorem}
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P110 定理5（复合函数极限定理）
+设\(\mathcal{B}_Y\)是集合\(Y\)中的基，
+\(\mathcal{B}_X\)是集合\(X\)中的基，
+映射\(g\colon Y\to\mathbb{R}\)在基\(\mathcal{B}_Y\)上有极限，
+映射\(f\colon X\to Y\)满足
+\((\forall B_Y\in\mathcal{B}_Y)
+(\exists B_X\in\mathcal{B}_X)
+[f(B_X) \subseteq B_Y]\)，
+则复合映射\(g \circ f\colon X\to\mathbb{R}\)在基\(\mathcal{B}_X\)上有极限，
+且\[
+	\lim_{\mathcal{B}_X} (g \circ f)(x)
+	= \lim_{\mathcal{B}_X} g(f(x))
+	= \lim_{\mathcal{B}_Y} g(y).
+\]
+\begin{proof}
+设\(\lim_{\mathcal{B}_Y} g(y) = A\).
+我们来证明\(\lim_{\mathcal{B}_X} g(f(x)) = A\).
+按照点\(A\)的给定邻域\(V(A)\)求出基\(\mathcal{B}_Y\)的元素\(B_Y\)，
+使得\(g(B_Y) \subseteq V(A)\).
+根据条件，可以求出基\(\mathcal{B}_X\)的元素\(B_X\)，
+使得\(f(B_X) \subseteq B_Y\).
+但此时\((g \circ f)(B_X) = g(f(B_X)) \subseteq g(B_Y) \subseteq V(A)\)，
+这就说明\(A\)是\(g \circ f\)在基\(\mathcal{B}_X\)上的极限.
+\end{proof}
+\end{theorem}
