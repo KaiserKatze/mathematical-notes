@@ -138,8 +138,9 @@
 % \end{example}
 
 \subsection{间断点}
-设函数\(f(x)\)在点\(x_0\)的某去心邻域内有定义.
-在此前提下，如果函数\(f(x)\)有下列三种情形之一：
+\begin{definition}
+设函数\(f\)在点\(x_0\)的某去心邻域内有定义.
+如果函数\(f\)有下列三种情形之一：
 \begin{enumerate}
 	\item 在\(x=x_0\)没有定义；
 	\item 虽在\(x=x_0\)有定义，
@@ -148,68 +149,116 @@
 	且\(\lim_{x \to x_0} f(x)\)存在，
 	但\(\lim_{x \to x_0} f(x) \neq f(x_0)\)，
 \end{enumerate}
-则称“函数\(f(x)\)在点\(x_0\)不连续”，
-称“点\(x_0\)是函数\(f(x)\)的\DefineConcept{不连续点}或\DefineConcept{间断点}（discontinuity）”.
+则称“函数\(f\)在点\(x_0\)不连续”
+或“点\(x_0\)是函数\(f\)的\DefineConcept{不连续点}或\DefineConcept{间断点}（discontinuity）”.
+\end{definition}
 
 如果\(\lim_{x \to x_0}f(x) = \infty\)，
 则称点\(x_0\)为函数的\DefineConcept{无穷间断点}.
-如\cref{figure:极限.无穷间断点}，
-点\(x=0\)是函数\(y=\frac{1}{x}\)的无穷间断点.
-
-\begin{figure}[ht]
-	\centering
-	\begin{tikzpicture}
-		\begin{axis}[
-			xmin=-10,xmax=10,
-			ymin=-1,ymax=1,
-			grid=both,
-			width=\textwidth,
-			height=6cm,
-			xlabel=$x$,
-			ylabel=$y$,
-			axis lines=middle,
-		]
-			\begin{scope}[samples=200,smooth,thick,red]
-				\addplot[domain=-10:-.1]{1/x};
-				\addplot[domain=+.1:+10]{1/x};
-			\end{scope}
-		\end{axis}
-	\end{tikzpicture}
-	\caption{}
-	\label{figure:极限.无穷间断点}
-\end{figure}
+例如，点\(x=0\)是函数\(y=\frac{1}{x}\)的无穷间断点.
 
 如果\(f(x)\)在点\(x_0\)的某一邻域是有界的，
 但其左、右极限均不存在，则称点\(x_0\)为函数的\DefineConcept{振荡间断点}.
-如\cref{figure:极限.振荡间断点}，
-点\(x=0\)是函数\(y=\sin\frac{1}{x}\)的振荡间断点.
+例如，点\(x=0\)是函数\(y=\sin\frac{1}{x}\)的振荡间断点.
 
-\begin{figure}[ht]
-	\centering
-	\begin{tikzpicture}
-		\begin{axis}[
-			xmin=-1.5,xmax=1.5,
-			ymin=-1,ymax=1,
-			grid=both,
-			width=\textwidth,
-			height=6cm,
-			xlabel=$x$,
-			ylabel=$y$,
-			axis lines=middle,
-			ytick={-1,1},
-			xtick={-2/pi,-1/pi,1/pi,2/pi},
-			xticklabels={$-\frac{2}{\pi}$,$-\frac{1}{\pi}$,$\frac{1}{\pi}$,$\frac{2}{\pi}$},
-		]
-			\begin{scope}[samples=200,smooth,thick,red]
-				\addplot[domain=-5/pi:-.1]{sin(deg(1/x))};
-				\addplot[domain=-.05:-.1]{sin(deg(1/x))};
-				\addplot[domain=-.05:-.01]{sin(deg(1/x))};
-				\addplot[domain=.05:.1]{sin(deg(1/x))};
-				\addplot[domain=.05:.01]{sin(deg(1/x))};
-				\addplot[domain=+.1:+5/pi]{sin(deg(1/x))};
-			\end{scope}
-		\end{axis}
-	\end{tikzpicture}
-	\caption{}
-	\label{figure:极限.振荡间断点}
-\end{figure}
+如果\(\lim_{x \to x_0}f(x) = A\)，
+但是\(f(x)\)在点\(x_0\)没有定义，或者\(f(x_0) \neq A\)，
+则称点\(x_0\)为函数的\DefineConcept{可去间断点}（removable discontinuity）.
+例如，点\(x=0\)是函数\(y=\frac{\sin x}{x}\)的可去间断点.
+
+如果\(f(x)\)在点\(x_0\)的左、右极限存在但不相等，
+即\(\lim_{x \to x_0^-}f(x) \neq \lim_{x \to x_0^+}f(x)\)，
+则称点\(x_0\)为函数的\DefineConcept{跳跃间断点}（jump discontinuity）.
+
+如果\(x_0\)是函数\(f(x)\)的间断点，
+但左极限\(f(x_0^-)\)及右极限\(f(x_0^+)\)都存在，
+那么\(x_0\)称为函数\(f(x)\)的\DefineConcept{第一类间断点}（discontinuity of the first kind）.
+不是第一类间断点的间断点，称为\DefineConcept{第二类间断点}（discontinuity of the second kind）.
+
+显然，可去间断点、跳跃间断点是第一类间断点，
+无穷间断点、振荡间断点是第二类间断点.
+
+\begin{example}
+已知函数\(f(x) = \frac{x-x^3}{\sin \pi x}\)，求该函数的可去间断点的个数.
+\begin{solution}
+当\(\sin \pi x = 0\)或\(x \in \mathbb{Z}\)时，函数\(f\)无定义；
+也就是说，点\(x\in\mathbb{Z}\)都是\(f\)的间断点.
+要使点\(x\)成为函数\(f\)的可去间断点，必有\(x-x^3=0\)，解得\(x\in\{-1,0,1\}\).
+又因为\begin{gather*}
+	\lim_{x\to0} \frac{x-x^3}{\sin \pi x}
+	= \lim_{x\to0} \frac{x(1-x^2)}{\pi x}
+	= \frac1\pi, \\
+	\lim_{x\to1} \frac{x-x^3}{\sin \pi x}
+	= \lim_{x\to1} \frac{1-3x^2}{\pi \cos \pi x}
+	= \frac2\pi, \\
+	\lim_{x\to-1} \frac{x-x^3}{\sin \pi x}
+	= \lim_{x\to-1} \frac{1-3x^2}{\pi \cos \pi x}
+	= \frac2\pi,
+\end{gather*}
+综上，函数\(f\)共有3个可去间断点.
+\end{solution}
+\end{example}
+
+\begin{example}
+设函数\(f(x) = \frac{x^2-x}{x^2-1}\sqrt{1+\frac{1}{x^2}}\).
+试计算\(f(x)\)的间断点种类及其个数.
+\begin{solution}
+因为\[
+	f(x) = \frac{x(x-1)}{(x-1)(x+1)} \frac{\sqrt{x^2+1}}{\abs{x}},
+\]
+所以\(f(x)\)的间断点为\(x\in\{-1,0,1\}\).
+
+又因为\begin{align*}
+	&\lim_{x\to1} f(x)
+	= \lim_{x\to1} \frac{\sqrt{x^2+1}}{x+1}
+	= \frac{\sqrt{2}}{2}, \\
+	&\lim_{x\to0^+} f(x)
+	= \lim_{x\to0^+} \frac{\sqrt{x^2+1}}{x+1}
+	= 1, \\
+	&\lim_{x\to0^-} f(x)
+	= \lim_{x\to0^-} -\frac{\sqrt{x^2+1}}{x+1}
+	= -1, \\
+	&\lim_{x\to-1} f(x)
+	= \lim_{x\to-1} \frac{\sqrt{x^2+1}}{x+1}
+	= \infty,
+\end{align*}
+所以点\(x=1\)是可去间断点，
+点\(x=0\)是跳跃间断点，
+点\(x=-1\)是无穷间断点.
+那么可去间断点、跳跃间断点和无穷间断点的个数均为1个.
+\end{solution}
+\end{example}
+
+% \subsection{半连续性}
+% \begin{definition}
+% 设\(f\colon D\to\mathbb{R}\).
+% 规定：\[
+% 	\begin{split}
+% 		\text{\(f\)在点\(x_0\) \DefineConcept{上半连续}}
+% 		\defiff
+% 			&\text{\(f\)在\(D\)内有上界} \\
+% 			&\land
+% 			(\forall\epsilon>0)
+% 			(\exists\delta>0)
+% 			(\forall x \in D)
+% 			[
+% 				\abs{x-x_0}<\delta
+% 				\implies
+% 				f(x)<f(x_0)+\epsilon
+% 			]; \\
+% 		\text{\(f\)在点\(x_0\) \DefineConcept{下半连续}}
+% 		\defiff
+% 			&\text{\(f\)在\(D\)内有下界} \\
+% 			&\land
+% 			(\forall\epsilon>0)
+% 			(\exists\delta>0)
+% 			(\forall x \in D)
+% 			[
+% 				\abs{x-x_0}<\delta
+% 				\implies
+% 				f(x)>f(x_0)-\epsilon
+% 			].
+% 	\end{split}
+% \]
+% %@see: https://healy.econ.ohio-state.edu/kcb/Ec181/Lecture13.pdf
+% \end{definition}
