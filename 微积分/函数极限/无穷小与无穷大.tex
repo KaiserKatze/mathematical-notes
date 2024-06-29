@@ -1,5 +1,5 @@
 \section{无穷小与无穷大}
-\subsection{无穷小}
+\subsection{无穷小的概念}
 \begin{definition}
 %@see: 《高等数学（第六版 上册）》 P39 定义1
 %@see: 《数学分析（上册）》（陈纪修） P100 定义3.3.1
@@ -25,8 +25,64 @@
 		f(x) = A + \alpha(x)
 	\right].
 \]
+\begin{proof}
+这里假设\(f\)在点\(x_0\)的某个邻域内有定义，
+即\((\exists\rho>0)[\mathring{U}(x_0,\rho) \subseteq X]\)，
+在此前提下证明\[
+	\lim_{x \to x_0} f(x) = A
+	\iff
+	(\exists\alpha\in\mathbb{R}^X)
+	\left[
+		\lim_{x \to x_0} \alpha(x) = 0
+		\land
+		f(x) = A + \alpha(x)
+	\right].
+\]
+
+必要性.
+设\(\lim_{x \to x_0} f(x) = A\)，
+由定义有\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x\in X)
+	[
+		0<\abs{x-x_0}<\delta
+		\implies
+		\abs{f(x)-A}<\epsilon
+	].
+\]
+令\(\alpha(x)=f(x)-A\)，
+则\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x\in X)
+	[
+		0<\abs{x-x_0}<\delta
+		\implies
+		\abs{\alpha(x)-0}<\epsilon
+	],
+\]
+也就是说函数\(\alpha\)是当\(x \to x_0\)时的无穷小.
+
+充分性.
+设\(f(x)=A+\alpha(x)\)，其中\(A\)是常数，\(\alpha\)是当\(x \to x_0\)时的无穷小.
+由定义有\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x\in X)
+	[
+		0<\abs{x-x_0}<\delta
+		\implies
+		\abs{\alpha(x)-0}<\epsilon
+		\implies
+		\abs{f(x)-A}<\epsilon
+	],
+\]
+这就说明\(A\)是函数\(f\)当\(x \to x_0\)时的极限.
+\end{proof}
 \end{theorem}
 
+\subsection{无穷小的比较}
 \begin{definition}
 %@see: 《高等数学（第六版 上册）》 P57 定义
 设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
@@ -133,7 +189,27 @@
 其中\(c\)是非零常数.
 \end{definition}
 
-\subsection{无穷大}
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P58 例1
+证明：当\(x\to0\)时，
+\(\sqrt[n]{1+x} - 1 \sim \frac1n x\).
+\begin{proof}
+因为\begin{align*}
+	\frac{\sqrt[n]{1+x} - 1}{\frac1n x}
+	&= \frac{(\sqrt[n]{1+x})^n - 1}{\frac1n x \left[ \sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1 \right]} \\
+	&= \frac{n}{\sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1},
+\end{align*}
+而\[
+	\lim_{x\to0} \sqrt[n]{(1+x)^m} = 1,
+\]
+所以\[
+	\lim_{x\to0} \frac{\sqrt[n]{1+x} - 1}{\frac1n x} = \lim_{x\to0} \frac{n}{1 \cdot n} = 1,
+\]
+也就是说\(\sqrt[n]{1+x} - 1 \sim \frac1n x \quad(x\to0)\).
+\end{proof}
+\end{example}
+
+\subsection{无穷大的概念}
 \begin{definition}
 %@see: 《数学分析（上册）》（陈纪修） P103 定义3.3.2
 设\(f\in\mathbb{R}^X\).
@@ -166,6 +242,7 @@
 \end{itemize}
 \end{definition}
 
+\subsection{无穷大的比较}
 \begin{definition}
 设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
 \(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷大.
