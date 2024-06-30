@@ -293,6 +293,60 @@
 \end{itemize}
 \end{theorem}
 
+显然，当一个函数是无穷大时，它必定无界；
+但当一个函数无界时，它却不一定是无穷大.
+\begin{example}
+证明：函数\(f(x) = \frac1x \sin\frac1x\)在区间\((0,1]\)上无界，
+但该函数不是\(x\to0^+\)时的无穷大.
+\begin{proof}
+取数列\(u_n = \frac{\pi}{2} + n\pi\ (n=0,1,2,\dotsc)\)，
+那么恒有\(\abs{\sin u_n} = 1\)和\[
+	0 < \dotsb < \frac1{u_n} < \dotsb < \frac1{u_1} < \frac1{u_0} < 1
+\]成立.
+易见\((\forall M > 0)(\forall n\in\mathbb{N})[n > M/\pi \implies u_n > M]\)，
+数列\(\{u_n\}\)无界.
+由于\[
+	\abs{f(x)} = \abs{\frac1x \sin\frac1x}
+	= \abs{\frac1x} \abs{\sin\frac1x}
+	= \frac1x \abs{\sin\frac1x},
+\]\[
+	\abs{f(1/u_n)}
+	= u_n \abs{\sin u_n}
+	= u_n,
+\]
+所以函数列\(\{\abs{f(1/u_n)}\}\)也无界，
+自然地，函数\(f\)也无界.
+
+用反证法.
+假设\(f\)是当\(x\to0^+\)时的无穷大，
+即\[
+	(\forall M>0)
+	(\exists\delta>0)
+	(\forall x)
+	[
+		0<x<\delta
+		\implies
+		\abs{f(x)}>M
+	].
+\]
+取数列\(v_n = n\pi\ (n=1,2,\dotsc)\)，
+那么\(\sin v_n = 0\)和\(v_n>0\)恒成立，
+且\[
+	(\forall\delta>0)
+	(\forall n\in\mathbb{N})
+	\left[n>\ceil*{\frac1{\pi\delta}} \implies 0<\frac1{v_n}<\delta\right].
+\]
+由于\[
+	\abs{f\left(\frac1{v_n}\right)}
+	= v_n \sin v_n
+	= 0,
+\]
+所以函数列\(\{\abs{f(1/v_n)}\}\)恒为零，
+与假设矛盾，说明\(f(x)\)不是\(x\to0^+\)时的无穷大.
+\end{proof}
+\end{example}
+
+
 \subsection{无穷大的比较}
 \begin{definition}
 设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
