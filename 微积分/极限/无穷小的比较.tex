@@ -21,177 +21,26 @@
 应当注意，下面的\(\alpha\)及\(\beta\)都是在同一个自变量的变化过程中的无穷小，
 且\(\alpha\neq0\)，\(\lim\frac{\beta}{\alpha}\)也是在这个变化过程中的极限.
 
-
 \begin{example}
-因为\(\lim_{x\to0} \frac{3x^2}{x} = 0\)，所以当\(x\to0\)时，\(3x^2\)是比\(x\)高阶的无穷小，即\(3x^2 = o(x)\ (x\to0)\).
+因为\(\lim_{x\to0} \frac{3x^2}{x} = 0\)，
+所以当\(x\to0\)时，
+\(3x^2\)是比\(x\)高阶的无穷小，
+即\(3x^2 = o(x)\ (x\to0)\).
 
-因为\(\lim_{n\to\infty} \frac{1/n}{1/n^2} = \infty\)，所以当\(n\to\infty\)时，\(\frac{1}{n}\)是比\(\frac{1}{n^2}\)低阶的无穷小.
+因为\(\lim_{n\to\infty} \frac{1/n}{1/n^2} = \infty\)，
+所以当\(n\to\infty\)时，
+\(\frac{1}{n}\)是比\(\frac{1}{n^2}\)低阶的无穷小.
 
-因为\(\lim_{x\to3} \frac{x^2-9}{x-3} = 6\)，所以当\(x\to3\)时，\(x^2-9\)与\(x-3\)是同阶无穷小.
+因为\(\lim_{x\to3} \frac{x^2-9}{x-3} = 6\)，
+所以当\(x\to3\)时，
+\(x^2-9\)与\(x-3\)是同阶无穷小.
 
-因为\(\lim_{x\to0} \frac{1-\cos x}{x^2} = \frac{1}{2}\)，所以当\(x\to0\)时，\(1-\cos x\)是关于\(x\)的二阶无穷小.
+因为\(\lim_{x\to0} \frac{1-\cos x}{x^2} = \frac{1}{2}\)，
+所以当\(x\to0\)时，
+\(1-\cos x\)是关于\(x\)的二阶无穷小.
 
-因为\(\lim_{x\to0} \frac{\sin x}{x} = 1\)，所以当\(x\to0\)时，\(\sin x\)与\(x\)是等价无穷小，即\(\sin x \sim x\ (x\to0)\).
+因为\(\lim_{x\to0} \frac{\sin x}{x} = 1\)，
+所以当\(x\to0\)时，
+\(\sin x\)与\(x\)是等价无穷小，
+即\(\sin x \sim x\ (x\to0)\).
 \end{example}
-
-\begin{example}
-%@see: 《高等数学（第六版 上册）》 P58 例1
-证明：当\(x\to0\)时，\(\sqrt[n]{1+x} - 1 \sim \frac{1}{n} x\).
-\begin{proof}
-因为\begin{align*}
-\frac{\sqrt[n]{1+x} - 1}{\frac{1}{n} x}
-&= \frac{(\sqrt[n]{1+x})^n - 1}{\frac{1}{n} x \left[ \sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1 \right]} \\
-&= \frac{n}{\sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1},
-\end{align*}
-而\[
-\lim_{x\to0} \sqrt[n]{(1+x)^m} = 1,
-\]所以\[
-\lim_{x\to0} \frac{\sqrt[n]{1+x} - 1}{\frac{1}{n} x} = \lim_{x\to0} \frac{n}{1 \cdot n} = 1,
-\]也就是说\(\sqrt[n]{1+x} - 1 \sim \frac{1}{n} x \quad(x\to0)\).
-\end{proof}
-\end{example}
-
-\begin{theorem}\label{theorem:极限.无穷小的比较1}
-%@see: 《高等数学（第六版 上册）》 P58 定理1
-\(\beta\)与\(\alpha\)是等价无穷小的充分必要条件为\[
-	\beta=\alpha+o(\alpha).
-\]
-\begin{proof}
-必要性.
-设\(\alpha\sim\beta\)，则\[
-	\lim\frac{\beta-\alpha}{\alpha}
-	=\lim\left(\frac{\beta}{\alpha}-1\right)
-	=\lim\frac{\beta}{\alpha}-1 = 0,
-\]
-因此\(\beta-\alpha=o(\alpha)\)，即\(\beta=\alpha+o(\alpha)\).
-
-充分性.
-设\(\beta=\alpha+o(\alpha)\)，则\[
-	\lim\frac{\beta}{\alpha}
-	=\lim\frac{\alpha+o(\alpha)}{\alpha}
-	=\lim\left(1+\frac{o(\alpha)}{\alpha}\right) = 1,
-\]
-因此\(\alpha\sim\beta\).
-\end{proof}
-\end{theorem}
-
-\begin{theorem}\label{theorem:极限.无穷小的比较2}
-%@see: 《高等数学（第六版 上册）》 P59 定理2
-设\(\alpha\sim\alpha'\)，\(\beta\sim\beta'\)，
-且\(\lim\frac{\beta'}{\alpha'}\)存在，
-则\[
-	\lim\frac{\beta}{\alpha}=\lim\frac{\beta'}{\alpha'}.
-\]
-\begin{proof}
-由\(\alpha\sim\alpha'\)和\(\beta\sim\beta'\)有
-\(\lim\frac{\alpha'}{\alpha} = 1\)，
-\(\lim\frac{\beta}{\beta'} = 1\)，
-因此\[
-	\lim\frac{\beta}{\alpha}
-	= \lim \left(
-		\frac{\beta}{\beta'}
-		\cdot \frac{\beta'}{\alpha'}
-		\cdot \frac{\alpha'}{\alpha}
-	\right)
-	= \lim\frac{\beta}{\beta'}
-		\cdot \lim \frac{\beta'}{\alpha'}
-		\cdot \lim\frac{\alpha'}{\alpha}
-	= 1 \cdot \lim \frac{\beta'}{\alpha'} \cdot 1
-	= \lim \frac{\beta'}{\alpha'}.
-	\qedhere
-\]
-\end{proof}
-\end{theorem}
-\cref{theorem:极限.无穷小的比较2} 表明，
-求两个无穷小之比的极限时，
-分子及分母都可用等价无穷小来代替.
-因此，如果用来代替的无穷小选得适当的话，
-可以使计算简化.
-
-必须指出的是，等价无穷小实际上是一种等价关系.
-\begin{property}\label{theorem:极限.无穷小的比较6}
-设\(\alpha,\beta,\gamma\)都是在同一个自变量的变化过程中的无穷小，
-那么\begin{enumerate}
-	\item {\bf 自反性}：
-	\(\alpha \sim \alpha\)；
-
-	\item {\bf 对称性}：
-	\(\alpha \sim \beta \implies \beta \sim \alpha\)；
-
-	\item {\bf 传递性}：
-	\(\alpha \sim \beta, \beta \sim \gamma \implies \alpha \sim \gamma\).
-\end{enumerate}
-\end{property}
-
-
-\begin{proposition}
-设\(\alpha,\beta,\gamma\)都是在同一个自变量的变化过程中的无穷小，
-\(\alpha\neq0,
-\gamma\neq0\)，
-且\[
-	\lim\frac{\beta}{\alpha^p}=c_1\in(0,+\infty), \qquad
-	\lim\frac{\gamma}{\alpha^q}=c_2\in(0,+\infty).
-\]
-那么：\begin{enumerate}
-	\item 若\(p>q\)，
-	则\(\beta\)是比\(\gamma\)高阶的无穷小.
-
-	\item 若\(p=q\)，
-	则\(\beta\)是比\(\gamma\)同阶的无穷小.
-
-	\item 若\(p<q\)，
-	则\(\beta\)是比\(\gamma\)低阶的无穷小.
-\end{enumerate}
-
-\begin{proof}
-容易得到\begin{align*}
-	\lim\frac{\beta}{\gamma}
-	&= \lim\left(
-			\frac{\beta}{\alpha^p}
-			\frac{\alpha^p}{\alpha^q}
-			\frac{\alpha^q}{\gamma}
-		\right) \\
-	&= \lim\frac{\beta}{\alpha^p}
-		\cdot \lim\frac{\alpha^p}{\alpha^q}
-		\cdot \lim\frac{\alpha^q}{\gamma} \\
-	&= c_1 \cdot \lim\alpha^{p-q} \cdot c_2^{-1}
-	= \frac{c_1}{c_2} \lim\alpha^{p-q}.
-	\tag1
-\end{align*}
-注意到\(\lim\alpha=0\).
-当\(p>q\)时，(1)式等于\(0\)，\(\beta\)是比\(\gamma\)高阶的无穷小，即\(\beta=o(\gamma)\).
-当\(p=q\)时，(1)式等于\(\frac{c_1}{c_2}\)，\(\beta\)是比\(\gamma\)同阶的无穷小.
-当\(p<q\)时，(1)式等于\(\infty\)，\(\beta\)是比\(\gamma\)低阶的无穷小，即\(\gamma=o(\beta)\).
-\end{proof}
-\end{proposition}
-正因如此，我们常在求极限的时候，将某个数列或函数作为比较无穷小的阶的参照系.
-例如，在讨论当\(n\to\infty\)时的无穷小时，
-我们把数列\(\left\{\frac1n\right\}\)作为参照系，
-计算极限\(\lim_{n\to\infty} n \sin\frac1n = 1\)，
-然后说“数列\(\left\{\sin\frac1n\right\}\)是（\(\frac1n\)的）1阶无穷小”.
-又例如，在讨论当\(x\to0\)时的无穷小时，
-我们把函数\(f(x)=x\)作为参考系，
-计算极限\(\lim_{x\to0} \frac{3x^2+4x^5}{x^2} = 3\)，
-然后说“函数\(3x^2+4x^5\)是（\(x\)的）2阶无穷小”.
-
-\begin{proposition}[和差取大规则]\label{theorem:极限.无穷小的比较3}
-设\(\beta=o(\alpha)\)，则\(\alpha\pm\beta\sim\alpha\).
-\end{proposition}
-\cref{theorem:极限.无穷小的比较3} 说明，
-当高阶无穷小\(\beta\)和低阶无穷小\(\alpha\)相加或相减时，
-它们的等价无穷小就是低阶无穷小\(\alpha\).
-因为当自变量变化时，高阶无穷小比低阶无穷小更快地趋于零，
-相对而言，低阶无穷小就显得更“大”一些，
-因此我们把\cref{theorem:极限.无穷小的比较3} 称为“和差取大规则”.
-
-\begin{proposition}[和差代替规则]\label{theorem:极限.无穷小的比较4}
-设\(\alpha\sim\alpha'\)，\(\beta\sim\beta'\)，\(\beta\)与\(\alpha\)不是等价无穷小，则\[
-	\alpha\pm\beta\sim\alpha'\pm\beta'.
-\]
-\end{proposition}
-
-\begin{proposition}[因式代替规则]\label{theorem:极限.无穷小的比较5}
-设\(\alpha\sim\beta\)，且函数\(\phi\)有界或\(\lim\phi\)存在，则\[
-	\alpha \phi \sim \beta \phi.
-\]
-\end{proposition}
