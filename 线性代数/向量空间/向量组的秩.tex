@@ -179,22 +179,51 @@ theorem:向量空间.线性表出2的充分条件}，
 
 \begin{theorem}
 %@see: 《线性代数》（张慎语、周厚隆） P72
-\(A=\{\AutoTuple{\a}{s}\}\ (s>1)\)线性相关的充分必要条件是：
+设\(A\)是向量组，且\(\card A > 1\).
+\(A\)线性相关的充分必要条件是：
 \(A\)可由某个部分组线性表出.
 \begin{proof}
-由\cref{theorem:线性方程组.向量组线性相关的充分必要条件1} 可知
+必要性.
+因为\(\card A > 1\)，
+所以由\cref{theorem:线性方程组.向量组线性相关的充分必要条件1} 可知
 \[
-	\text{\(A=\{\AutoTuple{\a}{s}\}\ (s>1)\)线性相关}
+	\text{\(A\)线性相关}
 	\iff
 	(\exists \a \in A)[\a \in \Span(A-\{\a\})].
 \]
-令\(B=A-\{\a\}\)，
-显然\(B \subseteq A\).
-于是我们有\(\{\a\}\subseteq\Span B\)和\(B \subseteq \Span B\)；
-因此\[
-	A=\{\a\}\cup B\subseteq\Span B,
-\]
+又因为\(\card A > 1\)，
+所以\((\forall\b\in A)[\card(A-\{\b\})>0]\)，
+那么只要令\(B=A-\{\a\}\)，
+就必然有\[
+	\emptyset \neq B \subseteq A = \{\a\} \cup B, \qquad
+	\{\a\}\subseteq\Span B, \qquad
+	B \subseteq \Span B
+\]同时成立.
+因此\(A\subseteq\Span B\)，
 这就是说\(A\)可由\(B\)线性表出.
+
+充分性.
+因为\(\card A > 1\)，
+所以\((\exists B)[\emptyset \neq B \subset A]\).
+假设\(B\)是\(A\)的一个非空真子集，且\(A\)可由它线性表出，
+即\(\emptyset \neq B \subset A\)且\(\Span A \subseteq \Span B\).
+显然\(A-B\neq\emptyset\).
+由于\hyperref[theorem:线性方程组.部分组可由全组线性表出]{部分组可由全组线性表出}，
+所以\[
+	A-B \subseteq A
+	\implies
+	A-B \subseteq \Span A
+	\implies
+	A-B \subseteq \Span B.
+\]
+我们可以笃定：存在向量\(\g \in A-B\)，使得\(\g\)可由向量组\(B\)线性表出，
+即\(\g \in \Span B\).
+因为\(\g \in A-B \implies A-\{\g\} \supseteq B\)，
+所以\(\Span B \subseteq \Span(A-\{\g\})\)，
+那么\(\g\)也可由向量组\((A-\{g\})\)线性表出，
+即\(\g \in \Span(A-\{g\})\).
+于是由\cref{theorem:线性方程组.向量组线性相关的充分必要条件1} 可知
+向量组\(A\)线性相关.
 \end{proof}
 \end{theorem}
 
