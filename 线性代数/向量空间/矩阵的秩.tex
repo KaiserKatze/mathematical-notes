@@ -9,27 +9,27 @@
 设\(\A\)是矩阵.
 \begin{enumerate}
 	\item \(\A\)的行向量组生成的子空间称为
-	“\(\A\)的\DefineConcept{行空间}（row space）”，记为\(\Span_R\A\).
+	“\(\A\)的\DefineConcept{行空间}（row space）”，记为\(\SpanR\A\).
 	\item \(\A\)的列向量组生成的子空间称为
-	“\(\A\)的\DefineConcept{列空间}（column space）”，记为\(\Span_C\A\).
+	“\(\A\)的\DefineConcept{列空间}（column space）”，记为\(\SpanC\A\).
 	\item \(\A\)的行向量组的秩称为
-	“\(\A\)的\DefineConcept{行秩}（row rank）”，记为\(\rank_R\A\).
+	“\(\A\)的\DefineConcept{行秩}（row rank）”，记为\(\RankR\A\).
 	\item \(\A\)的列向量组的秩称为
-	“\(\A\)的\DefineConcept{列秩}（column rank）”，记为\(\rank_C\A\).
+	“\(\A\)的\DefineConcept{列秩}（column rank）”，记为\(\RankC\A\).
 \end{enumerate}
 %@see: https://mathworld.wolfram.com/RowSpace.html
 %@see: https://mathworld.wolfram.com/ColumnSpace.html
 \end{definition}
 
 矩阵的列秩等于它的列空间的维数，它的行秩等于它的行空间的维数，即\[
-	\rank_C\A=\dim(\Span_C\A), \qquad
-	\rank_R\A=\dim(\Span_R\A).
+	\RankC\A=\dim(\SpanC\A), \qquad
+	\RankR\A=\dim(\SpanR\A).
 \]
 
 \begin{proposition}\label{theorem:向量空间.矩阵的行秩与列秩分别等于它的转置矩阵的列秩与行秩}
 设\(\A\)是矩阵，那么\begin{gather}
-	\rank_R\A=\rank_C\A^T, \\
-	\rank_C\A=\rank_R\A^T.
+	\RankR\A=\RankC\A^T, \\
+	\RankC\A=\RankR\A^T.
 \end{gather}
 \begin{proof}
 显然\(\A\)的行向量组就是\(\A^T\)的列向量组，
@@ -40,9 +40,9 @@
 \begin{definition}
 设矩阵\(\A \in M_{s \times n}(K)\).
 \begin{enumerate}
-	\item 若\(\rank_R\A = s\)，
+	\item 若\(\RankR\A = s\)，
 	则称“\(\A\)为\DefineConcept{行满秩矩阵}（row full rank matrix）”.
-	\item 若\(\rank_C\A = n\)，
+	\item 若\(\RankC\A = n\)，
 	则称“\(\A\)为\DefineConcept{列满秩矩阵}（column full rank matrix）”.
 \end{enumerate}
 \end{definition}
@@ -129,7 +129,7 @@
 	= (\AutoTuple{\A}{s}[,][T])^T.
 \]
 根据\cref{theorem:向量空间.秩与线性相关性的关系}，
-由于\(\rank_C\A=n\)，
+由于\(\RankC\A=n\)，
 所以\(\A\)的列向量组线性无关，
 也就是说齐次线性方程组\[
 	x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \z
@@ -137,7 +137,7 @@
 进而根据\cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}，
 在\(\A\x=\z\)中，方程个数\(s\)不少于未知量个数\(n\)，即\(s \geq n\).
 
-设\(\rank_R\A=t\).
+设\(\RankR\A=t\).
 根据\cref{theorem:向量空间.子空间维数.命题4}，
 因为\(\A\)的行向量的维数是\(n\)，
 所以\(t \leq n\).
@@ -160,7 +160,7 @@
 所以假设\(t < n\)不成立，
 因此\(t = n\).
 这就是说\[
-	\rank_R\A=\rank_C\A=n.
+	\RankR\A=\RankC\A=n.
 \]
 
 既然\(t=n\)，
@@ -183,7 +183,7 @@
 矩阵的行秩、列秩、秩都相等.
 \begin{proof}
 如果矩阵\(\A = \z\)，
-则\(\rank\A=\rank_R\A=\rank_C\A=0\)，
+则\(\rank\A=\RankR\A=\RankC\A=0\)，
 结论成立.
 
 当\(\A\neq\z\)时，
@@ -194,15 +194,15 @@
 从而该\(r\)阶子式的列向量组线性无关，
 它们的延伸组也线性无关，
 \(\A\)有\(r\)列线性无关，
-于是\(\rank_C\A=p \geq r\)；
+于是\(\RankC\A=p \geq r\)；
 由\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.引理}，
 \(\A\)的列极大线性无关组构成的矩阵有一非零\(p\)阶子式，
 也是\(\A\)的子式，
 故\(p \leq r\)；
 综上得\(p = r\).
-因此\(\rank\A=\rank_C\A\).
+因此\(\rank\A=\RankC\A\).
 同样地，将这一结论用于\(\A^T\)，
-得\(\rank\A^T=\rank_C\A^T=\rank_R\A\).
+得\(\rank\A^T=\RankC\A^T=\RankR\A\).
 \end{proof}
 \end{theorem}
 
@@ -211,7 +211,7 @@
 设\(\A\)是矩阵，那么\(\rank\A = \rank\A^T\).
 \begin{proof}
 根据\cref{theorem:向量空间.矩阵的秩与行秩和列秩的关系.定理,theorem:向量空间.矩阵的行秩与列秩分别等于它的转置矩阵的列秩与行秩}，
-有\(\rank\A=\rank_C\A=\rank_R\A^T=\rank\A^T\).
+有\(\rank\A=\RankC\A=\RankR\A^T=\rank\A^T\).
 \end{proof}
 \end{theorem}
 
