@@ -451,6 +451,45 @@ B=\{(1,0)\}\).
 \end{proof}
 \end{property}
 
+\begin{proposition}\label{theorem:向量组的秩.并集的秩}
+设\(A\)是\(K^n\)中的向量组.
+\begin{itemize}
+	\item 如果向量\(\a\)可由\(A\)线性表出，
+	则\[
+		\rank(A \cup \{\a\}) = \rank A.
+	\]
+
+	\item 如果向量\(\a\)不可由\(A\)线性表出，
+	则\[
+		\rank(A \cup \{\a\}) = \rank A + 1.
+	\]
+\end{itemize}
+\begin{proof}
+假设\(A'\)是\(A\)的一个极大线性无关组.
+
+如果向量\(\a\)可由\(A\)线性表出，
+那么\(\a\)可由\(A'\)线性表出，
+所以\(A \cup \{\a\}\)中的每一个向量都可由\(A'\)线性表出，
+于是\[
+	\rank(A \cup \{\a\})
+	= \card A'
+	= \rank A.
+\]
+
+如果向量\(\a\)不可由\(A\)线性表出，
+那么\(A' \cup \{\a\}\)线性无关，
+且\(A \cup \{\a\}\)可由\(A' \cup \{\a\}\)线性表出，
+这就说明\(A' \cup \{\a\}\)一定是\(A \cup \{\a\}\)的一个极大线性无关组.
+于是\[
+	\rank(A \cup \{\a\})
+	= \card(A' \cup \{\a\})
+	= \card A' + 1
+	= \rank A + 1.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
 \begin{corollary}\label{theorem:向量空间.秩与线性相关性的关系}
 %@see: 《线性代数》（张慎语、周厚隆） P73 推论4
 %@see: 《高等代数（第三版 上册）》（丘维声） P75 命题6
@@ -519,7 +558,7 @@ B=\{(1,0)\}\).
 	{\color{black} \rank A \leq \rank B}.
 \]
 
-\begin{theorem}
+\begin{theorem}\label{theorem:向量组的秩.等价向量组的秩相等}
 %@see: 《线性代数》（张慎语、周厚隆） P74 推论6
 %@see: 《高等代数（第三版 上册）》（丘维声） P76 推论8
 等价向量组的秩相等.
@@ -542,6 +581,53 @@ B=\{(1,0)\}\).
 但\(A\)与\(B\)显然不等价.
 \end{proof}
 \end{theorem}
+
+\begin{proposition}\label{theorem:向量组的秩.向量组等价的充分必要条件}
+设\(A,B\)都是\(K^n\)中的向量组，
+则\(A\)与\(B\)等价的充分必要条件是\[
+	\rank A = \rank B = \rank(A \cup B).
+\]
+\begin{proof}
+必要性.
+假设\(A \cong B\)成立.
+因为\hyperref[theorem:向量组的秩.等价向量组的秩相等]{等价向量组的秩相等}，
+所以\(\rank A = \rank B\).
+因为\(A\)和\(B\)均可由\(B\)线性表出，
+从而\(A \cup B\)也可由\(B\)线性表出；
+同时\(B\)作为\(A \cup B\)的部分组自然可由\(A \cup B\)线性表出，
+所以\(A \cup B\)与\(B\)等价，
+于是\(\rank(A \cup B) = \rank B\).
+
+充分性.
+用反证法.
+假设\(\rank A = \rank(A \cup B)\)成立，
+但是\(B\)不可由\(A\)线性表出.
+因为\(B\)不可由\(A\)线性表出，
+所以\[
+	(\exists\b \in B)  		% 向量组 B 中存在向量 \b
+	[\b \notin \Span A],	% 向量 \b 不在向量组 A 的线性生成空间中
+\]
+于是根据\cref{theorem:向量组的秩.并集的秩}
+可知\(\rank(A \cup B) > \rank A\)，
+与假设矛盾，
+因此\[
+	\rank A = \rank(A \cup B)
+	\implies
+	\text{\(B\)可由\(A\)线性表出}.
+\]
+同理\[
+	\rank B = \rank(A \cup B)
+	\implies
+	\text{\(A\)可由\(B\)线性表出}.
+\]
+综上所述\[
+	\rank A = \rank(A \cup B) = \rank B
+	\implies
+	A \cong B.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
 
 \begin{example}\label{example:向量空间.若部分组向量个数多于全组的秩则部分组必线性相关}
 证明：在秩为\(r\)的向量组中，任意\(r+1\)个向量必线性相关.
