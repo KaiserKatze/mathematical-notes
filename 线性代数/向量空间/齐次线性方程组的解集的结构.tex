@@ -4,25 +4,33 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P90 性质2
 %@see: 《线性代数》（张慎语、周厚隆） P80 性质1
 %@see: 《线性代数》（张慎语、周厚隆） P81 推论
-齐次线性方程组\(\A\x=\z\)的解的任意线性组合也是解.
+齐次线性方程组\(\A\x=\vb0\)的解的任意线性组合也是解.
 \begin{proof}
-设\(\X1\)与\(\X2\)是齐次线性方程组\(\A\x=\z\)的任意两个解，
+设\(\X1\)与\(\X2\)是齐次线性方程组\(\A\x=\vb0\)的任意两个解，
 即\[
-	\A\X1=\z, \qquad
-	\A\X2=\z.
+	\A\X1=\vb0, \qquad
+	\A\X2=\vb0.
 \]
 又设\(k\)是任意常数，那么有\[
-	\A (\X1 + \X2) = \A \X1 + \A \X2 = \z + \z = \z,
+	\A (\X1 + \X2) = \A \X1 + \A \X2 = \vb0 + \vb0 = \vb0,
 \]\[
-	\A (k \X1) = k (\A \X1) = k \z = \z,
+	\A (k \X1) = k (\A \X1) = k \vb0 = \vb0,
 \]
-所以\(\X1 + \X2\)与\(k \X1\)都是\(\A \x = \z\)的解.
+所以\(\X1 + \X2\)与\(k \X1\)都是\(\A \x = \vb0\)的解.
 \end{proof}
 \end{proposition}
 
 \cref{theorem:线性方程组.齐次线性方程组的解的线性组合也是解} 表明，
-\(n\)元齐次线性方程组\(x_1\a_1+x_2\a_2+\dotsb+x_n\a_n=\z\)的解集\(W\)是\(K^n\)的一个子空间.
-我们把它称为这个方程组的\DefineConcept{解空间}（space of solution）.
+\(n\)元齐次线性方程组\(x_1\a_1+x_2\a_2+\dotsb+x_n\a_n=\vb0\)的解集\[
+	W = \Set{
+		\x \in K^n
+		\given
+		\A\x=\vb0
+	}
+\]是\(K^n\)的一个子空间.
+我们把它称为“方程组\(\A\x=\vb0\)的\DefineConcept{解空间}（space of solution）”.
+有时也把它称为“矩阵\(\A\)的\DefineConcept{零空间}（null space）”，
+并记为\(\NullSpace\A\).
 如果这个方程组只有零解，那么\(W\)是零子空间.
 如果这个方程组有非零解，那么\(W\)是非零子空间，从而\(W\)有基.
 我们把解空间\(W\)的一个基称为这个方程组的一个\DefineConcept{基础解系}（basic set of solutions）.
@@ -55,7 +63,7 @@
 设\(\B\)的第\(i\)行非零首元为\(b_{ii}\ (i=1,2,\dotsc,r)\)，则\[
 	\A \to \B = \begin{bmatrix}
 		\B_1 & \B_2 \\
-		\z & \z
+		\vb0 & \vb0
 	\end{bmatrix},
 \]
 其中\[
@@ -78,7 +86,7 @@
 	\x = (x_1,x_2,\dotsc,x_r,x_{r+1},\dotsc,x_n)^T,
 \]
 将自由未知量\(x_{r+1},x_{r+2},\dotsc,x_n\)的一组值\((1,0,\dotsc,0)\)代入\[
-	\B \x = \z,
+	\B \x = \vb0,
 \]
 去掉\(0 = 0\)的等式，
 移项得线性方程组\[
@@ -101,14 +109,14 @@
 \]
 系数行列式\(D = b_{11} b_{22} \dotsm b_{rr} \neq 0\).
 
-由克拉默法则，(1)式有唯一解，于是得\(\A\x=\z\)的一个解\[
+由克拉默法则，(1)式有唯一解，于是得\(\A\x=\vb0\)的一个解\[
 \X1 = (c_{11},c_{21},\dotsc,c_{r1},1,0,\dotsc,0)^T.
 \]
 
 同理，分别将\(x_{r+1},x_{r+2},\dotsc,x_n\)的值\((0,1,\dotsc,0),\dotsc,(0,0,\dotsc,1)\)代入\[
-	\B \x = \z,
+	\B \x = \vb0,
 \]
-求出\(\A\x=\z\)的相应的解\[
+求出\(\A\x=\vb0\)的相应的解\[
 	\begin{array}{rcl}
 		\X2 &=& (c_{12},c_{22},\dotsc,c_{r2},0,1,\dotsc,0)^T, \\
 		&\vdots& \\
@@ -117,9 +125,9 @@
 \]
 
 易见，\begin{enumerate}
-	\item \(\AutoTuple{\x}{n-r}\)是\(\A\x=\z\)的解；
+	\item \(\AutoTuple{\x}{n-r}\)是\(\A\x=\vb0\)的解；
 
-	\item 考虑向量方程\(k_1\X1+k_2\X2+\dotsb+k_{n-r}\X{n-r}=\z\)，即\[
+	\item 考虑向量方程\(k_1\X1+k_2\X2+\dotsb+k_{n-r}\X{n-r}=\vb0\)，即\[
 		(l_1,l_2,\dotsc,l_r,k_1,k_2,\dotsc,k_{n-r})^T
 		= (0,0,\dotsc,0,0,\dotsc,0)^T,
 	\]
@@ -128,12 +136,12 @@
 	\]
 	即\(\AutoTuple{\x}{n-r}\)线性无关；
 
-	\item 设\(\x=(c_1,c_2,\dotsc,c_r,k_1,k_2,\dotsc,k_{n-r})^T\)是方程组\(\A\x=\z\)的任意一个解，
+	\item 设\(\x=(c_1,c_2,\dotsc,c_r,k_1,k_2,\dotsc,k_{n-r})^T\)是方程组\(\A\x=\vb0\)的任意一个解，
 	则\[
 		\x - (k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r})
 		= (d_1,d_2,\dotsc,d_r,0,0,\dotsc,0)^T
 	\]是齐次方程组的解，
-	代入\(\B\x=\z\)，去掉\(0 = 0\)的等式，得\[
+	代入\(\B\x=\vb0\)，去掉\(0 = 0\)的等式，得\[
 		\begin{bmatrix}
 			b_{11} & b_{12} & \dots & b_{1r} \\
 			& b_{22} & \dots & b_{2r} \\
@@ -150,22 +158,22 @@
 	因为系数行列式\(\abs{\B_1} \neq 0\)，
 	所以\(d_1 = d_2 = \dotsb = d_r = 0\).
 	于是\[
-		\x - (k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r}) = \z,
+		\x - (k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r}) = \vb0,
 	\]或\[
 		\x = k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r}.
 	\]
 \end{enumerate}
 
-综上所述，\(\AutoTuple{\x}{n-r}\)是\(\A\x=\z\)的一个基础解系，含有\(n-r\)个解向量.
+综上所述，\(\AutoTuple{\x}{n-r}\)是\(\A\x=\vb0\)的一个基础解系，含有\(n-r\)个解向量.
 \end{proof}
 \end{theorem}
 
 \begin{corollary}
-设齐次线性方程组\(\A\x=\z\)的系数矩阵\(\A\)是\(s \times n\)矩阵，若\(\rank\A = r < n\)，
+设齐次线性方程组\(\A\x=\vb0\)的系数矩阵\(\A\)是\(s \times n\)矩阵，若\(\rank\A = r < n\)，
 则\begin{enumerate}
-	\item \(\A\x=\z\)的每个基础解系都含有\(n-r\)个解向量；
-	\item \(\A\x=\z\)的任意\(n-r+1\)个解向量线性相关；
-	\item \(\A\x=\z\)的任意\(n-r\)个线性无关的解都是它的一个基础解系.
+	\item \(\A\x=\vb0\)的每个基础解系都含有\(n-r\)个解向量；
+	\item \(\A\x=\vb0\)的任意\(n-r+1\)个解向量线性相关；
+	\item \(\A\x=\vb0\)的任意\(n-r\)个线性无关的解都是它的一个基础解系.
 \end{enumerate}
 \end{corollary}
 
@@ -263,7 +271,7 @@
 	= \B,
 \end{align*}
 因为\(\rank\A=\rank\B=2\)，所以基础解系含\(5-2=3\)个向量.
-分别将\(x_3,x_4,x_5\)的3组值\((2,0,0),(0,1,0),(0,0,1)\)代入\(\B\x=\z\)，
+分别将\(x_3,x_4,x_5\)的3组值\((2,0,0),(0,1,0),(0,0,1)\)代入\(\B\x=\vb0\)，
 得基础解系：\[
 	\X1 = (4,1,2,0,0)^T, \quad
 	\X2 = (2,2,0,1,0)^T, \quad
@@ -274,29 +282,29 @@
 \end{example}
 
 \cref{theorem:线性方程组.齐次线性方程组的解向量个数}
-揭示矩阵\(\A\)的秩与方程\(\A\x=\z\)的基础解系所含向量个数的关系.
-它不仅对\(\A\x=\z\)的求解有重要意义，而且可以用来解决矩阵的秩的一些问题.
+揭示矩阵\(\A\)的秩与方程\(\A\x=\vb0\)的基础解系所含向量个数的关系.
+它不仅对\(\A\x=\vb0\)的求解有重要意义，而且可以用来解决矩阵的秩的一些问题.
 \begin{example}
-设\(\A\)为\(s \times n\)矩阵，\(\B\)为\(n \times m\)矩阵，\(\A\B=\z\).
+设\(\A\)为\(s \times n\)矩阵，\(\B\)为\(n \times m\)矩阵，\(\A\B=\vb0\).
 证明：\(\rank\A + \rank\B \leq n\).
 \begin{proof}
-设矩阵\(\B\)与\(\A\B=\z\)右端的零矩阵列分块矩阵分别为\[
+设矩阵\(\B\)与\(\A\B=\vb0\)右端的零矩阵列分块矩阵分别为\[
 	\B=(\AutoTuple{\b}{m}),
 	\quad
-	\z=(\z,\dotsc,\z)
+	\vb0=(\vb0,\dotsc,\vb0)
 \]
 那么\[
 	\A(\AutoTuple{\b}{m})
 	= (\A\b_1,\A\b_2,\dotsc,\A\b_m)
-	= (\z,\z,\dotsc,\z)
+	= (\vb0,\vb0,\dotsc,\vb0)
 \]或\[
-	\A\b_j = \z \quad(j=1,2,\dotsc,m)
+	\A\b_j = \vb0 \quad(j=1,2,\dotsc,m)
 \]
-即\(\beta=\{\AutoTuple{\b}{m}\}\)是齐次线性方程组\(\A\x=\z\)解向量组.
+即\(\beta=\{\AutoTuple{\b}{m}\}\)是齐次线性方程组\(\A\x=\vb0\)解向量组.
 
-若\(\rank\A=n\)，则\(\A\x=\z\)只有零解，\(\B=\z\)，\(\rank\B=0=n-\rank\A\).
+若\(\rank\A=n\)，则\(\A\x=\vb0\)只有零解，\(\B=\vb0\)，\(\rank\B=0=n-\rank\A\).
 
-若\(\rank\A<n\)，则\(X=\{\AutoTuple{\x}{n-r}\}\)是\(\A\x=\z\)的一个基础解系，
+若\(\rank\A<n\)，则\(X=\{\AutoTuple{\x}{n-r}\}\)是\(\A\x=\vb0\)的一个基础解系，
 则\(\beta\)可由\(X\)线性表出，\(\rank\beta \leq \rank X\).
 而\(\rank\beta=\rank\B\)，\(\rank X=n-\rank\A\).
 
@@ -321,7 +329,7 @@
 也可由\(\b_1,\b_2\)线性表出，求\(\g\).
 \begin{solution}
 设\(\g = x_1 \a_1 + x_2 \a_2 = x_3 \b_1 + x_4 \b_2\)，
-则\(x_1 \a_1 + x_2 \a_2 - x_3 \b_1 - x_4 \b_2 = \z\).
+则\(x_1 \a_1 + x_2 \a_2 - x_3 \b_1 - x_4 \b_2 = \vb0\).
 又由于\[
 	(\a_1,\a_2,-\b_1,-\b_2) = \begin{bmatrix}
 		1 & 2 & -2 & -1 \\
