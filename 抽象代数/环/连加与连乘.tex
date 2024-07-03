@@ -1,0 +1,60 @@
+\section{连加与连乘}
+% 这个小节都是我自己定义的概念，暂未找到其他书上有类似说法
+现在我们来尝试重新定义连加号与连乘号.
+
+\begin{definition}
+设\(X\)是非空集合，
+\(I\in\omega\)，
+序列\(f\colon I \to X\)，
+序列\(g\colon I \to X\)，
+\(+\)是定义在\(X\)上的一个二元代数运算.
+如果对于\(\forall i\in I\)有\[
+	g(i) = \left\{ \begin{array}{lc}
+		f(0), & i=0, \\
+		g(i-1) + f(i), & 0<i<I,
+	\end{array} \right.
+\]
+则称“\(g\)是\(f\)从\(0\)到\(I\)对\(+\)运算的\DefineConcept{累积}”，
+记\[
+	\Accumulate_{0 \leq i < I}^+ f(i)
+	\defeq
+	g(I-1).
+\]
+\end{definition}
+
+我们可以进一步扩展上述定义：
+\begin{definition}
+设\(X\)是非空集合，
+\(I,J\in\omega\)且\(J<I\)，
+序列\(f\colon I \to X\)，
+序列\(g\colon I \to X\)，
+\(+\)是定义在\(X\)上的一个二元代数运算，
+\(o\)是\(\opair{X,+}\)的单位元.
+如果对于\(\forall i\in I\)有\[
+	g(i) = \left\{ \begin{array}{lc}
+		o, & i<J, \\
+		f(J), & i=J, \\
+		g(i-1) + f(i), & J<i<I,
+	\end{array} \right.
+\]
+则称“\(g\)是\(f\)从\(J\)到\(I\)对\(+\)运算的\DefineConcept{累积}”，
+记\[
+	\Accumulate_{J \leq i < I}^+ f(i)
+	\defeq
+	g(I-1).
+\]
+\end{definition}
+
+\begin{definition}
+设\(X\)是数域，
+\(\{x_n\}\)是在\(X\)内的一个数列.
+定义：\[
+	\sum_{i=s}^t x_i
+	\defeq
+	\Accumulate_{s \leq i < t+1}^+ x_i,
+\]\[
+	\prod_{i=s}^t x_i
+	\defeq
+	\Accumulate_{s \leq i < t+1}^\times x_i.
+\]
+\end{definition}
