@@ -365,35 +365,222 @@
 	\end{bmatrix} \geq \rank\A + \rank\B.
 	\label{equation:矩阵的秩.分块矩阵的秩的不等式}
 \end{equation}
+当且仅当，
+关于\(\vb{X} \in M_{n \times m}(K)\)和\(\vb{Y} \in M_{s \times l}(K)\)的矩阵方程
+\(\C=\A\vb{X}+\vb{Y}\B\)有解时，
+上式取“\(=\)”号.
 \begin{proof}
-设\(\rank\A=r,
-\rank\B=t\).
-那么\(\A\)有一个\(r\)阶子矩阵\(\A_1\)，
-使得\(\abs{\A_1}\neq0\)；
-\(\B\)有一个\(t\)阶子矩阵\(\B_1\)，
-使得\(\abs{\B_1}\neq0\).
-从而\(\begin{bmatrix}
-	\A & \C \\
-	\z & \B
-\end{bmatrix}\)有一个\(r+t\)阶子式：\[
-	\begin{vmatrix}
-		\A_1 & \C_1 \\
-		\z & \B_1
-	\end{vmatrix}
-	= \abs{\A_1} \abs{\B_1}
-	\neq 0.
+首先证明不等式成立.
+设\(\rank\A=r_1,
+\rank\B=r_2\)，
+则存在可逆矩阵\(\P_1,\P_2,\Q_1,\Q_2\)，
+使得\[
+	\P_1\A\Q_1 = \begin{bmatrix}
+		\E_{r_1} & \vb0 \\
+		\vb0 & \vb0
+	\end{bmatrix},
+	\qquad
+	\P_2\B\Q_2 = \begin{bmatrix}
+		\E_{r_2} & \vb0 \\
+		\vb0 & \vb0
+	\end{bmatrix}.
 \]
-因此\[
+于是\[
+	\begin{bmatrix}
+		\P_1 & \vb0 \\
+		\vb0 & \P_2
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A & \C \\
+		\vb0 & \B
+	\end{bmatrix}
+	\begin{bmatrix}
+		\Q_1 & \vb0 \\
+		\vb0 & \Q_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\P_1\A\Q_1 & \P_1\C\Q_2 \\
+		\vb0 & \P_2\B\Q_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\E_{r_1} & \vb0 & \C_{11} & \C_{12} \\
+		\vb0 & \vb0 & \C_{21} & \C_{22} \\
+		\vb0 & \vb0 & \E_{r_2} & \vb0 \\
+		\vb0 & \vb0 & \vb0 & \vb0
+	\end{bmatrix}.
+\]
+做初等变换，
+用\(\E_{r_1}\)消去同行的矩阵，
+用\(\E_{r_2}\)消去同列的矩阵，
+再将\(\C_{22}\)对换到第二行第二列，
+得到：\[
+	\begin{bmatrix}
+		\E_{r_1} & \vb0 & \C_{11} & \C_{12} \\
+		\vb0 & \vb0 & \C_{21} & \C_{22} \\
+		\vb0 & \vb0 & \E_{r_2} & \vb0 \\
+		\vb0 & \vb0 & \vb0 & \vb0
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		\E_{r_1} & \vb0 & \vb0 & \vb0 \\
+		\vb0 & \C_{22} & \vb0 & \vb0 \\
+		\vb0 & \vb0 & \E_{r_2} & \vb0 \\
+		\vb0 & \vb0 & \vb0 & \vb0
+	\end{bmatrix}.
+\]
+于是，由\cref{equation:矩阵的秩.分块矩阵的秩的等式1} 有\[
 	\rank\begin{bmatrix}
 		\A & \C \\
 		\z & \B
 	\end{bmatrix}
-	\geq r+t
-	= \rank\A+\rank\B.
+	= \rank\E_{r_1} + \rank\C_{22} + \rank\E_{r2}
+	\geq r_1 + r_2
+	= \rank\A + \rank\B.
 \]
-当且仅当存在矩阵\(\vb{X} \in M_{n \times m}(K)\)，存在矩阵\(\vb{Y} \in M_{s \times l}(K)\)，
-使得\(\C=\A\vb{X}+\vb{Y}\B\)成立时，
-上式取“\(=\)”号.
-%@see: https://math.stackexchange.com/questions/4941561/whats-the-equality-condition-of-inequality-def-rank-operatornamerank-rank
+
+然后证明取等条件.
+\begin{itemize}
+	\item 充分性.
+	假设\(\vb{X} = \vb{X}_0, \vb{Y} = \vb{Y}_0\)是矩阵方程\(\A\vb{X}+\vb{Y}\B=\C\)的解，
+	则\begin{align*}
+		&\begin{bmatrix}
+			\E & -\vb{Y}_0 \\
+			\vb0 & \E
+		\end{bmatrix}
+		\begin{bmatrix}
+			\A & \C \\
+			\vb0 & \B
+		\end{bmatrix}
+		\begin{bmatrix}
+			\E & -\vb{X}_0 \\
+			\vb0 & \E
+		\end{bmatrix}
+		= \begin{bmatrix}
+			\A & \C-\vb{Y}_0\B \\
+			\vb0 & \B
+		\end{bmatrix}
+		\begin{bmatrix}
+			\E & -\vb{X}_0 \\
+			\vb0 & \E
+		\end{bmatrix} \\
+		&\hspace{20pt}= \begin{bmatrix}
+			\A & \C-\vb{Y}_0\B-\A\vb{X}_0 \\
+			\vb0 & \B
+		\end{bmatrix}
+		= \begin{bmatrix}
+			\A & \vb0 \\
+			\vb0 & \B
+		\end{bmatrix},
+	\end{align*}
+	于是\[
+		\rank\begin{bmatrix}
+			\A & \C \\
+			\vb0 & \B
+		\end{bmatrix}
+		= \rank\begin{bmatrix}
+			\A & \vb0 \\
+			\vb0 & \B
+		\end{bmatrix}
+		= \rank \A + \rank \B.
+	\]
+
+	\item 必要性.
+	假设\(\rank \A=r_1,
+	\rank \B=r_2\)，
+	且\[
+		\P_1 \A \Q_1
+		= \begin{bmatrix}
+			\E_{r_1} & \vb0 \\
+			\vb0 & \vb0
+		\end{bmatrix},
+		\qquad
+		\P_2 \B \Q_2
+		= \begin{bmatrix}
+			\E_{r_2} & \vb0 \\
+			\vb0 & \vb0
+		\end{bmatrix},
+	\]
+	其中\(\P_1,\Q_1,\P_2,\Q_2\)是可逆矩阵.
+	注意到问题的条件和结论在等价变换\[
+		\A \mapsto \P_1 \A \Q_1, \qquad
+		\B \mapsto \P_2 \B \Q_2, \qquad
+		\C \mapsto \P_1 \C \Q_2, \qquad
+		\vb{X} \mapsto \Q_1^{-1} \vb{X} \Q_2, \qquad
+		\vb{Y} \mapsto \P_1 \vb{Y} \P_2^{-1},
+	\]下保持不变，
+	故不妨从一开始就假设\(\A,\B\)是等价标准型，
+	即\[
+		\A = \begin{bmatrix}
+			\E_{r_1} & \vb0 \\
+			\vb0 & \vb0
+		\end{bmatrix}, \qquad
+		\B = \begin{bmatrix}
+			\E_{r_2} & \vb0 \\
+			\vb0 & \vb0
+		\end{bmatrix}.
+	\]
+	再对\(\C,\vb{X},\vb{Y}\)相应地分块，
+	得到\[
+		\C = \begin{bmatrix}
+			\C_{11} & \C_{12} \\
+			\C_{21} & \C_{22}
+		\end{bmatrix},
+		\qquad
+		\vb{X} = \begin{bmatrix}
+			\vb{X}_{11} & \vb{X}_{12} \\
+			\vb{X}_{21} & \vb{X}_{22}
+		\end{bmatrix},
+		\qquad
+		\vb{Y} = \begin{bmatrix}
+			\vb{Y}_{11} & \vb{Y}_{12} \\
+			\vb{Y}_{21} & \vb{Y}_{22}
+		\end{bmatrix}.
+	\]
+	作初等变换：\[
+		\begin{bmatrix}
+			\A & \C \\
+			\vb0 & \B
+		\end{bmatrix}
+		= \begin{bmatrix}
+			\E_{r_1} & \vb0 & \C_{11} & \C_{12} \\
+			\vb0 & \vb0 & \C_{21} & \C_{22} \\
+			\vb0 & \vb0 & \E_{r_2} & \vb0 \\
+			\vb0 & \vb0 & \vb0 & \vb0
+		\end{bmatrix}
+		\to \begin{bmatrix}
+			\E_{r_1} & \vb0 & \vb0 & \vb0 \\
+			\vb0 & \vb0 & \vb0 & \C_{22} \\
+			\vb0 & \vb0 & \E_{r_2} & \vb0 \\
+			\vb0 & \vb0 & \vb0 & \vb0
+		\end{bmatrix}.
+	\]
+	因为\(\rank\begin{bmatrix}
+		\A & \C \\
+		\vb0 & \B
+	\end{bmatrix}
+	= \rank \A + \rank \B
+	= r_1 + r_2\)，
+	所以\(\C_{22}\)必为零矩阵.
+	于是矩阵方程\(\A\vb{X}+\vb{Y}\B=\C\)或者说\[
+		\C = \begin{bmatrix}
+			\C_{11} & \C_{12} \\
+			\C_{21} & \vb0
+		\end{bmatrix}
+		= \begin{bmatrix}
+			\vb{X}_{11} + \vb{Y}_{11} & \vb{X}_{12} \\
+			\vb{Y}_{21} & \vb0
+		\end{bmatrix}
+		= \begin{bmatrix}
+			\vb{X}_{11} & \vb{X}_{12} \\
+			\vb0 & \vb0
+		\end{bmatrix}
+		+ \begin{bmatrix}
+			\vb{Y}_{11} & \vb0 \\
+			\vb{Y}_{21} & \vb0
+		\end{bmatrix}
+	\]有解.
+	例如\(\vb{X}_{11} = \C_{11}, \vb{X}_{12} = \C_{12}, \vb{Y}_{11} = \vb0, \vb{Y}_{21} = \C_{21}\).
+	\qedhere
+\end{itemize}
 \end{proof}
+%@see: https://math.stackexchange.com/questions/4941561/whats-the-equality-condition-of-inequality-def-rank-operatornamerank-rank
 \end{example}
