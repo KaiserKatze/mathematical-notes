@@ -5,3 +5,156 @@
 向量组\(\AutoTuple{\a}{s}\)的一个极大线性无关组是\(U\)的一个基，
 \(\dim U\)等于\(\rank\{\AutoTuple{\a}{s}\}\).
 对于\(V\)中向量组生成的子空间也有同样的结论.
+
+为什么域\(F\)上的\(n\)维线性空间\(V\)与\(F^n\)这样相像？
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P92 定义1
+设\(V\)与\(V'\)都是域\(F\)上的线性空间，
+\(\sigma\)是一个从\(V\)到\(V'\)的双射.
+如果\[
+	(\forall\a,\b \in V)
+	[\sigma(\a+\b)=\sigma(\a)+\sigma(\b)]
+	\quad\land\quad
+	(\forall\a \in V)
+	(\forall k \in F)
+	[\sigma(k\a)=k\sigma(\a)],
+\]
+那么称“\(\sigma\)是一个从\(V\)到\(V'\)的\DefineConcept{同构}（isomorphism）”；
+还称“\(V\)与\(V'\)同构（\(V\) is \emph{isomorphic} to \(V'\)）”，
+记为\(V \simeq V'\).
+\end{definition}
+
+\begin{property}\label{theorem:线性空间的同构.同构线性空间的性质1}
+%@see: 《高等代数（第三版 下册）》（丘维声） P92 性质1
+设\(V\)与\(V'\)都是域\(F\)上的线性空间，
+\(0\)是\(V\)的零元，
+\(0'\)是\(V'\)的零元，
+\(\sigma\)是一个从\(V\)到\(V'\)的同构，
+则\(\sigma(0)=0'\).
+\begin{proof}
+\(0\a=0 \implies \sigma(0)=\sigma(0\a)=0\sigma(\a)=0'\).
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:线性空间的同构.同构线性空间的性质2}
+%@see: 《高等代数（第三版 下册）》（丘维声） P92 性质2
+设\(V\)与\(V'\)都是域\(F\)上的线性空间，
+\(\sigma\)是一个从\(V\)到\(V'\)的同构，
+则\[
+	(\forall\a\in V)[\sigma(-\a)=-\sigma(\a)].
+\]
+\begin{proof}
+\(\sigma(-\a)=\sigma((-1)\a)=(-1)\sigma(\a)=-\sigma(\a)\).
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:线性空间的同构.同构线性空间的性质3}
+%@see: 《高等代数（第三版 下册）》（丘维声） P92 性质3
+设\(V\)与\(V'\)都是域\(F\)上的线性空间，
+\(\sigma\)是一个从\(V\)到\(V'\)的同构，
+则\[
+	(\forall \AutoTuple{\a}{s} \in V)
+	(\forall \AutoTuple{k}{s} \in F)
+	[\sigma(k_1\a_1+\dotsb+k_s\a_s)=k_1\sigma(\a_1)+\dotsb+k_s\sigma(\a_s)].
+\]
+\end{property}
+
+\begin{property}\label{theorem:线性空间的同构.同构线性空间的性质4}
+%@see: 《高等代数（第三版 下册）》（丘维声） P92 性质4
+设\(V\)与\(V'\)都是域\(F\)上的线性空间，
+\(\sigma\)是一个从\(V\)到\(V'\)的同构，
+则\(V\)中向量组\(\AutoTuple{\a}{s}\)线性相关的充分必要条件是：
+\(\sigma(\a_1),\dotsc,\sigma(\a_s)\)是\(V'\)中线性相关的向量组.
+\begin{proof}
+因为\(\sigma\)是单射，
+所以\(\sigma(\a)=\sigma(\b) \implies \a=\b\)，
+于是\begin{align*}
+	k_1\a_1+\dotsb+k_s\a_s=0
+	&\iff
+	\sigma(k_1\a_1+\dotsb+k_s\a_s)=\sigma(0) \\
+	&\iff
+	k_1\sigma(\a_1)+\dotsb+k_s\sigma(\a_s)=0',
+\end{align*}
+那么\(\AutoTuple{\a}{s}\)线性相关
+当且仅当\(\sigma(\a_1),\dotsc,\sigma(\a_s)\)线性相关.
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:线性空间的同构.同构线性空间的性质5}
+%@see: 《高等代数（第三版 下册）》（丘维声） P92 性质5
+设\(V\)与\(V'\)都是域\(F\)上的线性空间，
+\(\sigma\)是一个从\(V\)到\(V'\)的同构.
+如果\(\AutoTuple{\a}{n}\)是\(V\)的一个基，
+则\(\sigma(\a_1),\dotsc,\sigma(\a_n)\)是\(V'\)的一个基.
+\begin{proof}
+由\cref{theorem:线性空间的同构.同构线性空间的性质4}
+可知\(\sigma(\a_1),\dotsc,\sigma(\a_n)\)是\(V'\)的一个线性无关的向量组.
+任取\(\b \in V'\)，
+由于\(\sigma\)是满射，
+因此存在\(\a \in V\)，
+使得\(\sigma(\a)=\b\).
+设\(\a=k_1\a_1+\dotsb+k_n\a_n\)，
+则\[
+	\b=\sigma(\a)
+	=k_1\sigma(\a_1)+\dotsb+k_n\sigma(\a_n),
+\]
+因此\(\sigma(\a_1),\dotsc,\sigma(\a_n)\)是\(V'\)的一个基.
+\end{proof}
+\end{property}
+
+\begin{theorem}\label{theorem:线性空间的同构.线性空间同构的充分必要条件}
+%@see: 《高等代数（第三版 下册）》（丘维声） P92 定理1
+设\(V\)与\(V'\)都是域\(F\)上的有限维线性空间，
+则\(V \simeq V'\)的充分必要条件是\(\dim V = \dim V'\).
+\begin{proof}
+必要性.
+由\cref{theorem:线性空间的同构.同构线性空间的性质5} 立即得出.
+
+充分性.
+设\(\dim V = \dim V' = n\).
+在\(V\)中取一个基\(\AutoTuple{\a}{n}\).
+在\(V'\)中取一个基\(\AutoTuple{\g}{n}\).
+令\[
+	\sigma\colon V \to V',
+	\a=\sum_{i=1}^n k_i\a_i
+	\mapsto
+	\sum_{i=1}^n k_i\g_1.
+\]
+可以看出，\(\sigma\)是一个从\(V\)到\(V'\)的同构，
+\(V \simeq V'\).
+\end{proof}
+\end{theorem}
+从\cref{theorem:线性空间的同构.线性空间同构的充分必要条件} 立即得出，
+域\(F\)上任意一个\(n\)维线性空间\(V\)都与\(F^n\)同构，
+并且\(V\)中每一个向量\(\a\)
+对应它在\(V\)的一个基\(\AutoTuple{\a}{n}\)下的坐标\((\AutoTuple{k}{n})^T\)，
+这个对应关系就是从\(V\)到\(F^n\)的一个同构.
+正是因为域\(F\)上\(n\)维线性空间\(V\)与\(F^n\)同构，
+所以\(V\)与\(F^n\)才这么相像.
+虽然它们的元素不同，但是有关线性运算的性质却完全一样.
+于是我们可以利用\(F^n\)的性质来研究\(F\)上\(n\)维线性空间的性质.
+线性空间的同构，是研究线性空间结构的第三条途径.
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P93 命题2
+设\(V\)是域\(F\)上的\(n\)维线性空间，
+\(U\)是\(V\)的一个子空间，
+\(\AutoTuple{\a}{n}\)的\(V\)的一个基，
+\(\sigma\)把\(V\)中每一个向量\(\a\)对应到它在基\(\AutoTuple{\a}{n}\)下的坐标.
+令\[
+	\sigma(U) \defeq \Set{ \sigma(\a) \given \a \in U },
+\]
+则\(\sigma(U)\)是\(F^n\)的一个子空间，
+且\(\dim U = \dim\sigma(U)\).
+\begin{proof}
+显然\(\sigma(U)\)是非空集，
+\(\sigma\)是一个从\(V\)到\(F^n\)的同构，
+\(U\)对加法和纯量乘法封闭.
+这就说明\(\sigma(U)\)是\(F^n\)的一个子空间.
+
+由于\(U\)与\(\sigma(U)\)都是域\(F\)上有限维线性空间，
+且\(\sigma\)在\(U\)上的限制\((\sigma \upharpoonright U)\)是从\(U\)到\(\sigma(U)\)的一个同构，
+因此\(\dim U = \dim\sigma(U)\).
+\end{proof}
+\end{proposition}
