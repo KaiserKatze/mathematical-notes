@@ -1,4 +1,5 @@
 \section{函数极限与数列极限的关系，海涅定理}
+\subsection{海涅定理}
 \begin{theorem}[海涅定理]\label{theorem:极限.海涅定理}
 %@see: 《数学分析（上册）》（陈纪修） P78 定理3.1.5
 %@see: 《数学分析教程》（史济怀） P70 定理2.4.1
@@ -96,7 +97,7 @@
 \]成立.
 
 \begin{example}
-函数\(f(x)\)在\((-\infty,+\infty)\)内单调有界，
+函数\(f\)在\((-\infty,+\infty)\)内单调有界，
 数列\(\{x_n\}\)收敛，
 但函数列\(\{f(x_n)\}\)不一定收敛.
 例如，取函数\[
@@ -112,7 +113,7 @@
 \end{example}
 
 \begin{example}
-函数\(f(x)\)在\((-\infty,+\infty)\)内单调有界，
+函数\(f\)在\((-\infty,+\infty)\)内单调有界，
 函数列\(\{f(x_n)\}\)单调或收敛，
 但数列\(\{x_n\}\)不一定收敛.
 例如，取\[
@@ -140,3 +141,39 @@
 函数\(\sin\frac1x\)在点\(x=0\)没有极限.
 \end{proof}
 \end{example}
+
+\subsection{上极限与下极限}
+\begin{definition}
+设函数\(f\colon D\to\mathbb{R}\)在点\(x_0\)的某个去心邻域中有定义.
+\begin{itemize}
+	\item 	把\[
+		\lim_{\delta\to0^+} \sup_{0<\abs{x-x_0}<\delta} f(x)
+	\]称为“函数\(f\)在点\(x_0\)的\DefineConcept{上极限}”，
+	记为\(\varlimsup_{x \to x_0} f(x)\).
+
+	\item 把\[
+		\lim_{\delta\to0^+} \inf_{0<\abs{x-x_0}<\delta} f(x)
+	\]称为“函数\(f\)在点\(x_0\)的\DefineConcept{下极限}”，
+	记为\(\varliminf_{x \to x_0} f(x)\).
+\end{itemize}
+\end{definition}
+
+\begin{property}
+设函数\(f\colon D\to\mathbb{R}\)在点\(x_0\)的某个去心邻域中有定义，
+则\[
+	\varliminf_{x \to x_0} f(x) \leq \varlimsup_{x \to x_0} f(x).
+\]
+\end{property}
+
+\begin{theorem}
+设函数\(f\colon D\to\mathbb{R}\)在点\(x_0\)的某个去心邻域中有定义，
+则函数\(f\)在点\(x_0\)时极限存在的充分必要条件是：
+\(f\)在点\(x_0\)的上、下极限相等，
+即\[
+	\varlimsup_{x \to x_0} f(x)
+	= \varliminf_{x \to x_0} f(x)
+	= A
+	\iff
+	\lim_{x \to x_0} f(x) = A.
+\]
+\end{theorem}
