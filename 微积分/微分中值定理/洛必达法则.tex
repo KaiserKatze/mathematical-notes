@@ -166,47 +166,34 @@
 这显然是错误的.
 \end{remark}
 
-\begin{theorem}\label{theorem:微分中值定理.洛必达法则3}
-\def\l{\lim_{x \to a^+}}
-设\begin{enumerate}
-\item \(\l F(x) = \infty\)；
-\item 在点\(a\)的某去心邻域内，\(f'(x)\)及\(F'(x)\)都存在且\(F'(x) \neq 0\)；
-\item \(\l\frac{f'(x)}{F'(x)}\)存在（或为无穷大），
-\end{enumerate}那么\[
-\l\frac{f(x)}{F(x)} = \l\frac{f'(x)}{F'(x)}.
-\]
-\end{theorem}
-
 \begin{example}
-\def\l{\lim_{x\to+\infty}}%
-求\(\l \frac{\frac{\pi}{2} - \arctan x}{\frac{1}{x}}\).
+求\(\lim_{x\to+\infty} \frac{\frac{\pi}{2} - \arctan x}{\frac{1}{x}}\).
 \begin{solution}
-\(\l \frac{\frac{\pi}{2} - \arctan x}{\frac{1}{x}}
-= \l \frac{-\frac{1}{1+x^2}}{-\frac{1}{x^2}}
-= \l \frac{x^2}{1+x^2} = 1\).
+\(\lim_{x\to+\infty} \frac{\frac{\pi}{2} - \arctan x}{\frac{1}{x}}
+= \lim_{x\to+\infty} \frac{-\frac{1}{1+x^2}}{-\frac{1}{x^2}}
+= \lim_{x\to+\infty} \frac{x^2}{1+x^2} = 1\).
 \end{solution}
 \end{example}
 
 \begin{example}
-\def\l{\lim_{x\to+\infty}}%
-求\(\l \frac{\ln x}{x^n}\ (n>0)\).
+求\(\lim_{x\to+\infty} \frac{\ln x}{x^n}\ (n>0)\).
 \begin{solution}
-\(\l \frac{\ln x}{x^n}
-= \l \frac{\frac{1}{x}}{n x^{n-1}}
-= \l \frac{1}{n x^n} = 0\).
+\(\lim_{x\to+\infty} \frac{\ln x}{x^n}
+= \lim_{x\to+\infty} \frac{\frac{1}{x}}{n x^{n-1}}
+= \lim_{x\to+\infty} \frac{1}{n x^n} = 0\).
 \end{solution}
 \end{example}
 
 \begin{example}
-\def\l{\lim_{x\to+\infty}}%
-求\(\l \frac{x^n}{e^{\lambda x}}\).
+求\(\lim_{x\to+\infty} \frac{x^n}{e^{\lambda x}}\).
 \begin{solution}
-相继应用洛必达法则\(n\)次，得\begin{align*}
-\l \frac{x^n}{e^{\lambda x}}
-&= \l \frac{n x^{n-1}}{\lambda e^{\lambda x}}
-= \l \frac{n(n-1) x^{n-2}}{\lambda^2 e^{\lambda x}} \\
-&= \dotsb = \l \frac{n!}{\lambda^n e^{\lambda x}}
-= 0.
+相继应用洛必达法则\(n\)次，
+得\begin{align*}
+	\lim_{x\to+\infty} \frac{x^n}{e^{\lambda x}}
+	&= \lim_{x\to+\infty} \frac{n x^{n-1}}{\lambda e^{\lambda x}}
+	= \lim_{x\to+\infty} \frac{n(n-1) x^{n-2}}{\lambda^2 e^{\lambda x}} \\
+	&= \dotsb = \lim_{x\to+\infty} \frac{n!}{\lambda^n e^{\lambda x}}
+	= 0.
 \end{align*}
 \end{solution}
 \end{example}
@@ -218,30 +205,42 @@
 形如\(0^0\)、\(1^\infty\)、\(\infty^0\)的未定式，先取对数，化为\(0 \cdot \infty\)型.
 
 \begin{example}\label{example:微分中值定理.洛必达法则.零乘无穷大型1}
-\def\l{\lim_{x\to0^+}}%
-求\(\l x^n \ln x\ (n > 0)\).
+%@see: 《高等数学（第六版 上册）》 P137 例7
+求\(\lim_{x\to0^+} x^n \ln x\ (n > 0)\).
 \begin{solution}
 这是未定式\(0\cdot\infty\).
-因为\(x^n \ln x = \frac{\ln x}{\frac{1}{x^n}}\)，当\(x\to0^+\)时，上式右端是未定式\(\frac{\infty}{\infty}\)，应用洛必达法则，得%
-\(\l x^n \ln x
-= \l \frac{\ln x}{x^{-n}}
-= \l \frac{x^{-1}}{-nx^{-n-1}}
-= \l \frac{-x^n}{n}
+因为\(x^n \ln x = \frac{\ln x}{\frac{1}{x^n}}\)，
+当\(x\to0^+\)时，上式右端是未定式\(\frac{\infty}{\infty}\)，
+应用洛必达法则，
+得\(\lim_{x\to0^+} x^n \ln x
+= \lim_{x\to0^+} \frac{\ln x}{x^{-n}}
+= \lim_{x\to0^+} \frac{x^{-1}}{-nx^{-n-1}}
+= \lim_{x\to0^+} \frac{-x^n}{n}
 = 0\).
 \end{solution}
 \end{example}
 
 \begin{example}\label{example:微分中值定理.洛必达法则.零次方零型1}
-\def\l{\lim_{x\to0^+}}%
+%@see: 《高等数学（第六版 上册）》 P138 例9
 求\(\lim_{x\to0^+}{x^x}\).
 \begin{solution}
 这是未定式\(0^0\).
-设\(y = x^x\)，取对数得\(\ln y = x \ln x\)，当\(x\to0^+\)时，上式右端是未定式\(0\cdot\infty\).
-应用\cref{example:微分中值定理.洛必达法则.零乘无穷大型1} 的结果，得\[
-\l \ln y = \l (x \ln x) = 0.
+设\(y = x^x\)，取对数得\(\ln y = x \ln x\).
+当\(x\to0^+\)时，上式右端是未定式\(0\cdot\infty\).
+应用\cref{example:微分中值定理.洛必达法则.零乘无穷大型1} 的结果，
+得\[
+	\lim_{x\to0^+} \ln y
+	= \lim_{x\to0^+} (x \ln x) = 0.
 \]
-因为\(y = e^{\ln y}\)，而\(\l y = \l e^{\ln y} = e^{\l \ln y}\)，所以\[
-\l x^x = \l y = e^0 = 1.
+因为\(y = e^{\ln y}\)，
+而\(\lim_{x\to0^+} y
+= \lim_{x\to0^+} e^{\ln y}
+= e^{\lim_{x\to0^+} \ln y}\)，
+所以\[
+	\lim_{x\to0^+} x^x
+	= \lim_{x\to0^+} y
+	= e^0
+	= 1.
 \]
 \end{solution}
 \end{example}
@@ -250,31 +249,34 @@
 例如能化简时应尽量先化简，可以应用等价无穷小替代或重要极限时应尽可能应用，这样可以使运算简便.
 
 \begin{example}\label{example:微分中值定理.洛必达法则.零乘无穷大型2}
-\def\l{\lim_{x\to+\infty}}%
-求\(\l x p^x\ (0<p<1)\).
+求\(\lim_{x\to+\infty} x p^x\ (0<p<1)\).
 \begin{solution}
 这是未定式\(0\cdot\infty\).
-因为\(x p^x =  \frac{x}{(1/p)^x}\)，当\(x\to+\infty\)时，上式右端是未定式\(\frac{\infty}{\infty}\)，应用洛必达法则，得\[
-\l x p^x
-= \l \frac{x}{(1/p)^x}
-= \l \frac{1}{(1/p)^x \ln(1/p)}
-= \l \frac{p^x}{\ln(1/p)}
-= 0.
+因为\(x p^x =  \frac{x}{(1/p)^x}\)，
+当\(x\to+\infty\)时，上式右端是未定式\(\frac{\infty}{\infty}\)，
+应用洛必达法则，
+得\[
+	\lim_{x\to+\infty} x p^x
+	= \lim_{x\to+\infty} \frac{x}{(1/p)^x}
+	= \lim_{x\to+\infty} \frac{1}{(1/p)^x \ln(1/p)}
+	= \lim_{x\to+\infty} \frac{p^x}{\ln(1/p)}
+	= 0.
 \]
 \end{solution}
 \end{example}
 
 \begin{example}
-\def\l{\lim_{x\to0}}%
-求\(\l \frac{a^{x^2}-b^{x^2}}{(a^x-b^x)^2}\ (0<a<b)\).
+求\(\lim_{x\to0} \frac{a^{x^2}-b^{x^2}}{(a^x-b^x)^2}\ (0<a<b)\).
 \begin{solution}
 这里我们先化简，再利用洛必达法则：\begin{align*}
-\l \frac{a^{x^2}-b^{x^2}}{(a^x-b^x)^2}
-&= \l \frac{a^{x^2}-b^{x^2}}{x^2} \cdot \l \left(\frac{x}{a^x-b^x}\right)^2 \\
-&= \lim_{x\to0^+} \frac{a^x-b^x}{x} \cdot \l \left(\frac{x}{a^x-b^x}\right)^2 \\
-&= \l \frac{x}{a^x-b^x} \\
-&= \l \frac{1}{a^x \ln a - b^x \ln b}
-= \frac{1}{\ln(a/b)}.
+	\lim_{x\to0} \frac{a^{x^2}-b^{x^2}}{(a^x-b^x)^2}
+	&= \lim_{x\to0} \frac{a^{x^2}-b^{x^2}}{x^2}
+		\cdot \lim_{x\to0} \left(\frac{x}{a^x-b^x}\right)^2 \\
+	&= \lim_{x\to0^+} \frac{a^x-b^x}{x}
+		\cdot \lim_{x\to0} \left(\frac{x}{a^x-b^x}\right)^2 \\
+	&= \lim_{x\to0} \frac{x}{a^x-b^x} \\
+	&= \lim_{x\to0} \frac{1}{a^x \ln a - b^x \ln b}
+	= \frac{1}{\ln(a/b)}.
 \end{align*}
 \end{solution}
 \end{example}
