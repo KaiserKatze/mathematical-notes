@@ -83,6 +83,50 @@
 在确定数列数列收敛以后，再利用极限运算的性质去求出相应的极限.
 
 \begin{example}
+%@see: 《计算机组成原理（第3版）》（唐朔飞） P11
+设\(a\geq0\)，
+数列\(\{x_n\}\)满足\(x_{n+1} = \frac12\left(x_n+\frac{a}{x_n}\right)\ (n=1,2,\dotsc)\).
+证明：只要首项\(x_1>0\)，数列\(\{x_n\}\)总是收敛，并求它的极限.
+\begin{solution}
+先设\(x_1=\sqrt{a}\).
+于是\[
+	x_2 = \frac12 \left(x_1+\frac{a}{x_1}\right)
+	= \sqrt{a},
+\]
+利用数学归纳法易证\(x_n = \sqrt{a}\ (n=1,2,\dotsc)\)，
+于是\(\{x_n\}\)是常数列，
+\(\lim_{n\to\infty} x_n = \sqrt{a}\).
+
+再设\(x_1\neq\sqrt{a}\)且\(x_1>0\).
+既然\(x_1>0\)，利用数学归纳法容易证明\(x_n>0\ (n=1,2,\dotsc)\)，
+于是可以利用\hyperref[theorem:不等式.基本不等式2推论]{均值不等式}得到\[
+	x_2
+	= \frac12\left(x_1+\frac{a}{x_1}\right)
+	> \sqrt{x_1 \cdot \frac{a}{x_1}}
+	= \sqrt{a},
+\]
+利用数学归纳法易证\(x_n > \sqrt{a}\ (n=2,3,\dotsc)\)，
+数列\(\{x_n\}\)有界.
+又因为\(x_n^2 > a\ (n=2,3,\dotsc)\)，
+所以\begin{align*}
+	x_{n+1}-x_n
+	&= \frac12 \left(\frac{a}{x_n}-x_n\right)
+	= \frac{a-x_n^2}{2x_n}
+	< 0
+	\quad(n=2,3,\dotsc).
+\end{align*}
+数列\(\{x_n\}\)从第二项开始严格单调减少.
+由\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}可知数列\(\{x_n\}\)收敛.
+假设\(\lim_{n\to\infty} x_n = x\).
+在等式\(x_{n+1} = \frac12\left(x_n+\frac{a}{x_n}\right)\)
+两边同时求极限，
+得到方程\(x = \frac12\left(x+\frac{a}{x}\right)\)，
+解得\(x = \sqrt{a}\).
+%@credit: {5f4d2f8a-fc8b-4798-85d6-98670f6761e7},{ce603838-a24d-4616-9395-d7b223e8cb72},{6c964576-9569-472e-969e-54699e35974b}
+\end{solution}
+\end{example}
+
+\begin{example}
 %@see: 《数学分析（上册）》（陈纪修） P53 例2.4.1
 设数列\(\{x_n\}\)满足\(x_1>0\)，且有递推公式\(x_{n+1}=1+\frac{x_n}{1+x_n}\ (n=1,2,\dotsc)\).
 证明：\(\{x_n\}\)收敛，并求它的极限.
