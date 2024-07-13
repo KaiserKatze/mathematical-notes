@@ -104,14 +104,41 @@
 
 \subsection{反函数的求导法则}
 \begin{theorem}
-如果函数\(x=f(y)\)在区间\(I_y\)内单调、可导且\(f'(y) \neq 0\)，则它的反函数\(y=f^{-1}(x)\)在区间\(I_x=\{x \mid x=f(y), y \in I_y\}\)内也可导，且\[
-[f^{-1}(x)]'=\frac{1}{f'(y)}
-\quad\text{或}\quad
-\dv{y}{x} = \left(\dv{x}{y}\right)^{-1}.
+%@see: 《数学分析（上册）》（陈纪修） P137 定理4.3.4
+如果函数\(f\)在区间\((a,b)\)内连续、严格单调、可导并且\(f'(x)\neq0\)，
+则它的反函数\(f^{-1}\)在区间\((\alpha,\beta)\)内可导，
+且\[
+	[f^{-1}(y)]'=\frac{1}{f'(x)},
 \]
+其中\(\alpha=\min\{f(a^+),f(b^-)\},
+\beta=\max\{f(a^+),f(b^-)\}\).
+\begin{proof}
+因为函数\(f\)在\((a,b)\)上连续且严格单调，
+由\hyperref[theorem:极限.连续函数的极限2]{反函数连续性定理}可知，
+它的反函数\(f^{-1}\)在\((\alpha,\beta)\)上存在、连续且严格单调.
+这时\[
+	\increment y = f(x + \increment x) - f(x) \neq 0
+	\iff
+	\increment x = f^{-1}(y + \increment y) - f^{-1}(y) \neq 0,
+\]
+并且当\(\increment y \to 0\)时有\(\increment x \to 0\).
+因此\begin{align*}
+	[f^{-1}(y)]'
+	&= \lim_{\increment y \to 0}
+		\frac{f^{-1}(y + \increment y) - f^{-1}(y)}{\increment y} \\
+	&= \lim_{\increment x \to 0}
+		\frac{\increment x}{f(x + \increment x) - f(x)} \\
+	&= \left[
+		\lim_{\increment x \to 0}
+		\frac{f(x + \increment x) - f(x)}{\increment x}
+	\right]^{-1}
+	= \frac1{f'(x)}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
 
 简单地说，反函数\(y=f^{-1}(x)\)的导数等于直接函数\(x=f(y)\)导数的倒数.
-\end{theorem}
 
 \begin{example}
 求\(y=\arcsin x\ (-1<x<1)\)的导数.
