@@ -86,8 +86,70 @@
 \begin{theorem}\label{theorem:极限.连续函数的极限2}
 %@see: 《高等数学（第六版 上册）》 P66 定理2
 %@see: 《数学分析（上册）》（陈纪修） P95 定理3.2.2（反函数连续性定理）
-如果函数\(f\colon D\to\mathbb{R}\)在区间\(X\subseteq D\)上单调增加（或单调减少）且连续，
-那么它的反函数\(f^{-1}\)也在\(f(X)\)上单调增加（或单调减少）且连续.
+如果函数\(f\in\mathbb{R}^X\)在区间\([a,b]\subseteq X\)上连续且严格单调增加，
+那么它的反函数\(f^{-1}\)在\([\alpha,\beta]\)上连续且严格单调增加，
+其中\(\alpha=f(a),\beta=f(b)\).
+\begin{proof}
+首先我们利用\cref{example:连续函数的运算.开区间上的单调函数的间断点必为第一类间断点} 的结论来证明\[
+	\ran f
+	= \dom f^{-1}
+	= f([a,b])
+	= [\alpha,\beta].
+\]
+
+显然\(\alpha,\beta \in f([a,b])\).
+任取\(\gamma\in(\alpha,\beta)\).
+记\[
+	S \defeq \Set{ x\in[a,b] \given f(x)<\gamma }.
+\]
+那么集合\(S\)非空且有上界.
+由\hyperref[theorem:实数.确界原理]{确界存在定理}可知，
+\(S\)必有上确界.
+记\(x_0 = \sup S\)，
+则\(x_0\in(a,b)\).
+由于\(f\)严格单调增加，
+当\(x<x_0\)时有\(f(x)<\gamma\)，
+当\(x>x_0\)时有\(f(x)>\gamma\).
+于是由\cref{example:连续函数的运算.开区间上的单调函数的间断点必为第一类间断点} 得到\[
+	f(x_0^-) \leq \gamma \leq f(x_0^+).
+\]
+由于\(f\)在点\(x_0\)连续，
+所以\(f(x_0)
+= f(x_0^+)
+= f(x_0^-)
+= \gamma\).
+这就说明\(\ran f = [\alpha,\beta]\).
+
+由于\(f\)严格单调增加，
+所以它的反函数\(f^{-1}\)必定存在且同样严格单调增加.
+
+现在只需要证明\(f^{-1}\)在\([\alpha,\beta]\)上连续.
+
+设\(y_0\in(\alpha,\beta)\)，
+相应地有\(f^{-1}(y_0)=x_0\in(a,b)\).
+对于任意给定的\(\epsilon>0\)，
+要找出\(\delta>0\)，
+使得当\(\abs{y-y_0}<\delta\)时，
+成立\[
+	\abs{f^{-1}(y) - f^{-1}(y_0)}
+	= \abs{f^{-1}(y) - x_0}
+	< \epsilon,
+\]
+即\[
+	x_0 - \epsilon < f^{-1}(y) < x_0 + \epsilon.
+\]
+令\(y_1 = f(x_0 - \epsilon),
+y_2 = f(x_0 + \epsilon)\).
+取\(\delta = \min\{y_0 - y_1, y_2 - y_0\} > 0\).
+显然当\(\abs{y - y_0} < \delta\)时，
+成立\[
+	\abs{f^{-1}(y) - f^{-1}(y_0)} < \epsilon.
+\]
+如果\(y_0 = \alpha\)，
+则只要证明右连续性.
+如果\(y_0 = \beta\)，
+则只要证明左连续性.
+\end{proof}
 \end{theorem}
 
 \begin{example}
