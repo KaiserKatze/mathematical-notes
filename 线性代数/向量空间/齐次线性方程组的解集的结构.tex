@@ -1,4 +1,5 @@
 \section{齐次线性方程组的解集的结构}
+\subsection{解空间的概念}
 \begin{proposition}\label{theorem:线性方程组.齐次线性方程组的解的线性组合也是解}
 %@see: 《高等代数（第三版 上册）》（丘维声） P90 性质1
 %@see: 《高等代数（第三版 上册）》（丘维声） P90 性质2
@@ -38,11 +39,14 @@
 
 如果我们找到了齐次线性方程组的一个基础解系\(\{\AutoTuple{\x}{t}\}\)，
 \def\tongjie{k_1\x_1+k_2\x_2+\dotsb+k_t\x_t}%
-那么这个方程组的解集为\[
-	W = \Set{ \tongjie \given \AutoTuple{k}{t} \in K }.
-\]
+那么这个方程组的解集为\begin{align*}
+	W &= \Ker\A
+	= \Span\{\AutoTuple{\x}{t}\} \\
+	&= \Set{ \tongjie \given \AutoTuple{k}{t} \in K }.
+\end{align*}
 我们把表达式\((\tongjie)\)称为这个方程组的\DefineConcept{通解}（general solution）.
 
+\subsection{解空间的维数}
 如何找出齐次线性方程组的一个基础解系？
 解空间\(W\)的维数是多少？
 
@@ -168,19 +172,93 @@
 综上所述，\(\AutoTuple{\x}{n-r}\)是\(\A\x=\vb0\)的一个基础解系，含有\(n-r\)个解向量.
 \end{proof}
 \end{theorem}
+\begin{remark}
+\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 的证明过程给出了
+求解齐次线性方程组\(\A\x=\vb0\)的基础解系的方法：
+\def\J{\vb{J}}
+\begin{enumerate}
+	\item[第一步] 把齐次线性方程组的系数矩阵\(\A\)经过初等行变换化简成行约化矩阵\(\J\).
+	\item[第二步] 从\(\J\)直接写出方程组的一般解公式.
+	\item[第三步] 在一般解公式中，每一次让一个自由未知量取值1，其余自由未知量取值0，求出方程组的一个解向量.
+	这样得到的\(n-r\)个解向量就构成方程组的一个基础解系，其中\(r=\rank\A\).
+\end{enumerate}
+\end{remark}
 
 \begin{corollary}
-设齐次线性方程组\(\A\x=\vb0\)的系数矩阵\(\A\)是\(s \times n\)矩阵，若\(\rank\A = r < n\)，
-则\begin{enumerate}
+%@see: 《线性代数》（张慎语、周厚隆） P83 推论
+%@see: 《高等代数（第三版 上册）》（丘维声） P95 习题3.7 3.
+设齐次线性方程组\(\A\x=\vb0\)的系数矩阵\(\A\)是\(s \times n\)矩阵.
+若\(\rank\A = r < n\)，
+则\begin{itemize}
 	\item \(\A\x=\vb0\)的每个基础解系都含有\(n-r\)个解向量；
 	\item \(\A\x=\vb0\)的任意\(n-r+1\)个解向量线性相关；
 	\item \(\A\x=\vb0\)的任意\(n-r\)个线性无关的解都是它的一个基础解系.
-\end{enumerate}
+\end{itemize}
 \end{corollary}
+
+\begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P84 例2
+求齐次线性方程组\[
+	\left\{ \begin{array}{*{11}{r}}
+		x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &+& 4 x_5 &=& 0 \\
+		2 x_1 &-& 2 x_2 &-& 3 x_3 && &+& 2 x_5 &=& 0 \\
+		4 x_1 &-& 2 x_2 &-& 7 x_3 &-& 4 x_4 &-& 2 x_5 &=& 0
+	\end{array} \right.
+\]的通解.
+\begin{solution}
+写出系数矩阵\(\A\)，并作初等行变换化简
+\begin{align*}
+	\A &= \begin{bmatrix}
+		1 & -2 & -1 & 2 & 4 \\
+		2 & -2 & -3 & 0 & 2 \\
+		4 & -2 & -7 & -4 & -2
+	\end{bmatrix} \\
+	&\xlongrightarrow{\begin{array}{c}
+		-2\times\text{(1行)}+\text{(2行)} \\
+		-4\times\text{(1行)}+\text{(3行)}
+	\end{array}}
+	\begin{bmatrix}
+		1 & -2 & -1 & 2 & 4 \\
+		0 & 2 & -1 & -4 & -6 \\
+		0 & 6 & -3 & -12 & -18
+	\end{bmatrix} \\
+	&\xlongrightarrow{\begin{array}{c}
+		-3\times\text{(2行)}+\text{(3行)} \\
+		1\times\text{(2行)}+\text{(1行)}
+	\end{array}}
+	\begin{bmatrix}
+		1 & 0 & -2 & -2 & -2 \\
+		0 & 2 & -1 & -4 & -6 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}
+	= \B,
+\end{align*}
+因为\(\rank\A=\rank\B=2\)，所以基础解系含\(5-2=3\)个向量.
+分别将\(x_3,x_4,x_5\)的3组值\((2,0,0),(0,1,0),(0,0,1)\)代入\(\B\x=\vb0\)，
+得基础解系：\[
+	\X1 = (4,1,2,0,0)^T, \quad
+	\X2 = (2,2,0,1,0)^T, \quad
+	\X3 = (2,3,0,0,1)^T.
+\]
+原方程组的通解为\(k_1 \X1 + k_2 \X2 + k_3 \X3\)，其中\(k_1,k_2,k_3\)为任意常数.
+\end{solution}
+\end{example}
+
+\subsection{齐次方程同解的条件}
+\begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P85 习题4.5 6(2)
+设\(\A,\B \in M_{s \times n}(K)\)，
+则\[
+	\text{\(\A\x=\vb0\)的解都是\(\B\x=\vb0\)的解}
+	\implies
+	\rank\A \geq \rank\B.
+\]
+%TODO
+\end{example}
 
 \begin{proposition}\label{theorem:线性方程组.同解方程组的系数矩阵的秩相同}
 设\(\A,\B \in M_{s \times n}(K)\)，
-则“方程组\(\A\x=\vb0\)与\(\B\x=\vb0\)同解”
+则“\(\A\x=\vb0\)与\(\B\x=\vb0\)同解”
 是“\(\rank\A=\rank\B\)”的充分不必要条件.
 \begin{proof}
 假设\(\A\x=\vb0\)与\(\B\x=\vb0\)同解，
@@ -234,129 +312,75 @@
 	\Ker\B
 	=\Ker(\A\B),
 \]
-也就是说\(\A\x=\vb0\)与\(\B\x=\vb0\)同解.
+也就是说\(\A\B\x=\vb0\)与\(\B\x=\vb0\)同解.
 \end{proof}
 \end{proposition}
 
 \begin{example}
-求齐次线性方程组\[
-	\left\{ \begin{array}{*{11}{r}}
-		x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &+& 4 x_5 &=& 0 \\
-		2 x_1 &-& 2 x_2 &-& 3 x_3 && &+& 2 x_5 &=& 0 \\
-		4 x_1 &-& 2 x_2 &-& 7 x_3 &-& 4 x_4 &-& 2 x_5 &=& 0
-	\end{array} \right.
-\]的通解.
-\begin{solution}
-写出系数矩阵\(\A\)，并作初等行变换化简
-\begin{align*}
-	\A &= \begin{bmatrix}
-		1 & -2 & -1 & 2 & 4 \\
-		2 & -2 & -3 & 0 & 2 \\
-		4 & -2 & -7 & -4 & -2
-	\end{bmatrix} \\
-	&\xlongrightarrow{\begin{array}{c}
-		-2\times\text{(1行)}+\text{(2行)} \\
-		-4\times\text{(1行)}+\text{(3行)}
-	\end{array}}
-	\begin{bmatrix}
-		1 & -2 & -1 & 2 & 4 \\
-		0 & 2 & -1 & -4 & -6 \\
-		0 & 6 & -3 & -12 & -18
-	\end{bmatrix} \\
-	&\xlongrightarrow{\begin{array}{c}
-		-3\times\text{(2行)}+\text{(3行)} \\
-		1\times\text{(2行)}+\text{(1行)}
-	\end{array}}
-	\begin{bmatrix}
-		1 & 0 & -2 & -2 & -2 \\
-		0 & 2 & -1 & -4 & -6 \\
-		0 & 0 & 0 & 0 & 0
-	\end{bmatrix}
-	= \B,
-\end{align*}
-因为\(\rank\A=\rank\B=2\)，所以基础解系含\(5-2=3\)个向量.
-分别将\(x_3,x_4,x_5\)的3组值\((2,0,0),(0,1,0),(0,0,1)\)代入\(\B\x=\vb0\)，
-得基础解系：\[
-	\X1 = (4,1,2,0,0)^T, \quad
-	\X2 = (2,2,0,1,0)^T, \quad
-	\X3 = (2,3,0,0,1)^T.
+设\(\A\in M_{s \times n}(\mathbb{R})\).
+证明：齐次线性方程组\(\A\x=\z\)与\((\A^T\A)\x=\z\)同解.
+\begin{proof}
+\def\a{\vb{\xi}}
+\def\b{\vb{\eta}}
+设\(\a\)是\(\A\x=\z\)的任意一个解，
+则\(\A\a=\z\)，于是\[
+	(\A^T\A)\a=\A^T(\A\a)=\A^T\z=\z,
 \]
-原方程组的通解为\(k_1 \X1 + k_2 \X2 + k_3 \X3\)，其中\(k_1,k_2,k_3\)为任意常数.
-\end{solution}
+这就是说\(\a\)是\((\A^T\A)\x=\z\)的一个解.
+
+又设\(\b\)是\((\A^T\A)\x=\z\)的任意一个解，
+则\[
+	(\A^T\A)\b=\z.
+	\eqno(1)
+\]
+在(1)式等号两边同时左乘\(\b^T\)得\[
+	\b^T(\A^T\A)\b=(\A\b)^T(\A\b)=0.
+	\eqno(2)
+\]
+
+假设\(\A\b=(\AutoTuple{c}{s})^T\in\mathbb{R}^s\).
+由(2)式有\[
+	(\AutoTuple{c}{s}) (\AutoTuple{c}{s})^T
+	= \AutoTuple{c}{n}[+][2]
+	= 0.
+\]
+由于\(\AutoTuple{c}{n}\in\mathbb{R}\)，
+所以\(\AutoTuple{c}{n}[=]=0\)，
+\(\A\b=\z\)，
+这就是说\(\b\)是\(\A\x=\z\)的一个解.
+
+综上所述，\((\A^T\A)\x=\z\)与\(\A\x=\z\)同解.
+\end{proof}
 \end{example}
-
-%%DELETE: 前面已经有\cref{equation:线性方程组.西尔维斯特不等式} 了，这里可以删除了.
-% \cref{theorem:线性方程组.齐次线性方程组的解向量个数}
-% 揭示矩阵\(\A\)的秩与方程\(\A\x=\vb0\)的基础解系所含向量个数的关系.
-% 它不仅对\(\A\x=\vb0\)的求解有重要意义，而且可以用来解决矩阵的秩的一些问题.
-% \begin{example}
-% 设\(\A\)为\(s \times n\)矩阵，\(\B\)为\(n \times m\)矩阵，\(\A\B=\vb0\).
-% 证明：\(\rank\A + \rank\B \leq n\).
-% \begin{proof}
-% 设矩阵\(\B\)与\(\A\B=\vb0\)右端的零矩阵列分块矩阵分别为\[
-% 	\B=(\AutoTuple{\b}{m}),
-% 	\quad
-% 	\vb0=(\vb0,\dotsc,\vb0)
-% \]
-% 那么\[
-% 	\A(\AutoTuple{\b}{m})
-% 	= (\A\b_1,\A\b_2,\dotsc,\A\b_m)
-% 	= (\vb0,\vb0,\dotsc,\vb0)
-% \]或\[
-% 	\A\b_j = \vb0 \quad(j=1,2,\dotsc,m)
-% \]
-% 即\(\beta=\{\AutoTuple{\b}{m}\}\)是齐次线性方程组\(\A\x=\vb0\)解向量组.
-
-% 若\(\rank\A=n\)，则\(\A\x=\vb0\)只有零解，\(\B=\vb0\)，\(\rank\B=0=n-\rank\A\).
-
-% 若\(\rank\A<n\)，则\(X=\{\AutoTuple{\x}{n-r}\}\)是\(\A\x=\vb0\)的一个基础解系，
-% 则\(\beta\)可由\(X\)线性表出，\(\rank\beta \leq \rank X\).
-% 而\(\rank\beta=\rank\B\)，\(\rank X=n-\rank\A\).
-
-% 综上所述，\(\rank\A+\rank\B \leq n\)成立.
-% \end{proof}
-% \end{example}
+\begin{remark}
+同理可证\((\A\A^T)\x=\z\)与\(\A\x=\z\)同解.
+\end{remark}
 
 \begin{example}
-已知向量\(\a_1 = \begin{bmatrix}
-	1 \\ 2 \\ 3
-\end{bmatrix},
-\a_2 = \begin{bmatrix}
-	2 \\ 1 \\ 1
-\end{bmatrix},
-\b_1 = \begin{bmatrix}
-	2 \\ 5 \\ 9
-\end{bmatrix},
-\b_2 = \begin{bmatrix}
-	1 \\ 0 \\ 1
-\end{bmatrix}\).
-若向量\(\g\)既可由\(\a_1,\a_2\)线性表出，
-也可由\(\b_1,\b_2\)线性表出，求\(\g\).
-\begin{solution}
-设\(\g = x_1 \a_1 + x_2 \a_2 = x_3 \b_1 + x_4 \b_2\)，
-则\(x_1 \a_1 + x_2 \a_2 - x_3 \b_1 - x_4 \b_2 = \vb0\).
-又由于\[
-	(\a_1,\a_2,-\b_1,-\b_2) = \begin{bmatrix}
-		1 & 2 & -2 & -1 \\
-		2 & 1 & -5 & 0 \\
-		3 & 1 & -9 & -1
-	\end{bmatrix}
-	\to \begin{bmatrix}
-		1 & 0 & 0 & 3 \\
-		0 & 1 & 0 & -1 \\
-		0 & 0 & 1 & 1
-	\end{bmatrix},
-\]
-解得\((x_1,x_2,x_3,x_4)^T = c (-3,1,-1,1)^T\ (c\in\mathbb{R})\).
-因此\[
-	\g = c (x_3 \b_1 + x_4 \b_2)
-	= c \begin{bmatrix}
-		-1 \\ -5 \\ -8
-	\end{bmatrix}
-	= k \begin{bmatrix}
-		1 \\ 5 \\ 8
-	\end{bmatrix}
-	\quad(k\in\mathbb{R}).
-\]
-\end{solution}
+%@see: 《高等代数（第三版 上册）》（丘维声） P122 命题2
+设\(\A \in M_{m \times n}(\mathbb{R})\).
+求证：\begin{equation}\label{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩}
+	\rank\A = \rank(\A\A^T) = \rank(\A^T\A).
+\end{equation}
+\begin{proof}
+因为\(\A\x=\vb0\)、\((\A\A^T)\x=\vb0\)和\((\A^T\A)\x=\vb0\)同解，
+所以由\cref{theorem:线性方程组.同解方程组的系数矩阵的秩相同} 可知，
+这三个方程的系数矩阵的秩相等.
+\end{proof}
 \end{example}
+\begin{remark}
+应该注意到\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 成立的前提条件是：
+矩阵\(\A\)是实矩阵.
+如果矩阵\(\A\)不是实矩阵，\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 就不一定成立.
+例如，取矩阵\(\A = \begin{bmatrix}
+	1 & \iu \\
+	0 & 0
+\end{bmatrix}
+\in M_2(\mathbb{C})\)，
+易见\(\A \A^T = \begin{bmatrix}
+	0 & 0 \\
+	0 & 0
+\end{bmatrix}\)，
+于是\(\rank\A=1\)而\(\rank(\A\A^T)=0\)，
+也就是说\(\rank\A\neq\rank(\A\A^T)\).
+\end{remark}
