@@ -1,0 +1,154 @@
+\section{高等不等式}
+\subsection{柯西--施瓦茨不等式}
+\begin{theorem}[柯西--施瓦茨不等式]\label{theorem:定积分.柯西--施瓦茨不等式}
+%@see: 《数学分析习题课讲义》（谢惠民、恽自求、易法槐、钱定边） P346 命题11.2.2
+设函数\(f,g \in R[a,b]\)，
+则\begin{equation}\label{equation:定积分.柯西--施瓦茨不等式}
+	\left[ \int_a^b f(x) g(x) \dd{x} \right]^2
+	\leq
+	\int_a^b f^2(x) \dd{x} \int_a^b g^2(x) \dd{x}.
+\end{equation}
+若函数\(f,g \in C[a,b]\)，
+则上式“\(=\)”当且仅当“存在不全为零的常数\(\alpha\)和\(\beta\)，
+使得\(\alpha f(x) = \beta g(x)\)”成立.
+\begin{proof}
+因为对任意实数\(t\)，
+总有\begin{align*}
+	&\hspace{-20pt}
+	\int_a^b f^2(x) \dd{x}
+	+ 2t \int_a^b f(x) g(x) \dd{x}
+	+ t^2 \int_a^b g^2(x) \dd{x} \\
+	&= \int_a^b [ f(x) + t g(x) ]^2 \dd{x}
+	\geq \int_a^b 0 \dd{x}
+	= 0
+	\tag1
+\end{align*}
+成立.
+将(1)式视作关于\(t\)的一元二次多项式，
+假设二次项系数\(\int_a^b g^2(x) \dd{x} > 0\)，
+由于该多项式是非负的，故其判别式非正，即\[
+	\left[ 2 \int_a^b f(x) g(x) \dd{x} \right]^2
+	- 4 \int_a^b g^2(x) \dd{x} \int_a^b f^2(x) \dd{x}
+	\leq 0,
+\]移项并化简，
+可得\cref{equation:定积分.柯西--施瓦茨不等式}.
+如果二次项系数\(\int_a^b g^2(x) \dd{x} = 0\)，
+那么\(g\)在其所有连续点上恒等于零.
+由于可积函数的连续点稠密，
+因此可以推出积分\(\int_a^b f(x) g(x) \dd{x} = 0\)，
+从而有\cref{equation:定积分.柯西--施瓦茨不等式} 成立.
+\end{proof}
+\end{theorem}
+
+这里的柯西--施瓦茨不等式是\cref{theorem:不等式.柯西不等式} 的积分形式.
+
+\subsection{闵可夫斯基不等式}
+\begin{theorem}[闵可夫斯基不等式]\label{theorem:定积分.闵可夫斯基不等式}
+设函数\(f,g \in C[a,b]\)，
+则\begin{equation}\label{equation:定积分.闵可夫斯基不等式}
+	\sqrt{ \int_a^b [f(x)+g(x)]^2 \dd{x} }
+	\leq \sqrt{ \int_a^b [f(x)]^2 \dd{x} }
+			+ \sqrt{ \int_a^b [g(x)]^2 \dd{x} }.
+\end{equation}
+\end{theorem}
+
+\subsection{欧庇尔不等式}
+\begin{theorem}[欧庇尔不等式]\label{theorem:定积分.欧庇尔不等式}
+设函数\(f(x)\)在\([a,b]\)上有连续导数，\(f(a)=f(b)=0\)，
+则\begin{equation}\label{equation:定积分.欧庇尔不等式}
+	\int_a^b \abs{f(x) f'(x)} \dd{x}
+	\leq \frac{b-a}{4}
+	\int_a^b [f'(x)]^2 \dd{x}.
+\end{equation}
+\begin{proof}
+由于\(f(a)=f(b)=0\)，所以\begin{enumerate}
+	\item 当\(x \in \left[a,c\right]\)时，
+	\(\abs{f(x)} = \abs{\int_a^x f'(t) \dd{t}} \leq \int_a^x \abs{f'(t)} \dd{t} = F(x)\)；
+	\item 当\(x \in \left[c,b\right]\)时，
+	\(\abs{f(x)} = \abs{\int_b^x f'(t) \dd{t}} \leq \int_b^x \abs{f'(t)} \dd{t} = G(x)\),
+\end{enumerate}
+其中\(c=\frac{a+b}{2}\).
+从而，\begin{align*}
+	\int_a^b \abs{f(x) f'(x)} \dd{x}
+	&= \int_a^c \abs{f(x) f'(x)} \dd{x}
+		+ \int_c^b \abs{f(x) f'(x)} \dd{x} \\
+	&\leq \int_a^c F(x) F'(x) \dd{x}
+		+ \int_c^b G(x) G'(x) \dd{x} \\
+	&= \frac{1}{2} \left[ F^2(c) + G^2(c) \right].
+\end{align*}
+分别代入\(F(x)\)与\(G(x)\)的表达式，
+可得\[
+	F^2(c) = \left( \int_a^c \abs{f'(t)} \dd{t} \right)^2,
+	\qquad
+	G^2(c) = \left( \int_c^b \abs{f'(t)} \dd{t} \right)^2.
+\]
+根据\hyperref[equation:定积分.柯西--施瓦茨不等式]{柯西--施瓦茨不等式}，
+有\begin{align*}
+	&\hspace{-20pt}\int_a^b{\abs{f(x) f'(x)} \dd{x}}
+	\leq \frac{1}{2} \left[
+		F^2(c)
+		+ G^2(c)
+		\right] \\
+	&= \frac{1}{2} \left[
+		\left(\int_a^c{\abs{f'(t)}\dd{t}}\right)^2
+		+\left(\int_c^b{\abs{f'(t)}\dd{t}}\right)^2
+		\right] \\
+	&\leq \frac{1}{2} \left\{
+		\int_a^c{1^2 \dd{x}}
+		\int_a^c{[f'(x)]^2 \dd{x}}
+		+\int_c^b{1^2 \dd{x}}
+		\int_c^b{[f'(x)]^2 \dd{x}}
+		\right\} \\
+	&= \frac{b-a}{4} \int_a^b{[f'(x)]^2 \dd{x}}.
+\end{align*}
+\cref{equation:定积分.欧庇尔不等式} 当且仅当\[
+	f(x) = \left\{ \begin{array}{cl}
+		c(x-a), & x\in\left[a,c\right], \\
+		-c(x-b), & x\in\left[c,b\right],
+	\end{array} \right.
+\]时取等号，其中\(c\neq0\).
+\end{proof}
+%@see: https://doi.org/10.1007/978-94-011-3562-7
+\end{theorem}
+
+\subsection{贝尔曼--格朗沃尔不等式}
+\begin{theorem}[贝尔曼--格朗沃尔不等式]\label{theorem:定积分.贝尔曼--格朗沃尔不等式}
+%https://www.sciencedirect.com/topics/engineering/gronwall-bellman-inequality
+设\(f(x),g(x),\phi(x)\)为\([a,b]\)上的连续函数，
+\(g(x)\)单调递增，
+\(\phi(x)\geq0\)，
+且\[
+	(\forall x \in [a,b])
+	\left[
+		f(x) \leq g(x) + \int_a^x \phi(t) f(t) \dd{t}
+	\right],
+\]
+那么\[
+	(\forall x \in [a,b])
+	\left[
+		f(x) \leq g(x) e^{\int_a^x \phi(s) \dd{s}}
+	\right].
+\]
+\begin{proof}
+设\(F(x) = \int_a^x \phi(t) f(t) \dd{t}\)，
+则\[
+	F'(x) = \phi(x) f(x) \leq \phi(x) g(x) + \phi(x) F(x),
+\]
+移项得\(F'(x) - \phi(x) F(x) \leq \phi(x) g(x)\)，于是\[
+	\dv{x}\left[F(x) e^{-\int_a^x \phi(t) \dd{t}}\right]
+	\leq \phi(x) g(x) e^{-\int_a^x \phi(t) \dd{t}},
+\]\[
+	F(x) \leq \int_a^x \phi(t) g(t) e^{\int_t^x \phi(s) \dd{s}} \dd{t}.
+\]
+由于\(g(x)\)单调递增，
+根据\hyperref[theorem:定积分.积分中值定理2]{积分第二中值定理}，
+有\begin{align*}
+	f(x) &\leq g(x) + F(x)
+		\leq g(x) + \int_a^x \phi(t) g(t) e^{\int_t^x \phi(s) \dd{s}} \dd{t} \\
+	&\leq g(x) + g(x) \int_a^x \phi(t) e^{\int_t^x \phi(s) \dd{s}} \dd{t} \\
+	&= g(x) + g(x) \left[-e^{\int_t^ \phi(s) \dd{s}}\right]_a^x \\
+	&= g(x) e^{\int_a^x \phi(s) \dd{s}}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}

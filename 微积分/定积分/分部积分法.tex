@@ -1,0 +1,192 @@
+\section{定积分的分部积分法}
+\begin{theorem}
+若函数\(u(x)\)、\(v(x)\)在区间\([a,b]\)上连续，在\((a,b)\)上可导，则\[
+\int_a^b u(x) v'(x) \dd{x} = [u(x) v(x)]_a^b - \int_a^b v(x) u'(x) \dd{x}.
+\]或\[
+\int_a^b u \dd{v} = [uv]_a^b - \int_a^b v \dd{u}.
+\]
+\end{theorem}
+公式表明原函数已经积出的部分可以先用上、下限代入.
+
+多次运用分部积分公式可以进一步得到以下结果：
+\begin{corollary}
+设函数\(u(x)\)及\(v(x)\)在区间\([a,b]\)上有\(n+1\)阶连续导数，则\[
+\int_a^b u(x) v^{(n+1)}(x) \dd{x}
+= \biggl[
+\sum_{k=0}^n (-1)^k u^{(k)}(x) v^{(n-k)}(x)
+\biggr]_a^b + (-1)^{n+1} \int_a^b u^{(n+1)}(x) v(x) \dd{x}
+\]对\(n=1,2,\dotsc\)均成立.
+\end{corollary}
+
+\begin{example}
+计算\(\int_0^1 e^{\sqrt{x}} \dd{x}\).
+\begin{solution}
+先用换元法.
+令\(\sqrt{x}=t\)，
+则\(x=t^2\)，
+\(\dd{x} = 2t\dd{t}\)，
+那么\[
+	\int_0^1 e^{\sqrt{x}} \dd{x}
+	= 2 \int_0^1 t \dd(e^t)
+	= 2 (t e^t)_0^1 - 2 \int_0^1 e^t \dd{t}
+	= 2.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}\label{example:定积分.点火公式}
+证明：\begin{equation}\label{equation:定积分.点火公式}
+	I_n = \int_0^{\frac{\pi}{2}} \sin^n x \dd{x}
+	= \left\{ \def\arraystretch{1.5} \begin{array}{rl}
+		\frac{\pi}{2}\frac{(n-1)!!}{n!!},
+			& \text{$n$是偶数}, \\
+		\frac{(n-1)!!}{n!!},
+			& \text{$n$是奇数}.
+	\end{array} \right.
+\end{equation}
+\begin{proof}
+由于\[
+\begin{split}
+I_n &= -\int_0^{\frac{\pi}{2}} \sin^{n-1} x \dd(\cos x) \\
+&= [-\cos x \sin^{n-1} x]_0^{\frac\pi2}
+	+ (n-1) \int_0^{\frac\pi2} \sin^{n-2} x \cos^2 x \dd{x} \\
+&= (n-1) \int_0^{\frac\pi2} \sin^{n-2} x (1-\sin^2 x) \dd{x} \\
+&= (n-1) I_{n-2} - (n-1) I_n,
+\end{split}
+\]所以\[
+I_n = \frac{n-1}{n} I_{n-2}.
+\]于是\[
+\begin{split}
+I_{2k} = \frac{2k-1}{2k} \cdot \frac{2k-3}{2k-2} \cdot \dotsm \cdot \frac{5}{6} \cdot \frac{3}{4} \cdot \frac{1}{2} \cdot I_0, \\
+I_{2k+1} = \frac{2k}{2k+1} \cdot \frac{2k-2}{2k-1} \cdot \dotsm \cdot \frac{6}{7} \cdot \frac{4}{5} \cdot \frac{2}{3} \cdot I_1,
+\end{split}
+\quad(k=1,2,\dotsc).
+\]而\[
+I_0 = \int_0^{\frac{\pi}{2}} \dd{x} = \frac{\pi}{2},
+\qquad
+I_1 = \int_0^{\frac{\pi}{2}} \sin x \dd{x} = 1,
+\]因此\[
+I_{2k} = \frac{2k-1}{2k} \cdot \frac{2k-3}{2k-2} \cdot \dotsm \cdot \frac{5}{6} \cdot \frac{3}{4} \cdot \frac{1}{2} \cdot \frac{\pi}{2},
+\]\[
+I_{2k+1} = \frac{2k}{2k+1} \cdot \frac{2k-2}{2k-1} \cdot \dotsm \cdot \frac{6}{7} \cdot \frac{4}{5} \cdot \frac{2}{3}.
+\qedhere
+\]
+\end{proof}
+\end{example}
+
+下面特别就\cref{equation:定积分.点火公式} 做一点点展开.
+\begin{example}
+证明：\begin{equation}
+	\lim_{n\to\infty} \int_0^{\frac\pi2} \sin^n x \dd{x} = 0.
+\end{equation}
+\begin{proof}
+因为\(\sin^n\frac{\pi}{2}=1\)，
+所以对于任意\(n\)总有函数\(\sin^n x\)在点\(\frac{\pi}{2}\)的左邻域取值接近\(1\).
+另一方面，对于固定的\(x\)取值，只要\(x<\frac{\pi}{2}\)，
+则当\(n\)增加时函数值\(\sin^n x\)就很快趋于\(0\).
+接下来我们就采用这样的“分而治之”的方法证明
+\(\lim_{n\to\infty} \int_0^{\frac\pi2} \sin^n x \dd{x} = 0\).
+
+当\(0<x<\frac{\pi}{2}\)时，\(0<\sin x<1\).
+\(\forall\epsilon>0\)（不妨设\(\epsilon<\pi\)）.
+因为\(\sin x\)在\([0,\pi/2]\)上单调增加且大于零，
+故根据\cref{theorem:定积分.定积分性质6}，
+有\[
+	\int_0^{(\pi-\epsilon)/2} \sin^n x \dd{x}
+	\leq
+	\int_0^{(\pi-\epsilon)/2} \sin^n\frac{\pi-\epsilon}{2} \dd{x}
+	\leq
+	\frac{\pi}{2} \sin^n\frac{\pi-\epsilon}{2},
+\]
+因此\[
+	0 \leq \int_0^{\frac\pi2} \sin^n x \dd{x}
+	= \int_0^{(\pi-\epsilon)/2} \sin^n x \dd{x}
+	+ \int_{(\pi-\epsilon)/2}^{\frac\pi2} \sin^n x \dd{x}
+	\leq \frac{\pi}{2} \sin^n\frac{\pi-\epsilon}{2} + \frac{\epsilon}{2}.
+\]
+由\(0<\sin\frac{\pi-\epsilon}{2}<1\)，
+可见\(\lim_{n\to\infty} \sin^n\frac{\pi-\epsilon}{2} = 0\).
+从而对于上述\(\epsilon\)，有\[
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	\left[
+		\begin{array}{ll}
+			n>N
+			&\implies
+			0<\frac{\pi}{2} \sin^n\frac{\pi-\epsilon}{2}<\frac{\epsilon}{2} \\
+			&\implies
+			0 \leq \int_0^{\frac\pi2} \sin^n x \dd{s} < \epsilon.
+		\end{array}
+	\right]
+\]
+这就证明了\(\lim_{n\to\infty} \int_0^{\frac\pi2} \sin^n x \dd{x} = 0\).
+\end{proof}
+\end{example}
+
+可以观察到\cref{example:定积分.点火公式} 中，
+\(I_{2k}\)和\(I_{2k+1}\)几乎只差一个系数\(\pi/2\).
+我们不禁猜想是否可以利用\cref{equation:定积分.点火公式} 求出圆周率\(\pi\).
+\begin{example}[沃利斯公式]
+证明：\begin{equation}\label{equation:定积分.沃利斯公式}
+	\lim_{n\to\infty} \frac{1}{2n+1} \left[
+		\frac{(2n)!!}{(2n-1)!!}
+	\right]^2
+	= \frac{\pi}{2}.
+\end{equation}
+\begin{proof}
+因为当\(0<x<\frac{\pi}{2}\)时有\(0<\sin x<1\)，
+因此对\(\forall n\in\mathbb{N}^*\)就有\[
+	\sin^{2n+2} x < \sin^{2n+1} x < \sin^{2n} x.
+\]
+这样就成立积分不等式\(I_{2n+2} < I_{2n+1} < I_{2n}\)，那么\[
+	I_{2n+2} = \frac{2n+1}{2n+2} \cdot I_{2n}
+	< I_{2n+1} < I_{2n}.
+\]
+在上式两边同时除以\(I_{2n}\)，并取极限，
+根据\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}有\[
+	\lim_{n\to\infty} \frac{I_{2n+1}}{I_{2n}} = 1
+\]
+或\[
+	\lim_{n\to\infty} \frac{1}{2n+1} \cdot \left[
+		\frac{(2n)!!}{(2n-1)!!}
+	\right]^2 \cdot \frac{2}{\pi}
+	= 1.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
+计算\[
+	I_n = \int_0^\pi x \sin^n x \dd{x}
+	\quad(n\in\mathbb{N}^+).
+\]
+%TODO
+%@Mathematica: Integrate[x Sin[x]^n, {x, 0, Pi}, Assumptions -> {n \[Element] PositiveIntegers}]
+% 結果是(\[Pi]^(3/2) Gamma[(1 + n)/2])/(2 Gamma[1 + n/2])
+%\[
+%	\pi^{\frac32} \frac{
+%		\Gamma\left(\frac{1+n}{2}\right)
+%	}{
+%		\Gamma\left(1+\frac{n}{2}\right)
+%	}.
+%\]
+\end{example}
+
+\begin{example}
+计算：\(\int_0^{2\pi}\left(\int_x^{2\pi}\frac{\sin t}{t}\dd{t}\right)\dd{x}\).
+\begin{solution}
+这里我们把\(\int_x^{2\pi}\frac{\sin t}{t}\dd{t}\)看成一个整体，
+即令\(u = \int_x^{2\pi}\frac{\sin t}{t}\dd{t}\)，
+那么我们就利用分部积分法，
+得到\(\int_0^{2\pi} u \dd{x} = (x u)_0^{2\pi} - \int_0^{2\pi} x \dd{u}\).
+按照这个思路，
+我们有\begin{align*}
+	\int_0^{2\pi}\left(\int_x^{2\pi}\frac{\sin t}{t}\dd{t}\right)\dd{x}
+	&= \left(x \int_x^{2\pi}\frac{\sin t}{t}\dd{t}\right)_0^{2\pi}
+	- \int_0^{2\pi} x \dd(\int_x^{2\pi}\frac{\sin t}{t}\dd{t}) \\
+	&= 0 - \int_0^{2\pi} x \left(-\frac{\sin x}{x}\right) \dd{x} \\
+	&= \int_0^{2\pi} \sin x \dd{x} = 0.
+\end{align*}
+\end{solution}
+\end{example}
