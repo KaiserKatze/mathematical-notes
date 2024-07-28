@@ -1,0 +1,145 @@
+\section{反常积分的审敛法}
+反常积分的收敛性，可以通过求被积函数的原函数，然后按定义取极限，根据极限的存在与否来判定.
+但在本节中，我们可以建立不通过被积函数的原函数判定反常积分收敛性的判定法.
+
+\subsection{无穷限反常积分的审敛法}
+\begin{theorem}\label{theorem:定积分.无穷限反常积分的审敛法引理}
+设函数\(f(x)\)在区间\([a,+\infty)\)上连续，且\(f(x) \geq 0\).若函数\[
+F(x)=\int_a^x f(t) \dd{t}
+\]在\([a,+\infty)\)上有上界，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+\end{theorem}
+事实上，因为\(f(x)\geq0\)，
+\(F(x)\)在\([a,+\infty)\)上单调增加；
+又因为\(F(x)\)在\([a,+\infty)\)上有上界，
+故\(F(x)\)在\([a,+\infty)\)上是单调有界的函数.
+按照“区间\([a,+\infty)\)上的单调有界函数\(F(x)\)必有极限\(\lim_{x\to+\infty} F(x)\)”的准则，
+就可知道极限\[
+	\lim_{x\to+\infty} \int_a^x f(t) \dd{t}
+\]存在，即反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+
+根据\cref{theorem:定积分.无穷限反常积分的审敛法引理}，
+对于非负函数的无穷限的反常积分，有以下的比较审敛原理.
+\begin{theorem}[比较审敛原理]\label{theorem:定积分.无穷限反常积分的比较审敛原理}
+设函数\(f(x),g(x)\)在区间\([a,+\infty)\)上连续.
+\begin{enumerate}
+	\item 如果\[
+		0 \leq f(x) \leq g(x)
+		\quad (a \leq x < +\infty),
+	\]并且\(\int_a^{+\infty} g(x) \dd{x}\)收敛，
+	则\(\int_a^{+\infty} f(x) \dd{x}\)也收敛.
+
+	\item 如果\[
+		0 \leq g(x) \leq f(x)
+		\quad (a \leq x < +\infty),
+	\]
+	并且\(\int_a^{+\infty} g(x) \dd{x}\)发散，
+	则\(\int_a^{+\infty} f(x) \dd{x}\)也发散.
+\end{enumerate}
+\begin{proof}
+任意取定\(t \in (a,+\infty)\).
+
+当有\(0 \leq f(x) \leq g(x)\)且\(\int_a^{+\infty} g(x) \dd{x}\)收敛时，
+根据\cref{theorem:定积分.定积分性质5推论1}
+得\[
+	\int_a^t f(x) \dd{x}
+	\leq
+	\int_a^t g(x) \dd{x}
+	\leq
+	\int_a^{+\infty} g(x) \dd{x}.
+\]
+这表明作为积分上限\(t\)的函数\[
+	F(t) = \int_a^t f(x) \dd{x}
+\]
+在区间\([a,+\infty)\)上有上界.
+由\cref{theorem:定积分.无穷限反常积分的审敛法引理} 可知，
+反常积分\(\int_a^{+\infty} f(x) \dd{x}\)也收敛.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}[比较审敛法]\label{theorem:定积分.无穷限反常积分的比较审敛法}
+设函数\(f(x)\)在区间\([a,+\infty)\ (a>0)\)上连续，且\(f(x) \geq 0\).
+如果存在常数\(M>0\)及\(p>1\)，使得\[
+f(x) \leq \frac{M}{x^p} \quad (a \leq x < +\infty),
+\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛；
+如果存在常数\(N>0\)，使得\[
+f(x) \geq \frac{N}{x} \quad (a \leq x < +\infty),
+\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\end{theorem}
+
+\begin{theorem}[极限审敛法]\label{theorem:定积分.无穷限反常积分的极限审敛法}
+设函数\(f(x)\)在区间\([a,+\infty)\)上连续，且\(f(x) \geq 0\).
+如果存在常数\(p > 1\)，使得\[
+\lim_{x \to +\infty} x^p f(x)
+\]存在，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛；
+如果\[
+\lim_{x \to +\infty} x f(x) = d \in (0,+\infty],
+\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\end{theorem}
+
+\begin{example}\label{example:定积分.高斯积分的收敛性}
+证明：高斯积分\[
+\int_0^{+\infty} e^{-x^2} \dd{x}
+\]收敛.
+\begin{proof}
+因为在区间\([0,+\infty)\)上被积函数\(f(x) = e^{-x^2}\)连续且恒大于零，
+且极限\[
+\lim_{x\to+\infty} x^2 e^{-x^2}
+= \lim_{x\to+\infty} \frac{x^2}{e^{x^2}}
+\xlongequal{u=x^2} \lim_{u\to+\infty} \frac{u}{e^u}
+= \lim_{u\to+\infty} \frac{1}{e^u}
+= 0,
+\]
+那么根据\cref{theorem:定积分.无穷限反常积分的极限审敛法}，
+高斯积分\(\int_0^{+\infty} e^{-x^2} \dd{x}\)收敛.
+\end{proof}
+\end{example}
+
+\begin{theorem}\label{theorem:定积分.绝对收敛的无穷限反常积分必收敛}
+设函数\(f(x)\)在区间\([a,+\infty)\)上连续.
+如果反常积分\[
+\int_a^{+\infty} \abs{f(x)} \dd{x}
+\]收敛，则反常积分\[
+\int_a^{+\infty} f(x) \dd{x}
+\]也收敛.
+\end{theorem}
+通常称满足上述定理条件的反常积分\(\int_a^{+\infty} f(x) \dd{x}\) \DefineConcept{绝对收敛}.
+于是，上述定理可简单地表述为：
+绝对收敛的反常积分\(\int_a^{+\infty} f(x) \dd{x}\)必定收敛.
+
+\begin{example}
+设反常积分\(\int_1^{+\infty} f^2(x) \dd{x}\)收敛.
+证明：反常积分\(\int_1^{+\infty} \frac{f(x)}{x} \dd{x}\)绝对收敛.
+\begin{proof}
+根据\cref{theorem:不等式.基本不等式2}，
+在区间\([1,+\infty)\)上有\[
+\abs{\frac{f(x)}{x}}
+= \frac{\abs{f(x)}}{x}
+\leq \frac{1}{2} \left[
+	\abs{f(x)}^2 + \frac{1}{x^2}
+\right]
+= \frac{1}{2} f^2(x) + \frac{1}{2x^2}
+\]成立，且\(\int_1^{+\infty} f^2(x) \dd{x}\)和\(\int_1^{+\infty} \frac{1}{x^2} \dd{x}\)都收敛，
+故\(\int_1^{+\infty} \abs{\frac{f(x)}{x}} \dd{x}\)收敛.
+\end{proof}
+\end{example}
+
+\subsection{无界函数的反常积分的审敛法}
+\begin{theorem}[比较审敛法]\label{theorem:定积分.无界函数的反常积分的比较审敛法}
+设函数\(f(x)\)在区间\((a,b]\)上连续，且\(f(x) \geq 0\)，\(x=a\)为\(f(x)\)的瑕点.
+如果存在常数\(M > 0\)及\(q < 1\)，使得\[
+f(x) \leq \frac{M}{(x-a)^q} \quad (a < x \leq b),
+\]则反常积分\(\int_a^b f(x) \dd{x}\)收敛；
+如果存在常数\(N > 0\)，使得\[
+f(x) \geq \frac{N}{x - a} \quad (a < x \leq b),
+\]则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{theorem}
+
+\begin{theorem}[极限审敛法]\label{theorem:定积分.无界函数的反常积分的极限审敛法}
+设函数\(f(x)\)在区间\((a,b]\)上连续，且\(f(x) \geq 0\)，\(x=a\)为\(f(x)\)的瑕点.
+如果存在常数\(q \in (0,1)\)，使得\[
+\lim_{x \to a^+} (x-a)^q f(x)
+\]存在，则反常积分\(\int_a^b f(x) \dd{x}\)收敛；
+如果\[
+\lim_{x \to a^+} (x-a) f(x) = d \in (0,+\infty],
+\]则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{theorem}

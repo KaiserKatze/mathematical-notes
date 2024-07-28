@@ -1,0 +1,211 @@
+\section{无界函数的反常积分}
+本节我们讨论第二类反常积分 --- “无界函数的反常积分”.
+
+先看一个具体的例子.
+表达式\[
+	\int_0^1 \frac{\dd{x}}{\sqrt{x}}
+\]在黎曼积分的意义下是没有意义的，
+因为被积函数\(\frac{1}{\sqrt{x}}\)在\(0\)的右邻域无界，
+于是我们把点\(x=0\)称为这个积分的“瑕点”.
+但是，对于\(\forall\epsilon\in(0,1)\)，积分\[
+	\int_\epsilon^1 \frac{\dd{x}}{\sqrt{x}}
+\]是有意义的，
+它是一个带有变动下限\(\epsilon\)的积分.
+由于极限\[
+	\lim_{\epsilon\to0^+} \int_\epsilon^1 \frac{\dd{x}}{\sqrt{x}}
+	= \lim_{\epsilon\to0^+} 2\sqrt{x}\eval_\epsilon^1
+	= 2 \lim_{\epsilon\to0^+} (1-\sqrt\epsilon)
+	= 2
+\]存在且有限，
+我们就定义\[
+	\int_0^1 \frac{\dd{x}}{\sqrt{x}}=2.
+\]
+
+\subsection{无界函数的反常积分的概念}
+\begin{definition}\label{definition:定积分.无界函数的反常积分的定义1}
+设函数\(f\colon(a,b]\to\mathbb{R}\)满足\[
+	\lim_{x \to a^+} f(x) = \infty;
+\]
+但是对于\(\forall\epsilon\in(0,b-a)\)，
+函数\(f\)在\([a+\epsilon,b]\)上可积.
+
+如果极限\[
+	\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}
+\]存在且有限，
+那么把这个极限称为“函数\(f(x)\)在\((a,b]\)上的\DefineConcept{广义积分}”，
+记作\(\int_a^b f(x) \dd{x}\)；
+我们还称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{收敛}”；
+另外，我们把点\(a\)称为“反常积分\(\int_a^b f(x) \dd{x}\)的\DefineConcept{瑕点}”.
+
+否则，称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{发散}”.
+\end{definition}
+
+类似地，当\(b\)是瑕点时，
+我们也可以定义反常积分\[
+	\int_a^b f(x) \dd{x}
+	\defeq
+	\lim_{\epsilon\to0^+} \int_a^{b-\epsilon} f(x) \dd{x}.
+\]
+当\(a\)和\(b\)都是瑕点时，
+那么任取一点\(c\in(a,b)\)，我们定义\begin{align*}
+	\int_a^b f(x) \dd{x}
+	&\defeq
+	\int_a^c f(x) \dd{x}
+	+ \int_c^b f(x) \dd{x} \\
+	&= \lim_{\epsilon\to0^+} \int_{a+\epsilon}^c f(x) \dd{x}
+	+ \lim_{\epsilon\to0^+} \int_c^{b-\epsilon} f(x) \dd{x}.
+\end{align*}
+当开区间\((a,b)\)内一点\(d\)是瑕点时，
+我们定义\begin{align*}
+	\int_a^b f(x) \dd{x}
+	&\defeq \int_a^d f(x) \dd{x}
+		+ \int_d^b f(x) \dd{x} \\
+	&= \lim_{\epsilon\to0^+} \int_a^{d-\epsilon} f(x) \dd{x}
+		+ \lim_{\epsilon\to0^+} \int_{d+\epsilon}^b f(x) \dd{x}.
+\end{align*}
+
+\subsection{无界函数的反常积分的计算法}
+计算无界函数的反常积分，也可借助于牛顿--莱布尼茨公式.
+\begin{theorem}\label{theorem:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1}
+设函数\(f \in C(a,b]\)，点\(a\)是\(f\)的瑕点，
+函数\(F\)是\(f\)在区间\((a,b]\)上的一个原函数.
+若极限\(F(a^+) \equiv \lim_{x \to a^+} F(x)\)存在，
+则有
+\begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1'}
+\int_a^b f(x) \dd{x}
+= F(b) - F(a^+);
+\end{equation}
+若极限\(F(a^+)\)不存在，则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{theorem}
+我们仍用记号\([F(x)]_a^b\)来表示\(F(b) - F(a^+)\)，
+这样就可以简化\cref{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1'}，
+从而形式上仍有
+\begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1}
+\int_a^b f(x) \dd{x} = [F(x)]_a^b.
+\end{equation}
+
+对于\(f\)在\([a,b)\)上连续、\(b\)为瑕点的反常积分，也有类似的计算公式.
+这里不再详述.
+
+\begin{theorem}\label{theorem:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分2}
+设函数\(f \in C[a,b]\)，点\(c\in(a,b)\)是\(f\)的瑕点，
+函数\(F\)是\(f\)在区间\((a,b]\)上的一个原函数.
+若极限\(F(c^+),F(c^-)\)都存在，
+则有
+\begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分2}
+\int_a^b f(x) \dd{x}
+= [F(b) - F(c^+)] + [F(c^-) - F(a)];
+\end{equation}
+否则，反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{theorem}
+在\cref{theorem:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分2} 中，
+由于\(F(c^+)\)与\(F(c^-)\)不一定相等（例如，点\(c\)可能是函数\(F\)的跳跃间断点），
+所以\[
+\int_a^b f(x) \dd{x}
+\neq [F(x)]_a^b = F(b) - F(a).
+\]
+
+\begin{example}
+计算反常积分\[
+\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}\quad(a>0).
+\]
+\begin{solution}
+因为\[
+\lim_{x \to a^-} \frac{1}{\sqrt{a^2-x^2}} = +\infty,
+\]所以点\(a\)是瑕点，于是\[
+\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}
+= \left[ \arcsin\frac{x}{a} \right]_0^a
+= \lim_{x \to a^-} \arcsin\frac{x}{a} - 0 = \frac{\pi}{2}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+讨论反常积分\(\int_{-1}^1 \frac{\dd{x}}{x^2}\)的收敛性.
+\begin{solution}
+被积函数\(f(x) = \frac{1}{x^2}\)在积分区间\([-1,1]\)上除\(x=0\)外连续，且\[
+\lim_{x\to0} \frac{1}{x^2} = +\infty.
+\]
+
+由于\[
+\int_{-1}^0 \frac{\dd{x}}{x^2}
+= \left[-\frac{1}{x}\right]_{-1}^0
+= \lim_{x\to0^-} \left(-\frac{1}{x}\right) - 1
+= +\infty,
+\]即反常积分\(\int_{-1}^0 \frac{\dd{x}}{x^2}\)发散，所以反常积分\(\int_{-1}^1 \frac{\dd{x}}{x^2}\)发散.
+\end{solution}
+
+需要注意的是，如果疏忽了\(x=0\)是被积函数的瑕点，就可能得到以下错误结果：\[
+\int_{-1}^1 \frac{\dd{x}}{x^2}
+= \left[ -\frac{1}{x} \right]_{-1}^1
+= -1 - 1 = -2.
+\]
+\end{example}
+
+\subsection{\texorpdfstring{\(q\)}{q}积分}
+\begin{proposition}[\(q\)积分]\label{example:定积分.q积分}
+反常积分\[
+	\int_a^b \frac{\dd{x}}{(x-a)^q}
+	\quad(a \neq b)
+\]
+当\(0 < q < 1\)时收敛；
+当\(q \geq 1\)时发散.
+\begin{proof}
+当\(q=1\)时，\[
+	\int_a^b \frac{\dd{x}}{(x-a)^q}
+	= \int_a^b \frac{\dd{x}}{x-a}
+	= \eval{\ln(x-a)}_a^b
+	= \ln(b-a) - \lim_{x \to a^+} \ln(x-a)
+	= +\infty.
+\]
+
+当\(q\neq1\)时，\[
+	\frac{\dd{x}}{(x-a)^q}
+	= \frac{1}{1-q} \dd((x-a)^{1-q}),
+\]
+于是，当\(0<q<1\)时，
+\(\int_a^b \frac{\dd{x}}{(x-a)^q}
+= \frac{(b-a)^{1-q}}{1-q}\)；
+当\(q>1\)时，
+\(\int_a^b \frac{\dd{x}}{(x-a)^q}
+= +\infty\).
+
+综上，当\(0<q<1\)时，这反常积分收敛于\(\frac{(b-a)^{1-q}}{1-q}\)；
+当\(q\geq1\)时，这反常积分发散.
+\end{proof}
+\end{proposition}
+
+如果收敛的反常积分\(\int_a^b f(x) \dd{x}\)的%
+被积函数\(f \in C(a,b)\)（\(a\)可以是\(-\infty\)，
+\(b\)可以是\(+\infty\)，\(a\)、\(b\)也可以是\(f(x)\)的瑕点），
+且应用的换元函数在\((a,b)\)内单调增加（或减少），
+那么可以像定积分一样换元.
+
+\begin{example}
+求反常积分\(\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}\).
+\begin{solution}
+这里，积分上限为\(+\infty\)，且下限\(x=0\)为被积函数的瑕点.
+
+令\(\sqrt{x} = t\)，
+则\(x = t^2\)，
+\(x\to0^+\)时\(t\to0\)，
+\(x\to+\infty\)时\(t\to+\infty\).
+于是\[
+	\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}
+	= \int_0^{+\infty} \frac{2t\dd{t}}{t(t^2+1)^{\frac32}}
+	= 2 \int_0^{+\infty} \frac{\dd{t}}{(t^2+1)^{\frac32}}.
+\]
+再令\(t = \tan u\)，
+则\(u = \arctan t\)，
+\(t=0\)时\(u=0\)，
+\(t\to+\infty\)时，
+\(u\to\frac\pi2\).
+于是\[
+	\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}
+	= 2 \int_0^{\frac\pi2} \frac{\sec^2 u \dd{u}}{\sec^3 u}
+	= 2 \int_0^{\frac\pi2} \cos u \dd{u}
+	= 2.
+\]
+\end{solution}
+本例如用变换\(t = \frac{1}{x}\)或\(t = \frac{1}{x+1}\)，计算会更简单些.
+\end{example}

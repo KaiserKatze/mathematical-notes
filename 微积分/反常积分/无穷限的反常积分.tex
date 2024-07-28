@@ -1,0 +1,286 @@
+\section{无穷限的反常积分}
+反常积分（improper integral）
+可以分为“无穷限的反常积分”和“无界函数的反常积分”两大类，
+本节讨论第一类反常积分，
+即积分区间无界的积分.
+
+\subsection{无穷限的反常积分的概念}
+\begin{definition}\label{definition:定积分.无穷限的反常积分的定义1}
+设函数\(f\colon[a,+\infty)\to\mathbb{R}\)
+对\(\forall b\in(a,+\infty)\)都有\(f \in R[a,b]\).
+
+如果极限\[
+	\lim_{t \to +\infty} \int_a^t f(x) \dd{x}
+\]存在且有限，
+那么把这个极限称为
+“函数\(f(x)\)在无穷区间\([a,+\infty)\)上的\DefineConcept{反常积分}”，
+记作\[
+	\int_a^{+\infty} f(x) \dd{x}.
+\]
+这时也称“反常积分\(\int_a^{+\infty} f(x) \dd{x}\) \DefineConcept{收敛}”，
+或称“函数\(f\)在\([a,+\infty)\)上\DefineConcept{可积}”，
+记作\(f \in R[a,+\infty)\).
+
+如果上述极限不存在，
+则称“反常积分\(\int_a^{+\infty} f(x) \dd{x}\) \DefineConcept{发散}”.
+\end{definition}
+
+类似地，可以定义反常积分\[
+	\int_{-\infty}^b f(x) \dd{x}
+	\defeq
+	\lim_{t \to -\infty} \int_t^b f(x) \dd{x}.
+\]
+
+\begin{definition}\label{definition:定积分.无穷限的反常积分的定义3}
+设函数\(f\colon\mathbb{R}\to\mathbb{R}\)
+在\((-\infty,+\infty)\)内的任意有界闭区间上都是可积的.
+
+任取\(a\in\mathbb{R}\)，
+如果反常积分\[
+	\int_{-\infty}^a f(x) \dd{x}
+	\quad\text{和}\quad
+	\int_a^{+\infty} f(x) \dd{x}
+\]都收敛，
+那么称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\) \DefineConcept{收敛}”，
+并且规定\[
+	\int_{-\infty}^{+\infty} f(x) \dd{x}
+	\defeq
+	\int_{-\infty}^a f(x) \dd{x} + \int_a^{+\infty} f(x) \dd{x},
+\]
+将其称作“函数\(f(x)\)在无穷区间\((-\infty,\infty)\)上的\DefineConcept{反常积分}”.
+
+反之，如果反常积分\[
+	\int_{-\infty}^a f(x) \dd{x}, \qquad
+	\int_a^{+\infty} f(x) \dd{x}
+\]中至少有一个发散，
+那么称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\) \DefineConcept{发散}”.
+\end{definition}
+
+容易证明，\cref{definition:定积分.无穷限的反常积分的定义3} 实际上与点\(a\)的选取毫无关系.
+
+\cref{definition:定积分.无穷限的反常积分的定义1,%
+definition:定积分.无穷限的反常积分的定义3}
+定义的反常积分统称为\DefineConcept{无穷限的反常积分}%
+或\DefineConcept{第一类反常积分}.
+
+\subsection{无穷限的反常积分的计算法}
+由上述定义及牛顿--莱布尼茨公式，可得如下结果.
+\begin{theorem}\label{theorem:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分}
+如果函数\(f\)在\([a,+\infty)\)上可积，
+且函数\(F\)为\(f\)在\([a,+\infty)\)上的一个原函数，
+那么\begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分1}
+	\int_a^{+\infty} f(x) \dd{x}
+	= F(+\infty) - F(a).
+\end{equation}
+%%其中\(F(+\infty) \defeq \lim_{x\to+\infty} F(x)\).
+%FIX: 删去“其中...”，原因是我们已经在[函数的极限](definition:极限.函数极限的定义5)处定义过了.
+
+如果函数\(f\)在\((-\infty,a]\)上可积，
+且函数\(F\)为\(f\)在\((-\infty,a]\)上的一个原函数，
+那么\begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分2}
+	\int_{-\infty}^a f(x) \dd{x}
+	= F(a) - F(-\infty).
+\end{equation}
+%%其中\(F(-\infty) \defeq \lim_{x\to-\infty} F(x)\).
+%FIX: 删去“其中...”，原因是我们已经在[函数的极限](definition:极限.函数极限的定义5)处定义过了.
+
+如果函数\(f\)在\((-\infty,-\infty)\)上可积，
+且函数\(F\)为\(f\)在\((-\infty,-\infty)\)上的一个原函数，
+\begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分3}
+	\int_{-\infty}^{+\infty} f(x) \dd{x}
+	= F(+\infty) - F(-\infty).
+\end{equation}
+\begin{proof}
+先证\cref{equation:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分1}，
+根据定义，\begin{align*}
+	\int_a^{+\infty} f(x) \dd{x}
+	&= \lim_{b\to+\infty} \int_a^b f(x) \dd{x}
+	= \lim_{b\to+\infty} (F(b) - F(a)) \\
+	&= \lim_{b\to+\infty} F(b) - F(a)
+	= F(+\infty) - F(a).
+\end{align*}
+
+同理可证\cref{equation:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分2,equation:定积分.利用牛顿莱布尼茨公式计算无穷限的反常积分3}.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+计算反常积分\(\int_{-\infty}^{+\infty} \frac{\dd{x}}{1+x^2}\).
+\begin{solution}
+因为\(\arctan x\)是\(\frac{1}{1+x^2}\)的一个原函数，
+所以\begin{align*}
+	\int_{-\infty}^{+\infty} \frac{\dd{x}}{1+x^2}
+	&= [\arctan x]_{-\infty}^{+\infty} \\
+	&= \lim_{x\to+\infty} \arctan x
+		-\lim_{x\to-\infty} \arctan x \\
+	&= \frac{\pi}{2} - \left(-\frac{\pi}{2}\right)
+	= \pi.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+计算反常积分\(\int_0^{+\infty} t e^{-pt} \dd{t}\)，
+其中\(p\)是常数，且\(p>0\).
+\begin{solution}
+由题有\begin{align*}
+	\int_0^{+\infty} t e^{-pt} \dd{t}
+	&= \left[ \int t e^{-pt} \dd{t} \right]_0^{+\infty}
+	= -\frac{1}{p} \int_0^{+\infty} t \dd(e^{-pt}) \\
+	&= -\frac{1}{p} \left[
+			\left( t e^{-pt} \right)_0^{+\infty}
+			- \int_0^{+\infty} e^{-pt} \dd{t}
+		\right].
+\end{align*}
+因为\[
+	\lim_{t\to0} t e^{-pt} = 0, \qquad
+	\lim_{t\to+\infty} t e^{-pt}
+	= \lim_{t\to+\infty} \frac{1}{e^{pt}}
+	= 0,
+\]
+所以\[
+	\left( t e^{-pt} \right)_0^{+\infty}
+	= 0.
+\]
+又因为\[
+	\int_0^{+\infty} e^{-pt} \dd{t}
+	= -\frac{1}{p} \int_0^{+\infty} \dd(e^{-pt})
+	= -\frac{1}{p} \eval{e^{-pt}}_0^{+\infty},
+\]
+其中\[
+	\lim_{t\to0} e^{-pt} = 1, \qquad
+	\lim_{t\to+\infty} e^{-pt} = 0,
+\]
+所以\[
+	\int_0^{+\infty} e^{-pt} \dd{t}
+	= \frac{1}{p}.
+\]
+因此，\[
+	\int_0^{+\infty} t e^{-pt} \dd{t}
+	= -\frac{1}{p} \left(
+			0 - \frac{1}{p}
+		\right)
+	= \frac{1}{p^2}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{\texorpdfstring{\(p\)}{p}积分}
+\begin{proposition}[\(p\)积分]\label{example:定积分.p积分}
+反常积分\[
+\int_a^{+\infty} \frac{\dd{x}}{x^p} \quad(a>0)
+\]
+当\(p > 1\)时收敛；
+当\(p \leq 1\)时发散.
+\begin{proof}
+当\(p=1\)时，\[
+	\int_a^{+\infty} \frac{\dd{x}}{x^p}
+	= \int_a^{+\infty} \frac{\dd{x}}{x}
+	= \eval{\ln x}_a^{+\infty}
+	= +\infty;
+\]
+
+当\(p\neq1\)时，\[
+	\frac{\dd{x}}{x^p}
+	= \frac{1}{1-p} \dd(x^{1-p}).
+\]
+于是，当\(p<1\)时，
+因为\(\int_a^{+\infty} \frac{\dd{x}}{x^p}
+= +\infty\)；
+当\(p>1\)时，
+\(\int_a^{+\infty} \frac{\dd{x}}{x^p}
+= \frac{a^{1-p}}{p-1}\).
+
+综上，当\(p > 1\)时，这反常积分收敛于\(\frac{a^{1-p}}{p-1}\)；
+当\(p\leq1\)时，这反常积分发散.
+\end{proof}
+\end{proposition}
+
+\begin{example}
+证明：反常积分\[
+	\int_2^{+\infty} \frac{1}{x \ln^p x} \dd{x}
+\]
+当\(p>1\)时收敛，当\(p\leq1\)时发散.
+\begin{proof}
+应用换元法，令\(t = \ln x\)，
+则\(t \to \ln2\ (x\to2)\)，\(t \to +\infty\ (x\to+\infty)\)，
+\[
+	\int_2^{+\infty} \frac{1}{x \ln^p x} \dd{x}
+	= \int_{\ln2}^{+\infty} \frac{\dd{t}}{t^p};
+\]
+与\hyperref[example:定积分.p积分]{\(p\)积分}作比较即知，
+反常积分\(\int_2^{+\infty} \frac{1}{x \ln^p x} \dd{x}\)%
+当\(p>1\)时收敛，当\(p\leq1\)时发散.
+\end{proof}
+\end{example}
+
+\begin{example}
+\def\l{\lim_{x\to+\infty}}%
+设\(f(x)\)在任意有限区间可积，
+且\(\l f(x) = A\).
+证明：\(\l \frac{1}{x} \int_0^x f(t) \dd{t} = A\).
+\begin{proof}
+因为\[
+	\frac{1}{x} \int_0^x A \dd{t} = A,
+\]
+所以，要证\(\l \frac{1}{x} \int_0^x f(t) \dd{t} = A\)，
+只需证\[
+	\l \frac{1}{x} \int_0^x [f(t) - A] \dd{t} = 0,
+\]
+即证对\(\forall\epsilon>0,
+\exists X>0\)有
+\[
+	x>X
+	\implies
+	\abs{\frac{1}{x} \int_0^x [f(t) - A] \dd{t} - 0} < \epsilon.
+	\eqno(1)
+\]
+
+当\(x>0\)时，
+由\cref{theorem:定积分.定积分性质5推论2} 有，
+\begin{align*}
+	\abs{\frac{1}{x} \int_0^x [f(t) - A] \dd{t}}
+	&\leq
+		\frac{1}{x} \int_0^x \abs{f(t) - A} \dd{t} \\
+	&=
+		\frac{1}{x} \int_0^X \abs{f(t) - A} \dd{t}
+		+ \frac{1}{x} \int_X^x \abs{f(t) - A} \dd{t}.
+	\tag2
+\end{align*}
+因为\(\int_0^X \abs{f(t) - A} \dd{t}\)是一个与\(x\)无关的常数，
+所以\(\l \frac{1}{x} \int_0^X \abs{f(t) - A} \dd{t} = 0\)，
+也就是说，对\(\forall\epsilon>0,
+\exists Y>0\)有
+\[
+	x>Y
+	\implies
+	\abs{\frac{1}{x} \int_0^X \abs{f(t) - A} \dd{t} - 0}
+	= \frac{1}{x} \int_0^X \abs{f(t) - A} \dd{t}
+	< \frac{\epsilon}{2}.
+	\eqno(3)
+\]
+由\(\l f(x) = A\)，故对\(\forall\epsilon>0,
+\exists Z>0\)有
+\[
+	x>Z
+	\implies
+	\abs{f(x) - A} < \frac{\epsilon}{2}
+	\implies
+	\frac{1}{x} \int_X^x \abs{f(t) - A} \dd{t}
+	< \frac{1}{x} \cdot (x-X) \cdot \frac{\epsilon}{2}.
+	\eqno(4)
+\]
+因此，由(2)、(3)、(4)式可知，
+对\(\forall \epsilon>0\)，
+当\(x > \max\{Y,Z\}\)时，
+有
+\[
+	\abs{\frac{1}{x} \int_0^x [f(t) - A] \dd{t}}
+	< \frac{\epsilon}{2} + \frac{1}{x} \cdot (x-X) \cdot \frac{\epsilon}{2}
+	= \frac{\epsilon}{2} \left( 2 - \frac{X}{x} \right)
+	< \epsilon.
+\]
+于是，只要取\(X = \max\{Y,Z\}\)，
+就有(1)式成立.
+\end{proof}
+\end{example}
