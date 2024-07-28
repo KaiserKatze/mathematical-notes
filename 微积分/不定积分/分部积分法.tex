@@ -1,0 +1,240 @@
+\section{分部积分法}
+\begin{theorem}[分部积分公式]
+设函数\(u=u(x)\)及\(v=v(x)\)具有连续导数，那么\[
+	\int u \dd{v} = uv - \int u' \dd{v}.
+\]
+\begin{proof}
+因为函数\(u=u(x)\)及\(v=v(x)\)具有连续导数，
+那么两个函数乘积的导数公式为\[
+	(uv)' = u'v + uv',
+\]
+移项，得\[
+	uv' = (uv)' - u'v.
+\]
+
+对这个等式两边求不定积分，得\[
+	\int u v' \dd{x} = \int (uv)' \dd{x} - \int u' v \dd{x}
+	= uv - \int u' v \dd{x}.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+如果直接求\(\int u v' \dd{x}\)有困难，
+而求\(\int u' v \dd{x}\)时比较容易时，
+分部积分公式就可以发挥作用了.
+
+\begin{example}
+求\(\int x \cos x \dd{x}\).
+\begin{solution}
+设\(u = x, \dd{v} = \cos x \dd{x}\)，
+那么\(\dd{u} = \dd{x}, v = \sin x\)，得\[
+	\int x \cos x \dd{x}
+	= x \sin x - \int \sin x \dd{x},
+\]
+而\(\int v \dd{u} = \int \sin x \dd{x}\)容易积出，所以\[
+	\int x \cos x \dd{x}
+	= x \sin x + \cos x + C.
+\]
+
+求这个积分的时候，如果设\(u = \cos x, \dd{v} = x \dd{x}\)，那么\[
+\dd{u} = -\sin x \dd{x}, \qquad v = \frac{x^2}{2}.
+\]于是\[
+\int x \cos x \dd{x} = \frac{x^2}{2} \cos x + \int \frac{x^2}{2} \sin x \dd{x}.
+\]上式右端的积分比原积分更不容易求出.
+\end{solution}
+\end{example}
+由此可见，如果\(u\)和\(\dd{v}\)选取不当，就求不出结果，所以应用分部积分法时，恰当选取\(u\)和\(\dd{v}\)是一个关键.
+选取\(u\)和\(\dd{v}\)一般要考虑下面两点：\begin{enumerate}
+\item \(v\)要容易求得；
+\item \(\int v \dd{u}\)要比\(\int u \dd{v}\)容易积出.
+\end{enumerate}
+
+\begin{example}
+求\(\int x e^x \dd{x}\).
+\begin{solution}
+设\(u = x\)，\(\dd{v} = e^x \dd{x}\)，那么\(\dd{u} = \dd{x}\)，\(v = e^x\)，于是\[
+\int x e^x \dd{x}
+= \int x \dd(e^x)
+= x e^x - \int e^x \dd{x}
+= x e^x - e^x + C
+= e^x (x - 1) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int x^2 e^x \dd{x}\).
+\begin{solution}
+设\(u = x^2\)，\(\dd{v} = e^x \dd{x}\)，那么\[
+\int x^2 e^x \dd{x}
+= \int x^2 \dd(e^x)
+= x^2 e^x - \int e^x \dd{x^2}
+= x^2 e^x - 2 \int x e^x \dd{x}.
+\]
+
+这里\(\int x e^x \dd{x}\)比\(\int x^2 e^x \dd{x}\)更容易积出，因为被积函数中\(x\)的幂次前者比后者降低了一次.由上例可知，对\(\int x e^x \dd{x}\)再使用一次分部积分就可以了，于是\[
+\int x^2 e^x \dd{x} = e^x (x^2 -2x + 2) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int x \ln x \dd{x}\).
+\begin{solution}
+设\(u=\ln x\)，\(\dd{v} = x \dd{x}\)，那么\begin{align*}
+\int x \ln x \dd{x}
+&= \int \ln x \dd(\frac{x^2}{2})
+= \frac{x^2}{2} \ln x - \int \frac{x^2}{2} \dd(\ln x) \\
+&= \frac{x^2}{2} \ln x - \frac{1}{2} \int x \dd{x}
+= \frac{x^2}{2} \ln x - \frac{x^2}{4} + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \arccos x \dd{x}\).
+\begin{solution}
+设\(u = \arccos x\)，\(\dd{v} = \dd{x}\)，那么\[
+\int \arccos x \dd{x} = x \arccos x - \int x \dd(\arccos x),
+\]其中\begin{align*}
+\int x \dd(\arccos x)
+&= -\int \frac{x}{\sqrt{1-x^2}} \dd{x}
+= \frac{1}{2} \int \frac{\dd(1-x^2)}{(1-x^2)^{1/2}} \\
+&= \sqrt{1-x^2} + C,
+\end{align*}所以\[
+\int \arccos x \dd{x} = x \arccos x - \sqrt{1-x^2} + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int x \arctan x \dd{x}\).
+\begin{solution}
+设\(u = \arctan x\)，\(\dd{v} = x \dd{x}\)，那么\[
+\int x \arctan x \dd{x}
+= \frac{1}{2} \int \arctan x \dd(x^2)
+= \frac{1}{2} \left( x^2 \arctan x
+	- \int \frac{x^2}{1+x^2} \dd{x} \right),
+\]其中\[
+\int \frac{x^2}{1+x^2} \dd{x}
+= \int \left(1-\frac{1}{1+x^2}\right) \dd{x}
+= x - \arctan x + C,
+\]所以\begin{align*}
+\int x \arctan x \dd{x}
+&= \frac{1}{2} \left[ x^2 \arctan x
+	- (x - \arctan x + C) \right] \\
+&= \frac{1}{2} (x^2+1) \arctan x - \frac{1}{2} x + C_1.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+计算\(I_1 = \int e^x \cos x\dd{x}\)和\(I_2 = \int e^x \sin x\dd{x}\).
+\begin{solution}
+因为\begin{align*}
+I_1 &= \int e^x \cos x\dd{x}
+= \int e^x \dd(\sin x) \\
+&= e^x \sin x - \int \sin x \dd(e^x)
+= e^x \sin x - I_2, \\
+I_2 &= \int e^x \sin x\dd{x}
+= -\int e^x \dd(\cos x) \\
+&= -\left[ e^x \cos x - \int \cos x \dd(e^x) \right]
+= I_1 - e^x \cos x.
+\end{align*}解得\[
+I_1 = \frac{1}{2} e^x (\sin x + \cos x) + C,
+\qquad
+I_2 = \frac{1}{2} e^x (\sin x - \cos x) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int \sec^3 x \dd{x}\).
+\begin{solution}
+由题有\begin{align*}
+\int \sec^3 x \dd{x}
+&= \int \sec x \dd(\tan x) \\
+&= \sec x \tan x - \int \sec x \tan^2 x \dd{x} \\
+&= \sec x \tan x - \int \sec x (\sec^2 x - 1) \dd{x} \\
+&= \sec x \tan x - \int \sec^3 x \dd{x} + \int \sec x \dd{x} \\
+&= \sec x \tan x + \ln\abs{\sec x + \tan x} - \int \sec^3 x \dd{x},
+\end{align*}解得\[
+\int \sec^3 x \dd{x}
+= \frac{1}{2} \left(
+	\sec x \tan x
+	+ \ln\abs{\sec x + \tan x}
+\right) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\int e^{\sqrt{x}} \dd{x}\).
+\begin{solution}
+令\(t = \sqrt{x}\)，则\(x = t^2\)，\(\dd{x} = 2t\dd{t}\)，于是\[
+\int e^{\sqrt{x}} \dd{x}
+= 2 \int t e^t \dd{t}
+= 2 e^t (t-1) + C
+= 2 e^{\sqrt{x}} (\sqrt{x}-1) + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算\(I_1 = \int \sin{\ln{x}} \dd{x}\)和\(I_2 = \int \cos{\ln{x}} \dd{x}\).
+\begin{solution}
+\begin{align*}
+I_1
+&= \int \sin{\ln x}\dd{x}
+\xlongequal{u = \ln x} \int \sin u \dd(e^u) \\
+&= \frac{1}{2} e^u (\sin u - \cos u) + C
+= \frac{1}{2} x (\sin{\ln x} - \cos{\ln x}) + C, \\
+I_2
+&= \int \cos{\ln x}\dd{x}
+\xlongequal{u = \ln x} \int \cos u \dd(e^u) \\
+&= \frac{1}{2} e^u (\sin u + \cos u) + C
+= \frac{1}{2} x (\sin{\ln x} + \cos{\ln x}) + C.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\displaystyle\int \frac{x \cos x}{(x + \cos x)^2}\dd{x}\).
+\begin{solution}
+因为\begin{align*}
+\int \frac{x \cos x}{(x + \cos x)^2}\dd{x}
+&= \int \frac{x \cos x}{(x + \cos x)^2} \frac{1 - \sin x}{1 - \sin x}\dd{x} \\
+&= \int \frac{x \cos x}{(x + \cos x)^2} \frac{1}{1 - \sin x} \dd(x + \cos x) \\
+&= -\int \frac{x \cos x}{1 - \sin x} \dd(\frac{1}{x + \cos x}) \\
+&= -\frac{x \cos x}{1 - \sin x} \frac{1}{x + \cos x}
+	+\int \frac{1}{x + \cos x} \dd(\frac{x \cos x}{1 - \sin x}),
+\end{align*}
+其中
+\begin{align*}
+&\int \frac{1}{x + \cos x} \dd(\frac{x \cos x}{1 - \sin x}) \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{(\cos x  - x \sin x)(1 - \sin x) - x \cos x (-\cos x)}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{\cos x - \sin x \cos x - x \sin x + x \sin^2 x + x \cos^2 x}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{\cos x - \sin x \cos x - x \sin x + x}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{x + \cos x}
+	\frac{(\cos x + x)(1 - \sin x)}{(1 - \sin x)^2}\dd{x} \\
+&\qquad= \int \frac{1}{1 - \sin x}\dd{x} \\
+&\qquad\xlongequal{u=\tan(x/2)}
+	\int \frac{1}{1 - \frac{2u}{u^2 + 1}} \frac{2\dd{u}}{u^2 + 1}
+= \int \frac{u^2 + 1}{(u - 1)^2} \frac{2\dd{u}}{u^2 + 1} \\
+&\qquad= \int \frac{2}{(u - 1)^2}\dd{u}
+\xlongequal{v=u-1} 2 \int v^{-2}\dd{v}
+= 2 \cdot (-1) v^{-1} + C \\
+&\qquad= \frac{2}{-v} + C
+= \frac{2}{1 - u} + C
+= \frac{2}{1 - \tan(x/2)} + C,
+\end{align*}
+所以\[
+\int \frac{x \cos x}{(x + \cos x)^2}\dd{x}
+= -\frac{x \cos x}{1 - \sin x} \frac{1}{x + \cos x}
+	+\frac{2}{1 - \tan(x/2)} + C.
+\]
+\end{solution}
+\end{example}
