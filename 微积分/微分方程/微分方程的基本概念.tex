@@ -1,0 +1,197 @@
+\section{微分方程的基本概念}
+\subsection{微分方程的基本概念}
+\begin{definition}\label{definition:微分方程.微分方程的基本概念}
+一般地，含有自变量、未知函数、未知函数的导数（或偏导数）的方程，
+叫做\DefineConcept{微分方程}（differential equation）.
+
+如果未知函数是一元函数\(y = y(x)\)，
+则称这个微分方程为\DefineConcept{常微分方程}（ordinary differential equation）.
+
+如果未知函数是多元函数\(y = y(\AutoTuple{x}{m})\)，
+则称这个微分方程为\DefineConcept{偏微分方程}（partial differential equation）.
+
+未知函数的最高阶导数（或偏导数）的阶数，
+称为“微分方程的\DefineConcept{阶}（order）”.
+\end{definition}
+
+本章主要研究常微分方程.
+它的一般形式为：
+\begin{equation}\label{equation:微分方程.微分方程的一般形式}
+F\left( x,y,y',y'',\dotsc,y^{(n)} \right)=0.
+\end{equation}
+根据\cref{definition:微分方程.微分方程的基本概念}，
+微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 中所出现的未知函数
+\(y = y(x)\)的最高阶导数\(y^{(n)}\)的阶数\(n\)，
+就是微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 的阶.
+
+如果微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 左边是关于未知函数\(y\)及其导数\(y',y'',\dotsc,y^{(n)}\)的一次有理整式，那么称其为\(n\)阶\DefineConcept{线性常微分方程}（n-th order linear ordinary differential equation）；
+否则称其为\(n\)阶\DefineConcept{非线性常微分方程}（n-th order nonlinear ordinary differential equation）.
+
+如果能从方程 \labelcref{equation:微分方程.微分方程的一般形式} 中解出最高阶导数，则可得微分方程
+\begin{equation}\label{equation:微分方程.分离出最高阶导数}
+y^{(n)} = f\left( x,y,y',y'',\dotsc,y^{(n-1)} \right).
+\end{equation}
+像这样的微分方程称为\(n\)阶\DefineConcept{显式常微分方程}（n-th order explicit ordinary differential equation）.
+本章讨论的微分方程都是显式常微分方程.
+
+\(n\)阶线性常微分方程的一般形式为
+\begin{equation}\label{equation:微分方程.线性常微分方程的一般形式}
+y^{(n)} + a_1(x) \cdot y^{(n-1)}
++ \dotsb + a_{n-1}(x) y'
++ a_n(x) y
+= f(x),
+\end{equation}
+其中\(a_i(x)\ (i=1,2,\dotsc,n)\)和\(f(x)\)是关于\(x\)的已知函数.
+称\(f(x)\)为微分方程 \labelcref{equation:微分方程.线性常微分方程的一般形式} 的\DefineConcept{非齐次项}（non-homogeneous term）.
+当\(f(x) = 0\)时，我们称微分方程 \labelcref{equation:微分方程.线性常微分方程的一般形式} 为\(n\)阶\DefineConcept{线性齐次常微分方程}（n-th order linear homogeneous ordinary differential equation）；
+否则，称其为\(n\)阶\DefineConcept{线性非齐次常微分方程}（n-th order linear non-homogeneous ordinary differential equation）.
+
+当我们需要求解的未知函数是\(\AutoTuple{y}{k}\)，且它们都只依赖于一个自变量\(x\)时，
+我们要给出关于\(k\)个未知函数的常微分方程，联立为方程组，
+于是得到如下的\(n = \max\{\AutoTuple{n}{k}\}\)阶\DefineConcept{常微分方程组}的一般形式：
+\[
+\def\y#1{y_{#1},y_{#1}',\dotsc,y_{#1}^{(n_#1)}}%
+F_i\left(x,\y{1},\y{2},\dotsc,\y{k}\right)=0
+\quad(i=1,2,\dotsc,k).
+\]
+
+\subsection{微分方程的解}
+\begin{definition}
+设函数\(y=\phi(x)\)在区间\(I\subseteq\mathbb{R}\)上有\(n\)阶连续导数.
+如果对于\(\forall x \in I\)有\[
+F\left[x,\phi(x),\phi'(x),\dotsc,\phi^{(n)}(x)\right]\equiv0,
+\]
+那么称函数\(y=\phi(x)\)为“微分方程 \labelcref{equation:微分方程.微分方程的一般形式} 在区间\(I\)上的\DefineConcept{解}（solution）”.
+
+如果\(n\)阶微分方程的解中含有任意常数\(\AutoTuple{C}{n}\)，
+且任意常数的个数与微分方程的阶数相同\footnote{%
+这里所说的任意常数是相互\DefineConcept{独立的}（independent），
+就是说，它们不能合并而使得任意常数的个数减少；%
+或者说，
+\(\phi,\phi',\dotsc,\phi^{(n-1)}\)%
+关于\(\AutoTuple{C}{n}\)的“雅克比行列式”不为零，
+即\(\jacobi{\phi,\phi',\dotsc,\phi^{(n-1)}}{\AutoTuple{C}{n}} \neq 0\).}，
+这样的解\[
+y = \phi(x;\AutoTuple{C}{n})
+\]叫做微分方程的\DefineConcept{通解}（general solution）；
+否则称其为微分方程的\DefineConcept{特解}（special solution）.
+\end{definition}
+
+由于通解中含有任意常数，
+所以它还不能完全确定地反映某一客观事物的规律性.
+要完全确定地反映客观事物的规律性，
+必须确定这些常数的值.
+为此，要根据问题的实际情况，提出确定这些常数的条件.
+
+如果微分方程是一阶的，
+通常用来确定任意常数的条件是\[
+y(x_0) = y_0,
+\]其中\(x_0,y_0\)都是给定的值；
+如果微分方程是二阶的，
+通常用来确定任意常数的条件是\[
+y(x_0) = y_0,
+\qquad
+y'(x_0) = y'_0,
+\]其中\(x_0,y_0,y'_0\)都是给定的值；
+以此类推.上述这种条件叫做\DefineConcept{初始条件}.
+确定了通解中的任意常数以后，就得到微分方程的\DefineConcept{特解}.
+
+特别地，求一阶微分方程\(y'=f(x,y)\)满足初始条件\(y(x_0) = y_0\)的特解这样一个问题，叫做一阶微分方程的\DefineConcept{初值问题}，记作\[
+\left\{ \begin{array}{l}
+y' = f(x,y), \\
+y(x_0) = y_0.
+\end{array} \right.
+\]
+
+微分方程的任意特解在平面上表现为一条曲线，叫做微分方程的\DefineConcept{积分曲线}（integral curve）或\DefineConcept{解曲线}（solution curve）.
+同样地，微分方程的通解在平面上表现为一族曲线，叫做微分方程的\DefineConcept{积分曲线族}（family of integral curves）或\DefineConcept{解曲线族}（family of solution curves）.
+
+上述一阶微分方程的初值问题的几何意义，就是求通过点\((x_0,y_0)\)的那条积分曲线.二阶微分方程的初值问题\[
+\left\{ \begin{array}{l}
+y'' = f(x,y,y'), \\
+y(x_0) = y_0, \\
+y'(x_0) = y'_0
+\end{array} \right.
+\]的几何意义，是求微分方程的通过点\((x_0,y_0)\)且在该点处的切线斜率为\(y'_0\)的那条积分曲线.
+
+\begin{example}
+试验证：函数\[
+x = C_1 \cos kt + C_2 \sin kt
+\]是微分方程\[
+\dv[2]{x}{t} + k^2 x = 0
+\]的解.
+\begin{solution}
+求出函数\(x(t)\)的导数，得\[
+\dv{x}{t} = -k C_1 \sin kt + k C_2 \cos kt,
+\]\[
+\dv[2]{x}{t} = -k^2 C_1 \cos kt - k^2 C_2 \sin kt.
+\]代入微分方程得\[
+-k^2 (C_1 \cos kt + C_2 \sin kt) + k^2 (C_1 \cos kt + C_2 \sin kt)
+\equiv 0.
+\]
+函数\(x(t)\)代入微分方程后称为一个恒等式，故它就是微分方程的解.
+\end{solution}
+\end{example}
+
+\subsection{微分方程的解的存在性}
+\begin{definition}\label{definition:微分方程.函数系的一致有界性}
+设函数系\(S\)是由定义在某个区间\(D = [a,b]\)上的一些函数组成的集合.
+如果\[
+	(\exists M>0)
+	(\forall x \in D)
+	(\forall F \in S)
+	[\abs{F(x)} < M],
+\]
+则称“函数系\(S\)在区间\(D\)上是\DefineConcept{一致有界的}（uniformly bounded）”.
+\end{definition}
+
+\begin{definition}\label{definition:微分方程.函数系的等度连续性}
+设函数系\(S\)是由定义在某个区间\(D = [a,b]\)上的一些函数组成的集合.
+如果\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall F \in S)
+	(\forall x_1,x_2 \in D)
+	[\abs{x_1-x_2} < \delta \implies \abs{F(x_1)-F(x_2)} < \epsilon],
+\]
+则称“函数系\(S\)在区间\(D\)上是\DefineConcept{等度连续的}（equicontinuous）%
+\footnote{尽管有很多相似之处，但是一定注意“等度连续”与“一致连续”的区别：
+“等度连续”描述的对象是函数系，
+“一致连续”描述的对象是函数或函数项级数
+（见\cref{definition:极限.函数的一致连续性} 和
+\cref{definition:无穷级数.函数项级数的一致收敛性}）.}”；
+称\[
+	\sup_{F_1,F_2 \in S} \abs{F_1(x)-F_2(x)}
+\]为“函数系\(S\)在区间\([a,b]\)上的\DefineConcept{宽度}%
+\footnote{注意与\hyperref[definition:极限.函数在集合上的振幅]{函数在集合上的振幅}相区别.}”.
+\end{definition}
+
+\begin{lemma}[阿斯科拉--阿尔泽拉引理]\label{theorem:微分方程概论.阿斯科拉--阿尔泽拉引理}
+任何在区间\([a,b]\)上一致有界且等度连续的函数系\(S\)都包含在此区间上一致收敛的函数列.
+\end{lemma}
+
+\begin{theorem}
+设函数\(f(x,y)\)在\(Oxy\)平面的某个有界闭区域\(D\)上连续，
+那么对于\(D\)中任意一个内点\((x_0,y_0)\)，
+总存在着函数\(y = \phi(x)\)，在点\(x_0\)的某个邻域内满足微分方程\[
+\dv{y}{x} = f(x,y),
+\]且同时有\(y_0 = \phi(x_0)\).
+\end{theorem}
+
+\subsection{微分方程的解的唯一性}
+\begin{theorem}
+设函数\(f(x,y)\)在区域\(D\)上连续，
+且满足“利普希茨条件”，即\[
+	(\exists k>0)
+	[
+		\abs{f(x,y_1) - f(x,y_2)}
+		\leq
+		k \abs{y_1 - y_2}
+	],
+\]
+那么对于\(D\)中任意一个内点\((x_0,y_0)\)，
+存在唯一的函数\(y=\phi(x)\)满足微分方程\[
+	\dv{y}{x} = f(x,y),
+\]
+且同时有\(y_0 = \phi(x_0)\).
+\end{theorem}

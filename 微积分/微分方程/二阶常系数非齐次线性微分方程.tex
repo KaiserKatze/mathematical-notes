@@ -1,0 +1,373 @@
+\section{二阶常系数非齐次线性微分方程}\label{section:微分方程.常系数非齐次线性微分方程}
+本节着重讨论二阶常系数非齐次线性微分方程的解法，并对\(n\)阶方程的解法作必要的说明.
+
+二阶常系数非齐次线性微分方程的一般形式是
+\begin{equation}\label{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式}
+y'' + p y' + q y = f(x),
+\end{equation}
+其中\(p,q\)是常数.
+
+由\cref{theorem:微分方程.二阶非齐次线性微分方程的通解结构} 可知，求二阶常系数非齐次线性微分方程的通解，
+归结为求对应的齐次方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解%
+和非齐次方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 本身的一个特解.
+由于\hyperref[section:微分方程.常系数齐次线性微分方程]{二阶常系数齐次线性微分方程的通解的求法}已经得到解决，
+所以这里只需讨论求二阶常系数非齐次线性微分方程的一个特解\(\hat{y}\)的方法.
+
+本节只介绍当方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 中的\(f(x)\)取两种常见形式时求\(\hat{y}\)的方法.
+这种方法的特点是不用积分就可求出\(\hat{y}\)来，它叫做“待定系数法”.
+\(f(x)\)的两种形式是\begin{enumerate}
+\item \(f(x) = e^{\lambda x} P_m(x)\)，其中\(\lambda\)是常数，\(P_m(x)\)是一个\(m\)次多项式：\[
+P_m(x) = a_0 x^m + a_1 x^{m-1} + \dotsb + a_{m-1} x + a_m;
+\]
+
+\item \(f(x) = e^{\lambda x} [ \phi_m(x) \cos\omega x + \psi_n(x) \sin \omega x ]\)，
+其中\(\lambda,\omega\)是常数，\(\phi_m(x),\psi_n(x)\)分别是\(x\)的\(m\)次、\(n\)次多项式，且至多有一个为零.
+\end{enumerate}
+
+\subsection{\texorpdfstring{\(f(x) = e^{\lambda x} P_m(x)\)型}{第一类：指数函数与多项式函数的乘积}}
+我们知道，方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 的特解\(\hat{y}\)是%
+使 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 成为恒等式的函数.
+怎样的函数能使 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 称为恒等式呢？
+因为 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 右端\(f(x)\)是多项式\(P_m(x)\)与指数函数\(e^{\lambda x}\)的乘积，
+而多项式与指数函数乘积的导数仍然是多项式与指数函数的乘积，因此，我们推测\(\hat{y} = e^{\lambda x} Q(x)\)（其中\(Q(x)\)是某个多项式）%
+可能是方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 的特解.
+把\(\hat{y}, \hat{y}', \hat{y}''\)代入方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式}，
+然后考虑能否选取适当的多项式\(Q(x)\)，使得\(\hat{y} = e^{\lambda x} Q(x)\)满足方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式}.
+为此，将\begin{align*}
+	\hat{y} &= e^{\lambda x} Q(x), \\
+	\hat{y}' &= e^{\lambda x} [ \lambda Q(x) + Q'(x) ], \\
+	\hat{y}'' &= e^{\lambda x} [ \lambda^2 Q(x) + 2\lambda Q'(x) + Q''(x) ]
+\end{align*}
+代入方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 并消去\(e^{\lambda x}\)，
+得\[
+	[ \lambda^2 Q(x) + 2\lambda Q'(x) + Q''(x) ]
+	+ p [ \lambda Q(x) + Q'(x) ]
+	+ q Q(x)
+	= P_m(x),
+\]
+整理得
+\begin{equation}\label{equation:微分方程.常系数非齐次线性微分方程.中间步骤1}
+Q''(x) + (2\lambda+p) Q'(x) + (\lambda^2+p\lambda+q) Q(x) = P_m(x).
+\end{equation}
+\begin{enumerate}
+\item 如果\(\lambda\)不是 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的特征方程\(r^2+pr+q=0\)的根，
+那么\(\lambda^2+p\lambda+q\neq0\)；
+由于\(P_m(x)\)是一个\(m\)次多项式，
+要使 \labelcref{equation:微分方程.常系数非齐次线性微分方程.中间步骤1} 的两端恒等，
+那么可令\(Q(x)\)为另一个\(m\)次多项式\begin{equation}
+	Q_m(x) = b_0 x^m + b_1 x^{m-1} + \dotsb + b_{m-1} x + b_m,
+\end{equation}
+代入 \labelcref{equation:微分方程.常系数非齐次线性微分方程.中间步骤1}，
+比较等式两端\(x\)同次幂的系数，
+就得到以\(b_0,b_1,\dotsc,b_m\)作为未知数的\(m+1\)个方程的联立方程组.
+从而可以定出这些\(b_i\ (i=0,1,\dotsc,m)\)，
+并得到所求的特解\begin{equation}
+	\hat{y} = e^{\lambda x} Q_m(x).
+\end{equation}
+
+\item 如果\(\lambda\)是特征方程\(r^2+pr+q=0\)的单根，
+即\(\lambda^2+p\lambda+q=0\)，
+但\(2\lambda+p\neq0\)，
+要使 \labelcref{equation:微分方程.常系数非齐次线性微分方程.中间步骤1} 的两端恒等，
+那么\(Q'(x)\)必须是\(m\)次多项式.
+此时可令\[
+	Q(x) = x Q_m(x),
+\]
+并且可用同样的方法来确定\(Q_m(x)\)的系数\(b_i\ (i=0,1,\dotsc,m)\).
+于是所求的特解为\begin{equation}
+	\hat{y} = x e^{\lambda x} Q_m(x).
+\end{equation}
+
+\item 如果\(\lambda\)是特征方程\(r^2+pr+q=0\)的重根，
+即\(\lambda^2+p\lambda+q=2\lambda+p=0\)，
+要使 \labelcref{equation:微分方程.常系数非齐次线性微分方程.中间步骤1} 的两端恒等，
+那么\(Q''(x)\)必须是\(m\)次多项式.
+此时可令\[
+	Q(x) = x^2 Q_m(x),
+\]
+并用同样的方法来确定\(Q_m(x)\)中的系数.
+于是所求的特解为\begin{equation}
+	\hat{y} = x^2 e^{\lambda x} Q_m(x).
+\end{equation}
+\end{enumerate}
+
+综上所述，我们有如下结论：
+\begin{proposition}
+如果非齐次项\(f(x)\)可以表达为\(P_m(x) e^{\lambda x}\)的形式，
+则二阶常系数非齐次线性微分方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 具有形如
+\begin{equation}\label{equation:微分方程.二阶常系数齐次线性微分方程.特解1}
+	\hat{y} = e^{\lambda x} Q(x)
+	= e^{\lambda x} \cdot x^k Q_m(x)
+\end{equation}的特解，
+其中\(Q_m(x)\)是与\(P_m(x)\)同次（\(m\)次）的多项式，\[
+	k = \left\{ \begin{array}{ll}
+		0, & \text{\(\lambda\)不是特征方程的根}, \\
+		1, & \text{\(\lambda\)是特征方程的单根}, \\
+		2, & \text{\(\lambda\)是特征方程的重根}. \\
+	\end{array} \right.
+\]
+\end{proposition}
+
+上述结论可推广到\(n\)阶常系数非齐次线性微分方程，
+但要注意 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程.特解1} 中的
+\(k\)是特征方程含根\(\lambda\)的\emph{重复次数}
+（即若\(\lambda\)不是特征方程的根，则\(k=0\)；
+若\(\lambda\)是特征方程的单根，则\(k=1\)；
+若\(\lambda\)是特征方程的\(s\)重根，则\(k=s\)）.
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P342 例1
+求微分方程\(y''-2y'-3y=3x+1\)的一个特解.
+\begin{solution}
+这是二阶常系数非齐次线性微分方程，
+且函数\(f\)是\(P_m(x) e^{\lambda x}\)型
+（其中\(P_m(x) = 3x+1, \lambda=0\)）.
+
+与所给方程对应的齐次方程为\[
+	y''-2y'-3y=0,
+\]
+它的特征方程为\[
+	r^2-2r-3=0.
+\]
+
+由于这里\(\lambda=0\)不是特征方程的根，
+所以应设特解为\[
+	\hat{y} = b_0 x + b_1.
+\]
+将其代入所给方程，得\[
+	-3 b_0 x - 2 b_0 - 3 b_1 = 3x+1,
+\]
+比较两端\(x\)同次幂的系数，得\[
+	-3 b_0 = 3, \qquad -2 b_0 - 3 b_1 = 1,
+\]
+即\(b_0=-1, b_1=1/3\).
+于是求得一个特解为\[
+	\hat{y} = -x + \frac{1}{3}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求微分方程\(y'' - \lambda^2 y = e^{\lambda x} + e^{-\lambda x}\ (\lambda>0)\)的特解.
+\begin{solution}
+解齐次方程\(y'' - \lambda^2 y = 0\)的特征方程\(r^2 - \lambda^2 = 0\)
+得\(r = \pm\lambda\).
+
+因为\(\lambda\)是特征方程的单根，
+那么可以设非齐次方程\(y'' - \lambda^2 y = e^{\lambda x}\)的特解为\[
+	\hat{y}_1 = x e^{\lambda x} a,
+\]
+其中\(a\)为常数，且满足\(2\lambda a = 1\)即\(a = \frac{1}{2\lambda}\).
+
+同理可设非齐次方程\(y'' - \lambda^2 y = e^{-\lambda x}\)的特解为\[
+	\hat{y}_2 = x e^{-\lambda x} b,
+\]
+其中\(b\)为常数，且满足\(-2\lambda b = 1\)即\(b = -\frac{1}{2\lambda}\).
+
+综上，由\hyperref[theorem:微分方程.二阶非齐次线性微分方程的解的叠加原理]{叠加原理}，
+微分方程\(y'' - \lambda^2 y = e^{\lambda x} + e^{-\lambda x}\ (\lambda>0)\)的特解为\[
+	\hat{y}_1 + \hat{y}_2 = x e^{\lambda x} a + x e^{-\lambda x} b
+	= x(a e^{\lambda x} + b e^{-\lambda x}).
+\]
+\end{solution}
+\end{example}
+
+\subsection{\texorpdfstring{\(f(x) = e^{\lambda x} [ \phi_m(x) \cos\omega x + \psi_n(x) \sin \omega x ]\)型}{第二类：指数函数与广义三角函数的乘积}}
+应用欧拉公式\[
+\cos\theta = \frac{1}{2}(e^{\iu\theta}+e^{-\iu\theta}),
+\qquad
+\sin\theta = \frac{1}{2\iu}(e^{\iu\theta}-e^{-\iu\theta}),
+\]把\(f(x)\)表成复变指数函数的形式，有\begin{align*}
+f(x) &= e^{\lambda x} ( \phi_m \cos \omega x + \psi_n \sin \omega x ) \\
+&= e^{\lambda x} \left(
+\phi_m \frac{e^{\iu\omega x}+e^{-\iu\omega x}}{2}
++ \psi_n \frac{e^{\iu\omega x}-e^{-\iu\omega x}}{2\iu}
+\right) \\
+&= \left(\frac{\phi_m}{2}+\frac{\psi_n}{2\iu}\right) e^{(\lambda+\iu\omega)x}
++ \left(\frac{\phi_m}{2}-\frac{\psi_n}{2\iu}\right) e^{(\lambda-\iu\omega)x} \\
+&= P e^{(\lambda+\iu\omega)x}
++ \overline{P} e^{(\lambda-\iu\omega)x},
+\end{align*}
+其中\[
+P = P(x) = \frac{\phi_m}{2} - \frac{\psi_n}{2}\iu,
+\qquad
+\overline{P} = \overline{P}(x) = \frac{\phi_m}{2}+\frac{\psi_n}{2}\iu
+\]是互成共轭\footnote{%
+如果说两个\(n\)次多项式\(\alpha_n(x) = a_0 x^n + a_1 x^{n-1} + \dotsb + a_n\)
+与\(\beta_n(x) = b_0 x^n + b_1 x^{n-1} + \dotsb + b_n\) \DefineConcept{互成共轭}，
+那么它们的对应项系数是共轭复数，
+即\(a_i = \overline{b_i}\ (i=0,1,\dotsc,n)\).}的\(N = \max\{m,n\}\)次多项式.
+
+应用上一目的结果，对于\(f(x)\)中的第一项\(P e^{(\lambda+\iu\omega)x}\)，可求出一个\(N\)次多项式\(Q = Q_N(x)\)，使得\(\hat{y}_1 = x^k Q e^{(\lambda+\iu\omega)x}\)为方程\[
+y'' + p y' + q y = P e^{(\lambda+\iu\omega)x}
+\]的特解，其中\(k\)按“\(\lambda+\iu\omega\)不是特征方程的根”或“\(\lambda+\iu\omega\)是特征方程的单根”依次取0或1.
+由于\(f(x)\)的第二项\(\overline{P} e^{(\lambda-\iu\omega)x}\)与第一项\(P e^{(\lambda+\iu\omega)x}\)成共轭，所以与\(\hat{y}_1\)成共轭的函数\(\hat{y}_2 = x^k \overline{Q} e^{(\lambda-\iu\omega)x}\)必然是方程\[
+y'' + p y' + q y = \overline{P}(x) e^{(\lambda-\iu\omega)x}
+\]的特解，这里\(\overline{Q}\)表示与\(Q\)成共轭的\(N\)次多项式.
+
+于是，根据\cref{theorem:微分方程.二阶非齐次线性微分方程的解的叠加原理}，
+方程 \labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式} 具有形如\[
+\hat{y} = x^k Q e^{(\lambda+\iu\omega)x} + x^k \overline{Q} e^{(\lambda-\iu\omega)x}
+\]的特解.
+因为\(Q e^{(\lambda+\iu\omega)x}\)与\(\overline{Q} e^{(\lambda-\iu\omega)x}\)共轭，
+两者相加后虚部为零，
+所以上式可写为实函数的形式：
+\begin{equation}
+\hat{y} = x^k e^{\lambda x} (\Phi \cos\omega x + \Psi \sin\omega x),
+\end{equation}
+其中\(\Phi,\Psi\)都是\(N\)次多项式.
+
+综上所述，我们有如下的结论：
+
+如果非齐次项\(f(x)\)可以表达为
+\(e^{\lambda x} [\phi_m(x) \cos\omega x + \psi_n(x) \sin\omega x]\)
+的形式，
+则二阶常系数非齐次线性微分方程
+\labelcref{equation:微分方程.二阶常系数非齐次线性微分方程的一般形式}
+具有形如
+\begin{equation}\label{equation:微分方程.二阶常系数齐次线性微分方程.特解2}
+\hat{y} = x^k e^{\lambda x} [\Phi_N(x) \cos\omega x + \Psi_N(x) \sin\omega x]
+\end{equation}
+的特解，
+其中\(\Phi_N(x)\)、\(\Psi_N(x)\)是\(N=\max\{m,n\}\)次多项式，
+而\(k\)按“\(\lambda\pm\iu\omega\)不是特征方程的根”%
+或“\(\lambda\pm\iu\omega\)是特征方程的单根”%
+两种情形依次取为0或1.
+
+上述结论可以推广到\(n\)阶常系数非齐次线性微分方程，
+但要注意\cref{equation:微分方程.二阶常系数齐次线性微分方程.特解2} 中，
+\(k\)是特征方程中含根\(\lambda\pm\iu\omega\)的重复次数.
+
+\begin{example}
+求微分方程\(y''+y=x \cos2x\)的一个特解.
+\begin{solution}
+所给方程是二阶常系数非齐次线性方程，
+且非齐次项\(f(x)\)属于\(e^{\lambda x} [\phi_m(x) \cos\omega x + \psi_n(x) \sin\omega x]\)型
+（其中\(\lambda=0,
+\omega=2,
+\phi_m(x) = x,
+\psi_n(x) = 0\)）.
+所给方程对应的齐次方程\(y''+y=0\)的特征方程为\(r^2+1=0\)，解得\(r=\pm\iu\).
+由于这里\(\lambda+\iu\omega=2\iu\)不是特征方程的根，
+所以应设原方程的特解为\[
+\hat{y} = (ax+b) \cos2x + (cx+d) \sin2x.
+\]
+将其代入所给方程，得\[
+(-3ax-3b+4c) \cos2x - (3cx+3d+4a) \sin2x = x \cos2x.
+\]
+比较两端同类项的系数，得线性方程\[
+\left\{ \begin{array}{l}
+	-3a=1, \\
+	-3b+4c=0, \\
+	-3c=0, \\
+	-3d-4a=0,
+\end{array} \right.
+\]由此解得\[
+a = -1/3, \qquad
+b = 0, \qquad
+c = 0, \qquad
+d = 4/9.
+\]
+于是求得一个特解为\[
+\hat{y} = -\frac{1}{3} x\cos2x + \frac{4}{9} \sin2x.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+求微分方程\(y''-y=e^x \cos2x\)的一个特解.
+\begin{solution}
+所给方程是二阶常系数非齐次线性方程，
+且非齐次项\(f(x)\)属于\(e^{\lambda x} [\phi_m(x) \cos\omega x + \psi_n(x) \sin\omega x]\)型
+（其中\(\lambda=1,
+\omega=2,
+\phi_m(x) = 1,
+\psi_n(x) = 0\)）.
+特征方程为\(r^2-1=0\)，解得\(r=\pm1\).
+由于\(\lambda+\iu\omega=1+2\iu\)不是特征方程的根，故应设特解为\[
+\hat{y} = e^x (a \cos2x + b \sin2x).
+\]
+求导得\[
+\hat{y}' = e^x [(a+2b) \cos2x + (-2a+b) \sin2x],
+\]\[
+\hat{y}'' = e^x [(-3a+4b) \cos2x + (-4a-3b) \sin2x].
+\]
+代入所给方程，得\[
+e^x [(-4a+4b) \cos2x + (-4a-4b) \sin2x]
+= e^x \cos2x,
+\]
+比较两端同类项系数，有\[
+\left\{ \begin{array}{l}
+	-4a+4b=1, \\
+	-4a-4b=0
+\end{array} \right.
+\quad\text{或}\quad
+\left\{ \begin{array}{l}
+	-a+b=1/4, \\
+	a+b=0,
+\end{array} \right.
+\]
+得\(a = -1/8,
+b = 1/8\).
+因此，所给方程的一个特解为\[
+\hat{y} = \frac{1}{8} e^x (\sin2x - \cos2x).
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(f(x) = \sin x - \int_0^x (x-t) f(t) \dd{t}\)，
+其中\(f\)是连续函数，求\(f\).
+\begin{solution}
+对\(f\)求导，得\[
+\begin{split}
+f'(x)
+&= \cos x - \dv{x}\left[ x \int_0^x f(t) \dd{t} \right] + \dv{x}\left[\int_0^x t f(t) \dd{t}\right] \\
+&= \cos x - \int_0^x f(t) \dd{t} - x f(x) + x f(x) \\
+&= \cos x - \int_0^x f(t) \dd{t}.
+\end{split}
+\]
+令\(y = \int_0^x f(t) \dd{t}\)，
+得\(y' = f(x)\)，
+\(y'' = f'(x)\).
+于是有微分方程\[
+y'' + y = \cos x.
+\]
+解特征方程\[
+r^2 + 1 = 0
+\]得\(r = \pm\iu\).
+设原方程的特解为\[
+\hat{y} = x(a \cos x + b \sin x),
+\]得\[
+\hat{y}' = (a \cos x + b \sin x)
+			+ x(b \cos x - a \sin x),
+\]\[
+\hat{y}'' = 2(b \cos x - a \sin x)
+			- x(a \cos x + b \sin x).
+\]
+代入原方程，得\[
+2(b \cos x - a \sin x)
+= \cos x,
+\]
+于是\(2b = 1, -2a = 0\)，即\(a=0, b=1/2\)，所以特解为\[
+\hat{y} = \frac{1}{2} x \sin x.
+\]
+那么原方程的通解为\[
+y = C_1 \cos x + C_2 \sin x + \frac{1}{2} x \sin x.
+\]
+那么\[
+f(x) = y'
+= \left( C_2 + \frac{1}{2} x \right) \cos x + \left( \frac{1}{2} - C_1 \right) \sin x,
+\]\[
+\int_0^x (x-t) f(t) \dd{t}
+= -C_1 x + C_2 - \left(\frac{1}{2}x+C_2\right) \cos x + \left(\frac{1}{2}+C_1\right) \sin x.
+\]
+代回题设条件得\[
+\left( C_2 + \frac{1}{2} x \right) \cos x + \left( \frac{1}{2} - C_1 \right) \sin x
+= C_1 x - C_2 + \left(\frac{1}{2} x + C_2\right) \cos x + \left(\frac{1}{2}-C_1\right) \sin x.
+\]
+于是\(C_1 = C_2 = 0\)，因此\[
+f(x) = \frac{1}{2} (x \cos x + \sin x).
+\]
+\end{solution}
+\end{example}

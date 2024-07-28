@@ -1,0 +1,204 @@
+\section{可降阶的高阶微分方程}
+从这一节起我们将讨论二阶及二阶以上的微分方程，即所谓的“高阶微分方程”.
+
+对于有些高阶微分方程，我们可以通过代换将它化成较低阶的方程来求解.
+以二阶微分方程\[
+y'' = f(x,y,y')
+\eqno(1)
+\]而论，如果我们能设法作代换把它从二阶降为一阶，那么就有可能应用前面几节中所讲的方法来求出它的解了.
+
+下面介绍三种容易降阶的高阶微分方程的求解方法.
+
+\subsection{\texorpdfstring{形如\(y^{(n)} = f(x)\)}{由自变量确定n阶导数}的微分方程}
+微分方程\[
+y^{(n)} = f(x)
+\eqno(2)
+\]的右端仅含有自变量\(x\).
+容易看出，只要把\(y^{(n-1)}\)作为新的未知函数，那么(2)式就是新未知函数的一阶微分方程.
+两边积分，就得到一个\(n-1\)阶的微分方程\[
+y^{(n-1)} = \int f(x) \dd{x} \dd{x} + C_1.
+\]
+同理可得\[
+y^{(n-2)} = \int \left[ \int f(x) \dd{x} + C_1 \right] \dd{x} + C_2.
+\]依此法继续进行，接连积分\(n\)次，便得方程(2)的含有\(n\)个任意常数的通解.
+
+\begin{example}
+求微分方程\[
+y''' = e^{2x} - \cos x
+\]的通解.
+\begin{solution}
+对所给方程接连积分三次，得\[
+y'' = \frac{1}{2} e^{2x} - \sin x + C,
+\]\[
+y' = \frac{1}{4} e^{2x} + \cos x + C x + C_2,
+\]\[
+y = \frac{1}{8} e^{2x} + \sin x + C_1 x^2 + C_2 x + C_3.
+\]这就是所求的通解.
+\end{solution}
+\end{example}
+
+\subsection{\texorpdfstring{形如\(y'' = f(x,y')\)}{由自变量与一阶导数确定二阶导数}的微分方程}
+微分方程\[
+y'' = f(x, y')
+\eqno(3)
+\]的右端不显含未知函数\(y\).
+如果设\(y' = p\)，那么\[
+y'' = \dv[2]{y}{x} = \dv{p}{x} = p',
+\]而方程(3)就成为\[
+p' = f(x, p),
+\]这是一个关于变量\(x\)、\(p\)的一阶微分方程.
+设其通解为\[
+p = \phi(x, C_1),
+\]但是\(p = \dv{y}{x}\)，因此又得到一个一阶微分方程\[
+\dv{y}{x} = \phi(x, C_1).
+\]对它进行积分，便得方程(3)的通解为\[
+y = \int \phi(x, C_1) \dd{x} + C_2.
+\]
+
+\begin{example}
+求微分方程\[
+(1+x^2) y'' = 2xy'
+\]满足初始条件\[
+\eval{y}_{x=0} = 1,
+\qquad
+\eval{y'}_{x=0} = 3
+\]的特解.
+\begin{solution}
+所给方程是\(y'' = f(x, y')\)型的.
+设\(y' = p\)，代入方程并分离变量后，有\[
+\frac{\dd{p}}{p} = \frac{2x}{1+x^2} \dd{x}.
+\]两端积分，得\[
+\ln\abs{p} = \ln(1+x^2) + C,
+\]即\(p = y' = C_1(1+x^2)\ (C_1 = \pm e^C)\).
+由条件\(\eval{y'}_{x=0}=3\)，得\(C_1 = 3\)，所以\[
+y' = 3(1+x^2).
+\]两端再积分，得\[
+y = x^3 + 3x + C_2.
+\]又由条件\(\eval{y}_{x=0}=1\)，得\(C_2=1\)，于是所求的特解为\[
+y = x^3 + 3x + 1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设有一均匀、柔软的绳索，两端固定，绳索仅受重力的作用而下垂.
+试问该绳索在平衡状态时是怎样的曲线？
+\begin{solution}
+设绳索的最低点为\(A\).
+取\(y\)轴通过点\(A\)铅直向上，并取\(x\)轴水平向右，且\(\abs{OA}\)等于某个定值.
+设绳索曲线的方程为\(y = \phi(x)\).
+考察绳索上点\(A\)到另一点\(M(x,y)\)间的一段弧\(\Arc{AM}\)，设其长为\(s\).
+假定绳索的线密度为\(\rho\)，则弧\(\Arc{AM}\)所受重力为\(\rho gs\).
+由于绳索是柔软的，因而在点\(A\)处的张力沿水平的切线方向，其大小设为\(H\)；
+在点\(M\)处的张力沿该点处的切线方向，设其水平倾角为\(\theta\)，其大小为\(T\).
+因作用于弧段\(\Arc{AM}\)的外力相互平衡，
+把作用于弧\(\Arc{AM}\)上的力沿铅直、水平两方向分解，得\[
+T \sin\theta = \rho gs,
+\qquad
+T \cos\theta = H.
+\]将此两式相除，得\[
+\tan\theta = \frac{1}{a} s
+\quad(a = \frac{H}{\rho g}).
+\]由于\(\tan\theta = y'\)，\(s = \int_0^x \sqrt{1+(y')^2} \dd{x}\)，代入上式即得\[
+y' = \frac{1}{a} \int_0^x \sqrt{1+(y')^2} \dd{x}.
+\]将上式两端对\(x\)求导，便得\(y = \phi(x)\)满足的微分方程\[
+y'' = \frac{1}{a} \sqrt{1+(y')^2}.
+\]
+
+取原点\(O\)到点\(A\)的距离为定值\(a\)，即\(\abs{OA}=a\)，那么初始条件为\[
+\eval{y}_{x=0} = a, \qquad \eval{y'}_{x=0} = 0.
+\]
+
+设\(y' = p\)，则\(y'' = \dv{p}{x}\)，代回微分方程，并分离变量，得\[
+\frac{\dd{p}}{\sqrt{1+p^2}} = \frac{\dd{x}}{a}.
+\]两端积分，得\[
+\ln(p+\sqrt{1+p^2}) = \frac{x}{a} + C_1.
+\]把条件\(\eval{y'}_{x=0} = \eval{p}_{x=0} = 0\)代入上式，得\(C_1 = 0\)，于是上式成为\[
+\ln(p+\sqrt{1+p^2}) = \frac{x}{a},
+\]解得\[
+y' = p = \frac{1}{2} \left( e^{x/a} - e^{-x/a} \right).
+\]
+再积分，便得\[
+y = \frac{a}{2} \left( e^{x/a} + e^{-x/a} \right) + C_2.
+\]将条件\(\eval{y}_{x=0} = a\)代入上式，得\(C_2 = 0\).
+于是该绳索的形状可由曲线方程
+\begin{equation}\label{equation:微分方程.悬链线}
+y = \frac{a}{2} \left( e^{x/a} + e^{-x/a} \right)
+= a \cosh(\frac{x}{a}).
+\end{equation}来表示.
+这曲线叫做\DefineConcept{悬链线}.
+\end{solution}
+\end{example}
+
+\subsection{\texorpdfstring{形如\(y'' = f(y,y')\)}{由因变量与一阶导数确定二阶导数}的微分方程}
+方程\[
+y'' = f(y, y')
+\eqno(4)
+\]中不显含自变量\(x\).
+为了求出它的解，我们令\(y'=p\)，并利用复合函数的求导法则把\(y''\)化为对\(y\)的导数，即\[
+y'' = \dv{p}{x} = \dv{p}{y} \cdot \dv{y}{x} = p \dv{p}{y}.
+\]这样，方程(4)就成为\[
+p \dv{p}{y} = f(y, p).
+\]这是一个关于变量\(y\)、\(p\)的一阶微分方程.
+设它的通解为\[
+y' = p = \phi(y, C_1),
+\]分离变量并积分，便得方程(4)的通解为\[
+\int \frac{\dd{y}}{\phi(y,C_1)} = x + C_2.
+\]
+
+\begin{example}
+设有一质量为\(m\)的物体，在空中由静止开始下落，如果空气阻力为\(R = cv\)（其中\(c\)是常数，\(v\)是物体运动的速度），试求物体下落的距离\(s\)与时间\(t\)的函数关系.
+\begin{solution}
+物体的加速度\(\dv{v}{t}\)与速度\(v\)满足\[
+m \dv{v}{t} = mg - cv.
+\]当\(mg>cv\)时，有\[
+\frac{m}{mg-cv} \dd{v} = \dd{t},
+\]即\[
+-\frac{m}{c} \frac{1}{mg-cv} \dd(mg-cv) = \dd{t},
+\]两端积分，得\[
+-\frac{m}{c} \ln(mg-cv) = t + C_1
+\quad\text{或}\quad
+v = \frac{mg}{c} - \frac{1}{c} C_2 e^{-\frac{c}{m} t}.
+\]代入初始条件\(\eval{v}_{t=0} = 0\)，则有\(C_2 = mg\)，那么上式即为\[
+v = \frac{mg}{c} \left( 1 - e^{-\frac{c}{m} t} \right).
+\]再积分，得\[
+s(t) = \int_0^t v \dd{t}
+= \int_0^t \frac{mg}{c} \left( 1 - e^{-\frac{c}{m} t} \right) \dd{t} \\
+= \frac{mg}{c} \left( t + \frac{m}{c} e^{-\frac{c}{m} t} \right) + C_3.
+\]
+代入初始条件\(\eval{s}_{t=0} = 0\)，则有\(C_3 = -\frac{m^2}{c^2} g\)，那么上式即为\[
+s(t) = \frac{mg}{c} \left( t + \frac{m}{c} e^{-\frac{c}{m} t} - \frac{m}{c} \right).
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设函数\(y(x)\)具有二阶导数，且曲线\(l: y=y(x)\)与直线\(y=x\)相切于原点.
+记\(\alpha\)为曲线\(l\)在点\((x,y)\)处的倾角，且\(\dv{\alpha}{x}=\dv{y}{x}\)，求\(y(x)\)的表达式.
+\begin{solution}
+由导数的几何意义可知，\(\tan\alpha=y'\)，那么\(\sec^2\alpha \dv{\alpha}{x} = y''\)，即\[
+\dv{\alpha}{x} = \frac{y''}{\sec^2\alpha}
+= \frac{y''}{1+\tan^2\alpha}
+= \frac{y''}{1+(y')^2}.
+\]由题意有，\(\frac{y''}{1+(y')^2} = y'\)，令\(y' = p, y'' = p\dv{p}{y}\)，得\[
+p\dv{p}{y} = p(1+p^2),
+\]\[
+\dv{p}{y} = 1+p^2,
+\]\[
+\dd{y} = \frac{\dd{p}}{1+p^2},
+\]\[
+\arctan p = y + C_1,
+\]\[
+p = \tan(y+C_1) = y',
+\]因为曲线\(l: y=y(x)\)与直线\(y=x\)相切于原点，\(y(0) = 0\)，\(y'(0) = 1\)，代入得\(\tan C_1 = 1\)，那么可取\(C_1 = \pi/4\)，于是\(y' = \tan(y+\pi/4)\).%
+因此\[
+\cot(y+\frac{\pi}{4}) \dd{y} = \dd{x},
+\]\[
+\ln\abs{\sin(y+\frac{\pi}{4})} = x + C_2,
+\]\[
+\sin(y+\frac{\pi}{4}) = C_3 e^x,
+\]又因为\(y(0) = 0\)，代入得\(\sqrt{2}/2 = C_3\)，于是\[
+y = \arcsin(\frac{\sqrt{2}}{2} e^x) - \frac{\pi}{4}.
+\]
+\end{solution}
+\end{example}

@@ -1,0 +1,269 @@
+\section{二阶常系数齐次线性微分方程}\label{section:微分方程.常系数齐次线性微分方程}
+先讨论二阶常系数齐次线性微分方程的解法，再把二阶方程的解法推广到\(n\)阶.
+
+\begin{definition}
+在二阶齐次线性微分方程 \labelcref{equation:微分方程.二阶齐次线性微分方程的一般形式} 中，
+如果\(y'\)、\(y\)的系数\(P(x)\)、\(Q(x)\)均为常数，
+即方程 \labelcref{equation:微分方程.二阶齐次线性微分方程的一般形式} 成为
+\begin{equation}\label{equation:微分方程.二阶常系数齐次线性微分方程的一般形式}
+y''+py'+qy=0.
+\end{equation}
+其中\(p\)、\(q\)是常数，则称方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 为\DefineConcept{二阶常系数齐次线性微分方程}.
+如果\(p\)、\(q\)不全为常数，称方程 \labelcref{equation:微分方程.二阶齐次线性微分方程的一般形式} 为\DefineConcept{二阶变系数齐次线性微分方程}.
+\end{definition}
+
+由上节讨论可知，要找微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解，可以先求出它的两个解\(y_1, y_2\)，如果\(\frac{y_2}{y_1} \not\equiv \text{常数}\)，即\(y_1\)与\(y_2\)线性无关，那么\(y = C_1 y_1 + C_2 y_2\)就是方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解.
+
+当\(r\)为常数时，指数函数\(y = e^{r x}\)和它的各阶导数都只相差一个常数因子.
+由于指数函数有这个特点，因此我们用\(y = e^{rx}\)来尝试，看能否选取适当的常数\(r\)，使\(y = e^{rx}\)满足方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式}.
+
+对\(y = e^{rx}\)求导\footnote{当\(r\in\mathbb{C}\)，\(x\)为实变数时，导数公式\(\dv{x} e^{rx} = r e^{rx}\)仍成立.}，得到\[
+y' = r e^{rx}, \qquad y'' = r^2 e^{rx}.
+\]把\(y,y',y''\)代入方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式}，得\[
+(r^2 + pr + q) e^{rx} = 0.
+\]由于\(e^{rx}\neq0\)，所以\begin{equation}\label{equation:微分方程.二阶常系数齐次线性微分方程的特征方程}
+r^2 + pr + q = 0.
+\end{equation}
+
+由此可见，只要\(r\)满足代数方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程}，函数\(y = e^{rx}\)就是微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的解，我们把代数方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程} 叫做微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的\DefineConcept{特征方程}.
+注意到特征方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程} 是一个二次代数方程，其中\(r^2, r\)的系数及常数项恰好依次是微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 中\(y'',y',y\)的系数.
+
+特征方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程} 的两个根\(r_1,r_2\)可以用公式\[
+r_{1,2} = \frac{-p \pm\sqrt{p^2-4q}}{2}
+\]求出.它们有三种不同的情形：\begin{enumerate}
+\item 当\(p^2-4q>0\)时，\(r_1,r_2\)是两个不相等的实根：\[
+r_1 = \frac{-p +\sqrt{p^2-4q}}{2}, \qquad
+r_2 = \frac{-p -\sqrt{p^2-4q}}{2};
+\]
+\item 当\(p^2-4q=0\)时，\(r_1,r_2\)是两个相等的实根：\[
+r_1 = r_2 = -\frac{p}{2};
+\]
+\item 当\(p^2-4q<0\)时，\(r_1,r_2\)是一对共轭复根：\[
+r_1 = \alpha+\iu\beta, \qquad r_2 = \alpha-\iu\beta,
+\]其中\(\alpha=-p/2\)，\(\beta=\sqrt{4q-p^2}/2\).
+\end{enumerate}
+
+相应地，微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解也有三种不同的情形.分别讨论如下：\begin{enumerate}
+\item 特征方程有两个不相等的实根：\(r_1 \neq r_2\).
+
+由上面的讨论知道，\(y_1 = e^{r_1 x}\)和\(y_2 = e^{r_2 x}\)是
+微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的两个解，
+并且\(\frac{y_2}{y_1} = \frac{e^{r_2 x}}{e^{r_1 x}} = e^{(r_2-r_1) x}\)不是常数，
+因此微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解为\[
+	y = C_1 e^{r_1 x} + C_2 e^{r_2 x}.
+\]
+
+\item 特征方程有两个相等的实根：\(r_1 = r_2\).
+
+这时，只得到微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的一个解\[
+	y_1 = e^{r_1 x}.
+\]
+为了得出微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解，
+还需求出另一个解\(y_2\)，
+并且，根据\cref{theorem:微分方程.二阶齐次线性微分方程的通解结构}，
+我们要求这两个解的比\(\frac{y_2}{y_1}\)不是常数.
+
+设\(\frac{y_2}{y_1} = u(x)\)，即\(y_2 = e^{r_1 x} u(x)\).
+下面来求\(u(x)\).
+
+对\(y_2\)求导，得\[
+	y_2' = e^{r_1 x} (u' + r_1 u),
+	\qquad
+	y_2'' = e^{r_1 x} (u'' + 2 r_1 u' + r_1^2 u),
+\]
+将\(y_2,y_2',y_2''\)
+代入微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式}，
+得\[
+	e^{r_1 x} [(u'' + 2 r_1 u' + r_1^2 u) + p(u' + r_1 u) + qu] = 0,
+\]
+约去\(e^{r_1 u}\)，
+并以\(u'',u',u\)为准合并同类项，
+得\[
+	u'' + (2 r_1 + p) u' + (r_1^2 + p r_1 + q) u = 0.
+\]
+由于\(r_1\)是特征方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程} 的二重根，
+因此\(r_1^2 + p r_1 + q = 0\)，且\(2 r_1 + p = 0\)，
+于是得\[
+	u'' = 0.
+\]
+因为这里只要得到一个不为常数的解，所以不妨选取\(u = x\)，
+由此得到微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的另一个解\[
+	y_2 = x e^{r_1 x}.
+\]
+
+从而微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解为\[
+	y = C_1 e^{r_1 x} + C_2 x e^{r_1 x}
+	= (C_1 + C_2 x) e^{r_1 x}.
+\]
+
+\item 特征方程有一对共轭复根：\(r_1 = \alpha+\iu\beta, r_2 = \alpha-\iu\beta \ (\beta\neq0)\).
+
+这时，\(y_1 = e^{(\alpha+\iu\beta)x}, y_2 = e^{(\alpha-\iu\beta)x}\)是微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的两个解，但它们是复值函数形式.
+为了得出实值函数形式的解，
+先利用\hyperref[equation:复数.欧拉公式]{欧拉公式}，
+即\(e^{\iu\theta} \equiv \cos\theta+\iu\sin\theta\)，
+把\(y_1,y_2\)改写为\[
+	y_1 = e^{(\alpha+\iu\beta)x} = e^{\alpha x} \cdot e^{\iu\beta x}
+	= e^{\alpha x} (\cos\beta x + \iu \sin\beta x),
+\]\[
+	y_2 = e^{(\alpha-\iu\beta)x} = e^{\alpha x} \cdot e^{-\iu\beta x}
+	= e^{\alpha x} (\cos\beta x - \iu \sin\beta x),
+\]
+由于复值函数\(y_1\)与\(y_2\)之间成共轭关系，
+它们的实部相等，虚部恰好相反，\[
+	\Re y_1 = \Re y_2, \qquad
+	\Im y_1 = -\Im y_2,
+\]
+于是\(y_1,y_2\)可以由它们的实部、虚部线性表出，
+那么根据\hyperref[theorem:微分方程.二阶非齐次线性微分方程的解的叠加原理]{叠加原理}，
+它们的实部、虚部\[
+	\overline{y}_1 = \frac{1}{2} (y_1 + y_2) = e^{\alpha x} \cos\beta x,
+	\qquad
+	\overline{y}_2 = \frac{1}{2\iu} (y_1 - y_2) = e^{\alpha x} \sin\beta x
+\]也是方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的解.
+又因为\[
+	\frac{\overline{y}_1}{\overline{y}_2}
+	= \frac{e^{\alpha x} \cos\beta x}{e^{\alpha x} \sin\beta x}
+	= \cot\beta x
+\]不是常数，
+所以微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解为\[
+	y = e^{\alpha x} (C_1 \cos\beta x + C_2 \sin\beta x).
+\]
+\end{enumerate}
+
+综上所述，
+求二阶常系数齐次线性微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解的步骤如下：
+\begin{enumerate}
+	\item
+	写出微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的
+	特征方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程}.
+
+	\item
+	求出特征方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程} 的
+	两个根\(r_1,r_2\).
+
+	\item
+	根据特征方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的特征方程} 的两个根的不同情形，
+	按照\cref{table:二阶常系数齐次线性微分方程.通解}
+	写出微分方程 \labelcref{equation:微分方程.二阶常系数齐次线性微分方程的一般形式} 的通解：
+\end{enumerate}
+
+\begin{table}[ht]
+	\centering
+	\begin{tblr}{c|c}
+		\hline
+		特征方程\(r^2+pr+q=0\)的两个根\(r_1,r_2\)
+			& 微分方程\(y''+py'+qy = 0\)的通解 \\ \hline
+		两个不相等的实根\(r_1,r_2\)
+			& \(y = C_1 e^{r_1 x} + C_2 e^{r_2 x}\) \\
+		两个相等的实根\(r_1=r_2=r\)
+			& \(y = (C_1 + C_2 x) e^{r x}\) \\
+		一对共轭复根\(r_{1,2}=\alpha\pm\iu\beta\)
+			& \(y = e^{ax} (C_1 \cos{\beta x} + C_2 \sin{\beta x})\) \\ \hline
+	\end{tblr}
+	\caption{}
+	\label{table:二阶常系数齐次线性微分方程.通解}
+\end{table}
+
+\begin{example}
+求微分方程\(y'' - 2y' - 3y = 0\)的通解.
+\begin{solution}
+所给微分方程的特征方程为\(r^2-2r-3=0\)，
+其根\(r_1=-1, r_2=3\)是两个不同的实根，因此所求通解为\[
+	y = C_1 e^{-x} + C_2 e^{3x}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+若微分方程\(y''+ay'+by=0\)的解在\((-\infty,+\infty)\)上有界，求常数\(a,b\)的取值范围.
+\begin{solution}
+微分方程\(y''+ay'+by=0\)的特征方程为\(\lambda^2 + a\lambda+b = 0\).
+
+当\(\Delta=a^2-4b>0\)时，特征方程有两个不同的实根\(\lambda_1,\lambda_2\)，且\(\lambda_1,\lambda_2\)至少有一个不等于零.
+只要常数\(C_1,C_2\)都不为零，那么微分方程的通解\(y = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x}\)在\((-\infty,+\infty)\)内无界.
+
+当\(\Delta=a^2-4b=0\)时，特征方程有两个相同的实根\(\lambda=-a/2\).
+只要常数\(C_2\neq0\)，那么微分方程的通解\(y = C_1 e^{-ax/2} + C_2 x e^{-ax/2}\)在\((-\infty,+\infty)\)内无界.
+
+当\(\Delta=a^2-4b<0\)时，特征方程有两个共轭复根\(\lambda_{1,2}=-\frac{a}{2}\pm\frac{\sqrt{4b-a^2}}{2}\iu\)，微分方程的通解为\[
+y = e^{-\frac{a}{2}x} \left( C_1 \cos\frac{\sqrt{4b-a^2}}{2}x + C_2 \sin\frac{\sqrt{4b-a^2}}{2}x \right),
+\]此时，要使该通解在\((-\infty,+\infty)\)内有界，则必有\(a = 0, b > 0\).
+\end{solution}
+\end{example}
+
+上面讨论二阶常系数齐次线性微分方程所用的方法以及方程的通解的形式，
+可推广到\(n\)阶常系数齐次线性微分方程上去，对此我们不再详细讨论，只简单地叙述于下：
+
+\(n\)阶常系数齐次线性微分方程的一般形式是
+\begin{equation}\label{equation:微分方程概论.n阶常系数齐次线性微分方程的一般形式}
+y^{(n)} + p_1 y^{(n-1)} + p_2 y^{(n-2)} + \dotsb + p_{n-1} y' + p_n y = 0,
+\end{equation}
+其中\(p_1,p_2,\dotsc,p_{n-1},p_n\)都是常数.
+
+有时我们用记号\(D\)（叫做\DefineConcept{微分算子}）表示对\(x\)求导的运算\(\dv{x}\)，
+把\(\dv{y}{x}\)记作\(Dy\)，把\(\dv[n]{y}{x}\)记作\(D^n y\)，并把上述方程记作
+\begin{equation}\label{equation:微分方程概论.n阶常系数齐次线性微分方程的一般形式.用微分算子改写}
+(D^n + p_1 D^{n-1} + p_2 D^{n-2} + \dotsb + p_{n-1} D + p_n) y = 0.
+\end{equation}
+
+再记\[
+L(D) = D^n + p_1 D^{n-1} + p_2 D^{n-2} + \dotsb + p_{n-1} D + p_n,
+\]称\(L(D)\)为“微分算子\(D\)的\(n\)次多项式”.
+于是方程 \labelcref{equation:微分方程概论.n阶常系数齐次线性微分方程的一般形式.用微分算子改写} 又可记作\[
+L(D) y = 0.
+\]
+
+如同讨论二阶常系数齐次线性微分方程那样，令\(y = e^{rx}\)，
+由于\[
+D e^{rx} = r e^{rx},\dotsc,D^n e^{rx} = r^n e^{rx},
+\]
+故\(L(D) e^{rx} = L(r) e^{rx}\).
+因此把\(y = e^{rx}\)%
+代入方程 \labelcref{equation:微分方程概论.n阶常系数齐次线性微分方程的一般形式.用微分算子改写}，
+得\[
+L(r) e^{rx} = 0.
+\]
+由此可见，如果选取\(r\)是\(n\)次代数方程
+\begin{equation}\label{equation:微分方程概论.n阶常系数齐次线性微分方程的一般形式.特征方程}
+L(r) = 0
+\quad\text{即}\quad
+r^n + p_1 r^{n-1} + p_2 r^{n-2} + \dotsb + p_{n-1} r + p_n = 0
+\end{equation}
+的根，那么作出的函数\(y = e^{rx}\)就是微分方程的一个解.
+
+方程 \labelcref{equation:微分方程概论.n阶常系数齐次线性微分方程的一般形式.特征方程} 叫做
+方程 \labelcref{equation:微分方程概论.n阶常系数齐次线性微分方程的一般形式.用微分算子改写} 的特征方程.
+
+如\cref{table:n阶常系数齐次线性微分方程.通解} 所示，
+根据特征方程的根，可以写出其对应的微分方程的解.
+
+\begin{table}[ht]
+	\centering
+	\begin{tblr}{p{3cm}|p{9cm}}
+		\hline
+		特征方程的根
+			& 微分方程通解中的对应项 \\ \hline
+		单实根\(r\)
+			& 给出一项：\(C e^{rx}\) \\ \hline
+		一对单复根\newline\(r_{1,2}=\alpha\pm\iu\beta\)
+			& 给出两项：\(e^{\alpha x} (C_1 \cos\beta x + C_2 \sin\beta x)\) \\ \hline
+		\(k\)重实根\(r\)
+			& 给出\(k\)项：\(e^{rx} (C_1 + C_2 x + \dotsb + C_k x^{k-1})\) \\ \hline
+		一对\(k\)重复根\newline\(r_{1,2}=\alpha\pm\iu\beta\)
+			& 给出\(2k\)项：
+			\(e^{\alpha x} [
+				(C_1+C_2 x+\dotsb+C_k x^{k-1}) \cos\beta x
+				+ (D_1+D_2 x+\dotsb+D_k x^{k-1})\sin\beta x
+			]\)
+		\\ \hline
+	\end{tblr}
+	\caption{}
+	\label{table:n阶常系数齐次线性微分方程.通解}
+\end{table}
+
+根据代数基本定理，\(n\)次代数方程有\(n\)个根.
+而特征方程的每一个根都对应着通解中的一项，且每项各含一个任意常数.
+这样就得到\(n\)阶常系数齐次线性微分方程的通解\[
+y = C_1 y_1 + C_2 y_2 + \dotsb + C_n y_n.
+\]

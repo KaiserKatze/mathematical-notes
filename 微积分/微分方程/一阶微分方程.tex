@@ -1,0 +1,508 @@
+\section{一阶微分方程}
+我们首先讨论一阶微分方程\[
+	y' = f(x,y)
+	\eqno(1)
+\]的一些解法.
+
+\subsection{可分离变量的微分方程}
+一阶微分方程\(y' = f(x,y)\)有时也写成如下的对称形式\[
+P(x,y)\dd{x}+Q(x,y)\dd{y}=0.
+\eqno(2)
+\]在方程(2)中，变量\(x\)与\(y\)对称，它既可看作是以\(x\)为自变量、\(y\)为因变量的方程\[
+\dv{y}{x} = -\frac{P(x,y)}{Q(x,y)}
+\]（这时\(Q(x,y)\neq0\)）；也可看作是以\(y\)为自变量、\(x\)为因变量的方程\[
+\dv{x}{y} = -\frac{Q(x,y)}{P(x,y)}
+\]（这时\(P(x,y)\neq0\)）.
+
+对于有的一阶微分方程（例如\(\dv{y}{x} = 2x\)）可以直接在两端积分得到它的通解.
+但是并不是所有的一阶微分方程都能这样求解，例如\(\dv{y}{x} = 2xy^2\)就不能这样做，这是因为这个方程的右端含有与\(x\)存在函数关系的变量\(y\)，积分\(\int 2xy^2 \dd{x}\)求不出来.
+但如果将这个方程变形为\(\frac{\dd{y}}{y^2}=2x\dd{x}\)，使得变量\(x\)与\(y\)分离在等式的两端，再两端积分即得\[
+-\frac{1}{y} = x^2+C
+\quad\text{或}\quad
+y = -\frac{1}{x^2+C},
+\]其中\(C\)是任意常数.
+可以验证上述函数确实满足原来的一阶微分方程\(\dv{y}{x} = 2xy^2\)，且含有一个任意常数，所以它是原方程的通解.
+
+\begin{definition}[可分离变量的微分方程]
+一般地，如果一阶微分方程能化成\[
+g(y)\dd{y}=f(x)\dd{x}
+\eqno(3)
+\]的形式，那么称原方程为\DefineConcept{可分离变量的微分方程}.
+\end{definition}
+
+假定方程(3)中的函数\(g(y)\)和\(f(x)\)是连续的.设\(y=\phi(x)\)是方程(3)的解，将它代入(3)中得到恒等式\[
+g[\phi(x)] \phi'(x) \dd{x} = f(x) \dd{x}.
+\]将上式两端积分，并由\(y=\phi(x)\)引进变量\(y\)，得\[
+\int g(y) \dd{y} = \int f(x) \dd{x}.
+\]设\(G(y)\)及\(F(x)\)依次为\(g(y)\)及\(f(x)\)的原函数，于是有\[
+G(y) = F(x) + C.
+\eqno(4)
+\]因此方程(3)的解满足关系式(4).反之，如果\(y = \Phi(x)\)是由关系式(4)所确定的隐函数，那么在\(g(y)\neq0\)的条件下，\(y=\Phi(x)\)也是方程(3)的解，事实上，由\hyperref[theorem:多元函数微分法.隐函数存在定理1]{隐函数的求导法}可知，当\(g(y)\neq0\)时，\[
+\Phi'(x) = \frac{F'(x)}{G'(y)} = \frac{f(x)}{g(y)},
+\]这就表示函数\(y = \Phi(x)\)满足方程(3).所以，如果已分离变量的方程(3)中，\(g(y)\)和\(f(x)\)是连续的，且\(g(y)\neq0\)，那么(3)式两端积分后得到的关系式(4)，就用隐式给出了方程(3)的解，(4)式就叫做微分方程(3)的\DefineConcept{隐式解}.又由于关系式(4)中含有任意常数，因此(4)式所确定的隐函数是方程(3)的通解，所以(4)式叫做微分方程(3)的\DefineConcept{隐式通解}（当\(f(x)\neq0\)时，(4)式所确定的隐函数\(x=\Psi(y)\)也可认为是方程(3)的解）.
+
+\begin{example}
+放射性元素铀由于不断地有原子放射出微粒子而变成其他元素，铀的含量就不断减少，这种现象叫衰变.由原子物理学知道，铀的衰变速度与当时未衰变的铀原子的含量\(M\)成正比.已知\(t=0\)时，铀的含量为\(M_0\)，求在衰变过程中铀含量\(M(t)\)随时间\(t\)变化的规律.
+\begin{solution}
+铀的衰变速度就是\(M(t)\)对时间\(t\)的导数\(\dv{M}{t}\).由于铀的衰变速度与其含量成正比，故得微分方程\[
+\dv{M}{t} = -\lambda M,
+\]其中\(\lambda > 0\)是常数，叫做衰变系数，\(\lambda\)前置负号是由于当\(t\)增加时\(M\)单调减少，即\(\dv{M}{t} < 0\)的缘故.对这个微分方程分离变量，得\[
+\frac{\dd{M}}{M} = -\lambda \dd{t}.
+\]两端积分\[
+\int \frac{\dd{M}}{M} = -\lambda \int \dd{t},
+\]以\(\ln C\)表示任意常数，考虑到\(M>0\)，得\[
+\ln M = -\lambda t + \ln C,
+\]即\[
+M = C e^{-\lambda t}.
+\]这就是原方程的通解.将初始条件\[
+\eval{M}_{t=0} = M_0
+\]代入上式，得\[
+M_0 = C e^0 = C,
+\]所以\(M = M_0 e^{-\lambda t}\).这就是所求铀的衰变规律 --- 铀的含量随时间的增加而按指数规律衰减.
+\end{solution}
+\end{example}
+
+\subsection{齐次方程}
+有的一阶线性齐次微分方程可以化成\[
+\dv{y}{x}=\phi\left(\frac{y}{x}\right)
+\eqno(5)
+\]的形式.
+
+在解这类方程的时候，我们可以使用换元法，在方程中引入新的未知函数\[
+u=\frac{y}{x},
+\eqno(6)
+\]就可以将其化为可分离变量的方程.
+这是因为由(6)有\[
+y = ux,
+\qquad
+\dv{y}{x} = u + x \dv{u}{x},
+\]代入方程(5)，便得方程\[
+u + x \dv{u}{x} = \phi(u),
+\]即\[
+x \dv{u}{x} = \phi(u) - u.
+\]分离变量，得\[
+\frac{\dd{u}}{\phi(u) - u} = \frac{\dd{x}}{x}.
+\]对两端积分，得\[
+\int \frac{\dd{u}}{\phi(u) - u} = \int \frac{\dd{x}}{x}.
+\]
+求出积分后，再以\(\frac{y}{x}\)代替\(u\)，便得齐次方程的通解.
+
+\begin{example}
+解方程\[y^2+x^2 \dv{y}{x} = xy \dv{y}{x}.\]
+\begin{solution}
+原方程可写成\[
+	\dv{y}{x} = \frac{y^2}{xy-x^2} = \frac{(y/x)^2}{y/x-1},
+\]
+因此原方程是齐次方程.
+令\(u=y/x\)，
+则\[
+	y=ux, \qquad \dv{y}{x} = u + x \dv{u}{x},
+\]
+于是原方程变为\[
+	u+x \dv{u}{x} = \frac{u^2}{u-1},
+\]
+即\[
+	x \dv{u}{x} = \frac{u}{u-1}.
+\]
+分离变量，得\[
+	\left(1-\frac{1}{u}\right) \dd{u} = \frac{\dd{x}}{x}.
+\]
+两端积分，得\[
+	u - \ln\abs{u} + C = \ln\abs{x},
+\]或\[
+	\ln\abs{xu} = u + C.
+\]
+以\(y/x\)代上式中的\(u\)，
+便得方程的通解为\[
+	\ln\abs{y} = \frac{y}{x} + C.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设曲线\(y = y(x)\ (x>0)\)经过点\((1,2)\)，
+该曲线上任一点\(P(x,y)\)到\(y\)轴的距离等于该点处的切线在\(y\)轴上的截距.
+求曲线方程\(y(x)\).
+\begin{solution}
+设\((x,y)\)处的切线方程为\(Y-y=y'(X-x)\)，
+令\(X=0\)得\(Y=y-y'x\)，
+这就是切线在\(y\)轴上的截距，
+因此得到微分方程\(x = y-y'x\).
+整理得\(\frac{y}{x}-1=y'\)，
+可见这是一个齐次方程，
+解得\(y=x(C-\ln x)\ (x>0)\).
+代入\(y(1)=2\)，
+得\(C=2\)，
+于是曲线方程为\(y=x(2-\ln x)\).
+\end{solution}
+\end{example}
+
+\begin{example}
+探照灯的聚光镜的镜面是一张旋转曲面，
+它的形状由\(xOy\)坐标面上的一条曲线\(L\)绕\(x\)轴旋转而成.
+按照工程师对聚光镜性能的要求，从点\(O\)处发出的一切光线，经它反射后都与旋转轴平行.
+求曲线\(L\)的方程.
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-3.5,xmax=5,
+			ymin=0,ymax=5,
+			axis equal=true,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			xtick=\empty,
+			ytick=\empty,
+		]
+			\pgfmathsetmacro{\pMx}{1}
+			\pgfmathsetmacro{\pMy}{sqrt(4*(\pMx+1))}
+			\pgfmathsetmacro{\pSx}{\pMx+3}
+			\pgfmathsetmacro{\dvM}{2*\pMx/sqrt(4*(\pMx+1))}
+			\pgfmathsetmacro{\pTx}{4}
+			\pgfmathsetmacro{\pTy}{\pMy+\dvM*(\pTx-\pMx)}
+			\pgfmathsetmacro{\pAx}{\pMx-\pMy/\dvM}
+			\pgfmathsetmacro{\pNx}{\dvM*\pMy+\pMx}
+			\draw[red](0,0)node[black,below left]{$O$}coordinate(O)
+				--(\pMx,\pMy)node[black,above left]{$M$}coordinate(M)
+				--(\pSx,\pMy)coordinate(S)node[black,below]{$S$};
+			\draw(4,4)node{$L$};
+			\begin{scope}[color=black!30]
+				\draw(M)--(\pTx,\pTy)coordinate(T)node[black,above right]{$T$};
+				\draw(M)--(\pAx,0)coordinate(A)node[black,below]{$A$};
+				\draw(M)--(M|-O)coordinate(P)node[black,below]{$P$};
+				\draw(M)--(\pNx,0)coordinate(N)node[black,below]{$N$};
+			\end{scope}
+			\begin{scope}[angle eccentricity=2,angle radius=.4cm]
+				\draw pic["$\alpha$",draw=orange,-]{angle=P--A--M};
+				\draw pic["$\alpha$",draw=orange,-]{angle=S--M--T};
+				\draw pic["$\alpha$",draw=orange,-]{angle=A--M--O};
+				\draw pic[draw=brown,angle radius=.2cm]{right angle=N--P--M};
+				\draw pic[draw=brown,angle radius=.2cm]{right angle=N--M--T};
+			\end{scope}
+			\begin{scope}[color=blue,smooth]
+				\addplot[domain=-1:0,samples=100]{sqrt(4*(x+1))};
+				\addplot[domain=0:10,samples=50]{sqrt(4*(x+1))};
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:微分方程.齐次方程.例图1}
+\end{figure}
+\begin{solution}
+如\cref{figure:微分方程.齐次方程.例图1}，建立平面直角坐标系.
+根据对称性，我们只考虑曲线方程中\(y\geq0\)的部分.
+设点\(M(x,y)\)是\(L\)上任意一点，
+点\(O\)发出的某条光线经点\(M\)反射后是一条与\(x\)轴平行的直线\(MS\).
+又设过点\(M\)的切线\(AT\)与\(x\)轴的夹角为\(\alpha\).
+根据题意有，\(\angle SMT = \alpha\).
+另一方面，\(\angle OMA\)是入射角的余角，\(\angle SMT\)是反射角的余角，
+于是由光学中的反射定律有\(\angle OMA = \angle SMT = \alpha\)；
+从而\(AO = OM\)，但\(AO = AP - OP = PM \cot\alpha - OP = \frac{y}{y'} - x\)，
+而\(OM = \sqrt{x^2+y^2}\).
+于是得微分方程\[
+\frac{y}{y'} - x = \sqrt{x^2+y^2}.
+\]
+当\(y>0\)时，上式即为\[
+\dv{x}{y} = \frac{x}{y} + \sqrt{\left(\frac{x}{y}\right)^2 + 1},
+\]这是齐次方程.
+令\(v = \frac{x}{y}\)，则\(x = yv\)，\(\dv{x}{y} = v + y \dv{v}{y}\)，
+代入上式，得\[
+v + y \dv{v}{y} = v + \sqrt{v^2 + 1},
+\]即\[
+y \dv{v}{y} = \sqrt{v^2 + 1}.
+\]分离变量，得\[
+\frac{\dd{v}}{\sqrt{v^2+1}}
+= \frac{\dd{y}}{y}.
+\]积分，得\[
+\ln(v+\sqrt{v^2+1}) = \ln y - \ln C,
+\]或\[
+v + \sqrt{v^2+1} = \frac{y}{C}.
+\]
+
+由\[
+\left(\frac{y}{C} - v\right)^2 = v^2 + 1,
+\]得\[
+\frac{y^2}{C^2} - \frac{2yv}{C} = 1,
+\]以\(yv=x\)代入上式，得\[
+y^2 = 2C(x+\frac{C}{2}).
+\]
+可以看出，这是以\(x\)轴为对称轴、焦点在原点的抛物线.
+\end{solution}
+\end{example}
+
+\subsection{可化为齐次的微分方程}
+方程\[
+\dv{y}{x} = \frac{ax + by + c}{a_1 x + b_1 y + c_1}
+\eqno(7)
+\]当\(c=c_1=0\)时是齐次的，否则不是齐次的.
+在非齐次的情形下，可用下列代换把它化为齐次方程：
+先令\(x = X + h\)，\(y = Y + k\)，其中\(h\)和\(k\)是待定的常数.于是\(\dd{x}=\dd{X}\)，\(\dd{y}=\dd{Y}\)，而原方程化为\[
+\dv{Y}{X} = \frac{aX+bY+(ah+bk+c)}{a_1 X+b_1 Y+(a_1 h+b_1 k+c_1)}.
+\]
+
+根据\hyperref[theorem:线性方程组.克拉默法则]{克拉默法则}，
+如果关于\(h,k\)的代数方程组\[
+\left\{ \begin{array}{l}
+ah+bk+c = 0, \\
+a_1 h+b_1 k+c_1 = 0
+\end{array} \right.
+\eqno(8)
+\]的系数行列式\(\begin{vmatrix}
+a & b \\
+a_1 & b_1
+\end{vmatrix} \neq 0\)，
+那么可以解出唯一的\(h\)及\(k\)，即\[%
+h = -\frac{\begin{vmatrix}
+c & b \\
+c_1 & b_1
+\end{vmatrix}}{\begin{vmatrix}
+a & b \\
+a_1 & b_1
+\end{vmatrix}},
+\qquad
+k = -\frac{\begin{vmatrix}
+a & c \\
+a_1 & c_1
+\end{vmatrix}}{\begin{vmatrix}
+a & b \\
+a_1 & b_1
+\end{vmatrix}},
+\]
+从而将微分方程(7)化为齐次方程\[
+\dv{Y}{X} = \frac{aX+bY}{a_1 X+b_1 Y}.
+\eqno(9)
+\]求出齐次方程(9)的通解后，在通解中以\(x-h\)代\(X\)，\(y-k\)代\(Y\)，便得方程(7)的通解.
+
+如果代数方程组(8)的系数行列式\(\begin{vmatrix} a & b \\ a_1 & b_1 \end{vmatrix} = 0\)，
+那么上述方法不能应用，不过可以令\footnote{这里假设\(a,b \neq 0\).}\[
+\frac{a_1}{a} = \frac{b_1}{b} = \lambda,
+\]从而将方程(7)化为\[
+\dv{y}{x} = \frac{(ax+by)+c}{\lambda(ax+by)+c_1}.
+\]引入新变量\(v=ax+by\)，则\[
+\dv{v}{x} = a + b \dv{y}{x}
+\quad\text{或}\quad
+\dv{y}{x} = \frac{1}{b} \left(\dv{v}{x} - a\right).
+\]
+于是微分方程(7)成为可分离变量的微分方程\[
+\frac{1}{b} \left(\dv{v}{x} - a\right) = \frac{v + c}{\lambda v + c_1}.
+\]
+
+上述解法可以应用于更一般的微分方程\[
+\dv{y}{x} = f\left(\frac{ax+by+c}{a_1 x+b_1 y+c_1}\right).
+\eqno(10)
+\]
+
+对形如\[
+\dv{y}{x} = x f\left(\frac{y}{x^2}\right)
+\]的微分方程，可令\(u = y/x^2\).
+
+对形如\[
+\dv{y}{x} = \frac{1}{x^2} f(xy)
+\quad\text{或}\quad
+\dv{y}{x} = \frac{y}{x} f(xy)
+\]的微分方程，可令\(u = xy\).
+
+对形如\[
+\dv{y}{x} = f(ax+by+c)
+\]的微分方程，可令\(u = ax+by+c\).
+
+\subsection{一阶线性微分方程}\label{section:微分方程.一阶线性微分方程}
+对于形如\[
+\dv{y}{x} + P(x) y = Q(x)
+\eqno(11)
+\]的一阶线性非齐次微分方程（即\(Q(x) \not\equiv 0\)），我们有如下的解法.
+
+首先，我们把\(Q(x)\)换成零，写出方程\[
+\dv{y}{x} + P(x) y = 0.
+\eqno(12)
+\]
+方程(12)叫做“对应于线性非齐次方程(11)的线性齐次方程”.
+
+方程(12)是可分离变量的，分离变量后得\[
+\frac{\dd{y}}{y} = -P(x) \dd{x},
+\]两端积分，得\[
+\ln{\abs{y}} = -\int P(x) \dd{x} + C_1,
+\]
+或\[
+y = C e^{ -\int P(x) \dd{x} }
+\quad(C = \pm e^{C_1}),
+\]
+这是对应的齐次线性方程(12)的通解\footnote{%
+这里记号\(\int P(x) \dd{x}\)表示\(P(x)\)的某个确定的原函数.}
+
+现在我们使用所谓“常数变易法”来求非齐次线性方程(11)的通解.
+这方法是把(12)的通解中的\(C\)换成\(x\)的未知函数\(u(x)\)，即作变换\[
+y = u e^{ -\int P(x)\dd{x} },
+\eqno(13)
+\]于是\[
+\dv{y}{x} = \dv{u}{x} e^{ -\int P(x) \dd{x} } - u P(x) e^{ -\int P(x) \dd{x} }.
+\eqno(14)
+\]将(13)和(14)代入方程(11)得\[
+\dv{u}{x} e^{ -\int P(x) \dd{x} }
+- u P(x) e^{ -\int P(x) \dd{x} }
++ P(x) u e^{ -\int P(x) \dd{x} }
+= Q(x),
+\]即\[
+\dv{u}{x} e^{ -\int P(x) \dd{x} } = Q(x),
+\qquad
+\dv{u}{x} = Q(x) e^{ \int P(x) \dd{x} }.
+\]两端积分，得\[
+u = \int Q(x) e^{ \int P(x) \dd{x} } \dd{x} + C.
+\]将上式代入(13)，便得非齐次线性方程(11)的通解\[
+y = e^{ -\int P(x) \dd{x} }
+\left( \int Q(x) e^{ \int P(x) \dd{x} } \dd{x} + C \right).
+\eqno(15)
+\]
+
+将(15)式改写为两项之和\[
+y = C e^{ -\int P(x) \dd{x} } + e^{ -\int P(x) \dd{x} } \int Q(x) e^{ \int P(x) \dd{x} } \dd{x},
+\]上式右端第一项是对应的齐次线性方程(12)的通解，第二项是非齐次线性方程(11)的一个特解（在(11)的通解(15)中取\(C=0\)便得到这个特解）.
+由此可知，一阶非齐次线性方程的通解等于对应的齐次方程的通解与非齐次方程的一个特解之和.
+
+\begin{example}
+求方程\[
+\dv{y}{x} - \frac{2y}{x+1} = (x+1)^{5/2}
+\]的通解.
+\begin{solution}
+这是一个一阶非齐次线性方程.先求对应的齐次方程的通解.\[
+\dv{y}{x} - \frac{2}{x+1} y = 0,
+\]\[
+\frac{\dd{y}}{y} = \frac{2 \dd{x}}{x+1},
+\]\[
+\ln\abs{y} = 2\ln\abs{x+1}+ \ln\abs{C_1},
+\]\[
+y = C_1 (x+1)^2.
+\]
+
+用常数变易法，把\(C_1\)换成\(u\)，即令\(y = u(x+1)^2\)，那么\[
+\dv{y}{x} = \dv{u}{x} (x+1)^2 + 2u(x+1),
+\]代入所给非齐次方程，得\[
+u' = (x+1)^{1/2}.
+\]两端积分，得\[
+u = \frac{2}{3} (x+1)^{3/2} + C.
+\]故所求方程通解为\[
+y = (x+1)^2 \left[
+\frac{2}{3} (x+1)^{3/2} + C
+\right].
+\]
+\end{solution}
+\end{example}
+
+在上一小节中，对于齐次方程\(y' = f(y/x)\)，我们通过变量代换\(y = xu\)，把它化为变量可分离的方程，然后分离变量，经积分求得通解.
+在本小节中，对于一阶非齐次线性方程\[
+y' + P(x) y = Q(x),
+\]我们通过解对应的齐次线性方程找到变量代换\[
+y = u e^{- \int P(x) \dd{x}},
+\]利用这一代换，把非齐次线性方程化为变量可分离的方程，然后经积分求得通解.
+
+利用变量代换（因变量的变量代换或自变量的变量代换），把一个微分方程化为变量可分离的方程，或化为已知其求解步骤的方程，这是解微分方程最常用的方法.
+
+\begin{example}
+解方程\[
+x y' + y = x^2 + 3x + 2.
+\]
+\begin{solution}
+将原方程变形为\[
+y' + \frac{1}{x} y = x + 3 + \frac{2}{x}.
+\]
+对应的齐次方程\[
+y' + \frac{1}{x} y = 0
+\]又可变形为\[
+\frac{\dd{y}}{y} = -\frac{\dd{x}}{x},
+\]积分得\[
+\ln\abs{y} = -\ln\abs{x} + C_1
+\quad\text{或}\quad
+y = C_2 e^{-\ln\abs{x}}
+= C_2 \frac{1}{\abs{x}}.
+\]
+应用常数变易法，令\(y = \frac{u}{\abs{x}}\)，那么\[
+\dv{y}{x} = \frac{u' \abs{x} - u(\abs{x})'}{x^2}.
+\]代回原方程得\[
+\frac{u' \abs{x} - u(\abs{x})'}{x^2}
++ \frac{1}{x} \frac{u}{\abs{x}}
+= x + 3 + \frac{2}{x},
+\]或\[
+\def\arraystretch{1.5} \left\{ \begin{array}{cc}
+\frac{u' x - u}{x^2}
++ \frac{1}{x} \frac{u}{x}
+= x + 3 + \frac{2}{x},
+& x>0, \\
+\frac{u' (-x) + u}{x^2}
+- \frac{1}{x} \frac{u}{x}
+= x + 3 + \frac{2}{x},
+& x<0.
+\end{array} \right.
+\]整理得\[
+\def\arraystretch{1.5}
+u' = \left\{ \begin{array}{rc}
+x^2 + 3x + 2,
+& x>0, \\
+-(x^2 + 3x + 2),
+& x<0.
+\end{array} \right.
+\]积分得\[
+\def\arraystretch{1.5}
+u = \left\{ \begin{array}{rc}
+\frac{1}{3} x^3 + \frac{3}{2} x^2 + 2x + C_3,
+& x>0, \\
+-(\frac{1}{3} x^3 + \frac{3}{2} x^2 + 2x) + C_4,
+& x<0.
+\end{array} \right.
+\]由此，原方程的通解为\[
+y = \frac{1}{3} x^2 + \frac{3}{2} x + 2 + \frac{C}{x}.
+\]
+\end{solution}
+\end{example}
+
+\subsection{伯努利方程}
+形如\[
+\dv{y}{x} + P(x) y = Q(x) y^n
+\eqno(16)
+\]的方程叫做\DefineConcept{伯努利方程}.
+当\(n=0\)或\(n=1\)时，方程(16)就是一阶线性微分方程，
+可以直接按\cref{section:微分方程.一阶线性微分方程}讲述的步骤解出该方程.
+当\(n\neq0,1\)时，这方程不是线性的，但是通过变量的代换，可以把它化为线性的.
+事实上，以\(y^n\)除方程(16)两端，得\[
+y^{-n} \dv{y}{x} + P(x) y^{1-n} = Q(x),
+\eqno(17)
+\]容易看出，上式左端第一项与\(\dv{x}(y^{1-n})\)只差一个常数因子\(1-n\)，因此我们引入新的因变量\(z = y^{1-n}\)，那么\[
+\dv{z}{x} = (1-n) y^{-n} \dv{y}{x}.
+\]用\((1-n)\)乘方程(17)的两端，再通过上述代换便得一阶线性微分方程\[
+\dv{z}{x} + (1-n) P(x) z = (1-n) Q(x).
+\]求出该方程的通解后，以\(y^{1-n}\)代\(z\)便得到伯努利方程的通解.
+
+特别地，当\(n>0\)时，\(y\)可以取为\(0\)，而\(y=0\)恰好也满足方程(16).
+
+\begin{example}
+求方程\[
+\dv{y}{x} + \frac{y}{x} = a y^2 \ln x
+\]的通解.
+\begin{solution}
+以\(y^2\)除方程的两端，得\[
+y^{-2} \dv{y}{x} + \frac{1}{2} y^{-1} = a \ln x,
+\]即\[
+- \dv{x}(y^{-1}) + \frac{1}{x} y^{-1} = a \ln x.
+\]令\(z = y^{-1}\)，则上述方程成为\[
+\dv{z}{x} - \frac{1}{x} z = -a \ln x.
+\]这是一个线性方程，它的通解为\[
+z = x \left[ C - \frac{a}{2} \ln^2 x \right].
+\]以\(y^{-1}\)代\(z\)，得所求方程的通解为\[
+yx \left[ C - \frac{a}{2} \ln^2 x \right] = 1.
+\]
+\end{solution}
+\end{example}
+
+\subsection{一阶微分方程的幂级数解法}
+给定一阶微分方程\[
+\def\arraystretch{1.5}
+\left\{ \begin{array}{l}
+\dv{y}{x} = f(x,y) \\
+\eval{y}_{x=x_0} = y_0 \\
+\end{array} \right.
+\]其中函数\(f(x,y)\)是\((x-x_0)\)、\((y-y_0)\)的多项式\[
+f(x,y) = a_{00} + a_{10} (x-x_0) + a_{01} (y-y_0) + \dotsb + a_{lm} (x-x_0)^l (y-y_0)^m.
+\]那么可以设所求的特解可展开为\((x-x_0)\)的幂级数：\[
+y = y_0 + a_1 (x-x_0) + a_2 (x-x_0)^2 + \dotsb + a_n (x-x_0)^n + \dotsb,
+\]其中\(\AutoTuple{a}{n},\dotsc\)是待定系数.把上式代回原微分方程（组）中，
+便得一恒等式，比较所得恒等式两端\((x-x_0)\)的同次幂的系数，就可确定待定系数取值，即求得原微分方程（组）的特解.
