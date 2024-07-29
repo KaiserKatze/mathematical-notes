@@ -49,6 +49,35 @@
 \end{proof}
 \end{theorem}
 
+\begin{example}
+\(\abs{\sum_{k=1}^n k^p - \int_1^n x^p \dd{x}}
+= \abs{1^p+\dotsb+n^p - \frac{n^{p+1}-1}{p+1}}
+\leq n^p\).
+%TODO 怎么丢掉常数\(\frac1{p+1}\)，
+%得到\(\abs{1^p+\dotsb+n^p-\frac{n^{p+1}}{p+1}}\)？
+%从这里可以进一步得到
+%\(\abs{\frac{1^p+\dotsb+n^p}{n^{p+1}}-\frac1{p+1}} \leq \frac1n\).
+\end{example}
+
+\begin{example}
+\(\abs{\sum_{k=1}^n \ln k - \int_1^n \ln x \dd{x}}
+= \abs{\ln n! - \ln\left[\left(\frac{n}{e}\right)^n e\right]}
+\leq \ln n\).
+\end{example}
+\begin{remark}
+打开绝对值符号，
+立即可以得到\[
+	\ln\left[\left(\frac{n}{e}\right)^n \frac{e}{n}\right]
+	\leq \ln n!
+	\leq \ln\left[\left(\frac{n}{e}\right)^n e n\right],
+\]
+从而有\[
+	\left(\frac{n}{e}\right)^n \frac{e}{n}
+	\leq n!
+	\leq \left(\frac{n}{e}\right)^n e n.
+\]
+\end{remark}
+
 \begin{theorem}
 设\(m\)是正整数，\(f\)是在\([m,+\infty)\)上非负的单调减少的函数，
 则极限\[
@@ -92,9 +121,24 @@
 可知\(0 \leq \alpha \leq f(m)\).
 \end{proof}
 %@see: https://encyclopediaofmath.org/wiki/Area_principle
-%@see: https://mathworld.wolfram.com/AreaPrinciple.html
 \end{theorem}
 \begin{remark}
 取\(m=1\)和\(f(x) = \frac1x\)，
 立即可得\cref{example:微分中值定理.拉格朗日中值定理.欧拉--马歇罗尼常数} 的结论.
 \end{remark}
+
+\begin{corollary}
+设\(m\)是正整数，\(f\)是在\([m,+\infty)\)上非负的单调减少的函数，
+且\(\lim_{x\to+\infty} f(x) = 0\)，
+则\[
+	\abs{
+		\sum\limits_{k=m}^{\floor{\xi}} f(k)
+		- \int_m^\xi f(t) \dd{t}
+		- \alpha
+	} \leq f(\xi-1),
+\]
+其中\(\alpha = \lim\limits_{n\to\infty} \left(
+	\sum\limits_{k=m}^{\floor{\xi}} f(k)
+	- \int_m^\xi f(t) \dd{t}
+\right)\).
+\end{corollary}
