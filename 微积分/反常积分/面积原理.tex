@@ -1,6 +1,56 @@
 \section{面积原理}
 \begin{theorem}
-设函数\(f\)是在\([m,+\infty)\ (m\in\mathbb{N}^+)\)上非负的单调减少的函数，
+设\(m\)是正整数，\(f\)是在\([m,+\infty)\)上非负的单调增加的函数，
+那么对于\(\forall \xi>m\)，
+有\[
+	\abs{
+		\sum_{k=m}^{\floor{\xi}} f(k)
+		- \int_m^\xi f(x) \dd{x}
+	} \leq f(\xi).
+\]
+\begin{proof}
+由\cref{theorem:取整函数.性质1} 可知，
+\(\floor{\xi} \leq \xi < \xi + 1\)，
+于是\[
+	\int_m^\xi f(x) \dd{x}
+	= \int_m^{\floor{\xi}} f(x) \dd{x}
+	+ \int_{\floor{\xi}}^\xi f(x) \dd{x}.
+\]
+利用定积分的几何意义，容易看出\[
+	f(m) + f(m+1) + \dotsb + f(\floor{\xi}-1)
+	\leq \int_m^{\floor{\xi}} f(x) \dd{x}
+	\leq f(m+1) + f(m+2) + \dotsb + f(\floor{\xi}).
+\]
+又因为\(f\)是单调增加的，
+\(f(\xi)\)是\(f\)在\([m,\xi]\)上的最大值，
+由\cref{theorem:定积分.定积分性质6} 有\[
+	0 \leq \int_{\floor{\xi}} f(x) \dd{x}
+	\leq f(\xi) (\xi - \floor{\xi})
+	\leq f(\xi),
+\]
+所以\[
+	f(m) + f(m+1) + \dotsb + f(\floor{\xi}-1)
+	\leq \int_m^\xi f(x) \dd{x}
+	\leq f(m+1) + f(m+2) + \dotsb + f(\floor{\xi}) + f(\xi).
+\]
+在上式等号两边同时减去\(\sum_{k=m}^{\floor{\xi}} f(k)
+= f(m) + f(m+1) + \dotsb + f(\floor{\xi})\)，
+便得\[
+	-f(\xi)
+	\leq -f(\floor{\xi})
+	\leq \int_m^\xi f(x) \dd{x} - \sum_{k=m}^{\floor{\xi}} f(k)
+	\leq f(\xi) - f(m)
+	\leq f(\xi).
+\]
+于是\[
+	\abs{\int_m^\xi f(x) \dd{x} - \sum_{k=m}^{\floor{\xi}} f(k)} \leq f(\xi).
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+设\(m\)是正整数，\(f\)是在\([m,+\infty)\)上非负的单调减少的函数，
 则极限\[
 	\lim\limits_{n\to\infty} \left(
 	\sum\limits_{k=m}^n f(k)
