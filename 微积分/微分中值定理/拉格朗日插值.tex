@@ -1,0 +1,66 @@
+\section{拉格朗日插值}
+在做力学实验时，我们经常会得到一系列实验数据.
+要想从杂乱无章的数据中，提取出物理规律，
+就需要我们有能力将一个点列\(\{(x_n,y_n)\}\)转化为一个函数关系，
+利用这个函数给出预测结果，再用实验证实预测是否正确.
+我们把这种能力称为“函数拟合”.
+最常见的一种方法，是找出一个多项式函数\(l\)，
+使得\(l(x_i) = y_i\ (i=0,1,2,\dotsc,n)\)成立.
+
+\begin{definition}
+%@see: 《数学分析教程（上册）》（史济怀） P201
+设函数\(f\colon[a,b]\to\mathbb{R}\).
+由两点\((a,f(a))\)和\((b,f(b))\)所决定的线性函数\[
+	l(x) = \frac{b-x}{b-a} f(a) + \frac{x-a}{b-a} f(b)
+\]称为“\(f\)在区间\([a,b]\)上的\DefineConcept{线性插值}”.
+\end{definition}
+
+\begin{theorem}\label{theorem:拉格朗日插值.误差估计}
+%@see: 《数学分析教程（上册）》（史济怀） P202 定理4.3.2
+设\(f\in C[a,b]\cap D^2(a,b)\)，
+\(l\)是\(f\)在区间\([a,b]\)上的线性插值.
+如果二阶导数\(\abs{f''}\)在\((a,b)\)上的上界为\(M\)，
+那么对任意的\(x\in[a,b]\)，
+有\[
+	\abs{f(x)-l(x)}
+	\leq \frac{M}8 (b-a)^2.
+\]
+\end{theorem}
+\begin{remark}
+\cref{theorem:拉格朗日插值.误差估计} 说明，
+如果\(M\)越小，那么线性插值的逼近效果就越好.
+当\(M\)很小时，曲线\(y=f(x)\)的切线改变得不剧烈.
+这也是符合几何直观的.
+\end{remark}
+
+我们可以推广到已知\(m\)个点的情形.
+\begin{equation}\label{equation:拉格朗日插值.拉格朗日插值公式2}
+	\begin{aligned}
+		l(x)
+		&= y_0 \cdot \frac{(x-x_1)\dotsm(x-x_m)}{(x_0-x_1)\dotsm(x_0-x_m)}
+		+ \dotsb \\
+		&\hspace{20pt}
+		+ y_i \cdot \frac{(x-x_0)\dotsm(x-x_{i-1})(x-x_{i+1})\dotsm(x-x_m)}
+		{(x_i-x_0)\dotsm(x_i-x_{i-1})(x_i-x_{i+1})\dotsm(x_i-x_m)} \\
+		&\hspace{20pt}
+		+ \dotsb
+		+ y_m \cdot \frac{(x-x_0)\dotsm(x-x_{m-1})}{(x_m-x_0)\dotsm(x_m-x_{m-1})}.
+	\end{aligned}
+\end{equation}
+若记\begin{equation}
+	l_i(x) = \frac{(x-x_0)\dotsm(x-x_{i-1})(x-x_{i+1})\dotsm(x-x_m)}
+	{(x_i-x_0)\dotsm(x_i-x_{i-1})(x_i-x_{i+1})\dotsm(x_i-x_m)},
+\end{equation}
+则\cref{equation:拉格朗日插值.拉格朗日插值公式2} 又可写为\begin{equation}
+	l(x) = \sum_{k=0}^m y_k l_k(x).
+\end{equation}
+
+插值多项式不仅存在而且唯一.
+\begin{theorem}
+设\(x_0,\dotsc,x_m\)是任意\(m+1\)个两两不等的实数，
+则函数组\[
+	l_0(x), l_1(x), \dotsc, l_m(x)
+\]是多项式函数空间\(\mathbb{P}_m\)的一组基，
+即对任意函数\(P\in\mathbb{P}_m\)，
+总有\(P(x) = \sum_{k=0}^m P(x_k) l_k(x)\).
+\end{theorem}
