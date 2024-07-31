@@ -1,4 +1,4 @@
-\section{拉格朗日插值}
+\section{线性插值}
 %@see: https://mathworld.wolfram.com/Interpolation.html
 %@see: https://math.libretexts.org/Bookshelves/Applied_Mathematics/Numerical_Methods_(Chasnov)/05%3A_Interpolation
 在做力学实验时，我们经常会得到一系列实验数据.
@@ -9,6 +9,34 @@
 最常见的一种方法，是找出一个多项式函数\(l\)，
 使得\(l(x_i) = y_i\ (i=0,1,2,\dotsc,n)\)成立.
 
+\subsection{范德蒙德插值法}
+我们可以直接假设\[
+	P_n(x) = c_0 x^n + c_1 x^{n-1} + \dotsb + c_n.
+\]
+由此得到线性方程组\[
+	\left\{ \begin{array}{l}
+		y_0 = c_0 x_0^n + c_1 x_0^{n-1} + \dotsb + c_{n-1} x_0 + c_n, \\
+		y_1 = c_0 x_1^n + c_1 x_1^{n-1} + \dotsb + c_{n-1} x_1 + c_n, \\
+		\hdotsfor{1}, \\
+		y_n = c_0 x_n^n + c_1 x_n^{n-1} + \dotsb + c_{n-1} x_n + c_n
+	\end{array} \right.
+\]
+或\[
+	\begin{bmatrix}
+		x_0^n & x_0^{n-1} & \dots & x_0 & 1 \\
+		x_1^n & x_1^{n-1} & \dots & x_1 & 1 \\
+		\vdots & \vdots && \vdots \\
+		x_n^n & x_n^{n-1} & \dots & x_n & 1 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		c_0 \\ c_1 \\ \vdots \\ c_n
+	\end{bmatrix}
+	= \begin{bmatrix}
+		y_0 \\ y_1 \\ \vdots \\ y_n
+	\end{bmatrix}.
+\]
+
+\subsection{拉格朗日插值法}
 \begin{definition}
 %@see: 《数学分析教程（上册）》（史济怀） P201
 设函数\(f\colon[a,b]\to\mathbb{R}\).
@@ -66,3 +94,9 @@
 即对任意函数\(P\in\mathbb{P}_m\)，
 总有\(P(x) = \sum_{k=0}^m P(x_k) l_k(x)\).
 \end{theorem}
+
+\subsection{牛顿插值法}
+牛顿插值法采用的插值多项式是\[
+	P_n(x) = c_0 + c_1 (x-x_0) + c_2 (x-x_0)(x-x_1)
+	+ \dotsb + c_n (x-x_0)\dotsm(x-x_{n-1}).
+\]
