@@ -20,6 +20,7 @@
 于是提出如下的问题：
 设函数\(f\)在含有\(x_0\)的开区间内具有直到\((n+1)\)阶导数，
 试找出一个关于\((x-x_0)\)的\(n\)次多项式\[
+%@see: 《高等数学（第六版 上册）》 P140 (1)
 	p_n(x)
 	= a_0 + a_1 (x-x_0) + a_2 (x-x_0)^2 + \dotsb + a_n (x-x_0)^n
 \]来近似表达\(f\)，
@@ -53,6 +54,7 @@
 \]
 
 将求得的系数\(a_0,a_1,a_2,\dotsc,a_n\)代回多项式\(p_n\)，有\[
+%@see: 《高等数学（第六版 上册）》 P140 (2)
 	p_n(x) = f(x_0) + f'(x_0) (x-x_0)
 	+ \frac{f''(x_0)}{2!} (x-x_0)^2
 	+ \dotsb
@@ -61,7 +63,9 @@
 下面的定理表明，上述多项式的确是所要找的\(n\)次多项式.
 
 \begin{theorem}[泰勒中值定理]\label{theorem:微分中值定理.泰勒中值定理}
-%@see: 《数学分析》（卓里奇） P184 定理2.
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P184 定理2
+%@see: 《高等数学（第六版 上册）》 P140 泰勒中值定理
+%@see: 《数学分析教程（上册）》（史济怀） P199 定理4.3.1
 \def\dyy{I}%定义域
 \def\Xc{x_0,x}%
 \def\Xa{\min\{\Xc\}}%
@@ -83,17 +87,22 @@
 \(\exists\xi \in X\)，
 使得
 \begin{equation}\label{equation:微分中值定理.泰勒公式1}
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P183 (7)
+%@see: 《高等数学（第六版 上册）》 P140 (3)
 	f(x) = p_n(x) + R_n(x),
 \end{equation}
 其中
 \begin{gather}
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P183 (5)
 	p_n(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x-x_0)^k,
 		\label{equation:微分中值定理.泰勒公式.多项式1} \\
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P184 (8)
 	R_n(x) = \frac{\phi(x)-\phi(x_0)}{\phi'(\xi) n!} f^{(n+1)}(\xi) (x-\xi)^n.
 		\label{equation:微分中值定理.泰勒公式.余项0}
 \end{gather}
 \begin{proof}
 考虑关于\(t\)的函数\[
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P184 (10)
 	F(t) = f(x) - \left[
 		\frac{f(t)}{0!} + \frac{f'(t)}{1!} (x-t) + \frac{f''(t)}{2!} (x-t)^2
 		+ \dotsb + \frac{f^{(n)}(t)}{n!} (x-t)^n
@@ -138,6 +147,9 @@
 
 在\cref{equation:微分中值定理.泰勒公式.余项0} 中取\(\phi(t) = (x-t)^{n+1}\)，就得到
 \begin{equation}\label{equation:微分中值定理.泰勒公式.余项1}
+%@see: 《数学分析教程（上册）》（史济怀） P200 (2)
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P184 (12)
+%@see: 《高等数学（第六版 上册）》 P140 (4)
 	R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}.
 \end{equation}
 像这样的\(R_n(x)\)的表达式 \labelcref{equation:微分中值定理.泰勒公式.余项1}
@@ -148,7 +160,9 @@
 
 在\cref{equation:微分中值定理.泰勒公式.余项0} 中取\(\phi(t) = x-t\)就得到
 \begin{equation}\label{equation:微分中值定理.泰勒公式.余项4}
-	R_n(x) = \frac{f^{(n+1)}(\xi)}{n!} (x-\xi)^k (x-x_0).
+%@see: 《数学分析教程（上册）》（史济怀） P200 (3)
+%@see: 《数学分析（第7版 第一卷）》（卓里奇） P184 (11)
+	R_n(x) = \frac{f^{(n+1)}(\xi)}{n!} (x-\xi)^n (x-x_0).
 \end{equation}
 像这样的\(R_n(x)\)的表达式 \labelcref{equation:微分中值定理.泰勒公式.余项4}
 称为\DefineConcept{柯西余项}（the Cauchy form of the remainder）.
