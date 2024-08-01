@@ -789,19 +789,51 @@ g\colon Y \to X\).
 \end{proof}
 \end{proposition}
 
-\subsection{指标集}\label{section:集合论.指标集}
+\subsection{有标集族，指标集}\label{section:集合论.指标集}
+%@see: https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof/Book%3A_Mathematical_Reasoning__Writing_and_Proof_(Sundstrom)/05%3A_Set_Theory/5.05%3A_Indexed_Families_of_Sets
 \begin{definition}
 设\(F\)是映射，\(I\)是集合，\(\dom F \supseteq I\).
-定义：\[
-	\bigcup_{i \in I} F(i) \defeq \bigcup\Set{ F(i) \given i \in I },
-\]\[
-	\bigcap_{i \in I} F(i) \defeq \bigcap\Set{ F(i) \given i \in I }.
+
+对于\(\forall i \in I\)，
+把\(i\)在映射\(F\)下的像\(F(i)\)记作\(F_i\)，
+即\[
+	F_i \defeq F(i).
 \]
-称\(I\)为“\(F\)的\DefineConcept{指标集}（\emph{index} set）”.
-同时也称
-“\(\bigcup_{i \in I} F(i)\)的指标集是\(I\)”
-“\(\bigcap_{i \in I} F(i)\)的指标集是\(I\)”.
+
+把\(F\)在\(I\)上的限制\(F \upharpoonright I\)
+称为“一个以\(I\)为指标集的\DefineConcept{有标集族}（an \emph{indexed family of sets} indexed by \(I\)）”，
+记作\(\{F_i\}_{i \in I}\)，
+即\[
+	\{F_i\}_{i\in I}
+	\defeq
+	F \upharpoonright I.
+\]
+把\(I\)的每一个元素称为一个\DefineConcept{指标}（index）.
+把\(I\)称为“\(\{F_i\}_{i \in I}\)的\DefineConcept{指标集}（indexing set）”.
 \end{definition}
+
+\begin{example}
+当我们谈到有标集族\(\{R\}_{i \in I}\)时，
+我们指的就是映射\(F = I \times \{R\}\)，
+即对于每一个\(i \in I\)都指定同一个集合\(F(i) = R\).
+\end{example}
+
+\begin{example}
+设\(\mathscr{A}\)是一个集族，
+那么恒同映射\(\{A\}_{A \in \mathscr{A}} = \Set{ \opair{A,A} \given A \in \mathscr{A} }\)
+就是一个以\(\mathscr{A}\)为指标集的有标集族.
+有时候我们会把\(\{A\}_{A \in \mathscr{A}}\)简记为“有标集族\(\mathscr{A}\)”.
+\end{example}
+
+定义：\[
+	\bigcup_{i \in I} F_i \defeq \bigcup\Set{ F_i \given i \in I }.
+\]
+显然\(\bigcup_{i \in I} F_i\)的指标集是\(I\).
+
+定义：\[
+	\bigcap_{i \in I} F_i \defeq \bigcap\Set{ F_i \given i \in I }.
+\]
+显然\(\bigcap_{i \in I} F_i\)的指标集是\(I\).
 
 \subsection{映射空间}
 对于任意给定的集合\(A,X\)，定义：\[
