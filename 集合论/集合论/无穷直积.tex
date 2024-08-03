@@ -52,3 +52,90 @@
 如果\((\forall i \in I)[H(i) \neq \emptyset]\)，
 那么\(\BigTimes_{i \in I} H(i) \neq \emptyset\).
 \end{axiom}
+
+\section{选择公理}
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P36 定义1.8.1
+设\(X\)是一个集合.
+令\(\tilde{X} \defeq \Powerset X - \{\emptyset\}\).
+如果映射\(\epsilon\colon \tilde{X} \to X\)满足\[
+	(\forall A \in \tilde{X})
+	[\epsilon(A) \in A],
+\]
+则称“映射\(\epsilon\)是集合\(X\)的一个\DefineConcept{选择函数}”.
+\end{definition}
+
+\begin{axiom}[选择公理(第三种形式)]
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P36 公理1.8.1
+%@see: 《Elements of Set Theory》 P151 Theorem 6M (3)
+任何一个集合都有选择函数.
+\end{axiom}
+
+\begin{theorem}\label{theorem:选择公理.等价形式1}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P37 定理1.8.2
+设\(\mathscr{A}\)是一个由非空集合构成的集族，
+则存在映射\(\nu\colon \mathscr{A} \to \bigcup \mathscr{A}\)
+使得\[
+	(\forall A \in \mathscr{A})
+	[\nu(A) \in A].
+\]
+\end{theorem}
+\cref{theorem:选择公理.等价形式1} 与选择公理是等价的.%TODO proof
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P37 定义1.8.2
+%@see: 《Elements of Set Theory》 P151 Theorem 6M (6) Zorn's lemma
+设\(\mathscr{F}\)是一个集族.
+如果\[
+	(\forall A,B\in\mathscr{F})
+	[A \subseteq B \lor B \subseteq A],
+\]
+则称“\(\mathscr{F}\)是一个\DefineConcept{套}（chain）”.
+\end{definition}
+
+\begin{theorem}[佐恩引理]
+%@see: 《Elements of Set Theory》 P151 Theorem 6M (6) Zorn's lemma
+设集族\(\mathscr{A}\)满足
+包含于\(\mathscr{A}\)的任意一个套的并属于\(\mathscr{A}\)，
+即\[
+	(\forall \mathscr{B} \subseteq \mathscr{A})
+	\left[ \text{$\mathscr{B}$是一个套} \implies \bigcup \mathscr{B} \in \mathscr{A} \right],
+\]
+则\(\mathscr{A}\)中必有关于\(\subseteq\)的最大元.
+%@see: https://mathworld.wolfram.com/ZornsLemma.html
+\end{theorem}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P37 定义1.8.3
+%@see: 《Elements of Set Theory》 P151 Theorem 6M (6) Zorn's lemma
+设\(\mathscr{F}\)是一个集族.
+如果\[
+	F \in \mathscr{F}
+	\iff
+	\text{$F$的每一个有限子集都是$\mathscr{F}$的成员},
+\]
+则称“\(\mathscr{F}\)是一个\DefineConcept{具有有限特征的}集族”.
+\end{definition}
+
+\begin{lemma}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P37 引理1.8.3
+如果\(\mathscr{F}\)是一个具有有限特征的集族，
+则\begin{itemize}
+	\item \(\mathscr{F}\)中每一个成员的任何一个子集都是\(\mathscr{F}\)的成员；
+	\item \(\mathscr{F}\)中任何一个套的并都是\(\mathscr{F}\)的成员.
+\end{itemize}
+\end{lemma}
+
+\begin{theorem}[图基引理]
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P37 定义1.8.4
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P38 定理1.8.4
+非空的具有有限特征的集族中必有关于\(\subseteq\)的最大元.
+%@see: https://proofwiki.org/wiki/Tukey%27s_Lemma
+%@see: https://planetmath.org/tukeyslemma
+\end{theorem}
+
+\begin{corollary}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P40 推论1.8.5
+若\(\mathscr{F}\)是一个具有有限特征的集族，并且\(A \in \mathscr{F}\)，
+则\(\mathscr{F}\)中有一个包含\(A\)的关于\(\subseteq\)的最大元.
+\end{corollary}
