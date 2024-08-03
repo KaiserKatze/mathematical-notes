@@ -1,0 +1,78 @@
+\section{压缩映射原理}
+%\cref{example:收敛准则.压缩映射原理1,example:收敛准则.压缩映射原理2}
+%@see: https://www.math.cuhk.edu.hk/course_builder/1819/math3060/
+
+\begin{definition}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P29 定义1
+设映射\(f\colon X \to X\).
+如果点\(a \in X\)满足\(f(a) = a\)，
+则称“点\(a\)是\(f\)的一个\DefineConcept{不动点}（fixed point）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P29 定义2
+设\((X,\rho)\)是一个度量空间，
+映射\(f\colon X \to X\).
+如果\[
+	(\exists q\in\mathbb{R})
+	(\forall x_1,x_2 \in X)
+	[
+		0 < q < 1
+		\implies
+		\rho(f(x_1),f(x_2))
+		\leq
+		q \cdot \rho(x_1,x_2)
+	],
+\]
+则称“\(f\)是\(X\)上的\DefineConcept{压缩映射}（contraction mapping）”.
+\end{definition}
+
+\begin{theorem}[皮卡--巴拿赫不动点原理]
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P29 定理（皮卡--巴拿赫不动点原理）
+设\((X,\rho)\)是一个完备度量空间，
+则\(X\)上的压缩映射具有唯一的不动点.
+%@see: https://wuli.wiki/online/ConMap.html
+\end{theorem}
+
+\begin{definition}
+设\((X,\rho)\)是一个度量空间.
+把集合\[
+	\Set{ f \in X^X \given \text{$f$是$X$上的压缩映射} }
+\]称为“\(X\)上的\DefineConcept{压缩映射空间}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P30 命题（关于不动点的稳定性）
+设\((X,\rho)\)是一个度量空间，
+\((\Omega,\T)\)是拓扑空间，
+\(\{f_t\}_{t\in\Omega}\)是一个映射族.
+如果\[
+	(\exists q\in\mathbb{R})
+	(\forall t\in\Omega)
+	(\forall x_1,x_2 \in X)
+	[
+		0 < q < 1
+		\implies
+		\rho(f_t(x_1),f_t(x_2))
+		\leq
+		q \cdot \rho(x_1,x_2)
+	],
+\]
+则称“映射族\(\{f_t\}_{t\in\Omega}\)是\DefineConcept{一致压缩的}”.
+\end{definition}
+
+\begin{proposition}[关于不动点的稳定性]
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P30 命题（关于不动点的稳定性）
+设\((X,\rho)\)是一个完备度量空间，
+\((\Omega,\T)\)是拓扑空间，
+\(\tilde{X}\)是\(X\)上的压缩映射空间，
+映射\(f\colon \Omega \to \tilde{X}\)，
+且\begin{itemize}
+	\item 映射族\(\{f_t\}_{t\in\Omega}\)是一致压缩的，
+	\item 对\(\forall x \in X\)，
+	映射\(g_x\colon \Omega \to X, t \mapsto f_t(x)\)在某个点\(t_0 \in \Omega\)连续，
+	即\(\lim_{t \to t_0} g_x(t) = g_x(t_0)\)，
+\end{itemize}
+那么方程\(x = f_t(x)\)的解\(a(t) \in X\)在点\(t_0\)连续地依赖于\(t\)，
+即\(\lim_{t \to t_0} a(t) = a(t_0)\).
+\end{proposition}
