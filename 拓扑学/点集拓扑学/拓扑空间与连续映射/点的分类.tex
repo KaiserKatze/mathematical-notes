@@ -17,12 +17,15 @@
 	[x \in U \subseteq A],
 \]
 则称“\(x\)是\(A\)的一个\DefineConcept{内点}”，
-称“\(A\)是点\(x\)的一个\DefineConcept{邻域}”.
+称“\(A\)是点\(x\)的一个\DefineConcept{邻域}（neighborhood）”.
 
-\(X\)中任意一点\(x\)的所有邻域构成的\(X\)的子集族，
+如果点\(x \in X\)的邻域\(U\)是\((X,\T)\)中的一个开集，
+那么称“\(U\)是点\(x\)的一个\DefineConcept{开邻域}”.
+
+\(X\)中任意一点\(x\)的全体邻域，
 称为“\(x\)的\DefineConcept{邻域系}”.
 
-集合\(A\)的所有内点构成的集合，
+集合\(A\)的全体内点，
 称为“\(A\)的\DefineConcept{内部}（interior）”，
 记作\(A^\circ\).
 
@@ -31,10 +34,11 @@
 即\[
 	U \cap (A - \{x\}) \neq \emptyset,
 \]
-则称“\(x\)是\(A\)的\DefineConcept{聚点}”；
+则称“\(x\)是\(A\)的\DefineConcept{聚点}（accumulation point, cluster point）”
+或“\(x\)是\(A\)的\DefineConcept{极限点}（limit point）”；
 否则，称“\(x\)是\(A\)的一个\DefineConcept{孤立点}”.
 
-集合\(A\)的所有聚点构成的集合，
+集合\(A\)的全体聚点，
 称为“\(A\)的\DefineConcept{导集}”，
 记作\(A'\).
 
@@ -51,9 +55,12 @@
 则称“\(x\)是集合\(A\)的一个\DefineConcept{边界点}”.
 
 集合\(A\)的全体边界点构成的集合，
-称为“\(A\)的\DefineConcept{边界}”，
+称为“\(A\)的\DefineConcept{边界}（boundary）”，
 记作\(\partial A\).
 \end{definition}
+
+容易看出，
+\(X\)中任意一点\(x\)的邻域系是\(X\)的一个子集族.
 
 \begin{proposition}
 %@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Folland） P13
@@ -70,11 +77,11 @@
 \begin{theorem}
 %@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Folland） P14
 设\(X\)是一个度量空间，\(E \subseteq X\)，\(x \in X\)，
-则以下三个命题等价：\begin{enumerate}
+则以下三个命题等价：\begin{itemize}
 	\item \(x \in \overline{E}\).
 	\item \((\forall r>0)[B(x,r) \cap E \neq \emptyset]\).
 	\item 在\(E\)中存在一个序列\(\{x_n\}\)收敛于\(x\).
-\end{enumerate}
+\end{itemize}
 \begin{proof}
 假设\(B(x,r) \cap E = \emptyset\)，
 则\(X-B(x,r)\)就是一个闭集，它包含\(E\)但不包括\(x\)，
@@ -100,12 +107,12 @@
 \begin{definition}
 %@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Folland） P13
 设\((X,\T)\)是拓扑空间，\(A \subseteq X\).
-\begin{enumerate}
+\begin{itemize}
 	\item 若\(\overline{A}=X\)，
 	则称“\(A\)在\(X\)中是\DefineConcept{稠密的}（\(A\) is \emph{dense} in \(X\)）”.
 	\item 若\(\overline{A}\)的内部是空集，
 	则称“\(A\)在\(X\)中是\DefineConcept{无处稠密的}（\(A\) is \emph{nowhere dense} in \(X\)）”.
-\end{enumerate}
+\end{itemize}
 \end{definition}
 
 \begin{definition}
@@ -126,11 +133,36 @@
 \end{remark}
 
 \subsection{邻域系的性质}
+\begin{theorem}\label{theorem:拓扑学.成为开集的充分必要条件1}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P64 定理2.3.1
+设\((X,\T)\)是一个拓扑空间，\(U \subseteq X\).
+\(U\)是开集的充分必要条件是：
+\(U\)是它的每一点的邻域，即对于\(\forall x \in U\)，\(U\)都是\(x\)的一个邻域.
+\begin{proof}
+充分性.
+\begin{itemize}
+	\item 如果\(U\)是空集，当然\(U\)是一个开集.
+
+	\item 如果\(U\neq\emptyset\)，
+	由于对于\(\forall x \in U\)，\(\exists V_x \in \T\)，
+	使得\(x \in V_x \subseteq U\)，
+	所以\[
+	U \equiv \bigcup_{x \in U} \{ x \}
+	\subseteq \bigcup_{x \in U} V_x
+	\subseteq U.
+	\]
+	故\(U = \bigcup_{x \in U} V_x \subseteq \T\).
+	根据\hyperref[definition:拓扑学.开集公理定义的拓扑空间]{拓扑的定义}，\(U\)是一个开集.
+	\qedhere
+\end{itemize}
+\end{proof}
+\end{theorem}
+
 \begin{theorem}\label{theorem:拓扑学.邻域系的基本性质}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P64 定理2.3.2
 设\(X\)是一个拓扑空间.
 设\(A_x\)是任意一点\(x \in X\)的邻域系，则
-\begin{enumerate}
+\begin{itemize}
 	\item \(A_x \neq \emptyset\)；
 	\item 如果\(U \in A_x\)，则\(x \in U\)；
 	\item 如果\(U,V \in A_x\)，则\(U \cap V \in A_x\)；
@@ -141,20 +173,37 @@
 		(\forall y \in V)
 		[V \in A_y].
 	\]
-\end{enumerate}
+\end{itemize}
 \end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.从邻域系出发定义拓扑}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P65 定理2.3.3
+设\(X\)是一个集合.
+又设对于\(\forall x \in X\)，指定\(X\)的一个子集族\(A_x\)，
+并且它们满足\cref{theorem:拓扑学.邻域系的基本性质} 中的全部条件，
+则\(X\)有唯一的一个拓扑\(\T\)使得对于\(\forall x \in X\)，
+子集族\(A_x\)恰是点\(x\)在拓扑空间\((X,\T)\)中的邻域系.
+\end{theorem}
+
+\cref{theorem:拓扑学.从邻域系出发定义拓扑}
+表明，我们完全可以从邻域系的概念出发来建立拓扑空间理论.
+这种做法在点集拓扑发展的早期常被采用，并且在一定程度上显得更加自然一些，
+但不如现在流行的、从开集概念出发定义拓扑的做法来得简洁.
+
+现在我们来讲度量空间之间的连续映射在一点处的连续性的概念推广到拓扑空间之间的映射中去.
+
 
 \subsection{内部的性质}
 \begin{property}
 %@see: 《基础拓扑学讲义》（尤承业） P16 命题1.3
-设\(X\)是一个拓扑空间，\(A,B \subseteq X\)，则\begin{enumerate}
+设\(X\)是一个拓扑空间，\(A,B \subseteq X\)，则\begin{itemize}
 	\item \(A \subseteq B \implies A^\circ \subseteq B^\circ\).
 	\item \(A^\circ\)是包含于\(A\)的所有开集的并集，
 	或者说\(A^\circ\)是包含于\(A\)的最大开集.
 	\item \(A=A^\circ \iff \text{\(A\)是开集}\).
 	\item \((A \cap B)^\circ = A^\circ \cap B^\circ\).
 	\item \((A \cup B)^\circ \supseteq A^\circ \cup B^\circ\).
-\end{enumerate}
+\end{itemize}
 %TODO proof
 \end{property}
 
@@ -207,12 +256,12 @@
 \begin{theorem}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P68 定理2.4.1
 设\(X\)是一个拓扑空间，\(A,B \subseteq X\)，则
-\begin{enumerate}
+\begin{itemize}
 	\item \(\emptyset' = \emptyset\).
 	\item \(A \subseteq B \implies A' \subseteq B'\).
 	\item \((A \cup B)' = A' \cup B'\).
 	\item \((A')' \subseteq A \cup A'\).
-\end{enumerate}
+\end{itemize}
 \end{theorem}
 
 \subsection{闭包与内部的关系}
@@ -232,7 +281,7 @@
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P71 定理2.4.5
 %@see: 《基础拓扑学讲义》（尤承业） P17 命题1.5
 设\(X\)是一个拓扑空间，\(A,B \subseteq X\).
-\begin{enumerate}
+\begin{itemize}
 	\item \(\overline{\emptyset} = \emptyset\).
 	\item \(A \subseteq \overline{A}\).
 	\item \(\overline{\overline{A}} = \overline{A}\).
@@ -242,7 +291,7 @@
 	\item \(\overline{A}=A \iff \text{\(A\)是闭集}\).
 	\item \(\overline{A \cup B} = \overline{A} \cup \overline{B}\).
 	\item \(\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}\).
-\end{enumerate}
+\end{itemize}
 %TODO proof
 \end{property}
 
@@ -251,12 +300,12 @@
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P73 定义2.4.4
 设\(X\)是一个集合.
 如果映射\(c^*\colon \Powerset X \to \Powerset X\)满足条件：
-对于\(\forall A,B \in \Powerset X\)，\begin{enumerate}
+对于\(\forall A,B \in \Powerset X\)，有\begin{itemize}
 	\item \(c^*(\emptyset) = \emptyset\)；
 	\item \(A \subseteq c^*(A)\)；
 	\item \(c^*(A \cup B) = c^*(A) \cup c^*(B)\)；
 	\item \(c^*(c^*(A)) = c^*(A)\)，
-\end{enumerate}
+\end{itemize}
 则称其为\(X\)的一个\DefineConcept{闭包运算}.
 \end{definition}
 \cref{definition:拓扑学.闭包运算的概念} 中给出的四个条件，
