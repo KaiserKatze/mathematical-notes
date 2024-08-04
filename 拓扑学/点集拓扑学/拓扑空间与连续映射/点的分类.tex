@@ -44,7 +44,7 @@
 
 我们把集合\(A\)及其导集\(A'\)的并\(A \cup A'\)
 称为“集合\(A\)的\DefineConcept{闭包}（closure）”，
-记作\(\overline{A}\).
+记作\(\overline{A}\)或\(A^-\).
 
 如果在\(x\)的任一邻域\(U\)中既有\(A\)中的点，又有\(X - A\)中的点，
 即\[
@@ -174,6 +174,7 @@
 		[V \in A_y].
 	\]
 \end{itemize}
+%TODO proof
 \end{theorem}
 
 \begin{theorem}\label{theorem:拓扑学.从邻域系出发定义拓扑}
@@ -183,6 +184,7 @@
 并且它们满足\cref{theorem:拓扑学.邻域系的基本性质} 中的全部条件，
 则\(X\)有唯一的一个拓扑\(\T\)使得对于\(\forall x \in X\)，
 子集族\(A_x\)恰是点\(x\)在拓扑空间\((X,\T)\)中的邻域系.
+%TODO proof
 \end{theorem}
 
 \cref{theorem:拓扑学.从邻域系出发定义拓扑}
@@ -190,26 +192,10 @@
 这种做法在点集拓扑发展的早期常被采用，并且在一定程度上显得更加自然一些，
 但不如现在流行的、从开集概念出发定义拓扑的做法来得简洁.
 
-现在我们来讲度量空间之间的连续映射在一点处的连续性的概念推广到拓扑空间之间的映射中去.
-
-
-\subsection{内部的性质}
-\begin{property}
-%@see: 《基础拓扑学讲义》（尤承业） P16 命题1.3
-设\(X\)是一个拓扑空间，\(A,B \subseteq X\)，则\begin{itemize}
-	\item \(A \subseteq B \implies A^\circ \subseteq B^\circ\).
-	\item \(A^\circ\)是包含于\(A\)的所有开集的并集，
-	或者说\(A^\circ\)是包含于\(A\)的最大开集.
-	\item \(A=A^\circ \iff \text{\(A\)是开集}\).
-	\item \((A \cap B)^\circ = A^\circ \cap B^\circ\).
-	\item \((A \cup B)^\circ \supseteq A^\circ \cup B^\circ\).
-\end{itemize}
-%TODO proof
-\end{property}
-
 \subsection{聚点和导集的性质}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P67
 在\cref{definition:拓扑学.点的分类} 中，
-聚点、导集以及孤立点的定义无一例外地依赖于它所在的拓扑空间的那个给定的拓扑.
+聚点、导集以及孤立点的定义无一例外地依赖于它所在的拓扑空间的那个给定的拓扑\(\T\).
 因此，当我们在讨论问题时，
 如果涉及了多个拓扑而又提及聚点或孤立点时，
 我们必须明确说明所称的聚点或孤立点是相对于哪个拓扑而言，不容许产生任何混响.
@@ -225,7 +211,7 @@
 设\(X\)是一个离散空间，\(A\)是\(X\)的一个任意子集.
 由于\(X\)中的每一个单点集都是开集，因此如果\(x \in X\)，
 则\(x\)有一个邻域\(\{x\}\)使得\(\{x\}\cap(A-\{x\})=\emptyset\)，
-于是\(x\)不是\(A\)的聚点，\(A\)没有聚点，从而\(A\)的导集是空集，即\(D(A)=\emptyset\).
+于是\(x\)不是\(A\)的聚点，\(A\)没有聚点，从而\(A\)的导集是空集.
 \end{example}
 
 \begin{example}[平庸空间中的聚点]\label{example:拓扑学.平庸空间中的聚点}
@@ -235,23 +221,28 @@
 \begin{enumerate}
 	\item 设\(\abs{A} = 0\).
 	那么\(A = \emptyset\).
-	这时\(A\)显然没有聚点，亦即\(D(A) = \emptyset\).
+	这时\(A\)显然没有聚点，\(A\)的导集是空集.
 
 	\item 设\(\abs{A} = 1\).
 	不妨设\(A = \{x_0\}\).
 	如果\(x \in X\)，\(x \neq x_0\)，点\(x\)只有唯一的一个邻域\(X\).
 	这时\(x_0 \in X \cap (A - \{x\})\)，
 	所以\(X \cap (A - \{x\}) \neq \emptyset\).
-	因此\(x\)是\(A\)的一个凝聚点，即\(x \in D(A)\).
+	因此\(x\)是\(A\)的一个聚点.
 	然而对于\(x_0\)的唯一邻域\(X\)，
 	有\(X \cap (A - \{x_0\}) = \emptyset\)，
-	所以\(x_0 \notin D(A)\).
-	于是\(D(A) = X - A\).
+	所以\(x_0\)不是\(A\)的聚点.
+	于是\(A\)的导集是\(X - A\).
 
 	\item 设\(\abs{A} > 1\).
-	这时\(X\)中的每一个点都是\(A\)的聚点，即\(D(A) = X\).
+	这时\(X\)中的每一个点都是\(A\)的聚点.
 \end{enumerate}
 \end{example}
+
+\begin{remark}
+从\cref{example:拓扑学.离散空间中的聚点,example:拓扑学.平庸空间中的聚点} 可以看出，
+离散空间中的任何一个子集都是闭集，而平庸空间中的任何一个非空真子集都不是闭集.
+\end{remark}
 
 \begin{theorem}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P68 定理2.4.1
@@ -262,40 +253,157 @@
 	\item \((A \cup B)' = A' \cup B'\).
 	\item \((A')' \subseteq A \cup A'\).
 \end{itemize}
+%TODO proof
 \end{theorem}
 
-\subsection{闭包与内部的关系}
-\begin{theorem}
+\begin{theorem}\label{theorem:点集拓扑.闭集的等价定义}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P69 定义2.4.2
+设\(X\)是一个拓扑空间，\(A \subseteq X\).
+\(A\)是\(X\)中的一个闭集，
+当且仅当\(A\)的每一个聚点都属于\(A\).
+%TODO proof
+\end{theorem}
+\cref{theorem:点集拓扑.闭集的等价定义} 是\hyperref[definition:拓扑空间.闭集的定义]{闭集}的等价定义.
+
+\begin{example}[实数空间\(\mathbb{R}\)中的闭集]
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P70 例2.4.3
+设\(a,b\in\mathbb{R}\)，\(a<b\).
+闭区间\([a,b]\)是实数空间\(\mathbb{R}\)中的一个闭集，
+因为\([a,b]\)的补集\(\mathbb{R}-[a,b]
+=(-\infty,a)\cup(b,+\infty)\)是一个开集.
+同理，\((-\infty,a]\)、\([b,+\infty)\)和\((-\infty,+\infty)\)也都是闭集.
+但是，开区间\((a,b)\)却不是闭集，这是因为\(a\)是\(a,b\)的一个聚点，但\(a\notin(a,b)\).
+同理，\((a,b]\)、\([a,b)\)、\((-\infty,a)\)和\((b,+\infty)\)都不是闭集.
+\end{example}
+
+\begin{theorem}\label{theorem:拓扑学.闭集族的性质}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P70 定理2.4.3
+设\(X\)是一个拓扑空间，\(F\)为所有闭集构成的族，则
+\begin{itemize}
+	\item \(\emptyset,X \in F\)；
+	\item \(A,B \in F \implies A \cup B \in F\)；
+	\item \(\emptyset \neq F_1 \subseteq F\)
+	\footnote{%
+		这里特别要求\(F_1 \neq \emptyset\)的原因在于
+		当\(F_1 = \emptyset\)时所涉及的交运算没有定义.
+	}，则\(\bigcap_{A \in F_1} A \in F\).
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+\subsection{闭包、内部与边界的关系}
+\begin{theorem}\label{theorem:拓扑学.内部与闭包的联系}
 %@see: 《基础拓扑学讲义》（尤承业） P17 命题1.4
-设\(X\)是一个拓扑空间，\(A,B \subseteq X\).
-若\(A\)与\(B\)互为补集，
-即\(A \cup B = X\)，
-则\(A\)的闭包\(\overline{A}\)与\(B\)的内部\(B^\circ\)互为补集，
-即\(\overline{A} \cup B^\circ = X\).
+设\(X\)是一个拓扑空间.
+若\(X\)的子集\(A\)与\(B\)互为补集，
+则\(A\)的闭包\(A^-\)与\(B\)的内部\(B^\circ\)也互为补集，
+即\[
+	(\forall A,B \subseteq X)[A \cup B = X \implies (A^-) \cup (B^\circ) = X].
+\]
+\end{theorem}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P78 定理2.5.1
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P80 定理2.5.6
+设\(X\)是一个拓扑空间.
+对于\(X\)的任一子集\(A\)，
+它的闭包\(A^-\)、导集\(A'\)和内部\(A^\circ\)满足以下性质：\begin{gather*}
+	A^-
+	= ((A')^\circ)'
+	= (A^\circ) \cup (\partial A), \\
+	A^\circ
+	= ((A')^-)'
+	= (A^-) - (\partial A), \\
+	\partial A
+	= (A^-) \cap ((A')^-)
+	= ((A^\circ) \cup ((A')^\circ))'
+	= \partial(A').
+\end{gather*}
 %TODO proof
 \end{theorem}
 
 \subsection{闭包的性质}
-\begin{property}\label{theorem:拓扑学.闭包的性质}
+\begin{proposition}\label{theorem:拓扑学.一点属于闭包的充分必要条件}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P71
+设\(X\)是一个拓扑空间，\(A \subseteq X\)，\(x \in X\).
+\(x \in \overline{A}\)的充分必要条件是：
+对\(x\)的任一邻域\(U\)有\(U \cap A \neq \emptyset\).
+\end{proposition}
+
+\begin{theorem}\label{theorem:拓扑学.闭包的性质}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P71 定理2.4.4
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P71 定理2.4.5
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P72 定理2.4.7
 %@see: 《基础拓扑学讲义》（尤承业） P17 命题1.5
-设\(X\)是一个拓扑空间，\(A,B \subseteq X\).
+设\(X\)是一个拓扑空间.
 \begin{itemize}
 	\item \(\overline{\emptyset} = \emptyset\).
-	\item \(A \subseteq \overline{A}\).
-	\item \(\overline{\overline{A}} = \overline{A}\).
-	\item \(A \subseteq B \implies \overline{A} \subseteq \overline{B}\).
-	\item \(\overline{A}\)是所有包含\(A\)的闭集的交集，
-	或者说\(\overline{A}\)是包含\(A\)的最小闭集.
-	\item \(\overline{A}=A \iff \text{\(A\)是闭集}\).
-	\item \(\overline{A \cup B} = \overline{A} \cup \overline{B}\).
-	\item \(\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}\).
+	\item \((\forall A\subseteq X)[A \subseteq \overline{A}]\).
+	\item \((\forall A\subseteq X)[\overline{\overline{A}} = \overline{A}]\).
+	\item \((\forall A,B\subseteq X)[A \subseteq B \implies \overline{A} \subseteq \overline{B}]\).
+	\item 对于\(\forall A \subseteq X\)，
+	\(A\)的闭包\(\overline{A}\)是\(X\)的包含\(A\)的全体闭集的交，
+	或者说\(\overline{A}\)是包含\(A\)的最小闭集，
+	即\begin{equation}\label{equation:拓扑学.集合的闭包是含有该集的最小闭集}
+		\overline{A}
+		= \bigcap\Set{ U \given \text{$U$是$X$中的闭集} \land U \supseteq A }.
+	\end{equation}
+	\item \((\forall A\subseteq X)[\overline{A}=A \iff \text{\(A\)是闭集}]\).
+	\item \((\forall A,B\subseteq X)[\overline{A \cup B} = \overline{A} \cup \overline{B}]\).
+	\item \((\forall A,B\subseteq X)[\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}]\).
 \end{itemize}
 %TODO proof
-\end{property}
+\end{theorem}
+
+\begin{corollary}\label{theorem:拓扑学.拓扑空间子集闭包都是闭集}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P72 定理2.4.6
+拓扑空间\(X\)的任一子集\(A\)的闭包\(\overline{A}\)都是闭集.
+\begin{proof}
+由\cref{theorem:拓扑学.闭包的性质} 立即可得.
+\end{proof}
+\end{corollary}
+
+\subsection{内部的性质}
+关于内部的基本性质，我们有与闭包的性质完全对偶的一组定理.
+这些定理的证明过程都是将闭包的相应性质通过\cref{theorem:拓扑学.内部与闭包的联系}
+转化为内部的性质.
+
+\begin{theorem}\label{theorem:拓扑学.内部的性质}
+%@see: 《基础拓扑学讲义》（尤承业） P16 命题1.3
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P78 定理2.5.2
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P78 定理2.5.3
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P79 定理2.5.5
+设\(X\)是一个拓扑空间，则\begin{itemize}
+	\item \(X^\circ = X\)；
+	\item \((\forall A \subseteq X)[A \supseteq A^\circ]\)；
+	\item \((\forall A \subseteq X)[(A^\circ)^\circ = A^\circ]\)；
+	\item \((\forall A,B \subseteq X)[A \subseteq B \implies A^\circ \subseteq B^\circ]\)；
+	\item 对于\(\forall A \subseteq X\)，
+	\(A\)的内部\(A^\circ\)是\(X\)的包含于\(A\)的全体开集的并，
+	或者说\(A^\circ\)是包含于\(A\)的最大开集，
+	即\begin{equation}
+		A^\circ
+		= \bigcup\Set{ U \given \text{$U$是$X$中的开集} \land U \subseteq A };
+	\end{equation}
+	\item \((\forall A \subseteq X)[A=A^\circ \iff \text{\(A\)是开集}]\)；
+	\item \((\forall A,B \subseteq X)[(A \cap B)^\circ = A^\circ \cap B^\circ]\)；
+	\item \((\forall A,B \subseteq X)[(A \cup B)^\circ \supseteq A^\circ \cup B^\circ]\).
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+\begin{theorem}\label{theorem:拓扑学.拓扑空间子集内部都是开集}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P79 定理2.5.4
+拓扑空间\(X\)的任一子集\(A\)的内部\(A^\circ\)都是开集.
+%TODO proof
+\end{theorem}
 
 \subsection{闭包运算}
+利用\cref{equation:拓扑学.集合的闭包是含有该集的最小闭集}，
+由一个集合求取它的闭包的步骤，
+可以理解为空间\(X\)的幂集\(\Powerset X\)到自身的一个映射，
+集合\(A \subseteq X\)在这个映射下的像便是\(A\)的闭包\(\overline{A}\).
+
 \begin{definition}\label{definition:拓扑学.闭包运算的概念}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P73 定义2.4.4
 设\(X\)是一个集合.
@@ -310,3 +418,87 @@
 \end{definition}
 \cref{definition:拓扑学.闭包运算的概念} 中给出的四个条件，
 通常被称为“库拉托夫斯基闭包公理”.
+
+根据\cref{theorem:拓扑学.闭包的性质}，
+将拓扑空间\(X\)的子集\(A\)映射为它的闭包\(\overline{A}\)的那个
+从\(X\)的幂集\(\Powerset X\)到自身的映射，便是一个闭包运算，
+即这个映射满足库拉托夫斯基闭包公理.
+不仅如此，下面的\cref{theorem:拓扑学.闭包公理与拓扑是等价的}
+说明库拉托夫斯基闭包公理和我们定义拓扑的三个条件等价.
+在一些点集拓扑发展的早期出现的文献就是从闭包运算出发来建立拓扑空间这一概念的.
+
+\begin{theorem}\label{theorem:拓扑学.闭包公理与拓扑是等价的}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P73 定理2.4.8
+设\(X\)是一个集合，映射\(c^*\colon \Powerset X \to \Powerset X\)是集合\(X\)的一个闭包运算，
+那么存在\(X\)的唯一一个拓扑\(\T\)，使得在拓扑空间\((X,\T)\)中，
+对于\(\forall A \subseteq X\)，总有\(c^*(A) = \overline{A}\).
+%TODO proof
+\end{theorem}
+
+与闭包运算一样，
+求取一个集合的内部也可以理解为从拓扑空间\(X\)的幂集\(\Powerset X\)到其自身的一个映射，
+它将每一个\(A \in \Powerset X\)映射为\(A^\circ\).
+也同样可以像定义闭包运算一样定义\DefineConcept{内部运算}，
+并由内部运算导出拓扑和拓扑空间的概念.
+
+同样地，映射的连续性也可通过内部这个概念作出等价的描述.
+
+\subsection{度量空间中的点}
+
+在度量空间中，集合的聚点、导集和闭包等概念都可以通过度量来刻画.
+
+\begin{definition}\label{definition:拓扑学.点到点集的距离}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P75 定义2.4.5
+设\((X,\rho)\)是一个度量空间，\(A\)是\(X\)的非空子集，\(x \in X\).
+定义：\[
+	\rho(x,A) \defeq \inf\Set{ \rho(x,y) \given y \in A },
+\]
+称之为“点\(x\)到\(A\)的\DefineConcept{距离}”.
+\end{definition}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P75
+设\((X,\rho)\)是一个度量空间，\(A\)是\(X\)的非空子集，\(x \in X\).
+\(\rho(x,A) = 0\)的充分必要条件是：
+\((\forall\epsilon>0)(\exists y \in A)[\rho(x,y)<\epsilon]\).
+\end{theorem}
+
+\begin{corollary}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P75
+设\((X,\rho)\)是一个度量空间，\(A\)是\(X\)的非空子集，\(x \in X\).
+\(\rho(x,A) = 0\)的充分必要条件是：
+对于\(x\)的任一邻域\(U\)，总有\(U \cap A \neq \emptyset\).
+\end{corollary}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P75 定理2.4.9
+设\(A\)是度量空间\((X,\rho)\)中的一个非空子集，
+则\begin{gather*}
+	x \in A'
+	\iff
+	\rho(x,A-\{x\})=0, \\
+	x \in \overline{A}
+	\iff
+	\rho(x,A)=0.
+\end{gather*}
+\end{theorem}
+
+以下定理既为连续映射提供了等价定义，
+也为验证映射的连续性提供了另外的手段.
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P75 定理2.4.10
+设\(X\)和\(Y\)是两个拓扑空间，映射\(f\colon X \to Y\)，则以下命题等价：
+\begin{itemize}
+	\item \(f\)是一个连续映射；
+	\item \(Y\)中的任何一个闭集的原像\(f^{-1}\ImageOfSetUnderRelation{B}\)是一个闭集；
+	\item 对于\(X\)中的任何一个子集\(A\)，\(A\)的闭包的像包含于\(A\)的像的闭包，
+	即\(f\ImageOfSetUnderRelation{\overline{A}}
+	\subseteq
+	\overline{f\ImageOfSetUnderRelation{A}}\)；
+	\item 对于\(Y\)中的任何一个子集\(B\)，\(B\)的闭包的原像包含\(B\)的原像的闭包，
+	即\(f^{-1}\ImageOfSetUnderRelation{\overline{B}}
+	\supseteq
+	\overline{f^{-1}\ImageOfSetUnderRelation{B}}\).
+\end{itemize}
+\end{theorem}

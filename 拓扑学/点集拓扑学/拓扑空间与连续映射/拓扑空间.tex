@@ -15,17 +15,18 @@
 \(\T\)\footnote{\(\T\)是德文尖角体（Fraktur）的拉丁字母T.}
 是\(X\)的一个子集族，
 即\(\T \subseteq \Powerset X\).
-若有\begin{enumerate}
+若有\begin{itemize}
 	\item \(\emptyset,X \in \T\)；
 	\item \(\T\)的有限交仍然属于\(\T\)，
 	即\(A,B \in \T \implies A \cap B \in \T\)；
 	\item \(\T\)的任意并仍然属于\(\T\)，
 	即\(\T_1 \subseteq \T \implies \bigcup_{A \in \T_1} A \in \T\)；
-\end{enumerate}
-则称“\(\T\)为\(X\)的一个\DefineConcept{拓扑}”，
-称“集合\(X\)是一个（相对于拓扑\(\T\)而言的）\DefineConcept{拓扑空间}（topological space）”，
+\end{itemize}
+则称“\(\T\)是\(X\)的一个\DefineConcept{拓扑}”
+“集合\(X\)是一个（相对于拓扑\(\T\)而言的）\DefineConcept{拓扑空间}（topological space）”，
 记作\((X,\T)\).
 \(\T\)的任一元素都称为“拓扑空间\((X,\T)\)中的一个\DefineConcept{开集}（open set）”.
+因此我们又把\(\T\)称为“集合\(X\)的一个\DefineConcept{开集族}（family of open sets）”.
 \end{definition}
 如果我们将\cref{definition:拓扑学.开集公理定义的拓扑空间} 中的三个条件
 与\cref{theorem:度量空间.开集的性质} 的三个结论对照一下，
@@ -45,6 +46,7 @@
 因此我们在验证任意集合\(X\)的一个子集族是否可以是\(X\)的一个拓扑，
 在验证第三个条件是否满足时，总可以假定\(\T_1\neq\emptyset\).
 
+\subsection{度量空间是特殊的拓扑空间}
 现在首先将度量空间纳入拓扑空间的范畴.
 
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P55 定义2.2.2
@@ -132,23 +134,39 @@
 和希尔伯特空间\(\mathbb{H}\)都可以叫做拓扑空间，
 它们各自的拓扑分别是由各自的通常度量所诱导出来的拓扑.
 
-\begin{definition}
+\subsection{闭集，闭集族}
+\begin{definition}\label{definition:拓扑空间.闭集的定义}
 %@see: 《基础拓扑学讲义》（尤承业） P15 定义1.2
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P69 定理2.4.2
 拓扑空间\((X,\T)\)中任一开集\(A\)的补集\(X-A\)称为
 “拓扑空间\((X,\T)\)中的一个\DefineConcept{闭集}（closed set）”.
+\((X,\T)\)的全体闭集，
+称为“\(X\)的一个\DefineConcept{闭集族}（family of closed sets）”，
+记为\(\oT\).
 \end{definition}
 
-利用\cref{definition:拓扑学.开集公理定义的拓扑空间}
-以及\cref{equation:集合论.集合代数公式4-3,equation:集合论.集合代数公式4-4}
-易证拓扑空间的闭集具有以下性质.
 \begin{property}
 %@see: 《基础拓扑学讲义》（尤承业） P15 命题1.2
-拓扑空间的闭集满足：\begin{enumerate}
+拓扑空间的闭集满足：\begin{itemize}
 	\item \(X\)与\(\emptyset\)都是闭集.
 	\item 任意多个闭集的交集是闭集.
 	\item 有限个闭集的并集是闭集.
-\end{enumerate}
+\end{itemize}
+\begin{proof}
+利用\cref{definition:拓扑学.开集公理定义的拓扑空间}
+以及\cref{equation:集合论.集合代数公式4-3,equation:集合论.集合代数公式4-4}
+易证.
+\end{proof}
 \end{property}
+
+\begin{theorem}
+设\((X,\T)\)是一个拓扑空间，
+则\begin{gather*}
+	\oT = \Set{ F \given X-F \in \T }, \\
+	\T = \Set{ G \given X-G \in \oT }.
+\end{gather*}
+\end{theorem}
+以后，当我们提到“拓扑空间\(X\)”，就默认配有对应的开集族\(\T\)和闭集族\(\oT\).
 
 \subsection{常见的拓扑空间}
 度量空间是拓扑空间中最为重要的一类.
