@@ -1,4 +1,5 @@
 \section{基，子基}
+\subsection{基}
 在讨论度量空间的拓扑的时候，球形邻域起着基础性的重要作用.
 一方面，每一个球形邻域都是开集，从而任意多个球形邻域的并也是开集；
 另一方面，假设\(U\)是度量空间\(X\)中的一个开集，
@@ -39,6 +40,7 @@
 离散空间的基是它的全体单点子集.
 \end{example}
 
+\subsection{基的判别}
 下面的定理，为判断某一个开集族是不是给定的拓扑的一个基，提供了一个易于验证的条件.
 \begin{theorem}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P83 定理2.6.2
@@ -54,7 +56,7 @@
 是不是一个集合的每一个子集族都可以确定一个拓扑以它为基？
 答案是否定的.
 以下定理告诉我们一个集合的子集族需要满足什么条件，才可以成为它的某一个拓扑的基.
-\begin{theorem}
+\begin{theorem}\label{theorem:拓扑基.子集族成为拓扑基的条件}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P83 定理2.6.3
 设\(X\)是一个集合，\(\B\)是集合\(X\)的一个子集族，即\(\B \subseteq \Powerset X\).
 如果\begin{itemize}
@@ -79,4 +81,99 @@
 反之，如果\(X\)的一个子集族\(\B\)是\(X\)的某一个拓扑的基，
 则\(\B\)一定满足上述两个条件.
 %TODO proof
+\end{theorem}
+
+\begin{example}[实数下限拓扑空间]
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P85 例2.6.1
+考虑实数集\(\mathbb{R}\).
+令\[
+	\B \defeq \Set{ [a,b) \given a,b \in \mathbb{R} \land a < b }.
+\]
+容易验证\(\mathbb{R}\)的子集族\(\B\)满足\cref{theorem:拓扑基.子集族成为拓扑基的条件} 的所有条件，
+因此\(\B\)是实数集\(\mathbb{R}\)的某个拓扑\(\T_1\)的基.
+我们把\(\T_1\)称为“\(\mathbb{R}\)的\DefineConcept{下限拓扑}”，
+拓扑空间\((\mathbb{R},\T_1)\)称为\DefineConcept{实数下限拓扑空间}，记作\(\mathbb{R}_l\).
+容易看出它与通常的实数空间\((\mathbb{R},\T)\)有很大区别.
+对于每一个开区间\((a,b)\subseteq\mathbb{R}\)，
+其中\(a,b\in\mathbb{R}\)且\(a<b\)，
+如果对任意\(i \in \omega\)，
+任意选取\(b_i \in \mathbb{R}\)，
+使得\(a < \dotsb < b_2 < b_1 < b_0 < b\)
+以及\(b_i - a < 1/i\)，
+那么\((a,b)=\bigcup_{i \in \omega} [b_i,b)\).
+因此我们有\((a,b)\in\T_1\)，
+于是\(\T \subseteq \T_l\).
+由于\(\T_l \subseteq \T\)显然不成立，
+因此\(\T \subset \T_l\).
+\end{example}
+
+\subsection{子基}
+在定义基的过程中，我们只是用到了集族的并运算.
+如果再考虑集合的有限交运算\footnote{拓扑只是对有限交封闭的，所以只考虑有限交.}，
+便得到“子基”这个概念.
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P86 定义2.6.2
+设\((X,\T)\)是一个拓扑空间，\(\T_1 \subseteq \T\).
+如果\(\T_1\)的全体非空有限子族之交\[
+	\Set*{
+		\bigcap T
+		\given
+		\text{$T$是$\T_1$的非空有限子集}
+	}
+\]是拓扑\(\T\)的一个基，
+则称“\(\T_1\)是拓扑\(\T\)的一个\DefineConcept{子基}”，
+或称“\(\T_1\)是拓扑空间\(X\)的一个\DefineConcept{子基}”.
+\end{definition}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P86 例2.6.2
+\(\mathbb{R}\)的一个子集族\[
+	\T_1 \defeq \Set{ (a,+\infty) \given a\in\mathbb{R} } \cup \Set{ (-\infty,b) \given b\in\mathbb{R} }
+\]是\(\mathbb{R}\)的一个子基.
+这是因为\(\T_1\)是实数空间的一个开集族，
+并且\(\T_1\)的全体非空有限子族之交
+恰好就是全体有限开区间\(\Set{ (a,b) \given a,b\in\mathbb{R} }\)、\(\T_1\)和\(\{\emptyset\}\)这三者的并.
+显然它是实数空间\(\mathbb{R}\)的基.
+\end{example}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P86 定理2.6.4
+设\(X\)是一个集合，\(\T_1 \subseteq \Powerset X\).
+如果\(X = \bigcup \T_1\)，
+则\(X\)有唯一一个拓扑\(\T\)以\(\T_1\)为子基，
+并且\[
+	\T = \Set*{
+		\bigcup B
+		\given
+		B \subseteq \B
+	},
+\]
+其中\[
+	\B = \Set*{
+		\bigcap T
+		\given
+		\text{$T$是$\T_1$的非空有限子集}
+	}.
+\]
+\end{theorem}
+
+\subsection{应用：连续映射的判别}
+映射的连续性可以用基或自己来验证.
+一般来说，基或自己的基数不大于拓扑的基数.
+因此，通过基或自己来验证映射的连续性，
+有时可能会带来很大的方便.
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P87 定理2.6.5
+设\(X,Y\)都是拓扑空间，\(f\colon X\to Y\)，
+则以下命题等价：\begin{itemize}
+	\item \(f\)连续；
+	\item \(Y\)有一个基\(\B\)，
+	使得对于任何一个\(B \in \B\)，
+	原像\(f^{-1}(B)\)是\(X\)中的一个开集；
+	\item \(Y\)有一个子基\(\T_1\)，
+	使得对于任何一个\(T \in \T_1\)，
+	原像\(f^{-1}(T)\)是\(X\)中的一个开集.
+\end{itemize}
 \end{theorem}
