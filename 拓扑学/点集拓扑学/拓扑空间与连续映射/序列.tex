@@ -1,13 +1,20 @@
 \section{拓扑空间中的序列}
+\subsection{序列与子序列的概念}
 \begin{definition}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P91 定义2.7.1
 设\(X\)是一个拓扑空间，
+\(X_1\)是\(X\)的子集，
 \(D\)是自然数集\(\omega\)的子集.
 把映射\[
-	S\colon D \to X, n \mapsto x_n
-\]称为“\(X\)中的一个\DefineConcept{序列}”，
+	S\colon D \to X_1, n \mapsto x_n
+\]称为“\(X_1\)中的一个\DefineConcept{序列}”，
 记作\(\{x_n\}_{n \in D}\).
 \end{definition}
+
+特别地，当\(D = \omega\)时，数列\(\{x_n\}_{n \in D}\)可以记作\(\{x_n\}_{n\geq0}\)；
+当\(D = \Set{ n \in \omega \given n \geq 1}\)时，
+数列\(\{x_n\}_{n \in D}\)可以记作\(\{x_n\}_{n\geq1}\)；
+以此类推.
 
 当序列\(\{x_n\}_{n \in D}\)的值域是一个单元素集时，
 称“\(\{x_n\}_{n \in D}\)是一个\DefineConcept{常值序列}”.
@@ -25,10 +32,94 @@
 并称“序列\(\{x_n\}_{n \in D}\)是一个\DefineConcept{收敛序列}”.
 \end{definition}
 
-\begin{definition}
+拓扑空间中序列的收敛性质与我们在数学分析中熟悉的有很大的差别.
+例如，平庸空间中任何一个序列都收敛，并且它们收敛于这个空间中的每一个点.
+这时极限的唯一性就无法保证了.
+
+\begin{definition}\label{definition:序列.子序列}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P91 定义2.7.3
 设\(S\)和\(S_1\)是拓扑空间\(X\)中的两个序列.
 如果存在一个严格单调增加的映射\(\sigma\colon \omega \to \omega\)，
 使得\(S_1 = S \circ \sigma\)，
 则称“序列\(S_1\)是序列\(S\)的一个\DefineConcept{子序列}”.
 \end{definition}
+
+\subsection{序列与子序列的性质}
+我们已经看到，我们以前熟悉的序列的许多性质，对于拓扑空间中的序列来说，是不满足的.
+但总有一些性质还保留着，其中最主要的，就是以下三个定理.
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P92 定理2.7.1
+设\(\{x_n\}_{n\geq0}\)是拓扑空间\(X\)中的一个序列，
+则\begin{itemize}
+	\item 如果\(\{x_n\}_{n\geq0}\)是一个常值序列，
+	即\((\forall n\geq0)[x_n=x]\)，
+	则\(\lim_{n\to\infty} x_n = x\).
+	\item 如果序列\(\{x_n\}_{n\geq0}\)收敛于\(x \in X\)，
+	则序列\(\{x_n\}_{n\geq0}\)的每一个子序列也收敛于\(x\).
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+\begin{theorem}\label{theorem:序列.去心邻域内收敛于中心的序列的聚点1}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P92 定理2.7.2
+设\(X\)是一个拓扑空间，\(A \subseteq X\)，\(x \in X\).
+如果存在\(A-\{x\}\)中的一个序列\(\{x_n\}_{n\geq0}\)，
+\(\{x_n\}_{n\geq0}\)收敛于\(x\)，
+则\(x\)是\(A\)的一个聚点.
+%TODO proof
+\end{theorem}
+
+\begin{proposition}\label{theorem:序列.去心邻域内收敛于中心的序列的聚点2}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P92 例2.7.1
+\cref{theorem:序列.去心邻域内收敛于中心的序列的聚点1} 的逆命题不成立.
+%TODO proof
+% \begin{proof}
+% 设\(X\)是一个不可数集，
+% 考虑它的拓扑为可数补拓扑.
+% 这时\[
+% 	\text{$X$的一个子集$X_1$是闭集}
+% 	\iff
+% 	X_1=X
+% 	\lor
+% 	\text{$X_1$是可数集}.
+% \]
+% \end{proof}
+\end{proposition}
+
+\cref{theorem:序列.去心邻域内收敛于中心的序列的聚点2} 表明，
+在一般的拓扑空间中，不能像在数学分析中那样，通过序列收敛的性质来刻画聚点.
+
+\begin{theorem}\label{theorem:序列.连续映射的定义域中的序列与值域中的序列之间的关系1}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P93 定理2.7.3
+设\(X\)和\(Y\)是两个拓扑空间，映射\(f\colon X \to Y\)，
+则\begin{itemize}
+	\item 如果\(f\)在点\(x_0 \in X\)连续，
+	则\[
+		\text{$X$中的一个序列$\{x_n\}_{n\geq0}$收敛于$x_0$}
+		\implies
+		\text{$Y$中的序列$\{f(x_n)\}_{n\geq0}$收敛于$f(x_0)$}.
+	\]
+
+	\item 如果\(f\)连续，
+	则\[
+		\text{$X$中的一个序列$\{x_n\}_{n\geq0}$收敛于$x \in X$}
+		\implies
+		\text{$Y$中的序列$\{f(x_n)\}_{n\geq0}$收敛于$f(x)$}.
+	\]
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+\begin{proposition}\label{theorem:序列.连续映射的定义域中的序列与值域中的序列之间的关系2}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P93 例2.7.2
+\cref{theorem:序列.连续映射的定义域中的序列与值域中的序列之间的关系1} 的逆命题不成立.
+%TODO proof
+\end{proposition}
+
+\cref{theorem:序列.连续映射的定义域中的序列与值域中的序列之间的关系2} 表明，
+在一般的拓扑空间中，不能像在数学分析中那样，通过序列收敛的性质来刻画映射的连续性.
+
+至于在什么样的条件下，
+\cref{theorem:序列.去心邻域内收敛于中心的序列的聚点1,theorem:序列.连续映射的定义域中的序列与值域中的序列之间的关系1} 的逆命题成立，
+我们今后还要进行进一步的研究.
