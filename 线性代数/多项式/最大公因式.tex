@@ -102,6 +102,28 @@
 \end{lemma}
 
 \subsection{辗转相除法}
+\begin{flowchart}
+	\node (start) [startstop] {开始};
+	\node (in1) [io, below of=start] {输入整数$m,n$};
+	\node (pro1) [process, below of=in1] {$r \defeq m$除以$n$的余数};
+	\node (pro2) [process, below of=pro1] {$m \defeq n$};
+	\node (pro3) [process, below of=pro2] {$n \defeq r$};
+	\node (dec1) [decision, below of=pro3] {$r=0$?};
+	\node (out1) [io, below of=dec1] {输出$m$};
+	\node (stop) [startstop, below of=out1] {结束};
+
+	\begin{scope}[arrow]
+		\draw (start) -- (in1);
+		\draw (in1) -- (pro1);
+		\draw (pro1) -- (pro2);
+		\draw (pro2) -- (pro3);
+		\draw (pro3) -- (dec1);
+		\draw (dec1) -- node[anchor=east]{是} (out1);
+		\draw (dec1) -- node[anchor=south]{否} ++(3,0) |- (pro1);
+		\draw (out1) -- (stop);
+	\end{scope}
+\end{flowchart}
+
 \begin{theorem}\label{theorem:多项式.辗转相除法}
 %@see: 《高等代数（第三版 下册）》（丘维声） P16 定理3
 对于\(K[x]\)中任意两个多项式\(f(x)\)与\(g(x)\)，
