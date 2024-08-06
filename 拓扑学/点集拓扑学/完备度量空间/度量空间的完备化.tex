@@ -1,4 +1,5 @@
 \section{度量空间的完备化}
+\subsection{度量空间的完备性}
 度量空间的完备性是用关于度量空间中的点列的收敛的语言来刻画的.
 由于度量空间本身便是拓扑空间，
 所以我们在\cref{definition:序列.序列的聚点}
@@ -18,7 +19,11 @@
 	[\rho(x_m,x_n)<\epsilon],
 \]
 则称“\(\{x_n\}_{n\geq0}\)是\(X\)中的一个\DefineConcept{柯西序列}（Cauchy sequence）”.
+\end{definition}
 
+\begin{definition}\label{definition:度量空间的完备化.完备度量空间}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P237 定义8.1.1
+设\((X,\rho)\)是一个度量空间.
 如果\(X\)中的每一个柯西序列都收敛，
 则称“\((X,\rho)\)是一个\DefineConcept{完备度量空间}”.
 \end{definition}
@@ -27,3 +32,128 @@
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P237
 度量空间中每一个收敛序列都是柯西序列，但反之不然.
 \end{proposition}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P237 例8.1.1
+实数空间\(\mathbb{R}\)是一个完备度量空间.
+\end{example}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P238 定理8.1.1
+完备度量空间中的每一个闭的度量子空间都是完备度量空间.
+%TODO proof
+\end{theorem}
+
+\begin{lemma}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P238 引理8.1.2
+设\((X,\rho)\)是一个度量空间，\(Y \subseteq X\).
+如果\(Y\)中的每一个柯西序列都在\(X\)中收敛，
+则\(Y\)的闭包\(\overline{Y}\)中的每一个柯西序列也都在\(X\)中收敛.
+%TODO proof
+\end{lemma}
+
+\begin{corollary}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P239 推论8.1.3
+设\((X,\rho)\)是一个度量空间，\(Y\)是\(X\)的一个稠密子集.
+如果\(Y\)中的每一个柯西序列都在\(X\)中收敛，
+则\(X\)是一个完备度量空间.
+%TODO proof
+\end{corollary}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P239 定理8.1.4
+\(n\)维欧氏空间\(\mathbb{R}^n\)是完备度量空间.
+\end{theorem}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P239 定理8.1.4
+希尔伯特空间\(\mathbb{H}\)是完备度量空间.
+\end{theorem}
+
+\subsection{保距映射}
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240 定义8.1.2
+设\((X,\rho)\)和\((Y,\sigma)\)是两个度量空间，映射\(f\colon X \to Y\).
+如果对于任意\(x_1,x_2 \in X\)有\(\sigma(f(x_1),f(x_2)) = \rho(x_1,x_2)\)，
+则称“\(f\)是\DefineConcept{保距的}”
+“\(f\)是一个\DefineConcept{保距映射}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+保距映射一定是一个单射.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+恒同映射是一个保距映射.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+两个保距映射的复合还是保距映射.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+保距满射的逆还是保距映射.
+\end{proposition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240 定义8.1.2
+设\((X,\rho)\)和\((Y,\sigma)\)是两个度量空间.
+如果存在一个从\(X\)到\(Y\)的保距满射，
+则称“度量空间\((X,\rho)\)与度量空间\((Y,\sigma)\)~\DefineConcept{同距}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+同距关系是等价关系.
+对于度量空间\(X,Y,Z\)而言\begin{itemize}
+	\item {\bf 自反性} \(X\)与\(X\)同距；
+	\item {\bf 对称性} \(\text{$X$与$Y$同距} \implies \text{$Y$与$X$同距}\)；
+	\item {\bf 传递性} \(\text{$X$与$Y$同距} \;\land\; \text{$Y$与$Z$同距} \implies \text{$X$与$Z$同距}\).
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+保距满射一定是一个同胚.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+同距的度量空间是同胚的.
+\end{proposition}
+
+\subsection{度量空间的完备化}
+\begin{definition}
+设\(X\)是一个度量空间，\(X^*\)是一个完备度量空间.
+如果\(X\)与\(X^*\)的一个稠密的度量子空间同距，
+则称“完备度量空间\(X^*\)是度量空间\(X\)的一个\DefineConcept{完备化}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240
+实数空间\(\mathbb{R}\)是有理数空间\(\mathbb{Q}\)的一个完备化.
+\end{proposition}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P240 定理8.1.5
+每一个度量空间都有完备化.
+%TODO proof
+\end{theorem}
+
+一个度量空间可以有许多完备化.
+但是，在同距的意义下，它的完备化是唯一的.
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P242 定理8.1.6
+每一个度量空间的任意两个完备化同距.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P243 推论8.1.7
+完备度量空间的任何一个完备化都与它本身同距.
+\end{corollary}
