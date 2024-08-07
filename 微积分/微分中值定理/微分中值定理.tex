@@ -77,25 +77,25 @@
 现在用分析语言把这个几何现象描述出来，就可得下面的罗尔定理.
 
 \begin{theorem}[罗尔定理]\label{theorem:微分中值定理.罗尔定理}
-如果函数\(f(x)\)满足
-\begin{enumerate}
-	\item 在闭区间\([a,b]\)上连续（即\(f \in C[a,b]\)）；
-	\item 在开区间\((a,b)\)内可导（即\(f \in D(a,b)\)）；
+如果函数\(f\colon [a,b]\to\mathbb{R}\)满足
+\begin{itemize}
+	\item 在闭区间\([a,b]\)上连续，即\(f \in C[a,b]\)；
+	\item 在开区间\((a,b)\)内可导，即\(f \in D(a,b)\)；
 	\item 在区间端点处的函数值相等，即\(f(a)=f(b)\)，
-\end{enumerate}
+\end{itemize}
 那么\(\exists \xi \in (a,b)\)使得\(f'(\xi) = 0\).
 \begin{proof}
-由于\(f(x)\)在闭区间\([a,b]\)上连续，
+由于\(f\)在闭区间\([a,b]\)上连续，
 根据闭区间上连续函数的最大值最小值定理，
-\(f(x)\)在闭区间\([a,b]\)上必定取得它的最大值\(M\)和最小值\(m\).
+\(f\)在闭区间\([a,b]\)上必定取得它的最大值\(M\)和最小值\(m\).
 这样，只有两种可能情形：
 \begin{enumerate}
-	\item \(M=m\).
-		这时\(f(x)\)在区间\([a,b]\)上是常数函数，即\(f(x)=M\).
+	\item[情况一] \(M=m\).
+		这时\(f\)在区间\([a,b]\)上是常数函数，即\(f(x)=M\).
 		由此，\(\forall x\in(a,b)\)，有\(f'(x)=0\).
 		因此，任取\(\xi\in(a,b)\)，有\(f'(\xi)=0\).
 
-	\item \(M>m\).
+	\item[情况二] \(M>m\).
 		因为\(f(a)=f(b)\)，
 		所以\(M\)和\(m\)这两个数中，
 		至少有一个不等于\(f(x)\)在区间\([a,b]\)的端点处的函数值.
@@ -107,6 +107,40 @@
 \end{enumerate}
 \end{proof}
 \end{theorem}
+
+\begin{example}
+% \hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}的第三个条件是必需的.
+设函数\(f\colon[a,b]\to\mathbb{R}\)
+满足\(f\in C[a,b]\cap D(a,b)\)
+且\((\exists\xi\in(a,b))[f'(\xi)=0]\)，
+却不一定有\((\exists x_1,x_2\in[a,b])[f(x_1)=f(x_2)]\).
+例如，取\(f(x)=x^5\)，
+它满足\(f\in C[-1,1]\cap D(-1,1)\)和\(f'(0)=0\)，
+但是它在\([-1,1]\)上函数值处处不相等.
+\end{example}
+
+\begin{example}
+设函数\(f\colon[a,b]\to\mathbb{R}\)
+满足\(f\in C[a,b]\)，
+\(f(a)=f(b)\)，
+以及\(f\)在\((a,b)\)内除一点外处处可导，
+但是\((\nexists\xi\in(a,b))[f'(\xi)=0]\).
+例如，取\[
+	f(x) = \left\{ \begin{array}{cl}
+		x, & 0\leq x<1, \\
+		2-x, & 1\leq x\leq 2.
+	\end{array} \right.
+\]
+它满足\(f\in C[0,2]\)，\(f(0)=f(2)=0\).
+显然除点\(x=1\)以外，\(f\)处处可导，
+且\[
+	f'(x) = \left\{ \begin{array}{rl}
+		1, & 0<x<1, \\
+		-1, & 1<x<2.
+	\end{array} \right.
+\]
+所以在\((0,2)\)内不存在导数为零的点.
+\end{example}
 
 \begin{corollary}
 设函数\(f \in D(a,b)\)，且\[
