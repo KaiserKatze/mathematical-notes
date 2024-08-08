@@ -3,21 +3,20 @@
 利用函数极限可以定义函数图形的\DefineConcept{渐近线}：
 \begin{itemize}
 	\item 如果\(\lim_{x \to \infty}f(x) = A\)，
-	则直线\(y = A\)是函数\(f(x)\)的图形的\DefineConcept{水平渐近线}.
+	则称“直线\(y = A\)是函数\(f(x)\)的图形的\DefineConcept{水平渐近线}”.
 	\item 如果\(\lim_{x \to x_0}f(x) = \infty\)，
-	则直线\(x = x_0\)是函数\(f(x)\)的图形的\DefineConcept{铅直渐近线}.
-	\item 给定\(\omega\in\Set{\infty,+\infty,-\infty}\)，
-	如果存在直线\(L: y = kx+b\ (k \neq 0)\)，
-	使得当\(x\to\omega\)时，
-	曲线\(y = f(x)\)上的动点\(M(x,y)\)到直线\(L\)的距离\(d(M,L)\to0\)，
-	则称\(L\)为曲线\(y = f(x)\)的\DefineConcept{斜渐近线}.
+	则称“直线\(x = x_0\)是函数\(f(x)\)的图形的\DefineConcept{铅直渐近线}”.
+	\item 如果直线\(L: y = kx+b\ (k \neq 0)\)满足：
+	当\(x\to\infty\)、\(x\to+\infty\)或\(x\to-\infty\)时，
+	曲线\(y = f(x)\)上的动点\(M(x,f(x))\)到直线\(L\)的欧氏距离\(d(M,L)\to0\)，
+	则称“直线\(L\)为曲线\(y = f(x)\)的\DefineConcept{斜渐近线}”.
 \end{itemize}
 \end{definition}
 
 显然，\(\vb{\nu}=(1,k,0)\)是直线\(L: y=kx+b\)的一个方向向量.
 取直线\(L\)上一点\(M_0(0,b,0)\).
 根据\cref{equation:解析几何.点到直线的距离}，
-点\(M(x,y)\)到直线\(L\)的距离为\[
+点\(M(x,f(x),0)\)到直线\(L\)的距离为\[
 	d(M,L)=\frac{\abs{\vec{M_0M}\times\vb{\nu}}}{\abs{\vb{\nu}}}
 	=\frac{
 		\abs{kx-f(x)+b}
@@ -26,27 +25,42 @@
 	}.
 \]
 为了使得\[
-	\lim_{x\to+\infty} \frac{\abs{kx-f(x)+b}}{\sqrt{1+k^2}} = 0
+	\lim_{x\to\infty} \frac{\abs{kx-f(x)+b}}{\sqrt{1+k^2}} = 0
 \]成立，
-考虑到\(k\)是常数，必有\(\abs{kx-f(x)+b}\)是\(x\to+\infty\)时的无穷小，
-这等价于\[
-	\lim_{x\to+\infty} [kx-f(x)] = -b.
-\]
-因此，我们又有\[
-	\lim_{x\to+\infty} \frac{f(x)-kx}{x}=0,
+考虑到\(k\)是常数，必有\(\abs{kx-f(x)+b}\)是\(x\to\infty\)时的无穷小，
+从而有\[
+	\lim_{x\to\infty} [f(x)-kx-b] = 0,
 \]
 即\[
-	\lim_{x\to+\infty} \frac{f(x)}{x}=k.
+	\lim_{x\to\infty} [f(x)-kx] = b.
+\]
+因为\hyperref[theorem:函数极限.无穷小.有界函数与无穷小的乘积是无穷小]{有界函数与无穷小的乘积是无穷小}，
+所以\[
+	\lim_{x\to\infty} \frac{f(x)-kx}{x}
+	= \lim_{x\to\infty} \left[\frac{f(x)}x-k\right]
+	= 0,
+\]
+于是\[
+	\lim_{x\to\infty} \frac{f(x)}{x} = k.
 \]
 
 于是我们得到以下命题.
 \begin{proposition}
 直线\(L: y = kx+b\)为曲线\(y = f(x)\)的渐近线的充分必要条件是：\[
-	k = \lim_{x\to\omega} \frac{f(x)}{x},
-	\qquad
-	b = \lim_{x\to\omega} \left[f(x) - kx\right],
+	k = \lim_{x\to\infty} \frac{f(x)}{x},
+	\quad\text{且}\quad
+	b = \lim_{x\to\infty} \left[f(x) - kx\right],
 \]
-其中\(\omega\in\Set{\infty,+\infty,-\infty}\).
+或\[
+	k = \lim_{x\to+\infty} \frac{f(x)}{x},
+	\quad\text{且}\quad
+	b = \lim_{x\to+\infty} \left[f(x) - kx\right],
+\]
+或\[
+	k = \lim_{x\to-\infty} \frac{f(x)}{x},
+	\quad\text{且}\quad
+	b = \lim_{x\to-\infty} \left[f(x) - kx\right].
+\]
 \end{proposition}
 
 \begin{example}
