@@ -1,13 +1,10 @@
 \section{拓扑空间中的序列}
-\subsection{序列与子序列的概念}
+\subsection{序列}
 \begin{definition}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P91 定义2.7.1
-设\(X\)是一个拓扑空间，
-\(X_1\)是\(X\)的子集，
-\(D\)是自然数集\(\omega\)的子集.
-把映射\[
-	S\colon D \to X_1, n \mapsto x_n
-\]称为“\(X_1\)中的一个\DefineConcept{序列}”，
+把从自然数集\(\omega\)的非空子集\(D\)到集合\(X\)的映射\[
+	S\colon D \to X, n \mapsto x_n
+\]称为“\(X\)中的一个\DefineConcept{序列}”，
 记作\(\{x_n\}_{n \in D}\).
 \end{definition}
 
@@ -19,6 +16,134 @@
 当序列\(\{x_n\}_{n \in D}\)的值域是一个单元素集时，
 称“\(\{x_n\}_{n \in D}\)是一个\DefineConcept{常值序列}”.
 
+\subsection{序列的单调性}
+\begin{definition}
+%@see: 《测度论讲义（第三版）》（严加安） P2 1.1.4
+%@see: 《实变函数论（第三版）》（周民强） P9 定义1.8
+设\(\{x_n\}_{n \in D}\)是集合\(X\)中的一个序列.
+
+若\[
+	(\forall n\in\omega)
+	[x_n \subseteq x_{n+1}],
+\]
+则称“\(\{x_n\}_{n \in D}\)是\(X\)中的一个\DefineConcept{单调增序列}”.
+
+若\[
+	(\forall n\in\omega)
+	[x_n \supseteq x_{n+1}],
+\]
+则称“\(\{x_n\}_{n \in D}\)是\(X\)中的一个\DefineConcept{单调减序列}”.
+
+我们将“单调增序列”与“单调减序列”统称为\DefineConcept{单调序列}.
+\end{definition}
+
+\begin{definition}
+设\(\{x_n\}_{n \in D}\)是集合\(X\)中的一个序列.
+定义：\begin{align*}
+	\bigcup_{k=n}^m x_k
+	&\defeq
+	\bigcup_{n \leq k \leq m, k\in\mathbb{N}} x_k, \\
+	\bigcup_{k=n}^\infty x_k
+	&\defeq
+	\bigcup_{k \geq n, k\in\mathbb{N}} x_k, \\
+	\bigcap_{k=n}^m x_k
+	&\defeq
+	\bigcap_{n \leq k \leq m, k\in\mathbb{N}} x_k, \\
+	\bigcap_{k=n}^\infty x_k
+	&\defeq
+	\bigcap_{k \geq n, k\in\mathbb{N}} x_k.
+\end{align*}
+\end{definition}
+
+\begin{definition}
+%@see: 《实变函数论（第三版）》（周民强） P9 定义1.8
+设\(\{x_n\}_{n \in D}\)是集合\(X\)中的一个序列.
+定义：\[
+	\lim_{n\to\infty} x_n
+	\defeq
+	\left\{ \def\arraystretch{2} \begin{array}{cl}
+		\bigcup_{n=1}^\infty x_n, & \text{$\{x_n\}$是单调增序列}, \\
+		\bigcap_{n=1}^\infty x_n, & \text{$\{x_n\}$是单调减序列},
+	\end{array} \right.
+\]
+称其为“\(\{x_n\}_{n \in D}\)的\DefineConcept{极限}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《测度论讲义（第三版）》（严加安） P2 1.1.4
+设\(\{x_n\}_{x \in D}\)是集合\(X\)中的一个序列.
+
+定义：\[
+	\limsup_{n\to\infty} x_n
+	\defeq
+	\bigcap_{n=1}^\infty
+	\bigcup_{k=n}^\infty
+	x_k,
+\]
+称其为“\(\{x_n\}_{x \in D}\)的\DefineConcept{上极限}”.
+
+定义：\[
+	\liminf_{n\to\infty} x_n
+	\defeq
+	\bigcup_{n=1}^\infty
+	\bigcap_{k=n}^\infty
+	x_k,
+\]
+称其为“\(\{x_n\}_{x \in D}\)的\DefineConcept{下极限}”.
+\end{definition}
+容易看出，\(\limsup_{n\to\infty} x_n\)的任一元素属于无限多个\(x_n\)，
+而\(\liminf_{n\to\infty} x_n\)的任一元素至多不属于有限多个\(x_n\).
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P10 例7
+设\(E,F\)都是集合，
+集合\(X\)中的序列\(\{x_k\}_{k\geq1}\)满足\[
+	x_k = \left\{ \begin{array}{cl}
+		E, & \text{$k$是奇数}, \\
+		F, & \text{$k$是偶数}
+	\end{array} \right.
+	\quad(k=1,2,\dotsc),
+\]
+从而我们有\[
+	\limsup_{k\to\infty} x_k
+	= E \cup F, \qquad
+	\liminf_{k\to\infty} x_k
+	= E \cap F.
+\]
+\end{example}
+
+\begin{proposition}
+%@see: 《实变函数论（第三版）》（周民强） P10
+设\(E\)是集合，\(\{x_n\}_{n\geq1}\)是集合\(X\)中的一个序列，
+则\begin{gather}
+	E - \limsup_{n\to\infty} x_n = \liminf_{n\to\infty} (E - x_n); \\
+	E - \liminf_{n\to\infty} x_n = \limsup_{n\to\infty} (E - x_n).
+\end{gather}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《测度论讲义（第三版）》（严加安） P2 1.1.4
+设\(\{x_n\}_{n\geq1}\)是集合\(X\)中的一个序列，
+则\begin{equation}
+	\liminf_{n\to\infty} x_n
+	\subseteq
+	\limsup_{n\to\infty} x_n.
+\end{equation}
+%@see: https://math.stackexchange.com/questions/107931/lim-sup-and-lim-inf-of-sequence-of-sets
+\end{proposition}
+
+\begin{theorem}
+%@see: 《测度论讲义（第三版）》（严加安） P2 1.1.4
+设\(\{x_n\}_{n\geq1}\)是集合\(X\)中的一个序列.
+如果\[
+	\liminf_{n\to\infty} x_n
+	= \limsup_{n\to\infty} x_n
+	= A,
+\]
+则\(\lim_{n\to\infty} x_n = A\).
+\end{theorem}
+
+\subsection{收敛序列}
 \begin{definition}\label{definition:序列.序列的聚点}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P91 定义2.7.2
 设\(\{x_n\}_{n \in D}\)是拓扑空间\(X\)中的一个序列，\(x \in X\).
@@ -36,6 +161,7 @@
 例如，平庸空间中任何一个序列都收敛，并且它们收敛于这个空间中的每一个点.
 这时极限的唯一性就无法保证了.
 
+\subsection{子序列}
 \begin{definition}\label{definition:序列.子序列}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P91 定义2.7.3
 设\(S\)和\(S_1\)是拓扑空间\(X\)中的两个序列.
