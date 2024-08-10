@@ -168,6 +168,7 @@
 \end{itemize}
 \end{definition}
 
+%@see: 《高等数学（第六版 上册）》 P57
 \begin{example}
 因为\(\lim_{x\to0} \frac{3x^2}{x} = 0\)，
 所以当\(x\to0\)时，
@@ -175,6 +176,7 @@
 即\(3x^2 = o(x)\ (x\to0)\).
 \end{example}
 
+%@see: 《高等数学（第六版 上册）》 P58
 \begin{example}
 因为\(\lim_{n\to\infty} \frac{1/n}{1/n^2} = \infty\)，
 所以当\(n\to\infty\)时，
@@ -190,7 +192,9 @@
 \begin{example}
 因为\(\lim_{x\to0} \frac{1-\cos x}{x^2} = \frac{1}{2}\)，
 所以当\(x\to0\)时，
-\(1-\cos x\)是关于\(x\)的二阶无穷小.
+\(1-\cos x\)是关于\(x\)的二阶无穷小，
+也是关于\(x^2\)的同阶无穷小，
+还是关于\(\frac12 x^2\)的等价无穷小.
 \end{example}
 
 \begin{example}
@@ -281,6 +285,29 @@
 	\lim_{x\to0} \frac{\sqrt[n]{1+x} - 1}{\frac1n x} = \lim_{x\to0} \frac{n}{1 \cdot n} = 1,
 \]
 也就是说\(\sqrt[n]{1+x} - 1 \sim \frac1n x \quad(x\to0)\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(a\neq0\).
+证明：当\(x\to0\)时，\((1+x)^a-1 \sim ax\).
+\begin{proof}
+令\(t = (1+x)^a-1\)，
+则\[
+	a \ln(1+x) = \ln(1+t),
+	\qquad
+	1+x=\exp[\frac1a \ln(1+t)],
+	\qquad
+	x=\exp[\frac1a \ln(1+t)]-1,
+\]
+于是\begin{align*}
+	\lim_{x\to0} \frac{(1+x)^a-1}x
+	&= \lim_{t\to0} \frac{t}{\exp[\frac1a \ln(1+t)]-1} \\
+	&= \lim_{t\to0} \frac{t}{\frac1a \ln(1+t)}
+	= a \lim_{t\to0} \frac{t}{\ln(1+t)}
+	= a.
+	\qedhere
+\end{align*}
 \end{proof}
 \end{example}
 
@@ -384,7 +411,6 @@
 与假设矛盾，说明\(f(x)\)不是\(x\to0^+\)时的无穷大.
 \end{proof}
 \end{example}
-
 
 \subsection{无穷大的比较}
 \begin{definition}
@@ -502,10 +528,12 @@
 \begin{theorem}\label{theorem:极限.无穷小的比较2}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P106 定理3.3.1
 %@see: 《高等数学（第六版 上册）》 P59 定理2
-设\(u,v,w\in\mathbb{R}^X\)在\(x_0\)的某个去心邻域上有定义，
-\(\mathcal{B}\)是\(X\)中的基，
-且\(\lim_\mathcal{B} \frac{v(x)}{w(x)} = 1\)，
-那么\begin{itemize}
+设\(\mathcal{B}\)是\(X\)中的基，
+\(u,v,w\in\mathbb{R}^X\)在\(x_0 \in X\)的某个去心邻域上有定义，
+且\[
+	\lim_\mathcal{B} \frac{v(x)}{w(x)} = 1.
+\]
+\begin{itemize}
 	\item 当\(\lim_\mathcal{B} u(x) \cdot w(x) = A\)时，
 	有\(\lim_\mathcal{B} u(x) \cdot v(x) = A\).
 

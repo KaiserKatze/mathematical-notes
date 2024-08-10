@@ -95,11 +95,16 @@
 \subsection{复合函数的极限运算法则}
 \begin{theorem}
 %@see: 《高等数学（第六版 上册）》 P48 定理6（复合函数的极限运算法则）
-设\(f\colon X\to Y\)，\(g\colon Y\to\mathbb{R}\)，
-\((\exists\rho>0)[\mathring{U}(x_0,\rho) \subseteq \dom(g \circ f)]\)，
-\(\lim_{x \to x_0} f(x) = u_0\)，
+设\(f\colon X\to Y\)与\(g\colon Y\to\mathbb{R}\)复合而成的函数\(g \circ f\)
+在点\(x_0\)的某个去心邻域内有定义，
+即\[
+	(\exists\rho>0)[\mathring{U}(x_0,\rho) \subseteq \dom(g \circ f)].
+\]
+如果\(\lim_{x \to x_0} f(x) = u_0\)，
 \(\lim_{u \to u_0} g(u) = A\)，
-且\((\exists\delta>0)(\forall x)[x\in\mathring{U}(x_0,\delta) \implies f(x)\neq u_0]\)，
+且\[
+	(\exists\delta>0)(\forall x)[x\in\mathring{U}(x_0,\delta) \implies f(x)\neq u_0],
+\]
 则\[
 	\lim_{x \to x_0} g(f(x))
 	= \lim_{u \to u_0} g(u)
@@ -135,6 +140,22 @@
 \end{remark}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P52 例3
+求：\(\lim_{x\to0} \frac{\arcsin x}{x}\).
+\begin{solution}
+令\(t = \arcsin x\)，
+则\(x = \sin t\).
+当\(x\to0\)时，
+有\(t\to0\).
+于是由复合函数的极限运算法则得\[
+	\lim_{x\to0}\frac{\arcsin x}{x}
+	= \lim_{t\to0}\frac{t}{\sin t}
+	= 1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
 计算极限\(\lim_{x\to0} (1+x)^{\frac1x}\).
 \begin{solution}
 利用复合函数的极限运算法则，
@@ -148,6 +169,7 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P55 例4
 计算极限\(\lim_{x\to\infty} \left(1-\frac1x\right)^x\).
 \begin{solution}
 令\(t = -x\)，
