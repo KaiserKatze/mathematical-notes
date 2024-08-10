@@ -389,6 +389,20 @@
 \end{solution}
 \end{example}
 
+\subsubsection{比较审敛法的比值形式}
+\begin{theorem}\label{theorem:无穷级数.比较审敛法的比值形式}
+%@see: 《数学分析简明教程》（邓东皋、尹小玲） P14 定理10.8（比较判别法的另一形式）
+设\(\sum_{n=1}^\infty u_n\)和\(\sum_{n=1}^\infty v_n\)都是正项级数.
+设存在正整数\(N\)，使得当\(n>N\)时，有\[
+	\frac{u_{n+1}}{u_n} \leq \frac{v_{n+1}}{v_n}.
+\]
+\begin{itemize}
+	\item 如果\(\sum_{n=1}^\infty v_n\)收敛，则\(\sum_{n=1}^\infty u_n\)收敛.
+	\item 如果\(\sum_{n=1}^\infty u_n\)发散，则\(\sum_{n=1}^\infty v_n\)发散.
+\end{itemize}
+%TODO proof
+\end{theorem}
+
 \subsubsection{比值审敛法}
 用比较审敛法审敛时，
 需要适当地选取一个已知其收敛性的级数\(\sum_{n=1}^\infty v_n\)作为比较的基准.
@@ -731,7 +745,49 @@ u_n = \frac{2+(-1)^n}{2^n},
 	\item 当\(\rho<1\)时，级数\(\sum_{n=1}^\infty u_n\)发散.
 	\item 当\(\rho=1\)时，级数\(\sum_{n=1}^\infty u_n\)可能收敛也可能发散.
 \end{itemize}
-%TODO proof
+\begin{proof}
+假设\(\rho>1\).
+记\(r \defeq \rho-\epsilon_0\).
+那么存在\(\epsilon_0>0\)，
+使得\(\rho>r=\rho-\epsilon_0>1\).
+显然存在正整数\(N_1\)，
+使得当\(n>N_1\)时，
+有\[
+	n \left(\frac{u_n}{u_{n+1}}-1\right) > r,
+	\quad\text{即}\quad
+	\frac{u_n}{u_{n+1}} \geq 1+\frac{r}{n}.
+\]
+取\(p\in(1,r)\)，由\cref{theorem:常数项级数的审敛法.拉贝审敛法的引理} 可知，
+存在正整数\(N_2\)，当\(n>N_2\)时，有\[
+	1+\frac{r}{n} \geq \left(1+\frac1n\right)^p.
+\]
+故当\(n>N=\max\{N_1,N_2\}\)时，有\[
+	\frac{u_n}{u_{n+1}}
+	\geq 1+\frac{r}{n}
+	\geq \left(1+\frac1n\right)^p
+	= \frac{1/n^p}{1/(n+1)^p}.
+\]
+根据\cref{theorem:无穷级数.比较审敛法的比值形式}，
+由于级数\(\sum_{n=1}^\infty \frac1{n^p}\ (p>1)\)收敛，
+所以级数\(\sum_{n=1}^\infty u_n\)也收敛.
+
+假设\(\rho<1\).
+显然存在\(\epsilon_1>0\)，
+使得\(\rho+\epsilon_1<1\).
+这时，存在正整数\(N\)，当\(n>N\)时，有\[
+	n \left(\frac{u_n}{u_{n+1}}-1\right)
+	< \rho+\epsilon_1
+	< 1,
+\]
+从而有\[
+	\frac{u_n}{u_{n+1}}
+	\leq 1+\frac1n
+	= \frac{1/n}{1/(n+1)}.
+\]
+根据\cref{theorem:无穷级数.比较审敛法的比值形式}，
+由于级数\(\sum_{n=1}^\infty \frac1n\)发散，
+所以级数\(\sum_{n=1}^\infty u_n\)也发散.
+\end{proof}
 \end{theorem}
 
 % \subsubsection{对数审敛法}
