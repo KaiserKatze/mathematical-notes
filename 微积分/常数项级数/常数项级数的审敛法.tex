@@ -194,7 +194,7 @@
 \hyperref[example:定积分.p积分]{\(p\)积分}具有高度相似性.
 
 \begin{example}
-设正项级数\(\sum_{n=1}^\infty a_n\)的部分和是\(s_n\)，
+设正项级数\(\sum_{n=1}^\infty a_n\)的部分和是\(s_n = \sum_{i=1}^n a_i\).
 证明：对于任意\(k>1\)，有\[
 	\sum_{n=1}^\infty \frac{a_n}{s_n^k} < +\infty.
 \]
@@ -218,7 +218,8 @@
 \end{example}
 
 \begin{example}
-设正项级数\(\sum_{n=1}^\infty a_n\)发散，证明：级数\(\sum_{n=1}^\infty \frac{a_n}{n^3+a_n^2}\)收敛.
+设正项级数\(\sum_{n=1}^\infty a_n\)发散.
+证明：级数\(\sum_{n=1}^\infty \frac{a_n}{n^3+a_n^2}\)收敛.
 \begin{proof}
 由基本不等式 \labelcref{theorem:不等式.基本不等式2} 可知
 \(n^3+a_n^2\geq2\sqrt{n^3 a_n^2}=2n^{3/2}a_n\)，
@@ -693,10 +694,34 @@ u_n = \frac{2+(-1)^n}{2^n},
 这时\hyperref[theorem:无穷级数.正项级数的根值审敛法]{根值审敛法}%
 和\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}都失效了，
 下面给出一种针对这类情况的判别法.
+
+\begin{lemma}\label{theorem:常数项级数的审敛法.拉贝审敛法的引理}
+%@see: 《数学分析简明教程》（邓东皋、尹小玲） P17 引理
+对于任意\(r>p>1\)，存在正整数\(N\)，当\(n>N\)时，有\[
+	1+\frac{r}{n} > \left(1+\frac1n\right)^p.
+\]
+\begin{proof}
+因为\[
+	\lim_{x\to0} \frac{(1+x)^p-1}x = p,
+\]
+所以\[
+	\lim_{n\to\infty} \frac{\left(1+1/n\right)^p-1}{1/n} = p.
+\]
+又因为\(p<r\)，
+由\hyperref[theorem:极限.收敛数列的保序性]{收敛数列的保序性} 可知，
+存在正整数\(N\)，当\(n>N\)时，有\[
+	\frac{\left(1+1/n\right)^p-1}{1/n} < r
+	\quad\text{或}\quad
+	\left(1+\frac1n\right)^p-1
+	< \frac{r}{n}.
+	\qedhere
+\]
+\end{proof}
+\end{lemma}
+
 \begin{theorem}[拉贝审敛法]
 %@see: 《数学分析（第二版 下册）》（陈纪修） P22 定理9.3.5（Raabe判别法）
 设\(\sum_{n=1}^\infty u_n\)是正项级数，
-其中\(u_n\neq0\)，
 记\[
 	\rho \defeq \lim_{n\to\infty} n \left(\frac{x_n}{x_{n+1}} - 1\right).
 \]
