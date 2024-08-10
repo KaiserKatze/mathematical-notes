@@ -390,34 +390,69 @@
 \subsubsection{比值审敛法}
 用比较审敛法审敛时，
 需要适当地选取一个已知其收敛性的级数\(\sum_{n=1}^\infty v_n\)作为比较的基准.
-最常选用作为基准级数的是等比级数和\(p\)级数.
+最常选用作为基准级数的是正项等比级数\(\sum_{n=1}^\infty q^n\ (q>0)\)
+和\(p\)级数\(\sum_{n=1}^\infty \frac1{n^p}\).
 
-将所给正项级数与等比级数比较，我们能得到在实用上很方便的比值审敛法和根值审敛法.
+我们知道，\hyperref[example:无穷级数.等比级数的收敛性]{等比级数}
+\(\sum_{n=1}^\infty q^n\)的敛散性只依赖于其相邻两项之比\(q\)是否小于\(1\).
+利用\hyperref[theorem:无穷级数.正项级数的比较审敛法]{比较审敛法}可以得出以下结论：
+设级数\(\sum_{n=1}^\infty u_n\)的后项与前项之比\(\frac{u_{n+1}}{u_n}\)
+或前\(n\)项的“平均公比”
+\(\sqrt[n]{u_n}
+= \sqrt[n]{\frac{u_1}1\cdot\frac{u_2}{u_1}\dotsm\frac{u_n}{u_{n-1}}}\)
+的极限是\(\rho\)，
+如果\(\rho<1\)，那么级数\(\sum_{n=1}^\infty u_n\)收敛；
+如果\(\rho>1\)，那么级数\(\sum_{n=1}^\infty u_n\)发散.
+正是基于这样的思路，产生了如下的\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}%
+和\hyperref[theorem:无穷级数.正项级数的根值审敛法]{根值审敛法}.
+
 \begin{theorem}[比值审敛法，达朗贝尔判别法]\label{theorem:无穷级数.正项级数的比值审敛法}
-设\(\sum_{n=1}^\infty u_n\)为正项级数，如果\[
-\lim_{n\to\infty} \frac{u_{n+1}}{u_n}=\rho,
-\]则当\(\rho<1\)时，级数收敛；
-当\(\rho>1\)时或当\(\lim_{n\to\infty} \frac{u_{n+1}}{u_n}=\infty\)时，级数发散；
-当\(\rho=1\)时，级数可能收敛也可能发散.
+设\(\sum_{n=1}^\infty u_n\)是正项级数，
+记\(\rho \defeq \lim_{n\to\infty} \frac{u_{n+1}}{u_n}\).
+\begin{itemize}
+	\item 当\(\rho<1\)时，级数\(\sum_{n=1}^\infty u_n\)收敛.
+	\item 当\(\rho>1\)时，或当\(\rho=\infty\)时，级数\(\sum_{n=1}^\infty u_n\)发散.
+	\item 当\(\rho=1\)时，级数\(\sum_{n=1}^\infty u_n\)可能收敛也可能发散.
+\end{itemize}
 \begin{proof}
-当\(\rho<1\).取一个适当小的正数\(\epsilon\)，使得\(\rho+\epsilon=r<1\)，根据极限定义，存在正整数\(m\)，当\(n \geq m\)时有不等式\[
-\frac{u_{n+1}}{u_n} < \rho + \epsilon = r.
-\]因此\[
-u_{m+1} < r u_m,
-u_{m+2} < r u_{m+1} < r^2 u_m,
-\dotsc,
-u_{m+k} < r^k u_m,
-\dotsc.
-\]而因为公比\(r<1\)，故等比级数\(\sum_{k=1}^\infty r^k u_m\)收敛，根据\cref{theorem:无穷级数.正项级数的比较审敛法的推论} 可知，级数\(\sum_{n=1}^\infty u_n\)收敛.
+当\(\rho<1\).
+取一个适当小的正数\(\epsilon\)，
+使得\(\rho+\epsilon=r<1\)，
+根据极限定义，
+存在正整数\(m\)，
+当\(n \geq m\)时有不等式\[
+	\frac{u_{n+1}}{u_n} < \rho + \epsilon = r.
+\]
+因此\[
+	u_{m+1} < r u_m,
+	u_{m+2} < r u_{m+1} < r^2 u_m,
+	\dotsc,
+	u_{m+k} < r^k u_m,
+	\dotsc.
+\]
+而因为公比\(r<1\)，
+故等比级数\(\sum_{k=1}^\infty r^k u_m\)收敛，
+根据\cref{theorem:无穷级数.正项级数的比较审敛法的推论} 可知，
+级数\(\sum_{n=1}^\infty u_n\)收敛.
 
-当\(\rho>1\).取一个适当小的正数\(\epsilon\)，使得\(\rho-\epsilon>1\).
-根据极限定义，当\(n \geq m\)时有不等式\[
-\frac{u_{n+1}}{u_n} > \rho-\epsilon > 1,
-\]也就是\(u_{n+1}>u_n\).所以当\(n \geq m\)时，级数的一般项\(u_n\)是逐渐增大的，从而\[
-\lim_{n\to\infty} u_n \neq 0.
-\]根据\cref{theorem:无穷级数.收敛级数性质5} （即级数收敛的必要条件）可知，级数\(\sum_{n=1}^\infty u_n\)发散.
+当\(\rho>1\).
+取一个适当小的正数\(\epsilon\)，
+使得\(\rho-\epsilon>1\).
+根据极限定义，
+当\(n \geq m\)时有不等式\[
+	\frac{u_{n+1}}{u_n} > \rho-\epsilon > 1,
+\]
+也就是\(u_{n+1}>u_n\).
+所以当\(n \geq m\)时，
+级数的一般项\(u_n\)是逐渐增大的，
+从而\[
+	\lim_{n\to\infty} u_n \neq 0.
+\]
+根据\cref{theorem:无穷级数.收敛级数性质5} （即级数收敛的必要条件）可知，
+级数\(\sum_{n=1}^\infty u_n\)发散.
 
-类似地，可以证明当\(\lim_{n\to\infty} \frac{u_{n+1}}{u_n} = \infty\)时，级数\(\sum_{n=1}^\infty u_n\)发散.
+类似地，可以证明当\(\lim_{n\to\infty} \frac{u_{n+1}}{u_n} = \infty\)时，
+级数\(\sum_{n=1}^\infty u_n\)发散.
 
 当\(\rho = 1\)时，
 级数可能收敛也可能发散.
@@ -434,22 +469,24 @@ u_{m+k} < r^k u_m,
 
 \begin{example}\label{example:无穷级数.常数e的级数表示}
 证明级数\[
-1+\frac{1}{1}+\frac{1}{1\cdot2}+\frac{1}{1\cdot2\cdot3}+\dotsb+\frac{1}{(n-1)!}+\dotsb
-\]是收敛的，并估计以级数的部分和\(s_n\)近似代替和\(s\)所产生的误差.
+	1+\frac{1}{1}+\frac{1}{1\cdot2}+\frac{1}{1\cdot2\cdot3}+\dotsb+\frac{1}{(n-1)!}+\dotsb
+\]是收敛的，
+并估计以级数的部分和\(s_n\)近似代替和\(s\)所产生的误差.
 \begin{solution}
 因为\[
-\lim_{n\to\infty} \frac{u_{n+1}}{u_n} = \lim_{n\to\infty} \frac{(n-1)!}{n!} = \lim_{n\to\infty} \frac{1}{n} = 0 < 1,
-\]根据比值审敛法可知，该级数收敛.
-
-以该级数的部分和近似代替和\(s\)所产生的的误差为\[
-\begin{split}
-\abs{r_n} &= \frac{1}{n!} + \frac{1}{(n+1)!} + \frac{1}{(n+2)!} + \dotsb \\
-&= \frac{1}{n!} \left[ 1 + \frac{1}{n+1} + \frac{1}{(n+1)(n+2)} + \dotsb \right] \\
-&< \frac{1}{n!} \left( 1 + \frac{1}{n} + \frac{1}{n^2} + \dotsb \right) \\
-&= \frac{1}{n!} \frac{1}{1-1/n}
-= \frac{1}{(n-1)\cdot(n-1)!}.
-\end{split}
+	\lim_{n\to\infty} \frac{u_{n+1}}{u_n}
+	 \lim_{n\to\infty} \frac{(n-1)!}{n!}
+	= \lim_{n\to\infty} \frac{1}{n} = 0 < 1,
 \]
+根据比值审敛法可知，该级数收敛.
+
+以该级数的部分和近似代替和\(s\)所产生的的误差为\begin{align*}
+	\abs{r_n} &= \frac{1}{n!} + \frac{1}{(n+1)!} + \frac{1}{(n+2)!} + \dotsb \\
+	&= \frac{1}{n!} \left[ 1 + \frac{1}{n+1} + \frac{1}{(n+1)(n+2)} + \dotsb \right] \\
+	&< \frac{1}{n!} \left( 1 + \frac{1}{n} + \frac{1}{n^2} + \dotsb \right) \\
+	&= \frac{1}{n!} \frac{1}{1-1/n}
+	= \frac{1}{(n-1)\cdot(n-1)!}.
+\end{align*}
 \end{solution}
 \end{example}
 
