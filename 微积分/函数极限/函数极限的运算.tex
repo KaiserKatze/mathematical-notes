@@ -249,15 +249,37 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P55
 计算极限\(\lim_{x\to0} (1+x)^{\frac1x}\).
 \begin{solution}
-利用复合函数的极限运算法则，
-可得\[
+令\(z = \frac1x\)，
+则\(z\to\infty\ (x\to0)\)，
+于是由复合函数的极限运算法则得\[
 	\lim_{x\to0} (1+x)^{\frac1x}
-	\xlongequal{x=1/z}
-	\lim_{z\to\infty} \left(1+\frac1z\right)^z
-	= e.
+	= \lim_{z\to\infty} \left(1+\frac1z\right)^z.
 \]
+由\cref{equation:函数极限.重要极限2} 可知
+\(\lim_{z\to\infty} \left(1+\frac1z\right)^z = e\).
+因此\begin{equation}\label{equation:函数极限.重要极限11}
+	\lim_{x\to0} (1+x)^{\frac1x} = e.
+\end{equation}
+\end{solution}
+\end{example}
+
+\begin{example}
+计算极限\(\lim_{x\to0} \frac{\ln(1+x)}{x}\).
+\begin{solution}
+由\hyperref[equation:函数.对数的基本运算法则3]{对数的运算法则}有
+\(\frac{\ln(1+x)}{x} = \ln(1+x)^{\frac1x}\).
+记\(u(x) = (1+x)^{\frac1x}\ (-1<x<1,x\neq0)\).
+那么显然有\(u(x)>0\)，
+从而复合函数\(\ln u(x)\)在去心邻域\(\mathring{U}(0,1)\)内有定义.
+因为由\cref{equation:函数极限.重要极限11} 可知\(\lim_{x\to0} u(x) = e\)，
+\(\lim_{u\to e} \ln u = 1\)，%FIXME 这个依据是无根之木，需要加以论述
+并且在去心邻域\(\mathring{U}(0,1)\)内成立\(u(x)\neq e\)，
+于是由复合函数的极限运算法则得\begin{equation}\label{equation:函数极限.重要极限12}
+	\lim_{x\to0} \frac{\ln(1+x)}{x} = 1.
+\end{equation}
 \end{solution}
 \end{example}
 
