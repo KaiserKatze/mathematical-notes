@@ -91,7 +91,7 @@
 	= \frac{a_n \xi^n + a_{n-1} \xi^{n-1} + \dotsb + a_1 \xi + a_0}
 	{b_n \xi^m + b_{m-1} \xi^{m-1} + \dotsb + b_1 \xi + b_0}.
 \end{equation}
-特别地，我们有\begin{equation}
+特别地，我们有\begin{equation}\label{equation:函数极限.重要极限5}
 	\lim_{x\to0} \frac{a_n x^n + a_{n-1} x^{n-1} + \dotsb + a_p x^p}
 	{b_m x^m + b_{m-1} x^{m-1} + \dotsb + a_q x^q}
 	= \left\{ \begin{array}{cl}
@@ -102,7 +102,7 @@
 \end{equation}
 
 假设\(a_n,b_n\neq0\)，
-有理分式函数\(F\)当\(x\to\infty\)时的极限为\begin{equation}\label{equation:函数极限.重要极限5}
+有理分式函数\(F\)当\(x\to\infty\)时的极限为\begin{equation}\label{equation:函数极限.重要极限6}
 	\lim_{x\to\infty} F(x)
 	= \left\{ \begin{array}{cl}
 		a_n/b_n, & m=n, \\
@@ -131,7 +131,7 @@
 		\tag{\hyperref[theorem:极限.极限的四则运算法则]{四则运算法则}} \\
 	&= 1;
 \end{align*}
-因此\begin{equation}
+因此\begin{equation}\label{equation:函数极限.重要极限7}
 	\lim_{x\to0} \frac{\tan x}{x} = 1.
 \end{equation}
 \end{solution}
@@ -188,14 +188,22 @@
 %@see: 《高等数学（第六版 上册）》 P52 例2
 求：\(\lim_{x\to0} \frac{1-\cos x}{x^2}\).
 \begin{solution}
-直接计算得\begin{align*}
+由\hyperref[equation:三角函数.正弦的半倍角公式]{半倍角公式}可知
+\(1 - \cos\alpha = 2\sin^2\frac\alpha2\ (-\infty<\alpha<+\infty)\)，
+于是\[
 	\lim_{x\to0} \frac{1-\cos x}{x^2}
-	= \lim_{x\to0} \frac{2 \sin^2\frac{x}{2}}{x^2}
-	= \frac12 \lim_{x\to0} \frac{\sin^2\frac{x}{2}}{\left(\frac{x}{2}\right)^2}
-	= \frac12 \left(\lim_{x\to0} \frac{\sin \frac{x}{2}}{\frac{x}{2}}\right)^2
-	= \frac12.
-\end{align*}
-%\label{equation:函数极限.重要极限4}
+	= 2 \lim_{x\to0} \frac1{x^2} \sin^2\frac{x}2.
+\]
+令\(t=\frac{x}2\)，得\[
+	\lim_{x\to0} \frac{1-\cos x}{x^2}
+	= 2 \lim_{t\to0} \frac{\sin^2 t}{(2t)^2}
+	= \frac12 \lim_{t\to0} \left(\frac{\sin t}{t}\right)^2
+	= \frac12 \left(\lim_{t\to0} \frac{\sin t}{t}\right)^2.
+\]
+由\cref{equation:函数极限.重要极限1} 可知\(\lim_{t\to0} \frac{\sin t}{t} = 1\)，
+因此\begin{equation}\label{equation:函数极限.重要极限8}
+	\lim_{x\to0} \frac{1-\cos x}{x^2} = \frac12.
+\end{equation}
 \end{solution}
 \end{example}
 
