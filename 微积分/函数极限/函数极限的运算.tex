@@ -60,36 +60,63 @@
 	\lim[f(x) \cdot g(x) \cdot h(x)] = \lim f(x) \cdot \lim g(x) \cdot \lim h(x).
 \]
 
-\begin{example}\label{example:极限.有理整函数在一点的极限}
-求有理整函数\[
-	P_n(x) = a_0 x^n + a_1 x^{n-1} + \dotsb + a_{n-1} x + a_n
-\]当\(x\to x_0\)时的极限\(\lim_{x\to x_0} P_n(x)\)时，
-只要用\(x_0\)代入\(x\)就行了，
-也就是说\begin{align*}
-	\lim_{x \to x_0} (a_0 x^n + a_1 x^{n-1} + \dotsb + a_{n-1} x + a_n)
-	&= a_0 \left(\lim_{x \to x_0} x\right)^n
-		+ a_1 \left(\lim_{x \to x_0} x\right)^{n-1} \\
-	&\hspace{20pt}+ \dotsb
-		+ a_{n-1} \left(\lim_{x \to x_0} x\right)
-		+ a_n \\
-	&= a_0 x_0^n + a_1 x_0^{n-1} + \dotsb + a_{n-1} x_0 + a_n \\
-	&= f(x_0).
-\end{align*}
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P46
+设有理整函数\[
+	P_n(x) = a_n x^n + a_{n-1} x^{n-1} + \dotsb + a_1 x + a_0.
+\]
+求有理整函数\(P_n\)当\(x\to\xi\)时的极限\(\lim_{x\to\xi} P_n(x)\)时，
+只要用\(\xi\)代入\(x\)就行了，
+也就是说\begin{equation}\label{equation:函数极限.重要极限3}
+	\lim_{x \to \xi} (a_0 x^n + a_1 x^{n-1} + \dotsb + a_{n-1} x + a_n)
+	= a_0 \xi^n + a_1 \xi^{n-1} + \dotsb + a_{n-1} \xi + a_n.
+\end{equation}
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P48
+%@see: 《数学分析（第二版 上册）》（陈纪修） P83 例3.1.12
 设有理分式函数\[
-	F(x) = \frac{P_n(x)}{P_m(x)}.
+	F(x)
+	= \frac{a_n x^n + a_{n-1} x^{n-1} + \dotsb + a_1 x + a_0}
+	{b_n x^m + b_{m-1} x^{m-1} + \dotsb + b_1 x + b_0}.
 \]
-若\(a_0\neq\)且\(b_0\neq0\)，
-则\[
-	\lim_{x\to\infty} \frac{P_n(x)}{P_m(x)}
+求有理分式函数\(F\)当\(x\to\xi\)时的极限\(\lim_{x\to\xi} F(x)\)时，
+只要分母在点\(\xi\)不为零，即\[
+	b_n \xi^m + b_{m-1} \xi^{m-1} + \dotsb + b_1 \xi + b_0 \neq 0,
+\]
+就可以直接用\(\xi\)代入\(x\)，
+得到\begin{equation}\label{equation:函数极限.重要极限4}
+	\lim_{x\to\xi} F(x)
+	= \frac{a_n \xi^n + a_{n-1} \xi^{n-1} + \dotsb + a_1 \xi + a_0}
+	{b_n \xi^m + b_{m-1} \xi^{m-1} + \dotsb + b_1 \xi + b_0}.
+\end{equation}
+
+假设\(a_n,b_n\neq0\)，
+求有理分式函数\(F\)当\(x\to\infty\)时的极限\(\lim_{x\to\infty} F(x)\)时，
+则\begin{equation}\label{equation:函数极限.重要极限5}
+	\lim_{x\to\infty} F(x)
 	= \left\{ \begin{array}{cl}
-		a_0/b_0, & m=n, \\
+		a_n/b_n, & m=n, \\
 		0, & n<m, \\
 		\infty, & n>m.
 	\end{array} \right.
-\]
+\end{equation}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P52 例1
+求：\(\lim_{x\to0} \frac{\tan x}{x}\).
+\begin{solution}
+直接计算得\begin{align*}
+	\lim_{x\to0} \frac{\tan x}{x}
+	&= \lim_{x\to0} \left(\frac{\sin x}{x} \cdot \frac{1}{\cos x}\right)
+		\tag{正切函数的定义} \\
+	&= \lim_{x\to0} \frac{\sin x}{x} \cdot \lim_{x\to0}\frac{1}{\cos x}
+		\tag{\hyperref[theorem:极限.极限的四则运算法则]{四则运算法则}}
+	&= 1.
+\end{align*}
+\end{solution}
 \end{example}
 
 \subsection{复合函数的极限运算法则}
@@ -138,6 +165,21 @@
 其中\(n\in\mathbb{Z}\)，
 因此在点\(x=0\)的任意去心邻域内，总有\(g\)的零点，无法满足上述条件.
 \end{remark}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P52 例2
+求：\(\lim_{x\to0} \frac{1-\cos x}{x^2}\).
+\begin{solution}
+直接计算得\begin{align*}
+	\lim_{x\to0} \frac{1-\cos x}{x^2}
+	= \lim_{x\to0} \frac{2 \sin^2\frac{x}{2}}{x^2}
+	= \frac12 \lim_{x\to0} \frac{\sin^2\frac{x}{2}}{\left(\frac{x}{2}\right)^2}
+	= \frac12 \left(\lim_{x\to0} \frac{\sin \frac{x}{2}}{\frac{x}{2}}\right)^2
+	= \frac12.
+\end{align*}
+%\label{equation:函数极限.重要极限4}
+\end{solution}
+\end{example}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P52 例3
