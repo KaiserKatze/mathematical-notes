@@ -270,8 +270,9 @@
 
 \begin{example}
 设\(a\neq0\).
-证明：当\(x\to0\)时，\((1+x)^a-1 \sim ax\).
-\begin{proof}
+计算极限\(\lim_{x\to0} \frac{(1+x)^a-1}x\).
+\begin{solution}
+%@see: https://www.bilibili.com/video/BV1mG411Z7mV/?t=622
 令\(t = (1+x)^a-1\)，
 则\[
 	a \ln(1+x) = \ln(1+t),
@@ -280,16 +281,29 @@
 	\qquad
 	x=\exp[\frac1a \ln(1+t)]-1,
 \]
-于是\begin{align*}
+且\(t\to0\ (x\to0)\)，
+于是\[
 	\lim_{x\to0} \frac{(1+x)^a-1}x
-	&= \lim_{t\to0} \frac{t}{\exp[\frac1a \ln(1+t)]-1} \\
-	&= \lim_{t\to0} \frac{t}{\frac1a \ln(1+t)}
-	= a \lim_{t\to0} \frac{t}{\ln(1+t)}
+	= \lim_{t\to0} \frac{t}{\exp[\frac1a \ln(1+t)]-1}.
+\]
+因为\(\ln(1+t)\to0\ (t\to0)\)和\(e^x-1 \sim x\ (x\to0)\)，
+所以\[
+	\lim_{x\to0} \frac{(1+x)^a-1}x
+	= \lim_{t\to0} \frac{t}{\frac1a \ln(1+t)}
+	= a \lim_{t\to0} \frac{t}{\ln(1+t)}.
+\]
+由\cref{equation:函数极限.重要极限12} 可知
+\(\lim_{t\to0} \frac{\ln(1+t)}{t} = 1\)，
+因此\begin{equation}\label{equation:函数极限.重要极限16}
+	\lim_{x\to0} \frac{(1+x)^a-1}x
 	= a.
-	\qedhere
-\end{align*}
-\end{proof}
+\end{equation}
+\end{solution}
 \end{example}
+\begin{remark}
+从\cref{equation:函数极限.重要极限16} 可以看出：
+只要\(a\neq0\)，就有\((1+x)^a-1 \sim ax\ (x\to0)\).
+\end{remark}
 
 \subsection{无穷小的运算}
 \begin{theorem}
