@@ -64,7 +64,32 @@
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1aFbmenEx5
 证明：\(\log_n(n+1)>\log_{n+1}(n+2)\).
-%TODO proof
+\begin{proof}
+作差得\begin{align*}
+	\log_{n+1}(n+2) - \log_n(n+1)
+	&= \frac{\ln(n+2)}{\ln(n+1)}-\frac{\ln(n+1)}{\ln n}
+		\tag{\hyperref[equation:函数.换底公式]{换底公式}} \\
+	&= \frac{\ln(n+2) \cdot \ln n - \ln^2(n+1)}{\ln n \cdot \ln(n+1)}.
+\end{align*}
+其中\begin{align*}
+	\ln(n+2) \cdot \ln n
+	&< \left[\frac{\ln(n+2) + \ln n}2\right]^2
+		\tag{\hyperref[theorem:不等式.基本不等式2推论2]{基本不等式}} \\%FIXME 运用后续章节的内容，需要调整行文顺序
+	&= \left[\frac{\ln(n^2+2n)}2\right]^2
+		\tag{\hyperref[equation:函数.对数的基本运算法则1]{对数的运算法则}} \\
+	&< \left[\frac{\ln(n^2+2n+1)}2\right]^2
+		\tag{函数$\ln$是严格单调增加的} \\
+	&= \left[\frac12 \ln(n+1)^2\right]^2
+	= \ln^2(n+1).
+\end{align*}
+于是\[
+	\log_{n+1}(n+2) - \log_n(n+1)
+	< 0.
+\]
+\end{proof}
+%@Mathematica: Plot[Piecewise[{{Log[x, x + 1], x > 1}, {Log[x, x + 1], 0 < x < 1}}], {x, 0, 10}, PlotRange -> {-10, 10}]
+%函数图形在区间\([0,1)\)和\((1,+\infty)\)上分别严格单调减少.
+%点\(x=1\)是函数\(f(x) = \log_x(x+1)\)的无穷间断点.
 \end{example}
 
 \subsection{作商比较法}
