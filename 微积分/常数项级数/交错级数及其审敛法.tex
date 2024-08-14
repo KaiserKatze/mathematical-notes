@@ -1,0 +1,75 @@
+\section{交错级数及其审敛法}
+所谓\DefineConcept{交错级数}（alternating series）是这样的级数，
+它的各项是正负交错的，从而可以写成下面的形式：\[
+	u_1 - u_2 + u_3 - u_4 + \dotsb,
+\]或\[
+	-u_1 + u_2 - u_3 + u_4 - \dotsb,
+\]
+其中\(u_1,u_2,\dotsc\)都是正数.
+
+\begin{theorem}[莱布尼茨定理]\label{theorem:无穷级数.莱布尼茨定理}
+如果交错级数\(\sum_{n=1}^\infty (-1)^{n-1} u_n\ (u_n>0)\)满足条件：
+\begin{enumerate}
+\item 级数的一般项的绝对值的数列是单调减少的，
+即\(u_n \geq u_{n+1}\ (n=1,2,\dotsc)\)；
+
+\item 级数的一般项的绝对值的数列收敛于零，
+即\(\lim_{n\to\infty} {u_n}=0\)，
+\end{enumerate}
+则级数收敛，且其和\(s \leq u_1\)，
+其余项\(r_n\)的绝对值\(\abs{r_n} \leq u_{n+1}\).
+\end{theorem}
+
+\begin{example}\label{example:无穷级数.交错级数1}
+交错级数\[
+1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \dotsb + (-1)^{n-1} \frac{1}{n} + \dotsb
+\]满足条件\begin{enumerate}
+\item \(u_n = \frac{1}{n} > \frac{1}{n+1} = u_{n+1}\ (n=1,2,\dotsc)\);
+\item \(\lim_{n\to\infty} u_n = \lim_{n\to\infty} \frac{1}{n} = 0\),
+\end{enumerate}所以它是收敛的，且其和\(s < 1\).
+如果取前\(n\)项的和\[
+s_n = 1 - \frac{1}{2} + \frac{1}{3} - \dotsb + (-1)^{n-1} \frac{1}{n}
+\]作为\(s\)的近似值，所产生的误差\(\abs{r_n} \leq \frac{1}{n+1}\).
+\end{example}
+
+\cref{theorem:无穷级数.莱布尼茨定理} 是判断交错级数收敛性的一个充分不必要定理.
+\begin{example}
+交错级数\[
+\frac{1}{2} - \frac{1}{3}
++ \frac{1}{2^2} - \frac{1}{3^2}
++ \dotsm + \frac{1}{2^n} - \frac{1}{3^n}
+\]是收敛的，这是因为它的前\(2n\)项和\begin{align*}
+s_{2n} &= \frac{1}{2} - \frac{1}{3}
++ \frac{1}{2^2} - \frac{1}{3^2}
++ \dotsm + \frac{1}{2^n} - \frac{1}{3^n} \\
+&= \left(\frac{1}{2} + \frac{1}{2^2} + \dotsm + \frac{1}{2^n}\right)
+ - \left(\frac{1}{3} + \frac{1}{3^2} + \dotsm + \frac{1}{3^n}\right) \\
+&= \left(1 - \frac{1}{2^n}\right)
+ - \left(\frac{1}{2} - \frac{1}{2\cdot3^n}\right),
+\end{align*}从而\[
+\lim_{n\to\infty} s_{2n} = \frac{1}{2}.
+\]但是这级数在\(n>1\)时总有\[
+u_{2n} = \frac{1}{3^n} < \frac{1}{2^{n+1}} = u_{2n+1},
+\]不符合\cref{theorem:无穷级数.莱布尼茨定理} 的条件.
+\end{example}
+
+\begin{example}\label{example:交错级数.逐项平方以后发散的特例}
+设\(u_n = \frac{(-1)^n}{\sqrt{n}}\).
+试讨论级数\(\sum_{n=1}^\infty u_n\)和\(\sum_{n=1}^\infty u_n^2\)的敛散性.
+\begin{proof}
+因为\(u_n u_{n+1} < 0\)，
+\(\abs{u_n} > \abs{u_{n+1}}\)，
+\(\lim_{n\to\infty} \abs{u_n} = 0\)，
+那么根据\hyperref[theorem:无穷级数.莱布尼茨定理]{莱布尼茨定理}可知
+\(\sum_{n=1}^\infty u_n\)收敛.
+但是\(\sum_{n=1}^\infty u_n^2
+= \sum_{n=1}^\infty \frac{1}{n}\)是调和级数，发散.
+\end{proof}
+\end{example}
+
+从\cref{example:交错级数.逐项平方以后发散的特例} 可以得出以下结论.
+\begin{proposition}
+对于\(\sum_{n=1}^\infty u_n\)和\(\sum_{n=1}^\infty v_n\)这两个级数，
+不论它们是都收敛，还是都发散，还是一个收敛一个发散，
+将它们的通项对应相乘所得的级数\(\sum_{n=1}^\infty u_n v_n\)既可能收敛，也可能发散.
+\end{proposition}
