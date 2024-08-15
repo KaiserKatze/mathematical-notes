@@ -1,54 +1,81 @@
 \section{洛必达法则}
 如果当\(x \to a\)（或\(x \to \infty\)）时，
-两个函数\(f(x)\)与\(F(x)\)都趋于零或都趋于无穷大，
-那么极限\(\lim\frac{f(x)}{F(x)}\)可能存在，也可能不存在.
+\(f\)与\(g\)这两个函数都趋于零或都趋于无穷大，
+那么极限\(\lim\frac{f(x)}{g(x)}\)可能存在，也可能不存在.
 通常把这种极限叫做\DefineConcept{未定式}（indeterminate form），
 并简记为\(\frac{0}{0}\)或\(\frac{\infty}{\infty}\).
 对于这类极限，即是它存在也不能用“商的极限等于极限的商”这一法则.
 下面我们将根据柯西中值定理来推出求这类极限的一种简便且重要的方法.
 
-我们着重讨论\(x \to a\)时的未定式\(\frac{0}{0}\)的情形，关于这情形有以下定理：
+我们着重讨论\(x \to a^+\)时的未定式\(\frac{0}{0}\)的情形，关于这情形有以下定理：
 \begin{theorem}\label{theorem:微分中值定理.洛必达法则1}
 %@see: 《高等数学（第六版 上册）》 P135 定理1
-设函数\(f\colon D\to\mathbb{R}\)和\(F\colon D\to\mathbb{R}\)都在点\(a\)的某个去心邻域中有定义.
+%@see: 《高等数学（第六版 上册）》 P136 定理2
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P173 定理3.6.1
+%@see: 《数学分析（第二版 上册）》（陈纪修） P185 定理5.2.1（L'Hospital法则）
+设函数\(f\colon(a,b)\to\mathbb{R}\)和\(g\colon(a,b)\to\mathbb{R}\)都在\((a,b)\)内可导.
 如果\begin{itemize}
-	\item \(\lim_{x\to a} f(x) = \lim_{x\to a} F(x) = 0\)；
-	\item 在点\(a\)的某去心邻域内，\(f'(x)\)及\(F'(x)\)都存在且\(F'(x) \neq 0\)；
-	\item \(\lim_{x \to a} \frac{f'(x)}{F'(x)}\)存在（或为无穷大），
+	\item \(\lim_{x \to a^+} f(x) = \lim_{x \to a^+} g(x) = 0\)，
+	或\(\lim_{x \to a^+} g(x) = \infty\)；
+	\item \((\forall x \in (a,b))[g'(x) \neq 0]\)；
+	\item \(\lim_{x \to a^+} \frac{f'(x)}{g'(x)}\)存在且有限，
+	或\(\lim_{x \to a^+} \frac{f'(x)}{g'(x)} = \infty\)，
 \end{itemize}
 那么\[
-	\lim_{x \to a} \frac{f(x)}{F(x)}
-	= \lim_{x \to a} \frac{f'(x)}{F'(x)}.
+	\lim_{x \to a^+} \frac{f(x)}{g(x)}
+	= \lim_{x \to a^+} \frac{f'(x)}{g'(x)}.
 \]
-\begin{proof}
-因为\(\lim_{x\to a} \frac{f(x)}{F(x)}\)与\(f(a)\)及\(F(a)\)无关，
-所以可以假定\(f(a)=F(a)=0\)，
-于是由条件1、2可知，\(f(x)\)及\(F(x)\)在点\(a\)的某一邻域内是连续的.
-设\(x\)是这邻域内的一点，
-那么在以\(x\)及\(a\)为端点的区间上，
-\hyperref[theorem:微分中值定理.柯西中值定理]{柯西中值定理}的条件均满足，
-因此有\[
-	\frac{f(x)}{F(x)}
-	= \frac{f(x)-f(a)}{F(x)-F(a)}
-	= \frac{f'(\xi)}{F'(\xi)}
-	\quad(\text{\(\xi\)在\(x\)与\(a\)之间}).
-\]
-令\(x \to a\)，这时\(\xi \to a\)，再根据条件3便得要证的结论.
-\end{proof}
+%TODO proof
+% \begin{proof}
+% 因为\(\lim_{x \to a^+} \frac{f(x)}{g(x)}\)与\(f(a)\)及\(g(a)\)无关，
+% 所以可以假定\(f(a)=g(a)=0\)，
+% 于是由条件可知，\(f(x)\)及\(g(x)\)在点\(a\)的某一邻域内是连续的.
+% 设\(x\)是这邻域内的一点，
+% 那么在以\(x\)及\(a\)为端点的区间上，
+% \hyperref[theorem:微分中值定理.柯西中值定理]{柯西中值定理}的条件均满足，
+% 因此有\[
+% 	\frac{f(x)}{g(x)}
+% 	= \frac{f(x)-f(a)}{g(x)-g(a)}
+% 	= \frac{f'(\xi)}{g'(\xi)}
+% 	\quad(\text{\(\xi\)在\(x\)与\(a\)之间}).
+% \]
+% 令\(x \to a^+\)，这时\(\xi \to a\)，再根据条件3便得要证的结论.
+% \end{proof}
 \end{theorem}
 像这样，在一定条件下，
 通过分子分母分别求导再求极限来确定未定式的值的方法，
 称为\DefineConcept{洛必达法则}（L'Hospital's rule）.
 
-如果\(\frac{f'(x)}{F'(x)}\)当\(x \to a\)时仍属\(\frac{0}{0}\)型，
-且这时\(f'(x)\)和\(F'(x)\)能满足定理中\(f(x)\)和\(F(x)\)所要满足的条件，
-那么可以继续施用洛必达法则先确定\(\lim_{x \to a} \frac{f'(x)}{F'(x)}\)，
-从而确定\(\lim_{x \to a} \frac{f(x)}{F(x)}\)，即\[
-	\lim_{x \to a} \frac{f(x)}{F(x)}
-	= \lim_{x \to a} \frac{f'(x)}{F'(x)}
-	= \lim_{x \to a} \frac{f''(x)}{F''(x)};
+如果\(\frac{f'(x)}{g'(x)}\)当\(x \to a^+\)时仍属\(\frac{0}{0}\)型，
+且这时\(f'(x)\)和\(g'(x)\)能满足定理中\(f(x)\)和\(g(x)\)所要满足的条件，
+那么可以继续施用洛必达法则先确定\(\lim_{x \to a^+} \frac{f'(x)}{g'(x)}\)，
+从而确定\(\lim_{x \to a^+} \frac{f(x)}{g(x)}\)，即\[
+	\lim_{x \to a^+} \frac{f(x)}{g(x)}
+	= \lim_{x \to a^+} \frac{f'(x)}{g'(x)}
+	= \lim_{x \to a^+} \frac{f''(x)}{g''(x)};
 \]
 且可以此类推.
+
+洛必达法则只是未定式极限存在的充分不必要条件.
+例如，对于极限\[
+	\lim_{x\to\infty} \frac{x+\sin x}{x},
+\]
+易见\[
+	\lim_{x\to\infty} (x+\sin x)
+	= \lim_{x\to\infty} x
+	= \infty,
+	\qquad
+	(x+\sin x)' = 1+\cos x, \qquad
+	x' = 1.
+\]
+虽然极限\[
+	\lim_{x\to\infty}\frac{(x+\sin x)'}{x'} = \lim_{x\to\infty}(1+\cos x)
+\]不存在，
+但原极限存在：\[
+	\lim_{x\to\infty} \frac{x+\sin x}{x}
+	= 1 + \lim_{x\to\infty} \frac{\sin x}{x}
+	= 1 + 0 = 1.
+\]
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P136 例1
@@ -108,63 +135,6 @@
 = 0\).
 \end{solution}
 \end{example}
-
-我们指出，对于\(x\to\infty\)时的未定式\(\frac{0}{0}\)
-以及对于\(x \to a\)或\(x\to\infty\)时的未定式\(\frac{\infty}{\infty}\)，
-也有相应的洛必达法则.
-例如，对于\(x\to\infty\)时的未定式\(\frac{0}{0}\)有以下定理.
-\begin{theorem}\label{theorem:微分中值定理.洛必达法则2}
-%@see: 《高等数学（第六版 上册）》 P136 定理2
-设\begin{enumerate}
-	\item \(\lim_{x\to\infty} f(x) = \lim_{x\to\infty} F(x) = 0\)；
-	\item 当\(\abs{x}>N\)时，\(f'(x)\)与\(F'(x)\)都存在，且\(F'(x) \neq 0\)；
-	\item \(\lim_{x\to\infty} \frac{f'(x)}{F'(x)}\)存在（或为无穷大），
-\end{enumerate}
-那么\[
-	\lim_{x\to\infty} \frac{f(x)}{F(x)}
-	= \lim_{x\to\infty} \frac{f'(x)}{F'(x)}.
-\]
-\end{theorem}
-
-\begin{remark}
-洛必达法则只是未定式极限存在的充分不必要条件.
-例如，对于极限\[
-	\lim_{x\to\infty} \frac{x+\sin x}{x},
-\]
-易见\[
-	\lim_{x\to\infty} (x+\sin x)
-	= \lim_{x\to\infty} x
-	= \infty,
-	\qquad
-	(x+\sin x)' = 1+\cos x, \qquad
-	x' = 1.
-\]
-虽然极限\[
-	\lim_{x\to\infty}\frac{(x+\sin x)'}{x'} = \lim_{x\to\infty}(1+\cos x)
-\]不存在，
-但原极限存在：\[
-	\lim_{x\to\infty} \frac{x+\sin x}{x}
-	= 1 + \lim_{x\to\infty} \frac{\sin x}{x}
-	= 1 + 0 = 1.
-\]
-\end{remark}
-
-\begin{remark}
-在运用洛必达法则时必须注意其条件是否得到满足.
-例如，
-极限\[
-	\lim_{x\to\infty} \frac{x+\sin x \cos x}{e^{\sin x}(x+\sin x \cos x)}
-	= \lim_{x\to\infty} \frac{1}{e^{\sin x}}
-\]不存在.
-但极限\[
-	L = \lim_{x\to\infty} \frac{(x+\sin x \cos x)'}{[e^{\sin x}(x+\sin x \cos x)]'}
-	= \lim_{x\to\infty} \frac{2\cos^2 x}{e^{\sin x}\cos x(2\cos x + x + \sin x \cos x)},
-\]其中分母的\(\cos x\)不满足恒不为零的条件.
-在无视这个错误的情况下继续求解居然算得\[
-	L = \lim_{x\to\infty} \frac{2\cos x}{e^{\sin x}(2\cos x + x + \sin x \cos x)} = 0.
-\]
-这显然是错误的.
-\end{remark}
 
 \begin{example}
 求\(\lim_{x\to+\infty} \frac{\frac{\pi}{2} - \arctan x}{\frac{1}{x}}\).
