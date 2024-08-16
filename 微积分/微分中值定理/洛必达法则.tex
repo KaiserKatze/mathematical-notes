@@ -25,22 +25,108 @@
 	\lim_{x \to a^+} \frac{f(x)}{g(x)}
 	= \lim_{x \to a^+} \frac{f'(x)}{g'(x)}.
 \]
-%TODO proof
-% \begin{proof}
-% 因为\(\lim_{x \to a^+} \frac{f(x)}{g(x)}\)与\(f(a)\)及\(g(a)\)无关，
-% 所以可以假定\(f(a)=g(a)=0\)，
-% 于是由条件可知，\(f(x)\)及\(g(x)\)在点\(a\)的某一邻域内是连续的.
-% 设\(x\)是这邻域内的一点，
-% 那么在以\(x\)及\(a\)为端点的区间上，
-% \hyperref[theorem:微分中值定理.柯西中值定理]{柯西中值定理}的条件均满足，
-% 因此有\[
-% 	\frac{f(x)}{g(x)}
-% 	= \frac{f(x)-f(a)}{g(x)-g(a)}
-% 	= \frac{f'(\xi)}{g'(\xi)}
-% 	\quad(\text{\(\xi\)在\(x\)与\(a\)之间}).
-% \]
-% 令\(x \to a^+\)，这时\(\xi \to a\)，再根据条件3便得要证的结论.
-% \end{proof}
+\begin{proof}
+假设\(\lim_{x \to a^+} f(x) = \lim_{x \to a^+} g(x) = 0\)，
+且\(\lim_{x \to a^+} \frac{f'(x)}{g'(x)}\)存在且有限.
+由于函数在点\(x=a\)的值与当\(x \to a^+\)时的极限无关，
+因此可以补充定义：\[
+	f(a) = g(a) = 0,
+\]
+使得\(f\)和\(g\)在区间\([a,b)\)上连续.
+取\(c\in(a,b)\)，
+则经补充定义后的函数\(f\)和\(g\)在\([a,c]\subset[a,b)\)上
+满足\hyperref[theorem:微分中值定理.柯西中值定理]{柯西中值定理}的条件，
+因而对于任意\(x\in(a,c)\)，存在\(\xi\in(a,c)\)，满足\[
+	\frac{f(x)}{g(x)}
+	= \frac{f(x)-f(a)}{g(x)-g(a)}
+	= \frac{f'(\xi)}{g'(\xi)}.
+\]
+当\(x \to a^+\)时显然有\(\xi \to a^+\)，
+于是\[
+	\lim_{x \to a^+} \frac{f(x)}{g(x)}
+	= \lim_{\xi \to a^+} \frac{f'(\xi)}{g'(\xi)}
+	= \lim_{x \to a^+} \frac{f'(x)}{g'(x)}.
+\]
+
+假设\(\lim_{x \to a^+} g(x) = \infty\)，
+且\(\lim_{x \to a^+} \frac{f'(x)}{g'(x)} = A\)存在且有限.
+取\(c\in(a,b)\)，
+则当\(x \neq c\)时，商式\(\frac{f(x)}{g(x)}\)可以改写为\begin{align*}
+	\frac{f(x)}{g(x)}
+	&= \frac{f(x) - f(c) + f(c)}{g(x)}
+	= \frac{f(x) - f(c)}{g(x)} + \frac{f(c)}{g(x)} \\
+	&= \frac{g(x) - g(c)}{g(x)} \cdot \frac{f(x) - f(c)}{g(x) - g(c)} + \frac{f(c)}{g(x)} \\
+	&= \left[1 - \frac{g(c)}{g(x)}\right] \frac{f(x) - f(c)}{g(x) - g(c)} + \frac{f(c)}{g(x)}.
+\end{align*}
+于是\begin{align*}
+	\abs{\frac{f(x)}{g(x)} - A}
+	&= \abs{
+		\left[1 - \frac{g(c)}{g(x)}\right] \frac{f(x) - f(c)}{g(x) - g(c)}
+		+ \frac{f(c)}{g(x)} - A
+	} \\
+	&= \abs{
+		\left[1 - \frac{g(c)}{g(x)}\right]
+		\left[\frac{f(x) - f(c)}{g(x) - g(c)} - A\right]
+		+ \left[1 - \frac{g(c)}{g(x)}\right] A
+		+ \frac{f(c)}{g(x)} - A
+	} \\
+	&= \abs{
+		\left[1 - \frac{g(c)}{g(x)}\right]
+		\left[\frac{f(x) - f(c)}{g(x) - g(c)} - A\right]
+		+ \frac{f(c) - A g(c)}{g(x)}
+	} \\
+	&\leq \abs{1 - \frac{g(c)}{g(x)}}
+	\abs{\frac{f(x) - f(c)}{g(x) - g(c)} - A}
+	+ \abs{\frac{f(c) - A g(c)}{g(x)}}.
+\end{align*}
+因为\(\lim_{x \to a^+} \frac{f'(x)}{g'(x)} = A\)，
+所以对于\(\forall\epsilon>0\)，
+\(\exists\rho\in(0,b-a)\)，
+当\(0<x-a<\rho\)时，
+成立\[
+	\abs{\frac{f'(x)}{g'(x)} - A} < \epsilon.
+\]
+取\(c=a+\rho\)，
+由\hyperref[theorem:微分中值定理.柯西中值定理]{柯西中值定理}，
+对于\(\forall x \in (a,c)\)，
+\(\exists\xi\in(x,c)\subset(a,b)\)，
+满足\[
+	\frac{f(x) - f(c)}{g(x) - g(c)} = \frac{f'(\xi)}{g'(\xi)}.
+\]
+于是得到\[
+	\abs{\frac{f(x) - f(c)}{g(x) - g(c)} - A}
+	= \abs{\frac{f'(\xi)}{g'(\xi)} - A}
+	< \epsilon.
+\]
+又因为\(\lim_{x \to a^+} g(x) = \infty\)，
+所以\[
+	\lim_{x \to a^+} \abs{1 - \frac{g(c)}{g(x)}} = 1,
+	\qquad
+	\lim_{x \to a^+} \abs{\frac{f(c) - A g(c)}{g(x)}} = 0,
+\]
+也就是说\(\exists\delta\in(0,\rho)\)，
+当\(0<x-a<\delta\)时，
+成立\[
+	\abs{1-\frac{g(c)}{g(x)}} < 2, \qquad
+	\abs{\frac{f(c) - A g(c)}{g(x)}} < \epsilon.
+\]
+综上所述，对于\(\forall\epsilon>0\)，
+\(\exists\delta>0\)，
+当\(0<x-a<\delta\)时，
+成立\begin{align*}
+	\abs{\frac{f(x)}{g(x)} - A}
+	&\leq \abs{1 - \frac{g(c)}{g(x)}}
+	\abs{\frac{f(x) - f(c)}{g(x) - g(c)} - A}
+	+ \abs{\frac{f(c) - A g(c)}{g(x)}} \\
+	&< 2\epsilon + \epsilon = 3\epsilon,
+\end{align*}
+由定义有\[
+	\lim_{x \to a^+} \frac{f(x)}{g(x)}
+	= \lim_{x \to a^+} \frac{f'(x)}{g'(x)}
+	= A.
+	\qedhere
+\]
+\end{proof}
 \end{theorem}
 像这样，在一定条件下，
 通过分子分母分别求导再求极限来确定未定式的值的方法，
