@@ -203,16 +203,6 @@
 \end{example}
 
 \begin{example}
-求\(\lim_{x\to-\frac\pi2} (\sec x+\tan x)\).
-\begin{solution}
-\(\lim_{x\to-\frac\pi2} (\sec x+\tan x)
-= \lim_{x\to-\frac\pi2} \frac{1+\sin x}{\cos x}
-= \lim_{x\to-\frac\pi2} \frac{\cos x}{-\sin x}
-= 0\).
-\end{solution}
-\end{example}
-
-\begin{example}
 求\(\lim_{x\to\pi} (\csc x+\cot x)\).
 \begin{solution}
 \(\lim_{x\to\pi} (\csc x+\cot x)
@@ -283,9 +273,34 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P138 例8
+求\(\lim_{x\to\frac\pi2} (\sec x-\tan x)\).
+\begin{solution}
+这是未定式\(\infty-\infty\).
+因为\(\sec x-\tan x = \frac{1-\sin x}{\cos x}\)，
+当\(x\to\frac\pi2\)时，上式右边是未定式\(\frac00\)，
+应用洛必达法则，
+得\(\lim_{x\to\frac\pi2} (\sec x-\tan x)
+= \lim_{x\to\frac\pi2} \frac{1-\sin x}{\cos x}
+= \lim_{x\to\frac\pi2} \frac{\cos x}{-\sin x}
+= 0\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求\(\lim_{x\to-\frac\pi2} (\sec x+\tan x)\).
+\begin{solution}
+\(\lim_{x\to-\frac\pi2} (\sec x+\tan x)
+= \lim_{x\to-\frac\pi2} \frac{1+\sin x}{\cos x}
+= \lim_{x\to-\frac\pi2} \frac{\cos x}{-\sin x}
+= 0\).
+\end{solution}
+\end{example}
+
 \begin{example}\label{example:微分中值定理.洛必达法则.零次方零型1}
 %@see: 《高等数学（第六版 上册）》 P138 例9
-求\(\lim_{x\to0^+}{x^x}\).
+求\(\lim_{x\to0^+} x^x\).
 \begin{solution}
 这是未定式\(0^0\).
 设\(y = x^x\)，取对数得\(\ln y = x \ln x\).
@@ -308,9 +323,6 @@
 \end{solution}
 \end{example}
 
-洛必达法则是求未定式的一种有效方法，但最好能与其他求极限的方法结合使用.
-例如能化简时应尽量先化简，可以应用等价无穷小替代或重要极限时应尽可能应用，这样可以使运算简便.
-
 \begin{example}\label{example:微分中值定理.洛必达法则.零乘无穷大型2}
 求\(\lim_{x\to+\infty} x p^x\ (0<p<1)\).
 \begin{solution}
@@ -325,6 +337,26 @@
 	= \lim_{x\to+\infty} \frac{p^x}{\ln(1/p)}
 	= 0.
 \]
+\end{solution}
+\end{example}
+
+洛必达法则是求未定式的一种有效方法，但最好能与其他求极限的方法结合使用.
+例如能化简时应尽量先化简，可以应用等价无穷小替代或重要极限时应尽可能应用，这样可以使运算简便.
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P138 例10
+求\(\lim_{x\to0} \frac{\tan x - x}{x^2 \sin x}\).
+\begin{solution}
+如果直接用洛必达法则，那么分母的导数（尤其是高阶导数）比较复杂.
+如果作一个等价无穷小替代，那么运算就方便得多：
+\begin{align*}
+	\lim_{x\to0} \frac{\tan x - x}{x^2 \sin x}
+	&= \lim_{x\to0} \frac{\tan x - x}{x^3} \cdot \frac{x}{\sin x}
+	= \lim_{x\to0} \frac{\tan x - x}{x^3} \\
+	&= \lim_{x\to0} \frac{\sec^2 x - 1}{3x^2} \\
+	&= \lim_{x\to0} \frac{2\sec^2 x \tan x}{6x} \\
+	&= \frac13 \lim_{x\to0} \frac{\tan x}{x} = \frac13.
+\end{align*}
 \end{solution}
 \end{example}
 
