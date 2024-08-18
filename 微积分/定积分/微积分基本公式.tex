@@ -1,65 +1,83 @@
 \section{微积分基本公式}
 \subsection{积分上限的函数及其导数}
-\begin{theorem}[变限积分可导定理]\label{theorem:定积分.变限积分可导定理}
-如果函数\(f(x)\)在区间\([a,b]\)上连续，则积分上限的函数\[
-	\Phi(x)
-	= \int_a^x f(t)\dd{t}
-\]在\([a,b]\)上可导，且其导数\[
-	\Phi'(x)
-	= \dv{x} \int_a^x f(t) \dd{t}
-	= f(x),
-	\quad a \leq x \leq b.
-\]
+\begin{theorem}\label{theorem:定积分.变限积分定理}
+%@see: 《高等数学（第六版 上册）》 P237 定理1
+%@see: 《数学分析（第二版 上册）》（陈纪修） P296 定理7.3.1
+设函数\(f\colon[a,b]\to\mathbb{R}\)，
+令\(\Phi(x)
+= \int_a^x f(t) \dd{t}\).
+\begin{itemize}
+	\item 如果\(f\)在\([a,b]\)上黎曼可积，
+	则\(\Phi\)在\([a,b]\)上连续.
+
+	\item 如果\(f\)在\([a,b]\)上连续，
+	则\(\Phi\)在\([a,b]\)上可导，
+	并且它的导数为\[
+		\Phi'(x)
+		= \dv{x} \int_a^x f(t) \dd{t}
+		= f(x),
+		\quad a \leq x \leq b.
+	\]
+\end{itemize}
 \begin{proof}
+易知\(\Phi\)在整个闭区间\([a,b]\)上有定义.
 我们按\(x\)的取值，分为\(x\in(a,b)\)、\(x=a\)、\(x=b\)三种情况讨论.
 
 若\(x\in(a,b)\)，
-设\(x + \increment x \in (a,b)\)，
-则\(\Phi(x)\)在\(x + \increment x\)处的函数值为\[
-	\Phi(x + \increment x) = \int_a^{x+\increment x} f(t) \dd{t}.
+取\(x + \increment x \in (a,b)\)，
+则\[
+	\Phi(x + \increment x) = \int_a^{x+\increment x} f(t) \dd{t},
 \]
-由此得函数的增量
-\begin{align*}
+于是\begin{align*}
 	\increment\Phi
 	&= \Phi(x + \increment x) - \Phi(x) \\
 	&= \int_a^{x+\increment x} f(t) \dd{t} - \int_a^x f(t) \dd{t} \\
-	&= \int_a^x f(t) \dd{t} + \int_x^{x+\increment x} f(t) \dd{t} - \int_a^x f(t) \dd{t} \\
+	&= \int_a^x f(t) \dd{t} + \int_x^{x+\increment x} f(t) \dd{t} - \int_a^x f(t) \dd{t}
+		\tag{\cref{theorem:定积分.定积分性质3}} \\
 	&= \int_x^{x+\increment x} f(t) \dd{t}.
 \end{align*}
-再应用积分中值定理，
-即\(\exists\xi\in( \min\{x,x+\increment x\}, \max\{x,x+\increment x\} )\)，
-使得\[
-	\increment\Phi = f(\xi) \increment x.
-\]
-把上式两端各除以\(\increment x\)，得函数增量与自变量增量的比值\[
-	\frac{\increment\Phi}{\increment x} = f(\xi).
-\]
+记\(m \defeq \min_{a \leq x \leq b} f(x),
+M \defeq \max_{a \leq x \leq b} f(x),
+\alpha \defeq \min\{x,x+\increment x\},
+\beta \defeq \max\{x,x+\increment x\}\).
+由\hyperref[theorem:定积分.积分中值定理1]{定积分第一中值定理}可知，
+\begin{itemize}
+	\item 如果\(f\)在\([a,b]\)上黎曼可积，
+	则\(\exists\mu\in[m,M]\)，
+	使得\[
+		\increment\Phi = \mu \increment x;
+	\]
 
-由于\(f \in C[a,b]\)，
-而且当\(\increment x\to0\)时\(\xi \to x\)，
-因此\[
-	\lim_{\increment x\to0} \frac{\increment\Phi}{\increment x}
+	\item 如果\(f\)在\([a,b]\)上连续，
+	则\(\exists\xi\in(\alpha,\beta)\)，
+	使得\[
+		\increment\Phi = f(\xi) \increment x.
+	\]
+\end{itemize}
+显然，不管在哪种情况下，当\(\increment x\to0\)时，
+都有\(\increment\Phi\to0\)，
+即\(\Phi\)在\([a,b]\)上连续.
+
+如果\(f\)在\([a,b]\)上连续，
+当\(\increment x\to0\)时\(\xi \to x\)，
+因而\(f(\xi) \to f(x)\)，
+于是当\(x\in(a,b)\)时，成立\[
+	\Phi'(x)
+	= \lim_{\increment x\to0} \frac{\increment\Phi}{\increment x}
 	= \lim_{\increment x\to0} f(\xi)
 	= \lim_{\xi \to x} f(\xi)
 	= f(x).
 \]
-这就是说，函数\(\Phi(x)\)的导数存在，并且\[
-	\Phi'(x) = f(x).
+当\(x = a\)时，取\(\increment x > 0\)，则同理可证\[
+	\Phi'_+(a) = f(a).
 \]
-
-若\(x = a\)，取\(\increment x > 0\)，则同理可证
-\[
-	\Phi'_+(a)=f(a).
-\]
-
-若\(x = b\)，取\(\increment x < 0\)，则同理可证
-\[
-	\Phi'_-(b)=f(b).
+当\(x = b\)时，取\(\increment x < 0\)，则同理可证\[
+	\Phi'_-(b) = f(b).
 	\qedhere
 \]
 \end{proof}
 \end{theorem}
-\cref{theorem:定积分.变限积分可导定理} 指出了一个重要结论：
+\cref{theorem:定积分.变限积分定理} 指出了一个重要结论：
 连续函数\(f(x)\)取变上限\(x\)的定积分然后求导，其结果还原为\(f(x)\)本身.
 联想到原函数的定义，就可以从该定理推知\(\Phi(x)\)是连续函数\(f(x)\)的一个原函数.
 因此，我们引出如下的原函数的存在定理：
@@ -119,7 +137,7 @@ F'(x) = F'_1(x) + F'_2(x)
 \lim_{x \to a} \left( 1 - \frac{a}{x} \right) = 0,
 \]
 
-根据\cref{theorem:定积分.变限积分可导定理}，有\[
+根据\cref{theorem:定积分.变限积分定理}，有\[
 \dv{x} \int_a^x f(t) \dd{t} = f(x);
 \]又有\[
 \dv{x}(1 - \frac{a}{x}) = \frac{a}{x^2};
