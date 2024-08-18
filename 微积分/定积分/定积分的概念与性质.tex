@@ -59,6 +59,20 @@
 \]
 换句话说，定积分的值只与被积函数及积分区间有关，而与积分变量的记法无关.
 
+在上面对定积分的定义中，由于\([a,b]\)是区间，所以蕴含了\(a<b\)这一条件，
+但是我们有时候需要计算的定积分\(\int_a^b f(x) \dd{x}\)满足\(a \geq b\).
+因此，为了以后计算及应用方便起见，对定积分作以下补充规定：
+交换定积分的上下限，定积分的绝对值不变而符号相反，即
+\begin{equation}\label{equation:定积分.交换上下限改变定积分的符号}
+	\int_a^b f(x) \dd{x}
+	= - \int_b^a f(x) \dd{x}.
+\end{equation}
+由此我们得到一个结论：
+定积分上下限相等时，定积分为零，即
+\begin{equation}\label{equation:定积分.上下限相等的定积分为零}
+    \int_a^a f(x) \dd{x} = 0.
+\end{equation}
+
 根据定积分定义判定定积分不存在的方法有两种：
 \begin{itemize}
 	\item 证明存在一种分法使得积分和极限不存在.
@@ -251,27 +265,13 @@
 定积分\(\int_a^b f(x) \dd{x}\)还可以理解为非空集\(R[a,b]\)上的泛函.
 
 \subsection{定积分的性质}
-\begin{definition}
-为了以后计算及应用方便起见，对定积分作以下两点补充规定：
-\begin{enumerate}
-\item 定积分上下限相等时，定积分为零，即
-\begin{equation}\label{equation:定积分.上下限相等的定积分为零}
-    a=b \implies \int_a^b f(x) \dd{x}=0.
-\end{equation}
-\item 交换定积分的上下限，定积分的绝对值不变而符号相反，即
-\begin{equation}\label{equation:定积分.交换上下限改变定积分的符号}
-\int_a^b f(x) \dd{x}
-= - \int_b^a f(x) \dd{x}.
-\end{equation}
-\end{enumerate}
-\end{definition}
-
 下面讨论定积分的性质.
 下列各性质中积分上下限的大小，
 如不特别指明，均不加限制；
 并假定各性质中所列出的定积分都是存在的.
 \begin{property}\label{theorem:定积分.定积分性质1}
 %@see: 《高等数学（第六版 上册）》 P231 性质1
+%@see: 《数学分析（第二版 上册）》（陈纪修） P286 性质1（线性性质）
 \(\int_a^b [f(x) \pm g(x)] \dd{x}
 = \int_a^b f(x) \dd{x} \pm \int_a^b g(x) \dd{x}\).
 \begin{proof}
@@ -302,11 +302,34 @@
 \(\int_a^b 0 \dd{x} = 0\).
 \end{corollary}
 
+\begin{corollary}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P286 推论
+设\(f\)在\([a,b]\)上黎曼可积，
+而\(g\)只在有限个点上与\(f\)的取值不相同，
+则\(g\)也在\([a,b]\)上黎曼可积，
+并且有\[
+	\int_a^b f(x) \dd{x}
+	= \int_a^b g(x) \dd{x}.
+\]
+\end{corollary}
+
+\begin{property}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P287 性质2（乘积可积性）
+设\(f\)和\(g\)都在\([a,b]\)上黎曼可积，
+则\(f \cdot g\)在\([a,b]\)上黎曼可积.
+\end{property}
+
 \begin{property}\label{theorem:定积分.定积分性质3}
 %@see: 《高等数学（第六版 上册）》 P231 性质3
-\(\int_a^b f(x) \dd{x}
-= \int_a^c f(x) \dd{x}
-+ \int_c^b f(x) \dd{x}\).
+%@see: 《数学分析（第二版 上册）》（陈纪修） P288 性质5（区间可加性）
+设\(f\)在\([a,b]\)上黎曼可积，
+则对任意一点\(c\in(a,b)\)成立\(f\)在\([a,c]\)和\([c,b]\)上都黎曼可积，
+反过来\(f\)在\([a,c]\)和\([c,b]\)上都黎曼可积蕴含\(f\)在\([a,b]\)上黎曼可积，
+并且\begin{equation}
+	\int_a^b f(x) \dd{x}
+	= \int_a^c f(x) \dd{x}
+	+ \int_c^b f(x) \dd{x}.
+\end{equation}
 \end{property}
 上述性质表明定积分对于积分区间具有“可加性”.
 
@@ -396,7 +419,10 @@
 
 \begin{corollary}\label{theorem:定积分.定积分性质5推论1}
 %@see: 《高等数学（第六版 上册）》 P232 推论1
-如果在区间\([a,b]\)上，\(f(x) \leq g(x)\)，则\[
+%@see: 《数学分析（第二版 上册）》（陈纪修） P287 性质3（保序性）
+设\(f\)和\(g\)都在\([a,b]\)上黎曼可积，
+且在\([a,b]\)上恒有\(f(x) \leq g(x)\)，
+则\[
 	\int_a^b f(x) \dd{x} \leq \int_a^b g(x) \dd{x}.
 \]
 \begin{proof}
@@ -422,7 +448,11 @@
 
 \begin{corollary}\label{theorem:定积分.定积分性质5推论2}
 %@see: 《高等数学（第六版 上册）》 P233 推论2
-当\(a<b\)时，\(\abs{\int_a^b f(x) \dd{x}} \leq \int_a^b \abs{f(x)} \dd{x}\).
+%@see: 《数学分析（第二版 上册）》（陈纪修） P288 性质4（绝对可积性）
+设\(f\)在\([a,b]\)上黎曼可积，
+则\begin{equation}
+	\abs{\int_a^b f(x) \dd{x}} \leq \int_a^b \abs{f(x)} \dd{x}.
+\end{equation}
 \begin{proof}
 因为\[
 	-\abs{f(x)} \leq f(x) \leq \abs{f(x)},
@@ -506,57 +536,69 @@
 上述性质说明，由被积函数在积分区间上的最大值及最小值，可以估计积分值的大致范围.
 
 \subsection{积分中值定理}
-\begin{theorem}[定积分中值定理]\label{theorem:定积分.积分中值定理0}
-设函数\(f(x)\)在积分区间\([a,b]\)上连续，
-则\(\exists\xi\in[a,b]\)，
-使\[
-	\int_a^b f(x) \dd{x} = (b-a) f(\xi)
-\]成立.
-\rm
-这个公式称为\DefineConcept{积分中值公式}.
-\end{theorem}
-显然，积分中值公式不论\(a<b\)或\(a>b\)都是成立的.
-
-按积分中值公式所得\[
-	f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
-\]
-称为函数\(f(x)\)在区间\([a,b]\)上的\DefineConcept{平均值}.
-
 \begin{theorem}[积分第一中值定理]\label{theorem:定积分.积分中值定理1}
-若\(f,g \in R[a,b]\)，
-且\(g(x) \gtrless 0\ (a \leq x \leq b)\)，
-那么\(\exists\mu\in\left[
-	\inf_{a \leq x \leq b} f(x),
-	\sup_{a \leq x \leq b} f(x)
-\right]\)，
-使得\[
-	\int_a^b f(x) g(x) \dd{x} = \mu \int_a^b g(x) \dd{x}.
+%@see: 《数学分析（第二版 上册）》（陈纪修） P290 性质6（积分第一中值定理）
+设\(f,g \in R[a,b]\)，
+且\(g\)在\([a,b]\)上不变号，
+记\[
+	m = \inf\Set{ f(x) \given x \in [a,b] }, \qquad
+	M = \sup\Set{ f(x) \given x \in [a,b] },
 \]
+那么\(\exists\mu\in[m,M]\)，
+使得\begin{equation}
+	\int_a^b f(x) g(x) \dd{x} = \mu \int_a^b g(x) \dd{x}.
+\end{equation}
 \end{theorem}
 
 \begin{corollary}\label{theorem:定积分.积分中值定理1推论1}
-若\(f \in C[a,b]\)，
+%@see: 《数学分析（第二版 上册）》（陈纪修） P290 性质6（积分第一中值定理）
+设\(f \in C[a,b]\)，
 \(g \in R[a,b]\)，
-\(g(x) \gtrless 0\)，
+且\(g\)在\([a,b]\)上不变号，
 那么\(\exists\xi\in[a,b]\)，
-使得\[
+使得\begin{equation}
 	\int_a^b f(x) g(x) \dd{x}
 	= f(\xi) \int_a^b g(x) \dd{x}.
-\]
+\end{equation}
 \end{corollary}
 
+\begin{corollary}\label{theorem:定积分.积分中值定理0}
+%@see: 《高等数学（第六版 上册）》 P233 性质7（定积分中值定理）
+设函数\(f\)在\([a,b]\)上连续，
+则\(\exists\xi\in[a,b]\)，
+使\begin{equation}
+	\int_a^b f(x) \dd{x} = (b-a) f(\xi).
+\end{equation}
+\end{corollary}
+显然，积分中值公式不论\(a<b\)或\(a>b\)都是成立的.
+
+按积分中值公式所得\begin{equation}
+	f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
+\end{equation}
+称为函数\(f(x)\)在区间\([a,b]\)上的\DefineConcept{平均值}.
+
 \begin{theorem}[积分第二中值定理]\label{theorem:定积分.积分中值定理2}
-设\(f,g \in R[a,b]\).\begin{enumerate}
-\item 若\(f\)在\((a,b)\)上单调，则\(\exists \xi \in [a,b]\)使得\[
-\int_a^b f(x) g(x) \dd{x} = f(a^+) \int_a^{\xi} g(x) \dd{x} + f(b^-) \int_{\xi}^b g(x) \dd{x}.
-\]
-\item 若\(f\)在\((a,b)\)上单调递减且\(f(x) \geq 0\)，则\(\exists \xi \in [a,b]\)使得\[
-\int_a^b f(x) g(x) \dd{x} = f(a^+) \int_a^{\xi} g(x) \dd{x};
-\]
-\item 若\(f\)在\((a,b)\)上单调递增且\(f(x) \geq 0\)，则\(\exists \xi \in [a,b]\)使得\[
-\int_a^b f(x) g(x) \dd{x} = f(b^-) \int_{\xi}^b g(x) \dd{x};
-\]
-\end{enumerate}
+设\(f,g \in R[a,b]\)，
+则\begin{itemize}
+	\item 若\(f\)在\((a,b)\)上单调，
+	则\(\exists \xi \in [a,b]\)，
+	使得\[
+		\int_a^b f(x) g(x) \dd{x}
+		= f(a^+) \int_a^{\xi} g(x) \dd{x} + f(b^-) \int_{\xi}^b g(x) \dd{x}.
+	\]
+	\item 若\(f\)在\((a,b)\)上单调递减且\(f(x) \geq 0\)，
+	则\(\exists \xi \in [a,b]\)，
+	使得\[
+		\int_a^b f(x) g(x) \dd{x}
+		= f(a^+) \int_a^{\xi} g(x) \dd{x};
+	\]
+	\item 若\(f\)在\((a,b)\)上单调递增且\(f(x) \geq 0\)，
+	则\(\exists \xi \in [a,b]\)，
+	使得\[
+		\int_a^b f(x) g(x) \dd{x}
+		= f(b^-) \int_{\xi}^b g(x) \dd{x};
+	\]
+\end{itemize}
 \end{theorem}
 
 \begin{example}
