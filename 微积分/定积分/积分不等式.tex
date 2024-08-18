@@ -1,6 +1,6 @@
 \section{积分不等式}
 \subsection{赫尔德不等式}
-\begin{theorem}
+\begin{theorem}\label{theorem:定积分.赫尔德不等式}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P291 例7.2.2（Holder不等式）
 设\(f\)和\(g\)都在\([a,b]\)上连续，正数\(p,q\)满足\(\frac1p+\frac1q=1\)，
 则\begin{equation}
@@ -10,6 +10,38 @@
 \end{equation}
 %TODO proof
 \end{theorem}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P292 例7.2.3
+设函数\(f \in D^2[a,b]\)，且\(f\left(\frac{a+b}2\right) = 0\).
+记\(M = \sup_{a \leq x \leq b} \abs{f''(x)}\).
+证明：\[
+	\int_a^b f(x) \dd{x}
+	\leq \frac{M(b-a)^3}{24}.
+\]
+\begin{proof}
+记\(c=\frac{a+b}2\).
+函数\(f\)在\(x=c\)的带有拉格朗日型余项的泰勒公式为\begin{align*}
+	f(x) &= f(c) + f'(c) (x-c) + \frac12 f''(\xi) (x-c)^2 \\
+	&= f'(c) (x-c) + \frac12 f''(\xi) (x-c)^2,
+\end{align*}
+其中\(a \leq \xi \leq b\).
+对等式两边求积分，利用\(\int_a^b (x-c) \dd{x} = 0\)，得到\begin{align*}
+	\int_a^b f(x) \dd{x}
+	&= f'(c) \int_a^b (x-c) \dd{x} + \frac12 \int_a^b f''(\xi) (x-c)^2 \dd{x} \\
+	&= \frac12 \int_a^b f''(\xi) (x-c)^2 \dd{x},
+\end{align*}
+于是\begin{align*}
+	\abs{\int_a^b f(x) \dd{x}}
+	&\leq \frac12 \int_a^b \abs{f''(\xi) (x-c)^2} \dd{x}
+		\tag{\cref{theorem:定积分.定积分性质5推论2}} \\
+	&\leq \frac{M}2 \int_a^b (x-c)^2 \dd{x}
+		\tag{\hyperref[theorem:定积分.赫尔德不等式]{赫尔德不等式}} \\
+	&= \frac{M(b-a)^3}{24}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
 
 \subsection{柯西--施瓦茨不等式}
 \begin{theorem}[柯西--施瓦茨不等式]\label{theorem:定积分.柯西--施瓦茨不等式}
