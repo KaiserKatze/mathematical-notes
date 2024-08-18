@@ -93,59 +93,65 @@ M \defeq \max_{a \leq x \leq b} f(x),
 因此，我们就有可能通过原函数来计算定积分.
 
 \begin{example}
-设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(\phi(x)\)和\(\psi(x)\)可导.证明：\[
-F(x) = \int_{\psi(x)}^{\phi(x)} f(t) \dd{t}
-\]在\([a,b]\)上可导，且其导数为\begin{equation}\label{equation:定积分.含参变量积分的导数1}
-F'(x) = \dv{x} \int_{\psi(x)}^{\phi(x)} f(t) \dd{t}
-= f[\phi(x)] \phi'(x) - f[\psi(x)] \psi'(x).
+设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(\phi(x)\)和\(\psi(x)\)可导.
+证明：\[
+	F(x) = \int_{\psi(x)}^{\phi(x)} f(t) \dd{t}
+\]在\([a,b]\)上可导，
+且其导数为\begin{equation}\label{equation:定积分.含参变量积分的导数1}
+	F'(x) = \dv{x} \int_{\psi(x)}^{\phi(x)} f(t) \dd{t}
+	= f[\phi(x)] \phi'(x) - f[\psi(x)] \psi'(x).
 \end{equation}
 \begin{proof}
-令\(F_1(x) = \int_{\xi}^{\phi(x)} f(t) \dd{t}\)，\(u = \phi(x)\)，设函数\(G(x)\)是被积函数\(f(x)\)的一个原函数，那么\[
-F_1(x) = G[\phi(x)] - G(\xi),
-\]从而\begin{align*}
-F'_1(x) = \dv{x} F_1(x)
-&= \dv{x} G[\phi(x)] - \dv{x} G(\xi) = \dv{G}{u} \dv{u}{x} - 0 \\
-&= f(u) \phi'(x) = f[\phi(x)] \phi'(x).
+令\(F_1(x) = \int_{\xi}^{\phi(x)} f(t) \dd{t}\)，\(u = \phi(x)\)，
+设函数\(G(x)\)是被积函数\(f(x)\)的一个原函数，
+那么\[
+	F_1(x) = G[\phi(x)] - G(\xi),
+\]
+从而\begin{align*}
+	F'_1(x) = \dv{x} F_1(x)
+	&= \dv{x} G[\phi(x)] - \dv{x} G(\xi) = \dv{G}{u} \dv{u}{x} - 0 \\
+	&= f(u) \phi'(x) = f[\phi(x)] \phi'(x).
 \end{align*}
-同样地，令\(F_2(x) = \int_{\psi(x)}^{\xi} f(t) \dd{t}\)，\(v = \psi(x)\)，则有\[
-F'_2(x) = \dv{x} F_2(x) = -\dv{x} \int_{\xi}^{\psi(x)} f(x) \dd{t}
-= -f[\psi(x)] \psi'(x).
+同样地，令\(F_2(x) = \int_{\psi(x)}^{\xi} f(t) \dd{t}\)，\(v = \psi(x)\)，
+则有\[
+	F'_2(x) = \dv{x} F_2(x) = -\dv{x} \int_{\xi}^{\psi(x)} f(x) \dd{t}
+	= -f[\psi(x)] \psi'(x).
 \]
 因为\(F(x) = F_1(x) + F_2(x)\)，所以\[
-F'(x) = F'_1(x) + F'_2(x)
-= f[\phi(x)] \phi'(x) - f[\psi(x)] \psi'(x).
-\qedhere
+	F'(x) = F'_1(x) + F'_2(x)
+	= f[\phi(x)] \phi'(x) - f[\psi(x)] \psi'(x).
+	\qedhere
 \]
 \end{proof}
 \end{example}
 
 \begin{example}
 计算极限\[
-\lim_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t}
-\quad(a\neq0),
-\]其中\(f\)在点\(a\)的邻域内连续.
+	\lim_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t}
+	\quad(a\neq0),
+\]
+其中\(f\)在点\(a\)的邻域内连续.
 \begin{solution}
 显然\[
-\frac{x}{x-a} \int_a^x f(t) \dd{t}
-= \frac{1}{1 - a/x} \int_a^x f(t) \dd{t}.
+	\frac{x}{x-a} \int_a^x f(t) \dd{t}
+	= \frac{1}{1 - a/x} \int_a^x f(t) \dd{t}.
 \]
 
-根据\cref{equation:定积分.上下限相等的定积分为零} 有
-\[
-\lim_{x \to a} \int_a^x f(t) \dd{t} = 0;
-\]
-\[
-\lim_{x \to a} \left( 1 - \frac{a}{x} \right) = 0,
+根据\cref{equation:定积分.上下限相等的定积分为零} 有\[
+	\lim_{x \to a} \int_a^x f(t) \dd{t} = 0, \qquad
+	\lim_{x \to a} \left( 1 - \frac{a}{x} \right) = 0,
 \]
 
 根据\cref{theorem:定积分.变限积分定理}，有\[
-\dv{x} \int_a^x f(t) \dd{t} = f(x);
-\]又有\[
-\dv{x}(1 - \frac{a}{x}) = \frac{a}{x^2};
-\]那么根据\cref{theorem:微分中值定理.洛必达法则1} 有\[
-\lim_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t}
-= \lim_{x \to a} \frac{f(x)}{a/x^2}
-= a f(a).
+	\dv{x} \int_a^x f(t) \dd{t} = f(x);
+\]
+又有\[
+	\dv{x}(1 - \frac{a}{x}) = \frac{a}{x^2};
+\]
+那么根据\cref{theorem:微分中值定理.洛必达法则1} 有\[
+	\lim_{x \to a} \frac{x}{x-a} \int_a^x f(t) \dd{t}
+	= \lim_{x \to a} \frac{f(x)}{a/x^2}
+	= a f(a).
 \]
 \end{solution}
 \end{example}
