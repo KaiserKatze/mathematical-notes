@@ -309,3 +309,25 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \]
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P299 例7.3.5
+计算\(\lim_{n\to\infty} \left(\frac1{n+1}+\frac1{n+2}+\dotsb+\frac1{2n}\right)\).
+\begin{solution}
+将和式改写为\[
+	\frac1{n+1}+\frac1{n+2}+\dotsb+\frac1{2n}
+	= \frac1n \left(\frac1{1+1/n}+\frac1{1+2/n}+\dotsb+\frac1{1+n/n}\right),
+\]
+这相当于在\([0,1]\)中对函数\(f(x) = \frac1{1+x}\)作\(\increment x_i = \frac1n\)的等距分割后，
+在小区间\([x_{i-1},x_i]\)上将\(\xi_i\)取为\(x_i\ (i=1,2,\dotsc,n)\)的积分和\[
+	\sum_{i=1}^n f(\xi_i) \increment x_i.
+\]
+于是\begin{align*}
+	\lim_{n\to\infty} \left(\frac1{n+1}+\frac1{n+2}+\dotsb+\frac1{2n}\right)
+	&= \lim_{\lambda\to0} \sum_{i=1}^n \frac1{1+\xi_i} \increment x_i \\
+	&= \int_0^1 \frac{\dd{x}}{1+x}
+	= \eval{\ln(1+x)}_0^1
+	= \ln2.
+\end{align*}
+\end{solution}
+\end{example}
