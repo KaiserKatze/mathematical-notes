@@ -6,29 +6,25 @@
 因此，在一定条件下，可以用换元积分法和分部积分法来计算定积分.
 下面就来讨论定积分的这两种计算方法.
 
-
 为了说明如何用换元法来计算定积分，先证明下面的定理.
 \begin{theorem}\label{theorem:定积分.定积分的换元法}
-假设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(x = \phi(t)\)满足条件：
-\begin{enumerate}
-\item \(\phi(\alpha) = a\)，\(\phi(\beta)=b\)；
-\item \(\phi(t)\)在\([\alpha,\beta]\)上具有连续导数，
-且其值域\footnote{当\(\phi(t)\)的值域\(R_{\phi}\)超出\([a,b]\)，
-但\(\phi(t)\)满足其余条件时，
-只要\(f(x)\)在\(R_{\phi}\)上连续，
-则定理的结论仍成立.}\(R_\phi = [a,b]\),
-\end{enumerate}
-则有\[
-	\int_a^b f(x)\dd{x} = \int_\alpha^\beta f[\phi(t)] \phi'(t) \dd{t}.
-	\eqno(1)
-\]
+%@see: 《数学分析（第二版 上册）》（陈纪修） P303 定理7.3.4
+设函数\(f \in C[a,b]\)，
+函数\(\phi \in C^1[\alpha,\beta]\)，
+\(\ran\phi \subseteq [a,b]\)，
+\(\phi(\alpha)=a,
+\phi(\beta)=b\)，
+则有\begin{equation}\label{equation:定积分.定积分的换元公式}
+	\int_a^b f(x) \dd{x} = \int_\alpha^\beta f[\phi(t)] \phi'(t) \dd{t}.
+\end{equation}
 \begin{proof}
 由假设可知，
 被积函数\(f(x)\)和\(f[\phi(t)] \phi'(t)\)都是连续的，
-因此不仅(1)式两边的定积分都存在，
+因此不仅\cref{equation:定积分.定积分的换元公式} 两边的定积分都存在，
 而且由\hyperref[theorem:定积分.原函数存在定理]{原函数存在定理}知道，
 被积函数的原函数也都存在.
-所以(1)式两边的定积分都可应用牛顿--莱布尼茨公式.
+所以\cref{equation:定积分.定积分的换元公式} 两边的定积分
+都可应用\hyperref[equation:定积分.牛顿--莱布尼茨公式]{牛顿--莱布尼茨公式}.
 假设\(F(x)\)是\(f(x)\)的一个原函数，则\[
 	\int_a^b f(x) \dd{x} = F(b) - F(a).
 \]
@@ -217,7 +213,7 @@
 设函数\(f(x)\)是连续的周期函数，周期为\(T\)，证明：
 \begin{gather}
 	\int_a^{a+T} f(x) \dd{x} = \int_0^T f(x) \dd{x}, \\
-	\int_a^{a+nT} f(x)\dd{x} = n\int_0^T f(x)\dd{x}
+	\int_a^{a+nT} f(x) \dd{x} = n\int_0^T f(x) \dd{x}
 	\quad(n \in \mathbb{N}).
 \end{gather}
 \begin{proof}
@@ -231,7 +227,7 @@
 	\int_a^{a+T} f(x) \dd{x} = \int_0^T f(x) \dd{x};
 \]
 由此可得\[
-	\int_a^{a+nT} f(x)\dd{x}
+	\int_a^{a+nT} f(x) \dd{x}
 	= \sum_{k=0}^{n-1} \int_{a+kT}^{(a+kT)+T} f(x) \dd{x}
 	= \sum_{k=0}^{n-1} \int_0^T f(x) \dd{x}
 	= n \int_0^T f(x) \dd{x}.
