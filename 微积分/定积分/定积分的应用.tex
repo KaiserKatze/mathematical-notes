@@ -1,4 +1,65 @@
 \section{定积分的应用}
+\subsection{直角坐标下的图形面积}
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P275 例2
+计算抛物线\(y^2=2x\)与直线\(y=x-4\)所围成的图形的面积.
+\begin{solution}
+先求抛物线和直线的交点，解方程组\[
+	\left\{ \begin{array}{l}
+		y^2=2x, \\
+		y=x-4
+	\end{array} \right.
+\]得交点\((2,-2)\)和\((8,4)\)，
+从而知道这图形在直线\(y=-2\)和\(y=4\)之间.
+现在，选取纵坐标\(y\)为积分变量，
+对应的积分区间为\([-2,4]\).
+相应于\([-2,4]\)上任一小区间\([y,y+\dd{y}]\)的窄条面积
+近似于高为\(\dd{y}\)、底为\((y+4)-\frac12y^2\)的窄矩形的面积，
+从而得到面积元素\[
+	\dd{A} = \left(y+4-\frac12y^2\right) \dd{y}.
+\]
+把这个面积元素作为被积表达式，在闭区间\([-2,4]\)上作定积分，
+便得所求的面积为\begin{align*}
+	A &= \int_{-2}^4 \left(y+4-\frac12y^2\right) \dd{y} \\
+	&= \eval{\left[\frac12y^2+4y-\frac16y^3\right]}_{-2}^4 \\
+	&= 18.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P276 例3
+求椭圆\(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)所围成的图形的面积.
+\begin{solution}
+这椭圆关于两坐标轴都对称，所以椭圆所围成的图形的面积为\(A=4A_1\)，
+其中\(A_1\)是该椭圆在第一象限部分与两坐标轴所围图形的面积\[
+	A_1 = \int_0^a y \dd{x}.
+\]
+利用椭圆的参数方程\[
+	\left\{ \begin{array}{l}
+		x = a \cos t, \\
+		y = a \sin t,
+	\end{array} \right.
+	\quad 0 \leq t \leq \frac\pi2,
+\]
+应用定积分换元法，
+令\(x = a \cos t\)，
+则\[
+	y = b \sin t, \qquad
+	\dd{x} = -a \sin t,
+\]
+且\(t \to \frac\pi2\ (x\to0),
+t \to 0\ (x \to a)\)，
+所以\begin{align*}
+	A_1 &= \int_{\frac\pi2}^0 b \sin t (-a \sin t) \dd{t} \\
+	&= -ab \int_{\frac\pi2}^0 \sin^2t \dd{t} \\
+	&= ab \cdot \frac12 \cdot \frac\pi2
+	= \frac14 \pi ab.
+\end{align*}
+于是\(A = 4 A_1 = \pi ab\).
+\end{solution}
+\end{example}
+
 \subsection{极坐标下的图形面积}
 某些平面图形，用极坐标来计算它们的面积比较方便.
 
@@ -28,7 +89,8 @@
 
 \subsection{旋转体的体积}
 \begin{definition}[旋转体]
-\DefineConcept{旋转体}就是由一个平面图形绕着这平面内一条直线旋转一周而成的立体.这条直线叫做\DefineConcept{旋转轴}.
+\DefineConcept{旋转体}就是由一个平面图形绕着这平面内一条直线旋转一周而成的立体.
+这条直线叫做\DefineConcept{旋转轴}.
 \end{definition}
 
 由连续曲线\(y=f(x)\)及直线\(x=a\)、\(x=b\)、\(x\)轴所围成的曲边梯形绕\(x\)轴旋转一周而成的立体的体积为
