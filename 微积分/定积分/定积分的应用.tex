@@ -1,5 +1,14 @@
 \section{定积分的应用}
 \subsection{直角坐标下的图形面积}
+我们已经知道，由曲线\(y=f(x)\ (f(x)\geq0)\)及直线\(x=a\)和\(x=b\ (a<b)\)与\(x\)轴
+所围成的曲边梯形的面积\(A\)是定积分\[
+	A = \int_a^b f(x) \dd{x},
+\]
+其中被积表达式\(f(x) \dd{x}\)就是直角坐标系下的面积元素，
+它表示高为\(f(x)\)、底为\(\dd{x}\)的一个矩形的面积.
+
+应用定积分，不但可以计算曲边梯形面积，还可以计算一些比较复杂的平面图形的面积.
+
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P275 例2
 计算抛物线\(y^2=2x\)与直线\(y=x-4\)所围成的图形的面积.
@@ -87,20 +96,83 @@ t \to 0\ (x \to a)\)，
 	A = \int_\alpha^\beta \frac{1}{2} [\phi(\theta)]^2 \dd{\theta}.
 \end{equation}
 
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P277 例4
+计算阿基米德螺线\[
+	\rho = a \theta, \quad a>0
+\]上相应于\(\theta\)从\(0\)变到\(2\pi\)的一段弧与极轴所围成的图形的面积.
+\begin{solution}
+在指定的这段罗翔上，\(\theta\)的变化区间为\([0,2\pi]\).
+相应于\([0,2\pi]\)上任一小区间\([\theta,\theta+\dd{\theta}]\)的窄曲边扇形的面积
+近似于半径为\(a \theta\)、中心角为\(\dd{\theta}\)的圆扇形的面积，
+从而得到面积元素\[
+	\dd{A} = \frac12 (a \theta)^2 \dd{\theta}.
+\]
+于是所求面积为\[
+	A = \int_0^{2\pi} \frac12 (a \theta)^2 \dd{\theta}
+	= \eval{\frac16 a^2 \theta^3}_0^{2\pi}
+	= \frac43 a^2 \pi^3.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P277 例5
+计算心形线\[
+	\rho = a (1 + \cos\theta), \quad a>0
+\]所围成的图形的面积.
+\begin{solution}
+心形线所围成的图形对称于极轴，
+因此所求图形的面积\(A\)是极轴以上部分图形面积\(A_1\)的两倍.
+对于极轴以上部分的图形，\(\theta\)的变化区间为\([0,\pi]\).
+相应于\([0,\pi]\)上任一小区间\([\theta,\theta+\dd{\theta}]\)的窄曲边扇形的面积
+近似于半径为\(a (1 + \cos\theta)\)、中心角为\(\dd{\theta}\)的圆扇形的面积，
+从而得到面积元素\[
+	\dd{A} = \frac12 a^2 (1 + \cos\theta)^2 \dd{\theta}.
+\]
+于是\begin{align*}
+	A_1 &= \int_0^\pi \frac12 a^2 (1 + \cos\theta)^2 \dd{\theta} \\
+	&= \frac12 a^2 \int_0^\pi (1 + 2\cos\theta + \cos^2\theta) \dd{\theta} \\
+	&= \frac12 a^2 \int_0^\pi \left(\frac32 + 2 \cos\theta + \frac12 \cos2\theta\right) \dd{\theta} \\
+	&= \eval{\frac12 a^2 \left[\frac32 \theta + 2 \sin\theta + \frac14 \sin2\theta\right]}_0^\pi
+	= \frac34 \pi a^2,
+\end{align*}
+因而所求面积为\[
+	A = 2 A_1 = \frac32 \pi a^2.
+\]
+\end{solution}
+\end{example}
+
 \subsection{旋转体的体积}
-\begin{definition}[旋转体]
 \DefineConcept{旋转体}就是由一个平面图形绕着这平面内一条直线旋转一周而成的立体.
 这条直线叫做\DefineConcept{旋转轴}.
-\end{definition}
+圆柱可以看成是由矩形绕它的一条边旋转一周而成的立体.
+圆锥可以看成是由直角三角形绕它的直角边旋转一周而成的立体.
+圆台可以看成是由直角梯形绕它的直角腰旋转一周而成的立体.
+球体可以看成是由半圆绕它的直径旋转一周而成的立体.
+所以圆柱、圆锥、圆台、球体都是旋转体.
 
-由连续曲线\(y=f(x)\)及直线\(x=a\)、\(x=b\)、\(x\)轴所围成的曲边梯形绕\(x\)轴旋转一周而成的立体的体积为
-\begin{equation}\label{equation:定积分.曲边梯形绕x轴旋转体的体积}
-V = \pi \int_a^b [f(x)]^2 \dd{x}.
+上述旋转体都可以看作是
+由连续曲线\(y=f(x)\)、直线\(x=a\)和\(x=b\)及\(x\)轴所围成的曲边梯形
+绕\(x\)轴旋转一周而成的立体.
+现在我们考虑用定积分来计算这种旋转体的体积.
+
+取横坐标\(x\)为积分变量，它的变化区间为\([a,b]\).
+相应于\([a,b]\)上的任一小区间\([x,x+\dd{x}]\)的窄曲边梯形绕\(x\)轴旋转而成的薄片的体积
+近似于以\(f(x)\)为底半径、\(\dd{x}\)为高的扁圆柱体的体积，
+即体积元素\[
+	\dd{V} = \pi [f(x)]^2 \dd{x}.
+\]
+以\(\pi [f(x)]^2 \dd{x}\)为被积表达式，
+在闭区间\([a,b]\)上作定积分，
+便得所求旋转体体积为\begin{equation}\label{equation:定积分.曲边梯形绕x轴旋转体的体积}
+	V = \pi \int_a^b [f(x)]^2 \dd{x}.
 \end{equation}
 
-由连续曲线\(y=f(x)\)及直线\(x=a\)、\(x=b\)、\(x\)轴所围成的曲边梯形绕\(y\)轴旋转一周而成的立体的体积为
+由连续曲线\(y=f(x)\)、直线\(x=a\)和\(x=b\)及\(x\)轴所围成的曲边梯形
+绕\(y\)轴旋转一周而成的立体的体积为
 \begin{equation}\label{equation:定积分.曲边梯形绕y轴旋转体的体积}
-V = 2\pi \int_a^b \abs{x f(x)} \dd{x}.
+	V = 2\pi \int_a^b \abs{x f(x)} \dd{x}.
 \end{equation}
 
 \subsection{平面曲线的弧长}
