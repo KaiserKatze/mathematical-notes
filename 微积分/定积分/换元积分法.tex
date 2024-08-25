@@ -170,6 +170,7 @@
 \end{remark}
 
 \begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分}
+%@see: 《高等数学（第六版 上册）》 P248 例6
 %@see: 《数学分析（第二版 上册）》（陈纪修） P311 习题 9. (1)
 设\(f \in C[0,1]\).
 证明：\begin{gather}
@@ -204,6 +205,20 @@
 \end{proof}
 \end{proposition}
 
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P249
+计算\(\int_0^\pi \frac{x \sin x}{1 + \cos^2 x} \dd{x}\).
+\begin{solution}
+利用\cref{theorem:定积分.正余弦函数的复合的积分} 得\begin{align*}
+	\int_0^\pi \frac{x \sin x}{1 + \cos^2 x} \dd{x}
+	&= \frac\pi2 \int_0^\pi \frac{\sin x}{1 + \cos^2 x} \dd{x} \\
+	&= -\frac\pi2 \int_0^\pi \frac{\dd(\cos x)}{1 + \cos^2 x} \\
+	&= -\frac\pi2 \eval{[\arctan(\cos x)]}_0^\pi \\
+	&= \frac{\pi^2}4.
+\end{align*}
+\end{solution}
+\end{example}
+
 \begin{proposition}
 %@see: 《高等数学（第六版 上册）》 P254 习题5-3 5.
 设\(f \in C[0,1]\)，且\(n\in\mathbb{Z}\).
@@ -232,7 +247,8 @@
 \end{proof}
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}\label{theorem:定积分.周期函数的积分}
+%@see: 《高等数学（第六版 上册）》 P249 例7
 %@see: 《数学分析（第二版 上册）》（陈纪修） P309 定理7.3.6
 设函数\(f\)是以\(T\)为周期的黎曼可积函数.
 证明：\begin{gather}
@@ -259,6 +275,24 @@
 \]
 \end{proof}
 \end{proposition}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P249
+计算\(\int_0^{n\pi} \sqrt{1 + \sin2x} \dd{x}\).
+\begin{solution}
+显然\(f(x) = \sqrt{1 + \sin2x}\)是以\(\pi\)为周期的连续函数，
+利用\cref{theorem:定积分.周期函数的积分} 得\begin{align*}
+	\int_0^{n\pi} \sqrt{1 + \sin2x} \dd{x}
+	&= n \int_0^\pi \sqrt{1 + \sin2x} \dd{x} \\
+	&= n \int_0^\pi \abs{\sin x + \cos x} \dd{x} \\
+	&= \sqrt2 n \int_0^\pi \abs{\sin\left(x + \frac\pi4\right)} \dd{x} \\
+	&= \sqrt2 n \int_{\frac\pi4}^{\frac{5\pi}4} \abs{\sin t} \dd{t} \\
+	&= \sqrt2 n \int_0^\pi \abs{\sin t} \dd{t} \\
+	&= \sqrt2 n \int_0^\pi \sin t \dd{t} \\
+	&= 2\sqrt2 n.
+\end{align*}
+\end{solution}
+\end{example}
 
 \begin{proposition}
 %@see: 《高等数学（第六版 上册）》 P254 习题5-3 6.
