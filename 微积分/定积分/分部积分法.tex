@@ -227,5 +227,54 @@
 %@see: 《数学分析（第二版 上册）》（陈纪修） P301 例7.3.7
 设\(p_n(x) = \frac1{2^n n!} \dv[n]{x} (x^2-1)^n\ (n=0,1,2,\dotsc)\).
 证明：\(\{p_n\}_{n\geq0}\)是\([-1,1]\)上的正交多项式函数列.
-%TODO proof
+\begin{proof}
+不妨设\(n \geq m\).
+记\begin{align*}
+	I(m,n) &\defeq m! ~ n! ~ 2^m ~ 2^n \int_{-1}^1 p_m(x) p_n(x) \dd{x} \\
+	&= \int_{-1}^1 \dv[m]{x} (x^2-1)^m \cdot \dv[n]{x} (x^2-1)^n \dd{x}.
+\end{align*}
+只要我们把\(\dv[m]{x} (x^2-1)^m\)看作\(u(x)\)，
+把\(\dv[n]{x} (x^2-1)^n\)看作\(v'(x)\)，
+那么利用分部积分法可得\begin{align*}
+	I(m,n) = \dv[m]{x} (x^2-1)^m
+		\cdot \eval{\dv[n-1]{x} (x^2-1)^n}_{-1}^1
+		- \int_{-1}^1 \dv[m+1]{x} (x^2-1)^m
+			\cdot \dv[n-1]{x} (x^2-1)^n \dd{x}.
+\end{align*}
+我们知道，函数\[
+	\dv[n-k]{x} (x^2-1)^n
+	\quad(k=1,2,\dotsc,n-1)
+\]中都含有\((x^2-1)\)因子，
+因此\[
+	\eval{\dv[n-1]{x} (x^2-1)^n}_{x=1}
+	= \eval{\dv[n-1]{x} (x^2-1)^n}_{x=-1}
+	= 0,
+\]
+所以\[
+	I(m,n) = - \int_{-1}^1 \dv[m+1]{x} (x^2-1)^m
+					\cdot \dv[n-1]{x} (x^2-1)^n \dd{x}.
+\]
+反复执行上述过程，最后得到\[
+	I(m,n) = (-1)^n \int_{-1}^1 \left[\dv[m+n]{x} (x^2-1)^m\right] \cdot (x^2-1)^n \dd{x}.
+\]
+
+若\(n>m\)，则有\(\dv[m+n]{x} (x^2-1)^m = 0\)，
+因此\(\int_{-1}^1 p_m(x) p_n(x) \dd{x} = 0\).
+
+若\(n=m\)，则有\(\dv[m+n]{x} (x^2-1)^m = (2n)!\)，
+再次利用分部积分法\begin{align*}
+	I(m,n) &= (2n)! \int_{-1}^1 (1-x)^n (1+x)^n \dd{x} \\
+	&= \frac{(2n)! n}{n+1} \int_{-1}^1 (1-x)^{n-1} (1+x)^{n+1} \dd{x} \\
+	&= \frac{(2n)! n(n-1)}{(n+1)(n+2)} \int_{-1}^1 (1-x)^{n-2} (1+x)^{n+2} \dd{x} \\
+	&= \dotsb \\
+	&= \frac{(2n)! n(n-1)\dotsm1}{(n+1)(n+2)\dotsm(2n)} \int_{-1}^1 (1+x)^{2n} \dd{x} \\
+	&= \frac{(n!)^2 2^{2n+1}}{2n+1}.
+\end{align*}
+于是便有\[
+	\int_{-1}^1 p_n^2(x) \dd{x}
+	= \frac1{(n!)^2 2^{2n}} I(m,n)
+	= \frac2{2n+1}.
+	\qedhere
+\]
+\end{proof}
 \end{example}
