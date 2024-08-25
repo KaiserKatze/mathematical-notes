@@ -85,6 +85,70 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P246 例2
+计算\(\int_0^{\frac\pi2} \cos^5 x \sin x \dd{x}\).
+\begin{solution}
+设\(t = \cos x\)，
+则\(\dd{t} = -\sin x \dd{x}\).
+当\(x=0\)时，有\(t=1\).
+当\(x=\frac\pi2\)时，有\(t=0\).
+于是\[
+	\int_0^{\frac\pi2} \cos^5 x \sin x \dd{x}
+	= -\int_1^0 t^5 \dd{t}
+	= \int_0^1 t^5 \dd{t}
+	= \eval{\frac{t^6}6}_0^1
+	= \frac16.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P246 例3
+计算\(\int_0^\pi \sqrt{\sin^3 x - \sin^5 x} \dd{x}\).
+\begin{solution}
+由于\[
+	\sqrt{\sin^3 x - \sin^5 x}
+	= \sqrt{\sin^3 x (1 - \sin^2 x)}
+	= \sin^{\frac32} x \cdot \abs{\cos x},
+\]
+其中\[
+	\abs{\cos x} = \left\{ \begin{array}{rl}
+		\cos x, & 0 \leq x \leq \frac\pi2, \\
+		-\cos x, & \frac\pi2 < x \leq \pi,
+	\end{array} \right.
+\]
+所以\begin{align*}
+	\int_0^\pi \sqrt{\sin^3 x - \sin^5 x} \dd{x}
+	&= \int_0^{\frac\pi2} \sin^{\frac32} x \cdot \cos x \dd{x}
+		+ \int_{\frac\pi2}^\pi \sin^{\frac32} x \cdot (-\cos x) \dd{x} \\
+	&= \int_0^{\frac\pi2} \sin^{\frac32} x \dd(\sin x)
+		- \int_{\frac\pi2}^\pi \sin^{\frac32} x \dd(\sin x) \\
+	&= \frac25 \eval{\sin^{\frac52} x}_0^{\frac\pi2}
+		- \frac25 \eval{\sin^{\frac52} x}_{\frac\pi2}^\pi
+	= \frac45.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P247 例4
+计算\(\int_0^4 \frac{x+4}{\sqrt{2x+1}} \dd{x}\).
+\begin{solution}
+设\(\sqrt{2x+1}=t\)，
+则\(x=\frac{t^2-1}2\)且\(\dd{x}=t\dd{t}\).
+当\(x=0\)时，有\(t=1\).
+当\(x=4\)时，有\(t=3\).
+于是\begin{align*}
+	\int_0^4 \frac{x+2}{\sqrt{2x+1}} \dd{x}
+	&= \int_1^3 \left(\frac{t^2-1}2+2\right) \dd{t} \\
+	&= \frac12 \int_1^3 (t^2+3) \dd{t} \\
+	&= \frac12 \eval{\left(\frac13 t^3 + 3t\right)}_1^3
+	= \frac{22}3.
+\end{align*}
+\end{solution}
+\end{example}
+
 \begin{proposition}\label{theorem:定积分.利用对称性简化计算0}
 设\(f \in R[-a,a]\).
 证明：\begin{equation}
