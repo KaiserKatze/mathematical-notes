@@ -16,19 +16,22 @@
 \end{theorem}
 公式表明原函数已经积出的部分可以先用上、下限代入.
 
-多次运用分部积分公式可以进一步得到以下结果：
-\begin{corollary}
-设函数\(u,v \in C^{n+1}[a,b]\)，
-则\[
-	\int_a^b u(x) v^{(n+1)}(x) \dd{x}
-	= \eval{\left[
-		\sum_{k=0}^n (-1)^k u^{(k)}(x) v^{(n-k)}(x)
-	\right]}_a^b
-	+ (-1)^{n+1} \int_a^b u^{(n+1)}(x) v(x) \dd{x}
-\]对\(n=1,2,\dotsc\)均成立.
-\end{corollary}
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P251 例10
+计算\(\int_0^{\frac12} \arcsin x \dd{x}\).
+\begin{solution}
+直接计算得\begin{align*}
+	\int_0^{\frac12} \arcsin x \dd{x}
+	&= \eval{(x \arcsin x)}_0^{\frac12}
+		- \int_0^{\frac12} \frac{x}{\sqrt{1-x^2}} \dd{x} \\
+	&= \frac12 \cdot \frac\pi6 + \eval{\sqrt{1-x^2}}_0^{\frac12} \\
+	&= \frac\pi{12} + \frac{\sqrt3}2 - 1.
+\end{align*}
+\end{solution}
+\end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P251 例11
 计算\(\int_0^1 e^{\sqrt{x}} \dd{x}\).
 \begin{solution}
 先用换元法.
@@ -44,7 +47,95 @@
 \end{solution}
 \end{example}
 
+多次运用分部积分公式可以进一步得到以下结果：
+\begin{corollary}
+设函数\(u,v \in C^{n+1}[a,b]\)，
+则\[
+	\int_a^b u(x) v^{(n+1)}(x) \dd{x}
+	= \eval{\left[
+		\sum_{k=0}^n (-1)^k u^{(k)}(x) v^{(n-k)}(x)
+	\right]}_a^b
+	+ (-1)^{n+1} \int_a^b u^{(n+1)}(x) v(x) \dd{x}
+\]对\(n=1,2,\dotsc\)均成立.
+\end{corollary}
+
+\section{正交函数列}
+\begin{definition}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P300 定义7.3.1
+设\(\{g_n\}_{n\geq0}\)是定义在\([a,b]\)上的一列函数.
+若对任意\(m,n\in\mathbb{N}\)，
+函数\(g_m\)和\(g_n\)都在\([a,b]\)上黎曼可积，
+且有\[
+	\int_a^b g_m(x) g_n(x) \dd{x} = \left\{ \begin{array}{ll}
+		0, & m \neq n, \\
+		\int_a^b g_n^2(x) \dd{x}, & m = n,
+	\end{array} \right.
+\]
+则称\(\{g_n\}_{n\geq0}\)是“区间\([a,b]\)上的\DefineConcept{正交函数列}”.
+
+特别地，当\(g_n\)是\(n\)次多项式时，
+称\(\{g_n\}_{n\geq0}\)是“区间\([a,b]\)上的\DefineConcept{正交多项式函数列}”.
+\end{definition}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P301 例7.3.7
+设\(p_n(x) = \frac1{2^n n!} \dv[n]{x} (x^2-1)^n\ (n=0,1,2,\dotsc)\).
+证明：\(\{p_n\}_{n\geq0}\)是\([-1,1]\)上的正交多项式函数列.
+\begin{proof}
+不妨设\(n \geq m\).
+记\begin{align*}
+	I(m,n) &\defeq m! ~ n! ~ 2^m ~ 2^n \int_{-1}^1 p_m(x) p_n(x) \dd{x} \\
+	&= \int_{-1}^1 \dv[m]{x} (x^2-1)^m \cdot \dv[n]{x} (x^2-1)^n \dd{x}.
+\end{align*}
+只要我们把\(\dv[m]{x} (x^2-1)^m\)看作\(u(x)\)，
+把\(\dv[n]{x} (x^2-1)^n\)看作\(v'(x)\)，
+那么利用分部积分法可得\begin{align*}
+	I(m,n) = \dv[m]{x} (x^2-1)^m
+		\cdot \eval{\dv[n-1]{x} (x^2-1)^n}_{-1}^1
+		- \int_{-1}^1 \dv[m+1]{x} (x^2-1)^m
+			\cdot \dv[n-1]{x} (x^2-1)^n \dd{x}.
+\end{align*}
+我们知道，函数\[
+	\dv[n-k]{x} (x^2-1)^n
+	\quad(k=1,2,\dotsc,n-1)
+\]中都含有\((x^2-1)\)因子，
+因此\[
+	\eval{\dv[n-1]{x} (x^2-1)^n}_{x=1}
+	= \eval{\dv[n-1]{x} (x^2-1)^n}_{x=-1}
+	= 0,
+\]
+所以\[
+	I(m,n) = - \int_{-1}^1 \dv[m+1]{x} (x^2-1)^m
+					\cdot \dv[n-1]{x} (x^2-1)^n \dd{x}.
+\]
+反复执行上述过程，最后得到\[
+	I(m,n) = (-1)^n \int_{-1}^1 \left[\dv[m+n]{x} (x^2-1)^m\right] \cdot (x^2-1)^n \dd{x}.
+\]
+
+若\(n>m\)，则有\(\dv[m+n]{x} (x^2-1)^m = 0\)，
+因此\(\int_{-1}^1 p_m(x) p_n(x) \dd{x} = 0\).
+
+若\(n=m\)，则有\(\dv[m+n]{x} (x^2-1)^m = (2n)!\)，
+再次利用分部积分法\begin{align*}
+	I(m,n) &= (2n)! \int_{-1}^1 (1-x)^n (1+x)^n \dd{x} \\
+	&= \frac{(2n)! n}{n+1} \int_{-1}^1 (1-x)^{n-1} (1+x)^{n+1} \dd{x} \\
+	&= \frac{(2n)! n(n-1)}{(n+1)(n+2)} \int_{-1}^1 (1-x)^{n-2} (1+x)^{n+2} \dd{x} \\
+	&= \dotsb \\
+	&= \frac{(2n)! n(n-1)\dotsm1}{(n+1)(n+2)\dotsm(2n)} \int_{-1}^1 (1+x)^{2n} \dd{x} \\
+	&= \frac{(n!)^2 2^{2n+1}}{2n+1}.
+\end{align*}
+于是便有\[
+	\int_{-1}^1 p_n^2(x) \dd{x}
+	= \frac1{(n!)^2 2^{2n}} I(m,n)
+	= \frac2{2n+1}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
 \begin{example}\label{example:定积分.点火公式}
+%@see: 《高等数学（第六版 上册）》 P251 例12
+%@see: 《数学分析（第二版 上册）》（陈纪修） P302 例7.3.8
 证明：\begin{equation}\label{equation:定积分.点火公式}
 	I_n = \int_0^{\frac{\pi}{2}} \sin^n x \dd{x}
 	= \left\{ \def\arraystretch{1.5} \begin{array}{rl}
@@ -88,6 +179,12 @@
 \end{gather*}
 \end{proof}
 \end{example}
+\begin{remark}
+由\cref{theorem:定积分.正余弦函数的复合的积分} 可知\begin{equation}
+	\int_0^{\frac\pi2} \sin^n x \dd{x}
+	= \int_0^{\frac\pi2} \cos^n x \dd{x}.
+\end{equation}
+\end{remark}
 
 下面特别就\cref{equation:定积分.点火公式} 做一点点展开.
 \begin{example}
@@ -204,77 +301,4 @@
 	&= \int_0^{2\pi} \sin x \dd{x} = 0.
 \end{align*}
 \end{solution}
-\end{example}
-
-\begin{definition}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P300 定义7.3.1
-设\(\{g_n\}_{n\geq0}\)是定义在\([a,b]\)上的一列函数.
-若对任意\(m,n\in\mathbb{N}\)，
-函数\(g_m\)和\(g_n\)都在\([a,b]\)上黎曼可积，
-且有\[
-	\int_a^b g_m(x) g_n(x) \dd{x} = \left\{ \begin{array}{ll}
-		0, & m \neq n, \\
-		\int_a^b g_n^2(x) \dd{x}, & m = n,
-	\end{array} \right.
-\]
-则称\(\{g_n\}_{n\geq0}\)是“区间\([a,b]\)上的\DefineConcept{正交函数列}”.
-
-特别地，当\(g_n\)是\(n\)次多项式时，
-称\(\{g_n\}_{n\geq0}\)是“区间\([a,b]\)上的\DefineConcept{正交多项式函数列}”.
-\end{definition}
-
-\begin{example}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P301 例7.3.7
-设\(p_n(x) = \frac1{2^n n!} \dv[n]{x} (x^2-1)^n\ (n=0,1,2,\dotsc)\).
-证明：\(\{p_n\}_{n\geq0}\)是\([-1,1]\)上的正交多项式函数列.
-\begin{proof}
-不妨设\(n \geq m\).
-记\begin{align*}
-	I(m,n) &\defeq m! ~ n! ~ 2^m ~ 2^n \int_{-1}^1 p_m(x) p_n(x) \dd{x} \\
-	&= \int_{-1}^1 \dv[m]{x} (x^2-1)^m \cdot \dv[n]{x} (x^2-1)^n \dd{x}.
-\end{align*}
-只要我们把\(\dv[m]{x} (x^2-1)^m\)看作\(u(x)\)，
-把\(\dv[n]{x} (x^2-1)^n\)看作\(v'(x)\)，
-那么利用分部积分法可得\begin{align*}
-	I(m,n) = \dv[m]{x} (x^2-1)^m
-		\cdot \eval{\dv[n-1]{x} (x^2-1)^n}_{-1}^1
-		- \int_{-1}^1 \dv[m+1]{x} (x^2-1)^m
-			\cdot \dv[n-1]{x} (x^2-1)^n \dd{x}.
-\end{align*}
-我们知道，函数\[
-	\dv[n-k]{x} (x^2-1)^n
-	\quad(k=1,2,\dotsc,n-1)
-\]中都含有\((x^2-1)\)因子，
-因此\[
-	\eval{\dv[n-1]{x} (x^2-1)^n}_{x=1}
-	= \eval{\dv[n-1]{x} (x^2-1)^n}_{x=-1}
-	= 0,
-\]
-所以\[
-	I(m,n) = - \int_{-1}^1 \dv[m+1]{x} (x^2-1)^m
-					\cdot \dv[n-1]{x} (x^2-1)^n \dd{x}.
-\]
-反复执行上述过程，最后得到\[
-	I(m,n) = (-1)^n \int_{-1}^1 \left[\dv[m+n]{x} (x^2-1)^m\right] \cdot (x^2-1)^n \dd{x}.
-\]
-
-若\(n>m\)，则有\(\dv[m+n]{x} (x^2-1)^m = 0\)，
-因此\(\int_{-1}^1 p_m(x) p_n(x) \dd{x} = 0\).
-
-若\(n=m\)，则有\(\dv[m+n]{x} (x^2-1)^m = (2n)!\)，
-再次利用分部积分法\begin{align*}
-	I(m,n) &= (2n)! \int_{-1}^1 (1-x)^n (1+x)^n \dd{x} \\
-	&= \frac{(2n)! n}{n+1} \int_{-1}^1 (1-x)^{n-1} (1+x)^{n+1} \dd{x} \\
-	&= \frac{(2n)! n(n-1)}{(n+1)(n+2)} \int_{-1}^1 (1-x)^{n-2} (1+x)^{n+2} \dd{x} \\
-	&= \dotsb \\
-	&= \frac{(2n)! n(n-1)\dotsm1}{(n+1)(n+2)\dotsm(2n)} \int_{-1}^1 (1+x)^{2n} \dd{x} \\
-	&= \frac{(n!)^2 2^{2n+1}}{2n+1}.
-\end{align*}
-于是便有\[
-	\int_{-1}^1 p_n^2(x) \dd{x}
-	= \frac1{(n!)^2 2^{2n}} I(m,n)
-	= \frac2{2n+1}.
-	\qedhere
-\]
-\end{proof}
 \end{example}
