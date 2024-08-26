@@ -316,9 +316,9 @@ t \to 0\ (x \to a)\)，
 即体积元素\[
 	\dd{V} = \frac\pi2 (\sqrt{x}-x)^2 \cdot \sqrt2 \dd{x}.
 \]
-把这个面积元素作为被积表达式，在闭区间\([0,1]\)上作定积分，
-便得所求的面积为\[
-	A = \int_0^1 \frac\pi2 (\sqrt{x}-x)^2 \cdot \sqrt2 \dd{x}
+把这个体积元素作为被积表达式，在闭区间\([0,1]\)上作定积分，
+便得所求的体积为\[
+	V = \int_0^1 \frac\pi2 (\sqrt{x}-x)^2 \cdot \sqrt2 \dd{x}
 	= \frac\pi{30\sqrt2}.
 \]
 \end{solution}
@@ -500,6 +500,38 @@ t \to 0\ (x \to a)\)，
 \end{example}
 
 \subsection{旋转面的表面积}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P324
+设参数方程\[
+	\left\{ \begin{array}{l}
+		x = x(t), \\
+		y = y(t)
+	\end{array} \right.
+	\quad(\alpha \leq t \leq \beta)
+\]确定平面上一段光滑曲线\(C\)，
+且在\([\alpha,\beta]\)上\(y(t) \geq 0\)，
+它绕\(x\)轴旋转一周得到一个旋转曲面.
+
+对区间\([\alpha,\beta]\)作划分：\[
+	\alpha = t_0 < t_1 < t_2 < \dotsb < t_{n-1} < t_n = \beta.
+\]
+由此得到曲线上顺次排列的\(n+1\)个点\(P_0,P_1,\dotsc,P_n\).
+记\(\increment S_i\)是连接\(P_{i-1}\)和\(P_i\)的直线段
+绕\(x\)轴旋转一周得到的圆台的侧面面积，
+即\[
+	\increment S_i
+	\defeq
+	\pi [y(t_{i-1} + y(t_i))] \cdot \overline{P_{i-1} P_i}.
+\]
+若当\(\lambda=\max_{1 \leq i \leq n} \increment t_i \to 0\)时，
+极限\[
+	\lim_{\lambda\to0} \sum_{i=1}^n \increment S_i
+\]存在，
+且极限值与区间\([\alpha,\beta]\)的划分无关，
+则称极限值为“曲线\(C\)绕\(x\)轴旋转一周所得旋转曲面的面积”.
+可以证明：曲线\(C\)绕\(x\)轴旋转一周所得旋转曲面的面积为\begin{equation}
+	S = 2\pi \int_\alpha^\beta y(t) \sqrt{[x'(t)]^2 + [y'(t)]^2} \dd{x}.
+\end{equation}
+
 \begin{theorem}[古尔丁表面积定理]
 %@see: http://www.shuxueji.com/w/1063
 由连续曲线\(y=f(x)\ (a \leq x \leq b)\)
