@@ -432,7 +432,8 @@ t \to 0\ (x \to a)\)，
 		x = a (\theta - \sin\theta), \\
 		y = a (1 - \cos\theta)
 	\end{array} \right.
-\]的一拱（\(0 \leq \theta \leq 2\pi\)）的长度.
+	\quad(0 \leq \theta \leq 2\pi)
+\]的一拱的长度.
 \begin{solution}
 弧长元素为\begin{align*}
 	\dd{s} &= \sqrt{a^2 (1 - \cos\theta)^2 + a^2 \sin^2\theta} \dd{\theta} \\
@@ -540,3 +541,39 @@ t \to 0\ (x \to a)\)，
 \end{equation}
 %TODO proof
 \end{theorem}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P325 例7.4.13
+求半径为\(a\)的球的表面积.
+\begin{solution}
+半径为\(a\)的球的表面积，
+就是半径为\(a\)的圆的上半部分\(y=\sqrt{a^2-x^2}\)
+绕\(x\)轴旋转一周所得的旋转曲面的面积.
+于是球的表面积为\[
+	S = 2\pi \int_{-a}^a y \sqrt{1+(y')^2} \dd{x}
+	= 2\pi \int_{-a}^a \sqrt{a^2-x^2} \cdot
+		\sqrt{1+\left(\frac{-x}{\sqrt{a^2-x^2}}\right)^2} \dd{x}
+	= 4\pi a^2.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P325 例7.4.14
+求摆线\[
+	\left\{ \begin{array}{l}
+		x = a (t - \sin t), \\
+		y = a (1 - \cos t)
+	\end{array} \right.
+	\quad(0 \leq t \leq 2\pi)
+\]
+的一拱绕\(x\)轴旋转一周所得旋转曲面的面积.
+\begin{solution}
+将摆线的参数方程代入旋转曲面面积公式，得\begin{align*}
+	S &= 2\pi a^2 \int_0^{2\pi} (1-\cos t) \sqrt{(1-\cos t)^2 + \sin^2 t} \dd{t} \\
+	&= 2\sqrt2 \pi a^2 \int_0^{2\pi} (1-\cos t) \sqrt{1-\cos t} \dd{t} \\
+	&= 16\pi a^2 \int_0^{2\pi} \sin^3 \frac{t}{2} \dd(\frac{t}{2})
+	= \frac{64}3 \pi a^2.
+\end{align*}
+\end{solution}
+\end{example}
