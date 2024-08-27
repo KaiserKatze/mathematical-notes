@@ -26,101 +26,134 @@
 \(\Sigma_1\)取下侧，\(\Sigma_2\)取上侧；
 \(\Sigma_3\)是以\(D_{xy}\)的边界曲线为准线、母线平行于\(z\)轴的柱面上的一部分，取外侧.
 
-根据三重积分的计算法，有\[\begin{aligned}
-\iiint_\Omega \pdv{R}{z} \dd{v}
-&= \iint_{D_{xy}} \left[
-	\int_{z_1(x,y)}^{z_2(x,y)} \pdv{R}{z} \dd{z}
-\right] \dd{x}\dd{y} \\
-&= \iint_{D_{xy}} \left\{
-	R[x,y,z_2(x,y)] - R[x,y,z_1(x,y)]
-\right\} \dd{x}\dd{y}.
-\end{aligned}
-\eqno(1)
+根据三重积分的计算法，有\[
+	\begin{aligned}
+	\iiint_\Omega \pdv{R}{z} \dd{v}
+	&= \iint_{D_{xy}} \left[
+		\int_{z_1(x,y)}^{z_2(x,y)} \pdv{R}{z} \dd{z}
+	\right] \dd{x}\dd{y} \\
+	&= \iint_{D_{xy}} \left\{
+		R[x,y,z_2(x,y)] - R[x,y,z_1(x,y)]
+	\right\} \dd{x}\dd{y}.
+	\end{aligned}
+	\eqno(1)
 \]
 根据曲面积分的计算法，有\[
-\iint_{\Sigma_1} R(x,y,z) \dd{x}\dd{y}
-= -\iint_{D_{xy}} R[x,y,z_1(x,y)] \dd{x}\dd{y}.
+	\iint_{\Sigma_1} R(x,y,z) \dd{x}\dd{y}
+	= -\iint_{D_{xy}} R[x,y,z_1(x,y)] \dd{x}\dd{y}.
 \]\[
-\iint_{\Sigma_2} R(x,y,z) \dd{x}\dd{y}
-= \iint_{D_{xy}} R[x,y,z_2(x,y)] \dd{x}\dd{y}.
-\]因为\(\Sigma_3\)上任意一块曲面在\(xOy\)面上的投影为零，所以直接根据对坐标的曲面积分的定义可知\[
-\iint_{\Sigma_3} R(x,y,z) \dd{x}\dd{y} = 0.
-\]把以上三个式子相加，得\[
-\varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}
-= \iint_{D_{xy}} \left\{
-	R[x,y,z_2(x,y)] - R[x,y,z_1(x,y)]
-\right\} \dd{x}\dd{y}.
-\eqno(2)
-\]比较(1)、(2)两式，得\[
-\iiint_\Omega \pdv{R}{z} \dd{v} = \varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}.
+	\iint_{\Sigma_2} R(x,y,z) \dd{x}\dd{y}
+	= \iint_{D_{xy}} R[x,y,z_2(x,y)] \dd{x}\dd{y}.
+\]
+因为\(\Sigma_3\)上任意一块曲面在\(xOy\)面上的投影为零，所以直接根据对坐标的曲面积分的定义可知\[
+	\iint_{\Sigma_3} R(x,y,z) \dd{x}\dd{y} = 0.
+\]
+把以上三个式子相加，得\[
+	\varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}
+	= \iint_{D_{xy}} \left\{
+		R[x,y,z_2(x,y)] - R[x,y,z_1(x,y)]
+	\right\} \dd{x}\dd{y}.
+	\eqno(2)
+\]
+比较(1)、(2)两式，得\[
+	\iiint_\Omega \pdv{R}{z} \dd{v}
+	= \varoiint_\Sigma R(x,y,z) \dd{x}\dd{y}.
 \]
 
-如果穿过\(\Omega\)内部且平行于\(x\)轴的直线以及平行于\(y\)轴的直线与\(\Omega\)的边界曲面\(\Sigma\)的交点也都恰好是两个，那么类似地可得\[
-\iiint_\Omega \pdv{P}{x} \dd{v} = \varoiint_\Sigma P(x,y,z) \dd{y}\dd{z},
+如果穿过\(\Omega\)内部且平行于\(x\)轴的直线
+以及平行于\(y\)轴的直线与\(\Omega\)的
+边界曲面\(\Sigma\)的交点也都恰好是两个，
+那么类似地可得\[
+	\iiint_\Omega \pdv{P}{x} \dd{v} = \varoiint_\Sigma P(x,y,z) \dd{y}\dd{z},
 \]\[
-\iiint_\Omega \pdv{Q}{y} \dd{v} = \varoiint_\Sigma Q(x,y,z) \dd{z}\dd{x},
-\]再把以上三个式子两端分别相加，即得高斯公式 \labelcref{equation:线积分与面积分.高斯公式}.
+	\iiint_\Omega \pdv{Q}{y} \dd{v} = \varoiint_\Sigma Q(x,y,z) \dd{z}\dd{x},
+\]
+再把以上三个式子两端分别相加，
+即得高斯公式 \labelcref{equation:线积分与面积分.高斯公式}.
 
-在上述证明中，我们对闭区域\(\Omega\)作了这样的限制，即穿过\(\Omega\)内部且平行于坐标轴的直线与\(\Omega\)的边界曲面\(\Sigma\)的交点恰好是两点.
-如果\(\Omega\)不满足这样的条件，可以引进几张辅助曲面，把\(\Omega\)分为有限个闭区域，使得每个闭区域满足这样的条件，并注意到沿辅助曲面相反两侧的两个曲面积分的绝对值相等而符号相反，相加时正好抵消，因此\cref{equation:线积分与面积分.高斯公式} 对于这样的闭区域仍然是正确的.
+在上述证明中，我们对闭区域\(\Omega\)作了这样的限制，
+即穿过\(\Omega\)内部且平行于坐标轴的直线
+与\(\Omega\)的边界曲面\(\Sigma\)的交点恰好是两点.
+如果\(\Omega\)不满足这样的条件，可以引进几张辅助曲面，
+把\(\Omega\)分为有限个闭区域，使得每个闭区域满足这样的条件，
+并注意到沿辅助曲面相反两侧的两个曲面积分的绝对值相等而符号相反，相加时正好抵消，
+因此\cref{equation:线积分与面积分.高斯公式} 对于这样的闭区域仍然是正确的.
 \end{proof}
 \end{theorem}
 
 
 \begin{example}
 利用高斯公式计算曲面积分\[
-\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z},
-\]其中\(\Sigma\)为柱面\(x^2+y^2=1\)及平面\(z=0,z=3\)所围成的空间闭区域\(\Omega\)的整个边界曲面的外侧.
+	\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z},
+\]
+其中\(\Sigma\)为柱面\(x^2+y^2=1\)及平面\(z=0,z=3\)所围成的空间闭区域\(\Omega\)的整个边界曲面的外侧.
 \begin{solution}
-记\(P=(y-z)x\)，\(Q=0\)，\(R=x-y\)，那么\[
-\pdv{P}{x} = y-z,
-\qquad
-\pdv{Q}{y} = 0,
-\qquad
-\pdv{R}{z} = 0,
-\]利用高斯公式把所给曲面积分化为三重积分，再利用柱面坐标计算三重积分，得\begin{align*}
-&\hspace{-20pt}\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z}
-= \iiint_\Omega (y-z) \dd{x}\dd{y}\dd{z} \\
-&= \iiint_\Omega (\rho\sin\theta-z)\rho\dd{\rho}\dd{\theta}\dd{z}
-= \int_0^{2\pi} \dd{\theta} \int_0^1 \rho\dd{\rho} \int_0^3 (\rho\sin\theta-z) \dd{z}
-= -\frac{9\pi}{2}.
+记\(P=(y-z)x\)，\(Q=0\)，\(R=x-y\)，
+那么\[
+	\pdv{P}{x} = y-z,
+	\qquad
+	\pdv{Q}{y} = 0,
+	\qquad
+	\pdv{R}{z} = 0,
+\]
+利用高斯公式把所给曲面积分化为三重积分，
+再利用柱面坐标计算三重积分，
+得\begin{align*}
+	&\hspace{-20pt}\varoiint_\Sigma (x-y) \dd{x}\dd{y} + (y-z)x \dd{y}\dd{z}
+	= \iiint_\Omega (y-z) \dd{x}\dd{y}\dd{z} \\
+	&= \iiint_\Omega (\rho\sin\theta-z)\rho\dd{\rho}\dd{\theta}\dd{z}
+	= \int_0^{2\pi} \dd{\theta} \int_0^1 \rho\dd{\rho} \int_0^3 (\rho\sin\theta-z) \dd{z}
+	= -\frac{9\pi}{2}.
 \end{align*}
 \end{solution}
 \end{example}
 
 \begin{example}
-设空间有界区域\(\Omega\)中，柱面\(x^2+y^2=1\)与平面\(z=0\)和\(x+z=1\)围成，\(\Sigma\)为\(\Omega\)边界曲面的外侧，计算曲面积分\[
-I = \varoiint_\Sigma 2xz \dd{y}\dd{z} + xz \cos y \dd{z}\dd{x} + 3yz \sin x \dd{x}\dd{y}.
+设空间有界区域\(\Omega\)中，
+柱面\(x^2+y^2=1\)与平面\(z=0\)和\(x+z=1\)围成，
+\(\Sigma\)为\(\Omega\)边界曲面的外侧，
+计算曲面积分\[
+	I = \varoiint_\Sigma 2xz \dd{y}\dd{z} + xz \cos y \dd{z}\dd{x} + 3yz \sin x \dd{x}\dd{y}.
 \]
 \begin{solution}
 利用高斯公式可得
 \begin{align*}
-I &= \iiint_\Omega \left[ \pdv{x}(2xz) + \pdv{y}(xz \cos y) + \pdv{z}(3yz \sin x) \right] \dd{v} \\
-&= \iiint_\Omega (2z - xz \sin y + 3y \sin x) \dd{v}.
+	I &= \iiint_\Omega \left[
+			\pdv{x}(2xz)
+			+ \pdv{y}(xz \cos y)
+			+ \pdv{z}(3yz \sin x)
+		\right] \dd{v} \\
+	&= \iiint_\Omega (2z - xz \sin y + 3y \sin x) \dd{v}.
 \end{align*}
 注意到积分区域\(\Omega\)关于\(xOz\)面对称，那么\[
-\iiint_\Omega xz \sin y \dd{v} = 0,
-\qquad
-\iiint_\Omega 3y \sin x \dd{v} = 0;
-\]因此\begin{align*}
-I &= 2 \iiint_\Omega z \dd{x}\dd{y}\dd{z}
-= 2 \iint_{D_{xy}} \dd{x}\dd{y} \int_0^{1-x} z \dd{z} \\
-&= \iint_{D_{xy}} (1-x)^2 \dd{x}\dd{y}
-= \iint_{D_{xy}} (1-2x+x^2) \dd{x}\dd{y} \\
-&= \iint_{D_{xy}} \dd{x}\dd{y}
-- 2 \iint_{D_{xy}} x \dd{x}\dd{y}
-+ \iint_{D_{xy}} x^2 \dd{x}\dd{y},
+	\iiint_\Omega xz \sin y \dd{v} = 0,
+	\qquad
+	\iiint_\Omega 3y \sin x \dd{v} = 0;
+\]
+因此\begin{align*}
+	I &= 2 \iiint_\Omega z \dd{x}\dd{y}\dd{z}
+	= 2 \iint_{D_{xy}} \dd{x}\dd{y} \int_0^{1-x} z \dd{z} \\
+	&= \iint_{D_{xy}} (1-x)^2 \dd{x}\dd{y}
+	= \iint_{D_{xy}} (1-2x+x^2) \dd{x}\dd{y} \\
+	&= \iint_{D_{xy}} \dd{x}\dd{y}
+	- 2 \iint_{D_{xy}} x \dd{x}\dd{y}
+	+ \iint_{D_{xy}} x^2 \dd{x}\dd{y},
 \end{align*}
 其中\(D_{xy} = \Set{(x,y) \given x^2+y^2\leq1}\).
-注意到\(\iint_{D_{xy}} \dd{x}\dd{y}\)是区域\(D_{xy}\)的面积，取值为\(\pi\cdot1^2=\pi\)；
-又有\(\iint_{D_{xy}} x \dd{x}\dd{y}\)中积分区域\(D_{xy}\)关于\(x\)轴对称，且被积函数\(x\)是奇函数，那么\(\iint_{D_{xy}} x \dd{x}\dd{y} = 0\)；
+注意到\(\iint_{D_{xy}} \dd{x}\dd{y}\)是区域\(D_{xy}\)的面积，
+取值为\(\pi\cdot1^2=\pi\)；
+又有\(\iint_{D_{xy}} x \dd{x}\dd{y}\)中
+积分区域\(D_{xy}\)关于\(x\)轴对称，
+且被积函数\(x\)是奇函数，
+那么\(\iint_{D_{xy}} x \dd{x}\dd{y} = 0\)；
 同时，由于\(D_{xy}\)关于原点对称，\[
-\iint_{D_{xy}} x^2 \dd{x}\dd{y} = \iint_{D_{xy}} y^2 \dd{x}\dd{y},
-\]所以\begin{align*}
-I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
-&= \pi + \frac{1}{2}
-	\int_0^{2\pi} \dd{\theta} \int_0^1 \rho^2 \cdot \rho\dd{\rho}
-= \frac{5}{4} \pi.
+	\iint_{D_{xy}} x^2 \dd{x}\dd{y} = \iint_{D_{xy}} y^2 \dd{x}\dd{y},
+\]
+所以\begin{align*}
+	I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
+	&= \pi + \frac{1}{2}
+		\int_0^{2\pi} \dd{\theta} \int_0^1 \rho^2 \cdot \rho\dd{\rho}
+	= \frac{5}{4} \pi.
 \end{align*}
 \end{solution}
 \end{example}
@@ -290,7 +323,7 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 \begin{definition}[空间中的散度]
 \def\defofdiv{\lim_{\Omega \to M} \frac{1}{V} \varoiint_\Sigma \vb{A}(x,y,z) \cdot \dd{\vb{S}}}%
 设\[
-\vb{A}(x,y,z)=P(x,y,z)\vb{i}+Q(x,y,z)\vb{j}+R(x,y,z)\vb{k}
+	\vb{A}(x,y,z)=P(x,y,z)\vb{i}+Q(x,y,z)\vb{j}+R(x,y,z)\vb{k}
 \]是定义在空间闭区域\(\Omega\)内的向量场，
 \(\Sigma\)是\(\Omega\)的边界曲面的外侧，
 \(\Omega\)的体积\(V = \iiint_\Omega \dd{v}\).
@@ -306,7 +339,8 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 三维向量场
 \(\vb{A}(x,y,z)=P(x,y,z)\vb{i}+Q(x,y,z)\vb{j}+R(x,y,z)\vb{k}\)
 在点\((x,y,z)\)的散度为\[
-	\div{\vb{A}} = \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}.
+	\div{\vb{A}}
+	= \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}.
 \]
 \end{proposition}
 
@@ -324,7 +358,8 @@ I &= \pi + \frac{1}{2} \iint_{D_{xy}} (x^2+y^2) \dd{x}\dd{y} \\
 
 现在利用散度的概念，\cref{equation:线积分与面积分.高斯公式} 可以改写为
 \begin{equation}\label{equation:线积分与面积分.高斯公式1}
-	\iiint_\Omega \div{\vb{A}} \dd{v} = \varoiint_\Sigma \vb{A} \cdot \dd{\vb{S}};
+	\iiint_\Omega \div{\vb{A}} \dd{v}
+	= \varoiint_\Sigma \vb{A} \cdot \dd{\vb{S}};
 \end{equation}
 而\cref{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
 可以改写为“沿任意闭曲面的曲面积分为零的充分必要条件是向量场散度为零”.
