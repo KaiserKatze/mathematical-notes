@@ -501,6 +501,34 @@
 \end{proof}
 \end{corollary}
 
+\begin{corollary}\label{theorem:定积分.定积分性质5推论3}
+设函数\(f\)是区间\([a,b]\)上的非负的黎曼可积函数，
+那么对于\(\forall c,d\in(a,b)\)，
+有\[
+	c<d
+	\implies
+	\int_a^c f(x) \dd{x} \leq \int_a^d f(x) \dd{x}.
+\]
+\begin{proof}
+根据\cref{theorem:定积分.定积分性质5}，
+有\[
+	\int_c^d f(x) \dd{x} \geq 0.
+\]
+再根据\cref{theorem:定积分.定积分性质3}，
+有\[
+	\int_a^c f(x) \dd{x}
+	+ \int_c^d f(x) \dd{x}
+	= \int_a^d f(x) \dd{x}.
+\]
+因此\[
+	\int_a^c f(x) \dd{x}
+	\leq
+	\int_a^d f(x) \dd{x}.
+	\qedhere
+\]
+\end{proof}
+\end{corollary}
+
 \begin{corollary}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P293 习题 5.
 设\(f\)在\([a,b]\)上连续.
@@ -516,55 +544,12 @@
 存在\(\delta>0\)，当\(0 < \abs{x-c} < \delta\)时，满足\[
 	f(x) > \frac12 f(c),
 \]
-从而\[
+于是由\cref{theorem:定积分.定积分性质5推论1,theorem:定积分.定积分性质5推论3} 得\[
 	\int_a^b f(x) \dd{x}
 	\geq \int_{c-\delta}^{c+\delta} f(x) \dd{x}
 	\geq \int_{c-\delta}^{c+\delta} \frac12 f(c) \dd{x}
 	= \frac12 f(c) \cdot 2 \delta
 	> 0.
-	\qedhere
-\]
-\end{proof}
-\end{corollary}
-
-\begin{corollary}\label{theorem:定积分.定积分性质5推论3}
-设函数\(f\)是区间\([a,b]\)上的非负的黎曼可积函数，
-则\[
-	\int_a^b f(x) \dd{x} \geq 0.
-\]
-\begin{proof}
-因为\(f(x)\geq0\ (a \leq x \leq b)\)，
-根据\cref{theorem:定积分.定积分性质5推论1,theorem:定积分.定积分性质2推论1}，
-总有\[
-	0 = \int_a^b 0 \dd{x} \leq \int_a^b f(x) \dd{x}.
-	\qedhere
-\]
-\end{proof}
-\end{corollary}
-
-\begin{corollary}\label{theorem:定积分.定积分性质5推论4}
-设函数\(f\)是区间\([a,b]\)上的非负的黎曼可积函数，
-那么对于\(\forall c,d\in(a,b)\)，
-有\[
-	c<d
-	\implies
-	\int_a^c f(x) \dd{x} \leq \int_a^d f(x) \dd{x}.
-\]
-\begin{proof}
-根据\cref{theorem:定积分.定积分性质5推论3}，
-有\[
-	\int_c^d f(x) \dd{x} \geq 0.
-\]
-再根据\cref{theorem:定积分.定积分性质3}，
-有\[
-	\int_a^c f(x) \dd{x}
-	+ \int_c^d f(x) \dd{x}
-	= \int_a^d f(x) \dd{x}.
-\]
-因此\[
-	\int_a^c f(x) \dd{x}
-	\leq
-	\int_a^d f(x) \dd{x}.
 	\qedhere
 \]
 \end{proof}
