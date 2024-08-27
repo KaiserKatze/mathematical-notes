@@ -731,6 +731,78 @@ u_n = \frac{2+(-1)^n}{2^n},
 比\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}更广泛.
 \end{example}
 
+% \subsection{对数审敛法}
+% \begin{theorem}\label{theorem:无穷级数.正项级数的对数审敛法}
+% 设\(\sum_{n=1}^\infty u_n\)是正项级数，
+% 记\(\rho \defeq \frac{\ln(1/u_n)}{\ln n}\).
+% \begin{itemize}
+% 	\item 如果\[
+% 		(\exists N\in\mathbb{N})
+% 		(\forall n\in\mathbb{N})
+% 		[n>N \implies \rho>1],
+% 	\]
+% 	则级数\(\sum_{n=1}^\infty u_n\)收敛.
+
+% 	\item 如果\[
+% 		(\exists N\in\mathbb{N})
+% 		(\forall n\in\mathbb{N})
+% 		[n>N \implies \rho\leq1],
+% 	\]
+% 	则级数\(\sum_{n=1}^\infty u_n\)发散.
+% \end{itemize}
+% %TODO proof
+% \end{theorem}
+
+% \begin{remark}
+% 设级数\(\sum_{n=1}^\infty u_n\)的一般项是\(u_n = \frac1{n\sqrt[n]{n}}\).
+% 那么\(\lim_{n\to\infty} \frac{\ln(1/u_n)}{\ln n} = 1\)，
+% 因此，我们无法利用\cref{theorem:无穷级数.正项级数的对数审敛法} 判别这个级数的敛散性.
+% \end{remark}
+
+\subsection{极限审敛法}
+将所给正项级数与\(p\)级数作比较，可得在实用上较方便的极限审敛法和拉贝审敛法.
+\begin{theorem}[极限审敛法]\label{theorem:无穷级数.正项级数的极限审敛法}
+%@see: 《高等数学（第六版 下册）》 P261 定理6
+设\(\sum_{n=1}^\infty u_n\)为正项级数，
+记\(\rho \defeq \lim_{n\to\infty} n^p u_n\).
+\begin{itemize}
+	\item 当\(\rho\in[0,+\infty)\)且\(p>1\)时，
+	级数\(\sum_{n=1}^\infty u_n\)收敛.
+
+	\item 当\(\rho\in(0,+\infty]\)且\(p\leq1\)时，
+	级数\(\sum_{n=1}^\infty u_n\)发散.
+\end{itemize}
+\end{theorem}
+
+\begin{example}
+%@see: 《高等数学（第六版 下册）》 P261 例7
+判定级数\(\sum_{n=1}^\infty \ln(1+\frac{1}{n^2})\)的收敛性.
+\begin{solution}
+因\(\ln(1+\frac{1}{n^2}) \sim \frac{1}{n^2}\ (n\to\infty)\)，
+故\[
+	\lim_{n\to\infty} n^2 u_n
+	= \lim_{n\to\infty} n^2 \ln(1+\frac{1}{n^2})
+	= \lim_{n\to\infty} n^2 \cdot \frac{1}{n^2}
+	= 1,
+\]
+根据\hyperref[theorem:无穷级数.正项级数的极限审敛法]{极限审敛法}可知，所给级数收敛.
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 下册）》 P261 例8
+判定级数\(\sum_{n=1}^\infty \sqrt{n+1} \left(1-\cos\frac{\pi}{n}\right)\)的收敛性.
+\begin{solution}
+因为\(1 - \cos x \sim \frac{1}{2} x^2\ (x\to0)\)，
+故\[
+	\lim_{n\to\infty} n^{\frac32} \sqrt{n+1} \cdot \left(1-\cos\frac{\pi}{n}\right)
+	= \lim_{n\to\infty} n^2 \sqrt{\frac{n+1}{n}} \cdot \frac{1}{2} \left(\frac{\pi}{n}\right)^2
+	= \frac{1}{2} \pi^2,
+\]
+根据\hyperref[theorem:无穷级数.正项级数的极限审敛法]{极限审敛法}可知，所给级数收敛.
+\end{solution}
+\end{example}
+
 \subsection{拉贝审敛法}
 对于某些正项级数\(\sum_{n=1}^\infty u_n\)，
 成立\(\lim_{n\to\infty} \frac{x_{n+1}}{x_n} = 1\)，
@@ -819,83 +891,11 @@ u_n = \frac{2+(-1)^n}{2^n},
 \end{proof}
 \end{theorem}
 
-% \subsection{对数审敛法}
-% \begin{theorem}\label{theorem:无穷级数.正项级数的对数审敛法}
-% 设\(\sum_{n=1}^\infty u_n\)是正项级数，
-% 记\(\rho \defeq \frac{\ln(1/u_n)}{\ln n}\).
-% \begin{itemize}
-% 	\item 如果\[
-% 		(\exists N\in\mathbb{N})
-% 		(\forall n\in\mathbb{N})
-% 		[n>N \implies \rho>1],
-% 	\]
-% 	则级数\(\sum_{n=1}^\infty u_n\)收敛.
-
-% 	\item 如果\[
-% 		(\exists N\in\mathbb{N})
-% 		(\forall n\in\mathbb{N})
-% 		[n>N \implies \rho\leq1],
-% 	\]
-% 	则级数\(\sum_{n=1}^\infty u_n\)发散.
-% \end{itemize}
-% %TODO proof
-% \end{theorem}
-
-% \begin{remark}
-% 设级数\(\sum_{n=1}^\infty u_n\)的一般项是\(u_n = \frac1{n\sqrt[n]{n}}\).
-% 那么\(\lim_{n\to\infty} \frac{\ln(1/u_n)}{\ln n} = 1\)，
-% 因此，我们无法利用\cref{theorem:无穷级数.正项级数的对数审敛法} 判别这个级数的敛散性.
-% \end{remark}
-
-\subsection{极限审敛法}
-将所给正项级数与\(p\)级数作比较，可得在实用上较方便的极限审敛法.
-\begin{theorem}[极限审敛法]\label{theorem:无穷级数.正项级数的极限审敛法}
-%@see: 《高等数学（第六版 下册）》 P261 定理6
-设\(\sum_{n=1}^\infty u_n\)为正项级数，
-记\(\rho \defeq \lim_{n\to\infty} n^p u_n\).
-\begin{itemize}
-	\item 当\(\rho\in[0,+\infty)\)且\(p>1\)时，
-	级数\(\sum_{n=1}^\infty u_n\)收敛.
-
-	\item 当\(\rho\in(0,+\infty]\)且\(p\leq1\)时，
-	级数\(\sum_{n=1}^\infty u_n\)发散.
-\end{itemize}
+\subsection{积分审敛法}
+\begin{theorem}[积分审敛法]\label{theorem:无穷级数.积分审敛法}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P24 定理9.3.6（积分判别法）
+设\(f\colon \mathbb{R}\to\mathbb{R}\)是非负的单调减少函数，
+那么级数\(\sum_{n=0}^\infty f(a+n)\)
+与反常积分\(\int_a^{+\infty} f(x) \dd{x}\)同敛散.
+%TODO proof
 \end{theorem}
-
-\begin{example}
-%@see: 《高等数学（第六版 下册）》 P261 例7
-判定级数\(\sum_{n=1}^\infty \ln(1+\frac{1}{n^2})\)的收敛性.
-\begin{solution}
-因\(\ln(1+\frac{1}{n^2}) \sim \frac{1}{n^2}\ (n\to\infty)\)，
-故\[
-	\lim_{n\to\infty} n^2 u_n
-	= \lim_{n\to\infty} n^2 \ln(1+\frac{1}{n^2})
-	= \lim_{n\to\infty} n^2 \cdot \frac{1}{n^2}
-	= 1,
-\]
-根据\hyperref[theorem:无穷级数.正项级数的极限审敛法]{极限审敛法}可知，所给级数收敛.
-\end{solution}
-\end{example}
-
-\begin{example}
-%@see: 《高等数学（第六版 下册）》 P261 例8
-判定级数\(\sum_{n=1}^\infty \sqrt{n+1} \left(1-\cos\frac{\pi}{n}\right)\)的收敛性.
-\begin{solution}
-因为\(1 - \cos x \sim \frac{1}{2} x^2\ (x\to0)\)，
-故\[
-	\lim_{n\to\infty} n^{\frac32} \sqrt{n+1} \cdot \left(1-\cos\frac{\pi}{n}\right)
-	= \lim_{n\to\infty} n^2 \sqrt{\frac{n+1}{n}} \cdot \frac{1}{2} \left(\frac{\pi}{n}\right)^2
-	= \frac{1}{2} \pi^2,
-\]
-根据\hyperref[theorem:无穷级数.正项级数的极限审敛法]{极限审敛法}可知，所给级数收敛.
-\end{solution}
-\end{example}
-
-% \subsection{积分审敛法}
-% \begin{theorem}[积分审敛法]\label{theorem:无穷级数.积分审敛法}
-% %@see: 《数学分析（第二版 下册）》（陈纪修） P24 定理9.3.6（积分判别法）
-% 设\(f\colon \mathbb{R}\to\mathbb{R}\)是非负的单调减少函数，
-% 那么级数\(\sum_{n=0}^\infty f(a+n)\)
-% 与反常积分\(\int_a^{+\infty} f(x) \dd{x}\)同敛散.
-% %TODO proof
-% \end{theorem}
