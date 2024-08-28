@@ -1,21 +1,56 @@
 \section{面积原理}
+%@see: 《数学分析教程 （第3版 上册）》（史济怀） P300
+在定义积分的时候，我们就把积分解释为曲边梯形的面积.
+这样就把“数”与“形”结合了起来.
+数与形的恰当的、巧妙的结合，往往给我们带来新的思想和新的发现.
+在这一节中，我们研究怎么利用积分估计和式.
+
+\begin{figure}[ht]
+%@see: 《数学分析教程 （第3版 上册）》（史济怀） P301 图7.7
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=.4,xmax=1,
+			ymin=0,ymax=1,
+			axis x line=middle,
+			axis y line=none,
+			xtick={.6,.8},
+			xticklabels={$k-1$,$k$},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=.5:.9]{x^2};
+			\draw(.6,0)--(.6,.36);
+			\draw(.8,0)--(.8,.64);
+			\draw[dashed](.6,.36)|-(.8,.64);
+			\draw[dashed](.6,.36)--(.8,.36);
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:面积原理.定积分与曲边梯形面积的联系}
+\end{figure}
+
 \begin{theorem}
 设\(m\)是正整数，\(f\)是在\([m,+\infty)\)上非负的单调增加的函数，
-那么对于\(\forall \xi>m\)，
+那么当\(\xi \geq m\)时，
 有\[
+%@see: 《数学分析教程 （第3版 上册）》（史济怀） P301 (1)
 	\abs{
 		\sum_{k=m}^{\floor{\xi}} f(k)
 		- \int_m^\xi f(x) \dd{x}
 	} \leq f(\xi).
 \]
 \begin{proof}
+由\cref{theorem:定积分.定积分性质3} 可知\[
+	\int_m^n f(x) \dd{x}
+	= \sum_{k=m+1}^n \int_{k-1}^k f(x) \dd{x}.
+\]
 由\cref{theorem:取整函数.性质1} 可知，
 \(\floor{\xi} \leq \xi < \xi + 1\)，
-于是\[
+于是再次利用\cref{theorem:定积分.定积分性质3} 可得\[
 	\int_m^\xi f(x) \dd{x}
 	= \int_m^{\floor{\xi}} f(x) \dd{x}
 	+ \int_{\floor{\xi}}^\xi f(x) \dd{x}.
 \]
+如\cref{figure:面积原理.定积分与曲边梯形面积的联系}，
 利用定积分的几何意义，容易看出\[
 	f(m) + f(m+1) + \dotsb + f(\floor{\xi}-1)
 	\leq \int_m^{\floor{\xi}} f(x) \dd{x}
