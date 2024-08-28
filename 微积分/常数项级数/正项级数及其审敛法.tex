@@ -75,14 +75,6 @@
 \end{proof}
 \end{example}
 
-\begin{example}
-设正项级数\(\sum_{n=1}^\infty a_n\)的部分和是\(S_n\).
-证明：对任意的\(\alpha>1\)，有\[
-	\sum_{n=1}^\infty \frac{a_n}{S_n^\alpha} < +\infty.
-\]
-%TODO proof
-\end{example}
-
 \subsection{比较审敛法}
 利用\cref{theorem:无穷级数.正项级数收敛的充分必要条件} 直接证明某些级数的部分和有界不太容易，
 因此我们需要一个判别级数敛散性的更简单的方法.
@@ -223,22 +215,23 @@
 \hyperref[example:定积分.p积分]{\(p\)积分}具有高度相似性.
 
 \begin{example}
-设正项级数\(\sum_{n=1}^\infty a_n\)的部分和是\(s_n = \sum_{i=1}^n a_i\).
-证明：对于任意\(k>1\)，有\[
-	\sum_{n=1}^\infty \frac{a_n}{s_n^k} < +\infty.
+%@see: 《数学分析教程 （第3版 下册）》（史济怀） P163 例1
+设正项级数\(\sum_{n=1}^\infty a_n\)的部分和是\(S_n\).
+证明：对任意的\(\alpha>1\)，有\[
+	\sum_{n=1}^\infty \frac{a_n}{S_n^\alpha} < +\infty.
 \]
 \begin{proof}
-当\(k>1\)时，
+当\(\alpha>1\)时，
 有\begin{align*}
-	\sum_{i=2}^n \frac{a_i}{s_i^k}
-	&= \sum_{i=2}^n \frac{s_i-s_{i-1}}{s_i^k} \\
-	&= \sum_{i=2}^n \frac{1}{s_i^k} \int_{s_{i-1}}^{s_i} \dd{x}
+	\sum_{i=2}^n \frac{a_i}{S_i^\alpha}
+	&= \sum_{i=2}^n \frac{S_i-S_{i-1}}{S_i^\alpha} \\
+	&= \sum_{i=2}^n \frac{1}{S_i^\alpha} \int_{S_{i-1}}^{S_i} \dd{x}
 			\tag{\cref{theorem:定积分.定积分性质4}} \\
-	&\leq \sum_{i=2}^n \int_{s_{i-1}}^{s_i} \frac{\dd{x}}{x^k}
+	&\leq \sum_{i=2}^n \int_{S_{i-1}}^{S_i} \frac{\dd{x}}{x^\alpha}
 			\tag{\cref{theorem:定积分.定积分性质6}} \\
-	&= \int_{s_1}^{s_n} \frac{\dd{x}}{x^k}
+	&= \int_{S_1}^{S_n} \frac{\dd{x}}{x^\alpha}
 			\tag{\cref{theorem:定积分.定积分性质3}} \\
-	&\leq \int_{s_1}^{+\infty} \frac{\dd{x}}{x^k}
+	&\leq \int_{S_1}^{+\infty} \frac{\dd{x}}{x^\alpha}
 	< +\infty,
 			\tag{\cref{example:定积分.p积分}}
 \end{align*}
@@ -899,6 +892,7 @@
 \subsection{积分审敛法}
 \begin{theorem}[积分审敛法]\label{theorem:无穷级数.积分审敛法}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P24 定理9.3.6（积分判别法）
+%@see: 《数学分析教程 （第3版 下册）》（史济怀） P166 定理14.2.4（Cauchy积分判别法）
 设\(f\colon \mathbb{R}\to\mathbb{R}\)是非负的单调减少函数，
 那么级数\(\sum_{n=0}^\infty f(a+n)\)
 与反常积分\(\int_a^{+\infty} f(x) \dd{x}\)同敛散.
