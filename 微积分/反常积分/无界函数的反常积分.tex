@@ -1,6 +1,7 @@
 \section{无界函数的反常积分}
 本节我们讨论第二类反常积分 --- “无界函数的反常积分”.
 
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P281
 先看一个具体的例子.
 表达式\[
 	\int_0^1 \frac{\dd{x}}{\sqrt{x}}
@@ -20,24 +21,37 @@
 我们就定义\[
 	\int_0^1 \frac{\dd{x}}{\sqrt{x}}=2.
 \]
+接下来，我们把这个定义推广.
 
 \subsection{无界函数的反常积分的概念}
 \begin{definition}\label{definition:定积分.无界函数的反常积分的定义1}
-设函数\(f\colon(a,b]\to\mathbb{R}\)满足\[
-	\lim_{x \to a^+} f(x) = \infty;
+设函数\(f\colon(a,b]\to\mathbb{R}\).
+点\(a\)是\(f\)的\DefineConcept{瑕点}，
+即\[
+	\lim_{x \to a^+} f(x) = \infty.
 \]
-但是对于\(\forall\epsilon\in(0,b-a)\)，
+设对于\(\forall\epsilon\in(0,b-a)\)，
 函数\(f\)在\([a+\epsilon,b]\)上可积.
-
 如果极限\[
 	\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}
 \]存在且有限，
-那么把这个极限称为“函数\(f(x)\)在\((a,b]\)上的\DefineConcept{广义积分}”，
-记作\(\int_a^b f(x) \dd{x}\)；
-我们还称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{收敛}”；
-另外，我们把点\(a\)称为“反常积分\(\int_a^b f(x) \dd{x}\)的\DefineConcept{瑕点}”.
+那么称“反常积分\(\int_a^b f(x) \dd{x}\)~\DefineConcept{收敛}”，
+并把这个极限称为
+“函数\(f\)在\((a,b]\)上的\DefineConcept{反常积分}”，
+记作\[
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P282 (5)
+	\int_a^b f(x) \dd{x},
+\]
+即\[
+	\int_a^b f(x) \dd{x}
+	\defeq
+	\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}.
+\]
 
-否则，称“反常积分\(\int_a^b f(x) \dd{x}\) \DefineConcept{发散}”.
+如果极限\[
+	\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}
+\]不存在，
+则称“反常积分\(\int_a^b f(x) \dd{x}\)~\DefineConcept{发散}”.
 \end{definition}
 
 类似地，当\(b\)是瑕点时，
@@ -69,11 +83,11 @@
 \begin{theorem}\label{theorem:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1}
 设函数\(f \in C(a,b]\)，点\(a\)是\(f\)的瑕点，
 函数\(F\)是\(f\)在区间\((a,b]\)上的一个原函数.
-若极限\(F(a^+) \equiv \lim_{x \to a^+} F(x)\)存在，
+若极限\(F(a^+) = \lim_{x \to a^+} F(x)\)存在，
 则有
 \begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1'}
-\int_a^b f(x) \dd{x}
-= F(b) - F(a^+);
+	\int_a^b f(x) \dd{x}
+	= F(b) - F(a^+);
 \end{equation}
 若极限\(F(a^+)\)不存在，则反常积分\(\int_a^b f(x) \dd{x}\)发散.
 \end{theorem}
@@ -81,7 +95,7 @@
 这样就可以简化\cref{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1'}，
 从而形式上仍有
 \begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分1}
-\int_a^b f(x) \dd{x} = [F(x)]_a^b.
+	\int_a^b f(x) \dd{x} = [F(x)]_a^b.
 \end{equation}
 
 对于\(f\)在\([a,b)\)上连续、\(b\)为瑕点的反常积分，也有类似的计算公式.
@@ -93,16 +107,16 @@
 若极限\(F(c^+),F(c^-)\)都存在，
 则有
 \begin{equation}\label{equation:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分2}
-\int_a^b f(x) \dd{x}
-= [F(b) - F(c^+)] + [F(c^-) - F(a)];
+	\int_a^b f(x) \dd{x}
+	= [F(b) - F(c^+)] + [F(c^-) - F(a)];
 \end{equation}
 否则，反常积分\(\int_a^b f(x) \dd{x}\)发散.
 \end{theorem}
 在\cref{theorem:定积分.利用牛顿莱布尼茨公式计算无界函数的反常积分2} 中，
 由于\(F(c^+)\)与\(F(c^-)\)不一定相等（例如，点\(c\)可能是函数\(F\)的跳跃间断点），
 所以\[
-\int_a^b f(x) \dd{x}
-\neq [F(x)]_a^b = F(b) - F(a).
+	\int_a^b f(x) \dd{x}
+	\neq [F(x)]_a^b = F(b) - F(a).
 \]
 
 \begin{example}
