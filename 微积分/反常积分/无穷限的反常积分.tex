@@ -1,31 +1,43 @@
 \section{无穷限的反常积分}
-反常积分（improper integral）
+“反常积分（improper integral）”
 可以分为“无穷限的反常积分”和“无界函数的反常积分”两大类，
 本节讨论第一类反常积分，
 即积分区间无界的积分.
 
 \subsection{无穷限的反常积分的概念}
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P278
 \begin{definition}\label{definition:定积分.无穷限的反常积分的定义1}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P358 定义8.1.1
 设函数\(f\colon[a,+\infty)\to\mathbb{R}\)
 对\(\forall b\in(a,+\infty)\)都有\(f \in R[a,b]\).
 
 如果极限\[
 	\lim_{t \to +\infty} \int_a^t f(x) \dd{x}
 \]存在且有限，
-那么把这个极限称为
-“函数\(f(x)\)在无穷区间\([a,+\infty)\)上的\DefineConcept{反常积分}”，
+那么称“反常积分\(\int_a^{+\infty} f(x) \dd{x}\)~\DefineConcept{收敛}”
+或“函数\(f\)在\([a,+\infty)\)上\DefineConcept{可积}”，
+记作\(f \in R[a,+\infty)\)；
+并把这个极限称为
+“函数\(f\)在\([a,+\infty)\)上的\DefineConcept{反常积分}”，
 记作\[
-	\int_a^{+\infty} f(x) \dd{x}.
+	\int_a^{+\infty} f(x) \dd{x},
 \]
-这时也称“反常积分\(\int_a^{+\infty} f(x) \dd{x}\) \DefineConcept{收敛}”，
-或称“函数\(f\)在\([a,+\infty)\)上\DefineConcept{可积}”，
-记作\(f \in R[a,+\infty)\).
+即\[
+	\int_a^{+\infty} f(x) \dd{x}
+	\defeq
+	\lim_{t \to +\infty} \int_a^t f(x) \dd{x}.
+\]
 
-如果上述极限不存在，
-则称“反常积分\(\int_a^{+\infty} f(x) \dd{x}\) \DefineConcept{发散}”.
+如果极限\[
+	\lim_{t \to +\infty} \int_a^t f(x) \dd{x}
+\]不存在，
+则称“反常积分\(\int_a^{+\infty} f(x) \dd{x}\)~\DefineConcept{发散}”.
 \end{definition}
 
-类似地，可以定义反常积分\[
+类似地，
+设\(f\colon(-\infty,b]\to\mathbb{R}\)
+对\(\forall a\in(-\infty,b)\)都有\(f \in R[a,b]\)，
+则可以定义反常积分\[
 	\int_{-\infty}^b f(x) \dd{x}
 	\defeq
 	\lim_{t \to -\infty} \int_t^b f(x) \dd{x}.
@@ -33,7 +45,15 @@
 
 \begin{definition}\label{definition:定积分.无穷限的反常积分的定义3}
 设函数\(f\colon\mathbb{R}\to\mathbb{R}\)
-在\((-\infty,+\infty)\)内的任意有界闭区间上都是可积的.
+在\((-\infty,+\infty)\)内的任意有界闭区间上都是可积的，
+即\[
+	(\forall a,b\in\mathbb{R})
+	[
+		[a,b]\subset(-\infty,+\infty)
+		\implies
+		f \in R[a,b]
+	].
+\]
 
 任取\(a\in\mathbb{R}\)，
 如果反常积分\[
@@ -41,7 +61,7 @@
 	\quad\text{和}\quad
 	\int_a^{+\infty} f(x) \dd{x}
 \]都收敛，
-那么称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\) \DefineConcept{收敛}”，
+那么称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)~\DefineConcept{收敛}”，
 并且规定\[
 	\int_{-\infty}^{+\infty} f(x) \dd{x}
 	\defeq
@@ -53,7 +73,7 @@
 	\int_{-\infty}^a f(x) \dd{x}, \qquad
 	\int_a^{+\infty} f(x) \dd{x}
 \]中至少有一个发散，
-那么称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\) \DefineConcept{发散}”.
+那么称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)~\DefineConcept{发散}”.
 \end{definition}
 
 容易证明，\cref{definition:定积分.无穷限的反常积分的定义3} 实际上与点\(a\)的选取毫无关系.
