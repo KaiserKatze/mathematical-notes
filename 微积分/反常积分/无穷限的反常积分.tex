@@ -190,6 +190,53 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P280 例2
+设\(a>0\).
+计算反常积分\[
+	\int_0^{+\infty} e^{-ax} \cos bx \dd{x}
+	\quad\text{和}\quad
+	\int_0^{+\infty} e^{-ax} \sin bx \dd{x}.
+\]
+\begin{solution}
+用分部积分法，得\begin{align*}
+	\int_0^{+\infty} e^{-ax} \cos bx \dd{x}
+	&= \frac1b \int_0^{+\infty} e^{-ax} \dd(\sin bx) \\
+	&= \frac1b \left(
+		\eval{e^{-ax} \sin bx}_0^{+\infty}
+		+ a \int_0^{+\infty} e^{-ax} \sin bx \dd{x}
+	\right).
+\end{align*}
+因为\(\lim_{x\to+\infty} e^{-ax} \sin bx = 0\)，
+所以\[
+	\int_0^{+\infty} e^{-ax} \cos bx \dd{x}
+	= \frac{a}{b} \int_0^{+\infty} e^{-ax} \sin bx \dd{x}.
+	\eqno(1)
+\]
+再用分部积分法，得\begin{align*}
+	\int_0^{+\infty} e^{-ax} \sin bx \dd{x}
+	&= -\frac1b \int_0^{+\infty} e^{-ax} \dd(\cos bx) \\
+	&= -\frac1b \left(
+		\eval{e^{-ax} \cos bx}_0^{+\infty}
+		+ a \int_0^{+\infty} e^{-ax} \cos bx \dd{x}
+	\right).
+\end{align*}
+因为\(\lim_{x\to+\infty} e^{-ax} \cos bx = 0\)，
+所以\[
+	\int_0^{+\infty} e^{-ax} \sin bx \dd{x}
+	= -\frac1b \left(
+		-1
+		+ a \int_0^{+\infty} e^{-ax} \cos bx \dd{x}
+	\right).
+	\eqno(2)
+\]
+联立(1)(2)两式可以解得\begin{gather}
+	\int_0^{+\infty} e^{-ax} \cos bx \dd{x} = \frac{a}{a^2+b^2}, \\
+	\int_0^{+\infty} e^{-ax} \sin bx \dd{x} = \frac{b}{a^2+b^2}.
+\end{gather}
+\end{solution}
+\end{example}
+
 \subsection{\texorpdfstring{\(p\)}{p}积分}
 \begin{proposition}[\(p\)积分]\label{example:定积分.p积分}
 %@see: 《高等数学（第六版 上册）》 P257 例3
