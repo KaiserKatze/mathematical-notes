@@ -20,6 +20,7 @@
 并把这个极限称为
 “函数\(f\)在\([a,+\infty)\)上的\DefineConcept{反常积分}”，
 记作\[
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P278 (1)
 	\int_a^{+\infty} f(x) \dd{x},
 \]
 即\[
@@ -54,15 +55,16 @@
 		f \in R[a,b]
 	].
 \]
-
 任取\(a\in\mathbb{R}\)，
 如果反常积分\[
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P279 (2)
 	\int_{-\infty}^a f(x) \dd{x}
 	\quad\text{和}\quad
 	\int_a^{+\infty} f(x) \dd{x}
 \]都收敛，
 那么称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)~\DefineConcept{收敛}”，
 并且规定\[
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P279 (3)
 	\int_{-\infty}^{+\infty} f(x) \dd{x}
 	\defeq
 	\int_{-\infty}^a f(x) \dd{x} + \int_a^{+\infty} f(x) \dd{x},
@@ -125,6 +127,7 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{theorem}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P256 例1
 计算反常积分\(\int_{-\infty}^{+\infty} \frac{\dd{x}}{1+x^2}\).
 \begin{solution}
 因为\(\arctan x\)是\(\frac{1}{1+x^2}\)的一个原函数，
@@ -140,6 +143,7 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P256 例2
 计算反常积分\(\int_0^{+\infty} t e^{-pt} \dd{t}\)，
 其中\(p\)是常数，且\(p>0\).
 \begin{solution}
@@ -187,31 +191,45 @@ definition:定积分.无穷限的反常积分的定义3}
 
 \subsection{\texorpdfstring{\(p\)}{p}积分}
 \begin{proposition}[\(p\)积分]\label{example:定积分.p积分}
+%@see: 《高等数学（第六版 上册）》 P257 例3
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P279 例1
 反常积分\[
-	\int_a^{+\infty} \frac{\dd{x}}{x^p} \quad(a>0)
-\]当\(p > 1\)时收敛，当\(p \leq 1\)时发散.
-\begin{proof}
-当\(p=1\)时，\[
 	\int_a^{+\infty} \frac{\dd{x}}{x^p}
-	= \int_a^{+\infty} \frac{\dd{x}}{x}
-	= \eval{\ln x}_a^{+\infty}
-	= +\infty;
+	\quad(a>0)
+\]当\(p>1\)时收敛，当\(p\leq1\)时发散.
+\begin{proof}
+当\(p=1\)时，有\[
+	\int_a^t \frac{\dd{x}}{x^p}
+	= \int_a^t \frac{\dd{x}}{x}
+	= \eval{\ln x}_a^t
+	= \ln t - \ln a,
+\]
+于是\[
+	\int_a^{+\infty} \frac{\dd{x}}{x^p}
+	= \lim_{t\to+\infty} \int_a^t \frac{\dd{x}}{x^p}
+	= \lim_{t\to+\infty} (\ln t - \ln a)
+	= +\infty.
 \]
 
-当\(p\neq1\)时，\[
-	\frac{\dd{x}}{x^p}
-	= \frac{1}{1-p} \dd(x^{1-p}).
+当\(p\neq1\)时，有\[
+	\int_a^t \frac{\dd{x}}{x^p}
+	= \frac{1}{1-p} \int_a^t \dd(x^{1-p})
+	= \frac{1}{1-p} \eval{x^{1-p}}_a^t
+	= \frac{t^{1-p}-a^{1-p}}{1-p},
 \]
-于是，当\(p<1\)时，
-因为\(\int_a^{+\infty} \frac{\dd{x}}{x^p}
-= +\infty\)；
-当\(p>1\)时，
-\(\int_a^{+\infty} \frac{\dd{x}}{x^p}
-= \frac{a^{1-p}}{p-1}\).
+于是\[
+	\int_a^{+\infty} \frac{\dd{x}}{x^p}
+	= \lim_{t\to+\infty} \int_a^t \frac{\dd{x}}{x^p}
+	= \left\{ \begin{array}{cl}
+		\frac{a^{1-p}}{p-1}, & p>1, \\
+		+\infty, & p<1.
+	\end{array} \right.
+\]
 
-综上，当\(p > 1\)时，这反常积分收敛于\(\frac{a^{1-p}}{p-1}\)；
-当\(p\leq1\)时，这反常积分发散.
+综上所述，反常积分\[
+	\int_a^{+\infty} \frac{\dd{x}}{x^p}
+	\quad(a>0)
+\]当\(p>1\)时收敛于\(\frac{a^{1-p}}{p-1}\)，当\(p\leq1\)时发散.
 \end{proof}
 \end{proposition}
 
