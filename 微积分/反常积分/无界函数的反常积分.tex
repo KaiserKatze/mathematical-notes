@@ -120,44 +120,54 @@
 \]
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P258 例4
 计算反常积分\[
-\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}\quad(a>0).
+	\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}
+	\quad(a>0).
 \]
 \begin{solution}
 因为\[
-\lim_{x \to a^-} \frac{1}{\sqrt{a^2-x^2}} = +\infty,
-\]所以点\(a\)是瑕点，于是\[
-\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}
-= \left[ \arcsin\frac{x}{a} \right]_0^a
-= \lim_{x \to a^-} \arcsin\frac{x}{a} - 0 = \frac{\pi}{2}.
+	\lim_{x \to a^-} \frac{1}{\sqrt{a^2-x^2}} = +\infty,
+\]
+所以点\(a\)是瑕点，于是\[
+	\int_0^a \frac{\dd{x}}{\sqrt{a^2-x^2}}
+	= \left[ \arcsin\frac{x}{a} \right]_0^a
+	= \lim_{x \to a^-} \arcsin\frac{x}{a} - 0 = \frac{\pi}{2}.
 \]
 \end{solution}
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P259 例5
 讨论反常积分\(\int_{-1}^1 \frac{\dd{x}}{x^2}\)的收敛性.
 \begin{solution}
-被积函数\(f(x) = \frac{1}{x^2}\)在积分区间\([-1,1]\)上除\(x=0\)外连续，且\[
-\lim_{x\to0} \frac{1}{x^2} = +\infty.
+被积函数\(f(x) = \frac{1}{x^2}\)在积分区间\([-1,1]\)上除\(x=0\)外连续，
+且\[
+	\lim_{x\to0} \frac{1}{x^2} = +\infty.
 \]
 
 由于\[
-\int_{-1}^0 \frac{\dd{x}}{x^2}
-= \left[-\frac{1}{x}\right]_{-1}^0
-= \lim_{x\to0^-} \left(-\frac{1}{x}\right) - 1
-= +\infty,
-\]即反常积分\(\int_{-1}^0 \frac{\dd{x}}{x^2}\)发散，所以反常积分\(\int_{-1}^1 \frac{\dd{x}}{x^2}\)发散.
-\end{solution}
-
-需要注意的是，如果疏忽了\(x=0\)是被积函数的瑕点，就可能得到以下错误结果：\[
-\int_{-1}^1 \frac{\dd{x}}{x^2}
-= \left[ -\frac{1}{x} \right]_{-1}^1
-= -1 - 1 = -2.
+	\int_{-1}^0 \frac{\dd{x}}{x^2}
+	= \left[-\frac{1}{x}\right]_{-1}^0
+	= \lim_{x\to0^-} \left(-\frac{1}{x}\right) - 1
+	= +\infty,
 \]
+即反常积分\(\int_{-1}^0 \frac{\dd{x}}{x^2}\)发散，
+所以反常积分\(\int_{-1}^1 \frac{\dd{x}}{x^2}\)发散.
+\end{solution}
 \end{example}
+\begin{remark}
+如果疏忽了\(x=0\)是被积函数的瑕点，就可能得到以下错误结果：\[
+	\int_{-1}^1 \frac{\dd{x}}{x^2}
+	= \left[ -\frac{1}{x} \right]_{-1}^1
+	= -1 - 1 = -2.
+\]
+\end{remark}
 
 \subsection{\texorpdfstring{\(q\)}{q}积分}
 \begin{proposition}[\(q\)积分]\label{example:定积分.q积分}
+%@see: 《高等数学（第六版 上册）》 P259 例6
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P282 例4
 反常积分\[
 	\int_a^b \frac{\dd{x}}{(x-a)^q}
 	\quad(a \neq b)
@@ -196,8 +206,10 @@
 那么可以像定积分一样换元.
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P260 例7
 求反常积分\(\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}\).
-\begin{solution}
+\begin{solution}\let\qed\relax
+\begin{proof}[解法一]
 这里，积分上限为\(+\infty\)，且下限\(x=0\)为被积函数的瑕点.
 
 令\(\sqrt{x} = t\)，
@@ -220,6 +232,19 @@
 	= 2 \int_0^{\frac\pi2} \cos u \dd{u}
 	= 2.
 \]
+\end{proof}
+\begin{proof}[解法二]
+令\(t = \frac1x\)，则\(x=\frac1t\)，\(\dd{x} = -\frac{\dd{t}}{t^2}\).
+% 本例也可令\(t = \frac{1}{x+1}\).
+当\(x\to0^+\)时\(t\to+\infty\).
+当\(x\to+\infty\)时\(t\to0\).
+于是\begin{align*}
+	\int_0^{+\infty} \frac{\dd{x}}{\sqrt{x(x+1)^3}}
+	&= \int_0^{+\infty} \frac1{\sqrt{(1/t)(1/t+1)^3}} \cdot \frac{\dd{t}}{t^2} \\
+	&= \int_0^{+\infty} \frac{\dd{t}}{(1+t)^{3/2}} \\
+	&= -2 \eval{(1+t)^{-1/2}}_0^{+\infty}
+	= 2.
+\end{align*}
+\end{proof}
 \end{solution}
-本例如用变换\(t = \frac{1}{x}\)或\(t = \frac{1}{x+1}\)，计算会更简单些.
 \end{example}
