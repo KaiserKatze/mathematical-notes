@@ -4,18 +4,25 @@
 
 \subsection{无穷限反常积分的审敛法}
 \begin{theorem}\label{theorem:定积分.无穷限反常积分的审敛法引理}
-设函数\(f(x)\)在区间\([a,+\infty)\)上连续，且\(f(x) \geq 0\).若函数\[
-F(x)=\int_a^x f(t) \dd{t}
-\]在\([a,+\infty)\)上有上界，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+%@see: 《高等数学（第六版 上册）》 P261 定理1
+%@see: 《数学分析教程 （第3版 下册）》（史济怀） P274 定理16.1.1
+设函数\(f\colon[a,+\infty)\to\mathbb{R}\)非负，
+则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛的充分必要条件是：
+函数\[
+	F\colon[a,+\infty)\to\mathbb{R},
+	x \mapsto \int_a^x f(t) \dd{t}
+\]在\([a,+\infty)\)上有界.
+\begin{proof}
+根据\hyperref[definition:定积分.无穷限的反常积分的定义1]{定义}，
+反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
+当且仅当极限\(F(+\infty) = \lim_{x\to+\infty} F(x)\)存在且有限.
+由于\(f(x)\geq0\)，
+所以\(F(x) = \int_a^x f(t) \dd{t}\)是单调增加的，
+于是由\hyperref[theorem:极限.函数的单调有界定理]{单调有界定理}%
+和\hyperref[theorem:极限.函数极限的局部有界性]{局部有界性}可知，
+极限\(F(+\infty)\)存在且有限的充分必要条件是\(F\)有界.
+\end{proof}
 \end{theorem}
-事实上，因为\(f(x)\geq0\)，
-\(F(x)\)在\([a,+\infty)\)上单调增加；
-又因为\(F(x)\)在\([a,+\infty)\)上有上界，
-故\(F(x)\)在\([a,+\infty)\)上是单调有界的函数.
-按照“区间\([a,+\infty)\)上的单调有界函数\(F(x)\)必有极限\(\lim_{x\to+\infty} F(x)\)”的准则，
-就可知道极限\[
-	\lim_{x\to+\infty} \int_a^x f(t) \dd{t}
-\]存在，即反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
 
 根据\cref{theorem:定积分.无穷限反常积分的审敛法引理}，
 对于非负函数的无穷限的反常积分，有以下的比较审敛原理.
