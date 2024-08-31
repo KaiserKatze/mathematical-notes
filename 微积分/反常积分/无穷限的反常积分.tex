@@ -145,6 +145,35 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{example}
 
 \begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P360 例8.1.3
+设\(a\in\mathbb{R}\)，
+讨论\(\int_0^{+\infty} e^{-ax} \dd{x}\)的敛散性.
+\begin{solution}
+当\(a=0\)时，有\(e^{-ax} = 1\)，那么\[
+	\int_0^t e^{-ax} \dd{x} = t,
+	\qquad
+	\int_0^{+\infty} e^{-ax} \dd{x}
+	= \lim_{t\to+\infty} \int_0^t e^{-ax} \dd{x}
+	= +\infty.
+\]
+
+当\(a\neq0\)时，
+\(x \mapsto -\frac1a e^{-ax}\)是\(x \mapsto e^{-ax}\)的一个原函数，
+那么有\[
+	\int_0^{+\infty} e^{-ax} \dd{x}
+	= -\frac1a \eval{e^{-ax}}_0^{+\infty}
+	= \left\{ \begin{array}{rl}
+		1/a, & a>0, \\
+		+\infty, & a < 0.
+	\end{array} \right.
+\]
+
+综上所述，当\(a>0\)时，反常积分\(\int_0^{+\infty} e^{-ax} \dd{x}\)收敛于\(1/a\)；
+当\(a\leq0\)时，它发散.
+\end{solution}
+\end{example}
+
+\begin{example}
 %@see: 《高等数学（第六版 上册）》 P256 例2
 计算反常积分\(\int_0^{+\infty} t e^{-pt} \dd{t}\)，
 其中\(p\)是常数，且\(p>0\).
@@ -262,6 +291,7 @@ definition:定积分.无穷限的反常积分的定义3}
 \subsection{\texorpdfstring{\(p\)}{p}积分}
 \begin{proposition}[\(p\)积分]\label{example:定积分.p积分}
 %@see: 《高等数学（第六版 上册）》 P257 例3
+%@see: 《数学分析（第二版 上册）》（陈纪修） P359 例8.1.2
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P279 例1
 反常积分\[
 	\int_a^{+\infty} \frac{\dd{x}}{x^p}
