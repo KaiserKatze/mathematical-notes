@@ -93,6 +93,22 @@
 \]
 \end{theorem}
 
+同样地，由于反常积分\(\int_a^b f(x) \dd{x}\ (\text{$x=a$是瑕点})\)收敛
+即为极限\(\lim_{\epsilon\to0^+} \int_{a+\epsilon}^b f(x) \dd{x}\)存在，
+因此我们可以把\hyperref[theorem:极限.函数的柯西极限存在准则]{柯西极限存在准则}表述为如下形式：
+\begin{theorem}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P376 定理8.2.1'（Cauchy收敛原理）
+设函数\(f\colon[a,b)\to\mathbb{R}\)，
+点\(x=b\)是瑕点，
+则反常积分\(\int_a^b f(x) \dd{x}\)收敛的充分必要条件是：
+对任意给定\(\epsilon>0\)，存在\(\delta>0\)，
+使得对任意\(d_1,d_2\in(0,\delta)\)，
+有\[
+	\abs{\int_{b-d_1}^{b-d_2} f(x) \dd{x}} < \epsilon.
+\]
+\end{theorem}
+
+\subsection{绝对收敛，条件收敛}
 \begin{definition}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P370 定义8.2.1
 设函数\(f\colon[a,+\infty)\to\mathbb{R}\)在任意有限闭区间上可积.
@@ -258,17 +274,17 @@
 
 \begin{theorem}[比较审敛法2]\label{theorem:定积分.无界函数的反常积分的比较审敛法}
 %@see: 《高等数学（第六版 上册）》 P265 定理6（比较审敛法2）
-设函数\(f(x)\)在区间\((a,b]\)上连续，
-且\(f(x) \geq 0\)，
-\(x=a\)为\(f(x)\)的瑕点.
+%@see: 《数学分析（第二版 上册）》（陈纪修） P376 定理8.2.3'（Cauchy判别法）
+设函数\(f\)在区间\((a,b]\)上非负，
+点\(x=a\)是瑕点.
 \begin{itemize}
 	\item 如果存在常数\(M > 0\)及\(q < 1\)，使得\[
 		f(x) \leq \frac{M}{(x-a)^q}
 		\quad(a < x \leq b),
 	\]
 	则反常积分\(\int_a^b f(x) \dd{x}\)收敛.
-	\item 如果存在常数\(N > 0\)，使得\[
-		f(x) \geq \frac{N}{x - a}
+	\item 如果存在常数\(N > 0\)及\(q \geq 1\)，使得\[
+		f(x) \geq \frac{N}{(x-a)^q}
 		\quad(a < x \leq b),
 	\]
 	则反常积分\(\int_a^b f(x) \dd{x}\)发散.
@@ -294,17 +310,19 @@
 
 \begin{theorem}[极限审敛法2]\label{theorem:定积分.无界函数的反常积分的极限审敛法}
 %@see: 《高等数学（第六版 上册）》 P265 定理7（极限审敛法2）
-设函数\(f(x)\)在区间\((a,b]\)上连续，
-且\(f(x) \geq 0\)，
-\(x=a\)为\(f(x)\)的瑕点.
+%@see: 《数学分析（第二版 上册）》（陈纪修） P372 推论'（Cauchy判别法的极限形式）
+设函数\(f\)在区间\((a,b]\)上非负，
+点\(x=a\)是瑕点，
+记\[
+	\rho(k) \defeq \lim_{x\to a^+} (x-a)^k f(x).
+\]
 \begin{itemize}
-	\item 如果存在常数\(q \in (0,1)\)，使得\[
-		\lim_{x \to a^+} (x-a)^q f(x)
-	\]存在，
+	\item 如果存在常数\(k < 1\)，
+	使得\(0 \leq \rho(k) < +\infty\)，
 	则反常积分\(\int_a^b f(x) \dd{x}\)收敛.
-	\item 如果\[
-		\lim_{x \to a^+} (x-a) f(x) = d \in (0,+\infty],
-	\]
+
+	\item 如果存在常数\(k \geq 1\)，
+	使得\(0 < \rho(k) \leq +\infty\)，
 	则反常积分\(\int_a^b f(x) \dd{x}\)发散.
 \end{itemize}
 \end{theorem}
@@ -328,8 +346,9 @@
 \end{example}
 
 \subsection{一般函数的反常积分的审敛法}
-\begin{theorem}\label{theorem:反常积分.阿贝尔--狄利克雷审敛法}
+\begin{theorem}\label{theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P374 定理8.2.5
+设函数\(f,g\colon[a,+\infty)\to\mathbb{R}\).
 若下列两个条件之一满足，
 则反常积分\(\int_a^{+\infty} f(x) ~ g(x) \dd{x}\)收敛：\begin{itemize}
 	\item {\bf 阿贝尔条件}
@@ -351,7 +370,7 @@
 \begin{proof}
 显然函数\(x \mapsto \int_1^x \sin t \dd{t}\)有界，
 函数\(x \mapsto \frac1x\)在\([1,+\infty)\)上单调减少且\(\lim_{x\to+\infty} \frac1x = 0\)，
-满足\hyperref[theorem:反常积分.阿贝尔--狄利克雷审敛法]{狄利克雷条件}，
+满足\hyperref[theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法]{狄利克雷条件}，
 因此反常积分\(\int_1^{+\infty} \frac{\sin x}{x} \dd{x}\)收敛.
 
 但是在\([1,+\infty)\)上，有\[
@@ -375,7 +394,7 @@
 \begin{proof}
 由上例可知\(\int_1^{+\infty} \frac{\sin x}{x} \dd{x}\)收敛，
 而函数\(x \mapsto \arctan x\)在\([1,+\infty)\)上单调有界，
-满足\hyperref[theorem:反常积分.阿贝尔--狄利克雷审敛法]{阿贝尔条件}，
+满足\hyperref[theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法]{阿贝尔条件}，
 因此\(\int_1^{+\infty} \frac{\sin x \arctan x}{x} \dd{x}\)收敛.
 
 当\(\sqrt3 \leq x < +\infty\)时，有\[
@@ -389,3 +408,20 @@
 综上所述，\(\int_1^{+\infty} \frac{\sin x \arctan x}{x} \dd{x}\)条件收敛.
 \end{proof}
 \end{example}
+
+\begin{theorem}\label{theorem:反常积分.无界函数的反常积分的阿贝尔--狄利克雷审敛法}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P376 定理8.2.5'
+设函数\(f,g\colon(a,b]\to\mathbb{R}\)，
+点\(x=a\)是瑕点.
+若下列两个条件之一满足，
+则反常积分\(\int_a^b f(x) ~ g(x) \dd{x}\)收敛：\begin{itemize}
+	\item {\bf 阿贝尔条件}
+	反常积分\(\int_a^b f(x) \dd{x}\)收敛，
+	函数\(g\)在\((a,b]\)上单调有界.
+
+	\item {\bf 狄利克雷条件}
+	函数\(x \mapsto \int_{a+x}^b f(t) \dd{t}\)在\((0,b-a]\)上有界，
+	函数\(g\)在\((a,b]\)上单调且\(\lim_{x \to a^+} g(x) = 0\).
+\end{itemize}
+%TODO proof
+\end{theorem}
