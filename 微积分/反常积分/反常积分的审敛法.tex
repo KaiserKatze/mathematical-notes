@@ -326,3 +326,42 @@
 高斯积分\(\int_0^{+\infty} e^{-x^2} \dd{x}\)收敛.
 \end{proof}
 \end{example}
+
+\subsection{一般函数的反常积分的审敛法}
+\begin{theorem}\label{theorem:反常积分.阿贝尔--狄利克雷审敛法}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P374 定理8.2.5
+若下列两个条件之一满足，
+则反常积分\(\int_a^{+\infty} f(x) ~ g(x) \dd{x}\)收敛：\begin{itemize}
+	\item {\bf 阿贝尔条件}
+	反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
+	函数\(g\)在\([a,+\infty)\)上单调有界.
+
+	\item {\bf 狄利克雷条件}
+	函数\(x \mapsto \int_a^x f(t) \dd{t}\)在\([a,+\infty)\)上有界，
+	函数\(g\)在\([a,+\infty)\)上单调且\(\lim_{x\to+\infty} g(x) = 0\).
+\end{itemize}
+%TODO proof
+%\cref{theorem:定积分.积分中值定理2}
+\end{theorem}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P375 例8.2.4
+证明：反常积分\(\int_1^{+\infty} \frac{\sin x}{x} \dd{x}\)条件收敛.
+% 与狄利克雷积分\(\int_0^{+\infty} \frac{\sin x}{x} \dd{x}\)的积分下限不同！
+\begin{proof}
+显然函数\(x \mapsto \int_1^x \sin t \dd{t}\)有界，
+函数\(x \mapsto \frac1x\)在\([1,+\infty)\)上单调减少且\(\lim_{x\to+\infty} \frac1x = 0\)，
+满足\hyperref[theorem:反常积分.阿贝尔--狄利克雷审敛法]{狄利克雷条件}，
+因此反常积分\(\int_1^{+\infty} \frac{\sin x}{x} \dd{x}\)收敛.
+
+但是在\([1,+\infty)\)上，有\[
+	\abs{\frac{\sin x}{x}}
+	\geq \frac{\sin^2x}{x}
+	= \frac1{2x} - \frac{\cos2x}{2x},
+\]
+因反常积分\(\int_1^{+\infty} \frac{\cos2x}{2x} \dd{x}\)收敛
+（仿照上面对反常积分\(\int_1^{+\infty} \frac{\sin x}{x} \dd{x}\)的讨论），
+而反常积分\(\int_1^{+\infty} \frac{\dd{x}}{2x}\)发散，
+所以反常积分\(\int_1^{+\infty} \frac{\sin^2x}{x} \dd{x}\)发散.
+\end{proof}
+\end{example}
