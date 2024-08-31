@@ -161,7 +161,7 @@
 函数\[
 	F\colon[a,+\infty)\to\mathbb{R},
 	x \mapsto \int_a^x f(t) \dd{t}
-\]在\([a,+\infty)\)上有界.
+\]在\([a,+\infty)\)上有上界.
 \begin{proof}
 根据\hyperref[definition:定积分.无穷限的反常积分的定义1]{定义}，
 反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
@@ -177,12 +177,14 @@
 根据\cref{theorem:定积分.无穷限反常积分的审敛法引理}，
 对于非负函数的无穷限的反常积分，有以下的比较审敛原理.
 \begin{theorem}[比较审敛原理]\label{theorem:定积分.无穷限反常积分的比较审敛原理}
-设函数\(f(x),g(x)\)在区间\([a,+\infty)\)上连续.
-\begin{enumerate}
+%@see: 《高等数学（第六版 上册）》 P261 定理2（比较审敛原理）
+设函数\(f,g\)在区间\([a,+\infty)\)上连续.
+\begin{itemize}
 	\item 如果\[
 		0 \leq f(x) \leq g(x)
 		\quad (a \leq x < +\infty),
-	\]并且\(\int_a^{+\infty} g(x) \dd{x}\)收敛，
+	\]
+	并且\(\int_a^{+\infty} g(x) \dd{x}\)收敛，
 	则\(\int_a^{+\infty} f(x) \dd{x}\)也收敛.
 
 	\item 如果\[
@@ -191,7 +193,7 @@
 	\]
 	并且\(\int_a^{+\infty} g(x) \dd{x}\)发散，
 	则\(\int_a^{+\infty} f(x) \dd{x}\)也发散.
-\end{enumerate}
+\end{itemize}
 \begin{proof}
 任意取定\(t \in (a,+\infty)\).
 
@@ -213,61 +215,88 @@
 \end{proof}
 \end{theorem}
 
-\begin{theorem}[比较审敛法]\label{theorem:定积分.无穷限反常积分的比较审敛法}
+\begin{theorem}[比较审敛法1]\label{theorem:定积分.无穷限反常积分的比较审敛法}
+%@see: 《高等数学（第六版 上册）》 P262 定理3（比较审敛法1）
 设函数\(f(x)\)在区间\([a,+\infty)\ (a>0)\)上连续，且\(f(x) \geq 0\).
-如果存在常数\(M>0\)及\(p>1\)，使得\[
-f(x) \leq \frac{M}{x^p} \quad (a \leq x < +\infty),
-\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛；
-如果存在常数\(N>0\)，使得\[
-f(x) \geq \frac{N}{x} \quad (a \leq x < +\infty),
-\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\begin{itemize}
+	\item 如果存在常数\(M>0\)及\(p>1\)，使得\[
+		f(x) \leq \frac{M}{x^p}
+		\quad (a \leq x < +\infty),
+	\]
+	则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+	\item 如果存在常数\(N>0\)，使得\[
+		f(x) \geq \frac{N}{x}
+		\quad (a \leq x < +\infty),
+	\]
+	则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\end{itemize}
 \end{theorem}
 
-\begin{theorem}[极限审敛法]\label{theorem:定积分.无穷限反常积分的极限审敛法}
+\begin{theorem}[比较审敛法2]\label{theorem:定积分.无界函数的反常积分的比较审敛法}
+%@see: 《高等数学（第六版 上册）》 P265 定理6（比较审敛法2）
+设函数\(f(x)\)在区间\((a,b]\)上连续，
+且\(f(x) \geq 0\)，
+\(x=a\)为\(f(x)\)的瑕点.
+\begin{itemize}
+	\item 如果存在常数\(M > 0\)及\(q < 1\)，使得\[
+		f(x) \leq \frac{M}{(x-a)^q}
+		\quad (a < x \leq b),
+	\]
+	则反常积分\(\int_a^b f(x) \dd{x}\)收敛.
+	\item 如果存在常数\(N > 0\)，使得\[
+		f(x) \geq \frac{N}{x - a}
+		\quad (a < x \leq b),
+	\]
+	则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[极限审敛法1]\label{theorem:定积分.无穷限反常积分的极限审敛法}
+%@see: 《高等数学（第六版 上册）》 P262 定理4（极限审敛法1）
 设函数\(f(x)\)在区间\([a,+\infty)\)上连续，且\(f(x) \geq 0\).
-如果存在常数\(p > 1\)，使得\[
-\lim_{x \to +\infty} x^p f(x)
-\]存在，则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛；
-如果\[
-\lim_{x \to +\infty} x f(x) = d \in (0,+\infty],
-\]则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\begin{itemize}
+	\item 如果存在常数\(p > 1\)，使得\[
+		\lim_{x \to +\infty} x^p f(x)
+	\]存在，
+	则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+	\item 如果\[
+		\lim_{x \to +\infty} x f(x) = d \in (0,+\infty],
+	\]
+	则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)发散.
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[极限审敛法2]\label{theorem:定积分.无界函数的反常积分的极限审敛法}
+%@see: 《高等数学（第六版 上册）》 P265 定理7（极限审敛法2）
+设函数\(f(x)\)在区间\((a,b]\)上连续，
+且\(f(x) \geq 0\)，
+\(x=a\)为\(f(x)\)的瑕点.
+\begin{itemize}
+	\item 如果存在常数\(q \in (0,1)\)，使得\[
+		\lim_{x \to a^+} (x-a)^q f(x)
+	\]存在，
+	则反常积分\(\int_a^b f(x) \dd{x}\)收敛.
+	\item 如果\[
+		\lim_{x \to a^+} (x-a) f(x) = d \in (0,+\infty],
+	\]
+	则反常积分\(\int_a^b f(x) \dd{x}\)发散.
+\end{itemize}
 \end{theorem}
 
 \begin{example}\label{example:定积分.高斯积分的收敛性}
 证明：高斯积分\[
-\int_0^{+\infty} e^{-x^2} \dd{x}
+	\int_0^{+\infty} e^{-x^2} \dd{x}
 \]收敛.
 \begin{proof}
 因为在区间\([0,+\infty)\)上被积函数\(f(x) = e^{-x^2}\)连续且恒大于零，
 且极限\[
-\lim_{x\to+\infty} x^2 e^{-x^2}
-= \lim_{x\to+\infty} \frac{x^2}{e^{x^2}}
-\xlongequal{u=x^2} \lim_{u\to+\infty} \frac{u}{e^u}
-= \lim_{u\to+\infty} \frac{1}{e^u}
-= 0,
+	\lim_{x\to+\infty} x^2 e^{-x^2}
+	= \lim_{x\to+\infty} \frac{x^2}{e^{x^2}}
+	\xlongequal{u=x^2} \lim_{u\to+\infty} \frac{u}{e^u}
+	= \lim_{u\to+\infty} \frac{1}{e^u}
+	= 0,
 \]
 那么根据\cref{theorem:定积分.无穷限反常积分的极限审敛法}，
 高斯积分\(\int_0^{+\infty} e^{-x^2} \dd{x}\)收敛.
 \end{proof}
 \end{example}
-
-\subsection{无界函数的反常积分的审敛法}
-\begin{theorem}[比较审敛法]\label{theorem:定积分.无界函数的反常积分的比较审敛法}
-设函数\(f(x)\)在区间\((a,b]\)上连续，且\(f(x) \geq 0\)，\(x=a\)为\(f(x)\)的瑕点.
-如果存在常数\(M > 0\)及\(q < 1\)，使得\[
-f(x) \leq \frac{M}{(x-a)^q} \quad (a < x \leq b),
-\]则反常积分\(\int_a^b f(x) \dd{x}\)收敛；
-如果存在常数\(N > 0\)，使得\[
-f(x) \geq \frac{N}{x - a} \quad (a < x \leq b),
-\]则反常积分\(\int_a^b f(x) \dd{x}\)发散.
-\end{theorem}
-
-\begin{theorem}[极限审敛法]\label{theorem:定积分.无界函数的反常积分的极限审敛法}
-设函数\(f(x)\)在区间\((a,b]\)上连续，且\(f(x) \geq 0\)，\(x=a\)为\(f(x)\)的瑕点.
-如果存在常数\(q \in (0,1)\)，使得\[
-\lim_{x \to a^+} (x-a)^q f(x)
-\]存在，则反常积分\(\int_a^b f(x) \dd{x}\)收敛；
-如果\[
-\lim_{x \to a^+} (x-a) f(x) = d \in (0,+\infty],
-\]则反常积分\(\int_a^b f(x) \dd{x}\)发散.
-\end{theorem}
