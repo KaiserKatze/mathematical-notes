@@ -2,80 +2,6 @@
 反常积分的收敛性，可以通过求被积函数的原函数，然后按定义取极限，根据极限的存在与否来判定.
 但在本节中，我们可以建立不通过被积函数的原函数判定反常积分收敛性的判定法.
 
-\subsection{反常积分的重要特性}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P362
-设函数\(f\colon[a,+\infty)\to\mathbb{R}\).
-由\cref{example:定积分.p积分} 可知，
-\(\lim_{x\to+\infty} f(x) = 0\)
-并不能保证\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
-反过来，若\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
-能否保证\(\lim_{x\to+\infty} f(x) = 0\)，
-或者退一步，至少保证\(f\)在定义域上有界呢？
-下面我们用一个例子说明：同样不能！
-\begin{example}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P362 例8.1.7
-设函数\(f\colon[1,+\infty)\to\mathbb{R}\)
-满足\[
-	f(x) = \left\{ \begin{array}{cl}
-		n+1, & n \leq x \leq n+\frac1{n(n+1)^2}, \\
-		0, & n+\frac1{n(n+1)^2} < x < n+1,
-	\end{array} \right.
-	\quad n=1,2,\dotsc.
-\]
-那么对于任意\(t>1\)，
-总可以取自然数\(n\)，
-使得\(n \leq t < n+1\).
-由于\(f(x)\geq0\)，
-所以\[
-	\int_1^n f(x) \dd{x}
-	\leq \int_1^t f(x) \dd{x}
-	\leq \int_1^{n+1} f(x) \dd{x}.
-\]
-考虑到\[
-	\int_k^{k+1} f(x) \dd{x}
-	= \int_k^{k+\frac1{k(k+1)^2}} (k+1) \dd{x}
-	= (k+1) \cdot \frac1{k(k+1)^2}
-	= \frac1{k(k+1)},
-	\quad k=1,2,\dotsc,
-\]
-令\(n\to\infty\)，
-得\begin{align*}
-	\lim_{n\to\infty} \int_1^n f(x) \dd{x}
-	&= \lim_{n\to\infty} \left[
-		\int_1^2 f(x) \dd{x}
-		+ \int_2^3 f(x) \dd{x}
-		+ \dotsb
-		+ \int_{n-1}^n f(x) \dd{x}
-	\right] \\
-	&= \lim_{n\to\infty} \left[
-		\frac1{1\cdot2}
-		+ \frac1{2\cdot3}
-		+ \dotsb
-		+ \frac1{(n-1)n}
-	\right] \\
-	&= \lim_{n\to\infty} \left[
-		\left(1-\frac12\right)
-		+ \left(\frac12-\frac13\right)
-		+ \dotsb
-		+ \left(\frac1{n-1}-\frac1n\right)
-	\right] \\
-	&= \lim_{n\to\infty} \left(1-\frac1n\right)
-	= 1.
-\end{align*}
-同理可得\[
-	\lim_{n\to\infty} \int_1^{n+1} f(x) \dd{x} = 1.
-\]
-利用\hyperref[theorem:数列极限.夹逼准则]{夹逼准则}便知\[
-	\int_1^{+\infty} f(x) \dd{x}
-	= \lim_{t\to+\infty} \int_1^t f(x) \dd{x}
-	= 1,
-\]
-但是\(f\)显然是无界的.
-\end{example}
-我们还可以断言，即使\(f\)在\([a,+\infty)\)连续（甚至\(n\)次可微），
-也可仿照上例，构造出使\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
-而\(f\)在\([a,+\infty)\)无界的例子.
-
 \subsection{柯西极限存在准则}
 由于反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛
 即为极限\(\lim_{t\to+\infty} \int_a^t f(x) \dd{x}\)存在，
@@ -349,6 +275,7 @@
 \begin{theorem}\label{theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P374 定理8.2.5
 设函数\(f,g\colon[a,+\infty)\to\mathbb{R}\).
+
 若下列两个条件之一满足，
 则反常积分\(\int_a^{+\infty} f(x) ~ g(x) \dd{x}\)收敛：\begin{itemize}
 	\item {\bf 阿贝尔条件}
@@ -413,6 +340,7 @@
 %@see: 《数学分析（第二版 上册）》（陈纪修） P376 定理8.2.5'
 设函数\(f,g\colon(a,b]\to\mathbb{R}\)，
 点\(x=a\)是瑕点.
+
 若下列两个条件之一满足，
 则反常积分\(\int_a^b f(x) ~ g(x) \dd{x}\)收敛：\begin{itemize}
 	\item {\bf 阿贝尔条件}
@@ -425,3 +353,90 @@
 \end{itemize}
 %TODO proof
 \end{theorem}
+
+\subsection{反常积分的重要特性}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P362
+设函数\(f\colon[a,+\infty)\to\mathbb{R}\).
+由\cref{example:定积分.p积分} 可知，
+\(\lim_{x\to+\infty} f(x) = 0\)
+并不能保证\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+反过来，若\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
+能否保证\(\lim_{x\to+\infty} f(x) = 0\)，
+或者退一步，至少保证\(f\)在定义域上有界呢？
+下面我们用一个例子说明：同样不能！
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P362 例8.1.7
+设函数\(f\colon[1,+\infty)\to\mathbb{R}\)
+满足\[
+	f(x) = \left\{ \begin{array}{cl}
+		n+1, & n \leq x \leq n+\frac1{n(n+1)^2}, \\
+		0, & n+\frac1{n(n+1)^2} < x < n+1,
+	\end{array} \right.
+	\quad n=1,2,\dotsc.
+\]
+那么对于任意\(t>1\)，
+总可以取自然数\(n\)，
+使得\(n \leq t < n+1\).
+由于\(f(x)\geq0\)，
+所以\[
+	\int_1^n f(x) \dd{x}
+	\leq \int_1^t f(x) \dd{x}
+	\leq \int_1^{n+1} f(x) \dd{x}.
+\]
+考虑到\[
+	\int_k^{k+1} f(x) \dd{x}
+	= \int_k^{k+\frac1{k(k+1)^2}} (k+1) \dd{x}
+	= (k+1) \cdot \frac1{k(k+1)^2}
+	= \frac1{k(k+1)},
+	\quad k=1,2,\dotsc,
+\]
+令\(n\to\infty\)，
+得\begin{align*}
+	\lim_{n\to\infty} \int_1^n f(x) \dd{x}
+	&= \lim_{n\to\infty} \left[
+		\int_1^2 f(x) \dd{x}
+		+ \int_2^3 f(x) \dd{x}
+		+ \dotsb
+		+ \int_{n-1}^n f(x) \dd{x}
+	\right] \\
+	&= \lim_{n\to\infty} \left[
+		\frac1{1\cdot2}
+		+ \frac1{2\cdot3}
+		+ \dotsb
+		+ \frac1{(n-1)n}
+	\right] \\
+	&= \lim_{n\to\infty} \left[
+		\left(1-\frac12\right)
+		+ \left(\frac12-\frac13\right)
+		+ \dotsb
+		+ \left(\frac1{n-1}-\frac1n\right)
+	\right] \\
+	&= \lim_{n\to\infty} \left(1-\frac1n\right)
+	= 1.
+\end{align*}
+同理可得\[
+	\lim_{n\to\infty} \int_1^{n+1} f(x) \dd{x} = 1.
+\]
+利用\hyperref[theorem:数列极限.夹逼准则]{夹逼准则}便知\[
+	\int_1^{+\infty} f(x) \dd{x}
+	= \lim_{t\to+\infty} \int_1^t f(x) \dd{x}
+	= 1,
+\]
+但是\(f\)显然是无界的.
+\end{example}
+我们还可以断言，即使\(f\)在\([a,+\infty)\)上连续（甚至\(n\)次可微），
+也可仿照上例，构造出使\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
+而\(f\)在\([a,+\infty)\)无界的例子.
+
+下面证明，只要把“\(f\)在\([a,+\infty)\)上连续”
+或“\(f\)在\([a,+\infty)\)上\(n\)次可微”
+改为“\(f\)在\([a,+\infty)\)上一致连续”，
+就能得到\(\lim_{x\to+\infty} f(x) = 0\).
+
+\begin{proposition}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P379 例8.2.9
+设函数\(f\colon[a,+\infty)\to\mathbb{R}\)在\([a,+\infty)\)一致连续，
+且反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛，
+则\(\lim_{x\to+\infty} f(x) = 0\).
+%TODO proof
+\end{proposition}
