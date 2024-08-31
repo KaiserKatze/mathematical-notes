@@ -82,7 +82,7 @@
 因此对反常积分收敛性的最本质的刻画，
 就是极限论中的\hyperref[theorem:极限.函数的柯西极限存在准则]{柯西收敛原理}，
 它可以表述为如下形式：
-\begin{theorem}
+\begin{theorem}\label{theorem:反常积分.柯西极限存在准则}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P370 定理8.2.1（Cauchy收敛原理）
 设函数\(f\colon[a,+\infty)\to\mathbb{R}\)，
 则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)收敛的充分必要条件是：
@@ -116,6 +116,22 @@
 %@see: 《高等数学（第六版 上册）》 P264 定理5
 %@see: 《数学分析（第二版 上册）》（陈纪修） P370 推论
 绝对收敛的反常积分必定收敛.
+\begin{proof}
+对于任意给定\(\epsilon>0\)，
+由于\(\int_a^{+\infty} \abs{f(x)} \dd{x}\)收敛，
+所以存在\(X \geq a\)，
+使得对任意\(x_1,x_2 \geq X\)，
+成立\[
+	\int_{x_1}^{x_2} \abs{f(x)} \dd{x} < \epsilon.
+\]
+利用\cref{theorem:定积分.定积分性质5推论2} 可得\[
+	\abs{\int_{x_1}^{x_2} f(x) \dd{x}}
+	\leq \int_{x_1}^{x_2} f(x) \dd{x}
+	< \epsilon,
+\]
+再次运用\hyperref[theorem:反常积分.柯西极限存在准则]{柯西收敛原理}便知
+\(\int_a^{+\infty} f(x) \dd{x}\)收敛.
+\end{proof}
 \end{theorem}
 
 \begin{example}
