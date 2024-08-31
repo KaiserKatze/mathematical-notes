@@ -288,6 +288,48 @@ definition:定积分.无穷限的反常积分的定义3}
 这种现象是经常发生的，不足为怪.
 \end{remark}
 
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P364 例8.1.10
+计算反常积分\(I_n = \int_0^{+\infty} \frac{\dd{x}}{(x^2+a^2)^n}\).
+\begin{solution}
+当\(n\geq2\)时，有\begin{align*}
+	I_n &= \int_0^{+\infty} \frac{\dd{x}}{(x^2+a^2)^n} \\
+	&= \frac1{a^2} \int_0^{+\infty} \frac{x^2+a^2-x^2}{(x^2+a^2)^n} \dd{x} \\
+	&= \frac1{a^2} \int_0^{+\infty} \left[
+		\frac1{(x^2+a^2)^{n-1}}
+		+ \frac{-x^2}{(x^2+a^2)^n}
+	\right] \dd{x} \\
+	&= \frac1{a^2} I_{n-1}
+		+ \frac1{a^2} \int_0^{+\infty} \frac{-x^2}{(x^2+a^2)^n} \dd{x},
+\end{align*}
+其中\begin{align*}
+	\int_0^{+\infty} \frac{-x^2}{(x^2+a^2)^n} \dd{x}
+	&= \frac1{2(n-1)} \int_0^{+\infty} x ~ \dd\left[\frac1{(x^2+a^2)^{n-1}}\right] \\
+	&= \frac1{2(n-1)} \left[
+		\eval{\frac{x}{(x^2+a^2)^{n-1}}}_0^{+\infty}
+		- \int_0^{+\infty} \frac{\dd{x}}{(x^2+a^2)^{n-1}}
+	\right] \\
+	&= -\frac1{2(n-1)} I_{n-1},
+\end{align*}
+%@Mathematica: Limit[x/(x^2 + a^2)^(n - 1), x -> Infinity, Assumptions -> {n >= 2, n \[Element] Integers}]
+%@Mathematica: Limit[x/(x^2 + a^2)^(n - 1), x -> 0, Assumptions -> {n >= 2, n \[Element] Integers}]
+从而有\[
+	I_n = \frac1{a^2} I_{n-1} - \frac1{a^2} \cdot \frac1{2(n-1)} I_{n-1},
+\]
+整理得\[
+	I_n = \frac1{a^2} \cdot \frac{3-2n}{2-2n} \cdot I_{n-1}.
+\]
+又因为\[
+	I_1 = \int_0^{+\infty} \frac{\dd{x}}{x^2+a^2}
+	= \eval{\frac1a \arctan\frac{x}{a}}_0^{+\infty}
+	= \frac\pi{2a},
+\]
+所以\[
+	I_n = \frac\pi{2a^{2n-1}} \cdot \frac{(2n-3)!!}{(2n-2)!!}.
+\]
+\end{solution}
+\end{example}
+
 \subsection{\texorpdfstring{\(p\)}{p}积分}
 \begin{proposition}[\(p\)积分]\label{example:定积分.p积分}
 %@see: 《高等数学（第六版 上册）》 P257 例3
