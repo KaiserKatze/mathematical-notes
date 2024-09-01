@@ -149,6 +149,33 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P254 习题5-3 6.
+证明：\begin{itemize}
+	\item 若\(f\)是连续的奇函数，则\(\int_0^x f(t) \dd{t}\)是偶函数.
+	\item 若\(f\)是连续的偶函数，则\(\int_0^x f(t) \dd{t}\)是奇函数.
+\end{itemize}
+\begin{proof}
+设\(F(x) = \int_0^x f(t) \dd{t}\)，
+那么\[
+	F(-x) = \int_0^{-x} f(t) \dd{t}
+	\xlongequal{t=-u} \int_0^x f(-u) \dd(-u).
+\]
+\begin{itemize}
+	\item 若\(f\)是连续的奇函数，那么\(f(-u) = -f(u)\)，所以\[
+		F(-x) = \int_0^x f(u) \dd{u} = F(x),
+	\]
+	即\(F\)是偶函数；
+
+	\item 若\(f\)是连续的偶函数，那么\(f(-u) = f(u)\)，所以\[
+		F(-x) = -\int_0^x f(u) \dd{u} = -F(x),
+	\]
+	即\(F\)是奇函数.
+	\qedhere
+\end{itemize}
+\end{proof}
+\end{example}
+
 \begin{proposition}\label{theorem:定积分.利用对称性简化计算0}
 设\(f \in R[-a,a]\)，
 则\begin{equation}
@@ -236,41 +263,6 @@
 将\(f\)中的偶函数\(g\)和奇函数\(h\)分别抽离出，
 再利用\cref{theorem:定积分.利用对称性简化计算1} 简化计算.
 \end{remark}
-
-\begin{proposition}\label{theorem:定积分.区间再现}
-%@see: 《高等数学（第六版 上册）》 P254 习题5-3 2.
-设\(f \in C[a,b]\).
-证明：\begin{equation}
-	\int_a^b f(x) \dd{x}
-	= \int_a^b f(a+b-x) \dd{x}.
-\end{equation}
-\begin{proof}
-令\(x=a+b-t\)，
-则\(\dd{x} = -\dd{t}\).
-当\(x=a\)时，取\(t=b\).
-当\(x=b\)时，取\(t=a\).
-于是\[
-	\int_a^b f(x) \dd{x}
-	= \int_b^a f(a+b-t) \dd(-t)
-	= \int_a^b f(a+b-t) \dd{t}.
-	\qedhere
-\]
-\end{proof}
-\end{proposition}
-
-\begin{example}
-%@see: 《高等数学（第六版 上册）》 P254 习题5-3 4.
-证明：\begin{equation}
-	\int_0^1 x^m (1-x)^n \dd{x}
-	= \int_0^1 x^n (1-x)^m \dd{x}
-	\quad(m,n\in\mathbb{N}).
-\end{equation}
-\begin{proof}
-记\(f(x) = x^m (1-x)^n\)，
-则\(f(1+0-x) = x^n (1-x)^m\).
-由\cref{theorem:定积分.区间再现} 可知，上式显然成立.
-\end{proof}
-\end{example}
 
 \begin{proposition}\label{theorem:定积分.具有轴对称图像的函数的积分}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P312 习题 12.
@@ -360,6 +352,86 @@
 \end{proof}
 \end{example}
 
+\begin{proposition}\label{theorem:定积分.区间再现}
+%@see: 《高等数学（第六版 上册）》 P254 习题5-3 2.
+设\(f \in C[a,b]\).
+证明：\begin{equation}
+	\int_a^b f(x) \dd{x}
+	= \int_a^b f(a+b-x) \dd{x}.
+\end{equation}
+\begin{proof}
+令\(x=a+b-t\)，
+则\(\dd{x} = -\dd{t}\).
+当\(x=a\)时，取\(t=b\).
+当\(x=b\)时，取\(t=a\).
+于是\[
+	\int_a^b f(x) \dd{x}
+	= \int_b^a f(a+b-t) \dd(-t)
+	= \int_a^b f(a+b-t) \dd{t}.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P254 习题5-3 4.
+证明：\begin{equation}
+	\int_0^1 x^m (1-x)^n \dd{x}
+	= \int_0^1 x^n (1-x)^m \dd{x}
+	\quad(m,n\in\mathbb{N}).
+\end{equation}
+\begin{proof}
+记\(f(x) = x^m (1-x)^n\)，
+则\(f(1+0-x) = x^n (1-x)^m\).
+由\cref{theorem:定积分.区间再现} 可知，上式显然成立.
+\end{proof}
+\end{example}
+
+\begin{remark}
+利用\cref{theorem:定积分.区间再现}，
+我们可以便捷地换元，而不改变积分区间.
+并且，如果换元前后的被积函数的线性组合\[
+	k_1 f(x) + k_2 f(a+b-x)
+\]恒为一个常数，
+即\[
+	k_1 f(x) + k_2 f(a+b-x) = s,
+\]
+其中\(s\)是常数，
+就可以化简被积函数，
+得到\[
+	(k_1 + k_2) \int_a^b f(x) \dd{x}
+	= \int_a^b [k_1 f(x) + k_2 f(a+b-x)] \dd{x}
+	= s \int_a^b \dd{x} = s(b-a),
+\]
+于是\[
+	\int_a^b f(x) \dd{x}
+	= \frac{s(b-a)}{k_1 + k_2}.
+\]
+\end{remark}
+
+\begin{example}
+计算定积分\(\int_0^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} \dd{x}\).
+\begin{solution}
+因为\[
+	\frac{\sin x}{\sin x + \cos x}
+	\xlongequal{x=0+\frac\pi2-t}
+	\frac{\sin\left(\frac{\pi}{2}-t\right)}
+		{\sin\left(\frac{\pi}{2}-t\right) + \cos\left(\frac{\pi}{2}-t\right)}
+	= \frac{\cos t}{\cos t + \sin t},
+\]
+而\[
+	1 \cdot \frac{\sin x}{\sin x + \cos x}
+	+ 1 \cdot \frac{\cos x}{\sin x + \cos x}
+	= 1,
+\]
+所以\[
+	\int_0^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} \dd{x}
+	= \frac{1}{1+1}\left(\frac\pi2-0\right)
+	= \frac\pi4.
+\]
+\end{solution}
+\end{example}
+
 \begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分1}
 %@see: 《高等数学（第六版 上册）》 P248 例6
 %@see: 《数学分析（第二版 上册）》（陈纪修） P311 习题 9. (1)
@@ -411,33 +483,6 @@
 \end{solution}
 \end{example}
 
-\begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分2}
-%@see: 《高等数学（第六版 上册）》 P254 习题5-3 5.
-设\(f \in C[0,1]\)，且\(n\in\mathbb{Z}\)，则\begin{equation}
-	\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\sin x}) \dd{x}
-	= \int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}
-	= \int_0^{\frac{\pi}{2}} f(\sin x) \dd{x}.
-\end{equation}
-\def\arraystretch{1.5}
-\begin{proof}
-令\(x = n\pi+\frac{\pi}{2}-t\)，
-则有\begin{align*}
-	\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\sin x}) \dd{x}
-	&= \int_{\frac{n+1}{2} \pi}^{\frac{n}{2} \pi} f\left[\abs{\pm\sin(\frac{\pi}{2}-t)}\right] \dd(\frac{2n+1}{2}\pi-t) \\
-	&= \int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}.
-\end{align*}
-
-又令\(x=u+\frac{n}{2} \pi\)，
-则有\begin{align*}
-	\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}
-	&= \int_0^{\frac{1}{2}\pi} f\left[ \abs{\cos(u+\frac{\pi}{2})} \right] \dd(u+\frac{n}{2}\pi) \\
-	&= \int_0^{\frac{1}{2}\pi} f\left( \abs{-\sin u} \right) \dd{u} \\
-	&= \int_0^{\frac{1}{2}\pi} f(\sin x) \dd{x}.
-	\qedhere
-\end{align*}
-\end{proof}
-\end{proposition}
-
 \begin{proposition}\label{theorem:定积分.周期函数的积分}
 %@see: 《高等数学（第六版 上册）》 P249 例7
 %@see: 《数学分析（第二版 上册）》（陈纪修） P309 定理7.3.6
@@ -468,10 +513,28 @@
 \end{proposition}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P249
+计算\(\int_0^{n\pi} \sqrt{1 + \sin2x} \dd{x}\).
+\begin{solution}
+显然被积函数\(x \mapsto \sqrt{1 + \sin2x}\)是以\(\pi\)为周期的连续函数，
+利用\cref{theorem:定积分.周期函数的积分} 得\begin{align*}
+	\int_0^{n\pi} \sqrt{1 + \sin2x} \dd{x}
+	&= n \int_0^\pi \sqrt{1 + \sin2x} \dd{x} \\
+	&= n \int_0^\pi \abs{\sin x + \cos x} \dd{x} \\
+	&= \sqrt2 n \int_0^\pi \abs{\sin\left(x + \frac\pi4\right)} \dd{x} \\
+	&= \sqrt2 n \int_{\frac\pi4}^{\frac{5\pi}4} \abs{\sin t} \dd{t} \\
+	&= \sqrt2 n \int_0^\pi \abs{\sin t} \dd{t} \\
+	&= \sqrt2 n \int_0^\pi \sin t \dd{t} \\
+	&= 2\sqrt2 n.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P312 习题 17.
-%@see: https://www.bilibili.com/video/BV1eieAe1ERR
 计算\(a_n = \int_0^{n\pi} x \abs{\sin x} \dd{x}\ (n=1,2,\dotsc)\).
 \begin{solution}
+%@see: https://www.bilibili.com/video/BV1eieAe1ERR
 %@credit: https://space.bilibili.com/433361437
 由\cref{theorem:定积分.区间再现} 可得\begin{align*}
 	\int_0^{n\pi} x \abs{\sin x} \dd{x}
@@ -493,87 +556,29 @@
 \end{solution}
 \end{example}
 
-\begin{example}
-%@see: 《高等数学（第六版 上册）》 P249
-计算\(\int_0^{n\pi} \sqrt{1 + \sin2x} \dd{x}\).
-\begin{solution}
-显然\(f(x) = \sqrt{1 + \sin2x}\)是以\(\pi\)为周期的连续函数，
-利用\cref{theorem:定积分.周期函数的积分} 得\begin{align*}
-	\int_0^{n\pi} \sqrt{1 + \sin2x} \dd{x}
-	&= n \int_0^\pi \sqrt{1 + \sin2x} \dd{x} \\
-	&= n \int_0^\pi \abs{\sin x + \cos x} \dd{x} \\
-	&= \sqrt2 n \int_0^\pi \abs{\sin\left(x + \frac\pi4\right)} \dd{x} \\
-	&= \sqrt2 n \int_{\frac\pi4}^{\frac{5\pi}4} \abs{\sin t} \dd{t} \\
-	&= \sqrt2 n \int_0^\pi \abs{\sin t} \dd{t} \\
-	&= \sqrt2 n \int_0^\pi \sin t \dd{t} \\
-	&= 2\sqrt2 n.
-\end{align*}
-\end{solution}
-\end{example}
-
-\begin{example}
-%@see: 《高等数学（第六版 上册）》 P254 习题5-3 6.
-证明：\begin{itemize}
-	\item 若\(f\)是连续的奇函数，则\(\int_0^x f(t) \dd{t}\)是偶函数.
-	\item 若\(f\)是连续的偶函数，则\(\int_0^x f(t) \dd{t}\)是奇函数.
-\end{itemize}
+\begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分2}
+%@see: 《高等数学（第六版 上册）》 P254 习题5-3 5.
+设\(f \in C[0,1]\)，且\(n\in\mathbb{Z}\)，则\begin{equation}
+	\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\sin x}) \dd{x}
+	= \int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}
+	= \int_0^{\frac{\pi}{2}} f(\sin x) \dd{x}.
+\end{equation}
+\def\arraystretch{1.5}
 \begin{proof}
-设\(F(x) = \int_0^x f(t) \dd{t}\)，
-那么\[
-	F(-x) = \int_0^{-x} f(t) \dd{t}
-	\xlongequal{t=-u} \int_0^x f(-u) \dd(-u).
-\]
-\begin{itemize}
-	\item 若\(f\)是连续的奇函数，那么\(f(-u) = -f(u)\)，所以\[
-		F(-x) = \int_0^x f(u) \dd{u} = F(x),
-	\]
-	即\(F\)是偶函数；
-
-	\item 若\(f\)是连续的偶函数，那么\(f(-u) = f(u)\)，所以\[
-		F(-x) = -\int_0^x f(u) \dd{u} = -F(x),
-	\]
-	即\(F\)是奇函数.
-	\qedhere
-\end{itemize}
-\end{proof}
-\end{example}
-
-如果换元前后的被积函数的线性组合\[
-	k_1 f(x) + k_2 f(a+b-x)
-\]恒为一个常数，
-即\[
-	k_1 f(x) + k_2 f(a+b-x) = c,
-\]
-其中\(c\)是常数，
-就可以化简被积函数，
-得到\[
-	(k_1 + k_2) \int_a^b f(x) \dd{x}
-	= \int_a^b [k_1 f(x) + k_2 f(a+b-x)] \dd{x}
-	= c \int_a^b \dd{x} = c(b-a),
-\]
-于是\[
-	\int_a^b f(x) \dd{x}
-	= \frac{c(b-a)}{k_1 + k_2}.
-\]
-
-\begin{example}
-计算定积分\(\int_0^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} \dd{x}\).
-\begin{solution}
-设\(I = \int_0^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} \dd{x}\).
-因为
-\begin{align*}
-	I &= \int_0^{\frac{\pi}{2}}
-		\frac{\sin\left(\frac{\pi}{2}-t\right)}
-			{\sin\left(\frac{\pi}{2}-t\right) + \cos\left(\frac{\pi}{2}-t\right)}
-		\dd{t} \\
-	&= \int_0^{\frac{\pi}{2}} \frac{\cos t}{\cos t + \sin t} \dd{t},
+令\(x = n\pi+\frac{\pi}{2}-t\)，
+则有\begin{align*}
+	\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\sin x}) \dd{x}
+	&= \int_{\frac{n+1}{2} \pi}^{\frac{n}{2} \pi} f\left[\abs{\pm\sin(\frac{\pi}{2}-t)}\right] \dd(\frac{2n+1}{2}\pi-t) \\
+	&= \int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}.
 \end{align*}
-所以\[
-	2 I = \int_0^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} \dd{x}
-		+ \int_0^{\frac{\pi}{2}} \frac{\cos x}{\sin x + \cos x} \dd{x}
-	= \int_0^{\frac{\pi}{2}} \dd{x}
-	= \frac{\pi}{2},
-\]
-从而\(I = \pi/4\).
-\end{solution}
-\end{example}
+
+又令\(x=u+\frac{n}{2} \pi\)，
+则有\begin{align*}
+	\int_{\frac{n}{2} \pi}^{\frac{n+1}{2} \pi} f(\abs{\cos x}) \dd{x}
+	&= \int_0^{\frac{1}{2}\pi} f\left[ \abs{\cos(u+\frac{\pi}{2})} \right] \dd(u+\frac{n}{2}\pi) \\
+	&= \int_0^{\frac{1}{2}\pi} f\left( \abs{-\sin u} \right) \dd{u} \\
+	&= \int_0^{\frac{1}{2}\pi} f(\sin x) \dd{x}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
