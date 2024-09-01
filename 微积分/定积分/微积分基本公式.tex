@@ -332,3 +332,55 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \end{align*}
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P313 习题 21.
+设函数\(f\)的导数\(f'\)在\([a,b]\)上连续.
+证明：\[
+	\max_{a \leq x \leq b} \abs{f(x)}
+	\leq \abs{\frac1{b-a} \int_a^b f(x) \dd{x}}
+	+ \int_a^b \abs{f'(x)} \dd{x}.
+\]
+\begin{proof}
+因为\(f\)在\([a,b]\)上连续，
+所以由\hyperref[theorem:极限.最值定理]{最值定理}可知，
+\(f\)必能取得它的最大值和最小值，
+不妨设\begin{gather*}
+	\abs{f(\xi)} = \max_{a \leq x \leq b} \abs{f(x)},
+	\quad\xi\in[a,b], \\
+	\abs{f(\eta)} = \min_{a \leq x \leq b} \abs{f(x)},
+	\quad\xi\in[a,b].
+\end{gather*}
+于是\begin{align*}
+	\max_{a \leq x \leq b} \abs{f(x)} - \min_{a \leq x \leq b} \abs{f(x)}
+	&= \abs{f(\xi)} - \abs{f(\eta)} \\
+	&\leq \abs{f(\xi) - f(\eta)}
+		\tag{\hyperref[theorem:不等式.三角不等式2]{三角不等式}} \\
+	&= \abs{\int_\eta^\xi f'(x) \dd{x}}
+		\tag{\hyperref[equation:定积分.牛顿--莱布尼茨公式]{牛顿--莱布尼茨公式}} \\
+	&\leq \int_\eta^\xi \abs{f'(x)} \dd{x}
+		\tag{\hyperref[theorem:定积分.定积分性质5推论2]{绝对可积性}} \\
+	&\leq \int_a^b \abs{f'(x)} \dd{x}.
+		\tag{\cref{theorem:定积分.定积分性质5推论3}}
+\end{align*}
+
+由\hyperref[theorem:定积分.积分中值定理0]{积分中值定理}可知，
+存在\(\zeta\in[a,b]\)，使得\[
+	f(\zeta) = \frac1{b-a} \int_a^b f(x) \dd{x}.
+\]
+于是\[
+	\min_{a \leq x \leq b} \abs{f(x)}
+	\leq \abs{f(\zeta)}
+	= \abs{\frac1{b-a} \int_a^b f(x) \dd{x}}.
+\]
+
+综上所述，我们有\begin{align*}
+	\max_{a \leq x \leq b} \abs{f(x)}
+	&= \max_{a \leq x \leq b} \abs{f(x)} - \min_{a \leq x \leq b} \abs{f(x)}
+		+ \min_{a \leq x \leq b} \abs{f(x)} \\
+	&\leq \int_a^b \abs{f'(x)} \dd{x}
+		+ \abs{\frac1{b-a} \int_a^b f(x) \dd{x}}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
