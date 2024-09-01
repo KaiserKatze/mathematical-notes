@@ -1,16 +1,20 @@
 \section{绝对收敛与条件收敛}
 \subsection{绝对收敛与条件收敛的概念}
 \begin{definition}
+%@see: 《高等数学（第六版 下册）》 P263
+%@see: 《数学分析（第二版 下册）》（陈纪修） P35 定义9.4.2
 设级数\(\sum_{n=1}^\infty u_n\)的各项为任意实数.
-如果级数\(\sum_{n=1}^\infty u_n\)各项的绝对值所构成的正项级数
-\(\sum_{n=1}^\infty \abs{u_n}\)收敛，
-则称级数\(\sum_{n=1}^\infty u_n\) \DefineConcept{绝对收敛}；
-如果级数\(\sum_{n=1}^\infty u_n\)收敛，
-而级数\(\sum_{n=1}^\infty \abs{u_n}\)发散，
-则称级数\(\sum_{n=1}^\infty u_n\) \DefineConcept{条件收敛}.
+\begin{itemize}
+	\item 如果级数\(\sum_{n=1}^\infty \abs{u_n}\)收敛，
+	则称“级数\(\sum_{n=1}^\infty u_n\)~\DefineConcept{绝对收敛}”.
+	\item 如果级数\(\sum_{n=1}^\infty u_n\)收敛，
+	而级数\(\sum_{n=1}^\infty \abs{u_n}\)发散，
+	则称“级数\(\sum_{n=1}^\infty u_n\)~\DefineConcept{条件收敛}”.
+\end{itemize}
 \end{definition}
 
 \begin{theorem}\label{theorem:无穷级数.绝对收敛级数必定收敛}
+%@see: 《高等数学（第六版 下册）》 P263 定理8
 如果级数\(\sum_{n=1}^\infty u_n\)绝对收敛，
 则级数\(\sum_{n=1}^\infty u_n\)收敛.
 \begin{proof}
@@ -75,6 +79,7 @@
 那么我们可以断定级数\(\sum_{n=1}^\infty u_n\)必然发散.
 
 \begin{theorem}\label{theorem:无穷级数.绝对发散的特殊情况}
+%@see: 《高等数学（第六版 下册）》 P264
 当级数\(\sum_{n=1}^\infty u_n\)满足\[
 	\lim_{n\to\infty} \abs{\frac{u_{n+1}}{u_n}} = \rho > 1
 	\quad\text{或}\quad
@@ -87,6 +92,36 @@
 因此级数\(\sum_{n=1}^\infty u_n\)是发散的.
 \end{proof}
 \end{theorem}
+
+\begin{example}
+%@see: 《高等数学（第六版 下册）》 P265 例9
+判断级数\(\sum_{n=1}^\infty \frac{\sin n\alpha}{n^2}\)的敛散性.
+\begin{solution}
+因为\[
+	\abs{\frac{\sin n\alpha}{n^2}}
+	\leq \frac1{n^2},
+\]
+而级数\(\sum_{n=1}^\infty \frac1{n^2}\)收敛，
+所以级数\(\sum_{n=1}^\infty \abs{\frac{\sin n\alpha}{n^2}}\)收敛，
+由\cref{theorem:无穷级数.绝对收敛级数必定收敛} 可知，
+级数\(\sum_{n=1}^\infty \frac{\sin n\alpha}{n^2}\)收敛.
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等数学（第六版 下册）》 P265 例10
+判断级数\(\sum_{n=1}^\infty (-1)^n \frac1{2^n} \left(1+\frac1n\right)^{n^2}\)的敛散性.
+\begin{solution}
+记\(u_n = \frac1{2^n} \left(1+\frac1n\right)^{n^2}\)，
+有\[
+	\sqrt[n]{u_n}
+	= \frac12 \left(1+\frac1n\right)^n
+	\to \frac12 e \quad(n\to\infty),
+\]
+而\(e/2>1\)，所以\(u_n \not\to 0\ (n\to\infty)\)，
+那么级数\(\sum_{n=1}^\infty (-1)^n \frac1{2^n} \left(1+\frac1n\right)^{n^2}\)发散.
+\end{solution}
+\end{example}
 
 \begin{example}
 已知\(a_n < b_n\ (n=1,2,\dotsc)\)，
@@ -119,6 +154,7 @@
 \end{property}
 
 \begin{definition}\label{definition:无穷级数.绝对收敛级数的柯西乘积}
+%@see: 《高等数学（第六版 下册）》 P267 定理10
 定义级数\(\sum_{n=1}^\infty u_n\)
 和\(\sum_{n=1}^\infty v_n\)的\DefineConcept{柯西乘积}为\[
 	\left( \sum_{n=1}^\infty u_n \right)
