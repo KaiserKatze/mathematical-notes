@@ -272,9 +272,35 @@
 \end{proof}
 \end{example}
 
+\begin{proposition}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P312 习题 12.
+设函数\(f\)在\([a,b]\)上可积，图形\(y=f(x)\)关于\(x=T\)对称，则\begin{equation}
+	\int_a^b f(x) \dd{x} = \int_a^{2T-b} f(x) \dd{x} + 2 \int_T^b f(x) \dd{x}.
+\end{equation}
+\begin{proof}
+显然\(a < T < b\).
+由\hyperref[theorem:定积分.定积分性质3]{区间可加性}有\[
+	\int_a^b f(x) \dd{x}
+	= \int_a^{2T-b} f(x) \dd{x}
+	+ \int_{2T-b}^T f(x) \dd{x}
+	+ \int_T^b f(x) \dd{x}.
+\]
+因为\(y=f(x)\)关于\(x=T\)对称，
+所以\(f(x) = f(2T-x)\)，
+那么\[
+	\int_{2T-b}^T f(x) \dd{x}
+	\xlongequal{y=2T-x}
+	\int_b^T f(2T-y) \dd(2T-y)
+	= \int_T^b f(y) \dd{y},
+\]
+于是\(\int_a^b f(x) \dd{x} = \int_a^{2T-b} f(x) \dd{x} + 2 \int_T^b f(x) \dd{x}\).
+\end{proof}
+\end{proposition}
+
 \begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分}
 %@see: 《高等数学（第六版 上册）》 P248 例6
 %@see: 《数学分析（第二版 上册）》（陈纪修） P311 习题 9. (1)
+%@see: 《数学分析（第二版 上册）》（陈纪修） P312 习题 9. (2)
 设\(f \in C[0,1]\).
 证明：\begin{gather}
 	\int_0^{\frac\pi2} f(\sin x) \dd{x}
@@ -357,7 +383,7 @@
 证明：\begin{gather}
 	\int_a^{a+T} f(x) \dd{x} = \int_0^T f(x) \dd{x}, \\
 	\int_a^{a+nT} f(x) \dd{x} = n\int_0^T f(x) \dd{x}
-	\quad(n \in \mathbb{N}).
+	\quad(n\in\mathbb{N}).
 \end{gather}
 \begin{proof}
 记\(\Phi(a) = \int_a^{a+T} f(x) \dd{x}\).
@@ -380,6 +406,7 @@
 \end{proposition}
 
 \begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P312 习题 17.
 %@see: https://www.bilibili.com/video/BV1eieAe1ERR
 计算\(a_n = \int_0^{n\pi} x \abs{\sin x} \dd{x}\ (n=1,2,\dotsc)\).
 \begin{solution}
