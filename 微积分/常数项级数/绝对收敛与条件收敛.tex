@@ -21,55 +21,67 @@
 \begin{theorem}\label{theorem:无穷级数.绝对收敛级数必定收敛}
 %@see: 《高等数学（第六版 下册）》 P263 定理8
 %@see: 《数学分析教程 （第3版 下册）》（史济怀） P188 定理14.5.1
-如果级数\(\sum_{n=1}^\infty u_n\)绝对收敛，
-则级数\(\sum_{n=1}^\infty u_n\)收敛.
+%@see: 《数学分析（第二版 下册）》（陈纪修） P36 定理9.4.4
+设\(\{u_n\}\)是实数列，
+令\(v_n \defeq \frac12 (u_n + \abs{u_n}),
+w_n \defeq \frac12 (\abs{u_n} - u_n)
+\ (n=1,2,\dotsc)\).
+\begin{itemize}
+	\item 如果级数\(\sum_{n=1}^\infty u_n\)绝对收敛，
+	则级数\(\sum_{n=1}^\infty u_n\)、\(\sum_{n=1}^\infty v_n\)和\(\sum_{n=1}^\infty w_n\)都收敛.
+
+	\item 如果级数\(\sum_{n=1}^\infty u_n\)条件收敛，
+	则级数\(\sum_{n=1}^\infty v_n\)和\(\sum_{n=1}^\infty w_n\)都发散.
+\end{itemize}
 \begin{proof}
-令\[
-	v_n = \frac{1}{2} (u_n + \abs{u_n})
-	\quad(n=1,2,\dotsc).
+可见级数\(\sum_{n=1}^\infty v_n\)是
+级数\(\sum_{n=1}^\infty u_n\)中的全体正项所构成的级数，
+而级数\(\sum_{n=1}^\infty w_n\)是
+级数\(\sum_{n=1}^\infty u_n\)中全体负项的绝对值所构成的级数.
+级数\(\sum_{n=1}^\infty v_n\)和\(\sum_{n=1}^\infty w_n\)都是正项级数.
+
+先设级数\(\sum_{n=1}^\infty u_n\)绝对收敛，
+由于\[
+	0 \leq v_n \leq \abs{u_n},
+	0 \leq w_n \leq \abs{u_n},
+	\quad n=1,2,\dotsc,
 \]
-显然\(v_n \geq 0\)且\(v_n \leq \abs{u_n}\).
-因级数\(\sum_{n=1}^\infty \abs{u_n}\)收敛，
-故由比较审敛法可知，
-级数\(\sum_{n=1}^\infty v_n\)收敛，
-从而级数\(\sum_{n=1}^\infty 2v_n\)也收敛.
-而\(u_n = 2 v_n - \abs{u_n}\)，
-由收敛级数的基本性质可知\[
+所以由\hyperref[theorem:无穷级数.正项级数的比较审敛法]{比较审敛法}可知
+级数\(\sum_{n=1}^\infty v_n\)和\(\sum_{n=1}^\infty w_n\)都收敛.
+又因为\[
+	u_n = v_n - w_n,
+\]
+所以由\hyperref[theorem:无穷级数.收敛级数性质2]{收敛级数的基本性质}可知\[
 	\sum_{n=1}^\infty u_n
-	= \sum_{n=1}^\infty 2v_n
-	- \sum_{n=1}^\infty \abs{u_n},
+	= \sum_{n=1}^\infty v_n
+	- \sum_{n=1}^\infty w_n,
 \]
-所以级数\(\sum_{n=1}^\infty u_n\)收敛.
+那么级数\(\sum_{n=1}^\infty u_n\)收敛.
+
+再设级数\(\sum_{n=1}^\infty u_n\)条件收敛.
+用反证法，假设级数\(\sum_{n=1}^\infty v_n\)也收敛，
+则由\[
+	w_n = \frac12 (\abs{u_n} - u_n)
+	= \frac12 (u_n + \abs{u_n} - 2 u_n)
+	= v_n - u_n,
+\]可知\[
+	\sum_{n=1}^\infty w_n
+	= \sum_{n=1}^\infty v_n
+	- \sum_{n=1}^\infty u_n,
+\]
+所以级数\(\sum_{n=1}^\infty w_n\)也收敛，
+于是级数\[
+	\sum_{n=1}^\infty \abs{u_n}
+	= \sum_{n=1}^\infty v_n
+	+ \sum_{n=1}^\infty w_n
+\]也收敛，与假设矛盾！
+因此级数\(\sum_{n=1}^\infty v_n\)必定发散.
+同理级数\(\sum_{n=1}^\infty w_n\)也必定发散.
 \end{proof}
 \end{theorem}
 
-上面证明中引入的级数\(\sum_{n=1}^\infty v_n\)，其一般项\[
-	v_n = \frac{1}{2} (u_n + \abs{u_n})
-	= \left\{ \begin{array}{cl}
-		u_n, & u_n > 0, \\
-		0, & u_n \leq 0,
-	\end{array} \right.
-\]
-可见级数\(\sum_{n=1}^\infty v_n\)是
-把级数\(\sum_{n=1}^\infty u_n\)中的负项换成\(0\)得到的，
-它也就是级数\(\sum_{n=1}^\infty u_n\)中的全体正项所构成的级数.
-类似可知，
-令\[
-	w_n = \frac{1}{2} (\abs{u_n} - u_n),
-\]
-则\(\sum_{n=1}^\infty w_n\)为
-级数\(\sum_{n=1}^\infty u_n\)中全体负项的绝对值所构成的级数.
-
-如果级数\(\sum_{n=1}^\infty u_n\)绝对收敛，
-则级数\(\sum_{n=1}^\infty v_n\)和\(\sum_{n=1}^\infty w_n\)都收敛；
-如果级数\(\sum_{n=1}^\infty u_n\)条件收敛，
-则级数\(\sum_{n=1}^\infty v_n\)和\(\sum_{n=1}^\infty w_n\)都发散.
-
-这就说明，对于一般的级数\(\sum_{n=1}^\infty u_n\)，
-如果我们用正项级数的审敛法判定级数
-\(\sum_{n=1}^\infty \abs{u_n}\)收敛，
-则原级数收敛.
-这就使得一大类级数的收敛性判定问题，
+建立\cref{theorem:无穷级数.绝对收敛级数必定收敛} 以后，
+我们就把一大类级数的收敛性判定问题，
 转化成为正项级数的收敛性判定问题.
 
 一般说来，
