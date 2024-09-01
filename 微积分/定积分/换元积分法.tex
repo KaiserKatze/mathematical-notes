@@ -272,7 +272,7 @@
 \end{proof}
 \end{example}
 
-\begin{proposition}
+\begin{proposition}\label{theorem:定积分.具有轴对称图像的函数的积分}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P312 习题 12.
 设函数\(f\)在\([a,b]\)上可积，图形\(y=f(x)\)关于\(x=T\)对称，则\begin{equation}
 	\int_a^b f(x) \dd{x} = \int_a^{2T-b} f(x) \dd{x} + 2 \int_T^b f(x) \dd{x}.
@@ -296,6 +296,44 @@
 于是\(\int_a^b f(x) \dd{x} = \int_a^{2T-b} f(x) \dd{x} + 2 \int_T^b f(x) \dd{x}\).
 \end{proof}
 \end{proposition}
+\begin{remark}
+根据\cref{theorem:定积分.具有轴对称图像的函数的积分} 的结论，
+结合\cref{figure:定积分.具有轴对称图像的函数的积分} 可以看出：
+如果一个函数的图像关于直线\(x=T\)对称，
+那么对于对称轴两侧的任意两个区间\([p_1,q_1],[p_2,q_2]\)，
+只要这两个区间也是关于对称轴\(x=T\)对称的，
+即成立\(p_1 + q_2 = q_1 + p_2 = 2T\)，
+那么对应的定积分\[
+	\int_{p_1}^{q_1} f(x) \dd{x}
+	\quad\text{和}\quad
+	\int_{p_2}^{q_2} f(x) \dd{x}
+\]必定相等.
+\end{remark}
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xscale=2,
+			xmin=4,xmax={3*pi+1},
+			domain=5:{3*pi},
+			ymin=0,ymax=2.2,
+			axis x line=middle,
+			axis y line=none,
+			xtick={5,2*pi,2.5*pi,3*pi},
+			xticklabels={$a\vphantom{T}$,$2T-b$,$T$,$b$},
+		]
+			\addplot[color=blue,samples=20,smooth]{.5*sin(deg(x))+.7};
+			\begin{scope}[dashed]
+				\draw(2.5*pi,0)--(2.5*pi,{.5*sin(deg(2.5*pi))+.7});
+				\draw(2*pi,0)--(2*pi,.7);
+				\draw(3*pi,0)--(3*pi,.7);
+				\draw(5,0)--(5,{.7+.5*sin(deg(5))});
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:定积分.具有轴对称图像的函数的积分}
+\end{figure}
 
 \begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分}
 %@see: 《高等数学（第六版 上册）》 P248 例6
