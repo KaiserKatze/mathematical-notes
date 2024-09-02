@@ -1,0 +1,66 @@
+\section{阿贝尔--狄利克雷审敛法}
+\begin{lemma}[阿贝尔变换]
+%@see: 《数学分析（第二版 下册）》（陈纪修） P31 引理9.4.1（Abel变换）
+%@see: 《数学分析教程（第3版 下册）》（史济怀） P182 引理14.4.1（Abel分部求和公式）
+设\(\{a_n\},\{b_n\}\)是两个数列，
+记\(B_n \defeq \sum_{k=1}^n b_k\ (n=1,2,\dotsc)\)，
+则\begin{equation}\label{equation:无穷级数.阿贝尔的分部求和公式}
+	\sum_{k=1}^p a_k b_k
+	= a_p B_p - \sum_{k=1}^{p-1} (a_{k+1} - a_k) B_k.
+\end{equation}
+%TODO proof
+\end{lemma}
+我们把\cref{equation:无穷级数.阿贝尔的分部求和公式} 称为\DefineConcept{分部求和公式}.
+事实上，阿贝尔变换就是离散形式的分部积分公式.
+
+\begin{lemma}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P32 引理9.4.2（Abel引理）
+%@see: 《数学分析教程（第3版 下册）》（史济怀） P182 引理14.4.2（Abel引理）
+设\begin{itemize}
+	\item \(\{a_n\}\)是单调数列，
+	\item 数列\(\{b_n\}\)的前\(n\)项和数列\(\{B_n\}\)
+	（其中\(B_n = \sum_{k=1}^n b_k\ (n=1,2,\dotsc)\)）有界，
+	即存在\(M>0\)，成立\(\abs{B_n} \leq M\ (n=1,2,\dotsc)\)，
+\end{itemize}
+则\[
+	\abs{\sum_{k=1}^p a_k b_k}
+	\leq M(\abs{a_1} + 2 \abs{a_p}).
+\]
+%TODO proof
+\end{lemma}
+
+\begin{theorem}\label{theorem:无穷级数.无穷级数的阿贝尔--狄利克雷审敛法}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P33 定理9.4.3（级数的A-D判别法）
+%@see: 《数学分析教程（第3版 下册）》（史济怀） P183 定理14.4.3（Dirichlet判别法）
+%@see: 《数学分析教程（第3版 下册）》（史济怀） P184 定理14.4.4（Abel判别法）
+设\(\{a_n\},\{b_n\}\)是两个数列.
+
+若下列两个条件之一满足，
+则级数\(\sum_{n=1}^\infty a_n b_n\)收敛：\begin{itemize}
+	\item {\bf 阿贝尔条件}
+	数列\(\{a_n\}\)单调有界，
+	级数\(\sum_{n=1}^\infty b_n\)收敛；
+
+	\item {\bf 狄利克雷条件}
+	数列\(\{a_n\}\)单调趋于0，
+	级数\(\sum_{n=1}^\infty b_n\)的部分和数列有界.
+\end{itemize}
+%TODO proof
+%\cref{theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法}
+\end{theorem}
+\begin{remark}
+在狄利克雷条件中，取\(b_n = (-1)^{n-1}\)，
+则级数\(\sum_{n=1}^\infty b_n\)的部分和数列有界，
+那么当数列\(\{a_n\}\)单调趋于0时，
+级数\(\sum_{n=1}^\infty (-1)^{n-1} a_n\)收敛.
+这就是前面已经证明过的\hyperref[theorem:无穷级数.莱布尼茨定理]{莱布尼茨审敛法}.
+可见莱布尼茨审敛法只是狄利克雷审敛法的特殊情形.
+
+在阿贝尔条件中，由于数列\(\{a_n\}\)单调有界，不妨设\(\lim_{n\to\infty} a_n = a\)，
+则数列\(\{a_n - a\}\)单调趋于0.
+又因为级数\(\sum_{n=1}^\infty b_n\)收敛，
+所以它的部分和数列必定有界，根据狄利克雷审敛法，
+级数\(\sum_{n=1}^\infty (a_n - a) b_n\)收敛，
+从而级数\(\sum_{n=1}^\infty a_n b_n\)收敛.
+这就说明：阿贝尔审敛法是狄利克雷审敛法的特殊情形.
+\end{remark}
