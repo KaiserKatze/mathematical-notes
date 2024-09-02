@@ -219,6 +219,65 @@ w_n \defeq \frac12 (\abs{u_n} - u_n)
 \subsection{绝对收敛级数的性质}
 绝对收敛级数有很多性质是条件收敛级数所没有的.
 
+%@see: 《数学分析（第二版 上册）》（陈纪修） P37 加法交换律
+\cref{theorem:无穷级数.收敛级数性质4} 表明：收敛级数保持结合律.
+那么，收敛级数是否也保持交换律呢？
+也就是说，将一个收敛级数\(\sum_{n=1}^\infty u_n\)的项任意重新排列，
+得到一个新级数\(\sum_{n=1}^\infty v_n\)
+（我们把级数\(\sum_{n=1}^\infty v_n\)
+称为“级数\(\sum_{n=1}^\infty u_n\)的\DefineConcept{更序级数}”），
+这个新级数是否仍然收敛？如果这个新级数收敛，其和是否保持不变，即是否有\[
+	\sum_{n=1}^\infty v_n = \sum_{n=1}^\infty u_n
+\]成立？
+遗憾的是，答案是否定的.
+
+%@see: 《数学分析（第二版 上册）》（陈纪修） P37 例9.4.6
+考虑莱布尼茨级数\[
+	\sum_{n=1}^\infty \frac{(-1)^{n+1}}n.
+\]
+这是一个条件收敛级数，可以证明它的和为\(\ln2\).
+现在重新排列这个级数的项，依次在每一个正项后面接两个负项，即\[
+	\sum_{n=1}^\infty u'_n
+	= 1 - \frac12 - \frac14
+	+ \frac13 - \frac16 - \frac18
+	+ \dotsb
+	+ \frac1{2n-1} - \frac1{4n-2} - \frac1{4n}
+	+ \dotsb.
+\]
+设\(\sum_{n=1}^\infty \frac{(-1)^{n+1}}n\)的部分和数列为\(\{S_n\}\)，
+\(\sum_{n=1}^\infty u'_n\)的部分和数列为\(\{S'_n\}\)，
+则\begin{align*}
+	S'_{3n}
+	&= \sum_{k=1}^n \left(
+		\frac1{2k-1} - \frac1{4k-2} - \frac1{4k}
+	\right) \\
+	&= \sum_{k=1}^n \left(
+		\frac1{4k-2} - \frac1{4k}
+	\right) \\
+	&= \frac12 \sum_{k=1}^n \left(
+		\frac1{2k-1} - \frac1{2k}
+	\right)
+	= \frac12 S_{2n},
+\end{align*}
+于是\[
+	\lim_{n\to\infty} S'_{3n}
+	= \frac12 \lim_{n\to\infty} S_{2n}
+	= \frac12 \ln 2.
+\]
+由于\[
+	S'_{3n-1} = S'_{3n} + \frac1{4n},
+	\qquad
+	S'_{3n+1} = S'_{3n} + \frac1{2n+1},
+\]
+最终得到\[
+	\sum_{n=1}^\infty u'_n
+	= \frac12 \ln 2.
+\]
+也就是说，尽管级数\(\sum_{n=1}^\infty \frac{(-1)^{n+1}}n\)收敛，但它不保持交换律.
+
+这个例子告诉我们，要使一个级数保持加法交换律，仅有收敛性是不够的.
+事实上，是否保持加法交换律，是绝对收敛级数与条件收敛级数的一个本质区别.
+
 \begin{property}[绝对收敛级数的可交换性]\label{theorem:无穷级数.绝对收敛级数的可交换性}
 %@see: 《高等数学（第六版 下册）》 P265 定理9
 %@see: 《数学分析教程 （第3版 下册）》（史济怀） P189 定理14.5.2
