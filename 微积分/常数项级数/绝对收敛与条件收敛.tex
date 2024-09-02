@@ -278,12 +278,76 @@ w_n \defeq \frac12 (\abs{u_n} - u_n)
 这个例子告诉我们，要使一个级数保持加法交换律，仅有收敛性是不够的.
 事实上，是否保持加法交换律，是绝对收敛级数与条件收敛级数的一个本质区别.
 
-\begin{property}[绝对收敛级数的可交换性]\label{theorem:无穷级数.绝对收敛级数的可交换性}
+\begin{theorem}[绝对收敛级数的可交换性]\label{theorem:无穷级数.绝对收敛级数的可交换性}
 %@see: 《高等数学（第六版 下册）》 P265 定理9
 %@see: 《数学分析教程 （第3版 下册）》（史济怀） P189 定理14.5.2
-交换绝对收敛级数中无穷多项的次序，所得新级数仍然绝对收敛，其和也不变.
-%TODO proof
-\end{property}
+绝对收敛级数的更序级数也绝对收敛，两者的和相同.
+\begin{proof}
+设级数\(\sum_{n=1}^\infty u_n\)绝对收敛，
+级数\(\sum_{n=1}^\infty u'_n\)是它的更序级数.
+接下来我们分两步证明这个定理.
+
+首先假设\(\sum_{n=1}^\infty u_n\)是正项级数，
+则对一切正整数\(n\)，有\[
+	\sum_{k=1}^n u'_k
+	\leq \sum_{n=1}^\infty u_n,
+\]
+于是级数\(\sum_{n=1}^\infty u'_n\)收敛，
+且\[
+	\sum_{n=1}^\infty u'_n
+	\leq \sum_{n=1}^\infty u_n.
+\]
+反过来，也可以将\(\sum_{n=1}^\infty u_n\)
+看成是\(\sum_{n=1}^\infty u'_n\)的更序级数，
+从而又有\[
+	\sum_{n=1}^\infty u_n
+	\leq \sum_{n=1}^\infty u'_n.
+\]
+因此\[
+	\sum_{n=1}^\infty u_n
+	= \sum_{n=1}^\infty u'_n.
+\]
+
+然后假设\(\sum_{n=1}^\infty u_n\)是任意级数，
+则由\cref{theorem:无穷级数.绝对收敛级数必定收敛} 可知，
+正项级数\(\sum_{n=1}^\infty v_n\)和\(\sum_{n=1}^\infty w_n\)都收敛，
+且\[
+	\sum_{n=1}^\infty u_n
+	= \sum_{n=1}^\infty v_n
+	- \sum_{n=1}^\infty w_n,
+	\qquad
+	\sum_{n=1}^\infty \abs{u_n}
+	= \sum_{n=1}^\infty v_n
+	+ \sum_{n=1}^\infty w_n.
+\]
+对于更序级数\(\sum_{n=1}^\infty u'_n\)，
+同样可以构造对应的正项级数\(\sum_{n=1}^\infty v'_n\)和\(\sum_{n=1}^\infty w'_n\).
+由于\(\sum_{n=1}^\infty v'_n\)和\(\sum_{n=1}^\infty v_n\)、
+\(\sum_{n=1}^\infty w'_n\)和\(\sum_{n=1}^\infty w_n\)互为更序级数，
+那么由前面的结论可知\[
+	\sum_{n=1}^\infty v'_n
+	= \sum_{n=1}^\infty v_n,
+	\qquad
+	\sum_{n=1}^\infty w'_n
+	= \sum_{n=1}^\infty w_n.
+\]
+于是级数\[
+	\sum_{n=1}^\infty \abs{u'_n}
+	= \sum_{n=1}^\infty v'_n
+	+ \sum_{n=1}^\infty w'_n
+\]收敛，
+即级数\(\sum_{n=1}^\infty u'_n\)绝对收敛，
+且\[
+	\sum_{n=1}^\infty u'_n
+	= \sum_{n=1}^\infty v'_n
+	- \sum_{n=1}^\infty w'_n
+	= \sum_{n=1}^\infty v_n
+	- \sum_{n=1}^\infty w_n
+	= \sum_{n=1}^\infty u_n.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
 
 \begin{theorem}[条件收敛级数的黎曼定理]
 %@see: 《数学分析教程 （第3版 下册）》（史济怀） P190 定理14.5.3（Riemann定理）
