@@ -81,7 +81,43 @@
 	数列\(\{a_n\}\)单调趋于\(0\)，
 	级数\(\sum_{n=1}^\infty b_n\)的部分和数列有界.
 \end{itemize}
-%TODO proof
+\begin{proof}
+假设满足阿贝尔条件，
+设\(\abs{a_n} \leq M\)，
+由于\(\sum_{n=1}^\infty b_n\)收敛，
+则对于任意给定\(\epsilon>0\)，
+存在正整数\(N\)，
+使得对于一切\(n>N\)和正整数\(p\)，
+成立\[
+	\abs{\sum_{k=n+1}^{n+p} b_k} < \epsilon.
+\]
+对\(\sum_{k=n+1}^{n+p} a_k b_k\)应用\hyperref[theorem:无穷级数.阿贝尔引理]{阿贝尔引理}，即得\[
+	\abs{\sum_{k=n+1}^{n+p} a_k b_k}
+	< \epsilon (\abs{a_{n+1} + 2 \abs{a_{n+p}}})
+	\leq 3 M \epsilon.
+\]
+
+假设满足狄利克雷条件，
+由于\(\lim_{n\to\infty} a_n = 0\)，
+因此对于任意给定\(\epsilon>0\)，
+存在正整数\(N\)，
+使得对于一切\(n>N\)，
+成立\(\abs{a_n} < \epsilon\).
+设\(\abs{\sum_{k=1}^n b_k} \leq M\)，
+令\(B_k = \sum_{i=n+1}^{n+k} b_i\ (k=1,2,\dotsc)\)，
+则\[
+	\abs{B_k}
+	= \sum_{\sum_{i=1}^{n+k} b_i - \sum_{i=1}^n b_i}
+	\leq 2 M.
+\]
+应用\hyperref[theorem:无穷级数.阿贝尔引理]{阿贝尔引理}，同样可得\[
+	\abs{\sum_{k=n+1}^{n+p} a_k b_k}
+	\leq 2 M (\abs{a_{n+1} + 2 \abs{a_{n+p}}})
+	< 6 M \epsilon
+\]对一切\(n>N\)与一切正整数\(p\)成立.
+根据\hyperref[theorem:无穷级数.级数的柯西审敛原理]{柯西审敛原理}便知
+级数\(\sum_{n=1}^\infty a_n b_n\)收敛.
+\end{proof}
 %\cref{theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法}
 \end{theorem}
 \begin{remark}
