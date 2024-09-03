@@ -1,24 +1,28 @@
 \section{函数项级数}
 \subsection{函数项级数的概念}
 \begin{definition}\label{definition:无穷级数.实函数项级数的概念}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P55 定义10.1.1
 给定一个定义在区间\(I \subseteq \mathbb{R}\)上的函数列\[
 	u_1(x),u_2(x),\dotsc,u_n(x),\dotsc,
 \]
 则由该函数列构成的表达式\[
 	u_1(x)+u_2(x)+\dotsb+u_n(x)+\dotsb
 \]
-称为“定义在区间\(I\)上的\DefineConcept{函数项无穷级数}（infinite series with function terms）”，
+称为“定义在区间\(I\)上的\DefineConcept{函数项无穷级数}
+（infinite series with function terms）”，
 简称\DefineConcept{函数项级数}，
-或者进一步简称为\DefineConcept{级数}；
+或者进一步简称为\DefineConcept{级数}，
 记作\(\sum_{n=1}^\infty u_n(x)\).
 
 对于每一个确定的值\(x_0 \in I\)，
 级数\(\sum_{n=1}^\infty u_n(x)\)
-成为级数\(\sum_{n=1}^\infty u_n(x_0)\).
-如果级数\(\sum_{n=1}^\infty u_n(x_0)\)收敛，
+成为常数项无穷级数\(\sum_{n=1}^\infty u_n(x_0)\).
+
+如果常数项无穷级数\(\sum_{n=1}^\infty u_n(x_0)\)收敛，
 则称“点\(x_0\)是级数\(\sum_{n=1}^\infty u_n(x)\)的\DefineConcept{收敛点}
-（point of convergence）”；
-反之，如果级数\(\sum_{n=1}^\infty u_n(x_0)\)发散，
+（point of convergence）”.
+
+如果常数项无穷级数\(\sum_{n=1}^\infty u_n(x_0)\)发散，
 就称“点\(x_0\)是级数\(\sum_{n=1}^\infty u_n(x)\)的\DefineConcept{发散点}
 （point of divergence）”.
 
@@ -29,26 +33,61 @@
 级数\(\sum_{n=1}^\infty u_n(x)\)的发散点的全体称为
 “级数\(\sum_{n=1}^\infty u_n(x)\)的\DefineConcept{发散域}（domain of divergence）”.
 
-对应于收敛域内的任意一个数\(x\)，级数成为一个收敛的级数，因而有一个确定的和\(s\).
-这样，在收敛域上，级数的和是\(x\)的函数\(s(x)\)，
-通常称\(s(x)\)为“级数\(\sum_{n=1}^\infty u_n(x)\)的\DefineConcept{和函数}”，
-其定义域就是级数的收敛域，
-并写成\[
-	s(x) = u_1(x)+u_2(x)+\dotsb+u_n(x)+\dotsb.
-\]
+记\(D \defeq \dom\sum_{n=1}^\infty u_n(x)\).
+把函数\[
+	S\colon D\to\mathbb{R},
+	x \mapsto \sum_{n=1}^\infty u_n(x),
+\]称为“级数\(\sum_{n=1}^\infty u_n(x)\)的\DefineConcept{和函数}”.
+由于这个函数是通过逐点定义的方式得到的，
+因此称“级数\(\sum_{n=1}^\infty u_n(x)\)在\(D\)上\DefineConcept{点态收敛}于\(S(x)\)”.
 
-将级数\(\sum_{n=1}^\infty u_n(x)\)的前\(n\)项的部分和记作\(s_n(x)\)，
-则在收敛域上有\[
-	\lim_{n\to\infty} s_n(x) = s(x).
-\]
-记\(r_n(x) = s(x)-s_n(x)\)，
-\(r_n(x)\)叫做“级数的\DefineConcept{余项}”%
-\footnote{只有当\(x\)在收敛域上时\(r_n(x)\)才有意义.}.
+把函数\[
+	S_n\colon I\to\mathbb{R},
+	x \mapsto \sum_{k=1}^n u_k(x)
+\]称为“级数\(\sum_{n=1}^\infty u_n(x)\)的\DefineConcept{部分和函数}”.
+
+把函数\[
+	R_n\colon D\to\mathbb{R},
+	x \mapsto S(x) - S_n(x),
+\]称为“级数\(\sum_{n=1}^\infty u_n(x)\)的\DefineConcept{余项函数}”.
 \end{definition}
 
-\begin{property}
-设级数\(\sum_{n=1}^\infty u_n(x)\)的收敛域为\(C\).
-当\(x \in C\)时，级数的余项满足\[
-	\lim_{n\to\infty} r_n(x) = 0.
+\begin{proposition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P56
+设\(\{S_n\}\)是级数\(\sum_{n=1}^\infty u_n(x)\)的部分和函数列，
+则\[
+	\Set{ x \given \text{数列$\{S_n(x)\}$收敛} } = D.
 \]
-\end{property}
+\end{proposition}
+\begin{proposition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P56
+设\(S\)是级数\(\sum_{n=1}^\infty u_n(x)\)的和函数，
+\(S_n\)是级数\(\sum_{n=1}^\infty u_n(x)\)的部分和函数，
+则在收敛域\(D\)上有\[
+	\lim_{n\to\infty} S_n(x) = S(x).
+\]
+\end{proposition}
+\begin{proposition}
+设\(R_n\)是级数\(\sum_{n=1}^\infty u_n(x)\)的余项函数，
+则在收敛域\(D\)上有\[
+	\lim_{n\to\infty} R_n(x) = 0.
+\]
+\end{proposition}
+\begin{remark}
+可以看出，函数项级数\(\sum_{n=1}^\infty u_n(x)\)与函数列\(\{S_n\}\)的收敛性在本质上完全是一回事.
+\end{remark}
+
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P55 例10.1.1
+利用常数项无穷级数审敛法和\cref{definition:无穷级数.实函数项级数的概念}，可知下述结论：
+\begin{itemize}
+	\item \(\sum_{n=1}^\infty x^n\)的收敛域为\((-1,1)\)，
+	和函数为\(S(x) = \frac{x}{1-x}\).
+	\item \(\sum_{n=1}^\infty \frac{x^n}{n}\)的收敛域为\([-1,1)\).
+	\item \(\sum_{n=1}^\infty \frac{x^n}{n^2}\)的收敛域为\([-1,1]\).
+	\item \(\sum_{n=1}^\infty \frac{x^n}{n!}\)的收敛域是\((-\infty,+\infty)\).
+	\item \(\sum_{n=1}^\infty n! x^n\)的收敛域是\(\{0\}\).
+	\item \(\sum_{n=1}^\infty e^{-nx}\)的收敛域为\((0,+\infty)\)，
+	和函数为\(S(x) = \frac1{e^x-1}\).
+\end{itemize}
+\end{example}
