@@ -365,7 +365,51 @@ w_n \defeq \frac12 (\abs{u_n} - u_n)
 则只要适当交换各项的次序，
 就可使其收敛到任意一个有限实数，
 也可以使其发散到\(+\infty\)或\(-\infty\).
-%TODO proof
+\begin{proof}
+假设\(a\)是一个有限实数.
+由于\(\sum_{n=1}^\infty u_n\)条件收敛，
+由\cref{theorem:无穷级数.绝对收敛级数必定收敛} 可知\[
+	\sum_{n=1}^\infty v_n = +\infty,
+	\qquad
+	\sum_{n=1}^\infty w_n = +\infty.
+\]
+依次计算\(\sum_{n=1}^\infty v_n\)的部分和，
+必定存在最小的正整数\(n_1\)满足\[
+	\sum_{k=1}^{n_1} v_k > a.
+\]
+再依次计算\(\sum_{n=1}^\infty w_n\)的部分和，
+也必定存在最小的正整数\(m_1\)满足\[
+	\sum_{k=1}^{n_1} v_k
+	- \sum_{k=1}^{m_1} w_k
+	< a.
+\]
+类似地可以找到最小的正整数\(n_2>n_1\)和最小的正整数\(m_2>m_1\)满足\[
+	\sum_{k=1}^{n_1} v_k
+	- \sum_{k=1}^{m_1} w_k
+	+ \sum_{k=n_1+1}^{n_2} v_k
+	> a
+\]和\[
+	\sum_{k=1}^{n_1} v_k
+	- \sum_{k=1}^{m_1} w_k
+	+ \sum_{k=n_1+1}^{n_2} v_k
+	- \sum_{k=m_1+1}^{m_2} w_k
+	< a.
+\]
+这样的步骤可以一直继续下去，
+由此得到\(\sum_{k=1}^\infty u_n\)的一个更序级数\(\sum_{n=1}^\infty u'_n\)，
+它的部分和在\(a + v_{n_k}\)与\(a - w_{m_k}\)之间振荡.
+由于\(\sum_{k=1}^\infty u_n\)收敛，
+可知\[
+	\lim_{n\to\infty} v_n
+	= \lim_{n\to\infty} w_n
+	= 0,
+\]
+于是\[
+	\sum_{n=1}^\infty u'_n = a.
+\]
+这就说明，只要适当交换\(\sum_{k=1}^\infty u_n\)各项的次序，
+就可使其收敛到任意一个有限实数\(a\).
+\end{proof}
 \end{theorem}
 
 \begin{definition}\label{definition:无穷级数.绝对收敛级数的柯西乘积}
