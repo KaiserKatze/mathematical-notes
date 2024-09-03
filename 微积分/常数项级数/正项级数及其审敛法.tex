@@ -831,6 +831,69 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1WQegeUEBc
+举例说明：
+当正项级数\(\sum_{n=1}^\infty a_n\)收敛时，
+极限\(\lim_{n\to\infty} n a_n = 0\)不成立.
+\begin{solution}
+取\[
+	\def\arraystretch{1.5}
+	a_n = \left\{ \begin{array}{cl}
+		\frac1{n^2}, & \sqrt{n}\notin\mathbb{N}^+, \\
+		\frac1n, & \sqrt{n}\in\mathbb{N}^+.
+	\end{array} \right.
+\]
+那么\begin{align*}
+	\sum_{n=1}^\infty a_n
+	&= \frac11 + \frac1{2^2} + \frac1{3^2}
+		+ \frac14 + \frac1{5^2} + \frac1{6^2} + \frac1{7^2} + \frac1{8^2}
+		+ \dotsb \\
+	&= \left(\frac11 + \frac1{2^2} + \frac1{3^2}\right)
+		+ \left(\frac14 + \frac1{5^2} + \frac1{6^2} + \frac1{7^2} + \frac1{8^2}\right)
+		+ \dotsb \\
+	&= \sum_{k=1}^\infty \left[
+		\frac1{k^2}
+		+ \sum_{k^2+1 \leq p \leq (k+1)^2-1} \frac1{p^2}
+	\right].
+\end{align*}
+因为级数\(\sum_{k=1}^\infty \frac1{k^2}\)收敛，
+所以要证\(\sum_{n=1}^\infty a_n\)收敛，
+只需证\[
+	\sum_{k=1}^\infty \sum_{k^2+1 \leq p \leq (k+1)^2-1} \frac1{p^2}
+	\eqno(1)
+\]收敛.
+因为级数(1)的一般项满足\[
+	\sum_{k^2+1 \leq p \leq (k+1)^2-1} \frac1{p^2}
+	\leq \left[(k+1)^2-k^2-1\right] \cdot \frac1{(k^2+1)^2}
+	= \frac{2k}{(k^2+1)^2},
+\]
+又因为\[
+	\lim_{k\to\infty} k^2 \cdot \frac{2k}{(k^2+1)^2}
+	= 0,
+\]
+由\hyperref[theorem:无穷级数.正项级数的极限审敛法]{极限审敛法}可知，
+级数\(\sum_{k=1}^\infty \frac{2k}{(k^2+1)^2}\)收敛，
+再利用\hyperref[theorem:无穷级数.正项级数的比较审敛法]{比较审敛法}可知，
+级数(1)收敛.
+因此，级数\(\sum_{k=1}^\infty \frac1{k^2}\)收敛.
+
+但是，数列\(\{a_n\}\)有两个子列极限：\[
+	\varliminf_{n\to\infty} n a_n
+	= \lim_{n\to\infty} n \cdot \frac1{n^2}
+	= \lim_{n\to\infty} \frac1n
+	= 0,
+	\qquad
+	\varlimsup_{n\to\infty} n a_n
+	= \lim_{n\to\infty} n \cdot \frac1n
+	= \lim_{n\to\infty} 1
+	= 1.
+\]
+而\hyperref[theorem:子列极限.具有不同子列极限的数列必定发散]{具有不同子列极限的数列必定发散}，
+于是得到\(\lim_{n\to\infty} n a_n\)不存在.
+\end{solution}
+\end{example}
+
 \subsection{拉贝审敛法}
 对于某些正项级数\(\sum_{n=1}^\infty u_n\)，
 成立\(\lim_{n\to\infty} \frac{x_{n+1}}{x_n} = 1\)，
