@@ -1032,3 +1032,41 @@
 从而与\(\int_a^{+\infty} f(x) \dd{x}\)同时收敛或同时发散.
 \end{proof}
 \end{theorem}
+
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P25 例9.3.9
+证明：正项级数\(\sum_{n=2}^\infty \frac1{n \ln^q n}\)在\(q>1\)时收敛，在\(q\leq1\)时发散.
+\begin{proof}
+取\(f(x) = \frac1{x \ln^q x}\)，
+则在\([2,+\infty)\)上，
+函数\(f\)单调减少且恒为正，
+另外\[
+	\sum_{n=2}^\infty f(n)
+	= \sum_{n=2}^\infty \frac1{n \ln^q n}.
+\]
+由\[
+	\int_2^A f(x) \dd{x}
+	= \left\{ \begin{array}{ll}
+		\frac1{1-q} \ln^{1-q} A - \frac1{1-q} \ln^{1-q}2, & q\neq1, \\
+		\ln\ln A - \ln\ln 2, & q=1,
+	\end{array} \right.
+\]
+令\(A\to+\infty\)，可知
+积分\(\int_2^{+\infty} f(x) \dd{x}\)在\(q>1\)时收敛，在\(q\leq1\)时发散，
+由此得到\(\sum_{n=2}^\infty \frac1{n \ln^q n}\)在\(q>1\)时收敛，在\(q\leq1\)时发散.
+\end{proof}
+\end{example}
+
+\begin{remark}
+在应用\cref{theorem:无穷级数.积分审敛法} 时，
+必须注意条件\(f(x)\geq0\).
+如果缺少这一个条件，
+虽然从反常积分\(\int_a^{+\infty} f(x) \dd{x}\)的收敛性，
+仍然可以得到级数\(\sum_{n=1}^\infty u_n\)的收敛性.
+但是反过来，结论就不一定成立.
+例如，取\(f(x) = \sin x\)，
+显然\(\int_0^{+\infty} f(x) \dd{x}\)是发散的，
+但是若取\(a_n = 2n\pi\)，
+则\(u_n = \int_{a_n}^{a_{n+1}} f(x) \dd{x} = 0\)，
+也就是说级数\(\sum_{n=1}^\infty u_n\)居然是收敛的.
+\end{remark}
