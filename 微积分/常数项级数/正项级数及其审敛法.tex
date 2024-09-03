@@ -986,8 +986,49 @@
 \begin{theorem}[积分审敛法]\label{theorem:无穷级数.积分审敛法}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P24 定理9.3.6（积分判别法）
 %@see: 《数学分析教程 （第3版 下册）》（史济怀） P166 定理14.2.4（Cauchy积分判别法）
-设\(f\colon \mathbb{R}\to\mathbb{R}\)是非负的单调减少函数，
-那么级数\(\sum_{n=0}^\infty f(a+n)\)
-与反常积分\(\int_a^{+\infty} f(x) \dd{x}\)同敛散.
-%TODO proof
+设非负函数\(f\colon[a,+\infty)\)在任意有限闭区间上黎曼可积，
+取一个单调增加趋于\(+\infty\)的数列\(\{a_n\}\)，
+使得\[
+	a_1 = a, \qquad
+	u_n = \int_{a_n}^{a_{n+1}} f(x) \dd{x}.
+\]
+反常积分\(\int_a^{+\infty} f(x) \dd{x}\)
+与正项级数\(\sum_{n=1}^\infty u_n\)同时收敛或同时发散于\(+\infty\)，
+且\[
+	\int_a^{+\infty} f(x) \dd{x}
+	= \sum_{n=1}^\infty u_n
+	= \sum_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \dd{x}.
+\]
+
+特别地，若\(f\)单调减少，取\(a_n = n\)，
+则反常积分\(\int_a^{+\infty} f(x) \dd{x}\)
+与正项级数\(\sum_{n=N}^\infty f(n)\)（其中\(N=\floor{a}+1\)）
+同时收敛或同时发散.
+\begin{proof}
+设正项级数\(\sum_{n=1}^\infty u_n\)的部分和数列为\(\{S_n\}\)，
+则对任意实数\(A>a\)，
+存在正整数\(n\)，
+成立\(a_n \leq A < a_{n+1}\)，
+于是\[
+	S_{n-1} \leq \int_a^A f(x) \dd{x} \leq S_n.
+\]
+
+当\(\{S_n\}\)有界，即\(\sum_{n=1}^\infty u_n\)收敛时，
+有\(\lim_{A\to+\infty} \int_a^A f(x) \dd{x}\)收敛，
+且根据夹逼准则，它们收敛于相同的极限.
+当\(\{S_n\}\)无界，即\(\sum_{n=1}^\infty u_n\)发散于\(+\infty\)时，
+则同样有\(\lim_{A\to+\infty} \int_a^A f(x) \dd{x} = +\infty\).
+由此可得\[
+	\int_a^{+\infty} f(x) \dd{x}
+	= \sum_{n=1}^\infty u_n
+	= \sum_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \dd{x}.
+\]
+
+特别地，若\(f\)单调减少，取\(a_n = n\)，
+则当\(n \geq N = \floor{a}+1\)时，有\[
+	f(n+1) \leq u_n = \int_n^{n+1} f(x) \dd{x} \leq f(n),
+\]
+由比较审敛法可知\(\sum_{n=N}^\infty f(n)\)与\(\sum_{n=N}^\infty u_n\)同时收敛或同时发散，
+从而与\(\int_a^{+\infty} f(x) \dd{x}\)同时收敛或同时发散.
+\end{proof}
 \end{theorem}
