@@ -444,7 +444,6 @@ q \leq p\)，
 %@see: 《高等数学（第六版 上册）》 P295 例3
 设\(S_n(x) = x^n\)，
 考察\(\{S_n\}\)在区间\([0,1)\)上的一致收敛性.
-\begin{solution}
 显然\(S(x) = \lim_{n\to\infty} S_n(x) = 0\).
 对任意给定\(\epsilon\in(0,1)\)，
 要使\[
@@ -457,7 +456,48 @@ q \leq p\)，
 由于当\(x\to1^-\)时，\(\frac{\ln\epsilon}{\ln x}\to+\infty\)，
 因此不可能找到对一切\(x\in[0,1)\)都适用的\(N = N(\epsilon)\)，
 换言之，\(\{S_n\}\)在\([0,1)\)上不是一致收敛的.
-\end{solution}
+
+\begin{figure}[ht]
+%@see: 《数学分析（第二版 下册）》（陈纪修） P61 图10.1.2
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			name=Plt,
+			xmin=0,xmax=1.2,
+			ymin=0,ymax=1.2,
+			axis equal=true,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+		]
+			\addplot[color=red,samples=50,smooth,domain=0:1]
+				{x};\label{pgfplots:函数项级数.函数图像5}
+			\addplot[color=orange,samples=50,smooth,domain=0:1]
+				{x^2};\label{pgfplots:函数项级数.函数图像6}
+			\addplot[color=green,samples=50,smooth,domain=0:1]
+				{x^3};\label{pgfplots:函数项级数.函数图像7}
+			\addplot[color=blue,samples=50,smooth,domain=0:1]
+				{x^4};\label{pgfplots:函数项级数.函数图像8}
+			\draw[dashed,black!30](0,1)--(1,1)--(1,0);
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,right=1em]at(Plt.east){
+			\small\begin{tblr}{cl}
+				\ref{pgfplots:函数项级数.函数图像5} & \(n=1\) \\
+				\ref{pgfplots:函数项级数.函数图像6} & \(n=2\) \\
+				\ref{pgfplots:函数项级数.函数图像7} & \(n=3\) \\
+				\ref{pgfplots:函数项级数.函数图像8} & \(n=4\) \\
+			\end{tblr}
+		};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:函数项级数.图2}
+\end{figure}
+
+从几何上看（\cref{figure:函数项级数.图2}），
+对于每个正整数\(n\)，函数\(x \mapsto x^n\)的取值范围（即它的值域）都是\([0,1]\)，
+因此它们的图像不可能落在带状区域\[
+	\Set{ (x,y) \given x\in[0,1), 0<y<\epsilon }
+\]中.
 \end{example}
 
 \begin{definition}
