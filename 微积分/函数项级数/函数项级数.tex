@@ -513,4 +513,63 @@ q \leq p\)，
 	\quad(n\to\infty),
 \]
 因此\(\{S_n\}\)在\((0,+\infty)\)上不是一致收敛的.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			name=Plt,
+			xscale=1.5,
+			xmin=0,xmax=4.4,
+			ymin=0,ymax=.6,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+		]
+			\addplot[color=red,samples=50,smooth,domain=0:4]
+				{x/(1+x^2)};\label{pgfplots:函数项级数.函数图像9}
+			\addplot[color=orange,samples=50,smooth,domain=0:4]
+				{2*x/(1+4*x^2)};\label{pgfplots:函数项级数.函数图像10}
+			\addplot[color=green,samples=50,smooth,domain=0:4]
+				{4*x/(1+16*x^2)};\label{pgfplots:函数项级数.函数图像11}
+			\addplot[color=blue,samples=50,smooth,domain=0:4]
+				{8*x/(1+64*x^2)};\label{pgfplots:函数项级数.函数图像12}
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,right=1em]at(Plt.east){
+			\small\begin{tblr}{cl}
+				\ref{pgfplots:函数项级数.函数图像9} & \(n=1\) \\
+				\ref{pgfplots:函数项级数.函数图像10} & \(n=2\) \\
+				\ref{pgfplots:函数项级数.函数图像11} & \(n=4\) \\
+				\ref{pgfplots:函数项级数.函数图像12} & \(n=8\) \\
+			\end{tblr}
+		};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:函数项级数.图3}
+\end{figure}
+
+从几何上看（\cref{figure:函数项级数.图3}），
+对于每个正整数\(n\)，
+函数\(x \mapsto \frac{nx}{1+n^2x^2}\)在\(x=\frac1n\)取到最大值\(\frac12\).
+因此它们的图像不可能落在带状区域\[
+	\Set{ (x,y) \given 0<x<+\infty, \abs{y}<\epsilon<1/2 }
+\]中.
+事实上，\(\{S_n\}\)在任意包含\(x=0\)或以\(x=0\)为端点的区间上都不是一致收敛的.
+
+若将\(\{S_n\}\)限制在任意有限闭区间\([\rho,A]\ (0<\rho<A<+\infty)\)上，
+则由\[
+	\abs{S_n(x) - S(x)} = \frac{nx}{1+n^2x^2}
+\]及\[
+	\dv{x} \left(\frac{nx}{1+n^2x^2}\right)
+	= \frac{n(1-n^2x^2)}{(1+n^2x^2)^2},
+\]
+可以知道当\(n>\frac1\rho\)时，\(\abs{S_n(x) - S(x)}\)在\([\rho,A]\)单调减少，
+从而\[
+	\sup_{\rho \leq x \leq A} \abs{S_n(x) - S(x)}
+	= \frac{n\rho}{1+n^2\rho^2}
+	\to 0
+	\quad(n\to\infty),
+\]
+即\(\{S_n\}\)在\([\rho,A]\)上一致收敛于\(S(x)=0\)，
+或者说\(\{S_n\}\)在\((0,+\infty)\)上内闭一致收敛.
 \end{example}
