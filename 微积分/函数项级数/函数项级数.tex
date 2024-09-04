@@ -396,6 +396,47 @@ q \leq p\)，
 当\(n>N\)时，就有\[
 	\abs{S_n(x) - S(x)} \leq \frac1{2n} < \epsilon
 \]对一切\(x\in(-\infty,+\infty)\)成立.
+
+\begin{figure}[ht]
+%@see: 《数学分析（第二版 下册）》（陈纪修） P61 图10.1.2
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			name=Plt,
+			xscale=1.5,
+			xmin=-2.2,xmax=2.2,
+			ymin=-.6,ymax=.6,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+		]
+			\addplot[color=red,samples=50,smooth,domain=-2:2]
+				{x/(1+x^2)};\label{pgfplots:函数项级数.函数图像1}
+			\addplot[color=orange,samples=50,smooth,domain=-2:2]
+				{x/(1+4*x^2)};\label{pgfplots:函数项级数.函数图像2}
+			\addplot[color=green,samples=50,smooth,domain=-2:2]
+				{x/(1+9*x^2)};\label{pgfplots:函数项级数.函数图像3}
+			\addplot[color=blue,samples=50,smooth,domain=-2:2]
+				{x/(1+25*x^2)};\label{pgfplots:函数项级数.函数图像4}
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,right=1em]at(Plt.east){
+			\small\begin{tblr}{cl}
+				\ref{pgfplots:函数项级数.函数图像1} & \(n=1\) \\
+				\ref{pgfplots:函数项级数.函数图像2} & \(n=2\) \\
+				\ref{pgfplots:函数项级数.函数图像3} & \(n=3\) \\
+				\ref{pgfplots:函数项级数.函数图像4} & \(n=5\) \\
+			\end{tblr}
+		};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:函数项级数.图1}
+\end{figure}
+
+从几何上看（\cref{figure:函数项级数.图1}），
+对任意给定\(\epsilon>0\)，只要取\(N = \floor*{\frac1{2\epsilon}}\)，
+当\(n>N\)时，函数\(S_n\)的图像都落在带状区域\[
+	\Set{ (x,y) \given \abs{y} < \epsilon }
+\]中，这正是一致收敛的几何描述.
 \end{example}
 
 \begin{example}\label{example:函数项级数.不一致收敛的函数列}
@@ -515,6 +556,7 @@ q \leq p\)，
 因此\(\{S_n\}\)在\((0,+\infty)\)上不是一致收敛的.
 
 \begin{figure}[ht]
+%@see: 《数学分析（第二版 下册）》（陈纪修） P64 图10.1.4
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
