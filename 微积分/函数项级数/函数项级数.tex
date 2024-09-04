@@ -383,14 +383,14 @@ q \leq p\)，
 \end{solution}
 \end{example}
 
-\begin{example}
-%@see: 《数学分析（第二版 下册）》（陈纪修） P61 例10.1.6
+\begin{example}\label{example:函数项级数.一致收敛的函数列}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P60 例10.1.6
 设\(S_n(x) = \frac{x}{1+n^2x^2}\)，
 则\(\{S_n\}\)在\((-\infty,+\infty)\)上收敛于极限函数\(S(x) = 0\).
 这是因为\[
 	\abs{S_n(x) - S(x)}
 	= \frac{\abs{x}}{1+n^2x^2}
-	\leq \frac1{2n},
+	\leq \frac1{2n},%TODO QUESTION: 怎么放缩成这个只与\(n\)有关的分式的？
 \]
 所以对任意给定的\(\epsilon>0\)，只要取\(N = \floor*{\frac1{2\epsilon}}\)，
 当\(n>N\)时，就有\[
@@ -471,3 +471,28 @@ q \leq p\)，
 即\(\{S_n\}\)在\(D\)上一致收敛于\(S\).
 \end{proof}
 \end{theorem}
+回过头来，对于\cref{example:函数项级数.一致收敛的函数列} 中的
+\(S_n(x) = \frac{x}{1+n^2x^2}\ (-\infty < x < +\infty)\)，
+由于\[
+	\abs{S_n(x) - S(x)}
+	= \frac{\abs{x}}{1+n^2x^2}
+	\leq \frac1{2n}
+\]等号成立当且仅当\(x=\pm\frac1n\)，
+可知\[
+	\sup_{-\infty < x < +\infty} \abs{S_n(x) - S(x)}
+	= \frac1{2n}
+	\to 0
+	\quad(n\to\infty),
+\]
+因此\(\{S_n\}\)在\((-\infty,+\infty)\)上一致收敛于\(S(x)\equiv0\).
+
+对于\cref{example:函数项级数.不一致收敛的函数列} 中的
+\(S_n(x) = x^n\ (0 \leq x < 1)\)，
+由于\[
+	\sup_{0 \leq x < 1} \abs{S_n(x) - S(x)}
+	= \sup_{0 \leq x < 1} x^n
+	= 1
+	\not\to 0
+	\quad(n\to\infty),
+\]
+所以\(\{S_n\}\)在\([0,1)\)上不是一致收敛的.
