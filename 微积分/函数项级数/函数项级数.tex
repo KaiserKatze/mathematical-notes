@@ -343,6 +343,30 @@ q \leq p\)，
 
 由于函数项级数的一致收敛性本质上就是部分和函数列的一致收敛性，
 所以下面我们仅对函数列举例讨论.
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P295 例2
+设\(S_n(x) = \frac1{x+n}\).
+研究\(\{S_n\}\)在区间\([0,+\infty)\)上的一致收敛性.
+\begin{solution}
+显然\(S(x) = \lim_{n\to\infty} S_n(x) = 0\).
+对于\(\forall\epsilon>0\)，
+要使\[
+	\abs{S(x) - S_n(x)}
+	= \frac1{x+n}
+	\leq \frac1{n}
+	< \epsilon,
+\]
+可以取\(N \geq \ceil*{\frac1{\epsilon}}\)，
+当\(n>N\)时，
+就有\[
+	\abs{S(x) - S_n(x)}
+	< \epsilon
+\]对一切\(x\in[0,+\infty)\)成立，
+因此\(\{S_n\}\)在\([0,+\infty)\)上一致收敛于\(S(x)\equiv0\).
+\end{solution}
+\end{example}
+
 \begin{example}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P61 例10.1.6
 设\(S_n(x) = \frac{x}{1+n^2x^2}\)，
@@ -358,11 +382,12 @@ q \leq p\)，
 \]对一切\(x\in(-\infty,+\infty)\)成立.
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:函数项级数.不一致收敛的函数列}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P62 例10.1.7
 设\(S_n(x) = x^n\)，
 考察\(\{S_n\}\)在区间\([0,1)\)上的一致收敛性.
 \begin{solution}
+显然\(S(x) = \lim_{n\to\infty} S_n(x) = 0\).
 对任意给定\(\epsilon\in(0,1)\)，
 要使\[
 	\abs{S_n(x) - S(x)} = x^n < \epsilon,
@@ -376,3 +401,25 @@ q \leq p\)，
 换言之，\(\{S_n\}\)在\([0,1)\)上不是一致收敛的.
 \end{solution}
 \end{example}
+
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P62 定义10.1.3
+若对于任意给定闭区间\([a,b] \subseteq D\)，
+函数列\(\{S_n\}\)在\([a,b]\)上一致收敛于\(S\)，
+则称“\(\{S_n\}\)在\(D\)上\DefineConcept{内闭一致收敛}于\(S\)”.
+\end{definition}
+显然，在\(D\)上一致收敛的函数列必定在\(D\)上内闭一致收敛，
+但其逆命题不成立.
+例如，将\cref{example:函数项级数.不一致收敛的函数列} 中
+考察的区间\([0,1)\)缩小为\([0,\rho]\)，
+其中\(0<\rho<1\)是任意的，
+则由\[
+	\abs{S_n(x) - S(x)} = x^n < \rho^n,
+\]
+只要取\(N = N(\epsilon) = \floor*{\frac{\ln\epsilon}{\ln\rho}}\)，
+当\(n>N\)时，就有\[
+	\abs{S_n(x) - S(x)} < \rho^n < \epsilon
+\]对一切\(x\in[0,\rho]\)成立，
+即\(\{S_n\}\)在\([0,\rho]\ (\rho<1)\)上是一致收敛的.
+也就是说，尽管\(\{S_n\}\)在\([0,1)\)上不是一致收敛的，
+但是它是内闭一致收敛的.
