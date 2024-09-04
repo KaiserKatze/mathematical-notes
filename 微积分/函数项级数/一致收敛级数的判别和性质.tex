@@ -66,7 +66,7 @@
 	(\forall n\in\mathbb{N})
 	[\abs{u_n(x)} \leq M],
 \]
-则称“\(\{u_n\}\)在\(D\)上\DefineConcept{一致有界}”.
+则称“函数列\(\{u_n\}\)在\(D\)上\DefineConcept{一致有界}”.
 \end{definition}
 
 \begin{theorem}\label{theorem:函数项级数.函数项级数的阿贝尔--狄利克雷审敛法}
@@ -88,33 +88,44 @@
 %TODO proof
 \end{theorem}
 
-\subsection{一致收敛级数的基本性质}
-一致收敛级数有如下基本性质.
-\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质1}
-\def\su{\sum_{n=1}^\infty u_n(x)}
-如果级数\(\su\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，且\(\su\)在区间\([a,b]\)上一致收敛于\(s(x)\)，则\(s(x)\)在\([a,b]\)上也连续.
+\subsection{一致收敛级数的性质}
+\begin{theorem}\label{theorem:无穷级数.一致收敛级数的基本性质1}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P74 定理10.2.4（连续性定理）
+%@see: 《数学分析（第二版 下册）》（陈纪修） P75 定理10.2.4'
+如果函数列\(\{S_n\}\)的各项\(u_n\)在区间\([a,b]\)上都连续，
+且\(\{S_n\}\)在区间\([a,b]\)上一致收敛于\(S\)，
+则\(S\)在\([a,b]\)上也连续.
 \begin{proof}
-设\(x_0,x\)是\([a,b]\)上任意两点.由等式\[
-s(x) = s_n(x) + r_n(x),
-\qquad
-s(x_0) = s_n(x_0) + r_n(x_0)
-\]得\begin{align*}
-\abs{s(x) - s_(x_0)}
-&= \abs{s_n(x) - s_n(x_0) + r_n(x) - r_n(x_0)} \\
-&\leq \abs{s_n(x) - s_n(x_0)} + \abs{r_n(x)} + \abs{r_n(x_0)}.
-\tag1
-\end{align*}
-因为级数\(\su\)一致收敛于\(s(x)\)，所以\(\forall\epsilon>0\)，必有正整数\(N = N(\epsilon)\)，使得当\(n>N\)时，\(\forall x \in [a,b]\)，都有\[
-\abs{r_n(x)} < \frac{\epsilon}{3}.
-\eqno(2)
-\]当然，也有\(\abs{r_n(x_0)} < \frac{\epsilon}{3}\).选定满足大于\(N\)的\(n\)之后，\(s_n(x)\)是有限项连续函数之和，故\(s_n(x)\)在点\(x_0\)连续，从而必有一个\(\delta > 0\)存在，当\(\abs{x - x_0} < \delta\)时，总有\[
-\abs{s_n(x) - s_n(x_0)} < \frac{\epsilon}{3}.
-\eqno(3)
-\]由(1)、(2)、(3)式可见，对任给\(\epsilon>0\)，必有\(\delta > 0\)，当\(\abs{x - x_0} < \delta\)时，有\[
-\abs{s(x) - s(x_0)} < \epsilon.
-\]所以\(s(x)\)在点\(x_0\)连续，而\(x_0\)在\([a,b]\)上是任意的，因此\(s(x)\)在\([a,b]\)上连续.
+设\(x_0\)是\([a,b]\)上任意两点.
+
+因为\(\{S_n\}\)在区间\([a,b]\)上一致收敛于\(S\)，
+所以对任意给定\(\epsilon>0\)，
+存在正整数\(N = N(\epsilon)\)，
+使得当\(n>N\)时，
+有\[
+	\abs{S_n(x) - S(x)} < \frac\epsilon3
+\]对一切\(x\in[a,b]\)成立.
+特别地，有\[
+	\abs{S_n(x_0) - S(x_0)} < \frac\epsilon3.
+\]
+对于每一个固定的大于\(N\)的\(n\)，函数\(S_n\)是有限项连续函数之和，
+故\(S_n(x)\)在\([a,b]\)上连续，
+所以存在\(\delta>0\)，
+当\(\abs{x - x_0} < \delta\)时，
+有\[
+	\abs{S_n(x) - S_n(x_0)} < \frac\epsilon3.
+\]
+于是有\[
+	\abs{S(x) - S(x_0)}
+	\leq \abs{S_n(x) - S(x)}
+		+ \abs{S_n(x_0) - S(x_0)}
+		+ \abs{S_n(x) - S_n(x_0)}
+	< \epsilon,
+\]
+即\(S\)在点\(x_0\)连续.
+由\(x_0\)在\([a,b]\)中的任意性，就得到\(S\)在\([a,b]\)上连续.
 \end{proof}
-\end{property}
+\end{theorem}
 
 \begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质2}
 若函数项级数\(\sum_{n=1}^\infty u_n(x)\)在区间\(I\)上内闭一致收敛，且\[
