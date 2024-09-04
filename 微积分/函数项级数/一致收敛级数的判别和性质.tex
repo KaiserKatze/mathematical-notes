@@ -91,7 +91,7 @@
 \subsection{一致收敛级数的性质}
 \begin{theorem}\label{theorem:无穷级数.一致收敛级数的基本性质1}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P74 定理10.2.4（连续性定理）
-如果函数列\(\{S_n\}\)的各项\(u_n\)在区间\([a,b]\)上都连续，
+如果函数列\(\{S_n\}\)的各项\(S_n\)在区间\([a,b]\)上都连续，
 且\(\{S_n\}\)在区间\([a,b]\)上一致收敛于\(S\)，
 则\(S\)在\([a,b]\)上也连续.
 此时，两种极限运算可以交换次序，即\[
@@ -158,49 +158,52 @@
 % \]
 % \end{property}
 
-\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质3}
-如果级数\(\sum_{n=1}^\infty u_n(x)\)的各项\(u_n(x)\)在区间\([a,b]\)上都连续，
-且\(\sum_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上一致收敛于\(s(x)\)，
-则级数\(\sum_{n=1}^\infty u_n(x)\)在\([a,b]\)上可以逐项积分，
+\begin{theorem}\label{theorem:无穷级数.一致收敛级数的基本性质3}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P75 定理10.2.5
+如果函数列\(\{S_n\}\)的各项\(S_n\)在区间\([a,b]\)上连续，
+且函数列\(\{S_n\}\)在区间\([a,b]\)上一致收敛于\(S\)，
+则函数\(S\)在\([a,b]\)上可积，
+且\[
+	\int_a^b S(x) \dd{x}
+	= \lim_{n\to\infty} \int_a^b u_n(x) \dd{x}.
+\]
+此时，求积分运算与极限运算可以交换次序，
 即\[
-	\int_{x_0}^x s(x) \dd{x}
-	= \sum_{n=1}^\infty \int_{x_0}^x u_n(x) \dd{x},
+	\int_a^b \lim_{n\to\infty} S_n(x) \dd{x}
+	= \lim_{n\to\infty} \int_a^b S_n(x) \dd{x}.
 \]
-其中\(a \leq x_0 < x \leq b\)，并且上式右端的级数在\([a,b]\)上也一致收敛.
 \begin{proof}
-因为级数\(\sum_{n=1}^\infty u_n(x)\)在\([a,b]\)上一致收敛，
 由\cref{theorem:无穷级数.一致收敛级数的基本性质1}，
-\(s(x)\)和\(r_n(x)\)都在\([a,b]\)上连续，
-所以积分\(\int_{x_0}^x s(x) \dd{x}\)和\(\int_{x_0}^x r_n(x) \dd{x}\)存在，
-从而\[
-	\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
-	= \abs{\int_{x_0}^x r_n(x) \dd{x}}
-	\leq \int_{x_0}^x \abs{r_n(x)} \dd{x}.
+因为函数\(S\)在\([a,b]\)上连续，
+所以函数\(S\)在\([a,b]\)上可积.
+由于函数列\(\{S_n\}\)在\([a,b]\)上一致收敛于函数\(S\)，
+所以对任意给定\(\epsilon>0\)，
+存在正整数\(N\)，
+当\(n>N\)时，
+有\[
+	\abs{S_n(x) - S(x)} < \epsilon
+\]对一切\(x\in[a,b]\)成立，
+于是有\[
+	\abs{\int_a^b S(x) \dd{x} - \int_a^b S_n(x) \dd{x}}
+	\leq \int_a^b \abs{S(x) - S_n(x)} \dd{x}
+	< (b-a) \epsilon.
+	\qedhere
 \]
-又由级数的一致收敛性，
-\(\forall\epsilon>0\)，
-\(\exists N = N(\epsilon) \in \mathbb{N}^+\)，
-使得当\(n > N\)时，
-\(\forall x \in [a,b]\)，
-都有\[
-	\abs{r_n(x)} < \frac{\epsilon}{b-a}.
-\]
-于是，当\(n > N\)时，有\[
-	\abs{\int_{x_0}^x s(x) \dd{x} - \int_{x_0}^x s_n(x) \dd{x}}
-	\leq \int_{x_0}^x \abs{r_n(x)} \dd{x}
-	< \frac{\epsilon}{b-a} \cdot (x-x_0)
-	\leq \epsilon.
-\]
-根据极限的定义，有\[
-	\int_{x_0}^x s(x) \dd{x}
-	= \lim_{n\to\infty} \int_{x_0}^x s_n(x) \dd{x}
-	= \lim_{n\to\infty} \sum_{i=1}^n \int_{x_0}^x u_i(x) \dd{x}
-	= \sum_{n=1}^\infty \int_{x_0}^x u_n(x) \dd{x}.
-\]
-由于\(N\)只依赖于\(\epsilon\)而与\(x_0,x\)无关，
-所以级数\(\sum_{n=1}^\infty \int_{x_0}^x u_n(x) \dd{x}\)在\([a,b]\)上一致收敛.
 \end{proof}
-\end{property}
+\end{theorem}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P76 定理10.2.5'
+%@see: 《高等数学（第六版 上册）》 P298 定理2
+设函数项级数\(\sum_{n=1}^\infty u(x)\)在\([a,b]\)上一致收敛于函数\(S\)，
+且对于每个正整数\(n\)总有函数\(u_n\)在\([a,b]\)上连续，
+则函数\(S\)在\([a,b]\)上可积.
+此时，求积分运算与无限求和运算可以交换次序，
+即\[
+	\int_a^b S(x) \dd{x}
+	= \int_a^b \sum_{n=1}^\infty u_n(x) \dd{x}
+	= \sum_{n=1}^\infty \int_a^b u_n(x) \dd{x}.
+\]
+\end{theorem}
 
 \begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质4}
 如果级数\(\sum_{n=1}^\infty u_n(x)\)的各项\(u_n(x)\)都具有连续导数\(u'_n(x)\)，
