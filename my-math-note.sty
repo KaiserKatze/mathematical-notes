@@ -186,7 +186,12 @@ nosort%禁止压缩引用
 \def\lcm#1{\operatorname{l.c.m}(#1)}%最小公倍数
 \def\hessian{\vb{\operatorname{H}}}%黑森矩阵
 \def\increment{\Delta}%增量%U+2206
-\def\UniformlyConverge{\rightrightarrows}%一致收敛
+
+\NewDocumentCommand{\UniformlyConverge}{ o }{%一致收敛
+	%@param: #1 一致收敛区间【可选】
+	\IfNoValueTF{#1}{\rightrightarrows}{\overset{#1}{\rightrightarrows}}
+}
+
 \def\IntegerQuotient{(\omega\times\omega)/\kern-2pt\sim}%基于集合论定义的整数集（其中 \omega 是基于集合论定义的自然数集）
 \def\RationalQuotient{(\mathbb{Z}\times\mathbb{Z}^*)/\kern-2pt\sim}%基于集合论定义的有理数集
 

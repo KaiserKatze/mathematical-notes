@@ -8,80 +8,12 @@
 无穷多个函数的导数及积分的和是否仍然分别等于它们的和函数的导数及积分呢？
 我们曾经指出，对于幂级数来说，答案是肯定的.
 但是对于一般的函数项级数是否都是如此呢？下面来看一个例子.
-\begin{example}
-函数项级数\[
-x + (x^2-x) + (x^3-x^2) + \dotsb + (x^n-x^{n-1}) + \dotsb
-\]的每一项都在\([0,1]\)上连续，其前\(n\)项之和为\[
-s_n(x) = x^n,
-\]因此和函数为\[
-s(x) = \lim_{n\to\infty} s_n(x)
-= \left\{ \begin{array}{ll}
-0, & 0 \leq x < 1, \\
-1, & x = 1.
-\end{array} \right.
-\]
-这个和函数\(s(x)\)在\(x=1\)处间断.
-\end{example}
-
-由此可见，即便函数项级数的每一项在\([a,b]\)上连续，
-并且级数在\([a,b]\)上收敛，
-其和函数也不一定在\([a,b]\)上连续.
-
-也可以举出这样的例子，
-函数项级数的每一项的导数及积分所成的级数的和并不等于它们的和函数的导数或积分.
 
 这就提出了这样一个问题：
 对什么级数，能够从级数的每一项的连续性得出它的和函数的连续性，
 从级数的每一项的导数及积分所成的级数之和得出原来级数的和函数的导数及积分呢？
 要回答这个问题，就需要引入下面的函数项级数的“一致收敛性（uniform convergence）”概念.
 
-\begin{definition}\label{definition:无穷级数.函数项级数的一致收敛性}
-设函数\(s(x)\)是函数项级数\(\sum_{n=1}^\infty u_n(x)\)的和函数.
-如果对于任意给定的正数\(\epsilon\)，
-都存在着一个只依赖于\(\epsilon\)（即不依赖于\(x\)）的正整数\(N\)，
-使得当\(n>N\)时，
-对区间\(I\)上的一切\(x\)，
-都有关于余项\(r_n(x)\)或部分和\(s_n(x)\)的不等式\[
-\abs{r_n(x)} = \abs{s(x) - s_n(x)} < \epsilon
-\]成立，
-则称
-函数项级数\(\sum_{n=1}^\infty u_n(x)\)
-或函数列\(\{s_n(x)\}\)
-“在区间\(I\)上\DefineConcept{一致收敛}于\(s(x)\)%
-（is \emph{uniformly convergent} to \(s\) for the interval \(I\)）”，
-记为\(u_i(x) \UniformlyConverge s(x)\).
-\end{definition}
-以上函数项级数一致收敛的定义在几何上可解释为：
-只要\(n\)充分大，
-在区间\(I\)上所有曲线\(y = s_n(x)\)将位于%
-\(y = s(x) \pm \epsilon\)这两条曲线之间%
-（如\cref{figure:无穷级数.函数项级数一致收敛的几何解释}）.
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\draw[->](0,0)node[below left]{\(O\)} -- (7,0)node[below]{\(x\)};
-\draw[->](0,0) -- (0,4)node[left]{\(y\)};
-\draw[dashed](1,0) -- (1,3) (6,0) -- (6,3);
-\draw(1,1)--+(-.4,0);
-\draw(1,2)--+(-.4,0);
-\draw(1,3)--+(-.4,0);
-\begin{scope}[<->,xshift=-.2cm]
-\draw(1,1) -- (1,2)node[midway,left]{\(\epsilon\)};
-\draw(1,2) -- (1,3)node[midway,left]{\(\epsilon\)};
-\end{scope}
-\begin{scope}[blue]
-\draw[dashed] (1,1) .. controls (2,2) and (3,0) .. (4,1) .. controls (5,2) and (6,1) .. (6,1);
-\draw[yshift=1cm] (1,1) .. controls (2,2) and (3,0) .. (4,1) .. controls (5,2) and (6,1) .. (6,1)node[right]{\(y = s(x)\)};
-\draw[yshift=2cm,dashed] (1,1) .. controls (2,2) and (3,0) .. (4,1) .. controls (5,2) and (6,1) .. (6,1);
-\draw(3.3,3.5)node{\(y = s(x) + \epsilon\)};
-\draw(3.3,0.4)node{\(y = s(x) - \epsilon\)};
-\end{scope}
-\draw(1,1.5) .. controls (1.7,5) and (2.5,0) .. (3,2) .. controls (3.3,3.5) and (4.2,1) .. (6,2.6)node[right]{\(y = s_n(x)\)};
-\end{tikzpicture}
-\caption{函数项级数一致收敛的几何解释}
-\label{figure:无穷级数.函数项级数一致收敛的几何解释}
-\end{figure}
 
 \begin{example}
 研究级数\[
