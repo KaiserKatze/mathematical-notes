@@ -173,22 +173,6 @@
 则函数\(S\)在区间\((a,b)\)上连续.
 \end{proposition}
 
-% \begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质2}
-% 若函数项级数\(\sum_{n=1}^\infty u_n(x)\)在区间\(I\)上内闭一致收敛，且\[
-% 	\lim_{x \to a} u_n(x) = A_n
-% 	\quad(n=1,2,\dotsc),
-% \]
-% 则级数\(\sum_{n=1}^\infty A_n\)收敛，且\[
-% 	\lim_{x \to a} \left\{
-% 		\sum_{n=1}^\infty u_n(x)
-% 	\right\}
-% 	= \sum_{n=1}^\infty \left\{
-% 		\vphantom{\sum_{n=1}^\infty }
-% 		\lim_{x \to a} u_n(x)
-% 	\right\}.
-% \]
-% \end{property}
-
 \begin{theorem}\label{theorem:函数项级数.连续函数列的一致收敛性保证极限函数的可积性}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P75 定理10.2.5
 设函数列\(\{S_n\}\)满足\begin{itemize}
@@ -372,3 +356,73 @@
 \]
 \end{proof}
 \end{example}
+
+需要指出的是，
+\cref{theorem:函数项级数.连续函数列的一致收敛性保证极限函数的连续性,%
+theorem:函数项级数.连续函数列的一致收敛性保证极限函数的可积性,%
+theorem:函数项级数.连续可导函数列的点态收敛性及其导函数列的一致收敛性保证极限函数的可微性}
+中的条件都是充分而不必要的.
+对于\cref{theorem:函数项级数.连续函数列的一致收敛性保证极限函数的连续性,%
+theorem:函数项级数.连续函数列的一致收敛性保证极限函数的可积性}，
+我们可以考虑\cref{example:函数项级数.不一致收敛的函数列2} 中的
+函数\[
+	S_n(x) = \frac{nx}{1+n^2x^2},
+\]
+函数列\(\{S_n\}\)在\([0,1]\)上收敛于\(S(x)=0\)，
+但是它不是一致收敛的，
+然而\(S\)在\([0,1]\)上连续且可积，
+并且\begin{align*}
+	\int_0^1 S_n(x) \dd{x}
+	&= \frac1{2n} \int_0^1 \frac{\dd(1+n^2x^2)}{1+n^2x^2} \\
+	&= \frac1{2n} \eval{\ln(1+n^2x^2)}_0^1
+	= \frac1{2n} \ln(1+n^2) \\
+	&\to 0 = \int_0^1 S(x) \dd{x}
+	\quad(n\to\infty).
+\end{align*}
+对于\cref{theorem:函数项级数.连续可导函数列的点态收敛性及其导函数列的一致收敛性保证极限函数的可微性}，
+可以考虑函数\[
+	\sigma_n(x) = \frac1{2n} \ln(1+n^2x^2),
+\]
+函数列\(\{\sigma_n\}\)在\([0,1]\)上收敛于\(\sigma(x)=0\).
+由于\[
+	\sigma_n'(x)
+	= S_n(x)
+	= \frac{nx}{1+n^2x^2},
+\]
+导函数列\(\{\sigma_n'\}\)在\([0,1]\)上收敛于\(S(x)=0\)，
+但并非一致收敛.
+虽然\(\{\sigma_n\}\)不满足\cref{theorem:函数项级数.连续可导函数列的点态收敛性及其导函数列的一致收敛性保证极限函数的可微性} 的条件，
+但仍然有\(\sigma'(x) = S(x)\)的结论.
+
+经过上面的讨论，我们知道\cref{theorem:函数项级数.连续函数列的一致收敛性保证极限函数的连续性}
+的逆命题一般来说不成立，
+即区间\([a,b]\)上连续的函数序列\(\{S_n\}\)收敛于连续函数\(S\)
+并不意味着收敛在\([a,b]\)具有一致性.
+但是在一定的条件下，我们还是可以得到这个结论，这就是下面的定理.
+\begin{theorem}[狄尼定理]\label{theorem:函数项级数.狄尼定理}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P79 定理10.2.7（Dini定理）
+设函数列\(\{S_n\}\)在闭区间\([a,b]\)上点态收敛于函数\(S\).
+如果\begin{itemize}
+	\item 各项\(S_n\)在\([a,b]\)上连续，
+	\item 函数\(S\)在\([a,b]\)上连续，
+	\item 对任意固定的\(x\in[a,b]\)，数列\(\{S_n(x)\}\)是单调的，
+\end{itemize}
+则函数列\(\{S_n\}\)在\([a,b]\)上一致收敛于\(S\).
+%TODO proof
+\end{theorem}
+\begin{remark}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P80
+\hyperref[theorem:函数项级数.狄尼定理]{狄尼定理}中
+\(x\)的取值范围 --- 闭区间\([a,b]\) --- 不能换成开区间\((a,b)\).
+\end{remark}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P80 定理10.2.7'
+设函数项级数\(\sum_{n=1}^\infty u_n(x)\)在闭区间\([a,b]\)上点态收敛于函数\(S\).
+如果\begin{itemize}
+	\item 各项\(u_n\)在\([a,b]\)上连续，
+	\item 函数\(S\)在\([a,b]\)上连续，
+	\item 对任意固定的\(x\in[a,b]\)，级数\(\sum_{n=1}^\infty u_n(x)\)是正项级数或负项级数，
+\end{itemize}
+则函数项级数\(\sum_{n=1}^\infty u_n(x)\)在\([a,b]\)上一致收敛于\(S\).
+%TODO proof
+\end{theorem}
