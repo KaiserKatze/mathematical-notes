@@ -225,49 +225,48 @@
 %TODO proof
 \end{proposition}
 
-\begin{property}\label{theorem:无穷级数.一致收敛级数的基本性质4}
-如果级数\(\sum_{n=1}^\infty u_n(x)\)的各项\(u_n(x)\)都具有连续导数\(u'_n(x)\)，
-且\(\sum_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上收敛于和\(s(x)\)，
-它并且级数\(\sum_{n=1}^\infty u'_n(x)\)在\([a,b]\)上一致收敛，
-则级数\(\sum_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上也一致收敛，且可逐项求导，
+\begin{theorem}\label{theorem:无穷级数.一致收敛级数的基本性质4}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P77 定理10.2.6
+设函数列\(\{S_n\}\)满足\begin{itemize}
+	\item 各项\(S_n\)在区间\([a,b]\)上连续可导，
+	\item 函数列\(\{S_n\}\)在\([a,b]\)上点态收敛于函数\(S\)，
+	\item 导函数列\(\{S_n'\}\)在\([a,b]\)上一致收敛于函数\(\sigma\)，
+\end{itemize}
+则函数\(S\)在区间\([a,b]\)上可导，
+且\[
+	\dv{x} S(x) = \sigma(x).
+\]
+此时，求导运算与极限运算可以交换次序，
 即\[
-	s'(x) = \sum_{n=1}^\infty u'_n(x).
+	\dv{x} \lim_{n\to\infty} S_n(x)
+	= \lim_{n\to\infty} \dv{x} S_n(x).
 \]
 \begin{proof}
-由于\(\sum_{n=1}^\infty u'_n(x)\)在\([a,b]\)上一致收敛，设其和为\(v(x)\)，即\[
-	\sum_{n=1}^\infty u'_n(x) = v(x).
+由\cref{theorem:无穷级数.一致收敛级数的基本性质1,theorem:无穷级数.一致收敛级数的基本性质3} 可知
+函数\(\sigma\)在\([a,b]\)上连续，
+且\[
+	\int_a^x \sigma(t) \dd{t}
+	= \lim_{n\to\infty} \int_a^x S_n'(t) \dd{t}
+	= \lim_{n\to\infty} [S_n(x) - S_n(a)]
+	= S(x) - S(a).
 \]
-根据\cref{theorem:无穷级数.一致收敛级数的基本性质1} 知，
-\(v(x)\)在\([a,b]\)上连续.
-再根据\cref{theorem:无穷级数.一致收敛级数的基本性质3}，
-级数\(\sum_{n=1}^\infty u'_n(x)\)可逐项积分，故\[
-	\int_{x_0}^x v(x) \dd{x}
-	= \sum_{n=1}^\infty \int_{x_0}^x u'_n(x) \dd{x}
-	= \sum_{n=1}^\infty [u_n(x) - u_n(x_0)],
-\]
-而\(\sum_{n=1}^\infty u_n(x) = s(x)\)，
-\(\sum_{n=1}^\infty u_n(x_0) = s(x_0)\)，
-故\[
-	\sum_{n=1}^\infty [u_n(x) - u_n(x_0)]
-	= s(x) - s(x_0),
-\]
-从而有\[
-	\int_{x_0}^x v(x) \dd{x} = s(x) - s(x_0),
-\]
-其中\(a \leq x_0 < x \leq b\).
-上式两端求导，即得关系式\[
-	v(x) = s'(x).
-\]
-
-根据\cref{theorem:无穷级数.一致收敛级数的基本性质3}，
-级数\(\sum_{n=1}^\infty \int_{x_0}^x u'_n(x) \dd{x}\)在\([a,b]\)上一致收敛，而\[
-	\sum_{n=1}^\infty \int_{x_0}^x u'_n(x) \dd{x}
-	= \sum_{n=1}^\infty u_n(x)
-		- \sum_{n=1}^\infty u_n(x_0),
-\]所以\[
-	\sum_{n=1}^\infty u_n(x)
-	= \sum_{n=1}^\infty \int_{x_0}^x u'_n(x) \dd{x}
-	+ \sum_{n=1}^\infty u_n(x_0).
-\]也就是说，级数\(\sum_{n=1}^\infty u_n(x)\)在\([a,b]\)上一致收敛.
+根据\cref{theorem:定积分.变限积分定理}，
+函数\(x \mapsto \int_a^x \sigma(t) \dd{t}\)可导，
+所以函数\(S\)也可导，
+且\(S'(x) = \sigma(x)\).
 \end{proof}
-\end{property}
+\end{theorem}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P77 定理10.2.6'（逐项求导定理）
+设函数项级数\(\sum_{n=1}^\infty u_n(x)\)满足\begin{itemize}
+	\item 各项\(u_n\)在区间\([a,b]\)上具有连续导函数\(u_n'\)，
+	\item 函数项级数\(\sum_{n=1}^\infty u_n(x)\)在区间\([a,b]\)上点态收敛于\(S\)，
+	\item 函数项级数\(\sum_{n=1}^\infty u'_n(x)\)在区间\([a,b]\)上一致收敛于\(\sigma\)，
+\end{itemize}
+则函数\(S\)在区间\([a,b]\)上可导，
+且求导运算与无限求和运算可以交换次序，
+即\[
+	\dv{x} \sum_{n=1}^\infty u_n(x)
+	= \sum_{n=1}^\infty \dv{x} u_n(x).
+\]
+\end{theorem}
