@@ -1,0 +1,77 @@
+\section{无穷乘积}
+\subsection{无穷乘积的概念}
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P45 定义9.5.1
+设\(\{p_n\}\)是数列.
+定义：\[
+	\prod_{n=1}^\infty p_n
+	\defeq
+	\lim_{n\to\infty} \prod_{k=1}^n p_k,
+\]
+称之为\DefineConcept{无穷乘积}.
+把\(\prod_{k=1}^n p_k\)称为“无穷乘积\(\prod_{n=1}^\infty p_n\)的\DefineConcept{部分积}”.
+把\(p_n\)称为“无穷乘积\(\prod_{n=1}^\infty p_n\)的\DefineConcept{一般项}”.
+
+设\(\{P_n\}\)是无穷乘积\(\prod_{n=1}^\infty p_n\)的部分积数列，
+这里\[
+	P_n = \prod_{k=1}^n p_k
+	\quad(n=1,2,\dotsc).
+\]
+如果\(\{P_n\}\)收敛于一个非零有限数\(P\)，
+则称“无穷乘积\(\prod_{n=1}^\infty p_n\)~\DefineConcept{收敛}”，
+并且称“\(P\)是无穷乘积\(\prod_{n=1}^\infty p_n\)的\DefineConcept{积}”，
+“无穷乘积\(\prod_{n=1}^\infty p_n\)收敛于\(P\)”.
+如果\(\{P_n\}\)发散，或者\(\{P_n\}\)收敛于\(0\)，
+则称“无穷乘积\(\prod_{n=1}^\infty p_n\)~\DefineConcept{发散}”.
+\end{definition}
+
+\begin{theorem}\label{theorem:无穷乘积.无穷乘积收敛的必要条件}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P46 定理9.5.1
+如果无穷乘积\(\prod_{n=1}^\infty p_n\)收敛，则\begin{itemize}
+	\item \(\lim_{n\to\infty} p_n = 1\)；
+	\item \(\lim_{m\to\infty} \prod_{n=m+1}^\infty p_n = 1\).
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+\subsection{无穷乘积与无穷级数的联系}
+\cref{theorem:无穷乘积.无穷乘积收敛的必要条件} 告诉我们，
+无穷乘积\(\prod_{n=1}^\infty p_n\)收敛的必要条件是\(\lim_{n\to\infty} p_n = 1\)，
+因此必定存在正整数\(N\)，当\(n>N\)时，成立\(p_n>0\).
+由于无穷乘积的敛散性与它的前\(N\)项非零因子无关，
+所以在讨论无穷乘积\(\prod_{n=1}^\infty p_n\)的敛散性问题时，我们都假定\(p_n>0\)，
+如此，我们便可以对\(p_n\)取对数.
+\begin{theorem}\label{theorem:无穷乘积.无穷乘积收敛性与无穷级数收敛性的联系}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P48 定理9.5.2
+无穷乘积\(\prod_{n=1}^\infty p_n\)收敛的充分必要条件是
+常数项无穷级数\(\sum_{n=1}^\infty \ln p_n\)收敛.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}\label{theorem:无穷乘积.无穷乘积收敛性与无穷级数收敛性的联系.推论1}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P49 推论1
+设\(a_n>0\)（或\(a_n<0\)），
+则无穷乘积\(\prod_{n=1}^\infty (1+a_n)\)收敛的充分必要条件是
+常数项无穷级数\(\sum_{n=1}^\infty a_n\)收敛.
+%TODO proof
+\end{corollary}
+\begin{remark}
+如果\(\{a_n\}\)不保持定号，
+则常数项无穷级数\(\sum_{n=1}^\infty a_n\)的收敛性
+并不能保证无穷乘积\(\prod_{n=1}^\infty (1+a_n)\)的收敛性.
+\end{remark}
+
+\begin{corollary}\label{theorem:无穷乘积.无穷乘积收敛性与无穷级数收敛性的联系.推论2}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P49 推论2
+设常数项无穷级数\(\sum_{n=1}^\infty a_n\)收敛，
+则无穷乘积\(\prod_{n=1}^\infty (1+a_n)\)收敛的充分必要条件是
+常数项无穷级数\(\sum_{n=1}^\infty a_n^2\)收敛.
+%TODO proof
+\end{corollary}
+\begin{proposition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P50
+设常数项无穷级数\(\sum_{n=1}^\infty a_n\)收敛，
+而\(\sum_{n=1}^\infty a_n^2 = +\infty\)，
+则无穷乘积\(\prod_{n=1}^\infty (1+a_n)\)发散于\(0\).
+%TODO proof 证明需利用\cref{theorem:无穷乘积.无穷乘积收敛性与无穷级数收敛性的联系.推论2}
+\end{proposition}
