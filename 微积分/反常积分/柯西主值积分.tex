@@ -1,4 +1,5 @@
 \section{柯西主值积分}
+\subsection{第一类柯西主值积分}
 %@see: https://mathworld.wolfram.com/CauchyPrincipalValue.html
 \begin{definition}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P366 定义8.1.3
@@ -9,33 +10,15 @@
 则称“反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)~\DefineConcept{在柯西主值意义下收敛}”，
 并把这个极限称为
 “反常积分\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)
-的\DefineConcept{柯西主值}（Cauchy principal value）”，
-记为\(\pvint_{-\infty}^{+\infty} f(x) \dd{x}\)，
+的\DefineConcept{柯西主值}（Cauchy principal value）”
+或“函数\(f\)在区间\((-\infty,+\infty)\)上的积分的柯西主值
+（the Cauchy principal value of the integral of \(f\) over \((-\infty,+\infty)\)）”，
+记为\[
+	\pvint_{-\infty}^{+\infty} f(x) \dd{x},
+\]
 即\[
 	\pvint_{-\infty}^{+\infty} f(x) \dd{x}
 	\defeq \lim_{R\to+\infty} \int_{-R}^R f(x) \dd{x}.
-\]
-\end{definition}
-
-\begin{definition}
-设函数\(f\colon[a,b]\to\mathbb{R}\)，点\(c\in(a,b)\)是一个瑕点.
-如果极限\[
-	\lim_{\epsilon\to0^+} \left[
-		\int_a^{c-\epsilon} f(x) \dd{x}
-		+ \int_{c+\epsilon}^b f(x) \dd{x}
-	\right]
-\]存在且有限，
-则称“反常积分\(\int_a^b f(x) \dd{x}\)~\DefineConcept{在柯西主值意义下收敛}”，
-并把这个极限称为
-“反常积分\(\int_a^b f(x) \dd{x}\)
-的\DefineConcept{柯西主值}（Cauchy principal value）”，
-记为\(\pvint_a^b f(x) \dd{x}\)，
-即\[
-	\pvint_a^b f(x) \dd{x}
-	\defeq \lim_{\epsilon\to0^+} \left[
-		\int_a^{c-\epsilon} f(x) \dd{x}
-		+ \int_{c+\epsilon}^b f(x) \dd{x}
-	\right].
 \]
 \end{definition}
 
@@ -51,5 +34,30 @@
 要么不难预先看出\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)收敛，
 因此，只要求出柯西主值\(\pvint_{-\infty}^{+\infty} f(x) \dd{x}\)的值，
 也就求出了\(\int_{-\infty}^{+\infty} f(x) \dd{x}\)的值.
+
+\subsection{第二类柯西主值积分}
+\begin{definition}
+设函数\(f\colon[a,b]\to\mathbb{R}\)，点\(c\in(a,b)\)是一个瑕点.
+如果极限\[
+	\lim_{\epsilon\to0^+} \left[
+		\int_a^{c-\epsilon} f(x) \dd{x}
+		+ \int_{c+\epsilon}^b f(x) \dd{x}
+	\right]
+\]存在且有限，
+则称“反常积分\(\int_a^b f(x) \dd{x}\)~\DefineConcept{在柯西主值意义下收敛}”，
+并把这个极限称为
+“反常积分\(\int_a^b f(x) \dd{x}\)
+的\DefineConcept{柯西主值}（Cauchy principal value）”，
+记为\[
+	\pvint_a^b f(x) \dd{x},
+\]
+即\[
+	\pvint_a^b f(x) \dd{x}
+	\defeq \lim_{\epsilon\to0^+} \left[
+		\int_a^{c-\epsilon} f(x) \dd{x}
+		+ \int_{c+\epsilon}^b f(x) \dd{x}
+	\right].
+\]
+\end{definition}
 
 %@Mathematica: Integrate[1/x, {x, -1, 2}, PrincipalValue -> True]
