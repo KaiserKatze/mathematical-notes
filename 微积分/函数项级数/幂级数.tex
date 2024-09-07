@@ -203,49 +203,53 @@
 
 \begin{example}
 求幂级数\[
-x-\frac{x^2}{2}+\frac{x^3}{3}-\dotsb+(-1)^{n-1}\frac{x^n}{n}+\dotsb
+	x-\frac{x^2}{2}+\frac{x^3}{3}-\dotsb+(-1)^{n-1}\frac{x^n}{n}+\dotsb
 \]的收敛半径与收敛域.
 \begin{solution}
 因为\[
-\rho = \lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
-= \lim_{n\to\infty} \frac{n}{n+1} = 1,
-\]所以收敛半径\[
-R = \frac1\rho = 1.
+	\rho = \lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+	= \lim_{n\to\infty} \frac{n}{n+1} = 1,
+\]
+所以收敛半径\[
+	R = \frac1\rho = 1.
 \]
 
 对于端点\(x=1\)，级数成为交错级数\[
-1-\frac{1}{2}+\frac{1}{3}-\dotsb+(-1)^{n-1}\frac{1}{n}+\dotsb,
-\]由\cref{example:无穷级数.交错级数1} 可知，此级数收敛；
+	1-\frac{1}{2}+\frac{1}{3}-\dotsb+(-1)^{n-1}\frac{1}{n}+\dotsb,
+\]
+由\cref{example:无穷级数.交错级数1} 可知，此级数收敛；
 对于端点\(x=-1\)，级数成为\[
--1-\frac{1}{2}-\frac{1}{3}-\dotsb-\frac{1}{n}-\dotsb,
-\]此级数发散.
+	-1-\frac{1}{2}-\frac{1}{3}-\dotsb-\frac{1}{n}-\dotsb,
+\]
+此级数发散.
 综上所述，收敛域是\((-1,1]\).
 \end{solution}
 \end{example}
 利用上例的结果可以计算出交错级数\[
-1-\frac{1}{2}+\frac{1}{3}-\dotsb+(-1)^{n-1}\frac{1}{n}+\dotsb.
-\]显然有
-\begin{align*}
-\sum_{n=1}^\infty (-1)^{n-1} \frac{1}{n}
-&= \eval{\sum_{n=1}^\infty (-1)^{n-1} \frac{x^n}{n}}_{x=1} \\
-&= \eval{\sum_{n=1}^\infty (-1)^{n-1} \int_0^x \left(\frac{x^n}{n}\right)' \dd{x}}_{x=1} \\
-&= \eval{\sum_{n=1}^\infty (-1)^{n-1} \int_0^x x^{n-1} \dd{x}}_{x=1} \\
-&= \eval{\int_0^x \sum_{n=1}^\infty (-1)^{n-1} x^{n-1} \dd{x}}_{x=1} \\
-&= \eval{\int_0^x \frac{1}{1+x} \dd{x}}_{x=1} \\
-&= \eval{\ln(1+x)}_{x=1} = \ln2.
+	1-\frac{1}{2}+\frac{1}{3}-\dotsb+(-1)^{n-1}\frac{1}{n}+\dotsb.
+\]
+显然有\begin{align*}
+	\sum_{n=1}^\infty (-1)^{n-1} \frac{1}{n}
+	&= \eval{\sum_{n=1}^\infty (-1)^{n-1} \frac{x^n}{n}}_{x=1} \\
+	&= \eval{\sum_{n=1}^\infty (-1)^{n-1} \int_0^x \left(\frac{x^n}{n}\right)' \dd{x}}_{x=1} \\
+	&= \eval{\sum_{n=1}^\infty (-1)^{n-1} \int_0^x x^{n-1} \dd{x}}_{x=1} \\
+	&= \eval{\int_0^x \sum_{n=1}^\infty (-1)^{n-1} x^{n-1} \dd{x}}_{x=1} \\
+	&= \eval{\int_0^x \frac{1}{1+x} \dd{x}}_{x=1} \\
+	&= \eval{\ln(1+x)}_{x=1} = \ln2.
 \end{align*}
 
 \begin{example}
 求幂级数\[
-1+x+\frac{1}{2!}x^2+\dotsb+\frac{1}{n!}x^n+\dotsb
+	1+x+\frac{1}{2!}x^2+\dotsb+\frac{1}{n!}x^n+\dotsb
 \]的收敛域.
 \begin{solution}
 因为\[
-\rho = \lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
-= \lim_{n\to\infty} \frac{n!}{(n+1)!}
-= \lim_{n\to\infty} \frac{1}{n+1}
-= 0,
-\]所以收敛半径\(R = +\infty\)，从而收敛域是\((-\infty,+\infty)\).
+	\rho = \lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+	= \lim_{n\to\infty} \frac{n!}{(n+1)!}
+	= \lim_{n\to\infty} \frac{1}{n+1}
+	= 0,
+\]
+所以收敛半径\(R = +\infty\)，从而收敛域是\((-\infty,+\infty)\).
 \end{solution}
 \end{example}
 
@@ -270,9 +274,13 @@ R = \frac1\rho = 1.
 级数缺少奇次幂的项，\cref{theorem:无穷级数.幂级数的收敛半径的求法2} 不能直接应用，
 我们根据\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式} 来求收敛半径：
 \[
-\lim_{n\to\infty} \abs{{\frac{[2(n+1)]!}{[(n+1)!]^2} x^{2(n+1)}}\Bigg/{\frac{(2n)!}{(n!)^2} x^{2n}}}
-= \lim_{n\to\infty} \abs{\frac{(2n+2)(2n+1)}{(n+1)^2} x^2}
-= 4 x^2.
+	\lim_{n\to\infty} \abs{
+		{\frac{[2(n+1)]!}{[(n+1)!]^2} x^{2(n+1)}}
+		\Bigg/
+		{\frac{(2n)!}{(n!)^2} x^{2n}}
+	}
+	= \lim_{n\to\infty} \abs{\frac{(2n+2)(2n+1)}{(n+1)^2} x^2}
+	= 4 x^2.
 \]
 
 当\(4 x^2 < 1\)即\(\abs{x} < 1/2\)时级数收敛；
@@ -285,10 +293,15 @@ R = \frac1\rho = 1.
 求幂级数\(\sum_{n=1}^\infty \frac{(x-1)^n}{2^n \cdot n}\)的收敛域.
 \begin{solution}
 令\(t = x-1\)，上述级数变为\[
-\sum_{n=1}^\infty \frac{t^n}{2^n \cdot n}.
-\]因为\[
-\rho = \lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \lim_{n\to\infty} \frac{2^n \cdot n}{2^{n+1} \cdot (n+1)} = \frac{1}{2},
-\]所以收敛半径\(R_t = 2\)，而原级数的收敛区间为\(-1<x<3\).
+	\sum_{n=1}^\infty \frac{t^n}{2^n \cdot n}.
+\]
+因为\[
+	\rho
+	= \lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+	= \lim_{n\to\infty} \frac{2^n \cdot n}{2^{n+1} \cdot (n+1)}
+	= \frac{1}{2},
+\]
+所以收敛半径\(R_t = 2\)，而原级数的收敛区间为\(-1<x<3\).
 
 当\(x=3\)时，级数成为\(\sum_{n=1}^\infty \frac{1}{n}\)，这级数发散；
 当\(x=-1\)时，级数成为\(\sum_{n=1}^\infty \frac{(-1)^n}{n}\)，这级数收敛.
