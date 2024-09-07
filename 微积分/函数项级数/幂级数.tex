@@ -344,6 +344,7 @@
 \subsection{幂级数的性质}
 \begin{theorem}[阿贝尔第二定理]\label{theorem:无穷级数.阿贝尔定理2}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P87 定理10.3.3（Abel第二定理）
+\def\labelitemii{$\triangleright$}% 设置二级无序列表的标签样式
 设幂级数\(\sum_{n=0}^\infty a_n x^n\)的收敛半径为\(R\)，
 则\begin{itemize}
 	\item \(\sum_{n=0}^\infty a_n x^n\)在\((-R,R)\)上内闭一致收敛；
@@ -360,103 +361,76 @@
 %TODO proof
 \end{theorem}
 
-\subsection{幂级数的运算}
-\begin{definition}
-设幂级数\(\sum_{n=0}^\infty a_n x^n\)
-和\(\sum_{n=0}^\infty b_n x^n\)
-分别在区间\((-R,R)\)和\((-R',R')\)内收敛.
-定义：
-\begin{gather}
-	\left(\sum_{n=0}^\infty a_n x^n\right)
-	+ \left(\sum_{n=0}^\infty b_n x^n\right)
-	\defeq
-	\sum_{n=0}^\infty (a_n+b_n) x^n, \\
-	\left(\sum_{n=0}^\infty a_n x^n\right)
-	- \left(\sum_{n=0}^\infty b_n x^n\right)
-	\defeq
-	\sum_{n=0}^\infty (a_n-b_n) x^n, \\
-	\left(\sum_{n=0}^\infty a_n x^n\right)
-	\cdot \left(\sum_{n=0}^\infty b_n x^n\right)
-	\defeq
-	\sum_{n=0}^\infty \left(
-		\sum_{i=0}^n a_i b_{n-i}
-	\right) x^n.
-\end{gather}
-\end{definition}
-
-\begin{definition}
-设幂级数\(\sum_{n=0}^\infty a_n x^n\)
-和\(\sum_{n=0}^\infty b_n x^n\)
-分别在区间\((-R,R)\)和\((-R',R')\)内收敛.
-
-记\[
-	\frac{
-		\sum_{n=0}^\infty a_n x^n
-	}{
-		\sum_{n=0}^\infty b_n x^n
-	}
-	= \sum_{n=0}^\infty c_n x^n,
-\]
-假设\(b_0 \neq 0\).
-为了决定系数\(c_0,c_1,\dotsc,c_n,\dotsc\)，
-可以将级数\(\sum_{n=0}^\infty b_n x^n\)
-与\(\sum_{n=0}^\infty c_n x^n\)相乘，
-并令乘积中各项的系数分别等于级数\(\sum_{n=0}^\infty a_n x^n\)中同次幂的系数，
-即得\[
-	\begin{cases}
-		a_0 = b_0 c_0, \\
-		a_1 = b_1 c_0 + b_0 c_1, \\
-		a_2 = b_2 c_0 + b_1 c_1 + b_0 c_2, \\
-		\hdotsfor{1} \\
-	\end{cases}
-\]
-由这些方程就可以顺序地求出\(c_0,c_1,\dotsc,c_n,\dotsc\).
-
-相除后所得的幂级数\(\sum_{n=0}^\infty c_n x^n\)的收敛区间可能比原来的两级数的收敛区间小得多.
-\end{definition}
-
-例如，级数\[
-	\sum_{n=0}^\infty a_n x^n
-	= 1 + 0x + \dotsb + 0x^n + \dotsb
-\]与\[
-	\sum_{n=0}^\infty b_n x^n
-	= 1 - x + 0x^2 + \dotsb + 0x^n + \dotsb
-\]在整个数轴上收敛，
-但是这两个级数的商\(\sum_{n=0}^\infty c_n x^n
-= \sum_{n=0}^\infty x^n\)仅在区间\((-1,1)\)内收敛.
-
-\subsection{幂级数的和函数的性质}
-\begin{property}\label{theorem:无穷级数.一致收敛的幂级数的性质}
-如果幂级数\(\sum_{n=0}^\infty a_n x^n\)的收敛半径为\(R>0\)，
-则此级数在\((-R,R)\)内闭一致收敛.
-\end{property}
-进一步还可证明，
-如果幂级数\(\sum_{n=0}^\infty a_n x^n\)在收敛区间的端点收敛，
-则一致收敛的区间可扩大到包含端点.
+根据\hyperref[theorem:无穷级数.阿贝尔定理2]{阿贝尔第二定理}，
+我们可以得到幂级数的如下几个性质.
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质1}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P87 定理10.3.4
 %@see: 《高等数学（第六版 下册）》 P276 性质1
-幂级数\(\sum_{n=0}^\infty a_n x^n\)的和函数\(s(x)\)在其收敛域\(I\)上连续.
+幂级数\(\sum_{n=0}^\infty a_n x^n\)的和函数在其收敛域上连续.
+\begin{proof}
+幂级数的一般项是幂函数，显然是连续函数.
+由\hyperref[theorem:无穷级数.阿贝尔定理2]{阿贝尔第二定理}，
+\(\sum_{n=0}^\infty a_n x^n\)在其收敛域上内闭一致收敛.
+根据\hyperref[theorem:函数项级数.连续函数项级数的内闭一致收敛性保证和函数的连续性]{一致收敛函数项级数的和函数的连续性}，
+\(\sum_{n=0}^\infty a_n x^n\)在包含于收敛域中的任意闭区间上连续，
+因而在它的整个收敛域上连续.
+\end{proof}
 \end{property}
-
-关于和函数的连续性及逐项可积的结论，
-由\cref{theorem:函数项级数.连续函数列的一致收敛性保证极限函数的连续性,%
-theorem:函数项级数.连续函数列的一致收敛性保证极限函数的可积性,%
-theorem:无穷级数.一致收敛的幂级数的性质}
-立即可得.
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质2}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P87 定理10.3.4
 %@see: 《高等数学（第六版 下册）》 P276 性质2
-幂级数\(\sum_{n=0}^\infty a_n x^n\)的和函数\(s(x)\)在其收敛域\(I\)上可积，
-并有逐项积分公式\begin{equation}
-	\int_0^x s(x) \dd{x}
-	=\int_0^x \left(\sum_{n=0}^\infty a_n x^n\right) \dd{x}
-	=\sum_{n=0}^\infty \int_0^x a_n x^n \dd{x}
-	=\sum_{n=0}^\infty \frac{a_n}{n+1} x^{n+1}.
+幂级数\(\sum_{n=0}^\infty a_n x^n\)
+在包含于其收敛域中的任意闭区间上
+可以逐项求积分，
+即对于其收敛域内的任意两点\(a,b\)，
+有\begin{equation}
+	\int_a^b \sum_{n=0}^\infty a_n x^n \dd{x}
+	= \sum_{n=0}^\infty \int_a^b a_n x^n \dd{x}.
 \end{equation}
+特别地，有\begin{equation}
+	\int_0^x \sum_{n=0}^\infty a_n t^n \dd{t}
+	= \sum_{n=0}^\infty \frac{a_n}{n+1} x^{n+1},
+\end{equation}
+且逐项积分所得到的幂级数\(\sum_{n=0}^\infty \frac{a_n}{n+1} x^{n+1}\)
+和原幂级数\(\sum_{n=0}^\infty a_n x^n\)
+具有相同的收敛半径.
+\begin{proof}
+由\hyperref[theorem:无穷级数.阿贝尔定理2]{阿贝尔第二定理}，
+\(\sum_{n=0}^\infty a_n x^n\)在其收敛域上内闭一致收敛.
+应用\hyperref[theorem:函数项级数.连续函数项级数的一致收敛性保证和函数的可积性]{一致收敛函数项级数的逐项积分定理}，
+就得到幂级数的逐项可积性.
 
-逐项积分后所得到的幂级数和原级数有相同的收敛半径、收敛域.
+由于\[
+	\varlimsup_{n\to\infty} \sqrt[n+1]{\frac{\abs{a_n}}{n+1}}
+	= \varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n}},
+\]
+所以\(\sum_{n=0}^\infty \frac{a_n}{n+1} x^{n+1}\)
+与\(\sum_{n=0}^\infty a_n x^n\)具有相同的收敛半径.
+\end{proof}
 \end{property}
+\begin{remark}
+虽然逐项积分所得的幂级数\(\sum_{n=0}^\infty \frac{a_n}{n+1} x^{n+1}\)
+和原幂级数\(\sum_{n=0}^\infty a_n x^n\)收敛半径相同，
+但是它的收敛域相比于原幂级数可能扩大.
+
+%@see: 《数学分析（第二版 下册）》（陈纪修） P89 例10.3.4
+例如，幂级数\[
+	\sum_{n=1}^\infty (-1)^{n-1} x^{2n-2}
+\]的收敛域是\((-1,1)\)，
+但逐项积分所得的幂级数\[
+	\sum_{n=1}^\infty \frac{(-1)^{n-1}}{2n-1} x^{2n-1}
+\]的收敛域是\([-1,1]\).
+
+%@see: 《数学分析（第二版 下册）》（陈纪修） P89 例10.3.5
+又例如，幂级数\[
+	\sum_{n=1}^\infty (-1)^{n-1} x^{n-1}
+\]的收敛域是\((-1,1)\)，
+但逐项积分所得的幂级数\[
+	\sum_{n=1}^\infty \frac{(-1)^{n-1}}{n} x^n
+\]的收敛域是\((-1,1]\).
+\end{remark}
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质3}
 %@see: 《高等数学（第六版 下册）》 P276 性质3
@@ -540,3 +514,72 @@ theorem:无穷级数.一致收敛的幂级数的性质}
 \]
 \end{solution}
 \end{example}
+
+
+
+
+
+\subsection{幂级数的运算}
+\begin{definition}
+设幂级数\(\sum_{n=0}^\infty a_n x^n\)
+和\(\sum_{n=0}^\infty b_n x^n\)
+分别在区间\((-R,R)\)和\((-R',R')\)内收敛.
+定义：
+\begin{gather}
+	\left(\sum_{n=0}^\infty a_n x^n\right)
+	+ \left(\sum_{n=0}^\infty b_n x^n\right)
+	\defeq
+	\sum_{n=0}^\infty (a_n+b_n) x^n, \\
+	\left(\sum_{n=0}^\infty a_n x^n\right)
+	- \left(\sum_{n=0}^\infty b_n x^n\right)
+	\defeq
+	\sum_{n=0}^\infty (a_n-b_n) x^n, \\
+	\left(\sum_{n=0}^\infty a_n x^n\right)
+	\cdot \left(\sum_{n=0}^\infty b_n x^n\right)
+	\defeq
+	\sum_{n=0}^\infty \left(
+		\sum_{i=0}^n a_i b_{n-i}
+	\right) x^n.
+\end{gather}
+\end{definition}
+
+\begin{definition}
+设幂级数\(\sum_{n=0}^\infty a_n x^n\)
+和\(\sum_{n=0}^\infty b_n x^n\)
+分别在区间\((-R,R)\)和\((-R',R')\)内收敛.
+
+记\[
+	\frac{
+		\sum_{n=0}^\infty a_n x^n
+	}{
+		\sum_{n=0}^\infty b_n x^n
+	}
+	= \sum_{n=0}^\infty c_n x^n,
+\]
+假设\(b_0 \neq 0\).
+为了决定系数\(c_0,c_1,\dotsc,c_n,\dotsc\)，
+可以将级数\(\sum_{n=0}^\infty b_n x^n\)
+与\(\sum_{n=0}^\infty c_n x^n\)相乘，
+并令乘积中各项的系数分别等于级数\(\sum_{n=0}^\infty a_n x^n\)中同次幂的系数，
+即得\[
+	\begin{cases}
+		a_0 = b_0 c_0, \\
+		a_1 = b_1 c_0 + b_0 c_1, \\
+		a_2 = b_2 c_0 + b_1 c_1 + b_0 c_2, \\
+		\hdotsfor{1} \\
+	\end{cases}
+\]
+由这些方程就可以顺序地求出\(c_0,c_1,\dotsc,c_n,\dotsc\).
+
+相除后所得的幂级数\(\sum_{n=0}^\infty c_n x^n\)的收敛区间可能比原来的两级数的收敛区间小得多.
+\end{definition}
+
+例如，级数\[
+	\sum_{n=0}^\infty a_n x^n
+	= 1 + 0x + \dotsb + 0x^n + \dotsb
+\]与\[
+	\sum_{n=0}^\infty b_n x^n
+	= 1 - x + 0x^2 + \dotsb + 0x^n + \dotsb
+\]在整个数轴上收敛，
+但是这两个级数的商\(\sum_{n=0}^\infty c_n x^n
+= \sum_{n=0}^\infty x^n\)仅在区间\((-1,1)\)内收敛.
