@@ -100,18 +100,26 @@
 像这样，我们就得到以下重要推论.
 \begin{corollary}\label{theorem:无穷级数.阿贝尔定理推论}
 %@see: 《高等数学（第六版 下册）》 P271 推论
+%@see: 《数学分析（第二版 下册）》（陈纪修） P84 定理10.3.1（Cauchy-Hadamard定理）
 如果幂级数\(\sum_{n=0}^\infty a_n x^n\)不是仅在\(x=0\)一点收敛，
 也不是在整个数轴上都收敛，
 则必定存在正数\(R\)，
-使得：\begin{enumerate}
+使得：\begin{itemize}
 	\item 当\(\abs{x}<R\)时，幂级数绝对收敛；
 	\item 当\(\abs{x}>R\)时，幂级数发散；
 	\item 当\(\abs{x}=R\)时，幂级数可能收敛也可能发散.
-\end{enumerate}
+\end{itemize}
+%TODO proof
 \end{corollary}
 
-我们称\cref{theorem:无穷级数.阿贝尔定理推论} 中提到的正数\(R\)为“幂级数的\DefineConcept{收敛半径}”.
-称开区间\((-R,R)\)为“幂级数的\DefineConcept{收敛区间}”.
+对于\(\sum_{n=0}^\infty a_n (x-x_0)^n\)，我们有平行的结论：
+幂级数\(\sum_{n=0}^\infty a_n (x-x_0)^n\)
+在以\(x_0\)为中心、以\(R\)为半径的对称区间\((x_0-R,x_0+R)\)内绝对收敛，
+而在\((-\infty,x_0-R)\cup(x_0+R,+\infty)\)上发散.
+
+我们把\cref{theorem:无穷级数.阿贝尔定理推论} 中提到的正数\(R\)
+称为“幂级数的\DefineConcept{收敛半径}”.
+把开区间\((-R,R)\)称为“幂级数的\DefineConcept{收敛区间}”.
 
 在已知幂级数的收敛半径或收敛区间的情况下，
 我们可以根据幂级数在点\(x = \pm R\)处的收敛性，
@@ -121,20 +129,31 @@
 如果幂级数对任意实数都收敛，则规定收敛半径\(R=+\infty\)，收敛域为\((-\infty,+\infty)\).
 
 关于幂级数的收敛半径的求法，有下面的定理.
-\begin{theorem}\label{theorem:无穷级数.幂级数的收敛半径的求法}
+\begin{theorem}\label{theorem:无穷级数.幂级数的收敛半径的求法1}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P84
 如果\[
-	\lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \rho,
+	\varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n}} = \rho,
 \]
-其中\(a_n\)、\(a_{n+1}\)是
-幂级数\(\sum_{n=0}^\infty a_n x^n\)的相邻两项的系数，
-则这幂级数的收敛半径为\[
-	R = \left\{ \def\arraystretch{1.5} \begin{array}{ll}
-		\frac{1}{\rho}, & \rho \in (0,+\infty), \\
+则幂级数\(\sum_{n=0}^\infty a_n x^n\)的收敛半径为\[
+	R = \left\{ \def\arraystretch{1.5} \begin{array}{cl}
+		\frac1\rho, & 0<\rho<+\infty, \\
 		+\infty, & \rho = 0, \\
 		0, & \rho = +\infty \\
 	\end{array} \right.
-\]或\[
-	R = \lim_{n\to\infty} \abs{\frac{a_n}{a_{n+1}}}.
+\]
+\end{theorem}
+
+\begin{theorem}\label{theorem:无穷级数.幂级数的收敛半径的求法2}
+%@see: 《高等数学（第六版 下册）》 P272 定理2
+如果\[
+	\lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \rho,
+\]
+则幂级数\(\sum_{n=0}^\infty a_n x^n\)的收敛半径为\[
+	R = \left\{ \def\arraystretch{1.5} \begin{array}{cl}
+		\frac1\rho, & 0<\rho<+\infty, \\
+		+\infty, & \rho = 0, \\
+		0, & \rho = +\infty. \\
+	\end{array} \right.
 \]
 \begin{proof}
 考察幂级数\(\sum_{n=0}^\infty a_n x^n\)的各项取绝对值所成的级数\[
@@ -149,11 +168,11 @@
 \begin{enumerate}
 	\item 如果极限\(\lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}} = \rho\neq0\)存在，
 	根据\hyperref[theorem:无穷级数.正项级数的比值审敛法]{比值审敛法}，
-	则当\(\rho \abs{x} < 1\)即\(\abs{x} < \frac{1}{\rho}\)时，
+	则当\(\rho \abs{x} < 1\)即\(\abs{x} < \frac1\rho\)时，
 	级数\(\sum_{n=1}^\infty \abs{a_n x^n}\)收敛，
 	从而级数\(\sum_{n=0}^\infty a_n x^n\)绝对收敛；
 	再根据\cref{theorem:无穷级数.绝对发散的特殊情况}，
-	当\(\rho \abs{x} > 1\)即\(\abs{x} > \frac{1}{\rho}\)时，
+	当\(\rho \abs{x} > 1\)即\(\abs{x} > \frac1\rho\)时，
 	级数\(\sum_{n=1}^\infty \abs{a_n x^n}\)发散，
 	并且\[
 		(\exists N\in\mathbb{N})
@@ -191,7 +210,7 @@ x-\frac{x^2}{2}+\frac{x^3}{3}-\dotsb+(-1)^{n-1}\frac{x^n}{n}+\dotsb
 \rho = \lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
 = \lim_{n\to\infty} \frac{n}{n+1} = 1,
 \]所以收敛半径\[
-R = \frac{1}{\rho} = 1.
+R = \frac1\rho = 1.
 \]
 
 对于端点\(x=1\)，级数成为交错级数\[
@@ -248,7 +267,7 @@ R = \frac{1}{\rho} = 1.
 \begin{example}
 求幂级数\(\sum_{n=0}^\infty \frac{(2n)!}{(n!)^2} x^{2n}\)的收敛半径.
 \begin{solution}
-级数缺少奇次幂的项，\cref{theorem:无穷级数.幂级数的收敛半径的求法} 不能直接应用，
+级数缺少奇次幂的项，\cref{theorem:无穷级数.幂级数的收敛半径的求法2} 不能直接应用，
 我们根据\cref{theorem:无穷级数.正项级数的比值审敛法的上下极限形式} 来求收敛半径：
 \[
 \lim_{n\to\infty} \abs{{\frac{[2(n+1)]!}{[(n+1)!]^2} x^{2(n+1)}}\Bigg/{\frac{(2n)!}{(n!)^2} x^{2n}}}
