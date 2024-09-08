@@ -29,7 +29,7 @@
 只要当\(\lambda\to0\)时，
 和\(S\)总趋于确定的极限\(I\)，
 那么称这个极限\(I\)为
-“函数\(f(x)\)在区间\([a,b]\)上的\DefineConcept{定积分}”，
+“函数\(f\)在区间\([a,b]\)上的\DefineConcept{定积分}”，
 记作\(\int_a^b f(x) \dd{x}\)，
 即\begin{equation}
 	\int_a^b f(x) \dd{x}
@@ -49,7 +49,7 @@
 注意：
 当和\(\sum_{i=1}^n f(\xi_i) \increment x_i\)的极限
 \(\lim_{\lambda\to0} \sum_{i=1}^n f(\xi_i) \increment x_i\)存在时，
-其极限\(I\)仅与被积函数\(f(x)\)及积分区间\([a,b]\)有关.
+其极限\(I\)仅与被积函数\(f\)及积分区间\([a,b]\)有关.
 如果既不改变被积函数\(f\)，也不改变积分区间\([a,b]\)，
 而只把积分变量\(x\)改写成其他字母，则和的极限\(I\)不变，也就是定积分的值不变，
 即\[
@@ -297,10 +297,12 @@
 对于任意实数\(k\)，
 总有\(\int_a^b k f(x) \dd{x}
 =k\int_a^b f(x) \dd{x}\).
+%TODO proof
 \end{property}
 
 \begin{corollary}\label{theorem:定积分.定积分性质2推论1}
 \(\int_a^b 0 \dd{x} = 0\).
+%TODO proof
 \end{corollary}
 
 \begin{corollary}
@@ -320,12 +322,14 @@
 \(\int_a^b 1 \dd{x}
 = \int_a^b \dd{x}
 = b-a\).
+%TODO proof
 \end{property}
 
 \begin{property}\label{theorem:定积分.乘积可积性}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P287 性质2（乘积可积性）
 设\(f\)和\(g\)都在\([a,b]\)上黎曼可积，
 则\(f \cdot g\)在\([a,b]\)上黎曼可积.
+%TODO proof
 \end{property}
 \begin{remark}
 虽然“\(f\)和\(g\)都在\([a,b]\)上黎曼可积”蕴含“\(f \cdot g\)在\([a,b]\)上黎曼可积”，
@@ -360,11 +364,12 @@
 	= \int_a^c f(x) \dd{x}
 	+ \int_c^b f(x) \dd{x}.
 \end{equation}
+%TODO proof
 \end{property}
 上述性质表明定积分对于积分区间具有“可加性”.
 
 %\begin{example}
-%设连续函数\(f(x)\)满足\(f(x+2)-f(x)=x\)，
+%设连续函数\(f\)满足\(f(x+2)-f(x)=x\)，
 %且\(\int_0^2 f(x) \dd{x} = 0\)，
 %求\(\int_1^3 f(x) \dd{x}\).
 %\begin{solution}
@@ -557,7 +562,7 @@
 
 \begin{property}\label{theorem:定积分.定积分性质6}
 %@see: 《高等数学（第六版 上册）》 P233 性质6
-设\(M\)及\(m\)分别是函数\(f(x)\)在区间\([a,b]\)上的最大值及最小值，
+设\(M\)及\(m\)分别是函数\(f\)在区间\([a,b]\)上的最大值及最小值，
 则\[
 	m(b-a) \leq \int_a^b f(x) \dd{x} \leq M(b-a).
 \]
@@ -582,13 +587,14 @@
 设\(f,g \in R[a,b]\)，
 且\(g\)在\([a,b]\)上不变号，
 记\[
-	m = \inf\Set{ f(x) \given x \in [a,b] }, \qquad
-	M = \sup\Set{ f(x) \given x \in [a,b] },
+	m \defeq \inf\Set{ f(x) \given x \in [a,b] }, \qquad
+	M \defeq \sup\Set{ f(x) \given x \in [a,b] },
 \]
 那么\(\exists\mu\in[m,M]\)，
 使得\begin{equation}
 	\int_a^b f(x) g(x) \dd{x} = \mu \int_a^b g(x) \dd{x}.
 \end{equation}
+%TODO proof
 \end{theorem}
 
 \begin{corollary}\label{theorem:定积分.积分中值定理1推论1}
@@ -601,22 +607,30 @@
 	\int_a^b f(x) g(x) \dd{x}
 	= f(\xi) \int_a^b g(x) \dd{x}.
 \end{equation}
+%TODO proof
 \end{corollary}
 
-\begin{corollary}\label{theorem:定积分.积分中值定理0}
+\begin{corollary}\label{theorem:定积分.积分中值定理1推论2}
 %@see: 《高等数学（第六版 上册）》 P233 性质7（定积分中值定理）
+%@see: 《数学分析（第二版 上册）》（陈纪修） P290
 设函数\(f\)在\([a,b]\)上连续，
 则\(\exists\xi\in[a,b]\)，
 使\begin{equation}
-	\int_a^b f(x) \dd{x} = (b-a) f(\xi).
+	\int_a^b f(x) \dd{x} = f(\xi) (b-a).
 \end{equation}
+%TODO proof
 \end{corollary}
-显然，积分中值公式不论\(a<b\)或\(a>b\)都是成立的.
-
-按积分中值公式所得\begin{equation}
-	f(\xi) = \frac{1}{b-a} \int_a^b f(x) \dd{x}
+\begin{remark}
+注意到\cref{theorem:定积分.积分中值定理1推论2} 中\(\xi\)的取值范围是\([a,b]\).
+实际上，我们可以舍去端点，让\(\xi\)的取值范围变成\((a,b)\).
+在下一节，我们就可以证明这个更强的结论 --- \cref{theorem:定积分.积分中值定理1推论2改进}.
+\end{remark}
+\begin{definition}
+把\begin{equation}
+	\frac{1}{b-a} \int_a^b f(x) \dd{x}
 \end{equation}
-称为函数\(f(x)\)在区间\([a,b]\)上的\DefineConcept{平均值}.
+称为“函数\(f\)在区间\([a,b]\)上的\DefineConcept{平均值}”.
+\end{definition}
 
 \begin{theorem}[积分第二中值定理]\label{theorem:定积分.积分中值定理2}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P373 定理8.2.4（积分第二中值定理）

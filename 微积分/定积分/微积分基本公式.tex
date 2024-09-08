@@ -5,7 +5,8 @@
 %@see: 《数学分析（第二版 上册）》（陈纪修） P296 定理7.3.1
 设函数\(f\colon[a,b]\to\mathbb{R}\)，
 令\(\Phi(x)
-= \int_a^x f(t) \dd{t}\).
+= \int_a^x f(t) \dd{t}
+\ (a \leq x \leq b)\).
 \begin{itemize}
 	\item 如果\(f\)在\([a,b]\)上黎曼可积，
 	则\(\Phi\)在\([a,b]\)上连续.
@@ -40,20 +41,13 @@
 M \defeq \max_{a \leq x \leq b} f(x),
 \alpha \defeq \min\{x,x+\increment x\},
 \beta \defeq \max\{x,x+\increment x\}\).
-由\hyperref[theorem:定积分.积分中值定理1]{定积分第一中值定理}可知，
-\begin{itemize}
-	\item 如果\(f\)在\([a,b]\)上黎曼可积，
-	则\(\exists\mu\in[m,M]\)，
-	使得\[
-		\increment\Phi = \mu \increment x;
-	\]
-
-	\item 如果\(f\)在\([a,b]\)上连续，
-	则\(\exists\xi\in(\alpha,\beta)\)，
-	使得\[
-		\increment\Phi = f(\xi) \increment x.
-	\]
-\end{itemize}
+由\hyperref[theorem:定积分.积分中值定理1]{定积分第一中值定理}可知：
+如果\(f\)在\([a,b]\)上黎曼可积，
+则\(\exists\mu\in[m,M]\)，
+使得\(\increment\Phi = \mu \cdot \increment x\)；
+如果\(f\)在\([a,b]\)上连续，
+则\(\exists\xi\in(\alpha,\beta)\)，
+使得\(\increment\Phi = f(\xi) \cdot \increment x\).
 显然，不管在哪种情况下，当\(\increment x\to0\)时，
 都有\(\increment\Phi\to0\)，
 即\(\Phi\)在\([a,b]\)上连续.
@@ -78,8 +72,8 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \end{proof}
 \end{theorem}
 \cref{theorem:定积分.变限积分定理} 指出了一个重要结论：
-连续函数\(f(x)\)取变上限\(x\)的定积分然后求导，其结果还原为\(f(x)\)本身.
-联想到原函数的定义，就可以从该定理推知\(\Phi(x)\)是连续函数\(f(x)\)的一个原函数.
+连续函数\(f\)取变上限\(x\)的定积分然后求导，其结果还原为\(f\)本身.
+联想到原函数的定义，就可以从该定理推知\(\Phi\)是连续函数\(f\)的一个原函数.
 因此，我们引出如下的原函数的存在定理：
 \begin{theorem}[原函数存在定理]\label{theorem:定积分.原函数存在定理}
 %@see: 《高等数学（第六版 上册）》 P238 定理2
@@ -87,6 +81,7 @@ M \defeq \max_{a \leq x \leq b} f(x),
 则函数\[
 	\Phi(x) = \int_a^x f(t) \dd{t}
 \]就是\(f\)在\([a,b]\)上的一个原函数.
+%TODO proof
 \end{theorem}
 \cref{theorem:定积分.原函数存在定理} 的重要意义是：
 一方面肯定了连续函数的原函数是存在的，
@@ -94,7 +89,7 @@ M \defeq \max_{a \leq x \leq b} f(x),
 因此，我们就有可能通过原函数来计算定积分.
 
 \begin{example}
-设函数\(f(x)\)在区间\([a,b]\)上连续，函数\(\phi(x)\)和\(\psi(x)\)可导.
+设函数\(f\)在区间\([a,b]\)上连续，函数\(\phi\)和\(\psi\)可导.
 证明：\[
 	F(x) = \int_{\psi(x)}^{\phi(x)} f(t) \dd{t}
 \]在\([a,b]\)上可导，
@@ -104,7 +99,7 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \end{equation}
 \begin{proof}
 令\(F_1(x) = \int_{\xi}^{\phi(x)} f(t) \dd{t}\)，\(u = \phi(x)\)，
-设函数\(G(x)\)是被积函数\(f(x)\)的一个原函数，
+设函数\(G\)是被积函数\(f\)的一个原函数，
 那么\[
 	F_1(x) = G[\phi(x)] - G(\xi),
 \]
@@ -169,11 +164,11 @@ M \defeq \max_{a \leq x \leq b} f(x),
 	\int_a^b f(x) \dd{x} = F(b) - F(a).
 \end{equation}
 \begin{proof}
-已知函数\(F(x)\)是连续函数\(f(x)\)的一个原函数，
+已知函数\(F\)是连续函数\(f\)的一个原函数，
 又根据\hyperref[theorem:定积分.原函数存在定理]{原函数存在定理}知道，
 积分上限的函数\[
 	\Phi(x) = \int_a^x f(t) \dd{t}
-\]也是\(f(x)\)的一个原函数.
+\]也是\(f\)的一个原函数.
 于是这两个原函数之差\(F(x) - \Phi(x)\)在\([a,b]\)上必定是某一个常数\(C\)，
 即\[
 	F(x) - \Phi(x) = C. \eqno(1)
@@ -229,32 +224,41 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \end{solution}
 \end{example}
 
-% \begin{example}
-% %@see: 《高等数学（第六版 上册）》 P241 例6
-% 证明积分中值定理：若函数\(f(x)\)在闭区间\([a,b]\)上连续，则\(\exists\xi\in(a,b)\)，使\[
-% 	\int_a^b f(x) \dd{x} = f(\xi) (b-a).
-% \]
-% \begin{proof}
-% 因\(f(x)\)连续，故它的原函数存在，
-% 设\(F(x)\)为\(f(x)\)的一个原函数，
-% 即在\([a,b]\)上\(F'(x) = f(x)\).
-% 根据牛顿--莱布尼茨公式，有\[
-% 	\int_a^b f(x) \dd{x}
-% 	= F(b) - F(a).
-% \]
+\begin{proposition}\label{theorem:定积分.积分中值定理1推论2改进}
+%@see: 《高等数学（第六版 上册）》 P241 例6
+设函数\(f\)在\([a,b]\)上连续，
+则\(\exists\xi\in(a,b)\)，
+使\[
+	\int_a^b f(x) \dd{x} = f(\xi) (b-a).
+\]
+\begin{proof}
+因\(f\)连续，故它的原函数存在，
+设\(F\)为\(f\)的一个原函数，
+即在\([a,b]\)上\(F'(x) = f(x)\).
+根据\hyperref[equation:定积分.牛顿--莱布尼茨公式]{牛顿--莱布尼茨公式}，
+有\[
+	\int_a^b f(x) \dd{x}
+	= F(b) - F(a).
+\]
 
-% 显然函数\(F(x)\)在区间\([a,b]\)上满足微分中值定理的条件，
-% 因此按微分中值定理，\(\exists\xi\in(a,b)\)，使\[
-% 	F(b) - F(a) = F'(\xi) (b-a),
-% \]
-% 故\[
-% 	\int_a^b f(x) \dd{x} = f(\xi) (b-a).
-% 	\qedhere
-% \]
-% \end{proof}
-% \end{example}
-% 本例的结论是对上一节所述积分中值定理的改进.
-% 从证明过程中不难看出积分中值定理与微分中值定理的联系.
+由\cref{theorem:定积分.变限积分定理} 可知，
+函数\(F\)在区间\([a,b]\)上可导，
+满足\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}的条件，
+因此存在实数\(\xi\in(a,b)\)，使\[
+	F(b) - F(a) = F'(\xi) (b-a),
+\]
+也即\[
+	\int_a^b f(x) \dd{x} = f(\xi) (b-a).
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+\begin{remark}
+我们也把\cref{theorem:定积分.积分中值定理1推论2改进} 称为“积分中值定理”.
+它正是对\cref{theorem:定积分.积分中值定理1推论2} 的改进.
+从证明过程中不难看出积分中值定理
+与\hyperref[theorem:微分中值定理.拉格朗日中值定理]{微分中值定理}的联系.
+\end{remark}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P241 例7
@@ -364,7 +368,7 @@ M \defeq \max_{a \leq x \leq b} f(x),
 		\tag{\cref{theorem:定积分.定积分性质5推论3}}
 \end{align*}
 
-由\hyperref[theorem:定积分.积分中值定理0]{积分中值定理}可知，
+由\hyperref[theorem:定积分.积分中值定理1推论2]{积分中值定理}可知，
 存在\(\zeta\in[a,b]\)，使得\[
 	f(\zeta) = \frac1{b-a} \int_a^b f(x) \dd{x}.
 \]
