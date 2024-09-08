@@ -234,7 +234,7 @@
 \]
 \end{theorem}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:定积分.黎曼可积条件.闭区间上只有有限个间断点的有界函数必定可积}
 %@see: 《高等数学（第六版 上册）》 P227 定理2
 %@see: 《数学分析（第二版 上册）》（陈纪修） P283 推论3
 闭区间上只有有限个间断点的有界函数必定可积.
@@ -325,7 +325,7 @@
 \end{proof}
 \end{corollary}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:定积分.定积分性质2推论2}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P286 推论
 设\(f\)在\([a,b]\)上黎曼可积，
 而\(g\)只在有限个点上与\(f\)的取值不相同，
@@ -334,8 +334,26 @@
 	\int_a^b f(x) \dd{x}
 	= \int_a^b g(x) \dd{x}.
 \]
-%TODO proof
+\begin{proof}
+取\(h(x) = f(x) - g(x)\)，
+则\(h\)只在有限个点上不为零，除此以外处处为零.
+因为\hyperref[theorem:定积分.黎曼可积条件.闭区间上只有有限个间断点的有界函数必定可积]{闭区间上只有有限个间断点的有界函数必定可积}，
+所以\(h\)在\([a,b]\)上可积，
+且\(\int_a^b h(x) \dd{x} = 0\).
+再由定积分的线性性质 \labelcref{theorem:定积分.定积分性质1,theorem:定积分.定积分性质2}
+可知\(g\)也在\([a,b]\)上可积，
+且\[
+	\int_a^b g(x) \dd{x}
+	= \int_a^b (f(x) - h(x)) \dd{x}
+	= \int_a^b f(x) \dd{x}.
+	\qedhere
+\]
+\end{proof}
 \end{corollary}
+\begin{remark}
+\cref{theorem:定积分.定积分性质2推论2} 说明：
+在有限个点上改变一个可积函数的函数值，不会改变它的可积性和积分值.
+\end{remark}
 
 \begin{property}\label{theorem:定积分.定积分性质4}
 %@see: 《高等数学（第六版 上册）》 P232 性质4
