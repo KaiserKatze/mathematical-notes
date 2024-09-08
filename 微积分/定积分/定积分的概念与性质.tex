@@ -663,6 +663,34 @@
 %TODO proof
 \end{corollary}
 
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			xmin=0,xmax=3,
+			ymin=0,ymax=3,
+			xtick={.5,1.5,2.5},
+			xticklabels={$a$,$\xi$,$b$},
+			ytick={1.5},
+			yticklabels={$f(\xi)$},
+		]
+			\addplot[domain=.5:2.5]{(x-1.5)^3+1.5};
+			\begin{scope}[dashed,black!30]
+				\draw(.5,1.5)--(.5,0);
+				\draw(2.5,2.5)--(2.5,0);
+				\draw(1.5,1.5)--(1.5,0);
+				\draw(2.5,1.5)--(0,1.5);
+			\end{scope}
+			\draw(2.5,2.5)node[right]{$y=f(x)$};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:定积分.积分中值定理的几何意义}
+\end{figure}
+
 \begin{corollary}\label{theorem:定积分.积分中值定理1推论2}
 %@see: 《高等数学（第六版 上册）》 P233 性质7（定积分中值定理）
 %@see: 《数学分析（第二版 上册）》（陈纪修） P290
@@ -673,6 +701,13 @@
 \end{equation}
 %TODO proof
 \end{corollary}
+\begin{remark}
+如\cref{figure:定积分.积分中值定理的几何意义} 所示，
+\cref{theorem:定积分.积分中值定理1推论2} 的几何意义十分明确：
+当\(f(x)\geq0\)时，\(\int_a^b f(x) \dd{x}\)表示
+由曲线\(y=f(x)\)和直线\(x=a\)、\(x=b\)以及\(x\)轴围成的曲边梯形的面积，
+它一定以\([a,b]\)为底、某个\(f(\xi)\)为高的矩形的面积.
+\end{remark}
 \begin{remark}
 注意到\cref{theorem:定积分.积分中值定理1推论2} 中\(\xi\)的取值范围是\([a,b]\).
 实际上，我们可以舍去端点，让\(\xi\)的取值范围变成\((a,b)\).
