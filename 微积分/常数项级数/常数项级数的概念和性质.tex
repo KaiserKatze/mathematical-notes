@@ -260,6 +260,38 @@
 \end{proof}
 \end{example}
 
+即便在“级数的一般项趋于零”之外，再加上条件“级数的部分和数列有界”，也依然无法保证“级数收敛”.
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1EkiGeJET3
+举例说明：
+当级数\(\sum_{n=1}^\infty a_n\)的部分和数列\(\{S_n\}\)有界
+且\(\lim_{n\to\infty} a_n = 0\)时，
+级数\(\sum_{n=1}^\infty a_n\)不收敛.
+\begin{solution}
+取\[
+	a_n = \sin\sqrt{n+1} - \sin\sqrt{n}
+	\quad(n=1,2,\dotsc)
+\]
+那么由\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}可知，
+存在实数\(\xi\in(\sqrt{n},\sqrt{n+1})\)，
+使得\[
+	\sin\sqrt{n+1} - \sin\sqrt{n}
+	= \cos\xi \cdot (\sqrt{n+1} - \sqrt{n}).
+\]
+由于\(\lim_{n\to\infty} (\sqrt{n+1} - \sqrt{n})
+= \lim_{n\to\infty} \frac1{\sqrt{n+1} + \sqrt{n}}
+= 0\)，
+而\(\cos\xi\)是有界量，
+所以\(\lim_{n\to\infty} a_n = 0\).
+另一方面\[
+	S_n = a_n + a_{n-1} + \dotsb + a_2 + a_1
+	= \sin\sqrt{n+1} - \sin1
+	\quad(n=1,2,\dotsc).
+\]
+显然\(\{S_n\}\)有界但不收敛.
+\end{solution}
+\end{example}
+
 \subsection{收敛级数的基本性质}
 \begin{property}\label{theorem:无穷级数.收敛级数性质1}
 %@see: 《高等数学（第六版 上册）》 P251 性质1
