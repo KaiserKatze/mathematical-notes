@@ -83,41 +83,55 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \]就是\(f\)在\([a,b]\)上的一个原函数.
 %TODO proof
 \end{theorem}
+\begin{remark}
+\cref{theorem:定积分.原函数存在定理} 为判定一个函数的原函数是否存在，提供了一个充分不必要条件.
+例如，虽然函数\(f(x) = \frac1x\)在点\(x=0\)不连续，
+但是函数\(g(x) = \ln\abs{x}\)确实是它的一个原函数.
+\end{remark}
+\begin{remark}
 \cref{theorem:定积分.原函数存在定理} 的重要意义是：
 一方面肯定了连续函数的原函数是存在的，
 另一方面初步地揭示了积分学中的定积分与原函数之间的联系.
 因此，我们就有可能通过原函数来计算定积分.
+\end{remark}
 
 \begin{example}
+%@credit: {ce603838-a24d-4616-9395-d7b223e8cb72}
 举例说明：
 函数可积但它的原函数不存在.
-%TODO
-% \begin{solution}
-% 设函数\(f\colon[a,b]\to\mathbb{R}\)在\([a,c)\cup(c,b]\)上连续，
-% 点\(c\in(a,b)\)是\(f\)的可去间断点，
-% 函数\[
-% 	g(x) = \left\{ \begin{array}{cl}
-% 		f(x), & x \neq c, \\
-% 		\lim_{x \to c} f(x), & x = c,
-% 	\end{array} \right.
-% \]
-% 显然\(f\)在\([a,b]\)上可积，\(g\)在\([a,b]\)上连续，且\[
-% 	\int_a^x f(t) \dd{t} = \int_a^x g(t) \dd{t}
-% 	\quad(a \leq x \leq b).
-% \]
-% 由\cref{theorem:定积分.变限积分定理}
-% 可知积分上限函数\(x \mapsto \int_a^x g(t) \dd{t}\)在\([a,b]\)上可导，
-% 并且它的导函数是\[
-% 	\dv{x} \int_a^x g(t) \dd{t}
-% 	= g(x).
-% \]
-% \end{solution}
+\begin{solution}
+取\[
+	f(x) = \sgn x
+	\quad(-1 \leq x \leq 1).
+\]
+显然\(f\)在\([-1,1]\)上可积，
+且\[
+	\int_{-1}^x f(t) \dd{t}
+	= \abs{x} - 1.
+\]
+假设\(F\colon[-1,1]\to\mathbb{R}\)是\(f\)的一个原函数.
+由定义，对\(\forall x\in[-1,1]\)，有\[
+	F'(x) = f(x).
+\]
+特别地，有\(F'(0) = f(0) = 0\).
+%@credit: {c6cf8893-93b7-42d9-8607-d381c488d453}
+现在来检验函数\(F\)在点\(x=0\)的右导数：\[
+	F'_+(0)
+	= \lim_{h\to0^+} \frac{F(0+h)-F(0)}{h}
+	= \lim_{h\to0^+} F'(h)
+	= \lim_{h\to0^+} f(h)
+	= 1
+	\neq F'(0),
+\]
+矛盾！
+因此\(f\)的原函数不存在.
+\end{solution}
 \end{example}
 
 \begin{example}
+%@credit: {ce603838-a24d-4616-9395-d7b223e8cb72}
 举例说明：
 函数不可积但它的原函数存在.
-%@credit: {ce603838-a24d-4616-9395-d7b223e8cb72}
 \begin{solution}
 取\[
 	f(x) = 2 x \sin\frac1{x^2} - \frac2x \cos\frac1{x^2}
