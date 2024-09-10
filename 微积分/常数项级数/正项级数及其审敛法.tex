@@ -84,20 +84,20 @@
 \begin{proof}
 利用数学归纳法可证：\(u_{n+1} > u_n > 0\ (n=1,2,\dotsc)\)
 且\(u_{n-2} < u_{n-1} < 2 u_{n-2}\ (n=3,4,\dotsc)\).
-于是\begin{equation*}
+于是\[
 	u_n > u_{n-1} + \frac12 u_{n-1} = \frac32 u_{n-1}
 	\quad(n=2,3,\dotsc).
-\end{equation*}
-由此可知，\(\{u_n\}\)的前\(n\)项和\(S_n\)满足\begin{equation*}
+\]
+由此可知，\(\{u_n\}\)的前\(n\)项和\(S_n\)满足\[
 	S_n - 1 = \sum_{k=2}^n \frac1{a_k}
 	< \frac23 \sum_{k=2}^n \frac1{a_{k-1}}
 	= \frac23 (S_n - a_n^{-1})
 	\quad(n=1,2,\dotsc),
-\end{equation*}
-即\begin{equation*}
+\]
+即\[
 	S_n < 3 - \frac2{a_n} < 3
 	\quad(n=1,2,\dotsc),
-\end{equation*}
+\]
 这说明部分和数列\(\{S_n\}\)有上界，级数\(\sum_{n=1}^\infty \frac1{u_n}\)收敛.
 \end{proof}
 \end{example}
@@ -139,6 +139,43 @@
 所以根据\cref{theorem:无穷级数.正项级数收敛的充分必要条件}，该级数收敛.
 \end{proof}
 \end{example}
+
+\subsection{柯西凝聚判别法}
+\begin{theorem}\label{theorem:无穷级数.柯西凝聚判别法}
+%@see: 《数学分析（第2册）》（周民强） P149 定理9.5
+设\(\{a_n\}\)是单调减少的正数列，
+则级数\(\sum_{n=1}^\infty a_n\)收敛的充分必要条件是：
+级数\[
+	\sum_{n=0}^\infty 2^n a_{2^n}
+\]收敛.
+\begin{proof}
+记\(S_n \defeq \sum_{k=1}^n a_k,
+\sigma_n \defeq \sum_{k=1}^n 2^k a_{2^k}\).
+
+当\(n \leq 2^k\)时，有\begin{align*}
+	S_n &\leq a_1 + (a_2 + a_3)
+	+ \dotsb + (a_{2^k} + a_{2^k+1} + \dotsb + a_{2^{k+1}-1}) \\
+	&= a_1 + 2 a_2 + 4 a_4 + \dotsb + 2^k a_{2^k}
+	= \sigma_k.
+\end{align*}
+若\(\sum_{n=0}^\infty 2^n a_{2^n}\)收敛于\(\sigma\)，
+则\(S_n \leq \sigma\)，
+说明\(\{S_n\}\)有界，
+级数\(\sum_{n=1}^\infty a_n\)收敛.
+
+当\(n > 2^k\)时，有\begin{align*}
+	S_n &\geq a_1 + a_2 + (a_3 + a_4)
+	+ \dotsb + (a_{2^{k-1}+1} + \dotsb + a_{2^k}) \\
+	&\geq \frac12 a_1 + a_2 + 2 a_4 + \dotsb + 2^{k-1} a_{2^k} \\
+	&\geq \frac12 (a_1 + 2 a_2 + 4 a_4 + \dotsb + a^k a_{2^k})
+	= \frac12 \sigma_n.
+\end{align*}
+若\(\sum_{n=1}^\infty a_n\)收敛于\(S\)，
+则\(\sigma_k \leq 2 S\)，
+说明\(\{\sigma_k\}\)有界，
+级数\(\sum_{n=0}^\infty 2^n a_{2^n}\)收敛.
+\end{proof}
+\end{theorem}
 
 \subsection{比较审敛法}
 利用\cref{theorem:无穷级数.正项级数收敛的充分必要条件} 直接证明某些级数的部分和有界不太容易，
