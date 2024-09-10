@@ -42,6 +42,66 @@
 \end{proof}
 \end{theorem}
 
+\begin{example}
+%@see: 《数学分析（第2册）》（周民强） P148 例1
+设\(\{u_n\}\)是单调增加的有界的正数列.
+证明：级数\(\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)\)收敛.
+\begin{proof}
+不妨设\(0 < a_n \leq M\ (n=1,2,\dotsc)\).
+因为\begin{align*}
+	0 < S_n &= \sum_{k=1}^n \left(1-\frac{u_n}{u_{n+1}}\right)
+	= \sum_{k=1}^n u_k \left(\frac1{u_k} - \frac1{u_{k+1}}\right) \\
+	&= M \sum_{k=1}^n \left(\frac1{u_k} - \frac1{u_{k+1}}\right)
+	= M \left(\frac1{a_1} - \frac1{a_{n+1}}\right)
+	\leq \frac{M}{a_1},
+\end{align*}
+所以部分和数列\(\{S_n\}\)是有界的，
+级数\(\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)\)收敛.
+\end{proof}
+\end{example}
+\begin{example}
+%@see: 《2019年全国硕士研究生入学统一考试（数学一）》一选择题/第3题/选项(C)
+设\(\{u_n\}\)是单调增加的有界数列.
+举例说明：级数\(\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)\)发散.
+\begin{solution}
+取\[
+	u_n = -\frac1n
+	\quad(n=1,2,\dotsc),
+\]
+易见\(u_1 \leq u_n < u_{n+1} < 0\ (n=1,2,\dotsc)\)，
+\(\{u_n\}\)是单调增加的有界数列，
+而级数\[
+	\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)
+	= -\sum_{n=1}^\infty \frac1n
+\]发散.
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（第2册）》（周民强） P148 例2
+设\(\{u_n\}\)满足\(u_1 = 1, u_2 = 2\)，且有递推公式\(u_n = u_{n-1} + u_{n-2}\ (n=3,4,\dotsc)\).
+证明：级数\(\sum_{n=1}^\infty \frac1{u_n}\)收敛.
+\begin{proof}
+利用数学归纳法可证：\(u_{n+1} > u_n > 0\ (n=1,2,\dotsc)\)
+且\(u_{n-2} < u_{n-1} < 2 u_{n-2}\ (n=3,4,\dotsc)\).
+于是\begin{equation*}
+	u_n > u_{n-1} + \frac12 u_{n-1} = \frac32 u_{n-1}
+	\quad(n=2,3,\dotsc).
+\end{equation*}
+由此可知，\(\{u_n\}\)的前\(n\)项和\(S_n\)满足\begin{equation*}
+	S_n - 1 = \sum_{k=2}^n \frac1{a_k}
+	< \frac23 \sum_{k=2}^n \frac1{a_{k-1}}
+	= \frac23 (S_n - a_n^{-1})
+	\quad(n=1,2,\dotsc),
+\end{equation*}
+即\begin{equation*}
+	S_n < 3 - \frac2{a_n} < 3
+	\quad(n=1,2,\dotsc),
+\end{equation*}
+这说明部分和数列\(\{S_n\}\)有上界，级数\(\sum_{n=1}^\infty \frac1{u_n}\)收敛.
+\end{proof}
+\end{example}
+
 \begin{proposition}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P16 定理9.3.1（正项级数的收敛原理）
 正项级数发散的充分必要条件是：它的部分和数列无界.
@@ -1165,24 +1225,6 @@
 而级数\[
 	\sum_{n=1}^\infty \frac{(-1)^n}{u_n}
 	= \sum_{n=1}^\infty (-1)^{n+1} n
-\]发散.
-\end{solution}
-\end{example}
-
-\begin{example}
-%@see: 《2019年全国硕士研究生入学统一考试（数学一）》一选择题/第3题/选项(C)
-设\(\{u_n\}\)是单调增加的有界数列.
-举例说明：级数\(\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)\)发散.
-\begin{solution}
-取\[
-	u_n = -\frac1n
-	\quad(n=1,2,\dotsc),
-\]
-易见\(u_1 \leq u_n < u_{n+1} < 0\ (n=1,2,\dotsc)\)，
-\(\{u_n\}\)是单调增加的有界数列，
-而级数\[
-	\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)
-	= -\sum_{n=1}^\infty \frac1n
 \]发散.
 \end{solution}
 \end{example}
