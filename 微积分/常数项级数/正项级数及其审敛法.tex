@@ -950,33 +950,41 @@
 即便是对\(\sum_{n=1}^\infty \frac1{n^p}\)这样简单的级数，
 它们也都无能为力.
 
-% \subsection{对数审敛法}
-% \begin{theorem}\label{theorem:无穷级数.正项级数的对数审敛法}
-% 设\(\sum_{n=1}^\infty u_n\)是正项级数，
-% 记\(\rho \defeq \frac{\ln(1/u_n)}{\ln n}\).
-% \begin{itemize}
-% 	\item 如果\[
-% 		(\exists N\in\mathbb{N})
-% 		(\forall n\in\mathbb{N})
-% 		[n>N \implies \rho>1],
-% 	\]
-% 	则级数\(\sum_{n=1}^\infty u_n\)收敛.
+\subsection{对数审敛法}
+\begin{theorem}\label{theorem:无穷级数.正项级数的对数审敛法}
+设\(\sum_{n=1}^\infty u_n\)是正项级数，
+记\[
+	\rho \defeq \frac{\ln(1/u_n)}{\ln n}.
+\]
+\begin{itemize}
+	\item 如果\(\rho>1\)，则级数\(\sum_{n=1}^\infty u_n\)收敛.
+	\item 如果\(\rho\leq1\)，则级数\(\sum_{n=1}^\infty u_n\)发散.
+\end{itemize}
+\begin{proof}
+假设极限\(\rho = \frac{\ln(1/u_n)}{\ln n}\)存在且有限，
+那么对于任意给定\(\epsilon>0\)，存在正整数\(N\)，当\(n>N\)时，有\[
+	\abs{\frac{\ln(1/u_n)}{\ln n} - \rho} < \epsilon,
+	\quad\text{或}\quad
+	\rho - \epsilon < \frac{\ln(1/u_n)}{\ln n} < \rho + \epsilon.
+\]
 
-% 	\item 如果\[
-% 		(\exists N\in\mathbb{N})
-% 		(\forall n\in\mathbb{N})
-% 		[n>N \implies \rho\leq1],
-% 	\]
-% 	则级数\(\sum_{n=1}^\infty u_n\)发散.
-% \end{itemize}
-% %TODO proof
-% \end{theorem}
+当\(0<\rho<1\)时，只要\(\epsilon\)满足\(\rho+\epsilon<1\)，
+就成立\(u_n > n^{-(\rho+\epsilon)}\).
+因为\(\sum_{n=1}^\infty \frac1{n^{\rho+\epsilon}}\)发散，
+所以级数\(\sum_{n=1}^\infty u_n\)发散.
 
-% \begin{remark}
-% 设级数\(\sum_{n=1}^\infty u_n\)的一般项是\(u_n = \frac1{n\sqrt[n]{n}}\).
-% 那么\(\lim_{n\to\infty} \frac{\ln(1/u_n)}{\ln n} = 1\)，
-% 因此，我们无法利用\cref{theorem:无穷级数.正项级数的对数审敛法} 判别这个级数的敛散性.
-% \end{remark}
+当\(\rho>1\)时，只要\(\epsilon\)满足\(\rho-\epsilon>1\)，
+就成立\(u_n < n^{-(\rho-\epsilon)}\).
+因为\(\sum_{n=1}^\infty \frac1{n^{\rho-\epsilon}}\)收敛，
+所以级数\(\sum_{n=1}^\infty u_n\)收敛.
+\end{proof}
+\end{theorem}
+
+\begin{remark}
+设级数\(\sum_{n=1}^\infty u_n\)的一般项是\(u_n = \frac1{n\sqrt[n]{n}}\).
+那么\(\lim_{n\to\infty} \frac{\ln(1/u_n)}{\ln n} = 1\)，
+因此，我们无法利用\cref{theorem:无穷级数.正项级数的对数审敛法} 判别这个级数的敛散性.
+\end{remark}
 
 \subsection{极限审敛法}
 将\(p\)级数作为基准级数，将所给正项级数与之作比较，
