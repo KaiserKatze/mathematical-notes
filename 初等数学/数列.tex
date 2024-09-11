@@ -548,37 +548,43 @@ n^4
 	\end{array} \right.
 \end{equation}
 \begin{proof}
-记\(S_n = \sum_{i=1}^n a_i
-= a + aq + aq^2 + \dotsb + aq^{n-1}\).
+记\(S_n = \sum_{k=1}^n a_k
+= a + aq + aq^2 + \dotsb + aq^{n-1}\)，
+于是\[
+	S_{n+1} - S_n = aq^n.
+	\eqno(1)
+\]
 
 当\(q = 1\)时，显然有\(S_n = na\).
 
 当\(q \neq 1\)时，有\[
 	q S_n
 	= aq+aq^2+aq^3+\dotsb+aq^n,
-	\eqno(1)
+	\eqno(2)
 \]\[
 	S_{n+1}
 	= a+aq+aq^2+\dotsb+aq^{n-1}+aq^n,
-	\eqno(2)
-\]
-用(2)式减去(1)式便得\[
-	S_{n+1} - q S_n
-	= a.
 	\eqno(3)
 \]
-又因为\[
-	S_{n+1} - S_n = aq^n,
+用(3)式减去(2)式便得\[
+	S_{n+1} - q S_n
+	= a.
 	\eqno(4)
 \]
-用(4)式减去(3)式，得\[
-	(q-1) S_n
-	= (S_{n+1} - S_n) - (S_{n+1} - q S_n)
-	= aq^n - a
-	= a(q^n - 1),
-\]
-整理得\[
-	S_n = \frac{a(q^n - 1)}{q-1}.
+联立(1)(4)两式，得到关于\(S_n,S_{n+1}\)的二元一次方程组，
+解得\[
+	S_n = \frac{
+		\begin{vmatrix}
+			1 & a \\
+			1 & a q^n
+		\end{vmatrix}
+	}{
+		\begin{vmatrix}
+			1 & -q \\
+			1 & -1
+		\end{vmatrix}
+	}
+	= \frac{a(q^n - 1)}{q-1}.
 	\qedhere
 \]
 \end{proof}
