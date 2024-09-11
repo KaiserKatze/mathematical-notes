@@ -13,13 +13,19 @@
 则称“级数\(\sum_{n=1}^\infty u_n\)是\DefineConcept{正项级数}（positive term series）”.
 \end{definition}
 
-显然，正项级数\(\sum_{n=1}^\infty u_n\)的部分和数列\(\{S_n\}\)是单调增加的，
-即\[
-	S_n = \sum_{i=1}^n u_i
-	\leq \sum_{i=1}^{n+1} u_i
-	= S_{n+1}
-	\quad(n=1,2,\dotsc).
+\begin{property}\label{theorem:无穷级数.正项级数部分和数列单调增加}
+正项级数的部分和数列是单调增加的.
+\begin{proof}
+设\(\sum_{n=1}^\infty u_n\)是一个正项级数，
+\(\{S_n\}\)是它的部分和数列，
+那么\[
+	S_{n+1} - S_n = a_{n+1} \geq 0
+	\quad(n=1,2,\dotsc),
 \]
+即\(S_{n+1} \geq S_n\ (n=1,2,\dotsc)\)，
+部分和数列\(\{S_n\}\)是单调增加的.
+\end{proof}
+\end{property}
 
 \begin{theorem}\label{theorem:无穷级数.正项级数收敛的充分必要条件}
 %@see: 《高等数学（第六版 下册）》 P256 定理1
@@ -29,14 +35,18 @@
 \begin{proof}
 设\(\sum_{n=1}^\infty u_n\)是一个正项级数，
 它的部分和数列为\(\{s_n\}\).
-显然，数列\(\{s_n\}\)是一个单调增加数列.
-如果数列\(\{s_n\}\)有界，
-那么根据\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}，
+
+假设数列\(\{s_n\}\)有界.
+那么由\cref{theorem:无穷级数.正项级数部分和数列单调增加} 可知，
+数列\(\{s_n\}\)是一个单调有界数列，
+于是根据\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}，
 数列\(\{s_n\}\)收敛，
-也就是说，级数\(\sum_{n=1}^\infty u_n\)收敛.
+根据\hyperref[definition:无穷级数.常数项级数的定义]{级数的定义}，
+级数\(\sum_{n=1}^\infty u_n\)收敛.
 
 反之，如果正项级数\(\sum_{n=1}^\infty u_n\)收敛于和\(s\)，
-即\(\lim_{n\to\infty} s_n = s\)，
+由\hyperref[definition:无穷级数.常数项级数的定义]{级数的定义}可知
+\(\lim_{n\to\infty} s_n = s\)，
 根据\hyperref[theorem:极限.收敛数列的有界性]{收敛数列的有界性}可知，
 数列\(\{s_n\}\)有界.
 \end{proof}
