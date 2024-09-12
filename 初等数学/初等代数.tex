@@ -769,69 +769,93 @@ a^n - b^n = (a-b) \sum_{k=0}^{n-1}{a^{n-1-k} b^k}
 \]
 那么称“方程\(\phi(x)\)没有\(X\)~\DefineConcept{解}”.
 
+%@see: https://mathworld.wolfram.com/VietasFormulas.html
+%@see: https://davidaltizio.web.illinois.edu/Vietas%20Formulas.pdf
 \subsection{一元二次方程}
-一元二次方程的一般形式为：\[
-ax^2 + bx + c = 0, \quad a \neq 0. \eqno(1)
-\]其中，\(ax^2\)是二次项，\(bx\)是一次项，\(c\)是常数项；
-\(a\)、\(b\)、\(c\)被称作系数.
+一元二次方程的一般形式为：
+\begin{equation}\label[quadratic-equation]{equation:一元二次方程.一元二次方程的一般形式}
+	ax^2 + bx + c = 0, \quad a \neq 0,
+\end{equation}
+其中，\(ax^2\)称为\DefineConcept{二次项}，
+\(bx\)称为\DefineConcept{一次项}，
+\(c\)称为\DefineConcept{常数项}，
+把\(a\)、\(b\)、\(c\)统称为“\cref{equation:一元二次方程.一元二次方程的一般形式} 的\DefineConcept{系数}”.
 
-(1)式两端同除以\(a\)，得\[
-x^2 + \frac{b}{a} x + \frac{c}{a} = 0, \eqno(2)
-\]配方，得\[
-\left( x + \frac{b}{2a} \right)^2 + \left( \frac{c}{a} - \frac{b^2}{4a^2} \right) = 0,
-\]移项，再开方，得\[
-x = -\frac{b}{2a} \pm \sqrt{\frac{b^2}{4a^2} - \frac{c}{a}}
-= -\frac{b}{2a} \pm \sqrt{\frac{b^2-4ac}{4a^2}}
-= \frac{-b \pm \sqrt{b^2-4ac}}{2a}.
+\cref{equation:一元二次方程.一元二次方程的一般形式} 两端同除以\(a\)，得\[
+	x^2 + \frac{b}{a} x + \frac{c}{a} = 0,
+\]
+配方，得\[
+	\left( x + \frac{b}{2a} \right)^2 + \left( \frac{c}{a} - \frac{b^2}{4a^2} \right) = 0,
+\]
+移项，再开方，得\[
+	x = -\frac{b}{2a} \pm \sqrt{\frac{b^2}{4a^2} - \frac{c}{a}}
+	= -\frac{b}{2a} \pm \sqrt{\frac{b^2-4ac}{4a^2}}
+	= \frac{-b \pm \sqrt{b^2-4ac}}{2a}.
 \]
 于是我们得到一元二次方程\(ax^2 + bx + c = 0\ (a\neq0)\)的两个解\[
-x_1 = \frac{-b + \sqrt{b^2-4ac}}{2a},
-\qquad
-x_2 = \frac{-b - \sqrt{b^2-4ac}}{2a}.
+	x_1 = \frac{-b + \sqrt{b^2-4ac}}{2a},
+	\qquad
+	x_2 = \frac{-b - \sqrt{b^2-4ac}}{2a}.
 \]
 
-记\(\Delta = b^2-4ac\)，称之为方程(1)的\DefineConcept{判别式}（discriminant）.
-当\(\Delta > 0\)时，它有两个不同的实根\[
-x = \frac{-b \pm \sqrt{\Delta}}{2a};
-\]当\(\Delta = 0\)时，它有两个相同的实根\[
-x = -\frac{b}{2a};
-\]当\(\Delta < 0\)时，它有一对共轭复根\[
-x = \frac{-b \pm \iu \sqrt{-\Delta}}{2a}.
-\]
+\begin{theorem}
+记\(\Delta \defeq b^2-4ac\)，
+称之为\cref{equation:一元二次方程.一元二次方程的一般形式}
+的\DefineConcept{判别式}（{\rm discriminant}）.
+\begin{itemize}
+	\item 当\(\Delta > 0\)时，它有两个不同的实根\[
+		x = \frac{-b \pm \sqrt{\Delta}}{2a}.
+	\]
+	\item 当\(\Delta = 0\)时，它有两个相同的实根\[
+		x = -\frac{b}{2a}.
+	\]
+	\item 当\(\Delta < 0\)时，它有一对共轭复根\[
+		x = \frac{-b \pm \iu \sqrt{-\Delta}}{2a}.
+	\]
+\end{itemize}
+\end{theorem}
 
 \begin{theorem}[韦达定理]
-设数\(x_1,x_2\)是一元二次方程{\rm(1)}的两个根，则有\[
-x_1 + x_2 = -\frac{b}{a},
-\qquad
-x_1 \cdot x_2 = \frac{c}{a}.
+设\(x_1,x_2\)是\cref{equation:一元二次方程.一元二次方程的一般形式} 的两个根，
+则有\[
+	x_1 + x_2 = -\frac{b}{a},
+	\qquad
+	x_1 \cdot x_2 = \frac{c}{a}.
 \]
 \begin{proof}
-因为\(x_1,x_2\)是一元二次方程\(ax^2 + bx + c = 0\)的两个根，所以原方程可化为\[
-a(x - x_1)(x - x_2) = 0
-\quad\text{或}\quad
-a x^2 - a (x_1 + x_2) x + a x_1 x_2 = 0.
-\]将上式与方程(1)比较可得\[
-b = -a (x_1 + x_2),
-\qquad
-c = a x_1 x_2.
-\]整理得\(x_1 + x_2 = -\frac{b}{a}, x_1 \cdot x_2 = \frac{c}{a}\).
+因为\(x_1,x_2\)是一元二次方程\(ax^2 + bx + c = 0\)的两个根，
+所以原方程可化为\[
+	a(x - x_1)(x - x_2) = 0
+	\quad\text{或}\quad
+	a x^2 - a (x_1 + x_2) x + a x_1 x_2 = 0.
+\]
+将上式与\cref{equation:一元二次方程.一元二次方程的一般形式} 比较可得\[
+	b = -a (x_1 + x_2),
+	\qquad
+	c = a x_1 x_2.
+\]
+整理得\(x_1 + x_2 = -\frac{b}{a}, x_1 \cdot x_2 = \frac{c}{a}\).
 \end{proof}
 \end{theorem}
 
 \subsection{一元三次方程}
-对于一般的一元三次方程\[
-ax^3+bx^2+cx+d=0 \quad(a\neq0),
-\]我们总可通过以下步骤将其化为标准形式.
+对于一般的一元三次方程\begin{equation}\label[cubic-equation]{equation:一元三次方程.一元三次方程的一般形式}
+	ax^3+bx^2+cx+d=0 \quad(a\neq0),
+\end{equation}
+我们总可通过以下步骤将其化为标准形式.
 
 首先在等号两边同除以\(a\)，得\[
-x^3+\frac{b}{a}x^2+\frac{c}{a}x+\frac{d}{a}=0,
-\]再令\(x=y-\frac{b}{3a}\)，得\[
-\left(y-\frac{b}{3a}\right)^3+\frac{b}{a}\left(y-\frac{b}{3a}\right)^2+\frac{c}{a}\left(y-\frac{b}{3a}\right)+\frac{d}{a}=0,
-\]整理得\[
-y^3+py+q=0,
-\]其中\[
-p = \frac{3ac-b^2}{3a^2}, \qquad
-q = \frac{2b^3}{27a^3}-\frac{bc}{3a^2}+\frac{d}{a}.
+	x^3+\frac{b}{a}x^2+\frac{c}{a}x+\frac{d}{a}=0,
+\]
+再令\(x=y-\frac{b}{3a}\)，得\[
+	\left(y-\frac{b}{3a}\right)^3+\frac{b}{a}\left(y-\frac{b}{3a}\right)^2+\frac{c}{a}\left(y-\frac{b}{3a}\right)+\frac{d}{a}=0,
+\]
+整理得\begin{equation}
+	y^3+py+q=0,
+\end{equation}
+其中\[
+	p = \frac{3ac-b^2}{3a^2}, \qquad
+	q = \frac{2b^3}{27a^3}-\frac{bc}{3a^2}+\frac{d}{a}.
 \]
 
 \begin{theorem}[卡丹公式]
@@ -840,25 +864,37 @@ q = \frac{2b^3}{27a^3}-\frac{bc}{3a^2}+\frac{d}{a}.
 \def\b{\sqrt{\d}}%
 \def\c#1{\sqrt[3]{\a#1\b}}%
 形如\[
-x^3 + px + q = 0 \quad (p,q \in \mathbb{C})
+	x^3 + px + q = 0 \quad (p,q \in \mathbb{C})
 \]的一元三次方程的解为\[
-x = \c{+}+\c{-}.
+	x = \c{+}+\c{-}.
 \]
 
 令\[
-\alpha=\c{+}, \qquad \beta=\c{-}.
-\]总有\[
-\alpha \beta = -\frac{p}{3}
-\]成立.
+	\alpha=\c{+}, \qquad \beta=\c{-}.
+\]
+总成立\[
+	\alpha \beta = -\frac{p}{3}.
+\]
 
 当\(p,q\in\mathbb{R}\)时，判别式\[
-\Delta = -108\left(\d\right) = -27q^2-4p^3
+	\Delta \defeq -108\left(\d\right) = -27q^2-4p^3
 \]的正负号决定了\(x^3+px+q=0\)的根的性质：\begin{enumerate}
-\item 当\(\Delta>0\)时，方程的三个根是各不相同的实根.
-\item 当\(\Delta=0\)时，\begin{enumerate}
-	\item 如果\(p=q=0\)，则方程有三重实根；
-	\item 如果\(p\neq0\)且\(q\neq0\)，则方程有一个二重实根和一个与之不同的实根.
-	\end{enumerate}
-\item 当\(\Delta<0\)时，方程的三个根各不相同，其中一个是实根，两个是共轭复根.
+	\item 当\(\Delta>0\)时，方程的三个根是各不相同的实根.
+	\item 当\(\Delta=0\)时，\begin{enumerate}
+		\item 如果\(p=q=0\)，则方程有三重实根；
+		\item 如果\(p\neq0\)且\(q\neq0\)，则方程有一个二重实根和一个与之不同的实根.
+		\end{enumerate}
+	\item 当\(\Delta<0\)时，方程的三个根各不相同，其中一个是实根，两个是共轭复根.
 \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[韦达定理]
+设\(x_1,x_2,x_3\)是\cref{equation:一元三次方程.一元三次方程的一般形式} 的三个根，
+则有\[
+	x_1 + x_2 + x_3 = -\frac{b}{a},
+	\qquad
+	x_1 x_2 + x_2 x_3 + x_3 x_1 = \frac{c}{a},
+	\qquad
+	x_1 x_2 x_3 = -\frac{d}{a}.
+\]
 \end{theorem}
