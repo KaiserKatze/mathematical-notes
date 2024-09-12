@@ -65,20 +65,17 @@ nosort%禁止压缩引用
 \def\crefpairconjunction{ 和 }
 \def\creflastconjunction{ 和 }%列表式引用，最后一个连词
 \def\crefnamezh#1#2{\crefname{#1}{#2}{#2}}%汉语词汇没有单复数的差别，因此第二、三个参数是相同的
-\crefnamezh{figure}{图}%
-\creflabelformat{figure}{#2{\rm#1}#3}%
-\crefnamezh{table}{表}%
-\creflabelformat{table}{#2{\rm#1}#3}%
-\crefnamezh{equation}{公式}%
-\creflabelformat{equation}{#2{\rm#1}#3}%
+\def\crefnamezhrm#1#2{\crefnamezh{#1}{#2}\creflabelformat{#1}{##2{\rm##1}##3}}%
+\crefnamezhrm{figure}{图}%
+\crefnamezhrm{table}{表}%
+\crefnamezhrm{equation}{公式}%
 \crefnamezh{chapter}{}%
 \creflabelformat{chapter}{#2第#1章#3}%
 \crefnamezh{section}{}%
 \creflabelformat{section}{第\kern2pt#2#1#3\kern2pt节}%
-\crefnamezh{equation-system}{方程组}%
-\creflabelformat{equation-system}{#2{\rm#1}#3}%
-\crefnamezh{polynomial}{多项式}%
-\creflabelformat{polynomial}{#2{\rm#1}#3}%
+\crefnamezhrm{equation-system}{方程组}%
+\crefnamezhrm{trigonometric-series}{三角级数}%
+\crefnamezhrm{polynomial}{多项式}%
 
 \NewDocumentCommand\pagecref{m}{第~\labelcpageref{#1}~页}
 

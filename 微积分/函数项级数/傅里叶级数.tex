@@ -1,6 +1,13 @@
 \section{傅里叶级数}
 从本节开始，我们讨论由三角函数组成的函数项级数，
-即所谓\DefineConcept{三角级数}，
+即所谓\DefineConcept{三角级数}（trigonometric series）\[
+	\sum_{n=0}^\infty (a_n \cos nx + b_n \sin nx),
+	\quad a_n,b_n\in\mathbb{R}.
+\]
+考虑到\(\cos0x=1,\sin0x=0\)，
+于是我们总是把三角级数表示成\begin{equation}\label[trigonometric-series]{equation:三角级数.三角级数}
+	a_0 + \sum_{n=1}^\infty (a_n \cos nx + b_n \sin nx).
+\end{equation}
 着重研究如何把函数展开成三角级数.
 
 \subsection{三角级数，三角函数系的正交性}
@@ -74,27 +81,51 @@ A_n \sin(n \omega t + \phi_n)
 \end{gather*}
 \end{definition}
 
+\subsection{三角级数的性质}
+\begin{property}\label{theorem:三角级数.具有绝对收敛系数的三角级数一致收敛且绝对收敛}
+如果常数项级数\(\sum_{n=1}^\infty a_n\)和\(\sum_{n=1}^\infty b_n\)绝对收敛，
+那么\cref{equation:三角级数.三角级数} 在区间\((-\infty,+\infty)\)上一致收敛且绝对收敛.
+\begin{proof}
+由\hyperref[theorem:无穷级数.魏尔斯特拉斯判别法]{魏尔斯特拉斯判别法}立即可得.
+%TODO proof 需要细说
+\end{proof}
+\end{property}
+
+\begin{property}
+如果常数项级数\(\sum_{n=1}^\infty a_n\)和\(\sum_{n=1}^\infty b_n\)绝对收敛，
+那么\cref{equation:三角级数.三角级数} 的和函数在区间\((-\infty,+\infty)\)上连续.
+\begin{proof}
+三角级数的各项是正弦函数或余弦函数，
+它们都在区间\((-\infty,+\infty)\)上连续，
+于是三角级数的部分和函数也在区间\((-\infty,+\infty)\)上连续.
+根据\cref{theorem:三角级数.具有绝对收敛系数的三角级数一致收敛且绝对收敛}，
+\cref{equation:三角级数.三角级数} 在区间\((-\infty,+\infty)\)上一致收敛且绝对收敛.
+那么由\cref{theorem:函数项级数.连续函数项级数的内闭一致收敛性保证和函数的连续性} 可知，
+\cref{equation:三角级数.三角级数} 的和函数在区间\((-\infty,+\infty)\)上连续.
+\end{proof}
+\end{property}
+
 \subsection{函数展开成傅里叶级数}
 \begin{definition}\label{definition:无穷级数.傅里叶级数}
 %@see: https://mathworld.wolfram.com/FourierSeries.html
 设\(f(x)\)是周期为\(2 \pi\)的周期函数.
 如果积分\[
-a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos nx \dd{x} \quad(n=0,1,2,\dotsc)
+	a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos nx \dd{x} \quad(n=0,1,2,\dotsc)
 \]和\[
-b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc)
+	b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc)
 \]都存在，
 那么它们定出的系数\(a_0,a_1,\dotsc,b_1,b_2,\dotsc\)叫做%
-“函数\(f(x)\)的\DefineConcept{傅里叶系数}（Fourier coefficient）”，
+“函数\(f\)的\DefineConcept{傅里叶系数}（Fourier coefficient）”，
 根据这些系数确定的三角级数\[
-\frac{a_0}{2} + \sum_{k=1}^\infty (a_k \cos{kx} + b_k \sin kx)
-\]称为“函数\(f(x)\)的\DefineConcept{傅里叶级数}（Fourier series）”.
+	\frac{a_0}{2} + \sum_{k=1}^\infty (a_k \cos{kx} + b_k \sin kx)
+\]称为“函数\(f\)的\DefineConcept{傅里叶级数}（Fourier series）”.
 \end{definition}
 
-一个定义在\((-\infty,+\infty)\)上周期为\(2\pi\)的函数\(f(x)\)，
+一个定义在\((-\infty,+\infty)\)上周期为\(2\pi\)的函数\(f\)，
 如果它在一个周期上可积，
 则一定可以作出\(f(x)\)的傅里叶级数.
-然而函数\(f(x)\)的傅里叶级数是否一定收敛？
-如果它收敛，它是否一定收敛于函数\(f(x)\)？
+然而函数\(f\)的傅里叶级数是否一定收敛？
+如果它收敛，它是否一定收敛于函数\(f\)？
 一般说来，这两个问题的答案都不是肯定的.
 那么，\(f(x)\)在怎样的条件下，它的傅里叶级数不仅收敛，而且收敛于\(f(x)\)？
 也就是说，\(f(x)\)满足什么条件可以展开成傅里叶级数？
@@ -114,7 +145,7 @@ b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc)
 
 \item 当\(x\)是\(f(x)\)的间断点时，
 级数收敛于\(\frac{1}{2} [ f(x^-) + f(x^+) ]\)\footnote{%
-函数\(f(x)\)的傅里叶级数在点\(x=\pm\pi\)处收敛于%
+函数\(f\)的傅里叶级数在点\(x=\pm\pi\)处收敛于%
 区间端点\(-\pi\)的右极限和\(\pi\)的左极限的算术平均值%
 \(\frac{1}{2} [ f(\pi^-) + f(-\pi^+) ]\).}.
 \end{enumerate}
@@ -140,7 +171,7 @@ b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc)
 \]
 
 \begin{theorem}
-设以\(2\pi\)为周期的函数\(f(x)\)的傅里叶系数为\(a_n,b_n\)，
+设以\(2\pi\)为周期的函数\(f\)的傅里叶系数为\(a_n,b_n\)，
 那么函数\(f(x+h)\ (h\text{是常数})\)的傅里叶系数为\[
 \alpha_n
 = a_n \cos nh + b_n \sin nh,
@@ -234,50 +265,65 @@ x, & -\pi \leq x < 0, \\
 \end{example}
 
 \subsection{周期延拓}
-应注意，如果函数\(f(x)\)只在\([-\pi,\pi]\)上有定义，并且满足收敛定理的条件，那么\(f(x)\)也可以展开成傅里叶级数.
-事实上，我们可在\([-\pi,\pi)\)或\((-\pi,\pi]\)外补充函数\(f(x)\)的定义，使它拓广成周期为\(2\pi\)的周期函数\(F(x)\).
+应注意，如果函数\(f\)只在\([-\pi,\pi]\)上有定义，
+并且满足收敛定理的条件，那么\(f(x)\)也可以展开成傅里叶级数.
+事实上，我们可在\([-\pi,\pi)\)或\((-\pi,\pi]\)外补充函数\(f\)的定义，
+使它拓广成周期为\(2\pi\)的周期函数\(F(x)\).
 按这种方式拓广函数的定义域的过程称为\DefineConcept{周期延拓}.
 再将\(F(x)\)展开成傅里叶级数.
-最后限制\(x\)在\((-\pi,\pi)\)内，此时\(F(x) \equiv f(x)\)，这样便得到\(f(x)\)的傅里叶级数展开式.
-根据\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}，这级数在区间端点\(x=\pm\pi\)处收敛于\(\frac{1}{2} [f(\pi^-) + f(-\pi^+)]\).
+最后限制\(x\)在\((-\pi,\pi)\)内，此时\(F(x) \equiv f(x)\)，
+这样便得到\(f(x)\)的傅里叶级数展开式.
+根据\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}，
+这级数在区间端点\(x=\pm\pi\)处收敛于\(\frac{1}{2} [f(\pi^-) + f(-\pi^+)]\).
 
 \subsection{正弦级数和余弦级数}
 一般说来，一个函数的傅里叶级数既含有正弦项，又含有余弦项.
 但是，也有一些函数的傅里叶级数只含有正弦项或或者只含有常数项和余弦项.
-这是什么原因呢？实际上这些情况是与所给函数\(f(x)\)的奇偶性有密切关系的.
-对于周期为\(2\pi\)的函数\(f(x)\)，它的傅里叶系数计算公式为\[
-a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos nx \dd{x} \quad(n=0,1,2,\dotsc),
+这是什么原因呢？实际上这些情况是与所给函数\(f\)的奇偶性有密切关系的.
+对于周期为\(2\pi\)的函数\(f\)，
+它的傅里叶系数计算公式为\[
+	a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos nx \dd{x} \quad(n=0,1,2,\dotsc),
 \]\[
-b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc).
+	b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin nx \dd{x} \quad(n=1,2,3,\dotsc).
 \]
 由于奇函数在对称区间上的积分为零，偶函数在对称区间上的积分等于半区间上积分的两倍，因此：
 
-当\(f(x)\)为奇函数时，\(f(x) \cos nx\)是奇函数，\(f(x) \sin nx\)是偶函数，故\[
-\begin{array}{ll}
-a_n = 0 & (n=0,1,2,\dotsc), \\
-b_n = \frac{2}{\pi} \int_0^\pi f(x) \sin nx \dd{x} & (n=1,2,3,\dotsc).
-\end{array}
-\]即知奇函数的傅里叶级数是只含有正弦项的\DefineConcept{正弦级数}\[
-\sum_{n=1}^\infty b_n \sin nx.
+当\(f\)为奇函数时，
+\(x \mapsto f(x) \cos nx\)是奇函数，
+\(x \mapsto f(x) \sin nx\)是偶函数，
+故\[
+	\begin{array}{ll}
+		a_n = 0 & (n=0,1,2,\dotsc), \\
+		b_n = \frac{2}{\pi} \int_0^\pi f(x) \sin nx \dd{x} & (n=1,2,3,\dotsc).
+	\end{array}
+\]
+即知奇函数的傅里叶级数是
+只含有正弦项的\DefineConcept{正弦级数}（sine series）\[
+	\sum_{n=1}^\infty b_n \sin nx.
 \]
 
-当\(f(x)\)为偶函数时，\(f(x) \cos nx\)是偶函数，\(f(x) \sin nx\)是奇函数，故\[
-\begin{array}{ll}
-a_n = \frac{2}{\pi} \int_0^\pi f(x) \cos nx \dd{x} & (n=0,1,2,\dotsc), \\
-b_n = 0 & (n=1,2,3,\dotsc).
-\end{array}
-\]即知偶函数的傅里叶级数是只含有常数项和余弦项的\DefineConcept{余弦级数}\[
-\frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos{nx}.
+当\(f\)为偶函数时，
+\(x \mapsto f(x) \cos nx\)是偶函数，
+\(x \mapsto f(x) \sin nx\)是奇函数，
+故\[
+	\begin{array}{ll}
+		a_n = \frac{2}{\pi} \int_0^\pi f(x) \cos nx \dd{x} & (n=0,1,2,\dotsc), \\
+		b_n = 0 & (n=1,2,3,\dotsc).
+	\end{array}
+\]
+即知偶函数的傅里叶级数是
+只含有常数项和余弦项的\DefineConcept{余弦级数}（cosine series）\[
+	\frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos{nx}.
 \]
 
 \subsection{奇延拓与偶延拓}
 在实际应用（如研究某种波动问题，热的传导、扩散问题）中，
-有时还需要把定义在区间\([0,\pi]\)上的函数\(f(x)\)展开成正弦级数或余弦级数.
+有时还需要把定义在区间\([0,\pi]\)上的函数\(f\)展开成正弦级数或余弦级数.
 根据前面讨论的结果，这类展开问题可以按如下的方法解决：
 \begin{enumerate}
-\item 设函数\(f(x)\)定义在区间\([0,\pi]\)上%
+\item 设函数\(f\)定义在区间\([0,\pi]\)上%
 并且满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件，
-我们在开区间\((-\pi,0)\)内补充函数\(f(x)\)的定义，
+我们在开区间\((-\pi,0)\)内补充函数\(f\)的定义，
 得到定义在\((-\pi,\pi]\)上的函数\(F(x)\)，
 使它在\((-\pi,\pi)\)上成为奇函数\footnote{%
 补充\(f(x)\)的定义使它在\((-\pi,\pi)\)上成为奇函数时，
@@ -354,7 +400,7 @@ b_n = 0 & (n=1,2,3,\dotsc).
 \]分别展开成正弦级数和余弦级数.
 \begin{solution}
 先展开成正弦级数.
-为此对函数\(f(x)\)作奇延拓，
+为此对函数\(f\)作奇延拓，
 如\cref{figure:傅里叶级数.奇延拓1}，
 那么傅里叶系数为\begin{align*}
 	b_n &= \frac{2}{\pi} \int_0^\pi f(x) \sin nx \dd{x}
@@ -396,7 +442,7 @@ f(x) = \frac{1}{\pi} \left[
 在端点\(x=0\)处级数收敛到令，它不等于\(f(0)\).
 
 再展开成余弦级数.
-为此对函数\(f(x)\)作偶延拓，
+为此对函数\(f\)作偶延拓，
 如\cref{figure:傅里叶级数.偶延拓1}，
 那么傅里叶系数为\begin{align*}
 	a_n &= \frac{2}{\pi} \int_0^\pi f(x) \cos nx \dd{x}
@@ -424,7 +470,7 @@ f(x) = \frac{1}{\pi} \left[
 \end{example}
 
 \begin{example}
-设周期函数\(f(x)\)的周期为\(2\pi\)，
+设周期函数\(f\)的周期为\(2\pi\)，
 证明：\begin{enumerate}
 \item 如果\(f(x-\pi) = -f(x)\)，
 则\(f(x)\)的傅里叶系数满足\[
@@ -441,7 +487,7 @@ f(x) = \frac{1}{\pi} \left[
 \]
 \end{enumerate}
 \begin{proof}
-写出函数\(f(x)\)的傅里叶级数如下：\[
+写出函数\(f\)的傅里叶级数如下：\[
 	f(x) = \frac{a_0}{2}
 	+ \sum_{k=1}^\infty \left(
 		a_k \cos kx
