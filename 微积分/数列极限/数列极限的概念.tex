@@ -9,23 +9,20 @@
 使得当\(n > N\)时，
 不等式\(\abs{x_n - a} < \epsilon\)都成立，
 那么就称“数列\(\{x_n\}\)是\DefineConcept{收敛的}（convergent）”
-或“数列\(\{x_n\}\) \DefineConcept{收敛}（converge）”；
-称常数\(a\)为“\(\{x_n\}\)的\DefineConcept{极限}（limit）”；
-又称“数列\(\{x_n\}\) \DefineConcept{收敛于} \(a\)”；
-记为\(\lim_{n\to\infty} x_n = a\)
-或\(x_n\to a\ (n\to\infty)\).
+“数列\(\{x_n\}\)~\DefineConcept{收敛}（converge）”
+“常数\(a\)是数列\(\{x_n\}\)的\DefineConcept{极限}（limit）”
+“数列\(\{x_n\}\)~\DefineConcept{收敛于}~\(a\)”，
+记为\[
+	\lim_{n\to\infty} x_n = a
+	\quad\text{或}\quad
+	x_n\to a\ (n\to\infty).
+\]
 否则，称“数列\(\{x_n\}\)没有极限”
-或“数列\(\{x_n\}\)是\DefineConcept{发散的}（divergent）”
-或“数列\(\{x_n\}\) \DefineConcept{发散}（diverge）”
-或“极限\(\lim_{n\to\infty} x_n\)不存在”.
+“数列\(\{x_n\}\)是\DefineConcept{发散的}（divergent）”
+“数列\(\{x_n\}\)~\DefineConcept{发散}（diverge）”
+“极限\(\lim_{n\to\infty} x_n\)不存在”.
 %@see: https://mathworld.wolfram.com/Limit.html
 \end{definition}
-
-上面定义中正数\(\epsilon\)可以任意给定是很重要的，
-因为只有这样，不等式\(\abs{x_n - a} < \epsilon\)才能表达出\(x_n\)与\(a\)“无限接近”的意思.
-此外还应注意到：
-定义中的正整数\(N\)是与任意给定的正数\(\epsilon\)有关的，
-它随着\(\epsilon\)的给定而选定.
 
 %@see: https://mathworld.wolfram.com/Epsilon-DeltaDefinition.html
 %@see: https://mathworld.wolfram.com/Epsilon-DeltaProof.html
@@ -42,17 +39,15 @@
 		n > N
 		\implies
 		\abs{x_n - a} < \epsilon
-	]; \\
+	]. \\
 	\text{数列\(\{x_n\}\)收敛}
 	&\defiff
 	(\exists a\in\mathbb{R})
 	\left[
 		\lim_{n\to\infty} x_n = a
-	\right].
-\end{align*}
-并且我们有\[
+	\right]. \\
 	\text{数列\(\{x_n\}\)发散}
-	\iff
+	&\iff
 	(\forall a \in \mathbb{R})
 	(\exists\epsilon>0)
 	(\forall N\in\mathbb{N})
@@ -60,62 +55,100 @@
 	[
 		\abs{a_n - a} > \epsilon
 	].
+\end{align*}
+
+\begin{definition}
+%@see: 《数学分析（第五版 上册）》（华东师范大学） P25 定义2
+若数列\(\{x_n\}\)满足\(\lim_{n\to\infty} x_n = 0\)，
+则称“数列\(\{x_n\}\)是\DefineConcept{无穷小}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P46 定义2.3.1
+%@see: 《数学分析（第五版 上册）》（华东师范大学） P25 定义3
+若数列\(\{x_n\}\)满足\[
+	(\forall G>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n > N \implies \abs{x_n} > G],
+\]
+则称“数列\(\{x_n\}\)是\DefineConcept{无穷大}”
+“数列\(\{x_n\}\)趋向于极限\(\infty\)”
+“数列\(\{x_n\}\)发散到\(\infty\)”，
+记作\[
+	\lim_{n\to\infty} x_n = \infty
+	\quad\text{或}\quad
+	x_n\to\infty\ (n\to\infty).
 \]
 
-\begin{proposition}
-设\(a,b\)是实常数，对于数列\(\{x_n\}\)，
-有\[
-	\lim_{n\to\infty} x_n = a
-	\iff
-	\lim_{n\to\infty} (x_n + b) = a + b.
+若数列\(\{x_n\}\)满足\[
+	(\forall G>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n > N \implies x_n > G],
 \]
-\begin{proof}
-根据数列极限的定义有\begin{align*}
-	&\lim_{n\to\infty} x_n = a \\
-	&\iff
-	(\forall \epsilon > 0)
+则称“数列\(\{x_n\}\)是\DefineConcept{正无穷大}”
+“数列\(\{x_n\}\)趋向于极限\(+\infty\)”
+“数列\(\{x_n\}\)发散到\(+\infty\)”，
+记作\[
+	\lim_{n\to\infty} x_n = +\infty
+	\quad\text{或}\quad
+	x_n\to+\infty\ (n\to\infty).
+\]
+
+若数列\(\{x_n\}\)满足\[
+	(\forall G>0)
 	(\exists N\in\mathbb{N})
 	(\forall n\in\mathbb{N})
-	[
-		n > N
-		\implies
-		\abs{x_n - a} < \epsilon
-	] \\
-	&\iff
-	(\forall \epsilon > 0)
-	(\exists N\in\mathbb{N})
-	(\forall n\in\mathbb{N})
-	[
-		n > N
-		\implies
-		\abs{(x_n+b) - (a+b)} < \epsilon
-	] \\
-	&\iff
-	\lim_{n\to\infty} (x_n+b) = a+b.
-	\qedhere
-\end{align*}
-\end{proof}
-\end{proposition}
+	[n > N \implies x_n < -G],
+\]
+则称“数列\(\{x_n\}\)是\DefineConcept{负无穷大}”
+“数列\(\{x_n\}\)趋向于极限\(-\infty\)”
+“数列\(\{x_n\}\)发散到\(-\infty\)”，
+记作\[
+	\lim_{n\to\infty} x_n = -\infty
+	\quad\text{或}\quad
+	x_n\to-\infty\ (n\to\infty).
+\]
+
+我们把正无穷大和负无穷大统称为\DefineConcept{定号无穷大}，
+把既非正无穷大又非负无穷大的无穷大称为\DefineConcept{不定号无穷大}.
+\end{definition}
 
 \begin{example}
 证明数列\[
-2,\frac{1}{2},\frac{4}{3},\frac{3}{4},\dotsc,\frac{n+(-1)^{n-1}}{n},\dotsc
+	2,\frac{1}{2},\frac{4}{3},\frac{3}{4},\dotsc,\frac{n+(-1)^{n-1}}{n},\dotsc
 \]的极限是1.
 \begin{proof}
 由于\[
-\abs{x_n - 1}
-= \abs{\frac{n+(-1)^{n-1}}{n}-1}
-= \abs{\frac{(-1)^{n-1}}{n}}
-= \frac{1}{n},
-\]所以为使\(\abs{x_n - 1} < \epsilon\)，须取\(\frac{1}{n} < \epsilon\)或\(\frac{1}{\epsilon} < n\).
-也就是说，对于\(\forall \epsilon > 0\)，取\(N = \floor*{\frac{1}{\epsilon}}\)，则当\(n > N\)时，就有\(\abs{x_n - a} < \epsilon\)，即\(\lim_{n\to\infty}\frac{n+(-1)^{n-1}}{n}=1\).
+	\abs{x_n - 1}
+	= \abs{\frac{n+(-1)^{n-1}}{n}-1}
+	= \abs{\frac{(-1)^{n-1}}{n}}
+	= \frac{1}{n},
+\]
+所以为使\(\abs{x_n - 1} < \epsilon\)，
+须取\(\frac{1}{n} < \epsilon\)或\(\frac{1}{\epsilon} < n\).
+也就是说，对于\(\forall \epsilon > 0\)，
+取\(N = \floor*{\frac{1}{\epsilon}}\)，
+则当\(n > N\)时，就有\(\abs{x_n - a} < \epsilon\)，
+即\(\lim_{n\to\infty}\frac{n+(-1)^{n-1}}{n}=1\).
 \end{proof}
 \end{example}
 
 \begin{example}
-已知\(x_n = \frac{(-1)^n}{(n+1)^2}\)，证明数列\(\Set{x_n}\)的极限是\(0\).
+已知\(x_n = \frac{(-1)^n}{(n+1)^2}\)，
+证明数列\(\Set{x_n}\)的极限是\(0\).
 \begin{proof}
-因为\(\abs{x_n - a} = \abs{\frac{(-1)^n}{(n+1)^2}-0} = \frac{1}{(n+1)^2} < \frac{1}{n+1}\)，所以对于\(\forall\epsilon>0\)（设\(\epsilon<1\)），只要\(\frac{1}{n+1}<\epsilon\)或\(n>\frac{1}{\epsilon}-1\)，不等式\(\abs{x_n-a}<\epsilon\)必定成立.所以，取\(N=\floor*{\frac{1}{\epsilon}-1}\)，则当\(n>N\)时就有\(\abs{x_n - a}<\epsilon\)，即\(\lim_{n\to\infty}\frac{(-1)^n}{(n+1)^2}=0\).
+因为\(\abs{x_n - a}
+= \abs{\frac{(-1)^n}{(n+1)^2}-0}
+= \frac{1}{(n+1)^2}
+< \frac{1}{n+1}\)，
+所以对于\(\forall\epsilon>0\)（设\(\epsilon<1\)），
+只要\(\frac{1}{n+1}<\epsilon\)或\(n>\frac{1}{\epsilon}-1\)，
+不等式\(\abs{x_n-a}<\epsilon\)必定成立.
+所以，取\(N=\floor*{\frac{1}{\epsilon}-1}\)，
+则当\(n>N\)时就有\(\abs{x_n - a}<\epsilon\)，
+即\(\lim_{n\to\infty}\frac{(-1)^n}{(n+1)^2}=0\).
 \end{proof}
 \end{example}
 
@@ -151,6 +184,18 @@
 \end{equation}
 由此可知，当\(\abs{q}<1\)时，
 等比数列\(1,q,q^2,\dotsc,q^{n-1},\dotsc\)的极限是\(0\).
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P46 例2.3.1
+设\(\abs{q}>1\)，证明\(\{q^n\}\)是无穷大.
+\begin{proof}
+对\(\forall G>1\)，
+取\(N=\ceil*{\frac{\ln G}{\ln\abs{q}}}\)，
+于是对\(\forall n>N\)
+有\(\abs{q}^n > \abs{q}^N \geq \abs{q}^{\frac{\ln G}{\ln\abs{q}}} = G\).
+因此\(\{q^n\}\)是无穷大.
 \end{proof}
 \end{example}
 
@@ -281,38 +326,66 @@
 \end{remark}
 
 \begin{proposition}\label{theorem:极限.数列的绝对值的极限}
-设数列\(\{x_n\}\)的极限\(\lim_{n\to\infty} x_n\)存在，
-则\(\lim_{n\to\infty} \abs{x_n} = \abs{\lim_{n\to\infty} x_n}\).
+设数列\(\{x_n\}\)的极限\(\lim_{n\to\infty} x_n\)存在且有限，
+则\[
+	\lim_{n\to\infty} \abs{x_n} = \abs{\lim_{n\to\infty} x_n}.
+\]
 \begin{proof}
 假设\(\lim_{n\to\infty} x_n = a\)，
-那么\((\forall\epsilon>0)
-(\exists N\in\mathbb{N})
-(\forall n\in\mathbb{N})
-[n>N \implies \abs{x_n - a} < \epsilon]\)；
-由\hyperref[theorem:不等式.三角不等式2]{三角不等式}有
-\(\abs{\abs{x_n} - \abs{a}} \leq \abs{x_n - a}\)，
-于是有\(\abs{\abs{x_n} - \abs{a}} < \epsilon\)，
+那么\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n>N \implies \abs{x_n - a} < \epsilon].
+\]
+由\hyperref[theorem:不等式.三角不等式2]{三角不等式}有\[
+	\abs{\abs{x_n} - \abs{a}} \leq \abs{x_n - a}.
+\]
+于是有\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n>N \implies \abs{\abs{x_n} - \abs{a}} < \epsilon],
+\]
 也就是说\(\lim_{n\to\infty} \abs{x_n} = \abs{a}\).
 \end{proof}
 \end{proposition}
 
 \begin{example}\label{example:极限.指标变化时数列极限不变}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P45 习题 4.
-设\(k\in\mathbb{N}^+\).
-证明：\(\lim_{n\to\infty} x_n = a \iff \lim_{n\to\infty} x_{n+k} = a\).
+证明：\[
+	(\forall k\in\mathbb{N}^+)
+	\left[ \lim_{n\to\infty} x_n = a \iff \lim_{n\to\infty} x_{n+k} = a \right].
+\]
 \begin{proof}
 假设\(\lim_{n\to\infty} x_n = a\).
-根据定义，对于\(\forall\epsilon>0\)，
-存在正整数\(N\)，只要\(n>N\)，就有\(\abs{x_n-a}<\epsilon\).
-因为\(n+k>n\)，所以\(\abs{x_{n+k}-a}<\epsilon\)必然成立，
+根据定义有\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		\abs{x_n-a}<\epsilon
+	].
+\]
+因为\(n+k>n>N\)，所以\(\abs{x_{n+k}-a}<\epsilon\)必然成立，
 从而有\(\lim_{n\to\infty} x_{n+k} = a\).
 
 假设\(\lim_{n\to\infty} x_{n+k} = a\).
-同样根据定义，对于\(\forall\epsilon>0\)，
-存在正整数\(N\)，只要\(n>N\)，
-或者说只要\(m=n+k>N+k\)，
-就有\(\abs{x_m-a}<\epsilon\)，
-于是有\(\lim_{m\to\infty} x_m = a\).
+根据定义有\[
+	(\forall\epsilon>0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n>N
+		\implies
+		m \defeq n+k > N
+		\implies
+		\abs{x_m-a}<\epsilon
+	],
+\]
+于是\(\lim_{m\to\infty} x_m = a\).
 \end{proof}
 \end{example}
 

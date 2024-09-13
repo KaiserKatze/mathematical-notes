@@ -8,7 +8,7 @@
 用反证法.
 假设当\(n\to\infty\)时，同时有\(x_n \to a\)及\(x_n \to b\)，且\(a < b\).
 取\(\epsilon = \frac{b-a}{2}\).
-因为\(\lim_{n\to\infty}x_n = a\)，所以有
+因为\(\lim_{n\to\infty} x_n = a\)，所以有
 \[
 	(\exists N_1\in\mathbb{N})
 	(\forall n\in\mathbb{N})
@@ -16,7 +16,7 @@
 	\eqno(1)
 \]成立.
 
-同理，因为\(\lim_{n\to\infty}x_n = b\)，所以有
+同理，因为\(\lim_{n\to\infty} x_n = b\)，所以有
 \[
 	(\exists N_2 \in \mathbb{N})
 	(\forall n\in\mathbb{N})
@@ -33,7 +33,7 @@
 \begin{example}\label{example:极限.振荡数列不存在极限}
 证明数列\(x_n=(-1)^{n+1}\ (n=1,2,\dotsc)\)是发散的.
 \begin{proof}
-假设这级数收敛，则它具有唯一的极限\(\lim_{n\to\infty}x_n = a\).
+假设这级数收敛，则它具有唯一的极限\(\lim_{n\to\infty} x_n = a\).
 按数列极限的定义，对于\(\epsilon=1/2\)，\(\exists N \in \mathbb{N}^+\)，当\(n > N\)时，\(\abs{x_n-a}<1/2\)或\(x_n\in\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)成立.
 但这是不可能的，因为\(n\to\infty\)时，\(x_n\)无休止地一再重复取得\(1\)和\(-1\)这两个数，而这两个数不可能同时属于长度为\(1\)的开区间\(\left(a-\frac{1}{2},a+\frac{1}{2}\right)\)内，因此这数列发散.
 \end{proof}
@@ -47,7 +47,7 @@
 那么数列\(\{x_n\}\)一定有界.
 \begin{proof}
 既然数列\(\{x_n\}\)收敛，
-不妨设\(\lim_{n\to\infty}x_n = a\).
+不妨设\(\lim_{n\to\infty} x_n = a\).
 根据数列极限的定义，
 对于\(\epsilon = 1\)，
 \(\exists N \in \mathbb{N}^+\)，
@@ -80,7 +80,7 @@
 数列有界是数列收敛的必要不充分条件.
 
 \subsection{保序性}
-\begin{theorem}[保序性]\label{theorem:极限.收敛数列的保序性}
+\begin{theorem}[保序性]\label{theorem:极限.收敛数列的保序性1}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P39 定理2.2.3
 设数列\(\{x_n\},\{y_n\}\)均收敛.
 若\(\lim_{n\to\infty} x_n = a,
@@ -124,10 +124,36 @@
 \end{proof}
 \end{theorem}
 
-\begin{corollary}[保号性]\label{theorem:极限.收敛数列的保号性}
+需要注意到，\cref{theorem:极限.收敛数列的保序性1} 的逆命题不成立，
+也就是说，由\[
+	\lim_{n\to\infty} x_n = a, \qquad
+	\lim_{n\to\infty} y_n = b, \qquad
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[n>N \implies x_n < y_n]
+\]这三个条件，
+无法推出\(a<b\)的结论.
+数列\[
+	\{x_n = 0\}, \qquad
+	\{y_n = 1/n\},
+	\quad\text{和}\quad
+	\{z_n = 2/n\}
+\]就是例子.
+因此，我们只能得到如下结论：
+\begin{theorem}\label{theorem:极限.收敛数列的保序性2}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P41
+设\(\lim_{n\to\infty} x_n = a,
+\lim_{n\to\infty} y_n = b\).
+若\((\exists N\in\mathbb{N})
+(\forall n\in\mathbb{N})
+[n>N \implies x_n < y_n]\)，
+则\(a \leq b\).
+\end{theorem}
+
+\begin{corollary}[保号性]\label{theorem:极限.收敛数列的保号性1}
 %@see: 《高等数学（第六版 上册）》 P29 定理3
 %@see: 《数学分析（第二版 上册）》（陈纪修） P40 推论
-设\(\lim_{n\to\infty}x_n = a\).
+设\(\lim_{n\to\infty} x_n = a\).
 \begin{itemize}
 	\item 若\(a > 0\)，
 	那么\((\exists N\in\mathbb{N})
@@ -158,33 +184,7 @@
 \end{proof}
 \end{corollary}
 
-需要注意到，\cref{theorem:极限.收敛数列的保序性} 的逆命题不成立，
-也就是说，由\[
-	\lim_{n\to\infty} x_n = a, \qquad
-	\lim_{n\to\infty} y_n = b, \qquad
-	(\exists N\in\mathbb{N})
-	(\forall n\in\mathbb{N})
-	[n>N \implies x_n < y_n]
-\]这三个条件，
-无法推出\(a<b\)的结论.
-数列\[
-	\{x_n = 0\}, \qquad
-	\{y_n = 1/n\},
-	\quad\text{和}\quad
-	\{z_n = 2/n\}
-\]就是例子.
-因此，我们只能得到如下结论：
-\begin{proposition}\label{theorem:数列极限.夹逼准则.引理}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P41
-设\(\lim_{n\to\infty} x_n = a,
-\lim_{n\to\infty} y_n = b\).
-若\((\exists N\in\mathbb{N})
-(\forall n\in\mathbb{N})
-[n>N \implies x_n < y_n]\)，
-则\(a \leq b\).
-\end{proposition}
-
-\begin{corollary}
+\begin{corollary}\label{theorem:极限.收敛数列的保号性2}
 %@see: 《高等数学（第六版 上册）》 P30 推论
 设\(\lim_{n\to\infty} x_n = a\).
 \begin{itemize}
@@ -236,3 +236,39 @@
 因此\(\lim_{n\to\infty} x_n y_n = 0\).
 \end{proof}
 \end{example}
+
+\subsection{线性性}
+\begin{theorem}[线性性]
+设\(a,b\)是实常数，对于数列\(\{x_n\}\)，
+有\[
+	\lim_{n\to\infty} x_n = a
+	\iff
+	\lim_{n\to\infty} (k x_n + b) = k a + b.
+\]
+\begin{proof}
+根据数列极限的定义有\begin{align*}
+	&\lim_{n\to\infty} x_n = a \\
+	&\iff
+	(\forall \epsilon > 0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{k x_n - k a} < k \epsilon
+	] \\
+	&\iff
+	(\forall \epsilon > 0)
+	(\exists N\in\mathbb{N})
+	(\forall n\in\mathbb{N})
+	[
+		n > N
+		\implies
+		\abs{(k x_n + b) - (k a + b)} < k \epsilon
+	] \\
+	&\iff
+	\lim_{n\to\infty} (k x_n + b) = k a + b.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
