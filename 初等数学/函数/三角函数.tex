@@ -2,53 +2,78 @@
 \subsection{三角函数的概念}
 \begin{figure}[ht]
 	\centering
-	\begin{tikzpicture}
-		\draw[help lines, color=gray!30, dashed](0,0)grid(4,3);
-		\coordinate(A)at(0,0);
-		\coordinate(B)at(4,0);
-		\coordinate(C)at(4,3);
-		\draw (A)node[left]{\(A\)}
-			--(B)node[right]{\(B\)}node[midway,below]{\(c\)}
-			--(C)node[right]{\(C\)}node[midway,right]{\(a\)}
-			--(A)node[midway,left,above]{\(b\)}
-			pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]{angle=B--A--C}
-			pic[draw=gray,-,angle radius=0.3cm]{right angle=C--B--A};
+	\begin{tikzpicture}[scale=6]
+		\draw(1,0)coordinate(A)node[below]{$A$}
+			arc[start angle=0,end angle=90,radius=1](0,1)node[left]{$B$};
+		\draw(0,0)coordinate(O)node[below left]{$O$}
+			--(.866,.5)coordinate(P)node[above]{$P$}
+			--(.866,0)coordinate(Q)node[below]{$Q$};
+		\draw(P)--(1,.577)coordinate(R)node[right]{$R$}--(A);
+		\begin{scope}[->,>=Stealth]
+			\draw(0,0)--(1.2,0)node[below]{$x$};
+			\draw(0,0)--(0,1.2)node[left]{$y$};
+		\end{scope}
+		\draw pic["$\theta$",draw=orange,-,angle eccentricity=1.2,angle radius=1cm]{angle=Q--O--P};
+		\draw pic[draw=gray,-,angle radius=.5cm]{right angle=P--Q--O};
 	\end{tikzpicture}
 	\caption{}
 	\label{figure:函数.三角函数.三角函数的几何定义}
 \end{figure}
 
-\begin{definition}\label{definition:函数.三角函数的几何定义}
 如\cref{figure:函数.三角函数.三角函数的几何定义}，
-取任意一个直角三角形\(\triangle ABC\)，
-其中\(\angle B\)是直角（即\(\angle ABC = \pi/2\)），
-假设\(\angle BAC = \theta\).
-定义三角函数如下：
-\begin{center}
-	\begin{tabular}{cc|cc|cc}
-		\hline
-		名称 & 定义式 & 名称 & 定义式 & 名称 & 定义式 \\ \hline
-		正弦 & \(\sin\theta = a/b\)
-			& 正切 & \(\tan\theta = a/c\)
-				& 正割 & \(\sec\theta = b/c\) \\
-		余弦 & \(\cos\theta = c/b\)
-			& 余切 & \(\cot\theta = c/a\)
-				& 余割 & \(\csc\theta = b/a\) \\
-		\hline
-	\end{tabular}
-\end{center}
-\end{definition}
+首先在平面直角坐标系\(Oxy\)中
+画出一个单位圆\(\odot~O\)，
+分别交\(x\)轴、\(y\)轴于\(A\)、\(B\)两点.
+在\(\odot~O\)上任取一点\(P\)，过\(P\)作\(OA\)的垂线交\(OA\)于\(Q\).
+过点\(A\)作\(OA\)的垂线交射线\(OP\)于\(R\).
+记\(\angle POQ = \theta\).
+定义：\begin{gather}
+	\sin\theta \defeq \abs{\overline{PQ}}, \\
+	\cos\theta \defeq \abs{\overline{OQ}}, \\
+	\tan\theta \defeq \sin\theta/\cos\theta, \\
+	\cot\theta \defeq \cos\theta/\sin\theta, \\
+	\sec\theta \defeq 1/\cos\theta, \\
+	\csc\theta \defeq 1/\sin\theta.
+\end{gather}
+我们把\(\sin,\cos,\tan,\cot,\sec,\csc\)
+依次称为\DefineConcept{正弦函数}、
+\DefineConcept{余弦函数}、
+\DefineConcept{正切函数}、
+\DefineConcept{余切函数}、
+\DefineConcept{正割函数}、
+\DefineConcept{余割函数}，
+统称为\DefineConcept{三角函数}.
+
+不难想象，当\(P\)在圆周上逆时针平移时，
+\(\theta\)逐渐增大，
+线段\(\overline{OP}\)的长度\(\abs{\overline{OP}}\)始终保持不变，
+线段\(\overline{PQ}\)的长度\(\abs{\overline{PQ}}\)逐渐增大，
+线段\(\overline{OQ}\)的长度\(\abs{\overline{OQ}}\)逐渐减小.
+当\(P\)与\(B\)重合时，
+\(\abs{\overline{OP}}
+= \abs{\overline{PQ}}
+= \abs{\overline{OB}} = 1\)
+且\(\abs{\overline{OQ}} = 0\).
+当\(P\)在圆周上顺时针平移时，
+\(\theta\)逐渐减小，
+线段\(\overline{OP}\)的长度\(\abs{\overline{OP}}\)依旧始终保持不变，
+线段\(\overline{PQ}\)的长度\(\abs{\overline{PQ}}\)逐渐减小，
+线段\(\overline{OQ}\)的长度\(\abs{\overline{OQ}}\)逐渐增大.
+当\(P\)与\(A\)重合时，
+\(\abs{\overline{OP}}
+= \abs{\overline{OA}} = 1\)
+且\(\abs{\overline{PQ}} = 0\).
 
 \begin{example}
 下面列出一些特殊的正弦函数值：\[
-\sin0 = 0, \quad
-\sin\frac{\pi}{6} = \frac{1}{2}, \quad
-\sin\frac{\pi}{4} = \frac{\sqrt{2}}{2}, \quad
-\sin\frac{\pi}{3} = \frac{\sqrt{3}}{2},
+	\sin0 = 0, \quad
+	\sin\frac{\pi}{6} = \frac{1}{2}, \quad
+	\sin\frac{\pi}{4} = \frac{\sqrt{2}}{2}, \quad
+	\sin\frac{\pi}{3} = \frac{\sqrt{3}}{2},
 \]\[
-\sin\frac{\pi}{2} = 1, \quad
-\sin\pi = 0, \quad
-\sin\frac{3\pi}{2} = -1.
+	\sin\frac{\pi}{2} = 1, \quad
+	\sin\pi = 0, \quad
+	\sin\frac{3\pi}{2} = -1.
 \]
 
 \begin{figure}[ht]
