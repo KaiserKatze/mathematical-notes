@@ -167,27 +167,48 @@
 %@Mathematica: FullSimplify[Log[x + Sqrt[x^2 - 1]] + Log[x - Sqrt[x^2 - 1]], Assumptions -> {x >= 1}]
 %@credit: {cee35532-e299-4587-89a0-7b84e7454774}
 
-类似地可得反双曲正切\[
+然后讨论双曲正切函数\(\tanh\)的反函数.
+由\[
+	x = \tanh y
+	= \frac{e^y-e^{-y}}{e^y+e^{-y}}
+	= \frac{e^{2y}-1}{e^{2y}+1},
+\]得\[
+	(1-x) e^{2y} = 1+x,
+\]
+解得\(y = \frac12 \ln\frac{1+x}{1-x}\).
+要使对数\(\ln\frac{1+x}{1-x}\)有意义，必有\((1+x)(1-x)>0\)，
+即\(x\in(-1,1)\).
+于是反双曲正切函数可以定义为\[
 	\artanh x
 	\defeq
-	\frac{1}{2} \ln\frac{1 + x}{1 - x},
-	\quad -1<x<1;
+	\frac12 \ln\frac{1 + x}{1 - x},
+	\quad -1<x<1.
 \]
-以及反双曲余切\[
+
+最后讨论双曲余切函数\(\coth\)的反函数.
+由\[
+	x = \coth y
+	= \frac{e^y+e^{-y}}{e^y-e^{-y}}
+	= \frac{e^{2y}+1}{e^{2y}-1},
+\]得\[
+	(x-1) e^{2y} = 1+x,
+\]
+解得\(y = \frac12 \ln\frac{x+1}{x-1}\).
+要使对数\(\ln\frac{x+1}{x-1}\)有意义，必有\((x+1)(x-1)>0\)，
+即\(x\in(-\infty,-1)\cup(1,+\infty)\).
+于是反双曲余切函数可以定义为\[
 	\arcoth x
 	\defeq
-	\frac{1}{2} \ln\frac{x + 1}{x - 1},
+	\frac12 \ln\frac{x + 1}{x - 1},
 	\quad -\infty<x<-1\lor1<x<+\infty.
 \]
 
 \begin{property}
-\(\sinh x\)是奇函数，即对\(\forall x \in [-a,a]\)有\[
-	\sinh(-x) = -\sinh x;
-\]
+双曲正弦\(\sinh\)是奇函数.
+\end{property}
 
-\(\cosh x\)是偶函数，即对\(\forall x \in [-a,a]\)有\[
-	\cosh(-x) = \cosh x.
-\]
+\begin{property}
+双曲余弦\(\cosh\)是偶函数.
 \end{property}
 
 \begin{property}
@@ -212,7 +233,7 @@
 	&= \frac{1}{4} (e^x e^y + e^x e^{-y} - e^{-x} e^y - e^{-x} e^{-y} \\
 	&\qquad+ e^x e^y - e^x e^{-y} + e^{-x} e^y - e^{-x} e^{-y}) \\
 	&= \frac{1}{4} (2 e^x e^y - 2 e^{-x} e^{-y}) \\
-	&= \frac{1}{2} (e^{x+y} - e^{-x-y}) = \sinh(x+y).
+	&= \frac12 (e^{x+y} - e^{-x-y}) = \sinh(x+y).
 \end{align*}
 \begin{align*}
 	\cosh x\cosh y+\sinh x\sinh y
@@ -221,7 +242,7 @@
 	&= \frac{1}{4} (e^x e^y + e^x e^{-y} + e^{-x} e^y + e^{-x} e^{-y} \\
 	&\qquad+ e^x e^y - e^x e^{-y} - e^{-x} e^y + e^{-x} e^{-y}) \\
 	&= \frac{1}{4} (2 e^x e^y + 2 e^{-x} e^{-y}) \\
-	&= \frac{1}{2} (e^{x+y} + e^{-x-y}) = \cosh(x+y).
+	&= \frac12 (e^{x+y} + e^{-x-y}) = \cosh(x+y).
 	\qedhere
 \end{align*}
 \end{proof}
