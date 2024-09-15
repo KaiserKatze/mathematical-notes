@@ -46,17 +46,20 @@
 点\(M\)保持不动，也就是说\(\vb{A}\vb{X}=1\cdot\vb{X}\).
 \end{example}
 
-\subsection{特征值、特征向量的概念与性质}
+\subsection{特征值，特征向量}
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P172 定义1
+%@see: 《线性代数》（张慎语、周厚隆） P92 定义1
 设矩阵\(\A \in M_n(K)\).
 如果\[
 	(\exists \lambda \in K)
 	(\exists \x \in K^n - \{\vb0\})
 	[\A\x = \lambda\x],
 \]
-则称“\(\lambda\)是矩阵\(\A\)的一个\DefineConcept{特征值}（eigenvalue）”，
-称“\(\x\)是矩阵\(\A\)的（属于特征值\(\lambda\)的）一个\DefineConcept{特征向量}（eigenvector）”.
+则称“数\(\lambda\)是矩阵\(\A\)的一个\DefineConcept{特征值}（eigenvalue）”
+%@see: https://mathworld.wolfram.com/Eigenvalue.html
+“向量\(\x\)是矩阵\(\A\)的（属于特征值\(\lambda\)的）一个\DefineConcept{特征向量}（eigenvector）”.
+%@see: https://mathworld.wolfram.com/Eigenvector.html
 \end{definition}
 
 \begin{remark}
@@ -123,6 +126,7 @@
 \end{example}
 
 \begin{proposition}
+%@see: 《线性代数》（张慎语、周厚隆） P92 性质3
 设\(\lambda_0\)是\(\A\)的特征值.
 当\(m\in\mathbb{N}\)时，\(\lambda_0^m\)是\(\A^m\)的特征值.
 若\(\A\)可逆，则当\(m\in\mathbb{Z}\)时，\(\lambda_0^m\)是\(\A^m\)的特征值.
@@ -155,6 +159,7 @@
 \end{proof}
 \end{proposition}
 
+\subsection{特征矩阵，特征多项式，特征子空间}
 \begin{proposition}
 设\(\A \in M_n(K)\)，
 \(\AutoTuple{\lambda}{n}\)都是\(\A\)的特征值，
@@ -167,6 +172,7 @@
 \end{proposition}
 
 \begin{definition}
+%@see: 《线性代数》（张慎语、周厚隆） P93 定义2
 设\(\A=(a_{ij})_n \in M_n(K)\)，\(\lambda \in K\).
 把\(\lambda\E-\A\)称为“\(\A\)的\DefineConcept{特征矩阵}”.
 把特征矩阵的行列式\[
@@ -182,21 +188,23 @@
 
 \begin{theorem}
 %@see: 《高等代数（第三版 上册）》（丘维声） P174 定理1
-设\(\A \in M_n(K)\)，
+%@see: 《线性代数》（张慎语、周厚隆） P93 性质4
+设\(\A \in M_n(K)\)，\(\lambda_0 \in K\)，
 则\begin{align*}
 	\text{\(\lambda_0\)是\(\A\)的特征值}
 	&\iff
-	\abs{\lambda_0\E-\A}=0 \land \lambda_0 \in K \\
+	\abs{\lambda_0\E-\A}=0 \\
 	&\iff
-	\text{\(\lambda_0\)是特征多项式\(\abs{\lambda\E-\A}\)在\(K\)中的一个根},
-\end{align*}
-\[
+	\text{\(\lambda_0\)是特征多项式\(\abs{\lambda\E-\A}\)在\(K\)中的一个根}, \\
 	\text{\(\x_0\)是\(\A\)的属于\(\lambda_0\)的特征向量}
-	\iff
-	\text{\(\x_0\)是齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的非零解}
-\]
+	&\iff
+	\text{\(\x_0\)是齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的非零解}.
+\end{align*}
+%TODO proof
 \end{theorem}
 
+%@see: 《线性代数》（张慎语、周厚隆） P92 性质1
+%@see: 《线性代数》（张慎语、周厚隆） P92 性质2
 既然\(\A\)的属于\(\lambda_0\)的特征向量\(\x_0\)
 就是齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的非零解，
 那么由\cref{theorem:线性方程组.齐次线性方程组的解的线性组合也是解} 可知，
@@ -207,9 +215,12 @@
 于是可知，齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的解集是\(K^n\)的子空间.
 
 \begin{definition}
-设\(\lambda\)是\(\A\)的一个特征值，
-我们把齐次线性方程\((\lambda\E-\A)\x=\vb0\)的解空间
+设\(\lambda \in K\)是矩阵\(\A \in M_n(K)\)的一个特征值，
+我们把齐次线性方程\[
+	(\lambda\E-\A)\x=\vb0
+\]的解空间\(\Ker(\lambda\E-\A)\)
 称为“\(\A\)的属于\(\lambda\)的\DefineConcept{特征子空间}（eigenspace）”.
+%@see: https://mathworld.wolfram.com/Eigenspace.html
 \end{definition}
 
 \begin{proposition}
