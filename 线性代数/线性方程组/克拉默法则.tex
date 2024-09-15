@@ -1,5 +1,45 @@
 \section{克拉默法则}
+首先研究有两个二元一次方程的方程组\begin{equation}\label[equation-system]{equation:克拉默法则.两个二元一次方程}
+%@see: 《高等代数（第三版 上册）》（丘维声） P18 (1)
+	\left\{ \begin{array}{l}
+		a_{11} x_1 + a_{12} x_2 = b_1, \\
+		a_{21} x_1 + a_{22} x_2 = b_2,
+	\end{array} \right.
+\end{equation}
+其中\(a_{11},a_{21}\)不全为零.
+不妨设\(a_{11}\neq0\).
+将这个方程组的增广矩阵经过初等行变换化成阶梯形矩阵：\[
+	\begin{bmatrix}
+		a_{11} & a_{12} & b_1 \\
+		a_{21} & a_{22} & b_2
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		a_{11} & a_{12} & b_1 \\
+		0 & a_{22}-\frac{a_{21}}{a_{11}} a_{12} & b_2-\frac{a_{21}}{a_{11}} b_1
+	\end{bmatrix}.
+\]
+可以看出：\begin{itemize}
+	\item 当\(a_{11} a_{22} - a_{12} a_{21} = 0\)时，
+	\begin{itemize}
+		\item 如果\(b_2-\frac{a_{21}}{a_{11}} b_1=0\)，
+		那么\cref{equation:克拉默法则.两个二元一次方程} 有无穷多解；
+		\item 如果\(b_2-\frac{a_{21}}{a_{11}} b_1\neq0\)，
+		那么\cref{equation:克拉默法则.两个二元一次方程} 无解.
+	\end{itemize}
+
+	\item 当\(a_{11} a_{22} - a_{12} a_{21} \neq 0\)时，
+	\cref{equation:克拉默法则.两个二元一次方程} 有唯一解：\[
+	%@see: 《高等代数（第三版 上册）》（丘维声） P18 (2)
+		\begin{bmatrix}
+			\frac{b_1 a_{22} - b_2 a_{12}}{a_{11} a_{22} - a_{12} a_{21}},
+			\frac{a_{11} b_2 - a_{21} b_1}{a_{11} a_{22} - a_{12} a_{21}}
+		\end{bmatrix}^T.
+	\]
+\end{itemize}
+
 \begin{theorem}[克拉默法则]\label{theorem:线性方程组.克拉默法则}
+%@see: 《高等代数（第三版 上册）》（丘维声） P46 定理1
+%@see: 《高等代数（第三版 上册）》（丘维声） P48 定理3
 %@see: https://mathworld.wolfram.com/CramersRule.html
 给定一个未知量个数与方程个数相同的线性方程组
 \begin{equation}\label{equation:克拉默法则.线性方程组}
@@ -13,10 +53,10 @@
 如果它的系数行列式满足\[
 	d
 	=\begin{vmatrix}
-	a_{11} & a_{12} & \dots & a_{1n} \\
-	a_{21} & a_{22} & \dots & a_{2n} \\
-	\vdots & \vdots & & \vdots \\
-	a_{n1} & a_{n2} & \dots & a_{nn}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn}
 	\end{vmatrix}
 	\neq 0,
 \]
