@@ -1,0 +1,64 @@
+\section{微分方程的解的存在性和唯一性}
+\subsection{微分方程的解的存在性}
+\begin{definition}\label{definition:微分方程.函数系的一致有界性}
+设函数系\(S\)是由定义在某个区间\(D = [a,b]\)上的一些函数组成的集合.
+如果\[
+	(\exists M>0)
+	(\forall x \in D)
+	(\forall F \in S)
+	[\abs{F(x)} < M],
+\]
+则称“函数系\(S\)在区间\(D\)上是\DefineConcept{一致有界的}（uniformly bounded）”.
+%@see: \cref{definition:微分方程.函数系的一致有界性}
+\end{definition}
+
+\begin{definition}\label{definition:微分方程.函数系的等度连续性}
+设函数系\(S\)是由定义在某个区间\(D = [a,b]\)上的一些函数组成的集合.
+如果\[
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall F \in S)
+	(\forall x_1,x_2 \in D)
+	[\abs{x_1-x_2} < \delta \implies \abs{F(x_1)-F(x_2)} < \epsilon],
+\]
+则称“函数系\(S\)在区间\(D\)上是\DefineConcept{等度连续的}（equicontinuous）%
+\footnote{尽管有很多相似之处，但是一定注意“等度连续”与“一致连续”的区别：
+“等度连续”描述的对象是函数系，
+“一致连续”描述的对象是函数、函数列或函数项级数
+（见\cref{definition:极限.函数的一致连续性} 和
+\cref{definition:无穷级数.函数项级数的一致收敛性}）.}”；
+称\[
+	\sup_{F_1,F_2 \in S} \abs{F_1(x)-F_2(x)}
+\]为“函数系\(S\)在区间\([a,b]\)上的\DefineConcept{宽度}%
+\footnote{注意与\hyperref[definition:极限.函数在集合上的振幅]{函数在集合上的振幅}相区别.}”.
+\end{definition}
+
+\begin{lemma}[阿斯科拉--阿尔泽拉引理]\label{theorem:微分方程概论.阿斯科拉--阿尔泽拉引理}
+任何在区间\([a,b]\)上一致有界且等度连续的函数系\(S\)都包含在此区间上一致收敛的函数列.
+\end{lemma}
+
+\begin{theorem}
+设函数\(f(x,y)\)在\(Oxy\)平面的某个有界闭区域\(D\)上连续，
+那么对于\(D\)中任意一个内点\((x_0,y_0)\)，
+总存在着函数\(y = \phi(x)\)，在点\(x_0\)的某个邻域内满足微分方程\[
+\dv{y}{x} = f(x,y),
+\]且同时有\(y_0 = \phi(x_0)\).
+\end{theorem}
+
+\subsection{微分方程的解的唯一性}
+\begin{theorem}
+设函数\(f(x,y)\)在区域\(D\)上连续，
+且满足“利普希茨条件”，即\[
+	(\exists k>0)
+	[
+		\abs{f(x,y_1) - f(x,y_2)}
+		\leq
+		k \abs{y_1 - y_2}
+	],
+\]
+那么对于\(D\)中任意一个内点\((x_0,y_0)\)，
+存在唯一的函数\(\phi\)满足微分方程\[
+	\dv{y}{x} = f(x,y),
+\]
+且同时有\(y_0 = \phi(x_0)\).
+\end{theorem}
