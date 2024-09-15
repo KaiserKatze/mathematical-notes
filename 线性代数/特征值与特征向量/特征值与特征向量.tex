@@ -1,4 +1,51 @@
 \section{矩阵的特征值与特征向量}
+首先看两个实际例子.
+\begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P91 例1
+设点\(M\)在新、旧坐标系的坐标分别为\((x',y',z')^T\)与\((x,y,z)^T\)，
+则在旋转变换下有\[
+	\left\{ \begin{array}{l}
+		x' = l_1 x + l_2 y + l_3 z, \\
+		y' = m_1 x + m_2 y + m_3 z, \\
+		z' = n_1 x + n_2 y + n_3 z
+	\end{array} \right.
+	\quad\text{或}\quad
+	\begin{bmatrix}
+		x' \\ y' \\ z'
+	\end{bmatrix}
+	= \begin{bmatrix}
+		l_1 & l_2 & l_3 \\
+		m_1 & m_2 & m_3 \\
+		n_1 & n_2 & n_3
+	\end{bmatrix}
+	\begin{bmatrix}
+		x \\ y \\ z
+	\end{bmatrix},
+\]
+记\[
+	\vb{Y} \defeq \begin{bmatrix}
+		x' \\ y' \\ z'
+	\end{bmatrix},
+	\qquad
+	\vb{A} \defeq \begin{bmatrix}
+		l_1 & l_2 & l_3 \\
+		m_1 & m_2 & m_3 \\
+		n_1 & n_2 & n_3
+	\end{bmatrix},
+	\qquad
+	\vb{X} \defeq \begin{bmatrix}
+		x \\ y \\ z
+	\end{bmatrix},
+\]
+于是又有\[
+	\vb{Y}=\vb{A}\vb{X},
+\]
+这里\(\vb{A}\)的第一、二、三列分别是坐标轴\(Ox,Oy,Oz\)在\(Ox'y'z'\)的方向余弦，
+以后我们会证明\(\vb{A}\)是一个正交矩阵.
+可以注意到，如果点\(M\)在\(z\)轴上，当它绕\(z\)轴旋转时，
+点\(M\)保持不动，也就是说\(\vb{A}\vb{X}=1\cdot\vb{X}\).
+\end{example}
+
 \subsection{特征值、特征向量的概念与性质}
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P172 定义1
@@ -21,7 +68,9 @@
 \]
 也就是说，\(1\)是单位矩阵的唯一一个特征值，
 任意一个非零向量都是单位矩阵的特征向量.
+\end{remark}
 
+\begin{remark}
 如果\(0\)是矩阵\(\A\)的一个特征值，
 那么矩阵\(\A\)的属于特征值\(0\)的每个特征向量都是齐次方程\(\A\x=\vb0\)的解，
 这就说明\(\A\x=\vb0\)有非零解，
