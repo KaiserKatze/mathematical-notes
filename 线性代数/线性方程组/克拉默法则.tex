@@ -37,12 +37,12 @@
 	\]
 \end{itemize}
 
-\begin{theorem}[克拉默法则]\label{theorem:线性方程组.克拉默法则}
-%@see: 《高等代数（第三版 上册）》（丘维声） P46 定理1
-%@see: 《高等代数（第三版 上册）》（丘维声） P48 定理3
-%@see: https://mathworld.wolfram.com/CramersRule.html
-给定一个未知量个数与方程个数相同的线性方程组
-\begin{equation}\label{equation:克拉默法则.线性方程组}
+\begingroup
+\def\J{\vb{J}}
+\def\wJ{\widetilde{\J}}
+我们想要知道，上述结论能否推广到
+数域\(K\)上\(n\)个方程的\(n\)元线性方程的方程组：
+\begin{equation}\label[equation-system]{equation:克拉默法则.线性方程组}
 	\left\{ \begin{array}{l}
 		a_{11}x_1 + a_{12}x_2 + \dotsb + a_{1n}x_n = b_1, \\
 		a_{21}x_1 + a_{22}x_2 + \dotsb + a_{2n}x_n = b_2, \\
@@ -50,6 +50,48 @@
 		a_{n1}x_1 + a_{n2}x_2 + \dotsb + a_{nn}x_n = b_n.
 	\end{array} \right.
 \end{equation}
+我们把\cref{equation:克拉默法则.线性方程组} 的系数矩阵、增广矩阵分别记为\(\A\)和\(\wA\).
+对增广矩阵\(\wA\)施行初等行变换，化成阶梯形矩阵\(\wJ\)，
+则系数矩阵\(\A\)经过这些初等行变换也被化成阶梯形矩阵\(\J\).
+
+假设\(\abs{\A}\neq0\)，则\(\abs{\J}\neq0\)，
+于是\(\J\)没有零行，或者说\(\J\)的每一行都是非零行，因此\(\J\)有\(n\)个主元.
+由于\(\J\)只有\(n\)列，因此\(\J\)的\(n\)个主元分别位于第\(1,2,\dotsc,n\)行，
+即\[
+	\J = \begin{bmatrix}
+		c_{11} & c_{12} & \dots & c_{1n} \\
+		0 & c_{22} & \dots & c_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		0 & 0 & \dots & c_{nn}
+	\end{bmatrix},
+\]
+其中\(c_{11} c_{22} \dotsm c_{nn} \neq 0\).
+由于\(\wJ\)比\(\J\)多一列，因此\[
+	\wJ = \begin{bmatrix}
+		c_{11} & c_{12} & \dots & c_{1n} & d_1 \\
+		0 & c_{22} & \dots & c_{2n} & d_2 \\
+		\vdots & \vdots & & \vdots & \vdots \\
+		0 & 0 & \dots & c_{nn} & d_n
+	\end{bmatrix}.
+\]
+由此看出，原\cref{equation:克拉默法则.线性方程组} 有解，
+由于\(\wJ\)的非零行数目等于未知量数目，
+所以原\cref{equation:克拉默法则.线性方程组} 有唯一解.
+
+假设\(\abs{\A}=0\)，则\(\abs{\J}=0\)，于是我们可以断言\(\J\)必有零行，
+那么\(\J\)的非零行数目\(r\)必定小于行数\(n\)，
+% 即\[
+% 	\J = \begin{bmatrix}
+% 		c_{11} & \dots & \dots & \dots
+% 	\end{bmatrix}
+% \]
+\endgroup
+
+\begin{theorem}[克拉默法则]\label{theorem:线性方程组.克拉默法则}
+%@see: 《高等代数（第三版 上册）》（丘维声） P46 定理1
+%@see: 《高等代数（第三版 上册）》（丘维声） P48 定理3
+%@see: https://mathworld.wolfram.com/CramersRule.html
+给定一个未知量个数与方程个数相同的\cref{equation:克拉默法则.线性方程组}.
 如果它的系数行列式满足\[
 	d
 	=\begin{vmatrix}
