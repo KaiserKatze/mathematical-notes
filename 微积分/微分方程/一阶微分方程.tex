@@ -396,20 +396,22 @@
 可令\(u = ax+by+c\).
 
 \section{一阶线性微分方程}\label{section:微分方程.一阶线性微分方程}
-对于一阶线性非齐次微分方程\[
+对于一阶线性非齐次微分方程\begin{equation}\label[first-order-linear-nonhomogeneous-ordinary-differential-equation]{equation:微分方程.一阶线性非齐次微分方程}
+%@see: 《高等数学（第六版 上册）》 P310 (1)
 	\dv{y}{x} + P(x) y = Q(x),
 	\quad Q(x) \not\equiv 0,
-	\eqno(11)
-\]
+\end{equation}
 我们有如下的解法.
 
-首先，我们把\(Q(x)\)换成零，写出方程\[
+首先，我们把\(Q(x)\)换成零，
+写出方程\begin{equation}\label[first-order-linear-homogeneous-ordinary-differential-equation]{equation:微分方程.一阶线性齐次微分方程}
+%@see: 《高等数学（第六版 上册）》 P310 (2)
 	\dv{y}{x} + P(x) y = 0.
-	\eqno(12)
-\]
-方程(12)叫做“对应于线性非齐次方程(11)的线性齐次方程”.
+\end{equation}
+\cref{equation:微分方程.一阶线性齐次微分方程}
+叫做“对应于\cref{equation:微分方程.一阶线性非齐次微分方程} 的线性齐次方程”.
 
-方程(12)是可分离变量的，分离变量后得\[
+\cref{equation:微分方程.一阶线性齐次微分方程} 是可分离变量的，分离变量后得\[
 	\frac{\dd{y}}{y} = -P(x) \dd{x},
 \]
 两端积分，得\[
@@ -419,19 +421,23 @@
 	y = C e^{ -\int P(x) \dd{x} }
 	\quad(C = \pm e^{C_1}),
 \]
-这是对应的齐次线性方程(12)的通解\footnote{%
+这是\cref{equation:微分方程.一阶线性齐次微分方程} 的通解\footnote{%
 这里记号\(\int P(x) \dd{x}\)表示\(P(x)\)的某个确定的原函数.}
 
-现在我们使用所谓“常数变易法”来求非齐次线性方程(11)的通解.
-这方法是把(12)的通解中的\(C\)换成\(x\)的未知函数\(u(x)\)，即作变换\[
+现在我们使用所谓“常数变易法”来求\cref{equation:微分方程.一阶线性非齐次微分方程} 的通解.
+这方法是把\cref{equation:微分方程.一阶线性齐次微分方程} 的通解中的\(C\)换成\(x\)的未知函数\(u(x)\)，
+即作变换\begin{equation}\label{equation:微分方程.一阶线性非齐次微分方程.中间步骤1}
+%@see: 《高等数学（第六版 上册）》 P310 (3)
 	y = u e^{ -\int P(x)\dd{x} },
-	\eqno(13)
-\]
-于是\[
+\end{equation}
+于是\begin{equation}\label{equation:微分方程.一阶线性非齐次微分方程.中间步骤2}
+%@see: 《高等数学（第六版 上册）》 P311 (4)
 	\dv{y}{x} = \dv{u}{x} e^{ -\int P(x) \dd{x} } - u P(x) e^{ -\int P(x) \dd{x} }.
-	\eqno(14)
-\]
-将(13)和(14)代入方程(11)得\[
+\end{equation}
+将\cref{equation:微分方程.一阶线性非齐次微分方程.中间步骤1}
+和\cref{equation:微分方程.一阶线性非齐次微分方程.中间步骤2}
+代入\cref{equation:微分方程.一阶线性非齐次微分方程}
+得\[
 	\dv{u}{x} e^{ -\int P(x) \dd{x} }
 	- u P(x) e^{ -\int P(x) \dd{x} }
 	+ P(x) u e^{ -\int P(x) \dd{x} }
@@ -445,21 +451,17 @@
 两端积分，得\[
 	u = \int Q(x) e^{ \int P(x) \dd{x} } \dd{x} + C.
 \]
-将上式代入(13)，便得非齐次线性方程(11)的通解\[
-	y = e^{ -\int P(x) \dd{x} }
-	\left( \int Q(x) e^{ \int P(x) \dd{x} } \dd{x} + C \right).
-	\eqno(15)
-\]
-
-将(15)式改写为两项之和\[
+将上式代入\cref{equation:微分方程.一阶线性非齐次微分方程.中间步骤1}，
+便得\cref{equation:微分方程.一阶线性非齐次微分方程} 的通解\begin{equation}\label{equation:微分方程.一阶线性非齐次微分方程的通解}
 	y = C e^{ -\int P(x) \dd{x} }
-	+ e^{ -\int P(x) \dd{x} } \int Q(x) e^{ \int P(x) \dd{x} } \dd{x},
-\]
-上式右端第一项是对应的齐次线性方程(12)的通解，
-第二项是非齐次线性方程(11)的一个特解（在(11)的通解(15)中取\(C=0\)便得到这个特解）.
+	+ e^{ -\int P(x) \dd{x} } \int Q(x) e^{ \int P(x) \dd{x} } \dd{x}.
+\end{equation}
+上式右端第一项是\cref{equation:微分方程.一阶线性齐次微分方程} 的通解，
+第二项是\cref{equation:微分方程.一阶线性非齐次微分方程} 的一个特解.
 由此可知，一阶非齐次线性方程的通解等于对应的齐次方程的通解与非齐次方程的一个特解之和.
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P311 例1
 求方程\[
 	\dv{y}{x} - \frac{2y}{x+1} = (x+1)^{5/2}
 \]的通解.
