@@ -396,10 +396,12 @@
 可令\(u = ax+by+c\).
 
 \section{一阶线性微分方程}\label{section:微分方程.一阶线性微分方程}
-对于形如\[
-	\dv{y}{x} + P(x) y = Q(x)
+对于一阶线性非齐次微分方程\[
+	\dv{y}{x} + P(x) y = Q(x),
+	\quad Q(x) \not\equiv 0,
 	\eqno(11)
-\]的一阶线性非齐次微分方程（即\(Q(x) \not\equiv 0\)），我们有如下的解法.
+\]
+我们有如下的解法.
 
 首先，我们把\(Q(x)\)换成零，写出方程\[
 	\dv{y}{x} + P(x) y = 0.
@@ -463,26 +465,30 @@
 \]的通解.
 \begin{solution}
 这是一个一阶非齐次线性方程.
-先求对应的齐次方程的通解.\[
-\dv{y}{x} - \frac{2}{x+1} y = 0,
-\]\[
-\frac{\dd{y}}{y} = \frac{2 \dd{x}}{x+1},
-\]\[
-\ln\abs{y} = 2\ln\abs{x+1}+ \ln\abs{C_1},
-\]\[
-y = C_1 (x+1)^2.
+先求对应的齐次方程\(\dv{y}{x} - \frac{2}{x+1} y = 0\)的通解.
+分离变量得\[
+	\frac{\dd{y}}{y} = \frac{2 \dd{x}}{x+1},
+\]
+积分得\[
+	\ln\abs{y} = 2\ln\abs{x+1}+ \ln\abs{C_1},
+\]
+即\[
+	y = C_1 (x+1)^2.
 \]
 
 用常数变易法，把\(C_1\)换成\(u\)，即令\(y = u(x+1)^2\)，那么\[
-\dv{y}{x} = \dv{u}{x} (x+1)^2 + 2u(x+1),
-\]代入所给非齐次方程，得\[
-u' = (x+1)^{1/2}.
-\]两端积分，得\[
-u = \frac{2}{3} (x+1)^{3/2} + C.
-\]故所求方程通解为\[
-y = (x+1)^2 \left[
-\frac{2}{3} (x+1)^{3/2} + C
-\right].
+	\dv{y}{x} = \dv{u}{x} (x+1)^2 + 2u(x+1),
+\]
+代入所给非齐次方程，得\[
+	u' = (x+1)^{1/2}.
+\]
+两端积分，得\[
+	u = \frac{2}{3} (x+1)^{3/2} + C.
+\]
+故所求方程通解为\[
+	y = (x+1)^2 \left[
+	\frac{2}{3} (x+1)^{3/2} + C
+	\right].
 \]
 \end{solution}
 \end{example}
@@ -498,87 +504,102 @@ y = u e^{- \int P(x) \dd{x}},
 
 \begin{example}
 解方程\[
-x y' + y = x^2 + 3x + 2.
+	x y' + y = x^2 + 3x + 2.
 \]
 \begin{solution}
 将原方程变形为\[
-y' + \frac{1}{x} y = x + 3 + \frac{2}{x}.
+	y' + \frac{1}{x} y = x + 3 + \frac{2}{x}.
 \]
 对应的齐次方程\[
-y' + \frac{1}{x} y = 0
-\]又可变形为\[
-\frac{\dd{y}}{y} = -\frac{\dd{x}}{x},
-\]积分得\[
-\ln\abs{y} = -\ln\abs{x} + C_1
-\quad\text{或}\quad
-y = C_2 e^{-\ln\abs{x}}
-= C_2 \frac{1}{\abs{x}}.
+	y' + \frac{1}{x} y = 0
+\]
+又可变形为\[
+	\frac{\dd{y}}{y} = -\frac{\dd{x}}{x},
+\]
+积分得\[
+	\ln\abs{y} = -\ln\abs{x} + C_1
+	\quad\text{或}\quad
+	y = C_2 e^{-\ln\abs{x}}
+	= C_2 \frac{1}{\abs{x}}.
 \]
 应用常数变易法，令\(y = \frac{u}{\abs{x}}\)，那么\[
-\dv{y}{x} = \frac{u' \abs{x} - u(\abs{x})'}{x^2}.
-\]代回原方程得\[
-\frac{u' \abs{x} - u(\abs{x})'}{x^2}
-+ \frac{1}{x} \frac{u}{\abs{x}}
-= x + 3 + \frac{2}{x},
-\]或\[
-\def\arraystretch{1.5} \left\{ \begin{array}{cc}
-\frac{u' x - u}{x^2}
-+ \frac{1}{x} \frac{u}{x}
-= x + 3 + \frac{2}{x},
-& x>0, \\
-\frac{u' (-x) + u}{x^2}
-- \frac{1}{x} \frac{u}{x}
-= x + 3 + \frac{2}{x},
-& x<0.
-\end{array} \right.
-\]整理得\[
-\def\arraystretch{1.5}
-u' = \left\{ \begin{array}{rc}
-x^2 + 3x + 2,
-& x>0, \\
--(x^2 + 3x + 2),
-& x<0.
-\end{array} \right.
-\]积分得\[
-\def\arraystretch{1.5}
-u = \left\{ \begin{array}{rc}
-\frac{1}{3} x^3 + \frac{3}{2} x^2 + 2x + C_3,
-& x>0, \\
--(\frac{1}{3} x^3 + \frac{3}{2} x^2 + 2x) + C_4,
-& x<0.
-\end{array} \right.
-\]由此，原方程的通解为\[
-y = \frac{1}{3} x^2 + \frac{3}{2} x + 2 + \frac{C}{x}.
+	\dv{y}{x} = \frac{u' \abs{x} - u(\abs{x})'}{x^2}.
+\]
+代回原方程得\[
+	\frac{u' \abs{x} - u(\abs{x})'}{x^2}
+	+ \frac{1}{x} \frac{u}{\abs{x}}
+	= x + 3 + \frac{2}{x},
+\]
+或\[
+	\def\arraystretch{1.5}
+	\left\{ \begin{array}{cc}
+		\frac{u' x - u}{x^2}
+		+ \frac{1}{x} \frac{u}{x}
+		= x + 3 + \frac{2}{x},
+		& x>0, \\
+		\frac{u' (-x) + u}{x^2}
+		- \frac{1}{x} \frac{u}{x}
+		= x + 3 + \frac{2}{x},
+		& x<0.
+	\end{array} \right.
+\]
+整理得\[
+	\def\arraystretch{1.5}
+	u' = \left\{ \begin{array}{rc}
+		x^2 + 3x + 2,
+		& x>0, \\
+		-(x^2 + 3x + 2),
+		& x<0.
+	\end{array} \right.
+\]
+积分得\[
+	\def\arraystretch{1.5}
+	u = \left\{ \begin{array}{rc}
+		\frac{1}{3} x^3 + \frac{3}{2} x^2 + 2x + C_3,
+		& x>0, \\
+		-(\frac{1}{3} x^3 + \frac{3}{2} x^2 + 2x) + C_4,
+		& x<0.
+	\end{array} \right.
+\]
+由此，原方程的通解为\[
+	y = \frac{1}{3} x^2 + \frac{3}{2} x + 2 + \frac{C}{x}.
 \]
 \end{solution}
 \end{example}
 
 \section{伯努利方程}
-形如\[
+方程\begin{equation}\label[differential-equation]{equation:微分方程.伯努利方程}
+%@see: 《高等数学（第六版 上册）》 P314 (10)
 	\dv{y}{x} + P(x) y = Q(x) y^n
-	\eqno(16)
-\]的方程叫做\DefineConcept{伯努利方程}.
-当\(n=0\)或\(n=1\)时，方程(16)就是一阶线性微分方程，
+\end{equation}
+叫做\DefineConcept{伯努利方程}.
+当\(n=0\)或\(n=1\)时，
+\cref{equation:微分方程.伯努利方程} 就是一阶线性微分方程，
 可以直接按\cref{section:微分方程.一阶线性微分方程}讲述的步骤解出该方程.
-当\(n\neq0,1\)时，这方程不是线性的，但是通过变量的代换，可以把它化为线性的.
-事实上，以\(y^n\)除方程(16)两端，
-得\[
+当\(n\neq0,1\)时，这方程不是线性的，
+但是通过变量的代换，可以把它化为线性的.
+事实上，以\(y^n\)除\cref{equation:微分方程.伯努利方程} 两端，
+得\begin{equation}\label[differential-equation]{equation:微分方程.伯努利方程.中间步骤}
+%@see: 《高等数学（第六版 上册）》 P314 (11)
 	y^{-n} \dv{y}{x} + P(x) y^{1-n} = Q(x),
-	\eqno(17)
-\]
+\end{equation}
 容易看出，上式左端第一项与\(\dv{x}(y^{1-n})\)只差一个常数因子\(1-n\)，
 因此我们引入新的因变量\(z = y^{1-n}\)，
 那么\[
 	\dv{z}{x} = (1-n) y^{-n} \dv{y}{x}.
 \]
-用\((1-n)\)乘方程(17)的两端，再通过上述代换便得一阶线性微分方程\[
+用\((1-n)\)乘\cref{equation:微分方程.伯努利方程.中间步骤} 的两端，
+再通过上述代换便得一阶线性微分方程\begin{equation}\label[differential-equation]{equation:微分方程.伯努利方程.换元后得到的方程}
 	\dv{z}{x} + (1-n) P(x) z = (1-n) Q(x).
-\]
-求出该方程的通解后，以\(y^{1-n}\)代\(z\)便得到伯努利方程的通解.
+\end{equation}
+求出\cref{equation:微分方程.伯努利方程.换元后得到的方程} 的通解后，
+以\(y^{1-n}\)代\(z\)便得到伯努利方程的通解.
 
-特别地，当\(n>0\)时，\(y\)可以取为\(0\)，而\(y=0\)恰好也满足方程(16).
+特别地，当\(n>0\)时，\(y\)可以取为\(0\)，
+而\(y=0\)恰好也满足\cref{equation:微分方程.伯努利方程} .
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P314 例4
 求方程\[
 	\dv{y}{x} + \frac{y}{x} = a y^2 \ln x
 \]的通解.
