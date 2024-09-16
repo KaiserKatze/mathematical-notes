@@ -30,6 +30,7 @@
 
 \subsection{矩阵相似的性质}
 \begin{property}\label{theorem:特征值与特征向量.相似关系是等价关系}
+%@see: 《线性代数》（张慎语、周厚隆） P97
 矩阵之间的相似关系，是矩阵集合上的等价关系，因为它满足：
 \begin{itemize}
 	\item 反身性，即对任意矩阵\(\A\)，都有\(\A\sim\A\)；
@@ -54,10 +55,16 @@
 
 以下性质是两个矩阵相似的必要条件.
 \begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件1}
-若\(\A\sim\B\)，则\(\abs{\A}=\abs{\B}\).
+%@see: 《线性代数》（张慎语、周厚隆） P97 性质1
+相似矩阵的行列式相等.
 \begin{proof}
-因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，
-使得\(\P^{-1}\A\P=\B\)，两端取行列式，得\[
+设\(\A,\B \in M_n(K)\).
+假设\(\A\sim\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+使得\[
+	\P^{-1}\A\P=\B,
+\]
+两端取行列式，得\[
 	\abs{\B} = \abs{\P^{-1}\A\P}
 	= \abs{\P^{-1}}\abs{\A}\abs{\P}
 	= \abs{\P}^{-1}\abs{\A}\abs{\P}
@@ -66,26 +73,49 @@
 \]
 \end{proof}
 \end{property}
-我们还可以进一步推得如下结论：
-若\(\A\sim\B\)，则\(\A\)、\(\B\)同为可逆或不可逆.
+\begin{proposition}
+设\(\A,\B \in M_n(K)\).
+若\(\A\sim\B\)，则\(\A\)和\(\B\)同为可逆或不可逆.
+\begin{proof}
+由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1} 立即可得.
+\end{proof}
+\end{proposition}
 
 \begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件2}
-若\(\A\sim\B\)，则\(\A^m \sim \B^m\ (m\in\mathbb{N})\).
+%@see: 《线性代数》（张慎语、周厚隆） P97 性质2
+相似矩阵的同次幂也相似.
 \begin{proof}
-因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
+设\(\A,\B \in M_n(K)\).
+假设\(\A\sim\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+使得\[
+	\P^{-1}\A\P=\B,
+\]
+于是对于任意\(m\in\mathbb{N}\)有\[
 	(\B)^m = (\P^{-1}\A\P)^m
 	= (\P^{-1}\A\P)(\P^{-1}\A\P)\dotsb(\P^{-1}\A\P)
-	= \P^{-1}\A^m\P.
-	\qedhere
+	= \P^{-1}\A^m\P,
 \]
+这就说明\(\A^m \sim \B^m\).
 \end{proof}
 \end{property}
-如果\(\A\)、\(\B\)可逆，那么上述结论可以扩展为\(\A^m\sim\B^m\ (m\in\mathbb{Z})\).
+\begin{remark}
+如果\(\A,\B\)可逆，
+那么\cref{theorem:特征值与特征向量.矩阵相似的必要条件2} 的结论可以
+可以推广为\(\A^m\sim\B^m\ (m\in\mathbb{Z})\).
+\end{remark}
 
 \begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件3}
+%@see: 《线性代数》（张慎语、周厚隆） P97 性质3
 相似矩阵有相同的特征多项式，从而有相同的特征值.
 \begin{proof}
-因为\(\A\sim\B\)，所以存在可逆矩阵\(\P\)，使得\(\P^{-1}\A\P=\B\)，于是\[
+设\(\A,\B \in M_n(K)\).
+因为\(\A\sim\B\)，
+所以存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+使得\[
+	\P^{-1}\A\P=\B,
+\]
+于是\[
 	\abs{\l\E-\B}
 	=\abs{\P^{-1}(\l\E-\A)\P}
 	=\abs{\P^{-1}}\abs{\l\E-\A}\abs{\P}
