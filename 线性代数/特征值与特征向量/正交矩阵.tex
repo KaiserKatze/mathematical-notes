@@ -51,20 +51,21 @@
 
 \begin{definition}\label{definition:正交矩阵.正交矩阵的定义}
 %@see: 《高等代数（第三版 上册）》（丘维声） P145 定义1
-设\(\Q \in M_n(\mathbb{R})\).
+设\(\Q \in M_n(\mathbb{R})\)，
+\(\E\)是实数域上的\(n\)阶单位矩阵.
 若\(\Q\)满足\begin{equation}\label{equation:正交矩阵.正交矩阵的定义式}
-	\Q^T\Q = \E,
+	\Q^T \Q = \E,
 \end{equation}
-则称“\(\Q\)是\DefineConcept{正交矩阵}（orthogonal matrix）”.
+则称“\(\Q\)是\(n\)阶\DefineConcept{正交矩阵}（orthogonal matrix）”.
 %@see: https://mathworld.wolfram.com/OrthogonalMatrix.html
 \end{definition}
 
 \begin{property}
 若\(\A,\B\)都是\(n\)阶正交矩阵，
 则\begin{itemize}
-	\item \(\A\)的行列式\(\abs{\A}\)要么等于\(1\)，要么等于\(-1\)，即
-	\begin{equation}\label{equation:正交矩阵.正交矩阵的行列式}
-		\abs{\A}\in\Set{-1,1}.
+	\item \(\A\)的行列式\(\det\A\)的绝对值等于\(1\)，
+	即\begin{equation}\label{equation:正交矩阵.正交矩阵的行列式}
+		\abs{\det\A}=1.
 	\end{equation}
 
 	\item \(\A\)可逆.
@@ -79,15 +80,15 @@
 \begin{proof}
 在正交矩阵的定义式 \labelcref{equation:正交矩阵.正交矩阵的定义式} 等号两端分别取行列式，
 利用\cref{theorem:行列式.矩阵乘积的行列式,theorem:行列式.性质1} 得\[
-	\abs{\A}^2
-	=\abs{\A^T}\abs{\A\vphantom{^T}}
-	=\abs{\A^T\A}
-	=\abs{\E}
+	\abs{\det\A}^2
+	=\abs{\det\A^T} \abs{\det\A\vphantom{^T}}
+	=\abs{\det(\A^T \A)}
+	=\abs{\det\E}
 	=1,
 \]
-开方，得\(\abs{\A}=\pm1\).
+开方，得\(\abs{\det\A}=1\).
 
-因为\(\abs{\A}\neq0\)，
+因为\(\det\A\neq0\)，
 \(\A\)是非奇异矩阵，
 所以由\cref{theorem:逆矩阵.矩阵可逆的充分必要条件1} 可知，正交矩阵\(\A\)可逆.
 
@@ -96,12 +97,15 @@
 \(\A^T\A=\E\)比较可知\(\A^{-1}=\A^T\).
 
 利用矩阵乘法的结合律，
-便得\((\A\B)(\A\B)^T
-= (\A\B)(\B^T\A^T)
-= \A(\B\B^T)\A^T
-= \A\E\A^T
-= \A\A^T
-= \E\).
+便得\[
+	(\A\B)(\A\B)^T
+	= (\A\B)(\B^T\A^T)
+	= \A(\B\B^T)\A^T
+	= \A\E\A^T
+	= \A\A^T
+	= \E.
+	\qedhere
+\]
 \end{proof}
 \end{property}
 
@@ -117,15 +121,15 @@
 正交矩阵\(\Q\)的伴随矩阵\(\Q^*\)满足\[
 	\Q^*
 	= \left\{ \begin{array}{rc}
-		\Q^T, & \abs{\Q}>0, \\
-		-\Q^T, & \abs{\Q}<0.
+		\Q^T, & \det\Q>0, \\
+		-\Q^T, & \det\Q<0.
 	\end{array} \right.
 \]
 \begin{proof}
 由\cref{theorem:逆矩阵.逆矩阵的唯一性}
-可知\(\Q^* = \abs{\Q} \Q^{-1}\).
+可知\(\Q^* = \det\Q \Q^{-1}\).
 再由\cref{equation:正交矩阵.正交矩阵的转置等于正交矩阵的逆}
-可知\(\Q^* = \abs{\Q} \Q^T\).
+可知\(\Q^* = \det\Q \Q^T\).
 最后由\cref{equation:正交矩阵.正交矩阵的行列式}
 就有\(\Q^* = \pm\Q^T\).
 \end{proof}
