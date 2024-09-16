@@ -1,23 +1,41 @@
 \section{矩阵的相似}
+有时候，我们会遇到这样的问题：
+已知\(\A\)是数域\(K\)上的一个\(n\)阶方阵，求\(\A^m\).
+这时候，如果存在数域\(K\)上的一个\(n\)阶可逆矩阵\(\P\)，
+使得\(\P^{-1}\A\P = \B\)，并且\(\B^m\)容易计算，
+那么我们就可以利用矩阵的乘法结合律得到以下结果：\[
+	\A^m
+	= (\P^{-1}\B\P)^m
+	= \underbrace{
+			(\P^{-1}\B\P)
+			(\P^{-1}\B\P)
+			\dotsm
+			(\P^{-1}\B\P)
+		}_{\text{$m$个}}
+	= \P^{-1}\B^m\P.
+\]
+
 \subsection{矩阵相似的概念}
 \begin{definition}
+%@see: 《线性代数》（张慎语、周厚隆） P97 定义3
 设\(\A\)、\(\B\)是两个\(n\)阶矩阵.
 若存在可逆矩阵\(\P\)，
 使得\begin{equation}\label{equation:特征值与特征向量.相似矩阵的定义}
 	\P^{-1}\A\P=\B
 \end{equation}
-则称\(\A\)与\(\B\)相似，
+则称“\(\A\)与\(\B\)~\DefineConcept{相似}（similar）”，
+%@see: https://mathworld.wolfram.com/SimilarMatrices.html
 记作\(\A\sim\B\).
 \end{definition}
 
 \subsection{矩阵相似的性质}
 \begin{property}\label{theorem:特征值与特征向量.相似关系是等价关系}
 矩阵之间的相似关系，是矩阵集合上的等价关系，因为它满足：
-\begin{enumerate}
+\begin{itemize}
 	\item 反身性，即对任意矩阵\(\A\)，都有\(\A\sim\A\)；
 	\item 对称性，即若\(\A\sim\B\)，则有\(\B\sim\A\)；
 	\item 传递性，即若\(\A\sim\B\)且\(\B\sim\C\)，则\(\A\sim\C\).
-\end{enumerate}
+\end{itemize}
 \begin{proof}
 在\cref{equation:特征值与特征向量.相似矩阵的定义} 中，
 令\(\A=\B\)、\(\P=\E\)，得\(\E\A\E=\A\)，
