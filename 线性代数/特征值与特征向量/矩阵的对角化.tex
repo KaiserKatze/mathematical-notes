@@ -1,31 +1,43 @@
 \section{矩阵的对角化}
+\begin{definition}
+%@see: 《高等代数（第三版 上册）》（丘维声） P171
+设矩阵\(\A \in M_n(K)\).
+\begin{itemize}
+	\item 如果存在\(n\)阶对角矩阵\(\vb\Lambda\)相似于\(\A\)，
+	则称“矩阵\(\A\)可以\DefineConcept{对角化}”
+	“矩阵\(\vb\Lambda\)是\(\A\)的\DefineConcept{相似标准型}”.
+	\item 如果不存在\(n\)阶对角矩阵相似于\(\A\)，
+	则称“矩阵\(\A\)不可以\DefineConcept{对角化}”.
+\end{itemize}
+\end{definition}
+
 \begin{theorem}[矩阵可对角化的充分必要条件]\label{theorem:矩阵可对角化的充分必要条件.定理1}
-\(n\)阶矩阵\(\A\)相似于对角阵的充分必要条件为\(\A\)有\(n\)个线性无关的特征向量.
+%@see: 《高等代数（第三版 上册）》（丘维声） P171 定理2
+设矩阵\(\A \in M_n(K)\)，
+则\(\A\)可对角化的充分必要条件是：
+\(\A\)有\(n\)个线性无关的特征向量.
 \begin{proof}
 必要性.
-\(\A\)相似于对角阵，
-即存在可逆矩阵\(\P\)，
+假设\(\A\)可对角化，
+即存在数域\(K\)上的\(n\)阶可逆矩阵\(\P=(\AutoTuple{\x}{n})\)
+和数域\(K\)上的\(n\)阶对角阵\(\vb\Lambda=\diag(\AutoTuple{\lambda}{n})\)，
 使\[
-	\P^{-1}\A\P=\V
-	=\begin{bmatrix}
-		\lambda_1 \\ & \lambda_2 \\ & & \ddots \\ & & &\lambda_n
-	\end{bmatrix}
-	=\diag(\lambda_1,\lambda_2,\dotsc,\lambda_n),
+	\P^{-1}\A\P=\V.
 \]
 用\(\P\)左乘上式两端，得\[
 	\A\P=\P\V.
 \]
-将\(\P\)按列分块，则\(\P=(\AutoTuple{\x}{n})\)，
 由于\(\P\)可逆，所以\(\AutoTuple{\x}{n}\)线性无关，有\[
 	\A(\AutoTuple{\x}{n})=(\AutoTuple{\x}{n})\V,
 \]\[
 	(\A\vb{x}_1,\A\vb{x}_2,\dotsc,\A\vb{x}_n)=(\vb{x}_1\V,\vb{x}_2\V,\dotsc,\vb{x}_n\V),
 \]
 于是\[
-	\A\X i=\lambda_i\X i,
+	\A\vb{x}_i=\lambda_i\vb{x}_i,
 	\quad i=1,2,\dotsc,n,
 \]
-即\(\AutoTuple{\x}{n}\)是\(\A\)分别对应于\(\AutoTuple{\lambda}{n}\)的\(n\)个线性无关的特征向量.
+即\(\AutoTuple{\x}{n}\)是矩阵\(\A\)的
+分别属于\(\AutoTuple{\lambda}{n}\)的\(n\)个线性无关的特征向量.
 
 同理可证充分性.
 \end{proof}
