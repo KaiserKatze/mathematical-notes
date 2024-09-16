@@ -1,34 +1,43 @@
 \section{二次型的基本概念}
 我们首先研究平面解析几何中以坐标原点为中心的二次曲线的方程：
 \begin{center}
-\def\arraystretch{1.5}
-\begin{tabular}{cl}
-圆 & \(x^2+y^2=r^2\) \\
-椭圆 & \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\) \\
-双曲线 & \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\) \\
-\end{tabular}
+	\def\arraystretch{1.5}
+	\begin{tblr}{cl}
+		圆 & \(x^2+y^2=r^2\) \\
+		椭圆 & \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\) \\
+		双曲线 & \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\) \\
+	\end{tblr}
 \end{center}
 
 可以看出，它们都具有\[
-a x^2 + 2b xy + c y^2 = d
+	a x^2 + 2b xy + c y^2 = d
 \]的形式.
-在研究二次曲线时，如果得到的方程不是标准方程，我们通常希望通过旋转、平移等几何变换将其化为标准方程，进而判别曲线的形状和几何性质.
+在研究二次曲线时，如果得到的方程不是标准方程，
+我们通常希望通过旋转、平移等几何变换将其化为标准方程，
+进而判别曲线的形状和几何性质.
 
 \subsection{二次型的基本概念}
 \begin{definition}
-称系数\(a_{ij}\ (1 \leq i \leq j \leq n)\)属于数域\(P\)的\(n\)个变量的二次齐次多项式\begin{equation}\label{equation:二次型.二次型}
-f(\AutoTuple{x}{n})
-= \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j
-\quad(a_{ji}=a_{ij})
-\end{equation}为数域\(P\)上的一个\(n\)元\DefineConcept{二次型}（quadratic form）\footnote{%
-本章不作特别声明时，“二次型”均指实二次型.}.
+系数\(a_{ij}\ (1 \leq i \leq j \leq n)\)属于数域\(P\)的\(n\)个变量的
+二次齐次多项式\begin{equation}\label{equation:二次型.二次型}
+	f(\AutoTuple{x}{n})
+	= \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j
+	\quad(a_{ji}=a_{ij})
+\end{equation}
+称为“数域\(P\)上的一个\(n\)元\DefineConcept{二次型}（quadratic form）”.
+%@see: https://mathworld.wolfram.com/QuadraticForm.html
+%@see: https://mathworld.wolfram.com/DiagonalQuadraticForm.html
+%@see: https://mathworld.wolfram.com/SymmetricBilinearForm.html
 \end{definition}
+\begin{remark}
+本章不作特别声明时，“二次型”均指实二次型.
+\end{remark}
 
 数域对于一个二次齐次多项式是否成为二次型是决定性的.
 多项式\[
-f(x_1,x_2,x_3) = x_1^2 + 4 x_1 x_2 + 3 x_2^2 + 5 x_2 x_3 - x_3^2
+	f(x_1,x_2,x_3) = x_1^2 + 4 x_1 x_2 + 3 x_2^2 + 5 x_2 x_3 - x_3^2
 \]和\[
-g(x_1,x_2,x_3) = x_1^2 + 2\sqrt{2} x_1 x_2 + 2 x_1 x_3 + 2 x_2^2 + 4\sqrt{3} x_2 x_3
+	g(x_1,x_2,x_3) = x_1^2 + 2\sqrt{2} x_1 x_2 + 2 x_1 x_3 + 2 x_2^2 + 4\sqrt{3} x_2 x_3
 \]都是实数域上的二次型；
 但在有理数域上，只有\(f\)是二次型，\(g\)不是二次型.
 
@@ -38,9 +47,10 @@ g(x_1,x_2,x_3) = x_1^2 + 2\sqrt{2} x_1 x_2 + 2 x_1 x_3 + 2 x_2^2 + 4\sqrt{3} x_2
 \begin{definition}
 若\(n\)阶对称矩阵\(\A = (a_{ij})_n\)满足
 \begin{equation}\label{equation:二次型.二次型的矩阵表示}
-f(\AutoTuple{x}{n}) = \x^T\A\x,
+	f(\AutoTuple{x}{n}) = \x^T\A\x,
 \end{equation}其中\(\x = (\AutoTuple{x}{n})^T\)，
-则称\cref{equation:二次型.二次型的矩阵表示} 为二次型\(f(\AutoTuple{x}{n})\)的\DefineConcept{矩阵表示}，
+则把\cref{equation:二次型.二次型的矩阵表示}
+称为“二次型\(f(\AutoTuple{x}{n})\)的\DefineConcept{矩阵表示}”，
 对称矩阵\(\A\)为\(f\)的\DefineConcept{矩阵}，
 \(\A\)的秩\(\rank\A\)为\(f\)的\DefineConcept{秩}.
 \end{definition}
@@ -51,50 +61,64 @@ f(\AutoTuple{x}{n}) = \x^T\A\x,
 \begin{property}
 二次型和它的矩阵是相互唯一确定的.
 \begin{proof}
-对于二次型\(f(\AutoTuple{x}{n})\)，设非零\(n\)阶对称矩阵\(\A\)和\(\B\)都是\(f\)的矩阵，即\[
-\x^T\A\x
-=\x^T\B\x
-=f(\AutoTuple{x}{n}),
-\]则二次型\(\x^T\A\x\)与\(\x^T\B\x\)中\(x_i x_j\)的系数\(2 a_{ij}\)与\(2 b_{ij}\ (1 \leq i < j \leq n)\)必相等，\(x_i^2\)的系数\(a_{ii}\)与\(b_{ii}\ (i=1,2,\dotsc,n)\)必相等，故\(\A=\B\).
+对于二次型\(f(\AutoTuple{x}{n})\)，
+设非零\(n\)阶对称矩阵\(\A\)和\(\B\)都是\(f\)的矩阵，
+即\[
+	\x^T\A\x
+	=\x^T\B\x
+	=f(\AutoTuple{x}{n}),
+\]
+则二次型\(\x^T\A\x\)与\(\x^T\B\x\)中\(x_i x_j\)的
+系数\(2 a_{ij}\)与\(2 b_{ij}\ (1 \leq i < j \leq n)\)必相等，
+\(x_i^2\)的系数\(a_{ii}\)与\(b_{ii}\ (i=1,2,\dotsc,n)\)必相等，
+故\(\A=\B\).
 \end{proof}
 \end{property}
 
 \begin{example}
 将\(f(x_1,x_2,x_3) = x_1^2 + 4 x_1 x_2 + 3 x_2^2 + 5 x_2 x_3 - x_3^2\)写成矩阵形式.
 \begin{solution}
-\(f(x_1,x_2,x_3) = \begin{bmatrix}
-x_1 & x_2 & x_3
-\end{bmatrix} \begin{bmatrix}
-1 & 2 & 0 \\
-2 & 3 & \frac{5}{2} \\
-0 & \frac{5}{2} & -1
-\end{bmatrix} \begin{bmatrix}
-x_1 \\ x_2 \\ x_3
+\(f(x_1,x_2,x_3)
+= \begin{bmatrix}
+	x_1 & x_2 & x_3
+\end{bmatrix}
+\begin{bmatrix}
+	1 & 2 & 0 \\
+	2 & 3 & \frac{5}{2} \\
+	0 & \frac{5}{2} & -1
+\end{bmatrix}
+\begin{bmatrix}
+	x_1 \\ x_2 \\ x_3
 \end{bmatrix}\).
 \end{solution}
 \end{example}
 
 \begin{example}
 写出二次型\(\begin{bmatrix}
-x_1 & x_2 & x_3
-\end{bmatrix} \begin{bmatrix}
-2 & -3 & 1 \\
-1 & 0 & 1 \\
-2 & 11 & 3
-\end{bmatrix} \begin{bmatrix}
-x_1 \\ x_2 \\ x_3
+	x_1 & x_2 & x_3
+\end{bmatrix}
+\begin{bmatrix}
+	2 & -3 & 1 \\
+	1 & 0 & 1 \\
+	2 & 11 & 3
+\end{bmatrix}
+\begin{bmatrix}
+	x_1 \\ x_2 \\ x_3
 \end{bmatrix}\)的矩阵.
 \begin{solution}
 注意到矩阵\(\A = \begin{bmatrix}
-2 & -3 & 1 \\
-1 & 0 & 1 \\
-2 & 11 & 3
-\end{bmatrix}\)不是对称矩阵，二次型\(\x^T\A\x\)的矩阵应为\[
-\B = \frac{\A+\A^T}{2} = \begin{bmatrix}
-2 & -1 & \frac{3}{2} \\
--1 & 0 & 6 \\
-\frac{3}{2} & 6 & 3
-\end{bmatrix}.
+	2 & -3 & 1 \\
+	1 & 0 & 1 \\
+	2 & 11 & 3
+\end{bmatrix}\)不是对称矩阵，
+二次型\(\x^T\A\x\)的矩阵应为\[
+	\B
+	= \frac{\A+\A^T}{2}
+	= \begin{bmatrix}
+		2 & -1 & \frac{3}{2} \\
+		-1 & 0 & 6 \\
+		\frac{3}{2} & 6 & 3
+	\end{bmatrix}.
 \]
 \end{solution}
 \end{example}
