@@ -111,8 +111,8 @@
 相似矩阵有相同的特征多项式，从而有相同的特征值.
 \begin{proof}
 设\(\A,\B \in M_n(K)\).
-因为\(\A\sim\B\)，
-所以存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+假设\(\A\sim\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
 使得\[
 	\P^{-1}\A\P=\B,
 \]
@@ -138,100 +138,36 @@
 \(\A\)与\(\B\)不相似.
 
 \begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件4}
-相似矩阵有相同的迹，即\(\A\sim\B \implies \tr\A=\tr\B\).
+相似矩阵有相同的迹.
 \begin{proof}
-设可逆矩阵\(\P\)满足\(\P^{-1}\A\P=\B\)，
-于是\begin{align*}
+假设\(\A\sim\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+使得\[
+	\P^{-1}\A\P=\B,
+\]
+于是由\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹} 有\[
 	\tr\B
-	&= \tr(\P^{-1}\A\P) \\
-	&= \tr(\P^{-1}(\A\P)) \\
-	&= \tr((\A\P)\P^{-1})
-		\tag{\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹}} \\
-	&= \tr\A.
+	= \tr(\P^{-1}\A\P)
+	= \tr(\P(\P^{-1}\A))
+	= \tr\A.
 	\qedhere
-\end{align*}
+\]
 \end{proof}
-% \begin{proof}
-% 设\[
-% 	\A = (a_{ij})_n
-% 	= \begin{bmatrix}
-% 		a_{11} & \dots & a_{1i} & a_{1j}  & \dots & a_{1n} \\
-% 		\vdots & & \vdots & \vdots & & \vdots \\
-% 		a_{i1} & \dots & a_{ii} & a_{ij}  & \dots & a_{in} \\
-% 		\vdots & & \vdots & \vdots  & & \vdots \\
-% 		a_{j1} & \dots & a_{ji} & a_{jj}  & \dots & a_{jn} \\
-% 		\vdots & & \vdots & \vdots  & & \vdots \\
-% 		a_{n1} & \dots & a_{ni} & a_{nj}  & \dots & a_{nn}
-% 	\end{bmatrix}.
-% \]
-
-% 我们首先考察在成对的初等变换\(\P^{-1}\)、\(\P\)的作用下，
-% 任意矩阵\(\A\)的迹\(\tr\A\)与\(\P^{-1} \A \P\)的迹\(\tr(\P^{-1} \A \P)\)相比，
-% 会如何变化：
-% \begin{enumerate}
-% 	\item 令\(\P = \P(i,j)\)，有\(\P^{-1} = \P\)，
-% 	那么\(\P^{-1} \A \P\)相当于
-% 	“首先交换\(\A\)的\(i\)、\(j\)两行，然后交换所得矩阵的\(i\)、\(j\)两列”，
-% 	即\[
-% 		\P^{-1} \A \P
-% 		= \begin{bmatrix}
-% 			a_{11} & \dots & a_{1j} & a_{1i}  & \dots & a_{1n} \\
-% 			\vdots & & \vdots & \vdots & & \vdots \\
-% 			a_{j1} & \dots & a_{jj} & a_{ji}  & \dots & a_{jn} \\
-% 			\vdots & & \vdots & \vdots  & & \vdots \\
-% 			a_{i1} & \dots & a_{ij} & a_{ii}  & \dots & a_{in} \\
-% 			\vdots & & \vdots & \vdots  & & \vdots \\
-% 			a_{n1} & \dots & a_{nj} & a_{ni}  & \dots & a_{nn}
-% 		\end{bmatrix}.
-% 	\]
-% 	可以看到经过变换\(\P(i,j)\)前后两个矩阵的主对角线的元素之和不变.
-
-% 	\item 令\(\P = \P(i(c))\ (c\neq0)\)，
-% 	有\(\P^{-1} = \P(i(c^{-1}))\)，
-% 	那么\(\P^{-1} \A \P\)相当于
-% 	“首先用\(1/c\)乘以\(\A\)的第\(i\)行，再用\(c\)乘以\(\A\)的第\(i\)列”，
-% 	即\[
-% 		\P^{-1} \A \P
-% 		= \begin{bmatrix}
-% 			a_{11} & \dots & c a_{1i} & a_{1j}  & \dots & a_{1n} \\
-% 			\vdots & & \vdots & \vdots & & \vdots \\
-% 			\frac{1}{c} a_{i1} & \dots & \left( c \cdot \frac{1}{c} \right) a_{ii} & \frac{1}{c} a_{ij}  & \dots & \frac{1}{c} a_{in} \\
-% 			\vdots & & \vdots & \vdots  & & \vdots \\
-% 			a_{j1} & \dots & c a_{ji} & a_{jj}  & \dots & a_{jn} \\
-% 			\vdots & & \vdots & \vdots  & & \vdots \\
-% 			a_{n1} & \dots & c a_{ni} & a_{nj}  & \dots & a_{nn}
-% 		\end{bmatrix}.
-% 	\]
-% 	可以看到经过变换\(\P(i(c))\)前后两个矩阵的主对角线的元素之和也不变.
-
-% 	\item 令\(\P = \P(i,j(k))\)，
-% 	有\(\P^{-1} = \P(i,j(-k))\)，
-% 	那么\(\P^{-1} \A \P\)相当于
-% 	“首先将\(\A\)的第\(j\)行的\((-k)\)倍加到第\(i\)行，
-% 	再将所得矩阵的第\(i\)列的\(k\)倍加到第\(j\)列”，
-% 	即\[
-% 		\P^{-1} \A \P
-% 		= \scalebox{.8}{\(\begin{bmatrix}
-% 			a_{11} & \dots & a_{1i} & a_{1j} + k a_{1i}  & \dots & a_{1n} \\
-% 			\vdots & & \vdots & \vdots & & \vdots \\
-% 			a_{i1} - k a_{j1} & \dots & a_{ii} - k a_{ji} & a_{ij} - k a_{jj} + k(a_{ii} - k a_{ji})  & \dots & a_{in} - k a_{jn} \\
-% 			\vdots & & \vdots & \vdots  & & \vdots \\
-% 			a_{j1} & \dots & a_{ji} & a_{jj} + k a_{ji}  & \dots & a_{jn} \\
-% 			\vdots & & \vdots & \vdots  & & \vdots \\
-% 			a_{n1} & \dots & a_{ni} & a_{nj} + k a_{ni}  & \dots & a_{nn}
-% 		\end{bmatrix}\)}.
-% 	\]
-% 	可以看到经过变换\(\P(i,j(k))\)前后两个矩阵的主对角线的元素之和还是不变.
-% \end{enumerate}
-% 综上所述，成对的初等变换不改变矩阵的迹.
-% 由\cref{theorem:逆矩阵.可逆矩阵与初等矩阵的关系} 可知，
-% 任意可逆矩阵都可以分解为若干个初等矩阵的乘积，
-% 那么根据上述讨论结果，对于任意可逆矩阵\(\P\)，总有\[
-% 	\tr(\P^{-1}\A\P) = \tr\A.
-% 	\qedhere
-% \]
-% \end{proof}
 \end{property}
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件5}
+相似矩阵与原矩阵等价，即\(\A\sim\B \implies \A\cong\B\).
+\begin{proof}
+由\hyperref[definition:逆矩阵.矩阵等价]{矩阵等价的定义}显然有.
+\end{proof}
+\end{property}
+
+\begin{remark}
+由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1,theorem:特征值与特征向量.矩阵相似的必要条件4,theorem:特征值与特征向量.矩阵相似的必要条件5} 可知，
+数域\(K\)上的\(n\)阶方阵的行列式、秩、迹
+都是相似关系下的不变量，
+我们把这三个量统称为\DefineConcept{相似不变量}.
+\end{remark}
 
 \begin{example}
 证明：单位矩阵只与它本身相似.
