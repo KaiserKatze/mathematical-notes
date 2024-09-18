@@ -99,12 +99,13 @@
 \end{proof}
 \end{theorem}
 
-\begin{corollary}
-设\(\A\)是一个\(s \times n\)矩阵，
-\(\P\)、\(\Q\)分别是\(s\)阶和\(n\)阶可逆矩阵，
-则\[
-	\rank\A = \rank(\P\A) = \rank(\A\Q) = \rank(\P\A\Q).
-\]
+\begin{corollary}\label{theorem:矩阵乘积的秩.与可逆矩阵相乘不变秩}
+%@see: 《线性代数》（张慎语、周厚隆） P78 推论1
+设矩阵\(\A \in M_{s \times n}(K)\).
+\begin{itemize}
+	\item 如果\(\P\)是数域\(K\)上的\(s\)阶可逆矩阵，则\(\rank\A = \rank(\P\A)\).
+	\item 如果\(\Q\)是数域\(K\)上的\(n\)阶可逆矩阵，则\(\rank\A = \rank(\A\Q)\).
+\end{itemize}
 \begin{proof}
 因为\(\A = (\P^{-1} \P) \A = \P^{-1} (\P \A)\)，
 由\cref{theorem:线性方程组.矩阵乘积的秩}，
@@ -112,15 +113,17 @@
 	\rank\A = \rank(\P^{-1}(\P\A)) \leq \rank(\P\A) \leq \rank\A,
 \]
 所以\(\rank\A = \rank(\P\A)\).
-同理可得\(\rank\A = \rank(\A\Q) = \rank(\P\A\Q)\).
+同理可得\(\rank\A = \rank(\A\Q)\).
 \end{proof}
 \end{corollary}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:矩阵乘积的秩.多行少列矩阵与少行多列矩阵的乘积的行列式}
 设矩阵\(\A \in M_{m \times n}(K),
-\B \in M_{n \times m}(K)\).
-如果\(m > n\)，
-那么\(\abs{\A\B} = 0\).
+\B \in M_{n \times m}(K)\)，
+\(m > n\)，
+那么\[
+	\abs{\A\B} = 0.
+\]
 \begin{proof}
 当\(m>n\)时，
 根据\cref{theorem:线性方程组.矩阵的秩的性质2}，有\[
@@ -134,6 +137,10 @@
 \end{proof}
 %\cref{equation:线性方程组.柯西比内公式}
 \end{theorem}
+\begin{remark}
+在\cref{example:行列式.两个向量的乘积矩阵的行列式} 我们看到
+维数相同的一个列向量与一个行向量的乘积的行列式等于零.
+\end{remark}
 
 \subsection{等价标准型}
 \begin{definition}
@@ -178,16 +185,18 @@
 \end{proof}
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:矩阵乘积的秩.矩阵等价的充分必要条件}
 设\(\A\)与\(\B\)都是\(s \times n\)矩阵，
 则\(\A \cong \B\)的充分必要条件是：
 \(\rank\A = \rank\B\).
 \begin{proof}
-必要性.因为\(\A\)可经一系列初等变换化为\(\B\)，
+必要性.
+因为\(\A\)可经一系列初等变换化为\(\B\)，
 根据\cref{theorem:线性方程组.初等变换不变秩}，初等变换不改变矩阵的秩，
 所以\(\rank\A = \rank\B\).
 
-充分性.已知\(\rank\A = \rank\B = r\).
+充分性.
+已知\(\rank\A = \rank\B = r\).
 对\(\A\)作初等行变换可将其化简为仅前\(r\)行不为零的阶梯形矩阵\(\C\)，
 同样对\(\C\)作初等列变换可化简为\(\A\)的等价标准型.
 对\(\B\)也可作初等变换化为等价标准型.

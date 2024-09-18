@@ -86,27 +86,45 @@
 \end{definition}
 
 \begin{example}
-设矩阵\(\A = (a_{ij})_n\).
+设矩阵\(\A \in M_n(K)\).
 试证：\(\A\A^T\)为对称矩阵.
 \begin{proof}
 因为\((\A \A^T)^T = (\A^T)^T \A^T = \A \A^T\)，所以\(\A \A^T\)是对称矩阵.
 \end{proof}
 \end{example}
+\begin{remark}
+容易看出，\(\A^T\A\)也是对称矩阵.
+\end{remark}
 
 \begin{example}
-设\(\A\)和\(\B\)是同阶对称矩阵.
-试证：\(\A\B\)是对称矩阵的充分必要条件是\(\A\B = \B\A\).
+设\(\vb{A}\)和\(\vb{B}\)是同阶对称矩阵.
+试证：\(\vb{A}\vb{B}\)是对称矩阵的充分必要条件是\(\vb{A}\vb{B} = \vb{B}\vb{A}\).
 \begin{proof}
-因为\(\A\)和\(\B\)都是对称矩阵，所以\[
-	\A^T = \A, \qquad
-	\B^T = \B.
+因为\(\vb{A}\)和\(\vb{B}\)都是对称矩阵，所以\[
+	\vb{A}^T = \vb{A},
+	\qquad
+	\vb{B}^T = \vb{B}.
 \]
-又因为\(\A\B = \B\A\)，\[
-	(\A\B)^T = \B^T \A^T = \B\A = \A\B,
+在此条件下，有\[
+	\text{$\vb{A}\vb{B}$是对称矩阵}
+	\iff
+	(\vb{A}\vb{B})^T
+	= \vb{A}\vb{B}
+	\iff
+	\vb{B}^T\vb{A}^T
+	= \vb{A}\vb{B}
+	\iff
+	\vb{B}\vb{A}
+	= \vb{A}\vb{B}.
+	\qedhere
 \]
-所以\(\A\B\)是对称矩阵.
 \end{proof}
 \end{example}
+\begin{remark}
+可以证明：同阶反对称矩阵的乘积是对称矩阵的充分必要条件也是\(\vb{A}\vb{B} = \vb{B}\vb{A}\).
+类似地，我们还可以证明：同阶对称矩阵或同阶反对称矩阵的乘积是反对称矩阵的充分必要条件是
+\(\vb{A}\vb{B} + \vb{B}\vb{A} = \vb0\).
+\end{remark}
 
 \subsection{反对称矩阵}
 \begin{definition}
@@ -140,31 +158,43 @@
 \begin{example}
 设\(\A\)是一个方阵，证明：\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
 \begin{proof}
-因为\((\A+\A^T)^T = \A^T+\A\)，而\((\A-\A^T)^T = \A^T - \A = -(\A-\A^T)\)，所以\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
+因为\((\A+\A^T)^T = \A^T+\A\)，
+而\((\A-\A^T)^T = \A^T - \A = -(\A-\A^T)\)，
+所以\(\A+\A^T\)为对称矩阵，
+\(\A-\A^T\)为反对称矩阵.
 显然有\(\A = \frac{\A + \A^T}{2} + \frac{\A - \A^T}{2}\).
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A\)是3阶实对称矩阵，\(\B\)是3阶实反对称矩阵，\(\A^2 = \B^2\)，试证：\(\A = \B = \z\).
+设\(\A\)是3阶实对称矩阵，\(\B\)是3阶实反对称矩阵，\(\A^2 = \B^2\).
+试证：\(\A = \B = \z\).
 \begin{proof}
 设\(\A = (a_{ij})_n\)，\(\B = (b_{ij})_n\).
-因为\(\A = \A^T\)，\(\A^2 = \A^T \A\)，所以\(\A^2\)的\(\opair{i,j}\)元素为\(a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}\).
-因为\(\B = -\B^T\)，\(\B^2 = -\B^T \B\)，所以\(\B^2\)的\(\opair{i,j}\)元素为\(-(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj})\).
-因为\(\A^2 = \B^2\)，所以\[
-a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}
-= -(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj}).
+因为\(\A = \A^T\)，\(\A^2 = \A^T \A\)，
+所以\(\A^2\)的\(\opair{i,j}\)元素为
+\(a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}\).
+因为\(\B = -\B^T\)，\(\B^2 = -\B^T \B\)，
+所以\(\B^2\)的\(\opair{i,j}\)元素为
+\(-(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj})\).
+因为\(\A^2 = \B^2\)，
+所以\[
+	a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}
+	= -(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj}).
 \]
 
-当\(i=j\)时，上式变为\(
-a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
-= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2)
-\)，又由\(a_{ij},b_{ij} \in \mathbb{R}\)可知\(a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2 \geq 0\)，\(-(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) \leq 0\)，所以\[
-a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
-= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) = 0,
-\]进而有\[
-a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
-\qedhere
+当\(i=j\)时，上式变为\(a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
+= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2)\)，
+又由\(a_{ij},b_{ij} \in \mathbb{R}\)
+可知\(a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2 \geq 0\)，
+\(-(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) \leq 0\)，
+所以\[
+	a_{1i}^2 + a_{2i}^2 + \dotsb + a_{ni}^2
+	= -(b_{1i}^2 + b_{2i}^2 + \dotsb + b_{ni}^2) = 0,
+\]
+进而有\[
+	a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
+	\qedhere
 \]
 \end{proof}
 \end{example}
@@ -174,8 +204,31 @@ a_{1i} = a_{2i} = \dotsb = a_{ni} = b_{1i} = b_{2i} = \dotsb = b_{ni} = 0.
 设矩阵\(\A \in M_n(K)\).
 若\(\exists m\in\mathbb{N}^+\)，
 使得\(\A^m = \z\)，
-则称“\(\A\)是\DefineConcept{幂零矩阵}”；
+则称“\(\A\)是\DefineConcept{幂零矩阵}（nilpotent matrix）”.
+%@see: https://mathworld.wolfram.com/NilpotentMatrix.html
 称使得\(\A^m = \z\)成立的最小正整数\[
     \min\Set{ m\in\mathbb{N}^+ \given \A^m = \z }
 \]为“\(\A\)的\DefineConcept{幂零指数}”.
 \end{definition}
+
+\subsection{幂等矩阵}
+\begin{definition}
+设矩阵\(\A \in M_n(K)\).
+若\(\A^2=\A\)，
+则称“\(\A\)是\DefineConcept{幂等矩阵}（idempotent matrix）”.
+%@see: https://mathworld.wolfram.com/IdempotentMatrix.html
+\end{definition}
+%\cref{example:幂等矩阵.幂等矩阵的秩的性质1}
+
+\subsection{对合矩阵}
+\begin{definition}
+设矩阵\(\A \in M_n(K)\)，\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+若\(\A^2=\E\)，
+则称“\(\A\)是\DefineConcept{对合矩阵}（involutory matrix）”.
+%@see: https://mathworld.wolfram.com/InvolutoryMatrix.html
+\end{definition}
+%\cref{example:对合矩阵.对合矩阵的秩的性质1}
+
+% \subsection{汉克尔矩阵}
+%TODO
+%@see: https://mathworld.wolfram.com/HankelMatrix.html

@@ -312,7 +312,7 @@
 \]
 因此，如果\(\AutoTuple{x}{n}\)两两不等，则范德蒙德行列式不等于零.
 
-\begin{example}
+\begin{example}\label{example:行列式的展开.三对角行列式}
 %@see: 《线性代数》（张慎语、周厚隆） P35 例4
 计算\(n\)阶三对角行列式\[
 	D_n = \begin{vmatrix}
@@ -325,41 +325,45 @@
 \]
 \begin{proof}
 将\(D_n\)按第一行展开，得\begin{align*}
-D_n &= (a+b) D_{n-1} - ab \begin{vmatrix}
-1 & ab \\
-0 & a+b & ab \\
- & 1 & a+b & \ddots \\
- & & \ddots & \ddots & ab \\
- & & & 1 & a+b \\
-\end{vmatrix}_{n-1} \\
-&= (a+b) D_{n-1} - ab D_{n-2},
+	D_n &= (a+b) D_{n-1} - ab \begin{vmatrix}
+		1 & ab \\
+		0 & a+b & ab \\
+		& 1 & a+b & \ddots \\
+		& & \ddots & \ddots & ab \\
+		& & & 1 & a+b \\
+	\end{vmatrix}_{n-1} \\
+	&= (a+b) D_{n-1} - ab D_{n-2},
 \end{align*}
-把上式改写为\(D_n - a D_{n-1} = b(D_{n-1} - a D_{n-2})\)，继续递推下去，得\begin{align*}
-D_n - a D_{n-1} &= b(D_{n-1} - a D_{n-2}) = b^2(D_{n-2} - a D_{n-3}) \\
-&= \dotsb = b^{n-2}(D_2 - a D_1) \\
-&= b^{n-2} [(a^2 + ab + b^2) - a(a+b)] = b^n,
-\end{align*}所以\[
-D_n - a D_{n-1} = b^n,
-\]又由\(a\)和\(b\)的对称性可得\[
-D_n - b D_{n-1} = a^n.
+把上式改写为\(D_n - a D_{n-1} = b(D_{n-1} - a D_{n-2})\)，
+继续递推下去，得\begin{align*}
+	D_n - a D_{n-1} &= b(D_{n-1} - a D_{n-2}) = b^2(D_{n-2} - a D_{n-3}) \\
+	&= \dotsb = b^{n-2}(D_2 - a D_1) \\
+	&= b^{n-2} [(a^2 + ab + b^2) - a(a+b)] = b^n,
+\end{align*}
+所以\[
+	D_n - a D_{n-1} = b^n,
+\]
+又由\(a\)和\(b\)的对称性可得\[
+	D_n - b D_{n-1} = a^n.
 \]
 
 当\(a \neq b\)时，可解得\[
-D_n = \frac{a^{n+1} - b^{n+1}}{a - b}
-= a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
-\]当\(a = b\)时，由\[
-D_n - a D_{n-1} = a^n
+	D_n = \frac{a^{n+1} - b^{n+1}}{a - b}
+	= a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
+\]
+当\(a = b\)时，由\[
+	D_n - a D_{n-1} = a^n
 \]可继续递推得\begin{align*}
-D_n &= a D_{n-1} + a^n
-= a(a D_{n-2} + a^{n-1}) + a^n
-= a^2 D_{n-2} + 2 a^n \\
-&= a^3 D_{n-3} + 3 a^n
-= \dotsb
-= (n+1) a^n.
+	D_n &= a D_{n-1} + a^n
+	= a(a D_{n-2} + a^{n-1}) + a^n
+	= a^2 D_{n-2} + 2 a^n \\
+	&= a^3 D_{n-3} + 3 a^n
+	= \dotsb
+	= (n+1) a^n.
 \end{align*}
 综上所述，对任意\(a,b\in\mathbb{R}\)都有\[
-D_n = a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
-\qedhere
+	D_n = a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
+	\qedhere
 \]
 \end{proof}
 \end{example}

@@ -115,7 +115,38 @@
 \end{example}
 
 \begin{example}
-举例说明矩阵方程\(\A \B = \A \C\)与\(\A = \z \lor \B = \C\)不等价，即消去律不成立.
+举例说明：矩阵乘法不满足消去律，即\[
+	\A \B = \A \C
+	\notimplies
+	\A = \z \lor \B = \C.
+\]
+\begin{solution}
+取\[
+	\A = \begin{bmatrix}
+		1 & 0 \\
+		1 & 0
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		0 & 0 \\
+		0 & 1
+	\end{bmatrix},
+	\qquad
+	\C = \begin{bmatrix}
+		0 & 0 \\
+		0 & 2
+	\end{bmatrix},
+\]
+显然\[
+	\A\B
+	= \A\C
+	= \begin{bmatrix}
+		0 & 0 \\
+		0 & 0
+	\end{bmatrix},
+\]
+但是\(\A\neq\vb0\)且\(\B\neq\C\).
+\end{solution}
 \end{example}
 
 \subsection{矩阵乘法的运算规则}
@@ -178,22 +209,29 @@
 \end{definition}
 
 \begin{theorem}
-指数律成立.
-设\(k,l \in \mathbb{N}\)，那么
-\begin{gather}
-	\A^k\A^l = \A^{k+l}, \\
-	(\A^k)^l = \A^{kl}.
+指数律成立，
+即\begin{gather}
+	(\forall\A \in M_n(K))
+	(k,l \in \mathbb{N})
+	[\A^k\A^l = \A^{k+l}], \\
+	(\forall\A \in M_n(K))
+	(k,l \in \mathbb{N})
+	[(\A^k)^l = \A^{kl}].
 \end{gather}
 \end{theorem}
 
-设\(\A,\B \in M_n(K)\)，恒有
-\begin{equation}
+\begin{proposition}
+设\(\A,\B \in M_n(K)\)，
+则\begin{equation}
 	(\A\B)^k = \A(\B\A)^{k-1}\B,
 	\quad k=1,2,\dotsc.
 \end{equation}
+\end{proposition}
+\begin{remark}
 注意，当\(\A\)、\(\B\)不可交换时，通常有\[
 	(\A\B)^k \neq \A^k\B^k.
 \]
+\end{remark}
 
 \begin{example}
 设\(\A=\diag(\AutoTuple{a}{n}),
@@ -266,10 +304,11 @@
 
 \begin{theorem}
 如果\(g(x)\)和\(h(x)\)是两个多项式，
-设\(l(x) = g(x) + h(x)\)，\(m(x) = g(x) h(x)\)，则\[
+设\(l(x) = g(x) + h(x)\)，\(m(x) = g(x) h(x)\)，
+则\[
 	l(\A) = g(\A) + h(\A),
 	\quad
-	m(\A) = g(\A) h(\A)
+	m(\A) = g(\A) h(\A).
 \]
 \end{theorem}
 

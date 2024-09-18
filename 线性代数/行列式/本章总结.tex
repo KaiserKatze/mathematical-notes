@@ -1,12 +1,61 @@
 \section{本章总结}
+\subsection*{行列式的计算方法}
 我们可以采用以下方法计算行列式：
 \begin{enumerate}
+	\item 利用行列式的定义计算.
 	\item 利用初等变换，将行列式化为上三角形，如此行列式就等于主对角线上元素之积.
 	\item 拆成若干个行列式的和.
 	\item 按行（或列）展开.
 	\item 数学归纳法.
 	\item 递推关系法.
-	\item 加边法（即升阶法）.
-	\item 降阶法.
+	\item 升阶法.
+	\item \hyperref[theorem:逆矩阵.行列式降阶定理]{降阶法}.
+	\item \(\abs{\A}^2 = \abs{\A} \abs{\A^T}\).
 	\item 利用\hyperref[equation:行列式.范德蒙德行列式]{范德蒙德行列式}等特殊行列式计算.
 \end{enumerate}
+
+\subsection*{重要行列式}
+\begin{gather*}
+	\begin{vmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		& a_{22} & \dots & a_{2n} \\
+		& & \ddots & \vdots \\
+		& & & a_{nn}
+	\end{vmatrix}
+	= a_{11} a_{22} \dotsm a_{nn}, \\%
+	\begin{vmatrix}
+		& & & & a_{1n} \\
+		& & & a_{2,n-1} & a_{2n} \\
+		& & & \vdots & \vdots \\
+		& a_{n-1,2} & \dots & a_{n-1,n-1} & a_{n-1,n} \\
+		a_{n1} & a_{n2} & \dots & a_{n,n-1} & a_{nn}
+	\end{vmatrix}
+	=(-1)^{\frac{1}{2}n(n-1)} a_{1n} a_{2,n-1} \dotsm a_{n-1,2} a_{n1}. \\
+	\begin{vmatrix}
+		k & \lambda & \lambda & \dots & \lambda \\
+		\lambda & k & \lambda & \dots & \lambda \\
+		\lambda & \lambda & k & \dots & \lambda \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		\lambda & \lambda & \lambda & \dots & k
+	\end{vmatrix}
+	= [k+(n-1)\lambda] (k-\lambda)^{n-1},
+	\quad k\neq\lambda,n=1,2,\dotsc. \\
+	%\cref{equation:行列式.范德蒙德行列式}
+	\begin{vmatrix}
+		1 & 1 & 1 & \dots & 1 \\
+		x_1 & x_2 & x_3 & \dots & x_n \\
+		x_1^2 & x_2^2 & x_3^2 & \dots & x_n^2 \\
+		\vdots & \vdots & \vdots& & \vdots \\
+		x_1^{n-1} & x_2^{n-1} & x_3^{n-1} & \dots & x_n^{n-1}
+	\end{vmatrix}
+	= \prod_{1 \leq j < i \leq n}(x_i-x_j). \\
+	%\cref{example:行列式的展开.三对角行列式}
+	\begin{vmatrix}
+		a+b & ab & \\
+		1 & a+b & ab & \\
+		& 1 & a + b & \ddots & \\
+		& & \ddots & \ddots & ab \\
+		& & & 1 & a+b \\
+	\end{vmatrix}_n
+	= a^n + a^{n-1} b + a^{n-2} b^2 + \dotsb + a b^{n-1} + b^n.
+\end{gather*}
