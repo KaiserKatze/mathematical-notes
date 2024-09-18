@@ -399,6 +399,61 @@
 % \end{proof}
 % \end{example}
 
+通常在计算行列式时我们常采用各种方法（例如按行或列展开）降低行列式的阶数，
+但是有时候我们也可以反其道而行之，适当地增加行、列，反而可以简化问题.
+\begin{example}
+%@see: 《高等代数（第四版）》（谢启鸿 姚慕生） P27 例1.31
+计算\(n\)阶行列式\[
+	\abs{\A} = \begin{vmatrix}
+		1 + x_1 & 1 + x_1^2 & \dots & 1 + x_1^n \\
+		1 + x_2 & 1 + x_2^2 & \dots & 1 + x_2^n \\
+		\vdots & \vdots & & \vdots \\
+		1 + x_n & 1 + x_n^2 & \dots & 1 + x_n^n
+	\end{vmatrix}.
+\]
+\begin{solution}
+增加一列升阶得到\[
+	\abs{\A} = \begin{vmatrix}
+		1 & 0 & 0 & \dots & 0 \\
+		1 & 1 + x_1 & 1 + x_1^2 & \dots & 1 + x_1^n \\
+		1 & 1 + x_2 & 1 + x_2^2 & \dots & 1 + x_2^n \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		1 & 1 + x_n & 1 + x_n^2 & \dots & 1 + x_n^n
+	\end{vmatrix}
+	= \begin{vmatrix}
+		1 & -1 & -1 & \dots & -1 \\
+		1 & x_1 & x_1^2 & \dots & x_1^n \\
+		1 & x_2 & x_2^2 & \dots & x_2^n \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		1 & x_n & x_n^2 & \dots & x_n^n
+	\end{vmatrix}.
+\]
+将第一行拆开，可得\[
+	\abs{\A} = \begin{vmatrix}
+		2 & 0 & 0 & \dots & 0 \\
+		1 & x_1 & x_1^2 & \dots & x_1^n \\
+		1 & x_2 & x_2^2 & \dots & x_2^n \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		1 & x_n & x_n^2 & \dots & x_n^n
+	\end{vmatrix}
+	+ \begin{vmatrix}
+		-1 & -1 & -1 & \dots & -1 \\
+		1 & x_1 & x_1^2 & \dots & x_1^n \\
+		1 & x_2 & x_2^2 & \dots & x_2^n \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		1 & x_n & x_n^2 & \dots & x_n^n
+	\end{vmatrix}.
+\]
+上式等号右边第二个行列式只要提出公因子\((-1)\)
+就变成一个\hyperref[equation:行列式.范德蒙德行列式]{范德蒙德行列式}，
+从而可得\[
+	\abs{\A}
+	= \left[ 2 x_1 x_2 \dotsm x_n - (x_1 - 1)(x_2 - 1)\dotsm(x_n - 1) \right]
+	\prod_{1 \leq i < j \leq n} (x_j - x_i).
+\]
+\end{solution}
+\end{example}
+
 \subsection{行列式按\texorpdfstring{\(k\)}{k}行（或\texorpdfstring{\(k\)}{k}列）展开}
 \begin{theorem}[拉普拉斯定理]\label{theorem:行列式.拉普拉斯定理}
 %@see: 《高等代数创新教材（上册）》（丘维声） P68 定理1（Laplace定理）
