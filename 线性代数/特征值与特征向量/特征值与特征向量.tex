@@ -103,6 +103,8 @@
 这个例子说明：不是所有数域上的矩阵都有特征值、特征向量.
 但是我们只要把这个矩阵看成是复数域上的2阶矩阵，
 就会发现\(\frac12(1\pm\iu\sqrt3)\)是它的两个特征值.
+%@Mathematica: Eigenvalues[{{Cos[Pi/3], -Sin[Pi/3]}, {Sin[Pi/3], Cos[Pi/3]}}]
+%@Mathematica: Eigenvectors[{{Cos[Pi/3], -Sin[Pi/3]}, {Sin[Pi/3], Cos[Pi/3]}}]
 我们将在下面证明：复数域上的矩阵必定存在特征值、特征向量.
 \end{example}
 
@@ -197,18 +199,23 @@
 
 \subsection{求解特征值和特征向量的一般程序}
 % 大数学家高斯在1799年证明了以下\DefineConcept{代数基本定理}：
-\begin{theorem}[代数基本定理]
+\begin{lemma}[代数基本定理]
 任何\(n\ (n>0)\)次多项式有且仅有\(n\)个复根，其中规定\(m\)重根算\(m\)个根.
-\end{theorem}
+\end{lemma}
 我们将会在\cref{example:留数定理.利用儒歇定理证明代数基本定理} 给出代数基本定理的具体证明过程.
-由代数基本定理可知，任意\(n\)阶矩阵的特征多项式有且仅有\(n\)个复根.
 
 %@see: 《线性代数》（张慎语、周厚隆） P93
-求解矩阵\(\A \in M_n(\mathbb{C})\)的特征值和特征向量的一般程序：\begin{enumerate}
-	\item 计算特征多项式\(\abs{\lambda\E-\A}\)，
-	求出方程\(\abs{\lambda\E-\A}=0\)的全部根（\(\A\)的全部特征值）：\[
-		\AutoTuple{\lambda}{n}.
-	\]
+求解矩阵\(\A \in M_n(K)\)的特征值和特征向量的一般程序：\begin{enumerate}
+	\item 计算特征多项式\(\abs{\lambda\E-\A}\).
+
+	\item 判别多项式\(\abs{\lambda\E-\A}\)（即方程\(\abs{\lambda\E-\A}=0\)）
+	在数域\(K\)中有没有根.
+	\begin{itemize}
+		\item 如果它没有根，则没有特征值、特征向量.
+		\item 如果它有根，则它在\(K\)中的全部根\(\AutoTuple{\lambda}{n}\)就是\(\A\)的全部特征值.
+		\item 如果\(K = \mathbb{C}\)，
+		那么根据代数基本定理，任意\(n\)阶矩阵的特征多项式有且仅有\(n\)个复根.
+	\end{itemize}
 
 	\item 对于每个不同的特征值\(\lambda_j\ (j=1,2,\dotsc,n)\)，
 	求出齐次线性方程组\((\lambda_j \E - \A)\x = \vb0\)的一个基础解系\(\AutoTuple{\x}{t}\)，
