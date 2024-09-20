@@ -318,9 +318,11 @@
 \]
 \end{proposition}
 
-\begin{theorem}
-设\(\A \in M_n(\mathbb{C})\)，
-则\[
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 7.
+%@see: 《线性代数》（张慎语、周厚隆） P96 例7
+设\(\A \in M_n(K)\)，
+证明：\[
 	\text{\(\lambda\)是\(\A\)的特征值}
 	\iff
 	\text{\(\lambda\)是\(\A^T\)的特征值}.
@@ -335,7 +337,31 @@
 \end{align*}
 因此\(\A\)与\(\A^T\)具有相同的特征值.
 \end{proof}
-\end{theorem}
+\end{example}
+\begin{example}
+试讨论：在什么条件下，矩阵\(\A\)的任一特征向量总是\(\A^T\)的特征向量.
+\begin{solution}
+假设\(\A\)的特征向量都是\(\A^T\)的特征向量，
+\(\A\x=\lambda_1\x\)，\(\A^T\x=\lambda_2\x\)，那么有\[
+	(\A^T\x)^T=(\lambda_2\x)^T
+	\implies
+	\x^T\A=\lambda_2\x^T
+	\implies
+	(\x^T\A)\x=(\lambda_2\x^T)\x,
+\]\[
+	\x^T(\A\x)=\x^T(\lambda_1\x)=\lambda_1\x^T\x=\lambda_2\x^T\x
+	\implies
+	(\lambda_1-\lambda_2)\x^T\x=0,
+\]
+因为\(\x\neq\z\)，\(\x^T\x\neq0\)，
+所以\(\lambda_1-\lambda_2=0\)，\(\lambda_1=\lambda_2\).
+那么\[
+	\A\x=\lambda_1\x=\lambda_2\x=\A^T\x,
+\]
+从而\((\A-\A^T)\x=\z\)，\(\A=\A^T\).
+也就是说，当且仅当\(\A\)是对称矩阵时，\(\A\)的特征向量都是\(\A^T\)的特征向量.
+\end{solution}
+\end{example}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P94 例3
@@ -461,6 +487,7 @@
 矩阵\(\A\)的同一个特征值\(\lambda_0\)对应的特征向量的非零线性组合仍为\(\A\)的属于\(\lambda_0\)的特征向量.
 那么，\(\A\)的不同特征值对应的特征向量的非零线性组合又如何呢？
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P95 例5
 设\(\lambda_1\)、\(\lambda_2\)是矩阵\(\A\)的两个不同的特征值，
 \(\x_1\)、\(\x_2\)分别是\(\lambda_1\)、\(\lambda_2\)对应的特征向量.
 证明：\(\x_1+\x_2\)不是\(\A\)的特征向量.
@@ -493,9 +520,14 @@
 \end{example}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P96 例6
 设\(\lambda_0\)是矩阵\(\A\)的特征值，\(k\)是任意常数，则\(k\lambda_0\)是矩阵\(k\A\)的特征值.
 \begin{proof}
-\(\A\x_0=\lambda_0\x_0\)，\((k\A)\x_0=k(\A\x_0)=k(\lambda_0\x_0)=(k\lambda_0)\x_0\).
+由\(\A \vb{x}_0 = \lambda_0 \vb{x}_0\ (\vb{x}_0\neq0)\)
+得\((k\A) \vb{x}_0
+= k(\A \vb{x}_0)
+= k(\lambda_0 \vb{x}_0)
+= (k\lambda_0) \vb{x}_0\).
 \end{proof}
 \end{example}
 
@@ -510,6 +542,7 @@
 
 \begin{example}\label{example:幂等矩阵.幂等矩阵的特征值的性质}
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 5.
+%@see: 《线性代数》（张慎语、周厚隆） P96 例8
 证明：数域\(K\)上的\(n\)阶幂等矩阵一定有特征值，且其特征值必为0或1.
 \begin{proof}
 设\(\A\)是幂等矩阵，即有\(\A^2=\A\).
@@ -542,31 +575,6 @@
 进一步有\(\lambda_0(\lambda_0-1)=0\)，
 所以\(\lambda_0=0\)或\(\lambda_0=1\).
 \end{proof}
-\end{example}
-
-\begin{example}
-试讨论：在什么条件下，矩阵\(\A\)的任一特征向量总是\(\A^T\)的特征向量.
-\begin{solution}
-假设\(\A\)的特征向量都是\(\A^T\)的特征向量，
-\(\A\x=\lambda_1\x\)，\(\A^T\x=\lambda_2\x\)，那么有\[
-	(\A^T\x)^T=(\lambda_2\x)^T
-	\implies
-	\x^T\A=\lambda_2\x^T
-	\implies
-	(\x^T\A)\x=(\lambda_2\x^T)\x,
-\]\[
-	\x^T(\A\x)=\x^T(\lambda_1\x)=\lambda_1\x^T\x=\lambda_2\x^T\x
-	\implies
-	(\lambda_1-\lambda_2)\x^T\x=0,
-\]
-因为\(\x\neq\z\)，\(\x^T\x\neq0\)，
-所以\(\lambda_1-\lambda_2=0\)，\(\lambda_1=\lambda_2\).
-那么\[
-	\A\x=\lambda_1\x=\lambda_2\x=\A^T\x,
-\]
-从而\((\A-\A^T)\x=\z\)，\(\A=\A^T\).
-也就是说，当且仅当\(\A\)是对称矩阵时，\(\A\)的特征向量都是\(\A^T\)的特征向量.
-\end{solution}
 \end{example}
 
 \begin{example}\label{example:矩阵乘积的秩.两个向量的乘积的特征值和特征向量}
