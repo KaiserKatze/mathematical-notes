@@ -137,38 +137,6 @@
 
 \begin{proposition}
 设\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x\)可导，
-则\[
-	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
-	= f'(x).
-\]
-\begin{proof}
-令\(t=-h\)，
-则\[
-	\lim_{h\to0^+} \frac{f(x)-f(x-h)}{h}
-	= \lim_{t\to0^-} \frac{f(x)-f(x+t)}{-t}
-	= \lim_{t\to0^-} \frac{f(x+t)-f(x)}{t},
-\]\[
-	\lim_{h\to0^-} \frac{f(x)-f(x-h)}{h}
-	= \lim_{t\to0^+} \frac{f(x)-f(x+t)}{-t}
-	= \lim_{t\to0^+} \frac{f(x+t)-f(x)}{t},
-\]
-又因为\[
-	\lim_{t\to0^-} \frac{f(x+t)-f(x)}{t}
-	= \lim_{t\to0^+} \frac{f(x+t)-f(x)}{t}
-	= f'(x),
-\]
-所以\[
-	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
-	= \lim_{h\to0^+} \frac{f(x)-f(x-h)}{h}
-	= \lim_{h\to0^-} \frac{f(x)-f(x-h)}{h}
-	= f'(x).
-	\qedhere
-\]
-\end{proof}
-\end{proposition}
-
-\begin{proposition}
-设\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x\)可导，
 \(\lambda>0\)是常数，
 则\[
 	\lim_{h\to0} \frac{f(x+\lambda h)-f(x)}{h}
@@ -274,6 +242,31 @@ n\in\mathbb{N}^+\).
 而如果\(f'(x_0) = 0\)，则法线方程为\(x = x_0\).
 \end{theorem}
 
+\begin{proposition}\label{theorem:导数.导数的等价定义1}
+设\(f\colon\mathbb{R}\to\mathbb{R}\)，
+则\(f\)在点\(x\)可导
+当且仅当\[
+	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
+	= f'(x).
+\]
+\begin{proof}
+令\(t=-h\)，
+则\[
+	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
+	= \lim_{t\to0} \frac{f(x)-f(x+t)}{-t}
+	= \lim_{t\to0} \frac{f(x+t)-f(x)}{t}
+	= f'(x).
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+\cref{theorem:导数.导数的等价定义1} 的几何意义非常明确：
+对于可导函数\(f\)，
+过点\((x_0,f(x_0))\)可以作一条直线，与曲线\(y=f(x)\)相交于一点\((x_1,f(x_1))\)，
+不论是\(x_1>x_0\)还是\(x_1<x_0\)，只要\(x_1\)与\(x_0\)之间的距离足够小，
+由\((x_0,f(x_0))\)与\((x_1,f(x_1))\)两点确定的直线就近似于
+曲线\(y=f(x)\)在点\((x_0,f(x_0))\)处的切线.
+
 \begin{proposition}\label{theorem:导数与微分.导函数的奇偶性}
 设\(R>0\)，\(f'\)是函数\(f\colon(-R,R)\to\mathbb{R}\)的导函数.
 \begin{itemize}
@@ -290,7 +283,7 @@ n\in\mathbb{N}^+\).
 		f(-x) = -f(x)
 	],
 \]
-那么\[
+那么由\cref{theorem:导数.导数的等价定义1} 有\[
 	f'(-x)
 	= \lim_{h\to0} \frac{f(-x+h)-f(-x)}{h}
 	= \lim_{h\to0} \frac{-f(x-h)+f(x)}{h}
@@ -307,7 +300,7 @@ n\in\mathbb{N}^+\).
 		f(-x) = f(x)
 	],
 \]
-那么\[
+那么由\cref{theorem:导数.导数的等价定义1} 有\[
 	f'(-x)
 	= \lim_{h\to0} \frac{f(-x+h)-f(-x)}{h}
 	= \lim_{h\to0} \frac{f(x-h)-f(x)}{h}
