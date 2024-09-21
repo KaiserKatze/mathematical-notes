@@ -41,6 +41,7 @@
 	\caption{双曲正弦函数\(\sinh\)的图形}
 	\label{figure:函数.双曲正弦函数的图形}
 \end{figure}
+%@Mathematica: Plot[Sinh[x], {x, -10, 10}]
 
 \begin{figure}[htb]
 	\centering
@@ -63,6 +64,7 @@
 	\caption{双曲余弦函数\(\cosh\)的图形}
 	\label{figure:函数.双曲余弦函数的图形}
 \end{figure}
+%@Mathematica: Plot[Cosh[x], {x, -10, 10}]
 
 \begin{figure}[htb]
 	\centering
@@ -85,6 +87,7 @@
 	\caption{双曲正切函数\(\tanh\)的图形}
 	\label{figure:函数.双曲正切函数的图形}
 \end{figure}
+%@Mathematica: Plot[Tanh[x], {x, -10, 10}]
 
 \begin{figure}[htb]
 	\centering
@@ -111,6 +114,7 @@
 	\caption{双曲余切函数\(\coth\)的图形}
 	\label{figure:函数.双曲余切函数的图形}
 \end{figure}
+%@Mathematica: Plot[Coth[x], {x, -10, 10}]
 
 \begin{figure}[htb]
 	\centering
@@ -132,6 +136,7 @@
 	\end{tikzpicture}
 	\caption{双曲正割函数\(\sech\)的图形}
 \end{figure}
+%@Mathematica: Plot[Sech[x], {x, -10, 10}]
 
 \begin{figure}[htb]
 	\centering
@@ -154,6 +159,7 @@
 	\end{tikzpicture}
 	\caption{双曲余割函数\(\csch\)的图形}
 \end{figure}
+%@Mathematica: Plot[Csch[x], {x, -10, 10}]
 
 下面我们研究双曲函数的反函数.
 
@@ -176,6 +182,28 @@
 	\ln(x+\sqrt{x^2+1}),
 	\quad -\infty<x<+\infty.
 \]
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\begin{axis}[
+			xmin=-10,xmax=10,
+			restrict y to domain=-100:100,
+			grid=both,width=\textwidth,height=\textwidth,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=-10:10]{ln(x+sqrt(1+x^2))};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{反双曲正弦函数\(\arsinh\)的图形}
+\end{figure}
+%@Mathematica: Plot[ArcSinh[x], {x, -10, 10}]
 
 接下来讨论双曲余弦函数\(y=\cosh x\)的反函数.
 由\(x=\cosh y\)，有\[
@@ -203,6 +231,28 @@
 	\quad(x\geq1)
 \]是双曲余弦函数左支\(y=\cosh x\ (x\leq0)\)的反函数.
 
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\begin{axis}[
+			xmin=0,xmax=10,
+			restrict y to domain=-100:100,
+			grid=both,width=\textwidth,height=\textwidth,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=1:10]{ln(x+sqrt(x^2-1))};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{反双曲余弦函数\(\arcosh\)的图形}
+\end{figure}
+%@Mathematica: Plot[ArcCosh[x], {x, 0, 10}]
+
 易见\[
 	\ln(x+\sqrt{x^2-1}) + \ln(x-\sqrt{x^2-1}) = 0
 	\quad(x\geq1).
@@ -228,6 +278,28 @@
 	\quad -1<x<1.
 \]
 
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\begin{axis}[
+			xmin=-1,xmax=1,
+			restrict y to domain=-100:100,
+			grid=both,width=\textwidth,height=\textwidth,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=-.99:.99]{.5*ln((1+x)/(1-x))};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{反双曲正切函数\(\artanh\)的图形}
+\end{figure}
+%@Mathematica: Plot[ArcTanh[x], {x, -1, 1}]
+
 最后讨论双曲余切函数\(\coth\)的反函数.
 由\[
 	x = \coth y
@@ -245,6 +317,29 @@
 	\frac12 \ln\frac{x + 1}{x - 1},
 	\quad -\infty<x<-1\lor1<x<+\infty.
 \]
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\begin{axis}[
+			xmin=-10,xmax=10,
+			restrict y to domain=-100:100,
+			grid=both,width=\textwidth,height=\textwidth,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=-10:-.01]{.5*ln((x+1)/(x-1))};
+			\addplot[color=blue,samples=50,smooth,domain=.01:10]{.5*ln((x+1)/(x-1))};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{反双曲余切函数\(\arcoth\)的图形}
+\end{figure}
+%@Mathematica: Plot[ArcCoth[x], {x, -10, 10}]
 
 \begin{property}
 双曲正弦\(\sinh\)是奇函数.
