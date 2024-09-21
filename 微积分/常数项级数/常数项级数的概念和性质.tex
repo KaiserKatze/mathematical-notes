@@ -600,7 +600,22 @@ u_{k+1}+u_{k+2}+\dotsb+u_{k+n}+\dotsb.
 %@see: 《数学分析（第2册）》（周民强） P171 例1
 设\(\{u_n\}\)是单调增加的无界的正数列.
 证明：级数\(\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)\)发散.
-%TODO proof
+\begin{proof}
+显然\(u_n\to+\infty\ (n\to\infty)\)，
+那么对于任意给定正整数\(N\)，
+当\(p\)充分大时，
+有\[
+	u_{N+p} > 2 u_N.
+\]
+从而有\begin{align*}
+	&\sum_{n=N}^{N+p} \left(1-\frac{u_n}{u_{n+1}}\right)
+	= \sum_{n=N}^{N+p} u_n \left(\frac1{u_n}-\frac1{u_{n+1}}\right) \\
+	&\geq u_N \left(\frac1{u_N}-\frac1{u_{N+p+1}}\right)
+	= 1-\frac{u_N}{u_{N+p+1}}
+	> \frac12.
+\end{align*}
+于是由{柯西审敛原理}可知级数\(\sum_{n=1}^\infty \left(1-\frac{u_n}{u_{n+1}}\right)\)发散.
+\end{proof}
 \end{example}
 
 \begin{example}
