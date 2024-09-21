@@ -13,7 +13,7 @@
 %@see: https://mathworld.wolfram.com/MatrixDiagonalization.html
 \end{definition}
 
-\begin{theorem}[矩阵可对角化的充分必要条件]\label{theorem:矩阵可对角化的充分必要条件.定理1}
+\begin{theorem}\label{theorem:矩阵对角化.矩阵可对角化的充分必要条件}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 定理2
 设矩阵\(\A \in M_n(K)\)，
 则\(\A\)可对角化的充分必要条件是：
@@ -48,16 +48,22 @@
 \end{proof}
 \end{theorem}
 
+%@see: 《线性代数》（张慎语、周厚隆） P99
 由上述定理的证明可知：
 {\color{red}当\(\P^{-1}\A\P=\V\)时，
 \(\V\)的\(n\)个主对角元是\(\A\)的\(n\)个特征值；
 可逆矩阵\(\P\)的\(n\)个列向量\(\AutoTuple{\x}{n}\)是
 \(\A\)分别属于\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)的线性无关特征向量.}
 
-\begin{theorem}
-矩阵\(\A\)的属于不同特征值的特征向量线性无关.
+一个\(n\)阶矩阵\(\A\)能否相似于对角阵，就归结为\(\A\)是否具有\(n\)个线性无关的特征向量.
+我们已经知道，方程\((\lambda\E-\A)\x=\vb0\)的基础解系是
+矩阵\(\A\)的属于特征值\(\lambda\)的线性无关特征向量.
+于是自然提出问题：不同特征值的线性无关特征向量是否构成线性无关组？
+\begin{theorem}\label{theorem:矩阵对角化.不同特征值的特征向量线性无关}
+%@see: 《线性代数》（张慎语、周厚隆） P99 定理2
+矩阵\(\A \in M_n(K)\)的属于不同特征值的特征向量线性无关.
 \begin{proof}
-设\(n\)阶矩阵\(\A\)的\(m\)个不同的特征值\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)
+设矩阵\(\A\)的\(m\)个不同的特征值\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)
 对应的特征向量分别为\(\AutoTuple{\x}{m}\).
 
 由上述所有特征向量构成的向量组，
@@ -67,52 +73,76 @@
 由于\(\vb{x}_1 \neq 0\)，
 故向量组\(X_1=\{\vb{x}_1\}\)线性无关.
 
-当\(m>1\)时，
-假设\(m-1\)个不同特征值对应的特征向量\(X_{m-1}=\{\AutoTuple{\x}{m-1}\}\)线性无关.
+当\(m>1\)时，用数学归纳法，
+假设\(m-1\)个不同特征值对应的特征向量\[
+	X_{m-1}=\{\AutoTuple{\x}{m-1}\}
+\]线性无关.
 对于\(m\)个不同特征值对应的特征向量组\(X_m\)，
-令\begin{gather}
-	k_1\vb{x}_1+k_2\vb{x}_2+\dotsb+k_m\vb{x}_m=\z,
-	\tag1
-\end{gather}
+考虑方程\[
+	k_1\vb{x}_1+k_2\vb{x}_2+\dotsb+k_{m-1}\vb{x}_{m-1}+k_m\vb{x}_m=\vb0,
+	\eqno(1)
+\]
 由于\(\A\vb{x}_j=\lambda_j\vb{x}_j\)，
 用\(\A\)左乘(1)式两端，
-得\begin{gather}
+得\[
 	k_1\lambda_1\vb{x}_1+k_2\lambda_2\vb{x}_2
-	+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\lambda_m\vb{x}_m=\z.
-	\tag2
-\end{gather}
-再用\(\lambda_m\)数乘(1)式两端，得\begin{gather}
+	+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\lambda_m\vb{x}_m=\vb0.
+	\eqno(2)
+\]
+再用\(\lambda_m\)数乘(1)式两端，得\[
 	\lambda_mk_1\vb{x}_1+\lambda_mk_2\vb{x}_2
-	+\dotsb+\lambda_mk_{m-1}\X{m-1}+\lambda_mk_m\vb{x}_m=\z,
-	\tag3
-\end{gather}
-(2)、(3)两式相减，得\begin{gather}
+	+\dotsb+\lambda_mk_{m-1}\X{m-1}+\lambda_mk_m\vb{x}_m=\vb0,
+	\eqno(3)
+\]
+(2)、(3)两式相减，得\[
 	(\lambda_1-\lambda_m)k_1\vb{x}_1+(\lambda_2-\lambda_m)k_2\vb{x}_2
-	+\dotsb+(\L{m-1}-\lambda_m)k_{m-1}\X{m-1}=\z.
-	\tag4
-\end{gather}
+	+\dotsb+(\L{m-1}-\lambda_m)k_{m-1}\X{m-1}=\vb0.
+	\eqno(4)
+\]
 根据归纳假设，向量组\(X_{m-1}\)线性无关，
-则\((\lambda_i-\lambda_m)k_i=0\ (i=1,2,\dotsc,m-1)\).
+则要使(4)式成立，必有\[
+	(\lambda_i-\lambda_m)k_i=0\ (i=1,2,\dotsc,m-1).
+	\eqno(5)
+\]
 由于\(\lambda_i\neq\lambda_m\ (i=1,2,\dotsc,m-1)\)，
-所以\(k_1=k_2=\dotsb=k_{m-1}=0\)，得\(k_m\vb{x}_m=\z\)，
-但特征向量\(\vb{x}_m\neq\z\)，则\(k_m=0\)，从而向量组\(X_m\)线性无关.
+所以要使(5)式成立，必有\[
+	k_1=k_2=\dotsb=k_{m-1}=0.
+	\eqno(6)
+\]
+将(6)式代回(1)式得\(k_m\vb{x}_m=\vb0\)，
+考虑到特征向量\(\vb{x}_m\neq\vb0\)，
+于是解得\(k_m=0\).
+可见方程(1)只有零解，
+也就是说特征向量组\(X_m\)线性无关.
 \end{proof}
 \end{theorem}
-
-\begin{corollary}[矩阵可对角化的充分条件]\label{theorem:矩阵可对角化的充分条件.定理1}
-若\(n\)阶矩阵\(\A\)有\(n\)个不同的特征值，则\(\A\)可对角化.
+由\cref{theorem:矩阵对角化.不同特征值的特征向量线性无关} 立即得到矩阵可对角化的一个充分条件：
+\begin{corollary}\label{theorem:矩阵可对角化的充分条件.定理1}
+%@see: 《线性代数》（张慎语、周厚隆） P100 推论
+若矩阵\(\A \in M_n(K)\)有\(n\)个不同的特征值，则\(\A\)可对角化.
+%TODO proof
+\begin{proof}
+假设矩阵\(\A \in M_n(K)\)有\(n\)个不同的特征值
+\(\AutoTuple{\lambda}{n}\)，
+而\(\x_j\ (j=1,2,\dotsc,n)\)是矩阵\(\A\)的属于特征值\(\lambda_j\)的特征向量.
+由\cref{theorem:矩阵对角化.不同特征值的特征向量线性无关}，
+\(\AutoTuple{\x}{n}\)线性无关，
+再由\cref{theorem:矩阵对角化.矩阵可对角化的充分必要条件}，
+\(\A\)可对角化.
+\end{proof}
 \end{corollary}
-
 \begin{theorem}
-设\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)是\(n\)阶矩阵\(\A\)的不同的特征值，
-而\(\vb{x}_{ij}\ (j=1,2,\dotsc)\)是\(\A\)属于\(\lambda_i\ (i=1,2,\dotsc,m)\)的线性无关的特征向量，
-即\[
-	\A \vb{x}_{ij} = \lambda_i \vb{x}_{ij},
-	\quad i=1,2,\dotsc,m;j=1,2,\dotsc,
-\]
+%@see: 《线性代数》（张慎语、周厚隆） P100 定理3
+设矩阵\(\A \in M_n(K)\)，
+\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
 则\[
-	\vb{x}_{11},\vb{x}_{12},\dotsc,\vb{x}_{21},\vb{x}_{22},\dotsc,\vb{x}_{m1},\vb{x}_{m2},\dotsc
+	\bigcup\Set{
+		\text{$\Ker(\lambda\E-\A)$的基}
+		\given
+		\text{$\lambda$是$\A$的特征值}
+	}
 \]线性无关.
+%TODO proof
 \end{theorem}
 
 \begin{example}
