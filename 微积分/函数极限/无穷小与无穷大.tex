@@ -184,6 +184,14 @@
 \end{example}
 
 \begin{remark}
+记号“\(o\)”、“\(O\)”和“\(\sim\)”都是相对于一定的极限过程的，
+一般来说，在使用这些记号时，我们应该附上表示极限过程的记号，例如“\((x \to x_0)\)”.
+只有在意义明确，不会发生误解的前提下，才可以省略.
+\end{remark}
+\begin{remark}
+在不需要强调具体的阶数，我们常用\(o(1)\)表示某个函数是无穷小，用\(O(1)\)表示某个函数是有界量.
+\end{remark}
+\begin{remark}
 应该注意到，
 记号\(o(\alpha)\)实际上是满足\(\lim_\mathcal{B} \frac{\beta(x)}{\alpha(x)} = 0\)的全体函数，
 即\[
@@ -193,6 +201,23 @@
 意思其实是“函数\(\beta\)是函数族\(o(\alpha)\)的一个元素”.
 当我们说\(\gamma = \beta + o(\alpha)\)时，
 意思其实是“存在\(\phi\in o(\alpha)\)，使得\(\gamma = \beta + \phi\)”.
+由此可知：当\(x\to0\)时，有\[
+	o(1)
+	\supseteq o(x)
+	\supseteq o(x^2)
+	\supseteq \dotsb
+	\supseteq o(x^n)
+	\supseteq \dotsb.
+\]
+另外，我们还可以看出：当\(x\to0\)时，有\[
+	x^{-1} \cdot o(x) = o(1), \qquad
+	x^{-1} \cdot o(x^2) = o(x), \qquad
+	x^{-2} \cdot o(x^2) = o(1),
+\]
+利用数学归纳法可得\[
+	x^{-k} \cdot o(x^n) = o(x^{n-k})
+	\quad(n \geq k).
+\]
 \end{remark}
 
 \begin{proposition}
@@ -223,7 +248,7 @@
 
 \begin{definition}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P102
-设\(f\in\mathbb{R}^X\)是无穷小.
+设\(f\colon\mathbb{R}\to\mathbb{R}\)是无穷小.
 定义\DefineConcept{无穷小的阶}：\begin{gather*}
 	\ord_{x \to x_0} f = k
 	\defiff
@@ -242,9 +267,8 @@
 	\lim_{x \to +\infty} x^k f(x) = c \in (-\infty,+\infty), \\
 	\ord_{x \to -\infty} f = k
 	\defiff
-	\lim_{x \to -\infty} x^k f(x) = c \in (-\infty,+\infty),
+	\lim_{x \to -\infty} x^k f(x) = c \in (-\infty,+\infty).
 \end{gather*}
-其中\(c\)是非零常数.
 \end{definition}
 
 \begin{example}
