@@ -91,9 +91,66 @@
 		x = t \ln t, \\
 		y = \frac{\ln t}t
 	\end{array} \right.
-\]确定的曲线的渐近线.
-%TODO
-% \begin{solution}
-% 首先注意到参数\(t\)的取值范围是\(t>0\).
-% \end{solution}
+\]确定的曲线\(C\)的渐近线.
+%@Mathematica: ParametricPlot[{t Log[t], Log[t]/t}, {t, .1, 2}]
+\begin{solution}
+首先注意到参数\(t\)的取值范围是\(t>0\).
+对参数\(t\)求导得\[
+	\left\{ \begin{array}{l}
+		x'(t) = \ln t + 1, \\
+		y'(t) = \frac{1-\ln t}{t^2}.
+	\end{array} \right.
+\]
+令\(x'(t) \geq 0\)得\(t \geq e^{-1}\)，
+可知\(x(t)\)在\((0,e^{-1})\)内单调减少，
+在\((e^{-1},+\infty)\)内单调增加.
+当\(t = e^{-1}\)时，有\(x(t) = -e^{-1}\)，
+于是\[
+	\lim_{t\to0^+} t \ln t
+	= \lim_{t\to0^+} \frac{1/t}{-1/t^2}
+	= 0,
+	\qquad
+	\lim_{t\to+\infty} t \ln t
+	= +\infty.
+\]
+令\(y'(t) \geq 0\)得\(t \leq e\)，
+可知\(y(t)\)在\((0,e)\)内单调增加，
+在\((e,+\infty)\)内单调减少.
+当\(t = e\)时，有\(y(t) = e^{-1}\)，
+于是\[
+	\lim_{t\to0^+} \frac{\ln t}{t}
+	= -\infty,
+	\qquad
+	\lim_{t\to+\infty} \frac{\ln t}{t}
+	= \lim_{t\to+\infty} \frac1t
+	= 0.
+\]
+综上所述，由该参数方程确定的隐函数\(y(x)\)的
+定义域是\((-e^{-1},+\infty)\)，
+值域是\((-\infty,e^{-1})\).
+
+由于\[
+	\lim_{x\to+\infty} \frac{y(x)}{x}
+	= \lim_{t\to+\infty} \frac{y(t)}{x(t)}
+	= \lim_{t\to+\infty} \frac1{t^2}
+	= 0,
+	\qquad
+	\lim_{x\to+\infty} y(x)
+	= \lim_{t\to+\infty} y(t)
+	= 0,
+\]
+所以\(y=0\)是曲线\(C\)的一条水平渐近线.
+
+由于\[
+	\lim_{y\to-\infty} \frac{x(y)}{y}
+	= \lim_{t\to0^+} \frac{x(t)}{y(t)}
+	= \lim_{t\to0^+} t^2
+	= 0,
+	\qquad
+	\lim_{y\to-\infty} x(y)
+	= \lim_{t\to0^+} x(t)
+	= 0,
+\]
+所以\(x=0\)是曲线\(C\)的一条铅直渐近线.
+\end{solution}
 \end{example}
