@@ -119,6 +119,7 @@
 	1 & 0 \\
 	-1 & -1
 \end{bmatrix}\)满足\(\P^{-1}\A\P=\B\).
+%@Mathematica: Inverse[{{1, 0}, {-1, -1}}].{{1, 1}, {0, 2}}.{{1, 0}, {-1, -1}}
 现在假设存在矩阵\(\Q=\begin{bmatrix}
 	a & b \\
 	c & d
@@ -131,6 +132,7 @@
 	\end{bmatrix}
 	=\vb0,
 \]
+%@Mathematica: Expand[{{a, c}, {b, d}}.{{1, 1}, {0, 2}}.{{a, b}, {c, d}} - {{0, -1}, {2, 3}}]
 得到关于\(a,b,c,d\)的方程组
 \begin{align*}
 	\left\{ \begin{array}{l}
@@ -163,6 +165,7 @@
 	2 & 0 \\
 	0 & 1
 \end{bmatrix}\)满足\(\Q^T\A\Q=\B\).
+%@Mathematica: {{2, 0}, {0, 1}}.{{1, 0}, {0, 1}}.{{2, 0}, {0, 1}}
 但是\(\tr\A=2 \neq \tr\B = 5\)，
 根据\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
 \(\A\)与\(\B\)必不相似！
@@ -177,7 +180,7 @@
 \(\B^T=\B\)，
 且存在正交矩阵\(\Q_1,\Q_2\)使得\[
 	\Q_1^{-1} \A \Q_1 = \Q_1^T \A \Q_1 = \V_1,
-\]\[
+	\qquad
 	\Q_2^{-1} \B \Q_2 = \Q_2^T \B \Q_2 = \V_2,
 \]
 其中\(\V_1,\V_2\)是对角阵.
@@ -186,7 +189,7 @@
 即\(\V_1=\V_2\)，
 或\[
 	\Q_1^{-1} \A \Q_1 = \Q_2^{-1} \B \Q_2,
-\]\[
+	\qquad
 	(\Q_2 \Q_1^{-1}) \A (\Q_1 \Q_2^{-1}) = \B.
 \]
 令\(\P = \Q_1 \Q_2^{-1}\)，
@@ -208,14 +211,12 @@
 
 \begin{proposition}
 设\(\A,\B \in M_n(K)\).
-记\[
-	\begin{split}
-		\A_1 = \frac12 (\A+\A^T), \qquad
-		\A_2 = \frac12 (\A-\A^T), \\
-		\B_1 = \frac12 (\B+\B^T), \qquad
-		\B_2 = \frac12 (\B-\B^T),
-	\end{split}
-\]
+记\begin{gather*}
+	\A_1 = \frac12 (\A+\A^T), \qquad
+	\A_2 = \frac12 (\A-\A^T), \\
+	\B_1 = \frac12 (\B+\B^T), \qquad
+	\B_2 = \frac12 (\B-\B^T),
+\end{gather*}
 其中\(\A^T,\B^T\)分别为\(\A,\B\)的转置.
 那么\[
 	\A \simeq \B \implies \A_1 \simeq \B_1 \land \A_2 \simeq \B_2.
@@ -245,10 +246,10 @@
 
 \begin{example}
 设\(\AutoTuple{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，
-\[
-\A=\diag(\AutoTuple{d}{n}),
-\qquad
-\B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
+而\[
+	\A=\diag(\AutoTuple{d}{n}),
+	\qquad
+	\B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
 \]
 证明：矩阵\(\A,\B\)合同且相似.
 \begin{proof}

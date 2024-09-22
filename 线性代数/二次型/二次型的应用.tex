@@ -35,6 +35,7 @@
 	= 0,
 \]
 或\begin{equation}\label{equation:二次型的应用.平面二次曲线的一般方程.矩阵形式}
+%@see: 《线性代数》（张慎语、周厚隆） P139 (2)
 	\begin{bmatrix}
 		\vb{X}^T & 1
 	\end{bmatrix}
@@ -72,7 +73,7 @@
 	f(\vb{X})
 	&\xlongequal{\vb{X} = \vb{Q} \vb{Y}}
 	\begin{bmatrix}
-		\vb{Q}^T \vb{Y}^T & 1
+		\vb{Y}^T \vb{Q}^T & 1
 	\end{bmatrix}
 	\begin{bmatrix}
 		\vb{A} & \vb{b} \\
@@ -94,5 +95,106 @@
 \end{bmatrix}\)，
 便可化简得\[
 	f(\vb{X})
-	= \lambda_1 z_1^2 + \lambda_2 z_2^2 + d.
+	= \lambda_1 z_1^2 + \lambda_2 z_2^2 + d,
+	\quad\text{或}\quad
+	f(\vb{X})
+	= \lambda_1 z_1^2 + q z_2.
 \]
+同时\[
+	\begin{bmatrix}
+		\vb{X} \\ 1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{Q} (\vb{Z} + \vb{X}_0) \\ 1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{Q} & \vb\delta \\
+		\vb0 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{Z} \\ 1
+	\end{bmatrix},
+\]
+其中\(\vb\delta = \vb{Q} \vb{X}_0 \in M_{2\times1}(\mathbb{R})\).
+\cref{equation:二次型的应用.平面二次曲线的一般方程.矩阵形式}
+化为\begin{equation}\label{equation:二次型的应用.平面二次曲线的一般方程.矩阵标准形式}
+%@see: 《线性代数》（张慎语、周厚隆） P140 (3)
+	\begin{bmatrix}
+		\vb{Z}^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A}_1 & \vb{b}_1 \\
+		\vb{b}_1^T & c_1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{Z} \\ 1
+	\end{bmatrix}
+	= 0,
+\end{equation}
+其中\[
+	\begin{bmatrix}
+		\vb{A}_1 & \vb{b}_1 \\
+		\vb{b}_1^T & c_1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{Q} & \vb0^T \\
+		\vb\delta^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} & \vb{b} \\
+		\vb{b}^T & c
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{Q} & \vb\delta \\
+		\vb0 & 1
+	\end{bmatrix},
+	\qquad
+	\vb{A}_1
+	= \vb{Q}^T \vb{A} \vb{Q}
+	= \diag(\lambda_1,\lambda_2).
+\]
+
+\begin{lemma}
+%@see: 《线性代数》（张慎语、周厚隆） P140 引理2
+经过正交变换\(\vb{X} = \vb{Q} \vb{Y}\)与平移\(\vb{Y} = \vb{Z} + \vb{X}_0\)，
+平面上任意两点的距离保持不变.
+\begin{proof}
+设\(\vb{X}_1,\vb{X}_2\)是平面上任意两点，
+则它们的距离为\[
+	d(\vb{X}_1,\vb{X}_2)
+	= \sqrt{(\vb{X}_1-\vb{X}_2)^T(\vb{X}_1-\vb{X}_2)}.
+\]
+经过正交变换和平移，得到新的两点为\[
+	\vb{Z}_1 = \vb{Q}^T \vb{X}_1 - \vb{X}_0,
+	\qquad
+	\vb{Z}_2 = \vb{Q}^T \vb{X}_2 - \vb{X}_0.
+\]
+于是\begin{align*}
+	d(\vb{Z}_1,\vb{Z}_2)
+	&= \sqrt{(\vb{Z}_1-\vb{Z}_2)^T(\vb{Z}_1-\vb{Z}_2)} \\
+	&= \sqrt{
+		((\vb{Q}^T \vb{X}_1 - \vb{X}_0) - (\vb{Q}^T \vb{X}_2 - \vb{X}_0))^T
+		((\vb{Q}^T \vb{X}_1 - \vb{X}_0) - (\vb{Q}^T \vb{X}_2 - \vb{X}_0))
+	} \\
+	&= \sqrt{
+		(\vb{Q}^T \vb{X}_1 - \vb{Q}^T \vb{X}_2)^T
+		(\vb{Q}^T \vb{X}_1 - \vb{Q}^T \vb{X}_2)
+	} \\
+	&= \sqrt{
+		(\vb{Q}^T (\vb{X}_1 - \vb{X}_2))^T
+		(\vb{Q}^T (\vb{X}_1 - \vb{X}_2))
+	} \\
+	&= \sqrt{
+		(\vb{X}_1 - \vb{X}_2)^T
+		\vb{Q} \vb{Q}^T
+		(\vb{X}_1 - \vb{X}_2)
+	} \\
+	&= \sqrt{
+		(\vb{X}_1 - \vb{X}_2)^T
+		(\vb{X}_1 - \vb{X}_2)
+	}
+	= d(\vb{X}_1,\vb{X}_2).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{lemma}
