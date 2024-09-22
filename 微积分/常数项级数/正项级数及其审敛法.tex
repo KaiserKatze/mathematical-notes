@@ -1158,6 +1158,7 @@
 %@see: 《数学分析（第二版 下册）》（陈纪修） P22 定理9.3.5（Raabe判别法）
 %@see: 《数学分析简明教程（第二版 下册）》（邓东皋、尹小玲） P17 定理10.11（拉阿比(Raabe)判别法）
 %@see: 《数学分析（第2册）》（周民强） P164 定理9.11
+%@see: 《数学分析：原理与方法》（胡适耕） P293 15.1.10推论 (i)
 设\(\sum_{n=1}^\infty u_n\)是正项级数，
 记\[
 	\rho \defeq \lim_{n\to\infty} n \left(\frac{u_n}{u_{n+1}} - 1\right).
@@ -1217,7 +1218,8 @@
 %@see: 《数学分析（第二版 下册）》（陈纪修） P24 定理9.3.6（积分判别法）
 %@see: 《数学分析教程 （第3版 下册）》（史济怀） P166 定理14.2.4（Cauchy积分判别法）
 %@see: 《数学分析（第2册）》（周民强） P166 定理9.13
-设非负函数\(f\colon[a,+\infty)\)在任意有限闭区间上黎曼可积，
+%@see: 《数学分析简明教程（第二版 下册）》（邓东皋、尹小玲） P19 定理10.12（柯西积分判别法）
+设非负函数\(f\colon[a,+\infty)\to\mathbb{R}\)在任意有限闭区间上黎曼可积，
 取一个单调增加趋于\(+\infty\)的数列\(\{a_n\}\)，
 使得\[
 	a_1 = a, \qquad
@@ -1266,6 +1268,7 @@
 
 \begin{example}\label{example:无穷级数.对数负次幂级数}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P25 例9.3.9
+%@see: 《数学分析简明教程（第二版 下册）》（邓东皋、尹小玲） P21 例8
 证明：正项级数\(\sum_{n=2}^\infty \frac1{n \ln^q n}\)在\(q>1\)时收敛，在\(q\leq1\)时发散.
 \begin{proof}
 取\(f(x) = \frac1{x \ln^q x}\)，
@@ -1317,6 +1320,13 @@
 \end{example}
 
 \begin{example}
+%@see: 《数学分析：原理与方法》（胡适耕） P291
+证明：级数\(\sum_{n=3}^\infty \frac1{n \ln^p n (\ln\ln n)^q}\)
+在\(p>1\)或\(p=1<q\)时收敛.
+%TODO proof
+\end{example}
+
+\begin{example}
 %@see: 《2019年全国硕士研究生入学统一考试（数学一）》一选择题/第3题/选项(A)
 设\(\{u_n\}\)是单调增加的有界数列.
 举例说明：级数\(\sum_{n=1}^\infty \frac{u_n}{n}\)发散.
@@ -1360,3 +1370,40 @@
 \]发散.
 \end{solution}
 \end{example}
+
+\subsection{其他审敛法}
+\begin{theorem}
+%@see: 《数学分析：原理与方法》（胡适耕） P292 15.1.9定理
+设\(a_n>0\)，且\[
+	\frac{a_{n+1}}{a_n}
+	= r - \frac{p}{n} - \frac{q}{n \ln n} + o\left(\frac1{n \ln n}\right).
+\]
+\begin{itemize}
+	\item 若\(r<1\)，或\(r=1<p\)，或\(r=p=1<q\)，则级数\(\sum a_n\)收敛.
+	\item 若\(r>1\)，或\(r=1>p\)，或\(r=p=1>q\)，则级数\(\sum a_n\)发散.
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+\begin{corollary}[贝特朗审敛法]
+%@see: 《数学分析：原理与方法》（胡适耕） P293 15.1.10推论 (ii)
+%@see: https://mathworld.wolfram.com/BertrandsTest.html
+设\(a_n>0\)，记\[
+	\rho
+	\defeq
+	\lim_{n\to\infty} \ln n \left[
+		n \left( \frac{a_n}{a_{n+1}} - 1 \right) - 1
+	\right].
+\]
+\begin{itemize}
+	\item 当\(\rho>1\)时，级数\(\sum a_n\)收敛.
+	\item 当\(\rho<1\)时，级数\(\sum a_n\)发散.
+\end{itemize}
+%TODO proof
+\end{corollary}
+
+% \begin{corollary}[高斯审敛法]
+% %@see: 《数学分析：原理与方法》（胡适耕） P293 15.1.10推论 (iii)
+% %@see: https://mathworld.wolfram.com/GausssTest.html
+% %TODO proof
+% \end{corollary}
