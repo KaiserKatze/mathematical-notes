@@ -1,2 +1,98 @@
 \section{二次型的应用}
 下面利用矩阵的运算及二次型理论讨论平面二次曲线、空间二次曲面的分类问题.
+
+首先考虑一般的二次曲线的方程：\begin{equation}\label{equation:二次型的应用.平面二次曲线的一般方程}
+%@see: 《线性代数》（张慎语、周厚隆） P139 (1)
+	a_{11} x_1^2
+	+ 2 a_{12} x_1 x_2
+	+ a_{22} x_2^2
+	+ 2 b_1 x_1
+	+ 2 b_2 x_2
+	+ c
+	= 0.
+\end{equation}
+设\[
+	\vb{X}
+	\defeq \begin{bmatrix}
+		x_1 \\ x_2
+	\end{bmatrix},
+	\qquad
+	\vb{A}
+	\defeq \begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{12} & a_{22}
+	\end{bmatrix},
+	\qquad
+	\vb{b}
+	\defeq \begin{bmatrix}
+		b_1 \\ b_2
+	\end{bmatrix},
+\]
+于是\cref{equation:二次型的应用.平面二次曲线的一般方程} 可以写成\[
+	\vb{X}^T \vb{A} \vb{X}
+	+ \vb{b}^T \vb{X}
+	+ c
+	= 0,
+\]
+或\begin{equation}\label{equation:二次型的应用.平面二次曲线的一般方程.矩阵形式}
+	\begin{bmatrix}
+		\vb{X}^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} & \vb{b} \\
+		\vb{b}^T & c
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{X} \\ 1
+	\end{bmatrix}
+	= 0.
+\end{equation}
+记\[
+	f(\vb{X})
+	\defeq
+	\begin{bmatrix}
+		\vb{X}^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} & \vb{b} \\
+		\vb{b}^T & c
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{X} \\ 1
+	\end{bmatrix}.
+\]
+于是\(\vb{X}^T \vb{A} \vb{X}\)
+可以经过正交变换\(\vb{X} = \vb{Q} \vb{Y}\)化为标准型：\[
+	\lambda_1 y_1^2 + \lambda_2 y_2^2,
+\]
+其中\(\vb{Q}\)是二阶正交矩阵，
+\(\lambda_1,\lambda_2\)是\(\vb{A}\)的两个特征值.
+将\(\vb{X} = \vb{Q} \vb{Y}\)
+代入\cref{equation:二次型的应用.平面二次曲线的一般方程.矩阵形式} 便得\begin{align*}
+	f(\vb{X})
+	&\xlongequal{\vb{X} = \vb{Q} \vb{Y}}
+	\begin{bmatrix}
+		\vb{Q}^T \vb{Y}^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} & \vb{b} \\
+		\vb{b}^T & c
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{Q} \vb{Y} \\ 1
+	\end{bmatrix} \\
+	&= \lambda_1 y_1^2 + \lambda_2 y_2^2 + d_1 y_1 + d_2 y_2 + c,
+\end{align*}
+这里\(\lambda_1,\lambda_2\)不全为零.
+对上式非零的平方项与相应的一次项进行配方，
+再作平移变换\(\vb{Y} = \vb{Z} + \vb{X}_0\)，
+其中\(\vb{Z} = \begin{bmatrix}
+	z_1 \\ z_2
+\end{bmatrix},
+\vb{X}_0 = \begin{bmatrix}
+	x'_1 \\ x'_2
+\end{bmatrix}\)，
+便可化简得\[
+	f(\vb{X})
+	= \lambda_1 z_1^2 + \lambda_2 z_2^2 + d.
+\]
