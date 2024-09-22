@@ -273,7 +273,7 @@ x, & -\pi \leq x < 0, \\
 并且满足收敛定理的条件，那么\(f\)也可以展开成傅里叶级数.
 事实上，我们可在\([-\pi,\pi)\)或\((-\pi,\pi]\)外补充函数\(f\)的定义，
 使它拓广成周期为\(2\pi\)的周期函数\(F\).
-按这种方式拓广函数的定义域的过程称为\DefineConcept{周期延拓}.
+按这种方式拓广函数的定义域的过程称为\DefineConcept{周期延拓}（periodic extension）.
 再将\(F\)展开成傅里叶级数.
 最后限制\(x\)在\((-\pi,\pi)\)内，此时\(F(x) \equiv f(x)\)，
 这样便得到\(f\)的傅里叶级数展开式.
@@ -325,21 +325,40 @@ x, & -\pi \leq x < 0, \\
 有时还需要把定义在区间\([0,\pi]\)上的函数\(f\)展开成正弦级数或余弦级数.
 根据前面讨论的结果，这类展开问题可以按如下的方法解决：
 \begin{enumerate}
-\item 设函数\(f\)定义在区间\([0,\pi]\)上%
-并且满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件，
-我们在开区间\((-\pi,0)\)内补充函数\(f\)的定义，
-得到定义在\((-\pi,\pi]\)上的函数\(F\)，
-使它在\((-\pi,\pi)\)上成为奇函数\footnote{%
-补充\(f\)的定义使它在\((-\pi,\pi)\)上成为奇函数时，
-若\(f(0)\neq0\)，则规定\(F(0)=0\).}%
-（或偶函数）.
-按这种方式拓广函数定义域的过程称为\DefineConcept{奇延拓}（或\DefineConcept{偶延拓}）.
+	\item 设函数\(f\)定义在区间\([0,\pi]\)上
+	并且满足\hyperref[theorem:无穷级数.傅里叶级数收敛的狄利克雷充分条件]{收敛定理}的条件，
+	我们在区间\([-\pi,0)\)内补充函数\(f\)的定义，
+	得到定义在\([-\pi,\pi]\)上的函数\(F\).
+	我们可以采用以下两种延拓方式：
+	\begin{itemize}
+		\item 令\[
+			F_1(x)
+			\defeq
+			\left\{ \begin{array}{cl}
+				f(-x), & -\pi \leq x < 0, \\
+				f(x), & 0 \leq x \leq \pi.
+			\end{array} \right.
+		\]
+		我们把这种延拓函数定义域的方式称为\DefineConcept{偶延拓}（even extension）.
 
-\item 然后将奇延拓（或偶延拓）后的函数展开成傅里叶级数，这个级数必定是正弦级数（或余弦级数）.
+		\item 令\[
+			F_2(x)
+			\defeq
+			\left\{ \begin{array}{cl}
+				-f(-x), & -\pi \leq x < 0, \\
+				0, & x = 0, \\
+				f(x), & 0 < x \leq \pi.
+			\end{array} \right.
+		\]
+		我们把这种延拓函数定义域的方式称为\DefineConcept{奇延拓}（odd extension）.
+	\end{itemize}
 
-\item 再限制\(x\)在\((0,\pi]\)上，
-此时\(F(x)\equiv f(x)\)，这样便得到\(f\)的正弦级数（或余弦级数）展开式.
+	\item 然后将奇延拓（或偶延拓）后的函数展开成傅里叶级数，这个级数必定是正弦级数（或余弦级数）.
+
+	\item 再限制\(x\)在\((0,\pi]\)上，
+	此时\(F(x)\equiv f(x)\)，这样便得到\(f\)的正弦级数（或余弦级数）展开式.
 \end{enumerate}
+%@see: https://math24.net/even-odd-extensions.html
 
 \begin{figure}[ht]
 	\centering
