@@ -619,6 +619,44 @@ u_{k+1}+u_{k+2}+\dotsb+u_{k+n}+\dotsb.
 \end{example}
 
 \begin{example}
+%@see: 《数学分析（第2册）》（周民强） P171 例2
+设\(a_n>0\ (n=1,2,\dotsc)\)，\(p>0\)，
+级数\(\sum_{n=1}^\infty \frac{a_n}{n^p}\)收敛.
+证明：\(\lim_{n\to\infty} \sum_{k=1}^n \frac{a_k}{n^p} = 0\).
+\begin{proof}
+因为级数\(\sum_{n=1}^\infty \frac{a_n}{n^p}\)收敛，
+由{柯西审敛原理}可知，
+对任意给定\(\epsilon>0\)，
+存在正整数\(N_1\)，
+对于任意正整数\(n \geq N_1\)，
+成立\[
+	% N_1 \leq k \leq n
+	% \implies
+	% 0 < \frac1n \leq \frac1k
+	% \implies
+	\sum_{k=N_1+1}^n \frac{a_k}{n^p}
+	< \sum_{k=N_1+1}^n \frac{a_k}{k^p}
+	< \epsilon,
+\]
+又因为\(\lim_{n\to\infty} \sum_{k=1}^{N_1} \frac{a_k}{n^p} = 0\)，
+故同时存在正整数\(N_2\)，
+当\(n > N_2\)时，
+成立\[
+	\sum_{k=1}^{N_1} \frac{a_k}{n^p}
+	\leq \frac{N_1}{n^p} \cdot \max_{1 \leq k \leq N_1} a_k
+	< \epsilon,
+\]
+于是，当\(n>\max\{N_1,N_2\}\)时，成立\[
+	\sum_{k=1}^n \frac{a_k}{n^p}
+	= \sum_{k=N_1+1}^n \frac{a_k}{n^p}
+	+ \sum_{k=1}^{N_1} \frac{a_k}{n^p}
+	< 2\epsilon,
+\]
+这就说明\(\lim_{n\to\infty} \sum_{k=1}^n \frac{a_k}{n^p} = 0\).
+\end{proof}
+\end{example}
+
+\begin{example}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P43 习题 3.
 %@see: 《数学分析（第2册）》（周民强） P150 定理9.6（Pringsheim）
 设正项级数\(\sum_{n=1}^\infty u_n\)收敛，数列\(\{u_n\}\)单调减少.
