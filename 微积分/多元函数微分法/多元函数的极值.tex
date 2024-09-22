@@ -271,6 +271,7 @@ f(-k,0) = -k^5 < f(0,0) = 0 < f(k,0) = k^5,
 \def\z{\vb{0}}
 
 \begin{theorem}\label{theorem:多元函数微分法.n元函数极值存在的条件}
+%@see: 《线性代数》（张慎语、周厚隆） P135 定理7
 设函数\(y = f(\AutoTuple{x}{n})\)
 在点\(\X0=(\AutoTuple{\xi}{n})^T\in\mathbb{R}^n\)的邻域内
 存在一阶连续偏导数\[
@@ -281,9 +282,10 @@ f(-k,0) = -k^5 < f(0,0) = 0 < f(k,0) = k^5,
 	f''_{ij} = \pdv[2]{f}{x_i}{x_j}
 	\quad(i,j=1,2,\dotsc,n).
 \]
-记\(f\)的梯度为\(\grad f(\x) = \left(\pdv{f}{x_1},\pdv{f}{x_2},\dotsc,\pdv{f}{x_n}\right)^T\)，
+记\(f\)的梯度为\(\grad f(\x)
+= \left(\pdv{f}{x_1},\pdv{f}{x_2},\dotsc,\pdv{f}{x_n}\right)^T\)，
 \(f\)的黑森矩阵为\(\hessian f = (f''_{ij})_n\)，
-则\begin{enumerate}
+则\begin{itemize}
 	\item 当\(\grad f(\X0) = \z\)，且\(\hessian f\)正定时，
 	\(f(\x)\)在\(\X0\)处取得极小值；
 	\item 当\(\grad f(\X0) = \z\)，且\(\hessian f\)负定时，
@@ -293,7 +295,7 @@ f(-k,0) = -k^5 < f(0,0) = 0 < f(k,0) = k^5,
 	这时候需要考察更高阶偏导数，才能确定函数的极值是否存在，是极大值还是极小值.}；
 	\item 当\(\grad f(\X0) = \z\)，且\(\hessian f\)不定时，
 	\(\X0\)不是\(f(\x)\)的极值点.
-\end{enumerate}
+\end{itemize}
 \begin{proof}
 将\(y = f(\x)\)在\(\X0\)处作泰勒展开，得\[
 	f(\x) = f(\X0)
@@ -301,8 +303,8 @@ f(-k,0) = -k^5 < f(0,0) = 0 < f(k,0) = k^5,
 	+ \frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n
 		f''_{ij}(\X0+\theta\increment\x) h_i h_j,
 \]
-其中\(\increment\x=\x-\X0=(h_1,h_2,\dotsc,h_n)^T,%
-h_i = x_i - x_{i0}\ (i=1,2,\dotsc,n),%
+其中\(\increment\x=\x-\X0=(h_1,h_2,\dotsc,h_n)^T,
+h_i = x_i - \xi_i\ (i=1,2,\dotsc,n),
 0<\theta<1\).
 
 由于\(\grad f(\X0) = \z\)且\(f(\x)\)的所有二阶偏导数连续，
@@ -334,6 +336,7 @@ h_i = x_i - x_{i0}\ (i=1,2,\dotsc,n),%
 \end{theorem}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P136 例1
 求函数\(f(x,y) = 2x^2 + xy + y^2 + ax - 5y\)的极值.
 \begin{solution}
 显然，函数\(f\)的各阶偏导数都连续.
@@ -354,6 +357,47 @@ h_i = x_i - x_{i0}\ (i=1,2,\dotsc,n),%
 故\(f\)在\(\X0\)处取得极小值\(\frac{1}{7} (-50-5a-a^2)\).
 \end{solution}
 \end{example}
+
+\begin{proposition}
+%@see: 《线性代数》（张慎语、周厚隆） P135 例2
+设\(\vb{A} = (a_{ij})_n\)是\(n\)阶实对称正（负）定矩阵，
+则\(n\)元实二次函数\[
+	f(\AutoTuple{x}{n})
+	= \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j
+	+ 2 \sum_{i=1}^n b_i x_i + c
+\]有唯一的极小（大）值.
+\begin{proof}
+设\(\vb{X} = (\AutoTuple{x}{n})^T,
+\vb{B} = (\AutoTuple{b}{n})^T\)，
+则一阶偏导数\[
+	f'_i(\vb{X})
+	= 2 \sum_{j=1}^n a_{ij} x_j + 2 b_j
+	\quad(i=1,2,\dotsc,n)
+\]和二阶偏导数\[
+	f''_{ij}(\vb{X})
+	= 2 a_{ij}
+	\quad(i,j=1,2,\dotsc,n)
+\]连续，
+令\[
+	\grad f
+	= 2 \vb{A} \vb{X} + 2 \vb{B}
+	= \vb0,
+\]
+由于\(\vb{A}\)正（负）定，故\(\vb{A}\)可逆，
+从而可以解出唯一驻点\(\vb{X}_0 = -\vb{A}^{-1} \vb{B}\).
+又因为\(\hessian f
+= 2 \vb{A}\)也正（负）定，
+故\(f(\AutoTuple{x}{n})\)
+在\(\vb{X}_0 = -\vb{A}^{-1} \vb{B}\)
+取得唯一的极小（大）值：\[
+	\vb{X}_0^T \vb{A} \vb{X}_0
+	+ 2 \vb{X}_0^T \vb{B} + c
+	= \vb{X}_0^T (\vb{A} \vb{X}_0 + \vb{B})
+	+ \vb{X}_0^T \vb{B} + c
+	= -\vb{B}^T \vb{A}^{-1} \vb{B} + c.
+\]
+\end{proof}
+\end{proposition}
 
 \subsection{极值点的求解思路}
 利用\cref{theorem:多元函数微分法.多元函数极值存在的必要条件,%
