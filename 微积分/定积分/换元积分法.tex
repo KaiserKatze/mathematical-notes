@@ -584,6 +584,68 @@
 \]
 \end{solution}
 \end{example}
+\begin{example}
+%@see: 《数学分析中的典型问题与方法（第3版）》（裴礼文） P39 例1.3.20
+设函数\(f\)是以\(T\)为周期的连续函数，
+证明：\begin{equation}
+	\lim_{x\to+\infty} \frac1x \int_0^x f(t) \dd{t}
+	= \frac1T \int_0^T f(t) \dd{t}.
+\end{equation}
+\begin{proof}
+首先假设\(f(x)\geq0\ (x\geq0)\)，
+那么对于\(\forall x\geq0\)，\(\exists n\in\mathbb{N}\)，
+使得\(nT \leq x < (n+1)T\)，
+于是\[
+	\frac1{(n+1)T} \int_0^{nT} f(t) \dd{t}
+	\leq \frac1x \int_0^x f(t) \dd{t}
+	\leq \frac1{nT} \int_0^{(n+1)T} f(t) \dd{t}.
+\]
+因为当\(n\to\infty\)时有\begin{gather*}
+	\frac1{(n+1)T} \int_0^{nT} f(t) \dd{t}
+	= \frac{n}{(n+1)T} \int_0^T f(t) \dd{t}
+	\to \frac1T \int_0^T f(t) \dd{t}, \\
+	\frac1{nT} \int_0^{(n+1)T} f(t) \dd{t}
+	= \frac{n+1}{nT} \int_0^T f(t) \dd{t}
+	\to \frac1T \int_0^T f(t) \dd{t},
+\end{gather*}
+所以由\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}可知\[
+	\lim_{x\to+\infty} \frac1x \int_0^x f(t) \dd{t}
+	= \frac1T \int_0^T f(t) \dd{t}.
+\]
+
+对于一般情况（无法保证\(f(x)\geq0\ (x\geq0)\)成立），
+由于连续周期函数必定有界，不妨设\(m\)是\(f\)在\([0,T]\)上的一个下界，
+即\(f(x) \geq m\ (x\geq0)\)，
+令\(g(x) \defeq f(x) - m\)，
+则有\(g(x)\geq0\ (x\geq0)\)，
+于是\[
+	\lim_{x\to+\infty} \frac1x \int_0^x g(t) \dd{t}
+	= \frac1T \int_0^T g(t) \dd{t},
+\]
+其中\begin{align*}
+	\lim_{x\to+\infty} \frac1x \int_0^x g(t) \dd{t}
+	&= \lim_{x\to+\infty} \frac1x \int_0^x (f(t) - m) \dd{t} \\
+	&= \lim_{x\to+\infty} \left[
+		\frac1x \int_0^x f(t) \dd{t}
+		- m \cdot \frac1x \int_0^x \dd{t}
+	\right] \\
+	&= \left[ \lim_{x\to+\infty} \frac1x \int_0^x f(t) \dd{t} \right] - m, \\
+	\frac1T \int_0^T g(t) \dd{t}
+	&= \frac1T \int_0^T (f(t) - m) \dd{t} \\
+	&= \frac1T \left[
+		\int_0^T f(t) \dd{t}
+		- m \cdot \int_0^T \dd{t}
+	\right] \\
+	&= \left[ \frac1T \int_0^T f(t) \dd{t} \right] - m,
+\end{align*}
+因此\[
+	\lim_{x\to+\infty} \frac1x \int_0^x f(t) \dd{t}
+	= \frac1T \int_0^T f(t) \dd{t}.
+	\qedhere
+\]
+%@credit: {fff74d84-2e79-4c04-bec3-8c318cc2293c}
+\end{proof}
+\end{example}
 
 \begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分2}
 %@see: 《高等数学（第六版 上册）》 P254 习题5-3 5.
