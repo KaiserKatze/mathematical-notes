@@ -556,6 +556,35 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1LRhSeMEFr
+计算\(\lim_{x\to+\infty} \frac1x \int_0^x \abs{\sin t} \dd{t}\).
+\begin{solution}
+对于\(\forall x\geq0\)，\(\exists n\in\mathbb{N}\)，
+使得\(n\pi \leq x < (n+1)\pi\)，
+或者\(\frac1{(n+1)\pi} < \frac1x \leq \frac1{n\pi}\)，
+于是\[
+	\frac1{(n+1)\pi} \int_0^{n\pi} \abs{\sin t} \dd{t}
+	\leq \frac1x \int_0^x \abs{\sin t} \dd{t}
+	\leq \frac1{n\pi} \int_0^{(n+1)\pi} \abs{\sin t} \dd{t}.
+\]
+因为当\(n\to\infty\)时有\begin{gather*}
+	\frac1{(n+1)\pi} \int_0^{n\pi} \abs{\sin t} \dd{t}
+	= \frac{n}{(n+1)\pi} \int_0^\pi \abs{\sin t} \dd{t}
+	= \frac{2n}{(n+1)\pi}
+	\to \frac2\pi, \\
+	\frac1{n\pi} \int_0^{(n+1)\pi} \abs{\sin t} \dd{t}
+	= \frac{n+1}{n\pi} \int_0^\pi \abs{\sin t} \dd{t}
+	= \frac{2(n+1)}{n\pi}
+	\to \frac2\pi,
+\end{gather*}
+所以由\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}可知\[
+	\lim_{x\to+\infty} \frac1x \int_0^x \abs{\sin t} \dd{t}
+	= \frac2\pi.
+\]
+\end{solution}
+\end{example}
+
 \begin{proposition}\label{theorem:定积分.正余弦函数的复合的积分2}
 %@see: 《高等数学（第六版 上册）》 P254 习题5-3 5.
 设\(f \in C[0,1]\)，且\(n\in\mathbb{Z}\)，则\begin{equation}
