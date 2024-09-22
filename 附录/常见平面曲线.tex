@@ -1,58 +1,102 @@
 \chapter{常见平面曲线}
 \begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}%摆线
-        \draw[color=orange,domain=-.5*pi:2.5*pi,smooth,samples=100,variable=\t]
-            plot({\t-sin(\t r)},{1-cos(\t r)});
-        \begin{scope}[>=Stealth,->,ultra thick]
-            \draw(-1,0)--(8,0) node[right]{\(x\)}
-                node[below=1cm,midway,black]{\(\left\{ \begin{array}{l}
-                x = a(\theta-\sin\theta) \\
-                y = a(1-\cos\theta)
-            \end{array} \right.\)};
-            \draw(0,-.5)--(0,2) node[above]{\(y\)};
-        \end{scope}
-        \draw(0,0)node[below left]{O}
-            (2*pi,0)node[below]{\(2\pi\)}
-            [dashed](pi,0)node[below]{\(\pi\)}
-                --(pi,2)node[midway,right]{\(2a\)};
-    \end{tikzpicture}
-    \caption{摆线}
+	\centering
+	\begin{tikzpicture}
+		\draw[dashed,black!70]
+			(0,1)circle(1cm);
+		\fill(0,1)circle(2pt)node[right]{$a$};
+		\draw[color=orange,domain=-5:5,smooth,samples=50,variable=\t]
+			plot(\t,{8/(\t*\t+4)});
+		\begin{scope}[>=Stealth,->,thick]
+			\draw(-5,0)--(5,0) node[right]{\(x\)}
+				node[below=1cm,midway,black]{\(y=\frac{8a^3}{x^2+4a^2}\)};
+			\draw(0,-.5)--(0,2.5) node[above]{\(y\)};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{箕舌线}
+\end{figure}
+%@Mathematica: Manipulate[Plot[(8 a^3)/(x^2 + 4 a^2), {x, -10, 10}, PlotRange -> {0, 2 a}], {a, 1, 5}]
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		% 第四象限的图像
+		\draw[color=orange,domain=-20:-2,smooth,samples=50,variable=\t]
+			plot({3*\t/(1+\t*\t*\t)},{3*\t*\t/(1+\t*\t*\t)});
+		% 第二象限的图像
+		\draw[color=orange,domain=-.5:-.01,smooth,samples=50,variable=\t]
+			plot({3*\t/(1+\t*\t*\t)},{3*\t*\t/(1+\t*\t*\t)});
+		% 第一象限的图像
+		\draw[color=orange,domain=.01:20,smooth,samples=200,variable=\t]
+			plot({3*\t/(1+\t*\t*\t)},{3*\t*\t/(1+\t*\t*\t)});
+		% 坐标轴
+		\begin{scope}[>=Stealth,->,thick]
+			\draw(-2,0)--(2,0) node[right]{\(x\)};
+			\draw(0,-2)--(0,2) node[above]{\(y\)};
+		\end{scope}
+		\draw(0,-3)node[black]{\(\begin{array}[t]{c}
+			x^3+y^3-3axy=0 \\
+			x=\frac{3at}{1+t^3},y=\frac{3at^2}{1+t^3}
+		\end{array}\)};
+		\end{tikzpicture}
+	\caption{笛卡尔叶形线}
+\end{figure}
+%@Mathematica: Manipulate[ParametricPlot[{(3 a t)/(1 + t^3), (3 a t^2)/(1 + t^3)}, {t, -10, 10}], {a, 1, 5}]
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}%摆线
+		\draw[color=orange,domain=-.5*pi:2.5*pi,smooth,samples=100,variable=\t]
+			plot({\t-sin(\t r)},{1-cos(\t r)});
+		\begin{scope}[>=Stealth,->,thick]
+			\draw(-1,0)--(8,0) node[right]{\(x\)}
+				node[below=1cm,midway,black]{\(\left\{ \begin{array}{l}
+				x = a(\theta-\sin\theta) \\
+				y = a(1-\cos\theta)
+			\end{array} \right.\)};
+			\draw(0,-.5)--(0,2) node[above]{\(y\)};
+		\end{scope}
+		\draw(0,0)node[below left]{O}
+			(2*pi,0)node[below]{\(2\pi\)}
+			[dashed](pi,0)node[below]{\(\pi\)}
+	--(pi,2)node[midway,right]{\(2a\)};
+	\end{tikzpicture}
+	\caption{摆线}
 \end{figure}
 
 \begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}%星形线
-        \draw[color=orange,domain=0:2*pi,smooth,samples=100]
-            plot({1.5*cos(\x r)^3},{1.5*sin(\x r)^3});
-        \begin{scope}[>=Stealth,->,ultra thick]
-            \draw(-2,0)--(2,0) node[right]{\(x\)}
-                node[below=2cm,midway,black]{\(\left\{ \begin{array}{l}
-                x = a \cos^3\theta \\
-                y = a \sin^3\theta
-            \end{array} \right.
-            \quad\text{或}\quad
-            x^{\frac{2}{3}}+y^{\frac{2}{3}}=a^{\frac{2}{3}}\)};
-            \draw(0,-2)--(0,2) node[above]{\(y\)};
-        \end{scope}
-        \draw(0,1.5)node[right]{\(a\)}
-            (0,-1.5)node[right]{\(-a\)}
-            (1.5,0)node[below]{\(a\)}
-            (-1.5,0)node[below]{\(-a\)};
-    \end{tikzpicture}
-    \caption{星形线}
+	\centering
+	\begin{tikzpicture}%星形线
+		\draw[color=orange,domain=0:2*pi,smooth,samples=100]
+			plot({1.5*cos(\x r)^3},{1.5*sin(\x r)^3});
+		\begin{scope}[>=Stealth,->,thick]
+			\draw(-2,0)--(2,0) node[right]{\(x\)}
+				node[below=2cm,midway,black]{\(\left\{ \begin{array}{l}
+				x = a \cos^3\theta \\
+				y = a \sin^3\theta
+			\end{array} \right.
+			\quad\text{或}\quad
+			x^{\frac{2}{3}}+y^{\frac{2}{3}}=a^{\frac{2}{3}}\)};
+			\draw(0,-2)--(0,2) node[above]{\(y\)};
+		\end{scope}
+		\draw(0,1.5)node[right]{\(a\)}
+			(0,-1.5)node[right]{\(-a\)}
+			(1.5,0)node[below]{\(a\)}
+			(-1.5,0)node[below]{\(-a\)};
+	\end{tikzpicture}
+	\caption{星形线}
 \end{figure}
 
 \begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}%阿基米德螺线
-        \draw[scale=.2,color=orange,domain=0:4*pi,smooth,samples=100]
-            plot({\x*cos(\x r)},{\x*sin(\x r)});
-        \begin{scope}[>=Stealth,->,ultra thick]
-            \draw(-2,0)--(3,0) node[right]{\(x\)};
-            \draw(0,-2.5)--(0,2) node[above]{\(y\)};
-        \end{scope}
-        \draw(0,0)node[below=2.5cm,black]{\(\rho=a\theta\)};
-    \end{tikzpicture}
-    \caption{阿基米德螺线}
+	\centering
+	\begin{tikzpicture}%阿基米德螺线
+		\draw[scale=.2,color=orange,domain=0:4*pi,smooth,samples=100]
+			plot({\x*cos(\x r)},{\x*sin(\x r)});
+		\begin{scope}[>=Stealth,->,thick]
+			\draw(-2,0)--(3,0) node[right]{\(x\)};
+			\draw(0,-2.5)--(0,2) node[above]{\(y\)};
+		\end{scope}
+		\draw(0,0)node[below=2.5cm,black]{\(\rho=a\theta\)};
+	\end{tikzpicture}
+	\caption{阿基米德螺线}
 \end{figure}
