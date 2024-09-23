@@ -40,7 +40,8 @@
 
 特别地，如果\(m = n\)，
 则把\(n\)阶雅克比矩阵\((J_{ij})_{m \times n}\)的行列式
-称为“变换\(f\)的\DefineConcept{雅克比式}”，
+称为“变换\(f\)的\DefineConcept{雅克比式}（Jacobian determinant）”，
+%@see: https://mathworld.wolfram.com/Jacobian.html
 记作\(\jacobi{\AutoTuple{f}{n}}{\AutoTuple{x}{n}}\)，即\[
 	\jacobi{\AutoTuple{f}{n}}{\AutoTuple{x}{n}}
 	\defeq \begin{vmatrix}
@@ -50,5 +51,84 @@
 		J_{n1} & J_{n2} & \dots & J_{nn}
 	\end{vmatrix}.
 \]
-%@see: https://mathworld.wolfram.com/Jacobian.html
 \end{definition}
+
+\begin{proposition}
+%@see: https://math.stackexchange.com/q/4975428/591741
+设变换\(\vb{y}\colon D\subseteq\mathbb{R}^n\to\mathbb{R}^m,\vb{x}\mapsto\vb{y}\)
+在点\(\vb{x} \in D\)可微，
+%FIXME 尚不清楚现有条件能否同时保证：x 的分量函数 x_i 对 y 的分量函数 y_j 可偏导，y 的分量函数 y_j 对 x 的分量函数 x_i 可偏导.
+那么\[
+	\jacobi{\AutoTuple{y}{n}}{\AutoTuple{x}{n}}
+	\cdot
+	\jacobi{\AutoTuple{x}{n}}{\AutoTuple{y}{n}}
+	= 1.
+\]
+\begin{proof}
+%@credit: {358680b2-838d-49a8-861b-c25fa42d35c9},{23a2ee2a-d90a-4839-b5cb-5f2b8581f5c5}
+因为\begin{align*}
+	&\hspace{-20pt}
+	\begin{bmatrix}
+		\pdv{y_1}{x_1} & \pdv{y_1}{x_2} & \dots & \pdv{y_1}{x_n} \\
+		\pdv{y_2}{x_1} & \pdv{y_2}{x_2} & \dots & \pdv{y_2}{x_n} \\
+		\vdots & \vdots & & \vdots \\
+		\pdv{y_n}{x_1} & \pdv{y_n}{x_2} & \dots & \pdv{y_n}{x_n} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\pdv{x_1}{y_1} & \pdv{x_1}{y_2} & \dots & \pdv{x_1}{y_n} \\
+		\pdv{x_2}{y_1} & \pdv{x_2}{y_2} & \dots & \pdv{x_2}{y_n} \\
+		\vdots & \vdots & & \vdots \\
+		\pdv{x_n}{y_1} & \pdv{x_n}{y_2} & \dots & \pdv{x_n}{y_n} \\
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
+		\sum_{k=1}^n \pdv{y_1}{x_k} \pdv{x_k}{y_1}
+		& \sum_{k=1}^n \pdv{y_1}{x_k} \pdv{x_k}{y_2}
+		& \dots
+		& \sum_{k=1}^n \pdv{y_1}{x_k} \pdv{x_k}{y_n} \\
+		\sum_{k=1}^n \pdv{y_2}{x_k} \pdv{x_k}{y_1}
+		& \sum_{k=1}^n \pdv{y_2}{x_k} \pdv{x_k}{y_2}
+		& \dots
+		& \sum_{k=1}^n \pdv{y_2}{x_k} \pdv{x_k}{y_n} \\
+		\vdots & \vdots & & \vdots \\
+		\sum_{k=1}^n \pdv{y_n}{x_k} \pdv{x_k}{y_1}
+		& \sum_{k=1}^n \pdv{y_n}{x_k} \pdv{x_k}{y_2}
+		& \dots
+		& \sum_{k=1}^n \pdv{y_n}{x_k} \pdv{x_k}{y_n} \\
+	\end{bmatrix} \\
+	&= {\def\arraystretch{1.5}
+	\begin{bmatrix} % 利用链式法则
+		\pdv{y_1}{y_1} & \pdv{y_1}{y_2} & \dots & \pdv{y_1}{y_n} \\
+		\pdv{y_2}{y_1} & \pdv{y_2}{y_2} & \dots & \pdv{y_2}{y_n} \\
+		\vdots & \vdots & & \vdots \\
+		\pdv{y_n}{y_1} & \pdv{y_n}{y_2} & \dots & \pdv{y_n}{y_n} \\
+	\end{bmatrix}}
+	= \begin{bmatrix}
+		1 & 0 & \dots & 0 \\
+		0 & 1 & \dots & 0 \\
+		\vdots & \vdots & & \vdots \\
+		0 & 0 & \dots & 1 \\
+	\end{bmatrix},
+\end{align*}
+所以\[
+	\begin{bmatrix}
+		\pdv{y_1}{x_1} & \pdv{y_1}{x_2} & \dots & \pdv{y_1}{x_n} \\
+		\pdv{y_2}{x_1} & \pdv{y_2}{x_2} & \dots & \pdv{y_2}{x_n} \\
+		\vdots & \vdots & & \vdots \\
+		\pdv{y_n}{x_1} & \pdv{y_n}{x_2} & \dots & \pdv{y_n}{x_n} \\
+	\end{bmatrix}
+	\quad\text{和}\quad
+	\begin{bmatrix}
+		\pdv{x_1}{y_1} & \pdv{x_1}{y_2} & \dots & \pdv{x_1}{y_n} \\
+		\pdv{x_2}{y_1} & \pdv{x_2}{y_2} & \dots & \pdv{x_2}{y_n} \\
+		\vdots & \vdots & & \vdots \\
+		\pdv{x_n}{y_1} & \pdv{x_n}{y_2} & \dots & \pdv{x_n}{y_n} \\
+	\end{bmatrix}
+\]互为逆矩阵，
+因此\[
+	\jacobi{\AutoTuple{y}{n}}{\AutoTuple{x}{n}}
+	\cdot
+	\jacobi{\AutoTuple{x}{n}}{\AutoTuple{y}{n}}
+	= 1
+\]必定成立.
+\end{proof}
+\end{proposition}
