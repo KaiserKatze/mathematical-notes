@@ -144,9 +144,9 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{solution}
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:反常积分.重要反常积分公式1}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P360 例8.1.3
-设\(a\in\mathbb{R}\)，
+设常数\(a\in\mathbb{R}\)，
 讨论\(\int_0^{+\infty} e^{-ax} \dd{x}\)的敛散性.
 \begin{solution}
 当\(a=0\)时，有\(e^{-ax} = 1\)，那么\[
@@ -175,50 +175,49 @@ definition:定积分.无穷限的反常积分的定义3}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P256 例2
-计算反常积分\(\int_0^{+\infty} t e^{-pt} \dd{t}\)，
-其中\(p\)是常数，且\(p>0\).
+计算反常积分\(\int_0^{+\infty} t e^{-pt} \dd{t}\)，其中常数\(p>0\).
 \begin{solution}
-由题有\begin{align*}
+直接计算得\[
 	\int_0^{+\infty} t e^{-pt} \dd{t}
-	&= \left[ \int t e^{-pt} \dd{t} \right]_0^{+\infty}
-	= -\frac{1}{p} \int_0^{+\infty} t \dd(e^{-pt}) \\
-	&= -\frac{1}{p} \left[
-			\left( t e^{-pt} \right)_0^{+\infty}
-			- \int_0^{+\infty} e^{-pt} \dd{t}
-		\right].
-\end{align*}
-因为\[
-	\lim_{t\to0} t e^{-pt} = 0, \qquad
-	\lim_{t\to+\infty} t e^{-pt}
-	= \lim_{t\to+\infty} \frac{1}{e^{pt}}
-	= 0,
+	= -\frac1p \int_0^{+\infty} t \dd(e^{-pt}) % 分部积分法
+	= -\frac1p \left[
+		\eval{t e^{-pt}}_0^{+\infty}
+		- \int_0^{+\infty} e^{-pt} \dd{t}
+	\right],
 \]
-所以\[
-	\left( t e^{-pt} \right)_0^{+\infty}
-	= 0.
-\]
-又因为\[
-	\int_0^{+\infty} e^{-pt} \dd{t}
-	= -\frac{1}{p} \int_0^{+\infty} \dd(e^{-pt})
-	= -\frac{1}{p} \eval{e^{-pt}}_0^{+\infty},
-\]
-其中\[
-	\lim_{t\to0} e^{-pt} = 1, \qquad
-	\lim_{t\to+\infty} e^{-pt} = 0,
-\]
-所以\[
-	\int_0^{+\infty} e^{-pt} \dd{t}
-	= \frac{1}{p}.
-\]
-因此，\[
+其中\(\lim_{t\to0} t e^{-pt} = 0\)，% 无穷小与有界量的乘积还是无穷小
+\(\lim_{t\to+\infty} t e^{-pt}
+= \lim_{t\to+\infty} \frac1{p e^{pt}} % 洛必达法则
+= 0\)，
+从而有\(\eval{t e^{-pt}}_0^{+\infty} = 0\)，
+那么\[
 	\int_0^{+\infty} t e^{-pt} \dd{t}
-	= -\frac{1}{p} \left(
-			0 - \frac{1}{p}
-		\right)
-	= \frac{1}{p^2}.
+	= \frac1p \int_0^{+\infty} e^{-pt} \dd{t}.
+\]
+又由\cref{example:反常积分.重要反常积分公式1}
+可知\(\int_0^{+\infty} e^{-pt} \dd{t} = \frac1p\)，
+所以\[
+	\int_0^{+\infty} t e^{-pt} \dd{t}
+	= \frac1{p^2}.
 \]
 \end{solution}
 \end{example}
+\begin{remark}
+从这个例子中我们可以归纳出一个递推公式：\begin{align*}
+	\int_0^{+\infty} t^n e^{-pt} \dd{t}
+	&= -\frac1p \int_0^{+\infty} t^n \dd(e^{-pt}) \\
+	&= -\frac1p \left[\eval{(t^n e^{-pt})}_0^{+\infty} - \int_0^{+\infty} e^{-pt} \dd(t^n)\right] \\
+	&= \frac{n}{p} \int_0^{+\infty} t^{n-1} e^{-pt} \dd{t},
+\end{align*}
+由此可得\begin{align*}
+	\int_0^{+\infty} t^n e^{-pt} \dd{t}
+	&= \frac{n}{p} \int_0^{+\infty} t^{n-1} e^{-pt} \dd{t}
+	= \frac{n(n-1)}{p^2} \int_0^{+\infty} t^{n-2} e^{-pt} \dd{t} \\
+	&= \dotsb = \frac{n!}{p^n} \int_0^{+\infty} e^{-pt} \dd{t}
+	= \frac{n!}{p^{n+1}}.
+\end{align*}
+%@Mathematica: Integrate[t^n Exp[-p t], {t, 0, +Infinity}, Assumptions -> {p > 0, n >= 0}]
+\end{remark}
 
 \begin{example}
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P280 例2
@@ -387,7 +386,7 @@ definition:定积分.无穷限的反常积分的定义3}
 	\int_2^{+\infty} \frac{1}{x \ln^p x} \dd{x}
 	= \int_{\ln2}^{+\infty} \frac{\dd{t}}{t^p};
 \]
-与\hyperref[example:定积分.p积分]{\(p\)积分}作比较即知，
+与~\hyperref[example:定积分.p积分]{\(p\)积分}作比较即知，
 反常积分\(\int_2^{+\infty} \frac{1}{x \ln^p x} \dd{x}\)%
 当\(p>1\)时收敛，当\(p\leq1\)时发散.
 \end{proof}
@@ -396,20 +395,18 @@ definition:定积分.无穷限的反常积分的定义3}
 \begin{example}
 设\(f\colon[0,+\infty)\to\mathbb{R}\)在任意有限闭区间上黎曼可积，
 且\(\lim_{x\to+\infty} f(x) = A\).
-证明：\(\lim_{x\to+\infty} \frac{1}{x} \int_0^x f(t) \dd{t} = A\).
-\begin{proof}
-因为\[
-	\frac{1}{x} \int_0^x A \dd{t} = A,
+证明：\[
+	\lim_{x\to+\infty} \frac{1}{x} \int_0^x f(t) \dd{t} = A.
 \]
+\begin{proof}
+因为\(\frac{1}{x} \int_0^x A \dd{t} = A\)，
 所以，要证\(\lim_{x\to+\infty} \frac{1}{x} \int_0^x f(t) \dd{t} = A\)，
 只需证\[
 	\lim_{x\to+\infty} \frac{1}{x} \int_0^x [f(t) - A] \dd{t} = 0,
 \]
 即证对\(\forall\epsilon>0,
-\exists X>0\)有
-\[
-	x>X
-	\implies
+\exists X>0\)，
+当\(x>X\)时，成立\[
 	\abs{\frac{1}{x} \int_0^x [f(t) - A] \dd{t} - 0} < \epsilon.
 	\eqno(1)
 \]
@@ -427,38 +424,32 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{align*}
 因为\(\int_0^X \abs{f(t) - A} \dd{t}\)是一个与\(x\)无关的常数，
 所以\(\lim_{x\to+\infty} \frac{1}{x} \int_0^X \abs{f(t) - A} \dd{t} = 0\)，
-也就是说，对\(\forall\epsilon>0,
-\exists Y>0\)有
-\[
-	x>Y
-	\implies
+也就是说，对于\(\forall\epsilon>0,
+\exists Y>0\)，
+当\(x>Y\)时，成立\[
 	\abs{\frac{1}{x} \int_0^X \abs{f(t) - A} \dd{t} - 0}
 	= \frac{1}{x} \int_0^X \abs{f(t) - A} \dd{t}
-	< \frac{\epsilon}{2}.
+	< \frac\epsilon2.
 	\eqno(3)
 \]
 由\(\lim_{x\to+\infty} f(x) = A\)，故对\(\forall\epsilon>0,
-\exists Z>0\)有
-\[
-	x>Z
-	\implies
-	\abs{f(x) - A} < \frac{\epsilon}{2}
-	\implies
+\exists Z>0\)，
+当\(x>Z\)时，成立\(\abs{f(x) - A} < \frac\epsilon2\)，
+于是\[
 	\frac{1}{x} \int_X^x \abs{f(t) - A} \dd{t}
-	< \frac{1}{x} \cdot (x-X) \cdot \frac{\epsilon}{2}.
+	< \frac{1}{x} \cdot (x-X) \cdot \frac\epsilon2.
 	\eqno(4)
 \]
-因此，由(2)、(3)、(4)式可知，
-对\(\forall \epsilon>0\)，
-当\(x > \max\{Y,Z\}\)时，
-有
-\[
+因此，由(2)(3)(4)式可知，
+对于\(\forall \epsilon>0\)，
+当\(x > \max\{Y,Z\}\)时，成立\[
 	\abs{\frac{1}{x} \int_0^x [f(t) - A] \dd{t}}
-	< \frac{\epsilon}{2} + \frac{1}{x} \cdot (x-X) \cdot \frac{\epsilon}{2}
-	= \frac{\epsilon}{2} \left( 2 - \frac{X}{x} \right)
+	< \frac\epsilon2 + \frac{1}{x} \cdot (x-X) \cdot \frac\epsilon2
+	= \frac\epsilon2 \left( 2 - \frac{X}{x} \right)
 	< \epsilon.
 \]
 于是，只要取\(X = \max\{Y,Z\}\)，
 就有(1)式成立.
 \end{proof}
+%@see: 《数学分析中的典型问题与方法（第3版）》（裴礼文） P39 例1.3.20
 \end{example}

@@ -1,40 +1,34 @@
 \section{伽马函数}
 \subsection{伽马函数的历史渊源}
 假设函数\(\Gamma\colon\mathbb{R}\to\mathbb{R}\)的值\(\Gamma(n+1)\)
-恰好与\(n\)的阶乘\(n!\)满足相等关系
-\[
+恰好与\(n\)的阶乘\(n!\)满足相等关系\[
 	\Gamma(n+1)
 	= n!
 	\equiv 1 \cdot 2 \cdot 3 \dotsm n
 	\quad(n\in\mathbb{N}).
 	\eqno(1)
 \]
-又假设函数\(\Gamma\)满足递推公式
-\[
+又假设函数\(\Gamma\)满足递推公式\[
 	\Gamma(z+1) = z \cdot \Gamma(z)
 	\quad(z\in\mathbb{R}),
 	\eqno(2)
 \]
-那么有
-\[
+那么有\[
 	\Gamma(z+n+1)
 	= z(z+1)\dotsm(z+n) \cdot \Gamma(z),
 \]
-即有
-\[
+即有\[
 	\Gamma(z) = \frac{\Gamma(z+n+1)}{z(z+1)\dotsm(z+n)}.
 	\eqno(3)
 \]
 假设当\(n\to\infty\)时，
 \(\Gamma(z+n+1)\)是\((z+n)!\)的等价无穷大，
-即
-\[
+即\[
 	\lim_{n\to\infty} \frac{(z+n)!}{\Gamma(z+n+1)}
 	= \lim_{n\to\infty} \frac{1 \cdot 2 \cdot 3 \dotsm n \cdot (n+1) \dotsm (n+z)}{\Gamma(z+n+1)}
 	= 1;
 \]
-那么对(3)式取极限就有
-\begin{align*}
+那么对(3)式取极限就有\begin{align*}
 	\Gamma(z)
 	\equiv \lim_{n\to\infty} \Gamma(z)
 	&= \lim_{n\to\infty}
@@ -45,26 +39,22 @@
 		\frac{1 \cdot 2 \cdot 3 \dotsm n}{z(z+1)\dotsm(z+n)} \cdot (n+1) \dotsm (n+z).
 	\tag4
 \end{align*}
-又因为
-\[
+又因为\[
 	\lim_{n\to\infty} \frac{(n+1)(n+2)\dotsm(n+z)}{n^z} = 1,
 \]
-所以(4)式化为
-\begin{equation}\label{equation:特殊函数.伽马函数的极限定义}
+所以(4)式化为\begin{equation}\label{equation:特殊函数.伽马函数的极限定义}
 	\Gamma(z)
 	= \lim_{n\to\infty} \frac{n^z \cdot n!}{z(z+1)\dotsm(z+n)}.
 \end{equation}
 像这样，我们就得到\(\Gamma\)函数的极限定义.
 
-我们可以验证，根据上述极限定义，有\(\Gamma(1) = 0!\)，即
-\[
+我们可以验证，根据上述极限定义，有\(\Gamma(1) = 0!\)，即\[
 	\Gamma(1)
 	= \lim_{n\to\infty} \frac{n^1 \cdot 1 \cdot 2 \dotsm n}{1 \cdot 2 \dotsm n \cdot (n+1)}
 	= \lim_{n\to\infty} \frac{n}{n+1}
 	= 1.
 \]
-而且从
-\begin{align*}
+而且从\begin{align*}
 	\frac{\Gamma(z+1)}{\Gamma(z)}
 	&= \left[ \lim_{n\to\infty} \frac{n^{z+1} \cdot n!}{(z+1)(z+2)\dotsm(z+n+1)} \right] \bigg/ \left[ \lim_{n\to\infty} \frac{n^z \cdot n!}{z(z+1)\dotsm(z+n)} \right] \\
 	&= \lim_{n\to\infty} \left[ \frac{n^{z+1} \cdot n!}{(z+1)(z+2)\dotsm(z+n+1)} \bigg/ \frac{n^z \cdot n!}{z(z+1)\dotsm(z+n)} \right] \\
@@ -151,27 +141,6 @@
 \]
 称为\DefineConcept{广义不完全伽马函数}.
 
-\begin{proposition}
-伽马函数的导数为\begin{equation}
-	\dv{s} \Gamma(s)
-	= \int_0^{+\infty} t^{s-1} e^{-t} \ln t \dd{t}.
-\end{equation}
-\begin{proof}
-由导数的定义有\begin{align*}
-	\Gamma'(s)
-	&= \lim_{h\to0} \frac{\Gamma(s+h)-\Gamma(s)}{h} \\
-	&= \lim_{h\to0} \frac{
-			\int_0^{+\infty} t^{(s+h)-1} e^{-t} \dd{t}
-			- \int_0^{+\infty} t^{s-1} e^{-t} \dd{t}
-		}{h} \\
-	&= \lim_{h\to0}
-		\int_0^{+\infty} t^{s-1} \frac{t^h - 1}{h} e^{-t} \dd{t} \\
-	&= \int_0^{+\infty} t^{s-1} e^{-t} \ln t \dd{t}.
-	\qedhere
-\end{align*}
-\end{proof}
-\end{proposition}
-
 \subsection{伽马函数与贝塔函数的关系}
 \begin{theorem}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P89
@@ -197,7 +166,7 @@
 \begin{property}
 对于任意\(s > 0\)，总有
 \begin{equation}\label{equation:伽马函数.递推公式}
-	\Gamma(s+1) = s \Gamma(s).
+	\Gamma(s+1) = s~\Gamma(s).
 \end{equation}
 \begin{proof}
 应用分部积分法，
@@ -207,7 +176,7 @@
 	&= -\int_0^{+\infty} t^s \dd(e^{-t}) \\
 	&= \left[-t^s e^{-t}\right]_0^{+\infty}
 		+ s \int_0^{+\infty} t^{s-1} e^{-t} \dd{t} \\
-	&= s \Gamma(s).
+	&= s~\Gamma(s).
 	\qedhere
 \end{align*}
 \end{proof}
@@ -233,6 +202,36 @@
 \end{proof}
 \end{property}
 
+\begin{proposition}
+\(\Gamma\)函数在\(s > 0\)时连续，且有各阶连续导数.
+\end{proposition}
+\begin{proposition}
+伽马函数的导数为\begin{equation}
+	\dv{s} \Gamma(s)
+	= \int_0^{+\infty} t^{s-1} e^{-t} \ln t \dd{t}.
+\end{equation}
+\begin{proof}
+由导数的定义有\begin{align*}
+	\Gamma'(s)
+	&= \lim_{h\to0} \frac{\Gamma(s+h)-\Gamma(s)}{h} \\
+	&= \lim_{h\to0} \frac1h
+		\left[ \int_0^{+\infty} t^{(s+h)-1} e^{-t} \dd{t}
+		- \int_0^{+\infty} t^{s-1} e^{-t} \dd{t} \right] \\
+	&= \lim_{h\to0}
+		\int_0^{+\infty} t^{s-1} \frac{t^h - 1}{h} e^{-t} \dd{t}
+		\tag{\hyperref[theorem:定积分.定积分性质1]{线性性}} \\
+	&= \int_0^{+\infty} t^{s-1} \lim_{h\to0}\frac{t^h - 1}{h} e^{-t} \dd{t} \\ %TODO 这里是不是运用了什么性质才能交换
+	%@see: [Taking the limit inside the integral is not always allowed](https://math.stackexchange.com/a/253697/591741)
+	&= \int_0^{+\infty} t^{s-1} e^{-t} \ln t \dd{t}. %\cref{equation:函数极限.重要极限17}
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+\(\Gamma(s) > 0\ (s>0)\).
+\end{proposition}
+
 \begin{property}
 \(\Gamma(s)\to+\infty\ (s\to0^+)\).
 \begin{proof}
@@ -245,14 +244,6 @@
 \(\Gamma(s)\to+\infty\).
 \end{proof}
 \end{property}
-
-\begin{proposition}
-\(\Gamma\)函数在\(s > 0\)时连续，且有各阶连续导数.
-\end{proposition}
-
-\begin{proposition}
-\(\Gamma(s) > 0\ (s>0)\).
-\end{proposition}
 
 \begin{property}[余元公式]
 \begin{equation}\label{equation:定积分.余元公式}
