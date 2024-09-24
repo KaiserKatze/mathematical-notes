@@ -55,49 +55,72 @@
 \begin{theorem}\label{theorem:线性方程组.矩阵乘积的秩}
 %@see: 《线性代数》（张慎语、周厚隆） P78 定理7
 %@see: 《高等代数（第三版 上册）》（丘维声） P121 定理1
-设\(\A\in M_{s\times n}(K),
-\B\in M_{n\times m}(K)\)，
+设\(\vb{A} \in M_{s \times t}(K),
+\vb{B} \in M_{t \times n}(K)\)，
 那么\[
-	\rank(\A\B) \leq \min\{\rank\A,\rank\B\}.
+	\rank(\vb{A}\vb{B}) \leq \min\{\rank\vb{A},\rank\vb{B}\}.
 \]
 \begin{proof}
-记\(\C = \A\B\)，
-显然\(\rank(\A\B)=\RankC\C\).
-将\(\C\)、\(\B\)分别进行列分块得\[
-	\C = (\AutoTuple{\g}{n}),
+记\(\vb{C} \defeq \vb{A}\vb{B}\).
+显然\(\vb{C} \in M_{s \times n}(K)\).
+将\(\vb{C}\)、\(\vb{B}\)分别进行列分块得\[
+	\vb{C} = (\AutoTuple{\vb\gamma}{n}),
 	\qquad
-	\B = (\AutoTuple{\b}{n}),
+	\vb{B} = (\AutoTuple{\vb\beta}{n}),
 \]
+其中\(\vb\beta_i \in K^t\ (i=1,2,\dotsc,n)\)，
+\(\vb\gamma_i \in K^s\ (i=1,2,\dotsc,n)\)，
 则\[
-	(\AutoTuple{\g}{n}) = \A (\AutoTuple{\b}{n}) = (\AutoTuple{\A\b}{n}),
+	(\AutoTuple{\vb\gamma}{n})
+	= \vb{A} (\AutoTuple{\vb\beta}{n})
+	= (\AutoTuple{\vb{A}\vb\beta}{n}),
 \]
-于是\(\g_i = \A \b_i\ (i=1,2,\dotsc,n)\).
+于是\(\vb\gamma_i = \vb{A} \vb\beta_i\ (i=1,2,\dotsc,n)\).
 
-假设\(\rank\B = t<m\)，
-那么由\cref{example:向量空间.若部分组向量个数多于全组的秩则部分组必线性相关}，
-\(\B\)的任意\(t+1\)个列向量\(\b_{k_1},\b_{k_2},\dotsc,\b_{k_{t+1}}\)线性相关，
-也就是说，存在不全为零的数\(l_1,l_2,\dotsc,l_{t+1}\in K\)，使得\[
-	l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}} = \z.
+假设\(\rank\vb{B} = r\).
+由\cref{example:向量空间.若部分组向量个数多于全组的秩则部分组必线性相关}，
+\(\vb{B}\)的任意\(r+1\)个列向量
+\(\vb\beta_{k_1},\vb\beta_{k_2},\dotsc,\vb\beta_{k_{r+1}}\)线性相关，
+也就是说，存在不全为零的数\(l_1,l_2,\dotsc,l_{r+1}\in K\)，使得\[
+	l_1 \vb\beta_{k_1} + l_2 \vb\beta_{k_2} + \dotsb + l_{r+1} \vb\beta_{k_{r+1}} = \vb0,
 \]
+从而有\[
+	l_1 \vb\gamma_{k_1} + l_2 \vb\gamma_{k_2} + \dotsb + l_{r+1} \vb\gamma_{k_{r+1}}
+	= \vb{A}(l_1 \vb\beta_{k_1} + l_2 \vb\beta_{k_2} + \dotsb + l_{r+1} \vb\beta_{k_{r+1}})
+	= \vb0,
+\]
+这就是说\(\vb{C}\)的任意\(r+1\)个列向量也线性相关，
+那么\(\RankC\vb{C} \ngeq r+1\)，
 因此\[
-	l_1 \g_{k_1} + l_2 \g_{k_2} + \dotsb + l_{t+1} \g_{k_{t+1}}
-	= \A(l_1 \b_{k_1} + l_2 \b_{k_2} + \dotsb + l_{t+1} \b_{k_{t+1}})
-	= \z,
+	\rank(\vb{A}\vb{B})
+	\leq r = \rank\vb{B}.
 \]
-这就是说\(\C\)的任意\(t+1\)个列向量也线性相关，
-那么\(\RankC\C \ngeq t+1\)，
-\(\rank(\A\B)\leq t\)，
-即\(\rank(\A\B) \leq \rank\B\).
 利用这个结论，我们还可以得到\[
-	\rank(\A\B)
-	= \rank(\A\B)^T
-	= \rank(\B^T \A^T)
-	\leq \rank \A^T
-	= \rank \A.
+	\rank(\vb{A}\vb{B})
+	= \rank(\vb{A}\vb{B})^T
+	= \rank(\vb{B}^T \vb{A}^T)
+	\leq \rank \vb{A}^T
+	= \rank \vb{A}.
 \]
-综上所述\(\rank(\A\B) \leq \min\{\rank\A,\rank\B\}\).
+综上所述\(\rank(\vb{A}\vb{B}) \leq \min\{\rank\vb{A},\rank\vb{B}\}\).
 \end{proof}
 \end{theorem}
+\begin{remark}
+我们可以看出\cref{theorem:向量空间.向量组的秩的比较}
+与\cref{theorem:线性方程组.矩阵乘积的秩} 之间存在内在联系：
+由\cref{theorem:向量空间.线性表出2的等价条件} 可知\[
+	\rank(\AutoTuple{\vb\alpha}{s})
+	= \rank((\AutoTuple{\vb\beta}{t})~\vb{Q}),
+\]
+而由可知\[
+	\rank((\AutoTuple{\vb\beta}{t})~\vb{Q})
+	\leq \rank(\AutoTuple{\vb\beta}{t}),
+\]
+于是\[
+	\rank(\AutoTuple{\vb\alpha}{s})
+	\leq \rank(\AutoTuple{\vb\beta}{t}).
+\]
+\end{remark}
 
 \begin{corollary}\label{theorem:矩阵乘积的秩.与可逆矩阵相乘不变秩}
 %@see: 《线性代数》（张慎语、周厚隆） P78 推论1
