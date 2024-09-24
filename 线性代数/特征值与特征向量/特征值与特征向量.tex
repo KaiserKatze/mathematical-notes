@@ -183,7 +183,7 @@
 %@see: https://mathworld.wolfram.com/CharacteristicEquation.html
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系}
 %@see: 《高等代数（第三版 上册）》（丘维声） P174 定理1
 %@see: 《线性代数》（张慎语、周厚隆） P93 性质4
 设矩阵\(\A \in M_n(K)\)，\(\lambda_0 \in K\)，
@@ -196,6 +196,36 @@
 \end{align*}
 %TODO proof
 \end{theorem}
+
+\begin{example}\label{example:矩阵的特征值与特征向量.零是奇异矩阵的特征值}
+%@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 9.
+设\(\A\)是数域\(K\)上一个\(n\)阶方阵，
+证明：\(\abs{\A}=0\)当且仅当\(0\)是\(\A\)的一个特征值.
+\begin{proof}
+由\cref{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系} 有\begin{align*}
+	&\text{\(0\)是\(\A\)的一个特征值} \\
+	&\iff
+	\abs{0\E-\A}
+	= \abs{-\A}
+	= (-1)^n \abs{\A}
+	= 0 \\
+	&\iff
+	\abs{\A} = 0.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+\begin{example}\label{example:矩阵的特征值与特征向量.零不是非奇异矩阵的特征值}
+%@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 8.(1)
+设\(\A\)是数域\(K\)上一个\(n\)阶可逆矩阵.
+证明：如果\(\A\)有特征值，则\(\A\)的特征值不等于\(0\).
+\begin{proof}
+由\cref{example:矩阵的特征值与特征向量.零是奇异矩阵的特征值} 可知，
+\(0\)是奇异矩阵的特征值，
+而可逆矩阵必定是非奇异矩阵，
+所以\(\A\)的特征值只要存在就不可能等于\(0\).
+\end{proof}
+\end{example}
 
 \subsection{求解特征值和特征向量的一般程序}
 % 大数学家高斯在1799年证明了以下\DefineConcept{代数基本定理}：
@@ -236,6 +266,7 @@
 于是可知，齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的解集是\(K^n\)的子空间.
 \begin{proposition}
 %@see: 《线性代数》（张慎语、周厚隆） P92 性质3
+%@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 8.(2)
 设\(\lambda_0\)是\(\A\)的特征值.
 当\(m\in\mathbb{N}\)时，\(\lambda_0^m\)是\(\A^m\)的特征值.
 若\(\A\)可逆，则当\(m\in\mathbb{Z}\)时，\(\lambda_0^m\)是\(\A^m\)的特征值.
@@ -618,6 +649,16 @@
 进一步有\(\lambda_0(\lambda_0-1)=0\)，
 所以\(\lambda_0=0\)或\(\lambda_0=1\).
 \end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 6.
+设数域\(\mathbb{C}\)上的\(n\)阶方阵\(\A\)
+与数域\(\mathbb{C}\)上的\(n\)阶单位矩阵\(\E\)
+满足\(\A^m=\E\)，
+其中\(m\)是正整数.
+证明：\(\A\)的全体特征值是\(\Set{ z\in\mathbb{R} \given z^m = 1 }\).
+%TODO proof
 \end{example}
 
 \begin{example}\label{example:矩阵乘积的秩.两个向量的乘积的特征值和特征向量}
