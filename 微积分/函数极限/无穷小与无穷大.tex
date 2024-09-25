@@ -146,6 +146,17 @@
 	记作\(\alpha\sim\beta\).
 \end{itemize}
 \end{definition}
+\begin{remark}
+只要我们把无穷小和高阶无穷小两者的定义联系起来，
+再结合\[
+	\lim_{x\to0} \frac{x}{1} = 0,
+	\qquad
+	\lim_{n\to\infty} \frac{1/n}{1} = 0
+\]这两个例子，可以看出：
+任意一个无穷小都是常数\(1\)的高阶无穷小.
+因此，在不需要强调具体的阶数时，我们常用\(o(1)\)表示某个函数是无穷小.
+同理，在不需要强调具体的阶数时，用\(O(1)\)表示某个函数是有界量.
+\end{remark}
 
 %@see: 《高等数学（第六版 上册）》 P57
 \begin{example}
@@ -189,9 +200,6 @@
 只有在意义明确，不会发生误解的前提下，才可以省略.
 \end{remark}
 \begin{remark}
-在不需要强调具体的阶数，我们常用\(o(1)\)表示某个函数是无穷小，用\(O(1)\)表示某个函数是有界量.
-\end{remark}
-\begin{remark}
 应该注意到，
 记号\(o(\alpha)\)实际上是满足\(\lim_\mathcal{B} \frac{\beta(x)}{\alpha(x)} = 0\)的全体函数，
 即\[
@@ -209,15 +217,7 @@
 	\supseteq o(x^n)
 	\supseteq \dotsb.
 \]
-另外，我们还可以看出：当\(x\to0\)时，有\[
-	x^{-1} \cdot o(x) = o(1), \qquad
-	x^{-1} \cdot o(x^2) = o(x), \qquad
-	x^{-2} \cdot o(x^2) = o(1),
-\]
-利用数学归纳法可得\[
-	x^{-k} \cdot o(x^n) = o(x^{n-k})
-	\quad(n \geq k).
-\]
+换句话说，高阶无穷小是低阶无穷小的子集.
 \end{remark}
 
 \begin{proposition}
@@ -349,6 +349,50 @@
 %@see: 《高等数学（第六版 上册）》 P44 推论2
 有限个无穷小的乘积也是无穷小.
 \end{corollary}
+
+我们不难看出：当\(x\to0\)时，有\begin{gather*}
+	x \cdot o(1) = o(x), \qquad
+	x \cdot o(x) = o(x^2), \\
+	x^{-1} \cdot o(x) = o(1), \qquad
+	x^{-1} \cdot o(x^2) = o(x), \qquad
+	x^{-2} \cdot o(x^2) = o(1),
+\end{gather*}
+利用数学归纳法可得以下结论.
+\begin{proposition}
+对于任意整数\(k\)，有\begin{gather}
+	x^k \cdot o(x^n) = o(x^{n+k})
+	\quad(k \geq 0), \\
+	x^{-k} \cdot o(x^n) = o(x^{n-k})
+	\quad(n \geq k > 0).
+\end{gather}
+\end{proposition}
+
+\begin{proposition}[和差取大规则]\label{theorem:极限.无穷小的比较3}
+设\(\beta=o(\alpha)\)，则\(\alpha\pm\beta\sim\alpha\).
+\end{proposition}
+\begin{remark}
+\cref{theorem:极限.无穷小的比较3} 说明，
+当高阶无穷小\(\beta\)和低阶无穷小\(\alpha\)相加或相减时，
+它们的等价无穷小就是低阶无穷小\(\alpha\).
+因为当自变量变化时，高阶无穷小比低阶无穷小更快地趋于零，
+相对而言，低阶无穷小就显得更“大”一些，
+因此我们把\cref{theorem:极限.无穷小的比较3} 称为“和差取大规则”.
+\end{remark}
+
+特别地，我们可得如下结论.
+\begin{corollary}
+对于非负整数\(m,n\)，如果\(m>n\)，那么\[
+	o(x^m) + o(x^n) = o(x^n).
+\]
+\end{corollary}
+\begin{remark}
+对于上述命题，我们还可以从集合包含关系的角度进行理解：
+前面我们提到，高阶无穷小是低阶无穷小的子集，
+而当\(m>n\)时，\(o(x^n) \supseteq o(x^m)\)，
+于是\[
+	o(x^m) \cup o(x^n) = o(x^n).
+\]
+\end{remark}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P48 例8
@@ -692,16 +736,6 @@ e^{2x}-1 \sim 2x,
 \]
 \end{proof}
 \end{proposition}
-
-\begin{proposition}[和差取大规则]\label{theorem:极限.无穷小的比较3}
-设\(\beta=o(\alpha)\)，则\(\alpha\pm\beta\sim\alpha\).
-\end{proposition}
-\cref{theorem:极限.无穷小的比较3} 说明，
-当高阶无穷小\(\beta\)和低阶无穷小\(\alpha\)相加或相减时，
-它们的等价无穷小就是低阶无穷小\(\alpha\).
-因为当自变量变化时，高阶无穷小比低阶无穷小更快地趋于零，
-相对而言，低阶无穷小就显得更“大”一些，
-因此我们把\cref{theorem:极限.无穷小的比较3} 称为“和差取大规则”.
 
 \begin{proposition}[和差代替规则]\label{theorem:极限.无穷小的比较4}
 设\(\alpha\sim\alpha'\)，\(\beta\sim\beta'\)，\(\beta\)与\(\alpha\)不是等价无穷小，则\[
