@@ -153,7 +153,7 @@
 \end{proof}
 \end{example}
 
-\subsection{特征矩阵，特征多项式，特征子空间}
+\subsection{特征矩阵，特征多项式，特征方程}
 \begin{proposition}
 设\(\A \in M_n(K)\)，
 \(\AutoTuple{\lambda}{n}\)都是\(\A\)的特征值，
@@ -227,32 +227,6 @@
 \end{proof}
 \end{example}
 
-\subsection{求解特征值和特征向量的一般程序}
-% 大数学家高斯在1799年证明了以下\DefineConcept{代数基本定理}：
-\begin{lemma}[代数基本定理]
-任何\(n\ (n>0)\)次多项式有且仅有\(n\)个复根，其中规定\(m\)重根算\(m\)个根.
-\end{lemma}
-我们将会在\cref{example:留数定理.利用儒歇定理证明代数基本定理} 给出代数基本定理的具体证明过程.
-
-%@see: 《线性代数》（张慎语、周厚隆） P93
-求解矩阵\(\A \in M_n(K)\)的特征值和特征向量的一般程序：\begin{enumerate}
-	\item 计算特征多项式\(\abs{\lambda\E-\A}\).
-
-	\item 判别多项式\(\abs{\lambda\E-\A}\)（即方程\(\abs{\lambda\E-\A}=0\)）
-	在数域\(K\)中有没有根.
-	\begin{itemize}
-		\item 如果它没有根，则没有特征值、特征向量.
-		\item 如果它有根，则它在\(K\)中的全部根\(\AutoTuple{\lambda}{n}\)就是\(\A\)的全部特征值.
-		\item 如果\(K = \mathbb{C}\)，
-		那么根据代数基本定理，任意\(n\)阶矩阵的特征多项式有且仅有\(n\)个复根.
-	\end{itemize}
-
-	\item 对于每个不同的特征值\(\lambda_j\ (j=1,2,\dotsc,n)\)，
-	求出齐次线性方程组\((\lambda_j \E - \A)\x = \vb0\)的一个基础解系\(\AutoTuple{\x}{t}\)，
-	则\(\A\)的属于\(\lambda_j\)的全部特征向量为\(k_1 \x_1 + k_2 \x_2 + \dotsb + k_t \x_t\)
-	（其中\(\AutoTuple{k}{t}\)是不全为零的任意常数）.
-\end{enumerate}
-
 \subsection{特征子空间}
 %@see: 《线性代数》（张慎语、周厚隆） P92 性质1
 %@see: 《线性代数》（张慎语、周厚隆） P92 性质2
@@ -299,25 +273,6 @@
 \end{proof}
 \end{proposition}
 
-\begin{proposition}
-%@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 3.
-设矩阵\(\A \in M_n(\mathbb{C})\)的各个元素均为实数，
-\(\lambda_0\)是\(\A\)的一个特征值，
-\(\vb{x}_0\)是\(\A\)的属于特征值\(\lambda_0\)的一个特征向量.
-证明：\(\overline{\lambda_0}\)也是\(\A\)的一个特征值，
-\(\overline{\vb{x}_0}\)是\(\A\)的属于特征值\(\overline{\lambda_0}\)的一个特征向量.
-\begin{proof}
-根据定义有\(\overline{\A} = \A\)和\(\A \vb{x}_0 = \lambda_0 \vb{x}_0\)，
-那么\[
-	\A~\overline{\vb{x}_0}
-	= \overline{\A~\vb{x}_0}
-	= \overline{\lambda_0~\vb{x}_0}
-	= \overline{\lambda_0}~\overline{\vb{x}_0}.
-	\qedhere
-\]
-\end{proof}
-\end{proposition}
-
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P174
 设\(\lambda \in K\)是矩阵\(\A \in M_n(K)\)的一个特征值，
@@ -350,6 +305,25 @@
 \end{proposition}
 
 \begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 3.
+设矩阵\(\A \in M_n(\mathbb{C})\)的各个元素均为实数，
+\(\lambda_0\)是\(\A\)的一个特征值，
+\(\vb{x}_0\)是\(\A\)的属于特征值\(\lambda_0\)的一个特征向量.
+证明：\(\overline{\lambda_0}\)也是\(\A\)的一个特征值，
+\(\overline{\vb{x}_0}\)是\(\A\)的属于特征值\(\overline{\lambda_0}\)的一个特征向量.
+\begin{proof}
+根据定义有\(\overline{\A} = \A\)和\(\A \vb{x}_0 = \lambda_0 \vb{x}_0\)，
+那么\[
+	\A~\overline{\vb{x}_0}
+	= \overline{\A~\vb{x}_0}
+	= \overline{\lambda_0~\vb{x}_0}
+	= \overline{\lambda_0}~\overline{\vb{x}_0}.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
+\begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 7.
 %@see: 《线性代数》（张慎语、周厚隆） P96 例7
 设\(\A \in M_n(K)\)，
@@ -360,12 +334,12 @@
 \]
 \begin{proof}
 由\cref{theorem:行列式.性质1,theorem:矩阵的转置.性质1,theorem:矩阵的转置.性质2,theorem:矩阵的转置.性质3}
-有\begin{align*}
+有\[
 	\abs{\lambda\E-\A^T}
-	&= \abs{(\lambda\E-\A^T)^T} \\
-	&= \abs{(\lambda\E)^T-(\A^T)^T} \\
-	&= \abs{\lambda\E-\A},
-\end{align*}
+	= \abs{(\lambda\E-\A^T)^T}
+	= \abs{(\lambda\E)^T-(\A^T)^T}
+	= \abs{\lambda\E-\A},
+\]
 因此\(\A\)与\(\A^T\)具有相同的特征值.
 \end{proof}
 \end{example}
@@ -393,6 +367,32 @@
 也就是说，当且仅当\(\A\)是对称矩阵时，\(\A\)的特征向量都是\(\A^T\)的特征向量.
 \end{solution}
 \end{example}
+
+\subsection{求解特征值和特征向量的一般程序}
+% 大数学家高斯在1799年证明了以下\DefineConcept{代数基本定理}：
+\begin{lemma}[代数基本定理]
+任何\(n\ (n>0)\)次多项式有且仅有\(n\)个复根，其中规定\(m\)重根算\(m\)个根.
+\end{lemma}
+我们将会在\cref{example:留数定理.利用儒歇定理证明代数基本定理} 给出代数基本定理的具体证明过程.
+
+%@see: 《线性代数》（张慎语、周厚隆） P93
+求解矩阵\(\A \in M_n(K)\)的特征值和特征向量的一般程序：\begin{enumerate}
+	\item 计算特征多项式\(\abs{\lambda\E-\A}\).
+
+	\item 判别多项式\(\abs{\lambda\E-\A}\)（即方程\(\abs{\lambda\E-\A}=0\)）
+	在数域\(K\)中有没有根.
+	\begin{itemize}
+		\item 如果它没有根，则没有特征值、特征向量.
+		\item 如果它有根，则它在\(K\)中的全部根\(\AutoTuple{\lambda}{n}\)就是\(\A\)的全部特征值.
+		\item 如果\(K = \mathbb{C}\)，
+		那么根据代数基本定理，任意\(n\)阶矩阵的特征多项式有且仅有\(n\)个复根.
+	\end{itemize}
+
+	\item 对于每个不同的特征值\(\lambda_j\ (j=1,2,\dotsc,n)\)，
+	求出齐次线性方程组\((\lambda_j \E - \A)\x = \vb0\)的一个基础解系\(\AutoTuple{\x}{t}\)，
+	则\(\A\)的属于\(\lambda_j\)的全部特征向量为\(k_1 \x_1 + k_2 \x_2 + \dotsb + k_t \x_t\)
+	（其中\(\AutoTuple{k}{t}\)是不全为零的任意常数）.
+\end{enumerate}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P94 例3
