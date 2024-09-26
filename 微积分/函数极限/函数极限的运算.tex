@@ -349,6 +349,30 @@
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P55 例4
 计算极限\(\lim_{x\to\infty} \left(1-\frac1x\right)^x\).
+\begin{figure}[ht]
+%@Mathematica: Plot[{1/E, (1 - 1/x)^x}, {x, -10, 10}, PlotRange -> {0, 1}, PlotStyle -> {{Dashed, Thin}, Thin}]
+	\centering
+	\begin{tikzpicture}[scale=.5]
+		\begin{axis}[
+			xmin=-10,xmax=10,
+			ymin=0,ymax=1,
+			grid=both,
+			width=\textwidth,height=\textwidth,
+			xlabel=$x$,
+			ylabel=$y$,
+			axis lines=middle,
+			xtick={-9,-7,...,10},
+			ytick={.3679,1},
+			yticklabels={$\frac1e$,$1$},
+		]
+			\begin{scope}[samples=50,thick,red]
+				\addplot[domain=-10:-0]{(1-1/x)^x};
+				\addplot[domain=+1:+10]{(1-1/x)^x};
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{函数\(y=\left(1-\tfrac1x\right)^x\)的图像}
+\end{figure}
 \begin{solution}
 令\(t = -x\)，
 则当\(x \to +\infty\)时，
