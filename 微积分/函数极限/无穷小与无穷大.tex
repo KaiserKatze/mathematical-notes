@@ -311,6 +311,12 @@
 	\lim_{x \to -\infty} x^k f(x) = c \in (-\infty,+\infty).
 \end{gather*}
 \end{definition}
+\begin{example}
+幂函数\(f(x) = a x^\mu\ (a\neq0)\)是当\(x\to0\)时的无穷小，
+它的阶为\[
+	\ord_{x\to0} f(x) = \mu.
+\]
+\end{example}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P58 例1
@@ -415,21 +421,57 @@
 \cref{theorem:极限.无穷小的比较3} 说明，
 当高阶无穷小\(\beta\)和低阶无穷小\(\alpha\)相加或相减时，
 它们的等价无穷小就是低阶无穷小\(\alpha\).
+如\cref{figure:无穷小与无穷大.次数越大的幂函数越贴近横轴} 所示，
 因为当自变量变化时，高阶无穷小比低阶无穷小更快地趋于零，
 相对而言，低阶无穷小就显得更“大”一些，
 因此我们把\cref{theorem:极限.无穷小的比较3} 称为“和差取大规则”.
 \end{remark}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[scale=.6]
+		\begin{axis}[
+			name=Infinitesimal,
+			xmin=0,xmax=.8,
+			ymin=0,ymax=.8,
+			grid=both,width=\textwidth,height=\textwidth,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=west},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south},
+			xtick={.1,.2,...,.8},
+			ytick={.1,.2,...,.8},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=0:.8]
+				{x};\label{pgfplots:无穷小与无穷大.幂函数1}
+			\addplot[color=orange,samples=50,smooth,domain=0:.8]
+				{x^2};\label{pgfplots:无穷小与无穷大.幂函数2}
+			\addplot[color=green,samples=50,smooth,domain=0:.8]
+				{x^4};\label{pgfplots:无穷小与无穷大.幂函数4}
+			\addplot[color=red,samples=50,smooth,domain=0:.8]
+				{x^8};\label{pgfplots:无穷小与无穷大.幂函数8}
+		\end{axis}
+		\node[draw,fill=white,inner sep=0pt,right=1em]at(Infinitesimal.east){\small\begin{tblr}{cl}
+			\ref{pgfplots:无穷小与无穷大.幂函数1} & \(x\) \\
+			\ref{pgfplots:无穷小与无穷大.幂函数2} & \(x^2\) \\
+			\ref{pgfplots:无穷小与无穷大.幂函数4} & \(x^4\) \\
+			\ref{pgfplots:无穷小与无穷大.幂函数8} & \(x^8\) \\
+		\end{tblr}};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:无穷小与无穷大.次数越大的幂函数越贴近横轴}
+\end{figure}
 
 特别地，我们可得如下结论.
 \begin{corollary}
-对于非负整数\(m,n\)，如果\(m>n\)，那么\[
+当\(x\to0\)时，对于非负整数\(m,n\)，如果\(m>n\)，则\[
 	o(x^m) + o(x^n) = o(x^n).
 \]
 \end{corollary}
 \begin{remark}
 对于上述命题，我们还可以从集合包含关系的角度进行理解：
 前面我们提到，高阶无穷小是低阶无穷小的子集，
-而当\(m>n\)时，\(o(x^n) \supseteq o(x^m)\)，
+而当\(x\to0\)时，如果\(m>n\)，则\(o(x^n) \supseteq o(x^m)\)，
 于是\[
 	o(x^m) \cup o(x^n) = o(x^n).
 \]
