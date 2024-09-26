@@ -136,7 +136,8 @@
 			a \leq \abs{\frac{\beta(x)}{\alpha(x)}} \leq A
 		\right],
 	\]
-	就说“\(\alpha\)与\(\beta\)是\DefineConcept{同阶}无穷小”.
+	就说“\(\alpha\)与\(\beta\)是\DefineConcept{同阶}无穷小”，
+	记作\(\beta = \Theta(\alpha)\).
 
 	\item 如果\(\lf[k]=c\ (\text{$c$是非零常数},\text{$k$是正常数})\)，
 	就说“\(\beta\)是关于\(\alpha\)的\(k\)~\DefineConcept{阶}无穷小”.
@@ -156,6 +157,7 @@
 任意一个无穷小都是常数\(1\)的高阶无穷小.
 因此，在不需要强调具体的阶数时，我们常用\(o(1)\)表示某个函数是无穷小.
 同理，在不需要强调具体的阶数时，用\(O(1)\)表示某个函数是有界量.
+最后，我们用\(\Theta(1)\)表示某个函数是常数函数.
 \end{remark}
 
 %@see: 《高等数学（第六版 上册）》 P57
@@ -218,7 +220,46 @@
 	\supseteq \dotsb.
 \]
 换句话说，高阶无穷小是低阶无穷小的子集.
+
+另一方面，我们可以注意到：“\(\beta = \Theta(\alpha)\)”蕴含了“\(\beta = O(\alpha)\)”，
+即\(\Theta(\alpha) \subseteq O(\alpha)\).
 \end{remark}
+
+\begin{proposition}%渐进比较
+%@see: 《算法导论（原书第3版）》 P29
+设\(\alpha,\beta,\gamma\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
+\(\alpha,\beta,\gamma\)都是在基\(\mathcal{B}\)上的无穷小，
+则\begin{itemize}
+	\item{\rm 传递性}\begin{gather*}
+		\alpha = \Theta(\beta)
+		\land
+		\beta = \Theta(\gamma)
+		\implies
+		\alpha = \Theta(\gamma). \\
+		\alpha = O(\beta)
+		\land
+		\beta = O(\gamma)
+		\implies
+		\alpha = O(\gamma). \\
+		\alpha = o(\beta)
+		\land
+		\beta = o(\gamma)
+		\implies
+		\alpha = o(\gamma).
+	\end{gather*}
+
+	\item{\rm 自反性}\begin{gather*}
+		\alpha = \Theta(\alpha). \\
+		\alpha = O(\alpha).
+	\end{gather*}
+
+	\item{\rm 对称性}\begin{gather*}
+		\alpha = \Theta(\beta)
+		\iff
+		\beta = \Theta(\alpha).
+	\end{gather*}
+\end{itemize}
+\end{proposition}
 
 \begin{proposition}
 设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
@@ -577,7 +618,10 @@
 			a \leq \abs{\frac{\beta(x)}{\alpha(x)}} \leq A
 		\right],
 	\]
-	就说“\(\alpha\)与\(\beta\)是\DefineConcept{同阶}无穷大”.
+	就说“\(\alpha\)与\(\beta\)是\DefineConcept{同阶}无穷大\footnote{在研究算法时，
+	我们会说“\(\alpha\)是\(\beta\)的一个\DefineConcept{渐进紧确界}%
+	（asymptotically tight bound）”.}”，
+	记作\(\beta = \Theta(\alpha)\).
 
 	\item 如果\(\lf=1\)，
 	就说“\(\beta\)与\(\alpha\)是\DefineConcept{等价无穷大}”，
