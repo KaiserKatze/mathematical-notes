@@ -232,12 +232,29 @@ y_2 = f(x_0 + \epsilon)\).
 \begin{solution}
 直接计算得\[
 	\lim_{x\to0^+} \left(1+\frac1x\right)^x
-	= \exp[\lim_{x\to0^+} x\ln(1+\frac1x)] % 连续函数的复合函数
-	\xlongequal{t=1/x} \exp[\lim_{t\to+\infty} \frac{\ln(1+t)}{t}] % 换元
-	= \exp[\lim_{t\to+\infty} \frac1{1+t}] % 洛必达法则
+	= \exp\lim_{x\to0^+} x\ln(1+\frac1x) % 连续函数的复合函数
+	\xlongequal{t=1/x} \exp\lim_{t\to+\infty} \frac{\ln(1+t)}{t} % 换元
+	= \exp\lim_{t\to+\infty} \frac1{1+t} % 洛必达法则
 	= 1.
 \]
 \end{solution}
+\end{example}
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1MF4m1L7Jw
+计算极限\(\lim_{x\to+\infty} \left[ \frac1e \left(1+\frac1x\right)^x \right]^x\).
+\begin{solution}
+直接计算得\begin{align*}
+	&\lim_{x\to+\infty} \left[ \frac1e \left(1+\frac1x\right)^x \right]^x
+	= \lim_{x\to+\infty} \exp[x^2 \ln(1+\frac1x) - x] \\
+	&\xlongequal{t=1/x} \exp\lim_{t\to0^+} \left[ \frac1{t^2} \ln(1+t) - \frac1t \right]
+	= \exp\lim_{t\to0^+} \frac{\ln(1+t)-t}{t^2} \\
+	&= \exp\lim_{t\to0^+} \frac{t-\frac12t^2+o(t^2)-t}{t^2}
+	= \exp(-\frac12)
+	= \frac1{\sqrt{e}}.
+\end{align*}
+\end{solution}
+%@Mathematica: Limit[((1 + 1/x)^x/E)^x, x -> Infinity]
 \end{example}
 
 \begin{example}
