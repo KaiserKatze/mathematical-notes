@@ -1,4 +1,189 @@
 \section{多元函数的极限}
+\subsection{欧氏空间上的基本定理}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P111
+在向量空间\(\mathbb{R}^n\)上引入\DefineConcept{内积}运算\[
+	\mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R},
+	(\vb{x},\vb{y}) \mapsto \vb{x}\cdot\vb{y} = \sum_{k=1}^n x_k y_k,
+\]
+其中\(\vb{x}=(\AutoTuple{x}{n}),
+\vb{y}=(\AutoTuple{y}{n})\),
+就得到了\DefineConcept{欧氏空间}.
+
+%@see: 《数学分析（第二版 下册）》（陈纪修） P111
+内积运算满足下列四个性质：\begin{itemize}
+	\item {\rm 正定性}：\begin{gather*}
+		(\forall \vb{x}\in\mathbb{R}^n)
+		[\vb{x}\cdot\vb{x}\geq0], \\
+		(\forall \vb{x}\in\mathbb{R}^n)
+		[\vb{x}\cdot\vb{x}=0 \iff \vb{x}=\vb0];
+	\end{gather*}
+	\item {\rm 对称性}：\begin{equation*}
+		(\forall \vb{x},\vb{y}\in\mathbb{R}^n)
+		[\vb{x}\cdot\vb{y} = \vb{y}\cdot\vb{x}];
+	\end{equation*}
+	\item {\rm 线性性}：\begin{equation*}
+		(\forall \vb{x},\vb{y},\vb{z}\in\mathbb{R}^n)
+		(\forall \lambda,\mu\in\mathbb{R})
+		[(\lambda\vb{x}+\mu\vb{y})\cdot\vb{z} = \lambda(\vb{x}\cdot\vb{z}) + \mu(\vb{y}\cdot\vb{z})];
+	\end{equation*}
+	\item {\rm 施瓦茨不等式}：\begin{equation*}
+		(\forall \vb{x},\vb{y}\in\mathbb{R}^n)
+		[(\vb{x}\cdot\vb{y})^2 \leq (\vb{x}\cdot\vb{x})(\vb{y}\cdot\vb{y})].
+	\end{equation*}
+\end{itemize}
+
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P111 定义11.1.1
+欧氏空间\(\mathbb{R}^n\)中
+任意两点\(\vb{x}\)和\(\vb{y}\)的\DefineConcept{距离}定义为\begin{equation*}
+	\norm{\vb{x} - \vb{y}}
+	\defeq
+	\sqrt{\sum_{k=1}^n (x_k-y_k)^2},
+\end{equation*}
+其中\(\vb{x}=(\AutoTuple{x}{n}),
+\vb{y}=(\AutoTuple{y}{n})\).
+\end{definition}
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P111 定义11.1.1
+欧氏空间\(\mathbb{R}^n\)中
+任意一点\(\vb{x}\)的\DefineConcept{范数}定义为\begin{equation*}
+	\norm{\vb{x}}
+	\defeq
+	\norm{\vb{x}-\vb0}.
+\end{equation*}
+\end{definition}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P112 定理11.1.1
+欧氏空间\(\mathbb{R}^n\)中的距离满足下列三个性质：\begin{itemize}
+	\item {\rm 正定性}：\begin{gather*}
+		(\forall \vb{x},\vb{y}\in\mathbb{R}^n)
+		[\norm{\vb{x}-\vb{y}}\geq0], \\
+		(\forall \vb{x}\in\mathbb{R}^n)
+		[\norm{\vb{x}-\vb{y}}=0 \iff \vb{x}=\vb{y}];
+	\end{gather*}
+	\item {\rm 对称性}：\begin{equation*}
+		(\forall \vb{x},\vb{y}\in\mathbb{R}^n)
+		[\norm{\vb{x}-\vb{y}}=\norm{\vb{y}-\vb{x}}];
+	\end{equation*}
+	\item {\rm 三角不等式}：\begin{equation*}
+		(\forall \vb{x},\vb{y},\vb{z}\in\mathbb{R}^n)
+		[\norm{\vb{x}-\vb{z}}\leq\norm{\vb{x}-\vb{y}}+\norm{\vb{y}-\vb{z}}].
+	\end{equation*}
+\end{itemize}
+\end{theorem}
+
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P112 定义11.1.2
+设\(\vb{a}=(\AutoTuple{a}{n})\in\mathbb{R}^n\)，\(\delta>0\).
+把点集\[
+	\Set{ \vb{x}\in\mathbb{R}^n \given \norm{\vb{x}-\vb{a}}<\delta }
+\]称为“点\(\vb{a}\)的\(\delta\)~\DefineConcept{邻域}”，记作\(U(\vb{a},\delta)\).
+把\(\vb{a}\)称为“邻域\(U(\vb{a},\delta)\)的\DefineConcept{中心}”，
+把\(\delta\)称为“邻域\(U(\vb{a},\delta)\)的\DefineConcept{半径}”.
+\end{definition}
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P112 定义11.1.3
+设\(\{\vb{x}_k\}\)是\(\mathbb{R}^n\)中的一个点列.
+若存在定点\(\vb{a}\in\mathbb{R}^n\)，
+对于任意给定\(\epsilon>0\)，存在正整数\(K\)，
+使得当\(k>K\)时，成立\[
+	\norm{\vb{x}_k-\vb{a}}<\epsilon,
+\]
+则称“点列\(\{\vb{x}_k\}\)收敛于\(\vb{a}\)”
+“\(\vb{a}\)是点列\(\{\vb{x}_k\}\)的极限”，
+记作\(\lim_{k\to\infty} \vb{x}_k = \vb{a}\).
+\end{definition}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P112 定理11.1.2
+设\(\{\vb{x}_k=(x_{k1},x_{k2},\dotsc,x_{kn})\}\)是\(\mathbb{R}^n\)中的一个点列，
+点\(\vb{a}=(a_1,a_2,\dotsc,a_n)\in\mathbb{R}^n\)，
+则\(\lim_{k\to\infty} \vb{x}_k = \vb{a}\)的充分必要条件是：
+\(\lim_{k\to\infty} x_{ki} = a_i\ (i=1,2,\dotsc,n)\).
+\begin{proof}
+利用不等式\[
+	\abs{x_{kj}-a_j}
+	\leq \norm{\vb{x}_k-\vb{a}}
+	= \sqrt{\sum_{i=1}^n (x_{ki}-a_i)^2}
+	\leq \sum_{i=1}^n \abs{x_{ki}-a_i}
+	\quad(j=1,2,\dotsc,n)
+\]可以得到.
+\end{proof}
+\end{theorem}
+
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P112 定义11.1.4
+设\(A\)是一个\(\mathbb{R}^n\)的子集.
+若存在正数\(M\)，使得对于任意\(\vb{x} \in A\)，成立\[
+	\norm{\vb{x}} \leq M,
+\]
+则称“\(A\)是\DefineConcept{有界集}”.
+\end{definition}
+可以验证收敛点列的极限具有唯一性、有界性、线性性.
+
+\begin{theorem}[闭矩形套定理]
+%@see: 《数学分析（第二版 下册）》（陈纪修） P118 定理11.1.6（闭矩形套定理）
+设\(\Delta_k \defeq [a_k,b_k]\times[c_k,d_k]\ (k=1,2,\dotsc)\)
+是\(\mathbb{R}^2\)上的一列闭矩形.
+如果\begin{itemize}
+	\item \(\Delta_{k+1} \subseteq \Delta_k\ (k=1,2,\dotsc)\)；
+	\item \(\lim_{k\to\infty} \sqrt{(b_k-a_k)^2+(d_k-c_k)^2} = 0\)，
+\end{itemize}
+则存在唯一的点\(\vb{a}=(\xi,\eta)\in\mathbb{R}^2\)满足\begin{itemize}
+	\item \(\vb{a}\in\bigcap_{k=1}^\infty \Delta_k\)，
+	\item \(\lim_{k\to\infty} a_k = \lim_{k\to\infty} b_k = \xi\)，
+	\item \(\lim_{k\to\infty} c_k = \lim_{k\to\infty} d_k = \eta\).
+\end{itemize}
+\end{theorem}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P118 定理11.1.6'（Cantor闭区域套定理）
+设\(\{A_k\}\)是\(\mathbb{R}^n\)上的单调减的非空闭集列，
+即\[
+	A_k\neq\emptyset\ (k=1,2,\dotsc)
+	\qquad
+	A_k \supseteq A_{k+1}\ (k=1,2,\dotsc),
+\]
+且\(\lim_{k\to\infty} \diam A_k = 0\)，
+则存在唯一点属于\(\bigcap_{k=1}^\infty A_k\).
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P118 定理11.1.7（Bolzano-Weierstrass定理）
+\(\mathbb{R}^n\)上的有界点列\(\{\vb{x}_n\}\)中必有收敛子列.
+\end{theorem}
+
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P118 定义11.1.7
+设\(A\)是一个\(\mathbb{R}^n\)的子集，
+\(\mathscr{J}\)是\(\mathbb{R}^n\)中的一个开集族.
+如果\[
+	A \subset \bigcup\mathscr{J},
+\]
+那么称“开集族\(\mathscr{J}\)是\(A\)的一个\DefineConcept{开覆盖}”.
+\end{definition}
+\begin{definition}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P118 定义11.1.7
+设\(A\)是一个\(\mathbb{R}^n\)的子集.
+如果\(A\)的任意一个开覆盖\(\mathscr{J}\)中总存在一个有限子覆盖，
+即存在\(\mathscr{J}\)的一个有限子集\(\mathscr{J}'\)满足\(A \subseteq \mathscr{J}'\)，
+则称“\(A\)是一个\DefineConcept{紧集}”.
+\end{definition}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P118 定理11.1.9（Heine-Borel定理）
+设\(A\)是一个\(\mathbb{R}^n\)的子集，
+则\(A\)是紧集的充分必要条件是：
+\(A\)是有界闭集.
+%TODO proof
+\end{theorem}
+\begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P118 定理11.1.10
+设\(A\)是一个\(\mathbb{R}^n\)的子集，
+则下列三个命题等价：\begin{enumerate}
+	\item \(A\)是有界闭集；
+	\item \(A\)是紧集；
+	\item \(A\)的任意无限子集在\(A\)中必有聚点.
+\end{enumerate}
+\end{theorem}
+
 \subsection{重极限的概念}
 \begin{definition}
 设\(D\subseteq\mathbb{R}^2\)，
