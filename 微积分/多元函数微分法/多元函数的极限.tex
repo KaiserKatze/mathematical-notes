@@ -424,17 +424,10 @@
 \end{example}
 
 \begin{theorem}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P124 定理11.2.1
 设二元函数\(f(x,y)\)在点\((x_0,y_0)\)处存在重极限\[
 	\lim_{(x,y)\to(x_0,y_0)} f(x,y) = A \in \mathbb{R}.
-\]\begin{enumerate}
-	\item 如果当\(y \neq y_0\)时存在极限\[
-		\lim_{x \to x_0} f(x,y) = \psi(y),
-	\]
-	则\(f(x,y)\)在点\((x_0,y_0)\)处的先\(x\)后\(y\)的累次极限存在，且\[
-		\lim_{y \to y_0} \lim_{x \to x_0} f(x,y)
-		= \lim_{y \to y_0} \psi(y) = A.
-	\]
-
+\]\begin{itemize}
 	\item 如果当\(x \neq x_0\)时存在极限\[
 		\lim_{y \to y_0} f(x,y) = \phi(y),
 	\]
@@ -442,7 +435,38 @@
 		\lim_{x \to x_0} \lim_{y \to y_0} f(x,y)
 		= \lim_{x \to x_0} \phi(y) = A.
 	\]
-\end{enumerate}
+
+	\item 如果当\(y \neq y_0\)时存在极限\[
+		\lim_{x \to x_0} f(x,y) = \psi(y),
+	\]
+	则\(f(x,y)\)在点\((x_0,y_0)\)处的先\(x\)后\(y\)的累次极限存在，且\[
+		\lim_{y \to y_0} \lim_{x \to x_0} f(x,y)
+		= \lim_{y \to y_0} \psi(y) = A.
+	\]
+\end{itemize}
+\begin{proof}
+对于任意给定\(\epsilon>0\)，
+由于\(\lim_{(x,y)\to(x_0,y_0)} f(x,y) = A\)，
+所以存在\(\delta>0\)，
+使得\[
+	0<\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta
+	\implies
+	\abs{f(x,y)-A}<\frac\epsilon2,
+\]
+于是对于每个满足\(0<\abs{x-x_0}<\delta\)的\(x\)，
+令\(y \to y_0\)，就得到\[
+	\abs{\phi(x)-A}
+	= \lim_{y \to y_0} \abs{f(x,y)-A}
+	\leq \frac\epsilon2
+	< \epsilon.
+\]
+这就是说，对于任意给定\(\epsilon>0\)，存在\(\delta>0\)，
+使得当\(0<\abs{x-x_0}<\delta\)时，
+成立\[
+	\abs{\phi(x)-A} < \epsilon.
+	\qedhere
+\]
+\end{proof}
 \end{theorem}
 
 \begin{corollary}
