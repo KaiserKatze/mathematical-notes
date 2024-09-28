@@ -186,6 +186,7 @@
 
 \subsection{重极限的概念}
 \begin{definition}
+%@see: 《高等数学（第六版 上册）》 P58 定义2
 设\(D\subseteq\mathbb{R}^2\)，
 函数\(f\colon D\to\mathbb{R}\)，
 \(P_0(x_0,y_0)\)是\(D\)的聚点.
@@ -193,7 +194,9 @@
 使得当\(P(x,y) \in D \cap \mathring{U}(P_0,\delta)\)时，都有\[
 	\abs{f(P)-A} = \abs{f(x,y)-A} < \epsilon
 \]成立，
-那么称常数\(A\)为“函数\(f(x,y)\)当\((x,y)\to(x_0,y_0)\)时的\DefineConcept{极限}”，记作\[
+那么把常数\(A\)称为“函数\(f\)当\((x,y)\to(x_0,y_0)\)时的\DefineConcept{极限}”
+或“函数\(f\)在点\((x_0,y_0)\)的极限”，
+记作\[
 	\lim_{(x,y)\to(x_0,y_0)} f(x,y) = A
 	\quad\text{或}\quad
 	\lim_{P \to P_0} f(P) = A.
@@ -203,9 +206,10 @@
 \end{definition}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P58 例4
 设\(f(x,y) = (x^2+y^2) \sin\frac1{x^2+y^2}\).
 求证：\(\lim_{(x,y)\to(0,0)} f(x,y) = 0\).
-\begin{solution}
+\begin{proof}
 这里函数\(f(x,y)\)的定义域为\(D = \mathbb{R}^2 - \Set{(0,0)}\)，
 点\(O(0,0)\)为\(D\)的聚点.
 因为\[
@@ -215,17 +219,35 @@
 \]
 可见，\(\forall\epsilon>0\)，
 取\(\delta=\sqrt{\epsilon}\)，
-则当\[
-	0 < \sqrt{(x-0)^2+(y-0)^2} < \delta,
-\]
-即\(P(x,y) \in D \cap \mathring{U}(O,\delta)\)时，总有\[
+则当\(0 < \sqrt{(x-0)^2+(y-0)^2} < \delta\)时，总有\[
 	\abs{f(x,y)-0} < \epsilon
 \]成立，
-所以\[
-	\lim_{(x,y)\to(0,0)} f(x,y) = 0.
-\]
-\end{solution}
+所以\(\lim_{(x,y)\to(0,0)} f(x,y) = 0\).
+\end{proof}
 %@Mathematica: Limit[(x^2 + y^2) Sin[1/(x^2 + y^2)], {x, y} -> {0, 0}]
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P122 例11.2.2
+设\(f(x,y) = (x+y) \sin\frac{y}{x^2+y^2}\).
+证明：\(\lim_{(x,y)\to(0,0)} f(x,y) = 0\).
+\begin{proof}
+由于\[
+	\abs{f(x,y)-0}
+	= \abs{(x+y) \sin\frac{y}{x^2+y^2}}
+	\leq \abs{x+y}
+	\leq \abs{x}+\abs{y},
+\]
+所以，对于任意给定\(\epsilon>0\)，只要取\(\delta=\frac\epsilon2\)，
+那么当\(\abs{x-0}<\delta,\abs{y-0}<\delta,(x,y)\neq0\)时，成立\[
+	\abs{f(x,y)-0}
+	\leq \abs{x}+\abs{y}
+	< \delta+\delta
+	= \frac\epsilon2+\frac\epsilon2
+	= \epsilon,
+\]
+这就说明\(\lim_{(x,y)\to(0,0)} f(x,y) = 0\).
+\end{proof}
 \end{example}
 
 必须注意，所谓二重极限存在，
@@ -236,6 +258,41 @@
 我们还不能由此断定函数的极限存在.
 但是反过来，如果当\(P(x,y)\)以不同方式趋于\(P_0(x_0,y_0)\)时，
 \(f(x,y)\)趋于不同的值，那么就可以断定这函数的极限不存在.
+
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P122 例11.2.3
+设\(f(x,y) = \frac{xy}{x^2+y^2}\).
+证明：\(\lim_{(x,y)\to(0,0)} f(x,y)\)不存在.
+\begin{proof}
+点\((0,0)\)是\(f\)的定义域的聚点.
+沿直线\(y=mx\)趋于\((0,0)\)时，极限\[
+	\lim_{\substack{(x,y)\to(0,0) \\ y=mx}} f(x,y)
+	= \lim_{x\to0} f(x,mx)
+	= \lim_{x\to0} \frac{mx^2}{x^2+m^2x^2}
+	= \frac{m}{1+m^2}
+\]的取值随\(m\)的变化而变化，
+这就说明\(f(x,y)\)在点\((0,0)\)的极限不存在.
+\end{proof}
+\end{example}
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P122 例11.2.4
+设\(f(x,y) = \frac{(y^2-x)^2}{y^4+x^2}\).
+证明：\(\lim_{(x,y)\to(0,0)} f(x,y)\)不存在.
+\begin{proof}
+沿直线\(y=mx\)趋于\((0,0)\)时，极限\[
+	\lim_{\substack{(x,y)\to(0,0) \\ y=mx}} f(x,y)
+	= \lim_{x\to0} f(x,mx)
+	= \lim_{x\to0} \frac{(m^2x^2-x)^2}{m^4x^4+x^2}
+	= 1.
+\]
+沿抛物线\(y^2=x\)趋于\((0,0)\)时，极限\[
+	\lim_{\substack{(x,y)\to(0,0) \\ y^2=x}} f(x,y)
+	= \lim_{x\to0} f(x,\pm\sqrt{x})
+	= 0.
+\]
+综上所述，\(f(x,y)\)在点\((0,0)\)的极限不存在.
+\end{proof}
+\end{example}
 
 以上关于二元函数的极限概念，可相应地推广到\(n\)元函数\(u = f(P)\)，
 即\(u = f(\AutoTuple{x}{n})\)上去.
