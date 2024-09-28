@@ -1,43 +1,92 @@
 \section{多元函数的连续性}
 \begin{definition}
 %@see: 《高等数学（第六版 下册）》 P60 定义3
-设\(D\subseteq\mathbb{R}^2\)，
+%@see: 《数学分析（第二版 下册）》（陈纪修） P125 定义11.2.4
+设开集\(D\subseteq\mathbb{R}^n\)，
 函数\(f\colon D\to\mathbb{R}\)，
-\(P_0(x_0,y_0)\)是\(D\)的聚点，
-且\(P_0 \in D\).
+点\(\vb{x}_0 \in D\).
 如果\[
-	\lim_{(x,y)\to(x_0,y_0)} f(x,y) = f(x_0,y_0),
+	\lim_{\vb{x}\to\vb{x}_0} f(\vb{x}) = f(\vb{x}_0),
 \]
-则称“函数\(f\)在点\(P_0\)~\DefineConcept{连续}”.
+则称“函数\(f\)在点\(\vb{x}_0\)~\DefineConcept{连续}”；
+否则称“函数\(f\)在点\(\vb{x}_0\)不连续”
+“\(\vb{x}_0\)是函数\(f\)的\DefineConcept{间断点}”.
 
-设二元函数\(f\)在\(D\)上有定义，\(D\)内的每一点都是函数定义域的聚点.
-如果函数\(f\)在\(D\)的每一点都连续，
-那么称“函数\(f\)在\(D\)上\DefineConcept{连续}”
-“\(f\)是\(D\)上的\DefineConcept{连续函数}”.
+如果函数\(f\)在\(D\)上每一点连续，
+就称“函数\(f\)在\(D\)上\DefineConcept{连续}”
+或“\(f\)是\(D\)上的\DefineConcept{连续函数}”.
 \end{definition}
-以上关于二元函数的连续性概念，可相应地推广到\(n\)元函数\(f(P)\)上去.
 
-一元初等函数\(f(x)\)看成二元函数或二元以上的多元函数\(F(x,y_1,y_2,\dotsc,y_n)\)时，即\[
-	F(x,y_1,y_2,\dotsc,y_n) = f(x),
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P125 例11.2.7
+证明：函数\(f(x,y)=\sin\sqrt{x^2+y^2}\)在\(\mathbb{R}^2\)上连续.
+\begin{proof}
+设\((x_0,y_0)\in\mathbb{R}^2\)，
+则\begin{align*}
+	&\hspace{-20pt}
+	\abs{f(x,y)-f(x_0,y_0)} \\
+	&= \abs{\sin\sqrt{x^2+y^2}-\sin\sqrt{x_0^2+y_0^2}} \\
+	&= 2\abs{\cos\frac{\sqrt{x^2+y^2}+\sqrt{x_0^2+y_0^2}}2}
+		\abs{\sin\frac{\sqrt{x^2+y^2}-\sqrt{x_0^2+y_0^2}}2}
+		\tag{\hyperref[equation:函数.三角函数.和积互化公式12]{和差化积}} \\
+	&\leq 2 \abs{\sin\frac{\sqrt{x^2+y^2}-\sqrt{x_0^2+y_0^2}}2} \\
+	&\leq \abs{\sqrt{x^2+y^2}-\sqrt{x_0^2+y_0^2}}
+		\tag{\hyperref[equation:微分中值定理.若尔当不等式]{若尔当不等式}} \\
+	&\leq \sqrt{(x-x_0)^2+(y-y_0)^2},
+		\tag{三角不等式}
+\end{align*}
+于是对于任意给定\(\epsilon>0\)，只要取\(\delta=\epsilon\)，
+当\(\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\)时就成立\[
+	\abs{f(x,y)-f(x_0,y_0)} < \epsilon.
 \]
-总有\(F(x,y_1,y_2,\dotsc,y_n)\)在各自的定义域内都是连续的.
-
-\begin{definition}
-设\(D\subseteq\mathbb{R}^2\)，
-函数\(f\colon D\to\mathbb{R}\)，
-\(P_0(x_0,y_0)\)是\(D\)的聚点.
-如果函数\(f(x,y)\)在点\(P_0\)不连续，
-则称“\(P_0\)是函数\(f(x,y)\)的\DefineConcept{间断点}”.
-\end{definition}
+这说明\(f\)在点\((x_0,y_0)\)连续.
+由于\((x_0,y_0)\)是\(\mathbb{R}^2\)上的任意一点，
+所以\(f\)在\(\mathbb{R}^2\)上连续.
+\end{proof}
+\end{example}
 
 前面已经指出：一元函数中关于极限的运算法则，对于多元函数仍然适用.
 根据多元函数的极限运算法则，可以证明多元连续函数的和、差、积仍为连续函数；
 连续函数的商在分母不为零处仍连续；
 多元连续函数的复合函数也是连续函数.
 
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P125 例11.2.8
+计算极限\(\lim_{(x,y)\to(1,0)} \frac{\ln(x+e^y)}{\sqrt{x^2+y^2}}\).
+\begin{solution}
+注意到函数\(\ln(x+e^y)\)和\(\sqrt{x^2+y^2}\)在其自然定义域上的连续性，
+由极限运算法则可得\[
+	\lim_{(x,y)\to(1,0)} \frac{\ln(x+e^y)}{\sqrt{x^2+y^2}}
+	= \frac{\lim\limits_{(x,y)\to(1,0)} \ln(x+e^y)}
+		{\lim\limits_{(x,y)\to(1,0)} \sqrt{x^2+y^2}}
+	= \ln2.
+\]
+\end{solution}
+\end{example}
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P126 例11.2.9
+计算极限\(\lim_{(x,y)\to(0,0)} \frac{\sin[(y+1)\sqrt{x^2+y^2}]}{\sqrt{x^2+y^2}}\).
+\begin{solution}
+利用\(\lim_{t\to0} \frac{\sin t}{t} = 1\)可得\begin{align*}
+	&\hspace{-20pt}
+	\lim_{(x,y)\to(0,0)} \frac{\sin[(y+1)\sqrt{x^2+y^2}]}{\sqrt{x^2+y^2}} \\
+	&= \lim_{(x,y)\to(0,0)} \frac{\sin[(y+1)\sqrt{x^2+y^2}]}{(y+1)\sqrt{x^2+y^2}}\cdot(y+1) \\
+	&= \lim_{(x,y)\to(0,0)} \frac{\sin[(y+1)\sqrt{x^2+y^2}]}{(y+1)\sqrt{x^2+y^2}}
+		\cdot \lim_{(x,y)\to(0,0)} (y+1) \\
+	&= 1.
+\end{align*}
+\end{solution}
+\end{example}
+
 与一元初等函数相类似，\DefineConcept{多元初等函数}是指可用一个式子表示的多元函数，
 这个式子是由常数及具有不同自变量的一元基本初等函数经过有限次的四则运算和复合运算而得到的.
-例如\(\frac{x+x^2-y^2}{1+y^2},\sin(x+y),\exp(x^2+y^2+z^2)\)等都是多元初等函数.
+例如\[
+	\frac{x+x^2-y^2}{1+y^2},
+	\qquad
+	\sin(x+y),
+	\qquad
+	\exp(x^2+y^2+z^2)
+\]等都是多元初等函数.
 
 根据上面指出的连续函数的和、差、积、商的连续性以及连续函数的复合函数的连续性，
 再利用基本初等函数的连续性，我们进一步可以得出如下结论：
