@@ -200,6 +200,45 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1hhtHegEnf
+设数列\(\{x_n\}\)满足\(x_1=1\)，且有递推公式\(x_n=x_{n+1}+2\ln(1+x_{n+1})\ (n=1,2,\dotsc)\).
+\begin{itemize}
+	\item 证明\(\lim_{n\to\infty} x_n\)存在，并计算它的值.
+	\item 证明\(\lim_{n\to\infty} 2^n x_n\)存在，并计算它的值.
+\end{itemize}
+\begin{solution}
+首先利用数学归纳法证明\(\{x_n\}\)有下界.
+注意到\(x_1=1>0\).
+假设\(x_k>0\ (k=1,2,\dotsc)\).
+用反证法，假设\(x_{k+1}\leq0\)，则\(\ln(1+x_{k+1})\leq0\)，
+从而有\(x_k=x_{k+1}+2\ln(1+x_{k+1})\leq0\)，矛盾，于是\(x_{k+1}>0\).
+由上可知，\(0\)是数列\(\{x_n\}\)的一个下界.
+又因为\[
+	x_n-x_{n+1}=2\ln(1+x_{n+1})>0
+	\quad(n=1,2,\dotsc),
+\]
+数列\(\{x_n\}\)严格单调减少，
+所以由单调有界定理可知数列\(\{x_n\}\)收敛.
+不妨设\(\lim_{n\to\infty} x_n = x\)，
+再对递推公式令\(n\to\infty\)
+得\(x=x+2\ln(1+x)\)，
+解得\(x = \lim_{n\to\infty} x_n = 0\).
+
+因为\[
+	\frac{2^{n+1} x_{n+1}}{2^n x_n}
+	= 2~\frac{x_{n+1}}{x_n} % 代入递推公式
+	= 2~\frac{x_{n+1}}{x_{n+1}+2\ln(1+x_{n+1})} % \(\{x_n\}\)是无穷小，可以进行等价替换
+	\to \frac23 < 1
+	\quad(n\to\infty),
+\]
+所以由\cref{theorem:无穷级数.正项级数的比值审敛法}
+可知正项级数\(\sum_{n=1}^\infty 2^n x_n\)收敛，
+再由\cref{theorem:无穷级数.级数收敛的必要条件}
+可知\(\lim_{n\to\infty} 2^n x_n\)收敛.
+\end{solution}
+\end{example}
+
 \subsection{无理数\texorpdfstring{$\pi$}{\textpi}}\label{section:极限.无理数pi}
 设单位圆内接正\(n\)边形的半周长为\(L_n\)，
 则\(L_n = n \sin\frac{180^\circ}{n}\).
