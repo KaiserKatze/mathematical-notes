@@ -90,45 +90,50 @@
 
 我们把\cref{equation:线性方程组.西尔维斯特不等式} 称为\DefineConcept{西尔维斯特不等式}.
 
-进一步，如果有\(\A\B=\z\)，
+%@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 1.
+进一步，如果有\(\A\B=\vb0\)，
 那么\(\rank\A + \rank\B \leq n\).
 
 我们可以利用\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}证明一个重要结论：
 \begin{proposition}\label{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩}
-设\(\A \in M_{s \times n}(K),
-\B \in M_{m \times s}(K)\).
-如果\(\B\)是列满秩矩阵，则\(\rank(\B\A) = \rank\A\).
+设\(\A \in M_{m \times s}(K),
+\B \in M_{s \times n}(K)\).
+\begin{itemize}
+	\item 如果\(\A\)是列满秩矩阵，则\(\rank(\A\B) = \rank\B\).
+	\item 如果\(\B\)是行满秩矩阵，则\(\rank(\A\B) = \rank\A\).
+\end{itemize}
 \begin{proof}
-假设\(\B\)是列满秩矩阵，
-即\(\rank\B = s\).
+假设\(\A\)是列满秩矩阵，
+即\(\rank\A = s\).
 由\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}有\[
-	\rank(\B\A) \geq \rank\A + \rank\B - s
-	= \rank\A. % 代入\(\rank\B = s\)
+	\rank(\A\B) \geq \rank\B + \rank\A - s
+	= \rank\B. % 代入\(\rank\A = s\)
 	\eqno(1)
 \]
 又由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\[
-	\rank(\B\A) \leq \rank\A.
+	\rank(\A\B) \leq \rank\B.
 	\eqno(2)
 \]
-由(1)(2)两式便有\(\rank(\B\A) = \rank\A\).
+由(1)(2)两式便有\(\rank(\A\B) = \rank\B\).
+
+同理可证：如果\(\B\)是行满秩矩阵，则\(\rank(\A\B) = \rank\A\).
 \end{proof}
 \end{proposition}
 \begin{remark}
 \cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 说明：
-对于任意一个矩阵，我们用一个列满秩矩阵左乘它，不变秩.
-同理，我们还可以证明：
-对于任意一个矩阵，我们用一个行满秩矩阵右乘它，也不变秩.
-我们只要把\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 中的各个矩阵转置，
-得到\(\A_1 = \A^T \in M_{n \times s}(K),
-\B_1 = \B^T \in M_{s \times m}(K),
-\A_1\B_1 = \A^T\B^T = (\B\A)^T\)，
-易见\(\B_1\)是行满秩矩阵，且\[
-	\rank(\A_1\B_1)
-	= \rank(\B\A)^T
-	= \rank(\B\A)
-	= \rank\A
-	= \rank\A^T.
-\]
+对于任意一个矩阵，我们用一个列满秩矩阵左乘它，不变秩；
+用一个行满秩矩阵右乘它，也不变秩.
+% 我们只要把\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 中的各个矩阵转置，
+% 得到\(\A_1 = \A^T \in M_{n \times s}(K),
+% \B_1 = \B^T \in M_{s \times m}(K),
+% \A_1\B_1 = \A^T\B^T = (\B\A)^T\)，
+% 易见\(\B_1\)是行满秩矩阵，且\[
+% 	\rank(\A_1\B_1)
+% 	= \rank(\B\A)^T
+% 	= \rank(\B\A)
+% 	= \rank\A
+% 	= \rank\A^T.
+% \]
 \end{remark}
 
 \begin{example}
