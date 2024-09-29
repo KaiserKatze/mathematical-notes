@@ -3,8 +3,11 @@
 矩阵\(\A=(a_{ij})_{s \times n}\)
 主对角线上元素之和称为\(\A\)的\DefineConcept{迹}（trace），
 %@see: https://mathworld.wolfram.com/MatrixTrace.html
-记作\(\tr\A\)，即\[
-	\tr\A \defeq \sum_{i=1}^m a_{ii},
+记作\(\tr\A\)，
+即\[
+	\tr\A
+	\defeq
+	\sum_{i=1}^m a_{ii},
 \]
 其中\(m = \min\{s,n\}\).
 \end{definition}
@@ -45,19 +48,6 @@
 %TODO proof
 \end{property}
 
-\begin{property}
-设\(\A\)是可逆矩阵，
-则\begin{equation}
-	\tr(\A^*) = \abs{\A} \cdot \tr(\A^{-1}).
-\end{equation}
-\begin{proof}
-由\cref{theorem:逆矩阵.逆矩阵的唯一性} 可知，
-\(\A^* = \abs{\A} \A^{-1}\).
-于是由\cref{theorem:矩阵的迹.性质1} 可知，
-\(\tr(\A^*) = \tr(\abs{\A} \A^{-1}) = \abs{\A} \tr(\A^{-1})\).
-\end{proof}
-\end{property}
-
 \begin{property}\label{theorem:矩阵的迹.矩阵乘积交换次序不变迹}
 %@see: 《高等代数（第三版 上册）》（丘维声） P170 (4)
 已知矩阵\(\A,\B \in M_n(K)\)，
@@ -84,6 +74,19 @@
 \end{property}
 
 \begin{property}
+设\(\A\)是可逆矩阵，
+则\begin{equation}
+	\tr(\A^*) = \abs{\A} \cdot \tr(\A^{-1}).
+\end{equation}
+\begin{proof}
+由\cref{theorem:逆矩阵.逆矩阵的唯一性} 可知，
+\(\A^* = \abs{\A} \A^{-1}\).
+于是由\cref{theorem:矩阵的迹.性质1} 可知，
+\(\tr(\A^*) = \tr(\abs{\A} \A^{-1}) = \abs{\A} \tr(\A^{-1})\).
+\end{proof}
+\end{property}
+
+\begin{property}
 已知矩阵\(\A \in M_{s \times n}(K)\)，
 则\begin{equation}
 	\tr(\A\A^T) = \tr(\A^T\A).
@@ -102,11 +105,41 @@
 %TODO proof
 \end{property}
 
-\begin{property}
+\begin{example}
 设\(\A\)是数域\(K\)上的\(n\)阶对称矩阵，
-\(\B\)是数域\(K\)上的\(n\)阶反对称矩阵，
-则\begin{equation}
+\(\B\)是数域\(K\)上的\(n\)阶反对称矩阵.
+证明：\begin{equation}
 	\tr(\A\B) = 0.
 \end{equation}
-%TODO proof
-\end{property}
+\begin{proof}
+设\(\vb{A}\vb{B}\)的\((i,j)\)元素为\(c_{ij}\)，
+\(\vb{B}\vb{A}\)的\((i,j)\)元素为\(d_{ij}\)，
+即\[
+	c_{ij} = \sum_{k=1}^n a_{ik} b_{kj},
+	\qquad
+	d_{ij} = \sum_{k=1}^n b_{ik} a_{kj}.
+\]
+那么由迹的定义有\begin{align*}
+	\tr(\vb{A}\vb{B})
+	&= \sum_{i=1}^n c_{ii}
+	= \sum_{i=1}^n \sum_{j=1}^n a_{ij} b_{ji}, \\
+	\tr(\vb{B}\vb{A})
+	&= \sum_{i=1}^n d_{ii}
+	= \sum_{i=1}^n \sum_{j=1}^n b_{ij} a_{ji}.
+\end{align*}
+相加得\[
+	\tr(\vb{A}\vb{B}) + \tr(\vb{B}\vb{A})
+	= \sum_{i=1}^n \sum_{j=1}^n (a_{ij} b_{ji} + b_{ij} a_{ji}).
+	\eqno(1)
+\]
+因为\(\vb{A}\)是对称矩阵，所以\(a_{ij} = a_{ji}\).
+因为\(\vb{B}\)是反对称矩阵，所以\(b_{ij} = -b_{ji}\).
+那么(1)式化为\[
+	\tr(\vb{A}\vb{B}) + \tr(\vb{B}\vb{A})
+	= \sum_{i=1}^n \sum_{j=1}^n (a_{ij} b_{ji} - b_{ji} a_{ij})
+	= 0.
+\]
+因为\(\tr(\vb{A}\vb{B}) = \tr(\vb{B}\vb{A})\)，
+所以\(\tr(\vb{A}\vb{B}) = 0\).
+\end{proof}
+\end{example}
