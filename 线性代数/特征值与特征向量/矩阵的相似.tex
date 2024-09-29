@@ -29,15 +29,25 @@
 %@see: https://mathworld.wolfram.com/SimilarMatrices.html
 记作\(\A\sim\B\).
 \end{definition}
+
+\subsection{相似类}
 \begin{property}\label{theorem:特征值与特征向量.相似关系是等价关系}
 %@see: 《线性代数》（张慎语、周厚隆） P97
 %@see: 《高等代数（第三版 上册）》（丘维声） P169
 数域\(K\)上的\(n\)阶矩阵之间的相似关系，
 是数域\(K\)上的全体\(n\)阶矩阵\(M_n(K)\)上的等价关系，
 因为它满足：\begin{itemize}
-	\item 反身性，即对任意矩阵\(\A\)，都有\(\A\sim\A\)；
-	\item 对称性，即若\(\A\sim\B\)，则有\(\B\sim\A\)；
-	\item 传递性，即若\(\A\sim\B\)且\(\B\sim\C\)，则\(\A\sim\C\).
+	\item {\rm\bf 反身性}：
+	\((\forall \A \in M_n(K))
+	[\A\sim\A]\).
+
+	\item {\rm\bf 对称性}：
+	\((\forall \A,\B \in M_n(K))
+	[\A \sim \B \implies \B \sim \A]\).
+
+	\item {\rm\bf 传递性}：
+	\((\forall \A,\B,\C \in M_n(K))
+	[\A \sim \B, \B \sim \C \implies \A \sim \C]\).
 \end{itemize}
 \begin{proof}
 在\cref{equation:特征值与特征向量.相似矩阵的定义} 中，
@@ -54,12 +64,46 @@
 即有相似矩阵的传递性成立.
 \end{proof}
 \end{property}
+
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P169
 把矩阵\(\A \in M_n(K)\)在相似关系下的等价类\[
 	\Set{ \B \in M_n(K) \given \A\sim\B }
 \]称为“矩阵\(\A\)的\DefineConcept{相似类}”.
 \end{definition}
+
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 6.
+证明：单位矩阵只与它本身相似.
+\begin{proof}
+设\(\A \in M_n(K)\)，
+\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+且\(\E \sim \A\).
+根据矩阵相似的定义，
+存在可逆\(\P \in M_n(K)\)，
+使得\(\P^{-1} \E \P = \A\).
+又因为单位矩阵可以与任意同阶矩阵交换，
+所以\(\A
+= \P^{-1} \E \P
+= \P^{-1} \P \E
+= \E \E
+= \E\).
+\end{proof}
+\end{example}
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 7.
+证明：数量矩阵只与它本身相似.
+\begin{proof}
+设\(\A \in M_n(K)\)，
+\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+\(k \in K\)，
+且\(k\E \sim \A\).
+根据矩阵相似的定义，
+存在可逆\(\P \in M_n(K)\)，
+使得\(\P^{-1} (k\E) \P = \A\)，
+于是\(\A = k\E\).
+\end{proof}
+\end{example}
 
 \subsection{矩阵相似的性质}
 \begin{proposition}
@@ -201,24 +245,6 @@
 都是相似关系下的不变量，
 我们把这三个量统称为\DefineConcept{相似不变量}.
 \end{remark}
-
-\begin{example}
-证明：单位矩阵只与它本身相似.
-\begin{proof}
-设\(\A \in M_n(K)\)，
-\(\E\)是\(M_n(K)\)的单位矩阵，
-且\(\E \sim \A\).
-因此，根据矩阵相似的定义，
-存在可逆\(\P \in M_n(K)\)，
-使得\(\P^{-1} \E \P = \A\).
-又因为单位矩阵可以与任意同阶矩阵交换，
-所以\(\A
-= \P^{-1} \E \P
-= \P^{-1} \P \E
-= \E \E
-= \E\).
-\end{proof}
-\end{example}
 
 \begin{example}
 设矩阵\(\A\)可逆，\(\A^T\)是\(\A\)的转置.
