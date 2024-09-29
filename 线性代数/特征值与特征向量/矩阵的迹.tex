@@ -13,8 +13,8 @@
 \end{definition}
 
 \begin{property}\label{theorem:矩阵的迹.性质1}
-已知矩阵\(\A,\B \in M_{s \times n}(K)\)，则
-\begin{gather}
+已知矩阵\(\A,\B \in M_{s \times n}(K)\)，
+则\begin{gather}
 	%@see: 《高等代数（第三版 上册）》（丘维声） P170 (2)
 	\tr(\A+\B) = \tr\A + \tr\B, \\
 	%@see: 《高等代数（第三版 上册）》（丘维声） P170 (3)
@@ -72,6 +72,35 @@
 于是\(\tr(\A\B) = \tr(\B\A)\).
 \end{proof}
 \end{property}
+
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 9.
+证明：如果数域\(K\)上的\(n\)阶矩阵\(\A,\B\)满足\[
+	\A\B-\B\A=\A,
+\]
+则\(\A\)不可逆.
+\begin{proof}
+用反证法.
+假设\(\A\)可逆，\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+那么\begin{gather*}
+	\E = \A\A^{-1}
+	= (\A\B-\B\A)\A^{-1} % 把\(\A\B-\B\A\)代入\(\A\)
+	= \A\B\A^{-1}-\B,
+\end{gather*}
+从而有\(\tr(\A\B\A^{-1}-\B) = \tr\E\)，
+但是\begin{align*}
+	\tr(\A\B\A^{-1}-\B)
+	&= \tr(\A\B\A^{-1})-\tr\B
+		\tag{\cref{theorem:矩阵的迹.性质1}} \\
+	&= \tr(\A^{-1}(\A\B))-\tr\B
+		\tag{\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹}} \\
+	&= \tr\B-\tr\B
+	= 0
+	< n = \tr\E,
+\end{align*}
+所以\(\A\)不可逆.
+\end{proof}
+\end{example}
 
 \begin{property}
 设\(\A\)是可逆矩阵，
