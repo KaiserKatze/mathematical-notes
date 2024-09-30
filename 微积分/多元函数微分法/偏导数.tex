@@ -1,54 +1,51 @@
 \section{偏导数}
-\subsection{偏导数的定义及其计算法}
-\subsubsection{偏导数的概念}
+\subsection{偏导数的概念}
 \begin{definition}
 %@see: 《高等数学（第六版 下册）》 P164 定义
-设函数\(z=f(x,y)\)在点\((x_0,y_0)\)的某一邻域内有定义，
-当\(y\)固定在\(y_0\)而\(x\)在\(x_0\)处有增量\(\increment x\)时，
-相应的函数有增量\[
-	f(x_0+\increment x,y_0)-f(x_0,y_0).
-\]
-如果\[
+%@see: 《数学分析（第二版 下册）》（陈纪修） P135 定义12.1.1
+设开集\(D \subseteq \mathbb{R}^2\)，
+函数\(f\colon D\to\mathbb{R}\)，
+点\((x_0,y_0) \in D\).
+
+如果极限\[
 	\lim_{\increment x\to0}
 	\frac{f(x_0+\increment x,y_0)-f(x_0,y_0)}{\increment x}
 \]存在，
-则称此极限为
-“函数\(z=f(x,y)\)
-在点\((x_0,y_0)\)处
-对\(x\)的\DefineConcept{偏导数}（partial derivative）”，记作\[
-	\pdv{z}{x}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
-	\pdv{f}{x}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
-	z'_x\eval_{\substack{x=x_0 \\ y=y_0}}
+则称“函数\(f\)在点\((x_0,y_0)\)对\(x\)~\DefineConcept{可偏导}”，
+并称此极限为
+“函数\(f\)在点\((x_0,y_0)\)对\(x\)的\DefineConcept{偏导数}（partial derivative）”，
+记作\[
+	\pdv{f}{x}\eval_{\substack{x=x_0 \\ y=y_0}},
 	\quad\text{或}\quad
 	f'_x(x_0,y_0).
 \]
 
-类似地，可以定义函数\(z=f(x,y)\)在点\((x_0,y_0)\)处对\(y\)的偏导数\[
-	\lim_{\increment y\to0} \frac{f(x_0,y_0+\increment y)-f(x_0,y_0)}{\increment y},
-\]
+类似地，只要极限\[
+	\lim_{\increment y\to0}
+	\frac{f(x_0,y_0+\increment y)-f(x_0,y_0)}{\increment y}
+\]存在，
+就称“函数\(f\)在点\((x_0,y_0)\)对\(y\)可偏导”，
+并把此极限称为“函数\(f\)在点\((x_0,y_0)\)对\(y\)的偏导数”，
 记作\[
-	\pdv{z}{y}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
-	\pdv{f}{y}\eval_{\substack{x=x_0 \\ y=y_0}},\quad
-	z'_y\eval_{\substack{x=x_0 \\ y=y_0}} \quad
-	\text{或}\quad
+	\pdv{f}{y}\eval_{\substack{x=x_0 \\ y=y_0}},
+	\quad\text{或}\quad
 	f'_y(x_0,y_0).
 \]
 
-如果函数\(z=f(x,y)\)在区域\(D\)内每一点\((x,y)\)处对\(x\)的偏导数都存在，
-那么这个偏导数就是\(x\)、\(y\)的函数，
-它就称为函数\(z=f(x,y)\)对自变量\(x\)的\DefineConcept{偏导函数}，记作\[
-	\pdv{z}{x},\quad
-	\pdv{f}{x},\quad
-	z'_x \quad
-	\text{或}\quad
+如果函数\(f\)在\(D\)内每一点都对\(x\)可偏导，
+则\(D\)中每一点\((x,y)\)与其相应的\(f\)对\(x\)的偏导数\(f'_x(x,y)\)的关系\[
+	\Set{ ((x,y),f'_x(x,y)) \given (x,y) \in D }
+\]称为“函数\(f\)对\(x\)的\DefineConcept{偏导函数}”，
+记作\[
+	\pdv{f}{x},
+	\quad\text{或}\quad
 	f'_x(x,y).
 \]
 
-类似地，可以定义函数\(z=f(x,y)\)对自变量\(y\)的偏导函数，记作\[
-	\pdv{z}{y},\quad
-	\pdv{f}{y},\quad
-	z'_y \quad
-	\text{或}\quad
+类似地，可以定义函数\(f\)对\(y\)的偏导函数，
+记作\[
+	\pdv{f}{y},
+	\quad\text{或}\quad
 	f'_y(x,y).
 \]
 \end{definition}
@@ -62,7 +59,8 @@
 	{\increment x_k}
 	\quad (k=1,2,\dotsc,n)
 \]存在，
-则称此极限为“函数\(f\)在点\(P\)处对\(x_k\)的\DefineConcept{偏导数}”，记作\[
+则称此极限为“函数\(f\)在点\(P\)处对\(x_k\)的\DefineConcept{偏导数}”，
+记作\[
 	\pdv{f}{x_k}\eval_{\vb{x}=\vb{a}}
 	\quad\text{或}\quad
 	f'_{x_k}(\AutoTuple{a}{n}).
@@ -105,13 +103,13 @@ T = \frac{pV}{R}, \qquad \pdv{T}{p} = \frac{V}{R};
 我们知道，对一元函数来说，\(\dv{y}{x}\)可看做函数的微分\(\dd{y}\)与自变量的微分\(\dd{x}\)之商.
 而上例表明，偏导数的记号是一个整体记号，不能看作分子与分母之商.
 
-\subsubsection{偏导数的几何意义}
+\subsection{偏导数的几何意义}
 二元函数\(z=f(x,y)\)在点\((x_0,y_0)\)的偏导数有下述几何意义.
 偏导数\(f'_x(x_0,y_0)\)的几何意义是
 曲面\(z=f(x,y)\)被平面\(y=y_0\)所截得的曲线
 在点\(M_0(x_0,y_0,f(x_0,y_0))\)处的切线对\(x\)轴的斜率.
 
-\subsubsection{偏导数与连续性的关系}
+\subsection{偏导数与连续性的关系}
 我们已经知道，如果一元函数在某点具有导数，则它在该点必定连续.
 但对于多元函数来说，即使各偏导数在某点都存在，也不能保证函数在该点连续.
 这是因为各偏导数存在只能保证点\(P\)沿着平行于坐标轴的方向趋于\(P_0\)时，函数值\(f(P)\)趋于\(f(P_0)\)，但不能保证点\(P\)按任何方式趋于\(P_0\)时，函数值\(f(P)\)都趋于\(f(P_0)\).
