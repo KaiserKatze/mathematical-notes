@@ -1,4 +1,5 @@
 \section{本章总结}
+\subsection*{矩阵可逆的等价条件}
 %@see: https://mathworld.wolfram.com/InvertibleMatrixTheorem.html
 矩阵\(\A \in M_n(K)\)可逆的充分必要条件：\begin{itemize}
 	\item 矩阵\(\A\)等价于数域\(K\)上的\(n\)阶单位矩阵.
@@ -23,3 +24,96 @@
 	% \item 矩阵\(\A\)的列空间的正交补是\(\{\vb0\}\).
 	% \item 矩阵\(\A\)的零空间的正交补是向量空间\(K^n\).
 \end{itemize}
+
+\subsection*{重要公式}
+假设\(\A,\B\)可逆，则\begin{gather*}
+	\A^{-1} = \abs{\A}^{-1} \A^*, \\ %\cref{theorem:逆矩阵.逆矩阵的唯一性}
+	\abs{\A^{-1}} = \abs{\A}^{-1}, \\ %\cref{theorem:逆矩阵.逆矩阵的行列式}
+	(\A^{-1})^{-1} = \A, \\ %\cref{theorem:逆矩阵.逆矩阵的逆}
+	(\A \B)^{-1} = \B^{-1} \A^{-1}, \\ %\cref{theorem:逆矩阵.矩阵乘积的逆1,theorem:逆矩阵.矩阵乘积的逆2}
+	(k \A)^{-1} = k^{-1} \A^{-1}, \\ %\cref{theorem:逆矩阵.数与矩阵乘积的逆}
+	(\A^T)^{-1} = (\A^{-1})^T, \\ %\cref{theorem:逆矩阵.转置矩阵的逆与逆矩阵的转置}
+	\diag(\AutoTuple{\lambda}{n}) = \diag(\AutoTuple{\lambda^{-1}}{n}), \\
+	(\A^*)^{-1}
+	= \abs{\A}^{-1} \A
+	= (\A^{-1})^*, \\ %\cref{theorem:逆矩阵.伴随矩阵的逆与逆矩阵的伴随}
+	%\cref{example:可逆矩阵.分块上三角矩阵的逆}
+	\begin{bmatrix}
+		\A & \C \\
+		\vb0 & \B
+	\end{bmatrix}^{-1}
+	= \begin{bmatrix}
+		\A^{-1} & -\A^{-1} \C \B^{-1} \\
+		\vb0 & \B^{-1}
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\A & \vb0 \\
+		\D & \B
+	\end{bmatrix}^{-1}
+	= \begin{bmatrix}
+		\A^{-1} & \vb0 \\
+		-\B^{-1} \D \A^{-1} & \B^{-1}
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\C & \A \\
+		\B & \vb0
+	\end{bmatrix}^{-1}
+	= \begin{bmatrix}
+		\vb0 & \B^{-1} \\
+		\A^{-1} & -\A^{-1}\C\B^{-1}
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\vb0 & \A \\
+		\B & \D
+	\end{bmatrix}^{-1}
+	= \begin{bmatrix}
+		-\B^{-1}\D\A^{-1} & \B^{-1} \\
+		\A^{-1} & \vb0
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\A & \C \\
+		\vb0 & \B
+	\end{bmatrix}^*
+	= \begin{bmatrix}
+		\abs{\B} \A^* & -\A^*\C\B^* \\
+		\vb0 & \abs{\A} \B^*
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\A & \vb0 \\
+		\D & \B
+	\end{bmatrix}^*
+	= \begin{bmatrix}
+		\abs{\B} \A^* & \vb0 \\
+		-\B^* \D \A^* & \abs{\A} \B^*
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\C & \A \\
+		\B & \vb0
+	\end{bmatrix}^*
+	= (-1)^{sn} \begin{bmatrix}
+		\vb0 & \abs{\A} \B^* \\
+		\abs{\B} \A^* & -\A^*\C\B^*
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\vb0 & \A \\
+		\B & \D
+	\end{bmatrix}^*
+	= (-1)^{sn} \begin{bmatrix}
+		-\B^*\D\A^* & \abs{\A} \B^* \\
+		\abs{\B} \A^* & \vb0
+	\end{bmatrix}.
+\end{gather*}
+
+\subsection*{行列式降阶定理}
+假设\(\A,\D\)可逆，则\begin{gather*}
+	\begin{vmatrix}
+		\A & \B \\
+		\C & \D
+	\end{vmatrix}
+	= \abs{\A} \abs{\D - \C \A^{-1} \B}, \\ %\cref{equation:逆矩阵.行列式降阶公式1}
+	\begin{vmatrix}
+		\A & \B \\
+		\C & \D
+	\end{vmatrix}
+	= \abs{\D} \abs{\A - \B \D^{-1} \C}. %\cref{equation:逆矩阵.行列式降阶公式2}
+\end{gather*}

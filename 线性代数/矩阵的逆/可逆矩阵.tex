@@ -89,7 +89,7 @@
 \begin{property}\label{theorem:逆矩阵.逆矩阵的唯一性}
 设\(\A\)是可逆矩阵，则它的逆矩阵存在且唯一，
 且有\begin{equation}
-	\A^{-1}=\frac{1}{\abs{\A}}\A^*.
+	\A^{-1} = \abs{\A}^{-1} \A^*.
 \end{equation}
 \begin{proof}
 存在性.
@@ -110,18 +110,18 @@
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的行列式}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质3
-设\(\A\)可逆，则\(\abs{\A^{-1}}=\abs{\A}^{-1}\).
+设\(\A\)可逆，则\(\abs{\A^{-1}} = \abs{\A}^{-1}\).
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的逆}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质4
-设\(\A\)可逆，则\(\A^{-1}\)可逆，且\((\A^{-1})^{-1}=\A\).
+设\(\A\)可逆，则\(\A^{-1}\)可逆，且\((\A^{-1})^{-1} = \A\).
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.矩阵乘积的逆1}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质5
 设\(\A\)、\(\B\)都是\(n\)阶可逆矩阵，则\(\A\B\)可逆，且\begin{equation}
-(\A \B)^{-1} = \B^{-1} \A^{-1}.
+	(\A \B)^{-1} = \B^{-1} \A^{-1}.
 \end{equation}
 \begin{proof}
 因为\(\A,\B\)都可逆，可设它们的逆矩阵分别为\(\A^{-1},\B^{-1}\)，
@@ -140,8 +140,8 @@
 \begin{property}\label{theorem:逆矩阵.矩阵乘积的逆2}
 设\(\AutoTuple{\A}{n}\)都是\(n\)阶可逆矩阵，
 则\(\A_1 \A_2 \dotsm \A_{n-1} \A_n\)可逆，且\begin{equation}
-(\A_1 \A_2 \dotsm \A_{n-1} \A_n)^{-1}
-= \A_n^{-1} \A_{n-1}^{-1} \dotsm \A_2^{-1} \A_1^{-1}.
+	(\A_1 \A_2 \dotsm \A_{n-1} \A_n)^{-1}
+	= \A_n^{-1} \A_{n-1}^{-1} \dotsm \A_2^{-1} \A_1^{-1}.
 \end{equation}
 \end{property}
 
@@ -150,7 +150,7 @@
 设数域\(K\)上的\(n\)阶矩阵\(\A\)可逆，
 \(k \in K-\{0\}\)，则\(k\A\)可逆，且
 \begin{equation}
-	(k\A)^{-1}=k^{-1}\A^{-1}.
+	(k \A)^{-1} = k^{-1} \A^{-1}.
 \end{equation}
 \begin{proof}
 由\cref{theorem:行列式.性质2.推论2}，
@@ -169,7 +169,7 @@
 \begin{property}\label{theorem:逆矩阵.转置矩阵的逆与逆矩阵的转置}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质7
 设\(\A\)可逆，则\(\A^T\)可逆，且\begin{equation}
-	(\A^T)^{-1}=(\A^{-1})^T.
+	(\A^T)^{-1} = (\A^{-1})^T.
 \end{equation}
 \begin{proof}
 由\cref{theorem:行列式.性质1}，
@@ -239,23 +239,22 @@
 	= (\A^{-1})^*.
 \end{equation}
 \begin{proof}
-由\cref{theorem:逆矩阵.逆矩阵的唯一性,theorem:逆矩阵.逆矩阵的逆,theorem:逆矩阵.数与矩阵乘积的逆} 有\[
-	\A
-	= (\A^{-1})^{-1}
-	= \left( \frac{1}{\abs{\A}} \A^* \right)^{-1}
-	= \abs{\A} (\A^*)^{-1}.
-\]
-又因为\(\A\)可逆，\(\abs{\A}\neq0\)，\[
-	(\A^*)^{-1} = \frac{1}{\abs{\A}} \A.
-\]
-另外，\[
-	(\A^{-1})^* = \abs{\A^{-1}} (\A^{-1})^{-1}
-	= \frac{1}{\abs{\A}} \A,
-\]
-所以\[
-	(\A^*)^{-1}=\frac{1}{\abs{\A}}\A=(\A^{-1})^*.
-	\qedhere
-\]
+因为\begin{align*}
+	(\A^*)^{-1}
+	&= \left( \abs{\A} \A^{-1} \right)^{-1}
+		\tag{\cref{theorem:逆矩阵.逆矩阵的唯一性}} \\
+	&= \abs{\A}^{-1} (\A^{-1})^{-1}
+		\tag{\cref{theorem:逆矩阵.数与矩阵乘积的逆}} \\
+	&= \abs{\A}^{-1} \A
+		\tag{\cref{theorem:逆矩阵.逆矩阵的逆}} \\
+	&= \abs{\A^{-1}} (\A^{-1})^{-1}
+		\tag{\cref{theorem:逆矩阵.逆矩阵的行列式}} \\
+	&= (\A^{-1})^*,
+		\tag{\cref{theorem:逆矩阵.逆矩阵的唯一性}}
+\end{align*}
+所以\((\A^*)^{-1}
+= \abs{\A}^{-1} \A
+= (\A^{-1})^*\).
 \end{proof}
 \end{example}
 
