@@ -4,12 +4,12 @@
 因为一般矩阵的特征值是复数，即使\(\A\)的元素都是实数，也可能没有实数特征值.
 例如，\(\A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}\)是一个二阶实矩阵，
 由于\[
-	\abs{\l\E-\A}
+	\abs{\lambda\E-\A}
 	= \begin{vmatrix}
-		\l & 1 \\
-		-1 & \l
+		\lambda & 1 \\
+		-1 & \lambda
 	\end{vmatrix}
-	= (\l+\iu)(\l-\iu),
+	= (\lambda+\iu)(\lambda-\iu),
 \]
 可以看出\(\A\)有两个特征值\(\pm\iu\)，
 其对应的特征向量\((\iu,1)^T\)和\((\iu,-1)^T\)是复向量，
@@ -21,17 +21,17 @@
 实对称矩阵的特征值都是实数.
 \begin{proof}
 设\(\A \in M_n(\mathbb{R})\)满足\(\A^T=\A\).
-显然\(\A\)的特征多项式\(\abs{\l\E-\A}\)在复数范围内有\(n\)个根.
-假设\(\L0\in\mathbb{C}\)是\(\A\)的任意一个特征值，
+显然\(\A\)的特征多项式\(\abs{\lambda\E-\A}\)在复数范围内有\(n\)个根.
+假设\(\lambda_0\in\mathbb{C}\)是\(\A\)的任意一个特征值，
 则存在\(n\)维复向量\(\X0=(\AutoTuple{c}{n})^T \neq \z\)，使得
 \begin{gather}
-	\A\X0 = \L0 \X0, \tag1
+	\A\X0 = \lambda_0 \X0, \tag1
 \end{gather}
 用\(\X0\)的共轭转置向量\(\overline{\X0}^T
 =(\overline{c_1},\overline{c_2},\dotsc,\overline{c_n})\)
 左乘(1)式两端，
 得\begin{gather}
-	\overline{\X0}^T \A \X0 = \l \overline{\X0}^T \X0, \tag2
+	\overline{\X0}^T \A \X0 = \lambda \overline{\X0}^T \X0, \tag2
 \end{gather}
 其中\(\A^T=\A=\overline{\A}\)，
 \(\overline{\X0}^T \X0
@@ -46,39 +46,40 @@
 	= \overline{\overline{\X0}^T} \overline{\A} \overline{\X0}
 	= \overline{\overline{\X0}^T \A \X0},
 \]
-说明\(\overline{\X0}^T \A \X0 \in \mathbb{R}\)，进而有\(\L0 \in \mathbb{R}\).
+说明\(\overline{\X0}^T \A \X0 \in \mathbb{R}\)，进而有\(\lambda_0 \in \mathbb{R}\).
 \end{proof}
 \end{theorem}
 
 \begin{theorem}\label{theorem:特征值与特征向量.实对称矩阵2}
 %@see: 《线性代数》（张慎语、周厚隆） P109 定理7
-实对称矩阵\(\A\)的不同特征值所对应的特征向量正交.
+实对称矩阵的不同特征值所对应的特征向量正交.
 \begin{proof}
-设\(\L{1}\neq\L{2}\)是\(\A\)的两个不同的特征值，
+设\(\A\)是实对称矩阵，
+\(\lambda_1\neq\lambda_2\)是\(\A\)的两个不同的特征值，
 \(\X1\neq\z\)，
-\(\X2\neq\z\)分别是\(\A\)对应于\(\L{1}\)、\(\L{2}\)的特征向量，
+\(\X2\neq\z\)分别是\(\A\)对应于\(\lambda_1\)、\(\lambda_2\)的特征向量，
 则\(\X1\)、\(\X2\)都是实向量，
 \begin{align*}
-	\A\X1 &= \L{1}\X1, \tag1 \\
-	\A\X2 &= \L{2}\X2. \tag2
+	\A\X1 &= \lambda_1\X1, \tag1 \\
+	\A\X2 &= \lambda_2\X2. \tag2
 \end{align*}
 对(1)式左乘\(\X2^T\)，得\begin{gather}
-	\X2^T \A \X1 = \L{1} \X2^T \X1, \tag3
+	\X2^T \A \X1 = \lambda_1 \X2^T \X1, \tag3
 \end{gather}
 对(2)式左乘\(\X1^T\)，得\begin{gather}
-	\X1^T \A \X2 = \L{2} \X1^T \X2, \tag4
+	\X1^T \A \X2 = \lambda_2 \X1^T \X2, \tag4
 \end{gather}
 (3)式取转置，
-得\(\L{1}(\X2^T \X1)^T = (\X2^T \A \X1)^T\)，
+得\(\lambda_1(\X2^T \X1)^T = (\X2^T \A \X1)^T\)，
 又由\(\A=\A^T\)，
 得\begin{gather}
-	\L{1} \X1^T \X2 = \X1^T \A^T \X2 = \X1^T \A \X2, \tag5
+	\lambda_1 \X1^T \X2 = \X1^T \A^T \X2 = \X1^T \A \X2, \tag5
 \end{gather}
 (5)式减(4)式，得
 \begin{gather}
-	(\L{2}-\L{1})\X1^T\X2=0. \tag6
+	(\lambda_2-\lambda_1)\X1^T\X2=0. \tag6
 \end{gather}
-因为\(\L{2} \neq \L{1}\)，
+因为\(\lambda_2 \neq \lambda_1\)，
 所以\(\X1^T \X2 = 0\)，
 即\((\X1,\X2) = 0\)，
 也就是\(\X1\)与\(\X2\)正交.
@@ -91,6 +92,48 @@
 由以上定理，\(\A\)的几个属于不同特征值的正交特征向量组仍构成正交组.
 特别地，\(\A\)有\(n\)个正交的特征向量，\(\A\)相似于对角形矩阵.
 
+\begin{example}
+%@see: 《1995年全国硕士研究生入学统一考试（数学一）》八解答题
+设3阶实对称矩阵\(\vb{A}\)的特征值为
+\(\lambda_1=-1,\lambda_2=\lambda_3=1\)，
+对应于\(\lambda_1\)的特征向量为\(\vb{\xi}_1=(0,1,1)^T\)，
+求\(\vb{A}\).
+\begin{solution}
+设属于\(\lambda=1\)的特征向量为\(\vb{\xi}=(x_1,x_2,x_3)^T\)，
+由于\hyperref[theorem:特征值与特征向量.实对称矩阵2]{实对称矩阵的不同特征值所对应的特征向量相互正交}，
+故\[
+	\vb{\xi}^T \vb{\xi}_1 = x_2+x_3 = 0,
+\]
+于是\(\vb{\xi}_2=(1,0,0)^T,
+\vb{\xi}_3=(0,1,-1)^T\)
+是属于\(\lambda=1\)的线性无关的特征向量，
+也就是说\[
+	\vb{A}(\vb{\xi}_1,\vb{\xi}_2,\vb{\xi}_3)
+	=(-\vb{\xi}_1,\vb{\xi}_2,\vb{\xi}_3).
+\]
+那么\[
+	\vb{A}
+	=(-\vb{\xi}_1,\vb{\xi}_2,\vb{\xi}_3)
+	(\vb{\xi}_1,\vb{\xi}_2,\vb{\xi}_3)^{-1}
+	=\begin{bmatrix}
+		0 & 1 & 0 \\
+		-1 & 0 & 1 \\
+		-1 & 0 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		0 & \frac{1}{2} & \frac{1}{2} \\
+		1 & 0 & 0 \\
+		0 & \frac{1}{2} & -\frac{1}{2}
+	\end{bmatrix}
+	=\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 0 & -1 \\
+		0 & -1 & 0
+	\end{bmatrix}.
+\]
+\end{solution}
+\end{example}
+
 \begin{theorem}\label{theorem:特征值与特征向量.实对称矩阵3}
 %@see: 《线性代数》（张慎语、周厚隆） P110 定理8
 若\(\A\)为\(n\)阶实对称矩阵，则一定存在正交矩阵\(\Q\)，使得\(\V = \Q^{-1}\A\Q\)为对角形矩阵.
@@ -102,15 +145,15 @@
 
 由\cref{theorem:特征值与特征向量.实对称矩阵1}，
 \(\A\)的特征值全为实数.
-假设\(\L1\)是\(\A\)的特征值，
+假设\(\lambda_1\)是\(\A\)的特征值，
 并且相应地存在非零实向量\(\X1=(\AutoTuple{c}{n})^T\)，
 使得\[
-	\A\X1=\L1\X1.
+	\A\X1=\lambda_1\X1.
 \]
 不妨设\(c_1\neq0\)，则\(n\)元向量组\[
 	\X1,\X2=(0,1,\dotsc,0)^T,\dotsc,\X{n}=(0,0,\dotsc,1)^T
 \]线性无关.
-对向量组\(X=\{\AutoTuple{\x}{n}\}\)
+对向量组\(X=\{\AutoTuple{\vb{x}}{n}\}\)
 用施密特正交规范化方法可得规范正交组\(Y=\{\AutoTuple{\y}{n}\}\)，
 则\(\P=(\AutoTuple{\y}{n})\)是正交矩阵，
 其中\(\y_1=\abs{\X1}^{-1}\X1\)是\(\A\)的特征向量.
@@ -118,14 +161,14 @@
 因为\(\mathbb{R}^n\)中任意\(n+1\)个向量线性相关，
 故任意向量都可由\(Y\)线性表出，
 即\begin{align*}
-	\A\y_1 &= \L1\y_1 = \L1\y_1 + 0\y_2 + \dotsb + 0\y_n, \\
+	\A\y_1 &= \lambda_1\y_1 = \lambda_1\y_1 + 0\y_2 + \dotsb + 0\y_n, \\
 	\A\y_k &= b_{1k}\y_1 + b_{2k}\y_2 + \dotsb + b_{nk}\y_n \quad(k=2,3,\dotsc,n),
 \end{align*}
 由分块矩阵乘法，\[
 	\A(\AutoTuple{\y}{n})
 	= (\AutoTuple{\y}{n})
 	\begin{bmatrix}
-		\l_1 & b_{11} & \dots & b_{1n} \\
+		\lambda_1 & b_{11} & \dots & b_{1n} \\
 		0 & b_{22} & \dots & b_{2n} \\
 		\vdots & \vdots & & \vdots \\
 		0 & b_{n2} & \dots & b_{nn}
@@ -134,16 +177,16 @@
 令\(\P=(\AutoTuple{\y}{n})\)，
 显然\(\P\)是正交阵，
 而\(\P^{-1}\A\P=\P^T\A\P=\begin{bmatrix}
-	\L1 & \a \\
+	\lambda_1 & \a \\
 	\z & \B
 \end{bmatrix}\).
 
 由\((\P^T\A\P)^T=\P^T\A^T\P=\P^T\A\P\)可知\(\begin{bmatrix}
-	\L1 & \a \\
+	\lambda_1 & \a \\
 	\z & \B
 \end{bmatrix}
 = \begin{bmatrix}
-	\L1 & \z \\
+	\lambda_1 & \z \\
 	\a^T & \B^T
 \end{bmatrix}\)，
 于是\(\a=\z\)，\(\B=\B^T\)，也就是说\(\B\)是\(n-1\)阶实对称矩阵.
@@ -163,14 +206,14 @@
 		1 & \z \\
 		\z & \M^{-1}
 	\end{bmatrix}\begin{bmatrix}
-		\L1 & \z \\
+		\lambda_1 & \z \\
 		\z & \B
 	\end{bmatrix}\begin{bmatrix}
 		1 & \z \\
 		\z & \M
 	\end{bmatrix} \\
 	&=\begin{bmatrix}
-		\L1 & \z \\
+		\lambda_1 & \z \\
 		\z & \M^{-1}\B\M
 	\end{bmatrix}
 	=\diag(\AutoTuple{\lambda}{n}).
@@ -211,8 +254,8 @@
 对于实对称矩阵\(\A\)，求正交矩阵\(\Q\)，使得\(\Q^{-1}\A\Q\)为对角形矩阵的方法：
 \begin{enumerate}
 	\item 求出\(\A\)的全部不同的特征值\(\AutoTuple{\lambda}{m}\)；
-	\item 求出\((\L{i}\E-\A)\x=\z\)的基础解系，将其正交化，
-	得到\(\A\)属于\(\L{i}\ (i=1,2,\dotsc,m)\)的正交特征向量，
+	\item 求出\((\lambda_i\E-\A)\vb{x}=\z\)的基础解系，将其正交化，
+	得到\(\A\)属于\(\lambda_i\ (i=1,2,\dotsc,m)\)的正交特征向量，
 	共求出\(\A\)的\(n\)个正交特征向量；
 	\item 将以上\(n\)个正交特征向量单位化，由所得向量作为列构成正交矩阵\(\Q\)，则\[
 		\Q^{-1}\A\Q = \Q^T \A \Q = \diag(\AutoTuple{\lambda}{n}).
@@ -233,19 +276,19 @@
 满足\begin{gather}
 	\Q^{-1}\A\Q=\diag(\AutoTuple{\lambda}{n}), \tag1
 \end{gather}
-其中，\(\L{i}>0\ (i=1,2,\dotsc,r),
-\L{i}\leq0\ (i=r+1,r+2,\dotsc,n)\).
+其中，\(\lambda_i>0\ (i=1,2,\dotsc,r),
+\lambda_i\leq0\ (i=r+1,r+2,\dotsc,n)\).
 对(1)式两端分别平方，
 又由\(\A\)是对合矩阵，满足\(\A^2=\E\)，
 得\[
 	\Q^{-1}\A^2\Q
 	= \Q^{-1}\E\Q
 	= \E
-	= \diag(\L{1}^2,\L{2}^2,\dotsc,\L{n}^2),
+	= \diag(\lambda_1^2,\lambda_2^2,\dotsc,\lambda_n^2),
 \]
-于是\(\L{i}^2=1\ (i=1,2,\dotsc,n)\)，
+于是\(\lambda_i^2=1\ (i=1,2,\dotsc,n)\)，
 进而有\[
-	\L{i}= \begin{cases}
+	\lambda_i= \begin{cases}
 		1, & i=1,2,\dotsc,r, \\
 		-1, & i=r+1,r+2,\dotsc,n.
 	\end{cases}
@@ -259,10 +302,10 @@
 若\(\rank\A=3\)，求\(\A\)的特征值以及与\(\A\)相似的对角阵.
 \begin{solution}
 \(\A\)是实对称矩阵，根据\cref{theorem:特征值与特征向量.实对称矩阵3}，
-\(\A\)一定可对角化，不妨设\(\A\x=\l\x\ (\x\neq0)\)，
-那么\(\A^2\x=\l^2\x\)，\((\A^2+\A)\x=(\l^2+\l)\x\).
-因为\(\A^2+\A=\z\)，所以\((\l^2+\l)\x=\z\)，\(\l^2+\l=0\)，
-解得\(\A\)的特征值为\(\l=0,-1\).
+\(\A\)一定可对角化，不妨设\(\A\vb{x}=\lambda\vb{x}\ (\vb{x}\neq0)\)，
+那么\(\A^2\vb{x}=\lambda^2\vb{x}\)，\((\A^2+\A)\vb{x}=(\lambda^2+\lambda)\vb{x}\).
+因为\(\A^2+\A=\z\)，所以\((\lambda^2+\lambda)\vb{x}=\z\)，\(\lambda^2+\lambda=0\)，
+解得\(\A\)的特征值为\(\lambda=0,-1\).
 又因为\(\rank\A=3\)，所以\(\A\)具有3个非零特征值，
 因此与\(\A\)相似的对角阵为\(\diag(-1,-1,-1,0)\).
 \end{solution}
@@ -293,9 +336,9 @@
 	\Q^{-1}\A\Q = \diag(\AutoTuple{\lambda}{n}) = \V,
 \]
 从而有\(\A = \Q\V\Q^{-1}\)，\(\A^2 = (\Q\V\Q^{-1})^2 = \Q\V^2\Q^{-1} = \z\)，那么\[
-	\V^2 = \diag(\L{1}^2,\L{2}^2,\dotsc,\L{n}^2) = \Q^{-1}\z\Q = \z,
+	\V^2 = \diag(\lambda_1^2,\lambda_2^2,\dotsc,\lambda_n^2) = \Q^{-1}\z\Q = \z,
 \]\[
-	\L{1}=\L{2}=\dotsb=\L{n} = 0,
+	\lambda_1=\lambda_2=\dotsb=\lambda_n = 0,
 \]
 所以\(\A=\z\).
 \end{proof}
