@@ -273,6 +273,7 @@
 \begin{remark}
 从\cref{equation:伴随矩阵.伴随矩阵的秩} 还推导出以下结论：
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 8.
+%@see: 《高等代数学习指导书（第三版）》（姚慕生、谢启鸿） P63 例2.26
 \begin{equation}\label{equation:伴随矩阵.伴随矩阵的行列式}
 	\abs{\A^*}
 	= \abs{\A}^{n-1}.
@@ -281,14 +282,14 @@
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 10.
+%@see: 《高等代数学习指导书（第三版）》（姚慕生、谢启鸿） P64 例2.27
 设矩阵\(\A \in M_n(K)\ (n\geq2)\)，\(\A^*\)是\(\A\)的伴随矩阵.
-证明：\begin{equation}
+证明：\begin{equation}\label{equation:伴随矩阵.伴随矩阵的伴随}
 	(\A^*)^* = \left\{ \begin{array}{cl}
 		\abs{\A}^{n-2} \A, & n\geq3, \\
 		\A, & n=2.
 	\end{array} \right.
 \end{equation}
-%TODO proof
 \begin{proof}
 当\(n=2\)时，
 设\(\A = \begin{bmatrix}
@@ -330,9 +331,13 @@
 	\quad(n\geq2).
 \end{align*}
 
-假设\(\A\)不可逆，则\(\abs{\A} = 0\).
-由\cref{equation:伴随矩阵.伴随矩阵的秩}
-可知\(\rank\A^* \leq 1 \leq n-1\). % 为什么这里会说“小于 n-1”呢？
+假设\(\A\)不可逆，即\(\rank\A<n\)，
+那么由\cref{equation:伴随矩阵.伴随矩阵的秩}
+可知\(\rank\A^* \leq 1 < 2 \leq n-1\)，
+从而\(\rank(\A^*)^* = 0\)，
+即\((\A^*)^* = \vb0\).
+这时\(\abs{\A}=0\)，
+因此\((\A^*)^* = \abs{\A}^{n-2} \A\)仍然成立.
 \end{proof}
 \end{example}
 
