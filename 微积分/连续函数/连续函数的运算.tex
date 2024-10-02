@@ -304,7 +304,11 @@ y_2 = f(x_0 + \epsilon)\).
 		\lim_\mathcal{B} u(x)^{v(x)} = 1.
 	\]
 
-	\item 如果\(u(x) \not\equiv 1\)，且\[
+	\item 如果\[
+		(\exists B\in\mathcal{B})
+		(\forall x \in B)
+		[u(x)\neq1],
+	\]且\[
 		\lim_\mathcal{B} u(x) = a \in (0,+\infty), \qquad
 		\lim_\mathcal{B} v(x) = b \in (-\infty,+\infty),
 	\]
@@ -312,7 +316,11 @@ y_2 = f(x_0 + \epsilon)\).
 		\lim_\mathcal{B} u(x)^{v(x)} = a^b.
 	\]
 
-	\item 如果\(u(x) \not\equiv 1\)，且\[
+	\item 如果\[
+		(\exists B\in\mathcal{B})
+		(\forall x \in B)
+		[u(x)\neq1],
+	\]且\[
 		\lim_\mathcal{B} u(x) = 1, \qquad
 		\lim_\mathcal{B} v(x) = \infty,
 	\]
@@ -337,3 +345,46 @@ y_2 = f(x_0 + \epsilon)\).
 易知\(a = \ln2\).
 \end{solution}
 \end{example}
+
+\begin{proposition}
+设幂指函数\(f\colon X\to\mathbb{R}\)
+满足\(f(x) = (1+\alpha(x))^{\beta(x)}\)，
+其中\(\alpha(x)>-1\ (x \in X)\)，
+而\(\mathcal{B}\)是\(X\)中的基.
+如果\[
+	(\exists B\in\mathcal{B})
+	(\forall x \in B)
+	[\alpha(x)\neq0],
+\]
+且\[
+	\lim_\mathcal{B} \alpha(x) = 0,
+	\qquad
+	\lim_\mathcal{B} \alpha(x) \beta(x) = 0,
+\]
+则\[
+	\lim_\mathcal{B} \frac{(1+\alpha(x))^{\beta(x)}-1}{\alpha(x) \beta(x)} = 1.
+\]
+\begin{proof}
+由于\(\alpha(x)\to0\)，
+所以\(\ln(1+\alpha(x)) = \alpha(x) + o(\alpha(x))\)，
+从而有\[
+	(1+\alpha(x))^{\beta(x)}
+	= \exp[\beta(x) \ln(1+\alpha(x))]
+	= \exp[\beta(x) (\alpha(x) + o(\alpha(x)))].
+\]
+又因为\(\alpha(x) \beta(x) \to 0\)，
+所以\(o(\alpha(x)) \beta(x) \to 0\)，
+故有\[
+	\exp[\beta(x) (\alpha(x) + o(\alpha(x)))] - 1
+	\sim \beta(x) (\alpha(x) + o(\alpha(x))),
+\]
+于是\begin{align*}
+	\lim_\mathcal{B} \frac{(1+\alpha(x))^{\beta(x)}-1}{\alpha(x) \beta(x)}
+	&= \lim_\mathcal{B} \frac{\exp[\beta(x) (\alpha(x) + o(\alpha(x)))]-1}{\alpha(x) \beta(x)} \\
+	&= \lim_\mathcal{B} \frac{\beta(x) (\alpha(x) + o(\alpha(x)))}{\alpha(x) \beta(x)} \\
+	&= \lim_\mathcal{B} \frac{\alpha(x) + o(\alpha(x))}{\alpha(x)}
+	= 1.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
