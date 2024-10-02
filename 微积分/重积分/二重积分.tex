@@ -454,20 +454,32 @@ x^2+y^2-xy=2\)
 与直线\(y=\sqrt3 x,
 y=0\)围成，
 计算\(\iint_D \frac{\dd{x}\dd{y}}{3x^2+y^2}\).
-%TODO
-% \begin{solution}
-% %@see: https://www.bilibili.com/video/BV1EAWVeQEkE/
-% 在极坐标系中，有\[
-% 	D = \Set*{
-% 		(\rho,\theta)
-% 		\given
-% 		0\leq\theta\leq\frac\pi3,
-% 		\sqrt{\frac1{1-\sin\theta\cos\theta}}
-% 		\leq\rho\leq
-% 		\sqrt{\frac2{1-\sin\theta\cos\theta}}
-% 	}.
-% \]
-% \end{solution}
+\begin{solution}
+%@see: https://www.bilibili.com/video/BV1BG411y7SW/
+%@see: https://www.bilibili.com/video/BV1EAWVeQEkE/
+%@credit: {6c2d2bed-2bb7-4528-8695-7d56476f78b7}
+令\(T: u=x^2+y^2-xy,
+v=y/x\)，
+则\(u'_x=2x-y,
+u'_y=2y-x,
+v'_x=-y/x^2,
+v'_y=1/x\)，
+从而\begin{gather*}
+	\jacobi{u,v}{x,y} = \frac2{x^2} (x^2+y^2-xy),
+	\qquad
+	\jacobi{x,y}{u,v} = \frac{x^2}{2(x^2+y^2-xy)}
+	= \frac1{2(1-v+v^2)}, \\
+	D' = T(D)
+	= \Set{ (u,v) \given 1 \leq u \leq 2, 0 \leq v \leq \sqrt3 },
+\end{gather*}
+并且\begin{align*}
+	\iint_D \frac{\dd{x}\dd{y}}{3x^2+y^2}
+	&= \iint_{D'} \frac{\dd{u}\dd{v}}{2u(3+v^2)} \\
+	&= \frac12 \int_1^2 \frac1u \dd{u} \int_0^{\sqrt3} \frac{\dd{v}}{3+v^2} \\
+	&= \frac12 \eval{\ln u}_1^2 \cdot \eval{\frac1{\sqrt3} \arctan\frac{v}{\sqrt3}}_0^{\sqrt3} \\
+	&= \frac{\pi \ln2}{8\sqrt3}.
+\end{align*}
+\end{solution}
 \end{example}
 
 \subsubsection{二重积分被积函数的对称性}
