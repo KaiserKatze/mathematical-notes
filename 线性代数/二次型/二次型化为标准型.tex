@@ -1,45 +1,60 @@
 \section{二次型化为标准型的三种方法}
 二次型的基本问题是研究如何通过非退化的线性替换将一个热词性化简为平方和的形式，从而讨论其性质.
 \begin{definition}
-如果二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)可以经过非退化的线性替换\(\x=\C\vb{Y}\)化简为\[
-d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2
-\]的形式，则称上式为二次型\(f\)的\DefineConcept{标准型}或\DefineConcept{规范型}（standard form）.
+%@see: 《线性代数》（张慎语、周厚隆） P120 定义3
+如果二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)
+可以经过非退化的线性替换\(\x = \C \vb{y}\)化简为\[
+	d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2
+\]的形式，
+则称上式为
+“二次型\(f\)的\DefineConcept{标准型}”.
 \end{definition}
 将二次型化为标准型的问题可以归结为对称矩阵合同于对角阵的问题.
 下面介绍三种化二次型为标准型的方法.
 
 \subsection{正交变换法}
-根据\cref{theorem:特征值与特征向量.实对称矩阵3}，对于任何一个实对称矩阵\(\A\)，存在正交矩阵\(\Q\)，使得\[
-\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}),
-\]即实对称矩阵\(\A\)与对角阵\(\diag(\AutoTuple{\lambda}{n})\)合同且相似.
+根据\cref{theorem:特征值与特征向量.实对称矩阵3}，
+对于任何一个实对称矩阵\(\A\)，
+存在正交矩阵\(\Q\)，
+使得\[
+	\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}),
+\]
+即实对称矩阵\(\A\)与对角阵\(\diag(\AutoTuple{\lambda}{n})\)合同且相似.
 
 \begin{theorem}
-对于任一\(n\)元实二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，都存在正交矩阵\(\Q\)，由\(\Q\)构成的线性替换\(\x=\Q\vb{Y}\)（称为\DefineConcept{正交变换}，{\rm orthogonal operator}）将\(f\)化为标准型\[
-f(\AutoTuple{x}{n})
-\xlongequal{\x=\Q\vb{Y}}
-\lambda_1y_1^2+\lambda_2y_2^2+ \dotsb +\lambda_ny_n^2
-\]其中\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是\(\A\)的全部特征值.
+%@see: 《线性代数》（张慎语、周厚隆） P120 定理3
+对于任一\(n\)元实二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，
+都存在正交矩阵\(\Q\)，
+由\(\Q\)构成的线性替换\(\x=\Q\vb{y}\)
+（称为\DefineConcept{正交变换}，{\rm orthogonal operator}）
+将\(f\)化为标准型\[
+	f(\AutoTuple{x}{n})
+	\xlongequal{\x=\Q\vb{y}}
+	\lambda_1y_1^2+\lambda_2y_2^2+ \dotsb +\lambda_ny_n^2
+\]
+其中\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是\(\A\)的全部特征值.
 \end{theorem}
 
 \begin{corollary}
+%@see: 《线性代数》（张慎语、周厚隆） P120
 正交变换的特点之一是保持向量的内积不变，也就是保持向量的长度不变，保持图形的形状不变.
 \begin{proof}
 设\(\Q\)为正交矩阵.
-令\(\x_1=\Q\vb{Y}_1\)，
-\(\x_2=\Q\vb{Y}_2\)，
+令\(\x_1=\Q\vb{y}_1\)，
+\(\x_2=\Q\vb{y}_2\)，
 必有\begin{align*}
-\vectorinnerproduct{\x_1}{\x_2}
-&=\vectorinnerproduct{(\Q\vb{Y}_1)}{(\Q\vb{Y}_2)}
-=(\Q\vb{Y}_1)^T (\Q\vb{Y}_2)
-=\vb{Y}_1^T \Q^T \Q \vb{Y}_2 \\
-&=\vb{Y}_1^T \E \vb{Y}_2
-=\vb{Y}_1^T \vb{Y}_2
-=\vectorinnerproduct{\vb{Y}_1}{\vb{Y}_2},
+	\vectorinnerproduct{\x_1}{\x_2}
+	&=\vectorinnerproduct{(\Q\vb{y}_1)}{(\Q\vb{y}_2)}
+	=(\Q\vb{y}_1)^T (\Q\vb{y}_2)
+	=\vb{y}_1^T \Q^T \Q \vb{y}_2 \\
+	&=\vb{y}_1^T \E \vb{y}_2
+	=\vb{y}_1^T \vb{y}_2
+	=\vectorinnerproduct{\vb{y}_1}{\vb{y}_2},
 \end{align*}
 又令\(\x_1=\x_2=\x\)，
-\(\vb{Y}_1=\vb{Y}_2=\vb{Y}\)，
-则\(\abs{\x}^2=\abs{\vb{Y}}^2\)，
-\(\abs{\x}=\abs{\vb{Y}}\).
+\(\vb{y}_1=\vb{y}_2=\vb{y}\)，
+则\(\abs{\x}^2=\abs{\vb{y}}^2\)，
+\(\abs{\x}=\abs{\vb{y}}\).
 \end{proof}
 \end{corollary}
 
@@ -47,14 +62,20 @@ f(\AutoTuple{x}{n})
 \color{red}
 用正交变换法将二次型化为标准型的步骤如下：
 \begin{enumerate}
-\item 首先根据\(f\)的表达式写出\(f\)的矩阵\(\A\)；
-\item 写出\(f\)矩阵的特征多项式\(\abs{\lambda\E-\A}=0\)，求解\(\A\)的特征值\(\AutoTuple{\lambda}{n}\)以及对应的特征向量\(\AutoTuple{\x}{n}\)；
-\item 运用施密特规范化方法将\(\A\)的特征向量正交单位化为\(\AutoTuple{\g}{n}\)，然后写成正交矩阵\(\Q=(\AutoTuple{\g}{n})\)；
-\item 计算得出标准型的矩阵\(\B=\Q^T\A\Q=\Q^{-1}\A\Q=\diag(\AutoTuple{\lambda}{n})\).
+	\item 首先根据\(f\)的表达式写出\(f\)的矩阵\(\A\)；
+	\item 写出\(f\)矩阵的特征多项式\(\abs{\lambda\E-\A}=0\)，
+	求解\(\A\)的特征值\(\AutoTuple{\lambda}{n}\)
+	以及对应的特征向量\(\AutoTuple{\x}{n}\)；
+	\item 运用施密特规范化方法，
+	将\(\A\)的特征向量正交单位化为\(\AutoTuple{\g}{n}\)，
+	然后写成正交矩阵\(\Q=(\AutoTuple{\g}{n})\)；
+	\item 计算得出标准型的矩阵
+	\(\B=\Q^T\A\Q=\Q^{-1}\A\Q=\diag(\AutoTuple{\lambda}{n})\).
 \end{enumerate}
 \endgroup
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P121 例1
 设\(f(x_1,x_2,x_3) = -x_1^2-x_2^2-7x_3^2-4x_1x_2+8x_1x_3+8x_2x_3\).
 利用正交变换将\(f\)化为标准型，并写出所用的正交变换.
 \begin{solution}
@@ -138,6 +159,7 @@ f(\AutoTuple{x}{n})
 \end{example}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P122 例2
 设实二次型\[
 	f(\AutoTuple{x}{n})=\x^T\A\x
 \]的矩阵\(\A\)的特征值为\(\AutoTuple{\lambda}{n}\)，
@@ -151,9 +173,11 @@ f(\AutoTuple{x}{n})
 使得\(\Q^T\A\Q = \diag(\AutoTuple{\lambda}{n})\)，
 作正交变换\(\x=\Q\y\)，
 则\(f\)化为标准型\begin{align*}
-	f(\AutoTuple{x}{n}) &= \L{1} y_1^2 + \L{2} y_2^2 + \dotsb + \L{n} y_n^2 \\
-	&\leq c y_1^2 + c y_2^2 + \dotsb + c y_n^2
-	= c \y^T \y = c \x^T \x.
+	f(\AutoTuple{x}{n})
+	&= \lambda_1 y_1^2 + \lambda_2 y_2^2 + \dotsb + \lambda_n y_n^2 \\
+	&\leq c y_1^2 + c y_2^2 + \dotsb + c y_n^2 \\
+	&= c \vb{y}^T \vb{y}
+	= c \vb{x}^T \vb{x}.
 	\qedhere
 \end{align*}
 \end{proof}
@@ -164,11 +188,15 @@ f(\AutoTuple{x}{n})
 求出二次型矩阵的特征值和规范正交的特征向量，条件要求较强.
 当研究一般数域\(P\)上的二次型（包括实二次型）的标准型时，
 可以用\DefineConcept{拉格朗日配方法}.
-这种方法不用解矩阵特征值问题，只需反复利用以下两个初等代数公式\[
-a^2+2ab+b^2=(a+b)^2 ,\quad a^2-b^2=(a+b)(a-b)
+这种方法不用解矩阵特征值问题，
+只需反复利用以下两个初等代数公式\[
+	a^2+2ab+b^2=(a+b)^2,
+	\quad
+	a^2-b^2=(a+b)(a-b)
 \]就能将二次型化为标准型.
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P122 例3
 用配方法化二次型\(f(x_1,x_2,x_3)
 = x_1^2 + 2 x_1 x_2 + 2 x_2^2 - 3 x_2 x_3\)为标准型，并求出所用的可逆线性替换.
 \begin{solution}
@@ -200,7 +228,9 @@ a^2+2ab+b^2=(a+b)^2 ,\quad a^2-b^2=(a+b)(a-b)
 \end{example}
 
 \begin{theorem}
-对于任一\(n\)元二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，都存在非退化的线性替换\(\x=\C\vb{Y}\)，使之成为\[
+%@see: 《线性代数》（张慎语、周厚隆） P125 定理4
+对于任意一个\(n\)元二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，
+都存在非退化的线性替换\(\x=\C\vb{y}\)，使之成为\[
 f(\AutoTuple{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
 \]
 \begin{proof}
@@ -285,13 +315,16 @@ f(\AutoTuple{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
 \end{theorem}
 
 \begin{corollary}
+%@see: 《线性代数》（张慎语、周厚隆） P126 推论1
 任意\(n\)阶对称矩阵\(\A\)都与对角形矩阵合同.
 \end{corollary}
 
 \subsection{初等变换法}
 \begin{definition}
+%@see: 《线性代数》（张慎语、周厚隆） P126 定义4
 设\(\P\)为初等矩阵.
-对于任意矩阵\(\B\)，称变换\(\B \to \P^T\B\P\)为对\(\B\)作一次\DefineConcept{合同变换}.
+对于任意矩阵\(\B\)，称变换\(\B \to \P^T\B\P\)为
+对\(\B\)作一次\DefineConcept{合同变换}.
 \end{definition}
 
 \begin{theorem}

@@ -1,4 +1,5 @@
-\section{矩阵合同的概念}
+\section{矩阵的合同}
+\subsection{矩阵合同的概念}
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P118 定义2
 %@see: 《高等代数（第三版 上册）》（丘维声） P193 定义3
@@ -12,61 +13,7 @@
 记为\(\A\simeq\B\).
 \end{definition}
 
-\begin{property}
-%@see: 《线性代数》（张慎语、周厚隆） P118
-%@see: 《高等代数（第三版 上册）》（丘维声） P193
-矩阵的合同关系是等价关系，
-即具备下列三条性质：\begin{enumerate}
-	\item {\rm\bf 反身性}：\(\A\simeq\A\)；
-	\item {\rm\bf 对称性}：\(\A\simeq\B \implies \B\simeq\A\)；
-	\item {\rm\bf 传递性}：\(\A\simeq\B \land \B\simeq\C \implies \A\simeq\C\).
-\end{enumerate}
-\begin{proof}
-合同是集合\(M_n(K)\)上的一个二元关系.
-
-由于\[
-	\A = \E^T \A \E,
-\]
-所以\(\A \simeq \A\).
-
-假设\(\A \simeq \B\)，
-那么存在可逆矩阵\(\C\)使得\[
-	\B=\C^T\A\C,
-\]
-于是\[
-	\A=(\C^T)^{-1}\B\C^{-1}
-	=(\C^{-1})^T\B\C^{-1},
-\]
-即\(\B \simeq \A\).
-
-假设\(\A \simeq \B\)且\(\B \simeq \C\)，
-那么存在可逆矩阵\(\D_1,\D_2\)
-使得\[
-	\B = \D_1^T \A \D_1, \qquad
-	\C = \D_2^T \B \D_2,
-\]
-从而有\[
-	\C = \D_2^T (\D_1^T \A \D_1) \D_2
-	= (\D_1 \D_2)^T \A (\D_1 \D_2),
-\]
-因此\(\A \simeq \C\).
-\end{proof}
-\end{property}
-
-\begin{definition}
-%@see: 《高等代数（第三版 上册）》（丘维声） P193
-把矩阵\(\A \in M_n(K)\)在合同关系下的等价类\[
-	\Set{ \B \in M_n(K) \given \A \simeq \B }
-\]称为“矩阵\(\A\)的\DefineConcept{合同类}”.
-\end{definition}
-
-\begin{definition}
-%@see: 《高等代数（第三版 上册）》（丘维声） P194
-设矩阵\(\A \in M_n(K)\).
-如果存在\(n\)阶对角矩阵\(\vb\Lambda\)与\(\A\)合同，
-则称“矩阵\(\vb\Lambda\)是\(\A\)的\DefineConcept{合同标准型}”.
-\end{definition}
-
+\subsection{矩阵合同的性质}
 \begin{property}
 合同矩阵与原矩阵等价，即\(\A\simeq\B \implies \A\cong\B\).
 \begin{proof}
@@ -76,64 +23,27 @@
 
 \begin{property}
 %@see: 《线性代数》（张慎语、周厚隆） P119 习题6.1 2(2)选项(A)
-合同矩阵的秩与原矩阵相等，即\(\A\simeq\B \implies \rank\A=\rank\B\).
+合同矩阵有相同的秩.
 \begin{proof}
-由\cref{theorem:线性方程组.初等变换不变秩} 立得.
+由\cref{theorem:矩阵乘积的秩.与可逆矩阵相乘不变秩} 可得.
 \end{proof}
 \end{property}
 
-\begin{proposition}\label{theorem:矩阵的合同.对称矩阵的合同矩阵也是对称的}
-对称矩阵的合同矩阵也是对称的，
-即\[
-	\A^T = \A
-	\implies
-	[\A\simeq\B \implies \B^T = \B].
-\]
-\begin{proof}
-设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，
-那么\[
-	\B^T = (\C^T\A\C)^T = \C^T\A^T\C = \C^T\A\C = \B.
-	\qedhere
-\]
-\end{proof}
-\end{proposition}
-
-\begin{proposition}\label{theorem:矩阵的合同.反对称矩阵的合同矩阵也是反对称的}
-反对称矩阵的合同矩阵也是反对称的，
-即\[
-	\A^T = -\A
-	\implies
-	[\A\simeq\B \implies \B^T = -\B].
-\]
-\begin{proof}
-设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，
-那么\[
-	\B^T = (\C^T\A\C)^T = \C^T\A^T\C = -\C^T\A\C = -\B.
-	\qedhere
-\]
-\end{proof}
-\end{proposition}
-
-\begin{remark}
-从\cref{theorem:矩阵的合同.对称矩阵的合同矩阵也是对称的,theorem:矩阵的合同.反对称矩阵的合同矩阵也是反对称的}
-可以看出：
-对称矩阵不可能与反对称矩阵合同，
-它们都不可能与非对称矩阵合同.
-\end{remark}
-
 \begin{proposition}\label{theorem:矩阵合同.合同矩阵的行列式的关系}
-设\(n\)阶矩阵\(\A,\B,\C\)满足\(\B=\C^T\A\C^T\)，
+设数域\(K\)上的\(n\)阶矩阵\(\A,\B\)
+和数域\(K\)上的\(n\)阶可逆矩阵\(\C\)
+满足\(\B = \C^T \A \C\)，
 则\[
-	\abs{\A}\abs{\C}^2
-	=\abs{\B}.
+	\abs{\A} \abs{\C}^2
+	= \abs{\B}.
 \]
 \begin{proof}
 根据\cref{theorem:行列式.性质1,theorem:行列式.矩阵乘积的行列式}，
 必有\[
 	\abs{\B}
-	=\abs{\C^T\A\C}
-	=\abs{\C^T}\abs{\A}\abs{\C}
-	=\abs{\A}\abs{\C}^2.
+	= \abs{\C^T \A \C}
+	= \abs{\C^T} \abs{\A} \abs{\C}
+	= \abs{\A} \abs{\C}^2.
 	\qedhere
 \]
 \end{proof}
@@ -141,20 +51,28 @@
 
 \begin{proposition}
 %@see: 《线性代数》（张慎语、周厚隆） P119 习题6.1 2(2)选项(B)
-合同矩阵的行列式同号，即\(\A\simeq\B\implies\sgn\abs{\A}=\sgn\abs{\B}\).
+合同矩阵的行列式同号.
 \begin{proof}
-设\(n\)阶矩阵\(\A,\B,\C\)满足\(\B=\C^T\A\C^T\)，
+设\(\A,\B \in M_n(K)\).
+假设\(\A\simeq\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\C\)，
+使得\[
+	\C^T \A \C = \B.
+\]
 由\cref{theorem:矩阵合同.合同矩阵的行列式的关系} 有\[
-	\abs{\A}\abs{\B}
-	=\abs{\A}(\abs{\A}\abs{\C}^2)
-	=\abs{\A}^2\abs{\C}^2 \geq 0.
+	\abs{\A} \abs{\B}
+	= \abs{\A} (\abs{\A} \abs{\C}^2)
+	= \abs{\A}^2 \abs{\C}^2
+	\geq 0.
 	\qedhere
 \]
 \end{proof}
 \end{proposition}
 
-\begin{example}
+\subsection{相似与合同的联系}
+\begin{proposition}
 相似的两个矩阵不一定合同.
+\begin{proof}
 例如，矩阵\(\A=\begin{bmatrix}
 	1 & 1 \\
 	0 & 2
@@ -198,10 +116,12 @@
 但是根据\cref{theorem:矩阵合同.合同矩阵的行列式的关系}，
 因为\(\abs{\A}=\abs{\B}=2\)，所以\(\abs{\Q}^2=1\).
 矛盾！因此\(\A\)与\(\B\)不合同！
-\end{example}
+\end{proof}
+\end{proposition}
 
-\begin{example}\label{example:矩阵合同.合同矩阵不一定相似}
+\begin{proposition}\label{example:矩阵合同.合同矩阵不一定相似}
 合同的两个矩阵不一定相似.
+\begin{proof}
 例如，矩阵\(\A=\begin{bmatrix}
 	1 & 0 \\
 	0 & 1
@@ -217,7 +137,8 @@
 但是\(\tr\A=2 \neq \tr\B = 5\)，
 根据\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
 \(\A\)与\(\B\)必不相似！
-\end{example}
+\end{proof}
+\end{proposition}
 
 \begin{proposition}\label{theorem:二次型.实对称矩阵相似必合同}
 设\(\A,\B\)都是实对称矩阵，
@@ -257,6 +178,119 @@
 \end{proof}
 \end{proposition}
 
+\begin{example}
+设\(\AutoTuple{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，
+而\[
+	\A=\diag(\AutoTuple{d}{n}),
+	\qquad
+	\B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
+\]
+证明：矩阵\(\A,\B\)合同且相似.
+\begin{proof}
+显然\(\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n})\)
+可由\(\diag(\AutoTuple{d}{n})\)同时左乘和右乘若干个初等矩阵\[
+	\P(i,j) \quad(1 \leq i < j \leq n)
+\]得到，
+又因为\(\P(i,j)^T = \P(i,j)^{-1} = \P(i,j)\)，
+所以只要令这些初等矩阵的乘积为\(\P\)，
+就有\[
+	\P^{-1} \A \P = \B,
+	\qquad
+	\P^T \A \P = \B.
+\]
+也就是说\(\A\simeq\B\land\A\sim\B\).
+\end{proof}
+\end{example}
+
+\subsection{合同类}
+\begin{property}\label{theorem:矩阵合同.合同关系是等价关系}
+%@see: 《线性代数》（张慎语、周厚隆） P118
+%@see: 《高等代数（第三版 上册）》（丘维声） P193
+矩阵的合同关系是等价关系，
+即具备下列三条性质：\begin{itemize}
+	\item {\rm\bf 反身性}：
+	\(\A\simeq\A\)；
+	\item {\rm\bf 对称性}：
+	\(\A\simeq\B \implies \B\simeq\A\)；
+	\item {\rm\bf 传递性}：
+	\(\A\simeq\B \land \B\simeq\C \implies \A\simeq\C\).
+\end{itemize}
+\begin{proof}
+合同是集合\(M_n(K)\)上的一个二元关系.
+
+由于\[
+	\A = \E^T \A \E,
+\]
+所以\(\A \simeq \A\).
+
+假设\(\A \simeq \B\)，
+那么存在可逆矩阵\(\C\)使得\[
+	\B=\C^T\A\C,
+\]
+于是\[
+	\A=(\C^T)^{-1}\B\C^{-1}
+	=(\C^{-1})^T\B\C^{-1},
+\]
+即\(\B \simeq \A\).
+
+假设\(\A \simeq \B\)且\(\B \simeq \C\)，
+那么存在可逆矩阵\(\D_1,\D_2\)
+使得\[
+	\B = \D_1^T \A \D_1, \qquad
+	\C = \D_2^T \B \D_2,
+\]
+从而有\[
+	\C = \D_2^T (\D_1^T \A \D_1) \D_2
+	= (\D_1 \D_2)^T \A (\D_1 \D_2),
+\]
+因此\(\A \simeq \C\).
+\end{proof}
+\end{property}
+
+\begin{definition}
+%@see: 《高等代数（第三版 上册）》（丘维声） P193
+把矩阵\(\A \in M_n(K)\)在合同关系下的等价类\[
+	\Set{ \B \in M_n(K) \given \A \simeq \B }
+\]称为“矩阵\(\A\)的\DefineConcept{合同类}”.
+\end{definition}
+
+\begin{proposition}\label{theorem:矩阵的合同.对称矩阵的合同矩阵也是对称的}
+对称矩阵的合同矩阵也是对称的，
+即\[
+	\A^T = \A
+	\implies
+	[\A\simeq\B \implies \B^T = \B].
+\]
+\begin{proof}
+设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，
+那么\[
+	\B^T = (\C^T\A\C)^T = \C^T\A^T\C = \C^T\A\C = \B.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:矩阵的合同.反对称矩阵的合同矩阵也是反对称的}
+反对称矩阵的合同矩阵也是反对称的，
+即\[
+	\A^T = -\A
+	\implies
+	[\A\simeq\B \implies \B^T = -\B].
+\]
+\begin{proof}
+设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，
+那么\[
+	\B^T = (\C^T\A\C)^T = \C^T\A^T\C = -\C^T\A\C = -\B.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
+\begin{remark}
+从\cref{theorem:矩阵的合同.对称矩阵的合同矩阵也是对称的,theorem:矩阵的合同.反对称矩阵的合同矩阵也是反对称的}
+可以看出：对称矩阵不可能与反对称矩阵合同，它们都不可能与非对称矩阵合同.
+\end{remark}
+
 \begin{proposition}
 设\(\A,\B \in M_n(K)\).
 记\begin{gather*}
@@ -292,33 +326,11 @@
 \end{proof}
 \end{proposition}
 
-\begin{example}
-设\(\AutoTuple{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，
-而\[
-	\A=\diag(\AutoTuple{d}{n}),
-	\qquad
-	\B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
-\]
-证明：矩阵\(\A,\B\)合同且相似.
-\begin{proof}
-显然\(\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n})\)
-可由\(\diag(\AutoTuple{d}{n})\)同时左乘和右乘若干个初等矩阵\[
-	\P(i,j) \quad(1 \leq i < j \leq n)
-\]得到，
-又因为\(\P(i,j)^T = \P(i,j)^{-1} = \P(i,j)\)，
-所以只要令这些初等矩阵的乘积为\(\P\)，
-就有\[
-	\P^{-1} \A \P = \B,
-	\qquad
-	\P^T \A \P = \B.
-\]
-也就是说\(\A\simeq\B\land\A\sim\B\).
-\end{proof}
-\end{example}
-
-根据\cref{theorem:特征值与特征向量.实对称矩阵3}，
-任一实对称矩阵都与某个对角阵合同且相似，
-实际上，我们可以把这个结论推广到复数域上的对称矩阵.
-\begin{theorem}
-任一对称矩阵都合同于某个对角矩阵.
-\end{theorem}
+\subsection{合同对角化}
+\begin{definition}
+%@see: 《高等代数（第三版 上册）》（丘维声） P194
+设矩阵\(\A \in M_n(K)\).
+如果存在\(n\)阶对角矩阵\(\vb\Lambda\)与\(\A\)合同，
+则称“矩阵\(\A\)可以\DefineConcept{合同对角化}”
+“矩阵\(\vb\Lambda\)是\(\A\)的\DefineConcept{合同标准型}”.
+\end{definition}

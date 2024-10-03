@@ -30,6 +30,175 @@
 记作\(\A\sim\B\).
 \end{definition}
 
+\subsection{矩阵相似的性质}
+\begin{proposition}
+%@see: 《高等代数（第三版 上册）》（丘维声） P169 命题1
+%@see: 《线性代数》（张慎语、周厚隆） P97 性质2
+设矩阵\(\A_1,\A_2,\B_1,\B_2,\P \in M_n(K)\)，\(\P\)可逆，
+且\[
+	\B_1=\P^{-1}\A_1\P, \qquad
+	\B_2=\P^{-1}\A_2\P,
+\]
+则\begin{gather}
+	\B_1 + \B_2 = \P^{-1} (\A_1 + \A_2) \P, \\
+	\B_1 \B_2 = \P^{-1} (\A_1 \A_2) \P, \\
+	m\in\mathbb{N} \implies \B_1^m = \P^{-1}\A_1^m\P.
+		\label{equation:相似矩阵.利用相似性简化计算}
+\end{gather}
+\end{proposition}
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件1}
+%@see: 《线性代数》（张慎语、周厚隆） P97 性质1
+%@see: 《高等代数（第三版 上册）》（丘维声） P169 1°
+相似矩阵的行列式相等.
+\begin{proof}
+设\(\A,\B \in M_n(K)\).
+假设\(\A\sim\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+使得\[
+	\P^{-1}\A\P=\B,
+\]
+两端取行列式，得\[
+	\abs{\B} = \abs{\P^{-1}\A\P}
+	= \abs{\P^{-1}}\abs{\A}\abs{\P}
+	= \abs{\P}^{-1}\abs{\A}\abs{\P}
+	= \abs{\A}.
+	\qedhere
+\]
+\end{proof}
+\end{property}
+\begin{proposition}
+%@see: 《高等代数（第三版 上册）》（丘维声） P169 2°
+设\(\A,\B \in M_n(K)\).
+若\(\A\sim\B\)，则\(\A\)和\(\B\)同为可逆或不可逆.
+\begin{proof}
+由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1} 立即可得.
+\end{proof}
+\end{proposition}
+\begin{remark}
+如果\(\A_1,\B_1\)可逆，
+那么\cref{equation:相似矩阵.利用相似性简化计算}
+可以推广为\(m\in\mathbb{Z} \implies \B_1^m = \P^{-1}\A_1^m\P\).
+这也说明：
+相似矩阵的同次幂也相似.
+\end{remark}
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件3}
+%@see: 《线性代数》（张慎语、周厚隆） P97 性质3
+相似矩阵有相同的特征多项式，从而有相同的特征值.
+\begin{proof}
+设\(\A,\B \in M_n(K)\).
+假设\(\A\sim\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+使得\[
+	\P^{-1}\A\P=\B,
+\]
+于是\[
+	\abs{\l\E-\B}
+	=\abs{\P^{-1}(\l\E-\A)\P}
+	=\abs{\P^{-1}}\abs{\l\E-\A}\abs{\P}
+	=\abs{\l\E-\A}.
+	\qedhere
+\]
+\end{proof}
+\end{property}
+\begin{remark}
+\cref{theorem:特征值与特征向量.矩阵相似的必要条件3} 只是矩阵相似的必要不充分条件.
+下面我们举出一条反例，不相似的两个矩阵有相同的特征多项式和特征值.
+取\[
+	\A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix},
+	\quad\text{和}\quad
+	\B = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix},
+\]
+显然两者的特征多项式相同，都是\((\lambda-2)^2\)，
+故而两者的特征值也相同，都是\(\l=2\ (\text{二重})\).
+但\(\A\)与\(\B\)不相似，
+这是因为\(\B=2\E\)是数乘矩阵，可以和所有二阶矩阵交换，
+那么对任意二阶可逆矩阵\(\P\)都有\(\P^{-1}\B\P=\B\P^{-1}\P=\B\)，
+即\(\B\)只能与自身相似，
+\(\A\)与\(\B\)不相似.
+\end{remark}
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件4}
+%@see: 《高等代数（第三版 上册）》（丘维声） P170 4°
+相似矩阵有相同的迹.
+\begin{proof}
+假设\(\A\sim\B\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+使得\[
+	\P^{-1}\A\P=\B,
+\]
+于是由\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹} 有\[
+	\tr\B
+	= \tr(\P^{-1}\A\P)
+	= \tr(\P(\P^{-1}\A))
+	= \tr\A.
+	\qedhere
+\]
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件5}
+%@see: 《高等代数（第三版 上册）》（丘维声） P170 3°
+相似矩阵有相同的秩.
+\begin{proof}
+由\cref{theorem:矩阵乘积的秩.与可逆矩阵相乘不变秩} 可得.
+\end{proof}
+\end{property}
+
+\begin{property}
+相似矩阵与原矩阵等价，即\(\A\sim\B \implies \A\cong\B\).
+\begin{proof}
+由于\hyperref[theorem:特征值与特征向量.矩阵相似的必要条件5]{相似矩阵的秩相等}，
+而\hyperref[theorem:矩阵乘积的秩.矩阵等价的充分必要条件]{秩相等的矩阵等价}，
+所以相似矩阵必定等价.
+\end{proof}
+\end{property}
+
+\begin{remark}
+由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1,theorem:特征值与特征向量.矩阵相似的必要条件4,theorem:特征值与特征向量.矩阵相似的必要条件5} 可知，
+数域\(K\)上的\(n\)阶方阵的行列式、秩、迹
+都是相似关系下的不变量，
+我们把这三个量统称为\DefineConcept{相似不变量}.
+\end{remark}
+
+\begin{example}
+已知矩阵\(\A = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & 0 & 1 \\
+	0 & 1 & x
+\end{bmatrix}\)与\(\B = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & y & 0 \\
+	0 & 0 & -1
+\end{bmatrix}\)相似.
+求\(x\)与\(y\).
+\begin{solution}
+因为\(\A\sim\B\)，所以，由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}，
+\[
+	\begin{vmatrix}
+		2 & 0 & 0 \\
+		0 & 0 & 1 \\
+		0 & 1 & x
+	\end{vmatrix}
+	= -2 = -2y =
+	\begin{vmatrix}
+		2 & 0 & 0 \\
+		0 & y & 0 \\
+		0 & 0 & -1
+	\end{vmatrix}
+	\implies y = 1;
+\]
+又由\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
+\[
+	\tr\A = 2+x
+	= 1+y = \tr\B
+	\implies
+	x = 0.
+\]
+\end{solution}
+\end{example}
+
 \subsection{相似类}
 \begin{property}\label{theorem:特征值与特征向量.相似关系是等价关系}
 %@see: 《线性代数》（张慎语、周厚隆） P97
@@ -263,182 +432,4 @@
 于是\(\B^m=\vb0\)，
 即\(\B\)也是以\(m\)为幂零指数的幂零矩阵.
 \end{proof}
-\end{example}
-
-\subsection{矩阵相似的性质}
-\begin{proposition}
-%@see: 《高等代数（第三版 上册）》（丘维声） P169 命题1
-%@see: 《线性代数》（张慎语、周厚隆） P97 性质2
-设矩阵\(\A_1,\A_2,\B_1,\B_2,\P \in M_n(K)\)，\(\P\)可逆，
-且\[
-	\B_1=\P^{-1}\A_1\P, \qquad
-	\B_2=\P^{-1}\A_2\P,
-\]
-则\begin{gather}
-	\B_1 + \B_2 = \P^{-1} (\A_1 + \A_2) \P, \\
-	\B_1 \B_2 = \P^{-1} (\A_1 \A_2) \P, \\
-	m\in\mathbb{N} \implies \B_1^m = \P^{-1}\A_1^m\P.
-		\label{equation:相似矩阵.利用相似性简化计算}
-\end{gather}
-\end{proposition}
-
-\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件1}
-%@see: 《线性代数》（张慎语、周厚隆） P97 性质1
-%@see: 《高等代数（第三版 上册）》（丘维声） P169 1°
-相似矩阵的行列式相等.
-\begin{proof}
-设\(\A,\B \in M_n(K)\).
-假设\(\A\sim\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
-使得\[
-	\P^{-1}\A\P=\B,
-\]
-两端取行列式，得\[
-	\abs{\B} = \abs{\P^{-1}\A\P}
-	= \abs{\P^{-1}}\abs{\A}\abs{\P}
-	= \abs{\P}^{-1}\abs{\A}\abs{\P}
-	= \abs{\A}.
-	\qedhere
-\]
-\end{proof}
-\end{property}
-\begin{proposition}
-%@see: 《高等代数（第三版 上册）》（丘维声） P169 2°
-设\(\A,\B \in M_n(K)\).
-若\(\A\sim\B\)，则\(\A\)和\(\B\)同为可逆或不可逆.
-\begin{proof}
-由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1} 立即可得.
-\end{proof}
-\end{proposition}
-\begin{remark}
-如果\(\A_1,\B_1\)可逆，
-那么\cref{equation:相似矩阵.利用相似性简化计算}
-可以推广为\(m\in\mathbb{Z} \implies \B_1^m = \P^{-1}\A_1^m\P\).
-这也说明：
-相似矩阵的同次幂也相似.
-\end{remark}
-
-\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件3}
-%@see: 《线性代数》（张慎语、周厚隆） P97 性质3
-相似矩阵有相同的特征多项式，从而有相同的特征值.
-\begin{proof}
-设\(\A,\B \in M_n(K)\).
-假设\(\A\sim\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
-使得\[
-	\P^{-1}\A\P=\B,
-\]
-于是\[
-	\abs{\l\E-\B}
-	=\abs{\P^{-1}(\l\E-\A)\P}
-	=\abs{\P^{-1}}\abs{\l\E-\A}\abs{\P}
-	=\abs{\l\E-\A}.
-	\qedhere
-\]
-\end{proof}
-\end{property}
-\begin{remark}
-\cref{theorem:特征值与特征向量.矩阵相似的必要条件3} 只是矩阵相似的必要不充分条件.
-下面我们举出一条反例，不相似的两个矩阵有相同的特征多项式和特征值.
-取\[
-	\A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix},
-	\quad\text{和}\quad
-	\B = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix},
-\]
-显然两者的特征多项式相同，都是\((\lambda-2)^2\)，
-故而两者的特征值也相同，都是\(\l=2\ (\text{二重})\).
-但\(\A\)与\(\B\)不相似，
-这是因为\(\B=2\E\)是数乘矩阵，可以和所有二阶矩阵交换，
-那么对任意二阶可逆矩阵\(\P\)都有\(\P^{-1}\B\P=\B\P^{-1}\P=\B\)，
-即\(\B\)只能与自身相似，
-\(\A\)与\(\B\)不相似.
-\end{remark}
-
-\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件4}
-%@see: 《高等代数（第三版 上册）》（丘维声） P170 4°
-相似矩阵有相同的迹.
-\begin{proof}
-假设\(\A\sim\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
-使得\[
-	\P^{-1}\A\P=\B,
-\]
-于是由\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹} 有\[
-	\tr\B
-	= \tr(\P^{-1}\A\P)
-	= \tr(\P(\P^{-1}\A))
-	= \tr\A.
-	\qedhere
-\]
-\end{proof}
-\end{property}
-
-\begin{property}\label{theorem:特征值与特征向量.矩阵相似的必要条件5}
-%@see: 《高等代数（第三版 上册）》（丘维声） P170 3°
-相似矩阵有相同的秩.
-\begin{proof}
-假设\(\A\sim\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
-使得\[
-	\P^{-1}\A\P=\B,
-\]
-于是由\cref{theorem:矩阵乘积的秩.与可逆矩阵相乘不变秩} 有\[
-	\rank\B = \rank(\P^{-1}\A\P)
-	= \rank\A.
-	\qedhere
-\]
-\end{proof}
-\end{property}
-
-\begin{property}
-相似矩阵与原矩阵等价，即\(\A\sim\B \implies \A\cong\B\).
-\begin{proof}
-由于\hyperref[theorem:特征值与特征向量.矩阵相似的必要条件5]{相似矩阵的秩相等}，
-而\hyperref[theorem:矩阵乘积的秩.矩阵等价的充分必要条件]{秩相等的矩阵等价}，
-所以相似矩阵必定等价.
-\end{proof}
-\end{property}
-
-\begin{remark}
-由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1,theorem:特征值与特征向量.矩阵相似的必要条件4,theorem:特征值与特征向量.矩阵相似的必要条件5} 可知，
-数域\(K\)上的\(n\)阶方阵的行列式、秩、迹
-都是相似关系下的不变量，
-我们把这三个量统称为\DefineConcept{相似不变量}.
-\end{remark}
-
-\begin{example}
-已知矩阵\(\A = \begin{bmatrix}
-	2 & 0 & 0 \\
-	0 & 0 & 1 \\
-	0 & 1 & x
-\end{bmatrix}\)与\(\B = \begin{bmatrix}
-	2 & 0 & 0 \\
-	0 & y & 0 \\
-	0 & 0 & -1
-\end{bmatrix}\)相似.
-求\(x\)与\(y\).
-\begin{solution}
-因为\(\A\sim\B\)，所以，由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}，
-\[
-	\begin{vmatrix}
-		2 & 0 & 0 \\
-		0 & 0 & 1 \\
-		0 & 1 & x
-	\end{vmatrix}
-	= -2 = -2y =
-	\begin{vmatrix}
-		2 & 0 & 0 \\
-		0 & y & 0 \\
-		0 & 0 & -1
-	\end{vmatrix}
-	\implies y = 1;
-\]
-又由\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
-\[
-	\tr\A = 2+x
-	= 1+y = \tr\B
-	\implies
-	x = 0.
-\]
-\end{solution}
 \end{example}
