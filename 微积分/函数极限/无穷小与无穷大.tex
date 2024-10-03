@@ -115,74 +115,6 @@
 \end{itemize}
 \end{definition}
 
-无穷大与无穷小之间有一种简单的关系，即：
-\begin{theorem}\label{theorem:极限.无穷大与无穷小的关系}
-%@see: 《高等数学（第六版 上册）》 P41 定理2
-设\(f\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基.
-令\(g(x) = \frac1{f(x)}\).
-\begin{itemize}
-	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷大，
-	则\(g\)为无穷小.
-
-	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷小，
-	且\((\exists B\in\mathcal{B})(\forall x\in B)[f(x) \neq 0]\)，
-	则\(g\)为无穷大.
-\end{itemize}
-\end{theorem}
-
-显然，当一个函数是无穷大时，它必定无界；
-但当一个函数无界时，它却不一定是无穷大.
-\begin{example}
-证明：函数\(f(x) = \frac1x \sin\frac1x\)在区间\((0,1]\)上无界，
-但该函数不是\(x\to0^+\)时的无穷大.
-\begin{proof}
-取数列\(u_n = \frac{\pi}{2} + n\pi\ (n=0,1,2,\dotsc)\)，
-那么恒有\(\abs{\sin u_n} = 1\)和\[
-	0 < \dotsb < \frac1{u_n} < \dotsb < \frac1{u_1} < \frac1{u_0} < 1
-\]成立.
-易见\((\forall M > 0)(\forall n\in\mathbb{N})[n > M/\pi \implies u_n > M]\)，
-数列\(\{u_n\}\)无界.
-由于\[
-	\abs{f(x)} = \abs{\frac1x \sin\frac1x}
-	= \abs{\frac1x} \abs{\sin\frac1x}
-	= \frac1x \abs{\sin\frac1x},
-\]\[
-	\abs{f(1/u_n)}
-	= u_n \abs{\sin u_n}
-	= u_n,
-\]
-所以函数列\(\{\abs{f(1/u_n)}\}\)也无界，
-自然地，函数\(f\)也无界.
-
-用反证法.
-假设\(f\)是当\(x\to0^+\)时的无穷大，
-即\[
-	(\forall M>0)
-	(\exists\delta>0)
-	(\forall x)
-	[
-		0<x<\delta
-		\implies
-		\abs{f(x)}>M
-	].
-\]
-取数列\(v_n = n\pi\ (n=1,2,\dotsc)\)，
-那么\(\sin v_n = 0\)和\(v_n>0\)恒成立，
-且\[
-	(\forall\delta>0)
-	(\forall n\in\mathbb{N})
-	\left[n>\ceil*{\frac1{\pi\delta}} \implies 0<\frac1{v_n}<\delta\right].
-\]
-由于\[
-	\abs{f\left(\frac1{v_n}\right)}
-	= v_n \sin v_n
-	= 0,
-\]
-所以函数列\(\{\abs{f(1/v_n)}\}\)恒为零，
-与假设矛盾，说明\(f(x)\)不是\(x\to0^+\)时的无穷大.
-\end{proof}
-\end{example}
-
 \subsection{无穷小的比较}
 现在我们已经知道，
 两个无穷小的和、差、积仍旧是无穷小.
@@ -453,6 +385,112 @@
 则\(\beta\)与\(\alpha\)是同阶无穷大.
 \end{proposition}
 
+\subsection{无穷小与无穷大的关系}
+无穷大与无穷小之间有一种简单的关系，即：
+\begin{theorem}\label{theorem:极限.无穷大与无穷小的关系}
+%@see: 《高等数学（第六版 上册）》 P41 定理2
+设\(f\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基.
+令\(g(x) = \frac1{f(x)}\).
+\begin{itemize}
+	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷大，
+	则\(g\)为无穷小.
+
+	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷小，
+	且\((\exists B\in\mathcal{B})(\forall x\in B)[f(x) \neq 0]\)，
+	则\(g\)为无穷大.
+\end{itemize}
+\end{theorem}
+
+\begin{proposition}%渐进比较
+%@see: 《算法导论（原书第3版）》 P29
+%@see: 《阶的估计基础》（潘承洞、于秀源） P7 法则2
+设\(\alpha,\beta,\gamma\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
+\(\alpha,\beta,\gamma\)都是在基\(\mathcal{B}\)上的无穷小，
+则\begin{itemize}
+	\item {\rm\bf 传递性}\begin{gather*}
+		\alpha = \Theta(\beta)
+		\land
+		\beta = \Theta(\gamma)
+		\implies
+		\alpha = \Theta(\gamma). \\
+		\alpha = O(\beta)
+		\land
+		\beta = O(\gamma)
+		\implies
+		\alpha = O(\gamma). \\
+		\alpha = o(\beta)
+		\land
+		\beta = o(\gamma)
+		\implies
+		\alpha = o(\gamma).
+	\end{gather*}
+
+	\item {\rm\bf 自反性}\begin{gather*}
+		\alpha = \Theta(\alpha). \\
+		\alpha = O(\alpha).
+	\end{gather*}
+
+	\item {\rm\bf 对称性}\begin{gather*}
+		\alpha = \Theta(\beta)
+		\iff
+		\beta = \Theta(\alpha).
+	\end{gather*}
+\end{itemize}
+\end{proposition}
+
+显然，当一个函数是无穷大时，它必定无界；
+但当一个函数无界时，它却不一定是无穷大.
+\begin{example}
+证明：函数\(f(x) = \frac1x \sin\frac1x\)在区间\((0,1]\)上无界，
+但该函数不是\(x\to0^+\)时的无穷大.
+\begin{proof}
+取数列\(u_n = \frac{\pi}{2} + n\pi\ (n=0,1,2,\dotsc)\)，
+那么恒有\(\abs{\sin u_n} = 1\)和\[
+	0 < \dotsb < \frac1{u_n} < \dotsb < \frac1{u_1} < \frac1{u_0} < 1
+\]成立.
+易见\((\forall M > 0)(\forall n\in\mathbb{N})[n > M/\pi \implies u_n > M]\)，
+数列\(\{u_n\}\)无界.
+由于\[
+	\abs{f(x)} = \abs{\frac1x \sin\frac1x}
+	= \abs{\frac1x} \abs{\sin\frac1x}
+	= \frac1x \abs{\sin\frac1x},
+\]\[
+	\abs{f(1/u_n)}
+	= u_n \abs{\sin u_n}
+	= u_n,
+\]
+所以函数列\(\{\abs{f(1/u_n)}\}\)也无界，
+自然地，函数\(f\)也无界.
+
+用反证法.
+假设\(f\)是当\(x\to0^+\)时的无穷大，
+即\[
+	(\forall M>0)
+	(\exists\delta>0)
+	(\forall x)
+	[
+		0<x<\delta
+		\implies
+		\abs{f(x)}>M
+	].
+\]
+取数列\(v_n = n\pi\ (n=1,2,\dotsc)\)，
+那么\(\sin v_n = 0\)和\(v_n>0\)恒成立，
+且\[
+	(\forall\delta>0)
+	(\forall n\in\mathbb{N})
+	\left[n>\ceil*{\frac1{\pi\delta}} \implies 0<\frac1{v_n}<\delta\right].
+\]
+由于\[
+	\abs{f\left(\frac1{v_n}\right)}
+	= v_n \sin v_n
+	= 0,
+\]
+所以函数列\(\{\abs{f(1/v_n)}\}\)恒为零，
+与假设矛盾，说明\(f(x)\)不是\(x\to0^+\)时的无穷大.
+\end{proof}
+\end{example}
+
 \subsection{无穷小与无穷大的运算}
 我们不难看出：当\(x\to0\)时，有\begin{gather*}
 	x \cdot o(1) = o(x), \qquad
@@ -619,42 +657,6 @@
 \end{equation}
 \end{solution}
 \end{example}
-
-\begin{proposition}%渐进比较
-%@see: 《算法导论（原书第3版）》 P29
-设\(\alpha,\beta,\gamma\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
-\(\alpha,\beta,\gamma\)都是在基\(\mathcal{B}\)上的无穷小，
-则\begin{itemize}
-	\item {\rm\bf 传递性}\begin{gather*}
-		\alpha = \Theta(\beta)
-		\land
-		\beta = \Theta(\gamma)
-		\implies
-		\alpha = \Theta(\gamma). \\
-		\alpha = O(\beta)
-		\land
-		\beta = O(\gamma)
-		\implies
-		\alpha = O(\gamma). \\
-		\alpha = o(\beta)
-		\land
-		\beta = o(\gamma)
-		\implies
-		\alpha = o(\gamma).
-	\end{gather*}
-
-	\item {\rm\bf 自反性}\begin{gather*}
-		\alpha = \Theta(\alpha). \\
-		\alpha = O(\alpha).
-	\end{gather*}
-
-	\item {\rm\bf 对称性}\begin{gather*}
-		\alpha = \Theta(\beta)
-		\iff
-		\beta = \Theta(\alpha).
-	\end{gather*}
-\end{itemize}
-\end{proposition}
 
 \subsection{等价替换}
 必须指出的是，等价无穷小、等价无穷大都是等价关系.
