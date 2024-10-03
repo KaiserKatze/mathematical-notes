@@ -177,7 +177,7 @@
 \begin{example}\label{example:定积分.点火公式}
 %@see: 《高等数学（第六版 上册）》 P251 例12
 %@see: 《数学分析（第二版 上册）》（陈纪修） P302 例7.3.8
-证明：\begin{equation}\label{equation:定积分.点火公式}
+证明：\begin{equation}\label{equation:定积分.点火公式1}
 	I_n = \int_0^{\frac{\pi}{2}} \sin^n x \dd{x}
 	= \left\{ \def\arraystretch{1.5} \begin{array}{rl}
 		\frac{\pi}{2}\frac{(n-1)!!}{n!!},
@@ -221,7 +221,8 @@
 \end{proof}
 \end{example}
 \begin{remark}
-由\cref{theorem:定积分.正余弦函数的复合的积分1} 可知\begin{equation}
+由\cref{theorem:定积分.正余弦函数的复合的积分1}
+可知\begin{equation}\label{equation:定积分.点火公式2}
 	\int_0^{\frac\pi2} \sin^n x \dd{x}
 	= \int_0^{\frac\pi2} \cos^n x \dd{x}.
 \end{equation}
@@ -236,10 +237,10 @@
 	\int_0^{\frac\pi2} \sin^n x \dd{x}
 	= \int_{\frac\pi2}^\pi \sin^n x \dd{x},
 \]
-即有\[
+即有\begin{equation}\label{equation:定积分.点火公式3}
 	\int_0^\pi \sin^n x \dd{x}
 	= 2 \int_0^{\frac\pi2} \sin^n x \dd{x}.
-\]
+\end{equation}
 \begin{figure}[htb]
 	\centering
 	\begin{tikzpicture}
@@ -274,7 +275,7 @@
 都关于直线\(x=\frac\pi2\)对称，
 反之，它的正奇数次幂的图形
 都关于点\((\frac\pi2,0)\)中心对称，
-那么有\[
+那么有\begin{equation}\label{equation:定积分.点火公式4}
 	\int_0^\pi \cos^n x \dd{x}
 	= \left\{ \begin{array}{cl}
 		2 \int_0^{\frac\pi2} \sin^n x \dd{x},
@@ -282,10 +283,10 @@
 		0,
 		& \text{$n$是奇数}.
 	\end{array} \right.
-\]
+\end{equation}
 \end{remark}
 
-下面特别就\cref{equation:定积分.点火公式} 做一点点展开.
+下面特别就\cref{equation:定积分.点火公式1} 做一点点展开.
 \begin{example}
 证明：\begin{equation}
 	\lim_{n\to\infty} \int_0^{\frac\pi2} \sin^n x \dd{x} = 0.
@@ -336,7 +337,7 @@
 
 可以观察到\cref{example:定积分.点火公式} 中，
 \(I_{2k}\)和\(I_{2k+1}\)几乎只差一个系数\(\pi/2\).
-我们不禁猜想是否可以利用\cref{equation:定积分.点火公式} 求出圆周率\(\pi\).
+我们不禁猜想是否可以利用\cref{equation:定积分.点火公式1} 求出圆周率\(\pi\).
 \begin{example}[沃利斯公式]
 %@see: 《数学分析教程 （第3版 上册）》（史济怀） P309
 证明：\begin{equation}\label{equation:定积分.沃利斯公式}
@@ -379,16 +380,16 @@
 	I_n = \int_0^\pi x \sin^n x \dd{x}
 	\quad(n\in\mathbb{N}^+).
 \]
-%TODO
+\begin{solution}
+直接计算得\begin{align*}
+	\int_0^\pi x \sin^n x \dd{x}
+	&= \frac\pi2 \int_0^\pi \sin^n x \dd{x}
+		\tag{\cref{theorem:定积分.正余弦函数的复合的积分1}} \\
+	&= \pi \int_0^{\frac\pi2} \sin^n x \dd{x}.
+		\tag{\cref{equation:定积分.点火公式3}}
+\end{align*}
+\end{solution}
 %@Mathematica: Integrate[x Sin[x]^n, {x, 0, Pi}, Assumptions -> {n \[Element] PositiveIntegers}]
-% 結果是(\[Pi]^(3/2) Gamma[(1 + n)/2])/(2 Gamma[1 + n/2])
-%\[
-%	\pi^{\frac32} \frac{
-%		\Gamma\left(\frac{1+n}{2}\right)
-%	}{
-%		\Gamma\left(1+\frac{n}{2}\right)
-%	}.
-%\]
 \end{example}
 
 \begin{example}
