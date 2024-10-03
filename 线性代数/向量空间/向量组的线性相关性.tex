@@ -76,16 +76,14 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 
 \begin{proposition}\label{theorem:线性方程组.单向量组线性相关的充分必要条件}
 设\(\a \in K^n\)，
-则\[
-	\begin{split}
-		\text{向量组\(\{\a\}\)线性相关}
-		\iff
-		\a=\vb0, \\
-		\text{向量组\(\{\a\}\)线性无关}
-		\iff
-		\a\neq\vb0.
-	\end{split}
-\]
+则\begin{align*}
+	\text{向量组\(\{\a\}\)线性相关}
+	\iff
+	\a=\vb0, \\
+	\text{向量组\(\{\a\}\)线性无关}
+	\iff
+	\a\neq\vb0.
+\end{align*}
 \begin{proof}
 必要性.
 设\(\{\a\}\)线性相关，存在数\(k \neq 0\)使得\(k\a = \vb0\)，可得\(\a = \vb0\).
@@ -97,20 +95,18 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 
 \begin{theorem}\label{theorem:线性方程组.向量组线性相关的充分必要条件1}
 设向量组\(A=\{\AutoTuple{\a}{s}\}\ (s>1)\)，
-则\[
-	\begin{split}
-		\text{\(A\)线性相关}
-		&\iff
-		\text{\(A\)中至少有一个向量可由其余\(s-1\)个向量线性表出} \\
-		&\iff
-		(\exists \a\in A)[\a \in \Span(A-\{\a\})], \\
-		\text{\(A\)线性无关}
-		&\iff
-		\text{\(A\)中每一个向量都不能由其余向量线性表出} \\
-		&\iff
-		(\forall \a\in A)[\a \notin \Span(A-\{\a\})].
-	\end{split}
-\]
+则\begin{align*}
+	\text{\(A\)线性相关}
+	&\iff
+	\text{\(A\)中至少有一个向量可由其余\(s-1\)个向量线性表出} \\
+	&\iff
+	(\exists \a\in A)[\a \in \Span(A-\{\a\})], \\
+	\text{\(A\)线性无关}
+	&\iff
+	\text{\(A\)中每一个向量都不能由其余向量线性表出} \\
+	&\iff
+	(\forall \a\in A)[\a \notin \Span(A-\{\a\})].
+\end{align*}
 \begin{proof}
 必要性.
 \(A\)线性相关，则存在不全为零的数\(\AutoTuple{k}{s}\)，使得\[
@@ -145,16 +141,14 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 %@see: 《高等代数（第三版 上册）》（丘维声） P69 命题1
 %@see: 《高等代数（第三版 上册）》（丘维声） P69 推论2
 设向量组\(A\)线性无关，
-则\[
-	\begin{split}
-		\text{向量\(\b\)可以由\(A\)线性表出}
-		\iff
-		\text{向量组\(B=A\cup\{\b\}\)线性相关}, \\
-		\text{向量\(\b\)不能由\(A\)线性表出}
-		\iff
-		\text{向量组\(B=A\cup\{\b\}\)线性无关}.
-	\end{split}
-\]
+则\begin{align*}
+	\text{向量\(\b\)可以由\(A\)线性表出}
+	\iff
+	\text{向量组\(B=A\cup\{\b\}\)线性相关}, \\
+	\text{向量\(\b\)不能由\(A\)线性表出}
+	\iff
+	\text{向量组\(B=A\cup\{\b\}\)线性无关}.
+\end{align*}
 \begin{proof}
 先证必要性.
 由\cref{theorem:线性方程组.向量组线性相关的充分必要条件1} 可知，
@@ -165,6 +159,7 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 则存在不全为零的数\(\AutoTuple{k}{s},k\)使得\[
 	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s + k \b = \z.
 \]
+用反证法.
 假设\(k = 0\)，
 则\(\AutoTuple{k}{s}\)不全为零，
 且有\(k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z\)，
@@ -199,34 +194,49 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 那么\(A\)的任意一个部分组也线性无关.
 \end{corollary}
 
+%@see: 《高等代数（第三版 上册）》（丘维声） P69
 给定\(n\)维向量组\(\AutoTuple{\a}{s}\)，
 为其中的每个向量都添上\(m\)个分量，
 所添分量的位置对于每个向量都一样，
-把得到的\(n+m\)维向量组\(\AutoTuple{\b}{s}\)称为%
+把得到的\(n+m\)维向量组\(\AutoTuple{\b}{s}\)称为
 “\(\AutoTuple{\a}{s}\)的\DefineConcept{延伸组}”；
-反过来，把\(\AutoTuple{\a}{s}\)称为%
+反过来，把\(\AutoTuple{\a}{s}\)称为
 “\(\AutoTuple{\b}{s}\)的\DefineConcept{缩短组}”.
 
-如果向量组线性无关，那么它的延伸组也线性无关.
-如果向量组线性相关，那么它的缩短组也线性相关.
+线性无关向量组的延伸组线性无关.
+线性相关向量组的缩短组线性相关.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:线性方程组.n个n维向量组线性相关的充分必要条件}
+%@see: 《线性代数》（张慎语、周厚隆） P71 性质5
 \(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性相关的充分必要条件是：\[
 	\det(\AutoTuple{\a}{n})=0.
 \]
+\begin{proof}
+由\hyperref[theorem:线性方程组.克拉默法则]{克拉默法则}可知\begin{align*}
+	\text{\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性相关}
+	&\iff \text{方程\(x_1\vb\alpha_1+\dotsb+x_n\vb\alpha_n=\vb0\)有非零解} \\
+	&\iff \text{方程\(x_1\vb\alpha_1+\dotsb+x_n\vb\alpha_n=\vb0\)有无穷多解} \\
+	&\iff \det(\AutoTuple{\vb\alpha}{n})=0.
+	\qedhere
+\end{align*}
+\end{proof}
 \end{theorem}
-
 \begin{corollary}
 \(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性无关的充分必要条件是：\[
 	\det(\AutoTuple{\a}{n})\neq0.
 \]
+\begin{proof}
+这是\cref{theorem:线性方程组.n个n维向量组线性相关的充分必要条件} 的逆否命题.
+\end{proof}
 \end{corollary}
-
+\begin{remark}
+考察\(n\)个\(n\)维行向量的线性相关性时，只需将各个向量转置，化为列向量组即可.
+\end{remark}
+\begin{remark}
 需要注意的是，当\(s \neq n\)时，
 \(s\)个\(n\)维向量\(\AutoTuple{\a}{s}\)不能构成行列式，
 只能用其他方法判断其线性相关性.
-
-
+\end{remark}
 
 \begin{theorem}[替换定理]
 设向量组\(\AutoTuple{\a}{s}\)线性无关，
@@ -235,27 +245,59 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 那么用\(\b\)替换\(\a_j\)以后得到的向量组
 \(\AutoTuple{\a}{j-1},\b,\AutoTuple{\a}[j+1]{s}\)
 也线性无关.
+%TODO proof
 \end{theorem}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P71 性质5
 设\(\A\)是3阶矩阵，\(\a_1,\a_2,\a_3\)为3维列向量组，
 若\(\A\a_1,\A\a_2,\A\a_3\)线性无关，
 证明：\(\a_1,\a_2,\a_3\)线性无关，且\(\A\)为可逆矩阵.
 \begin{proof}
-因为\(\A\a_1,\A\a_2,\A\a_3\)线性无关，所以齐次线性方程组\[
-	x_1 \A\a_1 + x_2 \A\a_2 + x_3 \A\a_3
-	= (\A\a_1,\A\a_2,\A\a_3) (x_1,x_2,x_3)^T
-	= \z
+因为\(\A\a_1,\A\a_2,\A\a_3\)线性无关，所以\[
+	\abs{\A} \cdot \det(\a_1,\a_2,\a_3)
+	= \det(\A\a_1,\A\a_2,\A\a_3) \neq 0,
 \]
-只有零解（即\(x_1 = x_2 = x_3 = 0\)），根据克拉默法则，有\[
-	\det(\A\a_1,\A\a_2,\A\a_3) \neq 0.
-\]
+从而有\(\abs{\A} \neq 0\)，
+且\(\det(\a_1,\a_2,\a_3) \neq 0\)，
+因此\(\A\)是可逆矩阵，
+而齐次线性方程组\(x_1 \a_1 + x_2 \a_2 + x_3 \a_3 = \z\)只有零解，
+也即向量组\(\a_1,\a_2,\a_3\)线性无关.
+\end{proof}
+\end{example}
 
-因为\(\det(\A\a_1,\A\a_2,\A\a_3) = \abs{\A} \cdot \det(\a_1,\a_2,\a_3) \neq 0\)，
-所以\(\abs{\A} \neq 0\)（即\(\A\)是可逆矩阵），
-且\(\det(\a_1,\a_2,\a_3) \neq 0\)%
-（即齐次线性方程组\(x_1 \a_1 + x_2 \a_2 + x_3 \a_3 = \z\)只有零解，
-向量组\(\a_1,\a_2,\a_3\)线性无关）.
+\begin{example}
+设向量组\(\{\AutoTuple{\vb\alpha}{s}\}\)线性相关，
+去掉任一向量后线性无关.
+证明：方程\[
+	x_1 \vb\alpha_1 + \dotsb + x_s \vb\alpha_s = \vb0
+\]的解\(\AutoTuple{x}{s}\)要么全为零，要么全不为零.
+\begin{proof}
+显然方程\(x_1 \vb\alpha_1 + \dotsb + x_s \vb\alpha_s = \vb0\)有零解，
+并且由于\(\{\AutoTuple{\vb\alpha}{s}\}\)线性相关，
+所以这个方程一定有非零解，于是我们只需证明：
+这个方程的非零解向量\((\AutoTuple{x}{s})^T\)的各个分量全不为零.
+
+% 首先证明向量组\(\{\AutoTuple{\vb\alpha}{s}\}\)中每一个向量都不是零向量.
+% 用反证法.
+% 假设向量组\(\{\AutoTuple{\vb\alpha}{s}\}\)中存在一个向量是零向量，
+% 那么由题设可知，去掉这个零向量后，剩下\(s-1\)个向量线性无关，
+% 但是，如果去掉的向量不是这个零向量，
+% 则剩下的\(s-1\)个向量中含有一个零向量，必定线性相关，与题设矛盾！
+
+用反证法.
+假设方程\(x_1 \vb\alpha_1 + \dotsb + x_s \vb\alpha_s = \vb0\)的
+非零解\((\AutoTuple{x}{s})^T\)的第\(i\)个分量\(x_i\)等于\(0\)，
+即\[
+	x_1 \vb\alpha_1 + \dotsb + x_{i-1} \vb\alpha_{i-1}
+	+ 0 \vb\alpha_i + x_{i+1} \vb\alpha_{i+1} + \dotsb
+	+ x_s \vb\alpha_s
+	= \vb0.
+\]
+这相当于去掉了\(\vb\alpha_i\)，由题设可知，剩下的\(s-1\)个向量
+\(\{\vb\alpha_1,\dotsc,\vb\alpha_{i-1},\vb\alpha_{i+1},\dotsc,\vb\alpha_s\}\)线性无关，
+那么这个方程只有零解，即\(x_1 = \dotsb = x_s = 0\)，矛盾！
+因此\((\AutoTuple{x}{s})^T\)的各个分量全不为零.
 \end{proof}
 \end{example}
 
