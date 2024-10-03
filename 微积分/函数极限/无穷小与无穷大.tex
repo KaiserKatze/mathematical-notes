@@ -261,6 +261,17 @@
 最后，我们用\(\Theta(1)\)表示某个函数是常数函数.
 \end{remark}
 
+\begin{proposition}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P101 (2)
+设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
+\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷小，
+且\(\alpha(x)\neq0\).
+若\[
+	\lim_\mathcal{B} \frac{\beta(x)}{\alpha(x)} = c\ (\text{$c$是非零常数}),
+\]
+则\(\beta\)与\(\alpha\)是同阶无穷小.
+\end{proposition}
+
 %@see: 《高等数学（第六版 上册）》 P57
 \begin{example}
 因为\(\lim_{x\to0} \frac{3x^2}{x} = 0\)，
@@ -326,42 +337,6 @@
 即\(\Theta(\alpha) \subseteq O(\alpha)\).
 \end{remark}
 
-\begin{proposition}%渐进比较
-%@see: 《算法导论（原书第3版）》 P29
-设\(\alpha,\beta,\gamma\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
-\(\alpha,\beta,\gamma\)都是在基\(\mathcal{B}\)上的无穷小，
-则\begin{itemize}
-	\item {\rm\bf 传递性}\begin{gather*}
-		\alpha = \Theta(\beta)
-		\land
-		\beta = \Theta(\gamma)
-		\implies
-		\alpha = \Theta(\gamma). \\
-		\alpha = O(\beta)
-		\land
-		\beta = O(\gamma)
-		\implies
-		\alpha = O(\gamma). \\
-		\alpha = o(\beta)
-		\land
-		\beta = o(\gamma)
-		\implies
-		\alpha = o(\gamma).
-	\end{gather*}
-
-	\item {\rm\bf 自反性}\begin{gather*}
-		\alpha = \Theta(\alpha). \\
-		\alpha = O(\alpha).
-	\end{gather*}
-
-	\item {\rm\bf 对称性}\begin{gather*}
-		\alpha = \Theta(\beta)
-		\iff
-		\beta = \Theta(\alpha).
-	\end{gather*}
-\end{itemize}
-\end{proposition}
-
 \begin{proposition}
 设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
 \(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷小，
@@ -371,17 +346,6 @@
 	\iff
 	\text{\(\alpha\)是比\(\beta\)低阶的无穷小}.
 \]
-\end{proposition}
-
-\begin{proposition}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P101 (2)
-设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
-\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷小，
-且\(\alpha(x)\neq0\).
-若\[
-	\lim_\mathcal{B} \frac{\beta(x)}{\alpha(x)} = c\ (\text{$c$是非零常数}),
-\]
-则\(\beta\)与\(\alpha\)是同阶无穷小.
 \end{proposition}
 
 \begin{remark}
@@ -418,64 +382,6 @@
 	\ord_{x\to0} f(x) = \mu.
 \]
 \end{example}
-
-\begin{example}
-%@see: 《高等数学（第六版 上册）》 P58 例1
-证明：当\(x\to0\)时，\begin{equation}
-	\sqrt[n]{1+x} - 1 \sim \frac1n x.
-\end{equation}
-\begin{proof}
-因为\begin{align*}
-	\frac{\sqrt[n]{1+x} - 1}{\frac1n x}
-	&= \frac{(\sqrt[n]{1+x})^n - 1}{\frac1n x \left[ \sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1 \right]} \\
-	&= \frac{n}{\sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1},
-\end{align*}
-而\[
-	\lim_{x\to0} \sqrt[n]{(1+x)^m} = 1,
-\]
-所以\[
-	\lim_{x\to0} \frac{\sqrt[n]{1+x} - 1}{\frac1n x} = \lim_{x\to0} \frac{n}{1 \cdot n} = 1,
-\]
-也就是说\(\sqrt[n]{1+x} - 1 \sim \frac1n x \quad(x\to0)\).
-\end{proof}
-\end{example}
-
-\begin{example}
-设\(a\neq0\).
-计算极限\(\lim_{x\to0} \frac{(1+x)^a-1}x\).
-\begin{solution}
-%@see: https://www.bilibili.com/video/BV1mG411Z7mV/?t=622
-令\(t = (1+x)^a-1\)，
-则\[
-	a \ln(1+x) = \ln(1+t),
-	\qquad
-	1+x=\exp[\frac1a \ln(1+t)],
-	\qquad
-	x=\exp[\frac1a \ln(1+t)]-1,
-\]
-且\(t\to0\ (x\to0)\)，
-于是\[
-	\lim_{x\to0} \frac{(1+x)^a-1}x
-	= \lim_{t\to0} \frac{t}{\exp[\frac1a \ln(1+t)]-1}.
-\]
-因为\(\ln(1+t)\to0\ (t\to0)\)和\(e^x-1 \sim x\ (x\to0)\)，
-所以\[
-	\lim_{x\to0} \frac{(1+x)^a-1}x
-	= \lim_{t\to0} \frac{t}{\frac1a \ln(1+t)}
-	= a \lim_{t\to0} \frac{t}{\ln(1+t)}.
-\]
-由\cref{equation:函数极限.重要极限12} 可知
-\(\lim_{t\to0} \frac{\ln(1+t)}{t} = 1\)，
-因此\begin{equation}\label{equation:函数极限.重要极限16}
-	\lim_{x\to0} \frac{(1+x)^a-1}x
-	= a.
-\end{equation}
-\end{solution}
-\end{example}
-\begin{remark}
-从\cref{equation:函数极限.重要极限16} 可以看出：
-只要\(a\neq0\)，就有\((1+x)^a-1 \sim ax\ (x\to0)\).
-\end{remark}
 
 \subsection{无穷大的比较}
 \begin{definition}\label{definition:无穷小和无穷大.无穷大的比较}
@@ -547,7 +453,7 @@
 则\(\beta\)与\(\alpha\)是同阶无穷大.
 \end{proposition}
 
-\subsection{无穷小的运算}
+\subsection{无穷小与无穷大的运算}
 我们不难看出：当\(x\to0\)时，有\begin{gather*}
 	x \cdot o(1) = o(x), \qquad
 	x \cdot o(x) = o(x^2), \\
@@ -714,6 +620,42 @@
 \end{solution}
 \end{example}
 
+\begin{proposition}%渐进比较
+%@see: 《算法导论（原书第3版）》 P29
+设\(\alpha,\beta,\gamma\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
+\(\alpha,\beta,\gamma\)都是在基\(\mathcal{B}\)上的无穷小，
+则\begin{itemize}
+	\item {\rm\bf 传递性}\begin{gather*}
+		\alpha = \Theta(\beta)
+		\land
+		\beta = \Theta(\gamma)
+		\implies
+		\alpha = \Theta(\gamma). \\
+		\alpha = O(\beta)
+		\land
+		\beta = O(\gamma)
+		\implies
+		\alpha = O(\gamma). \\
+		\alpha = o(\beta)
+		\land
+		\beta = o(\gamma)
+		\implies
+		\alpha = o(\gamma).
+	\end{gather*}
+
+	\item {\rm\bf 自反性}\begin{gather*}
+		\alpha = \Theta(\alpha). \\
+		\alpha = O(\alpha).
+	\end{gather*}
+
+	\item {\rm\bf 对称性}\begin{gather*}
+		\alpha = \Theta(\beta)
+		\iff
+		\beta = \Theta(\alpha).
+	\end{gather*}
+\end{itemize}
+\end{proposition}
+
 \subsection{等价替换}
 必须指出的是，等价无穷小、等价无穷大都是等价关系.
 \begin{property}
@@ -791,6 +733,64 @@
 分子及分母都可用等价无穷小来代替.
 因此，如果用来代替的无穷小选得适当的话，
 可以使计算简化.
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P58 例1
+证明：当\(x\to0\)时，\begin{equation}
+	\sqrt[n]{1+x} - 1 \sim \frac1n x.
+\end{equation}
+\begin{proof}
+因为\begin{align*}
+	\frac{\sqrt[n]{1+x} - 1}{\frac1n x}
+	&= \frac{(\sqrt[n]{1+x})^n - 1}{\frac1n x \left[ \sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1 \right]} \\
+	&= \frac{n}{\sqrt[n]{(1+x)^{n-1}} + \sqrt[n]{(1+x)^{n-2}} + \dotsb + 1},
+\end{align*}
+而\[
+	\lim_{x\to0} \sqrt[n]{(1+x)^m} = 1,
+\]
+所以\[
+	\lim_{x\to0} \frac{\sqrt[n]{1+x} - 1}{\frac1n x} = \lim_{x\to0} \frac{n}{1 \cdot n} = 1,
+\]
+也就是说\(\sqrt[n]{1+x} - 1 \sim \frac1n x \quad(x\to0)\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(a\neq0\).
+计算极限\(\lim_{x\to0} \frac{(1+x)^a-1}x\).
+\begin{solution}
+%@see: https://www.bilibili.com/video/BV1mG411Z7mV/?t=622
+令\(t = (1+x)^a-1\)，
+则\[
+	a \ln(1+x) = \ln(1+t),
+	\qquad
+	1+x=\exp[\frac1a \ln(1+t)],
+	\qquad
+	x=\exp[\frac1a \ln(1+t)]-1,
+\]
+且\(t\to0\ (x\to0)\)，
+于是\[
+	\lim_{x\to0} \frac{(1+x)^a-1}x
+	= \lim_{t\to0} \frac{t}{\exp[\frac1a \ln(1+t)]-1}.
+\]
+因为\(\ln(1+t)\to0\ (t\to0)\)和\(e^x-1 \sim x\ (x\to0)\)，
+所以\[
+	\lim_{x\to0} \frac{(1+x)^a-1}x
+	= \lim_{t\to0} \frac{t}{\frac1a \ln(1+t)}
+	= a \lim_{t\to0} \frac{t}{\ln(1+t)}.
+\]
+由\cref{equation:函数极限.重要极限12} 可知
+\(\lim_{t\to0} \frac{\ln(1+t)}{t} = 1\)，
+因此\begin{equation}\label{equation:函数极限.重要极限16}
+	\lim_{x\to0} \frac{(1+x)^a-1}x
+	= a.
+\end{equation}
+\end{solution}
+\end{example}
+\begin{remark}
+从\cref{equation:函数极限.重要极限16} 可以看出：
+只要\(a\neq0\)，就有\((1+x)^a-1 \sim ax\ (x\to0)\).
+\end{remark}
 
 \begin{example}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P106 例3.3.9
