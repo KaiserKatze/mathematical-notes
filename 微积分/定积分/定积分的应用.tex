@@ -265,6 +265,46 @@ t \to 0\ (x \to a)\)，
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《2009年全国硕士研究生入学统一考试（数学一）》三解答题/第17题
+椭球面\(S_1\)是椭圆\(\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\)绕\(x\)轴旋转而成，
+圆锥面\(S_2\)是由过点\(M_0(p,0)\)且与上述椭圆相切的直线绕\(x\)轴旋转而成，
+其中\(p>a>0,b>0\)，
+计算\(S_1\)与\(S_2\)之间的立体的体积.
+\begin{solution}
+椭圆上任意一点\((\xi,\eta)\)的切线方程为\[
+	\frac{x\xi}{a^2} + \frac{y\eta}{b^2} = 1.
+	\eqno(1)
+\]
+代入点\(M_0\)的坐标得\(\frac{p\xi}{a^2} = 1\)，
+解得\[
+%@Mathematica: Solve[{(x \[Xi])/a^2 + (y \[Eta])/b^2 == 1}, \[Xi]] /. {x -> p, y -> 0}
+	\xi = \frac{a^2}{p}.
+	\eqno(2)
+\]
+由于\((\xi,\eta)\)同时满足旋转椭球面方程，即\[
+	\frac{\xi^2}{a^2} + \frac{\eta^2}{b^2} = 1,
+\]
+解出\(\eta\)的正根，得\[
+%@Mathematica: Solve[\[Xi]^2/a^2 + \[Eta]^2/b^2 == 1, \[Eta]] /. %1[[1]]
+	\eta = \frac{b}{p} \sqrt{p^2 - a^2}.
+	\eqno(3)
+\]
+于是连接\(M\left( \frac{a^2}{p}, \frac{b}{p} \sqrt{p^2 - a^2} \right)\)与\(M_0\)的直线
+就是上述椭圆切线\[
+	l: y = \frac{\eta}{\xi - p} (x - p),
+\]
+而圆锥面\(S_2\)可以看作切线\(l\)绕\(x\)轴旋转所得.
+因此\(S_1\)与\(S_2\)之间的立体的体积为\begin{align*}
+%@ V1 = Integrate[((\[Eta] (x - p))/(\[Xi] - p))^2, {x, \[Xi], p}]
+%@ V2 = Integrate[b^2 (1 - x^2/a^2), {x, \[Xi], a}]
+	V &= \pi \int_\xi^p \left[ \frac{\eta}{\xi - p} (x - p) \right]^2 \dd{x}
+	- \pi \int_\xi^a b^2 \left( 1 - \frac{x^2}{a^2} \right) \dd{x} \\
+	&= \pi \left[ \frac{b^2 (a^2-p^2)^2}{3 p^3} - \frac{2 a b^2}{3} - \frac{a^4 b^2}{3 p^3} + \frac{a^2 b^2}{p} \right].
+\end{align*}
+\end{solution}
+\end{example}
+
 由连续曲线\(y=f(x)\)、直线\(x=a\)和\(x=b\)及\(x\)轴所围成的曲边梯形
 绕\(y\)轴旋转一周而成的立体的体积为
 \begin{equation}\label{equation:定积分.曲边梯形绕y轴旋转体的体积}
