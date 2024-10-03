@@ -82,6 +82,107 @@
 \end{proof}
 \end{theorem}
 
+\subsection{无穷大的概念}
+\begin{definition}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P103 定义3.3.2
+设\(f\in\mathbb{R}^X\).
+\begin{itemize}
+	\item 若\(\lim_{x\to\infty} f(x) = \infty\)，
+	则称“函数\(f\)是当\(x\to\infty\)时的\DefineConcept{无穷大}”.
+
+	\item 若\(\lim_{x\to\infty} f(x) = +\infty\)，
+	则称“函数\(f\)是当\(x\to\infty\)时的\DefineConcept{正无穷大}”.
+
+	\item 若\(\lim_{x\to\infty} f(x) = -\infty\)，
+	则称“函数\(f\)是当\(x\to\infty\)时的\DefineConcept{负无穷大}”.
+\end{itemize}
+我们把正无穷大和负无穷大统称为\DefineConcept{定号无穷大}，
+把既非正无穷大又非负无穷大的无穷大称为\DefineConcept{不定号无穷大}.
+\end{definition}
+这里的极限过程\(x \to \infty\)可以扩充到\(x \to x_0\)、\(x \to x_0^+\)、\(x \to x_0^-\)、\(x \to +\infty\)、\(x \to -\infty\)等情况.
+
+\begin{definition}
+设\(f\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基.
+\begin{itemize}
+	\item 若\(\lim_\mathcal{B} f(x) = \infty\)，
+	则称“函数\(f\)是在基\(\mathcal{B}\)上的\DefineConcept{无穷大}”.
+
+	\item 若\(\lim_\mathcal{B} f(x) = +\infty\)，
+	则称“函数\(f\)是在基\(\mathcal{B}\)上的\DefineConcept{正无穷大}”.
+
+	\item 若\(\lim_\mathcal{B} f(x) = -\infty\)，
+	则称“函数\(f\)是在基\(\mathcal{B}\)上的\DefineConcept{负无穷大}”.
+\end{itemize}
+\end{definition}
+
+无穷大与无穷小之间有一种简单的关系，即：
+\begin{theorem}\label{theorem:极限.无穷大与无穷小的关系}
+%@see: 《高等数学（第六版 上册）》 P41 定理2
+设\(f\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基.
+令\(g(x) = \frac1{f(x)}\).
+\begin{itemize}
+	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷大，
+	则\(g\)为无穷小.
+
+	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷小，
+	且\((\exists B\in\mathcal{B})(\forall x\in B)[f(x) \neq 0]\)，
+	则\(g\)为无穷大.
+\end{itemize}
+\end{theorem}
+
+显然，当一个函数是无穷大时，它必定无界；
+但当一个函数无界时，它却不一定是无穷大.
+\begin{example}
+证明：函数\(f(x) = \frac1x \sin\frac1x\)在区间\((0,1]\)上无界，
+但该函数不是\(x\to0^+\)时的无穷大.
+\begin{proof}
+取数列\(u_n = \frac{\pi}{2} + n\pi\ (n=0,1,2,\dotsc)\)，
+那么恒有\(\abs{\sin u_n} = 1\)和\[
+	0 < \dotsb < \frac1{u_n} < \dotsb < \frac1{u_1} < \frac1{u_0} < 1
+\]成立.
+易见\((\forall M > 0)(\forall n\in\mathbb{N})[n > M/\pi \implies u_n > M]\)，
+数列\(\{u_n\}\)无界.
+由于\[
+	\abs{f(x)} = \abs{\frac1x \sin\frac1x}
+	= \abs{\frac1x} \abs{\sin\frac1x}
+	= \frac1x \abs{\sin\frac1x},
+\]\[
+	\abs{f(1/u_n)}
+	= u_n \abs{\sin u_n}
+	= u_n,
+\]
+所以函数列\(\{\abs{f(1/u_n)}\}\)也无界，
+自然地，函数\(f\)也无界.
+
+用反证法.
+假设\(f\)是当\(x\to0^+\)时的无穷大，
+即\[
+	(\forall M>0)
+	(\exists\delta>0)
+	(\forall x)
+	[
+		0<x<\delta
+		\implies
+		\abs{f(x)}>M
+	].
+\]
+取数列\(v_n = n\pi\ (n=1,2,\dotsc)\)，
+那么\(\sin v_n = 0\)和\(v_n>0\)恒成立，
+且\[
+	(\forall\delta>0)
+	(\forall n\in\mathbb{N})
+	\left[n>\ceil*{\frac1{\pi\delta}} \implies 0<\frac1{v_n}<\delta\right].
+\]
+由于\[
+	\abs{f\left(\frac1{v_n}\right)}
+	= v_n \sin v_n
+	= 0,
+\]
+所以函数列\(\{\abs{f(1/v_n)}\}\)恒为零，
+与假设矛盾，说明\(f(x)\)不是\(x\to0^+\)时的无穷大.
+\end{proof}
+\end{example}
+
 \subsection{无穷小的比较}
 现在我们已经知道，
 两个无穷小的和、差、积仍旧是无穷小.
@@ -376,6 +477,76 @@
 只要\(a\neq0\)，就有\((1+x)^a-1 \sim ax\ (x\to0)\).
 \end{remark}
 
+\subsection{无穷大的比较}
+\begin{definition}\label{definition:无穷小和无穷大.无穷大的比较}
+设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
+\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷大.
+\newcommand{\lf}[1][]{\lim_\mathcal{B} \frac{\beta(x)}{\alpha^{#1}(x)}}
+\begin{itemize}
+	%@see: 《数学分析（第二版 上册）》（陈纪修） P103 (1)
+	\item 如果\(\lf=\infty\)，
+	就说“\(\beta\)是比\(\alpha\)~\DefineConcept{高阶}的无穷大”.
+
+	\item 如果\(\lf=0\)，
+	就说“\(\beta\)是比\(\alpha\)~\DefineConcept{低阶}的无穷大”，
+	记作\(\beta = o(\alpha)\).
+
+	%@see: 《数学分析（第二版 上册）》（陈纪修） P103 (2)
+	\item 如果\[
+		(\exists A>0)
+		(\exists B\in\mathcal{B})
+		(\forall x\in B)
+		\left[
+			\abs{\frac{\beta(x)}{\alpha(x)}} \leq A
+		\right],
+	\]
+	就说“\(\frac\beta\alpha\)是在基\(\mathcal{B}\)上的\DefineConcept{有界量}”，
+	记为\(\beta = O(\alpha)\).
+
+	\item 如果\[
+		(\exists A>0)
+		(\exists a>0)
+		(\exists B\in\mathcal{B})
+		(\forall x\in B)
+		\left[
+			a \leq \abs{\frac{\beta(x)}{\alpha(x)}} \leq A
+		\right],
+	\]
+	就说“\(\alpha\)与\(\beta\)是\DefineConcept{同阶}无穷大\footnote{在研究算法时，
+	我们会说“\(\alpha\)是\(\beta\)的一个\DefineConcept{渐进紧确界}%
+	（asymptotically tight bound）”.}”，
+	记作\(\beta = \Theta(\alpha)\).
+
+	\item 如果\(\lf=1\)，
+	就说“\(\beta\)与\(\alpha\)是\DefineConcept{等价无穷大}”，
+	记作\(\alpha\sim\beta\).
+\end{itemize}
+\end{definition}
+\begin{remark}
+根据\cref{definition:无穷小和无穷大.无穷小的比较,definition:无穷小和无穷大.无穷大的比较}，
+只要\(\alpha\)是无穷小或无穷大，
+就成立\(\lim_\mathcal{B} \frac{o(\alpha)}{\alpha} = 0\).
+\end{remark}
+
+\begin{proposition}
+设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
+\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷大，
+则\[
+	\text{\(\beta\)是比\(\alpha\)高阶的无穷大}
+	\iff
+	\text{\(\alpha\)是比\(\beta\)低阶的无穷大}.
+\]
+\end{proposition}
+
+\begin{proposition}
+设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
+\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷大.
+若\[
+	\lim_\mathcal{B} \frac{\beta(x)}{\alpha(x)} = c\ (\text{$c$是非零常数}),
+\]
+则\(\beta\)与\(\alpha\)是同阶无穷大.
+\end{proposition}
+
 \subsection{无穷小的运算}
 我们不难看出：当\(x\to0\)时，有\begin{gather*}
 	x \cdot o(1) = o(x), \qquad
@@ -542,177 +713,6 @@
 \end{equation}
 \end{solution}
 \end{example}
-
-\subsection{无穷大的概念}
-\begin{definition}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P103 定义3.3.2
-设\(f\in\mathbb{R}^X\).
-\begin{itemize}
-	\item 若\(\lim_{x\to\infty} f(x) = \infty\)，
-	则称“函数\(f\)是当\(x\to\infty\)时的\DefineConcept{无穷大}”.
-
-	\item 若\(\lim_{x\to\infty} f(x) = +\infty\)，
-	则称“函数\(f\)是当\(x\to\infty\)时的\DefineConcept{正无穷大}”.
-
-	\item 若\(\lim_{x\to\infty} f(x) = -\infty\)，
-	则称“函数\(f\)是当\(x\to\infty\)时的\DefineConcept{负无穷大}”.
-\end{itemize}
-我们把正无穷大和负无穷大统称为\DefineConcept{定号无穷大}，
-把既非正无穷大又非负无穷大的无穷大称为\DefineConcept{不定号无穷大}.
-\end{definition}
-这里的极限过程\(x \to \infty\)可以扩充到\(x \to x_0\)、\(x \to x_0^+\)、\(x \to x_0^-\)、\(x \to +\infty\)、\(x \to -\infty\)等情况.
-
-\begin{definition}
-设\(f\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基.
-\begin{itemize}
-	\item 若\(\lim_\mathcal{B} f(x) = \infty\)，
-	则称“函数\(f\)是在基\(\mathcal{B}\)上的\DefineConcept{无穷大}”.
-
-	\item 若\(\lim_\mathcal{B} f(x) = +\infty\)，
-	则称“函数\(f\)是在基\(\mathcal{B}\)上的\DefineConcept{正无穷大}”.
-
-	\item 若\(\lim_\mathcal{B} f(x) = -\infty\)，
-	则称“函数\(f\)是在基\(\mathcal{B}\)上的\DefineConcept{负无穷大}”.
-\end{itemize}
-\end{definition}
-
-无穷大与无穷小之间有一种简单的关系，即：
-\begin{theorem}\label{theorem:极限.无穷大与无穷小的关系}
-%@see: 《高等数学（第六版 上册）》 P41 定理2
-设\(f\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基.
-令\(g(x) = \frac1{f(x)}\).
-\begin{itemize}
-	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷大，
-	则\(g\)为无穷小.
-
-	\item 若\(f\)是在基\(\mathcal{B}\)上的无穷小，
-	且\((\exists B\in\mathcal{B})(\forall x\in B)[f(x) \neq 0]\)，
-	则\(g\)为无穷大.
-\end{itemize}
-\end{theorem}
-
-显然，当一个函数是无穷大时，它必定无界；
-但当一个函数无界时，它却不一定是无穷大.
-\begin{example}
-证明：函数\(f(x) = \frac1x \sin\frac1x\)在区间\((0,1]\)上无界，
-但该函数不是\(x\to0^+\)时的无穷大.
-\begin{proof}
-取数列\(u_n = \frac{\pi}{2} + n\pi\ (n=0,1,2,\dotsc)\)，
-那么恒有\(\abs{\sin u_n} = 1\)和\[
-	0 < \dotsb < \frac1{u_n} < \dotsb < \frac1{u_1} < \frac1{u_0} < 1
-\]成立.
-易见\((\forall M > 0)(\forall n\in\mathbb{N})[n > M/\pi \implies u_n > M]\)，
-数列\(\{u_n\}\)无界.
-由于\[
-	\abs{f(x)} = \abs{\frac1x \sin\frac1x}
-	= \abs{\frac1x} \abs{\sin\frac1x}
-	= \frac1x \abs{\sin\frac1x},
-\]\[
-	\abs{f(1/u_n)}
-	= u_n \abs{\sin u_n}
-	= u_n,
-\]
-所以函数列\(\{\abs{f(1/u_n)}\}\)也无界，
-自然地，函数\(f\)也无界.
-
-用反证法.
-假设\(f\)是当\(x\to0^+\)时的无穷大，
-即\[
-	(\forall M>0)
-	(\exists\delta>0)
-	(\forall x)
-	[
-		0<x<\delta
-		\implies
-		\abs{f(x)}>M
-	].
-\]
-取数列\(v_n = n\pi\ (n=1,2,\dotsc)\)，
-那么\(\sin v_n = 0\)和\(v_n>0\)恒成立，
-且\[
-	(\forall\delta>0)
-	(\forall n\in\mathbb{N})
-	\left[n>\ceil*{\frac1{\pi\delta}} \implies 0<\frac1{v_n}<\delta\right].
-\]
-由于\[
-	\abs{f\left(\frac1{v_n}\right)}
-	= v_n \sin v_n
-	= 0,
-\]
-所以函数列\(\{\abs{f(1/v_n)}\}\)恒为零，
-与假设矛盾，说明\(f(x)\)不是\(x\to0^+\)时的无穷大.
-\end{proof}
-\end{example}
-
-\subsection{无穷大的比较}
-\begin{definition}\label{definition:无穷小和无穷大.无穷大的比较}
-设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
-\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷大.
-\newcommand{\lf}[1][]{\lim_\mathcal{B} \frac{\beta(x)}{\alpha^{#1}(x)}}
-\begin{itemize}
-	%@see: 《数学分析（第二版 上册）》（陈纪修） P103 (1)
-	\item 如果\(\lf=\infty\)，
-	就说“\(\beta\)是比\(\alpha\)~\DefineConcept{高阶}的无穷大”.
-
-	\item 如果\(\lf=0\)，
-	就说“\(\beta\)是比\(\alpha\)~\DefineConcept{低阶}的无穷大”，
-	记作\(\beta = o(\alpha)\).
-
-	%@see: 《数学分析（第二版 上册）》（陈纪修） P103 (2)
-	\item 如果\[
-		(\exists A>0)
-		(\exists B\in\mathcal{B})
-		(\forall x\in B)
-		\left[
-			\abs{\frac{\beta(x)}{\alpha(x)}} \leq A
-		\right],
-	\]
-	就说“\(\frac\beta\alpha\)是在基\(\mathcal{B}\)上的\DefineConcept{有界量}”，
-	记为\(\beta = O(\alpha)\).
-
-	\item 如果\[
-		(\exists A>0)
-		(\exists a>0)
-		(\exists B\in\mathcal{B})
-		(\forall x\in B)
-		\left[
-			a \leq \abs{\frac{\beta(x)}{\alpha(x)}} \leq A
-		\right],
-	\]
-	就说“\(\alpha\)与\(\beta\)是\DefineConcept{同阶}无穷大\footnote{在研究算法时，
-	我们会说“\(\alpha\)是\(\beta\)的一个\DefineConcept{渐进紧确界}%
-	（asymptotically tight bound）”.}”，
-	记作\(\beta = \Theta(\alpha)\).
-
-	\item 如果\(\lf=1\)，
-	就说“\(\beta\)与\(\alpha\)是\DefineConcept{等价无穷大}”，
-	记作\(\alpha\sim\beta\).
-\end{itemize}
-\end{definition}
-\begin{remark}
-根据\cref{definition:无穷小和无穷大.无穷小的比较,definition:无穷小和无穷大.无穷大的比较}，
-只要\(\alpha\)是无穷小或无穷大，
-就成立\(\lim_\mathcal{B} \frac{o(\alpha)}{\alpha} = 0\).
-\end{remark}
-
-\begin{proposition}
-设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
-\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷大，
-则\[
-	\text{\(\beta\)是比\(\alpha\)高阶的无穷大}
-	\iff
-	\text{\(\alpha\)是比\(\beta\)低阶的无穷大}.
-\]
-\end{proposition}
-
-\begin{proposition}
-设\(\alpha,\beta\in\mathbb{R}^X\)，\(\mathcal{B}\)是\(X\)中的基，
-\(\alpha\)和\(\beta\)都是在基\(\mathcal{B}\)上的无穷大.
-若\[
-	\lim_\mathcal{B} \frac{\beta(x)}{\alpha(x)} = c\ (\text{$c$是非零常数}),
-\]
-则\(\beta\)与\(\alpha\)是同阶无穷大.
-\end{proposition}
 
 \subsection{等价替换}
 必须指出的是，等价无穷小、等价无穷大都是等价关系.
