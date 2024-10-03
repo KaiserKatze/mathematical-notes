@@ -226,6 +226,64 @@
 	= \int_0^{\frac\pi2} \cos^n x \dd{x}.
 \end{equation}
 \end{remark}
+\begin{remark}
+由诱导公式 \labelcref{equation:函数.三角函数.诱导公式5}
+可知\(\sin(\pi-x)=\sin x\)，
+于是正弦函数\(\sin x\)的正整数次幂的图形
+都关于直线\(x=\frac\pi2\)对称
+（如\cref{figure:定积分.点火公式}），
+那么有\[
+	\int_0^{\frac\pi2} \sin^n x \dd{x}
+	= \int_{\frac\pi2}^\pi \sin^n x \dd{x},
+\]
+即有\[
+	\int_0^\pi \sin^n x \dd{x}
+	= 2 \int_0^{\frac\pi2} \sin^n x \dd{x}.
+\]
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,xmax=3.14,
+			ymin=0,ymax=1,
+			grid=both,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=north},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=east},
+			ytick={1},
+			yticklabels={\relax},
+			xtick={1.5708},
+			xticklabels={$\frac{\pi}{2}$},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=0:3.14,variable=\x]{sin(\x r)};
+			\addplot[color=blue,samples=50,smooth,domain=0:3.14,variable=\x]{(sin(\x r))^2};
+			\addplot[color=blue,samples=50,smooth,domain=0:3.14,variable=\x]{(sin(\x r))^4};
+			\addplot[color=blue,samples=50,smooth,domain=0:3.14,variable=\x]{(sin(\x r))^8};
+			\addplot[color=blue,samples=50,smooth,domain=0:3.14,variable=\x]{(sin(\x r))^16};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:定积分.点火公式}
+\end{figure}
+
+但是由诱导公式 \labelcref{equation:函数.三角函数.诱导公式6}
+可知\(\cos(\pi-x)=-\cos x\)，
+于是只有余弦函数\(\cos x\)的正偶数次幂的图形
+都关于直线\(x=\frac\pi2\)对称，
+反之，它的正奇数次幂的图形
+都关于点\((\frac\pi2,0)\)中心对称，
+那么有\[
+	\int_0^\pi \cos^n x \dd{x}
+	= \left\{ \begin{array}{cl}
+		2 \int_0^{\frac\pi2} \sin^n x \dd{x},
+		& \text{$n$是偶数}, \\
+		0,
+		& \text{$n$是奇数}.
+	\end{array} \right.
+\]
+\end{remark}
 
 下面特别就\cref{equation:定积分.点火公式} 做一点点展开.
 \begin{example}
