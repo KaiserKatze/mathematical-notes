@@ -34,15 +34,16 @@ fi
 # 在本地重命名 texlive 输出的 PDF 文件
 SOURCE_FILE="math.pdf"
 OUTPUT_FILE="数学笔记.pdf"
-if [[ ! -f "$OUTPUT_FILE" || $(stat --printf="%s" $SOURCE_FILE) -ge $(( $(stat --printf="%s" $OUTPUT_FILE) * 8 / 10 )) ]]; then
-	cp "$SOURCE_FILE" "$OUTPUT_FILE" &>/dev/null && echo "[INFO] 已生成最新版'数学笔记.pdf'文件." || echo "[ERROR] 生成最新版'数学笔记.pdf'失败！"
-	read -p "是否向 Github 上传 PDF 文件？(Y/n) " do_upload_pdf_file
-else
-	do_upload_pdf_file="n"
-fi
 # 如果没有 Github token 文件，那么不上传 PDF 文件
 if [[ ! -f "$GITHUB_TOKEN" ]]; then
 	do_upload_pdf_file="n"
+else
+	if [[ ! -f "$OUTPUT_FILE" || $(stat --printf="%s" $SOURCE_FILE) -ge $(( $(stat --printf="%s" $OUTPUT_FILE) * 8 / 10 )) ]]; then
+		cp "$SOURCE_FILE" "$OUTPUT_FILE" &>/dev/null && echo "[INFO] 已生成最新版'数学笔记.pdf'文件." || echo "[ERROR] 生成最新版'数学笔记.pdf'失败！"
+		read -p "是否向 Github 上传 PDF 文件？(Y/n) " do_upload_pdf_file
+	else
+		do_upload_pdf_file="n"
+	fi
 fi
 
 # 向 Github 推送发行版 PDF 文件
