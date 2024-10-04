@@ -79,23 +79,48 @@
 将问题转化为计算一元函数\(z = f(x, y_0)\)的导数\(\eval{\dv{z}{x}}_{x=x_0}\).
 
 \begin{example}
+%@see: https://www.bilibili.com/video/BV1oJtWesEEd/
+设函数\[
+	z(x,y) = \frac{x \cos(y-1) - (y-1) \cos x}{1 + \sin x + \sin(y-1)},
+\]
+计算\(\eval{\pdv{z}{y}}_{(0,1)}\).
+\begin{solution}
+因为\[
+	z(0,y) = \frac{-(y-1)}{1 + \sin(y-1)},
+\]
+所以\[
+	\eval{\pdv{z}{y}}_{(0,1)}
+	= \lim_{y\to1} \frac{z(0,y) - z(0,1)}{y - 1}
+	= \lim_{y\to1} \frac{-1}{1 + \sin(y-1)}
+	= -1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
 已知理想气体的状态方程\[
-pV = RT,
-\]其中\(R\)为常量，求证：\[
-\pdv{p}{V} \cdot \pdv{V}{T} \cdot \pdv{T}{p} = -1.
+	pV = RT,
+\]
+其中\(R\)为常量，求证：\[
+	\pdv{p}{V} \cdot \pdv{V}{T} \cdot \pdv{T}{p} = -1.
 \]
 \begin{proof}
-因为\[
-p = \frac{RT}{V}, \qquad \pdv{p}{V} = -\frac{RT}{V^2};
-\]\[
-V = \frac{RT}{p}, \qquad \pdv{V}{T} = \frac{R}{p};
-\]\[
-T = \frac{pV}{R}, \qquad \pdv{T}{p} = \frac{V}{R};
-\]所以\[
-\pdv{p}{V} \cdot \pdv{V}{T} \cdot \pdv{T}{p}
-= -\frac{RT}{V^2} \cdot \frac{R}{p} \cdot \frac{V}{R}
-= -\frac{RT}{pV} = -1.
-\qedhere
+因为\begin{gather*}
+	p = \frac{RT}{V},
+	\qquad
+	\pdv{p}{V} = -\frac{RT}{V^2}; \\
+	V = \frac{RT}{p},
+	\qquad
+	\pdv{V}{T} = \frac{R}{p}; \\
+	T = \frac{pV}{R},
+	\qquad
+	\pdv{T}{p} = \frac{V}{R},
+\end{gather*}
+所以\[
+	\pdv{p}{V} \cdot \pdv{V}{T} \cdot \pdv{T}{p}
+	= -\frac{RT}{V^2} \cdot \frac{R}{p} \cdot \frac{V}{R}
+	= -\frac{RT}{pV} = -1.
+	\qedhere
 \]
 \end{proof}
 \end{example}
