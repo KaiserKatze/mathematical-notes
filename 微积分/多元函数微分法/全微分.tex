@@ -118,6 +118,43 @@
 \end{proof}
 \end{theorem}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV12vtHeiEmc/
+证明：函数\(f\)满足\[
+	\lim_{(x,y)\to(0,0)} \frac{f(x,y) - f(0,0)}{\sqrt{x^2+y^2}} = 0
+\]是\(f\)在点\((0,0)\)可微的充分不必要条件.
+\begin{proof}
+先证充分性.
+令\(g(x,y) = f(x,y) - f(0,0)\)，显然\(g(0,0) = 0\).
+只要证明函数\(g\)在点\((0,0)\)可微，就能证明函数\(f\)也在点\((0,0)\)可微.
+假设\(\lim_{(x,y)\to(0,0)} \frac{f(x,y) - f(0,0)}{\sqrt{x^2+y^2}} = 0\)，
+那么\[
+	\lim_{(x,y)\to(0,0)} \frac{g(x,y)}{\sqrt{x^2+y^2}} = 0,
+\]
+从而有\(g(x,y) = o(\rho)\ (\rho\to0)\)，
+其中\(\rho \defeq \sqrt{x^2 + y^2}\).
+于是\begin{gather*}
+	g'_x(0,0) = \lim_{x\to0} \frac{g(x,0) - g(0,0)}{x - 0}
+	= \lim_{x\to0} \frac{g(x,0)}{x} % 令\(x = \rho \cos\theta\)
+	= \lim_{x\to0} \frac{g(x,0)}{\rho} \frac{\rho}{\rho \cos\theta}
+	% \(\cos\theta\)是有界量，\(g(x,0)\)是比\(\rho\)高阶的无穷小，
+	% 利用\cref{theorem:函数极限.无穷小.有界函数与无穷小的乘积是无穷小}
+	% 可知\(g'_x(0,0) = 0\)，\(g'_y(0,0)\)同理
+	= 0, \\
+	g'_y(0,0) = \lim_{y\to0} \frac{g(0,y) - g(0,0)}{y - 0}
+	= \lim_{y\to0} \frac{g(0,y)}{y} % 令\(y = \rho \sin\theta\)
+	= \lim_{x\to0} \frac{g(x,0)}{\rho} \frac{\rho}{\rho \sin\theta}
+	= 0,
+\end{gather*}
+因此\[
+	\lim_{(x,y)\to(0,0)} \frac{[g(0+x,0+y) - g(0,0)] - [g'_x(0,0) x + g'_y(0,0) y]}{\sqrt{x^2+y^2}} \\
+	= \lim_{(x,y)\to(0,0)} \frac{g(x,y)}{\rho}
+	= 0,
+\]
+\(g\)在点\((0,0)\)可微，\(f\)也在点\((0,0)\)可微.
+\end{proof}
+\end{example}
+
 以上关于二元函数全微分的定义及可微的必要条件和充分条件，可以完全类似地推广到三元和三元以上的多元函数.
 
 习惯上，我们将自变量的增量\(\increment x\)、\(\increment y\)分别记作\(\dd{x}\)、\(\dd{y}\)，
