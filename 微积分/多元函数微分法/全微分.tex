@@ -32,12 +32,12 @@
 那么称“函数\(f\)在\(D\)内\DefineConcept{可微}”.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}[必要条件1]
 %@see: 《数学分析（第二版 下册）》（陈纪修） P140
 如果函数\(f\)在点\((x,y)\)可微，那么函数\(f\)在点\((x,y)\)必定连续.
 \end{theorem}
 
-\begin{theorem}\label{theorem:多元函数微分法.二元函数可微的必要条件}
+\begin{theorem}[必要条件2]\label{theorem:多元函数微分法.二元函数可微的必要条件}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P140
 如果函数\(f\)在点\((x,y)\)可微，
 则该函数在点\((x,y)\)的偏导数\(\pdv{z}{x}\)、\(\pdv{z}{y}\)必定存在，
@@ -46,7 +46,7 @@
 \]
 \end{theorem}
 
-\begin{corollary}
+\begin{theorem}
 如果函数\(f\)在点\((x,y)\)具有偏导数\(f'_x(x,y)\)和\(f'_y(x,y)\)，
 且满足\[
 	\lim_{(\increment x,\increment y)\to(0,0)}
@@ -57,11 +57,12 @@
 		\sqrt{(\increment x)^2+(\increment y)^2}
 	} = 0,
 \]那么它就在该点可微.
-\end{corollary}
+\end{theorem}
 
 我们知道，一元函数在某点的导数存在是微分存在的充分必要条件.
 但对于多元函数来说，情形就不同了.
-当函数的各偏导数都存在时，虽然能形式地写出\(\pdv{z}{x} \increment x + \pdv{z}{y} \increment y\)，
+当函数的各偏导数都存在时，
+虽然能形式地写出\(\pdv{z}{x} \increment x + \pdv{z}{y} \increment y\)，
 但它与\(\increment z\)之差并不一定是较\(\rho\)高阶的无穷小，
 因此它不一定是函数的全微分.
 换句话说，各偏导数的存在只是全微分存在的必要条件而不是充分条件.
@@ -89,7 +90,32 @@
 即函数在点\((0,0)\)处是不可微的.
 
 \begin{theorem}[充分条件]\label{theorem:多元函数微分法.二元函数可微的充分条件}
-如果函数\(f\)的偏导数\(\pdv{z}{x}\)、\(\pdv{z}{y}\)在点\((x,y)\)连续，则函数在该点可微.
+%@see: 《数学分析（第二版 下册）》（陈纪修） P142 定理12.1.2
+如果函数\(f\)在点\((x,y)\)的某个邻域上存在偏导数，并且偏导数在点\((x,y)\)连续，
+则函数在点\((x,y)\)可微.
+\begin{proof}
+首先有\begin{align*}
+	&\hspace{-20pt}
+	f(x+h,y+k) - f(x,y) \\
+	&= [f(x+h,y+k) - f(x,y+k)] + [f(x,y+k) - f(x,y)] \\
+	&= f'_x(x+\theta_1 h,y+k)~h + f'_y(x,y+\theta_2 k)~k,
+	\tag{\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}}
+\end{align*}
+其中\(0<\theta_1<1,0<\theta_2<1\).
+因为\(f'_x\)和\(f'_y\)都在点\((x,y)\)连续，
+所以\begin{gather*}
+	f'_x(x+\theta_1 h,y+k) = f'_x(x,y) + o(1), \qquad
+	f'_y(x,y+\theta_2 k) = f'_y(x,y) + o(1),
+\end{gather*}
+其中\(o(1)\)表示当\(\rho=\sqrt{h^2+k^2}\to0\)时的无穷小.
+于是\begin{align*}
+	&\hspace{-20pt}
+	f(x+h,y+k) - f(x,y) \\
+	&= f'_x(x,y)~h + f'_y(x,y)~k + o(1)~h + o(1)~k \\
+	&= f'_x(x,y)~h + f'_y(x,y)~k + o(\rho),
+\end{align*}
+即\(f\)在点\((x,y)\)可微.
+\end{proof}
 \end{theorem}
 
 以上关于二元函数全微分的定义及可微的必要条件和充分条件，可以完全类似地推广到三元和三元以上的多元函数.
