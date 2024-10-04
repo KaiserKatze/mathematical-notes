@@ -2,7 +2,9 @@
 # 这个脚本是在开发者本地工作站使用的
 
 # 数据统计
-find . -type f \( -name '*.tex' -o -name '*.sty' \) | xargs cat | echo "LaTeX 代码共计：$(wc -l) 行"
+find . -type f \( -name '*.tex' -o -name '*.sty' \) |\
+	xargs cat | wc -lc|\
+	awk '{print "LaTeX 代码共计：" $1 " 行，" $2 " 字节."}'
 
 get_ssh_agent_pid() {
 	ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+'
