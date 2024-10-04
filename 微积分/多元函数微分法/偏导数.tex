@@ -93,6 +93,27 @@
 将问题转化为计算一元函数\(z = f(x, y_0)\)的导数\(\eval{\dv{z}{x}}_{x=x_0}\).
 
 \begin{example}
+设函数\[
+	f(x,y) = \left\{ \begin{array}{cl}
+		\frac{xy}{\sqrt{x^2+y^2}}, & (x,y)\neq(0,0), \\
+		0, & (x,y)=(0,0).
+	\end{array} \right.
+\]
+计算\(f'_x(0,0)\)和\(f'_y(0,0)\).
+\begin{solution}
+由定义有\begin{align*}
+	f'_x(0,0)
+	&= \lim_{h\to0} \frac{f(0+h,0) - f(0,0)}{h} \\
+	&= \lim_{h\to0} 0
+	= 0, \\
+	f'_y(0,0)
+	&= \lim_{k\to0} \frac{f(0,0+k) - f(0,0)}{k} \\
+	&= \lim_{k\to0} 0
+	= 0.
+\end{align*}
+\end{solution}
+\end{example}
+\begin{example}
 %@see: https://www.bilibili.com/video/BV1oJtWesEEd/
 设函数\(z(x,y) = \frac{x \cos(y-1) - (y-1) \cos x}{1 + \sin x + \sin(y-1)}\)，
 计算\(\eval{\pdv{z}{y}}_{(0,1)}\).
@@ -110,10 +131,12 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P66 例5
 已知理想气体的状态方程\[
 	pV = RT,
 \]
-其中\(R\)为常量，求证：\[
+其中\(R\)为常量.
+求证：\[
 	\pdv{p}{V} \cdot \pdv{V}{T} \cdot \pdv{T}{p} = -1.
 \]
 \begin{proof}
@@ -149,7 +172,23 @@
 \subsection{偏导数与连续性的关系}
 我们已经知道，如果一元函数在某点具有导数，则它在该点必定连续.
 但对于多元函数来说，即使各偏导数在某点都存在，也不能保证函数在该点连续.
-这是因为各偏导数存在只能保证点\(P\)沿着平行于坐标轴的方向趋于\(P_0\)时，函数值\(f(P)\)趋于\(f(P_0)\)，但不能保证点\(P\)按任何方式趋于\(P_0\)时，函数值\(f(P)\)都趋于\(f(P_0)\).
+这是因为各偏导数存在只能保证点\(P\)沿着平行于坐标轴的方向趋于\(P_0\)时，
+函数值\(f(P)\)趋于\(f(P_0)\)，
+但不能保证点\(P\)按任何方式趋于\(P_0\)时，
+函数值\(f(P)\)都趋于\(f(P_0)\).
+
+例如，函数\[
+	f(x,y) = \left\{ \begin{array}{cl}
+		\frac{xy}{x^2+y^2}, & (x,y)\neq(0,0), \\
+		0, & (x,y)=(0,0)
+	\end{array} \right.
+\]
+在点\((0,0)\)对\(x\)的偏导数为\begin{gather*}
+	f'_x(0,0) = \lim_{h\to0} \frac{f(0+h,0) - f(0,0)}{h} = \lim_{h\to0} 0 = 0, \\
+	f'_y(0,0) = \lim_{k\to0} \frac{f(0,0+k) - f(0,0)}{k} = \lim_{k\to0} 0 = 0,
+\end{gather*}
+但是我们已经知道\(\lim_{(x,y)\to(0,0)} f(x,y)\)不存在，
+于是\(f\)在点\((0,0)\)必定不连续.
 
 \subsection{高阶偏导数}
 \begin{definition}
