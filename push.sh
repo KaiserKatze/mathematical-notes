@@ -5,6 +5,10 @@
 find . -type f \( -name '*.tex' -o -name '*.sty' \) |\
 	xargs cat | wc -lc|\
 	awk '{print "LaTeX 代码共计：" $1 " 行，" $2 " 字节."}'
+find . type f -name '*.tex' | wc -l |\
+	awk '{print ".tex 文件共计：" $1 " 个."}'
+find . type f -name '*.sty' | wc -l |\
+	awk '{print ".sty 文件共计：" $1 " 个."}'
 
 get_ssh_agent_pid() {
 	ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+'
