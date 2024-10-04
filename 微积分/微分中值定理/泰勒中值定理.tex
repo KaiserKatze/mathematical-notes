@@ -339,7 +339,7 @@
 于是\[
 	\sin x - x \cos x = \frac{1}{3} x^3 + o(x^3),
 \]
-对上式作运算时，把两个比\(x^3\)高阶的无穷小的代数和仍记作\(o(x^3)\)，故\[
+故\[
 	\lim_{x\to0}\frac{\sin x - x \cos x}{\sin^3 x}
 	= \lim_{x\to0}\frac{\frac{1}{3} x^3 + o(x^3)}{x^3} = \frac{1}{3}.
 \]
@@ -347,28 +347,34 @@
 \end{example}
 
 \begin{example}
-\def\l{\lim_{x\to0}}
-设\(f(x)\)具有二阶连续导数，\(\l \frac{f(x)}{x} = 0\)，\(f''(0)\neq0\)，
+设函数\(f\)具有二阶连续导数，\(\lim_{x\to0} \frac{f(x)}{x} = 0\)，\(f''(0)\neq0\)，
 若\[
-	\l \frac{e^{f(x)}-ax-b}{x^2} = c \neq 0,
+	\lim_{x\to0} \frac{e^{f(x)}-ax-b}{x^2} = c \neq 0,
 \]
 求\(a,b,c\).
 \begin{solution}
-因为\(\l \frac{f(x)}{x} = 0\)，所以\(f(0) = f'(0) = 0\)，
+因为\(\lim_{x\to0} \frac{f(x)}{x} = 0\)，
+所以\(f(x) = o(x)\)，
+\(\lim_{x\to0} f(x) = 0\).
+又因为\(f\)是连续的，
+所以\(f(0) = \lim_{x\to0} f(x) = 0\)，
 从而\[
-	f(x) = \frac{1}{2} f''(0) x^2 + o(x^2),
-\]\[
+	f'(0) = \lim_{x\to0} \frac{f(x) - f(0)}{x - 0} = \frac{f(x)}{x} = 0.
+\]
+因此\[
+	f(x) = \frac12 f''(0) x^2 + o(x^2),
+	\qquad
 	[f(x)]^2 = o(x^2).
 \]
 
 因为\(e^x = 1 + x + \frac{1}{2!} x^2 + o(x^2)\)，
-所以\begin{align*}
-	e^{f(x)} &= 1 + f(x) + \frac{1}{2} [f(x)]^2 + o(x^2) \\
-	&= 1 + \frac{1}{2} f''(0) x^2 + o(x^2).
-\end{align*}
+所以\[
+	e^{f(x)} = 1 + f(x) + \frac{1}{2} [f(x)]^2 + o(x^2)
+	= 1 + \frac{1}{2} f''(0) x^2 + o(x^2).
+\]
 
 因为\[
-	\l \frac{e^{f(x)} - ax - b}{c x^2} = 1,
+	\lim_{x\to0} \frac{e^{f(x)} - ax - b}{c x^2} = 1,
 \]
 所以\(e^{f(x)} - ax - b = c x^2 + o(x^2)\)，
 即\[
