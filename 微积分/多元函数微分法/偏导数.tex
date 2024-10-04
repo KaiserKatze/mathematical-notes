@@ -15,7 +15,9 @@
 并称此极限为
 “函数\(f\)在点\((x_0,y_0)\)对\(x\)的\DefineConcept{偏导数}（partial derivative）”，
 记作\[
-	\pdv{f}{x}\eval_{\substack{x=x_0 \\ y=y_0}},
+	\eval{\pdv{f}{x}}_{\substack{x=x_0 \\ y=y_0}},
+	\qquad
+	\eval{\pdv{f}{x}}_{(x_0,y_0)},
 	\quad\text{或}\quad
 	f'_x(x_0,y_0).
 \]
@@ -27,7 +29,9 @@
 就称“函数\(f\)在点\((x_0,y_0)\)对\(y\)可偏导”，
 并把此极限称为“函数\(f\)在点\((x_0,y_0)\)对\(y\)的偏导数”，
 记作\[
-	\pdv{f}{y}\eval_{\substack{x=x_0 \\ y=y_0}},
+	\eval{\pdv{f}{y}}_{\substack{x=x_0 \\ y=y_0}},
+	\qquad
+	\eval{\pdv{f}{y}}_{(x_0,y_0)},
 	\quad\text{或}\quad
 	f'_y(x_0,y_0).
 \]
@@ -49,6 +53,16 @@
 	f'_y(x,y).
 \]
 \end{definition}
+
+正如导数有两种定义一样，
+偏导数也有第二种定义：\begin{gather*}
+	f'_x(x_0,y_0)
+	\defeq
+	\lim_{x \to x_0} \frac{f(x,y_0) - f(x_0,y_0)}{x - x_0}, \\
+	f'_y(x_0,y_0)
+	\defeq
+	\lim_{y \to y_0} \frac{f(x_0,y) - f(x_0,y_0)}{y - y_0}.
+\end{gather*}
 
 偏导数的概念还可以推广到二元以上的函数.
 \begin{definition}
@@ -80,9 +94,7 @@
 
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1oJtWesEEd/
-设函数\[
-	z(x,y) = \frac{x \cos(y-1) - (y-1) \cos x}{1 + \sin x + \sin(y-1)},
-\]
+设函数\(z(x,y) = \frac{x \cos(y-1) - (y-1) \cos x}{1 + \sin x + \sin(y-1)}\)，
 计算\(\eval{\pdv{z}{y}}_{(0,1)}\).
 \begin{solution}
 因为\[
@@ -142,17 +154,19 @@
 \subsection{高阶偏导数}
 \begin{definition}
 设函数\(z=f(x,y)\)在区域\(D\)内具有偏导数\[
-\pdv{z}{x} = f_x(x,y), \qquad
-\pdv{z}{y} = f_y(x,y).
-\]如果\(f'_x(x,y)\)和\(f'_y(x,y)\)在区域\(D\)内的偏导数也存在，则称它们是函数\(z=f(x,y)\)的\DefineConcept{二阶偏导数}.
+	\pdv{z}{x} = f_x(x,y), \qquad
+	\pdv{z}{y} = f_y(x,y).
+\]
+如果\(f'_x(x,y)\)和\(f'_y(x,y)\)在区域\(D\)内的偏导数也存在，
+则称它们是函数\(z=f(x,y)\)的\DefineConcept{二阶偏导数}.
 按照对变量求导次序的不同有下列四个二阶偏导数：
 \begin{gather*}
-\pdv{x}(\pdv{z}{x}) = \pdv[2]{z}{x} = f''_{xx}(x,y),
-\qquad
-\pdv{y}(\pdv{z}{x}) = \pdv{z}{x}{y} = f''_{xy}(x,y), \\
-\pdv{x}(\pdv{z}{y}) = \pdv{z}{y}{x} = f''_{yx}(x,y),
-\qquad
-\pdv{y}(\pdv{z}{y}) = \pdv[2]{z}{y} = f''_{yy}(x,y),
+	\pdv{x}(\pdv{z}{x}) = \pdv[2]{z}{x} = f''_{xx}(x,y),
+	\qquad
+	\pdv{y}(\pdv{z}{x}) = \pdv{z}{x}{y} = f''_{xy}(x,y), \\
+	\pdv{x}(\pdv{z}{y}) = \pdv{z}{y}{x} = f''_{yx}(x,y),
+	\qquad
+	\pdv{y}(\pdv{z}{y}) = \pdv[2]{z}{y} = f''_{yy}(x,y),
 \end{gather*}
 其中\(f''_{xy}(x,y)\)和\(f''_{yx}(x,y)\)称为\DefineConcept{混合偏导数}.
 二阶及二阶以上的偏导数统称为\DefineConcept{高阶偏导数}.
@@ -203,72 +217,75 @@
 
 \begin{example}
 验证函数\(z = \ln\sqrt{x^2+y^2}\)满足方程\[
-\pdv[2]{z}{x} + \pdv[2]{z}{y} = 0.
+	\pdv[2]{z}{x} + \pdv[2]{z}{y} = 0.
 \]
 \begin{proof}
-因为\(z = \ln\sqrt{x^2+y^2} = \frac{1}{2} \ln(x^2+y^2)\)，所以\[
-\pdv{z}{x} = \frac{x}{x^2+y^2},
-\qquad
-\pdv{z}{y} = \frac{y}{x^2+y^2},
-\]\[
-\pdv[2]{z}{x} = \frac{(x^2+y^2)-x\cdot2x}{(x^2+y^2)^2}
-= \frac{y^2-x^2}{(x^2+y^2)^2},
-\]\[
-\pdv[2]{z}{y} = \frac{(x^2+y^2)-y\cdot2y}{(x^2+y^2)^2}
-= \frac{x^2-y^2}{(x^2+y^2)^2},
-\]因此\[
-\pdv[2]{z}{x} + \pdv[2]{z}{y}
-= \frac{y^2-x^2}{(x^2+y^2)^2} + \frac{x^2-y^2}{(x^2+y^2)^2}
-= 0.
-\qedhere
+因为\(z = \ln\sqrt{x^2+y^2} = \frac{1}{2} \ln(x^2+y^2)\)，
+所以\begin{gather*}
+	\pdv{z}{x} = \frac{x}{x^2+y^2},
+	\qquad
+	\pdv{z}{y} = \frac{y}{x^2+y^2}, \\
+	\pdv[2]{z}{x} = \frac{(x^2+y^2)-x\cdot2x}{(x^2+y^2)^2}
+	= \frac{y^2-x^2}{(x^2+y^2)^2}, \\
+	\pdv[2]{z}{y} = \frac{(x^2+y^2)-y\cdot2y}{(x^2+y^2)^2}
+	= \frac{x^2-y^2}{(x^2+y^2)^2},
+\end{gather*}
+因此\[
+	\pdv[2]{z}{x} + \pdv[2]{z}{y}
+	= \frac{y^2-x^2}{(x^2+y^2)^2} + \frac{x^2-y^2}{(x^2+y^2)^2}
+	= 0.
+	\qedhere
 \]
 \end{proof}
 \end{example}
 
 \begin{example}
 证明函数\(u = \frac{1}{r}\)满足方程\[
-\pdv[2]{u}{x} + \pdv[2]{u}{y} + \pdv[2]{u}{z} = 0,
-\]其中\(r = \sqrt{x^2+y^2+z^2}\).
+	\pdv[2]{u}{x} + \pdv[2]{u}{y} + \pdv[2]{u}{z} = 0,
+\]
+其中\(r = \sqrt{x^2+y^2+z^2}\).
 \begin{proof}
-显然有\[
-\pdv{u}{x} = -\frac{1}{r^2}\cdot\pdv{r}{x}
-= -\frac{1}{r^2}\cdot\frac{x}{r}
-= -\frac{x}{r^3},
-\]\[
-\pdv[2]{u}{x} = -\frac{1}{r^3} + \frac{3x}{r^4}\cdot\pdv{r}{x}
-= -\frac{1}{r^3} + \frac{3x^2}{r^5}.
-\]由于函数关于自变量的对称性，所以\[
-\pdv[2]{u}{y} = -\frac{1}{r^3} + \frac{3y^2}{r^5},
-\qquad
-\pdv[2]{u}{z} = -\frac{1}{r^3} + \frac{3z^2}{r^5},
-\]因此\[
-\pdv[2]{u}{x} + \pdv[2]{u}{y} + \pdv[2]{u}{z}
-= -\frac{3}{r^3} + 3\frac{x^2+y^2+z^2}{r^5}
-= -\frac{3}{r^3} + 3\frac{r^2}{r^5} = 0.
-\qedhere
+显然有\begin{gather*}
+	\pdv{u}{x} = -\frac{1}{r^2}\cdot\pdv{r}{x}
+	= -\frac{1}{r^2}\cdot\frac{x}{r}
+	= -\frac{x}{r^3}, \\
+	\pdv[2]{u}{x} = -\frac{1}{r^3} + \frac{3x}{r^4}\cdot\pdv{r}{x}
+	= -\frac{1}{r^3} + \frac{3x^2}{r^5}.
+\end{gather*}
+由于函数关于自变量的对称性，所以\[
+	\pdv[2]{u}{y} = -\frac{1}{r^3} + \frac{3y^2}{r^5},
+	\qquad
+	\pdv[2]{u}{z} = -\frac{1}{r^3} + \frac{3z^2}{r^5},
+\]
+因此\[
+	\pdv[2]{u}{x} + \pdv[2]{u}{y} + \pdv[2]{u}{z}
+	= -\frac{3}{r^3} + 3\frac{x^2+y^2+z^2}{r^5}
+	= -\frac{3}{r^3} + 3\frac{r^2}{r^5} = 0.
+	\qedhere
 \]
 \end{proof}
 \end{example}
 
 \begin{example}
 验证函数\(r = \sqrt{x^2+y^2+z^2}\)满足\[
-\pdv[2]{r}{x} + \pdv[2]{r}{y} + \pdv[2]{r}{z} = \frac{2}{r}.
+	\pdv[2]{r}{x} + \pdv[2]{r}{y} + \pdv[2]{r}{z} = \frac{2}{r}.
 \]
 \begin{proof}
-显然有\[
-\pdv{r}{x} = \frac{2x}{2\sqrt{x^2+y^2+z^2}} = \frac{x}{\sqrt{x^2+y^2+z^2}},
-\]\[
-\pdv[2]{r}{x} = \frac{\sqrt{x^2+y^2+z^2}-x\frac{2x}{2\sqrt{x^2+y^2+z^2}}}{x^2+y^2+z^2}
-= \frac{1}{r} - \frac{x^2}{r^3},
-\]由于函数关于自变量的对称性，所以\[
-\pdv[2]{r}{y} = \frac{1}{r} - \frac{y^2}{r^3},
-\qquad
-\pdv[2]{r}{z} = \frac{1}{r} - \frac{z^2}{r^3},
-\]因此\[
-\pdv[2]{r}{x} + \pdv[2]{r}{y} + \pdv[2]{r}{z}
-= \frac{3}{r} - \frac{x^2+y^2+z^2}{r^3}
-= \frac{2}{r}.
-\qedhere
+显然有\begin{gather*}
+	\pdv{r}{x} = \frac{2x}{2\sqrt{x^2+y^2+z^2}} = \frac{x}{\sqrt{x^2+y^2+z^2}}, \\
+	\pdv[2]{r}{x} = \frac{\sqrt{x^2+y^2+z^2}-x\frac{2x}{2\sqrt{x^2+y^2+z^2}}}{x^2+y^2+z^2}
+	= \frac{1}{r} - \frac{x^2}{r^3},
+\end{gather*}
+由于函数关于自变量的对称性，所以\[
+	\pdv[2]{r}{y} = \frac{1}{r} - \frac{y^2}{r^3},
+	\qquad
+	\pdv[2]{r}{z} = \frac{1}{r} - \frac{z^2}{r^3},
+\]
+因此\[
+	\pdv[2]{r}{x} + \pdv[2]{r}{y} + \pdv[2]{r}{z}
+	= \frac{3}{r} - \frac{x^2+y^2+z^2}{r^3}
+	= \frac{2}{r}.
+	\qedhere
 \]
 \end{proof}
 \end{example}
@@ -276,24 +293,57 @@
 \begin{example}
 验证函数\(T = 2\pi\sqrt{\frac{l}{g}}\)满足方程\(l\pdv{T}{l}+g\pdv{T}{g}=0\).
 \begin{solution}
-因为\[
-\pdv{T}{l} = 2\pi \frac{1}{2\sqrt{l/g}} \frac{1}{g}
-= \pi \frac{1}{\sqrt{gl}},
-\]\[
-\pdv{T}{g} = 2\pi \frac{1}{2\sqrt{l/g}} l \left(-\frac{1}{g^2}\right)
-= -\pi \frac{\sqrt{gl}}{g^2},
-\]所以\[
-l\pdv{T}{l}+g\pdv{T}{g}
-= l \cdot \pi \frac{1}{\sqrt{gl}} - g \cdot \pi \frac{\sqrt{gl}}{g^2}
-= \pi \sqrt{\frac{l}{g}} - \pi \sqrt{\frac{l}{g}} = 0.
+因为\begin{gather*}
+	\pdv{T}{l} = 2\pi \frac{1}{2\sqrt{l/g}} \frac{1}{g}
+	= \pi \frac{1}{\sqrt{gl}}, \\
+	\pdv{T}{g} = 2\pi \frac{1}{2\sqrt{l/g}} l \left(-\frac{1}{g^2}\right)
+	= -\pi \frac{\sqrt{gl}}{g^2},
+\end{gather*}
+所以\[
+	l \pdv{T}{l} + g \pdv{T}{g}
+	= l \cdot \pi \frac{1}{\sqrt{gl}} - g \cdot \pi \frac{\sqrt{gl}}{g^2}
+	= \pi \sqrt{\frac{l}{g}} - \pi \sqrt{\frac{l}{g}} = 0.
 \]
 \end{solution}
 \end{example}
 
 \begin{example}
-验证函数\(z = \exp[-\left(\frac{1}{x}+\frac{1}{y}\right)]\)满足方程\(x^2 \pdv{z}{x} + y^2 \pdv{z}{y} = 2z\).
+验证函数\(z = \exp[-\left(\frac{1}{x}+\frac{1}{y}\right)]\)
+满足方程\(x^2 \pdv{z}{x} + y^2 \pdv{z}{y} = 2z\).
+%TODO
 \end{example}
 
 \begin{example}
-验证函数\(y = e^{-k n^2 t}\)满足方程\(\pdv{y}{t} = k \pdv[2]{y}{x}\).
+验证函数\(y = e^{-k n^2 t}\)
+满足方程\(\pdv{y}{t} = k \pdv[2]{y}{x}\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1dJtWesESa/
+设函数\[
+	f(x,y) = \left\{ \begin{array}{cl}
+		x y \frac{x^2 - y^2}{x^2 + y^2}, & (x,y)\neq(0,0), \\
+		0, & (x,y)=(0,0),
+	\end{array} \right.
+\]
+计算\(f''_{xy}(0,0) \cdot f''_{yx}(0,0)\).
+\begin{solution}
+因为\(f(x,0) = 0,
+f(0,y) = 0\)，
+所以\begin{gather*}
+	f'_x(0,y) = \lim_{x\to0} \frac{f(x,y) - f(0,y)}{x - 0}
+	= \lim_{x\to0} \frac{y (x^2 - y^2)}{x^2 + y^2}
+	= -y, \\
+	f'_y(x,0) = \lim_{y\to0} \frac{f(x,y) - f(x,0)}{y - 0}
+	= \lim_{y\to0} \frac{x (x^2 - y^2)}{x^2 + y^2}
+	= x,
+\end{gather*}
+于是\[
+	f''_{xy}(0,y) = \pdv{y} f'_x(0,y) = -1,
+	\qquad
+	f''_{yx}(x,0) = \pdv{x} f'_y(x,0) = 1.
+\]
+因此\(f''_{xy}(0,0) \cdot f''_{yx}(0,0) = (-1)\cdot1 = -1\).
+\end{solution}
 \end{example}
