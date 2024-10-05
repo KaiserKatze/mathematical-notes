@@ -11,25 +11,25 @@
 当\(\increment x\to0\)时的极限\[
 	\lim_{\increment x \to 0} \frac{\increment y}{\increment x}
 \]存在，
-则把这个极限称为“函数\(f\)在点\(x_0\)的\DefineConcept{导数}%
+则称“函数\(f\)在点\(x_0\)~\DefineConcept{可导}%
+（\(f\) is \emph{differentiable} at \(x_0\)）”
+“\(f\)在点\(x_0\)具有导数”
+“\(f\)在点\(x_0\)的导数存在”
+“点\(x_0\)是\(f\)的\DefineConcept{可导点}”，
+把这个极限称为“函数\(f\)在点\(x_0\)的\DefineConcept{导数}%
 （the \emph{derivative} of \(f\) at \(x_0\)）”，
 记为\[
 	f'(x_0), \qquad
 	\eval{y'}_{x=x_0}, \qquad
 	\eval{\dv{y}{x}}_{x=x_0}, \qquad
 	\eval{\dv{f(x)}{x}}_{x=x_0}, \quad\text{或}\quad
-	\dv{f(x_0)}{x}.
+	\dv{f(x_0)}{x},
 \]
 即\begin{equation}
 	f'(x_0)
 	\defeq
-	\lim_{\increment x\to0} \frac{f(x_0 + \increment x)-f(x_0)}{\increment x};
+	\lim_{\increment x\to0} \frac{f(x_0 + \increment x)-f(x_0)}{\increment x}.
 \end{equation}
-并称“函数\(f\)在点\(x_0\)~\DefineConcept{可导}%
-（\(f\) is \emph{differentiable} at \(x_0\)）”
-“\(f\)在点\(x_0\)具有导数”
-“\(f\)在点\(x_0\)的导数存在”
-“点\(x_0\)是\(f\)的\DefineConcept{可导点}”.
 
 如果极限\[
 	\lim_{\increment x \to 0} \frac{\increment y}{\increment x}
@@ -39,10 +39,30 @@
 %@see: https://mathworld.wolfram.com/Derivative.html
 \end{definition}
 
-导数的定义式还有两个等价形式：\begin{equation}
-	f'(x_0) = \lim_{\increment x \to 0} \frac{f(x_0 - \increment x) - f(x_0)}{\increment x}, \\
-	f'(x_0) = \lim_{x \to x_0}\frac{f(x) - f(x_0)}{x - x_0}.
-\end{equation}
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P131 习题 1.
+设函数\(f\)在点\(x_0\)可导.
+计算极限\begin{itemize}
+	\item \(\lim_{\increment x\to0} \frac{f(x_0 - \increment x) - f(x_0)}{\increment x}\)；
+	\item \(\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}\)；
+	\item \(\lim_{h\to0} \frac{f(x_0+h) - f(x_0-h)}{h}\).
+\end{itemize}
+\begin{solution}
+直接计算得\begin{align*}
+	\lim_{\increment x\to0} \frac{f(x_0 - \increment x) - f(x_0)}{\increment x}
+	&= - \lim_{\increment x\to0} \frac{f(x_0 + (- \increment x)) - f(x_0)}{(- \increment x)} \\
+	&= - f'(x_0), \\
+	\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}
+	&\xlongequal{t = x - x_0}
+	\lim_{t \to 0} \frac{f(x_0 + (x - x_0)) - f(x_0)}{t} \\
+	&= f'(x_0), \\
+	\lim_{h\to0} \frac{f(x_0+h) - f(x_0-h)}{h}
+	&= \lim_{h\to0} \frac{f(x_0+h) - f(x_0)}{h}
+	- \lim_{h\to0} \frac{f(x_0-h) - f(x_0)}{h} \\
+	&= 2 f'(x_0).
+\end{align*}
+\end{solution}
+\end{example}
 
 \begin{definition}
 设\(X\subseteq\mathbb{R}\)，
