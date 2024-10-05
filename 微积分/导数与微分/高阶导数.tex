@@ -1,65 +1,199 @@
 \section{高阶导数}
 \subsection{函数的\texorpdfstring{\(n\)}{n}阶导数}
-\begin{definition}
-一般地，函数\(y=f(x)\)的导数\(y'=f'(x)\)仍然是\(x\)的函数.
-我们把\(y'=f'(x)\)的导数叫做函数\(y=f(x)\)的\DefineConcept{二阶导数}，
+%@see: 《高等数学（第六版 上册）》 P99
+%@see: 《数学分析（第二版 上册）》（陈纪修） P154
+设\(X\subseteq\mathbb{R}\)，
+函数\(f\colon X\to\mathbb{R}\)在点\(x_0\)可导，
+且\(f\)的导数\(f'\)也在\(x_0\)可导，
+则称“函数\(f\)在点\(x_0\)~\DefineConcept{二阶可导}”
+“\(f\)在点\(x_0\)的二阶导数存在”
+“\(f\)在点\(x_0\)具有二阶导数”，
+把\(f'\)的导数称为“函数\(f\)的\DefineConcept{二阶导数}”，
 记作\[
 	y''
 	\quad\text{或}\quad
 	\dv[2]{y}{x},
-	\]
+\]
 即\[
-	y''=(y')'
-	\quad\text{或}\quad
-	\dv[2]{y}{x}=\dv{x}(\dv{y}{x}).
+	\dv[2]{y}{x}
+	\defeq
+	\dv{x}(\dv{f}{x}).
 \]
 
-相应地，把\(y=f(x)\)的导数\(y'(x)\)叫做函数\(y=f(x)\)的\DefineConcept{一阶导数}.
-
-类似地，二阶导数的导数叫做\DefineConcept{三阶导数}，记作\[
+类似地，
+如果函数\(f\)的二阶导数\(f''\)在点\(x_0\)可导，
+则称“函数\(f\)在点\(x_0\)~\DefineConcept{三阶可导}”
+“\(f\)在点\(x_0\)的三阶导数存在”
+“\(f\)在点\(x_0\)具有三阶导数”，
+把\(f''\)的导数称为“函数\(f\)的\DefineConcept{三阶导数}”，
+记作\[
 	y'''
 	\quad\text{或}\quad
-	\dv[3]{y}{x};
+	\dv[3]{y}{x}.
 \]
-三阶导数的导数叫做\DefineConcept{四阶导数}，记作\[
+
+如果函数\(f\)的三阶导数\(f'''\)在点\(x_0\)可导，
+则称“函数\(f\)在点\(x_0\)~\DefineConcept{四阶可导}”
+“\(f\)在点\(x_0\)的四阶导数存在”
+“\(f\)在点\(x_0\)具有四阶导数”，
+把\(f'''\)的导数称为“函数\(f\)的\DefineConcept{四阶导数}”，
+记作\[
 	y^{(4)}
 	\quad\text{或}\quad
-	\dv[4]{y}{x};
+	\dv[4]{y}{x}.
 \]
-以此类推，\((n-1)\)阶导数的导数叫做 \DefineConcept{\(n\)阶导数}，记作\[
+
+我们把二阶以上的导数统称\DefineConcept{高阶导数}.
+
+%@see: 《数学分析（第二版 上册）》（陈纪修） P155 定义4.5.1
+如果函数\(f\)的\(n-1\)阶导数\(f^{(n-1)}\)在点\(x_0\)可导，
+则称“函数\(f\)在点\(x_0\)~\DefineConcept{\(n\)阶可导}”
+“\(f\)在点\(x_0\)的\(n\)阶导数存在”
+“\(f\)在点\(x_0\)具有\(n\)阶导数”，
+把\(f^{(n-1)}\)的导数称为“函数\(f\)的~\DefineConcept{\(n\)阶导数}”，
+记作\[
 	y^{(n)}
 	\quad\text{或}\quad
-	\dv[n]{y}{x}.
+	\dv[n]{y}{x},
 \]
-二阶及二阶以上的导数统称\DefineConcept{高阶导数}.
+即\begin{equation}\label{equation:高阶导数.高阶导数的递归定义}
+	\dv[n]{y}{x}
+	\defeq
+	\dv[n-1]{y}{x}
+	\quad(n\geq2).
+\end{equation}
+我们把\cref{equation:高阶导数.高阶导数的递归定义} 称为~\DefineConcept{\(n\)阶导数的递归定义}.
+
+由于当函数\(f\)在点\(x_0\)具有\(n\)阶导数时，
+它的小于\(n\)阶的导数都存在，
+于是称“\(f\)具有直到\(n\)阶导数”.
 
 特别地，规定：\[
 	f^{(0)}(x) = f(x).
 \]
 
-函数\(y=f(x)\)具有\(n\)阶导数，也常说成“函数\(f(x)\)为\(n\)阶可导”.
-\end{definition}
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P155 例4.5.1
+求\(y = e^x\)的\(n\)阶导函数.
+\begin{solution}
+由于\[
+	(e^x)' = e^x,
+\]
+显然\[
+	(e^x)'
+	= (e^x)''
+	= \dotsb
+	= (e^x)^{(n)}
+	= e^x.
+\]
+\end{solution}
+\end{example}
+类似可以得到\[
+	(a^x)^{(n)}
+	= a^x \ln^n a.
+\]
 
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P155 例4.5.2
+求\(y = \sin x\)和\(y = \cos x\)的\(n\)阶导函数.
+\begin{solution}
+因为\[
+	(\sin x)' = \cos x
+	= \sin\left(x + \frac\pi2\right),
+\]
+利用复合函数的求导法则\[
+	(\sin x)'' = \dv{x} \sin\left(x+\frac\pi2\right)
+	= \cos\left(x+\frac\pi2\right)
+	= \sin\left(x+\frac{2\pi}2\right),
+\]
+以此类推，用数学归纳法容易证明\[
+	(\sin x)^{(n)}
+	= \sin\left(x+\frac{n\pi}2\right).
+\]
+\end{solution}
+\end{example}
+同理，\(y = \cos x\)的\(n\)阶导数为\[
+	(\cos x)^{(n)}
+	= \cos\left(x+\frac{n\pi}2\right).
+\]
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P156 例4.5.3
+求幂函数\(y = x^m\ (\text{$m$是正整数})\)的\(n\)阶导函数.
+\begin{solution}
+由幂函数的求导公式可得\[
+	(x^m)' = m x^{m-1},
+	\qquad
+	(x^m)'' = m(m-1) x^{m-2},
+\]
+递归可得\begin{equation}
+	(x^m)^{(n)} = \left\{ \begin{array}{cl}
+		m(m-1)\dotsm(m-n+1) x^{m-n}, & n \leq m, \\
+		0, & n > m.
+	\end{array} \right.
+\end{equation}
+特别地，成立\begin{equation}
+	(x^m)^{(m)} = m!.
+\end{equation}
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P156 例4.5.4
+求\(y = \ln x\)的\(n\)阶导函数.
+\begin{solution}
+因为\[
+	(\ln x)' = \frac1x = x^{-1},
+\]
+于是\begin{gather*}
+	(\ln x)'' = (x^{-1})' = -x^{-2}, \\
+	(\ln x)''' = (-x^{-2})' = 2x^{-3},
+\end{gather*}
+递归可得\begin{gather}
+	(\ln x)^{(n)}
+	= (-1)^{n-1} \frac{(n-1)!}{x^n}, \\
+	\left(\frac1x\right)^{(n)}
+	= (\ln x)^{(n+1)}
+	= (-1)^n \frac{n!}{x^{n+1}}.
+\end{gather}
+\end{solution}
+\end{example}
+
+\subsection{高阶导数的运算规则}
 \begin{theorem}
-设\(u=u(x)\)和\(v=v(x)\)都\(n\)阶可导，则
-\begin{equation}
-	(u \pm v)^{(n)} = u^{(n)} \pm v^{(n)}.
+%@see: 《数学分析（第二版 上册）》（陈纪修） P156 定理4.5.1
+设\(f\)和\(g\)都是\(n\)阶可导函数，
+则对任意常数\(c_1\)和\(c_2\)，
+它们的线性组合\(c_1 f + c_2 g\)也是\(n\)阶可导的，
+且满足\begin{equation}
+	(c_1 f + c_2 g)^{(n)}
+	= c_1 f^{(n)} + c_2 f^{(n)}.
 \end{equation}
 \end{theorem}
 
-\begin{theorem}
-设\(u=u(x)\)和\(v=v(x)\)都\(n\)阶可导，则
-\begin{equation}\label{equation:导数与微分.莱布尼茨公式}
-	(u v)^{(n)}
-	= \sum_{k=0}^n C_n^k u^{(n-k)} v^{(k)}.
+这个结论可以推广到有限个函数线性组合的情况：\begin{equation}
+	\left[ \sum_{i=1}^n c_i f_i \right]^{(n)}
+	= \sum_{i=1}^n c_i f_i^{(n)}.
 \end{equation}
+
+\begin{theorem}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P157 定理4.5.2（Leibniz公式）
+设\(f\)和\(g\)都是\(n\)阶可导函数，
+则\begin{equation}\label{equation:导数与微分.莱布尼茨公式}
+	(f \cdot g)^{(n)}
+	= \sum_{k=0}^n C_n^k f^{(n-k)} g^{(k)},
+\end{equation}
+其中\(C_n^k \equiv \frac{n!}{k! (n-k)!}\)是组合系数.
+%TODO proof
 \end{theorem}
 \cref{equation:导数与微分.莱布尼茨公式} 称为\DefineConcept{莱布尼茨公式}.
 
+\subsection{高阶可导函数族}
 \begin{definition}\label{definition:函数族.n阶可导函数族}
 由区间\(I\)上全部的\(n\)阶可导函数组成的集合，
 称作\(n\)阶\DefineConcept{可导函数族}，
-记作\(D^n(I)\)，即\[
+记作\(D^n(I)\)，
+即\[
 	D^n(I)
 	\defeq
 	\Set*{
@@ -91,15 +225,13 @@
 如果函数\(f(x)\)在点\(x\)处具有\(n\)阶导数，
 那么\(f(x)\)在点\(x\)的某一邻域内必定具有一切低于\(n\)阶的导数.
 \end{theorem}
-换句话说，\(
-C(I) \supseteq
+换句话说，\(C(I) \supseteq
 D(I) = D^1(I) \supseteq
 C^1(I) \supseteq
 D^2(I) \supseteq
 C^2(I) \supseteq
 D^3(I) \supseteq
-\dotsb
-\).
+\dotsb\).
 
 \subsection{光滑函数}
 \begin{definition}\label{definition:函数族.光滑函数族}
