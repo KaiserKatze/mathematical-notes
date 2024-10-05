@@ -132,13 +132,43 @@
 	\quad\text{和}\quad
 	\lim_{y\to0} f'_y(0,y) = f'_y(0,0)
 \]
-不能说明\(f\)的偏导数在点\((x,y)\)连续，
+不能说明\(f\)的偏导数在点\((x,y)\)连续.
+
 这是因为\(f\)的偏导数在点\((x,y)\)连续
 当且仅当\[
 	\lim_{(x,y)\to(0,0)} f'_x(x,y) = f'_x(0,0)
 	\quad\text{且}\quad
 	\lim_{(x,y)\to(0,0)} f'_y(x,y) = f'_y(0,0).
 \]
+实际上，只要取\[
+	f(x,y) = \left\{ \begin{array}{cl}
+		1, & xy = 0, \\
+		0, & xy \neq 0,
+	\end{array} \right.
+\]
+可见\(f(x,0) = f(0,y) = 1\)，从而\(f'_x(x,0) = f'_y(0,y) = 0\)，
+但是\(f\)在点\((0,0)\)不连续更不可微.
+
+再则取\[
+	g(x,y) = \left\{ \begin{array}{cl}
+		(x^2+y^2) \sin\frac1{x^2+y^2}, & (x,y)\neq(0,0), \\
+		0, & (x,y)=(0,0),
+	\end{array} \right.
+\]
+因为\[
+	\abs{(x^2+y^2) \sin\frac1{x^2+y^2} - A x - B y}
+	\leq x^2 + y^2 + \abs{A x + B y},
+\]
+而且只要\(A = B = 0\)就有\(x^2 + y^2 + \abs{A x + B y} = o(\sqrt{x^2 + y^2})\)，
+所以\(g\)在点\((0,0)\)可微.
+但是\(g'_x(0,0) = \lim_{x\to0} \frac{g(x,0) - g(0,0)}{x - 0} = 0\)，
+而由\[
+	g(x,0) = \left\{ \begin{array}{cl}
+		x^2 \sin\frac1{x^2}, & x\neq0, \\
+		0, & x=0,
+	\end{array} \right.
+\]可得\(g'_x(x,0) = 2x \sin\frac1{x^2} - \frac2x \cos\frac1{x^2}\)，
+从而有\(\lim_{x\to0} g'_x(x,0)\)不存在.
 \end{remark}
 
 \begin{example}
