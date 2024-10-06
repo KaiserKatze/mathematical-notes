@@ -152,7 +152,7 @@
 %@see: 《数学分析（第二版 上册）》（陈纪修） P294 习题 12. (1)
 设函数\(f,g \in R[a,b]\)，
 则\begin{equation}\label{equation:定积分.柯西--施瓦茨不等式}
-	\left[ \int_a^b f(x) g(x) \dd{x} \right]^2
+	\left[ \int_a^b f(x)~g(x) \dd{x} \right]^2
 	\leq
 	\int_a^b f^2(x) \dd{x} \int_a^b g^2(x) \dd{x}.
 \end{equation}
@@ -164,7 +164,7 @@
 总有\begin{align*}
 	&\hspace{-20pt}
 	\int_a^b f^2(x) \dd{x}
-	+ 2t \int_a^b f(x) g(x) \dd{x}
+	+ 2t \int_a^b f(x)~g(x) \dd{x}
 	+ t^2 \int_a^b g^2(x) \dd{x} \\
 	&= \int_a^b [ f(x) + t g(x) ]^2 \dd{x}
 	\geq \int_a^b 0 \dd{x}
@@ -175,7 +175,7 @@
 将(1)式视作关于\(t\)的一元二次多项式，
 假设二次项系数\(\int_a^b g^2(x) \dd{x} > 0\)，
 由于该多项式是非负的，故其判别式非正，即\[
-	\left[ 2 \int_a^b f(x) g(x) \dd{x} \right]^2
+	\left[ 2 \int_a^b f(x)~g(x) \dd{x} \right]^2
 	- 4 \int_a^b g^2(x) \dd{x} \int_a^b f^2(x) \dd{x}
 	\leq 0,
 \]移项并化简，
@@ -183,12 +183,15 @@
 如果二次项系数\(\int_a^b g^2(x) \dd{x} = 0\)，
 那么\(g\)在其所有连续点上恒等于零.
 由于可积函数的连续点稠密，
-因此可以推出积分\(\int_a^b f(x) g(x) \dd{x} = 0\)，
+因此可以推出积分\(\int_a^b f(x)~g(x) \dd{x} = 0\)，
 从而有\cref{equation:定积分.柯西--施瓦茨不等式} 成立.
 \end{proof}
+%\cref{theorem:不等式.柯西不等式}
 \end{theorem}
-
-这里的柯西--施瓦茨不等式是\cref{theorem:不等式.柯西不等式} 的积分形式.
+\begin{remark}
+\cref{theorem:定积分.柯西--施瓦茨不等式}
+是\cref{theorem:定积分.赫尔德不等式} 当\(p=q=2\)时的特殊情形.
+\end{remark}
 
 \subsection{闵可夫斯基不等式}
 \begin{theorem}[闵可夫斯基不等式]\label{theorem:定积分.闵可夫斯基不等式}
@@ -201,6 +204,18 @@
 \end{equation}
 %TODO proof
 \end{theorem}
+
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P294 习题 13.
+设函数\(f,g\)都在\([a,b]\)上连续，
+且\(f(x)\geq0,
+g(x)>0\).
+证明：\[
+	\lim_{n\to\infty} \left[ \int_a^b f^n(x)~g(x) \dd{x} \right]^{\frac1n}
+	= \max_{a \leq x \leq b} f(x).
+\]
+%TODO proof
+\end{example}
 
 \subsection{欧庇尔不等式}
 \begin{theorem}[欧庇尔不等式]\label{theorem:定积分.欧庇尔不等式}
