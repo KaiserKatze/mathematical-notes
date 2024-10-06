@@ -164,7 +164,7 @@
 \end{example}
 
 \subsection{曲线的凹凸性与拐点}
-\begin{definition}
+\begin{definition}\label{definition:函数图像的绘制.凹凸性的定义}
 %@see: 《数学分析（第7版 第一卷）》（卓里奇） P202 定义1
 %@see: 《数学分析（第7版 第一卷）》（卓里奇） P203 定义2
 %@see: 《数学分析（第二版 上册）》（陈纪修） P173 定义5.1.2
@@ -179,7 +179,7 @@
 		\lambda f(x_1) + (1-\lambda) f(x_2)
 	],
 \]
-则称“\(f(x)\)是\(D\)上的\DefineConcept{凹函数}（convex function）”.
+则称“\(f\)是\(D\)上的\DefineConcept{凹函数}（convex function）”.
 
 若\[
 	(\forall x_1,x_2 \in D)
@@ -190,7 +190,7 @@
 		\lambda f(x_1) + (1-\lambda) f(x_2)
 	],
 \]
-则称“\(f(x)\)是\(D\)上的\DefineConcept{凸函数}（concave function）
+则称“\(f\)是\(D\)上的\DefineConcept{凸函数}（concave function）
 \footnote{有的书把凹函数称为\DefineConcept{下凸函数}，
 把凸函数称为\DefineConcept{上凸函数}.
 % 例如：
@@ -214,7 +214,7 @@
 		]
 	],
 \]
-则称“\(f(x)\)是\(D\)上的\DefineConcept{严格凹函数}
+则称“\(f\)是\(D\)上的\DefineConcept{严格凹函数}%
 （strictly convex function）”.
 
 若\[
@@ -230,7 +230,7 @@
 		]
 	],
 \]
-则称“\(f(x)\)是\(D\)上的\DefineConcept{严格凸函数}
+则称“\(f\)是\(D\)上的\DefineConcept{严格凸函数}%
 （strictly concave function）”.
 %@see: https://mathworld.wolfram.com/ConvexFunction.html
 %@see: https://mathworld.wolfram.com/ConcaveFunction.html
@@ -286,6 +286,37 @@
 \end{itemize}
 如果\(\AutoTuple{k}{n}\)均不为零，
 那么上述两条不等式的取等条件就是\(x_1=x_2=\dotsb=x_n\).
+\begin{proof}
+这里只证“\(f\)是凹函数”的情形.
+
+假设\(f\)是凹函数.
+当\(n=2\)时，条件、结论与\cref{definition:函数图像的绘制.凹凸性的定义} 相同，自然成立.
+
+利用数学归纳法.
+假设当\(n=m-1\ (m\geq3)\)时结论成立.
+当\(n=m\)时，
+记\(p = k_2 + \dotsb + k_n\)，
+则\[
+	\frac{k_2}{p} + \dotsb + \frac{k_n}{p} = 1,
+\]
+于是\begin{align*}
+	f(k_1 x_1 + \dotsb + k_n x_n)
+	&= f\left( k_1 x_1 + p \left( \frac{k_2}{p} x_2 + \dotsb + \frac{k_n}{p} x_n \right) \right) \\
+	&\leq k_1 f(x_1) + p f\left( \frac{k_2}{p} x_2 + \dotsb + \frac{k_n}{p} x_n \right),
+\end{align*}
+这里\(k_1 + p = 1\)
+且\(\frac{k_2}{p} x_2 + \dotsb + \frac{k_n}{p} x_n \in (a,b)\).
+再由归纳假设可知\[
+	f\left( \frac{k_2}{p} x_2 + \dotsb + \frac{k_n}{p} x_n \right)
+	\leq \frac{k_2}{p} f(x_2) + \dotsb + \frac{k_n}{p} f(x_n),
+\]
+所以\begin{align*}
+	f(k_1 x_1 + \dotsb + k_n x_n)
+	&\leq k_1 f(x_1) + p f\left( \frac{k_2}{p} x_2 + \dotsb + \frac{k_n}{p} x_n \right) \\
+	&\leq k_1 f(x_1) + k_2 f(x_2) + \dotsb + k_n f(x_n).
+	\qedhere
+\end{align*}
+\end{proof}
 \end{proposition}
 
 \begin{theorem}[曲线凹凸的判定]\label{theorem:微分中值定理.曲线凹凸的判定}
