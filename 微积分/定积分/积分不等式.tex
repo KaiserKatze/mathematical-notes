@@ -2,11 +2,58 @@
 \subsection{杨格不等式}
 \begin{theorem}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P294 习题 10.
+%@see: 《数学分析教程 （第3版 上册）》（史济怀） P305 例7
 设\(f\)是在\([0,+\infty)\)上严格单调增加的连续函数，且\(f(0)=0\)，\(f^{-1}\)是\(f\)的反函数，
 则对于\(\forall a,b>0\)有\begin{equation}
-	\int_0^a f(x) \dd{x} + \int_0^b f^{-1}(x) \dd{x} \geq ab.
+	\int_0^a f(x) \dd{x} + \int_0^b f^{-1}(y) \dd{y} \geq ab.
 \end{equation}
-%TODO proof
+当且仅当\(b = f(a)\)时上式取“\(=\)”号.
+\begin{proof}
+易知\(f^{-1}\)是在\([0,f(+\infty))\)上严格单调增加的连续函数，且\(f^{-1}(0) = 0\).
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,xmax=2,
+			ymin=0,ymax=3,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=south},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=west},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=0:2]{x^2};
+			\draw(1.5,1)--(0,1);
+			\draw[dashed](1,1)--(1,0);
+			\draw(1.5,0)--(1.5,2.25);
+		\end{axis}
+	\end{tikzpicture}\hspace{1cm}\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,xmax=2,
+			ymin=0,ymax=3,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=south},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=west},
+		]
+			\addplot[color=blue,samples=50,smooth,domain=0:2]{x^2};
+			\draw[dashed](1,1)--(0,1);
+			\draw(0,2)--({sqrt(2)},2);
+			\draw(1,2)--(1,0);
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:积分不等式.杨格不等式}
+\end{figure}
+观察\cref{figure:积分不等式.杨格不等式} 中图形的面积关系即可确认不等式的正确性.
+\end{proof}
+%@see: https://loss.math.gatech.edu/10springtea/Lecture1.pdf
+%@see: https://www2.math.upenn.edu/~brweber/Courses/2011/Math361/Notes/YMandH.pdf
 \end{theorem}
 
 \subsection{赫尔德不等式}

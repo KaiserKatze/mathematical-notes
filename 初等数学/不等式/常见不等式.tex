@@ -456,63 +456,112 @@ n \left( \frac{1}{x_1} + \dotsb + \frac{1}{x_n} \right)^{-1}
 \begin{corollary}\label{theorem:不等式.均值不等式推论}
 如果\(\AutoTuple{x}{n},\AutoTuple{p}{n}\in\mathbb{R}^+\)，那么
 \begin{equation}
-x_1^{p_1} \dotsm x_n^{p_n}
-\leq
-\left( \frac{p_1 x_1 + \dotsb + p_n x_n}{p_1 + \dotsb + p_n} \right)^{p_1 + \dotsb + p_n}.
+	x_1^{p_1} \dotsm x_n^{p_n}
+	\leq
+	\left(
+		\frac{p_1 x_1 + \dotsb + p_n x_n}{p_1 + \dotsb + p_n}
+	\right)^{p_1 + \dotsb + p_n}.
 \end{equation}
 \end{corollary}
+
+\subsection{杨格不等式}
+\begin{theorem}[杨格不等式]\label{theorem:不等式.杨格不等式}
+设\(a,b\geq0\)，
+正有理数\(p,q\)满足\(\frac1p+\frac1q=1\)，
+则\begin{equation}
+	ab \leq \frac{a^p}{p} + \frac{b^q}{q}.
+\end{equation}
+\begin{proof}
+%@see: https://math.stackexchange.com/a/259837/591741
+因为\(\frac1p+\frac1q=1\)，
+所以不妨设\(p = \frac{m+n}{m},
+q = \frac{m+n}{n}\)，
+其中\(m,n\in\mathbb{N}\).
+又设\(c=a^p,
+d=b^q\)，
+于是\[
+	\frac{a^p}{p} + \frac{b^q}{q}
+	= \frac{c}{\frac{m+n}{m}} + \frac{d}{\frac{m+n}{n}}
+	= \frac{cm+dn}{m+n}.
+\]
+由\hyperref[theorem:不等式.基本不等式n几何平均数与算术平均数]{基本不等式}可知\[
+	\frac{cm+dn}{m+n}
+	\geq \sqrt[m+n]{c^m d^n}
+	= c^{\frac{m}{m+n}} d^{\frac{n}{m+n}}
+	= a b.
+\]
+因此\[
+	\frac{a^p}{p} + \frac{b^q}{q}
+	\geq a b.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
 
 \subsection{伯努利不等式}
 \begin{theorem}[伯努利不等式]\label{theorem:不等式.伯努利不等式}
 \begin{equation}
-(1+x_1)(1+x_2)\dotsm(1+x_n) \geq 1+x_1+x_2+\dotsb+x_n,
+	(1+x_1)(1+x_2)\dotsm(1+x_n) \geq 1+x_1+x_2+\dotsb+x_n,
 \end{equation}
 式中\(\AutoTuple{x}{n}\)是符号相同且大于\(-1\)的数.
 \begin{proof}
 用数学归纳法.
-当\(n=1\)时两边相等，故结论成立.现假设\(n=k\)时结论成立，即\((1+x_1)(1+x_2)\dotsm(1+x_k) \geq 1+x_1+x_2+\dotsb+x_k\).那么当\(n=k+1\)时，\begin{align*}
-&(1+x_1)(1+x_2)\dotsm(1+x_k)(1+x_{k+1}) \\
-&\geq (1+x_1+x_2+\dotsb+x_k)(1+x_{k+1}) \\
-&= (1+x_1+x_2+\dotsb+x_k+x_{k+1}) + x_{k+1}(x_1+x_2+\dotsb+x_k).
+当\(n=1\)时两边相等，故结论成立.现假设\(n=k\)时结论成立，
+即\((1+x_1)(1+x_2)\dotsm(1+x_k) \geq 1+x_1+x_2+\dotsb+x_k\).
+那么当\(n=k+1\)时，\begin{align*}
+	&(1+x_1)(1+x_2)\dotsm(1+x_k)(1+x_{k+1}) \\
+	&\geq (1+x_1+x_2+\dotsb+x_k)(1+x_{k+1}) \\
+	&= (1+x_1+x_2+\dotsb+x_k+x_{k+1}) + x_{k+1}(x_1+x_2+\dotsb+x_k).
 \end{align*}
-若\(x_1,x_2,\dotsc,x_{k+1}\)都大于零，则\(x_{k+1}(x_1+x_2+\dotsb+x_k) > 0\)，\begin{gather}
+
+若\(x_1,x_2,\dotsc,x_{k+1}\)都大于零，
+则\(x_{k+1}(x_1+x_2+\dotsb+x_k) > 0\)，
+\begin{gather}
 (1+x_1)(1+x_2)\dotsm(1+x_k)(1+x_{k+1}) \geq 1+x_1+x_2+\dotsb+x_k+x_{k+1}
 \tag1
-\end{gather}成立；若\(x_1,x_2,\dotsc,x_{k+1}\)都等于零，则\(x_{k+1}(x_1+x_2+\dotsb+x_k) = 0\)，同样有(1)式成立；若\(x_1,x_2,\dotsc,x_{k+1}\in(-1,0)\)，则\(x_1+x_2+\dotsb+x_k < 0\)，\(x_{k+1}(x_1+x_2+\dotsb+x_k) > 0\)，仍然有(1)式成立.
+\end{gather}成立.
+
+若\(x_1,x_2,\dotsc,x_{k+1}\)都等于零，
+则\(x_{k+1}(x_1+x_2+\dotsb+x_k) = 0\)，同样有(1)式成立.
+
+若\(x_1,x_2,\dotsc,x_{k+1}\in(-1,0)\)，
+则\(x_1+x_2+\dotsb+x_k < 0\)，\(x_{k+1}(x_1+x_2+\dotsb+x_k) > 0\)，
+仍然有(1)式成立.
 \end{proof}
 \end{theorem}
 
 \begin{example}
 证明：当\(x > -1\)时，不等式\begin{equation}
-(1+x)^n \geq 1+nx \quad (n>1)
-\end{equation}成立，当且仅当\(x=0\)时取“\(=\)”.
+	(1+x)^n \geq 1+nx \quad (n>1)
+\end{equation}成立，
+当且仅当\(x=0\)时取“\(=\)”.
 \begin{proof}
 用数学归纳法.
 当\(n=2\)时，\((1+x)^2 = 1+2x+x^2 \geq 1+2x\)成立.
 假设当\(n=k\)时有\((1+x)^k \geq 1+kx\)成立.
 当\(n=k+1\)时，\begin{align*}
-(1+x)^{k+1}
-&= (1+x)^k (1+x) \\
-&\geq (1+kx)(1+x) \\
-&= 1 + (k+1)x + kx^2 \\
-&\geq 1 + (k+1)x.
-\qedhere
+	(1+x)^{k+1}
+	&= (1+x)^k (1+x) \\
+	&\geq (1+kx)(1+x) \\
+	&= 1 + (k+1)x + kx^2 \\
+	&\geq 1 + (k+1)x.
+	\qedhere
 \end{align*}
 \end{proof}
 实际上，当\(-2 \leq x \leq -1\)时，上述不等式仍然成立.
 
 \begin{enumerate}
-\item 当\(x = -1\)时，左边\((1+x)^n \equiv 0\)，右边\(1+nx = 1 - n < 0\)，上述不等式成立.
+	\item 当\(x = -1\)时，左边\((1+x)^n \equiv 0\)，右边\(1+nx = 1 - n < 0\)，上述不等式成立.
 
-\item 当\(x = -2\)时，左边\((1+x)^n = (-1)^n = \pm1\)，右边\[
-1+nx = 1-2n < -1,
-\]即上述不等式成立.
+	\item 当\(x = -2\)时，左边\((1+x)^n = (-1)^n = \pm1\)，右边\[
+	1+nx = 1-2n < -1,
+	\]即上述不等式成立.
 
-\item 当\(-2 < x < -1\)时，\(-1 < 1+x < 0\)，故\(1+x < (1+x)^n\)；
-又因为\(n>1\)，\(nx<x\)，故\(1+nx < 1+x < (1+x)^n\).
+	\item 当\(-2 < x < -1\)时，\(-1 < 1+x < 0\)，故\(1+x < (1+x)^n\)；
+	又因为\(n>1\)，\(nx<x\)，故\(1+nx < 1+x < (1+x)^n\).
 \end{enumerate}
 综上所述，不等式\[
-(1+x)^n \geq 1+nx \quad (n>1)
+	(1+x)^n \geq 1+nx \quad (n>1)
 \]当\(-2 \leq x \leq -1\)时仍然成立.
 \end{example}
 
@@ -583,10 +632,10 @@ x_1^{p_1} \dotsm x_n^{p_n}
 证明：\(C_n^k < n^k\).
 \begin{proof}
 显然有\begin{align*}
-C_n^k &= \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) \dotsm 1} \\
-&< n \cdot (n-1) \dotsm (n-k+1) \\
-&< n \cdot n \dotsm n = n^k.
-\qedhere
+	C_n^k &= \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) \dotsm 1} \\
+	&< n \cdot (n-1) \dotsm (n-k+1) \\
+	&< n \cdot n \dotsm n = n^k.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{example}
