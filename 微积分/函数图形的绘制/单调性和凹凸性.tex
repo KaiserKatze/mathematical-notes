@@ -190,7 +190,16 @@
 		\lambda f(x_1) + (1-\lambda) f(x_2)
 	],
 \]
-则称“\(f(x)\)是\(D\)上的\DefineConcept{凸函数}（concave function）”.
+则称“\(f(x)\)是\(D\)上的\DefineConcept{凸函数}（concave function）
+\footnote{有的书把凹函数称为\DefineConcept{下凸函数}，
+把凸函数称为\DefineConcept{上凸函数}.
+% 例如：
+% 《数学分析（第二版 上册）》（陈纪修）
+有的书反过来把凹函数称为凸函数，
+把凸函数称为凹函数.
+% 例如：
+% 《数学分析（第7版 第一卷）》（卓里奇）
+}”.
 
 若\[
 	(\forall x_1,x_2 \in D)
@@ -254,6 +263,7 @@
 \begin{proposition}[延森不等式]
 %@see: 《数学分析（第7版 第一卷）》（卓里奇） P207 命题7（延森不等式）
 %@see: 《数学分析（第二版 上册）》（陈纪修） P176 定理5.1.8
+%@see: 《数学分析（第二版 上册）》（陈纪修） P184 习题 24.（Jensen不等式）
 设函数\(f\colon(a,b)\to\mathbb{R}\)，
 \(\AutoTuple{x}{n}\in(a,b)\)，
 \(\AutoTuple{k}{n}\in(0,1)\)
@@ -261,18 +271,17 @@
 \begin{itemize}
 	\item 如果\(f\)是凸函数，
 	则\[
-		%@see: 《数学分析（第7版 第一卷）》（卓里奇） P207 (14)
-		f(k_1x_1+\dotsb+k_nx_n)
-		\leq
-		k_1f(x_1)+\dotsb+k_nf(x_n).
+		%@see: 《数学分析（第7版 第一卷）》（卓里奇） P207 (15)
+		f(k_1 x_1 + \dotsb + k_n x_n)
+		\geq
+		k_1 f(x_1) + \dotsb + k_n f(x_n).
 	\]
-
 	\item 如果\(f\)是凹函数，
 	则\[
-		%@see: 《数学分析（第7版 第一卷）》（卓里奇） P207 (15)
-		f(k_1x_1+\dotsb+k_nx_n)
-		\geq
-		k_1f(x_1)+\dotsb+k_nf(x_n).
+		%@see: 《数学分析（第7版 第一卷）》（卓里奇） P207 (14)
+		f(k_1 x_1 + \dotsb + k_n x_n)
+		\leq
+		k_1 f(x_1) + \dotsb + k_n f(x_n).
 	\]
 \end{itemize}
 如果\(\AutoTuple{k}{n}\)均不为零，
@@ -283,35 +292,54 @@
 %@see: 《数学分析（第二版 上册）》（陈纪修） P173 定理5.1.6（二阶导数与凹凸性的关系）
 设\(f\colon[a,b]\to\mathbb{R}\)在\([a,b]\)上连续，在\((a,b)\)内具有一阶和二阶导数.
 \begin{itemize}
-	\item 若在\((a,b)\)内\(f''(x)>0\)，则\(f\)在\([a,b]\)上的图形是凹的.
-	\item 若在\((a,b)\)内\(f''(x)<0\)，则\(f\)在\([a,b]\)上的图形是凸的.
+	\item 若在\((a,b)\)内\(f''(x)>0\)，
+	则\(f\)是\([a,b]\)上的凹函数.
+	\item 若在\((a,b)\)内\(f''(x)<0\)，
+	则\(f\)是\([a,b]\)上的凸函数.
 \end{itemize}
 \begin{proof}
-在情形1，设\(x_1\)和\(x_2\)为\([a,b]\)内任意两点，且\(x_1 < x_2\)，记\(\frac{x_1 + x_2}{2} = x_0\)，并记\(x_2 - x_0 = x_0 - x_1 = h\)，则\(x_1 = x_0 - h\)，\(x_2 = x_0 + h\)，由拉格朗日中值公式，得\[
-f(x_0 + h) - f(x_0) = f'(x_0 + \theta_1 h) h,
-\]\[
-f(x_0) - f(x_0 - h) = f'(x_0 - \theta_2 h) h,
-\]其中\(0 < \theta_1 < 1\)，\(0 < \theta_2 < 1\).两式相减，即得\[
-f(x_0 + h) + f(x_0 - h) - 2 f(x_0)
-= [ f'(x_0 + \theta_1 h) - f'(x_0 - \theta_2 h) ] h.
-\]对\(f'(x)\)在区间\([x_0 - \theta_2 h,x_0 + \theta_1 h]\)上再利用拉格朗日中值公式，得\[
-[ f'(x_0 + \theta_1 h) - f'(x_0 - \theta_2 h) ] h
-= f''(\xi) (\theta_1 + \theta_2) h^2,
-\]其中\(x_0 - \theta_2 h < \xi < x_0 + \theta_1 h\).按情形1的假设，\(f''(\xi) > 0\)，故有\[
-f(x_0 + h) + f(x_0 - h) - 2 f(x_0) > 0,
-\]即\[
-\frac{f(x_0 + h) + f(x_0 - h)}{2} > f(x_0),
-\]亦即\[
-\frac{f(x_1) + f(x_2)}{2} > f\left(\frac{x_1 + x_2}{2}\right),
-\]所以\(f(x)\)在\([a,b]\)上的图形是凹的.
+在情形1，设\(x_1\)和\(x_2\)为\([a,b]\)内任意两点，且\(x_1 < x_2\)，
+记\(\frac{x_1 + x_2}{2} = x_0\)，
+并记\(x_2 - x_0 = x_0 - x_1 = h\)，
+则\(x_1 = x_0 - h\)，\(x_2 = x_0 + h\)，
+由拉格朗日中值公式，
+得\begin{gather*}
+	f(x_0 + h) - f(x_0) = f'(x_0 + \theta_1 h) h, \\
+	f(x_0) - f(x_0 - h) = f'(x_0 - \theta_2 h) h,
+\end{gather*}
+其中\(0 < \theta_1 < 1\)，\(0 < \theta_2 < 1\).
+两式相减，即得\[
+	f(x_0 + h) + f(x_0 - h) - 2 f(x_0)
+	= [ f'(x_0 + \theta_1 h) - f'(x_0 - \theta_2 h) ] h.
+\]
+对\(f'(x)\)在区间\([x_0 - \theta_2 h,x_0 + \theta_1 h]\)上再利用拉格朗日中值公式，
+得\[
+	[ f'(x_0 + \theta_1 h) - f'(x_0 - \theta_2 h) ] h
+	= f''(\xi) (\theta_1 + \theta_2) h^2,
+\]
+其中\(x_0 - \theta_2 h < \xi < x_0 + \theta_1 h\).
+按情形1的假设，\(f''(\xi) > 0\)，
+故有\[
+	f(x_0 + h) + f(x_0 - h) - 2 f(x_0) > 0,
+\]
+即\[
+	\frac{f(x_0 + h) + f(x_0 - h)}{2} > f(x_0),
+\]
+亦即\[
+	\frac{f(x_1) + f(x_2)}{2} > f\left(\frac{x_1 + x_2}{2}\right),
+\]
+所以\(f(x)\)在\([a,b]\)上的图形是凹的.
 
 类似地可证情形2.
 \end{proof}
 \end{theorem}
 
 \begin{definition}
-一般的，设\(y=f(x)\)在区间\(I\)上连续，\(x_0\)是\(I\)的内点\footnote{区间\(I\)的内点是指除端点外的\(I\)内的点}.
-如果曲线\(y=f(x)\)在经过点\((x_0,f(x_0))\)时，曲线的凹凸性改变了，那么就称点\((x_0,f(x_0))\)为这曲线的\DefineConcept{拐点}.
+一般的，设\(y=f(x)\)在区间\(I\)上连续，
+\(x_0\)是\(I\)的内点\footnote{区间\(I\)的内点是指除端点外的\(I\)内的点}.
+如果曲线\(y=f(x)\)在经过点\((x_0,f(x_0))\)时，
+曲线的凹凸性改变了，
+那么就称“点\((x_0,f(x_0))\)是曲线\(y = f(x)\)的\DefineConcept{拐点}”.
 \end{definition}
 
 \begin{example}
@@ -325,23 +353,24 @@ f(x_0 + h) + f(x_0 - h) - 2 f(x_0) > 0,
 如果\(f(x)\)在区间\((a,b)\)内具有二阶连续导数，那么在这样的分界点处必然有\(f''(x)=0\)；
 除此以外，\(f(x)\)的二阶导数不存在的点，也有可能是\(f''(x)\)的符号发生变化的分界点.
 
-{\color{red}综合以上分析，我们可以按下列步骤来判定区间\(I\)上的连续曲线\(y=f(x)\)的拐点：
+{\color{red}
+综合以上分析，我们可以按下列步骤来判定区间\(I\)上的连续曲线\(y=f(x)\)的拐点：
 \begin{enumerate}
-\item 求\(f''(x)\)；
+	\item 求\(f''(x)\)；
 
-\item 令\(f''(x) = 0\)，解出这个方程在区间\(I\)内的实根，
-并求出在区间\(I\)内\(f''(x)\)不存在的点；
+	\item 令\(f''(x) = 0\)，解出这个方程在区间\(I\)内的实根，
+	并求出在区间\(I\)内\(f''(x)\)不存在的点；
 
-\item 对于上一步中求出的每一个实根或二阶导数不存在的点\(x_0\)，
-检查\(f''(x)\)在\(x_0\)左右两侧邻近的符号，
-那么当两侧的符号相反时，点\((x_0,f(x_0))\)就是拐点；
-当两侧的符号相同时，点\((x_0,f(x_0))\)不是拐点.
+	\item 对于上一步中求出的每一个实根或二阶导数不存在的点\(x_0\)，
+	检查\(f''(x)\)在\(x_0\)左右两侧邻近的符号，
+	那么当两侧的符号相反时，点\((x_0,f(x_0))\)就是拐点；
+	当两侧的符号相同时，点\((x_0,f(x_0))\)不是拐点.
 \end{enumerate}}
 
 \begin{example}
 证明：当\(x>0\)，\(y>0\)，\(x \neq y\)，且\(n>1\)时，
 有\begin{equation}\label{equation:微分中值定理.平均数的比较1}
-\frac{1}{2} (x^n+y^n) > \left(\frac{x+y}{2}\right)^n
+	\frac{1}{2} (x^n+y^n) > \left(\frac{x+y}{2}\right)^n
 \end{equation}成立.
 \begin{proof}
 设\(f(x) = x^n\)，那么\(f'(x) = n x^{n-1}\)，\(f''(x) = n(n-1) x^{n-2}\).
@@ -360,14 +389,14 @@ f(x_0 + h) + f(x_0 - h) - 2 f(x_0) > 0,
 
 \begin{example}
 证明：当\(x \neq y\)时，有\begin{equation}
-\frac{e^x + e^y}{2} > e^{\frac{x+y}{2}}.
+	\frac{e^x + e^y}{2} > e^{\frac{x+y}{2}}.
 \end{equation}
 \begin{proof}
 设\(f(x) = e^x\)，那么\(f'(x) = f''(x) = e^x > 0\ (x\in\mathbb{R})\)，可知\(f(x)\)是凹函数.
 因此\[
-f\left(\frac{x+y}{2}\right) = e^{\frac{x+y}{2}}
-< \frac{e^x+e^y}{2} = \frac{f(x)+f(y)}{2}.
-\qedhere
+	f\left(\frac{x+y}{2}\right) = e^{\frac{x+y}{2}}
+	< \frac{e^x+e^y}{2} = \frac{f(x)+f(y)}{2}.
+	\qedhere
 \]
 \end{proof}
 \end{example}
