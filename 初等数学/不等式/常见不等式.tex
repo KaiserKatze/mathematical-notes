@@ -462,15 +462,6 @@ x_1^{p_1} \dotsm x_n^{p_n}
 \end{equation}
 \end{corollary}
 
-\subsection{杨格不等式}
-\begin{corollary}[杨格不等式]\label{theorem:不等式.杨格不等式}
-设\(a,b\geq0\)，\(p,q>1\)且\(\frac{1}{p}+\frac{1}{q}=1\)，则
-\begin{equation}
-ab \leq \frac{a^p}{p} + \frac{b^q}{q}.
-\end{equation}
-%TODO proof
-\end{corollary}
-
 \subsection{伯努利不等式}
 \begin{theorem}[伯努利不等式]\label{theorem:不等式.伯努利不等式}
 \begin{equation}
@@ -599,51 +590,3 @@ C_n^k &= \frac{n \cdot (n-1) \dotsm (n-k+1)}{k \cdot (k-1) \dotsm 1} \\
 \end{align*}
 \end{proof}
 \end{example}
-
-\subsection{赫尔德不等式}
-\begin{theorem}[赫尔德不等式]\label{theorem:不等式.赫尔德不等式}
-%@see: 《数学分析教程 （第3版 上册）》（史济怀） P306 例8
-设\(\AutoTuple{x}{n},\AutoTuple{y}{n}\geq0\)，\(p,q>1\)，
-且满足\(\frac{1}{p}+\frac{1}{q}=1\)，
-则
-\def\s{\sum_{i=1}^n}%
-\def\sp#1#2#3{\left( \s #1^#2 \right)^{#3/#2}}%
-\begin{equation}
-	\s x_i y_i
-	\leq
-	\sp{x_i}{p}{1} \sp{y_i}{q}{1},
-\end{equation}
-当且仅当存在常数\(\lambda\)使得\(a_i^p = \lambda b_i^q\ (i=1,2,\dotsc,n)\)时取“\(=\)”号.
-\begin{proof}
-令\[
-	a_j = x_j \sp{x_i}{p}{-1}, \qquad
-	b_j = y_j \sp{y_i}{q}{-1}.
-\]
-那么根据\cref{theorem:不等式.杨格不等式} 得到\[
-	\s a_i b_i \leq \s \left( \frac{a_i^p}{p} + \frac{b_i}{q} \right)
-	\leq \frac{1}{p} + \frac{1}{q} = 1.
-	\qedhere
-\]
-\end{proof}
-\end{theorem}
-
-\subsection{闵可夫斯基不等式}
-\begin{theorem}[闵可夫斯基不等式]\label{theorem:不等式.闵可夫斯基不等式}
-设\(\AutoTuple{x}{n},\AutoTuple{y}{n}\in\mathbb{R}\)，\(p\geq1\)，则
-\def\s{\sum_{i=1}^n}%
-\def\sumonly#1{\s \abs{#1}^p}%
-\newcommand\sumpower[2][1]{\left( \sumonly{#2} \right)^{\frac{#1}{p}}}%
-\begin{equation}
-\sumpower{x_i+y_i} \leq \sumpower{x_i} + \sumpower{y_i}.
-\end{equation}
-\begin{proof}
-利用\cref{theorem:不等式.赫尔德不等式} 就有\[\begin{aligned}
-&\hspace{-20pt}\sumonly{x_i+y_i}
-= \s \abs{x_i+y_i} \abs{x_i+y_i}^{p-1}
-\leq \s (\abs{x_i}+\abs{y_i}) \abs{x_i+y_i}^{p-1} \\
-&\leq \sumpower{x_i} \sumpower[p-1]{x_i+y_i}
-+ \sumpower{y_i} \sumpower[p-1]{x_i+y_i}.
-\end{aligned}\]
-整理即得欲证不等式.
-\end{proof}
-\end{theorem}
