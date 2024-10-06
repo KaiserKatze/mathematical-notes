@@ -15,16 +15,60 @@
 %@see: 《数学分析教程 （第3版 上册）》（史济怀） P307 练习题7.3 3.
 设\(f\)和\(g\)都在\([a,b]\)上连续，正数\(p,q\)满足\(\frac1p+\frac1q=1\)，
 则\begin{equation}
-	\int_a^b \abs{f(x) g(x)} \dd{x}
+	\int_a^b \abs{f(x)~g(x)} \dd{x}
 	\leq \left[\int_a^b \abs{f(x)}^p \dd{x}\right]^{\frac1p}
 	\left[\int_a^b \abs{g(x)}^q \dd{x}\right]^{\frac1q},
 \end{equation}
 当且仅当\(\abs{f}^p = B \abs{g}^q\ (\text{$B$是常数})\)时取“\(=\)”号.
-%TODO proof
+\begin{proof}
+当\(f(x) \equiv 0\)或\(g(x) \equiv 0\)时，上式显然成立.
+
+当\(f(x) \not\equiv 0\)且\(g(x) \not\equiv 0\)时，
+令\[
+	\phi(x) = \frac{\abs{f(x)}}{\left[\int_a^b \abs{f(x)}^p \dd{x}\right]^{\frac1p}},
+	\qquad
+	\psi(x) = \frac{\abs{g(x)}}{\left[\int_a^b \abs{g(x)}^q \dd{x}\right]^{\frac1q}},
+	\quad
+	x\in[a,b].
+\]
+由\hyperref[example:函数图像的绘制.杨格不等式]{杨格不等式}可得\[
+	\phi(x)~\psi(x)
+	\leq \frac1p \phi^p(x) + \frac1q \psi^q(x),
+\]
+即\begin{equation*}
+	\frac{\abs{f(x)~g(x)}}{
+		\left[\int_a^b \abs{f(x)}^p \dd{x}\right]^{\frac1p}
+		\left[\int_a^b \abs{g(x)}^q \dd{x}\right]^{\frac1q}
+	}
+	\leq \frac{\abs{f(x)}^p}{p \int_a^b \abs{f(x)}^p \dd{x}}
+	+ \frac{\abs{g(x)}^q}{q \int_a^b \abs{g(x)}^q \dd{x}},
+	\quad x\in[a,b].
+\end{equation*}
+对上式两边在\([a,b]\)上求积分，利用定积分的性质得\begin{equation*}
+	\frac{
+		\int_a^b \abs{f(x)~g(x)} \dd{x}
+	}{
+		\left[\int_a^b \abs{f(x)}^p \dd{x}\right]^{\frac1p}
+		\left[\int_a^b \abs{g(x)}^q \dd{x}\right]^{\frac1q}
+	}
+	\leq \frac{\int_a^b \abs{f(x)}^p \dd{x}}{p \int_a^b \abs{f(x)}^p \dd{x}}
+	+ \frac{\int_a^b \abs{g(x)}^q \dd{x}}{q \int_a^b \abs{g(x)}^q \dd{x}}
+	= \frac1p + \frac1q = 1.
+\end{equation*}
+在上式两边同乘以\(\left[\int_a^b \abs{f(x)}^p \dd{x}\right]^{\frac1p}
+\left[\int_a^b \abs{g(x)}^q \dd{x}\right]^{\frac1q}\)，
+便得\[
+	\int_a^b \abs{f(x)~g(x)} \dd{x}
+	\leq \left[\int_a^b \abs{f(x)}^p \dd{x}\right]^{\frac1p}
+	\left[\int_a^b \abs{g(x)}^q \dd{x}\right]^{\frac1q}.
+	\qedhere
+\]
+%TODO 没有证明取等条件
+\end{proof}
 \end{theorem}
 
 \begin{example}
-%@see: 《高等数学（第六版 上册）》 P292 例7.2.3
+%@see: 《数学分析（第二版 上册）》（陈纪修） P292 例7.2.3
 设函数\(f \in D^2[a,b]\)，且\(f\left(\frac{a+b}2\right) = 0\).
 记\(M = \sup_{a \leq x \leq b} \abs{f''(x)}\).
 证明：\[
