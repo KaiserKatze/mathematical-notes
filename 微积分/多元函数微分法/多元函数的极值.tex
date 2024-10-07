@@ -4,22 +4,27 @@
 与一元函数相类似，多元函数的最大值、最小值与极大值、极小值有密切联系.
 
 \begin{definition}
-设区域\(D \subseteq \mathbb{R}^n\)，函数\(f\colon D \to \mathbb{R}\)，
-\(P_0\)为\(D\)的内点.
+%@see: 《高等数学（第六版 下册）》 P109 定义
+%@see: 《数学分析（第二版 下册）》（陈纪修） P202 定义12.6.1
+设开区域\(D \subseteq \mathbb{R}^n\)，
+函数\(f\colon D \to \mathbb{R}\)，
+点\(P_0 \in D\).
 \begin{itemize}
 	\item 若存在\(P_0\)的某个去心邻域\(\mathring{U}(P_0) \subseteq D\)，
-	使得对于任意点\(P \in \mathring{U}(P_0)\)，都有\[
+	使得对于任意点\(P \in \mathring{U}(P_0)\)，
+	都有\[
 		f(P) < f(P_0),
 	\]
-	则称“函数\(f\)在点\(P_0\)有\DefineConcept{极大值} \(f(P_0)\)”
-	“点\(P_0\)是函数\(f\)的一个\DefineConcept{极大值点}”.
+	则称“\(P_0\)是函数\(f\)的一个\DefineConcept{极大值点}”
+	“\(f(P_0)\)是函数\(f\)的一个\DefineConcept{极大值}”.
 
 	\item 若存在\(P_0\)的某个去心邻域\(\mathring{U}(P_0) \subseteq D\)，
-	使得对于任意点\(P \in \mathring{U}(P_0)\)，都有\[
+	使得对于任意点\(P \in \mathring{U}(P_0)\)，
+	都有\[
 		f(P) > f(P_0),
 	\]
-	则称“函数\(f\)在点\(P_0\)有\DefineConcept{极小值} \(f(P_0)\)”
-	“点\(P_0\)是函数\(f\)的一个\DefineConcept{极小值点}”.
+	则称“\(P_0\)是函数\(f\)的一个\DefineConcept{极小值点}”
+	“\(f(P_0)\)是函数\(f\)的一个\DefineConcept{极小值}”.
 \end{itemize}
 
 极大值、极小值统称为\DefineConcept{极值}.
@@ -86,6 +91,8 @@
 二元函数的极值问题，一般可以利用偏导数来解决.
 下面两个定理就是关于这个问题的结论.
 \begin{theorem}[必要条件]\label{theorem:多元函数微分法.多元函数极值存在的必要条件}
+%@see: 《高等数学（第六版 下册）》 P110 定理1（必要条件）
+%@see: 《数学分析（第二版 下册）》（陈纪修） P202 定理12.6.1（必要条件）
 设函数\(z=f(x,y)\)在点\(P_0(x_0,y_0)\)具有偏导数，且在点\(P_0\)处有极值，则有\[
 	f'_x(x_0,y_0) = f'_y(x_0,y_0) = 0.
 \]
@@ -116,32 +123,36 @@
 
 仿照一元函数，我们给出多元函数的“驻点”的定义.
 \begin{definition}
-设函数\(f\colon D \to \mathbb{R}\)，\(D \subseteq \mathbb{R}^n\)，
-\(P_0\)为\(D\)的内点.
-若\[
-	\pdv{f}{x_i}\eval_{P_0}=0
-	\quad(i=1,2,\dotsc,n),
-\]
-则称“点\(P_0\)称为函数\(f\)的\DefineConcept{驻点}”.
+%@see: 《高等数学（第六版 下册）》 P110
+%@see: 《数学分析（第二版 下册）》（陈纪修） P203
+使函数的梯度为零的点
+称为“函数\(f\)的\DefineConcept{驻点}”.
 \end{definition}
 那么\cref{theorem:多元函数微分法.多元函数极值存在的必要条件}
 可以说成“具有偏导数的函数的极值点必定是驻点，但函数的驻点不一定是极值点”.
 例如，点\((0,0)\)是函数\(f(x,y) = xy\)的驻点，但函数\(f\)在该点并无极值.
 
 \begin{theorem}[充分条件]\label{theorem:多元函数微分法.多元函数极值存在的充分条件}
-设函数\(z=f(x,y)\)在点\(P_0(x_0,y_0)\)的某一邻域内连续且有一阶及二阶连续偏导数，
-又\(f'_x(x_0,y_0)=0\)，\(f'_y(x_0,y_0)=0\)，
+%@see: 《高等数学（第六版 下册）》 P110 定理2（充分条件）
+%@see: 《数学分析（第二版 下册）》（陈纪修） P205 定理12.6.2
+设\((x_0,y_0)\)是函数\(f\colon \mathbb{R}^2 \supseteq D \to \mathbb{R}\)的驻点，
+且\(f\)在点\((x_0,y_0)\)的某一邻域内具有二阶连续偏导数，
 令\[
-	f''_{xx}(x_0,y_0)=A, \quad
-	f''_{xy}(x_0,y_0)=B, \quad
-	f''_{yy}(x_0,y_0)=C,
+	A \defeq f''_{xx}(x_0,y_0),
+	\quad
+	B \defeq f''_{xy}(x_0,y_0),
+	\quad
+	C \defeq f''_{yy}(x_0,y_0),
 \]
 则\(f(x,y)\)在\((x_0,y_0)\)处是否取得极值的条件如下：
 \begin{itemize}
-	\item \(AC-B^2>0\)时具有极值，且当\(A<0\)时有极大值，当\(A>0\)时有极小值.
+	\item \(AC-B^2>0\)时具有极值，
+	当\(A<0\)时\(f(x_0,y_0)\)是极大值，
+	当\(A>0\)时\(f(x_0,y_0)\)是极小值.
 	\item \(AC-B^2<0\)时没有极值.
 	\item \(AC-B^2=0\)时可能有极值，也可能没有极值.
 \end{itemize}
+%TODO proof
 \end{theorem}
 
 \begin{example}
@@ -272,6 +283,7 @@ f(-k,0) = -k^5 < f(0,0) = 0 < f(k,0) = k^5,
 
 \begin{theorem}\label{theorem:多元函数微分法.n元函数极值存在的条件}
 %@see: 《线性代数》（张慎语、周厚隆） P135 定理7
+%@see: 《数学分析（第二版 下册）》（陈纪修） P206 定理12.6.3
 设函数\(y = f(\AutoTuple{x}{n})\)
 在点\(\X0=(\AutoTuple{\xi}{n})^T\in\mathbb{R}^n\)的邻域内
 存在一阶连续偏导数\[
