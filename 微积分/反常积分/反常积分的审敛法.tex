@@ -273,6 +273,53 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+%@see: 《2010年全国硕士研究生入学统一考试（数学一）》一选择题/第3题
+设\(m,n\)是正整数，
+讨论反常积分\(\int_0^1 \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)的敛散性.
+\begin{proof}
+点\(x=0\)和\(x=1\)都可能是被积函数\(\frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}}\)的瑕点.
+
+先考虑\(\int_0^{\frac12} \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)的敛散性.
+
+因为当\(x\to0^+\)时\(\ln(1-x) \sim -x\)，
+所以\[
+	\lim_{x\to0^+} \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}}
+	= \lim_{x\to0^+} x^{\frac2m-\frac1n}
+	= \left\{ \begin{array}{cl}
+		0, & \frac2m-\frac1n>0, \\
+		1, & \frac2m-\frac1n=0, \\
+		\infty, & \frac2m-\frac1n<0.
+	\end{array} \right.
+\]
+由于\(m,n\)都是正整数，所以\(-1<\frac2m-\frac1n<2\).
+于是当\(\frac2m-\frac1n\geq0\)时，
+点\(x=0\)不是被积函数\(\frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}}\)的瑕点，
+定积分\(\int_0^{\frac12} \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)收敛.
+当\(-1<\frac2m-\frac1n<0\)时，
+点\(x=0\)是被积函数\(\frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}}\)的瑕点，
+只要取\(q=\frac1n-\frac2m\in(0,1)\)，
+就有\[
+	\lim_{x\to0^+} x^q \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} = 1.
+\]
+由\cref{theorem:定积分.无界函数的反常积分的极限审敛法} 可知
+反常积分\(\int_0^{\frac12} \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)收敛.
+因此，不论\(m,n\)取什么正整数，
+积分\(\int_0^{\frac12} \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)总是收敛.
+
+再考虑\(\int_{\frac12}^1 \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)的敛散性.
+因为\begin{align*}
+	\lim_{x\to1^-} \sqrt{1-x} \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}}
+	&= \lim_{x\to1^-} \sqrt{1-x} \ln^{\frac2m}(1-x) \\
+	&\xlongequal{u=1-x}
+	\lim_{u\to0^+} u^{\frac12} \ln^{\frac2m} u \\
+	&= 0, \tag{\cref{example:微分中值定理.洛必达法则.零乘无穷大型2}}
+\end{align*}
+所以不论\(m,n\)取什么正整数，
+反常积分\(\int_{\frac12}^1 \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)总是收敛.
+\end{proof}
+\end{example}
+
 \subsection{一般函数的反常积分的审敛法}
 \begin{theorem}\label{theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P374 定理8.2.5

@@ -276,6 +276,29 @@
 = 0\).
 \end{solution}
 \end{example}
+\begin{example}\label{example:微分中值定理.洛必达法则.零乘无穷大型2}
+求\(\lim_{x\to0^+} x^\alpha \ln^\beta x\ (\alpha,\beta>0)\).
+\begin{solution}
+这同样是未定式\(0\cdot\infty\)，
+应用洛必达法则，得\[
+	\lim_{x\to0^+} x^\alpha \ln^\beta x
+	= \lim_{x\to0^+} \frac{\beta x^{-1} \ln^{\beta-1} x}{-\alpha x^{-\alpha-1}}
+	= \lim_{x\to0^+} \frac{\beta \ln^{\beta-1} x}{-\alpha x^{-\alpha}}.
+\]
+归纳可知，只要继续应用洛必达法则，分子中\(\ln x\)的次数会逐步减\(1\).
+如果\(\beta\)是正整数，则一定可以将\(\ln x\)的次数减为\(1\)，
+把问题化归为\cref{example:微分中值定理.洛必达法则.零乘无穷大型1} 的情形.
+如果\(\beta\)不是正整数，
+则必能使\(\ln x\)的次数减为某个负数\(\gamma\)，
+而\(\ln^\gamma x \to 0\ (x\to0^+)\)，
+%@Mathematica: Limit[Log[x]^c, x -> 0, Assumptions -> {c < 0}]
+从而有\(\lim_{x\to0^+} \frac{\ln^\gamma x}{x^{-\alpha}} = 0\).
+于是\[
+	\lim_{x\to0^+} x^\alpha \ln^\beta x = 0.
+\]
+\end{solution}
+%@Mathematica: Limit[x^a Log[x]^b, x -> 0, Direction -> "FromAbove", Assumptions -> {a > 0, b > 0}]
+\end{example}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P138 例8
