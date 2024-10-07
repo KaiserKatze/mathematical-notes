@@ -1,35 +1,53 @@
 \section{方差}
 \subsection{方差的定义及计算}
 \begin{definition}
-若期望\(E[X-E(X)]^2\)存在，称为\(X\)的\DefineConcept{方差}，记为\[
-D(X) = E[X-E(X)]^2.
-\]称\(\sqrt{D(X)}\)为\(X\)的\DefineConcept{均方差}或\DefineConcept{标准差}.
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P97 定义2.4.1
+若期望\(E[X-E(X)]^2\)存在，
+称为“\(X\)的\DefineConcept{方差}（variance）”，
+%@see: https://mathworld.wolfram.com/Variance.html
+记为\(D(x)\)或\(\operatorname{Var}(X)\)，
+即\[
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P97 (2.4.3)
+	D(X) \defeq E[X-E(X)]^2.
+\]
+把\(D(x)\)的正平方根\(\sqrt{D(X)}\)
+称为“\(X\)的\DefineConcept{标准差}（standard deviation）”.
+%@see: https://mathworld.wolfram.com/StandardDeviation.html
 \end{definition}
 
 \begin{theorem}
 对于随机变量\(X\)，
-\begin{enumerate}
-\item 当\(X\)为\DefineConcept{离散型随机变量}，其分布律为\(p_k = P(X=x_k)\ (k=1,2,\dotsc)\)，则\[
-D(X) = \sum_{k=1}^\infty [x_k - E(X)]^2 p_k;
-\]
-\item 当\(X\)为\DefineConcept{连续型随机变量}，有密度函数\(f(x)\)，则\[
-D(X) = \int_{-\infty}^{+\infty} [x - E(X)]^2 f(x) \dd{x}.
-\]
-\end{enumerate}
+\begin{itemize}
+	\item 当\(X\)为\DefineConcept{离散型随机变量}，
+	其分布律为\(p_k = P(X=x_k)\ (k=1,2,\dotsc)\)，
+	则\[
+		D(X) = \sum_{k=1}^\infty [x_k - E(X)]^2 p_k;
+	\]
+
+	\item 当\(X\)为\DefineConcept{连续型随机变量}，
+	有密度函数\(f(x)\)，
+	则\[
+		D(X) = \int_{-\infty}^{+\infty} [x - E(X)]^2 f(x) \dd{x}.
+	\]
+\end{itemize}
 \end{theorem}
 
 \begin{corollary}\label{theorem:随机变量的数字特征.常用的方差的计算式}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P100 定理2.4.7
 对于随机变量\(X\)，有\begin{equation}
-D(X) = E(X^2) - [E(X)]^2.
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P100 (2.4.4)
+	D(X) = E(X^2) - [E(X)]^2.
 \end{equation}
 \begin{proof}
-利用二项式定理展开\([X-E(X)]^2\)，注意到\(E(X)\)是固定的数而不再是随机变量，再依据\cref{theorem:随机变量的数字特征.数学期望的性质2} 即有：
+利用二项式定理展开\([X-E(X)]^2\)，
+注意到\(E(X)\)是固定的数而不再是随机变量，
+再依据\cref{theorem:随机变量的数字特征.数学期望的性质2} 即有：
 \begin{align*}
-D(X) &= E[X-E(X)]^2
-= E\{X^2 - 2E(X) \cdot X + [E(X)]^2\} \\
-&= E(X^2) - 2E(X) \cdot E(X) + [E(X)]^2 \\
-&= E(X^2) - [E(X)]^2.
-\qedhere
+	D(X) &= E[X-E(X)]^2
+	= E\{X^2 - 2E(X) \cdot X + [E(X)]^2\} \\
+	&= E(X^2) - 2E(X) \cdot E(X) + [E(X)]^2 \\
+	&= E(X^2) - [E(X)]^2.
+	\qedhere
 \end{align*}
 \end{proof}
 \end{corollary}
@@ -54,6 +72,7 @@ D(X) &= E[X-E(X)]^2
 \end{proposition}
 
 \begin{proposition}\label{theorem:方差.伽马分布的方差}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P101 例2.4.8
 设\(X \sim \Gamma(\alpha,\beta)\)，
 则\(D(X) = \frac{\alpha}{\beta^2}\).
 \begin{proof}
@@ -76,6 +95,7 @@ D(X) &= E[X-E(X)]^2
 \end{proposition}
 
 \begin{proposition}\label{theorem:方差.指数分布的方差}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P101 例2.4.8
 设\(X \sim e(\lambda)\)，
 则\(D(X) = \frac{1}{\lambda^2}\).
 \begin{proof}
@@ -85,11 +105,13 @@ D(X) &= E[X-E(X)]^2
 
 \subsection{方差的性质}
 \begin{property}\label{theorem:随机变量的数字特征.方差的性质1}
-设\(C,a,b\)是常数，随机变量\(X\)存在方差\(D(X)\)，则有：
-\begin{enumerate}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P100 定理2.4.5
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P100 定理2.4.6
+设\(C,a,b\)是常数，随机变量\(X\)存在方差\(D(X)\)，
+则\begin{itemize}
 	\item \(D(C) = 0\)；
 	\item \(D(aX+b) = a^2 D(X)\).
-\end{enumerate}
+\end{itemize}
 \end{property}
 
 \begin{property}\label{theorem:随机变量的数字特征.方差的性质2}
@@ -114,11 +136,13 @@ D(X) &= E[X-E(X)]^2
 设\(X \sim B(1,p)\)，则\(D(X) = p(1-p)\).
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}%\label{theorem:随机变量的数字特征.二项分布的方差}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P100 例2.4.6
 设\(X \sim B(n,p)\)，则\(D(X) = np(1-p)\).
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}%\label{theorem:随机变量的数字特征.均匀分布的方差}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P100 例2.4.7
 设\(X \sim U(a,b)\)，则\(E(X) = \frac{a+b}{2}\)，\(D(X) = \frac{(b-a)^2}{12}\).
 \begin{proof}
 直接计算得
@@ -165,17 +189,23 @@ D(X) &= E(X^2) - [E(X)]^2
 \begin{example}
 设随机变量\(X\)的概率分布为\(P(X=k) = \frac{C}{k!}\ (k=0,1,2,\dotsc)\)，求\(E(X^2)\).
 \begin{solution}
-由\hyperref[theorem:随机变量及其分布.离散型随机变量的密度函数的性质]{规范性}和\cref{equation:无穷级数.幂级数展开式1} 可知\[
-\sum_{k=0}^\infty \frac{C}{k!}
-= C \sum_{k=1}^\infty \eval{\frac{x^k}{k!}}_{x=1}
-= C \eval{e^x}_{x=1}
-= C e = 1
-\implies
-C = e^{-1}.
-\]那么随机变量\(X\)的分布为\[
-P(X=k) = \frac{1^k}{k!} e^{-1} \quad(k=0,1,2,\dotsc)
-\]将其与\hyperref[equation:随机变量及其分布.泊松分布的分布律]{泊松分布的分布律}作比较，可知\(X \sim P(1)\)，因此\(E(X) = D(X) = 1\)，\[
-E(X^2) = D(X) + [E(X)]^2 = 1 + 1 = 2.
+由\hyperref[theorem:随机变量及其分布.离散型随机变量的密度函数的性质]{规范性}%
+和\cref{equation:无穷级数.幂级数展开式1} 可知\[
+	\sum_{k=0}^\infty \frac{C}{k!}
+	= C \sum_{k=1}^\infty \eval{\frac{x^k}{k!}}_{x=1}
+	= C \eval{e^x}_{x=1}
+	= C e = 1
+	\implies
+	C = e^{-1}.
+\]
+那么随机变量\(X\)的分布为\[
+	P(X=k) = \frac{1^k}{k!} e^{-1} \quad(k=0,1,2,\dotsc)
+\]
+将其与\hyperref[equation:随机变量及其分布.泊松分布的分布律]{泊松分布的分布律}作比较，
+可知\(X \sim P(1)\)，
+因此\(E(X) = D(X) = 1\)，
+从而有\[
+	E(X^2) = D(X) + [E(X)]^2 = 1 + 1 = 2.
 \]
 \end{solution}
 \end{example}
@@ -189,7 +219,8 @@ E(X^2) = D(X) + [E(X)]^2 = 1 + 1 = 2.
 \]
 \begin{proof}
 设\(Y \sim N(0,1)\)，则有\begin{align*}
-	E(Y) &= \int_{-\infty}^{+\infty} y \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \dd{y} = 0, \\
+	E(Y) &= \int_{-\infty}^{+\infty} y \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \dd{y}
+	= 0, \\
 	D(Y) &= E(Y^2)
 	= \int_{-\infty}^{+\infty} y^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \dd{y} \\
 	&= \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} y^2 e^{-\frac{y^2}{2}} \dd{y} \\
