@@ -755,6 +755,52 @@
 称为“函数\(f\)在区间\([a,b]\)上的\DefineConcept{平均值}”.
 \end{definition}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1R627YaEom/
+设函数\(f \in C[0,1]\).
+证明：\(\lim_{n\to\infty} \int_0^1 f(\sqrt[n]{x}) \dd{x} = f(1)\).
+\begin{proof}
+因为\(f \in C[0,1]\)，所以\[
+	(\exists M>0)
+	(\forall x\in[0,1])
+	[\abs{f(x)} \leq M].
+\]
+由\cref{theorem:定积分.定积分性质5推论2}
+可知\[
+	0 \leq \abs{\int_0^{\frac1n} f(\sqrt[n]{x}) \dd{x}}
+	\leq \int_0^{\frac1n} \abs{f(\sqrt[n]{x})} \dd{x}
+	\leq \int_0^{\frac1n} M \dd{x}
+	= \frac{M}{n}
+	\to 0\ (n\to\infty),
+\]
+所以\(\int_0^{\frac1n} f(\sqrt[n]{x}) \dd{x} \to 0\ (n\to\infty)\).
+由\cref{theorem:定积分.积分中值定理1推论2}
+可知\[
+	\int_{\frac1n}^1 f(\sqrt[n]{x}) \dd{x}
+	= f(\sqrt[n]{\xi}) \left( 1-\frac1n \right),
+\]
+其中\(\frac1n \leq \xi \leq 1\)，
+从而有\(\sqrt[n]{1/n} \leq \sqrt[n]{\xi} \leq 1\)，
+由\cref{equation:数列极限.重要极限2} 有\(\sqrt[n]{1/n} \to 1\ (n\to\infty)\)，
+所以由\cref{theorem:数列极限.夹逼准则}
+可得\(\sqrt[n]{\xi} \to 1\ (n\to\infty)\)，
+那么\[
+	\lim_{n\to\infty} \int_{\frac1n}^1 f(\sqrt[n]{x}) \dd{x}
+	= \lim_{n\to\infty} f(\sqrt[n]{\xi}) \lim_{n\to\infty} \left( 1-\frac1n \right)
+	= 1,
+\]
+于是\[
+	\lim_{n\to\infty} \int_0^1 f(\sqrt[n]{x}) \dd{x}
+	= \lim_{n\to\infty} \left(
+		\int_0^{\frac1n} f(\sqrt[n]{x}) \dd{x}
+		+ \int_{\frac1n}^1 f(\sqrt[n]{x}) \dd{x}
+	\right)
+	= 1.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
 \begin{theorem}[积分第二中值定理]\label{theorem:定积分.积分中值定理2}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P373 定理8.2.4（积分第二中值定理）
 设\(f,g \in R[a,b]\)，
