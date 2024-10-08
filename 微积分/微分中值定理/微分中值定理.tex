@@ -365,6 +365,52 @@
 本例也可直接根据\cref{theorem:极限.连续函数的极限3} 得到，
 即直接将\(x=0\)代入函数\(f(x) = \sin x - \sin(\sin x)\)中.
 
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P134 习题3-1 9.
+设\(a>b>0,n>1\).
+证明：\[
+	n b^{n-1} (a-b) < a^n-b^n < n a^{n-1} (a-b).
+\]
+\begin{proof}
+\begin{proof}[证法一]
+注意到\[
+	a^n-b^n
+	= (a-b)(a^{n-1} + a^{n-2} b + \dotsb + a b^{n-2} + b^{n-1}).
+\]
+由于\(a>b>0\)，
+所以\[
+	n b^{n-1} < a^{n-1} + a^{n-2} b + \dotsb + a b^{n-2} + b^{n-1} < n a^{n-1},
+\]
+于是\[
+	n b^{n-1} (a-b) < a^n-b^n < n a^{n-1} (a-b).
+	\qedhere
+\]
+\end{proof}
+\begin{proof}[证法二]
+令\(f(x) = x^n\)，
+显然\(f\)在\((-\infty,+\infty)\)内具有任意阶导数，
+并且\[
+	f'(x) = n x^{n-1},
+	\qquad
+	f''(x) = n(n-1) x^{n-2},
+\]
+由拉格朗日中值定理可知\(\exists\xi\in(b,a)\)使得\[
+	\frac{a^n-b^n}{a-b}
+	= \frac{f(a)-f(b)}{a-b}
+	= f'(\xi).
+\]
+注意到当\(x>0\)时\(f''(x)>0\)，即\(f'\)在\((0,+\infty)\)上严格单调增加，
+于是\[
+	n b^{n-1} = f'(b) < f'(\xi) < f'(a) = n a^{n-1}.
+\]
+因此\[
+	n b^{n-1} (a-b) < a^n-b^n < n a^{n-1} (a-b).
+	\qedhere
+\]
+\end{proof}\let\qed\relax
+\end{proof}
+\end{example}
+
 \subsection{柯西中值定理}
 \begin{theorem}[柯西中值定理]\label{theorem:微分中值定理.柯西中值定理}
 %@see: 《高等数学（第六版 上册）》 P133 柯西中值定理
