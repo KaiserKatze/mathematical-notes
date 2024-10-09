@@ -1,4 +1,77 @@
 \section{重积分的应用}
+\subsection{利用积分定义计算和式极限}
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1Kg2PY1E8U/
+%@see: https://www.bilibili.com/video/BV1H4xke1Ekm/
+求\(\lim_{n\to\infty} \sum_{k=1}^n \frac{k}{n^2} \ln(1+\frac{k}{n})\).
+\begin{solution}
+直接计算得\begin{equation*}
+	\lim_{n\to\infty} \sum_{k=1}^n \frac{k}{n^2} \ln(1+\frac{k}{n})
+	= \int_0^1 x \ln(1+x) \dd{x}
+	= \frac14.
+\end{equation*}
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《1998年全国硕士研究生入学统一考试（数学一）》七解答题
+求\(\lim_{n\to\infty} \left( \frac{\sin\frac{\pi}{n}}{n+1} + \frac{\sin\frac{2\pi}{n}}{n+\frac12} + \dotsb + \frac{\sin\pi}{n+\frac1n} \right)\).
+\begin{solution}
+因为\begin{align*}
+	\frac{\sin\frac{\pi}{n}}{n+1} + \frac{\sin\frac{2\pi}{n}}{n+\frac12} + \dotsb + \frac{\sin\pi}{n+\frac1n}
+	&\leq \frac1{n+\frac1n} \left( \sin\frac{\pi}{n} + \sin\frac{2\pi}{n} + \dotsb + \sin\frac{n\pi}{n} \right) \\
+	&< \frac1n \left( \sin\frac{\pi}{n} + \sin\frac{2\pi}{n} + \dotsb + \sin\frac{n\pi}{n} \right), \\
+	\frac{\sin\frac{\pi}{n}}{n+1} + \frac{\sin\frac{2\pi}{n}}{n+\frac12} + \dotsb + \frac{\sin\pi}{n+\frac1n}
+	&\geq \frac1{n+1} \left( \sin\frac{\pi}{n} + \sin\frac{2\pi}{n} + \dotsb + \sin\frac{n\pi}{n} \right) \\
+	&= \frac{n}{n+1} \frac1n \left( \sin\frac{\pi}{n} + \sin\frac{2\pi}{n} + \dotsb + \sin\frac{n\pi}{n} \right),
+\end{align*}
+其中\(\frac{n}{n+1} \to 1\ (n\to\infty)\)，
+并且\begin{align*}
+	\lim_{n\to\infty} \frac1n \left( \sin\frac{\pi}{n} + \sin\frac{2\pi}{n} + \dotsb + \sin\frac{n\pi}{n} \right)
+	= \int_0^1 \sin(\pi x) \dd{x} = \frac2\pi,
+\end{align*}
+所以由\hyperref[theorem:数列极限.夹逼准则]{夹逼准则}可知\[
+	\lim_{n\to\infty} \left( \frac{\sin\frac{\pi}{n}}{n+1} + \frac{\sin\frac{2\pi}{n}}{n+\frac12} + \dotsb + \frac{\sin\pi}{n+\frac1n} \right)
+	= \frac2\pi.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1yB4y177QE/
+求\(\lim_{n\to\infty} \frac{\sqrt[n]{2}-1}{\sqrt[n]{2n+1}}
+\left[
+	\int_1^{\frac1{2n}} e^{-y^2} \dd{y}
+	+ \int_1^{\frac3{2n}} e^{-y^2} \dd{y}
+	+ \dotsb + \int_1^{\frac{2n-1}{2n}} e^{-y^2} \dd{y}
+\right]\).
+\begin{solution}
+注意到当\(n\to\infty\)时\[
+	\sqrt[n]{2n+1} \to 1,%\cref{equation:数列极限.重要极限2}
+	\qquad
+	\sqrt[n]{2}-1 \sim \frac1n \ln2,%\cref{equation:函数极限.重要极限17}
+\]
+于是\begin{align*}
+	&\hspace{-20pt}
+	\lim_{n\to\infty} \frac{\sqrt[n]{2}-1}{\sqrt[n]{2n+1}}
+	\left[
+		\int_1^{\frac1{2n}} e^{-y^2} \dd{y}
+		+ \int_1^{\frac3{2n}} e^{-y^2} \dd{y}
+		+ \dotsb + \int_1^{\frac{2n-1}{2n}} e^{-y^2} \dd{y}
+	\right] \\
+	&= \ln2 \lim_{n\to\infty} \frac1n
+	\left[
+		\int_1^{\frac1{2n}} e^{-y^2} \dd{y}
+		+ \int_1^{\frac3{2n}} e^{-y^2} \dd{y}
+		+ \dotsb + \int_1^{\frac{2n-1}{2n}} e^{-y^2} \dd{y}
+	\right] \\
+	&= \ln2 \int_0^1 \dd{x} \int_1^x e^{-y^2} \dd{y} \\
+	&= -\ln 2 \int_0^1 e^{-y^2} \dd{y} \int_0^y \dd{x} \\
+	&= \frac12 \ln2 \left( \frac1e - 1 \right).
+\end{align*}
+\end{solution}
+\end{example}
+
 \subsection{曲面的面积}
 设两平面\(\Pi_1\)、\(\Pi_2\)的夹角为\(\theta\ (0<\theta<\pi/2)\)
 （如\cref{figure:重积分.平面区域的投影}），
