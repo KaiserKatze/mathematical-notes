@@ -256,6 +256,10 @@
 \]
 %TODO proof
 \end{theorem}
+\begin{remark}
+\cref{theorem:矩阵可以相似对角化的充分必要条件.定理2} 说明：
+矩阵\(\A\)可以相似对角化当且仅当它的每个特征值的代数重数与几何重数相等.
+\end{remark}
 
 \begin{corollary}\label{theorem:矩阵可以相似对角化的充分必要条件.定理3}
 %@see: 《线性代数》（张慎语、周厚隆） P103 推论
@@ -391,7 +395,7 @@
 \end{proof}
 \end{example}
 \begin{example}\label{example:幂零矩阵.幂等矩阵一定可以相似对角化}
-%@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 6.
+%@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 7.
 证明：幂等矩阵一定可以相似对角化.
 \begin{proof}
 设\(\A \in M_n(K)\)满足\(\A^2=\A\)，且\(\rank\A = r\).
@@ -403,16 +407,36 @@
 下面假设\(0<r<n\).
 由\cref{example:幂等矩阵.幂等矩阵的特征值的性质} 可知\(\A\)特征值必为0或1.
 由\cref{example:幂等矩阵.幂等矩阵的秩的性质1} 可知\[
-	\rank\A+\rank(\E-\A)=n.
+	\rank\A+\rank(\E_n-\A)=n.
 \]
+其中\(\E_n\)是数域\(K\)上的\(n\)阶单位矩阵.
 由\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 可知\begin{gather*}
 	\rank\A + \dim\Ker\A = n, \\
-	\rank(\E-\A) + \dim\Ker(\E-\A) = n,
+	\rank(\E_n-\A) + \dim\Ker(\E_n-\A) = n,
 \end{gather*}
 从而有\[
-	\dim\Ker\A + \dim\Ker(\E-\A) = n.
+	\dim\Ker\A + \dim\Ker(\E_n-\A) = n.
 \]
 那么由\cref{theorem:矩阵可以相似对角化的充分必要条件.定理4} 可知\(\A\)可以相似对角化.
+又因为\[
+	\dim\Ker(\E_n-\A) = \rank\A,
+\]
+所以特征值\(1\)的代数重数和几何重数都是\(r\)，
+于是\(\A\)的相似标准型是分块对角阵\(\diag(\E_r,\vb0)\)，
+其中\(\E_r\)是数域\(K\)上的\(r\)阶单位矩阵.
+\end{proof}
+\end{example}
+\begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 8.
+证明：幂等矩阵的秩等于它的迹.
+\begin{proof}
+由\cref{example:幂零矩阵.幂等矩阵一定可以相似对角化} 可知
+秩为\(r\)的幂等矩阵\(\A\)的相似标准型是分块对角阵\(\diag(\E_r,\vb0)\)，
+其中\(\E_r\)是数域\(K\)上的\(r\)阶单位矩阵.
+因为迹是相似不变量，所以\[
+	\tr\A = \tr\diag(\E_r,\vb0) = r.
+	\qedhere
+\]
 \end{proof}
 \end{example}
 
