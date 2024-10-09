@@ -47,23 +47,24 @@
 同理可证充分性.
 \end{proof}
 \end{theorem}
-
+\begin{remark}
 %@see: 《线性代数》（张慎语、周厚隆） P99
-由上述定理的证明可知：
+从\cref{theorem:矩阵对角化.矩阵可对角化的充分必要条件} 的证明过程可知：
 {\color{red}当\(\P^{-1}\A\P=\V\)时，
-\(\V\)的\(n\)个主对角元是\(\A\)的\(n\)个特征值；
+\(\V\)的\(n\)个主对角元是\(\A\)的\(n\)个特征值，
 可逆矩阵\(\P\)的\(n\)个列向量\(\AutoTuple{\x}{n}\)是
-\(\A\)分别属于\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)的线性无关特征向量.}
+\(\A\)分别属于\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)的线性无关的特征向量.}
+\end{remark}
 
-一个\(n\)阶矩阵\(\A\)能否相似于对角阵，就归结为\(\A\)是否具有\(n\)个线性无关的特征向量.
 我们已经知道，方程\((\lambda\E-\A)\x=\vb0\)的基础解系是
-矩阵\(\A\)的属于特征值\(\lambda\)的线性无关特征向量.
+矩阵\(\A\)的属于特征值\(\lambda\)的线性无关的特征向量.
 于是自然提出问题：不同特征值的线性无关特征向量是否构成线性无关组？
+关于这个问题，我们给出如下定理.
 \begin{theorem}\label{theorem:矩阵对角化.不同特征值的特征向量线性无关}
 %@see: 《线性代数》（张慎语、周厚隆） P99 定理2
-矩阵\(\A \in M_n(K)\)的属于不同特征值的特征向量线性无关.
+矩阵的属于不同特征值的特征向量线性无关.
 \begin{proof}
-设矩阵\(\A\)的\(m\)个不同的特征值\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)
+设矩阵\(\A \in M_n(K)\)的\(m\)个不同的特征值\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)
 对应的特征向量分别为\(\AutoTuple{\x}{m}\).
 
 由上述所有特征向量构成的向量组，
@@ -131,6 +132,7 @@
 \(\A\)可对角化.
 \end{proof}
 \end{corollary}
+类似地，还可以证明以下定理.
 \begin{theorem}
 %@see: 《线性代数》（张慎语、周厚隆） P100 定理3
 设矩阵\(\A \in M_n(K)\)，
@@ -146,6 +148,7 @@
 \end{theorem}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P102 例2
 设\[
 	\A = \begin{bmatrix}
 		1 & 0 & 0 \\
@@ -166,7 +169,7 @@
 \]
 则\(\A\)的特征值为\(\lambda_1=1\)（二重），\(\lambda_2=3\).
 
-当\(\lambda_1=1\)时，解齐次线性方程组\((\E-\A)\x=\z\)，\[
+当\(\lambda_1=1\)时，解齐次线性方程组\((\E-\A)\x=\vb0\)，\[
 	\E-\A=\begin{bmatrix}
 		0 & 0 & 0 \\
 		2 & -4 & 2 \\
@@ -181,7 +184,7 @@
 基础解系为\(\vb{x}_1 = \begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix},
 \vb{x}_2 = \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\).
 
-对于\(\lambda_2=3\)，解方程组\((3\E-\A)\x=\z\)，\[
+对于\(\lambda_2=3\)，解方程组\((3\E-\A)\x=\vb0\)，\[
 	3\E-\A=\begin{bmatrix}
 		2 & 0 & 0 \\
 		2 & -2 & 2 \\
@@ -208,11 +211,13 @@
 \end{example}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P102 例3
 设\(\A = \begin{bmatrix}
 	2 & 0 & 0 \\
 	0 & 2 & 0 \\
 	0 & 1 & 2
-\end{bmatrix}\)，证明：\(\A\)不可对角化.
+\end{bmatrix}\).
+证明：\(\A\)不可对角化.
 \begin{proof}
 \(\A\)的特征多项式为\[
 	\abs{\l\E-\A} = \begin{vmatrix}
@@ -229,28 +234,54 @@
 \end{proof}
 \end{example}
 
-从上述例子可以看出，当矩阵\(\A\)的某个特征值\(\L0\)为\(k\)重根式，
-对应于\(\L0\)的线性无关的特征向量的个数可能等于\(k\)，
-也可能小于\(k\).这个规律对于一般的矩阵是成立的.
+从上述例子可以看出：
+当矩阵\(\A\)的某个特征值\(\lambda_0\)是\(k\)重根时，
+矩阵\(\A\)的属于特征值\(\lambda_0\)的线性无关的特征向量的个数
+可能等于\(k\)，也可能小于\(k\).
+这个规律对于一般的矩阵是成立的.
 
-\begin{theorem}
-设\(\L0\)为\(n\)阶矩阵\(\A\)的\(k\)重特征值，
-则属于\(\L0\)的\(\A\)的线性无关的特征向量最多只有\(k\)个.
+\begin{definition}
+%@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 11.
+设\(\lambda \in K\)是矩阵\(\A \in M_n(K)\)的一个特征值.
+\begin{itemize}
+	\item 把\(\A\)的属于\(\lambda\)的特征子空间的维数\[
+		\dim\Ker(\lambda\E-\A)
+	\]称为“\(\lambda\)的\DefineConcept{几何重数}”.
+	\item 把\(\lambda\)作为\(\A\)的特征多项式的根的重数
+	称为“\(\lambda\)的\DefineConcept{代数重数}”.
+\end{itemize}
+\end{definition}
+\begin{theorem}\label{theorem:矩阵相似对角化.特征值的几何重数与代数重数的关系}
+%@see: 《线性代数》（张慎语、周厚隆） P103 定理4
+%@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 11.
+矩阵的任意一个特征值的几何重数不大于它的代数重数.
+%TODO proof
 \end{theorem}
+\begin{remark}
+\cref{theorem:矩阵相似对角化.特征值的几何重数与代数重数的关系} 说明：
+矩阵\(\A\)的\(k\)重特征值\(\lambda_0\)的线性无关的特征向量最多只有\(k\)个.
+\end{remark}
 
 \begin{theorem}\label{theorem:矩阵可对角化的充分必要条件.定理2}
+%@see: 《线性代数》（张慎语、周厚隆） P103 定理5
 \(n\)阶矩阵\(\A\)可对角化的充分必要条件是：
 对于\(\A\)的每个\(k_i\)重特征值\(\lambda_i\)，
 \(\A\)有\(k_i\)个线性无关的特征向量.
+%TODO proof
 \end{theorem}
 
 \begin{corollary}\label{theorem:矩阵可对角化的充分必要条件.定理3}
+%@see: 《线性代数》（张慎语、周厚隆） P103 推论
 \(n\)阶矩阵\(\A\)可对角化的充分必要条件是：
 对于\(\A\)的每个\(k_i\)重特征值\(\lambda_i\)，
-都有\(\rank(\lambda_i\E-\A) = n-k_i\).
+都有\[
+	\rank(\lambda_i\E-\A) = n-k_i.
+\]
+%TODO proof
 \end{corollary}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 5.
 设\(\A\)、\(\B\)是\(n\)阶矩阵，且\(\A\)可逆，证明：\(\A\B\)与\(\B\A\)相似.
 \begin{proof}
 因为\(\A\)可逆，则\[
@@ -264,27 +295,30 @@
 \end{example}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 6.
 设\(\A\)为可逆矩阵且可对角化，证明：\(\A^{-1}\)也可对角化.
 \begin{proof}
-设存在可逆矩阵\(\P\)使得\begin{gather}
+设存在可逆矩阵\(\P\)使得\[
 	\P^{-1}\A\P = \V,
-	\tag1
-\end{gather}
+	\eqno(1)
+\]
 其中\(\V=\diag(\lambda_1,\lambda_2,\dotsc,\lambda_n)\)，
 \(n\)是矩阵\(\A\)的阶数，
 \(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是矩阵\(\A\)的特征值.
-显然有\(\abs{\V}
-= \abs{\P^{-1}\A\P}
-= \abs{\P^{-1}}\abs{\A}\abs{\P}
-= (\abs{\P^{-1}}\abs{\P})\abs{\A}
-= 1 \cdot \abs{\A}
-= \abs{\A} \neq 0\)，
+显然有\[
+	\abs{\V}
+	= \abs{\P^{-1}\A\P}
+	= \abs{\P^{-1}}\abs{\A}\abs{\P}
+	= (\abs{\P^{-1}}\abs{\P})\abs{\A}
+	= 1 \cdot \abs{\A}
+	= \abs{\A} \neq 0
+\]
 即\(\V\)可逆.
 在(1)式两端左乘\(\P\)得\(\P(\P^{-1}\A\P) = \P\V\)
-即\begin{gather}
+即\[
 	\A\P = \P\V.
-	\tag2
-\end{gather}
+	\eqno(2)
+\]
 在(2)式两端左乘\(\P^{-1}\A^{-1}\)，
 右乘\(\V^{-1}\)得\[
 	(\P^{-1}\A^{-1})(\A\P)\V^{-1} = (\P^{-1}\A^{-1})(\P\V)\V^{-1},
@@ -294,8 +328,9 @@
 \end{example}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 7.
 设\(m\)阶矩阵\(\A\)与\(n\)阶矩阵\(\B\)都可对角化，证明：\(m+n\)阶矩阵\[
-	\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix}
+	\begin{bmatrix} \A & \vb0 \\ \vb0 & \B \end{bmatrix}
 \]可对角化.
 \begin{proof}
 设存在\(m\)阶可逆矩阵\(\P\)和\(n\)阶可逆矩阵\(\Q\)使得
@@ -305,17 +340,17 @@
 \end{align*}
 则可构造矩阵使得\[
 	\begin{bmatrix}
-		\P^{-1} & \z \\
-		\z & \Q^{-1}
+		\P^{-1} & \vb0 \\
+		\vb0 & \Q^{-1}
 	\end{bmatrix}
-	\begin{bmatrix} \A & \z \\ \z & \B \end{bmatrix}
+	\begin{bmatrix} \A & \vb0 \\ \vb0 & \B \end{bmatrix}
 	\begin{bmatrix}
-		\P & \z \\
-		\z & \Q
+		\P & \vb0 \\
+		\vb0 & \Q
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\V_1 & \z \\
-		\z & \V_2
+		\V_1 & \vb0 \\
+		\vb0 & \V_2
 	\end{bmatrix}.
 	\qedhere
 \]
@@ -323,20 +358,26 @@
 \end{example}
 
 \begin{example}
-设\(\A\)是非零的幂零矩阵，
-即\(\A\neq\z\)，且存在自然数\(m\)，使得\(\A^m=\z\).
+%@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 8.
+%@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 6.
+设\(\A\)是非零的幂零矩阵.
 证明：\(\A\)的特征值全为零，且\(\A\)不可以对角化.
 \begin{proof}
-设存在非零列向量\(\vb{x}_0\)，使得\(\A\vb{x}_0=\L0\vb{x}_0\)成立，则\[
-\A^m\vb{x}_0=\L0^m\vb{x}_0.
+设\(\A\neq\vb0\)，且存在自然数\(m\)，使得\(\A^m=\vb0\).
+设存在非零列向量\(\vb{x}_0\)，使得\(\A\vb{x}_0=\lambda_0\vb{x}_0\)成立，则\[
+	\A^m\vb{x}_0=\lambda_0^m\vb{x}_0.
 \]
-令\(\A^m=\z\)，则解\(\A^m\vb{x}_0=\z=\L0^m\vb{x}_0\)得\(\L0=0\)，可见\(\A\)的特征值全为零.
+令\(\A^m=\vb0\)，
+则解\(\A^m\vb{x}_0=\vb0=\lambda_0^m\vb{x}_0\)得\(\lambda_0=0\)，
+可见\(\A\)的特征值全为零.
 
-假设\(\A\)可以对角化，即存在可逆矩阵\(\P\)使得\[
-	\P^{-1}\A\P = \diag(\lambda_1,\lambda_2,\dotsc,\lambda_n) = \z.
+用反证法.
+假设\(\A\)可以对角化，
+即存在可逆矩阵\(\P\)使得\[
+	\P^{-1}\A\P = \diag(\lambda_1,\lambda_2,\dotsc,\lambda_n) = \vb0.
 \]
 在等式两边同时左乘\(\P\)，并右乘\(\P^{-1}\)，得\[
-	\A = \P(\P^{-1}\A\P)\P^{-1} = \P\z\P^{-1} = \z.
+	\A = \P(\P^{-1}\A\P)\P^{-1} = \P\vb0\P^{-1} = \vb0.
 \]矛盾，故\(\A\)不可以对角化.
 \end{proof}
 \end{example}
@@ -369,23 +410,24 @@
 \end{example}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 9.
 \def\J{\vb{J}_n}
 形式为\[
 	\J = \begin{bmatrix}
-		\L0 & 0 & 0 & \dots & 0 & 0 \\
-		1 & \L0 & 0 & \dots & 0 & 0 \\
-		0 & 1 & \L0 & \dots & 0 & 0 \\
+		\lambda_0 & 0 & 0 & \dots & 0 & 0 \\
+		1 & \lambda_0 & 0 & \dots & 0 & 0 \\
+		0 & 1 & \lambda_0 & \dots & 0 & 0 \\
 		\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
-		0 & 0 & 0 & \dots & \L0 & 0 \\
-		0 & 0 & 0 & \dots & 1 & \L0
+		0 & 0 & 0 & \dots & \lambda_0 & 0 \\
+		0 & 0 & 0 & \dots & 1 & \lambda_0
 	\end{bmatrix}_n
 \]的复数三角形阵称为\DefineConcept{若尔当块}（Jordan block）.
 %@see: https://mathworld.wolfram.com/JordanBlock.html
 %@see: https://mathworld.wolfram.com/JordanCanonicalForm.html
 证明：\(n>1\)阶若尔当块不可以对角化.
 \begin{proof}
-令\(\abs{\l\E-\J}=(\lambda-\L0)^n=0\)，解得\(\l=\L0\)（\(n\)重），那么\[
-	\L0\E-\J = \begin{bmatrix}
+令\(\abs{\l\E-\J}=(\lambda-\lambda_0)^n=0\)，解得\(\l=\lambda_0\)（\(n\)重），那么\[
+	\lambda_0\E-\J = \begin{bmatrix}
 		0 \\
 		-1 & 0 \\
 		& -1 & 0 \\
@@ -393,7 +435,7 @@
 		& & & -1 & 0
 	\end{bmatrix}_n,
 \]
-\(\rank(\L0\E-\J)=n-1 > 0\)，
+\(\rank(\lambda_0\E-\J)=n-1 > 0\)，
 故当\(n>1\)时\(\J\)不可以对角化.
 \end{proof}
 \end{example}
