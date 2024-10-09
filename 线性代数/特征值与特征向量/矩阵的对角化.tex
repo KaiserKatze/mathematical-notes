@@ -4,23 +4,23 @@
 设矩阵\(\A \in M_n(K)\).
 \begin{itemize}
 	\item 如果存在\(n\)阶对角矩阵\(\vb\Lambda\)相似于\(\A\)，
-	则称“矩阵\(\A\)可以\DefineConcept{（相似）对角化}”
+	则称“矩阵\(\A\)可以\DefineConcept{相似对角化}”
 	%@see: https://mathworld.wolfram.com/DiagonalizableMatrix.html
 	“矩阵\(\vb\Lambda\)是\(\A\)的\DefineConcept{相似标准型}”.
 	\item 如果不存在\(n\)阶对角矩阵相似于\(\A\)，
-	则称“矩阵\(\A\)不可以\DefineConcept{对角化}”.
+	则称“矩阵\(\A\)不可以{相似对角化}”.
 \end{itemize}
 %@see: https://mathworld.wolfram.com/MatrixDiagonalization.html
 \end{definition}
 
-\begin{theorem}\label{theorem:矩阵对角化.矩阵可对角化的充分必要条件}
+\begin{theorem}\label{theorem:矩阵对角化.矩阵可以相似对角化的充分必要条件}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 定理2
-设矩阵\(\A \in M_n(K)\)，
-则\(\A\)可对角化的充分必要条件是：
+%@see: 《高等代数（第三版 上册）》（丘维声） P180 定理1
+矩阵\(\A \in M_n(K)\)可以相似对角化的充分必要条件是：
 \(\A\)有\(n\)个线性无关的特征向量.
 \begin{proof}
 必要性.
-假设\(\A\)可对角化，
+假设\(\A\)可以相似对角化，
 即存在数域\(K\)上的\(n\)阶可逆矩阵\(\P=(\AutoTuple{\x}{n})\)
 和数域\(K\)上的\(n\)阶对角阵\(\vb\Lambda=\diag(\AutoTuple{\lambda}{n})\)，
 使\[
@@ -49,7 +49,7 @@
 \end{theorem}
 \begin{remark}
 %@see: 《线性代数》（张慎语、周厚隆） P99
-从\cref{theorem:矩阵对角化.矩阵可对角化的充分必要条件} 的证明过程可知：
+从\cref{theorem:矩阵对角化.矩阵可以相似对角化的充分必要条件} 的证明过程可知：
 {\color{red}当\(\P^{-1}\A\P=\V\)时，
 \(\V\)的\(n\)个主对角元是\(\A\)的\(n\)个特征值，
 可逆矩阵\(\P\)的\(n\)个列向量\(\AutoTuple{\x}{n}\)是
@@ -62,6 +62,10 @@
 关于这个问题，我们给出如下定理.
 \begin{theorem}\label{theorem:矩阵对角化.不同特征值的特征向量线性无关}
 %@see: 《线性代数》（张慎语、周厚隆） P99 定理2
+%@see: 《线性代数》（张慎语、周厚隆） P100 定理3
+%@see: 《高等代数（第三版 上册）》（丘维声） P181 定理2
+%@see: 《高等代数（第三版 上册）》（丘维声） P181 定理3
+%@see: 《高等代数（第三版 上册）》（丘维声） P181 推论4
 矩阵的属于不同特征值的特征向量线性无关.
 \begin{proof}
 设矩阵\(\A \in M_n(K)\)的\(m\)个不同的特征值\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)
@@ -117,35 +121,15 @@
 也就是说特征向量组\(X_m\)线性无关.
 \end{proof}
 \end{theorem}
-由\cref{theorem:矩阵对角化.不同特征值的特征向量线性无关} 立即得到矩阵可对角化的一个充分条件：
-\begin{corollary}\label{theorem:矩阵可对角化的充分条件.定理1}
-%@see: 《线性代数》（张慎语、周厚隆） P100 推论
-若矩阵\(\A \in M_n(K)\)有\(n\)个不同的特征值，则\(\A\)可对角化.
-%TODO proof
-\begin{proof}
-假设矩阵\(\A \in M_n(K)\)有\(n\)个不同的特征值
-\(\AutoTuple{\lambda}{n}\)，
-而\(\x_j\ (j=1,2,\dotsc,n)\)是矩阵\(\A\)的属于特征值\(\lambda_j\)的特征向量.
-由\cref{theorem:矩阵对角化.不同特征值的特征向量线性无关}，
-\(\AutoTuple{\x}{n}\)线性无关，
-再由\cref{theorem:矩阵对角化.矩阵可对角化的充分必要条件}，
-\(\A\)可对角化.
-\end{proof}
-\end{corollary}
-类似地，还可以证明以下定理.
-\begin{theorem}
-%@see: 《线性代数》（张慎语、周厚隆） P100 定理3
-设矩阵\(\A \in M_n(K)\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
-则\[
+\begin{remark}
+由\cref{theorem:矩阵对角化.不同特征值的特征向量线性无关} 可知\[
 	\bigcup\Set{
 		\text{$\Ker(\lambda\E-\A)$的基}
 		\given
 		\text{$\lambda$是$\A$的特征值}
 	}
 \]线性无关.
-%TODO proof
-\end{theorem}
+\end{remark}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P102 例2
@@ -217,7 +201,7 @@
 	0 & 2 & 0 \\
 	0 & 1 & 2
 \end{bmatrix}\).
-证明：\(\A\)不可对角化.
+证明：\(\A\)不可以相似对角化.
 \begin{proof}
 \(\A\)的特征多项式为\[
 	\abs{\l\E-\A} = \begin{vmatrix}
@@ -262,9 +246,9 @@
 矩阵\(\A\)的\(k\)重特征值\(\lambda_0\)的线性无关的特征向量最多只有\(k\)个.
 \end{remark}
 
-\begin{theorem}\label{theorem:矩阵可对角化的充分必要条件.定理2}
+\begin{theorem}\label{theorem:矩阵可以相似对角化的充分必要条件.定理2}
 %@see: 《线性代数》（张慎语、周厚隆） P103 定理5
-\(n\)阶矩阵\(\A\)可对角化的充分必要条件是：
+\(n\)阶矩阵\(\A\)可以相似对角化的充分必要条件是：
 对于\(\A\)的每个\(k_i\)重特征值\(\lambda_i\)，
 \(\A\)有\(k_i\)个线性无关的特征向量，
 即\[
@@ -273,14 +257,38 @@
 %TODO proof
 \end{theorem}
 
-\begin{corollary}\label{theorem:矩阵可对角化的充分必要条件.定理3}
+\begin{corollary}\label{theorem:矩阵可以相似对角化的充分必要条件.定理3}
 %@see: 《线性代数》（张慎语、周厚隆） P103 推论
-\(n\)阶矩阵\(\A\)可对角化的充分必要条件是：
+\(n\)阶矩阵\(\A\)可以相似对角化的充分必要条件是：
 对于\(\A\)的每个\(k_i\)重特征值\(\lambda_i\)，
 都有\[
 	\rank(\lambda_i\E-\A) = n-k_i.
 \]
 %TODO proof
+\end{corollary}
+
+\begin{theorem}\label{theorem:矩阵可以相似对角化的充分必要条件.定理4}
+%@see: 《高等代数（第三版 上册）》（丘维声） P182 定理5
+矩阵\(\A \in M_n(K)\)可以相似对角化的充分必要条件是：
+\(\A\)的属于不同特征值的特征子空间的维数之和等于\(n\).
+%TODO proof
+\end{theorem}
+
+由\cref{theorem:矩阵可以相似对角化的充分必要条件.定理4} 立即得到矩阵可以相似对角化的一个充分条件：
+\begin{corollary}\label{theorem:矩阵可以相似对角化的充分条件.定理1}
+%@see: 《线性代数》（张慎语、周厚隆） P100 推论
+%@see: 《高等代数（第三版 上册）》（丘维声） P182 推论6
+若矩阵\(\A \in M_n(K)\)有\(n\)个不同的特征值，则\(\A\)可以相似对角化.
+%TODO proof
+% \begin{proof}
+% 假设矩阵\(\A \in M_n(K)\)有\(n\)个不同的特征值
+% \(\AutoTuple{\lambda}{n}\)，
+% 而\(\x_j\ (j=1,2,\dotsc,n)\)是矩阵\(\A\)的属于特征值\(\lambda_j\)的特征向量.
+% 由\cref{theorem:矩阵对角化.不同特征值的特征向量线性无关}，
+% \(\AutoTuple{\x}{n}\)线性无关，
+% 再由\cref{theorem:矩阵对角化.矩阵可以相似对角化的充分必要条件}，
+% \(\A\)可以相似对角化.
+% \end{proof}
 \end{corollary}
 
 \begin{example}
@@ -299,7 +307,7 @@
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 6.
-设\(\A\)为可逆矩阵且可对角化，证明：\(\A^{-1}\)也可对角化.
+设\(\A\)为可逆矩阵且可以相似对角化，证明：\(\A^{-1}\)也可以相似对角化.
 \begin{proof}
 设存在可逆矩阵\(\P\)使得\[
 	\P^{-1}\A\P = \V,
@@ -332,9 +340,9 @@
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 7.
-设\(m\)阶矩阵\(\A\)与\(n\)阶矩阵\(\B\)都可对角化，证明：\(m+n\)阶矩阵\[
+设\(m\)阶矩阵\(\A\)与\(n\)阶矩阵\(\B\)都可以相似对角化，证明：\(m+n\)阶矩阵\[
 	\begin{bmatrix} \A & \vb0 \\ \vb0 & \B \end{bmatrix}
-\]可对角化.
+\]可以相似对角化.
 \begin{proof}
 设存在\(m\)阶可逆矩阵\(\P\)和\(n\)阶可逆矩阵\(\Q\)使得
 \begin{align*}
@@ -382,11 +390,36 @@
 矛盾，故\(\A\)不可以对角化.
 \end{proof}
 \end{example}
+\begin{example}\label{example:幂零矩阵.幂等矩阵一定可以相似对角化}
+%@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 6.
+证明：幂等矩阵一定可以相似对角化.
+\begin{proof}
+设\(\A \in M_n(K)\)满足\(\A^2=\A\)，且\(\rank\A = r\).
+
+当\(r=0\)时，\(\A\)是零矩阵，可以相似对角化.
+
+当\(r=n\)时，\(\A\)是单位矩阵，也可以相似对角化.
+
+下面假设\(0<r<n\).
+由\cref{example:幂等矩阵.幂等矩阵的特征值的性质} 可知\(\A\)特征值必为0或1.
+由\cref{example:幂等矩阵.幂等矩阵的秩的性质1} 可知\[
+	\rank\A+\rank(\E-\A)=n.
+\]
+由\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 可知\begin{gather*}
+	\rank\A + \dim\Ker\A = n, \\
+	\rank(\E-\A) + \dim\Ker(\E-\A) = n,
+\end{gather*}
+从而有\[
+	\dim\Ker\A + \dim\Ker(\E-\A) = n.
+\]
+那么由\cref{theorem:矩阵可以相似对角化的充分必要条件.定理4} 可知\(\A\)可以相似对角化.
+\end{proof}
+\end{example}
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 8.
 设矩阵\(\A \in M_n(K)\).
-证明：如果\(\A\)可对角化，则\(\A \sim \A^T\).
+证明：如果\(\A\)可以相似对角化，则\(\A \sim \A^T\).
 %TODO proof
 \end{example}
 
@@ -405,7 +438,7 @@
 所以根据\cref{example:矩阵乘积的秩.两个向量的乘积的特征值和特征向量}，
 \(\A\)的特征值为\(\tr\A\)和\(0\ (\text{$n-1$重})\).
 又因为\(\rank(0\E-\A)=\rank\A=1\)，
-所以根据\cref{theorem:矩阵可对角化的充分必要条件.定理3} 可知，
+所以根据\cref{theorem:矩阵可以相似对角化的充分必要条件.定理3} 可知，
 \(\A\)可以对角化.
 \end{proof}
 \end{example}
