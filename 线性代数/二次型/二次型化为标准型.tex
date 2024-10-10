@@ -358,6 +358,62 @@
 任意\(n\)阶对称矩阵\(\A\)都与对角形矩阵合同.
 \end{corollary}
 
+\begin{example}
+%@see: 《2018年全国硕士研究生入学统一考试（数学一）》三解答题/第20题
+设实二次型\(f(x_1,x_2,x_3) = (x_1-x_2+x_3)^2 + (x_2+x_3)^2 + (x_1+ax_3)^2\)，
+其中\(a\)是未知参数.
+求\(f(x_1,x_2,x_3)=0\)的解和规范型.
+\begin{solution}
+记\[
+	\vb{C} \defeq \begin{bmatrix}
+		1 & -1 & 1 \\
+		0 & 1 & 1 \\
+		1 & 0 & a
+	\end{bmatrix}.
+\]
+作初等行变换得\[
+	\vb{C} \to \vb{C}_1 = \begin{bmatrix}
+		1 & 0 & 2 \\
+		0 & 1 & 1 \\
+		0 & 0 & a-2
+	\end{bmatrix}.
+\]
+
+当\(a\neq2\)时，\(\rank\vb{C}=3\)，方程\(\vb{C}\vb{x}=\vb0\)只有零解.
+
+当\(a=2\)时，\(\rank\vb{C}=2\)，方程\(\vb{C}\vb{x}=\vb0\)
+解得\(k (-2,-1,1)^T\ (\text{$k$是任意常数})\).
+
+注意到\(f(x_1,x_2,x_3) = (x_1-x_2+x_3)^2 + (x_2+x_3)^2 + (x_1+ax_3)^2 \geq 0\).
+
+当\(a\neq2\)时，由于方程\(f(x_1,x_2,x_3)=0\)只有零解，\(f\)是正定的.
+因此可令\[
+	\left\{ \begin{array}{l}
+		y_1 = x_1-x_2+x_3, \\
+		y_2 = x_2+x_3, \\
+		y_3 = x_1+ax_3,
+	\end{array} \right.
+\]
+于是\(f\)的规范型为\(g(y_1,y_2,y_3) = y_1^2 + y_2^2 + y_3^2\).
+
+当\(a=2\)时，\(\vb{C}\)不满秩，将\(f\)展开得\begin{align*}
+	f(x_1,x_2,x_3) &= (x_1-x_2+x_3)^2 + (x_2+x_3)^2 + (x_1+2x_3)^2 \\
+	&= 2 x_1^2 - 2 x_1 x_2 + 2 x_2^2 + 6 x_1 x_3 + 6 x_3^2,
+\end{align*}
+写出对应的矩阵\[
+	\vb{A} = \begin{bmatrix}
+		2 & -1 & 3 \\
+		-1 & 2 & 0 \\
+		3 & 0 & 6
+	\end{bmatrix},
+\]
+解\(\vb{A}\)的特征方程\(\abs{\lambda\E-\A}=\lambda(\lambda^2-10\lambda+18)=0\)
+得\(\lambda\in\Set{0,5\pm\sqrt7}\)，
+\(f\)的正惯性指数为\(2\)，
+于是\(f\)的规范型为\(h(z_1,z_2,z_3) = z_1^2+z_2^2\).
+\end{solution}
+\end{example}
+
 \subsection{初等变换法}
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P126 定义4
