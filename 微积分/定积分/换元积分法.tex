@@ -726,3 +726,60 @@
 \end{align*}
 \end{proof}
 \end{proposition}
+
+%@see: https://www.bilibili.com/video/BV1fN411y7z1/
+\begin{example}\label{example:定积分.积分上限函数是周期函数的充分必要条件}
+证明：如果对于某个实数\(a\)，
+函数\(f\colon\mathbb{R}\to\mathbb{R}\)满足\[
+	\int_a^{a+T} f(x) \dd{x} = 0,
+\]
+则函数\(g(x) = \int_0^x f(t) \dd{t}\)是周期函数，且\(T\)是\(g\)的周期.
+\begin{proof}
+由\cref{theorem:定积分.周期函数的积分} 可知\[
+	\int_a^{a+T} f(x) \dd{x} = \int_0^T f(x) \dd{x},
+\]
+于是\[
+	g(x+T)
+	= \int_0^{x+T} f(t) \dd{t}
+	= \int_0^x f(t) \dd{t} + \int_x^{x+T} f(t) \dd{t}
+	= g(x) + \int_0^T f(x) \dd{x},
+\]
+因此\[
+	g(x+T) = g(x)
+	\iff
+	\int_0^T f(x) \dd{x} = 0
+	\iff
+	\int_a^{a+T} f(x) \dd{x} = 0.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+\begin{example}
+设函数\(f\colon\mathbb{R}\to\mathbb{R}\)是以\(T\)为周期的连续函数.
+证明：函数\[
+	g(x) = \int_0^x f(t) \dd{t} - \int_{-x}^0 f(t) \dd{t}
+\]也是以\(T\)为周期的函数.
+\begin{proof}
+令\(t=-u\)，则\[
+	\int_{-x}^0 f(t) \dd{t}
+	= \int_0^x f(-u) \dd{u},
+\]
+于是\[
+	g(x) = \int_0^x f(t) \dd{t} - \int_0^x f(-u) \dd{u}
+	= \int_0^x (f(t) - f(-t)) \dd{t}.
+\]
+记\(\phi(x) \defeq f(x) - f(-x)\)，
+由于\[
+	\phi(-x) + \phi(x)
+	= f(-x) - f(x) + f(x) - f(-x)
+	= 0,
+\]
+即\(\phi\)是奇函数，
+所以\[
+	\int_{-T/2}^{T/2} (f(x) - f(-x)) \dd{x}
+	= 0.
+\]
+于是由\cref{example:定积分.积分上限函数是周期函数的充分必要条件} 可知
+\(g\)是以\(T\)为周期的函数.
+\end{proof}
+\end{example}
