@@ -149,6 +149,37 @@
 \end{example}
 
 \subsection{柯西--施瓦茨不等式}
+我们首先证明被积函数\(f,g\)都是连续函数的情形.
+\begin{theorem}
+设函数\(f,g \in C[a,b]\)，
+则\begin{equation}
+	\left[ \int_a^b f(x)~g(x) \dd{x} \right]^2
+	\leq
+	\int_a^b f^2(x) \dd{x} \int_a^b g^2(x) \dd{x}.
+\end{equation}
+\begin{proof}
+%@see: https://www.bilibili.com/video/BV1t2x4e2Eqw/
+令\(F(t) = \int_a^t f^2(x) \dd{x} \int_a^t g^2(x) \dd{x}
+- \left[ \int_a^t f(x)~g(x) \dd{x} \right]^2\)，
+易见\(F(a) = 0\)，
+且\begin{align*}
+	F'(t) &= f^2(t) \int_a^t g^2(x) \dd{x}
+	+ g^2(t) \int_a^t f^2(x) \dd{x}
+	- 2 f(t)~g(t) \int_a^t f(x)~g(x) \dd{x} \\
+	&= \int_a^t (f(t)~g(x)-f(x)~g(t))^2 \dd{x}
+	\geq 0
+	\quad(t \geq a),
+\end{align*}
+于是\(F\)在\([a,b]\)上单调增加，且\[
+	F(b) = \int_a^b f^2(x) \dd{x} \int_a^b g^2(x) \dd{x}
+	- \left[ \int_a^b f(x)~g(x) \dd{x} \right]^2
+	\geq F(a) = 0.
+	\qedhere
+\]
+\end{proof}
+\end{theorem}
+
+接下来我们把条件弱化为被积函数\(f,g\)只是黎曼可积函数.
 \begin{theorem}[柯西--施瓦茨不等式]\label{theorem:定积分.柯西--施瓦茨不等式}
 %@see: 《数学分析习题课讲义》（谢惠民、恽自求、易法槐、钱定边） P346 命题11.2.2
 %@see: 《数学分析（第二版 上册）》（陈纪修） P294 习题 12. (1)
