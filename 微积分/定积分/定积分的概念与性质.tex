@@ -595,10 +595,31 @@
 与题设\(\int_a^b f(x) \dd{x} = 0\)矛盾！因此\(f(x)\equiv0\).
 \end{proof}
 \end{example}
-\begin{remark}
-从这个例子可以看出，如果非负函数在积分区间上连续且不恒为零，
-那么相应的定积分必定严格大于零.
-\end{remark}
+\begin{example}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P293 习题 5.
+设\(f\)在\([a,b]\)上连续.
+如果\(f\)在区间\([a,b]\)上非负且不恒为零，
+则\(\int_a^b f(x) \dd{x} > 0\).
+\begin{proof}
+由于\(f\)在区间\([a,b]\)上非负且不恒为零，
+不妨设\(c \in (a,b)\)且\(f(c)>0\)，
+于是由\hyperref[definition:极限.函数在一点的连续性]{连续函数的定义}有\[
+	\lim_{x \to c} f(x) = f(c) > 0.
+\]
+那么由\cref{theorem:极限.函数极限的局部保序性1.推论1} 可知，
+存在\(\delta>0\)，当\(0 < \abs{x-c} < \delta\)时，满足\[
+	f(x) > \frac12 f(c),
+\]
+于是由\cref{theorem:定积分.定积分性质5推论1,theorem:定积分.定积分性质5推论3} 得\[
+	\int_a^b f(x) \dd{x}
+	\geq \int_{c-\delta}^{c+\delta} f(x) \dd{x}
+	\geq \int_{c-\delta}^{c+\delta} \frac12 f(c) \dd{x}
+	= \frac12 f(c) \cdot 2 \delta
+	> 0.
+	\qedhere
+\]
+\end{proof}
+\end{example}
 
 \begin{corollary}\label{theorem:定积分.定积分性质5推论3}
 设函数\(f\)是区间\([a,b]\)上的非负的黎曼可积函数，
@@ -623,32 +644,6 @@
 	\int_a^c f(x) \dd{x}
 	\leq
 	\int_a^d f(x) \dd{x}.
-	\qedhere
-\]
-\end{proof}
-\end{corollary}
-
-\begin{corollary}
-%@see: 《数学分析（第二版 上册）》（陈纪修） P293 习题 5.
-设\(f\)在\([a,b]\)上连续.
-如果\(f\)在区间\([a,b]\)上非负且不恒为零，
-则\(\int_a^b f(x) \dd{x} > 0\).
-\begin{proof}
-由于\(f\)在区间\([a,b]\)上非负且不恒为零，
-不妨设\(c \in (a,b)\)且\(f(c)>0\)，
-于是由\hyperref[definition:极限.函数在一点的连续性]{连续函数的定义}有\[
-	\lim_{x \to c} f(x) = f(c) > 0.
-\]
-那么由\cref{theorem:极限.函数极限的局部保序性1.推论1} 可知，
-存在\(\delta>0\)，当\(0 < \abs{x-c} < \delta\)时，满足\[
-	f(x) > \frac12 f(c),
-\]
-于是由\cref{theorem:定积分.定积分性质5推论1,theorem:定积分.定积分性质5推论3} 得\[
-	\int_a^b f(x) \dd{x}
-	\geq \int_{c-\delta}^{c+\delta} f(x) \dd{x}
-	\geq \int_{c-\delta}^{c+\delta} \frac12 f(c) \dd{x}
-	= \frac12 f(c) \cdot 2 \delta
-	> 0.
 	\qedhere
 \]
 \end{proof}
