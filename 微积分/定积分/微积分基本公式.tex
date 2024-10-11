@@ -205,6 +205,36 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 上册）》 P244 习题5-2 12.
+设函数\(f \in C[a,b] \cap D(a,b)\)，
+而\[
+	F(x) = \frac1{x-a} \int_a^x f(t) \dd{t}.
+\]
+证明：若在\((a,b)\)内有\(f'(x) \leq 0\)，
+则在\((a,b)\)内有\(F'(x) \leq 0\).
+\begin{proof}
+求导得\begin{equation*}
+	F'(x) = \frac1{(x-a)^2} \left[ (x-a)~f(x) - \int_a^x f(t) \dd{t} \right].
+\end{equation*}
+那么\(F'(x) \leq 0\)当且仅当\[
+	(x-a)~f(x) - \int_a^x f(t) \dd{t} \leq 0.
+\]
+记\(\phi(x) = (x-a)~f(x) - \int_a^x f(t) \dd{t}\).
+显然\(\phi(a) = 0\).
+%@credit: {cde036ea-2111-4ff3-b743-6d81e96b49cf},{957ff224-9b08-4ea6-97e8-f592d5fc610b}
+求导得\[
+	\phi'(x) = f(x) + (x-a)~f'(x) - f(x)
+	= (x-a)~f'(x).
+\]
+因为在\((a,b)\)内有\(f'(x) \leq 0\)，
+所以在\((a,b)\)内有\(\phi'(x) \leq 0\)，
+即\(\phi\)在\((a,b)\)上严格单调减少，
+又因为\(\phi(a) = 0\)，
+所以在\((a,b)\)内有\(\phi(x) \leq 0\)，
+从而有\(F'(x) \leq 0\)成立.
+\end{proof}
+\end{example}
+\begin{example}
 %@see: 《高等数学（第六版 上册）》 P244 习题5-2 13.
 设\(F(x) = \int_0^x \frac{\sin t}{t} \dd{t}\).
 求\(F'(0)\).
