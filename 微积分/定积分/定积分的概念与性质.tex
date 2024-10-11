@@ -473,7 +473,11 @@
 \]
 \end{proof}
 \end{property}
-上述性质表明定积分具有“保号性”.
+\begin{remark}
+\cref{theorem:定积分.定积分性质5} 表明定积分具有“保号性”.
+同理可证：如果在区间\([a,b]\)上，黎曼可积函数\(f\)严格大于零，
+则\(\int_a^b f(x) \dd{x} > 0\).
+\end{remark}
 
 \begin{example}
 比较\(\int_0^1 \abs{\ln t} \ln^n(1+t) \dd{t}\)
@@ -556,6 +560,43 @@
 \]
 \end{proof}
 \end{corollary}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P236 习题5-1 12. (1)
+设\(f \in C[a,b]\)，
+在\([a,b]\)上\(f(x)\geq0\)，
+且\(\int_a^b f(x) \dd{x} = 0\).
+证明：在\([a,b]\)上\(f(x)\equiv0\).
+\begin{proof}
+用反证法.
+假设在\([a,b]\)上\(f(x)\not\equiv0\)，
+不妨设\(f(c)>0\ (a<c<b)\).
+由于\(f\)连续，所以由连续性的定义可知\(\lim_{x \to c} f(x) = f(c)\).
+再由\cref{theorem:极限.函数极限的局部保序性1.推论1} 可知，
+存在\(\delta>0\)，使得当\(0<\abs{x-c}<\delta\)时，成立\[
+	f(x) > \frac12 f(c).
+\]
+因为\(f(x)\geq0\)，
+所以由\cref{theorem:定积分.定积分性质5} 可知\[
+	\int_a^{c-\delta} f(x) \dd{x} \geq 0,
+	\qquad
+	\int_{c+\delta}^b f(x) \dd{x} \geq 0.
+\]
+于是\begin{align*}
+	\int_a^b f(x) \dd{x}
+	&= \left( \int_a^{c-\delta} + \int_{c-\delta}^{c+\delta} + \int_{c+\delta}^b \right) f(x) \dd{x}
+	\geq \int_{c-\delta}^{c+\delta} f(x) \dd{x} \\
+	&> \frac12 f(c) \int_{c-\delta}^{c+\delta} \dd{x}
+	= \frac12 f(c) \cdot 2\delta
+	> 0,
+\end{align*}
+与题设\(\int_a^b f(x) \dd{x} = 0\)矛盾！因此\(f(x)\equiv0\).
+\end{proof}
+\end{example}
+\begin{remark}
+从这个例子可以看出，如果非负函数在积分区间上连续且不恒为零，
+那么相应的定积分必定严格大于零.
+\end{remark}
 
 \begin{corollary}\label{theorem:定积分.定积分性质5推论3}
 设函数\(f\)是区间\([a,b]\)上的非负的黎曼可积函数，
