@@ -181,6 +181,36 @@
 称“\(q\)是\(p\)的\DefineConcept{逆否命题}”
 “\(p\)是\(q\)的逆否命题”.
 
+\begin{figure}[htb]
+	\centering
+	\tikzstyle{prop} = [rectangle, minimum width=3cm, minimum height=2cm, text centered, draw=black, fill=orange!30]
+	\tikzstyle{arrow} = [thick,<->,>=stealth]
+	\begin{tikzpicture}[node distance=4cm]
+		\node (p11) [prop] {\begin{tblr}{c}
+			原命题 \\ \(p \implies q\)
+		\end{tblr}};
+		\node (p12) [prop, right=6cm of p11] {\begin{tblr}{c}
+			逆命题 \\ \(q \implies p\)
+		\end{tblr}};
+		\node (p21) [prop, below of=p11] {\begin{tblr}{c}
+			否命题 \\ \(\neg p \implies \neg q\)
+		\end{tblr}};
+		\node (p22) [prop, below of=p12] {\begin{tblr}{c}
+			逆否命题 \\ \(\neg q \implies \neg p\)
+		\end{tblr}};
+
+		\begin{scope}[arrow]
+			\draw (p11) -- node[anchor=south]{互逆} (p12);
+			\draw (p11) -- node[anchor=east]{互否} (p21);
+			\draw (p22) -- node[anchor=north]{互逆} (p21);
+			\draw (p22) -- node[anchor=west]{互否} (p12);
+			\draw (p11) -- node[sloped,near end,below]{互为逆否} (p22);
+			\draw (p12) -- node[sloped,near end,above]{互为逆否} (p21);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+\end{figure}
+
 可以观察发现，\(p \implies q\)的真值表与\([p \land \neg q]\)的恰好相反.
 \begin{table}[ht]
 	\centering
