@@ -63,6 +63,7 @@
 	\geq, \qquad
 	\leq,
 \]这五个符号统称为\DefineConcept{不等号}.
+
 用不等号连接两个解析式所得的式子，称为\DefineConcept{不等式}.
 \end{definition}
 应该注意到：\begin{gather*}
@@ -111,7 +112,7 @@
 	a > b \geq c \implies a > c. \\
 \end{gather*}
 
-\begin{theorem}
+\begin{theorem}%[加法的单调性]
 如果\(a>b\)，那么\(a+c>b+c\).
 \begin{proof}
 显然有\[
@@ -200,8 +201,8 @@
 \end{proof}
 \end{theorem}
 
-\begin{corollary}
-如果\(a>b>0\)，\(c>d>0\)，那么\(ac>bd>0\).
+\begin{corollary}\label{theorem:不等式.同向不等式相乘}
+如果\(a>b>0,c>d>0\)，那么\(ac>bd>0\).
 \begin{proof}
 显然有\[
 	\left. \begin{array}{r}
@@ -214,9 +215,25 @@
 \end{proof}
 \end{corollary}
 这就是说，若干个两边都是正数的同向不等式两边分别相乘，所得不等式与原不等式同向.
-由此，我们可以得到
+
+\begin{corollary}
+如果\(a>b>0,d>c>0\)，那么\(\frac{a}{c}>\frac{b}{d}>0\).
+\end{corollary}
+
+\begin{example}
+证明：如果\(a > b\)且\(ab > 0\)，那么\(\frac1a < \frac1b\).
+\begin{proof}
+因为\(ab > 0\)，\(\frac1{ab} > 0\)，
+所以\(b \cdot \frac1{ab} < a \cdot \frac1{ab}\)，
+\(\frac1a < \frac1b\).
+\end{proof}
+\end{example}
+
 \begin{corollary}
 如果\(a>b>0\)，那么\(a^n>b^n>0 \quad (n\in\mathbb{N}^+)\).
+\begin{proof}
+由\cref{theorem:不等式.同向不等式相乘} 归纳可得.
+\end{proof}
 \end{corollary}
 
 \begin{example}
@@ -300,15 +317,6 @@
 \end{theorem}
 
 \begin{example}
-证明：如果\(a > b\)且\(ab > 0\)，那么\(\frac{1}{a} < \frac{1}{b}\).
-\begin{proof}
-因为\(ab > 0\)，\(\frac{1}{ab} > 0\)，
-所以\(b \cdot \frac{1}{ab} < a \cdot \frac{1}{ab}\)，
-\(\frac{1}{a} < \frac{1}{b}\).
-\end{proof}
-\end{example}
-
-\begin{example}
 证明：\(\abs{a} \geq 0\).
 \begin{proof}
 我们可以按\(a\)的取值分为两种情况讨论：
@@ -316,7 +324,7 @@
 	\item 当\(a \geq 0\)时，\(\abs{a}=a\)，
 	原式化为\(a \geq 0\)，成立.
 	\item 当\(a < 0\)时，\(\abs{a}=-a\)，
-	原式化为\(-a \geq 0\)即\(a \geq 0\)，成立.
+	原式化为\(-a \geq 0\)即\(a \leq 0\)，成立.
 	\qedhere
 \end{itemize}
 \end{proof}
@@ -333,4 +341,33 @@
 	\qedhere
 \end{itemize}
 \end{proof}
+\end{example}
+\begin{example}
+证明：\[
+	\abs{a} \leq b
+	\iff
+	-b \leq a \leq b.
+\]
+%TODO proof
+\begin{proof}
+假设\(\abs{a} \leq b\)，
+那么\(-b \leq -\abs{a}\).
+又因为\[
+	-\abs{a} \leq a \leq \abs{a},
+\]
+所以由传递性可知\[
+	-b \leq a \leq b.
+\]
+
+假设\(-b \leq a \leq b\)，
+\end{proof}
+\end{example}
+\begin{example}
+设\(b>0\).
+证明：\[
+	\abs{a} \geq b
+	\iff
+	a \geq b \lor a \leq -b.
+\]
+%TODO proof
 \end{example}
