@@ -516,6 +516,66 @@ S &= \{ (x,y) \mid 0 \leq x \leq R \land 0 \leq y \leq R \}.
 其中，\(S_D\)是\(D\)的面积.
 \endgroup
 
+%@see: https://www.bilibili.com/video/BV1fM4m1m7Nq/
+\begin{example}
+计算二重积分\(\iint_D (a x^2 + b y^2) \dd\sigma\)，
+其中\(D: x^2 + y^2 \leq a^2\ (a>0)\).
+\begin{solution}
+因为区域\(D\)关于直线\(y=x\)对称，
+所以\begin{equation*}
+	\iint_D x^2 \dd\sigma = \iint_D y^2 \dd\sigma.
+\end{equation*}
+于是\begin{align*}
+	\iint_D (a x^2 + b y^2) \dd\sigma
+	&= a \iint_D x^2 \dd\sigma + b \iint_D y^2 \dd\sigma \\
+	&= \frac{a+b}2 \iint_D (x^2 + y^2) \dd\sigma \\
+	&= \frac{a+b}2 \int_0^{2\pi} \dd\theta \int_0^a \rho^2 \cdot \rho \dd\rho \\
+	&= \frac\pi4 a^4 (a+b).
+\end{align*}
+\end{solution}
+\end{example}
+\begin{example}
+计算二重积分\(\iint_D (x+2y)^2 \dd\sigma\)，
+其中\(D: x^2 + y^2 \leq a^2\ (a>0)\).
+\begin{solution}
+直接计算得\begin{align*}
+	\iint_D (x+2y)^2 \dd\sigma
+	&= \iint_D (x^2+4xy+4y^2) \dd\sigma \\ % 函数\(f_2(x,y) = xy\)在\(D\)上的二重积分等于0
+	&= \frac52 \iint_D (x^2+y^2) \dd\sigma \\
+	&= \frac54 \pi.
+\end{align*}
+\end{solution}
+\end{example}
+\begin{example}
+计算二重积分\(\iint_D \frac{x^2}{\sqrt{x^2+y^2}} \dd\sigma\)，
+其中\(D: 1 \leq x^2+y^2 \leq 4, x\geq0, y\geq0\).
+\begin{solution}
+直接计算得\begin{align*}
+	\iint_D \frac{x^2}{\sqrt{x^2+y^2}} \dd\sigma
+	&= \frac12 \iint_D \left[ \frac{x^2}{\sqrt{x^2+y^2}} + \frac{y^2}{\sqrt{x^2+y^2}} \right] \dd\sigma \\
+	&= \frac12 \iint_D \sqrt{x^2+y^2} \dd\sigma \\
+	&= \frac12 \int_0^{\frac\pi2} \dd\theta \int_1^2 \rho \cdot \rho \dd\rho
+	= \frac{7}{12} \pi.
+\end{align*}
+\end{solution}
+\end{example}
+\begin{example}
+计算二重积分\(\iint_D \frac{2 e^{x^2} + 3 e^{y^2}}{e^{x^2} + e^{y^2}} \dd\sigma\)，
+其中\(D: 0 \leq x \leq 1, 0 \leq y \leq 1\).
+\begin{solution}
+直接计算得\begin{align*}
+	\iint_D \frac{2 e^{x^2} + 3 e^{y^2}}{e^{x^2} + e^{y^2}} \dd\sigma
+	&= \frac12 \iint_D \left[
+		\frac{2 e^{x^2} + 3 e^{y^2}}{e^{x^2} + e^{y^2}}
+		+ \frac{2 e^{y^2} + 3 e^{x^2}}{e^{x^2} + e^{y^2}}
+	\right] \dd\sigma \\
+	&= \frac12 \iint_D \frac{5 (e^{x^2} + e^{y^2})}{e^{x^2} + e^{y^2}} \dd\sigma \\
+	&= \frac52 \iint_D \dd\sigma
+	= \frac52.
+\end{align*}
+\end{solution}
+\end{example}
+
 \subsubsection{二重积分的换元法}
 \begin{theorem}
 %@see: 《高等数学（第六版 下册）》 P149 定理
