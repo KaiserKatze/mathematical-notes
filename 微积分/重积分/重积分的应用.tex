@@ -227,18 +227,131 @@
 则可以用“雅克比矩阵\(\vb{J}\)满秩”等价代替.
 
 \subsection{物体的质心}
-\begin{theorem}
-设物体占有空间有界闭区域\(\Omega\)，
-其在点\((x,y,z)\)处的密度为\[
-	\rho=\rho(x,y,z)
+%@see: 《高等数学（第六版 下册）》 P169
+先讨论平面薄片的质心.
+
+设在\(xOy\)平面上有\(n\)个质点，
+它们分别位于\((x_1,y_1),\dotsc,(x_n,y_n)\)处，
+质量分别为\(\AutoTuple{m}{n}\).
+根据定义，该质点系的质心的坐标为\[
+	\overline{x} = \frac{M_y}{M}
+	= \frac{\sum_{i=1}^n m_i x_i}{\sum_{i=1}^n m_i},
+	\qquad
+	\overline{y} = \frac{M_x}{M}
+	= \frac{\sum_{i=1}^n m_i y_i}{\sum_{i=1}^n m_i},
 \]
-（假定\(\rho(x,y,z)\)在\(\Omega\)上连续），
-则其质心坐标为\begin{equation}
-	\frac{1}{M} \iiint_\Omega \vb{r} \rho \dd{v},
+其中\(M = \sum_{i=1}^n m_i\)是该质点系的总质量，
+而\[
+	M_y = \sum_{i=1}^n m_i x_i,
+	\qquad
+	M_x = \sum_{i=1}^n m_i y_i
+\]分别是该质点系对\(y\)轴和\(x\)轴的\emph{静矩}.
+
+设有一平面薄片，占有\(xOy\)面上的闭区域\(D\)，
+在点\((x,y)\)处的面密度为\(\mu(x,y)\)，
+假定\(\mu\)在\(D\)上连续.
+现在要求该薄片的质心的坐标.
+
+在闭区域\(D\)上任取一直径很小的闭区域\(\dd\sigma\)（其面积也记作\(\dd\sigma\)），
+\((x,y)\)是这小区域上的一个点.
+由于\(\dd\sigma\)的直径很小，且\(\mu\)在\(D\)上连续，
+所以薄片中相应于\(\dd\sigma\)的部分的质量近似等于\(\mu(x,y) \dd\sigma\)，
+这部分质量可近似看作集中在点\((x,y)\)上，于是可以写出对应的静矩元素\(\dd{M_y}\)和\(\dd{M_x}\)：\[
+	\dd{M_y} = x \mu(x,y) \dd\sigma,
+	\qquad
+	\dd{M_x} = y \mu(x,y) \dd\sigma.
+\]
+以这些元素为被积表达式，在闭区域\(D\)上积分，便得\[
+	M_y = \iint_D x \mu(x,y) \dd\sigma,
+	\qquad
+	M_x = \iint_D y \mu(x,y) \dd\sigma.
+\]
+我们知道，薄片的质量为\[
+	M = \iint_D \mu(x,y) \dd\sigma.
+\]
+所以薄片的质心的坐标为\[
+	\overline{x} = \frac{M_y}{M}
+	= \frac{\iint_D x \mu(x,y) \dd\sigma}{\iint_D \mu(x,y) \dd\sigma},
+	\qquad
+	\overline{y} = \frac{M_x}{M}
+	= \frac{\iint_D y \mu(x,y) \dd\sigma}{\iint_D \mu(x,y) \dd\sigma}.
+\]
+
+如果薄片是均匀的，即面密度是常量，则上式中可把\(\mu\)提到积分号外面，并从分子、分母中约去，
+这样便得均匀薄片的质心坐标为\begin{equation}\label{equation:重积分.均匀平面薄片的形心坐标}
+%@see: 《高等数学（第六版 下册）》 P170 (1)
+	\overline{x} = \frac1A \iint_D x \dd\sigma,
+	\qquad
+	\overline{y} = \frac1A \iint_D y \dd\sigma,
 \end{equation}
-其中\(M = \iiint_\Omega \rho \dd{v}\)，
-\(\vb{r} = (x,y,z)^T\).
-\end{theorem}
+其中\(A = \iint_D \dd\sigma\)是闭区域\(D\)的面积.
+这时薄片的质心完全由闭区域的形状所决定.
+我们把均匀平面薄片的质心叫做这片面薄片所占的平面图形的\DefineConcept{形心}.
+因此平面图形的形心的坐标可以用\cref{equation:重积分.均匀平面薄片的形心坐标} 计算.
+
+\begin{example}
+%@see: 《高等数学（第六版 下册）》 P171 例3
+求位于\(\rho=2\sin\theta\)和\(\rho=4\sin\theta\)这两个圆之间的均匀薄片的形心.
+\begin{solution}
+因为闭区域\(D\)对称于\(y\)轴，所以形心\(C(\overline{x},\overline{y})\)必定位于\(y\)轴上，
+即\(\overline{x} = 0\).
+再按\cref{equation:重积分.均匀平面薄片的形心坐标} 可得\[
+	\overline{y} = \frac1A \iint_D y \dd\sigma,
+\]
+其中\(D\)是位于半径为1与半径为2的两圆之间，
+所以它的面积等于这两个圆的面积之差，即\(A = 3\pi\)，
+而\[
+	\iint_D y \dd\sigma = \iint_D \rho\sin\theta \cdot \rho\dd\rho\dd\theta
+	= \int_0^\pi \sin\theta \dd\theta \int_{2\sin\theta}^{4\sin\theta} \rho^2 \dd\rho
+	= \frac{56}3 \int_0^\pi \sin^4\theta \dd\theta
+	= 7\pi,
+\]
+因此\[
+	\overline{y} = \frac{7\pi}{3\pi} = \frac73,
+\]
+所求形心是\(C\left( 0,\frac73 \right)\).
+\end{solution}
+\end{example}
+
+类似地，占有空间有界闭区域\(\Omega\)、
+在点\((x,y,z)\)处的密度为\(\rho(x,y,z)\)
+（假定\(\rho(x,y,z)\)在\(\Omega\)上连续）的
+物体的质心坐标为\begin{equation}
+	\frac1M \iiint_\Omega \vb{r} \rho \dd{v},
+\end{equation}
+其中\(M = \iiint_\Omega \rho \dd{v},
+\vb{r} = (x,y,z)^T\).
+
+\begin{example}
+%@see: 《高等数学（第六版 下册）》 P171 例4
+求均匀半球体的质心.
+\begin{solution}
+取半球体的对称轴为\(z\)轴，原点取在球心上，又设球半径为\(a\)，
+则半球体所占空间有界闭区域为\[
+	\Omega = \Set{
+		(x,y,z)
+		\given
+		x^2+y^2+z^2 \leq a^2,
+		z \geq 0
+	}.
+\]
+显然质点在\(z\)轴上，即\(\overline{x} = \overline{y} = 0\).
+接下来计算\[
+	\overline{z} = \frac1M \iiint_\Omega z \rho \dd{v}
+	= \frac1V \iiint_\Omega z \dd{v},
+\]
+其中\(V = \frac23 \pi a^3\)是半球体的体积，
+而\[
+	\iiint_\Omega z \dd{v}
+	= \iiint_\Omega r\cos\phi \cdot r^2 \sin\phi \dd{r}\dd\phi\dd\theta
+	= \int_0^{2\pi} \dd\theta \int_0^{\frac\pi2} \cos\phi \sin\phi \dd\phi
+	\int_0^a r^3 \dd{r}
+	= \frac\pi4 a^4,
+\]
+因此\(\overline{z} = \frac38 a\)，
+质心为\(\left( 0,0,\frac38a \right)\).
+\end{solution}
+\end{example}
 
 \subsection{物体的转动惯量}
 假设一个刚体以角速度\(\omega\)绕定轴\(z\)转动，
