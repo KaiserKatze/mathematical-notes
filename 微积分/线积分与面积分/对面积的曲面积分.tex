@@ -256,3 +256,105 @@
 \end{align*}
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P307 通讯卫星的电波覆盖的地球面积
+将通讯卫星发射到赤道的上空，使它在赤道面内自西向东地绕地球飞行，
+那么它始终在地球某一个位置的上空，相对地面静止.
+这样的卫星称为\emph{对地静止卫星}（geostationary satellite），
+是一种特殊的\emph{地球同步卫星}（geosynchronous satellite）.
+现在来计算这类卫星的电波所能覆盖的地球的表面积.
+为了简化问题，把地球看成一个半径为\(R\)球体，把卫星轨道看成一个的圆，
+假设地球自转的角速度是\(\omega\).
+我们首先确定卫星离地面的高度\(h\).
+要使卫星在轨道上稳定飞行，卫星所受的地球引力必须与它绕地球飞行所受的离心力相等，
+即\[
+	\frac{GMm}{(R+h)^2}
+	= m \omega^2 (R+h),
+\]
+其中\(M\)是地球的质量，\(m\)是卫星的质量，\(G\)是引力常量.
+由于地球表面的重力加速度\(g\)满足\[
+	\frac{GMm}{R^2}
+	= mg,
+\]
+所以\[
+	(R+h)^3 = \frac{GM}{\omega^2}
+	= g\frac{R^2}{\omega^2},
+\]
+于是\[
+	h = \sqrt[3]{\frac{GM}{\omega^2}} - R.
+\]
+代入\(R \approx \qty{6371000}{\meter}\)，
+\(\omega \approx \frac{2\pi}{24 \times 3600}\)~\unit[per-mode=symbol]{\radian\per\second}，
+\(g \approx \qty[per-mode=symbol]{9.8}{\meter\per\second\squared}\)，
+就得到卫星离地面的高度为\[
+	h \approx \qty{36000000}{\meter}.
+\]
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\a}{70}
+		\pgfmathsetmacro{\R}{1}
+		\fill[cyan](0,0)coordinate(O)circle(\R);
+		\draw(O)--({\R*sin(\a)},{\R*cos(\a)})coordinate(P)
+			--(0,{\R/cos(\a)})coordinate(Q);
+		\draw pic["$\alpha$",draw=orange,-,angle eccentricity=2,angle radius=3mm]{angle=P--O--Q};
+		\draw(O)node[below left]{地球};
+		\fill(Q)circle(2pt)node[right]{卫星};
+		\begin{scope}[->,>=Stealth]
+			\draw(-1.5,0)--(1.5,0)node[below]{$x$};
+			\draw(0,-1.5)--(Q)--++(0,.5)node[right]{$z$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:线积分与面积分.对地静止卫星}
+\end{figure}
+如\cref{figure:线积分与面积分.对地静止卫星} 所示，
+取地心为坐标原点，取过地心与卫星中心、方向从地心到卫星中心的有向直线为\(z\)轴，
+可以看出卫星电波可以覆盖的最大纬度\(\alpha\)满足\(\cos\alpha=\frac{R}{R+h}\)，
+解得\[
+	\alpha=\arccos\frac{R}{R+h} \approx \qty{81.3521}{\degree},
+\]
+也就是说卫星的电波的覆盖范围是南纬\(\qty{81}{\degree}\)到北纬\(\qty{81}{\degree}\)之间的球面区域，
+对应的覆盖面积为\[
+	S = \iint_\Sigma \dd{S},
+\]
+其中\(\Sigma\)是上半球面\(x^2+y^2+z^2=R^2,z\geq0\)上满足\(z \geq R\cos\alpha\)的部分，
+即\[
+	\Sigma: z=\sqrt{R^2-x^2-y^2}, \quad x^2+y^2 \leq R^2\sin^2\alpha.
+\]
+利用第一类曲面积分的计算公式得\[
+	S = \iint_D \sqrt{1+\left(\pdv{z}{x}\right)^2+\left(\pdv{z}{y}\right)^2} \dd{x}\dd{y}
+	= \iint_D \frac{R}{\sqrt{R^2-x^2-y^2}} \dd{x}\dd{y},
+\]
+这里\(D\)是\(xOy\)平面上的区域
+\(\Set{ (x,y) \given x^2+y^2 \leq R^2\sin^2\alpha }\).
+利用极坐标变换，得\[
+	S = \int_0^{2\pi} \dd\theta
+	\int_0^{R\sin\alpha} \frac{R}{\sqrt{R^2-r^2}} r\dd{r}
+	= 2\pi R \eval{(-\sqrt{R^2-r^2})}_0^{R\sin\alpha}
+	= 2\pi R^2(1-\cos\alpha).
+\]
+因为\(\cos\alpha=\frac{R}{R+h}\)，
+所以\[
+	S = 2\pi R^2\frac{h}{R+h}
+	\approx \qty{2.16575e8}{\kilo\meter\squared}.
+\]
+由于地球的表面积是\(4\pi R^2 \approx \qty{5.10064e8}{\kilo\meter\squared}\)，
+所以一颗卫星的电波可以覆盖的地球面积占比为\[
+	\frac{h}{2(R+h)}
+	\approx \num{0.4248}.
+\]
+因此，卫星的电波覆盖了地球表面三分之一以上的面积，
+从理论上说，只要在赤道上空使用三颗角度相间\(2\pi/3\)的通讯卫星，
+它们的电波就可以覆盖几乎整个地球表面.
+我们可以算出它们的电波的实际覆盖面积为\begin{align*}
+	S' &= 2\int_0^{R\sin\alpha} 2\pi y \sqrt{1+(y')^2} \dd{x}
+	= 4\pi \int_0^{R\sin\alpha} \sqrt{R^2-x^2} \sqrt{1+\left(\frac{-x}{\sqrt{R^2-x^2}}\right)^2} \dd{x} \\
+	&= 4\pi R^2\sin\alpha
+	= 4\pi R^2 \frac{\sqrt{(R+h)^2-R^2}}{R+h}
+	\approx \qty{5.04266e8}{\kilo\meter\squared}.
+\end{align*}
+没有覆盖到的球面区域的面积约为\(\qty{0.05798e8}{\kilo\meter\squared}\)，
+仅占地球表面积的\(\qty{1.14}{\percent}\).
+\end{example}
