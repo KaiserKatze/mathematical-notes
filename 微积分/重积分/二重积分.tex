@@ -245,6 +245,29 @@ Y型区域\(D\)的特点是：
 但是，在化二重积分为二次积分时，为了计算简便，需要选择恰当的二次积分的顺序.
 这时，既要考虑积分区域\(D\)的形状，又要考虑被积函数\(f(x,y)\)的特性.
 
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P254 习题 17.
+利用重积分的性质和计算方法证明：
+若\(f \in C[a,b]\)，则\[
+	\left( \int_a^b f(x) \dd{x} \right)^2
+	\leq (b-a) \int_a^b f^2(x) \dd{x}.
+\]
+\begin{proof}
+直接计算得\begin{align*}
+	\left( \int_a^b f(x) \dd{x} \right)^2
+	&= \int_a^b f(x) \dd{x} \int_a^b f(y) \dd{y}
+	= \iint_{[a,b]\times[a,b]} f(x)~f(y) \dd{x}\dd{y} \\
+	&\leq \frac12 \iint_{[a,b]\times[a,b]} \left( f^2(x) + f^2(y) \right) \dd{x}\dd{y}
+		\tag{\hyperref[theorem:不等式.基本不等式2]{基本不等式}} \\
+	&= \frac12 \cdot 2 \iint_{[a,b]\times[a,b]} f^2(x) \dd{x}\dd{y}
+		\tag{对称性} \\
+	&= \int_a^b f^2(x) \dd{x} \int_a^b \dd{y}
+	= (b-a) \int_a^b f^2(x) \dd{x}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
 \subsubsection{利用极坐标计算二重积分}
 有些二重积分，积分区域\(D\)的边界曲线用极坐标方程来表示比较方便，
 且被积函数用极坐标变量\(\rho\)、\(\theta\)表达比较简单.
