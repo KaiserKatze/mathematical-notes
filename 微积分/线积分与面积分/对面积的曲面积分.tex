@@ -217,46 +217,6 @@
 \end{solution}
 \end{example}
 
-\subsection{利用对称性简化第一类曲面积分的计算}
-设积分曲面\(\Sigma\)关于\(xOy\)面对称.
-\begin{itemize}
-	\item 若被积函数\(f(x,y,z)\)是关于\(z\)的偶函数，
-	即\[
-		f(x,y,-z) = f(x,y,z),
-	\]
-	则\[
-		\iint_\Sigma f(x,y,z) \dd{S}
-		= 2 \iint_{D_{xy}} f[x,y,z(x,y)] \sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y}.
-	\]
-
-	\item 若被积函数\(f(x,y,z)\)是关于\(z\)的奇函数，
-	即\[
-		f(x,y,-z) = -f(x,y,z),
-	\]
-	则\[
-		\iint_\Sigma f(x,y,z) \dd{S} = 0.
-	\]
-\end{itemize}
-
-类似地，可以得出，在积分曲面关于\(yOz\)面或\(zOx\)面对称，
-而被积函数\(f(x,y,z)\)是关于\(x\)或\(y\)的奇函数或偶函数的情形下，
-第一类曲面积分的简化计算公式.
-
-\begin{example}
-计算\(\varoiint_\Sigma x^2 \dd{S}\)，
-其中\(\Sigma: x^2+y^2+z^2=a^2\).
-\begin{solution}
-利用对称性可得\begin{align*}
-	\varoiint_\Sigma x^2 \dd{S}
-	&= \frac{1}{3} \varoiint_\Sigma (x^2+y^2+z^2) \dd{S} \\
-	&= \frac{1}{3} \varoiint_\Sigma a^2 \dd{S}
-	= \frac{a^2}{3} \varoiint_\Sigma \dd{S} \\
-	&= \frac{a^2}{3} \cdot 4\pi a^2
-	= \frac{4}{3} \pi a^4.
-\end{align*}
-\end{solution}
-\end{example}
-
 \begin{example}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P307 通讯卫星的电波覆盖的地球面积
 将通讯卫星发射到赤道的上空，使它在赤道面内自西向东地绕地球飞行，
@@ -358,4 +318,132 @@
 \end{align*}
 没有覆盖到的球面区域的面积约为\(\qty{0.05798e8}{\kilo\meter\squared}\)，
 仅占地球表面积的\(\qty{1.14}{\percent}\).
+\end{example}
+
+\subsection{利用对称性简化第一类曲面积分的计算}
+%@see: https://www.bilibili.com/video/BV1Dn4y1R7gW/
+%奇偶对称性
+设积分曲面\(\Sigma\)关于\(xOy\)面（平面\(z=0\)）对称.
+\begin{itemize}
+	\item 若被积函数\(f\)在曲面\(\Sigma\)上是关于\(z\)的奇函数，
+	即\[
+		f(x,y,-z) = -f(x,y,z),
+	\]
+	则\[
+		\iint_\Sigma f(x,y,z) \dd{S} = 0.
+	\]
+
+	\item 若被积函数\(f\)在曲面\(\Sigma\)上是关于\(z\)的偶函数，
+	即\[
+		f(x,y,-z) = f(x,y,z),
+	\]
+	则\[
+		\iint_\Sigma f(x,y,z) \dd{S}
+		= 2 \iint_{\Sigma_1} f(x,y,z) \dd{S},
+		% = 2 \iint_{D_{xy}} f[x,y,z(x,y)] \sqrt{1+(z'_x)^2+(z'_y)^2} \dd{x}\dd{y}.
+	\]
+	其中\(\Sigma_1\)是曲面\(\Sigma\)在坐标面\(xOy\)上侧的部分.
+\end{itemize}
+
+曲面\(\Sigma\)关于坐标面\(yOz\)（平面\(x=0\)）对称，
+被积函数\(f\)在\(\Sigma\)上关于变量\(x\)具有奇偶性时，
+也有类似的结论.
+
+曲面\(\Sigma\)关于坐标面\(zOx\)（平面\(y=0\)）对称，
+被积函数\(f\)在\(\Sigma\)上关于变量\(y\)具有奇偶性时，
+也有类似的结论.
+
+设曲面\(\Sigma\)关于三个坐标面都对称，
+被积函数\(f\)关于三个变量\(x,y,z\)都是偶函数，
+则\[
+	\iiint_\Sigma f(x,y,z) \dd{S}
+	= 8 \iiint_{\Sigma_1} f(x,y,z) \dd{S},
+\]
+其中\(\Sigma_1\)是\(\Sigma\)在第一卦限内的部分.
+
+\begin{example}
+计算曲面积分\(\iint_\Sigma (x^2 z \sin y + x e^{y^2 z} + 4) \dd{S}\)，
+其中\(\Sigma: x^2+y^2+z^2=9, z\geq0\).
+\begin{solution}
+因为\(\Sigma\)关于坐标面\(zOx\)对称，
+函数\(x^2 z \sin y\)是关于变量\(y\)的奇函数，
+所以\(\iint_\Sigma x^2 z \sin y \dd{S} = 0\).
+
+因为\(\Sigma\)关于坐标面\(yOz\)对称，
+函数\(x e^{y^2 z}\)是关于变量\(x\)的奇函数，
+所以\(\iint_\Sigma x e^{y^2 z} \dd{S} = 0\).
+
+于是原积分等于\(\iint_\Sigma 4 \dd{S} = 4\cdot\frac12\cdot4\pi\cdot3^3 = 72\pi\).
+\end{solution}
+\end{example}
+
+%@see: https://www.bilibili.com/video/BV13t421K7yY/
+%轮换对称性
+设曲面\(\Sigma'\)与曲面\(\Sigma\)关于平面\(y=x\)对称，
+即\[
+	\Sigma' = \Set{ (x,y,z) \given (y,x,z) \in \Sigma },
+\]
+则\[
+	\iint_\Sigma f(x,y,z) \dd{S}
+	= \iint_{\Sigma'} f(y,x,z) \dd{S}.
+\]
+
+设曲面\(\Sigma\)关于平面\(y=z\)对称，
+则\[
+	\iint_\Sigma f(x,y,z) \dd{S}
+	= \iint_\Sigma f(y,x,z) \dd{S}
+	= \frac12 \iint_\Sigma (f(x,y,z) + f(y,x,z)) \dd{S}.
+\]
+
+曲面\(\Sigma\)关于平面\(y=z\)或\(z=x\)对称时，也有类似的结论.
+
+\begin{example}
+设\(\Sigma: x^2+y^2+4z^2=1\).
+判断曲面积分\[
+	\iiint_\Sigma x^2 \dd{S}
+	\quad\text{和}\quad
+	\iiint_\Sigma y^2 \dd{S}
+\]是否相等.
+\begin{solution}
+将\(\Sigma\)的表达式\(x^2+y^2+4z^2=1\)中的变量\(x\)与变量\(y\)互换，
+得到的\(y^2+x^2+4z^2=1\)与原式等价，
+所以\(\Sigma\)关于平面\(y=x\)对称，
+因此\[
+	\iiint_\Sigma x^2 \dd{S}
+	= \iiint_\Sigma y^2 \dd{S}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+设\(\Sigma: x^2+y^2+4z^2=1\).
+判断曲面积分\[
+	\iiint_\Sigma x^2 \dd{S}
+	\quad\text{和}\quad
+	\iiint_\Sigma z^2 \dd{S}
+\]是否相等.
+\begin{solution}
+将\(\Sigma\)的表达式\(x^2+y^2+4z^2=1\)中的变量\(x\)与变量\(z\)互换，
+得到的\(z^2+y^2+4x^2=1\)与原式不等价，
+所以\(\Sigma\)不关于平面\(z=x\)对称，
+于是\[
+	\iiint_\Sigma x^2 \dd{S}
+	\neq \iiint_\Sigma z^2 \dd{S}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+计算\(\varoiint_\Sigma x^2 \dd{S}\)，
+其中\(\Sigma: x^2+y^2+z^2=a^2\).
+\begin{solution}
+利用对称性可得\begin{align*}
+	\varoiint_\Sigma x^2 \dd{S}
+	&= \frac{1}{3} \varoiint_\Sigma (x^2+y^2+z^2) \dd{S} \\
+	&= \frac{1}{3} \varoiint_\Sigma a^2 \dd{S}
+	= \frac{a^2}{3} \varoiint_\Sigma \dd{S} \\
+	&= \frac{a^2}{3} \cdot 4\pi a^2
+	= \frac{4}{3} \pi a^4.
+\end{align*}
+\end{solution}
 \end{example}

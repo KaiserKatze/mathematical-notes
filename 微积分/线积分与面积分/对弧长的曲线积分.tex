@@ -288,3 +288,164 @@ y = a(1 - \cos t)
 \end{align*}
 \end{solution}
 \end{example}
+
+\subsection{利用对称性简化第一类曲线积分的计算}
+%@see: https://www.bilibili.com/video/BV11t421T719/
+
+%平面曲线对弧长曲线积分的奇偶对称性
+设曲线\(L\)关于\(y\)轴（直线\(x=0\)）对称.
+\begin{itemize}
+	\item 当函数\(f\)在曲线\(L\)是关于\(x\)的奇函数，
+	即\[
+		f(-x,y) = -f(x,y),
+	\]
+	则\[
+		\int_L f(x,y) \dd{s} = 0.
+	\]
+
+	\item 当函数\(f\)在曲线\(L\)是关于\(x\)的偶函数，
+	即\[
+		f(-x,y) = f(x,y),
+	\]
+	则\[
+		\int_L f(x,y) \dd{s}
+		= 2 \int_{L_1} f(x,y) \dd{s},
+	\]
+	其中\(L_1\)是\(L\)在\(y\)轴右侧的部分.
+\end{itemize}
+综上所述，我们有\[
+	\int_L f(x,y) \dd{s}
+	= \left\{ \begin{array}{cc}
+		2 \int_{L_1} f(x,y) \dd{s}, & f(-x,y) = f(x,y), \\
+		0, & f(-x,y) = -f(x,y).
+	\end{array} \right.
+\]
+
+设曲线\(L\)关于\(x\)轴（直线\(y=0\)）对称.
+\begin{itemize}
+	\item 当函数\(f\)在曲线\(L\)是关于\(y\)的奇函数，
+	即\[
+		f(x,-y) = -f(x,y),
+	\]
+	则\[
+		\int_L f(x,y) \dd{s} = 0.
+	\]
+
+	\item 当函数\(f\)在曲线\(L\)是关于\(y\)的偶函数，
+	即\[
+		f(x,-y) = f(x,y),
+	\]
+	则\[
+		\int_L f(x,y) \dd{s}
+		= 2 \int_{L_1} f(x,y) \dd{s},
+	\]
+	其中\(L_1\)是\(L\)在\(x\)轴上侧的部分.
+\end{itemize}
+综上所述，我们有\[
+	\int_L f(x,y) \dd{s}
+	= \left\{ \begin{array}{cc}
+		2 \int_{L_1} f(x,y) \dd{s}, & f(x,-y) = f(x,y), \\
+		0, & f(x,-y) = -f(x,y).
+	\end{array} \right.
+\]
+
+设曲线\(L\)关于\(x\)轴和\(y\)轴都对称，
+被积函数\(f\)关于\(x\)和\(y\)都是偶函数，
+即\[
+	f(-x,y) = f(x,y),
+	\qquad
+	f(x,-y) = f(x,y),
+\]
+则\[
+	\int_L f(x,y) \dd{s}
+	= 4 \int_{L_1} f(x,y) \dd{s},
+\]
+其中\(L_1\)是\(L\)在第一象限的部分.
+
+\begin{example}
+计算曲线积分\(\oint_L (y^2 \sin x + y \cos x + 2) \dd{s}\)，
+其中\(L: \abs{x}+\abs{y}=1\).
+\begin{solution}
+因为\(L\)关于\(y\)轴对称，
+函数\(y^2 \sin x\)是关于变量\(x\)的奇函数，
+所以\(\oint_L y^2 \sin x \dd{s} = 0\).
+
+因为\(L\)关于\(x\)轴对称，
+函数\(y \cos x\)是关于变量\(y\)的奇函数，
+所以\(\oint_L y \cos x \dd{s} = 0\).
+
+于是原积分等于\(\oint_L 2 \dd{s} = 2\cdot4\cdot\sqrt2 = 8\sqrt2\).
+\end{solution}
+\end{example}
+
+%空间曲线对弧长曲线积分的奇偶对称性
+设空间曲线\(\Gamma\)关于坐标面\(xOy\)（平面\(z=0\)）对称，
+则\[
+	\int_\Gamma f(x,y,z) \dd{s}
+	= \left\{ \begin{array}{cc}
+		2 \int_{\Gamma_1} f(x,y,z) \dd{s}, & f(x,y,-z) = f(x,y,z), \\
+		0, & f(x,y,-z) = -f(x,y,z).
+	\end{array} \right.
+\]
+其中\(\Gamma_1\)是\(\Gamma\)在坐标面\(xOy\)上侧的部分.
+
+空间曲线\(\Gamma\)关于坐标面\(yOz\)（平面\(x=0\)）对称，
+被积函数\(f\)在\(\Gamma\)上关于变量\(x\)具有奇偶性时，
+也有类似的结论.
+
+空间曲线\(\Gamma\)关于坐标面\(zOx\)（平面\(y=0\)）对称，
+被积函数\(f\)在\(\Gamma\)上关于变量\(y\)具有奇偶性时，
+也有类似的结论.
+
+%@see: https://www.bilibili.com/video/BV1Wx4y1p7V2/
+
+%平面曲线对弧长曲线积分的轮换对称性
+设平面曲线\(L'\)与曲线\(L\)关于直线\(y=x\)对称，
+即\[
+	L' = \Set{ (y,x) \given (x,y) \in L },
+\]
+则\[
+	\int_L f(x,y) \dd{s}
+	= \int_{L'} f(y,x) \dd{s}.
+\]
+
+设平面曲线\(L\)关于直线\(y=x\)对称，
+则\[
+	\int_L f(x,y) \dd{s}
+	= \int_L f(y,x) \dd{s}
+	= \frac12 \int_L (f(x,y) + f(y,x)) \dd{s}.
+\]
+
+\begin{example}
+计算曲线积分\(\oint_L x^2 \dd{s}\)，
+其中\(L: x^2+y^2=1\).
+\begin{solution}
+曲线\(L\)关于直线\(y=x\)对称，所以\[
+	\oint_L x^2 \dd{s}
+	= \oint_L y^2 \dd{s}
+	= \frac12 \oint_L (x^2+y^2) \dd{s}
+	= \frac12 \oint_L 1 \dd{s}
+	= \frac12 \cdot 2\pi
+	= \pi.
+\]
+\end{solution}
+\end{example}
+
+%空间曲线对弧长曲线积分的轮换对称性
+设空间曲线\(\Gamma'\)与\(\Gamma\)关于平面\(y=x\)对称，
+即\[
+	\Gamma' = \Set{ (x,y,z) \given (y,x,z) \in \Gamma },
+\]
+则\[
+	\int_\Gamma f(x,y,z) \dd{s}
+	= \int_{\Gamma'} f(y,x,z) \dd{s}.
+\]
+
+设空间曲线\(\Gamma\)关于平面\(y=x\)对称，
+则\[
+	\int_\Gamma f(x,y,z) \dd{s}
+	= \int_\Gamma f(y,x,z) \dd{s}
+	= \frac12 \int_\Gamma (f(x,y,z) + f(y,x,z)) \dd{s}.
+\]
+
+空间曲线\(\Gamma\)关于平面\(y=z\)或\(z=x\)对称时，也有类似的结论.
