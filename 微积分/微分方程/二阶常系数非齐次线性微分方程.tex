@@ -82,17 +82,17 @@ y'' + p y' + q y = f(x),
 		Q_m''(x) = (x^m,x^{m-1},x^{m-2},\dotsc,x^2,x,1)
 		\begin{bmatrix}
 			0 \\ 0 \\ m(m-1) b_0 \\ \vdots \\
-			4\cdot3 b_{m-4} \\ 3\cdot2 b_{m-3} \\ 2 b_{m-2}
+			4\cdot3 b_{m-4} \\ 3\cdot2 b_{m-3} \\ 2\cdot1 b_{m-2}
 		\end{bmatrix}.
 	\end{gather*}
 	把\(Q_m,Q_m',Q_m''\)
-	代入 \labelcref{equation:微分方程.常系数非齐次线性微分方程.中间步骤1}，
+	代入方程 \labelcref{equation:微分方程.常系数非齐次线性微分方程.中间步骤1}，
 	比较等式两端\(x\)同次幂的系数，
 	就得到以\(\lambda,p,q,\AutoTuple{a}[0]{m}\)为已知数、
 	\(\AutoTuple{b}[0]{m}\)为未知数的\(m+1\)个方程的联立方程组\[
 		\begin{bmatrix}
 			0 \\ 0 \\ m(m-1) b_0 \\ \vdots \\
-			4\cdot3 b_{m-4} \\ 3\cdot2 b_{m-3} \\ 2 b_{m-2}
+			4\cdot3 b_{m-4} \\ 3\cdot2 b_{m-3} \\ 2\cdot1 b_{m-2}
 		\end{bmatrix}
 		+ (2\lambda+p)
 		\begin{bmatrix}
@@ -122,7 +122,40 @@ y'' + p y' + q y = f(x),
 	此时可令\[
 		Q(x) = x Q_m(x),
 	\]
-	并且可用同样的方法来确定\(Q_m(x)\)的系数\(b_i\ (i=0,1,\dotsc,m)\).
+	于是\begin{gather*}
+		Q'(x) = Q_m(x) + x Q_m'(x), \\
+		Q''(x) = 2 Q_m'(x) + x Q_m''(x),
+	\end{gather*}
+	代入方程 \labelcref{equation:微分方程.常系数非齐次线性微分方程.中间步骤1}，得\[
+		(2 Q_m'(x) + x Q_m''(x))
+		+ (2\lambda+p) (Q_m(x) + x Q_m'(x))
+		= P_m(x),
+	\]
+	即\[
+		x Q_m''(x) + [(2\lambda+p)x+2] Q_m'(x)
+		+ (2\lambda+p) Q_m(x)
+		= P_m(x),
+	\]
+	比较等式两边\(x\)同次幂的系数，就得到方程组\[
+		\begin{bmatrix}
+			0 \\ m(m-1) b_0 \\ (m-1)(m-2) b_1 \\ \vdots \\
+			3\cdot2 b_{m-3} \\ 2\cdot1 b_{m-2} \\ 0
+		\end{bmatrix}
+		+ (2\lambda+p)
+		\begin{bmatrix}
+			m b_0 \\ (m-1) b_1 \\ (m-2) b_2 \\ \vdots \\
+			2 b_{m-2} \\ b_{m-1} \\ 0
+		\end{bmatrix}
+		+ 2 \begin{bmatrix}
+			0 \\ m b_0 \\ (m-1) b_1 \\ \vdots \\
+			3 b_{m-3} \\ 2 b_{m-2} \\ b_{m-1}
+		\end{bmatrix}
+		= \begin{bmatrix}
+			a_0 \\ a_1 \\ a_2 \\ \vdots \\
+			a_{m-2} \\ a_{m-1} \\ a_m
+		\end{bmatrix}.
+	\]
+	用同样的方法来确定\(b_i\ (i=0,1,\dotsc,m)\).
 	于是所求的特解为\begin{equation}
 		\hat{y} = x e^{\lambda x} Q_m(x).
 	\end{equation}
