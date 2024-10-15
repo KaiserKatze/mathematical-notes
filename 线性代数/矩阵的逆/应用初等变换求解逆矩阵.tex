@@ -38,6 +38,50 @@
 \(\begin{bmatrix}\E_n\\\A^{-1}\end{bmatrix}\).
 \end{corollary}
 
+当\(\vb{A}\)可逆时，我们可以利用初等行变换解矩阵方程\(\vb{A} \vb{X} = \vb{B}\)：\[
+	\vb{A}^{-1} (\vb{A},\vb{B})
+	= (\vb{A}^{-1} \vb{A},\vb{A}^{-1} \vb{B})
+	= (\vb{E},\vb{A}^{-1} \vb{B}),
+\]
+其中\(\vb{X} = \vb{A}^{-1} \vb{B}\)就是原方程的解.
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1qT421275n/
+设\[
+	\vb{A} = \begin{bmatrix}
+		1 & 1 & 1 \\
+		2 & 1 & 0 \\
+		1 & -1 & 0
+	\end{bmatrix},
+	\qquad
+	\vb{B} = \begin{bmatrix}
+		0 & 1 \\
+		1 & 2 \\
+		-1 & 1
+	\end{bmatrix},
+\]
+解矩阵方程\(\vb{A} \vb{X} = \vb{B}\).
+\begin{solution}
+对\((\vb{A},\vb{B})\)作初等行变换得\[
+	\begin{bmatrix}
+		1 & 1 & 1 & 0 & 1 \\
+		2 & 1 & 0 & 1 & 2 \\
+		1 & -1 & 0 & -1 & 1
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & & & 0 & 1 \\
+		& 1 & & 1 & 0 \\
+		& & 1 & -1 & 0
+	\end{bmatrix},
+\]
+于是\(\vb{X} = \begin{bmatrix}
+	0 & 1 \\
+	1 & 0 \\
+	-1 & 0
+\end{bmatrix}\).
+%@Mathematica: RowReduce[{{1, 1, 1, 0, 1}, {2, 1, 0, 1, 2}, {1, -1, 0, -1, 1}}]
+\end{solution}
+\end{example}
+
 \begin{theorem}
 设\(\A\)与\(\B\)都是\(s \times n\)矩阵，
 则\(\A\)与\(\B\)等价的充分必要条件是：
@@ -45,10 +89,9 @@
 \end{theorem}
 
 \begin{example}
-初等矩阵的逆：
-\begin{enumerate}
-	\item \([\P(i,j)]^{-1}=\P(i,j)\)
-	\item \([\P(i(c))]^{-1}=\P(i(c^{-1}))\)
-	\item \([\P(i,j(k))]^{-1}=\P(i,j(-k))\)
-\end{enumerate}
+初等矩阵的逆：\begin{gather*}
+	[\P(i,j)]^{-1}=\P(i,j), \\
+	[\P(i(c))]^{-1}=\P(i(c^{-1})), \\
+	[\P(i,j(k))]^{-1}=\P(i,j(-k)).
+\end{gather*}
 \end{example}
