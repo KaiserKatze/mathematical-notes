@@ -158,3 +158,76 @@ D(Y) = \sigma_Y\).
 但\(X\)与\(Y\)之间存在函数关系\(Y=X^2\)，不能说\(X\)与\(Y\)独立.
 \end{proof}
 \end{theorem}
+
+\begin{example}
+%@see: 《2022年全国硕士研究生入学统一考试（数学一）》一选择题/第10题
+设\(X \sim N(0,1)\)，
+在\(X=x\)条件下\(Y \sim N(x,1)\).
+求\(X\)与\(Y\)的相关系数.
+\begin{solution}\let\qed\relax
+\begin{proof}[解法一]
+由题意有\begin{gather*}
+	f_X(x) = \frac1{\sqrt{2\pi}} \exp(-\frac{x^2}2), \\
+	f_{Y \vert X}(y \vert x)
+	= \frac{f(x,y)}{f_X(x)}
+	= \frac1{\sqrt{2\pi}} \exp[-\frac{(y-x)^2}2],
+\end{gather*}
+那么\(X\)与\(Y\)的联合密度函数为\[
+	f(x,y) = f_X(x) \cdot f_{Y \vert X}(y \vert x)
+	= \frac1{2\pi} \exp[-\frac12(2x^2-2xy+y^2)],
+\]
+\(Y\)的边缘密度函数为\begin{align*}
+	f_Y(y) &= \int_{-\infty}^{+\infty} f(x,y) \dd{x} \\
+	&= \frac1{2\pi} \int_{-\infty}^{+\infty} \exp[-\frac12(2x^2-2xy+y^2)] \dd{x} \\
+	&= \frac1{2\pi} \exp(-\frac{y^2}4)
+	\int_{-\infty}^{+\infty} \exp[-\left( x-\frac{y}2 \right)^2] \dd{x} \\
+	&= \frac1{2\sqrt\pi} \exp(-\frac{y^2}4).
+\end{align*}
+于是\begin{align*}
+	E(X) &= \int_{-\infty}^{+\infty} x f_X(x) \dd{x} = 0, \\
+	E(Y) &= \int_{-\infty}^{+\infty} y f_Y(y) \dd{y} = 0, \\
+	E(XY) &= \int_{-\infty}^{+\infty} x y f(x,y) \dd{x}\dd{y} = 1, \\
+	E(X^2) &= \int_{-\infty}^{+\infty} x^2 f_X(x) \dd{x} = 1, \\
+	E(Y^2) &= \int_{-\infty}^{+\infty} y^2 f_Y(x) \dd{y} = 2.
+\end{align*}
+因此\[
+	D(X) = 1, \qquad
+	D(Y) = 2, \qquad
+	\Cov(X,Y) = 1,
+\]
+而\[
+	R(X,Y) = \frac{\Cov(X,Y)}{\sqrt{D(X)} \sqrt{D(Y)}}
+	= \frac1{\sqrt2}.
+\]
+\end{proof}
+\begin{proof}[解法二]
+由\cref{theorem:随机变量的数字特征.协方差的性质1,theorem:随机变量的数字特征.相关系数的性质2}
+可知\[
+	R(X,Y)
+	= \frac{E(XY)-E(X)~E(Y)}{\sqrt{D(X)~D(Y)}}.
+	\eqno(1)
+\]
+由\cref{theorem:正态分布与自然指数分布族.正态分布的数字特征}
+可知\[
+	E(X) = 0,
+	\qquad
+	D(X) = 1.
+\]
+由\cref{theorem:条件期望.条件期望与期望的关系} 可知\begin{gather*}
+	E(Y) = E(E(Y \vert X))
+	= E(X)
+	= 0, \\
+	E(XY) = E(E(XY \vert X))
+	= E(X^2)
+	= 1.
+\end{gather*}
+由{双期望定理}可得\[%TODO cref
+	D(Y)
+	= E(D(Y \vert X)) + D(E(Y \vert X))
+	= E(1) + D(X)
+	= 2.
+\]
+代入(1)式得\(R(X,Y) = \frac1{\sqrt2}\).
+\end{proof}
+\end{solution}
+\end{example}
