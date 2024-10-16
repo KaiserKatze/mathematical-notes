@@ -91,6 +91,80 @@
 \cref{theorem:极限.数列的单调有界定理} 使得我们可以从数列本身出发去研究其敛散性，
 在确定数列数列收敛以后，再利用极限运算的性质去求出相应的极限.
 
+\begin{definition}
+%@see: 《数学分析习题课讲义》（谢惠民、恽自求、易法槐、钱定边） P49 命题2.6.1（第一律）
+设函数\(f\colon D\to\mathbb{R}\).
+若点\(x_0 \in D\)满足\[
+	f(x_0) = x_0,
+\]
+则称“\(x_0\)是\(f\)的\DefineConcept{不动点}”.
+\end{definition}
+\begin{proposition}\label{theorem:数列极限.迭代数列.第一律}
+%@see: 《数学分析习题课讲义》（谢惠民、恽自求、易法槐、钱定边） P49 命题2.6.1（第一律）
+设数列\(\{x_n\}_{n\geq1}\)满足递推公式\(x_{n+1} = f(x_n)\ (n\in\mathbb{N}^+)\).
+若有\[%equation:数列极限.迭代数列.第一律.条件1
+	\lim_{n\to\infty} x_n = x_0,
+\]和\begin{equation}\label{equation:数列极限.迭代数列.第一律.条件2}
+	\lim_{n\to\infty} f(x_n) = f(x_0),
+\end{equation}
+则\(x_0\)是\(f\)的的不动点.
+\begin{proof}
+在递推公式等号两边同时求极限，令\(n\to\infty\)，
+得\[
+	x_0 = \lim_{n\to\infty} x_{n+1} = \lim_{n\to\infty} f(x_n) = f(x_0).
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+\begin{remark}
+\cref{equation:数列极限.迭代数列.第一律.条件2} 可以加强为
+“\(f\)在点\(x_0\)~\emph{连续}”
+（参考\cref{theorem:连续函数.函数连续点与海涅定理的关系,theorem:连续函数.单调迭代数列收敛定理}）.
+\cref{theorem:数列极限.迭代数列.第一律} 用处在于：
+即便我们不知道数列是否收敛，也可以先去求解方程\(f(x) = x\).
+而求出方程的根对于判定数列\(\{x_n\}_{n\geq1}\)的收敛性往往是有帮助的.
+例如，如果方程\(f(x) = x\)在实数范围内无解，
+就可以直接断定：满足\(x_{n+1} = f(x_n)\)的数列\(\{x_n\}_{n\geq1}\)一定是发散的.
+\end{remark}
+
+\begin{proposition}\label{theorem:数列极限.迭代数列.第二律}
+%@see: 《数学分析习题课讲义》（谢惠民、恽自求、易法槐、钱定边） P49 命题2.6.2（第二律）
+设数列\(\{x_n\}_{n\geq1}\)满足\(x_{n+1} = f(x_n)\ (n\in\mathbb{N}^+)\)，
+其中\(f\colon D\to\mathbb{R}\)是单调函数，
+且\(\{x_n\}_{n\geq1}\)的值域为\(D\).
+\begin{itemize}
+	\item 当\(f\)单调增加时，\(\{x_n\}_{n\geq1}\)是单调数列.
+	\item 当\(f\)单调减少时，\(\{x_n\}_{n\geq1}\)不是单调数列，
+	但它的奇子列\(\{x_{2k-1}\}_{k\geq1}\)和偶子列\(\{x_{2k}\}_{k\geq1}\)都是单调数列，
+	且具有相反的单调性.
+\end{itemize}
+\begin{proof}
+假设\(f\)单调增加.
+由给定条件有\(x_n \in D\ (n\geq1)\).
+如果\(x_2 \geq x_1\)，
+那么\[
+	x_3 = f(x_2) \geq f(x_1) = x_2,
+\]
+利用数学归纳法可证\(x_{n+1} \geq x_n\)对\(n\geq1\)成立，
+数列\(\{x_n\}_{n\geq1}\)单调增加.
+同理，如果\(x_2 \leq x_1\)，
+那么数列\(\{x_n\}_{n\geq1}\)单调减少.
+
+假设\(f\)单调减少.
+由\cref{theorem:函数.两个严格单调减少函数的复合严格单调增加} 可知，
+复合函数\(f \circ f\)单调增加，
+这就是说，只要有\(a,b \in D, a<b\)且\(f(a),f(b) \in D\)，
+就有\(f(f(a)) \leq f(f(b))\).
+如果\(x_1 = x_3\)，则奇子列\(\{x_{2k-1}\}_{k\geq1}\)是常数列.
+如果\(x_1 < x_3\)，
+由\(f\)单调减少可知\(x_2 = f(x_1) \geq f(x_3) = x_4\)，
+然后推出\(x_3 = f(x_2) \leq f(x_4) = x_5\).
+用数学归纳法可证奇子列\(\{x_{2k-1}\}_{k\geq1}\)单调增加，
+偶子列\(\{x_{2k}\}_{k\geq1}\)单调减少.
+对于\(x_1>x_3\)的讨论完全类似，从略.
+\end{proof}
+\end{proposition}
+
 \begin{example}
 %@see: 《计算机组成原理（第3版）》（唐朔飞） P11
 设\(a\geq0\)，
