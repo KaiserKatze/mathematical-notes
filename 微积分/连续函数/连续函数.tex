@@ -243,49 +243,6 @@
 %@see: https://mathworld.wolfram.com/ContinuousFunction.html
 \end{definition}
 
-\subsection{单调迭代数列收敛定理}
-\begin{theorem}\label{theorem:连续函数.单调迭代数列收敛定理}
-%@see: 《数学分析：原理与方法》（胡适耕） P35 4.1.6命题
-设\(f\colon D\to\mathbb{R}\)是单调增加的连续函数，
-\(x=a\)是方程\(f(x) = x\)在\(D\)内的唯一根.
-取\(x_0 \in D \cap (-\infty,a)\)使得\(f(x_0) > x_0\)，
-或取\(x_0 \in D \cap (a,+\infty)\)使得\(f(x_0) < x_0\)，
-然后构造数列\(\{x_n\}_{n\geq0}\)使之满足递推公式\[
-	x_n = f(x_{n-1})
-	\quad(n=1,2,\dotsc),
-\]
-则\[
-	\lim_{n\to\infty} x_n = a.
-\]
-\begin{proof}
-首先利用数学归纳法证明\(\{x_n\}_{n\geq0}\)是单调有界的.
-
-假设\(x_0 \in D \cap (-\infty,a)\)且\(f(x_0) > x_0\)，
-那么\(x_1 = f(x_0) > x_0\).
-假设\(x_n \geq x_{n-1}\ (n\geq1)\)，
-则由\(f\)是单调增加函数可知
-\(x_{n+1} = f(x_n) \geq f(x_{n-1}) = x_n\)，
-这就说明\(\{x_n\}_{n\geq0}\)是单调增加的.
-
-考虑到\(x_0 < a\)，
-于是假设\(x_n \leq a\ (n\geq0)\)，
-则\[
-	x_{n+1} = f(x_n) \leq f(a) = a.
-\]
-这就说明\(a\)是\(\{x_n\}_{n\geq0}\)的一个上界.
-
-由\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}可知，
-极限\(\lim_{n\to\infty} x_n = b\)存在且\(b \leq a\).
-因为\[
-	b = \lim_{n\to\infty} x_{n+1}
-	= \lim_{n\to\infty} f(x_n)
-	= f(b),
-\]
-所以必有\(b = a\)，
-于是\(\lim_{n\to\infty} x_n = a\).
-\end{proof}
-\end{theorem}
-
 \subsection{间断点}
 \begin{definition}
 设函数\(f\)在点\(x_0\)的某去心邻域内有定义.
@@ -431,3 +388,46 @@
 % \]
 % %@see: https://healy.econ.ohio-state.edu/kcb/Ec181/Lecture13.pdf
 % \end{definition}
+
+\section{单调迭代数列收敛定理}
+\begin{theorem}\label{theorem:连续函数.单调迭代数列收敛定理}
+%@see: 《数学分析：原理与方法》（胡适耕） P35 4.1.6命题
+设\(f\colon D\to\mathbb{R}\)是单调增加的连续函数，
+\(x=a\)是方程\(f(x) = x\)在\(D\)内的唯一根.
+取\(x_0 \in D \cap (-\infty,a)\)使得\(f(x_0) > x_0\)，
+或取\(x_0 \in D \cap (a,+\infty)\)使得\(f(x_0) < x_0\)，
+然后构造数列\(\{x_n\}_{n\geq0}\)使之满足递推公式\[
+	x_n = f(x_{n-1})
+	\quad(n=1,2,\dotsc),
+\]
+则\[
+	\lim_{n\to\infty} x_n = a.
+\]
+\begin{proof}
+首先利用数学归纳法证明\(\{x_n\}_{n\geq0}\)是单调有界的.
+
+假设\(x_0 \in D \cap (-\infty,a)\)且\(f(x_0) > x_0\)，
+那么\(x_1 = f(x_0) > x_0\).
+假设\(x_n \geq x_{n-1}\ (n\geq1)\)，
+则由\(f\)是单调增加函数可知
+\(x_{n+1} = f(x_n) \geq f(x_{n-1}) = x_n\)，
+这就说明\(\{x_n\}_{n\geq0}\)是单调增加的.
+
+考虑到\(x_0 < a\)，
+于是假设\(x_n \leq a\ (n\geq0)\)，
+则\[
+	x_{n+1} = f(x_n) \leq f(a) = a.
+\]
+这就说明\(a\)是\(\{x_n\}_{n\geq0}\)的一个上界.
+
+由\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}可知，
+极限\(\lim_{n\to\infty} x_n = b\)存在且\(b \leq a\).
+因为\[
+	b = \lim_{n\to\infty} x_{n+1}
+	= \lim_{n\to\infty} f(x_n)
+	= f(b),
+\]
+所以必有\(b = a\)，
+于是\(\lim_{n\to\infty} x_n = a\).
+\end{proof}
+\end{theorem}
