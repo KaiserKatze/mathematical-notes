@@ -126,7 +126,7 @@
 %@see: https://people.math.sc.edu/schep/diffmonotone.pdf
 \end{definition}
 
-\begin{theorem}[导数存在的充分必要条件]
+\begin{theorem}[导数存在的充分必要条件]\label{theorem:导数.函数在一点的可导性及其单侧可导性的关系}
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P125
 函数\(f\)在点\(x_0\)可导的充分必要条件是：
 其左导数\(f'_-(x_0)\)和右导数\(f'_+(x_0)\)都存在且相等.
@@ -147,6 +147,58 @@
 \end{definition}
 
 类似地，可以定义\(f\)在\([a,b)\)与\((a,b]\)上可导.
+
+\begin{example}
+%@see: 《2016年全国硕士研究生入学统一考试（数学一）》一选择题/第4题
+设函数\[
+	f(x) = \left\{ \begin{array}{cl}
+		x, & x\leq0, \\
+		1/n, & 1/(n+1)<x\leq1/n,\,n=1,2,\dotsc.
+	\end{array} \right.
+\]
+考察函数\(f\)在点\(x=0\)的连续性和可导性.
+\begin{solution}
+显然\(f\)在点\(x=0\)左连续.
+对于任意\(\epsilon>0\)，存在正整数\(n_0\)满足\(\frac1{n_0}<\epsilon\)，
+取\(\delta=\frac1{n_0}\)，
+当\(0 \leq x < \delta\)时，
+成立\[
+	\abs{f(x) - f(0)}
+	= f(x)
+	\leq \frac1{n_0}
+	< \epsilon,
+\]
+这就说明函数\(f\)在点\(x=0\)右连续.
+由\cref{theorem:极限.函数在一点的连续性及其单侧连续性的关系} 可知\(f\)在点\(x=0\)连续.
+
+显然\(f\)在点\(x=0\)的左导数存在：\[
+	f'_-(0) = \lim_{x\to0^-} \frac{f(x) - f(0)}{x - 0}
+	= \lim_{x\to0^-} \frac{x}{x}
+	= 1.
+\]
+当\(\frac1{n+1} < x \leq \frac1n\)时，
+有\[
+	f(x) = \frac1n,
+	\qquad
+	n \leq \frac1x < n+1,
+\]
+从而有\[
+	1 \leq \frac{f(x)}{x} < \frac{n+1}{n}.
+\]
+因为当\(n\to\infty\)时有\(x\to0^+\)和\(\frac{n+1}{n}\to1\)，
+所以由\cref{theorem:数列极限.夹逼准则} 可得\[
+	\frac{f(x)}{x} \to 1
+	\quad(n\to\infty).
+\]
+于是\(f\)在点\(x=0\)的右导数为\[
+	f'_+(0) = \lim_{x\to0^+} \frac{f(x) - f(0)}{x - 0}
+	= \lim_{x\to0^+} \frac{f(x)}{x}
+	= 1.
+\]
+由\cref{theorem:导数.函数在一点的可导性及其单侧可导性的关系} 可知\(f\)在点\(x=0\)可导.
+\end{solution}
+%@Mathematica: Plot[Piecewise[{{1/Floor[1/x], 1/(Floor[1/x] + 1) < x <= 1/Floor[1/x] && x > 0}, {x, x <= 0}}], {x, -.5, .5}]
+\end{example}
 
 \subsection{导函数的定义}
 设函数\(f\colon I\to\mathbb{R}\)在区间\(I\)内的每一个点可导，
