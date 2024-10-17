@@ -3,6 +3,7 @@
 \subsection{一个方程的情形}
 在\cref{section:导数与微分.隐函数及由参数方程所确定的函数的导数}中，
 我们已经提出了隐函数的概念，并且指出了不经过显化直接由方程\[
+%@see: 《高等数学（第六版 下册）》 P83 (1)
 	F(x,y) = 0
 \]求它所确定的隐函数的导数的方法.
 现在介绍隐函数存在定理，并根据多元复合函数的求导法推导出隐函数的导数公式.
@@ -24,12 +25,14 @@
 我们依照这个思路给出下面的定理，并给出严格的证明.
 
 \begin{theorem}[隐函数存在定理1]\label{theorem:多元函数微分法.隐函数存在定理1}
+%@see: 《高等数学（第六版 下册）》 P83 隐函数存在定理1
 设函数\(F(x,y)\)在点\(P(x_0,y_0)\)的某一邻域内具有连续偏导数，
 且\(F(x_0,y_0)=0\)，\(F'_y(x_0,y_0) \neq 0\)，
 则方程\(F(x,y)=0\)在点\((x_0,y_0)\)的某一邻域内%
 恒能唯一确定一个连续且具有连续导数的函数\(y=f(x)\)，
 它满足条件\(y_0=f(x_0)\)，并有
 \begin{equation}\label{equation:多元函数微分法.隐函数存在定理1.一阶导数}
+%@see: 《高等数学（第六版 下册）》 P84 (2)
 	\dv{y}{x} = -\frac{F'_x}{F'_y}.
 \end{equation}
 \begin{proof}
@@ -117,8 +120,7 @@
 	= \pdv{x}\left(\dv{y}{x}\right)
 	+ \pdv{y}\left(\dv{y}{x}\right) \cdot \dv{y}{x},
 \]
-代入\(\dv{y}{x}=-\frac{F'_x}{F'_y}\)得
-\begin{align}
+代入\(\dv{y}{x}=-\frac{F'_x}{F'_y}\)得\begin{align}
 	\dv[2]{y}{x}
 	&= \pdv{x}\left(-\frac{F'_x}{F'_y}\right)
 	+ \pdv{y}\left(-\frac{F'_x}{F'_y}\right) \cdot \left(-\frac{F'_x}{F'_y}\right) \notag\\
@@ -155,6 +157,7 @@
 
 我们依照这个思路给出下面的定理.
 \begin{theorem}[隐函数存在定理2]\label{theorem:多元函数微分法.隐函数存在定理2}
+%@see: 《高等数学（第六版 下册）》 P85 隐函数存在定理2
 设函数\(F(x,y,z)\)在点\(P(x_0,y_0,z_0)\)的某一邻域内具有连续偏导数，
 且\(F(x_0,y_0,z_0)=0\)，\(F'_z(x_0,y_0,z_0) \neq 0\)，
 则方程\(F(x,y,z)=0\)在点\((x_0,y_0,z_0)\)的某一邻域内
@@ -166,6 +169,29 @@
 	\pdv{z}{y}=-\frac{F'_y}{F'_z}.
 \end{equation}
 \end{theorem}
+在\cref{theorem:多元函数微分法.隐函数存在定理2} 的条件下，
+如果\(F(x,y,z)\)的二阶偏导数也都连续，
+我们可以把\cref{equation:多元函数微分法.隐函数存在定理2.一阶偏导数} 两端
+看作复合函数而再一次求导，即得\begin{gather*}
+	\pdv[2]{z}{x}
+	= \pdv{x}\left(\pdv{z}{x}\right)
+	+ \pdv{z}\left(\pdv{z}{x}\right) \cdot \pdv{z}{x}, \\
+	\pdv[2]{z}{x}{y}
+	= \pdv{y}\left(\pdv{z}{x}\right)
+	+ \pdv{z}\left(\pdv{z}{x}\right) \cdot \pdv{z}{y}, \\
+	\pdv[2]{z}{y}
+	= \pdv{y}\left(\pdv{z}{y}\right)
+	+ \pdv{z}\left(\pdv{z}{y}\right) \cdot \pdv{z}{y},
+\end{gather*}
+代入\(\pdv{z}{x}=-\frac{F'_x}{F'_z},
+\pdv{z}{y}=-\frac{F'_y}{F'_z}\)得\begin{gather*}
+	\pdv[2]{z}{x}
+	= \frac{2 F'_x F'_z F''_{xz} - (F'_x)^2 F''_{zz} - (F'_z)^2 F''_{xx}}{(F'_z)^3}, \\
+	\pdv[2]{z}{y}
+	= \frac{2 F'_y F'_z F''_{yz} - (F'_y)^2 F''_{zz} - (F'_z)^2 F''_{yy}}{(F'_z)^3}, \\
+	\pdv[2]{z}{x}{y}
+	= \frac{F'_x F'_z F''_{yz} - (F'_z)^2 F''_{xy} + F'_y F'_z F''_{xz} - F'_x F'_y F''_{zz}}{(F'_z)^3}.
+\end{gather*}
 
 \begin{example}
 设\(f(x,y,z) = e^x + y^2 z\)，
@@ -193,6 +219,7 @@
 \end{example}
 
 \begin{example}
+%@see: 《高等数学（第六版 下册）》 P85 例2
 设\(x^2+y^2+z^2-4z=0\)，求\(\pdv[2]{z}{x}\).
 \begin{solution}
 设\(F(x,y,z) = x^2+y^2+z^2-4z\)，则\(F'_x = 2x\)，\(F'_z = 2z-4\).
@@ -209,9 +236,10 @@
 
 \begin{example}
 设可导函数\(y = y(x)\)由方程\[
-\int_0^{x+y} e^{-t^2} \dd{t}
-= \int_0^x x \sin t^2 \dd{t}
-\]确定，求\(\eval{\dv{y}{x}}_{x=0}\).
+	\int_0^{x+y} e^{-t^2} \dd{t}
+	= \int_0^x x \sin t^2 \dd{t}
+\]确定，
+求\(\eval{\dv{y}{x}}_{x=0}\).
 \begin{solution}
 方程对\(x\)求导得\[
 	e^{-(x+y)^2} \cdot (1+y')
