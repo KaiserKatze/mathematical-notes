@@ -14,7 +14,7 @@
 
 上述对函数连续的定义可以简化为：\[
 	\text{\(f\)在点\(x_0\)连续}
-	\iff
+	\defiff
 	(\forall\epsilon>0)
 	(\exists\delta>0)
 	(\forall x)
@@ -43,27 +43,62 @@
 \]
 \end{proposition}
 
-\begin{definition}
+\begin{definition}\label{definition:极限.函数在一点的左连续性}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P89 定义3.2.3
 如果函数\(f\)在点\(x_0\)的某一左邻域内有定义，
-极限\(f(x_0^-) = \lim_{x \to x_0^-} f(x)\)存在，
+极限\(f(x_0^-) \defeq \lim_{x \to x_0^-} f(x)\)存在，
 且\[
 	f(x_0^-) = f(x_0),
 \]
 则称“函数\(f\)在点\(x_0\)~\DefineConcept{左连续}
 （\(f\) is left-continuous at \(x_0\)）”.
 \end{definition}
+上述对函数左连续的定义可以简化为：\[
+%@see: 《数学分析（第二版 上册）》（陈纪修） P89
+	\text{\(f\)在点\(x_0\)左连续}
+	\defiff
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x)
+	[
+		-\delta < x - x_0 \leq 0
+		\implies
+		\abs{f(x) - f(x_0)} < \epsilon
+	].
+\]
 
-\begin{definition}
+\begin{definition}\label{definition:极限.函数在一点的右连续性}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P89 定义3.2.3
 如果函数\(f\)在点\(x_0\)的某一右邻域内有定义，
-极限\(f(x_0^+) = \lim_{x \to x_0^+} f(x)\)存在，
+极限\(f(x_0^+) \defeq \lim_{x \to x_0^+} f(x)\)存在，
 且\[
 	f(x_0^+) = f(x_0),
 \]
 则称“函数\(f\)在点\(x_0\)~\DefineConcept{右连续}
 （\(f\) is right-continuous at \(x_0\)）”.
 \end{definition}
+上述对函数右连续的定义可以简化为：\[
+%@see: 《数学分析（第二版 上册）》（陈纪修） P89
+	\text{\(f\)在点\(x_0\)右连续}
+	\defiff
+	(\forall\epsilon>0)
+	(\exists\delta>0)
+	(\forall x)
+	[
+		0 \leq x - x_0 < \delta
+		\implies
+		\abs{f(x) - f(x_0)} < \epsilon
+	].
+\]
+
+我们把左连续和右连续这两个概念统称为\DefineConcept{单侧连续}.
+
+\begin{proposition}\label{theorem:极限.函数在一点的连续性及其单侧连续性的关系}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P92
+函数\(f\)在点\(x_0\)连续的充分必要条件是\[
+	f(x_0^-) = f(x_0^+) = f(x_0).
+\]
+\end{proposition}
 
 \subsection{连续区间}
 \begin{definition}
@@ -157,6 +192,7 @@
 \end{definition}
 
 \begin{remark}
+%@see: 《数学分析（第二版 上册）》（陈纪修） P90 注
 上述定义可以统一地表示为如下形式：
 设函数\(f\)在某区间\(X\)上有定义.
 如果\[
