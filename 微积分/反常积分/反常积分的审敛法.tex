@@ -336,6 +336,48 @@
 反常积分\(\int_{\frac12}^1 \frac{\sqrt[m]{\ln^2(1-x)}}{\sqrt[n]{x}} \dd{x}\)总是收敛.
 \end{proof}
 \end{example}
+\begin{example}
+%@see: 《2016年全国硕士研究生入学统一考试（数学一）》一选择题/第1题
+设反常积分\(\int_0^{+\infty} \frac{\dd{x}}{x^a (1+x)^b}\)收敛，
+判断\(a,b\)的取值范围.
+\begin{solution}
+令\(f(x) = \frac1{x^a (1+x)^b}\).
+由\cref{theorem:定积分.定积分性质3} 可得\[
+	\int_0^{+\infty} \frac{\dd{x}}{x^a (1+x)^b}
+	= \int_0^1 \frac{\dd{x}}{x^a (1+x)^b}
+	+ \int_1^{+\infty} \frac{\dd{x}}{x^a (1+x)^b}
+	= I_1 + I_2.
+\]
+
+先考虑积分\(I_1\).
+\begin{itemize}
+	\item 当\(a\leq0\)时，
+	\(I_1\)是常义积分.
+	\item 当\(a>0\)时，\(x=0\)是瑕点，有\[
+		\lim_{x\to0^+} x^a f(x)
+		= \lim_{x\to0^+} \frac1{(1+x)^b}
+		= 1 > 0,
+	\]
+	由\cref{theorem:定积分.无界函数的反常积分的极限审敛法} 可知，
+	当\(0<a<1\)时，积分\(I_1\)收敛；
+	当\(a\geq1\)时，积分\(I_1\)发散.
+\end{itemize}
+因此，要使\(I_1\)收敛，必有\(a < 1\).
+
+再考虑积分\(I_2\).
+注意到\[
+	\lim_{x\to+\infty} x^{a+b} f(x)
+	= \lim_{x\to+\infty} \frac{x^b}{(1+x)^b}
+	= 1 > 0,
+\]
+由\cref{theorem:定积分.无穷限反常积分的极限审敛法} 可知，
+当\(a+b>1\)时，积分\(I_2\)收敛；
+当\(a+b\leq1\)时，积分\(I_2\)发散.
+
+综上所述，反常积分\(\int_0^{+\infty} \frac{\dd{x}}{x^a (1+x)^b}\)收敛，
+当且仅当\(a<1\)且\(a+b>1\).
+\end{solution}
+\end{example}
 
 \subsection{一般函数的反常积分的审敛法}
 \begin{theorem}\label{theorem:反常积分.无穷限的反常积分的阿贝尔--狄利克雷审敛法}
