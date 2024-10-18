@@ -242,7 +242,7 @@ y_2 = f(x_0 + \epsilon)\).
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P69 例7
-求：\(\lim_{x\to0} \frac{a^x - 1}{x}\).
+求：\(\lim_{x\to0} \frac{a^x - 1}{x}\ (a>0,a\neq1)\).
 \begin{solution}
 \(\lim_{x\to0} \frac{a^x - 1}{x}
 \xlongequal{t=a^x-1} \lim_{t\to0}\frac{t}{\log_a (1+t)}
@@ -317,9 +317,11 @@ y_2 = f(x_0 + \epsilon)\).
 
 \begin{proposition}\label{theorem:幂指函数.幂指函数的极限}
 %@see: 《高等数学（第六版 上册）》 P69
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P100
 设幂指函数\(f\colon X\to\mathbb{R}\)
 满足\(f(x) = u(x)^{v(x)}\)，
-其中\(u(x)>0\ (x \in X)\)，
+其中\(u,v\)都是连续函数，
+\(u(x)>0\ (x \in X)\)，
 而\(\mathcal{B}\)是\(X\)中的基.
 \begin{itemize}
 	\item 如果\(u(x) \equiv 1\)，
@@ -352,6 +354,53 @@ y_2 = f(x_0 + \epsilon)\).
 		= \exp\lim_\mathcal{B} (u(x)-1) v(x).
 	\]
 \end{itemize}
+\begin{proof}
+既然\(u,v\)都是连续函数，
+那么由\cref{theorem:极限.连续函数的极限4} 可知
+幂指函数\[
+	u(x)^{v(x)} = e^{u(x) \ln v(x)}
+\]也是连续函数.
+
+假设\(u(x) \equiv 1\)，
+那么\(u(x)^{v(x)} \equiv 1\)，
+于是\[
+	\lim_\mathcal{B} u(x)^{v(x)} = 1.
+\]
+
+假设\[
+	(\exists B\in\mathcal{B})
+	(\forall x \in B)
+	[u(x)\neq1],
+\]且\[
+	\lim_\mathcal{B} u(x) = a \in (0,+\infty), \qquad
+	\lim_\mathcal{B} v(x) = b \in (-\infty,+\infty),
+\]
+那么由\cref{theorem:极限.连续函数的极限3} 有\[
+	\lim_\mathcal{B} u(x)^{v(x)} = a^b.
+\]
+
+假设\[
+	(\exists B\in\mathcal{B})
+	(\forall x \in B)
+	[u(x)\neq1],
+\]且\[
+	\lim_\mathcal{B} u(x) = 1, \qquad
+	\lim_\mathcal{B} v(x) = \infty.
+\]
+把幂指函数\(u^v\)改写为\[
+	u^v = \left((1+(u-1))^{\frac1{u-1}}\right)^{(u-1)v}.
+\]
+记\(A = u - 1\).
+当\(u \to 1\)时，\(A\)是无穷小.
+因为\[
+	\lim_{A\to0} (1+A)^{\frac1A} = e,
+\]
+故只要极限\(\lim_\mathcal{B} (u-1) v = \lambda\)存在且有限，
+那么立即得出\[
+	\lim_\mathcal{B} u^v = e^\lambda.
+	\qedhere
+\]
+\end{proof}
 \end{proposition}
 
 \begin{example}
