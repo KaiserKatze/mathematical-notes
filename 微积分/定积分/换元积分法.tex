@@ -9,6 +9,7 @@
 为了说明如何用换元法来计算定积分，先证明下面的定理.
 \begin{theorem}\label{theorem:定积分.定积分的换元法}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P303 定理7.3.4
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P258 定理6.4.2
 设函数\(f \in C[a,b]\)，
 函数\(\phi \in C^1[\alpha,\beta]\)，
 \(\ran\phi \subseteq [a,b]\)，
@@ -248,12 +249,11 @@
 当积分区间不是关于原点对称的区间时，
 我们可以利用坐标变换公式，
 对被积函数换元，
-将积分区间平移，把它变成对称于原点的区间：\[
+将积分区间平移，把它变成对称于原点的区间：\begin{equation}\label{equation:定积分.区间平移}
 	\int_a^b f(x) \dd{x}
-	\xlongequal{x=t+a+c}
-	\int_{-c}^c f(t+a+c) \dd{t},
-\]
-其中\(c=\frac{b-a}2\).
+	\xlongequal{x=t+(a+b)/2}
+	\int_{-\frac{b-a}2}^{\frac{b-a}2} f\left(t+\frac{a+b}2\right) \dd{t}.
+\end{equation}
 
 当我们处理非奇非偶函数函数\(f\)时，
 可以利用我们从\cref{example:函数.任一函数可拆为奇偶函数之和} 得到的公式\[
@@ -356,8 +356,8 @@
 \end{figure}
 
 \begin{example}
-设\(f \in C[0,2a]\).
-证明：\begin{equation}
+设\(f \in R[0,2a]\).
+证明：\begin{equation}\label{equation:定积分.区间折半}
 	\int_0^{2a} f(x) \dd{x} = \int_0^a [f(x) + f(2a-x)] \dd{x}.
 \end{equation}
 \begin{proof}
@@ -514,6 +514,7 @@
 \begin{proposition}\label{theorem:定积分.周期函数的积分}
 %@see: 《高等数学（第六版 上册）》 P249 例7
 %@see: 《数学分析（第二版 上册）》（陈纪修） P309 定理7.3.6
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P259 例4
 设函数\(f\)是以\(T\)为周期的黎曼可积函数.
 证明：\begin{gather}
 	\int_a^{a+T} f(x) \dd{x} = \int_0^T f(x) \dd{x}, \\
@@ -640,7 +641,7 @@
 \begin{example}
 %@see: 《数学分析中的典型问题与方法（第3版）》（裴礼文） P39 例1.3.20
 设函数\(f\)是以\(T\)为周期的连续函数，
-证明：\begin{equation}
+证明：\begin{equation}\label{equation:定积分.周期函数的平均值的极限}
 	\lim_{x\to+\infty} \frac1x \int_0^x f(t) \dd{t}
 	= \frac1T \int_0^T f(t) \dd{t}.
 \end{equation}
@@ -781,5 +782,41 @@
 \]
 于是由\cref{example:定积分.积分上限函数是周期函数的充分必要条件} 可知
 \(g\)是以\(T\)为周期的函数.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P261 例7
+设函数\(f \in C(a,b)\)，\(\alpha,\beta\in(a,b)\).
+证明：\[
+	\lim_{h\to0} \frac1h \int_\alpha^\beta (f(x+h) - f(x)) \dd{x}
+	= f(\beta) - (\alpha).
+\]
+\begin{proof}
+令\(t = x + h\)，得\[
+	\int_\alpha^\beta f(x+h) \dd{x}
+	= \int_{\alpha + h}^{\beta + h} f(t) \dd{t}
+	= \int_\alpha^\beta f(t) \dd{t}
+	+ \int_\beta^{\beta + h} f(t) \dd{t}
+	- \int_\alpha^{\alpha + h} f(t) \dd{t}.
+\]
+由\hyperref[theorem:定积分.积分中值定理1推论2]{积分中值定理}得\begin{gather*}
+	\int_\beta^{\beta + h} f(t) \dd{t}
+	= f(\xi) h
+	\quad(\text{$\xi$在$\beta$与$\beta+h$之间}), \\
+	\int_\alpha^{\alpha + h} f(t) \dd{t}
+	= f(\eta) h
+	\quad(\text{$\eta$在$\alpha$与$\alpha+h$之间}).
+\end{gather*}
+因此\[
+	\frac1h \int_\alpha^\beta (f(x + h) - f(x)) \dd{x}
+	= f(\xi) - f(\eta).
+\]
+令\(h\to0\)，由\(f\)的连续性，可知\[
+	\lim_{h\to0} f(\xi) = f(\beta),
+	\qquad
+	\lim_{h\to0} f(\eta) = \alpha.
+	\qedhere
+\]
 \end{proof}
 \end{example}
