@@ -169,29 +169,51 @@ y_2 = f(x_0 + \epsilon)\).
 \begin{theorem}\label{theorem:极限.连续函数的极限3}
 %@see: 《高等数学（第六版 上册）》 P66 定理3
 %@see: 《数学分析（第二版 上册）》（陈纪修） P96
-设\(f\colon X\to Y\)，\(g\colon Y\to\mathbb{R}\)，
+设\(f\colon X \to Y\)，\(g\colon Y\to\mathbb{R}\)，
 \((\exists\rho>0)[\mathring{U}(x_0,\rho) \subseteq \dom(g \circ f)]\)，
 \(\lim_{x \to x_0} f(x) = u_0\)，
 函数\(g\)在点\(u_0\)连续，
 则\[
-	\lim_{x \to x_0} g(f(x)) = \lim_{u \to u_0} g(u) = g(u_0).
+	\lim_{x \to x_0} g(f(x))
+	= \lim_{u \to u_0} g(u)
+	= g(u_0).
 \]
+\begin{proof}
+在\cref{theorem:极限.复合函数的极限运算法则1} 中，
+令\(A = g(u_0)\)，
+并取消前提条件\footnote{前提条件可以取消的理由是：\[
+	(\forall\epsilon>0)
+	(\forall x)
+	[
+		f(x) = u_0
+		\implies
+		\abs{g(f(x)) - g(u_0)} < \epsilon
+	].
+\]
+因此附加\(f(x) \neq u_0\)这个条件就没有必要了.}\[
+	(\exists\delta>0)(\forall x)[x\in\mathring{U}(x_0,\delta) \implies f(x)\neq u_0],
+\]
+便得此定理.
+\end{proof}
 \end{theorem}
-
+\begin{remark}
 \cref{theorem:极限.连续函数的极限3} 说明，
 在其给定条件下，求复合函数\(g \circ f\)的极限时，
 外层函数符号\(g\)与极限号\(\lim\)可以交换次序，即\[
 	\lim_{x \to x_0} g(f(x))
 	= g\left(\lim_{x \to x_0} f(x)\right).
 \]
+\end{remark}
 
 \begin{theorem}\label{theorem:极限.连续函数的极限4}
 %@see: 《高等数学（第六版 上册）》 P66 定理4
-设\(f\colon X\to Y\)，\(g\colon Y\to\mathbb{R}\)，
+%@see: 《数学分析（第二版 上册）》（陈纪修） P96 定理3.2.3
+设\(f\colon X \to Y\)，\(g\colon Y\to\mathbb{R}\)，
 \((\exists\rho>0)[U(x_0,\rho) \subseteq \dom(g \circ f)]\)，
-函数\(f\)在点\(x_0\)连续，且\(f(x_0) = u_0\)，
-而函数\(g\)在点\(u_0\)连续，
+函数\(f\)在点\(x_0\)连续，
+函数\(g\)在点\(u_0 = f(x_0)\)连续，
 则函数\(g \circ f\)在点\(x_0\)也连续.
+%TODO proof
 \end{theorem}
 
 \subsection{初等函数的连续性}
