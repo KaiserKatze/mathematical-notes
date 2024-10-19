@@ -49,12 +49,58 @@
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P202 定理4.3.2
 设\(f\in C[a,b]\cap D^2(a,b)\)，
 \(l\)是\(f\)在区间\([a,b]\)上的线性插值.
-如果二阶导数\(\abs{f''}\)在\((a,b)\)上的上界为\(M\)，
+如果\(\abs{f''}\)在\((a,b)\)上的上界为\(M\)，
 那么对任意的\(x\in[a,b]\)，
 有\[
 	\abs{f(x)-l(x)}
 	\leq \frac{M}8 (b-a)^2.
 \]
+\begin{proof}
+由\begin{gather*}
+	l(x) = \frac{b-x}{b-a} f(a) + \frac{x-a}{b-a} f(b), \\
+	f(x) = \frac{b-x}{b-a} f(x) + \frac{x-a}{b-a} f(x)
+\end{gather*}
+可得\[
+	l(x) - f(x)
+	= \frac{b-x}{b-a} (f(a) - f(x))
+	+ \frac{x-a}{b-a} (f(b) - f(x)).
+\]
+由\hyperref[equation:微分中值定理.泰勒公式.余项1]{带有拉格朗日余项的泰勒公式}有\begin{gather*}
+	f(a) - f(x)
+	= (a-x) f'(x) + \frac12 (a-x)^2 f''(\xi)
+	\quad(a<\xi<x), \\
+	f(b) - f(x)
+	= (b-x) f'(x) + \frac12 (b-x)^2 f''(\eta)
+	\quad(x<\eta<b).
+\end{gather*}
+于是\[
+	l(x) - f(x)
+	= \frac{(b-x)(x-a)}2
+	\left(
+		\frac{x-a}{b-a} f''(\xi)
+		+ \frac{b-x}{b-a} f''(\eta)
+	\right).
+\]
+由于\(\frac{x-a}{b-a},\frac{b-x}{b-a}>0\)
+且\(\frac{x-a}{b-a}+\frac{b-x}{b-a}=1\)，
+所以\begin{align*}
+	\abs{l(x) - f(x)}
+	&\leq
+	\frac{(b-x)(x-a)}2
+	\left(
+		\frac{x-a}{b-a} \abs{f''(\xi)}
+		+ \frac{b-x}{b-a} \abs{f''(\eta)}
+	\right) \\
+	&\leq
+	\frac{M}2 (b-x)(x-a)
+	\leq
+	\frac{M}2 \left(
+		\frac{b-x+x-a}2
+	\right)^2
+	= \frac{M}8 (b-a)^2.
+	\qedhere
+\end{align*}
+\end{proof}
 \end{theorem}
 \begin{remark}
 \cref{theorem:拉格朗日插值.误差估计} 说明，
