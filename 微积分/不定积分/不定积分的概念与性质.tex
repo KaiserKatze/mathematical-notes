@@ -154,6 +154,10 @@
 与求不定积分的运算（简称积分运算，以记号\(\int\)表示）是互逆的；
 当记号\(\int\)与\(\dd\relax\)连在一起时，或者抵消，或者抵消后差一个常数.
 
+\subsection{基本积分表}
+既然积分运算是微分运算的逆运算，
+那么很自然地可以从导数公式得到相应的积分公式.
+
 \subsection{不定积分的性质}
 \begin{property}\label{theorem:不定积分.性质1}
 %@see: 《高等数学（第六版 上册）》 P189 性质1
@@ -165,20 +169,9 @@
 	+ \int g(x) \dd{x}.
 \]
 \end{property}
-这个性质对于有限个函数都是成立的.
-
-\begin{example}
-求\(\int \tan^2 x \dd{x}\).
-\begin{solution}
-根据三角恒等式\(\tan^2 x + 1 = \sec^2 x\)，
-有\[
-	\int \tan^2 x \dd{x}
-	= \int (\sec^2 x - 1) \dd{x}
-	= \int \sec^2 x \dd{x} - \int \dd{x}
-	= \tan x - x + C.
-\]
-\end{solution}
-\end{example}
+\begin{remark}
+\cref{theorem:不定积分.性质1} 对于有限个函数都是成立的.
+\end{remark}
 
 \begin{property}\label{theorem:不定积分.性质2}
 %@see: 《高等数学（第六版 上册）》 P190 性质2
@@ -195,3 +188,43 @@
 而上式左边\(\int 0 f(x) \dd{x}\)却是全体常数函数的集合，
 这就造成了定义上的混乱.
 \end{remark}
+
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P191 例11
+求\(\int 2^x e^x \dd{x}\).
+\begin{solution}
+应为\(2^x e^x = (2e)^x\)，
+所以由基本积分表有\[
+	\int 2^x e^x \dd{x}
+	= \int (2e)^x \dd{x}
+	= \frac{(2e)^x}{\ln(2e)} + C
+	= \frac{2^x e^x}{1+\ln2} + C.
+\]
+\end{solution}
+\end{example}
+\begin{example}
+%@see: 《高等数学（第六版 上册）》 P191 例12
+求\(\int \tan^2 x \dd{x}\).
+\begin{solution}
+根据\hyperref[equation:三角函数.毕达哥拉斯三角恒等式2]{三角恒等式}
+\(\tan^2 x + 1 = \sec^2 x\)，
+有\[
+	\int \tan^2 x \dd{x}
+	= \int (\sec^2 x - 1) \dd{x}
+	= \int \sec^2 x \dd{x} - \int \dd{x}
+	= \tan x - x + C.
+\]
+\end{solution}
+\end{example}
+\begin{example}
+求\(\int \cot^2 x \dd{x}\).
+\begin{solution}
+根据\hyperref[equation:三角函数.毕达哥拉斯三角恒等式3]{三角恒等式}
+\(1 + \cot^2 x = \csc^2 x\)，
+有\[
+	\int \cot^2 x \dd{x}
+	= \int (\csc^2 x - 1) \dd{x}
+	= -\cot x - x + C.
+\]
+\end{solution}
+\end{example}
