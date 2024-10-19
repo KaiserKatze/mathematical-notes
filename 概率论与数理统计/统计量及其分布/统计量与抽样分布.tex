@@ -20,15 +20,15 @@
 	\begin{tabular}{*3c}
 		\hline
 		名称 & 统计量 & 观测值 \\ \hline
-		样本均值 & \(\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i\)
-			& \(\overline{x} = \frac{1}{n} \sum_{i=1}^n x_i\) \\[.7cm]
+		样本均值 & \(\overline{X} = \frac1n \sum_{i=1}^n X_i\)
+			& \(\overline{x} = \frac1n \sum_{i=1}^n x_i\) \\[.7cm]
 		样本方差 & \(S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i-\overline{X})^2\)
 			& \(s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i-\overline{x})^2\) \\[.5cm]
 		样本标准差 & \(S=\sqrt{S^2}\) & \(s=\sqrt{s^2}\) \\[.2cm]
-		样本\(k\)阶原点矩 & \(A_k=\frac{1}{n} \sum_{i=1}^n X_i^k\)
-			& \(a_k=\frac{1}{n} \sum_{i=1}^n x_i^k\) \\[.5cm]
-		样本\(k\)阶中心矩 & \(B_k=\frac{1}{n} \sum_{i=1}^n (X_i-\overline{X})^k\)
-			& \(b_k=\frac{1}{n} \sum_{i=1}^n (x_i-\overline{x})^k\) \\[.5cm]
+		样本\(k\)阶原点矩 & \(A_k=\frac1n \sum_{i=1}^n X_i^k\)
+			& \(a_k=\frac1n \sum_{i=1}^n x_i^k\) \\[.5cm]
+		样本\(k\)阶中心矩 & \(B_k=\frac1n \sum_{i=1}^n (X_i-\overline{X})^k\)
+			& \(b_k=\frac1n \sum_{i=1}^n (x_i-\overline{x})^k\) \\[.5cm]
 		\hline
 	\end{tabular}
 	\caption{常用的统计量}
@@ -48,9 +48,9 @@
 			- n \overline{X}^2,
 \end{align*}
 又\[
-	B_2 = \frac{1}{n} \sum_{i=1}^n (X_i-\overline{X})^2,
+	B_2 = \frac1n \sum_{i=1}^n (X_i-\overline{X})^2,
 	\qquad
-	A_2 = \frac{1}{n} \sum_{i=1}^n X_i^2,
+	A_2 = \frac1n \sum_{i=1}^n X_i^2,
 \]
 所以我们有\begin{equation}\label{equation:统计量.2阶中心矩-2阶原点矩-均值的关系}
 	B_2
@@ -104,11 +104,11 @@
 其中\(X\)服从指数分布\(e(\lambda)\)，
 求样本均值\(\overline{X}\)的分布.
 \begin{solution}
-记\(Y = \frac{1}{n} X\)，则\(Y\)的值域为\(R_Y = (0,+\infty)\).
+记\(Y = \frac1n X\)，则\(Y\)的值域为\(R_Y = (0,+\infty)\).
 对于\(\forall y>0\)，
 \(Y\)有分布函数\[
 	F_Y(y) = P(Y \leq y)
-	= P\left(\frac{1}{n} X \leq y\right)
+	= P\left(\frac1n X \leq y\right)
 	= P(X \leq ny)
 	= \int_0^{ny} \lambda e^{-\lambda x} \dd{x}
 	= 1 - e^{-n\lambda y},
@@ -118,12 +118,18 @@
 		n\lambda e^{-n\lambda y}, & y>0, \\
 		0, & y \leq 0,
 	\end{array} \right.
-\]即\(Y=\frac{1}{n}X \sim e(n\lambda)\)，也即\(Y \sim \Gamma(1,n\lambda)\).
+\]
+即\(Y=\frac1nX \sim e(n\lambda)\)，
+也即\(Y \sim \Gamma(1,n\lambda)\).
 
-注意到\(\overline{X} = \frac{1}{n} X_1 + \frac{1}{n} X_2 + \dotsb + \frac{1}{n} X_n\)，
-而\(\frac{1}{n} X_i\ (i=1,2,\dotsc,n)\)独立同服从于\(\Gamma(1,n\lambda)\)分布，
+注意到\[
+	\overline{X} = \frac1n X_1 + \frac1n X_2 + \dotsb + \frac1n X_n,
+\]
+而\(\frac1n X_i\ (i=1,2,\dotsc,n)\)独立同服从于\(\Gamma(1,n\lambda)\)分布，
 那么根据~\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}，
-可知\(\overline{X} \sim \Gamma(n,n\lambda)\).
+可知\[
+	\overline{X} \sim \Gamma(n,n\lambda).
+\]
 \end{solution}
 \end{example}
 
@@ -140,18 +146,18 @@
 % \begin{proof}
 % 因为\[
 % 	E(\overline{X})
-% 	= E\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
-% 	= \frac{1}{n} \sum_{i=1}^n E(X_i)
+% 	= E\left(\frac1n \sum_{i=1}^n X_i\right)
+% 	= \frac1n \sum_{i=1}^n E(X_i)
 % 	= \mu,
 % \]\[
 % 	D(\overline{X})
-% 	= D\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
+% 	= D\left(\frac1n \sum_{i=1}^n X_i\right)
 % 	= \frac{1}{n^2} \sum_{i=1}^n D(X_i)
 % 	= \frac{\sigma^2}{n}.
 % \]
 
 % 又由\hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布可加性}可得\[
-% 	\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i
+% 	\overline{X} = \frac1n \sum_{i=1}^n X_i
 % 	\sim N\left(\mu,\frac{\sigma^2}{n}\right).
 % 	\qedhere
 % \]
@@ -185,8 +191,8 @@
 	= D(\overline{X}) + [E(\overline{X})]^2
 	= \frac{\sigma^2}{n} + \mu^2, \\
 	E(\overline{X} X_i)
-	= E\left(\frac{1}{n} \sum_{j=1}^n X_j X_i\right)
-	= \frac{1}{n} \left[ E(X_i^2) + E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right) \right], \\
+	= E\left(\frac1n \sum_{j=1}^n X_j X_i\right)
+	= \frac1n \left[ E(X_i^2) + E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right) \right], \\
 	E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right)
 	= \sum_{\substack{1 \leq j \leq n \\ j \neq i}} E(X_i) E(X_j)
 	= (n-1) \mu^2,
@@ -194,8 +200,8 @@
 因此\begin{align*}
 	E(S^2) &= \frac{1}{n-1} \sum_{i=1}^n \left\{
 			\sigma^2 + \mu^2
-			+ \frac{1}{n} \sigma^2 + \mu^2
-			- 2 \frac{1}{n} \left[ \sigma^2 + \mu^2 + (n-1)\mu^2 \right]
+			+ \frac1n \sigma^2 + \mu^2
+			- 2 \frac1n \left[ \sigma^2 + \mu^2 + (n-1)\mu^2 \right]
 		\right\} \\
 	&= \frac{1}{n-1} n \cdot \frac{n-1}{n} \sigma^2
 	= \sigma^2.
@@ -205,9 +211,9 @@
 \end{example}
 上例也就说明了为什么样本方差的定义式是
 \(S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i-\overline{X})^2\)
-而不是2阶中心矩\(B_2 = \frac{1}{n} \sum_{i=1}^n (X_i-\overline{X})^2\).
+而不是2阶中心矩\(B_2 = \frac1n \sum_{i=1}^n (X_i-\overline{X})^2\).
 不过，由于\(B_2 = \frac{n-1}{n} S^2\)，
-其数学期望为\(E(B_2) = \left(1-\frac{1}{n}\right) \sigma^2\)，
+其数学期望为\(E(B_2) = \left(1-\frac1n\right) \sigma^2\)，
 所以在工程上，当\(n\)足够大时，也可以将\(B_2\)作为总体方差的估计量.
 
 虽然一般情况下样本方差的抽样分布不易精确得出，
