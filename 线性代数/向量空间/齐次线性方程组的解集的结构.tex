@@ -32,11 +32,11 @@
 我们把它称为“方程组\(\A\vb{x}=\vb0\)的\DefineConcept{解空间}（space of solution）”
 或者“矩阵\(\A\)的\DefineConcept{核空间}（kernel）\footnote{有的地方
 会把核空间称为\DefineConcept{零空间}（null space），
+%@see: https://mathworld.wolfram.com/NullSpace.html
 还特别把核空间的维数称为\DefineConcept{零度}（nullity），
 但是由于这个称谓容易与另一个同样叫做“零空间”但涵义是只含零空间的线性空间\(\{\vb0\}\)混淆，
 因此我们不采用这种命名方式.}”，
 并记为\(\Ker\A\).
-%@see: https://mathworld.wolfram.com/NullSpace.html
 如果这个方程组只有零解，那么\(W\)是零子空间.
 如果这个方程组有非零解，那么\(W\)是非零子空间，从而\(W\)有基.
 我们把解空间\(W\)的一个基称为这个方程组的一个\DefineConcept{基础解系}（basic set of solutions）.
@@ -56,7 +56,8 @@
 
 \begin{theorem}\label{theorem:线性方程组.齐次线性方程组的解向量个数}
 %@see: 《高等代数（第三版 上册）》（丘维声） P91 定理1
-数域\(K\)上\(n\)元齐次线性方程组\(\A\vb{x}=\vb0\)的解空间的维数与系数矩阵的秩满足\begin{equation}
+数域\(K\)上\(n\)元齐次线性方程组\(\A\vb{x}=\vb0\)的解空间的维数与系数矩阵的秩
+满足\begin{equation}
 	\rank\A + \dim\Ker\A = n.
 \end{equation}
 当方程组有非零解时，它的每一个基础解系所含的解向量的数目都等于\(\dim W\).
@@ -248,6 +249,34 @@
 \end{example}
 
 \subsection{齐次方程有公共解的条件}
+\begin{proposition}
+%@see: 《线性代数》（张慎语、周厚隆） P85 习题4.5 6(2)
+设\(\A,\B \in M_{s \times n}(K)\)，
+则\[
+	\text{$\A\vb{x}=\vb0$的解都是$\B\vb{x}=\vb0$的解}
+	\implies
+	\rank\A \geq \rank\B.
+\]
+%TODO
+\begin{proof}
+假设\(\A\vb{x}=\vb0\)的解都是\(\B\vb{x}=\vb0\)的解，
+那么\[
+	\Ker\A \subseteq \Ker\B \subseteq K^n.
+\]
+由\cref{theorem:向量空间.两个非零子空间的关系1} 可知\[
+	\dim\Ker\A \leq \dim\Ker\B.
+\]
+由\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 可知\[
+	%\rank\A + \dim\Ker\A = n.
+	n - \rank\A \leq n - \rank\B,
+\]
+即\[
+	\rank\B \leq \rank\A.
+	\qedhere
+\]
+\end{proof}
+\end{proposition}
+
 \begin{definition}
 设\(\A,\B \in M_{s \times n}(K)\)，
 \(\vb\beta_1,\vb\beta_2 \in K^s\).
@@ -344,17 +373,6 @@
 \end{example}
 
 \subsection{齐次方程同解的条件}
-\begin{example}
-%@see: 《线性代数》（张慎语、周厚隆） P85 习题4.5 6(2)
-设\(\A,\B \in M_{s \times n}(K)\)，
-则\[
-	\text{$\A\vb{x}=\vb0$的解都是$\B\vb{x}=\vb0$的解}
-	\implies
-	\rank\A \geq \rank\B.
-\]
-%TODO
-\end{example}
-
 \begin{proposition}
 设\(\A,\B \in M_{s \times n}(K)\)，
 则\begin{align*}
@@ -464,6 +482,7 @@
 \end{proposition}
 
 \begin{example}
+%@see: 《高等代数（第三版 上册）》（丘维声） P122 命题2
 设\(\A\in M_{s \times n}(\mathbb{R})\).
 证明：齐次线性方程组\(\A\x=\z\)与\((\A^T\A)\x=\z\)同解.
 \begin{proof}
