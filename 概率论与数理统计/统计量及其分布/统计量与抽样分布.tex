@@ -105,17 +105,19 @@
 求样本均值\(\overline{X}\)的分布.
 \begin{solution}
 记\(Y = \frac{1}{n} X\)，则\(Y\)的值域为\(R_Y = (0,+\infty)\).
-对于\(\forall y>0\)，\(Y\)有分布函数\[
-F_Y(y) = P(Y \leq y)
-= P\left(\frac{1}{n} X \leq y\right)
-= P(X \leq ny)
-= \int_0^{ny} \lambda e^{-\lambda x} \dd{x}
-= 1 - e^{-n\lambda y},
-\]密度函数\[
-f_Y(y) = F'_Y(y) = \left\{ \begin{array}{lc}
-n\lambda e^{-n\lambda y}, & y>0, \\
-0, & y \leq 0,
-\end{array} \right.
+对于\(\forall y>0\)，
+\(Y\)有分布函数\[
+	F_Y(y) = P(Y \leq y)
+	= P\left(\frac{1}{n} X \leq y\right)
+	= P(X \leq ny)
+	= \int_0^{ny} \lambda e^{-\lambda x} \dd{x}
+	= 1 - e^{-n\lambda y},
+\]
+密度函数\[
+	f_Y(y) = F'_Y(y) = \left\{ \begin{array}{lc}
+		n\lambda e^{-n\lambda y}, & y>0, \\
+		0, & y \leq 0,
+	\end{array} \right.
 \]即\(Y=\frac{1}{n}X \sim e(n\lambda)\)，也即\(Y \sim \Gamma(1,n\lambda)\).
 
 注意到\(\overline{X} = \frac{1}{n} X_1 + \frac{1}{n} X_2 + \dotsb + \frac{1}{n} X_n\)，
@@ -134,6 +136,7 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 	\label{equation:抽样分布定理.一个正态总体的抽样分布2}
 	\frac{\overline{X}-\mu}{\sigma / \sqrt{n}} \sim N(0,1).
 \end{gather}
+%TODO proof
 % \begin{proof}
 % 因为\[
 % 	E(\overline{X})
@@ -176,27 +179,24 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 	= \frac{1}{n-1} \sum_{i=1}^n E(X_i-\overline{X})^2 \\
 	&= \frac{1}{n-1} \sum_{i=1}^n \left[ E(X_i^2) + E(\overline{X}^2) - 2 E(\overline{X} X_i) \right],
 \end{align*}
-其中\[
-	E(X_i^2) = E(X^2) = D(X) + [E(X)]^2 = \sigma^2 + \mu^2,
-\]\[
+其中\begin{gather*}
+	E(X_i^2) = E(X^2) = D(X) + [E(X)]^2 = \sigma^2 + \mu^2, \\
 	E(\overline{X}^2)
 	= D(\overline{X}) + [E(\overline{X})]^2
-	= \frac{\sigma^2}{n} + \mu^2,
-\]\[
+	= \frac{\sigma^2}{n} + \mu^2, \\
 	E(\overline{X} X_i)
 	= E\left(\frac{1}{n} \sum_{j=1}^n X_j X_i\right)
-	= \frac{1}{n} \left[ E(X_i^2) + E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right) \right],
-\]\[
+	= \frac{1}{n} \left[ E(X_i^2) + E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right) \right], \\
 	E\left(\sum_{\substack{1 \leq j \leq n \\ j \neq i}} X_i X_j\right)
 	= \sum_{\substack{1 \leq j \leq n \\ j \neq i}} E(X_i) E(X_j)
 	= (n-1) \mu^2,
-\]
+\end{gather*}
 因此\begin{align*}
 	E(S^2) &= \frac{1}{n-1} \sum_{i=1}^n \left\{
-	\sigma^2 + \mu^2
-	+ \frac{1}{n} \sigma^2 + \mu^2
-	- 2 \frac{1}{n} \left[ \sigma^2 + \mu^2 + (n-1)\mu^2 \right]
-	\right\} \\
+			\sigma^2 + \mu^2
+			+ \frac{1}{n} \sigma^2 + \mu^2
+			- 2 \frac{1}{n} \left[ \sigma^2 + \mu^2 + (n-1)\mu^2 \right]
+		\right\} \\
 	&= \frac{1}{n-1} n \cdot \frac{n-1}{n} \sigma^2
 	= \sigma^2.
 	\qedhere
@@ -292,9 +292,10 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 \begin{proof}
 由于\[
 	U = \frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1),
-\]\[
+	\qquad
 	V = \frac{(n-1)S^2}{\sigma^2} \sim \x(n-1),
-\]且\(\overline{X}\)与\(S^2\)相互独立，
+\]
+且\(\overline{X}\)与\(S^2\)相互独立，
 从而\(U\)与\(V\)相互独立.
 于是由\(t\)分布定义可得\[
 	\frac{U}{\sqrt{V/(n-1)}}
@@ -328,6 +329,7 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 	\sim
 	N(0,1).
 \end{equation}
+%TODO proof
 \end{theorem}
 
 \begin{theorem}
@@ -339,12 +341,13 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 		}{
 			S_w \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}
 		}
-		\sim
-		t(n_1+n_2-2),
+	\sim
+	t(n_1+n_2-2),
 \end{equation}
 其中\[
 	S_w^2 = \frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}.
 \]
+%TODO proof
 \end{theorem}
 
 \begin{theorem}
@@ -353,6 +356,7 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 则\begin{equation}
 	F = \frac{S_1^2 / \sigma_1^2}{S_2^2 / \sigma_2^2} \sim F(n_1-1,n_2-1).
 \end{equation}
+%TODO proof
 \end{theorem}
 
 \subsubsection{一个任何总体下的抽样分布定理}
@@ -392,4 +396,5 @@ n\lambda e^{-n\lambda y}, & y>0, \\
 	\item \(\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)\)；
 	\item \(\frac{\overline{X}-\mu}{S/\sqrt{n}} \sim N(0,1)\).
 \end{enumerate}
+%TODO proof
 \end{theorem}
