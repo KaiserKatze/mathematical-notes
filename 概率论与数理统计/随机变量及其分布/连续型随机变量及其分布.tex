@@ -103,15 +103,19 @@ f(x) = \left\{ \def\arraystretch{1.5}
 		0, & x \leq 0. \\
 	\end{array} \right.
 \end{equation}
+%TODO proof
 \end{theorem}
 
 \begin{theorem}[指数分布的无记忆性]
 对于任意\(t > 0\)，\(\tau > 0\)，当\(X \sim e(\lambda)\)时，有\[
-P(X > t + \tau \vert X > t) = P(X > \tau).
+	P(X > t + \tau \vert X > t) = P(X > \tau).
 \]
-
-指数分布是唯一具有无记忆性的连续性分布.
+%TODO proof
 \end{theorem}
+\begin{remark}
+指数分布是唯一具有无记忆性的连续性分布.
+%TODO proof
+\end{remark}
 
 \subsubsection{伽马分布}
 \begin{definition}
@@ -163,17 +167,22 @@ P(X > t + \tau \vert X > t) = P(X > \tau).
 \begin{definition}
 若一个元件或系统的寿命\(X\)满足一个连续型分布，\(X \sim F(t)\)，
 则其可靠度函数定义为\[
-R(t) = 1 - F(t) = P(X > t).
-\]其失效率函数定义为\[
-r(t) = \frac{f(t)}{R(t)}.
+	R(t) = 1 - F(t) = P(X > t).
 \]
+其失效率函数定义为\[
+	r(t) = \frac{f(t)}{R(t)}.
+\]
+\end{definition}
 
 当\(\increment t\)较小时，\(r(t) \increment t\)表示元件或系统在时刻\(t\)以前正常工作，
 但在时间\((t,t+\increment t)\)失效的概率.
-\end{definition}
 
-注意，当\(\alpha = 1\)时，\(\Gamma\)分布\(\Gamma(1,\beta)\)为指数分布\(e(\beta)\)，即系统失效概率不随时间变化；
-当\(0 < \alpha < 1\)时，系统失效概率随时间\(t\)增加呈下降趋势；而当\(\alpha > 1\)时则正相反.
+注意，当\(\alpha = 1\)时，
+\(\Gamma\)分布\(\Gamma(1,\beta)\)为指数分布\(e(\beta)\)，
+即系统失效概率不随时间变化；
+当\(0 < \alpha < 1\)时，
+系统失效概率随时间\(t\)增加呈下降趋势；
+而当\(\alpha > 1\)时则正相反.
 
 \subsubsection{贝塔分布}
 \begin{definition}
@@ -192,7 +201,7 @@ r(t) = \frac{f(t)}{R(t)}.
 \begin{property}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P91
 贝塔分布\(B(1,1)\)就是均匀分布\(U(0,1)\)，
-即\(B(1,1)=U(0,1)\).
+即\(B(1,1) = U(0,1)\).
 \end{property}
 
 \subsubsection{正态分布}
@@ -228,33 +237,34 @@ r(t) = \frac{f(t)}{R(t)}.
 \end{figure}
 
 
-标准正态分布随机变量\(X\)的分布函数记为\(\Phi(x)\)，有\begin{equation}\label{equation:正态分布与自然指数分布族.标准正态分布的分布函数}
-\Phi(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \dd{t}.
+标准正态分布随机变量\(X\)的分布函数记为\(\Phi(x)\)，
+有\begin{equation}\label{equation:正态分布与自然指数分布族.标准正态分布的分布函数}
+	\Phi(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \dd{t}.
 \end{equation}
 \end{definition}
 
 \begin{property}
 由于密度函数\(\phi(x)\)是偶函数，故分布函数\(\Phi(x)\)满足：
-\begin{enumerate}
-\item \(\Phi(0) = \frac{1}{2}\)；
-\item \(\Phi(-x) = 1 - \Phi(x)\).
-\end{enumerate}
+\begin{itemize}
+	\item \(\Phi(0) = \frac{1}{2}\)；
+	\item \(\Phi(-x) = 1 - \Phi(x)\).
+\end{itemize}
 \end{property}
 
 \begin{definition}\label{definition:正态分布.正态分布的定义}
 设\(\mu,\sigma\in\mathbb{R}^+\)是常数，若随机变量\(X\)满足\[
 	\frac{X-\mu}{\sigma} \sim N(0,1),
 \]
-则称“\(X\)服从参数为\(\mu\)、\(\sigma^2\)的\DefineConcept{正态分布}（normal distribution）%
-\footnote{%
-正态分布又称为\DefineConcept{高斯分布}，它的图形称为\DefineConcept{钟形曲线}（bell curve）.
-}”，
+则称“\(X\)服从参数为\(\mu\)、\(\sigma^2\)的%
+\DefineConcept{正态分布}（normal distribution）%
+\footnote{正态分布又称为\DefineConcept{高斯分布}，
+它的图形称为\DefineConcept{钟形曲线}（bell curve）.}”，
 记为\(X \sim N(\mu,\sigma^2)\).
 \end{definition}
 
 \begin{theorem}
-设\(X \sim N(\mu,\sigma^2)\)，则
-\begin{enumerate}
+设\(X \sim N(\mu,\sigma^2)\)，
+则\begin{itemize}
 	\item \(X\)的分布函数为\[
 		F(x) = \Phi\left(\frac{x-\mu}{\sigma}\right),
 		\quad x\in\mathbb{R};
@@ -264,7 +274,7 @@ r(t) = \frac{f(t)}{R(t)}.
 		f(x) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
 		\quad x\in\mathbb{R}.
 	\]
-\end{enumerate}
+\end{itemize}
 \begin{proof}
 \(X\)的分布函数为\[
 	F(x) = P(X \leq x)
@@ -317,16 +327,16 @@ r(t) = \frac{f(t)}{R(t)}.
 \end{figure}
 
 \begin{property}
-观察正态分布\(N(\mu,\sigma^2)\)的%
+观察正态分布\(N(\mu,\sigma^2)\)的
 密度函数图像 \labelcref{figure:正态分布与自然指数分布族.正态分布的密度函数} 可知：
-\begin{enumerate}
+\begin{itemize}
 	\item 其密度函数\(f(x)\)对称于\(x=\mu\)；
 	\item 密度函数曲线顶点为\(\max\{f(x)\}=\frac{1}{\sqrt{2\pi}\sigma}\)；
 	\item 密度函数曲线以\(x\)轴为渐近线，且在\(\mu\pm\sigma\)处有拐点；
 	\item \(\sigma\)不变，\(\mu\)改变，曲线平移但曲线形态不变，故\(\mu\)又称为位置参数；
 	\(\mu\)不变，\(\sigma\)改变，曲线对称轴不变，但曲线形态改变，\(\sigma\)越小，曲线越高越瘦；
 	反之\(\sigma\)越大，曲线越矮越胖，故\(\sigma\)又称为刻度参数.
-\end{enumerate}
+\end{itemize}
 \end{property}
 
 \begin{example}
