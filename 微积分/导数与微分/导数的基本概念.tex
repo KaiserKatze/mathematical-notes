@@ -200,6 +200,30 @@
 %@Mathematica: Plot[Piecewise[{{1/Floor[1/x], 1/(Floor[1/x] + 1) < x <= 1/Floor[1/x] && x > 0}, {x, x <= 0}}], {x, -.5, .5}]
 \end{example}
 
+\begin{example}
+设函数\(f\)在点\(x=0\)的某个邻域内连续，
+函数\(g\)是当\(x\to0\)时的无穷小，
+且\(f\)是\(g\)的高阶无穷小.
+要使\(f\)在点\(x=0\)可导，
+\(g\)应该满足什么条件？
+\begin{solution}
+由于\(f\)是无穷小，且\(f\)在点\(x=0\)连续，
+所以\(f(0)=0\).
+根据导数的定义，有\[
+	f'(0)
+	= \lim_{x\to0} \frac{f(x) - f(0)}{x-0}
+	= \lim_{x\to0} \frac{f(x)}{x}
+	= \lim_{x\to0} \frac{f(x)}{g(x)} \cdot \frac{g(x)}{x}.
+\]
+由此可见，要使极限\[
+	\lim_{x\to0} \frac{f(x)}{g(x)} \cdot \frac{g(x)}{x}
+\]存在，
+只需要极限\[
+	\lim_{x\to0} \frac{g(x)}{x} % \(g\)是\(x\)的同阶无穷小或高阶无穷小
+\]存在.
+\end{solution}
+\end{example}
+
 \subsection{导函数的定义}
 设函数\(f\colon I\to\mathbb{R}\)在区间\(I\)内的每一个点可导，
 那么，对于\(\forall x_0 \in I\)，
