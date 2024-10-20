@@ -625,15 +625,16 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 \begin{lemma}\label{theorem:定积分.伽马函数的斯特灵近似.引理4}
 %@see: 《数学分析教程（第3版 下册）》（史济怀） P395 引理18.4.4
 \begin{equation}\label{equation:定积分.伽马函数的斯特灵近似.引理4}
-\lim_{n\to\infty} \left[
-\ln n! + n - \left(n+\frac{1}{2}\right) \ln n
-\right]
-= \ln\sqrt{2\pi}.
+	\lim_{n\to\infty} \left[
+		\ln n! + n - \left(n+\frac{1}{2}\right) \ln n
+	\right]
+	= \ln\sqrt{2\pi}.
 \end{equation}
 \begin{proof}
 在斯特林公式\[
-\lim_{n\to\infty} \frac{n!}{(n/e)^n \sqrt{2\pi n}} = 1
-\]的两边取对数，即得 \labelcref{equation:定积分.伽马函数的斯特灵近似.引理4}.
+	\lim_{n\to\infty} \frac{n!}{(n/e)^n \sqrt{2\pi n}} = 1
+\]的两边取对数，
+即得 \labelcref{equation:定积分.伽马函数的斯特灵近似.引理4}.
 \end{proof}
 \end{lemma}
 
@@ -647,45 +648,53 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 		\left(\frac{x}{e}\right)^x e^{\frac{\theta(x)}{12x}}.
 \end{equation}
 \begin{proof}
-因为\(\Gamma(x+1) = x \Gamma(x)\)，故可证\[
-\Gamma(x) = \frac{1}{x} \sqrt{2\pi x} \left(\frac{x}{e}\right)^x e^{\frac{\theta(x)}{12x}},
-\]再两边取对数，得\[
-\ln \Gamma(x) = \ln\sqrt{2\pi} + \left(x - \frac{1}{2}\right) \ln x - x + \frac{\theta(x)}{12x}.
+因为\(\Gamma(x+1) = x \Gamma(x)\)，
+故可证\[
+	\Gamma(x) = \frac{1}{x} \sqrt{2\pi x} \left(\frac{x}{e}\right)^x e^{\frac{\theta(x)}{12x}},
+\]
+再两边取对数，
+得\[
+	\ln \Gamma(x) = \ln\sqrt{2\pi} + \left(x - \frac{1}{2}\right) \ln x - x + \frac{\theta(x)}{12x}.
 \]
 
 由等式\[
-\ln\frac{n^x n!}{x(x+1)\dotsm(x+n)}
-= \ln n! + x \ln n - \sum_{k=0}^n \ln(k+x)
-\]和\cref{theorem:定积分.伽马函数的斯特灵近似.引理3}，可得\begin{align*}
-&\hspace{-5pt}
-\ln\frac{n^x n!}{x(x+1)\dotsm(x+n)}
-- \int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t} \\
-&= \ln n! + x \ln n - \ln x - \left(n+x+\frac{1}{2}\right) \ln(n+x) + \left(\frac{1}{2}+x\right) \ln x + n \\
-&= \ln n! + n + x \ln n - \ln x
-- \left(n+x+\frac{1}{2}\right) \left[\ln n + \ln(1+\frac{x}{n})\right]
-+ \left(\frac{1}{2}+x\right) \ln x \\
-&= \ln n! + n - \left(n+\frac{1}{2}\right) \ln n
-- \left(n+x+\frac{1}{2}\right) \ln(1+\frac{x}{n})
-+ \left(x-\frac{1}{2}\right) \ln x.
+	\ln\frac{n^x n!}{x(x+1)\dotsm(x+n)}
+	= \ln n! + x \ln n - \sum_{k=0}^n \ln(k+x)
+\]
+和\cref{theorem:定积分.伽马函数的斯特灵近似.引理3}，
+可得\begin{align*}
+	&\hspace{-5pt}
+	\ln\frac{n^x n!}{x(x+1)\dotsm(x+n)}
+	- \int_0^n \frac{\floor{t} - t + 1/2}{t + x} \dd{t} \\
+	&= \ln n! + x \ln n - \ln x - \left(n+x+\frac{1}{2}\right) \ln(n+x) + \left(\frac{1}{2}+x\right) \ln x + n \\
+	&= \ln n! + n + x \ln n - \ln x
+	- \left(n+x+\frac{1}{2}\right) \left[\ln n + \ln(1+\frac{x}{n})\right]
+	+ \left(\frac{1}{2}+x\right) \ln x \\
+	&= \ln n! + n - \left(n+\frac{1}{2}\right) \ln n
+	- \left(n+x+\frac{1}{2}\right) \ln(1+\frac{x}{n})
+	+ \left(x-\frac{1}{2}\right) \ln x.
 \end{align*}
 由\cref{theorem:定积分.伽马函数的斯特灵近似.引理4} 可知，
 上式右边的前三项之和当\(n\to\infty\)时趋于\(\ln\sqrt{2\pi}\)，
 上式左边的第一项当\(n\to\infty\)时趋于\(\ln\Gamma(x)\)，
-而{%
-\def\l{\lim_{n\to\infty}}%
-\def\xn{\left(1+\frac{x}{n}\right)}%
+而{\def\xn{\left(1+\frac{x}{n}\right)}%
 \begin{align*}
-\l \left(n+x+\frac{1}{2}\right) \ln\xn
-&= \l \ln\xn^{n+x+\frac{1}{2}} \\
-&= \l \ln\xn^n \xn^{x+\frac{1}{2}}
-= x.
+	\lim_{n\to\infty} \left(n+x+\frac{1}{2}\right) \ln\xn
+	&= \lim_{n\to\infty} \ln\xn^{n+x+\frac{1}{2}} \\
+	&= \lim_{n\to\infty} \ln\xn^n \xn^{x+\frac{1}{2}}
+	= x.
 \end{align*}}
-那么只要令\(n\to\infty\)，即得\[
-\ln\Gamma(x) - \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
-= \ln\sqrt{2\pi} - x + \left(x - \frac{1}{2}\right) \ln x.
-\]若记\[
-\theta(x) = 12 x \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t},
-\]则由\cref{theorem:定积分.伽马函数的斯特灵近似.引理3} 可知，必有\(0<\theta(x)<1\)，如此便得要证的 \labelcref{equation:定积分.伽马函数的斯特林近似}.
+那么只要令\(n\to\infty\)，
+即得\[
+	\ln\Gamma(x) - \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
+	= \ln\sqrt{2\pi} - x + \left(x - \frac{1}{2}\right) \ln x.
+\]
+若记\[
+	\theta(x) = 12 x \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t},
+\]
+则由\cref{theorem:定积分.伽马函数的斯特灵近似.引理3} 可知，
+必有\(0<\theta(x)<1\)，
+如此便得要证的 \labelcref{equation:定积分.伽马函数的斯特林近似}.
 \end{proof}
 \end{theorem}
 \begin{remark}
