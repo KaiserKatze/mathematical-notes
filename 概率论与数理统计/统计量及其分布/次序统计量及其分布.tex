@@ -146,25 +146,29 @@
 大于\((x+\increment x]\)的概率为\(1 - F(x+\increment x)\)，
 落在\((x,x+\increment x]\)内的概率为\(F(x+\increment x) - F(x)\)，
 而将这\(n\)个分量分成这样的三组，
-总的分法有\(\frac{n!}{(k-1)! (n-k)!}\)种，
+总的分法有\[
+	C_n^{k-1} C_{n-k+1}^1
+	= \frac{n!}{(k-1)! (n-k+1)!} \cdot \frac{(n-k+1)!}{1! (n-k)!}
+	= \frac{n!}{(k-1)! (n-k)!}
+\]种，
 所以\(X_{(k)}\)落在\((x,x+\increment x]\)内的概率为
 \begin{align*}
 	&F_k(x+\increment x) - F_k(x) \\
-	&= \frac{n!}{(k-1)! (n-k)!} [F(x)]^{k-1} [F(x+\increment x) - F(x)] [1-F(x+\increment x)]^{n-k},
+	&= \frac{n!}{(k-1)! (n-k)!} \cdot [F(x)]^{k-1} \cdot [F(x+\increment x) - F(x)] \cdot [1-F(x+\increment x)]^{n-k},
 \end{align*}
-其中\(F_k\)表示\(X_{(k)}\)的分布函数；
+其中\(F_k\)表示\(X_{(k)}\)的分布函数.
 在上式等号两边同除以\(\increment x\)，
 并令\(\increment x\to0\)，
 则有\begin{align*}
 	f_k(x)
 	&= \lim_{\increment x\to0} \frac{F_k(x+\increment x) - F_k(x)}{\increment x} \\
-	&= \frac{n!}{(k-1)! (n-k)!} [F(x)]^{k-1} f(x) [1-F(x)]^{n-k}.
+	&= \frac{n!}{(k-1)! (n-k)!} \cdot [F(x)]^{k-1} \cdot f(x) \cdot [1-F(x)]^{n-k}.
 \end{align*}
 这就是说，第\(k\)个次序统计量\(X_{(k)}\)的概率密度函数为
 \begin{equation}\label{equation:次序统计量.第k个次序统计量的概率密度函数}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P212 公式(4.3.1)
 	f_k(x)
-	= \frac{n!}{(k-1)! (n-k)!} [F(x)]^{k-1} [1-F(x)]^{n-k} f(x).
+	= \frac{n!}{(k-1)! (n-k)!} \cdot [F(x)]^{k-1} \cdot [1-F(x)]^{n-k} \cdot f(x).
 \end{equation}
 
 特别地，
@@ -173,20 +177,20 @@
 \begin{equation}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P213 公式(4.3.2)
 	f_n(x)
-	= n [F(x)]^{n-1} f(x),
+	= n \cdot [F(x)]^{n-1} \cdot f(x),
 \end{equation}
 概率分布函数为
 \begin{equation}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P213 公式(4.3.3)
 	F_n(x)
-	= n [F(x)]^n.
+	= n \cdot [F(x)]^n.
 \end{equation}
 在\cref{equation:次序统计量.第k个次序统计量的概率密度函数} 中取\(k=1\)，
 可得最小次序统计量的概率密度函数为
 \begin{equation}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P213 公式(4.3.4)
 	f_1(x)
-	= n [1-F(x)]^{n-1} f(x),
+	= n \cdot [1-F(x)]^{n-1} \cdot f(x),
 \end{equation}
 概率分布函数为
 \begin{equation}
@@ -214,28 +218,27 @@ y_n < X_{(n)} \leq y_n+\increment y_n)\)
 有\(1\)个落在区间\((y_n,y_n+\increment y_n]\)内，
 其余\(n-2\)个落在区间\((y_1+\increment y_1,y_n]\)内”，
 于是\begin{align*}
-	&\hspace{-20pt}
-	P(y_1 < X_{(1)} \leq y_1+\increment y_1,
+	&P(y_1 < X_{(1)} \leq y_1+\increment y_1,
 	  y_n < X_{(n)} \leq y_n+\increment y_n) \\
 	&= \frac{n!}{1! (n-2)! 1!}
-		[F(y_1+\increment y_1) - F(y_1)]
-		[F(y_n) - F(y_1+\increment y_1)]^{n-2}
-		[F(y_n+\increment y_n) - F(y_n)].
+		\cdot [F(y_1+\increment y_1) - F(y_1)]
+		\cdot [F(y_n) - F(y_1+\increment y_1)]^{n-2}
+		\cdot [F(y_n+\increment y_n) - F(y_n)].
 \end{align*}
 由于\(F\)可微，
 所以\begin{align*}
 	\lim_{\increment y_1\to0}
 	\frac{F(y_1+\increment y_1) - F(y_1)}{\increment y_1}
-	= f(y_1); \\
+	= f(y_1), \\
 	\lim_{\increment y_n\to0}
 	\frac{F(y_n+\increment y_n) - F(y_n)}{\increment y_n}
-	= f(y_n);
+	= f(y_n).
 \end{align*}
 那么
 \begin{equation}\label{equation:次序统计量.最大次序统计量与最小次序统计量的联合密度函数}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P214 公式(4.3.6)
 	f_{1n}(y_1,y_n)
-	= n(n-1) f(y_1) [F(y_n) - F(y_1)]^{n-2} f(y_n).
+	= n(n-1) \cdot f(y_1) \cdot [F(y_n) - F(y_1)]^{n-2} \cdot f(y_n).
 \end{equation}
 
 \subsection{样本极差}
@@ -274,7 +277,8 @@ y_n < X_{(n)} \leq y_n+\increment y_n)\)
 \begin{equation}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P215 公式(4.3.7)
 	R_n
-	= X_{(n)} - X_{(1)}
+	\defeq
+	X_{(n)} - X_{(1)}
 \end{equation}
 的密度函数为
 \begin{equation}
@@ -294,9 +298,9 @@ y_n < X_{(n)} \leq y_n+\increment y_n)\)
 		-\frac{(y-\mu)^2}{2\sigma^2}
 	}
 	\dd{y},
-	\quad x>0,
 \end{equation}
-其中\(\Phi\)是标准正态分布函数.
+其中\(x>0\)，
+\(\Phi\)是标准正态分布函数.
 此时\(R_n\)的数学期望为
 \begin{equation}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P215 公式(4.3.9)
