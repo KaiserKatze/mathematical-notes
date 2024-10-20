@@ -193,6 +193,68 @@
 对于数列\(\{x_n\}_{n\geq1}\)无界的情况，可以作出类似的讨论.
 %TODO 类似的讨论是什么意思？
 \end{remark}
+\begin{figure}[htb]
+%@see: 《数学分析习题课讲义（第2版 上册）》（谢惠民、恽自求、易法槐、钱定边） P50 图2.4
+	\centering
+	\pgfplotsset{ticks=none}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,xmax=1.5,
+			ymin=0,ymax=1.5,
+			axis lines=middle,
+			axis equal=true,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=south},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=west},
+		]
+			\addplot[color=black!30,dashed,samples=2,smooth,domain=0:1.5]{x};
+			\addplot[color=blue,samples=50,smooth,domain=0:1.5]{ln(x+2)};
+			\begin{scope}
+				\def\DrawArrow#1#2#3{
+					\draw[black!30,dashed](#1,#2)--(#1,0);
+					\draw[>=Stealth,->](#1,#2)--(#1,{ln(#1+2)});
+					\draw[>=Stealth,->](#1,{ln(#1+2)})--({ln(#1+2)},{ln(#1+2)});
+					\draw(#1,0)node[below]{#3};
+				}
+				\DrawArrow{.1}{0}{$x_1$}
+				\DrawArrow{.74}{.74}{$x_2$}
+				\DrawArrow{1}{1}{$x_3$}
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}~\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,xmax=1.5,
+			ymin=0,ymax=1.5,
+			axis lines=middle,
+			axis equal=true,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=south},
+			y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=west},
+		]
+			\addplot[color=black!30,dashed,samples=2,smooth,domain=0:1.5]{x};
+			\addplot[color=blue,samples=50,smooth,domain=0:1.5]{exp(-x)};
+			\begin{scope}
+				\def\DrawArrow#1#2#3{
+					\draw[black!30,dashed](#1,#2)--(#1,0);
+					\draw[>=Stealth,->](#1,#2)--(#1,{exp(-#1)});
+					\draw[>=Stealth,->](#1,{exp(-#1)})--({exp(-#1)},{exp(-#1)});
+					\draw(#1,0)node[below]{#3};
+				}
+				\DrawArrow{.1}{0}{$x_1$}
+				\DrawArrow{.9048}{.9048}{$x_2$}
+				\DrawArrow{.4046}{.4046}{$x_3$}
+				\DrawArrow{.6672}{.6672}{$x_4$}
+			\end{scope}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+\end{figure}
 
 \begin{example}
 %@see: 《计算机组成原理（第3版）》（唐朔飞） P11
