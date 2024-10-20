@@ -1,5 +1,5 @@
 \section{迭代数列的敛散性}
-\begin{definition}
+\begin{definition}\label{definition:迭代数列.不动点}
 %@see: 《数学分析习题课讲义（第2版 上册）》（谢惠民、恽自求、易法槐、钱定边） P49 命题2.6.1（第一律）
 设函数\(f\colon D\to\mathbb{R}\).
 若点\(x_0 \in D\)满足\[
@@ -163,21 +163,21 @@
 	\end{tikzpicture}
 	\caption{}
 \end{figure}
-\begin{proposition}
+\begin{proposition}\label{theorem:连续函数.单调迭代数列收敛定理}
 %@see: 《数学分析习题课讲义（第2版 上册）》（谢惠民、恽自求、易法槐、钱定边） P51 命题2.6.3
+%@see: 《数学分析：原理与方法》（胡适耕） P35 4.1.6命题
 设\(a\)是函数\(f\)的不动点，
-\(f\)在点\(a\)连续，
-在点\(a\)的邻域\((a-r,a+r)\)上严格单调增加，
-并且在区间\((a-r,a)\)上有\(f(x)>x\)，
-而在区间\((a,a+r)\)上有\(f(x)<x\)，
+\(f\)在区间\((a-r,a+r)\)内严格单调增加且连续，
+并且在区间\((a-r,a)\)内有\(f(x)>x\)，
+而在区间\((a,a+r)\)内有\(f(x)<x\)，
 那么只要数列\(\{x_n\}_{n\geq1}\)满足\[
 	x_1 \in (a-r,a)\cup(a,a+r),
 	\qquad
 	x_{n+1} = f(x_n)\ (n=1,2,\dotsc),
 \]
 则\begin{itemize}
-	\item 数列\(\{x_n\}_{n\geq1}\)以后不会越出区间\((a-r,a+r)\)，
-	即\(x_n \in (a-r,a+r)\ (n=1,2,\dotsc)\)，
+	% 数列\(\{x_n\}_{n\geq1}\)以后不会越出区间\((a-r,a+r)\)，
+	\item \(x_n \in (a-r,a+r)\ (n=1,2,\dotsc)\)，
 	\item \(x_n \to a\ (n\to\infty)\)，
 	\item \(\{x_n\}_{n\geq1}\)是严格单调数列.
 \end{itemize}
@@ -192,58 +192,66 @@
 就有\(a_2 = f(a_1) > a_1\).
 合起来就有\(a_1 < a_2 < a\).
 
-用数学归纳法可以证明数列\(\{x_n\}_{n\geq1}\)完全落在区间\((a-r,a)\)内，且严格单调增加.
-%\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}
-由于它以\(a\)为上界，因此收敛.
-它的极限应当在区间\([a_1,a]\subseteq(a-r,a]\)内.
-由于\(a\)是唯一的不动点，因此极限就是\(a\).
+用数学归纳法可以证明数列\(\{x_n\}_{n\geq1}\)完全落在区间\((a-r,a)\)内，
+且严格单调增加，
+即\[
+	x_n < x_{n+1} < a
+	\quad(n=1,2,\dotsc).
+\]
+由于它以\(a\)为上界，
+因此由\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}可知收敛.
+不妨设\(\lim_{n\to\infty} x_n = b\).
+由\cref{theorem:极限.收敛数列的保序性2} 可知\[
+	b \in [a_1,a] \subseteq (a-r,a].
+\]
+由\cref{theorem:连续函数.函数连续点与海涅定理的关系} 可知\[
+	\lim_{n\to\infty} f(x_n) = f(b).
+\]
+于是\[
+	b = \lim_{n\to\infty} x_{n+1}
+	= \lim_{n\to\infty} f(x_n)
+	= f(b),
+\]
+也就是说\(b\)是\(f\)的不动点.
+因为\(a\)是唯一的不动点，
+所以\(b = a\)，
+即\[
+	\lim_{n\to\infty} x_n = a.
+\]
 
 同理可证当\(x_1 \in (a,a+r)\)时，
 数列\(\{x_n\}_{n\geq1}\)是以\(a\)为极限的严格单调减少数列.
 \end{proof}
 \end{proposition}
-
-\begin{theorem}\label{theorem:连续函数.单调迭代数列收敛定理}
-%@see: 《数学分析：原理与方法》（胡适耕） P35 4.1.6命题
-设\(f\colon D\to\mathbb{R}\)是单调增加的连续函数，
-\(x=a\)是方程\(f(x) = x\)在\(D\)内的唯一根.
-取\(x_0 \in D \cap (-\infty,a)\)使得\(f(x_0) > x_0\)，
-或取\(x_0 \in D \cap (a,+\infty)\)使得\(f(x_0) < x_0\)，
-然后构造数列\(\{x_n\}_{n\geq0}\)使之满足递推公式\[
-	x_n = f(x_{n-1})
-	\quad(n=1,2,\dotsc),
+\begin{remark}
+\cref{theorem:连续函数.单调迭代数列收敛定理} 的
+条件“\(f\)在区间\((a-r,a+r)\)内连续”
+不能弱化为“\(f\)在点\(a\)连续”，
+否则无法保证在区间\((a-r,a+r)\)内只有一个不动点.
+%@credit: 反例是由 {5f4d2f8a-fc8b-4798-85d6-98670f6761e7} 给出的
+取\[
+	f(x) = \left\{ \begin{array}{cc}
+		\left( x + \frac12 \right)^3 - \frac12, & -1 < x < -\frac12, \\
+		x^3, & -\frac12 \leq x < 1.
+	\end{array} \right.
 \]
-则\[
-	\lim_{n\to\infty} x_n = a.
-\]
-\begin{proof}
-首先利用数学归纳法证明\(\{x_n\}_{n\geq0}\)是单调有界的.
-
-假设\(x_0 \in D \cap (-\infty,a)\)且\(f(x_0) > x_0\)，
-那么\(x_1 = f(x_0) > x_0\).
-假设\(x_n \geq x_{n-1}\ (n\geq1)\)，
-则由\(f\)是单调增加函数可知
-\(x_{n+1} = f(x_n) \geq f(x_{n-1}) = x_n\)，
-这就说明\(\{x_n\}_{n\geq0}\)是单调增加的.
-
-考虑到\(x_0 < a\)，
-于是假设\(x_n \leq a\ (n\geq0)\)，
-则\[
-	x_{n+1} = f(x_n) \leq f(a) = a.
-\]
-这就说明\(a\)是\(\{x_n\}_{n\geq0}\)的一个上界.
-
-由\hyperref[theorem:极限.数列的单调有界定理]{单调有界定理}可知，
-极限\(\lim_{n\to\infty} x_n = b\)存在且\(b \leq a\).
-因为\[
-	b = \lim_{n\to\infty} x_{n+1}
-	= \lim_{n\to\infty} f(x_n)
-	= f(b),
-\]
-所以必有\(b = a\)，
-于是\(\lim_{n\to\infty} x_n = a\).
-\end{proof}
-\end{theorem}
+%@Mathematica: f[x_] := Piecewise[{{(x + 1/2)^3 - 1/2, -1 < x < -1/2}, {x^3, -1/2 <= x < 1}}]
+%@Mathematica: Plot[{x, f[x]}, {x, -1, 1}]
+%@Mathematica: Limit[f[x], x -> -1/2, Direction -> "FromBelow"]
+%@Mathematica: Plot[f[x] - x, {x, -1, 1}]
+%@Mathematica: Plot[f'[x] - 1, {x, -1, 1}]
+点\(a=0\)是函数\(f\)的不动点，
+\(f\)在点\(a\)连续，在\((-1,1)\)上严格单调增加，
+并且在区间\((-1,0)\)上有\(f(x)>x\)，
+在区间\(0,1\)上有\(f(x)<x\).
+可以看出点\(a\)是唯一的不动点.
+但是由于\(f\)在点\(x=-1/2\)的左极限是\(-1/2\)，
+也具有类似不动点的性质：
+当\(x_1 \in (-1,-1/2)\)时，
+由\(x_{n+1} = f(x_n)\)迭代生成的
+数列\(\{x_n\}_{n\geq1}\)的极限
+就是\(-\frac12\)，而不是\(a\).
+\end{remark}
 
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1hhtHegEnf
