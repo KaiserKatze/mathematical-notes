@@ -343,3 +343,64 @@
 所以\(\A=\z\).
 \end{proof}
 \end{example}
+
+\begin{example}
+%@see: 《2017年全国硕士研究生入学统一考试（数学一）》一选择题/第5题
+设\(\vb\alpha\)是实数域上的\(n\)维单位列向量，
+\(\vb{E}\)是实数域上的\(n\)阶单位矩阵.
+判断矩阵\(\vb{E} - k \vb\alpha \vb\alpha^T\)是否可逆.
+\begin{solution}
+由\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹} 可知
+\(\tr(\vb\alpha \vb\alpha^T)
+= \tr(\vb\alpha^T \vb\alpha)\).
+因为\(\vb\alpha\)是单位向量，
+所以\[
+	\tr(\vb\alpha \vb\alpha^T)
+	= \vb\alpha^T \vb\alpha
+	= 1.
+\]
+由\cref{example:矩阵乘积的秩.两个向量的乘积的秩} 可知\[
+	\rank(\vb\alpha \vb\alpha^T) = 1.
+\]
+由于\((\vb\alpha \vb\alpha^T)^T = \vb\alpha \vb\alpha^T\)，
+\(\vb\alpha \vb\alpha^T\)是实对称矩阵，
+所以由\cref{theorem:特征值与特征向量.实对称矩阵3} 可知
+\(\vb\alpha \vb\alpha^T\)可以相似对角化.
+不妨设\[
+	\vb\alpha \vb\alpha^T
+	\sim
+	\diag(\AutoTuple{\lambda}{n}).
+\]
+由于\(\rank(\vb\alpha \vb\alpha^T) = 1\)，
+所以\(\AutoTuple{\lambda}{n}\)中必有\(n-1\)个是零，
+因此不妨设\(\lambda_1 \neq 0\)
+而\(\lambda_2 = \dotsb = \lambda_n = 0\).
+又因为\[
+	\tr(\vb\alpha \vb\alpha^T)
+	= \lambda_1 + \lambda_2 + \dotsb + \lambda_n
+	= \lambda_1
+	= 1,
+\]
+所以存在正交矩阵\(\vb{P}\)使得\[
+	\diag(1,0,\dotsc,0)
+	= \vb{P}^{-1} \vb\alpha \vb\alpha^T \vb{P}.
+\]
+因为\[
+	\vb{P}^{-1} (\vb{E} - k \vb\alpha \vb\alpha^T) \vb{P}
+	= \vb{E} - k \diag(1,0,\dotsc,0)
+	= \diag(1-k,1,\dotsc,1),
+\]
+所以\[
+	\abs{\vb{E} - k \vb\alpha \vb\alpha^T}
+	= \abs{\vb{P}^{-1} (\vb{E} - k \vb\alpha \vb\alpha^T) \vb{P}}
+	= \abs{\diag(1-k,1,\dotsc,1)}
+	= 1-k,
+\]
+因此\[
+	\text{矩阵$\vb{E} - k \vb\alpha \vb\alpha^T$可逆}
+	\iff
+	k\neq1.
+	\qedhere
+\]
+\end{solution}
+\end{example}
