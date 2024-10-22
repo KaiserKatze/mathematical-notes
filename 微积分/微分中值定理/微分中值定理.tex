@@ -243,6 +243,59 @@ f(3) = 1\).
 \]
 \end{remark}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1bmyGYvEBc/
+设\(f,g \in C[a,b] \cap D^2(a,b)\)且在\((a,b)\)内具有相等的最大值，
+而\[
+	f(a) = g(a),
+	\qquad
+	f(b) = g(b).
+\]
+证明：存在\(\xi\in(a,b)\)使得\(f''(\xi) = g''(\xi)\).
+\begin{proof}
+设\(x_1,x_2\in(a,b)\)满足\[
+	f(x_1) = \max_{a<x<b} f(x) = M = \max_{a<x<b} g(x) = g(x_2).
+\]
+令\(F(x) = f(x) - g(x)\)，
+由题意有\(F(a) = F(b) = 0\).
+
+当\(x_1 = x_2\)时，有\[
+	F(x_1) = f(x_1) - g(x_1) = M - M = 0.
+	\eqno(1)
+\]
+当\(x_1 \neq x_2\)时，有\[
+	F(x_1) = f(x_1) - g(x_1)
+	= M - g(x_1)
+	\geq 0,
+	\qquad
+	F(x_2) = f(x_2) - g(x_2)
+	= f(x_2) - M
+	\leq 0,
+\]
+记\(x_1' = \min\{x_1,x_2\},
+x_2' = \max\{x_1,x_2\}\)，
+那么由\hyperref[theorem:极限.零点定理]{零点定理}可知，
+存在\(x_3\in[x_1',x_2']\)使得\[
+	F(x_3) = 0.
+	\eqno(2)
+\]
+记\[
+	c = \left\{ \begin{array}{cl}
+		x_1, & x_1 = x_2, \\
+		x_3, & x_1 \neq x_2.
+	\end{array} \right.
+\]
+由罗尔定理可知，存在\(\xi_1\in(a,c)\)，存在\(\xi_2\in(c,b)\)，
+使得\[
+	F'(\xi_1) = F'(\xi_2) = 0.
+\]
+再由罗尔定理可知，存在\(\xi\in(\xi_1,\xi_2)\subseteq(a,b)\)使得\[
+	F''(\xi) = f''(\xi) - g''(\xi) = 0.
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
 \subsection{拉格朗日中值定理}
 \begin{theorem}[拉格朗日中值定理]\label{theorem:微分中值定理.拉格朗日中值定理}
 %@see: 《高等数学（第六版 上册）》 P129 拉格朗日中值定理
