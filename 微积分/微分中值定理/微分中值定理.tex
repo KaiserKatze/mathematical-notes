@@ -442,6 +442,29 @@ f(3) = 1\).
 \end{example}
 本例也可直接根据\cref{theorem:极限.连续函数的极限3} 得到，
 即直接将\(x=0\)代入函数\(f(x) = \sin x - \sin(\sin x)\)中.
+\begin{example}%武忠祥
+计算极限\(\lim_{x\to+\infty} x \left( \frac\pi4 - \arctan\frac{x}{x+1} \right)\).
+\begin{solution}
+注意到\(\arctan1 = \frac\pi4\)，
+因为\(\arctan\)在\((-\infty,+\infty)\)连续且可导，
+所以由\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}可知
+存在\(\xi\in\left( \frac{x}{x+1},1 \right)\)使得\[
+	\arctan1 - \arctan\frac{x}{x+1}
+	= \eval{(\arctan x)'}_{x=\xi} \cdot \left( 1 - \frac{x}{x+1} \right)
+	= \frac1{1+\xi^2} \cdot \left( 1 - \frac{x}{x+1} \right).
+\]
+因为当\(x\to+\infty\)时，有\(\frac{x}{x+1} \to 1\)，所以\(\xi \to 1\).
+于是\begin{align*}
+	\lim_{x\to+\infty} x \left( \frac\pi4 - \arctan\frac{x}{x+1} \right)
+	&= \lim_{x\to+\infty} x
+		\cdot \frac1{1+\xi^2}
+		\cdot \left( 1 - \frac{x}{x+1} \right) \\
+	&= \lim_{x\to+\infty} \frac1{1+\xi^2}
+		\cdot \lim_{x\to+\infty} \frac{x}{x+1}
+	= \frac12.
+\end{align*}
+\end{solution}
+\end{example}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P134 习题3-1 9.
