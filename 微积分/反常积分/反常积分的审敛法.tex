@@ -160,6 +160,37 @@
 \end{proof}
 \end{theorem}
 
+\begin{example}
+%@credit: {3ba7e116-f533-4966-b9ee-3e553864ebec}
+设函数\(f\)在\([0,+\infty)\)上可导，
+且\(f'(x)>0,f(0)=1\).
+证明：\(\int_0^{+\infty} \frac1{f(x)+f'(x)} \dd{x}\)收敛
+是\(\int_0^{+\infty} \frac1{f(x)} \dd{x}\)收敛的充分必要条件.
+\begin{proof}
+因为\(f'(x)>0\)且\(f(0)=1\)，
+所以\(f\)在\([0,+\infty)\)上严格单调增加且恒大于或等于\(1\)，
+从而函数\(x \mapsto \frac1{f(x)}\)在\([0,+\infty)\)上严格单调减少且\(0 < \frac1{f(x)} \leq 1\)，
+那么由\hyperref[theorem:极限.函数的单调有界定理]{单调有界定理}可知\[
+	\lim_{x\to+\infty} \frac1{f(x)} = A < \infty.
+\]
+当\(x\geq0\)时，有\[
+	0 < \frac1{f(x)} - \frac1{f(x)+f'(x)}
+	= \frac{f'(x)}{f^2(x)+f(x) f'(x)}
+	< \frac{f'(x)}{f^2(x)}.
+\]
+又因为\[
+	\int_0^{+\infty} \frac{f'(x)}{f^2(x)} \dd{x}
+	= \eval{-\frac1{f(x)}}_0^{+\infty}
+	= 1 - A,
+\]
+所以由\hyperref[theorem:定积分.无穷限反常积分的比较审敛原理]{比较审敛原理}可知
+反常积分\(\int_0^{+\infty} \left( \frac1{f(x)} - \frac1{f(x)+f'(x)} \right) \dd{x}\)收敛.
+
+因此\(\int_0^{+\infty} \frac1{f(x)+f'(x)} \dd{x}\)收敛
+是\(\int_0^{+\infty} \frac1{f(x)} \dd{x}\)收敛的充分必要条件.
+\end{proof}
+\end{example}
+
 \begin{corollary}[比较审敛原理的极限形式]
 %@see: 《数学分析（第二版 上册）》（陈纪修） P371 推论（比较判别法的极限形式）
 设函数\(f,g\)在\([a,+\infty)\)上非负，
