@@ -122,8 +122,8 @@
 而在\((-\infty,x_0-R)\cup(x_0+R,+\infty)\)上发散.
 
 我们把\cref{theorem:无穷级数.阿贝尔定理1推论} 中提到的正数\(R\)
-称为“幂级数的\DefineConcept{收敛半径}”.
-把开区间\((-R,R)\)称为“幂级数的\DefineConcept{收敛区间}”.
+称为“幂级数\(\sum_{n=0}^\infty a_n x^n\)的\DefineConcept{收敛半径}”.
+把开区间\((-R,R)\)称为“幂级数\(\sum_{n=0}^\infty a_n x^n\)的\DefineConcept{收敛区间}”.
 
 在已知幂级数的收敛半径或收敛区间的情况下，
 我们可以根据幂级数在点\(x = \pm R\)处的收敛性，
@@ -238,6 +238,50 @@
 或\hyperref[theorem:无穷级数.正项级数的根值审敛法]{根值审敛法}），
 或者对幂级数使用换元法.
 \end{remark}
+
+\begin{example}
+%@see: 《数学分析（第二版 下册）》（陈纪修） P86 例10.3.3
+考察幂级数\(\sum_{n=0}^\infty \frac{n^n}{n!} x^n\)的收敛情况.
+\begin{solution}
+因为\[
+	\lim_{n\to\infty} \abs{\frac{a_{n+1}}{a_n}}
+	= \lim_{n\to\infty} \frac{(n+1)^{n+1} / (n+1)!}{n^n / n!}
+	= e,
+\]
+所以收敛半径为\(R=1/e\).
+
+当\(x=1/e\)时，
+\(\sum_{n=0}^\infty \frac{n^n}{n!} x^n\)是正项级数，
+由\hyperref[equation:定积分.伽马函数的斯特林近似]{斯特林公式}有\[
+	\frac{n^n}{n!} x^n
+	\sim
+	\frac{n^n}{\sqrt{2\pi} n^{n+1/2} e^{-n}} \cdot \frac1{e^n}
+	= \frac1{\sqrt{2\pi n}}
+	\quad(n\to\infty),
+\]
+可知\(\sum_{n=0}^\infty \frac{n^n}{n!} x^n\)在点\(x=1/e\)发散.
+
+当\(x=-1/e\)时，
+\(\sum_{n=0}^\infty \frac{n^n}{n!} x^n\)是交错级数，
+由于\[
+	\abs{\frac{(n+1)^{n+1} x^{n+1} / (n+1)!}{n^n x^n / n!}}
+	= \frac1e \left( 1 + \frac1n \right)^n
+	< 1,
+\]
+且\[
+	\abs{\frac{n^n}{n!} x^n}
+	\sim
+	\frac1{\sqrt{2\pi n}}
+	\to 0
+	\quad(n\to\infty),
+\]
+可知\(\sum_{n=0}^\infty \frac{n^n}{n!} x^n\)
+在点\(x=-1/e\)成为莱布尼茨级数，必定收敛.
+
+综上所述，
+\(\sum_{n=0}^\infty \frac{n^n}{n!} x^n\)的收敛域是\(\left[-\frac1e,\frac1e\right)\).
+\end{solution}
+\end{example}
 
 \begin{example}
 %@see: 《高等数学（第六版 下册）》 P273 例1
