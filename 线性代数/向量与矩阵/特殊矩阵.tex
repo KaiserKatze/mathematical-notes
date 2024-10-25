@@ -202,6 +202,8 @@
 \end{example}
 
 \subsection{幂零矩阵}
+%@Mathematica: MatrixPowerTable[A_, n_] := Table[MatrixPower[A, k] // MatrixForm, {k, 1, n}] // DeleteDuplicates
+
 \begin{definition}
 设矩阵\(\A \in M_n(K)\).
 若\[
@@ -218,6 +220,62 @@
 %\cref{example:幂零矩阵.幂零矩阵的特征值的性质}
 %\cref{example:幂零矩阵.幂零矩阵的相似类}
 %\cref{example:幂零矩阵.非零的幂零矩阵不可以相似对角化}
+
+\begin{example}
+%@Mathematica: MatrixPowerTable[{{0, 1, 1}, {0, 0, 1}, {0, 0, 0}}, 5]
+矩阵\[
+	\begin{bmatrix}
+		0 & 1 & 1 \\
+		0 & 0 & 1 \\
+		0 & 0 & 0
+	\end{bmatrix}
+\]是幂零矩阵，
+因为\[
+	\begin{bmatrix}
+		0 & 1 & 1 \\
+		0 & 0 & 1 \\
+		0 & 0 & 0
+	\end{bmatrix}^2
+	=
+	\begin{bmatrix}
+		0 & 0 & 1 \\
+		0 & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix},
+	\qquad
+	\begin{bmatrix}
+		0 & 1 & 1 \\
+		0 & 0 & 1 \\
+		0 & 0 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		0 & 0 & 1 \\
+		0 & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		0 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\]
+%@Mathematica: MatrixPowerTable[{{0, 1, 1}, {0, 0, 1}, {0, 0, 0}}, 5] // Length
+它的幂零指数是\(3\).
+\end{example}
+\begin{example}
+%@Mathematica: MatrixPowerTable[{{0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}, {0, 0, 0, 0}}, 5]
+矩阵\[
+	\begin{bmatrix}
+		0 & 1 & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 0 & 0
+	\end{bmatrix}
+\]是幂零矩阵，
+%@Mathematica: MatrixPowerTable[{{0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}, {0, 0, 0, 0}}, 5] // Length
+它的幂零指数是\(4\).
+\end{example}
 
 \subsection{幂幺矩阵}
 \begin{definition}
@@ -245,6 +303,17 @@
 %\cref{example:幂等矩阵.幂等矩阵的特征值的性质}
 %\cref{example:幂等矩阵.幂等矩阵的相似类}
 
+\begin{example}
+%@Mathematica: MatrixPowerTable[{{0, 1, 1}, {0, 1, 1}, {0, 0, 0}}, 5]
+矩阵\[
+	\begin{bmatrix}
+		0 & 1 & 1 \\
+		0 & 1 & 1 \\
+		0 & 0 & 0
+	\end{bmatrix}
+\]是一个幂等矩阵.
+\end{example}
+
 \subsection{对合矩阵}
 \begin{definition}
 设矩阵\(\A \in M_n(K)\)，\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
@@ -255,6 +324,65 @@
 %\cref{example:对合矩阵.对合矩阵的秩的性质1}
 %\cref{example:对合矩阵.对合矩阵的逆矩阵}
 %\cref{example:对合矩阵.对合矩阵的相似类}
+
+\begin{example}
+%@Mathematica: MatrixPowerTable[{{0, 1}, {1, 0}}, 5]
+矩阵\[
+	\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{bmatrix}
+\]满足\[
+	\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{bmatrix}^2
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{bmatrix},
+\]是一个对合矩阵.
+\end{example}
+\begin{example}
+%@Mathematica: MatrixPowerTable[{{0, I}, {-I, 0}}, 5]
+矩阵\[
+	\begin{bmatrix}
+		0 & \iu \\
+		-\iu & 0
+	\end{bmatrix},
+	\qquad
+	\begin{bmatrix}
+		0 & -\iu \\
+		\iu & 0
+	\end{bmatrix}
+\]都是对合矩阵.
+\end{example}
+\begin{example}
+%@Mathematica: MatrixPowerTable[{{0, 0, 1}, {0, 1, 0}, {1, 0, 0}}, 5]
+%@Mathematica: MatrixPowerTable[{{0, 1, 0}, {1, 0, 0}, {0, 0, 1}}, 5]
+矩阵\[
+	\begin{bmatrix}
+		0 & 0 & 1 \\
+		0 & 1 & 0 \\
+		1 & 0 & 0
+	\end{bmatrix},
+	\qquad
+	\begin{bmatrix}
+		0 & 1 & 0 \\
+		1 & 0 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}
+\]都是对合矩阵.
+\end{example}
 
 \subsection{周期矩阵}
 \begin{definition}
