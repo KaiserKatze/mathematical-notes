@@ -467,9 +467,16 @@
 \end{itemize}
 %TODO proof
 \end{theorem}
+\begin{remark}
+我们可以把\hyperref{theorem:无穷级数.阿贝尔定理2}{阿贝尔第二定理}的结论推广为：
+幂级数在它的收敛域上内闭一致收敛.
+\end{remark}
 
 根据\hyperref[theorem:无穷级数.阿贝尔定理2]{阿贝尔第二定理}，
 我们可以得到幂级数的如下几个性质.
+%\cref{theorem:无穷级数.幂级数的和函数的性质1}
+%\cref{theorem:无穷级数.幂级数的和函数的性质2}
+%\cref{theorem:无穷级数.幂级数的和函数的性质3}
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质1}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P87 定理10.3.4
@@ -486,7 +493,7 @@
 \end{property}
 
 \begin{property}\label{theorem:无穷级数.幂级数的和函数的性质2}
-%@see: 《数学分析（第二版 下册）》（陈纪修） P87 定理10.3.4
+%@see: 《数学分析（第二版 下册）》（陈纪修） P87 定理10.3.5
 %@see: 《高等数学（第六版 下册）》 P276 性质2
 幂级数\(\sum_{n=0}^\infty a_n x^n\)
 在包含于其收敛域中的任意闭区间上
@@ -494,7 +501,7 @@
 即对于其收敛域内的任意两点\(a,b\)，
 有\begin{equation}
 	\int_a^b \sum_{n=0}^\infty a_n x^n \dd{x}
-	= \sum_{n=0}^\infty \int_a^b a_n x^n \dd{x}.
+	= \sum_{n=0}^\infty \int_a^b a_n x^n \dd{x};
 \end{equation}
 特别地，有\begin{equation}
 	\int_0^x \sum_{n=0}^\infty a_n t^n \dd{t}
@@ -573,7 +580,8 @@
 \end{proposition}
 
 \begin{example}
-求幂级数\(\sum_{n=1}^\infty \frac{x^n}{n+1}\)的和函数.
+%@see: 《高等数学（第六版 下册）》 P276 例6
+求幂级数\(\sum_{n=0}^\infty \frac{x^n}{n+1}\)的和函数.
 \begin{solution}
 先求收敛域.
 由\[
@@ -583,20 +591,20 @@
 \]
 得收敛半径\(R=1\).
 
-在端点\(x = -1\)处，
-幂级数成为\(\sum_{n=1}^\infty \frac{(-1)^n}{n+1}\)，
-是收敛的交错级数；
-在端点\(x = 1\)处，
-幂级数成为\(\sum_{n=1}^\infty \frac{1}{n+1}\)，
+当\(x = -1\)时，
+幂级数成为\(\sum_{n=0}^\infty \frac{(-1)^n}{n+1}\)，
+是莱布尼茨级数，收敛.
+当\(x = 1\)时，
+幂级数成为\(\sum_{n=0}^\infty \frac{1}{n+1}\)，
 是发散的.
 因此收敛域是\(I = [-1,1)\).
 
 设和函数为\(s(x)\)，即\[
-	s(x) = \sum_{n=1}^\infty \frac{x^n}{n+1},
+	s(x) = \sum_{n=0}^\infty \frac{x^n}{n+1},
 	\quad x\in[-1,1).
 \]
 于是\[
-	x s(x) = \sum_{n=1}^\infty \frac{x^{n+1}}{n+1}.
+	x \cdot s(x) = \sum_{n=0}^\infty \frac{x^{n+1}}{n+1}.
 \]
 
 利用\cref{theorem:无穷级数.幂级数的和函数的性质3}，逐项求导，并由\[
@@ -604,15 +612,15 @@
 	\quad(-1<x<1),
 \]
 得\[
-	[x s(x)]'
-	= \sum_{n=1}^\infty \left( \frac{x^{n+1}}{n+1} \right)'
-	= \sum_{n=1}^\infty x^n
+	[x \cdot s(x)]'
+	= \sum_{n=0}^\infty \left( \frac{x^{n+1}}{n+1} \right)'
+	= \sum_{n=0}^\infty x^n
 	= \frac{1}{1-x}
 	\quad(\abs{x}<1).
 \]
 对上式积分，
 得\[
-	x s(x) = \int_0^x \frac{1}{1-x} \dd{x} = -\ln(1-x)
+	x \cdot s(x) = \int_0^x \frac{1}{1-x} \dd{x} = -\ln(1-x)
 	\quad(-1 \leq x < 1).
 \]
 于是，当\(x\neq0\)时，有\(s(x) = -\frac{1}{x} \ln(1-x)\).
