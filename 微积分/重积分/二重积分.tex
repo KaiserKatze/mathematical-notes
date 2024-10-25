@@ -412,62 +412,71 @@ y = \rho\sin\theta \\
 \end{proof}
 \end{example}
 
-\begin{example}
-计算\(\iint_D e^{-x^2-y^2} \dd{x} \dd{y}\)，其中\(D\)是由中心在原点、半径为\(a\)的圆周所围成的闭区域.
+\begin{example}\label{example:二重积分.利用二重积分计算高斯积分}
+设\(D\)是由中心在原点、半径为\(a\)的圆周所围成的闭区域.
+\begin{itemize}
+	\item 计算\(\iint_D e^{-x^2-y^2} \dd{x} \dd{y}\).
+	\item 计算高斯积分\(\int_0^{+\infty} e^{-x^2} \dd{x}\).
+\end{itemize}
 \begin{solution}
 在极坐标系中，闭区域\(D\)可以表示为\begin{gather*}
-0 \leq \rho \leq a, \\
-0 \leq \theta \leq 2\pi,
-\end{gather*}那么有\[
-\iint_D e^{-x^2-y^2} \dd{x} \dd{y}
-= \iint_D e^{-\rho^2} \rho \dd{\rho} \dd{\theta}
-= \int_0^{2\pi} \dd{\theta} \int_0^a e^{-\rho^2} \rho \dd{\rho}
-= \pi(1-e^{-a^2}).
+	0 \leq \rho \leq a, \\
+	0 \leq \theta \leq 2\pi,
+\end{gather*}
+那么有\[
+	\iint_D e^{-x^2-y^2} \dd{x} \dd{y}
+	= \iint_D e^{-\rho^2} \rho \dd{\rho} \dd{\theta}
+	= \int_0^{2\pi} \dd{\theta} \int_0^a e^{-\rho^2} \rho \dd{\rho}
+	= \pi(1-e^{-a^2}).
 \]
-\end{solution}
-\end{example}
 
-利用上面的结论，可以计算常用的反常积分\(\int_0^{+\infty} e^{-x^2} \dd{x}\).
-\begin{example}
-求\(\int_0^{+\infty} e^{-x^2} \dd{x}\).
-\begin{solution}
 设\begin{align*}
-D_1 &= \{ (x,y) \mid x^2+y^2 \leq R^2 \land x \geq 0 \land y \geq 0 \}, \\
-D_2 &= \{ (x,y) \mid x^2+y^2 \leq 2 R^2 \land x \geq 0 \land y \geq 0 \}, \\
-S &= \{ (x,y) \mid 0 \leq x \leq R \land 0 \leq y \leq R \}.
-\end{align*}显然\(D_1 \subseteq S \subseteq D_2\).
-由于\(e^{-x^2-y^2} > 0\)，从而在这些闭区域上的二重积分之间有有不等式\[
-\iint_{D_1} e^{-x^2-y^2}\dd{x}\dd{y}
-< \iint_{S} e^{-x^2-y^2}\dd{x}\dd{y}
-< \iint_{D_2} e^{-x^2-y^2}\dd{x}\dd{y}.
-\]因为\[
-\iint_{S}{e^{-x^2-y^2}\dd{x}\dd{y}}
-= \int_0^R e^{-x^2}\dd{x} \cdot \int_0^R e^{-y^2} \dd{y}
-= \left( \int_0^R e^{-x^2} \dd{x} \right)^2,
-\]又有\begin{align*}
-\iint_{D_1}{e^{-x^2-y^2}\dd{x}\dd{y}}
-&= \frac{\pi}{4} (1 - e^{-R^2}) \\
-\iint_{D_2}{e^{-x^2-y^2}\dd{x}\dd{y}}
-&= \frac{\pi}{4} (1 - e^{-2 R^2})
-\end{align*}于是上面的不等式可写成\[
-\frac{\pi}{4} (1 - e^{-R^2})
-< \left( \int_0^R e^{-x^2} \dd{x} \right)^2
-< \frac{\pi}{4} (1 - e^{-2 R^2}).
-\]令\(R \to +\infty\)，上式两端均趋于同一极限\(\frac{\pi}{4}\)，从而
-\begin{equation}\label{equation:重积分.常用积分1}
-\int_0^{+\infty} e^{-x^2} \dd{x} = \frac{\sqrt{\pi}}{2}.
-\end{equation}
+	D_1 &= \{ (x,y) \mid x^2+y^2 \leq R^2 \land x \geq 0 \land y \geq 0 \}, \\
+	D_2 &= \{ (x,y) \mid x^2+y^2 \leq 2 R^2 \land x \geq 0 \land y \geq 0 \}, \\
+	S &= \{ (x,y) \mid 0 \leq x \leq R \land 0 \leq y \leq R \}.
+\end{align*}
+显然\(D_1 \subseteq S \subseteq D_2\).
+由于\(e^{-x^2-y^2} > 0\)，
+从而在这些闭区域上的二重积分之间有有不等式\[
+	\iint_{D_1} e^{-x^2-y^2}\dd{x}\dd{y}
+	< \iint_{S} e^{-x^2-y^2}\dd{x}\dd{y}
+	< \iint_{D_2} e^{-x^2-y^2}\dd{x}\dd{y}.
+\]
+因为\[
+	\iint_{S}{e^{-x^2-y^2}\dd{x}\dd{y}}
+	= \int_0^R e^{-x^2}\dd{x} \cdot \int_0^R e^{-y^2} \dd{y}
+	= \left( \int_0^R e^{-x^2} \dd{x} \right)^2,
+\]
+又有\begin{align*}
+	\iint_{D_1}{e^{-x^2-y^2}\dd{x}\dd{y}}
+	&= \frac{\pi}{4} (1 - e^{-R^2}) \\
+	\iint_{D_2}{e^{-x^2-y^2}\dd{x}\dd{y}}
+	&= \frac{\pi}{4} (1 - e^{-2 R^2})
+\end{align*}
+于是上面的不等式可写成\[
+	\frac{\pi}{4} (1 - e^{-R^2})
+	< \left( \int_0^R e^{-x^2} \dd{x} \right)^2
+	< \frac{\pi}{4} (1 - e^{-2 R^2}).
+\]
+令\(R \to +\infty\)，上式两端均趋于同一极限\(\frac{\pi}{4}\)，
+从而\begin{equation*}
+	\int_0^{+\infty} e^{-x^2} \dd{x} = \frac{\sqrt{\pi}}{2}.
+\end{equation*}
 \end{solution}
+%\cref{example:定积分.高斯积分的收敛性}
+%\cref{example:反常积分.利用伽马函数计算高斯积分}
 \end{example}
-对积分 \labelcref{equation:重积分.常用积分1} 稍作修改，可以得到误差函数\(\erf(z)\)的定义：
-\begin{equation}
+\begin{remark}
+对高斯积分稍作修改，可以得到误差函数\(\erf(z)\)的定义：
+\begin{equation*}
 	\erf(z) \defeq \frac{2}{\sqrt{\pi}} \int_0^z e^{-t^2} \dd{t}.
-\end{equation}
+\end{equation*}
 
-因为积分 \labelcref{equation:重积分.常用积分1} 的被积函数在\((-\infty,+\infty)\)上是偶函数，
+因为高斯积分的被积函数在\((-\infty,+\infty)\)上是偶函数，
 所以\begin{equation}\label{equation:重积分.常用积分2}
 	\int_{-\infty}^{+\infty} e^{-x^2} \dd{x} = \sqrt{\pi}.
 \end{equation}
+\end{remark}
 
 \subsubsection{二重积分被积函数的对称性}
 \begingroup
