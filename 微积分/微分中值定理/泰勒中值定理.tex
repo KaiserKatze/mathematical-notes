@@ -456,18 +456,22 @@
 		1 - \frac12 x + \frac13 x^2 - \dotsb
 		+ (-1)^{n-1} \frac1n x^{n-1} + o(x^n)
 	\right) \\
-	&= \exp(1) \cdot \exp(-\frac12 x) \cdot \exp(\frac13 x^2)
-	\dotsm \exp((-1)^{n-1} \frac1n x^{n-1}) \cdot \exp(o(x^n)).
+	&= e \cdot \exp(-\frac12 x + \frac13 x^2 - \dotsb + (-1)^{n-1} \frac1n x^{n-1} + o(x^n)).
 \end{align*}
+记\(g(x) = -\frac12 x + \frac13 x^2 - \dotsb + (-1)^{n-1} \frac1n x^{n-1}\)，
+则\(f(x) = e \cdot \exp(g(x) + o(x^n))\).
 再由\(e^x\)的泰勒公式\[
 	e^x = 1 + x + \frac1{2!} x^2 + \dotsb
 	+ \frac1{n!} x^n + o(x^n)
-\]得\begin{align*}
-	f(x) &= e \left( 1 - \frac12 x + \frac18 x^2 \right)
-	\left( 1 + \frac13 x^2 \right) + o(x^3) \\
-	&= e \left( 1 - \frac12 x + \frac{11}{24} x^2 \right) + o(x^3).
-\end{align*}
+\]得\begin{equation*}
+	f(x)
+	= e \left[ 1 + g(x) + \frac1{2!} g^2(x) + \dotsb + \frac1{n!} g^n(x) + o(x^n) \right].
+\end{equation*}
+特别地，当\(n=4\)时，有\[
+	f(x) = e \left( 1 - \frac12 x + \frac{11}{24} x^2 - \frac7{16} x^3 \right) + o(x^4).
+\]
 \end{solution}
+%@Mathematica: Series[(1 + x)^(1/x), {x, 0, 3}]
 \end{example}
 
 \begin{example}
