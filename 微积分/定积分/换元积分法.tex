@@ -151,6 +151,31 @@
 \end{example}
 
 \begin{example}
+%@see: https://www.bilibili.com/video/BV16M411V7Ni/
+计算\(\int_{1/6}^6 \frac1x \floor*{\frac1{\sqrt{x}}} \dd{x}\).
+\begin{solution}
+令\(t = 1/\sqrt{x}\)，
+得\(x = t^{-2},
+\dd{x} = -2 t^{-3} \dd{t}\).
+当\(x=1/6\)时，\(t=\sqrt6\)；
+当\(x=6\)时，\(t=1/\sqrt6\).
+于是\[
+	I = \int_{1/6}^6 \frac1x \floor*{\frac1{\sqrt{x}}} \dd{x}
+	= \int_{\sqrt6}^{1/\sqrt6} t^2 \floor{t} \cdot (-2) t^{-3} \dd{t}
+	= 2 \int_{1/\sqrt6}^{\sqrt6} \frac{\floor{t}}{t} \dd{t}.
+\]
+由于\(2 = \sqrt4 < \sqrt6 < \sqrt9 = 3,
+0 < 1/\sqrt6 < 1/2 < 1\)，
+所以\begin{align*}
+	I &= 2 \left( \int_{1/\sqrt6}^1 + \int_1^2 + \int_2^{\sqrt6} \right) \frac{\floor{t}}{t} \dd{t} \\
+	&= 2 \left( \int_{1/\sqrt6}^1 \frac0t \dd{t} + \int_1^2 \frac1t \dd{t} + \int_2^{\sqrt6} \frac2t \dd{t} \right) \\
+	&= 2 \left( 0 + \eval{\ln t}_1^2 + 2 \eval{\ln t}_2^{\sqrt6} \right)
+	= 2 \ln3.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}
 %@see: 《高等数学（第六版 上册）》 P254 习题5-3 6.
 证明：\begin{itemize}
 	\item 若\(f\)是连续的奇函数，则\(\int_0^x f(t) \dd{t}\)是偶函数.
