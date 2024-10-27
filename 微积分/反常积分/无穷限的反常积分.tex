@@ -329,7 +329,6 @@ definition:定积分.无穷限的反常积分的定义3}
 \end{solution}
 \end{example}
 
-\subsection{\texorpdfstring{\(p\)}{p}积分}
 \begin{proposition}[\(p\)积分]\label{example:定积分.p积分}
 %@see: 《高等数学（第六版 上册）》 P257 例3
 %@see: 《数学分析（第二版 上册）》（陈纪修） P359 例8.1.2
@@ -452,4 +451,65 @@ definition:定积分.无穷限的反常积分的定义3}
 就有(1)式成立.
 \end{proof}
 %@see: 《数学分析中的典型问题与方法（第3版）》（裴礼文） P39 例1.3.20
+\end{example}
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1VG4y1S7Ym/
+计算极限\(\lim_{n\to\infty} \frac1n \left( \floor*{\frac{2n}{k}} - 2 \floor*{\frac{n}{k} \vphantom{\frac{2n}{k}}} \right)\).
+\begin{solution}
+由积分的定义有\[
+	I = \lim_{n\to\infty} \frac1n \left( \floor*{\frac{2n}{k}} - 2 \floor*{\frac{n}{k} \vphantom{\frac{2n}{k}}} \right)
+	= \int_0^1 \left( \floor*{\frac2x} - 2 \floor*{\frac1x} \right).
+\]
+令\(t = 1/x\)，
+得\(\dd{x} = -\frac{\dd{t}}{t^2}\).
+于是\[
+	I = \int_1^{+\infty} \frac{\floor{2t} - 2\floor{t}}{t^2} \dd{t}.
+\]
+应该注意到\[
+	\int_1^{+\infty} \frac{\floor{2t} - 2\floor{t}}{t^2} \dd{t}
+	\neq
+	\int_1^{+\infty} \frac{\floor{2t}}{t^2} \dd{t}
+	- \int_1^{+\infty} \frac{2\floor{t}}{t^2} \dd{t},
+\]
+这是因为不等号右边的两个反常积分都发散.
+
+对于任意正整数\(n\)，
+当\(n \leq t < n+1\)时，
+有\(2n \leq 2t < 2(n+1) = 2n+2\)，
+从而有\(\floor{t} = n\)，
+但是不能确定\(\floor{2t}\)的取值，
+这是因为当\(2n \leq 2t < 2n+1\)时\(\floor{2t} = 2n\)，
+而当\(2n+1 \leq 2t < 2n+2\)时\(\floor{2t} = 2n+1\)，
+所以需要进一步讨论.
+由于\begin{gather*}
+	2n \leq 2t < 2n+1
+	\iff
+	n \leq t < n+\frac12, \\
+	2n+1 \leq 2t < 2n+2
+	\iff
+	n+\frac12 \leq t < n+1,
+\end{gather*}
+所以\[
+	\floor{2t} - 2\floor{t}
+	= \left\{ \begin{array}{cl}
+		0, & \floor{t} \leq t < \floor{t}+1/2, \\
+		1, & \floor{t}+1/2 \leq t < \floor{t}+1.
+	\end{array} \right.
+\]
+于是\begin{align*}
+	I &= \sum_{n=1}^\infty \int_n^{n+1} \frac{\floor{2t}-2\floor{t}}{t^2} \dd{t} \\
+	&= \sum_{n=1}^\infty \left(
+		\int_n^{n+\frac12} \frac{0}{t^2} \dd{t}
+		+ \int_{n+\frac12}^{n+1} \frac{1}{t^2} \dd{t}
+	\right) \\
+	&= \sum_{n=1}^\infty \int_{n+\frac12}^{n+1} \dd(-\frac1t) \\
+	&= \sum_{n=1}^\infty \eval{\left( -\frac1t \right)}_{n+\frac12}^{n+1} \\
+	&= \sum_{n=1}^\infty \left( \frac2{2n+1} - \frac2{2n+2} \right) \\
+	&= 2 \left( \frac13 - \frac14 + \frac15 - \frac16 + \dotsb \right) \\
+	%\cref{equation:无穷级数.幂级数展开式4}
+	&= 2 \left( \ln2 - \frac12 \right)
+	= 2\ln2 - 1.
+\end{align*}
+\end{solution}
 \end{example}
