@@ -267,6 +267,64 @@
 这三个雅克比行列式不全为零”
 则可以用“雅克比矩阵\(\vb{J}\)满秩”等价代替.
 
+
+\begin{example}
+%@see: 《2017年全国硕士研究生入学统一考试（数学一）》三解答题/第19题
+设薄片形物体\(S\)是圆锥面\(z=\sqrt{x^2+y^2}\)被柱面\(z^2=2x\)截下的有限部分，
+其上任意一点的密度为\[
+	\mu(x,y,z) = 9\sqrt{x^2+y^2+z^2}.
+\]
+记圆锥面与柱面的交线为\(C\).
+\begin{itemize}
+	\item 求\(C\)在\(xOy\)平面上的投影曲线的方程；
+	\item 求\(S\)的质量\(M\).
+\end{itemize}
+\begin{solution}
+联立方程\[
+	\begin{cases}
+		z=\sqrt{x^2+y^2}, \\
+		z^2=2x,
+	\end{cases}
+\]
+消去变量\(z\)，
+得\(x^2+y^2=2x\)，
+那么\(C\)在\(xOy\)平面上的投影曲线的方程为\[
+	\begin{cases}
+		x^2+y^2=2x, \\
+		z=0.
+	\end{cases}
+\]
+由于对圆锥面方程\(z=\sqrt{x^2+y^2}\)求导得\[
+	\pdv{z}{x} = \frac{x}{\sqrt{x^2+y^2}},
+	\qquad
+	\pdv{z}{y} = \frac{y}{\sqrt{x^2+y^2}},
+\]
+曲面\(S\)的面积元素为\[
+	\sqrt{1+\left( \pdv{z}{x} \right)^2+\left( \pdv{z}{y} \right)^2} \dd{x}\dd{y}
+	= \sqrt2 \dd{x}\dd{y},
+\]
+记\(D_{xy} = \Set{ (x,y) \given x^2+y^2\leq2x }\)，
+于是\(S\)的质量\(M\)为\begin{align*}
+	M &= \iint_S \mu(x,y,z) \dd{S} \\
+	&= 9 \iint_{D_{xy}} \sqrt{x^2+y^2+(x^2+y^2)} \cdot \sqrt2 \dd{x}\dd{y} \\
+	&= 18 \iint_{D_{xy}} \sqrt{x^2+y^2} \dd{x}\dd{y}.
+\end{align*}
+在极坐标下，区域\(D_{xy}\)对应的区域为
+\(D_{xy}'
+= \Set{ (\rho,\theta) \given \rho^2 \leq 2 \rho \cos\theta }
+= \Set{ (\rho,\theta) \given \rho \leq 2 \cos\theta }\)，
+于是\begin{align*}
+	M &= 18 \int_{-\frac\pi2}^{\frac\pi2} \dd\theta
+		\int_0^{2\cos\theta} \rho \cdot \rho \dd\rho \\
+	&= 48 \int_{-\frac\pi2}^{\frac\pi2} \cos^3\theta \dd\theta \\
+	&= 96 \int_0^{\frac\pi2} \cos^3\theta \dd\theta
+	%\cref{equation:定积分.点火公式1}
+	= 64.
+\end{align*}
+\end{solution}
+%@Mathematica: Plot3D[{Sqrt[x^2 + y^2], Sqrt[2 x]}, {x, -2, 2}, {y, -2, 2}, PlotLegends -> "Expressions", AxesLabel -> Automatic]
+\end{example}
+
 \subsection{物体的质心}
 %@see: 《高等数学（第六版 下册）》 P169
 先讨论平面薄片的质心.
