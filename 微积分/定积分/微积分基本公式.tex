@@ -401,6 +401,53 @@ M \defeq \max_{a \leq x \leq b} f(x),
 \end{remark}
 
 \begin{example}
+%@see: https://www.bilibili.com/video/BV19M411j7uq/
+设函数\(f\)在\([0,1]\)上二阶连续可导，
+\(f(x)\geq0,
+f''(x)<0\)，
+令\[
+	I_n = \int_0^1 f(x^n) \dd{x}
+	\quad(n\in\mathbb{N}).
+\]
+\begin{itemize}
+	\item 证明：\(I_n \leq f\left( \frac1{n+1} \right)\).
+	\item 设\(f(0) = 0\)，求极限\(\lim_{n\to\infty} I_n\).
+\end{itemize}
+\begin{solution}
+写出\(f\)的泰勒公式：\[
+	f(x) = f(x_0) + f'(x_0) (x-x_0) + \frac1{2!} f''(\xi) (x-x_0)^2
+	\quad(\text{$\xi$在$x$与$x_0$之间}).
+\]
+因为\(f''(\xi)<0\)，
+所以\[
+	f(x) \leq f(x_0) + f'(x_0) (x-x_0).
+\]
+用\(x^n\)代\(x\)，用\(\frac1{n+1}\)代\(x_0\)，得\[
+	f(x^n)
+	\leq
+	f\left(\frac1{n+1}\right) + f'\left(\frac1{n+1}\right) \left(x^n-\frac1{n+1}\right).
+\]
+积分得\[
+	I_n = \int_0^1 f(x^n) \dd{x}
+	\leq f\left(\frac1{n+1}\right)
+	+ f'\left(\frac1{n+1}\right) \int_0^1 \left(x^n-\frac1{n+1}\right) \dd{x}.
+\]
+这里\[
+	\int_0^1 \left(x^n-\frac1{n+1}\right) \dd{x} = 0,
+\]
+故\[
+	I_n \leq f\left(\frac1{n+1}\right).
+\]
+
+接下来对不等式\(0 < I_n \leq f\left(\frac1{n+1}\right)\)
+令\(n\to\infty\)得\[
+	0 \leq \lim_{n\to\infty} I_n \leq f(0) = 0,
+\]
+于是\(\lim_{n\to\infty} I_n = 0\).
+\end{solution}
+\end{example}
+
+\begin{example}
 %@see: 《高等数学（第六版 上册）》 P241 例7
 %@see: 《数学分析（第二版 上册）》（陈纪修） P310 习题 3.
 \def\fu{\displaystyle \int_0^x t f(t) \dd{t}}
