@@ -296,6 +296,76 @@ x_2' = \max\{x_1,x_2\}\)，
 \end{proof}
 \end{example}
 
+\begin{example}
+%@see: 《2017年全国硕士研究生入学统一考试（数学一）》三解答题/第18题
+设函数\(f\)在区间\([0,1]\)上具有\(2\)阶导数，
+且\(f(1) > 0,
+\lim_{x\to0^+} \frac{f(x)}{x} < 0\).
+证明：\begin{itemize}
+	\item 方程\(f(x) = 0\)在区间\((0,1)\)内至少存在一个实根；
+	\item 方程\(f(x) f''(x) + (f'(x))^2 = 0\)在区间\((0,1)\)内至少存在两个不同实根.
+\end{itemize}
+\begin{solution}
+因为\(\lim_{x\to0^+} \frac{f(x)}{x} < 0\)，
+所以\[
+	\lim_{x\to0^+} f(x)
+	= \lim_{x\to0^+} \frac{f(x)}{x} \cdot x
+	= \lim_{x\to0^+} \frac{f(x)}{x} \cdot \lim_{x\to0^+} x
+	= 0,
+\]
+从而有\[
+	f(0) = \lim_{x\to0^+} f(x) = 0;
+	\eqno(1)
+\]
+另外由\hyperref[theorem:极限.函数极限的局部保号性1]{函数极限的局部保号性}可知，
+存在\(\delta\in(0,1)\)，
+当\(0<x<\delta\)时，
+成立\[
+	\frac{f(x)}{x} < 0.
+\]
+那么，只要任意取定\(x_1\in(0,\delta)\subset(0,1)\)，
+就有\[
+	f(x_1) < 0.
+	\eqno(2)
+\]
+因为\(f\)在区间\([0,1]\)上具有\(2\)阶导数，
+所以\(f\)在\([0,1]\)上连续.
+又因为\(f(1) > 0\)，
+所以由\hyperref[theorem:极限.零点定理]{零点定理}可知，
+存在\(x_2\in(x_1,1)\subset(0,1)\)，
+使得\[
+	f(x_2) = 0.
+	\eqno(3)
+\]
+这就是说，点\(x_2\)是方程\(f(x) = 0\)的一个实根.
+
+令\[
+	F(x) = f(x) f'(x),
+\]
+则\[
+	F'(x) = f(x) f''(x) + (f'(x))^2.
+\]
+由于\(f(0) = f(x_2) = 0\)，
+所以由\hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}可知，
+存在\(x_3\in(0,x_2)\)，
+使得\[
+	f'(x_3) = 0.
+	\eqno(4)
+\]
+于是\[
+	F(0) = F(x_3) = F(x_2) = 0.
+	\eqno(5)
+\]
+又由\hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}可知，
+存在\(\xi_1\in(0,x_3)\subset(0,1)\)，
+存在\(\xi_2\in(x_3,x_2)\subset(0,1)\)，
+使得\[
+	F'(\xi_1) = F'(\xi_2) = 0.
+	\qedhere
+\]
+\end{solution}
+\end{example}
+
 \subsection{拉格朗日中值定理}
 \begin{theorem}[拉格朗日中值定理]\label{theorem:微分中值定理.拉格朗日中值定理}
 %@see: 《高等数学（第六版 上册）》 P129 拉格朗日中值定理
