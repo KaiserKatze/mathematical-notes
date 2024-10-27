@@ -197,7 +197,7 @@ S_2 : z = z_2(x,y),
 \end{proof}
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:三重积分.椭球体的体积}
 计算椭球体\(\Omega: \frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}\leq1\ (a,b,c>0)\)的体积.
 \begin{solution}
 作广义球面坐标变换\[
@@ -339,5 +339,59 @@ S_2 : z = z_2(x,y),
 	\iiint_\Omega x^2 \dd{v}
 	\neq \iiint_\Omega z^2 \dd{v}.
 \]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1xbyoYxEo5/
+设\(\Omega: \frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}\leq1\ (a,b,c>0)\).
+计算三重积分\[
+	\iiint_\Omega (
+		A x^2 + B y^2 + C z^2
+		+ D xy + E yz + F zx
+		+ G x + H y + I z
+		+ J
+	) \dd{v}.
+\]
+\begin{solution}
+由于\(\Omega\)关于三个坐标面都对称，
+所以\[
+	\iiint_\Omega xy \dd{v}
+	= \iiint_\Omega yz \dd{v}
+	= \iiint_\Omega zx \dd{v}
+	= \iiint_\Omega x \dd{v}
+	= \iiint_\Omega y \dd{v}
+	= \iiint_\Omega z \dd{v}
+	= 0.
+\]
+这里\begin{align*}
+	\iiint_\Omega z^2 \dd{v}
+	&= \int_{-c}^c z^2 \dd{z}
+		\iint_{\frac{x^2}{a^2}+\frac{y^2}{b^2}\leq1-\frac{z^2}{c^2}} \dd{x}\dd{y} \\
+	&= \int_{-c}^c z^2 \cdot \pi ab \left( 1-\frac{z^2}{c^2} \right) \dd{z} \\
+	&= 2ab\pi \int_0^c \left( z^2 - \frac1{c^2} z^4 \right) \dd{z} \\
+	&= 2ab\pi \eval{\left( \frac13 z^3 - \frac1{5c^2} z^5 \right)}_0^c \\
+	&= \frac4{15} abc^3\pi.
+\end{align*}
+利用轮换对称性可得\[
+	\iiint_\Omega x^2 \dd{v}
+	= \frac4{15} a^3bc\pi,
+	\qquad
+	\iiint_\Omega y^2 \dd{v}
+	= \frac4{15} ab^3c\pi.
+\]
+再由\cref{example:三重积分.椭球体的体积}
+可知\(\iiint_\Omega \dd{v}
+= \frac43 abc\pi\).
+于是\begin{align*}
+	&\iiint_\Omega (
+		A x^2 + B y^2 + C z^2
+		+ D xy + E yz + F zx
+		+ G x + H y + I z
+		+ J
+	) \dd{v} \\
+	&= \iiint_\Omega (A x^2 + B y^2 + C z^2 + J) \dd{v} \\
+	&= \frac4{15} abc\pi (a^2 A + b^2 B + c^2 C + 5 J).
+\end{align*}
 \end{solution}
 \end{example}
