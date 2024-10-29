@@ -830,3 +830,100 @@ x=y=z.
 电视机的最优价格问题就解决了.
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《2018年全国硕士研究生入学统一考试（数学一）》三解答题/第16题
+将长为\(\qty{2}{\meter}\)的铁丝分成三段，依次围成圆、正方形与正三角形.
+三个图形的面积之和是否存在最小值？
+若存在，求出最小值.
+\begin{solution}
+设圆的半径为\(x\)，正方形的边长为\(y\)，正三角形的边长为\(z\)，
+则\[
+	2\pi x + 4 y + 3 z = 2.
+	\eqno(1)
+\]
+三个图形的面积之和为\[
+	S(x,y,z) = \pi x^2 + y^2 + \frac{\sqrt3}4 z^2.
+	\eqno(2)
+\]
+作拉格朗日函数\[
+	L(x,y,z) = \pi x^2 + y^2 + \frac{\sqrt3}4 z^2 - \lambda(2\pi x + 4 y + 3 z - 2).
+\]
+令\begin{gather*}
+	L'_x = 2\pi x - 2\pi\lambda = 0, \\
+	L'_y = 2y - 4\lambda = 0, \\
+	L'_z = \frac{\sqrt3}2 z - 3\lambda = 0,
+\end{gather*}
+解得\begin{gather*}
+	x = \lambda, \\
+	y = 2\lambda, \\
+	z = 2\sqrt3 \lambda.
+\end{gather*}
+代入约束条件，得\[
+	2\pi \cdot \lambda + 4 \cdot 2\lambda + 3 \cdot 2\sqrt3 \lambda = 2,
+\]
+解得\[
+	\lambda = (\pi+4+3\sqrt3)^{-1}.
+\]
+因此目标函数\(S\)在区域\(\Set{
+	(x,y,z)
+	\given
+	x,y,z>0,
+	2\pi x + 4 y + 3 z = 2
+}\)上的最值是\[
+	S(\lambda,2\lambda,2\sqrt3 \lambda)
+	= \frac1{\pi+4+3\sqrt3}.
+\]
+
+下面考察目标函数\(S\)在区域边缘上的最值.
+
+当\(x=0\)时，考察函数\(S_1(y,z) = S(0,y,z)\)在约束条件\(4 y + 3 z = 2\)下的最值.
+作拉格朗日函数\[
+	L_1(y,z) = y^2 + \frac{\sqrt3}4 z^2 - \lambda(4 y + 3 z - 2).
+\]
+令\begin{gather*}
+	L'_{1y} = 2y - 4\lambda = 0, \\
+	L'_{1z} = \frac{\sqrt3}2 z - 3\lambda = 0,
+\end{gather*}
+解得\begin{gather*}
+	y = 2\lambda, \\
+	z = 2\sqrt3 \lambda.
+\end{gather*}
+代入约束条件，得\[
+	4 \cdot 2\lambda + 3 \cdot 2\sqrt3 \lambda = 2,
+\]
+解得\[
+	\lambda = (4+3\sqrt3)^{-1}.
+\]
+此时\(S\)的最值是\[
+	S(0,2\lambda,2\sqrt3 \lambda)
+	= (2\lambda)^2 + \frac{\sqrt3}4 (2\sqrt3 \lambda)^2
+	= \frac1{4+3\sqrt3}.
+\]
+
+同理，当\(y=0\)时，函数\(S_2(x,z) = S(x,0,z)\)在约束条件\(2\pi x + 3 z = 2\)下的最值为\[
+	S(\lambda,0,2\sqrt3 \lambda)
+	= \pi \lambda^2 + \frac{\sqrt3}4 (2\sqrt3 \lambda)^2
+	= \frac1{\pi+3\sqrt3}.
+\]
+同理，当\(z=0\)时，函数\(S_3(x,y) = S(x,y,0)\)在约束条件\(2\pi x + 4 y = 2\)下的最值为\[
+	S(\lambda,2\lambda,0)
+	= \pi \lambda^2 + (2\lambda)^2
+	= \frac1{\pi+4}.
+\]
+
+由于\[
+	\frac1{\pi+4+3\sqrt3}
+	< \min\left\{
+		\frac1{4+3\sqrt3},
+		\frac1{\pi+3\sqrt3},
+		\frac1{\pi+4}
+	\right\},
+\]
+所以目标函数\(S\)在约束条件\(2\pi x + 4 y + 3 z = 2\)下的最小值为\[
+	S(\lambda,2\lambda,2\sqrt3 \lambda)
+	= \frac1{\pi+4+3\sqrt3},
+\]
+也就是说，三个图形的面积之和的最小值存在且它等于\((\pi+4+3\sqrt3)^{-1}\).
+\end{solution}
+\end{example}
