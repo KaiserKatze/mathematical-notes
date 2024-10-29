@@ -73,22 +73,24 @@
 为了考察\(\abs{U}\)的相对大小，
 我们需要定下一个临界值.
 通常我们会取一个很小的正数\(\alpha\)（如0.01、0.05），
-并称其为\DefineConcept{显著性水平}.
+并称其为\DefineConcept{显著性水平}（level of significance）.
 %@see: https://mathworld.wolfram.com/AlphaValue.html
 %@see: https://mathworld.wolfram.com/Significance.html
-然后利用\[
-	P(\abs{\hat{\mu} - \mu_0} > M) = \alpha
-\]解出\(M\)，
-称之为\DefineConcept{临界点}.
-于是，如果有\[
-	\abs{\hat{\mu} - \mu_0} \leq M,
-\]
-那么我们说“原假设\(H_0\)成立”；
-反之，如果有\[
-	\abs{\hat{\mu} - \mu_0} > M,
-\]
-那么我们说“备选假设\(H_1\)成立”.
-我们把\(W \defeq \Set{ m \given \abs{m - \mu_0} > M }\)称为\DefineConcept{拒绝域}.
+把适合概率方程\[
+	P(\abs{U} > M) = \alpha
+\]的变量\(M\)称为\DefineConcept{临界点}.
+我们把集合\[
+	\Set{ U \given \abs{U} \leq M }
+\]称为\DefineConcept{接受域}，
+把集合\[
+	\Set{ U \given \abs{U} > M }
+\]称为\DefineConcept{拒绝域}.
+于是，如果检验统计量\(U\)的观测值落入接受域，
+即不等式\(\abs{U} \leq M\)成立，
+那么我们说“原假设\(H_0\)成立”，接受原假设，拒绝备择假设；
+反之，如果检验统计量的观测值落入拒绝域，
+即不等式\(\abs{U} > M\)成立，
+那么我们说“备选假设\(H_1\)成立”，接受备择假设，拒绝原假设.
 
 % 有时候，从统计量\(\abs{\hat{\mu} - \mu_0}\)的分布出发，
 % 不一定可以方便地计算出临界点\(M\)的取值，
@@ -122,6 +124,8 @@
 可以说，假设检验的实质就是一种基于概率的反证法，
 是利用小概率事件几乎不可能发生，引出矛盾.
 不过，这与基于逻辑的反证法是截然不同的.
+
+%@see: 《2018年全国硕士研究生入学统一考试（数学一）》一选择题/第8题
 
 \subsection{两类错误}
 由前所述，拒绝域是依据小概率原理推出的.
