@@ -395,3 +395,45 @@ S_2 : z = z_2(x,y),
 \end{align*}
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《2009年全国硕士研究生入学统一考试（数学一）》二填空题/第12题
+设\(\Omega = \Set{ (x,y,z) \given x^2+y^2+z^2 \leq 1 }\).
+计算三重积分\(\iiint_\Omega z^2 \dd{x}\dd{y}\dd{z}\).
+\begin{solution}
+由于\(\Omega\)的方程具有轮换对称性，
+所以\begin{align*}
+	\iiint_\Omega z^2 \dd{x}\dd{y}\dd{z}
+	&= \frac13 \iiint_\Omega (x^2+y^2+z^2) \dd{x}\dd{y}\dd{z} \\
+	&= \frac13 \int_0^{2\pi} \dd\theta
+		\int_0^\pi \sin\phi \dd\phi
+		\int_0^1 r^2 \cdot r^2 \dd{r}
+	= \frac{4\pi}{15}.
+\end{align*}
+\end{solution}
+\end{example}
+\begin{example}
+%@see: 《2015年全国硕士研究生入学统一考试（数学一）》二填空题/第12题
+设\(\Omega\)是由平面\(x+y+z=1\)与三个坐标平面所围成的空间区域.
+求三重积分\(\iiint_\Omega (x+2y+3z) \dd{x}\dd{y}\dd{z}\).
+\begin{solution}
+由于积分区域\[
+	\Omega = \Set{ (x,y,z) \given x\geq0,y\geq0,z\geq0,x+y+z\leq1 }
+\]具有轮换对称性，
+所以\[
+	\iiint_\Omega x \dd{x}\dd{y}\dd{z}
+	= \iiint_\Omega y \dd{x}\dd{y}\dd{z}
+	= \iiint_\Omega z \dd{x}\dd{y}\dd{z},
+\]
+从而\begin{align*}
+	\iiint_\Omega (x+2y+3z) \dd{x}\dd{y}\dd{z}
+	&= 6 \iiint_\Omega x \dd{x}\dd{y}\dd{z} \\
+	&= 6 \int_0^1 x \dd{x}
+		\int_0^{1-x} \dd{y}
+		\int_0^{1-x-y} \dd{z}
+	= \frac14.
+\end{align*}
+\end{solution}
+%@Mathematica: 6 Integrate[x Integrate[Integrate[1, {z, 0, 1 - x - y}], {y, 0, 1 - x}], {x, 0, 1}]
+%@Mathematica: Integrate[(x + 2 y + 3 z) Boole[x >= 0 && y >= 0 && z >= 0 && x + y + z <= 1], {x, 0, 1}, {y, 0, 1}, {z, 0, 1}]
+\end{example}
