@@ -165,6 +165,42 @@
 由\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 立即可得.
 \end{proof}
 \end{corollary}
+\begin{example}
+设\(\A \in M_{m \times n}(K),
+\B \in M_{n \times t}(K)\).
+举例说明：\(\rank(\A,\B \A) \neq \rank\A\).
+\begin{solution}
+取\[
+%@Mathematica: A = {{1, 0}, {0, 0}}
+	\A = \begin{bmatrix}
+		1 & 0 \\
+		0 & 0
+	\end{bmatrix},
+	\qquad
+%@Mathematica: B = {{1, 0}, {1, 1}}
+	\B = \begin{bmatrix}
+		1 & 0 \\
+		1 & 1
+	\end{bmatrix},
+\]
+那么\[
+%@Mathematica: B.A
+	\B \A = \begin{bmatrix}
+		1 & 0 \\
+		1 & 0
+	\end{bmatrix},
+	\qquad
+%@Mathematica: Join[A, B.A, 2]
+	(\A,\B \A) = \begin{bmatrix}
+		1 & 0 & 1 & 0 \\
+		0 & 0 & 1 & 0
+	\end{bmatrix},
+\]
+%@Mathematica: MatrixRank[Join[A, B.A, 2]]
+%@Mathematica: MatrixRank[A]
+于是\(\rank(\A,\B \A) = 2 \neq 1 = \rank\A\).
+\end{solution}
+\end{example}
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 2.
