@@ -238,8 +238,10 @@
 \end{proof}
 \end{theorem}
 
-\begin{example}
-设\(\A,\B\in M_n(K)\)，\(\A\B=\B\A\)，证明：\[
+\begin{example}\label{example:矩阵乘积的秩.可交换矩阵之和的秩}
+设\(\A,\B\in M_n(K)\)，
+且\(\A\B=\B\A\).
+证明：\[
 	\rank(\A+\B)\leq\rank\A+\rank\B-\rank(\A\B).
 \]
 \begin{proof}
@@ -297,7 +299,7 @@
 \end{proof}
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:矩阵乘积的秩.分块矩阵的秩的等式2}
 设\(\A \in M_{s \times n}(K),
 \B \in M_{s \times m}(K)\).
 证明：\begin{equation}
@@ -343,42 +345,52 @@
 \end{example}
 
 \begin{example}
-设\(\A\)、\(\B\)都是\(s \times n\)矩阵，证明：\(\rank(\A+\B) \leq \rank\A + \rank\B\).
+%\cref{example:矩阵乘积的秩.可交换矩阵之和的秩}
+设\(\A\)、\(\B\)都是\(s \times n\)矩阵.
+证明：\(\rank(\A+\B) \leq \rank\A + \rank\B\).
 \begin{proof}
 \def\asi{\a_{i_1},\a_{i_2},\dotsc,\a_{i_r}}
 \def\bsj{\b_{j_1},\b_{j_2},\dotsc,\b_{j_t}}
-设\(\rank\A = r\)，\(\rank\B = t\).对\(\A\)、\(\B\)分别按列分块得\[
-\A = (\AutoTuple{\a}{n}), \qquad
-\B = (\AutoTuple{\b}{m}),
-\]则\[
-\A + \B = (\a_1 + \b_1,\a_2 + \b_2,\dotsc,\a_n + \b_n).
+设\(\rank\A = r\)，\(\rank\B = t\).
+对\(\A\)、\(\B\)分别按列分块得\[
+	\A = (\AutoTuple{\a}{n}), \qquad
+	\B = (\AutoTuple{\b}{m}),
+\]
+则\[
+	\A + \B = (\a_1 + \b_1,\a_2 + \b_2,\dotsc,\a_n + \b_n).
 \]
 由于\(\AutoTuple{\a}{n}\)可由其极大线性无关组\(\asi\)线性表出，
 \(\AutoTuple{\b}{m}\)可由其极大线性无关组\(\bsj\)线性表出，
 故\[
-\a_1 + \b_1,\a_2 + \b_2,\dotsc,\a_n + \b_n
+	\a_1 + \b_1,\a_2 + \b_2,\dotsc,\a_n + \b_n
 \]可由向量组\[
-\asi,\bsj
+	\asi,\bsj
 \]线性表出，
 结论显然成立.
 \end{proof}
 \end{example}
 
-\begin{example}
-设\(\A\)是\(n\)阶矩阵，证明：\(n \leq \rank(\A + \E) + \rank(\A - \E)\).
+\begin{example}\label{example:矩阵乘积的秩.矩阵的一次多项式的秩之和}
+设\(\A\)是\(n\)阶矩阵.
+证明：\(n \leq \rank(\A + \E) + \rank(\A - \E)\).
 \begin{proof}
-可以证
-\begin{align*}
+由于\(\rank(\A - \E) = \rank(\E - \A)\)，
+所以\[
 	\rank(\A + \E) + \rank(\A - \E)
-	&= \rank(\A + \E) + \rank[-(\A - \E)] \\
-	&\geq \rank\{(\A + \E) + [-(\A - \E)]\} \\
-	&= \rank(2\E) = \rank\E = n.
-	\qedhere
-\end{align*}
+	= \rank(\A + \E) + \rank(\E - \A).
+\]
+由\cref{example:矩阵乘积的秩.可交换矩阵之和的秩} 可知\[
+	\rank(\A + \E) + \rank(\E - \A)
+	\geq \rank(\A + \E + \E - \A)
+	= \rank(2\E)
+	= \rank\E
+	= n.
+\]
+因此\(\rank(\A + \E) + \rank(\A - \E) \geq n\).
 \end{proof}
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:矩阵乘积的秩.矩阵的多项式的各个互素因式的秩之和}
 设\(n\)阶矩阵\(\A\)满足\(\A^2 - 3 \A - 10 \E = \z\)，证明：\[
 	\rank(\A - 5\E) + \rank(\A + 2\E) = n.
 \]
@@ -400,7 +412,7 @@
 \end{example}
 \begin{example}
 %@credit: {5a781423-ba4e-4629-ac1a-eac743a4d445},{8b6edada-f2fd-4ae5-9020-eb533149a54c}
-设数域\(K\)上的一个一元多项式\(f(x)\)可以分解为\(m\)个互质的多项式的乘积，
+设数域\(K\)上的一个一元多项式\(f(x)\)可以分解为\(m\)个互素的多项式的乘积，
 即\[
 	f(x) = p_1(x) \cdot p_2(x) \dotsm p_m(x).
 \]
