@@ -14,7 +14,7 @@
 	\end{bmatrix},
 \]
 则\[
-	\A\B=\begin{bmatrix}
+	\A \B=\begin{bmatrix}
 		1 & 0 \\
 		0 & 0
 	\end{bmatrix}
@@ -27,7 +27,7 @@
 		0 & 0
 	\end{bmatrix};
 \]
-于是\(\rank(\A\B)=0\)，而\(\rank\A=1\)，\(\rank\B=1\).
+于是\(\rank(\A \B)=0\)，而\(\rank\A=1\)，\(\rank\B=1\).
 
 又\[
 	\A\C=\begin{bmatrix}
@@ -47,8 +47,8 @@
 
 从上述例子，我们猜测：
 对于任意矩阵\(\A,\B\)，总有\[
-	\rank(\A\B) \leq \rank\A, \qquad
-	\rank(\A\B) \leq \rank\B.
+	\rank(\A \B) \leq \rank\A, \qquad
+	\rank(\A \B) \leq \rank\B.
 \]
 
 \subsection{矩阵乘积的秩}
@@ -145,7 +145,7 @@
 \B \in M_{n \times m}(K)\)，
 \(m > n\)，
 那么\[
-	\abs{\A\B} = 0.
+	\abs{\A \B} = 0.
 \]
 \begin{proof}
 当\(m>n\)时，
@@ -153,10 +153,10 @@
 	\rank\A,\rank\B \leq \min\{m,n\} = n;
 \]
 再根据\cref{theorem:线性方程组.矩阵乘积的秩}，有\[
-	\rank(\A\B) \leq \min\{\rank\A,\rank\B\} = n < m,
+	\rank(\A \B) \leq \min\{\rank\A,\rank\B\} = n < m,
 \]
-也就是说，矩阵\(\A\B\)不满秩；
-那么根据\cref{theorem:向量空间.满秩方阵的行列式非零} 可知\(\abs{\A\B} = 0\).
+也就是说，矩阵\(\A \B\)不满秩；
+那么根据\cref{theorem:向量空间.满秩方阵的行列式非零} 可知\(\abs{\A \B} = 0\).
 \end{proof}
 %\cref{equation:线性方程组.柯西比内公式}
 \end{theorem}
@@ -240,9 +240,9 @@
 
 \begin{example}\label{example:矩阵乘积的秩.可交换矩阵之和的秩}
 设\(\A,\B\in M_n(K)\)，
-且\(\A\B=\B\A\).
+且\(\A \B=\B\A\).
 证明：\[
-	\rank(\A+\B)\leq\rank\A+\rank\B-\rank(\A\B).
+	\rank(\A+\B)\leq\rank\A+\rank\B-\rank(\A \B).
 \]
 \begin{proof}
 考虑\[
@@ -259,12 +259,12 @@
 		\E & \A
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A+\B & -\A\B+\B\A \\
+		\A+\B & -\A \B+\B\A \\
 		\B & \B\A
 	\end{bmatrix}
 	= \begin{bmatrix}
 		\A+\B & \z \\
-		\B & \A\B
+		\B & \A \B
 	\end{bmatrix}.
 \]
 由\cref{equation:矩阵的秩.分块矩阵的秩的等式1} 可知\[
@@ -277,7 +277,7 @@
 		\A+\B & \z \\
 		\B & \B\A
 	\end{bmatrix}
-	\geq \rank(\A+\B) + \rank(\A\B).
+	\geq \rank(\A+\B) + \rank(\A \B).
 	\qedhere
 \]
 \end{proof}
@@ -439,36 +439,51 @@
 \end{example}
 
 \begin{example}
-设\(\A\)是\(m \times n\)矩阵，\(\B\)是\(n \times m\)矩阵，\(\E\)是\(m\)阶单位矩阵.
-已知\(\A\B = \E\)，求\(\rank\A,\rank\B\).
+设\(\A\)是\(m \times n\)矩阵，
+\(\B\)是\(n \times m\)矩阵，
+\(\E\)是\(m\)阶单位矩阵，
+且\(\A \B = \E\).
+求\(\A\)与\(\B\)的秩.
 \begin{solution}
-假设\(m > n\)，则由\cref{theorem:线性方程组.矩阵的秩的性质2} 可知\[
-\rank\A,\rank\B \leq \min\{m,n\} = n.
-\]再由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\[
-\rank(\A\B) \leq \min\{\rank\A,\rank\B\} \leq n < m.
-\]但\(\rank(\A\B) = \rank\E = m\)，矛盾！
-由此可知，必有\(m \leq n\)，那么\[
-\rank\A,\rank\B \leq \min\{m,n\} = m,
-\]因此\begin{align*}
-m = \rank(\A\B) \leq \min\{\rank\A,\rank\B\} \leq m
-&\implies
-\min\{\rank\A,\rank\B\} = m \\
-&\implies
-m \leq \rank\A,\rank\B \leq m \\
-&\implies \rank\A=\rank\B=m.
-\end{align*}
+假设\(m > n\)，
+由\cref{theorem:矩阵乘积的秩.多行少列矩阵与少行多列矩阵的乘积的行列式}
+可知\(\abs{\A \B} = 0\)，
+但是由题设条件\(\A \B = \E\)可知\[
+	\abs{\A \B} = \abs{\E} = 1 \neq 0,
+\]
+矛盾，故必有\(m \leq n\).
+那么\[
+	\rank\A,\rank\B \leq \min\{m,n\} = m,
+\]
+从而有\[
+	\min\{\rank\A,\rank\B\} \leq m.
+\]
+由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\[
+	\rank(\A \B) \leq \min\{\rank\A,\rank\B\},
+\]
+即\(\rank(\A \B) \leq m\).
+由题设条件\(\A \B = \E\)可知\[
+	\rank(\A \B) = \rank\E = m.
+\]
+那么\[
+	m \leq \rank\A \leq m,
+	\qquad
+	m \leq \rank\B \leq m,
+\]
+于是\(\rank\A = \rank\B = m\).
 \end{solution}
 \end{example}
 
 \begin{example}
-计算行列式\(\det\D\)，其中\[
-\D = \begin{bmatrix}
-	1 & \cos(\alpha_1-\alpha_2) & \cos(\alpha_1-\alpha_3) & \dots & \cos(\alpha_1-\alpha_n) \\
-	\cos(\alpha_1-\alpha_2) & 1 & \cos(\alpha_2-\alpha_3) & \dots & \cos(\alpha_2-\alpha_n) \\
-	\cos(\alpha_1-\alpha_3) & \cos(\alpha_2-\alpha_3) & 1 & \dots & \cos(\alpha_3-\alpha_n) \\
-	\vdots & \vdots & \vdots & & \vdots \\
-	\cos(\alpha_1-\alpha_n) & \cos(\alpha_2-\alpha_n) & \cos(\alpha_3-\alpha_n) & \dots & 1
-\end{bmatrix}.
+计算行列式\(\det\D\)，
+其中\[
+	\D = \begin{bmatrix}
+		1 & \cos(\alpha_1-\alpha_2) & \cos(\alpha_1-\alpha_3) & \dots & \cos(\alpha_1-\alpha_n) \\
+		\cos(\alpha_1-\alpha_2) & 1 & \cos(\alpha_2-\alpha_3) & \dots & \cos(\alpha_2-\alpha_n) \\
+		\cos(\alpha_1-\alpha_3) & \cos(\alpha_2-\alpha_3) & 1 & \dots & \cos(\alpha_3-\alpha_n) \\
+		\vdots & \vdots & \vdots & & \vdots \\
+		\cos(\alpha_1-\alpha_n) & \cos(\alpha_2-\alpha_n) & \cos(\alpha_3-\alpha_n) & \dots & 1
+	\end{bmatrix}.
 \]
 \begin{solution}
 记\(\D = (d_{ij})_n\).
