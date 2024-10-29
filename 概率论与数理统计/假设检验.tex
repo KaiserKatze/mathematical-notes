@@ -44,21 +44,42 @@
 	\quad\text{或}\quad
 	H_1'' \defeq \Set{ \mu \given \mu > \mu_0 }.
 \]
-我们把\(H_1'\)称为“\DefineConcept{左侧检验}的备择假设”，
-把\(H_1''\)称为“\DefineConcept{右侧检验}的备择假设”.
-相对地，把\(H_1\)称为“\DefineConcept{双侧检验}的备择假设”.
-我们常把左侧检验和右侧检验统称为\DefineConcept{单侧检验}.
+
+\(H_0\)对\(H_1\)的检验问题，称为\DefineConcept{双侧假设检验问题}，
+因\(H_1\)在\(H_0\)的两侧而得名.
+
+\(H_0\)对\(H_1'\)的检验问题，称为\DefineConcept{左侧假设检验问题}.
+\(H_0\)对\(H_1''\)的检验问题，称为\DefineConcept{右侧假设检验问题}.
+左侧假设检验问题和右侧假设检验问题
+统称为\DefineConcept{单侧假设检验问题}，
+因\(H_1'\)和\(H_1''\)都只在\(H_0\)的一侧而得名.
+
 下面我们暂且采用\(H_1\)作为备选假设.
 
 但是由于参数\(\mu\)是未知的，
 我们可以首先依靠参数估计方法，
 根据样本观测值\(\AutoTuple{x}{n}\)，
 找出\(\mu\)的一个无偏的点估计量\(\hat{\mu}\).
-接下来我们就会取一个很小的正数\(\alpha\)（如0.01、0.05），
+假设样本均值\(\overline{X}\)是\(\mu\)的无偏估计量，
+这样就把判断\(H_0\)成立还是\(H_1\)成立这个问题
+转化为考察\(\abs{\overline{X}-\mu_0}\)取值的相对大小问题.
+而\(\abs{\overline{X}-\mu_0}\)取值的相对大小又与统计量\[
+	\abs{U} = \frac{\overline{X}-\mu_0}{\sigma_0/\sqrt{n}}
+\]的相对大小一致，
+我们又把问题转化为考察\(\abs{U}\)取值的相对大小问题.
+我们把\(U\)称为\DefineConcept{检验统计量}（test statistic）.
+%@see: https://mathworld.wolfram.com/TestStatistic.html
+
+为了考察\(\abs{U}\)的相对大小，
+我们需要定下一个临界值.
+通常我们会取一个很小的正数\(\alpha\)（如0.01、0.05），
 并称其为\DefineConcept{显著性水平}.
+%@see: https://mathworld.wolfram.com/AlphaValue.html
+%@see: https://mathworld.wolfram.com/Significance.html
 然后利用\[
 	P(\abs{\hat{\mu} - \mu_0} > M) = \alpha
-\]解出\(M\)，称之为\DefineConcept{临界点}.
+\]解出\(M\)，
+称之为\DefineConcept{临界点}.
 于是，如果有\[
 	\abs{\hat{\mu} - \mu_0} \leq M,
 \]
