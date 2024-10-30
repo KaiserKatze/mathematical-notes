@@ -708,14 +708,29 @@ v'_y=1/x\)，
 	D_1 = \Set{ (x,y) \in D \given x,y\geq0 }.
 \end{equation*}
 
-若\(D\)关于原点对称，则\[
-	\iint_D f(x,y) \dd\sigma
-	= \left\{ \begin{array}{cc}
-		2 \iint_{D_1} f(x,y) \dd\sigma, & f(x,y) = f(-x,-y), \\
-		0, & f(x,y) = -f(-x,-y),
-	\end{array} \right.
-\]
-其中\(D_1\)是\(D\)关于原点对称的半个部分.
+%@see: https://math.libretexts.org/Bookshelves/Calculus/CLP-3_Multivariable_Calculus_(Feldman_Rechnitzer_and_Yeager)/03%3A_Multiple_Integrals/3.01%3A_Double_Integrals
+设积分区域\(D\)关于原点对称.
+当被积函数\(f\)在区域\(D\)上是奇函数，
+即\begin{equation*}
+	f(-x,-y) = -f(x,y)
+\end{equation*}时，
+则有\begin{equation*}
+	\iint_D f(x,y) \dd{x}\dd{y} = 0.
+\end{equation*}
+当被积函数\(f\)在区域\(D\)上是偶函数，
+即\begin{equation*}
+	f(-x,-y) = f(x,y)
+\end{equation*}时，
+则有\begin{equation*}
+	\iint_D f(x,y) \dd{x}\dd{y} = 2 \iint_{D_1} f(x,y) \dd{x}\dd{y},
+\end{equation*}
+其中\(D_1\)是\(D\)关于原点对称的半个部分，
+即\begin{equation*}
+	D_1 = \Set{ (x,y) \in D \given \lambda x + \mu y \geq 0\ (\text{$\lambda,\mu$是参数}) }.
+\end{equation*}
+特别地\(D_1\)可以取为\(D\)在\(x\)轴上侧的部分或在\(y\)轴右侧的部分.
+%@Mathematica: Manipulate[Plot[y[x] /. Solve[\[Lambda] x + \[Mu] y[x] == 0, y[x]], {x, -5, 5}, PlotRange -> {-5, 5}, AspectRatio -> 1], {\[Lambda], -5, 5}, {\[Mu], -5, 5}]
+%@Mathematica: Manipulate[RegionPlot[\[Lambda] x + \[Mu] y >= 0, {x, -5, 5}, {y, -5, 5}], {\[Lambda], -5, 5}, {\[Mu], -5, 5}]
 
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1Zf421U72F/
