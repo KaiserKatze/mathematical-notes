@@ -495,7 +495,7 @@
 \end{proof}
 \end{proposition}
 
-\begin{example}
+\begin{example}\label{example:线性方程组.左乘系数矩阵的转置矩阵同解}
 %@see: 《高等代数（第三版 上册）》（丘维声） P122 命题2
 设\(\A\in M_{s \times n}(\mathbb{R})\).
 证明：齐次线性方程组\(\A\x=\z\)与\((\A^T\A)\x=\z\)同解.
@@ -532,10 +532,37 @@
 综上所述，\((\A^T\A)\x=\z\)与\(\A\x=\z\)同解.
 \end{proof}
 \end{example}
-\begin{remark}
-同理可证\((\A\A^T)\x=\z\)与\(\A\x=\z\)同解.
-\end{remark}
-
+\begin{example}
+%@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9} 指出\((\A\A^T)\vb{x}=\vb0\)与\(\A\vb{x}=\vb0\)不一定同解
+设\(\A \in M_n(K)\)，\(\A^T\)是\(\A\)的转置矩阵.
+举例说明：\((\A\A^T)\vb{x}=\vb0\)与\(\A\vb{x}=\vb0\)不同解.
+\begin{solution}
+取\begin{equation*}
+%@Mathematica: A = {{0, 1}, {0, 0}}
+	\A = \begin{bmatrix}
+		0 & 1 \\
+		0 & 0
+	\end{bmatrix},
+\end{equation*}
+则\begin{equation*}
+%@Mathematica: Transpose[A]
+	\A^T = \begin{bmatrix}
+		0 & 0 \\
+		1 & 0
+	\end{bmatrix},
+	\qquad
+%@Mathematica: A.Transpose[A]
+	\A \A^T = \begin{bmatrix}
+		1 & 0 \\
+		0 & 0
+	\end{bmatrix},
+\end{equation*}
+可以解得\begin{gather*}
+	\Ker\A = \Set{ k (1,0)^T \given k \in K }, \\
+	\Ker(\A \A^T) = \Ker\A^T = \Set{ k (0,1)^T \given k \in K }.
+\end{gather*}
+\end{solution}
+\end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P122 命题2
 设\(\A \in M_{s \times n}(\mathbb{R})\).
@@ -543,9 +570,15 @@
 	\rank\A = \rank(\A\A^T) = \rank(\A^T\A).
 \end{equation}
 \begin{proof}
-因为\(\A\vb{x}=\vb0\)、\((\A\A^T)\x=\vb0\)和\((\A^T\A)\x=\vb0\)同解，
-所以由\cref{theorem:线性方程组.同解方程组的系数矩阵的秩相同} 可知，
-这三个方程的系数矩阵的秩相等.
+由\cref{example:线性方程组.左乘系数矩阵的转置矩阵同解} 可知
+\(\A\vb{x}=\vb0\)与\((\A^T \A)\vb{x}=\vb0\)同解，
+所以由\cref{theorem:线性方程组.同解方程组的系数矩阵的秩相同} 可知
+\(\rank\A = \rank(\A^T \A)\).
+又由\cref{theorem:向量空间.转置不变秩} 可知
+\(\rank(\A \A^T)
+= \rank[(\A^T)^T (\A^T)]
+= \rank\A^T
+= \rank\A\).
 \end{proof}
 \end{example}
 \begin{remark}
