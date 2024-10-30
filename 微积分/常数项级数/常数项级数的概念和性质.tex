@@ -172,6 +172,53 @@
 \end{solution}
 \end{example}
 
+\begin{example}\label{example:无穷级数.与调和数列有关的级数1}
+%@see: https://www.bilibili.com/video/BV1c2yBYwEvt/
+证明级数\(\sum_{n=1}^\infty \frac1{(n+1)(n+2)} \left( 1+\frac12+\dotsb+\frac1n \right)\)收敛并求和.
+\begin{solution}
+记\(a_n = 1+\frac12+\dotsb+\frac1n\)，
+那么\(a_n - a_{n-1} = \frac1n\ (n=2,3,\dotsc)\)，
+而级数的部分和为\begin{align*}
+	S_n &= \sum_{k=1}^n \frac{a_k}{(k+1)(k+2)}
+	% 裂项
+	= \sum_{k=1}^n \left( \frac{a_k}{k+1} - \frac{a_k}{k+2} \right) \\
+	&= \left( \frac{a_1}{2} - \frac{a_1}{3} \right)
+	+ \left( \frac{a_2}{3} - \frac{a_2}{4} \right)
+	+ \left( \frac{a_3}{4} - \frac{a_3}{5} \right)
+	+ \dotsb + \left( \frac{a_{n-1}}{n} - \frac{a_{n-1}}{n+1} \right)
+	+ \left( \frac{a_n}{n+1} - \frac{a_n}{n+2} \right) \\
+	&= \frac{a_1}{2} + \frac{a_2 - a_1}{3}
+	+ \frac{a_3 - a_4}{4} + \frac{a_4 - a_3}{5}
+	+ \dotsb + \frac{a_n - a_{n-1}}{n+1}
+	- \frac{a_n}{n+2} \\
+	&= \frac1{2\cdot1} + \frac1{3\cdot2} + \frac1{4\cdot3} + \frac1{5\cdot4}
+	+ \dotsb + \frac1{(n+1)n} - \frac{a_n}{n+2} \\
+	% 裂项
+	&= \left( 1-\frac12 \right) + \left( \frac12 - \frac13 \right)
+	+ \dotsb + \left( \frac1n - \frac1{n+1} \right) - \frac{a_n}{n+2} \\
+	&= 1 - \frac1{n+1} - \frac{a_n}{n+2}.
+\end{align*}
+这里\(\frac1{n+1}\to0\ (n\to\infty)\)，
+因此，要证部分和\(S_n\)收敛，需证数列\(\frac{a_n}{n+2}\)收敛.
+由\cref{example:微分中值定理.拉格朗日中值定理.重要不等式1} 可知，
+对于任意正整数\(n\)有\(\frac1{n+1} < \ln(1+\frac1n) < \frac1n\)，
+所以\begin{align*}
+	a_n &= 1+\frac12+\frac13+\dotsb+\frac1n \\
+	&< 1+\ln(1+\frac11)+\ln(1+\frac12)+\dotsb+\ln(1+\frac1{n-1}) \\
+	&= 1+\ln2+\ln\frac32+\dotsb+\ln\frac{n}{n-1}
+	= 1+\ln n,
+\end{align*}
+从而有\begin{equation*}
+	0 < \frac{a_n}{n+2}
+	< \frac{1+\ln n}{n+2}
+	\to 0
+	\quad(n\to\infty),
+\end{equation*}
+于是\(S_n\to1\ (n\to\infty)\)，
+即\(\sum_{n=1}^\infty \frac1{(n+1)(n+2)} \left( 1+\frac12+\dotsb+\frac1n \right) = 1\).
+\end{solution}
+\end{example}
+
 \subsection{级数收敛的必要条件}
 \begin{proposition}[级数收敛的必要条件]\label{theorem:无穷级数.级数收敛的必要条件}
 %@see: 《高等数学（第六版 上册）》 P253 性质5（级数收敛的必要条件）
