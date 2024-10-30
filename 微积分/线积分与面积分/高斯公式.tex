@@ -252,6 +252,56 @@
 \end{proof}
 \end{example}
 
+%@see: 《2007年全国硕士研究生入学统一考试（数学一）》三解答题/第18题
+%@see: 《2008年全国硕士研究生入学统一考试（数学一）》二填空题/第12题
+\begin{example}
+%@see: 《2009年全国硕士研究生入学统一考试（数学一）》三解答题/第19题
+计算曲面积分\(I = \varoiint_\Sigma \frac{x \dd{y}\dd{z} + y \dd{z}\dd{x} + z \dd{x}\dd{y}}{(x^2+y^2+z^2)^{\frac32}}\)，
+其中\(\Sigma\)是曲面\(2x^2+2y^2+z^2=4\)的外侧.
+\begin{solution}
+设\(\Omega\)是由\(\Sigma\)围成的区域，即\begin{equation*}
+	\Omega = \Set{ (x,y,z) \given 2x^2+2y^2+z^2\leq4 }.
+\end{equation*}
+显然被积函数\begin{equation*}
+	\def\fA#1{\frac{#1}{(x^2+y^2+z^2)^{\frac32}}}
+	P=\fA{x},
+	\qquad
+	Q=\fA{y},
+	\qquad
+	R=\fA{z}
+\end{equation*}在区域\(\Omega-\{(0,0,0)\}\)上都具有一阶连续偏导数，
+且\begin{equation*}
+	\def\A{(x^2+y^2+z^2)^{\frac52}}
+	\pdv{P}{x} + \pdv{Q}{y} + \pdv{R}{z}
+	= \frac{-2x^2+y^2+z^2}{\A}
+	+ \frac{x^2-2y^2+z^2}{\A}
+	+ \frac{x^2+y^2-2z^2}{\A}
+	= 0.
+\end{equation*}
+由于在原点高斯公式不成立，我们需要另外取定任意一个曲面\(\Sigma'\)，
+使之处于\(\Omega\)内，
+不妨令\begin{equation*}
+	\Sigma' = \Set{ (x,y,z) \given x^2+y^2+z^2=1 },
+\end{equation*}
+取内侧，
+再令\begin{equation*}
+	\Omega' = \Set{ (x,y,z) \given x^2+y^2+z^2\leq1 },
+\end{equation*}
+那么由高斯公式可得\begin{equation*}
+	\varoiint_{\Sigma+\Sigma'} \frac{x \dd{y}\dd{z} + y \dd{z}\dd{x} + z \dd{x}\dd{y}}{(x^2+y^2+z^2)^{\frac32}}
+	= \iiint_\Omega \left( \pdv{P}{x} + \pdv{Q}{y} + \pdv{R}{z} \right) \dd{v}
+	= 0,
+\end{equation*}
+于是\begin{align*}
+	I &= -\varoiint_{\Sigma'} \frac{x \dd{y}\dd{z} + y \dd{z}\dd{x} + z \dd{x}\dd{y}}{(x^2+y^2+z^2)^{\frac32}} \\
+	&= -\varoiint_{\Sigma'} x \dd{y}\dd{z} + y \dd{z}\dd{x} + z \dd{x}\dd{y} \\
+	% 再次运用高斯公式
+	&= \iiint_{\Omega'} \left( \pdv{x}{x} + \pdv{y}{y} + \pdv{z}{z} \right) \dd{v} \\
+	&= 3 \cdot \frac43 \pi 1^3
+	= 4\pi.
+\end{align*}
+\end{solution}
+\end{example}
 \begin{example}
 %@see: 《2018年全国硕士研究生入学统一考试（数学一）》三解答题/第17题
 设\(\Sigma\)是曲面\(x = \sqrt{1-3y^2-3z^2}\)的前侧，
@@ -287,7 +337,9 @@
 \begin{definition}
 如果空间区域\(G\)内任一闭曲面所围成的区域全属于\(G\)，
 则称\(G\)是\DefineConcept{空间二维单连通区域}.
+\end{definition}
 
+\begin{definition}
 如果空间区域\(G\)内任一闭曲线总可以张成一片完全属于\(G\)的曲面，
 则称\(G\)为\DefineConcept{空间一维单连通区域}.
 \end{definition}
