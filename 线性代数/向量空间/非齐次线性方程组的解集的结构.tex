@@ -96,38 +96,30 @@
 		2 & -2 & -3 & 0 & 2 \\
 		4 & -2 & -7 & -4 & -2
 	\end{bmatrix}
-	\xlongrightarrow{\begin{array}{c}
-		-2\times\text{(1行)}+\text{(2行)} \\
-		-4\times\text{(1行)}+\text{(3行)}
-	\end{array}}
-	\begin{bmatrix}
+	\to \begin{bmatrix}
 		1 & -2 & -1 & 2 & 4 \\
 		0 & 2 & -1 & -4 & -6 \\
 		0 & 6 & -3 & -12 & -18
 	\end{bmatrix} \\
 	&\to \begin{bmatrix}
-		1 & -2 & -1 & 2 & 4 \\
-		0 & 2 & -1 & -4 & -6 \\
-		0 & 0 & 0 & 0 & 0
-	\end{bmatrix}
-	\to \begin{bmatrix}
 		1 & 0 & -2 & -2 & -2 \\
-		0 & 2 & -2 & -4 & -6 \\
+		0 & 1 & -\tfrac12 & -2 & -3 \\
 		0 & 0 & 0 & 0 & 0
 	\end{bmatrix}
 	= \wB
 	= (\B,\g),
 \end{align*}
-故\(\rank\A = \rank\wA = 2\)，于是原方程组有解.
+故\(\rank\A = \rank\wA = \rank\wB = 2\)，于是原方程组有解.
 
 解同解方程组\[
 	\left\{ \begin{array}{*{9}{c}}
 		x_1 && &-& 2 x_3 &-& 2 x_4 &=& -2 \\
-		&& 2 x_2 &-& x_3 &-& 4 x_4 &=& -6
+		&& x_2 &-& \frac12 x_3 &-& 2 x_4 &=& -3
 	\end{array} \right..
 \]
 令\(x_3 = 0\)，\(x_4 = 0\)，
-解得\(x_1 = -2\)，\(x_2 = -3\)，得特解\[
+解得\(x_1 = -2\)，\(x_2 = -3\)，
+得特解\[
 	\x_0 = (-2,-3,0,0)^T.
 \]
 
@@ -135,12 +127,12 @@
 将\(x_3,x_4\)的两组值\((2,0),(0,1)\)分别代入\[
 	\left\{ \begin{array}{*{9}{c}}
 		x_1 && &-& 2 x_3 &-& 2 x_4 &=& 0 \\
-		&& 2 x_2 &-& x_3 &-& 4 x_4 &=& 0
+		&& x_2 &-& \frac12 x_3 &-& 2 x_4 &=& 0
 	\end{array} \right.
 \]
 得基础解系
-\(\x_1 = (4,1,2,0)^T\)，
-\(\x_2 = (2,2,0,1)^T\).
+\(\x_1 = (4,1,2,0)^T,
+\x_2 = (2,2,0,1)^T\).
 
 于是原方程的通解为\[
 	\x = \x_0 + k_1 \x_1 + k_2 \x_2
@@ -150,6 +142,8 @@
 \]
 其中\(k_1,k_2\)是任意常数.
 \end{solution}
+%@Mathematica: A = RowReduce[({{1, -2, -1, 2, 4}, {2, -2, -3, 0, 2}, {4, -2, -7, -4, -2}})]
+%@Mathematica: LinearSolve[A[[All, 1 ;; 4]], A[[All, 5]]]
 \end{example}
 
 \begin{example}
