@@ -498,8 +498,7 @@
 \]
 将上式代入\cref{equation:微分方程.一阶线性非齐次微分方程.中间步骤1}，
 便得\cref{equation:微分方程.一阶线性非齐次微分方程} 的通解\begin{equation}\label{equation:微分方程.一阶线性非齐次微分方程的通解}
-	y = C e^{ -\int P(x) \dd{x} }
-	+ e^{ -\int P(x) \dd{x} } \int Q(x) e^{ \int P(x) \dd{x} } \dd{x}.
+	y = e^{ -\int P(x) \dd{x} } \left( \int Q(x) e^{ \int P(x) \dd{x} } \dd{x} + C \right).
 \end{equation}
 上式右端第一项是\cref{equation:微分方程.一阶线性齐次微分方程} 的通解，
 第二项是\cref{equation:微分方程.一阶线性非齐次微分方程} 的一个特解.
@@ -642,6 +641,49 @@ y = u e^{- \int P(x) \dd{x}},
 \]
 %@Mathematica: DSolve[1/D[x[y], y] == y/(x[y] + y^4 Log[y]), x[y], y]
 \end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《2018年全国硕士研究生入学统一考试（数学一）》三解答题/第18题
+已知微分方程\(y' + y = f(x)\)，
+其中\(f\)是\(\mathbb{R}\)上的周期为\(T\)的连续函数.
+证明：方程存在唯一的以\(T\)为周期的解.
+\begin{proof}
+记\(P = 1,
+Q = f(x)\)，
+那么\(y' + y = f(x)\)的通解为\begin{equation*}
+	%\cref{equation:微分方程.一阶线性非齐次微分方程的通解}
+	Y = e^{-x} \left( \int f(x) e^x \dd{x} + C \right),
+\end{equation*}
+其中\(C\)是任意常数.
+根据题意，我们需要证明通解\(Y\)中存在一个以\(T\)为周期的函数\(y\)，即\(y(x+T) = y(x)\).
+于是可以假设函数\begin{equation*}
+	y(x) = e^{-x} \left( \int_0^x f(t) e^t \dd{t} + C \right)
+\end{equation*}是所求的以\(T\)为周期的函数，
+其中\(C\)是待定参数.
+因为\begin{align*}
+	y(x+T) &= e^{-x-T} \left( \int_0^{x+T} f(t) e^t \dd{t} + C \right) \\
+	&= e^{-x-T} \left( \int_0^T f(t) e^t \dd{t} + \int_T^{x+T} f(t) e^t \dd{t} + C \right) \\
+	&\xlongequal{u=t-T}
+	e^{-x-T} \left( \int_0^T f(t) e^t \dd{t} + \int_0^x f(u+T) e^{u+T} \dd{u} + C \right) \\
+	% 利用\(f(u+T) = f(u)\)化简，把因子\(e^{-T}\)乘进去
+	&= e^{-x} \left( e^{-T} \int_0^T f(t) e^t \dd{t} + \int_0^x f(u) e^u \dd{u} + C e^{-T} \right),
+\end{align*}
+所以\begin{align*}
+	0 &= (y(x+T) - y(x)) e^x \\
+	&= \left( e^{-T} \int_0^T f(t) e^t \dd{t} + \int_0^x f(u) e^u \dd{u} + C e^{-T} \right)
+	- \left( \int_0^x f(t) e^t \dd{t} + C \right) \\
+	&= e^{-T} \int_0^T f(t) e^t \dd{t} + C e^{-T} - C,
+\end{align*}
+整理得\begin{equation*}
+	C (1 - e^{-T}) = e^{-T} \int_0^T f(t) e^t \dd{t},
+\end{equation*}
+解得\begin{equation*}
+	C = \frac{e^{-T}}{1 - e^{-T}} \int_0^T f(t) e^t \dd{t}.
+\end{equation*}
+注意到线性微分方程的通解包含它的所有解，
+故只要\(C\)唯一，则周期解\(y\)唯一.
+\end{proof}
 \end{example}
 
 \section{伯努利方程}
