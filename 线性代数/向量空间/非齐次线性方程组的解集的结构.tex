@@ -231,3 +231,130 @@
 所以方程组\(\A\x=\b\)无解.
 \end{proof}
 \end{example}
+
+\begin{example}
+%@see: 《2016年全国硕士研究生入学统一考试（数学一）》三解答题/第20题
+设矩阵\(\A = \begin{bmatrix}
+	1 & -1 & -1 \\
+	2 & a & 1 \\
+	-1 & 1 & a
+\end{bmatrix},
+\B = \begin{bmatrix}
+	2 & 2 \\
+	1 & a \\
+	-a-1 & -2
+\end{bmatrix}\).
+当\(a\)为何值时，方程\(\A\vb{X}=\B\)无解、有唯一解、有无穷多解？
+在有解时，求解此方程.
+\begin{solution}
+%@Mathematica: A = {{1, -1, -1, 2, 2}, {2, a, 1, 1, a}, {-1, 1, a, -a - 1, -2}}
+对增广矩阵\((\A,\B)\)作初等行变换，
+得\begin{equation*}
+	\begin{bmatrix}
+		1 & -1 & -1 & 2 & 2 \\
+		2 & a & 1 & 1 & a \\
+		-1 & 1 & a & -a-1 & -2
+	\end{bmatrix}
+%@Mathematica: A1 = ({ {1, 0, 0}, {-2, 1, 0}, {1, 0, 1} }).A
+	\to \begin{bmatrix}
+		1 & -1 & -1 & 2 & 2 \\
+		0 & a+2 & 3 & -3 & a-4 \\
+		0 & 0 & a-1 & 1-a & 0
+	\end{bmatrix}.
+\end{equation*}
+
+当\(a+2=0\)即\(a=-2\)时，继续对增广矩阵作初等行变换，
+%@Mathematica: A /. a -> -2 // RowReduce // MatrixForm
+得\begin{equation*}
+	\begin{bmatrix}
+		1 & -1 & -1 & 2 & 2 \\
+		0 & 0 & 3 & -3 & -6 \\
+		0 & 0 & -3 & 3 & 0
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & -1 & 0 & 1 & 0 \\
+		0 & 0 & 1 & -1 & 0 \\
+		0 & 0 & 0 & 0 & 1
+	\end{bmatrix},
+\end{equation*}
+由于\(\rank\A = 2 \neq \rank(\A,\B) = 3\)，
+所以方程\(\A\vb{X}=\B\)无解.
+
+当\(a\neq-2\)时，继续对增广矩阵作初等行变换，
+得\begin{equation*}
+	\begin{bmatrix}
+		1 & -1 & -1 & 2 & 2 \\
+		0 & a+2 & 3 & -3 & a-4 \\
+		0 & 0 & a-1 & 1-a & 0
+	\end{bmatrix}
+	\to
+%@Mathematica: A2 = ({ {1, 1, 0}, {0, 1, 0}, {0, 0, 1} }).({ {1, 0, 0}, {0, 1/(a + 2), 0}, {0, 0, 1} }).A1 // Factor // Simplify
+	\def\arraystretch{1.5}
+	\begin{bmatrix}
+		1 & 0 & \frac{1-a}{a+2} & \frac{2a+1}{a+2} & \frac{3a}{a+2} \\
+		0 & 1 & \frac3{a+2} & -\frac3{a+2} & \frac{a-4}{a+2} \\
+		0 & 0 & a-1 & 1-a & 0
+	\end{bmatrix}.
+\end{equation*}
+
+当\(a-1=0\)即\(a=1\)时，
+增广矩阵化为\begin{equation*}
+	\begin{bmatrix}
+		1 & 0 & 0 & 1 & 1 \\
+		0 & 1 & 1 & -1 & -1 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{equation*}
+由于\(\rank\A = \rank(\A,\B) = 2 < 3\)，
+所以方程\(\A\vb{X}=\B\)有无穷多解.
+解方程\begin{equation*}
+	\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 1 \\
+		0 & 0 & 0 \\
+	\end{bmatrix}
+	\vb{x}
+	= \begin{bmatrix}
+		1 \\ -1 \\ 0
+	\end{bmatrix}
+\end{equation*}
+得\begin{equation*}
+	\vb{x}
+	= \begin{bmatrix}
+		1 \\ -1 \\ 0
+	\end{bmatrix}
+	+ k \begin{bmatrix}
+		0 \\ -1 \\ 1
+	\end{bmatrix}
+	\quad(\text{$k$是任意常数}).
+\end{equation*}
+于是方程\(\A\vb{X}=\B\)的解为\begin{equation*}
+	\vb{X} = \begin{bmatrix}
+		1 & 1\\
+		-1-k_1 & -1-k_2 \\
+		k_1 & k_2
+	\end{bmatrix}
+	\quad(\text{$k_1,k_2$是任意常数}).
+\end{equation*}
+
+当\(a\neq1\)且\(a\neq-2\)时，继续对增广矩阵作初等行变换，
+得\begin{equation*}
+%@Mathematica: ({ {1, 0, (a - 1)/(2 + a)}, {0, 1, -3/(2 + a)}, {0, 0, 1} }).({ {1, 0, 0}, {0, 1, 0}, {0, 0, 1/(a - 1)} }).A2 // Factor // Simplify // MatrixForm
+	\def\arraystretch{1.5}
+	\begin{bmatrix}
+		1 & 0 & 0 & 1 & \frac{3a}{a+2} \\
+		0 & 1 & 0 & 0 & \frac{a-4}{a+2} \\
+		0 & 0 & 1 & -1 & 0
+	\end{bmatrix}.
+\end{equation*}
+由于\(\rank\A = \rank(\A,\B) = 3\)，
+所以方程\(\A\vb{X}=\B\)有唯一解\begin{equation*}
+	\def\arraystretch{1.5}
+	\vb{X} = \begin{bmatrix}
+		1 & \frac{3a}{a+2} \\
+		0 & \frac{a-4}{a+2} \\
+		-1 & 0
+	\end{bmatrix}.
+\end{equation*}
+\end{solution}
+\end{example}
