@@ -37,7 +37,9 @@ def find_all_tex_files():
             continue
         for filename in filenames:
             if filename.endswith(".tex"):
-                yield os.path.join(dirpath, filename)
+                filepath = os.path.join(dirpath, filename)
+                filepath = os.path.normpath(filepath)
+                yield filepath
 
 def scan_math_environments(_file):
     with open(_file, mode='r', encoding="utf-8") as fd:
@@ -110,7 +112,11 @@ if __name__ == "__main__":
     pattern_env1 = re.compile(r'\\begin\{([^\}]+)\}')
     pattern_env2 = re.compile(r'\\end\{([^\}]+)\}')
 
-    for file in find_all_tex_files():
+    # 记录所有 TeX 文件
+    set_all_tex_files = set(find_all_tex_files())
+    set_used_tex_files = set()
+
+    for file in set_all_tex_files:
         scan_math_environments(file)
 
         environment_counter = {}  # 对形如 `\begin{...}` 和 `\end{...}` 的控制序列计数
@@ -126,6 +132,12 @@ if __name__ == "__main__":
 
                 line_num += 1  # enumerate 函数给出的序号是从0开始的，行号是从1开始的，进行修正
                 total_line_counter += 1
+
+                match_result = re.search(r"\\(?:input|include)\{([^\}]+)\}", line)
+                if match_result:
+                    filename = match_result.group(1) + '.tex'
+                    filename = os.path.normpath(filename)
+                    set_used_tex_files.add(filename)
 
                 if re.search(r"\s+\\cref\b", line):
                     error("【0001】\cref 命令前不应有空格！", file, line_num, prev_line, line)
@@ -180,6 +192,10 @@ if __name__ == "__main__":
             if v == 0:
                 continue
             error(f"【1000】环境 `{k}` 计数为 {v}，请检查文件 '{file_path}'!")
+
+    set_unused_tex_files = set_all_tex_files - set_used_tex_files
+    logger.info("未使用的 .tex 文件有：\n" + '\n'.join(('\t- ' + filename) for filename in sorted(list(set_unused_tex_files))))
+    logger.info("可用的 .tex 文件共有 {} 个，未使用的 .tex 文件共有 {} 个.".format(len(set_all_tex_files), len(set_unused_tex_files)))
 
     if not is_tex_project_problematic:
         logger.info("检查完毕，没有任何错误！")
