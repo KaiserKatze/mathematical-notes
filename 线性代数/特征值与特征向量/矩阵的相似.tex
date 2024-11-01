@@ -22,7 +22,7 @@
 设\(\A\)、\(\B\)是两个\(n\)阶矩阵.
 若存在可逆矩阵\(\P\)，
 使得\begin{equation}\label{equation:特征值与特征向量.相似矩阵的定义}
-	\P^{-1}\A\P=\B
+	\P^{-1} \A \P = \B
 \end{equation}
 则称“\(\A\)与\(\B\)~\DefineConcept{相似}%
 （\(\A\) is \emph{similar} to \(\B\)）”，
@@ -46,6 +46,120 @@
 = \E \E
 = \E\).
 \end{proof}
+\end{example}
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1dA29YeEz8/
+设\begin{equation*}
+	\A = \begin{bmatrix}
+		1 & 2 & 0 \\
+		0 & 1 & 3 \\
+		0 & 0 & 1
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		1 & -1 & -2 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1
+	\end{bmatrix}.
+\end{equation*}
+证明：\(\A \sim \B\).
+\begin{solution}
+要想证明\(\A \sim \B\)，
+我们需要找出满足等式\(\P^{-1} \A \P = \B\)的可逆矩阵\(\P\)，
+也就是要解矩阵方程\(\A \P = \P \B\).
+将\(\P\)按列分块为\((\a_1,\a_2,\a_3)\)，
+则有\((\A \a_1,\A \a_2,\A \a_3) = (\a_1,\a_2,\a_3) \B\)，
+即\begin{gather*}
+	\A \a_1 = \a_1, \tag1 \\
+	\A \a_2 = -\a_1 + \a_2, \tag2 \\
+	\A \a_3 = -2\a_1 + \a_2 + a_3. \tag3
+\end{gather*}
+
+由(1)式有\begin{equation*}
+	(\A - \E) \a_1 = \vb0,
+\end{equation*}
+它的系数矩阵为\begin{equation*}
+	\A - \E
+	= \begin{bmatrix}
+		0 & 2 & 0 \\
+		0 & 0 & 3 \\
+		0 & 0 & 0
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		0 & 1 & 0 \\
+		0 & 0 & 1 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+所以\(\a_1 = \begin{bmatrix}
+	k_1 \\
+	0 \\
+	0
+\end{bmatrix}
+\ (\text{$k_1$是任意常数})\).
+
+由(2)式有\begin{equation*}
+	(\A - \E) \a_2 = -\a_1,
+\end{equation*}
+它的增广矩阵为\begin{equation*}
+	(\A - \E,-\a_1)
+	= \begin{bmatrix}
+		0 & 2 & 0 & -k_1 \\
+		0 & 0 & 3 & 0 \\
+		0 & 0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+所以\(\a_2 = \begin{bmatrix}
+	k_2 \\
+	-\frac12 k_1 \\
+	0
+\end{bmatrix}
+\ (\text{$k_2$是任意常数})\).
+
+由(3)式有\begin{equation*}
+	(\A - \E) \a_3 = -2\a_1 + \a_2,
+\end{equation*}
+它的增广矩阵为\begin{equation*}
+	(\A - \E,-2\a_1 + \a_2)
+	= \begin{bmatrix}
+		0 & 2 & 0 & k_2 - 2 k_1 \\
+		0 & 0 & 3 & -\frac12 k_1 \\
+		0 & 0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+所以\(\a_3 = \begin{bmatrix}
+	k_3 \\
+	\frac12 k_2 - k_1 \\
+	-\frac16 k_1
+\end{bmatrix}
+\ (\text{$k_3$是任意常数})\).
+
+于是\begin{equation*}
+	\P = (\a_1,\a_2,\a_3)
+	= \begin{bmatrix}
+		k_1 & k_2 & k_3 \\
+		0 & -\frac12 k_1 & \frac12 k_2 - k_1 \\
+		0 & 0 & -\frac16 k_1
+	\end{bmatrix}
+	\quad(\text{$k_1,k_2,k_3$是任意常数}).
+\end{equation*}
+由于\(\P\)是可逆矩阵，
+所以\(\abs{\P} = \frac12 k_1^3 \neq 0\)，
+说明\(k_1\)必须满足约束性条件\(k_1 \neq 0\)，
+因此所求可逆矩阵\(\P\)为\begin{equation*}
+	\P = (\a_1,\a_2,\a_3)
+	= \begin{bmatrix}
+		k_1 & k_2 & k_3 \\
+		0 & -\frac12 k_1 & \frac12 k_2 - k_1 \\
+		0 & 0 & -\frac16 k_1
+	\end{bmatrix}
+	\quad(\text{$k_1,k_2,k_3$是任意常数,且$k_1\neq0$}).
+\end{equation*}
+
+既然可逆矩阵\(\P\)存在，
+那么\(\A \sim \B\).
+\end{solution}
 \end{example}
 
 \subsection{矩阵相似的性质}
