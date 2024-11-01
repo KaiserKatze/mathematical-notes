@@ -278,7 +278,7 @@
 %TODO proof
 \end{theorem}
 
-由\cref{theorem:矩阵可以相似对角化的充分必要条件.定理4} 立即得到矩阵可以相似对角化的一个充分条件：
+由\cref{theorem:矩阵可以相似对角化的充分必要条件.定理4} 立即得到矩阵可以相似对角化的一个充分不必要条件：
 \begin{corollary}\label{theorem:矩阵可以相似对角化的充分条件.定理1}
 %@see: 《线性代数》（张慎语、周厚隆） P100 推论
 %@see: 《高等代数（第三版 上册）》（丘维声） P182 推论6
@@ -294,6 +294,333 @@
 % \(\A\)可以相似对角化.
 % \end{proof}
 \end{corollary}
+
+\begin{example}
+%@see: 《1988年全国硕士研究生入学统一考试（数学一）》八解答题
+已知矩阵\(\A = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & 0 & 1 \\
+	0 & 1 & x
+\end{bmatrix}\)与\(\B = \begin{bmatrix}
+	2 & 0 & 0 \\
+	0 & y & 0 \\
+	0 & 0 & -1
+\end{bmatrix}\)相似.
+求\(x\)与\(y\).
+\begin{solution}
+因为\(\A\sim\B\)，所以，由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}，
+\[
+	\begin{vmatrix}
+		2 & 0 & 0 \\
+		0 & 0 & 1 \\
+		0 & 1 & x
+	\end{vmatrix}
+	= -2 = -2y =
+	\begin{vmatrix}
+		2 & 0 & 0 \\
+		0 & y & 0 \\
+		0 & 0 & -1
+	\end{vmatrix}
+	\implies y = 1;
+\]
+又由\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}，
+\[
+	\tr\A = 2+x
+	= 1+y = \tr\B
+	\implies
+	x = 0.
+\]
+\end{solution}
+\end{example}
+\begin{example}
+%@see: 《1992年全国硕士研究生入学统一考试（数学三）》三解答题/第17题
+设矩阵\(\A\)与\(\B\)相似，
+其中\begin{equation*}
+%@Mathematica: A = ({ {-2, 0, 0}, {2, x, 2}, {3, 1, 1} })
+%@Mathematica: B = ({ {-1, 0, 0}, {0, 2, 0}, {0, 0, y} })
+	\A = \begin{bmatrix}
+		-2 & 0 & 0 \\
+		2 & x & 2 \\
+		3 & 1 & 1
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		-1 & 0 & 0 \\
+		0 & 2 & 0 \\
+		0 & 0 & y
+	\end{bmatrix}.
+\end{equation*}
+求可逆矩阵\(\P\)，使得\(\P^{-1} \A \P = \B\).
+\begin{solution}
+由于\(\A \sim \B\)，
+所以\begin{gather*}
+	%\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}
+	\tr\A = x - 1 = y + 1 = \tr\B, \\
+	% 这里没有列出行列式的相等关系，是因为迹与行列式的相等关系成比例
+	%\cref{theorem:特征值与特征向量.矩阵相似的必要条件3}
+	\abs{\lambda\E-\A}
+	= \begin{vmatrix}
+		\lambda+2 & 0 & 0 \\
+		-2 & \lambda-x & -2 \\
+		-3 & -1 & \lambda-1
+	\end{vmatrix}
+	= \begin{vmatrix}
+		\lambda+1 & 0 & 0 \\
+		0 & \lambda-2 & 0 \\
+		0 & 0 & \lambda-y
+	\end{vmatrix}
+	= \abs{\lambda\E-\B},
+\end{gather*}
+%@Mathematica: Solve[Tr[A] == Tr[B] && Det[k IdentityMatrix[3] - A] == Det[k IdentityMatrix[3] - B], {x, y}]
+故\(x = 0,
+y = -2\)，
+从而有\begin{equation*}
+%@Mathematica: A = A /. x -> 0
+%@Mathematica: B = B /. y -> -2
+	\A = \begin{bmatrix}
+		-2 & 0 & 0 \\
+		2 & x & 2 \\
+		3 & 1 & 1
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		-1 & 0 & 0 \\
+		0 & 2 & 0 \\
+		0 & 0 & y
+	\end{bmatrix}.
+\end{equation*}
+% 矩阵\(\B\)的特征值为\(-2,-1,2\).
+考虑方程\(\A \vb{X} = \vb{X} \B\)，
+将\(\vb{X}\)按列分块为\(\a_1,\a_2,\a_3\)，
+则有\begin{gather*}
+	\A \a_1 = -\a_1, \tag1 \\
+	\A \a_2 = 2\a_2, \tag2 \\
+	\A \a_3 = -2\a_3. \tag3
+\end{gather*}
+
+由(1)式有\((\A+\E) \a_1 = \vb0\)，
+它的系数矩阵为\begin{equation*}
+%@Mathematica: A + IdentityMatrix[3] // MatrixForm
+%@Mathematica: RowReduce[A + IdentityMatrix[3]] // MatrixForm
+	\begin{bmatrix}
+		-1 & 0 & 0 \\
+		2 & 1 & 2 \\
+		3 & 1 & 2
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 2 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+所以\(\a_1 = \begin{bmatrix}
+	0 \\
+	2k_1 \\
+	-k_1
+\end{bmatrix}
+\ (\text{$k_1$是任意常数})\).
+
+由(2)式有\((\A-2\E) \a_2 = \vb0\)，
+它的系数矩阵为\begin{equation*}
+%@Mathematica: A - 2 IdentityMatrix[3] // MatrixForm
+%@Mathematica: RowReduce[A - 2 IdentityMatrix[3]] // MatrixForm
+	\begin{bmatrix}
+		-4 & 0 & 0 \\
+		2 & -2 & 2 \\
+		3 & 1 & -1
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & -1 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+所以\(\a_2 = \begin{bmatrix}
+	0 \\
+	k_2 \\
+	k_2
+\end{bmatrix}
+\ (\text{$k_2$是任意常数})\).
+
+由(3)式有\((\A+2\E) \a_3 = \vb0\)，
+它的系数矩阵为\begin{equation*}
+%@Mathematica: A + 2 IdentityMatrix[3] // MatrixForm
+%@Mathematica: RowReduce[A + 2 IdentityMatrix[3]] // MatrixForm
+	\begin{bmatrix}
+		0 & 0 & 0 \\
+		2 & 2 & 2 \\
+		3 & 1 & 3
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & 0 & 1 \\
+		0 & 1 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+所以\(\a_3 = \begin{bmatrix}
+	k_3 \\
+	0 \\
+	-k_3
+\end{bmatrix}
+\ (\text{$k_3$是任意常数})\).
+
+于是\begin{equation*}
+	\vb{X} = (\a_1,\a_2,\a_3)
+	= \begin{bmatrix}
+		0 & 0 & k_3 \\
+		2k_1 & k_2 & 0 \\
+		-k_1 & k_2 & -k_3
+	\end{bmatrix}
+	\quad(\text{$k_1,k_2,k_3$是任意常数}).
+\end{equation*}
+由于要求的是可逆矩阵，
+所以\(\abs{\vb{X}} = 2 k_1 k_2 k_3 \neq 0\)，
+说明\(k_1,k_2,k_3\)全不为零，
+那么所求可逆矩阵\(\P\)为\begin{equation*}
+	\P = \begin{bmatrix}
+		0 & 0 & k_3 \\
+		2k_1 & k_2 & 0 \\
+		-k_1 & k_2 & -k_3
+	\end{bmatrix}
+	\quad(\text{$k_1,k_2,k_3$是任意常数,$k_1,k_2,k_3$全不为零}).
+\end{equation*}
+\end{solution}
+\end{example}
+\begin{example}
+%@see: 《2019年全国硕士研究生入学统一考试（数学一）》三解答题/第21题
+已知矩阵\(\A = \begin{bmatrix}
+	-2 & -2 & 1 \\
+	2 & x & -2 \\
+	0 & 0 & -2
+\end{bmatrix}\)
+与\(\B = \begin{bmatrix}
+	2 & 1 & 0 \\
+	0 & -1 & 0 \\
+	0 & 0 & y
+\end{bmatrix}\)相似.
+求可逆矩阵\(\P\)，使得\(\P^{-1} \A \P = \B\).
+\begin{solution}
+由于\(\A \sim \B\)，
+所以\begin{gather*}
+	%\cref{theorem:特征值与特征向量.矩阵相似的必要条件4}
+	\tr\A = x - 4 = 1 + y = \tr\B, \\
+	%\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}
+	\abs{\A} = 4(x-2) = -2y = \abs{\B},
+\end{gather*}
+解得\(x=3,
+y=-2\)，
+那么\begin{equation*}
+	\A = \begin{bmatrix}
+		-2 & -2 & 1 \\
+		2 & 3 & -2 \\
+		0 & 0 & -2
+	\end{bmatrix},
+	\qquad
+	\B = \begin{bmatrix}
+		2 & 1 & 0 \\
+		0 & -1 & 0 \\
+		0 & 0 & -2
+	\end{bmatrix}.
+\end{equation*}
+由\(\abs{\lambda\E-\B}=0\)解得\(\B\)的特征值为\(-2,-1,2\)，
+那么由\cref{theorem:矩阵可以相似对角化的充分条件.定理1} 可知
+\(\B\)可以相似对角化，
+%\cref{theorem:特征值与特征向量.矩阵相似的必要条件3}
+故存在可逆矩阵\(\P_1,\P_2\)，
+它们的列向量分别是\(\A,\B\)的特征向量，
+使得\begin{equation*}
+	\P_1^{-1} \A \P_1 = \vb\Lambda,
+	\qquad
+	\P_2^{-1} \B \P_2 = \vb\Lambda,
+\end{equation*}
+其中\(\vb\Lambda\)是某个对角矩阵，
+那么\begin{equation*}
+	\P_2 \P_1^{-1} \A \P_1 \P_2^{-1} = \B,
+\end{equation*}
+因此所求可逆矩阵\(\P\)就是\(\P_1 \P_2^{-1}\).
+
+计算\(\A\)的属于特征值\(2\)的特征向量，
+解方程\((2\E-\A) \vb{x} = \vb0\)得
+\(\vb{x}_{11} = (-1,2,0)^T\).
+
+计算\(\A\)的属于特征值\(-1\)的特征向量，
+解方程\((-\E-\A) \vb{x} = \vb0\)得
+\(\vb{x}_{12} = (-2,1,0)^T\).
+
+计算\(\A\)的属于特征值\(-2\)的特征向量，
+解方程\((-2\E-\A) \vb{x} = \vb0\)得
+\(\vb{x}_{13} = (-1,2,4)^T\).
+
+因此\(\P_1\)可以取为\begin{math}
+%@Mathematica: P1 = ({ {-1, -2, -1}, {2, 1, 2}, {0, 0, 4} })
+	(\vb{x}_{11},\vb{x}_{12},\vb{x}_{13})
+	= \begin{bmatrix}
+		-1 & -2 & -1 \\
+		2 & 1 & 2 \\
+		0 & 0 & 4
+	\end{bmatrix}
+\end{math}.
+
+计算\(\B\)的属于特征值\(2\)的特征向量，
+解方程\((2\E-\B) \vb{x} = \vb0\)得
+\(\vb{x}_{21} = (1,0,0)^T\).
+
+计算\(\B\)的属于特征值\(-1\)的特征向量，
+解方程\((-\E-\B) \vb{x} = \vb0\)得
+\(\vb{x}_{22} = (-1,3,0)^T\).
+
+计算\(\B\)的属于特征值\(-2\)的特征向量，
+解方程\((-2\E-\B) \vb{x} = \vb0\)得
+\(\vb{x}_{23} = (0,0,1)^T\).
+
+因此\(\P_2\)可以取为\begin{math}
+%@Mathematica: P2 = ({ {1, -1, 0}, {0, 3, 0}, {0, 0, 1} })
+	(\vb{x}_{21},\vb{x}_{22},\vb{x}_{23})
+	= \begin{bmatrix}
+		1 & -1 & 0 \\
+		0 & 3 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}
+\end{math}.
+
+接下来计算\(\P = \P_1 \P_2^{-1}\).
+因为\begin{equation*}
+%@Mathematica: Join[P1, P2, 1].({ {1, 1/3, 0}, {0, 1/3, 0}, {0, 0, 1} }) // MatrixForm
+	\begin{bmatrix}
+		\P_1 \\
+		\P_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		-1 & -2 & -1 \\
+		2 & 1 & 2 \\
+		0 & 0 & 4 \\
+		1 & -1 & 0 \\
+		0 & 3 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		-1 & -1 & -1 \\
+		2 & 1 & 2 \\
+		0 & 0 & 4 \\
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\P_1 \P_2^{-1} \\
+		\E
+	\end{bmatrix},
+\end{equation*}
+所以\begin{equation*}
+%@Mathematica: P1.Inverse[P2] // MatrixForm
+	\P = \begin{bmatrix}
+		-1 & -1 & -1 \\
+		2 & 1 & 2 \\
+		0 & 0 & 4
+	\end{bmatrix}.
+\end{equation*}
+\end{solution}
+\end{example}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 5.
