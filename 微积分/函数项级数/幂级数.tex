@@ -52,10 +52,11 @@
 \begin{theorem}[阿贝尔第一定理]\label{theorem:无穷级数.阿贝尔定理1}
 %@see: 《高等数学（第六版 下册）》 P271 定理1
 %@see: 《数学分析（第二版 下册）》（陈纪修） P86 阿贝尔第一定理
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P234 定理15.4.1
 如果级数\(\sum_{n=0}^\infty a_n x^n\)当\(x=x_0\neq0\)时收敛，
-则满足\(\abs{x}<\abs{x_0}\)的一切\(x\)可使该幂级数绝对收敛.
+则满足\(\abs{x}<\abs{x_0}\)的一切\(x\)使之绝对收敛.
 反之，如果级数\(\sum_{n=0}^\infty a_n x^n\)当\(x=x_0\)时发散，
-则满足\(\abs{x}>\abs{x_0}\)的一切\(x\)均使该幂级数发散.
+则满足\(\abs{x}>\abs{x_0}\)的一切\(x\)使之发散.
 \begin{proof}
 先设\(x_0\)是幂级数\(\sum_{n=0}^\infty a_n x^n\)的收敛点，
 即常数项级数\[
@@ -99,18 +100,54 @@
 从原点出发沿数轴负方向走，情形相同.
 利用\cref{theorem:无穷级数.阿贝尔定理1} 可以证明：原点两侧的两个界点到原点的距离是相等的.
 像这样，我们就得到以下重要推论.
-\begin{corollary}\label{theorem:无穷级数.阿贝尔定理1推论}
+\begin{corollary}[柯西--阿达玛定理]\label{theorem:无穷级数.阿贝尔定理1推论}
+%@see: 《数学分析教程（第3版 上册）》（史济怀） P235 定理15.4.2
 %@see: 《高等数学（第六版 下册）》 P271 推论
 %@see: 《数学分析（第二版 下册）》（陈纪修） P84 定理10.3.1（Cauchy-Hadamard定理）
-如果幂级数\(\sum_{n=0}^\infty a_n x^n\)不是仅在\(x=0\)一点收敛，
-也不是在整个数轴上都收敛，
-则必定存在正数\(R\)，
-使得：\begin{itemize}
-	\item 当\(\abs{x}<R\)时，幂级数绝对收敛；
-	\item 当\(\abs{x}>R\)时，幂级数发散；
-	\item 当\(\abs{x}=R\)时，幂级数可能收敛也可能发散.
+给定幂级数\(\sum_{n=0}^\infty a_n x^n\)，
+记\begin{equation*}
+	\rho \defeq \varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n}},
+	\qquad
+	R \defeq \frac1\rho,
+\end{equation*}
+那么\begin{itemize}
+	\item 当\(R = 0\)时，级数\(\sum_{n=0}^\infty a_n x^n\)只在点\(x=0\)收敛；
+	\item 当\(R = +\infty\)时，级数\(\sum_{n=0}^\infty a_n x^n\)在\((-\infty,+\infty)\)上绝对收敛；
+	\item 当\(0 < R < +\infty\)时，级数\(\sum_{n=0}^\infty a_n x^n\)在\((-R,R)\)内绝对收敛，在\((-\infty,-R)\cup(R,+\infty)\)上发散.
 \end{itemize}
 %TODO proof
+% \begin{proof}
+% 当\(R=0\)时，
+
+% 那么\begin{equation*}
+% 	\varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n x^n}}
+% 	= \varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n}} \cdot \abs{x}
+% 	= \rho \abs{x}.
+% 	\eqno(1)
+% \end{equation*}
+
+% 根据\hyperref[theorem:无穷级数.正项级数的根值审敛法]{正项级数的根值审敛法}，
+% 当极限(1)取值小于\(1\)，
+% 即\begin{equation*}
+% 	\abs{x} < \frac1\rho
+% \end{equation*}时，
+% 级数\(\sum_{n=0}^\infty a_n x^n\)绝对收敛.
+
+% 根据\cref{theorem:无穷级数.绝对发散的特殊情况}，
+% 当极限(1)取值大于\(1\)，
+% 即\begin{equation*}
+% 	\abs{x} > \frac1\rho
+% \end{equation*}时，
+% 级数\(\sum_{n=0}^\infty a_n x^n\)发散.
+
+% \[
+% 	R = \left\{ \def\arraystretch{1.5} \begin{array}{cl}
+% 		\frac1\rho, & 0<\rho<+\infty, \\
+% 		+\infty, & \rho = 0, \\
+% 		0, & \rho = +\infty \\
+% 	\end{array} \right.
+% \]
+% \end{proof}
 \end{corollary}
 
 对于\(\sum_{n=0}^\infty a_n (x-x_0)^n\)，我们有平行的结论：
@@ -118,7 +155,7 @@
 也不是在整个数轴上都收敛，
 则必定存在正数\(R\)，
 使得幂级数\(\sum_{n=0}^\infty a_n (x-x_0)^n\)
-在以\(x_0\)为中心、以\(R\)为半径的对称区间\((x_0-R,x_0+R)\)内绝对收敛，
+在以\(x_0\)为中心、\(R\)为半径的对称区间\((x_0-R,x_0+R)\)内绝对收敛，
 而在\((-\infty,x_0-R)\cup(x_0+R,+\infty)\)上发散.
 
 我们把\cref{theorem:无穷级数.阿贝尔定理1推论} 中提到的正数\(R\)
@@ -132,45 +169,13 @@
 如果幂级数只在\(x=0\)处收敛，这时收敛域为\(\{0\}\)，规定收敛半径\(R=0\).
 如果幂级数对任意实数都收敛，则规定收敛半径\(R=+\infty\)，收敛域为\((-\infty,+\infty)\).
 
-关于幂级数的收敛半径的求法，有下面的定理.
-\begin{theorem}\label{theorem:无穷级数.幂级数的收敛半径的求法1}
-%@see: 《数学分析（第二版 下册）》（陈纪修） P84
-如果\[
-	\varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n}} = \rho,
-\]
-则幂级数\(\sum_{n=0}^\infty a_n x^n\)的收敛半径为\[
-	R = \left\{ \def\arraystretch{1.5} \begin{array}{cl}
-		\frac1\rho, & 0<\rho<+\infty, \\
-		+\infty, & \rho = 0, \\
-		0, & \rho = +\infty \\
-	\end{array} \right.
-\]
-\begin{proof}
-对于幂级数\(\sum_{n=0}^\infty a_n x^n\)，
-有\begin{equation*}
-	\varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n x^n}}
-	= \varlimsup_{n\to\infty} \sqrt[n]{\abs{a_n}} \cdot \abs{x}.
-	\eqno(1)
-\end{equation*}
-
-根据\hyperref[theorem:无穷级数.正项级数的根值审敛法]{正项级数的根值审敛法}，
-当极限(1)取值小于\(1\)时，
-级数\(\sum_{n=0}^\infty a_n x^n\)绝对收敛.
-
-根据\cref{theorem:无穷级数.绝对发散的特殊情况}，
-当极限(1)取值大于\(1\)，或极限(1)发散时，
-级数\(\sum_{n=0}^\infty a_n x^n\)发散.
-\end{proof}
-\end{theorem}
-\begin{remark}
-从\cref{theorem:无穷级数.幂级数的收敛半径的求法1} 可以看出：
+从\cref{theorem:无穷级数.阿贝尔定理1推论} 可以看出：
 给定两个幂级数\(\sum_{n=0}^\infty a_n x^n\)和\(\sum_{n=0}^\infty b_n x^n\)，
 假设它们的收敛半径分别是\(R_1\)和\(R_2\)，
 如果\(\abs{a_n} \leq \abs{b_n}\ (n=1,2,\dotsc)\)，
 那么必有\(\sqrt[n]{\abs{a_n}} \leq \sqrt[n]{\abs{b_n}}\)，
 从而有\(R_1 \geq R_2\).
 这体现了极限的保序性.
-\end{remark}
 
 \begin{example}
 %@see: 《数学分析（第二版 下册）》（陈纪修） P85 例10.3.2
