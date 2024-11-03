@@ -95,6 +95,57 @@ M \defeq \max_{a \leq x \leq b} f(x),
 因此，我们就有可能通过原函数来计算定积分.
 \end{remark}
 
+\begin{example}%野题
+设\begin{equation*}
+%@Mathematica: f[x_] := Piecewise[{{Sin[x], 0 <= x < \[Pi]}, {2, \[Pi] <= x <= 2 \[Pi]}}]
+%@Mathematica: F[x_] := Integrate[f[t], {t, 0, x}, Assumptions -> {x \[Element] Reals}]
+%@Mathematica: Plot[{f[x], F[x]}, {x, 0, 2 \[Pi]}, PlotLegends -> "Expressions"]
+	f(x) = \left\{ \begin{array}{cl}
+		\sin x, & 0 \leq x < \pi, \\
+		2, & \pi \leq 2 \leq 2\pi,
+	\end{array} \right.
+	\qquad
+	F(x) = \int_0^x f(t) \dd{t}.
+\end{equation*}
+考察函数\(F\)在点\(x=\pi\)的连续性和可导性.
+\begin{solution}
+当\(0 \leq x < \pi\)时，
+有\begin{equation*}
+	F(x) = \int_0^x f(t) \dd{t}
+	= \int_0^x \sin t \dd{t}
+	= \eval{\cos t}_x^0
+	= 1 - \cos x,
+\end{equation*}
+%@Mathematica: Limit[F[x], x -> \[Pi], Direction -> "FromBelow"]
+故\(\lim_{x\to\pi^-} F(x) = 2\).
+当\(\pi \leq x \leq 2\pi\)时，
+有\begin{equation*}
+	F(x) = \int_0^\pi f(t) \dd{t} + \int_\pi^x f(t) \dd{t}
+	= 2(1 + x - \pi),
+\end{equation*}
+%@Mathematica: Limit[F[x], x -> \[Pi], Direction -> "FromAbove"]
+故\(\lim_{x\to\pi^+} F(x) = 2\).
+又因为\(F(\pi) = 2\)，
+所以函数\(F\)在点\(x=\pi\)连续.
+
+因为\begin{align*}
+%@Mathematica: Limit[(F[x] - F[\[Pi]])/(x - \[Pi]), x -> \[Pi], Direction -> "FromBelow"]
+	F'_-(\pi)
+	&= \lim_{x\to\pi^-} \frac{F(x) - F(\pi)}{x - \pi}
+	= \lim_{x\to\pi^-} \frac{1 - \cos x - 2}{x - \pi}
+	% 洛必达法则
+	= 0, \\
+%@Mathematica: Limit[(F[x] - F[\[Pi]])/(x - \[Pi]), x -> \[Pi], Direction -> "FromAbove"]
+	F'_+(\pi)
+	&= \lim_{x\to\pi^+} \frac{F(x) - F(\pi)}{x - \pi}
+	= \lim_{x\to\pi^+} \frac{2(1 + x - \pi) - 2}{x - \pi}
+	= 2,
+\end{align*}
+左导数与右导数不相等，
+所以函数\(F\)在点\(x=\pi\)不可导.
+\end{solution}
+\end{example}
+
 \begin{example}
 %@credit: {ce603838-a24d-4616-9395-d7b223e8cb72}
 举例说明：函数可积但它的原函数不存在.
