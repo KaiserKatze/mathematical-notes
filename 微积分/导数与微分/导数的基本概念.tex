@@ -200,30 +200,6 @@
 %@Mathematica: Plot[Piecewise[{{1/Floor[1/x], 1/(Floor[1/x] + 1) < x <= 1/Floor[1/x] && x > 0}, {x, x <= 0}}], {x, -.5, .5}]
 \end{example}
 
-\begin{example}
-设函数\(f\)在点\(x=0\)的某个邻域内连续，
-函数\(g\)是当\(x\to0\)时的无穷小，
-且\(f\)是\(g\)的高阶无穷小.
-要使\(f\)在点\(x=0\)可导，
-\(g\)应该满足什么条件？
-\begin{solution}
-由于\(f\)是无穷小，且\(f\)在点\(x=0\)连续，
-所以\(f(0)=0\).
-根据导数的定义，有\[
-	f'(0)
-	= \lim_{x\to0} \frac{f(x) - f(0)}{x-0}
-	= \lim_{x\to0} \frac{f(x)}{x}
-	= \lim_{x\to0} \frac{f(x)}{g(x)} \cdot \frac{g(x)}{x}.
-\]
-由此可见，要使极限\[
-	\lim_{x\to0} \frac{f(x)}{g(x)} \cdot \frac{g(x)}{x}
-\]存在，
-只需要极限\[
-	\lim_{x\to0} \frac{g(x)}{x} % \(g\)是\(x\)的同阶无穷小或高阶无穷小
-\]存在.
-\end{solution}
-\end{example}
-
 \subsection{导函数的定义}
 设函数\(f\colon I\to\mathbb{R}\)在区间\(I\)内的每一个点可导，
 那么，对于\(\forall x_0 \in I\)，
@@ -601,7 +577,60 @@ n\in\mathbb{N}^+\).
 \end{solution}
 \end{example}
 
-\subsection{导函数的连续性与间断点，导数极限定理}
+% 考研数学经常考察抽象函数在点\(x=0\)的连续性、可导性
+\begin{example}
+设函数\(f\)在点\(x=0\)的某个邻域内连续，
+函数\(g\)是当\(x\to0\)时的无穷小，
+且\(f\)是\(g\)的同阶无穷小或高阶无穷小.
+要使\(f\)在点\(x=0\)可导，
+\(g\)应该满足什么条件？
+\begin{solution}
+由于\(f\)是无穷小，
+% 即\(\lim_{x\to0} f(x) = 0\)，
+且\(f\)在点\(x=0\)连续，
+% 即\(f(0) = \lim_{x\to0} f(x)\)，
+所以\(f(0) = 0\).
+根据导数的定义，有\[
+	f'(0)
+	= \lim_{x\to0} \frac{f(x) - f(0)}{x-0} % 函数\(f\)在点\(x=0\)的导数的定义
+	= \lim_{x\to0} \frac{f(x)}{x} % 代入\(f\)在点\(x=0\)的函数值\(f(0) = 0\)
+	= \lim_{x\to0} \frac{f(x)}{g(x)} \cdot \frac{g(x)}{x}. % 极限的四则运算法则
+\]
+由此可见，要使\(f\)在点\(x=0\)可导，
+只需要极限\[
+	\lim_{x\to0} \frac{g(x)}{x} % \(g\)是\(x\)的同阶无穷小或高阶无穷小
+\]存在且有限.
+\end{solution}
+\end{example}
+\begin{example}
+设函数\(f\)在点\(x=0\)的邻域内有定义，
+且\(\lim_{x\to0} f(x) = 0\)，
+函数\(f\)在点\(x=0\)可导.
+证明：\(\lim_{x\to0} \frac{f(x)}{\sqrt{\abs{x}}}\)存在且有限.
+\begin{proof}
+因为函数\(f\)在点\(x=0\)的导数为\begin{equation*}
+	f'(0)
+	= \lim_{x\to0} \frac{f(x) - f(0)}{x - 0}
+	= \lim_{x\to0} \frac{f(x)}{x},
+\end{equation*}
+所以\begin{gather*}
+	\lim_{x\to0^+} \frac{f(x)}{\sqrt{\abs{x}}}
+	= \lim_{x\to0^+} \frac{f(x)}{\sqrt{x}}
+	= \lim_{x\to0^+} \frac{f(x)}{x} \cdot \sqrt{x}
+	= \lim_{x\to0^+} \frac{f(x)}{x} \cdot \lim_{x\to0^+} \sqrt{x}
+	= 0, \\
+	\lim_{x\to0^-} \frac{f(x)}{\sqrt{\abs{x}}}
+	= \lim_{x\to0^-} \frac{f(x)}{\sqrt{-x}}
+	= \lim_{x\to0^-} \frac{f(x)}{-x} \cdot \sqrt{-x}
+	= \lim_{x\to0^-} \frac{f(x)}{-x} \cdot \lim_{x\to0^-} \sqrt{-x}
+	= 0,
+\end{gather*}
+于是由\cref{theorem:函数极限.极限与单侧极限的关系1} 可知
+\(\lim_{x\to0} \frac{f(x)}{\sqrt{\abs{x}}} = 0\).
+\end{proof}
+\end{example}
+
+\subsection{导函数的连续性与间断点}
 \begin{definition}
 设函数\(f\)在点\(x_0\)的某一邻域内可导.
 如果\(f\)的导函数\(f'\)在点\(x_0\)连续，
