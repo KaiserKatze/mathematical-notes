@@ -220,35 +220,34 @@
 如果函数\(z=f(x,y)\)的两个二阶混合偏导数\(\pdv{z}{y}{x}\)及\(\pdv{z}{x}{y}\)在区域\(D\)内连续，
 那么在该区域内这两个二阶混合偏导数必相等.
 \begin{proof}
-根据偏导数的定义，我们有
-\[
+根据偏导数的定义，我们有\begin{gather*}
 	\pdv{z(x,y)}{x}
-	= \lim_{\increment x\to0} \frac{f(x+\increment x,y)-f(x,y)}{\increment x},
-\]
-	\[
+	= \lim_{h\to0} \frac{f(x+h,y)-f(x,y)}{h}, \\
 	\pdv{z(x,y)}{y}
-	= \lim_{\increment y\to0} \frac{f(x,y+\increment y)-f(x,y)}{\increment y}.
-\]
-于是，我们就有
-\begin{align*}
+	= \lim_{k\to0} \frac{f(x,y+k)-f(x,y)}{k}.
+\end{gather*}
+于是，我们就有\begin{align*}
 	\pdv[2]{z}{x}{y}
-	&= \lim_{\increment y\to0}
-		\frac{1}{\increment y}\left[\pdv{z(x,y+\increment y)}{x} - \pdv{z(x,y)}{x}\right] \\
-	&= \lim_{\increment y\to0}
-		\frac{1}{\increment y}\left[\lim_{\increment x\to0} \frac{f(x+\increment x,y+\increment y)-f(x,y+\increment y)}{\increment x} - \lim_{\increment x\to0} \frac{f(x+\increment x,y)-f(x,y)}{\increment x}\right] \\
-	&= \lim_{\increment y\to0}
-		\frac{1}{\increment y}\left\{\lim_{\increment x\to0} \frac{[f(x+\increment x,y+\increment y)-f(x,y+\increment y)]-[f(x+\increment x,y)-f(x,y)]}{\increment x}\right\} \\
-	&= \lim_{\increment y\to0} \lim_{\increment x\to0}
-		\frac{f(x+\increment x,y+\increment y)-f(x,y+\increment y)-f(x+\increment x,y)+f(x,y)}{\increment x \cdot \increment y}, \\
+	% 偏导数的定义
+	&= \lim_{k\to0}
+		\frac1k \left( \pdv{z(x,y+k)}{x} - \pdv{z(x,y)}{x} \right) \\
+	% 偏导数的定义
+	&= \lim_{k\to0}
+		\frac1k \left( \lim_{h\to0} \frac{f(x+h,y+k)-f(x,y+k)}{h} - \lim_{h\to0} \frac{f(x+h,y)-f(x,y)}{h} \right) \\
+	% 通分
+	&= \lim_{k\to0}
+		\frac1k \left[ \lim_{h\to0} \frac{(f(x+h,y+k)-f(x,y+k))-(f(x+h,y)-f(x,y))}{h} \right] \\
+	&= \lim_{k\to0} \lim_{h\to0}
+		\frac{f(x+h,y+k)-f(x,y+k)-f(x+h,y)+f(x,y)}{h \cdot k}, \\
 	\pdv[2]{z}{y}{x}
-	&= \lim_{\increment x\to0}
-		\frac{1}{\increment x}\left[\pdv{z(x+\increment x,y)}{y} - \pdv{z(x,y)}{y}\right] \\
-	&= \lim_{\increment x\to0}
-		\frac{1}{\increment x}\left[\lim_{\increment y\to0} \frac{f(x+\increment x,y+\increment y)-f(x+\increment x,y)}{\increment y} - \lim_{\increment y\to0} \frac{f(x,y+\increment y)-f(x,y)}{\increment y}\right] \\
-	&= \lim_{\increment x\to0}
-		\frac{1}{\increment x}\left\{\lim_{\increment y\to0} \frac{[f(x+\increment x,y+\increment y)-f(x+\increment x,y)]-[f(x,y+\increment y)-f(x,y)]}{\increment y}\right\} \\
-	&= \lim_{\increment x\to0} \lim_{\increment y\to0}
-		\frac{f(x+\increment x,y+\increment y)-f(x+\increment x,y)-f(x,y+\increment y)+f(x,y)}{\increment x \cdot \increment y}, \\
+	&= \lim_{h\to0}
+		\frac1h \left( \pdv{z(x+h,y)}{y} - \pdv{z(x,y)}{y} \right) \\
+	&= \lim_{h\to0}
+		\frac1h \left( \lim_{k\to0} \frac{f(x+h,y+k)-f(x+h,y)}{k} - \lim_{k\to0} \frac{f(x,y+k)-f(x,y)}{k} \right) \\
+	&= \lim_{h\to0}
+		\frac1h \left[ \lim_{k\to0} \frac{(f(x+h,y+k)-f(x+h,y))-(f(x,y+k)-f(x,y))}{k} \right] \\
+	&= \lim_{h\to0} \lim_{k\to0}
+		\frac{f(x+h,y+k)-f(x+h,y)-f(x,y+k)+f(x,y)}{h \cdot k}, \\
 \end{align*}
 显然\[
 	\pdv[2]{z}{x}{y} = \pdv[2]{z}{y}{x}.
