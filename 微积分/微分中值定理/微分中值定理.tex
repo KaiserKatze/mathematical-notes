@@ -800,6 +800,88 @@ x_2' = \max\{x_1,x_2\}\)，
 \end{proof}
 \end{example}
 
+\begin{example}
+%@see: 《2020年全国硕士研究生入学统一考试（数学一）》三解答题/第19题
+设函数\(f\)在区间\([0,2]\)上具有连续导数，
+\(f(0) = f(2) = 0,
+M = \max_{0 \leq x \leq 2} \abs{f(x)}\).
+证明：\begin{itemize}
+	\item 存在\(\xi\in(0,2)\)使得\(\abs{f'(\xi)} \geq M\)；
+	\item 若对任意\(x\in(0,2)\)有\(\abs{f'(x)} \leq M\)，则\(M = 0\).
+\end{itemize}
+\begin{proof}
+假设\(M = 0\)，
+则\(f(x)\)恒等于\(0\)，\(f'(x)\)也恒等于\(0\)，
+于是对于任意\(\xi\in(0,2)\)，总是成立\(\abs{f'(\xi)} \geq M\).
+
+假设\(M > 0\)，
+且点\(c\in(0,2)\)满足\(\abs{f(c)} = M\).
+% 这里之所以假设\(c\in(0,2)\)，是因为\(f(0) = f(2) = 0 < M\)
+由拉格朗日中值定理，
+存在\(\xi_1\in(0,c)\)，
+存在\(\xi_2\in(c,2)\)，
+使得\begin{equation*}
+	\abs{f(c)}
+	% \(f(0) = f(2) = 0\)
+	= \abs{f(c) - f(0)}
+	= \abs{f'(\xi_1) \cdot (c - 0)},
+	\qquad
+	\abs{f(c)}
+	% \(f(0) = f(2) = 0\)
+	= \abs{f(2) - f(c)}
+	= \abs{f'(\xi_2) \cdot (2 - c)},
+\end{equation*}
+于是\begin{equation*}
+	% 代入\(\abs{f(c)} = M\)
+	\abs{f'(\xi_1)} = \frac{M}{c},
+	\qquad
+	\abs{f'(\xi_2)} = \frac{M}{2-c}.
+\end{equation*}
+当\(0<c<1\)时，\(\abs{f'(\xi_1)} > M\)，取\(\xi=\xi_1\)；
+当\(c=1\)时，\(\abs{f'(\xi_1)} = \abs{f'(\xi_2)} = M\)，取\(\xi=\xi_1\)；
+当\(1<c<2\)时，\(\abs{f'(\xi_2)} > M\)，取\(\xi=\xi_2\)；
+总而言之，\(\abs{f'(\xi)} \geq M\).
+
+假设对任意\(x\in(0,2)\)有\(\abs{f'(x)} \leq M\).
+因为当\(c\in(0,1)\cup(1,2)\)时，由上可知，
+存在\(\xi\in(0,1)\)使得\(\abs{f'(\xi)} > M\)，与假设矛盾，
+所以\(c\)只可能等于\(1\)，即有\(\abs{f(1)} = M\)，
+或者说\(x=1\)是\(f\)的极值点，
+那么由费马引理可知\(f'(1) = 0\).
+\begin{itemize}
+	\item 假设\(f(1) = M\).
+	令\(g(x) = f(x) - M x\)，
+	则\begin{equation*}
+		g(0) = f(0) - 0 = 0,
+		\qquad
+		g(1) = f(1) - M = 0,
+		\qquad
+		g'(x) = f'(x) - M \leq 0,
+	\end{equation*}
+	所以\(g\)在\((0,1)\)内单调不增，
+	可以用反证法证明\(g\)在\((0,1)\)内只能恒等于\(0\).
+	于是\(f(x) = M x\)，
+	那么\(f'_-(1) = M = 0\).
+
+	\item 假设\(f(1) = -M\).
+	令\(g(x) = f(x) + M x\)，
+	则\begin{equation*}
+		g(0) = f(0) + 0 = 0,
+		\qquad
+		g(1) = f(1) + M = 0,
+		\qquad
+		g'(x) = f'(x) + M \geq 0,
+	\end{equation*}
+	所以\(g\)在\((0,1)\)内单调不减，
+	可以用反证法证明\(g\)在\((0,1)\)内只能恒等于\(0\).
+	于是\(f(x) = -M x\)，
+	那么\(f'_-(1) = -M = 0\)，
+	即\(M = 0\).
+\end{itemize}
+综上所述，若对任意\(x\in(0,2)\)有\(\abs{f'(x)} \leq M\)，则\(M = 0\).
+\end{proof}
+\end{example}
+
 \subsection{柯西中值定理}
 \begin{theorem}[柯西中值定理]\label{theorem:微分中值定理.柯西中值定理}
 %@see: 《高等数学（第六版 上册）》 P133 柯西中值定理
