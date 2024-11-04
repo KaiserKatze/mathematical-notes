@@ -681,7 +681,46 @@
 %@Mathematica: SumConvergence[(-1)^(n - 1) n x^(n - 1), n]
 \end{example}
 
+\begin{example}
+设数列\(\{a_n\}\)满足\(a_1 = 1,
+(n+1) a_{n+1} = \left( n + \frac12 \right) a_n\).
+求幂级数\(\sum_{n=1}^\infty a_n x^n\)的收敛半径与和函数.
+\begin{solution}
+幂级数\(\sum_{n=1}^\infty a_n x^n\)的收敛半径为
+\(\lim_{n\to\infty} \abs{\frac{a_n}{a_{n+1}}} = 1\).
 
+假设它的和函数为\(S(x)\)，
+那么\begin{align*}
+	S'(x)
+	&= \sum_{n=1}^\infty \dv{x} a_n x^n \\
+	&= \sum_{n=1}^\infty n a_n x^{n-1}
+	= \sum_{n=0}^\infty (n+1) a_{n+1} x^n \\
+	&= 1 + \sum_{n=1}^\infty (n+1) a_{n+1} x^n \\
+	% 代入\((n+1) a_{n+1} = \left( n + \frac12 \right) a_n\)
+	&= 1 + \sum_{n=1}^\infty \left( n + \frac12 \right) a_n x^n \\
+	&= 1 + \sum_{n=1}^\infty n a_n x^n + \frac12 \sum_{n=1}^\infty a_n x^n.
+\end{align*}
+于是得到一个一阶微分方程\begin{equation*}
+	S'(x) = 1 + x S'(x) + \frac12 S(x),
+\end{equation*}
+整理得\begin{equation*}
+	S'(x) - \frac1{2(1-x)} S(x) = \frac1{1-x},
+\end{equation*}
+其通解为\begin{equation*}
+	S(x) = e^{\int \frac1{2(1-x)} \dd{x}}
+	\left[ C + \int \frac1{1-x} e^{-\int \frac1{2(1-x)} \dd{x}} \dd{x} \right]
+	% 由于收敛区间为\(-1<x<1\)，所以\(\ln\abs{1-x} = \ln(1-x)\).
+	= \frac{C}{\sqrt{1-x}} - 2,
+\end{equation*}
+其中\(C\)是任意常数.
+因为\(S(0) = \frac{C}{\sqrt{1-0}} - 2 = 0\)，
+所以\(C = 2\)，
+即\begin{equation*}
+	S(x) = \frac2{\sqrt{1-x}} - 2
+	\quad(-1<x<1).
+\end{equation*}
+\end{solution}
+\end{example}
 
 \subsection{幂级数的运算}
 \begin{definition}
