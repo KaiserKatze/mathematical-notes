@@ -222,6 +222,119 @@ r_{1,2} = \frac{-p \pm\sqrt{p^2-4q}}{2}
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《2016年全国硕士研究生入学统一考试（数学一）》三解答题/第16题
+设函数\(y(x)\)满足方程\(y'' + 2 y' + k y = 0\)，
+其中\(0<k<1\).
+\begin{itemize}
+	\item 证明：反常积分\(\int_0^{+\infty} y(x) \dd{x}\)收敛；
+	\item 若\(y(0) = 1,
+	y'(0) = 1\)，
+	求\(\int_0^{+\infty} y(x) \dd{x}\)的值.
+\end{itemize}
+\begin{solution}
+写出方程\(y'' + 2 y' + k y = 0\)的特征方程\begin{equation*}
+	f(r) = r^2 + 2 r + k = 0,
+\end{equation*}
+其判别式为\(\Delta = 4 - 4 k = 4 (1-k) > 0\)，
+故特征方程有两个相异实根\(r_1,r_2\).
+将通解\begin{equation*}
+	y(x) = C_1 e^{r_1 x} + C_2 e^{r_2 x}\ (\text{$C_1,C_2$是任意常数})
+	\eqno(1)
+\end{equation*}
+代入\(\int_0^{+\infty} y(x) \dd{x}\)得\begin{equation*}
+	\int_0^{+\infty} \left( C_1 e^{r_1 x} + C_2 e^{r_2 x} \right) \dd{x}
+	= \frac{C_1}{r_1} \eval{e^{r_1 x}}_0^{+\infty}
+	+ \frac{C_2}{r_2} \eval{e^{r_2 x}}_0^{+\infty}.
+	\eqno(2)
+\end{equation*}
+因为\(r_1 + r_2 = -2 < 0\)且\(f(0) = k > 0\)，
+所以\(r_1,r_2\)均小于零，
+从而有\begin{equation*}
+	\lim_{x\to+\infty} e^{r_1 x}
+	= \lim_{x\to+\infty} e^{r_2 x}
+	= 0,
+	\eqno(3)
+\end{equation*}
+于是(2)式等于\(-\frac{C_1}{r_1}-\frac{C_2}{r_2}\).
+
+由方程\(y'' + 2 y' + k y = 0\)
+得\(y(x) = -\frac1k \left( y''(x) + 2 y'(x) \right)\)，
+积分得\begin{align*}
+	\int_0^{+\infty} y(x) \dd{x}
+	&= -\frac1k \int_0^{+\infty} \left( y''(x) + 2 y'(x) \right) \dd{x}
+	= -\frac1k \eval{\left( y'(x) + 2 y(x) \right)}_0^{+\infty} \\
+	&= -\frac1k \left[
+		\lim_{x\to+\infty} \left( y'(x) + 2 y(x) \right)
+		- \left( y'(0) + 2 y(0) \right)
+	\right].
+	\tag4
+\end{align*}
+由(3)式可知\begin{equation*}
+	\lim_{x\to+\infty} y(x)
+	= \lim_{x\to+\infty} \left( C_1 e^{r_1 x} + C_2 e^{r_2 x} \right)
+	= 0,
+	\qquad
+	\lim_{x\to+\infty} y'(x)
+	= \lim_{x\to+\infty} \left( r_1 C_1 e^{r_1 x} + r_2 C_2 e^{r_2 x} \right)
+	= 0,
+\end{equation*}
+于是，当\(y(0)=y'(0)=1\)时，
+(4)式等于\begin{math}
+	\frac1k (y'(0) + 2 y(0))
+	= \frac3k.
+\end{math}
+\end{solution}
+\end{example}
+\begin{example}
+%@see: 《2020年全国硕士研究生入学统一考试（数学一）》二填空题/第11题
+设函数\(f\)满足方程\(f''(x) + a f'(x) + f(x) = 0\ (a>0)\)，
+且\(f(0) = m,
+f'(0) = n\).
+计算反常积分\(\int_0^{+\infty} f(x) \dd{x}\).
+\begin{solution}
+由\(f''(x) + a f'(x) + f(x) = 0\)
+有\(f(x) = - f''(x) - a f'(x)\)，
+积分得\begin{align*}
+	\int_0^{+\infty} f(x) \dd{x}
+	&= \int_0^{+\infty} (- f''(x) - a f'(x)) \dd{x}
+	= \eval{(- f'(x) - a f(x))}_0^{+\infty} \\
+	&= \lim_{x\to+\infty} (- f'(x) - a f(x))
+	- (- f'(0) - a f(0)).
+	\tag1
+\end{align*}
+
+写出方程\(f''(x) + a f'(x) + f(x) = 0\)的特征方程\begin{equation*}
+	f(r) = r^2 + a r + 1 = 0,
+\end{equation*}
+其判别式为\(\Delta = a^2 - 4\).
+
+当\(\Delta > 0\)即\(a>2\)时，
+特征方程有两个实根\(r_1,r_2\)，
+由韦达定理可知\(r_1 + r_2 = -a < 0\)，
+又因为\(f(0) = 1 > 0\)，所以\(r_1,r_2\)均小于零，
+于是通解\(f(x) = C_1 e^{r_1 x} + C_2 e^{r_2 x}\)满足\begin{equation*}
+	\lim_{x\to+\infty} f(x) = 0.
+	\eqno(2)
+\end{equation*}
+
+当\(\Delta = 0\)即\(a=2\)时，
+特征方程只有一个实根\(r=-1\)，
+于是通解\(f(x) = (C_1 + C_2 x) e^{-x}\)也满足(2)式.
+
+当\(\Delta < 0\)即\(0<a<2\)时，
+特征方程有一对共轭复根\(r_1 = -\frac{a}2 - b \iu,
+r_2 = -\frac{a}2 + b \iu\)，
+于是通解\(f(x) = e^{-\frac{a}2 x} (C_1 \cos b x + C_2 \sin b x)\)也满足(2)式.
+
+综上所述，由(1)式得\begin{equation*}
+	\int_0^{+\infty} f(x) \dd{x}
+	= f'(0) + a f(0)
+	= n + a m.
+\end{equation*}
+\end{solution}
+\end{example}
+
 上面讨论二阶常系数齐次线性微分方程所用的方法以及方程的通解的形式，
 可推广到\(n\)阶常系数齐次线性微分方程上去，对此我们不再详细讨论，只简单地叙述于下：
 
