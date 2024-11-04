@@ -42,7 +42,7 @@
 矩阵的迹具有“线性性”.
 \end{remark}
 
-\begin{property}\label{theorem:矩阵的迹.性质2}
+\begin{property}\label{theorem:矩阵的迹.矩阵转置不变迹}
 已知矩阵\(\A \in M_{s \times n}(K)\)，
 则\begin{equation}
 	\tr\A = \tr(\A^T).
@@ -54,31 +54,31 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P170 (4)
 已知矩阵\(\A,\B \in M_n(K)\)，
 则\begin{equation}
-	\tr(\A\B) = \tr(\B\A).
+	\tr(\A \B) = \tr(\B \A).
 \end{equation}
 \begin{proof}
 设\(\A = (a_{ij})_n,
 \B = (b_{ij})_n\)，
 则\begin{gather*}
-	\tr(\A\B)
-	= \sum_{i=1}^n (\A\B)(i,i)
+	\tr(\A \B)
+	= \sum_{i=1}^n (\A \B)(i,i)
 	= \sum_{i=1}^n \sum_{k=1}^n a_{ik} b_{ki}, \\
-	\tr(\B\A)
-	= \sum_{k=1}^n (\B\A)(k,k)
+	\tr(\B \A)
+	= \sum_{k=1}^n (\B \A)(k,k)
 	= \sum_{k=1}^n \sum_{i=1}^n b_{ki} a_{ik},
 \end{gather*}
 利用加法结合律可得\[
 	\sum_{i=1}^n \sum_{k=1}^n a_{ik} b_{ki}
 	= \sum_{k=1}^n \sum_{i=1}^n b_{ki} a_{ik},
 \]
-于是\(\tr(\A\B) = \tr(\B\A)\).
+于是\(\tr(\A \B) = \tr(\B \A)\).
 \end{proof}
 \end{property}
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 9.
 证明：如果数域\(K\)上的\(n\)阶矩阵\(\A,\B\)满足\[
-	\A\B-\B\A=\A,
+	\A \B - \B \A=\A,
 \]
 则\(\A\)不可逆.
 \begin{proof}
@@ -86,15 +86,15 @@
 假设\(\A\)可逆，\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
 那么\begin{gather*}
 	\E = \A\A^{-1}
-	= (\A\B-\B\A)\A^{-1} % 把\(\A\B-\B\A\)代入\(\A\)
-	= \A\B\A^{-1}-\B,
+	= (\A \B - \B \A)\A^{-1} % 把\(\A \B - \B \A\)代入\(\A\)
+	= \A \B \A^{-1}-\B,
 \end{gather*}
-从而有\(\tr(\A\B\A^{-1}-\B) = \tr\E\)，
+从而有\(\tr(\A \B \A^{-1}-\B) = \tr\E\)，
 但是\begin{align*}
-	\tr(\A\B\A^{-1}-\B)
-	&= \tr(\A\B\A^{-1})-\tr\B
+	\tr(\A \B \A^{-1}-\B)
+	&= \tr(\A \B \A^{-1})-\tr\B
 		\tag{\cref{theorem:矩阵的迹.性质1}} \\
-	&= \tr(\A^{-1}(\A\B))-\tr\B
+	&= \tr(\A^{-1}(\A \B))-\tr\B
 		\tag{\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹}} \\
 	&= \tr\B-\tr\B
 	= 0
@@ -133,16 +133,40 @@
 已知矩阵\(\A,\B \in M_n(K)\)，
 且\(\A,\B\)均为实对称矩阵，
 则\begin{equation}
-	\tr(\A\B)^2 \leq \tr(\A^2\B^2).
+	\tr(\A \B)^2 \leq \tr(\A^2 \B^2).
 \end{equation}
 %TODO proof
+% \begin{proof}
+% %@see: https://www.bilibili.com/video/BV1s12RY9EMx/
+% 因为\(\A,\B\)均是实对称矩阵，
+% 所以\begin{equation*}
+% 	\A = \A^T,
+% 	\qquad
+% 	\B = \B^T.
+% \end{equation*}
+% 因为\hyperref[theorem:矩阵的迹.矩阵乘积交换次序不变迹]{矩阵乘积交换次序不变迹}，
+% 所以\begin{equation*}
+% 	\tr(\A^2 \B^2)
+% 	= \tr[(\A \A \B) \B]
+% 	= \tr(\B \A \A \B).
+% 	\qquad
+% 	\tr(\B \A)
+% 	= \tr(\A \B).
+% \end{equation*}
+% % 因为\hyperref[theorem:矩阵的迹.矩阵转置不变迹]{矩阵转置不变迹}，
+% 所以\begin{equation*}
+% \end{equation*}
+% 由\hyperref[theorem:矩阵的迹.性质1]{迹的线性性}可知，
+% 要证\(\tr(\A \B)^2 \leq \tr(\A^2 \B^2)\)，
+% 即证\(\tr(\A \A \B \B - \A \B \A \B) \geq 0\)
+% \end{proof}
 \end{property}
 
 \begin{example}
 设\(\A\)是数域\(K\)上的\(n\)阶对称矩阵，
 \(\B\)是数域\(K\)上的\(n\)阶反对称矩阵.
 证明：\begin{equation}
-	\tr(\A\B) = 0.
+	\tr(\A \B) = 0.
 \end{equation}
 \begin{proof}
 设\(\vb{A}\vb{B}\)的\((i,j)\)元素为\(c_{ij}\)，
