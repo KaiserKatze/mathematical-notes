@@ -145,29 +145,85 @@
 \end{corollary}
 
 \begin{example}
-设\(X \sim U(0,1)\)；对\(\forall x\in(0,1)\)，当\(X=x\)时，\(Y \sim U(x^2,1)\)，求\(P(X > Y)\).
+设\(X \sim U(0,1)\)；
+对\(\forall x\in(0,1)\)，
+当\(X=x\)时，\(Y \sim U(x^2,1)\).
+求\(P(X > Y)\).
 \begin{solution}
 \(X\)的密度函数为\[
-f_X(x) = \left\{ \begin{array}{cl}
-1, & 0<x<1, \\
-0, & \text{其他}.
-\end{array} \right.
+	f_X(x) = \left\{ \begin{array}{cl}
+		1, & 0<x<1, \\
+		0, & \text{其他}.
+	\end{array} \right.
 \]当\(X=x\in(0,1)\)时，\(Y\)有条件密度\[
-f_{Y \vert X}(y \vert x)
-= \left\{ \begin{array}{cl}
-\frac{1}{1-x^2}, & x^2<y<1, \\
-0, & \text{其他}.
-\end{array} \right.
+	f_{Y \vert X}(y \vert x)
+	= \left\{ \begin{array}{cl}
+		\frac{1}{1-x^2}, & x^2<y<1, \\
+		0, & \text{其他}.
+	\end{array} \right.
 \]因此\[
-f(x,y) = f_X(x) \cdot f_{Y \vert X}(y \vert x)
-= \left\{ \begin{array}{cl}
-\frac{1}{1-x^2}, & 0<x<1 \land x^2<y<1, \\
-0, & \text{其他}.
-\end{array} \right.
+	f(x,y) = f_X(x) \cdot f_{Y \vert X}(y \vert x)
+	= \left\{ \begin{array}{cl}
+		\frac{1}{1-x^2}, & 0<x<1 \land x^2<y<1, \\
+		0, & \text{其他}.
+	\end{array} \right.
 \]\[
-P(X > Y)
-= \int_0^1 \dd{x} \int_{x^2}^x \frac{1}{1-x^2} \dd{y}
-= 1 - \ln2.
+	P(X > Y)
+	= \int_0^1 \dd{x} \int_{x^2}^x \frac{1}{1-x^2} \dd{y}
+	= 1 - \ln2.
 \]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《2020年全国硕士研究生入学统一考试（数学一）》三解答题/第22题
+设随机变量\(X_1,X_2,X_3\)相互独立，
+其中\(X_1\)与\(X_2\)均服从标准正态分布，
+\(X_3\)的概率分布为\begin{equation*}
+	P(X_3=0)
+	= P(X_3=1)
+	= \frac12.
+\end{equation*}
+\(Y = X_3 X_1 + (1 - X_3) X_2\).
+求二维随机变量\((X_1,Y)\)的分布函数，和\(Y\)的边缘分布函数.
+\begin{solution}
+设\((X_1,Y)\)的分布函数为\(F(x,y)\)，
+则\begin{align*}
+	F(x,y) &= P(X_1 \leq x,Y \leq y)
+	= P(X_1 \leq x,X_3 X_1 + (1 - X_3) X_2 \leq y) \\
+	% 全概率公式
+	&= P(X_1 \leq x,X_3 X_1 + (1 - X_3) X_2 \leq y \vert X_3 = 0) \cdot P(X_3 = 0) \\
+	&\hspace{20pt}+ P(X_1 \leq x,X_3 X_1 + (1 - X_3) X_2 \leq y \vert X_3 = 1) \cdot P(X_3 = 1) \\
+	% 把条件事件代入
+	&= P(X_1 \leq x,X_2 \leq y \vert X_3 = 0) \cdot P(X_3 = 0)
+	+ P(X_1 \leq x,X_1 \leq y \vert X_3 = 1) \cdot P(X_3 = 1) \\
+	&= P(X_1 \leq x,X_2 \leq y,X_3 = 0)
+	+ P(X_1 \leq x,X_1 \leq y,X_3 = 1) \\
+	&= P(X_1 \leq x) P(X_2 \leq y) P(X_3 = 0)
+	+ P(X_1 \leq x,X_1 \leq y) P(X_3 = 1) \\
+	&= \frac12 \Phi(x) \Phi(y) + \frac12 P(X_1 \leq \min\{x,y\}).
+\end{align*}
+当\(x \leq y\)时，有\begin{equation*}
+	P(X_1 \leq \min\{x,y\})
+	= P(X_1 \leq x) = \Phi(x).
+\end{equation*}
+当\(x > y\)时，有\begin{equation*}
+	P(X_1 \leq \min\{x,y\})
+	= P(X_1 \leq y) = \Phi(y).
+\end{equation*}
+因此\begin{equation*}
+	F(x,y)
+	= \left\{ \def\arraystretch{1.5} \begin{array}{cl}
+		\frac12 \Phi(x) (\Phi(y) + 1), & x \leq y, \\
+		\frac12 \Phi(y) (\Phi(x) + 1), & x > y.
+	\end{array} \right.
+\end{equation*}
+于是\(Y\)的边缘分布为\begin{align*}
+	F_Y(y) = F(+\infty,y)
+	= \lim_{x\to+\infty} \frac12 \Phi(y) (\Phi(x) + 1)
+	= \frac12 \Phi(y) (\Phi(+\infty) + 1)
+	% \(\Phi(+\infty) = 1\)
+	= \Phi(y).
+\end{align*}
 \end{solution}
 \end{example}
