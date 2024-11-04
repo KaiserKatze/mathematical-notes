@@ -73,12 +73,51 @@
 	= \frac{\dd{z}\dd{x}}{\cos\beta}
 	= \frac{\dd{x}\dd{y}}{\cos\gamma},
 \]
+\begingroup
+\def\NamedAngle#1{%
+	\ifnum1=0#1\relax\alpha\fi%
+	\ifnum2=0#1\relax\beta\fi%
+	\ifnum3=0#1\relax\gamma\fi%
+}%
+\def\NamedFraction#1#2{\frac{\cos\NamedAngle#1}{\cos\NamedAngle#2}}%
+\def\NamedAxis#1{%
+	\ifnum1=0#1\relax x \fi%
+	\ifnum2=0#1\relax y \fi%
+	\ifnum3=0#1\relax z \fi%
+}%
+\def\NamedDerivative#1#2{%
+	\NamedAxis#2'_\NamedAxis#1%
+}%
 于是\begin{align*}
-	\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
-	&= \iint_\Sigma \left(P\frac{\cos\alpha}{\cos\gamma}+Q\frac{\cos\beta}{\cos\gamma}+R\right)\dd{x}\dd{y} \\
-	&= \iint_\Sigma \left(P\frac{\cos\alpha}{\cos\beta}+Q+R\frac{\cos\gamma}{\cos\beta}\right)\dd{z}\dd{x} \\
-	&= \iint_\Sigma \left(P+Q\frac{\cos\beta}{\cos\alpha}+R\frac{\cos\gamma}{\cos\alpha}\right)\dd{y}\dd{z}.
+	\iint_\Sigma P \dd{y}\dd{z} + Q \dd{z}\dd{x} + R \dd{x}\dd{y}
+	&= \iint_\Sigma \left(P \cdot \NamedFraction13 + Q \cdot \NamedFraction23 + R\right)\dd{x}\dd{y} \\
+	&= \iint_\Sigma \left(P \cdot \NamedFraction12 + Q + R \cdot \NamedFraction32\right)\dd{z}\dd{x} \\
+	&= \iint_\Sigma \left(P + Q \cdot \NamedFraction21 + R \cdot \NamedFraction31\right)\dd{y}\dd{z}.
 \end{align*}
+再由\begin{gather*}
+	\NamedFraction13
+	= -\NamedDerivative13,
+	\qquad
+	\NamedFraction23
+	= -\NamedDerivative23, \\
+	\NamedFraction12
+	= -\NamedDerivative12,
+	\qquad
+	\NamedFraction32
+	= -\NamedDerivative32, \\
+	\NamedFraction21
+	= -\NamedDerivative21,
+	\qquad
+	\NamedFraction31
+	= -\NamedDerivative31
+\end{gather*}
+可得\begin{align*}
+	\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
+	&= \iint_\Sigma \left(- P \cdot \NamedDerivative13 - Q \cdot \NamedDerivative23 + R\right)\dd{x}\dd{y} \\
+	&= \iint_\Sigma \left(- P \cdot \NamedDerivative12 + Q - R \cdot \NamedDerivative32\right)\dd{z}\dd{x} \\
+	&= \iint_\Sigma \left(P - Q \cdot \NamedDerivative21 - R \cdot \NamedDerivative31\right)\dd{y}\dd{z}.
+\end{align*}
+\endgroup
 
 \begin{example}
 %@see: 《高等数学（第六版 下册）》 P228 例3
