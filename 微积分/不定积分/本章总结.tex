@@ -23,6 +23,9 @@
 	= \ln(x + \sqrt{x^2 + a^2}) + C \\
 	\int \frac{\dd{x}}{\sqrt{x^2 - a^2}}
 	= \ln\abs{x + \sqrt{x^2 - a^2}} + C \\
+	% 根式
+	\int \sqrt{a^2 - x^2} \dd{x}
+	= \frac12 a^2 \arcsin\frac{x}{a} + \frac12 x \sqrt{a^2 - x^2} + C \\
 	% 三角函数1次
 	\int \cos x \dd{x}
 	= \sin x + C \\
@@ -61,6 +64,23 @@
 	%@Mathematica: Integrate[Csc[x] Cot[x], x]
 	\int \csc x \cot x \dd{x}
 	= -\csc x + C \\
+	% 三角函数3次
+	%@Mathematica: Integrate[Sin[x]^3, x] // TrigExpand
+	\int \sin^3 x \dd{x}
+	= -\cos x + \frac{1}{3} \cos^3 x + C \\
+	% 正余弦函数 正交函数列
+	\int \sin mx \cos nx \dd{x}
+	= -\frac{\cos(m+n)x}{2(m+n)}
+		- \frac{\cos(m-n)x}{2(m-n)}
+		+ C \\
+	\int \sin mx \sin nx \dd{x}
+	= \frac{\sin(m-n)x}{2(m-n)}
+		- \frac{\sin(m+n)x}{2(m+n)}
+		+ C \\
+	\int \cos mx \cos nx \dd{x}
+	= \frac{\sin(m+n)x}{2(m+n)}
+		+ \frac{\sin(m-n)x}{2(m-n)}
+		+ C \\
 	% 指数函数
 	\int e^x \dd{x}
 	= e^x + C \\
@@ -98,12 +118,12 @@
 \end{align*}
 
 对于\(\sin^{2k} x \cos^{2l} x\ (k,l \in \mathbb{N})\)型函数，
-总可利用三角恒等式\(\sin^2 x = \frac{1}{2}(1-\cos 2x)\)，
-\(\cos^2 x = \frac{1}{2}(1+\cos 2x)\)化成\(\cos 2x\)的多项式，求得结果.
+总可利用三角恒等式\(\sin^2 x = \frac12(1-\cos 2x)\)，
+\(\cos^2 x = \frac12(1+\cos 2x)\)化成\(\cos 2x\)的多项式，求得结果.
 例如：\[
 	\int \sin^{2k} x \cos^{2l} x \dd{x}
-	= \int \left[\frac{1}{2}(1-\cos 2x)\right]^k
-		\left[\frac{1}{2}(1+\cos 2x)\right]^l \dd{x}
+	= \int \left[\frac12(1-\cos 2x)\right]^k
+		\left[\frac12(1+\cos 2x)\right]^l \dd{x}
 	= \int f(\cos 2x) \dd{x}.
 \]
 
