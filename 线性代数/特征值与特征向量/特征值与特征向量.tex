@@ -392,6 +392,53 @@
 \]
 \end{proof}
 \end{example}
+
+\subsection{特征矩阵，特征多项式，特征方程}
+\begin{proposition}
+设\(\A \in M_n(K)\)，
+\(\AutoTuple{\lambda}{n}\)都是\(\A\)的特征值，
+\(\AutoTuple{\vb{x}}{n}\)分别是\(\A\)的属于特征值\(\AutoTuple{\lambda}{n}\)的特征向量.
+记\(\vb{X} = (\AutoTuple{\vb{x}}{n})\)，
+则\[
+	\A \vb{X} = \vb{X} \vb{\Lambda},
+\]
+其中\(\vb{\Lambda} = \diag(\AutoTuple{\lambda}{n})\).
+\end{proposition}
+
+\begin{definition}
+%@see: 《线性代数》（张慎语、周厚隆） P93 定义2
+%@see: 《高等代数（第三版 上册）》（丘维声） P173
+设矩阵\(\A \in M_n(K)\)，\(\lambda \in K\)，
+\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+把\[
+	\lambda\E-\A
+\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征矩阵}”.
+把\(\A\)的属于特征值\(\lambda\)的特征矩阵的行列式\[
+	\abs{\lambda\E-\A}
+\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征多项式}（characteristic polynomial）”.
+%@see: https://mathworld.wolfram.com/CharacteristicPolynomial.html
+把关于\(\lambda\)的方程\[
+	\abs{\lambda\E-\A}=0
+\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征方程}（characteristic equation）”.
+%@see: https://mathworld.wolfram.com/CharacteristicEquation.html
+\end{definition}
+
+\begin{theorem}\label{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系}
+%@see: 《高等代数（第三版 上册）》（丘维声） P174 定理1
+%@see: 《线性代数》（张慎语、周厚隆） P93 性质4
+设矩阵\(\A \in M_n(K)\)，\(\lambda_0 \in K\)，
+\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+则\begin{align*}
+	&\text{\(\lambda_0\)是矩阵\(\A\)的一个特征值} \\
+	&\iff \text{\(\lambda_0\)是矩阵\(\A\)的特征多项式\(\abs{\lambda\E-\A}\)在\(K\)中的一个根} \\
+	&\iff \abs{\lambda_0 \E - \A} = 0, \\
+	&\text{\(\vb{x}_0\)是矩阵\(\A\)的属于特征值\(\lambda_0\)的一个特征向量} \\
+	&\iff \text{\(\vb{x}_0\)是齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的一个非零解} \\
+	&\iff \vb{x}_0 \in \Ker(\lambda_0 \E - \A) - \{\vb0\}.
+\end{align*}
+%TODO proof
+\end{theorem}
+
 \begin{example}\label{example:特征值与特征向量.交换矩阵乘积后非零特征值不变}
 %@see: 《高等代数（第三版 上册）》（丘维声） P180 习题5.5 13.
 设\(\A \in M_{s \times n}(K),
@@ -438,15 +485,15 @@
 	\lambda^n \abs{\lambda \E_s - \A \B}
 	= \lambda^s \abs{\lambda \E_n - \B \A}.
 \end{equation*}
-于是\begin{gather*}
-	\abs{\lambda \E_s - \A \B} = 0
-	\iff
-	\abs{\lambda \E_n - \B \A} = 0, \\
+于是\(\abs{\lambda \E_s - \A \B} = 0
+\iff
+\abs{\lambda \E_n - \B \A} = 0\)，
+由\cref{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系} 可知\begin{equation*}
 	\text{\(\lambda\)是\(\A \B\)的非零特征值}
 	\iff
 	\text{\(\lambda\)是\(\B \A\)的非零特征值}.
 	\qedhere
-\end{gather*}
+\end{equation*}
 %TODO 这能看出非零特征值\(\lambda\)的重数吗？
 \end{proof}\let\qed\relax
 \end{proof}
@@ -487,50 +534,6 @@
 % 你可以将\(\A\)化为等价标准型来证明，
 % 或先证\(\A\)非异的情形，再用摄动法进行讨论.
 \end{example}
-
-\subsection{特征矩阵，特征多项式，特征方程}
-\begin{proposition}
-设\(\A \in M_n(K)\)，
-\(\AutoTuple{\lambda}{n}\)都是\(\A\)的特征值，
-\(\AutoTuple{\vb{x}}{n}\)分别是\(\A\)的属于特征值\(\AutoTuple{\lambda}{n}\)的特征向量.
-记\(\vb{X} = (\AutoTuple{\vb{x}}{n})\)，
-则\[
-	\A \vb{X} = \vb{X} \vb{\Lambda},
-\]
-其中\(\vb{\Lambda} = \diag(\AutoTuple{\lambda}{n})\).
-\end{proposition}
-
-\begin{definition}
-%@see: 《线性代数》（张慎语、周厚隆） P93 定义2
-%@see: 《高等代数（第三版 上册）》（丘维声） P173
-设矩阵\(\A \in M_n(K)\)，\(\lambda \in K\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
-把\[
-	\lambda\E-\A
-\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征矩阵}”.
-把\(\A\)的属于特征值\(\lambda\)的特征矩阵的行列式\[
-	\abs{\lambda\E-\A}
-\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征多项式}（characteristic polynomial）”.
-%@see: https://mathworld.wolfram.com/CharacteristicPolynomial.html
-把关于\(\lambda\)的方程\[
-	\abs{\lambda\E-\A}=0
-\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征方程}（characteristic equation）”.
-%@see: https://mathworld.wolfram.com/CharacteristicEquation.html
-\end{definition}
-
-\begin{theorem}\label{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系}
-%@see: 《高等代数（第三版 上册）》（丘维声） P174 定理1
-%@see: 《线性代数》（张慎语、周厚隆） P93 性质4
-设矩阵\(\A \in M_n(K)\)，\(\lambda_0 \in K\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
-则\begin{align*}
-	&\text{\(\lambda_0\)是矩阵\(\A\)的一个特征值} \\
-	&\iff \text{\(\lambda_0\)是矩阵\(\A\)的特征多项式\(\abs{\lambda\E-\A}\)在\(K\)中的一个根}, \\
-	&\text{\(\vb{x}_0\)是矩阵\(\A\)的属于特征值\(\lambda_0\)的一个特征向量} \\
-	&\iff \text{\(\vb{x}_0\)是齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的一个非零解}.
-\end{align*}
-%TODO proof
-\end{theorem}
 
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1vGmuYkEt3/
