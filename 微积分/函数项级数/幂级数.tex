@@ -722,6 +722,66 @@
 \end{equation*}
 \end{solution}
 \end{example}
+\begin{example}
+%@see: 《2021年全国硕士研究生入学统一考试（数学一）》三解答题/第18题
+设\(u_n(x) = e^{-nx} + \frac{x^{n+1}}{n(n+1)}\ (n=1,2,\dotsc)\).
+求级数\(\sum_{n=1}^\infty u_n(x)\)的收敛域及和函数.
+\begin{solution}
+记\(S(x) = \sum_{n=1}^\infty u_n(x),
+S_1(x) = \sum_{n=1}^\infty e^{-nx},
+S_2(x) = \sum_{n=1}^\infty \frac{x^{n+1}}{n(n+1)}\).
+
+我们知道，等比级数\(\sum_{n=1}^\infty e^{-nx}\)收敛当且仅当其公比的绝对值小于\(1\)，
+即\(\abs{e^{-x}} < 1\)，
+这就说明级数\(\sum_{n=1}^\infty e^{-nx}\)的收敛域为\((0,+\infty)\).
+再由\cref{theorem:无穷级数.幂级数的收敛半径的求法2} 可知，
+级数\(\sum_{n=1}^\infty \frac{x^{n+1}}{n(n+1)}\)的收敛半径为\begin{equation*}
+	R = \lim_{n\to\infty} \abs{\frac{a_n}{a_{n+1}}}
+	= \lim_{n\to\infty} \abs{\frac{(n+1)(n+2)}{n(n+1)}}
+	= 1;
+\end{equation*}
+当\(x=1\)时，级数\(\sum_{n=1}^\infty \frac{x^{n+1}}{n(n+1)}\)成为
+\(p\)级数\(\sum_{n=1}^\infty \frac1{n(n+1)}\)，
+由\cref{example:无穷级数.p级数的收敛性} 可知该级数收敛.
+于是级数\(\sum_{n=1}^\infty u_n(x)\)的收敛域为
+\((0,+\infty) \cap (-1,1] = (0,1]\).
+
+由\cref{example:无穷级数.等比级数的收敛性} 可知\begin{equation*}
+	S_1(x) = \frac1{e^x-1}.
+\end{equation*}
+特别地，有\begin{equation*}
+	S_1(1) = \frac1{e-1}.
+\end{equation*}
+
+当\(0<x<1\)时，
+有\begin{align*}
+	S_2(x) &= \sum_{n=1}^\infty \left( \frac{x^{n+1}}{n} - \frac{x^{n+1}}{n+1} \right) \\
+	&= x \sum_{n=1}^\infty \frac{x^n}{n} - \sum_{n=2}^\infty \frac{x^n}{n} \\
+	&= x + (x-1) \sum_{n=1}^\infty \frac{x^n}{n} \\
+	&= x + (x-1) \int_0^x \sum_{n=1}^\infty \dv{t}(\frac{t^n}{n}) \dd{t} \\
+	&= x + (1-x) \ln(1-x).
+\end{align*}
+注意到在上式中函数\(S_2\)在收敛域的端点\(x=1\)没有定义，需要另行计算.
+由于\hyperref[theorem:无穷级数.幂级数的和函数的性质1]{幂级数的和函数在收敛域上连续}，
+所以\begin{equation*}
+	S_2(1) = \lim_{x\to1^-} S_2(x)
+	= \lim_{x\to1^-} [x + (1-x) \ln(1-x)]
+	%\cref{example:微分中值定理.洛必达法则.零乘无穷大型2}
+	= 1.
+\end{equation*}
+
+综上所述，级数\(\sum_{n=1}^\infty u_n(x)\)的和函数为\begin{align*}
+	S(x)
+	&= S_1(x) + S_2(x) \\
+	&= \left\{ \begin{array}{cl}
+		\frac1{e^x-1} + x + (1-x) \ln(1-x),
+			& 0<x<1, \\
+		\frac{e}{e-1},
+			& x=1.
+	\end{array} \right.
+\end{align*}
+\end{solution}
+\end{example}
 
 \subsection{幂级数的运算}
 \begin{definition}
