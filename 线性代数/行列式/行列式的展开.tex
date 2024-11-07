@@ -149,7 +149,7 @@
 \end{example}
 
 \subsection{行列式按一行（或一列）展开}
-\begin{theorem}
+\begin{theorem}\label{theorem:行列式.行列式按行展开}
 设\(\A=(a_{ij})_n\)，
 \(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
 \begin{enumerate}
@@ -458,6 +458,50 @@
 	= \left[ 2 x_1 x_2 \dotsm x_n - (x_1 - 1)(x_2 - 1)\dotsm(x_n - 1) \right]
 	\prod_{1 \leq i < j \leq n} (x_j - x_i).
 \]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《2021年全国硕士研究生入学统一考试（数学一）》二填空题/第15题
+设\(\A = (a_{ij})\)是3阶矩阵，
+\(A_{ij}\)是元素\(a_{ij}\)的代数余子式.
+若\(\A\)的每行元素之和均为\(2\)，
+且\(\abs{\A} = 3\)，
+计算\(A_{11} + A_{21} + A_{31}\).
+\begin{solution}
+由\cref{theorem:行列式.行列式按行展开} 可知
+\(\abs{\A} = a_{11} A_{11} + a_{21} A_{21} + a_{31} A_{31}\)，
+那么\begin{equation*}
+	A_{11} + A_{21} + A_{31}
+	= \begin{vmatrix}
+		1 & a_{12} & a_{13} \\
+		1 & a_{22} & a_{23} \\
+		1 & a_{32} & a_{33}
+	\end{vmatrix}.
+\end{equation*}
+由\hyperref[theorem:行列式.性质6]{行列式的性质}有\begin{align*}
+	3 &= \abs{\A} = \begin{vmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{vmatrix} \\
+	&= \begin{vmatrix}
+		a_{11} + a_{12} + a_{13} & a_{12} & a_{13} \\
+		a_{21} + a_{22} + a_{23} & a_{22} & a_{23} \\
+		a_{31} + a_{32} + a_{33} & a_{32} & a_{33}
+	\end{vmatrix}
+	= \begin{vmatrix}
+		2 & a_{12} & a_{13} \\
+		2 & a_{22} & a_{23} \\
+		2 & a_{32} & a_{33}
+	\end{vmatrix}
+	= 2 \begin{vmatrix}
+		1 & a_{12} & a_{13} \\
+		1 & a_{22} & a_{23} \\
+		1 & a_{32} & a_{33}
+	\end{vmatrix},
+\end{align*}
+所以\(A_{11} + A_{21} + A_{31} = \frac32\).
 \end{solution}
 \end{example}
 
