@@ -1,0 +1,113 @@
+\section{本章总结}
+\subsection*{边缘分布，随机变量的独立性}
+%\cref{theorem:多维随机变量及其分布.联合密度、边缘密度的关系}
+设\(F(x,y)\)为二维随机变量\((X,Y)\)的二维分布函数，
+则\(X\)与\(Y\)的边缘分布函数\(F_X(x)\)、\(F_Y(y)\)分别为\begin{gather*}
+	F_X(x) = F(x,+\infty)
+	(\quad x \in \mathbb{R}), \\
+	F_Y(y) = F(+\infty,y)
+	(\quad y \in \mathbb{R}).
+\end{gather*}
+
+%\cref{definition:多维随机变量及其分布.随机变量的独立性}
+设\(\AutoTuple{X}{n}\)是\(n\)维随机变量.
+若对任意\(n\)个实数\(\AutoTuple{x}{n}\)，
+\(n\)个事件\((X_1 \leq x_1),\dotsc,(X_n \leq x_n)\)相互独立，
+即有\[
+	P(X_1 \leq x_1,\dotsc,X_n \leq x_n)
+	= P(X_1 \leq x_1) \dotsm P(X_n \leq x_n)
+\]
+或\[
+	F(x_1,\dotsc,x_n)
+	= F_1(x_1) \dotsm F_n(x_n),
+\]
+其中\(F\)是\(n\)维随机变量\(\AutoTuple{X}{n}\)的联合分布函数，
+而\(F_1,\dotsc,F_n\)分别是\(X_1,\dotsc,X_n\)的边缘分布函数，
+则称“\(n\)个随机变量\(\AutoTuple{X}{n}\)相互独立”；
+否则称“\(n\)个随机变量\(\AutoTuple{X}{n}\)不相互独立”
+或“\(n\)个随机变量\(\AutoTuple{X}{n}\)相依”.
+
+%\cref{theorem:多维随机变量及其分布.两个离散型随机变量相互独立的充分必要条件}
+设\((X,Y)\)是二维离散型随机变量，有二维概率分布\[
+	p_{ij} = P(X=x_i,Y=y_j), \quad i,j=1,2,\dotsc,
+\]
+则随机变量\(X\)与\(Y\)相互独立的充分必要条件是：\[
+	p_{ij} = p_{i*} p_{*j}, \quad i,j=1,2,\dotsc.
+\]
+
+%\cref{theorem:多维随机变量及其分布.两个连续型随机变量相互独立的充分必要条件}
+设二维连续型随机变量\((X,Y)\)的二维密度为\(f(x,y)\)，
+\(X\)与\(Y\)的边缘密度分别为\(f_X(x)\)和\(f_Y(y)\)，
+则\begin{align*}
+	f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \dd{y}, \\
+	f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \dd{x}.
+\end{align*}
+而\(X\)与\(Y\)相互独立的充分必要条件是：\[
+	f(x,y) = f_X(x) f_Y(y).
+\]在三个密度函数的公共连续点上成立.
+
+\subsection*{联合分布、边缘分布与条件分布的联系}
+设二维连续型随机变量\((X,Y)\)有二维密度\(f(x,y)\)，
+从而\(X\)及\(Y\)有边缘密度\(f_X(x)\)、\(f_Y(y)\)，
+则\begin{gather*}
+	F_{X \vert Y}(x \vert y)
+	= \int_{-\infty}^x \frac{f(u,y)}{f_Y(y)}\dd{u}
+	(\quad x \in \mathbb{R}), \\
+	F_{Y \vert X}(y \vert x)
+	= \int_{-\infty}^y \frac{f(x,v)}{f_X(x)}\dd{v}
+	(\quad y \in \mathbb{R}).
+\end{gather*}
+\(X\)关于\(Y\)的条件密度函数为\begin{equation*}
+	%\cref{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系1}
+	f_{X \vert Y}(x \vert y)
+	= \frac{f(x,y)}{f_Y(y)}.
+\end{equation*}
+\(Y\)关于\(X\)的条件密度函数为\begin{equation*}
+	%\cref{equation:多维随机变量及其分布.条件密度、联合密度、边缘密度的关系2}
+	f_{Y \vert X}(y \vert x)
+	= \frac{f(x,y)}{f_X(x)}.
+\end{equation*}
+反过来，可以利用边缘密度函数和条件密度函数计算联合密度函数：\begin{equation*}
+	f(x,y) = f_Y(y) \cdot f_{X \vert Y}(x \vert y)
+	= f_X(x) \cdot f_{Y \vert X}(y \vert x).
+\end{equation*}
+
+\subsection*{分布的可加性}
+%\cref{theorem:多维随机变量及其分布.二项分布的可加性1}
+设\(X \sim B(n,p)\)，
+\(Y \sim B(m,p)\)，
+且\(X\)与\(Y\)相互独立，
+则\[
+	X+Y \sim B(n+m,p).
+\]
+
+%\cref{theorem:多维随机变量及其分布.泊松分布的可加性1}
+设\(X \sim P(\lambda_1)\)，
+\(Y \sim P(\lambda_2)\)，
+且\(X\)与\(Y\)相互独立，
+则\[
+	X+Y \sim P(\lambda_1 + \lambda_2).
+\]
+
+%\cref{theorem:正态分布与自然指数分布族.正态分布的可加性1}
+设\(X \sim N(\mu_1,\sigma_1^2)\)，
+\(Y \sim N(\mu_2,\sigma_2^2)\)，
+且\(X\)与\(Y\)相互独立，
+则\begin{equation*}
+	X+Y \sim N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2).
+\end{equation*}
+
+%\cref{theorem:正态分布与自然指数分布族.正态分布的可加性2}
+设随机变量\(\AutoTuple{X}{n}\)相互独立，
+且\[
+	X_i \sim N(\mu_i,\sigma_i^2),
+	\quad i=1,2,\dotsc,n,
+\]
+且\(C_1,C_2,\dotsc,C_n\)为常数，
+则\begin{equation*}
+	\sum_{i=1}^n {C_i X_i}
+	\sim N\left(
+	\sum_{i=1}^n {C_i \mu_i},
+	\sum_{i=1}^n {C_i^2 \sigma_i^2}
+	\right).
+\end{equation*}
