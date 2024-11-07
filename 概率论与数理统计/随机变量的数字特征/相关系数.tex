@@ -262,6 +262,62 @@ D(Y) = \sigma_Y\).
 \end{example}
 
 \begin{example}
+%@see: 《2021年全国硕士研究生入学统一考试（数学一）》一选择题/第16题
+甲、乙两个盒子中各装有2个红球和2个白球，
+先从甲盒中任取一球，观察颜色后放入乙盒，再从乙盒中任取一球，
+令\(X,Y\)分别表示甲盒和乙盒中取到的红球的个数，
+计算\(X\)与\(Y\)的相关系数.
+\begin{solution}
+由题意有，在取第一次球时，
+甲盒中有2个红球和2个白球，
+由等可能概型可知取到红球的概率为\(\frac24 = \frac12\)，
+取到白球的概率也是\(\frac12\).
+假如第一次取到的是红球，
+那么在把球放入乙盒以后，
+乙盒里有3个红球和2个白球，
+此时取到红球的概率为\(\frac35\)，取到白球的概率为\(\frac25\).
+假如第一次取到的是白球，
+那么在把球放入乙盒以后，
+乙盒里有2个红球和3个白球，
+此时取到红球的概率为\(\frac25\)，取到白球的概率为\(\frac35\).
+
+根据以上分析可知，
+\(X\)的可能取值为\(\{0,1\}\)，
+且\begin{equation*}
+	P(X=0) = \frac12,
+	\qquad
+	P(X=1) = \frac12;
+\end{equation*}
+\(Y\)的可能取值为\(\{0,1\}\)，
+且\begin{gather*}
+	P(Y=1) = P(Y=1 \vert X=1) P(X=1) + P(Y=1 \vert X=0) P(X=0)
+	= \frac35 \cdot \frac12 + \frac25 \cdot \frac12
+	= \frac12, \\
+	P(Y=0) = 1 - P(Y=1) = \frac12;
+\end{gather*}
+\(XY\)的可能取值为\(\{0,1\}\)，
+且\begin{gather*}
+	P(XY=1)
+	= P(X=1,Y=1)
+	= P(Y=1 \vert X=1) P(X=1)
+	= \frac35 \cdot \frac12
+	= \frac3{10}, \\
+	P(XY=0)
+	= 1 - P(XY=1)
+	= \frac7{10}.
+\end{gather*}
+于是\begin{align*}
+	E(X) &= 0 \cdot \frac12 + 1 \cdot \frac12 = \frac12, \\
+	E(X^2) &= 0^2 \cdot \frac12 + 1^2 \cdot \frac12 = \frac12, \\
+	D(X) &= E(X^2) - E^2(X) = \frac12 - \left( \frac12 \right)^2 =  \frac14, \\
+	E(XY) &= 0 \cdot \frac7{10} + 1 \cdot \frac3{10} = \frac3{10}, \\
+	R(X,Y) &= \frac{E(XY) - E(X) E(Y)}{\sqrt{D(X)} \sqrt{D(Y)}}
+	= \frac{\frac3{10} - \frac12 \cdot \frac12}{\frac12 \cdot \frac12}
+	= \frac15.
+\end{align*}
+\end{solution}
+\end{example}
+\begin{example}
 %@see: 《2022年全国硕士研究生入学统一考试（数学一）》一选择题/第10题
 设\(X \sim N(0,1)\)，
 在\(X=x\)条件下\(Y \sim N(x,1)\).
