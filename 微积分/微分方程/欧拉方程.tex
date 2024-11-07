@@ -78,4 +78,35 @@
 	y = C_1 + C_2 e^{-t} + C_3 e^{3t} - \frac12 x^2.
 \]
 \end{solution}
+%@Mathematica: DSolve[x^3 y'''[x] + x^2 y''[x] - 4 x y'[x] == 3 x^2, y[x], x]
+\end{example}
+
+\begin{example}
+%@see: 《2021年全国硕士研究生入学统一考试（数学一）》二填空题/第13题
+求欧拉方程\(x^2 y'' + x y' - 4 y = 0\)
+满足条件\(y(1) = 1,y'(1) = 2\)的解.
+\begin{solution}
+作变换\(x = e^t\)，原方程化为\begin{equation*}
+	D(D-1)y + Dy - 4y = 0,
+\end{equation*}
+即\begin{equation*}
+	D^2y - 4y = 0,
+\end{equation*}
+其特征方程为\begin{equation*}
+	r^2 - 4 = 0,
+\end{equation*}
+它有两个根，分别为\(r_1 = -2,r_2 = 2\).
+于是变换后的微分方程的通解为\(y(t) = C_1 e^{-2t} + C_2 e^{2t}\).
+把\(t\)换回\(\ln x\)，得\begin{equation*}
+	y(x) = C_1 x^{-2} + C_2 x^2.
+\end{equation*}
+代入条件\(y(1) = 1,y'(1) = 2\)得\begin{equation*}
+	C_1 + C_2 = 1,
+	\qquad
+	-2 C_1 + 2 C_2 = 2,
+\end{equation*}
+解得\(C_1 = 0,C_2 = 1\)，
+故所求欧拉方程的解为\(y(x) = x^2\).
+\end{solution}
+%@Mathematica: DSolve[x^2 y''[x] + x y'[x] - 4 y[x] == 0 && y[1] == 1 && y'[1] == 2, y[x], x]
 \end{example}
