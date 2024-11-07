@@ -5,7 +5,7 @@
 		\hline
 		& 离散型 & 连续型 \\
 		\hline
-		\begin{tblr}{l}
+		\begin{tblr}{c}
 			数学期望 \\
 			\(E(X)\) \\
 		\end{tblr}
@@ -15,7 +15,7 @@
 		& \(\int_{-\infty}^{+\infty} x f(x) \dd{x}\) \\
 		\hline
 		\SetCell[r=3]{c}
-		\begin{tblr}{l}
+		\begin{tblr}{c}
 			方差 \\
 			\(D(X)\) \\
 		\end{tblr}
@@ -26,7 +26,24 @@
 		%\cref{equation:随机变量的数字特征.连续型方差的计算式}
 		& \(\int_{-\infty}^{+\infty} [x - E(X)]^2 f(x) \dd{x}\) \\ \cline{2-3}
 		%\cref{theorem:随机变量的数字特征.常用的方差的计算式}
-		& \SetCell[c=2]{c} \(E(X^2) - [E(X)]^2\)
+		& \SetCell[c=2]{c} \(E(X^2) - E^2(X)\) \\ \hline
+		\SetCell[r=2]{c}
+		\begin{tblr}{c}
+			协方差 \\
+			\(\Cov(X,Y)\) \\
+		\end{tblr}
+		%\cref{equation:随机变量的数字特征.协方差的定义式}
+		& \SetCell[c=2]{c} \(E((X-E(X))(Y-E(Y)))\) \\ \cline{2-3}
+		%\cref{equation:随机变量的数字特征.协方差的计算式1}
+		& \SetCell[c=2]{c} \(E(XY) - E(X) E(Y)\) \\ \hline
+		\begin{tblr}{c}
+			相关系数 \\
+			\(R(X,Y)\) \\
+		\end{tblr}
+		%\cref{definition:随机变量的数字特征.相关系数}
+		& \SetCell[c=2]{c} \(\Cov(X^*,Y^*)\) \\ \cline{2-3}
+		%\cref{theorem:随机变量的数字特征.相关系数的性质2}
+		& \SetCell[c=2]{c} \(\frac{\Cov(X,Y)}{\sqrt{D(X)} \sqrt{D(Y)}}\)
 		\\ \hline
 	\end{tblr}
 	\caption{}
@@ -65,3 +82,43 @@
 	D\left( \sum_{i=1}^n C_i X_i \right)
 	= \sum_{i=1}^n C_i^2 \cdot D(X_i).
 \]
+
+%\cref{theorem:随机变量的数字特征.协方差的性质3}
+设\(X\)、\(Y\)、\(Z\)以及\(X_i\)、\(Y_j\)均为随机变量，
+则\begin{itemize}
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P149
+    \item \(\Cov(X,X) = D(X)\)；
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P150 定理3.3.5(1)
+    \item \(\Cov(X,Y)=\Cov(Y,X)\)；
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P150 定理3.3.5(4)
+    \item \(\Cov(X,a)=0\ (\text{\(a\)是常数})\)；
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P150 定理3.3.5(2)
+    \item \(\Cov(aX,bY)=ab\Cov(X,Y)\ (\text{\(a,b\)是常数})\)；
+    \item \(\Cov(X+Y,Z)=\Cov(X,Z)+\Cov(Y,Z)\)；
+    \item \(\Cov\left(\sum_{i=1}^n{a_i X_i},\sum_{j=1}^m{b_j Y_j}\right)
+    = \sum_{i=1}^n \sum_{j=1}^m {a_i b_j \Cov(X_i,Y_j)}\ (\text{\(a_i,b_j\)是常数})\)；
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P150 定理3.3.5(4)
+    \item 若\(X\)与\(Y\)相互独立，则\(\Cov(X,Y)=0\).
+\end{itemize}
+
+%\cref{equation:随机变量的数字特征.协方差不等式1}
+设随机变量\(X,Y\)的方差都存在，
+则\begin{equation*}
+    \Cov^2(X,Y) \leq D(X) D(Y).
+\end{equation*}
+
+%\cref{theorem:随机变量的数字特征.方差与协方差的联系1}
+设随机变量\(X\)、\(Y\)的方差\(D(X)\)、\(D(Y)\)都存在，
+且它们的协方差\(\Cov(X,Y)\)也存在，
+那么\begin{equation*}
+    D(X \pm Y) = D(X) + D(Y) \pm 2 \Cov(X,Y).
+\end{equation*}
+
+%\cref{theorem:随机变量的数字特征.方差与协方差的联系2}
+设随机变量\(\AutoTuple{X}{n}\)的方差\(D(X_i)\ (i=1,2,\dotsc,n)\)、
+协方差\(\Cov(X_i,X_j)\ (i,j=1,2,\dotsc,n)\)都存在，
+那么\begin{equation*}
+    D\left( \sum_{i=1}^n X_i \right)
+    = \sum_{i=1}^n D(X_i)
+    + 2 \sum_{i<j} \Cov(X_i,X_j).
+\end{equation*}
