@@ -159,6 +159,82 @@ D(Y) = \sigma_Y\).
 \end{proof}
 \end{theorem}
 
+
+\begin{theorem}\label{theorem:正态分布与自然指数分布族.性质2}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P146
+若\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，
+则\[
+	R(X,Y) = r.
+\]
+\begin{proof}
+根据\cref{theorem:随机变量的数字特征.相关系数的性质1}，
+有\begin{align*}
+	R(X,Y)
+	&= E(X^* Y^*) \\
+	&= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty}
+		\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1 \sigma_2}
+		\cdot
+		\frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1-r^2}}
+		e^{-u(x,y)}
+		\dd{x} \dd{y}.
+\end{align*}
+{%define \u and \v
+\def\u{u}%
+\def\v{v}%
+\def\intx{\int_{-\infty}^{+\infty}}%
+令\[
+	\u = \frac{x-\mu_1}{\sigma_1},
+	\qquad
+	\v = \frac{y-\mu_2}{\sigma_2},
+\]从而\[
+	R(X,Y)
+	= \intx
+		\frac{1}{\sqrt{2\pi}}
+		\u e^{-\frac{\u^2}{2}}
+		\left[
+			\intx
+			\frac{\v}{\sqrt{2\pi} \sqrt{1-r^2}}
+			e^{-\frac{(\v-r\u)^2}{2(1-r^2)}}
+			\dd{\v}
+		\right]
+		\dd{\u}.
+\]
+由数学期望的定义可知，上式括号中的部分是正态分布\(N(r\u,1-r^2)\)的数学期望，等于\(r\u\)，于是得到\[
+	R(X,Y)
+	= r \intx \frac{1}{\sqrt{2\pi}} \u^2 e^{-\frac{\u^2}{2}} \dd{\u}.
+\]
+由于上式中的积分是标准正态分布\(N(0,1)\)的方差，等于\(1\)，因此\(R(X,Y) = r\).
+}%undefine \u and \v
+\end{proof}
+\end{theorem}
+\begin{corollary}\label{theorem:正态分布与自然指数分布族.性质3}
+%@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P146 定理5.7
+设\((X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;r)\)，
+则\(X\)与\(Y\)相互独立的充分必要条件为\(r=0\)（\(X\)与\(Y\)不相关）.
+\begin{proof}
+当\(X\)与\(Y\)相互独立时，
+由\cref{theorem:相关系数.两个独立随机变量的相关系数等于零}
+可知\(R(X,Y)=0\).
+
+当\(R(X,Y)=0\)时，
+由二维正态分布的定义可知，
+\begin{align*}
+	f(x,y)
+	&= \frac1{2\pi\sigma_1\sigma_2} \exp\left\{
+		-\frac12 \left[
+			\frac{(x-\mu_1)^2}{\sigma_1^2}
+			+\frac{(y-\mu_2)^2}{\sigma_2^2}
+		\right]
+	\right\} \\
+	&= \frac1{\sqrt{2\pi}\sigma_1} \exp[-\frac{(x-\mu_1)^2}{2\sigma_1^2}]
+		\cdot \frac1{\sqrt{2\pi}\sigma_2} \exp[-\frac{(y-\mu_2)^2}{2\sigma_2^2}] \\
+	&= f_X(x) \cdot f_Y(y),
+\end{align*}
+\(X\)与\(Y\)相互独立.
+\end{proof}
+\end{corollary}
+
+
 \begin{example}
 %@see: 《2016年全国硕士研究生入学统一考试（数学一）》一选择题/第8题
 随机试验\(E\)有三种两两不相容的结果\(A_1,A_2,A_3\)，
