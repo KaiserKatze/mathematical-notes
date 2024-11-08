@@ -23,6 +23,8 @@
 \]
 在这个结果中，分式中的\(y=y(x)\)是由方程\(e^y + xy - e = 0\)所确定的隐函数.
 \end{solution}
+%@Mathematica: eqn = Exp[y[x]] + x y[x] - E == 0
+%@Mathematica: Solve[D[eqn, x], y'[x]]
 \end{example}
 
 %@see: 《数学分析（第二版 上册）》（陈纪修） P126 例4.2.1
@@ -39,7 +41,7 @@
 	\frac{x}{8}+\frac{2}{9}y\dv{y}{x}=0,
 \]\[
 	\dv{y}{x}=-\frac{9x}{16y}.
-\eqno(1)
+	\eqno(1)
 \]
 
 当\(x=2\)时，\(y=\frac{3}{2}\sqrt3\)，代入(1)式可得\[
@@ -59,6 +61,107 @@
 % 当\(x\neq0\)时，\(y'=1/x\).
 % \end{lemma}
 
+\begin{example}
+已知双曲线\(C: y^2 = 2px\ (p>0)\)，
+过它的焦点弦\(PQ\)的两个端点作它的两条切线，求这两条切线的交点的坐标.
+\begin{figure}[htb]
+	\centering
+	\pgfmathsetmacro{\p}{1}%参数p
+	\pgfmathsetmacro{\f}{\p/2}%焦点横坐标
+	\pgfmathsetmacro{\k}{3}%焦点弦斜率k
+	\pgfmathsetmacro{\a}{\p/(2*\k^2)}
+	\pgfmathsetmacro{\b}{\p/\k}
+	\pgfmathsetmacro{\c}{sqrt(\k^2+1)}
+	\pgfmathsetmacro{\pa}{\a*(\c+1)^2}% x_1
+	\pgfmathsetmacro{\pb}{\b*(\c+1)}% y_1
+	\pgfmathsetmacro{\qa}{\a*(\c-1)^2}% x_2
+	\pgfmathsetmacro{\qb}{-\b*(\c-1)}% y_2
+	\pgfmathsetmacro{\sa}{-\p/2}% x_0
+	\pgfmathsetmacro{\sb}{\p/\k}% y_0
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-2,xmax=2,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+		]
+			\coordinate(F)at(\f,0);
+			\coordinate(X)at(10,0);
+			\coordinate(P)at(\pa,\pb);
+			\coordinate(Q)at(\qa,\qb);
+			\coordinate(S)at(\sa,\sb);
+			\draw[purple](-\f,-4)--(-\f,4);%准线
+			\draw(2,-3)node[above right]{$C$};
+			\begin{scope}[color=orange,samples=100,smooth]
+				\addplot[domain=0:10]{sqrt(2*\p*x)};
+				\addplot[domain=0:10]{-sqrt(2*\p*x)};
+			\end{scope}
+			\draw[blue](P)--(F)--(Q);
+			\draw(P)--(S)--(Q);
+			\draw pic["$\theta$",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=X--F--P};
+			\fill(P)circle(2pt)node[below]{$P$}
+				(F)circle(2pt)node[below]{$F$}
+				(Q)circle(2pt)node[right]{$Q$}
+				(S)circle(2pt)node[left]{$S$};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:导数与微分.抛物线[y^2=2px]的焦点弦与切线}
+\end{figure}
+\begin{solution}
+如\cref{figure:导数与微分.抛物线[y^2=2px]的焦点弦与切线}，
+设直线\(l: y=k\left(x-\frac{p}{2}\right)\)（不妨设\(k>0\)）
+与双曲线\(C\)相交于\(P(x_1,y_1)\)和\(Q(x_2,y_2)\)两点.
+那么\[
+	x_1 = \frac{p}{2 k^2} (\sqrt{k^2+1} + 1)^2,
+	\qquad
+	y_1 = \frac{p}{k} (1+\sqrt{k^2+1}),
+\]\[
+	x_2 = \frac{p}{2 k^2} (\sqrt{k^2+1} - 1)^2,
+	\qquad
+	y_2 = \frac{p}{k} (1-\sqrt{k^2+1}).
+\]
+
+隐函数\(y^2 = 2px\)对\(x\)求导，得\[
+	2 y \dv{y}{x} = 2 p,
+\]
+整理得\[
+	\dv{y}{x} = \frac{p}{y},
+\]
+所以\[
+	k_1 = \eval{\dv{y}{x}}_P
+	= \frac{k}{1+\sqrt{k^2+1}},
+	\qquad
+	k_2 = \eval{\dv{y}{x}}_Q
+	= \frac{k}{1-\sqrt{k^2+1}}.
+\]
+
+那么抛物线过点\(P\)和点\(Q\)的切线的方程为\[
+	l_1: y-y_1 = k_1 (x-x_1),
+\]\[
+	l_2: y-y_2 = k_2 (x-x_2).
+\]
+联立切线方程，消去\(y\)，得\[
+	y_1 + k_1(x - x_1) = y_2 + k_2(x - x_2),
+\]
+移项得\[
+	(k_1 - k_2) x = y_2 - y_1 + k_1 x_1 - k_2 x_2,
+\]
+解得\[
+	x_0 = \frac{y_2 - y_1 + k_1 x_1 - k_2 x_2}{k_1 - k_2}
+	= -\frac{p}{2},
+\]
+代入得\[
+	y_0 = y_1 + k_1(x_0 - x_1)
+	= \frac{p}{k}.
+\]
+综上所述，所求的交点坐标为\[
+	\left(-\frac{p}{2},\frac{p}{k}\right).
+\]
+\end{solution}
+\end{example}
+
+\subsection{对数求导法}
 在某些场合，利用所谓\emph{对数求导法}求导数比用通常的方法简便些，
 它适用于求解函数的积、商，根式形式、幂形式、指数形式或幂指形式的函数.
 这种方法是先在\(y=f(x)\)的两边取对数，然后再求出\(y\)的导数\(y'\).
@@ -125,106 +228,6 @@
 用同样的方法可得与上面相同的结果.
 \end{solution}
 \end{example}
-
-\begin{example}
-已知双曲线\(C: y^2 = 2px\ (p>0)\)，
-过它的焦点弦\(PQ\)的两个端点作它的两条切线，求这两条切线的交点的坐标.
-\begin{solution}
-如\cref{figure:导数与微分.抛物线[y^2=2px]的焦点弦与切线}，
-设直线\(l: y=k\left(x-\frac{p}{2}\right)\)（不妨设\(k>0\)）
-与双曲线\(C\)相交于\(P(x_1,y_1)\)和\(Q(x_2,y_2)\)两点.
-那么\[
-	x_1 = \frac{p}{2 k^2} (\sqrt{k^2+1} + 1)^2,
-	\qquad
-	y_1 = \frac{p}{k} (1+\sqrt{k^2+1}),
-\]\[
-	x_2 = \frac{p}{2 k^2} (\sqrt{k^2+1} - 1)^2,
-	\qquad
-	y_2 = \frac{p}{k} (1-\sqrt{k^2+1}).
-\]
-
-隐函数\(y^2 = 2px\)对\(x\)求导，得\[
-	2 y \dv{y}{x} = 2 p,
-\]
-整理得\[
-	\dv{y}{x} = \frac{p}{y},
-\]
-所以\[
-	k_1 = \eval{\dv{y}{x}}_P
-	= \frac{k}{1+\sqrt{k^2+1}},
-	\qquad
-	k_2 = \eval{\dv{y}{x}}_Q
-	= \frac{k}{1-\sqrt{k^2+1}}.
-\]
-
-那么抛物线过点\(P\)和点\(Q\)的切线的方程为\[
-	l_1: y-y_1 = k_1 (x-x_1),
-\]\[
-	l_2: y-y_2 = k_2 (x-x_2).
-\]
-联立切线方程，消去\(y\)，得\[
-	y_1 + k_1(x - x_1) = y_2 + k_2(x - x_2),
-\]
-移项得\[
-	(k_1 - k_2) x = y_2 - y_1 + k_1 x_1 - k_2 x_2,
-\]
-解得\[
-	x_0 = \frac{y_2 - y_1 + k_1 x_1 - k_2 x_2}{k_1 - k_2}
-	= -\frac{p}{2},
-\]
-代入得\[
-	y_0 = y_1 + k_1(x_0 - x_1)
-	= \frac{p}{k}.
-\]
-综上所述，所求的交点坐标为\[
-	\left(-\frac{p}{2},\frac{p}{k}\right).
-\]
-\end{solution}
-\end{example}
-\begin{figure}[htb]
-	\centering
-	\pgfmathsetmacro{\p}{1}%参数p
-	\pgfmathsetmacro{\f}{\p/2}%焦点横坐标
-	\pgfmathsetmacro{\k}{3}%焦点弦斜率k
-	\pgfmathsetmacro{\a}{\p/(2*\k^2)}
-	\pgfmathsetmacro{\b}{\p/\k}
-	\pgfmathsetmacro{\c}{sqrt(\k^2+1)}
-	\pgfmathsetmacro{\pa}{\a*(\c+1)^2}% x_1
-	\pgfmathsetmacro{\pb}{\b*(\c+1)}% y_1
-	\pgfmathsetmacro{\qa}{\a*(\c-1)^2}% x_2
-	\pgfmathsetmacro{\qb}{-\b*(\c-1)}% y_2
-	\pgfmathsetmacro{\sa}{-\p/2}% x_0
-	\pgfmathsetmacro{\sb}{\p/\k}% y_0
-	\begin{tikzpicture}
-		\begin{axis}[
-			xmin=-2,xmax=2,
-			axis lines=middle,
-			xlabel=$x$,
-			ylabel=$y$,
-		]
-			\coordinate(F)at(\f,0);
-			\coordinate(X)at(10,0);
-			\coordinate(P)at(\pa,\pb);
-			\coordinate(Q)at(\qa,\qb);
-			\coordinate(S)at(\sa,\sb);
-			\draw[purple](-\f,-4)--(-\f,4);%准线
-			\draw(2,-3)node[above right]{$C$};
-			\begin{scope}[color=orange,samples=100,smooth]
-				\addplot[domain=0:10]{sqrt(2*\p*x)};
-				\addplot[domain=0:10]{-sqrt(2*\p*x)};
-			\end{scope}
-			\draw[blue](P)--(F)--(Q);
-			\draw(P)--(S)--(Q);
-			\draw pic["$\theta$",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=X--F--P};
-			\fill(P)circle(2pt)node[below]{$P$}
-				(F)circle(2pt)node[below]{$F$}
-				(Q)circle(2pt)node[right]{$Q$}
-				(S)circle(2pt)node[left]{$S$};
-		\end{axis}
-	\end{tikzpicture}
-	\caption{}
-	\label{figure:导数与微分.抛物线[y^2=2px]的焦点弦与切线}
-\end{figure}
 
 \subsection{由参数方程所确定的函数的导数}
 对于参数方程\[
