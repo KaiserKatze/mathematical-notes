@@ -926,4 +926,41 @@ x=y=z.
 \]
 也就是说，三个图形的面积之和的最小值存在且它等于\((\pi+4+3\sqrt3)^{-1}\).
 \end{solution}
+%@Mathematica: Maximize[{-Pi x^2 - y^2 - Sqrt[3]/4 z^2, 2 Pi x + 4 y + 3 z == 2}, {x, y, z}]
+\end{example}
+\begin{example}
+%@see: 《2021年全国硕士研究生入学统一考试（数学一）》三解答题/第19题
+已知曲线\begin{equation*}
+	C: \left\{ \begin{array}{l}
+		x^2+2y^2-z=6, \\
+		4x+2y+z=30,
+	\end{array} \right.
+\end{equation*}
+求\(C\)上的点到\(xOy\)坐标面距离的最大值.
+\begin{solution}
+作拉格朗日函数\begin{equation*}
+	L(x,y,z,\lambda,\mu)
+	= z^2 + \lambda(x^2+2y^2-z-6) + \mu(4x+2y+z-30).
+\end{equation*}
+令\begin{align*}
+	L'_x &= 2\lambda x + 4\mu = 0, \\
+	L'_y &= 4\lambda y + 2\mu = 0, \\
+	L'_z &= 2z - \lambda + \mu = 0.
+\end{align*}
+当\(\lambda=0\)时，由\(L'_x = 0\)可得\(\mu=0\)，再由\(L'_z=0\)可得\(z=0\).
+当\(\lambda\neq0\)时，有\(x = -2 \alpha,
+y = -\frac12 \alpha\)，
+其中\(\alpha = \frac\mu\lambda\)，
+代入约束条件\(x^2 + 4x + 2y^2 + 2y = 36\)，得\begin{equation*}
+	\frac92\alpha^2 - 9\alpha = 36,
+\end{equation*}
+解得\(\alpha=-2\)或\(\alpha=4\)，
+再由\(4x+2y+z=30\)有\begin{equation*}
+	z = 30 - 4x - 2y
+	= 30 + 9\alpha,
+\end{equation*}
+因为\(0 < \eval{z}_{\alpha=-2} = 12 < \eval{z}_{\alpha=4} = 66\)，
+所以\(z\)的最大值是\(66\).
+\end{solution}
+%@Mathematica: Maximize[{z^2, x^2 + 2 y^2 - z == 6, 4 x + 2 y + z == 30}, {x, y, z}]
 \end{example}
