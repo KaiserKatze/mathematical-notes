@@ -483,7 +483,7 @@ x_2' = \max\{x_1,x_2\}\)，
 对于\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}，
 我们需要注意到：
 通常来说\(\xi\)不是唯一的.
-只有当被积函数是严格单调函数时，\(\xi\)是\(x\)的函数，
+只有当函数\(f\)是严格单调函数时，\(\xi\)是\(x\)的函数，
 例如：\begin{itemize}
 	\item 由\(e^x - e^0 = x e^\xi\)可得\(\xi = \ln\frac{e^x-1}{x}\)，
 	而\(\lim_{x\to0} \frac{\xi}{x} = \frac12\).
@@ -608,7 +608,10 @@ x_2' = \max\{x_1,x_2\}\)，
 计算极限\(\lim_{x\to0} \left[\sin x - \sin(\sin x)\right]\).
 \begin{solution}
 由\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}，
-\(\exists\xi\in(\sin x,x)\)使得\[
+% 当\(x>0\)时，有\(0 < \sin x < x\)；
+% 当\(x<0\)是，有\(x < \sin x < 0\).
+存在\(\xi\)在\(x\)和\(\sin x\)之间，
+使得\[
 	\sin x - \sin(\sin x)
 	= \cos\xi (x-\sin x).
 \]
@@ -621,8 +624,10 @@ x_2' = \max\{x_1,x_2\}\)，
 \]
 \end{solution}
 \end{example}
-本例也可直接根据\cref{theorem:极限.连续函数的极限3} 得到，
+\begin{remark}
+上例也可直接根据\cref{theorem:极限.连续函数的极限3} 得到，
 即直接将\(x=0\)代入函数\(f(x) = \sin x - \sin(\sin x)\)中.
+\end{remark}
 \begin{example}%武忠祥
 计算极限\(\lim_{x\to+\infty} x \left( \frac\pi4 - \arctan\frac{x}{x+1} \right)\).
 \begin{solution}
@@ -655,10 +660,10 @@ x_2' = \max\{x_1,x_2\}\)，
 	(1+x)^{\frac1x}
 	= e^{\frac1x \ln(1+x)}
 	\to e^1
-	(x\to0^+).
+	\quad(x\to0^+).
 \]
 因为函数\(x \mapsto e^x\)在\((-\infty,+\infty)\)连续且可导，
-所以由\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}可知
+所以由\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}可知，
 在\(1\)与\(\frac1x \ln(1+x)\)之间存在\(\xi\)，
 使得\[
 	\frac{(1+x)^{\frac1x} - e}{x}
