@@ -9,7 +9,7 @@
 %@see: https://mathworld.wolfram.com/Indeterminate.html
 
 我们着重讨论\(x \to a^+\)时的未定式\(\frac{0}{0}\)的情形，关于这情形有以下定理：
-\begin{theorem}\label{theorem:微分中值定理.洛必达法则1}
+\begin{theorem}[洛必达法则]\label{theorem:微分中值定理.洛必达法则1}
 %@see: 《高等数学（第六版 上册）》 P135 定理1
 %@see: 《高等数学（第六版 上册）》 P136 定理2
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P173 定理3.6.1
@@ -166,6 +166,36 @@
 	= 1 + \lim_{x\to\infty} \frac{\sin x}{x}
 	= 1 + 0 = 1.
 \]
+
+\begin{example}%野题
+设函数\(f\)在点\(x=0\)二阶可导，
+且\(\lim_{x\to0} \frac{f(x)}{x^3} = 1\).
+证明极限\(\lim_{x\to0} \frac{f'(x)}{x}\)存在，
+并说明为什么不能用洛必达法则计算该极限.
+\begin{proof}
+由\cref{theorem:高阶导数.在一点高阶可导是在该点某邻域内低阶可导的充分条件}
+可知\(f\)在点\(x=0\)的某个邻域内一阶连续可导，
+从而有\(f(0) = 0\)，
+于是\begin{equation*}
+	f'(0) = \lim_{x\to0} \frac{f(x)}{x}
+	= \lim_{x\to0} \frac{f(x)}{x^3} \cdot \frac{x^3}{x}
+	= \lim_{x\to0} \frac{f(x)}{x^3} \cdot \lim_{x\to0} \frac{x^3}{x}
+	= 1 \cdot 0
+	= 0.
+\end{equation*}
+因为\(f\)在点\(x=0\)二阶可导，
+所以极限\begin{equation*}
+	f''(0) = \lim_{x\to0} \frac{f'(x) - f'(0)}{x}
+	= \lim_{x\to0} \frac{f'(x)}{x}
+\end{equation*}
+必定存在且有限.
+
+%@credit: {ce603838-a24d-4616-9395-d7b223e8cb72} 指出\(f'\)在点\(x=0\)不连续，我才发现要用洛必达法则，必须要满足分子是无穷小
+但是，由于我们不知道是否成立\(\lim_{x\to0} f'(x) = 0\)，
+无法满足洛必达法则所要求的条件，
+所以不能用洛必达法则计算\(\lim_{x\to0} \frac{f'(x)}{x}\).
+\end{proof}
+\end{example}
 
 \begin{example}
 %@see: 《高等数学（第六版 上册）》 P136 例1
