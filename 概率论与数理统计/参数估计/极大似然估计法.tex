@@ -278,3 +278,44 @@ L(\theta) = \prod_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
 \]
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《2022年全国硕士研究生入学统一考试（数学一）》三解答题/第22题
+设\(\AutoTuple{X}{n}\)是来自均值为\(\theta\)的指数分布总体的简单随机样本，
+\(\AutoTuple{Y}{m}\)是来自均值为\(2\theta\)的指数分布总体的简单随机样本，
+且两样本相互独立，其中\(\theta\ (\theta>0)\)是未知参数.
+利用\(\AutoTuple{X}{n},\AutoTuple{Y}{m}\)求\(\theta\)的最大似然估计量\(\theta\)，
+并求\(D(\hat\theta)\).
+\begin{solution}
+由题意有，均值为\(\theta\)的指数分布函数为\begin{equation*}
+	f_X(x) = \frac1\theta e^{-x/\theta}
+	\quad(x>0),
+\end{equation*}
+均值为\(2\theta\)的指数分布函数为\begin{equation*}
+	f_Y(y) = \frac1{2\theta} e^{-y/2\theta}
+	\quad(y>0),
+\end{equation*}
+似然函数为\begin{equation*}
+	L(\theta) = \frac1{2^m \theta^{n+m}} \exp\left(
+		-\frac1\theta \sum_{i=1}^n x_i
+		-\frac1{2\theta} \sum_{j=1}^m y_j
+	\right)
+	\quad(x_i>0,y_j>0,i=1,2,\dotsc,n,j=1,2,\dotsc,m).
+\end{equation*}
+取对数，得\begin{equation*}
+	\ln L(\theta) = -m\ln2 -(m+n)\ln\theta
+	- \frac1\theta \sum_{i=1}^n x_i
+	-\frac1{2\theta} \sum_{j=1}^m y_j.
+\end{equation*}
+令\(\dv\theta \ln L(\theta) = 0\)，得\begin{equation*}
+	\theta = \frac1{2(m+n)} \left( 2 \sum_{i=1}^n x_i + \sum_{j=1}^m y_j \right).
+\end{equation*}
+于是\(\hat\theta = \frac1{2(m+n)} \left( 2 \sum_{i=1}^n X_i + \sum_{j=1}^m Y_j \right)\)
+就是\(\theta\)的最大似然估计量.
+那么\begin{equation*}
+	D(\hat\theta)
+	= \frac1{(m+n)^2} \sum_{i=1}^n D(X_i) + \frac1{4(m+n)^2} \sum_{j=1}^m D(Y_j)
+	= \frac{\theta^2}{m+n}.
+\end{equation*}
+\end{solution}
+\end{example}
