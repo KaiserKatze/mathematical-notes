@@ -816,38 +816,90 @@
 		i_1,i_2,\dotsc,i_k
 	}.
 \]
-%TODO proof
-% \begin{proof}
-% \(\vb{A}\)的特征多项式为\[
-% 	\abs{\lambda\vb{E}-\vb{A}}
-% 	= \begin{vmatrix}
-% 		\lambda-a_{11} & 0-a_{12} & \dots & 0-a_{1n} \\
-% 		0-a_{21} & \lambda-a_{22} & \dots & 0-a_{2n} \\
-% 		\vdots & \vdots && \vdots \\
-% 		0-a_{n1} & 0-a_{n2} & \dots & \lambda-a_{nn}
-% 	\end{vmatrix}.
-% \]
-% 由\cref{theorem:行列式.性质3} 可知，
-% \(\vb{A}\)的特征多项式等于\(2^n\)个行列式之和，
-% 其中两个是\[
-% 	\begin{vmatrix}
-% 		\lambda & 0 & \dots & 0 \\
-% 		0 & \lambda & \dots & 0 \\
-% 		\vdots & \vdots && \vdots \\
-% 		0 & 0 & \dots & \lambda
-% 	\end{vmatrix}
-% 	= \lambda^n,
-% 	\qquad
-% 	\begin{vmatrix}
-% 		-a_{11} & -a_{12} & \dots & -a_{1n} \\
-% 		-a_{21} & -a_{22} & \dots & -a_{2n} \\
-% 		\vdots & \vdots && \vdots \\
-% 		-a_{n1} & -a_{n2} & \dots & -a_{nn}
-% 	\end{vmatrix}
-% 	= (-1)^n \abs{\vb{A}},
-% \]
-% 其余行列式
-% \end{proof}
+\begin{proof}
+\(\vb{A}\)的特征多项式为\[
+	\abs{\lambda\vb{E}-\vb{A}}
+	= \begin{vmatrix}
+		\lambda-a_{11} & 0-a_{12} & \dots & 0-a_{1n} \\
+		0-a_{21} & \lambda-a_{22} & \dots & 0-a_{2n} \\
+		\vdots & \vdots && \vdots \\
+		0-a_{n1} & 0-a_{n2} & \dots & \lambda-a_{nn}
+	\end{vmatrix}.
+\]
+由\cref{theorem:行列式.性质3} 可知，
+\(\vb{A}\)的特征多项式等于\(2^n\)个行列式之和，
+其中两个是\[
+	\begin{vmatrix}
+		\lambda & 0 & \dots & 0 \\
+		0 & \lambda & \dots & 0 \\
+		\vdots & \vdots && \vdots \\
+		0 & 0 & \dots & \lambda
+	\end{vmatrix}
+	= \lambda^n,
+	\qquad
+	\begin{vmatrix}
+		-a_{11} & -a_{12} & \dots & -a_{1n} \\
+		-a_{21} & -a_{22} & \dots & -a_{2n} \\
+		\vdots & \vdots && \vdots \\
+		-a_{n1} & -a_{n2} & \dots & -a_{nn}
+	\end{vmatrix}
+	= (-1)^n \abs{\vb{A}},
+\]
+其余行列式是这样的行列式 --- 它的第\(j_1,j_2,\dotsc,j_{n-k}\)列是含有\(\lambda\)的列，
+其余列是不含\(\lambda\)的列（它们是\(-\vb{A}\)的列）：\begin{equation*}
+	\begin{vmatrix}
+		-a_{11} & \dots & 0 & \dots & 0 & \dots & 0 & \dots & -a_{1n} \\
+		\vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
+		-a_{j_1 1} & \dots & \lambda & \dots & 0 & \dots & 0 & \dots & -a_{j_1 n} \\
+		\vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
+		-a_{j_2 1} & \dots & 0 & \dots & \lambda & \dots & 0 & \dots & -a_{j_2 n} \\
+		\vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
+		-a_{j_{n-k} 1} & \dots & 0 & \dots & 0 & \dots & \lambda & \dots & -a_{j_{n-k} n} \\
+		\vdots & & \vdots & & \vdots & & \vdots & & \vdots \\
+		-a_{n1} & \dots & 0 & \dots & 0 & \dots & 0 & \dots & -a_{nn} \\
+	\end{vmatrix}.
+	\eqno(1)
+\end{equation*}
+利用\hyperref[theorem:行列式.拉普拉斯定理]{拉普拉斯定理}，
+按第\(j_1,j_2,\dotsc,j_{n-k}\)列展开(1)式，
+这\(n-k\)列元素组成的\(n-k\)阶子式只有一个不为零，
+其余\(n-k\)阶子式全为零（因为它们都含有元素全为零的行）.
+令\begin{equation*}
+	\Set{ j_1',j_2',\dotsc,j_k' }
+	= \Set{ 1,2,\dotsc,n } - \Set{ j_1,j_2,\dotsc,j_{n-k} },
+\end{equation*}
+且\(j_1'<j_2'<\dotsb<j_k'\)，
+则(1)式等于\begin{align*}
+	&\hspace{-20pt}
+	\begin{vmatrix}
+		\lambda & 0 & \dots & 0 \\
+		0 & \lambda & \dots & 0 \\
+		\vdots & \vdots & & \vdots \\
+		0 & 0 & \dots & \lambda
+	\end{vmatrix}
+	(-1)^{(j_1+j_2+\dotsb+j_{n-k})+(j_1+j_2+\dotsb+j_{n-k})}
+	\MatrixMinor{(-\vb{A})}{
+		j_1',j_2',\dotsc,j_k' \\
+		j_1',j_2',\dotsc,j_k'
+	} \\
+	&= \lambda^{n-k} (-1)^k
+	\MatrixMinor{\vb{A}}{
+		j_1',j_2',\dotsc,j_k' \\
+		j_1',j_2',\dotsc,j_k'
+	}.
+\end{align*}
+由于\(1 \leq j_1' < j_2' < \dotsb < j_k' \leq n\)，
+因此\(\abs{\lambda\E-\A}\)中\(\lambda^{n-k}\)的系数就是
+\(\A\)的所有\(k\)阶主子式之和与\((-1)^k\)的乘积\begin{equation*}
+	(-1)^k
+	\sum_{1 \leq j_1' < j_2' < \dotsb < j_k' \leq n}
+	\MatrixMinor{\vb{A}}{
+		j_1',j_2',\dotsc,j_k' \\
+		j_1',j_2',\dotsc,j_k'
+	}.
+	\qedhere
+\end{equation*}
+\end{proof}
 \end{proposition}
 
 \begin{example}
