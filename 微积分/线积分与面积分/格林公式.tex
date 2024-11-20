@@ -266,7 +266,50 @@
 \end{example}
 
 %@see: 《2000年全国硕士研究生入学统一考试（数学一）》五解答题
-%@see: 《2020年全国硕士研究生入学统一考试（数学一）》三解答题/第15题
+%@see: 《2020年全国硕士研究生入学统一考试（数学一）》三解答题/第16题
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1sKSTYdETC/
+计算曲线积分\(\oint_\Gamma y \dd{x} + z \dd{y} + x \dd{z}\)，
+其中\(\Gamma\)是\(x^2+y^2+z^2=1\)和\(x+y+z=1\)的交线.
+\begin{solution}
+将\(z = 1-x-y\)代入，得\begin{align*}
+	\oint_\Gamma y \dd{x} + z \dd{y} + x \dd{z}
+	&= \oint_L y \dd{x} + (1-x-y) \dd{y} + x \dd(1-x-y) \\
+	&= \oint_L (y-x) \dd{x} + (1-2x-y) \dd{y},
+\end{align*}
+其中\(L: x^2+y^2+(1-x-y)^2=1\).
+记\begin{equation*}
+	D = \Set{ (x,y) \given x^2+y^2+(1-x-y)^2\leq1 }
+	= \Set{ (x,y) \given x^2+y^2+xy-x-y\leq0 },
+\end{equation*}
+由\hyperref[equation:线积分与面积分.格林公式]{格林公式}有\begin{equation*}
+%@Mathematica: -3 Integrate[Boole[x^2 + y^2 + (1 - x - y)^2 <= 1], {x, -2, 2}, {y, -2, 2}]
+	\oint_L (y-x) \dd{x} + (1-2x-y) \dd{y}
+	= \iint_D (-2-1) \dd{x}\dd{y}
+	= -3 \iint_D \dd{x}\dd{y}.
+\end{equation*}
+令\(x = u+v,
+y = u-v\)，
+得\begin{equation*}
+	\iint_D \dd{x}\dd{y}
+	= \iint_{D'} \abs{\begin{vmatrix}
+		1 & 1 \\
+		1 & -1
+	\end{vmatrix}} \dd{u}\dd{v}
+	= 2 \iint_{D'} \dd{u}\dd{v},
+\end{equation*}
+其中\(D': \frac{(u-\frac13)^3}{1/9}+\frac{v^2}{1/3}\leq1\)，
+于是\begin{equation*}
+	\iint_{D'} \dd{u}\dd{v}
+	= \frac\pi{3\sqrt3},
+\end{equation*}
+那么\begin{equation*}
+	\oint_\Gamma y \dd{x} + z \dd{y} + x \dd{z}
+	= -\frac{2\pi}{\sqrt3}.
+\end{equation*}
+\end{solution}
+\end{example}
 
 \subsection{平面上曲线积分与路径无关的条件}
 在物理学中（特别是在力学中）要研究所谓“势场”，
