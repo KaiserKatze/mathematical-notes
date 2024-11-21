@@ -208,16 +208,44 @@
 证明：反对称矩阵的秩一定是偶数.
 %TODO proof
 \end{example}
-\begin{example}
+\begin{example}\label{example:二次型.瑞利商的取值范围}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 11.
-设\(n\)阶实对称矩阵\(\A\)的全部特征值按大小顺序排成\[
-	\lambda_1 \geq \lambda_2 \geq \dotsb \geq \lambda_n.
-\]
+设\(n\)阶实对称矩阵\(\A\)的全部特征值按大小顺序排成
+\(\lambda_1 \geq \lambda_2 \geq \dotsb \geq \lambda_n\).
 证明：对于\(\mathbb{R}^n\)中任一非零列向量\(\vb\alpha\)，
-都有\[
+都有\begin{equation*}
 	\lambda_n \leq \frac{\vb\alpha^T \A \vb\alpha}{\vb\alpha^T \vb\alpha} \leq \lambda_1.
-\]
-%TODO proof
+\end{equation*}
+\begin{proof}
+假设正交矩阵\(\Q\)满足\begin{equation*}
+	\Q^T \A \Q = \vb\Lambda,
+\end{equation*}
+其中\(\vb\Lambda = \diag(\AutoTuple{\lambda}{n})\)，
+那么\begin{equation*}
+	\vb\alpha^T \A \vb\alpha
+	= \vb\alpha^T (\Q \vb\Lambda \Q^T) \vb\alpha
+	= (\Q^T \vb\alpha)^T \vb\Lambda (\Q^T \vb\alpha)
+	= \lambda_1 b_1^2 + \dotsb + \lambda_n b_n^2,
+\end{equation*}
+其中\(\Q^T \vb\alpha = (\AutoTuple{b}{n})\).
+因为\(\lambda_1 \geq \lambda_2 \geq \dotsb \geq \lambda_n\)，
+所以\begin{gather*}
+	\lambda_1 b_1^2 + \dotsb + \lambda_n b_n^2
+	\geq \lambda_n b_1^2 + \dotsb + \lambda_n b_n^2
+	= \lambda_n (b_1^2 + \dotsb + b_n^2), \\
+	\lambda_1 b_1^2 + \dotsb + \lambda_n b_n^2
+	\leq \lambda_1 b_1^2 + \dotsb + \lambda_1 b_n^2
+	= \lambda_1 (b_1^2 + \dotsb + b_n^2),
+\end{gather*}
+又由于\begin{equation*}
+	b_1^2 + \dotsb + b_n^2
+	= (\Q^T \vb\alpha)^T (\Q^T \vb\alpha)
+	= \vb\alpha^T (\Q \Q^T) \vb\alpha
+	= \vb\alpha^T \vb\alpha
+	\neq 0,
+\end{equation*}
+所以\(\lambda_n \vb\alpha^T \vb\alpha \leq \vb\alpha^T \A \vb\alpha \leq \lambda_1 \vb\alpha^T \vb\alpha\).
+\end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 12.
