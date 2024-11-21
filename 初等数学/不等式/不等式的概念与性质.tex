@@ -71,7 +71,7 @@
 	a \leq b \iff a = b \lor a < b.
 \end{gather*}
 
-\begin{property}
+\begin{property}\label{theorem:不等式.不等式的对称性和传递性}
 不等式具有以下性质：\begin{itemize}
 	% 对称性
 	\item \(a>b \iff b<a\).
@@ -170,7 +170,7 @@
 \end{proof}
 \end{example}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:不等式.不等式与非零数相乘}
 设\(a>b\).
 如果\(c>0\)，
 那么\(ac>bc\)；
@@ -200,6 +200,14 @@
 \]
 \end{proof}
 \end{theorem}
+
+\begin{corollary}\label{theorem:不等式.不等式与负一相乘}
+设\(a>b\)，则\(-a<-b\).
+\begin{proof}
+在\cref{theorem:不等式.不等式与非零数相乘} 中
+令\(c = -1\)便得.
+\end{proof}
+\end{corollary}
 
 \begin{corollary}\label{theorem:不等式.同向不等式相乘}
 如果\(a>b>0,c>d>0\)，那么\(ac>bd>0\).
@@ -355,7 +363,7 @@
 \end{itemize}
 \end{proof}
 \end{example}
-\begin{example}
+\begin{example}\label{example:不等式.数及其绝对值的序}
 证明：\(-\abs{a} \leq a \leq \abs{a}\).
 \begin{proof}
 我们可以按\(a\)的取值分为两种情况讨论：
@@ -368,32 +376,37 @@
 \end{itemize}
 \end{proof}
 \end{example}
-\begin{example}
-证明：\[
-	\abs{a} \leq b
-	\iff
-	-b \leq a \leq b.
-\]
-%TODO proof
+\begin{example}\label{example:不等式.数的绝对值及其上界的关系1}
+证明：\(\abs{a} \leq b
+\iff
+-b \leq a \leq b\).
 \begin{proof}
 假设\(\abs{a} \leq b\)，
-那么\(-b \leq -\abs{a}\).
-又因为\[
-	-\abs{a} \leq a \leq \abs{a},
-\]
-所以由传递性可知\[
-	-b \leq a \leq b.
-\]
+那么由\cref{theorem:不等式.不等式与负一相乘}
+可得\(-b \leq -\abs{a}\).
+又因为 \hyperref[example:不等式.数及其绝对值的序]{\(-\abs{a} \leq a \leq \abs{a}\)}，
+所以由\hyperref[theorem:不等式.不等式的对称性和传递性]{传递性}可知
+\(-b \leq a \leq b\).
 
-假设\(-b \leq a \leq b\)，
+假设\(-b \leq a \leq b\).
+用反证法.
+如果\(\abs{a} > b\)，
+那么由\cref{theorem:不等式.不等式与负一相乘}
+可得\(-\abs{a} < -b\)，
+于是由\hyperref[theorem:不等式.不等式的对称性和传递性]{传递性}可知\begin{equation*}
+	-\abs{a} < a < \abs{a}.
+\end{equation*}
+当\(a\geq0\)即\(\abs{a} = a\)时，上式化为\(-a < a < a\)，不成立；
+当\(a<0\)即\(\abs{a} = -a\)时，上式化为\(a < a < -a\)，也不成立.
+因此\(\abs{a} \leq b\).
 \end{proof}
 \end{example}
-\begin{example}
+\begin{example}\label{example:不等式.数的绝对值及其上界的关系2}
 设\(b>0\).
-证明：\[
-	\abs{a} \geq b
-	\iff
-	a \geq b \lor a \leq -b.
-\]
-%TODO proof
+证明：\(\abs{a} \geq b
+\iff
+a \geq b \lor a \leq -b\).
+\begin{proof}
+这是\cref{example:不等式.数的绝对值及其上界的关系1} 的逆否命题.
+\end{proof}
 \end{example}
