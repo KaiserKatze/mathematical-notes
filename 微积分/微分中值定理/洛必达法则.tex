@@ -167,34 +167,55 @@
 	= 1 + 0 = 1.
 \]
 
-\begin{example}%野题
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1k24y1q7aN/
 设函数\(f\)在点\(x=0\)二阶可导，
-且\(\lim_{x\to0} \frac{f(x)}{x^3} = 1\).
-证明极限\(\lim_{x\to0} \frac{f'(x)}{x}\)存在，
-并说明为什么不能用洛必达法则计算该极限.
-\begin{proof}
-由\cref{theorem:高阶导数.在一点高阶可导是在该点某邻域内低阶可导的充分条件}
-可知\(f\)在点\(x=0\)的某个邻域内一阶连续可导，
+且\(\lim_{x\to0} \frac{f(x)}{x^\mu} = 1\ (\mu>1)\).
+证明：\begin{itemize}
+	\item \(f'(0) = 0\)；
+	\item 当\(\mu=2\)时，成立\(\lim_{x\to0} \frac{f(x)}{x^\mu}
+	= \lim_{x\to0} \frac{f'(x)}{\mu x^{\mu-1}}\)；
+	\item 说明为什么不可以对\(\lim_{x\to0} \frac{f(x)}{x^\mu}\)运用洛必达法则求解极限.
+\end{itemize}
+\begin{solution}
+因为函数\(f\)在点\(x=0\)二阶可导，
+所以由\cref{theorem:高阶导数.在一点高阶可导是在该点某邻域内低阶可导的充分条件}
+可知\(f\)在点\(x=0\)的某个邻域内连续且可导，
 从而有\(f(0) = 0\)，
 于是\begin{equation*}
-	f'(0) = \lim_{x\to0} \frac{f(x)}{x}
-	= \lim_{x\to0} \frac{f(x)}{x^3} \cdot \frac{x^3}{x}
-	= \lim_{x\to0} \frac{f(x)}{x^3} \cdot \lim_{x\to0} \frac{x^3}{x}
+	f'(0) = \lim_{x\to0} \frac{f(x) - f(0)}{x}
+	= \lim_{x\to0} \frac{f(x)}{x^\mu} \cdot \frac{x^\mu}{x}
+	%\cref{theorem:极限.极限的四则运算法则}
+	= \lim_{x\to0} \frac{f(x)}{x^\mu} \cdot \lim_{x\to0} \frac{x^\mu}{x}
 	= 1 \cdot 0
 	= 0.
 \end{equation*}
-因为\(f\)在点\(x=0\)二阶可导，
-所以极限\begin{equation*}
+
+又因为\begin{equation*}
 	f''(0) = \lim_{x\to0} \frac{f'(x) - f'(0)}{x}
 	= \lim_{x\to0} \frac{f'(x)}{x}
+	< \infty,
 \end{equation*}
-必定存在且有限.
+所以当\(\mu=2\)时，
+成立\begin{equation*}
+	\lim_{x\to0} \frac{f'(x)}{2x}
+	= \frac12 f''(0).
+\end{equation*}
 
-%@credit: {ce603838-a24d-4616-9395-d7b223e8cb72} 指出\(f'\)在点\(x=0\)不连续，我才发现要用洛必达法则，必须要满足分子是无穷小
-但是，由于我们不知道是否成立\(\lim_{x\to0} f'(x) = 0\)，
-无法满足洛必达法则所要求的条件，
-所以不能用洛必达法则计算\(\lim_{x\to0} \frac{f'(x)}{x}\).
-\end{proof}
+当\(\mu>2\)时，
+由于\(\lim_{x\to0} \frac{x}{\mu x^{\mu-1}}
+= \frac1\mu \lim_{x\to0} \frac1{x^{\mu-2}}
+= \infty\)，
+所以不能利用\hyperref[theorem:极限.极限的四则运算法则]{极限的四则运算法则}保证\begin{equation*}
+	\lim_{x\to0} \frac{f'(x)}{\mu x^{\mu-1}}
+	= \lim_{x\to0} \frac{f'(x)}{x} \cdot \frac{x}{\mu x^{\mu-1}}
+	< \infty,
+\end{equation*}
+当然就不能运用\hyperref[theorem:微分中值定理.洛必达法则1]{洛必达法则}求解\(\lim_{x\to0} \frac{f(x)}{x^\mu}\).
+特别地，取\(f(x) = x\)，
+则\(\lim_{x\to0} \frac{f'(x)}{\mu x^{\mu-1}} = \lim_{x\to0} \frac1{\mu x^{\mu-1}} = \infty\).
+%@credit: {ce603838-a24d-4616-9395-d7b223e8cb72} 指出\(f'\)不一定是\(x\to0\)时的无穷小，所以不能求出\(f''(0)\)
+\end{solution}
 \end{example}
 
 \begin{example}
