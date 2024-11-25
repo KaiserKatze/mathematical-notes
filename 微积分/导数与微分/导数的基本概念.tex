@@ -40,18 +40,18 @@
 %@see: https://mathworld.wolfram.com/Derivative.html
 \end{definition}
 
-\begin{example}
+\begin{example}\label{example:导数.导数定义式的变形}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P131 习题 1.
 设函数\(f\)在点\(x_0\)可导.
 计算极限\begin{itemize}
-	\item \(\lim_{\increment x\to0} \frac{f(x_0 - \increment x) - f(x_0)}{\increment x}\)；
+	\item \(\lim_{h\to0} \frac{f(x_0 - h) - f(x_0)}{h}\)；
 	\item \(\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}\)；
 	\item \(\lim_{h\to0} \frac{f(x_0+h) - f(x_0-h)}{h}\).
 \end{itemize}
 \begin{solution}
 直接计算得\begin{gather*}
-	\lim_{\increment x\to0} \frac{f(x_0 - \increment x) - f(x_0)}{\increment x}
-	= - \lim_{\increment x\to0} \frac{f(x_0 + (- \increment x)) - f(x_0)}{(- \increment x)}
+	\lim_{h\to0} \frac{f(x_0 - h) - f(x_0)}{h}
+	= - \lim_{h\to0} \frac{f(x_0 + (-h)) - f(x_0)}{(-h)}
 	= - f'(x_0), \\
 	\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}
 	\xlongequal{t = x - x_0}
@@ -84,6 +84,7 @@
 \end{proof}
 \end{proposition}
 
+\subsection{单侧导数和狄尼导数的定义}
 \begin{definition}
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P125 定义3.1.2
 设\(X\subseteq\mathbb{R}\)，
@@ -212,14 +213,7 @@
 	\Set{ (x_0,f'(x_0)) \given x_0 \in I }
 \]称为“函数\(f\)的\DefineConcept{导函数}（derivative function）”，
 简称\DefineConcept{导数}，
-记作\[
-	f'(x), \qquad
-	y', \qquad
-	\dv{y}{x}, \qquad
-	\dv{f(x)}{x}
-	\quad\text{或}\quad
-	\dv{x} f(x).
-\]
+记作\(f'\)或\(\dv{f}{x}\)或\(\dv{x} f\).
 \end{definition}
 
 \begin{definition}\label{definition:函数族.可导函数族}
@@ -344,30 +338,6 @@ n\in\mathbb{N}^+\).
 \]
 而如果\(f'(x_0) = 0\)，则法线方程为\(x = x_0\).
 
-\begin{proposition}\label{theorem:导数.导数的等价定义1}
-设\(f\colon\mathbb{R}\to\mathbb{R}\)在点\(x\)可导，
-则\[
-	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
-	= f'(x).
-\]
-\begin{proof}
-令\(t=-h\)，
-则\[
-	\lim_{h\to0} \frac{f(x)-f(x-h)}{h}
-	= \lim_{t\to0} \frac{f(x)-f(x+t)}{-t}
-	= \lim_{t\to0} \frac{f(x+t)-f(x)}{t}
-	= f'(x).
-	\qedhere
-\]
-\end{proof}
-\end{proposition}
-\cref{theorem:导数.导数的等价定义1} 的几何意义非常明确：
-对于可导函数\(f\)，
-过点\((x_0,f(x_0))\)可以作一条直线，与曲线\(y=f(x)\)相交于一点\((x_1,f(x_1))\)，
-不论是\(x_1>x_0\)还是\(x_1<x_0\)，只要\(x_1\)与\(x_0\)之间的距离足够小，
-由\((x_0,f(x_0))\)与\((x_1,f(x_1))\)两点确定的直线就近似于
-曲线\(y=f(x)\)在点\((x_0,f(x_0))\)处的切线.
-
 \begin{proposition}\label{theorem:导数与微分.导函数的奇偶性}
 设\(R>0\)，\(f'\)是函数\(f\colon(-R,R)\to\mathbb{R}\)的导函数.
 \begin{itemize}
@@ -375,35 +345,47 @@ n\in\mathbb{N}^+\).
 	\item 如果\(f\)是偶函数，那么\(f'\)是奇函数.
 \end{itemize}
 \begin{proof}
+由导数的定义有\begin{equation*}
+	f'(-x)
+	= \lim_{h\to0} \frac{f(-x+h)-f(-x)}{h}.
+	\eqno(1)
+\end{equation*}
+由\cref{example:导数.导数定义式的变形} 有\begin{equation*}
+	-f'(x)
+	= \lim_{h\to0} \frac{f(x-h)-f(x)}{h}.
+	\eqno(2)
+\end{equation*}
+
 假设\(f\)是奇函数，
-即\[
+即\begin{equation*}
 	(\forall x)
 	[
 		-R < x < R
 		\implies
 		f(-x) = -f(x)
 	],
-\]
-那么由\cref{theorem:导数.导数的等价定义1} 有\[
+\end{equation*}
+那么\(f(-x+h) = -f(x-h)\)，
+再由(1)(2)两式可知\begin{equation*}
 	f'(-x)
-	= \lim_{h\to0} \frac{f(-x+h)-f(-x)}{h}
 	= \lim_{h\to0} \frac{-f(x-h)+f(x)}{h}
+	= -\lim_{h\to0} \frac{f(x-h)-f(x)}{h}
 	= f'(x).
-\]
+\end{equation*}
 这就说明\(f'\)是偶函数.
 
 假设\(f\)是偶函数，
-即\[
+即\begin{equation*}
 	(\forall x)
 	[
 		-R < x < R
 		\implies
 		f(-x) = f(x)
 	],
-\]
-那么由\cref{theorem:导数.导数的等价定义1} 有\[
+\end{equation*}
+那么\(f(-x+h) = f(x-h)\)，
+再由(1)(2)两式可知\[
 	f'(-x)
-	= \lim_{h\to0} \frac{f(-x+h)-f(-x)}{h}
 	= \lim_{h\to0} \frac{f(x-h)-f(x)}{h}
 	= -f'(x).
 \]
@@ -556,7 +538,7 @@ n\in\mathbb{N}^+\).
 \end{example}
 
 \begin{example}
-举例说明：可导函数\(f\)满足\(\lim_{x\to+\infty} f(x) = A\)和\(\lim_{x\to+\infty} f'(x) = 0\).
+举例说明：可导函数\(f\)满足\(\lim_{x\to+\infty} f(x) < \infty\)和\(\lim_{x\to+\infty} f'(x) = 0\).
 \begin{solution}
 取\(f(x) = \frac{\sin x}{x}\)，
 则\(\lim_{x\to+\infty} f(x) = \lim_{x\to+\infty} f'(x) = 0\).
@@ -564,7 +546,7 @@ n\in\mathbb{N}^+\).
 \end{example}
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1My411q7aE/
-举例说明：可导函数\(f\)满足\(\lim_{x\to+\infty} f(x) = A\)，但是不满足\(\lim_{x\to+\infty} f'(x) = 0\).
+举例说明：可导函数\(f\)满足\(\lim_{x\to+\infty} f(x) < \infty\)，但是不满足\(\lim_{x\to+\infty} f'(x) = 0\).
 \begin{solution}
 取\(f(x) = \frac{\sin x^2}{x}\)，
 则\(\lim_{x\to+\infty} f(x) = 0\)，
@@ -597,32 +579,39 @@ n\in\mathbb{N}^+\).
 	= \lim_{x\to0} \frac{f(x)}{g(x)} \cdot \frac{g(x)}{x}. % 极限的四则运算法则
 \]
 由此可见，要使\(f\)在点\(x=0\)可导，
-只需要极限\[
-	\lim_{x\to0} \frac{g(x)}{x} % \(g\)是\(x\)的同阶无穷小或高阶无穷小
-\]存在且有限.
+只需要极限\(\lim_{x\to0} \frac{g(x)}{x}\)存在且有限，
+即\(g\)是\(x\)的同阶无穷小或高阶无穷小.
 \end{solution}
 \end{example}
 \begin{example}
 %@see: 《2020年全国硕士研究生入学统一考试（数学一）》一选择题/第2题
-设函数\(f\)在点\(x=0\)的邻域内有定义，
-且\(\lim_{x\to0} f(x) = 0\)，
-函数\(f\)在点\(x=0\)可导.
+设函数\(f\)在点\(x=0\)可导，
+且\(\lim_{x\to0} f(x) = 0\).
 证明：\(\lim_{x\to0} \frac{f(x)}{\sqrt{\abs{x}}}\)存在且有限.
 \begin{proof}
-因为函数\(f\)在点\(x=0\)的导数为\begin{equation*}
+因为函数\(f\)在点\(x=0\)可导，
+所以\(f\)在点\(x=0\)连续，
+从而\(f(0) = \lim_{x\to0} f(x) = 0\)，
+于是函数\(f\)在点\(x=0\)的导数为\begin{equation*}
 	f'(0)
 	= \lim_{x\to0} \frac{f(x) - f(0)}{x - 0}
 	= \lim_{x\to0} \frac{f(x)}{x},
 \end{equation*}
 所以\begin{gather*}
 	\lim_{x\to0^+} \frac{f(x)}{\sqrt{\abs{x}}}
+	% 当\(x>0\)时，\(\abs{x} = x\)
 	= \lim_{x\to0^+} \frac{f(x)}{\sqrt{x}}
+	% 当\(x>0\)时，\(\sqrt{x}^2 = x\)
 	= \lim_{x\to0^+} \frac{f(x)}{x} \cdot \sqrt{x}
+	%\cref{theorem:极限.极限的四则运算法则}
 	= \lim_{x\to0^+} \frac{f(x)}{x} \cdot \lim_{x\to0^+} \sqrt{x}
 	= 0, \\
 	\lim_{x\to0^-} \frac{f(x)}{\sqrt{\abs{x}}}
+	% 当\(x<0\)时，\(\abs{x} = -x\)
 	= \lim_{x\to0^-} \frac{f(x)}{\sqrt{-x}}
+	% 当\(x<0\)时，\(\sqrt{-x}^2 = -x\)
 	= \lim_{x\to0^-} \frac{f(x)}{-x} \cdot \sqrt{-x}
+	%\cref{theorem:极限.极限的四则运算法则}
 	= \lim_{x\to0^-} \frac{f(x)}{-x} \cdot \lim_{x\to0^-} \sqrt{-x}
 	= 0,
 \end{gather*}
