@@ -281,6 +281,7 @@
 \end{proof}
 \end{proposition}
 
+%@see: [两个线性方程组的公共解与同解](https://zhuanlan.zhihu.com/p/665121966)
 \begin{definition}
 设\(\A,\B \in M_{s \times n}(K)\)，
 \(\vb\beta_1,\vb\beta_2 \in K^s\).
@@ -369,9 +370,17 @@
 \begin{corollary}
 设\(\A,\B \in M_{s \times n}(K)\)，
 \(\vb\beta_1,\vb\beta_2 \in K^s\)，
-则\[
+则\begin{align*}
 	\text{$\A\vb{x}=\vb\beta_1$与$\B\vb{x}=\vb\beta_2$有公共解}
-	\iff
+	&\iff \text{$\begin{bmatrix}
+		\A \\ \B
+	\end{bmatrix}
+	\vb{x}
+	= \begin{bmatrix}
+		\vb\beta_1 \\
+		\vb\beta_2
+	\end{bmatrix}$有解} \\
+	&\iff
 	\rank\begin{bmatrix}
 		\A \\ \B
 	\end{bmatrix}
@@ -379,8 +388,64 @@
 		\A & \vb\beta_1 \\
 		\B & \vb\beta_2
 	\end{bmatrix}.
-\]
-%TODO proof
+\end{align*}
+\begin{proof}
+%@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9}
+假设\(\A\vb{x}=\vb\beta_1\)与\(\B\vb{x}=\vb\beta_2\)有公共解\(\vb{x}_0\)，
+即成立\(\A \vb{x}_0 = \vb\beta_1,
+\B \vb{x}_0 = \vb\beta_2\)，
+那么\begin{equation*}
+	\begin{bmatrix}
+		\A \\ \B
+	\end{bmatrix}
+	\vb{x}_0
+	= \begin{bmatrix}
+		\A \vb{x}_0 \\
+		\B \vb{x}_0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb\beta_1 \\
+		\vb\beta_2
+	\end{bmatrix}.
+\end{equation*}
+
+假设\(\begin{bmatrix}
+	\A \\ \B
+\end{bmatrix}
+\vb{x}
+= \begin{bmatrix}
+	\vb\beta_1 \\
+	\vb\beta_2
+\end{bmatrix}\)有解\(\vb{x}_0\)，
+即\(\begin{bmatrix}
+	\A \\ \B
+\end{bmatrix}
+\vb{x}_0
+= \begin{bmatrix}
+	\vb\beta_1 \\
+	\vb\beta_2
+\end{bmatrix}\)，
+于是\(\A \vb{x}_0 = \vb\beta_1,
+\A \vb{x}_0 = \vb\beta_2\).
+
+由\cref{theorem:向量空间.线性方程组有解判别定理} 可知，
+\(\text{$\begin{bmatrix}
+	\A \\ \B
+\end{bmatrix}
+\vb{x}
+= \begin{bmatrix}
+	\vb\beta_1 \\
+	\vb\beta_2
+\end{bmatrix}$有解}
+\iff
+\rank\begin{bmatrix}
+	\A \\ \B
+\end{bmatrix}
+= \rank\begin{bmatrix}
+	\A & \vb\beta_1 \\
+	\B & \vb\beta_2
+\end{bmatrix}\).
+\end{proof}
 \end{corollary}
 
 \begin{example}
