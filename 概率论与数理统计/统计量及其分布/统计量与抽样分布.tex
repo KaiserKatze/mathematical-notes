@@ -307,12 +307,43 @@
 所以\(\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2\)与\(\overline{X}\)独立.
 \end{proof}
 \end{theorem}
+\begin{remark}
 注意\(\frac{(n-1) S^2}{\sigma^2}\)有一个等价的表达式\(\frac{n B_2}{\sigma^2}\)，
 即\[
 	\frac{(n-1) S^2}{\sigma^2}
 	= \frac{1}{\sigma^2} \sum_{i=1}^n (X_i - \overline{X})^2
 	= \frac{n B_2}{\sigma^2}.
 \]
+\end{remark}
+
+\begin{example}
+%@see: 《2023年全国硕士研究生入学统一考试（数学一）》一选择题/第9题
+设\(\AutoTuple{X}{n}\)是来自总体\(N(\mu_1,\sigma_1^2)\)的简单随机样本，
+\(\AutoTuple{Y}{m}\)是来自总体\(N(\mu_2,\sigma_2^2)\)的简单随机样本，
+且两样本相互独立.
+记\(\overline{X} = \frac1n \sum_{i=1}^n X_i,
+\overline{Y} = \frac1m \sum_{i=1}^m Y_i,
+S_1^2 = \frac1{n-1} \sum_{i=1}^n (X_i - \overline{X})^2,
+S_2^2 = \frac1{m-1} \sum_{i=1}^m (Y_i - \overline{Y})^2\).
+证明：\(\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2} \sim F(n-1,m-1)\).
+\begin{proof}
+由\hyperref[theorem:数理统计的基础知识.正态分布总体下样本方差的抽样分布]{抽样分布定理}可知\begin{equation*}
+	\frac{(n-1) S_1^2}{\sigma_1^2} \sim \x(n-1),
+	\qquad
+	\frac{(m-1) S_2^2}{\sigma_2^2} \sim \x(m-1),
+\end{equation*}
+所以\begin{equation*}
+	\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}
+	= \frac{
+		\frac1{n-1} \cdot \frac{(n-1) S_1^2}{\sigma_1^2}
+	}{
+		\frac1{m-1} \cdot \frac{(m-1) S_2^2}{\sigma_2^2}
+	}
+	\sim F(n-1,m-1).
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{example}
 
 \begin{theorem}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P180 定理7.5
