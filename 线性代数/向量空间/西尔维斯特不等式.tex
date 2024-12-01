@@ -639,3 +639,221 @@
 \]
 \end{proof}
 \end{example}
+
+\begin{example}
+%@see: 《2021年全国硕士研究生入学统一考试（数学一）》一选择题/第7题
+设\(\A,\B \in M_n(\mathbb{R})\)，
+证明：\begin{equation*}
+	\rank\begin{bmatrix}
+		\A & \vb0 \\
+		\vb0 & \A^T \A
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\A & \A \B \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\A & \vb0 \\
+		\B \A & \A^T
+	\end{bmatrix}
+	= 2 \rank\A,
+\end{equation*}
+并举例说明\(\rank\begin{bmatrix}
+	\A & \B \A \\
+	\vb0 & \A \A^T
+\end{bmatrix}
+\neq 2 \rank\A\).
+\begin{proof}
+因为\begin{gather*}
+	\rank\begin{bmatrix}
+		\A & \vb0 \\
+		\vb0 & \A^T \A
+	\end{bmatrix}
+	= \rank\A + \rank(\A^T \A), \\
+	\begin{bmatrix}
+		\A & \A \B \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\A & \vb0 \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E & \B \\
+		\vb0 & \E
+	\end{bmatrix}
+	\implies
+	\rank\begin{bmatrix}
+		\A & \A \B \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\A & \vb0 \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	= \rank\A + \rank\A^T, \\
+	\begin{bmatrix}
+		\A & \vb0 \\
+		\B \A & \A^T
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\E & \vb0 \\
+		\B & \E
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A & \vb0 \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	\implies
+	\rank\begin{bmatrix}
+		\A & \vb0 \\
+		\B \A & \A^T
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\A & \vb0 \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	= \rank\A + \rank\A^T,
+\end{gather*}
+而由\cref{theorem:向量空间.转置不变秩} 可知\(\rank\A = \rank\A^T\)，
+且由\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 可知\(\rank(\A^T \A) = \rank\A\)，
+所以\begin{equation*}
+	\rank\begin{bmatrix}
+		\A & \vb0 \\
+		\vb0 & \A^T \A
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\A & \A \B \\
+		\vb0 & \A^T
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\A & \vb0 \\
+		\B \A & \A^T
+	\end{bmatrix}
+	= 2 \rank\A.
+\end{equation*}
+
+取\(\A = \begin{bmatrix}
+	0 & 1 \\
+	0 & 0
+\end{bmatrix},
+\B = \begin{bmatrix}
+	0 & 1 \\
+	1 & 0
+\end{bmatrix}\)，
+则\(\rank\A = 1\)，
+而\begin{equation*}
+	\rank\begin{bmatrix}
+		\A & \B \A \\
+		\vb0 & \A \A^T
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		0 & 1 & 0 & 0 \\
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 0
+	\end{bmatrix}
+	= 3 \neq 2,
+\end{equation*}
+所以\(\rank\begin{bmatrix}
+	\A & \B \A \\
+	\vb0 & \A \A^T
+\end{bmatrix}
+\neq 2 \rank\A\).
+\end{proof}
+\end{example}
+\begin{example}
+%@see: 《2023年全国硕士研究生入学统一考试（数学一）》一选择题/第5题
+\def\M{\vb{M}}
+设矩阵\(\A,\B,\C \in M_n(K)\)满足\(\A \B \C = \vb0\)，
+\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+试比较以下三个矩阵的秩的序关系：\begin{equation*}
+	\M_1 \defeq \begin{bmatrix}
+		\vb0 & \A \\
+		\B \C & \E
+	\end{bmatrix},
+	\qquad
+	\M_2 \defeq \begin{bmatrix}
+		\A \B & \C \\
+		\vb0 & \E
+	\end{bmatrix},
+	\qquad
+	\M_3 \defeq \begin{bmatrix}
+		\E & \A \B \\
+		\A \B & \vb0
+	\end{bmatrix}.
+\end{equation*}
+\begin{solution}
+因为\begin{align*}
+	\begin{bmatrix}
+		\E & -\A \\
+		\vb0 & \E
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb0 & \A \\
+		\B \C & \E
+	\end{bmatrix}
+	&= \begin{bmatrix}
+		% 第一行第一列的元素等于\(\vb0 - \A \B \C = \vb0\)
+		% 第一行第二列的元素等于\(\A - \A = \vb0\)
+		\vb0 & \vb0 \\
+		\B \C & \E
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\E & -\C \\
+		\vb0 & \E
+	\end{bmatrix}
+	\begin{bmatrix}
+		\A \B & \C \\
+		\vb0 & \E
+	\end{bmatrix}
+	&= \begin{bmatrix}
+		\A \B & \vb0 \\
+		\vb0 & \E
+	\end{bmatrix}, \\
+	\begin{bmatrix}
+		\E & \vb0 \\
+		-\A \B & \E
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E & \A \B \\
+		\A \B & \vb0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\E & -\A \B \\
+		\vb0 & \E
+	\end{bmatrix}
+	&= \begin{bmatrix}
+		\E & \vb0 \\
+		\vb0 & -\A \B \A \B
+	\end{bmatrix},
+\end{align*}
+而\begin{align*}
+	\rank\M_1
+	&= \rank\begin{bmatrix}
+		\vb0 & \vb0 \\
+		\B \C & \E
+	\end{bmatrix}
+	= n, \\
+	\rank\M_2
+	&= \rank\begin{bmatrix}
+		\A \B & \vb0 \\
+		\vb0 & \E
+	\end{bmatrix}
+	= \rank(\A\B) + n
+	%\cref{theorem:线性方程组.矩阵的秩的性质2}
+	\geq n, \\
+	\rank\M_3
+	&= \rank\begin{bmatrix}
+		\E & \vb0 \\
+		\vb0 & -\A \B \A \B
+	\end{bmatrix}
+	= \rank(\A \B \A \B) + n
+	%\cref{theorem:线性方程组.矩阵的秩的性质2}
+	\geq n,
+\end{align*}
+%\cref{theorem:线性方程组.矩阵乘积的秩}
+这里\(\rank(\A \B) \geq \rank(\A \B \A \B)\)，
+所以\(\rank\M_2 \geq \rank\M_3 \geq \rank\M_1\).
+\end{solution}
+\end{example}
