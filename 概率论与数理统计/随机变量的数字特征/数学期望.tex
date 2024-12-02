@@ -312,6 +312,20 @@
 \end{theorem}
 
 \begin{example}
+设随机变量\(X \sim N(0,\sigma^2)\)，求随机变量\(Y = \abs{X}\)的数学期望.
+\begin{solution}
+直接计算得\begin{align*}
+	E(Y) &= E\abs{X}
+	= 2 \int_0^{+\infty} x \cdot \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{x^2}{2\sigma^2}} \dd{x} \\
+	&= \frac2{\sqrt{2 \pi} \sigma} \cdot (-\sigma^2) \int_0^{+\infty} e^{-\frac{x^2}{2\sigma^2}} \dd(-\frac{x^2}{2\sigma^2}) \\
+	&= -\frac{2\sigma}{\sqrt{2\pi}} \eval{e^{-\frac{x^2}{2\sigma^2}}}_0^{+\infty}
+	= \sqrt{\frac2\pi} \sigma.
+\end{align*}
+\end{solution}
+%@Mathematica: Integrate[Abs[x]/(Sqrt[2 Pi] \[Sigma])Exp[-(x^2/(2 \[Sigma]^2))], {x, -Infinity, +Infinity}, Assumptions -> {\[Sigma] > 0}]
+\end{example}
+
+\begin{example}
 设随机变量\(X\)的密度函数为\[
 	f(x) = \left\{ \begin{array}{cl}
 		\frac{x}{a^2} \exp(-\frac{x^2}{2a^2}), & x>0, \\
