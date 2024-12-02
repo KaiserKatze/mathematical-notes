@@ -320,6 +320,27 @@ x, & -\pi \leq x < 0, \\
 	\frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos{nx}.
 \]
 
+\begin{example}
+%@see: 《2023年全国硕士研究生入学统一考试（数学一）》二填空题/第13题
+设\(f\)是周期为2的周期函数，且\(f(x) = 1-x\ (0 \leq x \leq 1)\).
+若\(f(x) = \frac{a_0}2 + \sum_{n=1}^\infty a_n \cos n\pi x\)，
+计算\(\sum_{n=1}^\infty a_{2n}\).
+\begin{solution}
+由于函数\(f\)的傅里叶级数只含常数项和余弦项，
+所以\(f\)一定是偶函数，
+那么当\(n\geq1\)时，有\begin{equation*}
+	a_n = 2 \int_0^1 f(x) \cos n\pi x \dd{x}
+	= 2 \int_0^1 \cos n\pi x \dd{x}
+	- 2 \int_0^1 x \cos n\pi x \dd{x}
+	= \frac2{n^2\pi^2} (1 - \cos n\pi).
+\end{equation*}
+% 对于任意整数\(n\)总成立\(\cos 2n\pi = 1\).
+于是\(a_{2n} = \frac2{n^2\pi^2} (1 - \cos 2n\pi) = 0\)，
+从而有\(\sum_{n=1}^\infty a_{2n} = 0\).
+\end{solution}
+%@Mathematica: a[n_] := 2 Integrate[(1 - x) Cos[n Pi x], {x, 0, 1}]
+\end{example}
+
 \subsection{奇延拓与偶延拓}
 在实际应用（如研究某种波动问题，热的传导、扩散问题）中，
 有时还需要把定义在区间\([0,\pi]\)上的函数\(f\)展开成正弦级数或余弦级数.
