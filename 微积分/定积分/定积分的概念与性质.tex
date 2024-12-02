@@ -421,29 +421,32 @@
 \end{property}
 上述性质表明定积分对于积分区间具有“可加性”.
 
-%\begin{example}
-%设连续函数\(f\)满足\(f(x+2)-f(x)=x\)，
-%且\(\int_0^2 f(x) \dd{x} = 0\)，
-%求\(\int_1^3 f(x) \dd{x}\).
-%\begin{solution}
-%由\cref{theorem:定积分.定积分性质3} 有，\[
-%\int_1^3 f(x) \dd{x}
-%= \int_1^2 f(x) \dd{x}
-%+ \int_2^3 f(x) \dd{x}.
-%\]而\[
-%\int_2^3 f(x) \dd{x}
-%\xlongequal{x=t+2} \int_0^1 f(t+2) \dd{t} \\
-%= \int_0^1 [f(t) + t] \dd{t} \\
-%= \int_0^1 f(t) \dd{t} + \frac{1}{2},
-%\]因此\[
-%\int_1^3 f(x) \dd{x}
-%= \int_1^2 f(x) \dd{x}
-%+ \int_0^1 f(t) \dd{t} + \frac{1}{2}
-%= \int_0^2 f(x) \dd{x} + \frac{1}{2}
-%= \frac{1}{2}.
-%\]
-%\end{solution}
-%\end{example}
+\begin{example}
+%@see: 《2023年全国硕士研究生入学统一考试（数学一）》二填空题/第14题
+设连续函数\(f\)满足\(f(x+2)-f(x)=x\)，
+且\(\int_0^2 f(x) \dd{x} = 0\)，
+求\(\int_1^3 f(x) \dd{x}\).
+\begin{solution}
+由\cref{theorem:定积分.定积分性质3} 有\begin{align*}
+	\int_1^3 f(x) \dd{x}
+	&= \int_0^3 f(x) \dd{x}
+	- \int_0^1 f(x) \dd{x} \\
+	&= \int_0^2 f(x) \dd{x}
+	+ \int_2^3 f(x) \dd{x}
+	- \int_0^1 f(x) \dd{x} \\
+	% 代入\(\int_0^2 f(x) \dd{x} = 0\)
+	&= \int_2^3 f(x) \dd{x}
+	- \int_0^1 f(x) \dd{x} \\
+	% 代入\(\int_0^1 f(x+2) \dd{x} = \int_2^3 f(x) \dd{x}\)
+	&= \int_0^1 f(x+2) \dd{x}
+	- \int_0^1 f(x) \dd{x} \\
+	%= \int_0^1 (f(x+2)-f(x)) \dd{x} \\
+	&= \int_0^1 x \dd{x}
+	= \eval{\frac12 x^2}_0^1
+	= \frac12.
+\end{align*}
+\end{solution}
+\end{example}
 
 \begin{property}\label{theorem:定积分.定积分性质5}
 %@see: 《高等数学（第六版 上册）》 P232 性质5
