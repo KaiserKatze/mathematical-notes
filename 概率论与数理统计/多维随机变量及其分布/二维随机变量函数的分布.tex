@@ -379,6 +379,35 @@ xy, & 0 \leq x \leq 2, 0 \leq y \leq 1, \\
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《2023年全国硕士研究生入学统一考试（数学一）》三解答题/第22题(III)
+设二维随机变量\((X,Y)\)的概率密度为\begin{equation*}
+	f(x,y) = \left\{ \begin{array}{cl}
+		\frac2\pi (x^2+y^2), & x^2+y^2\leq1, \\
+		0, & \text{其他}.
+	\end{array} \right.
+\end{equation*}
+求\(Z = X^2 + Y^2\)的概率密度.
+\begin{solution}
+记\(Z\)的分布函数为\(F_Z(z)\).
+当\(z < 0\)时，\(F_Z(z) = 0\).
+当\(z \geq 1\)时，\(F_Z(z) = 1\).
+当\(0 \leq z < 1\)时，有\begin{align*}
+%@Mathematica: Integrate[2/Pi Boole[x^2 + y^2 <= z] (x^2 + y^2), {x, -1, 1}, {y, -1, 1}, Assumptions -> {0 < z < 1}]
+	F_Z(z) &= P(Z \leq z)
+	= \iint_{x^2+y^2 \leq z} \frac2\pi (x^2+y^2) \dd{x}\dd{y} \\
+	&= \frac2\pi \int_0^{2\pi} \dd\theta \int_0^{\sqrt{z}} r^2 \cdot r \dd{r}
+	= z^2.
+\end{align*}
+于是\(Z\)的概率密度为\begin{equation*}
+	f_Z(z) = F'_Z(z) = \left\{ \begin{array}{cl}
+		2z, & 0 \leq z < 1, \\
+		0, & \text{其他}.
+	\end{array} \right.
+\end{equation*}
+\end{solution}
+\end{example}
+
 \begin{theorem}\label{theorem:多维随机变量及其分布.连续型随机变量的卷积公式}
 设二维连续型随机变量\((X,Y)\)有密度函数\(f(x,y)\)，
 \(Z=X+Y\)，则对任意\(z \in R(Z)\)，有\begin{align}
