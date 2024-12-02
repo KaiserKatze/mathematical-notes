@@ -466,3 +466,153 @@
 只对\(\E\)进行列变换，将\(\E\)变成\(\C\)；
 或者只对\(\E\)作其中的行变换，则将\(\E\)变为\(\C^T\).
 \end{theorem}
+
+\begin{example}
+%@see: 《2023年全国硕士研究生入学统一考试（数学一）》三解答题/第21题
+设二次型\begin{align*}
+	f(x_1,x_2,x_3) &= x_1^2 + 2 x_2^2 + 2 x_3^2 + 2 x_1 x_2 - 2 x_1 x_3, \\
+	g(y_1,y_2,y_3) &= y_1^2 + y_2^2 + y_3^2 + 2 y_2 y_3.
+\end{align*}
+求可逆变换\(\vb{x} = \P \vb{y}\)将\(f(x_1,x_2,x_3)\)化为\(g(y_1,y_2,y_3)\).
+\begin{solution}\let\qed\relax
+\begin{proof}[解法一]
+配方，得\begin{align*}
+	f(x_1,x_2,x_3) &= x_1^2 + 2 x_2^2 + 2 x_3^2 + 2 x_1 x_2 - 2 x_1 x_3 \\
+	&= (x_1 + x_2 - x_3)^2 + x_2 + x_3^2 + 2 x_2 x_3 \\
+	&= (x_1 + x_2 - x_3)^2 + (x_2 + x_3)^2, \\
+	g(y_1,y_2,y_3) &= y_1^2 + y_2^2 + y_3^2 + 2 y_2 y_3 \\
+	&= y_1^2 + (y_2 + y_3)^2,
+\end{align*}
+
+令\(\left\{ \begin{array}{l}
+	z_1 = x_1 + x_2 - x_3, \\
+	z_2 = x_2 + x_3, \\
+	z_3 = x_3,
+\end{array} \right.\)
+即\(\begin{bmatrix}
+	z_1 \\ z_2 \\ z_3
+\end{bmatrix}
+= \begin{bmatrix}
+	1 & 1 & -1 \\
+	0 & 1 & 1 \\
+	0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+	x_1 \\ x_2 \\ x_3
+\end{bmatrix}\)，
+可逆变换\(\vb{x} = \P_1 \vb{z}\)将\(f(x_1,x_2,x_3)\)化为\(h(z_1,z_2,z_3)\)，
+其中\begin{equation*}
+	\P_1 = \begin{bmatrix}
+		1 & 1 & -1 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1
+	\end{bmatrix}^{-1}.
+\end{equation*}
+
+令\(\left\{ \begin{array}{l}
+	z_1 = y_1, \\
+	z_2 = y_2 + y_3, \\
+	z_3 = y_3,
+\end{array} \right.\)
+即\(\begin{bmatrix}
+	z_1 \\ z_2 \\ z_3
+\end{bmatrix}
+= \begin{bmatrix}
+	1 & 0 & 0 \\
+	0 & 1 & 1 \\
+	0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+	y_1 \\ y_2 \\ y_3
+\end{bmatrix}\)，
+可逆变换\(\vb{z} = \P_2 \vb{y}\)将\(h(z_1,z_2,z_3)\)化为\(g(y_1,y_2,y_3)\)，
+其中\begin{equation*}
+	\P_2 = \begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1
+	\end{bmatrix}.
+\end{equation*}
+
+因此，若要可逆变换\(\vb{x} = \P \vb{y}\)将\(f(x_1,x_2,x_3)\)化为\(g(y_1,y_2,y_3)\)，
+只需令\begin{equation*}
+%@Mathematica: Inverse[{{1, 1, -1}, {0, 1, 1}, {0, 0, 1}}] . {{1, 0, 0}, {0, 1, 1}, {0, 0, 1}}
+	\P = \P_1 \P_2
+	= \begin{bmatrix}
+		1 & 1 & -1 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1
+	\end{bmatrix}^{-1}
+	\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & -1 & 1 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}.
+\end{equation*}
+\end{proof}
+\begin{proof}[解法二]
+二次型\(f(x_1,x_2,x_3)\)的矩阵为\begin{equation*}
+	\A = \begin{bmatrix}
+		1 & 1 & -1 \\
+		1 & 2 & 0 \\
+		-1 & 0 & 2
+	\end{bmatrix}.
+\end{equation*}
+二次型\(g(y_1,y_2,y_3)\)的矩阵为\begin{equation*}
+	\B = \begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 1 \\
+		0 & 1 & 1
+	\end{bmatrix}.
+\end{equation*}
+将\(\A\)的第2行减去第1行，第2列减去第1列，
+得到\begin{equation*}
+	\A \to \begin{bmatrix}
+		1 & 1 & -1 \\
+		0 & 1 & 1 \\
+		-1 & 0 & 2
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & 0 & -1 \\
+		0 & 1 & 1 \\
+		-1 & 1 & 2
+	\end{bmatrix};
+\end{equation*}
+再让第3行加上第1行，第3列加上第1列，
+得到\begin{equation*}
+	\A \to \begin{bmatrix}
+		1 & 0 & -1 \\
+		0 & 1 & 1 \\
+		0 & 1 & 1
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 1 \\
+		0 & 1 & 1
+	\end{bmatrix}
+	= \B.
+\end{equation*}
+于是所求可逆矩阵\(\P\)就是\(\P_1 = \begin{bmatrix}
+	1 & -1 & 0 \\
+	0 & 1 & 0 \\
+	0 & 0 & 1
+\end{bmatrix}\)和\(\P_2 = \begin{bmatrix}
+	1 & 0 & 1 \\
+	0 & 1 & 0 \\
+	0 & 0 & 1
+\end{bmatrix}\)这两个初等矩阵的乘积，
+即\begin{equation*}
+	\P = \begin{bmatrix}
+		1 & -1 & 1 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}.
+\end{equation*}
+\end{proof}
+\end{solution}
+\end{example}
