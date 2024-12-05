@@ -1,20 +1,11 @@
 #!/bin/bash
 # 这个脚本是在开发者本地工作站使用的
 
-# 数据统计
-find . -type f \( -name '*.tex' -o -name '*.sty' \) |\
-	xargs cat | wc -lc|\
-	awk '{print "LaTeX 代码共计：" $1 " 行，" $2 " 字节."}'
-find . -type f -name '*.tex' | wc -l |\
-	awk '{print ".tex 文件共计：" $1 " 个."}'
-find . -type f -name '*.sty' | wc -l |\
-	awk '{print ".sty 文件共计：" $1 " 个."}'
+GITHUB_TOKEN="github-token.ignore"
 
 get_ssh_agent_pid() {
 	ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+'
 }
-
-GITHUB_TOKEN="github-token.ignore"
 
 pid_ssh_agent=($(get_ssh_agent_pid))  # 获取 SSH Agent 进程的 PID，并保存到数组中
 echo "[INFO] 正在运行的 SSH Agent 进程共计${#pid_ssh_agent[@]}个."
@@ -36,6 +27,15 @@ if [ $? -ne 0 ]; then
 	echo "[ERROR] 没有启动 SSH Agent 后台程序，或者无法添加 SSH 密匙!" 1>&2
 	exit 1
 fi
+
+# 数据统计
+find . -type f \( -name '*.tex' -o -name '*.sty' \) |\
+	xargs cat | wc -lc|\
+	awk '{print "LaTeX 代码共计：" $1 " 行，" $2 " 字节."}'
+find . -type f -name '*.tex' | wc -l |\
+	awk '{print ".tex 文件共计：" $1 " 个."}'
+find . -type f -name '*.sty' | wc -l |\
+	awk '{print ".sty 文件共计：" $1 " 个."}'
 
 # 在本地重命名 texlive 输出的 PDF 文件
 SOURCE_FILE="math.pdf"
