@@ -444,6 +444,28 @@ y_2 = f(x_0 + \epsilon)\).
 \end{example}
 
 \begin{example}
+%@see: https://www.bilibili.com/video/BV1RGz2YZENV/
+计算极限\(\lim_{x\to\infty} \left[ \frac{x^n}{(x+1)(x+2)\dotsm(x+n)} \right]^x\).
+\begin{solution}
+记\(A \defeq (x+1)(x+2)\dotsm(x+n)\).
+当\(x\to\infty\)时\begin{equation*}
+	\frac{A}{x^n}
+	= \left( 1+\frac1x \right) \left( 1+\frac2x \right) \dotsm \left( 1+\frac{n}{x} \right)
+	\to 1,
+\end{equation*}
+于是\begin{align*}
+	&\hspace{-20pt}
+	\lim_{x\to\infty} \left( \frac{x^n}{A} \right)^x \\
+	&= \exp\lim_{x\to\infty} x \left( \frac{x^n}{A} - 1 \right) \\
+	&= \exp\lim_{x\to\infty} x \left( -1 \cdot \frac1{x+1} - 2 \cdot \frac1{x+2} - \dotsb - n \frac1{x+n} \right) \\
+	&= \exp\left( -1-2-\dotsb-n \right)
+	= e^{-\frac12 n(n+1)}.
+\end{align*}
+\end{solution}
+%@Mathematica: Limit[(x^n/Product[x + k, {k, 1, n}])^x, x -> Infinity]
+\end{example}
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1RGz2YZELr/
 计算极限\(\lim_{x\to+\infty} \left( \sin\frac1x + \cos\frac1x \right)^x\).
 \begin{solution}
 由于当\(x\to+\infty\)时，
