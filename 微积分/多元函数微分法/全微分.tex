@@ -53,7 +53,7 @@
 \]
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:多元函数微分法.二元函数可微的充分必要条件}
 如果函数\(f\)在点\((x,y)\)具有偏导数\(f'_x(x,y)\)和\(f'_y(x,y)\)，
 且满足\[
 	\lim_{(\increment x,\increment y)\to(0,0)}
@@ -211,6 +211,37 @@
 “\(\lim_{(x,y)\to(0,0)} \frac{f(x,y) - f(0,0)}{\sqrt{x^2+y^2}} = 0\)”
 是“\(f\)在点\((0,0)\)可微”的充分必要条件.
 \end{remark}
+
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1DEz2Y9Emn/
+设函数\begin{equation*}
+	f(x,y) = \left\{ \begin{array}{cl}
+		\frac{(x+y) \sqrt{\abs{xy}}}{\sqrt{x^2+y^2}}, & (x,y)\neq(0,0), \\
+		0, & (x,y)=(0,0).
+	\end{array} \right.
+\end{equation*}
+考察函数\(f\)在点\((0,0)\)的连续性、可偏导性、可微性.
+\begin{solution}
+因为\(\frac{\abs{x}}{\sqrt{x^2+y^2}} \leq 1,
+\frac{\abs{y}}{\sqrt{x^2+y^2}} \leq 1\)，
+当\((x,y)\to(0,0)\)时，
+有\(\abs{\frac{(x+y) \sqrt{\abs{xy}}}{\sqrt{x^2+y^2}}}
+\leq 2 \sqrt{\abs{xy}}
+\to 0\)，
+所以\(f\)在点\((0,0)\)连续.
+
+因为\(f'_x(0,0) = \dv{x} f(x,0) = 0,
+f'_y(0,0) = \dv{y} f(0,y) = 0\)，
+所以\(f\)在点\((0,0)\)对\(x\)和\(y\)均可偏导.
+
+%\cref{theorem:多元函数微分法.二元函数可微的充分必要条件}
+令\(g(x,y) = \frac{(x+y) \sqrt{\abs{xy}}}{x^2+y^2}\).
+因为极限\(\lim_{\substack{(x,y)\to(0,0) \\ y=x}} g(x,y)
+= \lim_{x\to0} \frac{2x \abs{x}}{2x^2}
+= \lim_{x\to0} \frac{\abs{x}}{x}\)不存在，
+所以\(f\)在点\((0,0)\)不可微.
+\end{solution}
+\end{example}
 
 \begin{example}
 %@see: 《2020年全国硕士研究生入学统一考试（数学一）》一选择题/第3题
