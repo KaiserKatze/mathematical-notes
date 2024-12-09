@@ -1024,3 +1024,28 @@ v'_y=1/x\)，
 \]
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《2021年全国硕士研究生入学统一考试（数学二）》三解答题/第21题
+设曲线\((x^2+y^2)^2=x^2-y^2\ (x\geq0,y\geq0)\)与\(x\)轴围成的区域\(D\).
+求\(\iint_D x y \dd{x}\dd{y}\).
+\begin{solution}
+%@see: https://www.bilibili.com/video/BV16XUkY7E3J/
+令\(x=\rho\cos\theta,y=\rho\sin\theta\)，
+将\((x^2+y^2)^2=x^2-y^2\ (x\geq0,y\geq0)\)化为
+\(\rho^4=\rho^2(\cos^2\theta-\sin^2\theta)\)，
+即\(\rho^2=\cos2\theta\)，
+也即\(\rho=\sqrt{\cos2\theta}\).
+由此可见\(\cos2\theta\geq0\)
+即\(0\leq\theta\leq\frac\pi4\).
+于是被积区域\(D = \Set*{ (\rho,\theta) \given 0\leq\rho\leq\sqrt{\cos2\theta}, 0\leq\theta\leq\frac\pi4 }\).
+从而有\begin{equation*}
+	\iint_D x y \dd{x}\dd{y}
+	= \int_0^{\frac\pi4} \dd\theta
+	\int_0^{\sqrt{\cos2\theta}} \rho^2 \cos\theta \sin\theta \cdot \rho \dd\rho
+	= \frac1{48}.
+\end{equation*}
+\end{solution}
+%@Mathematica: RegionPlot[(x^2 + y^2)^2 <= x^2 - y^2, {x, 0, 1}, {y, 0, 1}]
+%@Mathematica: Integrate[x y Boole[(x^2 + y^2)^2 <= x^2 - y^2], {x, 0, 1}, {y, 0, 1}]
+\end{example}
