@@ -867,6 +867,27 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV11FqSY2Eub/
+设函数\(f \in C[0,1]\)，且\(\int_0^1 f(x) \dd{x} = 0\).
+证明：存在\(\xi\in(0,1)\)，使得\(f(\xi) = 2\xi \int_0^\xi f(t) \dd{t}\).
+\begin{proof}
+记\(F(x) = \int_0^x f(t) \dd{t}\).
+%@Mathematica: DSolve[F'[x] == 2 x F[x], F[x], x]
+%@Mathematica: DSolve[F'[x] == 2 x F[x] && F[1] == 0, F[x], x]
+% 注意到所求结论是一个一阶线性微分方程\(F'(x) = 2x F(x)\).
+% 因此可以构造一个辅助函数.
+令\(\phi(x) = e^{-x^2} F(x)\).
+因为\(\phi(0) = \phi(1) = 0\)，
+所以由\hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}可知，
+存在\(\xi\in(0,1)\)，
+使得\(\phi'(\xi)
+= e^{-\xi^2} (f(\xi) - 2\xi F(\xi))
+= 0\)，
+即\(f(\xi) = 2\xi \int_0^\xi f(t) \dd{t}\).
+\end{proof}
+\end{example}
+
 \begin{theorem}[积分第二中值定理]\label{theorem:定积分.积分中值定理2}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P373 定理8.2.4（积分第二中值定理）
 设\(f,g \in R[a,b]\)，
