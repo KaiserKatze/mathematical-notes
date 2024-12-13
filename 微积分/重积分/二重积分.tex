@@ -94,6 +94,53 @@
 \]
 \end{property}
 
+\begin{example}
+%@see: https://www.bilibili.com/video/BV1SriiYEEFa/
+设\(D = \Set{ (x,y) \given 0 \leq x \leq 2, 0 \leq y \leq 2 }\).
+计算\(b = \iint_D \abs{x y - 1} \dd{\sigma}\)，
+并证明：如果\(f\)在\(D\)上连续，
+且\(\iint_D f(x,y) \dd{\sigma} = 0,
+\iint_D x y f(x,y) \dd{\sigma} = 1\)，
+则存在\((\xi,\eta) \in D\)，
+使得\(\abs{f(\xi,\eta)} \geq \frac1b\).
+\begin{solution}
+%@Mathematica: Integrate[Abs[x y - 1], {x, 0, 2}, {y, 0, 2}]
+首先有\begin{align*}
+	b &= \iint_D \abs{x y - 1} \dd{\sigma} \\
+	&= \iint_{0 \leq x \leq 2, 0 \leq y \leq 2, x y \geq 1} (x y - 1) \dd{\sigma}
+	+ \iint_{0 \leq x \leq 2, 0 \leq y \leq 2, x y < 1} (1 - x y) \dd{\sigma} \\
+	&= \int_{\frac12}^2 \dd{x} \int_{\frac1x}^2 (x y - 1) \dd{y}
+	+ \int_0^{\frac12} \dd{x} \int_0^2 (1 - x y) \dd{y}
+	+ \int_{\frac12}^2 \dd{x} \int_0^{\frac1x} (1 - x y) \dd{y} \\
+	&= \int_{\frac12}^2 \left( 2x + \frac1{2x} - 2 \right) \dd{x}
+	+ \int_0^{\frac12} (2-2x) \dd{x}
+	+ \int_{\frac12}^2 \frac1{2x} \dd{x} \\
+	&= \frac34 + \ln2
+	+ \frac34
+	+ \ln2
+	= \frac32 + 2 \ln2.
+\end{align*}
+
+注意到\(\iint_D x y f(x,y) \dd{\sigma} - \iint_D f(x,y) \dd{\sigma}
+= \iint_D (x y - 1) f(x,y) \dd{\sigma}
+= 1\)，
+由\cref{theorem:重积分.二重积分的性质4} 可知\begin{equation*}
+	1 = \abs{\iint_D (x y - 1) f(x,y) \dd{\sigma}}
+	\leq \iint_D \abs{x y - 1} \abs{f(x,y)} \dd{\sigma}.
+	\eqno(1)
+\end{equation*}
+用反证法.
+假设对于任意\((x,y) \in D\)，总成立\(\abs{f(x,y)} < \frac1b\).
+那么由(1)式可知\begin{equation*}
+	1 < \frac1b \cdot \iint_D \abs{x y - 1} \dd{\sigma}
+	= \frac1b \cdot b = 1,
+\end{equation*}
+矛盾！
+因此存在\((\xi,\eta) \in D\)，
+使得\(\abs{f(\xi,\eta)} \geq \frac1b\).
+\end{solution}
+\end{example}
+
 \begin{property}\label{theorem:重积分.二重积分的性质5}
 设\(M\)、\(m\)分别是\(f(x,y)\)在闭区域\(D\)上的最大值和最小值，
 \(\sigma\)是\(D\)的面积，
@@ -129,7 +176,7 @@
 即\[
 	f(\xi,\eta) = \zeta,
 \]
-上式两端各乘以\(\sigma\)，记得所要证明的公式.
+上式两端各乘以\(\sigma\)，即得所要证明的公式.
 \end{proof}
 \end{property}
 
