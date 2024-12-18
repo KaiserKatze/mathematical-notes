@@ -216,6 +216,69 @@
 二阶及二阶以上的偏导数统称为\DefineConcept{高阶偏导数}.
 \end{definition}
 
+\begin{example}
+举例说明：即便二元函数\(f\colon\mathbb{R}^2\to\mathbb{R}\)的
+二阶偏导数\(\pdv[2]{f}{x}\)和\(\pdv[2]{f}{y}\)都连续，
+但是它的混合偏导数\(\pdv[2]{f}{x}{y}\)也可能不存在.
+\begin{solution}
+假设\(f\)满足\begin{equation*}
+	\pdv{f(x,y)}{x} = \left\{ \begin{array}{rl}
+		Ay, & y>0, \\
+		0, & y=0, \\
+		-Ay, & y<0.
+	\end{array} \right.
+	\eqno(1)
+\end{equation*}
+其中\(A\)是一个非零常数.
+让(1)式对\(x\)求导，易见\(\pdv[2]{f}{x}\)恒等于零.
+让(1)式对\(y\)求导，得\begin{equation*}
+	\pdv[2]{f(x,y)}{x}{y} = \left\{ \begin{array}{rl}
+		A, & y>0, \\
+		-A, & y<0.
+	\end{array} \right.
+	\eqno(2)
+\end{equation*}
+可以看出，对于任意实数\(x\)都有\(\pdv[2]{f(x,0)}{x}{y}\)不存在.
+让(1)式对\(x\)积分，得\begin{equation*}
+	f(x,y) = \left\{ \begin{array}{rl}
+		Axy + \phi_1(y), & y>0, \\
+		B, & y=0, \\
+		-Axy + \phi_2(y), & y<0,
+	\end{array} \right.
+	\eqno(3)
+\end{equation*}
+其中\(B\)是一个常数.
+接着让(2)式对\(y\)求导，得\begin{equation*}
+	\pdv{f(x,y)}{y} = \left\{ \begin{array}{rl}
+		Ax + \phi_1'(y), & y>0, \\
+		0, & y=0, \\
+		-Ax + \phi_2'(y), & y<0.
+	\end{array} \right.
+	\eqno(4)
+\end{equation*}
+再次对\(y\)求导，得\begin{equation*}
+	\pdv{f(x,y)}{y} = \left\{ \begin{array}{rl}
+		\phi_1''(y), & y>0, \\
+		0, & y=0, \\
+		\phi_2''(y), & y<0.
+	\end{array} \right.
+	\eqno(5)
+\end{equation*}
+令\(\phi_1''(y) = \phi_2''(y) = 0\)，
+不妨设\(\phi_1'(y) = C,
+\phi_2'(y) = D\)，
+其中\(C,D\)是两个常数，
+那么\(\phi_1(y) = Cy,
+\phi_2(y) = Dy\).
+综上所述，只需取\begin{equation*}
+	f(x,y) = \left\{ \begin{array}{rl}
+		xy + y, & y\geq0, \\
+		-xy + 2y, & y<0.
+	\end{array} \right.
+\end{equation*}
+\end{solution}
+\end{example}
+
 \begin{theorem}
 如果函数\(z=f(x,y)\)的两个二阶混合偏导数\(\pdv{z}{y}{x}\)及\(\pdv{z}{x}{y}\)在区域\(D\)内连续，
 那么在该区域内这两个二阶混合偏导数必相等.
