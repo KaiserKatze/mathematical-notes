@@ -217,66 +217,111 @@
 \end{definition}
 
 \begin{example}
+举例说明：即便二元函数\(f\colon\mathbb{R}^2\to\mathbb{R}\)在某一点存在
+二阶偏导数\(\pdv[2]{f}{x},\pdv[2]{f}{y},\pdv[2]{f}{x}{y},\pdv[2]{f}{y}{x}\)，
+但是它们的混合偏导数不相等.
+\begin{solution}
+%@Mathematica: f[x_, y_] := Piecewise[{{(x y (x^2 - y^2))/(x^2 + y^2), {x, y} != {0, 0}}, {0, {x, y} == {0, 0}}}]
+取\begin{equation*}
+	f(x,y) = \left\{ \begin{array}{cl}
+		\frac{xy(x^2-y^2)}{x^2+y^2}, & (x,y)\neq(0,0), \\
+		0, & (x,y)\neq(0,0).
+	\end{array} \right.
+\end{equation*}
+%@Mathematica: D[f[x, y], x] // Factor
+%@Mathematica: D[f[x, y], y] // Factor
+因为\begin{align*}
+	\pdv{f}{x} &= \left\{ \begin{array}{cl}
+		\frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2}, & (x,y)\neq(0,0), \\
+		0, & (x,y)\neq(0,0);
+	\end{array} \right. \\
+	\pdv{f}{y} &= \left\{ \begin{array}{cl}
+		\frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}, & (x,y)\neq(0,0), \\
+		0, & (x,y)\neq(0,0).
+	\end{array} \right.
+\end{align*}
+%@Mathematica: Limit[(D[f[x, y], x] /. x -> 0)/y, y -> 0]
+%@Mathematica: Limit[(D[f[x, y], y] /. y -> 0)/x, x -> 0]
+所以\begin{align*}
+	\eval{\pdv[2]{f}{x}}_{(0,0)}
+	&= \lim_{x\to0} \frac{f'_x(x,0) - f'_x(0,0)}{x}
+	= 0, \\
+	\eval{\pdv[2]{f}{y}}_{(0,0)}
+	&= \lim_{y\to0} \frac{f'_y(0,y) - f'_y(0,0)}{y}
+	= 0, \\
+	\eval{\pdv[2]{f}{x}{y}}_{(0,0)}
+	&= \lim_{y\to0} \frac{f'_x(0,y) - f'_x(0,0)}{y}
+	= -1, \\
+	\eval{\pdv[2]{f}{y}{x}}_{(0,0)}
+	&= \lim_{x\to0} \frac{f'_y(x,0) - f'_y(0,0)}{x}
+	= 1.
+\end{align*}
+由此可见，函数\(f\)在点\((0,0)\)的二阶偏导数都存在，但是它的混合偏导数不相等.
+\end{solution}
+\end{example}
+
+\begin{example}
 举例说明：即便二元函数\(f\colon\mathbb{R}^2\to\mathbb{R}\)的
 二阶偏导数\(\pdv[2]{f}{x}\)和\(\pdv[2]{f}{y}\)都连续，
 但是它的混合偏导数\(\pdv[2]{f}{x}{y}\)也可能不存在.
-\begin{solution}
-假设\(f\)满足\begin{equation*}
-	\pdv{f(x,y)}{x} = \left\{ \begin{array}{rl}
-		Ay, & y>0, \\
-		0, & y=0, \\
-		-Ay, & y<0.
-	\end{array} \right.
-	\eqno(1)
-\end{equation*}
-其中\(A\)是一个非零常数.
-让(1)式对\(x\)求导，易见\(\pdv[2]{f}{x}\)恒等于零.
-让(1)式对\(y\)求导，得\begin{equation*}
-	\pdv[2]{f(x,y)}{x}{y} = \left\{ \begin{array}{rl}
-		A, & y>0, \\
-		-A, & y<0.
-	\end{array} \right.
-	\eqno(2)
-\end{equation*}
-可以看出，对于任意实数\(x\)都有\(\pdv[2]{f(x,0)}{x}{y}\)不存在.
-让(1)式对\(x\)积分，得\begin{equation*}
-	f(x,y) = \left\{ \begin{array}{rl}
-		Axy + \phi_1(y), & y>0, \\
-		B, & y=0, \\
-		-Axy + \phi_2(y), & y<0,
-	\end{array} \right.
-	\eqno(3)
-\end{equation*}
-其中\(B\)是一个常数.
-接着让(2)式对\(y\)求导，得\begin{equation*}
-	\pdv{f(x,y)}{y} = \left\{ \begin{array}{rl}
-		Ax + \phi_1'(y), & y>0, \\
-		0, & y=0, \\
-		-Ax + \phi_2'(y), & y<0.
-	\end{array} \right.
-	\eqno(4)
-\end{equation*}
-再次对\(y\)求导，得\begin{equation*}
-	\pdv{f(x,y)}{y} = \left\{ \begin{array}{rl}
-		\phi_1''(y), & y>0, \\
-		0, & y=0, \\
-		\phi_2''(y), & y<0.
-	\end{array} \right.
-	\eqno(5)
-\end{equation*}
-令\(\phi_1''(y) = \phi_2''(y) = 0\)，
-不妨设\(\phi_1'(y) = C,
-\phi_2'(y) = D\)，
-其中\(C,D\)是两个常数，
-那么\(\phi_1(y) = Cy,
-\phi_2(y) = Dy\).
-综上所述，只需取\begin{equation*}
-	f(x,y) = \left\{ \begin{array}{rl}
-		xy + y, & y\geq0, \\
-		-xy + 2y, & y<0.
-	\end{array} \right.
-\end{equation*}
-\end{solution}
+% \begin{solution}
+% 假设\(f\)满足\begin{equation*}
+% 	\pdv{f(x,y)}{x} = \left\{ \begin{array}{rl}
+% 		Ay, & y>0, \\
+% 		0, & y=0, \\
+% 		-Ay, & y<0.
+% 	\end{array} \right.
+% 	\eqno(1)
+% \end{equation*}
+% 其中\(A\)是一个非零常数.
+% 让(1)式对\(x\)求导，易见\(\pdv[2]{f}{x}\)恒等于零.
+% 让(1)式对\(y\)求导，得\begin{equation*}
+% 	\pdv[2]{f(x,y)}{x}{y} = \left\{ \begin{array}{rl}
+% 		A, & y>0, \\
+% 		-A, & y<0.
+% 	\end{array} \right.
+% 	\eqno(2)
+% \end{equation*}
+% 可以看出，对于任意实数\(x\)都有\(\pdv[2]{f(x,0)}{x}{y}\)不存在.
+% 让(1)式对\(x\)积分，得\begin{equation*}
+% 	f(x,y) = \left\{ \begin{array}{rl}
+% 		Axy + \phi_1(y), & y>0, \\
+% 		B, & y=0, \\
+% 		-Axy + \phi_2(y), & y<0,
+% 	\end{array} \right.
+% 	\eqno(3)
+% \end{equation*}
+% 其中\(B\)是一个常数.
+% 接着让(2)式对\(y\)求导，得\begin{equation*}
+% 	\pdv{f(x,y)}{y} = \left\{ \begin{array}{rl}
+% 		Ax + \phi_1'(y), & y>0, \\
+% 		0, & y=0, \\
+% 		-Ax + \phi_2'(y), & y<0.
+% 	\end{array} \right.
+% 	\eqno(4)
+% \end{equation*}
+% 再次对\(y\)求导，得\begin{equation*}
+% 	\pdv[2]{f(x,y)}{y} = \left\{ \begin{array}{rl}
+% 		\phi_1''(y), & y>0, \\
+% 		0, & y=0, \\
+% 		\phi_2''(y), & y<0.
+% 	\end{array} \right.
+% 	\eqno(5)
+% \end{equation*}
+% 令\(\phi_1''(y) = \phi_2''(y) = 0\)，
+% 不妨设\(\phi_1'(y) = C,
+% \phi_2'(y) = D\)，
+% 其中\(C,D\)是两个常数，
+% 那么\(\phi_1(y) = Cy,
+% \phi_2(y) = Dy\).
+% 综上所述，只需取\begin{equation*}
+% 	f(x,y) = \left\{ \begin{array}{rl}
+% 		xy + y, & y\geq0, \\
+% 		-xy + 2y, & y<0.
+% 	\end{array} \right.
+% \end{equation*}
+% \end{solution}
+%TODO {8b6edada-f2fd-4ae5-9020-eb533149a54c} 于2024年12月19日说存在反例，但没有具体说反例是怎样构造的
 \end{example}
 
 \begin{theorem}
