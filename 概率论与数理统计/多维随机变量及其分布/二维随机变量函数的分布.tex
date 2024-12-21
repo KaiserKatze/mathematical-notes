@@ -484,3 +484,40 @@ equation:多维随机变量及其分布.连续型随机变量的卷积公式2}
 \]
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《2024年全国硕士研究生入学统一考试（数学一）》一选择题/第10题
+设随机变量\(X,Y\)相互独立，且均服从参数为\(\lambda\)的指数分布.
+令\(Z=\abs{X-Y}\).
+证明：\(Z\)与\(X\)同分布.
+\begin{proof}
+由题意有，\((X,Y)\)的联合密度函数为\begin{equation*}
+	f(x,y) = \left\{ \begin{array}{cl}
+		\lambda^2 e^{-\lambda (x+y)}, & x>0,y>0, \\
+		0, & \text{其他}.
+	\end{array} \right.
+\end{equation*}
+设\(F_Z\)是\(Z\)的分布函数，
+记\(D = \Set{ (x,y) \given x\geq0,y\geq0 },
+D_z = \Set{ (x,y) \given -z \leq x-y \leq z }\).
+当\(z < 0\)时，\(D_z = \emptyset\)，\(F_Z(z) = 0\).
+当\(z \geq 0\)时，\(D \cap D_Z \neq \emptyset\)，\begin{align*}
+	F_Z(z) = P(Z \leq z)
+	&= P(\abs{X-Y} \leq z)
+	= P(-z \leq X-Y \leq z) \\
+	&= \iint_{D_z} f(x,y) \dd{x}\dd{y}
+	= \iint_{D \cap D_z} \lambda^2 e^{-\lambda (x+y)} \dd{x}\dd{y} \\
+	% 区域\(D \cap D_z\)关于直线\(y=x\)对称，可以利用轮换对称性简化运算
+	&= \left( \iint_{D_1} + \iint_{D_2} \right) \lambda^2 e^{-\lambda (x+y)} \dd{x}\dd{y} \\
+	&= 2 \iint_{D_1} \lambda^2 e^{-\lambda (x+y)} \dd{x}\dd{y} \\
+	&= 2\lambda^2 \int_0^{+\infty} e^{-\lambda y} \dd{y}
+	\int_y^{y+z} e^{-\lambda x} \dd{x}
+	= 1 - e^{-\lambda z}.
+\end{align*}
+其中\(D_1 = \Set{ (x,y) \in D \cap D_z \given x \geq y },
+D_2 = D \cap D_z - D_1\)，
+这就说明\(Z\)也服从参数为\(\lambda\)的指数分布.
+\end{proof}
+%@Mathematica: f[x_, y_] := Piecewise[{{\[Lambda]^2 Exp[-\[Lambda] (x + y)], x > 0 && y > 0}}]
+%@Mathematica: Integrate[f[x, y] Boole[-z <= x - y <= z && x >= 0 && y >= 0], {x, 0, +Infinity}, {y, 0, +Infinity}, Assumptions -> {z > 0, \[Lambda] > 0}] // Simplify
+\end{example}
