@@ -399,6 +399,83 @@
 \end{align*}
 \end{solution}
 \end{example}
+\begin{example}
+%@see: 《2025年全国硕士研究生入学统一考试（数学一）》三解答题/第20题
+设\(\Sigma\)是直线\(\left\{ \begin{array}{l}
+	x = 0 \\
+	y = 0
+\end{array} \right.\)
+绕直线\(\left\{ \begin{array}{l}
+	x = t \\
+	y = t \\
+	z = t
+\end{array} \right.
+\ (\text{$t$是参数})\)
+旋转一周得到的曲面，
+\(\Sigma_1\)是\(\Sigma\)介于平面\(x+y+z=0\)与\(x+y+z=1\)之间部分的外侧.
+计算曲面积分\(\iint_{\Sigma_1} x \dd{y}\dd{z} + (y+1) \dd{z}\dd{x} + (z+2) \dd{x}\dd{y}\).
+\begin{solution}
+%@see: https://www.bilibili.com/video/BV1bUkeY4ECf/
+设\(\Sigma_2\)是平面\(x+y+z=1\)上、由圆锥面\(\Sigma\)与平面\(x+y+z=1\)的交线围起来的、以\((1,1,1)\)为法向量的有向曲面，
+\(\Omega\)是\(\Sigma_1\)与\(\Sigma_2\)围起来的空间区域.
+由高斯公式可得\begin{equation*}
+	\iint_{\Sigma_1 + \Sigma_2} x \dd{y}\dd{z} + (y+1) \dd{z}\dd{x} + (z+2) \dd{x}\dd{y}
+	= 3 \iiint_\Omega \dd{x}\dd{y}\dd{z}.
+\end{equation*}
+对\(x+y+z=1\)求导得
+\(z'_x = z'_y = -1,
+\sqrt{1+(z'_x)^2+(z'_y)^2}
+= \sqrt3\)，
+那么由\cref{equation:线积分与面积分.两类曲面积分之间的联系} 有\begin{align*}
+	&\hspace{-20pt}
+	\iint_{\Sigma_2} x \dd{y}\dd{z} + (y+1) \dd{z}\dd{x} + (z+2) \dd{x}\dd{y} \\
+	&= \iint_{\Sigma_2} \left[
+		\frac{x \cdot (-z'_x)}{\sqrt{1+(z'_x)^2+(z'_y)^2}}
+		+ \frac{(y+1) \cdot (-z'_y)}{\sqrt{1+(z'_x)^2+(z'_y)^2}}
+		+ \frac{(z+2) \cdot 1}{\sqrt{1+(z'_x)^2+(z'_y)^2}}
+	\right] \dd{S} \\
+	&= \frac1{\sqrt3} \iint_{\Sigma_2} (x+y+z+3) \dd{S}
+	= \frac4{\sqrt3} \iint_{\Sigma_2} \dd{S}.
+\end{align*}
+坐标原点到平面\(x+y+z=1\)的距离为\begin{equation*}
+	h
+	= \frac{\abs{0+0+0-1}}{\sqrt{1^2+1^2+1^2}}
+	= \frac1{\sqrt3}.
+\end{equation*}
+\(\Sigma_2\)的圆心是直线\(\left\{ \begin{array}{l}
+	x = t \\
+	y = t \\
+	z = t
+\end{array} \right.\)与平面\(x+y+z=1\)的交点，
+假设其坐标为\((t,t,t)\)，
+代入\(x+y+z=1\)得\(t=\frac13\)，
+即圆心坐标为\((\frac13,\frac13,\frac13)\)；
+在圆周\(\partial\Sigma_2\)上任取一点，例如\((1,0,0)\)，
+则该点到圆心的距离\begin{equation*}
+	r = \sqrt{
+		\left( 1-\frac13 \right)^2
+		+ \left( 0-\frac13 \right)^2
+		+ \left( 0-\frac13 \right)^2
+	}
+	= \frac{\sqrt6}3
+\end{equation*}
+就是圆的半径；
+于是圆的面积为\begin{equation*}
+	A = \iint_{\Sigma_2} \dd{S}
+	= \pi r^2
+	= \frac23 \pi,
+\end{equation*}
+而圆锥的体积为\begin{equation*}
+	\iiint_\Omega \dd{x}\dd{y}\dd{z}
+	= \frac13 A h
+	= \frac{2\sqrt3}{27} \pi.
+\end{equation*}
+最终得到\begin{equation*}
+	\iint_{\Sigma_1} x \dd{y}\dd{z} + (y+1) \dd{z}\dd{x} + (z+2) \dd{x}\dd{y}
+	= -\frac2{\sqrt3} \pi.
+\end{equation*}
+\end{solution}
+\end{example}
 
 \subsection{沿任意闭曲面的曲面积分为零的条件}
 \begin{definition}
