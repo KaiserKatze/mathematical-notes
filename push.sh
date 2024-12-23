@@ -19,7 +19,7 @@ git_push_all() {
 		#fi
 		# git push -f $remote && git push -f --tags $remote ||\
 		# 	echo "[ERROR] Fail git push $remote!" 1>&2
-		git push -fq $remote &
+		git push -fq $remote &>/dev/null &
 	done
 
 	# case $do_upload_pdf_file in
