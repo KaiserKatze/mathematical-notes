@@ -164,6 +164,40 @@ n\in\mathbb{Z}\)，
 %TODO proof
 \end{property}
 
+\begin{example}
+设\(x,y\)都是实数.
+举例说明：\(\ceil{x} + \ceil{y} \neq \ceil{x+y},
+\floor{x} + \floor{y} \neq \floor{x+y}\).
+\begin{solution}
+%@credit: {6d916ea6-1441-4c5b-9e97-4f834b319710} 说：都取0.5
+取\(x = y = \frac12\).
+那么\(\ceil{x} = \ceil{y} = \ceil{x+y} = 1\)，
+但是\(\ceil{x} + \ceil{y} = 2 \neq \ceil{x+y}\).
+
+与此同时，\(\floor{x} = \floor{y} = 0,
+\floor{x+y} = 1\)，
+因此\(\floor{x} + \floor{y} \neq \floor{x+y}\).
+\end{solution}
+\end{example}
+\begin{proposition}
+设\(n\)是整数，\(x\)是实数，则\begin{gather*}
+	\ceil{n+x} = n + \ceil{x}, \\
+	\floor{n+x} = n + \floor{x}.
+\end{gather*}
+\begin{proof}
+由定义可知\begin{align*}
+	\floor{n+x}
+	&= \max\Set{ m\in\mathbb{Z} \given m \leq n+x } \\
+	&= \max\Set{ m\in\mathbb{Z} \given m-n \leq x } \\
+	&= \max\Set{ m\in\mathbb{Z} \given k=m-n, k \leq x } \\
+	&= \max\Set{ m\in\mathbb{Z} \given m=n+k, k \leq x } \\
+	&= n + \max\Set{ k\in\mathbb{Z} \given k \leq x } \\
+	&= n + \floor{x}.
+\end{align*}
+同理可知\(\ceil{n+x} = n + \ceil{x}\).
+\end{proof}
+\end{proposition}
+
 \begin{property}
 %@see: 《算法导论（原书第3版）》 P31
 对于\(n\in\mathbb{Z}\)，总有\begin{equation}
