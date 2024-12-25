@@ -264,13 +264,19 @@ n\in\mathbb{Z}\)，
 \begin{property}
 %@see: 《具体数学 计算机科学基础（第2版）》 P58 (3.7)
 设\(x\)是实数，\(n\)是整数，则\begin{gather}
-	x < n \iff \floor{x} < n, \\
-	n < x \iff n < \ceil{x}, \\
-	x \leq n \iff \ceil{x} \leq n, \\
+	x < n \iff \floor{x} < n,
+	\label{equation:取整函数.序关系3} \\
+	n < x \iff n < \ceil{x},
+	\label{equation:取整函数.序关系4} \\
+	x \leq n \iff \ceil{x} \leq n,
+	\label{equation:取整函数.序关系5} \\
 	n \leq x \iff n \leq \floor{x}.
+	\label{equation:取整函数.序关系6}
 \end{gather}
 %TODO proof
 \begin{proof}
+% 证明\(x < n \iff \floor{x} < n\)：
+证明\cref{equation:取整函数.序关系3}：
 当\(x < n\)时，
 %\cref{theorem:取整函数.性质1}
 由\(\floor{x} \leq x\)
@@ -278,8 +284,25 @@ n\in\mathbb{Z}\)，
 当\(\floor{x} < n\)时，
 %\cref{equation:取整函数.序关系1}
 由\(x < \floor{x} + 1\)
+%@credit: {57e837df-6d92-457b-a5f0-e915ab36f532},{5f4d2f8a-fc8b-4798-85d6-98670f6761e7} 说：
+% \(\floor{x}\)作为一个整数，小于另一个整数\(n\)，那么必有\(\floor{x} + 1 \leq n\)
 和\(\floor{x} + 1 \leq n\)
 可得\(x < n\).
+
+% 证明\(n < x \iff n < \ceil{x}\)：
+证明\cref{equation:取整函数.序关系4}：
+当\(n < x\)时，
+%\cref{theorem:取整函数.性质1}
+由\(x \leq \ceil{x}\)
+可得\(n < \ceil{x}\).
+当\(n < \ceil{x}\)时，
+% \(\ceil{x}\)作为一个整数，大于另一个整数\(n\)，那么必有\(n + 1 \leq \ceil{x}\)
+由\(n \leq \ceil{x} - 1\)
+%\cref{equation:取整函数.序关系2}
+和\(\ceil{x} - 1 < x\)
+可得\(n < x\).
+
+同理可证\cref{equation:取整函数.序关系5,equation:取整函数.序关系6}.
 \end{proof}
 \end{property}
 
