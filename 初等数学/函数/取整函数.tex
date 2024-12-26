@@ -351,7 +351,7 @@ n\in\mathbb{Z}\)，
 同理可证\(\ceil{\sqrt{\ceil{x}}} = \ceil{\sqrt{x}}\).
 \end{proof}
 \end{example}
-\begin{example}
+\begin{example}\label{example:取整函数.单调增加函数与取整函数的复合}
 %@see: 《具体数学 计算机科学基础（第2版）》 P60 (3.10)
 对于任意一个在实数区间内连续的单调增加函数\(f\)，
 只要它满足\begin{equation*}
@@ -360,6 +360,58 @@ n\in\mathbb{Z}\)，
 那么当\(f(x),f(\floor{x}),f(\ceil{x})\)三者均有定义时，
 成立\(\floor{f(x)} = \floor{f(\floor{x})}\)
 和\(\ceil{f(x)} = \ceil{f(\ceil{x})}\).
+\begin{proof}
+当\(x = \ceil{x}\)时，显然成立\(\ceil{f(x)} = \ceil{f(\ceil{x})}\).
+
+当\(x \neq \ceil{x}\)时，
+必然成立\(x < \ceil{x}\).
+因为函数\(f\)是单调增加的，
+所以\(f(x) < f(\ceil{x})\).
+因为函数\(x \mapsto \ceil{x}\)单调不减，
+所以\(\ceil{f(x)} \leq \ceil{f(\ceil{x})}\).
+
+接下来用反证法，
+假设\(\ceil{f(x)} < \ceil{f(\ceil{x})}\).
+\begin{figure}
+	\tikzstyle{sx}=[draw=orange,fill=orange]
+	\tikzstyle{kx}=[draw=orange,fill=white]
+	\centering
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed] (0,0) grid (4,4);
+		\draw[dashed, color=gray] (0,0) -- (4,4);
+		\draw[->, thick] (-.5,0) -- (4.5,0);
+		\draw[->, thick] (0,-.5) -- (0,4.5);
+
+		\draw[blue,dashed] (0,2)--(1,2) (0,3)--(2,3);
+		\draw[blue,dashed] (1.2,2)--(1.2,0)node[black,below]{\small$f(x)$}
+					(2,2)--(2,0)node[black,below]{\small$f(y)$}
+					(2.7,3)--(2.7,0)++(8pt,0)node[black,below]{\small$f(\ceil{x})$};
+		\draw (0,2)node[left]{\small$\ceil{f(x)}$}
+			(0,3)node[left]{\small$\ceil{f(\ceil{x})}$};
+
+		\foreach \i in {0,...,3} {
+			\draw[ultra thick,orange] (\i,\i+1)--(\i+1,\i+1);
+			\fill[kx] (\i,\i+1)circle(2pt);
+			\fill[sx] (\i+1,\i+1)circle(2pt);
+		}
+		\draw (0,0)node[above left]{\(O\)};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure-example:取整函数.单调增加函数与取整函数的复合}
+\end{figure}
+由于\(f\)是连续的单调增加函数，
+如\cref{figure-example:取整函数.单调增加函数与取整函数的复合} 所示，
+那么必定存在实数\(y\)
+满足\(x \leq y < \ceil{x}\)，
+并使得\(f(y) = \ceil{f(x)}\).
+因为\(\ceil{f(x)}\)是一个整数，
+那么由前提条件\((\forall x)[f(x) \in \mathbb{Z} \implies x \in \mathbb{Z}]\)
+可知\(y\)只能是整数.
+然而不可能有一个整数严格位于\(\floor{x}\)与\(\ceil{x}\)之间.
+这个矛盾说明\(\ceil{f(x)} = \ceil{f(\ceil{x})}\)必定成立.
+
+同理可证\(\floor{f(x)} = \floor{f(\floor{x})}\).
+\end{proof}
 \end{example}
 
 \begin{property}
