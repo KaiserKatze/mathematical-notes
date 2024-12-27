@@ -123,3 +123,45 @@
 \]
 \end{solution}
 \end{example}
+
+\begin{example}
+计算不定积分\(\int \frac1{(x+1)(x^2-2x+2)} \dd{x}\).
+\begin{solution}
+设\begin{align*}
+	\frac1{(x+1)(x^2-2x+2)}
+	&= \frac{A}{x+1} + \frac{Bx+C}{x^2-2x+2} \\
+	&= \frac{(A+B)x^2+(B+C-2A)x+(2A+C)}{(x+1)(x^2-2x+2)},
+\end{align*}
+比较可得\begin{equation*}
+	\left\{ \begin{array}{*7r}
+		A &+& B && &=& 0, \\
+		-2A &+& B &+& C &=& 0, \\
+		2A && &+& C &=& 1.
+	\end{array} \right.
+\end{equation*}
+解得\(A=\frac15,
+B=-\frac15,
+C=\frac35\).
+于是\begin{equation*}
+	\frac1{(x+1)(x^2-2x+2)}
+	= \frac15 \left( \frac1{x+1} - \frac{x-3}{x^2-2x+2} \right).
+\end{equation*}
+而\begin{align*}
+	\int \frac1{x+1} \dd{x}
+	&= \ln(x+1) + C_1, \\
+	\int \frac{x-3}{x^2-2x+2} \dd{x}
+	&= \int \frac{x-1}{(x-1)^2+1} \dd{x}
+	- \int \frac{2}{(x-1)^2+1} \dd{x} \\
+	&= \frac12 \int \frac{\dd{(x-1)^2+1}}{(x-1)^2+1}
+	- 2 \int \frac{\dd{(x-1)}}{(x-1)^2+1} \\
+	&= \frac12 \ln[(x-1)^2]
+	- 2 \arctan(x-1) + C_2.
+\end{align*}
+因此\begin{equation*}
+	\int \frac1{(x+1)(x^2-2x+2)} \dd{x}
+	= \frac15 \left(
+		\ln(x+1) + \frac12 \ln[(x-1)^2] - 2 \arctan(x-1)
+	\right) + C.
+\end{equation*}
+\end{solution}
+\end{example}
