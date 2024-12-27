@@ -775,6 +775,70 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《2025年全国硕士研究生入学统一考试（数学一）》三解答题/第21题
+设矩阵\(\A = \begin{bmatrix}
+	0 & -1 & 2 \\
+	-1 & 0 & 2 \\
+	-1 & -1 & a
+\end{bmatrix}\)，
+且\(1\)是\(\A\)的特征多项式的重根.
+\begin{itemize}
+	\item 求\(a\)的值.
+	\item 求所有满足\(\A \vb\alpha = \vb\alpha + \vb\beta,
+	\A^2 \vb\alpha = \vb\alpha + 2\vb\beta\)的非零列向量\(\vb\alpha,\vb\beta\).
+\end{itemize}
+\begin{solution}
+由题意有\begin{equation*}
+	\abs{\lambda\E-\A}
+	= \begin{vmatrix}
+		\lambda & 1 & -2 \\
+		1 & \lambda & -2 \\
+		1 & 1 & \lambda-a
+	\end{vmatrix}
+	%@Mathematica: -CharacteristicPolynomial[{{0, -1, 2}, {-1, 0, 2}, {-1, -1, a}}, \[Lambda]] // Factor
+	= (\lambda-1)[\lambda^2+(1-a)\lambda+(4-a)].
+\end{equation*}
+因为\(1\)是\(\abs{\lambda\E-\A}\)的重根，
+所以\(1\)是\(\lambda^2+(1-a)\lambda+(4-a)\)的根，
+即\(1^2+(1-a)\cdot1+(4-a)
+= 2a-6
+= 0\)，
+解得\(a=3\).
+
+由\(\A \vb\alpha = \vb\alpha + \vb\beta,
+\A^2 \vb\alpha = \vb\alpha + 2\vb\beta\)
+可得\(\A^2 \vb\alpha - 2 \A \vb\alpha = -\vb\alpha\)，
+即\((\A-\E)^2 \vb\alpha = \vb0\).
+换言之，\(\vb\alpha\)是方程组\((\A-\E)^2 \vb{x} = \vb0\)的非零解.
+因为\((\A-\E)^2 = \begin{bmatrix}
+	-1 & -1 & 2 \\
+	-1 & -1 & 2 \\
+	-1 & -1 & 2
+\end{bmatrix}^2
+= \vb0\)，
+所以\(\vb\alpha\)可以是任意非零列向量，
+即\(\vb\alpha = (k_1,k_2,k_3)^T\)，
+其中\(k_1,k_2,k_3\)是待定常数.
+
+由\(\A \vb\alpha = \vb\alpha + \vb\beta\)
+可得\begin{equation*}
+	\vb\beta = (\A-\E) \vb\alpha
+	= \begin{bmatrix}
+		-1 & -1 & 2 \\
+		-1 & -1 & 2 \\
+		-1 & -1 & 2
+	\end{bmatrix}
+	\begin{bmatrix}
+		k_1 \\ k_2 \\ k_3
+	\end{bmatrix}
+	= (2k_3 - k_2 - k_1)
+	(1,1,1)^T,
+\end{equation*}
+其中\(k_1 + k_2 \neq 2 k_3\)，且\(k_1,k_2,k_3\)不全为零.
+\end{solution}
+\end{example}
+
 \subsection{特征子空间}
 %\cref{theorem:矩阵的特征值与特征向量.特征子空间1,theorem:矩阵的特征值与特征向量.特征子空间2}
 既然\(\A\)的属于\(\lambda_0\)的特征向量\(\vb{x}_0\)
