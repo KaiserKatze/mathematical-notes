@@ -28,6 +28,66 @@
 结论“\(f\)在\(X\)上严格单调增加”依然成立.
 因此“对于任意\(x \in X\)有\(f'(x) > 0\)”只是“\(f\)在\(X\)上严格单调增加”的充分不必要条件.
 \end{remark}
+
+\begin{example}
+%@see: 《2025年全国硕士研究生入学统一考试（数学一）》三解答题/第19题
+设函数\(f(x)\)在区间\((a,b)\)内可导.
+证明：导函数\(f'(x)\)在\((a,b)\)内严格单调增加的充分必要条件是
+对\((a,b)\)内任意的\(x_1,x_2,x_3\)，
+当\(x_1<x_2<x_3\)时，
+\(\frac{f(x_2)-f(x_1)}{x_2-x_1} < \frac{f(x_3)-f(x_2)}{x_3-x_2}\).
+\begin{proof}
+先证必要性.
+% 假设\(f'(x)\)在\((a,b)\)内严格单调增加.
+对\((a,b)\)内任意的\(x_1,x_2,x_3\)，
+当\(x_1<x_2<x_3\)时，
+由\hyperref[theorem:微分中值定理.拉格朗日中值定理]{拉格朗日中值定理}可知，
+存在\(\xi_1\in(x_1,x_2),\xi_2\in(x_2,x_3)\)，
+使得\begin{gather*}
+	f'(\xi_1) = \frac{f(x_2)-f(x_1)}{x_2-x_1}, \\
+	f'(\xi_2) = \frac{f(x_3)-f(x_2)}{x_3-x_2}.
+\end{gather*}
+因为\(f'\)严格单调增加，且\(\xi_1 < \xi_2\)，
+所以\(f'(\xi_1) < f'(\xi_2)\)，
+即\begin{equation*}
+	\frac{f(x_2)-f(x_1)}{x_2-x_1}
+	< \frac{f(x_3)-f(x_2)}{x_3-x_2}.
+\end{equation*}
+
+再证充分性.
+% 假设对\((a,b)\)内任意的\(x_1,x_2,x_3\)，
+% 当\(x_1<x_2<x_3\)时，
+% \(\frac{f(x_2)-f(x_1)}{x_2-x_1} < \frac{f(x_3)-f(x_2)}{x_3-x_2}\).
+任取实数\(\alpha,\beta\)使之满足\(a < \alpha < \beta < b\)，
+必定存在\(x_0,s,t\)满足\(\alpha < s < x_0 < t < \beta\)，
+并且有\begin{gather*}
+	\frac{f(s)-f(\alpha)}{s-\alpha} < \frac{f(x_0)-f(s)}{x_0-s},
+	\tag1 \\
+	\frac{f(t)-f(x_0)}{t-x_0} < \frac{f(\beta)-f(t)}{\beta-t},
+	\tag2 \\
+	\frac{f(x_0)-f(\alpha)}{x_0-\alpha} < \frac{f(\beta)-f(x_0)}{\beta-x_0}.
+	\tag3
+\end{gather*}
+在(1)式中，令\(s\to\alpha^+\)，得\begin{equation*}
+	f'(\alpha)
+	= \lim_{s\to\alpha^+} \frac{f(s)-f(\alpha)}{s-\alpha}
+	\leq \lim_{s\to\alpha^+} \frac{f(x_0)-f(s)}{x_0-s}
+	= \frac{f(x_0)-f(\alpha)}{x_0-\alpha}.
+	\eqno(4)
+\end{equation*}
+在(2)式中，令\(t\to\beta^-\)，得\begin{equation*}
+	\frac{f(\beta)-f(x_0)}{\beta-x_0}
+	= \lim_{t\to\beta^-} \frac{f(t)-f(x_0)}{t-x_0}
+	\leq \lim_{t\to\beta^-} \frac{f(\beta)-f(t)}{\beta-t}
+	= f'(\beta).
+	\eqno(5)
+\end{equation*}
+由(3)(4)(5)式
+可得\(f'(\alpha)<f'(\beta)\).
+由\(\alpha,\beta\)的任意性可得\(f'\)在\((a,b)\)内严格单调增加.
+\end{proof}
+\end{example}
+
 \begin{example}\label{example:图形绘制.单调性.函数在定义域上不单调}
 %@see: 《高等数学（第六版 上册）》 P146 例2
 讨论函数\(f(x) = e^x - x - 1\)的单调性.
