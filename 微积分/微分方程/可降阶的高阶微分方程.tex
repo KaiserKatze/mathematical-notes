@@ -242,3 +242,40 @@ y'' = p\dv{p}{y}\)，
 \]
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《2025年全国硕士研究生入学统一考试（数学一）》三解答题/第18题
+已知函数\(f(u)\)在区间\((0,+\infty)\)内具有二阶导数，
+函数\(g(x,y) = f(x/y)\)
+满足\(x^2 \pdv[2]{g}{x} + xy \pdv[2]{g}{x}{y} + y^2 \pdv[2]{g}{y} = 1\)，
+且\(g(x,x) = 1,
+\eval{\pdv{g}{x}}_{(x,x)} = \frac2x\).
+求\(f(u)\).
+\begin{solution}
+对\(g\)求导得\begin{align*}
+	\pdv{g}{x} &= f'\left( \frac{x}{y} \right) \cdot \frac1y, \\
+	\pdv{g}{y} &= -\frac{x}{y^2} f'\left( \frac{x}{y} \right), \\
+	\pdv[2]{g}{x} &= f''\left( \frac{x}{y} \right) \cdot \frac1{y^2}, \\
+	\pdv[2]{g}{x}{y} &= -\frac{x}{y^3} f''\left( \frac{x}{y} \right) - \frac1{y^2} \cdot f'\left( \frac{x}{y} \right), \\
+	\pdv[2]{g}{y} &= \frac{x^2}{y^4} f''\left( \frac{x}{y} \right) + \frac{2x}{y^3} \cdot f'\left( \frac{x}{y} \right),
+\end{align*}
+代入\(x^2 \pdv[2]{g}{x} + xy \pdv[2]{g}{x}{y} + y^2 \pdv[2]{g}{y} = 1\)，得\begin{equation*}
+	\frac{x^2}{y^2} f''(\frac{x}{y}) + \frac{x}{y} f'\left( \frac{x}{y} \right) = 1.
+\end{equation*}
+令\(u=x/y\)，得\(u^2 f''(u) + u f'(u) = 1\).
+令\(p=f'(u)\)，得\(p' + \frac1u p = \frac1{u^2}\)，
+这是一个一阶线性微分方程，
+解得\(p = \frac1u (\ln u + C_1)\)，
+其中\(C_1\)是待定常数.
+
+由\(\eval{\pdv{g}{x}}_{(x,x)} = \frac2x\)可得\(f'(1)=2\).
+代入\(f'(u) = \frac1u (\ln u + C_1)\)，得\(C_1=2\)，
+于是\(f'(u) = \frac1u (\ln u + 2)\).
+积分得\(f(u) = \frac12 \ln^2 u + 2 \ln u + C_2\)，
+其中\(C_2\)是待定常数.
+
+由\(g(x,x) = 1\)可得\(f(1)=1\).
+代入\(f(u) = \frac12 \ln^2 u + 2 \ln u + C_2\)，得\(C_2=1\)，
+于是\(f(u) = \frac12 \ln^2 u + 2 \ln u + 1\).
+\end{solution}
+\end{example}
