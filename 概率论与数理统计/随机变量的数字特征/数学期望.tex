@@ -359,6 +359,67 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《2025年全国硕士研究生入学统一考试（数学一）》三解答题/第22题
+投保人的损失事件发生时，保险公司的赔付额\(Y\)与投保人的损失额\(X\)的关系为\begin{equation*}
+	Y = \left\{ \begin{array}{cl}
+		0, & X \leq 100, \\
+		X-100, & X > 100.
+	\end{array} \right.
+\end{equation*}
+设损失事件发生时，投保人的损失额\(X\)的概率密度为\begin{equation*}
+	f(x) = \left\{ \begin{array}{cl}
+		\frac{2\times100^2}{(100+x)^3}, & x > 0, \\
+		0, & x \leq 0.
+	\end{array} \right.
+\end{equation*}
+\begin{itemize}
+	\item 求\(P(Y>0)\)和\(E(Y)\).
+	\item 这种损失事件在一年内发生的次数记为\(N\)，
+	保险公司一年内就这种损失事件产生的理赔次数记为\(M\).
+	假设\(N\)服从参数为\(\lambda=8\)的泊松分布，
+	在\(N=n\ (n\geq1)\)的条件下，
+	\(M\)服从二项分布\(B(n,p)\)，其中\(p = P(Y>0)\).
+	求\(M\)的概率分布.
+\end{itemize}
+\begin{solution}
+%@Mathematica: f[x_] := Piecewise[{{(2 100^2)/(100 + x)^3, x > 0}}]
+%@Mathematica: Integrate[f[x], {x, 100, Infinity}]
+由题意有\begin{align*}
+	P(Y>0)
+	&= P(Y>0,X\leq100) + P(Y>0,X>100) \\
+	&= P(X>100)
+	= \int_{100}^{+\infty} f(x) \dd{x}
+	= \frac14, \\
+	E(Y)
+	&= \int_{100}^{+\infty} (x-100) \cdot \frac{2\times100^2}{(100+x)^3} \dd{x}
+	= 50.
+\end{align*}
+因为\(N \sim P(\lambda)\)，
+所以\(P(N=n) = \frac{\lambda^n}{n!} e^{-\lambda}\ (n=0,1,2,\dotsc)\)，
+又因为在\(N=n\ (n\geq1)\)的条件下\(M \sim B(n,p)\)，
+所以\begin{equation*}
+	P(M=k \vert N=n)
+	= C_n^k p^k (1-p)^{n-k}
+	\quad(k=1,2,\dotsc,n),
+\end{equation*}
+于是\begin{align*}
+	P(M=k,N=n)
+	&= P(M=k \vert N=n) \cdot P(N=n) \\
+	&= \frac{n!}{k! (n-k)!} p^k (1-p)^{n-k}
+	\cdot \frac{\lambda^n}{n!} e^{-\lambda} \\
+	&= \frac{\lambda^n e^{-\lambda}}{k! (n-k)!} p^k (1-p)^{n-k},
+\end{align*}
+%@Mathematica: Sum[(\[Lambda]^n E^-\[Lambda])/(k! (n - k)!) p^k (1 - p)^(n - k), {n, k, Infinity}]
+而\(M\)的概率分布为\begin{align*}
+	P(M=k)
+	&= \sum_{n=1}^\infty P(M=k,N=n) \\
+	&= \sum_{n=k}^\infty \frac{\lambda^n e^{-\lambda}}{k! (n-k)!} p^k (1-p)^{n-k} \\
+	&= \frac{(p\lambda)^k}{k! e^{p\lambda}}.
+\end{align*}
+\end{solution}
+\end{example}
+
 \subsection{数学期望的性质}
 \begin{property}\label{theorem:随机变量的数字特征.数学期望的性质1}
 设\(C\)是常数，随机变量\(X\)和\(Y\)的数学期望都存在，
