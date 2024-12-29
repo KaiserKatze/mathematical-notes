@@ -2797,6 +2797,72 @@ x_0 x + y_0 y = r^2.
 	\caption{圆与圆的位置关系}
 \end{table}
 
+\subsubsection{圆系的方程}
+%@see: https://www.bilibili.com/video/BV1UuChYJE1d/
+假设有两个不重合的定点\(P_1(x_1,y_1)\)和\(P_2(x_2,y_2)\).
+我们想求出经过这两个点的所有的圆的方程.
+设某个圆的方程为\begin{equation*}
+	x^2 + y^2 + Cx + Dy + E = 0.
+\end{equation*}
+依次代入\(P_1,P_2\)两点的坐标，得\begin{gather*}
+	x_1 C + y_1 D + E = -(x_1^2 + y_1^2), \\
+	x_2 C + y_2 D + E = -(x_2^2 + y_2^2),
+\end{gather*}
+或者\begin{equation}\label{equation:解析几何.过不重合两点的圆系方程}
+	\begin{bmatrix}
+		x_1 & y_1 & 1 \\
+		x_2 & y_2 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		C \\ D \\ E
+	\end{bmatrix}
+	= \begin{bmatrix}
+		-(x_1^2 + y_1^2) \\
+		-(x_2^2 + y_2^2)
+	\end{bmatrix}.
+\end{equation}
+由于\(P_1,P_2\)不重合，
+\((x_1,y_1) \neq (x_2,y_2)\)，
+所以\((x_1,y_1,1),(x_2,y_2,1)\)线性无关，
+从而有\begin{equation*}
+	\rank\begin{bmatrix}
+		x_1 & y_1 & 1 \\
+		x_2 & y_2 & 1
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		x_1 & y_1 & 1 & -(x_1^2 + y_1^2) \\
+		x_2 & y_2 & 1 & -(x_2^2 + y_2^2)
+	\end{bmatrix}
+	= 2 < 3.
+\end{equation*}
+方程 \labelcref{equation:解析几何.过不重合两点的圆系方程} 有无穷多解，
+它的解空间是\(1\)维的，
+其中每一个解都确定了一个圆.
+不妨设方程 \labelcref{equation:解析几何.过不重合两点的圆系方程} 的通解为\begin{equation*}
+	(C,D,E)^T
+	= (C_0,D_0,E_0)^T
+	+ \lambda (C_1,D_1,E_1)^T,
+\end{equation*}
+其中\(\lambda\)是任意常数.
+那么过\(P_1(x_1,y_1),P_2(x_2,y_2)\)两点的圆系方程为\begin{equation*}
+	x^2 + y^2 + C_0 x + D_0 y + E_0 + \lambda (C_1 x + D_1 y + E_1) = 0.
+\end{equation*}
+可以注意到，
+\((C_0,D_0,E_0)^T\)是非齐次方程\begin{equation*}
+	\begin{cases}
+		x_1 C + y_1 D + E = -(x_1^2 + y_1^2), \\
+		x_2 C + y_2 D + E = -(x_2^2 + y_2^2)
+	\end{cases}
+\end{equation*}
+的一个解，
+而\((C_1,D_1,E_1)^T\)是齐次方程\begin{equation*}
+	\begin{cases}
+		x_1 C + y_1 D + E = 0, \\
+		x_2 C + y_2 D + E = 0
+	\end{cases}
+\end{equation*}
+的解（或者说\((C_1,D_1,E_1)^T\)是由\(P_1(x_1,y_1),P_2(x_2,y_2)\)两点确定的直线的方程的参数）.
+
 \subsection{椭圆}
 \begin{definition}
 平面内与两个定点的距离之和等于定长的点的集合是\DefineConcept{椭圆}（ellipse）.
