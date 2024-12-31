@@ -46,6 +46,31 @@ R\colon\mathbb{R}\to\mathbb{R}\).
 	\]
 \end{itemize}
 
+简化第二类曲线积分的方法总结：\begin{enumerate}
+	\item 利用\hyperref[section:线积分与面积分.利用对称性简化第二类曲线积分的计算]{奇偶对称性}化简被积表达式.
+
+	\item 利用\hyperref[equation:线积分与面积分.格林公式]{格林公式}将平面上的第二类曲线积分变换为二重积分：\begin{equation*}
+		\iint_D \left( \pdv{Q}{x} - \pdv{P}{y} \right) \dd{x}\dd{y}
+		= \oint_L P\dd{x} + Q\dd{y},
+	\end{equation*}
+	但要注意格林公式的使用条件（积分曲线\(L\)封闭，被积函数\(P,Q\)在积分曲线围成的平面闭区域\(D\)内一阶连续可偏导）和积分曲线的取向.
+
+	\item 利用\hyperref[equation:线积分与面积分.斯托克斯公式]{斯托克斯公式}将空间中的第二类曲线积分变换为第一类曲面积分或第二类曲面积分：\begin{equation*}
+		\oint_\Gamma P\dd{x}+Q\dd{y}+R\dd{z}
+		= \iint_\Sigma \begin{vmatrix}
+			\dd{y}\dd{z} & \dd{z}\dd{x} & \dd{x}\dd{y} \\
+			\pdv{x} & \pdv{y} & \pdv{z} \\
+			P & Q & R
+		\end{vmatrix}
+		= \iint_\Sigma \begin{vmatrix}
+			\cos\alpha & \cos\beta & \cos\gamma \\
+			\pdv{x} & \pdv{y} & \pdv{z} \\
+			P & Q & R
+		\end{vmatrix} \dd{S},
+	\end{equation*}
+	但要注意斯托克斯公式的使用条件（积分曲线\(\Gamma\)封闭，被积函数\(P,Q,R\)在曲面\(\Sigma+\Gamma\)上一阶连续可偏导），以及积分曲线\(\Gamma\)的取向与积分曲面\(\Sigma\)的关系（右手规则）.
+\end{enumerate}
+
 简化第二类曲面积分的方法总结：\begin{enumerate}
 	\item 利用\hyperref[section:线积分与面积分.利用对称性简化第二类曲面积分的计算]{奇偶对称性}化简被积表达式.
 
@@ -53,7 +78,7 @@ R\colon\mathbb{R}\to\mathbb{R}\).
 		\iiint_\Omega \left(\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}\right)\dd{v}
 		= \oiint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y},
 	\end{equation*}
-	但要注意高斯公式的使用条件（积分曲面封闭，被积函数在积分曲面围成的空间闭区间内一阶连续可偏导）和积分曲面的取向.
+	但要注意高斯公式的使用条件（积分曲面\(\Sigma\)封闭，被积函数\(P,Q,R\)在积分曲面围成的空间闭区域\(\Omega\)内一阶连续可偏导）和积分曲面的取向.
 
 	\item 利用\cref{equation:两类曲面积分之间的联系.关系式1,equation:两类曲面积分之间的联系.关系式2,equation:两类曲面积分之间的联系.关系式3}
 	变换为第一类曲面积分：\begin{gather*}
