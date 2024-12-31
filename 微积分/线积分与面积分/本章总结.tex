@@ -4,43 +4,72 @@
 P\colon\mathbb{R}\to\mathbb{R},
 Q\colon\mathbb{R}\to\mathbb{R},
 R\colon\mathbb{R}\to\mathbb{R}\).
+\begin{itemize}
+	\item 梯度公式\[
+		\grad f
+		= \begin{bmatrix}
+			\pdv{f}{x} & \pdv{f}{y} & \pdv{f}{z}
+		\end{bmatrix}^T.
+	\]
 
-梯度公式\[
-	\grad f
-	= \begin{bmatrix}
-		\pdv{f}{x} & \pdv{f}{y} & \pdv{f}{z}
-	\end{bmatrix}^T.
-\]
+	\item 散度公式\[
+		\div{\vb{A}}
+		= \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}.
+	\]
 
-散度公式\[
-	\div{\vb{A}}
-	= \pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}.
-\]
+	\item 旋度公式\[
+		\curl{\vb{A}}
+		= \begin{vmatrix}
+			\vb{i} & \vb{j} & \vb{k} \\
+			\pdv{x} & \pdv{y} & \pdv{z} \\
+			P & Q & R
+		\end{vmatrix}.
+	\]
 
-旋度公式\[
-	\curl{\vb{A}}
-	= \begin{vmatrix}
-		\vb{i} & \vb{j} & \vb{k} \\
-		\pdv{x} & \pdv{y} & \pdv{z} \\
-		P & Q & R
-	\end{vmatrix}.
-\]
+	\item 其他常见微分公式\begin{gather*}
+		\div(\grad f)
+		= \pdv[2]{f}{x} + \pdv[2]{f}{y} + \pdv[2]{f}{z}, \\
+		\curl(\grad f)
+		= 0, \\
+		\div(\curl \vb{A})
+		= 0.
+	\end{gather*}
 
-其他常见微分公式\begin{gather*}
-	\div(\grad f)
-	= \pdv[2]{f}{x} + \pdv[2]{f}{y} + \pdv[2]{f}{z}, \\
-	\curl(\grad f)
-	= 0, \\
-	\div(\curl \vb{A})
-	= 0.
-\end{gather*}
+	\item 高斯公式\[
+		\iiint_\Omega \div{\vb{A}} \dd{v}
+		= \oiint_\Sigma \vb{A} \cdot \dd{\vb{S}}.
+	\]
 
-高斯公式\[
-	\iiint_\Omega \div{\vb{A}} \dd{v}
-	= \oiint_\Sigma \vb{A} \cdot \dd{\vb{S}}.
-\]
+	\item 斯托克斯公式\[
+		\iint_\Sigma \curl{\vb{A}} \cdot \dd{\vb{S}}
+		= \oint_L \vb{A} \cdot \dd{\vb{s}}.
+	\]
+\end{itemize}
 
-斯托克斯公式\[
-	\iint_\Sigma \curl{\vb{A}} \cdot \dd{\vb{S}}
-	= \oint_L \vb{A} \cdot \dd{\vb{s}}.
-\]
+简化第二类曲面积分的方法总结：\begin{enumerate}
+	\item 利用\hyperref[section:线积分与面积分.利用对称性简化第二类曲面积分的计算]{奇偶对称性}化简被积表达式.
+
+	\item 利用\hyperref[equation:线积分与面积分.高斯公式]{高斯公式}变换为三重积分：\begin{equation*}
+		\iiint_\Omega \left(\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}\right)\dd{v}
+		= \oiint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y},
+	\end{equation*}
+	但要注意高斯公式的使用条件（积分曲面封闭，被积函数在积分曲面围成的空间闭区间内一阶连续可偏导）和积分曲面的取向.
+
+	\item 利用\cref{equation:两类曲面积分之间的联系.关系式1,equation:两类曲面积分之间的联系.关系式2,equation:两类曲面积分之间的联系.关系式3}
+	变换为第一类曲面积分：\begin{gather*}
+		\iint_\Sigma R \dd{x}\dd{y}
+		= \iint_\Sigma R \cos\gamma \dd{S}, \\
+		\iint_\Sigma P \dd{y}\dd{z}
+		= \iint_\Sigma P \cos\alpha \dd{S}, \\
+		\iint_\Sigma Q \dd{z}\dd{x}
+		= \iint_\Sigma Q \cos\beta \dd{S}.
+	\end{gather*}
+
+	\item 利用\cref{equation:两类曲面积分之间的联系.变换公式}
+	变换为只有一个外微分的被积表达式：\begin{align*}
+		\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}
+		&= \iint_\Sigma \left(R - P \cdot z'_x - Q \cdot z'_y\right)\dd{x}\dd{y} \\
+		&= \iint_\Sigma \left(Q - P \cdot y'_x - R \cdot y'_z\right)\dd{z}\dd{x} \\
+		&= \iint_\Sigma \left(P - Q \cdot x'_y - R \cdot x'_z\right)\dd{y}\dd{z},
+	\end{align*}
+\end{enumerate}
