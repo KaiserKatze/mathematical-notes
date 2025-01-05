@@ -1,0 +1,74 @@
+\section{子空间}
+讨论拓扑空间的子空间的目的，在于对于拓扑空间中的一个给定的子集，
+按某种“自然的方式”赋予它一个拓扑，使之成为一个拓扑空间，
+以便将它作为一个独立的对象进行考察.
+所谓“自然的方式”应当是什么样的方式？
+为了回答这个问题，我们还是先从度量空间做起，以便得到必要的启发.
+
+考虑一个度量空间和它的一个子集.
+欲将这个子集看作一个度量空间，必须要为它的每一对点规定距离.
+由于这个子集中的每一对点也是度量空间中的一对点，
+因而把它们作为子集中的点的距离规定为它们作为度量空间中的点的距离当然是十分自然的.
+我们把上述想法归纳成定义：
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P96 定义3.1.1
+设\((X,\rho)\)是一个度量空间，
+\(Y\)是\(X\)的一个子集，
+% \(Y \times Y \subseteq X \times X\).
+% \(\rho'\colon Y \times Y \to \mathbb{R}\)是\(Y\)的一个度量.
+映射\(\rho'\)是\(\rho\)在\(Y \times Y\)上的限制\(\rho \upharpoonright (Y \times Y)\).
+称“\(\rho'\)是由\(X\)的度量\(\rho\)诱导出来的”.
+把\((Y,\rho)\)称为\((X,\rho)\)的一个\DefineConcept{度量子空间}.
+\end{definition}
+
+\begin{theorem}\label{theorem:子空间.度量子空间中的开集}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P97 定理3.1.1
+设\(Y\)是度量空间\(X\)的一个度量子空间，
+则\(Y\)的子集\(U\)是\(Y\)中的一个开集，
+当且仅当存在一个\(X\)中的开集\(V\)，
+使得\(U = V \cap Y\).
+\begin{proof}
+对于任意\(y \in Y\)，
+任取\(\epsilon>0\)，
+在度量空间\(X\)中\(y\)为中心、\(\epsilon\)为半径的球形邻域\(B_X(x,\epsilon)\)，
+和在度量空间\(Y\)中以\(y\)为中心、\(\epsilon\)为半径的球形邻域\(B_Y(y,\epsilon)\)
+满足\begin{equation*}
+	B_Y(y,\epsilon)
+	= Y \cap B_X(y,\epsilon).
+\end{equation*}
+这是因为一个点\(x \in X\)属于\(B_Y(y,\epsilon)\)，
+当且仅当\(x\)是\(Y\)中的一个点，
+并且它与\(y\)在\(Y\)中的距离（即它与\(y\)在\(X\)中的距离）小于\(\epsilon\).
+
+现在设\(U\)是\(Y\)中的一个开集，
+由于\(Y\)的所有球形邻域构成的集族是\(Y\)的拓扑的一个基，
+\(U\)可以表示为\(Y\)中的一族球形邻域\(\mathscr{A}\)的并，
+于是\begin{align*}
+	U &= \bigcup_{B_Y(y,\epsilon) \in \mathscr{A}} B_Y(y,\epsilon)
+	= \bigcup_{B_Y(y,\epsilon) \in \mathscr{A}} \left( Y \cap B_X(y,\epsilon) \right) \\
+	&= Y \cap \left( \bigcup_{B_X(y,\epsilon) \in \mathscr{A}} B_X(y,\epsilon) \right).
+\end{align*}
+设\(V = \bigcup_{B_X(y,\epsilon) \in \mathscr{A}} B_X(y,\epsilon)\)，
+它是\(X\)中的一个开集，
+并且我们有\(U = V \cap Y\).
+
+反过来，假设\(U = V \cap Y\)，其中\(V\)是\(X\)中的一个开集.
+如果\(y \in U\)，则有\(y \in Y\)和\(y \in V\).
+于是在\(X\)中存在\(y\)的一个球形邻域\(B_X(y,\epsilon) \subseteq V\).
+此时易见，\(B_Y(y,\epsilon) = Y \cap B_X(y,\epsilon) \subseteq U\).
+这就证明\(U\)是\(Y\)中的一个开集.
+\end{proof}
+\end{theorem}
+
+按照\cref{theorem:子空间.度量子空间中的开集} 的启示，
+我们来逐步完成本节开始时所提出的任务.
+
+\begin{definition}\label{definition:子空间.拓扑子空间中的集族的限制}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P98 定义3.1.2
+设\(\mathscr{A}\)是一个集族，\(Y\)是一个集合.
+把集族\[
+	\Set{ A \cap Y \given A \in \mathscr{A} }
+\]称为集族\(\mathscr{A}\)在集合\(Y\)上的\DefineConcept{限制}，
+记作\(\mathscr{A} \upharpoonright Y\).
+%\cref{definition:映射.逆-复合-限制-像}
+\end{definition}
