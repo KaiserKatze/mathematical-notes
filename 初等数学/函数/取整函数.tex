@@ -550,3 +550,93 @@ n\in\mathbb{Z}\)，
 总有\(\ceil*{\frac{n}{m}\vphantom{\frac12}} = \floor*{\frac{n+m-1}{m}}\).
 %TODO proof
 \end{example}
+
+\begin{definition}
+%@see: 《具体数学 计算机科学基础（第2版）》 P68
+设\(x,y\)都是实数，且\(y\neq0\).
+把\(\floor{x/y}\)称为“\(y\)除\(x\)的\DefineConcept{商}”.
+把\(x - y \floor{x/y}\)称为“\(y\)除\(x\)的\DefineConcept{余数}”，
+记作\(x \mod y\)，
+即\[
+%@see: 《具体数学 计算机科学基础（第2版）》 P68 (3.21)
+	x \mod y
+	\defeq
+	x - y \floor{x/y}.
+\]
+%@see: 《具体数学 计算机科学基础（第2版）》 P69 (3.22)
+规定：\(x \mod 0 = x\).
+\end{definition}
+
+我们可以直观地理解\(x \mod y\)的意义：
+当\(x\)和\(y\)都是正实数时，
+想象一个周长为\(y\)的圆，
+圆上任意一点可以表示为区间\([0,y)\)中的实数.
+如果我们从\(0\)出发，绕着圆行走距离\(x\)，
+那么我们在路上遇到\(0\)的次数是\(\floor{x/y}\)，
+最终我们会停止在\(x \mod y\).
+
+\begin{example}
+容易看出：\begin{gather*}
+	5\mod3
+	= 5-3\floor{5/3}
+	= 2, \\
+	5\mod(-3)
+	= 5-(-3)\floor{5/(-3)}
+	= -1, \\
+	(-5)\mod3
+	= (-5)-3\floor{(-5)/3}
+	= 1, \\
+	(-5)\mod(-3)
+	= (-5)-(-3)\floor{(-5)/(-3)}
+	= -2.
+\end{gather*}
+%@Mathematica: Mod[5, 3]
+%@Mathematica: Mod[5, -3]
+%@Mathematica: Mod[-5, 3]
+%@Mathematica: Mod[-5, -3]
+\end{example}
+
+\begin{property}
+%@see: 《具体数学 计算机科学基础（第2版）》 P69
+设\(x,y\)都是实数，且\(y\neq0\).
+\begin{itemize}
+	\item 当\(y>0\)时，\(0 \leq x \mod y < y\).
+	\item 当\(y<0\)时，\(y < x \mod y \leq 0\).
+\end{itemize}
+\end{property}
+
+\begin{property}
+%@see: 《具体数学 计算机科学基础（第2版）》 P69 (3.23)
+设\(x,y,c\)都是实数，且\(y\neq0,c\neq0\)，
+则\begin{equation}
+	c (x \mod y)
+	= (c x) \mod (c y).
+\end{equation}
+\begin{proof}
+直接计算得\begin{equation*}
+	c (x \mod y)
+	= c (x - y \floor{x / y})
+	= c x - cy \floor{cx / cy}
+	= (c x) \mod (c y).
+\end{equation*}
+\end{proof}
+\end{property}
+
+\begin{theorem}
+%@see: 《具体数学 计算机科学基础（第2版）》 P69 (3.24)
+%@see: 《具体数学 计算机科学基础（第2版）》 P69 (3.25)
+设\(m,n\)都是整数，且\(m\neq0\)，
+则\begin{gather}
+	n = \ceil*{\frac{n\vphantom{1}}{m}}
+	+ \ceil*{\frac{n-1}{m}}
+	+ \dotsb
+	+ \ceil*{\frac{n-m+1}{m}}, \\
+	n = \floor*{\frac{n\vphantom{1}}{m}}
+	+ \floor*{\frac{n-1}{m}}
+	+ \dotsb
+	+ \floor*{\frac{n-m+1}{m}}.
+\end{gather}
+%TODO proof
+%\cref{equation:取整函数.取整函数的对称性1}
+%\cref{equation:取整函数.取整函数的对称性2}
+\end{theorem}
