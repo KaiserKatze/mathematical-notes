@@ -633,3 +633,46 @@
 则称“\(A_1 \land A_2 \land \dotsb \land A_n\)是
 \(A\)的\DefineConcept{合取范式}（conjunctive normal form）”.
 \end{definition}
+
+可以证明：任意一个命题公式都存在析取范式与合取范式.
+
+计算析取范式、合取范式的步骤：\begin{enumerate}
+	\item 使用等值式，将命题公式中的联结词归约为\(\neg,\land,\lor\)；
+	\item 利用 De Morgan 律，将\(\neg\)移到命题变元的前面；
+	\item 根据分配律，得到命题公式的析取范式、合取范式.
+\end{enumerate}
+
+\begin{example}
+设\(p,q,r\)都是命题变元.
+求命题公式\(A = p \implies q \iff r\)的析取范式、合取范式.
+\begin{solution}
+由等值式得\begin{align*}
+	A &= p \implies q \iff r \\
+	&= (\neg p \lor q \implies r) \land (r \implies \neg p \lor q) \\
+	&= (\neg(\neg p \lor q) \lor r) \land (\neg r \lor (\neg p \lor q)) \\
+	&= (p \land \neg q \lor r) \land (\neg p \lor q \lor \neg r).
+\end{align*}
+于是\(A\)的析取范式为\begin{align*}
+	A &= (p \land \neg q \lor r) \land (\neg p \lor q \lor \neg r) \\
+	% 分配律
+	&= (p \land \neg q) \land (\neg p \lor q \lor \neg r)
+		\lor r \land (\neg p \lor q \lor \neg r) \\
+	% 分配律
+	&= (p \land \neg q) \land \neg p
+		\lor (p \land \neg q) \land q
+		\lor (p \land \neg q) \land \neg r
+		\lor r \land \neg p
+		\lor r \land q
+		\lor r \land \neg r \\
+	% 吸收律，消去\(p \land \neg p\)、\(q \land \neg q\)和\(r \land \neg r\)
+	&= p \land \neg q \land \neg r
+		\lor \neg p \land r
+		\lor q \land r,
+\end{align*}
+\(A\)的合取范式为\begin{align*}
+	A &= (p \land \neg q \lor r) \land (\neg p \lor q \lor \neg r) \\
+	% 分配律
+	&= (p \lor r) \land (\neg q \lor r) \land (\neg p \lor q \lor \neg r).
+\end{align*}
+\end{solution}
+\end{example}
