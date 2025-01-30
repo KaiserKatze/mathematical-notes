@@ -780,3 +780,51 @@
 	\item 求出\(A\)的析取范式；
 	\item 利用分配律，补充析取范式缺少的命题变元.
 \end{enumerate}
+
+\begin{definition}
+对于给定的命题变元，若由命题变元或其否定组成的析取式满足\begin{itemize}
+	\item 每个命题变元或其否定两者之一只出现一次，
+	\item 按字典顺序或按下标从小到大顺序出现，
+\end{itemize}
+则称该析取式为“由所给命题变元产生的\DefineConcept{极大项}（maximal term）”.
+\end{definition}
+
+可以证明：对于每一个极大项，只有一种指派使其取\(0\).
+
+根据这个结论，我们可以对极大项编码：
+极大项用\(M_i\)表示，
+其中下标\(i\)是由成假指派得到的二进制数或对应的十进制数.
+
+\begin{table}[ht]
+	\centering
+	\begin{tblr}{c|c|c}
+		\hline
+		极大项 & 成假指派 & 极大项的符号表示\(M_i\) \\
+		\hline
+		\(p \lor q\) & 00 & \(M_{00} = M_0\) \\
+		\(p \lor \neg q\) & 01 & \(M_{01} = M_1\) \\
+		\(\neg p \lor q\) & 10 & \(M_{10} = M_2\) \\
+		\(\neg p \lor \neg q\) & 11 & \(M_{11} = M_3\) \\
+		\hline
+	\end{tblr}
+	\caption{由2个命题变元\(p,q\)产生的极大项及其成假指派、符号表示}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\begin{tblr}{c|c|c}
+		\hline
+		极大项 & 成假指派 & 极大项的符号表示\(M_i\) \\
+		\hline
+		\(p \lor q \lor r\) & 000 & \(M_{000} = M_0\) \\
+		\(p \lor q \lor \neg r\) & 001 & \(M_{001} = M_1\) \\
+		\(p \lor \neg q \lor r\) & 010 & \(M_{010} = M_2\) \\
+		\(p \lor \neg q \lor \neg r\) & 011 & \(M_{011} = M_3\) \\
+		\(\neg p \lor q \lor r\) & 100 & \(M_{100} = M_4\) \\
+		\(\neg p \lor q \lor \neg r\) & 101 & \(M_{101} = M_5\) \\
+		\(\neg p \lor \neg q \lor r\) & 110 & \(M_{110} = M_6\) \\
+		\(\neg p \lor \neg q \lor \neg r\) & 111 & \(M_{111} = M_7\) \\
+		\hline
+	\end{tblr}
+	\caption{由3个命题变元\(p,q,r\)产生的极大项及其成假指派、符号表示}
+\end{table}
