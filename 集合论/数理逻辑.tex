@@ -858,6 +858,42 @@
 	\item \(A\)等值于所有这样写出的极大项的合取.
 \end{enumerate}
 
+\begin{example}
+设命题公式\(A\)的真值表如下所示，求\(A\)的主析取范式与主合取范式.
+\begin{center}
+	\begin{tblr}{*4c|*4c}
+		\hline
+		\(p\) & \(q\) & \(r\) & \(A\) & \(p\) & \(q\) & \(r\) & \(A\) \\
+		\hline
+		1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		1 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+		1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+		1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+\begin{solution}
+\(A\)等值于\(A\)的成真指派对应的极小项的析取：\[
+	A = (p \land q \land r)
+		\lor (p \land \neg q \land \neg r)
+		\lor (\neg p \land \neg q \land \neg r).
+\]
+
+\(A\)等值于\(A\)的成假指派对应的极大项的合取：\[
+	A = (\neg p \lor \neg q \lor r)
+		\land (\neg p \lor q \lor \neg r)
+		\land (p \lor \neg q \lor \neg r)
+		\land (p \lor \neg q \lor r)
+		\land (p \lor q \lor \neg r).
+\]
+\end{solution}
+\end{example}
+\begin{remark}
+在电路实现逻辑运算时，通常选用项数较少的分解式.
+在上例中，主析取范式的极小项个数为3，主合取范式的极大项个数为5，
+因此最好选用主析取范式.
+\end{remark}
+
 \begin{theorem}
 %@see: 《离散数学》（邓辉文） P102 定理3-9
 任意非永假命题公式都存在唯一的主析取范式.
