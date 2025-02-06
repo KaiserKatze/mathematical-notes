@@ -48,8 +48,8 @@
 		\DefineConcept{否定词}（negative） & 不、非 & \(\neg\) \\
 		\DefineConcept{合取词}（conjunction） & 且、而且、并且 & \(\land\) \\
 		\DefineConcept{析取词}（disjunction） & 或、或者 & \(\lor\) \\
-		\DefineConcept{蕴涵词}（implication） & 如果……那么…… & \(\implies\) \\
-		\DefineConcept{等价词}（equivalence） & 当且仅当 & \(\iff\) \\ \hline
+		\DefineConcept{蕴涵词}（implication） & 如果……那么…… & \(\limp\) \\
+		\DefineConcept{等价词}（equivalence） & 当且仅当 & \(\liff\) \\ \hline
 	\end{tabular}
 	\caption{逻辑联结词}
 \end{table}
@@ -80,8 +80,8 @@
 		\land \qquad
 		\lor \qquad
 		\lxor \qquad
-		\implies \qquad
-		\iff \qquad
+		\limp \qquad
+		\liff \qquad
 		\lnand \qquad
 		\lnor \qquad
 		\notimplies.
@@ -156,7 +156,7 @@
 		\centering
 		\begin{tabular}{|*{2}{c|}p{2cm}|}
 			\hline
-			\(p\) & \(q\) & \(p \implies q\) \\ \hline
+			\(p\) & \(q\) & \(p \limp q\) \\ \hline
 			0 & 0 & 1 \\ \hline
 			0 & 1 & 1 \\ \hline
 			1 & 0 & 0 \\ \hline
@@ -168,7 +168,7 @@
 		\centering
 		\begin{tabular}{|*{2}{c|}p{2cm}|}
 			\hline
-			\(p\) & \(q\) & \(p \iff q\) \\ \hline
+			\(p\) & \(q\) & \(p \liff q\) \\ \hline
 			0 & 0 & 1 \\ \hline
 			0 & 1 & 0 \\ \hline
 			1 & 0 & 0 \\ \hline
@@ -179,19 +179,19 @@
 	\caption{真值表}
 \end{table}
 
-我们把命题\(p\)称为“命题\(p \implies q\)的\DefineConcept{蕴含前件}”
-或“命题\(p \implies q\)的\DefineConcept{条件}”，
-把命题\(q\)称为“命题\(p \implies q\)的\DefineConcept{蕴含后件}”
-或“命题\(p \implies q\)的\DefineConcept{结论}”.
+我们把命题\(p\)称为“命题\(p \limp q\)的\DefineConcept{蕴含前件}”
+或“命题\(p \limp q\)的\DefineConcept{条件}”，
+把命题\(q\)称为“命题\(p \limp q\)的\DefineConcept{蕴含后件}”
+或“命题\(p \limp q\)的\DefineConcept{结论}”.
 
-如果已知命题\(p \implies q\)是真命题，
+如果已知命题\(p \limp q\)是真命题，
 则称“\(p\)是\(q\)的\DefineConcept{充分条件}”，
 或称“\(q\)是\(p\)的\DefineConcept{必要条件}”.
 
-如果已知\(p \implies q\)和\(q \implies p\)，
+如果已知\(p \limp q\)和\(q \limp p\)，
 则称“\(p\)是\(q\)的\DefineConcept{充分必要条件}”，
 或称“\(q\)是\(p\)的\DefineConcept{充分必要条件}”.
-如果已知\(p \implies q\)和\(q \notimplies p\)，
+如果已知\(p \limp q\)和\(q \notimplies p\)，
 则称“\(p\)是\(q\)的\DefineConcept{充分不必要条件}”，
 或称“\(q\)是\(p\)的\DefineConcept{必要不充分条件}”.
 
@@ -219,16 +219,16 @@
 	\tikzstyle{arrow} = [thick,<->,>=stealth]
 	\begin{tikzpicture}[node distance=4cm]
 		\node (p11) [prop] {\begin{tblr}{c}
-			原命题 \\ \(p \implies q\)
+			原命题 \\ \(p \limp q\)
 		\end{tblr}};
 		\node (p12) [prop, right=6cm of p11] {\begin{tblr}{c}
-			逆命题 \\ \(q \implies p\)
+			逆命题 \\ \(q \limp p\)
 		\end{tblr}};
 		\node (p21) [prop, below of=p11] {\begin{tblr}{c}
-			否命题 \\ \(\neg p \implies \neg q\)
+			否命题 \\ \(\neg p \limp \neg q\)
 		\end{tblr}};
 		\node (p22) [prop, below of=p12] {\begin{tblr}{c}
-			逆否命题 \\ \(\neg q \implies \neg p\)
+			逆否命题 \\ \(\neg q \limp \neg p\)
 		\end{tblr}};
 
 		\begin{scope}[arrow]
@@ -243,7 +243,7 @@
 	\caption{}
 \end{figure}
 
-可以观察发现，\(p \implies q\)的真值表与\([p \land \neg q]\)的恰好相反.
+可以观察发现，\(p \limp q\)的真值表与\([p \land \neg q]\)的恰好相反.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{|*4{c|}}
@@ -278,11 +278,11 @@
 
 常见的永真式有：
 \begin{enumerate}
-	\item 肯定后件律 \(p \implies (q \implies p)\)；
-	\item 同一律 \(p \implies p\)；
+	\item 肯定后件律 \(p \limp (q \limp p)\)；
+	\item 同一律 \(p \limp p\)；
 	\item 排中律 \(\neg p \lor p\)；
 	\item 矛盾律 \(\neg(\neg p \land p)\)；
-	\item 双重否定律 \(\neg\neg p \iff p\).
+	\item 双重否定律 \(\neg\neg p \liff p\).
 \end{enumerate}
 
 \begin{theorem}[永真式代入定理]
@@ -311,8 +311,8 @@
 		\neg \phi, \qquad
 		[\phi \lor \psi], \qquad
 		[\phi \land \psi], \qquad
-		[\phi \implies \psi], \qquad
-		[\phi \iff \psi]
+		[\phi \limp \psi], \qquad
+		[\phi \liff \psi]
 	\]都是合式公式.
 
 	\item 如果\(\phi\)是合式公式，\(x\)是受限变元，那么\[
@@ -362,69 +362,69 @@
 	\item \((\phi\lor\neg\psi)
 	\defiff
 	(\phi\lor(\neg\psi))\).
-	\item \((\neg\phi\implies\psi)
+	\item \((\neg\phi\limp\psi)
 	\defiff
-	((\neg\phi)\implies\psi)\).
-	\item \((\phi\implies\neg\psi)
+	((\neg\phi)\limp\psi)\).
+	\item \((\phi\limp\neg\psi)
 	\defiff
-	(\phi\implies(\neg\psi))\).
-	\item \((\neg\phi\iff\psi)
+	(\phi\limp(\neg\psi))\).
+	\item \((\neg\phi\liff\psi)
 	\defiff
-	((\neg\phi)\iff\psi)\).
-	\item \((\phi\iff\neg\psi)
+	((\neg\phi)\liff\psi)\).
+	\item \((\phi\liff\neg\psi)
 	\defiff
-	(\phi\iff(\neg\psi))\).
+	(\phi\liff(\neg\psi))\).
 	\item \((\phi\land\psi\lor\eta)
 	\defiff
 	((\phi\land\psi)\lor\eta)\).
 	\item \((\phi\lor\psi\land\eta)
 	\defiff
 	(\phi\lor(\psi\land\eta))\).
-	\item \((\phi\land\psi\implies\eta)
+	\item \((\phi\land\psi\limp\eta)
 	\defiff
-	((\phi\land\psi)\implies\eta)\).
-	\item \((\phi\implies\psi\land\eta)
+	((\phi\land\psi)\limp\eta)\).
+	\item \((\phi\limp\psi\land\eta)
 	\defiff
-	(\phi\implies(\psi\land\eta))\).
-	\item \((\phi\land\psi\iff\eta)
+	(\phi\limp(\psi\land\eta))\).
+	\item \((\phi\land\psi\liff\eta)
 	\defiff
-	((\phi\land\psi)\iff\eta)\).
-	\item \((\phi\iff\psi\land\eta)
+	((\phi\land\psi)\liff\eta)\).
+	\item \((\phi\liff\psi\land\eta)
 	\defiff
-	(\phi\iff(\psi\land\eta))\).
-	\item \((\phi\lor\psi\implies\eta)
+	(\phi\liff(\psi\land\eta))\).
+	\item \((\phi\lor\psi\limp\eta)
 	\defiff
-	((\phi\lor\psi)\implies\eta)\).
-	\item \((\phi\implies\psi\lor\eta)
+	((\phi\lor\psi)\limp\eta)\).
+	\item \((\phi\limp\psi\lor\eta)
 	\defiff
-	(\phi\implies(\psi\lor\eta))\).
-	\item \((\phi\lor\psi\iff\eta)
+	(\phi\limp(\psi\lor\eta))\).
+	\item \((\phi\lor\psi\liff\eta)
 	\defiff
-	((\phi\lor\psi)\iff\eta)\).
-	\item \((\phi\iff\psi\lor\eta)
+	((\phi\lor\psi)\liff\eta)\).
+	\item \((\phi\liff\psi\lor\eta)
 	\defiff
-	(\phi\iff(\psi\lor\eta))\).
-	\item \((\phi\implies\psi\iff\eta)
+	(\phi\liff(\psi\lor\eta))\).
+	\item \((\phi\limp\psi\liff\eta)
 	\defiff
-	((\phi\implies\psi)\iff\eta)\).
-	\item \((\phi\iff\psi\implies\eta)
+	((\phi\limp\psi)\liff\eta)\).
+	\item \((\phi\liff\psi\limp\eta)
 	\defiff
-	(\phi\iff(\psi\implies\eta))\).
+	(\phi\liff(\psi\limp\eta))\).
 \end{enumerate}
 \end{definition}
 非形式地说，逻辑联结词的优先级为：\[
 	\neg, \qquad
 	\land, \qquad
 	\lor, \qquad
-	\implies, \qquad
-	\iff.
+	\limp, \qquad
+	\liff.
 \]
 在这里，最左边的运算符的优先级最高，凡是和其他运算符组合使用时，总要从它开始读起.
 
 \begin{definition}
 设\(\phi,\psi\)都是合式公式.
 定义：
-\((\neg(\phi\implies\psi))
+\((\neg(\phi\limp\psi))
 \defiff
 (\phi\notimplies\psi)\).
 \end{definition}
@@ -434,27 +434,27 @@
 \end{example}
 
 \begin{example}
-\([p \implies q \land r \implies s]\)等同于\([(p \implies (q \land r)) \implies s]\).
+\([p \limp q \land r \limp s]\)等同于\([(p \limp (q \land r)) \limp s]\).
 \end{example}
 
 \subsection{逻辑公理，推理规则}
 我们有如下五条逻辑公理：
 \begin{axiom}
-\(\phi \implies [\psi \implies \phi]\).
+\(\phi \limp [\psi \limp \phi]\).
 \end{axiom}
 \begin{axiom}
-\([\phi \implies [\psi \implies \eta]] \implies [[\phi \implies \psi] \implies [\phi \implies \eta]]\).
+\([\phi \limp [\psi \limp \eta]] \limp [[\phi \limp \psi] \limp [\phi \limp \eta]]\).
 \end{axiom}
 \begin{axiom}
-\([\neg\phi \implies \neg\psi] \implies [\psi \implies \phi]\).
+\([\neg\phi \limp \neg\psi] \limp [\psi \limp \phi]\).
 \end{axiom}
 \begin{axiom}
-\((\forall x)[\phi \implies \psi(x)] \implies [\phi \implies (\forall x) \psi(x)]\)，
+\((\forall x)[\phi \limp \psi(x)] \limp [\phi \limp (\forall x) \psi(x)]\)，
 其中，我们量化的自由变元\(a\)没有出现在公式\(\phi\)中.
 %where the free variable \(a\) on which we are quantifying does not occur in \(\phi\).
 \end{axiom}
 \begin{axiom}
-\((\forall x) \phi(x) \implies \phi(a)\)，
+\((\forall x) \phi(x) \limp \phi(a)\)，
 其中，\(\phi(a)\)是通过用自由变元\(a\)代替\(\phi(x)\)中的受限变元\(x\)得到的公式.
 %where \(\phi(a)\) is the forumla
 %obtained by replacing each occurrence
@@ -463,8 +463,8 @@
 \end{axiom}
 以及如下两条\DefineConcept{推理规则}（rules of inference）：
 \begin{axiom}
-从\(\phi\)和\(\phi \implies \psi\)，可以推断\(\psi\).
-%From \(\phi\) and \(\phi \implies \psi\) to infer \(\psi\).
+从\(\phi\)和\(\phi \limp \psi\)，可以推断\(\psi\).
+%From \(\phi\) and \(\phi \limp \psi\) to infer \(\psi\).
 \end{axiom}
 \begin{axiom}
 从\(\phi\)，可以推断\((\forall x) \phi(x)\)，
@@ -488,20 +488,20 @@
 \end{remark}
 \begin{theorem}
 设\(A\)和\(B\)是命题公式，
-则\(A = B\)的充分必要条件是\(A \iff B\)是永真式.
+则\(A = B\)的充分必要条件是\(A \liff B\)是永真式.
 %TODO proof
 \end{theorem}
 
 \begin{example}
 证明：对于任意命题公式\(A,B\)，
 有\begin{equation}\label{equation:数理逻辑.蕴含式化为析取式}
-	A \implies B = \neg A \lor B.
+	A \limp B = \neg A \lor B.
 \end{equation}
 \begin{proof}
 列出真值表：\begin{center}
 	\begin{tblr}{*5{|c}|}
 		\hline
-		\(p\) & \(q\) & \(p \implies q\) & \(\neg p\) & \(\neg p \lor q\) \\
+		\(p\) & \(q\) & \(p \limp q\) & \(\neg p\) & \(\neg p \lor q\) \\
 		\hline
 		0 & 0 & 1 & 1 & 1 \\
 		0 & 1 & 1 & 1 & 1 \\
@@ -510,7 +510,7 @@
 		\hline
 	\end{tblr}
 \end{center}
-显然有\(A \implies B = \neg A \lor B\).
+显然有\(A \limp B = \neg A \lor B\).
 \end{proof}
 \end{example}
 
@@ -576,18 +576,18 @@
 
 对于任意命题公式\(A,B\)，有\begin{itemize}
 	\item \(A \lxor B
-	= \neg(A \iff B)
+	= \neg(A \liff B)
 	= (A \land \neg B) \lor (\neg A \land B)\).
-	\item \(A \implies B
+	\item \(A \limp B
 	= \neg A \lor B\).
-	\item \(A \iff B
-	= (A \implies B) \land (B \implies A)\).
+	\item \(A \liff B
+	= (A \limp B) \land (B \limp A)\).
 	\item \(A \lnand B
 	= \neg(A \land B)\).
 	\item \(A \lnor B
 	= \neg(A \lor B)\).
 	\item \(A \notimplies B
-	= \neg(A \implies B)\).
+	= \neg(A \limp B)\).
 \end{itemize}
 
 \begin{theorem}[等值置换定理]
@@ -646,11 +646,11 @@
 
 \begin{example}
 设\(p,q,r\)都是命题变元.
-求命题公式\(A = p \implies q \iff r\)的析取范式、合取范式.
+求命题公式\(A = p \limp q \liff r\)的析取范式、合取范式.
 \begin{solution}
 由等值式得\begin{align*}
-	A &= p \implies q \iff r \\
-	&= (\neg p \lor q \implies r) \land (r \implies \neg p \lor q) \\
+	A &= p \limp q \liff r \\
+	&= (\neg p \lor q \limp r) \land (r \limp \neg p \lor q) \\
 	&= (\neg(\neg p \lor q) \lor r) \land (\neg r \lor (\neg p \lor q)) \\
 	&= (p \land \neg q \lor r) \land (\neg p \lor q \lor \neg r).
 \end{align*}
@@ -926,5 +926,5 @@
 \(\{\neg,\lor\}\)是功能完备联结词集.
 \end{corollary}
 \begin{corollary}
-\(\{\neg,\implies\}\)是功能完备联结词集.
+\(\{\neg,\limp\}\)是功能完备联结词集.
 \end{corollary}
