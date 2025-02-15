@@ -68,195 +68,196 @@
 	}”.
 \end{itemize}
 
-\subsection{形式语言}
+\subsection{命题逻辑的形式语言}
 对于用汉语（或其他人类语言）表述的命题，
 我们可能会因为它含糊不清的语义而无法作出真伪判断.
 因此，数学家创造了一种独立于人类语言的、专门用于逻辑演绎的语言，
 这就是\DefineConcept{形式语言}（formal language）.
 
-下面我们讨论形式语言的三个方面：
-\begin{enumerate}
-	\item 指定形式语言使用的符号集、字母表.
-	\item 制定一些规则，用以构造语法正确的有限符号串（即合式公式）.
+形式语言有三个方面可供我们讨论：\begin{enumerate}
+	\item 指定形式语言使用的符号集、字母表（即下面即将介绍的命题常量、命题变元）；
+	\item 制定一些规则，用以构造语法正确的有限符号串（即命题公式）；
 	\item 指明形式语言与自然语言之间所允许的翻译.
 \end{enumerate}
 
+我们把用来表示命题真值的符号\(0\)和\(1\)
+称为\DefineConcept{逻辑常量}或\DefineConcept{命题常量}.
+相对地，把用来表示命题的小写拉丁字母（例如\(p,q,r,\dotsc\)）
+称为\DefineConcept{逻辑变量}或\DefineConcept{命题变元}.
+命题变元可以代表任意命题.
+从取值的角度看，命题变元既可以取\(1\)也可以取\(0\).
 
+\section{逻辑联结词，命题公式，真值表}
 对于复杂的命题，我们可以将其看作是由若干个小命题组合而成的.
 就像汉语中有“而且”“但是”等连接句子的虚词一样，
-形式语言也有扮演相同角色的符号，这就是“逻辑联结词”.
-\begin{table}[htb]
-	\centering
-	\begin{tabular}{*3c}
-		\hline
-		{\bf 概念} & {\bf 意义} & {\bf 符号} \\ \hline
-		\DefineConcept{否定词}（negative） & 不、非 & \(\neg\) \\
-		\DefineConcept{合取词}（conjunction） & 且、而且、并且 & \(\land\) \\
-		\DefineConcept{析取词}（disjunction） & 或、或者 & \(\lor\) \\
-		\DefineConcept{蕴涵词}（implication） & 如果……那么…… & \(\limp\) \\
-		\DefineConcept{等价词}（equivalence） & 当且仅当 & \(\liff\) \\ \hline
-	\end{tabular}
-	\caption{逻辑联结词}
-\end{table}
+命题逻辑也有扮演相同角色的符号，
+这就是\DefineConcept{逻辑联结词}（logical connective）.
 
-形式语言是由以下几种符号组成的：
-\begin{enumerate}
-	\item \DefineConcept{自由变元}（free variable），用小写拉丁字母表记.
-	\item \DefineConcept{受限变元}（bound variable），也用小写拉丁字母表记.
-	\item \DefineConcept{谓词}（predicate），目前有且只有一个：\(\in\).
-	\item \DefineConcept{逻辑联结词}（logical connective），
-	包括\DefineConcept{否定联结词}、
-	\DefineConcept{合取联结词}、
-	\DefineConcept{析取联结词}、
-	\DefineConcept{异或联结词}、
-	\DefineConcept{条件联结词}（或称\DefineConcept{蕴涵联结词}）、
-	\DefineConcept{双条件联结词}（或称\DefineConcept{等价联结词}）、
-	\DefineConcept{与非联结词}、
-	\DefineConcept{或非联结词}、
-	\DefineConcept{条件否定联结词}
-	\footnote{%
-		在研究数字电路时，
-		我们通常用\(p \cdot q\)代替\(p \land q\)，
-		用\(p + q\)代替\(p \lor q\)，
-		用\(\overline{p \cdot q}\)代替\(p \lnand q\)，
-		用\(\overline{p + q}\)代替\(p \lnor q\).
-	}：\[
-		\neg \qquad
-		\land \qquad
-		\lor \qquad
-		\lxor \qquad
-		\limp \qquad
-		\liff \qquad
-		\lnand \qquad
-		\lnor \qquad
-		\notimplies.
-		% \forall \qquad
-		% \exists.
-	\]
-	\item 辅助符号，包括圆括号、方括号等：\[
-		( \qquad
-		) \qquad
-		[ \qquad
-		]
-	\]
+\DefineConcept{命题公式}（proposition formula）是
+由命题常量、命题变元、逻辑联结词、左圆括号、右圆括号构成的有意义的符号串，
+本质上是逻辑函数或逻辑表达式，其取值只可能为\(1\)或\(0\)，
+其严格定义可以借助递归定义方式给出.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P85 定义3-1
+命题公式按下列规则生成：\begin{enumerate}[label={(\arabic*)}]
+	\item 命题常量、命题变元是命题公式；
+	\item 若\(A\)是命题公式，则\((\neg A)\)是命题公式；
+	\item 若\(A\)和\(B\)是命题公式，则\((A \circ B)\)是命题公式，
+	其中符号\(\circ\)代表某个逻辑联结词；
+	\item 有限次应用(1)(2)(3)这三条规则所得到的符号串是命题公式.
 \end{enumerate}
+\end{definition}
 
-非形式地讲，
-我们只要从上述符号中，可重复地选取有限个符号，写成一串，
-就能得到一条\DefineConcept{命题公式}（proposition formula）.
+我们可以按命题公式中是否含有逻辑联结词，将命题公式分为两类：\begin{itemize}
+	\item \DefineConcept{简单命题}（simple proposition），
+	或称\DefineConcept{原子命题}（atom proposition），
+	即不含有逻辑联结词的命题公式；
+	\item \DefineConcept{复合命题}（compound proposition），
+	即由简单命题和逻辑联结词构成的命题公式.
+\end{itemize}
 
-在不引起误解的时候，我们也可将“命题公式”简称为\DefineConcept{公式}（formula）.
+\subsection{命题公式的真值表}
+给定命题公式\(A\)，对\(A\)中出现的每个命题变元都指定一个真值\(1\)或\(0\)，
+就说“对命题公式\(A\)进行了一种\DefineConcept{真值指派}（assignment）”
+或者说“对命题公式\(A\)进行了一个\DefineConcept{解释}（interpretation）”，
+而在该指派下可以求出命题公式\(A\)的一个真值.
+将\(A\)的所有可能的真值指派以及它在每一个真值指派下的取值列成一张表，
+就得到命题公式\(A\)的\DefineConcept{真值表}（truth table）.
 
-\begin{table}[htb]
+\subsection{否定联结词}
+设\(p\)表示一个命题，
+\(\neg p\)是对命题\(p\)的\DefineConcept{否定}（negation），
+读作“非\(p\)”.
+
+\begin{table}[ht]
 	\centering
-	\begin{subtable}[ht]{0.9\textwidth}
-		\centering
-		\begin{tabular}{|c|p{1.5cm}|}
-			\hline
-			\(p\) & \(\neg p\) \\ \hline
-			0 & 1 \\ \hline
-			1 & 0 \\ \hline
-		\end{tabular}
-		\caption{否定联结词}
-	\end{subtable}
-
-	\begin{subtable}[ht]{0.25\textwidth}
-		\centering
-		\begin{tabular}{|*{2}{c|}p{2cm}|}
-			\hline
-			\(p\) & \(q\) & \(p \land q\) \\ \hline
-			0 & 0 & 0 \\ \hline
-			0 & 1 & 0 \\ \hline
-			1 & 0 & 0 \\ \hline
-			1 & 1 & 1 \\ \hline
-		\end{tabular}
-		\caption{合取联结词}
-	\end{subtable}
-	\begin{subtable}[ht]{0.3\textwidth}
-		\centering
-		\begin{tabular}{|*{2}{c|}p{2cm}|}
-			\hline
-			\(p\) & \(q\) & \(p \lor q\) \\ \hline
-			0 & 0 & 0 \\ \hline
-			0 & 1 & 1 \\ \hline
-			1 & 0 & 1 \\ \hline
-			1 & 1 & 1 \\ \hline
-		\end{tabular}
-		\caption{析取联结词}
-	\end{subtable}
-	\begin{subtable}[ht]{0.3\textwidth}
-		\centering
-		\begin{tabular}{|*{2}{c|}p{2cm}|}
-			\hline
-			\(p\) & \(q\) & \(p \lxor q\) \\ \hline
-			0 & 0 & 0 \\ \hline
-			0 & 1 & 1 \\ \hline
-			1 & 0 & 1 \\ \hline
-			1 & 1 & 0 \\ \hline
-		\end{tabular}
-		\caption{异或联结词}
-	\end{subtable}
-
-	\begin{subtable}[ht]{0.45\textwidth}
-		\centering
-		\begin{tabular}{|*{2}{c|}p{2cm}|}
-			\hline
-			\(p\) & \(q\) & \(p \limp q\) \\ \hline
-			0 & 0 & 1 \\ \hline
-			0 & 1 & 1 \\ \hline
-			1 & 0 & 0 \\ \hline
-			1 & 1 & 1 \\ \hline
-		\end{tabular}
-		\caption{条件联结词}
-	\end{subtable}
-	\begin{subtable}[ht]{0.45\textwidth}
-		\centering
-		\begin{tabular}{|*{2}{c|}p{2cm}|}
-			\hline
-			\(p\) & \(q\) & \(p \liff q\) \\ \hline
-			0 & 0 & 1 \\ \hline
-			0 & 1 & 0 \\ \hline
-			1 & 0 & 0 \\ \hline
-			1 & 1 & 1 \\ \hline
-		\end{tabular}
-	\caption{等价联结词}
-	\end{subtable}
-	\caption{真值表}
+	\begin{tabular}{|c|p{1.5cm}|}
+		\hline
+		\(p\) & \(\neg p\) \\
+		\hline
+		0 & 1 \\
+		1 & 0 \\
+		\hline
+	\end{tabular}
+	\caption{否定联结词的真值表}
 \end{table}
 
-我们把命题\(p\)称为“命题\(p \limp q\)的\DefineConcept{蕴含前件}”
-或“命题\(p \limp q\)的\DefineConcept{条件}”，
-把命题\(q\)称为“命题\(p \limp q\)的\DefineConcept{蕴含后件}”
-或“命题\(p \limp q\)的\DefineConcept{结论}”.
+\(\neg\)是仅有的一个一元逻辑运算符，
+下面讨论的都是二元逻辑运算符.
+
+\subsection{合取联结词}
+设\(p,q\)各表示一个命题，
+\(p \land q\)是对命题\(p\)与\(q\)的\DefineConcept{合取}（conjunction）.
+
+合取联结词\(\land\)相当于汉语中的
+“并且”“与”“和”“以及”“不但……而且……”
+“虽然……但是……”“尽管……仍然……”等.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \land q\) \\
+		\hline
+		0 & 0 & 0 \\
+		0 & 1 & 0 \\
+		1 & 0 & 0 \\
+		1 & 1 & 1 \\
+		\hline
+	\end{tabular}
+	\caption{合取联结词的真值表}
+\end{table}
+
+\subsection{析取联结词}
+设\(p,q\)各表示一个命题，
+\(p \lor q\)是对命题\(p\)与\(q\)的\DefineConcept{析取}（disjunction）.
+
+析取联结词\(\lor\)相当于汉语中的“或”.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \lor q\) \\
+		\hline
+		0 & 0 & 0 \\
+		0 & 1 & 1 \\
+		1 & 0 & 1 \\
+		1 & 1 & 1 \\
+		\hline
+	\end{tabular}
+	\caption{析取联结词的真值表}
+\end{table}
+
+\subsection{异或联结词}
+设\(p,q\)各表示一个命题，
+\(p \lxor q\)是对命题\(p\)与\(q\)的\DefineConcept{异或}（exclusive or）.
+
+为了凸出析取联结词与异或联结词的联系与区别，
+我们常把对命题\(p\)与\(q\)的析取\(p \lor q\)
+称为对\(p\)与\(q\)的\DefineConcept{可兼或}（inclusive or），
+把对\(p\)与\(q\)的异或\(p \lxor q\)
+称为对\(p\)与\(q\)的\DefineConcept{不可兼或}.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \lxor q\) \\
+		\hline
+		0 & 0 & 0 \\
+		0 & 1 & 1 \\
+		1 & 0 & 1 \\
+		1 & 1 & 0 \\
+		\hline
+	\end{tabular}
+	\caption{异或联结词的真值表}
+\end{table}
+
+\subsection{条件联结词}
+设\(p,q\)各表示一个命题，
+\(p \limp q\)读作“\(p\)蕴涵\(q\)”或“\(p\)条件\(q\)”.
+
+我们把\(p\)称为“\(p \limp q\)的\DefineConcept{前件}（antecedent）”
+或“\(p \limp q\)的\DefineConcept{条件}（premise）”，
+把\(q\)称为“\(p \limp q\)的\DefineConcept{后件}（consequent）”
+或“\(p \limp q\)的\DefineConcept{结论}（conclusion）”.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \limp q\) \\
+		\hline
+		0 & 0 & 1 \\
+		0 & 1 & 1 \\
+		1 & 0 & 0 \\
+		1 & 1 & 1 \\
+		\hline
+	\end{tabular}
+	\caption{条件联结词的真值表}
+\end{table}
 
 如果已知命题\(p \limp q\)是真命题，
 则称“\(p\)是\(q\)的\DefineConcept{充分条件}”，
 或称“\(q\)是\(p\)的\DefineConcept{必要条件}”.
 
-如果已知\(p \limp q\)和\(q \limp p\)，
+如果已知\((p \limp q) \land (q \limp p)\)是真命题，
 则称“\(p\)是\(q\)的\DefineConcept{充分必要条件}”，
 或称“\(q\)是\(p\)的\DefineConcept{充分必要条件}”.
-如果已知\(p \limp q\)和\(q \notimplies p\)，
+
+如果已知\((p \limp q) \land (q \lnimp p)\)是真命题，
 则称“\(p\)是\(q\)的\DefineConcept{充分不必要条件}”，
 或称“\(q\)是\(p\)的\DefineConcept{必要不充分条件}”.
 
-如果命题\(p\)的条件是命题\(q\)的结论，
-且命题\(p\)的结论是命题\(q\)的条件，
-那么称“\(p\)和\(q\)是\DefineConcept{互逆命题}”；
-称“\(q\)是\(p\)的\DefineConcept{逆命题}”
-“\(p\)是\(q\)的逆命题”.
+把\(q \limp p\)称为“\(p \limp q\)的\DefineConcept{逆命题}”.
+称“\(q \limp p\)和\(p \limp q\)是\DefineConcept{互逆命题}”.
 
-如果命题\(p\)的条件是命题\(q\)的条件的否定，
-且命题\(p\)的结论是命题\(q\)的结论的否定，
-那么称“\(p\)和\(q\)是\DefineConcept{互否命题}”；
-称“\(q\)是\(p\)的\DefineConcept{否命题}”
-“\(p\)是\(q\)的否命题”.
+把\(\neg p \limp \neg q\)称为“\(p \limp q\)的\DefineConcept{否命题}”.
+称“\(\neg p \limp \neg q\)和\(p \limp q\)是\DefineConcept{互否命题}”.
 
-如果命题\(p\)的条件是命题\(q\)的结论的否定，
-且命题\(p\)的结论是命题\(q\)的条件的否定，
-那么称“\(p\)和\(q\)~\DefineConcept{互为逆否命题}”；
-称“\(q\)是\(p\)的\DefineConcept{逆否命题}”
-“\(p\)是\(q\)的逆否命题”.
+把\(\neg q \limp \neg p\)称为“\(p \limp q\)的\DefineConcept{逆否命题}”.
+称“\(\neg q \limp \neg p\)和\(p \limp q\) \DefineConcept{互为逆否命题}”.
 
 \begin{figure}[htb]
 	\centering
@@ -288,191 +289,196 @@
 	\caption{}
 \end{figure}
 
-可以观察发现，\(p \limp q\)的真值表与\([p \land \neg q]\)的恰好相反.
-\begin{table}[htb]
+\subsection{等价联结词}
+设\(p,q\)各表示一个命题，
+\(p \liff q\)读作“\(p\)等价\(q\)”或“\(p\)双条件\(q\)”.
+
+\begin{table}[ht]
 	\centering
-	\begin{tabular}{|*4{c|}}
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
-		\(p\) & \(q\) & \(\neg q\) & \(p \land \neg q\) \\ \hline
-		0 & 0 & 1 & 0 \\ \hline
-		0 & 1 & 0 & 0 \\ \hline
-		1 & 0 & 1 & 1 \\ \hline
-		1 & 1 & 0 & 0 \\ \hline
+		\(p\) & \(q\) & \(p \liff q\) \\
+		\hline
+		0 & 0 & 1 \\
+		0 & 1 & 0 \\
+		1 & 0 & 0 \\
+		1 & 1 & 1 \\
+		\hline
 	\end{tabular}
-	\caption{}
+	\caption{等价联结词的真值表}
 \end{table}
 
-给定命题公式\(A\)，对\(A\)中出现的每个命题变元都指定一个真值\(1\)或\(0\)，
-就对命题公式\(A\)进行了一种\DefineConcept{真值指派}（assignment）
-或一个\DefineConcept{解释}（interpretation），
-而在该指派下可以求出命题公式\(A\)的真值.
-将\(A\)的所有可能的真值指派以及它在每一个真值指派下的取值列成一张表，
-就得到命题公式\(A\)的\DefineConcept{真值表}（truth table）.
+\subsection{与非联结词}
+设\(p,q\)各表示一个命题，
+\(p \lnand q\)读作“\(p\)与非\(q\)”.
 
-在任何指派下均取真的命题公式，
-称为\DefineConcept{永真式}或\DefineConcept{重言式}（tautology）.
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \lnand q\) \\
+		\hline
+		0 & 0 & 1 \\
+		0 & 1 & 1 \\
+		1 & 0 & 1 \\
+		1 & 1 & 0 \\
+		\hline
+	\end{tabular}
+	\caption{与非联结词的真值表}
+\end{table}
 
-在任何指派下均取假的命题公式，
-称为\DefineConcept{永假式}或\DefineConcept{矛盾式}（contradiction）.
+\subsection{或非联结词}
+设\(p,q\)各表示一个命题，
+\(p \lnor q\)读作“\(p\)或非\(q\)”.
 
-至少有一种指派使其为真的命题公式，
-称为\DefineConcept{可满足式}（satisfactable formula）.
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \lnor q\) \\
+		\hline
+		0 & 0 & 1 \\
+		0 & 1 & 0 \\
+		1 & 0 & 0 \\
+		1 & 1 & 0 \\
+		\hline
+	\end{tabular}
+	\caption{或非联结词的真值表}
+\end{table}
 
-至少有一种指派使其为真，同时至少有一种指派使其为假的命题公式，
-称为\DefineConcept{中性式}或\DefineConcept{偶然式}（contingency）.
+\subsection{条件否定联结词}
+设\(p,q\)各表示一个命题，
+\(p \lnimp q\)读作“\(p\)条件否定\(q\)”.
 
-常见的永真式有：
-\begin{enumerate}
-	\item 肯定后件律 \(p \limp (q \limp p)\)；
-	\item 同一律 \(p \limp p\)；
-	\item 排中律 \(\neg p \lor p\)；
-	\item 矛盾律 \(\neg(\neg p \land p)\)；
-	\item 双重否定律 \(\neg\neg p \liff p\).
-\end{enumerate}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|*{2}{c|}p{2cm}|}
+		\hline
+		\(p\) & \(q\) & \(p \lnimp q\) \\
+		\hline
+		0 & 0 & 0 \\
+		0 & 1 & 0 \\
+		1 & 0 & 1 \\
+		1 & 1 & 0 \\
+		\hline
+	\end{tabular}
+	\caption{条件否定联结词的真值表}
+\end{table}
 
-\begin{theorem}[永真式代入定理]
-设命题公式\(A(p_1,p_2,\dotsc,p_n)\)是永真式，
-则分别用命题公式\(B_1,B_2,\dotsc,B_n\)代换命题变元\(p_1,p_2,\dotsc,p_n\)，
-所得到的命题公式\(A(B_1,B_2,\dotsc,B_n)\)也是永真式.
-\end{theorem}
-% \DefineConcept{代入实例}（substitution instance）
-
-\subsection{合式公式}
-我们将满足以下条件的公式称为\DefineConcept{合式公式}（well-formed formula）：%wff
-\begin{enumerate}
-	\item 如果\(a\)和\(b\)是自由变元，那么\([a \in b]\)是合式公式.
-	这样的合式公式又被称为是\DefineConcept{原子的}（atomic），
-	或者称这样的公式为\DefineConcept{原子公式}
-	\footnote{%
-		我们可以按公式中是否含有逻辑联结词，将命题公式分为两类：
-		\DefineConcept{简单命题}（simple proposition）%
-		或\DefineConcept{原子命题}（atom proposition），
-		即不含有逻辑联结词的命题公式；
-		以及\DefineConcept{复合命题}（compound proposition），
-		即由简单命题和逻辑联结词构成的命题公式.
-	}.
-
-	\item 如果\(\phi\)和\(\psi\)是合式公式，那么\[
-		\neg \phi, \qquad
-		[\phi \lor \psi], \qquad
-		[\phi \land \psi], \qquad
-		[\phi \limp \psi], \qquad
-		[\phi \liff \psi]
-	\]都是合式公式.
-
-	\item 如果\(\phi\)是合式公式，\(x\)是受限变元，那么\[
-		(\forall x) \phi(x)
-		\quad\text{和}\quad
-		(\exists x) \phi(x)
-	\]都是合式公式，
-	其中，\(\phi(x)\)表示在合式公式\(\phi\)中，
-	用受限变元\(x\)代替某个自由变元\(a\)从而得到的公式.
-	我们将这两个公式分别称为%
-	“通过\DefineConcept{全称量化}变元\(a\)而从\(\phi\)得到的公式%
-	（the formula obtained from \(\phi\) by universally quantifying on the variable \(a\)）”%
-	和“通过\DefineConcept{存在量化}变元\(a\)而从\(\phi\)得到的公式%
-	（the formula obtained from \(\phi\) by existentially quantifying on the variable \(a\)）”.
-	%If \(\phi\) is a wff and x is a bound variable,
-	%then \((\forall x) \phi(x)\) and \((\exists x) \phi(x)\) are wffs,
-	%where \(\phi(x)\) is the formula obtained from the wff \(\phi\)
-	%by replacing each occurrence of some free variable \(a\) by the bound variable \(x\).
-	%We call \((\forall x) \phi(x)\) and \((\exists x) \phi(x)\) respectively,
-	%the formula obtained from \(\phi\) by universally, or existentially,
-	%quantifying on the variable \(a\).
-\end{enumerate}
-任意一条公式，当且仅当它可以由上述三条规则演绎推得时，我们才称其为合式公式.
-
-\subsection{逻辑联结词的优先级}
+\subsection{括号的省略}
 我们解读形式语言的顺序和汉语、英语等常见人类语言一致.
 除非命题公式有括号，否则我们总是按照从左到右的顺序，分析理解形式语言的含义.
 
-在一些比较复杂的命题公式中常常有大量的括号，用来调整我们的解读顺序.
-因此，为了简化书写，减少命题公式中括号的数目，我们可以规定逻辑联结词的优先级顺序：
-\begin{definition}
-设\(\phi,\psi,\eta\)都是合式公式.
-定义：
-\begin{enumerate}
-	\item \(\phi
-	\defiff
-	(\phi)\).
-	\item \((\neg\phi\land\psi)
-	\defiff
-	((\neg\phi)\land\psi)\).
-	\item \((\phi\land\neg\psi)
-	\defiff
-	(\phi\land(\neg\psi))\).
-	\item \((\neg\phi\lor\psi)
-	\defiff
-	((\neg\phi)\lor\psi)\).
-	\item \((\phi\lor\neg\psi)
-	\defiff
-	(\phi\lor(\neg\psi))\).
-	\item \((\neg\phi\limp\psi)
-	\defiff
-	((\neg\phi)\limp\psi)\).
-	\item \((\phi\limp\neg\psi)
-	\defiff
-	(\phi\limp(\neg\psi))\).
-	\item \((\neg\phi\liff\psi)
-	\defiff
-	((\neg\phi)\liff\psi)\).
-	\item \((\phi\liff\neg\psi)
-	\defiff
-	(\phi\liff(\neg\psi))\).
-	\item \((\phi\land\psi\lor\eta)
-	\defiff
-	((\phi\land\psi)\lor\eta)\).
-	\item \((\phi\lor\psi\land\eta)
-	\defiff
-	(\phi\lor(\psi\land\eta))\).
-	\item \((\phi\land\psi\limp\eta)
-	\defiff
-	((\phi\land\psi)\limp\eta)\).
-	\item \((\phi\limp\psi\land\eta)
-	\defiff
-	(\phi\limp(\psi\land\eta))\).
-	\item \((\phi\land\psi\liff\eta)
-	\defiff
-	((\phi\land\psi)\liff\eta)\).
-	\item \((\phi\liff\psi\land\eta)
-	\defiff
-	(\phi\liff(\psi\land\eta))\).
-	\item \((\phi\lor\psi\limp\eta)
-	\defiff
-	((\phi\lor\psi)\limp\eta)\).
-	\item \((\phi\limp\psi\lor\eta)
-	\defiff
-	(\phi\limp(\psi\lor\eta))\).
-	\item \((\phi\lor\psi\liff\eta)
-	\defiff
-	((\phi\lor\psi)\liff\eta)\).
-	\item \((\phi\liff\psi\lor\eta)
-	\defiff
-	(\phi\liff(\psi\lor\eta))\).
-	\item \((\phi\limp\psi\liff\eta)
-	\defiff
-	((\phi\limp\psi)\liff\eta)\).
-	\item \((\phi\liff\psi\limp\eta)
-	\defiff
-	(\phi\liff(\psi\limp\eta))\).
-\end{enumerate}
-\end{definition}
-非形式地说，逻辑联结词的优先级为：\[
-	\neg, \qquad
-	\land, \qquad
-	\lor, \qquad
-	\limp, \qquad
-	\liff.
-\]
-在这里，最左边的运算符的优先级最高，凡是和其他运算符组合使用时，总要从它开始读起.
+严格按照命题公式的定义，就会出现很多的括号.
+一方面，这些括号使得命题公式的结构清晰、含义清除；
+而另一方面，括号太多给命题公式的阅读和书写带来不便.
+因此，为了简化书写，减少命题公式中括号的数目，特作如下一些可以省略括号的约定：\begin{itemize}
+	\item 最外层的括号可以省略；
+	\item 9个逻辑联结词运算的优先顺序依次为\footnote{
+		有的书上只规定了\(\neg,\land,\lor,\limp,\liff\)这5个逻辑联结词的优先顺序.
+	}\[
+		\neg, \quad
+		\land, \quad
+		\lor, \quad
+		\lxor, \quad
+		\limp, \quad
+		\liff, \quad
+		\lnand, \quad
+		\lnor, \quad
+		\lnimp,
+	\]
+	符合本约定的有些括号可以不写（详见\cref{definition:命题逻辑.逻辑联结词的优先顺序}）；
+	\item 同级运算从左至右依次进行.
+\end{itemize}
 
-\begin{definition}
-设\(\phi,\psi\)都是合式公式.
-定义：
-\((\neg(\phi\limp\psi))
-\defiff
-(\phi\notimplies\psi)\).
+\begin{definition}\label{definition:命题逻辑.逻辑联结词的优先顺序}
+设\(\phi,\psi,\eta\)都是命题公式.
+定义：\begin{gather}
+	\phi
+	\defiff
+	(\phi), \\
+	(\neg\phi\land\psi)
+	\defiff
+	((\neg\phi)\land\psi), \\
+	(\phi\land\neg\psi)
+	\defiff
+	(\phi\land(\neg\psi)), \\
+	(\neg\phi\lor\psi)
+	\defiff
+	((\neg\phi)\lor\psi), \\
+	(\phi\lor\neg\psi)
+	\defiff
+	(\phi\lor(\neg\psi)), \\
+	(\neg\phi\limp\psi)
+	\defiff
+	((\neg\phi)\limp\psi), \\
+	(\phi\limp\neg\psi)
+	\defiff
+	(\phi\limp(\neg\psi)), \\
+	(\neg\phi\liff\psi)
+	\defiff
+	((\neg\phi)\liff\psi), \\
+	(\phi\liff\neg\psi)
+	\defiff
+	(\phi\liff(\neg\psi)), \\
+	(\phi\land\psi\land\eta)
+	\defiff
+	((\phi\land\psi)\land\eta), \\
+	(\phi\land\psi\lor\eta)
+	\defiff
+	((\phi\land\psi)\lor\eta), \\
+	(\phi\lor\psi\lor\eta)
+	\defiff
+	((\phi\lor\psi)\lor\eta), \\
+	(\phi\lor\psi\land\eta)
+	\defiff
+	(\phi\lor(\psi\land\eta)), \\
+	(\phi\land\psi\limp\eta)
+	\defiff
+	((\phi\land\psi)\limp\eta), \\
+	(\phi\limp\psi\limp\eta)
+	\defiff
+	((\phi\limp\psi)\limp\eta), \\
+	(\phi\limp\psi\land\eta)
+	\defiff
+	(\phi\limp(\psi\land\eta)), \\
+	(\phi\land\psi\liff\eta)
+	\defiff
+	((\phi\land\psi)\liff\eta), \\
+	(\phi\liff\psi\liff\eta)
+	\defiff
+	((\phi\liff\psi)\liff\eta), \\
+	(\phi\liff\psi\land\eta)
+	\defiff
+	(\phi\liff(\psi\land\eta)), \\
+	(\phi\lor\psi\limp\eta)
+	\defiff
+	((\phi\lor\psi)\limp\eta), \\
+	(\phi\limp\psi\lor\eta)
+	\defiff
+	(\phi\limp(\psi\lor\eta)), \\
+	(\phi\lor\psi\liff\eta)
+	\defiff
+	((\phi\lor\psi)\liff\eta), \\
+	(\phi\liff\psi\lor\eta)
+	\defiff
+	(\phi\liff(\psi\lor\eta)), \\
+	(\phi\limp\psi\liff\eta)
+	\defiff
+	((\phi\limp\psi)\liff\eta), \\
+	(\phi\liff\psi\limp\eta)
+	\defiff
+	(\phi\liff(\psi\limp\eta)).
+\end{gather}
 \end{definition}
+
+% \begin{definition}
+% 设\(\phi,\psi\)都是合式公式.
+% 定义：
+% \((\neg(\phi\limp\psi))
+% \defiff
+% (\phi\lnimp\psi)\).
+% \end{definition}
 
 \begin{example}
 \([(\neg p) \lor (q)]\)等同于\([\neg p \lor q]\).
@@ -482,45 +488,7 @@
 \([p \limp q \land r \limp s]\)等同于\([(p \limp (q \land r)) \limp s]\).
 \end{example}
 
-\subsection{逻辑公理，推理规则}
-我们有如下五条逻辑公理：
-\begin{axiom}
-\(\phi \limp [\psi \limp \phi]\).
-\end{axiom}
-\begin{axiom}
-\([\phi \limp [\psi \limp \eta]] \limp [[\phi \limp \psi] \limp [\phi \limp \eta]]\).
-\end{axiom}
-\begin{axiom}
-\([\neg\phi \limp \neg\psi] \limp [\psi \limp \phi]\).
-\end{axiom}
-\begin{axiom}
-\((\forall x)[\phi \limp \psi(x)] \limp [\phi \limp (\forall x) \psi(x)]\)，
-其中，我们量化的自由变元\(a\)没有出现在公式\(\phi\)中.
-%where the free variable \(a\) on which we are quantifying does not occur in \(\phi\).
-\end{axiom}
-\begin{axiom}
-\((\forall x) \phi(x) \limp \phi(a)\)，
-其中，\(\phi(a)\)是通过用自由变元\(a\)代替\(\phi(x)\)中的受限变元\(x\)得到的公式.
-%where \(\phi(a)\) is the forumla
-%obtained by replacing each occurrence
-%of the bound variable x
-%in \(\phi(x)\) by the free variable \(a\).
-\end{axiom}
-以及如下两条\DefineConcept{推理规则}（rules of inference）：
-\begin{axiom}
-从\(\phi\)和\(\phi \limp \psi\)，可以推断\(\psi\).
-%From \(\phi\) and \(\phi \limp \psi\) to infer \(\psi\).
-\end{axiom}
-\begin{axiom}
-从\(\phi\)，可以推断\((\forall x) \phi(x)\)，
-其中，\(\phi(x)\)表示在合式公式\(\phi\)中，
-用受限变元\(x\)代替某个自由变元从而得到的公式.
-%From \(\phi\) to infer \((\forall x)\) \phi(x)
-%where \(\phi(x)\) is obtained from \(\phi\)
-%by replacing each occurrence of some free variable by x.
-\end{axiom}
-
-\subsection{逻辑等值}
+\subsection{命题公式的类型}
 \begin{definition}
 给定两个命题公式\(A\)和\(B\)，
 如果在任何真值指派下，\(A\)和\(B\)的真值都相同，
