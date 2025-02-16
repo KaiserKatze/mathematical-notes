@@ -490,6 +490,132 @@
 
 \subsection{命题公式的类型}
 \begin{definition}
+%@see: 《离散数学》（邓辉文） P88 定义3-2
+在任何指派下均取真的命题公式，
+称为\DefineConcept{永真式}或\DefineConcept{重言式}（tautology）.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P88 定义3-2
+在任何指派下均取假的命题公式，
+称为\DefineConcept{永假式}或\DefineConcept{矛盾式}（contradiction）.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P88 定义3-2
+至少有一种指派使其为真的命题公式，
+称为\DefineConcept{可满足式}（satisfactable formula）.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P88 定义3-2
+至少有一种指派使其为真，同时至少有一种指派使其为假的命题公式，
+称为\DefineConcept{中性式}或\DefineConcept{偶然式}（contingency）.
+\end{definition}
+
+\begin{example}
+命题公式\(\neg p \lor q \limp r\)是中性式.
+\end{example}
+
+\begin{example}
+命题公式\(p \lor \neg p\)是永真式.
+\end{example}
+
+\begin{example}
+命题公式\(p \land \neg p\)是永假式.
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P89 例3-9
+证明：命题公式\((p \limp q) \liff (\neg p \lor q)\)是永真式.
+\begin{proof}
+列出\((p \limp q) \liff (\neg p \lor q)\)的真值表：\begin{center}
+	\begin{tblr}{*2c|*3c|c}
+		\hline
+		\(p\) & \(q\) & \(p \limp q\) & \(\neg p\) & \(\neg p \lor q\) & \((p \limp q) \liff (\neg p \lor q)\) \\
+		\hline
+		1 & 1 & 1 & 0 & 1 & 1 \\
+		1 & 0 & 0 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 1 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 1 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+由真值表可知，命题公式\((p \limp q) \liff (\neg p \lor q)\)是永真式.
+\end{proof}
+\end{example}
+\begin{remark}
+像这样，通过绘制真值表，得出一个命题公式的类型的方法，称为\emph{真值表法}.
+真值表法是最常用的判断命题公式类型的方法，
+但是话说回来，当命题变元较多时，真值表法是极为不方便的.
+\end{remark}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P89 例3-10
+证明：命题公式\((p \land (p \limp q)) \limp q\)是永真式.
+\begin{proof}
+假设\(p \land (p \limp q)\)取真，
+则\(p\)及\(p \limp q\)均取真，
+进而\(q\)为真，
+因此\((p \land (p \limp q)) \limp q\)永真.
+\end{proof}
+\end{example}
+\begin{remark}
+像这样，利用对取值进行分析，得出一个命题公式的类型的方法，称为\emph{取值法}.
+\end{remark}
+
+\begin{example}
+证明：命题公式\(p \limp p\)是永真式.
+% 同一律
+\begin{proof}
+列出\(p \limp p\)的真值表：\begin{center}
+	\begin{tblr}{c|c}
+		\hline
+		\(p\) & \(p \limp p\) \\
+		\hline
+		1 & 1 \\
+		0 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+由真值表可知，命题公式\(p \limp p\)是永真式.
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：命题公式\(p \limp (q \limp p)\)是永真式.
+% 肯定后件律
+\begin{proof}
+列出\(p \limp (q \limp p)\)的真值表：\begin{center}
+	\begin{tblr}{*2c|c|c}
+		\hline
+		\(p\) & \(q\) & \(q \limp p\) & \(p \limp (q \limp p)\) \\
+		\hline
+		1 & 1 & 1 & 1 \\
+		1 & 0 & 1 & 1 \\
+		0 & 1 & 0 & 1 \\
+		0 & 0 & 1 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+由真值表可知，命题公式\(p \limp (q \limp p)\)是永真式.
+\end{proof}
+\end{example}
+
+下面介绍\DefineConcept{永真式代入定理}（Rule of Substitution，简称RS）.
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P89 定理3-1
+设命题公式\(A(\AutoTuple{p}{n})\)是永真式，
+则分别用命题公式\(\AutoTuple{B}{n}\)代换命题变元\(\AutoTuple{p}{n}\)，
+所得到的命题公式\(A(\AutoTuple{B}{n})\)也是永真式.
+%TODO proof
+\end{theorem}
+% \DefineConcept{代入实例}（substitution instance）
+
+\section{逻辑等值的命题公式}
+\subsection{逻辑等值的定义}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P90 定义3-3
 给定两个命题公式\(A\)和\(B\)，
 如果在任何真值指派下，\(A\)和\(B\)的真值都相同，
 则称“命题公式\(A\)和\(B\) \DefineConcept{逻辑等值}（logically equal）”
