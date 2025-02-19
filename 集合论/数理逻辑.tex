@@ -734,33 +734,53 @@
 	\end{gather}
 \end{itemize}
 \end{theorem}
-\begin{remark}
-基本等值式可以用于：\begin{itemize}
-	\item 化简命题公式；
-	\item 判断命题公式的类型；
-	\item 证明等值式；
-	\item 计算命题公式的范式；
-	\item 命题逻辑推理.
-\end{itemize}
-\end{remark}
 
-对于任意命题公式\(A,B\)，有\begin{itemize}
-	\item \(A \lxor B
-	= \neg(A \liff B)
-	= (A \land \neg B) \lor (\neg A \land B)\).
-	\item \(A \limp B
-	= \neg A \lor B\).
-	\item \(A \liff B
-	= (A \limp B) \land (B \limp A)\).
-	\item \(A \lnand B
-	= \neg(A \land B)\).
-	\item \(A \lnor B
-	= \neg(A \lor B)\).
-	\item \(A \notimplies B
-	= \neg(A \limp B)\).
-\end{itemize}
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P92 定理3-6
+对于任意命题公式\(A,B\)，有\begin{gather}
+	A \lxor B
+	= \neg(A \liff B), \\
+	A \limp B
+	= \neg A \lor B, \\
+	A \liff B
+	= (A \limp B) \land (B \limp A), \\
+	A \lnand B
+	= \neg(A \land B), \\
+	A \lnor B
+	= \neg(A \lor B), \\
+	A \lnimp B
+	= \neg(A \limp B).
+\end{gather}
+\end{theorem}
 
-\begin{theorem}[等值置换定理]
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P94 习题3.4 5.
+%@see: 《离散数学》（邓辉文） P94 习题3.4 6.
+对于任意命题公式\(A,B,C\)，有\begin{gather}
+	A \lxor B = B \lxor A, \\
+	(A \lxor B) \lxor C = A \lxor (B \lxor C), \\
+	A \limp B = \neg B \limp \neg A, \\
+	\neg(A \liff B) = A \liff \neg B, \\
+	\neg A = A \lnand A, \\
+	\neg A = A \lnor A, \\
+	A \land B = (A \lnand B) \lnand (A \lnand B), \\
+	A \land B = (A \lnor A) \lnor (B \lnor B), \\
+	A \lor B = (A \lnand A) \lnand (B \lnand B), \\
+	A \lor B = (A \lnor B) \lnor (A \lnor B), \\
+	A \liff B = B \liff A, \\
+	(A \liff B) \liff C = A \liff (B \liff C), \\
+	A \liff B = \neg(A \lxor B), \\
+	A \liff B = (A \land B) \lor (\neg A \land \neg B).
+\end{gather}
+\end{theorem}
+
+\subsection{等值演算法}
+基本等值式有很多用途，
+可以用于化简命题公式（即将命题公式化为一个与其等值的满足指定条件的含联结词最少的命题公式）、
+判断命题公式的类型、证明等值式、计算命题公式的范式、命题逻辑推理等.
+
+在使用等值式时，下列\DefineConcept{等值置换定理}（Rule of Replacement，简称RR）是至关重要的.
+\begin{theorem}
 设\(C\)是命题公式\(A\)的子公式，且\(C = D\)，
 则将\(A\)中的\(C\)部分或全部替换成\(D\)所得到的命题公式与\(A\)等值.
 %TODO proof
