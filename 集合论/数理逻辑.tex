@@ -786,17 +786,65 @@
 %TODO proof
 \end{theorem}
 
+利用基本等值式和等值置换定理求解问题的方法称为\emph{等值演算法}.
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P93 例3-13(1)
+设\(A,B,C\)是任意的命题公式，
+化简命题公式\((A \limp (B \lor \neg C)) \land \neg A \land B\)，
+将最后结果表示为只含\(\neg\)和\(\lor\)的命题公式.
+\begin{solution}
+直接计算得\begin{align*}
+	(A \limp (B \lor \neg C)) \land \neg A \land B
+	&= (\neg A \lor (B \lor \neg C)) \land \neg A \land B \\
+	&= ((\neg A \lor (B \lor \neg C)) \land \neg A) \land B \\
+	% 吸收律
+	&= \neg A \land B
+	= \neg(A \lor \neg B).
+\end{align*}
+\end{solution}
+\end{example}
+
 \subsection{对偶原理}
+在\cref{theorem:数理逻辑.基本等值式} 中，
+除了对合律以外，其他性质都是成对出现的，两者间有一定的联系.
+下面我们给出命题公式的对偶式的定义.
 \begin{definition}
+%@see: 《离散数学》（邓辉文） P94 定义3-4
 设命题公式\(A\)中至多含有3个逻辑联结词\(\neg,\land,\lor\).
 将\(A\)中\(\land\)换成\(\lor\)，\(\lor\)换成\(\land\)，\(1\)换成\(0\)，\(0\)换成\(1\)，
 所得到的命题公式称为“\(A\)的\DefineConcept{对偶式}（dual formula）”，记为\(A^*\).
 \end{definition}
 
+\begin{example}
+%@see: 《离散数学》（邓辉文） P94 例3-16(1)
+设\(p,q\)是命题变元，写出命题公式\(\neg(p \land q) \land 1\)的对偶式.
+\begin{solution}
+命题公式\(\neg(p \land q) \land 1\)的对偶式为
+\(\neg(p \lor q) \lor 0\).
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P94 例3-16(2)
+设\(p,q,r\)是命题变元，写出命题公式\(p \lor (q \land r)\)的对偶式.
+\begin{solution}
+命题公式\(p \lor (q \land r)\)的对偶式为
+\(p \land (q \lor r)\).
+\end{solution}
+\end{example}
+
 \begin{theorem}[对偶原理]
+%@see: 《离散数学》（邓辉文） P94 定理3-8（对偶原理）
 设\(A\)和\(B\)是命题公式.
 若\(A = B\)，则\(A^* = B^*\).
+\begin{proof}
+利用 De Morgan 律易证.
+\end{proof}
 \end{theorem}
+
+对偶原理有利于记忆\cref{theorem:数理逻辑.基本等值式}，
+这是因为除了对合律以外的其余每一对性质，都只需要记住其中一个即可.
 
 \section{命题公式的范式}
 %@see: https://www.geeksforgeeks.org/normal-and-principle-forms/
