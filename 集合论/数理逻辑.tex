@@ -1009,7 +1009,7 @@
 则把该析取式称为“\(A\)的\DefineConcept{主析取范式}（major disjunctive form）”.
 \end{definition}
 \begin{remark}
-对于命题公式\(A = A(p_1,p_2,\dotsc,p_n)\)，
+对于命题公式\(A = A(\AutoTuple{p}{n})\)，
 它的所有极小项的析取是永真式\(1\)，
 它的0个极小项的析取是永假式\(0\)，
 在这两种极端情况下\(A\)的主析取范式均不存在.
@@ -1263,3 +1263,350 @@
 	\item \(\{\neg,\limp\}\).
 \end{itemize}
 \end{theorem}
+
+\section{命题逻辑中的推理}
+逻辑学的主要内容是研究推理.
+推理是从一些前提推出结论的思维过程.
+实际问题中的推理，需要对前提做深入分析，才能得出结论.
+例如由两直线平行，得出同位角相等；
+以及由一元二次方程的判别式大于0，得出方程有两个不相等的实数根.
+
+数理逻辑主要是用数学的方法研究逻辑中的推理，
+它关心的是推理形式的有效性问题.
+
+\subsection{推理形式有效性的定义}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P108 定义3-13
+设\(\AutoTuple{H}{n}\)和\(C\)是命题公式.
+若由\(\AutoTuple{H}{n}\)全为真，可得出\(C\)必然真，
+则称“由\(\AutoTuple{H}{n}\)得出\(C\)的\DefineConcept{推理形式是有效的}（valid argument form）”
+或“\(\AutoTuple{H}{n}\) \DefineConcept{逻辑推出}（logically follows） \(C\)”
+或“\(\AutoTuple{H}{n}\) \DefineConcept{逻辑蕴涵}（logically implies） \(C\)”，
+记为\[
+	\AutoTuple{H}{n} \implies C
+	\quad\text{或}\quad
+	\AutoTuple{H}{n} \vDash C;
+\]
+把\(\AutoTuple{H}{n}\)称为\DefineConcept{前提}（antecedent，premise，hypothesis），
+把\(C\)称为\DefineConcept{结论}（conclusion），
+把\(\implies\)称为\DefineConcept{推出符号}，
+把\(\AutoTuple{H}{n} \implies C\)称为\DefineConcept{推理规则}.
+\end{definition}
+% \(\vDash\)常用于形式系统的语义推理
+% \(\vdash\)常用于形式系统的语构推理
+
+\begin{theorem}\label{theorem:数理逻辑.推理规则的充分必要条件}
+%@see: 《离散数学》（邓辉文） P109 定理3-12
+设\(\AutoTuple{H}{n}\)和\(C\)是命题公式，
+则\(\AutoTuple{H}{n} \implies C\)的充分必要条件是
+\(H_1 \land \dotsb H_n \limp C\)是永真式.
+\begin{proof}
+命题公式由\(\AutoTuple{H}{n}\)全为真，
+可得出\(H_1 \land \dotsb H_n\)全为真.
+于是，由\(\AutoTuple{H}{n}\)全为真可得出\(C\)必然真的充分必要条件是
+\(H_1 \land \dotsb H_n \limp C\)是永真式.
+\end{proof}
+\end{theorem}
+\begin{remark}
+由于成立\cref{theorem:数理逻辑.推理规则的充分必要条件}，
+所以我们又把\(\AutoTuple{H}{n} \implies C\)
+称为\DefineConcept{永真蕴含式}或\DefineConcept{逻辑蕴含式}，
+并相应地把\(\implies\)称为\DefineConcept{永真蕴含符号}或\DefineConcept{逻辑蕴含符号}.
+但是一定要注意：\(\implies\)与蕴含连接词\(\limp\)是不同的.
+就两条命题公式而言，\(\implies\)是关系符号，\(A \implies B\)是逻辑蕴含式，
+\(\limp\)是运算符号，\(A \limp B\)是命题公式.
+\end{remark}
+
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P109 定理3-13
+设\(A\)和\(B\)是命题公式，
+则\(A \iff B\)的充分必要条件是\(A \implies B\)且\(B \implies A\).
+\begin{proof}
+利用\(A \liff B = (A \limp B) \land (B \limp A)\)即得.
+\end{proof}
+\end{theorem}
+
+可以证明：命题公式之间的永真蕴含关系是偏序关系.
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P109 定理3-14
+设\(A,B,C\)都是命题公式，则\begin{itemize}
+	\item {\rm\bf 自反性}：\(A \implies A\)；
+	\item {\rm\bf 反对称性}：如果\(A \implies B\)且\(B \implies A\)，则\(A = B\)；
+	\item {\rm\bf 传递性}：如果\(A \implies B\)且\(B \implies C\)，则\(A \implies C\).
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P109 定理3-15
+设\(A,B,C\)都是命题公式，则\begin{itemize}
+	\item 如果\(A \implies C\)且\(B \implies C\)，则\(A \lor B \implies C\)；
+	\item 如果\(C \implies A\)且\(C \implies B\)，则\(C \implies A \land B\).
+\end{itemize}
+%TODO proof \cref{theorem:数理逻辑.推理规则的充分必要条件}
+\end{theorem}
+
+%@see: 《离散数学》（邓辉文） P109 定理3-16
+% TODO 定理3-16 没有誊抄至此，原因是其内容包含 \sup 和 \inf 这两个符号
+% 而我在此之前在《离散数学》（邓辉文）中没有看到过这两个符号
+
+\subsection{基本推理规则}
+下面举例说明，证明推理形式有效性的4种方法.
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P110 例3-29
+设\(A,B\)是命题公式.
+证明：\(A \limp B,A \implies B\).
+\begin{proof}
+\begin{proof}[证法一]
+真值表法.
+\begin{center}
+	\begin{tblr}{*5c}
+		\hline
+		\(p\) & \(q\) & \(p \limp q\) & \((p \limp q) \land p\) & \(((p \limp q) \land p) \limp q\) \\
+		\hline
+		1 & 1 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 0 & 1 \\
+		0 & 0 & 1 & 0 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+由真值表可见\(((p \limp q) \land p) \limp q\)是永真式，
+那么由\cref{theorem:数理逻辑.推理规则的充分必要条件} 可知\(A \limp B,A \implies B\).
+\end{proof}
+\begin{proof}[证法二]
+取值法.
+假设\((p \limp q) \limp p\)取真，
+则\(p \limp q\)及\(p\)均取真，
+进而\(q\)为真，
+因此\(((p \limp q) \land p) \limp q\)永真.
+\end{proof}
+\begin{proof}
+等值演算法.
+\begin{align*}
+	((p \limp q) \land p) \limp q
+	&= ((\neg p \lor q) \land p) \limp q \\
+	&= ((\neg p \land p) \lor (p \land q)) \limp q \\
+	&= (p \land q) \limp q \\
+	&= \neg(p \land q) \lor q \\
+	&= (\neg p \lor \neg q) \lor q \\
+	&= \neg p \lor (\neg q \lor q) \\
+	&= \neg p \lor 1
+	= 1.
+	\qedhere
+\end{align*}
+\end{proof}
+\begin{proof}
+主范式法.
+\(((p \limp q) \land p) \limp q\)的主析取范式为\[
+	(p \land q) \lor (p \land \neg q) \lor (\neg p \land q) \lor (\neg p \land \neg q).
+\]
+它的主合取范式不存在.
+由主范式可见\(((p \limp q) \land p) \limp q\)永真.
+\end{proof}
+\let\qed\relax
+\end{proof}
+\end{example}
+
+\begin{table}[hbt]
+%@see: 《离散数学》（邓辉文） P110 表3-20
+	\centering
+	\begin{tblr}{cc|c}
+		\hline
+		化简 & Simplification
+			& \(A \land B \implies A\) \\
+		附加 & Addition
+			& \(A \implies A \lor B\) \\
+		合取引入 & Conjunction
+			& \(A,B \implies A \land B\) \\
+		析取三段论 & Disjunctive Syllogism
+			& \(A \lor B, \neg A \implies B\) \\
+		假言推理 & Modus Ponens
+			& \(A \limp B, A \implies B\) \\
+		拒取式 & Modus Tollens
+			& \(A \limp B, \neg B \implies \neg A\) \\
+		假言三段式 & Hypothetical Syllogism
+			& \(A \limp B, B \limp C \implies A \limp C\) \\
+		二难推理 & Constructive Dilemma
+			& \(A \lor B, A \limp C, B \limp C \implies C\) \\
+		% Destructive Dilemma
+		\hline
+	\end{tblr}
+	\caption{基本逻辑蕴含式I}
+\end{table}
+
+\subsection{命题逻辑的自然推理系统}
+自然推理的构造法是判定推理形式有效性的又一种方法，
+它主要是为今后进一步学习数理逻辑，尤其是为逻辑的公理化推理系统做准备的.
+自然推理的基本思想是，确定一些推理规则，然后根据这些推理规则从前提出发，把结论推出来.
+
+作为推理系统，原则上有以下4个部分：\begin{enumerate}
+	\item 推理系统应该有初始符号，即一些在推理系统中允许出现的字符，
+	包括命题变元（通常用小写拉丁字母表示）、
+	五个联结词（即\(\neg,\land,\lor,\limp,\liff\)）
+	和左右圆括号；
+	\item 合式公式的定义；
+	\item 公理的确立；
+	\item 推理规则的确立.
+\end{enumerate}
+
+在自然推理系统中不存在公理（这一点与公理推理系统截然不同）.
+它把所有与5个联结词\(\neg,\land,\lor,\limp,\liff\)有关的基本逻辑蕴含式都作为推理规则.
+同时，一个基本等值式相当于两个基本逻辑蕴含式.
+除了基本逻辑蕴含式和基本等值式以外，还有两个最基本的推理规则：\begin{itemize}
+	\item {\rm\bf P规则}，即所给的前提在证明过程中随时可以引用；
+	\item {\rm\bf T规则}，即已经推出的命题公式在以后得证明过程中可以随时引用.
+\end{itemize}
+
+由于在自然推理系统中，作为推理依据的，只有推理规则，
+这似乎更符合人们日常思维的推理习惯，因此称为自然推理.
+
+\begin{table}[hbt]
+%@see: 《离散数学》（邓辉文） P111 表3-21
+	\centering
+	\begin{tblr}{c|c}
+		\hline
+		对合律 & \(\neg\neg A = A\) \\
+		幂等律 & \(A \lor A = A, A \land A = A\) \\
+		交换律 & \(A \lor B = B \lor A, A \land B = B \land A\) \\
+		结合律 & \((A \lor B) \lor C = A \lor (B \lor C), (A \land B) \land C = A \land (B \land C)\) \\
+		吸收律 & \(A \lor (A \land B) = A, A \land (A \lor B) = A\) \\
+		分配律 & \(A \lor (B \land C) = (A \lor B) \land (A \lor C), A \land (B \lor C) = (A \land B) \lor (A \land C)\) \\
+		互补律 & \(A \lor \neg A = 1, A \land \neg A = 0\) \\
+		De Morgan 律 & \(\neg(A \lor B) = \neg A \land \neg B, \neg(A \land B) = \neg A \lor \neg B\) \\
+		同一律 & \(A \lor 0 = 0 \lor A = A, A \land 1 = 1 \land A = A\) \\
+		0-1 律 & \(A \lor 1 = 1 \lor A = 1, A \land 0 = 0 \land A = 0\) \\
+		& \(A \limp B = \neg A \lor B\) \\
+		& \(A \liff B = (A \limp B) \land (B \limp A)\) \\
+		\hline
+	\end{tblr}
+	\caption{基本等值式E}
+\end{table}
+
+在进行自然推理时，采用构造性证明方法
+（简称\DefineConcept{构造法}或\DefineConcept{演绎法}或\DefineConcept{形式证明法}）.
+
+通过以下例子了解自然推理证明过程的书写格式.
+\begin{example}
+%@see: 《离散数学》（邓辉文） P112 例3-30
+证明：\(p \limp (q \lor r), \neg s \limp \neg q, p \land \neg s \implies r\).
+\begin{proof}
+用构造法.
+\begin{center}
+	\begin{tblr}{cp{4cm}l}
+		(1) & \(p \land \neg s\) & P \\
+		(2) & \(p\) & T(1)I \\
+		(3) & \(\neg s\) & T(1)I \\
+		(4) & \(p \limp (q \lor r)\) & P \\
+		(5) & \(q \lor r\) & T(2)(4)I \\
+		(6) & \(\neg s \limp \neg q\) & P \\
+		(7) & \(\neg q\) & T(3)(6)I \\
+		(8) & \(r\) & T(5)(7)I \\
+	\end{tblr}
+\end{center}
+\end{proof}
+\end{example}
+\begin{remark}
+从上述证明过程可以看出，每一行由3部分组成：
+第一部分是编号，说明这一行是证明的第几步；
+第二部分仅给出一个命题公式；
+第三部分是给出理由，交代该命题公式是怎么得来的.
+\end{remark}
+
+下面介绍两种间接的构造性证明方法.
+
+首先介绍反证法.
+要证明\(\AutoTuple{H}{n} \implies C\)，
+将结论\(C\)否定得到\(\neg C\)，然后推出一个矛盾（例如\(S \land \neg S\)）即可.
+
+这个证明方法的道理是：要证明\(\AutoTuple{H}{n} \implies C\)，
+只要证\(H_1 \land \dotsb \land H_n \limp C\)永真，
+即\(\neg(H_1 \land \dotsb \land H_n) \lor C\)永真，
+或\(\neg(\neg(H_1 \land \dotsb \land H_n) \lor C)\)永假.
+\begin{example}
+%@see: 《离散数学》（邓辉文） P113 例3-33
+证明：\(p \land \neg q \limp r, \neg r \land \neg q \implies \neg p\).
+\begin{proof}
+用反证法.
+\begin{center}
+	\begin{tblr}{cp{4cm}l}
+		(1) & \(\neg(\neg p)\) & P(附加) \\
+		(2) & \(p\) & T(1)E \\
+		(3) & \(\neg r \land \neg q\) & P \\
+		(4) & \(\neg q\) & T(3)I \\
+		(5) & \(p \land \neg q\) & T(2)(4)I \\
+		(6) & \(p \land \neg q \limp r\) & P \\
+		(7) & \(r\) & T(5)(6)I \\
+		(8) & \(\neg r\) & T(3)I \\
+		(9) & \(r \land \neg r\) & T(7)(8)I \\
+	\end{tblr}
+\end{center}
+\end{proof}
+\end{example}
+
+下面介绍条件证明规则.
+对于形如\(\AutoTuple{H}{n} \implies A \limp C\)的推理，
+只需要证明\(\AutoTuple{H}{n},A \implies C\)，
+这就是采用\DefineConcept{条件证明规则}的证明方法，
+它是将\(A \limp C\)的前件\(A\)和后件\(C\)分离的一种证明方法.
+
+这个证明方法的道理是：\begin{align*}
+	&\AutoTuple{H}{n} \implies A \limp C \\
+	&= (H_1 \land \dotsb \land H_n) \limp (A \limp C) \\
+	&= \neg(H_1 \land \dotsb \land H_n) \lor (\neg A \lor C) \\
+	&= (\neg(H_1 \land \dotsb \land H_n) \lor \neg A) \lor C \\
+	&= \neg(H_1 \land \dotsb \land H_n \land A) \lor C \\
+	&= (H_1 \land \dotsb \land H_n \land A) \limp C \\
+	&= \AutoTuple{H}{n},A \implies C,
+\end{align*}
+也就是说，\(\AutoTuple{H}{n} \implies A \limp C\)永真的充分必要条件是
+\(\AutoTuple{H}{n},A \implies C\)永真.
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P114 例3-34
+证明：\(p \limp (q \lor r), q \limp \neg p, s \limp \neg r \implies p \limp \neg s\).
+\begin{proof}
+用条件证明规则.
+\begin{center}
+	\begin{tblr}{cp{4cm}l}
+		(1) & \(p \limp (q \lor r)\) & P \\
+		(2) & \(p\) & P(附加) \\
+		(3) & \(q \lor r\) & T(1)(2)I \\
+		(4) & \(q \limp \neg p\) & P \\
+		(5) & \(\neg q \lor \neg p\) & T(4)E \\
+		(6) & \(\neg q\) & T(2)(5)I \\
+		(7) & \(r\) & T(3)(6)I \\
+		(8) & \(s \limp \neg r\) & P \\
+		(9) & \(\neg s \lor \neg r\) & T(8)E \\
+		(10) & \(\neg s\) & T(7)(9)I \\
+		(11) & \(p \limp \neg s\) & CP \\
+	\end{tblr}
+\end{center}
+\end{proof}
+\end{example}
+
+数理逻辑的主要研究任务是建立一个严密的逻辑推理系统 --- 公理推理系统 --- 来刻画人类的思维规律，
+这个系统与上述自然推理系统是类似的，但它有更精简的初始符号、公式的形成规则、公理和推理规则.
+已有的逻辑演算形式系统，例如\emph{命题演算的形式系统}（formal system of proposition calculus），
+在理论上证明了其合理性、一致性、完备性等与语法、语义有关的重要结论，
+可以得出人类思维的所有推理规则，
+所提供的逻辑推理框架能保证在前提为真的条件下，总能得出正确的结论.
+
+\chapter{谓词逻辑}
+原子命题是命题逻辑研究的基本单位，
+没有对原子命题的内部结构及其逻辑关系进行讨论.
+在实际思维中，仅有命题逻辑工具是不够的.
+例如著名的苏格拉底三段论：
+大前提是“所有的人都是要死的”，
+小前提是“苏格拉底是人”，
+结论是“所以，苏格拉底是要死的”.
+这个推理的有效性在命题逻辑中无法证明，
+因为上述每个命题都是原子命题，
+可以分别用\(p,q,r\)表示，
+然而\(p,q \implies r\)在命题逻辑中是无效推理.
+
+之所以出现这种推理本身是正确的，但无法证明其有效性的问题，
+是因为没有对原子命题的内部形式结构及其逻辑关系进行讨论，
+这正是谓词逻辑首先要研究的内容，这些讨论涉及集合、映射、运算和关系.
+
+本章讨论的谓词逻辑又称为一阶逻辑.
