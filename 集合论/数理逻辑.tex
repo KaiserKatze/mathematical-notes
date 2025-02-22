@@ -1610,3 +1610,121 @@
 这正是谓词逻辑首先要研究的内容，这些讨论涉及集合、映射、运算和关系.
 
 本章讨论的谓词逻辑又称为一阶逻辑.
+
+\section{个体、谓词、量词和函词}
+\subsection{个体}
+在谓词逻辑中，命题的考虑对象称为\DefineConcept{个体}（individual）.
+个体是独立存在的事物.
+个体可以是具体的，也可以是抽象的.
+
+表示特定的、具体的个体，称为\DefineConcept{个体常量}（constant）.
+不确定的个体，称为\DefineConcept{个体变元}（variable）.
+个体常量和个体变元通常用小写拉丁字母表示，
+例如\(a,b,c,\dotsc,x,y,z\).
+
+在讨论个体时，通常要制定个体讨论的范围，
+称为\DefineConcept{个体域}（domain of individuals）
+或\DefineConcept{论域}（universe），
+用\(D\)表示，一般假定\(D\)非空.
+
+个体域可以是有限汇集，也可以是无限汇集.
+我们把人类能够反映、认知的一切事物的汇集，
+称为\DefineConcept{全总个体域}，简称\DefineConcept{全域}.
+
+\subsection{谓词}
+我们把表示个体性质以及个体之间关系的词称为\DefineConcept{谓词}（predicate）.
+
+表示一个个体性质的谓词称为1元谓词.
+表示\(n\ (n\geq0)\)个个体之间关系的谓词称为\(n\)元谓词.
+谓词通常用大写拉丁字母表示，例如\(P,Q,R\).
+为了强调\(n\)元谓词的元数，
+会像表示\(n\)元函数一样，
+在大写拉丁字母后面添上圆括号，并在括号内添上\(n\)个个体变元，
+例如\(P(\AutoTuple{x}{n})\).
+
+对于\(n\)元谓词\(P(\AutoTuple{x}{n})\ (n\geq1)\)，
+当个体变元\(\AutoTuple{x}{n}\)取定个体域中的元素后，就成为一个命题，
+例如\[
+	G(x,y):
+	x>y,
+\]
+它是关于命题的函数，称为\DefineConcept{命题函数}（propositional function）.
+显然，命题函数不是命题.
+
+\begin{remark}
+谓词的选取与个体域有关.
+例如，对于命题“所有人都是要死的”，
+若在所有人组成的个体域中考虑，
+只需一个谓词\[
+	D(x):
+	\text{$x$是要死的};
+\]
+若在全域中考虑，则需要两个谓词\[
+	P(x):
+	\text{$x$是人},
+	\qquad
+	D(x):
+	\text{$x$是要死的},
+\]
+其中\(P(x)\)称为\DefineConcept{特性谓词}，
+我们用这个谓词将“人”从全域中分离出来.
+\end{remark}
+
+\subsection{量词}
+对于命题函数，例如\[
+	P(x):
+	\text{$x$是素数},
+\]
+当个体域\(D\)为自然数集\(\mathbb{N}\)时，
+对于\(x\)的每一个取值，就有一个命题.
+这是使\(P(x)\)成为命题的一种方法.
+
+使\(P(x)\)成为命题的另一种方法是，
+量化个体变元\(x\)，
+常用方法有两种：全称量化和存在量化.
+
+把表示个体数量特征的词称为\DefineConcept{量词}（quantifier）.
+常见的量词有\DefineConcept{全称量词}~\(\forall\)（universal quantifier）
+和\DefineConcept{存在量词}~\(\exists\)（existential quantifier）.
+
+由于在本章中，仅对个体进行量化，不对谓词进行量化，
+因此把本章介绍的谓词逻辑特别称为\DefineConcept{一阶谓词逻辑}.
+
+在使用量词时，必须要指明量化的个体变元，
+例如\(\forall x,\forall y,\exists x,\exists y\).
+单独使用量词是没有意义的.
+我们把量词后面跟着的个体变元称为\DefineConcept{指导变元}.
+
+若将命题函数中的所有个体变元都进行了量化，则得到一个命题，否则不是命题.
+
+量词是对个体变元进行量化，所给的个体域\(D\)至关重要.
+同一个带量词的命题，例如\((\exists x)(\exists y)[G(x,y)]\)，其中\(G(x,y): x>y\)，
+则在自然数集\(\mathbb{N}\)中，\((\exists x)(\exists y)[G(x,y)]\)表示没有最小的自然数，是假命题；
+而在整数集\(\mathbb{Z}\)中，\((\exists x)(\exists y)[G(x,y)]\)表示没有最小的整数，是真命题.
+
+我们把量词\(\forall\)或\(\exists\)的作用范围
+称为它的\DefineConcept{作用域}或\DefineConcept{辖域}（scope），
+辖域内的个体变元称为\DefineConcept{约束变元}（bound variable）.
+
+若量词后有括号，则括号里面的部分是它的辖域.
+
+若令\[
+	P(x):
+	\text{$x$是人},
+	\qquad
+	D(x):
+	\text{$x$是要死的},
+\]
+则“所有的人都是要死的”可以表示为\[
+	(\forall x)[P(x) \limp D(x)],
+\]
+这时\(\forall x\)的辖域为\(P(x) \limp D(x)\)，
+其中两次出现的\(x\)是约束变元.
+
+不受任何量词约束的变元称为\DefineConcept{自由变元}（free variable）.
+例如\[
+	(\forall x)[G(x,y)]
+\]中的\(y\)，
+它不受\(\forall x\)的约束，这时\(G(x,y)\)中的\(y\)是自由变元.
+
+个体变元的函数称为\DefineConcept{函词}（function）.
