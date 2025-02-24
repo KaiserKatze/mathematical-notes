@@ -1812,3 +1812,40 @@
 % %where \(\phi(x)\) is obtained from \(\phi\)
 % %by replacing each occurrence of some free variable by x.
 % \end{axiom}
+
+\section{谓词公式的解释及类型}
+谓词公式的取值，取决于对它进行的解释或赋值，有如对命题公式的指派.
+但与命题公式不同的时，谓词公式的解释有无限多种，
+每种\DefineConcept{解释}（interpretation）由下面5个部分组成：\begin{itemize}
+	\item 指定个体域；
+	\item 为命题变元指派其真值；
+	\item 将个体常量及其自由变元解释为指定个体域中的元素.
+\end{itemize}
+
+当把谓词公式中的个体常量\(a\)解释为个体域\(D\)中的个体\(\alpha\)时，
+记作\(\frac{a}{\alpha}\).
+
+谓词公式在任何解释下都会取得一个真值.
+假设个体域是\(D\)，
+则有以下两个消去量词的逻辑等值式：\begin{gather}
+	(\forall x)[P(x)]
+	= \bigwedge_{d \in D} P(d), \\
+	(\exists x)[P(x)]
+	= \bigvee_{d \in D} P(d).
+\end{gather}
+
+%@see: 《离散数学》（邓辉文） P127 定义4-1
+在任何解释下均为真的谓词公式称为\DefineConcept{永真式}或\DefineConcept{有效式}（valid）.
+
+%@see: 《离散数学》（邓辉文） P127 定义4-2
+至少存在一种解释使其成真的谓词公式称为\DefineConcept{可满足式}，
+否则称为\DefineConcept{不可满足式}或\DefineConcept{矛盾式}或\DefineConcept{永假式}.
+
+既存在取\(1\)的解释，又存在取\(0\)的解释的谓词公式
+称为\DefineConcept{中性式}或\DefineConcept{偶然式}.
+
+\begin{theorem}
+% 1936年丘奇和图灵分别独立证明了：
+中性谓词公式无法在有限步内判定.
+永真谓词公式、永假谓词公式可以在有限布内判定.
+\end{theorem}
