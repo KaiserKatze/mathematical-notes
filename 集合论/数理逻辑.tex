@@ -1849,3 +1849,129 @@
 中性谓词公式无法在有限步内判定.
 永真谓词公式、永假谓词公式可以在有限布内判定.
 \end{theorem}
+
+\section{逻辑等值的谓词公式}
+\subsection{谓词公式等值的定义}
+与两个命题公式等值完全类似，我们可以给出两个谓词公式等值的定义.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P129 定义4-3
+设\(A,B\)是谓词公式.
+若\(A\)和\(B\)在任何解释下的取值都相同，
+则称“\(A\)和\(B\)是逻辑等值的”，
+记为\(A=B\).
+\end{definition}
+
+显然，\(A=B\)的充分必要条件是谓词公式\(A \liff B\)永真.
+
+根据命题逻辑中的等值式，容易得到一些谓词逻辑中的等值式.
+
+\subsection{基本等值式}
+\subsubsection{量词转换}
+设谓词公式\(A\)含自由变元\(x\)，
+则\begin{gather}
+	\neg(\forall x)[A(x)]
+	= (\exists x)[\neg A(x)],
+	\label{equation:数理逻辑.量词转换1} \\
+	\neg(\exists x)[A(x)]
+	= (\forall x)[\neg A(x)].
+	\label{equation:数理逻辑.量词转换2}
+\end{gather}
+
+\subsubsection{量词辖域的收缩与扩张}
+设谓词公式\(A\)含自由变元\(x\)，
+谓词公式\(B\)中不含自由变元\(x\)，
+则\begin{gather}
+	(\forall x)[A(x) \land B]
+	= (\forall x)[A(x)] \land B, \\
+	(\forall x)[A(x) \lor B]
+	= (\forall x)[A(x)] \lor B, \\
+	(\exists x)[A(x) \land B]
+	= (\exists x)[A(x)] \land B, \\
+	(\exists x)[A(x) \lor B]
+	= (\exists x)[A(x)] \lor B.
+\end{gather}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P131 习题4.4 3.(1)
+证明：\begin{equation}
+	(\exists x)[A(x) \limp B]
+	= (\forall x)[A(x)] \limp B.
+\end{equation}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P131 习题4.4 3.(2)
+证明：\begin{equation}
+	(\exists x)[B \limp A(x)]
+	= B \limp (\exists x)[A(x)].
+\end{equation}
+\end{example}
+
+\subsubsection{量词分配律}
+设谓词公式\(A,B\)都含自由变元\(x\)，
+则\begin{gather}
+	(\forall x)[A(x) \land B(x)]
+	= (\forall x)[A(x)] \land (\forall x)[B(x)], \\
+	(\exists x)[A(x) \lor B(x)]
+	= (\exists x)[A(x)] \lor (\exists x)[B(x)].
+\end{gather}
+\begin{remark}
+量词\(\forall\)对\(\land\)可分配，
+但是\((\forall x)[A(x) \lor B(x)]
+\neq (\forall x)[A(x)] \lor (\forall x)[B(x)]\).
+例如，令个体域\(D=\mathbb{Z}\)，
+令\(A(x): \text{$x$是偶数}\)，
+令\(B(x): \text{$x$是奇数}\)，
+则\((\forall x)[A(x) \lor B(x)]\)在上述解释下取真，
+而\((\forall x)[A(x)] \lor (\forall x)[B(x)]\)在上述解释下取假.
+
+同样地，
+量词\(\exists\)对\(\lor\)可分配，
+但是\((\exists x)[A(x) \land B(x)]
+\neq (\exists x)[A(x)] \land (\exists x)[B(x)]\).
+\end{remark}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P131 习题4.4 5.
+证明：\begin{equation}
+	(\exists x)[A(x) \limp B(x)]
+	= (\forall x)[A(x)] \limp (\exists x)[B(x)].
+\end{equation}
+\end{example}
+
+\subsubsection{双重量词}
+设谓词公式\(A\)含自由变元\(x\)和\(y\)，
+则\begin{gather}
+	(\forall x)(\forall y)[A(x,y)]
+	= (\forall y)(\forall x)[A(x,y)], \\
+	(\exists x)(\exists y)[A(x,y)]
+	= (\exists y)(\exists x)[A(x,y)].
+\end{gather}
+\begin{remark}
+\((\forall x)(\exists y)[A(x,y)]
+\neq (\exists y)(\forall x)[A(x,y)]\).
+\end{remark}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P131 习题4.4 6.(1)
+证明：\begin{equation}
+	(\forall x)(\forall y)[A(x) \lor B(y)]
+	= (\forall x)[A(x)] \lor (\forall y)[B(y)].
+\end{equation}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P131 习题4.4 6.(2)
+证明：\begin{equation}
+	(\exists x)(\exists y)[A(x) \land B(y)]
+	= (\exists x)[A(x)] \land (\exists y)[B(y)].
+\end{equation}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P131 习题4.4 6.(3)
+证明：\begin{equation}
+	(\exists x)(\exists y)[A(x) \limp B(x)]
+	= (\forall)[A(x)] \limp (\exists y)[B(y)].
+\end{equation}
+\end{example}
