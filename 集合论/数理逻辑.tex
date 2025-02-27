@@ -1998,3 +1998,173 @@
 	\item 使用\cref{equation:数理逻辑.量词转换1,equation:数理逻辑.量词转换2}
 	这两个等值式，将否定联结词从外向里移动.
 \end{enumerate}
+
+\section{谓词逻辑中的推理}
+\subsection{逻辑蕴涵式}
+\begin{example}
+%@see: 《离散数学》（邓辉文） P133 例4-19
+证明：\((\forall x)[A(x)] \implies A(t)\).
+\begin{proof}
+%TODO 由例4-9可知，
+\((\forall x)[A(x)] \limp A(t)\)永真.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P133 例4-20
+证明：\((\exists x)(\forall y)[A(x,y)] \implies (\forall y)(\exists x)[A(x,y)]\).
+\begin{proof}
+任意给定个体域\(D\)上的解释\(I\)，
+假定\((\exists x)(\forall y)[A(x,y)]\)在解释\(I\)下取真，
+则存在\(d_0 \in D\)，
+对于任意\(d \in D\)，
+均有\(A(d_0,d)\)取真，
+于是\((\forall y)(\exists x)[A(x,y)]\)在解释\(I\)下取真.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P133 例4-21
+证明：\((\exists y)(\forall x)[A(x,y)]\)不是\((\forall x)(\exists y)[A(x,y)]\)的有效结论.
+\begin{proof}
+令个体域\(D=\mathbb{R}\)，
+\(A(x,y): x>y+3\)，
+则\((\forall x)(\exists y)[A(x,y)]\)表示
+“对于任意实数\(x\)，均存在实数\(y\)，使得\(x>y+3\)”，
+它是真命题；
+而\((\exists y)(\forall x)[A(x,y)]\)表示
+“存在实数\(y\)，对于任意实数\(x\)，都有\(x>y+3\)”，
+它是假命题；
+所以\((\forall x)(\exists y)[A(x,y)] \limp (\exists y)(\forall x)[A(x,y)]\)不是永真式，
+因此\((\exists y)(\forall x)[A(x,y)]\)不是\((\forall x)(\exists y)[A(x,y)]\)的有效结论.
+\end{proof}
+\end{example}
+
+\subsection{基本推理规则}
+命题逻辑中的基本推理规则可以很方便地推广到谓词逻辑.
+
+谓词逻辑有两个非常重要的、与量词有关的逻辑蕴涵式.
+\begin{theorem}\label{theorem:一阶逻辑.基本推理规则}
+%@see: 《离散数学》（邓辉文） P133 定理4-1
+设谓词公式\(A,B\)都含自由变元\(x\)，
+则\begin{gather}
+	(\forall x)[A(x)] \lor (\forall x)[B(x)]
+	\implies (\forall x)[A(x) \lor B(x)], \\
+	(\exists x)[A(x) \land B(x)]
+	\implies (\exists x)[A(x)] \land (\exists x)[B(x)].
+\end{gather}
+\end{theorem}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P134 例4-22(1)
+设谓词公式\(A,B\)都含自由变元\(x\)，
+举例说明\[
+	\neg(\forall x)[A(x)] \implies (\forall x)[\neg A(x)]
+\]不成立.
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P134 例4-22(2)
+设谓词公式\(A,B\)都含自由变元\(x\)，
+举例说明\[
+	(\exists x)[A(x) \limp B(x)] \implies (\exists x)[A(x)] \limp (\exists x)[B(x)]
+\]不成立.
+%TODO
+\end{example}
+
+\subsection{自然推理系统}
+谓词逻辑的自然推理系统是对命题逻辑的自然推理系统的一种推广.
+相比于命题逻辑，
+谓词逻辑的初始符号，增加了函词、谓词、量词；
+新建了谓词公式的形成规则；
+依然没有公理；
+基本推理规则除了\cref{theorem:一阶逻辑.基本推理规则} 引入的两个逻辑蕴涵式以外，
+还有以下4个与量词有关的基本推理规则：\begin{enumerate}
+	\item {\rm\bf 全称量词消去规则}：\[
+		(\forall x)[A(x)] \implies A(c)\ (\text{$c$是个体域中任意个体}).
+	\]
+
+	\item {\rm\bf 全称量词产生规则}：\[
+		A(c)\ (\text{$c$是个体域中任意个体}) \implies (\forall x)[A(x)].
+	\]
+
+	\item {\rm\bf 存在量词消去规则}：\[
+		(\exists x)[A(x)] \implies A(c)\ (\text{$c$是个体域中某个体，且$c$与其他自由变元无关}).
+	\]
+
+	\item {\rm\bf 存在量词产生规则}：\[
+		A(c)\ (\text{$c$是个体域中某个体}) \implies (\exists x)[A(x)].
+	\]
+\end{enumerate}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P134 例4-23
+证明苏格拉底三段论推理的有效性.
+\begin{proof}
+令\(s: \text{苏格拉底},
+P(x): \text{$x$是人},
+D(x): \text{$x$是要死的}\)，
+则苏格拉底三段论
+“所有的人都是要死的，苏格拉底是人，所以，苏格拉底是要死的”
+可以转写为\[
+	(\forall x)[P(x) \limp D(x)],
+	P(s)
+	\implies
+	D(s).
+\]
+于是
+\begin{center}
+	\begin{tblr}{cp{4cm}l}
+		(1) & \(P(s)\) & P \\
+		(2) & \((\forall x)[P(x) \limp D(x)]\) & P \\
+		(3) & \(P(s) \limp D(s)\) & US(2) \\
+		(4) & \(D(s)\) & T(1)(3)I \\
+	\end{tblr}
+\end{center}
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P134 例4-24
+证明：\((\forall x)[F(x) \limp G(x)],
+(\exists x)[F(x)]
+\implies
+(\exists x)[G(x)]\).
+\begin{proof}
+用构造法.
+\begin{center}
+	\begin{tblr}{cp{4cm}l}
+		(1) & \((\exists x)[F(x)]\) & P \\
+		(2) & \(F(c)\) & ES(1) \\
+		(3) & \((\forall x)[F(x) \limp G(x)]\) & P \\
+		(4) & \(F(c) \limp G(c)\) & US(3) \\
+		(5) & \(G(c)\) & T(2)(4)I \\
+		(6) & \((\exists x)[G(x)]\) & EG(5) \\
+	\end{tblr}
+\end{center}
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P135 例4-25
+证明：\(\neg(\exists x)[F(x) \land H(x)],
+(\forall x)[G(x) \limp H(x)]
+\implies
+(\forall x)[G(x) \limp \neg F(x)]\).
+\begin{proof}
+用构造法.
+\begin{center}
+	\begin{tblr}{cp{4cm}l}
+		(1) & \(\neg(\exists x)[F(x) \land H(x)]\) & P \\
+		(2) & \((\forall x)[\neg F(x) \lor \neg H(x)]\) & T(1)E \\
+		(3) & \(\neg F(c) \lor \neg H(c)\) & US(2) \\
+		(4) & \(H(c) \limp \neg F(c)\) & T(3)E \\
+		(5) & \((\forall x)[G(x) \limp H(x)]\) & P \\
+		(6) & \(G(c) \limp H(c)\) & US(5) \\
+		(7) & \(G(c) \limp \neg F(c)\) & T(4)(6)I \\
+		(8) & \((\forall x)[G(x) \limp \neg F(x)]\) & UG(7) \\
+	\end{tblr}
+\end{center}
+\end{proof}
+\end{example}
