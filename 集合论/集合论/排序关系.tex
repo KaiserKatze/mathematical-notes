@@ -34,6 +34,115 @@
 则\(\subseteq\)是\(\Powerset A\)上的偏序关系.
 \end{example}
 
+\subsection{哈斯图}
+%@see: 《离散数学及其应用（原书第7版）》 P521
+我们可以用有向图描绘有限偏序集，
+只需要将每个元素按照偏序关系规定的顺序依次排开，
+再用有向弧连接每一对元素.
+例如，在集合\(\{1,2,3,4\}\)上定义偏序关系\[
+	\Set{\opair{a,b} \given a \leq b}
+	= \Set{
+		\opair{1,1},
+		\opair{2,2},
+		\opair{3,3},
+		\opair{4,4},
+		\opair{1,2},
+		\opair{2,3},
+		\opair{3,4},
+		\opair{1,3},
+		\opair{2,4},
+		\opair{1,4}
+	},
+\]
+那么可以得到如\cref{figure:偏序关系.有向图1} 所示的有向图.
+应该注意到，在这个有向图中，在每一个顶点处都有环，
+鉴于它们必定出现，所以我们不必画出这些环.
+由于偏序关系具有传递性，所以我们不必画出那些可以利用传递性得到的弧
+（例如\(\opair{1,3},
+\opair{2,4},
+\opair{1,4}\)这三段弧）.
+如果我们假设所有弧的方向都是大体向上，那么我们也不必标注弧的方向.
+通过上述三种手段，我们就能让画面更加简洁，得到\cref{figure:偏序关系.哈斯图1}.
+
+\begin{figure}[hbt]
+	\centering
+	\tikzset{
+		%@see: https://tex.stackexchange.com/a/69225
+		on each segment/.style={
+			decorate,
+			decoration={
+				show path construction,
+				moveto code={},
+				lineto code={
+					\path [#1]
+					(\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+				},
+				curveto code={
+					\path [#1] (\tikzinputsegmentfirst)
+					.. controls
+					(\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb)
+					..
+					(\tikzinputsegmentlast);
+				},
+				closepath code={
+					\path [#1]
+					(\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+				},
+			},
+		},
+		% style to add an arrow in the middle of a path
+		mid arrow/.style={postaction={decorate,decoration={
+			markings,
+			mark=at position .5 with {\arrow[#1]{stealth}}
+		}}},
+	}
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\tikzstyle{midarrow}=[draw=blue,postaction={on each segment={mid arrow=red}}]
+			\draw[midarrow] (0,1)to(0,2);
+			\draw[midarrow] (0,2)to(0,3);
+			\draw[midarrow] (0,3)to(0,4);
+			\draw[midarrow] (0,1)to[out=135,in=225](0,4);
+			\draw[midarrow] (0,1)to[out=113,in=247](0,3);
+			\draw[midarrow] (0,2)to[out=113,in=247](0,4);
+			\draw[midarrow] (0,1)++(.25,0)circle(.25);
+			\draw[midarrow] (0,2)++(.25,0)circle(.25);
+			\draw[midarrow] (0,3)++(.25,0)circle(.25);
+			\draw[midarrow] (0,4)++(.25,0)circle(.25);
+			\fill(0,1)circle(2pt)node[right]{1};
+			\fill(0,2)circle(2pt)node[right]{2};
+			\fill(0,3)circle(2pt)node[right]{3};
+			\fill(0,4)circle(2pt)node[right]{4};
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:偏序关系.有向图1}
+	\end{subfigure}~\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\fill(0,1)circle(2pt)node[right]{1};
+			\fill(0,2)circle(2pt)node[right]{2};
+			\fill(0,3)circle(2pt)node[right]{3};
+			\fill(0,4)circle(2pt)node[right]{4};
+			\draw(0,1)--(0,4);
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:偏序关系.哈斯图1}
+	\end{subfigure}
+\end{figure}
+
+总结一下，我们可以使用下面的过程
+表示一个有限的偏序集\(\opair{S,\leq}\)：\begin{enumerate}
+	\item 从偏序关系中去掉所有的环
+	（即\(\Set{\opair{a,a} \given a \in S}\)）；
+	\item 去掉所有可以利用传递性得到的弧
+	（即\(\Set{\opair{a,c} \given (\exists b \in S)[a \leq b \land b \leq c]}\)；
+	\item 排列每条弧，使得它的起点在终点下面，擦除弧上的箭头.
+\end{enumerate}
+我们把按照上述步骤绘制得到的图称为“偏序集\(\opair{S,\leq}\)的\DefineConcept{哈斯图}”.
+它是以德国数学家赫尔姆·哈斯的名字命名的.
+
 \subsection{最大元，最小元，上界，下界}
 \begin{definition}
 %@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P5
