@@ -1,3 +1,9 @@
 # 数学笔记
 
-笨鸟先飞
+## 内容简介
+这里存放本人的数学学习笔记.
+如有错漏，敬请谅解.
+
+## 联系方式
+
+<img src="contact_me_via_wechat.svg" alt="wechat qr code" width="300" height="300">
