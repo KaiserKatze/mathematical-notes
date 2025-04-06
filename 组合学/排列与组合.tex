@@ -1,0 +1,514 @@
+\section{排列组合}
+\subsection{排列、组合的基本概念}
+从若干个元素中取出几个或全部的一种排法，
+称作是一个\DefineConcept{排列}（permutation）.
+例如，从\(a,b,c,d\)四个字母里一次取出两个的排列数有12个，即\[
+	\begin{gathered}
+	ab, \quad
+	ac, \quad
+	ad, \quad
+	bc, \quad
+	bd, \quad
+	cd, \\
+	ba, \quad
+	ca, \quad
+	da, \quad
+	cb, \quad
+	db, \quad
+	dc;
+	\end{gathered}
+\]
+其中每一个都代表两个字母的不同的排法.
+
+从若干个元素中取出几个或全部的一种选法，
+称作是一个\DefineConcept{组合}（combination）.
+例如，从\(a,b,c,d\)四个字母里一次取出两个的组合数有6个，即\[
+	ab, \quad
+	ac, \quad
+	ad, \quad
+	bc, \quad
+	bd, \quad
+	cd;
+\]
+其中每一个都代表两个字母的不同的选法.
+
+从这些例子中我们看到，组合仅与每个选法所含元素的个数有关，
+而排列还要考虑元素在每一个排法中的次序.
+例如，从四个字母\(a,b,c,d\)中选三个字母可以得到\(abc\)这样一种组合，
+可以作以下六种不同的排列：\[
+	abc, \quad
+	acd, \quad
+	bca, \quad
+	bac, \quad
+	cab, \quad
+	cba.
+\]
+
+\subsection{排列组合的基本原理}
+在讨论排列与组合的一般性命题之前，我们先通过几个例子来说明两个重要的原则.
+\begin{enumerate}
+	\item {\rm\bf 加法原理}：
+	如果做一件事，完成它可以有\(n\)类办法，
+	在第一类办法中有\(m_1\)种不同的方法，
+	在第二类办法中有\(m_2\)种不同的方法，……，
+	在第\(n\)类办法中有\(m_n\)种不同的方法，那么完成这件事共有\[
+	N = m_1 + m_2 + \dotsb + m_n
+	\]种不同的方法.
+
+	\item {\rm\bf 乘法原理}：
+	如果做一件事，完成它需要分成\(n\)个步骤，
+	做第一步有\(m_1\)种不同的方法，
+	做第二步有\(m_2\)种不同的方法，……，
+	做第\(n\)步有\(m_n\)种不同的方法，那么完成这件事共有\[
+	N = m_1 \times m_2 \times \dotsm \times m_n
+	\]种不同的方法.
+\end{enumerate}
+
+\begin{example}
+有10艘汽艇往返于利物浦与都柏林之间，问某人来回乘坐不同汽艇的方式有多少种？
+\begin{solution}
+去时有10种方式；对于其中每一种，因为不能乘坐同一条船，回来时有9种方式可选；
+因此，一共有\(10 \times 9 = 90\)种方法来完成这两段路程.
+\end{solution}
+\end{example}
+
+\begin{example}
+3个旅行者来到一个小镇，镇上有4家旅店，若他们分别住不同的旅店，问投宿的方式有多少种？
+\begin{solution}
+第一个人可以有4种选择；
+在他选定后，第二个人有3种选择；
+从而这两个人共有\(4 \times 3\)种选择，
+对于其中每一种选择，第三个人有2家旅店供选择；
+所以，投宿的方式共有\(4 \times 3 \times 2 = 24\)种.
+\end{solution}
+\end{example}
+
+我们现在来求从\(n\)个不同元素中一次取出\(k\)个的排列数.
+这可以看成是用我们手上的\(n\)个不同元素去填满\(k\)个空位的不同方式的种数.
+
+填第一个位置有\(n\)种方式，
+因为可以取\(n\)个元素中的任意一个.
+在这个位置用任意一种方式填好后，
+填第二个位置有\(n-1\)种方式.
+由于填第一个位置的每一种方式，都可与填第二个位置的每一种方式组合，
+所以填前两个位置的方式有\(n(n-1)\)种.
+前两个位置以任意一种方式填好后，
+填第三个位置有\(n-2\)种方式.
+同理，填前三个位置的方式共有\(n(n-1)(n-2)\)种.
+继续这样的方法，我们注意到每填一个新的位置，就产生一个新的因子.
+而且在每一步上，因子的个数总与剩余位置的个数相同；
+于是，我们得出填满\(k\)个位置的方式种数等于\[
+	\underbrace{n(n-1)(n-2)\dotsm[n-(k-1)]}_{k\ \text{个因子}}.
+\]
+这就是所求从\(n\)个元素一次取出\(k\)个元素的排列数，
+我们可以利用阶乘记号将它表示为\[
+	\frac{n!}{(n-k)!}.
+\]
+
+我们还可以推断出如下结论：
+从\(n\)个元素一次取出全部\(n\)个元素的排列数为\(n!\).
+
+以后我们用符号\(A_n^k\)表示从\(n\)个元素一次取出\(k\)个的排列数，即\begin{equation}
+	A_n^k \defeq \frac{n!}{(n-k)!}.
+\end{equation}
+特别地，\(A_n^n \equiv n!\).
+
+从\(n\)个元素一次取出\(k\)个元素的排列数也可用下面的思路求得.
+按规定，我们用\(A_n^k\)代表从\(n\)个元素一次取出\(k\)个元素的排列数.
+假设我们首先组成\(n\)个元素一次取出\(k-1\)个元素的所有排列，
+那么这些排列一共有\(A_n^{k-1}\)种.
+在这些排列的每一个的后面，我们放上剩下的\(n-(k-1)\)个元素中的任意一个；
+每进行一次这样的操作，我们便得到\(n\)个元素一次取\(k\)个的一种排列，
+因此，\(n\)个元素一次取\(k\)个的排列数为\(A_n^{k-1} \times (n-k+1)\)种，即\[
+	A_n^k = A_n^{k-1} \times (n-k+1).
+\]
+在上式中用\(k-1\)代替\(k\)，我们得\[
+	A_n^{k-1} = A_n^{k-2} \times (n-k+2);
+\]
+依次递推，直到\[
+	A_n^2 = A_n^1 \times (n-1),
+\]\[
+	A_n^1 = n.
+\]
+将上述各式的等号左右两边分别相乘，且约去两边相同的因子，便得\[
+	A_n^k = n(n-1)\dotsm(n-k+2)(n-k+1).
+\]
+
+接下来我们想求从\(n\)个不同的元素中一次取出\(k\)的组合数.
+我们用符号\(C_n^k\)表示所求组合数.
+每一个这样的组合都由一组\(k\)个不同的元素组成，
+而这组元素本身又可以组成\(k!\)个不同的排列.
+因此\(C_n^k \times k!\)便等于\(n\)个元素一次取\(k\)个的排列数，即\[
+	C_n^k \times k! \equiv A_n^k
+	= n(n-1)(n-2)\dotsm(n-k+2)(n-k+1);
+\]于是\begin{align}
+	C_n^k &= \frac{n(n-1)(n-2)\dotsm(n-k+2)(n-k+1)}{k!} \\
+	&= \frac{n!}{k! (n-k)!}.
+\end{align}
+
+需要注意到，当\(k=n\)时，有\[
+	A_n^n = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!,
+\]\[
+	C_n^n = \frac{n!}{n! (n-n)!} = \frac{n!}{n! 0!} = \frac{1}{0!} = 1;
+\]
+这说明，符号\(0!\)的取值应该等于\(1\).
+这就是为什么我们在\hyperref[definition:数列.阶乘的定义]{阶乘的定义}中特别规定\(0!\equiv1\).
+%特别地，规定：当\(n < k\)时，\(C_n^k = 0\).
+
+\begin{example}
+将\(m+n\)颗小球分为两袋，一袋含\(m\)颗小球，另一袋含\(n\)颗小球，求可能的分法种数.
+\begin{solution}
+不难看出，这样的分法种数，等于从\(m+n\)颗小球中一次取\(m\)颗的组合数，
+如此，可将取出的\(m\)颗小球装入一袋，将剩下的\((m+n)-m=n\)颗小球装入另一袋.
+因此，所求的分法种数为\[
+	\frac{(m+n)!}{m! n!}.
+\]
+
+特别地，当\(m=n\)时，两个袋子中所含小球颗数相同.
+如果认为“两个袋子没有次序”或者说“袋子互换，分法种数不变”，那么分法种数为\[
+	\frac{(2n)!}{(n!)^2 2!}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+将\(m+n+p\)颗小球分为三袋，且各袋分别含\(m,n,p\)颗小球，求可能的分法种数.
+\begin{solution}
+首先将全部小球分到两个口袋里，各袋分别含\(m,n+p\)颗小球，分法种数为\[
+	\frac{(m+n+p)!}{m!(n+p)!};
+\]
+然后将第二袋中的\(n+p\)颗小球再分为两袋，各袋分别含\(n,p\)颗小球，分法种数为\[
+	\frac{(n+p)!}{n! p!};
+\]
+所以，全部\(m+n+p\)颗小球分成三袋，各袋分别含\(m,n,p\)颗小球的分法种数为\[
+	\frac{(m+n+p)!}{m!(n+p)!} \cdot \frac{(n+p)!}{n! p!}
+	= \frac{(m+n+p)!}{m! n! p!}.
+\]
+
+特别地，当\(m=n=p\)时，三个袋子中所含小球颗数相同.
+如果认为“三个袋子有次序”或者说“袋子互换，就得到新的分法”，那么分法种类为\[
+	\frac{(3n)!}{(n!)^3};
+\]
+反之，如果认为“三个袋子没有次序”，那么分法种类为\[
+	\frac{(3n)!}{(n!)^3 3!}.
+\]
+\end{solution}
+\end{example}
+
+到目前为止，我们考虑的元素（如小球）常常被看作是不同的；
+但有的时候，所给元素中有一部分元素是相同的.
+相同的元素是无法区分的，不管怎么排布这些元素，都对排法种数没有影响.
+
+\begin{example}
+排列\(n\)颗小球，其中\(p\)颗是红球，\(q\)颗是黄球，\(r\)颗是蓝球，
+剩余的\(n-p-q-r\)颗小球具有互不相同的彩色花纹，求可能的排列数.
+\begin{solution}
+当提到一组小球具有某种特征（如小球是红色的）时，
+我们认为这组小球是相同的、无法区分的.
+基于这条约定，我们来求解可能的排列数.
+
+设所求排列数为\(x\).
+如果用\(p\)颗花纹各异的小球代替上述\(p\)颗红球，
+那么对于\(x\)个排列中的任一个，
+不改变其他小球的位置，我们可以作\(p!\)个新排列；
+于是如果对\(x\)个排列中的每一个，都作这样的替换，
+我们就得到\(x \cdot p!\)种排列.
+同理，如果在此基础上继续用\(q\)颗花纹各异的小球代替\(q\)颗黄球，会得到\(x \cdot p! \cdot q!\)种排列.
+再用\(r\)颗花纹各异的小球代替\(r\)颗蓝球，会得到\(x \cdot p! \cdot q! \cdot r!\)种排列.
+现在，这\(n\)颗小球全都互不相同了，它们的全排列数为\(n!\)，于是有\[
+	n! = x \cdot p! \cdot q! \cdot r!,
+\]即有\[
+	x = \frac{n!}{p! q! r!}.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}
+用数字\(1,2,3,4,3,2,1\)可以组成多少个七位数，且奇数总在奇数位上.
+\begin{solution}
+奇数\(1,3,3,1\)有\(\frac{4!}{2! 2!}\)种方式排列在它们的四个位置上；
+偶数\(2,4,2\)有\(\frac{3!}{2!}\)种方式排列在它们的三个位置上；
+奇数的每一种排列都能与偶数的每一种排列组合，因此，所求排列数为\[
+	\frac{4!}{2! 2!} \times \frac{3!}{2!} = 18.
+\]
+\end{solution}
+\end{example}
+
+现在我们来求从\(n\)个元素中一次取出\(k\)个的排列数，
+其中，取出的元素可以重复任意多次.
+我们可以把这个问题考虑为这样的情况：
+有\(n\)个不同的元素，去填满\(k\)个位置，并且每一个元素都可以任意次地重复使用.
+这样的排列一共有多少种呢？
+显而易见的是，填第一个位置有\(n\)种方式.
+当第一个位置填好后，第二个位置仍有\(n\)种填法，
+这是因为占据第一个位置的那个元素可以在第二个位置上重复使用.
+因此，填满前两个位置的方式一共有\(n \times n = n^2\)种.
+同理，填第三个位置还是有\(n\)种方式；
+所以，填满前三个位置的方式一共有\(n^3\)种.
+按这样的方法进行，我们注意到\(n\)的指数总与剩余位置的个数相同；
+由此可知，一共有\(n^k\)种方式填满所给的\(k\)个位置.
+
+\begin{example}
+将5件奖品颁发给4位选手，如果每位选手都可以得到全部奖品，
+问一共有多少种分发方式.
+\begin{solution}
+第一件奖品可以有4种颁发方式.
+第二件奖品仍有4种颁发方式，
+这是因为得到第一件奖品的那位选手仍可以获得第二件奖品.
+因此，前两件奖品有\(4^2\)种颁发方式，
+前三件奖品有\(4^3\)种颁发方式，以此类推，
+全部5件奖品有\(4^5=1024\)种颁发方式.
+\end{solution}
+\end{example}
+
+我们再来求从\(n\)个元素中一次取出若干个以至于全部元素的所有选择方式的种数.
+
+每一个元素都有两种处理方式，要么取出，要么不取.
+并且，任意一个元素的每一种处理方式，都可以与任何另外一个元素的每一种处理方式组合，
+所以，\(n\)个元素便有\[
+	\underbrace{2 \times 2 \times \dotsm \times 2}_{n\ \text{个}}
+	= 2^n
+\]种处理方式.
+但是这里包括了“\(n\)个元素都不取”这样一种选择，
+除去这种情况，\(n\)个元素的取法共有\(2^n-1\)种.
+有时候将这称为“\(n\)个元素的\DefineConcept{全组合数}”.
+
+\begin{example}
+某人有6位朋友，如果他要邀请至少一位朋友吃饭，有多少种不同的请法.
+\begin{solution}
+他必从6位朋友中选部分或全部，故有\(2^6-1=63\)种请法.
+\end{solution}
+\end{example}
+
+\begin{example}
+求从\(p+q+r+\dotsb\)个元素中取出至少一个元素的取法种数，
+其中\(p\)个元素是相同的一类，\(q\)个元素是相同的另一类，
+\(r\)个元素是相同的第三类，等等.
+\begin{solution}
+这\(p\)个元素可以有\(p+1\)种处理方式，因为我们可以从中取出\(0,1,2,\dotsc,p\)个；
+同理，这\(q\)个元素可以有\(q+1\)种处理方式，这\(r\)个元素可以有\(r+1\)种处理方式；以此类推.
+因此，所有的元素便有\[
+	(p+1)(q+1)(r+1)\dotsm
+\]种处理方式.
+但这里包括了任何元素都不取的一种选择，
+除去这种情况，所求取法种数为\[
+	-1+(p+1)(q+1)(r+1)\dotsm.
+\]
+\end{solution}
+\end{example}
+
+%\begin{theorem}[抽屉原理]\label{theorem:排列组合.抽屉原理}
+%抽屉原理有以下几种形式：
+%\begin{enumerate}
+%\item 把\(n+1\)个元素放入\(n\)个集合内，则一定有一个集合里有两个或两个以上的元素.
+%\item 把\(m\)个元素任意放入\(n\ (n<m)\)个集合里，则一定有一个集合里至少有\(k\)个元素，其中\[
+%k = \left\{ \begin{array}{ll}
+%m/n, & m \pmod n = 0, \\
+%\floor{m/n}+1, & m \pmod n \neq 0.
+%\end{array} \right.
+%\]
+%\item 把无穷多个元素放入有限个集合里，则一定有一个集合里含有无穷多个元素.
+%\end{enumerate}
+%\end{theorem}
+%\hyperref[theorem:排列组合.抽屉原理]{抽屉原理}有时候也称作\DefineConcept{鸽巢原理}；
+%因它最先是由狄利克雷明确地提出来的，因此也可称其为\DefineConcept{狄利克雷原理}.
+
+
+\subsection{组合数的性质}
+\begin{property}\label{theorem:组合数性质1}
+\(C_n^k = C_n^{n-k}\).
+\begin{proof}
+\(
+C_n^{n-k}
+= \frac{n!}{(n-k)! [n-(n-k)]!}
+= \frac{n!}{k! (n-k)!}
+= C_n^k
+\).
+\end{proof}
+\end{property}
+这就是说，从\(n\)个元素中一次取出\(k\)个的组合数，
+等于从\(n\)个元素中一次取出\(n-k\)个的组合数.
+像这样的两类组合称为\DefineConcept{互补}.
+
+\cref{theorem:组合数性质1} 对于简化运算有很大用处.
+
+可以注意到，如果我们把所有组合数\(C_n^k\)按照\(n\)相同的写成一行，再按\(k\)从小到大排列，
+就能得到一个美妙的三角形，如\cref{figure:排列组合.杨辉三角} 所示.
+在这个三角形中，在任意一行中，除开两端的数字1以外，所有“中间”数字都是它“肩上”两个数字的和.
+像这样表示组合数的关系的图示叫做\DefineConcept{杨辉三角}或\DefineConcept{帕斯卡三角}.
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[
+		bino/.style={
+			% The shape:
+			circle,
+			% The size:
+			minimum size=6mm,
+			% The border:
+			very thick,
+			draw=red!50!black!50, % 50% red and 50% black,
+			% and that mixed with 50% white
+			% The filling:
+			top color=white, % a shading that is white at the top...
+			bottom color=red!50!black!20, % and something else at the bottom
+			% Font
+			%font=\itshape
+	}, node distance=5mm]
+		\node(C00)[bino]{1};
+		\node(C10)[bino,below=of C00]{1};
+		\node(C11)[bino,right=of C10]{1};
+		\node(C20)[bino,below=of C10]{1};
+		\node(C21)[bino,right=of C20]{2};
+		\node(C22)[bino,right=of C21]{1};
+		\node(C30)[bino,below=of C20]{1};
+		\node(C31)[bino,right=of C30]{3};
+		\node(C32)[bino,right=of C31]{3};
+		\node(C33)[bino,right=of C32]{1};
+		\node(C40)[bino,below=of C30]{1};
+		\node(C41)[bino,right=of C40]{4};
+		\node(C42)[bino,right=of C41]{6};
+		\node(C43)[bino,right=of C42]{4};
+		\node(C44)[bino,right=of C43]{1};
+		\draw(C00)--(C10)--(C20)--(C30)--(C40)
+			(C00)--(C11)--(C22)--(C33)--(C44);
+		\draw(C10)--(C21)--(C11)
+			(C20)--(C31)--(C21)--(C32)--(C22)
+			(C30)--(C41)--(C31)--(C42)--(C32)--(C43)--(C33);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:排列组合.杨辉三角}
+\end{figure}
+
+下面我们给出对杨辉三角所指出的经验规律的严格证明.
+\begin{property}\label{theorem:组合数性质2}
+\(C_{n-1}^{k-1} + C_{n-1}^k = C_n^k\).
+\begin{proof}
+直接计算得
+\begin{align*}
+	C_{n-1}^{k-1} + C_{n-1}^k
+	&= \frac{(n-1)!}{(k-1)! (n-k)!} + \frac{(n-1)!}{k! (n-k-1)!} \\
+	&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \left( \frac{1}{n-k} + \frac{1}{k} \right) \\
+	&= \frac{(n-1)!}{(k-1)! (n-k-1)!} \cdot \frac{n}{(n-k)k} \\
+	&= \frac{n!}{k! (n-k)!}
+	= C_n^k. \qedhere
+\end{align*}
+\end{proof}
+\end{property}
+因此，在\(n\)不太大的时候，我们可以直接画出杨辉三角，从图中找到\(C_n^k\)的数值.
+
+\begin{property}\label{theorem:组合数性质3}
+\(\sum_{i=0}^n C_n^i = 2^n\).
+\begin{proof}
+当\(n=0\)时，\(\sum_{i=0}^0 C_0^i = C_0^0 = \frac{0!}{0! \cdot 0!} = 1 = 2^0\)成立.
+假设\(n=k\)时，结论仍成立，即\[
+\sum_{i=0}^k C_k^i
+= C_k^0 + C_k^1 + \dotsb + C_k^k = 2^k.
+\]那么\[
+\begin{array}{*{14}{c}}
+& C_k^0 &+& C_k^1 &+& \dotsb &+& C_k^{k-1} &+& C_k^k && &=& 2^k \\
++) & && C_k^0 &+& \dotsb &+& C_k^{k-2} &+& C_k^{k-1} &+& C_k^k &=& 2^k \\ \hline
+& C_k^0 &+& C_{k+1}^1 &+& \dotsb &+& C_{k+1}^{k-1} &+& C_{k+1}^k &+& C_k^k &=& 2 \cdot 2^k
+\end{array}
+\]又因为\(C_k^0 = C_{k+1}^0 = C_k^k = C_{k+1}^{k+1} = 1\)，所以\[
+\sum_{i=0}^{k+1} C_{k+1}^i = 2^{k+1}
+\]成立.
+\end{proof}
+\end{property}
+
+\begin{property}\label{theorem:组合数性质4}
+\(\sum_{k=0}^n (-1)^k C_n^k = 0\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质5}
+\(\sum_{k=0}^{\floor{n/2}} C_n^{2k} = 2^{n-1}\).
+\end{property}
+\begin{property}\label{theorem:组合数性质6}
+\(\sum_{k=0}^{\floor{(n-1)/2}} C_n^{2k+1} = 2^{n-1}\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质7}
+\(C_{n+m}^k = \sum_{r=0}^{k} C_n^r C_m^{k-r}\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质8}
+\(\sum_{k=0}^n (C_n^k)^2 = C_{2n}^n\).
+\end{property}
+
+\begin{property}\label{theorem:组合数性质9}
+\(C_n^{r_1} C_{n-r_1}^{r_2} \dotsm C_{n-(r_1+r_2+\dotsb+r_{k-1})}^{r_k}
+= \frac{n!}{r_1! r_2! \dotsm r_k!}\).
+\end{property}
+
+\begin{example}
+求：当\(k\)取何值时，\(C_n^k\)最大.
+\begin{solution}
+我们首先研究几个特例.
+注意到\[
+	C_2^0 = 1, \qquad
+	C_2^1 = 2, \qquad
+	C_2^2 = 1,
+\]\[
+	C_3^0 = 1, \qquad
+	C_3^1 = 3, \qquad
+	C_3^2 = 3, \qquad
+	C_3^3 = 1,
+\]
+似乎可以总结出如下两条规律：
+\begin{itemize}
+	\item 随着\(k\)逐渐增加，\(C_n^k\)先逐渐增大，再逐渐减小.
+	\item 有的组合数在取邻近的两个不同的\(k\)值时，可能取得同样的最大值.
+\end{itemize}
+下面我们为这两条经验规律给出严格的证明.
+
+因为\[
+	C_n^k = \frac{n(n-1)(n-2)\dotsm(n-k+2)(n-k+1)}{1\cdot2\cdot3\dotsm(k-1)k},
+\]\[
+	C_n^{k-1} = \frac{n(n-1)(n-2)\dotsm(n-k+2)}{1\cdot2\cdot3\dotsm(k-1)},
+\]
+所以\[
+	C_n^k = C_n^{k-1} \cdot \frac{n-k+1}{k}
+	= C_n^{k-1} \cdot \left( \frac{n+1}{k} - 1 \right).
+\]
+令\(C_n^k > C_n^{k-1}\)，化简得\[
+	\frac{n+1}{k} - 1 > 1,
+\]
+考虑到\(0 \leq k \leq n\)，
+上式又可化简为\(2k < n+1\)，
+即\(k < (n+1)/2\).
+这就是说，当\(0 \leq k < (n+1)/2\)时，
+随着\(k\)逐渐增加，\(C_n^k\)逐渐增加；
+当\((n+1)/2 < k \leq n\)时，
+随着\(k\)逐渐增加，\(C_n^k\)逐渐减小.
+由此可知，当\(k\)取不大于\((n+1)/2\)的最大整数\(\floor{(n+1)/2}\)时，\(C_n^k\)取得最大值.
+
+若\(n\)为偶数，不妨设\(n = 2m\ (m\in\mathbb{N})\)，则\[
+	\frac{n+1}{2} = \frac{2m+1}{2}
+	= m+\frac{1}{2}.
+\]
+于是，只要取\(k = m = n/2\)，我们便得\(C_n^k\)的最大值：\[
+	C_n^{\frac{n}{2}}.
+\]
+
+若\(n\)为奇数，不妨设\(n = 2m+1\ (m\in\mathbb{N})\)，则\[
+	\frac{n+1}{2} = \frac{2m+2}{2} = m+1.
+\]
+于是，只要取\(k = m+1 = (n+1)/2\)，我们便得\(C_n^k\)的最大值；
+但是，由\cref{theorem:组合数性质1} 可知，\[
+	C_n^{\frac{n+1}{2}}
+	= C_n^{n-\frac{n+1}{2}}
+	= C_n^{\frac{n-1}{2}};
+\]
+于是，在取\(k = (n-1)/2 = m\)时，也可取得\(C_n^k\)的最大值.
+也就是说，当\(k\)取\((n\pm1)/2\)时，我们便得\(C_n^k\)的最大值：\[
+	C_n^{\frac{n+1}{2}}
+	= C_n^{\frac{n-1}{2}}.
+\]
+
+综上所述，我们有\begin{equation}
+	\max_{0 \leq k \leq n} C_n^k = \left\{ \begin{array}{cl}
+		C_n^{n/2}, & \text{$n$是偶数}, \\
+		C_n^{(n-1)/2} = C_n^{(n+1)/2}, & \text{$n$是奇数}.
+	\end{array} \right.
+\end{equation}
+\end{solution}
+\end{example}
