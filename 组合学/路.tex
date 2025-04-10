@@ -1,0 +1,137 @@
+\section{路，回路}
+在途中，经常需要考虑从一个顶点出发，沿着一些边连续移动到另一个顶点的问题.
+这就是路的概念，它与七桥问题密切相关.
+
+\subsection{路}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P175 定义6-13
+在任意一个图\(G = (V,E)\)中，
+将顶点、边交替出现的序列\[
+	L: v_0 e_1 v_1 e_2 v_2 \dotso v_{i-1} e_i v_i \dotso e_l v_l
+\]称为“从\(v_0\)到\(v_l\)的一条\DefineConcept{路}（walk,way）”，
+将\(v_0\)称为“路\(L\)的\DefineConcept{起点}”，
+将\(v_l\)称为“路\(L\)的\DefineConcept{终点}”，
+将\(L\)所经过的边数\(l\)称为\DefineConcept{路长}（length of walk）或\DefineConcept{跳数}（hop number）.
+特别地，只有一个顶点、路长为\(0\)的序列，称为\DefineConcept{平凡路}.
+\end{definition}
+
+在不引起混淆的情况下，可以将路\(L: v_0 e_1 v_1 e_2 v_2 \dotso v_{i-1} e_i v_i \dotso e_l v_l\)
+简记为\[
+	L: v_0 v_1 v_2 \dotso v_{i-1} v_i \dotso v_l
+\]
+或\[
+	L: e_1 e_2 \dotso e_i \dotso e_l.
+\]
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P175
+顶点不重复的路，称为\DefineConcept{路径}（path）.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P175
+边不重复的路，称为\DefineConcept{轨迹}（trail）.
+\end{definition}
+
+\begin{proposition}
+%@see: 《离散数学》（邓辉文） P175
+路径一定是轨迹，轨迹不一定是路径.
+%TODO proof
+\end{proposition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P175 定义6-14
+在图\(G = (V,E)\)中，
+把从顶点\(u\)到顶点\(v\)、边数最少的路的路长
+称为“\(u\)到\(v\)的\DefineConcept{距离}（distance）”，
+记作\(d(u,v)\).
+当从\(u\)到\(v\)的路不存在时，
+记\(d(u,v) = \infty\).
+\end{definition}
+
+显然，对于任意顶点\(u,v \in V\)有\(d(u,v) \geq 0\).
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P175 定义6-14
+设图\(G = (V,E)\).
+把\[
+	\max_{u,v \in V} d(u,v)
+\]称为“图\(G\)的\DefineConcept{直径}（diameter）”，
+记作\(\diam G\).
+\end{definition}
+
+\subsection{回路}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P176 定义6-15
+起点与终点相同的路，称为\DefineConcept{回路}（circuit）.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P176 定义6-15
+边不重复的回路，称为\DefineConcept{简单回路}（simple circuit）或\DefineConcept{闭迹}（closed trail）.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P176 定义6-15
+除了起点、终点重合以外，其余顶点各个不同的简单回路，
+称为\DefineConcept{圈}或\DefineConcept{环}（cycle）.
+\end{definition}
+\begin{remark}
+注意区分“环”与“自环”这两个概念：
+自环是边，环是路.
+\end{remark}
+
+由于回路的路长至少是1，
+所以平凡路不是回路.
+
+\begin{example}
+举例说明：简单回路不一定是圈.
+%TODO
+\end{example}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P176
+有\(n\)个顶点的圈，称为 \DefineConcept{\(n\)阶圈}，记作\(C_n\).
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P176
+给\(n-1\)阶圈\(C_{n-1}\)增加一个顶点\(u\)，
+再使\(u\)与\(C_{n-1}\)的每个顶点邻接，
+得到的图称为 \DefineConcept{\(n\)阶轮图}，记作\(W_n\).
+\end{definition}
+
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P176 定理6-3
+在无向图\(G = (V,E)\)中，
+若任意\(v \in V\)有\(\deg v \geq 2\)，
+则\(G\)中存在圈.
+%TODO proof
+\end{theorem}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P177 习题6.4 5.
+设无向图\(G\)的任意两个顶点之间都存在一条路.
+证明：\(G\)的任意两条最长轨迹存在公共顶点.
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P177 习题6.4 6.
+设\(G\)是简单有向图，记\(k = \max\{\degEx G,\degIn G\}\).
+证明：\(G\)中存在路长至少为\(k\)的轨迹.
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P177 习题6.4 7.
+证明：在一个没有回路的竞赛图\(G\)中，对于任意顶点\(u,v\)，总有\(\degEx u \neq \degEx v\).
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P177 习题6.4 8.
+设有向图\(G = (V,E)\)满足\((\forall v \in V)[\degIn v \geq 2]\).
+证明：\(G\)中至少含有两个不同的圈.
+%TODO proof
+\end{example}
