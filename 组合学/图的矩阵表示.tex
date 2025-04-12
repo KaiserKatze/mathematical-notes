@@ -1,0 +1,98 @@
+\section{图的矩阵表示}
+\subsection{图的邻接矩阵}
+我们首先介绍“邻接矩阵”，它表示的是图中任意两个顶点之间的邻接关系.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P182 定义6-29
+设\(G = (V,E)\)是图，
+顶点集\(V = \{\AutoTuple{v}{n}\}\).
+将\[
+	\vb{A}(G) \defeq (a_{ij})_n
+\]
+称为“\(G\)的\DefineConcept{邻接矩阵}（adjacency matrix）”，
+其中，
+当\(G\)是有向图时，
+\(a_{ij}\)表示以\(v_i\)为起点、\(v_j\)为终点的有向边的数目；
+当\(G\)是无向图时，
+\(a_{ij},a_{ji}\)均表示以\(v_i,v_j\)为端点的无向边的数目.
+\end{definition}
+
+显然，无向图的邻接矩阵是对称矩阵.
+
+从一个图的邻接矩阵容易得出每个顶点的出度、入度、度数.
+于有向图\(G\)而言，
+\(\vb{A}(G)\)中第\(i\)行元素之和，就是第\(i\)个顶点\(v_i\)的出度，
+\(\vb{A}(G)\)中第\(j\)列元素之和，就是第\(j\)个顶点\(v_j\)的入度.
+
+从邻接矩阵还可以得出从顶点\(v_i\)到顶点\(v_j\)、路长为\(l\)的路的数目.
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P183 定理6-10
+设\(\vb{A}\)是图\(G\)的邻接矩阵，\(l\geq1\)，
+则\(\vb{A}\)的\(l\)次幂\(\vb{A}^l\)的\((i,j)\)元素\(a^{(l)}_{ij}\)
+就是从顶点\(v_i\)到顶点\(v_j\)、路长为\(l\)的路的数目.
+%TODO proof
+\end{theorem}
+
+\subsection{图的可达矩阵}
+接下来介绍“可达矩阵”，它表示的是图中任意两个顶点之间的可达关系.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P183 定义6-30
+设\(G = (V,E)\)是图，
+顶点集\(V = \{\AutoTuple{v}{n}\}\).
+将\[
+	\vb{P}(A) \defeq (p_{ij})_n
+\]
+称为“\(G\)的\DefineConcept{可达矩阵}（accessible matrix）”，
+其中，\[
+	p_{ij}
+	= \left\{ \begin{array}{cl}
+		1, & \text{$v_i$可达$v_j$}, \\
+		0, & \text{其他}
+	\end{array} \right.
+	\quad(i,j=1,2,\dotsc,n).
+\]
+\end{definition}
+
+容易从图的邻接矩阵\(\vb{A}(G)\)得出它的可达矩阵\(\vb{P}(G)\).
+一个非常有效的算法是 Warshall 算法.
+%TODO 什么是 Warshall 算法？
+
+根据可达矩阵的定义，\(\vb{P}(G)\)的主对角线上的元素全为\(1\)，
+这是因为任意顶点均可达它自己.
+
+从一个图的可达矩阵容易得出图的连通性.
+
+\subsection{图的关联矩阵}
+下面介绍“关联矩阵”，它表示的是图中顶点与边之间的关联关系.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P184 定义6-31
+设\(G = (V,E)\)是无向图，
+顶点集\(V = \{\AutoTuple{v}{n}\}\)，
+边集\(E = \{\AutoTuple{e}{m}\}\).
+将\[
+	\vb{M}(A) \defeq (m_{ij})_n
+\]
+称为“\(G\)的\DefineConcept{关联矩阵}（incidence matrix）”，
+其中，\(m_{ij}\)表示顶点\(v_i\)与边\(e_j\)的关联次数.
+\end{definition}
+
+从一个图的关联矩阵容易得出顶点的度数、是否存在多重边、是否存在孤立点等性质.
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P184 定义6-32
+设\(G = (V,E)\)是无自环的有向图，
+顶点集\(V = \{\AutoTuple{v}{n}\}\)，
+边集\(E = \{\AutoTuple{e}{m}\}\).
+将\[
+	\vb{M}(A) \defeq (m_{ij})_n
+\]
+称为“\(G\)的\DefineConcept{关联矩阵}（incidence matrix）”，
+其中，\[
+	m_{ij}
+	= \left\{ \begin{array}{rl}
+		1, & \text{$v_i$是$e_j$的起点}, \\
+		-1, & \text{$v_i$是$e_j$的终点}, \\
+		0, & \text{$v_i$与$e_j$不关联}
+	\end{array} \right.
+	\quad(i=1,2,\dotsc,n;j=1,2,\dotsc,m).
+\]
+\end{definition}
