@@ -1,0 +1,88 @@
+\section{欧拉图}
+欧拉图是欧拉于1736年研究七桥问题时考虑的一种图，由此得名.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P191 定义7-1
+设\(G = (V,E)\)是图.
+\begin{itemize}
+	\item \(G\)中经过所有边一次且仅一次的路，
+	称为\DefineConcept{欧拉轨迹}（Eulerian trail）
+	或\DefineConcept{欧拉路}.
+
+	\item \(G\)中经过所有边一次且仅一次的回路，
+	称为\DefineConcept{欧拉回路}（Eulerian circuit）.
+
+	\item 存在欧拉回路的图，称为\DefineConcept{欧拉图}（Eulerian graph）.
+\end{itemize}
+\end{definition}
+
+显然，欧拉回路是欧拉轨迹，但欧拉轨迹不一定是欧拉回路.
+
+\begin{theorem}[欧拉定理]
+%@see: 《离散数学》（邓辉文） P191 定理7-1（欧拉定理）
+设\(G\)是非平凡连通无向图，
+则\(G\)是欧拉图的充分必要条件是
+\(G\)的每个顶点的度数均为偶数.
+%TODO proof
+\end{theorem}
+
+欧拉定理给出了一个连通图存在欧拉回路的充分必要条件.
+于是接下来的问题就成了要如何具体找出一条这样的回路.
+1921年 Fleury 给出了一个求解欧拉回路的算法.
+%TODO
+
+下面再介绍几个定理，它们都类似于欧拉定理.
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P192 定理7-2
+设\(G\)是弱连通图，
+则\(G\)是欧拉图的充分必要条件是
+\(G\)中每个顶点的入度等于出度.
+%TODO proof
+\end{theorem}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P192 例7-1
+设\(G_1,G_2\)是\(n\)阶完全图\(K_n\ (n\geq4)\)的两个不同的子图.
+若\(G_1,G_2\)都是欧拉图，
+则\(G_1\)和\(G_2\)的对称差\(G_1 \symdiff G_2\)的每一个连通分量都是欧拉图.
+%TODO proof
+\end{example}
+
+\begin{corollary}
+%@see: 《离散数学》（邓辉文） P192 定理7-3
+设\(G\)是连通无向图，
+则\(G\)中存在欧拉轨迹的充分必要条件是
+\(G\)中度数为奇数的顶点个数要么是\(0\)要么是\(2\).
+%TODO proof
+\end{corollary}
+
+由上述推论可知，七桥问题无解，
+在\cref{figure:图论.七桥问题} 中不存在欧拉轨迹.
+
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P192 定理7-4
+设\(G\)是弱连通图，
+则\(G\)中存在欧拉轨迹的充分必要条件是
+\(G\)中每个顶点的入度等于出度.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P192 定理7-4
+设\(G\)是弱连通图，
+则\(G\)中存在欧拉轨迹的充分必要条件是：\begin{itemize}
+	\item \(G\)中存在一个顶点\(v_1\)满足\(\degEx v_1 - \degIn v_1 = 1\)；
+	\item \(G\)中存在一个顶点\(v_2\)满足\(\degIn v_2 - \degEx v_2 = 1\)；
+	\item 除了\(v_1,v_2\)以外的其余每一个顶点\(v\)都满足\(\degEx v = \degIn v\).
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+%TODO
+% 中国邮递员问题（Chinese postman problem）
+% 假设一位邮递员从邮局选好邮件去投递，然后返回邮局，
+% 要求该邮递员必须经过他负责的每一条街至少一次，
+% 要为他设计一条路线，使得总路程最短.
+% 该问题的本质是，在允许添加多重边的情况下，在边赋权图中，求最短欧拉回路的问题.
+% 该问题首次由管梅谷于1962年提出并研究，他提出了“奇偶点图上作业法”.
+% 1973年，匈牙利数学家 Edmonds 和 Johnson 对中国邮递员问题给出了一种有效算法.
+% 1995年，王树禾研究了多邮递员中国邮路问题（k-Postman Chinese postman problem）.
