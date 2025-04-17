@@ -1,0 +1,229 @@
+\section{有向树，根树}
+\subsection{有向树}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P203 定义7-6
+设\(G = (V,E)\)是有向图.
+若\(G\)的基础图是一棵树，
+则称“\(G\)是一棵\DefineConcept{有向树}（directed tree）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P203
+设\(G\)是有向树，结点\(v \in G\).
+\begin{itemize}
+	\item \(v\)的前趋元素，称为“\(v\)的\DefineConcept{父结点}（parent）”.
+	\item \(v\)的后继元素，称为“\(v\)的\DefineConcept{子结点}（child）”.
+\end{itemize}
+\end{definition}
+
+\subsection{根树}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P203 定义7-7
+若有向树\(T\)恰有1个结点入度为\(0\)，而其余结点入度均为\(1\)，
+则称“\(T\)是一棵\DefineConcept{根树}（rooted tree）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P203
+设\(T\)是根树.
+\begin{itemize}
+	\item 将\(T\)中入度为\(0\)的结点称为“\(T\)的\DefineConcept{根结点}（root）”.
+	\item 将\(T\)中出度为\(0\)的结点称为“\(T\)的\DefineConcept{叶子结点}（leaf）”.
+	\item 将\(T\)中出度大于\(0\)的结点称为“\(T\)的\DefineConcept{分支结点}”.
+	\item 将\(T\)中除了根结点以外的分支结点称为“\(T\)的\DefineConcept{内部结点}”.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P203
+设\(T\)是根树，结点\(v \in T\).
+\begin{itemize}
+	\item 如果结点\(u \in T\)和\(v\)的父结点相同，
+	则称“\(u\)是\(v\)的\DefineConcept{兄弟结点}（sibling）”.
+	\item 从根结点到\(v\)的路径上所经过的所有分支结点，
+	%TODO 为什么“祖先”的定义要以“分支结点”为基础？
+	%TODO \(v\)的祖先是否包括\(v\)自己，难不成根据\(v\)是叶子结点还是分支结点，还要进一步讨论？
+	%TODO 我估计这里默认在讨论结点\(v\)的祖先时，是把这个结点当做叶子结点来看待的，那就不应该包括它.
+	称为“\(v\)的\DefineConcept{祖先}（ancestor）”.
+	\item \(v\)可达的全体结点，
+	称为“\(v\)的\DefineConcept{后代}（offspring, descendants）”.
+\end{itemize}
+\end{definition}
+
+可以证明，在根树中，从根结点到任意一个结点，有且仅有一条路径.
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P204
+设\(T\)是根树，结点\(v \in T\).
+从根结点到\(v\)的路径的路长，
+称为“\(v\)的\DefineConcept{层次}（level）”.
+如果\(v\)的层次等于\(l\)，
+则称“\(v\)是第\(l\)层结点”.
+\end{definition}
+
+由定义有，根结点是第\(0\)层结点，根结点的子结点（如若存在）就是第\(1\)层结点，以此类推.
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P204
+设\(T\)是根树，结点\(u,v,u',v' \in T\)，
+\(u'\)是\(u\)的父结点，\(v'\)是\(v\)的父结点.
+如果\(u'\)的层次等于\(v'\)的层次，
+则称“\(u\)是\(v\)的\DefineConcept{堂兄弟结点}（cousin）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P204
+设\(T\)是根树.
+\(T\)中各个结点的层次的最大值，
+称为“\(T\)的\DefineConcept{深度}（depth）”
+或“\(T\)的\DefineConcept{高度}（height）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P204
+设\(T\)是根树.
+\begin{itemize}
+	\item \(T\)的所有叶子结点的层次之和，称为\(T\)的\DefineConcept{外部路径长度}.
+	\item \(T\)的所有内部结点的层次之和，称为\(T\)的\DefineConcept{内部路径长度}.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P204 定义7-8
+设\(G = (V,E)\)是一棵根树，结点\(v \in V\).
+由结点\(v\)及其所有后代导出的子图，
+称为“\(G\)的\DefineConcept{子根树}（rooted subtree）”，
+简称为\DefineConcept{子树}（subtree）.
+\end{definition}
+
+\subsection{多叉树}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P204 定义7-9
+设\(G = (V,E)\)是一棵根树.
+若\(\max_{v \in V} \degEx v = m\)，
+则称“\(G\)是一棵 \DefineConcept{\(m\)叉树}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P204
+设\(T\)是\(m\)叉树.
+\begin{itemize}
+	\item 若对于任意结点\(v\)，均有\(\degEx v = m\)或\(\degEx v = 0\)，
+	则称“\(G\)是\DefineConcept{完全\(m\)叉树}”.
+
+	\item 所有叶子结点的层次都相同的完全\(m\)叉树，
+	称为\DefineConcept{正则\(m\)叉树}或\DefineConcept{满\(m\)叉树}.
+\end{itemize}
+\end{definition}
+
+\begin{property}
+%@see: 《离散数学》（邓辉文） P204 性质1
+\(m\)叉树的第\(i\)层至多有\(m^i\)个结点.
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《离散数学》（邓辉文） P204 性质2
+高度为\(h\)的\(m\ (m\geq2)\)叉树至多有\(\frac{m^{h+1}-1}{m-1}\)个结点.
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《离散数学》（邓辉文） P204 性质3
+一棵有\(l\)个叶子结点的\(m\)叉树的高度至少为\(\log_m l\).
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《离散数学》（邓辉文） P204 性质4
+若一棵完全\(m\)叉树有\(l\)个叶子结点、\(t\)个分支结点，
+则\[
+	(m-1)t=l-1.
+\]
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《离散数学》（邓辉文） P204 性质5
+若二叉树有\(l\)个叶子结点，则出度为\(2\)的结点有\(l-1\)个.
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《离散数学》（邓辉文） P204 性质6
+有\(l\)个叶子结点的完全二叉树有\(2l-1\)个结点.
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《离散数学》（邓辉文） P204 性质7
+若完全二叉树有\(t\)个分支结点，
+则它的外部路径长度\(E\)与它的内部路径长度\(I\)满足\[
+	E = I + 2t.
+\]
+%TODO proof
+\end{property}
+
+\subsection{叶赋权多叉树，哈夫曼树}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P205 定义7-10
+设\(G = (V,E)\)是一棵\(m\)叉树，
+映射\(\omega\colon W \to \mathbb{R}\)，
+其中\(W\)是\(G\)的全体叶子结点，
+则称“\((G,\omega)\)是\DefineConcept{叶赋权\(m\)叉树}”，
+把\(\omega\)称为“\(G\)的\DefineConcept{叶子赋权映射}”.
+\end{definition}
+
+叶赋权\(m\)叉树给它的每一个叶子结点都赋予了一个非负实数权.
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P205 定义7-11
+设\(G = (V,E)\)是一棵叶赋权\(m\)叉树，
+其全部\(l\)个叶子结点上的权分别是\[
+	w_i
+	\quad(i=1,2,\dotsc,l).
+\]
+将从根结点到权为\(w_i\)的叶子结点的路径的路长
+分别记为\[
+	L(w_i)
+	\quad(i=1,2,\dotsc,l).
+\]
+把\[
+	\sum_{i=1}^l w_i \cdot L(w_i)
+\]称为“\(G\)的\DefineConcept{权}”，
+记为\(W(G)\).
+对于任意一个叶子结点\(v \in W\)，
+把\(\omega(v)\)称为“\(v\)的\DefineConcept{权}（weight）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P206 定义7-12
+设\[
+	\mathcal{T}
+	\defeq
+	\Set{
+		T \given \text{$T$是一棵叶赋权二叉树，其$l$个叶子结点上的权分别是$\AutoTuple{w}{l}$}
+	},
+\]
+把\(\mathcal{T}\)中权最小的那棵叶赋权二叉树
+称为\DefineConcept{最优二叉树}
+或\DefineConcept{哈夫曼树}（Huffman tree）.
+\end{definition}
+
+\subsection{有序树}
+在根树的定义中，同一个结点的不同子结点之间是没有先后顺序的，这与现实生活中的家族树不一样.
+当我们需要考虑兄弟结点之间的先后顺序时，我们就要用到“有序树”了.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P207 定义7-13
+设\(G = (V,E)\)是一棵根树.
+若对每一个结点的所有子结点都规定了先后顺序，
+则称“\(G\)是一棵\DefineConcept{有序树}（ordered tree）”.
+\end{definition}
+
+\subsection{定位二叉树}
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P207 定义7-14
+设\(G = (V,E)\)是一棵有序二叉树.
+若对每一个结点的所有儿子结点规定一个左右位置，
+则称“\(G\)是一棵\DefineConcept{定位二叉树}（positional binary tree）”.
+\end{definition}
