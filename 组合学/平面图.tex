@@ -1,0 +1,134 @@
+\section{平面图}
+\subsection{平面图的定义}
+%@see: 《离散数学》（邓辉文） P211 定义7-16
+设\(G\)是无向图.
+如果可以将\(G\)画在一个平面上，
+同时使得任意两条相异边在非端点处不相交，
+则称“\(G\)是一个\DefineConcept{平面图}（planar graph）”.
+
+设\(G\)是平面图，
+\(G\)的图形表示如果可以画在一个平面上，
+同时使得任意两条相异边在非端点处不相交，
+则称其为“\(G\)的\DefineConcept{平面嵌入}（planar embedding）”
+或“\(G\)的\DefineConcept{平面表示}”.
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P211 定义7-17
+设\(G\)是简单平面图.
+若在\(G\)的任意两个不相邻的顶点\(u\)和\(v\)之间增加一条边，
+所得到的图\(G+uv\)是非平面图，
+则称“\(G\)是一个\DefineConcept{极大平面图}（maximal planar graph）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P211 定义7-18
+设\(G\)是非平面图.
+若在\(G\)中任意删除一条边，所得到的图是平面图，
+则称“\(G\)是一个\DefineConcept{极小非平面图}（minimal nonplanar graph）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P211 定义7-19
+设\(G\)是平面图.
+由\(G\)的若干条边所围成的连通\footnote{
+	一个区域是连通的，是指“在其内部可以随意走动而不必穿过任何一条边”.
+}区域，
+%TODO 这个定义似乎很不严谨，需要忖度一下如何重新表述
+称为“\(G\)的一个\DefineConcept{面}（face）”，
+围成面的回路称为这个面的\DefineConcept{边界}（boundary）.
+\end{definition}
+\begin{remark}
+任何一个平面图都有一个由若干条边向外围成的一个面，它是唯一一个无限面.
+\end{remark}
+
+平面图的两个面相邻，是指这两个面有公共边界.
+
+\subsection{欧拉公式}
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P212 定理7-10（欧拉公式）
+任意\((n,m)\)连通无向图的面数\(r\)满足\begin{equation}
+	r = m - n + 2.
+\end{equation}
+%TODO proof
+\end{theorem}
+\begin{remark}
+在欧拉公式中，“连通”这一条件是必不可少的.
+\end{remark}
+
+\begin{corollary}
+%@see: 《离散数学》（邓辉文） P212 推论1
+对于任意\((n,m)\)简单连通平面图\(G\)，有\[
+	n\geq3 \implies m\leq3n-6.
+\]
+%TODO proof
+\end{corollary}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P212 例7-16
+证明：\(K_5\)不是平面图.
+%TODO proof
+\end{example}
+
+\begin{corollary}
+%@see: 《离散数学》（邓辉文） P212 推论2
+对于任意\((n,m)\)简单连通平面图\(G\)，
+若\(G\)不含\(K_3\)子图，且\(n\geq3\)，
+则\(m\leq2n-4\).
+%TODO proof
+\end{corollary}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P212 例7-17
+证明：\(K_{3,3}\)不是平面图.
+%TODO proof
+\end{example}
+
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P212 定理7-11
+任何简单平面图必有一个度数小于等于\(5\)的顶点.
+%TODO proof
+\end{theorem}
+
+\subsection{库拉托夫斯基定理}
+波兰数学家库拉托夫斯基于1930年给出了判定平面的充分必要条件.
+
+\begin{theorem}
+%@see: 《离散数学》（邓辉文） P213 定理7-12（Kuratowski, 1930）
+无向图\(G\)是平面图的充分必要条件是：
+\(G\)没有同胚于\(K_5\)和\(K_{3,3}\)的子图.
+%TODO proof
+\end{theorem}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P213
+证明：彼得森图不是平面图.
+%TODO proof
+\end{example}
+
+\subsection{平面图的对偶图}
+对平面图的面的研究，可以转换为对其对偶图的顶点的研究.
+\begin{definition}
+%@see: 《离散数学》（邓辉文） P213 定义7-21
+设\(G\)是平面图.
+\(G\)的\DefineConcept{对偶图}（记作\(G^*\)）构造如下：\begin{itemize}
+	\item 在\(G\)的每一个面内取一个点，作为\(G^*\)的顶点；
+	\item 若\(G\)内的两个面有公共边界\(e\)，
+	则在\(G^*\)中将这两个面对应的顶点连接起来得到一条边\(e^*\)，
+	使得\(e^*\)与\(e\)相交一次而与\(G\)的其余边不相交.
+	若\(e\)是\(G\)的桥，
+	则\(e^*\)是\(G^*\)的吊环.
+	若\(e\)是\(G\)的吊环，
+	则\(e^*\)是\(G^*\)的桥.
+%TODO 什么是吊环？？？未定义！
+\end{itemize}
+\end{definition}
+
+%@see: 《离散数学》（邓辉文） P214
+根据定义可知，任意平面图的对偶图都是连通平面图.
+
+%@see: 《离散数学》（邓辉文） P214
+设\(G\)是\((n,m)\)平面图，有\(r\)个面，则\(G^*\)是\((r,m)\)平面图，有\(n\)个面.
+
+%@see: 《离散数学》（邓辉文） P214
+连通平面图\(G\)的对偶图\(G^*\)的对偶图\(G^{**}\)就是\(G\)本身.
+非联通平面图\(G\)的对偶图\(G^*\)的对偶图\(G^{**}\)可能与\(G\)不同构.
