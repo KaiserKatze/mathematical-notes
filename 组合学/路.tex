@@ -135,3 +135,50 @@
 证明：\(G\)中至少含有两个不同的圈.
 %TODO proof
 \end{example}
+
+\subsection{杜克路}
+%@see: https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/path_tableaux/dyck_path.html
+%@see: https://mathweb.ucsd.edu/~duqiu/files/Nankai18.pdf
+%@see: https://users.monash.edu/~heikod/cpg2020/CPGparts1and2.pdf
+%@see: https://pages.stat.wisc.edu/~callan/papers/polygon_dissections/polygon_dissections.pdf
+\begin{definition}
+%@see: 《组合数学及其应用》（曾光） P87 定义2.28（格路径）
+在二维平面\(\mathbb{Z}^2\)沿整数格点按一定步法行走的路径称为\DefineConcept{格路径}，
+把相邻两个格点之间的线段称为格路径的\DefineConcept{步}，
+所走的步数称为格路径的\DefineConcept{长度}.
+\end{definition}
+\begin{definition}
+%@see: 《组合数学及其应用》（曾光） P87 定义2.29（Dyck路）
+长为\(2n\)的\DefineConcept{杜克路}（Dyck path）
+%@see: https://mathworld.wolfram.com/DyckPath.html
+是指只用“上步”\((1,1)\)和“下步”\((1,-1)\)，
+从\((0,0)\)到\((2n,0)\)的
+不允许走到\(x\)轴下方的格路径，
+把\(n\)称为杜克路的\DefineConcept{阶}.
+\end{definition}
+\begin{definition}
+把\begin{equation*}
+	\frac{(2n)!}{(n+1)! \cdot n!}
+	\quad(n=1,2,\dotsc)
+\end{equation*}
+称为“第\(n\)个\DefineConcept{卡塔兰数}（Catalan number）”，
+记作\(C_n\).
+%@see: https://mathworld.wolfram.com/CatalanNumber.html
+\end{definition}
+\begin{table}[htb]
+	\centering
+	\begin{tblr}{c|*9c}
+		\hline
+		\(n\) & \(1\) & \(2\) & \(3\) & \(4\) & \(5\) & \(6\) & \(7\) & \(8\) & \(9\) \\
+		\hline
+		\(C_n\) & \(1\) & \(2\) & \(5\) & \(14\) & \(42\) & \(132\)
+		& \(429\) & \(1430\) & \(4862\) \\
+		\hline
+	\end{tblr}
+	\caption{前9个卡塔兰数}
+%@Mathematica: Table[CatalanNumber[n], {n, 1, 10}]
+\end{table}
+\begin{theorem}
+%@see: 《组合数学及其应用》（曾光） P88 定理2.26
+全体\(n\)阶杜克路的基数等于第\(n\)个卡塔兰数.
+\end{theorem}
