@@ -1,0 +1,18 @@
+\ProvidesPackage{math-graph}  % 图论
+
+\RequirePackage{tikz}
+
+\NewDocumentCommand{\DrawDyckPath}{ O{1cm} m }{
+	\begin{tikzpicture}
+		% 绘制所有点
+		\foreach \y [count=\x from 0] in {#2} {
+			\fill({\x*#1},{\y*#1})coordinate(v\x)circle(2pt);
+			\xdef\DyckPathOrder{\x} % 杜克路的阶数+1
+		}
+		% 连接线段
+		\foreach \i [evaluate=\i as \nexti using int(\i+1)] in {0,...,\numexpr\DyckPathOrder-1} {
+			\draw(v\i)--(v\nexti);
+		}
+		\draw[dashed](v0)--(v\DyckPathOrder);
+	\end{tikzpicture}
+}
