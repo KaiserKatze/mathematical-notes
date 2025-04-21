@@ -38,6 +38,7 @@
 	\opair{m,n} \mapsto 2^m(2n+1)-1
 \]也是双射.
 %TODO
+%Mathematica: Table[1/2 ((m + n)^2 + 3 m + n), {m, 0, 3}, {n, 0, 3}] // TableForm
 \end{example}
 
 \begin{example}
@@ -158,10 +159,75 @@
 \end{example}
 
 \subsection{鸽巢原理}
-\begin{theorem}[鸽巢原理]
-%@see: 《Elements of Set Theory》 P134 Pigeonhold Principle
+\begin{theorem}\label{theorem:集合论.鸽巢原理}
+%@see: 《Elements of Set Theory》 P134 Pigeonhole Principle
 没有自然数与它的真子集等势.
+\begin{proof}
+下面证明对于每一个自然数\(n \in \omega\)，
+任意一个从\(n\)到\(n\)的单射\(f\)都是满射.
+用数学归纳法.
+令\[
+	T \defeq \Set{
+		n \in \omega
+		\given
+		(\forall f \in n^n)
+		[\text{$f$是单射} \implies \ran f = n]
+	}.
+\]
+显然\(0 \in T\)，
+% 映射空间\(\emptyset^\emptyset=\Set{\emptyset}\)
+这是因为从\(0\)到\(0\)的唯一一个映射是\(\emptyset\)，并且它的值域是\(0\).
+假设自然数\(k \in T\)，
+\(k^+\)是\(k\)的后继，
+且\(f\)是从\(k^+\)到\(k^+\)的单射.
+要证\(k^+ \in T\)，
+只需证\(\ran f = k^+\).
+注意到\(f\)在\(k\)上的限制\(f \setrestrict k\)
+将\(k\)映射到\(k^+\)里.
+下面分情况讨论：\begin{itemize}
+	\item 假设集合\(k\)对\(f\)封闭，
+	也就是说，\(f \setrestrict k\)将\(k\)映射到\(k\)里.
+	根据归纳假设有\(k \in T\)，
+	而\(f \setrestrict k\)作为一个从\(k\)到\(k\)的单射，
+	必定成立\[
+		\ran(f \setrestrict k) = k.
+	\]
+	既然\(f\)是单射，
+	根据定义\[
+		(\forall y \in \ran f)
+		(\exists! x)
+		[\opair{x,y} \in f],
+	\]
+	而\[
+		k^+ - \ran(f \setrestrict k) = \{k\},
+	\]
+	那么\(f(k)\)的取值只可能是\(k\)，
+	因此\(\ran f = k \cup \{k\} = k^+\).
+
+	\item 假设集合\(k\)对\(f\)不封闭，
+	也就是说，存在一个小于\(k\)的数\(p\)满足\(f(p) = k\).
+	在这种情况下，我们可以交换\(p\)和\(k\)这两个数在映射\(f\)下的像，
+	定义映射\(g\colon k^+ \to k^+\)，
+	令\[
+		g(x) = \left\{ \begin{array}{cl}
+			f(k), & x = p, \\
+			f(p), & x = k, \\
+			f(x), & \text{其他},
+		\end{array} \right.
+	\]
+	那么\(g\)可以将\(k^+\)映射到\(k^+\)里，
+	且\(k\)对\(g\)封闭.
+	于是由上一种情况可知，\(\ran g = k^+\).
+	因为\(\ran f = \ran g\)，
+	所以\(\ran f = k^+\).
+\end{itemize}
+综上所述，不论是在哪种情况下，均有\(\ran f = k^+\).
+于是\(T\)是归纳的，且\(T = \omega\).
+\end{proof}
 \end{theorem}
+
+我们把\cref{theorem:集合论.鸽巢原理}
+称为\DefineConcept{鸽巢原理}（Pigeonhole Principle）.
 
 \begin{corollary}
 %@see: 《Elements of Set Theory》 P135 Corollary 6C
