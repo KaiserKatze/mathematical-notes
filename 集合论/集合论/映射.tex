@@ -359,6 +359,98 @@ R^{-1}\ImageOfSetUnderRelation{\{1\}}\).
 \end{solution}
 \end{example}
 
+\begin{example}
+%@see: 《Elements of Set Theory》 P53 Exercise 19.
+设\[
+	A = \Set{
+		\opair{\emptyset,\{\emptyset,\{\emptyset\}\}},
+		\opair{\{\emptyset\},\emptyset}
+	}.
+\]
+计算\(A(\emptyset),
+A\ImageOfSetUnderRelation{\emptyset},
+A\ImageOfSetUnderRelation{\{\emptyset\}},
+A\ImageOfSetUnderRelation{\{\emptyset,\{\emptyset\}\}},
+A^{-1},
+A \circ A,
+A \setrestrict \emptyset,
+A \setrestrict \{\emptyset\},
+A \setrestrict \{\emptyset,\{\emptyset\}\},
+\bigcup\bigcup A\).
+\begin{solution}
+由题意有\begin{gather*}
+	A(\emptyset)
+	= \{\emptyset,\{\emptyset\}\}, \\
+	A\ImageOfSetUnderRelation{\emptyset}
+	% 易错点！
+	% 我的错误答案：
+	% = \{\{\emptyset,\{\emptyset\}\}\}, \\
+	% 正确答案是：
+	= \emptyset, \\
+	A\ImageOfSetUnderRelation{\{\emptyset\}}
+	% 易错点！
+	% 我的错误答案：
+	% = \{\emptyset\}, \\
+	% 正确答案是：
+	% = \{A(\emptyset)\}
+	= \{\{\emptyset,\{\emptyset\}\}\}, \\
+	A\ImageOfSetUnderRelation{\{\emptyset,\{\emptyset\}\}}
+	% 易错点！
+	% 我的错误答案：
+	% = \emptyset, \\
+	% 正确答案是：
+	% = \{A(\emptyset),A(\{\emptyset\})\}
+	= \{\{\emptyset,\{\emptyset\}\},\emptyset\}, \\
+	A^{-1}
+	= \Set{
+		\opair{\{\emptyset,\{\emptyset\}\},\emptyset},
+		\opair{\emptyset,\{\emptyset\}}
+	}, \\
+	A \circ A
+	= \Set{
+		\opair{\{\emptyset\},\{\emptyset,\{\emptyset\}\}}
+	}, \\
+	A \setrestrict \emptyset
+	= \emptyset, \\
+	A \setrestrict \{\emptyset\}
+	= \Set{
+		\opair{\emptyset,\{\emptyset,\{\emptyset\}\}}
+	}, \\
+	A \setrestrict \{\emptyset,\{\emptyset\}\}
+	= A, \\
+	\bigcup\bigcup A
+	% = \bigcup(
+	% 	\opair{\emptyset,\{\emptyset,\{\emptyset\}\}}
+	% 	\cup
+	% 	\opair{\{\emptyset\},\emptyset}
+	% )
+	% = \bigcup(
+	% 	\{\{\emptyset\},\{\emptyset,\{\emptyset,\{\emptyset\}\}\}\}
+	% 	\cup
+	% 	\{\{\{\emptyset\}\},\{\emptyset,\{\emptyset\}\}\}
+	% )
+	% = \bigcap\{
+	% 	\{\emptyset\},
+	% 	\{\emptyset,\{\emptyset,\{\emptyset\}\}\},
+	% 	\{\{\emptyset\}\},
+	% 	\{\emptyset,\{\emptyset\}\}
+	% \}
+	% = \{\emptyset\}
+	% \cup
+	% \{\emptyset,\{\emptyset,\{\emptyset\}\}\}
+	% \cup
+	% \{\{\emptyset\}\}
+	% \cup
+	% \{\emptyset,\{\emptyset\}\}
+	= \{
+		\emptyset,
+		\{\emptyset\},
+		\{\emptyset,\{\emptyset\}\}
+	\}.
+\end{gather*}
+\end{solution}
+\end{example}
+
 \begin{definition}
 设\(F\)是关系，\(A\)是集合，那么称集合\[
 	\Set*{ x \in \dom F \given F(x) \in A }
