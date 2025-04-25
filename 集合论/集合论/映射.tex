@@ -644,6 +644,40 @@ A \setrestrict \{\emptyset,\{\emptyset\}\},
 即便两者都有意义，它们也未必相同.
 
 \begin{example}
+%@see: 《Elements of Set Theory》 P53 Exercise 21.
+设\(R,S,T\)都是集合.
+证明：\((R \circ S) \circ T = R \circ (S \circ T)\).
+\begin{proof}
+直接有\begin{align*}
+	\opair{x,y} \in (R \circ S) \circ T
+	&\iff
+	(\exists t_1)
+	[
+		\opair{x,t_1} \in T,
+		\opair{t_1,y} \in R \circ S
+	] \\
+	&\iff
+	(\exists t_1)
+	(\exists t_2)
+	[
+		\opair{x,t_1} \in T,
+		\opair{t_1,t_2} \in S,
+		\opair{t_2,y} \in R
+	] \\
+	&\iff
+	(\exists t_2)
+	[
+		\opair{x,t_2} \in S \circ T,
+		\opair{t_2,y} \in R
+	] \\
+	&\iff
+	\opair{x,y} \in R \circ (S \circ T).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}
 %@see: 《Elements of Set Theory》 P47 Example
 假设\(G\)是单射，
 那么，根据\cref{theorem:集合论.映射的复合也是映射}，
