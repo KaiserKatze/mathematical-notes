@@ -1027,6 +1027,77 @@ A \setrestrict \{\emptyset,\{\emptyset\}\},
 \end{proof}
 \end{proposition}
 
+\begin{example}\label{example:集合论.两个单根集的复合是单根的}
+%@see: 《Elements of Set Theory》 P53 Exercise 17.
+证明：两个单根集的复合还是单根的.
+%TODO 不能确定这个证明是完全正确的
+\begin{proof}
+设\(A,B\)都是单根集，
+下面证明它们的复合\(C = A \circ B\)也是单根的.
+注意到\[
+	(\forall y)
+	[
+		y \in \ran C
+		\implies
+		(\exists x)
+		(\exists t)
+		[
+			\opair{x,t} \in B,
+			\opair{t,y} \in A
+		]
+	].
+\]
+
+因为\(A\)是单根的，
+所以\[
+	(\forall y)
+	[
+		y \in \ran C
+		\implies
+		y \in \ran A
+		\implies
+		(\exists! t)
+		[\opair{t,y} \in A]
+	].
+	\eqno(1)
+\]
+
+又因为\(B\)是单根的，
+所以\[
+	(\forall y)
+	(\forall t)
+	[
+		y \in \ran C,
+		\opair{t,y} \in A
+		\implies
+		t \in \ran B
+		\implies
+		(\exists! x)
+		[\opair{x,t} \in B]
+	].
+	\eqno(2)
+\]
+
+由(1)(2)两式可得\[
+	(\forall y \in \ran C)
+	(\exists! x)
+	(\exists! t)
+	[
+		\opair{x,t} \in B,
+		\opair{t,y} \in A
+	],
+\]
+亦即\[
+	(\forall y \in \ran C)
+	(\exists! x)
+	[
+		\opair{x,y} \in C
+	].
+	\qedhere
+\]
+\end{proof}
+\end{example}
+
 \subsection{有标集族，指标集，子集族}\label{section:集合论.指标集}
 %@see: https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof/Book%3A_Mathematical_Reasoning__Writing_and_Proof_(Sundstrom)/05%3A_Set_Theory/5.05%3A_Indexed_Families_of_Sets
 \begin{definition}
