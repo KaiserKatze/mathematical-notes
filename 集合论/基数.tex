@@ -232,6 +232,58 @@
 \begin{corollary}
 %@see: 《Elements of Set Theory》 P135 Corollary 6C
 没有有限集与它的真子集等势.
+\begin{proof}
+假设\(A\)是有限集，
+根据定义，存在自然数\(n\)，使得\(A\)与\(n\)等势，
+不妨设\(g\)是\(A\)和\(n\)之间的一个一一对应.
+用反证法.
+假设\(A\)和它的某个真子集\(A'\)之间存在一个一一对应\(f\).
+
+如\cref{figure:基数.没有有限集与它的真子集等势} 所示，
+考虑复合映射\[
+	h \defeq g \circ f \circ g^{-1}.
+\]
+显然，\(h\)将\(n\)映射到\(n\)里.
+因为\(g\)是双射，
+%TODO “双射的逆是双射”缺乏依据
+所以\(g^{-1}\)也是双射.
+因为\(g,g^{-1},f\)都是单射，
+所以由\cref{example:集合论.两个单根集的复合是单根的} 可知，
+\(h\)是单射.
+考虑到\((\forall a \in A - \ran f)[g(a) \in n - C]\)，
+%TODO 不知道这里翻译正不正确，原话说的是：Consider any a in \(A - \ran f\); then \(g(a) \in n - C\).
+可以看出\(h\)的值域\(\ran h = C\)是\(n\)的真子集.
+%TODO 怎么看出来的？
+于是\(n\)与\(\ran h\)等势，
+与鸽巢原理矛盾！
+\begin{figure}[hbt]
+	\centering
+	\tikzset{
+		myset/.style={x radius=2cm,y radius=1cm}
+	}
+	\def\labeloffset{1cm}
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed] (0,0) grid (-6,-4);
+		\draw(0,0)circle[myset]node[above=\labeloffset]{$n$};
+		\draw(-6,0)circle[myset]node[above=\labeloffset]{$A$};
+		\draw(-6,-4)circle[myset]node[below=\labeloffset]{$A$};
+		\draw(0,-4)circle[myset]node[below=\labeloffset]{$n$};
+		\draw({2*cos(120)-6},{sin(120)-4})--({2*cos(120)-6},{-sin(120)-4});
+		\draw({2*cos(120)},{sin(120)-4})--({2*cos(120)},{-sin(120)-4});
+		\fill(-7.3,-4.3)circle(2pt)node[above left]{$a$}
+			++(5.8,0)circle(2pt)node[above]{$g(a)$};
+		\draw(-5.7,-4)node{$\ran f$}
+			++(6,0)node{$C$};
+		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
+			\draw(-2,0)--(-4,0)node[midway,above]{$g^{-1}$};
+			\draw(-6,-1)--(-6,-3)node[midway,left]{$f$};
+			\draw(-4,-4)--(-2,-4)node[midway,below]{$g$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:基数.没有有限集与它的真子集等势}
+\end{figure}
+\end{proof}
 \end{corollary}
 
 \begin{corollary}
