@@ -318,7 +318,7 @@
 \end{proof}
 \end{corollary}
 
-\subsection{基数}
+\subsection{有限集的基数}
 \begin{definition}
 %@see: 《Elements of Set Theory》 P136
 设\(A\)是有限集.
@@ -344,18 +344,6 @@
 挑选一个一一对应的过程，
 称为\DefineConcept{计数}（counting）.
 
-我们可以看出，对于任意两个有限集\(A\)和\(B\)，
-我们有\[
-	A \approx \card A
-	\quad\text{和}\quad
-	\card A = \card B
-	\iff
-	A \approx B.
-\]
-
-这让我们不禁思考无限集是否具有同样的性质.
-因此我们需要扩展基数的定义，让它可以衡量无限集的大小.
-
 从\cref{example:基数.幂集与特征函数空间等势} 可以推出任一有限集的所有子集的个数.
 \begin{theorem}
 设\(A\)是有限集，
@@ -364,6 +352,12 @@
 	= 2^{\card A}.
 \end{equation}
 \end{theorem}
+\begin{remark}
+换一套记号，可能更有利于记忆：\begin{equation*}
+	\abs{2^A}
+	= 2^{\abs{A}}.
+\end{equation*}
+\end{remark}
 
 \begin{lemma}
 %@see: 《Elements of Set Theory》 P137 Lemma 6F
@@ -375,6 +369,43 @@
 %@see: 《Elements of Set Theory》 P137 Corollary 6G
 任一有限集的任一子集也是有限的.
 \end{theorem}
+
+\subsection{基数概念的推广}
+我们可以看出，对于任意两个有限集\(A\)和\(B\)，
+我们有\[
+	A \approx \card A
+	\quad\text{和}\quad
+	\card A = \card B
+	\iff
+	A \approx B.
+\]
+
+这让我们不禁思考无限集是否具有同样的性质，希望能够找到某种“数字”用以衡量无限集的大小，
+至于这种“数字”属于什么集合，就无足轻重了，
+就好比我们不关心数字\(2\)属于哪一个集合一样.
+因此我们需要扩展基数的定义，让它可以衡量无限集的大小，
+其中的核心需求是：
+对于任意集合\(A\)（不论它是有限的，还是有限的），
+定义\(\card A\)，
+使得\[
+	\card A = \card B
+	\iff
+	A \approx B
+\]恒成立.
+
+\def\Ka{\mathbf{K}_\alpha}
+考虑所有基数等于\(\alpha\)的汇集\[
+	\Ka \defeq \Set{ X \given \card X = \alpha }.
+\]
+只要\(\Ka\)中有1个集合是有限集，
+那么\(\Ka\)中的所有集合都是有限集，
+这种情况下，我们将\(\alpha\)称为\DefineConcept{有限基数}（finite cardinal）；
+反之，则称其为\DefineConcept{无限基数}（infinite cardinal）.
+显然，所有自然数都是有限基数，
+而\(\card\omega,
+\card\mathbb{R},
+\card\Powerset\omega,
+\card\Powerset\Powerset\omega\)都是无限基数.
 
 \subsection{基数算术}
 \begin{definition}
