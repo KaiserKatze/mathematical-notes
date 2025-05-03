@@ -359,10 +359,46 @@
 \end{equation*}
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{theorem:基数.自然数n的真子集只能与小于n的自然数等势}
 %@see: 《Elements of Set Theory》 P137 Lemma 6F
 如果\(C\)是自然数\(n\)的真子集，
 那么存在\(m<n\)使得\(C \approx m\).
+\begin{proof}
+下面我们证明每一个自然数\(n\)的任意一个真子集都与\(n\)的某个元素等势.
+用数学归纳法.
+令\[
+	T \defeq \Set{
+		n \in \omega
+		\given
+		(\forall c \subset n)
+		(\exists m \in n)
+		[c \approx m]
+	}.
+\]
+由于\(0 = \emptyset\)没有真子集，
+所以\(0 \in T\).
+假设自然数\(k \in T\)，
+考虑\(k\)的后继\(k^+\)的一个真子集\(C\)，
+分情况讨论.
+\begin{itemize}
+	\item 假设\(C = k\)，
+	那么\(C \approx k \in k^+\).
+
+	\item 假设\(C \subset k\)，
+	由于\(k \in T\)，于是存在\(m \in k \in k^+\)，使得\(C \approx m\).
+
+	\item 假设\(k \in C\)，
+	那么\(C = (C \cap k) \cup \{k\}\)
+	且\(C \cap k \subset k\).
+	因为\(k \in T\)，
+	所以存在\(m \in k\)使得\(C \cap k \approx m\).
+	假如\(f\)是\(C \cap k\)和\(m\)之间的一一对应，
+	那么\(f \cup \{\opair{k,m}\}\)就是\(C\)和\(m^+\)之间的一一对应.
+	鉴于\(m \in k\)，势必有\(m^+ \in k^+\).
+	因此\(C \approx m^+ \in k^+ \in T\).
+\end{itemize}
+综上所述，\(T\)是归纳的，且\(T = \omega\).
+\end{proof}
 \end{lemma}
 
 \begin{theorem}
