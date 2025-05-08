@@ -84,6 +84,42 @@ u_{ij} = 0\ (i>j)\).
 \endgroup%LU分解
 
 \subsection{谱分解}
+\begin{lemma}\label{theorem:矩阵分解.复方阵酉相似于上三角阵}
+%@see: 《矩阵论》（詹兴致） P6 定理1.5（Schur酉三角化）
+设矩阵\(\A \in M_n(\mathbb{C})\)，
+则\(\A\)酉相似于某个上三角矩阵.
+\begin{proof}
+用数学归纳法.
+当\(n=1\)时，结论显然成立.
+假设当\(n=k-1\ (k\geq2)\)时，结论成立.
+当\(n=k\)时，
+任取\(\A\)的某一个特征值\(\lambda_1\)，
+再任取属于\(\lambda_1\)的某一个单位特征向量\(\vb{x}_1\)，
+将\(\vb{x}_1\)扩充成\(\mathbb{C}^n\)的一个标准正交基\(\AutoTuple{\vb{x}}{n}\)，
+然后令\(\vb{U}_1 = (\AutoTuple{\vb{x}}{n})\)，
+则\(\vb{U}_1\)是酉矩阵，
+且\[
+	\vb{U}_1^H \A \vb{U}_1
+	= \begin{bmatrix}
+		\lambda & \vb{y}^H \\
+		\vb0 & \A_1
+	\end{bmatrix},
+\]
+其中\(\A_1 \in M_{n-1}(\mathbb{C})\).
+由归纳假设，
+存在酉矩阵\(\vb{U}_2 \in M_{n-1}(\mathbb{C})\)使得\(\vb{U}_2^H \A_1 \vb{U}_2\)是上三角矩阵.
+令\(\vb{U} = \vb{U}_1 \diag(1,\vb{U}_2) \in M_n(\mathbb{C})\)，
+则\(\vb{U}\)是酉矩阵，
+且\[
+	\vb{U}^H \A \vb{U}
+	= \begin{bmatrix}
+		\lambda & \vb{y}^H \vb{U}_2 \\
+		\vb0 & \vb{U}_2^H \A_1 \vb{U}_2
+	\end{bmatrix}
+\]是上三角矩阵.
+\end{proof}
+\end{lemma}
+
 \begin{theorem}\label{theorem:矩阵分解.谱分解}
 设\(\A \in M_n(\mathbb{C})\)是正规矩阵，
 则存在酉矩阵\(\Q \in M_n(\mathbb{C})\)满足\[
