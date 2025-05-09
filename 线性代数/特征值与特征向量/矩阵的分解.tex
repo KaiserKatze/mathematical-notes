@@ -121,12 +121,21 @@ u_{ij} = 0\ (i>j)\).
 \end{lemma}
 
 \begin{theorem}\label{theorem:矩阵分解.谱分解}
+%@see: 《矩阵论》（詹兴致） P2 定理1.1
 设\(\A \in M_n(\mathbb{C})\)是正规矩阵，
-则存在酉矩阵\(\Q \in M_n(\mathbb{C})\)满足\[
-	\A = \Q \diag(\AutoTuple{\lambda}{n}) \Q^H,
+则存在酉矩阵\(\vb{U} \in M_n(\mathbb{C})\)满足\[
+	\A = \vb{U} \diag(\AutoTuple{\lambda}{n}) \vb{U}^H,
 \]
 其中\(\AutoTuple{\lambda}{n}\)是\(\A\)的特征值.
-%TODO proof
+\begin{proof}
+根据\cref{theorem:矩阵分解.复方阵酉相似于上三角阵}，
+存在酉矩阵\(\vb{U}\)和上三角阵\(\vb{T}\)满足\(\A = \vb{U} \vb{T} \vb{U}^H\).
+因为\(\A\)是正规矩阵，\(\A \A^H = \A^H \A\)，
+所以\(\vb{T} \vb{T}^H = \vb{T}^H \vb{T}\).
+逐个比较\(\vb{T} \vb{T}^H\)和\(\vb{T}^H \vb{T}\)的主对角线元素，
+可以看出\(\vb{T}\)的每一个非主对角线元素都是零，
+\(\vb{T}\)是对角阵.
+\end{proof}
 \end{theorem}
 \begin{remark}
 \cref{theorem:矩阵分解.谱分解} 说明
