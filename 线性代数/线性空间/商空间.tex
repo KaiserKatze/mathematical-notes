@@ -68,8 +68,17 @@
 	&=\Set{ \b \in V \given \b=\a+\g \land \g \in W } \\
 	&=\Set{ \a+\g \given \g \in W }
 \end{align*}
-可以记作\(\a+W\)，称为“\(W\)的一个陪集”，
-\(\a\)称为陪集代表.
+可以记作\(\a+W\)，称为“\(W\)的一个\DefineConcept{陪集}”，
+\(\a\)称为\DefineConcept{陪集代表}.
+特别地，可以将\[
+	\overline{\vb0}
+	= \vb0+W
+	= \Set{
+		\g \in V
+		\given
+		\g \in W
+	}
+\]简记为\(W\).
 应该注意到，一个陪集的陪集代表不唯一，
 只要\(\vb\delta\)满足\(\a-\vb\delta \in W\)，
 那么\(\vb\delta\)也可以作为这个陪集的代表.
@@ -95,11 +104,51 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P98 定理1
 设\(W\)是域\(F\)上线性空间\(V\)的一个子空间.
 在\(V\)对于子空间\(W\)的商集\(V/W\)规定运算\begin{itemize}
-	\item 加法：\((\forall(\a+W),(\b+W)\in V/W)[(\a+W) + (\b+W) \defeq (\a+\b)+W]\)，
-	\item 纯量乘法：\((\forall(\a+W)\in V/W)(\forall k \in F)[k(\a+W) \defeq k\a+W]\)，
+	\item 加法：\begin{equation}\label{equation:商空间.商空间的加法}
+		%@see: 《高等代数（第三版 下册）》（丘维声） P98 (8)
+		(\forall(\a+W),(\b+W)\in V/W)[(\a+W) + (\b+W) \defeq (\a+\b)+W],
+	\end{equation}
+	\item 纯量乘法：\begin{equation}\label{equation:商空间.商空间的纯量乘法}
+		%@see: 《高等代数（第三版 下册）》（丘维声） P98 (9)
+		(\forall(\a+W)\in V/W)(\forall k \in F)[k(\a+W) \defeq k\a+W],
+	\end{equation}
 \end{itemize}
 则\(V/W\)对于这两种运算成为域\(F\)上的一个线性空间，
 它的零元是\(0+W\).
+\begin{proof}
+\cref{equation:商空间.商空间的加法,equation:商空间.商空间的纯量乘法}
+分别用到了陪集代表\(\a,\b\)，
+我们下面说明它们的运算结果不依赖于陪集代表的选择.
+设\[
+	\a_1 + W = \a + W,
+	\qquad
+	\b_1 + W = \b + W,
+\]
+则\[
+	\a_1 - \a \in W,
+	\qquad
+	\b_1 - \b \in W.
+\]
+从而\begin{gather*}
+	(\a_1 + \b_1) - (\a + \b)
+	= (\a_1 - \a) + (\b_1 - \b)
+	\in W, \\
+	k \a_1 - k \a
+	= k (\a_1 - \a)
+	\in W,
+\end{gather*}
+因此\[
+	(\a_1 + \b_1) + W
+	= (\a + \b) + W,
+	\qquad
+	k \a_1 + W
+	= k \a + W.
+\]
+这就证明上述关于商空间的加法和纯量乘法运算的定义是合理的.
+
+容易验证线性空间定义的8条运算法则在\(V/W\)中都成立.
+因此，\(V/W\)成为域\(F\)上的一个线性空间.
+\end{proof}
 \end{theorem}
 
 既然\(V\)对于子空间\(W\)的商集\(V/W\)对加法和纯量乘法成为域\(F\)上的一个线性空间，
