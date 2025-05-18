@@ -152,20 +152,82 @@
 \end{theorem}
 
 既然\(V\)对于子空间\(W\)的商集\(V/W\)对加法和纯量乘法成为域\(F\)上的一个线性空间，
-那么我们可以把\(V/W\)重新命名为“\(V\)对\(W\)的\DefineConcept{商空间}”.
+那么我们可以把线性空间\(V\)对于子空间\(W\)的商集\(V/W\)
+重新命名为“\(V\)对\(W\)的\DefineConcept{商空间}”.
 
 \begin{theorem}
 %@see: 《高等代数（第三版 下册）》（丘维声） P99 定理2
 设\(W\)是域\(F\)上有限维线性空间\(V\)的一个子空间，
 则\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P99 (10)
 	\dim(V/W) = \dim V - \dim W.
 \end{equation}
+\begin{proof}
+在\(W\)中取一个基\(\AutoTuple{\a}{s}\)，
+把它扩充成\(V\)的一个基\[
+	\AutoTuple{\a}{s},
+	\allowbreak
+	\AutoTuple{\a}[s+1]{n}.
+\]
+任取\(\b + W \in V/W\)，
+令\(\b = b_1 \a_1 + \dotsb + b_n \a_n\)，
+则\begin{align*}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P99 (11)
+	\b + W
+	&= (b_1 \a_1 + \dotsb + b_n \a_n) + W \\
+	&= (b_1 \a_1 + W) + \dotsb + (b_s \a_s + W)
+		+ (b_{s+1} \a_{s+1} + W) + \dotsb + (b_n \a_n + W) \\
+	&= W + \dotsb + W + b_{s+1} (\a_{s+1} + W) + \dotsb + b_n (\a_n + W) \\
+	&= b_{s+1} (\a_{s+1} + W) + b_n (\a_n + W).
+\end{align*}
+这表明\(V/W\)中任一向量均可表示成\(\AutoTuple{\a}[s+1]{n}\)的线性组合.
+若能证明\(\AutoTuple{\a}[s+1]{n}\)线性无关，
+则它就是\(V/W\)的一个基，
+从而\[
+	\dim(V/W)
+	= n - s
+	= \dim V - \dim W.
+\]
+现在假设\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P99 (12)
+	k_1 (\a_{s+1} + W)
+	+ \dotsb
+	+ k_{n-s} (\a_n + W) = W,
+\]
+则\[
+	(k_1 \a_{s+1} + \dotsb + k_{n-s} \a_n) + W = W,
+\]
+从而\[
+	k_1 \a_{s+1} + \dotsb + k_{n-s} \a_n \in W,
+\]
+于是\[
+	k_1 \a_{s+1} + \dotsb + k_{n-s} \a_n
+	= l_1 \a_1 + \dotsb + l_s \a_s,
+\]
+即\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P99 (13)
+	l_1 \a_1 + \dotsb + l_s \a_s
+	- k_1 \a_{s+1} - \dotsb - k_{n-s} \a_n
+	= 0.
+\]
+由于\(\AutoTuple{\a}{s},
+\allowbreak
+\AutoTuple{\a}[s+1]{n}\)线性无关，
+所以\[
+	l_1 = \dotsb = l_s
+	= k_1 = \dotsb = k_{n-s}
+	= 0.
+\]
+这证明了\(\a_{s+1} + W,\dotsc,\a_n + W\)是\(V/W\)中线性无关的向量组.
+\end{proof}
 \end{theorem}
 
 从这里我们可以看出，
 在\(W\)中取一个基\(\AutoTuple{\a}{s}\)，
 把它扩充成\(V\)的一个基\[
-	\a_1,\dotsc,\a_s,\a_{s+1},\dotsc,\a_n,
+	\AutoTuple{\a}{s},
+	\allowbreak
+	\AutoTuple{\a}[s+1]{n},
 \]
 则\(\a_{s+1}+W,\dotsc,\a_n+W\)是商空间\(V/W\)的一个基.
 令\(U=\Span\{\a_{s+1},\dotsc,\a_n\}\).
