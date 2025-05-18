@@ -198,7 +198,7 @@
 \]
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:线性映射.投影是线性变换}
 %@see: 《高等代数（第三版 下册）》（丘维声） P108 定理2
 设\(V\)是域\(F\)上的一个线性空间，
 \(U,W\)是\(V\)的两个子空间，
@@ -206,6 +206,7 @@
 则平行于\(W\)在\(U\)上的投影
 \(\vb{P}_U\)是\(V\)上的一个线性变换，
 且满足\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P108 (7)
 	\vb{P}_U(\a)
 	=\left\{ \begin{array}{ll}
 		\a, & \a\in U, \\
@@ -272,7 +273,26 @@
 \end{proof}
 \end{theorem}
 
+\cref{theorem:线性映射.投影是线性变换} 告诉我们，
+如果线性空间\(V\)可以分解成两个子空间的直和\(V = U \DirectSum W\)，
+那么\(V\)在子空间\(U\)上的投影\(\vb{P}_U\)
+和\(V\)在子空间\(W\)上的投影\(\vb{P}_W\)
+就都是\(V\)上的线性变换，
+并且有\begin{equation*}
+	\vb{P}_U(\a)
+	=\left\{ \begin{array}{ll}
+		\a, & \a\in U, \\
+		0, & \a\in W,
+	\end{array} \right.
+	\qquad
+	\vb{P}_W(\a)
+	=\left\{ \begin{array}{ll}
+		\a, & \a\in W, \\
+		0, & \a\in U.
+	\end{array} \right.
+\end{equation*}
 投影是非常重要的一类线性变换.
+
 \(V\)在子空间\(U\)上的投影\(\vb{P}_U\)
 和\(V\)在子空间\(W\)上的投影\(\vb{P}_W\)
 都是从\(V\)到\(V\)的映射，
@@ -292,6 +312,7 @@
 	=0,
 \end{gather*}
 我们可以将上述三条公式依次简记为\begin{gather*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P109 (8)
 	\vb{P}_U^2
 	=\vb{P}_U, \\
 	\vb{P}_U \vb{P}_W
@@ -317,10 +338,13 @@
 \(\vb{A}\)是\(V\)到\(U\)的一个线性映射，
 \(\vb{B}\)是\(U\)到\(W\)的一个线性映射，
 则\(\vb{B}\vb{A}\)是\(V\)到\(W\)的一个线性映射.
+%TODO proof
 \end{proposition}
 
 \begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P110
 线性映射的乘法适合结合律，不适合交换律.
+%TODO proof
 % \begin{proof}
 % 线性映射是映射.
 % 映射的乘法适合结合律，不适合交换律.
@@ -332,19 +356,22 @@
 \(\vb{A}\)是线性空间\(V\)到\(V'\)的一个线性映射，
 如果\(\vb{A}\)可逆，
 则\(\vb{A}^{-1}\)是\(V'\)到\(V\)的一个线性映射.
+%TODO proof
 %@see: https://mathworld.wolfram.com/InvertibleLinearMap.html
 \end{proposition}
 
 \begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P110
 设\(V,V'\)都是域\(F\)上有限维线性空间.
 \(V\)到\(V'\)的可逆线性映射存在的充分必要条件是
 \(\dim V=\dim V'\).
+%TODO proof
 % \begin{proof}
 % \(V\)与\(V'\)同构的充分必要条件是它们的维数相同.
 % \end{proof}
 \end{proposition}
 
-\subsection{线性映射的和、纯量乘法的概念与性质}
+\subsection{线性映射的加法、纯量乘法}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P110 命题5
 设\(\vb{A},\vb{B}\)都是域\(F\)上线性空间\(V\)到\(V'\)的线性映射，
@@ -370,6 +397,7 @@
 设\(\vb{A},\vb{B}\)都是域\(F\)上线性空间\(V\)到\(V'\)的线性映射，
 \(k\in F\)，
 则\(\vb{A}+\vb{B},k\vb{A}\)都是\(V\)到\(V'\)的线性映射.
+%TODO proof
 \end{proposition}
 
 容易验证，线性映射的加法与纯量乘法满足
@@ -385,8 +413,10 @@
 记作\(\Hom(V,V)\).
 在\(\Hom(V,V)\)中还有乘法运算.
 我们已经知道，线性变换的乘法满足结合律；
-恒等变换\(\vb{I}\)满足
-\((\forall\vb{A}\in\Hom(V,V))[\vb{I}\vb{A}=\vb{A}\vb{I}=\vb{A}]\).
+恒等变换\(\vb{I}\)满足\[
+	(\forall\vb{A}\in\Hom(V,V))
+	[\vb{I}\vb{A}=\vb{A}\vb{I}=\vb{A}].
+\]
 容易验证，线性变换的乘法对于加法还满足左、右分配律：\begin{gather*}
 	\vb{A}(\vb{B}+\vb{C})=\vb{A}\vb{B}+\vb{A}\vb{C}, \\
 	(\vb{B}+\vb{C})\vb{A}=\vb{B}\vb{A}+\vb{C}\vb{A}.
@@ -394,11 +424,17 @@
 因此\(\Hom(V,V)\)对于加法和乘法成为一个有单位元的环.
 容易验证，
 线性变换的乘法与纯量乘法满足\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (11)
 	(\forall k\in F)
 	(\forall\vb{A},\vb{B}\in\Hom(V,V))
-	[k(\vb{A}\vb{B})=(k\vb{A})\vb{B}=\vb{A}(k\vb{B})].
+	[
+		k(\vb{A}\vb{B})
+		=(k\vb{A})\vb{B}
+		=\vb{A}(k\vb{B})
+	].
 \]
 
+\subsection{代数，代数的维数}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P111 定义2
 设\(A\)是域\(F\)上的线性空间，
@@ -428,6 +464,7 @@
 成为域\(F\)上的一个代数.
 \end{example}
 
+\subsection{线性变换的幂运算}
 由于线性变换的乘法满足结合律，
 因此可以定义线性变换\(\vb{A}\)的正整数指数幂：\[
 	\vb{A}^m
@@ -483,6 +520,7 @@
 从\(F[x]\)的有关加法和乘法的等式
 得到\(F[\vb{A}]\)中有关加法和乘法的相应等式.
 
+\subsection{线性变换的性质}
 利用线性变换的运算，
 我们可以研究线性变换的性质.
 \begin{proposition}
