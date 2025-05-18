@@ -13,8 +13,8 @@
 有\(\g_0+\vb\eta\in\pi\)，
 因此\(\pi=\Set{ \g_0+\vb\eta \given \vb\eta\in W }\).
 我们可以把\(\pi\)记作\(\g_0+W\)，
-称其为“\(W\)的一个\DefineConcept{陪集}”，
-把\(\g_0\)称为\DefineConcept{陪集代表}.
+称其为“\(W\)的一个\emph{陪集}”，
+把\(\g_0\)称为\emph{陪集代表}.
 显然\begin{align*}
 	\g\in\g_0+W
 	&\iff
@@ -53,6 +53,7 @@
 就需要在\(V\)上建立一个二元等价关系，
 得到的所有等价类组成的集合就是\(V\)的一个划分.
 
+\subsection{陪集，陪集代表}
 设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间.
 在\(V\)上定义一个二元关系\(\sim\)满足\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P97 (3)
@@ -102,6 +103,7 @@
 只要\(\vb\delta\)满足\(\vb\alpha-\vb\delta \in W\)，
 那么\(\vb\delta\)也可以作为这个陪集的代表.
 
+\subsection{商集，商空间}
 根据\cref{definition:集合论.商集的定义}，
 \(W\)的全体陪集，就是\(V\)对于关系\(\sim\)的商集\(V/\kern-2pt\sim\).
 因为关系\(\sim\)是利用子空间\(W\)确定的，
@@ -119,7 +121,7 @@
 但是由于\(V/W\)不是\(V\)的子集，
 因此不能把\(V\)的两种运算直接搬到\(V/W\)中来.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:商空间.商空间的线性运算}
 %@see: 《高等代数（第三版 下册）》（丘维声） P98 定理1
 设\(W\)是域\(F\)上线性空间\(V\)的一个子空间.
 在\(V\)对于子空间\(W\)的商集\(V/W\)规定运算\begin{itemize}
@@ -174,7 +176,8 @@
 那么我们可以把线性空间\(V\)对于子空间\(W\)的商集\(V/W\)
 重新命名为“\(V\)对\(W\)的\DefineConcept{商空间}”.
 
-\begin{theorem}
+\subsection{商空间的维数}
+\begin{theorem}\label{theorem:商空间.商空间的维数}
 %@see: 《高等代数（第三版 下册）》（丘维声） P99 定理2
 设\(W\)是域\(F\)上有限维线性空间\(V\)的一个子空间，
 则\begin{equation}
@@ -263,7 +266,7 @@
 因此\(V=W \oplus U\).
 这个结论也可以推广到\(V\)及其子空间\(W\)都是无限维的，
 而商空间\(V/W\)是有限维的情况：
-\begin{theorem}
+\begin{theorem}\label{theorem:商空间.商空间的基与它的零元素的补空间的基之间的关系}
 %@see: 《高等代数（第三版 下册）》（丘维声） P100 定理3
 设\(V\)是域\(F\)上的线性空间，
 \(W\)是\(V\)的一个子空间.
@@ -273,13 +276,65 @@
 令\(U=\Span\{\b_1,\dotsc,\b_t\}\)，
 那么\(V=W \oplus U\)，
 并且\(\AutoTuple{\b}{t}\)是\(U\)的一个基.
+\begin{proof}
+任取\(\a \in V\).
+由于\(\b_1+W,\dotsc,\b_t+W\)是商空间\(V/W\)的一个基，
+因此存在\(F\)中一组元素\(\AutoTuple{k}{t}\)，
+使得\begin{align*}
+	\a+W
+	&= k_1 (\b_1 + W) + \dotsb + k_t (\b_t + W) \\
+	&= (k_1 \b_1 + \dotsb k_t \b_t) + W.
+\end{align*}
+于是\(\a - (k_1 \b_1 + \dotsb k_t \b_t) \in W\).
+记\(\b = k_1 \b_1 + \dotsb + k_t \b_t\)，
+则\(\b \in U\)且\(\a - \b \in W\).
+记\(\a - \b = \vb\delta\)，
+则\(\a = \vb\delta + \b \in W + U\).
+于是\(V \subseteq W+U\)，
+从而\(V = W+U\).
+
+任取\(\g \in W \cap U\)，
+则\(\g \in W\)且\(\g \in U\)，
+于是存在\(F\)中一组元素\(\AutoTuple{l}{t}\)，
+使得\[
+	\g = l_1 \b_1 + \dotsb + l_t \b_t,
+\]
+并且\begin{align*}
+	W &= \g + W
+	= (l_1 \b_1 + \dotsb + l_t \b_t) + W \\
+	&= l_1 (\b_1 + W) + \dotsb + l_t (\b_t + W).
+\end{align*}
+由于\(\b_1+W,\dotsc,\b_t+W\)线性无关，
+因此从上式可知\[
+	l_1 = \dotsb = l_t = 0.
+\]
+于是\(\g = \vb0\)，
+从而\(W \cap U = 0\).
+
+综上所述，\(V = W \oplus U\).
+
+设\[
+	x_1 \b_1 + \dotsb x_t \b_t = 0,
+\]
+则\[
+	(x_1 \b_1 + \dotsb + x_t \b_t) + W
+	= 0 + W
+	= W.
+\]
+从上面一段证得的结论可知，
+\(x_1 = \dotsb = x_t = 0\).
+因此\(\AutoTuple{\b}{t}\)线性无关，
+那么\(\AutoTuple{\b}{t}\)是\(U\)的一个基.
+\end{proof}
 \end{theorem}
-这就表明，如果线性空间\(V\)对于子空间\(W\)的商空间\(V/W\)是有限维的，
+\cref{theorem:商空间.商空间的基与它的零元素的补空间的基之间的关系} 表明，
+如果线性空间\(V\)对于子空间\(W\)的商空间\(V/W\)是有限维的，
 并且我们知道商空间\(V/W\)的一个基，
 那么\(V\)就有一个直和分解式.
 这是可以利用商空间研究线性空间的结构的原理之一.
 
-另一方面，对于\(n\)维线性空间\(V\)，
+从\cref{theorem:商空间.商空间的维数} 看出，
+对于\(n\)维线性空间\(V\)，
 如果它的子空间\(W\)不是零子空间，
 那么\(\dim(V/W) < \dim V\).
 于是我们可以利用数学归纳法来证明线性空间中有关被商空间继承的性质的结论.
