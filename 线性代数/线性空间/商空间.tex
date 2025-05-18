@@ -55,6 +55,7 @@
 
 设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间.
 在\(V\)上定义一个二元关系\(\sim\)满足\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P97 (3)
 	\a\sim\b
 	\defiff
 	\a-\b\in W,
@@ -62,6 +63,7 @@
 则\(\sim\)是一个等价关系.
 
 \(\a\)的等价类\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P97 (4)
 	\overline{\a}
 	&=\Set{ \b \in V \given \b \sim \a }
 	=\Set{ \b \in V \given \b-\a \in W } \\
@@ -79,8 +81,25 @@
 		\g \in W
 	}
 \]简记为\(W\).
-应该注意到，一个陪集的陪集代表不唯一，
-只要\(\vb\delta\)满足\(\a-\vb\delta \in W\)，
+于是\(\a\)的等价类\(\overline{\a}\)
+就是以\(\a\)为代表的\(W\)的一个陪集\(\a+W\).
+从而\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P98 (5)
+	\vb\beta \in \vb\alpha + W
+	\iff
+	\vb\beta \sim \vb\alpha
+	\iff
+	\vb\beta - \vb\alpha \in W.
+\]
+
+应该注意到\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P98 (6)
+	\vb\alpha + W = \vb\delta + W
+	\iff
+	\vb\alpha - \vb\delta \in W.
+\]
+可以看出，一个陪集的陪集代表不唯一，
+只要\(\vb\delta\)满足\(\vb\alpha-\vb\delta \in W\)，
 那么\(\vb\delta\)也可以作为这个陪集的代表.
 
 根据\cref{definition:集合论.商集的定义}，
@@ -163,6 +182,8 @@
 	\dim(V/W) = \dim V - \dim W.
 \end{equation}
 \begin{proof}
+设\(\dim V = n,
+\dim W = s\).
 在\(W\)中取一个基\(\AutoTuple{\a}{s}\)，
 把它扩充成\(V\)的一个基\[
 	\AutoTuple{\a}{s},
@@ -175,13 +196,16 @@
 	%@see: 《高等代数（第三版 下册）》（丘维声） P99 (11)
 	\b + W
 	&= (b_1 \a_1 + \dotsb + b_n \a_n) + W \\
+	% 商空间的加法
 	&= (b_1 \a_1 + W) + \dotsb + (b_s \a_s + W)
 		+ (b_{s+1} \a_{s+1} + W) + \dotsb + (b_n \a_n + W) \\
+	% 因为\(\AutoTuple{\a}{s} \in W\)，所以\(b_i \a_i + W = W\ (i=1,2,\dotsc,s)\).
 	&= W + \dotsb + W + b_{s+1} (\a_{s+1} + W) + \dotsb + b_n (\a_n + W) \\
-	&= b_{s+1} (\a_{s+1} + W) + b_n (\a_n + W).
+	% 商空间的加法
+	&= b_{s+1} (\a_{s+1} + W) + \dotsb + b_n (\a_n + W).
 \end{align*}
-这表明\(V/W\)中任一向量均可表示成\(\AutoTuple{\a}[s+1]{n}\)的线性组合.
-若能证明\(\AutoTuple{\a}[s+1]{n}\)线性无关，
+这表明\(V/W\)中任一向量均可表示成\(\a_{s+1} + W,\dotsc,\a_n + W\)的线性组合.
+若能证明\(\a_{s+1} + W,\dotsc,\a_n + W\)线性无关，
 则它就是\(V/W\)的一个基，
 从而\[
 	\dim(V/W)
@@ -192,9 +216,12 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P99 (12)
 	k_1 (\a_{s+1} + W)
 	+ \dotsb
-	+ k_{n-s} (\a_n + W) = W,
+	+ k_{n-s} (\a_n + W)
+	= W,
+	% 这里就是在假设\(\a_{s+1} + W,\dotsc,\a_n + W\)的一个线性组合等于零陪集
 \]
 则\[
+	% 商空间的加法
 	(k_1 \a_{s+1} + \dotsb + k_{n-s} \a_n) + W = W,
 \]
 从而\[
@@ -208,7 +235,7 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P99 (13)
 	l_1 \a_1 + \dotsb + l_s \a_s
 	- k_1 \a_{s+1} - \dotsb - k_{n-s} \a_n
-	= 0.
+	= \vb0.
 \]
 由于\(\AutoTuple{\a}{s},
 \allowbreak
