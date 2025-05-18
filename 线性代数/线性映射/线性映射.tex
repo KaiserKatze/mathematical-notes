@@ -163,15 +163,15 @@
 设\(V\)是域\(F\)上的一个线性空间，
 \(U,W\)是\(V\)的两个子空间，
 且\(V=U \DirectSum W\).
-把映射\[
+把\[
 	\vb{P}_U
 	\defeq
 	\Set{
 		\opair{\a,\a_1}
 		\in
-		V\times U
+		V \times U
 		\given
-		(\exists\a_2\in W)
+		(\exists \a_2 \in W)
 		[\a=\a_1+\a_2]
 	}
 \]
@@ -182,6 +182,20 @@
 强调“平行于\(W\)”
 是因为从\cref{example:线性空间.子空间.直和.例1}
 可以知道\(\a_1\)的取值是由\(U,W\)以及\(\a\)共同决定的.
+\end{remark}
+\begin{remark}
+类似地，可以定义\[
+	\vb{P}_W
+	\defeq
+	\Set{
+		\opair{\a,\a_2}
+		\in
+		V \times W
+		\given
+		(\exists \a_1 \in U)
+		[\a=\a_1+\a_2]
+	}.
+\]
 \end{remark}
 
 \begin{theorem}
@@ -198,6 +212,64 @@
 		0, & \a\in W.
 	\end{array} \right.
 \]
+\begin{proof}
+由于\(V = U \DirectSum W\)，
+因此\(V\)中任意一个向量\(\vb\alpha\)表示成\(U\)的一个向量与\(W\)的一个向量之和的方式唯一，
+关系\(\vb{P}_U\)是单值的，
+于是\(\vb{P}_U\)是从\(V\)到\(V\)的一个映射.
+任取\(V\)中两个向量\[
+	\vb\alpha = \vb\alpha_1 + \vb\alpha_2,
+	\qquad
+	\vb\beta = \vb\beta_1 + \vb\beta_2,
+\]
+其中\(\vb\alpha_1,\vb\beta_1 \in U,
+\vb\alpha_2,\vb\beta_2 \in W\)，
+则\[
+	\vb\alpha_1 + \vb\beta_1
+	\in U,
+	\qquad
+	\vb\alpha_2 + \vb\beta_2
+	\in W,
+\]
+从而\begin{align*}
+	\vb{P}_U(\vb\alpha + \vb\beta)
+	&= \vb{P}_U((\vb\alpha_1 + \vb\beta_1) + (\vb\alpha_2 + \vb\beta_2)) \\
+	&= \vb\alpha_1 + \vb\beta_1 \\
+	&= \vb{P}_U(\vb\alpha) + \vb{P}_U(\vb\beta), \\
+	\vb{P}_U(k \vb\alpha)
+	&= \vb{P}_U(k \vb\alpha_1 + k \vb\alpha_2) \\
+	&= k \vb\alpha_1 \\
+	&= k \vb{P}_U(\vb\alpha),
+	\quad k \in F,
+\end{align*}
+因此\(\vb{P}_U\)是\(V\)上的一个线性变换.
+
+如果\(\vb\alpha \in U\)，
+则\(\vb\alpha = \vb\alpha + \vb0\)，
+从而\(\vb{P}_U(\vb\alpha) = \vb\alpha\).
+
+如果\(\vb\alpha \in W\)，
+则\(\vb\alpha = 0 + \vb\alpha\)，
+从而\(\vb{P}_U(\vb\alpha) = \vb0\).
+
+设\(V\)上的线性变换\(\vb{A}\)也满足投影的定义，
+任取\(\vb\alpha \in V\)，
+设\[
+	\vb\alpha = \vb\alpha_1 + \vb\alpha_2,
+	\quad
+	\vb\alpha_1 \in U,
+	\vb\alpha_2 \in W,
+\]
+则\[
+	\vb{A}(\vb\alpha)
+	= \vb{A}(\vb\alpha_1 + \vb\alpha_2)
+	= \vb{A}(\vb\alpha_1) + \vb{A}(\vb\alpha_2)
+	= \vb\alpha_1 + \vb0
+	= \vb\alpha_1
+	= \vb{P}_U(\vb\alpha),
+\]
+因此\(\vb{A} = \vb{P}_U\).
+\end{proof}
 \end{theorem}
 
 投影是非常重要的一类线性变换.
