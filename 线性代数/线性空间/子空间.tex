@@ -23,6 +23,7 @@
 % A subset \(U\) of a linear space \(V\) is called a \emph{subspace} if sums and scalar multiples of elements of \(U\) belong to \(U\).
 \end{definition}
 
+%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P4 Exercise 8.
 显然\(\{\vb0\}\)是\(V\)的一个子空间，
 称其为“\(V\)的\DefineConcept{零子空间}”，
 也记作\(0\).
@@ -102,7 +103,7 @@
 \begin{proof}
 由于\(\dim U=\dim V=n\)，
 因此\(U\)的一个基\(\AutoTuple{\vb\delta}{n}\)就是\(V\)的一个基，
-从而\(V\)中任一向量\(\a=a_1\vb\delta_1+\dotsb+a_n\vb\delta_n\in U\)，
+从而\(V\)中任一向量\(\alpha=a_1\vb\delta_1+\dotsb+a_n\vb\delta_n\in U\)，
 因此\(V\subseteq U\).
 又因为\(U\subseteq V\)，
 所以\(U=V\).
@@ -114,20 +115,20 @@
 设\(U\)是域\(F\)上\(n\)维线性空间\(V\)的一个子空间，
 则\(U\)的一个基可以扩充成\(V\)的一个基.
 \begin{proof}
-设\(\AutoTuple{\a}{s}\)是\(U\)的一个基，则\(s\leq n\).
-如果\(s=n\)，则\(\AutoTuple{\a}{n}\)是\(V\)的一个基.
+设\(\AutoTuple{\alpha}{s}\)是\(U\)的一个基，则\(s\leq n\).
+如果\(s=n\)，则\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基.
 下面设\(s<n\).
-此时\(\AutoTuple{\a}{s}\)不是\(V\)的一个基，
-于是\(V\)中至少有一个向量\(\b_1\)
-不能由\(\AutoTuple{\a}{s}\)线性表出，
-从而\(\AutoTuple{\a}{s},\b_1\)线性无关.
+此时\(\AutoTuple{\alpha}{s}\)不是\(V\)的一个基，
+于是\(V\)中至少有一个向量\(\beta_1\)
+不能由\(\AutoTuple{\alpha}{s}\)线性表出，
+从而\(\AutoTuple{\alpha}{s},\beta_1\)线性无关.
 如果\(s+1=n\)，
 则已得到\(V\)的一个基.
 如果\(s+1<n\)，
-则同理有\(\b_2\in V\)，
-使得\(\AutoTuple{\a}{s},\b_1,\b_2\)线性无关.
+则同理有\(\beta_2\in V\)，
+使得\(\AutoTuple{\alpha}{s},\beta_1,\beta_2\)线性无关.
 依次递推，总能得到\(n\)个线性无关的向量
-\(\AutoTuple{\a}{s},\AutoTuple{\b}{r}\)，
+\(\AutoTuple{\alpha}{s},\AutoTuple{\beta}{r}\)，
 其中\(s+r=n\)，
 这就是\(V\)的一个基.
 \end{proof}
@@ -135,25 +136,29 @@
 
 \subsection{生成子空间}
 如何构造域\(F\)上线性空间\(V\)的子空间？
-在\(V\)中给了向量组\(\AutoTuple{\a}{s}\)，
+在\(V\)中给了向量组\(\AutoTuple{\alpha}{s}\)，
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P4 Definition
 由它们的所有线性组合组成的集合\[
 	\Set{
-		k_1\a_1+\dotsb+k_s\a_s
+		k_1\alpha_1+\dotsb+k_s\alpha_s
 		\given
 		\AutoTuple{k}{s}\in F
 	}
 \]是\(V\)的一个子空间，
-称其为“由\(\AutoTuple{\a}{s}\)生成的子空间”，
-记作\(\opair{\AutoTuple{\a}{s}}\)
-或\(\Span\{\AutoTuple{\a}{s}\}\).
+称其为“由\(\AutoTuple{\alpha}{s}\)生成的子空间
+（\emph{subspace} spanned by \(\AutoTuple{\alpha}{s}\)”，
+记作\(\opair{\AutoTuple{\alpha}{s}}\)
+或\(\Span\{\AutoTuple{\alpha}{s}\}\).
+
+可以证明，由\(\AutoTuple{\alpha}{s}\)生成的子空间\(\opair{\AutoTuple{\alpha}{s}}\)
+是包含\(\AutoTuple{\alpha}{s}\)的最小子空间.
 
 \begin{theorem}
 %@see: 《高等代数（第三版 下册）》（丘维声） P84 定理5
 在域\(F\)上的线性空间\(V\)中，
-如果\(U=\opair{\AutoTuple{\a}{s}}\)，
-则向量组\(\AutoTuple{\a}{s}\)的一个极大线性无关组是\(U\)的一个基，
-从而\(\dim U=\rank\{\AutoTuple{\a}{s}\}\).
+如果\(U=\opair{\AutoTuple{\alpha}{s}}\)，
+则向量组\(\AutoTuple{\alpha}{s}\)的一个极大线性无关组是\(U\)的一个基，
+从而\(\dim U=\rank\{\AutoTuple{\alpha}{s}\}\).
 \end{theorem}
 
 从基的定义容易看出，
@@ -174,10 +179,10 @@
 \begin{proof}
 因为\(0\in V_1 \cap V_2\)，
 所以\(V_1 \cap v_2\)非空集.
-设\(\a,\b\in V_1 \cap V_2\)，
-则\(\a,\b\in V_1\)且\(\a,\b\in V_2\).
-于是\(\a+\b\in V_1\)且\(\a+\b\in V_2\)，
-因此\(\a+\b\in V_1 \cap V_2\)，
+设\(\alpha,\beta\in V_1 \cap V_2\)，
+则\(\alpha,\beta\in V_1\)且\(\alpha,\beta\in V_2\).
+于是\(\alpha+\beta\in V_1\)且\(\alpha+\beta\in V_2\)，
+因此\(\alpha+\beta\in V_1 \cap V_2\)，
 \(V_1 \cap V_2\)对加法封闭.
 同理可证\(V_1 \cap V_2\)对纯量乘法封闭.
 综上所述\(V_1 \cap V_2\)是\(V\)的子空间.
@@ -212,13 +217,13 @@
 显然\(V_1=\opair{(1,0,0),(0,1,0)}\)
 和\(V_2=\opair{(0,1,0),(0,0,1)}\)
 都是几何空间\(V\)的子空间.
-我们取\(\a=(1,1,0)\in V_1\)，
-再取\(\b=(0,1,1)\in V_2\)，
-容易看出\(\a+\b=(1,2,1)\)
+我们取\(\alpha=(1,1,0)\in V_1\)，
+再取\(\beta=(0,1,1)\in V_2\)，
+容易看出\(\alpha+\beta=(1,2,1)\)
 虽然属于\(V\)，
 但是不属于\(\opair{(1,0,0),(0,1,0)}\)，
 也不属于\(\opair{(0,1,0),(0,0,1)}\)，
-即\(\a+\b\notin V_1 \cup V_2\)，
+即\(\alpha+\beta\notin V_1 \cup V_2\)，
 这就说明
 \(V_1 \cup V_2\)对加法不封闭，
 从而说明
@@ -232,10 +237,11 @@
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P84 定理7
+%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P4 Definition
 设\(V_1,V_2\)都是域\(F\)上线性空间\(V\)的子空间，
 把\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P84 (1)
-	\Set{ \a_1+\a_2 \given \a_1\in V_1,\a_2\in V_2 }
+	\Set{ \alpha_1+\alpha_2 \given \alpha_1\in V_1,\alpha_2\in V_2 }
 \]称为“\(V_1\)与\(V_2\)的\DefineConcept{和}（sum）”，
 记作\(V_1+V_2\).
 \end{definition}
@@ -246,19 +252,19 @@
 \begin{proof}
 由于\(0+0=0\)，
 所以\(0\in V_1+V_2\).
-在\(V_1+V_2\)中任取两个向量\(\a,\b\)，
+在\(V_1+V_2\)中任取两个向量\(\alpha,\beta\)，
 则\[
-	\a=\a_1+\a_2, \qquad
-	\b=\b_1+\b_2,
+	\alpha=\alpha_1+\alpha_2, \qquad
+	\beta=\beta_1+\beta_2,
 \]
-其中\(\a_1,\b_1\in V_1,
-\a_2,\b_2\in V_2\).
-于是\(\a_1+\b_1\in V_1,
-\a_2+\b_2\in V_2\).
+其中\(\alpha_1,\beta_1\in V_1,
+\alpha_2,\beta_2\in V_2\).
+于是\(\alpha_1+\beta_1\in V_1,
+\alpha_2+\beta_2\in V_2\).
 因此\[
-	\a+\b
-	=(\a_1+\a_2)+(\b_1+\b_2)
-	=(\a_1+\b_1)+(\a_2+\b_2)
+	\alpha+\beta
+	=(\alpha_1+\alpha_2)+(\beta_1+\beta_2)
+	=(\alpha_1+\beta_1)+(\alpha_2+\beta_2)
 	\in V_1+V_2,
 \]
 即\(V_1+V_2\)对于\(V\)的加法封闭.
@@ -300,27 +306,27 @@
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P85 命题8
-设\(\AutoTuple{\a}{s}\)与\(\AutoTuple{\b}{r}\)
+设\(\AutoTuple{\alpha}{s}\)与\(\AutoTuple{\beta}{r}\)
 是域\(F\)上线性空间\(V\)的两个向量组，
 则\[
-	\opair{\AutoTuple{\a}{s}}
-	+\opair{\AutoTuple{\b}{r}}
-	=\opair{\AutoTuple{\a}{s},\AutoTuple{\b}{r}}.
+	\opair{\AutoTuple{\alpha}{s}}
+	+\opair{\AutoTuple{\beta}{r}}
+	=\opair{\AutoTuple{\alpha}{s},\AutoTuple{\beta}{r}}.
 \]
 \begin{proof}
 根据向量组生成的子空间的定义，以及子空间的和的定义，
 得到\begin{align*}
-	&\opair{\AutoTuple{\a}{s}}
-	+\opair{\AutoTuple{\b}{r}} \\
+	&\opair{\AutoTuple{\alpha}{s}}
+	+\opair{\AutoTuple{\beta}{r}} \\
 	&=\Set{
-		(k_1\a_1+\dotsb+k_s\a_s)
-		+(l_1\b_1+\dotsb+l_r\b_r)
+		(k_1\alpha_1+\dotsb+k_s\alpha_s)
+		+(l_1\beta_1+\dotsb+l_r\beta_r)
 		\given
 		k_i,l_j\in F,
 		1\leq i\leq s,
 		1\leq j\leq r
 	} \\
-	&=\opair{\AutoTuple{\a}{s},\AutoTuple{\b}{r}}.
+	&=\opair{\AutoTuple{\alpha}{s},\AutoTuple{\beta}{r}}.
 	\qedhere
 \end{align*}
 \end{proof}
@@ -354,25 +360,25 @@
 	\dim V_2=n_2, \qquad
 	\dim(V_1 \cap V_2)=m.
 \]
-在\(V_1 \cap V_2\)中取一个基\(\AutoTuple{\a}{m}\)，
+在\(V_1 \cap V_2\)中取一个基\(\AutoTuple{\alpha}{m}\)，
 把它分别扩充成\(V_1,V_2\)的一个基：\[
-	\AutoTuple{\a}{m},\AutoTuple{\b}{n_1-m}, \qquad
-	\AutoTuple{\a}{m},\AutoTuple{\g}{n_2-m},
+	\AutoTuple{\alpha}{m},\AutoTuple{\beta}{n_1-m}, \qquad
+	\AutoTuple{\alpha}{m},\AutoTuple{\gamma}{n_2-m},
 \]
 于是\begin{align*}
 	V_1+V_2
-	&=\opair{\AutoTuple{\a}{m},\AutoTuple{\b}{n_1-m}}
-	+\opair{\AutoTuple{\a}{m},\AutoTuple{\g}{n_2-m}} \\
+	&=\opair{\AutoTuple{\alpha}{m},\AutoTuple{\beta}{n_1-m}}
+	+\opair{\AutoTuple{\alpha}{m},\AutoTuple{\gamma}{n_2-m}} \\
 	&=\opair{
-		\AutoTuple{\a}{m},
-		\AutoTuple{\b}{n_1-m},
-		\AutoTuple{\g}{n_2-m}
+		\AutoTuple{\alpha}{m},
+		\AutoTuple{\beta}{n_1-m},
+		\AutoTuple{\gamma}{n_2-m}
 	}.
 \end{align*}
 我们希望证明
-\(\AutoTuple{\a}{m},
-\AutoTuple{\b}{n_1-m},
-\AutoTuple{\g}{n_2-m}\)
+\(\AutoTuple{\alpha}{m},
+\AutoTuple{\beta}{n_1-m},
+\AutoTuple{\gamma}{n_2-m}\)
 是\(V_1+V_2\)的一个基，
 从而得出\begin{align*}
 	\dim(V_1+V_2)
@@ -382,39 +388,39 @@
 \end{align*}
 假设等式\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P86 (4)
-	k_1\a_1+\dotsb+k_m\a_m
-	+p_1\b_1+\dotsb+p_{n_1-m}\b_{n_1-m}
-	+q_1\g_1+\dotsb+q_{n_2-m}\g_{n_2-m}
+	k_1\alpha_1+\dotsb+k_m\alpha_m
+	+p_1\beta_1+\dotsb+p_{n_1-m}\beta_{n_1-m}
+	+q_1\gamma_1+\dotsb+q_{n_2-m}\gamma_{n_2-m}
 	=\vb0
 	\eqno(1)
 \]成立，
 则\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P86 (5)
-	q_1\g_1+\dotsb+q_{n_2-m}\g_{n_2-m}
-	=-k_1\a_1-\dotsb-k_m\a_m
-	-p_1\b_1-\dotsb-p_{n_1-m}\b_{n_1-m}.
+	q_1\gamma_1+\dotsb+q_{n_2-m}\gamma_{n_2-m}
+	=-k_1\alpha_1-\dotsb-k_m\alpha_m
+	-p_1\beta_1-\dotsb-p_{n_1-m}\beta_{n_1-m}.
 \]
 注意到上式左边的向量属于\(V_2\)，
 右边的向量属于\(V_1\)，
 从而左边的向量属于\(V_1 \cap V_2\)，
-因此它可由\(\AutoTuple{\a}{m}\)线性表出：\[
-	q_1\g_1+\dotsb+q_{n_2-m}\g_{n_2-m}
-	=l_1\a_1+\dotsb+l_m\a_m,
+因此它可由\(\AutoTuple{\alpha}{m}\)线性表出：\[
+	q_1\gamma_1+\dotsb+q_{n_2-m}\gamma_{n_2-m}
+	=l_1\alpha_1+\dotsb+l_m\alpha_m,
 \]
 移项得\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P86 (6)
-	l_1\a_1+\dotsb+l_m\a_m
-	-q_1\g_1-\dotsb-q_{n_2-m}\g_{n_2-m}
+	l_1\alpha_1+\dotsb+l_m\alpha_m
+	-q_1\gamma_1-\dotsb-q_{n_2-m}\gamma_{n_2-m}
 	=\vb0.
 \]
-由于\(\AutoTuple{\a}{m},\AutoTuple{\g}{n_2-m}\)是\(V_2\)的一个基，
+由于\(\AutoTuple{\alpha}{m},\AutoTuple{\gamma}{n_2-m}\)是\(V_2\)的一个基，
 因此从上式得出\[
 	l_1=\dotsb=l_m=0, \qquad
 	q_1=\dotsb=q_{n_2-m}=0.
 \]
 代入(1)式，得\[
-	k_1\a_1+\dotsb+k_m\a_m
-	+p_1\b_1+\dotsb+p_{n_1-m}\b_{n_1-m}
+	k_1\alpha_1+\dotsb+k_m\alpha_m
+	+p_1\beta_1+\dotsb+p_{n_1-m}\beta_{n_1-m}
 	=\vb0.
 \]
 同理可得\[
@@ -422,9 +428,9 @@
 	p_1=\dotsb=p_{n_1-m}=0.
 \]
 因此
-\(\AutoTuple{\a}{m},
-\AutoTuple{\b}{n_1-m},
-\AutoTuple{\g}{n_2-m}\)
+\(\AutoTuple{\alpha}{m},
+\AutoTuple{\beta}{n_1-m},
+\AutoTuple{\gamma}{n_2-m}\)
 线性无关.
 \end{proof}
 \end{theorem}
@@ -456,10 +462,10 @@
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P4 Definition
 设\(V_1,V_2\)是域\(F\)上线性空间\(V\)的子空间，
 如果\[
-	(\forall\a\in V_1+V_2)
-	(\exists!\a_1\in V_1)
-	(\exists!\a_2\in V_2)
-	[\a=\a_1+\a_2],
+	(\forall\alpha\in V_1+V_2)
+	(\exists!\alpha_1\in V_1)
+	(\exists!\alpha_2\in V_2)
+	[\alpha=\alpha_1+\alpha_2],
 \]
 则称“\(V_1+V_2\)是\DefineConcept{直和}（direct sum）”，
 记作\(V_1 \DirectSum V_2\).
@@ -574,15 +580,15 @@ V_3=\opair{(1,1)}\)，
 设\(V\)是域\(F\)上\(n\)维线性空间，
 则\(V\)的每一个子空间\(U\)都有补空间.
 \begin{proof}
-从\(U\)中取一个基\(\AutoTuple{\a}{m}\)，
-把它扩充成\(V\)的一个基\(\AutoTuple{\a}{m},
-\AutoTuple{\a}[m+1]{n}\)，
+从\(U\)中取一个基\(\AutoTuple{\alpha}{m}\)，
+把它扩充成\(V\)的一个基\(\AutoTuple{\alpha}{m},
+\AutoTuple{\alpha}[m+1]{n}\)，
 则\[
-	V=\opair{\AutoTuple{\a}{m},\AutoTuple{\a}[m+1]{n}}
-	=\opair{\AutoTuple{\a}{m}}+\opair{\AutoTuple{\a}[m+1]{n}}
+	V=\opair{\AutoTuple{\alpha}{m},\AutoTuple{\alpha}[m+1]{n}}
+	=\opair{\AutoTuple{\alpha}{m}}+\opair{\AutoTuple{\alpha}[m+1]{n}}
 	=U+W,
 \]
-其中\(W=\opair{\AutoTuple{\a}[m+1]{n}}\).
+其中\(W=\opair{\AutoTuple{\alpha}[m+1]{n}}\).
 由于\(U\)的一个基与\(W\)的一个基合起来是\(V\)的一个基，
 因此\(U+W\)是直和，
 从\(V=U \DirectSum W\).
@@ -625,12 +631,12 @@ V_3=\opair{(1,1)}\)，
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P88 定义3
 设\(\AutoTuple{V}{s}\)都是域\(F\)上线性空间\(V\)的子空间.
-如果\(\)中每一个向量\(\a\)可唯一地表示成\[
-	(\forall\a\in V_1+\dotsb+V_s)
-	(\exists!\a_1\in V_1)
+如果\(\)中每一个向量\(\alpha\)可唯一地表示成\[
+	(\forall\alpha\in V_1+\dotsb+V_s)
+	(\exists!\alpha_1\in V_1)
 	\dotso
-	(\exists!\a_s\in V_2)
-	[\a=\a_1+\dotsb+\a_s],
+	(\exists!\alpha_s\in V_2)
+	[\alpha=\alpha_1+\dotsb+\alpha_s],
 \]
 则称“\(\AutoTuple{V}{s}\)是\DefineConcept{直和}”，
 记作\(\bigoplus_{i=1}^s V_i\).
@@ -667,11 +673,11 @@ V_3=\opair{(1,1)}\)，
 V_1=\opair{\AutoTuple\a3},
 V_2=\opair{\AutoTuple\b2}\)，
 其中\[
-	\a_1=\begin{bmatrix} 1 \\ 2 \\ 1 \\ 0 \end{bmatrix},
-	\a_2=\begin{bmatrix} -1 \\ 1 \\ 1 \\ 1 \end{bmatrix},
-	\a_3=\begin{bmatrix} 0 \\ 3 \\ 2 \\ 1 \end{bmatrix},
-	\b_1=\begin{bmatrix} 2 \\ -1 \\ 0 \\ 1 \end{bmatrix},
-	\b_2=\begin{bmatrix} 1 \\ -1 \\ 3 \\ 7 \end{bmatrix},
+	\alpha_1=\begin{bmatrix} 1 \\ 2 \\ 1 \\ 0 \end{bmatrix},
+	\alpha_2=\begin{bmatrix} -1 \\ 1 \\ 1 \\ 1 \end{bmatrix},
+	\alpha_3=\begin{bmatrix} 0 \\ 3 \\ 2 \\ 1 \end{bmatrix},
+	\beta_1=\begin{bmatrix} 2 \\ -1 \\ 0 \\ 1 \end{bmatrix},
+	\beta_2=\begin{bmatrix} 1 \\ -1 \\ 3 \\ 7 \end{bmatrix},
 \]
 分别求\(V_1+V_2,V_1 \cap V_2\)的一个基和维数.
 \begin{solution}
@@ -697,19 +703,19 @@ V_2=\opair{\AutoTuple\b2}\)，
 		0 & 0 & 0 & 0 & 0
 	\end{bmatrix}.
 \]
-由此得出，\(\a_1,\a_2,\b_1\)是\(V_1+V_2\)的一个基，
+由此得出，\(\alpha_1,\alpha_2,\beta_1\)是\(V_1+V_2\)的一个基，
 \(\dim(V_1+V_2)=3\).
-同时也知道，\(\b_2\)可由\(\a_1,\a_2,\b_1\)线性表出，
-其系数是线性方程组\(x_1\a_1+x_2\a_2+x_3\b_1=\b_2\)的解\((-1,4,3)^T\)，
-即\(\b_2=-\a_1+4\a_2+3\b_1\).
-从而\(\a_1-4\a_2=3\b_1-\b_2\in V_1 \cap V_2\).
+同时也知道，\(\beta_2\)可由\(\alpha_1,\alpha_2,\beta_1\)线性表出，
+其系数是线性方程组\(x_1\alpha_1+x_2\alpha_2+x_3\beta_1=\beta_2\)的解\((-1,4,3)^T\)，
+即\(\beta_2=-\alpha_1+4\alpha_2+3\beta_1\).
+从而\(\alpha_1-4\alpha_2=3\beta_1-\beta_2\in V_1 \cap V_2\).
 又因为\(\dim V_1=2,
 \dim V_2=2\)，
 所以由子空间的维数公式有
 \(\dim(V_1 \cap V_2)
 =\dim V_1+\dim V_2-\dim(V_1+V_2)
 =2+2-3=1\)，
-于是\(\a_1-4\a_2=(5,-2,-3,-4)^T\)是\(V_1 \cap V_2\)的一个基.
+于是\(\alpha_1-4\alpha_2=(5,-2,-3,-4)^T\)是\(V_1 \cap V_2\)的一个基.
 \end{solution}
 \end{example}
 
