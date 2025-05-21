@@ -338,6 +338,7 @@
 \begin{property}\label{theorem:线性空间的结构.零空间的基是空集}
 %@see: 《高等代数（第三版 下册）》（丘维声） P77
 零空间的基是空集.
+%TODO 无法确定这个究竟是定义还是性质
 \end{property}
 
 \begin{property}
@@ -409,7 +410,7 @@
 数域\(K\)上全体\(s \times n\)矩阵\(M_{s \times n}(K)\)是有限维的，
 数域\(K\)上全体一元多项式\(K[x]\)是无限维的.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:线性空间.同一个线性空间的任意两个基的基数相等}
 %@see: 《高等代数（第三版 下册）》（丘维声） P77 定理10
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P5 Theorem 3.
 设\(V\)是域\(F\)上的一个线性空间.
@@ -442,7 +443,12 @@
 简记为\(\dim V\).
 \end{definition}
 
+\begin{property}
 零空间的维数为\(0\).
+\begin{proof}
+由\cref{theorem:线性空间的结构.零空间的基是空集} 立即可得.
+\end{proof}
+\end{property}
 
 \(\dim M_{s \times n}(K)=sn\).
 
@@ -470,19 +476,19 @@
 \begin{property}
 %@see: 《高等代数（第三版 下册）》（丘维声） P78 命题13
 设\(V\)是域\(F\)上的一个线性空间，
-\(\AutoTuple{\vb\alpha}{n}\)是\(V\)的一个基，
-则\(V\)中每一个向量\(\vb\alpha\)
-可以唯一地表成\(\AutoTuple{\vb\alpha}{n}\)的线性组合.
+\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
+则\(V\)中每一个向量\(\alpha\)
+可以唯一地表成\(\AutoTuple{\alpha}{n}\)的线性组合.
 \begin{proof}
-从基的定义知道，任意一个向量\(\vb\alpha\)，均可由\(\AutoTuple{\vb\alpha}{n}\)线性表出.
+从基的定义知道，任意一个向量\(\alpha\)，均可由\(\AutoTuple{\alpha}{n}\)线性表出.
 假设有如下两种表出方式：\begin{gather*}
-	\vb\alpha = x_1 \vb\alpha_1 + x_2 \vb\alpha_2 + \dotsb + x_n \vb\alpha_n, \\
-	\vb\alpha = y_1 \vb\alpha_1 + y_2 \vb\alpha_2 + \dotsb + y_n \vb\alpha_n.
+	\alpha = x_1 \alpha_1 + x_2 \alpha_2 + \dotsb + x_n \alpha_n, \\
+	\alpha = y_1 \alpha_1 + y_2 \alpha_2 + \dotsb + y_n \alpha_n.
 \end{gather*}
 相减得\[
-	0 = (x_1 - y_1) \vb\alpha_1 + (x_2 - y_2) \vb\alpha_2 + \dotsb + (x_n - y_n) \vb\alpha_n.
+	0 = (x_1 - y_1) \alpha_1 + (x_2 - y_2) \alpha_2 + \dotsb + (x_n - y_n) \alpha_n.
 \]
-由于\(\AutoTuple{\vb\alpha}{n}\)线性无关，
+由于\(\AutoTuple{\alpha}{n}\)线性无关，
 所以\[
 	x_1 - y_1
 	= x_2 - y_2
@@ -511,10 +517,10 @@
 
 设\(\AutoTuple{\alpha}{n}\)和\(\AutoTuple{\beta}{n}\)是\(V\)的两个基，
 \(V\)中向量\(\alpha\)在这两个基下的坐标分别为\[
-	\vb{X}=(\AutoTuple{x}{n})^T, \qquad
-	\vb{Y}=(\AutoTuple{y}{n})^T.
+	X=(\AutoTuple{x}{n})^T, \qquad
+	Y=(\AutoTuple{y}{n})^T.
 \]
-为了求\(\vb{X}\)与\(\vb{Y}\)之间的关系，
+为了求\(X\)与\(Y\)之间的关系，
 首先把这两个基之间的关系搞清楚.
 由于\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
 因此有\[
@@ -532,26 +538,26 @@
 	(\AutoTuple{\beta}{n})
 	=
 	(\AutoTuple{\alpha}{n})
-	\vb{A},
+	A,
 \]
 其中\[
-	\vb{A}=\begin{bmatrix}
+	A=\begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1n} \\
 		a_{21} & a_{22} & \dots & a_{2n} \\
 		\vdots & \vdots & & \vdots \\
 		a_{n1} & a_{n2} & \dots & a_{nn}
 	\end{bmatrix}.
 \]
-我们把\(\vb{A}\)称为
+我们把\(A\)称为
 “基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的\DefineConcept{过渡矩阵}”.
 %@see: https://mathworld.wolfram.com/TransitionMatrix.html
 %@see: https://mathworld.wolfram.com/ChangeofCoordinatesMatrix.html
 
 在这里，我们引入一种形式写法\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P79 (3)
-	x_1 \vb\alpha_1 + \dotsb + x_n \vb\alpha_n
+	x_1 \alpha_1 + \dotsb + x_n \alpha_n
 	\defeq
-	(\AutoTuple{\vb\alpha}{n})
+	(\AutoTuple{\alpha}{n})
 	\begin{bmatrix}
 		x_1 \\
 		\vdots \\
@@ -562,50 +568,50 @@
 因此，类似于矩阵乘法的结合律、左右分配律、乘法与数量乘法的关系的证明方法，
 可以证明形式写法满足以下规则.
 
-设\(\AutoTuple{\vb\alpha}{n}\)与\(\AutoTuple{\vb\beta}{n}\)是\(V\)中的两个向量组，
+设\(\AutoTuple{\alpha}{n}\)与\(\AutoTuple{\beta}{n}\)是\(V\)中的两个向量组，
 \(A,B\)是域\(F\)上的两个\(n\)阶矩阵，
 数\(k \in F\)，
 则\begin{gather*}
 	%@see: 《高等代数（第三版 下册）》（丘维声） P79 (6)
-	[(\AutoTuple{\vb\alpha}{n}) A] B
-	= (\AutoTuple{\vb\alpha}{n}) (A B), \\
+	[(\AutoTuple{\alpha}{n}) A] B
+	= (\AutoTuple{\alpha}{n}) (A B), \\
 	%@see: 《高等代数（第三版 下册）》（丘维声） P79 (7)
-	(\AutoTuple{\vb\alpha}{n}) A
-	+ (\AutoTuple{\vb\alpha}{n}) B
-	= (\AutoTuple{\vb\alpha}{n}) (A + B), \\
+	(\AutoTuple{\alpha}{n}) A
+	+ (\AutoTuple{\alpha}{n}) B
+	= (\AutoTuple{\alpha}{n}) (A + B), \\
 	%@see: 《高等代数（第三版 下册）》（丘维声） P79 (8)
-	(\AutoTuple{\vb\alpha}{n}) A
-	+ (\AutoTuple{\vb\beta}{n}) A
-	= (\vb\alpha_1+\vb\beta_1,\dotsc,\vb\alpha_n+\vb\beta_n) A, \\
+	(\AutoTuple{\alpha}{n}) A
+	+ (\AutoTuple{\beta}{n}) A
+	= (\alpha_1+\beta_1,\dotsc,\alpha_n+\beta_n) A, \\
 	%@see: 《高等代数（第三版 下册）》（丘维声） P79 (9)
-	[k (\AutoTuple{\vb\alpha}{n})] A
-	= (\AutoTuple{\vb\alpha}{n}) (k A), \\
-	[k (\AutoTuple{\vb\alpha}{n})] A
-	= k [(\AutoTuple{\vb\alpha}{n}) A],
+	[k (\AutoTuple{\alpha}{n})] A
+	= (\AutoTuple{\alpha}{n}) (k A), \\
+	[k (\AutoTuple{\alpha}{n})] A
+	= k [(\AutoTuple{\alpha}{n}) A],
 \end{gather*}
 其中\begin{gather*}
 	%@see: 《高等代数（第三版 下册）》（丘维声） P79 (10)
-	(\AutoTuple{\vb\alpha}{n})
-	+ (\AutoTuple{\vb\beta}{n})
+	(\AutoTuple{\alpha}{n})
+	+ (\AutoTuple{\beta}{n})
 	\defeq
-	(\vb\alpha_1+\vb\beta_1,\dotsc,\vb\alpha_n+\vb\beta_n), \\
+	(\alpha_1+\beta_1,\dotsc,\alpha_n+\beta_n), \\
 	%@see: 《高等代数（第三版 下册）》（丘维声） P79 (11)
-	k (\AutoTuple{\vb\alpha}{n})
-	= (\AutoTuple{k \vb\alpha}{n}).
+	k (\AutoTuple{\alpha}{n})
+	= (\AutoTuple{k \alpha}{n}).
 \end{gather*}
 
 \begin{proposition}\label{theorem:线性空间.命题14}
 %@see: 《高等代数（第三版 下册）》（丘维声） P80 命题14
 设\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
-且\((\AutoTuple{\beta}{n})=(\AutoTuple{\alpha}{n})\vb{A}\)，
+且\((\AutoTuple{\beta}{n})=(\AutoTuple{\alpha}{n})A\)，
 则\(\AutoTuple{\beta}{n}\)是\(V\)的一个基
-当且仅当\(\vb{A}\)是可逆矩阵.
+当且仅当\(A\)是可逆矩阵.
 \begin{proof}
 由于\(\AutoTuple{\alpha}{n}\)线性无关，
 并且有\begin{align*}
 	k_1 \beta_1+\dotsb+k_n \beta_n
 	&=(\AutoTuple{\beta}{n}) (\AutoTuple{k}{n})^T \\
-	&=(\AutoTuple{\alpha}{n}) \vb{A} (\AutoTuple{k}{n})^T,
+	&=(\AutoTuple{\alpha}{n}) A (\AutoTuple{k}{n})^T,
 \end{align*}
 因此\begin{align*}
 	&\text{$\AutoTuple{\beta}{n}$是$V$的一个基}
@@ -615,16 +621,16 @@
 	\implies
 	k_1=\dotsb=k_n=0 \\
 	&\iff
-	(\AutoTuple{\alpha}{n}) \vb{A} (\AutoTuple{k}{n})^T=0
+	(\AutoTuple{\alpha}{n}) A (\AutoTuple{k}{n})^T=0
 	\implies
 	(\AutoTuple{k}{n})^T=0 \\
 	&\iff
-	\vb{A} (\AutoTuple{k}{n})^T=0
+	A (\AutoTuple{k}{n})^T=0
 	\implies
 	(\AutoTuple{k}{n})^T=0 \\
-	&\iff \text{齐次线性方程组$\vb{A}\vb{X}=0$只有零解} \\
-	&\iff \abs{\vb{A}}\neq0
-	\iff \text{$\vb{A}$是可逆矩阵}.
+	&\iff \text{齐次线性方程组$AX=0$只有零解} \\
+	&\iff \abs{A}\neq0
+	\iff \text{$A$是可逆矩阵}.
 	\qedhere
 \end{align*}
 \end{proof}
@@ -635,26 +641,26 @@
 
 现在可以给出向量\(\alpha\)
 分别在基\(\AutoTuple{\alpha}{n}\)
-与基\(\AutoTuple{\beta}{n}\)下的坐标\(\vb{X},\vb{Y}\)之间的关系.
+与基\(\AutoTuple{\beta}{n}\)下的坐标\(X,Y\)之间的关系.
 由于\[
 	\alpha
-	=(\AutoTuple{\alpha}{n}) \vb{X}
-	=(\AutoTuple{\beta}{n}) \vb{Y},
+	=(\AutoTuple{\alpha}{n}) X
+	=(\AutoTuple{\beta}{n}) Y,
 \]
-并且基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵是\(\vb{A}\)，
+并且基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵是\(A\)，
 因此\[
-	(\AutoTuple{\alpha}{n}) \vb{X}
-	=(\AutoTuple{\beta}{n}) \vb{Y}
-	=(\AutoTuple{\alpha}{n}) \vb{A} \vb{Y}.
+	(\AutoTuple{\alpha}{n}) X
+	=(\AutoTuple{\beta}{n}) Y
+	=(\AutoTuple{\alpha}{n}) A Y.
 \]
 由于同一个向量由基\(\AutoTuple{\alpha}{n}\)线性表出的方式唯一，
 从上式得\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P79 (12)
-	\vb{X}=\vb{A}\vb{Y},
+	X=AY,
 \]
 从而\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P79 (13)
-	\vb{Y}=\vb{A}^{-1}\vb{X}.
+	Y=A^{-1}X.
 \]
 
 \begin{example}
