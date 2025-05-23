@@ -236,6 +236,14 @@
 由结合律，我们知道\(V\)的若干个子空间的交
 \(\bigcap_{i=1}^s V_i\)也是\(V\)的一个子空间.
 
+子空间的交满足\[
+	W \AlgebraSubstructure V
+	\implies
+	W \cap V = W.
+\]
+这是因为\(W\)是\(V\)的子空间，从而有\(W \subseteq V\)，
+于是由\cref{equation:集合论.集合代数公式7-3} 可知\(W \cap V = W\).
+
 \subsection{子空间的和}
 现在我们想知道，在任意一个线性空间中，任意两个子空间的并集是不是子空间.
 从上述几何空间的例子看出，
@@ -312,6 +320,8 @@
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P85
+%@see: 《Linear Algebra Done Right (Fourth Eidition) P21 1.40
+% \(V_1+V_2\) is the smallest subspace of \(V\) containing \(V_1,V_2\).
 \(V_1+V_2\)是\(V\)中包含\(V_1 \cup V_2\)的最小子空间.
 \begin{proof}
 %@credit: {855486ab-2fcf-40c1-b774-09956dfb4012},{9fe3a491-385e-41e9-97cc-e0e3bc5c3b5b},{3d3dd0d4-9945-42ae-8a73-520c7170c8ac},{0e766461-e697-4ed8-95dd-e744fdd3194f},{a84f055e-f32d-418a-8d8c-0b72a4b2df78}
@@ -375,6 +385,27 @@
 		i=1,2,\dotsc,s
 	}
 \]也是\(V\)的一个子空间.
+
+子空间的和满足\[
+	W \AlgebraSubstructure V
+	\implies
+	W + V = V.
+\]
+这是因为\begin{itemize}
+	\item 对于任意\(w \in W\)和\(v \in V\)，
+	必定有\(w + v \in W + V\)；
+	由于\(W\)是\(V\)的子空间，
+	所以\(w \in V\)；
+	由于\(V\)对加法封闭，
+	所以\(w + v \in V\)；
+	因此\(W + V \subseteq V\)；
+
+	\item 对于任意\(v \in V\)，
+	只要取\(w = 0 \in W\)，
+	就有\(v = 0 + v \in W + V\)；
+	因此\(V \subseteq W + V\)；
+\end{itemize}
+综上所述\(W + V = V\).
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P85 命题8
@@ -744,6 +775,7 @@ V_3=\opair{(1,1)}\)，
 
 \begin{theorem}
 %@see: 《高等代数（第三版 下册）》（丘维声） P86 定理11
+%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P11 Exercise 18.
 设\(V_1,V_2\)是域\(F\)上线性空间\(V\)的有限维子空间，
 则下列命题互相等价：\begin{itemize}
 	\item \(V_1+V_2\)是直和；
