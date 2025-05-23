@@ -369,7 +369,73 @@
 设\(U,W\)都是域\(F\)上线性空间\(V\)的子空间.
 证明：如果\(V = U \DirectSum W\)，
 那么\(V\)对\(U\)的商空间\(V/U\)与\(W\)同构.
-%TODO proof
+\begin{proof}
+%@credit: {腾讯元宝}
+令\begin{equation*}
+	\sigma \defeq \Set{
+		(v+U,w)
+		\given
+		(\exists u \in U)
+		[v=u+w]
+	}.
+\end{equation*}
+由\(V = U \DirectSum W\)可知\[
+	(\forall v \in V)
+	(\exists! u \in U)
+	(\exists! w\in W)
+	[v = u + w],
+\]
+这就保证了\(\sigma\)的单值性，
+因此关系\(\sigma\)成为一个映射.
+
+对于任意\(w \in W\)，
+% 由\(V = U \DirectSum V\)可知
+存在\(v \in V\)满足\(v = 0+w\)，
+则\(\sigma(v+U) = \sigma(w+U) = w\).
+因此\(\sigma\)是满射.
+
+对于任意\(v_1+U,v_2+U \in V/U\)，
+存在\(u_1,u_2 \in U\)，
+存在\(w_1,w_2 \in W\)，
+使得\begin{equation*}
+	v_1 = u_1 + w_1,
+	\qquad
+	v_2 = u_2 + w_2,
+\end{equation*}
+那么\begin{equation*}
+	\sigma(v_1+U) = w_1,
+	\qquad
+	\sigma(v_2+U) = w_2.
+\end{equation*}
+假设\(\sigma(v_1+U) = \sigma(v_2+U)\)，
+那么\(w_1 = w_2\)，
+于是\begin{equation*}
+	v_1 - v_2
+	= (u_1 + w_1) - (u_2 + w_2)
+	= (u_1 - u_2) + (w_1 - w_2)
+	= u_1 - u_2
+	\in U,
+\end{equation*}
+从而\(v_1+U = v_2+U\).
+因此\(\sigma\)是单射.
+
+任取\(v_1+U,v_2+U \in V/U\)，
+任取\(k \in F\)，
+存在\(u_1,u_2 \in U\)，
+存在\(w_1,w_2 \in W\)，
+使得\begin{align*}
+	\sigma((v_1+U)+(v_2+U))
+	&= \sigma(u_1+u_2+w_1+w_2+U) \\
+	&= w_1+w_2 \\
+	&= \sigma(v_1+U) + \sigma(v_2+U), \\
+	\sigma(k(v_1+U))
+	&= \sigma(k u_1+k w_1+U) \\
+	&= k w_1 \\
+	&= k \sigma(v_1+U).
+\end{align*}
+
+综上所述\(\sigma\)是从\(V/U\)到\(W\)的同构.
+\end{proof}
 \end{example}
 
 \begin{example}
