@@ -251,7 +251,7 @@ k \in K\)，
 		[\alpha=\alpha_1+\alpha_2]
 	}
 \]
-称为“平行于\(W\)在\(U\)上的\DefineConcept{投影}”.
+称为“\(V\)平行于\(W\)在\(U\)上的\DefineConcept{投影}”.
 \end{definition}
 \begin{remark}
 \cref{definition:线性映射.平行于某个子空间在另一个子空间的投影}
@@ -270,8 +270,9 @@ k \in K\)，
 		\alpha_2 \in W,
 		(\exists \alpha_1 \in U)
 		[\alpha=\alpha_1+\alpha_2]
-	}.
+	},
 \]
+并称之为“\(V\)平行于\(U\)在\(W\)上的投影”.
 \end{remark}
 
 \begin{theorem}\label{theorem:线性映射.投影是线性变换}
@@ -279,7 +280,7 @@ k \in K\)，
 设\(V\)是域\(F\)上的一个线性空间，
 \(U,W\)是\(V\)的两个子空间，
 且\(V=U \DirectSum W\)，
-则平行于\(W\)在\(U\)上的投影
+则\(V\)平行于\(W\)在\(U\)上的投影
 \(\vb{P}_U\)是\(V\)上的一个线性变换，
 且满足\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P108 (7)
@@ -369,37 +370,8 @@ k \in K\)，
 \end{equation*}
 投影是非常重要的一类线性变换.
 
-\(V\)在子空间\(U\)上的投影\(\vb{P}_U\)
-和\(V\)在子空间\(W\)上的投影\(\vb{P}_W\)
-都是从\(V\)到\(V\)的映射，
-对于\(\forall\alpha_1\in U,
-\forall\alpha_2\in W\)，
-记\(\alpha=\alpha_1+\alpha_2\)，
-有\begin{gather*}
-	\vb{P}_U(\vb{P}_U(\alpha))
-	=\vb{P}_U(\alpha_1)
-	=\alpha_1
-	=\vb{P}_U(\alpha), \\
-	\vb{P}_U(\vb{P}_W(\alpha))
-	=\vb{P}_U(\alpha_2)
-	=0, \\
-	\vb{P}_W(\vb{P}_U(\alpha))
-	=\vb{P}_W(\alpha_1)
-	=0,
-\end{gather*}
-我们可以将上述三条公式依次简记为\begin{gather*}
-%@see: 《高等代数（第三版 下册）》（丘维声） P109 (8)
-	\vb{P}_U^2
-	=\vb{P}_U, \\
-	\vb{P}_U \vb{P}_W
-	=\vb0, \\
-	\vb{P}_W \vb{P}_U
-	=\vb0.
-\end{gather*}
-类似地，有\(\vb{P}_W^2=\vb{P}_W\).
-
-为求简便，以后我们用\(\vb{A}\vb{B}\)代替\(\vb{A} \circ \vb{B}\)，
-用\(\vb{A}\alpha\)代替\(\vb{A}(\alpha)\).
+为求简便，对于任意一个线性映射\(\vb{A}\)，任意一个向量\(\alpha\)，
+以后我们都用\(\vb{A}\alpha\)代替\(\vb{A}(\alpha)\).
 
 \subsection{幂等变换，正交变换}
 \begin{definition}
@@ -470,7 +442,7 @@ k \in F\)，
 直接有\begin{align*}
 	&\text{$\vb{A}$是从$V$到$V'$的可逆线性映射} \\
 	&\iff \text{$\vb{A}$是从$V$到$V'$的同构} \\
-	&\implies \text{$vb{A}^{-1}$是从$V'$到$V$的同构} \\
+	&\implies \text{$\vb{A}^{-1}$是从$V'$到$V$的同构} \\
 	&\implies \text{$\vb{A}^{-1}$是从$V'$到$V$的可逆线性映射}.
 	\qedhere
 \end{align*}
@@ -611,11 +583,13 @@ l \in F\)，
 \subsection{线性变换的幂运算}
 由于线性变换的乘法满足结合律，
 因此可以定义线性变换\(\vb{A}\)的正整数指数幂：\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (13)
 	\vb{A}^m
 	\defeq
 	\underbrace{\vb{A}\cdot\vb{A}\cdot\dotsm\cdot\vb{A}}_{\text{$m$个}}.
 \]
 还可以定义\(\vb{A}\)的零次幂：\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (14)
 	\vb{A}^0
 	\defeq
 	\vb{I}.
@@ -623,10 +597,12 @@ l \in F\)，
 容易验证：
 对于\(\forall m,n\in\mathbb{N}\)，
 有\begin{gather*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (15)
 	\vb{A}^m\cdot\vb{A}^n=\vb{A}^{m+n}, \\
 	(\vb{A}^m)^n=\vb{A}^{mn}.
 \end{gather*}
 当\(\vb{A}\)可逆时，可以定义：\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (16)
 	\vb{A}^{-m}
 	\defeq
 	(\vb{A}^{-1})^m,
@@ -636,6 +612,7 @@ l \in F\)，
 设\(f(x)=a_0+a_1 x+\dotsb+a_m x^m\)是域\(F\)上的一元多项式，
 \(x\)用\(V\)上的线性变换\(\vb{A}\)代入，
 得\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (17)
 	f(\vb{A})=a_0\vb{I}+a_1\vb{A}+\dotsb+a_m\vb{A}^m.
 \]
 显然，\(f(\vb{A})\)仍是\(V\)上的一个线性变换，
@@ -643,19 +620,20 @@ l \in F\)，
 容易验证：线性变换\(\vb{A}\)的任意两个多项式
 \(f(\vb{A})\)与\(g(\vb{B})\)是可交换的，
 即\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (18)
 	f(\vb{A}) g(\vb{A})
 	=g(\vb{A}) f(\vb{A}).
 \]
 把\(V\)上线性变换\(\vb{A}\)的所有多项式组成的集合记作\(F[\vb{A}]\).
 容易验证：
-\begin{enumerate}
+\begin{itemize}
 	\item \(F[\vb{A}]\)对于线性变换的减法、乘法都封闭，
 	从而\(F[\vb{A}]\)是环\(\Hom(V,V)\)的一个子环；
 
 	\item \(F[\vb{A}]\)是交换环；
 
 	\item \(\vb{I}\in F[\vb{A}]\).
-\end{enumerate}
+\end{itemize}
 \(F[\vb{A}]\)中所有数乘变换组成的集合是\(F[\vb{A}]\)的一个子环，
 并且域\(F\)与这个子环同构，
 从而\(F[\vb{A}]\)可看成是\(F\)的一个扩环.
@@ -667,14 +645,61 @@ l \in F\)，
 \subsection{线性变换的性质}
 利用线性变换的运算，
 我们可以研究线性变换的性质.
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P109
+设\(V\)是域\(F\)上的一个线性空间，
+\(U,W\)是\(V\)的两个子空间，
+且\(V=U \DirectSum W\)，
+则\(V\)平行于\(W\)在\(U\)上的投影\(\vb{P}_U\)
+和\(V\)平行于\(U\)在\(W\)上的投影\(\vb{P}_W\)
+满足\begin{gather*}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P109 (8)
+	\vb{P}_U^2
+	=\vb{P}_U, \\
+	\vb{P}_U \vb{P}_W
+	=\vb0, \\
+	\vb{P}_W \vb{P}_U
+	=\vb0, \\
+	\vb{P}_W^2
+	=\vb{P}_W.
+\end{gather*}
+\begin{proof}
+\(V\)在子空间\(U\)上的投影\(\vb{P}_U\)
+和\(V\)在子空间\(W\)上的投影\(\vb{P}_W\)
+都是从\(V\)到\(V\)的映射，
+对于\(\forall\alpha_1\in U,
+\forall\alpha_2\in W\)，
+记\(\alpha=\alpha_1+\alpha_2\)，
+有\begin{gather*}
+	\vb{P}_U(\vb{P}_U(\alpha))
+	=\vb{P}_U(\alpha_1)
+	=\alpha_1
+	=\vb{P}_U(\alpha), \\
+	\vb{P}_U(\vb{P}_W(\alpha))
+	=\vb{P}_U(\alpha_2)
+	=0, \\
+	\vb{P}_W(\vb{P}_U(\alpha))
+	=\vb{P}_W(\alpha_1)
+	=0, \\
+	\vb{P}_W(\vb{P}_W(\alpha))
+	=\vb{P}_W(\alpha_2)
+	=\alpha_2
+	=\vb{P}_W(\alpha).
+	\qedhere
+\end{gather*}
+\end{proof}
+\end{proposition}
+
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P112
 设\(V\)是域\(F\)上的一个线性空间，
 \(U,W\)是\(V\)的两个子空间，
 且\(V=U \DirectSum W\)，
-则平行于\(W\)在\(U\)上的投影\(\vb{P}_U\)
-和平行于\(U\)在\(W\)上的投影\(\vb{P}_W\)
+则\(V\)平行于\(W\)在\(U\)上的投影\(\vb{P}_U\)
+和\(V\)平行于\(U\)在\(W\)上的投影\(\vb{P}_W\)
 满足\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P111 (19)
 	\vb{P}_U+\vb{P}_W=\vb{I}.
 \]
 \begin{proof}
