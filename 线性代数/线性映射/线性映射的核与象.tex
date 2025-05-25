@@ -34,7 +34,7 @@
 但它又是线性映射\(\vb{P}_W\)的核的一个元素.
 \end{remark}
 
-\begin{proposition}
+\begin{proposition}\label{theorem:线性映射.线性映射的核空间和像空间分别是定义域和陪域的子空间}
 %@see: 《高等代数（第三版 下册）》（丘维声） P113 命题1
 设\(\vb{A}\)是域\(F\)上线性空间\(V\)到\(V'\)的一个线性映射，
 则\(\Ker\vb{A}\)是\(V\)的一个子空间，
@@ -142,10 +142,101 @@ k \in F\)，
 \(\vb{A}\)是\(V\)到\(V'\)的一个线性映射，
 则\(\Ker\vb{A}\)和\(\Im\vb{A}\)都是有限维的，
 且\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P114 (2)
 	\dim(\Ker\vb{A})
 	+\dim(\Im\vb{A})
 	=\dim V.
 \]
+\begin{proof}
+因为\(V\)是有限维的，
+%\cref{theorem:线性空间.子空间.有限维线性空间的子空间是有限维的}
+%\cref{theorem:线性映射.线性映射的核空间和像空间分别是定义域和陪域的子空间}
+所以它的子空间\(\Ker\vb{A}\)是有限维的.
+
+设\(\dim(\Ker\vb{A}) = m,
+\dim V = n\).
+取\(\Ker\vb{A}\)的一个基\(\AutoTuple{\alpha}{m}\)，
+把它扩充成\(V\)的一个基\[
+	\AutoTuple{\alpha}{m},
+	\AutoTuple{\alpha}[m+1]{n}.
+\]
+由核的定义可知，
+对于任意一个向量\(\alpha \in V\)，
+有\[
+	% 核空间\(\Ker\vb{A}\)中的任意一个向量\(\alpha\)在线性映射\(\vb{A}\)下的像\(\vb{A}\alpha\)必定等于\(0\)
+	\alpha \in \Ker\vb{A}
+	\implies
+	\vb{A}\alpha = 0,
+\]
+那么\[
+	% 核空间\(\Ker\vb{A}\)的每一个基向量都是\(\Ker\vb{A}\)中的向量，自然它在线性映射\(\vb{A}\)下的像\(\vb{A}\alpha\)必定等于\(0\)
+	\vb{A}\alpha_i = 0,
+	\quad i=1,2,\dotsc,m,
+\]
+于是，
+对于任意\(\AutoTuple{x}{m} \in F\)，
+有\[
+	\vb{A} \sum_{i=1}^m x_i \alpha_i
+	= \sum_{i=1}^m x_i \vb{A}\alpha_i
+	= \sum_{i=1}^m x_i 0
+	= 0.
+\]
+在\(\Im\vb{A}\)中任取一个向量\(\vb{A}\alpha\)，
+其中\(\alpha \in V\).
+% \(\alpha\)作为\(V\)中的向量，自然可以由\(V\)的基\(\alpha_1,\dotsc,\alpha_n\)线性表出
+设\(\alpha = \sum_{i=1}^n x_i \alpha_i\)，
+其中\(\AutoTuple{x}{m} \in F\)，
+则\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P114 (3)
+	\vb{A}\alpha
+	% 在\(\alpha = \sum_{i=1}^n x_i \alpha_i\)等号左右两边同时乘以\(\vb{A}\)便得
+	= \sum_{i=1}^n x_i \vb{A} \alpha_i
+	% 由上可知\(\sum_{i=1}^m x_i \vb{A} \alpha_i = 0\)
+	= \sum_{i=m+1}^n x_i \vb{A} \alpha_i,
+\]
+因此\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P114 (4)
+	\Im\vb{A} = \Span\{\AutoTuple{\vb{A}\alpha}[m+1]{n}\},
+\]
+从而\(\Im\vb{A}\)是有限维的.
+
+接下来证明\(\AutoTuple{\vb{A}\alpha}[m+1]{n}\)线性无关.
+令\[
+	y_{m+1} \vb{A} \alpha_{m+1} + \dotsb + y_n \vb{A} \alpha_n = 0,
+\]
+则\[
+	\vb{A} (y_{m+1} \alpha_{m+1} + \dotsb + y_n \alpha_n) = 0,
+\]
+于是\[
+	\beta
+	\defeq
+	y_{m+1} \alpha_{m+1} + \dotsb + y_n \alpha_n \in \Ker\vb{A},
+\]
+% 既然\(\beta\)是核空间\(\Ker\vb{A}\)中的向量，
+% 那么\(\beta\)肯定可以由\(\Ker\vb{A}\)的基\(\AutoTuple{\alpha}{m}\)线性表出
+所以\[
+	y_{m+1} \alpha_{m+1} + \dotsb + y_n \alpha_n
+	= z_1 \alpha_1 + \dotsb + z_m \alpha_m,
+\]
+即\[
+	-z_1 \alpha_1 - \dotsb - z_m \alpha_m + y_{m+1} \alpha_{m+1} + \dotsb + y_n \alpha_n = 0,
+\]
+% 既然\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
+% 那么\(\AutoTuple{\alpha}{n}\)一定是线性无关的向量组，
+% 于是上面这个关于\(z_1,\dotsc,z_m,y_{m+1},\dotsc,y_n\)的线性方程只有零解
+从而有\[
+	z_1 = \dotsb = z_m = y_{m+1} = \dotsb = y_n = 0.
+\]
+这就说明\(\AutoTuple{\vb{A}\alpha}[m+1]{n}\)线性无关，
+于是它是\(\Im\vb{A}\)的一个基.
+因此\[
+	\dim(\Im\vb{A})
+	= \card\{\AutoTuple{\vb{A}\alpha}[m+1]{n}\}
+	= n - m
+	= \dim V - \dim(\Ker\vb{A}),
+\]
+移项得\(\dim V = \dim(\Ker\vb{A}) + \dim(\Im\vb{A})\).
+\end{proof}
 \end{theorem}
 
 \begin{corollary}
