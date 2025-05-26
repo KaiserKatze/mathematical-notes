@@ -255,7 +255,12 @@ k \in F,
 	&=\vb{A}[(\AutoTuple{\alpha}{n})B] \\
 	&=\vb{A}(b_{11}\alpha_1+\dotsb+b_{n1}\alpha_n,\dotsc,b_{1n}\alpha_1+\dotsb+b_{nn}\alpha_n) \\
 	&=(b_{11}\vb{A}\alpha_1+\dotsb+b_{n1}\vb{A}\alpha_n,\dotsc,b_{1n}\vb{A}\alpha_1+\dotsb+b_{nn}\vb{A}\alpha_n) \\
-	&=(\vb{A}\alpha_1,\dotsc,\vb{A}\alpha_n)B \\
+	&=(\vb{A}\alpha_1,\dotsc,\vb{A}\alpha_n)
+		\begin{bmatrix}
+			b_{11} & \dots & b_{1n} \\
+			\vdots & & \vdots \\
+			b_{n1} & \dots & b_{nn}
+		\end{bmatrix} \\
 	&=[\vb{A}(\AutoTuple{\alpha}{n})]B \\
 	&=[(\AutoTuple{\alpha}{n})A]B \\
 	&=((\AutoTuple{\alpha}{n}))(AB),
@@ -263,7 +268,7 @@ k \in F,
 所以\(\vb{A}\vb{B}\)在基\(\AutoTuple{\alpha}{n}\)下的矩阵是\(AB\).
 那么\[
 %@see: 《高等代数（第三版 下册）》（丘维声） P120 (15)
-	\sigma(\vb{A}\vb{B}) = AB = \sigma(A) \sigma(B).
+	\sigma(\vb{A}\vb{B}) = AB = \sigma(\vb{A}) \sigma(\vb{B}).
 \]
 这表明\(\sigma\)保持乘法运算.
 
@@ -279,8 +284,8 @@ k \in F,
 设\(V\)上线性变换\(\vb{A}\)在基\(\AutoTuple{\alpha}{n}\)下的矩阵是\(A\).
 由于\begin{align*}
 	&\text{线性变换$\vb{A}$可逆} \\
-	&\iff \text{存在$V$上的线性变换$B$使得$\vb{A}\vb{B}=\vb{B}\vb{A}=\vb{I}$} \\
-	&\iff \text{存在$V$上的线性变换$B$使得$\sigma(\vb{A}) \sigma(\vb{B}) = \sigma(\vb{B}) \sigma(\vb{A}) = \sigma(\vb{I})$} \\
+	&\iff \text{存在$V$上的线性变换$\vb{B}$使得$\vb{A}\vb{B}=\vb{B}\vb{A}=\vb{I}$} \\
+	&\iff \text{存在$V$上的线性变换$\vb{B}$使得$\sigma(\vb{A}) \sigma(\vb{B}) = \sigma(\vb{B}) \sigma(\vb{A}) = \sigma(\vb{I})$} \\
 	&\iff \text{存在域$F$上$n$阶矩阵$B$使得$AB=BA=I$} \\
 	&\iff \text{矩阵$A$可逆},
 \end{align*}
@@ -326,6 +331,35 @@ k \in F,
 从基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵是\(S\)，
 %@see: 《高等代数（第三版 下册）》（丘维声） P120 (18)
 则\(B = S^{-1} A S\).
+\begin{proof}
+由已知条件有\begin{gather*}
+	\vb{A}(\AutoTuple{\alpha}{n})
+	= (\AutoTuple{\alpha}{n}) A, \\
+	\vb{A}(\AutoTuple{\beta}{n})
+	= (\AutoTuple{\beta}{n}) B, \\
+	\vb{A}(\AutoTuple{\beta}{n})
+	= (\AutoTuple{\alpha}{n}) S,
+\end{gather*}
+于是\begin{align*}
+	(\AutoTuple{\beta}{n}) S^{-1}
+	&= ((\AutoTuple{\alpha}{n}) S) S^{-1} \\
+	&= (\AutoTuple{\alpha}{n}) (S S^{-1}) \\
+	&= (\AutoTuple{\alpha}{n}),
+\end{align*}
+从而\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P120 (19)
+	\vb{A}(\AutoTuple{\beta}{n})
+	&= \vb{A}((\AutoTuple{\alpha}{n}) S) \\
+	&= (\vb{A}(\AutoTuple{\alpha}{n})) S \\
+	&= ((\AutoTuple{\alpha}{n}) A) S \\
+	&= (\AutoTuple{\alpha}{n}) (A S) \\
+	&= ((\AutoTuple{\beta}{n}) S^{-1}) (AS) \\
+	&= (\AutoTuple{\beta}{n}) (S^{-1} A S).
+\end{align*}
+上式表明，\(\vb{A}\)在基\(\AutoTuple{\beta}{n}\)下的矩阵是\(S^{-1} A S\).
+由于\(\vb{A}\)在基\(\AutoTuple{\beta}{n}\)下的矩阵是唯一的，
+因此\(B = S^{-1} A S\).
+\end{proof}
 \end{theorem}
 可以看出，同一个线性变换\(\vb{A}\)在\(V\)的不同基下的矩阵是相似的.
 反之，我们有如下命题：
