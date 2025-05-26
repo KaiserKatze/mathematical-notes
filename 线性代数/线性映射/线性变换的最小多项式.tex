@@ -1,1 +1,344 @@
 \section{线性变换的最小多项式}
+由哈密顿凯莱定理可知，
+有限维线性空间\(V\)上的线性变换\(\vb{A}\)的特征多项式\(f(\lambda)\)是\(\vb{A}\)的一个零化多项式.
+在本节我们来讨论\(\vb{A}\)还有没有其他零化多项式.
+
+\subsection{线性变换的最小多项式}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P140 定义1
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的一个线性变换.
+在\(\vb{A}\)的所有非零的零化多项式中，
+次数最低的首项系数为\(1\)的多项式，
+称为“\(\vb{A}\)的\DefineConcept{最小多项式}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P140 命题1
+线性空间\(V\)上的线性变换\(\vb{A}\)的最小多项式是唯一的.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P140 命题2
+线性空间\(V\)上的线性变换\(\vb{A}\)的
+任一零化多项式\(g(\lambda)\)是
+\(\vb{A}\)的最小多项式\(m(\lambda)\)的倍式.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P140 命题3
+域\(F\)上有限维线性空间\(V\)上的线性变换\(\vb{A}\)的最小多项式\(m(\lambda)\)
+与特征多项式\(f(\lambda)\)
+在\(F\)中有相同的根（重数可以不同）.
+%TODO proof
+\end{proposition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P140 定义2
+设\(A\)是域\(F\)上的\(n\)阶矩阵.
+在\(A\)的所有非零的零化多项式中，
+次数最低的首项系数为\(1\)的多项式，
+称为“\(A\)的\DefineConcept{最小多项式}”.
+\end{definition}
+
+%@see: 《高等代数（第三版 下册）》（丘维声） P141
+设\(n\)维线性空间\(V\)上的线性变换\(\vb{A}\)在\(V\)的一个基下的矩阵是\(A\).
+之前我们已经指出，\(g(\lambda)\)是\(\vb{A}\)的零化多项式，
+当且仅当\(g(\lambda)\)是\(A\)的零化多项式.
+由此可见，\(m(\lambda)\)是\(\vb{A}\)的最小多项式，
+当且仅当\(m(\lambda)\)是\(A\)的做小多项式.
+于是得出：
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P141 推论4
+域\(F\)上\(n\)阶矩阵\(A\)的最小多项式\(m(\lambda)\)
+与特征多项式\(f(x)\)
+在\(F\)中有相同的根（重数可以不同）.
+\end{corollary}
+
+%@see: 《高等代数（第三版 下册）》（丘维声） P141
+由于相似的矩阵可以看作\(V\)上同一个线性变换\(\vb{A}\)在\(V\)的不同基下的矩阵，
+因此有如下结论：
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P141 推论5
+相似的矩阵有相同的最小多项式.
+\end{corollary}
+
+\subsection{求解最小多项式的基本步骤}
+如何求解线性变换或矩阵的最小多项式呢？
+一种方法是：
+先找出\(\vb{A}\)的一个零化多项式\(g(\lambda)\)，
+然后分析\(g(\lambda)\)的哪个因式是\(\vb{A}\)的最小多项式.
+\begin{definition}%\label{definition:线性映射.幂零变换}
+%@see: 《高等代数（第三版 下册）》（丘维声） P141 定义3
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换.
+如果存在一个正整数\(k\)，
+使得\(\vb{A}^k = \vb0\)，
+则称\(\vb{A}\)是\DefineConcept{幂零变换}.
+使得\(\vb{A}^k = \vb0\)成立的最小正整数
+称为“\(\vb{A}\)的\DefineConcept{幂零指数}”.
+\end{definition}
+
+\begin{proposition}%\label{theorem:线性映射.幂零变换的等价命题}
+%@see: 《高等代数（第三版 下册）》（丘维声） P141
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，
+则\begin{align*}
+	&\text{$\vb{A}$是幂零指数为$k$的幂零变换} \\
+	&\iff \vb{A}^k = \vb0,
+		(\forall r<k)[\vb{A}^r \neq \vb0] \\
+	&\iff \text{$\lambda^k$是$\vb{A}$的一个零化多项式},
+		(\forall r<k)[\text{$\lambda^k$不是$\vb{A}$的一个零化多项式}] \\
+	&\iff \text{$\vb{A}$的最小多项式是$\lambda^k$}.
+\end{align*}
+如果域\(F\)上\(n\)阶矩阵\(A\)是\(\vb{A}\)在\(V\)的一个基下的矩阵，
+则\begin{equation*}
+	\text{$A$是幂零指数为$k$的幂零矩阵}
+	\iff \text{$A$的最小多项式是$\lambda^k$}.
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}%\label{theorem:线性映射.幂等变换的等价命题}
+%@see: 《高等代数（第三版 下册）》（丘维声） P141
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，
+则\begin{align*}
+	&\text{$\vb{A}$是幂等变换} \\
+	&\iff \vb{A}^2 = \vb{A} \\
+	&\iff \text{$\lambda^2 - \lambda$是$\vb{A}$的一个零化多项式} \\
+	&\iff \text{$\vb{A}$的最小多项式是$\lambda^2-\lambda$或$\lambda$或$\lambda-1$}.
+\end{align*}
+如果域\(F\)上\(n\)阶矩阵\(A\)是\(\vb{A}\)在\(V\)的一个基下的矩阵，
+则\begin{equation*}
+	\text{$A$是幂等变换}
+	\iff \text{$A$的最小多项式是$\lambda^2-\lambda$或$\lambda$或$\lambda-1$}.
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}\label{theorem:线性映射.任意线性变换的最小多项式}
+%@see: 《高等代数（第三版 下册）》（丘维声） P141 命题6
+设\(V\)是域\(F\)上的一个线性空间，
+\(\vb{A}\)是\(V\)上的线性变换，
+\(\vb{B}\)是\(V\)上幂零指数为\(k\)的幂零变换，
+则\begin{gather*}
+	\vb{A} = a \vb{I} + \vb{B}
+	\iff \text{$\vb{A}$的最小多项式是$(\lambda-a)^k$}, \\
+	\vb{A} = a \vb{I}
+	\iff \text{$\vb{A}$的最小多项式是$\lambda-a$}.
+\end{gather*}
+%TODO proof
+\end{proposition}
+
+\begin{definition}%\label{definition:线性映射.若尔当块}
+设\(F\)是一个域，
+\(a \in F\)，
+\(k\)是正整数.
+定义：\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P142 (1)
+	J_k(a)
+	\defeq
+	\begin{bmatrix}
+		a & 1 & 0 & \dots & 0 & 0 \\
+		0 & a & 1 & \dots & 0 & 0 \\
+		0 & 0 & a & \dots & 0 & 0 \\
+		\vdots & \vdots & \vdots & & \vdots & \vdots \\
+		0 & 0 & 0 & \dots & a & 1 \\
+		0 & 0 & 0 & \dots & 0 & a
+	\end{bmatrix}.
+\end{equation}
+把\(J_k(a)\)称为一个\(k\)阶\DefineConcept{若尔当块}.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P142 命题7
+设\(\vb{A}\)是域\(F\)上\(k\)维线性空间\(W\)上的线性变换.
+若\(\vb{A} = a \vb{I} + \vb{B}\)，
+其中\(\vb{B}\)是\(W\)上幂零指数为\(k\)的幂零变换，
+则\(W\)中有一个基\[
+	\vb{B}^{k-1}\alpha,\vb{B}^{k-2}\alpha,\dotsc,\vb{B}\alpha,\alpha,
+\]
+使得\(\vb{A}\)在这个基下的矩阵为\(J_k(a)\).
+%TODO proof
+\end{proposition}
+
+\begin{proposition}\label{theorem:线性映射.矩阵的最小多项式}
+%@see: 《高等代数（第三版 下册）》（丘维声） P142 命题8
+设\(A\)是域\(F\)上的一个\(k\)阶矩阵，
+则\(A \sim J_k(a)\)
+当且仅当\(A\)的最小多项式是\((\lambda-a)^k\).
+%TODO proof
+\end{proposition}
+
+%@see: 《高等代数（第三版 下册）》（丘维声） P143
+从幂零变换和幂等变换的最小多项式，
+以及\cref{theorem:线性映射.任意线性变换的最小多项式}，
+我们可以看出：
+线性变换的最小多项式能够决定这个线性变换是什么样子.
+从\cref{theorem:线性映射.矩阵的最小多项式}
+可以看出：
+矩阵的最小多项式能够决定这个矩阵相似于什么样的形式最简单的矩阵（即若尔当块）.
+这促使我们利用线性变换的最小多项式来研究线性变换的形式最简的矩阵表示.
+
+\subsection{线性映射在非平凡子空间上的限制的最小多项式}
+设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换.
+把\(\vb{A}\)的最小多项式\(m(\lambda)\)在\(F[\lambda]\)中分解成
+两两不等的首项系数为\(1\)的不可约多项式方幂的乘积，
+则根据\cref{theorem:线性映射.线性映射多项式的核空间的直和分解式2} 可知，
+\(V\)可以分解成\(\vb{A}\)的非平凡不变子空间\(\AutoTuple{W}{s}\)的直和：\[
+	V = W_1 \DirectSum \dotsb \DirectSum W_s.
+\]
+在这些非平凡不变子空间中各取一个基，
+把它们合起来得到\(V\)的一个基，
+则\(\vb{A}\)在\(V\)的这个基下的矩阵\(A\)是一个分块对角矩阵
+\(A = \diag\{\AutoTuple{A}{s}\}\)，
+其中\(A_j\)是\(\vb{A} \setrestrict W_j\)在\(W_j\)的上述基下的矩阵.
+为了使\(\vb{A}\)有形式最简单的矩阵表示，
+我们自然需要在\(W_j\)中取一个合适的基，
+使得\(\vb{A} \setrestrict W_j\)在\(W_j\)的这个基下的矩阵具有最简单的形式.
+为此产生一个问题：
+\(\vb{A} \setrestrict W_j\)的最小多项式\(m_j(\lambda)\)
+与\(\vb{A}\)的最小多项式\(m(\lambda)\)有什么关系？
+下面的定义回答了这个问题.
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P143 定理9
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上线性变换.
+如果\(V\)能分解成\(\vb{A}\)的一些非平凡不变子空间\(\AutoTuple{W}{s}\)的直和，
+即\[
+	V = W_1 \DirectSum \dotsb \DirectSum W_s,
+\]
+则\(\vb{A}\)的最小多项式为\[
+	m(\lambda)
+	= [m_1(\lambda),\dotsc,m_s(\lambda)],
+\]
+其中\(m_j(\lambda)\)是\(W_j\)上的线性变换\(\vb{A} \setrestrict W_j\)的最小多项式，
+而\([m_1(\lambda),\dotsc,m_s(\lambda)]\)是
+\(m_1(\lambda),\dotsc,m_s(\lambda)\)的最小公倍式.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P144 推论10
+设\(A\)是域\(F\)上一个\(n\)阶分块对角矩阵，
+即\(A = \diag\{\AutoTuple{A}{s}\}\)，
+则\(A\)的最小多项式为\[
+	m(\lambda)
+	= [m_1(\lambda),\dotsc,m_s(\lambda)],
+\]
+其中\(m_j(\lambda)\)是矩阵\(A_j\)的最小多项式，
+而\([m_1(\lambda),\dotsc,m_s(\lambda)]\)是
+\(m_1(\lambda),\dotsc,m_s(\lambda)\)的最小公倍式.
+%TODO proof
+\end{corollary}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P144 定义4
+由若干个若尔当块组成的分块对角矩阵
+称为\DefineConcept{若尔当形矩阵}.
+\end{definition}
+\begin{remark}
+对角矩阵可以看成是由若干个1阶若尔当块组成的若尔当形矩阵.
+\end{remark}
+
+线性变换的最小多项式在研究线性变换的结构中起着十分重要的作用.
+现在先利用最小多项式给出线性变换可对角化的一个充分必要条件，
+然后用最小多项式研究不可以对角化的线性变换的结构.
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P145 定理11
+设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换，
+则\(\vb{A}\)可对角化的充分必要条件是，
+\(\vb{A}\)的最小多项式\(m(\lambda)\)在\(F[\lambda]\)中
+能分解成不同的一次因式的乘积.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P145 推论12
+域\(F\)上\(n\)阶矩阵\(A\)可对角化的充分必要条件是，
+\(A\)的最小多项式在\(F[\lambda]\)中
+能分解成不同的一次因式的乘积.
+\end{corollary}
+\begin{remark}
+在一些情形下，
+利用最小多项式来判别线性变换或矩阵是否可以对角化，
+论证过程往往很简洁.
+\end{remark}
+
+利用最小多项式还可以研究不可对角化的线性变换的结构.
+
+设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换.
+如果\(\vb{A}\)的最小多项式\(m(\lambda)\)在\(F[\lambda]\)中
+能够分解成一次因式的乘积：\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P146 (5)
+	m(\lambda)
+	= (\lambda-\lambda_1)^{k_1}
+	(\lambda-\lambda_2)^{k_2}
+	\dotsm
+	(\lambda-\lambda_s)^{k_s},
+\]
+其中\(\AutoTuple{\lambda}{s}\)是\(F\)中两两不同的元素，
+则\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P146 (6)
+	V
+	= \Ker(\vb{A} - \lambda_1 \vb{I})^{k_1}
+	\DirectSum
+	\Ker(\vb{A} - \lambda_2 \vb{I})^{k_2}
+	\DirectSum
+	\dotsb
+	\DirectSum
+	\Ker(\vb{A} - \lambda_s \vb{I})^{k_s}.
+\]
+记\(W_j = \Ker(\vb{A} - \lambda_j \vb{I})^{k_j}\)，
+那么由\cref{theorem:线性映射.线性变换的不变子空间3} 可知，
+\(W_j\)是\(\vb{A}\)的不变子空间.
+由上式可知\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P146 (7)
+	V = W_1 \DirectSum W_2 \DirectSum \dotsb \DirectSum W_s.
+\]
+在\(W_j\)中取一个基，
+把它们合起来得到\(V\)的一个基，
+\(\vb{A}\)在\(V\)的这个基下的矩阵\(A\)是一个分块对角矩阵
+\(A = \diag\{\AutoTuple{A}{s}\}\)，
+其中\(A_j\)是\(\vb{A} \setrestrict W_j\)在\(W_j\)的上述基下的矩阵.
+既然要最简化矩阵\(A\)的形式，
+就应当最简化矩阵\(A_j\)的形式.
+为此我们需要研究\(W_j\)上的线性变换\(\vb{A} \setrestrict W_j\).
+我们断言\(\vb{A} \setrestrict W_j\)的最小多项式是\((\lambda-\lambda_j)^{k_j}\)，
+理由如下.
+
+任取\(\alpha_j \in W_j\)，
+由于\(W_j = \Ker(\vb{A} - \lambda_j \vb{I})^{k_j}\)，
+所以\[
+	(\vb{A} \setrestrict W_j - \lambda_j \vb{I})^{k_j} \alpha_j
+	= (\vb{A} - \lambda_j \vb{I})^{k_j} \alpha_j
+	= 0,
+\]
+从而\((\vb{A} \setrestrict W_j - \lambda_j \vb{I})^{k_j} = \vb0\)，
+于是\((\lambda-\lambda_j)^{k_j}\)是\(\vb{A} \setrestrict W_j\)的一个零化多项式，
+因此\(\vb{A} \setrestrict W_j\)的最小多项式为
+\(m_j(\lambda) = (\lambda-\lambda_j)^{t_j}\)，
+其中\(t_j \leq k_j\).
+于是\(\vb{A}\)的最小多项式\(m(\lambda)\)为\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P146 (8)
+	m(\lambda)
+	&= [(\lambda-\lambda_1)^{t_1},\dotsc,(\lambda-\lambda_s)^{t_s}] \\
+	&= (\lambda-\lambda_1)^{t_1} \dotsm (\lambda-\lambda_s)^{t_s}.
+\end{align*}
+根据\hyperref[theorem:多项式.唯一因式分解定理]{唯一因式分解定理}，
+立即可得\[
+	t_1 = k_1,
+	t_2 = k_2,
+	\dotsc,
+	t_s = k_s.
+\]
+因此\(\vb{A} \setrestrict W_j\)的最小多项式\(m_j(\lambda) = (\lambda-\lambda_j)^{k_j}\).
+根据\cref{theorem:线性映射.任意线性变换的最小多项式} 可知，
+\(\vb{A} \setrestrict W_j = \lambda_j \vb{I} + \vb{B}_j\)，
+其中\(\vb{B}_j\)是\(W_j\)上的幂零变换，且幂零指数为\(k_j\).
+由于\(\vb{A} \setrestrict W_j\)在\(W_j\)的上述基下的矩阵是\(A_j\)，
+因此\(\vb{B}_j = \vb{A} \setrestrict W_j - \lambda_j \vb{I}\)
+在\(W_j\)的上述基下的矩阵\(B_j = A_j - \lambda_j I\).
+于是为了最简化矩阵\(A_j\)，
+就应当最简化矩阵\(B_j\).
+这里就产生一个问题：
+如果\(\vb{B}\)是域\(F\)上\(r\)维线性空间\(W\)上幂零指数为\(k\)的幂零变换，
+那么能否在\(W\)中找到一个基，使得\(\vb{B}\)在这个基下的矩阵最简单？
+我们将在下一节详细讨论这个问题.
