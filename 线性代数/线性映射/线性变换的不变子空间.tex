@@ -1,1 +1,346 @@
 \section{线性变换的不变子空间}
+在上一节，我们讨论了可对角化的线性变换的标准型.
+本节讨论不可以对角化的线性变换的标准型.
+
+我们首先注意到，
+\(\vb{A}\)是可对角化的线性变换，
+当且仅当空间\(V\)可以分解成\(\vb{A}\)的特征子空间的直和.
+受此启发，我们在研究不可对角化的线性变换\(\vb{B}\)的结构时，
+也可以从这里入手，研究如何将空间\(V\)分解成与\(\vb{B}\)有关的某种特殊类型的子空间的直和.
+
+\subsection{线性变换的不变子空间}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P131 定义1
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，\(W\)是\(V\)的子空间.
+如果\(W\)中的向量在\(\vb{A}\)下的象仍在\(W\)中，
+即\((\forall\alpha \in W)[\vb{A}\alpha \in W]\)，
+则称\(W\)是“\(\vb{A}\)的\DefineConcept{不变子空间}”，
+简称 \DefineConcept{\(\vb{A}\) - 子空间}.
+\end{definition}
+
+显然，对于\(V\)上每一个线性变换\(\vb{A}\)来说，
+整个空间\(V\)和零子空间\(0\)，
+都是\(\vb{A}\)的不变子空间，
+因此将它们称为“\(\vb{A}\)的\DefineConcept{平凡不变子空间}”.
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P131 命题1
+\(V\)上线性变换\(\vb{A}\)的核\(\Ker\vb{A}\)与象\(\Im\vb{A}\)，
+以及\(\vb{A}\)的所有特征子空间，
+都是\(\vb{A}\)的不变子空间.
+\begin{proof}
+任取\(\alpha \in \Ker\vb{A}\)，
+因为\(\vb{A}\alpha = 0 \in \Ker\vb{A}\)，
+所以\(\Ker\vb{A}\)是\(\vb{A}\)的不变子空间.
+
+任取\(\alpha \in \Im\vb{A}\)，
+因为\(\vb{A}\alpha \in \Im\vb{A}\)，
+所以\(\Im\vb{A}\)也是\(\vb{A}\)的不变子空间.
+
+任取\(\alpha \in V_\lambda\)，
+因为\(\vb{A}\alpha = \lambda \alpha \in V_\lambda\)，
+所以\(V_\lambda\)还是\(\vb{A}\)的不变子空间.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P131 命题2
+如果线性变换\(\vb{A},\vb{B}\)可交换，即\(\vb{A}\vb{B} = \vb{B}\vb{A}\)，
+则\(\Ker\vb{B},
+\Im\vb{B}\)
+以及\(\vb{B}\)的特征子空间
+都是\(\vb{A}\)的不变子空间.
+\begin{proof}
+任取\(\alpha \in \Ker\vb{B}\)，
+则\(\vb{B}\alpha = 0\).
+于是\[
+	\vb{B}(\vb{A}\alpha)
+	= (\vb{B}\vb{A})\alpha
+	= (\vb{A}\vb{B})\alpha
+	= \vb{A}(\vb{B}\alpha)
+	= \vb{A}0
+	= 0.
+\]
+因此\(\vb{A}\alpha \in \Ker\vb{B}\)，
+从而\(\Ker\vb{B}\)是\(\vb{A}\)的不变子空间.
+
+同理可证\(\Im\vb{B}\)也是\(\vb{A}\)的不变子空间.
+
+在\(\vb{B}\)的特征子空间\(V_\lambda\)中，任取一个向量\(\alpha\)，
+则\(\vb{B}\alpha = \lambda \alpha\)，
+从而\[
+	\vb{B}(\vb{A}\alpha)
+	= \vb{A}(\vb{B}\alpha)
+	= \vb{A}(\lambda\alpha)
+	= \lambda(\vb{A}\alpha),
+\]
+因此\(\vb{A}\alpha \in V_\lambda\)，
+从而\(V_\lambda\)是\(A\)的不变子空间.
+\end{proof}
+\end{proposition}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P132 推论3
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，
+则对于域\(F\)上任意一个一元多项式\(f(x) \in F[x]\)，
+都有\(\Ker f(\vb{A}),
+\Im f(\vb{A})\)
+以及\(f(\vb{A})\)的特征子空间
+都是\(\vb{A}\)的不变子空间.
+\end{corollary}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P132
+设\(U_1,U_2\)是域\(F\)上线性空间\(V\)上的线性变换\(\vb{A}\)的两个不变子空间，
+则\(U_1 \cap U_2\)和\(U_1 + U_2\)都是\(\vb{A}\)的不变子空间.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P132 命题4
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，
+\(W = \Span\{\AutoTuple{\alpha}{m}\}\)是\(V\)的一个子空间，
+则\(W\)是\(\vb{A}\)的不变子空间，
+当且仅当\(\vb{A}\alpha_i \in W\ (i=1,2,\dotsc,m)\).
+\begin{proof}
+由于\(W\)中任意一个向量\(\alpha\)均可表示成\(\AutoTuple{\alpha}{m}\)的一个线性组合，
+不妨设\(\alpha = k_1 \alpha_1 + \dotsb + k_m \alpha_m\)，
+其中\(\AutoTuple{k}{m} \in F\)，
+那么\begin{align*}
+	&\text{$W$是$\vb{A}$的不变子空间} \\
+	&\iff \alpha \in W \implies \vb{A}\alpha \in W \\
+	&\iff (\forall \AutoTuple{k}{m} \in F)[\vb{A}(k_1 \alpha_1 + \dotsb + k_m \alpha_m) \in W] \\
+	&\iff \vb{A}\alpha_i \in W\ (i=1,2,\dotsc,m).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\subsection{线性变换的非平凡不变子空间及其矩阵表示的关系}
+对于域\(F\)上有限维线性空间\(V\)上的线性变换\(\vb{A}\)，
+它有没有非平凡不变子空间，与它的矩阵表示的形式，有密切关系.
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P132 定理5
+设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换，
+则\(\vb{A}\)有非平凡不变子空间，
+当且仅当\(V\)中存在一个基，
+使得\(\vb{A}\)在这个基下的矩阵是一个分块上三角矩阵.
+\begin{proof}
+必要性.
+设\(W\)是\(\vb{A}\)的非平凡不变子空间，
+在\(W\)中取一个基\(\AutoTuple{\alpha}{r}\)，
+把它扩充成\(V\)的一个基：\[
+	\AutoTuple{\alpha}{r},
+	\AutoTuple{\alpha}[r+1]{n}.
+\]
+那么\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P132 (3)
+	&\vb{A} (\AutoTuple{\alpha}{r},\AutoTuple{\alpha}[r+1]{n}) \\
+	&= (\AutoTuple{\alpha}{r},\AutoTuple{\alpha}[r+1]{n})
+	\begin{bmatrix}
+		a_{11} & \dots & a_{1r} & a_{1,r+1} & \dots & a_{1n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		a_{r1} & \dots & a_{rr} & a_{r,r+1} & \dots & a_{rn} \\
+		0 & \dots & 0 & a_{r+1,r+1} & \dots & a_{r+1,n} \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		0 & \dots & 0 & a_{n,r+1} & \dots & a_{nn}
+	\end{bmatrix}.
+\end{align*}
+因此\(\vb{A}\)在基\(\AutoTuple{\alpha}{r},\AutoTuple{\alpha}[r+1]{n}\)下的矩阵是
+一个分块上三角矩阵\(\begin{bmatrix}
+	A_1 & A_3 \\
+	0 & A_2
+\end{bmatrix}\)，
+其中\(A_1\)是\(A \setrestrict W\)在\(W\)的一个基\(\AutoTuple{\alpha}{r}\)下的矩阵.
+
+充分性.
+设\(\vb{A}\)在\(V\)的一个基\(\AutoTuple{\alpha}{n}\)下的矩阵是
+一个分块上三角矩阵\(\begin{bmatrix}
+	A_1 & A_3 \\
+	0 & A_2
+\end{bmatrix}\)，
+其中\(A_1\)是\(r\)阶矩阵，
+且\(0 < r < n\).
+%@see: 《高等代数（第三版 下册）》（丘维声） P133 (4)
+令\(W = \Span\{\AutoTuple{\alpha}{r}\}\)，
+则\(\vb{A}\alpha_i \in W\ (i=1,2,\dotsc,r)\).
+因此\(W\)是\(\vb{A}\)的不变子空间.
+显然\(W\)是非平凡的.
+此时\(A_1\)是\(A \setrestrict W\)在\(W\)的基\(\AutoTuple{\alpha}{r}\)下的矩阵.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P133 定理6
+设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换，
+则\(V\)能分解成\(\vb{A}\)的一些非平凡不变子空间的直和，
+当且仅当\(V\)中存在一个基，
+使得\(\vb{A}\)在这个基下的矩阵是一个分块对角矩阵.
+\def\BasisV{\alpha_{11},\dotsc,\alpha_{1 r_1},\dotsc,\alpha_{s1},\dotsc,\alpha_{s r_s}}
+\def\BasisWi{\alpha_{i1},\dotsc,\alpha_{ir_i}}
+\begin{proof}
+必要性.
+设\(V\)是\(\vb{A}\)的一些非平凡不变子空间的直和：\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P133 (6)
+	V = W_1 \DirectSum \dotsb \DirectSum W_s.
+\]
+在每个\(W_i\ (i=1,2,\dotsc,s)\)中取一个基\(\BasisWi\)，
+由上式可知\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P133 (7)
+	\BasisV
+\]是\(V\)的一个基.
+由于\(W_i\)是\(\vb{A}\)的不变子空间，
+因此\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P133 (8)
+	\vb{A} (\BasisWi)
+	= (\BasisWi) A_i,
+	\quad i=1,2,\dotsc,s.
+\]
+从而\(\vb{A}\)在基\(\BasisV\)下的矩阵为\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P133 (9)
+	\begin{bmatrix}
+		A_1 \\
+		& A_2 \\
+		& & \ddots \\
+		& & & A_s
+	\end{bmatrix}.
+\]
+
+充分性.
+设\(\vb{A}\)在\(V\)一个基\[
+	\BasisV
+\]下的矩阵\(\vb{A} = \diag\{\AutoTuple{A}{s}\}\)，
+其中\(A_i\)是\(r_i\)阶方阵，
+而\(i=1,2,\dotsc,s\).
+令\[
+	W_i = \Span\{\BasisWi\}
+	\quad(i=1,2,\dotsc,s).
+\]
+由于\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P133 (10)
+	\vb{A} (\BasisWi) = (\BasisWi) A_i,
+	\quad i=1,2,\dotsc,s,
+\]
+所以\(\vb{A}\alpha_{i1},\dotsc,\vb{A}\alpha_{i r_i} \in W_i\)，
+从而\(W_i\)是\(\vb{A}\)的不变子空间.
+显然\(W_i\)是非平凡的.
+由于\(W_i\)的一个基\(\BasisWi\ (i=1,2,\dotsc,s)\)合起来\(V\)的一个基，
+所以\(V = W_1 \DirectSum \dotsb \DirectSum W_s\).
+\end{proof}
+\begin{remark}
+从这个定理的证明过程中可以看出，
+在线性变换\(\vb{A}\)的矩阵\[
+	\begin{bmatrix}
+		A_1 \\
+		& A_2 \\
+		& & \ddots \\
+		& & & A_s
+	\end{bmatrix}
+\]中，
+\(A_i\)就是\(\vb{A}\)在它的不变子空间\(W_i\)上的限制\(\vb{A} \setrestrict W_i\)
+在\(W_i\)的一个基\(\BasisWi\)下的矩阵，
+其中\(i=1,2,\dotsc,s\).
+\end{remark}
+\end{theorem}
+
+虽然我们从上述定理可以看出，
+如果\(n\)维线性空间\(V\)能分解成线性变换\(\vb{A}\)的一些非平凡不变子空间的直和，
+那么\(V\)中存在一个基，
+使得\(\vb{A}\)在这个基下的矩阵是一个分块对角矩阵，
+但是，要如何找出\(\vb{A}\)的所有非平凡不不变子空间呢？
+由于对于任意一个\(f(x) \in F[x]\)都有\(\Ker f(\vb{A})\)是\(\vb{A}\)的不变子空间.
+受此启发，我们希望找到一些多项式\(f_1(x),\dotsc,f_s(x) \in F[x]\)，
+使得\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P134 (11)
+	V = \Ker f_1(\vb{A}) \DirectSum \dotsb \DirectSum \Ker f_s(\vb{A}).
+\]
+为此，我们尚需研究：
+对于不同的一元多项式\(f_1(x)\)和\(f_2(x)\)，
+不定元\(x\)用\(\vb{A}\)代入，
+得到的\(f_1(\vb{A})\)与\(f_2(\vb{A})\)的核，
+\(\Ker f_1(\vb{A})\)与\(\Ker f_2(\vb{A})\)之间，
+有什么关系.
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P134 定理7
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，
+而\(f(x),f_1(x),f_2(x)\)都是域\(F\)上的一元多项式.
+如果\[
+	f(x) = f_1(x) f_2(x)
+	\quad\text{且}\quad
+	(f_1(x),f_2(x)) = 1,
+\]
+则\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P134 (12)
+	\Ker f(\vb{A})
+	= \Ker f_1(\vb{A})
+	\DirectSum \Ker f_2(\vb{A}).
+\]
+%TODO proof
+\end{theorem}
+
+用数学归纳法可以将上述定理推广.
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P135 推论8
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，
+\(f(x)\)以及\(f_1(x),\dotsc,f_s(x)\)都是域\(F\)上的一元多项式.
+如果\[
+	f(x) = f_1(x) \dotsm f_s(x)
+	\quad\text{且}\quad
+	\text{$f_1(x),\dotsc,f_s(x)$两两互素},
+\]
+则\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P135 (15)
+	\Ker f(\vb{A})
+	= \Ker f_1(\vb{A})
+	\DirectSum
+	\dotsb
+	\DirectSum \Ker f_s(\vb{A}).
+\]
+\end{corollary}
+
+由于\(\Ker\vb0 = V\)，
+结合上述推论给出的暗示，
+不难想到，
+如果能够找到一个多项式\(f(x)\)，
+使得\(f(\vb{A}) = \vb0\)，
+那么空间\(V\)就能分解成\[
+%@see: 《高等代数（第三版 下册）》（丘维声） P135 (16)
+	V = \Ker f_1(\vb{A})
+	\DirectSum
+	\dotsb
+	\DirectSum \Ker f_s(\vb{A}),
+\]
+其中\(f(x) = f_1(x) \dotsm f_s(x)\)，
+且\(f_1(x),\dotsc,f_s(x)\)两两互素.
+
+\subsection{线性变换的零化多项式}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P135 定义2
+设\(\vb{A}\)是\(V\)上的线性变换.
+如果域\(F\)上的一个一元多项式\(f(x)\)满足\(f(\vb{A}) = \vb0\)，
+则称“\(f(x)\)是\(\vb{A}\)的一个\DefineConcept{零化多项式}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P135
+有限维线性空间\(V\)上任意一个线性变换都有非零的零化多项式.
+%TODO proof
+\end{proposition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P135 定义3
+设\(A\)是域\(F\)上的一个\(n\)阶矩阵.
+如果域\(F\)上的一个一元多项式\(f(x)\)满足\(f(A) = 0\)，
+则称“\(f(x)\)是矩阵\(A\)的一个\DefineConcept{零化多项式}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P135
+设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换，
+\(A\)是\(\vb{A}\)在\(V\)的一个基下的矩阵，
+则\[
+	\text{$f(x)$是$\vb{A}$的零化多项式}
+	\iff
+	\text{$f(x)$是$A$的零化多项式}.
+\]
+%TODO proof
+\end{proposition}
