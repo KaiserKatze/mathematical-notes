@@ -26,6 +26,23 @@
 且\(W\)不是\(\vb{A}\)的平凡不变子空间，
 则称“\(W\)是\(\vb{A}\)的一个\DefineConcept{非平凡不变子空间}”.
 
+\begin{definition}
+设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换.
+\begin{itemize}
+	\item 如果\[
+		(\exists W \AlgebraSubstructure V)
+		[\text{$W$是$\vb{A}$的非平凡不变子空间}],
+	\]
+	则称“\(\vb{A}\)有非平凡不变子空间”.
+
+	\item 如果\[
+		(\forall W \AlgebraSubstructure V)
+		[\text{$W$不是$\vb{A}$的非平凡不变子空间}],
+	\]
+	则称“\(\vb{A}\)没有非平凡不变子空间”.
+\end{itemize}
+\end{definition}
+
 \begin{proposition}%\label{theorem:线性映射.线性变换的不变子空间1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P131 命题1
 \(V\)上线性变换\(\vb{A}\)的核\(\Ker\vb{A}\)与象\(\Im\vb{A}\)，
@@ -98,7 +115,7 @@
 则\(U_1 \cap U_2\)和\(U_1 + U_2\)都是\(\vb{A}\)的不变子空间.
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}\label{theorem:线性映射.线性变换的不变子空间的基}
 %@see: 《高等代数（第三版 下册）》（丘维声） P132 命题4
 设\(\vb{A}\)是域\(F\)上线性空间\(V\)上的线性变换，
 \(W = \Span\{\AutoTuple{\alpha}{m}\}\)是\(V\)的一个子空间，
@@ -132,6 +149,70 @@
 \end{example}
 
 \subsection{线性变换的非平凡不变子空间的存在性}
+线性变换不一定有非平凡不变子空间.
+例如，取有理数域\(\mathbb{Q}\)上2维线性空间\(V\)上的一个线性变换\(\vb{A}\)，
+使得它的矩阵为\(A = \begin{bmatrix}
+	2 & 1 \\
+	3 & 2
+\end{bmatrix}\)；
+考虑到即便\(\vb{A}\)有非平凡不变子空间，
+那么\(\vb{A}\)的非平凡不变子空间也一定是1维的，
+那么不妨设\(W = \Span\{\alpha_0\}\)是\(\vb{A}\)的一个非平凡不变子空间，
+其中向量\(\alpha_0=(x_1,x_2)\neq0\)；
+%@Mathematica: A = {{2, 1}, {3, 2}}
+%@Mathematica: a = {x1, x2}
+%@Mathematica: a.A
+于是\(\alpha_0\)在\(\vb{A}\)下的像为\begin{equation*}
+	\beta
+	\defeq \vb{A} \alpha_0
+	= \alpha_0 A
+	= (2x_1+3x_2,x_1+2x_2);
+\end{equation*}
+既然\(W\)是不变子空间，
+% 不变子空间的定义
+自然有\(\beta \in W\)，
+% \(\beta\)可以由\(\alpha_0\)线性表出
+那么必定存在一个有理数\(k\)使得\(\beta = k \alpha_0\)，
+即\begin{equation*}
+	(2x_1+3x_2,x_1+2x_2)=(k x_1,k x_2),
+\end{equation*}
+将上式看作一个关于\(k\)的线性方程组，
+要保证它有解，
+必须要有\[
+	\rank\begin{bmatrix}
+		x_1 \\ x_2
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		x_1 & 2x_1+3x_2 \\
+		x_2 & x_1+2x_2
+	\end{bmatrix}
+	% 向量\((x_1,x_2)\)不等于0，因此这里秩一定等于1
+	= 1;
+\]
+由于\[
+	\rank\begin{bmatrix}
+		x_1 & 2x_1+3x_2 \\
+		x_2 & x_1+2x_2
+	\end{bmatrix}
+	< 2,
+\]
+所以\begin{equation*}
+	\begin{vmatrix}
+		x_1 & 2x_1+3x_2 \\
+		x_2 & x_1+2x_2
+	\end{vmatrix}
+	= x_1^2 - 3x_2^2
+	= 0,
+\end{equation*}
+鉴于\(x_1,x_2 \in \mathbb{Q}\)，
+上式若要成立，
+则必定有\(x_1 = x_2 = 0\)，
+矛盾！
+由此可见\(\beta \notin W\)，
+根据\cref{theorem:线性映射.线性变换的不变子空间的基}，
+\(W\)不是\(\vb{A}\)的不变子空间，
+因此\(\vb{A}\)没有非平凡不变子空间.
+
 对于域\(F\)上有限维线性空间\(V\)上的线性变换\(\vb{A}\)，
 它有没有非平凡不变子空间，与它的矩阵表示的形式，有密切关系.
 \begin{theorem}
@@ -346,13 +427,13 @@
 不难想到，
 如果能够找到一个多项式\(f(x)\)，
 使得\(f(\vb{A}) = \vb0\)，
-那么空间\(V\)就能分解成\[
+那么空间\(V\)就能分解成\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P135 (16)
 	V = \Ker f_1(\vb{A})
 	\DirectSum
 	\dotsb
 	\DirectSum \Ker f_s(\vb{A}),
-\]
+\end{equation*}
 其中\(f(x) = f_1(x) \dotsm f_s(x)\)，
 且\(f_1(x),\dotsc,f_s(x)\)两两互素.
 
