@@ -570,76 +570,13 @@ k \in K\)，
 则称“\(\vb{A}\)与\(\vb{B}\)是\DefineConcept{正交的}”.
 \end{definition}
 
-\subsection{线性映射的复合}
-\begin{proposition}
-%@see: 《高等代数（第三版 下册）》（丘维声） P109 命题3
-设\(V,U,W\)都是域\(F\)上的线性空间，
-\(\vb{A}\)是\(V\)到\(U\)的一个线性映射，
-\(\vb{B}\)是\(U\)到\(W\)的一个线性映射，
-则\(\vb{B}\vb{A}\)是\(V\)到\(W\)的一个线性映射.
-\begin{proof}
-显然\(\vb{B}\vb{A}\)是从\(V\)到\(W\)的一个映射.
-任取\(\alpha,\beta \in V,
-k \in F\)，
-有\begin{align*}
-	(\vb{B}\vb{A})(\alpha+\beta)
-	&= \vb{B}(\vb{A}(\alpha+\beta)) \\
-	&= \vb{B}(\vb{A}\alpha+\vb{A}\beta), \\
-	(\vb{B}\vb{A})(k\alpha)
-	&= \vb{B}(\vb{A}(k \alpha)) \\
-	&= \vb{B}(k \vb{A}\alpha) \\
-	&= k(\vb{B}(\vb{A}\alpha)) \\
-	&= k((\vb{B}\vb{A}) \alpha),
-\end{align*}
-因此\(\vb{B}\vb{A}\)是从\(V\)到\(W\)的一个线性映射.
-\end{proof}
-\end{proposition}
-
-\begin{proposition}
-%@see: 《高等代数（第三版 下册）》（丘维声） P110
-线性映射的乘法适合结合律，不适合交换律.
-%TODO proof
-% \begin{proof}
-% 线性映射是映射.
-% 映射的乘法适合结合律，不适合交换律.
-% \end{proof}
-\end{proposition}
-
-\begin{proposition}
-%@see: 《高等代数（第三版 下册）》（丘维声） P110 命题4
-%@see: 《高等代数（第三版 下册）》（丘维声） P107 例6
-\(\vb{A}\)是线性空间\(V\)到\(V'\)的一个线性映射，
-如果\(\vb{A}\)可逆，
-则\(\vb{A}^{-1}\)是\(V'\)到\(V\)的一个线性映射.
-\begin{proof}
-直接有\begin{align*}
-	&\text{$\vb{A}$是从$V$到$V'$的可逆线性映射} \\
-	&\iff \text{$\vb{A}$是从$V$到$V'$的同构} \\
-	&\implies \text{$\vb{A}^{-1}$是从$V'$到$V$的同构} \\
-	&\implies \text{$\vb{A}^{-1}$是从$V'$到$V$的可逆线性映射}.
-	\qedhere
-\end{align*}
-\end{proof}
-%@see: https://mathworld.wolfram.com/InvertibleLinearMap.html
-\end{proposition}
-
-\begin{proposition}
-%@see: 《高等代数（第三版 下册）》（丘维声） P110
-设\(V,V'\)都是域\(F\)上有限维线性空间.
-\(V\)到\(V'\)的可逆线性映射存在的充分必要条件是
-\(\dim V=\dim V'\).
-%TODO proof
-% \begin{proof}
-% \(V\)与\(V'\)同构的充分必要条件是它们的维数相同.
-% \end{proof}
-\end{proposition}
-
 \subsection{线性映射的加法、纯量乘法}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P110 命题5
-设\(\vb{A},\vb{B}\)都是域\(F\)上线性空间\(V\)到\(V'\)的线性映射，
-\(k\in F\).
-对于\(\forall\alpha\in V\)，
+设\(V,V'\)都是域\(F\)上的线性空间.
+对于\(\forall\vb{A},\vb{B}\in\Hom(V,V'),
+\forall\alpha\in V,
+\forall k\in F\)，
 定义：\begin{gather*}
 	%@see: 《高等代数（第三版 下册）》（丘维声） P110 (9)
 	(\vb{A}+\vb{B})\alpha
@@ -699,25 +636,78 @@ l \in F\)，
 	分别记作\(\mathcal{L}(V,V')\)和\(\mathcal{L}(V)\).
 }.
 
-在\(\Hom(V,V)\)中还有乘法运算，
-对于\(\forall\alpha \in V\)，
-定义：\begin{gather*}
-	(\vb{A}\vb{B})\alpha
-	\defeq
-	\vb{A}(\vb{B}\alpha).
-\end{gather*}
-我们已经知道，线性变换的乘法满足结合律；
-恒等变换\(\vb{I}\)满足\[
+\subsection{线性映射的乘法}
+\begin{definition}
+设\(V,U,W\)都是域\(F\)上的线性空间.
+对于\(\forall\vb{A}\in\Hom(V,U),
+\forall\vb{B}\in\Hom(U,W),
+\forall\alpha \in V\)，
+定义：\begin{equation*}
+	(\vb{B}\vb{A})\alpha
+	\defeq (\vb{B} \circ \vb{A})\alpha
+	= \vb{B}(\vb{A}\alpha),
+\end{equation*}
+把\(\vb{B}\vb{A}\)称为“\(\vb{B}\)与\(\vb{A}\)的\DefineConcept{积}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P109 命题3
+设\(V,U,W\)都是域\(F\)上的线性空间，
+\(\vb{A}\)是\(V\)到\(U\)的一个线性映射，
+\(\vb{B}\)是\(U\)到\(W\)的一个线性映射，
+则\(\vb{B}\vb{A}\)是\(V\)到\(W\)的一个线性映射.
+\begin{proof}
+显然\(\vb{B}\vb{A}\)是从\(V\)到\(W\)的一个映射.
+任取\(\alpha,\beta \in V,
+k \in F\)，
+有\begin{align*}
+	(\vb{B}\vb{A})(\alpha+\beta)
+	&= \vb{B}(\vb{A}(\alpha+\beta)) \\
+	&= \vb{B}(\vb{A}\alpha+\vb{A}\beta), \\
+	(\vb{B}\vb{A})(k\alpha)
+	&= \vb{B}(\vb{A}(k \alpha)) \\
+	&= \vb{B}(k \vb{A}\alpha) \\
+	&= k(\vb{B}(\vb{A}\alpha)) \\
+	&= k((\vb{B}\vb{A}) \alpha),
+\end{align*}
+因此\(\vb{B}\vb{A}\)是从\(V\)到\(W\)的一个线性映射.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:线性映射.线性映射的乘法适合结合律但不适合交换律}
+%@see: 《高等代数（第三版 下册）》（丘维声） P110
+线性映射的乘法适合结合律，不适合交换律.
+%TODO proof
+% \begin{proof}
+% 线性映射是映射.
+% 由\cref{example:映射.映射的复合适合结合律} 可知，
+% 映射的乘法适合结合律，不适合交换律.
+% \end{proof}
+\end{proposition}
+
+由\cref{theorem:线性映射.线性映射的乘法适合结合律但不适合交换律} 可知，
+线性变换的乘法满足结合律：\begin{equation*}
+	(\forall\vb{A},\vb{B},\vb{C}\in\Hom(V,V))
+	[
+		(\vb{A}\vb{B})\vb{C}
+		= \vb{A}(\vb{B}\vb{C})
+	].
+\end{equation*}
+恒等变换\(\vb{I}\)满足\begin{equation*}
 	(\forall\vb{A}\in\Hom(V,V))
 	[\vb{I}\vb{A}=\vb{A}\vb{I}=\vb{A}].
-\]
+\end{equation*}
 容易验证，线性变换的乘法对于加法还满足左、右分配律：\begin{gather*}
-	\vb{A}(\vb{B}+\vb{C})=\vb{A}\vb{B}+\vb{A}\vb{C}, \\
-	(\vb{B}+\vb{C})\vb{A}=\vb{B}\vb{A}+\vb{C}\vb{A}.
+	(\forall\vb{A},\vb{B},\vb{C}\in\Hom(V,V))
+	[\vb{A}(\vb{B}+\vb{C})=\vb{A}\vb{B}+\vb{A}\vb{C}], \\
+	(\forall\vb{A},\vb{B},\vb{C}\in\Hom(V,V))
+	[(\vb{B}+\vb{C})\vb{A}=\vb{B}\vb{A}+\vb{C}\vb{A}].
 \end{gather*}
+综上所述，\(\Hom(V,V)\)的加法与乘法满足环定义的6条运算法则，
+并且\(\vb{I}\)是\(\Hom(V,V)\)的乘法单位元，
 因此\(\Hom(V,V)\)对于加法和乘法成为一个有单位元的环.
 容易验证，
-线性变换的乘法与纯量乘法满足\[
+线性变换的乘法与纯量乘法满足\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P111 (11)
 	(\forall k\in F)
 	(\forall\vb{A},\vb{B}\in\Hom(V,V))
@@ -726,7 +716,60 @@ l \in F\)，
 		=(k\vb{A})\vb{B}
 		=\vb{A}(k\vb{B})
 	].
-\]
+\end{equation*}
+
+\begin{definition}
+给定\(\vb{A}\in\Hom(V,V')\).
+如果存在\(\vb{B}\in\Hom(V',V)\)，
+使得\(\vb{A}\vb{B}=\vb{I}_V\)，
+其中\(I_V\)是\(V\)上的恒等变换，
+则称“\(\vb{A}\)是一个\DefineConcept{可逆线性映射}”
+或“线性映射\(\vb{A}\) \DefineConcept{可逆}”，
+把\(\vb{B}\)称为“\(\vb{A}\)的\DefineConcept{逆线性映射}”，
+简称\DefineConcept{逆映射}，
+记作\(\vb{A}^{-1}\).
+\end{definition}
+
+\begin{definition}
+给定\(\vb{A}\in\Hom(V,V)\).
+如果存在\(\vb{B}\in\Hom(V,V)\)，
+使得\(\vb{A}\vb{B}=\vb{I}_V\)，
+其中\(I_V\)是\(V\)上的恒等变换，
+则称“\(\vb{A}\)是一个\DefineConcept{可逆线性变换}”
+或“线性变换\(\vb{A}\) \DefineConcept{可逆}”，
+把\(\vb{B}\)称为“\(\vb{A}\)的\DefineConcept{逆线性变换}”，
+简称\DefineConcept{逆变换}，
+记作\(\vb{A}^{-1}\).
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P110
+设\(V,V'\)都是域\(F\)上有限维线性空间.
+\(V\)到\(V'\)的可逆线性映射存在的充分必要条件是
+\(\dim V=\dim V'\).
+%TODO proof
+% \begin{proof}
+% \(V\)与\(V'\)同构的充分必要条件是它们的维数相同.
+% \end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P110 命题4
+%@see: 《高等代数（第三版 下册）》（丘维声） P107 例6
+\(\vb{A}\)是线性空间\(V\)到\(V'\)的一个线性映射，
+如果\(\vb{A}\)可逆，
+则\(\vb{A}^{-1}\)是\(V'\)到\(V\)的一个线性映射.
+\begin{proof}
+直接有\begin{align*}
+	&\text{$\vb{A}$是从$V$到$V'$的可逆线性映射} \\
+	&\iff \text{$\vb{A}$是从$V$到$V'$的同构} \\
+	&\implies \text{$\vb{A}^{-1}$是从$V'$到$V$的同构} \\
+	&\implies \text{$\vb{A}^{-1}$是从$V'$到$V$的可逆线性映射}.
+	\qedhere
+\end{align*}
+\end{proof}
+%@see: https://mathworld.wolfram.com/InvertibleLinearMap.html
+\end{proposition}
 
 \subsection{代数，代数的维数}
 \begin{definition}
