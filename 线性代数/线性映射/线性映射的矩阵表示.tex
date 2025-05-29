@@ -12,7 +12,7 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P117 (1)
 	\left\{ \begin{array}{l}
 		\vb{A}\alpha_1=a_{11}\alpha_1+a_{21}\alpha_2+\dotsb+a_{n1}\alpha_n, \\
-		\vb{A}\alpha_1=a_{11}\alpha_1+a_{22}\alpha_2+\dotsb+a_{n1}\alpha_n, \\
+		\vb{A}\alpha_2=a_{12}\alpha_1+a_{22}\alpha_2+\dotsb+a_{n2}\alpha_n, \\
 		\hdotsfor1, \\
 		\vb{A}\alpha_n=a_{1n}\alpha_1+a_{2n}\alpha_2+\dotsb+a_{nn}\alpha_n.
 	\end{array} \right.
@@ -99,7 +99,7 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P118 (4)
 	\left\{ \begin{array}{l}
 		\vb{A}\alpha_1=a_{11}\beta_1+a_{21}\beta_2+\dotsb+a_{s1}\beta_s, \\
-		\vb{A}\alpha_1=a_{11}\beta_1+a_{22}\beta_2+\dotsb+a_{s1}\beta_s, \\
+		\vb{A}\alpha_2=a_{12}\beta_1+a_{22}\beta_2+\dotsb+a_{s2}\beta_s, \\
 		\hdotsfor1, \\
 		\vb{A}\alpha_n=a_{1n}\beta_1+a_{2n}\beta_2+\dotsb+a_{sn}\beta_s.
 	\end{array} \right.
@@ -357,6 +357,59 @@ k \in F,
 		0 & 1 & -1
 	\end{bmatrix}.
 \]
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P121 习题9.3 2.
+在映射空间\(\mathbb{R}^\mathbb{R}\)中，
+令\(V \defeq \Span\{f_1,f_2\}\)，
+其中\(f_1(x) = e^{ax} \cos bx,
+f_2(x) = e^{ax} \sin bx\).
+%@Mathematica: f1[x_] := Exp[a x] Cos[b x]
+%@Mathematica: f2[x_] := Exp[a x] Sin[b x]
+证明求导数\(\vb{D}\)是\(V\)上的一个线性变换，
+求\(\vb{D}\)在基\(f_1,f_2\)下的矩阵.
+\begin{solution}
+任取\(u,v \in V\)，
+其中\(u = p_1 f_1 + p_2 f_2,
+v = q_1 f_1 + q_2 f_2\)，
+任取\(k \in \mathbb{R}\)，
+则\begin{align*}
+%@Mathematica: D[u[x] + v[x], x]
+%@Mathematica: D[k u[x], x]
+	\vb{D}(u + v)
+	&= a e^{a x} p_1 \cos b x
+		+ b e^{a x} p_2 \cos b x
+		+ a e^{a x} q_1 \cos b x
+		+ b e^{a x} q_2 \cos b x \\
+	&\hspace{20pt}
+		- b e^{a x} p_1 \sin b x
+		+ a e^{a x} p_2 \sin b x
+		- b e^{a x} q_1 \sin b x
+		+ a e^{a x} q_2 \sin b x \\
+	&= \vb{D}u + \vb{D}v, \\
+	\vb{D}(k u)
+	&= k (a e^{a x} p_1 \cos b x + b e^{a x} p_2 \cos b x -
+		b e^{a x} p_1 \sin b x + a e^{a x} p_2 \sin b x) \\
+	&= k \vb{D}u,
+\end{align*}
+这就说明\(\vb{D}\)是\(V\)上的线性变换.
+
+因为\begin{gather*}
+	\vb{D}f_1 = e^{ax} (a \cos bx - b \sin bx)
+	= a f_1 - b f_2, \\
+	\vb{D}f_2 = e^{ax} (a \sin bx + b \cos bx)
+	= b f_1 + a f_2,
+%@Mathematica: D[f1[x], x] // Factor
+%@Mathematica: D[f2[x], x] // Factor
+\end{gather*}
+所以\(\vb{A}\)在基\(f_1,f_2\)下的矩阵为\begin{equation*}
+	A = \begin{bmatrix}
+		a & b \\
+		-b & a
+	\end{bmatrix}.
+\end{equation*}
 \end{solution}
 \end{example}
 
