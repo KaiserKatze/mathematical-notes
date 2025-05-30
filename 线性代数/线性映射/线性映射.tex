@@ -11,7 +11,7 @@
 	(\forall k\in F)
 	[\vb{A}(k\alpha)=k\vb{A}(\alpha)],
 \end{gather*}
-则称“\(\vb{A}\)是从\(V\)到\(V'\)的一个\DefineConcept{线性映射}”.
+则称“\(\vb{A}\)是从\(V\)到\(V'\)的一个\DefineConcept{线性映射}（linear map）”.
 %@see: https://mathworld.wolfram.com/LinearTransformation.html
 \end{definition}
 
@@ -44,7 +44,7 @@
 映射\(\vb{A}\colon V\to V\)
 满足\((\forall\alpha\in V)[\vb{A}(\alpha)=\alpha]\).
 我们把\(\vb{A}\)称为
-“\(V\)上的\DefineConcept{恒等变换}”，
+“\(V\)上的\DefineConcept{恒等变换}（the \emph{identity operator} on \(V\)）”，
 记作\(\vb1_V\)或\(\vb{I}\).
 显然恒等变换\(\vb1_V\)是\(V\)上的一个线性变换.
 \end{example}
@@ -725,28 +725,36 @@ k \in F\)，
 \end{equation*}
 
 \begin{definition}
-给定\(\vb{A}\in\Hom(V,V')\).
-如果存在\(\vb{B}\in\Hom(V',V)\)，
-使得\(\vb{A}\vb{B}=\vb{I}_V\)，
-其中\(I_V\)是\(V\)上的恒等变换，
-则称“\(\vb{A}\)是一个\DefineConcept{可逆线性映射}”
-或“线性映射\(\vb{A}\) \DefineConcept{可逆}”，
-把\(\vb{B}\)称为“\(\vb{A}\)的\DefineConcept{逆线性映射}”，
-简称\DefineConcept{逆映射}，
+%@see: 《Linear Algebra Done Right (Fourth Eidition) P82 3.59
+%@see: 《Linear Algebra Done Right (Fourth Eidition) P82 3.61
+%@see: 《线性代数》（李炯生 查建国） P184
+%@see: 《线性代数》（李炯生 查建国） P196
+%@see: 《高等代数学（第四版）》（谢启鸿 姚慕生 吴泉水） P184
+给定\(\vb{A}\in\Hom(V,W)\).
+如果存在\(\vb{B}\in\Hom(W,V)\)，
+使得\(\vb{B}\vb{A}=\vb{I}_V\)且\(\vb{A}\vb{B}=\vb{I}_W\)，
+其中\(\vb{I}_V\)是\(V\)上的恒等变换，
+\(\vb{I}_W\)是\(W\)上的恒等变换，
+则称“\(\vb{A}\) \DefineConcept{可逆}（invertible）”，
+称“\(\vb{B}\)是\(\vb{A}\)一个的\DefineConcept{逆}（\(\vb{B}\) is the \emph{inverse} of \(\vb{A}\)）”，
 记作\(\vb{A}^{-1}\).
 \end{definition}
+\begin{proposition}\label{theorem:线性映射.可逆线性映射有唯一逆}
+%@see: 《Linear Algebra Done Right (Fourth Eidition) P82 3.60
+可逆线性映射有唯一逆.
+\begin{proof}
+假设\(\vb{B}_1,\vb{B}_2\in\Hom(W,V)\)都是可逆线性映射\(\vb{A}\in\Hom(V,W)\)的逆，
+那么\begin{equation*}
+	\vb{B}_1 = \vb{B}_1 \vb{I}
+	= \vb{B}_1 (\vb{A} \vb{B}_2)
+	= (\vb{B}_1 \vb{A}) \vb{B}_2
+	= \vb{I} \vb{B}_2
+	= \vb{B}_2.
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{proposition}
 
-\begin{definition}
-给定\(\vb{A}\in\Hom(V,V)\).
-如果存在\(\vb{B}\in\Hom(V,V)\)，
-使得\(\vb{A}\vb{B}=\vb{I}_V\)，
-其中\(I_V\)是\(V\)上的恒等变换，
-则称“\(\vb{A}\)是一个\DefineConcept{可逆线性变换}”
-或“线性变换\(\vb{A}\) \DefineConcept{可逆}”，
-把\(\vb{B}\)称为“\(\vb{A}\)的\DefineConcept{逆线性变换}”，
-简称\DefineConcept{逆变换}，
-记作\(\vb{A}^{-1}\).
-\end{definition}
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P110
