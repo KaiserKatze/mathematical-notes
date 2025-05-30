@@ -128,6 +128,27 @@
 \end{itemize}
 \end{definition}
 
+\begin{example}\label{example:映射.定义域中的元素在映射下的像一定属于值域}
+设\(G\)是映射.
+证明：\[
+	x \in \dom G
+	\implies
+	G(x) \in \ran G.
+\]
+\begin{proof}
+由定义有\begin{align*}
+	\text{$G$是映射},
+	x \in \dom G
+	&\iff
+	(\exists!y)[\opair{x,y} \in G] \\
+	&\implies
+	G(x) = \bigcup\Set{ y \given \opair{x,y} \in G }
+	= y \in \ran G.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
 \begin{example}
 %@see: 《Elements of Set Theory》 P52 Exercise 11
 设\(F,G\)都是映射，
@@ -292,6 +313,7 @@ g\colon Y \to X\).
 设\(A,B,X\)都是集合，\(A \subset B\).
 若映射\(F\colon A \to X\)和\(G\colon B \to X\)满足\(F \subset G\)，
 则称“\(G\)是\(F\)在\(B\)上的\DefineConcept{扩张}”.
+% 延拓
 \end{definition}
 
 \begin{theorem}
@@ -600,13 +622,12 @@ A \setrestrict \{\emptyset,\{\emptyset\}\},
 
 \begin{theorem}\label{theorem:集合论.映射的复合也是映射}
 %@see: 《Elements of Set Theory》 P47 Theorem 3H
-设\(F,G\)都是映射，则\(F \circ G\)是映射，且\[
+设\(F,G\)都是映射，则\(F \circ G\)是映射，且\begin{gather*}
 	\dom(F \circ G)
-	= \Set*{ x \in \dom G \given G(x) \in \dom F },
-\]\[
+	= \Set*{ x \in \dom G \given G(x) \in \dom F }, \\
 	(\forall x \in \dom(F \circ G))
 	[(F \circ G)(x) = F(G(x))].
-\]
+\end{gather*}
 \begin{proof}
 要证\(F \circ G\)是一个映射，
 假设有\(\opair{x,y} \in F \circ G\)和\(\opair{x,z} \in F \circ G\)同时成立.
@@ -645,7 +666,7 @@ A \setrestrict \{\emptyset,\{\emptyset\}\},
 \(f \circ g\)有意义并不代表\(g \circ f\)也有意义.
 即便两者都有意义，它们也未必相同.
 
-\begin{example}
+\begin{example}\label{example:映射.映射的复合适合结合律}
 %@see: 《Elements of Set Theory》 P53 Exercise 21.
 设\(R,S,T\)都是集合.
 证明：\((R \circ S) \circ T = R \circ (S \circ T)\).
@@ -686,13 +707,25 @@ A \setrestrict \{\emptyset,\{\emptyset\}\},
 证明：\(G^{-1} \circ G = I_{\dom G}\).
 \begin{proof}
 既然\(G\)是单射，
-那么，根据\cref{theorem:集合论.映射的复合也是映射}，
-\(G^{-1} \circ G\)也是一个映射，
-它的定义域为\[
+由\cref{theorem:集合论.关系及其逆是映射的充分必要条件} 可知
+\(G^{-1}\)是映射.
+因为\(G^{-1}\)和\(G\)都是映射，
+所以由\cref{theorem:集合论.映射的复合也是映射} 可知
+它们的复合\(G^{-1} \circ G\)也是一个映射，
+且\(G^{-1} \circ G\)的定义域为\[
 	\dom(G^{-1} \circ G)
-	= \Set{ x \in \dom G \given G(x) \in \dom G^{-1} }
-	= \dom G,
+	= \Set{ x \in \dom G \given G(x) \in \dom G^{-1} }.
 \]
+又因为\begin{align*}
+	x \in \dom G
+	&\iff G(x) \in \ran G
+		\tag{\cref{example:映射.定义域中的元素在映射下的像一定属于值域}} \\
+	&\iff G(x) \in \dom G^{-1},
+		\tag{\hyperref[theorem:集合论.关系的逆的定义域值域以及关系的二重逆]{$\dom G^{-1} = \ran G$}}
+\end{align*}
+所以\(\dom(G^{-1} \circ G)
+= \dom G\).
+
 并且，对于\(\forall x \in \dom(G^{-1} \circ G)\)，
 有\begin{align*}
 	(G^{-1} \circ G)(x) &= G^{-1}(G(x)) \\
@@ -707,6 +740,42 @@ A \setrestrict \{\emptyset,\{\emptyset\}\},
 \(I_{\ran G}\)是\(\ran G\)上的恒等映射.
 证明：\(G \circ G^{-1} = I_{\ran G}\).
 %TODO
+\begin{proof}
+由于\(G\)是映射，
+所以根据映射的定义可知\[
+	(\forall x \in \dom G)(\exists! y)[\opair{x,y} \in G],
+\]
+于是\begin{align*}
+	G \circ G^{-1}
+	&= \Set{
+		\opair{u,v}
+		\given
+		(\exists t)
+		[
+			\opair{u,t} \in G^{-1},
+			\opair{t,v} \in G
+		]
+	}
+		\tag{\hyperref[definition:映射.逆-复合-限制-像]{复合的定义}} \\
+	&= \Set{
+		\opair{u,v}
+		\given
+		(\exists t)
+		[
+			\opair{t,u} \in G,
+			\opair{t,v} \in G
+		]
+	}
+		\tag{\hyperref[definition:映射.逆-复合-限制-像]{逆的定义}} \\
+	&= \Set{
+		\opair{u,v}
+		\given
+		u=v \in \ran G
+	}
+	= I_{\ran G}.
+		\tag*{\qedhere}
+\end{align*}
+\end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数学（第四版）》（谢启鸿 姚慕生 吴泉水） P184 命题4.1.1
