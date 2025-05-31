@@ -1,1 +1,167 @@
 \section{幂零变换的结构}
+在上一节的最后，我们指出，研究不可对角化的线性变换\(\vb{A}\)的结构的问题，
+只要\(\vb{A}\)的最小多项式\(m(\lambda)\)在\(F[\lambda]\)中可分解成一次因式的乘积，
+那么该问题就可以归结为研究幂零变换的结构的问题，
+也就是研究域\(F\)上\(r\)维线性空间\(W\)上的幂零变换\(\vb{B}\)，
+能否在\(W\)中找到一个基，使得\(\vb{B}\)在此基下的矩阵最简单.
+
+\begin{proposition}\label{theorem:线性映射.由幂零变换衍生的线性无关向量组}
+%@see: 《高等代数（第三版 下册）》（丘维声） P148 命题1
+设\(\vb{B}\)是域\(F\)上\(r\)维线性空间\(W\)上的幂零变换，且幂零指数为\(l\)，
+则存在\(\xi \in W\)，
+使得向量组\[
+	\vb{B}^{l-1}\xi,
+	\vb{B}^{l-2}\xi,
+	\dotsc,
+	\vb{B}^2\xi,
+	\vb{B}\xi,
+	\xi
+\]线性无关，
+从而\(l \leq \dim W\).
+%TODO proof
+\end{proposition}
+
+\def\BasisL{\vb{B}^{l-1}\xi,\vb{B}^{l-2}\xi,\dotsc,\vb{B}^2\xi,\vb{B}\xi,\xi}
+首先讨论幂零指数\(l = \dim W\)的情形.
+此时根据\cref{theorem:线性映射.由幂零变换衍生的线性无关向量组} 得，
+存在\(\xi \in W\)，使得向量组\[
+	\BasisL
+\]线性无关.
+由于\(l = \dim W\)，
+因此它们就是\(W\)的一个基.
+根据\cref{theorem:线性映射.可以JC分解的线性变换在某个基下的矩阵是若尔当块} 得，
+\(\vb{B}\)在\(W\)的基\[
+	\BasisL
+\]下的矩阵为\(J_l(0)\).
+
+接着讨论幂零指数\(l < \dim W\)的情形.
+此时，仍由\cref{theorem:线性映射.由幂零变换衍生的线性无关向量组} 得，
+存在\(\xi \in W\)，使得向量组\[
+	\BasisL
+\]线性无关.
+由于\(l < \dim W\)，上述向量组不是\(W\)的一个基.
+注意到它们生成的子空间\[
+	U \defeq \Span\{\BasisL\}
+\]是\(\vb{B}\)的不变子空间，
+并且\(\vb{B}\)在这个子空间\(U\)上的限制\(\vb{B} \setrestrict U\)
+在基\[
+	\BasisL
+\]下的矩阵是一个若尔当块\(J_l(0)\).
+为此，我们抽象出一个概念：
+\begin{definition}\label{definition:线性映射.生成强循环子空间}
+%@see: 《高等代数（第三版 下册）》（丘维声） P148 定义1
+设\(\vb{B}\)是域\(F\)上\(r\)维线性空间\(W\)上的线性变换，
+向量\(\xi \in W\).
+记\[
+	U \defeq \Span\{\BasisL\}.
+\]
+如果存在正整数\(t\)，
+使得\[
+	\vb{B}^{t-1} \xi \neq 0,
+	\qquad
+	\vb{B}^t \xi = 0,
+\]
+则称“子空间\(U\)是由\(\xi\)生成的 \DefineConcept{\(\vb{B}\) - 强循环子空间}”，
+记作\(Z_t(\xi;\vb{B})\).
+\end{definition}
+
+显然，\(Z_t(\xi;\vb{B})\)是\(\vb{B}\)的不变子空间.
+由\cref{example:线性映射.强循环向量组} 可知，
+向量组\begin{equation*}
+	\BasisL
+\end{equation*}线性无关，
+从而它们是\(Z_t(\xi;\vb{B})\)的一个基，
+于是\(l\)是\(Z_t(\xi;\vb{B})\)的维数.
+由上述讨论可知，
+\(\vb{B}\)在\(Z_t(\xi;\vb{B})\)上的限制
+\(\vb{B} \setrestrict Z_t(\xi;\vb{B})\)
+在这个基下的矩阵是一个\(l\)阶若尔当块\(J_l(0)\).
+于是，只要我们能把\(W\)分解成若干个\(\vb{B}\) - 强循环子空间的直和，
+那么在每个\(\vb{B}\) - 强循环子空间上选择上述这样的基，
+合起来成为\(W\)的一个基，
+\(\vb{B}\)在\(W\)的这个基下的矩阵
+就是由若干个主对角元为\(0\)的若尔当块组成的分块对角矩阵，即若尔当形矩阵.
+我们来探索这个问题.
+
+对于任意\(\alpha \in W\)且\(\alpha\neq0\)，
+由于\(\vb{B}^l=\vb0\)，
+因此\(\vb{B}^l\alpha=0\).
+设正整数\(t\)使得\(\vb{B}^{t-1}\alpha\neq0\)，而\(\vb{B}^t\alpha=0\)，
+则有一个\(\vb{B}\) - 强循环子空间\(\Span\{\BasisL\}\).
+由于\begin{equation*}
+	\vb{B}(\vb{B}^{t-1}\alpha)
+	= \vb{B}^t\alpha
+	= 0
+	= 0(\vb{B}^{t-1}\alpha),
+\end{equation*}
+因此\(\vb{B}^{t-1}\alpha\)是\(\vb{B}\)的属于特征值\(0\)的一个特征向量.
+这表明任意一个\(\vb{B}\) - 强循环子空间\(\Span\{\BasisL\}\)的
+第一个基向量\(\vb{B}^{t-1}\alpha\)是\(\vb{B}\)的属于特征值\(0\)的一个特征向量.
+
+\(\vb{B}\)是幂零变换，
+它的特征值只有\(0\).
+我们把\(\vb{B}\)的属于特征值\(0\)的特征子空间记作\(W_0\).
+对于任意\(\eta \in W_0\)，
+由于\(\vb{B}\eta = 0\eta = 0\)，
+因此\(\Span\{\eta\}\)是一个\(\vb{B}\) - 强循环子空间.
+根据上面一段描述，
+有可能\(\eta\)是某一个\(\vb{B}\) - 强循环子空间的第一个基向量\(\vb{B}^{t-1}\alpha\).
+当\(t=1\)时，这个\(\vb{B}\) - 强循环子空间就是\(\Span\{\eta\}\).
+
+假如\(W\)能分解成若干个\(\vb{B}\) - 强循环子空间的直和：\begin{equation*}
+	W = \Span\{\vb{B}^{t_1-1}\alpha_1,\dotsc,\alpha_1\}
+		\DirectSum \dotsb
+		\DirectSum \Span\{\vb{B}^{t_s-1}\alpha_s,\dotsc,\alpha_s\}
+		\DirectSum \Span\{\eta_1\}
+		\DirectSum \dotsb
+		\DirectSum \Span\{\eta_q\}.
+\end{equation*}
+于是向量组\begin{equation*}
+	\vb{B}^{t_1-1}\alpha_1,
+	\vb{B}^{t_2-1}\alpha_2,
+	\dotsc,
+	\vb{B}^{t_s-1}\alpha_s,
+	\eta_1,
+	\dotsc,
+	\eta_q
+\end{equation*}线性无关.
+根据上面两段论述可知，它们都属于\(W_0\).
+又由于对于任意\(\eta \in W_0\)，
+\(\eta\)都属于某一个\(\vb{B}\) - 强循环子空间，
+因此我们猜测上述向量组是\(W_0\)的一个基.
+从而猜测有下述结论：
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P149 定理2
+设\(\vb{B}\)是域\(F\)上\(r\)维线性空间\(W\)上的幂零变换，其幂零指数为\(l\)，
+把\(\vb{B}\)的属于特征值\(0\)的特征子空间记为\(W_0\)，
+则\(W\)可以分解成\(\dim W_0\)个\(\vb{B}\) - 强循环子空间的直和.
+%TODO proof
+\end{theorem}
+
+有了上述定理，我们就可以了解幂零变换的结构了.
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P151 定理3
+设\(\vb{B}\)是域\(F\)上\(r\)维线性空间\(W\)上的幂零变换，其幂零指数为\(l\)，
+则\(W\)中存在一个基，使得\(\vb{B}\)在这个基下的矩阵\(B\)为若尔当形矩阵，
+其中每个若尔当块的主对角元都是\(0\)，且阶数不超过\(l\)，
+若尔当块的总数等于\(r - \rank\vb{B}\)，
+\(t\)阶若尔当块的个数为\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P151 (1)
+	N(t) = \rank\vb{B}^{t+1} + \rank\vb{B}^{t-1} - 2 \rank\vb{B}^t.
+\end{equation}
+\rm
+这个若尔当形矩阵\(B\)称为幂零变换\(\vb{B}\)的\DefineConcept{若尔当标准型}.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P152 推论4
+设\(B\)是域\(F\)上的\(r\)阶幂零矩阵，其幂零指数为\(l\)，
+则\(B\)相似于一个若尔当形矩阵，
+其中每个若尔当块的主对角元都是\(0\)，且阶数不超过\(l\)，
+若尔当块的总数等于\(r - \rank b\)，
+\(t\)阶若尔当块的个数为\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P152 (10)
+	N(t) = \rank B^{t+1} + \rank B^{t-1} - 2 \rank B^t.
+\end{equation}
+\end{corollary}
