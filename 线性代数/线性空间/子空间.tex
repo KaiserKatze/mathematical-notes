@@ -15,11 +15,12 @@
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P82 定义1
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P4 Definition
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P18 1.33
 设\(V\)是域\(F\)上的一个线性空间，
 \(\emptyset\neq U\subseteq V\).
 如果\(U\)对于\(V\)的加法及纯量乘法运算
 也形成\(F\)上的线性空间，
-则称“\(U\)是\(V\)的一个\DefineConcept{子空间}（subspace）”，
+则称“\(U\)是\(V\)的一个\DefineConcept{子空间}（\(U\) is a \emph{subspace} of \(V\)）”，
 记作\(U \AlgebraSubstructure V\).
 % A subset \(U\) of a linear space \(V\) is called a \emph{subspace} if sums and scalar multiples of elements of \(U\) belong to \(U\).
 \end{definition}
@@ -42,14 +43,26 @@
 
 空集\(\emptyset\)不是\(V\)的子空间.
 
-\begin{theorem}\label{theorem:线性空间.子空间的判定}
+\begin{definition}
+设\(U\)是域\(F\)上线性空间\(V\)的一个子集.
+如果成立\begin{equation*}
+	(\forall u_1,u_2\in U)[u_1+u_2 \in U],
+\end{equation*}
+则称“\(U\)对于\(V\)的加法封闭（\(U\) is closed under addition）”.
+\end{definition}
+\begin{definition}
+设\(U\)是域\(F\)上线性空间\(V\)的一个子集.
+如果成立\begin{equation*}
+	(\forall u\in U)(\forall k\in F)[ku\in U],
+\end{equation*}
+则称“\(U\)对于\(V\)的纯量乘法封闭（\(U\) is closed under scalar multiplication）”.
+\end{definition}
+
+\begin{theorem}\label{theorem:线性空间.子空间的判定1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P82 定理1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P18 1.34
 域\(F\)上线性空间\(V\)的非空子集\(U\)是\(V\)的一个子空间
-当且仅当\(U\)对于\(V\)的加法与纯量乘法都封闭，
-即\begin{itemize}
-	\item \((\forall u_1,u_2\in U)[u_1+u_2 \in U]\)；
-	\item \((\forall u\in U)(\forall k\in F)[ku\in U]\).
-\end{itemize}
+当且仅当\(U\)对于\(V\)的加法与纯量乘法都封闭.
 \begin{proof}
 必要性已由子空间的定义直接给出.
 下面证明充分性.
@@ -81,6 +94,19 @@
 从而\(U\)是\(V\)的一个子空间.
 \end{proof}
 \end{theorem}
+\begin{theorem}\label{theorem:线性空间.子空间的判定2}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P18 1.34
+域\(F\)上线性空间\(V\)的子集\(U\)是\(V\)的一个子空间
+当且仅当
+\(V\)的零元\(0\)属于\(U\)，
+且\(U\)对于\(V\)的加法与纯量乘法都封闭.
+%TODO proof
+\end{theorem}
+\begin{remark}
+应该注意到：
+\cref{theorem:线性空间.子空间的判定1} 要求\(U\)是非空的，
+而\cref{theorem:线性空间.子空间的判定2} 没有这个要求.
+\end{remark}
 
 \begin{example}
 %@see: 《高等代数（第三版 下册）》（丘维声） P83 例1
