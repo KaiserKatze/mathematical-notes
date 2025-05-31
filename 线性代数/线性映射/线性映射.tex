@@ -1012,11 +1012,63 @@ k \in F\)，
 
 \begin{example}
 %@see: 《高等代数（第三版 下册）》（丘维声） P113 习题9.1 8.
-设\(\AutoTuple{\alpha}{n}\)是线性空间\(V\)的一个基，
+设\(V\)是域\(F\)上的一个线性空间，
+\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
 \(\vb{A}\)是\(V\)上的一个线性变换.
 证明：\(\vb{A}\)可逆，
 当且仅当\(\AutoTuple{\vb{A}\alpha}{n}\)是\(V\)的一个基.
-%TODO proof
+\begin{proof}
+必要性.
+假设\(\vb{A}\)可逆，
+那么由\cref{theorem:线性映射.可逆线性映射是同构} 可知\(\vb{A}\)是\(V\)上的自同构.
+因为\(\AutoTuple{\alpha}{n}\)是线性空间\(V\)的一个基，
+所以由\cref{theorem:线性空间的同构.同构线性空间的性质5} 可知，
+向量组\(\AutoTuple{\vb{A}\alpha}{n}\)也是线性空间\(V\)的一个基.
+
+充分性.
+假设\(\AutoTuple{\vb{A}\alpha}{n}\)是\(V\)的一个基，
+那么由\cref{theorem:线性空间.任一向量可由给定基唯一线性表出} 可知，
+\(V\)中任意一个向量\(\beta\)都有唯一的分解式\begin{equation*}
+	\beta
+	= x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n
+	= \vb{A}(x_1 \alpha_1 + \dotsb + x_n \alpha_n),
+	\quad \AutoTuple{x}{n} \in F,
+\end{equation*}
+% 构造逆映射
+于是我们可以定义映射\(\vb{B}\colon V \to V\)，使之满足\begin{equation*}
+	\vb{B}(x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n)
+	= x_1 \alpha_1 + \dotsb + x_n \alpha_n,
+\end{equation*}
+显然\(\vb{B}\)是映射.
+由于\begin{align*}
+	&\hspace{-20pt}
+	\vb{B}(
+		(x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n)
+		+ (y_1 \vb{A}\alpha_1 + \dotsb + y_n \vb{A}\alpha_n)
+	) \\
+	&= (x_1 \alpha_1 + \dotsb + x_n \alpha_n)
+		+ (y_1 \alpha_1 + \dotsb + y_n \alpha_n) \\
+	&= \vb{B}(x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n)
+		+ \vb{B}(y_1 \vb{A}\alpha_1 + \dotsb + y_n \vb{A}\alpha_n), \\
+	&\hspace{-20pt}
+	\vb{B}(k(x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n))
+	= \vb{B}(k x_1 \vb{A}\alpha_1 + \dotsb + k x_n \vb{A}\alpha_n) \\
+	&= k x_1 \alpha_1 + \dotsb + k x_n \alpha_n
+	= k (x_1 \alpha_1 + \dotsb + x_n \alpha_n) \\
+	&= k \vb{B}(x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n),
+\end{align*}
+所以\(\vb{B}\)是线性映射.
+又因为\begin{align*}
+	(\vb{B}\vb{A})(x_1 \alpha_1 + \dotsb + x_n \alpha_n)
+	&= \vb{B}(x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n) \\
+	&= x_1 \alpha_1 + \dotsb + x_n \alpha_n, \\
+	(\vb{A}\vb{B})(x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n)
+	&= \vb{A}(x_1 \alpha_1 + \dotsb + x_n \alpha_n) \\
+	&= x_1 \vb{A}\alpha_1 + \dotsb + x_n \vb{A}\alpha_n,
+\end{align*}
+所以\(\vb{B}\vb{A} = \vb{A}\vb{B} = \vb{I}_V\)，
+这就说明\(\vb{A}\)可逆，且\(\vb{B}\)就是\(\vb{A}\)的逆.
+\end{proof}
 \end{example}
 
 \begin{example}
