@@ -124,6 +124,7 @@
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P83 命题2
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P45 2.37
 设\(U\)是域\(F\)上\(n\)维线性空间\(V\)的一个子空间，
 则\(\dim U\leq\dim V\).
 \begin{proof}
@@ -135,6 +136,7 @@
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P83 命题3
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P45 2.39
 设\(U\)是域\(F\)上\(n\)维线性空间\(V\)的一个子空间.
 如果\(\dim U=\dim V\)，
 则\(U=V\).
@@ -150,6 +152,8 @@
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P83 命题4
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P41 2.32
+% 原话是： Every linearly independent list of vectors in a finite-dimensinal vector space can be extended to a basis of the vector space.
 设\(U\)是域\(F\)上\(n\)维线性空间\(V\)的一个子空间，
 则\(U\)的一个基可以扩充成\(V\)的一个基.
 \begin{proof}
@@ -206,11 +210,12 @@
 \begin{proposition}%\label{theorem:线性空间.生成子空间是包含向量组的最小子空间}
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P29 2.6
 设\(V\)是域\(F\)上的一个线性空间.
-由\(\AutoTuple{\alpha}{s}\)生成的子空间\(U \defeq \Span\{\AutoTuple{\alpha}{s}\}\)
+由\(A \defeq \{\AutoTuple{\alpha}{s}\}\)
+生成的子空间\(U \defeq \Span A\)
 是\(V\)的一个子空间，
-并且\(U\)是包含\(\AutoTuple{\alpha}{s}\)的最小子空间，
+并且\(U\)是包含\(A\)的最小子空间，
 即\begin{equation*}
-	U = \bigcap\Set{ W \given W \leq V, W \supseteq \{\AutoTuple{\alpha}{s}\} }.
+	U = \bigcap\Set{ W \given W \leq V, W \supseteq A }.
 \end{equation*}
 \begin{proof}
 由于\(0 = 0\alpha_1 + \dotsb + 0\alpha_s\)，
@@ -245,7 +250,16 @@
 如果\(U=\Span\{\AutoTuple{\alpha}{s}\}\)，
 则向量组\(\AutoTuple{\alpha}{s}\)的一个极大线性无关组是\(U\)的一个基，
 从而\(\dim U=\rank\{\AutoTuple{\alpha}{s}\}\).
+%TODO proof
 \end{theorem}
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P46 2.42
+设\(V\)是一个\(n\)维线性空间.
+如果\(V\)中一个向量组\(A \defeq \{\AutoTuple{\alpha}{n}\}\)可以生成\(V\)，
+那么\(A\)是\(V\)的一个基.
+%TODO proof
+\end{proposition}
 
 从基的定义容易看出，
 如果\(\AutoTuple{\delta}{r}\)是\(V\)的子空间\(U\)的一个基，
@@ -690,6 +704,7 @@
 \begin{theorem}[子空间的维数公式]\label{theorem:线性空间.子空间.子空间的维数公式}
 %@see: 《高等代数（第三版 下册）》（丘维声） P85 定理9
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P10 Theorem 7.
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P47 2.43
 设\(V_1,V_2\)都是域\(F\)上线性空间\(V\)的有限维子空间，
 则\(V_1 \cap V_2,V_1+V_2\)也都是有限维的子空间，
 并且\[
@@ -780,6 +795,14 @@
 线性无关.
 \end{proof}
 \end{theorem}
+\begin{remark}
+公式\(\dim V_1+\dim V_2
+=\dim(V_1+V_2)
++\dim(V_1 \cap V_2)\)
+可以类比于\(\card X_1+\card X_2
+=\card(X_1 \cup X_2)
++\card(X_1 \cap X_2)\).
+\end{remark}
 
 \begin{corollary}\label{theorem:线性空间.子空间.子空间的维数公式.推论1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P86 推论10
@@ -974,6 +997,14 @@
 “\(\dim(V_1+V_2)=\dim V_1+\dim V_2\)”显然是“\(V_1\)的一个基与\(V_2\)的一个基 合起来是\(V_1+V_2\)的一个基”的必要条件.
 \end{proof}
 \end{theorem}
+\begin{remark}
+公式\(\dim(V_1+V_2)
+= \dim V_1+\dim V_2
+\iff V_1 \cap V_2 = 0\)
+可以类比于\(\card(X_1 \cup X_2)
+= \card X_1 + \card X_2
+\iff X_1 \cap X_2 = \emptyset\).
+\end{remark}
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P87
@@ -989,6 +1020,7 @@
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P87 命题12
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P6 Theorem 5.(b)
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P42 2.33
 设\(V\)是域\(F\)上\(n\)维线性空间，
 则\(V\)的每一个子空间\(U\)都有补空间.
 \begin{proof}
