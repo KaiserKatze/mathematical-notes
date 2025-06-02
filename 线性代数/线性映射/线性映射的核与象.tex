@@ -1,6 +1,9 @@
 \section{线性映射的核与象}
+\subsection{线性映射的核与象}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P113 定义1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P59 3.11
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P61 3.16
 设\(V\)和\(V'\)都是域\(F\)上的线性空间，
 \(\vb{A}\)是\(V\)到\(V'\)的一个线性映射.
 我们把\(V'\)中零向量\(0'\)在\(\vb{A}\)下的原象集
@@ -9,8 +12,8 @@
 	\given
 	\vb{A}\alpha=0'
 }\)
-称为“\(\vb{A}\)的\DefineConcept{核}（kernel）”，
-记作\(\Ker\vb{A}\).
+称为“\(\vb{A}\)的\DefineConcept{核}（kernel, null space）”，
+记作\(\Ker\vb{A}\)或\(\operatorname{null}\vb{A}\).
 把映射\(\vb{A}\)的值域
 \(\Set{
 	\beta \in V'
@@ -35,6 +38,13 @@
 \end{remark}
 
 \begin{example}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P59 3.12
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P61 3.17
+设\(V,W\)都是域\(F\)上的线性空间.
+从\(V\)到\(W\)的零映射\(\vb0\)的核为\(\Ker\vb0\)和象\(\Im\vb0\)分别是\(V\)和\(0\).
+\end{example}
+
+\begin{example}
 %@see: 《高等代数（第三版 下册）》（丘维声） P116 习题9.2 1.
 设\(V\)是域\(F\)上的一个线性空间，
 \(U\)和\(W\)都是\(V\)的子空间，
@@ -51,6 +61,8 @@
 
 \begin{proposition}\label{theorem:线性映射.线性映射的核空间和像空间分别是定义域和陪域的子空间}
 %@see: 《高等代数（第三版 下册）》（丘维声） P113 命题1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P59 3.13
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P61 3.18
 设\(\vb{A}\)是域\(F\)上线性空间\(V\)到\(V'\)的一个线性映射，
 则\(\Ker\vb{A}\)是\(V\)的一个子空间，
 \(\Im\vb{A}\)是\(V'\)的一个子空间.
@@ -93,8 +105,10 @@ k \in F\)，
 \end{proof}
 \end{proposition}
 
-\begin{proposition}
+\subsection{线性映射的单射性与满射性}
+\begin{proposition}\label{theorem:线性映射.线性映射是单射或满射的充分必要条件}
 %@see: 《高等代数（第三版 下册）》（丘维声） P114 命题2
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P60 3.15
 设\(\vb{A}\)是域\(F\)上线性空间\(V\)到\(V'\)的一个线性映射，
 则\begin{gather*}
 	\text{$\vb{A}$是单射}
@@ -150,8 +164,10 @@ k \in F\)，
 称为“\(\vb{A}\)的\DefineConcept{秩}（rank）”.
 \end{definition}
 
-\begin{theorem}
+\subsection{线性映射基本定理}
+\begin{theorem}\label{theorem:线性映射.线性映射基本定理}
 %@see: 《高等代数（第三版 下册）》（丘维声） P114 定理3
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P62 3.21 fundamental theorem of linear maps
 设\(V\)和\(V'\)都是域\(F\)上的线性空间，
 且\(V\)是有限维的，
 \(\vb{A}\)是\(V\)到\(V'\)的一个线性映射，
@@ -254,6 +270,73 @@ k \in F\)，
 \end{proof}
 \end{theorem}
 
+\begin{corollary}\label{theorem:线性映射.定义域维数大于陪域维数的线性映射不是单射}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P63 3.22
+设\(V,W\)都是域\(F\)上的有限维线性空间，
+且\(\dim V > \dim W\)，
+则\(\Hom(V,W)\)中的每一个线性映射都不是单射.
+\begin{proof}
+任取线性映射\(\vb{A}\in\Hom(V,W)\)，
+则\begin{align*}
+	\dim(\Ker\vb{A})
+	&= \dim V - \dim(\Im\vb{A})
+		\tag{\hyperref[theorem:线性映射.线性映射基本定理]{线性映射基本定理}} \\
+	&\geq \dim V - \dim W
+		\tag{\cref{theorem:线性映射.线性映射的核空间和像空间分别是定义域和陪域的子空间,theorem:线性空间.线性空间及其子空间的维数序关系}} \\
+	&> 0.
+\end{align*}
+既然\(\dim(\Ker\vb{A}) > 0\)，
+那么由\cref{theorem:线性映射.线性映射是单射或满射的充分必要条件} 可知，
+\(\vb{A}\)不是单射.
+\end{proof}
+\end{corollary}
+
+\begin{corollary}\label{theorem:线性映射.定义域维数小于陪域维数的线性映射不是满射}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P64 3.24
+设\(V,W\)都是域\(F\)上的有限维线性空间，
+且\(\dim V < \dim W\)，
+则\(\Hom(V,W)\)中的每一个线性映射都不是满射.
+\begin{proof}
+任取线性映射\(\vb{A}\in\Hom(V,W)\)，
+则\begin{align*}
+	\dim(\Im\vb{A})
+	&= \dim V - \dim(\Ker\vb{A})
+		\tag{\hyperref[theorem:线性映射.线性映射基本定理]{线性映射基本定理}} \\
+	&\leq \dim V \\
+	&< \dim W,
+\end{align*}
+这就说明\(\Im\vb{A} \neq W\)，
+\(\vb{A}\)不是满射.
+\end{proof}
+\end{corollary}
+
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P64
+\cref{theorem:线性映射.定义域维数大于陪域维数的线性映射不是单射,theorem:线性映射.定义域维数小于陪域维数的线性映射不是满射}
+对于线性方程论有很重要的意义.
+\begin{corollary}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P65 3.26
+% 原话是： A homogeneous system of linear equations with more variables than equations has nonzero solutions.
+方程个数少于未知量个数的齐次线性方程组必有非零解.
+\begin{proof}
+设\(F\)是一个域，
+\(\vb{A}\)是从\(F^n\)到\(F^m\)的一个线性映射.
+由\cref{theorem:线性映射.定义域维数大于陪域维数的线性映射不是单射} 可知，
+当\(n > m\)时，\(\vb{A}\)不是单射.
+\end{proof}
+%\cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}
+\end{corollary}
+\begin{corollary}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P65 3.28
+% 原话是： An inhomogeneous system of linear equations with more equations than variables has no solution for some choice of the constant terms.
+方程个数多于未知量个数的非齐次线性方程组可能无解（具体取决于常数项）.
+\begin{proof}
+设\(F\)是一个域，
+\(\vb{A}\)是从\(F^n\)到\(F^m\)的一个线性映射.
+由\cref{theorem:线性映射.定义域维数小于陪域维数的线性映射不是满射} 可知，
+当\(n < m\)时，\(\vb{A}\)不是满射.
+\end{proof}
+\end{corollary}
+
 \begin{corollary}
 %@see: 《高等代数（第三版 下册）》（丘维声） P115
 设\(V\)和\(V'\)都是域\(F\)上的线性空间，
@@ -314,19 +397,19 @@ k \in F\)，
 显然\(K+K[x]_{n-1}\neq K[x]_n\).
 \end{remark}
 
-\begin{proposition}
+\begin{example}
 %@see: 《高等代数（第三版 下册）》（丘维声） P115
 设矩阵\(A \in M_{s \times n}(F)\).
 令\[
-	\vb{A}\colon F^n \to F^s, \alpha \mapsto A\alpha,
+	\vb{A}\colon F^n \to F^s, \alpha \mapsto A\alpha.
 \]
-%TODO 参考：第9章第1节例4
+% 由\cref{example:线性映射.左乘矩阵是线性映射} 可知
 则\(\vb{A}\)是从\(F^n\)到\(F^s\)的一个线性映射，
-%TODO 参考：第2章第7节
+% 参考：第4章第7节
 且\(\Ker\vb{A}\)是齐次线性方程组\(AX=0\)的解空间，
 而\(\Im\vb{A}\)是矩阵\(A\)的列空间.
 %TODO proof
-\end{proposition}
+\end{example}
 
 \begin{example}
 %@see: 《高等代数（第三版 下册）》（丘维声） P116 习题9.2 2.
