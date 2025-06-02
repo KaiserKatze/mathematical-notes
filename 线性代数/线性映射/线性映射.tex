@@ -2,16 +2,26 @@
 \subsection{线性映射的概念}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P106 定义1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P52 3.1
 设\(V\)和\(V'\)都是域\(F\)上的线性空间，
 \(\vb{A}\)是从\(V\)到\(V'\)的一个映射.
-如果\begin{gather*}
+
+如果\begin{equation*}
 	(\forall\alpha,\beta\in V)
-	[\vb{A}(\alpha+\beta)=\vb{A}(\alpha)+\vb{A}(\beta)], \\
+	[\vb{A}(\alpha+\beta)=\vb{A}(\alpha)+\vb{A}(\beta)],
+\end{equation*}
+则称“\(\vb{A}\)适合\DefineConcept{可加性}（additivity）”.
+
+如果\begin{equation*}
 	(\forall\alpha\in V)
 	(\forall k\in F)
 	[\vb{A}(k\alpha)=k\vb{A}(\alpha)],
-\end{gather*}
-则称“\(\vb{A}\)是从\(V\)到\(V'\)的一个\DefineConcept{线性映射}（linear map）”.
+\end{equation*}
+则称“\(\vb{A}\)适合\DefineConcept{齐次性}（homogeneity）”.
+
+如果\(\vb{A}\)适合可加性、齐次性，
+则称“\(\vb{A}\)是从\(V\)到\(V'\)的一个\DefineConcept{线性映射}%
+（\(\vb{A}\) is a \emph{linear map} from \(V\) to \(V'\)）”.
 %@see: https://mathworld.wolfram.com/LinearTransformation.html
 \end{definition}
 
@@ -33,7 +43,7 @@
 \(0'\)是\(V'\)的零元，
 映射\(\vb{A}=V\times\{0'\}\).
 我们把\(\vb{A}\)称为
-“从\(V\)到\(V'\)的\DefineConcept{零映射}”，
+“从\(V\)到\(V'\)的\DefineConcept{零映射}（zero）”，
 记作\(\vb0\).
 显然零映射\(\vb0\)是线性映射.
 \end{example}
@@ -588,6 +598,26 @@ k \in K\)，
 
 \subsection{线性映射的加法、纯量乘法}
 \begin{definition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P52 3.2
+%@see: 《高等代数（第三版 下册）》（丘维声） P110
+设\(V,V'\)都是域\(F\)上的线性空间.
+
+\begin{itemize}
+	\item 从\(V\)到\(V'\)的所有线性映射组成的集合，
+	% 称为“域\(F\)上从线性空间\(V\)到\(V'\)的\DefineConcept{线性映射空间}”，
+	记作\(\Hom(V,V')\).
+
+	\item \(V\)上的所有线性变换组成的集合，
+	% 称为“域\(F\)上线性空间\(V\)上的\DefineConcept{线性变换空间}”，
+	记作\(\Hom(V,V)\)\footnote{
+		% 《高等代数（第四版）》（谢启鸿 姚慕生）
+		在有的书上，\(\Hom(V,V')\)和\(\Hom(V,V)\)
+		分别记作\(\mathcal{L}(V,V')\)和\(\mathcal{L}(V) = \mathcal{L}(V,V)\).
+	}.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P110 命题5
 设\(V,V'\)都是域\(F\)上的线性空间.
 对于\(\forall\vb{A},\vb{B}\in\Hom(V,V'),
@@ -636,21 +666,18 @@ l \in F\)，
 \end{proof}
 \end{proposition}
 
-容易验证，线性映射的加法与纯量乘法满足
-线性空间定义的8条运算法则，
-因此域\(F\)上的线性空间\(V\)到\(V'\)的所有线性映射组成的集合
-成为域\(F\)上的一个线性空间，
-% 称为“域\(F\)上从线性空间\(V\)到\(V'\)的\DefineConcept{线性映射空间}”，
-记作\(\Hom(V,V')\).
-
-特别地，域\(F\)上线性空间\(V\)上的所有线性变换组成的集合
-成为域\(F\)上的一个线性空间，
-% 称为“域\(F\)上线性空间\(V\)上的\DefineConcept{线性变换空间}”，
-记作\(\Hom(V,V)\)\footnote{
-	% 《高等代数（第四版）》（谢启鸿 姚慕生）
-	在有的书上，\(\Hom(V,V')\)和\(\Hom(V,V)\)
-	分别记作\(\mathcal{L}(V,V')\)和\(\mathcal{L}(V)\).
-}.
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P110
+域\(F\)上的线性空间\(V\)到\(V'\)的所有线性映射组成的集合\(\Hom(V,V')\)，
+对线性映射的加法与纯量乘法，
+成为域\(F\)上的一个线性空间.
+\end{proposition}
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P111
+域\(F\)上的线性空间\(V\)上的所有线性变换组成的集合\(\Hom(V,V)\)，
+对线性映射的加法与纯量乘法，
+成为域\(F\)上的一个线性空间.
+\end{corollary}
 
 \subsection{线性映射的乘法}
 \begin{definition}
