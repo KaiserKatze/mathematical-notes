@@ -3,21 +3,22 @@
 
 \subsection{用矩阵表示一个有限维线性空间上的线性变换}
 %@see: 《高等代数（第三版 下册）》（丘维声） P116
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P69 3.31
 设\(V\)是域\(F\)上的\(n\)维线性空间，
 \(\vb{A}\)是\(V\)上的一个线性变换.
 我们知道，\(\vb{A}\)被它在\(V\)上的一个基上的作用所决定.
 于是取\(V\)的一个基\(\AutoTuple{\alpha}{n}\).
 由于\(\vb{A}\alpha_i\in V\)，
-因此\(\vb{A}\alpha_i\)可以被\(V\)的这个基唯一地线性表出：\[
+因此\(\vb{A}\alpha_i\)可以被\(V\)的这个基唯一地线性表出：\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P117 (1)
 	\left\{ \begin{array}{l}
 		\vb{A}\alpha_1=a_{11}\alpha_1+a_{21}\alpha_2+\dotsb+a_{n1}\alpha_n, \\
 		\vb{A}\alpha_2=a_{12}\alpha_1+a_{22}\alpha_2+\dotsb+a_{n2}\alpha_n, \\
-		\hdotsfor1, \\
+		\hdotsfor1 \\
 		\vb{A}\alpha_n=a_{1n}\alpha_1+a_{2n}\alpha_2+\dotsb+a_{nn}\alpha_n.
 	\end{array} \right.
-\]
-我们可以在形式上把上式写成\[
+\end{equation*}
+我们可以在形式上把上式写成\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P117 (2)
 	(\vb{A}\alpha_1,\vb{A}\alpha_2,\dotsc,\vb{A}\alpha_n)
 	=(\AutoTuple{\alpha}{n})
@@ -27,21 +28,31 @@
 		\vdots & \vdots && \vdots \\
 		a_{n1} & a_{n2} & \dots & a_{nn}
 	\end{bmatrix}.
-\]
-我们把上式右端的\(n\)阶矩阵\((a_{ij})_n\)记作\(A\)，
-% 线性变换的矩阵
-把它称为“线性变换\(\vb{A}\)在基\(\AutoTuple{\alpha}{n}\)下的\DefineConcept{矩阵}”.
+\end{equation*}
+我们把上式右端的\(n\)阶矩阵\begin{equation*}
+	A \defeq \begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots && \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn}
+	\end{bmatrix}
+\end{equation*}
+称为“线性变换\(\vb{A}\)在基\(\AutoTuple{\alpha}{n}\)下的\DefineConcept{矩阵}”，
+记作\(\LinearMapMatrix(\vb{A},(\AutoTuple{\alpha}{n}))\)，
+或在不致混淆的情况下简记为\(\LinearMapMatrix(\vb{A})\).
+
 \(A\)的第\(j\ (j=1,2,\dotsc,n)\)列是
 \(\vb{A}\alpha_j\)在基\(\AutoTuple{\alpha}{n}\)下的坐标.
 % 线性变换和它的矩阵一一对应
 因此\(A\)由线性变换\(\vb{A}\)唯一决定.
+
 如果我们再把\((\vb{A}\alpha_1,\vb{A}\alpha_2,\dotsc,\vb{A}\alpha_n)\)
 简记为\(\vb{A}(\AutoTuple{\alpha}{n})\)，
-那么上式可以化为\[
+那么上式可以化为\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P117 (3)
 	\vb{A}(\AutoTuple{\alpha}{n})
 	=(\AutoTuple{\alpha}{n})A.
-\]
+\end{equation*}
 这就是一个\(n\)阶矩阵\(A\)
 是\(V\)上线性变换\(\vb{A}\)
 在基\(\AutoTuple{\alpha}{n}\)下的矩阵的充分必要条件.
@@ -95,16 +106,16 @@
 在\(V'\)中取一个基\(\AutoTuple{\beta}{s}\)，
 由于\(\vb{A}\alpha_i\in V'\)，
 因此\(\vb{A}\alpha_i\)可以
-由\(V'\)的基\(\AutoTuple{\beta}{s}\)唯一地线性表出：\[
+由\(V'\)的基\(\AutoTuple{\beta}{s}\)唯一地线性表出：\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P118 (4)
 	\left\{ \begin{array}{l}
 		\vb{A}\alpha_1=a_{11}\beta_1+a_{21}\beta_2+\dotsb+a_{s1}\beta_s, \\
 		\vb{A}\alpha_2=a_{12}\beta_1+a_{22}\beta_2+\dotsb+a_{s2}\beta_s, \\
-		\hdotsfor1, \\
+		\hdotsfor1 \\
 		\vb{A}\alpha_n=a_{1n}\beta_1+a_{2n}\beta_2+\dotsb+a_{sn}\beta_s.
 	\end{array} \right.
-\]
-我们可以在形式上把上式写成\[
+\end{equation*}
+我们可以在形式上把上式写成\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P118 (5)
 	(\vb{A}\alpha_1,\vb{A}\alpha_2,\dotsc,\vb{A}\alpha_n)
 	=(\AutoTuple{\beta}{s})
@@ -114,22 +125,31 @@
 		\vdots & \vdots && \vdots \\
 		a_{s1} & a_{s2} & \dots & a_{sn}
 	\end{bmatrix}.
-\]
-我们把上式右端的\(s\times n\)阶矩阵\((a_{ij})_{s\times n}\)记作\(A\)，
-% 线性映射的矩阵
-把它称为“线性映射\(\vb{A}\)
+\end{equation*}
+我们把上式右端的\(s\times n\)阶矩阵\begin{equation*}
+	A \defeq \begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots && \vdots \\
+		a_{s1} & a_{s2} & \dots & a_{sn}
+	\end{bmatrix}
+\end{equation*}
+称为“线性映射\(\vb{A}\)
 在\(V\)的基\(\AutoTuple{\alpha}{n}\)
 和\(V'\)的基\(\AutoTuple{\beta}{s}\)
-下的\DefineConcept{矩阵}”.
+下的\DefineConcept{矩阵}”，
+记作\(\LinearMapMatrix(\vb{A},(\AutoTuple{\alpha}{n}),(\AutoTuple{\beta}{n}))\)，
+或在不致混淆的情况下简记为\(\LinearMapMatrix(\vb{A})\).
+
 \(A\)的第\(j\ (j=1,2,\dotsc,n)\)列是
 \(\vb{A}\alpha_j\)在基\(\AutoTuple{\beta}{s}\)下的坐标.
 % 线性映射和它的矩阵一一对应
 因此\(A\)由线性映射\(\vb{A}\)唯一决定.
-那么上式可以化为\[
+那么上式可以化为\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P118 (6)
 	\vb{A}(\AutoTuple{\alpha}{n})
 	=(\AutoTuple{\beta}{s})A.
-\]
+\end{equation*}
 这就是一个\(s\times n\)矩阵\(A\)
 是\(V\)到\(V'\)的线性映射\(\vb{A}\)
 在\(V\)的基\(\AutoTuple{\alpha}{n}\)
@@ -266,17 +286,17 @@ k \in F,
 	&=((\AutoTuple{\alpha}{n}))(AB),
 \end{align*}
 所以\(\vb{A}\vb{B}\)在基\(\AutoTuple{\alpha}{n}\)下的矩阵是\(AB\).
-那么\[
+那么\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P120 (15)
 	\sigma(\vb{A}\vb{B}) = AB = \sigma(\vb{A}) \sigma(\vb{B}).
-\]
+\end{equation*}
 这表明\(\sigma\)保持乘法运算.
 
-从上述推导过程还可看到：\[
+从上述推导过程还可看到：\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P120 (16)
 	\vb{A}[(\AutoTuple{\alpha}{n})B]
 	= [\vb{A}(\AutoTuple{\alpha}{n})]B.
-\]
+\end{equation*}
 
 显然，\(V\)上的恒等变换\(\vb{I}\)在基\(\AutoTuple{\alpha}{n}\)下的矩阵是单位矩阵\(I\)，
 因此\(\sigma(\vb{I})=I\).
@@ -313,12 +333,12 @@ k \in F,
 由于\(V\)中两个向量相等，
 当且仅当它们在\(V\)的一个基下的坐标相等，
 因此，如果向量\(\gamma\)在基\(\AutoTuple{\alpha}{n}\)下的坐标是\(Y\)，
-则\[
+则\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P120 (17)
 	\vb{A}\alpha=\gamma
 	\iff
 	AX=Y.
-\]
+\end{equation*}
 
 \begin{example}
 %@see: 《高等代数（第三版 下册）》（丘维声） P121 习题9.3 1.
