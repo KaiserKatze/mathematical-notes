@@ -12,25 +12,43 @@
 则称矩阵\(\C\)是“\(\A\)与\(\B\)的\DefineConcept{乘积}”，
 记作\(\C = \A \B\).
 \end{definition}
-
-可以注意到，如果我们分别对\(\A\)和\(\B\)做行分块和列分块，得\[
+\begin{remark}
+如果我们分别对\(\A\)和\(\B\)做行分块和列分块，得\begin{equation*}
 	\A=(\AutoTuple{\a}{s}[,][T])^T, \qquad
 	\B=(\AutoTuple{\b}{m}),
-\]
-那么有\[
-	c_{ij} = \a_i^T \b_j,
-	\quad
-	i=1,2,\dotsc,s;j=1,2,\dotsc,m.
-\]
+\end{equation*}
+那么\begin{itemize}
+	%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P75 3.46
+	\item \(\A\)与\(\B\)的乘积\(\A\B\)的\((i,j)\)元素，
+	等于\(\A\)的第\(i\)行向量\(\a_i^T\)与\(\B\)的第\(j\)列向量\(\b_j\)的乘积，
+	即\begin{equation*}
+		c_{ij} = \a_i^T \b_j,
+		\quad
+		i=1,2,\dotsc,s;j=1,2,\dotsc,m;
+	\end{equation*}
+
+	%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P75 3.48
+	\item \(\A\B\)的第\(k\)列向量，
+	等于\(\A\)与\(\B\)的第\(k\)列向量\(\b_k\)的乘积，
+	即\begin{equation*}
+		\MatrixEntry{(\A\B)}{*,k}
+		= \A \MatrixEntry{\B}{*,k},
+		\quad k=1,2,\dotsc,m.
+	\end{equation*}
+
+	%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P76 3.50
+\end{itemize}
+\end{remark}
+\begin{remark}
 如果我们分别对\(\A\)和\(\B\)做列分块和行分块，
 \begingroup%
 \def\mx{\vb{\xi}}%
 \def\mz{\vb{\zeta}}%
-得\[
+得\begin{equation*}
 	\A=(\AutoTuple{\mx}{n}), \qquad
 	\B=(\AutoTuple{\mz}{n}[,][T])^T,
-\]
-那么有\[
+\end{equation*}
+那么有\begin{equation}
 	\mx_i \mz_i^T
 	= \begin{bmatrix}
 		a_{1i} b_{i1} & a_{1i} b_{i2} & \dots & a_{1i} b_{im} \\
@@ -40,13 +58,17 @@
 	\end{bmatrix},
 	\quad
 	i=1,2,\dotsc,n,
-\]
-于是\[
+\end{equation}
+于是\begin{equation*}
 	\A\B=\sum_{i=1}^n \mx_i \mz_i^T.
-\]
+\end{equation*}
 \endgroup%
+\end{remark}
 
-一般地，矩阵乘法不满足交换律.
+\begin{proposition}
+矩阵乘法不满足交换律.
+\end{proposition}
+
 \begin{definition}
 设矩阵\(\A,\B \in M_n(K)\).
 如果\[
