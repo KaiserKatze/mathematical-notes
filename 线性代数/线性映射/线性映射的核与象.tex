@@ -348,7 +348,22 @@ k \in F\)，
 \]
 \end{corollary}
 
-\begin{corollary}\label{theorem:线性映射.单线性映射是满线性映射}
+\begin{example}\label{example:线性映射.无限维线性空间.单有单射或满射推不出线性映射可逆1}
+\def\MyPolynomialRing{\mathbb{R}[x]}%
+\def\MyLinearMapSpace{\Hom(\MyPolynomialRing,\MyPolynomialRing)}%
+设\(\vb{T}\in\MyLinearMapSpace\)表示给多项式乘以\(x^2\)因式.
+虽然\(\vb{T}\)是单射，但它不是满射（这是因为零次多项式\(1\)不属于\(\Im\vb{T}\)），
+所以\(\vb{T}\)不是可逆线性映射.
+\end{example}
+\begin{example}\label{example:线性映射.无限维线性空间.单有单射或满射推不出线性映射可逆2}
+\def\MyVectorSpace{F^\infty}
+设\(F\)是一个域，
+线性变换\(\vb{T}\colon F^\infty \to F^\infty, (x_1,x_2,x_3,\dotsc) \mapsto (x_2,x_3,\dotsc)\)
+虽是满射却不是单射（这是因为向量\((1,0,0,0,\dotsc)\)属于\(\Ker\vb{T}\)），
+所以\(\vb{T}\)不是可逆线性映射.
+\end{example}
+
+\begin{corollary}\label{theorem:线性映射.有限维线性空间.单线性映射是满线性映射}
 %@see: 《高等代数（第三版 下册）》（丘维声） P115 推论4
 设\(V\)和\(V'\)都是域\(F\)上的\(n\)维线性空间，
 \(\vb{A}\)是\(V\)到\(V'\)的一个线性映射，
@@ -374,9 +389,9 @@ k \in F\)，
 \end{align*}
 \end{proof}
 \end{corollary}
-
 \begin{corollary}
 %@see: 《高等代数（第三版 下册）》（丘维声） P115 推论5
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P84 3.65
 设\(\vb{A}\)是域\(F\)上的有限维线性空间\(V\)上的线性变换，
 则\[
 	\text{$\vb{A}$是单射}
@@ -384,6 +399,26 @@ k \in F\)，
 	\text{$\vb{A}$是满射}.
 \]
 \end{corollary}
+\begin{remark}
+\cref{theorem:线性映射.有限维线性空间.单线性映射是满线性映射} 说明：
+在有限维线性空间中，
+任意一个线性映射只要单有单射性或满射性，便可推出它有可逆性，
+而不必像\cref{theorem:线性映射.可逆线性映射是同构} 所要求的那样，
+只有双射才能保证可逆性.
+\end{remark}
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P85 3.68
+设\(V,W\)都是有限维线性空间，且\(\dim V = \dim W\)，
+\(\vb{A}\in\Hom(V,W),
+\vb{B}\in\Hom(W,V)\)，
+则\begin{equation*}
+	\vb{A}\vb{B} = \vb{I}
+	\iff
+	\vb{B}\vb{A} = \vb{I}.
+\end{equation*}
+%TODO proof
+\end{proposition}
 
 \begin{remark}
 对于有限维线性空间\(V\)上的线性变换\(\vb{A}\)，
