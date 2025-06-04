@@ -153,6 +153,32 @@ k \in F\)，
 \end{proof}
 \end{proposition}
 
+\begin{example}\label{example:线性空间.笛卡尔和与直和之间的关系}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P98 3.93
+设\(V\)是域\(F\)上的线性空间，
+\(\AutoTuple{V}{m}\)都是\(V\)的子空间.
+证明：\(\AutoTuple{V}{m}[+]\)是直和，
+当且仅当\(\Gamma\colon \AutoTuple{V}{m}[\CartesianSum] \to \AutoTuple{V}{m}[+],
+(\AutoTuple{\alpha}{m}) \mapsto \AutoTuple{\alpha}{m}[+]\)是单射.
+\begin{proof}
+直接有\begin{align*}
+	\text{$\Gamma$是单射}
+	&\iff \Ker\Gamma = 0
+		\tag{\cref{theorem:线性映射.线性映射是单射或满射的充分必要条件}} \\
+	&\iff \text{$\AutoTuple{V}{m}[+]$中零向量的表示法唯一} \\
+	&\iff \text{$\AutoTuple{V}{m}[+]$是直和}
+		\tag{\cref{theorem:线性空间.子空间.直和的等价命题}}.
+\end{align*}
+\end{proof}
+\end{example}
+\begin{remark}
+根据\hyperref[definition:线性空间.子空间.子空间的和]{子空间的和的定义}，
+映射\(\Gamma\)必定是满射，
+因此\cref{example:线性空间.笛卡尔和与直和之间的关系} 可以改写为：
+\(\AutoTuple{V}{m}[+]\)是直和，
+当且仅当\(\Gamma\)可逆.
+\end{remark}
+
 \begin{definition}
 设\(V\)和\(V'\)都是域\(F\)上的线性空间，
 且\(V\)是有限维的，
@@ -526,3 +552,24 @@ V' = M \DirectSum N\)，
 使得\(\vb{A}_1\alpha,\allowbreak\dotsc,\allowbreak\vb{A}_s\alpha\)两两不同.
 %TODO proof
 \end{example}
+
+\begin{theorem}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P102 3.107
+\def\T{\vb{T}}%
+\def\wT{\widetilde{\T}}
+设\(V,W\)都是域\(F\)上的线性空间，
+\(\T\)是从\(V\)到\(W\)的一个线性映射，
+\(Y = \Ker\T\)，
+\(\vb\pi\)是从\(V\)到\(V/Y\)的标准映射，
+定义\begin{equation*}
+	\wT\colon V/Y \to W,
+	\alpha+Y \mapsto \T\alpha,
+\end{equation*}
+则\begin{itemize}
+	\item \(\wT \vb\pi = \T\)，
+	\item \(\wT\)是单射，
+	\item \(\Im\wT = \Im\T\)，
+	\item \(Y \Isomorphism \Im\T\).
+\end{itemize}
+%TODO proof
+\end{theorem}
