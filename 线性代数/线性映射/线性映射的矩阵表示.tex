@@ -38,7 +38,13 @@
 	\end{bmatrix}
 \end{equation*}
 称为“线性变换\(\vb{A}\)在基\(\AutoTuple{\alpha}{n}\)下的\DefineConcept{矩阵}”，
-记作\(\LinearMapMatrix(\vb{A},(\AutoTuple{\alpha}{n}))\)，
+记作\(\LinearMapMatrix(\vb{A},(\AutoTuple{\alpha}{n}))\)\footnote{
+	应该注意到，这里定义的\(\LinearMapMatrix\)记号，
+	与之前在\cref{section:线性空间.向量的坐标} 定义
+	线性空间中的向量的坐标时
+	所采用的记号完全相同.
+	这是我们有意为之.
+}，
 或在不致混淆的情况下简记为\(\LinearMapMatrix(\vb{A})\).
 
 \(A\)的第\(j\ (j=1,2,\dotsc,n)\)列是
@@ -155,6 +161,22 @@
 在\(V\)的基\(\AutoTuple{\alpha}{n}\)
 和\(V'\)的基\(\AutoTuple{\beta}{s}\)下的矩阵的充分必要条件.
 
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P89 3.75
+设\(V,W\)都是域\(F\)上的有限维线性空间，
+\(\AutoTuple{\alpha}{n}\)和\(\AutoTuple{\beta}{m}\)分别是\(V\)和\(W\)的基，
+\(\vb{T}\in\Hom(V,W)\)，
+则线性映射\(\vb{T}\)的矩阵的第\(k\)列，
+等于向量\(\vb{T}\alpha_k\)的坐标，
+即\begin{equation*}
+	\MatrixEntry{
+		\LinearMapMatrix(\vb{T})
+	}{*,k}
+	= \VectorMatrix(\vb{T} \alpha_k),
+	\quad k=1,2,\dotsc,n.
+\end{equation*}
+\end{proposition}
+
 \subsection{线性映射空间与矩阵空间同构}
 从上面看到，
 域\(F\)上\(n\)维线性空间\(V\)到\(s\)维线性空间\(V'\)的
@@ -167,6 +189,8 @@
 
 \begin{theorem}\label{theorem:线性映射.线性映射空间与矩阵空间同构1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P119 定理1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P87 3.71
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P87 3.32
 设\(V\)和\(V'\)分别是域\(F\)上\(n\)维、\(s\)维线性空间，
 则\begin{gather}
 	\Hom(V,V') \Isomorphism M_{s\times n}(F), \\  % 同构
@@ -262,6 +286,8 @@ k \in F,
 \end{gather}
 \end{corollary}
 
+%@see: 《高等代数（第三版 下册）》（丘维声） P119
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P91 3.81
 在\(\Hom(V,V)\)与\(M_n(F)\)中，都有乘法运算.
 我们可以进一步证明：
 把线性变换\(\vb{A}\)对应到它在\(V\)的基\(\AutoTuple{\alpha}{n}\)下的矩阵\(A\)的映射\(\sigma\)还保持乘法运算.
@@ -328,7 +354,12 @@ k \in F,
 	&= [(\AutoTuple{\alpha}{n})A]X
 	= (\AutoTuple{\alpha}{n})(AX).
 \end{align*}
-这表明\(\vb{A}\alpha\)在基\(\AutoTuple{\alpha}{n}\)下的坐标是\(AX\).
+这表明\(\vb{A}\alpha\)在基\(\AutoTuple{\alpha}{n}\)下的坐标是\(AX\)，
+即\begin{equation*}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P89 3.76
+	\LinearMapMatrix(\vb{T}\alpha)
+	= \LinearMapMatrix(\vb{T}) \VectorMatrix(\alpha).
+\end{equation*}
 
 由于\(V\)中两个向量相等，
 当且仅当它们在\(V\)的一个基下的坐标相等，
@@ -436,8 +467,17 @@ v = q_1 f_1 + q_2 f_2\)，
 \subsection{线性变换在不同基下的矩阵的关系}
 域\(F\)上\(n\)维线性空间\(V\)上的一个线性变换\(\vb{A}\)在\(V\)的不同基下的矩阵有什么关系？
 
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P92 3.82
+设\(V\)是域\(F\)上\(n\)维线性空间，
+\(V\)上的恒等变换\(\vb{I}\)在\(V\)的两个基
+\(\AutoTuple{\alpha}{n}\)与\(\AutoTuple{\beta}{n}\)下的矩阵分别为\(A,B\)，
+则\(A,B\)都是可逆矩阵，且\(A,B\)互为逆矩阵.
+\end{proposition}
+
 \begin{theorem}\label{theorem:线性映射的矩阵表示.线性变换在不同基下的矩阵相似}
 %@see: 《高等代数（第三版 下册）》（丘维声） P120 定理3
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P93 3.84
 设\(V\)是域\(F\)上\(n\)维线性空间，
 \(V\)上的一个线性变换\(\vb{A}\)在\(V\)的两个基
 \(\AutoTuple{\alpha}{n}\)与\(\AutoTuple{\beta}{n}\)下的矩阵分别为\(A,B\).
@@ -501,4 +541,17 @@ v = q_1 f_1 + q_2 f_2\)，
 从而\(C = B\).
 因此\(\vb{A}\)在基\(\vb{A}\)在基\(\AutoTuple{\beta}{n}\)下的矩阵为\(B\).
 \end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P93 3.86
+设\(V\)是域\(F\)上\(n\)维线性空间，
+\(\vb{A}\)是\(V\)上的一个可逆线性变换，
+\(\AutoTuple{\alpha}{n}\)的一个基，
+则\(\vb{A}\)的逆\(\vb{A}^{-1}\)的矩阵
+就是\(\vb{A}\)的矩阵的逆，
+即\begin{equation*}
+	\LinearMapMatrix(\vb{A}^{-1})
+	= (\LinearMapMatrix(\vb{A}))^{-1}.
+\end{equation*}
 \end{proposition}

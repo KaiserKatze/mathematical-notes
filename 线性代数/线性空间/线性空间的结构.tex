@@ -616,12 +616,26 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P80 习题3.4 4.
 \end{example}
 
-\subsection{向量的坐标，过渡矩阵}
+\subsection{向量的坐标，过渡矩阵}\label{section:线性空间.向量的坐标}
 %@see: 《高等代数（第三版 下册）》（丘维声） P78
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P88 3.73
 我们把向量\(\alpha\)由基\(\AutoTuple{\alpha}{n}\)线性表出的系数
-组成的\(n\)元有序组\((\AutoTuple{\alpha}{n})\)
-称为“向量\(\alpha\)在基\(\AutoTuple{\alpha}{n}\)下的\DefineConcept{坐标}（coordinate）”.
-通常把向量的坐标写成列向量形式.
+组成的\(n\)元有序组\((\AutoTuple{a}{n})\)
+称为“向量\(\alpha\)在基\(\AutoTuple{\alpha}{n}\)下的\DefineConcept{坐标}（coordinate）”，
+记作\(\VectorMatrix(\alpha,(\AutoTuple{\alpha}{n}))\)，
+或在不致混淆的情况下简记为\(\VectorMatrix(\alpha)\).
+通常把向量的坐标写成列向量形式，
+即\begin{equation*}
+	\VectorMatrix(\alpha,(\AutoTuple{\alpha}{n}))
+	=
+	\begin{bmatrix}
+		a_1 \\
+		\vdots \\
+		a_n
+	\end{bmatrix}
+	\defiff
+	\alpha = a_1 \alpha_1 + \dotsb + a_n \alpha_n.
+\end{equation*}
 
 由上可知，有限维线性空间\(V\)中给定一个基，
 则\(V\)中每一个向量都可以唯一地表示成这个基的线性组合，
@@ -632,14 +646,18 @@
 我们想要知道，\(V\)中每一个向量分别在这两个基下的坐标有什么关系.
 
 设\(\AutoTuple{\alpha}{n}\)和\(\AutoTuple{\beta}{n}\)是\(V\)的两个基，
-\(V\)中向量\(\alpha\)在这两个基下的坐标分别为\[
+\(V\)中向量\(\alpha\)在这两个基下的坐标分别为\begin{equation*}
 	X=(\AutoTuple{x}{n})^T, \qquad
 	Y=(\AutoTuple{y}{n})^T.
-\]
+\end{equation*}
 为了求\(X\)与\(Y\)之间的关系，
 首先把这两个基之间的关系搞清楚.
 由于\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
-因此有\[
+并且\(\AutoTuple{\beta}{n}\)都是\(V\)中的元素，
+那么，由\cref{theorem:线性空间.任一向量可由给定基唯一线性表出} 可知，
+向量组\(\AutoTuple{\beta}{n}\)中的每一个向量\(\beta_i\)
+均可唯一地表示成\(\AutoTuple{\alpha}{n}\)的线性组合，
+因此有\begin{equation}\label{equation:线性空间.基变换方程组}
 %@see: 《高等代数（第三版 下册）》（丘维声） P79 (2)
 	\left\{ \begin{array}{l}
 		\beta_1=a_{11} \alpha_1+a_{21} \alpha_2+\dotsb+a_{n1} \alpha_n, \\
@@ -647,29 +665,15 @@
 		\hdotsfor1 \\
 		\beta_n=a_{1n} \alpha_1+a_{2n} \alpha_2+\dotsb+a_{nn} \alpha_n.
 	\end{array} \right.
-\]
+\end{equation}
 为了使推导过程简洁，
-我们可以把上式写成\[
-%@see: 《高等代数（第三版 下册）》（丘维声） P79 (5)
-	(\AutoTuple{\beta}{n})
-	=
-	(\AutoTuple{\alpha}{n})
-	A,
-\]
-其中\[
-	A=\begin{bmatrix}
-		a_{11} & a_{12} & \dots & a_{1n} \\
-		a_{21} & a_{22} & \dots & a_{2n} \\
-		\vdots & \vdots & & \vdots \\
-		a_{n1} & a_{n2} & \dots & a_{nn}
-	\end{bmatrix}.
-\]
-我们把\(A\)称为
-“基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的\DefineConcept{过渡矩阵}”.
-%@see: https://mathworld.wolfram.com/TransitionMatrix.html
-%@see: https://mathworld.wolfram.com/ChangeofCoordinatesMatrix.html
-
-在这里，我们引入一种形式写法\[
+我们引入一种形式写法\footnote{
+	这里之所以称之为形式写法，
+	是因为我们在先前学习的矩阵乘法运算的定义
+	要求参与运算的每一个矩阵、向量的每一个元素都是数域\(K\)中的元素，
+	但是这里看似向量的\((\AutoTuple{\alpha}{n}),(\AutoTuple{\beta}{n})\)中的“元素”
+	并不是某个域中的元素，而是线性空间\(V\)中的元素.
+}\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P79 (3)
 	x_1 \alpha_1 + \dotsb + x_n \alpha_n
 	\defeq
@@ -679,7 +683,27 @@
 		\vdots \\
 		x_n
 	\end{bmatrix}.
-\]
+\end{equation*}
+我们可以把\cref{equation:线性空间.基变换方程组} 写成\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P79 (5)
+	(\AutoTuple{\beta}{n})
+	=
+	(\AutoTuple{\alpha}{n})
+	A,
+\end{equation*}
+其中\begin{equation*}
+	A=\begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn}
+	\end{bmatrix}.
+\end{equation*}
+我们把\(A\)称为
+“基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的\DefineConcept{过渡矩阵}”.
+%@see: https://mathworld.wolfram.com/TransitionMatrix.html
+%@see: https://mathworld.wolfram.com/ChangeofCoordinatesMatrix.html
+
 像这样的形式写法，是模仿矩阵乘法的定义.
 因此，类似于矩阵乘法的结合律、左右分配律、乘法与数量乘法的关系的证明方法，
 可以证明形式写法满足以下规则.
@@ -758,26 +782,26 @@
 现在可以给出向量\(\alpha\)
 分别在基\(\AutoTuple{\alpha}{n}\)
 与基\(\AutoTuple{\beta}{n}\)下的坐标\(X,Y\)之间的关系.
-由于\[
+由于\begin{equation*}
 	\alpha
 	=(\AutoTuple{\alpha}{n}) X
 	=(\AutoTuple{\beta}{n}) Y,
-\]
+\end{equation*}
 并且基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵是\(A\)，
-因此\[
+因此\begin{equation*}
 	(\AutoTuple{\alpha}{n}) X
 	=(\AutoTuple{\beta}{n}) Y
 	=(\AutoTuple{\alpha}{n}) A Y.
-\]
+\end{equation*}
 由于同一个向量由基\(\AutoTuple{\alpha}{n}\)线性表出的方式唯一，
-从上式得\[
+从上式得\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P79 (12)
 	X=AY,
-\]
-从而\[
+\end{equation*}
+从而\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P79 (13)
 	Y=A^{-1}X.
-\]
+\end{equation*}
 
 \begin{example}
 设\(\alpha_1,\alpha_2,\alpha_3\)是\(\mathbb{R}^3\)的一组基，
