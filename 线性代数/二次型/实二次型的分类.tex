@@ -94,6 +94,7 @@
 代入(3)式两端，得到左边大于零，右边小于等于零，矛盾，因此\(p \leq q\).
 同理又有\(q \leq p\)，于是\(p = q\).
 \end{proof}
+%@see: https://mathworld.wolfram.com/SylvestersInertiaLaw.html
 \end{theorem}
 \cref{theorem:二次型.惯性定理}
 又称为“惯性定理（Inertial Theorem）”.
@@ -133,6 +134,12 @@
 	\item 正、负惯性指数之差\(d=p-q\)
 	称为“\(f\)的\DefineConcept{符号差}（signature）”.
 \end{itemize}
+% 下面是一个数值算法，它的原理是：先计算矩阵的特征值，再分别统计正特征值和负特征值的个数.
+%@Mathematica: InertiaIndices[A_?SymmetricMatrixQ] :=
+%				Module[{eigvals},
+%				eigvals = Eigenvalues[A];        (* 计算所有特征值 *)
+%				{Count[eigvals, _?Positive],     (* 正惯性指数 *)
+%				Count[eigvals, _?Negative]       (* 负惯性指数 *)}];
 \end{definition}
 由\hyperref[theorem:二次型.惯性定理]{惯性定理}%
 和\cref{definition:二次型.惯性系数的定义} 可知：

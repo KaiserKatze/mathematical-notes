@@ -1,6 +1,7 @@
 \section{二次型的应用}
 下面利用矩阵的运算及二次型理论讨论平面二次曲线、空间二次曲面的分类问题.
 
+\subsection{平面二次曲线的分类问题}
 首先考虑一般的二次曲线的方程：\begin{equation}\label{equation:二次型的应用.平面二次曲线的一般方程}
 %@see: 《线性代数》（张慎语、周厚隆） P139 (1)
 	a_{11} x_1^2
@@ -11,7 +12,7 @@
 	+ c
 	= 0.
 \end{equation}
-设\[
+设\begin{equation*}
 	\vb{X}
 	\defeq \begin{bmatrix}
 		x_1 \\ x_2
@@ -27,13 +28,13 @@
 	\defeq \begin{bmatrix}
 		b_1 \\ b_2
 	\end{bmatrix},
-\]
-于是\cref{equation:二次型的应用.平面二次曲线的一般方程} 可以写成\[
+\end{equation*}
+于是\cref{equation:二次型的应用.平面二次曲线的一般方程} 可以写成\begin{equation*}
 	\vb{X}^T \vb{A} \vb{X}
 	+ \vb{b}^T \vb{X}
 	+ c
 	= 0,
-\]
+\end{equation*}
 或\begin{equation}\label{equation:二次型的应用.平面二次曲线的一般方程.矩阵形式}
 %@see: 《线性代数》（张慎语、周厚隆） P139 (2)
 	\begin{bmatrix}
@@ -48,7 +49,7 @@
 	\end{bmatrix}
 	= 0.
 \end{equation}
-记\[
+记\begin{equation*}
 	f(\vb{X})
 	\defeq
 	\begin{bmatrix}
@@ -61,11 +62,11 @@
 	\begin{bmatrix}
 		\vb{X} \\ 1
 	\end{bmatrix}.
-\]
+\end{equation*}
 于是\(\vb{X}^T \vb{A} \vb{X}\)
-可以经过正交变换\(\vb{X} = \vb{Q} \vb{Y}\)化为标准型：\[
+可以经过正交变换\(\vb{X} = \vb{Q} \vb{Y}\)化为标准型：\begin{equation*}
 	\lambda_1 y_1^2 + \lambda_2 y_2^2,
-\]
+\end{equation*}
 其中\(\vb{Q}\)是二阶正交矩阵，
 \(\lambda_1,\lambda_2\)是\(\vb{A}\)的两个特征值.
 将\(\vb{X} = \vb{Q} \vb{Y}\)
@@ -93,14 +94,14 @@
 \vb{X}_0 = \begin{bmatrix}
 	x'_1 \\ x'_2
 \end{bmatrix}\)，
-便可化简得\[
+便可化简得\begin{equation*}
 	f(\vb{X})
 	= \lambda_1 z_1^2 + \lambda_2 z_2^2 + d,
 	\quad\text{或}\quad
 	f(\vb{X})
 	= \lambda_1 z_1^2 + q z_2.
-\]
-同时\[
+\end{equation*}
+同时\begin{equation*}
 	\begin{bmatrix}
 		\vb{X} \\ 1
 	\end{bmatrix}
@@ -114,7 +115,7 @@
 	\begin{bmatrix}
 		\vb{Z} \\ 1
 	\end{bmatrix},
-\]
+\end{equation*}
 其中\(\vb\delta = \vb{Q} \vb{X}_0 \in M_{2\times1}(\mathbb{R})\).
 \cref{equation:二次型的应用.平面二次曲线的一般方程.矩阵形式}
 化为\begin{equation}\label{equation:二次型的应用.平面二次曲线的一般方程.矩阵标准形式}
@@ -131,7 +132,7 @@
 	\end{bmatrix}
 	= 0,
 \end{equation}
-其中\[
+其中\begin{equation*}
 	\begin{bmatrix}
 		\vb{A}_1 & \vb{b}_1 \\
 		\vb{b}_1^T & c_1
@@ -152,7 +153,7 @@
 	\vb{A}_1
 	= \vb{Q}^T \vb{A} \vb{Q}
 	= \diag(\lambda_1,\lambda_2).
-\]
+\end{equation*}
 
 \begin{lemma}
 %@see: 《线性代数》（张慎语、周厚隆） P140 引理2
@@ -223,13 +224,62 @@
 		\vb{X} \\ 1
 	\end{bmatrix}
 	= 0
-\]可以经过正交变换和平移变换化为\[
-	\lambda_1 z_1^2 + \lambda_2 z_2^2 + d = 0
+\]可以经过正交变换、平移变换化为\[
+	\lambda_1 z_1^2 + \lambda_2 z_2^2 + d = 0,
 	\quad\text{或}\quad
 	\lambda_1 z_1^2 + q z_2 = 0.
 \]
 %TODO proof 教材省略了证明过程，只提示应该讨论\(\vb{A}\)、\((\vb{A},\vb{b})\)和\(\begin{bmatrix} \vb{A} & \vb{b} \\ \vb{b}^T & c \end{bmatrix}\)这三个矩阵的秩.
 \end{theorem}
+
+\subsection{空间二次曲面的分类问题}
+首先考虑一般的二次曲面的方程：\begin{equation}\label{equation:二次型的应用.空间二次曲面的一般方程}
+	a_{11} x_1^2
+	+ a_{22} x_2^2
+	+ a_{33} x_3^2
+	+ 2 a_{12} x_1 x_2
+	+ 2 a_{13} x_1 x_3
+	+ 2 a_{23} x_2 x_3
+	+ 2 b_1 x_1
+	+ 2 b_2 x_2
+	+ 2 b_3 x_3
+	+ c
+	= 0.
+\end{equation}
+设\begin{equation*}
+	\vb{X} = \begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix},
+	\qquad
+	\vb{A} = \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{12} & a_{22} & a_{23} \\
+		a_{13} & a_{23} & a_{33}
+	\end{bmatrix},
+	\qquad
+	\vb{b} = \begin{bmatrix}
+		b_1 \\ b_2 \\ b_3
+	\end{bmatrix},
+\end{equation*}
+于是\cref{equation:二次型的应用.空间二次曲面的一般方程} 可以写成\begin{equation*}
+	\vb{X}^T \vb{A} \vb{X}
+	+ \vb{b}^T \vb{X}
+	+ c
+	= 0,
+\end{equation*}
+或\begin{equation}\label{equation:二次型的应用.空间二次曲面的一般方程.矩阵形式}
+	\begin{bmatrix}
+		\vb{X}^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} & \vb{b} \\
+		\vb{b}^T & c
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{X} \\ 1
+	\end{bmatrix}
+	= 0.
+\end{equation}
 
 \begin{theorem}[空间二次曲面的分类定理]
 %@see: 《线性代数》（张慎语、周厚隆） P141 定理9
@@ -256,7 +306,7 @@
 		\vb{X} \\ 1
 	\end{bmatrix}
 	= 0
-\]可以经过正交变换和平移变换化为\[
+\]可以经过正交变换、平移变换化为\[
 	\lambda_1 z_1^2 + \lambda_2 z_2^2 + \lambda_3 z_3^2 + d = 0,
 	\qquad
 	\lambda_1 z_1^2 + \lambda_2 z_2^2 + p z_3 = 0,
@@ -419,4 +469,54 @@
 \(f(x_1,x_2,x_3) = 2\)在空间直角坐标下表示的二次曲面
 是一个双叶双曲面.
 \end{solution}
+\end{example}
+
+\begin{example}
+将曲面方程\(3x^2+3y^2+5z^2+2xy-2yz-2xz+2x+10y+6z+7=0\)化简为标准型，
+说明该方程描绘的是哪一类图形.
+\begin{solution}
+令\begin{equation*}
+	\vb{A} \defeq \begin{bmatrix}
+		3 & 1 & -1 \\
+		1 & 3 & -1 \\
+		-1 & -1 & 5
+	\end{bmatrix},
+	\qquad
+	\vb{b} \defeq \begin{bmatrix}
+		1 \\ 5 \\ 3
+	\end{bmatrix},
+	\qquad
+	c \defeq 7,
+\end{equation*}
+则\begin{equation*}
+	\rho_3
+	= \rank\vb{A}
+	= 3,
+	\qquad
+	\rho_4
+	= \rank\begin{bmatrix}
+		\vb{A} & \vb{b} \\
+		\vb{b}^T & c
+	\end{bmatrix}
+	= 4,
+\end{equation*}
+而\(\vb{A}\)的正负惯性指数分别为\(3\)和\(0\)，
+查\cref{figure:二次型的应用.空间二次曲面的分类} 可知，
+该方程描绘的是椭球面.
+\end{solution}
+%@Mathematica: F[x_, y_, z_] := 3 x^2 + 3 y^2 + 5 z^2 + 2 x y - 2 y z - 2 x z + 2 x + 10 y + 6 z + 7
+%@Mathematica: GetArgumentCount[func_Symbol] :=  									(* 获取函数的自变量个数 *)
+%				Module[{downValues, args}, downValues = DownValues[func];
+%				If[downValues === {}, Return[0]];
+%				args = Cases[downValues[[1, 1]],
+%					Verbatim[Pattern][name_, _] :> name, Infinity];
+%				Length[args]];
+%@Mathematica: GenerateSubscriptedSequence[start_, stop_] :=						(* 生成一串带有下标的代数符号 *)
+%				Module[{n, symbols}, n = stop - start + 1;
+%				symbols = Table[Subscript[x, i], {i, start, stop}];
+%				Return[symbols]]
+%@Mathematica: QuadraticFormMatrix[f_] :=											(* 从函数中获取二次项系数，返回对称矩阵 *)
+%				Module[{vars = GenerateSubscriptedSequence[1, GetArgumentCount[f]],
+%				coeffs}, coeffs = Normal@CoefficientArrays[f @@ vars, vars][[3]];
+%				(coeffs + Transpose[coeffs])/2]
 \end{example}
