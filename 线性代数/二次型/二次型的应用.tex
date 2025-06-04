@@ -232,6 +232,102 @@
 %TODO proof 教材省略了证明过程，只提示应该讨论\(\vb{A}\)、\((\vb{A},\vb{b})\)和\(\begin{bmatrix} \vb{A} & \vb{b} \\ \vb{b}^T & c \end{bmatrix}\)这三个矩阵的秩.
 \end{theorem}
 
+记\begin{equation*}
+	\Delta = \begin{vmatrix}
+		\vb{A} & \vb{b} \\
+		\vb{b}^T & c
+	\end{vmatrix},
+	\qquad
+	J \defeq \abs{\vb{A}},
+	\qquad
+	I \defeq \tr\vb{A},
+	\qquad
+	K \defeq \begin{vmatrix}
+		a_{11} & b_1 \\
+		b_1 & c
+	\end{vmatrix}
+	+ \begin{vmatrix}
+		a_{22} & b_2 \\
+		b_2 & c
+	\end{vmatrix}.
+	% \rho_2 \defeq \rank\vb{A},
+	% \qquad
+	% \rho_3 \defeq \rank\begin{bmatrix}
+	% 	\vb{A} & \vb{b} \\
+	% 	\vb{b}^T & c
+	% \end{bmatrix}.
+\end{equation*}
+那么我们可以据此对平面二次曲线进行分类，
+大致如\cref{table:二次型的应用.平面二次曲线的分类} 所示.
+
+
+\begin{table}[hbt]
+%@see: https://mathworld.wolfram.com/QuadraticCurve.html
+	\centering
+	\begin{tblr}{c*4{|c}}
+		\hline
+		曲线 & \(\Delta\) & \(J\) & \(\Delta/I\) & \(K\) \\
+		\hline
+		% 两条重合直线
+		\begin{tblr}{c}
+			两条重合直线 \\
+			conincident lines \\
+		\end{tblr}
+		& 0 & 0 & & 0 \\
+		% 虚椭圆
+		\begin{tblr}{c}
+			虚椭圆 \\
+			ellipse (imaginary) \\
+		\end{tblr}
+		& \(\neq0\) & \(>0\) & \(>0\) & \\
+		% 椭圆
+		\begin{tblr}{c}
+			椭圆 \\
+			ellipse (real) \\
+		\end{tblr}
+		& \(\neq0\) & \(>0\) & \(<0\) & \\
+		% 双曲线
+		\begin{tblr}{c}
+			双曲线 \\
+			hyperbola \\
+		\end{tblr}
+		& \(\neq0\) & \(<0\) & & \\
+		% 相交虚直线
+		\begin{tblr}{c}
+			相交虚直线 \\
+			intersecting lines (imaginary) \\
+		\end{tblr}
+		& 0 & \(>0\) & & \\
+		% 相交直线
+		\begin{tblr}{c}
+			相交直线 \\
+			intersecting lines (real) \\
+		\end{tblr}
+		& 0 & \(<0\) & & \\
+		% 抛物线
+		\begin{tblr}{c}
+			抛物线 \\
+			parabola \\
+		\end{tblr}
+		& \(\neq0\) & 0 & & \\
+		% 平行虚直线
+		\begin{tblr}{c}
+			平行虚直线 \\
+			parallel lines (imaginary) \\
+		\end{tblr}
+		& 0 & 0 & & \(>0\) \\
+		% 平行直线
+		\begin{tblr}{c}
+			平行直线 \\
+			parallel lines (real) \\
+		\end{tblr}
+		& 0 & 0 & & \(<0\) \\
+		\hline
+	\end{tblr}
+	\caption{}
+	\label{table:二次型的应用.平面二次曲线的分类}
+\end{table}
+
 \subsection{空间二次曲面的分类问题}
 首先考虑一般的二次曲面的方程：\begin{equation}\label{equation:二次型的应用.空间二次曲面的一般方程}
 	a_{11} x_1^2
@@ -322,18 +418,18 @@
 %@Mathematica: Transpose[Xstar].Astar.Xstar // Expand
 \end{theorem}
 
-记\[
+记\begin{equation*}
 	\rho_3 \defeq \rank\vb{A},
 	\qquad
 	\rho_4 \defeq \rank\begin{bmatrix}
 		\vb{A} & \vb{b} \\
 		\vb{b}^T & c
 	\end{bmatrix}.
-\]
+\end{equation*}
 那么我们可以依据
 秩\(\rho_3,\rho_4\)以及正惯性指数\(p\)和负惯性指数\(q\)，
 对空间二次曲面进行分类，
-大致如\cref{figure:二次型的应用.空间二次曲面的分类} 所示.
+大致如\cref{table:二次型的应用.空间二次曲面的分类} 所示.
 
 \begin{table}[htb]
 %@see: https://mathworld.wolfram.com/QuadraticSurface.html
@@ -345,7 +441,7 @@
 		% 椭球面
 		\begin{tblr}{c}
 			椭球面 \\
-			ellipsoid
+			ellipsoid \\
 		\end{tblr}
 		& \(\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\)
 		& 3 & 4
@@ -354,7 +450,7 @@
 		% 双曲面
 		\begin{tblr}{c}
 			单叶双曲面 \\
-			hyperboloid of one sheet
+			hyperboloid of one sheet \\
 		\end{tblr}
 		& \(\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\)
 		& 3 & 4
@@ -362,7 +458,7 @@
 		\\
 		\begin{tblr}{c}
 			双叶双曲面 \\
-			hyperboloid of two sheets
+			hyperboloid of two sheets \\
 		\end{tblr}
 		& \(\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=-1\)
 		& 3 & 4
@@ -371,7 +467,7 @@
 		% 抛物面
 		\begin{tblr}{c}
 			椭圆抛物面 \\
-			elliptic paraboloid
+			elliptic paraboloid \\
 		\end{tblr}
 		& \(\frac{x^2}{p}+\frac{y^2}{q}=2z\)
 		& 2 & 4
@@ -379,7 +475,7 @@
 		\\
 		\begin{tblr}{c}
 			双曲抛物面 \\
-			hyperbolic paraboloid
+			hyperbolic paraboloid \\
 		\end{tblr}
 		& \(\frac{x^2}{p}-\frac{y^2}{q}=2z\)
 		& 2 & 4
@@ -388,7 +484,7 @@
 		% 二次锥面
 		\begin{tblr}{c}
 			椭圆锥面 \\
-			elliptic cone
+			elliptic cone \\
 		\end{tblr}
 		& \(\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=0\)
 		& 3 & 3
@@ -397,7 +493,7 @@
 		% 二次柱面
 		\begin{tblr}{c}
 			椭圆柱面 \\
-			elliptic cylinder
+			elliptic cylinder \\
 		\end{tblr}
 		& \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)
 		& 2 & 4
@@ -405,7 +501,7 @@
 		\\
 		\begin{tblr}{c}
 			双曲柱面 \\
-			hyperbolic cylinder
+			hyperbolic cylinder \\
 		\end{tblr}
 		& \(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\)
 		& 2 & 3
@@ -413,7 +509,7 @@
 		\\
 		\begin{tblr}{c}
 			抛物柱面 \\
-			parabolic cylinder
+			parabolic cylinder \\
 		\end{tblr}
 		& \(x^2=2py\)
 		& 1 & 3
@@ -422,7 +518,7 @@
 		\hline
 	\end{tblr}
 	\caption{}
-	\label{figure:二次型的应用.空间二次曲面的分类}
+	\label{table:二次型的应用.空间二次曲面的分类}
 \end{table}
 
 \begin{example}
@@ -465,7 +561,7 @@
 \end{align*}
 它的特征值就是\(\lambda=5\)和\(\lambda=-1\ (\text{二重})\).
 二次型的正惯性指数和负惯性指数分别是\(p=1,q=2\)，
-查表可知%\cref{figure:二次型的应用.空间二次曲面的分类}
+查表可知%\cref{table:二次型的应用.空间二次曲面的分类}
 \(f(x_1,x_2,x_3) = 2\)在空间直角坐标下表示的二次曲面
 是一个双叶双曲面.
 \end{solution}
@@ -501,7 +597,7 @@
 	= 4,
 \end{equation*}
 而\(\vb{A}\)的正负惯性指数分别为\(3\)和\(0\)，
-查\cref{figure:二次型的应用.空间二次曲面的分类} 可知，
+查\cref{table:二次型的应用.空间二次曲面的分类} 可知，
 该方程描绘的是椭球面.
 \end{solution}
 %@Mathematica: F[x_, y_, z_] := 3 x^2 + 3 y^2 + 5 z^2 + 2 x y - 2 y z - 2 x z + 2 x + 10 y + 6 z + 7
