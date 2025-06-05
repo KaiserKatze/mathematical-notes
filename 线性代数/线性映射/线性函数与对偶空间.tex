@@ -1,1 +1,265 @@
 \section{线性函数与对偶空间}
+%TODO 对偶空间与傅里叶级数、傅里叶变换有密切的联系，详见以下视频：
+%@see: https://www.bilibili.com/video/BV1xxivYzEh8/
+%@see: https://mathvideos.org/2021/richard-borcherds-rings-and-modules/
+
+本节着重讨论一种特殊的线性映射 --- \hyperref[definition:线性映射.线性函数]{线性函数}.
+\subsection{线性函数}
+除了\cref{example:线性映射.给定区间上的定积分是线性函数} 中举出的
+给定区间上的定积分是线性函数以外，
+下面我们额外举几个例子.
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P160
+矩阵的迹，
+是\(M_n(F)\)上的一个线性函数，
+它把域\(F\)上每一个\(n\)阶矩阵，
+对应到\(F\)中的一个元素，
+并且保持加法与数量乘法.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P161 例1
+设\(F\)是一个域，\(\AutoTuple{a}{n} \in F\)，
+令\begin{equation*}
+	f\colon F^n \to F,
+	(\AutoTuple{x}{n}) \mapsto a_1 x_1 + \dotsb + a_n x_n,
+\end{equation*}
+容易验证\(f\)是\(F^n\)上的一个线性函数.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P161 例2
+\def\Z{\mathbb{Z}_2}
+设\(\Z\)是模\(2\)剩余类域.
+令\begin{equation*}
+	f\colon \Z^2 \to \Z,
+	(x_1,x_2) \mapsto x_1^2+x_2^2.
+\end{equation*}
+试判断\(f\)是不是\(\Z^2\)上的一个线性函数.
+\begin{solution}
+任取\((x_1,x_2),(y_1,y_2)\in\Z^2\)，
+有\begin{align*}
+	f((x_1,x_2)+(y_1,y_2))
+	&= f(x_1+y_1,x_2+y_2) \\  % 剩余类域上线性空间的加法
+	&= (x_1+y_1)^2+(x_2+y_2)^2 \\  % 题设
+	&= x_1^2+y_1^2+x_2^2+y_2^2
+		\tag{\cref{example:域.域上的特征恒等式}} \\
+	&= f(x_1,x_2)+f(y_1,y_2), \\  % 题设
+	f(1\cdot(x_1,x_2))
+	&= f(x_1,x_2)  % 剩余类域上线性空间的纯量乘法
+	= 1\cdot f(x_1,x_2), \\  % 剩余类域上的乘法
+	f(0\cdot(x_1,x_2))
+	&= f(0,0)  % 剩余类域上线性空间的纯量乘法
+	= 0 = 0\cdot f(x_1,x_2).
+\end{align*}
+因此\(f\)是\(\Z^2\)上的一个线性函数.
+\end{solution}
+\end{example}
+
+\subsection{对偶空间}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P162
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P105 3.110
+设\(V\)是域\(F\)上的一个线性空间，
+把\(\Hom(V,F)\)称为“\(V\)上的\DefineConcept{线性函数空间}”
+或“\(V\)的\DefineConcept{对偶空间}（dual space）”，
+简记为\(V^*\).
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P162
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P105 3.111
+设\(V\)是域\(F\)上的\(n\)维线性空间，
+%@see: 《高等代数（第三版 下册）》（丘维声） P162 (4)
+则\(\dim\Hom(V,F) = n\)，
+%@see: 《高等代数（第三版 下册）》（丘维声） P162 (5)
+且\(\Hom(V,F) \Isomorphism V\).
+\begin{proof}
+因为\(\dim F = 1\)，
+所以由\cref{theorem:线性映射.线性映射空间与矩阵空间同构1} 可知
+\(\dim\Hom(V,F)
+= (\dim V)(\dim F)
+= n \cdot 1
+= n\).
+再由\cref{theorem:线性空间的同构.线性空间同构的充分必要条件} 可知
+\(\Hom(V,F) \Isomorphism V\).
+\end{proof}
+\end{proposition}
+
+\subsection{对偶基}
+%\cref{theorem:线性映射.线性映射的存在性}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P162
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P106 3.112
+设\(V\)是域\(F\)上\(n\)维线性空间，
+\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基.
+定义映射：\begin{gather}\label{equation:对偶空间.对偶基}
+%@see: 《高等代数（第三版 下册）》（丘维声） P162 (6)
+	\phi_i(\alpha_j)
+	\defeq \left\{ \begin{array}{cl}
+		1, & j = i, \\
+		0, & j \neq i,
+	\end{array} \right.
+	\quad i=1,2,\dotsc,n, \\
+%@see: 《高等代数（第三版 下册）》（丘维声） P162 (7)
+	\phi_i(\alpha_j+\alpha_k)
+	\defeq \phi_i(\alpha_j) + \phi_i(\alpha_k),
+	\quad i=1,2,\dotsc,n, \\
+	\phi_i(\lambda \alpha_j)
+	\defeq \lambda \phi_i(\alpha_j),
+	\quad i=1,2,\dotsc,n.
+\end{gather}
+把\(\AutoTuple{\phi}{n}\)
+称为“\(\AutoTuple{\alpha}{n}\)的\DefineConcept{对偶基}%
+（the \emph{dual basis} of \(\AutoTuple{\alpha}{n}\)）”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P162
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P106 3.112
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P106 3.114
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P107 3.116
+设\(V\)是域\(F\)上\(n\)维线性空间，
+\(V^*\)是\(V\)的对偶空间，
+\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
+\(\AutoTuple{\phi}{n}\)是\(\AutoTuple{\alpha}{n}\)的对偶基，
+则\begin{itemize}
+	\item \(\AutoTuple{\phi}{n}\)都是\(V\)上的线性函数；
+	\item \(\AutoTuple{\phi}{n}\)是\(V\)的对偶空间的一个基；
+	\item 且有\begin{equation*}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P162 (7)
+		\phi_i\left( \sum_{j=1}^n x_j \alpha_j \right)
+		= \sum_{j=1}^n x_j \phi_i(\alpha_j)
+		= x_i;
+	\end{equation*}
+	\item \(V\)中任意一个向量\(\alpha\)
+	在基\(\AutoTuple{\alpha}{n}\)下的坐标的第\(i\)个分量，
+	等于\(\AutoTuple{\alpha}{n}\)的对偶基的第\(i\)个线性函数\(\phi_i\)
+	在\(\alpha\)的值\(\phi_i(\alpha)\)，
+	即\begin{equation*}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P163 (9)
+		(\forall \alpha \in V)
+		[\alpha = \phi_1(\alpha) \alpha_1 + \dotsb + \phi_n(\alpha) \alpha_n];
+	\end{equation*}
+	\item \(V^*\)中任意一个线性函数\(\phi\)
+	在基\(\AutoTuple{\phi}{n}\)下的坐标的第\(i\)个分量，
+	等于\(\phi\)在\(\alpha_i\)的值\(\phi(\alpha_i)\)，
+	即\begin{equation*}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P163 (11)
+		(\forall \phi \in V^*)
+		[\phi = \phi(\alpha_1) \phi_1 + \dotsb + \phi(\alpha_n) \phi_n].
+	\end{equation*}
+\end{itemize}
+%TODO proof
+\end{proposition}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P162 定理1
+设\(V\)是域\(F\)上一个\(n\)维线性空间，
+在\(V\)中取两个基\(\AutoTuple{\alpha}{n}\)与\(\AutoTuple{\beta}{n}\)，
+它们的对偶基分别为\(\AutoTuple{\phi}{n}\)与\(\AutoTuple{\psi}{n}\).
+如果基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵是\(A\)，
+%@see: 《高等代数（第三版 下册）》（丘维声） P162 (12)
+则基\(\AutoTuple{\phi}{n}\)到基\(\AutoTuple{\psi}{n}\)的过渡矩阵为\((A^{-1})^T\).
+%TODO proof
+\end{theorem}
+
+\subsection{线性空间与它的对偶空间同构，双重对偶空间}
+\begin{theorem}\label{theorem:对偶空间.线性空间与它的对偶空间同构}
+%@see: 《高等代数（第三版 下册）》（丘维声） P163
+设\(V\)是域\(F\)上的一个\(n\)维线性空间，
+\(V^*\)是\(V\)的对偶空间，
+则\(V \Isomorphism V^*\).
+%TODO proof
+\end{theorem}
+
+给定域\(F\)上的一个\(n\)维线性空间\(V\)，
+我们知道\(V\)的对偶空间\(V^*\)也是域\(F\)上的一个\(n\)维线性空间，
+那么我们可以考虑\(V^*\)的对偶空间\((V^*)^*\).
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164
+设\(V\)是域\(F\)上的一个线性空间，
+\(V^*\)是\(V\)的对偶空间.
+把\(V^*\)的对偶空间\((V^*)^*\)
+称为“\(V\)的\DefineConcept{双重对偶空间}”，
+简记为\(V^{**}\).
+\end{definition}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164
+设\(V\)是域\(F\)上的一个\(n\)维线性空间，
+\(V^{**}\)是\(V\)的双重对偶空间，
+则\(V \Isomorphism V^{**}\).
+\end{corollary}
+
+%TODO
+% \begin{proposition}
+% %@see: 《高等代数（第三版 下册）》（丘维声） P164
+% 设\(V\)是域\(F\)上的一个线性空间，
+% \(V^*\)是\(V\)的对偶空间，
+% \(V^{**}\)是\(V\)的双重对偶空间，
+% \(\sigma_1\)是从\(V\)到\(V^*\)的一个同构，
+% \(\sigma_2\)是从\(V^*\)到\(V^{**}\)的一个同构，
+% 记\(\tau \defeq \sigma_2 \circ \sigma_1\)，
+% 则\begin{equation*}
+% 	(\forall \alpha \in V)
+% 	[\tau(\alpha) = ]
+% \end{equation*}
+% \end{proposition}
+
+\subsection{对偶映射}
+\begin{definition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P107 3.118
+设\(V,W\)都是域\(F\)上线性空间，
+\(V^*,W^*\)分别是\(V,W\)的对偶空间，
+\(T\)是从\(V\)到\(W\)的一个线性映射，
+\(T^*\)是从\(W^*\)到\(V^*\)的映射.
+如果对于\(\forall \phi \in W^*\)
+都有\begin{equation*}
+	T^*(\phi) = \phi \circ T,
+\end{equation*}
+则称“\(T^*\)是\(T\)的\DefineConcept{对偶映射}（the \emph{dual map} of \(T\)）”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P107
+设\(V,W\)都是域\(F\)上线性空间，
+\(V^*,W^*\)分别是\(V,W\)的对偶空间，
+\(T\)是从\(V\)到\(W\)的一个线性映射，
+\(T^*\)是\(T\)的对偶映射，
+则\(T^*\)是从\(W^*\)到\(V^*\)的一个线性映射.
+\begin{proof}
+对于\(\forall \phi,\psi \in W^*\)和\(\forall \lambda \in F\)，
+有\begin{gather*}
+	T^*(\phi+\psi)
+	= (\phi+\psi) \circ T
+	= \phi \circ T + \psi \circ T
+	= T^*(\phi) + T^*(\psi), \\
+	T^*(\lambda\phi)
+	= (\lambda\phi) \circ T
+	= \lambda (\phi \circ T)
+	= \lambda T^*(\phi).
+	\qedhere
+\end{gather*}
+\end{proof}
+\end{proposition}
+
+\begin{property}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P108 3.120
+设\(V,W\)都是域\(F\)上线性空间，
+\(T\)是从\(V\)到\(W\)的一个线性映射，
+则\begin{itemize}
+	\item 对于从\(V\)到\(W\)的任意一个线性映射\(S\)，有\begin{equation*}
+		(S+T)^* = S^* + T^*;
+	\end{equation*}
+	\item 对于任意\(\lambda \in F\)，有\begin{equation*}
+		(\lambda T)^* = \lambda T^*;
+	\end{equation*}
+	\item 对于从\(W\)到\(U\)的任意一个线性映射\(S\)，有\begin{equation*}
+		(S T)^* = T^* S^*.
+	\end{equation*}
+\end{itemize}
+%TODO proof
+\end{property}
