@@ -67,7 +67,7 @@
 简记为\(V^*\).
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{theorem:对偶空间.对偶空间的维数}
 %@see: 《高等代数（第三版 下册）》（丘维声） P162
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P105 3.111
 设\(V\)是域\(F\)上的\(n\)维线性空间，
@@ -94,21 +94,24 @@
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P106 3.112
 设\(V\)是域\(F\)上\(n\)维线性空间，
 \(\AutoTuple{\alpha}{n}\)是\(V\)的一个基.
-定义映射：\begin{gather}\label{equation:对偶空间.对偶基}
+定义映射：\begin{gather}
 %@see: 《高等代数（第三版 下册）》（丘维声） P162 (6)
 	\phi_i(\alpha_j)
 	\defeq \left\{ \begin{array}{cl}
 		1, & j = i, \\
 		0, & j \neq i,
 	\end{array} \right.
-	\quad i=1,2,\dotsc,n, \\
+	\quad i=1,2,\dotsc,n,
+		\label{equation:对偶空间.对偶基1} \\
 %@see: 《高等代数（第三版 下册）》（丘维声） P162 (7)
 	\phi_i(\alpha_j+\alpha_k)
 	\defeq \phi_i(\alpha_j) + \phi_i(\alpha_k),
-	\quad i=1,2,\dotsc,n, \\
+	\quad i=1,2,\dotsc,n,
+		\label{equation:对偶空间.对偶基2} \\
 	\phi_i(\lambda \alpha_j)
 	\defeq \lambda \phi_i(\alpha_j),
 	\quad i=1,2,\dotsc,n.
+		\label{equation:对偶空间.对偶基3}
 \end{gather}
 把\(\AutoTuple{\phi}{n}\)
 称为“\(\AutoTuple{\alpha}{n}\)的\DefineConcept{对偶基}%
@@ -126,12 +129,14 @@
 \(\AutoTuple{\phi}{n}\)是\(\AutoTuple{\alpha}{n}\)的对偶基，
 则\begin{itemize}
 	\item \(\AutoTuple{\phi}{n}\)都是\(V\)上的线性函数；
-	\item \(\AutoTuple{\phi}{n}\)是\(V\)的对偶空间的一个基；
-	\item 且有\begin{equation*}
+	\item \(\AutoTuple{\phi}{n}\)是\(V^*\)的一个基；
+	\item 对于\(\forall \AutoTuple{x}{n} \in F\)，
+	有\begin{equation*}
 	%@see: 《高等代数（第三版 下册）》（丘维声） P162 (7)
 		\phi_i\left( \sum_{j=1}^n x_j \alpha_j \right)
 		= \sum_{j=1}^n x_j \phi_i(\alpha_j)
-		= x_i;
+		= x_i,
+		\quad i=1,2,\dotsc,n;
 	\end{equation*}
 	\item \(V\)中任意一个向量\(\alpha\)
 	在基\(\AutoTuple{\alpha}{n}\)下的坐标的第\(i\)个分量，
@@ -152,6 +157,27 @@
 	\end{equation*}
 \end{itemize}
 %TODO proof
+\begin{proof}
+由\cref{equation:对偶空间.对偶基2} 可知\(\phi_i\)适合可加性，
+由\cref{equation:对偶空间.对偶基3} 可知\(\phi_i\)适合齐次性，
+因此\(\phi_i\)是\(V\)上的线性函数.
+
+令\begin{equation*}
+	x_1 \phi_1 + \dotsb + x_n \phi_n = 0,
+\end{equation*}
+则\begin{eqnarray}
+	(x_1 \phi_1 + \dotsb + x_n \phi_n) \alpha_j = 0,
+	\quad j=1,2,\dotsc,n.
+\end{eqnarray}
+根据线性映射的加法、纯量乘法的定义得\begin{equation*}
+	x_1 \phi_1(\alpha_j) + \dotsb + x_j \phi_j(\alpha_j) + \dotsb + x_n \phi_n(\alpha_j) = 0,
+	\quad j=1,2,\dotsc,n.
+\end{equation*}
+于是\(x_j = 0\ (j=1,2,\dotsc,n)\)，
+这就说明\(\AutoTuple{\phi}{n}\)线性无关.
+再由\cref{theorem:对偶空间.对偶空间的维数,theorem:线性空间.线性相关性3} 可知
+\(\AutoTuple{\phi}{n}\)是\(\Hom(V,F)\)的一个基.
+\end{proof}
 \end{proposition}
 
 \begin{theorem}
