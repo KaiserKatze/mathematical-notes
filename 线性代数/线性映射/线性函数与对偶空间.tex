@@ -71,21 +71,33 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P162
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P105 3.111
 设\(V\)是域\(F\)上的\(n\)维线性空间，
+\(V^*\)是\(V\)的对偶空间，
 %@see: 《高等代数（第三版 下册）》（丘维声） P162 (4)
-则\(\dim\Hom(V,F) = n\)，
+则\(\dim V^* = n\)，
 %@see: 《高等代数（第三版 下册）》（丘维声） P162 (5)
-且\(\Hom(V,F) \Isomorphism V\).
+且\(V^* \Isomorphism V\).
 \begin{proof}
 因为\(\dim F = 1\)，
 所以由\cref{theorem:线性映射.线性映射空间与矩阵空间同构1} 可知
-\(\dim\Hom(V,F)
+\(\dim V^*
 = (\dim V)(\dim F)
 = n \cdot 1
 = n\).
 再由\cref{theorem:线性空间的同构.线性空间同构的充分必要条件} 可知
-\(\Hom(V,F) \Isomorphism V\).
+\(V^* \Isomorphism V\).
 \end{proof}
 \end{proposition}
+\begin{remark}
+我们可以在\(V\)与\(V^*\)之间构造一个同构：
+在\(V\)中取一个基\(\AutoTuple{\alpha}{n}\)，
+假设它的对偶基是\(\AutoTuple{\phi}{n}\)，
+那么映射\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164 (15)
+	\sigma\colon V \to V^*,
+	\alpha = \sum_{i=1}^n x_i \alpha_i \mapsto \sum_{i=1}^n x_i f_i
+\end{equation*}
+就是\(\sigma\)是从\(V\)到\(V^*\)的一个同构.
+\end{remark}
 
 \subsection{对偶基}
 %\cref{theorem:线性映射.线性映射的存在性}
@@ -128,9 +140,8 @@
 \(\AutoTuple{\alpha}{n}\)是\(V\)的一个基，
 \(\AutoTuple{\phi}{n}\)是\(\AutoTuple{\alpha}{n}\)的对偶基，
 则\begin{itemize}
-	\item \(\AutoTuple{\phi}{n}\)都是\(V\)上的线性函数；
-	\item \(\AutoTuple{\phi}{n}\)是\(V^*\)的一个基；
-	\item 对于\(\forall \AutoTuple{x}{n} \in F\)，
+	\item \(\AutoTuple{\phi}{n}\)都是\(V\)上的线性函数，
+	从而对于\(\forall \AutoTuple{x}{n} \in F\)，
 	有\begin{equation*}
 	%@see: 《高等代数（第三版 下册）》（丘维声） P162 (7)
 		\phi_i\left( \sum_{j=1}^n x_j \alpha_j \right)
@@ -138,6 +149,9 @@
 		= x_i,
 		\quad i=1,2,\dotsc,n;
 	\end{equation*}
+
+	\item \(\AutoTuple{\phi}{n}\)是\(V^*\)的一个基；
+
 	\item \(V\)中任意一个向量\(\alpha\)
 	在基\(\AutoTuple{\alpha}{n}\)下的坐标的第\(i\)个分量，
 	等于\(\AutoTuple{\alpha}{n}\)的对偶基的第\(i\)个线性函数\(\phi_i\)
@@ -147,6 +161,7 @@
 		(\forall \alpha \in V)
 		[\alpha = \phi_1(\alpha) \alpha_1 + \dotsb + \phi_n(\alpha) \alpha_n];
 	\end{equation*}
+
 	\item \(V^*\)中任意一个线性函数\(\phi\)
 	在基\(\AutoTuple{\phi}{n}\)下的坐标的第\(i\)个分量，
 	等于\(\phi\)在\(\alpha_i\)的值\(\phi(\alpha_i)\)，
@@ -156,11 +171,19 @@
 		[\phi = \phi(\alpha_1) \phi_1 + \dotsb + \phi(\alpha_n) \phi_n].
 	\end{equation*}
 \end{itemize}
-%TODO proof
 \begin{proof}
 由\cref{equation:对偶空间.对偶基2} 可知\(\phi_i\)适合可加性，
 由\cref{equation:对偶空间.对偶基3} 可知\(\phi_i\)适合齐次性，
 因此\(\phi_i\)是\(V\)上的线性函数.
+再由\cref{theorem:线性映射.线性映射的性质} 可知，
+对于\(\forall \AutoTuple{x}{n} \in F\)，
+有\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P162 (7)
+	\phi_i\left( \sum_{j=1}^n x_j \alpha_j \right)
+	= \sum_{j=1}^n x_j \phi_i(\alpha_j)
+	= x_i,
+	\quad i=1,2,\dotsc,n;
+\end{equation*}
 
 令\begin{equation*}
 	x_1 \phi_1 + \dotsb + x_n \phi_n = 0,
@@ -176,30 +199,77 @@
 于是\(x_j = 0\ (j=1,2,\dotsc,n)\)，
 这就说明\(\AutoTuple{\phi}{n}\)线性无关.
 再由\cref{theorem:对偶空间.对偶空间的维数,theorem:线性空间.线性相关性3} 可知
-\(\AutoTuple{\phi}{n}\)是\(\Hom(V,F)\)的一个基.
+\(\AutoTuple{\phi}{n}\)是\(V^*\)的一个基.
+
+对于任意\(\alpha \in V\)，
+% 由\cref{theorem:线性空间.任一向量可由给定基唯一线性表出} 可知，
+存在\(\AutoTuple{k}{n} \in F\)，
+使得\begin{equation*}
+	\alpha = \sum_{j=1}^n k_j \alpha_j.
+\end{equation*}
+那么有\begin{equation*}
+	\phi_i(\alpha)
+	= \phi_i\left( \sum_{j=1}^n k_j \alpha_j \right)
+	= k_i,
+\end{equation*}
+于是\begin{equation*}
+	\alpha = \sum_{j=1}^n \phi_j(\alpha) \alpha_j.
+\end{equation*}
+
+对于任意\(\phi \in V^*\)，
+存在\(\AutoTuple{k}{n} \in F\)，
+使得\begin{equation*}
+	\phi = \sum_{j=1}^n k_j \phi_j.
+\end{equation*}
+那么有\begin{equation*}
+	\phi(\alpha_i)
+	= \left( \sum_{j=1}^n k_j \phi_j \right)(\alpha_i)
+	= \sum_{j=1}^n k_j \phi_j(\alpha_i)
+	= k_i,
+\end{equation*}
+于是\begin{equation*}
+	\phi = \sum_{j=1}^n \phi(\alpha_j) \phi_j.
+	\qedhere
+\end{equation*}
 \end{proof}
 \end{proposition}
 
 \begin{theorem}
-%@see: 《高等代数（第三版 下册）》（丘维声） P162 定理1
+%@see: 《高等代数（第三版 下册）》（丘维声） P163 定理1
 设\(V\)是域\(F\)上一个\(n\)维线性空间，
 在\(V\)中取两个基\(\AutoTuple{\alpha}{n}\)与\(\AutoTuple{\beta}{n}\)，
 它们的对偶基分别为\(\AutoTuple{\phi}{n}\)与\(\AutoTuple{\psi}{n}\).
 如果基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵是\(A\)，
-%@see: 《高等代数（第三版 下册）》（丘维声） P162 (12)
+%@see: 《高等代数（第三版 下册）》（丘维声） P163 (12)
 则基\(\AutoTuple{\phi}{n}\)到基\(\AutoTuple{\psi}{n}\)的过渡矩阵为\((A^{-1})^T\).
-%TODO proof
+\begin{proof}
+由\((\AutoTuple{\beta}{n}) = (\AutoTuple{\alpha}{n}) A\)得
+%@see: 《高等代数（第三版 下册）》（丘维声） P163 (13)
+\((\AutoTuple{\alpha}{n}) = (\AutoTuple{\beta}{n}) A^{-1}\)，
+这就说明\(\alpha_j\)在基\(\AutoTuple{\beta}{n}\)下的坐标是\(A^{-1}\)的第\(j\)列，
+从而坐标的第\(i\)个分量为\(\MatrixEntry{A^{-1}}{i,j}\).
+由于\(\AutoTuple{\beta}{n}\)的对偶基是\(\AutoTuple{\psi}{n}\)，
+可知\(\alpha_j\)在基\(\AutoTuple{\beta}{n}\)下的坐标的第\(i\)个分量等于\(\psi_i(\alpha_j)\).
+因此\(\MatrixEntry{A^{-1}}{i,j} = \psi_i(\alpha_j)\).
+
+由于\(\AutoTuple{\alpha}{n}\)的对偶基是\(\AutoTuple{\phi}{n}\)，
+可知\(\psi_i(\alpha_j)\)等于\(\psi_i\)在\(\AutoTuple{\phi}{n}\)下的坐标的第\(j\)个分量.
+%@see: 《高等代数（第三版 下册）》（丘维声） P163 (14)
+由已知条件可知\((\AutoTuple{\psi}{n}) = (\AutoTuple{\phi}{n}) B\)，
+这就说明\(\psi_i\)在基\(\AutoTuple{\phi}{n}\)下的坐标的第\(j\)个分量等于\(\MatrixEntry{B}{j,i}\).
+因此\(\psi_i(\alpha_j) = \MatrixEntry{B}{j,i}\).
+
+综上所述，有\(\MatrixEntry{A^{-1}}{i,j}
+= \psi_i(\alpha_j)
+= \MatrixEntry{B}{j,i}
+= \MatrixEntry{B^T}{i,j}\)，
+其中\(i,j=1,2,\dotsc,n\).
+因此\(A^{-1} = B^T\)，
+换言之\(B = (A^{-1})^T\).
+\end{proof}
 \end{theorem}
 
-\subsection{线性空间与它的对偶空间同构，双重对偶空间}
-\begin{theorem}\label{theorem:对偶空间.线性空间与它的对偶空间同构}
-%@see: 《高等代数（第三版 下册）》（丘维声） P163
-设\(V\)是域\(F\)上的一个\(n\)维线性空间，
-\(V^*\)是\(V\)的对偶空间，
-则\(V \Isomorphism V^*\).
-%TODO proof
-\end{theorem}
-
+\subsection{双重对偶空间}
 给定域\(F\)上的一个\(n\)维线性空间\(V\)，
 我们知道\(V\)的对偶空间\(V^*\)也是域\(F\)上的一个\(n\)维线性空间，
 那么我们可以考虑\(V^*\)的对偶空间\((V^*)^*\).
@@ -218,6 +288,12 @@
 设\(V\)是域\(F\)上的一个\(n\)维线性空间，
 \(V^{**}\)是\(V\)的双重对偶空间，
 则\(V \Isomorphism V^{**}\).
+\begin{proof}
+由\cref{theorem:对偶空间.对偶空间的维数}
+可知\(V \Isomorphism V^*,
+V^* \Isomorphism V^{**}\)，
+利用传递性可得\(V \Isomorphism V^{**}\).
+\end{proof}
 \end{corollary}
 
 %TODO
