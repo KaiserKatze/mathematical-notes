@@ -91,11 +91,11 @@
 我们可以在\(V\)与\(V^*\)之间构造一个同构：
 在\(V\)中取一个基\(\AutoTuple{\alpha}{n}\)，
 假设它的对偶基是\(\AutoTuple{\phi}{n}\)，
-那么映射\begin{equation*}
+那么映射\begin{equation}\label{equation:对偶空间.线性空间及其对偶空间之间的一个同构}
 %@see: 《高等代数（第三版 下册）》（丘维声） P164 (15)
 	\sigma\colon V \to V^*,
-	\alpha = \sum_{i=1}^n x_i \alpha_i \mapsto \sum_{i=1}^n x_i f_i
-\end{equation*}
+	\alpha = \sum_{i=1}^n x_i \alpha_i \mapsto \sum_{i=1}^n x_i \phi_i
+\end{equation}
 就是\(\sigma\)是从\(V\)到\(V^*\)的一个同构.
 \end{remark}
 
@@ -130,7 +130,7 @@
 （the \emph{dual basis} of \(\AutoTuple{\alpha}{n}\)）”.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{theorem:对偶空间.对偶基的性质}
 %@see: 《高等代数（第三版 下册）》（丘维声） P162
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P106 3.112
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P106 3.114
@@ -234,6 +234,7 @@
 \end{proof}
 \end{proposition}
 
+\subsection{不同对偶基之间的过渡矩阵}
 \begin{theorem}
 %@see: 《高等代数（第三版 下册）》（丘维声） P163 定理1
 设\(V\)是域\(F\)上一个\(n\)维线性空间，
@@ -296,20 +297,78 @@ V^* \Isomorphism V^{**}\)，
 \end{proof}
 \end{corollary}
 
-%TODO
-% \begin{proposition}
-% %@see: 《高等代数（第三版 下册）》（丘维声） P164
-% 设\(V\)是域\(F\)上的一个线性空间，
-% \(V^*\)是\(V\)的对偶空间，
-% \(V^{**}\)是\(V\)的双重对偶空间，
-% \(\sigma_1\)是从\(V\)到\(V^*\)的一个同构，
-% \(\sigma_2\)是从\(V^*\)到\(V^{**}\)的一个同构，
-% 记\(\tau \defeq \sigma_2 \circ \sigma_1\)，
-% 则\begin{equation*}
-% 	(\forall \alpha \in V)
-% 	[\tau(\alpha) = ]
-% \end{equation*}
-% \end{proposition}
+给定线性空间\(V\)及其对偶空间\(V^*\)之间的同构\(\sigma\)
+（见\cref{equation:对偶空间.线性空间及其对偶空间之间的一个同构}），
+对于\(\forall \beta = \sum_{i=1}^n y_i \alpha_i \in V\)，
+有\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164 (16)
+	\sigma(\alpha)(\beta)
+	= \left( \sum_{i=1}^n x_i \phi_i \right)(\beta)
+	= \sum_{i=1}^n x_i \phi_i(\beta)
+	= \sum_{i=1}^n x_i y_i.
+\end{equation*}
+上式表明，\(\alpha\)在\(\sigma\)下的像\(\sigma(\alpha)\)
+在\(\beta\)的值\(\sigma(\alpha)(\beta)\)
+等于\(\alpha\)与\(\beta\)的坐标的对应分量乘积之和.
+
+假设\(\rho\)是\(V^*\)及其对偶空间\(V^{**} = \Hom(V^*,F)\)之间的一个同构，
+记\(\alpha^{**} \defeq \rho(\sigma(\alpha))\)，
+那么对于\(V^*\)中任意一个线性函数\(\phi\)，
+由上述讨论可知，
+\(\alpha^{**}(\phi)\)
+等于\(\sigma(\alpha)\)与\(\phi\)在基\(\AutoTuple{\phi}{n}\)下的坐标的对应分量乘积之和，
+具体地说，鉴于\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164 (18)
+	\sigma(\alpha)
+	= \sum_{i=1}^n x_i \phi_i,  %\cref{equation:对偶空间.线性空间及其对偶空间之间的一个同构}
+	\qquad
+	\phi = \sum_{i=1}^n \phi(\alpha_i) \phi_i,  %\cref{theorem:对偶空间.对偶基的性质}
+\end{equation*}
+便有\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164 (19)
+	\alpha^{**}(\phi)
+	= \sum_{i=1}^n x_i \phi(\alpha_i)
+	= \phi\left( \sum_{i=1}^n x_i \alpha_i \right)
+	= \phi(\alpha).
+\end{equation*}
+
+记\(\tau \defeq \rho \circ \sigma\)，
+显然\(\tau\)是从\(V\)到\(V^{**}\)的一个同构.
+由\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164 (20)
+%@see: 《高等代数（第三版 下册）》（丘维声） P164 (21)
+	(\forall \alpha \in V)
+	(\forall \phi \in V^*)
+	[
+		\tau(\alpha)(\phi)
+		= \phi(\alpha)
+	]
+\end{equation*}
+可以看出，\(\alpha\)在\(\tau\)下的像\(\tau(\alpha) = \alpha^{**}\)不依赖于\(V\)中基的选择.
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P164
+设\(V\)是域\(F\)上的一个线性空间，
+\(V^*\)是\(V\)的对偶空间，
+\(V^{**}\)是\(V\)的双重对偶空间.
+如果同构\(\tau\colon V \to V^{**}\)
+满足\begin{equation*}
+	(\forall \alpha \in V)
+	(\forall \phi \in V^*)
+	[
+		\tau(\alpha)(\phi)
+		= \phi(\alpha)
+	],
+\end{equation*}
+则称“\(\tau\)是从\(V\)到\(V^{**}\)的\DefineConcept{标准同构}”
+或“\(\tau\)是从\(V\)到\(V^{**}\)的\DefineConcept{自然同构}”.
+\end{definition}
+
+由于\(V\)与\(V^{**}\)之间存在自然同构，
+因此可以把\(V\)视同\(V^{**}\)，
+从而把\(V\)看成是\(V^*\)的对偶空间，
+这样\(V\)与\(V^*\)就互为对偶空间.
+这就是我们把\(V^*\)称为\(V\)的对偶空间的原因.
 
 \subsection{对偶映射}
 \begin{definition}
