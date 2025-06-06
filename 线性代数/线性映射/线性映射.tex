@@ -741,6 +741,29 @@ k \in F\)，
 \end{proof}
 \end{proposition}
 
+\begin{proposition}\label{theorem:线性映射.零映射与任意线性映射之积是零映射}
+设\(V,W\)都是域\(F\)上的线性空间，
+\(\vb{A}\)是从\(V\)到\(W\)的一个线性映射，
+则\(\vb{A}\vb0\)和\(\vb0\vb{A}\)都是零映射.
+\begin{proof}
+对于任意向量\(\alpha\)
+和任意向量\(\beta\)，
+有\begin{gather*}
+	(\vb{A}\vb0)(\alpha)
+	= \vb{A}(\vb0(\alpha))
+	% 利用零映射的定义
+	= \vb{A}(0)
+	%\cref{theorem:线性映射.线性映射的性质}
+	= 0, \\
+	(\vb0\vb{A})(\beta)
+	= \vb0(\vb{A}(\beta))
+	% 利用零映射的定义
+	= 0.
+	\qedhere
+\end{gather*}
+\end{proof}
+\end{proposition}
+
 \begin{proposition}\label{theorem:线性映射.线性映射的乘法适合结合律}
 %@see: 《高等代数（第三版 下册）》（丘维声） P110
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P56 3.8
@@ -836,6 +859,7 @@ k \in F\)，
 或“\(\vb{A}\)有\DefineConcept{可逆性}（invertibility）”，
 称“\(\vb{B}\)是\(\vb{A}\)一个的\DefineConcept{逆}（\(\vb{B}\) is the \emph{inverse} of \(\vb{A}\)）”，
 记作\(\vb{A}^{-1}\).
+%@see: https://mathworld.wolfram.com/InvertibleLinearMap.html
 \end{definition}
 \begin{proposition}\label{theorem:线性映射.可逆线性映射有唯一逆}
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P82 3.60
@@ -850,6 +874,15 @@ k \in F\)，
 	= \vb{B}_2.
 	\qedhere
 \end{equation*}
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:线性映射.零映射不可逆}
+零映射不是可逆线性映射.
+\begin{proof}
+由\cref{theorem:线性映射.零映射与任意线性映射之积是零映射} 可知，
+零映射与任意线性映射之积是零映射，而不是恒等变换，
+所以零映射不可逆.
 \end{proof}
 \end{proposition}
 
@@ -878,7 +911,7 @@ k \in F\)，
 \end{proof}
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}%\label{theorem:线性映射.可逆线性映射的存在条件}
 %@see: 《高等代数（第三版 下册）》（丘维声） P110
 %@see: 《线性代数》（李炯生 查建国） P196 定理5.3.2
 设\(V,V'\)都是域\(F\)上有限维线性空间.
@@ -893,7 +926,7 @@ k \in F\)，
 \end{proof}
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}%\label{theorem:线性映射.可逆线性映射的逆是可逆线性映射}
 %@see: 《高等代数（第三版 下册）》（丘维声） P110 命题4
 %@see: 《高等代数（第三版 下册）》（丘维声） P107 例6
 %@see: 《线性代数》（李炯生 查建国） P196 定理5.3.3
@@ -904,23 +937,51 @@ k \in F\)，
 \begin{proof}
 直接有\begin{align*}
 	&\text{$\vb{A}$是从$V$到$W$的可逆线性映射} \\
-	&\iff \text{$\vb{A}$是从$V$到$W$的同构} \\
-	&\implies \text{$\vb{A}^{-1}$是从$W$到$V$的同构} \\
+	&\iff \text{$\vb{A}$是从$V$到$W$的同构}
+		\tag{\cref{theorem:线性映射.可逆线性映射是同构}} \\
+	&\implies \text{$\vb{A}^{-1}$是从$W$到$V$的同构}
+		\tag{\cref{theorem:线性空间.线性空间的同构的逆是同构}} \\
 	&\implies \text{$\vb{A}^{-1}$是从$W$到$V$的可逆线性映射}.
 	\qedhere
 \end{align*}
 \end{proof}
-%@see: https://mathworld.wolfram.com/InvertibleLinearMap.html
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}%\label{theorem:线性映射.可逆线性映射之积是可逆线性映射}
 %@see: 《线性代数》（李炯生 查建国） P196 定理5.3.4
 设\(U,V,W\)都是域\(F\)上的线性空间，
 \(\vb{A}\colon U \to V,
 \vb{B}\colon V \to W\)都是可逆线性映射，
 则\(\vb{B}\vb{A}\)可逆.
-%TODO proof
+\begin{proof}
+由\cref{theorem:线性空间.线性空间的同构的复合是同构} 立即可得.
+\end{proof}
 \end{proposition}
+
+\begin{proposition}\label{theorem:线性映射.非零数与可逆线性映射之积是可逆线性映射}
+设\(V,W\)都是域\(F\)上的线性空间，
+\(\lambda \in F\)且\(\lambda\neq0\).
+如果\(\vb{A}\colon V \to W\)是可逆线性映射，
+那么\(\lambda\vb{A}\)也是可逆线性映射.
+\begin{proof}
+设\(\vb{B}\colon W \to V\)是\(\vb{A}\)的逆，
+则\(\vb{B}\vb{A} = \vb{I}_V\)且\(\vb{A}\vb{B} = \vb{I}_W\)，
+易知\((\lambda^{-1}\vb{B})(\lambda\vb{A}) = \vb{I}_V\)且\((\lambda\vb{A})(\lambda^{-1}\vb{B}) = \vb{I}_W\)，
+因此\(\lambda^{-1}\vb{B}\)是\(\lambda\vb{A}\)的逆，
+\(\lambda\vb{A}\)可逆.
+\end{proof}
+\end{proposition}
+
+\begin{example}
+举例说明：两个可逆线性映射之和可能不是可逆线性映射.
+\begin{solution}
+设\(\vb{A}\)是一个可逆线性映射，
+由\cref{theorem:线性映射.非零数与可逆线性映射之积是可逆线性映射} 可知，
+\((-\vb{A})\)也是可逆线性映射，
+%\cref{theorem:线性映射.零映射不可逆}
+但是，\(\vb{A}+(-\vb{A}) = \vb0\)是零映射，而不是可逆线性映射.
+\end{solution}
+\end{example}
 
 由于线性变换的乘法满足结合律，
 因此可以定义线性变换\(\vb{A}\)的正整数指数幂：\begin{equation*}
