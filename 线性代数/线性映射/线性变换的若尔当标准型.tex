@@ -1,11 +1,6 @@
 \section{线性变换的若尔当标准型}
 现在我们利用幂零变换的结构来研究最小多项式可以分解成一次因式乘积的线性变换的结构.
-\begin{theorem}
-\NewDocumentCommand\LambdaExp{mo}{(\lambda-\lambda_{#1})\IfValueTF{#2}{^{#2}}{}}%
-\NewDocumentCommand\EigenPoly{mmo}{(#1-\lambda_{#2}\vb{I})\IfValueTF{#3}{^{#3}}{}}%
-\NewDocumentCommand\RestrictedEigenPoly{mmo}{\EigenPoly{#1 \SetRestrict W_{#2}}{#2}[#3]}%
-\NewDocumentCommand\EpAj{o}{\EigenPoly{\vb{A}}{j}[#1]}%
-\NewDocumentCommand\RepAj{o}{\RestrictedEigenPoly{\vb{A}}{j}[#1]}%
+\begin{theorem}\label{theorem:线性变换的结构.线性变换的若尔当标准型}
 %@see: 《高等代数（第三版 下册）》（丘维声） P153 定理1
 设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换.
 如果\(\vb{A}\)的最小多项式\(m(\lambda)\)
@@ -48,7 +43,7 @@
 其中\(W_j \defeq \Ker\EpAj[l_j]\ (j=1,2,\dotsc,s)\)是\(\vb{A}\)的不变子空间.
 记\(\vb{B}_j \defeq \RepAj\)，
 显然\(\vb{B}_j\)是\(W_j\)上的幂零变换，其幂零指数为\(l_j\).
-由\cref{theorem:幂零变换的结构.幂零变换的结构} 可知，
+由\cref{theorem:幂零变换的结构.幂零变换的若尔当标准型} 可知，
 在\(W_j\)中存在一个基\(\mathcal{W}_j\)，
 使得\(\vb{B}_j\)在基\(\mathcal{W}_j\)下的矩阵\(B_j\)是若尔当形矩阵，
 \(\vb{A} \SetRestrict W_j\)在基\(\mathcal{W}_j\)下的矩阵\(A_j\)等于\(B_j + \lambda_j I\)，
@@ -63,7 +58,7 @@
 其主对角元是\(A\)的全部特征值.
 
 由于\(\vb{B}_j\)的幂零指数为\(l_j\)，
-因此由\cref{theorem:幂零变换的结构.幂零变换的结构} 可知
+因此由\cref{theorem:幂零变换的结构.幂零变换的若尔当标准型} 可知
 \(B_j\)中每个若尔当块的阶数不超过\(l_j\)，
 从而\(A_j\)中每个若尔当块的阶数不超过\(l_j\).
 当\(1 \leq t \leq l_j\)时，
@@ -189,3 +184,216 @@
 因此，除去若尔当块的排列次序外，\(\vb{A}\)的若尔当标准型是唯一的.
 \end{proof}
 \end{theorem}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 推论2
+设\(A\)是域\(F\)上的\(n\)阶矩阵.
+如果\(A\)的最小多项式\(m(\lambda)\)在\(F[\lambda]\)中能分解成一次因式的乘积：\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (19)
+	m(\lambda) = \LambdaExpL{1} \LambdaExpL{2} \dotsm \LambdaExpL{s},
+\end{equation*}
+则\(A\)相似于一个若尔当形矩阵，
+其主对角线上的元素是\(A\)的全部特征值；
+主对角元为\(\lambda_j\)的若尔当块总数为\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (20)
+	N_j = n - \rank\EigenPoly{A}{j},
+	\quad j=1,2,\dotsc,s,
+\end{equation*}
+且其中每个若尔当块的阶数不超过\(l_j\)，
+\(t\)阶若尔当块的个数为\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (21)
+	N_j(t) = \rank\EigenPoly{A}{j}[t+1]
+		+ \rank\EigenPoly{A}{j}[t-1]
+		- 2\rank\EigenPoly{A}{j}[t];
+\end{equation*}
+\rm
+这个若尔当形矩阵称为\(A\)的若尔当标准型.
+除去若尔当块的排列次序外，\(A\)的若尔当标准型是唯一的.
+\begin{proof}
+由\cref{theorem:线性变换的结构.线性变换的若尔当标准型} 立即可得.
+\end{proof}
+\end{corollary}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155
+复数域上任意一个有限维线性空间上的每一个线性变换都有若尔当标准型.
+\begin{proof}
+我们知道，
+复数域上每个次数大于0的一元多项式
+都可以分解成一次因式的乘积，
+那么由\cref{theorem:线性变换的结构.线性变换的若尔当标准型} 立即可得.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155
+复数域上每一个方阵都有若尔当标准型.
+\end{proposition}
+
+\begin{corollary}\label{theorem:线性变换的结构.线性变换有若尔当标准型的充分必要条件1}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 推论3
+域\(F\)上\(n\)维线性空间\(V\)上的线性变换\(\vb{A}\)有若尔当标准型，
+当且仅当\(\vb{A}\)的最小多项式\(m(\lambda)\)在\(F[\lambda]\)中可以分解成一次因式的乘积.
+%TODO proof
+\end{corollary}
+
+在\cref{theorem:最小多项式.线性变换的特征多项式与最小多项式有相同根} 中，我们证明了：
+域\(F\)上有限维线性空间\(V\)上的线性变换\(\vb{A}\)的
+最小多项式\(m(\lambda)\)与特征多项式\(f(\lambda)\)
+在\(F\)中有相同的根（重数可以不同）.
+利用类似的方法可以证明：
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P156
+域\(F\)上有限维线性空间\(V\)上的线性变换\(\vb{A}\)的
+最小多项式\(m(\lambda)\)与特征多项式\(f(\lambda)\)
+在\(F\)的扩域\(E\)中有相同的根（重数可以不同）.
+%TODO proof
+%TODO 证明过程在《高等代数（第三版 下册）》（丘维声）参考文献[18]的第9章第6节的命题4、推论3
+\end{proposition}
+根据上述命题，\(\vb{A}\)的最小多项式\(m(\lambda)\)在\(F[\lambda]\)中可以分解成一次因式的乘积，
+当且仅当\(\vb{A}\)的特征多项式\(f(\lambda)\)在\(F[\lambda]\)中能分解成一次因式的乘积.
+于是从\cref{theorem:线性变换的结构.线性变换有若尔当标准型的充分必要条件1} 立即得出：
+\begin{corollary}\label{theorem:线性变换的结构.线性变换有若尔当标准型的充分必要条件2}
+%@see: 《高等代数（第三版 下册）》（丘维声） P156 推论4
+域\(F\)上\(n\)维线性空间\(V\)上的线性变换\(\vb{A}\)有若尔当标准型，
+当且仅当\(\vb{A}\)的特征多项式\(f(\lambda)\)在\(F[\lambda]\)中能分解成一次因式的乘积.
+\end{corollary}
+
+用矩阵的语言叙述\cref{theorem:线性变换的结构.线性变换有若尔当标准型的充分必要条件1,theorem:线性变换的结构.线性变换有若尔当标准型的充分必要条件2} 就是：
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P156 推论5
+域\(F\)上\(n\)阶矩阵\(A\)相似于一个若尔当形矩阵，
+当且仅当\(A\)的最小多项式\(m(\lambda)\)或特征多项式\(f(\lambda)\)
+在\(F[\lambda]\)中能分解成一次因式的乘积.
+\end{corollary}
+
+至此，我们完全解决了域\(F\)上\(n\)维线性空间\(V\)上的线性变换
+在什么条件下能够有若尔当形矩阵这样的最简单形式的矩阵表示的问题.
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P156 例1
+有理数域上的矩阵\begin{equation*}
+	A = \begin{bmatrix}
+		2 & 3 & 2 \\
+		1 & 8 & 2 \\
+		-2 & -14 & -3
+	\end{bmatrix}
+\end{equation*}是否有若尔当标准型？
+如果有，求出它的若尔当标准型.
+\begin{solution}
+\(A\)的特征多项式\(f(\lambda)\)是\begin{equation*}
+	\abs{\lambda I-A}
+	= \begin{vmatrix}
+		\lambda-2 & -3 & -2 \\
+		-1 & \lambda-8 & -2 \\
+		2 & 14 & \lambda+3
+	\end{vmatrix}
+	= (\lambda-1)(\lambda-3)^2,
+\end{equation*}
+于是\(A\)有若尔当标准型.
+\(A\)的全部特征值是\(1,3(\text{二重})\).
+\end{solution}
+
+对于特征值\(\lambda_1=1\)，
+它是\(f(\lambda)\)的1重根，
+因此它在\(A\)的若尔当标准型的主对角线上只出现一次.
+
+对于特征值\(\lambda_2=3\)，
+有\begin{equation*}
+	A-3I
+	= \begin{bmatrix}
+		-1 & 3 & 2 \\
+		1 & 5 & 2 \\
+		-2 & -14 & -6
+	\end{bmatrix}
+	\to \begin{bmatrix}
+		-1 & 3 & 2 \\
+		0 & 8 & 4 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+因此\(\rank(A-3I)=2\)，
+那么主对角元为\(3\)的若尔当块的总数为\begin{equation*}
+	N(\lambda_2) = 3 - 2 = 1.
+\end{equation*}
+
+综上所述，\(A\)的若尔当标准型为\begin{equation*}
+	\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 3 & 1 \\
+		0 & 0 & 3
+	\end{bmatrix}.
+\end{equation*}
+\end{example}
+
+假设域\(F\)上的\(n\)阶矩阵\(A\)有若尔当标准型，
+由于除了若尔当块的排列次序外，\(A\)的若尔当标准型是唯一的，
+因此我们可以引进下述概念：
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P157 定义1
+设域\(F\)上的\(n\)阶矩阵\(A\)有若尔当标准型\(J\).
+把\(J\)中所有若尔当块的最小多项式组成的汇集
+称为“\(A\)的\DefineConcept{初等因子组}”，
+简称为“\(A\)的\DefineConcept{初等因子}”.
+\end{definition}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P157
+矩阵\begin{equation*}
+	A = \begin{bmatrix}
+		3 & 1 & 0 & 0 \\
+		0 & 3 & 0 & 0 \\
+		0 & 0 & 5 & 0 \\
+		0 & 0 & 0 & 5
+	\end{bmatrix}
+\end{equation*}
+的初等因子是\(\{(\lambda-3)^2,(\lambda-5),(\lambda-5)\}\).
+\end{example}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P157 命题6
+域\(F\)上两个若尔当块相同，
+当且仅当它们的最小多项式相等.
+%TODO proof
+\end{proposition}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P157 定理7
+两个\(n\)阶复矩阵\(A,B\)相似，
+当且仅当它们的初等因子相同.
+%TODO proof
+\end{theorem}
+从上述定理可以看出：
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P157
+在\(M_n(\mathbb{C})\)中，
+初等因子是相似不变量.
+\end{proposition}
+
+我们还可以把{\(\lambda\) - 矩阵}\(\lambda I-A\)通过初等变换化为对角矩阵，
+来求复矩阵\(A\)的初等因子.
+%TODO 《高等代数（第三版 下册）》（丘维声）参考文献[18]的第9章第8节的第342~346页，第7章第2节的例9
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P157 定义2
+设\(V\)是域\(F\)上的一个线性空间，
+\(\vb{A}\)是\(V\)上的一个线性变换，
+\(\mathcal{V}\)是\(V\)的一个基.
+如果\(\vb{A}\)在基\(\mathcal{V}\)下的矩阵是若尔当形矩阵，
+则称“\(\mathcal{V}\)是\(\vb{A}\)的一个\DefineConcept{若尔当基}”.
+\end{definition}
+
+%@see: 《高等代数（第三版 下册）》（丘维声） P157
+在我们已经求出\(\vb{A}\)的若尔当标准型\(J\)以后，
+为了求出\(\vb{A}\)的一个若尔当基，
+只要把从原来的基到若尔当基的过渡矩阵\(S\)求出即可.
+由于\(J = S^{-1} A S\)，
+%@see: 《高等代数（第三版 下册）》（丘维声） P158 (22)
+因此\(S\)是矩阵方程\(AX=XJ\)的解，
+并且\(S\)是可逆矩阵.
+如果\(\dim V = n\)，
+则\(AX=XJ\)是\(n^2\)个未知量\(x_{ij}\ (i,j=1,2,\dotsc,n)\)的
+由\(n^2\)个方程组成的线性方程组，
+解这个线性方程组，可以求出\(X\)，
+从中选出可逆矩阵（因为\(\vb{A}\)的若尔当标准型存在，所以满足方程\(AX=XJ\)的可逆矩阵一定存在），
+便可作为过渡矩阵\(S\).
