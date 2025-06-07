@@ -1,31 +1,191 @@
 \section{线性变换的若尔当标准型}
 现在我们利用幂零变换的结构来研究最小多项式可以分解成一次因式乘积的线性变换的结构.
 \begin{theorem}
+\NewDocumentCommand\LambdaExp{mo}{(\lambda-\lambda_{#1})\IfValueTF{#2}{^{#2}}{}}%
+\NewDocumentCommand\EigenPoly{mmo}{(#1-\lambda_{#2}\vb{I})\IfValueTF{#3}{^{#3}}{}}%
+\NewDocumentCommand\RestrictedEigenPoly{mmo}{\EigenPoly{#1 \SetRestrict W_{#2}}{#2}[#3]}%
+\NewDocumentCommand\EpAj{o}{\EigenPoly{\vb{A}}{j}[#1]}%
+\NewDocumentCommand\RepAj{o}{\RestrictedEigenPoly{\vb{A}}{j}[#1]}%
 %@see: 《高等代数（第三版 下册）》（丘维声） P153 定理1
 设\(\vb{A}\)是域\(F\)上\(n\)维线性空间\(V\)上的线性变换.
 如果\(\vb{A}\)的最小多项式\(m(\lambda)\)
-在\(F[\lambda]\)中能分解成一次因式的乘积\begin{equation*}
+在\(F[\lambda]\)中能分解成一次因式的乘积\begin{equation}\label{equation:线性变换的若尔当标准型.线性变换的最小多项式的完全分解式}
+%@see: 《高等代数（第三版 下册）》（丘维声） P153 (1)
 	m(\lambda)
-	= (\lambda-\lambda_1)^{l_1}
-	(\lambda-\lambda_2)^{l_2}
+	= \LambdaExp{1}[l_1]
+	\LambdaExp{2}[l_2]
 	\dotsm
-	(\lambda-\lambda_s)^{l_s},
-\end{equation*}
+	\LambdaExp{s}[l_s],
+\end{equation}
 则\(V\)中存在一个基，
 使得\(\vb{A}\)在这个基下的矩阵\(A\)是若尔当形矩阵，其主对角元是\(\vb{A}\)的全部特征值，
 主对角元为\(\lambda_j\)的若尔当块的总数为\begin{equation*}
-	N_j = \dim V - \rank(\vb{A}-\lambda_j\vb{I}),
+%@see: 《高等代数（第三版 下册）》（丘维声） P153 (2)
+	N_j = \dim V - \rank\EpAj,
 	\quad j=1,2,\dotsc,s,
 \end{equation*}
 且其中每个若尔当块的阶数不超过\(l_j\)，
 \(t\)阶若尔当块\(J_t(\lambda_j)\)的个数为\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P153 (3)
 	N_j(t)
-	= \rank(\vb{A}-\lambda_j\vb{I})^{t+1}
-	+ \rank(\vb{A}-\lambda_j\vb{I})^{t-1}
-	- 2 \rank(\vb{A}-\lambda_j\vb{I})^t.
+	= \rank\EpAj[t+1]
+	+ \rank\EpAj[t-1]
+	- 2 \rank\EpAj[t].
 \end{equation*}
 \rm
 这个若尔当形矩阵\(A\)称为\(\vb{A}\)的若尔当标准型.
 除去若尔当块的排序次序外，\(\vb{A}\)的若尔当标准型是唯一的.
 %TODO proof
+\begin{proof}
+从\cref{equation:线性变换的若尔当标准型.线性变换的最小多项式的完全分解式}
+可以看出，\(\AutoTuple{\lambda}{s}\)是\(\vb{A}\)的所有不同特征值，
+于是\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P153 (4)
+%@see: 《高等代数（第三版 下册）》（丘维声） P153 (5)
+	V = W_1 \DirectSum \dotsb \DirectSum W_s,
+	\eqno(1)
+\end{equation*}
+其中\(W_j \defeq \Ker\EpAj[l_j]\ (j=1,2,\dotsc,s)\)是\(\vb{A}\)的不变子空间.
+记\(\vb{B}_j \defeq \RepAj\)，
+显然\(\vb{B}_j\)是\(W_j\)上的幂零变换，其幂零指数为\(l_j\).
+由\cref{theorem:幂零变换的结构.幂零变换的结构} 可知，
+在\(W_j\)中存在一个基\(\mathcal{W}_j\)，
+使得\(\vb{B}_j\)在基\(\mathcal{W}_j\)下的矩阵\(B_j\)是若尔当形矩阵，
+\(\vb{A} \SetRestrict W_j\)在基\(\mathcal{W}_j\)下的矩阵\(A_j\)等于\(B_j + \lambda_j I\)，
+并且\(A_j\)是主对角元是\(\lambda_j\)的若尔当形矩阵.
+把\(W_j\ (j=1,2,\dotsc,s)\)的上述基合起来便得到\(V\)的一个基
+\(\mathcal{V} = \mathcal{W}_1 \cup \dotsb \cup \mathcal{W}_s\)，
+\(\vb{A}\)在基\(\mathcal{V}\)下的矩阵\(A\)为\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P153 (6)
+	A = \diag(\AutoTuple{A}{s}),
+\end{equation*}
+这就说明\(A\)是若尔当形矩阵，
+其主对角元是\(A\)的全部特征值.
+
+由于\(\vb{B}_j\)的幂零指数为\(l_j\)，
+因此由\cref{theorem:幂零变换的结构.幂零变换的结构} 可知
+\(B_j\)中每个若尔当块的阶数不超过\(l_j\)，
+从而\(A_j\)中每个若尔当块的阶数不超过\(l_j\).
+当\(1 \leq t \leq l_j\)时，
+\(A_j\)中\(t\)阶若尔当块的个数\(N_j(t)\)等于\(B_j\)中\(t\)阶若尔当块的个数，
+因此\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P154 (7)
+	&N_j(t)
+	= \rank\vb{B}_j^{t+1} + \rank\vb{B}_j^{t-1} - 2\rank\vb{B}_j^t \\
+	&= \rank\RepAj[t+1]
+		+ \rank\RepAj[t-1]
+		- 2\rank\RepAj[t] \\
+	&= (\dim W_j - \dim\Ker\RepAj[t+1] ) \\
+		&\hspace{20pt}+ (\dim W_j - \dim\Ker\RepAj[t-1] ) \\
+		&\hspace{20pt}- 2(\dim W_j - \dim\Ker\RepAj[t] ) \\
+	&= 2\dim\Ker\RepAj[t]
+		- \dim\Ker\RepAj[t+1]
+		- \dim\Ker\RepAj[t-1].
+	\tag2
+\end{align*}
+当\(i \leq l_j\)时，有\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P154 (8)
+	&\alpha \in \Ker\EpAj[i] \\
+	&\iff \EpAj[i] \alpha = 0 \\
+	&\iff \alpha \in \Ker\EpAj[l_j] = W_j,
+			\EpAj[i] \alpha = 0 \\
+	&\iff \alpha \in W_j,
+			\RepAj[i] \alpha = 0 \\
+	&\iff \alpha \in \Ker\RepAj[i],
+\end{align*}
+因此\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P154 (9)
+	\Ker\EpAj[i] = \Ker\RepAj[i].
+	\eqno(3)
+\end{equation*}
+当\(i = l_j + 1\)时，上式仍然成立，
+这是因为从\cref{equation:线性变换的若尔当标准型.线性变换的最小多项式的完全分解式}
+可得\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P154 (12)
+	m(\lambda)\LambdaExp{j}
+	= \LambdaExp{1}[l_1] \dotsm
+	\LambdaExp{j}[l_j+1] \dotsm
+	\LambdaExp{s}[l_s],
+\end{equation*}
+从而\(V\)可以分解成\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P154 (13)
+	V = \Ker\EigenPoly{\vb{A}}{1}[l_1]
+		\DirectSum \dotsb \DirectSum
+		\Ker\EigenPoly{\vb{A}}{j}[l_j+1]
+		\DirectSum \dotsb \DirectSum
+		\Ker\EigenPoly{\vb{A}}{s}[l_s];
+	\eqno(4)
+\end{equation*}
+任取\(\beta\in\Ker\EpAj[l_j+1]\)，
+那么根据(1)式可知，
+\(\beta\)可以分解成\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (14)
+	\beta = \beta_1 + \dotsb + \beta_j + \dotsb + \beta_s,
+\end{equation*}
+其中\(\beta_u\in\Ker\EigenPoly{\vb{A}}{u}[l_u]\ (u=1,2,\dotsc,s)\)；
+由于\(\beta_j\in\Ker\EpAj[l_j]\)，
+因此\(\beta_j\in\Ker\EpAj[l_j+1]\)，
+从而\(\beta_j-\beta\in\Ker\EpAj[l_j+1]\)，
+再由上式可得\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (15)
+	0 = \beta_1 + \dotsb + (\beta_j-\beta) + \dotsb + \beta_s,
+\end{equation*}
+上式是\(0\)在\(V\)的直和分解式(4)中一种表达方式，
+由于表法唯一，因此\(\beta_j-\beta=0\)，
+从而\(\beta=\beta_j\in\Ker\EpAj[l_j]\)，
+由此可知\(\Ker\EpAj[l_j+1] \subseteq \Ker\EpAj[l_j]\)，
+显然还有\(\Ker\EpAj[l_j+1] \supseteq \Ker\EpAj[l_j]\)，
+从而有\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (16)
+	\Ker\EpAj[l_j+1] = \Ker\EpAj[l_j];
+	\eqno(5)
+\end{equation*}
+现在任取\(\eta\in\Ker\RepAj[l_j+1]\)，
+则\(\eta \in W_j\)；
+由于\(W_j = \Ker\EpAj[l_j]
+= \Ker\RepAj[l_j]\)，
+因此\(\eta\in\Ker\RepAj[l_j]\)，
+从而有\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (17)
+	\Ker\RepAj[l_j+1] = \Ker\RepAj[l_j];
+	\eqno(6)
+\end{equation*}
+由(3)(5)(6)三式可知\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P155 (18)
+	\Ker\EpAj[l_j+1] = \Ker\RepAj[l_j+1].
+\end{equation*}
+
+于是由(2)(3)两式得\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P154 (10)
+	&N_j(t)
+	= 2\dim\Ker\EpAj[t]
+		- \dim\Ker\EpAj[t+1]
+		- \dim\Ker\EpAj[t-1] \\
+	&= 2(\dim V-\dim\Img\EpAj[t]) \\
+		&\hspace{20pt} - (\dim V-\dim\Img\EpAj[t+1]) \\
+		&\hspace{20pt} - (\dim V-\dim\Img\EpAj[t-1]) \\
+	&= \rank\EpAj[t+1]
+		+ \rank\EpAj[t-1]
+		- 2\rank\EpAj[t].
+\end{align*}
+
+\(A_j\)中若尔当块的总数\(N_j\)
+等于\(B_j\)中若尔当块的总数，
+继而等于\(\vb{B}_j\)的特征子空间\((W_j)_0\)的维数，
+于是\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P154 (11)
+	&N_j
+	= \dim(W_j)_0
+	= \dim\Ker\vb{B}_j
+	= \dim\Ker\RepAj \\
+	&= \dim\Ker\EpAj
+	= \dim V - \rank\EpAj.
+\end{align*}
+
+由于\(\vb{A}\)的若尔当标准型\(A\)的主对角线上元素是\(\vb{A}\)的全部特征值，
+主对角元为特征值\(\lambda_j\)的若尔当块总数\(N_j\)由\(V\)的维数与\(\rank\EpAj\)决定，
+主对角元为\(\lambda_j\)的\(t\)阶若尔当块的个数\(N_j(t)\)
+由\(\rank\EpAj[t+1],\rank\EpAj[t-1],\rank\EpAj[t]\)共同决定，
+因此，除去若尔当块的排列次序外，\(\vb{A}\)的若尔当标准型是唯一的.
+\end{proof}
 \end{theorem}
