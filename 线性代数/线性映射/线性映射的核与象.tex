@@ -340,20 +340,32 @@ k \in F\)，
 \cref{theorem:线性映射.定义域维数大于陪域维数的线性映射不是单射,theorem:线性映射.定义域维数小于陪域维数的线性映射不是满射}
 对于线性方程论有很重要的意义.
 
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P64
 给定正整数\(m,n\)，
-矩阵\(A = (a_{ij})_{m \times n} \in M_{m \times n}\)，
-考虑齐次线性方程组\(AX=0\)，
+矩阵\(A \in M_{m \times n}(F)\)，
+考虑关于\(X \in F^n\)的齐次线性方程组\(AX=0\)，
 显然\(X=0\)是它的一个解，
 接下来我们想要知道它还有没有其他解.
 定义映射\begin{equation*}
 	\vb{A}\colon F^n \to F^m,
-	(\AutoTuple{x}{n}) \mapsto (a_{11} x_1 + \dotsb + a_{1n} x_n,\dotsc,a_{m1} x_1 + \dotsb + a_{mn} x_n).
+	X \mapsto AX.
 \end{equation*}
-那么\(\vb{A}(\AutoTuple{x}{n}) = 0\)等价于上述齐次线性方程组\(AX=0\).
-\(AX=0\)要有非零解，
-就相当于\(\vb{A}\)的核\(\Ker\vb{A}\)比零子空间“大”（即\(0 \subset \Ker\vb{A}\)），
+那么\(\vb{A}X = 0\)等价于上述齐次线性方程组\(AX=0\).
+可以看出，方程\(AX=0\)有非零解，
+当且仅当\(\vb{A}\)的核\(\Ker\vb{A}\)比零子空间“大”（即\(0 \subset \Ker\vb{A}\)），
 这又相当于说\(\vb{A}\)不是单射（根据\cref{theorem:线性映射.线性映射是单射或满射的充分必要条件}），
 于是可以得到如下结论：
+\begin{theorem}\label{theorem:线性映射.线性映射的单射性决定齐次线性方程组是否具有非零解}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P64
+设\(F\)是一个域，
+矩阵\(A \in M_{m \times n}(F)\)，
+线性映射\(\vb{A}\colon F^n \to F^m, X \mapsto AX\)，
+则\begin{equation*}
+	\text{关于$X \in F^n$的齐次线性方程组$AX=0$有非零解}
+	\iff
+	\text{$\vb{A}$不是单射}.
+\end{equation*}
+\end{theorem}
 \begin{corollary}\label{theorem:线性映射.方程个数少于未知量个数的齐次线性方程组必有非零解}
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P65 3.26
 % 原话是： A homogeneous system of linear equations with more variables than equations has nonzero solutions.
@@ -363,9 +375,39 @@ k \in F\)，
 \(\vb{A}\)是从\(F^n\)到\(F^m\)的一个线性映射.
 由\cref{theorem:线性映射.定义域维数大于陪域维数的线性映射不是单射} 可知，
 当\(n > m\)时，\(\vb{A}\)不是单射.
+再由\cref{theorem:线性映射.线性映射的单射性决定齐次线性方程组是否具有非零解} 可知，
+齐次线性方程组\(\LinearMapMatrix(\vb{A})X=0\)有非零解.
 \end{proof}
 %\cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解}
 \end{corollary}
+
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P65
+给定正整数\(m,n\)，
+矩阵\(A \in M_{m \times n}(F)\)，
+我们想要知道是否存在向量\(B \in F^m\)，
+使得关于\(X \in F^n\)的非齐次线性方程组\(AX=B\)无解.
+定义映射\begin{equation*}
+	\vb{A}\colon F^n \to F^m,
+	X \mapsto AX.
+\end{equation*}
+那么\(\vb{A}X=B\)等价于上述非齐次线性方程组\(AX=B\).
+可以看出，方程\(AX=B\)无解，
+当且仅当\(B \notin \Img\vb{A}\).
+于是\(B\)的存在与否，取决于\(\Img\vb{A}\)是不是不等于\(\vb{A}\)的陪域\(F^m\)
+（当\(\Img\vb{A} \neq F^m\)时，差集\(F^m - \Img\vb{A}\)中的每一个向量\(B\)都能使方程\(AX=B\)无解）.
+换言之，\(B\)的存在与否，取决于\(\vb{A}\)是不是不是满射.
+于是可以得到如下结论：
+\begin{theorem}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P65
+设\(F\)是一个域，
+矩阵\(A \in M_{m \times n}(F)\)，
+线性映射\(\vb{A}\colon F^n \to F^m, X \mapsto AX\)，
+则\begin{equation*}
+	\text{存在向量$B \in F^m$，使得关于$X \in F^n$的齐次线性方程组$AX=B$无解}
+	\iff
+	\text{$\vb{A}$不是满射}.
+\end{equation*}
+\end{theorem}
 \begin{corollary}
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P65 3.28
 % 原话是： An inhomogeneous system of linear equations with more equations than variables has no solution for some choice of the constant terms.
@@ -406,6 +448,7 @@ k \in F\)，
 
 \begin{corollary}\label{theorem:线性映射.有限维线性空间.单线性映射是满线性映射}
 %@see: 《高等代数（第三版 下册）》（丘维声） P115 推论4
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P84 3.65
 设\(V\)和\(V'\)都是域\(F\)上的\(n\)维线性空间，
 \(\vb{A}\)是\(V\)到\(V'\)的一个线性映射，
 则\[
@@ -432,7 +475,6 @@ k \in F\)，
 \end{corollary}
 \begin{corollary}
 %@see: 《高等代数（第三版 下册）》（丘维声） P115 推论5
-%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P84 3.65
 设\(\vb{A}\)是域\(F\)上的有限维线性空间\(V\)上的线性变换，
 则\[
 	\text{$\vb{A}$是单射}
