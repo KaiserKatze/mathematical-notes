@@ -168,7 +168,7 @@
 证明：\begin{equation}\label{equation:线积分与面积分.三维格林第一公式}
 	\iiint_\Omega u \laplacian{v} \dd{x}\dd{y}\dd{z}
 	= \oiint_\Sigma u \pdv{v}{\vb{n}} \dd{S}
-	- \iiint_\Omega (\grad u \cdot \grad v) \dd{x}\dd{y}\dd{z},
+	- \iiint_\Omega (\VectorInnerProductDot{\grad u}{\grad v}) \dd{x}\dd{y}\dd{z},
 \end{equation}
 其中符号\(\laplacian = \pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}\)为\DefineConcept{拉普拉斯算子}.
 \begin{proof}
@@ -522,12 +522,12 @@
 \end{definition}
 由两类曲面积分的关系，通量又可表达为\[
 	\iint_\Sigma \VectorInnerProductDot{\vb{A}}{\vb{n}} \dd{S}
-	=\iint_\Sigma \vb{A}\cdot\dd{\vb{S}}
+	=\iint_\Sigma \VectorInnerProductDot{\vb{A}}{\dd{\vb{S}}}
 	=\iint_\Sigma P\dd{y}\dd{z}+Q\dd{z}\dd{x}+R\dd{x}\dd{y}.
 \]
 
 \begin{definition}[平面上的散度]
-\def\defofdiv{\lim_{D \to M} \frac{1}{S} \oint_C \vb{A}(x,y) \cdot \dd{\vb{s}}}%
+\def\defofdiv{\lim_{D \to M} \frac{1}{S} \oint_C \VectorInnerProductDot{\vb{A}(x,y)}{\dd{\vb{s}}}}%
 设\[
 	\vb{A}(x,y)=P(x,y)\vb{i}+Q(x,y)\vb{j}
 \]是定义在平面闭区域\(D\)内的向量场，
@@ -550,7 +550,7 @@
 \end{proposition}
 
 \begin{definition}[空间中的散度]
-\def\defofdiv{\lim_{\Omega \to M} \frac{1}{V} \oiint_\Sigma \vb{A}(x,y,z) \cdot \dd{\vb{S}}}%
+\def\defofdiv{\lim_{\Omega \to M} \frac{1}{V} \oiint_\Sigma \VectorInnerProductDot{\vb{A}(x,y,z)}{\dd{\vb{S}}}}%
 设\[
 	\vb{A}(x,y,z)=P(x,y,z)\vb{i}+Q(x,y,z)\vb{j}+R(x,y,z)\vb{k}
 \]是定义在空间闭区域\(\Omega\)内的向量场，
@@ -588,7 +588,7 @@
 现在利用散度的概念，\cref{equation:线积分与面积分.高斯公式} 可以改写为
 \begin{equation}\label{equation:线积分与面积分.高斯公式1}
 	\iiint_\Omega \div{\vb{A}} \dd{v}
-	= \oiint_\Sigma \vb{A} \cdot \dd{\vb{S}};
+	= \oiint_\Sigma \VectorInnerProductDot{\vb{A}}{\dd{\vb{S}}};
 \end{equation}
 而\cref{theorem:线积分与面积分.沿任意闭曲面的曲面积分为零的条件}
 可以改写为“沿任意闭曲面的曲面积分为零的充分必要条件是向量场散度为零”.

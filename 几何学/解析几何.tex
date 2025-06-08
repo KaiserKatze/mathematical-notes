@@ -1238,7 +1238,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 若向量\(\vb{c}\)满足
 \begin{equation}\label{equation:解析几何.向量外积的长度关系}
 	\abs{\vb{c}}
-	= \abs{\vb{a}} \cdot \abs{\vb{b}} \cdot \sin\angle(\vb{a},\vb{b}),
+	= \abs{\vb{a}} \abs{\vb{b}} \sin\angle(\vb{a},\vb{b}),
 \end{equation}
 且\(\vb{c}\)与\(\vb{a},\vb{b}\)均垂直，\((\vb{a},\vb{b},\vb{c})\)成右手系，
 则称\(\vb{c}\)为“\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{外积}或\DefineConcept{向量积}”，
@@ -1559,7 +1559,9 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \begin{align*}
 	V &= \abs{\vb{a}\times\vb{b}} \abs{\vec{AI}} \\
 	&= \abs{(\vb{a}\times\vb{b}) (\vb{c})_{\vb{a}\times\vb{b}}} \\
-	&= \abs{(\vb{a}\times\vb{b})\cdot\vb{c}}.
+	&= \abs{
+			\VectorInnerProductDot{(\vb{a}\times\vb{b})}{\vb{c}}
+		}.
 \end{align*}
 
 \(\vb{a}\times\VectorInnerProductDot{\vb{b}}{\vb{c}}\)称为“向量\(\vb{a},\vb{b},\vb{c}\)的\DefineConcept{混合积}”.
@@ -1602,8 +1604,10 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \end{gather}
 第二个性质说明三个向量\(\vb{a},\vb{b},\vb{c}\)的混合积与外积、内积运算符的位置无关，
 因此可以把混合积\(\vb{a}\times\VectorInnerProductDot{\vb{b}}{\vb{c}}\)记作\((\vb{a},\vb{b},\vb{c})\).
-但要注意，\(\VectorInnerProductDot{\vb{a}}{\vb{b}}\times\vb{c}\)的运算顺序是先求外积\(\vb{b}\times\vb{c}\)，
-再求内积\(\vb{a}\cdot(\vb{b}\times\vb{c})\)，否则运算就没有意义.
+但要注意，\(\VectorInnerProductDot{\vb{a}}{\vb{b}}\times\vb{c}\)的运算顺序是
+先求外积\(\vb{b}\times\vb{c}\)，
+再求内积\(\VectorInnerProductDot{\vb{a}}{(\vb{b}\times\vb{c})}\)，
+否则运算就没有意义.
 
 \begin{example}
 %@see: 《解析几何》（丘维声） P46 习题1.5 1.
@@ -1632,9 +1636,9 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 
 \begin{example}
 %@see: 《解析几何》（丘维声） P46 习题1.5 5.
-证明：\((\vb{a}\times\vb{b})\cdot(\vb{c}\times\vb{d})
-+ (\vb{b}\times\vb{c})\cdot(\vb{a}\times\vb{d})
-+ (\vb{c}\times\vb{a})\cdot(\vb{b}\times\vb{d})
+证明：\(\VectorInnerProductDot{(\vb{a}\times\vb{b})}{(\vb{c}\times\vb{d})}
++ \VectorInnerProductDot{(\vb{b}\times\vb{c})}{(\vb{a}\times\vb{d})}
++ \VectorInnerProductDot{(\vb{c}\times\vb{a})}{(\vb{b}\times\vb{d})}
 = 0\).
 %TODO
 \end{example}
@@ -1646,22 +1650,36 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	(b_1,b_2,b_3)^T, \qquad
 	(c_1,c_2,c_3)^T,
 \]
-则\begin{equation}
-\begin{split}
-	\vb{a}\times\VectorInnerProductDot{\vb{b}}{\vb{c}}
-	&= [(a_1 b_2 - a_2 b_1) \vb{d}_1 \times \vb{d}_2
-	+ (a_3 b_1 - a_1 b_3) \vb{d}_3 \times \vb{d}_1 \\
-	&\hspace{20pt}
-	+ (a_2 b_3 - a_3 b_2) \vb{d}_2 \times \vb{d}_3]
-	\cdot (c_1 \vb{d}_1 + c_2 \vb{d}_2 + c_3 \vb{d}_3) \\
+则\begin{align*}
+	&\vb{a}\times\VectorInnerProductDot{\vb{b}}{\vb{c}} \\
+	&= \VectorInnerProductDot{
+		\left[
+			\begin{vmatrix}
+				a_1 & b_1 \\
+				a_2 & b_2
+			\end{vmatrix}
+			(\vb{d}_1 \times \vb{d}_2)
+			+ \begin{vmatrix}
+				b_1 & a_1 \\
+				b_3 & a_3
+			\end{vmatrix}
+			(\vb{d}_3 \times \vb{d}_1)
+			+ \begin{vmatrix}
+				a_2 & b_2 \\
+				a_3 & b_3
+			\end{vmatrix}
+			(\vb{d}_2 \times \vb{d}_3)
+		\right]
+	}{
+		(c_1 \vb{d}_1 + c_2 \vb{d}_2 + c_3 \vb{d}_3)
+	} \\
 	&= \begin{vmatrix}
 		a_1 & b_1 & c_1 \\
 		a_2 & b_2 & c_2 \\
 		a_3 & b_3 & c_3
 	\end{vmatrix}
-	\vb{d}_1 \times \VectorInnerProductDot{\vb{d}_2}{\vb{d}_3}.
-\end{split}
-\end{equation}
+	(\vb{d}_1 \times \VectorInnerProductDot{\vb{d}_2}{\vb{d}_3}).
+\end{align*}
 这里\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)不共面，
 \(\vb{d}_1\times\VectorInnerProductDot{\vb{d}_2}{\vb{d}_3}\neq0\).
 
@@ -1744,7 +1762,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 %@see: 《解析几何》（丘维声） P42 定理5.3
 对任意四个向量\(\vb{a},\vb{b},\vb{c},\vb{d}\)，有
 \begin{equation}\label{equation:解析几何.拉格朗日恒等式}
-	(\vb{a}\times\vb{b})\cdot(\vb{c}\times\vb{d})
+	\VectorInnerProductDot{(\vb{a}\times\vb{b})}{(\vb{c}\times\vb{d})}
 	= \begin{vmatrix}
 		\VectorInnerProductDot{\vb{a}}{\vb{c}} & \VectorInnerProductDot{\vb{a}}{\vb{d}} \\
 		\VectorInnerProductDot{\vb{b}}{\vb{c}} & \VectorInnerProductDot{\vb{b}}{\vb{d}}
@@ -2503,9 +2521,17 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 若记\(\vb{e} = (\vb{\nu}_1\times\vb{\nu}_2)^0\)，则\begin{align*}
 	d &= \abs{\vec{P_1 P_2}}
 	= \abs{\VectorInnerProductDot{\vec{P_1 P_2}}{\vb{e}}} \\
-	&= \abs{(\vec{P_1 M_1} + \vec{M_1 M_2} + \vec{M_2 P_2}) \cdot \vb{e}} \\
+	&= \abs{
+			\VectorInnerProductDot
+			{(\vec{P_1 M_1} + \vec{M_1 M_2} + \vec{M_2 P_2})}
+			{\vb{e}}
+		} \\
 	&= \abs{\VectorInnerProductDot{\vec{M_1 M_2}}{\vb{e}}}
-	= \abs{\vec{M_1 M_2} \cdot \frac{\vb{\nu}_1\times\vb{\nu}_2}{\abs{\vb{\nu}_1\times\vb{\nu}_2}}} \\
+	= \abs{
+			\VectorInnerProductDot
+			{\vec{M_1 M_2}}
+			{\frac{\vb{\nu}_1\times\vb{\nu}_2}{\abs{\vb{\nu}_1\times\vb{\nu}_2}}}
+		} \\
 	&= \frac{\abs{\VectorInnerProductDot{\vec{M_1 M_2}}{\vb{\nu}}_1\times\vb{\nu}_2}}{\abs{\vb{\nu}_1\times\vb{\nu}_2}}.
 \end{align*}
 我们可以从上述计算过程了解到其中隐含的几何意义：
@@ -5397,7 +5423,11 @@ equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I}
 	O'(x_0,y_0), \qquad
 	\vb{e}_1'(a_{11},a_{21}), \qquad
 	\vb{e}_2'(a_{12},a_{22}),
-\]则有{\def\ExprA#1#2{a_{#1#2} = \vb{e}_#2' \cdot \vb{e}_#1 = \cos\angle(\vb{e}_#2',\vb{e}_#1)}
+\]则有{\def\ExprA#1#2{%
+	a_{#1#2}  %
+	= \VectorInnerProductDot{\vb{e}_#2'}{\vb{e}_#1}  %
+	= \cos\angle(\vb{e}_#2',\vb{e}_#1)  %
+}%
 \begin{align*}
 	\ExprA{1}{1}, \qquad
 	\ExprA{2}{1}, \\
@@ -5671,11 +5701,11 @@ theorem:解析几何.空间仿射坐标系同定向的充分必要条件}
 	\multicolumn{2}{|c|}{点乘} & \multicolumn{2}{c|}{叉乘} \\ \hline
 	交换律 & \(\VectorInnerProductDot{\vb{a}}{\vb{b}}=\VectorInnerProductDot{\vb{b}}{\vb{a}}\) &
 		负交换律 & \(\vb{a}\times\vb{b}=-\vb{b}\times\vb{a}\) \\ \hline
-	分配律 & \((\vb{a}+\vb{b})\cdot\vb{c}=\VectorInnerProductDot{\vb{a}}{\vb{c}}+\vb{b}\cdot{c}\) &
+	分配律 & \(\VectorInnerProductDot{(\vb{a}+\vb{b})}{\vb{c}}=\VectorInnerProductDot{\vb{a}}{\vb{c}}+\VectorInnerProductDot{\vb{b}}{\vb{c}}\) &
 		分配律 & \((\vb{a}+\vb{b})\times\vb{c}=\vb{a}\times\vb{c}+\vb{b}\times\vb{c}\) \\ \hline
-	\multirow{3}{*}{结合律} & \((\lambda\vb{a})\cdot\vb{b}=\lambda(\VectorInnerProductDot{\vb{a}}{\vb{b}})\) & \multirow{3}{*}{结合律} & \multirow{3}{*}{\((\lambda\vb{a})\times\vb{b}=\vb{a}\times(\lambda\vb{b})=\lambda(\vb{a}\times\vb{b})\)} \\
-		& \(\vb{a}\cdot(\lambda\vb{b})=\lambda(\VectorInnerProductDot{\vb{a}}{\vb{b}})\) & & \\
-		& \((\lambda\vb{a})\cdot(\mu\vb{b})=\lambda\mu(\VectorInnerProductDot{\vb{a}}{\vb{b}})\) & & \\
+	\multirow{3}{*}{结合律} & \(\VectorInnerProductDot{(\lambda\vb{a})}{\vb{b}}=\lambda(\VectorInnerProductDot{\vb{a}}{\vb{b}})\) & \multirow{3}{*}{结合律} & \multirow{3}{*}{\((\lambda\vb{a})\times\vb{b}=\vb{a}\times(\lambda\vb{b})=\lambda(\vb{a}\times\vb{b})\)} \\
+		& \(\VectorInnerProductDot{\vb{a}}{(\lambda\vb{b})}=\lambda(\VectorInnerProductDot{\vb{a}}{\vb{b}})\) & & \\
+		& \(\VectorInnerProductDot{(\lambda\vb{a})}{(\mu\vb{b})}=\lambda\mu(\VectorInnerProductDot{\vb{a}}{\vb{b}})\) & & \\
 	\hline
 	\end{tabular}
 	\caption{向量的运算法则}

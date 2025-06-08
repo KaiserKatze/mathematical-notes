@@ -23,9 +23,9 @@
 \]
 
 任意取一个与直线\(L\)平行的单位向量\(\vb{e}_L\).
-令\(\Phi = (\vb{e}_z \times \vb{e}_L) \cdot \vec{PQ}\).
+令\(\Phi = \VectorInnerProductDot{(\vb{e}_z \times \vb{e}_L)}{\vec{PQ}}\).
 如果\[
-\Phi < 0,
+	\Phi < 0,
 \]
 则称“单位向量\(\vb{e}_L\)的方向为曲线\(C\)在点\(P\)处的正方向”；
 反之，如果\[
@@ -169,11 +169,12 @@
 分段光滑的曲线\(L\)为\(D\)的正向边界曲线.
 证明：\begin{gather}
 	\iint_D v \laplacian{u} \dd{x}\dd{y}
-	= - \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y} + \oint_L v \pdv{u}{\vb{n}} \dd{s};
-	\label{equation:线积分与面积分.二维格林第一公式} \\
+	= -\iint_D (\VectorInnerProductDot{\grad u}{\grad v}) \dd{x}\dd{y}
+		+ \oint_L v \pdv{u}{\vb{n}} \dd{s};
+		\label{equation:线积分与面积分.二维格林第一公式} \\
 	\iint_D (u \laplacian v - v \laplacian u) \dd{x}\dd{y}
 	= \oint_L \left( u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}} \right) \dd{s},
-	\label{equation:线积分与面积分.二维格林第二公式}
+		\label{equation:线积分与面积分.二维格林第二公式}
 \end{gather}
 其中\(\pdv{u}{\vb{n}}\)、\(\pdv{v}{\vb{n}}\)
 分别是\(u\)、\(v\)沿\(L\)的外法线向量\(\vb{n}\)的方向导数，
@@ -207,18 +208,18 @@
 		+ \pdv{v}{y} \pdv{u}{y}
 		+ v \pdv[2]{u}{y}
 		\right) \dd{x}\dd{y} \\
-	&= \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y}
+	&= \iint_D (\VectorInnerProductDot{\grad u}{\grad v}) \dd{x}\dd{y}
 		+ \iint_D v \laplacian{u} \dd{x}\dd{y},
 \end{align*}
 移项可得\[
 	\iint_D v \laplacian{u} \dd{x}\dd{y}
-	= - \iint_D (\grad u \cdot \grad v) \dd{x}\dd{y}
+	= - \iint_D (\VectorInnerProductDot{\grad u}{\grad v}) \dd{x}\dd{y}
 	+ \oint_L v \pdv{u}{\vb{n}} \dd{s}.
 	\eqno(1)
 \]
 同理可得\[
 	\iint_D u \laplacian{v} \dd{x}\dd{y}
-	= - \iint_D (\grad v \cdot \grad u) \dd{x}\dd{y}
+	= - \iint_D (\VectorInnerProductDot{\grad v}{\grad u}) \dd{x}\dd{y}
 	+ \oint_L u \pdv{v}{\vb{n}} \dd{s}.
 	\eqno(2)
 \]
@@ -375,7 +376,7 @@ y = u-v\)，
 
 \subsection{曲线积分的基本定理}
 \begin{definition}
-若曲线积分\(\int_L \vb{F}\cdot\dd{\vb{r}}\)在区域\(G\)内与积分路径无关，
+若曲线积分\(\int_L \VectorInnerProductDot{\vb{F}}{\dd{\vb{r}}}\)在区域\(G\)内与积分路径无关，
 则称向量场\(\vb{F}\)为\DefineConcept{保守场}.
 \end{definition}
 
@@ -385,9 +386,9 @@ y = u-v\)，
 设\(\vb{F}(x,y)=P(x,y)\vb{i}+Q(x,y)\vb{j}\)是平面区域\(G\)内的一个向量场，
 \(P(x,y)\)、\(Q(x,y)\)都在\(G\)内连续，
 且存在一个数量函数\(f(x,y)\)，使得\(\vb{F}=\grad f\)，
-则曲线积分\(\int_L\vb{F}\cdot\dd{\vb{r}}\)在\(G\)内与路径无关，且
+则曲线积分\(\int_L \VectorInnerProductDot{\vb{F}}{\dd{\vb{r}}}\)在\(G\)内与路径无关，且
 \begin{equation}\label{equation:线积分与面积分.曲线积分的基本公式}
-	\int_L \vb{F}\cdot\dd{\vb{r}}
+	\int_L \VectorInnerProductDot{\vb{F}}{\dd{\vb{r}}}
 	= f(B)-f(A),
 \end{equation}
 其中\(L\)是位于\(G\)内起点为\(A\)、终点为\(B\)的任一分段光滑曲线.
@@ -395,9 +396,9 @@ y = u-v\)，
 
 \cref{theorem:线积分与面积分.曲线积分的基本定理} 表明，
 对于势场\(\vb{F}\)，
-曲线积分\(\int_L \vb{F}\cdot\dd{\vb{r}}\)的值仅依赖于它的势函数\(f\)在路径\(L\)的两端点的值，
+曲线积分\(\int_L \VectorInnerProductDot{\vb{F}}{\dd{\vb{r}}}\)的值仅依赖于它的势函数\(f\)在路径\(L\)的两端点的值，
 而不依赖于两点间的路径，
-即积分\(\int_L \vb{F}\cdot\dd{\vb{r}}\)在\(G\)内与路径无关.
+即积分\(\int_L \VectorInnerProductDot{\vb{F}}{\dd{\vb{r}}}\)在\(G\)内与路径无关.
 也就是说：势场是保守场.
 
 \cref{equation:线积分与面积分.曲线积分的基本公式}
