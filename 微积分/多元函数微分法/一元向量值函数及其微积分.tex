@@ -270,8 +270,9 @@
 		= \vb{u}'(t) + \vb{v}'(t), \\
 	&\dv{t} [\phi(t) \vb{u}(t)]
 		= \phi'(t) \vb{u}(t) + \phi(t) \vb{u}'(t), \\
-	&\dv{t} [\vb{u}(t) \cdot \vb{v}(t)]
-		= \vb{u}'(t) \cdot \vb{v}(t) + \vb{u}(t) \cdot \vb{v}'(t), \\
+	&\dv{t} (\VectorInnerProductDot{\vb{u}(t)}{\vb{v}(t)})
+		= \VectorInnerProductDot{\vb{u}'(t)}{\vb{v}(t)}
+		+ \VectorInnerProductDot{\vb{u}(t)}{\vb{v}'(t)}, \\
 	&\dv{t} [\vb{u}(t) \times \vb{v}(t)]
 		= \vb{u}'(t) \times \vb{v}(t) + \vb{u}(t) \times \vb{v}'(t), \\
 	&\dv{t} \vb{u}[\phi(t)]
@@ -281,45 +282,48 @@
 设\(\increment\vb{u} = \vb{u}(t+\increment t) - \vb{u}(t)\)，
 \(\increment\vb{v} = \vb{v}(t+\increment t) - \vb{v}(t)\)，
 则\begin{align*}
-	\dv{t} [\vb{u}(t) \cdot \vb{v}(t)]
+	\dv{t} [\VectorInnerProductDot{\vb{u}(t)}{\vb{v}(t)}]
 	&= \lim_{\increment t\to0}
 		\frac{
-			\vb{u}(t+\increment t) \cdot \vb{v}(t+\increment t)
-			- \vb{u}(t) \cdot \vb{v}(t)
+			\VectorInnerProductDot{\vb{u}(t+\increment t)}{\vb{v}(t+\increment t)}
+			- \VectorInnerProductDot{\vb{u}(t)}{\vb{v}(t)}
 		}{
 			\increment t
 		} \\
 	&= \lim_{\increment t\to0}
 		\frac{
-			[\vb{u}(t) + \increment\vb{u}] \cdot [\vb{v}(t) + \increment\vb{v}]
-			- \vb{u}(t) \cdot \vb{v}(t)
+			\VectorInnerProductDot{(\vb{u}(t) + \increment\vb{u})}{(\vb{v}(t) + \increment\vb{v})}
+			- \VectorInnerProductDot{\vb{u}(t)}{\vb{v}(t)}
 		}{
 			\increment t
 		} \\
 	&= \lim_{\increment t\to0}
 		\frac{
-			[\vb{u}(t) \cdot \vb{v}(t) + \increment\vb{u} \cdot \vb{v}(t)
-			+ \vb{u}(t) \cdot \increment\vb{v} + \increment\vb{u} \cdot \increment\vb{v}]
-			- \vb{u}(t) \cdot \vb{v}(t)
+			\VectorInnerProductDot{\vb{u}(t)}{\vb{v}(t)}
+			+ \VectorInnerProductDot{\increment\vb{u}}{\vb{v}(t)}
+			+ \VectorInnerProductDot{\vb{u}(t)}{\increment\vb{v}}
+			+ \VectorInnerProductDot{\increment\vb{u}}{\increment\vb{v}}
+			- \VectorInnerProductDot{\vb{u}(t)}{\vb{v}(t)}
 		}{
 			\increment t
 		}
 		\tag{\hyperref[equation:解析几何.内积的线性性2]{线性性}} \\
 	&= \lim_{\increment t\to0}
 		\frac{
-			\vb{u}(t) \cdot \increment\vb{v} + \increment\vb{u} \cdot \vb{v}(t)
-			+ \increment\vb{u} \cdot \increment\vb{v}
+			\VectorInnerProductDot{\vb{u}(t)}{\increment\vb{v}}
+			+ \VectorInnerProductDot{\increment\vb{u}}{\vb{v}(t)}
+			+ \VectorInnerProductDot{\increment\vb{u}}{\increment\vb{v}}
 		}{
 			\increment t
 		} \\
 	&= \lim_{\increment t\to0} \left[
-		\vb{u}(t) \cdot \frac{\increment\vb{v}}{\increment t}
-		+ \frac{\increment\vb{u}}{\increment t} \cdot \vb{v}(t)
-		+ \increment t \frac{\increment\vb{u}}{\increment t}
-			\cdot \frac{\increment\vb{v}}{\increment t}
-	\right]
+			\VectorInnerProductDot{\vb{u}(t)}{\frac{\increment\vb{v}}{\increment t}}
+			+ \VectorInnerProductDot{\frac{\increment\vb{u}}{\increment t}}{\vb{v}(t)}
+			+ \increment t \VectorInnerProductDot{\frac{\increment\vb{u}}{\increment t}}{\frac{\increment\vb{v}}{\increment t}}
+		\right]
 		\tag{\hyperref[equation:解析几何.内积的线性性1]{线性性}} \\
-	&= \vb{u}(t) \cdot \vb{v}'(t) + \vb{u}'(t) \cdot \vb{v}(t).
+	&= \VectorInnerProductDot{\vb{u}(t)}{\vb{v}'(t)}
+		+ \VectorInnerProductDot{\vb{u}'(t)}{\vb{v}(t)}.
 \end{align*}
 注意到，在上述证明过程中，我们只运用了向量的数量积的双线性性，
 因此，这个证明对任意一个同样具有双线性性的二元代数运算也同样有用.
