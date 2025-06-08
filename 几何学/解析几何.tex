@@ -1373,16 +1373,27 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \begin{theorem}
 %@see: 《解析几何》（丘维声） P34 定理4.1
 对于任意向量\(\vb{a},\vb{b},\vb{c}\)，任意实数\(\lambda\)，有
-\begin{enumerate}
-	\item 反交换律，即\(\VectorOuterProduct{\vb{a}}{\vb{b}}=-\VectorOuterProduct{\vb{b}}{\vb{a}}\).
-	\item 线性性，即\((\lambda \vb{a})\times\vb{b}
-	= \lambda(\VectorOuterProduct{\vb{a}}{\vb{b}})
-	= \vb{a}\times(\lambda \vb{b})\).
-	\item 左分配律，即\(\vb{a}\times(\vb{b}+\vb{c})
-	= \VectorOuterProduct{\vb{a}}{\vb{b}} + \VectorOuterProduct{\vb{a}}{\vb{c}}\).
-	\item 右分配律，即\((\vb{b}+\vb{c})\times\vb{a}
-	= \VectorOuterProduct{\vb{b}}{\vb{a}} + \VectorOuterProduct{\vb{c}}{\vb{a}}\).
-\end{enumerate}
+\begin{itemize}
+	\item 反交换律，即\begin{equation*}
+		\VectorOuterProduct{\vb{a}}{\vb{b}}
+		= -\VectorOuterProduct{\vb{b}}{\vb{a}};
+	\end{equation*}
+	\item 线性性，即\begin{equation*}
+		\VectorOuterProduct{(\lambda \vb{a})}{\vb{b}}
+		= \lambda(\VectorOuterProduct{\vb{a}}{\vb{b}})
+		= \VectorOuterProduct{\vb{a}}{(\lambda \vb{b});}
+	\end{equation*}
+	\item 左分配律，即\begin{equation*}
+		\VectorOuterProduct{\vb{a}}{(\vb{b}+\vb{c})}
+		= \VectorOuterProduct{\vb{a}}{\vb{b}}
+		+ \VectorOuterProduct{\vb{a}}{\vb{c}};
+	\end{equation*}
+	\item 右分配律，即\begin{equation*}
+		\VectorOuterProduct{(\vb{b}+\vb{c})}{\vb{a}}
+		= \VectorOuterProduct{\vb{b}}{\vb{a}}
+		+ \VectorOuterProduct{\vb{c}}{\vb{a}}.
+	\end{equation*}
+\end{itemize}
 \end{theorem}
 
 \subsection{利用坐标计算向量的外积}
@@ -1394,8 +1405,9 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 则\begin{equation}
 \begin{split}
 	\VectorOuterProduct{\vb{a}}{\vb{b}}
-	&= (a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3)
-	\times (b_1 \vb{d}_1 + b_2 \vb{d}_2 + b_3 \vb{d}_3) \\
+	&= \VectorOuterProduct
+		{(a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3)}
+		{(b_1 \vb{d}_1 + b_2 \vb{d}_2 + b_3 \vb{d}_3)} \\
 	&= (a_1 b_2 - a_2 b_1) \VectorOuterProduct{\vb{d}_1}{\vb{d}_2}
 	+ (a_3 b_1 - a_1 b_3) \VectorOuterProduct{\vb{d}_3}{\vb{d}_1}
 	+ (a_2 b_3 - a_3 b_2) \VectorOuterProduct{\vb{d}_2}{\vb{d}_3}.
@@ -1458,20 +1470,20 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 
 \subsection{二重外积}
 向量的外积是否满足结合律？
-首先让我们探索\(\vb{a}\times(\VectorOuterProduct{\vb{b}}{\vb{c}})\)的计算结果.
+首先让我们探索\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}\)的计算结果.
 设\(\vb{b}=\vec{OB},\vb{c}=\vec{OC}\)不共线，
 从外积的定义可知，
 \(\VectorOuterProduct{\vb{b}}{\vb{c}}\)垂直于由\(\vb{b},\vb{c}\)确定的平面\(OBC\).
-又由于\(\vb{a}\times(\VectorOuterProduct{\vb{b}}{\vb{c}})\)与\(\VectorOuterProduct{\vb{b}}{\vb{c}}\)垂直，
-因此\(\vb{a}\times(\VectorOuterProduct{\vb{b}}{\vb{c}})\)在平面\(OBC\)内，
-从而\(\vb{a}\times(\VectorOuterProduct{\vb{b}}{\vb{c}}) = k_1 \vb{b} + k_2 \vb{c}\)，
+又由于\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}\)与\(\VectorOuterProduct{\vb{b}}{\vb{c}}\)垂直，
+因此\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}\)在平面\(OBC\)内，
+从而\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})} = k_1 \vb{b} + k_2 \vb{c}\)，
 其中\(k_1,k_2\)待定.
 
 \begin{theorem}
 %@see: 《解析几何》（丘维声） P37 命题4.3
 对任意向量\(\vb{a},\vb{b},\vb{c}\)，有
 \begin{equation}\label{equation:解析几何.二重外积公式}
-	\vb{a}\times(\VectorOuterProduct{\vb{b}}{\vb{c}})
+	\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}
 	= (\VectorInnerProductDot{\vb{a}}{\vb{c}}) \vb{b}
 	- (\VectorInnerProductDot{\vb{a}}{\vb{b}}) \vb{c}.
 \end{equation}
@@ -1481,20 +1493,22 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 
 由\cref{equation:解析几何.二重外积公式}
 和外积的反交换律可以得到\[
-	(\VectorOuterProduct{\vb{a}}{\vb{b}})\times\vb{c}
-	= -\vb{c}\times(\VectorOuterProduct{\vb{a}}{\vb{b}})
+	\VectorOuterProduct{(\VectorOuterProduct{\vb{a}}{\vb{b}})}{\vb{c}}
+	= -\VectorOuterProduct{\vb{c}}{(\VectorOuterProduct{\vb{a}}{\vb{b}})}
 	= -(\VectorInnerProductDot{\vb{c}}{\vb{b}}) \vb{a}
 	+ (\VectorInnerProductDot{\vb{c}}{\vb{a}}) \vb{b}.
 \]
 从而在一般情况下，
-\(\vb{a}\times(\VectorOuterProduct{\vb{b}}{\vb{c}}) \neq (\VectorOuterProduct{\vb{a}}{\vb{b}})\times\vb{c}\)，
+\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}
+\neq
+\VectorOuterProduct{(\VectorOuterProduct{\vb{a}}{\vb{b}})}{\vb{c}}\)，
 即向量的外积不适合结合律.
 
 容易证明下述\DefineConcept{雅克比等式}：
 \begin{equation}\label{equation:解析几何.雅克比等式}
-	\vb{a}\times(\VectorOuterProduct{\vb{b}}{\vb{c}})
-	+ \vb{b}\times(\VectorOuterProduct{\vb{c}}{\vb{a}})
-	+ \vb{c}\times(\VectorOuterProduct{\vb{a}}{\vb{b}})
+	\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}
+	+ \VectorOuterProduct{\vb{b}}{(\VectorOuterProduct{\vb{c}}{\vb{a}})}
+	+ \VectorOuterProduct{\vb{c}}{(\VectorOuterProduct{\vb{a}}{\vb{b}})}
 	= \vb{0}.
 \end{equation}
 
