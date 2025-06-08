@@ -53,8 +53,11 @@
 \]
 将以上两式对应的两边分别作向量积，
 得\[
-	\dv{\vb{r}}{s} \times \dv[2]{\vb{r}}{s}
-	= \left(\dv{\vb{r}}{t} \times \dv[2]{\vb{r}}{t}\right) \cdot \left(\dv{t}{s}\right)^3.
+	\VectorOuterProduct{\dv{\vb{r}}{s}}{\dv[2]{\vb{r}}{s}}
+	= \left(
+			\VectorOuterProduct{\dv{\vb{r}}{t}}{\dv[2]{\vb{r}}{t}}
+		\right)
+		\left(\dv{t}{s}\right)^3.
 \]
 由于\(\dv{\vb{r}}{s}\)是单位向量，
 所以\(\dv{\vb{r}}{s} \cdot \dv{\vb{r}}{s} = 1\)，
@@ -67,9 +70,13 @@
 \]
 也就是说向量\(\dv{\vb{r}}{s}\)与\(\dv[2]{\vb{r}}{s}\)互相正交，
 所以曲线\(\Gamma\)的曲率为\[
-	K(t) = \abs{ \dv[2]{\vb{r}}{s} }
-	= \abs{ \dv{\vb{r}}{s} \times \dv[2]{\vb{r}}{s} }
-	= \abs{ \dv{\vb{r}}{t} \times \dv[2]{\vb{r}}{t} } \cdot \abs{ \dv{t}{s} }^3.
+	K(t)
+	= \abs{ \dv[2]{\vb{r}}{s} }
+	= \abs{ \VectorOuterProduct{\dv{\vb{r}}{s}}{\dv[2]{\vb{r}}{s}} }
+	= \abs{
+			\VectorOuterProduct{\dv{\vb{r}}{t}}{\dv[2]{\vb{r}}{t}}
+		}
+		\abs{ \dv{t}{s} }^3.
 \]
 但因\(\abs{ \dd{\vb{r}} } = \abs{ \dd{s} }\)，
 \(\abs{ \dv{s}{t} } = \abs{ \dv{\vb{r}}{t} }\)，
@@ -77,5 +84,11 @@
 	\abs{ \dv{t}{s} }^3 = \abs{ \dv{\vb{r}}{t} }^{-3}.
 \]
 由此得出曲率为\begin{equation}
-	K(t) = \frac{ \abs{ \vb{r}'_t \times \vb{r}''_t } }{ \abs{ \vb{r}'_t }^3 }.
+	K(t) = \frac{
+			\abs{
+				\VectorOuterProduct{\vb{r}'_t}{\vb{r}''_t}
+			}
+		}{
+			\abs{ \vb{r}'_t }^3
+		}.
 \end{equation}
