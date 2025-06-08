@@ -1127,24 +1127,22 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	(a_1,a_2,a_3)^T, \qquad
 	(b_1,b_2,b_3)^T,
 \]
-则\begin{equation}
-	\begin{split}
+则\begin{align*}
 	\VectorInnerProductDot{\vb{a}}{\vb{b}}
 	&= (a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3)
 	\cdot (b_1 \vb{d}_1 + b_2 \vb{d}_2 + b_3 \vb{d}_3) \\
-	&= (a_1 b_1) \vb{d}_1 \cdot \vb{d}_1
-	+ (a_1 b_2) \vb{d}_1 \cdot \vb{d}_2
-	+ (a_1 b_3) \vb{d}_1 \cdot \vb{d}_3 \\
+	&= (a_1 b_1) \VectorInnerProductDot{\vb{d}_1}{\vb{d}_1}
+		+ (a_1 b_2) \VectorInnerProductDot{\vb{d}_1}{\vb{d}_2}
+		+ (a_1 b_3) \VectorInnerProductDot{\vb{d}_1}{\vb{d}_3} \\
 	&\hspace{20pt}
-	+ (a_2 b_1) \vb{d}_2 \cdot \vb{d}_1
-	+ (a_2 b_2) \vb{d}_2 \cdot \vb{d}_2
-	+ (a_2 b_3) \vb{d}_2 \cdot \vb{d}_3 \\
+		+ (a_2 b_1) \VectorInnerProductDot{\vb{d}_2}{\vb{d}_1}
+		+ (a_2 b_2) \VectorInnerProductDot{\vb{d}_2}{\vb{d}_2}
+		+ (a_2 b_3) \VectorInnerProductDot{\vb{d}_2}{\vb{d}_3} \\
 	&\hspace{20pt}
-	+ (a_3 b_1) \vb{d}_3 \cdot \vb{d}_1
-	+ (a_3 b_2) \vb{d}_3 \cdot \vb{d}_2
-	+ (a_3 b_3) \vb{d}_3 \cdot \vb{d}_3.
-	\end{split}
-\end{equation}
+		+ (a_3 b_1) \VectorInnerProductDot{\vb{d}_3}{\vb{d}_1}
+		+ (a_3 b_2) \VectorInnerProductDot{\vb{d}_3}{\vb{d}_2}
+		+ (a_3 b_3) \VectorInnerProductDot{\vb{d}_3}{\vb{d}_3}.
+\end{align*}
 可见，只要知道基向量\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)之间的内积
 （看起来有9个数，实际上由于内积的对称性，至多有6个不同的数）
 就可以求出任意两个向量的内积.
@@ -1658,11 +1656,11 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 		a_2 & b_2 & c_2 \\
 		a_3 & b_3 & c_3
 	\end{vmatrix}
-	\vb{d}_1 \times \vb{d}_2 \cdot \vb{d}_3.
+	\vb{d}_1 \times \VectorInnerProductDot{\vb{d}_2}{\vb{d}_3}.
 \end{split}
 \end{equation}
 这里\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)不共面，
-\(\vb{d}_1\times\vb{d}_2\cdot\vb{d}_3\neq0\).
+\(\vb{d}_1\times\VectorInnerProductDot{\vb{d}_2}{\vb{d}_3}\neq0\).
 
 \begin{theorem}
 %@see: 《解析几何》（丘维声） P41 命题5.2
@@ -1673,7 +1671,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 	(c_1,c_2,c_3)^T,
 \]
 则\begin{equation}
-	\frac{\vb{a}\times\VectorInnerProductDot{\vb{b}}{\vb{c}}}{\vb{d}_1\times\vb{d}_2\cdot\vb{d}_3}
+	\frac{\vb{a}\times\VectorInnerProductDot{\vb{b}}{\vb{c}}}{\vb{d}_1\times\VectorInnerProductDot{\vb{d}_2}{\vb{d}_3}}
 	= \begin{vmatrix}
 		a_1 & b_1 & c_1 \\
 		a_2 & b_2 & c_2 \\
@@ -2160,7 +2158,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \]
 则\(\alpha_1\)与\(\alpha_2\)的一个夹角满足\[
 	\angle(\alpha_1,\alpha_2)
-	= \frac{\vb{n}_1 \cdot \vb{n}_2}{\abs{\vb{n}_1} \abs{\vb{n}_2}}
+	= \frac{\VectorInnerProductDot{\vb{n}_1}{\vb{n}_2}}{\abs{\vb{n}_1} \abs{\vb{n}_2}}
 	= \frac{A_1 A_2 + B_1 B_2 + C_1 C_2}{\sqrt{A_1^2 + B_1^2 + C_1^2} \sqrt{A_2^2 + B_2^2 + C_2^2}},
 \]
 由此可得，两个平面\(\alpha_1\)与\(\alpha_2\)垂直的充分必要条件是
@@ -2347,7 +2345,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \]
 其中\(\lambda,\mu\)取任意实数.
 因为直线\(l_1\)与\(l_2\)垂直，所以它们的方向向量垂直，那么\[
-	\vb{\nu}_1\cdot\vb{\nu}_2
+	\VectorInnerProductDot{\vb{\nu}_1}{\vb{\nu}_2}
 	= (\lambda \cdot 1) \cdot (\mu \cdot 1)
 	+ (\lambda \cdot k_1) \cdot (\mu \cdot k_2) = 0,
 \]
@@ -2585,7 +2583,7 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 那么\(l_1\)和\(l_2\)的夹角等于它们的方向向量的夹角，满足\[
 	\cos\angle(l_1,l_2)
 	= \cos\angle(\vb{\nu}_1,\vb{\nu}_2)
-	= \frac{\abs{\vb{\nu}_1 \cdot \vb{\nu}_2}}{\abs{\vb{\nu}_1}\abs{\vb{\nu}_2}}.
+	= \frac{\abs{\VectorInnerProductDot{\vb{\nu}_1}{\vb{\nu}_2}}}{\abs{\vb{\nu}_1}\abs{\vb{\nu}_2}}.
 \]
 
 \subsubsection{直线和平面所成的角}
@@ -4354,7 +4352,7 @@ y^2 = 2px, \quad p > 0
 \]
 即\[
 	\frac{\abs{\VectorInnerProductDot{\vec{OM}}{\vb{\nu}}}}{\abs{\vec{OM}}\abs{\vb{\nu}\vphantom{\vec{OM}}}}
-	= \frac{\abs{\vb{e}_1\cdot\vb{\nu}}}{\abs{\vb{\nu}}},
+	= \frac{\abs{\VectorInnerProductDot{\vb{e}_1}{\vb{\nu}}}}{\abs{\vb{\nu}}},
 \]
 整理得\[
 	xy+yz+zx=0.
