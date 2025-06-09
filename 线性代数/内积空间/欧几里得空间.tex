@@ -1,1 +1,214 @@
 \section{欧几里得空间}
+\subsection{内积}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 定义1
+设\(V\)是实数域\(\mathbb{R}\)上的一个线性空间.
+如果\(f\)是\(V\)上的一个正定对称双线性函数，
+则称\(f\)是“\(V\)上的一个\DefineConcept{内积}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 命题1
+设\(V\)是\(\mathbb{R}\)上的一个\(n\)维线性空间，
+\(f\)是\(V\)上的一个双线性函数，
+则\(f\)是正定对称的，
+当且仅当\(f\)在\(V\)的某个基下的度量矩阵是正定对称的.
+%TODO proof
+\end{proposition}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 例1
+在\(V = \mathbb{R}^3\)中，
+令\(f(\alpha,\beta) \defeq a_1 b_1 + 2 a_2 b_2 + 3 a_3 b_3\)，
+其中\(\alpha=(\AutoTuple{a}{3})^T,
+\beta=(\AutoTuple{b}{3})^T\).
+容易验证，\(f\)是\(V\)上的一个内积.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 例2
+在\(V = M_n(\mathbb{R})\)中，
+令\(f(A,B) \defeq \tr(AB^T)\).
+容易验证，\(f\)是\(V\)上的一个内积.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 例3
+在\(V = C[a,b]\)中，
+令\(f(f,g) \defeq \int_a^b f(x) g(x) \dd{x}\).
+容易验证，\(f\)是\(V\)上的一个内积.
+\end{example}
+
+\subsection{实内积空间，欧几里得空间}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 定义2
+设\(V\)是一个实线性空间，
+\(\rho\)是\(V\)上的一个内积，
+则称“\((V,\rho)\)是一个\DefineConcept{实内积空间}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 定义2
+设\(V\)是一个实内积空间.
+如果\(V\)是有限维的，
+则称“\(V\)是一个\DefineConcept{欧几里得空间}”；
+把线性空间\(V\)的维数称为“欧几里得空间\(V\)的\DefineConcept{维数}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 定义3
+设\((V,\rho)\)是一个实内积空间，
+\(\alpha \in V\).
+把非负实数\(\sqrt{\rho(\alpha,\alpha)}\)
+称为“向量\(\alpha\)的\DefineConcept{长度}”，
+记作\(\VectorLengthA{\alpha}\)或\(\VectorLengthN{\alpha}\).
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175
+在实内积空间\(V\)中，
+零向量的长度为\(0\)，
+非零向量的长度是正数.
+\end{property}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175
+在实内积空间\((V,\rho)\)中，
+对于\(\forall \alpha \in V\)
+和\(\forall k \in \mathbb{R}\)，
+有\(\VectorLengthA{k\alpha} = \abs{k} \VectorLengthA{\alpha}\).
+\begin{proof}
+\(\VectorLengthA{k\alpha}
+= \sqrt{\rho(k\alpha,k\alpha)}
+= \sqrt{k^2\rho(\alpha,\alpha)}
+= \abs{k} \VectorLengthA{\alpha}\).
+\end{proof}
+\end{property}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175
+设\((V,\rho)\)是实内积空间，
+\(\alpha \in V\).
+如果\(\VectorLengthA{\alpha} = 1\)，
+则称“\(\alpha\)是一个\DefineConcept{单位向量}”.
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175
+设\((V,\rho)\)是实内积空间，
+\(\alpha \in V\).
+如果\(\alpha\neq0\)，
+则\(\frac1{\VectorLengthA{\alpha}} \alpha\)是一个单位向量.
+\end{property}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175 定理2（柯西-布尼亚科夫斯基不等式）
+在实内积空间\((V,\rho)\)中，
+对于\(\forall \alpha,\beta \in V\)，
+有\begin{equation}
+	\abs{\rho(\alpha,\beta)} \leq \VectorLengthA{\alpha} \VectorLengthA{\beta}.
+\end{equation}
+当且仅当\(\{\alpha,\beta\}\)线性相关时，上式取“\(=\)”号.
+%TODO proof
+\end{theorem}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175 定义4
+在实内积空间\((V,\rho)\)中，
+\(\alpha,\beta\)是两个非零向量.
+把\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175 (6)
+	\arccos\frac{\rho(\alpha,\beta)}{\VectorLengthA{\alpha} \VectorLengthA{\beta}}
+\end{equation}
+称为“\(\alpha\)与\(\beta\)的\DefineConcept{夹角}”，
+记为\(\VectorAngleA{\alpha}{\beta}\)或\(\VectorAngleP{\alpha}{\beta}\).
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175
+设\(\alpha,\beta\)是实内积空间\((V,\rho)\)中的两个非零向量，
+则\(\alpha\)与\(\beta\)的夹角\(\theta = \VectorAngleA{\alpha}{\beta}\)
+满足\(0 \leq \theta \leq \pi\).
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175
+设\(\alpha,\beta\)是实内积空间\((V,\rho)\)中的两个非零向量，
+则\(\alpha\)与\(\beta\)的夹角\(\theta = \VectorAngleA{\alpha}{\beta}\)
+满足\(\theta = \frac\pi2 \iff \rho(\alpha,\beta) = 0\).
+%TODO proof
+\end{property}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175 定义5
+设\(\alpha,\beta\)是实内积空间\((V,\rho)\)中的两个非零向量.
+如果\(\rho(\alpha,\beta) = 0\)，
+则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}”，
+记为\(\alpha \perp \beta\).
+\end{definition}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175 推论3
+在实内积空间\((V,\rho)\)中，
+三角不等式成立，
+即对于\(\forall \alpha,\beta \in V\)，
+有\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P175 (7)
+	\VectorLengthA{\alpha+\beta} \leq \VectorLengthA{\alpha} + \VectorLengthA{\beta}.
+\end{equation}
+%TODO 没有取等条件
+%TODO proof
+\end{corollary}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176 推论4
+在实内积空间\((V,\rho)\)中，
+勾股定理成立，
+即对于\(\forall \alpha,\beta \in V\)，
+如果\(\alpha\)与\(\beta\)正交，
+则\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176 (8)
+	\VectorLengthA{\alpha+\beta}^2 = \VectorLengthA{\alpha}^2 + \VectorLengthA{\beta}^2.
+\end{equation}
+%TODO proof
+\end{corollary}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176 定义6
+在实内积空间\((V,\rho)\)中，
+\(\alpha,\beta \in V\).
+把\(\VectorLengthA{\alpha-\beta}\)
+称为“\(\alpha\)与\(\beta\)的\DefineConcept{距离}”，
+记为\(d(\alpha,\beta)\).
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176
+在实内积空间\((V,\rho)\)中，
+距离\(d\colon V \times V \to \mathbb{R},
+(\alpha,\beta) \mapsto \VectorLengthA{\alpha-\beta}\)
+满足以下性质：\begin{itemize}
+	\item {\rm\bf 对称性}：\begin{equation*}
+		(\forall \alpha,\beta \in V)
+		[
+			d(\alpha,\beta) = d(\beta,\alpha)
+		];
+	\end{equation*}
+
+	\item {\rm\bf 正定性}：\begin{equation*}
+		(\forall \alpha,\beta \in V)
+		[
+			d(\alpha,\beta) \geq 0
+		];
+	\end{equation*}
+	当且仅当\(\alpha = \beta\)时，上式取“\(=\)”号；
+
+	\item {\rm\bf 三角不等式}：\begin{equation*}
+		(\forall \alpha,\beta,\gamma \in V)
+		[
+			d(\alpha,\gamma) \leq d(\alpha,\beta) + d(\beta,\gamma)
+		].
+	\end{equation*}
+\end{itemize}
+\end{property}
