@@ -1,4 +1,5 @@
 \section{双线性函数}
+\subsection{双线性函数}
 我们已经知道，\(\mathbb{R}^n\)上一个内积
 \(\VectorInnerProductDot{\alpha}{\beta}\)是\(\mathbb{R}^n\)上的一个二元实值函数，
 并且它具有对称性、线性性、正定性，
@@ -24,63 +25,73 @@
 	+ k_2(\VectorInnerProductDot{\alpha}{\beta_2}),
 		\label{equation:双线性函数.双线性函数判定条件2}
 \end{gather}
-则称“\(f\)是\(V\)上的一个\DefineConcept{双线性函数}”，
+则称“\(f\)是\(V\)上的一个\DefineConcept{双线性函数}%
+（\(f\) is a \emph{bilinear function} on \(V\)）”，
 记\begin{equation*}
-	f_1(\beta) \defeq f(\alpha,\beta),
+	f_L(\alpha) \defeq f(\alpha,\beta),
 	\qquad
-	f_2(\alpha) \defeq f(\alpha,\beta).
+	f_R(\beta) \defeq f(\alpha,\beta).
 \end{equation*}
+%@see: https://mathworld.wolfram.com/BilinearFunction.html
 \end{definition}
 \begin{remark}
+%@see: 《高等代数（第三版 下册）》（丘维声） P166
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P333 9.1
 条件 \labelcref{equation:双线性函数.双线性函数判定条件1} 表明：
-当\(\beta\)固定时，映射\(f_2\)是\(V\)上的一个线性函数.
+当\(\beta\)固定时，映射\(f_L\)是\(V\)上的一个线性函数.
 条件 \labelcref{equation:双线性函数.双线性函数判定条件2} 表明：
-当\(\alpha\)固定时，映射\(f_1\)是\(V\)上的一个线性函数.
+当\(\alpha\)固定时，映射\(f_R\)是\(V\)上的一个线性函数.
 \end{remark}
 
-\begin{example}
+\begin{example}\label{example:双线性函数.例1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P166 例1
 设\(V = M_n(F)\).
 令\(f(A,B) \defeq \tr(AB)\ (A,B \in V)\)，
 则\(f\)是\(V\)上的一个双线性函数.
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:双线性函数.例2}
 %@see: 《高等代数（第三版 下册）》（丘维声） P167 例2
 设\(V = C[a,b]\).
 令\(f(g,h) \defeq \int_a^b g(x) h(x) \dd{x}\ (g,h \in V)\)，
 则\(f\)是\(V\)上的一个双线性函数.
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:双线性函数.例3}
 %@see: 《高等代数（第三版 下册）》（丘维声） P167 例3
 设\(V = F^n\).
-令\(f(\alpha,\beta) = \VectorInnerProductDot{\alpha}{\beta}\ (\alpha,\beta \in V)\)，
-则\(f\)是\(V\)上的一个双线性函数.
+映射\(f\colon V \times V \to F,
+(\alpha,\beta) \mapsto \VectorInnerProductDot{\alpha}{\beta}\)是\(V\)上的一个双线性函数.
 \end{example}
 
+\subsection{双线性函数的度量矩阵}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P167
 设\(V\)是域\(F\)上\(n\)维线性空间，
 \(f\)是\(V\)上的一个双线性函数，
 在\(V\)中取一个基\(\AutoTuple{\epsilon}{n}\)，
 向量\(\alpha,\beta\)在基\(\AutoTuple{\epsilon}{n}\)下的坐标
-分别是\(X=(\AutoTuple{x}{n})^T,
-Y=(\AutoTuple{y}{n})^T\)，
-把\begin{equation*}
+分别是\begin{equation}\label{equation:双线性函数.双线性函数的自变量的坐标}
+	X=(\AutoTuple{x}{n})^T,
+	\qquad
+	Y=(\AutoTuple{y}{n})^T,
+\end{equation}
+把\begin{equation}\label{equation:双线性函数.双线性函数的因变量的坐标}
+%@see: 《高等代数（第三版 下册）》（丘维声） P167 (1)
 	f(\alpha,\beta)
 	= f\left( \sum_{i=1}^n x_i \epsilon_i, \sum_{j=1}^n y_j \epsilon_j \right)
 	= \sum_{i=1}^n \sum_{j=1}^n x_i y_j f(\epsilon_i,\epsilon_j)
-\end{equation*}
+\end{equation}
 中\(x_i y_j\)的系数\(f(\epsilon_i,\epsilon_j)\)作为矩阵的\((i,j)\)元素，
-得到\begin{equation*}
+得到\begin{equation}\label{equation:双线性函数.双线性函数的度量矩阵}
+%@see: 《高等代数（第三版 下册）》（丘维声） P167 (2)
 	A \defeq \begin{bmatrix}
 		f(\epsilon_1,\epsilon_1) & f(\epsilon_1,\epsilon_2) & \dots & f(\epsilon_1,\epsilon_n) \\
 		f(\epsilon_2,\epsilon_1) & f(\epsilon_2,\epsilon_2) & \dots & f(\epsilon_2,\epsilon_n) \\
 		\vdots & \vdots & & \vdots \\
 		f(\epsilon_n,\epsilon_1) & f(\epsilon_n,\epsilon_2) & \dots & f(\epsilon_n,\epsilon_n) \\
 	\end{bmatrix},
-\end{equation*}
+\end{equation}
 将\(A\)称为“双线性函数\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的\DefineConcept{度量矩阵}”.
 \end{definition}
 \begin{remark}
@@ -88,3 +99,317 @@ Y=(\AutoTuple{y}{n})^T\)，
 双线性函数\(f\)的度量矩阵
 由\(f\)以及基\(\AutoTuple{\epsilon}{n}\)唯一确定.
 \end{remark}
+\begin{remark}
+由\cref{equation:双线性函数.双线性函数的自变量的坐标,equation:双线性函数.双线性函数的因变量的坐标,equation:双线性函数.双线性函数的度量矩阵}
+可得\begin{equation}\label{equation:双线性函数.双线性函数的矩阵表示}
+%@see: 《高等代数（第三版 下册）》（丘维声） P167 (3)
+	f(\alpha,\beta)
+	= X^T A Y.
+\end{equation}
+\cref{equation:双线性函数.双线性函数的矩阵表示,equation:双线性函数.双线性函数的因变量的坐标}
+都是双线性函数\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的表达式.
+\end{remark}
+
+\begin{theorem}\label{theorem:双线性函数.双线性函数在两个基下的度量矩阵合同}
+%@see: 《高等代数（第三版 下册）》（丘维声） P167 定理1
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数，
+在\(V\)中取两个基\(\AutoTuple{\alpha}{n}\)与\(\AutoTuple{\beta}{n}\)，
+矩阵\(P \in M_n(F)\)满足\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P167 (4)
+	(\AutoTuple{\beta}{n})
+	= (\AutoTuple{\alpha}{n}) P,
+\end{equation*}
+\(f\)在这两个基下的度量矩阵分别是\(A,B\)，
+则\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P167 (5)
+	B = P^T A P.
+\end{equation*}
+\begin{proof}
+设\begin{equation*}
+	\alpha = (\AutoTuple{\alpha}{n}) X
+	= (\AutoTuple{\beta}{n}) X_0,
+	\qquad
+	\beta = (\AutoTuple{\alpha}{n}) Y
+	= (\AutoTuple{\beta}{n}) Y_0,
+\end{equation*}
+则\(X = P X_0,
+Y = P Y_0\)，
+从而\begin{equation*}
+	f(\alpha,\beta)
+	= X^T A Y
+	= (P X_0)^T A (P Y_0)
+	= X_0^T (P^T A P) Y_0.
+\end{equation*}
+再由\(f(\alpha,\beta) = X_0^T B Y_0\)
+可得\begin{equation*}
+	X_0^T B Y_0 = X_0^T (P^T A P) Y_0,
+\end{equation*}
+根据\(X_0,Y_0\)的任意性，
+可知\(B = P^T A P\).
+\end{proof}
+\end{theorem}
+\begin{remark}
+\cref{theorem:双线性函数.双线性函数在两个基下的度量矩阵合同} 表明，
+\(V\)上的双线性函数\(f\)在不同基下的度量矩阵是合同的.
+由于合同矩阵有相同的秩，
+因此我们把双线性函数\(f\)在\(V\)某个基下的度量矩阵的秩由\(f\)唯一确定.
+\end{remark}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P168
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数，
+\(A\)是\(f\)在\(V\)中某个基下的度量矩阵.
+把\(\rank A\)
+称为“双线性函数\(f\)的\DefineConcept{矩阵秩}”，
+记为\(\rank f\).
+\end{definition}
+
+\subsection{非退化双线性函数}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P168 定义2
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P351 定义9.1.6
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数.
+\begin{itemize}
+	\item 定义：\begin{equation}
+		\Rad_L f
+		\defeq
+		\Set{
+			\alpha \in V
+			\given
+			(\forall\beta \in V)
+			[f(\alpha,\beta) = 0]
+		},
+	\end{equation}
+	称之为“\(f\)的\DefineConcept{左根}（left radical）”.
+	\item 定义：\begin{equation}
+		\Rad_R f
+		\defeq
+		\Set{
+			\beta \in V
+			\given
+			(\forall\alpha \in V)
+			[f(\alpha,\beta) = 0]
+		},
+	\end{equation}
+	称之为“\(f\)的\DefineConcept{右根}（right radical）”.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P168
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数，
+则\(f\)的左根\(\Rad_L f\)和右根\(\Rad_R f\)都是\(V\)的子空间.
+%TODO proof
+\end{proposition}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P168 定理2
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P351 定理9.1.7
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数，
+在\(V\)中取一个基\(\AutoTuple{\epsilon}{n}\)，
+\(A\)是\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的度量矩阵，
+则\begin{equation*}
+	\text{$A$是满秩矩阵}
+	\iff
+	\Rad_L f = 0
+	\iff
+	\Rad_R f = 0.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P168 定义3
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P351 定理9.1.7
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数.
+如果\(\Rad_L f = \Rad_R f = 0\)，
+则称“\(f\)是\DefineConcept{非退化的}（nondegenerate）”；
+否则称“\(f\)是\DefineConcept{退化的}（degenerate）”.
+\end{definition}
+
+\subsection{对称双线性函数，斜对称双线性函数}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P169 定义4
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数.
+\begin{itemize}
+	\item 如果\begin{equation}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P169 (8)
+		(\forall \alpha,\beta \in V)
+		[f(\alpha,\beta) = f(\beta,\alpha)],
+	\end{equation}
+	则称“\(f\)是\DefineConcept{对称的}”.
+	\item 如果\begin{equation}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P169 (9)
+		(\forall \alpha,\beta \in V)
+		[f(\alpha,\beta) = -f(\beta,\alpha)],
+	\end{equation}
+	则称“\(f\)是\DefineConcept{斜对称的}”
+	或“\(f\)是\DefineConcept{反对称的}”.
+\end{itemize}
+\end{definition}
+
+\cref{example:双线性函数.例1,example:双线性函数.例2,example:双线性函数.例3} 中的双线性函数也都是对称的.
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P169 例5
+设\(V = \mathbb{R}^2\).
+映射\(f\colon V \times V \to \mathbb{R},
+\left(
+	\begin{bmatrix}
+		x_1 \\
+		x_2
+	\end{bmatrix},
+	\begin{bmatrix}
+		y_1 \\
+		y_2
+	\end{bmatrix}
+\right)
+\mapsto
+\begin{vmatrix}
+	x_1 & y_1 \\
+	x_2 & y_2
+\end{vmatrix}\)是斜对称双线性函数.
+\end{example}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P169
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数，
+则\begin{equation*}
+	\text{$f$是对称的}
+	\iff
+	\text{$f$的度量矩阵是对称的}.
+\end{equation*}
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P169
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数，
+则\begin{equation*}
+	\text{$f$是斜对称的}
+	\iff
+	\text{$f$的度量矩阵是斜对称的}.
+\end{equation*}
+%TODO proof
+\end{proposition}
+
+\subsection{对称双线性函数的度量矩阵}
+\begin{theorem}\label{theorem:双线性函数.数域上的对称双线性函数在某个基下的度量矩阵是对角矩阵}
+%@see: 《高等代数（第三版 下册）》（丘维声） P169 定理3
+设\(f\)是数域\(K\)上\(n\)维线性空间\(V\)上的一个对称双线性函数，
+则\(V\)中存在一个基\(\AutoTuple{\epsilon}{n}\)，
+使得\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的度量矩阵是对角矩阵.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}\label{theorem:双线性函数.特征不为2的域上的对称双线性函数在某个基下的度量矩阵是对角矩阵}
+%@see: 《高等代数（第三版 下册）》（丘维声） P170 定理4
+设\(f\)是域\(F\ (\FieldChar F\neq2)\)上\(n\)维线性空间\(V\)上的一个对称双线性函数，
+则\(V\)中存在一个基\(\AutoTuple{\epsilon}{n}\)，
+使得\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的度量矩阵是对角矩阵.
+%TODO proof
+\end{theorem}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P171
+设\(f\)是域\(F\ (\FieldChar F\neq2)\)上\(n\)维线性空间\(V\)上的一个非退化的对称双线性函数，
+则\(V\)中存在一个基\(\AutoTuple{\eta}{n}\)，
+使得\begin{align*}
+	f(\eta_i,\eta_j)
+	&= 0,
+	\quad i \neq j; i,j=1,2,\dotsc,n; \\
+	f(\eta_i,\eta_i)
+	&\neq 0,
+	\quad i=1,2,\dotsc,n.
+\end{align*}
+\end{proposition}
+
+\cref{theorem:双线性函数.特征不为2的域上的对称双线性函数在某个基下的度量矩阵是对角矩阵} 的意义之一
+在于它可以用来简化计算对称双线性函数在任意一对向量上的函数值.
+由于\(V\)中一定存在一个基\(\AutoTuple{\eta}{n}\)，
+使得\(f\)在基\(\AutoTuple{\eta}{n}\)下的度量矩阵是对称矩阵\(\diag(\AutoTuple{d}{n})\)，
+从而对于\(\forall\alpha=x_1\eta_1+\dotsb+x_n\eta_n\)
+和\(\forall\beta=y_1\eta_1+\dotsb+y_n\eta_n\)，
+有\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P171 (13)
+	f(\alpha,\beta)
+	= d_1 x_1 y_1 + \dotsb + d_n x_n y_n.
+\end{equation*}
+
+
+\subsection{斜对称双线性函数的度量矩阵}
+%@see: 《高等代数（第三版 下册）》（丘维声） P171
+下面来讨论斜对称双线性函数.
+设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个斜对称双线性函数.
+
+当\(\FieldChar F=2\)时，
+对\(\forall \alpha,\beta \in V\)，
+由\hyperref[definition:域的特征.域的特征]{域的特征的定义}有\(2 f(\alpha,\beta) = 0,
+f(\alpha,\beta) = -f(\alpha,\beta)\).
+由于\(f\)是斜对称的，
+所以\(f(\alpha,\beta)
+= -f(\beta,\alpha)
+= f(\beta,\alpha)\)，
+这就说明\(f\)是对称的.
+因此，在特征为2的域上的线性空间中，\begin{equation*}
+	\text{$f$是斜对称双线性函数}
+	\iff
+	\text{$f$是对称双线性函数}.
+\end{equation*}
+
+当\(\FieldChar F\neq2\)时，
+对\(\forall \alpha,\beta \in V\)，
+由\(f(\alpha,\alpha) = -f(\alpha,\alpha),
+2 f(\alpha,\alpha) = 0,
+f(\alpha,\alpha) = 0\).
+
+\begin{theorem}\label{theorem:双线性函数.特征不为2的域上的斜对称双线性函数在某个基下的度量矩阵是分块对角矩阵}
+%@see: 《高等代数（第三版 下册）》（丘维声） P171 定理5
+\def\MatrixChunk{\begin{bmatrix}
+	0 & 1 \\
+	-1 & 0
+\end{bmatrix}}
+设\(f\)是域\(F\ (\FieldChar F\neq2)\)上的\(n\)维线性空间\(V\)上的斜对称双线性函数，
+则\(V\)中存在一个基\(\delta_1,\delta_{-1},\delta_2,\delta_{-2},\dotsc,\delta_r,\delta_{-r},\eta_1,\eta_2,\dotsc,\eta_s\)，
+使得\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P171 (15)
+	f(\delta_i,\delta_{-i}) &= 1,
+	\quad i=1,2,\dotsc,r; \\
+	f(\delta_i,\delta_j) &= 0,
+	\quad i+j\neq0; \\
+	f(\alpha,\eta_k) &= 0,
+	\quad \alpha \in V; k=1,2,\dotsc,s;
+\end{align*}
+且\(f\)在这个基下的度量矩阵是\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P171 (14)
+	\diag\left(
+		\MatrixChunk,
+		\dotsc,
+		\MatrixChunk,
+		0,
+		\dotsc,
+		0
+	\right).
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P172
+\def\MatrixChunk{\begin{bmatrix}
+	0 & 1 \\
+	-1 & 0
+\end{bmatrix}}
+如果域\(F\ (\FieldChar F\neq2)\)上的\(n\)维线性空间\(V\)上的斜对称双线性函数\(f\)是非退化的，
+则\(V\)中存在一个基\(\AutoTuple{\delta}{n}\)，
+使得\(f\)在基\(\AutoTuple{\delta}{n}\)下的度量矩阵是分块对角矩阵\begin{equation*}
+	%@see: 《高等代数（第三版 下册）》（丘维声） P173 (20)
+		\diag\left(
+			\MatrixChunk,
+			\dotsc,
+			\MatrixChunk
+		\right).
+	\end{equation*}
+\begin{proof}
+由\cref{theorem:双线性函数.特征不为2的域上的斜对称双线性函数在某个基下的度量矩阵是分块对角矩阵} 可得.
+\end{proof}
+\end{proposition}
