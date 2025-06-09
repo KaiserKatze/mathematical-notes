@@ -26,21 +26,26 @@
 		\label{equation:双线性函数.双线性函数判定条件2}
 \end{gather}
 则称“\(f\)是\(V\)上的一个\DefineConcept{双线性函数}%
-（\(f\) is a \emph{bilinear function} on \(V\)）”，
-记\begin{equation*}
-	f_L(\alpha) \defeq f(\alpha,\beta),
-	\qquad
-	f_R(\beta) \defeq f(\alpha,\beta).
-\end{equation*}
+（\(f\) is a \emph{bilinear function} on \(V\)）”.
 %@see: https://mathworld.wolfram.com/BilinearFunction.html
 \end{definition}
 \begin{remark}
 %@see: 《高等代数（第三版 下册）》（丘维声） P166
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P333 9.1
 条件 \labelcref{equation:双线性函数.双线性函数判定条件1} 表明：
-当\(\beta\)固定时，映射\(f_L\)是\(V\)上的一个线性函数.
+当\(\beta\)固定时，
+双线性函数\(f\)在\(V \times \{\beta\}\)上的限制\(f \SetRestrict (V \times \{\beta\})\)，
+是\(V\)上的一个线性函数.
+% 在《高等代数（第三版 下册）》（丘维声）上，将这个映射的限制记为\(\beta_R\).
+\end{remark}
+\begin{remark}
+%@see: 《高等代数（第三版 下册）》（丘维声） P166
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P333 9.1
 条件 \labelcref{equation:双线性函数.双线性函数判定条件2} 表明：
-当\(\alpha\)固定时，映射\(f_R\)是\(V\)上的一个线性函数.
+当\(\alpha\)固定时，
+双线性函数\(f\)在\(\{\alpha\} \times V\)上的限制\(f \SetRestrict (\{\alpha\} \times V)\)，
+是\(V\)上的一个线性函数.
+% 在《高等代数（第三版 下册）》（丘维声）上，将这个映射的限制记为\(\alpha_L\).
 \end{remark}
 
 \begin{example}\label{example:双线性函数.例1}
@@ -201,6 +206,39 @@ Y = P Y_0\)，
 %TODO proof
 \end{proposition}
 
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 2.
+证明：如果\(V\)是有限维线性空间，则\(V\)上的双线性函数\(f\)满足\begin{equation*}
+	\dim\Rad_L f
+	= \dim\Rad_R f
+	= \dim V - \rank f.
+\end{equation*}
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 3.
+\def\fL{\alpha_L}  % 双线性函数\(f\)的限制
+\def\fR{\beta_R}  % 双线性函数\(f\)的限制
+\def\Lf{L_f}  % 从\(V\)到\(V^*\)的线性映射
+\def\Rf{R_f}  % 从\(V\)到\(V^*\)的线性映射
+设\(V\)是域\(F\)上\(n\)维线性空间，
+\(V^*\)是\(V\)的对偶空间，
+\(f\)是\(V\)上的一个双线性函数，
+记\(\alpha_L \defeq f \SetRestrict (\{\alpha\} \times V),
+\beta_R \defeq f \SetRestrict (V \times \{\beta\})\)，
+映射\(\Lf\colon \alpha \mapsto \fL\)，
+映射\(\Rf\colon \beta \mapsto \fR\).
+证明：\begin{itemize}
+	\item \(\Lf\)和\(\Rf\)都是从\(V\)到\(V^*\)的线性映射；
+	\item \(\Ker \Lf = \Rad_L V\)；
+	\item \(\Ker \Rf = \Rad_R V\)；
+	\item \(\rank \Lf = \rank \Rf = \rank f\)；
+	\item \(f\)是非退化的，当且仅当\(\Lf\)或\(\Rf\)是从\(V\)到\(V^*\)的同构.
+\end{itemize}
+%TODO proof
+\end{example}
+
 \begin{theorem}
 %@see: 《高等代数（第三版 下册）》（丘维声） P168 定理2
 %@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P351 定理9.1.7
@@ -225,6 +263,15 @@ Y = P Y_0\)，
 则称“\(f\)是\DefineConcept{非退化的}（nondegenerate）”；
 否则称“\(f\)是\DefineConcept{退化的}（degenerate）”.
 \end{definition}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 4.
+设\(V = M_n(F)\)，
+令\(f(A,B) \defeq \tr(AB)\ (A,B \in V)\).
+证明：\(f\)是非退化的.
+%TODO proof
+%\cref{example:双线性函数.例1}
+\end{example}
 
 \subsection{对称双线性函数，斜对称双线性函数}
 \begin{definition}
@@ -292,6 +339,56 @@ Y = P Y_0\)，
 %TODO proof
 \end{proposition}
 
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 6.
+设\(f\)是域\(F\ (\FieldChar F\neq2)\)上线性空间\(V\)的双线性函数.
+证明：\(f\)是斜对称的，当且仅当
+对于任意\(\alpha \in V\)，
+都有\(f(\alpha,\alpha) = 0\).
+%TODO proof
+\end{example}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 7.
+设\(V\)是域\(F\)上的线性空间，
+\(f\)是\(V\)上的双线性函数，
+\(f\)是对称的或斜对称的，
+\(W\)是\(V\)的一个子空间.
+定义：\begin{equation*}
+	W^\perp
+	\defeq
+	\Set{
+		\alpha \in V
+		\given
+		(\forall \beta \in W)
+		[f(\alpha,\beta) = 0]
+	},
+\end{equation*}
+称之为“\(W\)的\DefineConcept{正交补}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 7.
+设\(V\)是域\(F\)上的线性空间，
+\(f\)是\(V\)上的双线性函数，
+\(f\)是对称的或斜对称的，
+\(W\)是\(V\)的一个子空间，
+\(W^\perp\)是\(W\)的正交补，
+则\(W^\perp\)是\(V\)的一个子空间.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 8.
+设\(V\)是域\(F\)上的线性空间，
+\(f\)是\(V\)上的非退化的对称双线性函数，
+\(W\)是\(V\)的一个子空间，
+则\begin{itemize}
+	\item \(\dim W + \dim W^\perp = \dim V\)；
+	\item \((W^\perp)^\perp = W\).
+\end{itemize}
+\end{proposition}
+
 \subsection{对称双线性函数的度量矩阵}
 \begin{theorem}\label{theorem:双线性函数.数域上的对称双线性函数在某个基下的度量矩阵是对角矩阵}
 %@see: 《高等代数（第三版 下册）》（丘维声） P169 定理3
@@ -334,7 +431,6 @@ Y = P Y_0\)，
 	f(\alpha,\beta)
 	= d_1 x_1 y_1 + \dotsb + d_n x_n y_n.
 \end{equation*}
-
 
 \subsection{斜对称双线性函数的度量矩阵}
 %@see: 《高等代数（第三版 下册）》（丘维声） P171
