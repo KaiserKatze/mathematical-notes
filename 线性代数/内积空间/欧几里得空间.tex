@@ -100,6 +100,10 @@
 如果\(\alpha\neq0\)，
 则\(\frac1{\VectorLengthA{\alpha}} \alpha\)是一个单位向量.
 \end{property}
+\begin{remark}
+将一个非零向量\(\alpha\)变成单位向量\(\frac1{\VectorLengthA{\alpha}} \alpha\)的过程，
+称为\DefineConcept{单位化}.
+\end{remark}
 
 \begin{theorem}
 %@see: 《高等代数（第三版 下册）》（丘维声） P175 定理2（柯西-布尼亚科夫斯基不等式）
@@ -211,4 +215,298 @@
 		].
 	\end{equation*}
 \end{itemize}
+\end{property}
+
+\subsection{欧几里得空间中的基}
+我们希望在欧几里得空间\(V\)中找出一类基，
+使得在这样的基下容易计算\(V\)中任意两个向量的内积，
+从而易于计算长度、角度、距离等.
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176
+设\((V,\rho)\)是一个欧几里得空间，
+\(A\)是\(V\)中的一个向量组，
+如果\begin{equation*}
+	(\forall \alpha \in A)
+	[\alpha\neq0],
+	\qquad
+	(\forall \alpha,\beta \in A)
+	[\alpha \perp \beta],
+\end{equation*}
+则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交向量组}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176
+设\((V,\rho)\)是一个欧几里得空间，
+\(A\)是\(V\)中的一个向量组，
+如果\begin{equation*}
+	(\forall \alpha \in A)
+	[\VectorLengthA{\alpha} = 1],
+	\qquad
+	(\forall \alpha,\beta \in A)
+	[\alpha \perp \beta],
+\end{equation*}
+则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交单位向量组}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176 命题5
+在欧几里得空间\((V,\rho)\)中，
+任意一个正交向量组一定线性无关.
+%TODO proof
+\end{proposition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176
+设\((V,\rho)\)是\(n\)维欧几里得空间，
+\(A\)是\(V\)的一个基.
+如果\(A\)是正交向量组，
+则称“\(A\)是\((V,\rho)\)的一个\DefineConcept{正交基}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176
+设\((V,\rho)\)是\(n\)维欧几里得空间，
+\(A\)是\(V\)的一个基.
+如果\(A\)是正交单位向量组，
+则称“\(A\)是\((V,\rho)\)的一个\DefineConcept{标准正交基}”
+或“\(A\)是\((V,\rho)\)的一个\DefineConcept{规范正交基}”.
+\end{definition}
+
+\begin{theorem}\label{theorem:欧几里得空间.欧几里得空间中向量组的施密特正交化}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176 定理6
+设\((V,\rho)\)是欧几里得空间，
+\(\AutoTuple{\alpha}{s}\)是\(V\)中一个向量组，
+令\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P176 (10)
+	\beta_i
+	= \alpha_i
+		- \sum_{j=1}^{s-1} \frac{\rho(\alpha_i,\beta_j)}{\rho(\beta_j,\beta_j)} \beta_j,
+	\quad i=1,2,\dotsc,s,
+\end{equation*}
+则\(\AutoTuple{\beta}{s}\)是正交向量组，
+并且\(\AutoTuple{\alpha}{s}\)与\(\AutoTuple{\beta}{s}\)等价.
+\end{theorem}
+\begin{remark}
+\cref{theorem:欧几里得空间.欧几里得空间中向量组的施密特正交化} 中，
+把线性无关向量组\(\AutoTuple{\alpha}{s}\)
+变成与它等价的正交向量组\(\AutoTuple{\beta}{s}\)的过程，
+称为\DefineConcept{施密特正交化}.
+只要再将\(\beta_i\)单位化，
+就可以得到一个与\(\AutoTuple{\alpha}{s}\)等价的正交单位向量组\(\AutoTuple{\eta}{s}\).
+因此，给定\(n\)维欧几里得空间\(V\)中一个基\(\AutoTuple{\alpha}{n}\)，
+经过施密特正交化、单位化，就可以得到\(V\)的一个标准正交基\(\AutoTuple{\eta}{n}\).
+\end{remark}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P177
+设\((V,\rho)\)是\(n\)维欧几里得空间，
+则向量组\(\AutoTuple{\eta}{n}\)是\((V,\rho)\)的一个标准正交基，
+当且仅当\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P177 (11)
+	\rho(\eta_i,\eta_j)
+	= \delta(i,j),
+	\quad i,j=1,2,\dotsc,n,
+\end{equation*}
+其中\(\delta\)是克罗内克\(\delta\)函数.
+\end{proposition}
+
+设\((V,\rho)\)是\(n\)维欧几里得空间，
+向量\(\alpha,\beta \in V\)，
+向量组\(\AutoTuple{\eta}{n}\)是\((V,\rho)\)的一个标准正交基，
+\(\alpha,\beta\)在基\(\AutoTuple{\eta}{n}\)下的坐标
+分别是\(X=(\AutoTuple{x}{n})^T,
+Y=(\AutoTuple{y}{n})^T\)，
+则\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P177 (12)
+	\rho(\alpha,\beta)
+	&= \rho\left( \sum_{i=1}^n x_i \eta_i, \sum_{j=1}^n y_j \eta_j \right) \\
+	&= \sum_{i=1}^n \sum_{j=1}^n x_i y_j \rho(\eta_i,\eta_j) \\
+	&= \sum_{i=1}^n x_i y_i
+	= X^T Y.
+\end{align*}
+
+我们可以利用标准正交基，用内积表达向量的坐标分量.
+
+设\(\alpha\)在标准正交基\(\AutoTuple{\eta}{n}\)下的坐标为\(X=(\AutoTuple{x}{n})^T\)，
+则\begin{equation*}
+	\alpha = \sum_{i=1}^n x_i \eta_i;
+\end{equation*}
+等号两边用\(\eta_j\)作内积，得\begin{equation*}
+	\rho(\alpha,\eta_j)
+	= \rho\left( \sum_{i=1}^n x_i \eta_i, \eta_j \right)
+	= \sum_{i=1}^n x_i \rho(\eta_i,\eta_j)
+	= x_j,
+\end{equation*}
+因此\begin{equation}\label{equation:欧几里得空间.向量的傅里叶展开}
+%@see: 《高等代数（第三版 下册）》（丘维声） P177 (13)
+	\alpha = \sum_{i=1}^n \rho(\alpha,\eta_j) \eta_i.
+\end{equation}
+我们把\cref{equation:欧几里得空间.向量的傅里叶展开}
+称为“向量\(\alpha\)的\DefineConcept{傅里叶展开}”，
+其中系数\(\rho(\alpha,\eta_i)\ (i=1,2,\dotsc,n)\)
+称为“向量\(\alpha\)的\DefineConcept{傅里叶系数}”.
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P177 命题7
+在欧几里得空间\((V,\rho)\)中，
+一个标准正交基到另一个标准正交基的过渡矩阵
+一定是正交矩阵.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P177 命题8
+设\((V,\rho)\)是\(n\)维欧几里得空间，
+向量组\(\AutoTuple{\eta}{n}\)是\((V,\rho)\)的一个标准正交基，
+\(\AutoTuple{\beta}{n}\)是\(V\)中一个向量组.
+如果存在正交矩阵\(P \in M_n(\mathbb{R})\)，
+使得\begin{equation*}
+	(\AutoTuple{\beta}{n})
+	= (\AutoTuple{\eta}{n}) P,
+\end{equation*}
+那么\(\AutoTuple{\beta}{n}\)是\(V\)中一个标准正交基.
+%TODO proof
+\end{proposition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P180 习题10.2 10.
+设\(\AutoTuple{\alpha}{m}\)是\(n\)维欧几里得空间\((V,\rho)\)中一个向量组，
+把\begin{equation}
+	A \defeq \begin{bmatrix}
+		\rho(\alpha_1,\alpha_1) & \rho(\alpha_1,\alpha_2) & \dots & \rho(\alpha_1,\alpha_m) \\
+		\rho(\alpha_2,\alpha_1) & \rho(\alpha_2,\alpha_2) & \dots & \rho(\alpha_2,\alpha_m) \\
+		\vdots & \vdots & & \vdots \\
+		\rho(\alpha_m,\alpha_1) & \rho(\alpha_m,\alpha_2) & \dots & \rho(\alpha_m,\alpha_m) \\
+	\end{bmatrix},
+\end{equation}
+称为“向量组\(\AutoTuple{\alpha}{m}\)的\DefineConcept{格拉姆矩阵}”，
+记为\(G(\AutoTuple{\alpha}{m})\).
+把\(A\)的行列式\(\abs{A}\)
+“称为向量组\(\AutoTuple{\alpha}{m}\)的\DefineConcept{格拉姆行列式}”.
+\end{definition}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P180 习题10.2 10.
+设\(\AutoTuple{\alpha}{m}\)是\(n\)维欧几里得空间\((V,\rho)\)中一个向量组.
+证明：\begin{equation*}
+	\abs{G(\AutoTuple{\alpha}{m})} \geq 0.
+\end{equation*}
+当且仅当\(\AutoTuple{\alpha}{m}\)线性相关时，上式取“\(=\)”号.
+\end{example}
+
+\subsection{实内积空间之间的同构}
+对于同一个实线性空间\(V\)，
+当指定不同的内积时，
+\(V\)便成为不同的实内积空间，
+这些实内积空间之间有什么关系？
+不同的实线性空间，
+各自指定了一个内积，成为实内积空间后，
+它们之间又有什么关系？
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P178 定义7
+设\((V_1,\rho_1),(V_2,\rho_2)\)都是实内积空间.
+如果存在从\(V_1\)到\(V_2\)的一个双射\(\sigma\)，
+使得\begin{gather*}
+	(\forall \alpha,\beta \in V_1)
+	[
+		\sigma(\alpha+\beta)
+		= \sigma(\alpha) + \sigma(\beta)
+	], \\
+	(\forall \alpha \in V_1)
+	(\forall k \in \mathbb{R})
+	[
+		\sigma(k\alpha)
+		= k \sigma(\alpha)
+	], \\
+	(\forall \alpha,\beta \in V_1)
+	[
+		\rho_2(\sigma(\alpha),\sigma(\beta))
+		= \rho_1(\alpha,\beta)
+	],
+\end{gather*}
+则称“\(\sigma\)是从\(V_1\)到\(V_2\)的一个\DefineConcept{同构}”；
+并称“\(V_1\)与\(V_2\) \DefineConcept{同构}”，
+记为\(V_1 \Isomorphism V_2\).
+\end{definition}
+\begin{remark}
+从上述定义可以看出，
+实内积空间之间的一个同构\(\sigma\)
+首先是实线性空间之间的一个同构，
+其次\(\sigma\)还保持内积，
+因此\(\sigma\)既具有线性空间的同构的性质，还具有与内积有关的性质.
+\end{remark}
+
+\begin{proposition}\label{theorem:欧几里得空间.实内积空间之间的同构的等价定义}
+%@see: 《高等代数（第三版 下册）》（丘维声） P179
+设\((V_1,\rho_1),(V_2,\rho_2)\)都是实内积空间.
+如果存在从\(V_1\)到\(V_2\)的一个满射\(\sigma\)，
+使得\begin{gather*}
+	(\forall \alpha,\beta \in V_1)
+	[
+		\sigma(\alpha+\beta)
+		= \sigma(\alpha) + \sigma(\beta)
+	], \\
+	(\forall \alpha \in V_1)
+	(\forall k \in \mathbb{R})
+	[
+		\sigma(k\alpha)
+		= k \sigma(\alpha)
+	], \\
+	(\forall \alpha,\beta \in V_1)
+	[
+		\rho_2(\sigma(\alpha),\sigma(\beta))
+		= \rho_1(\alpha,\beta)
+	],
+\end{gather*}
+则\(\sigma\)是从\(V_1\)到\(V_2\)的一个同构.
+\end{proposition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P178
+设\((V_1,\rho_1),(V_2,\rho_2)\)都是实内积空间，
+\(\sigma\)是从\(V_1\)到\(V_2\)的一个同构，
+\(\AutoTuple{\alpha}{n}\)是\(V_1\)的一个标准正交基，
+则\(\sigma(\alpha_1),\dotsc,\sigma(\alpha_n)\)是\(V_2\)的一个标准正交基.
+% \begin{proof}
+% 因为\(\AutoTuple{\alpha}{n}\)是\(V_1\)的一个标准正交基，
+% 所以\begin{equation*}
+% 	\rho_1(\alpha_i,\alpha_j)
+% 	= \delta(i,j),
+% 	\quad i,j=1,2,\dotsc,n,
+% \end{equation*}
+% 其中\(\delta\)是克罗内克\(\delta\)函数；
+% 从而有\begin{equation*}
+% 	\rho_2(\sigma(\alpha_i),\sigma(\alpha_j))
+% 	= \rho_1(\alpha_i,\alpha_j)
+% 	= \delta(i,j),
+% 	\quad i,j=1,2,\dotsc,n,
+% \end{equation*}
+% 说明\(\sigma(\alpha_1),\dotsc,\sigma(\alpha_n)\)是\(V_2\)的一个标准正交基.
+% \end{proof}
+\end{property}
+
+\begin{theorem}\label{theorem:欧几里得空间.两个欧几里得空间同构的充分必要条件}
+%@see: 《高等代数（第三版 下册）》（丘维声） P178 定理9
+两个欧几里得空间同构的充分必要条件是它们的维数相同.
+%TODO proof
+\end{theorem}
+\begin{remark}
+从\cref{theorem:欧几里得空间.两个欧几里得空间同构的充分必要条件} 得出：
+任意一个\(n\)维欧几里得空间\(V\)
+都与装备了标准内积的欧几里得空间\(\mathbb{R}^n\)同构，
+并且\begin{equation*}
+	\sigma\colon V \to \mathbb{R}^n,
+	\alpha = \sum_{i=1}^n x_i \eta_i \mapsto (\AutoTuple{x}{n})^T
+\end{equation*}
+就是从\(V\)到\(\mathbb{R}^n\)的一个同构，
+其中\(\AutoTuple{\eta}{n}\)是\(V\)的一个标准正交基.
+\end{remark}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P179
+%@see: 《高等代数（第三版 下册）》（丘维声） P181 习题10.2 13.
+实内积空间之间的同构关系，具有反身性、对称性、传递性，是一个等价关系.
 \end{property}
