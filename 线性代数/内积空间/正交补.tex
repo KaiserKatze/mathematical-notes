@@ -21,3 +21,182 @@
 与\cref{definition:双线性函数.利用双线性函数构造的正交补} 中的“正交补”稍微不同，
 前者是后者的一个特例.
 \end{remark}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P181
+设\((V,\rho)\)是实内积空间，
+\(W\)是\(V\)的一个非空子集，
+则\(W\)的正交补\(W^\perp\)是\(V\)的一个子空间.
+\begin{proof}
+由\cref{theorem:双线性函数.双线性函数取值为零的条件2} 可知\(0 \in W^\perp\).
+任取\(\alpha,\beta \in W^\perp\)，
+任取\(\gamma \in W\)，
+任取\(k \in \mathbb{R}\)，
+则\begin{gather*}
+	\rho(\alpha+\beta,\gamma)
+	= \rho(\alpha,\gamma) + \rho(\beta,\gamma)
+	= 0 + 0 = 0, \\
+	\rho(k\alpha,\gamma)
+	= k\rho(\alpha,\gamma)
+	= k0 = 0,
+\end{gather*}
+即\(W^\perp\)对加法、纯量乘法封闭.
+因此\(W^\perp\)是\(V\)的子空间.
+\end{proof}
+\end{property}
+
+\begin{theorem}\label{theorem:正交补.实内积空间的正交直和分解}
+%@see: 《高等代数（第三版 下册）》（丘维声） P181 定理1
+设\(U\)是实内积空间\((V,\rho)\)的一个有限维子空间，
+则\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P181 (2)
+	V = U \DirectSum U^\perp.
+\end{equation*}
+\begin{proof}
+先证\(V = U \DirectSum U^\perp\).
+在\(U\)中取一个标准正交基\(\AutoTuple{\epsilon}{n}\).
+任取\(\alpha \in V\)，
+令\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P181 (3)
+	\alpha_1
+	&\defeq
+	\rho(\alpha,\epsilon_1) \epsilon_1 + \dotsb + \rho(\alpha,\epsilon_m) \epsilon_m, \\
+%@see: 《高等代数（第三版 下册）》（丘维声） P182 (4)
+	\alpha_2
+	&\defeq
+	\alpha - \alpha_1.
+\end{align*}
+显然\(\alpha_1 \in U\)而\(\alpha_2 \in V\).
+因为\begin{align*}
+	\rho(\alpha_2,\epsilon_j)
+	= \rho(\alpha-\alpha_1,\epsilon_j)
+	= \rho(\alpha,\epsilon_j)
+	- \rho(\alpha_1,\epsilon_j),
+\end{align*}
+其中\begin{align*}
+	\rho(\alpha_1,\epsilon_j)
+	&= \rho\left(
+			\rho(\alpha,\epsilon_1) \epsilon_1 + \dotsb + \rho(\alpha,\epsilon_m) \epsilon_m,
+			\epsilon_j
+		\right) \\
+	&= \rho(\alpha,\epsilon_1) \rho(\epsilon_1,\epsilon_j)
+		+ \dotsb + \rho(\alpha,\epsilon_m) \rho(\epsilon_m,\epsilon_j) \\
+	&= \rho(\alpha,\epsilon_j),
+\end{align*}
+所以\begin{equation*}
+	\rho(\alpha_2,\epsilon_j)
+	= \rho(\alpha,\epsilon_j) - \rho(\alpha,\epsilon_j)
+	= 0,
+\end{equation*}
+这就说明\(\alpha_2 \in U^\perp\).
+既然\(\alpha = \alpha_1 + \alpha_2\)，
+那么\(V = U + U^\perp\).
+
+再证\(U \cap U^\perp = 0\).
+假设\(\gamma \in U \cap U^\perp\)，
+则\(\gamma \in U\)且\(\gamma \in U^\perp\)，
+从而\(\rho(\gamma,\gamma) = 0\)，
+于是\(\gamma = 0\).
+
+综上所述，\(V = U \DirectSum U^\perp\).
+\end{proof}
+\end{theorem}
+\begin{remark}
+从\cref{theorem:正交补.实内积空间的正交直和分解} 得到，
+对于欧几里得空间\(V\)的任意一个非平凡子空间\(U\)，
+都有\(V = U \DirectSum U^\perp\)，
+这就说明\(U\)的一个标准正交基与\(U^\perp\)的一个标准正交基合起来就是\(V\)的一个标准正交基.
+\end{remark}
+
+\subsection{正交投影的概念}
+如果\(U\)是实内积空间\(V\)的一个子空间，
+且\(V = U \DirectSum U^\perp\)，
+那么\(V\)中每个向量\(\alpha\)能唯一地表示成\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P182 (5)
+	\alpha = \alpha_1 + \alpha_2,
+	\quad \alpha_1 \in U, \alpha_2 \in U^\perp,
+\end{equation*}
+我们可以藉此构造一个\(V\)上的线性变换\begin{equation*}
+	\vb{P}_U\colon V \to U,
+	\alpha \mapsto \alpha_1,
+\end{equation*}
+并称之为“\(V\)在\(U\)上的\DefineConcept{正交投影}”，	% 这里是指线性变换
+把\(\alpha_1\)称为“\(\alpha\)在\(U\)上的\DefineConcept{正交投影}”.	% 这里是指元素
+
+这里可以看出：\(\beta_1 \in U\)是\(\beta\)在\(U\)上的正交投影，
+当且仅当\(\beta - \beta_1 \in U^\perp\).
+
+由\cref{theorem:正交补.实内积空间的正交直和分解} 可知，
+只要\(U\)是有限维的，那么必定存在\(V\)在\(U\)上的正交投影.
+
+\subsection{正交投影的性质}
+向量\(\alpha\)在\(U\)上的正交投影\(\alpha_1\)具有什么性质呢？
+从几何学中“垂线段最短”可以得到启发，猜测以下结论：
+\begin{theorem}\label{theorem:正交补.垂线段最短}
+%@see: 《高等代数（第三版 下册）》（丘维声） P182 定理2
+设\(U\)是实内积空间\(V\)的一个有限维子空间，
+向量\(\alpha \in V\)，向量\(\alpha_1 \in U\)，
+则\(\alpha_1\)是\(\alpha\)在\(U\)上的正交投影，
+当且仅当\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P182 (6)
+	(\forall \gamma \in U)
+	[d(\alpha,\alpha_1) \leq d(\alpha,\gamma)].
+\end{equation*}
+\begin{proof}
+必要性.
+设\(\alpha_1 \in U\)是\(\alpha\)在\(U\)上的正交投影，
+则\(\alpha - \alpha_1 \in U^\perp\)，
+那么对于\(\forall \gamma \in U\)，
+有\begin{equation*}
+	(\alpha - \alpha_1) \perp (\alpha_1 - \gamma);
+\end{equation*}
+由勾股定理有\begin{equation*}
+	\VectorLengthA{\alpha - \alpha_1}^2
+	+ \VectorLengthA{\alpha_1 - \gamma}^2
+	= \VectorLengthA{(\alpha - \alpha_1) + (\alpha_1 - \gamma)}^2
+	= \VectorLengthA{\alpha - \gamma}^2;
+\end{equation*}
+由此得出\(\VectorLengthA{\alpha - \alpha_1} \leq \VectorLengthA{\alpha - \gamma}\)，
+即\(d(\alpha,\alpha_1) \leq d(\alpha,\gamma)\).
+
+充分性.
+假设成立\((\forall \gamma \in U)[d(\alpha,\alpha_1) \leq d(\alpha,\gamma)]\).
+同时假设向量\(\delta\)是\(\alpha\)在\(U\)上的正交投影，
+从而必有\(\delta \in U\)，
+那么\(d(\alpha,\alpha_1) \leq d(\alpha,\delta)\).
+再根据上述必要性证得的结论可知\(d(\alpha,\delta) \leq d(\alpha,\alpha_1)\).
+于是由\(d(\alpha,\delta) \leq d(\alpha,\alpha_1) \leq d(\alpha,\delta)\)
+有\(d(\alpha,\delta) = d(\alpha,\alpha_1)\).
+由于\((\alpha-\delta) \in U^\perp,
+(\delta-\alpha_1) \in U\)，
+所以\begin{equation*}
+	\VectorLengthA{\alpha - \alpha_1}^2
+	= \VectorLengthA{(\alpha - \delta) + (\delta - \alpha_1)}^2
+	= \VectorLengthA{\alpha - \delta}^2 + \VectorLengthA{\delta - \alpha_1}^2.
+\end{equation*}
+由此得出\(\VectorLengthA{\delta - \alpha_1}^2 = 0\)，
+即\(\delta = \alpha_1\).
+\end{proof}
+\end{theorem}
+
+\subsection{最佳逼近元}
+从\cref{theorem:正交补.垂线段最短} 可以引出下述概念：
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P183 定义2
+设\(U\)是实内积空间\(V\)的一个子空间，\(\alpha \in V\).
+如果存在\(\delta \in U\)，
+使得对于任意\(\gamma \in U\)，
+都有\(d(\alpha,\delta) \leq d(\alpha,\gamma)\)，
+那么称“\(\delta\)是\(\alpha\)在\(U\)上的\DefineConcept{最佳逼近元}”.
+\end{definition}
+
+从\cref{theorem:正交补.垂线段最短} 立即可以得出：
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P183
+如果\(U\)是实内积空间\(V\)的有限维子空间，
+那么\(V\)中任意一个向量\(\alpha\)在\(U\)上的最佳逼近元存在且唯一，
+它就是\(\alpha\)在\(U\)上的正交投影.
+\end{proposition}
+
+% \subsection{正交投影的应用 --- 最小二乘法}
+% 正交投影可以用于最小二乘法.
