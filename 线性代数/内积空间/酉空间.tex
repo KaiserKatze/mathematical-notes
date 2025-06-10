@@ -1,1 +1,544 @@
 \section{酉空间}
+%@see: 《高等代数（第三版 下册）》（丘维声） P193
+在本节，我们研究在复线性空间中引进内积的概念，使之成为复内积空间.
+
+\subsection{酉空间}
+如何在复线性空间\(V\)中引进内积的概念呢？
+如果我们照搬实线性空间内积的概念，
+考虑复线性空间\(V\)上一个双线性函数\(f\)，
+那么对于\(V\)中任意一个非零向量\(\alpha\)，
+有\begin{equation*}
+	f(\iu\alpha,\iu\alpha)
+	= \iu^2 f(\alpha,\alpha)
+	= -f(\alpha,\alpha).
+\end{equation*}
+若要求\((\forall \alpha \in V)[f(\alpha,\alpha) \in \mathbb{R}]\)，
+则\(f\)不满足正定性（因为当\(f(\alpha,\alpha) > 0\)时，必有\(f(\iu\alpha,\iu\alpha) < 0\)）.
+为了使复线性空间\(V\)上的内积仍具有正定性，
+就不能要求它是双线性函数，
+而只要求它对第一个自变量是线性的.
+为了使内积在\(V\)的任意一个向量\(\alpha\)与自身组成的有序对上的函数值为实数，
+需要让\(V\)上的内积\(\rho\)具有如下性质：
+\begin{equation}\label{equation:酉空间.厄米性}
+	(\forall \alpha,\beta \in V)
+	[
+		\rho(\alpha,\beta)
+		= \ComplexConjugate{\rho(\beta,\alpha)}
+	].
+\end{equation}
+我们把\cref{equation:酉空间.厄米性} 描述的性质
+称为\DefineConcept{厄米性}.
+于是复线性空间上的内积的概念应当定义如下：
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P193 定义1
+设\(V\)是复数域\(\mathbb{C}\)上的一个线性空间.
+如果映射\(\rho\colon V \times V \to \mathbb{R}\)满足以下性质\begin{itemize}
+	\item {\rm\bf 厄米性}：\begin{equation*}
+		(\forall \alpha,\beta \in V)
+		[
+			\rho(\alpha,\beta)
+			= \ComplexConjugate{\rho(\beta,\alpha)}
+		];
+	\end{equation*}
+
+	\item {\rm\bf 线性性}：\begin{gather*}
+		(\forall \alpha,\beta,\gamma \in V)
+		[
+			\rho(\alpha+\beta,\gamma)
+			= \rho(\alpha,\gamma) + \rho(\beta,\gamma)
+		], \\
+		(\forall \alpha,\beta \in V)
+		(\forall k \in \mathbb{C})
+		[
+			\rho(k\alpha,\beta)
+			= k\rho(\alpha,\beta)
+		];
+	\end{gather*}
+
+	\item {\rm\bf 正定性}：\begin{gather*}
+		\rho(\alpha,\alpha) \geq 0, \\
+		\rho(\alpha,\alpha) = 0 \iff \alpha = 0,
+	\end{gather*}
+\end{itemize}
+则称“\(\rho\)是\(V\)上的一个\DefineConcept{内积}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P193 定义1
+设\(V\)是一个复线性空间，\(\rho\)是\(V\)上的一个内积，
+则称“\((V,\rho)\)是一个\DefineConcept{复内积空间}”
+或“\((V,\rho)\)是一个\DefineConcept{酉空间}”.
+\end{definition}
+
+\begin{property}\label{theorem:酉空间.酉空间中内积对第二个自变量具有半线性性}
+%@see: 《高等代数（第三版 下册）》（丘维声） P193
+设\((V,\rho)\)是一个酉空间，
+则内积对第二个自变量具有\DefineConcept{半线性性}，
+即\begin{equation}
+	\rho(\alpha,k_1\beta_1+k_2\beta_2)
+	= \ComplexConjugate{k_1} \rho(\alpha,\beta_1)
+	+ \ComplexConjugate{k_2} \rho(\alpha,\beta_2).
+\end{equation}
+\begin{proof}
+由内积的厄米性和它对第一个自变量的线性性，有\begin{align*}
+	\rho(\alpha,k_1\beta_1+k_2\beta_2)
+	&= \ComplexConjugate{\rho(k_1\beta_1+k_2\beta_2,\alpha)} \\
+	&= \ComplexConjugate{k_1 \rho(\beta_1,\alpha)}
+		+ \ComplexConjugate{k_2 \rho(\beta_2,\alpha)} \\
+	&= \ComplexConjugate{k_1} \rho(\alpha,\beta_1)
+		+ \ComplexConjugate{k_2} \rho(\alpha,\beta_2).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{property}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P193 例1
+在\(V = \mathbb{C}^n\)中，
+%@see: 《高等代数（第三版 下册）》（丘维声） P193 (1)
+令\(f(X,Y) \defeq x_1 \ComplexConjugate{y_1} + \dotsb + x_n \ComplexConjugate{y_n}\)，
+其中\(X=(\AutoTuple{x}{n})^T,
+Y=(\AutoTuple{y}{n})^T\).
+容易验证，\(f\)是\(V\)上的一个内积.
+我们把这个内积称为 \DefineConcept{\(\mathbb{C}^n\)上的标准内积}.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 例2
+设\(V = \tilde{C}[a,b]\)表示区间\([a,b]\)上所有连续复值函数组成的线性空间.
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 (2)
+令\(\rho(f,g) \defeq \int_a^b f(x) \ComplexConjugate{g(x)} \dd{x}\).
+容易验证，\(\rho\)是\(V\)上的一个内积.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 例3
+在\(V = M_n(\mathbb{C})\)中，
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 (3)
+令\(f(A,B) \defeq \tr(A B^H)\).
+容易验证，\(f\)是\(V\)上的一个内积.
+\end{example}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 定义2
+设\((V,\rho)\)是一个酉空间，
+\(\alpha \in V\).
+把非负实数\(\sqrt{\rho(\alpha,\alpha)}\)
+称为“向量\(\alpha\)的\DefineConcept{长度}”，
+记作\(\VectorLengthA{\alpha}\)或\(\VectorLengthN{\alpha}\).
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194
+在酉空间\(V\)中，
+零向量的长度为\(0\)，
+非零向量的长度是正数.
+\end{property}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194
+在酉空间\((V,\rho)\)中，
+对于\(\forall \alpha \in V\)
+和\(\forall k \in \mathbb{C}\)，
+有\(\VectorLengthA{k\alpha} = \ComplexLengthA{k} \VectorLengthA{\alpha}\).
+\begin{proof}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 (4)
+\(\VectorLengthA{k\alpha}
+= \sqrt{\rho(k\alpha,k\alpha)}
+= \sqrt{k \ComplexConjugate{k} \rho(\alpha,\alpha)}
+= \ComplexLengthA{k} \VectorLengthA{\alpha}\).
+\end{proof}
+\end{property}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 定理1（柯西-布尼亚科夫斯基不等式）
+在酉空间\((V,\rho)\)中，
+对于\(\forall \alpha,\beta \in V\)，
+有\begin{equation}
+	\abs{\rho(\alpha,\beta)} \leq \VectorLengthA{\alpha} \VectorLengthA{\beta}.
+\end{equation}
+当且仅当\(\{\alpha,\beta\}\)线性相关时，上式取“\(=\)”号.
+%TODO proof
+\end{theorem}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 定义3
+设\(\alpha,\beta\)是酉空间\((V,\rho)\)中的两个非零向量.
+把\begin{equation}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194 (7)
+	\arccos\frac{\abs{\rho(\alpha,\beta)}}{\VectorLengthA{\alpha} \VectorLengthA{\beta}}
+\end{equation}
+称为“\(\alpha\)与\(\beta\)的\DefineConcept{夹角}”，
+记为\(\VectorAngleA{\alpha}{\beta}\)或\(\VectorAngleP{\alpha}{\beta}\).
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P194
+设\(\alpha,\beta\)是酉空间\((V,\rho)\)中的两个非零向量，
+则\(\alpha\)与\(\beta\)的夹角\(\theta = \VectorAngleA{\alpha}{\beta}\)
+满足\(0 \leq \theta \leq \pi/2\).
+%TODO proof
+\end{property}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+设\(\alpha,\beta\)是酉空间\((V,\rho)\)中的两个非零向量，
+则\(\alpha\)与\(\beta\)的夹角\(\theta = \VectorAngleA{\alpha}{\beta}\)
+满足\(\theta = \frac\pi2 \iff \rho(\alpha,\beta) = 0\).
+%TODO proof
+\end{property}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195 定义4
+设\(\alpha,\beta\)是酉空间\((V,\rho)\)中的两个非零向量.
+如果\(\rho(\alpha,\beta) = 0\)，
+则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}”，
+记为\(\alpha \perp \beta\).
+\end{definition}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+在酉空间\((V,\rho)\)中，
+三角不等式成立，
+即对于\(\forall \alpha,\beta \in V\)，
+有\begin{equation}
+	\VectorLengthA{\alpha+\beta} \leq \VectorLengthA{\alpha} + \VectorLengthA{\beta}.
+\end{equation}
+%TODO 没有取等条件
+%TODO proof
+\end{corollary}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+在酉空间\((V,\rho)\)中，
+勾股定理成立，
+即对于\(\forall \alpha,\beta \in V\)，
+如果\(\alpha\)与\(\beta\)正交，
+则\begin{equation}
+	\VectorLengthA{\alpha+\beta}^2 = \VectorLengthA{\alpha}^2 + \VectorLengthA{\beta}^2.
+\end{equation}
+%TODO proof
+\end{corollary}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+在酉空间\((V,\rho)\)中，
+\(\alpha,\beta \in V\).
+把\(\VectorLengthA{\alpha-\beta}\)
+称为“\(\alpha\)与\(\beta\)的\DefineConcept{距离}”，
+记为\(d(\alpha,\beta)\).
+\end{definition}
+
+\subsection{有限维酉空间中的基}
+我们希望在有限维酉空间\(V\)中找出一类基，
+使得在这样的基下容易计算\(V\)中任意两个向量的内积，
+从而易于计算长度、角度、距离等.
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+设\((V,\rho)\)是一个有限维酉空间，
+\(A\)是\(V\)中的一个向量组，
+如果\begin{equation*}
+	(\forall \alpha \in A)
+	[\alpha\neq0],
+	\qquad
+	(\forall \alpha,\beta \in A)
+	[\alpha \perp \beta],
+\end{equation*}
+则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交向量组}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+设\((V,\rho)\)是一个有限维酉空间，
+\(A\)是\(V\)中的一个向量组，
+如果\begin{equation*}
+	(\forall \alpha \in A)
+	[\VectorLengthA{\alpha} = 1],
+	\qquad
+	(\forall \alpha,\beta \in A)
+	[\alpha \perp \beta],
+\end{equation*}
+则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交单位向量组}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+设\((V,\rho)\)是\(n\)维酉空间，
+\(A\)是\(V\)的一个基.
+如果\(A\)是正交向量组，
+则称“\(A\)是\((V,\rho)\)的一个\DefineConcept{正交基}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+设\((V,\rho)\)是\(n\)维酉空间，
+\(A\)是\(V\)的一个基.
+如果\(A\)是正交单位向量组，
+则称“\(A\)是\((V,\rho)\)的一个\DefineConcept{标准正交基}”
+或“\(A\)是\((V,\rho)\)的一个\DefineConcept{规范正交基}”.
+\end{definition}
+
+% 与《高等代数（第三版 上册）》第4章第6节定理4的证明方法完全一样，
+在酉空间\(V\)中也有施密特正交化过程，
+它可以把一个线性无关向量组变成与之等价的正交向量组.
+
+在\(n\)维酉空间\(V\)中，取一个基\(\AutoTuple{\alpha}{n}\)，
+经过施密特正交化把它变成正交基\(\AutoTuple{\beta}{n}\)，
+再经过单位化把它变成标准正交基\(\AutoTuple{\gamma}{n}\).
+这就说明：在有限维酉空间中，一定存在标准正交基.
+
+\subsection{酉空间中向量的内积、傅里叶展开}
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195
+设\((V,\rho)\)是\(n\)维酉空间，
+则向量组\(\AutoTuple{\eta}{n}\)是\((V,\rho)\)的一个标准正交基，
+当且仅当\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195 (8)
+	\rho(\eta_i,\eta_j)
+	= \delta(i,j),
+	\quad i,j=1,2,\dotsc,n,
+\end{equation*}
+其中\(\delta\)是克罗内克\(\delta\)函数.
+\end{proposition}
+
+利用标准正交基，容易计算向量的内积.
+
+设\((V,\rho)\)是\(n\)维酉空间，
+向量\(\alpha,\beta \in V\)，
+向量组\(\AutoTuple{\eta}{n}\)是\((V,\rho)\)的一个标准正交基，
+\(\alpha,\beta\)在基\(\AutoTuple{\eta}{n}\)下的坐标
+分别是\(X=(\AutoTuple{x}{n})^T,
+Y=(\AutoTuple{y}{n})^T\)，
+则\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P195 (9)
+	\rho(\alpha,\beta)
+	= \rho\left( \sum_{i=1}^n x_i \eta_i, \sum_{j=1}^n y_j \eta_j \right)
+	= \sum_{i=1}^n \sum_{j=1}^n x_i \ComplexConjugate{y_j} \rho(\eta_i,\eta_j)
+	= \sum_{i=1}^n x_i \ComplexConjugate{y_i}
+	= Y^H X.
+\end{equation*}
+
+利用标准正交基，可以借助内积，表达向量的坐标分量.
+
+设\(\alpha\)在标准正交基\(\AutoTuple{\eta}{n}\)下的坐标为\(X=(\AutoTuple{x}{n})^T\)，
+则\begin{equation*}
+	\alpha = \sum_{i=1}^n x_i \eta_i;
+\end{equation*}
+等号两边用\(\eta_j\)作内积，得\begin{equation*}
+	\rho(\alpha,\eta_j)
+	= \rho\left( \sum_{i=1}^n x_i \eta_i, \eta_j \right)
+	= \sum_{i=1}^n x_i \rho(\eta_i,\eta_j)
+	= x_j,
+\end{equation*}
+因此\begin{equation}\label{equation:酉空间.向量的傅里叶展开}
+%@see: 《高等代数（第三版 下册）》（丘维声） P196 (10)
+	\alpha = \sum_{i=1}^n \rho(\alpha,\eta_i) \eta_i.
+\end{equation}
+我们把\cref{equation:酉空间.向量的傅里叶展开}
+称为“向量\(\alpha\)的\DefineConcept{傅里叶展开}”，
+其中系数\(\rho(\alpha,\eta_i)\ (i=1,2,\dotsc,n)\)
+称为“向量\(\alpha\)的\DefineConcept{傅里叶系数}”.
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P196
+在有限维酉空间\((V,\rho)\)中，
+一个标准正交基到另一个标准正交基的过渡矩阵
+一定是酉矩阵.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P196
+设\((V,\rho)\)是\(n\)维酉空间，
+向量组\(\AutoTuple{\eta}{n}\)是\((V,\rho)\)的一个标准正交基，
+\(\AutoTuple{\beta}{n}\)是\(V\)中一个向量组.
+如果存在酉矩阵\(P \in M_n(\mathbb{C})\)，
+使得\begin{equation*}
+	(\AutoTuple{\beta}{n})
+	= (\AutoTuple{\eta}{n}) P,
+\end{equation*}
+那么\(\AutoTuple{\beta}{n}\)是\(V\)中一个标准正交基.
+%TODO proof
+\end{proposition}
+
+\subsection{酉空间之间的同构}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P196
+设\((V_1,\rho_1),(V_2,\rho_2)\)都是酉空间.
+如果存在从\(V_1\)到\(V_2\)的一个双射\(\sigma\)，
+使得\begin{gather*}
+	(\forall \alpha,\beta \in V_1)
+	[
+		\sigma(\alpha+\beta)
+		= \sigma(\alpha) + \sigma(\beta)
+	], \\
+	(\forall \alpha \in V_1)
+	(\forall k \in \mathbb{C})
+	[
+		\sigma(k\alpha)
+		= k \sigma(\alpha)
+	], \\
+	(\forall \alpha,\beta \in V_1)
+	[
+		\rho_2(\sigma(\alpha),\sigma(\beta))
+		= \rho_1(\alpha,\beta)
+	],
+\end{gather*}
+则称“\(\sigma\)是从\(V_1\)到\(V_2\)的一个\DefineConcept{同构}”；
+并称“\(V_1\)与\(V_2\) \DefineConcept{同构}”，
+记为\(V_1 \Isomorphism V_2\).
+\end{definition}
+
+\begin{theorem}\label{theorem:酉空间.两个酉空间同构的充分必要条件}
+%@see: 《高等代数（第三版 下册）》（丘维声） P196
+两个酉空间同构的充分必要条件是它们的维数相同.
+%TODO proof
+\end{theorem}
+
+\subsection{酉变换}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P197 定义6
+设\((V,\rho)\)是一个酉空间，
+\(\vb{A}\)是一个从\(V\)到\(V\)的满射.
+如果\(\vb{A}\)满足\begin{equation}
+	(\forall \alpha,\beta \in V)
+	[
+		\rho(\vb{A}\alpha,\vb{A}\beta)
+		= \rho(\alpha,\beta)
+	],
+\end{equation}
+则称“\(\vb{A}\)保持向量的内积不变”
+“\(\vb{A}\)是\(V\)上的一个\DefineConcept{酉变换}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P197 命题2
+酉空间上的酉变换一定是可逆线性变换.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P197 命题3
+设\(\vb{A}\)是\(n\)维酉空间\(V\)上的一个线性变换，
+则\begin{align*}
+	&\text{$\vb{A}$是酉变换} \\
+	&\iff \text{$\vb{A}$把$V$的标准正交基映成标准正交基} \\
+	&\iff \text{$\vb{A}$在$V$的标准正交基下的矩阵是酉矩阵}.
+\end{align*}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P197 命题4
+有限维酉空间上的酉变换的特征值的模等于\(1\).
+\begin{proof}
+由\cref{equation:幺正矩阵.幺正矩阵的行列式} 立即可得.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P197 命题5
+设\(\vb{A}\)是酉空间\((V,\rho)\)上的一个酉变换.
+如果\(W\)是\(\vb{A}\)的有限维不变子空间，
+则\(W\)的正交补\(W^\perp\)也是\(\vb{A}\)的不变子空间.
+\begin{proof}
+任取\(\beta \in W^\perp\).
+要证\(\vb{A}\beta \in W^\perp\).
+任取\(\alpha \in W\)，
+由于酉变换\(\vb{A}\)是可逆的，
+因此由\cref{example:线性映射.可逆线性变换的逆变换的不变子空间} 可知
+\(W\)也是\(\vb{A}^{-1}\)的不变子空间，
+从而\(\vb{A}^{-1}\alpha \in W\).
+于是\begin{equation*}
+	\rho(\vb{A}\beta,\alpha)
+	= \rho(\vb{A}\beta,\vb{A}\vb{A}^{-1}\alpha)
+	= \rho(\beta,\vb{A}^{-1}\alpha)
+	= 0,
+\end{equation*}
+即\(\vb{A}\beta \in W^\perp\)，
+说明\(W^\perp\)是\(\vb{A}\)的不变子空间.
+\end{proof}
+\end{proposition}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P197 定理6
+设\(\vb{A}\)是\(n\)维酉空间\(V\)上的酉变换，
+则\(V\)中存在一个标准正交基\(S\)，
+使得\(\vb{A}\)在基\(S\)下的矩阵是对角矩阵，
+且主对角元都是模为\(1\)的复数.
+%TODO proof
+\end{theorem}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P198 推论7
+设矩阵\(A,B \in M_n(\mathbb{C})\).
+若存在可逆矩阵\(P \in M_n(\mathbb{C})\)，
+使得\begin{equation}
+	P^{-1} A P = B,
+\end{equation}
+则称“\(A\)与\(B\) \DefineConcept{酉相似}”
+或“\(A\) \DefineConcept{酉相似于} \(B\)”.
+\end{definition}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P198 推论7
+任意一个\(n\)阶酉矩阵一定酉相似于某个主对角元都是模为\(1\)的复数的对角矩阵.
+%TODO proof
+\end{corollary}
+
+类比于实内积空间\(V\)上的对称变换，引出酉空间上的下述变换：
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P198 定义7
+设\(\vb{A}\)是酉空间\((V,\rho)\)上的一个线性变换.
+如果\begin{equation*}
+	(\forall \alpha,\beta \in V)
+	[
+		\rho(\vb{A}\alpha,\beta)
+		= \rho(\alpha,\vb{A}\beta)
+	],
+\end{equation*}
+则称“\(\vb{A}\)是\(V\)上的一个\DefineConcept{厄米变换}”
+或“\(\vb{A}\)是\(V\)上的一个\DefineConcept{自伴随变换}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P198 命题8
+酉空间上的厄米变换一定是线性变换.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P198 命题9
+设\(\vb{A}\)是\(n\)维酉空间\(V\)上的一个线性变换，
+则\(\vb{A}\)是厄米变换，
+当且仅当\(\vb{A}\)在\(V\)的某个标准正交基下的矩阵是厄米矩阵.
+%TODO proof
+\end{proposition}
+
+我们来探索\(n\)维酉空间上的厄米变换的最简单形式的矩阵表示.
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P199 命题10
+酉空间上的厄米变换的特征值只要存在就一定是实数.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P199 命题11
+设\(\vb{A}\)是酉空间\(V\)上的一个厄米变换.
+如果\(W\)是\(\vb{A}\)的一个不变子空间，
+则\(W\)的正交补\(W^\perp\)也是\(\vb{A}\)的一个不变子空间.
+\end{proposition}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P199 定理12
+设\(\vb{A}\)是酉空间\(V\)上的一个厄米变换，
+则\(V\)中存在一个标准正交基\(S\)，
+使得\(\vb{A}\)在基\(S\)下的矩阵是对角矩阵，
+且主对角元都是实数.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}
+%@see: 《高等代数（第三版 下册）》（丘维声） P199 推论13
+任意一个\(n\)阶厄米矩阵一定酉相似于某个实对角矩阵.
+\end{corollary}
