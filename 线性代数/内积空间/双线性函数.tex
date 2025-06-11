@@ -12,7 +12,7 @@
 	+ k_2(\VectorInnerProductDot{\alpha}{\beta_2}).
 \end{gather*}
 受此启发，我们抽象出域\(F\)上线性空间\(V\)上的双线性函数的概念：
-\begin{definition}
+\begin{definition}\label{definition:双线性函数.双线性函数的定义1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P166 定义1
 设\(V\)是域\(F\)上的一个线性空间.
 如果映射\(f\colon V \times V \to F\)满足\begin{gather}
@@ -29,24 +29,80 @@
 （\(f\) is a \emph{bilinear function} on \(V\)）”.
 %@see: https://mathworld.wolfram.com/BilinearFunction.html
 \end{definition}
-\begin{remark}
 %@see: 《高等代数（第三版 下册）》（丘维声） P166
-%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P333 9.1
 条件 \labelcref{equation:双线性函数.双线性函数判定条件1} 表明：
 当\(\beta\)固定时，
 双线性函数\(f\)在\(V \times \{\beta\}\)上的限制\(f \SetRestrict (V \times \{\beta\})\)，
 是\(V\)上的一个线性函数.
 % 在《高等代数（第三版 下册）》（丘维声）上，将这个映射的限制记为\(\beta_R\).
-\end{remark}
-\begin{remark}
-%@see: 《高等代数（第三版 下册）》（丘维声） P166
-%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P333 9.1
 条件 \labelcref{equation:双线性函数.双线性函数判定条件2} 表明：
 当\(\alpha\)固定时，
 双线性函数\(f\)在\(\{\alpha\} \times V\)上的限制\(f \SetRestrict (\{\alpha\} \times V)\)，
 是\(V\)上的一个线性函数.
 % 在《高等代数（第三版 下册）》（丘维声）上，将这个映射的限制记为\(\alpha_L\).
-\end{remark}
+于是我们可以得到双线性函数的等价定义：
+\begin{theorem}\label{definition:双线性函数.双线性函数的定义2}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P333 9.1
+设\(V\)是域\(F\)上的一个线性空间.
+“映射\(f\colon V \times V \to F\)是\(V\)上的一个双线性函数”的充分必要条件是：
+对于任意\(\alpha \in V\)，
+\(x \mapsto f(x,\alpha)\)和\(x \mapsto f(\alpha,x)\)都是\(V\)上的线性函数.
+\begin{proof}
+必要性.
+假设\(f\)是\(V\)上的一个双线性函数.
+任意取定\(\alpha \in V\)，
+显然映射\(x \mapsto f(x,\alpha)\)和\(x \mapsto f(\alpha,x)\)都是从\(V\)到\(F\)的映射，
+并且由\hyperref[definition:双线性函数.双线性函数的定义1]{定义}可知，
+对于\(\forall x_1,x_2 \in V,
+\forall k_1,k_2 \in F\)，
+有\begin{gather*}
+	f(k_1x_1+k_2x_2,\alpha)
+	= k_1 f(x_1,\alpha)
+	+ k_2 f(x_2,\alpha), \\
+	f(\alpha,k_1x_1+k_2x_2)
+	= k_1 f(\alpha,x_1)
+	+ k_2 f(\alpha,x_2),
+\end{gather*}
+可见\(x \mapsto f(x,\alpha)\)和\(x \mapsto f(\alpha,x)\)都适合可加性、齐次性，
+因此\(x \mapsto f(x,\alpha)\)和\(x \mapsto f(\alpha,x)\)
+都是\(V\)上的\hyperref[definition:线性映射.线性函数]{线性函数}.
+
+充分性.
+假设对于任意\(\alpha \in V\)，
+\(x \mapsto f(x,\alpha)\)和\(x \mapsto f(\alpha,x)\)都是\(V\)上的线性函数.
+任意取定\(\beta \in V\)，
+记\(g(x) \defeq f(x,\beta)\)，
+那么由\hyperref[definition:线性映射.线性映射]{定义}可知，
+对于\(\forall \alpha_1,\alpha_2 \in V,
+\forall k_1,k_2 \in F\)，
+有\begin{equation*}
+	g(\alpha_1+\alpha_2)=g(\alpha_1)+g(\alpha_2),
+	\qquad
+	g(k_1\alpha_1)=k_1g(\alpha_1),
+	\qquad
+	g(k_2\alpha_2)=k_2g(\alpha_2),
+\end{equation*}
+从而有\begin{equation*}
+	g(k_1\alpha_1+k_2\alpha_2)
+	= g(k_1\alpha_1) + g(k_2\alpha_2)
+	= k_1g(\alpha_1) + k_2g(\alpha_2),
+\end{equation*}
+即\begin{equation*}
+	f(k_1\alpha_1+k_2\alpha_2,\beta)
+	= k_1 f(\alpha_1,\beta)
+	+ k_2 f(\alpha_2,\beta).
+\end{equation*}
+同理可证，在任意取定\(\alpha \in V\)以后，
+对于\(\forall \beta_1,\beta_2 \in V,
+\forall k_1,k_2 \in F\)，
+有\begin{equation*}
+	f(\alpha,k_1\beta_1+k_2\beta_2)
+	= k_1 f(\alpha,\beta_1)
+	+ k_2 f(\alpha,\beta_2).
+\end{equation*}
+因此\(f\)是\(V\)上的一个双线性函数.
+\end{proof}
+\end{theorem}
 
 \begin{example}\label{example:双线性函数.例1}
 %@see: 《高等代数（第三版 下册）》（丘维声） P166 例1
@@ -116,6 +172,14 @@ $} 中，
 同理可得\(f(0,\beta) = 0\).
 \end{proof}
 \end{property}
+\begin{remark}
+我们还可以为\cref{theorem:双线性函数.双线性函数取值为零的条件2} 给出另一种证明：
+由\hyperref[definition:双线性函数.双线性函数的定义2]{双线性函数的等价定义}可知，
+在固定任意一个自变量的情况下，
+映射\(x \mapsto f(\alpha,x)\)和\(x \mapsto f(x,\beta)\)都是\(V\)上的线性函数，
+那么由\hyperref[theorem:线性映射.线性映射的性质]{线性映射的性质}可知
+这两个线性函数在\(x=0\)的值都是\(0\).
+\end{remark}
 
 \subsection{双线性函数的度量矩阵}
 \begin{definition}
