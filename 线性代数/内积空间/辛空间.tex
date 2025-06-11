@@ -8,6 +8,7 @@
 指定了一个非退化的对称双线性函数作为内积，
 从而使得洛伦兹变换保持向量的内积不变.
 
+\subsection{正交空间}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P200 定义1
 设\(V\)是域\(F\)上的一个线性空间.
@@ -26,8 +27,8 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P200 定义1
 设\((V,f)\)是一个正交空间.
 \begin{itemize}
-	\item 如果\(f\)是非退化的，则称“\((V,f)\)是一个\DefineConcept{正则空间}”.
-	\item 否则，称“\((V,f)\)是一个\DefineConcept{非正则空间}”.
+	\item 如果\(f\)是非退化的，则称“\((V,f)\)是一个\DefineConcept{正则正交空间}”.
+	\item 否则，称“\((V,f)\)是一个\DefineConcept{非正则正交空间}”.
 \end{itemize}
 \end{definition}
 
@@ -39,3 +40,281 @@
 则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}”，
 记为\(\alpha \perp \beta\).
 \end{definition}
+
+由于正交空间的内积\(f\)是对称的，
+那么，从\(f(\alpha,\beta) = 0\)可推出\(f(\beta,\alpha) = 0\)，
+换言之，从\(\alpha \perp \beta\)可推出\(\beta \perp \alpha\).
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P200
+在正交空间中，一个非零向量有可能与自身正交.
+例如，在\(V = \mathbb{R}^4\)中，
+令\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P200 (2)
+	f(\alpha,\beta) \defeq x_1 y_1 - x_2 y_2 - x_3 y_3 - x_4 y_4,
+\end{equation*}
+其中\(\alpha=(\AutoTuple{x}{4})^T,
+\beta=(\AutoTuple{y}{4})^4\)；
+容易验证\(f\)是\(V\)上一个非退化的对称双线性函数.
+在正交空间\((V,f)\)中，
+向量\(\alpha_1=(1,1,0,0)^T\)
+满足\(f(\alpha_1,\alpha_1) = 1^2 - 1^2 = 0\)，
+即有\(\alpha_1 \perp \alpha_1\).
+\end{example}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201
+在正交空间\((V,f)\)中，
+如果向量\(\alpha \in V\)满足\(\alpha \perp \alpha\)，
+则称“\(\alpha\)是\((V,f)\)的一个\DefineConcept{迷向向量}”；
+否则称“\(\alpha\)是\((V,f)\)的一个\DefineConcept{非迷向向量}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201 定义3
+设\((V,f)\)是正交空间，
+\(S\)是\(V\)的一个子集.
+定义：\begin{equation*}
+	S^\perp
+	\defeq
+	\Set{
+		\alpha \in V
+		\given
+		(\forall \beta \in S)
+		[f(\alpha,\beta) = 0]
+	}
+\end{equation*}
+称之为“\(S\)的\DefineConcept{正交补}”.
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201
+设\((V,f)\)是正交空间，
+\(S\)是\(V\)的一个子集，
+则\(S\)的正交补\(S^\perp\)是\(V\)的一个子空间.
+\end{property}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201 定理1
+设\((V,f)\)是有限维正则正交空间，
+\(W\)是\(V\)的一个子空间，
+则\begin{gather*}
+	\dim W + \dim W^\perp = \dim V, \\
+	(W^\perp)^\perp = W.
+\end{gather*}
+%TODO proof
+\end{theorem}
+
+\begin{definition}\label{definition:正交空间.正交空间的正交基}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201 定义4
+设\(\AutoTuple{\alpha}{n}\)是有限维正交空间\((V,f)\)的一个基.
+如果\(\AutoTuple{\alpha}{n}\)两两正交，
+则称“\(\AutoTuple{\alpha}{n}\)是\((V,f)\)的一个\DefineConcept{正交基}”.
+\end{definition}
+\begin{remark}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201
+注意\hyperref[definition:正交空间.正交空间的正交基]{正交基的定义}中，
+首先要求\(\AutoTuple{\alpha}{n}\)是基，然后要求基向量两两正交.
+这是因为在正交空间中两两正交的向量组有可能是线性相关的.
+例如，在\(V = \mathbb{R}^4\)中，
+令\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P200 (2)
+	f(\alpha,\beta) \defeq x_1 y_1 - x_2 y_2 - x_3 y_3 - x_4 y_4,
+\end{equation*}
+其中\(\alpha=(\AutoTuple{x}{4})^T,
+\beta=(\AutoTuple{y}{4})^4\)，
+那么，在正交空间\((V,f)\)中，
+向量\(\alpha=(1,1,0,0)^T\)满足\(f(\alpha,2\alpha) = 0\)，
+%@Mathematica: f[x_, y_] := x[[1]] y[[1]] - x[[2]] y[[2]] - x[[3]] y[[3]] - x[[4]] y[[4]]
+%@Mathematica: a = {1, 1, 0, 0}
+%@Mathematica: f[a, 2 a]
+%@Mathematica: f[a, k a]
+即有\(\alpha \perp (2\alpha)\)，
+但是\(\{\alpha,2\alpha\}\)是线性相关的.
+\end{remark}
+
+\begin{theorem}\label{theorem:正交空间.特征不为2的域上的有限维正交空间一定存在正交基}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201 定理2
+域\(F\ (\FieldChar F\neq2)\)上的有限维正交空间\((V,f)\)一定存在正交基.
+%TODO proof
+\begin{proof}
+设\(\dim V = n\)，
+由\cref{theorem:双线性函数.特征不为2的域上的对称双线性函数在某个基下的度量矩阵是对角矩阵} 可知，
+\(V\)中存在一个基\(\AutoTuple{\alpha}{n}\)，
+使得\(f\)在基\(\AutoTuple{\alpha}{n}\)下的度量矩阵\(A\)是对角矩阵\(\diag(\AutoTuple{d}{n})\).
+这表明\(\AutoTuple{\alpha}{n}\)两两正交，
+因此\(\AutoTuple{\alpha}{n}\)是\(V\)的一个正交基.
+\end{proof}
+\end{theorem}
+
+注意如果\((V,f)\)是正则的，
+\cref{theorem:正交空间.特征不为2的域上的有限维正交空间一定存在正交基} 的证明中的
+度量矩阵\(A\)是满秩矩阵，
+从而\(d_i\neq0\)，
+于是\(f(\alpha_i,\alpha_i)\neq0\)，
+这表明\(\alpha_i\)是非迷向向量，
+于是我们得到如下结论：
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201
+域\(F\ (\FieldChar F\neq2)\)上的有限维正则正交空间\((V,f)\)一定存在由非迷向向量组成的正交基.
+\end{proposition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201 定义5
+设\(\AutoTuple{\epsilon}{n}\)是有限维正交空间\((V,f)\)的一个正交基.
+如果\begin{equation*}
+	f(\epsilon_i,\epsilon_i) \in \{-1,0,1\},
+	\quad i=1,2,\dotsc,n,
+\end{equation*}
+则称“\(\AutoTuple{\epsilon}{n}\)是\((V,f)\)的一个\DefineConcept{标准正交基}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201
+设\((V,f)\)是复数域上的有限维正交空间，
+则\begin{equation*}
+	f(\epsilon_i,\epsilon_i) \in \{0,1\},
+	\quad i=1,2,\dotsc,n.
+\end{equation*}
+\end{proposition}
+
+%@see: 《高等代数（第三版 下册）》（丘维声） P201
+有限维正则正交空间\((V,f)\)中每一个向量\(\beta\)
+在\(V\)的正交基\(\AutoTuple{\alpha}{n}\)下的坐标为\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P201 (5)
+	\beta = \sum_{i=1}^n \frac{f(\beta,\alpha_i)}{f(\alpha_i,\alpha_i)} \alpha_i.
+\end{equation*}
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P202 定理3
+设\((V,f)\)是域\(F\ (\FieldChar F\neq2)\)上的正交空间.
+如果\(W\)是\(V\)的一个有限维正则子空间，
+则\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P202 (6)
+	V = W \DirectSum W^\perp.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\subsection{辛空间}
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P202 定义6
+设\(V\)是域\(F\ (\FieldChar F\neq2)\)上的一个线性空间，
+\(f\)是\(V\)上的一个斜对称双线性函数，
+则称“\((V,f)\)是一个\DefineConcept{辛空间}”，
+称“\(f\)是\(V\)上的一个\DefineConcept{辛内积}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P202 定义6
+设\((V,f)\)是一个辛空间.
+\begin{itemize}
+	\item 如果\(f\)是非退化的，则称“\((V,f)\)是一个\DefineConcept{正则辛空间}”.
+	\item 否则，称“\((V,f)\)是一个\DefineConcept{非正则辛空间}”.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P202
+在\(V = \mathbb{R}^2\)中，
+令\begin{equation*}
+	f(\alpha,\beta)
+	\defeq
+	x_1 y_2 - x_2 y_1,
+\end{equation*}
+其中\(\alpha=(\AutoTuple{x}{2})^2,
+\beta=(\AutoTuple{y}{2})^2\)；
+容易验证\(f\)是\(V\)上一个非退化的斜对称双线性函数，
+\((V,f)\)是一个辛空间.
+\end{example}
+
+%@see: 《高等代数（第三版 下册）》（丘维声） P202
+与正交空间一样，辛空间中有正交的概念，但没有长度、角度、距离等概念，辛空间中也有迷向向量.
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P202
+有限维正则辛空间一定是偶数维的.
+\end{proposition}
+
+\begin{theorem}\label{theorem:辛空间.辛集的存在性}
+%@see: 《高等代数（第三版 下册）》（丘维声） P202
+\def\MatrixChunk{\begin{bmatrix}
+	0 & 1 \\
+	-1 & 0
+\end{bmatrix}}
+在\(n\)维辛空间\((V,f)\)中
+存在一个基\(\delta_1,\delta_{-1},\dotsc,\delta_r,\delta_{-r},\AutoTuple{\eta}{s}\)，
+使得\begin{align*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P203 (8)
+	f(\delta_i,\delta_{-i}) &= 1,
+	\quad i=1,2,\dotsc,r; \\
+	f(\delta_i,\delta_j) &= 0,
+	\quad i+j\neq0; \\
+	f(\delta_i,\eta_k) &= 0,
+	\quad i=\pm1,\pm2,\dotsc,\pm r; \\
+	f(\eta_j,\eta_k) &= 0,
+	\quad j,k=1,2,\dotsc,s;
+\end{align*}
+且\(f\)在这个基下的度量矩阵是\begin{equation*}
+	\diag\left(
+		\MatrixChunk,
+		\dotsc,
+		\MatrixChunk,
+		0,
+		\dotsc,
+		0
+	\right).
+\end{equation*}
+\begin{proof}
+由\cref{theorem:双线性函数.特征不为2的域上的斜对称双线性函数在某个基下的度量矩阵是分块对角矩阵} 立即可得.
+\end{proof}
+\end{theorem}
+
+我们把\cref{theorem:辛空间.辛集的存在性} 中的
+基\(\delta_1,\delta_{-1},\dotsc,\delta_r,\delta_{-r},\AutoTuple{\eta}{s}\)
+称为“辛空间\((V,f)\)的\DefineConcept{辛基}”.
+
+容易看出，\(f\)在基\(\delta_1,\dotsc,\delta_r,\delta_{-1},\dotsc,\delta_{-r},\AutoTuple{\eta}{s}\)下的度量矩阵为
+\begin{equation*}
+	\begin{bmatrix}
+		0 & I & 0 \\
+		-I & 0 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix},
+\end{equation*}
+其中\(I\)是域\(F\ (\FieldChar F\neq2)\)上的\(r\)阶单位矩阵.
+
+\begin{theorem}
+%@see: 《高等代数（第三版 下册）》（丘维声） P203 定理4
+设\((V,f)\)是一个辛空间.
+如果\(W\)是\(V\)的一个有限维正则子空间，
+则\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P203 (9)
+	V = W \DirectSum W^\perp.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{definition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P204 习题10.6 3.
+设\((V,f)\)是一个有限维正则辛空间，
+\(\vb{A}\)是\(V\)上的一个线性变换.
+如果\(\vb{A}\)保持辛内积不变，
+则称\(\vb{A}\)是\(V\)上的一个\DefineConcept{辛变换}.
+\end{definition}
+
+\begin{example}
+%@see: 《高等代数（第三版 下册）》（丘维声） P204 习题10.6 3.
+设\((V,f)\)是域\(F\)上的一个有限维正则辛空间，
+\(\vb{A}\)是\(V\)上的一个线性变换，
+则\(\vb{A}\)是\(V\)上的一个辛变换，
+当且仅当\(\vb{A}\)在\(V\)的辛基下的矩阵\(A\)
+满足\(A^T B A = B\)，
+其中\begin{equation*}
+	B = \begin{bmatrix}
+		0 & I \\
+		-I & 0
+	\end{bmatrix},
+\end{equation*}
+\(I\)是域\(F\)上的\(r\)阶单位矩阵.
+\end{example}
