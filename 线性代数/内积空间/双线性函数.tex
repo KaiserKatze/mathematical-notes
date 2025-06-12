@@ -184,6 +184,7 @@ $} 中，
 \subsection{双线性函数的度量矩阵}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P167
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P334 9.4
 设\(V\)是域\(F\)上\(n\)维线性空间，
 \(f\)是\(V\)上的一个双线性函数，
 在\(V\)中取一个基\(\AutoTuple{\epsilon}{n}\)，
@@ -209,7 +210,9 @@ $} 中，
 		f(\epsilon_n,\epsilon_1) & f(\epsilon_n,\epsilon_2) & \dots & f(\epsilon_n,\epsilon_n) \\
 	\end{bmatrix},
 \end{equation}
-将\(A\)称为“双线性函数\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的\DefineConcept{度量矩阵}”.
+将\(A\)称为“双线性函数\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的\DefineConcept{度量矩阵}”，
+记为\(\BilinearMatrix(f,(\AutoTuple{\epsilon}{n}))\)，
+或在不致混淆的情况下简记为\(\BilinearMatrix(f)\).
 \end{definition}
 \begin{remark}
 %@see: 《高等代数（第三版 下册）》（丘维声） P167
@@ -226,9 +229,30 @@ $} 中，
 \cref{equation:双线性函数.双线性函数的矩阵表示,equation:双线性函数.双线性函数的因变量的坐标}
 都是双线性函数\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的表达式.
 \end{remark}
+\begin{theorem}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P335 9.6
+设\(V\)是域\(F\)上的\(n\)维线性空间，
+\(f\)是\(V\)上的一个双线性函数，
+\(A\)是\(V\)上的一个线性变换，
+在\(V\)中取一个基\(\AutoTuple{\epsilon}{n}\)，
+令\begin{equation*}
+	g(u,v) \defeq f(u,Av),
+	\qquad
+	h(u,v) \defeq f(Au,v),
+\end{equation*}
+则\begin{equation*}
+	\BilinearMatrix(g)
+	= \BilinearMatrix(f) \LinearMapMatrix(A),
+	\qquad
+	\BilinearMatrix(h)
+	= (\LinearMapMatrix(A))^T \BilinearMatrix(f).
+\end{equation*}
+%TODO proof
+\end{theorem}
 
 \begin{theorem}\label{theorem:双线性函数.双线性函数在两个基下的度量矩阵合同}
 %@see: 《高等代数（第三版 下册）》（丘维声） P167 定理1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P336 9.7
 设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数，
 在\(V\)中取两个基\(\AutoTuple{\alpha}{n}\)与\(\AutoTuple{\beta}{n}\)，
 矩阵\(P \in M_n(F)\)满足\begin{equation*}
@@ -279,6 +303,36 @@ Y = P Y_0\)，
 称为“双线性函数\(f\)的\DefineConcept{矩阵秩}”，
 记为\(\rank f\).
 \end{definition}
+
+\subsection{双线性函数空间}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P334
+由\cref{theorem:线性空间.线性空间的笛卡尔和是线性空间}
+可知\(V \times V\)是一个线性空间，
+这让我们想要知道：双线性函数是不是从\(V \times V\)到\(F\)的线性映射.
+答案是否定的.
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P344 Exercises 9A 3.
+实际上，如果\(V\)上的双线性函数\(f\)是\(V \times V\)上的一个线性函数，
+那么\(f\)一定是零映射.
+不过，虽然除了零映射以外的其余双线性函数都不是线性映射，
+但是所有\(V\)上的双线性函数组成的集合\begin{equation}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P334 9.3
+	V^{(2)}
+	\defeq
+	\Set{
+		f
+		\given
+		\text{$f$是$V$上的双线性函数}
+	}
+\end{equation}
+在配上通常的映射加法、纯量乘法运算以后
+还是可以成为域\(F\)上的一个线性空间.
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P335 9.4
+设\(V\)是域\(F\)上的\(n\)维线性空间，
+则\(\dim V^{(2)} = (\dim V)^2\).
+%TODO proof
+\end{proposition}
 
 \subsection{非退化双线性函数}
 \begin{definition}
@@ -421,6 +475,7 @@ Y = P Y_0\)，
 \subsection{对称双线性函数，斜对称双线性函数}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P169 定义4
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P337 9.9
 设\(f\)是域\(F\)上\(n\)维线性空间\(V\)上的一个双线性函数.
 \begin{itemize}
 	\item 如果\begin{equation}
