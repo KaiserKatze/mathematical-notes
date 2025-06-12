@@ -957,7 +957,59 @@
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P96 3.89
 设\(V,W\)都是域\(F\)上的线性空间，
 则线性空间\(V\)和\(W\)的笛卡尔和\(V \CartesianSum W\)是域\(F\)上的线性空间.
-%TODO proof
+\begin{proof}
+由于\(V,W\)都是线性空间，
+所以由定义有：
+对于\(\forall v_1,v_2,v_3 \in V,
+\forall w_1,w_2,w_3 \in W,
+\forall k,l \in F\)，
+有\begin{gather*}
+	(v_1,w_1) + (v_2,w_2)
+	= (v_1+v_2,w_1+w_2)
+	= (v_2+v_1,w_2+w_1)
+	= (v_2,w_2)+(v_1,w_1), \\
+	\begin{aligned}
+		((v_1,w_1) + (v_2,w_2)) + (v_3,w_3)
+		&= (v_1+v_2,w_1+w_2) + (v_3,w_3) \\
+		&= ((v_1+v_2)+v_3,(w_1+w_2)+w_3) \\
+		&= (v_1+(v_2+v_3),w_1+(w_2+w_3)) \\
+		&= (v_1,w_1) + (v_2+v_3,w_2+w_3) \\
+		&= (v_1,w_1) + ((v_2,w_2) + (v_3,w_3)),
+	\end{aligned} \\
+	(0,0) \in V \times W
+	\land
+	(v_1,w_1) + (0,0)
+	= (v_1+0,w_1+0)
+	= (v_1,w_1), \\
+	(v_1,w_1) + (-v_1,-w_1)
+	= (v_1+(-v_1),w_1+(-w_1))
+	= (0,0), \\
+	1(v_1,w_1)
+	= (1v_1,1w_1)
+	= (v_1,w_1), \\
+	k(l(v_1,w_1))
+	= k(lv_1,lw_1)
+	= (k(lv_1),k(lw_1))
+	= ((kl)v_1,(kl)w_1)
+	= (kl)(v_1,w_1), \\
+	\begin{aligned}
+		(k+l)(v_1,w_1)
+		&= ((k+l)v_1,(k+l)w_1) \\
+		&= (kv_1+lv_1,kw_1+lw_1) \\
+		&= (kv_1,kw_1) + (lv_1,lw_1) \\
+		&= k(v_1,w_1) + l(v_1,w_1),
+	\end{aligned} \\
+	\begin{aligned}
+		k((v_1,w_1)+(v_2,w_2))
+		&= k(v_1+v_2,w_1+w_2) \\
+		&= (k(v_1+v_2),k(w_1+w_2)) \\
+		&= (kv_1+kv_2,kw_1+kw_2) \\
+		&= (kv_1,kw_1)+(kv_2,kw_2) \\
+		&= k(v_1,w_1)+k(v_2,w_2).
+	\end{aligned}
+\end{gather*}
+这就说明\(V \times W\)是域\(F\)上的一个线性空间.
+\end{proof}
 \end{theorem}
 
 \begin{theorem}\label{theorem:线性空间.笛卡尔和的维数公式}
