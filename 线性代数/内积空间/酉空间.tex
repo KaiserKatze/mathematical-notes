@@ -27,10 +27,11 @@
 	].
 \end{equation}
 我们把\cref{equation:酉空间.厄米性} 描述的性质
-称为\DefineConcept{厄米性}.
+称为\DefineConcept{厄米性}或\DefineConcept{共轭对称性}（conjugate symmetry）.
 于是复线性空间上的内积的概念应当定义如下：
-\begin{definition}
+\begin{definition}\label{definition:酉空间.复线性空间上的内积}
 %@see: 《高等代数（第三版 下册）》（丘维声） P193 定义1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P183 6.2
 设\(V\)是复数域\(\mathbb{C}\)上的一个线性空间.
 如果映射\(\rho\colon V \times V \to \mathbb{R}\)满足以下性质\begin{itemize}
 	\item {\rm\bf 厄米性}：\begin{equation*}
@@ -56,24 +57,57 @@
 	\end{gather*}
 
 	\item {\rm\bf 正定性}：\begin{gather*}
-		\rho(\alpha,\alpha) \geq 0, \\
-		\rho(\alpha,\alpha) = 0 \iff \alpha = 0,
+		(\forall \alpha \in V)
+		[
+			\rho(\alpha,\alpha) \geq 0
+		], \\
+		(\forall \alpha \in V)
+		[
+			\rho(\alpha,\alpha) = 0
+			\iff
+			\alpha = 0
+		],
 	\end{gather*}
 \end{itemize}
-则称“\(\rho\)是\(V\)上的一个\DefineConcept{内积}”.
+则称“\(\rho\)是复线性空间\(V\)上的一个\DefineConcept{内积}（inner product）”.
 \end{definition}
+\begin{remark}
+\hyperref[definition:欧几里得空间.实线性空间上的内积]{实线性空间上的内积}%
+与\hyperref[definition:酉空间.复线性空间上的内积]{复线性空间上的内积}的
+最大“差别”在于前者要求内积具有对称性，后者要求内积具有厄米性.
+但是，考虑到实数的共轭就是它本身，
+所以复线性空间上的内积也可以用作实线性空间上的内积.
+\end{remark}
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P193 定义1
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P184 6.4
 设\(V\)是一个复线性空间，\(\rho\)是\(V\)上的一个内积，
-则称“\((V,\rho)\)是一个\DefineConcept{复内积空间}”
-或“\((V,\rho)\)是一个\DefineConcept{酉空间}”.
+则称“\((V,\rho)\)是一个\DefineConcept{复内积空间}（complex inner product space）”
+或“\((V,\rho)\)是一个\DefineConcept{酉空间}（unitary space）”.
 \end{definition}
 
-\begin{property}\label{theorem:酉空间.酉空间中内积对第二个自变量具有半线性性}
-%@see: 《高等代数（第三版 下册）》（丘维声） P193
+\begin{property}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P185 6.6
 设\((V,\rho)\)是一个酉空间，
-则内积对第二个自变量具有\DefineConcept{半线性性}，
+则对于任意\(\alpha \in V\)，
+映射\(x \mapsto \rho(x,\alpha)\)是\(V\)上的线性函数.
+\end{property}
+
+\begin{property}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P185 6.6
+设\((V,\rho)\)是一个酉空间，
+则对于任意\(\alpha \in V\)，
+有\begin{equation*}
+	\rho(0,\alpha) = \rho(\alpha,0) = 0.
+\end{equation*}
+\end{property}
+
+\begin{property}\label{theorem:酉空间.复线性空间上内积对第二个自变量具有半线性性}
+%@see: 《高等代数（第三版 下册）》（丘维声） P193
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P185 6.6
+设\((V,\rho)\)是一个酉空间，
+则内积\(\rho\)对第二个自变量具有\DefineConcept{半线性性}，
 即\begin{equation}
 	\rho(\alpha,k_1\beta_1+k_2\beta_2)
 	= \ComplexConjugate{k_1} \rho(\alpha,\beta_1)
@@ -91,6 +125,9 @@
 \end{align*}
 \end{proof}
 \end{property}
+\begin{remark}
+注意与\cref{theorem:实线性空间.实线性空间上内积对第二个自变量具有线性性} 进行对比.
+\end{remark}
 
 \begin{example}
 %@see: 《高等代数（第三版 下册）》（丘维声） P193 例1
@@ -121,6 +158,7 @@ Y=(\AutoTuple{y}{n})^T\).
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P194 定义2
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P186 6.7
 设\((V,\rho)\)是一个酉空间，
 \(\alpha \in V\).
 把非负实数\(\sqrt{\rho(\alpha,\alpha)}\)
@@ -130,6 +168,7 @@ Y=(\AutoTuple{y}{n})^T\).
 
 \begin{property}
 %@see: 《高等代数（第三版 下册）》（丘维声） P194
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P186 6.9
 在酉空间\(V\)中，
 零向量的长度为\(0\)，
 非零向量的长度是正数.
@@ -137,6 +176,7 @@ Y=(\AutoTuple{y}{n})^T\).
 
 \begin{property}
 %@see: 《高等代数（第三版 下册）》（丘维声） P194
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P186 6.9
 在酉空间\((V,\rho)\)中，
 对于\(\forall \alpha \in V\)
 和\(\forall k \in \mathbb{C}\)，
@@ -152,6 +192,7 @@ Y=(\AutoTuple{y}{n})^T\).
 
 \begin{theorem}
 %@see: 《高等代数（第三版 下册）》（丘维声） P194 定理1（柯西-布尼亚科夫斯基不等式）
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P189 6.14
 在酉空间\((V,\rho)\)中，
 对于\(\forall \alpha,\beta \in V\)，
 有\begin{equation}
@@ -190,35 +231,92 @@ Y=(\AutoTuple{y}{n})^T\).
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P195 定义4
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P187 6.10
 设\(\alpha,\beta\)是酉空间\((V,\rho)\)中的两个非零向量.
 如果\(\rho(\alpha,\beta) = 0\)，
-则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}”，
+则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}（orthogonal）”，
 记为\(\alpha \perp \beta\).
 \end{definition}
 
-\begin{corollary}
+\begin{property}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P187 6.11
+在酉空间\((V,\rho)\)中，零向量与任意一个向量正交.
+\end{property}
+
+\begin{property}\label{theorem:酉空间.酉空间中不存在非零迷向向量}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P187 6.11
+在酉空间\((V,\rho)\)中，只有零向量与它本身正交.
+\end{property}
+\begin{remark}
+\cref{theorem:酉空间.酉空间中不存在非零迷向向量} 说明：酉空间中不存在非零迷向向量.
+\end{remark}
+
+\begin{corollary}\label{theorem:酉空间.三角不等式}
 %@see: 《高等代数（第三版 下册）》（丘维声） P195
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P190 6.17
 在酉空间\((V,\rho)\)中，
-三角不等式成立，
+\DefineConcept{三角不等式}（triangle inequality）成立，
 即对于\(\forall \alpha,\beta \in V\)，
 有\begin{equation}
 	\VectorLengthA{\alpha+\beta} \leq \VectorLengthA{\alpha} + \VectorLengthA{\beta}.
 \end{equation}
-%TODO 没有取等条件
+当且仅当\(\alpha = k\beta\)或\(\beta = k\alpha\)（其中\(k\geq0\)）时，上式取“\(=\)”号.
 %TODO proof
 \end{corollary}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:酉空间.勾股定理}
 %@see: 《高等代数（第三版 下册）》（丘维声） P195
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P187 6.12
 在酉空间\((V,\rho)\)中，
-勾股定理成立，
+\DefineConcept{勾股定理}成立，
 即对于\(\forall \alpha,\beta \in V\)，
 如果\(\alpha\)与\(\beta\)正交，
 则\begin{equation}
 	\VectorLengthA{\alpha+\beta}^2 = \VectorLengthA{\alpha}^2 + \VectorLengthA{\beta}^2.
 \end{equation}
-%TODO proof
+\begin{proof}
+证明过程与\cref{theorem:实内积空间.勾股定理} 相同.
+\end{proof}
 \end{corollary}
+
+\begin{proposition}\label{theorem:酉空间.平行四边形等式}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P191 6.21
+在酉空间\((V,\rho)\)中，
+\(\alpha,\beta \in V\)，
+则\begin{equation*}
+	\VectorLengthA{\alpha+\beta}^2
+	+ \VectorLengthA{\alpha-\beta}^2
+	= 2(\VectorLengthA{\alpha}^2+\VectorLengthA{\beta}^2).
+\end{equation*}
+\begin{proof}
+直接有\begin{align*}
+	\VectorLengthA{\alpha+\beta}^2
+	+ \VectorLengthA{\alpha-\beta}^2
+	&= \rho(\alpha+\beta,\alpha+\beta) + \rho(\alpha-\beta,\alpha-\beta) \\
+	&= (\VectorLengthA{\alpha}^2+\VectorLengthA{\beta}^2+\rho(\alpha,\beta)+\rho(\beta,\alpha)) \\
+	&\hspace{20pt}+(\VectorLengthA{\alpha}^2+\VectorLengthA{\beta}^2-\rho(\alpha,\beta)-\rho(\beta,\alpha)) \\
+	&= 2(\VectorLengthA{\alpha}^2+\VectorLengthA{\beta}^2).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{proposition}\label{theorem:酉空间.向量的正交分解}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P188 6.13
+在酉空间\((V,\rho)\)中，
+\(\alpha,\beta \in V\)，
+且\(\beta \neq 0\).
+令\begin{equation*}
+	k \defeq \frac{\rho(\alpha,\beta)}{\rho(\beta,\beta)},
+	\qquad
+	\gamma \defeq \alpha - k \beta,
+\end{equation*}
+则\(\alpha = k\beta + \gamma\)且\(\rho(\beta,\gamma) = 0\).
+\end{proposition}
+\begin{remark}
+将一个向量\(\alpha\)化为两个正交向量之和\(k\beta + \gamma\)的过程，
+称为\DefineConcept{正交分解}（orthogonal decomposition）.
+\end{remark}
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P195

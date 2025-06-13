@@ -1,11 +1,78 @@
 \section{欧几里得空间}
-\subsection{内积}
-\begin{definition}
-%@see: 《高等代数（第三版 下册）》（丘维声） P174 定义1
+\subsection{实线性空间上的内积}
+\begin{definition}\label{definition:欧几里得空间.实线性空间上的内积}
 设\(V\)是实数域\(\mathbb{R}\)上的一个线性空间.
-如果\(f\)是\(V\)上的一个正定对称双线性函数，
-则称\(f\)是“\(V\)上的一个\DefineConcept{内积}”.
+如果映射\(\rho\colon V \times V \to \mathbb{R}\)满足以下性质\begin{itemize}
+	\item {\rm\bf 对称性}：\begin{equation*}
+		(\forall \alpha,\beta \in V)
+		[
+			\rho(\alpha,\beta)
+			= \rho(\beta,\alpha)
+		];
+	\end{equation*}
+
+	\item {\rm\bf 线性性}：\begin{gather*}
+		(\forall \alpha,\beta,\gamma \in V)
+		[
+			\rho(\alpha+\beta,\gamma)
+			= \rho(\alpha,\gamma) + \rho(\beta,\gamma)
+		], \\
+		(\forall \alpha,\beta \in V)
+		(\forall k \in \mathbb{C})
+		[
+			\rho(k\alpha,\beta)
+			= k\rho(\alpha,\beta)
+		];
+	\end{gather*}
+
+	\item {\rm\bf 正定性}：\begin{gather*}
+		(\forall \alpha \in V)
+		[
+			\rho(\alpha,\alpha) \geq 0
+		], \\
+		(\forall \alpha \in V)
+		[
+			\rho(\alpha,\alpha) = 0
+			\iff
+			\alpha = 0
+		],
+	\end{gather*}
+\end{itemize}
+则称“\(f\)是实线性空间\(V\)上的一个\DefineConcept{内积}（inner product）”.
 \end{definition}
+
+虽然在\hyperref[definition:欧几里得空间.实线性空间上的内积]{定义}中，
+我们只规定了内积对第一个自变量具有线性性，
+但是我们容易证明，内积对第二个自变量也具有线性性：
+\begin{property}\label{theorem:实线性空间.实线性空间上内积对第二个自变量具有线性性}
+%@see: 《高等代数（第三版 下册）》（丘维声） P193
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P185 6.6
+设\(\rho\)是实线性空间\(V\)上的一个内积，
+则内积\(\rho\)对第二个自变量具有线性性，
+即\begin{equation}
+	\rho(\alpha,k_1\beta_1+k_2\beta_2)
+	= k_1 \rho(\alpha,\beta_1)
+	+ k_2 \rho(\alpha,\beta_2).
+\end{equation}
+\begin{proof}
+由内积的对称性和它对第一个自变量的线性性，有\begin{align*}
+	\rho(\alpha,k_1\beta_1+k_2\beta_2)
+	&= \rho(k_1\beta_1+k_2\beta_2,\alpha) \\
+	&= k_1 \rho(\beta_1,\alpha)
+		+ k_2 \rho(\beta_2,\alpha) \\
+	&= k_1 \rho(\alpha,\beta_1)
+		+ k_2 \rho(\alpha,\beta_2).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{property}
+
+\begin{proposition}\label{theorem:欧几里得空间.实内积空间上的内积的等价定义}
+%@see: 《高等代数（第三版 下册）》（丘维声） P174 定义1
+设\(V\)是实数域\(\mathbb{R}\)上的一个线性空间，
+则“\(f\)是实线性空间\(V\)上的一个内积”的充分必要条件是
+“\(f\)是\(V\)上的一个正定对称双线性函数”.
+\end{proposition}
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P174 命题1
@@ -52,9 +119,10 @@
 \subsection{实内积空间，欧几里得空间}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P174 定义2
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P184 6.4
 设\(V\)是一个实线性空间，
 \(\rho\)是\(V\)上的一个内积，
-则称“\((V,\rho)\)是一个\DefineConcept{实内积空间}”.
+则称“\((V,\rho)\)是一个\DefineConcept{实内积空间}（real inner product space）”.
 \end{definition}
 
 \begin{definition}
@@ -158,34 +226,42 @@
 %@see: 《高等代数（第三版 下册）》（丘维声） P175 定义5
 设\(\alpha,\beta\)是实内积空间\((V,\rho)\)中的两个非零向量.
 如果\(\rho(\alpha,\beta) = 0\)，
-则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}”，
+则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}（orthogonal）”，
 记为\(\alpha \perp \beta\).
 \end{definition}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:实内积空间.三角不等式}
 %@see: 《高等代数（第三版 下册）》（丘维声） P175 推论3
 在实内积空间\((V,\rho)\)中，
-三角不等式成立，
+\DefineConcept{三角不等式}（triangle inequality）成立，
 即对于\(\forall \alpha,\beta \in V\)，
 有\begin{equation}
 %@see: 《高等代数（第三版 下册）》（丘维声） P175 (7)
 	\VectorLengthA{\alpha+\beta} \leq \VectorLengthA{\alpha} + \VectorLengthA{\beta}.
 \end{equation}
-%TODO 没有取等条件
+当且仅当\(\alpha = k\beta\)或\(\beta = k\alpha\)（其中\(k\geq0\)）时，上式取“\(=\)”号.
 %TODO proof
 \end{corollary}
 
-\begin{corollary}
+\begin{corollary}\label{theorem:实内积空间.勾股定理}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176 推论4
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P187 6.12
 在实内积空间\((V,\rho)\)中，
-勾股定理成立，
+\DefineConcept{勾股定理}成立，
 即对于\(\forall \alpha,\beta \in V\)，
 如果\(\alpha\)与\(\beta\)正交，
 则\begin{equation}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176 (8)
 	\VectorLengthA{\alpha+\beta}^2 = \VectorLengthA{\alpha}^2 + \VectorLengthA{\beta}^2.
 \end{equation}
-%TODO proof
+\begin{proof}
+假设\(\alpha\)与\(\beta\)正交，
+那么\(\rho(\alpha,\beta) = 0\)，
+从而\(\VectorLengthA{\alpha+\beta}^2
+= \rho(\alpha+\beta,\alpha+\beta)
+= \rho(\alpha,\alpha) + \rho(\beta,\beta) + \rho(\alpha,\beta) + \rho(\beta,\alpha)
+= \VectorLengthA{\alpha}^2 + \VectorLengthA{\beta}^2\).
+\end{proof}
 \end{corollary}
 
 \begin{definition}
