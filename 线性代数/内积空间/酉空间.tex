@@ -166,7 +166,7 @@ Y=(\AutoTuple{y}{n})^T\).
 记作\(\VectorLengthA{\alpha}\)或\(\VectorLengthN{\alpha}\).
 \end{definition}
 
-\begin{property}
+\begin{property}\label{theorem:酉空间.向量的长度具有非负性}
 %@see: 《高等代数（第三版 下册）》（丘维声） P194
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P186 6.9
 在酉空间\(V\)中，
@@ -174,7 +174,7 @@ Y=(\AutoTuple{y}{n})^T\).
 非零向量的长度是正数.
 \end{property}
 
-\begin{property}
+\begin{property}\label{theorem:酉空间.向量的长度具有齐次性}
 %@see: 《高等代数（第三版 下册）》（丘维声） P194
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P186 6.9
 在酉空间\((V,\rho)\)中，
@@ -343,11 +343,12 @@ Y=(\AutoTuple{y}{n})^T\).
 	(\forall \alpha,\beta \in A)
 	[\alpha \perp \beta],
 \end{equation*}
-则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交向量组}”.
+则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交向量组}（orthogonal list）”.
 \end{definition}
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P195
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P197 6.22
 设\((V,\rho)\)是一个有限维酉空间，
 \(A\)是\(V\)中的一个向量组，
 如果\begin{equation*}
@@ -357,15 +358,38 @@ Y=(\AutoTuple{y}{n})^T\).
 	(\forall \alpha,\beta \in A)
 	[\alpha \perp \beta],
 \end{equation*}
-则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交单位向量组}”.
+则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交单位向量组}（orthonormal list）”.
 \end{definition}
+
+\begin{proposition}\label{theorem:酉空间.正交向量组的线性组合的长度}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P198 6.24
+设\(\AutoTuple{\alpha}{s}\)是酉空间\((V,\rho)\)中一个正交向量组，
+那么对于\(\forall \AutoTuple{k}{s} \in F\)，
+有\begin{equation*}
+	\VectorLengthA{
+		k_1 \alpha_1 + \dotsb + k_s \alpha_s
+	}^2
+	= \abs{k_1}^2 \VectorLengthA{\alpha_1}^2 + \dotsb + \abs{k_s}^2 \VectorLengthA{\alpha_s}^2.
+\end{equation*}
+\begin{proof}
+由\hyperref[theorem:酉空间.勾股定理]{勾股定理}和\cref{theorem:酉空间.向量的长度具有齐次性} 立即可得.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P198 6.25
+在酉空间\((V,\rho)\)中，
+任意一个正交向量组一定线性无关.
+%TODO proof
+\end{proposition}
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P195
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P199 6.27
 设\((V,\rho)\)是\(n\)维酉空间，
 \(A\)是\(V\)的一个基.
 如果\(A\)是正交向量组，
-则称“\(A\)是\((V,\rho)\)的一个\DefineConcept{正交基}”.
+则称“\(A\)是\((V,\rho)\)的一个\DefineConcept{正交基}（orthonormal basis）”.
 \end{definition}
 
 \begin{definition}
@@ -384,7 +408,19 @@ Y=(\AutoTuple{y}{n})^T\).
 在\(n\)维酉空间\(V\)中，取一个基\(\AutoTuple{\alpha}{n}\)，
 经过施密特正交化把它变成正交基\(\AutoTuple{\beta}{n}\)，
 再经过单位化把它变成标准正交基\(\AutoTuple{\gamma}{n}\).
-这就说明：在有限维酉空间中，一定存在标准正交基.
+这就说明：
+\begin{theorem}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P202 6.35
+有限维酉空间中，一定存在标准正交基.
+%TODO proof
+\end{theorem}
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P203 6.36
+有限维酉空间\(V\)中的任意一个正交单位向量组
+均可以扩充成\(V\)的一个标准正交基.
+%TODO proof
+\end{proposition}
 
 \subsection{酉空间中向量的内积、傅里叶展开}
 \begin{proposition}
@@ -416,6 +452,11 @@ Y=(\AutoTuple{y}{n})^T\)，
 	= \sum_{i=1}^n x_i \ComplexConjugate{y_i}
 	= Y^H X.
 \end{equation*}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P200 6.30(c)
+上式还可以写成\begin{equation}
+	\rho(\alpha,\beta)
+	= \sum_{i=1}^n \rho(\alpha,\eta_i) \ComplexConjugate{\rho(\beta,\eta_i)}.
+\end{equation}
 
 利用标准正交基，可以借助内积，表达向量的坐标分量.
 
@@ -431,12 +472,19 @@ Y=(\AutoTuple{y}{n})^T\)，
 \end{equation*}
 因此\begin{equation}\label{equation:酉空间.向量的傅里叶展开}
 %@see: 《高等代数（第三版 下册）》（丘维声） P196 (10)
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P200 6.30(a)
 	\alpha = \sum_{i=1}^n \rho(\alpha,\eta_i) \eta_i.
 \end{equation}
 我们把\cref{equation:酉空间.向量的傅里叶展开}
 称为“向量\(\alpha\)的\DefineConcept{傅里叶展开}”，
 其中系数\(\rho(\alpha,\eta_i)\ (i=1,2,\dotsc,n)\)
 称为“向量\(\alpha\)的\DefineConcept{傅里叶系数}”.
+
+由\cref{equation:酉空间.向量的傅里叶展开,theorem:酉空间.正交向量组的线性组合的长度} 可得\begin{equation}
+%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P200 6.30(b)
+	\VectorLengthA{\alpha}^2
+	= \sum_{i=1}^n \rho^2(\alpha,\eta_i).
+\end{equation}
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P196
