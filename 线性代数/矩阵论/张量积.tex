@@ -1,0 +1,101 @@
+\section{张量积}
+\subsection{张量积的定义}
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P13
+设\(\vb{A} = (a_{ij}) \in M_{m \times n}(\mathbb{C}),
+\vb{B} \in M_{s \times t}(\mathbb{C})\).
+定义：\begin{equation}
+	\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}}
+	\defeq
+	\begin{bmatrix}
+		a_{11} \vb{B} & a_{12} \vb{B} & \dots & a_{1n} \vb{B} \\
+		a_{21} \vb{B} & a_{22} \vb{B} & \dots & a_{2n} \vb{B} \\
+		\vdots & \vdots & & \vdots \\
+		a_{m1} \vb{B} & a_{m2} \vb{B} & \dots & a_{mn} \vb{B}
+	\end{bmatrix}
+	\in M_{ms \times nt},
+\end{equation}
+称之为“矩阵\(\vb{A}\)与矩阵\(\vb{B}\)的\DefineConcept{克罗内克张量积}（Kronecker tensor product）”.
+\end{definition}
+
+\begin{property}
+%@see: 《矩阵论》（詹兴致） P13
+克罗内克张量积具有以下性质：\begin{gather*}
+	(\forall \vb{A} \in M_{m \times n}(\mathbb{C}))
+	(\forall \vb{B} \in M_{s \times t}(\mathbb{C}))
+	(\forall k \in \mathbb{C})
+	[
+		\MatrixKroneckerTensorProduct{(k\vb{A})}{\vb{B}}
+		= \MatrixKroneckerTensorProduct{\vb{A}}{(k\vb{B})}
+		= k(\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}})
+	], \\
+	(\forall \vb{A} \in M_{m \times n}(\mathbb{C}))
+	(\forall \vb{B} \in M_{s \times t}(\mathbb{C}))
+	[
+		(\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}})^T
+		= \MatrixKroneckerTensorProduct{\vb{A}^T}{\vb{B}^T}
+	], \\
+	(\forall \vb{A} \in M_{m \times n}(\mathbb{C}))
+	(\forall \vb{B} \in M_{s \times t}(\mathbb{C}))
+	[
+		(\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}})^H
+		= \MatrixKroneckerTensorProduct{\vb{A}^H}{\vb{B}^H}
+	], \\
+	(\forall \vb{A} \in M_{m \times n}(\mathbb{C}))
+	(\forall \vb{B} \in M_{s \times t}(\mathbb{C}))
+	(\forall \vb{C} \in M_{p \times q}(\mathbb{C}))
+	[
+		\MatrixKroneckerTensorProduct{(\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}})}{\vb{C}}
+		= \MatrixKroneckerTensorProduct{\vb{A}}{(\MatrixKroneckerTensorProduct{\vb{B}}{\vb{C}})}
+	], \\
+	(\forall \vb{A} \in M_{m \times n}(\mathbb{C}))
+	(\forall \vb{B},\vb{C} \in M_{s \times t}(\mathbb{C}))
+	[
+		\MatrixKroneckerTensorProduct{\vb{A}}{(\vb{B}+\vb{C})}
+		= (\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}})
+		+ (\MatrixKroneckerTensorProduct{\vb{A}}{\vb{C}})
+	], \\
+	(\forall \vb{A},\vb{B} \in M_{m \times n}(\mathbb{C}))
+	(\forall \vb{C} \in M_{s \times t}(\mathbb{C}))
+	[
+		\MatrixKroneckerTensorProduct{(\vb{A}+\vb{B})}{\vb{C}}
+		= (\MatrixKroneckerTensorProduct{\vb{A}}{\vb{C}})
+		+ (\MatrixKroneckerTensorProduct{\vb{B}}{\vb{C}})
+	], \\
+	(\forall \vb{A} \in M_{m \times n}(\mathbb{C}))
+	(\forall \vb{B} \in M_{s \times t}(\mathbb{C}))
+	[
+		\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}} = 0
+		\iff
+		\vb{A} = 0 \lor \vb{B} = 0
+	], \\
+	(\forall \vb{A} \in M_m(\mathbb{C}))
+	(\forall \vb{B} \in M_n(\mathbb{C}))
+	[
+		\text{$\vb{A},\vb{B}$都是对称矩阵}
+		\implies
+		\text{$\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}}$是对称矩阵}
+	], \\
+	(\forall \vb{A} \in M_m(\mathbb{C}))
+	(\forall \vb{B} \in M_n(\mathbb{C}))
+	[
+		\text{$\vb{A},\vb{B}$都是厄米矩阵}
+		\implies
+		\text{$\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}}$是厄米矩阵}
+	].
+\end{gather*}
+\end{property}
+
+\begin{lemma}
+%@see: 《矩阵论》（詹兴致） P14 引理2.1
+设矩阵\(\vb{A} \in M_{m \times n}(\mathbb{C}),
+\vb{B} \in M_{s \times t}(\mathbb{C}),
+\vb{C} \in M_{n \times k}(\mathbb{C}),
+\vb{D} \in M_{t \times r}(\mathbb{C})\)，
+则\begin{equation}
+	(\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}})
+	(\MatrixKroneckerTensorProduct{\vb{C}}{\vb{D}})
+	= \MatrixKroneckerTensorProduct{(\vb{A}\vb{C})}{(\vb{B}\vb{D})}.
+\end{equation}
+%TODO proof
+\end{lemma}
