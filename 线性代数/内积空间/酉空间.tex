@@ -508,6 +508,110 @@ Y=(\AutoTuple{y}{n})^T\)，
 %TODO proof
 \end{proposition}
 
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P5
+设\(\alpha \in \mathbb{C}^n\).
+定义：\begin{equation}
+	\MatrixNorm{A}_p
+	\defeq
+	\left( \sum_{i=1}^n \ComplexLengthA{a_i}^p \right)^{1/p},
+\end{equation}
+称之为“向量\(\alpha\)的 \DefineConcept{\(L_p\)范数}”，
+其中\(\alpha = (\AutoTuple{a}{n})^T\).
+\end{definition}
+
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P5
+设\(A \in M_{m \times n}(\mathbb{C})\)，
+\(A^H\)是\(A\)的共轭转置.
+定义：\begin{equation}
+	\MatrixNorm{A}_F
+	\defeq
+	\sqrt{
+		\tr(A^H A)
+	},
+\end{equation}
+称之为“矩阵\(A\)的\DefineConcept{弗罗贝尼乌斯范数}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P5
+设\(A \in M_{m \times n}(\mathbb{C})\).
+定义：\begin{equation}
+	\MatrixNorm{A}_r
+	\defeq
+	\max_{1 \leq i \leq m} \sum_{j=1}^n \abs{a_{ij}},
+\end{equation}
+称之为“矩阵\(A\)的\DefineConcept{行和范数}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P5
+设\(A \in M_{m \times n}(\mathbb{C})\).
+定义：\begin{equation}
+	\MatrixNorm{A}_c
+	\defeq
+	\max_{1 \leq j \leq n} \sum_{i=1}^n \abs{a_{ij}},
+\end{equation}
+称之为“矩阵\(A\)的\DefineConcept{列和范数}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P5
+设\(A \in M_{m \times n}(\mathbb{C})\)，
+\(f\)是\(\mathbb{C}^m\)上的一个范数，
+\(g\)是\(\mathbb{C}^n\)上的一个范数.
+定义：\begin{equation}
+	\MatrixNorm{A}
+	\defeq
+	\max_{0 \neq x \in \mathbb{C}^n} \frac{f(Ax)}{g(x)},
+\end{equation}
+称之为“矩阵\(A\)由\(f\)和\(g\)诱导的\DefineConcept{算子范数}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P5
+如果由\(f\)和\(g\)诱导的算子范数
+\(N\colon M_n(\mathbb{C}) \to \mathbb{R}, A \mapsto \MatrixNorm{A}\)
+满足\begin{equation*}
+	(\forall A,B \in M_n(\mathbb{C}))
+	[
+		\MatrixNorm{AB}
+		\leq \MatrixNorm{A} \MatrixNorm{B}
+	],
+\end{equation*}
+则称“由\(f\)和\(g\)诱导的算子范数\(N\)是\DefineConcept{次可乘的}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P5
+设\(A \in M_{m \times n}(\mathbb{C})\).
+定义：\begin{equation}
+	\MatrixNorm{A}_\infty
+	\defeq
+	\max_{x\neq0} \frac{\MatrixNorm{Ax}_2}{\MatrixNorm{x}_2},
+\end{equation}
+称之为“矩阵\(A\)的\DefineConcept{谱范数}”.
+\end{definition}
+
+\begin{property}
+%@see: 《矩阵论》（詹兴致） P5
+如果\(B\)是\(A \in M_{m \times n}(\mathbb{C})\)的一个子矩阵，
+则\(\MatrixNorm{B}_\infty \leq \MatrixNorm{A}_\infty\).
+\end{property}
+
+\begin{property}
+%@see: 《矩阵论》（詹兴致） P5
+设\(A \in M_{m \times n}(\mathbb{C})\)，
+\(X\)是一个\(m\)阶酉矩阵，
+\(Y\)是一个\(n\)阶酉矩阵，
+则\begin{equation}
+	\MatrixNorm{A}_\infty
+	= \MatrixNorm{AY}_\infty
+	= \MatrixNorm{XA}_\infty.
+\end{equation}
+\end{property}
+
 \subsection{酉空间之间的同构}
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P196
