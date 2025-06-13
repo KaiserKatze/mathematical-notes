@@ -1,5 +1,5 @@
 \section{张量积}
-\subsection{张量积的定义}
+\subsection{克罗内克积}
 \begin{definition}
 %@see: 《矩阵论》（詹兴致） P13
 设\(\vb{A} = (a_{ij}) \in M_{m \times n}(\mathbb{C}),
@@ -13,14 +13,15 @@
 		\vdots & \vdots & & \vdots \\
 		a_{m1} \vb{B} & a_{m2} \vb{B} & \dots & a_{mn} \vb{B}
 	\end{bmatrix}
-	\in M_{ms \times nt},
+	\in M_{ms \times nt}(\mathbb{C}),
 \end{equation}
-称之为“矩阵\(\vb{A}\)与矩阵\(\vb{B}\)的\DefineConcept{克罗内克张量积}（Kronecker tensor product）”.
+称之为“矩阵\(\vb{A}\)与矩阵\(\vb{B}\)的\DefineConcept{克罗内克积}（Kronecker product）”.
+%@see: https://mathworld.wolfram.com/KroneckerProduct.html
 \end{definition}
 
 \begin{property}
 %@see: 《矩阵论》（詹兴致） P13
-克罗内克张量积具有以下性质：\begin{gather*}
+克罗内克积具有以下性质：\begin{gather*}
 	(\forall \vb{A} \in M_{m \times n}(\mathbb{C}))
 	(\forall \vb{B} \in M_{s \times t}(\mathbb{C}))
 	(\forall k \in \mathbb{C})
@@ -175,3 +176,74 @@
 	= (\rank\vb{A}) (\rank\vb{B}).
 \end{equation}
 \end{property}
+
+\subsection{阿达玛积}
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P15
+设\(\vb{A} = (a_{ij}) \in M_{m \times n}(\mathbb{C}),
+\vb{B} = (b_{ij}) \in M_{m \times n}(\mathbb{C})\).
+定义：\begin{equation}
+	\MatrixHadamardProduct{\vb{A}}{\vb{B}}
+	\defeq
+	\begin{bmatrix}
+		a_{11} b_{11} & a_{12} b_{12} & \dots & a_{1n} b_{1n} \\
+		a_{21} b_{21} & a_{22} b_{22} & \dots & a_{2n} b_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{m1} b_{m1} & a_{m2} b_{m2} & \dots & a_{mn} b_{mn}
+	\end{bmatrix}
+	\in M_{m \times n}(\mathbb{C}),
+\end{equation}
+称之为“矩阵\(\vb{A}\)与矩阵\(\vb{B}\)的\DefineConcept{阿达玛积}（Hadamard product）”.
+\end{definition}
+
+\begin{lemma}
+%@see: 《矩阵论》（詹兴致） P15 引理2.3
+设矩阵\(\vb{A},\vb{B} \in M_n(\mathbb{C})\)，
+则\(\vb{A}\)与\(\vb{B}\)的阿达玛积
+\(\MatrixHadamardProduct{\vb{A}}{\vb{B}}\)是
+\(\vb{A}\)与\(\vb{B}\)的克罗内克积
+\(\MatrixKroneckerTensorProduct{\vb{A}}{\vb{B}}\)的
+位于\(1,n+2,2n+3,\dotsc,n^2\)行和列的主子矩阵.
+%TODO proof
+\end{lemma}
+
+\begin{theorem}
+%@see: 《矩阵论》（詹兴致） P16 定理2.4（Schur）
+设矩阵\(\vb{A},\vb{B} \in M_n(\mathbb{C})\).
+\begin{itemize}
+	\item 若\(\vb{A},\vb{B}\)都是半正定的，
+	则\(\vb{A}\)与\(\vb{B}\)的阿达玛积
+	\(\MatrixHadamardProduct{\vb{A}}{\vb{B}}\)也是半正定的.
+	\item 若\(\vb{A},\vb{B}\)都是正定的，
+	则\(\vb{A}\)与\(\vb{B}\)的阿达玛积
+	\(\MatrixHadamardProduct{\vb{A}}{\vb{B}}\)也是正定的.
+\end{itemize}
+\end{theorem}
+
+\begin{definition}
+%@see: 《矩阵论》（詹兴致） P16
+设矩阵\(\vb{A} \in M_{m \times n}(\mathbb{C})\)可以按列分块为\((\AutoTuple{\alpha}{n})\).
+定义：\begin{equation}
+	\MatrixConcatColumn{\vb{A}}
+	\defeq
+	\begin{bmatrix}
+		\alpha_1 \\
+		\alpha_2 \\
+		\vdots \\
+		\alpha_n
+	\end{bmatrix}
+	\in \mathbb{C}^{mn}.
+\end{equation}
+\end{definition}
+
+\begin{lemma}
+%@see: 《矩阵论》（詹兴致） P16 引理2.5(i)
+设矩阵\(\vb{A} \in M_{m \times n}(\mathbb{C}),
+\vb{B} \in M_{n \times k}(\mathbb{C}),
+\vb{C} \in M_{k \times t}(\mathbb{C})\)，
+则\begin{equation}
+	\MatrixConcatColumn{(\vb{A}\vb{B}\vb{C})}
+	= (\MatrixKroneckerTensorProduct{\vb{C}^T}{\vb{A}})
+	\MatrixConcatColumn{\vb{B}}.
+\end{equation}
+\end{lemma}
