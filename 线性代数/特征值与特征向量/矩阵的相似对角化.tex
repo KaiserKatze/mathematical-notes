@@ -1,14 +1,14 @@
 \section{相似对角化}
 \begin{definition}\label{definition:相似对角化.相似对角化}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171
-设矩阵\(\A \in M_n(K)\).
+设矩阵\(\vb{A} \in M_n(K)\).
 \begin{itemize}
-	\item 如果存在\(n\)阶对角矩阵\(\vb\Lambda\)相似于\(\A\)，
-	则称“矩阵\(\A\)可以\DefineConcept{相似对角化}”
+	\item 如果存在\(n\)阶对角矩阵\(\vb\Lambda\)相似于\(\vb{A}\)，
+	则称“矩阵\(\vb{A}\)可以\DefineConcept{相似对角化}”
 	%@see: https://mathworld.wolfram.com/DiagonalizableMatrix.html
-	“矩阵\(\vb\Lambda\)是\(\A\)的\DefineConcept{相似标准型}”.
-	\item 如果不存在\(n\)阶对角矩阵相似于\(\A\)，
-	则称“矩阵\(\A\)不可以{相似对角化}”.
+	“矩阵\(\vb\Lambda\)是\(\vb{A}\)的\DefineConcept{相似标准型}”.
+	\item 如果不存在\(n\)阶对角矩阵相似于\(\vb{A}\)，
+	则称“矩阵\(\vb{A}\)不可以{相似对角化}”.
 \end{itemize}
 %@see: https://mathworld.wolfram.com/MatrixDiagonalization.html
 \end{definition}
@@ -16,32 +16,32 @@
 \begin{theorem}\label{theorem:矩阵相似对角化.矩阵可以相似对角化的充分必要条件}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 定理2
 %@see: 《高等代数（第三版 上册）》（丘维声） P180 定理1
-矩阵\(\A \in M_n(K)\)可以相似对角化的充分必要条件是：
-\(\A\)有\(n\)个线性无关的特征向量.
+矩阵\(\vb{A} \in M_n(K)\)可以相似对角化的充分必要条件是：
+\(\vb{A}\)有\(n\)个线性无关的特征向量.
 \begin{proof}
 必要性.
-假设\(\A\)可以相似对角化，
-即存在数域\(K\)上的\(n\)阶可逆矩阵\(\P=(\AutoTuple{\x}{n})\)
+假设\(\vb{A}\)可以相似对角化，
+即存在数域\(K\)上的\(n\)阶可逆矩阵\(\vb{P}=(\AutoTuple{\vb{x}}{n})\)
 和数域\(K\)上的\(n\)阶对角阵\(\vb\Lambda=\diag(\AutoTuple{\lambda}{n})\)，
 使\[
-	\P^{-1}\A\P=\V.
+	\vb{P}^{-1}\vb{A}\vb{P}=\vb{\Lambda}.
 \]
-用\(\P\)左乘上式两端，得\[
-	\A\P=\P\V.
+用\(\vb{P}\)左乘上式两端，得\[
+	\vb{A}\vb{P}=\vb{P}\vb{\Lambda}.
 \]
-由于\(\P\)可逆，所以\(\AutoTuple{\x}{n}\)线性无关，有\[
-	\A(\AutoTuple{\x}{n})
-	=(\AutoTuple{\x}{n})\V,
+由于\(\vb{P}\)可逆，所以\(\AutoTuple{\vb{x}}{n}\)线性无关，有\[
+	\vb{A}(\AutoTuple{\vb{x}}{n})
+	=(\AutoTuple{\vb{x}}{n})\vb{\Lambda},
 \]
 由分块矩阵乘法法则，得\[
-	(\A\vb{x}_1,\A\vb{x}_2,\dotsc,\A\vb{x}_n)
+	(\vb{A}\vb{x}_1,\vb{A}\vb{x}_2,\dotsc,\vb{A}\vb{x}_n)
 	=(\lambda_1\vb{x}_1,\lambda_2\vb{x}_2,\dotsc,\lambda_n\vb{x}_n),
 \]
 于是\[
-	\A\vb{x}_i=\lambda_i\vb{x}_i,
+	\vb{A}\vb{x}_i=\lambda_i\vb{x}_i,
 	\quad i=1,2,\dotsc,n,
 \]
-即\(\AutoTuple{\x}{n}\)是矩阵\(\A\)的
+即\(\AutoTuple{\vb{x}}{n}\)是矩阵\(\vb{A}\)的
 分别属于\(\AutoTuple{\lambda}{n}\)的\(n\)个线性无关的特征向量.
 
 同理可证充分性.
@@ -50,46 +50,46 @@
 \begin{remark}
 %@see: 《线性代数》（张慎语、周厚隆） P99
 从\cref{theorem:矩阵相似对角化.矩阵可以相似对角化的充分必要条件} 的证明过程可知：
-{\color{red}当\(\P^{-1}\A\P=\V\)时，
-\(\V\)的\(n\)个主对角元是\(\A\)的\(n\)个特征值，
-可逆矩阵\(\P\)的\(n\)个列向量\(\AutoTuple{\x}{n}\)是
-\(\A\)分别属于\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)的线性无关的特征向量.}
+{\color{red}当\(\vb{P}^{-1}\vb{A}\vb{P}=\vb{\Lambda}\)时，
+\(\vb{\Lambda}\)的\(n\)个主对角元是\(\vb{A}\)的\(n\)个特征值，
+可逆矩阵\(\vb{P}\)的\(n\)个列向量\(\AutoTuple{\vb{x}}{n}\)是
+\(\vb{A}\)分别属于\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)的线性无关的特征向量.}
 \end{remark}
 
 \begin{example}
-设矩阵\(\A \in M_n(K)\)可以相似对角化.
-证明：\(\A\)的伴随矩阵\(\A^*\)也可以相似对角化，
-且存在可逆矩阵\(\P\)，
+设矩阵\(\vb{A} \in M_n(K)\)可以相似对角化.
+证明：\(\vb{A}\)的伴随矩阵\(\vb{A}^*\)也可以相似对角化，
+且存在可逆矩阵\(\vb{P}\)，
 使得\begin{equation*}
-	\P^{-1} \A \P = \vb\Lambda,
+	\vb{P}^{-1} \vb{A} \vb{P} = \vb\Lambda,
 	\qquad
-	\P^{-1} \A^* \P = \vb\Lambda^*.
+	\vb{P}^{-1} \vb{A}^* \vb{P} = \vb\Lambda^*.
 \end{equation*}
 \begin{proof}
-假设\(\A\)可以相似对角化，
-即存在可逆矩阵\(\P\)使得\begin{equation*}
-	\P^{-1} \A \P = \vb\Lambda,
+假设\(\vb{A}\)可以相似对角化，
+即存在可逆矩阵\(\vb{P}\)使得\begin{equation*}
+	\vb{P}^{-1} \vb{A} \vb{P} = \vb\Lambda,
 	\eqno(1)
 \end{equation*}
 那么\begin{equation*}
-	(\P^{-1} \A \P)^*
-	= \P^* \A^* (\P^{-1})^*.
+	(\vb{P}^{-1} \vb{A} \vb{P})^*
+	= \vb{P}^* \vb{A}^* (\vb{P}^{-1})^*.
 	\eqno(2)
 \end{equation*}
 由\cref{theorem:逆矩阵.逆矩阵的唯一性}
 可知\begin{equation*}
-	\P^* = \abs{\P} \P^{-1},
+	\vb{P}^* = \abs{\vb{P}} \vb{P}^{-1},
 	\qquad
-	(\P^{-1})^* = \abs{\P^{-1}} (\P^{-1})^{-1}
-	= \abs{\P}^{-1} \P,
+	(\vb{P}^{-1})^* = \abs{\vb{P}^{-1}} (\vb{P}^{-1})^{-1}
+	= \abs{\vb{P}}^{-1} \vb{P},
 \end{equation*}
 代入(2)式得\begin{equation*}
-	(\P^{-1} \A \P)^*
-	= \P^{-1} \A^* \P,
+	(\vb{P}^{-1} \vb{A} \vb{P})^*
+	= \vb{P}^{-1} \vb{A}^* \vb{P},
 \end{equation*}
 再代入(1)式得\begin{equation*}
 	\vb\Lambda^*
-	= \P^{-1} \A^* \P.
+	= \vb{P}^{-1} \vb{A}^* \vb{P}.
 	\qedhere
 \end{equation*}
 \end{proof}
@@ -163,8 +163,8 @@
 \end{solution}
 \end{example}
 
-我们已经知道，方程\((\lambda\E-\A)\x=\vb0\)的基础解系是
-矩阵\(\A\)的属于特征值\(\lambda\)的线性无关的特征向量.
+我们已经知道，方程\((\lambda\vb{E}-\vb{A})\vb{x}=\vb0\)的基础解系是
+矩阵\(\vb{A}\)的属于特征值\(\lambda\)的线性无关的特征向量.
 于是自然提出问题：不同特征值的线性无关特征向量是否构成线性无关组？
 关于这个问题，我们给出如下定理.
 \begin{theorem}\label{theorem:矩阵相似对角化.不同特征值的特征向量线性无关}
@@ -175,11 +175,11 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P181 推论4
 矩阵的属于不同特征值的特征向量线性无关.
 \begin{proof}
-设矩阵\(\A \in M_n(K)\)的\(m\)个不同的特征值\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)
-对应的特征向量分别为\(\AutoTuple{\x}{m}\).
+设矩阵\(\vb{A} \in M_n(K)\)的\(m\)个不同的特征值\(\lambda_1,\lambda_2,\dotsc,\lambda_m\)
+对应的特征向量分别为\(\AutoTuple{\vb{x}}{m}\).
 
 由上述所有特征向量构成的向量组，
-记作\(X_m=\{\AutoTuple{\x}{m}\}\).
+记作\(X_m=\{\AutoTuple{\vb{x}}{m}\}\).
 
 当\(m=1\)时，
 由于\(\vb{x}_1 \neq 0\)，
@@ -187,28 +187,28 @@
 
 当\(m>1\)时，用数学归纳法，
 假设\(m-1\)个不同特征值对应的特征向量\[
-	X_{m-1}=\{\AutoTuple{\x}{m-1}\}
+	X_{m-1}=\{\AutoTuple{\vb{x}}{m-1}\}
 \]线性无关.
 对于\(m\)个不同特征值对应的特征向量组\(X_m\)，
 考虑方程\[
 	k_1\vb{x}_1+k_2\vb{x}_2+\dotsb+k_{m-1}\vb{x}_{m-1}+k_m\vb{x}_m=\vb0,
 	\eqno(1)
 \]
-由于\(\A\vb{x}_j=\lambda_j\vb{x}_j\)，
-用\(\A\)左乘(1)式两端，
+由于\(\vb{A}\vb{x}_j=\lambda_j\vb{x}_j\)，
+用\(\vb{A}\)左乘(1)式两端，
 得\[
 	k_1\lambda_1\vb{x}_1+k_2\lambda_2\vb{x}_2
-	+\dotsb+k_{m-1}\L{m-1}\X{m-1}+k_m\lambda_m\vb{x}_m=\vb0.
+	+\dotsb+k_{m-1}\lambda_{m-1}\vb{x}_{m-1}+k_m\lambda_m\vb{x}_m=\vb0.
 	\eqno(2)
 \]
 再用\(\lambda_m\)数乘(1)式两端，得\[
 	\lambda_mk_1\vb{x}_1+\lambda_mk_2\vb{x}_2
-	+\dotsb+\lambda_mk_{m-1}\X{m-1}+\lambda_mk_m\vb{x}_m=\vb0,
+	+\dotsb+\lambda_mk_{m-1}\vb{x}_{m-1}+\lambda_mk_m\vb{x}_m=\vb0,
 	\eqno(3)
 \]
-(2)、(3)两式相减，得\[
+(2)(3)两式相减，得\[
 	(\lambda_1-\lambda_m)k_1\vb{x}_1+(\lambda_2-\lambda_m)k_2\vb{x}_2
-	+\dotsb+(\L{m-1}-\lambda_m)k_{m-1}\X{m-1}=\vb0.
+	+\dotsb+(\lambda_{m-1}-\lambda_m)k_{m-1}\vb{x}_{m-1}=\vb0.
 	\eqno(4)
 \]
 根据归纳假设，向量组\(X_{m-1}\)线性无关，
@@ -231,9 +231,9 @@
 \begin{remark}
 由\cref{theorem:矩阵相似对角化.不同特征值的特征向量线性无关} 可知\[
 	\bigcup\Set{
-		\text{$\Ker(\lambda\E-\A)$的基}
+		\text{$\Ker(\lambda\vb{E}-\vb{A})$的基}
 		\given
-		\text{$\lambda$是$\A$的特征值}
+		\text{$\lambda$是$\vb{A}$的特征值}
 	}
 \]线性无关.
 \end{remark}
@@ -241,27 +241,27 @@
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P102 例2
 设\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		1 & 0 & 0 \\
 		-2 & 5 & -2 \\
 		-2 & 4 & -1
 	\end{bmatrix}.
 \]
-试问：\(\A\)能否相似对角化？
-若能，则求出可逆矩阵\(\P\)，使\(\P^{-1}\A\P\)为对角形矩阵.
+试问：\(\vb{A}\)能否相似对角化？
+若能，则求出可逆矩阵\(\vb{P}\)，使\(\vb{P}^{-1}\vb{A}\vb{P}\)为对角形矩阵.
 \begin{solution}
-\(\A\)的特征多项式为\[
-	\abs{\l\E-\A} = \begin{bmatrix}
-		\l-1 & 0 & 0 \\
-		2 & \l-5 & 2 \\
-		2 & -4 & \l+1
+\(\vb{A}\)的特征多项式为\[
+	\abs{\lambda\vb{E}-\vb{A}} = \begin{bmatrix}
+		\lambda-1 & 0 & 0 \\
+		2 & \lambda-5 & 2 \\
+		2 & -4 & \lambda+1
 	\end{bmatrix}
-	= (\l-1)^2 (\l-3),
+	= (\lambda-1)^2 (\lambda-3),
 \]
-则\(\A\)的特征值为\(\lambda_1=1\ (\text{二重})\)，\(\lambda_2=3\).
+则\(\vb{A}\)的特征值为\(\lambda_1=1\ (\text{二重})\)，\(\lambda_2=3\).
 
-当\(\lambda_1=1\)时，解齐次线性方程组\((\E-\A)\x=\vb0\)，\[
-	\E-\A=\begin{bmatrix}
+当\(\lambda_1=1\)时，解齐次线性方程组\((\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	\vb{E}-\vb{A}=\begin{bmatrix}
 		0 & 0 & 0 \\
 		2 & -4 & 2 \\
 		2 & -4 & 2
@@ -275,8 +275,8 @@
 基础解系为\(\vb{x}_1 = \begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix},
 \vb{x}_2 = \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\).
 
-对于\(\lambda_2=3\)，解方程组\((3\E-\A)\x=\vb0\)，\[
-	3\E-\A=\begin{bmatrix}
+对于\(\lambda_2=3\)，解方程组\((3\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	3\vb{E}-\vb{A}=\begin{bmatrix}
 		2 & 0 & 0 \\
 		2 & -2 & 2 \\
 		2 & -4 & 4
@@ -288,56 +288,56 @@
 \]
 基础解系为\(\vb{x}_3 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}\).
 
-特征向量\(\vb{x}_1,\vb{x}_2,\vb{x}_3\)线性无关，所以\(\A\)可以相似对角化.
+特征向量\(\vb{x}_1,\vb{x}_2,\vb{x}_3\)线性无关，所以\(\vb{A}\)可以相似对角化.
 令\[
-	\P = \begin{bmatrix} \vb{x}_1 & \vb{x}_2 & \vb{x}_3 \end{bmatrix} = \begin{bmatrix}
+	\vb{P} = \begin{bmatrix} \vb{x}_1 & \vb{x}_2 & \vb{x}_3 \end{bmatrix} = \begin{bmatrix}
 		2 & -1 & 0 \\
 		1 & 0 & 1 \\
 		0 & 1 & 1
 	\end{bmatrix},
 	\quad\text{则有}\quad
-	\P^{-1} \A \P = \begin{bmatrix} 1 \\ & 1 \\ && 3 \end{bmatrix}.
+	\vb{P}^{-1} \vb{A} \vb{P} = \begin{bmatrix} 1 \\ & 1 \\ && 3 \end{bmatrix}.
 \]
 \end{solution}
 \end{example}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P102 例3
-设\(\A = \begin{bmatrix}
+设\(\vb{A} = \begin{bmatrix}
 	2 & 0 & 0 \\
 	0 & 2 & 0 \\
 	0 & 1 & 2
 \end{bmatrix}\).
-证明：\(\A\)不可以相似对角化.
+证明：\(\vb{A}\)不可以相似对角化.
 \begin{proof}
-\(\A\)的特征多项式为\[
-	\abs{\l\E-\A} = \begin{vmatrix}
-		\l-2 & 0 & 0 \\
-		0 & \l-2 & 0 \\
-		0 & -1 & \l-2
-	\end{vmatrix} = (\l-2)^2,
+\(\vb{A}\)的特征多项式为\[
+	\abs{\lambda\vb{E}-\vb{A}} = \begin{vmatrix}
+		\lambda-2 & 0 & 0 \\
+		0 & \lambda-2 & 0 \\
+		0 & -1 & \lambda-2
+	\end{vmatrix} = (\lambda-2)^2,
 \]
-令\(\abs{\l\E-\A} = 0\)解得特征值\(\lambda_1=2\ (\text{三重})\).
-由于\(\rank(\lambda_1\E-\A)=1\)，
+令\(\abs{\lambda\vb{E}-\vb{A}} = 0\)解得特征值\(\lambda_1=2\ (\text{三重})\).
+由于\(\rank(\lambda_1\vb{E}-\vb{A})=1\)，
 那么对应于唯一的特征值\(\lambda_1=2\)，
-\(\A\)只有两个线性无关的特征向量，
-因而不存在可逆矩阵\(\P\)使得\(\P^{-1}\A\P\)为对角形矩阵.
+\(\vb{A}\)只有两个线性无关的特征向量，
+因而不存在可逆矩阵\(\vb{P}\)使得\(\vb{P}^{-1}\vb{A}\vb{P}\)为对角形矩阵.
 \end{proof}
 \end{example}
 
 从上述例子可以看出：
-当矩阵\(\A\)的某个特征值\(\lambda_0\)是\(k\)重根时，
-矩阵\(\A\)的属于特征值\(\lambda_0\)的线性无关的特征向量的个数
+当矩阵\(\vb{A}\)的某个特征值\(\lambda_0\)是\(k\)重根时，
+矩阵\(\vb{A}\)的属于特征值\(\lambda_0\)的线性无关的特征向量的个数
 可能等于\(k\)，也可能小于\(k\).
 这个规律对于一般的矩阵是成立的.
 
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 11.
-设\(\lambda \in K\)是矩阵\(\A \in M_n(K)\)的一个特征值.
+设\(\lambda \in K\)是矩阵\(\vb{A} \in M_n(K)\)的一个特征值.
 \begin{itemize}
-	\item 把\(\A\)的属于\(\lambda\)的特征子空间的维数\(\dim\Ker(\lambda\E-\A)\)
+	\item 把\(\vb{A}\)的属于\(\lambda\)的特征子空间的维数\(\dim\Ker(\lambda\vb{E}-\vb{A})\)
 	称为“\(\lambda\)的\DefineConcept{几何重数}”.
-	\item 把\(\lambda\)作为\(\A\)的特征多项式的根的重数
+	\item 把\(\lambda\)作为\(\vb{A}\)的特征多项式的根的重数
 	称为“\(\lambda\)的\DefineConcept{代数重数}”.
 \end{itemize}
 \end{definition}
@@ -349,38 +349,38 @@
 \end{theorem}
 \begin{remark}
 \cref{theorem:矩阵相似对角化.特征值的几何重数与代数重数的关系} 说明：
-矩阵\(\A\)的\(k\)重特征值\(\lambda_0\)的线性无关的特征向量最多只有\(k\)个.
+矩阵\(\vb{A}\)的\(k\)重特征值\(\lambda_0\)的线性无关的特征向量最多只有\(k\)个.
 \end{remark}
 
 \begin{theorem}\label{theorem:矩阵可以相似对角化的充分必要条件.定理2}
 %@see: 《线性代数》（张慎语、周厚隆） P103 定理5
-\(n\)阶矩阵\(\A\)可以相似对角化的充分必要条件是：
-对于\(\A\)的每个\(k_i\)重特征值\(\lambda_i\)，
-\(\A\)有\(k_i\)个线性无关的特征向量，
+\(n\)阶矩阵\(\vb{A}\)可以相似对角化的充分必要条件是：
+对于\(\vb{A}\)的每个\(k_i\)重特征值\(\lambda_i\)，
+\(\vb{A}\)有\(k_i\)个线性无关的特征向量，
 即\[
-	\dim\Ker(\lambda_i\E-\A) = k_i.
+	\dim\Ker(\lambda_i\vb{E}-\vb{A}) = k_i.
 \]
 %TODO proof
 \end{theorem}
 \begin{remark}
 \cref{theorem:矩阵可以相似对角化的充分必要条件.定理2} 说明：
-矩阵\(\A\)可以相似对角化当且仅当它的每个特征值的代数重数与几何重数相等.
+矩阵\(\vb{A}\)可以相似对角化当且仅当它的每个特征值的代数重数与几何重数相等.
 \end{remark}
 
 \begin{corollary}\label{theorem:矩阵可以相似对角化的充分必要条件.定理3}
 %@see: 《线性代数》（张慎语、周厚隆） P103 推论
-\(n\)阶矩阵\(\A\)可以相似对角化的充分必要条件是：
-对于\(\A\)的每个\(k_i\)重特征值\(\lambda_i\)，
+\(n\)阶矩阵\(\vb{A}\)可以相似对角化的充分必要条件是：
+对于\(\vb{A}\)的每个\(k_i\)重特征值\(\lambda_i\)，
 都有\[
-	\rank(\lambda_i\E-\A) = n-k_i.
+	\rank(\lambda_i\vb{E}-\vb{A}) = n-k_i.
 \]
 %TODO proof
 \end{corollary}
 
 \begin{theorem}\label{theorem:矩阵可以相似对角化的充分必要条件.定理4}
 %@see: 《高等代数（第三版 上册）》（丘维声） P182 定理5
-矩阵\(\A \in M_n(K)\)可以相似对角化的充分必要条件是：
-\(\A\)的属于不同特征值的特征子空间的维数之和等于\(n\).
+矩阵\(\vb{A} \in M_n(K)\)可以相似对角化的充分必要条件是：
+\(\vb{A}\)的属于不同特征值的特征子空间的维数之和等于\(n\).
 %TODO proof
 \end{theorem}
 
@@ -388,38 +388,38 @@
 \begin{corollary}\label{theorem:矩阵可以相似对角化的充分条件.定理1}
 %@see: 《线性代数》（张慎语、周厚隆） P100 推论
 %@see: 《高等代数（第三版 上册）》（丘维声） P182 推论6
-设\(\A \in M_n(K)\).
-“矩阵\(\A\)有\(n\)个不同的特征值”是
-“\(\A\)可以相似对角化”的充分不必要条件.
+设\(\vb{A} \in M_n(K)\).
+“矩阵\(\vb{A}\)有\(n\)个不同的特征值”是
+“\(\vb{A}\)可以相似对角化”的充分不必要条件.
 \begin{proof}
 首先证明充分性.
-假设矩阵\(\A\)有\(n\)个不同的特征值\(\AutoTuple{\lambda}{n}\)，
-而\(\vb{x}_j\ (j=1,2,\dotsc,n)\)是矩阵\(\A\)的属于特征值\(\lambda_j\)的特征向量.
+假设矩阵\(\vb{A}\)有\(n\)个不同的特征值\(\AutoTuple{\lambda}{n}\)，
+而\(\vb{x}_j\ (j=1,2,\dotsc,n)\)是矩阵\(\vb{A}\)的属于特征值\(\lambda_j\)的特征向量.
 由\cref{theorem:矩阵相似对角化.不同特征值的特征向量线性无关}，
-\(\AutoTuple{\x}{n}\)线性无关.
+\(\AutoTuple{\vb{x}}{n}\)线性无关.
 再由\cref{theorem:矩阵相似对角化.矩阵可以相似对角化的充分必要条件}，
-\(\A\)可以相似对角化.
+\(\vb{A}\)可以相似对角化.
 
 然后证伪必要性.
-取\(\A\)为\(n\)阶单位矩阵，显然\(\A\)本来就是对角矩阵，当然可以相似对角化，
-但是\(\A\)只有唯一一个特征值\(1\).
+取\(\vb{A}\)为\(n\)阶单位矩阵，显然\(\vb{A}\)本来就是对角矩阵，当然可以相似对角化，
+但是\(\vb{A}\)只有唯一一个特征值\(1\).
 \end{proof}
 \end{corollary}
 
 \begin{example}
 %@see: 《1988年全国硕士研究生入学统一考试（数学一）》八解答题
-已知矩阵\(\A = \begin{bmatrix}
+已知矩阵\(\vb{A} = \begin{bmatrix}
 	2 & 0 & 0 \\
 	0 & 0 & 1 \\
 	0 & 1 & x
-\end{bmatrix}\)与\(\B = \begin{bmatrix}
+\end{bmatrix}\)与\(\vb{B} = \begin{bmatrix}
 	2 & 0 & 0 \\
 	0 & y & 0 \\
 	0 & 0 & -1
 \end{bmatrix}\)相似.
 求\(x\)与\(y\).
 \begin{solution}
-因为\(\A\sim\B\)，所以，由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}，
+因为\(\vb{A}\sim\vb{B}\)，所以，由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}，
 \[
 	\begin{vmatrix}
 		2 & 0 & 0 \\
@@ -435,8 +435,8 @@
 	\implies y = 1;
 \]
 又由\hyperref[theorem:特征值与特征向量.相似矩阵的迹的不变性]{相似矩阵的迹的不变性}可知\[
-	\tr\A = 2+x
-	= 1+y = \tr\B
+	\tr\vb{A} = 2+x
+	= 1+y = \tr\vb{B}
 	\implies
 	x = 0.
 \]
@@ -444,31 +444,31 @@
 \end{example}
 \begin{example}
 %@see: 《1992年全国硕士研究生入学统一考试（数学三）》三解答题/第17题
-设矩阵\(\A\)与\(\B\)相似，
+设矩阵\(\vb{A}\)与\(\vb{B}\)相似，
 其中\begin{equation*}
 %@Mathematica: A = ({ {-2, 0, 0}, {2, x, 2}, {3, 1, 1} })
 %@Mathematica: B = ({ {-1, 0, 0}, {0, 2, 0}, {0, 0, y} })
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		-2 & 0 & 0 \\
 		2 & x & 2 \\
 		3 & 1 & 1
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		-1 & 0 & 0 \\
 		0 & 2 & 0 \\
 		0 & 0 & y
 	\end{bmatrix}.
 \end{equation*}
-求可逆矩阵\(\P\)，使得\(\P^{-1} \A \P = \B\).
+求可逆矩阵\(\vb{P}\)，使得\(\vb{P}^{-1} \vb{A} \vb{P} = \vb{B}\).
 \begin{solution}
-由于\(\A \sim \B\)，
+由于\(\vb{A} \sim \vb{B}\)，
 所以\begin{gather*}
 	%\cref{theorem:特征值与特征向量.相似矩阵的迹的不变性}
-	\tr\A = x - 1 = y + 1 = \tr\B, \\
+	\tr\vb{A} = x - 1 = y + 1 = \tr\vb{B}, \\
 	% 这里没有列出行列式的相等关系，是因为迹与行列式的相等关系成比例
 	%\cref{theorem:特征值与特征向量.矩阵相似的必要条件3}
-	\abs{\lambda\E-\A}
+	\abs{\lambda\vb{E}-\vb{A}}
 	= \begin{vmatrix}
 		\lambda+2 & 0 & 0 \\
 		-2 & \lambda-x & -2 \\
@@ -479,7 +479,7 @@
 		0 & \lambda-2 & 0 \\
 		0 & 0 & \lambda-y
 	\end{vmatrix}
-	= \abs{\lambda\E-\B},
+	= \abs{\lambda\vb{E}-\vb{B}},
 \end{gather*}
 %@Mathematica: Solve[Tr[A] == Tr[B] && Det[k IdentityMatrix[3] - A] == Det[k IdentityMatrix[3] - B], {x, y}]
 故\(x = 0,
@@ -487,28 +487,28 @@ y = -2\)，
 从而有\begin{equation*}
 %@Mathematica: A = A /. x -> 0
 %@Mathematica: B = B /. y -> -2
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		-2 & 0 & 0 \\
 		2 & x & 2 \\
 		3 & 1 & 1
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		-1 & 0 & 0 \\
 		0 & 2 & 0 \\
 		0 & 0 & y
 	\end{bmatrix}.
 \end{equation*}
-% 矩阵\(\B\)的特征值为\(-2,-1,2\).
-考虑方程\(\A \vb{X} = \vb{X} \B\)，
-将\(\vb{X}\)按列分块为\(\a_1,\a_2,\a_3\)，
+% 矩阵\(\vb{B}\)的特征值为\(-2,-1,2\).
+考虑方程\(\vb{A} \vb{X} = \vb{X} \vb{B}\)，
+将\(\vb{X}\)按列分块为\(\vb\alpha_1,\vb\alpha_2,\vb\alpha_3\)，
 则有\begin{gather*}
-	\A \a_1 = -\a_1, \tag1 \\
-	\A \a_2 = 2\a_2, \tag2 \\
-	\A \a_3 = -2\a_3. \tag3
+	\vb{A} \vb\alpha_1 = -\vb\alpha_1, \tag1 \\
+	\vb{A} \vb\alpha_2 = 2\vb\alpha_2, \tag2 \\
+	\vb{A} \vb\alpha_3 = -2\vb\alpha_3. \tag3
 \end{gather*}
 
-由(1)式有\((\A+\E) \a_1 = \vb0\)，
+由(1)式有\((\vb{A}+\vb{E}) \vb\alpha_1 = \vb0\)，
 它的系数矩阵为\begin{equation*}
 %@Mathematica: A + IdentityMatrix[3] // MatrixForm
 %@Mathematica: RowReduce[A + IdentityMatrix[3]] // MatrixForm
@@ -523,14 +523,14 @@ y = -2\)，
 		0 & 0 & 0
 	\end{bmatrix},
 \end{equation*}
-所以\(\a_1 = \begin{bmatrix}
+所以\(\vb\alpha_1 = \begin{bmatrix}
 	0 \\
 	2k_1 \\
 	-k_1
 \end{bmatrix}
 \ (\text{$k_1$是任意常数})\).
 
-由(2)式有\((\A-2\E) \a_2 = \vb0\)，
+由(2)式有\((\vb{A}-2\vb{E}) \vb\alpha_2 = \vb0\)，
 它的系数矩阵为\begin{equation*}
 %@Mathematica: A - 2 IdentityMatrix[3] // MatrixForm
 %@Mathematica: RowReduce[A - 2 IdentityMatrix[3]] // MatrixForm
@@ -545,14 +545,14 @@ y = -2\)，
 		0 & 0 & 0
 	\end{bmatrix},
 \end{equation*}
-所以\(\a_2 = \begin{bmatrix}
+所以\(\vb\alpha_2 = \begin{bmatrix}
 	0 \\
 	k_2 \\
 	k_2
 \end{bmatrix}
 \ (\text{$k_2$是任意常数})\).
 
-由(3)式有\((\A+2\E) \a_3 = \vb0\)，
+由(3)式有\((\vb{A}+2\vb{E}) \vb\alpha_3 = \vb0\)，
 它的系数矩阵为\begin{equation*}
 %@Mathematica: A + 2 IdentityMatrix[3] // MatrixForm
 %@Mathematica: RowReduce[A + 2 IdentityMatrix[3]] // MatrixForm
@@ -567,7 +567,7 @@ y = -2\)，
 		0 & 0 & 0
 	\end{bmatrix},
 \end{equation*}
-所以\(\a_3 = \begin{bmatrix}
+所以\(\vb\alpha_3 = \begin{bmatrix}
 	k_3 \\
 	0 \\
 	-k_3
@@ -575,7 +575,7 @@ y = -2\)，
 \ (\text{$k_3$是任意常数})\).
 
 于是\begin{equation*}
-	\vb{X} = (\a_1,\a_2,\a_3)
+	\vb{X} = (\vb\alpha_1,\vb\alpha_2,\vb\alpha_3)
 	= \begin{bmatrix}
 		0 & 0 & k_3 \\
 		2k_1 & k_2 & 0 \\
@@ -586,8 +586,8 @@ y = -2\)，
 由于要求的是可逆矩阵，
 所以\(\abs{\vb{X}} = 2 k_1 k_2 k_3 \neq 0\)，
 说明\(k_1,k_2,k_3\)全不为零，
-那么所求可逆矩阵\(\P\)为\begin{equation*}
-	\P = \begin{bmatrix}
+那么所求可逆矩阵\(\vb{P}\)为\begin{equation*}
+	\vb{P} = \begin{bmatrix}
 		0 & 0 & k_3 \\
 		2k_1 & k_2 & 0 \\
 		-k_1 & k_2 & -k_3
@@ -598,70 +598,70 @@ y = -2\)，
 \end{example}
 \begin{example}
 %@see: 《2019年全国硕士研究生入学统一考试（数学一）》三解答题/第21题
-已知矩阵\(\A = \begin{bmatrix}
+已知矩阵\(\vb{A} = \begin{bmatrix}
 	-2 & -2 & 1 \\
 	2 & x & -2 \\
 	0 & 0 & -2
 \end{bmatrix}\)
-与\(\B = \begin{bmatrix}
+与\(\vb{B} = \begin{bmatrix}
 	2 & 1 & 0 \\
 	0 & -1 & 0 \\
 	0 & 0 & y
 \end{bmatrix}\)相似.
-求可逆矩阵\(\P\)，使得\(\P^{-1} \A \P = \B\).
+求可逆矩阵\(\vb{P}\)，使得\(\vb{P}^{-1} \vb{A} \vb{P} = \vb{B}\).
 \begin{solution}
-由于\(\A \sim \B\)，
+由于\(\vb{A} \sim \vb{B}\)，
 所以\begin{gather*}
 	%\cref{theorem:特征值与特征向量.相似矩阵的迹的不变性}
-	\tr\A = x - 4 = 1 + y = \tr\B, \\
+	\tr\vb{A} = x - 4 = 1 + y = \tr\vb{B}, \\
 	%\cref{theorem:特征值与特征向量.矩阵相似的必要条件1}
-	\abs{\A} = 4(x-2) = -2y = \abs{\B},
+	\abs{\vb{A}} = 4(x-2) = -2y = \abs{\vb{B}},
 \end{gather*}
 解得\(x=3,
 y=-2\)，
 那么\begin{equation*}
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		-2 & -2 & 1 \\
 		2 & 3 & -2 \\
 		0 & 0 & -2
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		2 & 1 & 0 \\
 		0 & -1 & 0 \\
 		0 & 0 & -2
 	\end{bmatrix}.
 \end{equation*}
-由\(\abs{\lambda\E-\B}=0\)解得\(\B\)的特征值为\(-2,-1,2\)，
+由\(\abs{\lambda\vb{E}-\vb{B}}=0\)解得\(\vb{B}\)的特征值为\(-2,-1,2\)，
 那么由\cref{theorem:矩阵可以相似对角化的充分条件.定理1} 可知
-\(\B\)可以相似对角化，
+\(\vb{B}\)可以相似对角化，
 %\cref{theorem:特征值与特征向量.矩阵相似的必要条件3}
-故存在可逆矩阵\(\P_1,\P_2\)，
-它们的列向量分别是\(\A,\B\)的特征向量，
+故存在可逆矩阵\(\vb{P}_1,\vb{P}_2\)，
+它们的列向量分别是\(\vb{A},\vb{B}\)的特征向量，
 使得\begin{equation*}
-	\P_1^{-1} \A \P_1 = \vb\Lambda,
+	\vb{P}_1^{-1} \vb{A} \vb{P}_1 = \vb\Lambda,
 	\qquad
-	\P_2^{-1} \B \P_2 = \vb\Lambda,
+	\vb{P}_2^{-1} \vb{B} \vb{P}_2 = \vb\Lambda,
 \end{equation*}
 其中\(\vb\Lambda\)是某个对角矩阵，
 那么\begin{equation*}
-	\P_2 \P_1^{-1} \A \P_1 \P_2^{-1} = \B,
+	\vb{P}_2 \vb{P}_1^{-1} \vb{A} \vb{P}_1 \vb{P}_2^{-1} = \vb{B},
 \end{equation*}
-因此所求可逆矩阵\(\P\)就是\(\P_1 \P_2^{-1}\).
+因此所求可逆矩阵\(\vb{P}\)就是\(\vb{P}_1 \vb{P}_2^{-1}\).
 
-计算\(\A\)的属于特征值\(2\)的特征向量，
-解方程\((2\E-\A) \vb{x} = \vb0\)得
+计算\(\vb{A}\)的属于特征值\(2\)的特征向量，
+解方程\((2\vb{E}-\vb{A}) \vb{x} = \vb0\)得
 \(\vb{x}_{11} = (-1,2,0)^T\).
 
-计算\(\A\)的属于特征值\(-1\)的特征向量，
-解方程\((-\E-\A) \vb{x} = \vb0\)得
+计算\(\vb{A}\)的属于特征值\(-1\)的特征向量，
+解方程\((-\vb{E}-\vb{A}) \vb{x} = \vb0\)得
 \(\vb{x}_{12} = (-2,1,0)^T\).
 
-计算\(\A\)的属于特征值\(-2\)的特征向量，
-解方程\((-2\E-\A) \vb{x} = \vb0\)得
+计算\(\vb{A}\)的属于特征值\(-2\)的特征向量，
+解方程\((-2\vb{E}-\vb{A}) \vb{x} = \vb0\)得
 \(\vb{x}_{13} = (-1,2,4)^T\).
 
-因此\(\P_1\)可以取为\begin{math}
+因此\(\vb{P}_1\)可以取为\begin{math}
 %@Mathematica: P1 = ({ {-1, -2, -1}, {2, 1, 2}, {0, 0, 4} })
 	(\vb{x}_{11},\vb{x}_{12},\vb{x}_{13})
 	= \begin{bmatrix}
@@ -671,19 +671,19 @@ y=-2\)，
 	\end{bmatrix}.
 \end{math}
 
-计算\(\B\)的属于特征值\(2\)的特征向量，
-解方程\((2\E-\B) \vb{x} = \vb0\)得
+计算\(\vb{B}\)的属于特征值\(2\)的特征向量，
+解方程\((2\vb{E}-\vb{B}) \vb{x} = \vb0\)得
 \(\vb{x}_{21} = (1,0,0)^T\).
 
-计算\(\B\)的属于特征值\(-1\)的特征向量，
-解方程\((-\E-\B) \vb{x} = \vb0\)得
+计算\(\vb{B}\)的属于特征值\(-1\)的特征向量，
+解方程\((-\vb{E}-\vb{B}) \vb{x} = \vb0\)得
 \(\vb{x}_{22} = (-1,3,0)^T\).
 
-计算\(\B\)的属于特征值\(-2\)的特征向量，
-解方程\((-2\E-\B) \vb{x} = \vb0\)得
+计算\(\vb{B}\)的属于特征值\(-2\)的特征向量，
+解方程\((-2\vb{E}-\vb{B}) \vb{x} = \vb0\)得
 \(\vb{x}_{23} = (0,0,1)^T\).
 
-因此\(\P_2\)可以取为\begin{math}
+因此\(\vb{P}_2\)可以取为\begin{math}
 %@Mathematica: P2 = ({ {1, -1, 0}, {0, 3, 0}, {0, 0, 1} })
 	(\vb{x}_{21},\vb{x}_{22},\vb{x}_{23})
 	= \begin{bmatrix}
@@ -693,12 +693,12 @@ y=-2\)，
 	\end{bmatrix}.
 \end{math}
 
-接下来计算\(\P = \P_1 \P_2^{-1}\).
+接下来计算\(\vb{P} = \vb{P}_1 \vb{P}_2^{-1}\).
 因为\begin{equation*}
 %@Mathematica: Join[P1, P2, 1].({ {1, 1/3, 0}, {0, 1/3, 0}, {0, 0, 1} }) // MatrixForm
 	\begin{bmatrix}
-		\P_1 \\
-		\P_2
+		\vb{P}_1 \\
+		\vb{P}_2
 	\end{bmatrix}
 	= \begin{bmatrix}
 		-1 & -2 & -1 \\
@@ -717,13 +717,13 @@ y=-2\)，
 		0 & 0 & 1
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\P_1 \P_2^{-1} \\
-		\E
+		\vb{P}_1 \vb{P}_2^{-1} \\
+		\vb{E}
 	\end{bmatrix},
 \end{equation*}
 所以\begin{equation*}
 %@Mathematica: P1.Inverse[P2] // MatrixForm
-	\P = \begin{bmatrix}
+	\vb{P} = \begin{bmatrix}
 		-1 & -1 & -1 \\
 		2 & 1 & 2 \\
 		0 & 0 & 4
@@ -734,49 +734,49 @@ y=-2\)，
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 6.
-设\(\A\)为可逆矩阵且可以相似对角化，证明：\(\A^{-1}\)也可以相似对角化.
+设\(\vb{A}\)为可逆矩阵且可以相似对角化，证明：\(\vb{A}^{-1}\)也可以相似对角化.
 \begin{proof}
-设存在可逆矩阵\(\P\)使得\[
-	\P^{-1}\A\P = \V,
+设存在可逆矩阵\(\vb{P}\)使得\[
+	\vb{P}^{-1}\vb{A}\vb{P} = \vb{\Lambda},
 	\eqno(1)
 \]
-其中\(\V=\diag(\lambda_1,\lambda_2,\dotsc,\lambda_n)\)，
-\(n\)是矩阵\(\A\)的阶数，
-\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是矩阵\(\A\)的特征值.
+其中\(\vb{\Lambda}=\diag(\lambda_1,\lambda_2,\dotsc,\lambda_n)\)，
+\(n\)是矩阵\(\vb{A}\)的阶数，
+\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是矩阵\(\vb{A}\)的特征值.
 显然有\[
-	\abs{\V}
-	= \abs{\P^{-1}\A\P}
-	= \abs{\P^{-1}}\abs{\A}\abs{\P}
-	= (\abs{\P^{-1}}\abs{\P})\abs{\A}
-	= 1 \cdot \abs{\A}
-	= \abs{\A} \neq 0
+	\abs{\vb{\Lambda}}
+	= \abs{\vb{P}^{-1}\vb{A}\vb{P}}
+	= \abs{\vb{P}^{-1}}\abs{\vb{A}}\abs{\vb{P}}
+	= (\abs{\vb{P}^{-1}}\abs{\vb{P}})\abs{\vb{A}}
+	= 1 \cdot \abs{\vb{A}}
+	= \abs{\vb{A}} \neq 0
 \]
-即\(\V\)可逆.
-在(1)式两端左乘\(\P\)得\(\P(\P^{-1}\A\P) = \P\V\)
+即\(\vb{\Lambda}\)可逆.
+在(1)式两端左乘\(\vb{P}\)得\(\vb{P}(\vb{P}^{-1}\vb{A}\vb{P}) = \vb{P}\vb{\Lambda}\)
 即\[
-	\A\P = \P\V.
+	\vb{A}\vb{P} = \vb{P}\vb{\Lambda}.
 	\eqno(2)
 \]
-在(2)式两端左乘\(\P^{-1}\A^{-1}\)，
-右乘\(\V^{-1}\)得\[
-	(\P^{-1}\A^{-1})(\A\P)\V^{-1} = (\P^{-1}\A^{-1})(\P\V)\V^{-1},
+在(2)式两端左乘\(\vb{P}^{-1}\vb{A}^{-1}\)，
+右乘\(\vb{\Lambda}^{-1}\)得\[
+	(\vb{P}^{-1}\vb{A}^{-1})(\vb{A}\vb{P})\vb{\Lambda}^{-1} = (\vb{P}^{-1}\vb{A}^{-1})(\vb{P}\vb{\Lambda})\vb{\Lambda}^{-1},
 \]
-即\(\V^{-1} = \P^{-1}\A^{-1}\P\).
+即\(\vb{\Lambda}^{-1} = \vb{P}^{-1}\vb{A}^{-1}\vb{P}\).
 \end{proof}
 \end{example}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 7.
-设\(m\)阶矩阵\(\A\)与\(n\)阶矩阵\(\B\)都可以相似对角化，证明：\(m+n\)阶矩阵\[
-	\begin{bmatrix} \A & \vb0 \\ \vb0 & \B \end{bmatrix}
+设\(m\)阶矩阵\(\vb{A}\)与\(n\)阶矩阵\(\vb{B}\)都可以相似对角化，证明：\(m+n\)阶矩阵\[
+	\begin{bmatrix} \vb{A} & \vb0 \\ \vb0 & \vb{B} \end{bmatrix}
 \]可以相似对角化.
 \begin{proof}
-设\(\A \sim \vb\Lambda_1,
-\B \sim \vb\Lambda_2\)，
+设\(\vb{A} \sim \vb\Lambda_1,
+\vb{B} \sim \vb\Lambda_2\)，
 那么由\cref{example:相似矩阵.分块对角矩阵的相似性} 可知\begin{equation*}
 	\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \B
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{B}
 	\end{bmatrix}
 	\sim \begin{bmatrix}
 		\vb\Lambda_1 & \vb0 \\
@@ -793,52 +793,52 @@ y=-2\)，
 证明：非零的幂零矩阵不可以相似对角化.
 \begin{proof}
 用反证法.
-假设\(\A\)可以相似对角化，
-即存在可逆矩阵\(\P\)使得\[
-	\P^{-1}\A\P = \diag(\lambda_1,\lambda_2,\dotsc,\lambda_n) = \vb0.
+假设\(\vb{A}\)可以相似对角化，
+即存在可逆矩阵\(\vb{P}\)使得\[
+	\vb{P}^{-1}\vb{A}\vb{P} = \diag(\lambda_1,\lambda_2,\dotsc,\lambda_n) = \vb0.
 	\eqno(1)
 \]
 由\cref{example:幂零矩阵.幂零矩阵的特征值的性质}
-可知\(\A\)的特征值全为零，
+可知\(\vb{A}\)的特征值全为零，
 即\[
 	\lambda_1 = \lambda_2 = \dotsb = \lambda_n = 0.
 \]
-在(1)式两边同时左乘\(\P\)，并右乘\(\P^{-1}\)，得\[
-	\A = \P(\P^{-1}\A\P)\P^{-1} = \P\vb0\P^{-1} = \vb0.
+在(1)式两边同时左乘\(\vb{P}\)，并右乘\(\vb{P}^{-1}\)，得\[
+	\vb{A} = \vb{P}(\vb{P}^{-1}\vb{A}\vb{P})\vb{P}^{-1} = \vb{P}\vb0\vb{P}^{-1} = \vb0.
 \]
-矛盾，故\(\A\)不可以相似对角化.
+矛盾，故\(\vb{A}\)不可以相似对角化.
 \end{proof}
 \end{example}
 \begin{example}\label{example:幂零矩阵.幂等矩阵一定可以相似对角化}
 %@see: 《高等代数（第三版 上册）》（丘维声） P183 习题5.6 7.
 证明：幂等矩阵一定可以相似对角化.
 \begin{proof}
-设\(\A \in M_n(K)\)满足\(\A^2=\A\)，且\(\rank\A = r\).
+设\(\vb{A} \in M_n(K)\)满足\(\vb{A}^2=\vb{A}\)，且\(\rank\vb{A} = r\).
 
-当\(r=0\)时，\(\A\)是零矩阵，可以相似对角化.
+当\(r=0\)时，\(\vb{A}\)是零矩阵，可以相似对角化.
 
-当\(r=n\)时，\(\A\)是单位矩阵，也可以相似对角化.
+当\(r=n\)时，\(\vb{A}\)是单位矩阵，也可以相似对角化.
 
 下面假设\(0<r<n\).
-由\cref{example:幂等矩阵.幂等矩阵的特征值的性质} 可知\(\A\)特征值必为0或1.
+由\cref{example:幂等矩阵.幂等矩阵的特征值的性质} 可知\(\vb{A}\)特征值必为0或1.
 由\cref{example:幂等矩阵.幂等矩阵的秩的性质1} 可知\[
-	\rank\A+\rank(\E_n-\A)=n.
+	\rank\vb{A}+\rank(\vb{E}_n-\vb{A})=n.
 \]
-其中\(\E_n\)是数域\(K\)上的\(n\)阶单位矩阵.
+其中\(\vb{E}_n\)是数域\(K\)上的\(n\)阶单位矩阵.
 由\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 可知\begin{gather*}
-	\rank\A + \dim\Ker\A = n, \\
-	\rank(\E_n-\A) + \dim\Ker(\E_n-\A) = n,
+	\rank\vb{A} + \dim\Ker\vb{A} = n, \\
+	\rank(\vb{E}_n-\vb{A}) + \dim\Ker(\vb{E}_n-\vb{A}) = n,
 \end{gather*}
 从而有\[
-	\dim\Ker\A + \dim\Ker(\E_n-\A) = n.
+	\dim\Ker\vb{A} + \dim\Ker(\vb{E}_n-\vb{A}) = n.
 \]
-那么由\cref{theorem:矩阵可以相似对角化的充分必要条件.定理4} 可知\(\A\)可以相似对角化.
+那么由\cref{theorem:矩阵可以相似对角化的充分必要条件.定理4} 可知\(\vb{A}\)可以相似对角化.
 又因为\[
-	\dim\Ker(\E_n-\A) = \rank\A,
+	\dim\Ker(\vb{E}_n-\vb{A}) = \rank\vb{A},
 \]
 所以特征值\(1\)的代数重数和几何重数都是\(r\)，
-于是\(\A\)的相似标准型是分块对角阵\(\diag(\E_r,\vb0)\)，
-其中\(\E_r\)是数域\(K\)上的\(r\)阶单位矩阵.
+于是\(\vb{A}\)的相似标准型是分块对角阵\(\diag(\vb{E}_r,\vb0)\)，
+其中\(\vb{E}_r\)是数域\(K\)上的\(r\)阶单位矩阵.
 \end{proof}
 \end{example}
 \begin{example}
@@ -846,10 +846,10 @@ y=-2\)，
 证明：幂等矩阵的秩等于它的迹.
 \begin{proof}
 由\cref{example:幂零矩阵.幂等矩阵一定可以相似对角化} 可知
-秩为\(r\)的幂等矩阵\(\A\)的相似标准型是分块对角阵\(\diag(\E_r,\vb0)\)，
-其中\(\E_r\)是数域\(K\)上的\(r\)阶单位矩阵.
+秩为\(r\)的幂等矩阵\(\vb{A}\)的相似标准型是分块对角阵\(\diag(\vb{E}_r,\vb0)\)，
+其中\(\vb{E}_r\)是数域\(K\)上的\(r\)阶单位矩阵.
 因为迹是相似不变量，所以\[
-	\tr\A = \tr\diag(\E_r,\vb0) = r.
+	\tr\vb{A} = \tr\diag(\vb{E}_r,\vb0) = r.
 	\qedhere
 \]
 \end{proof}
@@ -859,47 +859,46 @@ y=-2\)，
 证明：对合矩阵一定可以相似对角化.
 %TODO proof
 % \begin{proof}
-% 设\(\A \in M_n(K)\)满足\(\A^2=\E\)，且\(\rank\A = r\).
+% 设\(\vb{A} \in M_n(K)\)满足\(\vb{A}^2=\vb{E}\)，且\(\rank\vb{A} = r\).
 
-% 当\(\A\)与数域\(K\)上的\(n\)阶单位矩阵\(\E_n\)满足\(A = \pm\E_n\)时，
-% 显然\(\A\)可以相似对角化，且它的相似标准型就是\(\A\).
+% 当\(\vb{A}\)与数域\(K\)上的\(n\)阶单位矩阵\(\vb{E}_n\)满足\(A = \pm\vb{E}_n\)时，
+% 显然\(\vb{A}\)可以相似对角化，且它的相似标准型就是\(\vb{A}\).
 
-% 下面假设\(\A \neq \pm\E_n\).
+% 下面假设\(\vb{A} \neq \pm\vb{E}_n\).
 % \end{proof}
 \end{example}
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 8.
-设矩阵\(\A \in M_n(K)\).
-证明：如果\(\A\)可以相似对角化，则\(\A \sim \A^T\).
+设矩阵\(\vb{A} \in M_n(K)\).
+证明：如果\(\vb{A}\)可以相似对角化，则\(\vb{A} \sim \vb{A}^T\).
 %TODO proof
 \end{example}
 
 \begin{example}
-设\(\A \in M_n(K)\)，
-\(\rank\A=1\).
+设\(\vb{A} \in M_n(K)\)，
+\(\rank\vb{A}=1\).
 证明：\[
-	\tr\A\neq0
+	\tr\vb{A}\neq0
 	\iff
-	\text{\(\A\)可相似对角化}.
+	\text{\(\vb{A}\)可相似对角化}.
 \]
 \begin{proof}
-因为\(\rank\A=1
+因为\(\rank\vb{A}=1
 \iff
-(\exists\a,\b \in K^n-\{\vb0\})[\A=\a\b^T]\)，
+(\exists\vb\alpha,\vb\beta \in K^n-\{\vb0\})[\vb{A}=\vb\alpha\vb\beta^T]\)，
 所以根据\cref{example:矩阵乘积的秩.两个向量的乘积的特征值和特征向量}，
-\(\A\)的特征值为\(\tr\A\)和\(0\ (\text{$n-1$重})\).
-又因为\(\rank(0\E-\A)=\rank\A=1\)，
+\(\vb{A}\)的特征值为\(\tr\vb{A}\)和\(0\ (\text{$n-1$重})\).
+又因为\(\rank(0\vb{E}-\vb{A})=\rank\vb{A}=1\)，
 所以根据\cref{theorem:矩阵可以相似对角化的充分必要条件.定理3} 可知，
-\(\A\)可以相似对角化.
+\(\vb{A}\)可以相似对角化.
 \end{proof}
 \end{example}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 9.
-\def\J{\vb{J}_n}
 形式为\[
-	\J = \begin{bmatrix}
+	\vb{J}_n = \begin{bmatrix}
 		\lambda_0 & 0 & 0 & \dots & 0 & 0 \\
 		1 & \lambda_0 & 0 & \dots & 0 & 0 \\
 		0 & 1 & \lambda_0 & \dots & 0 & 0 \\
@@ -912,10 +911,10 @@ y=-2\)，
 %@see: https://mathworld.wolfram.com/JordanCanonicalForm.html
 证明：\(n>1\)阶若尔当块不可以相似对角化.
 \begin{proof}
-令\(\abs{\l\E-\J}=(\lambda-\lambda_0)^n=0\)，
-解得\(\l=\lambda_0\ (\text{$n$重})\)，
+令\(\abs{\lambda\vb{E}-\vb{J}_n}=(\lambda-\lambda_0)^n=0\)，
+解得\(\lambda=\lambda_0\ (\text{$n$重})\)，
 那么\[
-	\lambda_0\E-\J = \begin{bmatrix}
+	\lambda_0\vb{E}-\vb{J}_n = \begin{bmatrix}
 		0 \\
 		-1 & 0 \\
 		& -1 & 0 \\
@@ -923,8 +922,8 @@ y=-2\)，
 		& & & -1 & 0
 	\end{bmatrix}_n,
 \]
-\(\rank(\lambda_0\E-\J)=n-1 > 0\)，
-故当\(n>1\)时\(\J\)不可以相似对角化.
+\(\rank(\lambda_0\vb{E}-\vb{J}_n)=n-1 > 0\)，
+故当\(n>1\)时\(\vb{J}_n\)不可以相似对角化.
 \end{proof}
 \end{example}
 
@@ -938,29 +937,29 @@ y=-2\)，
 
 \begin{example}
 %@see: 《2024年全国硕士研究生入学统一考试（数学二）》二填空题/第15题
-设\(\A \in M_3(K)\)，\(\A^*\)是\(\A\)的伴随矩阵，\(\E\)是数域\(K\)上的3阶单位矩阵，
+设\(\vb{A} \in M_3(K)\)，\(\vb{A}^*\)是\(\vb{A}\)的伴随矩阵，\(\vb{E}\)是数域\(K\)上的3阶单位矩阵，
 且\[
-	\rank(2\E-\A) = 1,
+	\rank(2\vb{E}-\vb{A}) = 1,
 	\qquad
-	\rank(\E+\A) = 2.
+	\rank(\vb{E}+\vb{A}) = 2.
 \]
-计算行列式\(\abs{\A^*}\).
+计算行列式\(\abs{\vb{A}^*}\).
 \begin{solution}
 %@see: https://www.bilibili.com/video/BV1oR1kYKEkw/
-由\(\rank(2\E-\A) = 1 < 3\)可知
-\(2\)是\(\A\)的一个特征值，
+由\(\rank(2\vb{E}-\vb{A}) = 1 < 3\)可知
+\(2\)是\(\vb{A}\)的一个特征值，
 它的几何重数为\[
-	\dim\Ker(2\E-\A)
-	= 3 - \rank(2\E-\A)
+	\dim\Ker(2\vb{E}-\vb{A})
+	= 3 - \rank(2\vb{E}-\vb{A})
 	= 2,
 \]
 它的代数重数不小于\(2\).
 
-由\(\rank(\E+\A) = 2 < 3\)可知
-\(-1\)是\(\A\)的一个特征值，
+由\(\rank(\vb{E}+\vb{A}) = 2 < 3\)可知
+\(-1\)是\(\vb{A}\)的一个特征值，
 它的几何重数为\[
-	\dim\Ker(\E+\A)
-	= 3 - \rank(\E+\A)
+	\dim\Ker(\vb{E}+\vb{A})
+	= 3 - \rank(\vb{E}+\vb{A})
 	= 1,
 \]
 它的代数重数不小于\(1\).
@@ -968,9 +967,9 @@ y=-2\)，
 于是特征值\(-1\)的代数重数是\(1\)，
 从而特征值\(-1\)的几何重数是\(1\)，
 特征值\(2\)的几何重数是\(3-1=2\)，
-故\(\A\)的相似标准型是\(\diag(2,2,-1)\)，
-从而有\(\abs{\A} = -4\)，
+故\(\vb{A}\)的相似标准型是\(\diag(2,2,-1)\)，
+从而有\(\abs{\vb{A}} = -4\)，
 由\cref{equation:伴随矩阵.伴随矩阵的行列式}
-可知\(\abs{\A^*} = (-4)^{3-1} = 16\).
+可知\(\abs{\vb{A}^*} = (-4)^{3-1} = 16\).
 \end{solution}
 \end{example}

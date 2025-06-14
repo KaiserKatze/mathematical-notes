@@ -45,34 +45,34 @@
 再次观察平面二次曲线的标准方程可以发现，标准方程的等号左边应该是二次齐次多项式（即若干个变量的平方和），等号右边则应该是任意（非零）常数.
 
 \begin{definition}
-若数域\(K\)上的\(n\)阶对称矩阵\(\A\)
+若数域\(K\)上的\(n\)阶对称矩阵\(\vb{A}\)
 满足\begin{equation}\label{equation:二次型.二次型的矩阵表示}
-	f(\AutoTuple{x}{n}) = \x^T\A\x,
+	f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x},
 \end{equation}
-其中\(\x = (\AutoTuple{x}{n})^T\)，
+其中\(\vb{x} = (\AutoTuple{x}{n})^T\)，
 则把\cref{equation:二次型.二次型的矩阵表示}
 称为“二次型\(f(\AutoTuple{x}{n})\)的\DefineConcept{矩阵表示}”，
-把\(\A\)称为\(f\)的\DefineConcept{矩阵}，
-把\(\A\)的秩\(\rank\A\)称为\(f\)的\DefineConcept{秩}.
+把\(\vb{A}\)称为\(f\)的\DefineConcept{矩阵}，
+把\(\vb{A}\)的秩\(\rank\vb{A}\)称为\(f\)的\DefineConcept{秩}.
 \end{definition}
 
-显然，对于任一\(n\)阶矩阵\(\B\)，\(\x^T\B\x\)必定是一个二次型.
-需要注意的是，矩阵\(\B\)不必是对称矩阵，但“二次型\(\x^T\B\x\)的矩阵”必定是一个对称矩阵.
+显然，对于任一\(n\)阶矩阵\(\vb{B}\)，\(\vb{x}^T\vb{B}\vb{x}\)必定是一个二次型.
+需要注意的是，矩阵\(\vb{B}\)不必是对称矩阵，但“二次型\(\vb{x}^T\vb{B}\vb{x}\)的矩阵”必定是一个对称矩阵.
 
 \begin{property}
 二次型和它的矩阵是相互唯一确定的.
 \begin{proof}
 对于二次型\(f(\AutoTuple{x}{n})\)，
-设非零\(n\)阶对称矩阵\(\A\)和\(\B\)都是\(f\)的矩阵，
+设非零\(n\)阶对称矩阵\(\vb{A}\)和\(\vb{B}\)都是\(f\)的矩阵，
 即\[
-	\x^T\A\x
-	=\x^T\B\x
+	\vb{x}^T\vb{A}\vb{x}
+	=\vb{x}^T\vb{B}\vb{x}
 	=f(\AutoTuple{x}{n}),
 \]
-则二次型\(\x^T\A\x\)与\(\x^T\B\x\)中\(x_i x_j\)的
+则二次型\(\vb{x}^T\vb{A}\vb{x}\)与\(\vb{x}^T\vb{B}\vb{x}\)中\(x_i x_j\)的
 系数\(2 a_{ij}\)与\(2 b_{ij}\ (1 \leq i < j \leq n)\)必相等，
 \(x_i^2\)的系数\(a_{ii}\)与\(b_{ii}\ (i=1,2,\dotsc,n)\)必相等，
-故\(\A=\B\).
+故\(\vb{A}=\vb{B}\).
 \end{proof}
 \end{property}
 
@@ -107,14 +107,14 @@
 	x_1 \\ x_2 \\ x_3
 \end{bmatrix}\)的矩阵.
 \begin{solution}
-注意到矩阵\(\A = \begin{bmatrix}
+注意到矩阵\(\vb{A} = \begin{bmatrix}
 	2 & -3 & 1 \\
 	1 & 0 & 1 \\
 	2 & 11 & 3
 \end{bmatrix}\)不是对称矩阵，
-二次型\(\x^T\A\x\)的矩阵应为\[
-	\B
-	= \frac{\A+\A^T}{2}
+二次型\(\vb{x}^T\vb{A}\vb{x}\)的矩阵应为\[
+	\vb{B}
+	= \frac{\vb{A}+\vb{A}^T}{2}
 	= \begin{bmatrix}
 		2 & -1 & \frac{3}{2} \\
 		-1 & 0 & 6 \\
@@ -126,58 +126,58 @@
 
 \begin{example}\label{example:二次型.反对称矩阵对应的二次型恒为零}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 5.
-设\(\A\)是数域\(K\)上的\(n\)阶矩阵.
-证明：\(\A\)是反对称矩阵的充分必要条件是
+设\(\vb{A}\)是数域\(K\)上的\(n\)阶矩阵.
+证明：\(\vb{A}\)是反对称矩阵的充分必要条件是
 “对于\(K^n\)中任一列向量\(\vb\alpha\)，
-有\(\vb\alpha^T \A \vb\alpha = 0\)”.
+有\(\vb\alpha^T \vb{A} \vb\alpha = 0\)”.
 \begin{proof}
-假设\(\A\)是反对称矩阵，
-即\(\A^T = -\A\)，
+假设\(\vb{A}\)是反对称矩阵，
+即\(\vb{A}^T = -\vb{A}\)，
 那么对于\(K^n\)中任一列向量\(\vb\alpha\)，
 有\[
-	\vb\alpha^T \A \vb\alpha
-	= - \vb\alpha^T \A^T \vb\alpha
-	= - (\vb\alpha^T \A \vb\alpha)^T
-	= - \vb\alpha^T \A \vb\alpha, % \(\vb\alpha^T \A \vb\alpha\)是一个数，数的转置还是这个数
+	\vb\alpha^T \vb{A} \vb\alpha
+	= - \vb\alpha^T \vb{A}^T \vb\alpha
+	= - (\vb\alpha^T \vb{A} \vb\alpha)^T
+	= - \vb\alpha^T \vb{A} \vb\alpha, % \(\vb\alpha^T \vb{A} \vb\alpha\)是一个数，数的转置还是这个数
 \]
-于是\(\vb\alpha^T \A \vb\alpha = 0\).
+于是\(\vb\alpha^T \vb{A} \vb\alpha = 0\).
 
 假设对于\(K^n\)中任一列向量\(\vb\alpha\)，
-有\(\vb\alpha^T \A \vb\alpha = 0\)，
+有\(\vb\alpha^T \vb{A} \vb\alpha = 0\)，
 那么\[
-	0 = \vb\alpha^T \A \vb\alpha
-	= (\vb\alpha^T \A \vb\alpha)^T
-	= \vb\alpha^T \A^T \vb\alpha
-	= - (\vb\alpha^T \A \vb\alpha),
+	0 = \vb\alpha^T \vb{A} \vb\alpha
+	= (\vb\alpha^T \vb{A} \vb\alpha)^T
+	= \vb\alpha^T \vb{A}^T \vb\alpha
+	= - (\vb\alpha^T \vb{A} \vb\alpha),
 \]
 从而有\[
-	\vb\alpha^T \A^T \vb\alpha
-	+ \vb\alpha^T \A \vb\alpha
-	= \vb\alpha^T (\A^T + \A) \vb\alpha
+	\vb\alpha^T \vb{A}^T \vb\alpha
+	+ \vb\alpha^T \vb{A} \vb\alpha
+	= \vb\alpha^T (\vb{A}^T + \vb{A}) \vb\alpha
 	= 0,
 \]
-于是\(\A + \A^T = 0\)，
-\(\A\)是反对称矩阵.
+于是\(\vb{A} + \vb{A}^T = 0\)，
+\(\vb{A}\)是反对称矩阵.
 \end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 6.
-设\(\A\)是数域\(K\)上的\(n\)阶对称矩阵.
+设\(\vb{A}\)是数域\(K\)上的\(n\)阶对称矩阵.
 证明：如果对于\(K^n\)中任一列向量\(\vb\alpha\)，
-都有\(\vb\alpha^T \A \vb\alpha = 0\)，
-则\(\A = \vb0\).
+都有\(\vb\alpha^T \vb{A} \vb\alpha = 0\)，
+则\(\vb{A} = \vb0\).
 \begin{proof}
 由于对于\(K^n\)中任一列向量\(\vb\alpha\)，
 都有\[
-	\vb\alpha^T \A \vb\alpha = \vb\alpha^T (0\E) \vb\alpha,
+	\vb\alpha^T \vb{A} \vb\alpha = \vb\alpha^T (0\vb{E}) \vb\alpha,
 \]
-其中\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+其中\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
 所以\[
-	\vb\alpha^T \A \vb\alpha - \vb\alpha^T (0\E) \vb\alpha
-	= \vb\alpha^T (\A - \vb0) \vb\alpha
+	\vb\alpha^T \vb{A} \vb\alpha - \vb\alpha^T (0\vb{E}) \vb\alpha
+	= \vb\alpha^T (\vb{A} - \vb0) \vb\alpha
 	= 0,
 \]
-于是\(\A = \vb0\).
+于是\(\vb{A} = \vb0\).
 \end{proof}
 \end{example}
 \begin{example}
@@ -210,24 +210,24 @@
 \end{example}
 \begin{example}\label{example:二次型.瑞利商的取值范围}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 11.
-设\(n\)阶实对称矩阵\(\A\)的全部特征值按大小顺序排成
+设\(n\)阶实对称矩阵\(\vb{A}\)的全部特征值按大小顺序排成
 \(\lambda_1 \geq \lambda_2 \geq \dotsb \geq \lambda_n\).
 证明：对于\(\mathbb{R}^n\)中任一非零列向量\(\vb\alpha\)，
 都有\begin{equation*}
-	\lambda_n \leq \frac{\vb\alpha^T \A \vb\alpha}{\vb\alpha^T \vb\alpha} \leq \lambda_1.
+	\lambda_n \leq \frac{\vb\alpha^T \vb{A} \vb\alpha}{\vb\alpha^T \vb\alpha} \leq \lambda_1.
 \end{equation*}
 \begin{proof}
-假设正交矩阵\(\Q\)满足\begin{equation*}
-	\Q^T \A \Q = \vb\Lambda,
+假设正交矩阵\(\vb{Q}\)满足\begin{equation*}
+	\vb{Q}^T \vb{A} \vb{Q} = \vb\Lambda,
 \end{equation*}
 其中\(\vb\Lambda = \diag(\AutoTuple{\lambda}{n})\)，
 那么\begin{equation*}
-	\vb\alpha^T \A \vb\alpha
-	= \vb\alpha^T (\Q \vb\Lambda \Q^T) \vb\alpha
-	= (\Q^T \vb\alpha)^T \vb\Lambda (\Q^T \vb\alpha)
+	\vb\alpha^T \vb{A} \vb\alpha
+	= \vb\alpha^T (\vb{Q} \vb\Lambda \vb{Q}^T) \vb\alpha
+	= (\vb{Q}^T \vb\alpha)^T \vb\Lambda (\vb{Q}^T \vb\alpha)
 	= \lambda_1 b_1^2 + \dotsb + \lambda_n b_n^2,
 \end{equation*}
-其中\(\Q^T \vb\alpha = (\AutoTuple{b}{n})\).
+其中\(\vb{Q}^T \vb\alpha = (\AutoTuple{b}{n})\).
 因为\(\lambda_1 \geq \lambda_2 \geq \dotsb \geq \lambda_n\)，
 所以\begin{gather*}
 	\lambda_1 b_1^2 + \dotsb + \lambda_n b_n^2
@@ -239,57 +239,57 @@
 \end{gather*}
 又由于\begin{equation*}
 	b_1^2 + \dotsb + b_n^2
-	= (\Q^T \vb\alpha)^T (\Q^T \vb\alpha)
-	= \vb\alpha^T (\Q \Q^T) \vb\alpha
+	= (\vb{Q}^T \vb\alpha)^T (\vb{Q}^T \vb\alpha)
+	= \vb\alpha^T (\vb{Q} \vb{Q}^T) \vb\alpha
 	= \vb\alpha^T \vb\alpha
 	\neq 0,
 \end{equation*}
 所以\(\lambda_n \vb\alpha^T \vb\alpha
-\leq \vb\alpha^T \A \vb\alpha
+\leq \vb\alpha^T \vb{A} \vb\alpha
 \leq \lambda_1 \vb\alpha^T \vb\alpha\)，
-即\(\lambda_n \leq \frac{\vb\alpha^T \A \vb\alpha}{\vb\alpha^T \vb\alpha} \leq \lambda_1\).
+即\(\lambda_n \leq \frac{\vb\alpha^T \vb{A} \vb\alpha}{\vb\alpha^T \vb\alpha} \leq \lambda_1\).
 \end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 12.
-设\(\A\)是一个\(n\)阶实对称矩阵.
+设\(\vb{A}\)是一个\(n\)阶实对称矩阵.
 证明：存在一个正实数\(c\)，使得对于\(\mathbb{R}^n\)中任一列向量\(\vb\alpha\)，
-都有\(\abs{\vb\alpha^T \A \vb\alpha} \leq c \vb\alpha^T \vb\alpha\).
+都有\(\abs{\vb\alpha^T \vb{A} \vb\alpha} \leq c \vb\alpha^T \vb\alpha\).
 \begin{proof}
 由\cref{example:二次型.瑞利商的取值范围} 可知，
-如果\(\A\)的最大特征值是\(\lambda_1\)，最小特征值是\(\lambda_n\)，
+如果\(\vb{A}\)的最大特征值是\(\lambda_1\)，最小特征值是\(\lambda_n\)，
 那么\begin{equation*}
 	\lambda_n \vb\alpha^T \vb\alpha
-	\leq \vb\alpha^T \A \vb\alpha
+	\leq \vb\alpha^T \vb{A} \vb\alpha
 	\leq \lambda_1 \vb\alpha^T \vb\alpha,
 \end{equation*}
 从而由\cref{example:不等式.数的上下界} 可知，
 成立\begin{equation*}
-	\abs{\vb\alpha^T \A \vb\alpha}
+	\abs{\vb\alpha^T \vb{A} \vb\alpha}
 	\leq \abs{\lambda_1 \vb\alpha^T \vb\alpha}
 	= \abs{\lambda_1} \vb\alpha^T \vb\alpha
 	\quad\text{或}\quad
-	\abs{\vb\alpha^T \A \vb\alpha}
+	\abs{\vb\alpha^T \vb{A} \vb\alpha}
 	\leq \abs{\lambda_n \vb\alpha^T \vb\alpha}
 	= \abs{\lambda_n} \vb\alpha^T \vb\alpha,
 \end{equation*}
 因此只要取\(c = \max\{\abs{\lambda_1},\abs{\lambda_n}\}\)，
 那么对于\(\mathbb{R}^n\)中任一列向量\(\vb\alpha\)，
-便都有\(\abs{\vb\alpha^T \A \vb\alpha} \leq c \vb\alpha^T \vb\alpha\).
+便都有\(\abs{\vb\alpha^T \vb{A} \vb\alpha} \leq c \vb\alpha^T \vb\alpha\).
 \end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 13.
-设\(\A,\B\)都是\(n\)阶实对称矩阵，并且\(\A\B=\B\A\).
-证明：存在一个\(n\)阶正交矩阵\(\Q\)，
-使得\(\Q^T \A \Q\)与\(\Q^T \B \Q\)都是对角矩阵.
+设\(\vb{A},\vb{B}\)都是\(n\)阶实对称矩阵，并且\(\vb{A}\vb{B}=\vb{B}\vb{A}\).
+证明：存在一个\(n\)阶正交矩阵\(\vb{Q}\)，
+使得\(\vb{Q}^T \vb{A} \vb{Q}\)与\(\vb{Q}^T \vb{B} \vb{Q}\)都是对角矩阵.
 %TODO proof
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 14.
-设\(n\)元实二次型\(\vb{x}^T \A \vb{x}\)的矩阵\(\A\)的一个特征值是\(\lambda_i\).
+设\(n\)元实二次型\(\vb{x}^T \vb{A} \vb{x}\)的矩阵\(\vb{A}\)的一个特征值是\(\lambda_i\).
 证明：存在\(\mathbb{R}^n\)中非零列向量\(\vb\alpha\)使得\[
-	\vb\alpha^T \A \vb\alpha = \lambda_i \vb\alpha^T \vb\alpha.
+	\vb\alpha^T \vb{A} \vb\alpha = \lambda_i \vb\alpha^T \vb\alpha.
 \]
 %TODO proof
 \end{example}
@@ -321,26 +321,26 @@
 		y_1 \\ y_2 \\ \vdots \\ y_n
 	\end{bmatrix}
 	\quad\text{或}\quad
-	\x=\C\y.
+	\vb{x}=\vb{C}\vb{y}.
 \]
 
 上述变量之间的替换称为\DefineConcept{线性替换}.
 
-当矩阵\(\C\)可逆时，
+当矩阵\(\vb{C}\)可逆时，
 称之为\DefineConcept{可逆线性替换}、\DefineConcept{满秩线性替换}或\DefineConcept{非退化线性替换}.
 
-当矩阵\(\C\)是正交矩阵时，
+当矩阵\(\vb{C}\)是正交矩阵时，
 称之为\DefineConcept{正交线性替换}.
 \end{definition}
 
 \begin{theorem}
-对二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)作可逆线性替换\(\x=\C\y\)，则\(f\)化为新变量的二次型\(g(\AutoTuple{y}{n})=\y^T\B\y\)，其中\(\B=\C^T\A\C\)为\(g\)的矩阵.
+对二次型\(f(\AutoTuple{x}{n})=\vb{x}^T\vb{A}\vb{x}\ (\vb{A}=\vb{A}^T)\)作可逆线性替换\(\vb{x}=\vb{C}\vb{y}\)，则\(f\)化为新变量的二次型\(g(\AutoTuple{y}{n})=\vb{y}^T\vb{B}\vb{y}\)，其中\(\vb{B}=\vb{C}^T\vb{A}\vb{C}\)为\(g\)的矩阵.
 \begin{proof}
-\(f(\AutoTuple{x}{n}) = \x^T\A\x%
-\xlongequal{\x=\C\y} (\C\y)^T\A(\C\y)%
-= \y^T (\C^T\A\C) \y\)，
-令\(\B = \C^T\A\C\)，由于\(\B^T = (\C^T\A\C)^T = \C^T\A\C = \B\)，以及\(\C\)可逆，所以\(\B\)是对称矩阵.
-\(f\)是二次型，它的矩阵\(\A\neq\z\)，\(\B\cong\A\)，故\(\B\neq\z\).
-于是，\(g(\AutoTuple{y}{n})=\y^T\B\y\)是二次型，对称矩阵\(\B\)是\(g\)的矩阵.
+\(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}%
+\xlongequal{\vb{x}=\vb{C}\vb{y}} (\vb{C}\vb{y})^T\vb{A}(\vb{C}\vb{y})%
+= \vb{y}^T (\vb{C}^T\vb{A}\vb{C}) \vb{y}\)，
+令\(\vb{B} = \vb{C}^T\vb{A}\vb{C}\)，由于\(\vb{B}^T = (\vb{C}^T\vb{A}\vb{C})^T = \vb{C}^T\vb{A}\vb{C} = \vb{B}\)，以及\(\vb{C}\)可逆，所以\(\vb{B}\)是对称矩阵.
+\(f\)是二次型，它的矩阵\(\vb{A}\neq\vb0\)，\(\vb{B}\cong\vb{A}\)，故\(\vb{B}\neq\vb0\).
+于是，\(g(\AutoTuple{y}{n})=\vb{y}^T\vb{B}\vb{y}\)是二次型，对称矩阵\(\vb{B}\)是\(g\)的矩阵.
 \end{proof}
 \end{theorem}

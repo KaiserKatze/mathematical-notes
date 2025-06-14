@@ -4,7 +4,7 @@
 \begin{theorem}\label{theorem:向量空间.线性方程组有解判别定理}
 %@see: 《高等代数（第三版 上册）》（丘维声） P87 定理1
 线性方程组\[
-	x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b
+	x_1 \vb\alpha_1 + x_2 \vb\alpha_2 + \dotsb + x_n \vb\alpha_n = \vb\beta
 \]有解的充分必要条件是：
 它的系数矩阵与增广矩阵有相同的秩，
 即\[
@@ -12,17 +12,17 @@
 	= \rank(\AutoTuple{\vb\alpha}{n},\vb\beta).
 \]
 \begin{proof}
-记系数矩阵\(\A=(\AutoTuple{\a}{n})\)，
-增广矩阵\(\wA=(\A,\b)\)，
+记系数矩阵\(\vb{A}=(\AutoTuple{\vb\alpha}{n})\)，
+增广矩阵\(\widetilde{\vb{A}}=(\vb{A},\vb\beta)\)，
 那么
 \begin{align*}
 	&\hspace{-20pt}
-	\text{线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解} \\
-	&\iff \b\in\opair{\AutoTuple{\a}{n}} \\
-	&\iff \opair{\AutoTuple{\a}{n},\b}\subseteq\opair{\AutoTuple{\a}{n}} \\
-	&\iff \opair{\AutoTuple{\a}{n},\b}=\opair{\AutoTuple{\a}{n}} \\
-	&\iff \dim\opair{\AutoTuple{\a}{n},\b}=\dim\opair{\AutoTuple{\a}{n}} \\
-	&\iff \rank\A=\rank\wA.
+	\text{线性方程组\(x_1 \vb\alpha_1 + x_2 \vb\alpha_2 + \dotsb + x_n \vb\alpha_n = \vb\beta\)有解} \\
+	&\iff \vb\beta\in\opair{\AutoTuple{\vb\alpha}{n}} \\
+	&\iff \opair{\AutoTuple{\vb\alpha}{n},\vb\beta}\subseteq\opair{\AutoTuple{\vb\alpha}{n}} \\
+	&\iff \opair{\AutoTuple{\vb\alpha}{n},\vb\beta}=\opair{\AutoTuple{\vb\alpha}{n}} \\
+	&\iff \dim\opair{\AutoTuple{\vb\alpha}{n},\vb\beta}=\dim\opair{\AutoTuple{\vb\alpha}{n}} \\
+	&\iff \rank\vb{A}=\rank\widetilde{\vb{A}}.
 	\qedhere
 \end{align*}
 \end{proof}
@@ -33,19 +33,19 @@
 这种判别方法有几种优越之处：
 首先，求矩阵的秩有多种方法，不一定要把系数矩阵和增广矩阵化成阶梯形矩阵.
 其次，有时不用求出系数矩阵的秩和增广矩阵的秩，也能比较它们的秩是否相等.
-由于系数矩阵\(\A\)是增广矩阵\(\wA\)的子矩阵，总有\(\rank\A\leq\rank\wA\)，
-那么只要能够证明\(\rank\wA\leq\rank\A\)，就能得出\(\rank\A=\rank\wA\).
+由于系数矩阵\(\vb{A}\)是增广矩阵\(\widetilde{\vb{A}}\)的子矩阵，总有\(\rank\vb{A}\leq\rank\widetilde{\vb{A}}\)，
+那么只要能够证明\(\rank\widetilde{\vb{A}}\leq\rank\vb{A}\)，就能得出\(\rank\vb{A}=\rank\widetilde{\vb{A}}\).
 
-现在我们想知道，当线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解时，
+现在我们想知道，当线性方程组\(x_1 \vb\alpha_1 + x_2 \vb\alpha_2 + \dotsb + x_n \vb\alpha_n = \vb\beta\)有解时，
 能不能用系数矩阵的秩去判别它有唯一解，还是有无穷多个解？
 
 \begin{theorem}\label{theorem:向量空间.有解的非齐次线性方程组的解的个数定理}
 %@see: 《高等代数（第三版 上册）》（丘维声） P88 定理2
-设线性方程组\(x_1 \a_1 + x_2 \a_2 + \dotsb + x_n \a_n = \b\)有解，
-\(\A=(\AutoTuple{\a}{n})\)是它的系数矩阵.
+设线性方程组\(x_1 \vb\alpha_1 + x_2 \vb\alpha_2 + \dotsb + x_n \vb\alpha_n = \vb\beta\)有解，
+\(\vb{A}=(\AutoTuple{\vb\alpha}{n})\)是它的系数矩阵.
 \begin{itemize}
-	\item 如果\(\rank\A=n\)，则这个方程组有唯一解.
-	\item 如果\(\rank\A<n\)，则这个方程组有无穷多个解.
+	\item 如果\(\rank\vb{A}=n\)，则这个方程组有唯一解.
+	\item 如果\(\rank\vb{A}<n\)，则这个方程组有无穷多个解.
 \end{itemize}
 %TODO proof
 \end{theorem}
@@ -116,25 +116,25 @@
 	\Pi_3: A_3 x + B_3 y + C_3 z + D_3 = 0.
 \end{gather*}
 记\begin{equation*}
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		A_1 & B_1 & C_1 \\
 		A_2 & B_2 & C_2 \\
 		A_3 & B_3 & C_3
 	\end{bmatrix},
 	\qquad
-	\b = \begin{bmatrix}
+	\vb\beta = \begin{bmatrix}
 		-D_1 \\
 		-D_2 \\
 		-D_3
 	\end{bmatrix},
 	\qquad
-	\wA = (\A,\b),
+	\widetilde{\vb{A}} = (\vb{A},\vb\beta),
 \end{equation*}
-则这三个平面的位置关系与线性方程\(\A\x=\b\)的解的情况
+则这三个平面的位置关系与线性方程\(\vb{A}\vb{x}=\vb\beta\)的解的情况
 有如下对应关系：\begin{center}
 	\begin{tblr}{*3{c|}l}
 		\hline
-		\(\rank\A\) & \(\rank\wA\) & 解的情况 & \SetCell{c} 位置关系 \\
+		\(\rank\vb{A}\) & \(\rank\widetilde{\vb{A}}\) & 解的情况 & \SetCell{c} 位置关系 \\
 		\hline
 		1 & 1 & 有无穷多解 & 三平面重合 \\
 		1 & 2 & 无解 & 至少有一个平面不与其他平面重合 \\

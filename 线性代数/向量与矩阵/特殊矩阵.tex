@@ -59,9 +59,9 @@
 
 \subsection{三角矩阵}
 \begin{definition}
-设矩阵\(\A=(a_{ij})_n \in M_n(K)\).
+设矩阵\(\vb{A}=(a_{ij})_n \in M_n(K)\).
 \begin{enumerate}
-	\item 如果\(\A\)左下角的元素全为零，即\[
+	\item 如果\(\vb{A}\)左下角的元素全为零，即\[
 		a_{ij} = 0
 		\quad(i>j),
 	\]
@@ -69,7 +69,7 @@
 	%@see: https://mathworld.wolfram.com/UpperTriangularMatrix.html
 	简称\DefineConcept{上三角阵}.
 
-	\item 如果\(\A\)右上角的元素全为零，即\[
+	\item 如果\(\vb{A}\)右上角的元素全为零，即\[
 		a_{ij} = 0
 		\quad(i<j),
 	\]
@@ -81,53 +81,53 @@
 \end{definition}
 
 \begin{example}
-设\(\A,\B\)都是\(n\)阶上三角阵，证明：\(\A\B\)是上三角阵.
+设\(\vb{A},\vb{B}\)都是\(n\)阶上三角阵，证明：\(\vb{A}\vb{B}\)是上三角阵.
 \begin{proof}
 利用数学归纳法.
-当\(n=1\)时，\(\A=a\)，\(\B=b\)，\(\A\B = ab\)，结论成立.
+当\(n=1\)时，\(\vb{A}=a\)，\(\vb{B}=b\)，\(\vb{A}\vb{B} = ab\)，结论成立.
 
 假设\(n=k\)时上三角阵的乘积是上三角阵.
-当\(n=k+1\)时，对矩阵\(\A\)和\(b\)分块如下：\[
-	\A = \begin{bmatrix}
-		a_{11} & \A_2 \\
-		\vb0 & \A_4
+当\(n=k+1\)时，对矩阵\(\vb{A}\)和\(b\)分块如下：\[
+	\vb{A} = \begin{bmatrix}
+		a_{11} & \vb{A}_2 \\
+		\vb0 & \vb{A}_4
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
-		b_{11} & \B_2 \\
-		\vb0 & \B_4
+	\vb{B} = \begin{bmatrix}
+		b_{11} & \vb{B}_2 \\
+		\vb0 & \vb{B}_4
 	\end{bmatrix},
 \]
-其中\(\A_4\)和\(\B_4\)都是\(k\)阶上三角阵，
-由归纳假设，\(\A_4 \B_4\)是\(k\)阶上三角阵，
+其中\(\vb{A}_4\)和\(\vb{B}_4\)都是\(k\)阶上三角阵，
+由归纳假设，\(\vb{A}_4 \vb{B}_4\)是\(k\)阶上三角阵，
 则\[
-	\A\B = \begin{bmatrix}
-		a_{11} b_{11} & a_{11} \B_2 + \A_2 \B_4 \\
-		\vb0 & \A_4 \B_4
+	\vb{A}\vb{B} = \begin{bmatrix}
+		a_{11} b_{11} & a_{11} \vb{B}_2 + \vb{A}_2 \vb{B}_4 \\
+		\vb0 & \vb{A}_4 \vb{B}_4
 	\end{bmatrix},
 \]
-即\(\A\B\)是\(k+1\)阶上三角阵.
+即\(\vb{A}\vb{B}\)是\(k+1\)阶上三角阵.
 \end{proof}
 \end{example}
 
 \subsection{对角矩阵}
 \begin{definition}
-如果矩阵\(\A=(a_{ij})_n \in M_n(K)\)除对角线以外的元素全为零，即\[
+如果矩阵\(\vb{A}=(a_{ij})_n \in M_n(K)\)除对角线以外的元素全为零，即\[
 	a_{ij} = 0
 	\quad(i \neq j),
 \]
-那么称“\(\A\)是一个\(n\)阶\DefineConcept{对角矩阵}（diagonal matrix）”，
+那么称“\(\vb{A}\)是一个\(n\)阶\DefineConcept{对角矩阵}（diagonal matrix）”，
 %@see: https://mathworld.wolfram.com/DiagonalMatrix.html
 记作\(\diag(a_{11},a_{22},\dotsc,a_{nn})\).
 \end{definition}
 
 \begin{definition}
-如果矩阵\(\A=(a_{ij})_{m \times n} \in M_{m \times n}(K)\)
+如果矩阵\(\vb{A}=(a_{ij})_{m \times n} \in M_{m \times n}(K)\)
 除对角线以外的元素全为零，即\[
 	a_{ij} = 0
 	\quad(i \neq j),
 \]
-那么称“\(\A\)是一个\(m \times n\) \DefineConcept{对角矩阵}”，
+那么称“\(\vb{A}\)是一个\(m \times n\) \DefineConcept{对角矩阵}”，
 记作\(\diag_{m \times n}(a_{11},a_{22},\dotsc,a_{pp})\)，
 其中\(p = \min\{m,n\}\).
 \end{definition}
@@ -135,40 +135,40 @@
 \subsection{对称矩阵，反对称矩阵}
 \begin{definition}
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P337 9.11
-若矩阵\(\A \in M_n(K)\)满足\[
-    \A^T = \A,
+若矩阵\(\vb{A} \in M_n(K)\)满足\[
+    \vb{A}^T = \vb{A},
 \]
-那么把\(\A\)称为\DefineConcept{对称矩阵}（symmetric matrix）.
+那么把\(\vb{A}\)称为\DefineConcept{对称矩阵}（symmetric matrix）.
 %@see: https://mathworld.wolfram.com/SymmetricMatrix.html
 反之，如果\[
-	\A^T \neq \A,
+	\vb{A}^T \neq \vb{A},
 \]
-那么把\(\A\)称为\DefineConcept{非对称矩阵}（asymmetric matrix）.
+那么把\(\vb{A}\)称为\DefineConcept{非对称矩阵}（asymmetric matrix）.
 %@see: https://mathworld.wolfram.com/AsymmetricMatrix.html
 \end{definition}
 
 \begin{definition}
-如果矩阵\(\A \in M_n(K)\)满足\[
-	\A^T = -\A,
+如果矩阵\(\vb{A} \in M_n(K)\)满足\[
+	\vb{A}^T = -\vb{A},
 \]
-那么把\(\A\)称为\DefineConcept{反对称矩阵}（antisymmetric matrix）
+那么把\(\vb{A}\)称为\DefineConcept{反对称矩阵}（antisymmetric matrix）
 %@see: https://mathworld.wolfram.com/AntisymmetricMatrix.html
 或\DefineConcept{斜对称矩阵}.
 \end{definition}
 
 \begin{definition}
-如果矩阵\(\A \in M_n(K)\)满足\[
-    \A^H = \A,
+如果矩阵\(\vb{A} \in M_n(K)\)满足\[
+    \vb{A}^H = \vb{A},
 \]
-那么把\(\A\)称为\DefineConcept{厄米矩阵}（Hermitian matrix）.
+那么把\(\vb{A}\)称为\DefineConcept{厄米矩阵}（Hermitian matrix）.
 %@see: https://mathworld.wolfram.com/HermitianMatrix.html
 \end{definition}
 
 \begin{definition}
-如果矩阵\(\A \in M_n(K)\)满足\[
-	\A^H = -\A,
+如果矩阵\(\vb{A} \in M_n(K)\)满足\[
+	\vb{A}^H = -\vb{A},
 \]
-那么把\(\A\)称为\DefineConcept{反厄米矩阵}（antihermitian matrix）.
+那么把\(\vb{A}\)称为\DefineConcept{反厄米矩阵}（antihermitian matrix）.
 %@see: https://mathworld.wolfram.com/AntihermitianMatrix.html
 \end{definition}
 
@@ -176,14 +176,14 @@
 %\cref{theorem:反对称矩阵.反对称矩阵的合同类}
 
 \begin{example}
-设矩阵\(\A \in M_n(K)\).
-试证：\(\A\A^T\)为对称矩阵.
+设矩阵\(\vb{A} \in M_n(K)\).
+试证：\(\vb{A}\vb{A}^T\)为对称矩阵.
 \begin{proof}
-因为\((\A \A^T)^T = (\A^T)^T \A^T = \A \A^T\)，所以\(\A \A^T\)是对称矩阵.
+因为\((\vb{A} \vb{A}^T)^T = (\vb{A}^T)^T \vb{A}^T = \vb{A} \vb{A}^T\)，所以\(\vb{A} \vb{A}^T\)是对称矩阵.
 \end{proof}
 \end{example}
 \begin{remark}
-容易看出，\(\A^T\A\)也是对称矩阵.
+容易看出，\(\vb{A}^T\vb{A}\)也是对称矩阵.
 \end{remark}
 
 \begin{example}
@@ -223,33 +223,33 @@
 \begin{example}
 零矩阵\(\vb0\)是唯一一个既是实对称矩阵又是实反对称矩阵的矩阵.
 \begin{proof}
-\(\A^T = \A = -\A \implies 2\A = \A+\A = \vb0 \implies \A = \vb0\).
+\(\vb{A}^T = \vb{A} = -\vb{A} \implies 2\vb{A} = \vb{A}+\vb{A} = \vb0 \implies \vb{A} = \vb0\).
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A\)是一个方阵，证明：\(\A+\A^T\)为对称矩阵，\(\A-\A^T\)为反对称矩阵.
+设\(\vb{A}\)是一个方阵，证明：\(\vb{A}+\vb{A}^T\)为对称矩阵，\(\vb{A}-\vb{A}^T\)为反对称矩阵.
 \begin{proof}
-因为\((\A+\A^T)^T = \A^T+\A\)，
-而\((\A-\A^T)^T = \A^T - \A = -(\A-\A^T)\)，
-所以\(\A+\A^T\)为对称矩阵，
-\(\A-\A^T\)为反对称矩阵.
-显然有\(\A = \frac{\A + \A^T}{2} + \frac{\A - \A^T}{2}\).
+因为\((\vb{A}+\vb{A}^T)^T = \vb{A}^T+\vb{A}\)，
+而\((\vb{A}-\vb{A}^T)^T = \vb{A}^T - \vb{A} = -(\vb{A}-\vb{A}^T)\)，
+所以\(\vb{A}+\vb{A}^T\)为对称矩阵，
+\(\vb{A}-\vb{A}^T\)为反对称矩阵.
+显然有\(\vb{A} = \frac{\vb{A} + \vb{A}^T}{2} + \frac{\vb{A} - \vb{A}^T}{2}\).
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A\)是3阶实对称矩阵，\(\B\)是3阶实反对称矩阵，\(\A^2 = \B^2\).
-试证：\(\A = \B = \vb0\).
+设\(\vb{A}\)是3阶实对称矩阵，\(\vb{B}\)是3阶实反对称矩阵，\(\vb{A}^2 = \vb{B}^2\).
+试证：\(\vb{A} = \vb{B} = \vb0\).
 \begin{proof}
-设\(\A = (a_{ij})_n\)，\(\B = (b_{ij})_n\).
-因为\(\A = \A^T\)，\(\A^2 = \A^T \A\)，
-所以\(\A^2\)的\(\opair{i,j}\)元素为
+设\(\vb{A} = (a_{ij})_n\)，\(\vb{B} = (b_{ij})_n\).
+因为\(\vb{A} = \vb{A}^T\)，\(\vb{A}^2 = \vb{A}^T \vb{A}\)，
+所以\(\vb{A}^2\)的\(\opair{i,j}\)元素为
 \(a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}\).
-因为\(\B = -\B^T\)，\(\B^2 = -\B^T \B\)，
-所以\(\B^2\)的\(\opair{i,j}\)元素为
+因为\(\vb{B} = -\vb{B}^T\)，\(\vb{B}^2 = -\vb{B}^T \vb{B}\)，
+所以\(\vb{B}^2\)的\(\opair{i,j}\)元素为
 \(-(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj})\).
-因为\(\A^2 = \B^2\)，
+因为\(\vb{A}^2 = \vb{B}^2\)，
 所以\[
 	a_{1i} a_{1j} + a_{2i} a_{2j} + \dotsb + a_{ni} a_{nj}
 	= -(b_{1i} b_{1j} + b_{2i} b_{2j} + \dotsb + b_{ni} b_{nj}).
@@ -275,16 +275,16 @@
 %@Mathematica: MatrixPowerTable[A_, n_] := Table[MatrixPower[A, k] // MatrixForm, {k, 1, n}] // DeleteDuplicates
 
 \begin{definition}
-设矩阵\(\A \in M_n(K)\).
+设矩阵\(\vb{A} \in M_n(K)\).
 若\[
 	(\exists m\in\mathbb{N}^+)
-	[\A^m = \vb0],
+	[\vb{A}^m = \vb0],
 \]
-则称“\(\A\)是\DefineConcept{幂零矩阵}（nilpotent matrix）”.
+则称“\(\vb{A}\)是\DefineConcept{幂零矩阵}（nilpotent matrix）”.
 %@see: https://mathworld.wolfram.com/NilpotentMatrix.html
-称使得\(\A^m = \vb0\)成立的最小正整数\[
-    \min\Set{ m\in\mathbb{N}^+ \given \A^m = \vb0 }
-\]为“\(\A\)的\DefineConcept{幂零指数}”.
+称使得\(\vb{A}^m = \vb0\)成立的最小正整数\[
+    \min\Set{ m\in\mathbb{N}^+ \given \vb{A}^m = \vb0 }
+\]为“\(\vb{A}\)的\DefineConcept{幂零指数}”.
 \end{definition}
 %\cref{example:幂零矩阵.幂零矩阵的行列式}
 %\cref{example:幂零矩阵.幂零矩阵的特征值的性质}
@@ -350,24 +350,24 @@
 
 \subsection{幂幺矩阵}
 \begin{definition}
-设矩阵\(\A \in M_n(K)\)，\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+设矩阵\(\vb{A} \in M_n(K)\)，\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
 若\[
 	(\exists m\in\mathbb{N}^+)
-	[(\A-\E)^m=\vb0],
+	[(\vb{A}-\vb{E})^m=\vb0],
 \]
-则称“\(\A\)是\DefineConcept{幂幺矩阵}（unipotent matrix）”.
+则称“\(\vb{A}\)是\DefineConcept{幂幺矩阵}（unipotent matrix）”.
 %@see: https://mathworld.wolfram.com/Unipotent.html
-称使得\((\A-\E)^m=\vb0\)成立的最小正整数\[
-    \min\Set{ m\in\mathbb{N}^+ \given (\A-\E)^m=\vb0 }
-\]为“\(\A\)的\DefineConcept{幂幺指数}”.
+称使得\((\vb{A}-\vb{E})^m=\vb0\)成立的最小正整数\[
+    \min\Set{ m\in\mathbb{N}^+ \given (\vb{A}-\vb{E})^m=\vb0 }
+\]为“\(\vb{A}\)的\DefineConcept{幂幺指数}”.
 \end{definition}
 %\cref{example:幂幺矩阵.幂幺矩阵的特征值的性质}
 
 \subsection{幂等矩阵}
 \begin{definition}\label{definition:幂等矩阵.幂等矩阵的定义}
-设矩阵\(\A \in M_n(K)\).
-若\(\A^2=\A\)，
-则称“\(\A\)是\DefineConcept{幂等矩阵}（idempotent matrix）”.
+设矩阵\(\vb{A} \in M_n(K)\).
+若\(\vb{A}^2=\vb{A}\)，
+则称“\(\vb{A}\)是\DefineConcept{幂等矩阵}（idempotent matrix）”.
 %@see: https://mathworld.wolfram.com/IdempotentMatrix.html
 \end{definition}
 %\cref{example:幂等矩阵.幂等矩阵的秩的性质1}
@@ -392,9 +392,9 @@
 
 \subsection{对合矩阵}
 \begin{definition}
-设矩阵\(\A \in M_n(K)\)，\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
-若\(\A^2=\E\)，
-则称“\(\A\)是\DefineConcept{对合矩阵}（involutory matrix）”.
+设矩阵\(\vb{A} \in M_n(K)\)，\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
+若\(\vb{A}^2=\vb{E}\)，
+则称“\(\vb{A}\)是\DefineConcept{对合矩阵}（involutory matrix）”.
 %@see: https://mathworld.wolfram.com/InvolutoryMatrix.html
 \end{definition}
 %\cref{example:对合矩阵.对合矩阵的秩的性质1}
@@ -464,16 +464,16 @@
 
 \subsection{周期矩阵}
 \begin{definition}
-设矩阵\(\A \in M_n(K)\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+设矩阵\(\vb{A} \in M_n(K)\)，
+\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
 若\[
 	(\exists m\in\mathbb{N}^+)
-	[\A^m = \E],
+	[\vb{A}^m = \vb{E}],
 \]
-则称“\(\A\)是\DefineConcept{周期矩阵}（periodic matrix）”.
-使\(\A^m = \E\)成立的最小正整数\[
-	\min\Set{ m\in\mathbb{N}^+ \given \A^m = \E }
-\]称为“\(\A\)的\DefineConcept{周期}”.
+则称“\(\vb{A}\)是\DefineConcept{周期矩阵}（periodic matrix）”.
+使\(\vb{A}^m = \vb{E}\)成立的最小正整数\[
+	\min\Set{ m\in\mathbb{N}^+ \given \vb{A}^m = \vb{E} }
+\]称为“\(\vb{A}\)的\DefineConcept{周期}”.
 %@see: https://mathworld.wolfram.com/PeriodicMatrix.html
 \end{definition}
 

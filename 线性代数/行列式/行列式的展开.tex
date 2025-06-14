@@ -1,7 +1,7 @@
 \section{行列式按行（或列）展开及其计算}
 \subsection{子式}
 \begin{definition}
-在矩阵\(\A=(a_{ij})_{s \times n}\)中，
+在矩阵\(\vb{A}=(a_{ij})_{s \times n}\)中，
 任取\(k\)行\(k\)列，
 位于这些行与列交叉处的\(k^2\)个元素，按原顺序排成的\(k\)阶矩阵的行列式\[
 	\begin{vmatrix}
@@ -15,59 +15,59 @@
 		1 \leq i_1 < i_2 < \dotsb < i_k \leq s; \\
 		1 \leq j_1 < j_2 < \dotsb < j_k \leq n
 	\end{array}
-\]称为“矩阵\(\A\)的一个\(k\)阶\DefineConcept{子式}（minor）”，
+\]称为“矩阵\(\vb{A}\)的一个\(k\)阶\DefineConcept{子式}（minor）”，
 %@see: https://mathworld.wolfram.com/Minor.html
 记作\[
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		\AutoTuple{i}{k} \\
 		\AutoTuple{j}{k}
 	}.
 \]
 如果进一步有\[
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		\AutoTuple{i}{k} \\
 		\AutoTuple{j}{k}
 	}
 	\neq 0,
 \]
-则称之为“矩阵\(\A\)的一个\(k\)阶\DefineConcept{非零子式}（nonzero minor）”.
+则称之为“矩阵\(\vb{A}\)的一个\(k\)阶\DefineConcept{非零子式}（nonzero minor）”.
 \end{definition}
 
 \begin{property}
-设矩阵\(\A = (a_{ij})_{s \times n}\).
+设矩阵\(\vb{A} = (a_{ij})_{s \times n}\).
 如果存在\(r < \min\{s,n\}\)，
 使得所有\(r\)阶子式都等于零，
-则对任意\(k > r\)有\(\A\)的所有\(k\)阶子式全为零.
+则对任意\(k > r\)有\(\vb{A}\)的所有\(k\)阶子式全为零.
 \end{property}
 
 \subsection{主子式，顺序主子式}
 \begin{definition}
-设\(\A=(a_{ij})_n\)，
+设\(\vb{A}=(a_{ij})_n\)，
 \(k\)阶子式\[
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		i_1,i_2,\dotsc,i_k \\
 		i_1,i_2,\dotsc,i_k
 	}
 \]
-称为“\(\A\)的\(k\)阶\DefineConcept{主子式}（principal minor）”.
+称为“\(\vb{A}\)的\(k\)阶\DefineConcept{主子式}（principal minor）”.
 
-\(\A\)位于左上角的\(k\)阶主子式\[
-	\MatrixMinor\A{
+\(\vb{A}\)位于左上角的\(k\)阶主子式\[
+	\MatrixMinor{\vb{A}}{
 		1,2,\dotsc,k \\
 		1,2,\dotsc,k
 	}
-\]称为“\(\A\)的\(k\)阶\DefineConcept{顺序主子式}（ordinal principal minor）”.
+\]称为“\(\vb{A}\)的\(k\)阶\DefineConcept{顺序主子式}（ordinal principal minor）”.
 \end{definition}
 
 \subsection{余子式、代数余子式}
 \begin{definition}
-在\(n\)阶矩阵\(\A=(a_{ij})_n\)中，
+在\(n\)阶矩阵\(\vb{A}=(a_{ij})_n\)中，
 称子式\[
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		\AutoTuple{\mu}{n-k} \\
 		\AutoTuple{\nu}{n-k}
 	},
-\]为“子式\(\MatrixMinor\A{
+\]为“子式\(\MatrixMinor{\vb{A}}{
 	\AutoTuple{i}{k} \\
 	\AutoTuple{j}{k}
 }\)的\DefineConcept{余子式}（cofactor）”，
@@ -81,17 +81,17 @@
 
 把\[
 	(-1)^{i_1+\dotsb+i_k+j_1+\dotsb+j_k}
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		\AutoTuple{\mu}{n-k} \\
 		\AutoTuple{\nu}{n-k}
 	}
-\]称作“子式\(\MatrixMinor\A{
+\]称作“子式\(\MatrixMinor{\vb{A}}{
 	\AutoTuple{i}{k} \\
 	\AutoTuple{j}{k}
 }\)的\DefineConcept{代数余子式}（algebraic cofactor）”.
 
 特别地，称子式\[
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		1,\dotsc,i-1,i+1,\dotsc,n \\
 		1,\dotsc,j-1,j+1,\dotsc,n
 	}
@@ -103,12 +103,12 @@
 
 \subsection{伴随矩阵}
 \begin{definition}\label{definition:伴随矩阵.伴随矩阵的定义}
-设\(\A=(a_{ij})_n\)，
+设\(\vb{A}=(a_{ij})_n\)，
 \(A_{ij}\)为元素\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
 以\(A_{ij}\)作为第\(j\)行第\(i\)列元素构成的\(n\)阶矩阵，
-称为“\(\A\)的\DefineConcept{伴随矩阵}（adjoint, adjugate matrix）”，
-记为\(\A^*\)，即\[
-	\A^*
+称为“\(\vb{A}\)的\DefineConcept{伴随矩阵}（adjoint, adjugate matrix）”，
+记为\(\vb{A}^*\)，即\[
+	\vb{A}^*
 	\defeq
 	\begin{bmatrix}
 		A_{11} & A_{21} & \dots & A_{n1} \\
@@ -120,10 +120,10 @@
 \end{definition}
 
 \begin{example}
-设\(\A=(a_{ij})_n\)的伴随矩阵为\(\A^*\)，求\((k\A)^*\).
+设\(\vb{A}=(a_{ij})_n\)的伴随矩阵为\(\vb{A}^*\)，求\((k\vb{A})^*\).
 \begin{solution}
-设\(\A\)的元素\(a_{ij}\)的代数余子式是\(A_{ij}\)，
-那么矩阵\(k\A = (b_{ij})_n\)的元素\(b_{ij} = k a_{ij}\)的代数余子式是\[
+设\(\vb{A}\)的元素\(a_{ij}\)的代数余子式是\(A_{ij}\)，
+那么矩阵\(k\vb{A} = (b_{ij})_n\)的元素\(b_{ij} = k a_{ij}\)的代数余子式是\[
 	B_{ij}
 	= (-1)^{i+j}
 	\begin{vmatrix}
@@ -136,9 +136,9 @@
 	\end{vmatrix}
 	= k^{n-1} A_{ij}.
 \]
-因此\(k\A\)的伴随矩阵是\((B_{ji})_n\)，
+因此\(k\vb{A}\)的伴随矩阵是\((B_{ji})_n\)，
 即\begin{equation}\label{equation:行列式.伴随矩阵.数与矩阵乘积的伴随}
-	(k \A)^* = k^{n-1} \A^*.
+	(k \vb{A})^* = k^{n-1} \vb{A}^*.
 \end{equation}
 \end{solution}
 %\cref{theorem:逆矩阵.数与矩阵乘积的逆}
@@ -151,12 +151,12 @@
 
 \subsection{行列式按一行（或一列）展开}
 \begin{theorem}\label{theorem:行列式.行列式按行展开}
-设\(\A=(a_{ij})_n\)，
+设\(\vb{A}=(a_{ij})_n\)，
 \(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
 \begin{enumerate}
 	\item 行列式等于它的任一行的各元与其代数余子式乘积之和，
 	即\begin{equation}
-		\abs{\A} = \sum_{j=1}^n a_{ij} A_{ij}
+		\abs{\vb{A}} = \sum_{j=1}^n a_{ij} A_{ij}
 		\quad(i=1,2,\dotsc,n).
 	\end{equation}
 
@@ -174,7 +174,7 @@
 	\tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)
 	= j-1+\tau(j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n),
 \]于是有\begin{align*}
-	\abs{\A}
+	\abs{\vb{A}}
 	&= \sum_{j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n}
 		(-1)^{\tau(i,1,2,\dotsc,i-1,i+1,\dotsc,n) + \tau(j,j_1,j_2,\dotsc,j_{i-1},j_{i+1},\dotsc,j_n)}
 		a_{ij} \prod_{\substack{k=1 \\ k \neq i}}^n a_{k j_k} \\
@@ -191,10 +191,10 @@
 
 由于行列式中行与列的地位平等，因此又可以行列式按某一列展开.
 \begin{theorem}
-设\(\A=(a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
+设\(\vb{A}=(a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\ (i,j=1,2,\dotsc,n)\)的代数余子式.
 \begin{enumerate}
 	\item 行列式等于它的任一列的各元与其代数余子式乘积之和，即\begin{equation}
-		\abs{\A} = \sum_{i=1}^n a_{ij} A_{ij}
+		\abs{\vb{A}} = \sum_{i=1}^n a_{ij} A_{ij}
 		\quad(j=1,2,\dotsc,n).
 	\end{equation}
 
@@ -210,30 +210,30 @@
 \begin{gather}
 	\sum_{j=1}^n a_{ij} A_{kj}
 	= \left\{ \begin{array}{cl}
-		\abs{\A}, & k = i, \\
+		\abs{\vb{A}}, & k = i, \\
 		0, & k \neq i,
 	\end{array} \right.
 	\quad i=1,2,\dotsc,n, \\
 	\sum_{i=1}^n a_{ij} A_{ik}
 	= \left\{ \begin{array}{cl}
-		\abs{\A}, & k = j, \\
+		\abs{\vb{A}}, & k = j, \\
 		0, & k \neq j,
 	\end{array} \right.
 	\quad j=1,2,\dotsc,n,
 \end{gather}
 
 \begin{theorem}
-设方阵\(\A\)的伴随矩阵为\(\A^*\)，
+设方阵\(\vb{A}\)的伴随矩阵为\(\vb{A}^*\)，
 则\begin{gather}
-	\A \A^* = \A^* \A = \abs{\A} \E, \label{equation:行列式.伴随矩阵.恒等式1} \\
-	(\A^*)^T = (\A^T)^*, \label{equation:行列式.伴随矩阵.恒等式2} \\
-	(\A \B)^* = \B^* \A^*. \label{equation:行列式.伴随矩阵.恒等式3}
+	\vb{A} \vb{A}^* = \vb{A}^* \vb{A} = \abs{\vb{A}} \vb{E}, \label{equation:行列式.伴随矩阵.恒等式1} \\
+	(\vb{A}^*)^T = (\vb{A}^T)^*, \label{equation:行列式.伴随矩阵.恒等式2} \\
+	(\vb{A} \vb{B})^* = \vb{B}^* \vb{A}^*. \label{equation:行列式.伴随矩阵.恒等式3}
 \end{gather}
 \begin{proof}
 这里只证\cref{equation:行列式.伴随矩阵.恒等式1}.
-设\(\A=(a_{ij})_n\)，\(\A^*=(\A_{ji})_n\).
+设\(\vb{A}=(a_{ij})_n\)，\(\vb{A}^*=(\vb{A}_{ji})_n\).
 那么\begin{align*}
-	\A\A^*
+	\vb{A}\vb{A}^*
 	&= \begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1n} \\
 		a_{21} & a_{22} & \dots & a_{2n} \\
@@ -247,41 +247,41 @@
 		A_{1n} & A_{2n} & \dots & A_{nn}
 	\end{bmatrix} \\
 	&= \begin{bmatrix}
-		\abs{\A} & 0 & \dots & 0 \\
-		0 & \abs{\A} & \dots & 0 \\
+		\abs{\vb{A}} & 0 & \dots & 0 \\
+		0 & \abs{\vb{A}} & \dots & 0 \\
 		\vdots & \vdots & & \vdots \\
-		0 & 0 & \dots & \abs{\A}
+		0 & 0 & \dots & \abs{\vb{A}}
 	\end{bmatrix}
-	= \abs{\A} \E.
+	= \abs{\vb{A}} \vb{E}.
 \end{align*}
-利用对称性，立即可得\(\A^*\A\)也等于\(\abs{\A} \E\).
+利用对称性，立即可得\(\vb{A}^*\vb{A}\)也等于\(\abs{\vb{A}} \vb{E}\).
 \end{proof}
 \end{theorem}
 
 \begin{example}
-设\(\A \in M_n(K)\)是对称矩阵，
-\(\A^T\)是\(\A\)的转置矩阵.
-证明：\(\A\)的伴随矩阵\(\A^*\)也是对称矩阵.
+设\(\vb{A} \in M_n(K)\)是对称矩阵，
+\(\vb{A}^T\)是\(\vb{A}\)的转置矩阵.
+证明：\(\vb{A}\)的伴随矩阵\(\vb{A}^*\)也是对称矩阵.
 \begin{proof}
-因为\(\A^T = \A\)，
-所以\((\A^T)^* = \A^*\).
-又因为 \hyperref[equation:行列式.伴随矩阵.恒等式2]{\((\A^*)^T = (\A^T)^*\)}，
-所以\(\A^* = (\A^*)^T\).
+因为\(\vb{A}^T = \vb{A}\)，
+所以\((\vb{A}^T)^* = \vb{A}^*\).
+又因为 \hyperref[equation:行列式.伴随矩阵.恒等式2]{\((\vb{A}^*)^T = (\vb{A}^T)^*\)}，
+所以\(\vb{A}^* = (\vb{A}^*)^T\).
 \end{proof}
 \end{example}
 \begin{example}
-设\(\A \in M_n(K)\)是反对称矩阵，
-\(\A^T\)是\(\A\)的转置矩阵.
-讨论\(\A\)的伴随矩阵\(\A^*\)的对称性.
+设\(\vb{A} \in M_n(K)\)是反对称矩阵，
+\(\vb{A}^T\)是\(\vb{A}\)的转置矩阵.
+讨论\(\vb{A}\)的伴随矩阵\(\vb{A}^*\)的对称性.
 \begin{proof}
-因为\(\A^T = -\A\)，
-所以\((\A^T)^* = (-\A)^*\).
+因为\(\vb{A}^T = -\vb{A}\)，
+所以\((\vb{A}^T)^* = (-\vb{A})^*\).
 由\cref{equation:行列式.伴随矩阵.数与矩阵乘积的伴随} 可知
-\((-\A)^* = (-1)^{n-1} \A^*\).
-又因为 \hyperref[equation:行列式.伴随矩阵.恒等式2]{\((\A^*)^T = (\A^T)^*\)}，
-所以\((\A^*)^T = (-1)^{n-1} \A^*\).
-因此，当\(n\)是奇数时，\(\A^*\)是对称矩阵；
-当\(n\)是偶数时，\(\A^*\)是反对称矩阵.
+\((-\vb{A})^* = (-1)^{n-1} \vb{A}^*\).
+又因为 \hyperref[equation:行列式.伴随矩阵.恒等式2]{\((\vb{A}^*)^T = (\vb{A}^T)^*\)}，
+所以\((\vb{A}^*)^T = (-1)^{n-1} \vb{A}^*\).
+因此，当\(n\)是奇数时，\(\vb{A}^*\)是对称矩阵；
+当\(n\)是偶数时，\(\vb{A}^*\)是反对称矩阵.
 \end{proof}
 \end{example}
 
@@ -424,30 +424,30 @@
 \end{example}
 
 % \begin{example}
-% 设矩阵\(\A = (a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\)的代数余子式.
-% 把\(\A\)的每个元素都加上同一个数\(t\)，
-% 得到的矩阵记作\(\A(t) = (a_{ij} + t)_n\).
+% 设矩阵\(\vb{A} = (a_{ij})_n\)，\(A_{ij}\)为\(a_{ij}\)的代数余子式.
+% 把\(\vb{A}\)的每个元素都加上同一个数\(t\)，
+% 得到的矩阵记作\(\vb{A}(t) = (a_{ij} + t)_n\).
 % 证明：\[
-% 	\abs{\A(t)}
-% 	= \abs{\A} + t \sum_{i=1}^n \sum_{j=1}^n A_{ij}.
+% 	\abs{\vb{A}(t)}
+% 	= \abs{\vb{A}} + t \sum_{i=1}^n \sum_{j=1}^n A_{ij}.
 % \]
 % \begin{proof}
-% 对\(\A\)列分块得\[
-% 	\A = (\AutoTuple{\a}{n}),
+% 对\(\vb{A}\)列分块得\[
+% 	\vb{A} = (\AutoTuple{\vb\alpha}{n}),
 % \]
-% 又令\(n\)维列向量\(\b=(t,t,\dotsc,t)^T\)，
+% 又令\(n\)维列向量\(\vb\beta=(t,t,\dotsc,t)^T\)，
 % 那么根据\cref{theorem:行列式.性质3,theorem:行列式.性质5} 有
 % \begin{align*}
-% 	\abs{\A(t)}
-% 	&= \abs{(\a_1+\b,\a_2+\b,\dotsc,\a_n+\b)} \\
-% 	&= \abs{(\a_1,\a_2+\b,\dotsc,\a_n+\b)}
-% 		+ \abs{(\b,\a_2+\b,\dotsc,\a_n+\b)} \\
-% 	&= \dotsb = \abs{(\a_1,\a_2,\dotsc,\a_n)}
+% 	\abs{\vb{A}(t)}
+% 	&= \abs{(\vb\alpha_1+\vb\beta,\vb\alpha_2+\vb\beta,\dotsc,\vb\alpha_n+\vb\beta)} \\
+% 	&= \abs{(\vb\alpha_1,\vb\alpha_2+\vb\beta,\dotsc,\vb\alpha_n+\vb\beta)}
+% 		+ \abs{(\vb\beta,\vb\alpha_2+\vb\beta,\dotsc,\vb\alpha_n+\vb\beta)} \\
+% 	&= \dotsb = \abs{(\vb\alpha_1,\vb\alpha_2,\dotsc,\vb\alpha_n)}
 % 		\begin{aligned}[t]
-% 			&+ \abs{(\b,\a_2,\dotsc,\a_{n-1},\a_n)} \\
-% 			&+ \abs{(\a_1,\b,\dotsc,\a_{n-1},\a_n)} \\
+% 			&+ \abs{(\vb\beta,\vb\alpha_2,\dotsc,\vb\alpha_{n-1},\vb\alpha_n)} \\
+% 			&+ \abs{(\vb\alpha_1,\vb\beta,\dotsc,\vb\alpha_{n-1},\vb\alpha_n)} \\
 % 			&+ \dotsb
-% 			+ \abs{(\a_1,\a_2,\dotsc,\a_{n-1},\b)}
+% 			+ \abs{(\vb\alpha_1,\vb\alpha_2,\dotsc,\vb\alpha_{n-1},\vb\beta)}
 % 		\end{aligned}
 % 	\qedhere
 % \end{align*}
@@ -459,7 +459,7 @@
 \begin{example}
 %@see: 《高等代数（第四版）》（谢启鸿 姚慕生） P27 例1.31
 计算\(n\)阶行列式\[
-	\abs{\A} = \begin{vmatrix}
+	\abs{\vb{A}} = \begin{vmatrix}
 		1 + x_1 & 1 + x_1^2 & \dots & 1 + x_1^n \\
 		1 + x_2 & 1 + x_2^2 & \dots & 1 + x_2^n \\
 		\vdots & \vdots & & \vdots \\
@@ -468,7 +468,7 @@
 \]
 \begin{solution}
 增加一列升阶得到\[
-	\abs{\A} = \begin{vmatrix}
+	\abs{\vb{A}} = \begin{vmatrix}
 		1 & 0 & 0 & \dots & 0 \\
 		1 & 1 + x_1 & 1 + x_1^2 & \dots & 1 + x_1^n \\
 		1 & 1 + x_2 & 1 + x_2^2 & \dots & 1 + x_2^n \\
@@ -484,7 +484,7 @@
 	\end{vmatrix}.
 \]
 将第一行拆开，可得\[
-	\abs{\A} = \begin{vmatrix}
+	\abs{\vb{A}} = \begin{vmatrix}
 		2 & 0 & 0 & \dots & 0 \\
 		1 & x_1 & x_1^2 & \dots & x_1^n \\
 		1 & x_2 & x_2^2 & \dots & x_2^n \\
@@ -502,7 +502,7 @@
 上式等号右边第二个行列式只要提出公因子\((-1)\)
 就变成一个\hyperref[equation:行列式.范德蒙德行列式]{范德蒙德行列式}，
 从而可得\[
-	\abs{\A}
+	\abs{\vb{A}}
 	= \left[ 2 x_1 x_2 \dotsm x_n - (x_1 - 1)(x_2 - 1)\dotsm(x_n - 1) \right]
 	\prod_{1 \leq i < j \leq n} (x_j - x_i).
 \]
@@ -511,14 +511,14 @@
 
 \begin{example}
 %@see: 《2021年全国硕士研究生入学统一考试（数学一）》二填空题/第15题
-设\(\A = (a_{ij})\)是3阶矩阵，
+设\(\vb{A} = (a_{ij})\)是3阶矩阵，
 \(A_{ij}\)是元素\(a_{ij}\)的代数余子式.
-若\(\A\)的每行元素之和均为\(2\)，
-且\(\abs{\A} = 3\)，
+若\(\vb{A}\)的每行元素之和均为\(2\)，
+且\(\abs{\vb{A}} = 3\)，
 计算\(A_{11} + A_{21} + A_{31}\).
 \begin{solution}
 由\cref{theorem:行列式.行列式按行展开} 可知
-\(\abs{\A} = a_{11} A_{11} + a_{21} A_{21} + a_{31} A_{31}\)，
+\(\abs{\vb{A}} = a_{11} A_{11} + a_{21} A_{21} + a_{31} A_{31}\)，
 那么\begin{equation*}
 	A_{11} + A_{21} + A_{31}
 	= \begin{vmatrix}
@@ -528,7 +528,7 @@
 	\end{vmatrix}.
 \end{equation*}
 由\hyperref[theorem:行列式.性质6]{行列式的性质}有\begin{align*}
-	3 &= \abs{\A} = \begin{vmatrix}
+	3 &= \abs{\vb{A}} = \begin{vmatrix}
 		a_{11} & a_{12} & a_{13} \\
 		a_{21} & a_{22} & a_{23} \\
 		a_{31} & a_{32} & a_{33}
@@ -556,20 +556,20 @@
 \subsection{行列式按\texorpdfstring{\(k\)}{k}行（或\texorpdfstring{\(k\)}{k}列）展开}
 \begin{theorem}[拉普拉斯定理]\label{theorem:行列式.拉普拉斯定理}
 %@see: 《高等代数（大学高等代数课程创新教材 第二版 下册）》（丘维声） P68 定理1（Laplace定理）
-在\(n\)阶矩阵\(\A\)中，
+在\(n\)阶矩阵\(\vb{A}\)中，
 取定第\(\AutoTuple{i}{k}\)行
 （\(i_1<i_2<\dotsb<i_k\)
 且\(1 \leq k < n\)），
-则这\(k\)行元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\)，
+则这\(k\)行元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\vb{A}}\)，
 即\begin{equation}
-	\abs{\A} =
+	\abs{\vb{A}} =
 	\sum_{1 \leq j_1 < j_2 < \dotsb < j_k \leq n}
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		\AutoTuple{i}{k} \\
 		\AutoTuple{j}{k}
 	}
 	(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		\AutoTuple{\mu}{n-k} \\
 		\AutoTuple{\nu}{n-k}
 	},
@@ -583,9 +583,9 @@
 \nu_1<\nu_2<\dotsb<\nu_{n-k}\).
 \begin{proof}
 根据\cref{equation:行列式.给定行指标排列下的行列式的完全展开式}，
-给定\(\abs{\A}\)的行指标排列\(\AutoTuple{i}{k},\AutoTuple{\mu}{n-k}\)，
-\(\abs{\A}\)的表达式为\begin{align*}
-	\abs{\A}
+给定\(\abs{\vb{A}}\)的行指标排列\(\AutoTuple{i}{k},\AutoTuple{\mu}{n-k}\)，
+\(\abs{\vb{A}}\)的表达式为\begin{align*}
+	\abs{\vb{A}}
 	&= \sum_{\AutoTuple{p}{k},\AutoTuple{q}{n-k}}
 	(-1)^{\tau(\AutoTuple{i}{k},\AutoTuple{\mu}{n-k}) + \tau(\AutoTuple{p}{k},\AutoTuple{q}{n-k})}
 	a_{i_1 p_1} \dotsm a_{i_k p_k}
@@ -604,7 +604,7 @@
 \(\AutoTuple{q}{n-k}\)是\(\AutoTuple{\mu}{n-k}\)形成的\(n-k\)阶排列.
 于是对于第\(\AutoTuple{i}{k}\)行，
 通过任意取定\(k\)列，例如第\(\AutoTuple{j}{k}\)列，
-可以把\(\abs{\A}\)的表达式中的\(n!\)项分成\(C_n^k\)组；
+可以把\(\abs{\vb{A}}\)的表达式中的\(n!\)项分成\(C_n^k\)组；
 再根据\cref{theorem:行列式.任意排列可化为自然序} 有
 \begin{align*}
 	&\hspace{-20pt}
@@ -617,7 +617,7 @@
 	(-1)^{\tau(\AutoTuple{p}{k}) + \tau(\AutoTuple{q}{n-k})},
 \end{align*}
 于是\begin{align*}
-	\abs{\A}
+	\abs{\vb{A}}
 	&= \sum_{i \leq j_1 < \dotsb < j_k \leq n}
 			\sum_{\AutoTuple{p}{k}}
 			\sum_{\AutoTuple{q}{n-k}}
@@ -642,11 +642,11 @@
 		\biggr\} \\
 	&= \sum_{i \leq j_1 < \dotsb < j_k \leq n}
 		(-1)^{(i_1+\dotsb+i_k)+(j_1+\dotsb+j_k)}
-		\MatrixMinor\A{
+		\MatrixMinor{\vb{A}}{
 			\AutoTuple{i}{k} \\
 			\AutoTuple{j}{k}
 		}
-		\MatrixMinor\A{
+		\MatrixMinor{\vb{A}}{
 			\AutoTuple{\mu}{n-k} \\
 			\AutoTuple{\nu}{n-k}
 		}.
@@ -659,6 +659,6 @@
 由于行列式中行与列的地位平等，因此也有行列式按\(k\)列展开的定理：
 \begin{theorem}\label{theorem:行列式.行列式按k列展开}
 %@see: 《高等代数（第三版）》（丘维声） P52 定理2
-\(n\)阶行列式\(\abs{\A}\)中，取定\(k\ (1 \leq k < n)\)列，
-则这\(k\)列元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\A}\).
+\(n\)阶行列式\(\abs{\vb{A}}\)中，取定\(k\ (1 \leq k < n)\)列，
+则这\(k\)列元素形成的所有\(k\)阶子式与它们自己的代数余子式的乘积之和等于\(\abs{\vb{A}}\).
 \end{theorem}

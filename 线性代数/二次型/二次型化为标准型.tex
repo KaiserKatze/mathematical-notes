@@ -3,8 +3,8 @@
 
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P120 定义3
-如果二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\)
-可以经过非退化的线性替换\(\x = \C \vb{y}\)化简为\[
+如果二次型\(f(\AutoTuple{x}{n})=\vb{x}^T\vb{A}\vb{x}\)
+可以经过非退化的线性替换\(\vb{x} = \vb{C} \vb{y}\)化简为\[
 	d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2
 \]的形式，
 则称上式为
@@ -16,47 +16,47 @@
 
 \subsection{正交变换法}
 根据\cref{theorem:特征值与特征向量.实对称矩阵3}，
-对于任何一个实对称矩阵\(\A\)，
-存在正交矩阵\(\Q\)，
+对于任何一个实对称矩阵\(\vb{A}\)，
+存在正交矩阵\(\vb{Q}\)，
 使得\[
-	\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}),
+	\vb{Q}^{-1}\vb{A}\vb{Q} = \vb{Q}^T\vb{A}\vb{Q} = \diag(\AutoTuple{\lambda}{n}),
 \]
-即实对称矩阵\(\A\)与对角阵\(\diag(\AutoTuple{\lambda}{n})\)合同且相似.
+即实对称矩阵\(\vb{A}\)与对角阵\(\diag(\AutoTuple{\lambda}{n})\)合同且相似.
 
 \begin{theorem}
 %@see: 《线性代数》（张慎语、周厚隆） P120 定理3
-对于任一\(n\)元实二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，
-都存在正交矩阵\(\Q\)，
-由\(\Q\)构成的线性替换\(\x=\Q\vb{y}\)
+对于任一\(n\)元实二次型\(f(\AutoTuple{x}{n})=\vb{x}^T\vb{A}\vb{x}\ (\vb{A}=\vb{A}^T)\)，
+都存在正交矩阵\(\vb{Q}\)，
+由\(\vb{Q}\)构成的线性替换\(\vb{x}=\vb{Q}\vb{y}\)
 （称为\DefineConcept{正交变换}，{\rm orthogonal operator}）
 将\(f\)化为标准型\[
 	f(\AutoTuple{x}{n})
-	\xlongequal{\x=\Q\vb{y}}
+	\xlongequal{\vb{x}=\vb{Q}\vb{y}}
 	\lambda_1y_1^2+\lambda_2y_2^2+ \dotsb +\lambda_ny_n^2
 \]
-其中\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是\(\A\)的全部特征值.
+其中\(\lambda_1,\lambda_2,\dotsc,\lambda_n\)是\(\vb{A}\)的全部特征值.
 \end{theorem}
 
 \begin{corollary}
 %@see: 《线性代数》（张慎语、周厚隆） P120
 正交变换的特点之一是保持向量的内积不变，也就是保持向量的长度不变，保持图形的形状不变.
 \begin{proof}
-设\(\Q\)为正交矩阵.
-令\(\x_1=\Q\vb{y}_1\)，
-\(\x_2=\Q\vb{y}_2\)，
+设\(\vb{Q}\)为正交矩阵.
+令\(\vb{x}_1=\vb{Q}\vb{y}_1\)，
+\(\vb{x}_2=\vb{Q}\vb{y}_2\)，
 必有\begin{align*}
-	\VectorInnerProductDot{\x_1}{\x_2}
-	&=\VectorInnerProductDot{(\Q\vb{y}_1)}{(\Q\vb{y}_2)}
-	=(\Q\vb{y}_1)^T (\Q\vb{y}_2)
-	=\vb{y}_1^T \Q^T \Q \vb{y}_2 \\
-	&=\vb{y}_1^T \E \vb{y}_2
+	\VectorInnerProductDot{\vb{x}_1}{\vb{x}_2}
+	&=\VectorInnerProductDot{(\vb{Q}\vb{y}_1)}{(\vb{Q}\vb{y}_2)}
+	=(\vb{Q}\vb{y}_1)^T (\vb{Q}\vb{y}_2)
+	=\vb{y}_1^T \vb{Q}^T \vb{Q} \vb{y}_2 \\
+	&=\vb{y}_1^T \vb{E} \vb{y}_2
 	=\vb{y}_1^T \vb{y}_2
 	=\VectorInnerProductDot{\vb{y}_1}{\vb{y}_2},
 \end{align*}
-又令\(\x_1=\x_2=\x\)，
+又令\(\vb{x}_1=\vb{x}_2=\vb{x}\)，
 \(\vb{y}_1=\vb{y}_2=\vb{y}\)，
-则\(\abs{\x}^2=\abs{\vb{y}}^2\)，
-\(\abs{\x}=\abs{\vb{y}}\).
+则\(\abs{\vb{x}}^2=\abs{\vb{y}}^2\)，
+\(\abs{\vb{x}}=\abs{\vb{y}}\).
 \end{proof}
 \end{corollary}
 
@@ -64,15 +64,15 @@
 \color{red}
 用正交变换法将二次型化为标准型的步骤如下：
 \begin{enumerate}
-	\item 首先根据\(f\)的表达式写出\(f\)的矩阵\(\A\)；
-	\item 写出\(f\)矩阵的特征多项式\(\abs{\lambda\E-\A}=0\)，
-	求解\(\A\)的特征值\(\AutoTuple{\lambda}{n}\)
-	以及对应的特征向量\(\AutoTuple{\x}{n}\)；
+	\item 首先根据\(f\)的表达式写出\(f\)的矩阵\(\vb{A}\)；
+	\item 写出\(f\)矩阵的特征多项式\(\abs{\lambda\vb{E}-\vb{A}}=0\)，
+	求解\(\vb{A}\)的特征值\(\AutoTuple{\lambda}{n}\)
+	以及对应的特征向量\(\AutoTuple{\vb{x}}{n}\)；
 	\item 运用施密特规范化方法，
-	将\(\A\)的特征向量正交单位化为\(\AutoTuple{\g}{n}\)，
-	然后写成正交矩阵\(\Q=(\AutoTuple{\g}{n})\)；
+	将\(\vb{A}\)的特征向量正交单位化为\(\AutoTuple{\vb\gamma}{n}\)，
+	然后写成正交矩阵\(\vb{Q}=(\AutoTuple{\vb\gamma}{n})\)；
 	\item 计算得出标准型的矩阵
-	\(\B=\Q^T\A\Q=\Q^{-1}\A\Q=\diag(\AutoTuple{\lambda}{n})\).
+	\(\vb{B}=\vb{Q}^T\vb{A}\vb{Q}=\vb{Q}^{-1}\vb{A}\vb{Q}=\diag(\AutoTuple{\lambda}{n})\).
 \end{enumerate}
 \endgroup
 
@@ -82,26 +82,26 @@
 利用正交变换将\(f\)化为标准型，并写出所用的正交变换.
 \begin{solution}
 \(f\)的矩阵为\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		-1 & -2 & 4 \\
 		-2 & -1 & 4 \\
 		4 & 4 & -7
 	\end{bmatrix}.
 \]
 令\[
-	\abs{\l\E-\A}
+	\abs{\lambda\vb{E}-\vb{A}}
 	= \begin{bmatrix}
-		\l+1 & 2 & -4 \\
-		2 & \l+1 & -4 \\
-		-4 & -4 & \l+7
+		\lambda+1 & 2 & -4 \\
+		2 & \lambda+1 & -4 \\
+		-4 & -4 & \lambda+7
 	\end{bmatrix}
-	= (\l-1)^2 (\l+11)
+	= (\lambda-1)^2 (\lambda+11)
 	= 0,
 \]
-解得特征值\(\L1=1\ (\text{二重})\)，\(\L2=-11\).
+解得特征值\(\lambda_1=1\ (\text{二重})\)，\(\lambda_2=-11\).
 
-当\(\l=1\)时，解方程\((\E-\A)\x=\vb0\)，\[
-	\E-\A = \begin{bmatrix}
+当\(\lambda=1\)时，解方程\((\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	\vb{E}-\vb{A} = \begin{bmatrix}
 		2 & 2 & -4 \\
 		2 & 2 & -4 \\
 		-4 & -4 & 8
@@ -112,14 +112,14 @@
 		0 & 0 & 0
 	\end{bmatrix},
 \]基础解系为\[
-	\X1 = \begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix},
+	\vb{x}_1 = \begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix},
 	\qquad
-	\X2 = \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix}.
+	\vb{x}_2 = \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix}.
 \]
 利用施密特方法将其正交化，得\[
-	\y_1=\X1,
+	\vb{y}_1=\vb{x}_1,
 	\qquad
-	\y_2=\X2-\frac{\X2\cdot\y_1}{\y_1\cdot\y_1}\y_1
+	\vb{y}_2=\vb{x}_2-\frac{\vb{x}_2\cdot\vb{y}_1}{\vb{y}_1\cdot\vb{y}_1}\vb{y}_1
 	=\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix};
 \]再将其单位化，得\[
 	\vb{Z}_1
@@ -129,8 +129,8 @@
 	= \frac{1}{\sqrt{3}} \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}.
 \]
 
-当\(\l=-11\)时，解方程\((-11\E-\A)\x=\vb0\)，\[
-	-11\E-\A = \begin{bmatrix}
+当\(\lambda=-11\)时，解方程\((-11\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	-11\vb{E}-\vb{A} = \begin{bmatrix}
 		-10 & 2 & -4 \\
 		2 & -10 & -4 \\
 		-4 & -4 & -4
@@ -142,38 +142,38 @@
 	\end{bmatrix},
 \]
 基础解系为\[
-	\X3 = \begin{bmatrix} 1 \\ 1 \\ -2 \end{bmatrix},
+	\vb{x}_3 = \begin{bmatrix} 1 \\ 1 \\ -2 \end{bmatrix},
 \]
 单位化得\[
 	\vb{Z}_3 = \frac{1}{\sqrt{6}} \begin{bmatrix} 1 \\ 1 \\ -2 \end{bmatrix}.
 \]
 
 令\[
-	\Q = (\vb{Z}_1,\vb{Z}_2,\vb{Z}_3)
+	\vb{Q} = (\vb{Z}_1,\vb{Z}_2,\vb{Z}_3)
 	= \begin{bmatrix}
 		-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{6}} \\
 		\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{6}} \\
 		0 & \frac{1}{\sqrt{3}} & -\frac{2}{\sqrt{6}} \\
 	\end{bmatrix},
-\]\(\Q\)是正交矩阵，满足\(\Q^T\A\Q=\Q^{-1}\A\Q=\diag(1,1,-11)\).
-作正交变换\(\x=\Q\y\)，于是\(f\)化为标准型\(y_1^2+y_2^2-11y_3^2\).
+\]\(\vb{Q}\)是正交矩阵，满足\(\vb{Q}^T\vb{A}\vb{Q}=\vb{Q}^{-1}\vb{A}\vb{Q}=\diag(1,1,-11)\).
+作正交变换\(\vb{x}=\vb{Q}\vb{y}\)，于是\(f\)化为标准型\(y_1^2+y_2^2-11y_3^2\).
 \end{solution}
 \end{example}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P122 例2
 设实二次型\[
-	f(\AutoTuple{x}{n})=\x^T\A\x
-\]的矩阵\(\A\)的特征值为\(\AutoTuple{\lambda}{n}\)，
+	f(\AutoTuple{x}{n})=\vb{x}^T\vb{A}\vb{x}
+\]的矩阵\(\vb{A}\)的特征值为\(\AutoTuple{\lambda}{n}\)，
 \(c=\max\{\AutoTuple{\lambda}{n}\}\).
-证明：对于任意\(n\)维实向量\(\x\)，都有\[
-	f(\AutoTuple{x}{n}) \leq c \x^T\x.
+证明：对于任意\(n\)维实向量\(\vb{x}\)，都有\[
+	f(\AutoTuple{x}{n}) \leq c \vb{x}^T\vb{x}.
 \]
 \begin{proof}
-因为\(\A\)是实对称矩阵，
-即存在正交矩阵\(\Q\)
-使得\(\Q^T\A\Q = \diag(\AutoTuple{\lambda}{n})\)，
-作正交变换\(\x=\Q\y\)，
+因为\(\vb{A}\)是实对称矩阵，
+即存在正交矩阵\(\vb{Q}\)
+使得\(\vb{Q}^T\vb{A}\vb{Q} = \diag(\AutoTuple{\lambda}{n})\)，
+作正交变换\(\vb{x}=\vb{Q}\vb{y}\)，
 则\(f\)化为标准型\begin{align*}
 	f(\AutoTuple{x}{n})
 	&= \lambda_1 y_1^2 + \lambda_2 y_2^2 + \dotsb + \lambda_n y_n^2 \\
@@ -267,8 +267,8 @@
 
 \begin{theorem}
 %@see: 《线性代数》（张慎语、周厚隆） P125 定理4
-对于任意一个\(n\)元二次型\(f(\AutoTuple{x}{n})=\x^T\A\x\ (\A=\A^T)\)，
-都存在非退化的线性替换\(\x=\C\vb{y}\)，
+对于任意一个\(n\)元二次型\(f(\AutoTuple{x}{n})=\vb{x}^T\vb{A}\vb{x}\ (\vb{A}=\vb{A}^T)\)，
+都存在非退化的线性替换\(\vb{x}=\vb{C}\vb{y}\)，
 使之成为\[
 	f(\AutoTuple{x}{n})=d_1 y_1^2 + d_2 y_2^2 + \dotsb + d_n y_n^2.
 \]
@@ -306,14 +306,14 @@
 \right]^2
 + \sum_{i=2}^n \sum_{j=2}^n a_{ij} x_i x_j\)%
 是一个\(n-1\)元二次型或零多项式.
-由归纳假设，存在\(n-1\)阶可逆矩阵\(\Q\)，
-得到非退化线性变换\((\AutoTuple{y}[2]{n})^T = \Q (\AutoTuple{z}[2]{n})^T\)，
+由归纳假设，存在\(n-1\)阶可逆矩阵\(\vb{Q}\)，
+得到非退化线性变换\((\AutoTuple{y}[2]{n})^T = \vb{Q} (\AutoTuple{z}[2]{n})^T\)，
 使得\[
 	g(\AutoTuple{y}[2]{n})
 	= d_2 z_2^2 + d_3 z_3^2 + \dotsb + d_n z_n^2.
 \]
 记\[
-	\P = \begin{bmatrix}
+	\vb{P} = \begin{bmatrix}
 		1 & -a_{11}^{-1} a_{12} & -a_{11}^{-1} a_{13} & \dots & -a_{11}^{-1} a_{1n} \\
 		& 1 & 0 & \dots & 0 \\
 		& & 1 & \dots & 0 \\
@@ -324,10 +324,10 @@
 	\begin{bmatrix}
 		x_1 \\ x_2 \\ \vdots \\ x_n
 	\end{bmatrix}
-	= \P \begin{bmatrix}
+	= \vb{P} \begin{bmatrix}
 		y_1 \\ y_2 \\ \vdots \\ y_n
 	\end{bmatrix}
-	= \P \begin{bmatrix} 1 & \vb0 \\ \vb0 & \Q \end{bmatrix} \begin{bmatrix}
+	= \vb{P} \begin{bmatrix} 1 & \vb0 \\ \vb0 & \vb{Q} \end{bmatrix} \begin{bmatrix}
 		z_1 \\ z_2 \\ \vdots \\ z_n
 	\end{bmatrix}
 \]
@@ -355,7 +355,7 @@
 
 \begin{corollary}
 %@see: 《线性代数》（张慎语、周厚隆） P126 推论1
-任意\(n\)阶对称矩阵\(\A\)都与对角形矩阵合同.
+任意\(n\)阶对称矩阵\(\vb{A}\)都与对角形矩阵合同.
 \end{corollary}
 
 \begin{example}
@@ -407,7 +407,7 @@
 		3 & 0 & 6
 	\end{bmatrix},
 \]
-解\(\vb{A}\)的特征方程\(\abs{\lambda\E-\A}=\lambda(\lambda^2-10\lambda+18)=0\)
+解\(\vb{A}\)的特征方程\(\abs{\lambda\vb{E}-\vb{A}}=\lambda(\lambda^2-10\lambda+18)=0\)
 得\(\lambda\in\Set{0,5\pm\sqrt7}\)，
 \(f\)的正惯性指数为\(2\)，
 于是\(f\)的规范型为\(h(z_1,z_2,z_3) = z_1^2+z_2^2\).
@@ -417,54 +417,54 @@
 \subsection{初等变换法}
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P126 定义4
-设\(\P\)为初等矩阵.
-对于任意矩阵\(\B\)，称变换\(\B \to \P^T\B\P\)为
-对\(\B\)作一次\DefineConcept{合同变换}.
+设\(\vb{P}\)为初等矩阵.
+对于任意矩阵\(\vb{B}\)，称变换\(\vb{B} \to \vb{P}^T\vb{B}\vb{P}\)为
+对\(\vb{B}\)作一次\DefineConcept{合同变换}.
 \end{definition}
 
 \begin{theorem}
-因为对于任一对称阵\(\A\)，存在可逆矩阵\(\C\)，使得\[
-	\C^T\A\C=\diag(\AutoTuple{d}{n}).
+因为对于任一对称阵\(\vb{A}\)，存在可逆矩阵\(\vb{C}\)，使得\[
+	\vb{C}^T\vb{A}\vb{C}=\diag(\AutoTuple{d}{n}).
 \]
-又因为存在初等矩阵\(\P_1,\P_2,\dotsc,\P_m\)，使得\[
-	\C=\P_1\P_2\dotsm\P_m,
+又因为存在初等矩阵\(\vb{P}_1,\vb{P}_2,\dotsc,\vb{P}_m\)，使得\[
+	\vb{C}=\vb{P}_1\vb{P}_2\dotsm\vb{P}_m,
 \]
 那么\[
-	\C^T\A\C
-	= (\P_m^T\P_{m-1}^T\dotsm\P_1^T)\A(\P_1\P_2\dotsm\P_m)
+	\vb{C}^T\vb{A}\vb{C}
+	= (\vb{P}_m^T\vb{P}_{m-1}^T\dotsm\vb{P}_1^T)\vb{A}(\vb{P}_1\vb{P}_2\dotsm\vb{P}_m)
 	= \diag(\AutoTuple{d}{n}).
 \]
 
 因为初等矩阵有三类：\begin{itemize}
-	\item \(\P(i,j)^T\B\P(i,j)=\P(i,j)\B\P(i,j)\)，
-	相当于交换\(\B\)的\(i,j\)两行，再交换\(\P(i,j)\B\)的\(i,j\)两列.
-	\item \(\P(i(c))^T\B\P(i(c))=\P(i(c))\B\P(i(c))\ (c \neq 0)\)，
-	相当于用\(c\)乘\(\B\)的\(i\)行，再用\(c\)乘\(\P(i(c))\B\)的\(i\)列.
-	\item \(\P(i,j(k))^T\B\P(i,j(k))=\P(j,i(k))\B\P(i,j(k))\)，
-	相当于将\(\B\)的\(i\)行的\(k\)倍加到\(j\)行，
-	再将\(\P(j,i(k))\B\)的\(i\)列的\(k\)倍加到\(j\)列.
+	\item \(\vb{P}(i,j)^T\vb{B}\vb{P}(i,j)=\vb{P}(i,j)\vb{B}\vb{P}(i,j)\)，
+	相当于交换\(\vb{B}\)的\(i,j\)两行，再交换\(\vb{P}(i,j)\vb{B}\)的\(i,j\)两列.
+	\item \(\vb{P}(i(c))^T\vb{B}\vb{P}(i(c))=\vb{P}(i(c))\vb{B}\vb{P}(i(c))\ (c \neq 0)\)，
+	相当于用\(c\)乘\(\vb{B}\)的\(i\)行，再用\(c\)乘\(\vb{P}(i(c))\vb{B}\)的\(i\)列.
+	\item \(\vb{P}(i,j(k))^T\vb{B}\vb{P}(i,j(k))=\vb{P}(j,i(k))\vb{B}\vb{P}(i,j(k))\)，
+	相当于将\(\vb{B}\)的\(i\)行的\(k\)倍加到\(j\)行，
+	再将\(\vb{P}(j,i(k))\vb{B}\)的\(i\)列的\(k\)倍加到\(j\)列.
 \end{itemize}
-可见，对称矩阵\(\A\)可以经过一系列合同变换化为对角形矩阵.
+可见，对称矩阵\(\vb{A}\)可以经过一系列合同变换化为对角形矩阵.
 则\[
-	\begin{bmatrix} \A \\ \E \end{bmatrix}
+	\begin{bmatrix} \vb{A} \\ \vb{E} \end{bmatrix}
 	\to
-	\begin{bmatrix} \C^T & \vb0 \\ \vb0 & \E \end{bmatrix}
-	\begin{bmatrix} \A \\ \E \end{bmatrix}
-	\C
-	= \begin{bmatrix} \C^T\A\C \\ \C \end{bmatrix},
+	\begin{bmatrix} \vb{C}^T & \vb0 \\ \vb0 & \vb{E} \end{bmatrix}
+	\begin{bmatrix} \vb{A} \\ \vb{E} \end{bmatrix}
+	\vb{C}
+	= \begin{bmatrix} \vb{C}^T\vb{A}\vb{C} \\ \vb{C} \end{bmatrix},
 \]\[
-	(\A,\E)
+	(\vb{A},\vb{E})
 	\to
-	\C^T (\A,\E) \begin{bmatrix}
-		\C & \vb0 \\
-		\vb0 & \E
+	\vb{C}^T (\vb{A},\vb{E}) \begin{bmatrix}
+		\vb{C} & \vb0 \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
-	= (\C^T\A\C,\C^T).
+	= (\vb{C}^T\vb{A}\vb{C},\vb{C}^T).
 \]
-其中\(\C=\P_1\P_2\dotsm\P_m\)，
-即对\(\A\)作一系列合同变换化为对角阵\(\C^T\A\C\)，
-只对\(\E\)进行列变换，将\(\E\)变成\(\C\)；
-或者只对\(\E\)作其中的行变换，则将\(\E\)变为\(\C^T\).
+其中\(\vb{C}=\vb{P}_1\vb{P}_2\dotsm\vb{P}_m\)，
+即对\(\vb{A}\)作一系列合同变换化为对角阵\(\vb{C}^T\vb{A}\vb{C}\)，
+只对\(\vb{E}\)进行列变换，将\(\vb{E}\)变成\(\vb{C}\)；
+或者只对\(\vb{E}\)作其中的行变换，则将\(\vb{E}\)变为\(\vb{C}^T\).
 \end{theorem}
 
 \begin{example}
@@ -473,7 +473,7 @@
 	f(x_1,x_2,x_3) &= x_1^2 + 2 x_2^2 + 2 x_3^2 + 2 x_1 x_2 - 2 x_1 x_3, \\
 	g(y_1,y_2,y_3) &= y_1^2 + y_2^2 + y_3^2 + 2 y_2 y_3.
 \end{align*}
-求可逆变换\(\vb{x} = \P \vb{y}\)将\(f(x_1,x_2,x_3)\)化为\(g(y_1,y_2,y_3)\).
+求可逆变换\(\vb{x} = \vb{P} \vb{y}\)将\(f(x_1,x_2,x_3)\)化为\(g(y_1,y_2,y_3)\).
 \begin{solution}\let\qed\relax
 \begin{proof}[解法一]
 配方，得\begin{align*}
@@ -500,9 +500,9 @@
 \begin{bmatrix}
 	x_1 \\ x_2 \\ x_3
 \end{bmatrix}\)，
-可逆变换\(\vb{x} = \P_1 \vb{z}\)将\(f(x_1,x_2,x_3)\)化为\(h(z_1,z_2,z_3)\)，
+可逆变换\(\vb{x} = \vb{P}_1 \vb{z}\)将\(f(x_1,x_2,x_3)\)化为\(h(z_1,z_2,z_3)\)，
 其中\begin{equation*}
-	\P_1 = \begin{bmatrix}
+	\vb{P}_1 = \begin{bmatrix}
 		1 & 1 & -1 \\
 		0 & 1 & 1 \\
 		0 & 0 & 1
@@ -525,19 +525,19 @@
 \begin{bmatrix}
 	y_1 \\ y_2 \\ y_3
 \end{bmatrix}\)，
-可逆变换\(\vb{z} = \P_2 \vb{y}\)将\(h(z_1,z_2,z_3)\)化为\(g(y_1,y_2,y_3)\)，
+可逆变换\(\vb{z} = \vb{P}_2 \vb{y}\)将\(h(z_1,z_2,z_3)\)化为\(g(y_1,y_2,y_3)\)，
 其中\begin{equation*}
-	\P_2 = \begin{bmatrix}
+	\vb{P}_2 = \begin{bmatrix}
 		1 & 0 & 0 \\
 		0 & 1 & 1 \\
 		0 & 0 & 1
 	\end{bmatrix}.
 \end{equation*}
 
-因此，若要可逆变换\(\vb{x} = \P \vb{y}\)将\(f(x_1,x_2,x_3)\)化为\(g(y_1,y_2,y_3)\)，
+因此，若要可逆变换\(\vb{x} = \vb{P} \vb{y}\)将\(f(x_1,x_2,x_3)\)化为\(g(y_1,y_2,y_3)\)，
 只需令\begin{equation*}
 %@Mathematica: Inverse[{{1, 1, -1}, {0, 1, 1}, {0, 0, 1}}] . {{1, 0, 0}, {0, 1, 1}, {0, 0, 1}}
-	\P = \P_1 \P_2
+	\vb{P} = \vb{P}_1 \vb{P}_2
 	= \begin{bmatrix}
 		1 & 1 & -1 \\
 		0 & 1 & 1 \\
@@ -557,22 +557,22 @@
 \end{proof}
 \begin{proof}[解法二]
 二次型\(f(x_1,x_2,x_3)\)的矩阵为\begin{equation*}
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		1 & 1 & -1 \\
 		1 & 2 & 0 \\
 		-1 & 0 & 2
 	\end{bmatrix}.
 \end{equation*}
 二次型\(g(y_1,y_2,y_3)\)的矩阵为\begin{equation*}
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		1 & 0 & 0 \\
 		0 & 1 & 1 \\
 		0 & 1 & 1
 	\end{bmatrix}.
 \end{equation*}
-将\(\A\)的第2行减去第1行，第2列减去第1列，
+将\(\vb{A}\)的第2行减去第1行，第2列减去第1列，
 得到\begin{equation*}
-	\A \to \begin{bmatrix}
+	\vb{A} \to \begin{bmatrix}
 		1 & 1 & -1 \\
 		0 & 1 & 1 \\
 		-1 & 0 & 2
@@ -585,7 +585,7 @@
 \end{equation*}
 再让第3行加上第1行，第3列加上第1列，
 得到\begin{equation*}
-	\A \to \begin{bmatrix}
+	\vb{A} \to \begin{bmatrix}
 		1 & 0 & -1 \\
 		0 & 1 & 1 \\
 		0 & 1 & 1
@@ -595,19 +595,19 @@
 		0 & 1 & 1 \\
 		0 & 1 & 1
 	\end{bmatrix}
-	= \B.
+	= \vb{B}.
 \end{equation*}
-于是所求可逆矩阵\(\P\)就是\(\P_1 = \begin{bmatrix}
+于是所求可逆矩阵\(\vb{P}\)就是\(\vb{P}_1 = \begin{bmatrix}
 	1 & -1 & 0 \\
 	0 & 1 & 0 \\
 	0 & 0 & 1
-\end{bmatrix}\)和\(\P_2 = \begin{bmatrix}
+\end{bmatrix}\)和\(\vb{P}_2 = \begin{bmatrix}
 	1 & 0 & 1 \\
 	0 & 1 & 0 \\
 	0 & 0 & 1
 \end{bmatrix}\)这两个初等矩阵的乘积，
 即\begin{equation*}
-	\P = \begin{bmatrix}
+	\vb{P} = \begin{bmatrix}
 		1 & -1 & 1 \\
 		0 & 1 & 0 \\
 		0 & 0 & 1

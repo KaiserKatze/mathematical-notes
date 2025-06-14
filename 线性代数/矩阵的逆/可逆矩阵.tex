@@ -1,24 +1,24 @@
 \section{可逆矩阵}
 % \begin{lemma}
-% 设\(\A,\B\)是数域\(K\)上的\(n\)阶矩阵，
-% \(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
-% 如果\(\A\B=\E\)，则\(\B\A=\E\).
+% 设\(\vb{A},\vb{B}\)是数域\(K\)上的\(n\)阶矩阵，
+% \(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
+% 如果\(\vb{A}\vb{B}=\vb{E}\)，则\(\vb{B}\vb{A}=\vb{E}\).
 % \begin{proof}
-% 只要在等式\(\A\B=\E\)等号两边同时左乘\(\B\)并右乘\(\A\)，
+% 只要在等式\(\vb{A}\vb{B}=\vb{E}\)等号两边同时左乘\(\vb{B}\)并右乘\(\vb{A}\)，
 % 就有\[
-% 	(\B\A)(\B\A)
-% 	= \B(\A\B)\A
-% 	= \B\E\A
-% 	= \B\A.
+% 	(\vb{B}\vb{A})(\vb{B}\vb{A})
+% 	= \vb{B}(\vb{A}\vb{B})\vb{A}
+% 	= \vb{B}\vb{E}\vb{A}
+% 	= \vb{B}\vb{A}.
 % \]
-% 记\(\vb{X}\defeq\B\A\)，
+% 记\(\vb{X}\defeq\vb{B}\vb{A}\)，
 % 则\(\vb{X}^2=\vb{X}\)，
-% 整理得\(\vb{X}(\vb{X}-\E)=\vb0\)，
-% 解得\(\vb{X}=\vb0\)或\(\vb{X}=\E\).
-% 假设\(\B\A=\vb0\)，
-% 于是\(\abs{\B\A}=\abs{\B}\abs{\A}=0\)，
-% 这与\(\abs{\A\B}=\abs{\A}\abs{\B}=1\)矛盾，
-% 因此\(\B\A=\E\).
+% 整理得\(\vb{X}(\vb{X}-\vb{E})=\vb0\)，
+% 解得\(\vb{X}=\vb0\)或\(\vb{X}=\vb{E}\).
+% 假设\(\vb{B}\vb{A}=\vb0\)，
+% 于是\(\abs{\vb{B}\vb{A}}=\abs{\vb{B}}\abs{\vb{A}}=0\)，
+% 这与\(\abs{\vb{A}\vb{B}}=\abs{\vb{A}}\abs{\vb{B}}=1\)矛盾，
+% 因此\(\vb{B}\vb{A}=\vb{E}\).
 % \end{proof}
 % \end{lemma}
 %DELETE: 这个引理是错误的！由\(\vb{X}^2=\vb{X}\)只能得到\(\vb{X}\)是幂等矩阵，不能说明它是零矩阵或单位矩阵！
@@ -26,112 +26,112 @@
 \begin{definition}\label{definition:可逆矩阵.可逆矩阵的定义}
 %@see: 《线性代数》（张慎语、周厚隆） P43 定义1
 %@see: 《高等代数（第三版 上册）》（丘维声） P128 定义1
-设\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
-对于数域\(K\)上的矩阵\(\A\)，
-如果存在数域\(K\)上的矩阵\(\B\)，使得\[
-	\A\B=\B\A=\E,
+设\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
+对于数域\(K\)上的矩阵\(\vb{A}\)，
+如果存在数域\(K\)上的矩阵\(\vb{B}\)，使得\[
+	\vb{A}\vb{B}=\vb{B}\vb{A}=\vb{E},
 \]
-则称“\(\A\)是一个\DefineConcept{可逆矩阵}（\(\A\) is an invertible matrix）”，
+则称“\(\vb{A}\)是一个\DefineConcept{可逆矩阵}（\(\vb{A}\) is an invertible matrix）”，
 %@see: https://mathworld.wolfram.com/InvertibleMatrix.html
-或称“\(\A\) \DefineConcept{可逆}（\(\A\) is invertible）”；
-并称“\(\B\)是\(\A\)的\DefineConcept{逆矩阵}（inverse matrix）”，
-记作\(\A^{-1}\)，
+或称“\(\vb{A}\) \DefineConcept{可逆}（\(\vb{A}\) is invertible）”；
+并称“\(\vb{B}\)是\(\vb{A}\)的\DefineConcept{逆矩阵}（inverse matrix）”，
+记作\(\vb{A}^{-1}\)，
 即\[
-	(\forall \A,\B\in M_n(K))
-	[\A^{-1} = \B \defiff \A\B=\B\A=\E].
+	(\forall \vb{A},\vb{B}\in M_n(K))
+	[\vb{A}^{-1} = \vb{B} \defiff \vb{A}\vb{B}=\vb{B}\vb{A}=\vb{E}].
 \]
 \end{definition}
 
-从定义可知，如果矩阵\(\A,\B\)满足\(\A\B=\B\A=\E\)，
+从定义可知，如果矩阵\(\vb{A},\vb{B}\)满足\(\vb{A}\vb{B}=\vb{B}\vb{A}=\vb{E}\)，
 那么这两个矩阵都是可逆矩阵，且两者互为逆矩阵.
 
 \begin{definition}
-设\(\A \in M_n(K)\).
+设\(\vb{A} \in M_n(K)\).
 \begin{itemize}
-	\item 若\(\abs{\A}=0\)，
-	则称“\(\A\)是\DefineConcept{奇异矩阵}（singular matrix）”.
+	\item 若\(\abs{\vb{A}}=0\)，
+	则称“\(\vb{A}\)是\DefineConcept{奇异矩阵}（singular matrix）”.
 	%@see: https://mathworld.wolfram.com/SingularMatrix.html
-	\item 若\(\abs{\A} \neq 0\)，
-	则称“\(\A\)是\DefineConcept{非奇异矩阵}（nonsingular matrix）”.
+	\item 若\(\abs{\vb{A}} \neq 0\)，
+	则称“\(\vb{A}\)是\DefineConcept{非奇异矩阵}（nonsingular matrix）”.
 	%@see: https://mathworld.wolfram.com/NonsingularMatrix.html
 \end{itemize}
 \end{definition}
 
 \begin{definition}
-若\(\A\)是可逆矩阵，那么规定：
+若\(\vb{A}\)是可逆矩阵，那么规定：
 对于正整数\(k\)，有
 \begin{equation}
-	\A^{-k} = (\A^{-1})^k
-	= \underbrace{\A^{-1}\A^{-1}\dotsm\A^{-1}}_{\text{$k$个}}.
+	\vb{A}^{-k} = (\vb{A}^{-1})^k
+	= \underbrace{\vb{A}^{-1}\vb{A}^{-1}\dotsm\vb{A}^{-1}}_{\text{$k$个}}.
 \end{equation}
 \end{definition}
 
 \begin{theorem}\label{theorem:逆矩阵.矩阵可逆的充分必要条件1}
 %@see: 《线性代数》（张慎语、周厚隆） P43 定理1
-设\(\A\)是\(n\)阶方阵，则“\(\A\)可逆”的充分必要条件是“\(\A\)是非奇异矩阵”.
+设\(\vb{A}\)是\(n\)阶方阵，则“\(\vb{A}\)可逆”的充分必要条件是“\(\vb{A}\)是非奇异矩阵”.
 \begin{proof}
 必要性.
-假设矩阵\(\A\)可逆，那么存在\(n\)阶方阵\(\B\)，使得\(\A\B=\E\)，于是\(\abs{\A\B}=\abs{\E}\)；
+假设矩阵\(\vb{A}\)可逆，那么存在\(n\)阶方阵\(\vb{B}\)，使得\(\vb{A}\vb{B}=\vb{E}\)，于是\(\abs{\vb{A}\vb{B}}=\abs{\vb{E}}\)；
 而根据\cref{theorem:行列式.矩阵乘积的行列式}，
-\(\abs{\A\B}=\abs{\A}\abs{\B}=1\)，\(\abs{\A}\neq0\).
+\(\abs{\vb{A}\vb{B}}=\abs{\vb{A}}\abs{\vb{B}}=1\)，\(\abs{\vb{A}}\neq0\).
 
 充分性.
-设\(\abs{\A}\neq0\)，\(\A^*\)是\(\A\)的伴随矩阵.
+设\(\abs{\vb{A}}\neq0\)，\(\vb{A}^*\)是\(\vb{A}\)的伴随矩阵.
 根据\cref{equation:行列式.伴随矩阵.恒等式1}，
 若令\[
-	\B=\frac{1}{\abs{\A}} \A^*,
+	\vb{B}=\frac{1}{\abs{\vb{A}}} \vb{A}^*,
 \]
-则有\(\A\B = \B\A = \E\)，
-故由可逆矩阵的定义可知，矩阵\(\A\)可逆，
-且有\(\A^{-1} = \B\).
+则有\(\vb{A}\vb{B} = \vb{B}\vb{A} = \vb{E}\)，
+故由可逆矩阵的定义可知，矩阵\(\vb{A}\)可逆，
+且有\(\vb{A}^{-1} = \vb{B}\).
 \end{proof}
 \end{theorem}
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的唯一性}
-设\(\A\)是可逆矩阵，则它的逆矩阵存在且唯一，
+设\(\vb{A}\)是可逆矩阵，则它的逆矩阵存在且唯一，
 且有\begin{equation}
-	\A^{-1} = \abs{\A}^{-1} \A^*.
+	\vb{A}^{-1} = \abs{\vb{A}}^{-1} \vb{A}^*.
 \end{equation}
 \begin{proof}
 存在性.
 在\cref{theorem:逆矩阵.矩阵可逆的充分必要条件1} 的证明过程中，
-我们看到矩阵\(\B=\abs{\A}^{-1} \A^*\)是可逆矩阵\(\A\)的一个逆矩阵，即\(\A\B=\E\).
+我们看到矩阵\(\vb{B}=\abs{\vb{A}}^{-1} \vb{A}^*\)是可逆矩阵\(\vb{A}\)的一个逆矩阵，即\(\vb{A}\vb{B}=\vb{E}\).
 
 唯一性.
-设矩阵\(\C\)也是\(\A\)的逆矩阵，即\(\C\A=\E\)，于是\[
-	\C=\C\E=\C(\A\B)=(\C\A)\B=\E\B=\B.
+设矩阵\(\vb{C}\)也是\(\vb{A}\)的逆矩阵，即\(\vb{C}\vb{A}=\vb{E}\)，于是\[
+	\vb{C}=\vb{C}\vb{E}=\vb{C}(\vb{A}\vb{B})=(\vb{C}\vb{A})\vb{B}=\vb{E}\vb{B}=\vb{B}.
 	\qedhere
 \]
 \end{proof}
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.单位矩阵可逆}
-单位矩阵\(\E\)可逆，且\(\E^{-1}=\E\).
+单位矩阵\(\vb{E}\)可逆，且\(\vb{E}^{-1}=\vb{E}\).
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的行列式}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质3
-设\(\A\)可逆，则\(\abs{\A^{-1}} = \abs{\A}^{-1}\).
+设\(\vb{A}\)可逆，则\(\abs{\vb{A}^{-1}} = \abs{\vb{A}}^{-1}\).
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的逆}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质4
-设\(\A\)可逆，则\(\A^{-1}\)可逆，且\((\A^{-1})^{-1} = \A\).
+设\(\vb{A}\)可逆，则\(\vb{A}^{-1}\)可逆，且\((\vb{A}^{-1})^{-1} = \vb{A}\).
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.矩阵乘积的逆1}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质5
-设\(\A\)、\(\B\)都是\(n\)阶可逆矩阵，则\(\A\B\)可逆，且\begin{equation}
-	(\A \B)^{-1} = \B^{-1} \A^{-1}.
+设\(\vb{A}\)、\(\vb{B}\)都是\(n\)阶可逆矩阵，则\(\vb{A}\vb{B}\)可逆，且\begin{equation}
+	(\vb{A} \vb{B})^{-1} = \vb{B}^{-1} \vb{A}^{-1}.
 \end{equation}
 \begin{proof}
-因为\(\A,\B\)都可逆，可设它们的逆矩阵分别为\(\A^{-1},\B^{-1}\)，
+因为\(\vb{A},\vb{B}\)都可逆，可设它们的逆矩阵分别为\(\vb{A}^{-1},\vb{B}^{-1}\)，
 于是\[
-	(\A\B)(\B^{-1}\A^{-1})
-	= \A(\B\B^{-1})\A^{-1}
-	= \A\E\A^{-1}
-	= \A\A^{-1}
-	= \E.
+	(\vb{A}\vb{B})(\vb{B}^{-1}\vb{A}^{-1})
+	= \vb{A}(\vb{B}\vb{B}^{-1})\vb{A}^{-1}
+	= \vb{A}\vb{E}\vb{A}^{-1}
+	= \vb{A}\vb{A}^{-1}
+	= \vb{E}.
 	\qedhere
 \]
 \end{proof}
@@ -139,62 +139,62 @@
 
 \cref{theorem:逆矩阵.矩阵乘积的逆1} 可以推广到有限个\(n\)阶可逆矩阵乘积的情形.
 \begin{property}\label{theorem:逆矩阵.矩阵乘积的逆2}
-设\(\AutoTuple{\A}{n}\)都是\(n\)阶可逆矩阵，
-则\(\A_1 \A_2 \dotsm \A_{n-1} \A_n\)可逆，且\begin{equation}
-	(\A_1 \A_2 \dotsm \A_{n-1} \A_n)^{-1}
-	= \A_n^{-1} \A_{n-1}^{-1} \dotsm \A_2^{-1} \A_1^{-1}.
+设\(\AutoTuple{\vb{A}}{n}\)都是\(n\)阶可逆矩阵，
+则\(\vb{A}_1 \vb{A}_2 \dotsm \vb{A}_{n-1} \vb{A}_n\)可逆，且\begin{equation}
+	(\vb{A}_1 \vb{A}_2 \dotsm \vb{A}_{n-1} \vb{A}_n)^{-1}
+	= \vb{A}_n^{-1} \vb{A}_{n-1}^{-1} \dotsm \vb{A}_2^{-1} \vb{A}_1^{-1}.
 \end{equation}
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.数与矩阵乘积的逆}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质6
-设数域\(K\)上的\(n\)阶矩阵\(\A\)可逆，
-\(k \in K-\{0\}\)，则\(k\A\)可逆，且
+设数域\(K\)上的\(n\)阶矩阵\(\vb{A}\)可逆，
+\(k \in K-\{0\}\)，则\(k\vb{A}\)可逆，且
 \begin{equation}
-	(k \A)^{-1} = k^{-1} \A^{-1}.
+	(k \vb{A})^{-1} = k^{-1} \vb{A}^{-1}.
 \end{equation}
 \begin{proof}
 由\cref{theorem:行列式.性质2.推论2}，
-\(\abs{k\A} = k^n\abs{\A}\).
-因为\(\A\)可逆，所以\(\abs{\A}\neq0\)；
-又因为\(k\neq0\)，所以\(\abs{k\A}\neq0\)，即\(k\A\)可逆.
+\(\abs{k\vb{A}} = k^n\abs{\vb{A}}\).
+因为\(\vb{A}\)可逆，所以\(\abs{\vb{A}}\neq0\)；
+又因为\(k\neq0\)，所以\(\abs{k\vb{A}}\neq0\)，即\(k\vb{A}\)可逆.
 因此\[
-	(k^{-1}\A^{-1})(k\A)
-	= (k^{-1} \cdot k)(\A^{-1}\A)
-	= 1 \E = \E,
+	(k^{-1}\vb{A}^{-1})(k\vb{A})
+	= (k^{-1} \cdot k)(\vb{A}^{-1}\vb{A})
+	= 1 \vb{E} = \vb{E},
 \]
-也就是说\(k^{-1}\A^{-1}\)是\(k\A\)的逆矩阵.
+也就是说\(k^{-1}\vb{A}^{-1}\)是\(k\vb{A}\)的逆矩阵.
 \end{proof}
 %\cref{equation:行列式.伴随矩阵.数与矩阵乘积的伴随}
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.转置矩阵的逆与逆矩阵的转置}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质7
-设\(\A\)可逆，则\(\A^T\)可逆，且\begin{equation}
-	(\A^T)^{-1} = (\A^{-1})^T.
+设\(\vb{A}\)可逆，则\(\vb{A}^T\)可逆，且\begin{equation}
+	(\vb{A}^T)^{-1} = (\vb{A}^{-1})^T.
 \end{equation}
 \begin{proof}
 由\cref{theorem:行列式.性质1}，
-\(\abs{\A^T}=\abs{\A}\neq0\)，
-于是\(\A^T\)可逆.
+\(\abs{\vb{A}^T}=\abs{\vb{A}}\neq0\)，
+于是\(\vb{A}^T\)可逆.
 由\cref{theorem:矩阵.矩阵乘积的转置}，
-\((\A \A^{-1})^T = (\A^{-1})^T \A^T\).
-既然\(\A \A^{-1} = \E, \E^T = \E\)，
-于是\((\A^{-1})^T \A^T = \E\)，
+\((\vb{A} \vb{A}^{-1})^T = (\vb{A}^{-1})^T \vb{A}^T\).
+既然\(\vb{A} \vb{A}^{-1} = \vb{E}, \vb{E}^T = \vb{E}\)，
+于是\((\vb{A}^{-1})^T \vb{A}^T = \vb{E}\)，
 那么由逆矩阵的定义可知，
-\((\A^T)^{-1}=(\A^{-1})^T\).
+\((\vb{A}^T)^{-1}=(\vb{A}^{-1})^T\).
 \end{proof}
 \end{property}
 
 \begin{example}
-设矩阵\(\A\)、\(\B\)可交换，\(\A\)可逆.
-证明：\(\A^{-1}\)与\(\B\)可交换.
+设矩阵\(\vb{A}\)、\(\vb{B}\)可交换，\(\vb{A}\)可逆.
+证明：\(\vb{A}^{-1}\)与\(\vb{B}\)可交换.
 \begin{proof}
-因为\(\A\B = \B\A\)，在等式两边同时左乘\(\A^{-1}\)，得\[
-	\B = (\A^{-1}\A)\B = \A^{-1}(\A\B) = \A^{-1}(\B\A);
+因为\(\vb{A}\vb{B} = \vb{B}\vb{A}\)，在等式两边同时左乘\(\vb{A}^{-1}\)，得\[
+	\vb{B} = (\vb{A}^{-1}\vb{A})\vb{B} = \vb{A}^{-1}(\vb{A}\vb{B}) = \vb{A}^{-1}(\vb{B}\vb{A});
 \]
-再在等式两边右乘\(\A^{-1}\)，得\[
-	\B\A^{-1} = (\A^{-1}\B\A)\A^{-1} = \A^{-1}\B(\A\A^{-1}) = \A^{-1}\B.
+再在等式两边右乘\(\vb{A}^{-1}\)，得\[
+	\vb{B}\vb{A}^{-1} = (\vb{A}^{-1}\vb{B}\vb{A})\vb{A}^{-1} = \vb{A}^{-1}\vb{B}(\vb{A}\vb{A}^{-1}) = \vb{A}^{-1}\vb{B}.
 	\qedhere
 \]
 \end{proof}
@@ -245,71 +245,71 @@
 
 \begin{example}\label{theorem:逆矩阵.伴随矩阵的逆与逆矩阵的伴随}
 %@see: 《线性代数》（张慎语、周厚隆） P46 例4
-设\(\A\)可逆.
-证明：\(\A\)的伴随矩阵\(\A^*\)可逆，
+设\(\vb{A}\)可逆.
+证明：\(\vb{A}\)的伴随矩阵\(\vb{A}^*\)可逆，
 且\begin{equation}
-	(\A^*)^{-1}
-	= \abs{\A}^{-1} \A
-	= (\A^{-1})^*.
+	(\vb{A}^*)^{-1}
+	= \abs{\vb{A}}^{-1} \vb{A}
+	= (\vb{A}^{-1})^*.
 \end{equation}
 \begin{proof}
 因为\begin{align*}
-	(\A^*)^{-1}
-	&= \left( \abs{\A} \A^{-1} \right)^{-1}
+	(\vb{A}^*)^{-1}
+	&= \left( \abs{\vb{A}} \vb{A}^{-1} \right)^{-1}
 		\tag{\cref{theorem:逆矩阵.逆矩阵的唯一性}} \\
-	&= \abs{\A}^{-1} (\A^{-1})^{-1}
+	&= \abs{\vb{A}}^{-1} (\vb{A}^{-1})^{-1}
 		\tag{\cref{theorem:逆矩阵.数与矩阵乘积的逆}} \\
-	&= \abs{\A}^{-1} \A
+	&= \abs{\vb{A}}^{-1} \vb{A}
 		\tag{\cref{theorem:逆矩阵.逆矩阵的逆}} \\
-	&= \abs{\A^{-1}} (\A^{-1})^{-1}
+	&= \abs{\vb{A}^{-1}} (\vb{A}^{-1})^{-1}
 		\tag{\cref{theorem:逆矩阵.逆矩阵的行列式}} \\
-	&= (\A^{-1})^*,
+	&= (\vb{A}^{-1})^*,
 		\tag{\cref{theorem:逆矩阵.逆矩阵的唯一性}}
 \end{align*}
-所以\((\A^*)^{-1}
-= \abs{\A}^{-1} \A
-= (\A^{-1})^*\).
+所以\((\vb{A}^*)^{-1}
+= \abs{\vb{A}}^{-1} \vb{A}
+= (\vb{A}^{-1})^*\).
 \end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数学习指导书（第三版）》（姚慕生、谢启鸿） P62 例2.23
-设\(\A \in M_n(K)\)满足\(\A^m = \E\)，
-其中\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
-证明：\((\A^*)^m = \E\).
+设\(\vb{A} \in M_n(K)\)满足\(\vb{A}^m = \vb{E}\)，
+其中\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
+证明：\((\vb{A}^*)^m = \vb{E}\).
 \begin{proof}
-由\(\A^m = \E\)得\(\abs{\A}^m = 1\)，\(\A\)可逆，
-那么\(\A^* = \abs{\A} \A^{-1}\)，
+由\(\vb{A}^m = \vb{E}\)得\(\abs{\vb{A}}^m = 1\)，\(\vb{A}\)可逆，
+那么\(\vb{A}^* = \abs{\vb{A}} \vb{A}^{-1}\)，
 于是\[
-	(\A^*)^m
-	= (\abs{\A} \A^{-1})^m
-	= \abs{\A}^m (\A^{-1})^m
-	= (\A^m)^{-1}
-	= \E.
+	(\vb{A}^*)^m
+	= (\abs{\vb{A}} \vb{A}^{-1})^m
+	= \abs{\vb{A}}^m (\vb{A}^{-1})^m
+	= (\vb{A}^m)^{-1}
+	= \vb{E}.
 	\qedhere
 \]
 \end{proof}
 \end{example}
 
 \begin{example}\label{example:对合矩阵.对合矩阵的逆矩阵}
-设\(\A\)是数域\(K\)上的\(n\)阶对合矩阵.
-证明\(\A^{-1} = \A\).
+设\(\vb{A}\)是数域\(K\)上的\(n\)阶对合矩阵.
+证明\(\vb{A}^{-1} = \vb{A}\).
 \begin{proof}
-假设\(\A^2=\E\)，
-其中\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+假设\(\vb{A}^2=\vb{E}\)，
+其中\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
 那么由\cref{theorem:行列式.矩阵乘积的行列式} 可知\[
-	\abs{\A^2}
-	= \abs{\A}^2
+	\abs{\vb{A}^2}
+	= \abs{\vb{A}}^2
 	= 1,
 \]
-从而\(\abs{\A}\neq0\)，
-\(\A\)可逆，
+从而\(\abs{\vb{A}}\neq0\)，
+\(\vb{A}\)可逆，
 因此\[
-	\A^{-1}
-	= \A^{-1}\E
-	= \A^{-1}(\A^2)
-	= (\A^{-1}\A)\A
-	= \E\A
-	= \A.
+	\vb{A}^{-1}
+	= \vb{A}^{-1}\vb{E}
+	= \vb{A}^{-1}(\vb{A}^2)
+	= (\vb{A}^{-1}\vb{A})\vb{A}
+	= \vb{E}\vb{A}
+	= \vb{A}.
 	\qedhere
 \]
 \end{proof}
@@ -317,64 +317,64 @@
 
 \begin{example}\label{example:可逆矩阵.分块上三角矩阵的逆}
 %@see: 《线性代数》（张慎语、周厚隆） P46 例5
-设\(\A \in M_s(K),
-\B \in M_n(K),
-\C \in M_{s \times n}(K)\)，
-\(\A\)和\(\B\)都可逆.
+设\(\vb{A} \in M_s(K),
+\vb{B} \in M_n(K),
+\vb{C} \in M_{s \times n}(K)\)，
+\(\vb{A}\)和\(\vb{B}\)都可逆.
 证明：矩阵\[
 	\vb{M} = \begin{bmatrix}
-		\A & \C \\
-		\vb0 & \B
+		\vb{A} & \vb{C} \\
+		\vb0 & \vb{B}
 	\end{bmatrix}
 \]可逆，且\[
 	\vb{M}^{-1} = \begin{bmatrix}
-		\A^{-1} & -\A^{-1} \C \B^{-1} \\
-		\vb0 & \B^{-1}
+		\vb{A}^{-1} & -\vb{A}^{-1} \vb{C} \vb{B}^{-1} \\
+		\vb0 & \vb{B}^{-1}
 	\end{bmatrix}.
 \]
 \begin{proof}
-因为\(\A\)、\(\B\)为可逆矩阵，\(\abs{\A} \neq 0\)，\(\abs{\B} \neq 0\).
-所以\(\abs{\vb{M}}=\abs{\A}\abs{\B} \neq 0\)，即\(\vb{M}\)可逆.
+因为\(\vb{A}\)、\(\vb{B}\)为可逆矩阵，\(\abs{\vb{A}} \neq 0\)，\(\abs{\vb{B}} \neq 0\).
+所以\(\abs{\vb{M}}=\abs{\vb{A}}\abs{\vb{B}} \neq 0\)，即\(\vb{M}\)可逆.
 
-令\(\vb{M}\x=\E\)，即\[
+令\(\vb{M}\vb{x}=\vb{E}\)，即\[
 	\begin{bmatrix}
-		\A & \C \\
-		\vb0 & \B
+		\vb{A} & \vb{C} \\
+		\vb0 & \vb{B}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\x_1 & \x_2 \\
-		\x_3 & \x_4
+		\vb{x}_1 & \vb{x}_2 \\
+		\vb{x}_3 & \vb{x}_4
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E & \vb0 \\
-		\vb0 & \E
+		\vb{E} & \vb0 \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
 \]则\[
 	\begin{bmatrix}
-		\A\x_1+\C\x_3 & \A\x_2+\C\x_4 \\
-		\B\x_3 & \B\x_4
+		\vb{A}\vb{x}_1+\vb{C}\vb{x}_3 & \vb{A}\vb{x}_2+\vb{C}\vb{x}_4 \\
+		\vb{B}\vb{x}_3 & \vb{B}\vb{x}_4
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E & \vb0 \\
-		\vb0 & \E
+		\vb{E} & \vb0 \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
 \]
 进而有\[
 	\left\{ \begin{array}{l}
-		\A\x_1+\C\x_3 = \E \\
-		\A\x_2+\C\x_4 = \vb0 \\
-		\B\x_3 = \vb0 \\
-		\B\x_4 = \E
+		\vb{A}\vb{x}_1+\vb{C}\vb{x}_3 = \vb{E} \\
+		\vb{A}\vb{x}_2+\vb{C}\vb{x}_4 = \vb0 \\
+		\vb{B}\vb{x}_3 = \vb0 \\
+		\vb{B}\vb{x}_4 = \vb{E}
 	\end{array} \right.
 \]
-由第4式可得\(\x_4 = \B^{-1}\).
-代入第2式得\(\A\x_2=-\C\B^{-1}\)，
-\(\x_2=-\A^{-1}\C\B^{-1}\).
-用\(\B^{-1}\)左乘第3式左右两端，\(\B^{-1}\B\x_3=\x_3=\vb0\).
-则第1式化为\(\A\x_1=\E\)，显然\(\x_1=\A^{-1}\)，所以\[
-	\vb{M}^{-1} = \x = \begin{bmatrix}
-		\A^{-1} & -\A^{-1}\C\B^{-1} \\
-		\vb0 & \B^{-1}
+由第4式可得\(\vb{x}_4 = \vb{B}^{-1}\).
+代入第2式得\(\vb{A}\vb{x}_2=-\vb{C}\vb{B}^{-1}\)，
+\(\vb{x}_2=-\vb{A}^{-1}\vb{C}\vb{B}^{-1}\).
+用\(\vb{B}^{-1}\)左乘第3式左右两端，\(\vb{B}^{-1}\vb{B}\vb{x}_3=\vb{x}_3=\vb0\).
+则第1式化为\(\vb{A}\vb{x}_1=\vb{E}\)，显然\(\vb{x}_1=\vb{A}^{-1}\)，所以\[
+	\vb{M}^{-1} = \vb{x} = \begin{bmatrix}
+		\vb{A}^{-1} & -\vb{A}^{-1}\vb{C}\vb{B}^{-1} \\
+		\vb0 & \vb{B}^{-1}
 	\end{bmatrix}.
 	\qedhere
 \]
@@ -384,41 +384,41 @@
 \begin{remark}
 从\cref{example:可逆矩阵.分块上三角矩阵的逆} 的结论\[
 	\begin{bmatrix}
-		\A & \C \\
-		\vb0 & \B
+		\vb{A} & \vb{C} \\
+		\vb0 & \vb{B}
 	\end{bmatrix}^{-1}
 	= \begin{bmatrix}
-		\A^{-1} & -\A^{-1} \C \B^{-1} \\
-		\vb0 & \B^{-1}
+		\vb{A}^{-1} & -\vb{A}^{-1} \vb{C} \vb{B}^{-1} \\
+		\vb0 & \vb{B}^{-1}
 	\end{bmatrix}
 \]出发，
-任取\(\D \in M_{n \times s}(K)\)，
+任取\(\vb{D} \in M_{n \times s}(K)\)，
 我们还可以得到\[
 	\begin{bmatrix}
-		\A & \vb0 \\
-		\D & \B
+		\vb{A} & \vb0 \\
+		\vb{D} & \vb{B}
 	\end{bmatrix}^{-1}
 	= \begin{bmatrix}
-		\A^{-1} & \vb0 \\
-		-\B^{-1} \D \A^{-1} & \B^{-1}
+		\vb{A}^{-1} & \vb0 \\
+		-\vb{B}^{-1} \vb{D} \vb{A}^{-1} & \vb{B}^{-1}
 	\end{bmatrix},
 \]\[
 	\begin{bmatrix}
-		\C & \A \\
-		\B & \vb0
+		\vb{C} & \vb{A} \\
+		\vb{B} & \vb0
 	\end{bmatrix}^{-1}
 	= \begin{bmatrix}
-		\vb0 & \B^{-1} \\
-		\A^{-1} & -\A^{-1}\C\B^{-1}
+		\vb0 & \vb{B}^{-1} \\
+		\vb{A}^{-1} & -\vb{A}^{-1}\vb{C}\vb{B}^{-1}
 	\end{bmatrix},
 \]\[
 	\begin{bmatrix}
-		\vb0 & \A \\
-		\B & \D
+		\vb0 & \vb{A} \\
+		\vb{B} & \vb{D}
 	\end{bmatrix}^{-1}
 	= \begin{bmatrix}
-		-\B^{-1}\D\A^{-1} & \B^{-1} \\
-		\A^{-1} & \vb0
+		-\vb{B}^{-1}\vb{D}\vb{A}^{-1} & \vb{B}^{-1} \\
+		\vb{A}^{-1} & \vb0
 	\end{bmatrix}.
 \]
 
@@ -426,39 +426,39 @@
 以及\cref{equation:行列式.广义三角阵的行列式1,equation:行列式.广义三角阵的行列式2}，
 得到\[
 	\begin{bmatrix}
-		\A & \C \\
-		\vb0 & \B
+		\vb{A} & \vb{C} \\
+		\vb0 & \vb{B}
 	\end{bmatrix}^*
 	= \begin{bmatrix}
-		\abs{\B} \A^* & -\A^*\C\B^* \\
-		\vb0 & \abs{\A} \B^*
+		\abs{\vb{B}} \vb{A}^* & -\vb{A}^*\vb{C}\vb{B}^* \\
+		\vb0 & \abs{\vb{A}} \vb{B}^*
 	\end{bmatrix},
 \]\[
 	\begin{bmatrix}
-		\A & \vb0 \\
-		\D & \B
+		\vb{A} & \vb0 \\
+		\vb{D} & \vb{B}
 	\end{bmatrix}^*
 	= \begin{bmatrix}
-		\abs{\B} \A^* & \vb0 \\
-		-\B^* \D \A^* & \abs{\A} \B^*
+		\abs{\vb{B}} \vb{A}^* & \vb0 \\
+		-\vb{B}^* \vb{D} \vb{A}^* & \abs{\vb{A}} \vb{B}^*
 	\end{bmatrix},
 \]\[
 	\begin{bmatrix}
-		\C & \A \\
-		\B & \vb0
+		\vb{C} & \vb{A} \\
+		\vb{B} & \vb0
 	\end{bmatrix}^*
 	= (-1)^{sn} \begin{bmatrix}
-		\vb0 & \abs{\A} \B^* \\
-		\abs{\B} \A^* & -\A^*\C\B^*
+		\vb0 & \abs{\vb{A}} \vb{B}^* \\
+		\abs{\vb{B}} \vb{A}^* & -\vb{A}^*\vb{C}\vb{B}^*
 	\end{bmatrix},
 \]\[
 	\begin{bmatrix}
-		\vb0 & \A \\
-		\B & \D
+		\vb0 & \vb{A} \\
+		\vb{B} & \vb{D}
 	\end{bmatrix}^*
 	= (-1)^{sn} \begin{bmatrix}
-		-\B^*\D\A^* & \abs{\A} \B^* \\
-		\abs{\B} \A^* & \vb0
+		-\vb{B}^*\vb{D}\vb{A}^* & \abs{\vb{A}} \vb{B}^* \\
+		\abs{\vb{B}} \vb{A}^* & \vb0
 	\end{bmatrix}.
 \]
 \end{remark}

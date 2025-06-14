@@ -1,39 +1,39 @@
 \section{实二次型的分类}
 \subsection{实二次型的分类标准}
 \begin{definition}\label{definition:实二次型的分类.实二次型的分类}
-设有\(n\)元实二次型\(f(\x) = \x^T\A\x\).
+设有\(n\)元实二次型\(f(\vb{x}) = \vb{x}^T\vb{A}\vb{x}\).
 \begin{enumerate}
 	\item 如果\[
-		(\forall\x\in\mathbb{R}^n-\{\z\})
-		[f(\x) > 0],
+		(\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})
+		[f(\vb{x}) > 0],
 	\]
 	则称“\(f\)是\DefineConcept{正定的}（positive definite）”；
-	把\(\A\)称为\DefineConcept{正定矩阵}（positive definite matrix），
-	记为\(\A\succ\z\).
+	把\(\vb{A}\)称为\DefineConcept{正定矩阵}（positive definite matrix），
+	记为\(\vb{A}\succ\vb0\).
 
 	\item 如果\[
-		(\forall\x\in\mathbb{R}^n-\{\z\})
-		[f(\x) \geq 0],
+		(\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})
+		[f(\vb{x}) \geq 0],
 	\]
 	则称“\(f\)是\DefineConcept{半正定的}（positive semi-definite）”；
-	把\(\A\)称为\DefineConcept{半正定矩阵}（positive semi-definite matrix），
-	记为\(\A\succeq\z\).
+	把\(\vb{A}\)称为\DefineConcept{半正定矩阵}（positive semi-definite matrix），
+	记为\(\vb{A}\succeq\vb0\).
 
 	\item 如果\[
-		(\forall\x\in\mathbb{R}^n-\{\z\})
-		[f(\x) < 0],
+		(\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})
+		[f(\vb{x}) < 0],
 	\]
 	则称“\(f\)是\DefineConcept{负定的}（negative definite）”，
-	把\(\A\)称为\DefineConcept{负定矩阵}（negative definite matrix），
-	记为\(\A\prec\z\).
+	把\(\vb{A}\)称为\DefineConcept{负定矩阵}（negative definite matrix），
+	记为\(\vb{A}\prec\vb0\).
 
 	\item 如果\[
-		(\forall\x\in\mathbb{R}^n-\{\z\})
-		[f(\x) \leq 0],
+		(\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})
+		[f(\vb{x}) \leq 0],
 	\]
 	则称“\(f\)是\DefineConcept{半负定的}（negative semi-definite）”；
-	把\(\A\)称为\DefineConcept{半负定矩阵}（negative semi-definite matrix），
-	记为\(\A\preceq\z\).
+	把\(\vb{A}\)称为\DefineConcept{半负定矩阵}（negative semi-definite matrix），
+	记为\(\vb{A}\preceq\vb0\).
 
 	\item 否则，称\(f\)是\DefineConcept{不定的}（indefinite）.
 \end{enumerate}
@@ -41,27 +41,26 @@
 
 \subsection{惯性定理}
 \begin{theorem}\label{theorem:二次型.惯性定理}
-\(n\)元实二次型\(f(\x) = \x^T\A\x\)经过任意满秩线性变换化为标准型，
+\(n\)元实二次型\(f(\vb{x}) = \vb{x}^T\vb{A}\vb{x}\)经过任意满秩线性变换化为标准型，
 所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
 \begin{proof}
 设实二次型的秩为\(r\).
-假设\(f\)经过两个不同的可逆线性替换\(\x=\C\y,\x=\D\vb{z}\)分别化为标准型\[
-	f \xlongequal{\x=\C\y}
+假设\(f\)经过两个不同的可逆线性替换\(\vb{x}=\vb{C}\vb{y},\vb{x}=\vb{D}\vb{z}\)分别化为标准型\[
+	f \xlongequal{\vb{x}=\vb{C}\vb{y}}
 	c_1 y_1^2 + c_2 y_2^2 + \dotsb + c_p y_p^2 - c_{p+1} y_{p+1}^2 - \dotsb - c_r y_r^2,
 	\eqno(1)
 \]\[
-	f \xlongequal{\x=\D\vb{z}}
+	f \xlongequal{\vb{x}=\vb{D}\vb{z}}
 	d_1 z_1^2 + d_2 z_2^2 + \dotsb + d_q z_q^2 - d_{q+1} z_{q+1}^2 - \dotsb - d_r z_r^2,
 	\eqno(2)
 \]
 其中\(c_i,d_i>0\ (i=1,2,\dotsc,r)\).
 
 用反证法.
-设\(p > q\)，由\(\x = \C\y = \D\vb{z}\)，\(\D\)可逆，得\(\vb{z} = \D^{-1} \C \y\).
-\def\H{\vb{H}}%
+设\(p > q\)，由\(\vb{x} = \vb{C}\vb{y} = \vb{D}\vb{z}\)，\(\vb{D}\)可逆，得\(\vb{z} = \vb{D}^{-1} \vb{C} \vb{y}\).
 \def\zexpr#1{h_{#1 1} y_1 + h_{#1 2} y_2 + \dotsb + h_{#1 n} y_n}%
-记\(\H = (h_{ij})_n = \B^{-1} \C\)，
-则\(\vb{z} = \H\y\)，
+记\(\vb{H} = (h_{ij})_n = \vb{B}^{-1} \vb{C}\)，
+则\(\vb{z} = \vb{H}\vb{y}\)，
 即\[
 	z_i = \zexpr{i}
 	\quad(i=1,2,\dotsc,n).
@@ -100,32 +99,32 @@
 又称为“惯性定理（Inertial Theorem）”.
 
 \begin{corollary}
-任意\(n\)元实二次型\(f(\x) = \x^T\A\x\)，
+任意\(n\)元实二次型\(f(\vb{x}) = \vb{x}^T\vb{A}\vb{x}\)，
 总可经过满秩线性变换，化为以下形式：\[
 	y_1^2+y_2^2+ \dotsb +y_p^2
 	-y_{p+1}^2-\dotsb-y_r^2.
 \]
-我们将其称为“\(f(\x)\)的\DefineConcept{规范型}（{\rm normal form}）”，
+我们将其称为“\(f(\vb{x})\)的\DefineConcept{规范型}（{\rm normal form}）”，
 且规范型是唯一的.
 \begin{proof}
 根据惯性定理，\(f\)经过可逆线性替换化为标准型：\[
-	f \xlongequal{\x=\D\vb{z}}
+	f \xlongequal{\vb{x}=\vb{D}\vb{z}}
 	d_1 z_1^2 + d_2 z_2^2 + \dotsb + d_q z_q^2 - d_{q+1} z_{q+1}^2 - \dotsb - d_r z_r^2,
 \]
 其中\(d_i>0\ (i=1,2,\dotsc,r)\).
 令\[
-	\C = \D \diag(d_1^{-1/2},\dotsc,d_r^{-1/2},1,\dotsc,1),
+	\vb{C} = \vb{D} \diag(d_1^{-1/2},\dotsc,d_r^{-1/2},1,\dotsc,1),
 \]
-则\(\x = \D\vb{z} = \C\y\)是可逆线性替换，
+则\(\vb{x} = \vb{D}\vb{z} = \vb{C}\vb{y}\)是可逆线性替换，
 使得\[
-	f \xlongequal{\x=\D\vb{z}} y_1^2 + y_2^2 + \dotsb + y_q^2 - y_{q+1}^2 - \dotsb - y_r^2.
+	f \xlongequal{\vb{x}=\vb{D}\vb{z}} y_1^2 + y_2^2 + \dotsb + y_q^2 - y_{q+1}^2 - \dotsb - y_r^2.
 \]
 二次型的规范型的唯一性可以由惯性定理得到.
 \end{proof}
 \end{corollary}
 
 \begin{definition}\label{definition:二次型.惯性系数的定义}
-在秩为\(r\)的实二次型\(f(\x)\)所化成的标准型（或规范型）中，
+在秩为\(r\)的实二次型\(f(\vb{x})\)所化成的标准型（或规范型）中，
 \begin{itemize}
 	\item 正平方项的项数\(p\)
 	称为“\(f\)的\DefineConcept{正惯性指数}（positive index of inertia）”；
@@ -147,25 +146,25 @@
 因此我们可以根据二次型的正、负惯性指数确定二次型的类型.
 
 \begin{theorem}
-设\(\A\)和\(\B\)是同阶实对称矩阵.
+设\(\vb{A}\)和\(\vb{B}\)是同阶实对称矩阵.
 这两个矩阵合同的充分必要条件是两者的秩、正负惯性指数均相等，
 即\[
-	\A\simeq\B
+	\vb{A}\simeq\vb{B}
 	\iff
-	\rank\A=\rank\B \land p_{\A}=p_{\B} \land q_{\A}=q_{\B}.
+	\rank\vb{A}=\rank\vb{B} \land p_{\vb{A}}=p_{\vb{B}} \land q_{\vb{A}}=q_{\vb{B}}.
 \]
 \end{theorem}
 
 \subsection{正定矩阵的等价条件}
 \begin{theorem}
-设\(\A\)为\(n\)阶实对称矩阵，
-\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，
+设\(\vb{A}\)为\(n\)阶实对称矩阵，
+\(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}\)，
 则下列命题相互等价：\begin{itemize}
-	\item \(\A\)为正定矩阵.
-	\item \(\A\)的特征值全是正实数.
+	\item \(\vb{A}\)为正定矩阵.
+	\item \(\vb{A}\)的特征值全是正实数.
 	\item \(f(\AutoTuple{x}{n})\)的正惯性指数\(p=n\).
-	\item \(\A \cong \E\).
-	\item 存在可逆实阵\(\P\)，使得\(\A=\P^T\P\).
+	\item \(\vb{A} \cong \vb{E}\).
+	\item 存在可逆实阵\(\vb{P}\)，使得\(\vb{A}=\vb{P}^T\vb{P}\).
 \end{itemize}
 %TODO proof
 \end{theorem}
@@ -173,23 +172,23 @@
 \begin{corollary}
 正定矩阵的行列式大于零.
 \begin{proof}
-因为\(\A\)正定，
-所以存在可逆实阵\(\P\)，使得\(\A=\P^T\P\)，
+因为\(\vb{A}\)正定，
+所以存在可逆实阵\(\vb{P}\)，使得\(\vb{A}=\vb{P}^T\vb{P}\)，
 则\[
-	\abs{\A}
-	=\abs{\P^T\P}
-	=\abs{\P^T} \abs{\P\vphantom{\P^T}}
-	=\abs{\P}^2>0.
+	\abs{\vb{A}}
+	=\abs{\vb{P}^T\vb{P}}
+	=\abs{\vb{P}^T} \abs{\vb{P}\vphantom{\vb{P}^T}}
+	=\abs{\vb{P}}^2>0.
 	\qedhere
 \]
 \end{proof}
 \end{corollary}
 
 \begin{theorem}
-\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\ (\A=\A^T)\)正定的充分必要条件是：
-矩阵\(\A\)的各阶顺序主子式\(\det\A_k\)均大于零，
+\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}\ (\vb{A}=\vb{A}^T)\)正定的充分必要条件是：
+矩阵\(\vb{A}\)的各阶顺序主子式\(\det\vb{A}_k\)均大于零，
 即\[
-	\det\A_k > 0
+	\det\vb{A}_k > 0
 	\quad(k=1,2,\dotsc,n).
 \]
 \begin{proof}
@@ -203,196 +202,196 @@
 =\sum_{i=1}^k
 \sum_{j=1}^k
 x_i x_j a_{ij}\)正定，
-而\(f_k\)的矩阵为\(\A_k = (a_{ij})_k\)，
-那么\(\abs{\A_k} > 0\ (k=1,2,\dotsc,n)\).
+而\(f_k\)的矩阵为\(\vb{A}_k = (a_{ij})_k\)，
+那么\(\abs{\vb{A}_k} > 0\ (k=1,2,\dotsc,n)\).
 
 充分性.当\(n=1\)时，\(a_{11} > 0\)，\(f_1(x_1) = a_{11} x_1^2\)正定.
 设\(n=k-1\)时结论成立，
 当\(n=k\)时，
-将\(\A\)分块得\(\A = \begin{bmatrix}
-	\A_{k-1} & \a \\
-	\a^T & a_{nn}
+将\(\vb{A}\)分块得\(\vb{A} = \begin{bmatrix}
+	\vb{A}_{k-1} & \vb\alpha \\
+	\vb\alpha^T & a_{nn}
 \end{bmatrix}\)，
-其中\(\A_{k-1}\)为各阶顺序主子式都大于零的\(k-1\)阶实对称矩阵.
-由归纳假设，\(\A_{k-1}\)正定，故存在\(k-1\)阶可逆矩阵\(\Q\)，
-使得\(\A_{k-1} = \Q^T \Q\)，\(\A_{k-1}\)可逆，
-\(\A_{k-1}^{-1} = \Q^{-1}(\Q^{-1})^T\)是对称矩阵.
-令\(\P = \begin{bmatrix}
-	\Q^{-1} & -\A_{k-1}^{-1} \a \\
-	\z & 1
+其中\(\vb{A}_{k-1}\)为各阶顺序主子式都大于零的\(k-1\)阶实对称矩阵.
+由归纳假设，\(\vb{A}_{k-1}\)正定，故存在\(k-1\)阶可逆矩阵\(\vb{Q}\)，
+使得\(\vb{A}_{k-1} = \vb{Q}^T \vb{Q}\)，\(\vb{A}_{k-1}\)可逆，
+\(\vb{A}_{k-1}^{-1} = \vb{Q}^{-1}(\vb{Q}^{-1})^T\)是对称矩阵.
+令\(\vb{P} = \begin{bmatrix}
+	\vb{Q}^{-1} & -\vb{A}_{k-1}^{-1} \vb\alpha \\
+	\vb0 & 1
 \end{bmatrix}\)，
-则\(\P\)可逆，
+则\(\vb{P}\)可逆，
 于是\begin{align*}
-	\P^T \A \P &= \begin{bmatrix}
-		(\Q^{-1})^T & \z \\
-		-\a^T \A_{k-1}^{-1} & 1
+	\vb{P}^T \vb{A} \vb{P} &= \begin{bmatrix}
+		(\vb{Q}^{-1})^T & \vb0 \\
+		-\vb\alpha^T \vb{A}_{k-1}^{-1} & 1
 	\end{bmatrix}
 	\begin{bmatrix}
-		\Q^T \Q & \a \\
-		\a^T & a_{nn}
+		\vb{Q}^T \vb{Q} & \vb\alpha \\
+		\vb\alpha^T & a_{nn}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\Q^{-1} & -\A_{k-1}^{-1} \a \\
-		\z & 1
+		\vb{Q}^{-1} & -\vb{A}_{k-1}^{-1} \vb\alpha \\
+		\vb0 & 1
 	\end{bmatrix} \\
 	&= \begin{bmatrix}
-		\Q & (\Q^{-1})^T \a \\
-		\z & b
+		\vb{Q} & (\vb{Q}^{-1})^T \vb\alpha \\
+		\vb0 & b
 	\end{bmatrix}
 	\begin{bmatrix}
-		\Q^{-1} & -\A_{k-1}^{-1} \a \\
-		\z & 1
+		\vb{Q}^{-1} & -\vb{A}_{k-1}^{-1} \vb\alpha \\
+		\vb0 & 1
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E_{k-1} & \z \\
-		\z & b
-	\end{bmatrix} = \B,
+		\vb{E}_{k-1} & \vb0 \\
+		\vb0 & b
+	\end{bmatrix} = \vb{B},
 \end{align*}
-其中\(b=a_{nn}-\a^T \A_{k-1}^{-1} \a\).
-由于\(\A\)与\(\B\)合同，\(\abs{\A} > 0\)，
-得\(\abs{\B} = b > 0\)，
-作可逆线性替换\(\x = \P\y\)，则\[
-	f \xlongequal{\x=\Q\y} y_1^2 + y_2^2 + \dotsb + y_{n-1}^2 + b y_n^2,
+其中\(b=a_{nn}-\vb\alpha^T \vb{A}_{k-1}^{-1} \vb\alpha\).
+由于\(\vb{A}\)与\(\vb{B}\)合同，\(\abs{\vb{A}} > 0\)，
+得\(\abs{\vb{B}} = b > 0\)，
+作可逆线性替换\(\vb{x} = \vb{P}\vb{y}\)，则\[
+	f \xlongequal{\vb{x}=\vb{Q}\vb{y}} y_1^2 + y_2^2 + \dotsb + y_{n-1}^2 + b y_n^2,
 \]
 故\(f\)的正惯性指数为\(n\)，\(f\)正定.
 \end{proof}
 \end{theorem}
 
 \begin{corollary}
-\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \x^T\A\x\ (\A=\A^T)\)负定的充分必要条件是：
-矩阵\(\A\)的各阶顺序主子式\(\det\A_k\)与\((-1)^k\)的乘积均大于零，
+\(n\)元实二次型\(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}\ (\vb{A}=\vb{A}^T)\)负定的充分必要条件是：
+矩阵\(\vb{A}\)的各阶顺序主子式\(\det\vb{A}_k\)与\((-1)^k\)的乘积均大于零，
 即\[
-	(-1)^k \det\A_k > 0
+	(-1)^k \det\vb{A}_k > 0
 	\quad(k=1,2,\dotsc,n).
 \]
 \end{corollary}
 
 \begin{proposition}
-设\(\A \in M_{s \times n}(\mathbb{R})\)，
+设\(\vb{A} \in M_{s \times n}(\mathbb{R})\)，
 则\[
-	\text{\(\A^T\A\)正定}
+	\text{\(\vb{A}^T\vb{A}\)正定}
 	\iff
-	\rank\A = n.
+	\rank\vb{A} = n.
 \]
 \begin{proof}
-显然矩阵\(\A^T\A\)是\(n\)阶实对称矩阵，
+显然矩阵\(\vb{A}^T\vb{A}\)是\(n\)阶实对称矩阵，
 于是\begin{align*}
-	&\text{矩阵\(\A^T\A\)正定} \\
-	&\iff (\forall\x\in\mathbb{R}^n-\{\vb0\})[\x^T (\A^T \A) \x > 0]
+	&\text{矩阵\(\vb{A}^T\vb{A}\)正定} \\
+	&\iff (\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})[\vb{x}^T (\vb{A}^T \vb{A}) \vb{x} > 0]
 		\tag{\hyperref[definition:实二次型的分类.实二次型的分类]{正定矩阵的定义}} \\
-	&\iff (\forall\x\in\mathbb{R}^n-\{\vb0\})[\norm{\A\x} > 0] \\
-	&\iff (\forall\x\in\mathbb{R}^n-\{\vb0\})[\A\x\neq\vb0] \\
-	&\iff \text{\(\A\x=\vb0\)只有零解} \\
-	&\iff \rank\A = n,
+	&\iff (\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})[\norm{\vb{A}\vb{x}} > 0] \\
+	&\iff (\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})[\vb{A}\vb{x}\neq\vb0] \\
+	&\iff \text{\(\vb{A}\vb{x}=\vb0\)只有零解} \\
+	&\iff \rank\vb{A} = n,
 		\tag{\cref{theorem:向量空间.有解的非齐次线性方程组的解的个数定理}}
 \end{align*}
-也就是说，“矩阵\(\A^T\A\)正定”的充分必要条件是“\(\A\)是列满秩矩阵”.
+也就是说，“矩阵\(\vb{A}^T\vb{A}\)正定”的充分必要条件是“\(\vb{A}\)是列满秩矩阵”.
 \end{proof}
 \end{proposition}
 
 \begin{example}
-设\(\A \in M_s(\mathbb{R}),
-\B \in M_n(\mathbb{R})\).
+设\(\vb{A} \in M_s(\mathbb{R}),
+\vb{B} \in M_n(\mathbb{R})\).
 证明：
 若矩阵\(\begin{bmatrix}
-	\A & \vb0 \\
-	\vb0 & \B
+	\vb{A} & \vb0 \\
+	\vb0 & \vb{B}
 \end{bmatrix}\)是正定矩阵，
-则\(\A\)和\(\B\)都是正定矩阵.
+则\(\vb{A}\)和\(\vb{B}\)都是正定矩阵.
 \begin{proof}
 由题意有，
-对于\(\forall\x\in\mathbb{R}^s,
-\forall\y\in\mathbb{R}^n\)，
-只要\((\x,\y)\neq\vb0\)，
+对于\(\forall\vb{x}\in\mathbb{R}^s,
+\forall\vb{y}\in\mathbb{R}^n\)，
+只要\((\vb{x},\vb{y})\neq\vb0\)，
 就有\[
 	\begin{bmatrix}
-		\x^T & \y^T
+		\vb{x}^T & \vb{y}^T
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \B
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{B}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\x \\ \y
+		\vb{x} \\ \vb{y}
 	\end{bmatrix}
-	= \x^T \A \x + \y^T \B \y
+	= \vb{x}^T \vb{A} \vb{x} + \vb{y}^T \vb{B} \vb{y}
 	> 0.
 	\eqno(1)
 \]
-当\(\x\neq\vb0,\y=\vb0\)时，
-由(1)式有\(\x^T\A\x>0\)；
-这就是说，矩阵\(\A\)正定.
-同理，当\(\x=\vb0,\y\neq\vb0\)时，
-由(1)式有\(\y^T\B\y>0\)；
-这就是说，矩阵\(\B\)正定.
+当\(\vb{x}\neq\vb0,\vb{y}=\vb0\)时，
+由(1)式有\(\vb{x}^T\vb{A}\vb{x}>0\)；
+这就是说，矩阵\(\vb{A}\)正定.
+同理，当\(\vb{x}=\vb0,\vb{y}\neq\vb0\)时，
+由(1)式有\(\vb{y}^T\vb{B}\vb{y}>0\)；
+这就是说，矩阵\(\vb{B}\)正定.
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A\)为实对称矩阵，证明：当实数\(t\)充分大时，\(t\E+\A\)是正定矩阵.
+设\(\vb{A}\)为实对称矩阵，证明：当实数\(t\)充分大时，\(t\vb{E}+\vb{A}\)是正定矩阵.
 \begin{proof}
-因为\(\A\)为实对称矩阵，所以存在正交矩阵\(\Q\)，使得\[
-	\Q^T\A\Q = \diag(\AutoTuple{\lambda}{n}).
+因为\(\vb{A}\)为实对称矩阵，所以存在正交矩阵\(\vb{Q}\)，使得\[
+	\vb{Q}^T\vb{A}\vb{Q} = \diag(\AutoTuple{\lambda}{n}).
 \]
 又因为\[
-	\Q^T(t\E+\A)\Q
-	= \diag(t+\L{1},t+\L{2},\dotsc,t+\L{n}),
+	\vb{Q}^T(t\vb{E}+\vb{A})\vb{Q}
+	= \diag(t+\lambda_1,t+\lambda_2,\dotsc,t+\lambda_n),
 \]
-所以当\(t+\L{1},t+\L{2},\dotsc,t+\L{n}\)都大于零时，\(t\E+\A\)正定.
+所以当\(t+\lambda_1,t+\lambda_2,\dotsc,t+\lambda_n\)都大于零时，\(t\vb{E}+\vb{A}\)正定.
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A\)、\(\B\)是同阶正定矩阵，证明：\(\A+\B\)、\(\A^{-1}\)、\(\A^*\)是正定矩阵.
+设\(\vb{A}\)、\(\vb{B}\)是同阶正定矩阵，证明：\(\vb{A}+\vb{B}\)、\(\vb{A}^{-1}\)、\(\vb{A}^*\)是正定矩阵.
 \begin{proof}
-根据正定矩阵的定义，因为\(\A\)是正定矩阵，任取非零列向量\(\x\)，都有\[
-	\x^T\A\x > 0;
+根据正定矩阵的定义，因为\(\vb{A}\)是正定矩阵，任取非零列向量\(\vb{x}\)，都有\[
+	\vb{x}^T\vb{A}\vb{x} > 0;
 \]
-同样地，有\(\x^T\B\x > 0\).
+同样地，有\(\vb{x}^T\vb{B}\vb{x} > 0\).
 
 又根据矩阵的乘法分配律，成立\[
-	\x^T(\A+\B)\x = \x^T\A\x + \x^T\B\x > 0,
+	\vb{x}^T(\vb{A}+\vb{B})\vb{x} = \vb{x}^T\vb{A}\vb{x} + \vb{x}^T\vb{B}\vb{x} > 0,
 \]
-即\(\A+\B\)是正定矩阵.
+即\(\vb{A}+\vb{B}\)是正定矩阵.
 
-因为\(\A\)是正定矩阵，存在可逆实阵\(\P\)使得\(\P^T\A\P=\E\)，
+因为\(\vb{A}\)是正定矩阵，存在可逆实阵\(\vb{P}\)使得\(\vb{P}^T\vb{A}\vb{P}=\vb{E}\)，
 所以\[
-	\A = (\P^T)^{-1}\E\P^{-1} = (\P^T)^{-1}\P^{-1}
+	\vb{A} = (\vb{P}^T)^{-1}\vb{E}\vb{P}^{-1} = (\vb{P}^T)^{-1}\vb{P}^{-1}
 	\implies
-	\A^{-1} = \P\P^T,
+	\vb{A}^{-1} = \vb{P}\vb{P}^T,
 \]
-说明\(\A^{-1}\)是正定矩阵.
+说明\(\vb{A}^{-1}\)是正定矩阵.
 
-由逆矩阵的定义，\(\A^{-1}=\frac{1}{\abs{\A}}\A^*\)，
-那么\(\A^*=\abs{\A}\A^{-1}\)，\(\abs{\A}>0\)，
-显然\(\A^*\)也是正定矩阵.
+由逆矩阵的定义，\(\vb{A}^{-1}=\frac{1}{\abs{\vb{A}}}\vb{A}^*\)，
+那么\(\vb{A}^*=\abs{\vb{A}}\vb{A}^{-1}\)，\(\abs{\vb{A}}>0\)，
+显然\(\vb{A}^*\)也是正定矩阵.
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A\)是正定矩阵，试证：存在正定矩阵\(\B\)，使得\(\A=\B^2\).
+设\(\vb{A}\)是正定矩阵，试证：存在正定矩阵\(\vb{B}\)，使得\(\vb{A}=\vb{B}^2\).
 \begin{proof}
-设\(\A\)是\(n\)阶正定矩阵，那么存在正交矩阵\(\P\)满足\[
-	\P^T\A\P = \diag(\AutoTuple{\lambda}{n}) = \V,
+设\(\vb{A}\)是\(n\)阶正定矩阵，那么存在正交矩阵\(\vb{P}\)满足\[
+	\vb{P}^T\vb{A}\vb{P} = \diag(\AutoTuple{\lambda}{n}) = \vb{\Lambda},
 \]
 其中\(\AutoTuple{\lambda}{n} \in \mathbb{R}^+\).
-又设矩阵\(\B\)满足\(\B^2=\A\)，那么\[
-	\P^T\A\P = \P^T\B^2\P = \V
+又设矩阵\(\vb{B}\)满足\(\vb{B}^2=\vb{A}\)，那么\[
+	\vb{P}^T\vb{A}\vb{P} = \vb{P}^T\vb{B}^2\vb{P} = \vb{\Lambda}
 	\iff
-	\B^2 = \P\V\P^T,
+	\vb{B}^2 = \vb{P}\vb{\Lambda}\vb{P}^T,
 \]
-只需要令\(\B = \P \diag(\sqrt{\L{1}},\sqrt{\L{2}},\dotsc,\sqrt{\L{n}}) \P^T\)即可.
+只需要令\(\vb{B} = \vb{P} \diag(\sqrt{\lambda_1},\sqrt{\lambda_2},\dotsc,\sqrt{\lambda_n}) \vb{P}^T\)即可.
 \end{proof}
 \end{example}
 
 \begin{theorem}
-设\(\A\)为\(n\)阶实对称矩阵，
-\(f(\AutoTuple{x}{n}) = \x^T\A\x\)，
+设\(\vb{A}\)为\(n\)阶实对称矩阵，
+\(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}\)，
 则下列命题相互等价：\begin{itemize}
-	\item \(\A\)是半正定矩阵.
-	\item \(\A\)的特征值全是非负实数.
-	\item \(f(\AutoTuple{x}{n})\)的正惯性指数\(p\)等于\(\A\)的秩\(\rank\A\).
-	\item \(\A \cong \diag(\E_r,\vb0)\)，其中\(\E_r\)是\(r\)阶单位矩阵.
+	\item \(\vb{A}\)是半正定矩阵.
+	\item \(\vb{A}\)的特征值全是非负实数.
+	\item \(f(\AutoTuple{x}{n})\)的正惯性指数\(p\)等于\(\vb{A}\)的秩\(\rank\vb{A}\).
+	\item \(\vb{A} \cong \diag(\vb{E}_r,\vb0)\)，其中\(\vb{E}_r\)是\(r\)阶单位矩阵.
 \end{itemize}
 %TODO proof
 \end{theorem}

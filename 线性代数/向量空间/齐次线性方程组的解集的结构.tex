@@ -5,47 +5,47 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P90 性质2
 %@see: 《线性代数》（张慎语、周厚隆） P80 性质1
 %@see: 《线性代数》（张慎语、周厚隆） P81 推论
-齐次线性方程组\(\A\vb{x}=\vb0\)的解的任意线性组合也是解.
+齐次线性方程组\(\vb{A}\vb{x}=\vb0\)的解的任意线性组合也是解.
 \begin{proof}
-设\(\X1\)与\(\X2\)是齐次线性方程组\(\A\vb{x}=\vb0\)的任意两个解，
+设\(\vb{x}_1\)与\(\vb{x}_2\)是齐次线性方程组\(\vb{A}\vb{x}=\vb0\)的任意两个解，
 即\[
-	\A\X1=\vb0, \qquad
-	\A\X2=\vb0.
+	\vb{A}\vb{x}_1=\vb0, \qquad
+	\vb{A}\vb{x}_2=\vb0.
 \]
 又设\(k\)是任意常数，那么有\[
-	\A (\X1 + \X2) = \A \X1 + \A \X2 = \vb0 + \vb0 = \vb0,
+	\vb{A} (\vb{x}_1 + \vb{x}_2) = \vb{A} \vb{x}_1 + \vb{A} \vb{x}_2 = \vb0 + \vb0 = \vb0,
 \]\[
-	\A (k \X1) = k (\A \X1) = k \vb0 = \vb0,
+	\vb{A} (k \vb{x}_1) = k (\vb{A} \vb{x}_1) = k \vb0 = \vb0,
 \]
-所以\(\X1 + \X2\)与\(k \X1\)都是\(\A \x = \vb0\)的解.
+所以\(\vb{x}_1 + \vb{x}_2\)与\(k \vb{x}_1\)都是\(\vb{A} \vb{x} = \vb0\)的解.
 \end{proof}
 \end{proposition}
 
 \cref{theorem:线性方程组.齐次线性方程组的解的线性组合也是解} 表明，
-\(n\)元齐次线性方程组\(x_1\a_1+x_2\a_2+\dotsb+x_n\a_n=\vb0\)的解集\[
+\(n\)元齐次线性方程组\(x_1\vb\alpha_1+x_2\vb\alpha_2+\dotsb+x_n\vb\alpha_n=\vb0\)的解集\[
 	W = \Set{
-		\x \in K^n
+		\vb{x} \in K^n
 		\given
-		\A\vb{x}=\vb0
+		\vb{A}\vb{x}=\vb0
 	}
 \]是\(K^n\)的一个子空间.
-我们把它称为“方程组\(\A\vb{x}=\vb0\)的\DefineConcept{解空间}（space of solution）”
-或者“矩阵\(\A\)的\DefineConcept{核空间}（kernel）\footnote{有的地方
+我们把它称为“方程组\(\vb{A}\vb{x}=\vb0\)的\DefineConcept{解空间}（space of solution）”
+或者“矩阵\(\vb{A}\)的\DefineConcept{核空间}（kernel）\footnote{有的地方
 会把核空间称为\DefineConcept{零空间}（null space），
 %@see: https://mathworld.wolfram.com/NullSpace.html
 还特别把核空间的维数称为\DefineConcept{零度}（nullity），
 但是由于这个称谓容易与另一个同样叫做“零空间”但涵义是只含零空间的线性空间\(\{\vb0\}\)混淆，
 因此我们不采用这种命名方式.}”，
-并记为\(\Ker\A\).
+并记为\(\Ker\vb{A}\).
 如果这个方程组只有零解，那么\(W\)是零子空间.
 如果这个方程组有非零解，那么\(W\)是非零子空间，从而\(W\)有基.
 我们把解空间\(W\)的一个基称为这个方程组的一个\DefineConcept{基础解系}（basic set of solutions）.
 
-如果我们找到了齐次线性方程组的一个基础解系\(\{\AutoTuple{\x}{t}\}\)，
-\def\tongjie{k_1\x_1+k_2\x_2+\dotsb+k_t\x_t}%
+如果我们找到了齐次线性方程组的一个基础解系\(\{\AutoTuple{\vb{x}}{t}\}\)，
+\def\tongjie{k_1\vb{x}_1+k_2\vb{x}_2+\dotsb+k_t\vb{x}_t}%
 那么这个方程组的解集为\begin{align*}
-	W &= \Ker\A
-	= \Span\{\AutoTuple{\x}{t}\} \\
+	W &= \Ker\vb{A}
+	= \Span\{\AutoTuple{\vb{x}}{t}\} \\
 	&= \Set{ \tongjie \given \AutoTuple{k}{t} \in K }.
 \end{align*}
 我们把表达式\((\tongjie)\)称为这个方程组的\DefineConcept{通解}（general solution）.
@@ -56,34 +56,34 @@
 
 \begin{theorem}\label{theorem:线性方程组.齐次线性方程组的解向量个数}
 %@see: 《高等代数（第三版 上册）》（丘维声） P91 定理1
-数域\(K\)上\(n\)元齐次线性方程组\(\A\vb{x}=\vb0\)的解空间的维数与系数矩阵的秩
+数域\(K\)上\(n\)元齐次线性方程组\(\vb{A}\vb{x}=\vb0\)的解空间的维数与系数矩阵的秩
 满足\begin{equation}
-	\rank\A + \dim\Ker\A = n.
+	\rank\vb{A} + \dim\Ker\vb{A} = n.
 \end{equation}
 当方程组有非零解时，它的每一个基础解系所含的解向量的数目都等于\(\dim W\).
 \begin{proof}
-设\(\A\)经一系列初等行变换化为阶梯形矩阵\(\B\)，
+设\(\vb{A}\)经一系列初等行变换化为阶梯形矩阵\(\vb{B}\)，
 那么由\cref{theorem:线性方程组.初等变换不变秩} 可知\[
-	\rank\B = \rank\A = r,
+	\rank\vb{B} = \rank\vb{A} = r,
 \]
-也就是说\(\B\)的前\(r\)行向量不为零.
+也就是说\(\vb{B}\)的前\(r\)行向量不为零.
 
 不失一般性，
-设\(\B\)的第\(i\)行非零首元为\(b_{ii}\ (i=1,2,\dotsc,r)\)，则\[
-	\A \to \B = \begin{bmatrix}
-		\B_1 & \B_2 \\
+设\(\vb{B}\)的第\(i\)行非零首元为\(b_{ii}\ (i=1,2,\dotsc,r)\)，则\[
+	\vb{A} \to \vb{B} = \begin{bmatrix}
+		\vb{B}_1 & \vb{B}_2 \\
 		\vb0 & \vb0
 	\end{bmatrix},
 \]
 其中\[
-	\B_1 = \begin{bmatrix}
+	\vb{B}_1 = \begin{bmatrix}
 		b_{11} & b_{12} & \dots & b_{1r} \\
 		& b_{22} & \dots & b_{2r} \\
 		& & \ddots & \vdots \\
 		& & & b_{rr}
 	\end{bmatrix},
 	\qquad
-	\B_2 = \begin{bmatrix}
+	\vb{B}_2 = \begin{bmatrix}
 		b_{1,r+1} & \dots & b_{1n} \\
 		b_{2,r+1} & \dots & b_{2n} \\
 		\vdots & & \vdots \\
@@ -92,10 +92,10 @@
 \]
 
 记\[
-	\x = (x_1,x_2,\dotsc,x_r,x_{r+1},\dotsc,x_n)^T,
+	\vb{x} = (x_1,x_2,\dotsc,x_r,x_{r+1},\dotsc,x_n)^T,
 \]
 将自由未知量\(x_{r+1},x_{r+2},\dotsc,x_n\)的一组值\((1,0,\dotsc,0)\)代入\[
-	\B \x = \vb0,
+	\vb{B} \vb{x} = \vb0,
 \]
 去掉\(0 = 0\)的等式，
 移项得线性方程组\[
@@ -118,39 +118,39 @@
 \]
 系数行列式\(D = b_{11} b_{22} \dotsm b_{rr} \neq 0\).
 
-由克拉默法则，(1)式有唯一解，于是得\(\A\vb{x}=\vb0\)的一个解\[
-\X1 = (c_{11},c_{21},\dotsc,c_{r1},1,0,\dotsc,0)^T.
+由克拉默法则，(1)式有唯一解，于是得\(\vb{A}\vb{x}=\vb0\)的一个解\[
+\vb{x}_1 = (c_{11},c_{21},\dotsc,c_{r1},1,0,\dotsc,0)^T.
 \]
 
 同理，分别将\(x_{r+1},x_{r+2},\dotsc,x_n\)的值\((0,1,\dotsc,0),\dotsc,(0,0,\dotsc,1)\)代入\[
-	\B \x = \vb0,
+	\vb{B} \vb{x} = \vb0,
 \]
-求出\(\A\vb{x}=\vb0\)的相应的解\[
+求出\(\vb{A}\vb{x}=\vb0\)的相应的解\[
 	\begin{array}{rcl}
-		\X2 &=& (c_{12},c_{22},\dotsc,c_{r2},0,1,\dotsc,0)^T, \\
+		\vb{x}_2 &=& (c_{12},c_{22},\dotsc,c_{r2},0,1,\dotsc,0)^T, \\
 		&\vdots& \\
-		\X{n-r} &=& (c_{1,n-r},c_{2,n-r},\dotsc,c_{r,n-r},0,0,\dotsc,1)^T.
+		\vb{x}_{n-r} &=& (c_{1,n-r},c_{2,n-r},\dotsc,c_{r,n-r},0,0,\dotsc,1)^T.
 	\end{array}
 \]
 
 易见，\begin{enumerate}
-	\item \(\AutoTuple{\x}{n-r}\)是\(\A\vb{x}=\vb0\)的解；
+	\item \(\AutoTuple{\vb{x}}{n-r}\)是\(\vb{A}\vb{x}=\vb0\)的解；
 
-	\item 考虑向量方程\(k_1\X1+k_2\X2+\dotsb+k_{n-r}\X{n-r}=\vb0\)，即\[
+	\item 考虑向量方程\(k_1\vb{x}_1+k_2\vb{x}_2+\dotsb+k_{n-r}\vb{x}_{n-r}=\vb0\)，即\[
 		(l_1,l_2,\dotsc,l_r,k_1,k_2,\dotsc,k_{n-r})^T
 		= (0,0,\dotsc,0,0,\dotsc,0)^T,
 	\]
 	有\[
 		k_1 = k_2 = \dotsb = k_{n-r} = 0,
 	\]
-	即\(\AutoTuple{\x}{n-r}\)线性无关；
+	即\(\AutoTuple{\vb{x}}{n-r}\)线性无关；
 
-	\item 设\(\x=(c_1,c_2,\dotsc,c_r,k_1,k_2,\dotsc,k_{n-r})^T\)是方程组\(\A\vb{x}=\vb0\)的任意一个解，
+	\item 设\(\vb{x}=(c_1,c_2,\dotsc,c_r,k_1,k_2,\dotsc,k_{n-r})^T\)是方程组\(\vb{A}\vb{x}=\vb0\)的任意一个解，
 	则\[
-		\x - (k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r})
+		\vb{x} - (k_1 \vb{x}_1 + k_2 \vb{x}_2 + \dotsb + k_{n-r} \vb{x}_{n-r})
 		= (d_1,d_2,\dotsc,d_r,0,0,\dotsc,0)^T
 	\]是齐次方程组的解，
-	代入\(\B\vb{x}=\vb0\)，去掉\(0 = 0\)的等式，得\[
+	代入\(\vb{B}\vb{x}=\vb0\)，去掉\(0 = 0\)的等式，得\[
 		\begin{bmatrix}
 			b_{11} & b_{12} & \dots & b_{1r} \\
 			& b_{22} & \dots & b_{2r} \\
@@ -164,39 +164,38 @@
 			0 \\ 0 \\ \vdots \\ 0
 		\end{bmatrix}.
 	\]
-	因为系数行列式\(\abs{\B_1} \neq 0\)，
+	因为系数行列式\(\abs{\vb{B}_1} \neq 0\)，
 	所以\(d_1 = d_2 = \dotsb = d_r = 0\).
 	于是\[
-		\x - (k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r}) = \vb0,
+		\vb{x} - (k_1 \vb{x}_1 + k_2 \vb{x}_2 + \dotsb + k_{n-r} \vb{x}_{n-r}) = \vb0,
 	\]或\[
-		\x = k_1 \X1 + k_2 \X2 + \dotsb + k_{n-r} \X{n-r}.
+		\vb{x} = k_1 \vb{x}_1 + k_2 \vb{x}_2 + \dotsb + k_{n-r} \vb{x}_{n-r}.
 	\]
 \end{enumerate}
 
-综上所述，\(\AutoTuple{\x}{n-r}\)是\(\A\vb{x}=\vb0\)的一个基础解系，含有\(n-r\)个解向量.
+综上所述，\(\AutoTuple{\vb{x}}{n-r}\)是\(\vb{A}\vb{x}=\vb0\)的一个基础解系，含有\(n-r\)个解向量.
 \end{proof}
 \end{theorem}
 \begin{remark}
 \cref{theorem:线性方程组.齐次线性方程组的解向量个数} 的证明过程给出了
-求解齐次线性方程组\(\A\vb{x}=\vb0\)的基础解系的方法：
-\def\J{\vb{J}}
+求解齐次线性方程组\(\vb{A}\vb{x}=\vb0\)的基础解系的方法：
 \begin{enumerate}
-	\item[第一步] 把齐次线性方程组的系数矩阵\(\A\)经过初等行变换化简成行约化矩阵\(\J\).
-	\item[第二步] 从\(\J\)直接写出方程组的一般解公式.
+	\item[第一步] 把齐次线性方程组的系数矩阵\(\vb{A}\)经过初等行变换化简成行约化矩阵\(\vb{J}\).
+	\item[第二步] 从\(\vb{J}\)直接写出方程组的一般解公式.
 	\item[第三步] 在一般解公式中，每一次让一个自由未知量取值1，其余自由未知量取值0，求出方程组的一个解向量.
-	这样得到的\(n-r\)个解向量就构成方程组的一个基础解系，其中\(r=\rank\A\).
+	这样得到的\(n-r\)个解向量就构成方程组的一个基础解系，其中\(r=\rank\vb{A}\).
 \end{enumerate}
 \end{remark}
 
 \begin{corollary}
 %@see: 《线性代数》（张慎语、周厚隆） P83 推论
 %@see: 《高等代数（第三版 上册）》（丘维声） P95 习题3.7 3.
-设齐次线性方程组\(\A\vb{x}=\vb0\)的系数矩阵\(\A\)是\(s \times n\)矩阵.
-若\(\rank\A = r < n\)，
+设齐次线性方程组\(\vb{A}\vb{x}=\vb0\)的系数矩阵\(\vb{A}\)是\(s \times n\)矩阵.
+若\(\rank\vb{A} = r < n\)，
 则\begin{itemize}
-	\item \(\A\vb{x}=\vb0\)的每个基础解系都含有\(n-r\)个解向量；
-	\item \(\A\vb{x}=\vb0\)的任意\(n-r+1\)个解向量线性相关；
-	\item \(\A\vb{x}=\vb0\)的任意\(n-r\)个线性无关的解都是它的一个基础解系.
+	\item \(\vb{A}\vb{x}=\vb0\)的每个基础解系都含有\(n-r\)个解向量；
+	\item \(\vb{A}\vb{x}=\vb0\)的任意\(n-r+1\)个解向量线性相关；
+	\item \(\vb{A}\vb{x}=\vb0\)的任意\(n-r\)个线性无关的解都是它的一个基础解系.
 \end{itemize}
 \end{corollary}
 
@@ -210,9 +209,9 @@
 	\end{array} \right.
 \]的通解.
 \begin{solution}
-写出系数矩阵\(\A\)，并作初等行变换化简
+写出系数矩阵\(\vb{A}\)，并作初等行变换化简
 \begin{align*}
-	\A &= \begin{bmatrix}
+	\vb{A} &= \begin{bmatrix}
 		1 & -2 & -1 & 2 & 4 \\
 		2 & -2 & -3 & 0 & 2 \\
 		4 & -2 & -7 & -4 & -2
@@ -235,16 +234,16 @@
 		0 & 2 & -1 & -4 & -6 \\
 		0 & 0 & 0 & 0 & 0
 	\end{bmatrix}
-	= \B,
+	= \vb{B},
 \end{align*}
-因为\(\rank\A=\rank\B=2\)，所以基础解系含\(5-2=3\)个向量.
-分别将\(x_3,x_4,x_5\)的3组值\((2,0,0),(0,1,0),(0,0,1)\)代入\(\B\vb{x}=\vb0\)，
+因为\(\rank\vb{A}=\rank\vb{B}=2\)，所以基础解系含\(5-2=3\)个向量.
+分别将\(x_3,x_4,x_5\)的3组值\((2,0,0),(0,1,0),(0,0,1)\)代入\(\vb{B}\vb{x}=\vb0\)，
 得基础解系：\[
-	\X1 = (4,1,2,0,0)^T, \quad
-	\X2 = (2,2,0,1,0)^T, \quad
-	\X3 = (2,3,0,0,1)^T.
+	\vb{x}_1 = (4,1,2,0,0)^T, \quad
+	\vb{x}_2 = (2,2,0,1,0)^T, \quad
+	\vb{x}_3 = (2,3,0,0,1)^T.
 \]
-原方程组的通解为\(k_1 \X1 + k_2 \X2 + k_3 \X3\)，其中\(k_1,k_2,k_3\)为任意常数.
+原方程组的通解为\(k_1 \vb{x}_1 + k_2 \vb{x}_2 + k_3 \vb{x}_3\)，其中\(k_1,k_2,k_3\)为任意常数.
 \end{solution}
 %@Mathematica: A = {{1, -2, -1, 2, 4}, {2, -2, -3, 0, 2}, {4, -2, -7, -4, -2}}
 %@Mathematica: RowReduce[A]
@@ -255,77 +254,77 @@
 \subsection{线性方程有公共解的条件}
 \begin{proposition}
 %@see: 《线性代数》（张慎语、周厚隆） P85 习题4.5 6(2)
-设\(\A,\B \in M_{s \times n}(K)\)，
+设\(\vb{A},\vb{B} \in M_{s \times n}(K)\)，
 则\begin{equation*}
-	\text{$\A\vb{x}=\vb0$的解都是$\B\vb{x}=\vb0$的解}
+	\text{$\vb{A}\vb{x}=\vb0$的解都是$\vb{B}\vb{x}=\vb0$的解}
 	\implies
-	\rank\A \geq \rank\B.
+	\rank\vb{A} \geq \rank\vb{B}.
 \end{equation*}
 \begin{proof}
-假设\(\A\vb{x}=\vb0\)的解都是\(\B\vb{x}=\vb0\)的解，
-即\(\Ker\A \subseteq \Ker\B \subseteq K^n\).
+假设\(\vb{A}\vb{x}=\vb0\)的解都是\(\vb{B}\vb{x}=\vb0\)的解，
+即\(\Ker\vb{A} \subseteq \Ker\vb{B} \subseteq K^n\).
 由\cref{theorem:向量空间.两个非零子空间的关系1,theorem:线性方程组.齐次线性方程组的解向量个数} 可知\begin{equation*}
-	%\rank\A + \dim\Ker\A = n.
-	n - \rank\A = \dim\Ker\A \leq \dim\Ker\B = n - \rank\B.
+	%\rank\vb{A} + \dim\Ker\vb{A} = n.
+	n - \rank\vb{A} = \dim\Ker\vb{A} \leq \dim\Ker\vb{B} = n - \rank\vb{B}.
 \end{equation*}
-即\(\rank\B \leq \rank\A\).
+即\(\rank\vb{B} \leq \rank\vb{A}\).
 \end{proof}
 \end{proposition}
 
 %@see: [两个线性方程组的公共解与同解](https://zhuanlan.zhihu.com/p/665121966)
 \begin{definition}
-设\(\A,\B \in M_{s \times n}(K)\)，
+设\(\vb{A},\vb{B} \in M_{s \times n}(K)\)，
 \(\vb\beta_1,\vb\beta_2 \in K^s\).
 \begin{itemize}
 	\item 如果存在\(\vb{x}_0 \in K^n\)，
 	使得\[
-		\A \vb{x}_0 = \vb\beta_1
+		\vb{A} \vb{x}_0 = \vb\beta_1
 		\quad\text{和}\quad
-		\B \vb{x}_0 = \vb\beta_2
+		\vb{B} \vb{x}_0 = \vb\beta_2
 	\]同时成立，
-	则称“\(\A \vb{x} = \vb\beta_1\)与\(\B \vb{x} = \vb\beta_2\)有\DefineConcept{公共解}”
-	或者“\(\vb{x}_0\)是\(\A \vb{x} = \vb\beta_1\)与\(\B \vb{x} = \vb\beta_2\)的一个\DefineConcept{公共解}”.
+	则称“\(\vb{A} \vb{x} = \vb\beta_1\)与\(\vb{B} \vb{x} = \vb\beta_2\)有\DefineConcept{公共解}”
+	或者“\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb\beta_1\)与\(\vb{B} \vb{x} = \vb\beta_2\)的一个\DefineConcept{公共解}”.
 
 	\item 如果存在\(\vb{x}_0 \in K^n-\{\vb0\}\)，
 	使得\[
-		\A \vb{x}_0 = \vb0
+		\vb{A} \vb{x}_0 = \vb0
 		\quad\text{和}\quad
-		\B \vb{x}_0 = \vb0
+		\vb{B} \vb{x}_0 = \vb0
 	\]同时成立，
-	则称“\(\A \vb{x} = \vb0\)与\(\B \vb{x} = \vb0\)有\DefineConcept{非零公共解}”
-	或者“\(\vb{x}_0\)是\(\A \vb{x} = \vb0\)与\(\B \vb{x} = \vb0\)的一个\DefineConcept{非零公共解}”.
+	则称“\(\vb{A} \vb{x} = \vb0\)与\(\vb{B} \vb{x} = \vb0\)有\DefineConcept{非零公共解}”
+	或者“\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb0\)与\(\vb{B} \vb{x} = \vb0\)的一个\DefineConcept{非零公共解}”.
 \end{itemize}
 \end{definition}
 
 \begin{proposition}
-设\(\A,\B \in M_{s \times n}(K)\)，
+设\(\vb{A},\vb{B} \in M_{s \times n}(K)\)，
 则\begin{align*}
-	\text{\(\A\vb{x}=\vb0\)与\(\B\vb{x}=\vb0\)有非零公共解}
+	\text{\(\vb{A}\vb{x}=\vb0\)与\(\vb{B}\vb{x}=\vb0\)有非零公共解}
 	&\iff
 	\text{$\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	\vb{x}
 	= \vb0$有非零解} \\
 	&\iff
 	\rank\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	< n.
 \end{align*}
 \begin{proof}
 %@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9}
-首先，假设\(\A\vb{x}=\vb0\)与\(\B\vb{x}=\vb0\)有非零公共解\(\vb{x}_0\)，
-即成立\(\A\vb{x}_0=\vb0,
-\B\vb{x}_0=\vb0\)，
+首先，假设\(\vb{A}\vb{x}=\vb0\)与\(\vb{B}\vb{x}=\vb0\)有非零公共解\(\vb{x}_0\)，
+即成立\(\vb{A}\vb{x}_0=\vb0,
+\vb{B}\vb{x}_0=\vb0\)，
 那么\begin{equation*}
 	\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	\vb{x}_0
 	= \begin{bmatrix}
-		\A \vb{x}_0 \\
-		\B \vb{x}_0
+		\vb{A} \vb{x}_0 \\
+		\vb{B} \vb{x}_0
 	\end{bmatrix}
 	= \begin{bmatrix}
 		\vb0_{s\times1} \\
@@ -335,19 +334,19 @@
 \end{equation*}
 
 反过来，假设\(\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}
 \vb{x}
 = \vb0_{(2s)\times1}\)有非零解\(\vb{x}_0\)，
 即\(\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}
 \vb{x}_0
 = \vb0_{(2s)\times1}\)，
 于是\begin{equation*}
 	\begin{bmatrix}
-		\A \vb{x}_0 \\
-		\B \vb{x}_0
+		\vb{A} \vb{x}_0 \\
+		\vb{B} \vb{x}_0
 	\end{bmatrix}
 	= \begin{bmatrix}
 		\vb0_{s\times1} \\
@@ -359,12 +358,12 @@
 \end{proposition}
 
 \begin{corollary}
-设\(\A,\B \in M_{s \times n}(K)\)，
+设\(\vb{A},\vb{B} \in M_{s \times n}(K)\)，
 \(\vb\beta_1,\vb\beta_2 \in K^s\)，
 则\begin{align*}
-	\text{$\A\vb{x}=\vb\beta_1$与$\B\vb{x}=\vb\beta_2$有公共解}
+	\text{$\vb{A}\vb{x}=\vb\beta_1$与$\vb{B}\vb{x}=\vb\beta_2$有公共解}
 	&\iff \text{$\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	\vb{x}
 	= \begin{bmatrix}
@@ -373,26 +372,26 @@
 	\end{bmatrix}$有解} \\
 	&\iff
 	\rank\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \vb\beta_1 \\
-		\B & \vb\beta_2
+		\vb{A} & \vb\beta_1 \\
+		\vb{B} & \vb\beta_2
 	\end{bmatrix}.
 \end{align*}
 \begin{proof}
 %@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9}
-假设\(\A\vb{x}=\vb\beta_1\)与\(\B\vb{x}=\vb\beta_2\)有公共解\(\vb{x}_0\)，
-即成立\(\A \vb{x}_0 = \vb\beta_1,
-\B \vb{x}_0 = \vb\beta_2\)，
+假设\(\vb{A}\vb{x}=\vb\beta_1\)与\(\vb{B}\vb{x}=\vb\beta_2\)有公共解\(\vb{x}_0\)，
+即成立\(\vb{A} \vb{x}_0 = \vb\beta_1,
+\vb{B} \vb{x}_0 = \vb\beta_2\)，
 那么\begin{equation*}
 	\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	\vb{x}_0
 	= \begin{bmatrix}
-		\A \vb{x}_0 \\
-		\B \vb{x}_0
+		\vb{A} \vb{x}_0 \\
+		\vb{B} \vb{x}_0
 	\end{bmatrix}
 	= \begin{bmatrix}
 		\vb\beta_1 \\
@@ -401,7 +400,7 @@
 \end{equation*}
 
 假设\(\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}
 \vb{x}
 = \begin{bmatrix}
@@ -409,19 +408,19 @@
 	\vb\beta_2
 \end{bmatrix}\)有解\(\vb{x}_0\)，
 即\(\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}
 \vb{x}_0
 = \begin{bmatrix}
 	\vb\beta_1 \\
 	\vb\beta_2
 \end{bmatrix}\)，
-于是\(\A \vb{x}_0 = \vb\beta_1,
-\A \vb{x}_0 = \vb\beta_2\).
+于是\(\vb{A} \vb{x}_0 = \vb\beta_1,
+\vb{A} \vb{x}_0 = \vb\beta_2\).
 
 由\cref{theorem:向量空间.线性方程组有解判别定理} 可知，
 \(\text{$\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}
 \vb{x}
 = \begin{bmatrix}
@@ -430,11 +429,11 @@
 \end{bmatrix}$有解}
 \iff
 \rank\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}
 = \rank\begin{bmatrix}
-	\A & \vb\beta_1 \\
-	\B & \vb\beta_2
+	\vb{A} & \vb\beta_1 \\
+	\vb{B} & \vb\beta_2
 \end{bmatrix}\).
 \end{proof}
 \end{corollary}
@@ -542,174 +541,172 @@
 
 \subsection{线性方程同解的条件}
 \begin{proposition}
-设\(\A,\B \in M_{s \times n}(K)\)，
+设\(\vb{A},\vb{B} \in M_{s \times n}(K)\)，
 则\begin{align*}
-	\text{$\A\vb{x}=\vb0$与$\B\vb{x}=\vb0$同解}
+	\text{$\vb{A}\vb{x}=\vb0$与$\vb{B}\vb{x}=\vb0$同解}
 	&\iff
-	\text{$\A\vb{x}=\vb0$、
-	$\B\vb{x}=\vb0$
+	\text{$\vb{A}\vb{x}=\vb0$、
+	$\vb{B}\vb{x}=\vb0$
 	与$\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	\vb{x}
 	= \vb0$同解} \\
 	&\iff
-	\rank\A
-	= \rank\B
+	\rank\vb{A}
+	= \rank\vb{B}
 	= \rank\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix} \\
 	&\iff
-	\text{$\A$的行向量组与$\B$的行向量组等价}.
+	\text{$\vb{A}$的行向量组与$\vb{B}$的行向量组等价}.
 \end{align*}
 %TODO proof
 \end{proposition}
 
 \begin{proposition}
-设\(\A,\B \in M_{s \times n}(K)\)，
+设\(\vb{A},\vb{B} \in M_{s \times n}(K)\)，
 \(\vb\beta_1,\vb\beta_2 \in K^s\)，
-方程\(\A\vb{x}=\vb\beta_1\)和\(\B\vb{x}=\vb\beta_2\)都有解，
+方程\(\vb{A}\vb{x}=\vb\beta_1\)和\(\vb{B}\vb{x}=\vb\beta_2\)都有解，
 则\begin{align*}
-	&\text{$\A\vb{x}=\vb\beta_1$与$\B\vb{x}=\vb\beta_2$同解} \\
+	&\text{$\vb{A}\vb{x}=\vb\beta_1$与$\vb{B}\vb{x}=\vb\beta_2$同解} \\
 	&\iff
-	\text{$\A\vb{x}=\vb0$与$\B\vb{x}=\vb0$同解，
-	且$\A\vb{x}=\vb\beta_1$与$\B\vb{x}=\vb\beta_2$有公共解} \\
+	\text{$\vb{A}\vb{x}=\vb0$与$\vb{B}\vb{x}=\vb0$同解，
+	且$\vb{A}\vb{x}=\vb\beta_1$与$\vb{B}\vb{x}=\vb\beta_2$有公共解} \\
 	&\iff
-	\rank\A = \rank\B
+	\rank\vb{A} = \rank\vb{B}
 	= \rank\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \vb\beta_1 \\
-		\B & \vb\beta_2
+		\vb{A} & \vb\beta_1 \\
+		\vb{B} & \vb\beta_2
 	\end{bmatrix} \\
 	&\iff
-	\text{$(\A,\vb\beta_1)$的行向量组与$(\B,\vb\beta_2)$的行向量组等价}.
+	\text{$(\vb{A},\vb\beta_1)$的行向量组与$(\vb{B},\vb\beta_2)$的行向量组等价}.
 \end{align*}
 %TODO proof
 %\cref{example:向量空间.等秩矩阵的行向量组的等价性}
 \end{proposition}
 
 \begin{proposition}\label{theorem:线性方程组.同解方程组的系数矩阵的秩相同}
-设\(\A,\B \in M_{s \times n}(K)\)，
-则“\(\A\vb{x}=\vb0\)与\(\B\vb{x}=\vb0\)同解”
-是“\(\rank\A=\rank\B\)”的充分不必要条件.
+设\(\vb{A},\vb{B} \in M_{s \times n}(K)\)，
+则“\(\vb{A}\vb{x}=\vb0\)与\(\vb{B}\vb{x}=\vb0\)同解”
+是“\(\rank\vb{A}=\rank\vb{B}\)”的充分不必要条件.
 \begin{proof}
-假设\(\A\vb{x}=\vb0\)与\(\B\vb{x}=\vb0\)同解，
-那么方程\(\A\vb{x}=\vb0\)的解空间与\(\B\vb{x}=\vb0\)的解空间相同，
+假设\(\vb{A}\vb{x}=\vb0\)与\(\vb{B}\vb{x}=\vb0\)同解，
+那么方程\(\vb{A}\vb{x}=\vb0\)的解空间与\(\vb{B}\vb{x}=\vb0\)的解空间相同，
 那么由\cref{theorem:线性方程组.齐次线性方程组的解向量个数}
-有\(n-\rank\A=n-\rank\B\)，\(\rank\A=\rank\B\).
+有\(n-\rank\vb{A}=n-\rank\vb{B}\)，\(\rank\vb{A}=\rank\vb{B}\).
 
 反过来，
-取\(\A = (1,0),
-\B = (0,1)\).
-显然\(\rank\A = \rank\B = 1\).
-但是线性方程组\(\A\vb{x}=\vb0\)的解是\(k_1(0,1)^T\ (\text{$k_1$是常数})\)，
-而\(\B\vb{x}=\vb0\)的解是\(k_2(1,0)^T\ (\text{$k_2$是常数})\).
+取\(\vb{A} = (1,0),
+\vb{B} = (0,1)\).
+显然\(\rank\vb{A} = \rank\vb{B} = 1\).
+但是线性方程组\(\vb{A}\vb{x}=\vb0\)的解是\(k_1(0,1)^T\ (\text{$k_1$是常数})\)，
+而\(\vb{B}\vb{x}=\vb0\)的解是\(k_2(1,0)^T\ (\text{$k_2$是常数})\).
 \end{proof}
 \end{proposition}
 
 \begin{example}
 %@see: 《2022年全国硕士研究生入学统一考试（数学一）》一选择题/第6题/选项(D)
-设矩阵\(\A,\B \in M_n(K)\).
-举例说明：即便方程\(\A \vb{x} = \vb0\)与\(\B \vb{x} = \vb0\)同解，
-但是方程\(\A \B \vb{x} = \vb0\)与\(\B \A \vb{x} = \vb0\)不同解.
+设矩阵\(\vb{A},\vb{B} \in M_n(K)\).
+举例说明：即便方程\(\vb{A} \vb{x} = \vb0\)与\(\vb{B} \vb{x} = \vb0\)同解，
+但是方程\(\vb{A} \vb{B} \vb{x} = \vb0\)与\(\vb{B} \vb{A} \vb{x} = \vb0\)不同解.
 \begin{solution}
-取\(\A = \begin{bmatrix}
+取\(\vb{A} = \begin{bmatrix}
 	0 & 1 \\
 	0 & 0
 \end{bmatrix},
-\B = \begin{bmatrix}
+\vb{B} = \begin{bmatrix}
 	0 & 1 \\
 	0 & 1
 \end{bmatrix}\)，
 则\begin{equation*}
-	\A \B = \begin{bmatrix}
+	\vb{A} \vb{B} = \begin{bmatrix}
 		0 & 1 \\
 		0 & 0
 	\end{bmatrix},
 	\qquad
-	\B \A = \begin{bmatrix}
+	\vb{B} \vb{A} = \begin{bmatrix}
 		0 & 0 \\
 		0 & 0
 	\end{bmatrix},
 \end{equation*}
-既然\(\rank(\A \B) = 1 \neq \rank(\B \A) = 0\)，
-所以方程\(\A \B \vb{x} = \vb0\)与\(\B \A \vb{x} = \vb0\)不同解.
+既然\(\rank(\vb{A} \vb{B}) = 1 \neq \rank(\vb{B} \vb{A}) = 0\)，
+所以方程\(\vb{A} \vb{B} \vb{x} = \vb0\)与\(\vb{B} \vb{A} \vb{x} = \vb0\)不同解.
 \end{solution}
 \end{example}
 
 \begin{proposition}\label{theorem:线性方程组.同解方程组.特例1}
-设\(\A \in M_{s \times n}(K),
-\B \in M_{n \times m}(K)\)，
+设\(\vb{A} \in M_{s \times n}(K),
+\vb{B} \in M_{n \times m}(K)\)，
 则\[
-	\text{$(\A\B)\vb{x}=\vb0$与$\B\vb{x}=\vb0$同解}
+	\text{$(\vb{A}\vb{B})\vb{x}=\vb0$与$\vb{B}\vb{x}=\vb0$同解}
 	\iff
-	\rank(\A\B)=\rank\B.
+	\rank(\vb{A}\vb{B})=\rank\vb{B}.
 \]
 \begin{proof}
 充分性.
 由\cref{theorem:线性方程组.同解方程组的系数矩阵的秩相同} 可知\[
-	\text{$(\A\B)\vb{x}=\vb0$与$\B\vb{x}=\vb0$同解}
+	\text{$(\vb{A}\vb{B})\vb{x}=\vb0$与$\vb{B}\vb{x}=\vb0$同解}
 	\implies
-	\rank(\A\B)=\rank\B.
+	\rank(\vb{A}\vb{B})=\rank\vb{B}.
 \]
 
 必要性.
-设\(\vb\xi\)是\(\B\vb{x}=\vb0\)的一个解，
-即\(\B\vb\xi=\vb0\)，
-那么左乘\(\A\)便得\(\A\B\vb\xi=\vb0\)，
-这就说明\(\vb\xi\)也是\((\A\B)\vb{x}=\vb0\)的一个解.
+设\(\vb\xi\)是\(\vb{B}\vb{x}=\vb0\)的一个解，
+即\(\vb{B}\vb\xi=\vb0\)，
+那么左乘\(\vb{A}\)便得\(\vb{A}\vb{B}\vb\xi=\vb0\)，
+这就说明\(\vb\xi\)也是\((\vb{A}\vb{B})\vb{x}=\vb0\)的一个解.
 由于\(\vb\xi\)的任意性，
-所以\(\B\vb{x}=\vb0\)的解都是\((\A\B)\vb{x}=\vb0\)的解，
+所以\(\vb{B}\vb{x}=\vb0\)的解都是\((\vb{A}\vb{B})\vb{x}=\vb0\)的解，
 也就是说\[
-	\Ker\B
+	\Ker\vb{B}
 	\subseteq
-	\Ker(\A\B).
+	\Ker(\vb{A}\vb{B}).
 \]
-因为\(\rank(\A\B)=\rank\B\)，
+因为\(\rank(\vb{A}\vb{B})=\rank\vb{B}\)，
 所以由\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 可知\[
-	\dim(\Ker(\A\B))
-	=\dim(\Ker\B).
+	\dim(\Ker(\vb{A}\vb{B}))
+	=\dim(\Ker\vb{B}).
 \]
 因此由\cref{theorem:向量空间.两个非零子空间的关系2} 可知\[
-	\Ker\B
-	=\Ker(\A\B),
+	\Ker\vb{B}
+	=\Ker(\vb{A}\vb{B}),
 \]
-也就是说\(\A\B\vb{x}=\vb0\)与\(\B\vb{x}=\vb0\)同解.
+也就是说\(\vb{A}\vb{B}\vb{x}=\vb0\)与\(\vb{B}\vb{x}=\vb0\)同解.
 \end{proof}
 \end{proposition}
 \begin{remark}
 由\cref{theorem:线性方程组.同解方程组.特例1,theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 可知
-如果\(\A\)是列满秩矩阵，
-那么\((\A\B)\vb{x}=\vb0\)与\(\B\vb{x}=\vb0\)同解.
+如果\(\vb{A}\)是列满秩矩阵，
+那么\((\vb{A}\vb{B})\vb{x}=\vb0\)与\(\vb{B}\vb{x}=\vb0\)同解.
 \end{remark}
 %@see: https://www.bilibili.com/video/BV1eYqHYnE7B/
 
 \begin{example}\label{example:线性方程组.左乘系数矩阵的转置矩阵同解}
 %@see: 《高等代数（第三版 上册）》（丘维声） P122 命题2
-设\(\A\in M_{s \times n}(\mathbb{R})\).
-证明：齐次线性方程组\(\A\x=\z\)与\((\A^T\A)\x=\z\)同解.
+设\(\vb{A}\in M_{s \times n}(\mathbb{R})\).
+证明：齐次线性方程组\(\vb{A}\vb{x}=\vb0\)与\((\vb{A}^T\vb{A})\vb{x}=\vb0\)同解.
 \begin{proof}
-\def\a{\vb{\xi}}
-\def\b{\vb{\eta}}
-设\(\a\)是\(\A\x=\z\)的任意一个解，
-则\(\A\a=\z\)，于是\[
-	(\A^T\A)\a=\A^T(\A\a)=\A^T\z=\z,
+设\(\vb\xi\)是\(\vb{A}\vb{x}=\vb0\)的任意一个解，
+则\(\vb{A}\vb\xi=\vb0\)，于是\[
+	(\vb{A}^T\vb{A})\vb\xi=\vb{A}^T(\vb{A}\vb\xi)=\vb{A}^T\vb0=\vb0,
 \]
-这就是说\(\a\)是\((\A^T\A)\x=\z\)的一个解.
+这就是说\(\vb\xi\)是\((\vb{A}^T\vb{A})\vb{x}=\vb0\)的一个解.
 
-又设\(\b\)是\((\A^T\A)\x=\z\)的任意一个解，
+又设\(\vb\eta\)是\((\vb{A}^T\vb{A})\vb{x}=\vb0\)的任意一个解，
 则\[
-	(\A^T\A)\b=\z.
+	(\vb{A}^T\vb{A})\vb\eta=\vb0.
 	\eqno(1)
 \]
-在(1)式等号两边同时左乘\(\b^T\)得\[
-	\b^T(\A^T\A)\b=(\A\b)^T(\A\b)=0.
+在(1)式等号两边同时左乘\(\vb\eta^T\)得\[
+	\vb\eta^T(\vb{A}^T\vb{A})\vb\eta=(\vb{A}\vb\eta)^T(\vb{A}\vb\eta)=0.
 	\eqno(2)
 \]
 
-假设\(\A\b=(\AutoTuple{c}{s})^T\in\mathbb{R}^s\).
+假设\(\vb{A}\vb\eta=(\AutoTuple{c}{s})^T\in\mathbb{R}^s\).
 由(2)式有\[
 	(\AutoTuple{c}{s}) (\AutoTuple{c}{s})^T
 	= \AutoTuple{c}{n}[+][2]
@@ -717,77 +714,77 @@
 \]
 由于\(\AutoTuple{c}{n}\in\mathbb{R}\)，
 所以\(\AutoTuple{c}{n}[=]=0\)，
-\(\A\b=\z\)，
-这就是说\(\b\)是\(\A\x=\z\)的一个解.
+\(\vb{A}\vb\eta=\vb0\)，
+这就是说\(\vb\eta\)是\(\vb{A}\vb{x}=\vb0\)的一个解.
 
-综上所述，\((\A^T\A)\x=\z\)与\(\A\x=\z\)同解.
+综上所述，\((\vb{A}^T\vb{A})\vb{x}=\vb0\)与\(\vb{A}\vb{x}=\vb0\)同解.
 \end{proof}
 \end{example}
 \begin{example}
-%@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9} 指出\((\A\A^T)\vb{x}=\vb0\)与\(\A\vb{x}=\vb0\)不一定同解
-设\(\A \in M_n(K)\)，\(\A^T\)是\(\A\)的转置矩阵.
-举例说明：\((\A\A^T)\vb{x}=\vb0\)与\(\A\vb{x}=\vb0\)不同解.
+%@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9} 指出\((\vb{A}\vb{A}^T)\vb{x}=\vb0\)与\(\vb{A}\vb{x}=\vb0\)不一定同解
+设\(\vb{A} \in M_n(K)\)，\(\vb{A}^T\)是\(\vb{A}\)的转置矩阵.
+举例说明：\((\vb{A}\vb{A}^T)\vb{x}=\vb0\)与\(\vb{A}\vb{x}=\vb0\)不同解.
 \begin{solution}
 %@Mathematica: A = {{0, 1}, {0, 0}}
 %@Mathematica: Transpose[A]
 %@Mathematica: A.Transpose[A]
-取\(\A = \begin{bmatrix}
+取\(\vb{A} = \begin{bmatrix}
 	0 & 1 \\
 	0 & 0
 \end{bmatrix}\)，
-则\(\A^T = \begin{bmatrix}
+则\(\vb{A}^T = \begin{bmatrix}
 	0 & 0 \\
 	1 & 0
 \end{bmatrix},
-\A \A^T = \begin{bmatrix}
+\vb{A} \vb{A}^T = \begin{bmatrix}
 	1 & 0 \\
 	0 & 0
 \end{bmatrix}\)，
 可以解得\begin{gather*}
-	\Ker\A = \Set{ k (1,0)^T \given k \in K }, \\
-	\Ker(\A \A^T) = \Ker\A^T = \Set{ k (0,1)^T \given k \in K }.
+	\Ker\vb{A} = \Set{ k (1,0)^T \given k \in K }, \\
+	\Ker(\vb{A} \vb{A}^T) = \Ker\vb{A}^T = \Set{ k (0,1)^T \given k \in K }.
 \end{gather*}
 \end{solution}
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P122 命题2
-设\(\A \in M_{s \times n}(\mathbb{R})\).
+设\(\vb{A} \in M_{s \times n}(\mathbb{R})\).
 求证：\begin{equation}\label{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩}
-	\rank\A = \rank(\A \A^T) = \rank(\A^T \A).
+	\rank\vb{A} = \rank(\vb{A} \vb{A}^T) = \rank(\vb{A}^T \vb{A}).
 \end{equation}
 \begin{proof}
 由\cref{example:线性方程组.左乘系数矩阵的转置矩阵同解} 可知
-\(\A \vb{x} = \vb0\)与\((\A^T \A) \vb{x} = \vb0\)同解，
+\(\vb{A} \vb{x} = \vb0\)与\((\vb{A}^T \vb{A}) \vb{x} = \vb0\)同解，
 所以由\cref{theorem:线性方程组.同解方程组的系数矩阵的秩相同} 可知
-\(\rank\A = \rank(\A^T \A)\).
+\(\rank\vb{A} = \rank(\vb{A}^T \vb{A})\).
 又由\cref{theorem:向量空间.转置不变秩} 可知
-\(\rank(\A \A^T)
-= \rank[(\A^T)^T (\A^T)]
-= \rank\A^T
-= \rank\A\).
+\(\rank(\vb{A} \vb{A}^T)
+= \rank[(\vb{A}^T)^T (\vb{A}^T)]
+= \rank\vb{A}^T
+= \rank\vb{A}\).
 \end{proof}
 \end{example}
 \begin{remark}
 应该注意到\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 成立的前提条件是：
-矩阵\(\A\)是实矩阵.
-如果矩阵\(\A\)不是实矩阵，\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 就不一定成立.
-例如，取矩阵\(\A = \begin{bmatrix}
+矩阵\(\vb{A}\)是实矩阵.
+如果矩阵\(\vb{A}\)不是实矩阵，\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 就不一定成立.
+例如，取矩阵\(\vb{A} = \begin{bmatrix}
 	1 & \iu \\
 	0 & 0
 \end{bmatrix}
 \in M_2(\mathbb{C})\)，
-易见\(\A \A^T = \begin{bmatrix}
+易见\(\vb{A} \vb{A}^T = \begin{bmatrix}
 	0 & 0 \\
 	0 & 0
 \end{bmatrix}\)，
-于是\(\rank\A=1\)而\(\rank(\A\A^T)=0\)，
-也就是说\(\rank\A\neq\rank(\A\A^T)\).
+于是\(\rank\vb{A}=1\)而\(\rank(\vb{A}\vb{A}^T)=0\)，
+也就是说\(\rank\vb{A}\neq\rank(\vb{A}\vb{A}^T)\).
 \end{remark}
 \begin{example}
 %@see: 《高等代数与解析几何（上册）》（盛为民、李方） P193 本章拓展题 2.
-设\(\A \in M_{s \times n}(\mathbb{C})\).
+设\(\vb{A} \in M_{s \times n}(\mathbb{C})\).
 求证：\begin{equation}
-	\rank\A = \rank(\A \A^H) = \rank(\A^H \A).
+	\rank\vb{A} = \rank(\vb{A} \vb{A}^H) = \rank(\vb{A}^H \vb{A}).
 \end{equation}
 %TODO
 \end{example}

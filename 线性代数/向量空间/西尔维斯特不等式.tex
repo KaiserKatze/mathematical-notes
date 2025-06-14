@@ -1,87 +1,87 @@
 \section{西尔维斯特不等式}
 \begin{theorem}
-设\(\A \in M_{s \times n}(K),
-\B \in M_{n \times t}(K)\)，
+设\(\vb{A} \in M_{s \times n}(K),
+\vb{B} \in M_{n \times t}(K)\)，
 则\begin{equation}\label{equation:线性方程组.西尔维斯特不等式}
-	\rank\A + \rank\B - n \leq \rank(\A\B).
+	\rank\vb{A} + \rank\vb{B} - n \leq \rank(\vb{A}\vb{B}).
 \end{equation}
 当且仅当\[
 	\rank\begin{bmatrix}
-		\A & \vb0 \\
-		\E_n & \B
+		\vb{A} & \vb0 \\
+		\vb{E}_n & \vb{B}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \B
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{B}
 	\end{bmatrix}
 \]时，
 \cref{equation:线性方程组.西尔维斯特不等式} 取“=”号.
 \begin{proof}
 由\cref{equation:矩阵的秩.分块矩阵的秩的等式1}，\[
 	\rank\begin{bmatrix}
-		\E_n & \z \\
-		\z & \A\B
+		\vb{E}_n & \vb0 \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix}
-	= n + \rank(\A\B).
+	= n + \rank(\vb{A}\vb{B}).
 	\eqno(1)
 \]
 又因为\[
 	\begin{bmatrix}
-		\B & \E_n \\
-		\z & \A
+		\vb{B} & \vb{E}_n \\
+		\vb0 & \vb{A}
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E_n & \z \\
-		\A & \E_s
+		\vb{E}_n & \vb0 \\
+		\vb{A} & \vb{E}_s
 	\end{bmatrix}
 	\begin{bmatrix}
-		\E_n & \z \\
-		\z & \A\B
+		\vb{E}_n & \vb0 \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\E_n & -\B \\
-		\z & \E_t
+		\vb{E}_n & -\vb{B} \\
+		\vb0 & \vb{E}_t
 	\end{bmatrix}
 	\begin{bmatrix}
-		\z & \E_s \\
-		-\E_t & \z
+		\vb0 & \vb{E}_s \\
+		-\vb{E}_t & \vb0
 	\end{bmatrix},
 \]
 而\[
 	\begin{bmatrix}
-		\E_n & \z \\
-		\A & \E_s
+		\vb{E}_n & \vb0 \\
+		\vb{A} & \vb{E}_s
 	\end{bmatrix}, \qquad
 	\begin{bmatrix}
-		\E_n & -\B \\
-		\z & \E_t
+		\vb{E}_n & -\vb{B} \\
+		\vb0 & \vb{E}_t
 	\end{bmatrix},
 	\quad\text{和}\quad
 	\begin{bmatrix}
-		\z & \E_s \\
-		-\E_t & \z
+		\vb0 & \vb{E}_s \\
+		-\vb{E}_t & \vb0
 	\end{bmatrix}
 \]这三个矩阵都是满秩矩阵，
 所以\[
 	\rank\begin{bmatrix}
-		\E_n & \z \\
-		\z & \A\B
+		\vb{E}_n & \vb0 \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\B & \E_n \\
-		\z & \A
+		\vb{B} & \vb{E}_n \\
+		\vb0 & \vb{A}
 	\end{bmatrix}.
 	\eqno(2)
 \]
 再由\cref{equation:矩阵的秩.分块矩阵的秩的不等式} 有\[
 	\rank\begin{bmatrix}
-		\B & \E_n \\
-		\z & \A
+		\vb{B} & \vb{E}_n \\
+		\vb0 & \vb{A}
 	\end{bmatrix}
-	\geq \rank\A+\rank\B.
+	\geq \rank\vb{A}+\rank\vb{B}.
 	\eqno(3)
 \]
-因此，\(\rank\A + \rank\B \leq n + \rank(\A\B)\).
+因此，\(\rank\vb{A} + \rank\vb{B} \leq n + \rank(\vb{A}\vb{B})\).
 %@see: https://math.stackexchange.com/a/2414197/591741
 %@see: http://www.m-hikari.com/imf-password2009/33-36-2009/luIMF33-36-2009.pdf
 \end{proof}
@@ -92,26 +92,26 @@
 称为\DefineConcept{西尔维斯特不等式}（Sylvester rank inequality）.
 
 \begin{example}\label{example:西尔维斯特不等式.可逆矩阵的正整数次幂可逆}
-设\(\A \in M_n(K)\)是可逆矩阵.
-证明：\(\A^m\ (m=2,3,\dotsc)\)都是可逆矩阵.
+设\(\vb{A} \in M_n(K)\)是可逆矩阵.
+证明：\(\vb{A}^m\ (m=2,3,\dotsc)\)都是可逆矩阵.
 \begin{proof}
-首先证明\(\A^2\)是可逆矩阵.
+首先证明\(\vb{A}^2\)是可逆矩阵.
 由\cref{theorem:线性方程组.矩阵乘积的秩} 可知
-\(\rank\A^2 \leq \rank\A = n\).
+\(\rank\vb{A}^2 \leq \rank\vb{A} = n\).
 再由\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}可知
-\(\rank\A^2 \geq 2\rank\A - n = n\).
-因此\(\rank\A^2 = n\).
-接下来运用数学归纳法容易证得\(\rank\A^m = n\ (m=2,3,\dotsc)\).
+\(\rank\vb{A}^2 \geq 2\rank\vb{A} - n = n\).
+因此\(\rank\vb{A}^2 = n\).
+接下来运用数学归纳法容易证得\(\rank\vb{A}^m = n\ (m=2,3,\dotsc)\).
 \end{proof}
 \end{example}
 
 \begin{example}\label{example:矩阵乘积的秩.乘积为零的两个矩阵的秩之和}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 1.
-设\(\A \in M_{s \times n}(K),
-\B \in M_{n \times m}(K)\).
-如果\(\A\B=\vb0\)，
+设\(\vb{A} \in M_{s \times n}(K),
+\vb{B} \in M_{n \times m}(K)\).
+如果\(\vb{A}\vb{B}=\vb0\)，
 那么\[
-	\rank\A + \rank\B \leq n.
+	\rank\vb{A} + \rank\vb{B} \leq n.
 \]
 \begin{proof}
 由\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}立即可得.
@@ -120,27 +120,27 @@
 
 我们可以利用\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}证明一个重要结论：
 \begin{proposition}\label{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩}
-设\(\A \in M_{m \times s}(K),
-\B \in M_{s \times n}(K)\).
+设\(\vb{A} \in M_{m \times s}(K),
+\vb{B} \in M_{s \times n}(K)\).
 \begin{itemize}
-	\item 如果\(\A\)是列满秩矩阵，则\(\rank(\A\B) = \rank\B\).
-	\item 如果\(\B\)是行满秩矩阵，则\(\rank(\A\B) = \rank\A\).
+	\item 如果\(\vb{A}\)是列满秩矩阵，则\(\rank(\vb{A}\vb{B}) = \rank\vb{B}\).
+	\item 如果\(\vb{B}\)是行满秩矩阵，则\(\rank(\vb{A}\vb{B}) = \rank\vb{A}\).
 \end{itemize}
 \begin{proof}
-假设\(\A\)是列满秩矩阵，
-即\(\rank\A = s\).
+假设\(\vb{A}\)是列满秩矩阵，
+即\(\rank\vb{A} = s\).
 由\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}有\[
-	\rank(\A\B) \geq \rank\B + \rank\A - s
-	= \rank\B. % 代入\(\rank\A = s\)
+	\rank(\vb{A}\vb{B}) \geq \rank\vb{B} + \rank\vb{A} - s
+	= \rank\vb{B}. % 代入\(\rank\vb{A} = s\)
 	\eqno(1)
 \]
 又由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\[
-	\rank(\A\B) \leq \rank\B.
+	\rank(\vb{A}\vb{B}) \leq \rank\vb{B}.
 	\eqno(2)
 \]
-由(1)(2)两式便有\(\rank(\A\B) = \rank\B\).
+由(1)(2)两式便有\(\rank(\vb{A}\vb{B}) = \rank\vb{B}\).
 
-同理可证：如果\(\B\)是行满秩矩阵，则\(\rank(\A\B) = \rank\A\).
+同理可证：如果\(\vb{B}\)是行满秩矩阵，则\(\rank(\vb{A}\vb{B}) = \rank\vb{A}\).
 \end{proof}
 \end{proposition}
 \begin{remark}
@@ -149,138 +149,138 @@
 用一个行满秩矩阵右乘它，也不变秩.
 %@credit: {439f21f7-fd12-4996-b112-dcbb8b467950} 给出逆命题不成立的反例
 但是要注意\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 的逆命题并不成立，
-只要取\(\A = \B = \vb0\)，就有\(\rank(\A \B) = \rank\A = \rank\B = 0\)，
-但是零矩阵\(\A,\B\)显然既不是列满秩矩阵也不是行满秩矩阵.
-%@credit: {523653db-1ec1-4b3a-972f-e44311ded599} 给出了条件增强后逆命题仍不成立的反例（\(\A = \B\)是一个幂等矩阵）
+只要取\(\vb{A} = \vb{B} = \vb0\)，就有\(\rank(\vb{A} \vb{B}) = \rank\vb{A} = \rank\vb{B} = 0\)，
+但是零矩阵\(\vb{A},\vb{B}\)显然既不是列满秩矩阵也不是行满秩矩阵.
+%@credit: {523653db-1ec1-4b3a-972f-e44311ded599} 给出了条件增强后逆命题仍不成立的反例（\(\vb{A} = \vb{B}\)是一个幂等矩阵）
 %@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9} 给出了下面用到的具体的幂等矩阵
-即便增加一个条件 --- “\(\rank(\A \B)\neq0\)”，
+即便增加一个条件 --- “\(\rank(\vb{A} \vb{B})\neq0\)”，
 也不能断定\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 的逆命题一定成立，
-这是因为只要取\(\A = \B
+这是因为只要取\(\vb{A} = \vb{B}
 = \begin{bmatrix}
 	1 & 0 \\
 	0 & 0
 \end{bmatrix}\)
-（实际上对于任意一个不满秩的\hyperref[definition:幂等矩阵.幂等矩阵的定义]{幂等矩阵}~\(\A\)，
+（实际上对于任意一个不满秩的\hyperref[definition:幂等矩阵.幂等矩阵的定义]{幂等矩阵}~\(\vb{A}\)，
 逆命题始终不成立），
-就有\(\A \B = \A\)，
-从而有\(\rank(\A \B) = \rank\A = \rank\B\)，
-但是\(\A,\B\)显然既不是列满秩矩阵也不是行满秩矩阵.
+就有\(\vb{A} \vb{B} = \vb{A}\)，
+从而有\(\rank(\vb{A} \vb{B}) = \rank\vb{A} = \rank\vb{B}\)，
+但是\(\vb{A},\vb{B}\)显然既不是列满秩矩阵也不是行满秩矩阵.
 % 我们只要把\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 中的各个矩阵转置，
-% 得到\(\A_1 = \A^T \in M_{n \times s}(K),
-% \B_1 = \B^T \in M_{s \times m}(K),
-% \A_1\B_1 = \A^T\B^T = (\B\A)^T\)，
-% 易见\(\B_1\)是行满秩矩阵，且\[
-% 	\rank(\A_1\B_1)
-% 	= \rank(\B\A)^T
-% 	= \rank(\B\A)
-% 	= \rank\A
-% 	= \rank\A^T.
+% 得到\(\vb{A}_1 = \vb{A}^T \in M_{n \times s}(K),
+% \vb{B}_1 = \vb{B}^T \in M_{s \times m}(K),
+% \vb{A}_1\vb{B}_1 = \vb{A}^T\vb{B}^T = (\vb{B}\vb{A})^T\)，
+% 易见\(\vb{B}_1\)是行满秩矩阵，且\[
+% 	\rank(\vb{A}_1\vb{B}_1)
+% 	= \rank(\vb{B}\vb{A})^T
+% 	= \rank(\vb{B}\vb{A})
+% 	= \rank\vb{A}
+% 	= \rank\vb{A}^T.
 % \]
 \end{remark}
 \begin{corollary}\label{theorem:西尔维斯特不等式.分块矩阵的秩的等式3}
 %@see: 《2018年全国硕士研究生入学统一考试（数学一）》一选择题/第6题
-设\(\A \in M_{m \times n}(K),
-\B \in M_{n \times t}(K),
-\C \in M_{s \times m}(K)\)，
+设\(\vb{A} \in M_{m \times n}(K),
+\vb{B} \in M_{n \times t}(K),
+\vb{C} \in M_{s \times m}(K)\)，
 则\begin{gather*}
 	\rank\begin{bmatrix}
-		\A \\
-		\C \A
+		\vb{A} \\
+		\vb{C} \vb{A}
 	\end{bmatrix}
-	= \rank\A, \\
-	\rank(\A,\A \B)
-	= \rank\A.
+	= \rank\vb{A}, \\
+	\rank(\vb{A},\vb{A} \vb{B})
+	= \rank\vb{A}.
 \end{gather*}
 \begin{proof}
 由\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 立即可得.
 \end{proof}
 \end{corollary}
 \begin{example}
-设\(\A \in M_{m \times n}(K),
-\B \in M_{n \times t}(K)\).
-举例说明：\(\rank(\A,\B \A) \neq \rank\A\).
+设\(\vb{A} \in M_{m \times n}(K),
+\vb{B} \in M_{n \times t}(K)\).
+举例说明：\(\rank(\vb{A},\vb{B} \vb{A}) \neq \rank\vb{A}\).
 \begin{solution}
 取\[
 %@Mathematica: A = {{1, 0}, {0, 0}}
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		1 & 0 \\
 		0 & 0
 	\end{bmatrix},
 	\qquad
 %@Mathematica: B = {{1, 0}, {1, 1}}
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		1 & 0 \\
 		1 & 1
 	\end{bmatrix},
 \]
 那么\[
 %@Mathematica: B.A
-	\B \A = \begin{bmatrix}
+	\vb{B} \vb{A} = \begin{bmatrix}
 		1 & 0 \\
 		1 & 0
 	\end{bmatrix},
 	\qquad
 %@Mathematica: Join[A, B.A, 2]
-	(\A,\B \A) = \begin{bmatrix}
+	(\vb{A},\vb{B} \vb{A}) = \begin{bmatrix}
 		1 & 0 & 1 & 0 \\
 		0 & 0 & 1 & 0
 	\end{bmatrix},
 \]
 %@Mathematica: MatrixRank[Join[A, B.A, 2]]
 %@Mathematica: MatrixRank[A]
-于是\(\rank(\A,\B \A) = 2 \neq 1 = \rank\A\).
+于是\(\rank(\vb{A},\vb{B} \vb{A}) = 2 \neq 1 = \rank\vb{A}\).
 \end{solution}
 \end{example}
 \begin{example}\label{example:向量空间.等秩矩阵的行向量组的等价性}
-设\(\A \in M_{s \times n}(K),
-\B \in M_{m \times n}(K)\)，
-且\(\rank\A
+设\(\vb{A} \in M_{s \times n}(K),
+\vb{B} \in M_{m \times n}(K)\)，
+且\(\rank\vb{A}
 = \rank\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\)，
-则\(\A\)的行向量组的任意一个极大线性无关组
+则\(\vb{A}\)的行向量组的任意一个极大线性无关组
 都是\(\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\)的行向量组的极大线性无关组.
 \begin{proof}
 \begin{proof}[证法一]
 %@credit: {5a781423-ba4e-4629-ac1a-eac743a4d445},{5f4d2f8a-fc8b-4798-85d6-98670f6761e7},{6f21d9e6-edca-4b6f-9dff-364f3d62dcce}
-设\(A' = \AutoTuple{\vb\alpha}{r}\)是\(\A\)的行向量组的一个极大线性无关组.
+设\(A' = \AutoTuple{\vb\alpha}{r}\)是\(\vb{A}\)的行向量组的一个极大线性无关组.
 用反证法.
-假设\(\B\)的某一个行向量\(\vb\beta\)不可以由\(A'\)线性表出，
+假设\(\vb{B}\)的某一个行向量\(\vb\beta\)不可以由\(A'\)线性表出，
 即向量组\(A' \cup \{\vb\beta\}\)线性无关，
 那么\begin{equation*}
 	\rank\begin{bmatrix}
-		\A \\ \B
+		\vb{A} \\ \vb{B}
 	\end{bmatrix}
 	\geq \card(A' \cup \{\vb\beta\})
 	= r + 1,
 \end{equation*}
 与题设矛盾！
-因此\(\B\)的行向量组可以由\(A'\)线性表出，
+因此\(\vb{B}\)的行向量组可以由\(A'\)线性表出，
 \(A'\)是\(\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\)的极大线性无关组.
 \end{proof}
 \begin{proof}[证法二]
 %@credit: {6c964576-9569-472e-969e-54699e35974b}
-显然\(\A\)的行向量组张成的空间\(\SpanR\A\)是\(\begin{bmatrix}
-	\A \\ \B
+显然\(\vb{A}\)的行向量组张成的空间\(\SpanR\vb{A}\)是\(\begin{bmatrix}
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\)的行向量组张成的空间\(\SpanR\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\)的子集.
-因为\(\rank\A
+因为\(\rank\vb{A}
 = \rank\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\)，
 所以由\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 可知
-\(\dim\SpanR\A
+\(\dim\SpanR\vb{A}
 = \dim\SpanR\begin{bmatrix}
-	\A \\ \B
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\).
 再由\cref{theorem:向量空间.两个非零子空间的关系2} 可知
-\(\SpanR\A = \SpanR\begin{bmatrix}
-	\A \\ \B
+\(\SpanR\vb{A} = \SpanR\begin{bmatrix}
+	\vb{A} \\ \vb{B}
 \end{bmatrix}\).
 \end{proof}\let\qed\relax
 \end{proof}
@@ -288,124 +288,124 @@
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 2.
-设\(\A\)是数域\(K\)上的\(n\)阶非零矩阵.
-证明：“存在一个\(n \times m\)非零矩阵\(\B\)，使得\(\A\B=\vb0\)”的充分必要条件为
-\(\abs{\A}=0\).
+设\(\vb{A}\)是数域\(K\)上的\(n\)阶非零矩阵.
+证明：“存在一个\(n \times m\)非零矩阵\(\vb{B}\)，使得\(\vb{A}\vb{B}=\vb0\)”的充分必要条件为
+\(\abs{\vb{A}}=0\).
 \begin{proof}
 %@credit: {8b6edada-f2fd-4ae5-9020-eb533149a54c},{c5f76621-34f0-4114-845f-e36475300576},{5f4d2f8a-fc8b-4798-85d6-98670f6761e7},{ce603838-a24d-4616-9395-d7b223e8cb72}
 必要性.
-假设存在一个\(n \times m\)非零矩阵\(\B\)，使得\(\A\B=\vb0\).
-那么只要任取\(\B\)的一个非零列向量\(\vb\beta\)，
-就有\(\A\vb\beta = \vb0\)，
-即\(\vb\beta\)是齐次方程\(\A\vb{x}=\vb0\)的非零解，
-故\(\rank\A<n\)，
-从而有\(\abs{\A}=0\).
+假设存在一个\(n \times m\)非零矩阵\(\vb{B}\)，使得\(\vb{A}\vb{B}=\vb0\).
+那么只要任取\(\vb{B}\)的一个非零列向量\(\vb\beta\)，
+就有\(\vb{A}\vb\beta = \vb0\)，
+即\(\vb\beta\)是齐次方程\(\vb{A}\vb{x}=\vb0\)的非零解，
+故\(\rank\vb{A}<n\)，
+从而有\(\abs{\vb{A}}=0\).
 
 充分性.
-假设\(\abs{\A}=0\)，
-则\(\rank\A = r < n\)，
-在\(\A\)的核空间\(\Ker\A\)中
+假设\(\abs{\vb{A}}=0\)，
+则\(\rank\vb{A} = r < n\)，
+在\(\vb{A}\)的核空间\(\Ker\vb{A}\)中
 任取一个非零向量\(\vb\beta\)，
-% 从而成立\(\A\vb\beta=\vb0\)，
-构成一个\(n \times m\)矩阵\(\B\)，
-使得\(\B\)的每一列都是\(\vb\beta\)，
-那么\(\A\B=\vb0\).
+% 从而成立\(\vb{A}\vb\beta=\vb0\)，
+构成一个\(n \times m\)矩阵\(\vb{B}\)，
+使得\(\vb{B}\)的每一列都是\(\vb\beta\)，
+那么\(\vb{A}\vb{B}=\vb0\).
 \end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 3.
-设\(\A\)是数域\(K\)上的\(n\)阶方阵，
-\(\B\)是数域\(K\)上的\(n \times m\)行满秩矩阵，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+设\(\vb{A}\)是数域\(K\)上的\(n\)阶方阵，
+\(\vb{B}\)是数域\(K\)上的\(n \times m\)行满秩矩阵，
+\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
 证明：\begin{itemize}
-	\item 如果\(\A\B=\vb0\)，则\(\A=\vb0\).
-	\item 如果\(\A\B=\B\)，则\(\A=\E\).
+	\item 如果\(\vb{A}\vb{B}=\vb0\)，则\(\vb{A}=\vb0\).
+	\item 如果\(\vb{A}\vb{B}=\vb{B}\)，则\(\vb{A}=\vb{E}\).
 \end{itemize}
 \begin{proof}
-因为\(\B\)是行满秩矩阵，
+因为\(\vb{B}\)是行满秩矩阵，
 由\cref{theorem:向量空间.用列满秩矩阵左乘任一矩阵不变秩} 可知，
-\(\rank(\A\B) = \rank\A\).
-假设\(\A\B=\vb0\)，
+\(\rank(\vb{A}\vb{B}) = \rank\vb{A}\).
+假设\(\vb{A}\vb{B}=\vb0\)，
 则\[
-	\rank\A=\rank(\A\B)=\rank\vb0=0,
+	\rank\vb{A}=\rank(\vb{A}\vb{B})=\rank\vb0=0,
 \]
 那么由\cref{theorem:向量空间.秩为零的矩阵必为零矩阵} 可知，
-\(\A=\vb0\).
+\(\vb{A}=\vb0\).
 
-假设\(\A\B=\B\)，
-则\((\A-\E)\B=\vb0\)，
-那么由上述结论可知\(\A-\E=\vb0\)，
-因此\(\A=\E\).
+假设\(\vb{A}\vb{B}=\vb{B}\)，
+则\((\vb{A}-\vb{E})\vb{B}=\vb0\)，
+那么由上述结论可知\(\vb{A}-\vb{E}=\vb0\)，
+因此\(\vb{A}=\vb{E}\).
 \end{proof}
 \end{example}
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 9.
-设矩阵\(\A \in M_n(K)\ (n\geq2)\)，\(\A^*\)是\(\A\)的伴随矩阵.
+设矩阵\(\vb{A} \in M_n(K)\ (n\geq2)\)，\(\vb{A}^*\)是\(\vb{A}\)的伴随矩阵.
 证明：\begin{equation}\label{equation:伴随矩阵.伴随矩阵的秩}
-	\rank\A^* = \left\{ \begin{array}{cl}
-		n, & \rank\A=n, \\
-		1, & \rank\A=n-1, \\
-		0, & \rank\A<n-1.
+	\rank\vb{A}^* = \left\{ \begin{array}{cl}
+		n, & \rank\vb{A}=n, \\
+		1, & \rank\vb{A}=n-1, \\
+		0, & \rank\vb{A}<n-1.
 	\end{array} \right.
 \end{equation}
 \begin{proof}
 根据恒等式 \labelcref{equation:行列式.伴随矩阵.恒等式1} 有\[
-	\A \A^* = \abs{\A} \E,
+	\vb{A} \vb{A}^* = \abs{\vb{A}} \vb{E},
 	\eqno(1)
 \]
 于是\[
-	\abs{\A \A^*} = \abs{\abs{\A} \E}.
+	\abs{\vb{A} \vb{A}^*} = \abs{\abs{\vb{A}} \vb{E}}.
 	\eqno(2)
 \]
 根据\cref{theorem:行列式.矩阵乘积的行列式}，
 (2)式左边可以分解为\[
-	\abs{\A \A^*} = \abs{\A} \abs{\A^*}.
+	\abs{\vb{A} \vb{A}^*} = \abs{\vb{A}} \abs{\vb{A}^*}.
 \]
 根据\cref{theorem:行列式.性质2.推论2}，
 (2)式右边可以分解为\[
-	\abs{\abs{\A} \E} = \abs{\A}^n \abs{\E} = \abs{\A}^n.
+	\abs{\abs{\vb{A}} \vb{E}} = \abs{\vb{A}}^n \abs{\vb{E}} = \abs{\vb{A}}^n.
 \]
 于是我们得到\[
-	\abs{\A} \abs{\A^*} = \abs{\A}^n.
+	\abs{\vb{A}} \abs{\vb{A}^*} = \abs{\vb{A}}^n.
 	\eqno(3)
 \]
 
-下面我们根据矩阵\(\A\)的秩的取值分类讨论.
+下面我们根据矩阵\(\vb{A}\)的秩的取值分类讨论.
 \begin{enumerate}
-	\item 当\(\rank\A = n\)时，
-	由\cref{theorem:向量空间.满秩方阵的行列式非零} 有\(\abs{\A} \neq 0\)；
+	\item 当\(\rank\vb{A} = n\)时，
+	由\cref{theorem:向量空间.满秩方阵的行列式非零} 有\(\abs{\vb{A}} \neq 0\)；
 	于是(3)式可化简得\[
-		\abs{\A^*}
-		= \abs{\A}^{n-1} \neq 0,
+		\abs{\vb{A}^*}
+		= \abs{\vb{A}}^{n-1} \neq 0,
 	\]
-	再次利用\cref{theorem:向量空间.满秩方阵的行列式非零} 便知\(\rank\A^* = n\).
+	再次利用\cref{theorem:向量空间.满秩方阵的行列式非零} 便知\(\rank\vb{A}^* = n\).
 
-	\item 当\(\rank\A = n-1\)时，
-	因为\(\rank\A<n\)，
-	所以\(\abs{\A} = 0\)，
-	那么由(1)式可知\(\A \A^* = \z\)，
+	\item 当\(\rank\vb{A} = n-1\)时，
+	因为\(\rank\vb{A}<n\)，
+	所以\(\abs{\vb{A}} = 0\)，
+	那么由(1)式可知\(\vb{A} \vb{A}^* = \vb0\)，
 	那么利用\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}便得\[
-		\rank\A + \rank\A^* \leq n,
+		\rank\vb{A} + \rank\vb{A}^* \leq n,
 	\]
 	移项得\[
-		\rank\A^*
-		\leq n - \rank\A
+		\rank\vb{A}^*
+		\leq n - \rank\vb{A}
 		= n - (n-1)
 		= 1.
 	\]
 	又因为\(n > 1\)，
-	\(\rank\A = n-1 > 0\)，
-	根据矩阵的秩的定义，\(\A\)有一个\(n-1\)阶子式不等于零，
-	再根据伴随矩阵的定义，这个子式是\(\A^*\)的一个元素，从而\(\A^*\neq\z\)，
-	\(\rank\A^*>0\).
-	因此\(\rank\A^* = 1\).
+	\(\rank\vb{A} = n-1 > 0\)，
+	根据矩阵的秩的定义，\(\vb{A}\)有一个\(n-1\)阶子式不等于零，
+	再根据伴随矩阵的定义，这个子式是\(\vb{A}^*\)的一个元素，从而\(\vb{A}^*\neq\vb0\)，
+	\(\rank\vb{A}^*>0\).
+	因此\(\rank\vb{A}^* = 1\).
 
-	\item 当\(\rank\A < n-1\)时，
-	\(\A\)的所有\(n-1\)阶子式全为零，
-	也就是说\(\A\)的任意一个元素的代数余子式为零，
-	根据伴随矩阵的定义，\(\A^* = \z\)，
-	因此\(\rank\A^* = 0\).
+	\item 当\(\rank\vb{A} < n-1\)时，
+	\(\vb{A}\)的所有\(n-1\)阶子式全为零，
+	也就是说\(\vb{A}\)的任意一个元素的代数余子式为零，
+	根据伴随矩阵的定义，\(\vb{A}^* = \vb0\)，
+	因此\(\rank\vb{A}^* = 0\).
 	\qedhere
 \end{enumerate}
 \end{proof}
@@ -415,29 +415,29 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 8.
 %@see: 《高等代数学习指导书（第三版）》（姚慕生、谢启鸿） P63 例2.26
 \begin{equation}\label{equation:伴随矩阵.伴随矩阵的行列式}
-	\abs{\A^*}
-	= \abs{\A}^{n-1}.
+	\abs{\vb{A}^*}
+	= \abs{\vb{A}}^{n-1}.
 \end{equation}
 \end{remark}
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 10.
 %@see: 《高等代数学习指导书（第三版）》（姚慕生、谢启鸿） P64 例2.27
-设矩阵\(\A \in M_n(K)\ (n\geq2)\)，\(\A^*\)是\(\A\)的伴随矩阵.
+设矩阵\(\vb{A} \in M_n(K)\ (n\geq2)\)，\(\vb{A}^*\)是\(\vb{A}\)的伴随矩阵.
 证明：\begin{equation}\label{equation:伴随矩阵.伴随矩阵的伴随}
-	(\A^*)^* = \left\{ \begin{array}{cl}
-		\abs{\A}^{n-2} \A, & n\geq3, \\
-		\A, & n=2.
+	(\vb{A}^*)^* = \left\{ \begin{array}{cl}
+		\abs{\vb{A}}^{n-2} \vb{A}, & n\geq3, \\
+		\vb{A}, & n=2.
 	\end{array} \right.
 \end{equation}
 \begin{proof}
 当\(n=2\)时，
-设\(\A = \begin{bmatrix}
+设\(\vb{A} = \begin{bmatrix}
 	a_{11} & a_{12} \\
 	a_{21} & a_{22}
 \end{bmatrix}\)，
 那么\[
-	\A^* = \begin{bmatrix}
+	\vb{A}^* = \begin{bmatrix}
 		A_{11} & A_{21} \\
 		A_{12} & A_{22}
 	\end{bmatrix}
@@ -447,78 +447,78 @@
 	\end{bmatrix}.
 \]
 从而\[
-	(\A^*)^* = \begin{bmatrix}
+	(\vb{A}^*)^* = \begin{bmatrix}
 		a_{11} & a_{12} \\
 		a_{21} & a_{22}
 	\end{bmatrix}
-	= \A.
+	= \vb{A}.
 \]
 
-下面证明当\(n\geq3\)时，成立\((\A^*)^* = \abs{\A}^{n-2} \A\).
+下面证明当\(n\geq3\)时，成立\((\vb{A}^*)^* = \abs{\vb{A}}^{n-2} \vb{A}\).
 
-假设\(\A\)可逆.
+假设\(\vb{A}\)可逆.
 那么由\cref{theorem:逆矩阵.逆矩阵的唯一性}
-可知\(\A^* = \abs{\A} \A^{-1}\).
+可知\(\vb{A}^* = \abs{\vb{A}} \vb{A}^{-1}\).
 由\cref{equation:伴随矩阵.伴随矩阵的行列式}
-可知\(\abs{\A^*} = \abs{\A}^{n-1}\).
+可知\(\abs{\vb{A}^*} = \abs{\vb{A}}^{n-1}\).
 由\cref{theorem:逆矩阵.伴随矩阵的逆与逆矩阵的伴随}
-可知\((\A^*)^{-1} = \abs{\A}^{-1} \A\).
+可知\((\vb{A}^*)^{-1} = \abs{\vb{A}}^{-1} \vb{A}\).
 于是\begin{align*}
-	(\A^*)^*
-	&= \abs{\A^*} (\A^*)^{-1} \\
-	&= \abs{\A}^{n-1} \cdot \abs{\A}^{-1} \A \\
-	&= \abs{\A}^{n-2} \A
+	(\vb{A}^*)^*
+	&= \abs{\vb{A}^*} (\vb{A}^*)^{-1} \\
+	&= \abs{\vb{A}}^{n-1} \cdot \abs{\vb{A}}^{-1} \vb{A} \\
+	&= \abs{\vb{A}}^{n-2} \vb{A}
 	\quad(n\geq2).
 \end{align*}
 
-假设\(\A\)不可逆，即\(\rank\A<n\)，
+假设\(\vb{A}\)不可逆，即\(\rank\vb{A}<n\)，
 那么由\cref{equation:伴随矩阵.伴随矩阵的秩}
-可知\(\rank\A^* \leq 1 < 2 \leq n-1\)，
-从而\(\rank(\A^*)^* = 0\)，
-即\((\A^*)^* = \vb0\).
-这时\(\abs{\A}=0\)，
-因此\((\A^*)^* = \abs{\A}^{n-2} \A\)仍然成立.
+可知\(\rank\vb{A}^* \leq 1 < 2 \leq n-1\)，
+从而\(\rank(\vb{A}^*)^* = 0\)，
+即\((\vb{A}^*)^* = \vb0\).
+这时\(\abs{\vb{A}}=0\)，
+因此\((\vb{A}^*)^* = \abs{\vb{A}}^{n-2} \vb{A}\)仍然成立.
 \end{proof}
 \end{example}
 
 我们还可以将\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}进行如下的推广.
 \begin{theorem}
-设\(\A \in M_{s \times n}(K),
-\B \in M_{n \times m}(K),
-\C \in M_{m \times t}(K)\)，
+设\(\vb{A} \in M_{s \times n}(K),
+\vb{B} \in M_{n \times m}(K),
+\vb{C} \in M_{m \times t}(K)\)，
 则\begin{equation}\label{equation:线性方程组.弗罗贝尼乌斯不等式}
-	\rank(\A\B\C) \geq \rank(\A\B) + \rank(\B\C) - \rank\B.
+	\rank(\vb{A}\vb{B}\vb{C}) \geq \rank(\vb{A}\vb{B}) + \rank(\vb{B}\vb{C}) - \rank\vb{B}.
 \end{equation}
 \begin{proof}
 利用初等变换，有\[
 	\begin{bmatrix}
-		\B & \z \\
-		\z & \A\B\C
+		\vb{B} & \vb0 \\
+		\vb0 & \vb{A}\vb{B}\vb{C}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\B & \z \\
-		\A\B & \A\B\C
+		\vb{B} & \vb0 \\
+		\vb{A}\vb{B} & \vb{A}\vb{B}\vb{C}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\B & -\B\C \\
-		\A\B & \z
+		\vb{B} & -\vb{B}\vb{C} \\
+		\vb{A}\vb{B} & \vb0
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\B\C & \B \\
-		\z & \A\B
+		\vb{B}\vb{C} & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix},
 \]
 于是\[
-	\rank\B + \rank(\A\B\C)
+	\rank\vb{B} + \rank(\vb{A}\vb{B}\vb{C})
 	= \rank\begin{bmatrix}
-		\B & \z \\
-		\z & \A\B\C
+		\vb{B} & \vb0 \\
+		\vb0 & \vb{A}\vb{B}\vb{C}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\B\C & \B \\
-		\z & \A\B
+		\vb{B}\vb{C} & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix}
-	\geq \rank(\A\B) + \rank(\B\C).
+	\geq \rank(\vb{A}\vb{B}) + \rank(\vb{B}\vb{C}).
 	\qedhere
 \]
 \end{proof}
@@ -529,26 +529,26 @@
 
 \begin{example}
 %@see: 《2025年全国硕士研究生入学统一考试（数学一）》一选择题/第7题
-设\(n\)阶矩阵\(\A,\B,\C\)满足
-\(\rank\A + \rank\B + \rank\C = \rank(\A\B\C) + 2n\).
+设\(n\)阶矩阵\(\vb{A},\vb{B},\vb{C}\)满足
+\(\rank\vb{A} + \rank\vb{B} + \rank\vb{C} = \rank(\vb{A}\vb{B}\vb{C}) + 2n\).
 证明：\begin{gather*}
-	\rank(\A\B\C) + n = \rank(\A\B) + \rank\C, \\
-	\rank(\A\B) + n = \rank\A + \rank\B.
+	\rank(\vb{A}\vb{B}\vb{C}) + n = \rank(\vb{A}\vb{B}) + \rank\vb{C}, \\
+	\rank(\vb{A}\vb{B}) + n = \rank\vb{A} + \rank\vb{B}.
 \end{gather*}
 \begin{proof}
 由\hyperref[equation:线性方程组.西尔维斯特不等式]{西尔维斯特不等式}
-\(\rank\A + \rank\B - n \leq \rank(\A\B)\)可知\begin{gather*}
-	\rank(\A\B\C) + n
-	\geq \rank(\A\B) + \rank\C, \\
-	\rank(\A\B\C) + n
-	= (\rank\A + \rank\B - n) + \rank\C
-	\leq \rank(\A\B) + \rank\C,
+\(\rank\vb{A} + \rank\vb{B} - n \leq \rank(\vb{A}\vb{B})\)可知\begin{gather*}
+	\rank(\vb{A}\vb{B}\vb{C}) + n
+	\geq \rank(\vb{A}\vb{B}) + \rank\vb{C}, \\
+	\rank(\vb{A}\vb{B}\vb{C}) + n
+	= (\rank\vb{A} + \rank\vb{B} - n) + \rank\vb{C}
+	\leq \rank(\vb{A}\vb{B}) + \rank\vb{C},
 \end{gather*}
-从而有\(\rank(\A\B\C) + n = \rank(\A\B) + \rank\C\)，
+从而有\(\rank(\vb{A}\vb{B}\vb{C}) + n = \rank(\vb{A}\vb{B}) + \rank\vb{C}\)，
 进而有\begin{equation*}
-	\rank(\A\B) + n
-	= \rank(\A\B\C) + n - \rank\C + n
-	= \rank\A + \rank\B.
+	\rank(\vb{A}\vb{B}) + n
+	= \rank(\vb{A}\vb{B}\vb{C}) + n - \rank\vb{C} + n
+	= \rank\vb{A} + \rank\vb{B}.
 	\qedhere
 \end{equation*}
 \end{proof}
@@ -556,52 +556,52 @@
 
 \begin{example}\label{example:对合矩阵.对合矩阵的秩的性质1}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 4.
-设\(\A\)是数域\(K\)上的\(n\)阶对合矩阵，
-即有\(\A^2=\E\)，
+设\(\vb{A}\)是数域\(K\)上的\(n\)阶对合矩阵，
+即有\(\vb{A}^2=\vb{E}\)，
 则\[
-	\rank(\E+\A)+\rank(\E-\A)=n.
+	\rank(\vb{E}+\vb{A})+\rank(\vb{E}-\vb{A})=n.
 \]
 \begin{proof}
 因为利用初等变换可以得到\begin{align*}
 	&\hspace{-20pt}
 	\begin{bmatrix}
-		\E+\A & \z \\
-		\z & \E-\A
+		\vb{E}+\vb{A} & \vb0 \\
+		\vb0 & \vb{E}-\vb{A}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\E+\A & \z \\
-		\A(\E+\A) & \E-\A
+		\vb{E}+\vb{A} & \vb0 \\
+		\vb{A}(\vb{E}+\vb{A}) & \vb{E}-\vb{A}
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E+\A & \z \\
-		\A+\E & \E-\A
+		\vb{E}+\vb{A} & \vb0 \\
+		\vb{A}+\vb{E} & \vb{E}-\vb{A}
 	\end{bmatrix} \\
 	&\to \begin{bmatrix}
-		\E+\A & \E-\A \\
-		\z & \z
+		\vb{E}+\vb{A} & \vb{E}-\vb{A} \\
+		\vb0 & \vb0
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\E+\A & 2\E \\
-		\z & \z
+		\vb{E}+\vb{A} & 2\vb{E} \\
+		\vb0 & \vb0
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\E+\A & \E \\
-		\z & \z
+		\vb{E}+\vb{A} & \vb{E} \\
+		\vb0 & \vb0
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\A & \E \\
-		\z & \z
+		\vb{A} & \vb{E} \\
+		\vb0 & \vb0
 	\end{bmatrix},
 \end{align*}
 所以\[
-	\rank(\E+\A)+\rank(\E-\A)
+	\rank(\vb{E}+\vb{A})+\rank(\vb{E}-\vb{A})
 	=\rank\begin{bmatrix}
-		\E+\A & \z \\
-		\z & \E-\A
+		\vb{E}+\vb{A} & \vb0 \\
+		\vb0 & \vb{E}-\vb{A}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \E \\
-		\z & \z
+		\vb{A} & \vb{E} \\
+		\vb0 & \vb0
 	\end{bmatrix}
 	= n.
 	\qedhere
@@ -611,123 +611,123 @@
 
 \begin{example}\label{example:幂等矩阵.幂等矩阵的秩的性质1}
 %@see: 《高等代数（第三版 上册）》（丘维声） P143 习题4.5 5.
-设\(\A\)是数域\(K\)上的\(n\)阶幂等矩阵，
-即有\(\A^2=\A\).
+设\(\vb{A}\)是数域\(K\)上的\(n\)阶幂等矩阵，
+即有\(\vb{A}^2=\vb{A}\).
 证明：\[
-	\rank\A+\rank(\E-\A)=n.
+	\rank\vb{A}+\rank(\vb{E}-\vb{A})=n.
 \]
 \begin{proof}
 由于\[
-	\A^2=\A
+	\vb{A}^2=\vb{A}
 	\iff
-	\A^2-\A=\z
+	\vb{A}^2-\vb{A}=\vb0
 	\iff
-	\rank(\A^2-\A)=0.
+	\rank(\vb{A}^2-\vb{A})=0.
 \]
 又因为利用初等变换可以得到\[
 	\begin{bmatrix}
-		\A & \z \\
-		\z & \E_n-\A
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{E}_n-\vb{A}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\A & \z \\
-		\A & \E_n-\A
+		\vb{A} & \vb0 \\
+		\vb{A} & \vb{E}_n-\vb{A}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\A & \A \\
-		\A & \E_n
+		\vb{A} & \vb{A} \\
+		\vb{A} & \vb{E}_n
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\A-\A^2 & \z \\
-		\A & \E_n
+		\vb{A}-\vb{A}^2 & \vb0 \\
+		\vb{A} & \vb{E}_n
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\A-\A^2 & \z \\
-		\z & \E_n
+		\vb{A}-\vb{A}^2 & \vb0 \\
+		\vb0 & \vb{E}_n
 	\end{bmatrix},
 \]
-所以\(\rank\A+\rank(\E_n-\A)
-=\rank(\A-\A^2)+n
+所以\(\rank\vb{A}+\rank(\vb{E}_n-\vb{A})
+=\rank(\vb{A}-\vb{A}^2)+n
 =n\).
 \end{proof}
 \end{example}
 
 \begin{example}\label{example:单位矩阵与两矩阵乘积之差.单位矩阵与两矩阵乘积之差的秩}
-设\(\A \in M_{m \times n}(K),
-\B \in M_{n \times m}(K)\).
+设\(\vb{A} \in M_{m \times n}(K),
+\vb{B} \in M_{n \times m}(K)\).
 证明：\[
-	\rank(\E_m-\A\B)-\rank(\E_n-\B\A)=m-n.
+	\rank(\vb{E}_m-\vb{A}\vb{B})-\rank(\vb{E}_n-\vb{B}\vb{A})=m-n.
 \]
 \begin{proof}
 因为利用初等变换可以得到\begin{align*}
 	\begin{bmatrix}
-		\E_m-\A\B & \z \\
-		\z & \E_n
+		\vb{E}_m-\vb{A}\vb{B} & \vb0 \\
+		\vb0 & \vb{E}_n
 	\end{bmatrix}
 	&\to \begin{bmatrix}
-		\E_m-\A\B & \A \\
-		\z & \E_n
+		\vb{E}_m-\vb{A}\vb{B} & \vb{A} \\
+		\vb0 & \vb{E}_n
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\E_m & \A \\
-		\B & \E_n
+		\vb{E}_m & \vb{A} \\
+		\vb{B} & \vb{E}_n
 	\end{bmatrix} \\
 	&\to \begin{bmatrix}
-		\E_m & \z \\
-		\B & \E_n-\B\A
+		\vb{E}_m & \vb0 \\
+		\vb{B} & \vb{E}_n-\vb{B}\vb{A}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\E_m & \z \\
-		\z & \E_n-\B\A
+		\vb{E}_m & \vb0 \\
+		\vb0 & \vb{E}_n-\vb{B}\vb{A}
 	\end{bmatrix},
 \end{align*}
 所以\[
-	\rank(\E_m-\A\B)+n=m+\rank(\E_n-\B\A),
+	\rank(\vb{E}_m-\vb{A}\vb{B})+n=m+\rank(\vb{E}_n-\vb{B}\vb{A}),
 \]
-移项便得\(\rank(\E_m-\A\B)-\rank(\E_n-\B\A)=m-n\).
+移项便得\(\rank(\vb{E}_m-\vb{A}\vb{B})-\rank(\vb{E}_n-\vb{B}\vb{A})=m-n\).
 \end{proof}
 %\cref{example:逆矩阵.行列式降阶定理的重要应用1}
 %\cref{example:单位矩阵与两矩阵乘积之差.单位矩阵与两矩阵乘积之差的行列式}
 \end{example}
 
 \begin{example}
-设\(\A,\B,\C \in M_n(K)\)，
-\(\rank\C=n\)，
-\(\A(\B\A+\C)=\z\).
+设\(\vb{A},\vb{B},\vb{C} \in M_n(K)\)，
+\(\rank\vb{C}=n\)，
+\(\vb{A}(\vb{B}\vb{A}+\vb{C})=\vb0\).
 证明：\[
-	\rank(\B\A+\C)=n-\rank\A.
+	\rank(\vb{B}\vb{A}+\vb{C})=n-\rank\vb{A}.
 \]
 \begin{proof}
-因为\(\A(\B\A+\C)=\z\)，
+因为\(\vb{A}(\vb{B}\vb{A}+\vb{C})=\vb0\)，
 所以根据\cref{equation:线性方程组.西尔维斯特不等式} 有\[
-	\rank(\B\A+\C)+\rank\A \leq n.
+	\rank(\vb{B}\vb{A}+\vb{C})+\rank\vb{A} \leq n.
 \]
 又利用初等变换可以得到\[
 	\begin{bmatrix}
-		\B\A+\C & \z \\
-		\z & \A
+		\vb{B}\vb{A}+\vb{C} & \vb0 \\
+		\vb0 & \vb{A}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\B\A+\C & \B\A \\
-		\z & \A
+		\vb{B}\vb{A}+\vb{C} & \vb{B}\vb{A} \\
+		\vb0 & \vb{A}
 	\end{bmatrix}
 	\to \begin{bmatrix}
-		\C & \B\A \\
-		-\A & \A
+		\vb{C} & \vb{B}\vb{A} \\
+		-\vb{A} & \vb{A}
 	\end{bmatrix},
 \]
 于是\[
-	\rank(\B\C+\C)
-	+\rank\A
+	\rank(\vb{B}\vb{C}+\vb{C})
+	+\rank\vb{A}
 	= \rank\begin{bmatrix}
-		\B\A+\C & \z \\
-		\z & \A
+		\vb{B}\vb{A}+\vb{C} & \vb0 \\
+		\vb0 & \vb{A}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\C & \B\A \\
-		-\A & \A
+		\vb{C} & \vb{B}\vb{A} \\
+		-\vb{A} & \vb{A}
 	\end{bmatrix}
-	\geq \rank\C = n.
+	\geq \rank\vb{C} = n.
 	\qedhere
 \]
 \end{proof}
@@ -735,110 +735,110 @@
 
 \begin{example}
 %@see: 《2021年全国硕士研究生入学统一考试（数学一）》一选择题/第7题
-设\(\A,\B \in M_n(\mathbb{R})\)，
+设\(\vb{A},\vb{B} \in M_n(\mathbb{R})\)，
 证明：\begin{equation*}
 	\rank\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \A^T \A
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{A}^T \vb{A}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \A \B \\
-		\vb0 & \A^T
+		\vb{A} & \vb{A} \vb{B} \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \vb0 \\
-		\B \A & \A^T
+		\vb{A} & \vb0 \\
+		\vb{B} \vb{A} & \vb{A}^T
 	\end{bmatrix}
-	= 2 \rank\A,
+	= 2 \rank\vb{A},
 \end{equation*}
 并举例说明\(\rank\begin{bmatrix}
-	\A & \B \A \\
-	\vb0 & \A \A^T
+	\vb{A} & \vb{B} \vb{A} \\
+	\vb0 & \vb{A} \vb{A}^T
 \end{bmatrix}
-\neq 2 \rank\A\).
+\neq 2 \rank\vb{A}\).
 \begin{proof}
 因为\begin{gather*}
 	\rank\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \A^T \A
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{A}^T \vb{A}
 	\end{bmatrix}
-	= \rank\A + \rank(\A^T \A), \\
+	= \rank\vb{A} + \rank(\vb{A}^T \vb{A}), \\
 	\begin{bmatrix}
-		\A & \A \B \\
-		\vb0 & \A^T
+		\vb{A} & \vb{A} \vb{B} \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \A^T
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
 	\begin{bmatrix}
-		\E & \B \\
-		\vb0 & \E
+		\vb{E} & \vb{B} \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
 	\implies
 	\rank\begin{bmatrix}
-		\A & \A \B \\
-		\vb0 & \A^T
+		\vb{A} & \vb{A} \vb{B} \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \A^T
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
-	= \rank\A + \rank\A^T, \\
+	= \rank\vb{A} + \rank\vb{A}^T, \\
 	\begin{bmatrix}
-		\A & \vb0 \\
-		\B \A & \A^T
+		\vb{A} & \vb0 \\
+		\vb{B} \vb{A} & \vb{A}^T
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E & \vb0 \\
-		\B & \E
+		\vb{E} & \vb0 \\
+		\vb{B} & \vb{E}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \A^T
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
 	\implies
 	\rank\begin{bmatrix}
-		\A & \vb0 \\
-		\B \A & \A^T
+		\vb{A} & \vb0 \\
+		\vb{B} \vb{A} & \vb{A}^T
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \A^T
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
-	= \rank\A + \rank\A^T,
+	= \rank\vb{A} + \rank\vb{A}^T,
 \end{gather*}
-而由\cref{theorem:向量空间.转置不变秩} 可知\(\rank\A = \rank\A^T\)，
-且由\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 可知\(\rank(\A^T \A) = \rank\A\)，
+而由\cref{theorem:向量空间.转置不变秩} 可知\(\rank\vb{A} = \rank\vb{A}^T\)，
+且由\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩} 可知\(\rank(\vb{A}^T \vb{A}) = \rank\vb{A}\)，
 所以\begin{equation*}
 	\rank\begin{bmatrix}
-		\A & \vb0 \\
-		\vb0 & \A^T \A
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{A}^T \vb{A}
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \A \B \\
-		\vb0 & \A^T
+		\vb{A} & \vb{A} \vb{B} \\
+		\vb0 & \vb{A}^T
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
-		\A & \vb0 \\
-		\B \A & \A^T
+		\vb{A} & \vb0 \\
+		\vb{B} \vb{A} & \vb{A}^T
 	\end{bmatrix}
-	= 2 \rank\A.
+	= 2 \rank\vb{A}.
 \end{equation*}
 
-取\(\A = \begin{bmatrix}
+取\(\vb{A} = \begin{bmatrix}
 	0 & 1 \\
 	0 & 0
 \end{bmatrix},
-\B = \begin{bmatrix}
+\vb{B} = \begin{bmatrix}
 	0 & 1 \\
 	1 & 0
 \end{bmatrix}\)，
-则\(\rank\A = 1\)，
+则\(\rank\vb{A} = 1\)，
 而\begin{equation*}
 	\rank\begin{bmatrix}
-		\A & \B \A \\
-		\vb0 & \A \A^T
+		\vb{A} & \vb{B} \vb{A} \\
+		\vb0 & \vb{A} \vb{A}^T
 	\end{bmatrix}
 	= \rank\begin{bmatrix}
 		0 & 1 & 0 & 0 \\
@@ -849,104 +849,103 @@
 	= 3 \neq 2,
 \end{equation*}
 所以\(\rank\begin{bmatrix}
-	\A & \B \A \\
-	\vb0 & \A \A^T
+	\vb{A} & \vb{B} \vb{A} \\
+	\vb0 & \vb{A} \vb{A}^T
 \end{bmatrix}
-\neq 2 \rank\A\).
+\neq 2 \rank\vb{A}\).
 \end{proof}
 \end{example}
 \begin{example}
 %@see: 《2023年全国硕士研究生入学统一考试（数学一）》一选择题/第5题
-\def\M{\vb{M}}
-设矩阵\(\A,\B,\C \in M_n(K)\)满足\(\A \B \C = \vb0\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+设矩阵\(\vb{A},\vb{B},\vb{C} \in M_n(K)\)满足\(\vb{A} \vb{B} \vb{C} = \vb0\)，
+\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
 试比较以下三个矩阵的秩的序关系：\begin{equation*}
-	\M_1 \defeq \begin{bmatrix}
-		\vb0 & \A \\
-		\B \C & \E
+	\vb{M}_1 \defeq \begin{bmatrix}
+		\vb0 & \vb{A} \\
+		\vb{B} \vb{C} & \vb{E}
 	\end{bmatrix},
 	\qquad
-	\M_2 \defeq \begin{bmatrix}
-		\A \B & \C \\
-		\vb0 & \E
+	\vb{M}_2 \defeq \begin{bmatrix}
+		\vb{A} \vb{B} & \vb{C} \\
+		\vb0 & \vb{E}
 	\end{bmatrix},
 	\qquad
-	\M_3 \defeq \begin{bmatrix}
-		\E & \A \B \\
-		\A \B & \vb0
+	\vb{M}_3 \defeq \begin{bmatrix}
+		\vb{E} & \vb{A} \vb{B} \\
+		\vb{A} \vb{B} & \vb0
 	\end{bmatrix}.
 \end{equation*}
 \begin{solution}
 因为\begin{align*}
 	\begin{bmatrix}
-		\E & -\A \\
-		\vb0 & \E
+		\vb{E} & -\vb{A} \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\vb0 & \A \\
-		\B \C & \E
+		\vb0 & \vb{A} \\
+		\vb{B} \vb{C} & \vb{E}
 	\end{bmatrix}
 	&= \begin{bmatrix}
-		% 第一行第一列的元素等于\(\vb0 - \A \B \C = \vb0\)
-		% 第一行第二列的元素等于\(\A - \A = \vb0\)
+		% 第一行第一列的元素等于\(\vb0 - \vb{A} \vb{B} \vb{C} = \vb0\)
+		% 第一行第二列的元素等于\(\vb{A} - \vb{A} = \vb0\)
 		\vb0 & \vb0 \\
-		\B \C & \E
+		\vb{B} \vb{C} & \vb{E}
 	\end{bmatrix}, \\
 	\begin{bmatrix}
-		\E & -\C \\
-		\vb0 & \E
+		\vb{E} & -\vb{C} \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A \B & \C \\
-		\vb0 & \E
+		\vb{A} \vb{B} & \vb{C} \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
 	&= \begin{bmatrix}
-		\A \B & \vb0 \\
-		\vb0 & \E
+		\vb{A} \vb{B} & \vb0 \\
+		\vb0 & \vb{E}
 	\end{bmatrix}, \\
 	\begin{bmatrix}
-		\E & \vb0 \\
-		-\A \B & \E
+		\vb{E} & \vb0 \\
+		-\vb{A} \vb{B} & \vb{E}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\E & \A \B \\
-		\A \B & \vb0
+		\vb{E} & \vb{A} \vb{B} \\
+		\vb{A} \vb{B} & \vb0
 	\end{bmatrix}
 	\begin{bmatrix}
-		\E & -\A \B \\
-		\vb0 & \E
+		\vb{E} & -\vb{A} \vb{B} \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
 	&= \begin{bmatrix}
-		\E & \vb0 \\
-		\vb0 & -\A \B \A \B
+		\vb{E} & \vb0 \\
+		\vb0 & -\vb{A} \vb{B} \vb{A} \vb{B}
 	\end{bmatrix},
 \end{align*}
 而\begin{align*}
-	\rank\M_1
+	\rank\vb{M}_1
 	&= \rank\begin{bmatrix}
 		\vb0 & \vb0 \\
-		\B \C & \E
+		\vb{B} \vb{C} & \vb{E}
 	\end{bmatrix}
 	= n, \\
-	\rank\M_2
+	\rank\vb{M}_2
 	&= \rank\begin{bmatrix}
-		\A \B & \vb0 \\
-		\vb0 & \E
+		\vb{A} \vb{B} & \vb0 \\
+		\vb0 & \vb{E}
 	\end{bmatrix}
-	= \rank(\A\B) + n
+	= \rank(\vb{A}\vb{B}) + n
 	%\cref{theorem:线性方程组.矩阵的秩的性质2}
 	\geq n, \\
-	\rank\M_3
+	\rank\vb{M}_3
 	&= \rank\begin{bmatrix}
-		\E & \vb0 \\
-		\vb0 & -\A \B \A \B
+		\vb{E} & \vb0 \\
+		\vb0 & -\vb{A} \vb{B} \vb{A} \vb{B}
 	\end{bmatrix}
-	= \rank(\A \B \A \B) + n
+	= \rank(\vb{A} \vb{B} \vb{A} \vb{B}) + n
 	%\cref{theorem:线性方程组.矩阵的秩的性质2}
 	\geq n,
 \end{align*}
 %\cref{theorem:线性方程组.矩阵乘积的秩}
-这里\(\rank(\A \B) \geq \rank(\A \B \A \B)\)，
-所以\(\rank\M_2 \geq \rank\M_3 \geq \rank\M_1\).
+这里\(\rank(\vb{A} \vb{B}) \geq \rank(\vb{A} \vb{B} \vb{A} \vb{B})\)，
+所以\(\rank\vb{M}_2 \geq \rank\vb{M}_3 \geq \rank\vb{M}_1\).
 \end{solution}
 \end{example}

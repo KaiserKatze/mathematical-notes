@@ -3,19 +3,19 @@
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P118 定义2
 %@see: 《高等代数（第三版 上册）》（丘维声） P193 定义3
-设\(\A\)和\(\B\)是数域\(K\)上的两个\(n\)阶矩阵.
-若存在数域\(K\)上的一个可逆矩阵\(\C\)，
+设\(\vb{A}\)和\(\vb{B}\)是数域\(K\)上的两个\(n\)阶矩阵.
+若存在数域\(K\)上的一个可逆矩阵\(\vb{C}\)，
 使得\[
-	\B=\C^T\A\C,
+	\vb{B}=\vb{C}^T\vb{A}\vb{C},
 \]
-则称“\(\A\)与\(\B\)~\DefineConcept{合同}（congruent）”
-“\(\B\)是\(\A\)的\DefineConcept{合同矩阵}”，
-记为\(\A\simeq\B\).
+则称“\(\vb{A}\)与\(\vb{B}\)~\DefineConcept{合同}（congruent）”
+“\(\vb{B}\)是\(\vb{A}\)的\DefineConcept{合同矩阵}”，
+记为\(\vb{A}\simeq\vb{B}\).
 \end{definition}
 
 \subsection{矩阵合同的性质}
 \begin{property}
-合同矩阵与原矩阵等价，即\(\A\simeq\B \implies \A\cong\B\).
+合同矩阵与原矩阵等价，即\(\vb{A}\simeq\vb{B} \implies \vb{A}\cong\vb{B}\).
 \begin{proof}
 由\hyperref[definition:逆矩阵.矩阵等价]{矩阵等价的定义}显然有.
 \end{proof}
@@ -30,20 +30,20 @@
 \end{property}
 
 \begin{proposition}\label{theorem:矩阵合同.合同矩阵的行列式的关系}
-设数域\(K\)上的\(n\)阶矩阵\(\A,\B\)
-和数域\(K\)上的\(n\)阶可逆矩阵\(\C\)
-满足\(\B = \C^T \A \C\)，
+设数域\(K\)上的\(n\)阶矩阵\(\vb{A},\vb{B}\)
+和数域\(K\)上的\(n\)阶可逆矩阵\(\vb{C}\)
+满足\(\vb{B} = \vb{C}^T \vb{A} \vb{C}\)，
 则\[
-	\abs{\A} \abs{\C}^2
-	= \abs{\B}.
+	\abs{\vb{A}} \abs{\vb{C}}^2
+	= \abs{\vb{B}}.
 \]
 \begin{proof}
 根据\cref{theorem:行列式.性质1,theorem:行列式.矩阵乘积的行列式}，
 必有\[
-	\abs{\B}
-	= \abs{\C^T \A \C}
-	= \abs{\C^T} \abs{\A} \abs{\C}
-	= \abs{\A} \abs{\C}^2.
+	\abs{\vb{B}}
+	= \abs{\vb{C}^T \vb{A} \vb{C}}
+	= \abs{\vb{C}^T} \abs{\vb{A}} \abs{\vb{C}}
+	= \abs{\vb{A}} \abs{\vb{C}}^2.
 	\qedhere
 \]
 \end{proof}
@@ -53,16 +53,16 @@
 %@see: 《线性代数》（张慎语、周厚隆） P119 习题6.1 2(2)选项(B)
 合同矩阵的行列式同号.
 \begin{proof}
-设\(\A,\B \in M_n(K)\).
-假设\(\A\simeq\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\C\)，
+设\(\vb{A},\vb{B} \in M_n(K)\).
+假设\(\vb{A}\simeq\vb{B}\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\vb{C}\)，
 使得\[
-	\C^T \A \C = \B.
+	\vb{C}^T \vb{A} \vb{C} = \vb{B}.
 \]
 由\cref{theorem:矩阵合同.合同矩阵的行列式的关系} 有\[
-	\abs{\A} \abs{\B}
-	= \abs{\A} (\abs{\A} \abs{\C}^2)
-	= \abs{\A}^2 \abs{\C}^2
+	\abs{\vb{A}} \abs{\vb{B}}
+	= \abs{\vb{A}} (\abs{\vb{A}} \abs{\vb{C}}^2)
+	= \abs{\vb{A}}^2 \abs{\vb{C}}^2
 	\geq 0.
 	\qedhere
 \]
@@ -73,25 +73,25 @@
 \begin{proposition}
 相似的两个矩阵不一定合同.
 \begin{proof}
-例如，矩阵\(\A=\begin{bmatrix}
+例如，矩阵\(\vb{A}=\begin{bmatrix}
 	1 & 1 \\
 	0 & 2
 \end{bmatrix}\)
-和\(\B=\begin{bmatrix}
+和\(\vb{B}=\begin{bmatrix}
 	0 & -1 \\
 	2 & 3
 \end{bmatrix}\)相似，
-这是因为可逆矩阵\(\P=\begin{bmatrix}
+这是因为可逆矩阵\(\vb{P}=\begin{bmatrix}
 	1 & 0 \\
 	-1 & -1
-\end{bmatrix}\)满足\(\P^{-1}\A\P=\B\).
+\end{bmatrix}\)满足\(\vb{P}^{-1}\vb{A}\vb{P}=\vb{B}\).
 %@Mathematica: Inverse[{{1, 0}, {-1, -1}}].{{1, 1}, {0, 2}}.{{1, 0}, {-1, -1}}
-现在假设存在矩阵\(\Q=\begin{bmatrix}
+现在假设存在矩阵\(\vb{Q}=\begin{bmatrix}
 	a & b \\
 	c & d
-\end{bmatrix}\)使得\(\Q^T\A\Q=\B\).
+\end{bmatrix}\)使得\(\vb{Q}^T\vb{A}\vb{Q}=\vb{B}\).
 那么有\[
-	\Q^T\A\Q-\B
+	\vb{Q}^T\vb{A}\vb{Q}-\vb{B}
 	=\begin{bmatrix}
 		a^2+ac+2c^2 & 1+ab+ad+2cd \\
 		-2+ab+bc+2cd & -3+b^2+bd+2d^2
@@ -112,93 +112,93 @@
 (2)式减去(3)式得\[
 	3+ad-bc=0,
 \]
-这就是说\(\abs{\Q}=-3\).
+这就是说\(\abs{\vb{Q}}=-3\).
 但是根据\cref{theorem:矩阵合同.合同矩阵的行列式的关系}，
-因为\(\abs{\A}=\abs{\B}=2\)，所以\(\abs{\Q}^2=1\).
-矛盾！因此\(\A\)与\(\B\)不合同！
+因为\(\abs{\vb{A}}=\abs{\vb{B}}=2\)，所以\(\abs{\vb{Q}}^2=1\).
+矛盾！因此\(\vb{A}\)与\(\vb{B}\)不合同！
 \end{proof}
 \end{proposition}
 
 \begin{proposition}\label{example:矩阵合同.合同矩阵不一定相似}
 合同的两个矩阵不一定相似.
 \begin{proof}
-例如，矩阵\(\A=\begin{bmatrix}
+例如，矩阵\(\vb{A}=\begin{bmatrix}
 	1 & 0 \\
 	0 & 1
-\end{bmatrix}\)与\(\B=\begin{bmatrix}
+\end{bmatrix}\)与\(\vb{B}=\begin{bmatrix}
 	4 & 0 \\
 	0 & 1
 \end{bmatrix}\)合同，
-这是因为可逆矩阵\(\Q=\begin{bmatrix}
+这是因为可逆矩阵\(\vb{Q}=\begin{bmatrix}
 	2 & 0 \\
 	0 & 1
-\end{bmatrix}\)满足\(\Q^T\A\Q=\B\).
+\end{bmatrix}\)满足\(\vb{Q}^T\vb{A}\vb{Q}=\vb{B}\).
 %@Mathematica: {{2, 0}, {0, 1}}.{{1, 0}, {0, 1}}.{{2, 0}, {0, 1}}
-但是\(\tr\A=2 \neq \tr\B = 5\)，
+但是\(\tr\vb{A}=2 \neq \tr\vb{B} = 5\)，
 根据\hyperref[theorem:特征值与特征向量.相似矩阵的迹的不变性]{相似矩阵的迹的不变性}，
-\(\A\)与\(\B\)必不相似！
+\(\vb{A}\)与\(\vb{B}\)必不相似！
 \end{proof}
 \end{proposition}
 
 \begin{proposition}\label{theorem:二次型.实对称矩阵相似必合同}
-设\(\A,\B\)都是实对称矩阵，
-则“\(\A\)与\(\B\)相似”是“\(\A\)与\(\B\)合同”的充分不必要条件.
+设\(\vb{A},\vb{B}\)都是实对称矩阵，
+则“\(\vb{A}\)与\(\vb{B}\)相似”是“\(\vb{A}\)与\(\vb{B}\)合同”的充分不必要条件.
 \begin{proof}
-因为\(\A\)、\(\B\)都是实对称矩阵，
-\(\A^T=\A\)，
-\(\B^T=\B\)，
-且存在正交矩阵\(\Q_1,\Q_2\)使得\[
-	\Q_1^{-1} \A \Q_1 = \Q_1^T \A \Q_1 = \V_1,
+因为\(\vb{A}\)、\(\vb{B}\)都是实对称矩阵，
+\(\vb{A}^T=\vb{A}\)，
+\(\vb{B}^T=\vb{B}\)，
+且存在正交矩阵\(\vb{Q}_1,\vb{Q}_2\)使得\[
+	\vb{Q}_1^{-1} \vb{A} \vb{Q}_1 = \vb{Q}_1^T \vb{A} \vb{Q}_1 = \vb{\Lambda}_1,
 	\qquad
-	\Q_2^{-1} \B \Q_2 = \Q_2^T \B \Q_2 = \V_2,
+	\vb{Q}_2^{-1} \vb{B} \vb{Q}_2 = \vb{Q}_2^T \vb{B} \vb{Q}_2 = \vb{\Lambda}_2,
 \]
-其中\(\V_1,\V_2\)是对角阵.
-又因为\(\A\sim\B\)，
-所以\(\A\)与\(\B\)有相同的特征多项式、特征值，
-即\(\V_1=\V_2\)，
+其中\(\vb{\Lambda}_1,\vb{\Lambda}_2\)是对角阵.
+又因为\(\vb{A}\sim\vb{B}\)，
+所以\(\vb{A}\)与\(\vb{B}\)有相同的特征多项式、特征值，
+即\(\vb{\Lambda}_1=\vb{\Lambda}_2\)，
 或\[
-	\Q_1^{-1} \A \Q_1 = \Q_2^{-1} \B \Q_2,
+	\vb{Q}_1^{-1} \vb{A} \vb{Q}_1 = \vb{Q}_2^{-1} \vb{B} \vb{Q}_2,
 	\qquad
-	(\Q_2 \Q_1^{-1}) \A (\Q_1 \Q_2^{-1}) = \B.
+	(\vb{Q}_2 \vb{Q}_1^{-1}) \vb{A} (\vb{Q}_1 \vb{Q}_2^{-1}) = \vb{B}.
 \]
-令\(\P = \Q_1 \Q_2^{-1}\)，
-\(\P^T = (\Q_1 \Q_2^{-1})^T
-= (\Q_2^{-1})^T \Q_1^T
-= \Q_2 \Q_1^{-1}
-= (\Q_1 \Q_2^{-1})^{-1}
-= \P^{-1}\)，
+令\(\vb{P} = \vb{Q}_1 \vb{Q}_2^{-1}\)，
+\(\vb{P}^T = (\vb{Q}_1 \vb{Q}_2^{-1})^T
+= (\vb{Q}_2^{-1})^T \vb{Q}_1^T
+= \vb{Q}_2 \vb{Q}_1^{-1}
+= (\vb{Q}_1 \vb{Q}_2^{-1})^{-1}
+= \vb{P}^{-1}\)，
 那么\[
-	\P^T \A \P = \B,
+	\vb{P}^T \vb{A} \vb{P} = \vb{B},
 \]
-也就是说\(\A\)与\(\B\)合同.
+也就是说\(\vb{A}\)与\(\vb{B}\)合同.
 
 再根据\cref{example:矩阵合同.合同矩阵不一定相似}，合同的两个实对称矩阵未必相似.
-因此，对于实对称矩阵\(\A,\B\)而言，
-“\(\A\)与\(\B\)相似”是“\(\A\)与\(\B\)合同”的充分不必要条件.
+因此，对于实对称矩阵\(\vb{A},\vb{B}\)而言，
+“\(\vb{A}\)与\(\vb{B}\)相似”是“\(\vb{A}\)与\(\vb{B}\)合同”的充分不必要条件.
 \end{proof}
 \end{proposition}
 
 \begin{example}
 设\(\AutoTuple{i}{n}\)是\(1,2,\dotsc,n\)的一个排列，
 而\[
-	\A=\diag(\AutoTuple{d}{n}),
+	\vb{A}=\diag(\AutoTuple{d}{n}),
 	\qquad
-	\B=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
+	\vb{B}=\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n}).
 \]
-证明：矩阵\(\A,\B\)合同且相似.
+证明：矩阵\(\vb{A},\vb{B}\)合同且相似.
 \begin{proof}
 显然\(\diag(d_{i_1},d_{i_2},\dotsc,d_{i_n})\)
 可由\(\diag(\AutoTuple{d}{n})\)同时左乘和右乘若干个初等矩阵\[
-	\P(i,j) \quad(1 \leq i < j \leq n)
+	\vb{P}(i,j) \quad(1 \leq i < j \leq n)
 \]得到，
-又因为\(\P(i,j)^T = \P(i,j)^{-1} = \P(i,j)\)，
-所以只要令这些初等矩阵的乘积为\(\P\)，
+又因为\(\vb{P}(i,j)^T = \vb{P}(i,j)^{-1} = \vb{P}(i,j)\)，
+所以只要令这些初等矩阵的乘积为\(\vb{P}\)，
 就有\[
-	\P^{-1} \A \P = \B,
+	\vb{P}^{-1} \vb{A} \vb{P} = \vb{B},
 	\qquad
-	\P^T \A \P = \B.
+	\vb{P}^T \vb{A} \vb{P} = \vb{B}.
 \]
-也就是说\(\A\simeq\B\land\A\sim\B\).
+也就是说\(\vb{A}\simeq\vb{B}\land\vb{A}\sim\vb{B}\).
 \end{proof}
 \end{example}
 
@@ -209,62 +209,62 @@
 矩阵的合同关系是等价关系，
 即具备下列三条性质：\begin{itemize}
 	\item {\rm\bf 反身性}：
-	\(\A\simeq\A\)；
+	\(\vb{A}\simeq\vb{A}\)；
 	\item {\rm\bf 对称性}：
-	\(\A\simeq\B \implies \B\simeq\A\)；
+	\(\vb{A}\simeq\vb{B} \implies \vb{B}\simeq\vb{A}\)；
 	\item {\rm\bf 传递性}：
-	\(\A\simeq\B \land \B\simeq\C \implies \A\simeq\C\).
+	\(\vb{A}\simeq\vb{B} \land \vb{B}\simeq\vb{C} \implies \vb{A}\simeq\vb{C}\).
 \end{itemize}
 \begin{proof}
 合同是集合\(M_n(K)\)上的一个二元关系.
 
 由于\[
-	\A = \E^T \A \E,
+	\vb{A} = \vb{E}^T \vb{A} \vb{E},
 \]
-所以\(\A \simeq \A\).
+所以\(\vb{A} \simeq \vb{A}\).
 
-假设\(\A \simeq \B\)，
-那么存在可逆矩阵\(\C\)使得\[
-	\B=\C^T\A\C,
+假设\(\vb{A} \simeq \vb{B}\)，
+那么存在可逆矩阵\(\vb{C}\)使得\[
+	\vb{B}=\vb{C}^T\vb{A}\vb{C},
 \]
 于是\[
-	\A=(\C^T)^{-1}\B\C^{-1}
-	=(\C^{-1})^T\B\C^{-1},
+	\vb{A}=(\vb{C}^T)^{-1}\vb{B}\vb{C}^{-1}
+	=(\vb{C}^{-1})^T\vb{B}\vb{C}^{-1},
 \]
-即\(\B \simeq \A\).
+即\(\vb{B} \simeq \vb{A}\).
 
-假设\(\A \simeq \B\)且\(\B \simeq \C\)，
-那么存在可逆矩阵\(\D_1,\D_2\)
+假设\(\vb{A} \simeq \vb{B}\)且\(\vb{B} \simeq \vb{C}\)，
+那么存在可逆矩阵\(\vb{D}_1,\vb{D}_2\)
 使得\[
-	\B = \D_1^T \A \D_1, \qquad
-	\C = \D_2^T \B \D_2,
+	\vb{B} = \vb{D}_1^T \vb{A} \vb{D}_1, \qquad
+	\vb{C} = \vb{D}_2^T \vb{B} \vb{D}_2,
 \]
 从而有\[
-	\C = \D_2^T (\D_1^T \A \D_1) \D_2
-	= (\D_1 \D_2)^T \A (\D_1 \D_2),
+	\vb{C} = \vb{D}_2^T (\vb{D}_1^T \vb{A} \vb{D}_1) \vb{D}_2
+	= (\vb{D}_1 \vb{D}_2)^T \vb{A} (\vb{D}_1 \vb{D}_2),
 \]
-因此\(\A \simeq \C\).
+因此\(\vb{A} \simeq \vb{C}\).
 \end{proof}
 \end{property}
 
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P193
-把矩阵\(\A \in M_n(K)\)在合同关系下的等价类\[
-	\Set{ \B \in M_n(K) \given \A \simeq \B }
-\]称为“矩阵\(\A\)的\DefineConcept{合同类}”.
+把矩阵\(\vb{A} \in M_n(K)\)在合同关系下的等价类\[
+	\Set{ \vb{B} \in M_n(K) \given \vb{A} \simeq \vb{B} }
+\]称为“矩阵\(\vb{A}\)的\DefineConcept{合同类}”.
 \end{definition}
 
 \begin{proposition}\label{theorem:对称矩阵.对称矩阵的合同类}
 对称矩阵的合同矩阵也是对称的，
 即\[
-	\A^T = \A
+	\vb{A}^T = \vb{A}
 	\implies
-	[\A\simeq\B \implies \B^T = \B].
+	[\vb{A}\simeq\vb{B} \implies \vb{B}^T = \vb{B}].
 \]
 \begin{proof}
-设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，
+设可逆矩阵\(\vb{C}\)满足\(\vb{C}^T\vb{A}\vb{C}=\vb{B}\)，
 那么\[
-	\B^T = (\C^T\A\C)^T = \C^T\A^T\C = \C^T\A\C = \B.
+	\vb{B}^T = (\vb{C}^T\vb{A}\vb{C})^T = \vb{C}^T\vb{A}^T\vb{C} = \vb{C}^T\vb{A}\vb{C} = \vb{B}.
 	\qedhere
 \]
 \end{proof}
@@ -273,14 +273,14 @@
 \begin{proposition}\label{theorem:反对称矩阵.反对称矩阵的合同类}
 反对称矩阵的合同矩阵也是反对称的，
 即\[
-	\A^T = -\A
+	\vb{A}^T = -\vb{A}
 	\implies
-	[\A\simeq\B \implies \B^T = -\B].
+	[\vb{A}\simeq\vb{B} \implies \vb{B}^T = -\vb{B}].
 \]
 \begin{proof}
-设可逆矩阵\(\C\)满足\(\C^T\A\C=\B\)，
+设可逆矩阵\(\vb{C}\)满足\(\vb{C}^T\vb{A}\vb{C}=\vb{B}\)，
 那么\[
-	\B^T = (\C^T\A\C)^T = \C^T\A^T\C = -\C^T\A\C = -\B.
+	\vb{B}^T = (\vb{C}^T\vb{A}\vb{C})^T = \vb{C}^T\vb{A}^T\vb{C} = -\vb{C}^T\vb{A}\vb{C} = -\vb{B}.
 	\qedhere
 \]
 \end{proof}
@@ -292,45 +292,45 @@
 \end{remark}
 
 \begin{proposition}
-设\(\A,\B \in M_n(K)\).
+设\(\vb{A},\vb{B} \in M_n(K)\).
 记\begin{gather*}
-	\A_1 = \frac12 (\A+\A^T), \qquad
-	\A_2 = \frac12 (\A-\A^T), \\
-	\B_1 = \frac12 (\B+\B^T), \qquad
-	\B_2 = \frac12 (\B-\B^T),
+	\vb{A}_1 = \frac12 (\vb{A}+\vb{A}^T), \qquad
+	\vb{A}_2 = \frac12 (\vb{A}-\vb{A}^T), \\
+	\vb{B}_1 = \frac12 (\vb{B}+\vb{B}^T), \qquad
+	\vb{B}_2 = \frac12 (\vb{B}-\vb{B}^T),
 \end{gather*}
-其中\(\A^T,\B^T\)分别为\(\A,\B\)的转置.
+其中\(\vb{A}^T,\vb{B}^T\)分别为\(\vb{A},\vb{B}\)的转置.
 那么\[
-	\A \simeq \B \implies \A_1 \simeq \B_1 \land \A_2 \simeq \B_2.
+	\vb{A} \simeq \vb{B} \implies \vb{A}_1 \simeq \vb{B}_1 \land \vb{A}_2 \simeq \vb{B}_2.
 \]
 \begin{proof}
-当\(\A \simeq \B\)时，
-必存在可逆矩阵\(\C\)，使得\[
-	\B
-	=\C^T\A\C;
+当\(\vb{A} \simeq \vb{B}\)时，
+必存在可逆矩阵\(\vb{C}\)，使得\[
+	\vb{B}
+	=\vb{C}^T\vb{A}\vb{C};
 	\eqno(1)
 \]
 于是\[
-	\B^T
-	=(\C^T\A\C)^T
-	=\C^T\A^T\C,
+	\vb{B}^T
+	=(\vb{C}^T\vb{A}\vb{C})^T
+	=\vb{C}^T\vb{A}^T\vb{C},
 	\eqno(2)
 \]
-也就是说\(\B^T \simeq \A^T\).
+也就是说\(\vb{B}^T \simeq \vb{A}^T\).
 由(1)(2)两式不难得到\[
-	\B\pm\B^T
-	=\C^T(\A\pm\A^T)\C,
+	\vb{B}\pm\vb{B}^T
+	=\vb{C}^T(\vb{A}\pm\vb{A}^T)\vb{C},
 \]
-于是\(\A_1\simeq\B_1,
-\A_2\simeq\B_2\).
+于是\(\vb{A}_1\simeq\vb{B}_1,
+\vb{A}_2\simeq\vb{B}_2\).
 \end{proof}
 \end{proposition}
 
 \subsection{合同对角化}
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P194
-设矩阵\(\A \in M_n(K)\).
-如果存在\(n\)阶对角矩阵\(\vb\Lambda\)与\(\A\)合同，
-则称“矩阵\(\A\)可以\DefineConcept{合同对角化}”
-“矩阵\(\vb\Lambda\)是\(\A\)的\DefineConcept{合同标准型}”.
+设矩阵\(\vb{A} \in M_n(K)\).
+如果存在\(n\)阶对角矩阵\(\vb\Lambda\)与\(\vb{A}\)合同，
+则称“矩阵\(\vb{A}\)可以\DefineConcept{合同对角化}”
+“矩阵\(\vb\Lambda\)是\(\vb{A}\)的\DefineConcept{合同标准型}”.
 \end{definition}

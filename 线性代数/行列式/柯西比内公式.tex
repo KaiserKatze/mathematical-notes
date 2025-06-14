@@ -2,17 +2,17 @@
 \begin{theorem}
 %@see: 《高等代数（第三版 上册）》（丘维声） P141 定理1
 已知数域\(K\).
-设矩阵\(\A \in M_{m \times n}(K),
-\B \in M_{n \times m}(K)\).
+设矩阵\(\vb{A} \in M_{m \times n}(K),
+\vb{B} \in M_{n \times m}(K)\).
 如果\(m < n\)，
 那么\begin{equation}\label{equation:线性方程组.柯西比内公式}
-	\abs{\A\B}
+	\abs{\vb{A}\vb{B}}
 	= \sum_{1 \leq i_1 < i_2 < \dotsb < i_m \leq n}
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		1,2,\dotsc,m \\
 		i_1,i_2,\dotsc,i_m
 	}
-	\MatrixMinor\B{
+	\MatrixMinor{\vb{B}}{
 		i_1,i_2,\dotsc,i_m \\
 		1,2,\dotsc,m
 	}.
@@ -20,114 +20,114 @@
 \begin{proof}
 考虑\(m+n\)阶分块矩阵\[
 	\begin{bmatrix}
-		\E_n & \B \\
-		\z & \A\B
+		\vb{E}_n & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix},
 \]
-其中\(\E_n\)是数域\(K\)上的\(n\)阶单位矩阵.
+其中\(\vb{E}_n\)是数域\(K\)上的\(n\)阶单位矩阵.
 由于\[
 	\begin{vmatrix}
-		\E_n & \B \\
-		\z & \A\B
+		\vb{E}_n & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{vmatrix}
-	= \abs{\E_n} \abs{\A\B}
-	= \abs{\A\B},
+	= \abs{\vb{E}_n} \abs{\vb{A}\vb{B}}
+	= \abs{\vb{A}\vb{B}},
 \]
 所以\[
 	\begin{bmatrix}
-		\E_n & \B \\
-		\z & \A\B
+		\vb{E}_n & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix}
 	\to
 	\begin{bmatrix}
-		\E_n & \B \\
-		-\A & \z
+		\vb{E}_n & \vb{B} \\
+		-\vb{A} & \vb0
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\E_n & \z \\
-		-\A & \E_m
+		\vb{E}_n & \vb0 \\
+		-\vb{A} & \vb{E}_m
 	\end{bmatrix} \begin{bmatrix}
-		\E_n & \B \\
-		\z & \A\B
+		\vb{E}_n & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{bmatrix},
 \]\[
 	\begin{vmatrix}
-		\E_n & \B \\
-		-\A & \z
+		\vb{E}_n & \vb{B} \\
+		-\vb{A} & \vb0
 	\end{vmatrix}
 	= \begin{vmatrix}
-		\E_n & \z \\
-		-\A & \E_m
+		\vb{E}_n & \vb0 \\
+		-\vb{A} & \vb{E}_m
 	\end{vmatrix} \begin{vmatrix}
-		\E_n & \B \\
-		\z & \A\B
+		\vb{E}_n & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{vmatrix}
 	= \begin{vmatrix}
-		\E_n & \B \\
-		\z & \A\B
+		\vb{E}_n & \vb{B} \\
+		\vb0 & \vb{A}\vb{B}
 	\end{vmatrix},
 \]
-其中\(\E_m\)是数域\(K\)上的\(m\)阶单位矩阵.
+其中\(\vb{E}_m\)是数域\(K\)上的\(m\)阶单位矩阵.
 利用\hyperref[theorem:行列式.拉普拉斯定理]{拉普拉斯定理}把上式最左端行列式按后\(m\)行展开得\[
 	\begin{vmatrix}
-		\E_n & \B \\
-		-\A & \z
+		\vb{E}_n & \vb{B} \\
+		-\vb{A} & \vb0
 	\end{vmatrix}
 	= \sum_{1 \leq i_1 < \dotsb < i_m \leq n}
-	\MatrixMinor{(-\A)}{
+	\MatrixMinor{(-\vb{A})}{
 		1,2,\dotsc,m \\
 		i_1,i_2,\dotsc,i_m
 	}
 	(-1)^{[(n+1)+\dotsb+(n+m)]+(i_1+\dotsb+i_m)}
-	\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)},
+	\abs{(\vb\epsilon_{\mu_1},\dotsc,\vb\epsilon_{\mu_{n-m}},\vb{B})},
 \]
 其中\(\Set{\mu_1,\dotsc,\mu_{n-m}}
 = \Set{1,\dotsc,n}-\Set{i_1,\dotsc,i_s}\)，
 且\(\mu_1<\dotsb<\mu_{n-m}\).
 
-把\(\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)}\)
+把\(\abs{(\vb\epsilon_{\mu_1},\dotsc,\vb\epsilon_{\mu_{n-m}},\vb{B})}\)
 按前\(n-m\)行展开得\[
-	\abs{(\e_{\mu_1},\dotsc,\e_{\mu_{n-m}},\B)}
-	= \abs{\E_{n-m}}
+	\abs{(\vb\epsilon_{\mu_1},\dotsc,\vb\epsilon_{\mu_{n-m}},\vb{B})}
+	= \abs{\vb{E}_{n-m}}
 	(-1)^{(\mu_1+\dotsb+\mu_{n-m})+[1+\dotsb+(n-m)]}
-	\MatrixMinor{\B}{
+	\MatrixMinor{\vb{B}}{
 		i_1,i_2,\dotsc,i_m \\
 		1,2,\dotsc,m
 	}.
 \]
 因此\begin{align*}
 	\begin{vmatrix}
-		\E_n & \B \\
-		-\A & \z
+		\vb{E}_n & \vb{B} \\
+		-\vb{A} & \vb0
 	\end{vmatrix}
 	&= \sum_{1 \leq i_1 < \dotsb < i_m \leq n}
 	(-1)^{m+m^2+n+n^2}
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		1,2,\dotsc,m \\
 		i_1,i_2,\dotsc,i_m
 	}
-	\MatrixMinor\B{
+	\MatrixMinor{\vb{B}}{
 		i_1,i_2,\dotsc,i_m \\
 		1,2,\dotsc,m
 	} \\
 	&= \sum_{1 \leq i_1 < \dotsb < i_m \leq n}
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		1,2,\dotsc,m \\
 		i_1,i_2,\dotsc,i_m
 	}
-	\MatrixMinor\B{
+	\MatrixMinor{\vb{B}}{
 		i_1,i_2,\dotsc,i_m \\
 		1,2,\dotsc,m
 	}.
 \end{align*}
 综上所述，\[
-	\abs{\A\B}
+	\abs{\vb{A}\vb{B}}
 	= \sum_{1 \leq i_1 \leq i_2 \leq \dotsb \leq i_m \leq n}
-	\MatrixMinor\A{
+	\MatrixMinor{\vb{A}}{
 		1,2,\dotsc,m \\
 		i_1,i_2,\dotsc,i_m
 	}
-	\MatrixMinor\B{
+	\MatrixMinor{\vb{B}}{
 		i_1,i_2,\dotsc,i_m \\
 		1,2,\dotsc,m
 	}.
@@ -140,28 +140,28 @@
 
 
 \begin{example}
-设\(\A = (\B,\C) \in M_{n \times m}(\mathbb{R})\)，
-其中\(\B \in M_{n \times s}(\mathbb{R})\)，
-\(\C \in M_{n \times (m-s)}(\mathbb{R})\).
+设\(\vb{A} = (\vb{B},\vb{C}) \in M_{n \times m}(\mathbb{R})\)，
+其中\(\vb{B} \in M_{n \times s}(\mathbb{R})\)，
+\(\vb{C} \in M_{n \times (m-s)}(\mathbb{R})\).
 证明：\begin{equation}
-\abs{\A^T \A} \leq \abs{\B^T \B} \abs{\C^T \C}.
+\abs{\vb{A}^T \vb{A}} \leq \abs{\vb{B}^T \vb{B}} \abs{\vb{C}^T \vb{C}}.
 \end{equation}
 %TODO
 \end{example}
 
 \begin{example}
-设\(\A = (a_{ij})_n \in M_n(\mathbb{R})\).
+设\(\vb{A} = (a_{ij})_n \in M_n(\mathbb{R})\).
 证明：\begin{equation}\label{equation:线性方程组.Hadamard不等式}
-	\abs{\A}^2 \leq \prod_{j=1}^n \sum_{i=1}^n a_{ij}^2.
+	\abs{\vb{A}}^2 \leq \prod_{j=1}^n \sum_{i=1}^n a_{ij}^2.
 \end{equation}
 %TODO
 \end{example}
 
 \begin{example}
-设\(\A = (a_{ij})_n \in M_n(\mathbb{R})\)，
+设\(\vb{A} = (a_{ij})_n \in M_n(\mathbb{R})\)，
 且\(\abs{a_{ij}} < M\ (i,j=1,2,\dotsc,n)\).
 证明：\begin{equation}
-	\abs{\det\A} \leq M^n n^{n/2}.
+	\abs{\det\vb{A}} \leq M^n n^{n/2}.
 \end{equation}
 %TODO
 \end{example}

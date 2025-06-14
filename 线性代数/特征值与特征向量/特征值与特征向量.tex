@@ -51,15 +51,15 @@
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P172 定义1
 %@see: 《线性代数》（张慎语、周厚隆） P92 定义1
-设矩阵\(\A \in M_n(K)\).
+设矩阵\(\vb{A} \in M_n(K)\).
 如果\[
 	(\exists \lambda \in K)
-	(\exists \x \in K^n - \{\vb0\})
-	[\A\x = \lambda\x],
+	(\exists \vb{x} \in K^n - \{\vb0\})
+	[\vb{A}\vb{x} = \lambda\vb{x}],
 \]
-则称“数\(\lambda\)是矩阵\(\A\)的一个\DefineConcept{特征值}（eigenvalue）”
+则称“数\(\lambda\)是矩阵\(\vb{A}\)的一个\DefineConcept{特征值}（eigenvalue）”
 %@see: https://mathworld.wolfram.com/Eigenvalue.html
-“向量\(\x\)是矩阵\(\A\)的（属于特征值\(\lambda\)的）一个\DefineConcept{特征向量}（eigenvector）”.
+“向量\(\vb{x}\)是矩阵\(\vb{A}\)的（属于特征值\(\lambda\)的）一个\DefineConcept{特征向量}（eigenvector）”.
 %@see: https://mathworld.wolfram.com/Eigenvector.html
 \end{definition}
 \begin{remark}
@@ -132,13 +132,13 @@
 \end{example}
 
 \begin{example}\label{example:特征值与特征向量.各行元素之和相同的矩阵的特征值与特征向量}
-设矩阵\(\A \in M_n(K)\)，
-\(\A\)的各行元素之和均为\(\lambda_0\).
-证明：\(\lambda_0\)是矩阵\(\A\)的特征值，
-\(n\)维列向量\(\vb{x}_0=(1,\dotsc,1)^T\)是矩阵\(\A\)属于\(\lambda_0\)的特征向量.
+设矩阵\(\vb{A} \in M_n(K)\)，
+\(\vb{A}\)的各行元素之和均为\(\lambda_0\).
+证明：\(\lambda_0\)是矩阵\(\vb{A}\)的特征值，
+\(n\)维列向量\(\vb{x}_0=(1,\dotsc,1)^T\)是矩阵\(\vb{A}\)属于\(\lambda_0\)的特征向量.
 \begin{proof}
 记\[
-	\A
+	\vb{A}
 	= \begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1n} \\
 		a_{21} & a_{22} & \dots & a_{2n} \\
@@ -147,7 +147,7 @@
 	\end{bmatrix},
 \]
 那么\[
-	\A \vb{x}_0
+	\vb{A} \vb{x}_0
 	= \begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1n} \\
 		a_{21} & a_{22} & \dots & a_{2n} \\
@@ -171,34 +171,34 @@
 		1 \\ 1 \\ \vdots \\ 1
 	\end{bmatrix},
 \]
-由此可见，\(\lambda_0\)是\(\A\)的特征值，
-\(n\)维列向量\(\vb{x}_0=(1,\dotsc,1)^T\)是\(\A\)属于\(\lambda_0\)的特征向量.
+由此可见，\(\lambda_0\)是\(\vb{A}\)的特征值，
+\(n\)维列向量\(\vb{x}_0=(1,\dotsc,1)^T\)是\(\vb{A}\)属于\(\lambda_0\)的特征向量.
 \end{proof}
 \end{example}
 
 \begin{example}\label{example:矩阵的特征值与特征向量.零是奇异矩阵的特征值}
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 9.
-设\(\A \in M_n(K)\).
-证明：\(0\)是\(\A\)的一个特征值当且仅当\(\abs{\A}=0\).
+设\(\vb{A} \in M_n(K)\).
+证明：\(0\)是\(\vb{A}\)的一个特征值当且仅当\(\abs{\vb{A}}=0\).
 \begin{proof}
 由\cref{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系} 有\begin{align*}
-	&\text{\(0\)是\(\A\)的一个特征值} \\
+	&\text{\(0\)是\(\vb{A}\)的一个特征值} \\
 	&\iff
-	\abs{0\E-\A}
-	= \abs{-\A}
-	= (-1)^n \abs{\A}
+	\abs{0\vb{E}-\vb{A}}
+	= \abs{-\vb{A}}
+	= (-1)^n \abs{\vb{A}}
 	= 0 \\
 	&\iff
-	\abs{\A} = 0.
+	\abs{\vb{A}} = 0.
 	\qedhere
 \end{align*}
 \end{proof}
 \end{example}
 \begin{remark}
-如果\(0\)是矩阵\(\A\)的一个特征值，
-那么矩阵\(\A\)的属于特征值\(0\)的每个特征向量都是齐次方程\(\A\x=\vb0\)的解，
-这就说明\(\A\x=\vb0\)有非零解，
-由\cref{theorem:线性方程组.齐次线性方程组有非零解的充分必要条件} 可知\(\rank\A < n\).
+如果\(0\)是矩阵\(\vb{A}\)的一个特征值，
+那么矩阵\(\vb{A}\)的属于特征值\(0\)的每个特征向量都是齐次方程\(\vb{A}\vb{x}=\vb0\)的解，
+这就说明\(\vb{A}\vb{x}=\vb0\)有非零解，
+由\cref{theorem:线性方程组.齐次线性方程组有非零解的充分必要条件} 可知\(\rank\vb{A} < n\).
 但是，即便一个矩阵的特征值全是零，也不能说明它的秩为零.
 例如，幂零矩阵\[
 	\begin{bmatrix}
@@ -224,13 +224,13 @@
 \end{remark}
 \begin{example}\label{example:矩阵的特征值与特征向量.零不是非奇异矩阵的特征值}
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 8.(1)
-设\(\A\)是数域\(K\)上一个\(n\)阶可逆矩阵.
-证明：如果\(\A\)有特征值，则\(\A\)的特征值不等于\(0\).
+设\(\vb{A}\)是数域\(K\)上一个\(n\)阶可逆矩阵.
+证明：如果\(\vb{A}\)有特征值，则\(\vb{A}\)的特征值不等于\(0\).
 \begin{proof}
 由\cref{example:矩阵的特征值与特征向量.零是奇异矩阵的特征值} 可知，
 \(0\)是奇异矩阵的特征值，
 而可逆矩阵必定是非奇异矩阵，
-所以\(\A\)的特征值只要存在就不可能等于\(0\).
+所以\(\vb{A}\)的特征值只要存在就不可能等于\(0\).
 \end{proof}
 \end{example}
 
@@ -283,7 +283,7 @@
 则对于任意\(m\in\mathbb{N}\)，
 都有\(\lambda_0^m\)是\(\vb{A}^m\)的特征值.
 \begin{proof}
-由定义，存在\(\vb{x}_0\neq\z\)，
+由定义，存在\(\vb{x}_0\neq\vb0\)，
 使得\(\vb{A}\vb{x}_0 = \lambda_0\vb{x}_0\)，
 则\begin{gather*}
 	\vb{A}^0 \vb{x}_0
@@ -327,7 +327,7 @@
 	\qquad
 	\vb{A}^{-1} (\vb{A} \vb{x}_0)
 	= (\vb{A}^{-1} \vb{A}) \vb{x}_0
-	= \E \vb{x}_0
+	= \vb{E} \vb{x}_0
 	= \vb{x}_0,
 \end{equation*}
 于是\(\lambda_0 (\vb{A}^{-1} \vb{x}_0) = \vb{x}_0\)，
@@ -350,7 +350,7 @@
 % \(k \lambda_0^{-1}\)是\(k \vb{A}^{-1}\)的一个特征值.
 % 于是由 \hyperref[theorem:逆矩阵.逆矩阵的唯一性]{\(\vb{A}^* = \abs{\vb{A}} \vb{A}^{-1}\)}
 % 可知\(\lambda_0^{-1} \abs{\vb{A}}\)是\(\vb{A}^*\)的一个特征值.
-在 \hyperref[equation:行列式.伴随矩阵.恒等式1]{\(\vb{A}^* \vb{A} = \abs{\vb{A}} \E\)}
+在 \hyperref[equation:行列式.伴随矩阵.恒等式1]{\(\vb{A}^* \vb{A} = \abs{\vb{A}} \vb{E}\)}
 等号两边右乘向量\(\vb{x}_0\)，
 得\begin{equation*}
 	\vb{A}^* \vb{A} \vb{x}_0
@@ -387,8 +387,8 @@
 \end{equation*}
 于是\begin{align*}
 	f(\vb{A}) \vb{x}_0
-	&= (a_0 \E + a_1 \vb{A} + a_2 \vb{A}^2 + \dotsb + a_m \vb{A}^m) \vb{x}_0 \\
-	&= a_0 \E \vb{x}_0 + a_1 \vb{A} \vb{x}_0 + a_2 \vb{A}^2 \vb{x}_0 + \dotsb + a_m \vb{A}^m \vb{x}_0 \\
+	&= (a_0 \vb{E} + a_1 \vb{A} + a_2 \vb{A}^2 + \dotsb + a_m \vb{A}^m) \vb{x}_0 \\
+	&= a_0 \vb{E} \vb{x}_0 + a_1 \vb{A} \vb{x}_0 + a_2 \vb{A}^2 \vb{x}_0 + \dotsb + a_m \vb{A}^m \vb{x}_0 \\
 	&= a_0 \vb{x}_0 + a_1 \lambda_0 \vb{x}_0 + a_2 \lambda_0^2 \vb{x}_0 + \dotsb + a_m \lambda_0^m \vb{x}_0 \\
 	&= (a_0 + a_1 \lambda_0 + a_2 \lambda_0^2 + \dotsb + a_m \lambda_0^m) \vb{x}_0 \\
 	&= f(\lambda_0) \vb{x}_0.
@@ -398,16 +398,16 @@
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 3.
-设矩阵\(\A \in M_n(\mathbb{C})\)的各个元素均为实数，
-\(\lambda_0\)是\(\A\)的一个特征值，
-\(\vb{x}_0\)是\(\A\)的属于特征值\(\lambda_0\)的一个特征向量.
-证明：\(\overline{\lambda_0}\)也是\(\A\)的一个特征值，
-\(\overline{\vb{x}_0}\)是\(\A\)的属于特征值\(\overline{\lambda_0}\)的一个特征向量.
+设矩阵\(\vb{A} \in M_n(\mathbb{C})\)的各个元素均为实数，
+\(\lambda_0\)是\(\vb{A}\)的一个特征值，
+\(\vb{x}_0\)是\(\vb{A}\)的属于特征值\(\lambda_0\)的一个特征向量.
+证明：\(\overline{\lambda_0}\)也是\(\vb{A}\)的一个特征值，
+\(\overline{\vb{x}_0}\)是\(\vb{A}\)的属于特征值\(\overline{\lambda_0}\)的一个特征向量.
 \begin{proof}
-根据定义有\(\overline{\A} = \A\)和\(\A \vb{x}_0 = \lambda_0 \vb{x}_0\)，
+根据定义有\(\overline{\vb{A}} = \vb{A}\)和\(\vb{A} \vb{x}_0 = \lambda_0 \vb{x}_0\)，
 那么\[
-	\A~\overline{\vb{x}_0}
-	= \overline{\A~\vb{x}_0}
+	\vb{A}~\overline{\vb{x}_0}
+	= \overline{\vb{A}~\vb{x}_0}
 	= \overline{\lambda_0~\vb{x}_0}
 	= \overline{\lambda_0}~\overline{\vb{x}_0}.
 	\qedhere
@@ -416,18 +416,18 @@
 \end{example}
 
 \begin{example}\label{example:特征值与特征向量.各行元素之和相同的矩阵的伴随矩阵的特征值与特征向量}
-设矩阵\(\A \in M_n(K)\)，
-\(\A\)的各行元素之和均为\(\lambda_0\).
-证明：\(\A\)的伴随矩阵\(\A^*\)的各行元素之和等于\(\lambda_0^{-1} \abs{\A}\).
+设矩阵\(\vb{A} \in M_n(K)\)，
+\(\vb{A}\)的各行元素之和均为\(\lambda_0\).
+证明：\(\vb{A}\)的伴随矩阵\(\vb{A}^*\)的各行元素之和等于\(\lambda_0^{-1} \abs{\vb{A}}\).
 \begin{proof}
 由\cref{example:特征值与特征向量.各行元素之和相同的矩阵的特征值与特征向量} 可知，
-\(\lambda_0\)是矩阵\(\A\)的特征值，
-\(n\)维列向量\(\vb{x}_0=(1,\dotsc,1)^T\)是矩阵\(\A\)属于\(\lambda_0\)的特征向量.
+\(\lambda_0\)是矩阵\(\vb{A}\)的特征值，
+\(n\)维列向量\(\vb{x}_0=(1,\dotsc,1)^T\)是矩阵\(\vb{A}\)属于\(\lambda_0\)的特征向量.
 那么由\cref{example:矩阵的特征值与特征向量.伴随矩阵的特征值} 可知，
 \(\lambda_0^{-1} \abs{\vb{A}}\)是\(\vb{A}^*\)的一个特征值，
 \(\vb{x}_0\)是\(\vb{A}^*\)的属于\(\lambda_0^{-1} \abs{\vb{A}}\)的一个特征向量，
 即\begin{equation*}
-	\A^*
+	\vb{A}^*
 	\begin{bmatrix}
 		1 \\ 1 \\ \vdots \\ 1
 	\end{bmatrix}
@@ -437,7 +437,7 @@
 	\end{bmatrix}.
 \end{equation*}
 又因为\begin{equation*}
-	\A^*
+	\vb{A}^*
 	\begin{bmatrix}
 		1 \\ 1 \\ \vdots \\ 1
 	\end{bmatrix}
@@ -478,12 +478,12 @@
 
 \subsection{特征矩阵，特征多项式，特征方程}
 \begin{proposition}
-设\(\A \in M_n(K)\)，
-\(\AutoTuple{\lambda}{n}\)都是\(\A\)的特征值，
-\(\AutoTuple{\vb{x}}{n}\)分别是\(\A\)的属于特征值\(\AutoTuple{\lambda}{n}\)的特征向量.
+设\(\vb{A} \in M_n(K)\)，
+\(\AutoTuple{\lambda}{n}\)都是\(\vb{A}\)的特征值，
+\(\AutoTuple{\vb{x}}{n}\)分别是\(\vb{A}\)的属于特征值\(\AutoTuple{\lambda}{n}\)的特征向量.
 记\(\vb{X} = (\AutoTuple{\vb{x}}{n})\)，
 则\[
-	\A \vb{X} = \vb{X} \vb{\Lambda},
+	\vb{A} \vb{X} = \vb{X} \vb{\Lambda},
 \]
 其中\(\vb{\Lambda} = \diag(\AutoTuple{\lambda}{n})\).
 \end{proposition}
@@ -491,121 +491,121 @@
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P93 定义2
 %@see: 《高等代数（第三版 上册）》（丘维声） P173
-设矩阵\(\A \in M_n(K)\)，\(\lambda \in K\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+设矩阵\(\vb{A} \in M_n(K)\)，\(\lambda \in K\)，
+\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
 把\[
-	\lambda\E-\A
-\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征矩阵}”.
-把\(\A\)的属于特征值\(\lambda\)的特征矩阵的行列式\[
-	\abs{\lambda\E-\A}
-\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征多项式}（characteristic polynomial）”.
+	\lambda\vb{E}-\vb{A}
+\]称为“\(\vb{A}\)的属于特征值\(\lambda\)的\DefineConcept{特征矩阵}”.
+把\(\vb{A}\)的属于特征值\(\lambda\)的特征矩阵的行列式\[
+	\abs{\lambda\vb{E}-\vb{A}}
+\]称为“\(\vb{A}\)的属于特征值\(\lambda\)的\DefineConcept{特征多项式}（characteristic polynomial）”.
 %@see: https://mathworld.wolfram.com/CharacteristicPolynomial.html
 把关于\(\lambda\)的方程\[
-	\abs{\lambda\E-\A}=0
-\]称为“\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征方程}（characteristic equation）”.
+	\abs{\lambda\vb{E}-\vb{A}}=0
+\]称为“\(\vb{A}\)的属于特征值\(\lambda\)的\DefineConcept{特征方程}（characteristic equation）”.
 %@see: https://mathworld.wolfram.com/CharacteristicEquation.html
 \end{definition}
 
 \begin{theorem}\label{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系}
 %@see: 《高等代数（第三版 上册）》（丘维声） P174 定理1
 %@see: 《线性代数》（张慎语、周厚隆） P93 性质4
-设矩阵\(\A \in M_n(K)\)，\(\lambda_0 \in K\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+设矩阵\(\vb{A} \in M_n(K)\)，\(\lambda_0 \in K\)，
+\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
 则\begin{align*}
-	&\text{\(\lambda_0\)是矩阵\(\A\)的一个特征值} \\
-	&\iff \text{\(\lambda_0\)是矩阵\(\A\)的特征多项式\(\abs{\lambda\E-\A}\)在\(K\)中的一个根} \\
-	&\iff \abs{\lambda_0 \E - \A} = 0, \\
-	&\text{\(\vb{x}_0\)是矩阵\(\A\)的属于特征值\(\lambda_0\)的一个特征向量} \\
-	&\iff \text{\(\vb{x}_0\)是齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的一个非零解} \\
-	&\iff \vb{x}_0 \in \Ker(\lambda_0 \E - \A) - \{\vb0\}.
+	&\text{\(\lambda_0\)是矩阵\(\vb{A}\)的一个特征值} \\
+	&\iff \text{\(\lambda_0\)是矩阵\(\vb{A}\)的特征多项式\(\abs{\lambda\vb{E}-\vb{A}}\)在\(K\)中的一个根} \\
+	&\iff \abs{\lambda_0 \vb{E} - \vb{A}} = 0, \\
+	&\text{\(\vb{x}_0\)是矩阵\(\vb{A}\)的属于特征值\(\lambda_0\)的一个特征向量} \\
+	&\iff \text{\(\vb{x}_0\)是齐次线性方程组\((\lambda_0\vb{E}-\vb{A})\vb{x}=\vb0\)的一个非零解} \\
+	&\iff \vb{x}_0 \in \Ker(\lambda_0 \vb{E} - \vb{A}) - \{\vb0\}.
 \end{align*}
 %TODO proof
 \end{theorem}
 
 \begin{example}\label{example:特征值与特征向量.交换矩阵乘积后非零特征值不变}
 %@see: 《高等代数（第三版 上册）》（丘维声） P180 习题5.5 13.
-设\(\A \in M_{s \times n}(K),
-\B \in M_{n \times s}(K)\).
-证明：\(\A \B\)与\(\B \A\)有相同的非零特征值.
+设\(\vb{A} \in M_{s \times n}(K),
+\vb{B} \in M_{n \times s}(K)\).
+证明：\(\vb{A} \vb{B}\)与\(\vb{B} \vb{A}\)有相同的非零特征值.
 \begin{proof}
 \begin{proof}[证法一]
 %@see: 《高等代数（第三版 上册）》（丘维声） P260 习题5.5 13.
-假设\(\lambda\)是\(\A \B\)的一个非零特征值，
+假设\(\lambda\)是\(\vb{A} \vb{B}\)的一个非零特征值，
 即存在非零向量\(\vb\alpha\)，
 使得\begin{equation*}
-	(\A \B) \vb\alpha = \lambda \vb\alpha.
+	(\vb{A} \vb{B}) \vb\alpha = \lambda \vb\alpha.
 \end{equation*}
 左乘\(B\)，得\begin{equation*}
-	(\B \A) (\B \vb\alpha) = \lambda (B \vb\alpha).
+	(\vb{B} \vb{A}) (\vb{B} \vb\alpha) = \lambda (B \vb\alpha).
 \end{equation*}
-因此\(\lambda\)也是\(\B \A\)的非零特征值.
+因此\(\lambda\)也是\(\vb{B} \vb{A}\)的非零特征值.
 \end{proof}
 \begin{proof}[证法二]
 %@see: https://www.bilibili.com/video/BV17UDtYrExu/
 % 假设\(\lambda=0\)，
 % 那么\begin{equation*}
-% 	\abs{\lambda \E_s - \A \B}
-% 	= \abs{\A \B},
+% 	\abs{\lambda \vb{E}_s - \vb{A} \vb{B}}
+% 	= \abs{\vb{A} \vb{B}},
 % 	\qquad
-% 	\abs{\lambda \E_n - \B \A}
-% 	= \abs{\B \A}.
+% 	\abs{\lambda \vb{E}_n - \vb{B} \vb{A}}
+% 	= \abs{\vb{B} \vb{A}}.
 % \end{equation*}
 假设\(\lambda\neq0\)，
 那么由\hyperref[theorem:行列式.性质2.推论2]{行列式的性质}有\begin{equation*}
-	\abs{\lambda \E_s - \A \B}
-	= \abs{\lambda (\E_s - (\lambda^{-1} \A) \B)}
-	= \lambda^s \abs{\E_s - (\lambda^{-1} \A) \B},
+	\abs{\lambda \vb{E}_s - \vb{A} \vb{B}}
+	= \abs{\lambda (\vb{E}_s - (\lambda^{-1} \vb{A}) \vb{B})}
+	= \lambda^s \abs{\vb{E}_s - (\lambda^{-1} \vb{A}) \vb{B}},
 \end{equation*}
 同理可得\begin{equation*}
-	\abs{\lambda \E_n - \B \A}
-	= \lambda^n \abs{\E_n - \B (\lambda^{-1} \A)}.
+	\abs{\lambda \vb{E}_n - \vb{B} \vb{A}}
+	= \lambda^n \abs{\vb{E}_n - \vb{B} (\lambda^{-1} \vb{A})}.
 \end{equation*}
 由\cref{example:逆矩阵.行列式降阶定理的重要应用1} 有\begin{equation*}
-	\abs{\E_s - (\lambda^{-1} \A) \B}
-	= \abs{\E_n - \B (\lambda^{-1} \A)},
+	\abs{\vb{E}_s - (\lambda^{-1} \vb{A}) \vb{B}}
+	= \abs{\vb{E}_n - \vb{B} (\lambda^{-1} \vb{A})},
 \end{equation*}
 那么\begin{equation*}
-	\lambda^n \abs{\lambda \E_s - \A \B}
-	= \lambda^s \abs{\lambda \E_n - \B \A}.
+	\lambda^n \abs{\lambda \vb{E}_s - \vb{A} \vb{B}}
+	= \lambda^s \abs{\lambda \vb{E}_n - \vb{B} \vb{A}}.
 \end{equation*}
-于是\(\abs{\lambda \E_s - \A \B} = 0
+于是\(\abs{\lambda \vb{E}_s - \vb{A} \vb{B}} = 0
 \iff
-\abs{\lambda \E_n - \B \A} = 0\)，
+\abs{\lambda \vb{E}_n - \vb{B} \vb{A}} = 0\)，
 由\cref{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系} 可知\begin{equation*}
-	\text{\(\lambda\)是\(\A \B\)的非零特征值}
+	\text{\(\lambda\)是\(\vb{A} \vb{B}\)的非零特征值}
 	\iff
-	\text{\(\lambda\)是\(\B \A\)的非零特征值},
+	\text{\(\lambda\)是\(\vb{B} \vb{A}\)的非零特征值},
 \end{equation*}
-即\(\A \B\)与\(\B \A\)有相同的非零特征值，且它们的代数重数相同.
+即\(\vb{A} \vb{B}\)与\(\vb{B} \vb{A}\)有相同的非零特征值，且它们的代数重数相同.
 \end{proof}\let\qed\relax
 \end{proof}
 %\cref{example:单位矩阵与两矩阵乘积之差.单位矩阵与两矩阵乘积之差的行列式}
 \end{example}
 \begin{example}\label{example:单位矩阵与两矩阵乘积之差.单位矩阵与两矩阵乘积之差的行列式}
-设\(\A \in M_{m \times n}(K),
-\B \in M_{n \times m}(K)\)，
+设\(\vb{A} \in M_{m \times n}(K),
+\vb{B} \in M_{n \times m}(K)\)，
 且\(m \geq n\).
 求证：\begin{equation}
-	\abs{\lambda\E_m-\A\B} = \lambda^{m-n} \abs{\lambda\E_n-\B\A}.
+	\abs{\lambda\vb{E}_m-\vb{A}\vb{B}} = \lambda^{m-n} \abs{\lambda\vb{E}_n-\vb{B}\vb{A}}.
 \end{equation}
 \begin{proof}
 当\(\lambda\neq0\)时，考虑下列分块矩阵：\[
 	\begin{bmatrix}
-		\lambda\E_m & \A \\
-		\B & \E_n
+		\lambda\vb{E}_m & \vb{A} \\
+		\vb{B} & \vb{E}_n
 	\end{bmatrix}.
 \]
-因为\(\lambda\E_m,\E_n\)都是可逆矩阵，
+因为\(\lambda\vb{E}_m,\vb{E}_n\)都是可逆矩阵，
 故由\hyperref[theorem:逆矩阵.行列式降阶定理]{降阶公式}可得\[
-	\abs{\E_n} \cdot \abs{\lambda\E_m - \A (\E_n)^{-1} \B}
-	= \abs{\lambda\E_m} \cdot \abs{\E_n - \B (\lambda\E_m)^{-1} \A},
+	\abs{\vb{E}_n} \cdot \abs{\lambda\vb{E}_m - \vb{A} (\vb{E}_n)^{-1} \vb{B}}
+	= \abs{\lambda\vb{E}_m} \cdot \abs{\vb{E}_n - \vb{B} (\lambda\vb{E}_m)^{-1} \vb{A}},
 \]
-即有\(\abs{\lambda\E_m-\A\B} = \lambda^{m-n} \abs{\lambda\E_n-\B\A}\)成立.
+即有\(\abs{\lambda\vb{E}_m-\vb{A}\vb{B}} = \lambda^{m-n} \abs{\lambda\vb{E}_n-\vb{B}\vb{A}}\)成立.
 
 当\(\lambda=0\)时，若\(m>n\)，则\[
-	\rank(\A\B) \leq \min\{\rank\A,\rank\B\} \leq \min\{m,n\} < m,
+	\rank(\vb{A}\vb{B}) \leq \min\{\rank\vb{A},\rank\vb{B}\} \leq \min\{m,n\} < m,
 \]
-故\(\abs{-\A\B}=0\)，结论也成立；
+故\(\abs{-\vb{A}\vb{B}}=0\)，结论也成立；
 若\(m = n\)，则由\cref{theorem:行列式.矩阵乘积的行列式} 可知结论也成立.
 
 事实上，\(\lambda=0\)的情形也可通过摄动法由\(\lambda\neq0\)的情形来得到.
@@ -613,46 +613,46 @@
 %\cref{example:逆矩阵.行列式降阶定理的重要应用1}
 %\cref{example:单位矩阵与两矩阵乘积之差.单位矩阵与两矩阵乘积之差的秩}
 % 本例还有其他证法：
-% 你可以将\(\A\)化为等价标准型来证明，
-% 或先证\(\A\)非异的情形，再用摄动法进行讨论.
+% 你可以将\(\vb{A}\)化为等价标准型来证明，
+% 或先证\(\vb{A}\)非异的情形，再用摄动法进行讨论.
 \end{example}
 
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1vGmuYkEt3/
-设\(\A\)是数域\(K\)上的2阶矩阵，
-且\(\A^2 \vb\alpha - (p + q) \A \vb\alpha + p q \vb\alpha = \vb0\).
-求\(\A\)的特征值与对应的特征向量.
+设\(\vb{A}\)是数域\(K\)上的2阶矩阵，
+且\(\vb{A}^2 \vb\alpha - (p + q) \vb{A} \vb\alpha + p q \vb\alpha = \vb0\).
+求\(\vb{A}\)的特征值与对应的特征向量.
 \begin{solution}
 由题意有\[
-	(\A - p \E)(\A - q \E) \vb\alpha = \vb0.
+	(\vb{A} - p \vb{E})(\vb{A} - q \vb{E}) \vb\alpha = \vb0.
 	\eqno(1)
 \]
-% 矩阵\((\A - p \E)\)与\((\A - q \E)\)可交换
-根据定义有\(0\)是\(\A - p \E\)的特征值，也是\(\A - q \E\)的特征值，
+% 矩阵\((\vb{A} - p \vb{E})\)与\((\vb{A} - q \vb{E})\)可交换
+根据定义有\(0\)是\(\vb{A} - p \vb{E}\)的特征值，也是\(\vb{A} - q \vb{E}\)的特征值，
 那么\[
-	\abs{\A - p \E}
-	= \abs{\A - q \E}
+	\abs{\vb{A} - p \vb{E}}
+	= \abs{\vb{A} - q \vb{E}}
 	= 0;
 \]
 由\cref{theorem:矩阵的特征值与特征向量.与特征多项式和特征子空间的联系}
-可知\(p\)和\(q\)都是\(\A\)的特征值.
+可知\(p\)和\(q\)都是\(\vb{A}\)的特征值.
 又因为\begin{gather*}
-	(\A - p \E)(\A - q \E) \vb\alpha
-	= \A (\A - q \E) \vb\alpha - p (\A - q \E) \vb\alpha
+	(\vb{A} - p \vb{E})(\vb{A} - q \vb{E}) \vb\alpha
+	= \vb{A} (\vb{A} - q \vb{E}) \vb\alpha - p (\vb{A} - q \vb{E}) \vb\alpha
 	= \vb0, \\
-	\A (\A - q \E) \vb\alpha = p (\A - q \E) \vb\alpha,
+	\vb{A} (\vb{A} - q \vb{E}) \vb\alpha = p (\vb{A} - q \vb{E}) \vb\alpha,
 \end{gather*}
-所以\((\A - q \E) \vb\alpha\)是\(\A\)的属于\(p\)的特征向量.
-同理可知\((\A - p \E) \vb\alpha\)是\(\A\)的属于\(q\)的特征向量.
+所以\((\vb{A} - q \vb{E}) \vb\alpha\)是\(\vb{A}\)的属于\(p\)的特征向量.
+同理可知\((\vb{A} - p \vb{E}) \vb\alpha\)是\(\vb{A}\)的属于\(q\)的特征向量.
 \end{solution}
 \end{example}
 \begin{remark}
-在上例中，可以根据等式\(\A^2 \vb\alpha - (p + q) \A \vb\alpha + p q \vb\alpha = \vb0\)
+在上例中，可以根据等式\(\vb{A}^2 \vb\alpha - (p + q) \vb{A} \vb\alpha + p q \vb\alpha = \vb0\)
 写出\[
-	\A (\vb\alpha,\A \vb\alpha)
-	= (\A \vb\alpha,\A^2 \vb\alpha)
-	= (\A \vb\alpha,(p+q) \A \vb\alpha - p q \vb\alpha)
-	= (\vb\alpha,\A \vb\alpha)
+	\vb{A} (\vb\alpha,\vb{A} \vb\alpha)
+	= (\vb{A} \vb\alpha,\vb{A}^2 \vb\alpha)
+	= (\vb{A} \vb\alpha,(p+q) \vb{A} \vb\alpha - p q \vb\alpha)
+	= (\vb\alpha,\vb{A} \vb\alpha)
 	\begin{bmatrix}
 		0 & -p q \\
 		1 & p+q
@@ -663,32 +663,32 @@
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 7.
 %@see: 《线性代数》（张慎语、周厚隆） P96 例7
-设\(\A \in M_n(K)\)，
+设\(\vb{A} \in M_n(K)\)，
 证明：\[
-	\text{\(\lambda\)是\(\A\)的特征值}
+	\text{\(\lambda\)是\(\vb{A}\)的特征值}
 	\iff
-	\text{\(\lambda\)是\(\A^T\)的特征值}.
+	\text{\(\lambda\)是\(\vb{A}^T\)的特征值}.
 \]
 \begin{proof}
 由\cref{theorem:行列式.性质1,theorem:矩阵的转置.性质1,theorem:矩阵的转置.性质2,theorem:矩阵的转置.性质3}
 有\[
-	\abs{\lambda\E-\A^T}
-	= \abs{(\lambda\E-\A^T)^T}
-	= \abs{(\lambda\E)^T-(\A^T)^T}
-	= \abs{\lambda\E-\A},
+	\abs{\lambda\vb{E}-\vb{A}^T}
+	= \abs{(\lambda\vb{E}-\vb{A}^T)^T}
+	= \abs{(\lambda\vb{E})^T-(\vb{A}^T)^T}
+	= \abs{\lambda\vb{E}-\vb{A}},
 \]
-因此\(\A\)与\(\A^T\)具有相同的特征值.
+因此\(\vb{A}\)与\(\vb{A}^T\)具有相同的特征值.
 \end{proof}
 \end{example}
 % \begin{example}
-% 举例说明：矩阵\(\A \in M_n(K)\)与它的转置矩阵\(\A^T\)的特征向量不同.
+% 举例说明：矩阵\(\vb{A} \in M_n(K)\)与它的转置矩阵\(\vb{A}^T\)的特征向量不同.
 % %TODO
 % \end{example}
 \begin{example}
 试讨论：在什么条件下，一个矩阵的任一特征向量总是它的转置矩阵的特征向量.
 \begin{solution}
 设\(\vb{A} \in M_n(K)\).
-假设\(\A\)的特征向量都是\(\A^T\)的特征向量，
+假设\(\vb{A}\)的特征向量都是\(\vb{A}^T\)的特征向量，
 即\[
 	(\forall\lambda_1 \in K)
 	(\forall\vb{x} \in K^n)
@@ -699,23 +699,23 @@
 	],
 \]
 那么有\[
-	(\A^T\x)^T=(\lambda_2\x)^T
+	(\vb{A}^T\vb{x})^T=(\lambda_2\vb{x})^T
 	\implies
-	\x^T\A=\lambda_2\x^T
+	\vb{x}^T\vb{A}=\lambda_2\vb{x}^T
 	\implies
-	(\x^T\A)\x=(\lambda_2\x^T)\x,
+	(\vb{x}^T\vb{A})\vb{x}=(\lambda_2\vb{x}^T)\vb{x},
 \]\[
-	\x^T(\A\x)=\x^T(\lambda_1\x)=\lambda_1\x^T\x=\lambda_2\x^T\x
+	\vb{x}^T(\vb{A}\vb{x})=\vb{x}^T(\lambda_1\vb{x})=\lambda_1\vb{x}^T\vb{x}=\lambda_2\vb{x}^T\vb{x}
 	\implies
-	(\lambda_1-\lambda_2)\x^T\x=0,
+	(\lambda_1-\lambda_2)\vb{x}^T\vb{x}=0,
 \]
-因为\(\x\neq\z\)，\(\x^T\x\neq0\)，
+因为\(\vb{x}\neq\vb0\)，\(\vb{x}^T\vb{x}\neq0\)，
 所以\(\lambda_1-\lambda_2=0\)，\(\lambda_1=\lambda_2\).
 那么\[
-	\A\x=\lambda_1\x=\lambda_2\x=\A^T\x,
+	\vb{A}\vb{x}=\lambda_1\vb{x}=\lambda_2\vb{x}=\vb{A}^T\vb{x},
 \]
-从而\((\A-\A^T)\x=\z\)，\(\A=\A^T\).
-也就是说，当且仅当\(\A\)是对称矩阵时，\(\A\)的特征向量都是\(\A^T\)的特征向量.
+从而\((\vb{A}-\vb{A}^T)\vb{x}=\vb0\)，\(\vb{A}=\vb{A}^T\).
+也就是说，当且仅当\(\vb{A}\)是对称矩阵时，\(\vb{A}\)的特征向量都是\(\vb{A}^T\)的特征向量.
 \end{solution}
 \end{example}
 
@@ -778,20 +778,20 @@
 
 \begin{example}
 %@see: 《2025年全国硕士研究生入学统一考试（数学一）》三解答题/第21题
-设矩阵\(\A = \begin{bmatrix}
+设矩阵\(\vb{A} = \begin{bmatrix}
 	0 & -1 & 2 \\
 	-1 & 0 & 2 \\
 	-1 & -1 & a
 \end{bmatrix}\)，
-且\(1\)是\(\A\)的特征多项式的重根.
+且\(1\)是\(\vb{A}\)的特征多项式的重根.
 \begin{itemize}
 	\item 求\(a\)的值.
-	\item 求所有满足\(\A \vb\alpha = \vb\alpha + \vb\beta,
-	\A^2 \vb\alpha = \vb\alpha + 2\vb\beta\)的非零列向量\(\vb\alpha,\vb\beta\).
+	\item 求所有满足\(\vb{A} \vb\alpha = \vb\alpha + \vb\beta,
+	\vb{A}^2 \vb\alpha = \vb\alpha + 2\vb\beta\)的非零列向量\(\vb\alpha,\vb\beta\).
 \end{itemize}
 \begin{solution}
 由题意有\begin{equation*}
-	\abs{\lambda\E-\A}
+	\abs{\lambda\vb{E}-\vb{A}}
 	= \begin{vmatrix}
 		\lambda & 1 & -2 \\
 		1 & \lambda & -2 \\
@@ -800,19 +800,19 @@
 	%@Mathematica: -CharacteristicPolynomial[{{0, -1, 2}, {-1, 0, 2}, {-1, -1, a}}, \[Lambda]] // Factor
 	= (\lambda-1)[\lambda^2+(1-a)\lambda+(4-a)].
 \end{equation*}
-因为\(1\)是\(\abs{\lambda\E-\A}\)的重根，
+因为\(1\)是\(\abs{\lambda\vb{E}-\vb{A}}\)的重根，
 所以\(1\)是\(\lambda^2+(1-a)\lambda+(4-a)\)的根，
 即\(1^2+(1-a)\cdot1+(4-a)
 = 2a-6
 = 0\)，
 解得\(a=3\).
 
-由\(\A \vb\alpha = \vb\alpha + \vb\beta,
-\A^2 \vb\alpha = \vb\alpha + 2\vb\beta\)
-可得\(\A^2 \vb\alpha - 2 \A \vb\alpha = -\vb\alpha\)，
-即\((\A-\E)^2 \vb\alpha = \vb0\).
-换言之，\(\vb\alpha\)是方程组\((\A-\E)^2 \vb{x} = \vb0\)的非零解.
-因为\((\A-\E)^2 = \begin{bmatrix}
+由\(\vb{A} \vb\alpha = \vb\alpha + \vb\beta,
+\vb{A}^2 \vb\alpha = \vb\alpha + 2\vb\beta\)
+可得\(\vb{A}^2 \vb\alpha - 2 \vb{A} \vb\alpha = -\vb\alpha\)，
+即\((\vb{A}-\vb{E})^2 \vb\alpha = \vb0\).
+换言之，\(\vb\alpha\)是方程组\((\vb{A}-\vb{E})^2 \vb{x} = \vb0\)的非零解.
+因为\((\vb{A}-\vb{E})^2 = \begin{bmatrix}
 	-1 & -1 & 2 \\
 	-1 & -1 & 2 \\
 	-1 & -1 & 2
@@ -822,9 +822,9 @@
 即\(\vb\alpha = (k_1,k_2,k_3)^T\)，
 其中\(k_1,k_2,k_3\)是待定常数.
 
-由\(\A \vb\alpha = \vb\alpha + \vb\beta\)
+由\(\vb{A} \vb\alpha = \vb\alpha + \vb\beta\)
 可得\begin{equation*}
-	\vb\beta = (\A-\E) \vb\alpha
+	\vb\beta = (\vb{A}-\vb{E}) \vb\alpha
 	= \begin{bmatrix}
 		-1 & -1 & 2 \\
 		-1 & -1 & 2 \\
@@ -842,41 +842,41 @@
 
 \subsection{特征子空间}
 %\cref{theorem:矩阵的特征值与特征向量.特征子空间1,theorem:矩阵的特征值与特征向量.特征子空间2}
-既然\(\A\)的属于\(\lambda_0\)的特征向量\(\vb{x}_0\)
-就是齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的非零解，
+既然\(\vb{A}\)的属于\(\lambda_0\)的特征向量\(\vb{x}_0\)
+就是齐次线性方程组\((\lambda_0\vb{E}-\vb{A})\vb{x}=\vb0\)的非零解，
 那么由\cref{theorem:线性方程组.齐次线性方程组的解的线性组合也是解} 可知，
-\(\A\)的属于同一个特征值\(\lambda_0\)的
-特征向量\(\AutoTuple{\x}{t}\)的非零线性组合
-\(\sum_{i=1}^t k_i \x_i\)
-也是\(\A\)的属于\(\lambda_0\)的特征向量.
-于是可知，齐次线性方程组\((\lambda_0\E-\A)\x=\vb0\)的解集是\(K^n\)的子空间.
+\(\vb{A}\)的属于同一个特征值\(\lambda_0\)的
+特征向量\(\AutoTuple{\vb{x}}{t}\)的非零线性组合
+\(\sum_{i=1}^t k_i \vb{x}_i\)
+也是\(\vb{A}\)的属于\(\lambda_0\)的特征向量.
+于是可知，齐次线性方程组\((\lambda_0\vb{E}-\vb{A})\vb{x}=\vb0\)的解集是\(K^n\)的子空间.
 
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P174
-设\(\lambda \in K\)是矩阵\(\A \in M_n(K)\)的一个特征值，
+设\(\lambda \in K\)是矩阵\(\vb{A} \in M_n(K)\)的一个特征值，
 我们把齐次线性方程\[
-	(\lambda\E-\A)\x=\vb0
-\]的解空间\(\Ker(\lambda\E-\A)\)
-称为“矩阵\(\A\)的属于特征值\(\lambda\)的\DefineConcept{特征子空间}（eigenspace）”.
+	(\lambda\vb{E}-\vb{A})\vb{x}=\vb0
+\]的解空间\(\Ker(\lambda\vb{E}-\vb{A})\)
+称为“矩阵\(\vb{A}\)的属于特征值\(\lambda\)的\DefineConcept{特征子空间}（eigenspace）”.
 %@see: https://mathworld.wolfram.com/Eigenspace.html
 \end{definition}
 
 \begin{proposition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P174
-矩阵\(\A\)的属于特征值\(\lambda\)的特征子空间的全体非零向量
-恰是矩阵\(\A\)的属于特征值\(\lambda\)的全体特征向量.
+矩阵\(\vb{A}\)的属于特征值\(\lambda\)的特征子空间的全体非零向量
+恰是矩阵\(\vb{A}\)的属于特征值\(\lambda\)的全体特征向量.
 \end{proposition}
 
 \begin{proposition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P177 命题2
 %@see: 《线性代数》（张慎语、周厚隆） P97 习题5.1 5.
-设\(\A \in M_n(K)\)，
-则\(\A\)的特征多项式\(\abs{\lambda\E-\A}\)是\(\lambda\)的\(n\)次多项式，
+设\(\vb{A} \in M_n(K)\)，
+则\(\vb{A}\)的特征多项式\(\abs{\lambda\vb{E}-\vb{A}}\)是\(\lambda\)的\(n\)次多项式，
 \(\lambda^n\)的系数是\(1\)，
-\(\lambda^{n-1}\)的系数等于\(-\tr\A\)，
-常数项为\((-1)^n \abs{\A}\)，
+\(\lambda^{n-1}\)的系数等于\(-\tr\vb{A}\)，
+常数项为\((-1)^n \abs{\vb{A}}\)，
 \(\lambda^{n-k}\ (1\leq k<n)\)的系数是\[
-	(-1)^k \sum_{1 \leq i_1 < \dotsb < i_k \leq n} \MatrixMinor\A{
+	(-1)^k \sum_{1 \leq i_1 < \dotsb < i_k \leq n} \MatrixMinor{\vb{A}}{
 		i_1,i_2,\dotsc,i_k \\
 		i_1,i_2,\dotsc,i_k
 	}.
@@ -954,8 +954,8 @@
 	}.
 \end{align*}
 由于\(1 \leq j_1' < j_2' < \dotsb < j_k' \leq n\)，
-因此\(\abs{\lambda\E-\A}\)中\(\lambda^{n-k}\)的系数就是
-\(\A\)的所有\(k\)阶主子式之和与\((-1)^k\)的乘积\begin{equation*}
+因此\(\abs{\lambda\vb{E}-\vb{A}}\)中\(\lambda^{n-k}\)的系数就是
+\(\vb{A}\)的所有\(k\)阶主子式之和与\((-1)^k\)的乘积\begin{equation*}
 	(-1)^k
 	\sum_{1 \leq j_1' < j_2' < \dotsb < j_k' \leq n}
 	\MatrixMinor{\vb{A}}{
@@ -1033,36 +1033,36 @@
 我们将会在\cref{example:留数定理.利用儒歇定理证明代数基本定理} 给出代数基本定理的具体证明过程.
 
 %@see: 《线性代数》（张慎语、周厚隆） P93
-求解矩阵\(\A \in M_n(K)\)的特征值和特征向量的一般程序：\begin{enumerate}
-	\item 计算特征多项式\(\abs{\lambda\E-\A}\).
+求解矩阵\(\vb{A} \in M_n(K)\)的特征值和特征向量的一般程序：\begin{enumerate}
+	\item 计算特征多项式\(\abs{\lambda\vb{E}-\vb{A}}\).
 
-	\item 判别多项式\(\abs{\lambda\E-\A}\)（即方程\(\abs{\lambda\E-\A}=0\)）
+	\item 判别多项式\(\abs{\lambda\vb{E}-\vb{A}}\)（即方程\(\abs{\lambda\vb{E}-\vb{A}}=0\)）
 	在数域\(K\)中有没有根.
 	\begin{itemize}
 		\item 如果它没有根，则没有特征值、特征向量.
-		\item 如果它有根，则它在\(K\)中的全部根\(\AutoTuple{\lambda}{n}\)就是\(\A\)的全部特征值.
+		\item 如果它有根，则它在\(K\)中的全部根\(\AutoTuple{\lambda}{n}\)就是\(\vb{A}\)的全部特征值.
 		\item 如果\(K = \mathbb{C}\)，
 		那么根据代数基本定理，任意\(n\)阶矩阵的特征多项式有且仅有\(n\)个复根.
 	\end{itemize}
 
 	\item 对于每个不同的特征值\(\lambda_j\ (j=1,2,\dotsc,n)\)，
-	求出齐次线性方程组\((\lambda_j \E - \A)\x = \vb0\)的一个基础解系\(\AutoTuple{\x}{t}\)，
-	则\(\A\)的属于\(\lambda_j\)的全部特征向量为\(k_1 \x_1 + k_2 \x_2 + \dotsb + k_t \x_t\)
+	求出齐次线性方程组\((\lambda_j \vb{E} - \vb{A})\vb{x} = \vb0\)的一个基础解系\(\AutoTuple{\vb{x}}{t}\)，
+	则\(\vb{A}\)的属于\(\lambda_j\)的全部特征向量为\(k_1 \vb{x}_1 + k_2 \vb{x}_2 + \dotsb + k_t \vb{x}_t\)
 	（其中\(\AutoTuple{k}{t}\)是不全为零的任意常数）.
 \end{enumerate}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P94 例3
 求实数域上的3阶矩阵\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		2 & -1 & 2 \\
 		5 & -3 & 3 \\
 		-1 & 0 & -2
 	\end{bmatrix}
 \]的特征值与对应的特征向量.
 \begin{solution}
-\(\A\)的特征多项式\begin{align*}
-	\abs{\lambda\E-\A}
+\(\vb{A}\)的特征多项式\begin{align*}
+	\abs{\lambda\vb{E}-\vb{A}}
 	&= \begin{vmatrix}
 		\lambda-2 & 1 & -2 \\
 		-5 & \lambda+2 & -3 \\
@@ -1073,8 +1073,8 @@
 \end{align*}
 %@Mathematica: CharacteristicPolynomial[{{2, -1, 2}, {5, -3, 3}, {-1, 0, -2}}, x]
 特征值为\(\lambda=-1\ (\text{三重})\).
-解方程组\((-\E-\A)\x = \z\)，对系数矩阵施行初等行变换：\[
-	-\E-\A = \begin{bmatrix}
+解方程组\((-\vb{E}-\vb{A})\vb{x} = \vb0\)，对系数矩阵施行初等行变换：\[
+	-\vb{E}-\vb{A} = \begin{bmatrix}
 		-3 & 1 & -2 \\
 		-5 & 2 & -3 \\
 		1 & 0 & 1
@@ -1088,10 +1088,10 @@
 		0 & 0 & 0
 	\end{bmatrix}.
 \]
-可知\(\rank(-\E-\A) = 2\)，
-\(\dim\Ker(-\E-\A) = 1\).
+可知\(\rank(-\vb{E}-\vb{A}) = 2\)，
+\(\dim\Ker(-\vb{E}-\vb{A}) = 1\).
 令\(x_3 = -1\)，得基础解系\[
-	\x_1 = (1,1,-1)^T,
+	\vb{x}_1 = (1,1,-1)^T,
 \]
 那么属于\(-1\)的全部特征向量为\(k (1,1,-1)^T\)，
 \(k\)是非零的任意常数.
@@ -1100,15 +1100,15 @@
 
 \begin{example}
 求实数域上的3阶矩阵\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		-1 & 0 & 0 \\
 		8 & 2 & 4 \\
 		8 & 3 & 3
 	\end{bmatrix}
 \]的特征值与对应的特征向量.
 \begin{solution}
-\(\A\)的特征多项式\[
-	\abs{\lambda\E-\A}
+\(\vb{A}\)的特征多项式\[
+	\abs{\lambda\vb{E}-\vb{A}}
 	= \begin{vmatrix}
 		\lambda+1 & 0 & 0 \\
 		-8 & \lambda-2 & -4 \\
@@ -1116,11 +1116,11 @@
 	\end{vmatrix}
 	= (\lambda+1)^2 (\lambda-6),
 \]
-故\(\A\)的特征值为\(\lambda_1=-1\ (\text{二重}),
+故\(\vb{A}\)的特征值为\(\lambda_1=-1\ (\text{二重}),
 \lambda_2=6\).
 
-当\(\lambda=-1\)时，解方程组\((-\E-\A)\x = \z\)，\[
-	-\E-\A = \begin{bmatrix}
+当\(\lambda=-1\)时，解方程组\((-\vb{E}-\vb{A})\vb{x} = \vb0\)，\[
+	-\vb{E}-\vb{A} = \begin{bmatrix}
 		0 & 0 & 0 \\
 		-8 & -3 & -4 \\
 		-8 & -3 & -4
@@ -1130,18 +1130,18 @@
 		0 & 0 & 0
 	\end{bmatrix},
 \]
-可知\(\rank(-\E-\A) = 1\)，
-方程组\((-\E-\A)\x = \z\)的解空间有2个基向量.
+可知\(\rank(-\vb{E}-\vb{A}) = 1\)，
+方程组\((-\vb{E}-\vb{A})\vb{x} = \vb0\)的解空间有2个基向量.
 分别令\(x_2 = 8, x_3 = 0\)和\(x_2 = 0, x_3 = 2\)，得基础解系\[
-	\x_1 = \begin{bmatrix} -3 \\ 8 \\ 0 \end{bmatrix},
+	\vb{x}_1 = \begin{bmatrix} -3 \\ 8 \\ 0 \end{bmatrix},
 	\qquad
-	\x_2 = \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix},
+	\vb{x}_2 = \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix},
 \]
-故属于\(-1\)的全部特征向量为\(k_1 \x_1 + k_2 \x_2\)，
+故属于\(-1\)的全部特征向量为\(k_1 \vb{x}_1 + k_2 \vb{x}_2\)，
 \(k_1,k_2\)是不全为零的任意常数.
 
-当\(\lambda=6\)时，解方程组\((6\E-\A)\x = \z\)，\[
-	6\E-\A = \begin{bmatrix}
+当\(\lambda=6\)时，解方程组\((6\vb{E}-\vb{A})\vb{x} = \vb0\)，\[
+	6\vb{E}-\vb{A} = \begin{bmatrix}
 		7 & 0 & 0 \\
 		-8 & 4 & -4 \\
 		-8 & -3 & 3
@@ -1151,59 +1151,59 @@
 		0 & 0 & 0
 	\end{bmatrix},
 \]
-可知\(\rank(6\E-\A) = 2\)，方程组\((6\E-\A)\x = \z\)的解空间有1个基向量.
+可知\(\rank(6\vb{E}-\vb{A}) = 2\)，方程组\((6\vb{E}-\vb{A})\vb{x} = \vb0\)的解空间有1个基向量.
 令\(x_3 = 1\)，得\(x_1 = 0, x_2 = 1\)，基础解系\[
-	\x_3 = (0,1,1)^T,
+	\vb{x}_3 = (0,1,1)^T,
 \]
-故属于\(6\)的全部特征向量为\(k_3 \x_3\)，\(k_3\)是任意非零常数.
+故属于\(6\)的全部特征向量为\(k_3 \vb{x}_3\)，\(k_3\)是任意非零常数.
 \end{solution}
 \end{example}
 
 从特征值、特征向量的性质可以看出，
-矩阵\(\A\)的一个特征值对应若干个线性无关的特征向量；
+矩阵\(\vb{A}\)的一个特征值对应若干个线性无关的特征向量；
 但反之，一个特征向量只能属于一个特征值.
-事实上，设\(\vb{x}_0\)为某个矩阵\(\A\)的特征向量，若有\(\lambda_1,\lambda_2\)满足\[
-	\A\vb{x}_0=\lambda_1\vb{x}_0,
+事实上，设\(\vb{x}_0\)为某个矩阵\(\vb{A}\)的特征向量，若有\(\lambda_1,\lambda_2\)满足\[
+	\vb{A}\vb{x}_0=\lambda_1\vb{x}_0,
 	\quad
-	\A\vb{x}_0=\lambda_2\vb{x}_0,
+	\vb{A}\vb{x}_0=\lambda_2\vb{x}_0,
 \]
-则必有\(\lambda_1\vb{x}_0=\lambda_2\vb{x}_0\)或\((\lambda_1-\lambda_2)\vb{x}_0=\z\)，
-因为\(\vb{x}_0\neq\z\)，所以\(\lambda_1-\lambda_2=0\)，\(\lambda_1=\lambda_2\).
+则必有\(\lambda_1\vb{x}_0=\lambda_2\vb{x}_0\)或\((\lambda_1-\lambda_2)\vb{x}_0=\vb0\)，
+因为\(\vb{x}_0\neq\vb0\)，所以\(\lambda_1-\lambda_2=0\)，\(\lambda_1=\lambda_2\).
 
 前面已经知道，
-矩阵\(\A\)的同一个特征值\(\lambda_0\)对应的特征向量的非零线性组合
-仍为\(\A\)的属于\(\lambda_0\)的特征向量.
-那么，\(\A\)的不同特征值对应的特征向量的非零线性组合又如何呢？
+矩阵\(\vb{A}\)的同一个特征值\(\lambda_0\)对应的特征向量的非零线性组合
+仍为\(\vb{A}\)的属于\(\lambda_0\)的特征向量.
+那么，\(\vb{A}\)的不同特征值对应的特征向量的非零线性组合又如何呢？
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P95 例5
-设\(\lambda_1,\lambda_2\)是矩阵\(\A\)的两个不同的特征值，
-\(\x_1,\x_2\)分别是\(\lambda_1,\lambda_2\)对应的特征向量.
-证明：\(\x_1+\x_2\)不是\(\A\)的特征向量.
+设\(\lambda_1,\lambda_2\)是矩阵\(\vb{A}\)的两个不同的特征值，
+\(\vb{x}_1,\vb{x}_2\)分别是\(\lambda_1,\lambda_2\)对应的特征向量.
+证明：\(\vb{x}_1+\vb{x}_2\)不是\(\vb{A}\)的特征向量.
 \begin{proof}
-\(\A\x_1 = \lambda_1\x_1\)，\(\A\x_2 = \lambda_2\x_2\)，
-假设\(\A(\x_1+\x_2) = \lambda_0(\x_1+\x_2)\)，则\[
-	\A\x_1+\A\x_2 =\lambda_1\x_1+\lambda_2\x_2 = \lambda_0\x_1+\lambda_0\x_2,
+\(\vb{A}\vb{x}_1 = \lambda_1\vb{x}_1\)，\(\vb{A}\vb{x}_2 = \lambda_2\vb{x}_2\)，
+假设\(\vb{A}(\vb{x}_1+\vb{x}_2) = \lambda_0(\vb{x}_1+\vb{x}_2)\)，则\[
+	\vb{A}\vb{x}_1+\vb{A}\vb{x}_2 =\lambda_1\vb{x}_1+\lambda_2\vb{x}_2 = \lambda_0\vb{x}_1+\lambda_0\vb{x}_2,
 \]\[
-	(\lambda_0-\lambda_1)\x_1+(\lambda_0-\lambda_2)\x_2 = \z,
+	(\lambda_0-\lambda_1)\vb{x}_1+(\lambda_0-\lambda_2)\vb{x}_2 = \vb0,
 \]
-在上式左右两端同乘\(\A\)和\(\lambda_1\)可得\[
+在上式左右两端同乘\(\vb{A}\)和\(\lambda_1\)可得\[
 	\left\{ \begin{array}{l}
-		(\lambda_0-\lambda_1)\A\x_1+(\lambda_0-\lambda_2)\A\x_2 = (\lambda_0-\lambda_1)\lambda_1\x_1 + (\lambda_0-\lambda_2)\lambda_2\x_2 = \z, \\
-		(\lambda_0-\lambda_1)\lambda_1\x_1+(\lambda_0-\lambda_2)\lambda_1\x_2 = \z,
+		(\lambda_0-\lambda_1)\vb{A}\vb{x}_1+(\lambda_0-\lambda_2)\vb{A}\vb{x}_2 = (\lambda_0-\lambda_1)\lambda_1\vb{x}_1 + (\lambda_0-\lambda_2)\lambda_2\vb{x}_2 = \vb0, \\
+		(\lambda_0-\lambda_1)\lambda_1\vb{x}_1+(\lambda_0-\lambda_2)\lambda_1\vb{x}_2 = \vb0,
 	\end{array} \right.
 \]\[
-	(\lambda_0-\lambda_2)(\lambda_2-\lambda_1)\x_2 = \z,
+	(\lambda_0-\lambda_2)(\lambda_2-\lambda_1)\vb{x}_2 = \vb0,
 \]
-因为\(\x_2\neq\z\)，所以\((\lambda_0-\lambda_2)(\lambda_2-\lambda_1)=0\)；
+因为\(\vb{x}_2\neq\vb0\)，所以\((\lambda_0-\lambda_2)(\lambda_2-\lambda_1)=0\)；
 又因为\(\lambda_2\neq\lambda_1\)，所以\(\lambda_0=\lambda_2\).
 同理有\[
-	(\lambda_0-\lambda_1)\lambda_2\x_1+(\lambda_0-\lambda_2)\lambda_2\x_2 = \z
+	(\lambda_0-\lambda_1)\lambda_2\vb{x}_1+(\lambda_0-\lambda_2)\lambda_2\vb{x}_2 = \vb0
 	\implies
-	(\lambda_0-\lambda_1)(\lambda_1-\lambda_2)\x_1 = \z,
+	(\lambda_0-\lambda_1)(\lambda_1-\lambda_2)\vb{x}_1 = \vb0,
 \]
-因为\(\x_1\neq\z\)，所以\(\lambda_0=\lambda_1\).
+因为\(\vb{x}_1\neq\vb0\)，所以\(\lambda_0=\lambda_1\).
 
-于是导出\(\lambda_1=\lambda_2\)，与题设矛盾，说明\(\x_1+\x_2\)不是\(\A\)的特征向量.
+于是导出\(\lambda_1=\lambda_2\)，与题设矛盾，说明\(\vb{x}_1+\vb{x}_2\)不是\(\vb{A}\)的特征向量.
 \end{proof}
 \end{example}
 
@@ -1211,28 +1211,28 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 4.
 证明：数域\(K\)上的\(n\)阶幂零矩阵的特征值都是\(0\).
 \begin{proof}
-设\(\A\)是数域\(K\)上的以正整数\(m\)为幂零指数的\(n\)阶幂零矩阵.
+设\(\vb{A}\)是数域\(K\)上的以正整数\(m\)为幂零指数的\(n\)阶幂零矩阵.
 由\cref{example:幂零矩阵.幂零矩阵的行列式} 可知\[
-	\abs{0\E-\A}
-	= \abs{-\A}
-	= (-1)^n \abs{\A}
+	\abs{0\vb{E}-\vb{A}}
+	= \abs{-\vb{A}}
+	= (-1)^n \abs{\vb{A}}
 	= 0,
 \]
-所以\(0\)是\(\A\)的一个特征值.
-假设\(\lambda_0\)是\(\A\)的任意一个特征值，
+所以\(0\)是\(\vb{A}\)的一个特征值.
+假设\(\lambda_0\)是\(\vb{A}\)的任意一个特征值，
 即存在\(\vb{x}_0 \in K^n-\{\vb0\}\)
 使得\[
-	\A\vb{x}_0 = \lambda_0\vb{x}_0.
+	\vb{A}\vb{x}_0 = \lambda_0\vb{x}_0.
 	\eqno(1)
 \]
-在(1)式等号两边同时左乘\(m-1\)次\(\A\)，
+在(1)式等号两边同时左乘\(m-1\)次\(\vb{A}\)，
 便得\[
-	\A^m\vb{x}_0 = \lambda_0^m\vb{x}_0.
+	\vb{A}^m\vb{x}_0 = \lambda_0^m\vb{x}_0.
 	\eqno(2)
 \]
-因为\(\A^m=\vb0\)且\(\vb{x}_0\neq\vb0\)，
+因为\(\vb{A}^m=\vb0\)且\(\vb{x}_0\neq\vb0\)，
 所以由(2)式解得\(\lambda_0=0\)，
-这就说明：\(\A\)的特征值都是\(0\).
+这就说明：\(\vb{A}\)的特征值都是\(0\).
 \end{proof}
 \end{example}
 \begin{remark}
@@ -1243,14 +1243,14 @@
 \begin{example}\label{example:幂幺矩阵.幂幺矩阵的特征值的性质}
 证明：数域\(K\)上的\(n\)阶幂幺矩阵的特征值都是\(1\).
 \begin{proof}
-设\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
-\(\A\)是数域\(K\)上的以正整数\(m\)为幂幺指数的\(n\)阶幂幺矩阵，
-等价成立：\((\A-\E)\)是数域\(K\)上的以正整数\(m\)为幂零指数的\(n\)阶幂零矩阵.
-由\cref{example:幂零矩阵.幂零矩阵的特征值的性质} 可知\((\A-\E)\)的特征值全为零，
-即\(\abs{0\E-(\A-\E)}
-= \abs{\E-\A}
+设\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
+\(\vb{A}\)是数域\(K\)上的以正整数\(m\)为幂幺指数的\(n\)阶幂幺矩阵，
+等价成立：\((\vb{A}-\vb{E})\)是数域\(K\)上的以正整数\(m\)为幂零指数的\(n\)阶幂零矩阵.
+由\cref{example:幂零矩阵.幂零矩阵的特征值的性质} 可知\((\vb{A}-\vb{E})\)的特征值全为零，
+即\(\abs{0\vb{E}-(\vb{A}-\vb{E})}
+= \abs{\vb{E}-\vb{A}}
 = 0\)，
-可见\(\A\)的特征值都是\(1\).
+可见\(\vb{A}\)的特征值都是\(1\).
 \end{proof}
 \end{example}
 \begin{remark}
@@ -1265,31 +1265,31 @@
 %@see: 《线性代数》（张慎语、周厚隆） P96 例8
 证明：数域\(K\)上的\(n\)阶幂等矩阵一定有特征值，且其特征值必为0或1.
 \begin{proof}
-设\(\A\)是幂等矩阵，即有\(\A^2=\A\).
-设\(\A\vb{x}_0=\lambda_0\vb{x}_0\ (\vb{x}_0\neq\z)\)，
+设\(\vb{A}\)是幂等矩阵，即有\(\vb{A}^2=\vb{A}\).
+设\(\vb{A}\vb{x}_0=\lambda_0\vb{x}_0\ (\vb{x}_0\neq\vb0)\)，
 则\[
-	\A^2\vb{x}_0
-	=\A(\A\vb{x}_0)
-	=\A(\lambda_0\vb{x}_0)
-	=\lambda_0(\A\vb{x}_0)
+	\vb{A}^2\vb{x}_0
+	=\vb{A}(\vb{A}\vb{x}_0)
+	=\vb{A}(\lambda_0\vb{x}_0)
+	=\lambda_0(\vb{A}\vb{x}_0)
 	=\lambda_0(\lambda_0\vb{x}_0)
 	=\lambda_0^2\vb{x}_0.
 \]
 因为\[
-	\A^2=\A
+	\vb{A}^2=\vb{A}
 	\iff
-	\A^2-\A=\z
+	\vb{A}^2-\vb{A}=\vb0
 	\implies
-	\A^2\vb{x}_0-\A\vb{x}_0
-	=(\A^2-\A)\vb{x}_0
-	=\z\vb{x}_0
-	=\z,
+	\vb{A}^2\vb{x}_0-\vb{A}\vb{x}_0
+	=(\vb{A}^2-\vb{A})\vb{x}_0
+	=\vb0\vb{x}_0
+	=\vb0,
 \]
 所以\[
 	\lambda_0^2\vb{x}_0-\lambda_0\vb{x}_0
 	=(\lambda_0^2-\lambda_0)\vb{x}_0
 	=\lambda_0(\lambda_0-1)\vb{x}_0
-	=\z,
+	=\vb0,
 \]
 进一步有\(\lambda_0(\lambda_0-1)=0\)，
 所以\(\lambda_0=0\)或\(\lambda_0=1\).
@@ -1298,46 +1298,46 @@
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P179 习题5.5 6.
-设数域\(\mathbb{C}\)上的\(n\)阶方阵\(\A\)
-与数域\(\mathbb{C}\)上的\(n\)阶单位矩阵\(\E\)
-满足\(\A^m=\E\)，
+设数域\(\mathbb{C}\)上的\(n\)阶方阵\(\vb{A}\)
+与数域\(\mathbb{C}\)上的\(n\)阶单位矩阵\(\vb{E}\)
+满足\(\vb{A}^m=\vb{E}\)，
 其中\(m\)是正整数.
-证明：\(\A\)的全体特征值是\(\Set{ z\in\mathbb{R} \given z^m = 1 }\).
+证明：\(\vb{A}\)的全体特征值是\(\Set{ z\in\mathbb{R} \given z^m = 1 }\).
 %TODO proof
 \end{example}
 
 \begin{example}\label{example:矩阵乘积的秩.两个向量的乘积的特征值和特征向量}
-设\(\a,\b\)是\(n\)维非零列向量.
-证明：求矩阵\(\a\b^T\)的特征值和特征向量.
+设\(\vb\alpha,\vb\beta\)是\(n\)维非零列向量.
+证明：求矩阵\(\vb\alpha\vb\beta^T\)的特征值和特征向量.
 \begin{proof}
-显然有\((\a\b^T)\a = \a(\b^T\a)\)，
-那么根据定义可知\(\b^T\a\)就是矩阵\(\a\b^T\)的特征值，
-而\(\a\)是\(\a\b^T\)属于\(\b^T\a\)的一个特征向量.
+显然有\((\vb\alpha\vb\beta^T)\vb\alpha = \vb\alpha(\vb\beta^T\vb\alpha)\)，
+那么根据定义可知\(\vb\beta^T\vb\alpha\)就是矩阵\(\vb\alpha\vb\beta^T\)的特征值，
+而\(\vb\alpha\)是\(\vb\alpha\vb\beta^T\)属于\(\vb\beta^T\vb\alpha\)的一个特征向量.
 
-又由\cref{example:行列式.两个向量的乘积矩阵的行列式} 可知\(\abs{\a\b^T} = 0\)，
-所以\(\abs{0\cdot\E-\a\b^T}=0\)，
-也就是说\(0\)也是矩阵\(\a\b^T\)的特征值.
-再由\cref{example:矩阵乘积的秩.两个向量的乘积的秩} 可知\(\rank(\a\b^T) = 1\)，
+又由\cref{example:行列式.两个向量的乘积矩阵的行列式} 可知\(\abs{\vb\alpha\vb\beta^T} = 0\)，
+所以\(\abs{0\cdot\vb{E}-\vb\alpha\vb\beta^T}=0\)，
+也就是说\(0\)也是矩阵\(\vb\alpha\vb\beta^T\)的特征值.
+再由\cref{example:矩阵乘积的秩.两个向量的乘积的秩} 可知\(\rank(\vb\alpha\vb\beta^T) = 1\)，
 于是根据\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 可知
-\((\a\b^T)\x=\vb0\)的解空间的维数为\(n-1\)，
-这就是说\(0\)是矩阵\(\a\b^T\)的\(n-1\)重特征值.
-最后，我们来求\(\a\b^T\)属于\(0\)的特征向量，
-解方程组\((\a\b^T)\x=\vb0\)，
-左乘\(\a^T\)得\(\a^T\a\b^T\x=0\)，
-由于\(\a\neq\vb0\)，\(\a^T\a>0\)，
-消去便得\(\b^T\x=0\)，
+\((\vb\alpha\vb\beta^T)\vb{x}=\vb0\)的解空间的维数为\(n-1\)，
+这就是说\(0\)是矩阵\(\vb\alpha\vb\beta^T\)的\(n-1\)重特征值.
+最后，我们来求\(\vb\alpha\vb\beta^T\)属于\(0\)的特征向量，
+解方程组\((\vb\alpha\vb\beta^T)\vb{x}=\vb0\)，
+左乘\(\vb\alpha^T\)得\(\vb\alpha^T\vb\alpha\vb\beta^T\vb{x}=0\)，
+由于\(\vb\alpha\neq\vb0\)，\(\vb\alpha^T\vb\alpha>0\)，
+消去便得\(\vb\beta^T\vb{x}=0\)，
 因此由\cref{theorem:线性方程组.同解方程组.特例1} 可知
-\(\b^T\x=0\)与\((\a\b^T)\x=\vb0\)同解，
-\(\b^T\x=0\)的解空间就是\(\a\b^T\)的属于\(0\)的特征子空间.
+\(\vb\beta^T\vb{x}=0\)与\((\vb\alpha\vb\beta^T)\vb{x}=\vb0\)同解，
+\(\vb\beta^T\vb{x}=0\)的解空间就是\(\vb\alpha\vb\beta^T\)的属于\(0\)的特征子空间.
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A = \begin{bmatrix} 2 & -1 & 2 \\ 5 & -3 & 3 \\ -1 & 0 & -2 \end{bmatrix}\)，
-求\(\A\)的特征值与对应的特征向量.
+设\(\vb{A} = \begin{bmatrix} 2 & -1 & 2 \\ 5 & -3 & 3 \\ -1 & 0 & -2 \end{bmatrix}\)，
+求\(\vb{A}\)的特征值与对应的特征向量.
 \begin{solution}
-\(\A\)的特征多项式\[
-	\abs{\lambda\E-\A}
+\(\vb{A}\)的特征多项式\[
+	\abs{\lambda\vb{E}-\vb{A}}
 	= \begin{vmatrix}
 		\lambda-2 & 1 & -2 \\
 		-5 & \lambda+3 & -3 \\
@@ -1345,28 +1345,28 @@
 	\end{vmatrix}
 	= (\lambda+1)^3,
 \]
-解\(\abs{\lambda\E-\A}=0\)得\(\lambda=-1\ (\text{三重})\).
+解\(\abs{\lambda\vb{E}-\vb{A}}=0\)得\(\lambda=-1\ (\text{三重})\).
 
-当\(\lambda=-1\)时，解方程组\((-\E-\A)\x=\z\)，\[
-	-\E-\A = \begin{bmatrix} -3 & 1 & -2 \\ -5 & 2 & -3 \\ 1 & 0 & 1 \end{bmatrix}
+当\(\lambda=-1\)时，解方程组\((-\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	-\vb{E}-\vb{A} = \begin{bmatrix} -3 & 1 & -2 \\ -5 & 2 & -3 \\ 1 & 0 & 1 \end{bmatrix}
 	\to \begin{bmatrix} 1 & 0 & 1 \\ 5 & 2 & -3 \\ -3 & 1 & -2 \end{bmatrix}
 	\to \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix},
 \]
-\(\rank(-\E-\A)=2\)，
+\(\rank(-\vb{E}-\vb{A})=2\)，
 令\(x_3=1\)，
 得基础解系\[
-	\x_1=\begin{bmatrix} -1 \\ -1 \\ 1 \end{bmatrix},
+	\vb{x}_1=\begin{bmatrix} -1 \\ -1 \\ 1 \end{bmatrix},
 \]
-属于\(-1\)的全部特征向量为\(k\x_1\)（\(k\)为非零的任意常数）.
+属于\(-1\)的全部特征向量为\(k\vb{x}_1\)（\(k\)为非零的任意常数）.
 \end{solution}
 \end{example}
 
 \begin{example}
-设\(\A = \begin{bmatrix} -1 & 0 & 0 \\ 8 & 2 & 4 \\ 8 & 3 & 3 \end{bmatrix}\)，
-求\(\A\)的特征值与对应的特征向量.
+设\(\vb{A} = \begin{bmatrix} -1 & 0 & 0 \\ 8 & 2 & 4 \\ 8 & 3 & 3 \end{bmatrix}\)，
+求\(\vb{A}\)的特征值与对应的特征向量.
 \begin{solution}
-\(\A\)的特征多项式\[
-	\a = \begin{vmatrix}
+\(\vb{A}\)的特征多项式\[
+	\vb\alpha = \begin{vmatrix}
 		\lambda+1 & 0 & 0 \\
 		-8 & \lambda-2 & -4 \\
 		-8 & -3 & \lambda-3
@@ -1374,64 +1374,64 @@
 	= (\lambda+1)(\lambda^2-5\lambda-6)
 	= (\lambda+1)^2(\lambda-6).
 \]
-令\(\a = 0\)可得\(\A\)的特征值为\(\lambda_1=-1\ (\text{二重})\)，\(\lambda_2=6\).
+令\(\vb\alpha = 0\)可得\(\vb{A}\)的特征值为\(\lambda_1=-1\ (\text{二重})\)，\(\lambda_2=6\).
 
-当\(\lambda=-1\)时，解方程组\((-\E-\A)\x=\z\)，\[
-	-\E-\A
+当\(\lambda=-1\)时，解方程组\((-\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	-\vb{E}-\vb{A}
 	= \begin{bmatrix} 0 & 0 & 0 \\ -8 & -3 & -4 \\ -8 & -3 & -4 \end{bmatrix}
 	\to \begin{bmatrix} -8 & -3 & -4 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}.
 \]
 分别令\(\left\{ \begin{array}{l} x_2=8 \\ x_3=0 \end{array} \right.\)
 和\(\left\{ \begin{array}{l} x_2=0 \\ x_3=2 \end{array} \right.\)，
 得基础解系\[
-	\x_1 = \begin{bmatrix} -3 \\ 8 \\ 0 \end{bmatrix},
+	\vb{x}_1 = \begin{bmatrix} -3 \\ 8 \\ 0 \end{bmatrix},
 	\quad
-	\x_2 = \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix},
+	\vb{x}_2 = \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix},
 \]
-属于\(-1\)的全部特征向量为\(k_1\x_1+k_2\x_2\)（\(k_1,k_2\)为不全为零的任意常数）；
+属于\(-1\)的全部特征向量为\(k_1\vb{x}_1+k_2\vb{x}_2\)（\(k_1,k_2\)为不全为零的任意常数）；
 
-当\(\lambda=6\)时，解方程组\((6\E-\A)\x=\z\)，\[
-	6\E-\A
+当\(\lambda=6\)时，解方程组\((6\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	6\vb{E}-\vb{A}
 	= \begin{bmatrix} 7 & 0 & 0 \\ -8 & 4 & -4 \\ -8 & -3 & 3 \end{bmatrix}
 	\to \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 0 \end{bmatrix},
 \]
 令\(x_3=1\)得\(x_1=0\)，\(x_2=1\)，
 基础解系\[
-	\x_3 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix},
+	\vb{x}_3 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix},
 \]
-属于\(6\)的全部特征向量为\(k_3\x_3\)（\(k_3\)为任意常数）.
+属于\(6\)的全部特征向量为\(k_3\vb{x}_3\)（\(k_3\)为任意常数）.
 \end{solution}
 \end{example}
 
 \begin{example}
-设矩阵\(\A = (a_{ij})_n \in \mathbb{C}^n\)，
+设矩阵\(\vb{A} = (a_{ij})_n \in \mathbb{C}^n\)，
 但\(a_{ij} \in \mathbb{R}\ (i,j=1,2,\dotsc,n)\).
-证明：如果\(\lambda_0\in\mathbb{C}\)是\(\A\)的一个特征值，
-\(\vb{x}_0\)是\(\A\)属于\(\lambda_0\)的一个特征向量，
-那么\(\ComplexConjugate{\lambda_0}\)也是\(\A\)的一个特征值，
-且\(\ComplexConjugate{\vb{x}_0}\)是\(\A\)属于\(\ComplexConjugate{\lambda_0}\)的一个特征向量.
+证明：如果\(\lambda_0\in\mathbb{C}\)是\(\vb{A}\)的一个特征值，
+\(\vb{x}_0\)是\(\vb{A}\)属于\(\lambda_0\)的一个特征向量，
+那么\(\ComplexConjugate{\lambda_0}\)也是\(\vb{A}\)的一个特征值，
+且\(\ComplexConjugate{\vb{x}_0}\)是\(\vb{A}\)属于\(\ComplexConjugate{\lambda_0}\)的一个特征向量.
 \begin{proof}
-在\(\A\vb{x}_0=\lambda_0\vb{x}_0\)两边取共轭得
-\(\ComplexConjugate{\A}\ComplexConjugate{\vb{x}_0}
+在\(\vb{A}\vb{x}_0=\lambda_0\vb{x}_0\)两边取共轭得
+\(\ComplexConjugate{\vb{A}}\ComplexConjugate{\vb{x}_0}
 =\ComplexConjugate{\lambda_0}\ComplexConjugate{\vb{x}_0}\).
-又因为\(\A=\ComplexConjugate{\A}\)，
-因此\(\A\ComplexConjugate{\vb{x}_0}=\ComplexConjugate{\lambda_0}\ComplexConjugate{\vb{x}_0}\).
-这就表明\(\ComplexConjugate{\lambda_0}\)也是\(\A\)的一个特征值，
-\(\ComplexConjugate{\vb{x}_0}\)是\(\A\)的属于\(\ComplexConjugate{\lambda_0}\)的一个特征向量.
+又因为\(\vb{A}=\ComplexConjugate{\vb{A}}\)，
+因此\(\vb{A}\ComplexConjugate{\vb{x}_0}=\ComplexConjugate{\lambda_0}\ComplexConjugate{\vb{x}_0}\).
+这就表明\(\ComplexConjugate{\lambda_0}\)也是\(\vb{A}\)的一个特征值，
+\(\ComplexConjugate{\vb{x}_0}\)是\(\vb{A}\)的属于\(\ComplexConjugate{\lambda_0}\)的一个特征向量.
 \end{proof}
 \end{example}
 
 \begin{example}
 求复数域上矩阵\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		4 & 7 & -3 \\
 		-2 & -4 & 2 \\
 		-4 & -10 & 4
 	\end{bmatrix}
 \]的全部特征值和特征向量.
 \begin{solution}
-\(\A\)的特征多项式为\[
-	\abs{\lambda\E-\A}
+\(\vb{A}\)的特征多项式为\[
+	\abs{\lambda\vb{E}-\vb{A}}
 	= \begin{vmatrix}
 		\lambda-4 & -7 & 3 \\
 		2 & \lambda+4 & -2 \\
@@ -1440,10 +1440,10 @@
 	= \lambda^3 - 4\lambda^2 + 6\lambda - 4
 	= (\lambda-2)(\lambda^2-2\lambda+2).
 \]
-令\(\abs{\lambda\E-\A}=0\)解得\(\lambda=2,1\pm\iu\).
+令\(\abs{\lambda\vb{E}-\vb{A}}=0\)解得\(\lambda=2,1\pm\iu\).
 
-当\(\lambda=2\)时，解方程组\((2\E-\A)\x=\z\)，\[
-	2\E-\A = \begin{bmatrix}
+当\(\lambda=2\)时，解方程组\((2\vb{E}-\vb{A})\vb{x}=\vb0\)，\[
+	2\vb{E}-\vb{A} = \begin{bmatrix}
 		-2 & -7 & 3 \\
 		2 & 6 & -2 \\
 		4 & 10 & -2
@@ -1454,12 +1454,12 @@
 	\end{bmatrix}.
 \]
 令\(x_2=x_3=1\)得\(x_1=-2\)，基础解系为\[
-	\x_1 = (-2,1,1)^T,
+	\vb{x}_1 = (-2,1,1)^T,
 \]
-属于\(2\)的全部特征向量为\(k_1\x_1\ (k_1\in\mathbb{C}-\{0\})\).
+属于\(2\)的全部特征向量为\(k_1\vb{x}_1\ (k_1\in\mathbb{C}-\{0\})\).
 
-当\(\lambda=1+\iu\)时，解方程组\([(1+\iu)\E-\A]\x=\z\)，\[
-	(1+\iu)\E-\A = \begin{bmatrix}
+当\(\lambda=1+\iu\)时，解方程组\([(1+\iu)\vb{E}-\vb{A}]\vb{x}=\vb0\)，\[
+	(1+\iu)\vb{E}-\vb{A} = \begin{bmatrix}
 		-3+\iu & -7 & 3 \\
 		2 & 5+\iu & -2 \\
 		4 & 10 & -3+\iu
@@ -1472,12 +1472,12 @@
 \]
 令\(x_3=-2\)得\(x_1=1-2\iu,x_2=-1+\iu\)，
 基础解系为\[
-	\x_2 = (1-2\iu,-1+\iu,-2)^T,
+	\vb{x}_2 = (1-2\iu,-1+\iu,-2)^T,
 \]
-属于\(1+\iu\)的全部特征向量为\(k_2\x_2\ (k_2\in\mathbb{C}-\{0\})\).
+属于\(1+\iu\)的全部特征向量为\(k_2\vb{x}_2\ (k_2\in\mathbb{C}-\{0\})\).
 
 当\(\lambda=1-\iu\)时，
-\(\x_2\)也是它的一个特征向量，
-那么属于\(1-\iu\)的全部特征向量为\(k_3\x_2\ (k_3\in\mathbb{C}-\{0\})\).
+\(\vb{x}_2\)也是它的一个特征向量，
+那么属于\(1-\iu\)的全部特征向量为\(k_3\vb{x}_2\ (k_3\in\mathbb{C}-\{0\})\).
 \end{solution}
 \end{example}

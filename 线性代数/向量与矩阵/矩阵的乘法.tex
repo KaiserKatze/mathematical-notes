@@ -1,38 +1,38 @@
 \section{矩阵的乘法}
 \subsection{矩阵乘法的概念}
 \begin{definition}
-设\(\A = (a_{ij})_{s \times n}\)，
-\(\B = (b_{ij})_{n \times m}\)，
-\(\C = (c_{ij})_{s \times m}\).
+设\(\vb{A} = (a_{ij})_{s \times n}\)，
+\(\vb{B} = (b_{ij})_{n \times m}\)，
+\(\vb{C} = (c_{ij})_{s \times m}\).
 如果满足\[
 	c_{ij} = \sum_{k=1}^n {a_{ik} b_{kj}},
 	\quad
 	i=1,2,\dotsc,s;j=1,2,\dotsc,m,
 \]
-则称矩阵\(\C\)是“\(\A\)与\(\B\)的\DefineConcept{乘积}”，
-记作\(\C = \A \B\).
+则称矩阵\(\vb{C}\)是“\(\vb{A}\)与\(\vb{B}\)的\DefineConcept{乘积}”，
+记作\(\vb{C} = \vb{A} \vb{B}\).
 \end{definition}
 \begin{remark}
-如果我们分别对\(\A\)和\(\B\)做行分块和列分块，得\begin{equation*}
-	\A=(\AutoTuple{\a}{s}[,][T])^T, \qquad
-	\B=(\AutoTuple{\b}{m}),
+如果我们分别对\(\vb{A}\)和\(\vb{B}\)做行分块和列分块，得\begin{equation*}
+	\vb{A}=(\AutoTuple{\vb\alpha}{s}[,][T])^T, \qquad
+	\vb{B}=(\AutoTuple{\vb\beta}{m}),
 \end{equation*}
 那么\begin{itemize}
 	%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P75 3.46
-	\item \(\A\)与\(\B\)的乘积\(\A\B\)的\((i,j)\)元素，
-	等于\(\A\)的第\(i\)行向量\(\a_i^T\)与\(\B\)的第\(j\)列向量\(\b_j\)的乘积，
+	\item \(\vb{A}\)与\(\vb{B}\)的乘积\(\vb{A}\vb{B}\)的\((i,j)\)元素，
+	等于\(\vb{A}\)的第\(i\)行向量\(\vb\alpha_i^T\)与\(\vb{B}\)的第\(j\)列向量\(\vb\beta_j\)的乘积，
 	即\begin{equation*}
-		c_{ij} = \a_i^T \b_j,
+		c_{ij} = \vb\alpha_i^T \vb\beta_j,
 		\quad
 		i=1,2,\dotsc,s;j=1,2,\dotsc,m;
 	\end{equation*}
 
 	%@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P75 3.48
-	\item \(\A\B\)的第\(k\)列向量，
-	等于\(\A\)与\(\B\)的第\(k\)列向量\(\b_k\)的乘积，
+	\item \(\vb{A}\vb{B}\)的第\(k\)列向量，
+	等于\(\vb{A}\)与\(\vb{B}\)的第\(k\)列向量\(\vb\beta_k\)的乘积，
 	即\begin{equation*}
-		\MatrixEntry{(\A\B)}{*,k}
-		= \A \MatrixEntry{\B}{*,k},
+		\MatrixEntry{(\vb{A}\vb{B})}{*,k}
+		= \vb{A} \MatrixEntry{\vb{B}}{*,k},
 		\quad k=1,2,\dotsc,m.
 	\end{equation*}
 
@@ -40,13 +40,13 @@
 \end{itemize}
 \end{remark}
 \begin{remark}
-如果我们分别对\(\A\)和\(\B\)做列分块和行分块，
+如果我们分别对\(\vb{A}\)和\(\vb{B}\)做列分块和行分块，
 \begingroup%
 \def\mx{\vb{\xi}}%
 \def\mz{\vb{\zeta}}%
 得\begin{equation*}
-	\A=(\AutoTuple{\mx}{n}), \qquad
-	\B=(\AutoTuple{\mz}{n}[,][T])^T,
+	\vb{A}=(\AutoTuple{\mx}{n}), \qquad
+	\vb{B}=(\AutoTuple{\mz}{n}[,][T])^T,
 \end{equation*}
 那么有\begin{equation}
 	\mx_i \mz_i^T
@@ -60,7 +60,7 @@
 	i=1,2,\dotsc,n,
 \end{equation}
 于是\begin{equation*}
-	\A\B=\sum_{i=1}^n \mx_i \mz_i^T.
+	\vb{A}\vb{B}=\sum_{i=1}^n \mx_i \mz_i^T.
 \end{equation*}
 \endgroup%
 \end{remark}
@@ -70,12 +70,12 @@
 \end{proposition}
 
 \begin{definition}
-设矩阵\(\A,\B \in M_n(K)\).
+设矩阵\(\vb{A},\vb{B} \in M_n(K)\).
 如果\[
-	\A \B = \B \A,
+	\vb{A} \vb{B} = \vb{B} \vb{A},
 \]
-则称“\(\A\)与\(\B\)~\DefineConcept{可交换}”
-或“\(\A\)与\(\B\)的乘积服从交换律”.
+则称“\(\vb{A}\)与\(\vb{B}\)~\DefineConcept{可交换}”
+或“\(\vb{A}\)与\(\vb{B}\)的乘积服从交换律”.
 \end{definition}
 
 \begin{example}
@@ -124,54 +124,54 @@
 举例说明：非零矩阵的乘积可能是零矩阵.
 \begin{solution}
 矩阵\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		0 & 0 & 0 \\
 		a_{21} & 0 & 0 \\
 		a_{31} & a_{32} & 0 \\
 	\end{bmatrix}
 	\quad\text{和}\quad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		b_{11} & b_{12} & b_{13} \\
 		0 & b_{22} & b_{23} \\
 		0 & 0 & b_{33} \\
 	\end{bmatrix}
 \]可以都不是零矩阵，
-但他们的乘积\(\A\B\)一定是零矩阵.
+但他们的乘积\(\vb{A}\vb{B}\)一定是零矩阵.
 \end{solution}
 \end{example}
 
 \begin{example}
 举例说明：矩阵乘法不满足消去律，即\[
-	\A \B = \A \C
+	\vb{A} \vb{B} = \vb{A} \vb{C}
 	\notimplies
-	\A = \z \lor \B = \C.
+	\vb{A} = \vb0 \lor \vb{B} = \vb{C}.
 \]
 \begin{solution}
 取\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		1 & 0 \\
 		1 & 0
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		0 & 0 \\
 		0 & 1
 	\end{bmatrix},
 	\qquad
-	\C = \begin{bmatrix}
+	\vb{C} = \begin{bmatrix}
 		0 & 0 \\
 		0 & 2
 	\end{bmatrix},
 \]
 显然\[
-	\A\B
-	= \A\C
+	\vb{A}\vb{B}
+	= \vb{A}\vb{C}
 	= \begin{bmatrix}
 		0 & 0 \\
 		0 & 0
 	\end{bmatrix},
 \]
-但是\(\A\neq\vb0\)且\(\B\neq\C\).
+但是\(\vb{A}\neq\vb0\)且\(\vb{B}\neq\vb{C}\).
 \end{solution}
 \end{example}
 
@@ -179,57 +179,57 @@
 \begin{theorem}
 矩阵乘法满足结合律.
 \begin{proof}
-设\(\A = (a_{ij})_{s \times n},
-\B = (b_{ij})_{n \times m},
-\C = (c_{ij})_{m \times r}\).
-显然\((\A\B)\C\)与\(\A(\B\C)\)同型，都是\(s \times r\)矩阵.
+设\(\vb{A} = (a_{ij})_{s \times n},
+\vb{B} = (b_{ij})_{n \times m},
+\vb{C} = (c_{ij})_{m \times r}\).
+显然\((\vb{A}\vb{B})\vb{C}\)与\(\vb{A}(\vb{B}\vb{C})\)同型，都是\(s \times r\)矩阵.
 由于\begin{align*}
-	\MatrixEntry{((\A\B)\C)}{i,j}
-	&= \sum_{l=1}^m (\MatrixEntry{(\A\B)}{i,l}) \cdot c_{lj} \\
+	\MatrixEntry{((\vb{A}\vb{B})\vb{C})}{i,j}
+	&= \sum_{l=1}^m (\MatrixEntry{(\vb{A}\vb{B})}{i,l}) \cdot c_{lj} \\
 	&= \sum_{l=1}^m \left( \sum_{k=1}^n a_{ik} b_{kl} \right) c_{lj} \\
 	&= \sum_{l=1}^m \left( \sum_{k=1}^n a_{ik} b_{kl} c_{lj} \right), \\
-	\MatrixEntry{(\A(\B\C))}{i,j}
-	&= \sum_{k=1}^n a_{ik} \cdot (\MatrixEntry{(\B\C)}{k,j}) \\
+	\MatrixEntry{(\vb{A}(\vb{B}\vb{C}))}{i,j}
+	&= \sum_{k=1}^n a_{ik} \cdot (\MatrixEntry{(\vb{B}\vb{C})}{k,j}) \\
 	&= \sum_{k=1}^n a_{ik} \left( \sum_{l=1}^m b_{kl} c_{lj} \right) \\
 	&= \sum_{k=1}^n \left( \sum_{l=1}^m a_{ik} b_{kl} c_{lj} \right) \\
 	&= \sum_{l=1}^m \left( \sum_{k=1}^n a_{ik} b_{kl} c_{lj} \right),
 \end{align*}
-于是\((\A\B)\C = \A(\B\C)\).
+于是\((\vb{A}\vb{B})\vb{C} = \vb{A}(\vb{B}\vb{C})\).
 \end{proof}
 \end{theorem}
 
 \begin{definition}
-设\(\A\in M_n(K)\).
+设\(\vb{A}\in M_n(K)\).
 若有\[
-	\A(i,j) = \left\{ \begin{array}{cl}
+	\vb{A}(i,j) = \left\{ \begin{array}{cl}
 		1, & i=j, \\
 		0, & i\neq j,
 	\end{array} \right.
 \]
-则称“\(\A\)是\DefineConcept{单位矩阵}（identity matrix）”，记作\(\E\).
+则称“\(\vb{A}\)是\DefineConcept{单位矩阵}（identity matrix）”，记作\(\vb{E}\).
 %@see: https://mathworld.wolfram.com/IdentityMatrix.html
 \end{definition}
 
 \begin{property}
 矩阵的乘法满足以下性质：
 \begin{gather}
-	(\forall\A,\B\in M_{s\times n}(K))(\forall k\in K)[k(\A\B) = (k\A)\B = \A(k\B)], \\
-	(\forall\A,\B,\C\in M_{s\times n}(K))[\A(\B+\C) = \A\B + \A\C], \label{equation:矩阵的乘法.左分配律} \\
-	(\forall\A,\B,\C\in M_{s\times n}(K))[(\A+\B)\C = \A\C + \B\C], \label{equation:矩阵的乘法.右分配律} \\
-	(\forall\A\in M_{s\times n}(K))[\z_{q \times s} \A = \z_{q \times n}], \\
-	(\forall\A\in M_{s\times n}(K))[\A \z_{n \times p} = \z_{s \times p}], \\
-	(\forall\A\in M_{s\times n}(K))[\E_s \A = \A], \\
-	(\forall\A\in M_{s\times n}(K))[\A \E_n = \A].
+	(\forall\vb{A},\vb{B}\in M_{s\times n}(K))(\forall k\in K)[k(\vb{A}\vb{B}) = (k\vb{A})\vb{B} = \vb{A}(k\vb{B})], \\
+	(\forall\vb{A},\vb{B},\vb{C}\in M_{s\times n}(K))[\vb{A}(\vb{B}+\vb{C}) = \vb{A}\vb{B} + \vb{A}\vb{C}], \label{equation:矩阵的乘法.左分配律} \\
+	(\forall\vb{A},\vb{B},\vb{C}\in M_{s\times n}(K))[(\vb{A}+\vb{B})\vb{C} = \vb{A}\vb{C} + \vb{B}\vb{C}], \label{equation:矩阵的乘法.右分配律} \\
+	(\forall\vb{A}\in M_{s\times n}(K))[\vb0_{q \times s} \vb{A} = \vb0_{q \times n}], \\
+	(\forall\vb{A}\in M_{s\times n}(K))[\vb{A} \vb0_{n \times p} = \vb0_{s \times p}], \\
+	(\forall\vb{A}\in M_{s\times n}(K))[\vb{E}_s \vb{A} = \vb{A}], \\
+	(\forall\vb{A}\in M_{s\times n}(K))[\vb{A} \vb{E}_n = \vb{A}].
 \end{gather}
 \end{property}
 
 \subsection{矩阵的幂}
 \begin{definition}
-设\(\A\in M_n(K)\).
+设\(\vb{A}\in M_n(K)\).
 定义：
 \begin{align}
-	\A^0 &\defeq \E, \\
-	\A^k &\defeq \underbrace{\A\A\dotsm\A}_{\text{$k$个}}.
+	\vb{A}^0 &\defeq \vb{E}, \\
+	\vb{A}^k &\defeq \underbrace{\vb{A}\vb{A}\dotsm\vb{A}}_{\text{$k$个}}.
 \end{align}
 %@see: https://mathworld.wolfram.com/MatrixPower.html
 \end{definition}
@@ -237,55 +237,55 @@
 \begin{theorem}
 指数律成立，
 即\begin{gather}
-	(\forall\A \in M_n(K))
+	(\forall\vb{A} \in M_n(K))
 	(k,l \in \mathbb{N})
-	[\A^k\A^l = \A^{k+l}], \\
-	(\forall\A \in M_n(K))
+	[\vb{A}^k\vb{A}^l = \vb{A}^{k+l}], \\
+	(\forall\vb{A} \in M_n(K))
 	(k,l \in \mathbb{N})
-	[(\A^k)^l = \A^{kl}].
+	[(\vb{A}^k)^l = \vb{A}^{kl}].
 \end{gather}
 \end{theorem}
 
 \begin{proposition}
-设\(\A,\B \in M_n(K)\)，
+设\(\vb{A},\vb{B} \in M_n(K)\)，
 则\begin{equation}
-	(\A\B)^k = \A(\B\A)^{k-1}\B,
+	(\vb{A}\vb{B})^k = \vb{A}(\vb{B}\vb{A})^{k-1}\vb{B},
 	\quad k=1,2,\dotsc.
 \end{equation}
 \end{proposition}
 \begin{proposition}
-设\(\A,\B \in M_n(K)\).
-若\(\A\)与\(\B\)可交换，则\begin{equation*}
-	(\A\B)^k = \A^k\B^k.
+设\(\vb{A},\vb{B} \in M_n(K)\).
+若\(\vb{A}\)与\(\vb{B}\)可交换，则\begin{equation*}
+	(\vb{A}\vb{B})^k = \vb{A}^k\vb{B}^k.
 \end{equation*}
 \end{proposition}
 \begin{remark}
-注意，当\(\A\)、\(\B\)不可交换时，通常有\[
-	(\A\B)^k \neq \A^k\B^k.
+注意，当\(\vb{A}\)、\(\vb{B}\)不可交换时，通常有\[
+	(\vb{A}\vb{B})^k \neq \vb{A}^k\vb{B}^k.
 \]
 \end{remark}
 
 \begin{example}
-设\(\A=\diag(\AutoTuple{a}{n}),
-\B=\diag(\AutoTuple{b}{n})\).
+设\(\vb{A}=\diag(\AutoTuple{a}{n}),
+\vb{B}=\diag(\AutoTuple{b}{n})\).
 那么\[
-	\A\B = \diag(a_1b_1,a_2b_2,\dotsc,a_nb_n).
+	\vb{A}\vb{B} = \diag(a_1b_1,a_2b_2,\dotsc,a_nb_n).
 \]
 \end{example}
 \begin{remark}
-如果\(\A\)是一个对角阵，其主对角线上的元素各不相同，
-则与\(\A\)可交换的矩阵必定也是一个对角阵.
+如果\(\vb{A}\)是一个对角阵，其主对角线上的元素各不相同，
+则与\(\vb{A}\)可交换的矩阵必定也是一个对角阵.
 \end{remark}
 
 \begin{example}
-设二阶矩阵\(\A=\begin{bmatrix} 1 & \lambda \\ 0 & 1 \end{bmatrix}\).
-试证\(\A^n=\begin{bmatrix} 1 & n\lambda \\ 0 & 1 \end{bmatrix}\).
+设二阶矩阵\(\vb{A}=\begin{bmatrix} 1 & \lambda \\ 0 & 1 \end{bmatrix}\).
+试证\(\vb{A}^n=\begin{bmatrix} 1 & n\lambda \\ 0 & 1 \end{bmatrix}\).
 \begin{proof}
 用数学归纳法.
 显然\(n=1\)时，命题成立.
 接下来我们再验证\(n=2\)时，命题是否成立.
 因为\[
-	\A^2
+	\vb{A}^2
 	= \begin{bmatrix}
 		1 & \lambda \\
 		0 & 1
@@ -322,24 +322,24 @@
 		0 & 1
 	\end{bmatrix}.
 \]
-因此，命题\(\A^n=\begin{bmatrix} 1 & n\lambda \\ 0 & 1 \end{bmatrix}\)
+因此，命题\(\vb{A}^n=\begin{bmatrix} 1 & n\lambda \\ 0 & 1 \end{bmatrix}\)
 当\(n=1,2,\dotsc\)时总成立.
 \end{proof}
 \end{example}
 
 \begin{example}
-设\(\A,\B,\C \in M_n(K)\)，则有\[
-	(\A + \B + \C)^2
-	= \A^2 + \B^2 + \C^2 + \A\B + \B\A + \A\C + \C\A + \B\C + \C\B.
+设\(\vb{A},\vb{B},\vb{C} \in M_n(K)\)，则有\[
+	(\vb{A} + \vb{B} + \vb{C})^2
+	= \vb{A}^2 + \vb{B}^2 + \vb{C}^2 + \vb{A}\vb{B} + \vb{B}\vb{A} + \vb{A}\vb{C} + \vb{C}\vb{A} + \vb{B}\vb{C} + \vb{C}\vb{B}.
 \]
 \end{example}
 
 \begin{theorem}
-设矩阵\(\A \in M_n(K)\)，
+设矩阵\(\vb{A} \in M_n(K)\)，
 则\begin{itemize}
-	\item 对于任意非负整数\(k\)，\(\A\)与\(\A^k\)可交换；
-	\item 对于数域\(K\)上的任意一个一元多项式\(f(x)\)，\(\A\)与\(f(\A)\)可交换.
-	\item 对于数域\(K\)上的任意两个一元多项式\(f(x)\)和\(g(x)\)，\(f(\A)\)与\(g(\A)\)可交换.
+	\item 对于任意非负整数\(k\)，\(\vb{A}\)与\(\vb{A}^k\)可交换；
+	\item 对于数域\(K\)上的任意一个一元多项式\(f(x)\)，\(\vb{A}\)与\(f(\vb{A})\)可交换.
+	\item 对于数域\(K\)上的任意两个一元多项式\(f(x)\)和\(g(x)\)，\(f(\vb{A})\)与\(g(\vb{A})\)可交换.
 \end{itemize}
 \end{theorem}
 
@@ -347,33 +347,33 @@
 如果\(g(x)\)和\(h(x)\)是两个多项式，
 设\(l(x) = g(x) + h(x)\)，\(m(x) = g(x) h(x)\)，
 则\[
-	l(\A) = g(\A) + h(\A),
+	l(\vb{A}) = g(\vb{A}) + h(\vb{A}),
 	\quad
-	m(\A) = g(\A) h(\A).
+	m(\vb{A}) = g(\vb{A}) h(\vb{A}).
 \]
 \end{theorem}
 
 \begin{example}
 设\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 	\cos t & \sin t \\
 	-\sin t & \cos t
 	\end{bmatrix}.
 \]
 令\[
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		\cos t & 0 \\
 		0 & \cos t
 	\end{bmatrix},
 	\qquad
-	\C = \begin{bmatrix}
+	\vb{C} = \begin{bmatrix}
 		0 & \sin t \\
 		-\sin t & 0
 	\end{bmatrix},
 \]
-则\(\A=\B+\C\).
+则\(\vb{A}=\vb{B}+\vb{C}\).
 因为\[
-	\B\C = \begin{bmatrix}
+	\vb{B}\vb{C} = \begin{bmatrix}
 		\cos t & 0 \\
 		0 & \cos t
 	\end{bmatrix}
@@ -386,7 +386,7 @@
 		-\cos t \sin t & 0
 	\end{bmatrix},
 \]\[
-	\C\B = \begin{bmatrix}
+	\vb{C}\vb{B} = \begin{bmatrix}
 		0 & \sin t \\
 		-\sin t & 0
 	\end{bmatrix}
@@ -399,86 +399,86 @@
 		-\cos t \sin t & 0
 	\end{bmatrix},
 \]
-所以\(\B\C=\C\B\)，\(\B\)与\(\C\)可交换.
+所以\(\vb{B}\vb{C}=\vb{C}\vb{B}\)，\(\vb{B}\)与\(\vb{C}\)可交换.
 由牛顿二项式定理有，\[
-	\A^n=(\B+\C)^n
-	=\sum_{k=0}^n C_n^k \B^{n-k} \C^k.
+	\vb{A}^n=(\vb{B}+\vb{C})^n
+	=\sum_{k=0}^n C_n^k \vb{B}^{n-k} \vb{C}^k.
 \]
 \end{example}
 
 \begin{example}
-设\(\A,\B,\x \in M_n(K)\).
-证明：若\(\A\x=\x\B\)，则对任意多项式\[
+设\(\vb{A},\vb{B},\vb{x} \in M_n(K)\).
+证明：若\(\vb{A}\vb{x}=\vb{x}\vb{B}\)，则对任意多项式\[
 	f(x) = a_0 + a_1 x + a_2 x^2 + \dotsb + a_k x^k,
 	\quad
 	a_0,a_1,a_2,\dotsc,a_k \in K,
 \]
 总有\[
-	f(\A) \x = \x f(\B).
+	f(\vb{A}) \vb{x} = \vb{x} f(\vb{B}).
 \]
 \begin{proof}
 因为\[
-	\A\x = \x\B,
+	\vb{A}\vb{x} = \vb{x}\vb{B},
 \]
 所以\[
-	\A^2 \x = \A(\A\x) = \A(\x\B),
+	\vb{A}^2 \vb{x} = \vb{A}(\vb{A}\vb{x}) = \vb{A}(\vb{x}\vb{B}),
 	\qquad
-	\x \B^2 = (\x\B)\B = (\A\x)\B.
+	\vb{x} \vb{B}^2 = (\vb{x}\vb{B})\vb{B} = (\vb{A}\vb{x})\vb{B}.
 \]
 以此类推，可证\[
-	\A^n \x = \x \B^n,
+	\vb{A}^n \vb{x} = \vb{x} \vb{B}^n,
 	\quad n=1,2,\dotsc.
 \]
 
 因为\[
-	f(\A) = a_0 \E + a_1 \A + a_2 \A^2 + \dotsb + a_k \A^k,
+	f(\vb{A}) = a_0 \vb{E} + a_1 \vb{A} + a_2 \vb{A}^2 + \dotsb + a_k \vb{A}^k,
 \]
 根据左分配律，有\[
-	f(\A) \x = a_0 \x + a_1 \A\x + a_2 \A^2 \x + \dotsb + a_k \A^k \x.
+	f(\vb{A}) \vb{x} = a_0 \vb{x} + a_1 \vb{A}\vb{x} + a_2 \vb{A}^2 \vb{x} + \dotsb + a_k \vb{A}^k \vb{x}.
 	\eqno(1)
 \]
 同理，根据右分配律，有\[
-	\x f(\B) = a_0 \x + a_1 \x\B + a_2 \x \B^2 + \dotsb + a_k \x \B^k.
+	\vb{x} f(\vb{B}) = a_0 \vb{x} + a_1 \vb{x}\vb{B} + a_2 \vb{x} \vb{B}^2 + \dotsb + a_k \vb{x} \vb{B}^k.
 	\eqno(2)
 \]
 因为(1)与(2)中各项逐项相等，
-故\(f(\A) \x = \x f(\B)\).
+故\(f(\vb{A}) \vb{x} = \vb{x} f(\vb{B})\).
 \end{proof}
 \end{example}
 
 \subsection{矩阵乘积的转置}
 \begin{theorem}\label{theorem:矩阵.矩阵乘积的转置}
-设\(\A\in M_{s\times n}(K),
-\B\in M_{n \times t}(K)\)，
+设\(\vb{A}\in M_{s\times n}(K),
+\vb{B}\in M_{n \times t}(K)\)，
 则有\[
-	(\A\B)^T = \B^T \A^T.
+	(\vb{A}\vb{B})^T = \vb{B}^T \vb{A}^T.
 \]
 \begin{proof}
 假设\[
-	\A=(a_{ij})_{s \times n}
-	=(\AutoTuple{\a}{s})^T, \qquad
-	\B=(b_{ij})_{n \times t}
-	=(\AutoTuple{\b}{t}),
+	\vb{A}=(a_{ij})_{s \times n}
+	=(\AutoTuple{\vb\alpha}{s})^T, \qquad
+	\vb{B}=(b_{ij})_{n \times t}
+	=(\AutoTuple{\vb\beta}{t}),
 \]
-其中\(\a_i\in K^n\ (i=1,2,\dotsc,s)\)是行向量，
-\(\b_j\in K^n\ (j=1,2,\dotsc,t)\)是列向量.
+其中\(\vb\alpha_i\in K^n\ (i=1,2,\dotsc,s)\)是行向量，
+\(\vb\beta_j\in K^n\ (j=1,2,\dotsc,t)\)是列向量.
 又假设\[
-	\A\B=(c_{ij})_{s \times t}, \qquad
-	\B^T\A^T=(d_{ij})_{t \times s}.
+	\vb{A}\vb{B}=(c_{ij})_{s \times t}, \qquad
+	\vb{B}^T\vb{A}^T=(d_{ij})_{t \times s}.
 \]
 那么\begin{gather*}
-	c_{ij}  % \(\A\)的第\(i\)行，\(\B\)的第\(j\)列
+	c_{ij}  % \(\vb{A}\)的第\(i\)行，\(\vb{B}\)的第\(j\)列
 	= \VectorInnerProductDot{\vb\alpha_i}{\vb\beta_j}
 	= \sum_{k=1}^n a_{ik}b_{kj}, \\
-	d_{ij}  % \(\B^T\)的第\(i\)行，\(\A^T\)的第\(j\)列
-	= \VectorInnerProductDot{\vb\beta_i}{\vb\alpha_j}  % 相当于\(\B\)的第\(i\)列，\(\A\)的第\(j\)行
+	d_{ij}  % \(\vb{B}^T\)的第\(i\)行，\(\vb{A}^T\)的第\(j\)列
+	= \VectorInnerProductDot{\vb\beta_i}{\vb\alpha_j}  % 相当于\(\vb{B}\)的第\(i\)列，\(\vb{A}\)的第\(j\)行
 	= \sum_{k=1}^n a_{jk}b_{ki},
 \end{gather*}
 可见\(c_{ij}=d_{ji}\ (i=1,2,\dotsc,s;j=1,2,\dotsc,t)\).
-因此，\((\A\B)^T = \B^T \A^T\).
+因此，\((\vb{A}\vb{B})^T = \vb{B}^T \vb{A}^T\).
 \end{proof}
 \end{theorem}
 
 \begin{corollary}
-\((\A_1 \A_2 \dotsb \A_n)^T = \A_n^T \dots \A_2^T \A_1^T\).
+\((\vb{A}_1 \vb{A}_2 \dotsm \vb{A}_n)^T = \vb{A}_n^T \dotsm \vb{A}_2^T \vb{A}_1^T\).
 \end{corollary}

@@ -17,52 +17,52 @@
 \end{definition}
 
 %我们约定：
-%矩阵\(\A\)经过一次初等行变换\(\sigma_1\)化为矩阵\(\B\)的过程
-%可以表示为在连接矩阵\(\A\)和\(\B\)的箭头上方标记\(\sigma_1\)，即\[
-%	\A \xlongrightarrow{\sigma_1} \B;
-%\]而矩阵\(\A\)经过一次初等列变换\(\sigma_2\)化为矩阵\(\B\)的过程
-%可以表示为在连接矩阵\(\A\)和\(\B\)的箭头下方标记\(\sigma_2\)，即\[
-%	\A \xlongrightarrow[\sigma_2]{} \B.
+%矩阵\(\vb{A}\)经过一次初等行变换\(\sigma_1\)化为矩阵\(\vb{B}\)的过程
+%可以表示为在连接矩阵\(\vb{A}\)和\(\vb{B}\)的箭头上方标记\(\sigma_1\)，即\[
+%	\vb{A} \xlongrightarrow{\sigma_1} \vb{B};
+%\]而矩阵\(\vb{A}\)经过一次初等列变换\(\sigma_2\)化为矩阵\(\vb{B}\)的过程
+%可以表示为在连接矩阵\(\vb{A}\)和\(\vb{B}\)的箭头下方标记\(\sigma_2\)，即\[
+%	\vb{A} \xlongrightarrow[\sigma_2]{} \vb{B}.
 %\]
 
 \subsection{初等矩阵的概念}
 \begin{definition}\label{definition:逆矩阵.矩阵等价}
-若矩阵\(\A\)可以经过一系列初等变换化为矩阵\(\B\)，
-则称“\(\A\)与\(\B\)~\DefineConcept{等价}（equivalent）”，
-或“\(\A\)与\(\B\)~\DefineConcept{相抵}”，
-记作\(\A\cong\B\).
+若矩阵\(\vb{A}\)可以经过一系列初等变换化为矩阵\(\vb{B}\)，
+则称“\(\vb{A}\)与\(\vb{B}\)~\DefineConcept{等价}（equivalent）”，
+或“\(\vb{A}\)与\(\vb{B}\)~\DefineConcept{相抵}”，
+记作\(\vb{A}\cong\vb{B}\).
 \end{definition}
 
 \begin{definition}
-由\(n\)阶单位矩阵\(\E\)经过\emph{一次}初等变换所得矩阵
+由\(n\)阶单位矩阵\(\vb{E}\)经过\emph{一次}初等变换所得矩阵
 称为\(n\)阶\DefineConcept{初等矩阵}（elementary matrix）.
 \end{definition}
 
 对应于矩阵的三类初等变换，有三种类型的初等矩阵：
 \begin{enumerate}
-	\item 互换\(\E\)的\(i\)，\(j\)两行（列）所得的矩阵\[
-		\P(i,j) = \begin{bmatrix}
-			\E_{i-1} & & & \\
+	\item 互换\(\vb{E}\)的\(i\)，\(j\)两行（列）所得的矩阵\[
+		\vb{P}(i,j) = \begin{bmatrix}
+			\vb{E}_{i-1} & & & \\
 			& 0 & & 1 & \\
-			& & \E_{j-i-1} & & \\
+			& & \vb{E}_{j-i-1} & & \\
 			& 1 & & 0 & \\
-			& & & & \E_{n-j}
+			& & & & \vb{E}_{n-j}
 		\end{bmatrix}_n;
 	\]
-	\item 用非零数\(c\)乘以\(\E\)的第\(i\)行（列）所得的矩阵\[
-		\P(i(c)) = \begin{bmatrix}
-			\E_{i-1} & & \\
+	\item 用非零数\(c\)乘以\(\vb{E}\)的第\(i\)行（列）所得的矩阵\[
+		\vb{P}(i(c)) = \begin{bmatrix}
+			\vb{E}_{i-1} & & \\
 			& c & \\
-			& & \E_{n-i}
+			& & \vb{E}_{n-i}
 		\end{bmatrix}_n;
 	\]
-	\item 把\(\E\)的第\(j\)行（第\(i\)列）的\(k\)倍加到第\(i\)行（第\(j\)列）所得的矩阵\[
-		\P(i,j(k)) = \begin{bmatrix}
-			\E_{i-1} & & & \\
+	\item 把\(\vb{E}\)的第\(j\)行（第\(i\)列）的\(k\)倍加到第\(i\)行（第\(j\)列）所得的矩阵\[
+		\vb{P}(i,j(k)) = \begin{bmatrix}
+			\vb{E}_{i-1} & & & \\
 			& 1 & & k & \\
-			& & \E_{j-i-1} & & \\
+			& & \vb{E}_{j-i-1} & & \\
 			& 0 & & 1 & \\
-			& & & & \E_{n-j}
+			& & & & \vb{E}_{n-j}
 		\end{bmatrix}_n.
 	\]
 \end{enumerate}
@@ -70,69 +70,69 @@
 \subsection{初等矩阵的性质}
 \begin{property}\label{theorem:逆矩阵.初等矩阵的性质1}
 初等矩阵具有以下性质：\begin{gather}
-	\abs{\P(i,j)} = -1, \\
-	\abs{\P(i(c))} = c, \\
-	\abs{\P(i,j(k))} = 1, \\
-	\P(i,j)^T = \P(i,j), \\
-	\P(i(c))^T = \P(i(c)), \\
-	\P(i,j(k))^T = \P(j,i(k)), \\
-	\P(i,j)^{-1} = \P(i,j), \\
-	\P(i(c))^{-1} = \P(i(c^{-1})), \\
-	\P(i,j(k))^{-1} = \P(i,j(-k)).
+	\abs{\vb{P}(i,j)} = -1, \\
+	\abs{\vb{P}(i(c))} = c, \\
+	\abs{\vb{P}(i,j(k))} = 1, \\
+	\vb{P}(i,j)^T = \vb{P}(i,j), \\
+	\vb{P}(i(c))^T = \vb{P}(i(c)), \\
+	\vb{P}(i,j(k))^T = \vb{P}(j,i(k)), \\
+	\vb{P}(i,j)^{-1} = \vb{P}(i,j), \\
+	\vb{P}(i(c))^{-1} = \vb{P}(i(c^{-1})), \\
+	\vb{P}(i,j(k))^{-1} = \vb{P}(i,j(-k)).
 \end{gather}
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.初等矩阵的性质2}
-对\(n \times t\)矩阵\(\A\)施行一次初等行变换，相当于用一个相应的\(n\)阶初等矩阵左乘\(\A\)；
-对\(\A\)施行一次初等列变换，相当于用一个相应的\(t\)阶初等矩阵右乘\(\A\).
+对\(n \times t\)矩阵\(\vb{A}\)施行一次初等行变换，相当于用一个相应的\(n\)阶初等矩阵左乘\(\vb{A}\)；
+对\(\vb{A}\)施行一次初等列变换，相当于用一个相应的\(t\)阶初等矩阵右乘\(\vb{A}\).
 \begin{proof}
-用\(n\)阶矩阵\(\P(i,j)\)左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
-	\P(i,j) \A = \begin{bmatrix}
-		\E_{i-1} \\
+用\(n\)阶矩阵\(\vb{P}(i,j)\)左乘\(\vb{A}\)，将矩阵\(\vb{A}\)作相应分块，有\[
+	\vb{P}(i,j) \vb{A} = \begin{bmatrix}
+		\vb{E}_{i-1} \\
 		& 0 & & 1 \\
-		& & \E_{j-i-1} \\
+		& & \vb{E}_{j-i-1} \\
 		& 1 & & 0 \\
-		& & & & \E_{n-j}
+		& & & & \vb{E}_{n-j}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A_1 \\ \a_i \\ \A_2 \\ \a_j \\ \A_3
+		\vb{A}_1 \\ \vb\alpha_i \\ \vb{A}_2 \\ \vb\alpha_j \\ \vb{A}_3
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A_1 \\ \a_j \\ \A_2 \\ \a_i \\ \A_3
+		\vb{A}_1 \\ \vb\alpha_j \\ \vb{A}_2 \\ \vb\alpha_i \\ \vb{A}_3
 	\end{bmatrix},
 \]
-即\(\A\)交换\(i\)、\(j\)两行.
+即\(\vb{A}\)交换\(i\)、\(j\)两行.
 
-用\(n\)阶矩阵\(\P(i(c))\)左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
-	\P(i(c)) \A = \begin{bmatrix}
-		\E_{i-1} \\
+用\(n\)阶矩阵\(\vb{P}(i(c))\)左乘\(\vb{A}\)，将矩阵\(\vb{A}\)作相应分块，有\[
+	\vb{P}(i(c)) \vb{A} = \begin{bmatrix}
+		\vb{E}_{i-1} \\
 		& c \\
-		& & \E_{n-i}
+		& & \vb{E}_{n-i}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A_1 \\ \a_i \\ \A_2
+		\vb{A}_1 \\ \vb\alpha_i \\ \vb{A}_2
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A_1 \\ c \a_i \\ a_2
+		\vb{A}_1 \\ c \vb\alpha_i \\ a_2
 	\end{bmatrix},
 \]
 即用一非零数\(c\)乘以第\(i\)行.
 
-用\(n\)阶矩阵\(\P(i,j(k))\ (i < j)\)左乘\(\A\)，将矩阵\(\A\)作相应分块，有\[
-	\P(i,j(k)) \A = \begin{bmatrix}
-		\E_{i-1} \\
+用\(n\)阶矩阵\(\vb{P}(i,j(k))\ (i < j)\)左乘\(\vb{A}\)，将矩阵\(\vb{A}\)作相应分块，有\[
+	\vb{P}(i,j(k)) \vb{A} = \begin{bmatrix}
+		\vb{E}_{i-1} \\
 		& 1 & & k \\
-		& & \E_{j-i-1} \\
+		& & \vb{E}_{j-i-1} \\
 		& 0 & & 1 \\
-		& & & & \E_{n-j}
+		& & & & \vb{E}_{n-j}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A_1 \\ \a_i \\ \A_2 \\ \a_j \\ \A_3
+		\vb{A}_1 \\ \vb\alpha_i \\ \vb{A}_2 \\ \vb\alpha_j \\ \vb{A}_3
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A_1 \\ \a_i + k \a_j \\ \A_2 \\ \a_j \\ \A_3
+		\vb{A}_1 \\ \vb\alpha_i + k \vb\alpha_j \\ \vb{A}_2 \\ \vb\alpha_j \\ \vb{A}_3
 	\end{bmatrix},
 \]
-即把\(\A\)第\(j\)行的\(k\)倍加到第\(i\)行.
+即把\(\vb{A}\)第\(j\)行的\(k\)倍加到第\(i\)行.
 \end{proof}
 \end{property}

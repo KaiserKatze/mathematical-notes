@@ -39,20 +39,17 @@ QR分解的目的，是将一个实满秩矩阵分解成一个正定矩阵和一
 \section{LU分解}
 LU分解的目的，是将一个矩阵分解成一个下三角矩阵和一个上三角矩阵的乘积.
 
-\begingroup
-\def\L{\vb{L}}%
-\def\U{\vb{U}}%
 \begin{theorem}
-设\(\A = (a_{ij})_n \in M_n(\mathbb{R})\)，
-存在下三角阵\(\L = (l_{ij})_n\)和上三角阵\(\U = (u_{ij})_n\)，
-使得\(\A = \L \U\)，
+设\(\vb{A} = (a_{ij})_n \in M_n(\mathbb{R})\)，
+存在下三角阵\(\vb{L} = (l_{ij})_n\)和上三角阵\(\vb{U} = (u_{ij})_n\)，
+使得\(\vb{A} = \vb{L} \vb{U}\)，
 其中\(l_{ii} = 1\ (i=1,2,\dotsc,n),
 l_{ij} = 0\ (i<j),
 u_{ij} = 0\ (i>j)\).
 \end{theorem}
 
 举例来说，令\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		a_{11} & a_{12} \\
 		a_{21} & a_{22}
 	\end{bmatrix}
@@ -64,7 +61,7 @@ u_{ij} = 0\ (i>j)\).
 		u_{11} & u_{12} \\
 		0 & u_{22}
 	\end{bmatrix}
-	= \L \U,
+	= \vb{L} \vb{U},
 \]
 得\[
 	\left.\begin{array}{r}
@@ -83,7 +80,7 @@ u_{ij} = 0\ (i>j)\).
 \]
 
 又令\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		a_{11} & a_{12} & a_{13} \\
 		a_{21} & a_{22} & a_{23} \\
 		a_{31} & a_{32} & a_{33}
@@ -97,7 +94,7 @@ u_{ij} = 0\ (i>j)\).
 		u_{11} & u_{12} & u_{13} \\
 		0 & u_{22} & u_{23} \\
 		0 & 0 & u_{33}
-	\end{bmatrix} = \L \U,
+	\end{bmatrix} = \vb{L} \vb{U},
 \]
 得\[
 	\left\{\begin{array}{l}
@@ -112,40 +109,40 @@ u_{ij} = 0\ (i>j)\).
 		u_{33} = a_{33} - (l_{31} \cdot u_{13} + l_{32} \cdot u_{23}).
 	\end{array}\right.
 \]
-\endgroup%LU分解
+
 
 \section{谱分解}
 \begin{lemma}\label{theorem:矩阵分解.复方阵酉相似于上三角阵}
 %@see: 《矩阵论》（詹兴致） P6 定理1.5（Schur酉三角化）
-设矩阵\(\A \in M_n(\mathbb{C})\)，
-则\(\A\)酉相似于某个上三角矩阵.
+设矩阵\(\vb{A} \in M_n(\mathbb{C})\)，
+则\(\vb{A}\)酉相似于某个上三角矩阵.
 \begin{proof}
 用数学归纳法.
 当\(n=1\)时，结论显然成立.
 假设当\(n=k-1\ (k\geq2)\)时，结论成立.
 当\(n=k\)时，
-任取\(\A\)的某一个特征值\(\lambda_1\)，
+任取\(\vb{A}\)的某一个特征值\(\lambda_1\)，
 再任取属于\(\lambda_1\)的某一个单位特征向量\(\vb{x}_1\)，
 将\(\vb{x}_1\)扩充成\(\mathbb{C}^n\)的一个标准正交基\(\AutoTuple{\vb{x}}{n}\)，
 然后令\(\vb{U}_1 = (\AutoTuple{\vb{x}}{n})\)，
 则\(\vb{U}_1\)是酉矩阵，
 且\[
-	\vb{U}_1^H \A \vb{U}_1
+	\vb{U}_1^H \vb{A} \vb{U}_1
 	= \begin{bmatrix}
 		\lambda & \vb{y}^H \\
-		\vb0 & \A_1
+		\vb0 & \vb{A}_1
 	\end{bmatrix},
 \]
-其中\(\A_1 \in M_{n-1}(\mathbb{C})\).
+其中\(\vb{A}_1 \in M_{n-1}(\mathbb{C})\).
 由归纳假设，
-存在酉矩阵\(\vb{U}_2 \in M_{n-1}(\mathbb{C})\)使得\(\vb{U}_2^H \A_1 \vb{U}_2\)是上三角矩阵.
+存在酉矩阵\(\vb{U}_2 \in M_{n-1}(\mathbb{C})\)使得\(\vb{U}_2^H \vb{A}_1 \vb{U}_2\)是上三角矩阵.
 令\(\vb{U} = \vb{U}_1 \diag(1,\vb{U}_2) \in M_n(\mathbb{C})\)，
 则\(\vb{U}\)是酉矩阵，
 且\[
-	\vb{U}^H \A \vb{U}
+	\vb{U}^H \vb{A} \vb{U}
 	= \begin{bmatrix}
 		\lambda & \vb{y}^H \vb{U}_2 \\
-		\vb0 & \vb{U}_2^H \A_1 \vb{U}_2
+		\vb0 & \vb{U}_2^H \vb{A}_1 \vb{U}_2
 	\end{bmatrix}
 \]是上三角矩阵.
 \end{proof}
@@ -153,15 +150,15 @@ u_{ij} = 0\ (i>j)\).
 
 \begin{theorem}\label{theorem:矩阵分解.谱分解}
 %@see: 《矩阵论》（詹兴致） P2 定理1.1
-设\(\A \in M_n(\mathbb{C})\)是正规矩阵，
+设\(\vb{A} \in M_n(\mathbb{C})\)是正规矩阵，
 则存在酉矩阵\(\vb{U} \in M_n(\mathbb{C})\)满足\[
-	\A = \vb{U} \diag(\AutoTuple{\lambda}{n}) \vb{U}^H,
+	\vb{A} = \vb{U} \diag(\AutoTuple{\lambda}{n}) \vb{U}^H,
 \]
-其中\(\AutoTuple{\lambda}{n}\)是\(\A\)的特征值.
+其中\(\AutoTuple{\lambda}{n}\)是\(\vb{A}\)的特征值.
 \begin{proof}
 根据\cref{theorem:矩阵分解.复方阵酉相似于上三角阵}，
-存在酉矩阵\(\vb{U}\)和上三角阵\(\vb{T}\)满足\(\A = \vb{U} \vb{T} \vb{U}^H\).
-因为\(\A\)是正规矩阵，\(\A \A^H = \A^H \A\)，
+存在酉矩阵\(\vb{U}\)和上三角阵\(\vb{T}\)满足\(\vb{A} = \vb{U} \vb{T} \vb{U}^H\).
+因为\(\vb{A}\)是正规矩阵，\(\vb{A} \vb{A}^H = \vb{A}^H \vb{A}\)，
 所以\(\vb{T} \vb{T}^H = \vb{T}^H \vb{T}\).
 逐个比较\(\vb{T} \vb{T}^H\)和\(\vb{T}^H \vb{T}\)的主对角线元素，
 可以看出\(\vb{T}\)的每一个非主对角线元素都是零，
@@ -175,53 +172,46 @@ u_{ij} = 0\ (i>j)\).
 
 \section{奇异值分解}
 \begin{theorem}
-\def\U{\vb{U}}
-\def\S{\vb{\Sigma}}
-\def\V{\vb{V}}
-\let\Q\V
-\let\P\U
-\def\p{\vb{u}}
-\def\q{\vb{v}}
-设矩阵\(\A \in M_{m \times n}(\mathbb{R})\)，
-则存在\(m\)阶正交矩阵\(\U\)、\(n\)阶正交矩阵\(\V\)和\(m \times n\)对角阵\(\S\)，
+设矩阵\(\vb{A} \in M_{m \times n}(\mathbb{R})\)，
+则存在\(m\)阶正交矩阵\(\vb{U}\)、\(n\)阶正交矩阵\(\vb{V}\)和\(m \times n\)对角阵\(\vb\Sigma\)，
 使得\[
-	\A = \U \S \V^T,
+	\vb{A} = \vb{U} \vb\Sigma \vb{V}^T,
 \]
-其中\(\S = (\sigma_{ij})_{m \times n}\)的元素\(\sigma_{ij}\)满足\[
+其中\(\vb\Sigma = (\sigma_{ij})_{m \times n}\)的元素\(\sigma_{ij}\)满足\[
 	\sigma_{ij} = \left\{ \begin{array}{cc}
 	0, & i \neq j, \\
 	s_i \geq 0, & i = j.
 	\end{array} \right.
 \]
 \rm
-这里，矩阵\(\S\)的对角元\(s_i\)
-称为\(\A\)的\DefineConcept{奇异值}（通常按\(s_i \geq s_{i+1}\)排列），
-\(\U\)的列分块向量
-称为\(\A\)的\DefineConcept{左奇异向量}，
-\(\V\)的列分块向量
+这里，矩阵\(\vb\Sigma\)的对角元\(s_i\)
+称为\(\vb{A}\)的\DefineConcept{奇异值}（通常按\(s_i \geq s_{i+1}\)排列），
+\(\vb{U}\)的列分块向量
+称为\(\vb{A}\)的\DefineConcept{左奇异向量}，
+\(\vb{V}\)的列分块向量
 称为\DefineConcept{右奇异向量}.
 \begin{proof}
-由于\(\A^T \A \in M_n(\mathbb{R})\)，故可作谱分解，即存在正交矩阵\(\Q\)，使得\[
-	\Q^{-1}\A\Q = \Q^T\A\Q = \diag(\L{1},\L{2},\dotsc,\L{n}),
+由于\(\vb{A}^T \vb{A} \in M_n(\mathbb{R})\)，故可作谱分解，即存在正交矩阵\(\vb{V}\)，使得\[
+	\vb{V}^{-1}\vb{A}\vb{V} = \vb{V}^T\vb{A}\vb{V} = \diag(\lambda_1,\lambda_2,\dotsc,\lambda_n),
 \]
-其中\(\Q=(\AutoTuple{\q}{n})\)中的列分块向量\(\q_i\)是\(\A^T \A\)对应于特征值\(\L{i}\)的特征向量，
-而\(\{\AutoTuple{\q}{n}\}\)构成\(\mathbb{R}^n\)的一组标准正交基.
+其中\(\vb{V}=(\AutoTuple{\vb{v}}{n})\)中的列分块向量\(\vb{v}_i\)是\(\vb{A}^T \vb{A}\)对应于特征值\(\lambda_i\)的特征向量，
+而\(\{\AutoTuple{\vb{v}}{n}\}\)构成\(\mathbb{R}^n\)的一组标准正交基.
 
-注意到\(\A^T \A\)是半正定矩阵\footnote{当\(\A^T \A\)是可逆矩阵时，\(\A^T \A\)是正定矩阵.}，
-故其特征值\(\L{i}\geq0\).
+注意到\(\vb{A}^T \vb{A}\)是半正定矩阵\footnote{当\(\vb{A}^T \vb{A}\)是可逆矩阵时，\(\vb{A}^T \vb{A}\)是正定矩阵.}，
+故其特征值\(\lambda_i\geq0\).
 
-考虑映射\(\A_{m \times n}\colon \mathbb{R}^n \to \mathbb{R}^m, \x \mapsto \A\x\)，
-设\(\rank\A = r\)，
-将\(\A\)作用到\(\mathbb{R}^n\)的标准正交基\(\{\AutoTuple{\q}{n}\}\)上，
+考虑映射\(\vb{A}_{m \times n}\colon \mathbb{R}^n \to \mathbb{R}^m, \vb{x} \mapsto \vb{A}\vb{x}\)，
+设\(\rank\vb{A} = r\)，
+将\(\vb{A}\)作用到\(\mathbb{R}^n\)的标准正交基\(\{\AutoTuple{\vb{v}}{n}\}\)上，
 利用维数公式，得\[
-\dim(\ker \A) + \dim(\Img \A) = n,
+\dim(\ker \vb{A}) + \dim(\Img \vb{A}) = n,
 \]
-可知\(\A\q_1,\A\q_2,\dotsc,\A\q_n\)这\(n\)个向量中有\(r\)个向量构成\(\mathbb{R}^m\)的一组部分基，
-而\(\A\q_{r+1} = \A\q_{r+2} = \dotsb = \A\q_n = 0\).
+可知\(\vb{A}\vb{v}_1,\vb{A}\vb{v}_2,\dotsc,\vb{A}\vb{v}_n\)这\(n\)个向量中有\(r\)个向量构成\(\mathbb{R}^m\)的一组部分基，
+而\(\vb{A}\vb{v}_{r+1} = \vb{A}\vb{v}_{r+2} = \dotsb = \vb{A}\vb{v}_n = 0\).
 
-有\(\A^T \A \q_j = \L{j} \q_j\)，又有\[
+有\(\vb{A}^T \vb{A} \vb{v}_j = \lambda_j \vb{v}_j\)，又有\[
 	\VectorInnerProductDot{\vb{v}_i}{\vb{v}_j}
-	= \q_i^T \q_j
+	= \vb{v}_i^T \vb{v}_j
 	= \left\{ \begin{array}{lc}
 		1, & i=j, \\
 		0, & i \neq j.
@@ -229,105 +219,96 @@ u_{ij} = 0\ (i>j)\).
 \]
 所以，当\(i \neq j\)时，\[
 	\VectorInnerProductDot{\vb{A} \vb{v}_i}{\vb{A} \vb{v}_j}
-	= \q_i^T \A^T \A \q_j
-	= \L{j} \q_i^T \q_j
+	= \vb{v}_i^T \vb{A}^T \vb{A} \vb{v}_j
+	= \lambda_j \vb{v}_i^T \vb{v}_j
 	= 0;
 \]
 而当\(i = j\)时，\[
-	\abs{\A\q_i}^2
+	\abs{\vb{A}\vb{v}_i}^2
 	= \VectorInnerProductDot{\vb{A} \vb{v}_i}{\vb{A} \vb{v}_j}
-	= \L{i} \q_i^T \q_i
-	= \L{i}.
+	= \lambda_i \vb{v}_i^T \vb{v}_i
+	= \lambda_i.
 \]
-也就是说，向量组\(\{\A\q_1,\A\q_2,\dotsc,\A\q_r\}\)是两两正交的.
+也就是说，向量组\(\{\vb{A}\vb{v}_1,\vb{A}\vb{v}_2,\dotsc,\vb{A}\vb{v}_r\}\)是两两正交的.
 单位化该向量组，又记\[
-	\p_i = \frac{\A\q_i}{\abs{\A\q_i}}
-	= \frac{\A\q_i}{\sqrt{\L{i}}}
-	\quad(i=1,2,\dotsc,r),
+	\vb{u}_i = \frac{\vb{A}\vb{v}_i}{\abs{\vb{A}\vb{v}_i}}
+	= \frac{\vb{A}\vb{v}_i}{\sqrt{\lambda_i}}
+	\vb{v}uad(i=1,2,\dotsc,r),
 \]
-于是\(\A\q_i = s_i \p_i\)，其中\(s_i = \sqrt{\L{i}}\).
+于是\(\vb{A}\vb{v}_i = s_i \vb{u}_i\)，其中\(s_i = \sqrt{\lambda_i}\).
 
-将\(\p_1,\p_2,\dotsc,\p_r\)扩充成\(\mathbb{R}^m\)的标准正交基
-\(\{\p_1,\p_2,\dotsc,\p_r,\p_{r+1},\dotsc,\p_m\}\)，
+将\(\vb{u}_1,\vb{u}_2,\dotsc,\vb{u}_r\)扩充成\(\mathbb{R}^m\)的标准正交基
+\(\{\vb{u}_1,\vb{u}_2,\dotsc,\vb{u}_r,\vb{u}_{r+1},\dotsc,\vb{u}_m\}\)，
 在这组基下，有\[
-	\A\Q = \A(\AutoTuple{\q}{n}) = \begin{bmatrix}
-		s_1 \p_1 \\
+	\vb{A}\vb{V} = \vb{A}(\AutoTuple{\vb{v}}{n}) = \begin{bmatrix}
+		s_1 \vb{u}_1 \\
 		& \ddots \\
-		& & s_r \p_r \\
+		& & s_r \vb{u}_r \\
 		& & & 0 \\
 		& & & & \ddots \\
 		& & & & & 0
 	\end{bmatrix}
-	= \P \S,
+	= \vb{U} \vb\Sigma,
 \]
-其中\(\P = (\p_1,\p_2,\dotsc,\p_m)\)，
-\(\S = \diag(s_1,\dotsc,s_r,0,\dotsc,0)\)，
-将上式两边右乘\(\Q^{-1}\)，即得\(\A = \P\S\Q^T\).
+其中\(\vb{U} = (\vb{u}_1,\vb{u}_2,\dotsc,\vb{u}_m)\)，
+\(\vb\Sigma = \diag(s_1,\dotsc,s_r,0,\dotsc,0)\)，
+将上式两边右乘\(\vb{V}^{-1}\)，即得\(\vb{A} = \vb{U}\vb\Sigma\vb{V}^T\).
 \end{proof}
 \end{theorem}
 
 \begin{example}
-\def\U{\vb{U}}
-\def\S{\vb{\Sigma}}
-\def\V{\vb{V}}
-\def\M#1{\mu_{#1}}
-对矩阵\(\A = \begin{bmatrix} 0 & 1 \\ 1 & 1 \\ 1 & 0 \end{bmatrix}\)进行奇异值分解.
+对矩阵\(\vb{A} = \begin{bmatrix} 0 & 1 \\ 1 & 1 \\ 1 & 0 \end{bmatrix}\)进行奇异值分解.
 \begin{solution}
 经计算\[
-	\A^T \A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix},
+	\vb{A}^T \vb{A} = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix},
 \]
-其特征值是\(\L{1} = 3\)和\(\L{2} = 1\).
-\(\A^T \A\)属于特征值\(\L{1}\)的特征向量为
+其特征值是\(\lambda_1 = 3\)和\(\lambda_2 = 1\).
+\(\vb{A}^T \vb{A}\)属于特征值\(\lambda_1\)的特征向量为
 \(\vb{v}_1 = \begin{bmatrix} 1/\sqrt{2} \\ 1/\sqrt{2} \end{bmatrix}\)；
-\(\A^T \A\)属于特征值\(\L{2}\)的特征向量为
+\(\vb{A}^T \vb{A}\)属于特征值\(\lambda_2\)的特征向量为
 \(\vb{v}_2 = \begin{bmatrix} -1/\sqrt{2} \\ 1/\sqrt{2} \end{bmatrix}\).
 
 同时有\[
-	\A \A^T = \begin{bmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{bmatrix},
+	\vb{A} \vb{A}^T = \begin{bmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{bmatrix},
 \]
-其特征值是\(\M{1} = 3\)、\(\M{2} = 1\)、\(\M{3} = 0\).
-\(\A \A^T\)属于特征值\(\M{1}\)的特征向量为
+其特征值是\(\mu_1 = 3\)、\(\mu_2 = 1\)、\(\mu_3 = 0\).
+\(\vb{A} \vb{A}^T\)属于特征值\(\mu_1\)的特征向量为
 \(\vb{u}_1 = \begin{bmatrix} 1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix}\)；
-\(\A \A^T\)属于特征值\(\M{2}\)的特征向量为
+\(\vb{A} \vb{A}^T\)属于特征值\(\mu_2\)的特征向量为
 \(\vb{u}_2 = \begin{bmatrix} 1/\sqrt{2} \\ 0 \\ -1/\sqrt{2} \end{bmatrix}\)；
-\(\A \A^T\)属于特征值\(\M{3}\)的特征向量为
+\(\vb{A} \vb{A}^T\)属于特征值\(\mu_3\)的特征向量为
 \(\vb{u}_3 = \begin{bmatrix} 1/\sqrt{3} \\ -1/\sqrt{3} \\ 1/\sqrt{3} \end{bmatrix}\).
 
-再根据\(s_i = \sqrt{\L{i}}\)求得奇异值\(s_1 = \sqrt{3}\)和\(s_2 = 1\).
+再根据\(s_i = \sqrt{\lambda_i}\)求得奇异值\(s_1 = \sqrt{3}\)和\(s_2 = 1\).
 
-于是\[
-	\U = (\vb{u}_1,\vb{u}_2,\vb{u}_3)
+于是\begin{gather*}
+	\vb{U} = (\vb{u}_1,\vb{u}_2,\vb{u}_3)
 	= \begin{bmatrix}
 		1/\sqrt{6} & 1/\sqrt{2} & 1/\sqrt{3} \\
 		2/\sqrt{6} & 0 & -1/\sqrt{3} \\
 		1/\sqrt{6} & -1/\sqrt{2} & 1/\sqrt{3}
-	\end{bmatrix},
-\]\[
-	\V = (\vb{v}_1,\vb{v}_2,\vb{v}_3)
+	\end{bmatrix}, \\
+	\vb{V} = (\vb{v}_1,\vb{v}_2,\vb{v}_3)
 	= \begin{bmatrix}
 		1/\sqrt{2} & -1/\sqrt{2} \\
 		1/\sqrt{2} & 1/\sqrt{2}
-	\end{bmatrix},
-\]\[
-	\S = \begin{bmatrix}
+	\end{bmatrix}, \\
+	\vb\Sigma = \begin{bmatrix}
 		\sqrt{3} & 0 \\
 		0 & 1 \\
 		0 & 0
 	\end{bmatrix}.
-\]
+\end{gather*}
 \end{solution}
 \end{example}
 
 \begin{theorem}
 %@see: 《矩阵论》（詹兴致） P7 定理1.6（奇异值分解）
-\def\U{\vb{U}}
-\def\S{\vb{\Sigma}}
-\def\V{\vb{V}}
-设矩阵\(\A \in M_{m \times n}(\mathbb{C})\)，
-则存在酉矩阵\(\U \in M_m(\mathbb{C})\)、酉矩阵\(\V \in M_n(\mathbb{C})\)使得\[
-	\U \A \V = \S,
+设矩阵\(\vb{A} \in M_{m \times n}(\mathbb{C})\)，
+则存在酉矩阵\(\vb{U} \in M_m(\mathbb{C})\)、酉矩阵\(\vb{V} \in M_n(\mathbb{C})\)使得\[
+	\vb{U} \vb{A} \vb{V} = \vb\Sigma,
 \]
-其中\(\S = \diag_{m \times n}(\AutoTuple{s}{p}),
+其中\(\vb\Sigma = \diag_{m \times n}(\AutoTuple{s}{p}),
 s_1 \geq \dotsb \geq s_p \geq 0,
 p = \min\{m,n\}\).
 %TODO proof
@@ -335,29 +316,29 @@ p = \min\{m,n\}\).
 
 \section{极分解}
 \begin{theorem}
-\def\S{\vb{S}}
-\def\M{\vb{\Omega}}
-任意实方阵\(\A\)可表为\[
-	\A = \S\M = \M_1 \S_1,
+任意实方阵\(\vb{A}\)可表为\[
+	\vb{A} = \vb{S}\vb\Omega = \vb\Omega_1 \vb{S}_1,
 \]
-其中\(\S\)和\(\S_1\)为半正定实对称方阵，
-\(\M\)与\(\M_1\)为实正交方阵，
-而且\(\S\)和\(\S_1\)都是唯一的.
+其中\(\vb{S}\)和\(\vb{S}_1\)为半正定实对称方阵，
+\(\vb\Omega\)与\(\vb\Omega_1\)为实正交方阵，
+而且\(\vb{S}\)和\(\vb{S}_1\)都是唯一的.
 \begin{proof}
-当\(\A\)可逆时，
-\(\A^T \A\)是正定阵，
-存在正定阵\(\S_1\)，
-使得\(\A^T \A = \S_1^2\)，
-于是\(\A = \A \S_1^{-1} \S_1\)，
-注意到\((\A \S_1^{-1})^T (\A \S_1^{-1}) = (\S_1^{-1})^T \A^T \A \S_1^{-1} = \E\)，
-即\(\A \S_1^{-1}\)正交，
-那么只需要令\(\M_1 = \A \S_1^{-1}\)即有\(\A = \M_1 \S_1\).
+当\(\vb{A}\)可逆时，
+\(\vb{A}^T \vb{A}\)是正定阵，
+存在正定阵\(\vb{S}_1\)，
+使得\(\vb{A}^T \vb{A} = \vb{S}_1^2\)，
+于是\(\vb{A} = \vb{A} \vb{S}_1^{-1} \vb{S}_1\)，
+注意到\((\vb{A} \vb{S}_1^{-1})^T (\vb{A} \vb{S}_1^{-1})
+= (\vb{S}_1^{-1})^T \vb{A}^T \vb{A} \vb{S}_1^{-1} = \vb{E}\)，
+即\(\vb{A} \vb{S}_1^{-1}\)正交，
+那么只需要令\(\vb\Omega_1 = \vb{A} \vb{S}_1^{-1}\)
+即有\(\vb{A} = \vb\Omega_1 \vb{S}_1\).
 
-当\(\A\)不可逆时，可以运用正交相似标准型；
+当\(\vb{A}\)不可逆时，可以运用正交相似标准型；
 也可以运用扰动法，
-即令\(\S_1(t) = \S_1 + t\E\)，
+即令\(\vb{S}_1(t) = \vb{S}_1 + t\vb{E}\)，
 则当\(t\)充分大时，
-\(\S_1(t)\)可逆.
+\(\vb{S}_1(t)\)可逆.
 \end{proof}
 \end{theorem}
 

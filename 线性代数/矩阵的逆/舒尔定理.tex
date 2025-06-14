@@ -1,63 +1,63 @@
 \section{舒尔定理}
 \begin{theorem}\label{theorem:逆矩阵.舒尔定理}
-设\(\A\)是\(m\)阶可逆矩阵，
-\(\B,\C,\D\)分别是\(m \times p, n \times m, n \times p\)矩阵，
+设\(\vb{A}\)是\(m\)阶可逆矩阵，
+\(\vb{B},\vb{C},\vb{D}\)分别是\(m \times p, n \times m, n \times p\)矩阵，
 则有\begin{gather}
 	\begin{bmatrix}
-		\E_m & \z \\
-		-\C\A^{-1} & \E_n
+		\vb{E}_m & \vb0 \\
+		-\vb{C}\vb{A}^{-1} & \vb{E}_n
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A & \B \\
-		\C & \D
+		\vb{A} & \vb{B} \\
+		\vb{C} & \vb{D}
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A & \B \\
-		\z & \D - \C \A^{-1} \B
+		\vb{A} & \vb{B} \\
+		\vb0 & \vb{D} - \vb{C} \vb{A}^{-1} \vb{B}
 	\end{bmatrix},
 	\\
 	\begin{bmatrix}
-		\A & \B \\
-		\C & \D
+		\vb{A} & \vb{B} \\
+		\vb{C} & \vb{D}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\E_m & -\A^{-1} \B \\
-		\z & \E_p
+		\vb{E}_m & -\vb{A}^{-1} \vb{B} \\
+		\vb0 & \vb{E}_p
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A & \z \\
-		\C & \D - \C \A^{-1} \B
+		\vb{A} & \vb0 \\
+		\vb{C} & \vb{D} - \vb{C} \vb{A}^{-1} \vb{B}
 	\end{bmatrix},
 	\\
 	\begin{bmatrix}
-		\E_m & \z \\
-		-\C \A^{-1} & \E_n
+		\vb{E}_m & \vb0 \\
+		-\vb{C} \vb{A}^{-1} & \vb{E}_n
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A & \B \\
-		\C & \D
+		\vb{A} & \vb{B} \\
+		\vb{C} & \vb{D}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\E_m & -\A^{-1} \B \\
-		\z & \E_p
+		\vb{E}_m & -\vb{A}^{-1} \vb{B} \\
+		\vb0 & \vb{E}_p
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\A & \z \\
-		\z & \D - \C \A^{-1} \B
+		\vb{A} & \vb0 \\
+		\vb0 & \vb{D} - \vb{C} \vb{A}^{-1} \vb{B}
 	\end{bmatrix},
 \end{gather}
 \rm
-其中\(\D - \C \A^{-1} \B\)
+其中\(\vb{D} - \vb{C} \vb{A}^{-1} \vb{B}\)
 称为“矩阵\(\begin{bmatrix}
-	\A & \B \\
-	\C & \D
+	\vb{A} & \vb{B} \\
+	\vb{C} & \vb{D}
 \end{bmatrix}\)
-关于\(\A\)的\DefineConcept{舒尔补}（Schur complement）”.
+关于\(\vb{A}\)的\DefineConcept{舒尔补}（Schur complement）”.
 %TODO proof
 \end{theorem}
 我们把\cref{theorem:逆矩阵.舒尔定理} 称为“舒尔定理”.
 
-可以看到只要\(\A\)可逆，
+可以看到只要\(\vb{A}\)可逆，
 就能通过初等分块矩阵直接对分块矩阵进行分块相似对角化，
 而在操作过程中就把一些原本不为0的分块矩阵变成了零矩阵，
 这个过程可以形象地称为“矩阵打洞”，
@@ -65,23 +65,22 @@
 
 利用\hyperref[theorem:逆矩阵.舒尔定理]{舒尔定理}可以证明下述行列式降阶定理：
 \begin{theorem}[行列式降阶定理]\label{theorem:逆矩阵.行列式降阶定理}
-\def\M{\vb{M}}
-设\(\M = \begin{bmatrix}
-	\A & \B \\
-	\C & \D
+设\(\vb{M} = \begin{bmatrix}
+	\vb{A} & \vb{B} \\
+	\vb{C} & \vb{D}
 \end{bmatrix}\)是方阵.
 \begin{itemize}
-	\item 若\(\A\)可逆，则\begin{equation}\label{equation:逆矩阵.行列式降阶公式1}
-		\abs{\M} = \abs{\A} \abs{\D - \C \A^{-1} \B}.
+	\item 若\(\vb{A}\)可逆，则\begin{equation}\label{equation:逆矩阵.行列式降阶公式1}
+		\abs{\vb{M}} = \abs{\vb{A}} \abs{\vb{D} - \vb{C} \vb{A}^{-1} \vb{B}}.
 	\end{equation}
 
-	\item 若\(\D\)可逆，则\begin{equation}\label{equation:逆矩阵.行列式降阶公式2}
-		\abs{\M} = \abs{\D} \abs{\A - \B \D^{-1} \C}.
+	\item 若\(\vb{D}\)可逆，则\begin{equation}\label{equation:逆矩阵.行列式降阶公式2}
+		\abs{\vb{M}} = \abs{\vb{D}} \abs{\vb{A} - \vb{B} \vb{D}^{-1} \vb{C}}.
 	\end{equation}
 
-	\item 若\(\A,\D\)均可逆，则\begin{equation}
-		\abs{\A} \abs{\D - \C \A^{-1} \B}
-		= \abs{\D} \abs{\A - \B \D^{-1} \C}.
+	\item 若\(\vb{A},\vb{D}\)均可逆，则\begin{equation}
+		\abs{\vb{A}} \abs{\vb{D} - \vb{C} \vb{A}^{-1} \vb{B}}
+		= \abs{\vb{D}} \abs{\vb{A} - \vb{B} \vb{D}^{-1} \vb{C}}.
 	\end{equation}
 \end{itemize}
 \begin{proof}
@@ -91,40 +90,40 @@
 \begin{remark}
 这里给出一个有利于记忆\hyperref[theorem:逆矩阵.行列式降阶定理]{行列式降阶定理}的口诀：
 对于\cref{equation:逆矩阵.行列式降阶公式1} 中等号右边的第二个行列式，
-我们从\(\D\)出发，先以顺时针方向依次写出分块矩阵\(\D,\C,\A,\B\)，
+我们从\(\vb{D}\)出发，先以顺时针方向依次写出分块矩阵\(\vb{D},\vb{C},\vb{A},\vb{B}\)，
 再在第一个和第二个分块阵之间插入一个减号，最后取第三个分块阵的逆矩阵.
 \cref{equation:逆矩阵.行列式降阶公式2} 也可以相同的记忆方法.
 \end{remark}
 
 \begin{example}\label{example:逆矩阵.行列式降阶定理的重要应用1}
-设\(\A \in M_{s \times n}(K),
-\B \in M_{n \times s}(K)\).
+设\(\vb{A} \in M_{s \times n}(K),
+\vb{B} \in M_{n \times s}(K)\).
 证明：\[
 	\begin{vmatrix}
-		\E_n & \B \\
-		\A & \E_s
+		\vb{E}_n & \vb{B} \\
+		\vb{A} & \vb{E}_s
 	\end{vmatrix}
-	= \abs{\E_s - \A \B}
-	= \abs{\E_n - \B \A}.
+	= \abs{\vb{E}_s - \vb{A} \vb{B}}
+	= \abs{\vb{E}_n - \vb{B} \vb{A}}.
 \]
 \begin{proof}
-由于\(\E_n,\E_s\)都是单位矩阵，必可逆，
+由于\(\vb{E}_n,\vb{E}_s\)都是单位矩阵，必可逆，
 那么由\hyperref[equation:逆矩阵.行列式降阶公式1]{行列式降阶定理}有\begin{equation*}
 	\begin{vmatrix}
-		\E_n & \B \\
-		\A & \E_s
+		\vb{E}_n & \vb{B} \\
+		\vb{A} & \vb{E}_s
 	\end{vmatrix}
-	= \abs{\E_n} \abs{\E_s - \A(\E_n)^{-1}\B}
-	= \abs{\E_s - \A \B}.
+	= \abs{\vb{E}_n} \abs{\vb{E}_s - \vb{A}(\vb{E}_n)^{-1}\vb{B}}
+	= \abs{\vb{E}_s - \vb{A} \vb{B}}.
 \end{equation*}
 同理，由\hyperref[equation:逆矩阵.行列式降阶公式2]{行列式降阶定理}有\begin{equation*}
 	\begin{vmatrix}
-		\E_n & \B \\
-		\A & \E_s
+		\vb{E}_n & \vb{B} \\
+		\vb{A} & \vb{E}_s
 	\end{vmatrix}
-	= \abs{\E_n - \B \A}.
+	= \abs{\vb{E}_n - \vb{B} \vb{A}}.
 \end{equation*}
-因此\(\abs{\E_s - \A \B} = \abs{\E_n - \B \A}\).
+因此\(\abs{\vb{E}_s - \vb{A} \vb{B}} = \abs{\vb{E}_n - \vb{B} \vb{A}}\).
 \end{proof}
 %\cref{example:单位矩阵与两矩阵乘积之差.单位矩阵与两矩阵乘积之差的秩}
 %\cref{example:单位矩阵与两矩阵乘积之差.单位矩阵与两矩阵乘积之差的行列式}
@@ -132,29 +131,29 @@
 
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1ki4y1a7dL/
-设\(\A,\B,\C,\D \in M_n(K)\)，
-且\(\A \C = \C \A\)，
+设\(\vb{A},\vb{B},\vb{C},\vb{D} \in M_n(K)\)，
+且\(\vb{A} \vb{C} = \vb{C} \vb{A}\)，
 则\begin{equation*}
 	\begin{vmatrix}
-		\A & \B \\
-		\C & \D
+		\vb{A} & \vb{B} \\
+		\vb{C} & \vb{D}
 	\end{vmatrix}
-	= \abs{\A \D - \C \B}.
+	= \abs{\vb{A} \vb{D} - \vb{C} \vb{B}}.
 \end{equation*}
 \begin{proof}
-当\(\A\)可逆时，由\hyperref[equation:逆矩阵.行列式降阶公式1]{行列式降阶定理}有\begin{align*}
+当\(\vb{A}\)可逆时，由\hyperref[equation:逆矩阵.行列式降阶公式1]{行列式降阶定理}有\begin{align*}
 	\begin{vmatrix}
-		\A & \B \\
-		\C & \D
+		\vb{A} & \vb{B} \\
+		\vb{C} & \vb{D}
 	\end{vmatrix}
-	&= \abs{\A} \abs{\D - \C \A^{-1} \B} \\
-	&= \abs{\A (\D - \C \A^{-1} \B)} \\
-	&= \abs{\A \D - \A \C \A^{-1} \B} \\
-	&= \abs{\A \D - \C \A \A^{-1} \B} \\
-	&= \abs{\A \D - \C \B}.
+	&= \abs{\vb{A}} \abs{\vb{D} - \vb{C} \vb{A}^{-1} \vb{B}} \\
+	&= \abs{\vb{A} (\vb{D} - \vb{C} \vb{A}^{-1} \vb{B})} \\
+	&= \abs{\vb{A} \vb{D} - \vb{A} \vb{C} \vb{A}^{-1} \vb{B}} \\
+	&= \abs{\vb{A} \vb{D} - \vb{C} \vb{A} \vb{A}^{-1} \vb{B}} \\
+	&= \abs{\vb{A} \vb{D} - \vb{C} \vb{B}}.
 	\qedhere
 \end{align*}
-%TODO 还没有证明“\(\A\)不可逆”的情形
+%TODO 还没有证明“\(\vb{A}\)不可逆”的情形
 %@credit: {1ef6baa6-d8ce-4b2c-97d3-f6156721c52f} 说可以用摄动法
 \end{proof}
 \end{example}
@@ -170,56 +169,56 @@
 	\end{bmatrix}.
 \]
 \begin{solution}
-记\(\a = (\AutoTuple{a}{n})^T,
-\b = (\AutoTuple{b}{n})\)，
-则\(\M = \E_n + \a\b\).
+记\(\vb\alpha = (\AutoTuple{a}{n})^T,
+\vb\beta = (\AutoTuple{b}{n})\)，
+则\(\M = \vb{E}_n + \vb\alpha\vb\beta\).
 
-注意到\(\M = \E_n + \a\b\)形似某个矩阵的舒尔补，因此考虑下面的矩阵：\[
-	\A = \begin{bmatrix}
-		1 & -\b \\
-		\a & \E_n
+注意到\(\M = \vb{E}_n + \vb\alpha\vb\beta\)形似某个矩阵的舒尔补，因此考虑下面的矩阵：\[
+	\vb{A} = \begin{bmatrix}
+		1 & -\vb\beta \\
+		\vb\alpha & \vb{E}_n
 	\end{bmatrix}.
 \]由于\[
 	\begin{bmatrix}
-		1 & \z \\
-		-\a & \E_n
-	\end{bmatrix} \A
+		1 & \vb0 \\
+		-\vb\alpha & \vb{E}_n
+	\end{bmatrix} \vb{A}
 	= \begin{bmatrix}
-		1 & \z \\
-		-\a & \E_n
+		1 & \vb0 \\
+		-\vb\alpha & \vb{E}_n
 	\end{bmatrix}
 	\begin{bmatrix}
-		1 & -\b \\
-		\a & \E_n
+		1 & -\vb\beta \\
+		\vb\alpha & \vb{E}_n
 	\end{bmatrix}
 	= \begin{bmatrix}
-		1 & -\b \\
-		\z & \M
+		1 & -\vb\beta \\
+		\vb0 & \M
 	\end{bmatrix},
 \]
 且\[
 	\begin{bmatrix}
-		1 & \b \\
-		\z & \E_n
-	\end{bmatrix} \A
+		1 & \vb\beta \\
+		\vb0 & \vb{E}_n
+	\end{bmatrix} \vb{A}
 	= \begin{bmatrix}
-		1 & \b \\
-		\z & \E_n
+		1 & \vb\beta \\
+		\vb0 & \vb{E}_n
 	\end{bmatrix}
 	\begin{bmatrix}
-		1 & -\b \\
-		\a & \E_n
+		1 & -\vb\beta \\
+		\vb\alpha & \vb{E}_n
 	\end{bmatrix}
 	= \begin{bmatrix}
-		1+\b\a & \z \\
-		\a & \E_n
+		1+\vb\beta\vb\alpha & \vb0 \\
+		\vb\alpha & \vb{E}_n
 	\end{bmatrix},
 \]
 所以\[
-	\abs{\A}
+	\abs{\vb{A}}
 	= \abs{\M}
-	= \abs{1+\b\a}
-	= 1+\b\a
+	= \abs{1+\vb\beta\vb\alpha}
+	= 1+\vb\beta\vb\alpha
 	= 1 + \sum_{k=1}^n a_k b_k.
 \]
 \end{solution}

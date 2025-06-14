@@ -5,7 +5,7 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P72 定义2
 在\(K^n\)中，如果向量组\(A\)的每个向量都可由向量组\(B\)线性表出，
 即\[
-	(\forall \a \in A)[\a \in \Span B],
+	(\forall \vb\alpha \in A)[\vb\alpha \in \Span B],
 \]或\[
 	A\subseteq\Span B,
 \]
@@ -56,15 +56,15 @@
 	&= (\AutoTuple{\vb\beta}{t})
 	((x_{11},\dotsc,x_{1t})^T,\dotsc,(x_{s1},\dotsc,x_{st})^T),
 \end{align*}
-这里\(\Q = ((x_{11},\dotsc,x_{1t})^T,\dotsc,(x_{s1},\dotsc,x_{st})^T)\).
+这里\(\vb{Q} = ((x_{11},\dotsc,x_{1t})^T,\dotsc,(x_{s1},\dotsc,x_{st})^T)\).
 \end{proof}
 \end{proposition}
 \begin{remark}
 %@see: 《Linear Algebra Done Right (Fourth Eidition)》（Sheldon Axler） P76 3.51
 \cref{theorem:向量空间.线性表出2的等价条件} 说明：
-矩阵\(\A\)与\(\B\)的乘积\(\A \B\)的列向量组可以由\(\A\)的列向量组线性表出.
+矩阵\(\vb{A}\)与\(\vb{B}\)的乘积\(\vb{A} \vb{B}\)的列向量组可以由\(\vb{A}\)的列向量组线性表出.
 同理可证：
-\(\A \B\)的行向量组可以由\(\B\)的行向量组线性表出.
+\(\vb{A} \vb{B}\)的行向量组可以由\(\vb{B}\)的行向量组线性表出.
 \end{remark}
 
 \begin{proposition}\label{theorem:向量空间.线性表出2的自反性}
@@ -73,13 +73,13 @@
 	A \subseteq \Span A.
 \]
 \begin{proof}
-设\(A=\{\AutoTuple{\a}{s}\}\ (s\geq1)\)，
+设\(A=\{\AutoTuple{\vb\alpha}{s}\}\ (s\geq1)\)，
 显然\[
-	\a_i=0\a_1+\dotsb+0\a_{i-1}+1\a_i+0\a_{i+1}+\dotsb+0\a_s,
+	\vb\alpha_i=0\vb\alpha_1+\dotsb+0\vb\alpha_{i-1}+1\vb\alpha_i+0\vb\alpha_{i+1}+\dotsb+0\vb\alpha_s,
 	\quad i=1,2,\dotsc,s;
 \]
-这就是说\(\a_i\ (i=1,2,\dotsc,s)\)可由\(A\)线性表出，即\[
-	\a_i\in\opair{\AutoTuple{\a}{s}},
+这就是说\(\vb\alpha_i\ (i=1,2,\dotsc,s)\)可由\(A\)线性表出，即\[
+	\vb\alpha_i\in\opair{\AutoTuple{\vb\alpha}{s}},
 	\quad i=1,2,\dotsc,s.
 \]
 于是\(A\)可由\(A\)线性表出.
@@ -94,26 +94,26 @@
 	\Span A \subseteq \Span B.
 \]
 \begin{proof}
-假设\(A = \{\AutoTuple{\a}{s}\},
-B = \{\AutoTuple{\b}{t}\}\).
+假设\(A = \{\AutoTuple{\vb\alpha}{s}\},
+B = \{\AutoTuple{\vb\beta}{t}\}\).
 
-任意取定\(\a\in\Span A\)，
+任意取定\(\vb\alpha\in\Span A\)，
 那么一定存在\(\AutoTuple{k}{s}\in K\)满足\[
-	\a = \sum_{i=1}^s k_i \a_i;
+	\vb\alpha = \sum_{i=1}^s k_i \vb\alpha_i;
 \]
 又设\(l_{ij}\in K\ (i=1,2,\dotsc,s;j=1,2,\dotsc,t)\)满足\[
-	\a_i = \sum_{j=1}^t l_{ij} \b_j,
+	\vb\alpha_i = \sum_{j=1}^t l_{ij} \vb\beta_j,
 	\quad i=1,2,\dotsc,s;
 \]
 那么\[
-	\a = \sum_{i=1}^s k_i \left(
-		\sum_{j=1}^t l_{ij} \b_j
+	\vb\alpha = \sum_{i=1}^s k_i \left(
+		\sum_{j=1}^t l_{ij} \vb\beta_j
 	\right)
 	= \sum_{j=1}^t \left(
 		\sum_{i=1}^s k_i l_{ij}
-	\right) \b_j,
+	\right) \vb\beta_j,
 \]
-这就是说\(\a\in\Span B\)，
+这就是说\(\vb\alpha\in\Span B\)，
 于是\(\Span A\subseteq\Span B\).
 \end{proof}
 \end{proposition}
@@ -144,25 +144,25 @@ theorem:向量空间.线性表出2的充分条件}，
 
 	即便不利用集合的包含关系，我们也可以证明线性表出的传递性.
 	具体来说，
-	假设向量组\(A=\Set{\AutoTuple{\a}{s}}\)可以由向量组\(B=\Set{\AutoTuple{\b}{r}}\)线性表出，
-	且\(B\)可以由向量组\(C=\Set{\AutoTuple{\g}{m}}\)线性表出.
-	在向量组\(A\)中任取一个向量\(\a_i\)，则\[
-		\a_i = \sum_{j=1}^r k_j \b_j.
+	假设向量组\(A=\Set{\AutoTuple{\vb\alpha}{s}}\)可以由向量组\(B=\Set{\AutoTuple{\vb\beta}{r}}\)线性表出，
+	且\(B\)可以由向量组\(C=\Set{\AutoTuple{\vb\gamma}{m}}\)线性表出.
+	在向量组\(A\)中任取一个向量\(\vb\alpha_i\)，则\[
+		\vb\alpha_i = \sum_{j=1}^r k_j \vb\beta_j.
 	\]
-	又由于\(\b_j\)可以由向量组\(C\)线性表出，因此\[
-		\b_j = \sum_{t=1}^m l_{jt} \g_t,
+	又由于\(\vb\beta_j\)可以由向量组\(C\)线性表出，因此\[
+		\vb\beta_j = \sum_{t=1}^m l_{jt} \vb\gamma_t,
 		\quad j=1,\dotsc,r.
 	\]
 	从而\[
-		\a_i = \sum_{j=1}^r k_j \b_j
+		\vb\alpha_i = \sum_{j=1}^r k_j \vb\beta_j
 		= \sum_{j=1}^r k_j \left(
-			\sum_{t=1}^m l_{jt} \g_t
+			\sum_{t=1}^m l_{jt} \vb\gamma_t
 		\right)
 		= \sum_{t=1}^m \left(
 			\sum_{j=1}^r k_j l_{jt}
-		\right) \g_t.
+		\right) \vb\gamma_t.
 	\]
-	于是\(\a_i\)可以由\(C\)线性表出，
+	于是\(\vb\alpha_i\)可以由\(C\)线性表出，
 	从而\(A\)可以由\(C\)线性表出.
 \end{enumerate}
 
@@ -218,15 +218,15 @@ theorem:向量空间.线性表出2的充分条件}，
 %@see: 《线性代数》（张慎语、周厚隆） P72
 部分组可由全组线性表出.
 \begin{proof}
-设数域\(K\)上一个向量组\(A=\{\AutoTuple{\a}{s}\}\)，
+设数域\(K\)上一个向量组\(A=\{\AutoTuple{\vb\alpha}{s}\}\)，
 从中任取\(t\ (t \leq s)\)个向量组成向量组\[
-	B=\{\AutoTuple{\a}{t}\}.
+	B=\{\AutoTuple{\vb\alpha}{t}\}.
 \]
 欲证部分组可由全组线性表出，
-即证\(\forall \a_j \in B\)，
+即证\(\forall \vb\alpha_j \in B\)，
 \(\exists \AutoTuple{k}{j},\dotsc,k_s \in K\)，
 使得\[
-	\a_j = k_1 \a_1 + k_2 \a_2 + \dotsb + k_j \a_j + \dotsb + k_s \a_s.
+	\vb\alpha_j = k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_j \vb\alpha_j + \dotsb + k_s \vb\alpha_s.
 \]
 显然只要取\[
 	k_i = \left\{ \begin{array}{cl}
@@ -259,14 +259,14 @@ theorem:向量空间.线性表出2的充分条件}，
 \[
 	\text{\(A\)线性相关}
 	\iff
-	(\exists \a \in A)[\a \in \Span(A-\{\a\})].
+	(\exists \vb\alpha \in A)[\vb\alpha \in \Span(A-\{\vb\alpha\})].
 \]
 又因为\(\card A > 1\)，
-所以\((\forall\b\in A)[\card(A-\{\b\})>0]\)，
-那么只要令\(B=A-\{\a\}\)，
+所以\((\forall\vb\beta\in A)[\card(A-\{\vb\beta\})>0]\)，
+那么只要令\(B=A-\{\vb\alpha\}\)，
 就必然有\[
-	\emptyset \neq B \subseteq A = \{\a\} \cup B, \qquad
-	\{\a\}\subseteq\Span B, \qquad
+	\emptyset \neq B \subseteq A = \{\vb\alpha\} \cup B, \qquad
+	\{\vb\alpha\}\subseteq\Span B, \qquad
 	B \subseteq \Span B
 \]同时成立.
 因此\(A\subseteq\Span B\)，
@@ -286,12 +286,12 @@ theorem:向量空间.线性表出2的充分条件}，
 	\implies
 	A-B \subseteq \Span B.
 \]
-我们可以笃定：存在向量\(\g \in A-B\)，使得\(\g\)可由向量组\(B\)线性表出，
-即\(\g \in \Span B\).
-因为\(\g \in A-B \implies A-\{\g\} \supseteq B\)，
-所以\(\Span B \subseteq \Span(A-\{\g\})\)，
-那么\(\g\)也可由向量组\((A-\{g\})\)线性表出，
-即\(\g \in \Span(A-\{g\})\).
+我们可以笃定：存在向量\(\vb\gamma \in A-B\)，使得\(\vb\gamma\)可由向量组\(B\)线性表出，
+即\(\vb\gamma \in \Span B\).
+因为\(\vb\gamma \in A-B \implies A-\{\vb\gamma\} \supseteq B\)，
+所以\(\Span B \subseteq \Span(A-\{\vb\gamma\})\)，
+那么\(\vb\gamma\)也可由向量组\((A-\{g\})\)线性表出，
+即\(\vb\gamma \in \Span(A-\{g\})\).
 于是由\cref{theorem:线性方程组.向量组线性相关的充分必要条件1} 可知
 向量组\(A\)线性相关.
 \end{proof}
@@ -300,25 +300,25 @@ theorem:向量空间.线性表出2的充分条件}，
 \begin{theorem}\label{theorem:向量空间.可由比自己基数小的向量组线性表出的向量组线性相关}
 %@see: 《线性代数》（张慎语、周厚隆） P72 定理2
 %@see: 《高等代数（第三版 上册）》（丘维声） P74 引理1
-设向量组\(A=\{\AutoTuple{\a}{s}\}\)可由\(B=\{\AutoTuple{\b}{t}\}\)线性表出.
+设向量组\(A=\{\AutoTuple{\vb\alpha}{s}\}\)可由\(B=\{\AutoTuple{\vb\beta}{t}\}\)线性表出.
 如果\(s>t\)，则\(A\)线性相关.
 \begin{proof}
 欲证\(A\)线性相关，须找到不全为零的\(s\)个数\(\AutoTuple{k}{s}\)使得\[
-	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z.
+	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_s \vb\alpha_s = \vb0.
 \]
 因为向量组\(A\)可由\(B\)线性表出，即有\[
 	\left\{ \begin{array}{l}
-		\a_1 = c_{11} \b_1 + c_{21} \b_2 + \dotsb + c_{t1} \b_t, \\
-		\a_2 = c_{12} \b_1 + c_{22} \b_2 + \dotsb + c_{t2} \b_t, \\
+		\vb\alpha_1 = c_{11} \vb\beta_1 + c_{21} \vb\beta_2 + \dotsb + c_{t1} \vb\beta_t, \\
+		\vb\alpha_2 = c_{12} \vb\beta_1 + c_{22} \vb\beta_2 + \dotsb + c_{t2} \vb\beta_t, \\
 		\hdotsfor{1} \\
-		\a_s = c_{1s} \b_1 + c_{2s} \b_2 + \dotsb + c_{ts} \b_t.
+		\vb\alpha_s = c_{1s} \vb\beta_1 + c_{2s} \vb\beta_2 + \dotsb + c_{ts} \vb\beta_t.
 	\end{array} \right.
 \]代入可得\[
-	\sum_{j=1}^s k_j \a_j
-	=\sum_{j=1}^s k_j \sum_{i=1}^t c_{ij} \b_i
-	=\sum_{j=1}^s \sum_{i=1}^t k_j c_{ij} \b_i
-	=\sum_{i=1}^t \b_i \sum_{j=1}^s k_j c_{ij}
-	=\z.
+	\sum_{j=1}^s k_j \vb\alpha_j
+	=\sum_{j=1}^s k_j \sum_{i=1}^t c_{ij} \vb\beta_i
+	=\sum_{j=1}^s \sum_{i=1}^t k_j c_{ij} \vb\beta_i
+	=\sum_{i=1}^t \vb\beta_i \sum_{j=1}^s k_j c_{ij}
+	=\vb0.
 \]
 如此只需证存在不全为零的\(s\)个数\(\AutoTuple{k}{s}\)
 使得对于任意\(i=1,2,\dotsc,t\)都有\[
@@ -341,7 +341,7 @@ theorem:向量空间.线性表出2的充分条件}，
 任意\(n+1\)个\(n\)维向量线性相关.
 \begin{proof}
 由\cref{theorem:向量空间.任一向量可由基本向量组唯一线性表出}，
-\(K^n\)中任意\(n+1\)个\(n\)维向量\(A=\{\AutoTuple{\a}{n+1}\}\)
+\(K^n\)中任意\(n+1\)个\(n\)维向量\(A=\{\AutoTuple{\vb\alpha}{n+1}\}\)
 可由基本向量组线性表出；
 这两个向量组中的向量个数满足\(n+1>n\)，
 由\cref{theorem:向量空间.可由比自己基数小的向量组线性表出的向量组线性相关}，
@@ -352,7 +352,7 @@ theorem:向量空间.线性表出2的充分条件}，
 \begin{corollary}\label{theorem:向量空间.线性无关向量组的基数不大于可以线性表出它的任意向量组的基数}
 %@see: 《线性代数》（张慎语、周厚隆） P73 推论2
 %@see: 《高等代数（第三版 上册）》（丘维声） P74 推论3
-若线性无关向量组\(A=\{\AutoTuple{\a}{s}\}\)可由\(B=\{\AutoTuple{\b}{t}\}\)线性表出，
+若线性无关向量组\(A=\{\AutoTuple{\vb\alpha}{s}\}\)可由\(B=\{\AutoTuple{\vb\beta}{t}\}\)线性表出，
 则\(s \leq t\).
 \begin{proof}
 用反证法.
@@ -371,8 +371,8 @@ theorem:向量空间.线性表出2的充分条件}，
 	A \cong B \implies \card A = \card B.
 \]
 \begin{proof}
-设\(A=\{\AutoTuple{\a}{s}\}\)%
-与\(B=\{\AutoTuple{\b}{t}\}\)%
+设\(A=\{\AutoTuple{\vb\alpha}{s}\}\)%
+与\(B=\{\AutoTuple{\vb\beta}{t}\}\)%
 都线性无关，且\(A \cong B\).
 因为\(A\)可由\(B\)线性表出，
 由\cref{theorem:向量空间.线性无关向量组的基数不大于可以线性表出它的任意向量组的基数}，
@@ -393,13 +393,13 @@ B=\{(1,0)\}\).
 %在数域\(K\)上，满足\[
 %\abs{a_{ii}} > \sum_{\substack{1 \leq j \leq n \\ j \neq i}} \abs{a_{ij}}
 %\quad (i=1,2,\dotsc,n)
-%\]的\(n\)阶矩阵\(\A = (a_{ij})_n\)称为\DefineConcept{主对角占优矩阵}.
-%证明：\(\A\)的列向量组\(\AutoTuple{\a}{n}\)的秩等于\(n\).
+%\]的\(n\)阶矩阵\(\vb{A} = (a_{ij})_n\)称为\DefineConcept{主对角占优矩阵}.
+%证明：\(\vb{A}\)的列向量组\(\AutoTuple{\vb\alpha}{n}\)的秩等于\(n\).
 %\begin{proof}
-%假设\(\AutoTuple{\a}{n}\)线性相关，
+%假设\(\AutoTuple{\vb\alpha}{n}\)线性相关，
 %则在\(K\)中有一组不全为0的数\(\AutoTuple{k}{n}\)，
 %使得\[
-%	k_1 \a_1 + k_2 \a_2 + \dotsb + k_n \a_n = \z.
+%	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_n \vb\alpha_n = \vb0.
 %\]
 %不妨设\(\abs{k_l} = \max\{\abs{k_1},\abs{k_2},\dotsc,\abs{k_n}\}\neq0\).
 %由\[
@@ -413,8 +413,8 @@ B=\{(1,0)\}\).
 %	\leq \sum_{\substack{1 \leq j \leq n \\ j \neq l}} \abs{a_{lj}}.
 %\]
 %这与已知条件矛盾！
-%因此\(\AutoTuple{\a}{n}\)线性无关，
-%\(\rank\{\AutoTuple{\a}{n}\} = n\).
+%因此\(\AutoTuple{\vb\alpha}{n}\)线性无关，
+%\(\rank\{\AutoTuple{\vb\alpha}{n}\} = n\).
 %\end{proof}
 %\end{example}
 %TODO 后移到【向量的秩】
@@ -464,10 +464,10 @@ B=\{(1,0)\}\).
 \end{theorem}
 \begin{remark}
 \cref{theorem:线性方程组.向量组与其极大线性无关组等价} 说明，
-向量组\(\AutoTuple{\a}{s}\)可以由它的一个极大线性无关组线性表出.
+向量组\(\AutoTuple{\vb\alpha}{s}\)可以由它的一个极大线性无关组线性表出.
 再根据线性表出的传递性得，
-\(W=\opair{\AutoTuple{\a}{s}}\)中的每个向量%
-可以由\(\AutoTuple{\a}{s}\)的一个极大线性无关组线性表出，
+\(W=\opair{\AutoTuple{\vb\alpha}{s}}\)中的每个向量%
+可以由\(\AutoTuple{\vb\alpha}{s}\)的一个极大线性无关组线性表出，
 此时表出方式就唯一了.
 \end{remark}
 
@@ -497,9 +497,9 @@ B=\{(1,0)\}\).
 
 \subsection{向量组的秩}
 \begin{definition}
-向量组\(A = \{\AutoTuple{\a}{s}\}\)的极大线性无关组所含向量的个数，
+向量组\(A = \{\AutoTuple{\vb\alpha}{s}\}\)的极大线性无关组所含向量的个数，
 称为向量组的\DefineConcept{秩}（rank），
-记为\(\rank A\)或\(\rank\{\AutoTuple{\a}{s}\}\)，
+记为\(\rank A\)或\(\rank\{\AutoTuple{\vb\alpha}{s}\}\)，
 即\[
 	\text{\(A'\)是\(A\)的极大线性无关组}
 	\implies
@@ -517,46 +517,46 @@ B=\{(1,0)\}\).
 \end{property}
 
 \begin{property}
-零向量组的秩为零，即\(\rank\{\z\}=0\).
+零向量组的秩为零，即\(\rank\{\vb0\}=0\).
 \begin{proof}
 由\cref{example:向量空间.单向量组的极大线性无关组}，
-\(\{\z\}\)的极大线性无关组是\(\emptyset\)，
-故\(\rank\{\z\} = \card\emptyset = 0\).
+\(\{\vb0\}\)的极大线性无关组是\(\emptyset\)，
+故\(\rank\{\vb0\} = \card\emptyset = 0\).
 \end{proof}
 \end{property}
 
 \begin{proposition}\label{theorem:向量组的秩.并集的秩}
 设\(A\)是\(K^n\)中的向量组.
 \begin{itemize}
-	\item 如果向量\(\a\)可由\(A\)线性表出，
+	\item 如果向量\(\vb\alpha\)可由\(A\)线性表出，
 	则\[
-		\rank(A \cup \{\a\}) = \rank A.
+		\rank(A \cup \{\vb\alpha\}) = \rank A.
 	\]
 
-	\item 如果向量\(\a\)不可由\(A\)线性表出，
+	\item 如果向量\(\vb\alpha\)不可由\(A\)线性表出，
 	则\[
-		\rank(A \cup \{\a\}) = \rank A + 1.
+		\rank(A \cup \{\vb\alpha\}) = \rank A + 1.
 	\]
 \end{itemize}
 \begin{proof}
 假设\(A'\)是\(A\)的一个极大线性无关组.
 
-如果向量\(\a\)可由\(A\)线性表出，
-那么\(\a\)可由\(A'\)线性表出，
-所以\(A \cup \{\a\}\)中的每一个向量都可由\(A'\)线性表出，
+如果向量\(\vb\alpha\)可由\(A\)线性表出，
+那么\(\vb\alpha\)可由\(A'\)线性表出，
+所以\(A \cup \{\vb\alpha\}\)中的每一个向量都可由\(A'\)线性表出，
 于是\[
-	\rank(A \cup \{\a\})
+	\rank(A \cup \{\vb\alpha\})
 	= \card A'
 	= \rank A.
 \]
 
-如果向量\(\a\)不可由\(A\)线性表出，
-那么\(A' \cup \{\a\}\)线性无关，
-且\(A \cup \{\a\}\)可由\(A' \cup \{\a\}\)线性表出，
-这就说明\(A' \cup \{\a\}\)一定是\(A \cup \{\a\}\)的一个极大线性无关组.
+如果向量\(\vb\alpha\)不可由\(A\)线性表出，
+那么\(A' \cup \{\vb\alpha\}\)线性无关，
+且\(A \cup \{\vb\alpha\}\)可由\(A' \cup \{\vb\alpha\}\)线性表出，
+这就说明\(A' \cup \{\vb\alpha\}\)一定是\(A \cup \{\vb\alpha\}\)的一个极大线性无关组.
 于是\[
-	\rank(A \cup \{\a\})
-	= \card(A' \cup \{\a\})
+	\rank(A \cup \{\vb\alpha\})
+	= \card(A' \cup \{\vb\alpha\})
 	= \card A' + 1
 	= \rank A + 1.
 	\qedhere
@@ -585,24 +585,24 @@ B=\{(1,0)\}\).
 设向量组\(A\)可由\(B\)线性表出，
 则\(\rank A \leq \rank B\).
 \begin{proof}
-设\(A=\{\AutoTuple{\a}{s}\}\)，
-\(B=\{\AutoTuple{\b}{t}\}\)，
+设\(A=\{\AutoTuple{\vb\alpha}{s}\}\)，
+\(B=\{\AutoTuple{\vb\beta}{t}\}\)，
 \(\rank A = r\)，\(\rank B = u\).
 因为\(A\)可由\(B\)线性表出，即\[
-	\a_k = \sum_{i=1}^t l_{ki} \b_i,
+	\vb\alpha_k = \sum_{i=1}^t l_{ki} \vb\beta_i,
 	\quad k=1,2,\dotsc,s.
 \]
-设\(A'=\{\AutoTuple{\a}{r}\}\)%
-和\(B'=\{\AutoTuple{\b}{u}\}\)%
+设\(A'=\{\AutoTuple{\vb\alpha}{r}\}\)%
+和\(B'=\{\AutoTuple{\vb\beta}{u}\}\)%
 分别是\(A\)和\(B\)的极大线性无关组，
 则\(B\)可由\(B'\)线性表出，即\[
-	\b_i = \sum_{j=1}^u b_{ij} \b_j,
+	\vb\beta_i = \sum_{j=1}^u b_{ij} \vb\beta_j,
 	\quad i=1,2,\dotsc,t;
 \]
 所以有\[
-	\a_k = \sum_{i=1}^t l_{ki} \sum_{j=1}^u b_{ij} \b_j
-	= \sum_{i=1}^t \sum_{j=1}^u l_{ki} b_{ij} \b_j
-	= \sum_{j=1}^u \b_j \sum_{i=1}^t l_{ki} b_{ij},
+	\vb\alpha_k = \sum_{i=1}^t l_{ki} \sum_{j=1}^u b_{ij} \vb\beta_j
+	= \sum_{i=1}^t \sum_{j=1}^u l_{ki} b_{ij} \vb\beta_j
+	= \sum_{j=1}^u \vb\beta_j \sum_{i=1}^t l_{ki} b_{ij},
 	\quad k=1,2,\dotsc,s.
 \]
 
@@ -632,7 +632,7 @@ B=\{(1,0)\}\).
 \end{equation*}
 \end{remark}
 \begin{example}
-举例说明：纵然向量组\(A,B\)满足\(\rank A \leq \rank B\)，也不能断定\(A\)可以由\(\B\)线性表出.
+举例说明：纵然向量组\(A,B\)满足\(\rank A \leq \rank B\)，也不能断定\(A\)可以由\(\vb{B}\)线性表出.
 \begin{solution}
 取\(A = \{(1,0,0),(0,1,0)\},
 B = \{(0,0,1)\}\)，
@@ -697,8 +697,8 @@ B=\{(1,0)\}\).
 但是\(B\)不可由\(A\)线性表出.
 因为\(B\)不可由\(A\)线性表出，
 所以\[
-	(\exists\b \in B)  		% 向量组 B 中存在向量 \b
-	[\b \notin \Span A],	% 向量 \b 不在向量组 A 的线性生成空间中
+	(\exists\vb\beta \in B)  		% 向量组 B 中存在向量 \vb\beta
+	[\vb\beta \notin \Span A],	% 向量 \vb\beta 不在向量组 A 的线性生成空间中
 \]
 于是根据\cref{theorem:向量组的秩.并集的秩}
 可知\(\rank(A \cup B) > \rank A\)，
@@ -725,44 +725,44 @@ B=\{(1,0)\}\).
 \begin{example}\label{example:向量空间.若部分组向量个数多于全组的秩则部分组必线性相关}
 证明：在秩为\(r\)的向量组中，任意\(r+1\)个向量必线性相关.
 \begin{proof}
-设向量组\(\AutoTuple{\a}{s}\)的秩为\(r\).
-假设部分组\(\AutoTuple{\a}{r+1}\)线性无关，
+设向量组\(\AutoTuple{\vb\alpha}{s}\)的秩为\(r\).
+假设部分组\(\AutoTuple{\vb\alpha}{r+1}\)线性无关，
 那么由\cref{theorem:向量空间.秩与线性相关性的关系} 得\[
-	\rank\{\AutoTuple{\a}{r+1}\} = r+1.
+	\rank\{\AutoTuple{\vb\alpha}{r+1}\} = r+1.
 \]
 因为\hyperref[theorem:向量空间.向量组的秩的比较2]{部分组的秩总是小于或等于全组的秩}，
 而这与\[
-	r+1 = \rank\{\AutoTuple{\a}{r+1}\} \leq \rank\{\AutoTuple{\a}{s}\} = r,
+	r+1 = \rank\{\AutoTuple{\vb\alpha}{r+1}\} \leq \rank\{\AutoTuple{\vb\alpha}{s}\} = r,
 \]矛盾，
-所以部分组\(\AutoTuple{\a}{r+1}\)一定线性相关.
+所以部分组\(\AutoTuple{\vb\alpha}{r+1}\)一定线性相关.
 \end{proof}
 \end{example}
 
 \begin{example}
-设向量组\(\AutoTuple{\a}{s}\)的秩为\(r\).
-如果\(\AutoTuple{\a}{r}\)线性无关，证明：
-\(\AutoTuple{\a}{r}\)
-是\(\AutoTuple{\a}{s}\)的一个极大线性无关组.
+设向量组\(\AutoTuple{\vb\alpha}{s}\)的秩为\(r\).
+如果\(\AutoTuple{\vb\alpha}{r}\)线性无关，证明：
+\(\AutoTuple{\vb\alpha}{r}\)
+是\(\AutoTuple{\vb\alpha}{s}\)的一个极大线性无关组.
 \begin{proof}
 设\[
-	A=\{\AutoTuple{\a}{s}\},
+	A=\{\AutoTuple{\vb\alpha}{s}\},
 	\qquad
-	B=\{\AutoTuple{\a}{r}\}.
+	B=\{\AutoTuple{\vb\alpha}{r}\}.
 \]
 要证\(B\)是\(A\)的一个极大线性无关组，
 须证\(A\)的任意向量可由\(B\)线性表出.
 
 \begin{enumerate}
-	\item 显然地，\(\a_i\ (i=1,2,\dotsc,r)\)可由\(B\)线性表出.
+	\item 显然地，\(\vb\alpha_i\ (i=1,2,\dotsc,r)\)可由\(B\)线性表出.
 
 	\item 根据上例，在秩为\(r\)的向量组中，
 	任意\(r+1\)个向量必线性相关，
 	那么向量组\[
-		A_i = \{\AutoTuple{\a}{r},\a_i\}\quad(i=r+1,\dotsc,s)
+		A_i = \{\AutoTuple{\vb\alpha}{r},\vb\alpha_i\}\quad(i=r+1,\dotsc,s)
 	\]必线性相关.
 
 	又因为\(B\)线性无关，
-	所以\(\a_i\ (i=r+1,\dotsc,s)\)可由\(B\)线性表出.
+	所以\(\vb\alpha_i\ (i=r+1,\dotsc,s)\)可由\(B\)线性表出.
 \end{enumerate}
 
 综上所述，\(A\)的任意向量可由\(B\)线性表出，且\(B\)线性无关，
@@ -771,20 +771,20 @@ B=\{(1,0)\}\).
 \end{example}
 
 \begin{example}
-向量组\(\AutoTuple{\a}{r+1}\)与部分组\(\AutoTuple{\a}{r}\)的秩相等.
-证明：\(\a_{r+1}\)可由\(\AutoTuple{\a}{r}\)线性表出.
+向量组\(\AutoTuple{\vb\alpha}{r+1}\)与部分组\(\AutoTuple{\vb\alpha}{r}\)的秩相等.
+证明：\(\vb\alpha_{r+1}\)可由\(\AutoTuple{\vb\alpha}{r}\)线性表出.
 \begin{proof}
-记\(A=\{\AutoTuple{\a}{r+1}\}\)，
-\(B=\{\AutoTuple{\a}{r}\}\).
+记\(A=\{\AutoTuple{\vb\alpha}{r+1}\}\)，
+\(B=\{\AutoTuple{\vb\alpha}{r}\}\).
 设\(B\)的极大线性无关组为\[
-	B'=\{\AutoTuple{\a}{t}\},
+	B'=\{\AutoTuple{\vb\alpha}{t}\},
 	\quad 0 \leq t \leq r.
 \]
 由题意有\(\rank A = \rank B = \rank B' = \card B' = t\).
 
 由上例可知，因为\(\rank A = t\)，\(B'\)线性无关，
 所以\(B'\)是\(A\)的一个极大线性无关组.
-那么向量组\(A\)中的向量\(\a_{r+1}\)可以由极大线性无关组\(B'\)线性表出.
+那么向量组\(A\)中的向量\(\vb\alpha_{r+1}\)可以由极大线性无关组\(B'\)线性表出.
 又由于\(B'\)是\(B\)的部分组，故\(B'\)可由\(B\)线性表出.
 总而言之，\(A\)可由\(B\)线性表出.
 \end{proof}
@@ -805,59 +805,59 @@ B=\{(1,0)\}\).
 \begin{theorem}\label{theorem:向量空间.利用初等行变换求取列极大线性无关组的依据}
 %@see: 《线性代数》（张慎语、周厚隆） P75 定理4
 设矩阵\[
-	\A=(\AutoTuple{\a}{m})
+	\vb{A}=(\AutoTuple{\vb\alpha}{m})
 \]
 经一系列初等行变换化为矩阵\[
-	\B=(\AutoTuple{\b}{m}),
+	\vb{B}=(\AutoTuple{\vb\beta}{m}),
 \]
-则\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)为\(\A\)的列极大线性无关组的充分必要条件是：
-\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)为\(\B\)的列极大线性无关组.
+则\(\vb\alpha_{j1},\vb\alpha_{j2},\dotsc,\vb\alpha_{jk}\)为\(\vb{A}\)的列极大线性无关组的充分必要条件是：
+\(\vb\beta_{j1},\vb\beta_{j2},\dotsc,\vb\beta_{jk}\)为\(\vb{B}\)的列极大线性无关组.
 \begin{proof}
-假设矩阵\(\wA=(\a_{j1},\a_{j2},\dotsc,\a_{jk},\a_l)\)经相同的初等行变换化为\[
-	\wB=(\b_{j1},\b_{j2},\dotsc,\b_{jk},\b_l) \quad(l=1,2,\dotsc,m).
+假设矩阵\(\widetilde{\vb{A}}=(\vb\alpha_{j1},\vb\alpha_{j2},\dotsc,\vb\alpha_{jk},\vb\alpha_l)\)经相同的初等行变换化为\[
+	\widetilde{\vb{B}}=(\vb\beta_{j1},\vb\beta_{j2},\dotsc,\vb\beta_{jk},\vb\beta_l) \quad(l=1,2,\dotsc,m).
 \]
 考虑以下四个向量形式的线性方程组
 \begin{gather}
-	x_1 \a_{j1} + x_2 \a_{j2} + \dotsb + x_k \a_{jk} = \z, \tag1 \\
-	x_1 \b_{j1} + x_2 \b_{j2} + \dotsb + x_k \b_{jk} = \z, \tag2 \\
-	y_1 \a_{j1} + y_2 \a_{j2} + \dotsb + y_k \a_{jk} = \a_l, \tag3 \\
-	y_1 \b_{j1} + y_2 \b_{j2} + \dotsb + y_k \b_{jk} = \b_l, \tag4
+	x_1 \vb\alpha_{j1} + x_2 \vb\alpha_{j2} + \dotsb + x_k \vb\alpha_{jk} = \vb0, \tag1 \\
+	x_1 \vb\beta_{j1} + x_2 \vb\beta_{j2} + \dotsb + x_k \vb\beta_{jk} = \vb0, \tag2 \\
+	y_1 \vb\alpha_{j1} + y_2 \vb\alpha_{j2} + \dotsb + y_k \vb\alpha_{jk} = \vb\alpha_l, \tag3 \\
+	y_1 \vb\beta_{j1} + y_2 \vb\beta_{j2} + \dotsb + y_k \vb\beta_{jk} = \vb\beta_l, \tag4
 \end{gather}
 其中(1)与(2)同解，(3)与(4)同解.
 
 必要性.
-当\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)是\(\A\)的列极大线性无关组时，
+当\(\vb\alpha_{j1},\vb\alpha_{j2},\dotsc,\vb\alpha_{jk}\)是\(\vb{A}\)的列极大线性无关组时，
 (1)仅有零解，(3)有解.于是(2)仅有零解，(4)有解，
-从而\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)线性无关，
-\(\b_l\ (l=1,2,\dotsc,m)\)可由其线性表出；
+从而\(\vb\beta_{j1},\vb\beta_{j2},\dotsc,\vb\beta_{jk}\)线性无关，
+\(\vb\beta_l\ (l=1,2,\dotsc,m)\)可由其线性表出；
 由极大线性无关组定义，
-\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)是\(\B\)的列极大线性无关组.
+\(\vb\beta_{j1},\vb\beta_{j2},\dotsc,\vb\beta_{jk}\)是\(\vb{B}\)的列极大线性无关组.
 
 同理可证充分性.
 \end{proof}
 \end{theorem}
 
 \cref{theorem:向量空间.利用初等行变换求取列极大线性无关组的依据} 告诉我们，
-要想求出一组向量\(\AutoTuple{\a}{s}\)的极大线性无关组，
-可以构造矩阵\(\A=(\AutoTuple{\a}{s})\)，
-再利用高斯消元法得到阶梯形矩阵\(\B\)，
-找出\(\B\)的非零首元所在的列\(\b_{j1},\b_{j2},\dotsc,\b_{jk}\)，
-回过头找出\(\A\)中对应的列\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)，
-那么\(\a_{j1},\a_{j2},\dotsc,\a_{jk}\)就是\(\AutoTuple{\a}{s}\)的极大线性无关组.
+要想求出一组向量\(\AutoTuple{\vb\alpha}{s}\)的极大线性无关组，
+可以构造矩阵\(\vb{A}=(\AutoTuple{\vb\alpha}{s})\)，
+再利用高斯消元法得到阶梯形矩阵\(\vb{B}\)，
+找出\(\vb{B}\)的非零首元所在的列\(\vb\beta_{j1},\vb\beta_{j2},\dotsc,\vb\beta_{jk}\)，
+回过头找出\(\vb{A}\)中对应的列\(\vb\alpha_{j1},\vb\alpha_{j2},\dotsc,\vb\alpha_{jk}\)，
+那么\(\vb\alpha_{j1},\vb\alpha_{j2},\dotsc,\vb\alpha_{jk}\)就是\(\AutoTuple{\vb\alpha}{s}\)的极大线性无关组.
 %@see: https://math.stackexchange.com/a/164021/591741
 
 \begin{example}
 求列向量组\[
-	\a_1 = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 0 \end{bmatrix},
-	\a_2 = \begin{bmatrix} -1 \\ 2 \\ -1 \\ 1 \end{bmatrix},
-	\a_3 = \begin{bmatrix} 0 \\ -1 \\ 1 \\ -1 \end{bmatrix},
-	\a_4 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 3 \end{bmatrix},
-	\a_5 = \begin{bmatrix} 2 \\ -6 \\ 4 \\ 1 \end{bmatrix}
+	\vb\alpha_1 = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 0 \end{bmatrix},
+	\vb\alpha_2 = \begin{bmatrix} -1 \\ 2 \\ -1 \\ 1 \end{bmatrix},
+	\vb\alpha_3 = \begin{bmatrix} 0 \\ -1 \\ 1 \\ -1 \end{bmatrix},
+	\vb\alpha_4 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 3 \end{bmatrix},
+	\vb\alpha_5 = \begin{bmatrix} 2 \\ -6 \\ 4 \\ 1 \end{bmatrix}
 \]的秩与一个极大线性无关组.
 \begin{solution}
-对矩阵\(\A = (\AutoTuple{\a}{5})\)作初等行变换化为阶梯形矩阵：
+对矩阵\(\vb{A} = (\AutoTuple{\vb\alpha}{5})\)作初等行变换化为阶梯形矩阵：
 \begin{align*}
-	\A &= \begin{bmatrix}
+	\vb{A} &= \begin{bmatrix}
 		-1 & -1 & 0 & 1 & 2 \\
 		1 & 2 & -1 & -3 & -6 \\
 		0 & -1 & 1 & 2 & 4 \\
@@ -890,15 +890,15 @@ B=\{(1,0)\}\).
 		0 & 0 & 0 & 1 & 1 \\
 		0 & 0 & 0 & 0 & 0 \\
 	\end{bmatrix}
-	= \B.
+	= \vb{B}.
 \end{align*}
-若按列分块有\(\B = (\AutoTuple{\b}{5})\).
-阶梯形矩阵\(\B\)有3行不为零，故\[
-	\rank\{\AutoTuple{\a}{5}\}=3.
+若按列分块有\(\vb{B} = (\AutoTuple{\vb\beta}{5})\).
+阶梯形矩阵\(\vb{B}\)有3行不为零，故\[
+	\rank\{\AutoTuple{\vb\alpha}{5}\}=3.
 \]
-又因为\(\B\)的非零首元分别位于1、2、4列，
-则\(\b_1,\b_2,\b_4\)是\(\B\)的一个列极大线性无关组，
-相应地，\(\a_1,\a_2,\a_4\)是\(\A\)的一个列极大线性无关组，
-即\(\{\AutoTuple{\a}{5}\}\)的极大线性无关组.
+又因为\(\vb{B}\)的非零首元分别位于1、2、4列，
+则\(\vb\beta_1,\vb\beta_2,\vb\beta_4\)是\(\vb{B}\)的一个列极大线性无关组，
+相应地，\(\vb\alpha_1,\vb\alpha_2,\vb\alpha_4\)是\(\vb{A}\)的一个列极大线性无关组，
+即\(\{\AutoTuple{\vb\alpha}{5}\}\)的极大线性无关组.
 \end{solution}
 \end{example}

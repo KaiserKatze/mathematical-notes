@@ -1,86 +1,86 @@
 \section{矩阵的相似}
 有时候，我们会遇到这样的问题：
-已知\(\A\)是数域\(K\)上的一个\(n\)阶方阵，求\(\A^m\).
-这时候，如果存在数域\(K\)上的一个\(n\)阶可逆矩阵\(\P\)，
-使得\(\P^{-1}\A\P = \B\)，并且\(\B^m\)容易计算，
+已知\(\vb{A}\)是数域\(K\)上的一个\(n\)阶方阵，求\(\vb{A}^m\).
+这时候，如果存在数域\(K\)上的一个\(n\)阶可逆矩阵\(\vb{P}\)，
+使得\(\vb{P}^{-1}\vb{A}\vb{P} = \vb{B}\)，并且\(\vb{B}^m\)容易计算，
 那么我们就可以利用矩阵的乘法结合律得到以下结果：\[
-	\A^m
-	= (\P^{-1}\B\P)^m
+	\vb{A}^m
+	= (\vb{P}^{-1}\vb{B}\vb{P})^m
 	= \underbrace{
-			(\P^{-1}\B\P)
-			(\P^{-1}\B\P)
+			(\vb{P}^{-1}\vb{B}\vb{P})
+			(\vb{P}^{-1}\vb{B}\vb{P})
 			\dotsm
-			(\P^{-1}\B\P)
+			(\vb{P}^{-1}\vb{B}\vb{P})
 		}_{\text{$m$个}}
-	= \P^{-1}\B^m\P.
+	= \vb{P}^{-1}\vb{B}^m\vb{P}.
 \]
 
 \subsection{矩阵相似的概念}
 \begin{definition}
 %@see: 《线性代数》（张慎语、周厚隆） P97 定义3
 %@see: 《高等代数（第三版 上册）》（丘维声） P169 定义1
-设\(\A\)、\(\B\)是两个\(n\)阶矩阵.
-若存在可逆矩阵\(\P\)，
+设\(\vb{A}\)、\(\vb{B}\)是两个\(n\)阶矩阵.
+若存在可逆矩阵\(\vb{P}\)，
 使得\begin{equation}\label{equation:特征值与特征向量.相似矩阵的定义}
-	\P^{-1} \A \P = \B
+	\vb{P}^{-1} \vb{A} \vb{P} = \vb{B}
 \end{equation}
-则称“\(\A\)与\(\B\)~\DefineConcept{相似}%
-（\(\A\) is \emph{similar} to \(\B\)）”，
+则称“\(\vb{A}\)与\(\vb{B}\)~\DefineConcept{相似}%
+（\(\vb{A}\) is \emph{similar} to \(\vb{B}\)）”，
 %@see: https://mathworld.wolfram.com/SimilarMatrices.html
-记作\(\A\sim\B\).
+记作\(\vb{A}\sim\vb{B}\).
 \end{definition}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 6.
 证明：单位矩阵只与它本身相似.
 \begin{proof}
-设\(\A \in M_n(K)\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
-且\(\E \sim \A\).
+设\(\vb{A} \in M_n(K)\)，
+\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
+且\(\vb{E} \sim \vb{A}\).
 根据矩阵相似的定义，
-存在可逆\(\P \in M_n(K)\)，
-使得\(\P^{-1} \E \P = \A\).
+存在可逆\(\vb{P} \in M_n(K)\)，
+使得\(\vb{P}^{-1} \vb{E} \vb{P} = \vb{A}\).
 又因为单位矩阵可以与任意同阶矩阵交换，
-所以\(\A
-= \P^{-1} \E \P
-= \P^{-1} \P \E
-= \E \E
-= \E\).
+所以\(\vb{A}
+= \vb{P}^{-1} \vb{E} \vb{P}
+= \vb{P}^{-1} \vb{P} \vb{E}
+= \vb{E} \vb{E}
+= \vb{E}\).
 \end{proof}
 \end{example}
 
 \begin{example}
 %@see: https://www.bilibili.com/video/BV1dA29YeEz8/
 设\begin{equation*}
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		1 & 2 & 0 \\
 		0 & 1 & 3 \\
 		0 & 0 & 1
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		1 & -1 & -2 \\
 		0 & 1 & 1 \\
 		0 & 0 & 1
 	\end{bmatrix}.
 \end{equation*}
-证明：\(\A \sim \B\).
+证明：\(\vb{A} \sim \vb{B}\).
 \begin{solution}
-要想证明\(\A \sim \B\)，
-我们需要找出满足等式\(\P^{-1} \A \P = \B\)的可逆矩阵\(\P\)，
-也就是要解矩阵方程\(\A \P = \P \B\).
-将\(\P\)按列分块为\((\a_1,\a_2,\a_3)\)，
-则有\((\A \a_1,\A \a_2,\A \a_3) = (\a_1,\a_2,\a_3) \B\)，
+要想证明\(\vb{A} \sim \vb{B}\)，
+我们需要找出满足等式\(\vb{P}^{-1} \vb{A} \vb{P} = \vb{B}\)的可逆矩阵\(\vb{P}\)，
+也就是要解矩阵方程\(\vb{A} \vb{P} = \vb{P} \vb{B}\).
+将\(\vb{P}\)按列分块为\((\vb\alpha_1,\vb\alpha_2,\vb\alpha_3)\)，
+则有\((\vb{A} \vb\alpha_1,\vb{A} \vb\alpha_2,\vb{A} \vb\alpha_3) = (\vb\alpha_1,\vb\alpha_2,\vb\alpha_3) \vb{B}\)，
 即\begin{gather*}
-	\A \a_1 = \a_1, \tag1 \\
-	\A \a_2 = -\a_1 + \a_2, \tag2 \\
-	\A \a_3 = -2\a_1 + \a_2 + a_3. \tag3
+	\vb{A} \vb\alpha_1 = \vb\alpha_1, \tag1 \\
+	\vb{A} \vb\alpha_2 = -\vb\alpha_1 + \vb\alpha_2, \tag2 \\
+	\vb{A} \vb\alpha_3 = -2\vb\alpha_1 + \vb\alpha_2 + a_3. \tag3
 \end{gather*}
 
 由(1)式有\begin{equation*}
-	(\A - \E) \a_1 = \vb0,
+	(\vb{A} - \vb{E}) \vb\alpha_1 = \vb0,
 \end{equation*}
 它的系数矩阵为\begin{equation*}
-	\A - \E
+	\vb{A} - \vb{E}
 	= \begin{bmatrix}
 		0 & 2 & 0 \\
 		0 & 0 & 3 \\
@@ -92,7 +92,7 @@
 		0 & 0 & 0
 	\end{bmatrix},
 \end{equation*}
-所以\(\a_1 = \begin{bmatrix}
+所以\(\vb\alpha_1 = \begin{bmatrix}
 	k_1 \\
 	0 \\
 	0
@@ -100,17 +100,17 @@
 \ (\text{$k_1$是任意常数})\).
 
 由(2)式有\begin{equation*}
-	(\A - \E) \a_2 = -\a_1,
+	(\vb{A} - \vb{E}) \vb\alpha_2 = -\vb\alpha_1,
 \end{equation*}
 它的增广矩阵为\begin{equation*}
-	(\A - \E,-\a_1)
+	(\vb{A} - \vb{E},-\vb\alpha_1)
 	= \begin{bmatrix}
 		0 & 2 & 0 & -k_1 \\
 		0 & 0 & 3 & 0 \\
 		0 & 0 & 0 & 0
 	\end{bmatrix},
 \end{equation*}
-所以\(\a_2 = \begin{bmatrix}
+所以\(\vb\alpha_2 = \begin{bmatrix}
 	k_2 \\
 	-\frac12 k_1 \\
 	0
@@ -118,17 +118,17 @@
 \ (\text{$k_2$是任意常数})\).
 
 由(3)式有\begin{equation*}
-	(\A - \E) \a_3 = -2\a_1 + \a_2,
+	(\vb{A} - \vb{E}) \vb\alpha_3 = -2\vb\alpha_1 + \vb\alpha_2,
 \end{equation*}
 它的增广矩阵为\begin{equation*}
-	(\A - \E,-2\a_1 + \a_2)
+	(\vb{A} - \vb{E},-2\vb\alpha_1 + \vb\alpha_2)
 	= \begin{bmatrix}
 		0 & 2 & 0 & k_2 - 2 k_1 \\
 		0 & 0 & 3 & -\frac12 k_1 \\
 		0 & 0 & 0 & 0
 	\end{bmatrix},
 \end{equation*}
-所以\(\a_3 = \begin{bmatrix}
+所以\(\vb\alpha_3 = \begin{bmatrix}
 	k_3 \\
 	\frac12 k_2 - k_1 \\
 	-\frac16 k_1
@@ -136,7 +136,7 @@
 \ (\text{$k_3$是任意常数})\).
 
 于是\begin{equation*}
-	\P = (\a_1,\a_2,\a_3)
+	\vb{P} = (\vb\alpha_1,\vb\alpha_2,\vb\alpha_3)
 	= \begin{bmatrix}
 		k_1 & k_2 & k_3 \\
 		0 & -\frac12 k_1 & \frac12 k_2 - k_1 \\
@@ -144,11 +144,11 @@
 	\end{bmatrix}
 	\quad(\text{$k_1,k_2,k_3$是任意常数}).
 \end{equation*}
-由于\(\P\)是可逆矩阵，
-所以\(\abs{\P} = \frac12 k_1^3 \neq 0\)，
+由于\(\vb{P}\)是可逆矩阵，
+所以\(\abs{\vb{P}} = \frac12 k_1^3 \neq 0\)，
 说明\(k_1\)必须满足约束性条件\(k_1 \neq 0\)，
-因此所求可逆矩阵\(\P\)为\begin{equation*}
-	\P = \begin{bmatrix}
+因此所求可逆矩阵\(\vb{P}\)为\begin{equation*}
+	\vb{P} = \begin{bmatrix}
 		k_1 & k_2 & k_3 \\
 		0 & -\frac12 k_1 & \frac12 k_2 - k_1 \\
 		0 & 0 & -\frac16 k_1
@@ -156,8 +156,8 @@
 	\quad(\text{$k_1,k_2,k_3$是任意常数,且$k_1\neq0$}).
 \end{equation*}
 
-既然可逆矩阵\(\P\)存在，
-那么\(\A \sim \B\).
+既然可逆矩阵\(\vb{P}\)存在，
+那么\(\vb{A} \sim \vb{B}\).
 \end{solution}
 \end{example}
 
@@ -165,42 +165,42 @@
 \begin{proposition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P169 命题1
 %@see: 《线性代数》（张慎语、周厚隆） P97 性质2
-设矩阵\(\A_1,\A_2,\B_1,\B_2,\P \in M_n(K)\)，\(\P\)可逆，
+设矩阵\(\vb{A}_1,\vb{A}_2,\vb{B}_1,\vb{B}_2,\vb{P} \in M_n(K)\)，\(\vb{P}\)可逆，
 且\[
-	\B_1=\P^{-1}\A_1\P, \qquad
-	\B_2=\P^{-1}\A_2\P,
+	\vb{B}_1=\vb{P}^{-1}\vb{A}_1\vb{P}, \qquad
+	\vb{B}_2=\vb{P}^{-1}\vb{A}_2\vb{P},
 \]
 则\begin{gather}
-	\B_1 + \B_2 = \P^{-1} (\A_1 + \A_2) \P, \\
-	\B_1 \B_2 = \P^{-1} (\A_1 \A_2) \P, \\
-	m\in\mathbb{N} \implies \B_1^m = \P^{-1}\A_1^m\P.
+	\vb{B}_1 + \vb{B}_2 = \vb{P}^{-1} (\vb{A}_1 + \vb{A}_2) \vb{P}, \\
+	\vb{B}_1 \vb{B}_2 = \vb{P}^{-1} (\vb{A}_1 \vb{A}_2) \vb{P}, \\
+	m\in\mathbb{N} \implies \vb{B}_1^m = \vb{P}^{-1}\vb{A}_1^m\vb{P}.
 		\label{equation:相似矩阵.利用相似性简化计算}
 \end{gather}
 \end{proposition}
 \begin{corollary}\label{theorem:相似矩阵.相似矩阵的多项式相似}
 设\(f(x)\)是数域\(K\)上的一个一元多项式，
-矩阵\(\A,\B \in M_n(K)\)，且\(\A \sim \B\)，
+矩阵\(\vb{A},\vb{B} \in M_n(K)\)，且\(\vb{A} \sim \vb{B}\)，
 则\[
-	f(\A) \sim f(\B).
+	f(\vb{A}) \sim f(\vb{B}).
 \]
 \end{corollary}
 \begin{example}
-举例说明：数域\(K\)上的一个一元多项式\(f(x)\)和矩阵\(\A,\B \in M_n(K)\)满足\begin{equation*}
-	f(\A) \sim f(\B),
+举例说明：数域\(K\)上的一个一元多项式\(f(x)\)和矩阵\(\vb{A},\vb{B} \in M_n(K)\)满足\begin{equation*}
+	f(\vb{A}) \sim f(\vb{B}),
 \end{equation*}
-但不满足\(\A \sim \B\).
+但不满足\(\vb{A} \sim \vb{B}\).
 \begin{solution}
 %@credit: {0275c083-b4f8-46fa-96e2-cce85388d500}
 取\(f(x) = x^2 - x,
-\A = \E,
-\B = \vb0\)，
-其中\(\E\)是数域\(K\)上的\(n\)阶单位矩阵.
+\vb{A} = \vb{E},
+\vb{B} = \vb0\)，
+其中\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
 显然\begin{equation*}
-	f(\A) = \E^2 - \E = \vb0,
+	f(\vb{A}) = \vb{E}^2 - \vb{E} = \vb0,
 	\qquad
-	f(\B) = \vb0^2 - \vb0 = \vb0,
+	f(\vb{B}) = \vb0^2 - \vb0 = \vb0,
 \end{equation*}
-但是\(\E\)与\(\vb0\)不相似.
+但是\(\vb{E}\)与\(\vb0\)不相似.
 \end{solution}
 \end{example}
 
@@ -209,42 +209,42 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P169 1°
 相似矩阵的行列式相等.
 \begin{proof}
-设\(\A,\B \in M_n(K)\).
-假设\(\A\sim\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+设\(\vb{A},\vb{B} \in M_n(K)\).
+假设\(\vb{A}\sim\vb{B}\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\vb{P}\)，
 使得\[
-	\P^{-1}\A\P=\B,
+	\vb{P}^{-1}\vb{A}\vb{P}=\vb{B},
 \]
 两端取行列式，得\[
-	\abs{\B} = \abs{\P^{-1}\A\P}
-	= \abs{\P^{-1}}\abs{\A}\abs{\P}
-	= \abs{\P}^{-1}\abs{\A}\abs{\P}
-	= \abs{\A}.
+	\abs{\vb{B}} = \abs{\vb{P}^{-1}\vb{A}\vb{P}}
+	= \abs{\vb{P}^{-1}}\abs{\vb{A}}\abs{\vb{P}}
+	= \abs{\vb{P}}^{-1}\abs{\vb{A}}\abs{\vb{P}}
+	= \abs{\vb{A}}.
 	\qedhere
 \]
 \end{proof}
 \end{property}
 \begin{proposition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P169 2°
-设\(\A,\B \in M_n(K)\).
-若\(\A\sim\B\)，则\(\A\)和\(\B\)同为可逆或不可逆.
+设\(\vb{A},\vb{B} \in M_n(K)\).
+若\(\vb{A}\sim\vb{B}\)，则\(\vb{A}\)和\(\vb{B}\)同为可逆或不可逆.
 \begin{proof}
 由\cref{theorem:特征值与特征向量.矩阵相似的必要条件1} 立即可得.
 \end{proof}
 \end{proposition}
 \begin{remark}
-如果\(\A,\B\)可逆，
+如果\(\vb{A},\vb{B}\)可逆，
 那么对\[
-	\P^{-1} \A \P = \B
+	\vb{P}^{-1} \vb{A} \vb{P} = \vb{B}
 \]取逆，
 由\cref{theorem:逆矩阵.矩阵乘积的逆2} 得\[
-	\P^{-1} \A^{-1} \P
-	= (\P^{-1} \A \P)^{-1}
-	= \B^{-1},
+	\vb{P}^{-1} \vb{A}^{-1} \vb{P}
+	= (\vb{P}^{-1} \vb{A} \vb{P})^{-1}
+	= \vb{B}^{-1},
 \]
-即\(\A^{-1} \sim \B^{-1}\)，
+即\(\vb{A}^{-1} \sim \vb{B}^{-1}\)，
 于是\cref{equation:相似矩阵.利用相似性简化计算}
-可以推广为\(m\in\mathbb{Z} \implies \B^m = \P^{-1}\A^m\P\).
+可以推广为\(m\in\mathbb{Z} \implies \vb{B}^m = \vb{P}^{-1}\vb{A}^m\vb{P}\).
 这也说明：
 相似矩阵的同次幂也相似.
 同理，我们也可以把\cref{theorem:相似矩阵.相似矩阵的多项式相似} 的前提条件
@@ -257,17 +257,17 @@
 %@see: 《线性代数》（张慎语、周厚隆） P97 性质3
 相似矩阵有相同的特征多项式，从而有相同的特征值.
 \begin{proof}
-设\(\A,\B \in M_n(K)\).
-假设\(\A\sim\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+设\(\vb{A},\vb{B} \in M_n(K)\).
+假设\(\vb{A}\sim\vb{B}\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\vb{P}\)，
 使得\[
-	\P^{-1}\A\P=\B,
+	\vb{P}^{-1}\vb{A}\vb{P}=\vb{B},
 \]
 于是\[
-	\abs{\l\E-\B}
-	=\abs{\P^{-1}(\l\E-\A)\P}
-	=\abs{\P^{-1}}\abs{\l\E-\A}\abs{\P}
-	=\abs{\l\E-\A}.
+	\abs{\lambda\vb{E}-\vb{B}}
+	=\abs{\vb{P}^{-1}(\lambda\vb{E}-\vb{A})\vb{P}}
+	=\abs{\vb{P}^{-1}}\abs{\lambda\vb{E}-\vb{A}}\abs{\vb{P}}
+	=\abs{\lambda\vb{E}-\vb{A}}.
 	\qedhere
 \]
 \end{proof}
@@ -276,33 +276,33 @@
 \cref{theorem:特征值与特征向量.矩阵相似的必要条件3} 只是矩阵相似的必要不充分条件.
 下面我们举出一条反例，不相似的两个矩阵有相同的特征多项式和特征值.
 取\[
-	\A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix},
+	\vb{A} = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix},
 	\quad\text{和}\quad
-	\B = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix},
+	\vb{B} = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix},
 \]
 显然两者的特征多项式相同，都是\((\lambda-2)^2\)，
-故而两者的特征值也相同，都是\(\l=2\ (\text{二重})\).
-但\(\A\)与\(\B\)不相似，
-这是因为\(\B=2\E\)是数乘矩阵，可以和所有二阶矩阵交换，
-那么对任意二阶可逆矩阵\(\P\)都有\(\P^{-1}\B\P=\B\P^{-1}\P=\B\)，
-即\(\B\)只能与自身相似，
-\(\A\)与\(\B\)不相似.
+故而两者的特征值也相同，都是\(\lambda=2\ (\text{二重})\).
+但\(\vb{A}\)与\(\vb{B}\)不相似，
+这是因为\(\vb{B}=2\vb{E}\)是数乘矩阵，可以和所有二阶矩阵交换，
+那么对任意二阶可逆矩阵\(\vb{P}\)都有\(\vb{P}^{-1}\vb{B}\vb{P}=\vb{B}\vb{P}^{-1}\vb{P}=\vb{B}\)，
+即\(\vb{B}\)只能与自身相似，
+\(\vb{A}\)与\(\vb{B}\)不相似.
 \end{remark}
 
 \begin{property}\label{theorem:特征值与特征向量.相似矩阵的迹的不变性}
 %@see: 《高等代数（第三版 上册）》（丘维声） P170 4°
 相似矩阵有相同的迹.
 \begin{proof}
-假设\(\A\sim\B\)，
-那么存在数域\(K\)上\(n\)阶可逆矩阵\(\P\)，
+假设\(\vb{A}\sim\vb{B}\)，
+那么存在数域\(K\)上\(n\)阶可逆矩阵\(\vb{P}\)，
 使得\[
-	\P^{-1}\A\P=\B,
+	\vb{P}^{-1}\vb{A}\vb{P}=\vb{B},
 \]
 于是由\cref{theorem:矩阵的迹.矩阵乘积交换次序不变迹} 有\[
-	\tr\B
-	= \tr(\P^{-1}\A\P)
-	= \tr(\P(\P^{-1}\A))
-	= \tr\A.
+	\tr\vb{B}
+	= \tr(\vb{P}^{-1}\vb{A}\vb{P})
+	= \tr(\vb{P}(\vb{P}^{-1}\vb{A}))
+	= \tr\vb{A}.
 	\qedhere
 \]
 \end{proof}
@@ -318,13 +318,13 @@
 \begin{example}
 %@see: 《2018年全国硕士研究生入学统一考试（数学一）》一选择题/第5题/选项(B)
 证明：矩阵\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		1 & 1 & 0 \\
 		0 & 1 & 1 \\
 		0 & 0 & 1
 	\end{bmatrix}
 	\quad\text{与}\quad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		1 & 0 & -1 \\
 		0 & 1 & 1 \\
 		0 & 0 & 1
@@ -333,28 +333,28 @@
 \begin{proof}
 %@see: https://www.bilibili.com/video/BV1E9s2eSEYR/
 因为\begin{gather*}
-	\A-\E = \begin{bmatrix}
+	\vb{A}-\vb{E} = \begin{bmatrix}
 		0 & 1 & 0 \\
 		0 & 0 & 1 \\
 		0 & 0 & 0
 	\end{bmatrix}
 	\qquad
-	\B-\E = \begin{bmatrix}
+	\vb{B}-\vb{E} = \begin{bmatrix}
 		0 & 0 & -1 \\
 		0 & 0 & 1 \\
 		0 & 0 & 0
 	\end{bmatrix}, \\
-	\rank(\A-\E) = 2
+	\rank(\vb{A}-\vb{E}) = 2
 	\neq
-	\rank(\B-\E) = 1,
+	\rank(\vb{B}-\vb{E}) = 1,
 \end{gather*}
-所以\(\A-\E \not\sim \B-\E\)，
-于是\(\A \not\sim \B\).
+所以\(\vb{A}-\vb{E} \not\sim \vb{B}-\vb{E}\)，
+于是\(\vb{A} \not\sim \vb{B}\).
 \end{proof}
 \end{example}
 
 \begin{property}
-相似矩阵与原矩阵等价，即\(\A\sim\B \implies \A\cong\B\).
+相似矩阵与原矩阵等价，即\(\vb{A}\sim\vb{B} \implies \vb{A}\cong\vb{B}\).
 \begin{proof}
 由于\hyperref[theorem:特征值与特征向量.相似矩阵的秩的不变性]{相似矩阵的秩的不变性}，
 而\hyperref[theorem:矩阵乘积的秩.矩阵等价的充分必要条件]{秩相等的矩阵等价}，
@@ -377,76 +377,76 @@
 是数域\(K\)上的全体\(n\)阶矩阵\(M_n(K)\)上的等价关系，
 因为它满足：\begin{itemize}
 	\item {\rm\bf 反身性}：
-	\((\forall \A \in M_n(K))
-	[\A\sim\A]\).
+	\((\forall \vb{A} \in M_n(K))
+	[\vb{A}\sim\vb{A}]\).
 
 	\item {\rm\bf 对称性}：
-	\((\forall \A,\B \in M_n(K))
-	[\A \sim \B \implies \B \sim \A]\).
+	\((\forall \vb{A},\vb{B} \in M_n(K))
+	[\vb{A} \sim \vb{B} \implies \vb{B} \sim \vb{A}]\).
 
 	\item {\rm\bf 传递性}：
-	\((\forall \A,\B,\C \in M_n(K))
-	[\A \sim \B, \B \sim \C \implies \A \sim \C]\).
+	\((\forall \vb{A},\vb{B},\vb{C} \in M_n(K))
+	[\vb{A} \sim \vb{B}, \vb{B} \sim \vb{C} \implies \vb{A} \sim \vb{C}]\).
 \end{itemize}
 \begin{proof}
 在\cref{equation:特征值与特征向量.相似矩阵的定义} 中，
-令\(\A=\B\)、\(\P=\E\)，得\(\E\A\E=\A\)，
+令\(\vb{A}=\vb{B}\)、\(\vb{P}=\vb{E}\)，得\(\vb{E}\vb{A}\vb{E}=\vb{A}\)，
 即有相似矩阵的反身性成立.
 
-再在\cref{equation:特征值与特征向量.相似矩阵的定义} 中取\(\Q=\P^{-1}\)，
-得\(\A = \Q^{-1}(\P^{-1}\A\P)\Q = \Q^{-1}\B\Q\)，即有相似矩阵的对称性成立.
+再在\cref{equation:特征值与特征向量.相似矩阵的定义} 中取\(\vb{Q}=\vb{P}^{-1}\)，
+得\(\vb{A} = \vb{Q}^{-1}(\vb{P}^{-1}\vb{A}\vb{P})\vb{Q} = \vb{Q}^{-1}\vb{B}\vb{Q}\)，即有相似矩阵的对称性成立.
 
-设\(\P_1^{-1}\A\P_1=\B,
-\P_2^{-1}\B\P_2=\C\)，
-于是\(\P_2^{-1}(\P_1^{-1}\A\P_1)\P_2=\C\).
-取\(\Q=\P_1\P_2\)，\(\Q\)是可逆矩阵，且\(\Q^{-1}\A\Q=\C\)，所以\(\A\sim\C\)，
+设\(\vb{P}_1^{-1}\vb{A}\vb{P}_1=\vb{B},
+\vb{P}_2^{-1}\vb{B}\vb{P}_2=\vb{C}\)，
+于是\(\vb{P}_2^{-1}(\vb{P}_1^{-1}\vb{A}\vb{P}_1)\vb{P}_2=\vb{C}\).
+取\(\vb{Q}=\vb{P}_1\vb{P}_2\)，\(\vb{Q}\)是可逆矩阵，且\(\vb{Q}^{-1}\vb{A}\vb{Q}=\vb{C}\)，所以\(\vb{A}\sim\vb{C}\)，
 即有相似矩阵的传递性成立.
 \end{proof}
 \end{property}
 
 \begin{definition}
 %@see: 《高等代数（第三版 上册）》（丘维声） P169
-把矩阵\(\A \in M_n(K)\)在相似关系下的等价类\[
-	\Set{ \B \in M_n(K) \given \A\sim\B }
-\]称为“矩阵\(\A\)的\DefineConcept{相似类}”.
+把矩阵\(\vb{A} \in M_n(K)\)在相似关系下的等价类\[
+	\Set{ \vb{B} \in M_n(K) \given \vb{A}\sim\vb{B} }
+\]称为“矩阵\(\vb{A}\)的\DefineConcept{相似类}”.
 \end{definition}
 
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 1.
-设矩阵\(\A,\B \in M_n(K)\).
-证明：如果\(\A \sim \B\)，则\begin{gather}
+设矩阵\(\vb{A},\vb{B} \in M_n(K)\).
+证明：如果\(\vb{A} \sim \vb{B}\)，则\begin{gather}
 	(\forall k \in K)
-	[k\A \sim k\B], \\
-	\A^T \sim \B^T.
+	[k\vb{A} \sim k\vb{B}], \\
+	\vb{A}^T \sim \vb{B}^T.
 \end{gather}
 \begin{proof}
-假设可逆矩阵\(\P\)满足\[
-	\P^{-1}\A\P = \B,
+假设可逆矩阵\(\vb{P}\)满足\[
+	\vb{P}^{-1}\vb{A}\vb{P} = \vb{B},
 \]
 那么由矩阵运算规律可知，
 对于\(\forall k \in K\)，
 成立\[
-	\P^{-1}(k\A)\P
-	= k(\P^{-1}\A\P)
-	= k\B,
+	\vb{P}^{-1}(k\vb{A})\vb{P}
+	= k(\vb{P}^{-1}\vb{A}\vb{P})
+	= k\vb{B},
 	\quad\text{和}\quad
-	\P^T\A^T(\P^T)^{-1}
-	= (\P^{-1}\A\P)^T
-	= \B^T,
+	\vb{P}^T\vb{A}^T(\vb{P}^T)^{-1}
+	= (\vb{P}^{-1}\vb{A}\vb{P})^T
+	= \vb{B}^T,
 \]
-因此\(k\A \sim k\B\)且\(\A^T \sim \B^T\).
+因此\(k\vb{A} \sim k\vb{B}\)且\(\vb{A}^T \sim \vb{B}^T\).
 \end{proof}
 \end{example}
 \begin{example}
-举例说明：即使矩阵\(\A,\B \in M_n(K)\)相似，还是有\(\A + \A^T\)与\(\B + \B^T\)不相似.
+举例说明：即使矩阵\(\vb{A},\vb{B} \in M_n(K)\)相似，还是有\(\vb{A} + \vb{A}^T\)与\(\vb{B} + \vb{B}^T\)不相似.
 \begin{solution}
 取\[
-	\A = \begin{bmatrix}
+	\vb{A} = \begin{bmatrix}
 		1 & 0 \\
 		0 & -1
 	\end{bmatrix},
 	\qquad
-	\B = \begin{bmatrix}
+	\vb{B} = \begin{bmatrix}
 		-3 & -2 \\
 		4 & 3
 	\end{bmatrix}.
@@ -458,73 +458,73 @@
 %@Mathematica: Eigenvalues[B + Transpose[B]]
 \end{example}
 \begin{example}
-设矩阵\(\A\)可逆，\(\A^T\)是\(\A\)的转置.
-证明：\(\A\A^T \sim \A^T\A\).
+设矩阵\(\vb{A}\)可逆，\(\vb{A}^T\)是\(\vb{A}\)的转置.
+证明：\(\vb{A}\vb{A}^T \sim \vb{A}^T\vb{A}\).
 \begin{proof}
-取\(\P=\A^{-1}\)，
-则\(\P^{-1}=\A\)，\(\P\A=\A\P=\E\)，
+取\(\vb{P}=\vb{A}^{-1}\)，
+则\(\vb{P}^{-1}=\vb{A}\)，\(\vb{P}\vb{A}=\vb{A}\vb{P}=\vb{E}\)，
 于是\[
-	\P(\A\A^T)\P^{-1}
-	= (\P\A)(\A^T\P^{-1})
-	= \A^T\P^{-1}
-	= \A^T\A,
+	\vb{P}(\vb{A}\vb{A}^T)\vb{P}^{-1}
+	= (\vb{P}\vb{A})(\vb{A}^T\vb{P}^{-1})
+	= \vb{A}^T\vb{P}^{-1}
+	= \vb{A}^T\vb{A},
 \]
-故\(\A\A^T \sim \A^T\A\).
+故\(\vb{A}\vb{A}^T \sim \vb{A}^T\vb{A}\).
 \end{proof}
 \end{example}
 \begin{example}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 2.
 %@see: 《线性代数》（张慎语、周厚隆） P105 习题5.2 5.
-设矩阵\(\A,\B \in M_n(K)\).
-证明：如果\(\A\)可逆，则\(\A\B \sim \B\A\).
+设矩阵\(\vb{A},\vb{B} \in M_n(K)\).
+证明：如果\(\vb{A}\)可逆，则\(\vb{A}\vb{B} \sim \vb{B}\vb{A}\).
 \begin{proof}
-因为\(\A^{-1}(\A\B)\A
-= \B\A\)，
-所以\(\A\B \sim \B\A\).
+因为\(\vb{A}^{-1}(\vb{A}\vb{B})\vb{A}
+= \vb{B}\vb{A}\)，
+所以\(\vb{A}\vb{B} \sim \vb{B}\vb{A}\).
 \end{proof}
 \end{example}
 \begin{example}\label{example:相似矩阵.分块对角矩阵的相似性}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 3.
-设矩阵\(\A_1,\B_1 \in M_s(K),
-\A_2,\B_2 \in M_n(K)\).
-证明：如果\(\A_1 \sim \B_1,\A_2 \sim \B_2\)，
+设矩阵\(\vb{A}_1,\vb{B}_1 \in M_s(K),
+\vb{A}_2,\vb{B}_2 \in M_n(K)\).
+证明：如果\(\vb{A}_1 \sim \vb{B}_1,\vb{A}_2 \sim \vb{B}_2\)，
 则\[
 	\begin{bmatrix}
-		\A_1 & \vb0 \\
-		\vb0 & \A_2
+		\vb{A}_1 & \vb0 \\
+		\vb0 & \vb{A}_2
 	\end{bmatrix}
 	\sim \begin{bmatrix}
-		\B_1 & \vb0 \\
-		\vb0 & \B_2
+		\vb{B}_1 & \vb0 \\
+		\vb0 & \vb{B}_2
 	\end{bmatrix}.
 \]
 \begin{proof}
-假设可逆矩阵\(\P_1 \in M_s(K)\)
-和可逆矩阵\(\P_2 \in M_n(K)\)满足\[
-	\P_1^{-1} \A_1 \P_1 = \B_1,
+假设可逆矩阵\(\vb{P}_1 \in M_s(K)\)
+和可逆矩阵\(\vb{P}_2 \in M_n(K)\)满足\[
+	\vb{P}_1^{-1} \vb{A}_1 \vb{P}_1 = \vb{B}_1,
 	\qquad
-	\P_2^{-1} \A_2 \P_2 = \B_2,
+	\vb{P}_2^{-1} \vb{A}_2 \vb{P}_2 = \vb{B}_2,
 \]
 那么\[
 	\begin{bmatrix}
-		\P_1^{-1} & \vb0 \\
-		\vb0 & \P_2^{-1}
+		\vb{P}_1^{-1} & \vb0 \\
+		\vb0 & \vb{P}_2^{-1}
 	\end{bmatrix}
 	\begin{bmatrix}
-		\A_1 & \vb0 \\
-		\vb0 & \A_2
+		\vb{A}_1 & \vb0 \\
+		\vb0 & \vb{A}_2
 	\end{bmatrix}
 	\begin{bmatrix}
-		\P_1 & \vb0 \\
-		\vb0 & \P_2
+		\vb{P}_1 & \vb0 \\
+		\vb0 & \vb{P}_2
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\P_1^{-1} \A_1 \P_1 & \vb0 \\
-		\vb0 & \P_2^{-1} \A_2 \P_2
+		\vb{P}_1^{-1} \vb{A}_1 \vb{P}_1 & \vb0 \\
+		\vb0 & \vb{P}_2^{-1} \vb{A}_2 \vb{P}_2
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\B_1 & \vb0 \\
-		\vb0 & \B_2
+		\vb{B}_1 & \vb0 \\
+		\vb0 & \vb{B}_2
 	\end{bmatrix}.
 	\qedhere
 \]
@@ -534,75 +534,75 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 7.
 证明：数量矩阵只与它本身相似.
 \begin{proof}
-设\(\A \in M_n(K)\)，
-\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
+设\(\vb{A} \in M_n(K)\)，
+\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
 \(k \in K\)，
-且\(k\E \sim \A\).
+且\(k\vb{E} \sim \vb{A}\).
 根据矩阵相似的定义，
-存在可逆\(\P \in M_n(K)\)，
-使得\(\P^{-1} (k\E) \P = \A\)，
-于是\(\A = k\E\).
+存在可逆\(\vb{P} \in M_n(K)\)，
+使得\(\vb{P}^{-1} (k\vb{E}) \vb{P} = \vb{A}\)，
+于是\(\vb{A} = k\vb{E}\).
 \end{proof}
 \end{example}
 \begin{example}\label{example:幂等矩阵.幂等矩阵的相似类}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 10.
 证明：与幂等矩阵相似的矩阵仍是幂等矩阵.
 \begin{proof}
-假设\(\A\)是数域\(K\)上的一个\(n\)阶幂等矩阵，
-即\(\A^2=\A\).
-假设\(\A\)与数域\(K\)上的某个\(n\)阶矩阵\(\B\)相似，
-那么存在可逆矩阵\(\P\)，使得\[
-	\P^{-1}\A\P = \B,
+假设\(\vb{A}\)是数域\(K\)上的一个\(n\)阶幂等矩阵，
+即\(\vb{A}^2=\vb{A}\).
+假设\(\vb{A}\)与数域\(K\)上的某个\(n\)阶矩阵\(\vb{B}\)相似，
+那么存在可逆矩阵\(\vb{P}\)，使得\[
+	\vb{P}^{-1}\vb{A}\vb{P} = \vb{B},
 \]
 从而有\[
-	\P\B^2\P^{-1}
-	= (\P\B\P^{-1})(\P\B\P^{-1})
-	= \A^2
-	= \A
-	= \P\B\P^{-1},
+	\vb{P}\vb{B}^2\vb{P}^{-1}
+	= (\vb{P}\vb{B}\vb{P}^{-1})(\vb{P}\vb{B}\vb{P}^{-1})
+	= \vb{A}^2
+	= \vb{A}
+	= \vb{P}\vb{B}\vb{P}^{-1},
 \]
-于是\(\B^2=\B\)，
-即\(\B\)也是幂等矩阵.
+于是\(\vb{B}^2=\vb{B}\)，
+即\(\vb{B}\)也是幂等矩阵.
 \end{proof}
 \end{example}
 \begin{example}\label{example:对合矩阵.对合矩阵的相似类}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 11.
 证明：与对合矩阵相似的矩阵仍是对合矩阵.
 \begin{proof}
-假设\(\E\)是数域\(K\)上的\(n\)阶单位矩阵，
-\(\A\)是数域\(K\)上的一个\(n\)阶对合矩阵，
-即\(\A^2=\E\).
-假设\(\A\)与数域\(K\)上的某个\(n\)阶矩阵\(\B\)相似，
-那么存在可逆矩阵\(\P\)，使得\[
-	\P^{-1}\A\P = \B,
+假设\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
+\(\vb{A}\)是数域\(K\)上的一个\(n\)阶对合矩阵，
+即\(\vb{A}^2=\vb{E}\).
+假设\(\vb{A}\)与数域\(K\)上的某个\(n\)阶矩阵\(\vb{B}\)相似，
+那么存在可逆矩阵\(\vb{P}\)，使得\[
+	\vb{P}^{-1}\vb{A}\vb{P} = \vb{B},
 \]
 从而有\[
-	\P\B^2\P^{-1}
-	= (\P\B\P^{-1})(\P\B\P^{-1})
-	= \A^2
-	= \E,
+	\vb{P}\vb{B}^2\vb{P}^{-1}
+	= (\vb{P}\vb{B}\vb{P}^{-1})(\vb{P}\vb{B}\vb{P}^{-1})
+	= \vb{A}^2
+	= \vb{E},
 \]
-于是\(\B^2=\E\)，
-即\(\B\)也是对合矩阵.
+于是\(\vb{B}^2=\vb{E}\)，
+即\(\vb{B}\)也是对合矩阵.
 \end{proof}
 \end{example}
 \begin{example}\label{example:幂零矩阵.幂零矩阵的相似类}
 %@see: 《高等代数（第三版 上册）》（丘维声） P171 习题5.4 12.
 证明：与幂零矩阵相似的矩阵仍是幂零矩阵.
 \begin{proof}
-假设\(\A\)是数域\(K\)上的一个以\(m\)为幂零指数的\(n\)阶幂零矩阵，
-即\(\A^m=\vb0\).
-假设\(\A\)与数域\(K\)上的某个\(n\)阶矩阵\(\B\)相似，
-那么存在可逆矩阵\(\P\)，使得\[
-	\P^{-1}\A\P = \B,
+假设\(\vb{A}\)是数域\(K\)上的一个以\(m\)为幂零指数的\(n\)阶幂零矩阵，
+即\(\vb{A}^m=\vb0\).
+假设\(\vb{A}\)与数域\(K\)上的某个\(n\)阶矩阵\(\vb{B}\)相似，
+那么存在可逆矩阵\(\vb{P}\)，使得\[
+	\vb{P}^{-1}\vb{A}\vb{P} = \vb{B},
 \]
 从而有\[
-	\P\B^m\P^{-1}
-	= (\P\B\P^{-1})^m
-	= \A^m
+	\vb{P}\vb{B}^m\vb{P}^{-1}
+	= (\vb{P}\vb{B}\vb{P}^{-1})^m
+	= \vb{A}^m
 	= \vb0,
 \]
-于是\(\B^m=\vb0\)，
-即\(\B\)也是以\(m\)为幂零指数的幂零矩阵.
+于是\(\vb{B}^m=\vb0\)，
+即\(\vb{B}\)也是以\(m\)为幂零指数的幂零矩阵.
 \end{proof}
 \end{example}

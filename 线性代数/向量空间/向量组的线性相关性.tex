@@ -1,6 +1,6 @@
 \section{向量组的线性相关性}
 在上一节，我们把线性方程组有没有解的问题归结为：
-常数项列向量\(\b\)能否由系数矩阵的列向量组\(\AutoTuple{\a}{s}\)线性表出.
+常数项列向量\(\vb\beta\)能否由系数矩阵的列向量组\(\AutoTuple{\vb\alpha}{s}\)线性表出.
 那么，如何研究\(K^n\)中一个向量能不能由一个向量组线性表出呢？
 
 \subsection{线性相关性的概念}
@@ -12,10 +12,10 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 受此启发，我们提出以下两个概念.
 \begin{definition}\label{definition:线性方程组.线性相关与线性无关的定义}
 %@see: 《线性代数》（张慎语、周厚隆） P68 定义6
-设\(A=\Set{\AutoTuple{\a}{s}}\)是\(n\)维向量空间\(K^n\)中的一个向量组.
+设\(A=\Set{\AutoTuple{\vb\alpha}{s}}\)是\(n\)维向量空间\(K^n\)中的一个向量组.
 
 如果\(K\)中存在不全为零的数\(\AutoTuple{k}{s}\)，使得\[
-	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z,
+	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_s \vb\alpha_s = \vb0,
 \]
 则称“向量组\(A\) \DefineConcept{线性相关}（linearly dependent）”；
 否则，称“向量组\(A\) \DefineConcept{线性无关}（linearly independent）”.
@@ -26,9 +26,9 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 \[
 	\text{向量组\(A\)线性无关}
 	\iff
-	[k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z
+	[k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_s \vb\alpha_s = \vb0
 	\implies
-	(\AutoTuple{k}{s}) = \z].
+	(\AutoTuple{k}{s}) = \vb0].
 \]
 
 特别地，我们规定：
@@ -46,89 +46,89 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 下面我们再来看几个例子.
 \begin{example}\label{example:线性方程组.含有零向量的向量组线性相关}
 %@see: 《线性代数》（张慎语、周厚隆） P68 例1
-向量空间\(K^n\)中的零向量可以由任意向量组\(\AutoTuple{\b}{t}\)线性表出，
+向量空间\(K^n\)中的零向量可以由任意向量组\(\AutoTuple{\vb\beta}{t}\)线性表出，
 这是因为恒等式\[
-	0\b_1+0\b_2+\dotsb+0\b_t=\z.
+	0\vb\beta_1+0\vb\beta_2+\dotsb+0\vb\beta_t=\vb0.
 \]
 进一步，
-含有零向量\(\z\)的向量组\[
-	\Set{\z,\AutoTuple{\a}{s}}
+含有零向量\(\vb0\)的向量组\[
+	\Set{\vb0,\AutoTuple{\vb\alpha}{s}}
 \]总是线性相关的，
 这是因为\[
-	1 \z + 0 \a_1 + 0 \a_2 + \dotsb + 0 \a_s = \z.
+	1 \vb0 + 0 \vb\alpha_1 + 0 \vb\alpha_2 + \dotsb + 0 \vb\alpha_s = \vb0.
 \]
 \end{example}
 
 \begin{example}\label{example:线性方程组.基本向量组线性无关}
 %@see: 《线性代数》（张慎语、周厚隆） P68 例2
-\(K^n\)的基本向量组\(\AutoTuple{\e}{n}\)线性无关.
+\(K^n\)的基本向量组\(\AutoTuple{\vb\epsilon}{n}\)线性无关.
 \begin{proof}
-令\(k_1 \e_1 + k_2 \e_2 + \dotsb + k_n \e_n = \z\)，即\[
-	k_1 (1,0,\dotsc,0)^T + k_2 (0,1,\dotsc,0)^T + \dotsb k_n (0,0,\dotsc,1)^T = \z.
+令\(k_1 \vb\epsilon_1 + k_2 \vb\epsilon_2 + \dotsb + k_n \vb\epsilon_n = \vb0\)，即\[
+	k_1 (1,0,\dotsc,0)^T + k_2 (0,1,\dotsc,0)^T + \dotsb k_n (0,0,\dotsc,1)^T = \vb0.
 \]
 进一步，有\[
 	(\AutoTuple{k}{n})^T = (0,\dotsc,0)^T,
 \]
 于是\(k_1 = k_2 = \dotsb = k_n = 0\)，
-因此\(\e_1,\e_2,\dotsc,\e_n\)线性无关.
+因此\(\vb\epsilon_1,\vb\epsilon_2,\dotsc,\vb\epsilon_n\)线性无关.
 \end{proof}
 \end{example}
 
 \begin{proposition}\label{theorem:线性方程组.单向量组线性相关的充分必要条件}
-设\(\a \in K^n\)，
+设\(\vb\alpha \in K^n\)，
 则\begin{align*}
-	\text{向量组\(\{\a\}\)线性相关}
+	\text{向量组\(\{\vb\alpha\}\)线性相关}
 	\iff
-	\a=\vb0, \\
-	\text{向量组\(\{\a\}\)线性无关}
+	\vb\alpha=\vb0, \\
+	\text{向量组\(\{\vb\alpha\}\)线性无关}
 	\iff
-	\a\neq\vb0.
+	\vb\alpha\neq\vb0.
 \end{align*}
 \begin{proof}
 必要性.
-设\(\{\a\}\)线性相关，存在数\(k \neq 0\)使得\(k\a = \vb0\)，可得\(\a = \vb0\).
+设\(\{\vb\alpha\}\)线性相关，存在数\(k \neq 0\)使得\(k\vb\alpha = \vb0\)，可得\(\vb\alpha = \vb0\).
 
 充分性.
-设\(\a = \vb0\)，则\(1\a = \vb0\)，而数\(1 \neq 0\)，故\(\{\a\}\)线性相关.
+设\(\vb\alpha = \vb0\)，则\(1\vb\alpha = \vb0\)，而数\(1 \neq 0\)，故\(\{\vb\alpha\}\)线性相关.
 \end{proof}
 \end{proposition}
 
 \begin{theorem}\label{theorem:线性方程组.向量组线性相关的充分必要条件1}
-设向量组\(A=\{\AutoTuple{\a}{s}\}\ (s>1)\)，
+设向量组\(A=\{\AutoTuple{\vb\alpha}{s}\}\ (s>1)\)，
 则\begin{align*}
 	\text{\(A\)线性相关}
 	&\iff
 	\text{\(A\)中至少有一个向量可由其余\(s-1\)个向量线性表出} \\
 	&\iff
-	(\exists \a\in A)[\a \in \Span(A-\{\a\})], \\
+	(\exists \vb\alpha\in A)[\vb\alpha \in \Span(A-\{\vb\alpha\})], \\
 	\text{\(A\)线性无关}
 	&\iff
 	\text{\(A\)中每一个向量都不能由其余向量线性表出} \\
 	&\iff
-	(\forall \a\in A)[\a \notin \Span(A-\{\a\})].
+	(\forall \vb\alpha\in A)[\vb\alpha \notin \Span(A-\{\vb\alpha\})].
 \end{align*}
 \begin{proof}
 必要性.
 \(A\)线性相关，则存在不全为零的数\(\AutoTuple{k}{s}\)，使得\[
-	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z.
+	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_s \vb\alpha_s = \vb0.
 \]
 设\(k_i\neq0\ (1 \leq i \leq s)\)，于是\[
-	\a_i = -\frac{1}{k_i} (
-		k_1 \a_1 + k_2 \a_2 + \dotsb
-		+ k_{i-1} \a_{i-1} + k_{i+1} \a_{i+1}
-		+ \dotsb + k_s \a_s
+	\vb\alpha_i = -\frac{1}{k_i} (
+		k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb
+		+ k_{i-1} \vb\alpha_{i-1} + k_{i+1} \vb\alpha_{i+1}
+		+ \dotsb + k_s \vb\alpha_s
 	),
 \]
-即\(\a_i\)可由其余\(s-1\)个向量线性表出.
+即\(\vb\alpha_i\)可由其余\(s-1\)个向量线性表出.
 
 充分性.
-若\(\a_j \in A\)可由其余\(s-1\)个向量线性表出，即\[
-	\a_j = l_1 \a_1 + \dotsb + l_{j-1} \a_{j-1} + l_{j+1} \a_{j+1} + \dotsb + l_s \a_s,
+若\(\vb\alpha_j \in A\)可由其余\(s-1\)个向量线性表出，即\[
+	\vb\alpha_j = l_1 \vb\alpha_1 + \dotsb + l_{j-1} \vb\alpha_{j-1} + l_{j+1} \vb\alpha_{j+1} + \dotsb + l_s \vb\alpha_s,
 \]
 移项得\[
-	l_1 \a_1 + \dotsb
-	+ l_{j-1} \a_{j-1} + (-1) \a_j + l_{j+1} \a_{j+1}
-	+ \dotsb + l_s \a_s = \z,
+	l_1 \vb\alpha_1 + \dotsb
+	+ l_{j-1} \vb\alpha_{j-1} + (-1) \vb\alpha_j + l_{j+1} \vb\alpha_{j+1}
+	+ \dotsb + l_s \vb\alpha_s = \vb0,
 \]
 上式等号左边的系数中至少有一个数\(-1\neq0\)，
 因此\(A\)线性相关.
@@ -142,31 +142,31 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 %@see: 《高等代数（第三版 上册）》（丘维声） P69 推论2
 设向量组\(A\)线性无关，
 则\begin{align*}
-	\text{向量\(\b\)可以由\(A\)线性表出}
+	\text{向量\(\vb\beta\)可以由\(A\)线性表出}
 	\iff
-	\text{向量组\(B=A\cup\{\b\}\)线性相关}, \\
-	\text{向量\(\b\)不能由\(A\)线性表出}
+	\text{向量组\(B=A\cup\{\vb\beta\}\)线性相关}, \\
+	\text{向量\(\vb\beta\)不能由\(A\)线性表出}
 	\iff
-	\text{向量组\(B=A\cup\{\b\}\)线性无关}.
+	\text{向量组\(B=A\cup\{\vb\beta\}\)线性无关}.
 \end{align*}
 \begin{proof}
 先证必要性.
 由\cref{theorem:线性方程组.向量组线性相关的充分必要条件1} 可知，
-“\(\b\)可以由\(A\)线性表出”显然蕴含“\(B\)线性相关”.
+“\(\vb\beta\)可以由\(A\)线性表出”显然蕴含“\(B\)线性相关”.
 
 再证充分性.
 由于向量组\(B\)线性相关，
 则存在不全为零的数\(\AutoTuple{k}{s},k\)使得\[
-	k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s + k \b = \z.
+	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_s \vb\alpha_s + k \vb\beta = \vb0.
 \]
 用反证法.
 假设\(k = 0\)，
 则\(\AutoTuple{k}{s}\)不全为零，
-且有\(k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s = \z\)，
+且有\(k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_s \vb\alpha_s = \vb0\)，
 即\(A\)线性相关，
 与题设矛盾，说明\(k \neq 0\).
 于是\[
-	\b = -\frac{1}{k} (k_1 \a_1 + k_2 \a_2 + \dotsb + k_s \a_s).
+	\vb\beta = -\frac{1}{k} (k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_s \vb\alpha_s).
 	\qedhere
 \]
 \end{proof}
@@ -175,13 +175,13 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 \begin{theorem}\label{theorem:线性方程组.部分组线性相关则全组线性相关}
 若向量组\(A\)的一个部分组线性相关，则\(A\)线性相关.
 \begin{proof}
-设\(A=\{\AutoTuple{\a}{s}\}\).
-假设\(A\)的部分组\(B=\{\AutoTuple{\a}{t}\}\ (t \leq s)\)线性相关，
+设\(A=\{\AutoTuple{\vb\alpha}{s}\}\).
+假设\(A\)的部分组\(B=\{\AutoTuple{\vb\alpha}{t}\}\ (t \leq s)\)线性相关，
 即存在不全为零的数\(\AutoTuple{k}{t}\)使得\[
-	k_1 \a_1 + k_2 \a_2 + \dotsb + k_t \a_t = \z;
+	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_t \vb\alpha_t = \vb0;
 \]
 从而有\[
-	k_1 \a_1 + k_2 \a_2 + \dotsb + k_t \a_t + 0 \a_{t+1} + \dotsb + 0 \a_s = \z;
+	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_t \vb\alpha_t + 0 \vb\alpha_{t+1} + \dotsb + 0 \vb\alpha_s = \vb0;
 \]
 由于上式等号左边的系数\(\AutoTuple{k}{t},0,\dotsc,0\)不全为零，
 因此向量组\(A\)线性相关.
@@ -195,25 +195,25 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 \end{corollary}
 
 %@see: 《高等代数（第三版 上册）》（丘维声） P69
-给定\(n\)维向量组\(\AutoTuple{\a}{s}\)，
+给定\(n\)维向量组\(\AutoTuple{\vb\alpha}{s}\)，
 为其中的每个向量都添上\(m\)个分量，
 所添分量的位置对于每个向量都一样，
-把得到的\(n+m\)维向量组\(\AutoTuple{\b}{s}\)称为
-“\(\AutoTuple{\a}{s}\)的\DefineConcept{延伸组}”；
-反过来，把\(\AutoTuple{\a}{s}\)称为
-“\(\AutoTuple{\b}{s}\)的\DefineConcept{缩短组}”.
+把得到的\(n+m\)维向量组\(\AutoTuple{\vb\beta}{s}\)称为
+“\(\AutoTuple{\vb\alpha}{s}\)的\DefineConcept{延伸组}”；
+反过来，把\(\AutoTuple{\vb\alpha}{s}\)称为
+“\(\AutoTuple{\vb\beta}{s}\)的\DefineConcept{缩短组}”.
 
 线性无关向量组的延伸组线性无关.
 线性相关向量组的缩短组线性相关.
 
 \begin{theorem}\label{theorem:线性方程组.n个n维向量组线性相关的充分必要条件}
 %@see: 《线性代数》（张慎语、周厚隆） P71 性质5
-\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性相关的充分必要条件是：\[
-	\det(\AutoTuple{\a}{n})=0.
+\(n\)个\(n\)维列向量\(\AutoTuple{\vb\alpha}{n}\)线性相关的充分必要条件是：\[
+	\det(\AutoTuple{\vb\alpha}{n})=0.
 \]
 \begin{proof}
 由\hyperref[theorem:线性方程组.克拉默法则]{克拉默法则}可知\begin{align*}
-	\text{\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性相关}
+	\text{\(n\)个\(n\)维列向量\(\AutoTuple{\vb\alpha}{n}\)线性相关}
 	&\iff \text{方程\(x_1\vb\alpha_1+\dotsb+x_n\vb\alpha_n=\vb0\)有非零解} \\
 	&\iff \text{方程\(x_1\vb\alpha_1+\dotsb+x_n\vb\alpha_n=\vb0\)有无穷多解} \\
 	&\iff \det(\AutoTuple{\vb\alpha}{n})=0.
@@ -222,8 +222,8 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 \end{proof}
 \end{theorem}
 \begin{corollary}
-\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性无关的充分必要条件是：\[
-	\det(\AutoTuple{\a}{n})\neq0.
+\(n\)个\(n\)维列向量\(\AutoTuple{\vb\alpha}{n}\)线性无关的充分必要条件是：\[
+	\det(\AutoTuple{\vb\alpha}{n})\neq0.
 \]
 \begin{proof}
 这是\cref{theorem:线性方程组.n个n维向量组线性相关的充分必要条件} 的逆否命题.
@@ -234,40 +234,40 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 \end{remark}
 \begin{remark}
 需要注意的是，当\(s \neq n\)时，
-\(s\)个\(n\)维向量\(\AutoTuple{\a}{s}\)不能构成行列式，
+\(s\)个\(n\)维向量\(\AutoTuple{\vb\alpha}{s}\)不能构成行列式，
 只能用其他方法判断其线性相关性.
 \end{remark}
 
 \begin{theorem}[替换定理]
-设向量组\(\AutoTuple{\a}{s}\)线性无关，
-\(\b=b_1\a_1+\dotsb+b_s\a_s\).
+设向量组\(\AutoTuple{\vb\alpha}{s}\)线性无关，
+\(\vb\beta=b_1\vb\alpha_1+\dotsb+b_s\vb\alpha_s\).
 如果\(b_j\neq0\)，
-那么用\(\b\)替换\(\a_j\)以后得到的向量组
-\(\AutoTuple{\a}{j-1},\b,\AutoTuple{\a}[j+1]{s}\)
+那么用\(\vb\beta\)替换\(\vb\alpha_j\)以后得到的向量组
+\(\AutoTuple{\vb\alpha}{j-1},\vb\beta,\AutoTuple{\vb\alpha}[j+1]{s}\)
 也线性无关.
 %TODO proof
 \end{theorem}
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P71 性质5
-设\(\A\)是3阶矩阵，\(\a_1,\a_2,\a_3\)为3维列向量组，
-若\(\A\a_1,\A\a_2,\A\a_3\)线性无关，
-证明：\(\a_1,\a_2,\a_3\)线性无关，且\(\A\)为可逆矩阵.
+设\(\vb{A}\)是3阶矩阵，\(\vb\alpha_1,\vb\alpha_2,\vb\alpha_3\)为3维列向量组，
+若\(\vb{A}\vb\alpha_1,\vb{A}\vb\alpha_2,\vb{A}\vb\alpha_3\)线性无关，
+证明：\(\vb\alpha_1,\vb\alpha_2,\vb\alpha_3\)线性无关，且\(\vb{A}\)为可逆矩阵.
 \begin{proof}
-因为\(\A\a_1,\A\a_2,\A\a_3\)线性无关，所以\[
-	\abs{\A} \cdot \det(\a_1,\a_2,\a_3)
-	= \det(\A\a_1,\A\a_2,\A\a_3) \neq 0,
+因为\(\vb{A}\vb\alpha_1,\vb{A}\vb\alpha_2,\vb{A}\vb\alpha_3\)线性无关，所以\[
+	\abs{\vb{A}} \cdot \det(\vb\alpha_1,\vb\alpha_2,\vb\alpha_3)
+	= \det(\vb{A}\vb\alpha_1,\vb{A}\vb\alpha_2,\vb{A}\vb\alpha_3) \neq 0,
 \]
-从而有\(\abs{\A} \neq 0\)，
-且\(\det(\a_1,\a_2,\a_3) \neq 0\)，
-因此\(\A\)是可逆矩阵，
-而齐次线性方程组\(x_1 \a_1 + x_2 \a_2 + x_3 \a_3 = \z\)只有零解，
-也即向量组\(\a_1,\a_2,\a_3\)线性无关.
+从而有\(\abs{\vb{A}} \neq 0\)，
+且\(\det(\vb\alpha_1,\vb\alpha_2,\vb\alpha_3) \neq 0\)，
+因此\(\vb{A}\)是可逆矩阵，
+而齐次线性方程组\(x_1 \vb\alpha_1 + x_2 \vb\alpha_2 + x_3 \vb\alpha_3 = \vb0\)只有零解，
+也即向量组\(\vb\alpha_1,\vb\alpha_2,\vb\alpha_3\)线性无关.
 \end{proof}
 \end{example}
 \begin{remark}
-从上例可以看出：如果矩阵\(\A,\B\)的乘积\(\A \B\)的列向量组线性无关，
-则\(\A\)可逆且\(\B\)的列向量组线性无关.
+从上例可以看出：如果矩阵\(\vb{A},\vb{B}\)的乘积\(\vb{A} \vb{B}\)的列向量组线性无关，
+则\(\vb{A}\)可逆且\(\vb{B}\)的列向量组线性无关.
 \end{remark}
 
 \begin{example}
@@ -308,25 +308,25 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 %\begin{example}
 %证明：\(\mathbb{R}^n\)中的任意正交组线性无关.
 %\begin{proof}
-%设\(A=\{\AutoTuple{\a}{m}\}\)是\(\mathbb{R}^n\)的一个正交组，令\[
-%	k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m = \z,
+%设\(A=\{\AutoTuple{\vb\alpha}{m}\}\)是\(\mathbb{R}^n\)的一个正交组，令\[
+%	k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_m \vb\alpha_m = \vb0,
 %\]
-%两端分别与\(\a_1\)作内积，
+%两端分别与\(\vb\alpha_1\)作内积，
 %即\[
-%	\VectorInnerProductDot{(k_1 \a_1 + k_2 \a_2 + \dotsb + k_m \a_m)}{\a_1}
-%	= \VectorInnerProductDot{\z}{\a_1};
+%	\VectorInnerProductDot{(k_1 \vb\alpha_1 + k_2 \vb\alpha_2 + \dotsb + k_m \vb\alpha_m)}{\vb\alpha_1}
+%	= \VectorInnerProductDot{\vb0}{\vb\alpha_1};
 %\]
 %由内积性质，\[
-%	k_1 (\VectorInnerProductDot{\a_1}{\a_1})
-%	+ k_2 (\VectorInnerProductDot{\a_2}{\a_1})
+%	k_1 (\VectorInnerProductDot{\vb\alpha_1}{\vb\alpha_1})
+%	+ k_2 (\VectorInnerProductDot{\vb\alpha_2}{\vb\alpha_1})
 %	+ \dotsb
-%	+ k_m (\VectorInnerProductDot{\a_m}{\a_1})
-%	= \VectorInnerProductDot{\z}{\a_1},
+%	+ k_m (\VectorInnerProductDot{\vb\alpha_m}{\vb\alpha_1})
+%	= \VectorInnerProductDot{\vb0}{\vb\alpha_1},
 %\]
-%其中\(\VectorInnerProductDot{\z}{\a_1} = 0\)，
-%\(\VectorInnerProductDot{\a_j}{\a_1} = 0\ (j=2,3,\dotsc,m)\)，
-%故\(k_1 \VectorInnerProductDot{\a_1}{\a_1} = 0\)，
-%而\(\VectorInnerProductDot{\a_1}{\a_1} > 0\)，
+%其中\(\VectorInnerProductDot{\vb0}{\vb\alpha_1} = 0\)，
+%\(\VectorInnerProductDot{\vb\alpha_j}{\vb\alpha_1} = 0\ (j=2,3,\dotsc,m)\)，
+%故\(k_1 \VectorInnerProductDot{\vb\alpha_1}{\vb\alpha_1} = 0\)，
+%而\(\VectorInnerProductDot{\vb\alpha_1}{\vb\alpha_1} > 0\)，
 %所以\(k_1=0\).
 %同理可得\(k_2=k_3=\dotsb=k_m=0\)，从而\(A\)线性无关.
 %\end{proof}
@@ -339,12 +339,12 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 	\item 从线性组合的角度看.
 	\begin{enumerate}
 		\item \(\begin{aligned}[t]
-			&\text{向量组\(\AutoTuple{\a}{s}\ (s\geq1)\)线性相关} \\
+			&\text{向量组\(\AutoTuple{\vb\alpha}{s}\ (s\geq1)\)线性相关} \\
 			&\iff
 			\text{它们有系数不全为零的线性组合等于零向量}.
 		\end{aligned}\)
 		\item \(\begin{aligned}[t]
-			&\text{向量组\(\AutoTuple{\a}{s}\ (s\geq1)\)线性无关} \\
+			&\text{向量组\(\AutoTuple{\vb\alpha}{s}\ (s\geq1)\)线性无关} \\
 			&\iff
 			\text{它们只有系数全为零的线性组合才会等于零向量}.
 		\end{aligned}\)
@@ -352,12 +352,12 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 	\item 从线性表出的角度看.
 	\begin{enumerate}
 		\item \(\begin{aligned}[t]
-			&\text{向量组\(\AutoTuple{\a}{s}\ (s\geq2)\)线性相关} \\
+			&\text{向量组\(\AutoTuple{\vb\alpha}{s}\ (s\geq2)\)线性相关} \\
 			&\iff
 			\text{其中至少有一个向量可以由其余向量线性表出}.
 		\end{aligned}\)
 		\item \(\begin{aligned}[t]
-			&\text{向量组\(\AutoTuple{\a}{s}\ (s\geq2)\)线性无关} \\
+			&\text{向量组\(\AutoTuple{\vb\alpha}{s}\ (s\geq2)\)线性无关} \\
 			&\iff
 			\text{其中每一个向量都不能由其余向量线性表出}.
 		\end{aligned}\)
@@ -365,35 +365,35 @@ theorem:解析几何.三向量不共面的充分必要条件1}.
 	\item 从齐次线性方程的角度看.
 	\begin{enumerate}
 		\item \(\begin{aligned}[t]
-			&\text{列向量组\(\AutoTuple{\a}{s}\ (s\geq1)\)线性相关} \\
+			&\text{列向量组\(\AutoTuple{\vb\alpha}{s}\ (s\geq1)\)线性相关} \\
 			&\iff
-			\text{有\(K\)中不全为零的数\(\AutoTuple{k}{s}\)使得\(k_1\a_1+\dotsb+k_s\a_s=\z\)} \\
+			\text{有\(K\)中不全为零的数\(\AutoTuple{k}{s}\)使得\(k_1\vb\alpha_1+\dotsb+k_s\vb\alpha_s=\vb0\)} \\
 			&\iff
-			\text{齐次线性方程组\(x_1\a_1+\dotsb+x_s\a_s=\z\)有非零解}.
+			\text{齐次线性方程组\(x_1\vb\alpha_1+\dotsb+x_s\vb\alpha_s=\vb0\)有非零解}.
 		\end{aligned}\)
 		\item \(\begin{aligned}[t]
-			&\text{列向量组\(\AutoTuple{\a}{s}\ (s\geq1)\)线性无关} \\
+			&\text{列向量组\(\AutoTuple{\vb\alpha}{s}\ (s\geq1)\)线性无关} \\
 			&\iff
-			\text{齐次线性方程组\(x_1\a_1+\dotsb+x_s\a_s=\z\)只有零解}.
+			\text{齐次线性方程组\(x_1\vb\alpha_1+\dotsb+x_s\vb\alpha_s=\vb0\)只有零解}.
 		\end{aligned}\)
 	\end{enumerate}
 	\item 从行列式的角度看.
 	\begin{enumerate}
 		\item \(\begin{aligned}[t]
-			&\text{\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性相关} \\
+			&\text{\(n\)个\(n\)维列向量\(\AutoTuple{\vb\alpha}{n}\)线性相关} \\
 			&\iff
-			\text{以\(\AutoTuple{\a}{n}\)为列向量组的矩阵的行列式等于零}. \\
-			&\text{\(n\)个\(n\)维行向量\(\AutoTuple{\a}{n}[,][T]\)线性相关} \\
+			\text{以\(\AutoTuple{\vb\alpha}{n}\)为列向量组的矩阵的行列式等于零}. \\
+			&\text{\(n\)个\(n\)维行向量\(\AutoTuple{\vb\alpha}{n}[,][T]\)线性相关} \\
 			&\iff
-			\text{以\(\AutoTuple{\a}{n}\)为行向量组的矩阵的行列式等于零}.
+			\text{以\(\AutoTuple{\vb\alpha}{n}\)为行向量组的矩阵的行列式等于零}.
 		\end{aligned}\)
 		\item \(\begin{aligned}[t]
-			&\text{\(n\)个\(n\)维列向量\(\AutoTuple{\a}{n}\)线性无关} \\
+			&\text{\(n\)个\(n\)维列向量\(\AutoTuple{\vb\alpha}{n}\)线性无关} \\
 			&\iff
-			\text{以\(\AutoTuple{\a}{n}\)为列向量组的矩阵的行列式不等于零}. \\
-			&\text{\(n\)个\(n\)维行向量\(\AutoTuple{\a}{n}[,][T]\)线性无关} \\
+			\text{以\(\AutoTuple{\vb\alpha}{n}\)为列向量组的矩阵的行列式不等于零}. \\
+			&\text{\(n\)个\(n\)维行向量\(\AutoTuple{\vb\alpha}{n}[,][T]\)线性无关} \\
 			&\iff
-			\text{以\(\AutoTuple{\a}{n}\)为行向量组的矩阵的行列式不等于零}.
+			\text{以\(\AutoTuple{\vb\alpha}{n}\)为行向量组的矩阵的行列式不等于零}.
 		\end{aligned}\)
 	\end{enumerate}
 \end{enumerate}
