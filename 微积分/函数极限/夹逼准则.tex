@@ -40,27 +40,27 @@
 	\right].
 \end{gather*}
 取\(\delta=\min\{\delta_1,\delta_2,\rho\}\)，
-则\[
+则\begin{equation*}
 	(\forall x\in\mathbb{R})
 	[
 		0<\abs{x-x_0}<\delta
 		\implies
 		A-\epsilon < g(x) \leq f(x) \leq h(x) < A+\epsilon
 	],
-\]
+\end{equation*}
 即\(\lim_{x \to x_0} f(x) = A\).
 \end{proof}
 \end{theorem}
 
 \begin{remark}
 %@see: 《数学分析（第二版 上册）》（陈纪修） P83
-当函数极限是不定号无穷大时，夹逼定理不成立，即\[
+当函数极限是不定号无穷大时，夹逼定理不成立，即\begin{equation*}
 	g(x) \leq f(x) \leq h(x)
 	\land
 	\lim g(x) = \lim h(x) = \infty
 	\notimplies
 	\lim f(x) = \infty.
-\]
+\end{equation*}
 \end{remark}
 
 \begin{example}[重要极限I]
@@ -92,13 +92,13 @@
 			--(A)node[midway,right]{\(\tan x\)};
 	\end{tikzpicture}
 \end{center}
-由于在\(0 < x < \pi/2\)时，\[
+由于在\(0 < x < \pi/2\)时，\begin{equation*}
 	0 < \sin x < x < \tan x
 	\implies
 	1 < \frac{x}{\sin x} < \frac{1}{\cos x}
 	\implies
 	\cos x < \frac{\sin x}{x} < 1.
-\]
+\end{equation*}
 因为\(\lim_{x\to0}\cos x = 1\)，%FIXME 这个依据是无根之木，需要加以论述
 所以由\hyperref[theorem:数列极限.夹逼准则]{夹逼准则}可知，
 \(\lim_{x\to0} \frac{\sin x}{x} = 1\).
@@ -108,30 +108,30 @@
 \begin{example}
 求\(\lim_{x\to\infty} x \sin\frac1x\).
 \begin{solution}
-直接计算得\[
+直接计算得\begin{equation*}
 	\lim_{x\to\infty} x \sin\frac1x
 	= \lim_{x\to\infty} \frac{\sin(1/x)}{1/x}
 	\xlongequal{t=1/x} \lim_{t\to0} \frac{\sin t}{t}
 	= 1.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
 \begin{example}\label{example:夹逼准则.不能应用等价无穷小1}
-计算极限\[
+计算极限\begin{equation*}
 	\lim_{x\to0} \frac1x \sin\left(x^2 \sin\frac1x\right).
-\]
+\end{equation*}
 \begin{solution}
 %@see: https://www.bilibili.com/video/BV1FA4m1N7uv/
 因为\(0\leq\abs{\sin x}\leq\abs{x}\ (-\infty<x<+\infty)\)，
-所以\[
+所以\begin{equation*}
 	0 \leq \abs{\sin\left(x^2 \sin\frac1x\right)}
 	\leq \abs{x^2 \sin\frac1x}
 	\leq \abs{x^2},
-\]
-从而\[
+\end{equation*}
+从而\begin{equation*}
 	0 \leq \abs{\frac1x \sin\left(x^2 \sin\frac1x\right)} \leq \abs{x}.
-\]
+\end{equation*}
 因为\(\lim_{x\to0} \abs{x} = 0\)，
 所以由\hyperref[theorem:数列极限.夹逼准则]{夹逼准则}可知
 \(\lim_{x\to0} \abs{\frac1x \sin\left(x^2 \sin\frac1x\right)} = 0\).
@@ -145,9 +145,9 @@
 记\(f(x) = x^2 \sin\frac1x\)，
 在点\(x=0\)的任意邻域内，
 总存在无数个点\(\xi\)使得\(f(\xi) = 0\)，
-于是分式\[
+于是分式\begin{equation*}
 	\frac{\sin f(x)}{f(x)}
-\]在点\(x=0\)的任意邻域内有无数个点没有定义，
+\end{equation*}在点\(x=0\)的任意邻域内有无数个点没有定义，
 根本不满足\hyperref[definition:极限.函数极限的定义1]{函数极限的定义}对于
 极限\(\lim_{x \to x_0} g(x)\)存在所要求的前提条件
 “函数\(g\)在点\(x_0\)的某个去心邻域内有定义”，
@@ -160,24 +160,24 @@
 %@see: 《高等数学（第六版 上册）》 P56 习题1-6 4. (2)
 证明：\(\lim_{n\to\infty} n \left(\frac1{n^2+\pi}+\frac1{n^2+2\pi}+\dotsb+\frac1{n^2+n\pi}\right)=1\).
 \begin{proof}
-易见\[
+易见\begin{equation*}
 	\frac1{n^2+\pi}
 	\geq \frac1{n^2+2\pi}
 	\geq \dotsb
 	\geq \frac1{n^2+n\pi},
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	\frac{n}{n+\pi}
 	\leq
 	n \left(\frac1{n^2+\pi}+\frac1{n^2+2\pi}+\dotsb+\frac1{n^2+n\pi}\right)
 	\leq
 	\frac{n^2}{n^2+\pi}.
-\]
-因为\[
+\end{equation*}
+因为\begin{equation*}
 	\lim_{n\to\infty} \frac{n}{n+\pi}
 	= \lim_{n\to\infty} \frac{n^2}{n^2+\pi}
 	= 1,
-\]
+\end{equation*}
 所以\(\lim_{n\to\infty} n \left(\frac1{n^2+\pi}+\frac1{n^2+2\pi}+\dotsb+\frac1{n^2+n\pi}\right)=1\).
 \end{proof}
 \end{example}
@@ -191,16 +191,16 @@
 当\(x > 0\)时，
 因为\(1 < \sqrt[n]{1+x} < 1+x\)，
 且\(\lim_{x\to0^+} 1 = \lim_{x\to0^+}(1+x) = 1\)，
-所以\[
+所以\begin{equation*}
 	\lim_{x\to0^+} \sqrt[n]{1+x} = 1.
-\]
+\end{equation*}
 
 当\(-1 < x < 0\)时，
 因为\(1+x < \sqrt[n]{1+x} < 1\)，
 且\(\lim_{x\to0^-} 1 = \lim_{x\to0^-}(1+x) = 1\)，
-所以\[
+所以\begin{equation*}
 	\lim_{x\to0^-} \sqrt[n]{1+x} = 1.
-\]
+\end{equation*}
 
 综上，\(\lim_{x\to0} \sqrt[n]{1+x} = 1\).
 \end{proof}
@@ -211,23 +211,23 @@
 证明：\(\lim_{x\to0^+} x \floor*{\frac1x} = 1\).
 \begin{proof}
 令\(t=1/x\)，
-那么\[
+那么\begin{equation*}
 	x \floor*{\frac1x} = \frac{1}{t} \floor{t}.
-\]
-又因为\[
+\end{equation*}
+又因为\begin{equation*}
 	t - 1 < \floor{t} \leq t,
-\]\[
+\end{equation*}\begin{equation*}
 	1 - \frac{1}{t} < \frac{1}{t} \floor{t} \leq 1;
-\]
-而\[
+\end{equation*}
+而\begin{equation*}
 	\lim_{t\to+\infty} 1 - \frac{1}{t} = 1,
 	\quad
 	\lim_{t\to+\infty} 1 = 1,
-\]
-所以\[
+\end{equation*}
+所以\begin{equation*}
 	\lim_{x\to0^+} x \floor*{\frac1x} = \lim_{t\to+\infty} \frac{1}{t} \floor{t} = 1.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{example}
 
@@ -296,29 +296,29 @@
 
 当\(n\geq1\)时，
 对于\(\forall x\in[n,n+1)\)，
-必有\[
+必有\begin{equation*}
 	\left(1+\frac1{n+1}\right)^n
 	< \left(1+\frac1x\right)^x
 	< \left(1+\frac1n\right)^{n+1},
-\]
+\end{equation*}
 且当\(n\to\infty\)时，
 \(x\to+\infty\)，
-而\[
+而\begin{equation*}
 	\lim_{n\to\infty} \left(1+\frac1{n+1}\right)^n
 	= \lim_{n\to\infty} \frac{\left(1+\dfrac1{n+1}\right)^{n+1}}{1+\dfrac1{n+1}}
 	= \frac{\lim\limits_{n\to\infty} \left(1+\dfrac1{n+1}\right)^{n+1}}{\lim\limits_{n\to\infty} \left(1+\dfrac1{n+1}\right)}
 	= \frac{e}1
 	= e,
-\]\[
+\end{equation*}\begin{equation*}
 	\lim_{n\to\infty} \left(1+\frac1n\right)^{n+1}
 	= \lim_{n\to\infty} \left[\left(1+\frac1n\right)^n\cdot\left(1+\frac1n\right)\right]
 	= \lim_{n\to\infty} \left(1+\frac1n\right)^n \cdot \lim_{n\to\infty} \left(1+\frac1n\right)
 	= e \cdot 1
 	= e,
-\]
-应用\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}可得\[
+\end{equation*}
+应用\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}可得\begin{equation*}
 	\lim_{x\to+\infty} \left(1+\frac1x\right)^x = e.
-\]
+\end{equation*}
 令\(x=-(t+1)\)，
 则\(x\to-\infty\)时，
 \(t\to+\infty\)，
@@ -332,14 +332,14 @@
 \end{align*}
 
 综上所述，根据\cref{theorem:函数极限.极限与单侧极限的关系2}，
-由于\[
+由于\begin{equation*}
 	\lim_{x\to+\infty}\left(1+\frac1x\right)^x
 	= \lim_{x\to-\infty}\left(1+\frac1x\right)^x
 	= e,
-\]
-所以\[
+\end{equation*}
+所以\begin{equation*}
 	\lim_{x\to\infty} \left(1+\frac1x\right)^x = e.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{example}

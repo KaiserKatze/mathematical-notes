@@ -1,8 +1,8 @@
 \section{格林公式}
 \subsection{格林公式}
-在一元函数积分学中，牛顿--莱布尼茨公式\[
+在一元函数积分学中，牛顿--莱布尼茨公式\begin{equation*}
 	\int_a^b f(x) \dd{x} = F(b) - F(a)
-\]表示：\(f(x)\)在区间\([a,b]\)上的积分可以通过它的原函数\(F(x)\)在这个区间端点上的值来表达.
+\end{equation*}表示：\(f(x)\)在区间\([a,b]\)上的积分可以通过它的原函数\(F(x)\)在这个区间端点上的值来表达.
 
 下面要介绍的格林公式告诉我们，
 在平面闭区域\(D\)上的二重积分可以通过沿闭区域\(D\)的边界曲线\(L\)上的曲线积分来表达.
@@ -18,19 +18,19 @@
 在点\(P\)取一个半径\(r\)足够小的去心邻域，
 使得其与区域\(D\)的内部的交集\(I(D) \cap \mathring{U}(P,r)\)是单连通区域，
 再从中任取一点\(Q\)，
-即\[
+即\begin{equation*}
 	Q \in I(D) \cap \mathring{U}(P,r).
-\]
+\end{equation*}
 
 任意取一个与直线\(L\)平行的单位向量\(\vb{e}_L\).
 令\(\Phi = \VectorInnerProductDot{(\VectorOuterProduct{\vb{e}_z}{\vb{e}_L})}{\vec{PQ}}\).
-如果\[
+如果\begin{equation*}
 	\Phi < 0,
-\]
+\end{equation*}
 则称“单位向量\(\vb{e}_L\)的方向为曲线\(C\)在点\(P\)处的正方向”；
-反之，如果\[
+反之，如果\begin{equation*}
 	\Phi > 0,
-\]
+\end{equation*}
 则称“单位向量\(\vb{e}_L\)的方向为曲线\(C\)在点\(P\)处的负方向”.
 \end{definition}
 如\cref{figure:线积分与面积分.平面区域的边界曲线与其取向}，
@@ -83,21 +83,21 @@
 \end{theorem}
 \cref{equation:线积分与面积分.格林公式} 叫做\DefineConcept{格林公式}.
 
-为了方便记忆，我们可以利用行列式记号，把格林公式写成如下形式：\[
+为了方便记忆，我们可以利用行列式记号，把格林公式写成如下形式：\begin{equation*}
 	\iint_D \begin{vmatrix}
 		\pdv{x} & \pdv{y} \\
 		P & Q
 	\end{vmatrix} \dd{x}\dd{y}
 	= \oint_L P\dd{x}+Q\dd{y}.
-\]
+\end{equation*}
 
 下面说明格林公式的一个简单应用.
 在格林公式中，
 令\(P=-y\)、\(Q=x\)，
-可得\[
+可得\begin{equation*}
 	2 \iint_D \dd{x}\dd{y}
 	=\oint_L x\dd{y}-y\dd{x}.
-\]
+\end{equation*}
 上式左端是闭区域\(D\)的面积\(A\)的两倍，
 因此有
 \begin{equation}\label{equation:线积分与面积分.利用格林公式计算闭区域的面积}
@@ -128,39 +128,39 @@
 \begin{solution}
 记\(P = -\frac{y}{x^2+y^2}, Q = \frac{x}{x^2+y^2}\).
 当\(x^2+y^2\neq0\)时，
-有\[
+有\begin{equation*}
 	\pdv{Q}{x} = \frac{y^2-x^2}{(x^2+y^2)^2} = \pdv{P}{y}.
-\]
+\end{equation*}
 记\(L\)所围成的闭区域为\(D\).
 
 当\((0,0) \notin D\)时，
-由\cref{equation:线积分与面积分.格林公式} 有\[
+由\cref{equation:线积分与面积分.格林公式} 有\begin{equation*}
 	\oint_L \frac{x\dd{y}-y\dd{x}}{x^2+y^2} = \iint_D 0 \dd{x}\dd{y} = 0;
-\]
+\end{equation*}
 
 当\((0,0) \in D\)时，
 取\(r>0\)使得\(D_r = \Set{ (x,y) \given x^2+y^2 < r^2 } \subseteq D\)，
 令\(l = \partial D_r\)，
 \(D_1 = D - D_r\).
 对复连通区域\(D_1\)应用格林公式，
-得\[
+得\begin{equation*}
 	\oint_L \frac{x\dd{y}-y\dd{x}}{x^2+y^2} - \oint_l \frac{x\dd{y}-y\dd{x}}{x^2+y^2}
 	= \iint_{D_1} 0 \dd{x}\dd{y} = 0,
-\]
+\end{equation*}
 其中\(l\)的方向取逆时针方向.
-于是\[
+于是\begin{equation*}
 	\oint_L \frac{x\dd{y}-y\dd{x}}{x^2+y^2}
 	= \oint_l \frac{x\dd{y}-y\dd{x}}{x^2+y^2}
 	= \int_0^{2\pi} \frac{r^2 \cos^2\theta + r^2 \sin^2\theta}{r^2} \dd{\theta}
 	= 2\pi.
-\]
-综上所述\[
+\end{equation*}
+综上所述\begin{equation*}
 	\oint_L \frac{x\dd{y}-y\dd{x}}{x^2+y^2}
 	= \begin{cases}
 		2\pi, & (0,0) \in D, \\
 		0, & (0,0) \notin D.
 	\end{cases}
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -180,7 +180,7 @@
 分别是\(u\)、\(v\)沿\(L\)的外法线向量\(\vb{n}\)的方向导数，
 二维拉普拉斯算子\(\laplacian = \pdv[2]{x} + \pdv[2]{y}\).
 \begin{proof}
-因为方向导数\[
+因为方向导数\begin{equation*}
 	\pdv{u}{\vb{n}}
 	= \pdv{u}{x} \cos\alpha
 	+ \pdv{u}{y} \cos\beta,
@@ -188,7 +188,7 @@
 	\pdv{v}{\vb{n}}
 	= \pdv{v}{x} \cos\alpha
 	+ \pdv{v}{y} \cos\beta,
-\]其中\(\cos\alpha\)、\(\cos\beta\)是\(L\)在点\((x,y)\)处的外法线向量的方向余弦，
+\end{equation*}其中\(\cos\alpha\)、\(\cos\beta\)是\(L\)在点\((x,y)\)处的外法线向量的方向余弦，
 那么\(L\)在该点处的正向单位切向量为\(\vb{\tau} = (-\cos\beta,\cos\alpha)\)，
 于是利用格林公式可得\begin{align*}
 	\oint_L v \pdv{u}{\vb{n}} \dd{s}
@@ -211,25 +211,25 @@
 	&= \iint_D (\VectorInnerProductDot{\grad u}{\grad v}) \dd{x}\dd{y}
 		+ \iint_D v \laplacian{u} \dd{x}\dd{y},
 \end{align*}
-移项可得\[
+移项可得\begin{equation*}
 	\iint_D v \laplacian{u} \dd{x}\dd{y}
 	= - \iint_D (\VectorInnerProductDot{\grad u}{\grad v}) \dd{x}\dd{y}
 	+ \oint_L v \pdv{u}{\vb{n}} \dd{s}.
 	\eqno(1)
-\]
-同理可得\[
+\end{equation*}
+同理可得\begin{equation*}
 	\iint_D u \laplacian{v} \dd{x}\dd{y}
 	= - \iint_D (\VectorInnerProductDot{\grad v}{\grad u}) \dd{x}\dd{y}
 	+ \oint_L u \pdv{v}{\vb{n}} \dd{s}.
 	\eqno(2)
-\]
-(2)式与(1)式相减便得\[
+\end{equation*}
+(2)式与(1)式相减便得\begin{equation*}
 	\iint_D (u \laplacian{v} - v \laplacian{u}) \dd{x}\dd{y}
 	= \oint_L \left(
 		u \pdv{v}{\vb{n}} - v \pdv{u}{\vb{n}}
 	\right) \dd{s}.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{example}
 
@@ -248,9 +248,9 @@
 \end{align*}
 考虑到\(\dd{x}=\dd(\rho\cos\theta),
 \dd{y}=\dd(\rho\sin\theta)\)，
-所以\[
+所以\begin{equation*}
 	I = \int_0^1 \rho\dd{\rho} \oint_{L_\rho} \pdv{f}{x}\dd{y}-\pdv{f}{y}\dd{x}.
-\]
+\end{equation*}
 其中\(L_\rho: x^2+y^2=\rho^2\).
 令\(D_\rho = \Set{ (x,y) \given x^2+y^2\leq\rho^2 }\)，
 应用\hyperref[equation:线积分与面积分.格林公式]{格林公式}，
@@ -261,10 +261,10 @@
 	&= \int_0^{2\pi} \dd{\theta} \int_0^\rho e^{-r^2} r\dd{r} \\
 	&= \pi \left(1-e^{-\rho^2}\right).
 \end{align*}
-那么\[
+那么\begin{equation*}
 	I = \int_0^1 \pi \left(1-e^{-\rho^2}\right) \rho\dd{\rho}
 	=  \frac{\pi}{2e}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -324,10 +324,10 @@ y = u-v\)，
 设\(G\)是一个区域，\(P(x,y)\)以及\(Q(x,y)\)在区域\(G\)内具有一阶连续偏导数.
 如果对于\(G\)内任意指定的两个点\(A\)、\(B\)
 以及\(G\)内从点\(A\)到点\(B\)的任意两条曲线\(L_1\)、\(L_2\)，
-等式\[
+等式\begin{equation*}
 	\int_{L_1} P\dd{x}+Q\dd{y}
 	=\int_{L_2} P\dd{x}+Q\dd{y}
-\]恒成立，
+\end{equation*}恒成立，
 就说“曲线积分\(\int_L P\dd{x}+Q\dd{y}\)在\(G\)内与路径无关”
 或“沿\(G\)内任意闭曲线\(C\)的曲线积分\(\oint_C P\dd{x}+Q\dd{y}\)等于零”，
 否则便说“曲线积分\(\int_L P\dd{x}+Q\dd{y}\)在\(G\)内与路径相关”.
@@ -338,9 +338,9 @@ y = u-v\)，
 设区域\(G\)是一个单连通区域，
 函数\(P(x,y)\)、\(Q(x,y)\)在\(G\)内具有一阶连续偏导数，
 那么曲线积分\(\int_L P\dd{x}+Q\dd{y}\)在\(G\)内
-与路径无关（或沿\(G\)内任意闭曲线的曲线积分为零）的充分必要条件是：\[
+与路径无关（或沿\(G\)内任意闭曲线的曲线积分为零）的充分必要条件是：\begin{equation*}
 	\pdv{P}{y}=\pdv{Q}{x}
-\]在\(G\)内恒成立.
+\end{equation*}在\(G\)内恒成立.
 %TODO proof
 \end{theorem}
 
@@ -358,9 +358,9 @@ y = u-v\)，
 %@see: 《高等数学（第六版 下册）》 P208 定理3
 设区域\(G\)是一个单连通区域.
 函数\(P(x,y)\)、\(Q(x,y)\)在\(G\)内具有一阶连续偏导数.
-则\(P(x,y)\dd{x}+Q(x,y)\dd{y}\)在\(G\)内为某个二元实值函数\(u(x,y)\)的全微分的充分必要条件是\[
+则\(P(x,y)\dd{x}+Q(x,y)\dd{y}\)在\(G\)内为某个二元实值函数\(u(x,y)\)的全微分的充分必要条件是\begin{equation*}
 	\pdv{P}{y}=\pdv{Q}{x}
-\]在\(G\)内恒成立.
+\end{equation*}在\(G\)内恒成立.
 \end{theorem}
 
 根据\cref{theorem:线积分与面积分.平面上曲线积分与路径无关的充分必要条件,theorem:线积分与面积分.二元函数的全微分的存在条件}，
@@ -402,9 +402,9 @@ y = u-v\)，
 也就是说：势场是保守场.
 
 \cref{equation:线积分与面积分.曲线积分的基本公式}
-是与微积分基本公式\[
+是与微积分基本公式\begin{equation*}
 	\int_a^b f(x) \dd{x}
 	= F(b) - F(a)
-\]
+\end{equation*}
 （其中\(F'(x) = f(x)\)）完全类似的向量微积分的相应公式，
 称为\DefineConcept{曲线积分的基本公式}.

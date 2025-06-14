@@ -5,17 +5,17 @@
 \subsection{无偏性标准}
 \begin{definition}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P200 定义8.3
-若未知参数\(\theta\)的估计量\(\hat{\theta}=\hat{\theta}(\AutoTuple{X}{n})\)满足\[
+若未知参数\(\theta\)的估计量\(\hat{\theta}=\hat{\theta}(\AutoTuple{X}{n})\)满足\begin{equation*}
 	E(\hat{\theta})=\theta,
-\]
+\end{equation*}
 则称“\(\hat{\theta}\)是参数\(\theta\)的\DefineConcept{无偏估计量}（unbiased estimator）”.
 否则称“\(\hat{\theta}\)是参数\(\theta\)的\DefineConcept{有偏估计量}（biased estimator）”.
 %@see: https://online.stat.psu.edu/stat415/lesson/1/1.3
 
 对有偏估计量\(\hat{\theta}\)，
-我们把\[
+我们把\begin{equation*}
 	E(\hat{\theta}) - \theta
-\]称为“\(\hat{\theta}\)的\DefineConcept{偏差}（bias）”，
+\end{equation*}称为“\(\hat{\theta}\)的\DefineConcept{偏差}（bias）”，
 记作\(b(\hat{\theta})\).
 
 若样本容量\(n\to\infty\)时，有\(b(\hat{\theta})\to0\)，
@@ -51,27 +51,27 @@
 有\(B_2 = A_2 - \overline{X}^2\)；
 由\cref{equation:统计量.方差-2阶中心矩的关系}
 有\(S^2 = \frac{n}{n-1} B_2\)；
-所以\[
+所以\begin{equation*}
 	E(S^2)
 	= E\left(\frac{n}{n-1} B_2\right)
 	= \frac{n}{n-1} E(A_2-\overline{X}^2)
 	= \frac{n}{n-1}[E(A_2)-E(\overline{X}^2)].
-\]
+\end{equation*}
 由于\(E(A_2)
 = E(X^2)
 = D(X) + E^2(X)
 = \sigma^2 + \mu^2\)，
-所以\[
+所以\begin{equation*}
 	E(\overline{X}^2)
 	= D(\overline{X}) + [E(\overline{X})]^2
 	= \frac{\sigma^2}{n} + \mu^2,
-\]
-那么有\[
+\end{equation*}
+那么有\begin{equation*}
 	E(S^2)
 	= \frac{n}{n-1} \left(\sigma^2 + \mu^2 - \frac{\sigma^2}{n} - \mu^2\right)
 	= \sigma^2.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{example}
 
@@ -82,19 +82,19 @@
 \(\AutoTuple{X}{n}\)是样本.
 证明：样本2阶中心矩\(B_2\)是\(\sigma^2\)的渐进无偏估计量.
 \begin{proof}
-因为\[
+因为\begin{equation*}
 	E(B_2)
 	= E\left(\frac{n-1}{n} S^2\right)
 	= \frac{n-1}{n} E(S^2)
 	= \left(1-\frac{1}{n}\right) \sigma^2
 	< \sigma^2,
-\]
+\end{equation*}
 所以\(B_2\)是\(\sigma^2\)的有偏估计量.
-又因为\[
+又因为\begin{equation*}
 	\lim_{n\to\infty} [E(B_2) - \sigma^2]
 	= -\lim_{n\to\infty} \frac{\sigma^2}{n}
 	= 0,
-\]
+\end{equation*}
 所以\(B_2\)是\(\sigma^2\)的渐进无偏估计量.
 \end{proof}
 \end{example}
@@ -107,19 +107,19 @@
 设\(\AutoTuple{X}{n}\)是来自正态总体\(N(\mu,\sigma^2)\)的一个样本，
 其中\(\mu\)未知，
 证明：样本标准差\(S\)的倍数\(\hat{\sigma} = C_n S\)是总体标准差\(\sigma\)的无偏估计，
-其中\[
+其中\begin{equation*}
 	C_n = \sqrt{\frac{n-1}2} \cdot \frac{\Gamma\left(\frac{n-1}2\right)}{\Gamma\left(\frac{n}2\right)}.
-\]
+\end{equation*}
 \begin{proof}
-令\[
+令\begin{equation*}
 	Y = \frac{(n-1)S^2}{\sigma^2},
 	\eqno(1)
-\]
+\end{equation*}
 则\(Y \sim \chi^2(n-1)\)，
-\(Y\)的密度函数为\[
+\(Y\)的密度函数为\begin{equation*}
 	f_Y(y) = \frac1{2^{\frac{n-1}2} \Gamma\left(\frac{n-1}2\right)} y^{\frac{n-1}2-1} e^{-\frac{y}2},
 	\quad y>0,
-\]
+\end{equation*}
 从而\begin{align*}
 	E(\sqrt{Y})
 	&= \int_{-\infty}^{+\infty} y^{\frac12} f_Y(y) \dd{y} \\
@@ -129,30 +129,30 @@
 	= \sqrt2 \cdot \frac{\Gamma\left(\frac{n}2\right)}{\Gamma\left(\frac{n-1}2\right)}.
 \end{align*}
 
-又由(1)式有\[
+又由(1)式有\begin{equation*}
 	\sqrt{Y} = \frac{\sqrt{n-1}}{\sigma} S,
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	E(\sqrt{Y})
 	= \frac{\sqrt{n-1}}{\sigma} E(S),
-\]
-那么\[
+\end{equation*}
+那么\begin{equation*}
 	E(S)
 	= \frac{\sigma}{\sqrt{n-1}} E(\sqrt{Y})
 	= \sqrt{\frac2{n-1}} \cdot \frac{\Gamma\left(\frac{n}2\right)}{\Gamma\left(\frac{n-1}2\right)} \sigma
 	= \frac{\sigma}{C_n}.
-\]
+\end{equation*}
 这就是说\(\hat{\sigma} = C_n S\)是\(\sigma\)的无偏估计.
 \end{proof}
 \end{example}
 \begin{remark}
 应该注意到，若令\(n\to\infty\)，
-则\[
+则\begin{equation*}
 	\lim_{n\to\infty} C_n
 	= \lim_{n\to\infty} \sqrt{\frac{n-1}2} \cdot
 		\frac{\Gamma\left(\frac{n-1}2\right)}{\Gamma\left(\frac{n}2\right)}
 	= \lim_{x\to+\infty} \frac{\sqrt{x} \cdot \Gamma(x)}{\Gamma(x+\frac12)},
-\]
+\end{equation*}
 于是由\cref{equation:反常积分.伽马函数.极限1}
 可知\(\lim_{n\to\infty} C_n = 1\).
 这就是说，样本标准差\(S\)是总体标准差\(\sigma\)的渐进无偏估计量.
@@ -163,13 +163,13 @@
 若\(\hat{\sigma} = a\abs{X_1-X_2}\)是\(\sigma\)的无偏估计量，求\(a\)的取值.
 \begin{solution}
 由正态分布的可加性，有\(X_1-X_2 \sim N(0,2\sigma^2)\).
-令\(Y = X_1-X_2\)，则\(Y\)的概率密度为\[
+令\(Y = X_1-X_2\)，则\(Y\)的概率密度为\begin{equation*}
 f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \sigma^2}).
-\]从而\[
+\end{equation*}从而\begin{equation*}
 	E(\hat{\sigma}) = E(a \abs{Y})
 	= a \int_{-\infty}^{+\infty} \abs{y} f(y) \dd{y}
 	= a \frac{2 \sigma}{\sqrt{\pi}}.
-\]
+\end{equation*}
 因为\(\hat{\sigma} = a\abs{X_1-X_2}\)是\(\sigma\)的无偏估计量，
 所以\(E(\hat{\sigma}) = \sigma\)，代入上式，解得\(a = \sqrt{\pi}/2\).
 \end{solution}
@@ -180,26 +180,26 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 设总体\(X\)具有数学期望\(\mu\)与方差\(\sigma^2\)，
 \((X_{11},X_{12},\dotsc,X_{1n})\)与\((X_{21},X_{22},\dotsc,X_{2m})\)
 是取自该总体的两个独立样本，
-试证\[
+试证\begin{equation*}
 	S^2 = \frac1{n+m-2} \left[
 		\sum_{i=1}^n (X_{1i}-\overline{X}_1)^2
 		+ \sum_{i=1}^m (X_{2i}-\overline{X}_2)^2
 	\right]
-\]是\(\sigma^2\)的无偏估计，
+\end{equation*}是\(\sigma^2\)的无偏估计，
 其中\(\overline{X}_1 = \frac1n \sum_{i=1}^n X_{1i},
 \overline{X}_2 = \frac1m \sum_{i=1}^m X_{2i}\).
 \begin{proof}
-令\[
+令\begin{equation*}
 	S^2_1 = \frac1{n-1} \sum_{i=1}^n (X_{1i}-\overline{X}_1)^2, \qquad
 	S^2_2 = \frac1{m-1} \sum_{i=1}^m (X_{2i}-\overline{X}_2)^2,
-\]
+\end{equation*}
 则\(E(S^2_1)=E(S^2_2)=\sigma^2\)
-且\[
+且\begin{equation*}
 	S^2 = \frac1{n+m-2} \left[
 		(n-1) S^2_1
 		+ (m-1) S^2_2
 	\right],
-\]
+\end{equation*}
 从而\begin{align*}
 	E(S^2)
 	&= \frac1{n+m-2} \left[
@@ -244,9 +244,9 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 \begin{definition}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P201 定义8.4
 设\(\hat{\theta}_1\)和\(\hat{\theta}_2\)是\(\theta\)的两个无偏估计量.
-若\[
+若\begin{equation*}
 	D(\hat{\theta}_1) \leq D(\hat{\theta}_2),
-\]
+\end{equation*}
 则称“\(\hat{\theta}_1\)比\(\hat{\theta}_2\)更\DefineConcept{有效}”.
 \end{definition}
 
@@ -275,9 +275,9 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 
 \begin{definition}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P202 定义8.5
-\(\hat{\theta}(n)\)是\(\theta\)的估计量，若\[
+\(\hat{\theta}(n)\)是\(\theta\)的估计量，若\begin{equation*}
 	\hat{\theta}(n) \toP \theta,
-\]
+\end{equation*}
 则称“\(\hat{\theta}(n)\)是\(\theta\)的\DefineConcept{一致估计量}或\DefineConcept{相合估计量}”.
 \end{definition}
 
@@ -308,9 +308,9 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 从而样本方差\(S^2\)是总体方差\(\sigma^2\)的一致估计量.
 
 其次，由于总体\(k\)阶中心矩\(\nu_k\)
-可以表示为总体的前\(k\)阶原点矩的连续函数：\[
+可以表示为总体的前\(k\)阶原点矩的连续函数：\begin{equation*}
 	\nu_k = g(\AutoTuple{\mu}{k}),
-\]
+\end{equation*}
 所以由\cref{theorem:参数估计.一致估计量的连续函数也是一致估计量}
 可知\(g(\AutoTuple{A}{k})\)是\(g(\AutoTuple{\mu}{k})\)的一致估计量.
 \end{proof}
@@ -320,9 +320,9 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 \begin{definition}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P203 定义8.6
 对于总体\(X\)的未知参数\(\theta\)，\(\hat{\theta}\)是\(\theta\)的估计量.
-把\[
+把\begin{equation*}
 	M(\hat{\theta}) = E(\hat{\theta} - \theta)^2
-\]称为“\(\hat{\theta}\)关于\(\theta\)的\DefineConcept{均方误差}”.
+\end{equation*}称为“\(\hat{\theta}\)关于\(\theta\)的\DefineConcept{均方误差}”.
 \end{definition}
 
 \begin{definition}
@@ -330,9 +330,9 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 设\(\hat{\theta}_1\)和\(\hat{\theta}_2\)都是\(\theta\)的估计量，
 \(M(\hat{\theta}_1)\)和\(M(\hat{\theta}_2)\)
 分别是\(\hat{\theta}_1\)和\(\hat{\theta}_2\)关于\(\theta\)的均方误差.
-若\[
+若\begin{equation*}
 	M(\hat{\theta}_1) \leq M(\hat{\theta}_2),
-\]
+\end{equation*}
 则称“\(\hat{\theta}_1\)在均方误差下比\(\hat{\theta}_2\)更\DefineConcept{有效}”.
 \end{definition}
 
@@ -380,45 +380,45 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 因为\(E(\hat{\sigma}_1^2)
 = E(S^2)
 = \sigma^2\)，
-所以\[
+所以\begin{equation*}
 	M(\hat{\sigma}_1^2)
 	= M(S^2)
 	= D(S^2).
-\]
-但是由抽样分布定理可知\[
+\end{equation*}
+但是由抽样分布定理可知\begin{equation*}
 	\frac{(n-1) S^2}{\sigma^2}
 	\sim
 	\x(n-1),
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	D\left[\frac{(n-1) S^2}{\sigma^2}\right]
 	= 2(n-1),
-\]
-故得到\[
+\end{equation*}
+故得到\begin{equation*}
 	M(\hat{\sigma}_1^2)
 	= D(S^2)
 	= \frac{2\sigma^4}{n-1}.
-\]
-又因为\[
+\end{equation*}
+又因为\begin{equation*}
 	E(\hat{\sigma}_2^2)
 	= E(B_2)
 	= E\left(\frac{n-1}{n} S^2\right)
 	= \frac{n-1}{n} \sigma^2,
-\]\[
+\end{equation*}\begin{equation*}
 	D(\hat{\sigma}_2^2)
 	= D(B_2)
 	= D\left(\frac{n-1}{n} S^2\right)
 	= \frac{(n-1)^2}{n^2} D(S^2)
 	= \frac{2(n-1)}{n^2} \sigma^4,
-\]
-故\[
+\end{equation*}
+故\begin{equation*}
 	M(\hat{\sigma}_2^2)
 	= D(\hat{\sigma}_2^2) + b^2(\hat{\sigma}_2^2)
 	= \frac{2n-1}{n^2} \sigma^4.
-\]
-由于\(\frac{2}{n-1} > \frac{2n-1}{n^2}\)，所以\[
+\end{equation*}
+由于\(\frac{2}{n-1} > \frac{2n-1}{n^2}\)，所以\begin{equation*}
 	M(\hat{\sigma}_2^2) < M(\hat{\sigma}_1^2).
-\]
+\end{equation*}
 由此可见，在均方误差意义下，\(B_2\)比\(S^2\)更有效.
 \end{solution}
 \end{example}
@@ -437,11 +437,11 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 \(D(Q) = 2(n-1) \sigma^4\)，
 \(E(Q^2) = D(Q) + E^2(Q)
 = (n-1)(n+1) \sigma^4\)，
-所以\[
+所以\begin{equation*}
 	M(c Q)
 	= E(cQ - \sigma^2)^2
 	= c^2 E(Q^2) - 2c \sigma^2 E(Q) + \sigma^4.
-\]
+\end{equation*}
 我们把上式看成是关于\(c\)的二次函数，
 易知当\(c = \frac{\sigma^2 E(Q)}{E(Q^2)} = \frac1{n+1}\)时，
 \(M(cQ)\)取得最小值，

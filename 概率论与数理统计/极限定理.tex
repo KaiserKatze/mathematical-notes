@@ -43,21 +43,21 @@
 这两个等价的不等式都叫做\DefineConcept{切比雪夫不等式}.
 
 应用切比雪夫不等式，当随机变量\(X\)的分布未知，而\(E(X)\)、\(D(X)\)已知时，
-可对事件\[
+可对事件\begin{equation*}
 (\abs{X-E(X)}<\epsilon)
-\]发生的概率进行粗略估计.
+\end{equation*}发生的概率进行粗略估计.
 
 \begin{example}
 已知健康成人男性中，每一毫升血液中白细胞数平均是7300，均方差是700.
 而白细胞数正常范围是5200到9400.
 请估计健康成人男性白细胞正常率.
 \begin{solution}
-设随机变量\(X\)表示健康成人男性每一毫升血液中白细胞数，则\(E(X) = 7300\)，\(D(X) = 700^2\)，于是\[
+设随机变量\(X\)表示健康成人男性每一毫升血液中白细胞数，则\(E(X) = 7300\)，\(D(X) = 700^2\)，于是\begin{equation*}
 P(5200 < X < 9400)
 = P(\abs{X - 7300} < 2100)
 \geq 1 - \frac{700^2}{2100^2} = \frac{8}{9}
 \approx 0.8889.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -71,24 +71,24 @@ P(5200 < X < 9400)
 %FIXME 后学的内容（大数律）在前面章节（协方差）引用了，需要调整顺序
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P103 定理2.4.9
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P165 例6.6
-方差为零的随机变量\(X\)必然几乎处处为常数，且该常数就是其数学期望\(E(X)\)，即\[
+方差为零的随机变量\(X\)必然几乎处处为常数，且该常数就是其数学期望\(E(X)\)，即\begin{equation*}
 	D(X)=0 \implies P[X=E(X)]=1.
-\]
+\end{equation*}
 \begin{proof}
 由\cref{theorem:极限定理.切比雪夫不等式} 可知，
 对\(\forall\epsilon>0\)，
-有\[
+有\begin{equation*}
 	0 \leq P[\abs{X-E(X)}\geq\epsilon]
 	\leq \frac{D(X)}{\epsilon^2}
 	= 0,
-\]
+\end{equation*}
 故有\(P[\abs{X-E(X)}\geq\epsilon] = 0\)或\(P[\abs{X-E(X)}<\epsilon] = 1\)；
 由于\(\epsilon\)的任意性，
 \(\epsilon\to0\)时\(X \to E(X)\)，
-那么\[
+那么\begin{equation*}
 	P[X=E(X)]=1.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{theorem}
 \cref{theorem:大数律.方差为零的随机变量的性质} 表明，
@@ -104,10 +104,10 @@ P(5200 < X < 9400)
 \end{enumerate}
 令\(S_k = X_1 + \dotsb + X_k\ (k=1,2,\dotsc,n)\).
 那么，对\(\forall \epsilon > 0\)，
-有\[
+有\begin{equation*}
 	P\left(\max_{1 \leq k \leq n} \abs{S_k} \geq \epsilon\right)
 	\leq \frac{E(S_n^2)}{\epsilon^2}.
-\]
+\end{equation*}
 %TODO proof
 \end{theorem}
 
@@ -121,10 +121,10 @@ P(5200 < X < 9400)
 \end{enumerate}
 令\(S_k = X_1 + \dotsb + X_k\ (k=1,2,\dotsc,n)\).
 那么，对\(\forall \epsilon > 0\)，
-有\[
+有\begin{equation*}
 	P\left(\max_{1 \leq k \leq n} \abs{S_k} \geq \epsilon\right)
 	\geq 1 - \frac{(c+\epsilon)^2}{E(S_n^2)}.
-\]
+\end{equation*}
 %TODO proof
 \end{theorem}
 
@@ -135,10 +135,10 @@ P(5200 < X < 9400)
 \(m_k = E(S_k) = \mu_1 + \mu_2 + \dotsb + \mu_k\)，
 \(s_k^2 = D(S_k) = \sigma_1^2 + \sigma_2^2 + \dotsb + \sigma_k^2\).
 那么，对\(\forall \epsilon > 0\)，
-有\[
+有\begin{equation*}
 	P\left(\max_{1 \leq k \leq n} \abs{S_k - m_k} < \epsilon s_n\right)
 	\geq 1 - \frac{1}{\epsilon^2}.
-\]
+\end{equation*}
 \end{theorem}
 当\(n=1\)时，上述定理化为切比雪夫不等式.
 对\(n>1\)的情形，切比雪夫不等式只是对概率\(P(\abs{S_n - m_n} < \epsilon s_n)\)给出了一样的界.
@@ -149,11 +149,11 @@ P(5200 < X < 9400)
 我们现在来定义随机变量序列的“收敛性”.
 \begin{definition}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P160 定义6.1
-设\(\{X_n\}\)是一随机变量序列，\(a\)为常数，若对任意\(\epsilon>0\)，有\[
+设\(\{X_n\}\)是一随机变量序列，\(a\)为常数，若对任意\(\epsilon>0\)，有\begin{equation*}
     \lim_{n\to\infty} P(\abs{X_n-a}<\epsilon) = 1
     \quad\text{或}\quad
     \lim_{n\to\infty} P(\abs{X-a}\geq\epsilon) = 0,
-\]
+\end{equation*}
 则称“\(\{X_n\}\) \DefineConcept{依概率收敛于} \(a\)”，
 记为\(X_n \toP a\).
 \end{definition}
@@ -168,9 +168,9 @@ P(5200 < X < 9400)
 设\(X_n \toP a,
 Y_n \toP b\)，
 函数\(g\colon\mathbb{R}^2\to\mathbb{R}\)在点\((a,b)\)连续，
-则\[
+则\begin{equation*}
 	g(X_n,Y_n) \toP g(a,b).
-\]
+\end{equation*}
 \end{proposition}
 
 由切比雪夫不等式，
@@ -180,23 +180,23 @@ Y_n \toP b\)，
 随机变量序列\(\{X_n\}\)中，
 若\(E(X_n)\)和\(D(X_n)\)都存在，
 且\(\lim_{n\to\infty} D(X_n) = 0\)，
-则\[
+则\begin{equation*}
 	X_n - E(X_n) \toP 0.
-\]
+\end{equation*}
 \begin{proof}
 设\(E(X_n)=\mu_n\)，
 \(D(X_n)=\sigma_n^2\).
 由\hyperref[equation:极限定理.切比雪夫不等式1]{切比雪夫不等式}，
 对\(\forall \epsilon > 0\)，
-有\[
+有\begin{equation*}
 	1 \geq P(\abs{X_n-\mu_n}<\epsilon) \geq 1 - \frac{\sigma_n^2}{\epsilon^2}.
-\]
+\end{equation*}
 当\(n\to\infty\)时，
 \(\sigma_n^2\to0\)，
 \(1 - \frac{\sigma_n^2}{\epsilon^2} \to 1\)，
-那么由\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}有\[
+那么由\hyperref[theorem:函数极限.夹逼准则]{夹逼准则}有\begin{equation*}
 	\lim_{n\to\infty} P(\abs{X_n-\mu_n}<\epsilon)=1,
-\]
+\end{equation*}
 即\(X_n - \mu_n \toP 0\).
 \end{proof}
 \end{theorem}
@@ -212,40 +212,40 @@ Y_n \toP b\)，
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P160 定理6.3
 对独立随机变量序列\(\{X_n\}\)，
 若各随机变量的数学期望和方差都存在且有限，
-则\[
+则\begin{equation*}
 	\frac1n \sum_{i=1}^n X_i
 	- \frac1n \sum_{i=1}^n E(X_i)
 	\toP 0.
-\]
+\end{equation*}
 \begin{proof}
 因为方差\(D(X_n)\ (n=1,2,\dotsc)\)都存在且有限，
 不妨假设存在常数\(C\)，
-使得\[
+使得\begin{equation*}
 	D(X_k) \leq C
 	\quad(k=1,2,\dotsc).
-\]
+\end{equation*}
 \def\Yn{\frac1n \sum_{k=1}^n X_k}
-令\(Y_n=\Yn\)，则\[
+令\(Y_n=\Yn\)，则\begin{equation*}
 	E(Y_n)
 	= E\left(\Yn\right)
 	= \frac1n \sum_{k=1}^n E(X_k),
-\]\[
+\end{equation*}\begin{equation*}
 	D(Y_n)
 	= D\left(\Yn\right)
 	= \frac{1}{n^2} \sum_{k=1}^n D(X_k) \leq \frac{C}{n},
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	\lim_{n\to\infty} D(Y_n)
 	= 0.
-\]
+\end{equation*}
 由\cref{theorem:极限定理.大数律.随机变量序列依概率收敛的充分条件}
 有\(Y_n - E(Y_n) \toP 0\)，
-即\[
+即\begin{equation*}
 	\frac1n \sum_{k=1}^n X_k
 	- \frac1n \sum_{k=1}^n E(X_k)
 	\toP 0.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{theorem}
 
@@ -264,13 +264,13 @@ Y_n \toP b\)，
 %@see: https://www.math.pku.edu.cn/teachers/litj/notes/appl_stoch/Lect5_slides.pdf
 %@see: https://proofwiki.org/wiki/Khinchin%27s_Law
 设\(\{X_k\}\)是独立同分布随机变量序列，
-且\[
+且\begin{equation*}
 	E(X_k) = \mu < \infty
 	\quad(k=1,2,\dotsc),
-\]
-则\[
+\end{equation*}
+则\begin{equation*}
 	\overline{X} \toP \mu,
-\]
+\end{equation*}
 其中\(\overline{X}
 = \frac1n \sum_{i=1}^n X_i\).
 \begin{proof}
@@ -279,27 +279,27 @@ Y_n \toP b\)，
 当\(D(X_k)=\sigma^2\)存在时，
 由切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式2} 可知，
 对\(\forall\epsilon>0\)，
-有\[
+有\begin{equation*}
 	P(\abs{X_i}\geq\epsilon) \leq \frac{\sigma^2}{\epsilon^2}
 	\quad(i=1,2,\dotsc,n).
 	\eqno(1)
-\]
+\end{equation*}
 记\(S_n = X_1 + X_2 + \dotsb + X_n\)，
-那么有\[
+那么有\begin{equation*}
 	P(\abs{S_n} > \epsilon) \leq \frac{n \sigma^2}{\epsilon^2}.
 	\eqno(2)
-\]
+\end{equation*}
 令\(\epsilon = c n\)，
-则\(n\to\infty\)时，\[
+则\(n\to\infty\)时，\begin{equation*}
 	\frac{n \sigma^2}{\epsilon^2}
 	= \frac{\sigma^2}{c^2 n} \to 0.
-\]
+\end{equation*}
 
 当\(D(X_k)\)不存在时，证明较难.
 为此，可用“截尾法”将其化为前述情形.
 此法是一种证明各种极限定理的标准方法.
 
-令\[
+令\begin{equation*}
 	U_k = \left\{ \begin{array}{cl}
 		X_k, & \abs{X_k} \leq \delta n, \\
 		0, & \abs{X_k} > \delta n;
@@ -311,50 +311,50 @@ Y_n \toP b\)，
 	\end{array} \right.
 	\quad(k=1,2,\dotsc,n).
 	\eqno(3)
-\]
+\end{equation*}
 显然\(X_k = U_k + V_k\).
 现在只要证明，对\(\forall\epsilon>0\)，
 可取常数\(\delta\)，
-使得\(n\to\infty\)时有\[
+使得\(n\to\infty\)时有\begin{equation*}
 	P\left(\abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n\right) \to 0,
 	\eqno(4)
-\]\[
+\end{equation*}\begin{equation*}
 	P\left(\abs{V_1+\dotsb+V_n} > \frac{1}{2} \epsilon n\right) \to 0.
 	\eqno(5)
-\]
+\end{equation*}
 
 假设\(X_j\)可能的取值为\(x_1,x_2,\dotsc\)，
 且其对应的概率为\(f(x_j)\ (j=1,2,\dotsc)\).
-令\[
+令\begin{equation*}
 	a = E(\abs{X_j}) = \sum_j \abs{x_j} f(x_j).
 	\eqno(6)
-\]
+\end{equation*}
 随机变量\(U_k\)上界是\(\delta n\)，
 因此显然有\(E(U_k^2) < a \delta n\).
-又因为\(U_1,\dotsc,U_n\)独立同分布，所以\[
+又因为\(U_1,\dotsc,U_n\)独立同分布，所以\begin{equation*}
 	D(U_1+\dotsb+U_n) = n D(U_1) \leq n E(U_1^2) \leq a \delta n^2.
 	\eqno(7)
-\]
+\end{equation*}
 另一方面，由\(U_k\)的定义，当\(n\to\infty\)时，\(E(U_k) \to E(X_k) = 0\).
 由此推出：当\(n\)充分大时，\(E[(U_1+\dotsb+U_n)^2] \leq 2 a \delta n^2\).
-由于\[
+由于\begin{equation*}
 	P\left( \abs{U_1+\dotsb+U_n} > \frac{1}{2} \epsilon n \right)
 	\geq \frac{8a\delta}{\epsilon},
 	\eqno(8)
-\]
+\end{equation*}
 所以(4)式是切比雪夫不等式 \labelcref{equation:极限定理.切比雪夫不等式1} 的直接变形.
 只要\(\delta\)充分小，使得(8)式右边足够小，就有(4)式成立.
 
-至于(5)式，注意到\hyperref[equation:概率论基础.布尔不等式]{布尔不等式}\[
+至于(5)式，注意到\hyperref[equation:概率论基础.布尔不等式]{布尔不等式}\begin{equation*}
 	P(V_1+\dotsb+V_n \neq 0) \leq n P(V_1 \neq 0).
 	\eqno(9)
-\]
-对\(\forall \delta > 0\)，有\[
+\end{equation*}
+对\(\forall \delta > 0\)，有\begin{equation*}
 	P(V_1 \neq 0) = P(\abs{X_1} > \delta n)
 	= \sum_{\abs{x_j} > \delta n} f(x_j)
 	\leq \frac{1}{\delta n} \sum_{\abs{x_j} > \delta n} \abs{x_j} f(x_j).
 	\eqno(10)
-\]
+\end{equation*}
 因为(10)式最右边的级数当\(n\to\infty\)时趋于\(0\)，
 因此(9)式左边当\(n\to\infty\)时也趋于\(0\).
 此结论比(5)式更强.
@@ -373,22 +373,22 @@ Y_n \toP b\)，
 假设在\(n\)次伯努利试验中，
 事件\(A\)发生了\(X\)次；
 而\(A\)发生的概率为\(p\)，
-则\[
+则\begin{equation*}
 	\frac{X}{n} \toP p.
-\]
+\end{equation*}
 \begin{proof}
-令随机变量\(X_k\)为\[
+令随机变量\(X_k\)为\begin{equation*}
 	X_k = \left\{ \begin{array}{cl}
 		1, & \text{事件\(A\)在第\(k\)次试验中发生}, \\
 		0, & \text{事件\(A\)在第\(k\)次试验中不发生}, \\
 	\end{array} \right.
-\]
+\end{equation*}
 则\(\AutoTuple{X}{k}\)独立同服从于\(B(1,p)\)分布，
-从而有\[
+从而有\begin{equation*}
 	E(X_k)=p,
 	\qquad
 	D(X_k)=p(1-p).
-\]
+\end{equation*}
 因为\(\frac{X}{n} = \frac1n \sum_{k=1}^n X_k\)，
 所以由\hyperref[theorem:极限定理.大数律.辛钦大数律]{辛钦大数律}有
 \(\frac{X}{n} \toP p\).
@@ -410,21 +410,21 @@ Y_n \toP b\)，
 \begin{definition}
 %@see: https://zhuanlan.zhihu.com/p/69862244
 对于任意随机变量\(X\)，
-我们把函数\[
+我们把函数\begin{equation*}
 	\phi_X(t) = E(e^{\iu t X})
-\]
+\end{equation*}
 称为“\(X\)的特征函数”.
 \end{definition}
 
 \begin{lemma}
 相互独立的随机变量的和的特征函数等于各个随机变量的特征函数的乘积，
-即\[
+即\begin{equation*}
 	\phi_{X_1+X_2+\dotsb+X_n}(t)
 	= \phi_{X_1}(t)
 	\cdot \phi_{X_2}(t)
 	\dotsb
 	\phi_{X_n}(t),
-\]
+\end{equation*}
 其中\(\AutoTuple{X}{n}\)是相互独立的随机变量.
 \end{lemma}
 
@@ -432,9 +432,9 @@ Y_n \toP b\)，
 设随机变量序列\(\{X_n\}\)独立同分布，
 若存在一个分布函数\(F\)，
 使得对\(\forall x\in\mathbb{R}\)，
-总有\[
+总有\begin{equation*}
 	\lim_{n\to\infty} P(X_n \leq x) = F(x),
-\]
+\end{equation*}
 则称“分布\(F\)是\(\{X_n\}\)的\DefineConcept{极限分布}”.
 \end{definition}
 
@@ -443,15 +443,15 @@ Y_n \toP b\)，
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P174 定理3.5.1（林德贝格--列维中心极限定理）
 %@see: http://www.individual.utoronto.ca/jordanbell/notes/lindeberg.pdf
 设随机变量序列\(\{X_k\}\)独立同分布，
-且\[
+且\begin{equation*}
 	E(X_k)=\mu, \qquad
 	D(X_k)=\sigma^2\in(0,+\infty),
 	\quad k=1,2,\dotsc;
-\]
-记\[
+\end{equation*}
+记\begin{equation*}
 	Y_n = \frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n} \sigma}
 	= \frac{ \frac1n \sum_{k=1}^n X_k - \mu}{\sigma / \sqrt{n}}.
-\]
+\end{equation*}
 则标准正态分布是\(\{Y_n\}\)的极限分布.
 %TODO proof
 % \begin{proof}
@@ -474,29 +474,29 @@ Y_n \toP b\)，
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P163 定理6.5
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P176 定理3.5.2（德莫弗--拉普拉斯定理）
 设随机变量序列\(\{X_n\}\)独立同分布于\(B(n,p)\)，
-记\[
+记\begin{equation*}
 	Y_n = \frac{X_n - np}{\sqrt{np(1-p)}},
-\]
+\end{equation*}
 则标准正态分布是\(\{Y_n\}\)的极限分布.
 \begin{proof}
 设独立同分布随机变量序列\(\{Y_k\}\)，
 \(Y_k \sim B(1,p)\)，
 令\(q=1-p\)，
-则\[
+则\begin{equation*}
 	E(Y_k)=p,
 	\qquad
 	D(Y_k)=pq.
-\]
-由\hyperref[theorem:多维随机变量及其分布.二项分布的可加性3]{二项分布可加性}可知\[
+\end{equation*}
+由\hyperref[theorem:多维随机变量及其分布.二项分布的可加性3]{二项分布可加性}可知\begin{equation*}
 	X_n = \sum_{k=1}^n Y_k.
-\]
+\end{equation*}
 
-由\hyperref[theorem:极限定理.林德伯格--列维中心极限定理]{林德伯格--列维中心极限定理}可得\[
+由\hyperref[theorem:极限定理.林德伯格--列维中心极限定理]{林德伯格--列维中心极限定理}可得\begin{equation*}
 	\lim_{n\to\infty} P\left(\frac{X_n-np}{\sqrt{npq}} \leq x\right)
 	= \lim_{n\to\infty} P\left(\frac{\sum_{k=1}^n{Y_k}-np}{\sqrt{npq}} \leq x\right)
 	= \Phi(x).
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{theorem}
 
@@ -504,30 +504,30 @@ Y_n \toP b\)，
 \begin{corollary}
 设\(X_n \sim B(n,p)\)，\(q = 1-p\).
 当\(n\)充分大时，\(X_n\)近似地服从正态分布\(N(np,npq)\)，
-即\[
+即\begin{equation*}
 	X_n \dotsim N(np,npq).
-\]
+\end{equation*}
 \end{corollary}
 
 \begin{corollary}
-设\(X \sim B(n,p)\)，当\(n\)充分大时，有\[
+设\(X \sim B(n,p)\)，当\(n\)充分大时，有\begin{equation*}
 	P(a < X \leq b)
 	\approx
 	\Phi\left(\frac{b-np}{\sqrt{npq}}\right)
 	- \Phi\left(\frac{a-np}{\sqrt{npq}}\right).
-\]
+\end{equation*}
 \end{corollary}
 
 关于二项分布的中心极限定理及推论，需要做几点说明：
 \begin{enumerate}
 	\item 二项分布的泊松近似需要\(p \leq 0.1\)，而正态近似对\(p\)无限制；
 	\item 二项分布的正态近似中，“\(n\)充分大”一般认为\(n \geq 50\)；
-	\item \(n\)充分大时，\(P(X=a)\)和\(P(X=b)\)都很小，可以忽略不计，从而\[
+	\item \(n\)充分大时，\(P(X=a)\)和\(P(X=b)\)都很小，可以忽略不计，从而\begin{equation*}
 		P(a < X < b)
 		\approx P(a < X \leq b)
 		\approx P(a \leq X < b)
 		\approx P(a \leq X \leq b).
-	\]
+	\end{equation*}
 \end{enumerate}
 
 \subsection{李雅普洛夫中心极限定理}
@@ -535,29 +535,29 @@ Y_n \toP b\)，
 
 \begin{theorem}[李雅普洛夫中心极限定理]
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P181 定理3.5.3（李雅普洛夫中心极限定理）
-设\(\{X_n\}\)是独立随机变量序列，它们的数学期望与方差分别为\[
+设\(\{X_n\}\)是独立随机变量序列，它们的数学期望与方差分别为\begin{equation*}
 	E(X_n) = \mu_n, \quad
 	D(X_n) = \sigma_n^2,
 	\qquad n=1,2,\dotsc.
-\]
-记\[
+\end{equation*}
+记\begin{equation*}
 	Y_n \defeq \frac{1}{\gamma_n} \sum_{i=1}^n (X_i-\mu_i),
-\]
-其中\[
+\end{equation*}
+其中\begin{equation*}
 	\gamma_n = \sqrt{\sum_{i=1}^n \sigma_n^2}.
-\]
+\end{equation*}
 如果\begin{enumerate}
 	\item \(\{X_n\}\)中每个随机变量的3阶绝对中心矩存在且有限，
-	即\[
+	即\begin{equation*}
 		E(\abs{X_i-\mu_i}^3) < +\infty,
 		\quad i=1,2,\dotsc,
-	\]
+	\end{equation*}
 
-	\item 极限\[
+	\item 极限\begin{equation*}
 		\lim_{n\to\infty} \frac{1}{\gamma_n^3}
 			\sum_{i=1}^n E(\abs{X_i-\mu_i}^3)
 		= 0,
-	\]
+	\end{equation*}
 \end{enumerate}
 那么标准正态分布是\(Y_n\)的极限分布.
 \end{theorem}

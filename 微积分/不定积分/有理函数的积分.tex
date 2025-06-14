@@ -11,20 +11,20 @@
 否则称为\DefineConcept{假分式}.
 
 利用多项式的除法，总可以将一个假分式化为一个多项式与一个真分式之和的形式.
-例如\[
+例如\begin{equation*}
 	\frac{2x^4+x^2+3}{x^2+1}
 	= 2x^2-1+\frac{4}{x^2+1}.
 %@Mathematica: Apart[(2 x^4 + x^2 + 3)/(x^2 + 1)]
-\]
+\end{equation*}
 
 对于真分式\(\frac{P(x)}{Q(x)}\)，
-如果分母可分解为两个多项式的乘积\[
+如果分母可分解为两个多项式的乘积\begin{equation*}
 	Q(x) = Q_1(x)~Q_2(x),
-\]
+\end{equation*}
 且\(Q_1(x)\)与\(Q_2(x)\)没有公因式，
-那么它可分拆成两个真分式之和\[
+那么它可分拆成两个真分式之和\begin{equation*}
 	\frac{P(x)}{Q(x)} = \frac{P_1(x)}{Q_1(x)} + \frac{P_2(x)}{Q_2(x)},
-\]
+\end{equation*}
 我们把上述
 将真分式化为\DefineConcept{部分分式}（partial fraction）之和的
 步骤称为\DefineConcept{部分分式分解}（partial fraction decomposition）.
@@ -41,50 +41,50 @@
 \(P_2(x)\)为小于\(2l\)次的多项式.
 
 对于部分分式\(\frac{P_1(x)}{(x-a)^k}\)，
-我们总可运用以下公式：\[
+我们总可运用以下公式：\begin{equation*}
 	\int \frac{\dd{x}}{x-a} = \ln\abs{x-a} + C,
-\]\[
+\end{equation*}\begin{equation*}
 	\int \frac{\dd{x}}{(x-a)^k} = \frac{(x-a)^{1-k}}{1-k} + C,
 	\quad k>1.
-\]
+\end{equation*}
 
-现在我们研究如何计算\[
+现在我们研究如何计算\begin{equation*}
 	\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}.
-\]
-经过配方，得\[
+\end{equation*}
+经过配方，得\begin{equation*}
 	x^2+px+q = \left(x+\frac{p}{2}\right)^2 + q-\frac{p^2}{4}.
-\]
-令\(a^2=q-p^2/4\)，利用\(u=x+p/2\)换元，得\[
+\end{equation*}
+令\(a^2=q-p^2/4\)，利用\(u=x+p/2\)换元，得\begin{equation*}
 	\int \frac{Ax+B}{(x^2+px+q)^l} \dd{x}
 	= A \int \frac{u \dd{u}}{(a^2+u^2)^l}
 	+ \left(B - \frac{Ap}{2}\right) \int \frac{\dd{u}}{(a^2+u^2)^l}.
-\]
+\end{equation*}
 
-我们先求上式右边第一个不定积分\[
+我们先求上式右边第一个不定积分\begin{equation*}
 	J_l = \int \frac{u \dd{u}}{(a^2+u^2)^l}.
-\]
-当\(l=1\)时，\[
+\end{equation*}
+当\(l=1\)时，\begin{equation*}
 	J_1
 	= \int \frac{u \dd{u}}{a^2+u^2}
 	= \frac{1}{2} \ln(a^2+u^2) + C;
-\]
-当\(l>1\)时，\[
+\end{equation*}
+当\(l>1\)时，\begin{equation*}
 	J_l
 	= \int \frac{u \dd{u}}{(a^2+u^2)^l}
 	= \frac{1}{2(1-l)} (a^2+u^2)^{1-l} + C.
-\]
+\end{equation*}
 
-我们再求右边第二个不定积分\[
+我们再求右边第二个不定积分\begin{equation*}
 	I_l = \int \frac{1}{(a^2+u^2)^l} \dd{u}.
-\]
+\end{equation*}
 作分部积分，得\begin{align*}
 	I_l &= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{u^2}{(a^2+u^2)^{l+1}} \dd{u} \\
 	&= \frac{u}{(a^2+u^2)^l} + 2l \int \frac{a^2+u^2-a^2}{(a^2+u^2)^{l+1}} \dd{u} \\
 	&= \frac{u}{(a^2+u^2)^l} + 2l I_l - 2la^2 I_{l+1},
 \end{align*}
-由此推出\[
+由此推出\begin{equation*}
 	I_{l+1} = \frac{1}{2la^2} \frac{u}{(a^2+u^2)^l} + \frac{2k-1}{2ka^2} I_l.
-\]
+\end{equation*}
 这是一个递推公式.
 反复利用这个公式可以把指标\(l\)降低，
 最后归结为已知的不定积分.
@@ -97,30 +97,30 @@
 \begin{example}
 求\(\int \frac{x+1}{x^2-5x+6} \dd{x}\).
 \begin{solution}
-被积函数的分母可分解成\((x-3)(x-2)\)，故可设\[
+被积函数的分母可分解成\((x-3)(x-2)\)，故可设\begin{equation*}
 	\frac{x+1}{x^2-5x+6}
 	= \frac{A}{x-3} + \frac{B}{x-2},
-\]
-其中\(A,B\)为待定系数.上式两端通分后，得\[
+\end{equation*}
+其中\(A,B\)为待定系数.上式两端通分后，得\begin{equation*}
 	x+1 = A(x-2)+B(x-3),
-\]
-即\[
+\end{equation*}
+即\begin{equation*}
 	x+1 = (A+B)x -(2A+3B).
-\]
-比较上式两端同次幂的系数，即有\[
+\end{equation*}
+比较上式两端同次幂的系数，即有\begin{equation*}
 	\left\{ \begin{array}{l}
 		A+B = 1, \\
 		2A+3B = -1,
 	\end{array} \right.
-\]
+\end{equation*}
 从而解得\(A=4\)，\(B=-3\).
-于是\[
+于是\begin{equation*}
 	\int \frac{x+1}{x^2-5x+6} \dd{x}
 	= \int \left(\frac{4}{x-3} - \frac{3}{x-2}\right) \dd{x}
 	= 4\ln\abs{x-3} - 3\ln\abs{x-2} + C.
 %@Mathematica: Apart[(x + 1)/(x^2 - 5 x + 6)]
 %@Mathematica: Integrate[(x + 1)/(x^2 - 5 x + 6), x]
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 

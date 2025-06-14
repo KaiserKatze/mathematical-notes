@@ -1,33 +1,33 @@
 \section{伽马函数}
 \subsection{伽马函数的历史渊源}
 假设函数\(\Gamma\colon\mathbb{R}\to\mathbb{R}\)的值\(\Gamma(n+1)\)
-恰好与\(n\)的阶乘\(n!\)满足相等关系\[
+恰好与\(n\)的阶乘\(n!\)满足相等关系\begin{equation*}
 	\Gamma(n+1)
 	= n!
 	\equiv 1 \cdot 2 \cdot 3 \dotsm n
 	\quad(n\in\mathbb{N}).
 	\eqno(1)
-\]
-又假设函数\(\Gamma\)满足递推公式\[
+\end{equation*}
+又假设函数\(\Gamma\)满足递推公式\begin{equation*}
 	\Gamma(z+1) = z \cdot \Gamma(z)
 	\quad(z\in\mathbb{R}),
 	\eqno(2)
-\]
-那么有\[
+\end{equation*}
+那么有\begin{equation*}
 	\Gamma(z+n+1)
 	= z(z+1)\dotsm(z+n) \cdot \Gamma(z),
-\]
-即有\[
+\end{equation*}
+即有\begin{equation*}
 	\Gamma(z) = \frac{\Gamma(z+n+1)}{z(z+1)\dotsm(z+n)}.
 	\eqno(3)
-\]
+\end{equation*}
 假设当\(n\to\infty\)时，
 \(\Gamma(z+n+1)\)是\((z+n)!\)的等价无穷大，
-即\[
+即\begin{equation*}
 	\lim_{n\to\infty} \frac{(z+n)!}{\Gamma(z+n+1)}
 	= \lim_{n\to\infty} \frac{1 \cdot 2 \cdot 3 \dotsm n \cdot (n+1) \dotsm (n+z)}{\Gamma(z+n+1)}
 	= 1;
-\]
+\end{equation*}
 那么对(3)式取极限就有\begin{align*}
 	\Gamma(z)
 	\equiv \lim_{n\to\infty} \Gamma(z)
@@ -39,21 +39,21 @@
 		\frac{1 \cdot 2 \cdot 3 \dotsm n}{z(z+1)\dotsm(z+n)} \cdot (n+1) \dotsm (n+z).
 	\tag4
 \end{align*}
-又因为\[
+又因为\begin{equation*}
 	\lim_{n\to\infty} \frac{(n+1)(n+2)\dotsm(n+z)}{n^z} = 1,
-\]
+\end{equation*}
 所以(4)式化为\begin{equation}\label{equation:特殊函数.伽马函数的极限定义}
 	\Gamma(z)
 	= \lim_{n\to\infty} \frac{n^z \cdot n!}{z(z+1)\dotsm(z+n)}.
 \end{equation}
 像这样，我们就得到\(\Gamma\)函数的极限定义.
 
-我们可以验证，根据上述极限定义，有\(\Gamma(1) = 0!\)，即\[
+我们可以验证，根据上述极限定义，有\(\Gamma(1) = 0!\)，即\begin{equation*}
 	\Gamma(1)
 	= \lim_{n\to\infty} \frac{n^1 \cdot 1 \cdot 2 \dotsm n}{1 \cdot 2 \dotsm n \cdot (n+1)}
 	= \lim_{n\to\infty} \frac{n}{n+1}
 	= 1.
-\]
+\end{equation*}
 而且从\begin{align*}
 	\frac{\Gamma(z+1)}{\Gamma(z)}
 	&= \left[ \lim_{n\to\infty} \frac{n^{z+1} \cdot n!}{(z+1)(z+2)\dotsm(z+n+1)} \right] \bigg/ \left[ \lim_{n\to\infty} \frac{n^z \cdot n!}{z(z+1)\dotsm(z+n)} \right] \\
@@ -64,32 +64,32 @@
 也可以看出，函数\(\Gamma\)也确实满足递推公式(2)，进而也满足阶乘关系(1).
 
 \subsection{伽马函数的收敛性}
-现在我们来讨论含参反常积分\[
+现在我们来讨论含参反常积分\begin{equation*}
 	\Gamma\colon(0,+\infty)\to\mathbb{R},
 	s \mapsto \int_0^{+\infty} t^{s-1} e^{-t} \dd{t}
-\]的收敛性问题.
+\end{equation*}的收敛性问题.
 这个积分的积分区间为\([0,+\infty)\)，又当\(s-1<0\)时，\(t=0\)是被积函数的瑕点.
-为此，分别讨论下列两个积分\[
+为此，分别讨论下列两个积分\begin{equation*}
 	I_1 = \int_0^1 t^{s-1} e^{-t} \dd{t},
 	\qquad
 	I_2 = \int_1^{+\infty} t^{s-1} e^{-t} \dd{t}
-\]的收敛性.
+\end{equation*}的收敛性.
 
 当\(s \geq 1\)时，
 \(I_1\)是定积分；
 当\(0 < s < 1\)时，
-因为\[
+因为\begin{equation*}
 	t^{s-1} \cdot e^{-t}
 	= \frac{1}{t^{1-s}} \cdot \frac{1}{e^t} < \frac{1}{t^{1-s}},
-\]
+\end{equation*}
 而\(1-s < 1\)，
 根据\hyperref[theorem:定积分.无界函数的反常积分的比较审敛法]{无界函数反常积分的比较审敛法}，
 反常积分\(I_1\)收敛.
 
-又因为\[
+又因为\begin{equation*}
 	\lim_{t\to+\infty} t^2 (e^{-t} t^{s-1})
 	= \lim_{t\to+\infty} \frac{t^{s+1}}{e^t} = 0,
-\]
+\end{equation*}
 根据\hyperref[theorem:定积分.无穷限反常积分的极限审敛法]{无穷限反常积分的极限审敛法}，
 反常积分\(I_2\)也收敛.
 
@@ -132,13 +132,13 @@
 	\label{figure:定积分.伽马函数}
 \end{figure}
 
-特别地，函数\[
+特别地，函数\begin{equation*}
 	G(s,z) = \int_z^{+\infty} t^{s-1} e^{-t} \dd{t}
-\]
+\end{equation*}
 称为\DefineConcept{不完全伽马函数}.
-函数\[
+函数\begin{equation*}
 	G(s,z_0,z_1) = \int_{z_0}^{z_1} t^{s-1} e^{-t} \dd{t}
-\]
+\end{equation*}
 称为\DefineConcept{广义不完全伽马函数}.
 
 \subsection{伽马函数与贝塔函数的关系}
@@ -235,11 +235,11 @@
 \begin{property}
 \(\Gamma(s)\to+\infty\ (s\to0^+)\).
 \begin{proof}
-因为\[
+因为\begin{equation*}
 	\Gamma(s) = \frac{\Gamma(s+1)}{s},
 	\qquad
 	\Gamma(1) = 1,
-\]
+\end{equation*}
 所以当\(s\to0^+\)时，
 \(\Gamma(s)\to+\infty\).
 \end{proof}
@@ -251,20 +251,20 @@
 	= \frac{\pi}{\sin{\pi s}} \quad (0 < s < 1).
 \end{equation}
 \begin{proof}
-由\cref{equation:定积分.伽马函数与贝塔函数的关系} 有\[
+由\cref{equation:定积分.伽马函数与贝塔函数的关系} 有\begin{equation*}
 	\Gamma(s) \cdot \Gamma(1-s)
 	= B(s,1-s)
 	= \int_0^1 t^{s-1} (1-t)^{-s} \dd{t}
 	= \int_0^1 \frac1t \left(\frac{t}{1-t}\right)^s \dd{t}.
-\]
+\end{equation*}
 令\(x=\frac{t}{1-t}\)，
 则\(t=\frac{x}{1+x}\)，
 \(\dd{t}=\frac1{(1+x)^2} \dd{x}\)，
-于是\[
+于是\begin{equation*}
 	\Gamma(s) \cdot \Gamma(1-s)
 	= \int_0^{+\infty} \frac{1+x}{x} \cdot x^s \cdot \frac1{(1+x)^2} \dd{x}
 	= \int_0^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}.
-\]
+\end{equation*}
 记\(I_1 = \int_0^1 \frac{x^{s-1}}{1+x} \dd{x},
 I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 则\(\Gamma(s) \cdot \Gamma(1-s) = I_1 + I_2\).
@@ -289,28 +289,28 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 \end{align*}
 
 记\(f(x)=\cos(sx)\).
-将\(f\)展开，得\[
+将\(f\)展开，得\begin{equation*}
 	\cos(sx) = \frac{a_0}2 + \sum_{n=1}^\infty (a_n \cos(nx) + b_n \sin(nx)),
-\]
+\end{equation*}
 其中\begin{gather*}
 	a_n = \frac1\pi \int_{-\pi}^\pi \cos(sx) \cos(nx) \dd{x}
 	= \frac{(-1)^n \cdot 2s \cdot \sin(\pi s)}{\pi(s^2-n^2)}, \\
 	b_n = \frac1\pi \int_{-\pi}^\pi \cos(sx) \sin(nx) \dd{x} = 0.
 \end{gather*}
-于是\[
+于是\begin{equation*}
 	\cos(sx) = \frac{\sin(\pi s)}{\pi s}
 	+ \sum_{n=1}^\infty \frac{(-1)^n \cdot 2s \cdot \sin(\pi s)}{\pi(s^2-n^2)} \cdot \cos(nx).
-\]
+\end{equation*}
 令\(x=0\)，
 得\(1 = \frac{\sin(\pi s)}{\pi s}
 + \frac{\sin(\pi s)}{\pi} \sum_{n=1}^\infty \frac{(-1)^n \cdot 2s}{s^2-n^2}\)，
 即\(\sum_{n=1}^\infty \frac{(-1)^n \cdot 2s}{s^2-n^2} = \frac{\pi}{\sin(\pi s)} - \frac1s\).
 
-由上可知\[
+由上可知\begin{equation*}
 	\Gamma(s) \cdot \Gamma(1-s)
 	= \frac{\pi}{\sin(\pi s)}.
 	\qedhere
-\]
+\end{equation*}
 %@see: 【余元公式的证明推导过程】https://www.bilibili.com/video/BV17M4m1m7ZH
 \end{proof}
 \end{property}
@@ -339,11 +339,11 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 
 在 \labelcref{equation:定积分.伽马函数.中间步骤1} 中，
 令\(s=\frac12\)，
-得\[
+得\begin{equation*}
 	2\int_0^{+\infty} e^{-u^2} \dd{u}
 	= \Gamma\left(\frac{1}{2}\right)
 	= \sqrt{\pi},
-\]
+\end{equation*}
 于是我们算得\cref{example:定积分.高斯积分的收敛性} 中的高斯积分的值为\begin{equation}
 	\int_0^{+\infty} e^{-u^2} \dd{u} = \frac{\sqrt{\pi}}{2}.
 \end{equation}
@@ -373,24 +373,24 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 \end{example}
 
 \begin{example}
-证明：\[
+证明：\begin{equation*}
 	\Gamma\left(\frac{2k+1}{2}\right)
 	= \sqrt{\pi} \cdot \frac{(2k-1)!!}{2^k},
-\]
+\end{equation*}
 其中\(k\in\mathbb{N}^+\).
 \begin{proof}
-由\cref{equation:伽马函数.递推公式} 有\[
+由\cref{equation:伽马函数.递推公式} 有\begin{equation*}
 	\Gamma\left(\frac{2k+1}{2}\right)
 	= \Gamma\left(\frac{2k-1}{2}+1\right)
 	= \frac{2k-1}{2} \cdot \Gamma\left(\frac{2k-1}{2}\right),
-\]
+\end{equation*}
 又因为\(\Gamma\left(\frac12\right) = \sqrt{\pi}\)，
-所以\[
+所以\begin{equation*}
 	\Gamma\left(\frac{2k+1}{2}\right)
 	= \Gamma\left(\frac12\right) \cdot \prod_{i=1}^k \frac{2i-1}{2}
 	= \sqrt{\pi} \cdot \frac{(2k-1)!!}{2^k}.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{example}
 
@@ -418,9 +418,9 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 	(2n-1)!! = \frac{\Gamma(2n)}{2^{n-1} \cdot \Gamma(n)}.
 \end{equation}
 \begin{proof}
-由\cref{equation:定积分.伽马函数与阶乘的联系} 有，\[
+由\cref{equation:定积分.伽马函数与阶乘的联系} 有，\begin{equation*}
 	(2n)! = \Gamma(2n+1).
-\]
+\end{equation*}
 又因为\begin{align*}
 	(2n)!
 	&= \prod_{k=1}^{2n} k \\
@@ -431,14 +431,14 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 	&= 2^n \cdot \Gamma(n+1) \cdot (2n-1)!!,
 		\tag{\cref{equation:定积分.伽马函数与双阶乘的联系1}}
 \end{align*}
-所以\[
+所以\begin{equation*}
 	\Gamma(2n+1)
 	= 2^n \cdot \Gamma(n+1) \cdot (2n-1)!!,
-\]
-因此\[
+\end{equation*}
+因此\begin{equation*}
 	(2n-1)!!
 	= \frac{\Gamma(2n+1)}{2^n \cdot \Gamma(n+1)}.
-\]
+\end{equation*}
 也就是说，\cref{equation:定积分.伽马函数与双阶乘的联系2} 对任意整数\(n\)都成立.
 \end{proof}
 \end{example}
@@ -485,12 +485,12 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 	&= \frac{1}{n} \Gamma\left(\frac{1}{n}\right)
 	= \Gamma\left(1+\frac{1}{n}\right).
 \end{align*}
-又因为伽马函数在其定义域上是连续的，所以\[
+又因为伽马函数在其定义域上是连续的，所以\begin{equation*}
 	\lim_{n\to\infty} \int_0^{+\infty} e^{-x^n} \dd{x}
 	= \lim_{n\to\infty} \Gamma\left(1+\frac{1}{n}\right)
 	= \Gamma\left(1+\lim_{n\to\infty} \frac{1}{n}\right)
 	= \Gamma(1) = 1.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -513,11 +513,11 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 	< \frac{1}{12}\left(\frac{1}{x}-\frac{1}{x+1}\right).
 \end{equation}
 \begin{proof}
-由于\[
+由于\begin{equation*}
 	\ln\frac{1+x}{1-x}
 	= 2 \sum_{k=0}^\infty \frac{x^{2k+1}}{2k+1}
 	\quad(-1<x<1),
-\]
+\end{equation*}
 所以\begin{align*}
 	\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x})
 	&= \frac{2x+1}{2} \ln\frac{
@@ -529,12 +529,12 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 	2 \sum_{k=0}^\infty \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k+1} \\
 	&= \sum_{k=0}^\infty \frac{1}{2k+1} \left(\frac{1}{2x+1}\right)^{2k},
 \end{align*}
-从而\[
+从而\begin{equation*}
 	\left(x+\frac{1}{2}\right) \ln(1+\frac{1}{x}) - 1
 	= \frac{1}{3} \left(\frac{1}{2x+1}\right)^2
 	+ \frac{1}{5} \left(\frac{1}{2x+1}\right)^4
 	+ \dotsb.
-\]
+\end{equation*}
 显然上式（当\(x>0\)时）恒大于零；
 另外，上式右边小于\begin{align*}
 	&\hspace{-20pt}
@@ -633,9 +633,9 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 	= \ln\sqrt{2\pi}.
 \end{equation}
 \begin{proof}
-在斯特林公式\[
+在斯特林公式\begin{equation*}
 	\lim_{n\to\infty} \frac{n!}{(n/e)^n \sqrt{2\pi n}} = 1
-\]的两边取对数，
+\end{equation*}的两边取对数，
 即得 \labelcref{equation:定积分.伽马函数的斯特灵近似.引理4}.
 \end{proof}
 \end{lemma}
@@ -651,18 +651,18 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 \end{equation}
 \begin{proof}
 因为\(\Gamma(x+1) = x \Gamma(x)\)，
-故可证\[
+故可证\begin{equation*}
 	\Gamma(x) = \frac{1}{x} \sqrt{2\pi x} \left(\frac{x}{e}\right)^x e^{\frac{\theta(x)}{12x}},
-\]
+\end{equation*}
 再两边取对数，
-得\[
+得\begin{equation*}
 	\ln \Gamma(x) = \ln\sqrt{2\pi} + \left(x - \frac{1}{2}\right) \ln x - x + \frac{\theta(x)}{12x}.
-\]
+\end{equation*}
 
-由等式\[
+由等式\begin{equation*}
 	\ln\frac{n^x n!}{x(x+1)\dotsm(x+n)}
 	= \ln n! + x \ln n - \sum_{k=0}^n \ln(k+x)
-\]
+\end{equation*}
 和\cref{theorem:定积分.伽马函数的斯特灵近似.引理3}，
 可得\begin{align*}
 	&\hspace{-5pt}
@@ -687,13 +687,13 @@ I_2 = \int_1^{+\infty} \frac{x^{s-1}}{1+x} \dd{x}\)，
 	= x.
 \end{align*}}
 那么只要令\(n\to\infty\)，
-即得\[
+即得\begin{equation*}
 	\ln\Gamma(x) - \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t}
 	= \ln\sqrt{2\pi} - x + \left(x - \frac{1}{2}\right) \ln x.
-\]
-若记\[
+\end{equation*}
+若记\begin{equation*}
 	\theta(x) = 12 x \int_0^{+\infty} \frac{\floor{t} - t + 1/2}{t + x} \dd{t},
-\]
+\end{equation*}
 则由\cref{theorem:定积分.伽马函数的斯特灵近似.引理3} 可知，
 必有\(0<\theta(x)<1\)，
 如此便得要证的 \labelcref{equation:定积分.伽马函数的斯特林近似}.

@@ -3,108 +3,108 @@
 这里，我们简单介绍一阶微分方程和二阶齐次线性微分方程的幂级数解法.
 
 \subsubsection{一阶微分方程的幂级数解法}
-为求一阶微分方程\[
+为求一阶微分方程\begin{equation*}
 \dv{y}{x} = f(x,y)
-\]满足初始条件\(\eval{y}_{x=x_0} = y_0\)的特解，如果其中函数\(f(x,y)\)是\((x-x_0),(y-y_0)\)的多项式\[
+\end{equation*}满足初始条件\(\eval{y}_{x=x_0} = y_0\)的特解，如果其中函数\(f(x,y)\)是\((x-x_0),(y-y_0)\)的多项式\begin{equation*}
 f(x,y) = a_{00} + a_{10} (x-x_0) + a_{01} (y-y_0) + \dotsb + a_{lm} (x-x_0)^l (y-y_0)^m.
-\]那么可以设所求特解可展开为\((x-x_0)\)的幂级数：\[
+\end{equation*}那么可以设所求特解可展开为\((x-x_0)\)的幂级数：\begin{equation*}
 y = y_0 + a_1 (x-x_0) + a_2 (x-x_0)^2 + \dotsb + a_n (x-x_0)^n + \dotsb,
-\]其中\(a_1,a_2,\dotsc\)是待定系数.
+\end{equation*}其中\(a_1,a_2,\dotsc\)是待定系数.
 把上式代入微分方程中，便得一恒等式，比较所得恒等式两端\((x-x_0)\)的同次幂的系数，就可定出常数\(a_1,a_2,\dotsc\)，以这些常数为系数的级数在其收敛区间内就是所求一阶微分方程满足初始条件的通解.
 
 \begin{example}
 求方程\(\dv{y}{x} = x + y^2\)满足\(\eval{y}_{x=0}=0\)的特解.
 \begin{solution}
-这时\(x_0=y_0=0\)，故设\[
+这时\(x_0=y_0=0\)，故设\begin{equation*}
 y = a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \dotsb,
-\]把\(y\)及\(y'\)的幂级数展开式代入原方程，得\begin{align*}
+\end{equation*}把\(y\)及\(y'\)的幂级数展开式代入原方程，得\begin{align*}
 a_1 + 2a_2 x + 3a_3 x^2 + 4a_4 x^3 + \dotsb
 &= x + (a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \dotsb)^2 \\
 &= x + a_1^2 x^2 + 2a_1a_2 x^3 + (a_2^2 + 2a_1a_3) x^4 + \dotsb,
 \end{align*}
-比较上式两边\(x\)的同次幂的系数，得\[
+比较上式两边\(x\)的同次幂的系数，得\begin{equation*}
 a_1 = 0, \qquad
 a_2 = \frac{1}{2}, \qquad
 a_3 = 0, \qquad
 a_4 = 0, \qquad
 a_5 = \frac{1}{20},
-\]于是\[
+\end{equation*}于是\begin{equation*}
 y = \frac{1}{2} x^2 + \frac{1}{20} x^5 + \dotsb.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
 \subsubsection{二阶齐次线性微分方程的幂级数解法}
-关于二阶齐次线性方程\[
+关于二阶齐次线性方程\begin{equation*}
 	y'' + P(x) y' + Q(x) y = 0
-\]用幂级数求解的问题，我们先叙述一个定理：
+\end{equation*}用幂级数求解的问题，我们先叙述一个定理：
 \begin{theorem}
 如果二阶齐次线性方程中的系数\(P(x)\)与\(Q(x)\)
 可在\(-R<x<R\)内展开为\(x\)的幂级数，
-那么在\(-R<x<R\)内方程必有形如\[
+那么在\(-R<x<R\)内方程必有形如\begin{equation*}
 	y = \sum_{n=0}^\infty a_n x^n
-\]的解.
+\end{equation*}的解.
 \end{theorem}
 
 \begin{example}
 求微分方程\(y''-xy=0\)满足初始条件\(\eval{y}_{x=0}=0\)和\(\eval{y'}_{x=0}=1\)的特解.
 \begin{solution}
 这里\(P(x)=0, Q(x)=-x\)在整个数轴上满足定理的条件.
-因此不妨设所求的解\(y(x)\)展开成\(x\)的幂级数为\[
+因此不妨设所求的解\(y(x)\)展开成\(x\)的幂级数为\begin{equation*}
 	y = \sum_{n=0}^\infty a_n x^n.
-\]
+\end{equation*}
 由条件\(\eval{y}_{x=0}=0\)，
 得\(a_0=0\).
-对幂级数逐项求导，有\[
+对幂级数逐项求导，有\begin{equation*}
 	y' = \sum_{n=1}^\infty n a_n x^{n-1},
-\]
+\end{equation*}
 由条件\(\eval{y'}_{x=0}=1\)，
 得\(a_1=1\).
-于是所求特解\(y\)及\(y'\)的展开式成为\[
+于是所求特解\(y\)及\(y'\)的展开式成为\begin{equation*}
 	y = x + \sum_{n=2}^\infty a_n x^n,
-\]\[
+\end{equation*}\begin{equation*}
 	y' = 1 + \sum_{n=2}^\infty n a_n x^{n-1}.
-\]
-再次逐项求导，得\[
+\end{equation*}
+再次逐项求导，得\begin{equation*}
 	y'' = \sum_{n=2}^\infty n(n-1) a_n x^{n-2}.
-\]
+\end{equation*}
 将\(y,y',y''\)代入原方程，
-得\[
+得\begin{equation*}
 	\sum_{n=2}^\infty n(n-1) a_n x^{n-2}
 	- x \left( x + \sum_{n=2}^\infty a_n x^n \right)
 	= 0,
-\]
-按\(x\)的升幂顺序，合并同类项，得\[
+\end{equation*}
+按\(x\)的升幂顺序，合并同类项，得\begin{equation*}
 	2 a_2 + 3\cdot2 a_3 x + (4\cdot3 a_4 - 1) x^2
 	+ (5\cdot4 a_5 - a_2) x^3 + (6\cdot5 a_6 - a_3) x^4
 	+ \dotsb + [(n+2)(n+1) a_{n+2} - a_{n-1}] x^n + \dotsb
 	= 0.
-\]
+\end{equation*}
 因为上式是恒等式，
 所以上式左端各项的系数必全为零，
-于是又\[
+于是又\begin{equation*}
 	a_2 = 0,
 	a_3 = 0,
 	a_4 = \frac{1}{4\cdot3},
 	a_5 = 0,
 	a_6 = 0,
 	\dotsc,
-\]
-一般地，\[
+\end{equation*}
+一般地，\begin{equation*}
 	a_{n+2} = \frac{a_{n-1}}{(n+2)(n+1)}
 	\quad(n=3,4,\dotsc).
-\]
-可以推得\[
+\end{equation*}
+可以推得\begin{equation*}
 	a_{3m+1} = \frac{1}{(3m+1)(3m) \dotsm 7\cdot6\cdot4\cdot3}
 	\quad(m=1,2,\dotsc).
-\]
-于是所求特解为\[
+\end{equation*}
+于是所求特解为\begin{equation*}
 	y = x + \frac{x^4}{4\cdot3} + \frac{x^7}{7\cdot6\cdot4\cdot3}
 	+ \frac{x^{10}}{10\cdot9\cdot7\cdot6\cdot4\cdot3}
 	+ \dotsb
 	+ \frac{x^{3m+1}}{(3m+1)(3m) \dotsm 7\cdot6\cdot4\cdot3}
 	+ \dotsb.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -116,13 +116,13 @@ y = \frac{1}{2} x^2 + \frac{1}{20} x^5 + \dotsb.
 
 我们将\cref{equation:无穷级数.幂级数展开式2,equation:无穷级数.幂级数展开式5}
 分别作为正弦函数和余弦函数的定义式：
-\[
+\begin{equation*}
 	\sin x \defeq \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} x^{2k+1}
 	\quad(-\infty<x<+\infty),
-\]\[
+\end{equation*}\begin{equation*}
 	\cos x \defeq \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!} x^{2k}
 	\quad(-\infty<x<+\infty).
-\]
+\end{equation*}
 
 容易验证：
 \((\sin x)' = \cos x\)，
@@ -140,29 +140,29 @@ y = \frac{1}{2} x^2 + \frac{1}{20} x^5 + \dotsb.
 现在我们来证明和积互化公式.
 这里我们只挑出两个最基本的和差化积公式作出证明.
 对于其他和积互化公式，我们只需应用初等的代数方法就可以证得.
-例如，要证\[
+例如，要证\begin{equation*}
 \sin(x+y) \equiv \sin x \cos y + \cos x \sin y,
 \qquad
 \cos(x+y) \equiv \cos x \cos y - \sin x \sin y
-\]成立，
-只需构造辅助函数\[
+\end{equation*}成立，
+只需构造辅助函数\begin{equation*}
 \phi(x)
 = \sin(x+y) - (\sin x \cos y + \cos x \sin y),
-\]\[
+\end{equation*}\begin{equation*}
 \psi(x)
 = \cos(x+y) - (\cos x \cos y - \sin x \sin y),
-\]再证明\(\phi(x),\psi(x) \equiv 0\).
-令\[
+\end{equation*}再证明\(\phi(x),\psi(x) \equiv 0\).
+令\begin{equation*}
 \rho(x)
 = [\phi(x)]^2 + [\psi(x)]^2.
-\]
+\end{equation*}
 并注意到\(\phi'(x) = \psi(x)\)，
 \(\psi'(x) = -\phi'(x)\)，
 就有\(\rho'(x) \equiv 0\)，
 也就是说\(\rho(x)\)也是常值函数.
-由于\[
+由于\begin{equation*}
 \rho(0) = [\phi(0)]^2 + [\psi(0)]^2 = 0,
-\]
+\end{equation*}
 所以\(\rho(x) \equiv 0\)；
 又因为\(\phi(x),\psi(x) \in \mathbb{R}\)，
 所以\(\phi(x),\psi(x) \equiv 0\)，

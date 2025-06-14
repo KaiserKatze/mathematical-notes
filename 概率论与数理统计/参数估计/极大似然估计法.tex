@@ -25,9 +25,9 @@
 设总体\(X\)仅含一个未知参数\(\theta\)，
 并且总体的分布律或密度函数已知.
 假设我们已经取得一组样本观测值\(\AutoTuple{x}{n}\).
-若存在\(\hat{\theta}\)使得\[
+若存在\(\hat{\theta}\)使得\begin{equation*}
 	L(\hat{\theta}) = \max_\theta L(\theta),
-\]
+\end{equation*}
 则把\(\hat{\theta}(\AutoTuple{x}{n})\)称为
 “未知参数\(\theta\)的\DefineConcept{极大似然估计值}”，
 而把统计量\(\hat{\theta}(\AutoTuple{X}{n})\)称为
@@ -40,10 +40,10 @@
 其中\(\theta\)是未知参数.若取得样本观测值\(\AutoTuple{x}{n}\)，
 则因为随机变量\(X_i\)落在点\(x_i\)的邻域
 （设其长度为\(\increment x_i\)）
-内的概率近似于\[
+内的概率近似于\begin{equation*}
 	f(x_i,\theta) \increment x_i
 	\quad(i=1,2,\dotsc,n),
-\]
+\end{equation*}
 则样本\((\AutoTuple{X}{n})\)落在样本观测值\((\AutoTuple{x}{n})\)邻域的概率近似为
 \(\prod_{i=1}^n f(x_i,\theta) \increment x_i\).
 那么\(\theta\)的估计值\(\hat{\theta}\)
@@ -56,13 +56,13 @@
 仍然称\(L(\theta)\)为似然函数.
 
 \begin{definition}
-用于解出使\(L(\theta)\)取得最大值的极大似然估计值\(\hat{\theta}\)的方程\[
+用于解出使\(L(\theta)\)取得最大值的极大似然估计值\(\hat{\theta}\)的方程\begin{equation*}
 	\dv{\theta} L(\theta) = 0
-\]称为\DefineConcept{似然方程}.
+\end{equation*}称为\DefineConcept{似然方程}.
 
-由于\(\ln L\)和\(L\)在相同的\(\theta\)处取得最大值，有时候也采用方程\[
+由于\(\ln L\)和\(L\)在相同的\(\theta\)处取得最大值，有时候也采用方程\begin{equation*}
 	\dv{\theta} \ln L(\theta) = 0,
-\]
+\end{equation*}
 以解出极大似然估计值\(\hat{\theta}\)，
 并称之为\DefineConcept{对数似然方程}.
 \end{definition}
@@ -80,48 +80,48 @@
 \(\AutoTuple{x}{n}\)为样本观测值，
 求\(p\)及\(m=E(X)\)的极大似然估计.
 \begin{solution}
-总体\(X\)的分布律为\[
+总体\(X\)的分布律为\begin{equation*}
 	f(x,p)
 	= C_N^x p^x (1-p)^{N-x},
 	\quad x=0,1,\dots,N.
-\]
-故似然函数为\[
+\end{equation*}
+故似然函数为\begin{equation*}
 	L(p)
 	= \prod_{i=1}^n f(x_i,p)
 	= \prod_{i=1}^n C_N^{x_i} p^{x_i} (1-p)^{N-x_i}
 	= p^{\sum_{i=1}^n x_i}
 		(1-p)^{nN-\sum_{i=1}^n x_i}
 		\prod_{i=1}^n C_N^{x_i},
-\]
-取对数，得\[
+\end{equation*}
+取对数，得\begin{equation*}
 	\ln L(p)
 	= \sum_{i=1}^n x_i \ln p
 	+ \left(nN - \sum_{i=1}^n{x_i}\right) \ln(1-p)
 	+ \sum_{i=1}^n \ln C_N^{x_i}.
-\]
-求导得\[
+\end{equation*}
+求导得\begin{equation*}
 	\dv{p} \ln L(p)
 	= \frac{1}{p} \sum_{i=1}^n{x_i}
 	- \frac{1}{1-p} \left(nN - \sum_{i=1}^n{x_i}\right).
-\]
+\end{equation*}
 建立对数似然方程\(\dv{p} \ln L(p) = 0\)，
-解得\(p\)的极大似然估计值为\[
+解得\(p\)的极大似然估计值为\begin{equation*}
 	\hat{p}
 	= \frac{1}{nN} \sum_{i=1}^n x_i
 	= \frac{\overline{x}}{N},
-\]
+\end{equation*}
 其中\(\overline{x}=\frac{1}{n}\sum_{i=1}^n{x_i}\).
-而\(p\)的极大似然估计量为\[
+而\(p\)的极大似然估计量为\begin{equation*}
 	\hat{p} = \frac{\overline{X}}{N}.
-\]
+\end{equation*}
 
 又因为\(m=E(X)=Np\)，
-故\(m\)的极大似然估计值为\[
+故\(m\)的极大似然估计值为\begin{equation*}
 	\hat{m} = N\hat{p} = \overline{x},
-\]
-而\(m\)的极大似然估计量为\[
+\end{equation*}
+而\(m\)的极大似然估计量为\begin{equation*}
 	\hat{m} = \overline{X}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -139,30 +139,30 @@
 \(f(x,\theta)=e^{\theta x - \phi(\theta)} h(x)\)，
 取得样本观测值\(\AutoTuple{x}{n}\)，
 注意\(\theta\)是\(m\)的函数\(\theta(m)\)，
-故得似然函数\[
+故得似然函数\begin{equation*}
 	L(m) = \prod_{i=1}^n e^{\theta(m) x_i -\phi[\theta(m)]} h(x_i)
 	= \exp\left\{
 		\theta(m) \sum_{i=1}^n[x_i - n \phi(\theta(m))]
 		\prod_{i=1}^n{h(x_i)}
 	\right\},
-\]
-再取对数得\[
+\end{equation*}
+再取对数得\begin{equation*}
 	\ln L(m)
 	= \theta(m) \sum_{i=1}^n x_i - n \phi[\theta(m)]
 	+ \ln \prod_{i=1}^n{h(x_i)}.
-\]
+\end{equation*}
 
-令\[
+令\begin{equation*}
 	\dv{m} \ln L(m)
 	= \theta'(\theta) \sum_{i=1}^n{x_i}
 	- n \phi'[\theta(m)] \theta'(m) = 0,
-\]
+\end{equation*}
 由于\(\phi'(\theta) = m\)，
 \(\dv{m}{\theta} = \phi''(\theta) = D(X) > 0\)，
 从而\(\theta'(m) = \dv{\theta}{m} > 0\)，
-所以\[
+所以\begin{equation*}
 	\sum_{i=1}^n{x_i} - nm = 0.
-\]
+\end{equation*}
 可见\(m\)的极大似然估计值为
 \(\hat{m} = \overline{x}\)，
 其极大似然估计量为
@@ -182,12 +182,12 @@
 
 当总体\(X\)的分布中含有多个未知参数，
 即\(\vb{\theta}=(\AutoTuple{\theta}{k})\)时，
-似然函数为\[
+似然函数为\begin{equation*}
 	L(\vb{\theta})
 	= L(\AutoTuple{\theta}{k}).
-\]
+\end{equation*}
 于是我们有若干个对数似然方程，
-需要建立对数似然方程组\[
+需要建立对数似然方程组\begin{equation*}
 	\def\g#1{\pdv{\theta_{#1}} \ln L(\vb{\theta}) = 0}
 	\left\{ \def\arraystretch{1.5} \begin{array}{l}
 		\g{1}, \\
@@ -195,7 +195,7 @@
 		\hdotsfor{1} \\
 		\g{k}. \\
 	\end{array} \right.
-\]
+\end{equation*}
 若对数似然方程组有解\(\hat{\vb\theta}=(\AutoTuple{\hat{\theta}}{k})\)，
 则它们分别是\(\vb\theta=(\AutoTuple{\theta}{k})\)的极大似然估计值.
 
@@ -215,29 +215,29 @@
 	&= (2\pi\sigma^2)^{-\frac{n}{2}}
 		\exp[-\frac{1}{2\sigma^2} \sum_{i=1}^n{(x_i-\mu)^2}],
 \end{align*}
-取对数，得\[
+取对数，得\begin{equation*}
 	\ln L(\mu,\sigma^2)
 	= -\frac{n}{2} (\ln{2\pi} + \ln \sigma^2)
 	- \frac{1}{2\sigma^2} \sum_{i=1}^n{(x_i-\mu)^2},
-\]
-从而有\[
+\end{equation*}
+从而有\begin{equation*}
 	\left\{ \begin{array}{l}
 		\pdv{\mu} \ln L(\mu,\sigma^2) = \frac{1}{\sigma^2} \sum_{i=1}^n{(x_i-\mu)} = 0, \\
 		\pdv{(\sigma^2)} \ln L(\mu,\sigma^2) = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n{(x_i-\mu)^2} = 0.
 	\end{array} \right.
-\]
-解得\(\mu\)及\(\sigma^2\)的极大似然估计值为\[
+\end{equation*}
+解得\(\mu\)及\(\sigma^2\)的极大似然估计值为\begin{equation*}
 	\left\{ \begin{array}{l}
 	\hat{\mu} = \overline{x}, \\
 	\hat{\sigma^2} = \frac{1}{n} \sum_{i=1}^n{(x_i-\overline{x})^2} = b_2,
 	\end{array} \right.
-\]
-而其极大似然估计量为\[
+\end{equation*}
+而其极大似然估计量为\begin{equation*}
 	\left\{ \begin{array}{l}
 		\hat{\mu} = \overline{X}, \\
 		\hat{\sigma^2} = \frac{1}{n} \sum_{i=1}^n{(X_i-\overline{X})^2} = B_2.
 	\end{array} \right.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 由上可知，当总体\(X \sim N(\mu,\sigma^2)\)时，
@@ -251,26 +251,26 @@
 \(\AutoTuple{x}{n}\)是样本观测值.
 求\(\theta\)的极大似然估计.
 \begin{solution}
-\(X\)的密度函数为\[
+\(X\)的密度函数为\begin{equation*}
 f(x,\theta) = \left\{ \begin{array}{cl}
 \theta^{-1}, & 0 \leq x \leq \theta, \\
 0, & \text{其他},
 \end{array} \right.
-\]而似然函数为\[
+\end{equation*}而似然函数为\begin{equation*}
 L(\theta) = \prod_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
 \quad x_i \in [0,\theta], \quad i=1,2,\dotsc,n.
-\]由于似然方程\(\dv{\theta} L(\theta) = -n\theta^{-1-n} = 0\)在\(\theta>0\)无解.
+\end{equation*}由于似然方程\(\dv{\theta} L(\theta) = -n\theta^{-1-n} = 0\)在\(\theta>0\)无解.
 所以应该考虑似然估计的定义.
 因为似然函数\(L(\theta)=\theta^{-n}\)在\(\theta>0\)时为\(\theta\)的单调递减函数，
 \(\theta\)越小则\(L(\theta)\)越大；但另一方面，\(x_i\in[0,\theta]\)，
 故有\(\max_{1 \leq i \leq n} x_i \in [0,\theta]\).
 故当\(\hat{\theta}=\max_{1 \leq i \leq n} x_i\)时，
 \(L(\hat{\theta})=\max L(\theta)\).
-所以，\(\theta\)的极大似然估计值为\[
+所以，\(\theta\)的极大似然估计值为\begin{equation*}
 \hat{\theta} = \max_{1 \leq i \leq n} x_i,
-\]而其极大似然估计量为\[
+\end{equation*}而其极大似然估计量为\begin{equation*}
 \max_{1 \leq i \leq n} X_i.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 

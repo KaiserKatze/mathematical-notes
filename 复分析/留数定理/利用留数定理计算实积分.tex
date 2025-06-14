@@ -2,15 +2,15 @@
 在一些实际的物理问题中，
 常常需要计算一些原函数不易求出或原函数不能用初等函数表示的实积分，
 特别是其中的广义积分.
-例如，在研究有阻尼的振动时，将遇到狄利克雷积分\[
+例如，在研究有阻尼的振动时，将遇到狄利克雷积分\begin{equation*}
 	\int_0^\infty \frac{\sin x}{x} \dd{x};
-\]
-在研究光的衍射时，将遇到菲涅尔积分\[
+\end{equation*}
+在研究光的衍射时，将遇到菲涅尔积分\begin{equation*}
 	\int_0^\infty \sin x^2 \dd{x};
-\]
-在研究热传导时，将遇到泊松积分\[
+\end{equation*}
+在研究热传导时，将遇到泊松积分\begin{equation*}
 	\int_0^\infty e^{-ax^2} \cos bx \dd{x}.
-\]
+\end{equation*}
 用微积分中计算实积分的方法来计算这类积分，
 要么极为复杂，要么就不可能.
 现在我们可以利用留数定理来巧妙地计算这类实积分.
@@ -27,30 +27,30 @@
 \subsection{计算\texorpdfstring{\(\int_0^{2\pi} R(\cos\theta,\sin\theta) \dd{\theta}\)型}{在[0,2π]区间上的含有三角函数的}积分}
 \begin{theorem}\label{theorem:留数定理.利用留数定理计算实积分1}
 设\(R(\cos\theta,\sin\theta)\)为\(\cos\theta,\sin\theta\)的有理函数，
-且在\([0,2\pi]\)上连续，则\[
+且在\([0,2\pi]\)上连续，则\begin{equation*}
 	\int_0^{2\pi} R(\cos\theta,\sin\theta) \dd{\theta}
 	= 2\pi\iu \sum_{\abs{a_k}<1} \Res_{z=a_k} f(z),
-\]
+\end{equation*}
 其中\(f(z) = \frac{1}{\iu z} R\left(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2\iu}\right)\)，
 \(a_k\)为\(f(z)\)在单位圆\(\abs{z}<1\)内的奇点.
 \begin{proof}
 作变量代换\(z = e^{\iu\theta}\ (0\leq\theta\leq2\pi)\)，
-则\[
+则\begin{equation*}
 	\cos\theta = \frac{z+z^{-1}}{2},
 	\qquad
 	\sin\theta = \frac{z-z^{-1}}{2\iu},
 	\qquad
 	\dd{\theta} = \frac{\dd{z}}{\iu z},
-\]
+\end{equation*}
 当\(\theta\)经历变程\([0,2\pi]\)时，
 \(z\)沿复平面单位圆周\(\abs{z}=1\)的正方向绕行一周.
 于是，原来三角有理函数在\([0,2\pi]\)上的实积分，
-转化成为复有理函数\[
+转化成为复有理函数\begin{equation*}
 	f(z) = \frac{1}{\iu z} R\left(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2\iu}\right)
-\]在单位圆周\(\abs{z}=1\)上的围线积分\[
+\end{equation*}在单位圆周\(\abs{z}=1\)上的围线积分\begin{equation*}
 	\int_0^{2\pi} R(\cos\theta,\sin\theta) \dd{\theta}
 	= \int_{\abs{z}=1} f(z) \dd{z}.
-\]
+\end{equation*}
 当\(R(\cos\theta,\sin\theta)\)在\([0,2\pi]\)上连续时，
 可保证复有理函数\(f(z)\)在\(\abs{z}=1\)上无奇点，
 在\(\abs{z}<1\)内最多除有限个极点外解析，
@@ -70,67 +70,67 @@
 在实分析中，对这类三角函数的积分，
 总是可以通过所谓万能代换\(t = \tan\frac{\theta}{2}\)
 将原积分式化为\(t\)的有理函数积分.
-这时，\[
+这时，\begin{equation*}
 	\sin\theta = \frac{2t}{1+t^2},
 	\qquad
 	\cos\theta = \frac{1-t^2}{1+t^2},
 	\qquad
 	\dd{\theta} = \frac{2 \dd{t}}{1+t^2},
-\]\[
+\end{equation*}\begin{equation*}
 	\int_0^{2\pi} R(\cos\theta,\sin\theta) \dd{\theta}
 	= \int_{-\infty}^{+\infty} R\left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right) \frac{2}{1+t^2} \dd{t}.
-\]
+\end{equation*}
 上式右端是有理函数的无穷限广义积分，
 用实分析中的方法计算这种积分总是很麻烦.
 相较之下，用\cref{theorem:留数定理.利用留数定理计算实积分1} 计算就显得特别简单而巧妙.
 
 \begin{example}[泊松积分]\label{example:留数定理.泊松积分}
-计算积分\[
+计算积分\begin{equation*}
 	I = \int_0^{2\pi} \frac{\dd{\theta}}{1-2p\cos\theta+p^2} \quad(0<\abs{p}<1).
-\]
+\end{equation*}
 \begin{solution}
 令\(z=e^{\iu\theta}\).
-容易算得\[
+容易算得\begin{equation*}
 	I = \int_{\abs{z}=1} \frac{\dd{z}}{\iu(1-pz)(z-p)}.
-\]
-被积函数\[
+\end{equation*}
+被积函数\begin{equation*}
 	f(z) = \frac{1}{\iu(1-pz)(z-p)}
-\]在\(\mathbb{C}\)上有两个一阶极点\(z_1=p, z_2=p^{-1}\).
+\end{equation*}在\(\mathbb{C}\)上有两个一阶极点\(z_1=p, z_2=p^{-1}\).
 由于\(0<\abs{p}<1\)，
 因此，这两个极点中仅\(z_1\)在积分围线\(\abs{z}=1\)的内部，
 而\(z_2\)位于\(\abs{z}=1\)的外部.
-故由留数定理，得\[
+故由留数定理，得\begin{equation*}
 	\int_{\abs{z}=1} f(z) \dd{z}
 	= 2\pi\iu \Res_{z=p} f(z),
-\]而\[
+\end{equation*}而\begin{equation*}
 	\Res_{z=p} f(z)
 	= \eval{ \frac{1}{\iu(1-pz)} }_{z=p}
 	= \frac{1}{\iu(1-p^2)}.
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	I = \int_0^{2\pi} \frac{\dd{\theta}}{1-2p\cos\theta+p^2}
 	= \frac{2\pi}{1-p^2}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
 \begin{example}
-计算积分\[
+计算积分\begin{equation*}
 	I = \int_0^{2\pi} \frac{\sin^2 \theta}{a+b\cos\theta} \quad(a>b>0).
-\]
+\end{equation*}
 \begin{solution}
-令\(z=e^{\iu\theta}\)，则\[
+令\(z=e^{\iu\theta}\)，则\begin{equation*}
 	I = \frac{\iu}{2b} \int_{\abs{z}=1} f(z) \dd{z},
-\]
-其中\[
+\end{equation*}
+其中\begin{equation*}
 	f(z) = \frac{(z^2-1)^2}{z^2 \left(z^2+\frac{2a}{b}z+1\right)}
 	= \frac{(z^2-1)^2}{z^2(z-\alpha)(z-\beta)},
-\]
-而\(\alpha,\beta\)是实系数二次方程\(z^2+\frac{2a}{b}z+1=0\)的两个相异实根\[
+\end{equation*}
+而\(\alpha,\beta\)是实系数二次方程\(z^2+\frac{2a}{b}z+1=0\)的两个相异实根\begin{equation*}
 	\alpha=\frac{-a+\sqrt{a^2-b^2}}{b},
 	\qquad
 	\beta=\frac{-a-\sqrt{a^2-b^2}}{b},
-\]
+\end{equation*}
 由根与系数的关系，\(\alpha\beta=1\).
 且显然\(\abs{\beta}>\abs{\alpha}\)，
 故\(\abs{\alpha}<1\)，
@@ -139,15 +139,15 @@
 于是，被积函数\(f(z)\)在\(\abs{z}=1\)上无奇点.
 在单位圆周\(\abs{z}=1\)内部只有一个二阶极点\(z=0\)和一个一阶极点\(z=\alpha\).
 
-因为\[
+因为\begin{equation*}
 	\Res_{z=0} f(z) = \alpha+\beta,
 	\qquad
 	\Res_{z=\alpha} f(z) = \alpha-\beta.
-\]
-应用留数定理即得\[
+\end{equation*}
+应用留数定理即得\begin{equation*}
 	I = \frac{\iu}{2b} \cdot 2\pi\iu \cdot 2\alpha
 	= \frac{2\pi}{b^2} (a-\sqrt{a^2-b^2}).
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -210,9 +210,9 @@
 
 \begin{lemma}[若尔当引理]\label{theorem:留数定理.计算积分路径上没有奇点的无穷限积分.引理2}
 若函数\(f(z)\)在点集\(D: R_0 \leq \abs{z} < +\infty, \Im z \geq 0\)上连续，
-且\[
+且\begin{equation*}
 	\lim_{\substack{z\to\infty \\ \Im z \geq 0}} f(z) = 0,
-\]
+\end{equation*}
 则\begin{equation}
 	\lim_{R\to+\infty} \int_{\gamma_R} e^{\iu\alpha z} f(z) \dd{z} = 0,
 \end{equation}
@@ -220,50 +220,50 @@
 \(\gamma_R: z = R e^{\iu\theta}\ (0\leq\theta\leq\pi, R>R_0)\).
 \begin{proof}
 设\(M = M(R) = \max_{z \in \gamma_R} \abs{f(z)}\)，
-则\[
+则\begin{equation*}
 	\abs{ \int_{\gamma_R} e^{\iu\alpha z} f(z) \dd{z} }
 	\leq M \int_0^\pi e^{-\alpha R \sin\theta} R \dd{\theta}.
-\]
-由于\[
+\end{equation*}
+由于\begin{equation*}
 	\int_0^\pi e^{-\alpha R \sin\theta} R \dd{\theta}
 	= \left(\int_0^{\pi/2} + \int_{\pi/2}^\pi\right)
 	e^{-\alpha R \sin\theta} R \dd{\theta},
-\]
+\end{equation*}
 对右端第二个积分作代换\(\phi=\pi-\theta\)，
-则\[
+则\begin{equation*}
 	\int_{\pi/2}^\pi e^{-\alpha R \sin\theta} R \dd{\theta}
 	= \int_{\pi/2}^0 e^{-\alpha R \sin(\pi-\phi)} R (-\dd{\phi})
 	= \int_0^{\pi/2} e^{-\alpha R \sin\phi} R \dd{\phi},
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	\abs{ \int_{\gamma_R} e^{\iu\alpha z} f(z) \dd{z} }
 	\leq 2M \int_0^{\pi/2} e^{-\alpha R \sin\theta} R \dd{\theta}.
-\]
-应用\hyperref[equation:微分中值定理.若尔当不等式]{若尔当不等式}\[
+\end{equation*}
+应用\hyperref[equation:微分中值定理.若尔当不等式]{若尔当不等式}\begin{equation*}
 	0\leq\theta\leq\frac{\pi}{2}
 	\implies
 	\sin\theta\geq\frac{2\theta}{\pi},
-\]
-就有\[
+\end{equation*}
+就有\begin{equation*}
 	\abs{ \int_{\gamma_R} e^{\iu\alpha z} f(z) \dd{z} }
 	\leq 2MR \int_0^{\pi/2} e^{-\frac{2\alpha R}{\pi}\theta} \dd{\theta}
 	= \frac{\pi}{\alpha} M (1-e^{-\alpha R}).
-\]
+\end{equation*}
 由已给条件\(\lim_{\substack{z\to\infty \\ \Im z \geq 0}} f(z) = 0\)，
 可得\(\lim_{R\to+\infty} M(R) = 0\)，
-所以\[
+所以\begin{equation*}
 	\lim_{R\to+\infty} \int_{\gamma_R} e^{\iu\alpha z} f(z) \dd{z} = 0.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{lemma}
 
 \begin{theorem}\label{theorem:留数定理.利用留数定理计算实积分2}
 设函数\(f(z)\)有有限多个孤立奇点\(\AutoTuple{a}{n}\).
 若函数\(f(z)\)在上半平面\(\Im z > 0\)除去\(\AutoTuple{a}{n}\)外解析，
-在\(\Im z \geq 0\)上除去\(\AutoTuple{a}{n}\)外连续，且\[
+在\(\Im z \geq 0\)上除去\(\AutoTuple{a}{n}\)外连续，且\begin{equation*}
 	\lim_{\substack{z\to\infty \\ \Im z \geq 0}} z f(z) = 0,
-\]
+\end{equation*}
 则\begin{equation}
 	\int_{-\infty}^{+\infty} f(x) \dd{x}
 	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} f(z).
@@ -279,54 +279,54 @@
 \end{theorem}
 
 \begin{example}
-计算实积分\[
+计算实积分\begin{equation*}
 	I = \int_{-\infty}^{+\infty} \frac{\dd{x}}{(x^2+a^2)^3} \quad(a>0).
-\]
+\end{equation*}
 \begin{solution}
 由于实变函数\(f(x) = \frac{1}{(x^2+a^2)^3}\)
 满足\cref{theorem:留数定理.利用留数定理计算实积分2} 的条件，
 在上半平面\(\Im z > 0\)内除三阶极点\(z=a\iu\)外解析，
-而\[
+而\begin{equation*}
 	\Res_{z=a\iu} f(z)
 	= \frac{1}{2!} \left[ \dv[2]{z} \frac{1}{(z+a\iu)^3} \right]_{z=a\iu}
 	= \frac{3}{16a^5\iu},
-\]
-故\[
+\end{equation*}
+故\begin{equation*}
 	I = 2\pi\iu \cdot \frac{3}{16a^5\iu} = \frac{3\pi}{8a^5}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
 \begin{example}
-计算实积分\[
+计算实积分\begin{equation*}
 	I = \int_0^{+\infty} \frac{\dd{x}}{x^4+a^4} \quad(a>0).
-\]
+\end{equation*}
 \begin{solution}
 因为\(f(x) = \frac{1}{x^4+a^4}\)是偶函数，
-有\[
+有\begin{equation*}
 	\int_0^{+\infty} f(x) \dd{x}
 	= \frac{1}{2} \int_{-\infty}^{+\infty} f(x) \dd{x},
-\]
-而\(f(z) = \frac{1}{z^4+a^4}\)在\(\mathbb{C}\)上一共有4个一阶极点\[
+\end{equation*}
+而\(f(z) = \frac{1}{z^4+a^4}\)在\(\mathbb{C}\)上一共有4个一阶极点\begin{equation*}
 	a_k = a e^{\frac{2k+1}{4}\pi\iu} \quad(k=0,1,2,3).
-\]
+\end{equation*}
 但在上半平面\(\Im z > 0\)内
 只有两个极点\(a_0 = a e^{\frac{1}{4}\pi\iu}\)
 和\(a_1 = a e^{\frac{3}{4}\pi\iu}\)，
 \(f(z)\)满足\cref{theorem:留数定理.利用留数定理计算实积分2} 的条件，
-故\[
+故\begin{equation*}
 	\Res_{z=a_k} f(z)
 	= \eval{\frac{1}{4z^3}}_{z=a_k}
 	= \frac{1}{4a_k^3}
 	= \frac{a_k}{4a_k^4}
 	= -\frac{a_k}{4a^4}
 	\quad(k=0,1),
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	I = \frac{1}{2} \cdot 2\pi\iu \left(-\frac{a_0}{4a^4}-\frac{a_1}{4a^4}\right)
 	= -\frac{\pi\iu}{4a^3} \left(e^{\frac{1}{4}\pi\iu} + e^{\frac{3}{4}\pi\iu}\right)
 	= \frac{\pi}{2\sqrt{2}a^3}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -374,9 +374,9 @@
 \end{theorem}
 
 \begin{example}
-计算实积分\[
+计算实积分\begin{equation*}
 	I = \int_{-\infty}^{+\infty} \frac{x \cos x}{x^2-2x+10} \dd{x}.
-\]
+\end{equation*}
 \begin{solution}
 不难看出，\(I\)为复积分\(\int_{-\infty}^{+\infty} e^{\iu x} \frac{x}{x^2-2x+10} \dd{x}\)的实部.
 而\(f(x) = \frac{x}{x^2-2x+10}\)
@@ -389,30 +389,30 @@
 		= \frac{(1+3\iu) e^{\iu(1+3\iu)}}{6\iu} \\
 	&= \frac{e^{-3}}{6} \left[ \sin1+3\cos1-\iu(\cos1-3\sin1)\right],
 \end{align*}
-应用公式\cref{equation:留数定理.利用留数定理计算实积分3.2} 得\[
+应用公式\cref{equation:留数定理.利用留数定理计算实积分3.2} 得\begin{equation*}
 	I = -2\pi \cdot \frac{e^{-3}}{6} (3\sin1-\cos1)
 	= \frac{\pi}{3} e^{-3} (\cos1-3\sin1).
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
 \begin{example}
-计算拉普拉斯积分\[
+计算拉普拉斯积分\begin{equation*}
 	I = \int_0^{+\infty} \frac{\cos \alpha x}{1+x^2} \dd{x} \quad(\alpha>0).
-\]
+\end{equation*}
 \begin{solution}
 函数\(f(x) = \frac{1}{1+x^2}\)是偶函数，
 且满足\cref{theorem:留数定理.利用留数定理计算实积分3} 的条件，
 而辅助函数\(F(z) = e^{\iu\alpha z} \frac{1}{1+z^2}\)
 在\(\Im z > 0\)内有唯一一个奇点\(z=\iu\)，
-且\[
+且\begin{equation*}
 	\Res_{z=\iu} F(z) = \eval{\frac{e^{\iu\alpha z}}{z+\iu}}_{z=\iu}
 	= \frac{e^{-\alpha}}{2\iu}.
-\]
-由\cref{theorem:留数定理.利用留数定理计算实积分3.4} 得\[
+\end{equation*}
+由\cref{theorem:留数定理.利用留数定理计算实积分3.4} 得\begin{equation*}
 	I = -\pi \Im \frac{e^{-\alpha}}{2\iu}
 	= \frac{\pi}{2} e^{-\alpha}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -423,13 +423,13 @@
 使得辅助函数在整个积分围线上都没有奇点.
 
 \begin{example}
-计算狄利克雷积分\[
+计算狄利克雷积分\begin{equation*}
 	I = \int_0^{+\infty} \frac{\sin x}{x} \dd{x}.
-\]
+\end{equation*}
 \begin{solution}
-由于被积函数是偶函数，故\[
+由于被积函数是偶函数，故\begin{equation*}
 	I = \frac{1}{2} \int_{-\infty}^{+\infty} \frac{\sin x}{x} \dd{x}.
-\]
+\end{equation*}
 
 \begin{figure}[htb]
 	\centering
@@ -472,32 +472,32 @@
 	= 2\pi\iu,
 \end{align*}
 又由\hyperref[theorem:留数定理.计算积分路径上没有奇点的无穷限积分.引理2]{若尔当引理}，
-有\[
+有\begin{equation*}
 	\lim_{R\to+\infty} \int_{\Gamma_R} F(z) \dd{z} = 0.
-\]
+\end{equation*}
 在\(\Gamma_r\)上的积分，
 根据\(\lim_{z\to0} z F(z) = 1\)，
 以及\cref{theorem:留数定理.计算积分路径上没有奇点的无穷限积分.引理1}，
-有\[
+有\begin{equation*}
 	\lim_{r\to0} \int_{\Gamma_r} F(z) \dd{z} = \pi\iu.
-\]
-又因\[
+\end{equation*}
+又因\begin{equation*}
 	\int_{-R}^{-r} F(x) \dd{x}
 	= \int_{-R}^{-r} \frac{e^{\iu x}}{x} \dd{x}
 	= -\int_r^R \frac{e^{-\iu x}}{x} \dd{x},
-\]
-所以\[
+\end{equation*}
+所以\begin{equation*}
 	\int_r^R \frac{e^{\iu x} - e^{-\iu x}}{x} \dd{x}
 	+ \int_{\Gamma_R} F(z) \dd{z}
 	+ \int_{\Gamma_r} F(z) \dd{z}
 	= 2\pi\iu,
-\]
-即\[
+\end{equation*}
+即\begin{equation*}
 	2\iu \int_r^R \frac{\sin x}{x} \dd{x}
 	+ \int_{\Gamma_R} F(z) \dd{z}
 	+ \int_{\Gamma_r} F(z) \dd{z}
 	= 2\pi\iu.
-\]
+\end{equation*}
 令\(r\to0, R\to+\infty\)，
 即得\(\int_0^{+\infty} \frac{\sin x}{x} \dd{x} = \frac{\pi}{2}\).
 \end{solution}
@@ -515,19 +515,19 @@
 进而得到我们所要计算的广义积分.
 
 \begin{example}
-计算泊松积分\[
+计算泊松积分\begin{equation*}
 	I = \int_0^{+\infty} e^{-ax^2} \cos bx \dd{x} \quad(a>0).
-\]
+\end{equation*}
 \begin{solution}
 若\(b=0\)，
 则令\(t=\sqrt{a}x\)之后，
-\[
+\begin{equation*}
 	I = \int_0^{+\infty} e^{-ax^2} \dd{x}
 	= \frac{1}{\sqrt{a}} \int_0^{+\infty} e^{-t^2} \dd{t}
 	= \frac{1}{\sqrt{a}} \cdot \frac{\sqrt{\pi}}{2}
 	= \frac{1}{2} \sqrt{\frac{\pi}{a}}.
 	\eqno(1)
-\]
+\end{equation*}
 
 若\(b\neq0\)，
 因为\(\cos bx\)是偶函数，
@@ -545,11 +545,11 @@
 	\tag2
 \end{align*}
 
-又由(1)式可知\[
+又由(1)式可知\begin{equation*}
 	\int_{-\infty}^{+\infty} e^{-ax^2} \dd{x}
 	= \sqrt{\frac{\pi}{a}}.
 	\eqno(3)
-\]
+\end{equation*}
 
 \begin{figure}[htb]
 	\centering
@@ -575,10 +575,10 @@
 \end{figure}
 取辅助函数\(F(z) = e^{-az^2}\)，
 再取\cref{figure:留数定理.泊松积分的辅助积分路径} 所示的积分路径\(\Gamma = AB+BC+CD+DA\).
-由\hyperref[theorem:解析函数的积分表示.柯西积分定理]{柯西积分定理}得\[
+由\hyperref[theorem:解析函数的积分表示.柯西积分定理]{柯西积分定理}得\begin{equation*}
 	\int_\Gamma e^{-az^2} \dd{z} = 0.
 	\eqno(4)
-\]
+\end{equation*}
 
 比较(2)式与(4)式，
 得到\begin{align*}
@@ -598,20 +598,20 @@
 \end{align*}
 在线段\(BC\)及\(DA\)上，
 \(z=\pm R+\iu y\ (0 \leq y \leq \frac{b}{2a})\)，
-\[
+\begin{equation*}
 	\abs{e^{-az^2}}
 	= e^{-a(R^2-y^2)}
 	\leq e^{\frac{b^2}{4a}} \cdot e^{-aR^2},
-\]
-故\[
+\end{equation*}
+故\begin{equation*}
 	\lim_{R\to+\infty} \int_{BC} e^{-az^2} \dd{z} = 0,
 	\qquad
 	\lim_{R\to+\infty} \int_{DA} e^{-az^2} \dd{z} = 0.
-\]
-最后得到\[
+\end{equation*}
+最后得到\begin{equation*}
 	I = \frac{1}{2} e^{-\frac{b^2}{4a}} \Re\left[ \lim_{R\to+\infty} \int_{AB} e^{-az^2} \dd{z} \right]
 	\xlongequal{\rm(3)} \frac{1}{2} \sqrt{\frac{\pi}{a}} e^{-\frac{b^2}{4a}},
-\]
+\end{equation*}
 即\begin{equation}\label{equation:留数定理.泊松积分}
 	\int_0^{+\infty} e^{-ax^2} \cos bx \dd{x}
 	= \frac{1}{2} \sqrt{\frac{\pi}{a}} e^{-\frac{b^2}{4a}}
@@ -621,11 +621,11 @@
 \end{example}
 
 \begin{example}
-计算菲涅耳积分\[
+计算菲涅耳积分\begin{equation*}
 	\int_0^{+\infty} \cos x^2 \dd{x}
 	\quad\text{及}\quad
 	\int_0^{+\infty} \sin x^2 \dd{x}.
-\]
+\end{equation*}
 \begin{solution}
 \begin{figure}[htb]
 	\centering
@@ -651,21 +651,21 @@
 
 选取辅助函数\(F(z) = e^{-z^2}\)，
 并取如\cref{figure:留数定理.菲涅耳积分的辅助积分路径} 所示的辅助积分路径\(C_R\)，
-则由柯西积分定理有\[
+则由柯西积分定理有\begin{equation*}
 	\int_{C_R} e^{-z^2} \dd{z}
 	= \int_0^R e^{-x^2} \dd{x}
 	+ \int_{\Gamma_R} e^{-z^2} \dd{z}
 	+ \int_R^0 \exp[-\left(x e^{\frac{1}{4}\pi\iu}\right)^2] \dd(x e^{\frac{1}{4}\pi\iu})
 	= 0.
-\]
+\end{equation*}
 在\(\Gamma_R\)上，
 \(z = R e^{\iu\theta}\ (0\leq\theta\leq\frac{\pi}{4})\)，
 \(z^2 = R^2 e^{\iu2\theta}\).
-利用\hyperref[equation:微分中值定理.若尔当不等式]{若尔当不等式}\[
+利用\hyperref[equation:微分中值定理.若尔当不等式]{若尔当不等式}\begin{equation*}
 	0\leq\theta\leq\frac{\pi}{2}
 	\implies
 	\sin\theta\geq\frac{2\theta}{\pi},
-\]
+\end{equation*}
 可得\begin{align*}
 	\abs{\int_{\Gamma_R} e^{-z^2} \dd{z}}
 	&\leq
@@ -677,24 +677,24 @@
 	&= \frac{\pi}{4R} (1-e^{-R^2})
 	\to0\quad(R\to+\infty).
 \end{align*}
-所以\[
+所以\begin{equation*}
 	\lim_{R\to+\infty} \left[
 		\int_0^R \exp(-x^2) \dd{x}
 		+ \int_R^0 \exp(-x^2 e^{\frac{1}{2}\pi\iu})
 		\cdot \exp(\frac{1}{4}\pi\iu) \dd{x}
 	\right] = 0,
-\]\[
+\end{equation*}\begin{equation*}
 	\int_0^{+\infty} \exp(-x^2) \dd{x}
 	- \exp(\frac{1}{4}\pi\iu)
 	\int_0^{+\infty} (\cos x^2 - \iu \sin x^2) \dd{x} = 0.
-\]
+\end{equation*}
 又因为\(\int_0^{+\infty} e^{-x^2} \dd{x} = \frac{\sqrt{\pi}}{2}\)，
-故\[
+故\begin{equation*}
 	\int_0^{+\infty} \cos x^2 \dd{x}
 	- \iu \int_0^{+\infty} \sin x^2 \dd{x}
 	= \frac{\sqrt{\pi}}{2} \exp(-\frac{1}{4}\pi\iu)
 	= \frac{\sqrt{\pi}}{2} \left(\cos\frac{\pi}{4} - \iu \sin\frac{\pi}{4}\right).
-\]
+\end{equation*}
 比较实部、虚部得\begin{equation}\label{equation:留数定理.菲涅耳积分}
 	\int_0^{+\infty} \cos x^2 \dd{x}
 	= \int_0^{+\infty} \sin x^2 \dd{x}
@@ -792,9 +792,9 @@
 	\caption{}
 	\label{figure:留数定理.利用留数定理计算实积分4的辅助积分路径1}
 \end{figure}
-取辅助围线如\cref{figure:留数定理.利用留数定理计算实积分4的辅助积分路径1} 所示的\[
+取辅助围线如\cref{figure:留数定理.利用留数定理计算实积分4的辅助积分路径1} 所示的\begin{equation*}
 	\Gamma = AB \cup \Gamma_R \cup BA \cup \Gamma_r^-,
-\]
+\end{equation*}
 其中\(AB\)沿支割线上岸，
 \(BA\)沿支割线下岸\footnote{曲线\(\Gamma\)虽不是简单闭曲线，
 但用连接内外圆周的直线段\(CD\)可将\(\Gamma\)变为两条简单闭曲线，
@@ -802,68 +802,68 @@
 由于在线段\(CD\)上来回积分两次，
 其和为零，
 所以可在\(\Gamma\)所围区域内应用留数定理.}.
-取辅助函数\[
+取辅助函数\begin{equation*}
 	F(z) = f(z) \ln^2 z,
-\]
+\end{equation*}
 其中\(\ln z\)是\(\Ln z\)的主值，
 而\(0<\Im\ln z<2\pi\).
 \(F(z)\)在\(\Gamma\)的“内部”（除\(\AutoTuple{a}{n}\)）解析，
 且连续到边界\(\Gamma\)（在\(AB,BA\)上分别是从上、下半平面连续到\(AB,BA\)）.
 由留数定理，
-得\[
+得\begin{equation*}
 	\left(\int_{AB}+\int_{\Gamma_R}+\int_{BA}+\int_{\Gamma_r^-}\right) F(z) \dd{z}
 	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} F(z).
-\]
+\end{equation*}
 
 在线段\(AB\)上，\(z=x\)，\(F(z) = f(x) \ln^2 x\)，
-因此\[
+因此\begin{equation*}
 	\int_{AB} F(z) \dd{z}
 	= \int_r^R f(x) \ln^2 x \dd{x}.
-\]
+\end{equation*}
 
 在线段\(BA\)上，\(z = x e^{2\pi\iu}\)，\(F(z) = f(x) (\ln x + 2\pi\iu)^2\)，
-所以\[
+所以\begin{equation*}
 	\int_{BA} F(z) \dd{z}
 	= -\int_r^R f(x) (\ln x + 2\pi\iu)^2 \dd{x}.
-\]
+\end{equation*}
 
-在\(\Gamma_R\)上，\(z = R e^{\iu\theta}\ (0\leq\theta\leq2\pi)\)，\[
+在\(\Gamma_R\)上，\(z = R e^{\iu\theta}\ (0\leq\theta\leq2\pi)\)，\begin{equation*}
 	\abs{\ln z}^2 = \ln^2 R + \theta^2 \leq 2 \ln^2 R.
-\]
+\end{equation*}
 
 点\(z=\infty\)是\(f(z)\)的\(m\)阶零点.
 当\(R\)充分大时，\(\abs{f(z)} \leq M/R^m\ (M>0)\).
-于是，\[
+于是，\begin{equation*}
 	\abs{\int_{\Gamma_R} F(z) \dd{z}}
 	\leq \frac{M}{R^m} \cdot 2 \ln^2 R \cdot 2\pi R
 	= \frac{4M \ln^2 R}{R^{m-1}} \to 0 \quad(R\to+\infty).
-\]
+\end{equation*}
 
 在\(\Gamma_r\)上，\(z = r e^{\iu\theta}\ (0\leq\theta\leq2\pi)\)，
-从而\[
+从而\begin{equation*}
 	\abs{\ln z}^2 = \ln^2 r + \theta^2
 	\leq 2 \ln^2 \frac{1}{r}.
-\]
+\end{equation*}
 
 \(f(z)\)在点\(z=0\)的邻域内有界，
-所以\[
+所以\begin{equation*}
 	\abs{F(z)} \leq 2M_1 \ln^2 \frac{1}{r},
-\]\[
+\end{equation*}\begin{equation*}
 	\abs{\int_{\Gamma_r} F(z) \dd{z}}
 	\leq 4\pi M_1 r \ln^2 \frac{1}{r}
 	\to 0 \quad(r\to0^+).
-\]
+\end{equation*}
 
 于是，\(r\to0^+, R\to+\infty\)时，
-有\[
+有\begin{equation*}
 	\int_0^{+\infty} f(x) \ln^2 x \dd{x}
 	- \int_0^{+\infty} f(x) (\ln x + 2\pi\iu)^2 \dd{x}
 	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} F(z),
-\]\[
+\end{equation*}\begin{equation*}
 	-4\pi\iu \int_0^{+\infty} f(x) \ln x \dd{x}
 	+ 4\pi^2 \int_0^{+\infty} f(x) \dd{x}
 	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} F(z).
-\]
+\end{equation*}
 在上式两边取虚部，
 即得\begin{equation}\label{equation:留数定理.利用留数定理计算实积分4.2}
 	\int_0^{+\infty} f(x) \ln x \dd{x}
@@ -905,7 +905,7 @@
 \(f(z)\)在上半平面\(\Im z > 0\)内
 除去有限多个孤立奇点\(\AutoTuple{a}{n}\)外是解析的，
 在\(\Im z \geq 0\)上除去\(\AutoTuple{a}{n}\)外连续，
-且\[
+且\begin{equation*}
 	(\exists M>0)
 	(\forall m\geq2)
 	(\exists N>0)
@@ -914,7 +914,7 @@
 		\implies
 		\abs{f(z)}\leq\frac{M}{\abs{z}^m}
 	]
-\]
+\end{equation*}
 则令\(F(z) = f(z) \ln z\)，
 并取如\cref{figure:留数定理.利用留数定理计算实积分4的辅助积分路径2} 所示的辅助围线，
 则有\begin{gather}
@@ -927,9 +927,9 @@
 \end{gather}
 
 \begin{example}
-计算积分\[
+计算积分\begin{equation*}
 	I = \int_0^{+\infty} \frac{\ln x}{(1+x^2)^2} \dd{x}.
-\]
+\end{equation*}
 \begin{solution}
 因为函数\(f(x) = \frac{1}{(1+x^2)^2}\)是偶函数，
 也可用\cref{equation:留数定理.利用留数定理计算实积分4.4}
@@ -938,11 +938,11 @@
 	&= \eval{\left\{ \dv{z} \left[ \frac{\ln z}{(z+\iu)^2} \right] \right\}}_{z=\iu} \\
 	&= \eval{\left\{ \frac{1}{z(z+\iu)^2} - \frac{2 \ln z}{(z+\iu)^3} \right\}}_{z=\iu} \\
 	&= \frac{\pi}{8} + \frac{\iu}{4},
-\end{align*}\[
+\end{align*}\begin{equation*}
 	\int_0^{+\infty} \frac{\ln x}{(1+x^2)^2} \dd{z}
 	= -\pi \Im\left(\frac{\pi}{8}+\frac{\iu}{4}\right)
 	= -\frac{\pi}{4}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -965,9 +965,9 @@
 则\cref{equation:留数定理.利用留数定理计算实积分5.1} 成立.
 \begin{proof}
 取辅助函数\(F(z) = z^{p-1} f(z) = e^{(p-1)\ln z} f(z)\)，
-其中\[
+其中\begin{equation*}
 	\ln z = \ln\abs{z} + \iu\arg z \quad(0<\arg z<2\pi).
-\]
+\end{equation*}
 取辅助围线\(C\)如\cref{figure:留数定理.利用留数定理计算实积分4的辅助积分路径1} 所示，
 \(C=AB+\Gamma_R+BA+\Gamma_r^-\).
 由留数定理，
@@ -978,12 +978,12 @@
 		+ \int_{\Gamma_r^-} F(z) \dd{z} \\
 	&= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} F(z),
 \end{align*}
-整理得\[
+整理得\begin{equation*}
 	(1-e^{2\pi p\iu}) \int_r^R x^{p-1} f(x) \dd{x}
 	+ \left(\int_{\Gamma_r^-}+\int_{\Gamma_R}\right) F(z) \dd{z}
 	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} F(z).
 	\eqno(1)
-\]
+\end{equation*}
 
 在\(\Gamma_r\)上有\begin{align*}
 	\abs{\int_{\Gamma_r^-} F(z) \dd{z}}
@@ -991,25 +991,25 @@
 	&= r^{p-1} \max_{z\in\Gamma_r} \abs{f(z)} \cdot 2\pi r \\
 	&= 2\pi r^p \max_{z\in\Gamma_r} \abs{f(z)} \to0\quad(r\to0),
 \end{align*}
-同理有\[
+同理有\begin{equation*}
 	\abs{\int_{\Gamma_R} F(z) \dd{z}}
 	\leq 2\pi R^p \max_{z\in\Gamma_R} \abs{f(z)}.
-\]
+\end{equation*}
 
 由于\(z=\infty\)为\(f(z)\)的\(m\)阶零点，
 当\(R\)充分大时，
 在\(\Gamma_R\)上\(\abs{f(z)}<M/R^m\)，
 \(M\)是正常数，
 \(m\geq1\)，
-所以\[
+所以\begin{equation*}
 	\abs{\int_{\Gamma_R} F(z) \dd{z}}
 	\leq \frac{2\pi M}{R^{m-p}} \to0\quad(R\to+\infty).
-\]
+\end{equation*}
 在(1)式中令\(r\to0^+,R\to+\infty\)，
-得到\[
+得到\begin{equation*}
 	(1-e^{2\pi p\iu}) \int_0^{+\infty} x^{p-1} f(x) \dd{x}
 	= 2\pi\iu \sum_{k=1}^n \Res_{z=a_k} F(z).
-\]
+\end{equation*}
 于是得到\cref{equation:留数定理.利用留数定理计算实积分5.1}
 或者\begin{equation}\label{equation:留数定理.利用留数定理计算实积分5.2}
 	\int_0^{+\infty} x^{p-1} f(x) \dd{x}
@@ -1025,20 +1025,20 @@
 \end{theorem}
 
 \begin{example}
-计算欧拉积分\[
+计算欧拉积分\begin{equation*}
 	I = \int_0^{+\infty} \frac{x^{p-1}}{1+x} \dd{x} \quad(0<p<1).
-\]
+\end{equation*}
 \begin{solution}
 这里\(f(x) = \frac{1}{1+x}\)满足\cref{theorem:留数定理.利用留数定理计算实积分5} 的条件.
 点\(z=-1\)是\(f(z) = \frac{1}{1+z}\)的一阶极点，
 \(z=\infty\)是\(f(z)\)的一阶零点.
-\(F(z) = z^{p-1} \frac{1}{1+z}\)在点\(z=-1\)处的留数\[
+\(F(z) = z^{p-1} \frac{1}{1+z}\)在点\(z=-1\)处的留数\begin{equation*}
 	\Res_{z=-1} F(z)
 	= \lim_{z\to-1} (z+1) \frac{z^{p-1}}{1+z}
 	= \lim_{\substack{\abs{z}\to1 \\ \theta\to\pi}} \exp[(p-1)(\ln\abs{z}+\iu\theta)]
 	= e^{(p-1)\pi\iu}
 	= -e^{p\pi\iu}.
-\]
+\end{equation*}
 应用\cref{equation:留数定理.利用留数定理计算实积分5.2}
 即有\begin{equation}
 	\int_0^{+\infty} \frac{x^{p-1}}{1+x} \dd{x} = \frac{\pi}{\sin p\pi}.
@@ -1047,16 +1047,16 @@
 \end{example}
 
 \begin{example}%https://www.bilibili.com/video/BV1Vb4y1Y7Sn/
-计算定积分\[
+计算定积分\begin{equation*}
 	\int_0^1 \frac{\ln x}{x^2-x-1} \dd{x}.
-\]
+\end{equation*}
 \begin{solution}
 首先求出所求积分\(I = \int_0^1 \frac{\ln x}{x^2-x-1} \dd{x}\)的奇点，
 即方程\(x^2-x-1=0\)的根，
-得\[
+得\begin{equation*}
 	x_1 = \frac{1-\sqrt{5}}{2}, \qquad
 	x_2 = \frac{1+\sqrt{5}}{2}.
-\]
+\end{equation*}
 
 取割线\(L = \Set{x \given x\in[0,1]} \cup \Set{1+\iu y \given y\in[0,+\infty)}\).
 我们利用复对数函数\(\Ln z\)作为辅助函数，
@@ -1064,61 +1064,61 @@
 以\(L_1,L_2\)分别表示射线\(\Set{1+\iu y \given y\in[0,+\infty)}\)的右侧和左侧，方向向上；
 以\(L_3,L_4\)分别表示线段\(\Set{x \given x\in[0,1]}\)的上侧和下侧，方向向右.
 
-根据留数定理\[
+根据留数定理\begin{equation*}
 	\left(\int_{L_2} - \int_{L_1} - \int_{L_4} + \int_{L_3}\right) \frac{\Ln^2 z}{z^2-z-1} \dd{z}
 	= 2\pi\iu \left[\Res_{z=x_1} f(z) + \Res_{z=x_2} f(z)\right].
 	\eqno(1)
-\]
+\end{equation*}
 
 在\(L_2\)上，\(z=1+\iu y\)，从而\(\abs{z}=\sqrt{1+y^2},
 \arg z = \arctan y,
 \dd{z} = \iu \dd{y}\)，
-\[
+\begin{equation*}
 	\int_{L_2} \frac{\Ln^2 z}{z^2-z-1} \dd{z}
 	= \int_0^{+\infty} \frac{\left(\ln\sqrt{1+x^2} + \iu \arctan x\right)^2}{-x^2+\iu x-1} \iu \dd{x}.
-\]
+\end{equation*}
 
-在\(L_1\)上，因为它是下沿，所以\[
+在\(L_1\)上，因为它是下沿，所以\begin{equation*}
 	\Ln^2 z = \left(\ln\sqrt{1+x^2} + \iu \arctan x + 2\pi\iu\right)^2,
-\]
-那么\[
+\end{equation*}
+那么\begin{equation*}
 	\int_{L_1} \frac{\Ln^2 z}{z^2-z-1} \dd{z}
 	= \int_0^{+\infty} \frac{\left(
 		\ln\sqrt{1+x^2}
 			+ \iu \arctan x + 2\pi\iu
 		\right)^2}{-x^2+\iu x-1}
 		\iu \dd{x}.
-\]
+\end{equation*}
 
 在\(L_4\)上，\(z=x\)，
 因为它是下沿，
-所以\[
+所以\begin{equation*}
 	\int_{L_4} \frac{\Ln^2 z}{z^2-z-1} \dd{z}
 	= \int_0^1 \frac{\left(\ln x + 2\pi\iu\right)^2}{x^2-x-1} \dd{x}.
-\]
+\end{equation*}
 
-在\(L_3\)上，\(z=x\)，\[
+在\(L_3\)上，\(z=x\)，\begin{equation*}
 	\int_{L_3} \frac{\Ln^2 z}{z^2-z-1} \dd{z}
 	= \int_0^1 \frac{\ln^2 x}{x^2-x-1} \dd{x}.
-\]
+\end{equation*}
 
-因为\[
+因为\begin{equation*}
 	\Res_{z=x_1} f(z)
 	= \frac{\left(\ln\abs{x_1} + \pi\iu\right)^2}{x_1 - x_2},
 	\qquad
 	\Res_{z=x_2} f(z)
 	= \frac{\left(\ln\abs{x_2} + 2\pi\iu\right)^2}{x_2 - x_1},
-\]
+\end{equation*}
 且(1)式左侧可化简得\begin{align*}
 	2\pi \left(
 		\int_0^{+\infty} \frac{2\ln\sqrt{1+x^2} + 2\iu \arctan x + 2\pi\iu}{-x^2+\iu x-1} \dd{x}
 		+ \int_0^1 \frac{-2\iu \ln x + 2\pi}{x^2-x-1} \dd{x}
 	\right),
 \end{align*}
-那么对(1)式两边取虚部并同除以\((-2\pi)\)可得\[
+那么对(1)式两边取虚部并同除以\((-2\pi)\)可得\begin{equation*}
 	-\Im \int_0^{+\infty} \frac{2\ln\sqrt{1+x^2} + 2\iu \arctan x + 2\pi\iu}{-x^2+\iu x-1} \dd{x}
 	+ 2I = \frac{3\pi^2}{\sqrt{5}}.
-\]
+\end{equation*}
 
 进行分母有理化，
 有\begin{align*}
@@ -1153,9 +1153,9 @@
 \end{align*}
 综上所述，\(\frac{I}{2} + \frac{2\pi^2}{\sqrt{5}} + \frac{\pi^2}{2\sqrt{5}} + 2I
 = \frac{3\pi^2}{\sqrt{5}}\)，
-解得\[
+解得\begin{equation*}
 	I = \int_0^1 \frac{\ln x}{x^2-x-1} \dd{x}
 	= \frac{\pi^2}{5\sqrt{5}}.
-\]
+\end{equation*}
 \end{solution}
 \end{example}

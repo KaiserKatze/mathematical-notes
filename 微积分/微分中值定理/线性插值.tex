@@ -10,18 +10,18 @@
 使得\(l(x_i) = y_i\ (i=0,1,2,\dotsc,n)\)成立.
 
 \subsection{范德蒙德插值法}
-我们可以直接假设\[
+我们可以直接假设\begin{equation*}
 	P_n(x) = c_0 x^n + c_1 x^{n-1} + \dotsb + c_n.
-\]
-由此得到线性方程组\[
+\end{equation*}
+由此得到线性方程组\begin{equation*}
 	\left\{ \begin{array}{l}
 		y_0 = c_0 x_0^n + c_1 x_0^{n-1} + \dotsb + c_{n-1} x_0 + c_n, \\
 		y_1 = c_0 x_1^n + c_1 x_1^{n-1} + \dotsb + c_{n-1} x_1 + c_n, \\
 		\hdotsfor{1}, \\
 		y_n = c_0 x_n^n + c_1 x_n^{n-1} + \dotsb + c_{n-1} x_n + c_n
 	\end{array} \right.
-\]
-或\[
+\end{equation*}
+或\begin{equation*}
 	\begin{bmatrix}
 		x_0^n & x_0^{n-1} & \dots & x_0 & 1 \\
 		x_1^n & x_1^{n-1} & \dots & x_1 & 1 \\
@@ -34,15 +34,15 @@
 	= \begin{bmatrix}
 		y_0 \\ y_1 \\ \vdots \\ y_n
 	\end{bmatrix}.
-\]
+\end{equation*}
 
 \subsection{拉格朗日插值法}
 \begin{definition}
 %@see: 《数学分析教程（第3版 上册）》（史济怀） P201
 设函数\(f\colon[a,b]\to\mathbb{R}\).
-由两点\((a,f(a))\)和\((b,f(b))\)所决定的线性函数\[
+由两点\((a,f(a))\)和\((b,f(b))\)所决定的线性函数\begin{equation*}
 	l(x) = \frac{b-x}{b-a} f(a) + \frac{x-a}{b-a} f(b)
-\]称为“\(f\)在区间\([a,b]\)上的\DefineConcept{线性插值}”.
+\end{equation*}称为“\(f\)在区间\([a,b]\)上的\DefineConcept{线性插值}”.
 \end{definition}
 
 \begin{theorem}\label{theorem:拉格朗日插值.误差估计}
@@ -51,20 +51,20 @@
 \(l\)是\(f\)在区间\([a,b]\)上的线性插值.
 如果\(\abs{f''}\)在\((a,b)\)上的上界为\(M\)，
 那么对任意的\(x\in[a,b]\)，
-有\[
+有\begin{equation*}
 	\abs{f(x)-l(x)}
 	\leq \frac{M}8 (b-a)^2.
-\]
+\end{equation*}
 \begin{proof}
 由\begin{gather*}
 	l(x) = \frac{b-x}{b-a} f(a) + \frac{x-a}{b-a} f(b), \\
 	f(x) = \frac{b-x}{b-a} f(x) + \frac{x-a}{b-a} f(x)
 \end{gather*}
-可得\[
+可得\begin{equation*}
 	l(x) - f(x)
 	= \frac{b-x}{b-a} (f(a) - f(x))
 	+ \frac{x-a}{b-a} (f(b) - f(x)).
-\]
+\end{equation*}
 由\hyperref[equation:微分中值定理.泰勒公式.余项1]{带有拉格朗日余项的泰勒公式}有\begin{gather*}
 	f(a) - f(x)
 	= (a-x) f'(x) + \frac12 (a-x)^2 f''(\xi)
@@ -73,14 +73,14 @@
 	= (b-x) f'(x) + \frac12 (b-x)^2 f''(\eta)
 	\quad(x<\eta<b).
 \end{gather*}
-于是\[
+于是\begin{equation*}
 	l(x) - f(x)
 	= \frac{(b-x)(x-a)}2
 	\left(
 		\frac{x-a}{b-a} f''(\xi)
 		+ \frac{b-x}{b-a} f''(\eta)
 	\right).
-\]
+\end{equation*}
 由于\(\frac{x-a}{b-a},\frac{b-x}{b-a}>0\)
 且\(\frac{x-a}{b-a}+\frac{b-x}{b-a}=1\)，
 所以\begin{align*}
@@ -134,25 +134,25 @@
 插值多项式不仅存在而且唯一.
 \begin{theorem}
 设\(x_0,\dotsc,x_m\)是任意\(m+1\)个两两不等的实数，
-则函数组\[
+则函数组\begin{equation*}
 	l_0(x), l_1(x), \dotsc, l_m(x)
-\]是多项式函数空间\(\mathbb{P}_m\)的一组基，
+\end{equation*}是多项式函数空间\(\mathbb{P}_m\)的一组基，
 即对任意函数\(P\in\mathbb{P}_m\)，
 总有\(P(x) = \sum_{k=0}^m P(x_k) l_k(x)\).
 \end{theorem}
 
 \subsection{牛顿插值法}
-牛顿插值法采用的插值多项式是\[
+牛顿插值法采用的插值多项式是\begin{equation*}
 	P_n(x) = c_0 + c_1 (x-x_0) + c_2 (x-x_0)(x-x_1)
 	+ \dotsb + c_n (x-x_0)\dotsm(x-x_{n-1}).
-\]
+\end{equation*}
 
 \subsection{行列式插值法}
 %@see: https://www.bilibili.com/video/BV1HE421F7Ew/
 如果已知函数\(f \in C[a,b] \cap D^n(a,b)\)，
 且\(f(x_i) = y_i\ (i=0,1,2,\dotsc,n)\)，
 其中\(i \neq j \implies x_i \neq x_j\ (i,j=0,1,2,\dotsc,n)\).
-可令\[
+可令\begin{equation*}
 	F(x) = \begin{vmatrix}
 		f(x) & x^n & x^{n-1} & \dots & x & 1 \\
 		f(x_0) & x_0^n & x_0^{n-1} & \dots & x_0 & 1 \\
@@ -161,9 +161,9 @@
 		\vdots & \vdots & \vdots & & \vdots & \vdots \\
 		f(x_n) & x_n^n & x_n^{n-1} & \dots & x_n & 1 \\
 	\end{vmatrix}_{n+2}.
-\]
+\end{equation*}
 容易验证\(F(x_i) = 0\ (i=0,1,2,\dotsc,n)\).
-求导可得\[
+求导可得\begin{equation*}
 	\dv[m]{x} F(x)
 	= \dv[m]{x} \left(
 		f(x)~A_{11}
@@ -174,19 +174,19 @@
 		+ A_{1\,n+2}
 	\right),
 	\quad m \leq n,
-\]
+\end{equation*}
 其中\(A_{1j}\ (j=1,2,\dotsc,n+2)\)是行列式\(F(x)\)的\((1,j)\)元素的代数余子式.
-由\hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}可知\[
+由\hyperref[theorem:微分中值定理.罗尔定理]{罗尔定理}可知\begin{equation*}
 	(\exists\xi_{1i}\in(x_i,x_{i+1}))
 	[F'(\xi_{1i}) = 0],
 	\quad i=0,1,2,\dotsc,n-1.
-\]
-继续运用罗尔定理可知\[
+\end{equation*}
+继续运用罗尔定理可知\begin{equation*}
 	(\exists\xi_{2i}\in(\xi_{1i},\xi_{1\,i+1}))
 	[F''(\xi_{2i}) = 0],
 	\quad i=0,1,2,\dotsc,n-2.
-\]
-以此类推，成立\[
+\end{equation*}
+以此类推，成立\begin{equation*}
 	(\exists\xi_n\in(\xi_{n-1\,0},\xi_{n-1\,1}))
 	[F^{(n)}(\xi_n) = 0].
-\]
+\end{equation*}

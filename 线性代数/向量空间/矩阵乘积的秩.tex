@@ -1,5 +1,5 @@
 \section{矩阵乘积的秩}
-令\[
+令\begin{equation*}
 	\vb{A}=\begin{bmatrix}
 		1 & 0 \\
 		0 & 0
@@ -12,8 +12,8 @@
 		1 & 1 \\
 		0 & 1
 	\end{bmatrix},
-\]
-则\[
+\end{equation*}
+则\begin{equation*}
 	\vb{A} \vb{B}=\begin{bmatrix}
 		1 & 0 \\
 		0 & 0
@@ -26,10 +26,10 @@
 		0 & 0 \\
 		0 & 0
 	\end{bmatrix};
-\]
+\end{equation*}
 于是\(\rank(\vb{A} \vb{B})=0\)，而\(\rank\vb{A}=1\)，\(\rank\vb{B}=1\).
 
-又\[
+又\begin{equation*}
 	\vb{A}\vb{C}=\begin{bmatrix}
 		1 & 0 \\
 		0 & 0
@@ -42,14 +42,14 @@
 		1 & 1 \\
 		0 & 0
 	\end{bmatrix};
-\]
+\end{equation*}
 于是\(\rank(\vb{A}\vb{C})=1\)，而\(\rank\vb{A}=1\)，\(\rank\vb{C}=2\).
 
 从上述例子，我们猜测：
-对于任意矩阵\(\vb{A},\vb{B}\)，总有\[
+对于任意矩阵\(\vb{A},\vb{B}\)，总有\begin{equation*}
 	\rank(\vb{A} \vb{B}) \leq \rank\vb{A}, \qquad
 	\rank(\vb{A} \vb{B}) \leq \rank\vb{B}.
-\]
+\end{equation*}
 
 \subsection{矩阵乘积的秩}
 \begin{theorem}\label{theorem:线性方程组.矩阵乘积的秩}
@@ -57,69 +57,69 @@
 %@see: 《高等代数（第三版 上册）》（丘维声） P121 定理1
 设\(\vb{A} \in M_{s \times t}(K),
 \vb{B} \in M_{t \times n}(K)\)，
-那么\[
+那么\begin{equation*}
 	\rank(\vb{A}\vb{B}) \leq \min\{\rank\vb{A},\rank\vb{B}\}.
-\]
+\end{equation*}
 \begin{proof}
 记\(\vb{C} \defeq \vb{A}\vb{B}\).
 显然\(\vb{C} \in M_{s \times n}(K)\).
-将\(\vb{C}\)、\(\vb{B}\)分别进行列分块得\[
+将\(\vb{C}\)、\(\vb{B}\)分别进行列分块得\begin{equation*}
 	\vb{C} = (\AutoTuple{\vb\gamma}{n}),
 	\qquad
 	\vb{B} = (\AutoTuple{\vb\beta}{n}),
-\]
+\end{equation*}
 其中\(\vb\beta_i \in K^t\ (i=1,2,\dotsc,n)\)，
 \(\vb\gamma_i \in K^s\ (i=1,2,\dotsc,n)\)，
-则\[
+则\begin{equation*}
 	(\AutoTuple{\vb\gamma}{n})
 	= \vb{A} (\AutoTuple{\vb\beta}{n})
 	= (\AutoTuple{\vb{A}\vb\beta}{n}),
-\]
+\end{equation*}
 于是\(\vb\gamma_i = \vb{A} \vb\beta_i\ (i=1,2,\dotsc,n)\).
 
 假设\(\rank\vb{B} = r\).
 由\cref{example:向量空间.若部分组向量个数多于全组的秩则部分组必线性相关}，
 \(\vb{B}\)的任意\(r+1\)个列向量
 \(\vb\beta_{k_1},\vb\beta_{k_2},\dotsc,\vb\beta_{k_{r+1}}\)线性相关，
-也就是说，存在不全为零的数\(l_1,l_2,\dotsc,l_{r+1}\in K\)，使得\[
+也就是说，存在不全为零的数\(l_1,l_2,\dotsc,l_{r+1}\in K\)，使得\begin{equation*}
 	l_1 \vb\beta_{k_1} + l_2 \vb\beta_{k_2} + \dotsb + l_{r+1} \vb\beta_{k_{r+1}} = \vb0,
-\]
-从而有\[
+\end{equation*}
+从而有\begin{equation*}
 	l_1 \vb\gamma_{k_1} + l_2 \vb\gamma_{k_2} + \dotsb + l_{r+1} \vb\gamma_{k_{r+1}}
 	= \vb{A}(l_1 \vb\beta_{k_1} + l_2 \vb\beta_{k_2} + \dotsb + l_{r+1} \vb\beta_{k_{r+1}})
 	= \vb0,
-\]
+\end{equation*}
 这就是说\(\vb{C}\)的任意\(r+1\)个列向量也线性相关，
 那么\(\RankC\vb{C} \ngeq r+1\)，
-因此\[
+因此\begin{equation*}
 	\rank(\vb{A}\vb{B})
 	\leq r = \rank\vb{B}.
-\]
-利用这个结论，我们还可以得到\[
+\end{equation*}
+利用这个结论，我们还可以得到\begin{equation*}
 	\rank(\vb{A}\vb{B})
 	= \rank(\vb{A}\vb{B})^T
 	= \rank(\vb{B}^T \vb{A}^T)
 	\leq \rank \vb{A}^T
 	= \rank \vb{A}.
-\]
+\end{equation*}
 综上所述\(\rank(\vb{A}\vb{B}) \leq \min\{\rank\vb{A},\rank\vb{B}\}\).
 \end{proof}
 \end{theorem}
 \begin{remark}
 我们可以看出\cref{theorem:向量空间.向量组的秩的比较1}
 与\cref{theorem:线性方程组.矩阵乘积的秩} 之间存在内在联系：
-由\cref{theorem:向量空间.线性表出2的等价条件} 可知\[
+由\cref{theorem:向量空间.线性表出2的等价条件} 可知\begin{equation*}
 	\rank(\AutoTuple{\vb\alpha}{s})
 	= \rank((\AutoTuple{\vb\beta}{t})\vb{Q}),
-\]
-而由可知\[
+\end{equation*}
+而由可知\begin{equation*}
 	\rank((\AutoTuple{\vb\beta}{t})\vb{Q})
 	\leq \rank(\AutoTuple{\vb\beta}{t}),
-\]
-于是\[
+\end{equation*}
+于是\begin{equation*}
 	\rank(\AutoTuple{\vb\alpha}{s})
 	\leq \rank(\AutoTuple{\vb\beta}{t}).
-\]
+\end{equation*}
 \end{remark}
 
 \begin{corollary}\label{theorem:矩阵乘积的秩.与可逆矩阵相乘不变秩}
@@ -132,9 +132,9 @@
 \begin{proof}
 因为\(\vb{A} = (\vb{P}^{-1} \vb{P}) \vb{A} = \vb{P}^{-1} (\vb{P} \vb{A})\)，
 由\cref{theorem:线性方程组.矩阵乘积的秩}，
-有\[
+有\begin{equation*}
 	\rank\vb{A} = \rank(\vb{P}^{-1}(\vb{P}\vb{A})) \leq \rank(\vb{P}\vb{A}) \leq \rank\vb{A},
-\]
+\end{equation*}
 所以\(\rank\vb{A} = \rank(\vb{P}\vb{A})\).
 同理可得\(\rank\vb{A} = \rank(\vb{A}\vb{Q})\).
 \end{proof}
@@ -144,17 +144,17 @@
 设矩阵\(\vb{A} \in M_{m \times n}(K),
 \vb{B} \in M_{n \times m}(K)\)，
 \(m > n\)，
-那么\[
+那么\begin{equation*}
 	\abs{\vb{A} \vb{B}} = 0.
-\]
+\end{equation*}
 \begin{proof}
 当\(m>n\)时，
-根据\cref{theorem:线性方程组.矩阵的秩的性质2}，有\[
+根据\cref{theorem:线性方程组.矩阵的秩的性质2}，有\begin{equation*}
 	\rank\vb{A},\rank\vb{B} \leq \min\{m,n\} = n;
-\]
-再根据\cref{theorem:线性方程组.矩阵乘积的秩}，有\[
+\end{equation*}
+再根据\cref{theorem:线性方程组.矩阵乘积的秩}，有\begin{equation*}
 	\rank(\vb{A} \vb{B}) \leq \min\{\rank\vb{A},\rank\vb{B}\} = n < m,
-\]
+\end{equation*}
 也就是说，矩阵\(\vb{A} \vb{B}\)不满秩；
 那么根据\cref{theorem:向量空间.满秩方阵的行列式非零} 可知\(\abs{\vb{A} \vb{B}} = 0\).
 \end{proof}
@@ -170,41 +170,41 @@
 设矩阵\(\vb{A} \in M_{s \times n}(K)\)，
 \(\rank\vb{A} = r\)，
 \(\vb{E}_r\)是\(r\)阶单位矩阵.
-我们把分块矩阵\[
+我们把分块矩阵\begin{equation*}
 	\begin{bmatrix}
 		\vb{E}_r & \vb0 \\
 		\vb0 & \vb0
 	\end{bmatrix}
-\]
+\end{equation*}
 称为“\(\vb{A}\)的\DefineConcept{等价标准型}”.
 \end{definition}
 
 下面我们证明任意一个矩阵的等价标准型总是存在.
 \begin{theorem}\label{theorem:矩阵乘积的秩.等价标准型的存在性}
 矩阵\(\vb{A}\)满足\(\rank\vb{A}=r\)的充分必要条件是：
-存在可逆矩阵\(\vb{P},\vb{Q}\)，使得\[
+存在可逆矩阵\(\vb{P},\vb{Q}\)，使得\begin{equation*}
 	\vb{P} \vb{A} \vb{Q}
 	= \begin{bmatrix}
 		\vb{E}_r & \vb0 \\
 		\vb0 & \vb0
 	\end{bmatrix} = \vb{B}.
-\]
+\end{equation*}
 \begin{proof}
 充分性.
-如果可逆矩阵\(\vb{P},\vb{Q}\)使得\[
+如果可逆矩阵\(\vb{P},\vb{Q}\)使得\begin{equation*}
 	\vb{P}\vb{A}\vb{Q}
 	= \begin{bmatrix}
 		\vb{E}_r & \vb0 \\
 		\vb0 & \vb0
 	\end{bmatrix},
-\]
+\end{equation*}
 把上式等号左边的可逆矩阵\(\vb{P}\)、\(\vb{Q}\)分别视作对矩阵\(\vb{A}\)的初等行变换和初等列变换，
 那么，根据\cref{theorem:线性方程组.初等变换不变秩}，
 所得矩阵\(\vb{B}\)的秩与原矩阵\(\vb{A}\)相同，
-即\[
+即\begin{equation*}
 	\rank\vb{A} = \rank\vb{B} = r.
 	\qedhere
-\]
+\end{equation*}
 %\cref{theorem:线性方程组.非零矩阵可经初等行变换化为若尔当阶梯形矩阵}
 %TODO proof 未证明必要性
 \end{proof}
@@ -227,10 +227,10 @@
 对\(\vb{B}\)也可作初等变换化为等价标准型.
 那么存在\(s\)阶可逆矩阵\(\vb{P}_1\)和\(\vb{P}_2\)，
 存在\(n\)阶可逆矩阵\(\vb{Q}_1\)和\(\vb{Q}_2\)，
-使得\[
+使得\begin{equation*}
 	\vb{P}_1 \vb{A} \vb{Q}_1 = \vb{P}_2 \vb{A} \vb{Q}_2
 	= \begin{bmatrix} \vb{E}_r & \vb0 \\ \vb0 & \vb0 \end{bmatrix},
-\]
+\end{equation*}
 令\(\vb{P} = \vb{P}_2^{-1} \vb{P}_1\)，\(\vb{Q} = \vb{Q}_1 \vb{Q}_2^{-1}\)，
 则\(\vb{P}\)和\(\vb{Q}\)可逆，
 \(\vb{P} \vb{A} \vb{Q} = \vb{B}\)，
@@ -241,11 +241,11 @@
 \begin{example}\label{example:矩阵乘积的秩.可交换矩阵之和的秩}
 设\(\vb{A},\vb{B}\in M_n(K)\)，
 且\(\vb{A} \vb{B}=\vb{B}\vb{A}\).
-证明：\[
+证明：\begin{equation*}
 	\rank(\vb{A}+\vb{B})\leq\rank\vb{A}+\rank\vb{B}-\rank(\vb{A} \vb{B}).
-\]
+\end{equation*}
 \begin{proof}
-考虑\[
+考虑\begin{equation*}
 	\begin{bmatrix}
 		\vb{E} & \vb{E} \\
 		\vb0 & \vb{E}
@@ -266,8 +266,8 @@
 		\vb{A}+\vb{B} & \vb0 \\
 		\vb{B} & \vb{A} \vb{B}
 	\end{bmatrix}.
-\]
-由\cref{equation:矩阵的秩.分块矩阵的秩的等式1} 可知\[
+\end{equation*}
+由\cref{equation:矩阵的秩.分块矩阵的秩的等式1} 可知\begin{equation*}
 	\rank\vb{A}+\rank\vb{B}
 	= \rank\begin{bmatrix}
 		\vb{A} & \vb0 \\
@@ -279,7 +279,7 @@
 	\end{bmatrix}
 	\geq \rank(\vb{A}+\vb{B}) + \rank(\vb{A} \vb{B}).
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{example}
 
@@ -320,43 +320,43 @@
 \def\bsj{\vb\beta_{j_1},\dotsc,\vb\beta_{j_t}}
 设\(\rank\vb{A} = r,
 \rank\vb{B} = t\).
-对\(\vb{A}\)、\(\vb{B}\)分别按列分块得\[
+对\(\vb{A}\)、\(\vb{B}\)分别按列分块得\begin{equation*}
 	\vb{A} = (\as),
 	\qquad
 	\vb{B} = (\bs).
-\]
-易见\[
+\end{equation*}
+易见\begin{equation*}
 	(\vb{A},\vb{B}) = (\as,\bs),
-\]且\[
+\end{equation*}且\begin{equation*}
 	\rank\{\as\} = r,
 	\qquad
 	\rank\{\bs\} = t.
-\]
+\end{equation*}
 
 假设\(\as\)可由其极大线性无关组\(\asi\)线性表出，
 \(\bs\)可由其极大线性无关组\(\bsj\)线性表出，
-那么向量组\[
+那么向量组\begin{equation*}
 	V_1=\{\as\}\cup\{\bs\}
-\]可由向量组\[
+\end{equation*}可由向量组\begin{equation*}
 	V_2=\{\asi\}\cup\{\bsj\}
-\]线性表出，
+\end{equation*}线性表出，
 即\(V_1 \subseteq \Span V_2\)，
-则由\cref{theorem:向量空间.向量组的秩的比较1} 有\[
+则由\cref{theorem:向量空间.向量组的秩的比较1} 有\begin{equation*}
 	\rank V_1
 	\leq
 	\rank V_2
 	\leq
 	r+t;
-\]
+\end{equation*}
 于是\(\rank(\vb{A},\vb{B}) = \rank V_1 \leq r+t\).
 
 又因为\hyperref[theorem:向量空间.向量组的秩的比较2]{部分组的秩总是小于或等于全组的秩}，
-而\[
+而\begin{equation*}
 	\{\asi\},\{\bsj\} \subseteq V_1,
-\]
-所以\[
+\end{equation*}
+所以\begin{equation*}
 	\rank\{\asi\},\rank\{\bsj\} \leq \rank V_1,
-\]
+\end{equation*}
 于是\(\max\{\rank\vb{A},\rank\vb{B}\} \leq \rank(\vb{A},\vb{B})\).
 \end{proof}
 \end{example}
@@ -371,20 +371,20 @@
 \def\asi{\vb\alpha_{i_1},\vb\alpha_{i_2},\dotsc,\vb\alpha_{i_r}}
 \def\bsj{\vb\beta_{j_1},\vb\beta_{j_2},\dotsc,\vb\beta_{j_t}}
 设\(\rank\vb{A} = r\)，\(\rank\vb{B} = t\).
-对\(\vb{A}\)、\(\vb{B}\)分别按列分块得\[
+对\(\vb{A}\)、\(\vb{B}\)分别按列分块得\begin{equation*}
 	\vb{A} = (\AutoTuple{\vb\alpha}{n}), \qquad
 	\vb{B} = (\AutoTuple{\vb\beta}{m}),
-\]
-则\[
+\end{equation*}
+则\begin{equation*}
 	\vb{A} + \vb{B} = (\vb\alpha_1 + \vb\beta_1,\vb\alpha_2 + \vb\beta_2,\dotsc,\vb\alpha_n + \vb\beta_n).
-\]
+\end{equation*}
 由于\(\AutoTuple{\vb\alpha}{n}\)可由其极大线性无关组\(\asi\)线性表出，
 \(\AutoTuple{\vb\beta}{m}\)可由其极大线性无关组\(\bsj\)线性表出，
-故\[
+故\begin{equation*}
 	\vb\alpha_1 + \vb\beta_1,\vb\alpha_2 + \vb\beta_2,\dotsc,\vb\alpha_n + \vb\beta_n
-\]可由向量组\[
+\end{equation*}可由向量组\begin{equation*}
 	\asi,\bsj
-\]线性表出，
+\end{equation*}线性表出，
 结论显然成立.
 \end{proof}
 \end{example}
@@ -423,30 +423,30 @@
 证明：\(n \leq \rank(\vb{A} + \vb{E}) + \rank(\vb{A} - \vb{E})\).
 \begin{proof}
 由于\(\rank(\vb{A} - \vb{E}) = \rank(\vb{E} - \vb{A})\)，
-所以\[
+所以\begin{equation*}
 	\rank(\vb{A} + \vb{E}) + \rank(\vb{A} - \vb{E})
 	= \rank(\vb{A} + \vb{E}) + \rank(\vb{E} - \vb{A}).
-\]
-由\cref{example:矩阵乘积的秩.可交换矩阵之和的秩} 可知\[
+\end{equation*}
+由\cref{example:矩阵乘积的秩.可交换矩阵之和的秩} 可知\begin{equation*}
 	\rank(\vb{A} + \vb{E}) + \rank(\vb{E} - \vb{A})
 	\geq \rank(\vb{A} + \vb{E} + \vb{E} - \vb{A})
 	= \rank(2\vb{E})
 	= \rank\vb{E}
 	= n.
-\]
+\end{equation*}
 因此\(\rank(\vb{A} + \vb{E}) + \rank(\vb{A} - \vb{E}) \geq n\).
 \end{proof}
 \end{example}
 \begin{example}\label{example:矩阵乘积的秩.矩阵的多项式的各个互素因式的秩之和}
 设\(n\)阶矩阵\(\vb{A}\)满足\(\vb{A}^2 - 3 \vb{A} - 10 \vb{E} = \vb0\).
-证明：\[
+证明：\begin{equation*}
 	\rank(\vb{A} - 5\vb{E}) + \rank(\vb{A} + 2\vb{E}) = n.
-\]
+\end{equation*}
 \begin{proof}
 因为\(\vb{A}\)满足\(\vb{A}^2 - 3 \vb{A} - 10 \vb{E} = (\vb{A} - 5\vb{E})(\vb{A} + 2\vb{E}) = \vb0\)，
-所以由\cref{example:矩阵乘积的秩.乘积为零的两个矩阵的秩之和} 可知\[
+所以由\cref{example:矩阵乘积的秩.乘积为零的两个矩阵的秩之和} 可知\begin{equation*}
 	\rank(\vb{A} - 5\vb{E}) + \rank(\vb{A} + 2\vb{E}) \leq n.
-\]
+\end{equation*}
 又因为\begin{align*}
 	&\rank(\vb{A} - 5\vb{E}) + \rank(\vb{A} + 2\vb{E}) \\
 	&\geq \rank[(5\vb{E} - \vb{A}) + (\vb{A} + 2\vb{E})] \\
@@ -459,14 +459,14 @@
 \begin{example}
 %@credit: {5a781423-ba4e-4629-ac1a-eac743a4d445},{8b6edada-f2fd-4ae5-9020-eb533149a54c}
 设数域\(K\)上的一个一元多项式\(f(x)\)可以分解为\(m\)个互素的多项式的乘积，
-即\[
+即\begin{equation*}
 	f(x) = p_1(x) \cdot p_2(x) \dotsm p_m(x).
-\]
+\end{equation*}
 证明：如果矩阵\(\vb{A} \in M_n(K)\)满足\(f(\vb{A}) = \vb0\)，
-则\[
+则\begin{equation*}
 	\sum_{k=1}^m \rank(p_k(A))
 	= (m-1)n.
-\]
+\end{equation*}
 %TODO proof 具体证明过程参考2024年10月22日凌晨在[小飞机群]的聊天记录
 \end{example}
 
@@ -477,10 +477,10 @@
 由\cref{theorem:矩阵乘积的秩.多行少列矩阵与少行多列矩阵的乘积的行列式} 可知，
 要么成立\(\det(\vb{A} \vb{A}^T) = 0\)，
 要么成立\(\det(\vb{A}^T \vb{A}) = 0\)，
-但总归有\[
+但总归有\begin{equation*}
 	\det(\vb{A} \vb{A}^T) \det(\vb{A}^T \vb{A}) = 0.
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{example}
 
@@ -494,35 +494,35 @@
 假设\(m > n\)，
 由\cref{theorem:矩阵乘积的秩.多行少列矩阵与少行多列矩阵的乘积的行列式}
 可知\(\abs{\vb{A} \vb{B}} = 0\)，
-但是由题设条件\(\vb{A} \vb{B} = \vb{E}\)可知\[
+但是由题设条件\(\vb{A} \vb{B} = \vb{E}\)可知\begin{equation*}
 	\abs{\vb{A} \vb{B}} = \abs{\vb{E}} = 1 \neq 0,
-\]
+\end{equation*}
 矛盾，故必有\(m \leq n\).
-那么\[
+那么\begin{equation*}
 	\rank\vb{A},\rank\vb{B} \leq \min\{m,n\} = m,
-\]
-从而有\[
+\end{equation*}
+从而有\begin{equation*}
 	\min\{\rank\vb{A},\rank\vb{B}\} \leq m.
-\]
-由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\[
+\end{equation*}
+由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\begin{equation*}
 	\rank(\vb{A} \vb{B}) \leq \min\{\rank\vb{A},\rank\vb{B}\},
-\]
+\end{equation*}
 即\(\rank(\vb{A} \vb{B}) \leq m\).
-由题设条件\(\vb{A} \vb{B} = \vb{E}\)可知\[
+由题设条件\(\vb{A} \vb{B} = \vb{E}\)可知\begin{equation*}
 	\rank(\vb{A} \vb{B}) = \rank\vb{E} = m.
-\]
-那么\[
+\end{equation*}
+那么\begin{equation*}
 	m \leq \rank\vb{A} \leq m,
 	\qquad
 	m \leq \rank\vb{B} \leq m,
-\]
+\end{equation*}
 于是\(\rank\vb{A} = \rank\vb{B} = m\).
 \end{solution}
 \end{example}
 
 \begin{example}
 计算行列式\(\det\vb{D}\)，
-其中\[
+其中\begin{equation*}
 	\vb{D} = \begin{bmatrix}
 		1 & \cos(\alpha_1-\alpha_2) & \cos(\alpha_1-\alpha_3) & \dots & \cos(\alpha_1-\alpha_n) \\
 		\cos(\alpha_1-\alpha_2) & 1 & \cos(\alpha_2-\alpha_3) & \dots & \cos(\alpha_2-\alpha_n) \\
@@ -530,37 +530,37 @@
 		\vdots & \vdots & \vdots & & \vdots \\
 		\cos(\alpha_1-\alpha_n) & \cos(\alpha_2-\alpha_n) & \cos(\alpha_3-\alpha_n) & \dots & 1
 	\end{bmatrix}.
-\]
+\end{equation*}
 \begin{solution}
 记\(\vb{D} = (d_{ij})_n\).
-由\cref{equation:函数.三角函数.和积互化公式2} 可知\[
+由\cref{equation:函数.三角函数.和积互化公式2} 可知\begin{equation*}
 	d_{ij} = \cos(\alpha_i-\alpha_j)
 	= \cos\alpha_i\cos\alpha_j+\sin\alpha_i\sin\alpha_j,
 	\quad i,j=1,2,\dotsc,n.
-\]
-记\[
+\end{equation*}
+记\begin{equation*}
 	\vb{A} = \begin{bmatrix}
 		\cos\alpha_1 & \cos\alpha_2 & \dots & \cos\alpha_n \\
 		\sin\alpha_1 & \sin\alpha_2 & \dots & \sin\alpha_n
 	\end{bmatrix},
-\]那么\(\vb{D} = \vb{A}^T \vb{A}\).
+\end{equation*}那么\(\vb{D} = \vb{A}^T \vb{A}\).
 
 由\cref{theorem:线性方程组.矩阵的秩的性质2} 可知，
 \(\rank\vb{A} = \rank\vb{A}^T \leq \min\{n,2\}\).
-由\cref{theorem:线性方程组.矩阵乘积的秩} 可知，\[
+由\cref{theorem:线性方程组.矩阵乘积的秩} 可知，\begin{equation*}
 	\rank(\vb{A}^T\vb{A}) \leq \min\left\{\rank\vb{A}^T,\rank\vb{A}\right\} = \rank\vb{A}.
-\]
+\end{equation*}
 
 当\(n=1\)时，\(\abs{\vb{D}}=1\).
 
-当\(n=2\)时，\[
+当\(n=2\)时，\begin{equation*}
 	\abs{\vb{D}}
 	= \begin{vmatrix}
 		1 & \cos(\alpha_1-\alpha_2) \\
 		\cos(\alpha_1-\alpha_2) & 1
 	\end{vmatrix}
 	= 1 - \cos^2(\alpha_1-\alpha_2).
-\]
+\end{equation*}
 
 当\(n>2\)时，
 \(\rank(\vb{A}^T\vb{A}) \leq \rank\vb{A} \leq2\)，
@@ -573,7 +573,7 @@
 设\(\vb\alpha_1=(1,2,-1,0)^T,\vb\alpha_2=(1,1,0,2)^T,\vb\alpha_3=(2,1,1,a)^T\).
 若\(\dim\opair{\AutoTuple{\vb\alpha}{3}}=2\)，求\(a\).
 \begin{solution}
-除了利用\cref{equation:线性方程组.子空间的维数与向量组的秩的联系} 在将矩阵\[
+除了利用\cref{equation:线性方程组.子空间的维数与向量组的秩的联系} 在将矩阵\begin{equation*}
 	\vb{A} = (\vb\alpha_1,\vb\alpha_2,\vb\alpha_3)
 	= \begin{bmatrix}
 		1 & 1 & 2 \\
@@ -581,21 +581,21 @@
 		-1 & 0 & 1 \\
 		0 & 2 & a
 	\end{bmatrix}
-\]化为阶梯形矩阵以后，
+\end{equation*}化为阶梯形矩阵以后，
 根据\(\rank\{\AutoTuple{\vb\alpha}{3}\}=2\)求出\(a\)的值这种方法以外，
 我们还可以利用本节\hyperref[definition:线性方程组.矩阵的秩的定义]{矩阵的秩的定义}，
 得出\(\rank\vb{A}=\dim\opair{\AutoTuple{\vb\alpha}{3}}=2\)这一结论，
 从而根据\cref{definition:线性方程组.矩阵的秩的定义} 可知，
 \(\vb{A}\)中任意3阶子式全都为零.
 对于\(\vb{A}\)这么一个\(4\times3\)矩阵，
-任意去掉不含\(a\)的一行（不妨去掉第一行）得到一个行列式必为零：\[
+任意去掉不含\(a\)的一行（不妨去掉第一行）得到一个行列式必为零：\begin{equation*}
 	\begin{vmatrix}
 	2 & 1 & 1 \\
 	-1 & 0 & 1 \\
 	0 & 2 & a
 	\end{vmatrix}
 	= a - 6 = 0,
-\]
+\end{equation*}
 解得\(a = 6\).
 \end{solution}
 \end{example}

@@ -15,14 +15,14 @@
 
 例如，对于总体\(X \sim N(\mu,\sigma^2)\)，\(\sigma^2\)已知，\(\mu\)未知，
 \(\AutoTuple{X}{n}\)是来自总体\(X\)的样本，
-那么\[
+那么\begin{equation*}
 	\sum_{i=1}^n X_i,
 	\qquad
 	\sum_{i=1}^n \frac{X_i^2}{\sigma^2}
-\]是统计量；
-而\[
+\end{equation*}是统计量；
+而\begin{equation*}
 	\sum_{i=1}^n \frac{(X_i-\mu)^2}{\sigma^2}
-\]是含有未知参数的样本函数，不是统计量.
+\end{equation*}是含有未知参数的样本函数，不是统计量.
 
 \begin{table}[htb]
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P199 定义4.2.2
@@ -60,11 +60,11 @@
 	&= \sum_{i=1}^n X_i^2
 			- n \overline{X}^2,
 \end{align*}
-又\[
+又\begin{equation*}
 	B_2 = \frac1n \sum_{i=1}^n (X_i-\overline{X})^2,
 	\qquad
 	A_2 = \frac1n \sum_{i=1}^n X_i^2,
-\]
+\end{equation*}
 所以我们有\begin{equation}\label{equation:统计量.2阶中心矩-2阶原点矩-均值的关系}
 	B_2
 	= A_2 - \overline{X}^2.
@@ -121,30 +121,30 @@
 \begin{solution}
 记\(Y = \frac1n X\)，则\(Y\)的值域为\(R_Y = (0,+\infty)\).
 对于\(\forall y>0\)，
-\(Y\)有分布函数\[
+\(Y\)有分布函数\begin{equation*}
 	F_Y(y) = P(Y \leq y)
 	= P\left(\frac1n X \leq y\right)
 	= P(X \leq ny)
 	= \int_0^{ny} \lambda e^{-\lambda x} \dd{x}
 	= 1 - e^{-n\lambda y},
-\]
-密度函数\[
+\end{equation*}
+密度函数\begin{equation*}
 	f_Y(y) = F'_Y(y) = \left\{ \begin{array}{lc}
 		n\lambda e^{-n\lambda y}, & y>0, \\
 		0, & y \leq 0,
 	\end{array} \right.
-\]
+\end{equation*}
 即\(Y=\frac1nX \sim e(n\lambda)\)，
 也即\(Y \sim \Gamma(1,n\lambda)\).
 
-注意到\[
+注意到\begin{equation*}
 	\overline{X} = \frac1n X_1 + \frac1n X_2 + \dotsb + \frac1n X_n,
-\]
+\end{equation*}
 而\(\frac1n X_i\ (i=1,2,\dotsc,n)\)独立同服从于\(\Gamma(1,n\lambda)\)分布，
 那么根据~\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}，
-可知\[
+可知\begin{equation*}
 	\overline{X} \sim \Gamma(n,n\lambda).
-\]
+\end{equation*}
 \end{solution}
 \end{example}
 
@@ -159,23 +159,23 @@
 \end{gather}
 %TODO proof
 % \begin{proof}
-% 因为\[
+% 因为\begin{equation*}
 % 	E(\overline{X})
 % 	= E\left(\frac1n \sum_{i=1}^n X_i\right)
 % 	= \frac1n \sum_{i=1}^n E(X_i)
 % 	= \mu,
-% \]\[
+% \end{equation*}\begin{equation*}
 % 	D(\overline{X})
 % 	= D\left(\frac1n \sum_{i=1}^n X_i\right)
 % 	= \frac{1}{n^2} \sum_{i=1}^n D(X_i)
 % 	= \frac{\sigma^2}{n}.
-% \]
+% \end{equation*}
 
-% 又由\hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布可加性}可得\[
+% 又由\hyperref[theorem:正态分布与自然指数分布族.正态分布的可加性2]{正态分布可加性}可得\begin{equation*}
 % 	\overline{X} = \frac1n \sum_{i=1}^n X_i
 % 	\sim N\left(\mu,\frac{\sigma^2}{n}\right).
 % 	\qedhere
-% \]
+% \end{equation*}
 % \end{proof}
 \end{theorem}
 
@@ -224,22 +224,22 @@
 \end{align*}
 \end{proof}
 \end{example}
-上例也就说明了为什么样本方差的定义式是\[
+上例也就说明了为什么样本方差的定义式是\begin{equation*}
 	S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i-\overline{X})^2,
-\]
-而不是2阶中心矩\[
+\end{equation*}
+而不是2阶中心矩\begin{equation*}
 	B_2 = \frac1n \sum_{i=1}^n (X_i-\overline{X})^2.
-\]
+\end{equation*}
 
 不过，由于\(B_2 = \frac{n-1}{n} S^2\)，
-其数学期望\[
+其数学期望\begin{equation*}
 	E(B_2)
 	= E\left(\frac{n-1}{n} S^2\right)
 	= \frac{n-1}{n} E(S^2)
 	= \left(1-\frac1n\right) \sigma^2
 	\to \sigma^2
 	\quad(n\to\infty),
-\]
+\end{equation*}
 所以在工程上，当\(n\)足够大时，也可以将\(B_2\)作为总体方差的估计量.
 
 虽然一般情况下样本方差的抽样分布不易精确得出，
@@ -254,7 +254,7 @@
 且\(\overline{X}\)与\(S^2\)相互独立.
 \begin{proof}
 对样本\((\AutoTuple{X}{n})\)作线性变换，
-令\[
+令\begin{equation*}
 	\left\{ \def\arraystretch{1.5} \begin{array}{l}
 		Z_1 = \frac{1}{\sqrt{2}} X_1 - \frac{1}{\sqrt{2}} X_2, \\
 		Z_2 = \frac{1}{\sqrt{2\cdot3}} (X_1+X_2) - \frac{2}{\sqrt{2\cdot3}} X_3, \\
@@ -263,58 +263,58 @@
 		Z_{n-1} = \frac{1}{\sqrt{(n-1)n}} (X_1+X_2+\dotsb+X_{n-1}) - \frac{n-1}{\sqrt{(n-1)n}} X_n, \\
 		Z_n = \frac{1}{\sqrt{n}} (X_1+X_2+\dotsb+X_n) = \sqrt{n} \cdot \overline{X}.
 	\end{array} \right.
-\]
+\end{equation*}
 由于\(\AutoTuple{X}{n}\)独立同分布于\(N(\mu,\sigma^2)\)，
-且\[
+且\begin{equation*}
 	\sum_{i=1}^{n-1} \left[ \frac{1}{\sqrt{(n-1)n}} \right]^2
 	+ \left[ \frac{n-1}{\sqrt{(n-1)n}} \right]^2
 	= \frac{n-1}{(n-1)n}
 	+ \frac{(n-1)^2}{(n-1)n}
 	= 1,
-\]
-所以，根据\cref{theorem:正态分布与自然指数分布族.正态分布的可加性2} 有\[
+\end{equation*}
+所以，根据\cref{theorem:正态分布与自然指数分布族.正态分布的可加性2} 有\begin{equation*}
 	Z_1,Z_2,\dotsc,Z_{n-1} \sim N(0,\sigma^2), \qquad
 	Z_n \sim N(\sqrt{n} \mu,\sigma^2),
-\]
+\end{equation*}
 且\(\Cov(Z_i,Z_j) = 0\ (i \neq j)\).
 这就说明，\(\AutoTuple{Z}{n}\)相互独立.
 
-由于\[
+由于\begin{equation*}
 	\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2
 	= \frac{1}{\sigma^2} \left( \sum_{i=1}^n X_i^2 - n \overline{X}^2 \right)
 	= \frac{1}{\sigma^2} \left( \sum_{i=1}^n Z_i^2 - Z_n^2 \right)
 	= \sum_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
-\]
+\end{equation*}
 且\(\AutoTuple{Z}{n-1}\)相互独立，
 且均服从于\(N(0,\sigma^2)\)，
 所以\(\frac{Z_1}{\sigma},\frac{Z_2}{\sigma},\dotsc,\frac{Z_{n-1}}{\sigma}\)仍相互独立，
 且均服从于\(N(0,1)\).
-那么由~\hyperref[definition:数理统计的基础知识.卡方分布的定义]{\(\x\)分布的定义}可知\[
+那么由~\hyperref[definition:数理统计的基础知识.卡方分布的定义]{\(\x\)分布的定义}可知\begin{equation*}
 	\left( \frac{Z_1}{\sigma} \right)^2
 	+ \left( \frac{Z_2}{\sigma} \right)^2
 	+ \dotsb
 	+ \left( \frac{Z_{n-1}}{\sigma} \right)^2
 	\sim \x(n-1),
-\]即\[
+\end{equation*}即\begin{equation*}
 	\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2 \sim \x(n-1).
-\]
+\end{equation*}
 又因为\(\AutoTuple{Z}{n}\)相互独立，
-且\[
+且\begin{equation*}
 	\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2
 	= \sum_{i=1}^{n-1} \left( \frac{Z_i}{\sigma} \right)^2,
 	\qquad
 	\overline{X} = \frac{1}{\sqrt{n}} Z_n,
-\]
+\end{equation*}
 所以\(\frac{1}{\sigma^2} \sum_{i=1}^n (X_i-\overline{X})^2\)与\(\overline{X}\)独立.
 \end{proof}
 \end{theorem}
 \begin{remark}
 注意\(\frac{(n-1) S^2}{\sigma^2}\)有一个等价的表达式\(\frac{n B_2}{\sigma^2}\)，
-即\[
+即\begin{equation*}
 	\frac{(n-1) S^2}{\sigma^2}
 	= \frac{1}{\sigma^2} \sum_{i=1}^n (X_i - \overline{X})^2
 	= \frac{n B_2}{\sigma^2}.
-\]
+\end{equation*}
 \end{remark}
 
 \begin{example}
@@ -353,19 +353,19 @@ S_2^2 = \frac1{m-1} \sum_{i=1}^m (Y_i - \overline{Y})^2\).
 	t = \frac{\overline{X}-\mu}{S / \sqrt{n}} \sim t(n-1).
 \end{equation}
 \begin{proof}
-由于\[
+由于\begin{equation*}
 	U = \frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1),
 	\qquad
 	V = \frac{(n-1)S^2}{\sigma^2} \sim \x(n-1),
-\]
+\end{equation*}
 且\(\overline{X}\)与\(S^2\)相互独立，
 从而\(U\)与\(V\)相互独立.
-于是由\(t\)分布定义可得\[
+于是由\(t\)分布定义可得\begin{equation*}
 	\frac{U}{\sqrt{V/(n-1)}}
 	= \frac{\overline{X}-\mu}{S/\sqrt{n}}
 	= t \sim t(n-1).
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{theorem}
 % 由于t分布的极限分布是标准正态分布\(N(0,1)\)，
@@ -407,9 +407,9 @@ S_2^2 = \frac1{m-1} \sum_{i=1}^m (Y_i - \overline{Y})^2\).
 	\sim
 	t(n_1+n_2-2),
 \end{equation}
-其中\[
+其中\begin{equation*}
 	S_w^2 = \frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}.
-\]
+\end{equation*}
 %TODO proof
 \end{theorem}
 
@@ -439,15 +439,15 @@ S_2^2 = \frac1{m-1} \sum_{i=1}^m (Y_i - \overline{Y})^2\).
 	N\left(\mu,\frac{\sigma^2}{n}\right).
 \end{equation}
 \begin{proof}
-由\hyperref[theorem:极限定理.林德伯格--列维中心极限定理]{林德伯格--列维中心极限定理}可知\[
+由\hyperref[theorem:极限定理.林德伯格--列维中心极限定理]{林德伯格--列维中心极限定理}可知\begin{equation*}
 	\frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n} \sigma} \dotsim N(0,1),
-\]
-由此可知\[
+\end{equation*}
+由此可知\begin{equation*}
 	X_1+X_2+\dotsb+X_n \dotsim N(n\mu,n\sigma^2),
-\]\[
+\end{equation*}\begin{equation*}
 	\overline{X} \dotsim N\left(\mu,\frac{\sigma^2}{n}\right).
 	\qedhere
-\]
+\end{equation*}
 \end{proof}
 \end{theorem}
 这一定理表明，无论总体分布是什么，
