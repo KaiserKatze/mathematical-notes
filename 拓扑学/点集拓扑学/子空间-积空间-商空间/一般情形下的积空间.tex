@@ -1,1 +1,92 @@
 \section{积空间（一般情形）}
+在本节我们将有限个拓扑空间的积空间的概念推广到一族拓扑空间的积空间的情形.
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P111 定义3.3.1
+如果一个集族\(\{X_\gamma\}_{\gamma \in \Gamma}\)中所有的\(X_\gamma\)都是拓扑空间，
+则称“\(\{X_\gamma\}_{\gamma \in \Gamma}\)是一个\DefineConcept{拓扑空间族}”
+或“\(\{X_\gamma\}_{\gamma \in \Gamma}\)是一族拓扑空间”.
+\end{definition}
+
+\begin{proposition}\label{theorem:一般情形下的积空间.由各坐标空间中的开集在投射的逆下的像组成的子基}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P112
+设\(\{X_\gamma\}_{\gamma \in \Gamma}\)是一个拓扑空间族，
+笛卡尔积\(X \defeq \BigTimes_{\gamma \in \Gamma} X_\gamma\)，
+\(p_\gamma\)是从\(X\)到坐标集\(X_\gamma\)的投射，
+则\(X\)的子集族\begin{equation*}
+	\S \defeq \Set{
+		p_\gamma^{-1}(U_\gamma)
+		\given
+		\text{$U_\gamma$是$X_\gamma$的一个开集},
+		\gamma \in \Gamma
+	}
+\end{equation*}
+是它的某个拓扑\(\T\)的一个子基.
+\end{proposition}
+
+\begin{definition}\label{definition:一般情形下的积空间.拓扑积空间}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P112
+设\(\{X_\gamma\}_{\gamma \in \Gamma}\)是一个拓扑空间族，
+笛卡尔积\(X \defeq \BigTimes_{\gamma \in \Gamma} X_\gamma\)，
+\(p_\gamma\)是从\(X\)到坐标集\(X_\gamma\)的投射.
+把\cref{theorem:一般情形下的积空间.由各坐标空间中的开集在投射的逆下的像组成的子基} 中指出的拓扑\(\T\)
+称为“笛卡尔积\(X = \BigTimes_{\gamma \in \Gamma} X_\gamma\)的\DefineConcept{积拓扑}”.
+把\((X,\T)\)称为“拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的\DefineConcept{拓扑积空间}”，
+在不致混淆的情况下简称为\DefineConcept{积空间}.
+把\(X_\gamma\)称为“\(X\)的一个\DefineConcept{坐标空间}”.
+\end{definition}
+
+由\cref{theorem:有限情形下的积空间.由各坐标空间中的开集在投射的逆下的像组成的子基} 可知，
+有限个拓扑空间的积空间恰好是拓扑空间族的积空间的一个特殊情形.
+
+\begin{theorem}\label{theorem:一般情形下的积空间.投射是开映射}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P112 定理3.3.1
+设\(X\)是拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的拓扑积空间，
+则对于任意\(\alpha \in \Gamma\)，
+从\(X\)到\(X_\alpha\)的投射\(p_\alpha\)是一个连续开映射.
+%TODO proof
+%\cref{theorem:有限情形下的积空间.投射是开映射}
+\end{theorem}
+%TODO 为什么在\cref{theorem:有限情形下的积空间.投射是开映射} 中，投射是“满的连续开映射”，
+% 但是在\cref{theorem:一般情形下的积空间.投射是开映射} 中，投射只是“连续开映射”？满射性呢？
+
+\begin{theorem}\label{theorem:一般情形下的积空间.投射与映射的复合的连续性}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P113 定理3.3.2
+设\(X\)是拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的拓扑积空间，
+\(Y\)是一个拓扑空间，
+\(p_\alpha\)是从\(X\)到\(X_\alpha\)的投射，
+则映射\(f\colon Y \to X\)连续，
+当且仅当
+对于每一个\(\alpha \in \Gamma\)，
+复合映射\(p_\alpha \circ f\)都连续.
+%TODO proof
+%\cref{theorem:有限情形下的积空间.投射与映射的复合的连续性}
+\end{theorem}
+
+\begin{theorem}\label{theorem:一般情形下的积空间.积拓扑是使所有投射都连续的最小拓扑}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P113 定理3.3.3
+设\(X\)是拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的拓扑积空间，
+\(\T\)是\(X\)的积拓扑.
+如果对于\(X\)的一个拓扑\(\wT\)而言，
+当\(\alpha \in \Gamma\)时，
+从\(X\)到\(X_i\)的投射\(p_\alpha\)总是连续映射，
+那么\(\wT \supseteq \T\).
+%TODO proof
+%\cref{theorem:有限情形下的积空间.积拓扑是使所有投射都连续的最小拓扑}
+\end{theorem}
+\begin{remark}
+\cref{theorem:一般情形下的积空间.积拓扑是使所有投射都连续的最小拓扑} 说明：
+积拓扑是使所有投射都连续的最小拓扑.
+\end{remark}
+
+\begin{theorem}\label{theorem:一般情形下的积空间.拓扑积空间中序列收敛于一点的充分必要条件}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P114 定理3.3.4
+设\(X\)是拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的拓扑积空间，
+\(p_\alpha\)是从\(X\)到\(X_\alpha\)的投射，
+则“\(X\)中的序列\(\{x_n\}_{n\in\mathbb{Z}^+}\)收敛于\(x \in X\)”的充分必要条件是
+“对于每一个\(\alpha \in \Gamma\)，
+拓扑空间\(X_\alpha\)中的序列\(\{p_\alpha(x_n)\}_{n\in\mathbb{Z}^+}\)
+收敛于\(p_\alpha(x) \in X_\alpha\)”.
+%TODO proof
+\end{theorem}
+由于\cref{theorem:一般情形下的积空间.拓扑积空间中序列收敛于一点的充分必要条件} 的缘故，
+积拓扑常被称为\DefineConcept{坐标式收敛的拓扑}或\DefineConcept{点态收敛拓扑}.
