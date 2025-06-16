@@ -4,6 +4,7 @@
 继续将橡皮管两端“粘合”起来，便可得到一个橡皮轮胎.
 像这样，从一个给定的图形出发，构造出一个新图形的办法可以一般化.
 
+\subsection{商拓扑}
 \begin{proposition}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P116 定义3.4.1
 设\((X,\T)\)是一个拓扑空间，
@@ -19,6 +20,11 @@
 是\(Y\)的一个拓扑.
 \end{proposition}
 
+我们知道，\hyperref[definition:集合论.商集的定义]{商集}是
+利用一个等价关系将一个集合划分为若干等价类，再由这些等价类组合而成的新的集合.
+这个过程相当于把一个等价类中的全部点“粘合”为等价类这一个点.
+我们还知道，\hyperref[theorem:集合论.典范映射是满射]{典范映射是一个满射}.
+注意到上述情况，下面引出商拓扑和商空间的概念的方式，便显得顺理成章了.
 \begin{definition}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P116 定义3.4.1
 设\((X,\T)\)是一个拓扑空间，
@@ -33,3 +39,182 @@
 \end{equation*}
 称为“\(Y\)的（相对于满射\(f\)而言的）\DefineConcept{商拓扑}”.
 \end{definition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P116
+拓扑空间\(Y\)的一个拓扑\(\wT\)是\(Y\)的相对于满射\(f\)而言的商拓扑，
+当且仅当\begin{equation*}
+	\text{在拓扑空间$(Y,\wT)$中，$F \subseteq Y$是一个闭集}
+	\iff
+	\text{$f^{-1}(F)$是$X$中的一个闭集}.
+\end{equation*}
+%TODO proof
+\end{proposition}
+
+\begin{theorem}\label{theorem:商空间.商拓扑是使满射f连续的最大拓扑}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P116 定理3.4.1
+设\((X,\T)\)是一个拓扑空间，\(Y\)是一个集合，
+\(f\colon X \to Y\)是一个满射，
+则\begin{itemize}
+	\item 如果\(\T_1\)是\(Y\)的商拓扑，则\(f\colon X \to Y\)是一个连续映射；
+
+	\item 如果\(\wT_1\)是\(Y\)的一个拓扑，
+	使得对于这个拓扑\(\wT_1\)而言映射\(f\)是连续的，
+	则\(\wT_1 \subseteq \T_1\).
+\end{itemize}
+%TODO proof
+\end{theorem}
+\begin{remark}
+\cref{theorem:商空间.商拓扑是使满射f连续的最大拓扑} 说明：
+商拓扑是使满射\(f\)连续的最大拓扑.
+\end{remark}
+
+\subsection{商映射}
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P116 定理3.4.2
+设\((X,\T_X),(Y,\T_Y)\)都是拓扑空间.
+如果\(\T_Y\)是\(Y\)的相对于满射\(f\colon X \to Y\)而言的商拓扑，
+则称“\(f\)是一个\DefineConcept{商映射}”.
+\end{definition}
+
+\begin{property}
+商映射都是连续映射.
+%TODO proof
+%\cref{theorem:商空间.商拓扑是使满射f连续的最大拓扑}
+\end{property}
+
+\begin{theorem}\label{theorem:商空间.映射与商映射的复合的连续性}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P116 定理3.4.2
+设\(X,Y,Z\)都是拓扑空间，
+\(f\colon X \to Y\)是一个商映射，
+则映射\(g\colon Y \to Z\)连续，
+当且仅当复合映射\(g \circ f\)连续.
+%TODO proof
+\end{theorem}
+
+为了应用\cref{theorem:商空间.映射与商映射的复合的连续性}，
+“如何知道一个拓扑空间的图片是相对于从另一个拓扑空间到它的一个满射而言的商拓扑”便成了一个有意思的问题.
+这里暂且给出一个简单的必要条件.
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P117 定理3.4.3
+设\((X,\T_X),(Y,\T_Y)\)都是拓扑空间.
+如果映射\(f\colon X \to Y\)是一个满射，
+且\(f\)是连续的，
+且\(f\)是开映射或闭映射，
+则\(\T_Y\)是相对于\(f\)而言的商拓扑.
+%TODO proof
+\end{theorem}
+
+\subsection{商空间}
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P117 定义3.4.3
+设\((X,\T)\)是一个拓扑空间，
+\(R\)是\(X\)中的一个等价关系.
+把商集\(X/R\)相对于典范映射\(p\colon X \to X/R\)而言的商拓扑\(\T_R\)
+称为“\(X/R\)的（相对于等价关系\(R\)而言的）\DefineConcept{商拓扑}”，
+把拓扑空间\((X/R,\T_R)\)
+称为“\((X,\T)\)（相对于等价关系\(R\)而言的）\DefineConcept{商空间}”.
+\end{definition}
+
+典范映射就是一个商映射.
+
+通过在一个拓扑空间中给定等价关系的方法来得到商空间是构造新的拓扑空间的一个重要手法.
+下面给出若干例子.
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P117 例3.4.1
+在实数空间\(\mathbb{R}\)中，给定一个等价关系\begin{equation*}
+	S \defeq \Set{
+		(x,y) \in \mathbb{R}^2
+		\given
+		\text{要么$x,y$同时是有理数},
+		\text{要么$x,y$同时是无理数}
+	},
+\end{equation*}
+所得到的商空间\(\mathbb{R}/S\)实际上就是由两个点构成的平庸空间.
+我们可以把这个商空间更通俗地称为
+“在实数空间中奖所有有理点和所有无理点分别粘合为一点所得到的商空间”.
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P118 例3.4.2
+在单位闭区间\(I=[0,1]\)中，给定一个等价关系\begin{equation*}
+	R \defeq \Set{
+		(x,y) \in I^2
+		\given
+		\text{要么$x=y$},
+		\text{要么$\{x,y\}=\{0,1\}$}
+	},
+\end{equation*}
+便得到一个商空间\([0,1]/R\).
+我们可以把这个商空间更通俗地称为
+“在单位闭区间中粘合两个端点所得到的商空间”.
+显然这个商空间同胚于单位圆周\(S^1\).
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P118 例3.4.3
+在单位正方形\(I^2=[0,1]^2\)中，给定一个等价关系\begin{equation*}
+	R \defeq \Set*{
+		(x,y) \in (I^2)^2
+		\given
+		\begin{array}{l}
+			\text{要么$x=y$}, \\
+			\text{要么$\{x_1,y_1\}=\{0,1\}$且$x_2=y_2$且$x=(x_1,x_2),y=(y_1,y_2)$}
+		\end{array}
+	},
+\end{equation*}
+便得到一个商空间\(S/R\).
+我们可以把这个商空间更通俗地称为
+“在单位正方形中粘合一对边所得到的商空间”.
+显然这个商空间同胚于圆柱面\(S^1 \times I\).
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P118 例3.4.4
+在单位正方形\(I^2=[0,1]^2\)中，给定一个等价关系\begin{equation*}
+	R \defeq \Set*{
+		(x,y) \in (I^2)^2
+		\given
+		\begin{array}{l}
+			\text{要么$x=y$}, \\
+			\text{要么$\{x_1,y_1\}=\{0,1\}$且$x_2+y_2=1$且$x=(x_1,x_2),y=(y_1,y_2)$}
+		\end{array}
+	},
+\end{equation*}
+便得到一个商空间\(S/R\).
+显然这个商空间同胚于莫比乌斯带，不同胚于圆柱面\(S^1 \times I\).
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P119 例3.4.5
+在单位正方形\(I^2=[0,1]^2\)中，给定一个等价关系\begin{equation*}
+	R \defeq \Set*{
+		(x,y) \in (I^2)^2
+		\given
+		\begin{array}{l}
+			\text{要么$x=y$}, \\
+			\text{要么$\{x_1,y_1\}=\{0,1\}$且$x_2=y_2$且$x=(x_1,x_2),y=(y_1,y_2)$}, \\
+			\text{要么$\{x_2,y_2\}=\{0,1\}$且$x_1=y_1$且$x=(x_1,x_2),y=(y_1,y_2)$}
+		\end{array}
+	},
+\end{equation*}
+便得到一个商空间\(S/R\).
+显然这个商空间同胚于环面\(S^1 \times S^1\).
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P119 例3.4.6
+在单位正方形\(I^2=[0,1]^2\)中，给定一个等价关系\begin{equation*}
+	R \defeq \Set*{
+		(x,y) \in (I^2)^2
+		\given
+		\begin{array}{l}
+			\text{要么$x=y$}, \\
+			\text{要么$\{x_2,y_2\}=\{0,1\}$且$x_1=y_1$且$x=(x_1,x_2),y=(y_1,y_2)$}, \\
+			\text{要么$\{x_1,y_1\}=\{0,1\}$且$x_2+y_2=1$且$x=(x_1,x_2),y=(y_1,y_2)$}
+		\end{array}
+	},
+\end{equation*}
+便得到一个商空间\(S/R\).
+显然这个商空间同胚于克莱因瓶.
+\end{example}
