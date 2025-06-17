@@ -1,1 +1,196 @@
 \section{道路连通空间}
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P142 定义4.5.1
+设\(X\)是一个拓扑空间，
+\(f\colon [0,1] \to X\)一个连续映射，
+\(a=f(0),
+b=f(1)\)，
+则称“\(f\)是拓扑空间\(X\)中从\(a\)到\(b\)的一条\DefineConcept{道路}”，
+把\(f\)的像\(f([0,1])\)称为“拓扑空间\(X\)中的一条\DefineConcept{曲线}”
+或“拓扑空间\(X\)中的一条\DefineConcept{弧}”，
+把\(a\)称为“道路\(f\)的\DefineConcept{起点}”或“曲线\(f([0,1])\)的{起点}”，
+把\(b\)称为“道路\(f\)的\DefineConcept{终点}”或“曲线\(f([0,1])\)的{终点}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P142 定义4.5.1
+起点和终点相同的道路，称为\DefineConcept{回路}，并且此时它的起点称为\DefineConcept{基点}.
+\end{definition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P142 定义4.5.2
+设\(X\)是一个拓扑空间.
+如果对于任意\(a,b \in X\)，\(X\)中存在一条从\(a\)到\(b\)的一条道路，
+则称\(X\)是一个\DefineConcept{道路连通空间}.
+\end{definition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P142 定义4.5.2
+设\(Y\)是道路连通空间\(X\)的一个子集.
+如果\(Y\)作为\(X\)的子空间是一个道路连通空间，
+则称“\(Y\)是\(X\)的一个\DefineConcept{道路连通子集}”.
+\end{definition}
+
+实数空间\(\mathbb{R}\)是道路连通的.
+这是因为任取\(a,b \in \mathbb{R}\)，
+则连续映射\(f\colon [0,1] \to \mathbb{R}, t \mapsto a+t(b-a)\)
+便是\(\mathbb{R}\)中以\(a\)为起点、以\(b\)为终点的一条道路.
+容易验证，\(\mathbb{R}\)中任何一个区间都是道路连通的.
+
+\begin{theorem}\label{theorem:道路连通空间.道路连通空间一定是连通空间}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P142 定理4.5.1
+如果拓扑空间\(X\)是一个道路连通空间，
+则\(X\)必然是一个连通空间.
+%TODO proof
+\end{theorem}
+
+连通空间可以不是道路连通的.
+例如，拓扑学家的正弦曲线\(S\)的闭包\(\TopoClosureL{S}\)是一个连通空间，但是它不是一个道路连通空间.
+
+道路连通性与局部连通性之间更没有必然的蕴含关系.
+例如，离散空间都是局部连通的，然而包含多于一个点的离散空间都不是连通空间，当然也就不是道路连通空间了.
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P143 定理4.5.2
+设\(X,Y\)都是拓扑空间，
+\(X\)是道路连通的，
+\(f\colon X \to Y\)是一个连续映射，
+则\(f(X)\)是道路连通的.
+%TODO proof
+\end{theorem}
+\begin{remark}
+由上述定理可知，拓扑空间的道路连通性是一个拓扑不变性质，也是一个可商性质.
+\end{remark}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P143 定理4.5.3
+设\(\AutoTuple{X}{n}\)是\(n\ (n\geq1)\)个道路连通空间，
+则拓扑积空间\(\AutoTuple{X}{n}[\times]\)也是道路连通空间.
+%TODO proof
+\end{theorem}
+
+根据上述定理容易证明：\(n\)维欧氏空间\(\mathbb{R}^n\)是一个道路连通空间.
+
+\begin{theorem}\label{theorem:道路连通空间.粘结引理}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P144 定理4.5.4
+设\(A,B\)是拓扑空间\(X\)中的两个开集（或闭集），
+\(X = A \cup B\)，
+\(Y\)是一个拓扑空间，
+\(f_1\colon A \to Y\)和\(f_2\colon B \to Y\)都是连续映射，
+且满足\(f_1 \SetRestrict (A \cap B) = f_2 \SetRestrict (A \cap B)\)，
+定义映射\(f\colon X \to Y\)使之满足\begin{equation*}
+	f(x) \defeq \left\{ \begin{array}{cl}
+		f_1(x), & x \in A, \\
+		f_2(x), & x \in B,
+	\end{array} \right.
+\end{equation*}
+则\(f\)是一个连续映射.
+%TODO proof
+\end{theorem}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P144 定义4.5.3
+设\(X\)是一个拓扑空间，\(a,b \in X\).
+如果\(X\)中有一条从\(a\)到\(b\)的道路，
+则称“\(a\)和\(b\)是\DefineConcept{道路连通的}”.
+\end{definition}
+
+容易证明，两点之间的道路连通关系，满足自反性、对称性、传递性，是一个等价关系.
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P145 定义4.5.4
+设\(X\)是一个拓扑空间，点\(a \in X\)，
+把\(a\)在道路连通关系下的等价类\begin{equation*}
+	\Set{
+		x \in X
+		\given
+		\text{$x$和$a$是道路连通的}
+	}
+\end{equation*}
+称为“拓扑空间\(X\)的一个\DefineConcept{道路连通分支}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P145 定义4.5.4
+设\(X\)是一个拓扑空间，
+\(Y\)是\(X\)的一个子集.
+\(Y\)作为\(X\)的子空间的每一个道路连通分支，
+称为“拓扑空间\(X\)的子集\(Y\)的一个\DefineConcept{道路连通分支}”.
+\end{definition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P145
+拓扑空间\(X\ (\neq\emptyset)\)的每一个道路连通分支都不是空集.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P145
+拓扑空间\(X\ (\neq\emptyset)\)的不同的道路连通分支互斥.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P145
+拓扑空间\(X\ (\neq\emptyset)\)的所有道路连通分支之并就是\(X\)本身.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P145
+设\(X\)是一个拓扑空间，
+点\(a,b \in X\)，
+则\(a,b\)属于\(X\)的同一个道路连通分支，
+当且仅当\(a\)和\(b\)道路连通.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P145
+设\(X\)是一个拓扑空间，
+\(Y\)是\(X\)的一个子集，
+点\(a,b \in Y\)，
+则\(a,b\)属于\(Y\)的同一个道路连通分支，
+当且仅当\(Y\)中有一个从\(a\)到\(b\)的道路.
+%TODO proof
+\end{proposition}
+
+由定义可知，拓扑空间中每一个道路连通分支\(A\)，都是一个道路连通子集；
+由\cref{theorem:道路连通空间.道路连通空间一定是连通空间} 可知
+\(A\)也是一个连通子集；
+由\cref{theorem:连通分支.连通分支的性质1} 可知，
+\(A\)必然包含于某个连通分支.
+
+作为\cref{theorem:道路连通空间.道路连通空间一定是连通空间} 在某种特定情形下的一个逆命题，
+我们有如下命题：
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P146 定理4.5.5
+\(n\)维欧氏空间\(\mathbb{R}^n\)的任何一个连通开集都是道路连通的.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P146 推论4.5.6
+\(n\)维欧氏空间\(\mathbb{R}^n\)中任何开集的每一个道路连通分支同时也是它的一个连通分支.
+%TODO proof
+\end{proposition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P147 习题 5.
+设\(X\)是一个拓扑空间，\(x \in X\).
+如果\(x\)的每一个邻域\(U\)中，都包含着\(x\)的某一个道路连通的邻域\(V\)，
+则称“拓扑空间\(X\)在点\(x\)是\DefineConcept{局部道路连通的}”.
+\end{definition}
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P147 习题 5.
+设\(X\)是一个拓扑空间.
+如果\(X\)在它的每一个点都是局部道路连通的，
+则称“拓扑空间\(X\)是\DefineConcept{局部道路连通空间}”.
+\end{definition}
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P147 习题 5.
+设\(X\)是一个拓扑空间，
+\(Y\)是\(X\)的一个子集.
+如果\(Y\)作为\(X\)的子空间是一个道路连通空间，
+则称“\(Y\)是\(X\)的一个\DefineConcept{局部道路连通子集}”.
+\end{definition}
