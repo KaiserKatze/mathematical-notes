@@ -743,82 +743,134 @@ a_n = a_{n-1} + a_{n-2} \quad(n\geq3),
 
 \section{已知递推公式求解通项公式的方法}
 \subsection{\texorpdfstring{形如\(a_{n+2}=p a_{n+1} + q a_n\ (q\neq0)\)的递推公式}{第一类递推公式}}
-对于形如\(a_{n+2}=p a_{n+1} + q a_n\ (q\neq0)\)的递推公式，我们可以令\begin{equation*}
-\vb{X}_n = \begin{bmatrix}
-a_{n+1} \\
-a_n
-\end{bmatrix},
-\qquad
-\vb{A} = \begin{bmatrix}
-p & q \\
-1 & 0
-\end{bmatrix},
-\end{equation*}则\(\vb{X}_{n+1} = \vb{A} \vb{X}_n\)，从而\(\vb{X}_n = \vb{A}^{n-1} \vb{X}_1\).
+对于形如\(a_{n+2}=p a_{n+1} + q a_n\ (q\neq0)\)的递推公式，
+我们可以令\begin{equation*}
+	\vb{X}_n
+	\defeq \begin{bmatrix}
+		a_{n+1} \\
+		a_n
+	\end{bmatrix},
+	\qquad
+	\vb{A}
+	\defeq \begin{bmatrix}
+		p & q \\
+		1 & 0
+	\end{bmatrix},
+\end{equation*}
+则\(\vb{X}_{n+1} = \vb{A} \vb{X}_n\)，
+从而\(\vb{X}_n = \vb{A}^{n-1} \vb{X}_1\).
 这样就可以求出通项公式.
 
 现在我们来求\(\vb{A}\)的幂.
 此时\(\vb{A}\)的特征多项式为\begin{equation*}
-f(x) = \begin{vmatrix}
-x-p & -q \\
--1 & x
-\end{vmatrix} = x^2 - px - q,
-\end{equation*}我们也称这个多项式为递推公式的特征方程.
+	f(x)
+	= \begin{vmatrix}
+		x-p & -q \\
+		-1 & x
+	\end{vmatrix}
+	= x^2 - px - q.
+\end{equation*}
+我们也称这个多项式为递推公式的特征方程.
 
-假设我们求得该方程的两个复根为\(\alpha,\beta\)，则由韦达定理可知\(p=\alpha+\beta, q=-\alpha\beta\).
+假设我们求得该方程的两个复根为\(\alpha,\beta\)，
+则由韦达定理可知\(p=\alpha+\beta, q=-\alpha\beta\).
 注意到\begin{equation*}
-\left\{ \begin{array}{l}
-a_{n+2} - \alpha a_{n+1} = \beta(a_{n+1}-\alpha a_n), \\
-a_{n+2} - \beta a_{n+1} = \alpha(a_{n+1}-\beta a_n)
-\end{array} \right.,
-\end{equation*}从而\begin{equation*}
-\left\{ \begin{array}{l}
-a_{n+1} - \alpha a_n = \beta^{n-1} (a_2 - \alpha a_1), \\
-a_{n+1} - \beta a_n = \alpha^{n-1} (a_2 - \beta a_1)
-\end{array} \right.,
+	\left\{ \begin{array}{l}
+		a_{n+2} - \alpha a_{n+1} = \beta(a_{n+1}-\alpha a_n), \\
+		a_{n+2} - \beta a_{n+1} = \alpha(a_{n+1}-\beta a_n),
+	\end{array} \right.
+\end{equation*}
+从而\begin{equation*}
+	\left\{ \begin{array}{l}
+		a_{n+1} - \alpha a_n = \beta^{n-1} (a_2 - \alpha a_1), \\
+		a_{n+1} - \beta a_n = \alpha^{n-1} (a_2 - \beta a_1).
+	\end{array} \right.
 \end{equation*}
 
-若\(\alpha\neq\beta\)，解关于\(a_{n+1},a_n\)的线性方程组可得\begin{equation*}
-a_n = \frac{\beta^{n-1} (a_2 - \alpha a_1) - a^{n-1} (a_2 - \beta a_1)}{\beta-\alpha};
+若\(\alpha\neq\beta\)，
+解关于\(a_{n+1},a_n\)的线性方程组可得\begin{equation*}
+	a_n
+	= \frac
+		{
+			\begin{vmatrix}
+				1 & \beta^{n-1}(a_2 - \alpha a_1) \\
+				1 & \alpha^{n-1}(a_2 - \beta a_1)
+			\end{vmatrix}
+		}
+		{
+			\begin{vmatrix}
+				1 & -\alpha \\
+				1 & -\beta
+			\end{vmatrix}
+		}
+	= \frac{\beta^{n-1} (a_2 - \alpha a_1) - a^{n-1} (a_2 - \beta a_1)}{\beta-\alpha}.
 \end{equation*}
-若\(\alpha=\beta\)，则\(\alpha=\beta\neq0\)，从而\(a_{n+1} = \alpha a_n = \alpha^{n-1} (a_2 - \alpha a_1)\)，进而\begin{equation*}
-\frac{a_{n+1}}{\alpha^{n+1}} - \frac{a_n}{\alpha^n} = \frac{1}{\alpha^2}(a_2-\alpha a_1),
-\end{equation*}最后得到\begin{equation*}
-a_n = (2-n)\alpha^{n-1} a_1 + (n-1) \alpha^{n-2} a_2.
+
+若\(\alpha=\beta\)，
+则\(a_{n+1} = \alpha a_n = \alpha^{n-1} (a_2 - \alpha a_1)\)，
+再由\(q\neq0\)可知\(\alpha,\beta\neq0\)，
+进而\begin{equation*}
+	\frac{a_{n+1}}{\alpha^{n+1}} - \frac{a_n}{\alpha^n}
+	= \frac{1}{\alpha^2}(a_2-\alpha a_1),
+\end{equation*}
+最后得到\begin{equation*}
+	a_n = (2-n)\alpha^{n-1} a_1 + (n-1) \alpha^{n-2} a_2.
 \end{equation*}
 
 利用上述结论可以求出斐波那契数列的通项公式为\begin{equation*}
-a_n = \frac{1}{\sqrt{5}} \left[
-\left(\frac{1+\sqrt{5}}{2}\right)^n
--\left(\frac{1-\sqrt{5}}{2}\right)^n
-\right].
+	a_n = \frac{1}{\sqrt{5}} \left[
+		\left(\frac{1+\sqrt{5}}{2}\right)^n
+		-\left(\frac{1-\sqrt{5}}{2}\right)^n
+	\right].
 \end{equation*}
 
 \subsection{\texorpdfstring{形如\(a_{n+1} = \frac{a a_n + b}{c a_n + d}\ (ad-bc\neq0)\)的递推公式}{第二类递推公式}}
-对于形如\(a_{n+1} = \frac{a a_n + b}{c a_n + d}\ (ad-bc\neq0)\)的递推公式\footnote{这里\(ad-bc\neq0\)确保分式不可能恒为常数（即分式不能约分）.}，首先考虑特征方程\begin{equation*}
-x = \frac{ax+b}{cx+d},
-\end{equation*}整理得\begin{equation*}
-cx^2+(d-a)x-b=0,
-\end{equation*}解得\begin{equation*}
-\alpha=\frac{(a-d)-\sqrt{(d-a)^2+4bc}}{2c}, \qquad
-\beta=\frac{(a-d)+\sqrt{(d-a)^2+4bc}}{2c}.
-\end{equation*}由韦达定理，有\begin{equation*}
-\alpha+\beta=\frac{a-d}{c}, \qquad
-\alpha\beta=-\frac{b}{c};
-\end{equation*}因此\begin{equation*}
-a_{n+1} = \frac{\left(\alpha+\beta+\frac{d}{c}\right) a_n - \alpha\beta}{a_n + \frac{d}{c}}.
+对于形如\(a_{n+1} = \frac{a a_n + b}{c a_n + d}\ (ad-bc\neq0)\)的递推公式\footnote{
+	这里\(ad-bc\neq0\)确保分式不可能恒为常数（即分式不能约分）.
+}，
+首先考虑特征方程\begin{equation*}
+	x = \frac{ax+b}{cx+d},
+\end{equation*}
+整理得\begin{equation*}
+	cx^2+(d-a)x-b=0,
+\end{equation*}
+解得\begin{equation*}
+	\alpha=\frac{(a-d)-\sqrt{(d-a)^2+4bc}}{2c}, \qquad
+	\beta=\frac{(a-d)+\sqrt{(d-a)^2+4bc}}{2c}.
+\end{equation*}
+由韦达定理，
+有\begin{equation*}
+	\alpha+\beta=\frac{a-d}{c}, \qquad
+	\alpha\beta=-\frac{b}{c};
+\end{equation*}
+因此\begin{equation*}
+	a_{n+1} = \frac{\left(\alpha+\beta+\frac{d}{c}\right) a_n - \alpha\beta}{a_n + \frac{d}{c}}.
 \end{equation*}
 
 接下来分成两种情况讨论：\begin{enumerate}
-\item 若\(\alpha\neq\beta\)，则\begin{equation*}
-\frac{a_{n+1}-\alpha}{a_{n+1}-\beta}
-= \frac{\left(\alpha+\beta+\frac{d}{c}\right) a_n - \alpha\beta - \alpha \left(a_n + \frac{d}{c}\right)}{\left(\alpha+\beta+\frac{d}{c}\right) a_n - \alpha\beta - \beta \left(a_n + \frac{d}{c}\right)}
-= \frac{c\beta+d}{c\alpha+d} \frac{a_n-\alpha}{a_n-\beta}.
-\end{equation*}记\(b_n = \frac{a_n-\alpha}{a_n-\beta}\)，则\(b_{n+1} = \frac{c\beta+d}{c\alpha+d} b_n\).
+	\item 若\(\alpha\neq\beta\)，
+	则\begin{equation*}
+		\frac{a_{n+1}-\alpha}{a_{n+1}-\beta}
+		= \frac
+			{
+				\left(\alpha+\beta+\frac{d}{c}\right) a_n - \alpha\beta - \alpha \left(a_n + \frac{d}{c}\right)
+			}
+			{
+				\left(\alpha+\beta+\frac{d}{c}\right) a_n - \alpha\beta - \beta \left(a_n + \frac{d}{c}\right)
+			}
+		= \frac{c\beta+d}{c\alpha+d} \frac{a_n-\alpha}{a_n-\beta}.
+	\end{equation*}
+	记\(b_n = \frac{a_n-\alpha}{a_n-\beta}\)，
+	则\(b_{n+1} = \frac{c\beta+d}{c\alpha+d} b_n\).
 
-\item 若\(\alpha=\beta=\frac{a-d}{2c}\)，则\begin{equation*}
-a_{n+1} = \frac{\left(2\alpha+\frac{d}{c}\right) a_n - \alpha^2}{a_n + \frac{d}{c}}
-= \frac{(2c\alpha+d)a_n-c\alpha^2}{c a_n+d},
-\end{equation*}进而有\begin{equation*}
-\frac{1}{a_{n+1}-\alpha}=\frac{1}{a_n-\alpha}+\frac{1}{\alpha+\frac{d}{c}}.
-\end{equation*}记\(b_n = \frac{1}{a_n-\alpha}\)，则\(b_{n+1} = b_n + \frac{1}{\alpha+\frac{d}{c}}\).
+	\item 若\(\alpha=\beta=\frac{a-d}{2c}\)，
+	则\begin{equation*}
+		a_{n+1} = \frac{\left(2\alpha+\frac{d}{c}\right) a_n - \alpha^2}{a_n + \frac{d}{c}}
+		= \frac{(2c\alpha+d)a_n-c\alpha^2}{c a_n+d},
+	\end{equation*}
+	进而有\begin{equation*}
+		\frac{1}{a_{n+1}-\alpha}=\frac{1}{a_n-\alpha}+\frac{1}{\alpha+\frac{d}{c}}.
+	\end{equation*}
+	记\(b_n = \frac{1}{a_n-\alpha}\)，
+	则\(b_{n+1} = b_n + \frac{1}{\alpha+\frac{d}{c}}\).
 \end{enumerate}
