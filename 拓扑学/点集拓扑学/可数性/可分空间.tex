@@ -1,21 +1,112 @@
 \section{可分空间}
 \begin{definition}
 %@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Folland） P13
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P156 定义5.2.1
 设\((X,\T)\)是拓扑空间，\(A \subseteq X\).
 若\(\TopoClosureL{A}=X\)，
 则称“\(A\)是\(X\)的\DefineConcept{稠密子集}（dense subset）”
 或“\(A\)在\(X\)中是\DefineConcept{稠密的}（\(A\) is \emph{dense} in \(X\)）”.
 \end{definition}
 
+以下定理从一个侧面说明了讨论拓扑空间中稠密子集的意义.
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P156 定理5.2.1
+设\(X\)是一个拓扑空间，\(D\)是\(X\)中一个稠密子集，
+\(f,g\)都是从\(X\)到\(\mathbb{R}\)的连续映射.
+如果\(f \SetRestrict D = g \SetRestrict D\)，
+则\(f = g\).
+%TODO proof
+\end{theorem}
+
+我们也希望讨论“有着较少点数的”稠密子集的拓扑空间，
+例如具有有限稠密子集的拓扑空间.但这类拓扑空间过于简单，
+大部分我们感兴趣的拓扑空间都不是这种情形，讨论起来意思不大.
+例如一个度量空间如果有一个有限的稠密子集的话，那么这个空间一定就是一个离散空间.
+相反，后继的讨论表明，许多重要的拓扑空间都有可数稠密子集.
+
 \begin{definition}
 %@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Folland） P14
 %@see: 《基础拓扑学讲义》（尤承业） P17
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P156 定义5.2.2
 设\((X,\T)\)是拓扑空间.
 若\(X\)存在一个可数稠密子集，
-则称“\(X\)是\DefineConcept{可分的}（separable）”
-或“\(X\)是\DefineConcept{可分拓扑空间}（separable space）”.
+则称“拓扑空间\(X\)是\DefineConcept{可分的}（separable）”
+或“\(X\)是\DefineConcept{可分空间}（separable space）”.
 %@see: https://mathworld.wolfram.com/SeparableSpace.html
 \end{definition}
+
+\begin{theorem}\label{theorem:可分空间.满足第二可数性公理的空间都是可分空间}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P157 定理5.2.2
+每一个满足第二可数性公理的空间都是可分空间.
+%TODO proof
+\end{theorem}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P157
+证明：含有不可数个点的离散空间一定不是可分的.
+\begin{proof}
+在含有不可数个点的离散空间中，任意一个可数子集的闭包都等于它自身，而不可能等于整个空间.
+\end{proof}
+\end{example}
+
+\begin{corollary}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P157 推论5.2.3
+满足第二可数性公理的拓扑空间的每一个子空间都是可分空间.
+\begin{proof}
+因为“拓扑空间是否满足第二可数性公理”是一个可遗传性质，
+所以由\cref{theorem:可分空间.满足第二可数性公理的空间都是可分空间} 可知，
+满足第二可数性公理的拓扑空间的每一个子空间都是可分空间.
+\end{proof}
+\end{corollary}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P157
+证明：\(n\)维欧氏空间\(\mathbb{R}^n\)中的每一个子空间（包括它自己）都是可分空间.
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P157 例5.2.1
+设\((X,\T)\)是一个拓扑空间，
+任取一个不属于\(X\)的元素\(\infty\)
+（例如我们可以取\(\infty \defeq X\)），
+令\begin{align*}
+	X^* &\defeq X \cup \{\infty\}, \\
+	\T^* &\defeq \Set{
+		A \cup \{\infty\}
+		\given
+		A \in \T
+	} \cup \{\emptyset\}.
+\end{align*}
+证明：\begin{itemize}
+	\item \((X^*,\T^*)\)是一个拓扑空间；
+	\item \((X^*,\T^*)\)是一个可分空间；
+	\item \((X^*,\T^*)\)满足第二可数性公理，当且仅当\((X,\T)\)满足第二可数性公理；
+	\item \(\T = \T^* \TopoRestrict X\)；
+	\item \((X,\T)\)是\((X^*,\T^*)\)的一个子空间.
+\end{itemize}
+%TODO proof
+\end{example}
+\begin{remark}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P157
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P158
+由上例可知：\begin{itemize}
+	\item 可分空间可以不满足第二可数性公理；
+	\item 可分空间的子空间可以不是可分空间，换言之，拓扑空间的可分性不是可遗传性质.
+\end{itemize}
+\end{remark}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P158 定理5.2.4
+每一个可分度量空间都满足第二可数性公理.
+%TODO proof
+\end{theorem}
+
+\begin{corollary}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P159 推论5.2.5
+可分度量空间的每一个子空间都是可分空间.
+%TODO proof
+\end{corollary}
 
 \begin{example}
 %@see: 《基础拓扑学讲义》（尤承业） P18
