@@ -1,1 +1,111 @@
 \section{拓扑空间在方体中的嵌入}
+设\(X\)是一个拓扑空间，
+\(\Gamma\)是一个集合.
+根据定义，
+从\(\Gamma\)到\(X\)的映射空间\(X^\Gamma\)
+可以看作拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的笛卡尔积
+（其中每一个\(X_\gamma\)都等于\(X\)），
+因此它必有一个积拓扑.
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P233
+设\(X\)是一个拓扑空间，
+\(\Gamma\)是一个集合.
+把从\(\Gamma\)到\(X\)的映射空间\(X^\Gamma\)的积拓扑
+称为“\(X^\Gamma\)的\DefineConcept{点式收敛拓扑}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P233 定义7.8.1
+设\(\Gamma\)是一个集合，
+从\(\Gamma\)到单位闭区间\([0,1]\)的映射空间\([0,1]^\Gamma\)，连同它的点式收敛拓扑，
+称为一个\DefineConcept{方体}.
+\end{definition}
+
+显然，\(n\)维欧氏空间\(\mathbb{R}^n\)中的单位方体是我们这里所说的方体的一个特例.
+
+由于我们熟悉单位闭区间\([0,1]\)的拓扑特性，
+所以方体\([0,1]^\Gamma\)的某些拓扑性质也容易得知.
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P233
+任意一个方体都是连通的紧致的提赫诺夫空间.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P233
+如果\(\Gamma\)是可数集，
+那么方体\([0,1]^\Gamma\)是满足第二可数性公理的可度量化空间.
+%TODO proof
+\end{proposition}
+
+然而，方体中究竟都包含了哪些类型的拓扑空间？
+或者说，哪种拓扑空间可以嵌入到方体中去？
+这是我们在本节要研究的问题.
+可以注意到，
+所有提赫诺夫空间，或者说所有紧致的豪斯多夫空间的每一个子空间，
+都可以被“装”在某一个方体之中.
+
+之前  % 《点集拓扑讲义（第四版）》（熊金城）第6章第6节
+我们证明了
+每一个满足第二可数性公理的\(T_3\)空间都可以嵌入希尔伯特空间.
+那个定理的证明过程可以一般化，
+这恰为我们解决现在的课题提供了一条有效的途径.
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P233 定义7.8.2
+设\(X\)是一个拓扑空间，
+\(F\)是一族映射，
+\(F\)中的每一个元素都是从拓扑空间\(X\)到某一个拓扑空间的一个映射.
+\begin{itemize}
+	\item 如果对于任意\(a,b \in X\)，
+	只要满足\(a \neq b\)，
+	就存在\(f \in F\)，
+	使得\(f(a) \neq f(b)\)，
+	则称“\(F\)是一个\DefineConcept{区别点的映射族}”.
+
+	\item 如果对于\(X\)中任意一个点\(x\)和\(X\)中任意一个不含点\(x\)的闭集\(B\)，
+	存在\(f \in F\)，
+	使得\(f(x) \notin \TopoClosureL{f(B)}\)，
+	则称“\(F\)是一个\DefineConcept{区别点和闭集的映射族}”.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P234 引理7.8.1（嵌入引理）
+设\(X\)是拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的积空间，
+\(Y\)是一个拓扑空间，
+\(f\)是从\(Y\)到\(X\)的映射，
+\(p_\gamma\)是从\(X\)到坐标集\(X_\gamma\)的投射，
+令\begin{equation*}
+	F \defeq \Set{
+		p_\alpha \circ f
+		\given
+		\alpha \in \Gamma
+	},
+\end{equation*}
+则\begin{itemize}
+	\item \(f\)是一个连续映射，当且仅当\(F\)是一个连续映射族；
+	\item \(f\)是一个单射，当且仅当\(F\)是一个区别点的映射族；
+	\item 如果\(F\)是一个区别点和闭集的映射族，
+	则\(g\colon Y \to f(Y), y \mapsto f(y)\)是一个开映射.
+\end{itemize}
+%TODO proof
+\end{lemma}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P235 定理7.8.2（嵌入定理）
+设\(X\)是一个拓扑空间，
+则\(X\)是一个提赫诺夫空间，
+当且仅当\(X\)可以嵌入某一个方体.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P235 定理7.8.3
+设\(X\)是一个拓扑空间，
+则\(X\)是一个提赫诺夫空间，
+当且仅当\(X\)可以嵌入某一个紧致的豪斯多夫空间.
+%TODO proof
+\end{theorem}
