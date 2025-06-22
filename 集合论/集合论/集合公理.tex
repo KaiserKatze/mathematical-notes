@@ -707,6 +707,99 @@ B \in B \iff B \notin B,
 记作\(A - B\)或\(A \setminus B\).
 \end{definition}
 
+\begin{example}
+证明：\((A - B) \cap C = (A \cap C) - (B \cap C)\).
+\begin{proof}
+直接有\begin{align*}
+	x \in ((A - B) \cap C)
+	&\iff
+	x \in (A - B)
+	\land
+	x \in C \\
+	&\iff
+	(
+		x \in A
+		\land
+		x \notin B
+	)
+	\land
+	x \in C \\
+	&\iff
+	(
+		x \in A
+		\land
+		x \in C
+		\land
+		x \notin B
+	)
+	\lor
+	(
+		x \in A
+		\land
+		x \in C
+		\land
+		x \notin C
+	) \\
+	&\iff
+	(
+		x \in A
+		\land
+		x \in C
+	)
+	\land
+	(
+		x \notin B
+		\lor
+		x \notin C
+	) \\
+	&\iff
+	(
+		x \in A
+		\land
+		x \in C
+	)
+	\land
+	\neg(
+		x \in B
+		\land
+		x \in C
+	) \\
+	&\iff
+	x \in (A \cap C)
+	\land
+	x \notin (B \cap C) \\
+	&\iff
+	x \in ((A \cap C) - (B \cap C)).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+
+\begin{example}
+举例说明：\((A - B) \cup C \neq (A \cup C) - (B \cup C)\).
+\begin{solution}
+取\(A = \{1,2,3\},
+B = \{2,3\},
+C = \{2\}\)，
+则\(A - B = \{1\},
+(A - B) \cup C = \{1,2\},
+A \cup C = A,				\allowbreak
+B \cup C = B,
+(A \cup C) - (B \cup C)
+= A - B = \{1\}\)，
+显然\((A - B) \cup C \neq (A \cup C) - (B \cup C)\).
+%@Mathematica: a = {1, 2, 3}
+%@Mathematica: b = {2, 3}
+%@Mathematica: c = {2}
+%@Mathematica: Complement[a, b]
+%@Mathematica: Complement[a, b] \[Union] c
+%@Mathematica: a \[Union] c
+%@Mathematica: b \[Union] c
+%@Mathematica: Complement[a \[Union] c, b \[Union] c]
+\end{solution}
+\end{example}
+
 \begin{definition}
 设\(A,B\)都是集合.
 称\begin{equation*}
