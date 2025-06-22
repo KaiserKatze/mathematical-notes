@@ -8,7 +8,8 @@
 
 ## 下载链接
 
-[夸克网盘](https://pan.quark.cn/s/38334d2d28e7)
+- [Github](https://github.com/KaiserKatze/mathematical-notes/releases/latest)
+- [夸克网盘](https://pan.quark.cn/s/38334d2d28e7)
 
 ## 联系方式
 
