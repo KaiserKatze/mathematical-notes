@@ -722,6 +722,55 @@ B \in B \iff B \notin B,
 \end{example}
 
 \begin{example}
+证明：当且仅当\(A \cap B = \emptyset\)时，成立\(A - B = A\).
+\begin{proof}
+首先证明“\(A \cap B = \emptyset \implies A - B = A\)”.
+当\(A \cap B = \emptyset\)时，
+显然\(
+	x \in A - B
+	\iff  % 定义
+	x \in A \land x \notin B
+	\implies  % 化简
+	x \in A
+\)，
+即\(A - B \subseteq A\)；
+同时还有\(
+	x \in A
+	\iff  % 同一律 (x \in B \lor x \notin B) = 1
+	x \in A \land (x \in B \lor x \notin B)
+	\iff  % 分配律
+	(x \in A \land x \in B)
+	\lor
+	(x \in A \land x \notin B)
+	\implies  % 同一律 (x \in A \land x \in B) = 0
+	x \in A \land x \notin B
+\)，
+即\(A \subseteq A - B\)；
+因此\(A = A - B\).
+
+接着证明“\(A - B = A \implies A \cap B = \emptyset\)”.
+当\(A - B = A\)时，
+有\(
+	(x \in A - B) \liff (x \in A)
+	\iff  % 定义
+	(x \in A \land x \notin B) \liff (x \in A)
+	\iff  % 逻辑等值式 \cref{equation:数理逻辑.联结词等值式3}
+	((x \in A \land x \notin B) \limp (x \in A))
+	\land
+	((x \in A) \limp (x \in A \land x \notin B))
+	\iff  % 同一律 (x \in A \land x \notin B) \limp (x \in A) = 1
+	(x \in A) \limp (x \in A \land x \notin B)
+	\implies
+	(x \in A \land x \in B) \limp (x \in A \land x \notin B \land x \in B)
+	\iff  % 交集定义，空集公理
+	(x \in A \cap B) \limp x \in \emptyset
+	\iff
+	A \cap B = \emptyset
+\).
+\end{proof}
+\end{example}
+
+\begin{example}
 证明：\((A \cup C) - (B \cup C) = (A - B) - C\).
 \begin{proof}
 直接有\begin{align*}
