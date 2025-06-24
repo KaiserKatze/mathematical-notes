@@ -1381,7 +1381,7 @@
 进而\(q\)为真，
 因此\(((p \limp q) \land p) \limp q\)永真.
 \end{proof}
-\begin{proof}
+\begin{proof}[证法三]
 等值演算法.
 \begin{align*}
 	((p \limp q) \land p) \limp q
@@ -1396,7 +1396,7 @@
 	\qedhere
 \end{align*}
 \end{proof}
-\begin{proof}
+\begin{proof}[证法四]
 主范式法.
 \(((p \limp q) \land p) \limp q\)的主析取范式为\begin{equation*}
 	(p \land q) \lor (p \land \neg q) \lor (\neg p \land q) \lor (\neg p \land \neg q).
@@ -1405,6 +1405,38 @@
 由主范式可见\(((p \limp q) \land p) \limp q\)永真.
 \end{proof}
 \let\qed\relax
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：\(p \limp q\)是\(p \land r \limp q \land r\)的充分不必要条件.
+\begin{proof}
+列出真值表：\begin{center}
+	\begin{tabular}{*9c}
+		\hline
+		\(p\) & \(q\) & \(r\) & \(p \limp q\) & \(p \land r\) & \(q \land r\)
+			& \(p \land r \limp q \land r\)
+			& \(\begin{array}{c}
+				(p \limp q) \limp \\
+				(p \land r \limp q \land r)
+			\end{array}\)
+			& \(\begin{array}{c}
+				(p \land r \limp q \land r) \\
+				\limp (p \limp q)
+			\end{array}\) \\
+		\hline
+		0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+		0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		1 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 \\
+		1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+		1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		\hline
+	\end{tabular}
+\end{center}
+立即可知\(p \limp q\)是\(p \land r \limp q \land r\)的充分不必要条件.
 \end{proof}
 \end{example}
 
