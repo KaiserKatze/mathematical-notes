@@ -52,81 +52,41 @@
 \subsection{度量空间是特殊的拓扑空间}
 现在首先将度量空间纳入拓扑空间的范畴.
 
+\begin{definition}\label{definition:拓扑空间.度量拓扑}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P56 定义2.2.2
 设\((X,\rho)\)是一个度量空间.
-%@see: 《基础拓扑学讲义》（尤承业） P14 引理
-我们可以证明：度量空间\((X,\rho)\)的任意两个球形邻域的交集是若干个球形邻域的并集.
-这是因为，只要任意取定\(x_1,x_2 \in X\)和\(\epsilon_1,\epsilon_2>0\)，
-就可得到两个球形邻域\(B(x_1,\epsilon_1)\)和\(B(x_2,\epsilon_2)\)，
-再令\(U \defeq B(x_1,\epsilon_1) \cap B(x_2,\epsilon_2)\)，
-那么对于任意\(x \in U\)，
-根据\hyperref[definition:度量空间.球形邻域的概念]{球形邻域的定义}有\(
-	\epsilon_1 > \rho(x,x_1),
-	\epsilon_2 > \rho(x,x_2)
-\)，
-若记\(
-	\epsilon_x \defeq \min\{
-		\epsilon_1 - \rho(x,x_1),
-		\epsilon_2 - \rho(x,x_2)
-	\}
-\)，
-则有\(B(x,\epsilon_x) \subseteq U\).
-于是\begin{equation*}
-	U = \bigcup_{x \in U} B(x,\epsilon_x).
-\end{equation*}
-
-%@see: 《基础拓扑学讲义》（尤承业） P14 命题1.1
-现在记\begin{equation*}
-	\T_\rho = \Set{
-		U
-		\given
-		\text{\(U\)是若干个球形邻域的并集}
-	}
-	\cup
-	\{\emptyset,X\}.
-\end{equation*}
-我们来证明：\(\T_\rho\)是\(X\)的一个拓扑.
-设\(U,V \in \T_\rho\)，
 记\begin{equation*}
-	U = \bigcup_\alpha B(x_\alpha,\epsilon_\alpha), \qquad
-	V = \bigcup_\beta B(x_\beta,\epsilon_\beta),
+	\T_\rho \defeq \Set{
+		A \subseteq X
+		\given
+		\text{$A$是度量空间$X$中的一个开集}
+	},
 \end{equation*}
-则\begin{align*}
-	U \cap V
-	&= \left(
-		\bigcup_\alpha B(x_\alpha,\epsilon_\alpha)
-	\right)
-	\cap
-	\left(
-		\bigcup_\beta B(x_\beta,\epsilon_\beta)
-	\right) \\
-	&= \bigcup_{\alpha,\beta} \left[
-		B(x_\alpha,\epsilon_\alpha)
-		\cap
-		B(x_\beta,\epsilon_\beta)
-	\right].
-\end{align*}
-由于\begin{equation*}
-	(\forall \alpha,\beta)
-	[
-		B(x_\alpha,\epsilon_\alpha)
-		\cap
-		B(x_\beta,\epsilon_\beta)
-		\in
-		\T_\rho
-	],
-\end{equation*}
-那么有\(U \cap V \in \T_\rho\).
+% 《点集拓扑讲义（第四版）》（熊金城）上的叫法
+称之为“\(X\)的\DefineConcept{由度量\(\rho\)诱导出来的拓扑}”
+% 《基础拓扑学讲义》（尤承业）上的叫法
+或“\(X\)上由度量\(\rho\)决定的\DefineConcept{度量拓扑}”.
+%\cref{definition:度量空间.开集的概念}
+%\cref{definition:度量空间.球形邻域的概念}
+\end{definition}
 
-因此，假设\(\T_\rho\)是由\(X\)中的所有开集构成的集族，
-根据\cref{theorem:度量空间.开集的性质} 可知\((X,\T_\rho)\)是\(X\)的一个拓扑.
-我们称\(\T_\rho\)为“\(X\)的由度量\(\rho\)诱导出来的拓扑”.
+根据\cref{definition:拓扑空间.度量拓扑,theorem:度量空间.开集的性质}
+可知\(\emptyset,X \in \T_\rho\)，
+并且\(\T_\rho\)对有限交、任意并都封闭，
+这就证明\(\T_\rho\)是\(X\)的一个拓扑.
+
 此外，我们约定：
 如果没有另外说明，
 当我们提到“度量空间\((X,\rho)\)的拓扑”时，
 指的就是拓扑\(\T_\rho\)；
 在称“度量空间\((X,\rho)\)是拓扑空间”时，
 指的就是拓扑空间\((X,\T_\rho)\).
+
+可以证明，\(\T_\rho\)是由\(X\)的全体开邻域的任意并以及空集组成，
+即\begin{equation*}
+	\T_\rho = \Set*{ U \given U = \bigcup \T_1, \T_1 \subseteq \B } \cup \{\emptyset\},
+\end{equation*}
+其中\(\B = \Set{ B(x,\epsilon) \given x \in X, \epsilon > 0 }\).
 
 因此，实数空间\(\mathbb{R}\)、
 \(n\)维欧氏空间\(\mathbb{R}^n\)（特别是欧氏平面\(\mathbb{R}^2\)）
