@@ -274,7 +274,41 @@
 \begin{example}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P62 习题 5.
 证明：每一个离散空间都是可度量化的.
-%TODO
+\begin{proof}
+设\(X\)是一个非空集合.
+定义映射\(\rho\colon X \times X \to \mathbb{R}\)，使之满足\begin{equation*}
+	\rho(x,y) = \left\{ \begin{array}{cl}
+		0, & x = y, \\
+		1, & x \neq y.
+	\end{array} \right.
+\end{equation*}
+显然\(\rho\)是\(X\)的一个度量，
+并且可以注意到\(X\)中任意一个以点\(x\)为中心、以\(\epsilon\)为半径的球形邻域\(B(x,\epsilon)\)
+要么等于\(\{x\}\)要么等于\(X\).
+设\(\T_\rho\)是\(X\)的由度量\(\rho\)诱导出来的拓扑.
+接下来，只需要证明离散拓扑\(\T\)与由度量\(\rho\)诱导出来的拓扑\(\T_\rho\)相等，
+即证\(\T_\rho = \Powerset X\)；
+又鉴于\(\T_\rho \subseteq \Powerset X\)，
+因此只需证\(\Powerset X \subseteq \T_\rho\)，
+即证\(
+	(\forall A)
+	[
+		A \subseteq X
+		\implies
+		A \in \T_\rho
+	]
+\).
+任取\(X\)的一个子集\(A\)，
+显然\(A = \bigcup\Set{ \{x\} \given x \in A }\).
+因为\(\{x\}\)是\(x\)的一个球形邻域，
+所以根据\cref{theorem:度量空间.开集的性质} 可知
+\(\{x\}\)是度量空间\((X,\rho)\)的一个开集，
+再根据\hyperref[definition:拓扑空间.度量拓扑]{度量拓扑的定义}可知
+\(\{x\}\)是拓扑空间\((X,\T_\rho)\)的一个开集.
+又因为\hyperref[definition:拓扑学.开集公理定义的拓扑空间]{拓扑\(\T_\rho\)对任意并封闭}，
+所以\(A\)也是拓扑空间\((X,\T_\rho)\)的一个开集.
+综上所述，离散空间是可度量化的.
+\end{proof}
 \end{example}
 
 \subsection{拓扑空间之间的连续映射}
