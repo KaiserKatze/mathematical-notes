@@ -690,3 +690,44 @@
 %现在我们就明白了，对于积分的每一种定义都基于一种度量：
 %黎曼积分基于若尔当度量，
 %勒贝格积分基于勒贝格度量.
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P54 习题 3.
+设\((X,\rho)\)是一个离散的度量空间.
+证明：\begin{itemize}
+	\item \(X\)的每一个子集都是开集；
+	\item 如果\(Y\)也是一个度量空间，则任意一个从\(X\)到\(Y\)的映射都是连续的.
+\end{itemize}
+\begin{proof}
+因为\((X,\rho)\)是一个离散的度量空间，
+那么由定义有\begin{equation*}
+	(\forall x \in X)
+	(\exists \delta_x > 0)
+	(\forall y \in X - \{x\})
+	[\rho(x,y) > \delta_x].
+\end{equation*}
+
+任取\(X\)的一个子集\(A\)，
+便有\begin{equation*}
+	(\forall x \in A)
+	[B(x,\epsilon_x) = \{x\} \subseteq A],
+\end{equation*}
+这就说明\(X\)的每一个子集都是开集.
+
+设映射\(f\colon X \to Y\)，
+\(\sigma\)是\(Y\)的度量.
+在\(X\)中任取一点\(x_0\)，
+对于任意正数\(\epsilon\)，
+只要取\(\delta = \delta_{x_0}\)，
+就会使得\begin{align*}
+	f(B(x_0,\delta))
+	&= f(\{x_0\})
+	= \{f(x_0)\}
+	= \Set{ y \in Y \given \sigma(y,f(x_0)) = 0 } \\
+	&\subseteq
+	B(f(x_0),\epsilon)
+	= \Set{ y \in Y \given \sigma(y,f(x_0)) < \epsilon },
+\end{align*}
+这就说明映射\(f\)在点\(x_0\)连续.
+\end{proof}
+\end{example}
