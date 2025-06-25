@@ -71,6 +71,71 @@
 
 当前文已经说明了度量\(\rho\)，省略它不至于引起混淆时，可以简称“\(X\)是一个度量空间”.
 
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P54 习题 1.
+证明：映射\(
+	\rho\colon \mathbb{R}\times\mathbb{R} \to \mathbb{R},
+	(x,y) \mapsto (x-y)^2
+\)不是\(\mathbb{R}\)的度量.
+\begin{proof}
+显然\(\rho(x,y) = (x-y)^2\)具有对称性和半正定性，
+这是因为\begin{gather*}
+	\rho(y,x)
+	= (y-x)^2
+	= (x-y)^2
+	= \rho(x,y)
+	\geq 0, \\
+	\rho(x,y) = (x-y)^2 = 0 \iff x-y = 0 \iff x=y.
+\end{gather*}
+不过，只要取\(x=-1,y=0,z=1\)，
+就有\(
+	\rho(x,z)
+	% = (x-z)^2 = (-1-1)^2 = (-2)^2
+	= 4,
+	\rho(x,y)
+	% = (x-y)^2 = (-1-0)^2 = (-1)^2
+	= 1,
+	\rho(y,z)
+	% = (y-z)^2 = (0-1)^2 = (-1)^2
+	= 1
+\)，
+从而\(\rho(x,z) >\allowbreak \rho(x,y) +\allowbreak \rho(y,z)\)，
+所以\(\rho\)不满足三角不等式，
+因此\(\rho\)不是\(\mathbb{R}\)的度量.
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P54 习题 1.
+证明：映射\(
+	\rho\colon \mathbb{R}\times\mathbb{R} \to \mathbb{R},
+	(x,y) \mapsto \abs{x^2-y^2}
+\)不是\(\mathbb{R}\)的度量.
+\begin{proof}
+显然\(\rho(x,y) = \abs{x^2-y^2}\)满足对称性和三角不等式，
+这是因为\begin{gather*}
+	\rho(y,x)
+	= \abs{y^2-x^2}
+	= \abs{x^2-y^2}
+	= \rho(x,y), \\
+	\rho(x,z)
+	= \abs{x^2-z^2}
+	= \abs{(x^2-y^2)-(z^2-y^2)}
+	\leq \abs{x^2-y^2} + \abs{y^2-z^2}
+	= \rho(x,y) + \rho(y,z).
+\end{gather*}
+不过，只要取\(x=1,y=-1\)，
+就有\(x \neq y\)
+和\(
+	\rho(x,y)
+	% = \abs{x^2-y^2} = \abs{1^2-(-1)^2} = \abs{1-1}
+	= 0
+\)，
+所以\(\rho\)不满足半正定性，
+因此\(\rho\)不是\(\mathbb{R}\)的度量.
+\end{proof}
+\end{example}
+
 \subsection{常见的度量空间}
 \begin{example}[实数空间\(\mathbb{R}\)]
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P46 例2.1.1
