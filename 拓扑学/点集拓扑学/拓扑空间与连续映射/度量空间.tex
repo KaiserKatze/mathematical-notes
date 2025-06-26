@@ -757,7 +757,47 @@
 	\quad x=(x_1,x_2).
 \end{equation*}
 证明：\(f\)是连续映射.
-%TODO proof
+\begin{proof}
+要证\(f\)是连续映射，
+只需证对于\(\mathbb{R}^2\)中任意一点\(x\)和任意\(\epsilon > 0\)，存在\(\delta > 0\)，
+当\(\mathbb{R}^2\)中任意一点\(y = (y_1,y_2)\)
+满足\(\sqrt{(x_1-y_1)^2+(x_2-y_2)^2} < \delta\)时，
+就有\(\abs{f(x) - f(y)} < \epsilon\)成立.
+%@credit: {ce603838-a24d-4616-9395-d7b223e8cb72} 提起\(\max\)与\(\abs\)的关系
+由\cref{equation:绝对值函数.两个数的最大值} \begin{equation*}
+	\max\{a,b\} = \frac{a+b}{2} + \frac{\abs{a-b}}{2}
+\end{equation*}
+\def\ExpandMax#1#2{\frac{#1+#2}{2} + \frac{\abs{#1-#2}}{2}}
+可知\begin{align*}
+	\abs{f(x) - f(y)}
+	&= \abs{
+		\left( \ExpandMax{x_1}{x_2} \right)
+		-
+		\left( \ExpandMax{y_1}{y_2} \right)
+	} \\
+	&= \abs{
+		\frac{
+			(x_1-y_1) + (x_2-y_2)
+			+ \abs{x_1-x_2} - \abs{y_1-y_2}
+		}{2}
+	} \\
+	%\cref{theorem:不等式.三角不等式1}
+	&\leq \abs{\frac{x_1-y_1}{2}} + \abs{\frac{x_2-y_2}{2}} + \frac{\abs{\abs{x_1-x_2} - \abs{y_1-y_2}}}{2} \\
+	%\cref{theorem:不等式.三角不等式2}
+	&\leq \abs{\frac{x_1-y_1}{2}} + \abs{\frac{x_2-y_2}{2}} + \frac{\abs{(x_1-x_2)-(y_1-y_2)}}{2} \\
+	&= \frac{\abs{x_1-y_1}}{2} + \frac{\abs{x_2-y_2}}{2} + \frac{\abs{(x_1-y_1)-(x_2-y_2)}}{2} \\
+	%\cref{theorem:不等式.三角不等式1}
+	&\leq \frac{\abs{x_1-y_1}}{2} + \frac{\abs{x_2-y_2}}{2} + \frac{\abs{x_1-y_1}}{2} + \frac{\abs{x_2-y_2}}{2} \\
+	&= \abs{x_1-y_1} + \abs{x_2-y_2}
+	%\cref{theorem:不等式.基本不等式n算术平均数与平方平均数}
+	\leq 2\sqrt{\frac{(x_1-y_1)^2+(x_2-y_2)^2}{2}}
+	< \frac{2\delta}{\sqrt2},
+\end{align*}
+所以只要让\(\delta\)满足\(\epsilon = \sqrt2 \delta\)，
+或者说令\(\delta = \frac{\epsilon}{\sqrt2}\)，
+那么当\(\sqrt{(x_1-y_1)^2+(x_2-y_2)^2} < \delta\)时，
+就有\(\abs{f(x) - f(y)} < \epsilon\)成立.
+\end{proof}
 \end{example}
 
 \begin{example}
