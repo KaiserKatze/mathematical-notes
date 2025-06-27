@@ -85,7 +85,7 @@
 例如，给定集合\(X\)，对于\(x,y \in X\)，
 只要任意取定\(c\in\mathbb{R}^+\)，
 然后令\begin{equation*}
-	d(x,y) = \left\{ \begin{array}{cl}
+	d(x,y) \defeq \left\{ \begin{array}{cl}
 		c, & x \neq y, \\
 		0, & x=y,
 	\end{array} \right.
@@ -161,9 +161,12 @@
 \subsection{常见的度量空间}
 \begin{example}[实数空间\(\mathbb{R}\)]
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P46 例2.1.1
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P2 例1
 对于实数集\(\mathbb{R}\)，
 定义映射\(\rho\colon\mathbb{R}\times\mathbb{R}\to\mathbb{R}\)如下：\begin{equation*}
-	\rho(x,y) = \abs{x-y},
+	\rho(x,y)
+	\defeq
+	\abs{x-y},
 	\quad x,y\in\mathbb{R}.
 \end{equation*}
 显然\(\rho\)是\(\mathbb{R}\)的一个度量，
@@ -172,27 +175,35 @@
 称度量\(\rho\)为“\(\mathbb{R}\)的\DefineConcept{通常度量}（usual metric）”.
 \end{example}
 
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P2 例2
 我们可以假设一个定义在\([0,+\infty)\)上的非负函数\(f(x)\)，
 当且仅当\(x=0\)时\(f(x)=0\).
 如果函数\(f(x)\)严格上凸，
 则对于\(\forall x,y\in\mathbb{R}\)，只要取\begin{equation*}
-	d(x,y)=f(\abs{x-y}),
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P2 (2)
+	d(x,y)
+	\defeq
+	f(\abs{x-y}),
 \end{equation*}
 就得到\(\mathbb{R}\)的一个度量.
 
-特别地，可以取\(d(x,y)=\sqrt{\abs{x-y}}\)
-或\(d(x,y)=\frac{\abs{x-y}}{1+\abs{x-y}}\).
+\begin{example}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P2
+映射\(d(x,y) \defeq \sqrt{\abs{x-y}}\)是\(\mathbb{R}\)的一个度量.
+\end{example}
 
-可以验证，在度量\(d(x,y)=\frac{\abs{x-y}}{1+\abs{x-y}}\)下，
-数轴上任意两点之间的距离都小于\(1\).
+\begin{example}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P2
+映射\(d(x,y) \defeq \frac{\abs{x-y}}{1+\abs{x-y}}\)是\(\mathbb{R}\)的一个度量.
+\end{example}
 
 \begin{example}[欧氏空间\(\mathbb{R}^n\)]\label{example:度量空间.欧氏空间}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P46 例2.1.2
 对于实数集\(\mathbb{R}\)的\(n\)重笛卡尔积\(\mathbb{R}^n\)，
 定义映射\(\rho\colon\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}\)如下：\begin{equation*}
-	\rho(\vb{x},\vb{y})
-	= \sqrt{\sum_{i=1}^n (x_i-y_i)^2},
-	\quad \vb{x}=(\AutoTuple{x}{n}),\vb{y}=(\AutoTuple{y}{n})\in\mathbb{R}^n.
+	\rho(x,y)
+	\defeq \sqrt{\sum_{i=1}^n (x_i-y_i)^2},
+	\quad x=(\AutoTuple{x}{n}),y=(\AutoTuple{y}{n})\in\mathbb{R}^n.
 \end{equation*}
 显然\(\rho\)是\(\mathbb{R}^n\)的一个度量，
 因此\((\mathbb{R}^n,\rho)\)是一个度量空间.
@@ -203,22 +214,35 @@
 \end{example}
 
 \begin{example}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P2 例3
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P3 例5
 对于\(\mathbb{R}^n\)，除了通常度量以外，我们还可以定义\begin{equation*}
-	d_p(\vb{x},\vb{y})
-	= \left(\sum_{i=1}^n \abs{x_i-y_i}^p\right)^{\frac{1}{p}},
-	\quad \vb{x}=(\AutoTuple{x}{n}),\vb{y}=(\AutoTuple{y}{n})\in\mathbb{R}^n,
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P2 (4)
+	d_p(x,y)
+	\defeq \left(\sum_{i=1}^n \abs{x_i-y_i}^p\right)^{\frac{1}{p}},
+	\quad x=(\AutoTuple{x}{n}),y=(\AutoTuple{y}{n})\in\mathbb{R}^n,
 \end{equation*}
 其中\(p\geq1\).
 利用\hyperref[example:不等式.闵可夫斯基不等式]{闵可夫斯基不等式}%
 可以证明\(d_p\)是\(\mathbb{R}^n\)的一个度量，
 因此\((\mathbb{R}^n,d_p)\)也是一个度量空间，
 把\(d_p\)称为\(\mathbb{R}^n\)的\DefineConcept{闵氏度量}.
+
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P3 例6
+特别地，如果取\(p\to+\infty\)，则\begin{equation*}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P3 (5)
+	d_\infty(x,y)
+	\defeq \lim_{p\to+\infty} \left(\sum_{i=1}^n \abs{x_i-y_i}^p\right)^{\frac{1}{p}}
+	= \max_{1 \leq i \leq n} \abs{x_i-y_i}.
+\end{equation*}
 \end{example}
 
 \begin{example}
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P3 例7
 对于闭区间上的连续函数族\(C[a,b]\)，任给其中两个函数\(f,g\)，
 定义：\begin{equation*}
-	d(f,g)=\max_{a \leq x \leq b} \abs{f(x)-g(x)}.
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P3 (6)
+	d(f,g) \defeq \max_{a \leq x \leq b} \abs{f(x)-g(x)}.
 \end{equation*}
 我们把\(d\)称为\(C[a,b]\)的\DefineConcept{一致度量}%
 或\DefineConcept{一致收敛性度量}%
@@ -226,12 +250,17 @@
 在利用多项式代替任意给定函数以所需精度进行近似计算时，
 可以用度量\(d\)刻画近似计算的精度.
 
-我们还可以定义\begin{equation*}
-	d_p(f,g)=\left[\int_a^b\abs{f-g}^p(x)\dd{x}\right]^{\frac{1}{p}}.
+%@see: 《数学分析（第7版 第二卷）》（卓里奇） P3 例8
+对于闭区间上的连续函数族\(C[a,b]\)，任给其中两个函数\(f,g\)，
+我们还可以定义：\begin{equation*}
+	d_p(f,g) \defeq \left(
+		\int_a^b \abs{f-g}^p(x) \dd{x}
+	\right)^{\frac{1}{p}},
+	\quad p\geq1.
 \end{equation*}
-当\(p=1\)时，我们把\(d_p\)称为\DefineConcept{积分度量}；
-当\(p=2\)时，我们把它称为\DefineConcept{均方差度量}；
-当\(p=+\infty\)时，我们把它称为\DefineConcept{一致度量}.
+当\(p=1\)时，我们把\(d_p\)称为\DefineConcept{积分度量}.
+当\(p=2\)时，我们把\(d_p\)称为\DefineConcept{均方差度量}.
+可以证明，当\(p\to+\infty\)时，\(d_\infty\)就是\(C[a,b]\)的一致度量，即\(d = d_\infty\).
 
 我们常把度量空间\((C[a,b],d_p)\)简记为\(C_p[a,b]\)，
 把度量空间\((C[a,b],d)\)简记为\(C_\infty[a,b]\).
@@ -241,8 +270,8 @@
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P47 例2.1.3
 构造由所有的平方收敛的实数序列构成的集合，并记为\begin{equation*}
 	\mathbb{H}
-	= \Set*{
-		\vb{x}=(\AutoTuple{x}{0})
+	\defeq \Set*{
+		x=(\AutoTuple{x}{0})
 		\given
 		x_i\in\mathbb{R},
 		i\in\mathbb{N}^+;
@@ -250,8 +279,8 @@
 	}.
 \end{equation*}
 定义映射\(\rho\colon\mathbb{H}\times\mathbb{H}\to\mathbb{R}\)如下：\begin{equation*}
-	\rho(\vb{x},\vb{y}) = \sqrt{\sum_{i=1}^\infty (x_i-y_i)^2},
-	\quad \vb{x}=(\AutoTuple{x}{0}),\vb{y}=(\AutoTuple{y}{0})\in\mathbb{H}.
+	\rho(x,y) \defeq \sqrt{\sum_{i=1}^\infty (x_i-y_i)^2},
+	\quad x=(\AutoTuple{x}{0}),y=(\AutoTuple{y}{0})\in\mathbb{H}.
 \end{equation*}
 可以证明\(\rho\)是\(\mathbb{H}\)的一个度量，
 因此\((\mathbb{H},\rho)\)是一个度量空间.
@@ -274,7 +303,7 @@
 \begin{example}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P47 例2.1.4
 设\(X\)是任意一个集合，映射\(\rho\colon X \times X\to\mathbb{R}\)满足\begin{equation*}
-	\rho(x,y) = \left\{ \begin{array}{ll}
+	\rho(x,y) \defeq \left\{ \begin{array}{ll}
 		0, & x=y, \\
 		1, & x\neq y.
 	\end{array} \right.
@@ -519,7 +548,7 @@
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P219 定义7.5.1
 设\((X,\rho)\)是一个度量空间，\(A \subseteq X\).
 定义：\begin{equation*}
-	\diam A = \sup_{x,y \in A} \rho(x,y),
+	\diam A \defeq \sup_{x,y \in A} \rho(x,y),
 \end{equation*}
 称其为“集合\(A\)（在度量空间\((X,\rho)\)中）的\DefineConcept{直径}（diameter）”.
 \end{definition}
@@ -738,12 +767,12 @@
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P54 习题 5.
 定义映射\(\rho_1\colon \mathbb{R}^2 \times \mathbb{R}^2 \to \mathbb{R}\)，
 使之满足\begin{equation*}
-	\rho_1(x,y) = \max\{ \abs{x_1-y_1}, \abs{x_2-y_2} \},
+	\rho_1(x,y) \defeq \max\{ \abs{x_1-y_1}, \abs{x_2-y_2} \},
 	\quad x=(x_1,x_2),y=(y_1,y_2).
 \end{equation*}
 定义映射\(\rho_2\colon \mathbb{R}^2 \times \mathbb{R}^2 \to \mathbb{R}\)，
 使之满足\begin{equation*}
-	\rho_2(x,y) = \abs{x_1-y_1} + \abs{x_2-y_2},
+	\rho_2(x,y) \defeq \abs{x_1-y_1} + \abs{x_2-y_2},
 	\quad x=(x_1,x_2),y=(y_1,y_2).
 \end{equation*}
 证明：\(\rho_1\)、\(\rho_2\)和\(\mathbb{R}^2\)的通常度量\(\rho\)是等价的.
@@ -753,7 +782,7 @@
 \begin{example}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P54 习题 6.
 定义映射\(f\colon \mathbb{R}^2 \to \mathbb{R}\)，使之满足\begin{equation*}
-	f(x) = \max\{ x_1, x_2 \},
+	f(x) \defeq \max\{ x_1, x_2 \},
 	\quad x=(x_1,x_2).
 \end{equation*}
 证明：\(f\)是连续映射.
@@ -803,7 +832,7 @@
 \begin{example}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P54 习题 6.
 定义映射\(f\colon \mathbb{R}^2 \to \mathbb{R}\)，使之满足\begin{equation*}
-	f(x) = x_1 + x_2,
+	f(x) \defeq x_1 + x_2,
 	\quad x=(x_1,x_2).
 \end{equation*}
 证明：\(f\)是连续映射.
@@ -832,10 +861,10 @@
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P54 习题 7.
 设\((X,\rho)\)是一个度量空间.
 定义映射\(\rho_1\colon X \times X \to \mathbb{R}\)，使之满足\begin{equation*}
-	\rho_1(x,y) = \frac{\rho(x,y)}{1+\rho(x,y)}.
+	\rho_1(x,y) \defeq \frac{\rho(x,y)}{1+\rho(x,y)}.
 \end{equation*}
 定义映射\(\rho_2\colon X \times X \to \mathbb{R}\)，使之满足\begin{equation*}
-	\rho_2(x,y) = \left\{ \begin{array}{cl}
+	\rho_2(x,y) \defeq \left\{ \begin{array}{cl}
 		\rho(x,y), & \rho(x,y) \leq 1, \\
 		1, & \rho(x,y) > 1.
 	\end{array} \right.
