@@ -33,6 +33,30 @@
 \end{proof}
 \end{theorem}
 
+%@Mathematica: (* 定义CR分解函数 *)
+% CRDecomposition[A_?MatrixQ] := Module[
+%     {rank, pivots, Cmatrix, Rmatrix},
+%     rank = MatrixRank[A];
+%     pivots = {};
+%     Cmatrix = {};
+%     For[i = 1, i <= Last[Dimensions[A]], i++,
+%         col = A[[All, i]];
+%         If[MatrixRank[Transpose[Join[Cmatrix, {col}]]] > Length[Cmatrix],
+%             AppendTo[pivots, i];
+%             AppendTo[Cmatrix, col];
+%         ]
+%     ];
+%     Cmatrix = Transpose[Cmatrix];
+%     Rmatrix = PseudoInverse[Cmatrix] . A; (* 最小二乘法求解R *)
+%     {Cmatrix, Rmatrix}
+% ];
+% (* 测试 *)
+% A = {{2, 1, 3}, {3, 1, 4}, {5, 7, 12}};
+% {C, R} = CRDecomposition[A];
+% Print["C = ", C // MatrixForm];
+% Print["R = ", R // MatrixForm];
+% Print["验证: A - C.R = ", Chop[A - C . R] // MatrixForm];
+
 \section{QR分解}
 QR分解的目的，是将一个实满秩矩阵分解成一个正定矩阵和一个主对角元都是正数的上三角矩阵的乘积.
 
