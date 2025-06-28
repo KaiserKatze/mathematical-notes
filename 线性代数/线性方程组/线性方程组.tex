@@ -1,4 +1,5 @@
 \section{线性方程组}
+\subsection{线性方程组的概念}
 我们把含有\(n\)个未知量\(\AutoTuple{x}{n}\)的一次方程组
 \begin{equation}\label[equation-system]{equation:线性方程组.线性方程组的代数形式}
 	\left\{ \begin{array}{l}
@@ -35,10 +36,10 @@ inhomogeneous linear systems of equations）.
 	a_{i1} c_1 + a_{12} c_2 + \dotsb + a_{in} c_n \equiv b_i
 	\quad(i=1,2,\dotsc,s),
 \end{equation*}
-则称“\cref{equation:线性方程组.线性方程组的代数形式} 有解”，
-或“\cref{equation:线性方程组.线性方程组的代数形式} 是相容的”；
-否则，称“\cref{equation:线性方程组.线性方程组的代数形式} 无解”，
-或“\cref{equation:线性方程组.线性方程组的代数形式} 是不相容的”.
+则称“\cref{equation:线性方程组.线性方程组的代数形式} \DefineConcept{有解}”，
+或“\cref{equation:线性方程组.线性方程组的代数形式} 是\DefineConcept{相容的}”；
+否则，称“\cref{equation:线性方程组.线性方程组的代数形式} \DefineConcept{无解}”，
+或“\cref{equation:线性方程组.线性方程组的代数形式} 是\DefineConcept{不相容的}”.
 
 称这\(n\)个数\(\AutoTuple{c}{n}\)构成的列向量\((\AutoTuple{c}{n})^T\)为%
 \cref{equation:线性方程组.线性方程组的代数形式} 的一个\DefineConcept{解}（solution）%
@@ -48,8 +49,10 @@ inhomogeneous linear systems of equations）.
 \end{definition}
 
 \begin{definition}
-元素全为零的解向量称为\DefineConcept{零解}（zero solution）.
-元素不全为零的解向量称为\DefineConcept{非零解}（nonzero solution）.
+元素全为零的解向量，称为\DefineConcept{零解}（zero solution）.
+\end{definition}
+\begin{definition}
+元素不全为零的解向量，称为\DefineConcept{非零解}（nonzero solution）.
 \end{definition}
 
 \begin{theorem}
@@ -57,7 +60,7 @@ inhomogeneous linear systems of equations）.
 \end{theorem}
 
 \begin{definition}
-解集相等的两个线性方程组称为\DefineConcept{同解方程组}.
+解集相等的两个线性方程组，称为\DefineConcept{同解方程组}.
 \end{definition}
 
 需要注意的是，线性方程组的解集与数域有关.
@@ -66,3 +69,90 @@ inhomogeneous linear systems of equations）.
 \(n\)元线性方程组的解的情况有且只有三种可能：
 无解、有唯一解、有无穷多个解.
 \end{theorem}
+
+\subsection{线性方程组的几何意义}
+把集合\begin{equation*}
+	\Set{
+		(\AutoTuple{x}{n})
+		\given
+		a_{i1} x_1 + a_{i2} x_2 + \dotsb + a_{in} x_n = b_i
+	}
+	\quad(i=1,2,\dotsc,s)
+\end{equation*}
+绘制在\(\mathbb{R}^n\)上，得到的直线，
+称为“\cref{equation:线性方程组.线性方程组的代数形式} 的
+第\(i\)行的\DefineConcept{行图像}（row picture）”.
+
+把向量\begin{equation*}
+	(a_{1j},a_{2j},\dotsc,a_{sj})^T
+	\quad(j=1,2,\dotsc,n)
+\end{equation*}
+绘制在\(\mathbb{R}^n\)上，得到的有向线段，
+称为“\cref{equation:线性方程组.线性方程组的代数形式} 的
+第\(j\)列的\DefineConcept{列图像}（column picture）”.
+
+以关于\(x,y\)的2元线性方程组\begin{equation*}
+	\left\{ \begin{array}{l}
+		2x - y = 0, \\
+		-x + 2y = 3
+	\end{array} \right.
+\end{equation*}
+为例，\cref{figure:线性方程组.行图像1} 是该方程各行的行图像，
+\cref{figure:线性方程组.列图像1} 是该方程各列的列图像.
+\begin{figure}[hbt]
+	\centering
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				xmin=-3,xmax=3,
+				ymin=-3,ymax=3,
+				restrict y to domain=-5:5,
+				% grid=both,
+				% width=\textwidth,height=\textwidth,
+				axis lines=middle,
+				axis equal=true,
+				xlabel=$x$,
+				ylabel=$y$,
+				enlarge x limits=0.1,
+				enlarge y limits=0.1,
+			]
+				\addplot[color=blue,samples=10,domain=-5:5]{2*x};
+				\addplot[color=orange,samples=10,domain=-5:5]{(3+x)/2};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:线性方程组.行图像1}
+	\end{subfigure}\hspace{20pt}\begin{subfigure}[b]{\subwidth}
+		\begin{tikzpicture}
+			\begin{axis}[
+				xmin=-3,xmax=3,
+				ymin=-3,ymax=3,
+				restrict y to domain=-3:3,
+				% grid=both,
+				% width=\textwidth,height=\textwidth,
+				axis lines=middle,
+				axis equal=true,
+				xlabel=$x$,
+				ylabel=$y$,
+				enlarge x limits=0.1,
+				enlarge y limits=0.1,
+			]
+				\begin{scope}[->,>=Stealth]
+					\draw[red](0,0)--(2,-1);
+					\draw[darkgreen](0,0)--(-1,2);
+					\draw[orange](0,0)--(0,3);
+					\begin{scope}[dashed]
+						\draw(2,-1)--(1,1);
+						\draw(1,1)--(0,3);
+					\end{scope}
+				\end{scope}
+				\draw[dashed](-1,2)--(1,1);
+		\end{axis}
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:线性方程组.列图像1}
+	\end{subfigure}
+	\caption{}
+\end{figure}
