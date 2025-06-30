@@ -1,0 +1,408 @@
+\section{几何空间的线性结构}
+几何空间\(V\)是空间中所有的点组成的集合.
+取一个点\(O\)，以\(O\)为起点的向量称为“定位向量”.
+所有的定位向量组成的集合与\(V\)有一个一一对应：\(\vec{OM}\)对应于终点\(M\).
+于是\(V\)也可以看成是由所有定位向量组成的集合.
+由于向量\(\vec{OM}\)经过平行移动得到的向量与\(\vec{OM}\)相等，
+因此\(V\)也可以看成由所有向量组成的集合，
+其中经过平行移动得到的向量是相等的向量.
+\(V\)中的向量有加法和数量乘法运算，
+这使得几何空间\(V\)具有了一个很好的代数结构.
+
+\subsection{向量和点的仿射坐标与直角坐标}
+\begin{theorem}\label{theorem:解析几何.向量可由基线性表出}
+%@see: 《解析几何》（丘维声） P12 定理2.1
+几何空间\(V\)中任意给定三个不共面的向量\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)，
+则任意一个向量\(\vb{m}\)可以唯一地表示成\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)的线性组合.
+\end{theorem}
+\cref{theorem:解析几何.向量可由基线性表出} 给出了几何空间\(V\)的线性结构.
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		\coordinate(O)at(0,0);
+		\coordinate(P)at(-1,-1);
+		\coordinate(H)at(-1,1.2);
+		\coordinate(N)at(2,-1);
+		\coordinate(M)at(2,1.2);
+		\coordinate(R)at(0,2.2);
+		\coordinate(K)at(3,2.2);
+		\coordinate(Q)at(3,0);
+		\draw[dashed](O)--(P)
+			(O)--(Q)
+			(O)--(R);
+		\draw(P)--(N)--(M)--(H)--(P)
+			(H)--(R)--(K)--(Q)--(N)
+			(K)--(M);
+		\begin{scope}[->,>=Stealth]
+			\draw(P)--+(-.5,-.5)node[below left]{\(x\)};
+			\draw(Q)--+(.5,0)node[right]{\(y\)};
+			\draw(R)--+(0,.5)node[left]{\(z\)};
+			\draw[dashed,red](O)--(M);
+		\end{scope}
+		\draw(O)node[below]{\(O\)}
+			(P)node[below]{\(P\)}
+			(H)node[left]{\(H\)}
+			(N)node[below]{\(N\)}
+			(M)node[right]{\(M\)}
+			(R)node[left]{\(R\)}
+			(K)node[right]{\(K\)}
+			(Q)node[below]{\(Q\)};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.向量的坐标分解}
+\end{figure}
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P13 定义2.1
+几何空间\(V\)中任意三个有次序的不共面的向量
+\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)
+称为“\(V\)的一个\DefineConcept{基}”.
+
+对于几何空间中任一向量\(\vb{m}\)，若\begin{equation*}
+	\vb{m} = x \vb{d}_1 + y \vb{d}_2 + z \vb{d}_3,
+\end{equation*}
+则把三元组\((x,y,z)\)称为
+“\(\vb{m}\)（在基\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)下）的\DefineConcept{坐标}”，记作\begin{equation*}
+	\begin{bmatrix} x \\ y \\ z \end{bmatrix}
+	\quad\text{或}\quad
+	(x,y,z)^T.
+\end{equation*}
+\end{definition}
+
+我们把\((x,y,z)^T\)称为“向量\(\vb{a}\)的\DefineConcept{分量形式}（component form）”；
+相对地，把\(x \vb{d}_1 + y \vb{d}_2 + z \vb{d}_3\)
+称为“向量\(\vb{a}\)的\DefineConcept{代数形式}（algebra form）”，
+把用来表示它的有向线段称为它的\DefineConcept{几何形式}（geometry form）.
+
+在本章当中，我们常把\((x,y,z)^T\)的上标略去不写，只写\((x,y,z)\)，这依然表示同一个向量.
+
+向量有了坐标后，我们再对空间中的点也引进坐标.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P13 定义2.2
+几何空间中一个点\(O\)和一个基\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)合在一起，
+称为“几何空间的一个\DefineConcept{仿射标架}或\DefineConcept{仿射坐标系}”，
+记作\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)；
+称点\(O\)为\DefineConcept{原点}.
+对于几何空间中任意一点\(M\)，
+把有向线段\(\vec{OM}\)代表的向量称为
+“点\(M\)的\DefineConcept{定位向量}或\DefineConcept{向径}或\DefineConcept{位矢}”，
+把\(\vec{OM}\)（在基\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)下）的坐标称为
+“点\(M\)（在仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)中）的坐标”.
+\end{definition}
+
+根据定义可知，点与它的定位向量有相同的坐标；
+也就是说，点\(M\)在\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)中的坐标为\((x,y,z)^T\)的充分必要条件是：
+\(\vec{OM} = x \vb{d}_1 + y \vb{d}_2 + z \vb{d}_3\).
+以后我们把向量\(\vb{m}\)（在基\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)下）的坐标也称为
+“\(\vb{m}\)（在仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)中）的坐标”.
+
+在几何空间中取定了一个仿射标架后，
+根据\cref{theorem:解析几何.向量可由基线性表出}，
+几何空间中全体向量的集合与全体三元组的集合之间就建立了一一对应；
+通过定位向量，几何空间中全体点的集合与全体三元组的集合之间也建立了一一对应.
+
+设\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)是几何空间的一个仿射标架.
+过原点且分别以\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)为方向的有向直线，
+分别称为\(x\)轴（横轴）、\(y\)轴（纵轴）、\(z\)轴（竖轴），
+三者统称为\DefineConcept{坐标轴}.
+由每两根坐标轴决定的平面称为\DefineConcept{坐标平面}或\DefineConcept{坐标面}，
+它们分别是\(Oxy\)平面、\(Oyz\)平面和\(Ozx\)平面.
+这三个坐标平面把几何空间分成八个部分，称为八个卦限；
+在每个卦限中，点的坐标的符号是不变的（见\cref{table:解析几何.几何空间的八个卦限}）.
+于是我们称\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)
+决定了一个\DefineConcept{仿射坐标系}，记为\(Oxyz\).
+点（或向量）在仿射坐标系中的坐标称为它的\DefineConcept{仿射坐标}.
+
+坐标面上和坐标轴上的点，其坐标各有一定的特征.
+例如，
+在\(yOz\)面上的点，有\(x=0\)；
+在\(zOy\)面上的点，有\(y=0\)；
+在\(xOy\)面上的点，有\(z=0\)；
+在\(x\)轴上的点，有\(y=z=0\)；
+在\(y\)轴上的点，有\(z=x=0\)；
+在\(z\)轴上的点，有\(x=y=0\)；
+坐标原点\(O\)总有\(x=y=z=0\).
+
+\begin{table}
+\centering
+\def\guaxian#1#2#3{\Set{ (x,y,z) \given x #1 0, y #2 0, z #3 0 }}%
+\def\arraystretch{1.2}%
+\begin{tabular}{cl}%
+第一卦限 & \(\guaxian{>}{>}{>}\) \\
+第二卦限 & \(\guaxian{<}{>}{>}\) \\
+第三卦限 & \(\guaxian{<}{<}{>}\) \\
+第四卦限 & \(\guaxian{>}{<}{>}\) \\
+第五卦限 & \(\guaxian{>}{>}{<}\) \\
+第六卦限 & \(\guaxian{<}{>}{<}\) \\
+第七卦限 & \(\guaxian{<}{<}{<}\) \\
+第八卦限 & \(\guaxian{>}{<}{<}\) \\
+\end{tabular}%
+\caption{}
+\label{table:解析几何.几何空间的八个卦限}
+\end{table}
+
+将右手除拇指以外的四指从\(x\)轴方向弯向\(y\)轴方向（转角小于\(\pi\)），
+如果拇指所指的方向与\(z\)轴方向在\(Oxy\)面同侧，
+则称此坐标系为\DefineConcept{右手坐标系}或\DefineConcept{右手系}
+（如\cref{figure:解析几何.右手系}）；
+否则，称之为\DefineConcept{左手坐标系}或\DefineConcept{左手系}
+（如\cref{figure:解析几何.左手系}）.
+
+\begin{figure}[htb]
+	\centering
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}[->]
+			\draw(0,0)node[below]{\(O\)} -- (1,0)node[right]{\(y\)};
+			\draw(0,0) -- (-.5,-.5)node[below left]{\(x\)};
+			\draw(0,0) -- (0,1)node[left]{\(z\)};
+		\end{tikzpicture}
+		\caption{右手系}
+		\label{figure:解析几何.右手系}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}[->]
+			\draw(0,0)node[below]{\(O\)} -- (1,0)node[right]{\(x\)};
+			\draw(0,0) -- (-.5,-.5)node[below left]{\(y\)};
+			\draw(0,0) -- (0,1)node[left]{\(z\)};
+		\end{tikzpicture}
+		\caption{左手系}
+		\label{figure:解析几何.左手系}
+	\end{subfigure}
+	\caption{空间直角坐标系的手性}
+\end{figure}
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P15 定义2.3
+如果向量\(\vb{e}_1,\vb{e}_2,\vb{e}_3\)两两垂直，并且它们都是单位向量，
+则\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)
+称为一个\DefineConcept{直角标架}或\DefineConcept{直角坐标系}.
+\end{definition}
+
+直角标架的基\(\vb{e}_1,\vb{e}_2,\vb{e}_3\)两两垂直，必不共面，
+因此直角标架是一种特殊的仿射标架.
+
+点（或向量）在直角坐标系中的坐标称为它的\DefineConcept{直角坐标}.
+
+类似地，我们还可以讨论平面上的仿射坐标系和直角坐标系.
+
+\subsection{利用坐标实现向量的线性运算}
+取定仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)，
+设\(\vb{a}\)的坐标是\((a_1,a_2,a_3)^T\)，
+\(\vb{b}\)的坐标是\((b_1,b_2,b_3)^T\)，则\begin{align*}
+\vb{a}+\vb{b}
+&= (a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3)
++ (b_1 \vb{d}_1 + b_2 \vb{d}_2 + b_3 \vb{d}_3) \\
+&= (a_1 + b_1) \vb{d}_1 + (a_1 + b_2) \vb{d}_2 + (a_1 + b_3) \vb{d}_3.
+\end{align*}
+所以\(\vb{a}+\vb{b}\)的坐标是\((a_1+b_1,a_2+b_2,a_3+b_3)^T\).
+也就是说，向量和的坐标等于对应坐标的和.
+
+对于任意实数\(\lambda\)，有\begin{align*}
+	\lambda \vb{a}
+	&= \lambda (a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3) \\
+	&= (\lambda a_1) \vb{d}_1 + (\lambda a_2) \vb{d}_2 + (\lambda a_3) \vb{d}_3,
+\end{align*}
+所以\(\lambda \vb{a}\)的坐标是\((\lambda a_1,\lambda a_2,\lambda a_3)^T\).
+也就是说，\(\vb{a}\)乘以实数\(\lambda\)，则它的坐标就都乘上同一个实数\(\lambda\).
+
+于是我们又有\(\vb{a}-\vb{b}\)的坐标是\((a_1-b_1,a_2-b_2,a_3-b_3)^T\).
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P16 定理2.2
+向量\(\vb{a}\)的坐标等于表示它的有向线段\(\vec{AB}\)的终点坐标\(\vec{OB}\)减去起点坐标\(\vec{OA}\).
+\end{theorem}
+
+点\(M\)的坐标是它的定位向量\(\vec{OM}\)的坐标；
+向量的坐标等于其终点坐标减去其起点坐标；
+这两句话表明了点的坐标与向量的坐标之间的联系.
+
+必须要注意到：
+虽然点\(M\)与其定位向量\(\vec{OM}\)都可以用记号\((x,y,z)^T\)表示，
+但是它们终归是两个不同的概念，不可混淆.
+因此，在计算前我们必须要注意记号\((x,y,z)^T\)的含义；
+当它表示向量时可以进行运算，当它表示点时就不能进行运算.
+
+\subsection{三点共线的条件}
+\begin{theorem}\label{theorem:解析几何.平面上两向量共线的充分必要条件}
+%@see: 《解析几何》（丘维声） P16 命题2.1
+设平面上两个向量\(\vb{a},\vb{b}\)的坐标分别为\((a_1,a_2)^T\)和\((b_1,b_2)^T\)，
+则\(\vb{a}\)与\(\vb{b}\)共线的充分必要条件是：\begin{equation*}
+\begin{vmatrix}
+	a_1 & b_1 \\
+	a_2 & b_2
+\end{vmatrix} = 0.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.平面上三点共线的充分必要条件}
+%@see: 《解析几何》（丘维声） P16 命题2.2
+在三个点\(A,B,C\)所在的平面上取一个仿射标架\([0;\vb{d}_1,\vb{d}_2]\)，
+设这三个点的坐标分别是\begin{equation*}
+	(x_1,y_1)^T, \qquad
+	(x_2,y_2)^T, \qquad
+	(x_3,y_3)^T,
+\end{equation*}
+则点\(A,B,C\)共线的充分必要条件是：\begin{equation*}
+\begin{vmatrix}
+	x_1 & x_2 & x_3 \\
+	y_1 & y_2 & y_3 \\
+	1 & 1 & 1
+\end{vmatrix} = 0.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.两向量共线的充分必要条件2}
+%@see: 《解析几何》（丘维声） P17 命题2.3
+设两向量\(\vb{a},\vb{b}\)在仿射标架\([0;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)中的坐标分别是\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T,
+\end{equation*}
+则\(\vb{a}\)与\(\vb{b}\)共线的充分必要条件是：\begin{equation*}
+\begin{vmatrix}
+	a_1 & b_1 \\
+	a_2 & b_2
+\end{vmatrix}
+= \begin{vmatrix}
+	a_1 & b_1 \\
+	a_3 & b_3
+\end{vmatrix}
+= \begin{vmatrix}
+	a_2 & b_2 \\
+	a_3 & b_3
+\end{vmatrix} = 0.
+\end{equation*}
+\end{theorem}
+
+\subsection{线段的定比分点}
+给定线段\(AB\ (A \neq B)\)，如果点\(C\)满足\(\vec{AC} = \lambda \vec{CB}\)，
+则称“点\(C\)分线段\(AB\)成定比\(\lambda\)”.
+当\(\lambda>0\)时，\(\vec{AC}\)与\(\vec{CB}\)同向，
+点\(C\)是线段内部的点，称\(C\)为内分点；
+当\(\lambda<0\)时，\(\vec{AC}\)与\(\vec{CB}\)反向，
+点\(C\)是线段外部的点，称\(C\)为外分点；
+当\(\lambda=0\)时，\(C\)与\(A\)重合.
+特别注意到，假如\(\lambda=-1\)，\(\vec{AC}=-\vec{CB}\)，
+即\(\vec{AB}=\vb{0}\)，矛盾，所以\(\lambda\neq-1\).
+
+\begin{theorem}\label{theorem:解析几何.空间两点的定比分点公式}
+%@see: 《解析几何》（丘维声） P18 命题2.4
+设\(A,B\)的坐标分别是\begin{equation*}
+	(x_1,y_1,z_1)^T, \qquad
+	(x_2,y_2,z_2)^T,
+\end{equation*}
+则分线段\(AB\)成定比\(\lambda\ (\lambda\neq-1)\)的分点\(C\)的坐标为
+\begin{equation}
+	\left(
+		\frac{x_1 + \lambda x_2}{1+\lambda},
+		\frac{y_1 + \lambda y_2}{1+\lambda},
+		\frac{z_1 + \lambda z_2}{1+\lambda}
+	\right)^T.
+\end{equation}
+\end{theorem}
+\begin{remark}
+容易看出：
+当\(\lambda<-1\)时，点\(C\)在线段\(AB\)的延长线上.
+当\(-1<\lambda<0\)时，点\(C\)在线段\(BA\)的延长线上.
+当\(\lambda=0\)时，点\(C\)与点\(A\)重合.
+当\(0<\lambda<1\)时，点\(C\)在线段\(AB\)的中点和\(A\)之间.
+当\(\lambda=1\)时，点\(C\)就是线段\(AB\)的中点.
+当\(\lambda>1\)时，点\(C\)在线段\(AB\)的中点和\(B\)之间.
+\end{remark}
+
+\begin{corollary}
+%@see: 《解析几何》（丘维声） P18 推论2.1
+设\(A,B\)的坐标分别是\begin{equation*}
+	(x_1,y_1,z_1)^T, \qquad
+	(x_2,y_2,z_2)^T,
+\end{equation*}
+则线段\(AB\)的中点的坐标为
+\begin{equation}
+	\left(
+		\frac{x_1 + x_2}{2},
+		\frac{y_1 + y_2}{2},
+		\frac{z_1 + z_2}{2}
+	\right)^T.
+\end{equation}
+\end{corollary}
+
+\begin{example}[门内劳斯定理]
+%@see: 《解析几何》（丘维声） P20 例2.2
+设点\(P,Q,R\)分别分\(\triangle ABC\)的边\(AB,BC,CA\)成定比\(\lambda,\mu,\nu\).
+证明：点\(P,Q,R\)共线的充分必要条件是\(\lambda \mu \nu = -1\).
+\begin{proof}
+取平面仿射标架\([A;\vec{AB},\vec{AC}]\)，点\(A,B,C\)的坐标分别为\begin{equation*}
+	(0,0)^T, \qquad
+	(1,0)^T, \qquad
+	(0,1)^T.
+\end{equation*}
+根据\cref{theorem:解析几何.空间两点的定比分点公式}，
+点\(P,Q,R\)的坐标分别为\begin{equation*}
+	\left(\frac{\lambda}{1+\lambda},0\right)^T, \qquad
+	\left(\frac{1}{1+\mu},\frac{\mu}{1+\mu}\right)^T, \qquad
+	\left(0,\frac{1}{1+\nu}\right)^T.
+\end{equation*}
+根据\cref{theorem:解析几何.平面上三点共线的充分必要条件}，
+点\(P,Q,R\)共线的充分必要条件为\begin{equation*}
+	\begin{vmatrix}
+		\frac{\lambda}{1+\lambda} & \frac{1}{1+\mu} & 0 \\
+		0 & \frac{\mu}{1+\mu} & \frac{1}{1+\nu} \\
+		1 & 1 & 1
+	\end{vmatrix}
+	= \frac{\lambda \mu \nu + 1}{(1+\lambda)(1+\mu)(1+\nu)}
+	= 0,
+\end{equation*}也即\(\lambda \mu \nu = -1\).
+\end{proof}
+\end{example}
+
+常见的三线共点问题也可以转化为三点共线问题.
+
+\begin{example}[切瓦定理]
+%@see: 《解析几何》（丘维声） P21 例2.3
+设点\(P,Q,R\)分别内分\(\triangle ABC\)的边\(AB,BC,CA\)成定比\(\lambda,\mu,\nu\).
+证明：三线\(AQ,BR,CP\)共点的充分必要条件是\(\lambda \mu \nu = 1\).
+\begin{proof}
+取平面仿射标架\([A;\vec{AB},\vec{AC}]\)，点\(A,B,C\)的坐标分别为\begin{equation*}
+	(0,0)^T, \qquad
+	(1,0)^T, \qquad
+	(0,1)^T;
+\end{equation*}
+点\(P,Q,R\)的坐标分别为\begin{equation*}
+	\left(\frac{\lambda}{1+\lambda},0\right)^T, \qquad
+	\left(\frac{1}{1+\mu},\frac{\mu}{1+\mu}\right)^T, \qquad
+	\left(0,\frac{1}{1+\nu}\right)^T.
+\end{equation*}
+设\(AQ\)与\(BR\)相交于点\(M(x,y)^T\)，且点\(M\)分别分线段\(AQ,BR\)成定比\(k,l\)，
+则\begin{equation*}
+x = \frac{1}{1+k} \cdot k \cdot \frac{1}{1+\mu}
+= \frac{1}{1+l}, \qquad
+y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
+= \frac{1}{1+l} \cdot l \cdot \frac{1}{1+\nu}.
+\end{equation*}
+将上述两个式子相除，得\begin{equation*}
+\frac{1}{\mu}
+= \frac{1+\nu}{l},
+\end{equation*}于是\(l = \mu(1+\nu)\).
+因此\begin{equation*}
+	x = \frac{1}{1+\mu(1+\nu)}, \qquad
+	y = \frac{\mu}{1+\mu(1+\nu)}.
+\end{equation*}
+由于\(\mu>0,\nu>0\)，因此\(1+\mu(1+\nu)\neq0\)，
+从而“三线\(AQ,BR,CP\)共点”等价于“三点\(C,M,P\)共线”，
+等价于\begin{equation*}
+	0 = \def\arraystretch{1.2} \begin{vmatrix}
+		0 & \frac{1}{1+\mu(1+\nu)} & \frac{\lambda}{1+\lambda} \\
+		1 & \frac{\mu}{1+\mu(1+\nu)} & 0 \\
+		1 & 1 & 1
+	\end{vmatrix}
+	= \frac{\lambda \mu \nu - 1}{(1+\lambda) [1+\mu(1+\nu)]},
+\end{equation*}
+也即\(\lambda \mu \nu = 1\).
+\end{proof}
+\end{example}
+
+利用三线共点的判定定理（切瓦定理）可以证明三角形三条中线相交于一点.

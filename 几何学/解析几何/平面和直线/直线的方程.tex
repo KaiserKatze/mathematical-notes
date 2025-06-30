@@ -1,0 +1,222 @@
+\section{直线的方程，直线与平面的相关位置}
+
+\subsection{直线的方程}
+一个点和一个非零向量可以决定一条直线.
+
+给定一条直线\(l\)和一个向量\(\vb{a}\)，
+如果直线\(l\)与用来表示向量\(\vb{a}\)的有向线段所在的直线平行，
+则称“向量\(\vb{a}\)是直线\(l\)的\DefineConcept{方向向量}”.
+
+取一个仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\).
+已知一点\(M_0(x_0,y_0,z_0)\)，
+非零向量\(\vb{\nu}=(X,Y,Z)\).
+现在来求经过点\(M_0\)，且方向向量为\(\vb{\nu}\)的直线\(l\)的方程.
+
+点\(M(x,y,z)\)在直线\(l\)上的充分必要条件是\(\vec{M_0 M}\)与\(\vb{\nu}\)共线，
+即\(\vec{M_0 M} = t \vb{\nu}\)，其中\(t\)是实数.
+设\(M_0,M\)的定位向量分别用\(\vb{r}_0,\vb{r}\)表示，
+则由上式得
+\begin{equation}\label{equation:解析几何.直线的向量式参数方程}
+	\vb{r} = r_0 + t \vb{\nu}.
+\end{equation}
+\cref{equation:解析几何.直线的向量式参数方程} 称为“直线的\DefineConcept{向量式参数方程}”，
+其中\(t\)是实参数.
+我们可以这样考虑参数\(t\)的几何意义：
+它表示点\(M\)在直线\(l\)上的仿射标架\([M_0;\vb{\nu}]\)中的坐标.
+
+将\cref{equation:解析几何.直线的向量式参数方程} 用坐标写出，可得
+\begin{equation}\label{equation:解析几何.直线的参数方程}
+	\left\{ \begin{array}{l}
+		x = x_0 + t X, \\
+		y = y_0 + t Y, \\
+		z = z_0 + t Z.
+	\end{array} \right.
+\end{equation}
+\cref{equation:解析几何.直线的参数方程} 称为“直线的\DefineConcept{参数方程}”，其中\(t\)是实参数.
+
+下面消去参数\(t\).
+因为\(\vb{\nu}\neq\vb{0}\)，
+必有\(X,Y,Z\)不同时为零.
+若\(X\neq0\)，则\begin{equation*}
+	t = \frac{x - x_0}{X};
+\end{equation*}
+否则\(x - x_0 = 0\).
+若\(Y\neq0\)，则\begin{equation*}
+	t = \frac{y - y_0}{Y};
+\end{equation*}
+否则\(y - y_0 = 0\).
+若\(Z\neq0\)，则\begin{equation*}
+	t = \frac{z - z_0}{Z};
+\end{equation*}
+否则\(z - z_0 = 0\).
+于是，
+若\(X,Y\neq0\)，\(Z=0\)，则有
+\begin{equation}
+	\left\{ \begin{array}{l}
+		\frac{x - x_0}{X}
+		= \frac{y - y_0}{Y}, \\
+		z - z_0 = 0;
+	\end{array} \right.
+\end{equation}
+若\(Y,Z\neq0\)，\(X=0\)，则有
+\begin{equation}
+	\left\{ \begin{array}{l}
+		\frac{y - y_0}{Y}
+		= \frac{z - z_0}{Z}, \\
+		x - x_0 = 0;
+	\end{array} \right.
+\end{equation}
+若\(Z,X\neq0\)，\(Y=0\)，则有
+\begin{equation}
+	\left\{ \begin{array}{l}
+		\frac{x - x_0}{X}
+		= \frac{z - z_0}{Z}, \\
+		y - y_0 = 0;
+	\end{array} \right.
+\end{equation}
+若\(X,Y,Z\neq0\)，则有
+\begin{equation}\label{equation:解析几何.直线的点向式方程}
+	\frac{x - x_0}{X}
+	= \frac{y - y_0}{Y}
+	= \frac{z - z_0}{Z}.
+\end{equation}
+\cref{equation:解析几何.直线的点向式方程}
+称为“直线的\DefineConcept{点向式方程}”，
+或“直线的\DefineConcept{对称式方程}”，
+或“直线的\DefineConcept{标准方程}”.
+它实际上是联立两个方程而得的方程组.
+
+如果已知直线\(l\)上两点\(M_1(x_1,y_1,z_1)\)和\(M_2(x_2,y_2,z_2)\)，
+则\(\vec{M_1 M_2}\)是\(l\)的一个方向向量，从而\(l\)的方程为
+\begin{equation}\label{equation:解析几何.直线的两点式方程}
+	\frac{x - x_1}{x_2 - x_1}
+	= \frac{y - y_1}{y_2 - y_1}
+	= \frac{z - z_1}{z_2 - z_1}.
+\end{equation}
+\cref{equation:解析几何.直线的两点式方程}
+称为“直线\(l\)的\DefineConcept{两点式方程}”.
+
+任意一条直线可以看成某两个相交平面的交线.
+设直线\(l\)是相交平面\(\alpha_1\)和\(\alpha_2\)的交线，它们的方程分别为\begin{equation*}
+	A_i x + B_i y + C_i z + D_i = 0
+	\quad(i=1,2),
+\end{equation*}
+这两个方程的一次项系数不成比例，则方程组
+\begin{equation}
+	\left\{ \begin{array}{l}
+		A_1 x + B_1 y + C_1 z + D_1 = 0, \\
+		A_2 x + B_2 y + C_2 z + D_2 = 0
+	\end{array} \right.
+\end{equation}
+就是直线\(l\)的方程，称为“直线\(l\)的一般方程”.
+
+由于直角坐标系是特殊的仿射坐标系，
+所以上述一切结论在直角坐标系中都成立.
+利用右手直角坐标系的特殊性，
+由直线的一般方程写出它的标准方程时，
+求直线\(l\)的方向向量\(\vb{\nu}\)可以更加直观：
+因为\(\vb{\nu}\perp\vb{n}_i\)，
+其中\(\vb{n}_i\)是\(\alpha_i\ (i=1,2)\)的法向量，
+所以可以取\(\vb{\nu}=\VectorOuterProduct{\vb{n}_1}{\vb{n}_2}\).
+由于\(\vb{n}_i = (A_i,B_i,C_i)\)，
+所以\begin{equation*}
+	\vb{\nu}
+	= \begin{vmatrix}
+		\vb{i} & \vb{j} & \vb{k} \\
+		A_1 & B_1 & C_1 \\
+		A_2 & B_2 & C_2
+	\end{vmatrix}.
+\end{equation*}
+
+\subsection{两条直线的相关位置}
+%@see: 《解析几何》（丘维声） P63
+在仿射坐标系中，设直线\(l_i\)经过点\(M_i(x_i,y_i,z_i)\)，
+方向向量为\(\vb{\nu}=(X_i,Y_i,Z_i)\)，\(i=1,2\).
+
+\(l_1\)与\(l_2\)平行的充分必要条件是
+\(\vb{\nu}_1\)与\(\vb{\nu}_2\)共线，
+但\(\vec{M_1 M_2}\)与\(\vb{\nu}_1\)不共线，
+即存在实数\(\lambda\)，使得\(\vb{\nu}_2 = \lambda \vb{\nu}_1\)；
+但对一切实数\(\mu\)，都有\(\vec{M_1 M_2} \neq \mu \vb{\nu}_1\).
+
+\(l_1\)与\(l_2\)重合的充分必要条件是
+\(\vb{\nu}_1,\vb{\nu}_2,\vec{M_1 M_2}\)三个向量共线，
+即存在实数\(\lambda,\mu\)，使得\begin{equation*}
+	\vb{\nu}_2 = \lambda \vb{\nu}_1,
+	\qquad
+	\vec{M_1 M_2} = \mu \vb{\nu}_1.
+\end{equation*}
+
+\(l_1\)与\(l_2\)相交的充分必要条件是
+\(\vb{\nu}_1,\vb{\nu}_2,\vec{M_1 M_2}\)三个向量共面，
+且\(\vb{\nu}_1\)与\(\vb{\nu}_2\)不共线，即\begin{equation*}
+	\begin{vmatrix}
+		x_2 - x_1 & X_1 & X_2 \\
+		y_2 - y_1 & Y_1 & Y_2 \\
+		z_2 - z_1 & Z_1 & Z_2
+	\end{vmatrix} = 0,
+\end{equation*}
+且对一切实数\(\lambda\)，都有\(\vb{\nu}_2 \neq \lambda \vb{\nu_1}\).
+
+\(l_1\)与\(l_2\)异面的充分必要条件是
+\(\vb{\nu}_1,\vb{\nu}_2,\vec{M_1 M_2}\)三个向量不共面，即\begin{equation*}
+	\begin{vmatrix}
+		x_2 - x_1 & X_1 & X_2 \\
+		y_2 - y_1 & Y_1 & Y_2 \\
+		z_2 - z_1 & Z_1 & Z_2
+	\end{vmatrix} \neq 0.
+\end{equation*}
+
+\begin{example}
+设直线\(l_1: y=k_1 x+b_2\)与\(l_2: y=k_2 x+b_2\)垂直.
+证明：\(k_1 \cdot k_2 = -1\).
+\begin{proof}
+由题意有，直线\(l_1,l_2\)的方向向量分别为\begin{equation*}
+	\vb{\nu}_1 = \lambda (1,k_1), \qquad
+	\vb{\nu}_2 = \mu (1,k_2),
+\end{equation*}
+其中\(\lambda,\mu\)取任意实数.
+因为直线\(l_1\)与\(l_2\)垂直，所以它们的方向向量垂直，那么\begin{equation*}
+	\VectorInnerProductDot{\vb{\nu}_1}{\vb{\nu}_2}
+	= (\lambda \cdot 1) \cdot (\mu \cdot 1)
+	+ (\lambda \cdot k_1) \cdot (\mu \cdot k_2) = 0,
+\end{equation*}
+化简得\(k_1 \cdot k_2 = -1\).
+\end{proof}
+\end{example}
+
+\subsection{直线和平面的相关位置}
+在仿射坐标系中，设直线\(l\)经过点\(M_0(x_0,y_0,z_0)\)，方向向量为\(\vb{\nu}=(X,Y,Z)\)，
+平面\(\alpha\)的方程为\(A x + B y + C z + D = 0\).
+
+\(l\)与\(\alpha\)平行的充分必要条件是\(\vb{\nu}\)与\(\alpha\)平行，且\(M_0\)不在\(\alpha\)上，
+即\begin{equation*}
+	AX+BY+CZ=0
+	\quad\land\quad
+	Ax_0+By_0+Cz_0+D\neq0.
+\end{equation*}
+
+\(l\)在平面\(\alpha\)上的充分必要条件是\(\vb{\nu}\)与\(\alpha\)平行，且\(M_0\)在\(\alpha\)上，
+即\begin{equation*}
+	AX+BY+CZ=0
+	\quad\land\quad
+	Ax_0+By_0+Cz_0+D=0.
+\end{equation*}
+
+\(l\)与\(\alpha\)相交的充分必要条件是\(\vb{\nu}\)与\(\alpha\)不平行，即\begin{equation*}
+	AX+BY+CZ\neq0.
+\end{equation*}
+此时，将\(l\)的参数方程\begin{equation*}
+	\left\{ \begin{array}{l}
+		x = x_0 + tX, \\
+		y = y_0 + tY, \\
+		z = z_0 + tZ
+	\end{array} \right.
+\end{equation*}
+代入\(\alpha\)的方程中，得\begin{equation*}
+	A(x_0+tX) + B(y_0+tY) + C(z_0+tZ) + D = 0,
+\end{equation*}
+解得\begin{equation}
+	t = - \frac{Ax_0+By_0+Cz_0+D}{AX+BY+CZ}.
+\end{equation}
+将\(t\)代回到\(l\)的参数方程中，即可求出\(l\)与\(\alpha\)的交点的坐标.

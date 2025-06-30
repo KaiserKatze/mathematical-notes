@@ -1,0 +1,323 @@
+\section{向量的外积}
+\subsection{向量的外积的定义}
+\begin{definition}
+%@see: 《解析几何》（丘维声） P31 定义4.1
+给定两个向量\(\vb{a},\vb{b}\).
+若向量\(\vb{c}\)满足
+\begin{equation}\label{equation:解析几何.向量外积的长度关系}
+	\abs{\vb{c}}
+	= \abs{\vb{a}} \abs{\vb{b}} \sin\angle(\vb{a},\vb{b}),
+\end{equation}
+且\(\vb{c}\)与\(\vb{a},\vb{b}\)均垂直，\((\vb{a},\vb{b},\vb{c})\)成右手系，
+则称\(\vb{c}\)为“\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{外积}或\DefineConcept{向量积}”，
+记作\(\VectorOuterProduct{\vb{a}}{\vb{b}}\).
+
+特别地，若\(\vb{a}\)与\(\vb{b}\)中至少有一个是零向量，则\(\VectorOuterProduct{\vb{a}}{\vb{b}}=\vb{0}\).
+\end{definition}
+
+\begin{figure}[htb]
+	\centering
+	\def\subwidth{.4\textwidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}[scale=.9]
+			\coordinate(O)at(0,0);
+			\fill[black!30,rotate=-7](-2.5,-2)--++(5,0)--++(2,3.5)--++(-5,0)--(-2.5,-2);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(O)--(1.5,-1.5)coordinate(A)node[right]{\(\vb{a}\)};
+				\draw(O)--(2,.7)coordinate(B)node[right]{\(\vb{b}\)};
+				\draw[red](O)--(0,3)node[black,right]{\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,->,angle eccentricity=1.5,angle radius=1cm]
+				{angle=A--O--B};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}[scale=.9]
+			\coordinate(O)at(0,0);
+			\fill[black!30,rotate=-7,name path=u]
+				(-2.5,-2)--++(5,0)--++(2,3.5)--++(-5,0)--(-2.5,-2);
+			\path[name path=v](O)--(0,-3);
+			\draw[name intersections={of=u and v}]
+				[red,dashed,ultra thick](O)--(intersection-1);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(O)--(1.5,-1.5)coordinate(A)node[right]{\(\vb{a}\)};
+				\draw(O)--(2,.7)coordinate(B)node[right]{\(\vb{b}\)};
+				\draw[red](intersection-1)--(0,-3)node[black,right]{\(\VectorOuterProduct{\vb{b}}{\vb{a}}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,<-,angle eccentricity=1.5,angle radius=1cm]
+				{angle=A--O--B};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\caption{}
+\end{figure}
+
+从定义可以看出，\(\VectorOuterProduct{\vb{a}}{\vb{b}}=\vb{0}\)的充分必要条件是\(\vb{a},\vb{b}\)共线.
+因此要特别注意：若\(\VectorOuterProduct{\vb{a}}{\vb{b}}=\vb{0}\)，
+不能断定\(\vb{a},\vb{b}\)中必有一个为\(\vb{0}\).
+这是与数的乘法很不一样的地方.
+
+\subsection{向量的外积的几何意义、有向平面}
+当向量\(\vb{a}\)与\(\vb{b}\)不共线时，
+从\cref{equation:解析几何.向量外积的长度关系} 容易看出\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)的几何意义，
+即\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)表示以\(\vb{a},\vb{b}\)为邻边的平行四边形的面积.
+但要说明\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)的方向的几何意义，
+我们需要先给出所谓的“平面的定向”的概念.
+
+平面的定向，就是平面上的旋转方向.
+在平面几何中，常用“逆时针方向”与“顺时针方向”来描述平面上的两个旋转方向.
+对于放在三维空间中的平面，这种说法不足以描述平面上的旋转方向.
+从一侧看来是逆时针的旋转方向，从另一侧看就成了顺时针的.
+因此我们需要采用另外的方法来描述.
+
+我们知道，给定三个不共线的点\(O,A,B\)，
+我们可以确定一个平面\(OAB\)，
+且向量\(\vb{a}=\vec{OA},
+\vb{b}=\vec{OB}\)不共线.
+如果规定了这两个向量的先后顺序，
+则从第一个向量到第二个向量的转角小于\(\pi\)的旋转方向，
+就称为平面\(OAB\)的一个定向.
+例如，如果规定“先\(\vb{a}\)后\(\vb{b}\)”的顺序，
+则从\(\vb{a}\)到\(\vb{b}\)的转角小于\(\pi\)的旋转方向是平面\(OAB\)的一个定向；
+但是，如果规定“先\(\vb{b}\)后\(\vb{a}\)”的顺序，
+则从\(\vb{b}\)到\(\vb{a}\)的转角小于\(\pi\)的旋转方向是平面\(OAB\)的另一个定向，
+它与前述方向恰好相反.
+
+平面的两个定向，也可以用平面的两侧来代表.
+如果右手四指沿平面上取定的旋转方向弯曲，拇指必指向平面的一侧.
+这样，平面的两个定向就对应于平面的两侧，
+而平面的两侧又可用垂直于该平面的两个方向（或单位向量）来刻画，
+因此通常也用垂直于平面的方向来表示平面的定向.
+设\(\vb{e}_1\)是与平面\(OAB\)垂直的单位向量，
+如果右手四指从\(\vb{a}\)弯向\(\vb{b}\)（转角小于\(\pi\)）时，
+右手拇指的指向是\(\vb{e}_1\)的方向，
+则\(\vb{e}_1\)表示的平面\(OAB\)的定向就是由\(\vb{a}\)到\(\vb{b}\)的旋转方向.
+设单位向量\(\vb{e}_2\)与\(\vb{e}_1\)方向相反，
+则\(\vb{e}_2\)表示平面\(OAB\)的定向就是由\(\vb{b}\)到\(\vb{a}\)的旋转方向.
+
+现在再回头来看外积\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)的方向的几何意义.
+\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)的方向给出了
+以\(\vb{a},\vb{b}\)为邻边的平行四边形的边界的一个绕行方向：
+即让右手的拇指指向\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)的方向，
+右手其余四指的弯向就是这个方向.
+对于一个平行四边形，如果给它的边界指定了一个绕行方向，则称它是“定向平行四边形”.
+因此，\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)的方向的几何意义
+就是它给以\(\vb{a},\vb{b}\)为邻边的平行四边形确定了一个定向.
+
+假定我们已经用单位向量\(\vb{e}\)规定了平面\(OAB\)的定向.
+对于这个平面上的定向平行四边形，
+可以给它的面积赋予一个正号或负号：
+如果它的方向与平面的定向一致，则规定它的面积是正的；
+如果不一致，则规定它的面积是负的.
+这就叫定向平行四边形的“定向面积”.
+
+\subsection{向量的外积的运算规则}
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P33 命题4.1
+若\(\vb{a}\neq\vb{0}\)，
+则\(\VectorOuterProduct{\vb{a}}{\vb{b}}=\VectorOuterProduct{\vb{a}}{\vb{b}_2}\)，
+其中\(\vb{b}_2\)是\(\vb{b}\)沿方向\(\vb{a}\)下的外射影.
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P33 命题4.2
+设\(\vb{e}\)是单位向量，\(\vb{b}\perp\vb{e}\)，
+则\(\VectorOuterProduct{\vb{e}}{\vb{b}}\)等于
+\(\vb{b}\)按右手螺旋法则绕\(\vb{e}\)旋转\(\frac{\pi}{2}\)得到的向量\(\vb{b}_1\).
+\end{theorem}
+
+\begin{corollary}
+%@see: 《解析几何》（丘维声） P34 推论4.1
+若\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)为右手直角坐标系，则有\begin{equation*}
+	\VectorOuterProduct{\vb{e}_1}{\vb{e}_2} = \vb{e}_3, \qquad
+	\VectorOuterProduct{\vb{e}_2}{\vb{e}_3} = \vb{e}_1, \qquad
+	\VectorOuterProduct{\vb{e}_3}{\vb{e}_1} = \vb{e}_2.
+\end{equation*}
+\end{corollary}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P34 定理4.1
+对于任意向量\(\vb{a},\vb{b},\vb{c}\)，任意实数\(\lambda\)，有
+\begin{itemize}
+	\item 反交换律，即\begin{equation*}
+		\VectorOuterProduct{\vb{a}}{\vb{b}}
+		= -\VectorOuterProduct{\vb{b}}{\vb{a}};
+	\end{equation*}
+	\item 线性性，即\begin{equation*}
+		\VectorOuterProduct{(\lambda \vb{a})}{\vb{b}}
+		= \lambda(\VectorOuterProduct{\vb{a}}{\vb{b}})
+		= \VectorOuterProduct{\vb{a}}{(\lambda \vb{b});}
+	\end{equation*}
+	\item 左分配律，即\begin{equation*}
+		\VectorOuterProduct{\vb{a}}{(\vb{b}+\vb{c})}
+		= \VectorOuterProduct{\vb{a}}{\vb{b}}
+		+ \VectorOuterProduct{\vb{a}}{\vb{c}};
+	\end{equation*}
+	\item 右分配律，即\begin{equation*}
+		\VectorOuterProduct{(\vb{b}+\vb{c})}{\vb{a}}
+		= \VectorOuterProduct{\vb{b}}{\vb{a}}
+		+ \VectorOuterProduct{\vb{c}}{\vb{a}}.
+	\end{equation*}
+\end{itemize}
+\end{theorem}
+
+\subsection{利用坐标计算向量的外积}
+首先取一个仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)，
+设向量\(\vb{a},\vb{b}\)的坐标分别是\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T,
+\end{equation*}
+则\begin{equation}
+\begin{split}
+	\VectorOuterProduct{\vb{a}}{\vb{b}}
+	&= \VectorOuterProduct
+		{(a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3)}
+		{(b_1 \vb{d}_1 + b_2 \vb{d}_2 + b_3 \vb{d}_3)} \\
+	&= (a_1 b_2 - a_2 b_1) \VectorOuterProduct{\vb{d}_1}{\vb{d}_2}
+	+ (a_3 b_1 - a_1 b_3) \VectorOuterProduct{\vb{d}_3}{\vb{d}_1}
+	+ (a_2 b_3 - a_3 b_2) \VectorOuterProduct{\vb{d}_2}{\vb{d}_3}.
+\end{split}
+\end{equation}
+由此可见，只要知道基向量之间的外积，就可求出\(\VectorOuterProduct{\vb{a}}{\vb{b}}\).
+
+如果我们取定的是直角标架\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)，则
+\begin{equation}
+	\VectorOuterProduct{\vb{a}}{\vb{b}}
+	= \begin{vmatrix}
+		a_2 & b_2 \\
+		a_3 & b_3
+	\end{vmatrix}
+	\vb{e}_1
+	- \begin{vmatrix}
+		a_1 & b_1 \\
+		a_3 & b_3
+	\end{vmatrix}
+	\vb{e}_2
+	+ \begin{vmatrix}
+		a_1 & b_1 \\
+		a_2 & b_2
+	\end{vmatrix}
+	\vb{e}_3.
+\end{equation}
+
+于是我们有下述定理.
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P36 定理4.2
+设\(\vb{a},\vb{b}\)在右手直角坐标系中的坐标分别为\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T,
+\end{equation*}
+则
+\begin{equation}
+	\VectorOuterProduct{\vb{a}}{\vb{b}}
+	= \left( \begin{vmatrix}
+		a_2 & b_2 \\
+		a_3 & b_3
+	\end{vmatrix},
+	- \begin{vmatrix}
+		a_1 & b_1 \\
+		a_3 & b_3
+	\end{vmatrix},
+	\begin{vmatrix}
+		a_1 & b_1 \\
+		a_2 & b_2
+	\end{vmatrix} \right)^T.
+\end{equation}
+\end{theorem}
+为了便于记忆，我们常常将上式写作\begin{equation}
+	\VectorOuterProduct{\vb{a}}{\vb{b}}
+	= \begin{vmatrix}
+		\vb{e}_1 & \vb{e}_2 & \vb{e}_3 \\
+		a_1 & a_2 & a_3 \\
+		b_1 & b_2 & b_3
+	\end{vmatrix}.
+\end{equation}
+
+\subsection{二重外积}
+向量的外积是否满足结合律？
+首先让我们探索\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}\)的计算结果.
+设\(\vb{b}=\vec{OB},\vb{c}=\vec{OC}\)不共线，
+从外积的定义可知，
+\(\VectorOuterProduct{\vb{b}}{\vb{c}}\)垂直于由\(\vb{b},\vb{c}\)确定的平面\(OBC\).
+又由于\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}\)与\(\VectorOuterProduct{\vb{b}}{\vb{c}}\)垂直，
+因此\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}\)在平面\(OBC\)内，
+从而\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})} = k_1 \vb{b} + k_2 \vb{c}\)，
+其中\(k_1,k_2\)待定.
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P37 命题4.3
+对任意向量\(\vb{a},\vb{b},\vb{c}\)，有
+\begin{equation}\label{equation:解析几何.二重外积公式}
+	\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}
+	= (\VectorInnerProductDot{\vb{a}}{\vb{c}}) \vb{b}
+	- (\VectorInnerProductDot{\vb{a}}{\vb{b}}) \vb{c}.
+\end{equation}
+\end{theorem}
+\cref{equation:解析几何.二重外积公式}
+称为\DefineConcept{二重外积公式}.
+
+由\cref{equation:解析几何.二重外积公式}
+和外积的反交换律可以得到\begin{equation*}
+	\VectorOuterProduct{(\VectorOuterProduct{\vb{a}}{\vb{b}})}{\vb{c}}
+	= -\VectorOuterProduct{\vb{c}}{(\VectorOuterProduct{\vb{a}}{\vb{b}})}
+	= -(\VectorInnerProductDot{\vb{c}}{\vb{b}}) \vb{a}
+	+ (\VectorInnerProductDot{\vb{c}}{\vb{a}}) \vb{b}.
+\end{equation*}
+从而在一般情况下，
+\(\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}
+\neq
+\VectorOuterProduct{(\VectorOuterProduct{\vb{a}}{\vb{b}})}{\vb{c}}\)，
+即向量的外积不适合结合律.
+
+容易证明下述\DefineConcept{雅克比等式}：
+\begin{equation}\label{equation:解析几何.雅克比等式}
+	\VectorOuterProduct{\vb{a}}{(\VectorOuterProduct{\vb{b}}{\vb{c}})}
+	+ \VectorOuterProduct{\vb{b}}{(\VectorOuterProduct{\vb{c}}{\vb{a}})}
+	+ \VectorOuterProduct{\vb{c}}{(\VectorOuterProduct{\vb{a}}{\vb{b}})}
+	= \vb{0}.
+\end{equation}
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P38 习题1.4 1.
+证明：\begin{equation*}
+	\abs{\VectorOuterProduct{\vb{a}}{\vb{b}}}^2
+	= \abs{\vb{a}}^2 \abs{\vb{b}}^2 - (\VectorInnerProductDot{\vb{a}}{\vb{b}})^2.
+\end{equation*}
+\begin{proof}
+\def\t{\angle(\vb{a},\vb{b})}%
+直接计算得\begin{align*}
+	\abs{\VectorOuterProduct{\vb{a}}{\vb{b}}}^2
+	&= (\abs{\vb{a}}\abs{\vb{b}}\sin\t)^2 \\
+	&= \abs{\vb{a}}^2 \abs{\vb{b}}^2 (1-\cos^2\t) \\
+	&= \abs{\vb{a}}^2 \abs{\vb{b}}^2
+	- (\abs{\vb{a}}\abs{\vb{b}}\cos\t)^2 \\
+	&= \abs{\vb{a}}^2 \abs{\vb{b}}^2
+	- (\VectorInnerProductDot{\vb{a}}{\vb{b}})^2.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P38 习题1.4 5.
+证明：\begin{equation*}
+	\VectorOuterProduct{(\vb{a}-\vb{b})}{(\vb{a}+\vb{b})}
+	= 2(\VectorOuterProduct{\vb{a}}{\vb{b}}).
+\end{equation*}
+\begin{proof}
+直接计算得\begin{align*}
+	\VectorOuterProduct{(\vb{a}-\vb{b})}{(\vb{a}+\vb{b})}
+	&= \VectorOuterProduct{(\vb{a}-\vb{b})}{\vb{a}}
+		+ \VectorOuterProduct{(\vb{a}-\vb{b})}{\vb{b}} \\
+	&= \VectorOuterProduct{\vb{a}}{\vb{a}}-\VectorOuterProduct{\vb{b}}{\vb{a}}
+	+ \VectorOuterProduct{\vb{a}}{\vb{b}}-\VectorOuterProduct{\vb{b}}{\vb{b}} \\
+	&= \vb{0}+\VectorOuterProduct{\vb{a}}{\vb{b}}
+	+ \VectorOuterProduct{\vb{a}}{\vb{b}}-\vb{0} \\
+	&= 2(\VectorOuterProduct{\vb{a}}{\vb{b}}).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}

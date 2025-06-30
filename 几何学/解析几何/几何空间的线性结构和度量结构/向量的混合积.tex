@@ -1,0 +1,264 @@
+\section{向量的混合积}
+\subsection{向量的混合积的定义、几何意义及性质}
+如果利用向量来计算几何体的体积？
+由于计算几何体的体积可以归结为计算平行六面体的体积，
+因此我们来讨论平行六面体\(ABCD-EFGH\).
+设\(\vec{AB}=\vb{a},
+\vec{AD}=\vb{b},
+\vec{AE}=\vb{c}\)，
+则底面积为\(\abs{\VectorOuterProduct{\vb{a}}{\vb{b}}}\)，
+高为\(\abs{\vec{AI}}\)，
+其中\(\vec{AI}\)是\(\vb{c}\)在方向\(\VectorOuterProduct{\vb{a}}{\vb{b}}\)上的内射影.
+因此\begin{equation*}
+	\abs{\vec{AI}}
+	= \abs{(\vb{c})_{\VectorOuterProduct{\vb{a}}{\vb{b}}}},
+\end{equation*}
+从而平行六面体的体积为
+\begin{align*}
+	V &= \abs{\VectorOuterProduct{\vb{a}}{\vb{b}}} \abs{\vec{AI}} \\
+	&= \abs{(\VectorOuterProduct{\vb{a}}{\vb{b}}) (\vb{c})_{\VectorOuterProduct{\vb{a}}{\vb{b}}}} \\
+	&= \abs{
+			\VectorInnerProductDot{(\VectorOuterProduct{\vb{a}}{\vb{b}})}{\vb{c}}
+		}.
+\end{align*}
+
+\(\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}\)
+称为“向量\(\vb{a},\vb{b},\vb{c}\)的\DefineConcept{混合积}（mixed product）”.
+上述计算过程表明，\(\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}\)
+表示以\(\vb{a},\vb{b},\vb{c}\)为棱的平行六面体的体积.
+若\(\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}>0\)，
+则夹角\(\angle(\VectorOuterProduct{\vb{a}}{\vb{b}},\vb{c})\)为锐角，
+由于\((\vb{a},\vb{b},\VectorOuterProduct{\vb{a}}{\vb{b}})\)构成右手系，
+于是\((\vb{a},\vb{b},\vb{c})\)也构成右手系.
+同理可知，若\(\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}<0\)，
+则\((\vb{a},\vb{b},\vb{c})\)构成左手系.
+因此我们可以根据\(\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}\)的正负性判断
+\((\vb{a},\vb{b},\vb{c})\)是右手系还是左手系.
+若给平行六面体的同义顶点上的三条棱规定一个顺序\((\vb{a},\vb{b},\vb{c})\)，
+则称“这个平行六面体是\DefineConcept{定向平行六面体}”，
+还称“这个平行六面体的\DefineConcept{定向}为\((\vb{a},\vb{b},\vb{c})\)”.
+对于定向平行六面体，
+我们可以给它的体积规定一个正负号：
+如果它的定向\((\vb{a},\vb{b},\vb{c})\)构成右手系，则它的体积规定为正的；
+如果它的定向\((\vb{a},\vb{b},\vb{c})\)构成左手系，则它的体积规定为负的.
+这叫做定向平行六面体的\DefineConcept{定向体积}.
+于是我们可以说“混合积\(\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}\)
+表示了定向为\((\vb{a},\vb{b},\vb{c})\)的平行六面体的定向体积”.
+
+由混合积的几何意义立即得到以下定理.
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P40 命题5.1
+三个向量\(\vb{a},\vb{b},\vb{c}\)共面的充分必要条件是\begin{equation*}
+	\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}} = 0.
+\end{equation*}
+\end{theorem}
+
+混合积有以下两条常用的性质：
+\begin{gather}
+	\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}
+	= \VectorMixedProductCD{\vb{b}}{\vb{c}}{\vb{a}}
+	= \VectorMixedProductCD{\vb{c}}{\vb{a}}{\vb{b}}, \\
+	\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}
+	= \VectorMixedProductDC{\vb{a}}{\vb{b}}{\vb{c}}.
+\end{gather}
+第二个性质说明三个向量\(\vb{a},\vb{b},\vb{c}\)的混合积与外积、内积运算符的位置无关，
+因此可以把混合积\(\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}\)
+记作\((\vb{a},\vb{b},\vb{c})\).
+但要注意，\(\VectorMixedProductDC{\vb{a}}{\vb{b}}{\vb{c}}\)的运算顺序是
+先求外积\(\VectorOuterProduct{\vb{b}}{\vb{c}}\)，
+再求内积\(\VectorMixedProductDC{\vb{a}}{\vb{b}}{\vb{c}}\)，
+否则运算就没有意义（绝对不可以先求内积，再求外积）.
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P46 习题1.5 1.
+三个向量\(\vb{a},\vb{b},\vb{c}\)共面
+证明：\(\abs{\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}}
+\leq \abs{\vb{a}} \abs{\vb{b}} \abs{\vb{c}}\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P46 习题1.5 2.
+证明：若\(\VectorOuterProduct{\vb{a}}{\vb{b}}
++ \VectorOuterProduct{\vb{b}}{\vb{c}}
++ \VectorOuterProduct{\vb{c}}{\vb{a}}
+= \vb{0}\)，
+则\(\vb{a},\vb{b},\vb{c}\)共面.
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P46 习题1.5 4.
+证明：\((\VectorOuterProduct{\vb{a}}{\vb{b}},\VectorOuterProduct{\vb{b}}{\vb{c}},\VectorOuterProduct{\vb{c}}{\vb{a}})
+= (\vb{a},\vb{b},\vb{c})^2\).
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P46 习题1.5 5.
+证明：\(\VectorInnerProductDot{(\VectorOuterProduct{\vb{a}}{\vb{b}})}{(\VectorOuterProduct{\vb{c}}{\vb{d}})}
++ \VectorInnerProductDot{(\VectorOuterProduct{\vb{b}}{\vb{c}})}{(\VectorOuterProduct{\vb{a}}{\vb{d}})}
++ \VectorInnerProductDot{(\VectorOuterProduct{\vb{c}}{\vb{a}})}{(\VectorOuterProduct{\vb{b}}{\vb{d}})}
+= 0\).
+%TODO
+\end{example}
+
+\subsection{利用坐标计算向量的混合积}
+首先取一个仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)，
+设向量\(\vb{a},\vb{b},\vb{c}\)的坐标分别为\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T, \qquad
+	(c_1,c_2,c_3)^T,
+\end{equation*}
+则\begin{align*}
+	&\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}} \\
+	&= \VectorInnerProductDot{
+		\left[
+			\begin{vmatrix}
+				a_1 & b_1 \\
+				a_2 & b_2
+			\end{vmatrix}
+			(\VectorOuterProduct{\vb{d}_1}{\vb{d}_2})
+			+ \begin{vmatrix}
+				b_1 & a_1 \\
+				b_3 & a_3
+			\end{vmatrix}
+			(\VectorOuterProduct{\vb{d}_3}{\vb{d}_1})
+			+ \begin{vmatrix}
+				a_2 & b_2 \\
+				a_3 & b_3
+			\end{vmatrix}
+			(\VectorOuterProduct{\vb{d}_2}{\vb{d}_3})
+		\right]
+	}{
+		(c_1 \vb{d}_1 + c_2 \vb{d}_2 + c_3 \vb{d}_3)
+	} \\
+	&= \begin{vmatrix}
+		a_1 & b_1 & c_1 \\
+		a_2 & b_2 & c_2 \\
+		a_3 & b_3 & c_3
+	\end{vmatrix}
+	(\VectorMixedProductCD{\vb{d}_1}{\vb{d}_2}{\vb{d}_3}).
+\end{align*}
+这里\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)不共面，
+\(\VectorMixedProductCD{\vb{d}_1}{\vb{d}_2}{\vb{d}_3}\neq0\).
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P41 命题5.2
+任意取定一个仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)，
+设向量\(\vb{a},\vb{b},\vb{c}\)的坐标分别为\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T, \qquad
+	(c_1,c_2,c_3)^T,
+\end{equation*}
+则\begin{equation}
+	\frac{\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}}
+		{\VectorMixedProductCD{\vb{d}_1}{\vb{d}_2}{\vb{d}_3}}
+	= \begin{vmatrix}
+		a_1 & b_1 & c_1 \\
+		a_2 & b_2 & c_2 \\
+		a_3 & b_3 & c_3
+	\end{vmatrix}.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P41 定理5.1
+任意取定一个右手直角标架\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)，
+设向量\(\vb{a},\vb{b},\vb{c}\)的坐标分别为\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T, \qquad
+	(c_1,c_2,c_3)^T,
+\end{equation*}
+则\begin{equation}
+	\VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{c}}
+	= \begin{vmatrix}
+		a_1 & b_1 & c_1 \\
+		a_2 & b_2 & c_2 \\
+		a_3 & b_3 & c_3
+	\end{vmatrix}.
+\end{equation}
+\end{theorem}
+这个定理表明，以\(\vb{a},\vb{b},\vb{c}\)
+为棱的平行六面体的定向体积等于以这三个向量的右手直角坐标组成的三阶行列式.
+这也是3阶行列式的几何意义.
+
+\subsection{四点共面的条件}
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P41 定理5.2
+任意取定一个仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)，
+设向量\(\vb{a},\vb{b},\vb{c}\)的坐标分别为\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T, \qquad
+	(c_1,c_2,c_3)^T,
+\end{equation*}
+则\(\vb{a},\vb{b},\vb{c}\)共面的充分必要条件是\begin{equation*}
+	\begin{vmatrix}
+		a_1 & b_1 & c_1 \\
+		a_2 & b_2 & c_2 \\
+		a_3 & b_3 & c_3
+	\end{vmatrix} = 0.
+\end{equation*}
+\end{theorem}
+
+\begin{corollary}
+%@see: 《解析几何》（丘维声） P42 推论5.1
+任意取定一个仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)，
+设四点\(A,B,C,D\)的坐标分别为\begin{equation*}
+	(x_i,y_i,z_i)^T,
+	\quad i=1,2,3,4,
+\end{equation*}
+则\(A,B,C,D\)共面的充分必要条件是\begin{equation*}
+	\begin{vmatrix}
+		x_1 & x_2 & x_3 & x_4 \\
+		y_1 & y_2 & y_3 & y_4 \\
+		z_1 & z_2 & z_3 & z_4 \\
+		1 & 1 & 1 & 1
+	\end{vmatrix} = 0.
+\end{equation*}
+\end{corollary}
+
+\subsection{拉格朗日恒等式及其应用}
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P42 定理5.3
+对任意四个向量\(\vb{a},\vb{b},\vb{c},\vb{d}\)，有
+\begin{equation}\label{equation:解析几何.拉格朗日恒等式}
+	\VectorInnerProductDot{(\VectorOuterProduct{\vb{a}}{\vb{b}})}{(\VectorOuterProduct{\vb{c}}{\vb{d}})}
+	= \begin{vmatrix}
+		\VectorInnerProductDot{\vb{a}}{\vb{c}} & \VectorInnerProductDot{\vb{a}}{\vb{d}} \\
+		\VectorInnerProductDot{\vb{b}}{\vb{c}} & \VectorInnerProductDot{\vb{b}}{\vb{d}}
+	\end{vmatrix}.
+\end{equation}
+\end{theorem}
+\cref{equation:解析几何.拉格朗日恒等式}
+称为\DefineConcept{拉格朗日恒等式}.
+
+\subsection{向量代数在球面三角中的应用}
+设在以\(O\)为球心，\(R\)为半径的球面\(S\)上，
+有不在同一大圆弧上的三点\(A,B,C\).
+过这三点中每两点作大圆弧段连接，得到\begin{equation*}
+	\alpha=\Arc{BC}, \qquad
+	\beta=\Arc{CA}, \qquad
+	\gamma=\Arc{AB}.
+\end{equation*}
+这三条大圆弧段围成的球面区域，称为\DefineConcept{球面三角形}；
+其中点\(A,B,C\)称为它的\DefineConcept{顶点}；
+大圆弧段\(\alpha,\beta,\gamma\)称为它的\DefineConcept{边}，
+用它们对应的大圆弧段的弧度来量度.
+称由\(\beta\)与\(\gamma\)分别所在的平面组成的二面角为“边\(\beta\)与\(\gamma\)所夹的角”，
+记作\(\angle A\)或\(\angle(\beta,\gamma)\)；
+同理可以定义\(\angle B \equiv \angle(\alpha,\gamma)\)
+和\(\angle C \equiv \angle(\alpha,\beta)\)；
+称这三个角为“球面三角形\(\triangle ABC\)的\DefineConcept{内角}”.
+
+我们可以用向量法证明球面三角的下述公式：
+\begin{enumerate}
+	\item 余弦公式，即\begin{equation*}
+		\cos\alpha = \cos\beta \cos\gamma + \sin\beta \sin\gamma \cos A;
+	\end{equation*}
+	\item 正弦公式，即\begin{equation*}
+		\frac{\sin\alpha}{\sin A}
+		= \frac{\sin\beta}{\sin B}
+		= \frac{\sin\gamma}{\sin C}.
+	\end{equation*}
+\end{enumerate}

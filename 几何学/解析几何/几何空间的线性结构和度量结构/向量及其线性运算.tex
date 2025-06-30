@@ -1,0 +1,389 @@
+\section{向量及其线性运算}
+解析几何最基本的方法是坐标法，即建立一个坐标系，使得点可以用有序对或元组来表示，
+从而可以用方程表示图形，通过方程来研究图形的性质.
+坐标法的优越性在于它利用了数可以进行运算的优点.
+那么，能否把代数运算直接引入几何中来呢？什么样的几何对象能够做运算？
+
+\subsection{向量的概念}
+既有大小、又有方向的量，称为\DefineConcept{向量}或\DefineConcept{矢量}（vector）.
+
+与向量相对的，只有大小，没有方向的量，称为\DefineConcept{标量}（scalar）.
+
+我们通常用黑体小写拉丁字母（如\(\vb{a}\)、\(\vb{r}\)、\(\vb{v}\)、\(\vb{F}\)等），
+或在小写拉丁字母上面加箭头（如\(\vec{a}\)、\(\vec{r}\)、\(\vec{v}\)、\(\vec{F}\)等）来表记向量.
+
+在几何空间中，我们常用\DefineConcept{有向线段}（directed line segment）表示向量.
+如\cref{figure:解析几何.有向线段} 所示，
+对于一个给定的向量\(\vb{a}\)，
+我们可以用有向线段\(\vec{AB}\)来表示它，
+其中用这条线段的长度\(\abs{AB}\)表示\(\vb{a}\)的大小，
+用点\(A\)到点\(B\)的指向表示\(\vb{a}\)的方向.
+我们把点\(A\)称为“有向线段\(\vec{AB}\)的\DefineConcept{起点}（initial point）”，
+把点\(B\)称为“有向线段\(\vec{AB}\)的\DefineConcept{终点}（terminal point）”.
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=Stealth]
+	\draw[->] (0,0)node[left]{\(A\)}--(3,1)node[right]{\(B\)}
+		node[midway,above]{\(\vb{a}\)};
+\end{tikzpicture}
+\caption{有向线段}
+\label{figure:解析几何.有向线段}
+\end{figure}
+
+规定长度相等、方向相同的有向线段表示同一个向量.
+
+如\cref{figure:解析几何.有向线段的平移不变性} 所示，
+若有向线段\(\vec{AB}\)表示向量\(\vb{a}\)，
+则\(\vec{AB}\)经过平行移动得到的有向线段\(\vec{CD}\)仍然表示向量\(\vb{a}\)，
+即\(\vb{a} = \vec{AB} = \vec{CD}\).
+换言之，给定两条有向线段，如果其中一条经过平移可以让这两条有向线段的起点和终点分别完全重合，
+那么这两条有向线段表示的是同一个向量.
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=Stealth]
+	\draw[dashed] (0,0)--(5,0) (3,1)--(8,1);
+	\draw[->] (0,0)node[left]{\(A\)}--(3,1)node[above left]{\(B\)}node[midway,above left]{\(\vb{a}\)};
+	\draw[->] (5,0)node[below right]{\(C\)}--(8,1)node[right]{\(D\)};
+\end{tikzpicture}
+\caption{}
+\label{figure:解析几何.有向线段的平移不变性}
+\end{figure}
+
+我们今后把向量的大小称为
+“向量的\DefineConcept{长度}（length）”或“向量的\DefineConcept{模}（modulus）”，
+记作\(\abs{\vb{a}}\).
+
+如果两个向量\(\vb{a}\)和\(\vb{b}\)的长度相等、方向相同，
+我们就说“\(\vb{a}\)和\(\vb{b}\)是\DefineConcept{相等}的”，
+或者说“\(\vb{a}\)等于\(\vb{b}\)”，
+记作\(\vb{a}=\vb{b}\)；
+否则，记\(\vb{a}\neq\vb{b}\).
+
+长度为零的向量称为\DefineConcept{零向量}（zero vector），记作\(\vb{0}\).
+%@see: https://mathworld.wolfram.com/ZeroVector.html
+
+看作有向线段时，零向量的起点和终点重合，所以它的方向可以看作是任意的、不确定的.
+
+相对地，长度不为零的向量称为\DefineConcept{非零向量}（nonzero vector）.
+
+长度为1的向量称为\DefineConcept{单位向量}（unit vector），记作\(\vb{e}\).
+%@see: https://mathworld.wolfram.com/UnitVector.html
+
+任意给定一个向量\(\vb{a}\)，与\(\vb{a}\)同向的单位向量记作\(\vb{a}^0\)，
+称其为“\(\vb{a}\)的\DefineConcept{方向}（direction）”.
+
+任意给定一个向量\(\vb{a}\)，
+如果向量\(\vb{b}\)正好是与\(\vb{a}\)长度相等、方向相反的向量，
+那么称“\(\vb{b}\)是\(\vb{a}\)的\DefineConcept{负向量}（negative vector）”，
+记作\(-\vb{a}\).
+例如，\(\vec{BA}\)是\(\vec{AB}\)的负向量，因此\(\vec{BA} = -\vec{AB}\).
+
+\subsection{向量的加法}
+我们知道，将与点\(A\)重合的点\(P\)移动到点\(B\)再移动到点\(C\)的结果是点\(P\)与点\(C\)重合.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P2 定义1.1
+对于向量\(\vb{a},\vb{b}\)，
+如\cref{figure:解析几何.向量相加的三角形法则} 所示，
+作有向线段\(\vec{AB}\)表示\(\vb{a}\)，
+作有向线段\(\vec{BC}\)表示\(\vb{b}\)，
+把有向线段\(\vec{AC}\)表示的向量\(\vb{c}\)称为
+“向量\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{和}”，
+记作\begin{equation*}
+	\vec{AB}+\vec{BC}=\vec{AC}
+	\quad\text{或}\quad
+	\vb{c}=\vb{a}+\vb{b}.
+\end{equation*}
+\end{definition}
+由上述公式表示的向量加法规则通常称为\DefineConcept{三角形法则}（triangle law）.
+除此以外，我们还有\DefineConcept{平行四边形法则}（parallelogram law），
+如\cref{figure:解析几何.向量相加的平行四边形法则}.
+
+\begin{figure}[htb]
+	\centering
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\pgfmathsetmacro{\xmax}{5}
+			\pgfmathsetmacro{\xmin}{0}
+			\pgfmathsetmacro{\ymax}{4}
+			\pgfmathsetmacro{\ymin}{0}
+			\draw[help lines,color=gray!30,dashed](\xmin,\ymin)grid(\xmax,\ymax);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(\xmin,0)--(\xmax,0)node[right]{\(x\)};
+				\draw(0,\ymin)--(0,\ymax)node[above]{\(y\)};
+			\end{scope}
+			\coordinate(A)at(1,1);
+			\coordinate(B)at(4,2);
+			\coordinate(C)at(3,3);
+			\begin{scope}[>=Stealth,->]
+				\draw[blue](A)node[black,left]{\(A\)}
+					--(B)node[black,right]{\(B\)}node[black,midway,below]{\(\vb{a}\)};
+				\draw[blue](B)
+					--(C)node[black,above]{\(C\)}node[black,midway,above right]{\(\vb{b}\)};
+				\draw[red](A)--(C)node[black,midway,above left]{\(\vb{a}+\vb{b}\)};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{向量加法的三角形法则}
+		\label{figure:解析几何.向量相加的三角形法则}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\pgfmathsetmacro{\xmax}{6}
+			\pgfmathsetmacro{\xmin}{0}
+			\pgfmathsetmacro{\ymax}{4}
+			\pgfmathsetmacro{\ymin}{0}
+			\draw[help lines,color=gray!30,dashed](\xmin,\ymin)grid(\xmax,\ymax);
+			\begin{scope}[->,>=Stealth,ultra thick]
+				\draw(\xmin,0)--(\xmax,0)node[right]{\(x\)};
+				\draw(0,\ymin)--(0,\ymax)node[above]{\(y\)};
+			\end{scope}
+			\coordinate(A)at(2,1);
+			\coordinate(B)at(5,2);
+			\coordinate(C)at(4,3);
+			\coordinate(D)at(1,2);
+			\begin{scope}[>=Stealth,->]
+				\draw[blue](A)node[black,below]{\(A\)}
+					--(B)node[black,midway,below]{\(\vb{a}\)};
+				\draw[blue](A)--(D)node[black,midway,left]{\(\vb{b}\)};
+				\draw[red](A)--(C)node[black,midway,above left]{\(\vb{a}+\vb{b}\)};
+			\end{scope}
+			\draw[dashed](D)node[black,left]{\(D\)}
+				--(C)node[black,above]{\(C\)}
+				--(B)node[black,right]{\(B\)};
+		\end{tikzpicture}
+		\caption{向量相加的平行四边形法则}
+		\label{figure:解析几何.向量相加的平行四边形法则}
+	\end{subfigure}
+	\caption{}
+\end{figure}
+
+向量的加法服从以下运算律：
+\begin{enumerate}
+	\item 结合律，即对于\(\forall \vb{a},\vb{b},\vb{c}\)，有\begin{equation*}
+		(\vb{a}+\vb{b})+\vb{c}
+		= \vb{a}+(\vb{b}+\vb{c}).
+	\end{equation*}
+
+	\item 交换律，即对于\(\forall \vb{a},\vb{b}\)，有\begin{equation*}
+		\vb{a}+\vb{b} = \vb{b}+\vb{a}.
+	\end{equation*}
+
+	\item 对于\(\forall \vb{a}\)，有\begin{equation*}
+		\vb{a}+\vb{0}=\vb{a}.
+	\end{equation*}
+
+	\item 对于\(\forall \vb{a}\)，有\begin{equation*}
+		\vb{a}+(-\vb{a})=\vb{0}.
+	\end{equation*}
+\end{enumerate}
+这些运算律都可以利用有向线段作图予以证明.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P4 定义1.2
+对于向量\(\vb{a},\vb{b}\)，
+称\(\vb{a}\)与\(\vb{b}\)的负向量\(-\vb{b}\)的和\(\vb{a}+(-\vb{b})\)为
+“向量\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{差}”，记作\(\vb{a}-\vb{b}\)，即\begin{equation*}
+	\vb{a}-\vb{b}
+	\defeq
+	\vb{a}+(-\vb{b}).
+\end{equation*}
+\end{definition}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P10 习题1.1 7.
+对任意向量\(\vb{a},\vb{b}\)，都有\begin{equation*}
+	\abs{\vb{a}+\vb{b}} \leq \vb{a} + \vb{b}.
+\end{equation*}
+\end{theorem}
+
+\subsection{向量的数量乘法}
+\begin{definition}
+%@see: 《解析几何》（丘维声） P4 定义1.3
+规定：实数\(\lambda\)与向量\(\vb{a}\)的乘积\(\lambda \vb{a}\)还是一个向量，
+它的长度为\begin{equation*}
+\abs{\lambda\vb{a}}
+\defeq
+\abs{\lambda} \abs{\vb{a}},
+\end{equation*}
+它的方向当\(\lambda>0\)时与\(\vb{a}\)相同，
+当\(\lambda<0\)时与\(\vb{a}\)相反.
+\end{definition}
+
+对于任意向量\(\vb{a}\)，
+由于\(\abs{0 \vb{a}} = 0 \abs{\vb{a}} = 0\)，
+所以\(0 \vb{a} = \vb{0}\).
+同理，对一切实数\(\lambda\)，都有\(\lambda \vb{0} = \vb{0}\).
+
+对于任意非零向量\(\vb{a}\)，
+因为向量\(\abs{\vb{a}}^{-1} \vb{a}\)与\(\vb{a}\)同向，
+且\begin{equation*}
+	\abs{\frac{1}{\abs{\vb{a}}} \vb{a}}
+	= \frac{1}{\abs{\vb{a}}} \abs{\vb{a}} = 1,
+\end{equation*}
+所以\(\vb{a}^0 = \abs{\vb{a}}^{-1} \vb{a}\).
+像这样，把一个非零向量\(\vb{a}\)乘以它的长度的倒数，
+以得到与它同向的单位向量\(\vb{a}^0\)的过程，称为“把\(\vb{a}\) \DefineConcept{单位化}”.
+
+向量的数量乘法服从以下运算律：
+对于任意向量\(\vb{a},\vb{b}\)和任意实数\(\lambda,\mu\)，有
+\begin{enumerate}
+	\item \(1 \vb{a} = \vb{a}\)；
+	\item \((-1) \vb{a} = -\vb{a}\)；
+	\item \(\lambda(\mu \vb{a}) = (\lambda \mu) \vb{a}\)；
+	\item \((\lambda+\mu) \vb{a} = \lambda \vb{a} + \mu \vb{a}\)；
+	\item \(\lambda (\vb{a}+\vb{b}) = \lambda \vb{a} + \lambda \vb{b}\).
+\end{enumerate}
+
+\subsection{共线、共面的向量组}
+向量的加法和数量乘法统称为向量的\DefineConcept{线性运算}.
+
+设\(\AutoTuple{\vb{a}}{n}\)是一组向量，
+\(\AutoTuple{k}{n}\)是一组实数，
+则\(k_1 \vb{a}_1 + k_2 \vb{a}_2 + \dotsb + k_n \vb{a}_n\)是一个向量，
+我们称其为“向量组\(\AutoTuple{\vb{a}}{n}\)的一个\DefineConcept{线性组合}”，
+称\(\AutoTuple{k}{n}\)为这个线性组合的\DefineConcept{系数}.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P6 定义1.4
+若用起点相同的有向线段表示向量组中的向量，
+这些向量的终点和它们的公共起点都在同一条直线上，
+则称这个向量组是\DefineConcept{共线的}（collinear）.
+
+若用起点相同的有向线段表示向量组中的向量，
+这些向量的终点和它们的公共起点都在同一个平面上，
+则称这个向量组是\DefineConcept{共面的}（coplanar）.
+\end{definition}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P6 命题1.1
+若\(\vb{a}\)与\(\vb{b}\)共线，且\(\vb{a}\neq\vb{0}\)，
+则存在唯一的实数\(\lambda\)，使得\(\vb{b} = \lambda \vb{a}\).
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.两向量共线的充分必要条件1}
+%@see: 《解析几何》（丘维声） P6 命题1.2
+\(\vb{a}\)与\(\vb{b}\)共线的充分必要条件是：
+存在不全为零的实数\(\lambda\)和\(\mu\)，使得\begin{equation*}
+	\lambda \vb{a} + \mu \vb{b} = \vb{0}.
+\end{equation*}
+\begin{proof}
+先证必要性.
+设\(\vb{a}\)与\(\vb{b}\)共线.
+若\(\vb{a}=\vb{b}=\vb{0}\)，
+则有\(1\vb{a}+1\vb{b}=\vb{0}\).
+若\(\vb{a},\vb{b}\)不全为\(\vb{0}\)，不妨设\(\vb{a}\neq\vb{0}\)，
+则存在实数\(\lambda\)，使得\(\vb{b}=\lambda\vb{a}\)，从而有\begin{equation*}
+	\lambda\vb{a}+(-1)\vb{b}=\vb{0}.
+\end{equation*}
+
+再证充分性.
+若有不全为零的实数\(\lambda,\mu\)，使得\(\lambda \vb{a} + \mu \vb{b} = \vb{0}\)成立，
+不妨设\(\lambda\neq0\)，于是得\(\vb{a}=-\frac{\mu}{\lambda}\vb{b}\)，
+因此\(\vb{a}\)与\(\vb{b}\)共线.
+\end{proof}
+\end{theorem}
+
+\begin{corollary}\label{theorem:解析几何.两向量不共线的充分必要条件1}
+%@see: 《解析几何》（丘维声） P7 推论1.1
+\(\vb{a}\)与\(\vb{b}\)不共线的充分必要条件是：\begin{equation*}
+	\lambda \vb{a} + \mu \vb{b} = \vb{0}
+	\implies
+	\lambda = \mu = 0.
+\end{equation*}
+\end{corollary}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P7 命题1.3
+若\(\vb{c} = \lambda \vb{a} + \mu \vb{b}\)，
+则\(\vb{a},\vb{b},\vb{c}\)共面.
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P7 命题1.4
+若\(\vb{a},\vb{b},\vb{c}\)共面，
+并且\(\vb{a}\)与\(\vb{b}\)不共线，
+则存在唯一的一对实数\(\lambda\)和\(\mu\)，使得\begin{equation*}
+\vb{c} = \lambda \vb{a} + \mu \vb{b}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.三向量共面的充分必要条件1}
+%@see: 《解析几何》（丘维声） P8 命题1.5
+\(\vb{a},\vb{b},\vb{c}\)共面的充分必要条件是：
+存在不全为零的实数\(\vb{k}_1,\vb{k}_2,\vb{k}_3\)，使得\begin{equation*}
+	k_1 \vb{a} + k_2 \vb{b} + k_3 \vb{c} = \vb{0}.
+\end{equation*}
+\end{theorem}
+
+\begin{corollary}\label{theorem:解析几何.三向量不共面的充分必要条件1}
+%@see: 《解析几何》（丘维声） P8 推论1.2
+\(\vb{a},\vb{b},\vb{c}\)不共面的充分必要条件是：\begin{equation*}
+	k_1 \vb{a} + k_2 \vb{b} + k_3 \vb{c} = \vb{0}
+	\implies
+	k_1 = k_2 = k_3 = 0.
+\end{equation*}
+\end{corollary}
+
+由于上述命题成立，使得向量的线性运算可以用来解决有关点的共线或共面问题、直线的共点问题
+以及线段的定比分割问题；并且这些命题是研究几何空间的线性结构的依据.
+
+\begin{theorem}\label{theorem:解析几何.点在线段上的充分必要条件1}
+%@see: 《解析几何》（丘维声） P8 例1.1
+点\(M\)在线段\(AB\)上的充分必要条件是：
+存在非负实数\(\lambda,\mu\)，使得对于任意一点\(P\)，总有\(\lambda+\mu=1\)，且\begin{equation*}
+	\vec{PM} = \lambda \vec{PA} + \mu \vec{PB}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.点在直线上的充分必要条件1}
+%@see: 《解析几何》（丘维声） P10 习题1.1 9.
+点\(M\)在直线\(AB\)上的充分必要条件是：
+存在实数\(\lambda,\mu\)，使得对于任意一点\(P\)，总有\(\lambda+\mu=1\)，且\begin{equation*}
+	\vec{PM} = \lambda \vec{PA} + \mu \vec{PB}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.三点共线的充分必要条件1}
+%@see: 《解析几何》（丘维声） P9 例1.2
+三点\(A,B,C\)共线的充分必要条件是：
+存在不全为零的实数\(\lambda,\mu,\nu\)，使得对于任意一点\(P\)，总有\(\lambda+\mu+\nu=0\)，且\begin{equation*}
+	\lambda \vec{PA} + \mu \vec{PB} + \nu \vec{PC} = \vb{0}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.四点共面的充分必要条件1}
+%@see: 《解析几何》（丘维声） P10 习题1.1 10.
+四点\(A,B,C,D\)共面的充分必要条件是：
+存在不全为零的实数\(\lambda,\mu,\nu,\omega\)，
+使得对于任意一点\(P\)，总有\(\lambda+\mu+\nu+\omega=0\)，且\begin{equation*}
+	\lambda \vec{PA} + \mu \vec{PB} + \nu \vec{PC} + \omega \vec{PD} = \vb{0}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.点在平面上的充分必要条件1}
+%@see: 《解析几何》（丘维声） P11 习题1.1 11.
+设\(A,B,C\)是不在一直线上的三点.
+点\(M\)在平面\(ABC\)上的充分必要条件是：
+存在实数\(\lambda,\mu,\nu\)，使得对于任意一点\(P\)，总有\(\lambda+\mu+\nu=1\)，且\begin{equation*}
+	\vec{PM} = \lambda \vec{PA} + \mu \vec{PB} + \nu \vec{PC}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P11 习题1.1 12.
+点\(M\)在\(\triangle ABC\)内（包括它的三条边）的充分必要条件是：
+存在非负实数\(\lambda,\mu\)，使得\(\lambda+\mu\leq1\)，且\begin{equation*}
+	\vec{AM} = \lambda \vec{AB} + \mu \vec{AC}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{theorem:解析几何.点在三角形上的充分必要条件2}
+%@see: 《解析几何》（丘维声） P11 习题1.1 13.
+点\(M\)在\(\triangle ABC\)内（包括它的三条边）的充分必要条件是：
+存在非负实数\(\lambda,\mu,\nu\)，使得对于任意一点\(P\)，总有\(\lambda+\mu+\nu=1\)，且\begin{equation*}
+	\vec{PM} = \lambda \vec{PA} + \mu \vec{PB} + \nu \vec{PC}.
+\end{equation*}
+\end{theorem}

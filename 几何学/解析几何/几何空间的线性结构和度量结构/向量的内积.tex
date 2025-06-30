@@ -1,0 +1,432 @@
+\section{向量的内积}
+关于角的度量问题如何利用向量来解决？
+
+\subsection{射影与分量}
+几何空间\(V\)中，给定一个单位向量\(\vb{e}\)，
+过点\(O\)作直线\(l\)，其方向向量为\(\vb{e}\)；
+过点\(O\)做一个平面\(\pi\)与\(l\)垂直，
+在平面\(\pi\)上取两个互相垂直的单位向量\(\vb{e}_1,\vb{e}_2\)，
+则\([O;\vb{e}_1,\vb{e}_2,\vb{e}]\)是几何空间\(V\)的一个直角坐标系.
+于是，如\cref{figure:解析几何.内射影与外射影}，
+任给一个向量\(\vb{a}\)，它总可唯一地分解成\begin{equation*}
+	\vb{a}
+	= x \vb{e}_1 + y \vb{e}_2 + z \vb{e}
+	= \vb{a}_2 + \vb{a}_1,
+\end{equation*}
+其中\(\vb{a}_2 = x \vb{e}_1 + y \vb{e}_2\)，
+\(\vb{a}_1 = z \vb{e}\).
+
+可见\(\vb{a}_2 \perp \vb{e}\)，\(\vb{a}_1\)与\(\vb{e}\)共线.
+我们把\(\vb{a}_1\)称为“\(\vb{a}\)在方向\(\vb{e}\)上的\DefineConcept{内射影}”
+或“\(\vb{a}\)在方向向量为\(\vb{e}\)的轴\(l\)上的\DefineConcept{正投影}”，
+记作\(\Prj_{\vb{e}}(\vb{a})\)；
+把\(\vb{a}_2\)称为“\(\vb{a}\)沿方向\(\vb{e}\)下的\DefineConcept{外射影}”.
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		\coordinate(O)at(0,0);
+		\coordinate(A)at(2,0);
+		\coordinate(B)at(1,2);
+		\draw[red,dashed](B)--(O-|B)coordinate(C)
+			(B)--(B-|O)coordinate(D);
+		\draw pic[draw=gray,-,angle radius=0.2cm]{right angle=A--O--D};
+		\begin{scope}[->,>=Stealth]
+			\draw[ultra thick](O)--(A)node[right]{\(\vb{e}\)};
+			\draw[ultra thick](O)--(B)node[right]{\(\vb{a}\)};
+			\draw[red](O)--(C)node[below]{\(\vb{a}_1\)};
+			\draw[red](O)--(D)node[left]{\(\vb{a}_2\)};
+		\end{scope}
+		\fill(O)circle(1pt);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.内射影与外射影}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\coordinate(O)at(0,0);
+			\coordinate(A)at(2,0);
+			\coordinate(B)at(1,2);
+			\draw[red,dashed](B)--(O-|B)coordinate(C);
+			\begin{scope}[->,>=Stealth]
+				\draw[ultra thick](O)--(A)node[right]{\(\vb{v}\)};
+				\draw[ultra thick](O)--(B)node[left]{\(\vb{u}\)};
+				\draw[red](O)--(C)node[below]{\(\Prj_{\vb{v}}\vb{u}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]
+				{angle=A--O--B};
+			\fill(O)circle(1pt);
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\coordinate(O)at(0,0);
+			\coordinate(A)at(2,0);
+			\coordinate(B)at(-1,2);
+			\draw[red,dashed](B)--(O-|B)coordinate(C);
+			\begin{scope}[->,>=Stealth]
+				\draw[ultra thick](O)--(A)node[right]{\(\vb{v}\)};
+				\draw[ultra thick](O)--(B)node[left]{\(\vb{u}\)};
+				\draw[red](O)--(C)node[below]{\(\Prj_{\vb{v}}\vb{u}\)};
+			\end{scope}
+			\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=2,angle radius=0.3cm]
+				{angle=A--O--B};
+				\fill(O)circle(1pt);
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\caption{}
+\end{figure}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P24 命题3.1
+对于几何空间中的任意两个向量\(\vb{a},\vb{b}\)，任意实数\(\lambda\)，有\begin{gather}
+	\Prj_{\vb{e}}(\vb{a}+\vb{b})
+	= \Prj_{\vb{e}}(\vb{a})
+	+ \Prj_{\vb{e}}(\vb{b}), \\
+	\Prj_{\vb{e}}(\lambda \vb{a})
+	= \lambda \Prj_{\vb{e}}(\vb{a}).
+\end{gather}
+\end{theorem}
+
+由于\(\vb{a}\)在方向\(\vb{e}\)上的内射影\(\vb{a}_1\)与\(\vb{e}\)共线，
+因此存在唯一的实数\(\mu\)，使得\(\vb{a}_1 = \mu \vb{e}\).
+把这个实数\(\mu\)称为“\(\vb{a}\)在方向\(\vb{e}\)上的\DefineConcept{分量}（component）”，
+记作\((\vb{a})_{\vb{e}}\).
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P25 命题3.2
+几何空间中任一向量\(\vb{a}\)在方向\(\vb{e}\)上的分量为\begin{equation}
+	(\vb{a})_{\vb{e}}
+	= \abs{\vb{a}} \cos\angle(\vb{a},\vb{e}).
+\end{equation}
+\end{theorem}
+
+从内射影和分量的定义立即得到以下命题：
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P25 命题3.3
+对几何空间中任一向量\(\vb{a}\)，有\begin{equation*}
+	\Prj_{\vb{e}}(\vb{a})
+	= (\vb{a})_{\vb{e}} \vb{e}.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P25 命题3.4
+对几何空间中任意两个向量\(\vb{a},\vb{b}\)，有\begin{gather}
+	(\vb{a}+\vb{b})_{\vb{e}}
+	= (\vb{a})_{\vb{e}}
+	+ (\vb{a})_{\vb{e}}, \\
+	(\lambda \vb{a})_{\vb{e}}
+	= \lambda (\vb{a})_{\vb{e}},
+	\quad\lambda\in\mathbb{R}.
+\end{gather}
+\end{theorem}
+
+\subsection{向量的夹角}
+
+\begin{definition}
+给定两个非零向量\(\vb{a},\vb{b}\).
+如\cref{figure:解析几何.向量的夹角}，
+任取一点\(O\)，作\(\vec{OA}=\vb{a},\vec{OB}=\vb{b}\).
+称\(\angle{AOB}\)为“向量\(\vb{a}\)和\(\vb{b}\)的夹角%
+\footnote{%
+在不强调“由向量\(\vb{a}\)转动到向量\(\vb{b}\)所扫过的角度”时，
+也就是说当没有规定角度的正负时，
+两向量间夹角\(\theta\)始终是区间\([0,\pi]\)中的一个值，
+那么有\(\angle(\vb{a},\vb{b}) \equiv \angle(\vb{b},\vb{a})\)；%
+否则，规定\(\angle(\vb{a},\vb{b}) \equiv -\angle(\vb{b},\vb{a})\).%
+}”，
+记作\(\angle(\vb{a},\vb{b})\)或\(\angle(\vb{b},\vb{a})\).
+
+如果\(\angle(\vb{a},\vb{b}) = 0\)或\(\angle(\vb{a},\vb{b}) = \pi\)，
+就称“向量\(\vb{a}\)与\(\vb{b}\) \DefineConcept{平行}（parallel）”，
+记作\(\vb{a}\parallel\vb{b}\).
+
+如果\(\angle(\vb{a},\vb{b}) = \pi/2\)，
+就称“向量\(\vb{a}\)与\(\vb{b}\) \DefineConcept{垂直}（perpendicular）”，
+%@see: https://mathworld.wolfram.com/Perpendicular.html
+记作\(\vb{a}\perp\vb{b}\).
+\end{definition}
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\by}{sqrt(3)}
+		\coordinate (O) at (0,0);
+		\coordinate (A) at (2,0);
+		\coordinate (B) at (1,\by);
+		\draw[->] (O)node[left]{\(O\)}
+			-- (A)node[right]{\(A\)}node[midway,below]{\(\vb{a}\)};
+		\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,above left]{\(\vb{b}\)};
+		\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.5,angle radius=4mm]
+			{angle=A--O--B};
+
+		\coordinate (O) at (5,0);
+		\coordinate (A) at (7,0);
+		\coordinate (B) at (4,\by);
+		\draw[->] (O)node[left]{\(O\)}
+			-- (A)node[right]{\(A\)}node[midway,below]{\(\vb{a}\)};
+		\draw[->] (O) -- (B)node[above]{\(B\)}node[midway,left]{\(\vb{b}\)};
+		\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.7,angle radius=3mm]
+			{angle=A--O--B};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.向量的夹角}
+\end{figure}
+
+由于零向量与任一向量的夹角\(\theta\)可以在\(0\)到\(\pi\)之间任意取值，
+因此可以认为零向量与任何向量都平行，
+也可以认为零向量与任何向量都垂直.
+
+\subsection{向量的内积的定义与性质}
+\begin{definition}
+%@see: 《解析几何》（丘维声） P26 定义3.1
+给定两个向量\(\vb{a},\vb{b}\)，
+称实数\(\abs{\vb{a}} \abs{\vb{b}} \cos\angle(\vb{a},\vb{b})\)
+为“\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{内积}（inner product）”
+%@see: https://mathworld.wolfram.com/InnerProduct.html
+或“\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{数量积}（scalar product）”，
+记作\(\VectorInnerProductDot{\vb{a}}{\vb{b}}\)，即
+\begin{equation}
+	\VectorInnerProductDot{\vb{a}}{\vb{b}}
+	\defeq
+	\abs{\vb{a}} \abs{\vb{b}} \cos\angle(\vb{a},\vb{b}).
+\end{equation}
+\end{definition}
+
+\begin{definition}
+若向量\(\vb{a},\vb{b}\)满足\(\VectorInnerProductDot{\vb{a}}{\vb{b}}=0\)，
+则称“\(\vb{a}\)与\(\vb{b}\) \DefineConcept{正交}（orthogonal）”.
+\end{definition}
+
+\begin{proposition}
+若零向量\(\vb{0}\)与任意一个\(\vb{a}\)的内积为零，
+即\(\VectorInnerProductDot{\vb{0}}{\vb{a}}=0\).
+\end{proposition}
+
+若\(\vb{b}\neq\vb{0}\)，则有
+\begin{equation}
+	\VectorInnerProductDot{\vb{a}}{\vb{b}}
+	= (\vb{a})_{\vb{b}} \abs{\vb{b}},
+\end{equation}
+若\(\vb{a}\neq\vb{0}\)，则有
+\begin{equation}
+	\VectorInnerProductDot{\vb{a}}{\vb{b}}
+	= (\vb{b})_{\vb{a}} \abs{\vb{a}},
+\end{equation}
+由此可见，两向量的内积等于其中一个向量的长度，
+和另一个向量在前者方向上的分量的乘积.
+这表明了向量的内积与分量的关系.
+
+由向量内积的定义式可得
+\begin{gather}
+	\VectorInnerProductDot{\vb{a}}{\vb{a}}=\abs{\vb{a}}^2, \\
+	\abs{\vb{a}} = \sqrt{\VectorInnerProductDot{\vb{a}}{\vb{a}}}, \\
+	\cos\angle(\vb{a},\vb{b}) = \frac{\VectorInnerProductDot{\vb{a}}{\vb{b}}}{\abs{\vb{a}} \abs{\vb{b}}},
+	\quad \vb{a}\neq\vb{0},\vb{b}\neq\vb{0}.
+\end{gather}
+以上两式表明，可以利用向量的内积来解决几何上长度和角度的问题.
+
+由向量内积的定义还可得到：
+\(\vb{a}\perp\vb{b}\)的充分必要条件是\(\VectorInnerProductDot{\vb{a}}{\vb{b}}=0\).
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P26 定理3.1
+对于任意向量\(\vb{a},\vb{b},\vb{c}\)，任意实数\(\lambda\)，有\begin{enumerate}
+	\item {\rm\bf 对称性}，
+	即\begin{equation}\label{equation:解析几何.内积的对称性}
+		\VectorInnerProductDot{\vb{a}}{\vb{b}} = \VectorInnerProductDot{\vb{b}}{\vb{a}}.
+	\end{equation}
+
+	\item {\rm\bf 线性性}，
+	即\begin{gather}
+		\VectorInnerProductDot{(\lambda\vb{a})}{\vb{b}}
+		= \lambda(\VectorInnerProductDot{\vb{a}}{\vb{b}}),
+			\label{equation:解析几何.内积的线性性1} \\
+		\VectorInnerProductDot{(\vb{a}+\vb{c})}{\vb{b}}
+		= \VectorInnerProductDot{\vb{a}}{\vb{b}}+\VectorInnerProductDot{\vb{c}}{\vb{b}};
+			\label{equation:解析几何.内积的线性性2} \\
+	\end{gather}
+
+	\item {\rm\bf 正定性}，
+	即\begin{equation}\label{equation:解析几何.内积的正定性}
+		\VectorInnerProductDot{\vb{a}}{\vb{a}}\geq0,
+	\end{equation}
+	这里当且仅当\(\vb{a}=\vb{0}\)时有\(\VectorInnerProductDot{\vb{a}}{\vb{a}}=0\)成立.
+\end{enumerate}
+\end{theorem}
+
+由内积的对称性和线性性还可以得到\begin{gather*}
+	\VectorInnerProductDot{\vb{a}}{(\lambda\vb{b})}
+	= \lambda(\VectorInnerProductDot{\vb{a}}{\vb{b}}), \\
+	\VectorInnerProductDot{\vb{a}}{(\vb{b}+\vb{c})}
+	= \VectorInnerProductDot{\vb{a}}{\vb{b}}
+	+ \VectorInnerProductDot{\vb{a}}{\vb{c}}.
+\end{gather*}
+
+\begin{example}
+证明：三角形的三条高线交于一点.
+\begin{proof}
+设\(\triangle ABC\)的三条高线\(BE,CF\)交于点\(M\)，连接\(AM\).
+因为\(BE \perp AC\)，所以\(\VectorInnerProductDot{\vec{BM}}{\vec{AC}}=0\)，即\begin{equation*}
+	\VectorInnerProductDot{(\vec{AM}-\vec{AB})}{\vec{AC}}=0,
+\end{equation*}
+亦即\begin{equation*}
+	\VectorInnerProductDot{\vec{AM}}{\vec{AC}}=\VectorInnerProductDot{\vec{AB}}{\vec{AC}}.
+\end{equation*}
+
+因为\(CF \perp AB\)，所以\(\VectorInnerProductDot{\vec{CM}}{\vec{AB}}=0\)，从而\begin{equation*}
+	\VectorInnerProductDot{\vec{AM}}{\vec{AB}}=\VectorInnerProductDot{\vec{AC}}{\vec{AB}}.
+\end{equation*}
+于是有\(\VectorInnerProductDot{\vec{AM}}{\vec{AC}}=\VectorInnerProductDot{\vec{AM}}{\vec{AB}}\)，
+即\(\VectorInnerProductDot{\vec{AM}}{\vec{BC}}=0\)，\(AM \perp BC\).
+延长\(AM\)交\(BC\)于点\(D\)，则\(AD\)为\(BC\)边上的高.
+综上所述，\(\triangle ABC\)的三条高线交于一点\(M\).
+\end{proof}
+\end{example}
+
+\begin{example}
+设\(\triangle ABC\)的三边长分别为\begin{equation*}
+	\abs{BC} = a, \qquad
+	\abs{CA} = b, \qquad
+	\abs{AB} = c.
+\end{equation*}
+证明\DefineConcept{海伦公式}（Heron's formula）：\begin{equation}
+	S_{\triangle ABC}
+	= \sqrt{p (p-a) (p-b) (p-c)},
+\end{equation}
+其中\(p = \frac12(a+b+c)\).
+\begin{proof}
+由余弦定理可知\begin{equation*}
+	\cos C = \frac{a^2+b^2-c^2}{2ab},
+\end{equation*}
+那么\begin{equation*}
+	\sin C = \sqrt{1 - \cos^2 C}
+	= \frac{\sqrt{4a^2b^2 - (a^2+b^2-c^2)^2}}{2ab}.
+\end{equation*}
+于是\(\triangle ABC\)的面积为\begin{align*}
+	A &= \frac12 a b \sin C \\
+	&= \frac14 \sqrt{4a^2b^2 - (a^2+b^2-c^2)^2} \\
+	&= \frac14 \sqrt{(a+b+c)(b+c-a)(a+c-b)(a+b-c)} \\
+	&= \sqrt{p (p-a) (p-b) (p-c)}.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\subsection{利用坐标计算向量的内积}
+首先取一个仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)，
+设\(\vb{a},\vb{b}\)的坐标分别是\begin{equation*}
+	(a_1,a_2,a_3)^T, \qquad
+	(b_1,b_2,b_3)^T,
+\end{equation*}
+则\begin{align*}
+	\VectorInnerProductDot{\vb{a}}{\vb{b}}
+	&= \VectorInnerProductDot{(a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3)}
+			{(b_1 \vb{d}_1 + b_2 \vb{d}_2 + b_3 \vb{d}_3)} \\
+	&= (a_1 b_1) \VectorInnerProductDot{\vb{d}_1}{\vb{d}_1}
+		+ (a_1 b_2) \VectorInnerProductDot{\vb{d}_1}{\vb{d}_2}
+		+ (a_1 b_3) \VectorInnerProductDot{\vb{d}_1}{\vb{d}_3} \\
+	&\hspace{20pt}
+		+ (a_2 b_1) \VectorInnerProductDot{\vb{d}_2}{\vb{d}_1}
+		+ (a_2 b_2) \VectorInnerProductDot{\vb{d}_2}{\vb{d}_2}
+		+ (a_2 b_3) \VectorInnerProductDot{\vb{d}_2}{\vb{d}_3} \\
+	&\hspace{20pt}
+		+ (a_3 b_1) \VectorInnerProductDot{\vb{d}_3}{\vb{d}_1}
+		+ (a_3 b_2) \VectorInnerProductDot{\vb{d}_3}{\vb{d}_2}
+		+ (a_3 b_3) \VectorInnerProductDot{\vb{d}_3}{\vb{d}_3}.
+\end{align*}
+可见，只要知道基向量\(\vb{d}_1,\vb{d}_2,\vb{d}_3\)之间的内积
+（看起来有9个数，实际上由于内积的对称性，至多有6个不同的数）
+就可以求出任意两个向量的内积.
+这9个数\begin{equation*}
+	\VectorInnerProductDot{\vb{d}_i}{\vb{d}_j}
+	\quad(i,j=1,2,3)
+\end{equation*}
+称为“仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\)的\DefineConcept{度量参数}”.
+
+如果我们取定的是直角标架\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)，
+则\begin{equation*}
+	\VectorInnerProductDot{\vb{e}_i}{\vb{e}_j}
+	= \left\{ \begin{array}{ll}
+		1, & i = j, \\
+		0, & i \neq j.
+	\end{array} \right.
+\end{equation*}
+于是我们有下述定理.
+\begin{theorem}\label{theorem:解析几何.直角坐标系下向量内积的坐标计算式}
+%@see: 《解析几何》（丘维声） P28 定理3.2
+在直角坐标系中，两个向量的内积等于它们的对应坐标的乘积之和，即
+\begin{equation}
+	\VectorInnerProductDot{\vb{a}}{\vb{b}}
+	= a_1 b_1 y + a_2 b_2 + a_3 b_3,
+\end{equation}
+其中\(\vb{a}=(a_1,a_2,a_3)^T\)，\(\vb{b}=(b_1,b_2,b_3)^T\).
+\end{theorem}
+
+由\cref{theorem:解析几何.直角坐标系下向量内积的坐标计算式} 可知，
+在直角坐标系下，向量\(\vb{a}=(a_1,a_2,a_3)^T\)的长度为\begin{equation}
+	\abs{\vb{a}} = \sqrt{a_1^2+a_2^2+a_3^2};
+\end{equation}
+而两点\(A(x_1,y_1,z_1)^T\)和\(B(x_2,y_2,z_2)^T\)之间的距离为\begin{equation}
+	\abs{\vec{AB}} = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}.
+\end{equation}
+
+\subsection{方向角与方向余弦}
+在直角坐标系中，还可以用向量\(\vb{a}\)与基向量的内积来计算\(\vb{a}\)的坐标.
+设\(\vb{a}\)在直角标架\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)中的坐标为\((a_1,a_2,a_3)^T\)，
+则有\begin{equation*}
+	\vb{a}=a_1 \vb{e}_1 + a_2 \vb{e}_2 + a_3 \vb{e}_3.
+\end{equation*}
+上式两边用\(\vb{e}_1\)作内积，得\begin{equation*}
+	\VectorInnerProductDot{\vb{a}}{\vb{e}_1} = a_1.
+\end{equation*}
+同理可得\begin{equation*}
+	\VectorInnerProductDot{\vb{a}}{\vb{e}_2} = a_2, \qquad
+	\VectorInnerProductDot{\vb{a}}{\vb{e}_3} = a_3.
+\end{equation*}
+这说明向量\(\vb{a}\)与基向量\(\vb{e}_j\)的内积就是
+\(\vb{a}\)的第\(j\ (j=1,2,3)\)个直角坐标.
+
+特别地，单位向量\(\vb{a}^0\)的直角坐标为\begin{equation*}
+	\left( \cos\angle(\vb{a},\vb{e}_1),
+	\cos\angle(\vb{a},\vb{e}_2),
+	\cos\angle(\vb{a},\vb{e}_3) \right).
+\end{equation*}
+
+我们把一个向量\(\vb{a}\)与直角标架的基向量\(\vb{e}_1,\vb{e}_2,\vb{e}_3\)所成的角\begin{equation*}
+	\alpha=\angle(\vb{a},\vb{e}_1), \qquad
+	\beta=\angle(\vb{a},\vb{e}_2), \qquad
+	\gamma=\angle(\vb{a},\vb{e}_3),
+\end{equation*}称为“方向\(\vb{a}\)的\DefineConcept{方向角}”；
+把方向角的余弦\(\cos\alpha,\cos\beta,\cos\gamma\)称为
+“方向\(\vb{a}\)的\DefineConcept{方向余弦}”.
+由上可知，\begin{equation*}
+	\cos\alpha
+	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_1}}{\abs{\vb{a}}\abs{\vb{e}_1}}
+	= \frac{a_1}{\abs{\vb{a}}},
+	\qquad
+	\cos\beta
+	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_2}}{\abs{\vb{a}}\abs{\vb{e}_2}}
+	= \frac{a_2}{\abs{\vb{a}}},
+	\qquad
+	\cos\gamma
+	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_3}}{\abs{\vb{a}}\abs{\vb{e}_3}}
+	= \frac{a_3}{\abs{\vb{a}}},
+\end{equation*}
+也就是说\(\vb{a}\)的方向余弦就是与\(\vb{a}\)同向的单位向量\(\vb{a}^0\)的直角坐标，即\begin{equation*}
+	(\cos\alpha,\cos\beta,\cos\gamma)^T
+	= \frac{1}{\abs{\vb{a}}} (a_1,a_2,a_3)^T
+	= \frac{1}{\abs{\vb{a}}} \vb{a},
+\end{equation*}
+从而有\begin{equation*}
+	\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1.
+\end{equation*}

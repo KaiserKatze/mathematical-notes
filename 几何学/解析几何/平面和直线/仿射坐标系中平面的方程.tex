@@ -1,0 +1,292 @@
+\section{仿射坐标系中平面的方程，两平面的相关位置}
+\subsection{平面的参数方程和一般方程}
+我们已经知道，确定一个平面的条件是：
+不在一直线上的三点；
+或者一条直线和此直线外的一点；
+或者两条相交直线；
+或者两条平行直线.
+为了便于应用向量法，我们采用“一个点和两个不共线的向量确定一个平面”作为讨论的出发点.
+
+取定仿射标架\([O;\vb{d}_1,\vb{d}_2,\vb{d}_3]\).
+已知一个点\(M_0(x_0,y_0,z_0)\)，
+向量\(\vb{v}_1(X_1,Y_1,Z_1)\)和\(\vb{v}_2(X_2,Y_2,Z_2)\)，
+其中\(\vb{v}_1\)与\(\vb{v}_2\)不共线，
+我们来求由点\(M_0\)和\(\vb{v}_1,\vb{v}_2\)确定的平面\(\alpha\)的方程.
+
+点\(M(x,y,z)\)在平面\(\alpha\)上的充分必要条件是\(\vec{M_0 M}\)与\(\vb{v}_1,\vb{v}_2\)共面.
+因为\(\vb{v}_1\)与\(\vb{v}_2\)不共线，
+所以\(\vec{M_0 M},\vb{v}_1,\vb{v}_2\)共面的充分必要条件是：
+存在唯一的一对实数\(\lambda,\mu\)，使得\begin{equation*}
+	\vec{M_0 M} = \lambda \vb{v}_1 + \mu \vb{v}_2.
+\end{equation*}
+上式用坐标写出，即得
+\begin{equation}\label{equation:解析几何.平面的参数方程}
+	\left\{ \begin{array}{l}
+		x = x_0 + \lambda X_1 + \mu X_2, \\
+		y = y_0 + \lambda Y_1 + \mu Y_2, \\
+		z = z_0 + \lambda Z_1 + \mu Z_2.
+	\end{array} \right.
+	\quad(\lambda,\mu\in\mathbb{R})
+\end{equation}
+\cref{equation:解析几何.平面的参数方程}
+称为“平面\(\alpha\)的\DefineConcept{参数方程}”，
+其中\(\lambda,\mu\)称为这个方程的\DefineConcept{参数}.
+
+我们可以把\cref{equation:解析几何.平面的参数方程} 改写为
+\begin{equation}
+	\begin{vmatrix}
+		x - x_0 & X_1 & X_2 \\
+		y - y_0 & Y_1 & Y_2 \\
+		z - z_0 & Z_1 & Z_2
+	\end{vmatrix} = 0,
+\end{equation}
+或\begin{equation}\label{equation:解析几何.平面的一般方程}
+	A x + B y + C z + D = 0,
+\end{equation}
+其中\begin{equation*}
+	A = \begin{vmatrix}
+		Y_1 & Y_2 \\
+		Z_1 & Z_2
+	\end{vmatrix},
+	\qquad
+	B = -\begin{vmatrix}
+		X_1 & X_2 \\
+		Z_1 & Z_2
+	\end{vmatrix},
+	\qquad
+	C = \begin{vmatrix}
+		X_1 & X_2 \\
+		Y_1 & Y_2
+	\end{vmatrix},
+	\qquad
+	D = - (A x_0 + B y_0 + C z_0).
+\end{equation*}
+\cref{equation:解析几何.平面的一般方程}
+称为“平面\(\alpha\)的\DefineConcept{一般方程}”.
+由于\(\vb{v}_1\)与\(\vb{v}_2\)不共线，
+根据\cref{theorem:解析几何.两向量共线的充分必要条件2} 可知，
+系数\(A,B,C\)不全为零，
+也就是说，平面\(\alpha\)的方程 \labelcref{equation:解析几何.平面的一般方程} 是三元一次方程.
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P49 定理1.1
+在几何空间中取定一个仿射坐标系，则平面的方程必定是三元一次方程；
+反之，任意一个三元一次方程表示一个平面.
+\end{theorem}
+
+我们来看平面\(\alpha\)的方程 \labelcref{equation:解析几何.平面的一般方程} 中系数的几何意义.
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P50 定理1.2
+设平面\(\alpha\)的方程是 \labelcref{equation:解析几何.平面的一般方程}，
+则向量\((r,s,t)\)平行于平面\(\alpha\)的充分必要条件是：\begin{equation*}
+	Ar+Bs+Ct = 0.
+\end{equation*}
+\end{theorem}
+
+因为平面\(\alpha\)的方程 \labelcref{equation:解析几何.平面的一般方程} 中，
+系数\(A,B,C\)不全为零，不妨设\(A\neq0\)，
+则可解出\begin{equation*}
+	\vb{\omega}_1 \left( -\frac{B}{A},1,0 \right), \qquad
+	\vb{\omega}_2 \left( -\frac{C}{A},0,1 \right),
+\end{equation*}
+于是它们均平行于平面\(\alpha\)，
+且根据\cref{theorem:解析几何.两向量共线的充分必要条件2} 可知，
+这两个向量不共线.
+根据立体几何中两个平面平行的判定定理
+“如果一个平面内有两条相交直线都平行于另一个平面，那么这两个平面平行”得，
+凡是与\(\vb{\omega}_1,\vb{\omega}_2\)平行的平面，
+它们彼此平行或重合.
+一族平行或重合的平面在几何空间中有相同的方向，
+平面方程 \labelcref{equation:解析几何.平面的一般方程} 中的一次项系数\(A,B,C\)决定了这些平面的方向.
+
+\begin{corollary}
+设平面\(\alpha\)的方程是 \labelcref{equation:解析几何.平面的一般方程}，
+则\begin{enumerate}
+	\item 平面\(\alpha\)平行于\(x\)轴的充分必要条件是\(A=0\)；
+	\item 平面\(\alpha\)平行于\(y\)轴的充分必要条件是\(B=0\)；
+	\item 平面\(\alpha\)平行于\(z\)轴的充分必要条件是\(C=0\)；
+	\item 平面\(\alpha\)通过原点的充分必要条件是\(D=0\).
+\end{enumerate}
+\end{corollary}
+
+容易看出，如果平面的方程 \labelcref{equation:解析几何.平面的一般方程} 的系数全不为零，
+即\(ABCD\neq0\)，则此平面与三根坐标轴均相交，且交点不是原点.
+
+\subsection{平面的截距式方程}
+设平面\(\alpha\)与\(x\)、\(y\)、\(z\)轴的交点依次为\begin{equation*}
+	P(a,0,0), \qquad
+	Q(0,b,0), \qquad
+	R(0,0,c)
+\end{equation*}三点，且\(abc\neq0\).
+若令\begin{equation*}
+	\vb{\nu}_1 = \vec{PQ} = (-a,b,0), \qquad
+	\vb{\nu}_2 = \vec{PR} = (-a,0,c),
+\end{equation*}
+则点\(M(x,y,z)\)在平面\(\alpha\)上的充分必要条件是：
+存在唯一的一对实数\(\lambda,\mu\)，使得\begin{equation*}
+	\vec{PM} = \lambda \vb{\nu}_1 + \mu \vb{\nu}_2.
+\end{equation*}
+上式用坐标写出，即得\begin{equation*}
+	\left\{ \begin{array}{l}
+		x = a + \lambda (-a) + \mu(-a), \\
+		y = 0 + \lambda b + \mu 0, \\
+		z = 0 + \lambda 0 + \mu c;
+	\end{array} \right.
+\end{equation*}然后改写为\begin{equation*}
+	\begin{vmatrix}
+		x-a & -a & -a \\
+		y & b & 0 \\
+		z & 0 & c
+	\end{vmatrix} = 0;
+\end{equation*}也即\begin{equation*}
+	bc (x-a) + ca y + ab z = 0;
+\end{equation*}或\begin{equation*}
+	bc x + ca y + ab z = abc.
+\end{equation*}
+由于\(abc\neq0\)，因此可以将上式进一步化简为
+\begin{equation}\label{equation:解析几何.平面的截距式方程}
+	\frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1.
+\end{equation}
+我们称\cref{equation:解析几何.平面的截距式方程}
+为“平面\(\alpha\)的\DefineConcept{截距式方程}”；
+非零实数\(a\)、\(b\)、\(c\)依次叫做
+“平面\(\alpha\)在\(x\)、\(y\)、\(z\)轴上的\DefineConcept{截距}”.
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P54 习题2.1 3.
+证明：经过不共线三点\((x_i,y_i,z_i)\ (i=1,2,3)\)的平面的方程为\begin{equation*}
+	\begin{vmatrix}
+		x & x_1 & x_2 & x_3 \\
+		y & y_1 & y_2 & y_3 \\
+		z & z_1 & z_2 & z_3 \\
+		1 & 1 & 1 & 1
+	\end{vmatrix} = 0.
+\end{equation*}
+%TODO
+\end{example}
+
+\subsection{两平面的相关位置}
+两平面的相关位置有三种可能情形：
+\begin{enumerate}
+	\item 相交于一直线；
+	\item 平行；
+	\item 重合.
+\end{enumerate}
+如何从两平面的方程判断它们属于何种情形呢？
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P51 定理1.3
+取定一个仿射标架，设两个平面的方程分别是\begin{equation*}
+	\begin{split}
+		\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0, \\
+		\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0,
+	\end{split}
+\end{equation*}
+则\begin{enumerate}
+	\item \(\alpha_1\)与\(\alpha_2\)相交的充分必要条件是：
+	两个平面的方程的一次项系数不成比例，即\begin{equation*}
+		(\forall k \in \mathbb{R})
+		[(A_2,B_2,C_2) \neq k (A_1,B_1,C_1)].
+	\end{equation*}
+	\item \(\alpha_1\)与\(\alpha_2\)平行的充分必要条件是：
+	两个平面的方程的一次项系数成比例，但常数项不与这些系数成比例，即\begin{equation*}
+		(\exists k \in \mathbb{R}^*)
+		[(A_2,B_2,C_2) = k (A_1,B_1,C_1)
+		\land D_2 \neq k D_1].
+	\end{equation*}
+	\item \(\alpha_1\)与\(\alpha_2\)重合的充分必要条件是：
+	两个平面的方程的所有系数成比例，即\begin{equation*}
+		(\exists k \in \mathbb{R}^*)
+		[(A_2,B_2,C_2,D_2) = k (A_1,B_1,C_1,D_1)].
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+\subsection{三平面恰交于一点的条件}
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P52 命题1.1
+设三个平面在仿射坐标系中的方程分别为\begin{equation*}
+	\begin{split}
+		\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0, \\
+		\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0, \\
+		\alpha_3: A_3 x + B_3 y + C_3 z + D_3 = 0,
+	\end{split}
+\end{equation*}
+则这三个平面恰交于一点的充分必要条件是\begin{equation*}
+	\begin{vmatrix}
+		A_1 & B_1 & C_1 \\
+		A_2 & B_2 & C_2 \\
+		A_3 & B_3 & C_3
+	\end{vmatrix}
+	\neq 0.
+\end{equation*}
+\end{theorem}
+
+\subsection{有轴平面束}
+几何空间中，经过同一条直线\(l\)的所有平面组成的集合，
+称为\DefineConcept{有轴平面束}，简称\DefineConcept{平面束}；
+直线\(l\)称为“平面束的\DefineConcept{轴}”.
+
+在仿射坐标系中，设相交于直线\(l\)的两个平面的方程分别为\begin{equation*}
+	\begin{split}
+		\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0, \\
+		\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0,
+	\end{split}
+\end{equation*}
+现在我们来研究经过直线\(l\)的平面的方程.
+假设平面\(\alpha\)是经过直线\(l\)的任意一个平面.
+在平面\(\alpha\)上取一个不在直线\(l\)上的点\(P_0(x_0,y_0,z_0)\)，
+那么有\(\neg(P_0 \in \alpha_1 \land P_0 \in \alpha_2)\)成立，
+也就是说\(P_0 \notin \alpha_1 \lor P_0 \notin \alpha_2\)，
+从而\begin{equation*}
+	A_1 x_0 + B_1 y_0 + C_1 z_0 + D_1 \neq 0
+	\lor
+	A_2 x_0 + B_2 y_0 + C_2 z_0 + D_2 \neq 0.
+\end{equation*}
+记\begin{equation*}
+	\lambda = A_2 x_0 + B_2 y_0 + C_2 z_0 + D_2, \qquad
+	\mu = -(A_1 x_0 + B_1 y_0 + C_1 z_0 + D_1),
+\end{equation*}
+显然\(\lambda,\mu\)不全为零，于是方程
+\begin{equation}\label{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+	\lambda	(A_1 x + B_1 y + C_1 z + D_1)
+	+ \mu	(A_2 x + B_2 y + C_2 z + D_2) = 0
+\end{equation}
+是三元一次方程，它表示一个平面.
+把\(P_0\)的坐标代入方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+左边可得\(\lambda(-\mu)+\mu\lambda=0\)，
+因此点\(P_0\)在方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程} 表示的平面上.
+直线\(l\)上任一点的坐标同时适合\(\alpha_1,\alpha_2\)的方程，
+从而也适合方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}.
+因此方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+表示的平面经过直线\(l\).yo
+由于直线\(l\)和不在其上的一点\(P_0\)确定一个平面，
+因此方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+表示的平面就是平面\(\alpha\).
+这就证明，以相交平面\(\alpha_1\)和\(\alpha_2\)的交线\(l\)为轴的有轴平面束中的任一平面的方程形如 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}，
+其中\(\lambda,\mu\)不全为零.
+
+反之，设有一个方程形如 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}，
+其中\(\lambda,\mu\)不全为零，则方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}
+表示一个平面\(\alpha_3\).
+直线\(l\)上任一点的坐标适合\(\alpha_1\)的方程和\(\alpha_2\)的方程，
+从而适合方程 \labelcref{equation:解析几何.由两个相交平面确定的有轴平面束方程}.
+因此，平面\(\alpha_3\)经过直线\(l\)，从而\(\alpha_3\)属于以\(l\)为轴的有轴平面束.
+
+综上所述，我们得到以下定理.
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P53 定理1.4
+在仿射坐标系中，设相交于直线\(l\)的两个平面的方程分别为\begin{equation*}
+	\begin{split}
+		\alpha_1: A_1 x + B_1 y + C_1 z + D_1 = 0, \\
+		\alpha_2: A_2 x + B_2 y + C_2 z + D_2 = 0,
+	\end{split}
+\end{equation*}
+则一个平面属于以\(l\)为轴的有轴平面束的充分必要条件是：
+这个平面的方程形如\begin{equation*}
+	\lambda	(A_1 x + B_1 y + C_1 z + D_1)
+	+ \mu	(A_2 x + B_2 y + C_2 z + D_2) = 0,
+\end{equation*}
+其中\(\lambda,\mu\)是不全为零的实数.
+\end{theorem}

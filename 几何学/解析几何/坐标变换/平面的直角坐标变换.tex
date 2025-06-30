@@ -1,0 +1,253 @@
+\section{平面的直角坐标变换}
+设 I \([O;\vb{e}_1,\vb{e}_2]\)，II \([O';\vb{e}_1',\vb{e}_2']\)都是直角坐标系.
+前一小节关于仿射坐标变换的一般结论和方法对于直角坐标变换都成立，
+也就是说我们其实也可以直接应用\cref{%
+equation:解析几何.平面坐标系的点的仿射坐标变换公式I到II,%
+equation:解析几何.平面坐标系的点的仿射坐标变换公式II到I,%
+equation:解析几何.平面坐标系的向量的仿射坐标变换公式I到II,%
+equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I}
+进行直角坐标变换.
+不过，由于直角坐标系的特殊性，
+我们可以对平面上坐标系 II 到 I 的点（或向量）的坐标变换公式进行简化.
+
+\subsection{直角坐标变换公式}
+设\(O'\)的 I 坐标为\((x_0,y_0)\)，
+\(\vb{e}_1',\vb{e}_2'\)的 I 坐标分别为\((a_{11},a_{21}),(a_{12},a_{22})\)，
+则坐标系 I 到 II 的过渡矩阵是\begin{equation*}
+	\vb{A} = \begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{bmatrix}.
+\end{equation*}
+
+\begin{theorem}\label{theorem:解析几何.直角坐标变换的过渡矩阵是正交矩阵}
+设 I 和 II 都是直角坐标系，
+则 I 到 II 的过渡矩阵\(\vb{A}\)是正交矩阵，
+并且坐标系 II 到 I 的过渡矩阵是\(\vb{A}^T\).
+\begin{proof}
+因为\(\abs{\vb{e}_1'}=\abs{\vb{e}_2'}=1\)，
+\(\vb{e}_1' \perp \vb{e}_2'\)，
+并且 I 是直角坐标系，
+所以有\begin{equation}\label{equation:解析几何.直角坐标变换的过渡矩阵的限定条件}
+	\left\{ \begin{array}{l}
+		a_{11}^2 + a_{21}^2 = 1, \\
+		a_{12}^2 + a_{22}^2 = 1, \\
+		a_{11} a_{12} + a_{21} a_{22} = 0.
+	\end{array} \right.
+\end{equation}
+于是\(\vb{A}\)是正交矩阵.
+\end{proof}
+\end{theorem}
+
+现在依据\cref{theorem:解析几何.直角坐标变换的过渡矩阵是正交矩阵}，
+我们可以将\cref{equation:解析几何.平面坐标系的点的仿射坐标变换公式II到I,%
+equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I} 改为计算相对简单的以下两个公式：
+\begin{equation}\label{equation:解析几何.平面坐标系的点的直角坐标变换公式II到I.矩阵形式1}
+	\begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{21} \\
+		a_{12} & a_{22}
+	\end{bmatrix} \begin{bmatrix}
+		x - x_0 \\ y - y_0
+	\end{bmatrix},
+\end{equation}
+\begin{equation}\label{equation:解析几何.平面坐标系的向量的直角坐标变换公式II到I.矩阵形式1}
+	\begin{bmatrix}
+		u' \\ v'
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{21} \\
+		a_{12} & a_{22}
+	\end{bmatrix} \begin{bmatrix}
+		u \\ v
+	\end{bmatrix}.
+\end{equation}
+
+\subsection{直角坐标变换的过渡矩阵}
+直角坐标系 I 到 II 的过渡矩阵\(\vb{A}\)虽然有四个数，
+但是由于它是正交矩阵，
+满足\cref{equation:解析几何.直角坐标变换的过渡矩阵的限定条件} 中的三个方程，
+因此只有一个数是自由的.
+下面来详细讨论这一点.
+
+给定平面上的仿射坐标系\([O;\vb{d}_1,\vb{d}_2]\)，
+如果从\(\vb{d}_1\)逆时针旋转小于 180\textdegree 的角便与\(\vb{d}_2\)重合，
+则称这个坐标系为右手坐标系，简称右手系；
+反之，则称之为左手坐标系，简称左手系.
+特别地，对于直角坐标系\([O;\vb{e}_1,\vb{e}_2]\)来说，
+若\(\vb{e}_1\)旋转 90\textdegree 与\(\vb{e}_2\)重合，则为右手系；
+若\(\vb{e}_1\)旋转 -90\textdegree 与\(\vb{e}_2\)重合，则为左手系.
+
+设 I \([O;\vb{e}_1,\vb{e}_2]\)，II \([O';\vb{e}_1',\vb{e}_2']\)都是右手直角坐标系，且\begin{equation*}
+	O'(x_0,y_0), \qquad
+	\vb{e}_1'(a_{11},a_{21}), \qquad
+	\vb{e}_2'(a_{12},a_{22}),
+\end{equation*}则有{\def\ExprA#1#2{%
+	a_{#1#2}  %
+	= \VectorInnerProductDot{\vb{e}_#2'}{\vb{e}_#1}  %
+	= \cos\angle(\vb{e}_#2',\vb{e}_#1)  %
+}%
+\begin{align*}
+	\ExprA{1}{1}, \qquad
+	\ExprA{2}{1}, \\
+	\ExprA{1}{2}, \qquad
+	\ExprA{2}{2}.
+\end{align*}}
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[->,scale=2]
+		\draw(0,0)node[below left]{\(O\)}--(1,0)node[right]{\(\vb{e}_1\)};
+		\draw(0,0)--(0,1)node[left]{\(\vb{e}_2\)};
+		\begin{scope}[xshift=1.3cm,yshift=1.3cm]
+			\draw[dashed,-](0,1)coordinate(E2)--(0,0)coordinate(O)node[below left]{\(O'\)}--(1,0)coordinate(E1);
+			\draw(0,0)--(.866,.5)coordinate(E11)node[above right]{\(\vb{e}_1'\)};
+			\draw(0,0)--(-.5,.866)coordinate(E22)node[above left]{\(\vb{e}_2'\)};
+			\draw pic["\(\theta\)",draw=orange,-,angle eccentricity=1.7,angle radius=5mm]{angle=E1--O--E11};
+			\draw pic[draw=orange,-,angle radius=5mm]{angle=E2--O--E22};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.平面坐标变换的过渡矩阵与旋转角的关系}
+\end{figure}
+
+如\cref{figure:解析几何.平面坐标变换的过渡矩阵与旋转角的关系}，
+设\(\vb{e}_1\)逆时针旋转\(\theta\)角便与\(\vb{e}_1'\)重合，
+在\begin{equation*}
+	0 \leq \theta < \frac{\pi}{2}, \qquad
+	\frac{\pi}{2} \leq \theta < \pi, \qquad
+	\pi \leq \theta < \frac{3}{2}\pi, \qquad
+	\frac{3}{2}\pi \leq \theta < 2\pi
+\end{equation*}这四种情况下，总可得\begin{equation*}
+	a_{11} = \cos\theta, \qquad
+	a_{21} = \sin\theta, \qquad
+	a_{12} = -\sin\theta, \qquad
+	a_{22} = \cos\theta,
+\end{equation*}
+那么 I 到 II 的过渡矩阵为\begin{equation*}
+	\vb{A} = \begin{bmatrix}
+		\cos\theta & -\sin\theta \\
+		\sin\theta & \cos\theta
+	\end{bmatrix}.
+\end{equation*}
+应该注意到，\(\abs{\vb{A}}=1\).
+
+类似地，设\(\theta\)仍表示\(\vb{e}_1\)到\(\vb{e}_1'\)的转角，
+若 I 是右手直角坐标系，而 II 是左手直角坐标系，
+则 I 到 II 的过渡矩阵为\begin{equation*}
+	\begin{bmatrix}
+		\cos\theta & \sin\theta \\
+		\sin\theta & -\cos\theta
+	\end{bmatrix};
+\end{equation*}
+若 I 是左手直角坐标系，而 II 是右手直角坐标系，
+则 I 到 II 的过渡矩阵为\begin{equation*}
+	\begin{bmatrix}
+		\cos\theta & -\sin\theta \\
+		-\sin\theta & -\cos\theta
+	\end{bmatrix};
+\end{equation*}
+若 I 和 II 都是左手直角坐标系，
+则 I 到 II 的过渡矩阵为\begin{equation*}
+	\begin{bmatrix}
+		\cos\theta & \sin\theta \\
+		-\sin\theta & \cos\theta
+	\end{bmatrix}.
+\end{equation*}
+
+\begin{definition}
+给定平面（或空间）的两个坐标系，
+如果它们都是右手系，或者它们都是左手系，
+则称它们是\DefineConcept{同定向的}；
+如果一个是左手系，另一个是右手系，
+则称它们是\DefineConcept{反定向的}.
+\end{definition}
+
+从上面的讨论可以得到
+\begin{theorem}
+设 I 和 II 都是平面的直角坐标系，
+I 到 II 的过渡矩阵是\(\vb{A}\)，
+则 I 和 II 同定向的充分必要条件是\(\abs{\vb{A}}=1\)，
+从而它们反定向的充分必要条件是\(\abs{\vb{A}}=-1\).
+\end{theorem}
+
+如无特别声明，今后所取的直角坐标系都是右手系.
+
+\subsection{移轴公式和转轴公式}
+设 I \([O;\vb{e}_1,\vb{e}_2]\)，II \([O';\vb{e}_1',\vb{e}_2']\)都是右手直角坐标系，
+\(O'(x_0,y_0)\)，
+\(\vb{e}_1\)到\(\vb{e}_1'\)的转角为\(\theta\)，
+则 I 到 II 的点的坐标变换公式为
+\begin{equation}\label{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式1}
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix} = \begin{bmatrix}
+		\cos\theta & -\sin\theta \\
+		\sin\theta & \cos\theta
+	\end{bmatrix} \begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix} + \begin{bmatrix}
+		x_0 \\ y_0
+	\end{bmatrix}.
+\end{equation}
+
+若\(\theta=0\)，
+则\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式1} 成为
+\begin{equation}\label{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式2}
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix} = \begin{bmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{bmatrix} \begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix} + \begin{bmatrix}
+		x_0 \\ y_0
+	\end{bmatrix},
+\end{equation}
+即\begin{equation}\label{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.代数形式2}
+	\left\{ \begin{array}{l}
+		x = x' + x_0, \\
+		y = y' + y_0.
+	\end{array} \right.
+\end{equation}
+\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式2,%
+equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.代数形式2}
+称为\DefineConcept{移轴公式}.
+
+若\(O'\)与\(O\)重合，
+则\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式1} 成为
+\begin{equation}\label{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix} = \begin{bmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{bmatrix} \begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix}.
+\end{equation}
+\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}
+称为\DefineConcept{转轴公式}.
+
+\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式1,%
+equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式2,%
+equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}
+说明，平面上任一右手直角坐标变换可以经过移轴和转轴得到，
+即对于右手直角坐标系 I \([O;\vb{e}_1,\vb{e}_2]\) 和 II \([O';\vb{e}_1',\vb{e}_2']\)，有\begin{equation*}
+	[O;\vb{e}_1,\vb{e}_2]
+	\xlongrightarrow{\text{移轴}}
+	[O';\vb{e}_1,\vb{e}_2]
+	\xlongrightarrow{\text{转轴}}
+	[O';\vb{e}_1',\vb{e}_2']
+\end{equation*}或\begin{equation*}
+	[O;\vb{e}_1,\vb{e}_2]
+	\xlongrightarrow{\text{转轴}}
+	[O;\vb{e}_1',\vb{e}_2']
+	\xlongrightarrow{\text{移轴}}
+	[O';\vb{e}_1',\vb{e}_2'].
+\end{equation*}
+
+上述结论对于任意两个同定向的直角坐标系仍成立，但对于反定向的两个直角坐标系不成立.

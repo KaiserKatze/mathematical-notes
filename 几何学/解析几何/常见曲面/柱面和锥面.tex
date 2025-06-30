@@ -1,0 +1,312 @@
+\section{柱面和锥面}
+\subsection{柱面方程的建立}
+一条直线\(l\)沿着一条空间曲线\(C\)平行移动时所形成的曲面称为\DefineConcept{柱面}，
+其中\(l\)称为\DefineConcept{母线}，\(C\)称为\DefineConcept{准线}.
+
+由于平面可以看成是由一条直线沿着另一条与之相交的直线平行移动所形成的，故平面也是柱面.
+
+对于任意一个柱面，它的准线和母线都不唯一.
+但是，除去平面以外，任意柱面的母线方向是唯一的.
+与每一条母线都相交的曲线均可作为准线.
+
+设一个柱面的母线方向为\(\vb{\nu}=(A,B,C)\)，
+准线的方程为\begin{equation*}
+	\left\{ \begin{array}{l}
+		F(x,y,z) = 0, \\
+		G(x,y,z) = 0.
+	\end{array} \right.
+\end{equation*}
+我们来求这个柱面的方程.
+
+点\(M(x,y,z)\)在此柱面上的充分必要条件是：
+\(M\)在某一条母线上，
+也就是说，存在准线\(C\)上一点\(M_0(x_0,y_0,z_0)\)，
+使得\(M\)在经过\(M_0\)且方向向量为\(\vb{\nu}\)的直线上.
+因此有\begin{equation*}
+	\left\{ \begin{array}{l}
+		F(x_0,y_0,z_0) = 0, \\
+		G(x_0,y_0,z_0) = 0, \\
+		x = x_0 + Au, \\
+		y = y_0 + Bu, \\
+		z = z_0 + Cu.
+	\end{array} \right.
+\end{equation*}
+消去\(x_0,y_0,z_0\)，得\begin{equation*}
+	\left\{ \begin{array}{l}
+		F(x - Au,y - Bu,z - Cu) = 0, \\
+		G(x - Au,y - Bu,z - Cu) = 0.
+	\end{array} \right.
+\end{equation*}
+再消去参数\(u\)，得到关于\(x,y,z\)的一个方程，
+它就是所求柱面的方程.
+
+如果给定的准线\(C\)的方程是一个参数方程\begin{equation*}
+	\left\{ \begin{array}{l}
+		x = f(t), \\
+		y = g(t), \\
+		z = h(t),
+	\end{array} \right.
+	\quad a \leq t \leq b,
+\end{equation*}
+则同理可得柱面的参数方程为\begin{equation*}
+	\left\{ \begin{array}{l}
+		x = f(t) + Au, \\
+		y = g(t) + Bu, \\
+		z = h(t) + Cu,
+	\end{array} \right.
+	\quad
+	a \leq t \leq b,
+	-\infty < u < +\infty.
+\end{equation*}
+
+\subsection{圆柱面，点的柱面坐标}
+现在来看圆柱面的方程.
+圆柱面有一条对称轴\(l\)，
+圆柱面上每一个点到轴\(l\)的距离都相等，
+这个距离称为圆柱面的半径.
+圆柱面的准线可取成一个圆\(C\)，
+它的母线方向与准线圆垂直.
+如果知道准线圆的方程和母线方向，
+则可用前一目中所述的方法求出圆柱面的方程.
+如果知道圆柱面的半径为\(r\)，母线方向为\(\vb{\nu}=(A,B,C)\)，
+以及圆柱面的对称轴\(l\)经过点\(M_0(x,y,z)\)，
+则点\(M(x,y,z)\)在此圆柱面上充分必要条件是\(M\)到轴\(l\)的距离等于\(r\)，即\begin{equation*}
+	\frac{\abs{\VectorOuterProduct{\vec{M M_0}}{\vb{\nu}}}}{\abs{\vb{\nu}}} = r.
+\end{equation*}
+由此出发可求得圆柱面的方程.
+特别地，设圆柱面的对称轴为\(z\)轴，
+则这个圆柱面的方程为
+\begin{equation}\label{equation:解析几何.以z轴为对称轴r为半径的圆柱面的一般方程}
+	x^2+y^2=r^2.
+\end{equation}
+
+由于几何空间中任意一点\(M(x,y)\)
+必在以\(r=\sqrt{x^2+y^2}\)为半径，
+\(z\)轴为对称轴的圆柱面上，xi
+显然这个圆柱面的参数方程为\begin{equation*}
+	\left\{ \begin{array}{l}
+		x = r \cos\theta, \\
+		y = r \sin\theta, \\
+		z = u,
+	\end{array} \right.
+	\quad 0\leq \theta < 2\pi,
+	-\infty < u < +\infty.
+\end{equation*}
+因此，圆柱面上的点\(M\)可以由数对\((\theta,u)\)所确定，
+从而几何空间中任意一点\(M\)被有序三元实数组\((r,\theta,u)\)所确定.
+\((r,\theta,u)\)称为点\(M\)的\DefineConcept{柱面坐标}.
+
+\subsection{柱面方程的特点}
+从\cref{equation:解析几何.以z轴为对称轴r为半径的圆柱面的一般方程} 看到，
+母线平行于\(z\)轴的圆柱面的方程中不含\(z\)，或者说\(z\)的系数为零.
+这个结论对于一般的柱面也成立.
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P86 定理2.1
+若一个柱面的母线平行于\(x\)轴，则它的方程中不含\(x\)；
+若它的母线平行于\(y\)轴，则它的方程中不含\(y\)；
+若它的母线平行于\(z\)轴，则它的方程中不含\(z\).
+反之，若一个三元方程不含\(x\)，则它一定表示一个母线平行于\(x\)轴的柱面；
+若这个方程不含\(y\)，则它一定表示一个母线平行于\(y\)轴的柱面；
+若这个方程不含\(z\)，则它一定表示一个母线平行于\(z\)轴的柱面.
+\begin{proof}
+设一个柱面的母线平行于\(z\)轴，则这个柱面的每条母线必与\(Oxy\)平面相交，
+从而这个柱面与\(Oxy\)平面的交线\(C\)可以作为准线.
+设\(C\)的方程是\begin{equation*}
+	\left\{ \begin{array}{l}
+		f(x,y) = 0, \\
+		z = 0.
+	\end{array} \right.
+\end{equation*}
+点\(M\)在此柱面上的充分必要条件是：
+存在准线\(C\)上一点\(M_0(x_0,y_0,z_0)\)，
+使得\(M\)在经过\(M_0\)且方向向量为\(\vb{\nu}=(0,0,1)\)的直线上.
+因此有\begin{equation*}
+	\left\{ \begin{array}{l}
+		f(x_0,y_0) = 0, \\
+		z_0 = 0, \\
+		x = x_0, \\
+		y = y_0, \\
+		z = z_0 + u.
+	\end{array} \right.
+\end{equation*}
+消去\(x_0,y_0,z_0\)，得\begin{equation*}
+	\left\{ \begin{array}{l}
+		f(x,y) = 0, \\
+		z = u.
+	\end{array} \right.
+\end{equation*}
+由于参数可以取任意实数值，于是得到这个柱面的方程为\begin{equation*}
+	f(x,y) = 0.
+\end{equation*}
+
+反之，任给一个不含\(z\)的三元方程\(g(x,y)=0\)，我们考虑以曲线\begin{equation*}
+	D: \left\{ \begin{array}{l}
+		g(x,y) = 0, \\
+		z = 0
+	\end{array} \right.
+\end{equation*}
+为准线，\(z\)轴方向为母线方向的柱面.
+由上述讨论可知，这个柱面的方程为\(g(x,y)=0\).
+因此，方程\(g(x,y)=0\)表示一个母线平行于\(z\)轴的柱面.
+
+母线平行于\(x\)轴和\(y\)轴的情形可以类似讨论.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+方程\begin{equation*}
+	\frac{x^2}{a^2} + \frac{y^2}{b^2} - 1 = 0
+\end{equation*}
+表示母线平行于\(z\)轴的柱面，它与\(Oxy\)平面的交线为\begin{equation*}
+	\left\{ \begin{array}{l}
+		\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1, \\
+		z = 0.
+	\end{array} \right.
+\end{equation*}
+这条交线是椭圆，因而这个柱面称为\DefineConcept{椭圆柱面}.
+
+类似地，方程\begin{equation*}
+	\frac{x^2}{a^2} - \frac{y^2}{b^2} + 1 = 0
+\end{equation*}
+表示母线平行于\(z\)轴的双曲柱面；
+方程\begin{equation*}
+	x^2 + 2py = 0
+	\quad(p>0)
+\end{equation*}
+表示母线平行于\(z\)轴的抛物柱面.
+\end{example}
+
+\subsection{锥面方程的建立}
+在几何空间中，由曲线\(C\)上的点
+与不在\(C\)上的一个定点\(M_0\)的连线组成的曲面称为\DefineConcept{锥面}，
+其中\(M_0\)称为\DefineConcept{顶点}，\(C\)称为\DefineConcept{准线}，
+\(C\)上的点与\(M_0\)的连线称为\DefineConcept{母线}.
+
+一个锥面的准线不唯一，锥面上与每一条母线都相交的曲线均可作为准线.
+
+设一个锥面的顶点为\(M_0(x_0,y_0,z_0)\)，准线\(C\)的方程为\begin{equation*}
+	\left\{ \begin{array}{l}
+		F(x,y,z) = 0, \\
+		G(x,y,z) = 0.
+	\end{array} \right.
+\end{equation*}
+我们来求这个锥面的方程.
+
+点\(M(x,y,z)\neq M_0\)在此锥面上的充分必要条件是：\allowbreak
+\(M\)在一条母线上，即准线上存在一点\break
+\(M_1(x_1,y_1,z_1)\)，
+使得\(M_1\)在直线\(M_0 M\)上.
+因此有\begin{equation*}
+	\left\{ \begin{array}{l}
+		F(M_1) = 0, \\
+		G(M_1) = 0, \\
+		\vec{M_0M_1} = u \vec{M_0M}.
+	\end{array} \right.
+	\quad\text{即}\quad
+	\left\{ \begin{array}{l}
+		F(x_1,y_1,z_1) = 0, \\
+		G(x_1,y_1,z_1) = 0, \\
+		x_1 = x_0 + (x - x_0) u, \\
+		y_1 = y_0 + (y - y_0) u, \\
+		z_1 = z_0 + (z - z_0) u.
+	\end{array} \right.
+\end{equation*}
+消去\(x_1,y_1,z_1\)，得\begin{equation*}
+	\left\{ \begin{array}{l}
+		F[x_0 + (x-x_0) u,y_0 + (y-y_0) u, z_0 + (z - z_0) u] = 0, \\
+		G[x_0 + (x-x_0) u,y_0 + (y-y_0) u, z_0 + (z - z_0) u] = 0.
+	\end{array} \right.
+\end{equation*}
+再消去\(u\)，得到关于\(x,y,z\)的一个方程，它就是所求锥面（除去顶点）的方程.
+
+\subsection{圆锥面}
+对于圆锥面，它有一根对称轴\(l\)，
+它的每一条母线与轴\(l\)所成的角都相等，
+这个角称为圆锥面的\DefineConcept{半顶角}.
+与轴\(l\)垂直的平面截圆锥面所得交线为圆.
+
+如果已知准线圆方程和顶点\(M_0\)的坐标，
+则用上一目所述方法可求得圆锥面的方程.
+
+如果已知顶点坐标和轴\(l\)的方向向量\(\vb{\nu}\)以及半顶角\(\alpha\)，
+则点\(M(x,y,z)\)在圆锥面上的充分必要条件是\begin{equation*}
+	\angle(\vec{M_0 M},\vb{\nu}) \in \{ \alpha, \pi - \alpha \}.
+\end{equation*}
+因此有\begin{equation}
+	\abs{\cos\angle(\vec{M_0 M},\vb{\nu})} = \cos\alpha.
+\end{equation}
+这就是所求圆锥面的方程.
+
+特别地，我们来求以三根坐标轴为母线的圆锥面的方程.
+显然可得这个圆锥面的顶点为原点\(O\).
+设轴\(l\)的一个方向向量为\(\vb{\nu}\).
+因为三根坐标轴是母线，所以\begin{equation*}
+	\abs{\cos\angle(\vb{e}_1,\vb{\nu})}
+	= \abs{\cos\angle(\vb{e}_2,\vb{\nu})}
+	= \abs{\cos\angle(\vb{e}_3,\vb{\nu})}.
+\end{equation*}
+因此，轴\(l\)的一个方向向量\(\vb{\nu}\)的坐标为
+\((1,1,1)\)或\((1,1,-1)\)或\((1,-1,1)\)或\((1,-1,-1)\).
+不妨设\(\vb{\nu}=(1,1,1)\)，其余三种情形可类似讨论.
+因为点\(M(x,y,z)\)在这个圆锥面上的充分必要条件是\begin{equation*}
+	\abs{\cos\angle(\vec{OM},\vb{\nu})}
+	= \abs{\cos\angle(\vb{e}_1,\vb{\nu})}.
+\end{equation*}
+即\begin{equation*}
+	\frac{\abs{\VectorInnerProductDot{\vec{OM}}{\vb{\nu}}}}{\abs{\vec{OM}}\abs{\vb{\nu}\vphantom{\vec{OM}}}}
+	= \frac{\abs{\VectorInnerProductDot{\vb{e}_1}{\vb{\nu}}}}{\abs{\vb{\nu}}},
+\end{equation*}
+整理得\begin{equation*}
+	xy+yz+zx=0.
+\end{equation*}
+这就是所求的其中一种情形下的圆锥面的方程.
+
+\subsection{锥面方程的特点}
+我们可以从上一目的圆锥面的方程可以看出，锥面方程的每一项都是二次的.
+可以观察到，若令\(F(x,y,z) = xy+yz+zx\)，则有\begin{equation*}
+	F(tx,ty,tz) = t^2(xy+yz+zx)
+	= t^2 F(x,y,z).
+\end{equation*}
+一般地，有
+\begin{definition}
+如果三元函数\(F\colon D \to \mathbb{R}\)满足\begin{equation*}
+	(\exists n\in\mathbb{Z})
+	(\forall x,y,z \in D)
+	(\forall t\in\mathbb{R}^*)
+	[F(tx,ty,tz) = t^n F(x,y,z)],
+\end{equation*}
+则称\(F(x,y,z)\)为“\(x,y,z\)的\(n\)次\DefineConcept{齐次函数}”；
+称方程\(F(x,y,z)=0\)为“\(x,y,z\)的\(n\)次\DefineConcept{齐次方程}”.
+\end{definition}
+
+由此，我们可以说锥面方程都是二次齐次方程.
+
+\begin{theorem}
+\(x,y,z\)的齐次方程表示的曲面（添上原点）一定是以原点为顶点的锥面.
+\begin{proof}
+设\(F(x,y,z)=0\)是\(n\)次齐次方程，
+它表示的曲面添上原点\(O\)后记作\(S\).
+在\(S\)上任取一点\(M_0(x_0,y_0,z_0) \neq O\).
+于是直线\(O M_0\)上任一点\(M_1(x_1,y_1,z_1) \neq O\)满足\begin{equation*}
+	\left\{ \begin{array}{l}
+		x_1 = x_0 t, \\
+		y_1 = y_0 t, \\
+		z_1 = z_0 t,
+	\end{array} \right.
+	\quad t \neq 0,
+\end{equation*}
+从而由\begin{equation*}
+	F(x_1,y_1,z_1) = F(x_0 t,y_0 t,z_0 t)
+	= t^n F(x_0,y_0,z_0) = 0.
+\end{equation*}
+因此\(M_1\)在\(S\)上.
+于是整条直线\(O M_0\)都在\(S\)上，
+即\(S\)是由经过原点的一些直线组成的，
+\(S\)是锥面.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+在以锥面的顶点为原点的直角坐标系中，
+锥面可以用\(x,y,z\)的齐次方程表示.
+\end{theorem}
