@@ -561,6 +561,7 @@
 \end{definition}
 
 \subsection{循环矩阵}
+%@see: 《矩阵论》（詹兴致） P3
 形如\begin{equation*}
 	\begin{bmatrix}
 		a_1 & a_2 & a_3 & \dots & a_n \\
@@ -576,3 +577,18 @@
 
 %@Mathematica: CirculantMatrix[l_List?VectorQ] := NestList[RotateRight, RotateRight[l], Length[l] - 1]
 %@Mathematica: CirculantMatrix[l_List?VectorQ, n_Integer] := NestList[RotateRight, RotateRight[Join[Table[0, {n - Length[l]}], l]], n - 1] /; n >= Length[l]
+
+可以注意到，循环矩阵是一种特殊的提俄普利茨矩阵.
+
+%@see: 《矩阵论》（詹兴致） P3
+特别地，把\(\Circ(0,1,0,\dotsc,0)\)称为\DefineConcept{基本循环矩阵}.
+
+\begin{proposition}
+%@see: 《矩阵论》（詹兴致） P3
+设\(\vb{P}\)是一个\(n\)阶置换矩阵，
+\(\vb{A}\)是一个\(n\)阶循环矩阵，
+则\begin{equation*}
+%@see: 《矩阵论》（詹兴致） P3 (1.5)
+	\vb{A} = \sum_{k=0}^{n-1} a_{k+1} \vb{P}^k.
+\end{equation*}
+\end{proposition}
