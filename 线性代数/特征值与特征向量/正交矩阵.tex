@@ -227,6 +227,38 @@ k_3 = -\frac13\)，
 %TODO proof
 \end{theorem}
 
+\begin{example}
+举例说明：对角矩阵\(\vb{A}\)不一定等于\(\vb{Q}^T \vb{A} \vb{Q}\)，其中\(\vb{Q}\)是某个\(n\)阶正交矩阵.
+\begin{solution}
+%@credit: {腾讯元宝}
+令\begin{equation*}
+	\vb{Q} \defeq \begin{bmatrix}
+		\cos\theta & -\sin\theta \\
+		\sin\theta & \cos\theta
+	\end{bmatrix},
+	\qquad
+	\vb{A} \defeq \begin{bmatrix}
+		a & 0 \\
+		0 & b
+	\end{bmatrix},
+\end{equation*}
+则\begin{equation*}
+	\vb{Q}^T \vb{A} \vb{Q}
+	= \begin{bmatrix}
+		a \cos^2\theta + b \sin^2\theta & (b-a) \cos\theta \sin\theta \\
+		(b-a) \cos\theta \sin\theta & b \cos^2\theta + a \sin^2\theta
+	\end{bmatrix}.
+\end{equation*}
+当\(a \neq b\)且\(\cos\theta \sin\theta \neq 0\)时，
+\(\vb{Q}^T \vb{A} \vb{Q}\)甚至不是对角矩阵，
+因此\(\vb{A}\)不一定等于\(\vb{Q}^T \vb{A} \vb{Q}\).
+%@Mathematica: Q = ({ {Cos[t], -Sin[t]}, {Sin[t], Cos[t]} })
+%@Mathematica: A = ({ {a, 0}, {0, b} })
+%@Mathematica: G = Transpose[Q].A.Q
+%@Mathematica: G // Factor // FullSimplify // MatrixForm
+\end{solution}
+\end{example}
+
 \begin{proposition}
 正交矩阵\(\vb{Q}\)的伴随矩阵\(\vb{Q}^*\)满足\begin{equation*}
 	\vb{Q}^*
