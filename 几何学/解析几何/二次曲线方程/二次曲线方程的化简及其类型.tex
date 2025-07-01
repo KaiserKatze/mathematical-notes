@@ -137,30 +137,47 @@
 		0 & a'_{22}
 	\end{bmatrix}.
 \end{equation*}
-设\(\vb{T}\)的列向量组为\(\vb\eta_1,\vb\eta_2\).
-由于\(\vb{T}^{-1} = \vb{T}^T\)，
-因此上式两边左乘\(\vb{T}\)，得\begin{equation*}
-%@see: 《解析几何》（丘维声） P147 (1.5)
-	\vb{A} (\vb\eta_1,\vb\eta_2)
-	= (\vb\eta_1,\vb\eta_2)
-	\begin{bmatrix}
-		a'_{11} & 0 \\
-		0 & a'_{22}
-	\end{bmatrix},
-\end{equation*}
-从而\begin{equation*}
-	(\vb{A} \vb\eta_1,\vb{A} \vb\eta_2)
-	= (a'_{11} \vb\eta_1,a'_{22} \vb\eta_2),
-\end{equation*}
-即\begin{equation*}
-%@see: 《解析几何》（丘维声） P148 (1.6)
-	\vb{A} \vb\eta_1
-	= a'_{11} \vb\eta_1,
+换句话说，
+新方程中不出现交叉项，
+当且仅当\(\vb{A}\)可以合同对角化.
+%@see: 《解析几何》（丘维声） P149 定理1.1
+鉴于\(\vb{A}\)是实对称矩阵，
+那么由\cref{theorem:实对称矩阵.实对称矩阵可以正交对角化} 可知，
+\(\vb{A}\)一定可以合同对角化.
+
+假设\(\vb{A}\)的两个特征值相同，
+那么\(\vb{A}\)的属于特征值\(\lambda\)的特征子空间\(V_\lambda\)就是坐标平面\(\mathbb{R}^2\).
+
+假设\(\lambda_1,\lambda_2\)是\(\vb{A}\)的两个不同的特征值，
+\(\vb\gamma_1\)是\(\vb{A}\)的属于特征值\(\lambda_1\)的特征向量，
+\(\vb\gamma_2\)是\(\vb{A}\)的属于特征值\(\lambda_2\)的特征向量，
+则\begin{equation*}
+	\vb{A} \vb\gamma_1 = \lambda_1 \vb\gamma_1,
 	\qquad
-	\vb{A} \vb\eta_2
-	= a'_{22} \vb\eta_2.
+	\vb{A} \vb\gamma_2 = \lambda_2 \vb\gamma_2,
 \end{equation*}
-从上述讨论得出，
-转轴后的新方程中不出现交叉项
-当且仅当\(\vb{A}\)有两个特征值\(a'_{11}\)和\(a'_{22}\)（这两个特征值可以相等），
-并且\(\vb{A}\)有两个正交的特征向量.
+从而有\begin{align*}
+	\vb\gamma_1^T \vb{A} \vb\gamma_2 &= \lambda_2 \vb\gamma_1^T \vb\gamma_2, \\
+	\vb\gamma_2^T \vb{A} \vb\gamma_1 &= \lambda_1 \vb\gamma_2^T \vb\gamma_1
+									= \lambda_1 (\vb\gamma_2^T \vb\gamma_1)^T
+									= \lambda_1 \vb\gamma_1^T \vb\gamma_2.
+\end{align*}
+由于\begin{equation*}
+	\vb\gamma_1^T \vb{A} \vb\gamma_2
+	= (\vb\gamma_1^T \vb{A} \vb\gamma_2)^T
+	= \vb\gamma_2^T \vb{A}^T = \vb\gamma_1
+	= \vb\gamma_2^T \vb{A} \vb\gamma_1,
+\end{equation*}
+因此\(
+	\lambda_2 \vb\gamma_1^T \vb\gamma_2
+	= \lambda_1 \vb\gamma_1^T \vb\gamma_2
+\)，
+从而有\(
+	(\lambda_2 - \lambda_1) \vb\gamma_1^T \vb\gamma_2 = 0
+\).
+因为\(\lambda_2 \neq \lambda_1\)，
+所以\(\vb\gamma_1^T \vb\gamma_2 = 0\)，
+即\(\vb\gamma_1\)与\(\vb\gamma_2\)正交.
+显然\(\Span\{\vb\gamma_1,\vb\gamma_2\} = \mathbb{R}^2\).
+这就说明\(\vb{A}\)的属于特征值\(\lambda_1\)的特征子空间\(V_{\lambda_1}\)
+和\(\vb{A}\)的属于特征值\(\lambda_2\)的特征子空间\(V_{\lambda_2}\)互为正交补.
