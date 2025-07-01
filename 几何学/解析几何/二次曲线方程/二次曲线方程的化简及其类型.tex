@@ -14,9 +14,9 @@
 \subsection{转轴消去交叉项}
 设 II \([O';\vb{e}_1',\vb{e}_2']\)是由 I 经过转轴得到的，
 转角为\(\theta\)，
-则 I 到 II 的点的坐标变换公式为
-\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}
-\begin{equation}
+则 I 到 II 的点的坐标变换公式
+就是\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}，
+即\begin{equation}
 %@see: 《解析几何》（丘维声） P146 (1.1)
 	\begin{bmatrix}
 		x \\ y
@@ -30,7 +30,7 @@
 	\end{bmatrix}.
 \end{equation}
 令\begin{equation*}
-	\vb{T} \defeq \begin{bmatrix}
+	\vb{R} \defeq \begin{bmatrix}
 		\cos\theta & -\sin\theta \\
 		\sin\theta & \cos\theta
 	\end{bmatrix},
@@ -45,7 +45,7 @@
 \end{equation*}
 则转轴公式 \labelcref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}
 可以写成\begin{equation*}
-	\vb\alpha = \vb{T} \vb\alpha'.
+	\vb\alpha = \vb{R} \vb\alpha'.
 \end{equation*}
 
 由转轴公式 \labelcref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}
@@ -68,7 +68,7 @@
 		\vb\alpha \\ 1
 	\end{bmatrix}
 	= \begin{bmatrix}
-		\vb{T} & \vb0 \\
+		\vb{R} & \vb0 \\
 		\vb0 & 1
 	\end{bmatrix}
 	\begin{bmatrix}
@@ -83,7 +83,7 @@
 		(\vb\alpha')^T & 1
 	\end{bmatrix}
 	\begin{bmatrix}
-		\vb{T}^T & \vb0 \\
+		\vb{R}^T & \vb0 \\
 		\vb0 & 1
 	\end{bmatrix}
 	\begin{bmatrix}
@@ -91,7 +91,7 @@
 		\vb\delta^T & a_0
 	\end{bmatrix}
 	\begin{bmatrix}
-		\vb{T} & \vb0 \\
+		\vb{R} & \vb0 \\
 		\vb0 & 1
 	\end{bmatrix}
 	\begin{bmatrix}
@@ -105,8 +105,8 @@
 		(\vb\alpha')^T & 1
 	\end{bmatrix}
 	\begin{bmatrix}
-		\vb{T}^T \vb{A} \vb{T} & \vb{T}^T \vb\delta \\
-		\vb\delta^T \vb{T} & a_0
+		\vb{R}^T \vb{A} \vb{R} & \vb{R}^T \vb\delta \\
+		\vb\delta^T \vb{R} & a_0
 	\end{bmatrix}
 	\begin{bmatrix}
 		\vb\alpha' \\ 1
@@ -114,24 +114,24 @@
 	= 0.
 \end{equation*}
 由于\begin{equation*}
-	(\vb{T}^T \vb{A} \vb{T})^T
-	= \vb{T}^T \vb{A}^T \vb{T}
-	= \vb{T}^T \vb{A} \vb{T},
+	(\vb{R}^T \vb{A} \vb{R})^T
+	= \vb{R}^T \vb{A}^T \vb{R}
+	= \vb{R}^T \vb{A} \vb{R},
 \end{equation*}
-所以\(\vb{T}^T \vb{A} \vb{T}\)仍是对称矩阵.
-于是新方程的二次项部分\(\phi'(x',y')\)的矩阵为\(\vb{T}^T \vb{A} \vb{T}\)，
-一次项系数的一半组成的列是\(\vb{T}^T \vb\delta\)，
+所以\(\vb{R}^T \vb{A} \vb{R}\)仍是对称矩阵.
+于是新方程的二次项部分\(\phi'(x',y')\)的矩阵为\(\vb{R}^T \vb{A} \vb{R}\)，
+一次项系数的一半组成的列是\(\vb{R}^T \vb\delta\)，
 常数项是\(a_0\).
 这说明，经过转轴，
 新方程的二次项系数只与原方程的二次项系数及转角\(\theta\)有关，
 新方程的一次项系数只与原方程的一次项系数及转角\(\theta\)有关，
 常数项不变.
 
-转轴后二次曲线\(S\)的新方程的二次项部分的矩阵为\(\vb{T}^T \vb{A} \vb{T}\).
-新方程中不出现交叉项（即\(x' y'\)项）
+转轴后二次曲线\(S\)的新方程的二次项部分的矩阵为\(\vb{R}^T \vb{A} \vb{R}\).
+新方程中不出现交叉项（即\(x' y'\)项），
 当且仅当\begin{equation*}
 %@see: 《解析几何》（丘维声） P147 (1.4)
-	\vb{T}^T \vb{A} \vb{T}
+	\vb{R}^T \vb{A} \vb{R}
 	= \begin{bmatrix}
 		a'_{11} & 0 \\
 		0 & a'_{22}
