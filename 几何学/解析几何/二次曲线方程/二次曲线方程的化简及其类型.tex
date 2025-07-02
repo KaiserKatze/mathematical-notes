@@ -271,6 +271,37 @@
 	\theta = \frac12 \arccot\frac{a-c}{2b}.
 \end{equation*}
 
+如果我们将\(\vb{R}\)按列分块为\((\vb\eta_1,\vb\eta_2)\)，
+则由\begin{equation*}
+	\vb{R}^T \vb{A} \vb{R}
+	= \begin{bmatrix}
+		a'_{11} & 0 \\
+		0 & a'_{22}
+	\end{bmatrix}
+\end{equation*}
+可得\begin{equation*}
+%@see: 《解析几何》（丘维声） P147 (1.5)
+	\vb{A} (\vb\eta_1,\vb\eta_2)
+	= (\vb\eta_1,\vb\eta_2)
+	\begin{bmatrix}
+		a'_{11} & 0 \\
+		0 & a'_{22}
+	\end{bmatrix}
+\end{equation*},
+即\begin{equation*}
+	(\vb{A} \vb\eta_1,\vb{A} \vb\eta_2)
+	= (a'_{11} \vb\eta_1,a'_{22} \vb\eta_2),
+\end{equation*}
+也即\begin{equation*}
+%@see: 《解析几何》（丘维声） P148 (1.6)
+	\vb{A} \vb\eta_1
+	= a'_{11} \vb\eta_1,
+	\qquad
+	\vb{A} \vb\eta_2
+	= a'_{22} \vb\eta_2,
+\end{equation*}
+由此可见\(\vb{R}\)的列向量是\(\vb{A}\)的属于某个特征值的特征向量.
+
 假设\(\vb{A}\)的两个特征值相同，
 那么\(\vb{A}\)的属于特征值\(\lambda\)的特征子空间\(V_\lambda\)就是坐标平面\(\mathbb{R}^2\).
 
@@ -307,3 +338,138 @@
 显然\(\Span\{\vb\gamma_1,\vb\gamma_2\} = \mathbb{R}^2\).
 这就说明\(\vb{A}\)的属于特征值\(\lambda_1\)的特征子空间\(V_{\lambda_1}\)
 和\(\vb{A}\)的属于特征值\(\lambda_2\)的特征子空间\(V_{\lambda_2}\)互为正交补.
+
+在确定旋转矩阵\(\vb{R}\)的待定参数\(\theta\)以后，
+作坐标变换\begin{equation*}
+%@see: 《解析几何》（丘维声） P150 (1.8)
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix}
+	= \vb{R}
+	\begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix},
+\end{equation*}
+则\(Ox'y'\)是右手直角坐标系，
+上述坐标变换是转轴.
+在\(Ox'y'\)中，
+曲线\(S\)的方程的二次项部分的矩阵为\begin{equation*}
+	\vb{R}^T \vb{A} \vb{R}
+	= \begin{bmatrix}
+		\lambda_1 & 0 \\
+		0 & \lambda_2
+	\end{bmatrix},
+\end{equation*}
+从而\(S\)的新方程的二次项部分为\begin{equation*}
+	\lambda_1 (x')^2 + \lambda_2 (y')^2,
+\end{equation*}
+一次项部分为\begin{equation*}
+%@see: 《解析几何》（丘维声） P150 (1.9)
+	2 (\vb{R}^T \vb\delta)^T
+	\begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix}
+	= 2 \vb\delta^T \vb{R}
+	\begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix}
+	= 2 (\vb\delta^T \vb\eta_1,\vb\delta^T \vb\eta_2)
+	\begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix}
+	= 2 \vb\delta^T \vb\eta_1 x'
+		+ 2 \vb\delta^T \vb\eta_2 y'.
+\end{equation*}
+记\(
+	a'_1 \defeq \vb\delta^T \vb\eta_1,
+	a'_2 \defeq \vb\delta^T \vb\eta_2
+\)，
+则\(S\)在\(Ox'y'\)中的方程为\begin{equation*}
+%@see: 《解析几何》（丘维声） P150 (1.10)
+	\lambda_1 (x')^2 + \lambda_2 (y')^2 + 2 a'_1 x' + 2 a'_2 y' + a_ 0 = 0.
+\end{equation*}
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P150 例1.1
+设在右手直角坐标系\(Oxy\)中，
+二次曲线\(S\)的方程为\begin{equation*}
+	5x^2 + 4xy + 2y^2 - 24x - 12y + 18 = 0.
+\end{equation*}
+作转轴消去交叉项，写出\(S\)在转轴后的新方程.
+\begin{solution}
+\(S\)在\(Oxy\)中的方程的二次项部分的矩阵为\begin{equation*}
+	\vb{A} \defeq \begin{bmatrix}
+		5 & 2 \\
+		2 & 2
+	\end{bmatrix}.
+\end{equation*}
+%@Mathematica: A = {{5, 2}, {2, 2}}
+%@Mathematica: Eigenvalues[A]
+%@Mathematica: NullSpace[6 IdentityMatrix[2] - A]
+%@Mathematica: NullSpace[IdentityMatrix[2] - A]
+\(\vb{A}\)的特征值为\(
+	\lambda_1 = 6,
+	\lambda_2 = 1
+\).
+
+对于特征值\(\lambda_1 = 6\)，
+解齐次线性方程组\((\lambda_1 \vb{E} - \vb{A}) \vb{x} = \vb0\)，
+它的基础解系为\(\vb\gamma_1 = (2,1)^T\).
+令\begin{equation*}
+	\vb\eta_1
+	\defeq \frac1{\VectorLengthA{\vb\gamma_1}} \vb\gamma_1
+	= \begin{bmatrix}
+		\frac2{\sqrt5} & \frac1{\sqrt5}
+	\end{bmatrix}^T.
+\end{equation*}
+
+对于特征值\(\lambda_2 = 1\)，
+解齐次线性方程组\((\lambda_2 \vb{E} - \vb{A}) \vb{x} = \vb0\)，
+它的基础解系为\(\vb\gamma_2 = (-1,2)^T\).
+令\begin{equation*}
+	\vb\eta_2
+	\defeq \frac1{\VectorLengthA{\vb\gamma_2}} \vb\gamma_2
+	= \begin{bmatrix}
+		-\frac1{\sqrt5} & \frac2{\sqrt5}
+	\end{bmatrix}^T.
+\end{equation*}
+
+于是\begin{equation*}
+	\vb{R} \defeq \begin{bmatrix}
+		\frac2{\sqrt5} & -\frac1{\sqrt5} \\
+		\frac1{\sqrt5} & \frac2{\sqrt5}
+	\end{bmatrix}
+\end{equation*}
+是正交矩阵，且\(\VectorLengthA{\vb{R}} = 1\).
+作转轴\begin{equation*}
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix}
+	= \vb{R}
+	\begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix}.
+\end{equation*}
+\(S\)在\(Ox'y'\)中的方程的一次项系数的一半分别为\begin{gather*}
+	a'_1 \defeq \vb\delta^T \vb\eta_1
+	= \begin{bmatrix}
+		-12 & -6
+	\end{bmatrix}
+	\begin{bmatrix}
+		\frac2{\sqrt5} \\ \frac1{\sqrt5}
+	\end{bmatrix}
+	= -6\sqrt5, \\
+	a'_2 \defeq \vb\delta^T \vb\eta_2
+	= \begin{bmatrix}
+		-12 & -6
+	\end{bmatrix}
+	\begin{bmatrix}
+		-\frac1{\sqrt5} & \frac2{\sqrt5}
+	\end{bmatrix}
+	= 0,
+\end{gather*}
+于是\(S\)在\(Ox'y'\)中的方程为\begin{equation*}
+	6(x')^2 + (y')^2 - 12\sqrt5 x' + 18 = 0.
+\end{equation*}
+\end{solution}
+\end{example}
