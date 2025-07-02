@@ -128,7 +128,11 @@
 常数项不变.
 
 转轴后二次曲线\(S\)的新方程的二次项部分的矩阵为\(\vb{R}^T \vb{A} \vb{R}\).
-新方程中不出现交叉项（即\(x' y'\)项），
+注意到旋转矩阵\(\vb{R}\)中有一个参数\(\theta\)尚未确定，
+我们希望新方程中不出现交叉项（即\(x' y'\)项的系数\(a'_{12}\)等于零），
+为此需要给\(\theta\)的取值范围增加限制条件.
+首先，我们可以断言：
+新方程中不出现交叉项，
 当且仅当\begin{equation*}
 %@see: 《解析几何》（丘维声） P147 (1.4)
 	\vb{R}^T \vb{A} \vb{R}
@@ -137,13 +141,135 @@
 		0 & a'_{22}
 	\end{bmatrix}.
 \end{equation*}
-换句话说，
+注意到旋转矩阵\(\vb{R}\)是一个正交矩阵（即\(\vb{R}^T \vb{R} = \vb{E}\)），
+于是我们可以说：
 新方程中不出现交叉项，
-当且仅当\(\vb{A}\)可以合同对角化.
+当且仅当\(\vb{A}\)可以正交对角化.
 %@see: 《解析几何》（丘维声） P149 定理1.1
-鉴于\(\vb{A}\)是实对称矩阵，
-那么由\cref{theorem:实对称矩阵.实对称矩阵可以正交对角化} 可知，
-\(\vb{A}\)一定可以合同对角化.
+我们知道\hyperref[theorem:实对称矩阵.实对称矩阵可以正交对角化]{实对称矩阵可以正交对角化}，
+恰巧\(\vb{A}\)就是一个实对称矩阵，
+因此一定存在一个正交矩阵\(\vb{Q}\)，
+使得\(\vb\Lambda \defeq \vb{Q}^T \vb{A} \vb{Q}\)是一个对角矩阵.
+接下来我只需要证明存在一个旋转矩阵\(\vb{R}\)和一个正交矩阵\(\vb{P}\)，
+使得\(\vb{R} \vb{P} = \vb{Q}\)
+且\(\vb{R}^T \vb{A} \vb{R}\)是对角矩阵
+（这里之所以引入矩阵\(\vb{P}\)，
+是因为旋转矩阵\(\vb{R}\)的行列式为\(
+	\DeterminantA{\vb{R}}
+	= \cos^2\theta + \sin^2\theta
+	= 1
+\)，
+但是\(\vb{Q}\)作为一般的正交矩阵，
+根据\cref{equation:正交矩阵.正交矩阵的行列式}，
+我们只能保证\(\vb{Q}\)的行列式的绝对值为\(
+	\abs{
+		\DeterminantA{\vb{Q}}
+	}
+	= 1
+\)，
+也就是说\(\vb{Q}\)的行列式可正可负，
+为了在\(\vb{R}\)与\(\vb{Q}\)之间构造一个等式，
+就必须额外添上一个矩阵\(\vb{P}\)作为因子，
+使\(\sgn\DeterminantA{\vb{Q}} = \sgn\DeterminantA{\vb{P}}\)，
+像这样，根据\cref{theorem:行列式.矩阵乘积的行列式}，
+\(
+	\DeterminantA{\vb{R} \vb{P}}
+	= \DeterminantA{\vb{R}} \DeterminantA{\vb{P}}
+	= \sgn\DeterminantA{\vb{P}}
+	= \sgn\DeterminantA{\vb{Q}}
+	= \DeterminantA{\vb{Q}}
+\)；
+之所以\(\vb{P}\)必须是正交矩阵，
+是因为我们考虑到\(
+	\vb{P} (\vb{Q}^T \vb{A} \vb{Q}) \vb{P}^T
+	= (\vb{P} \vb{P}^T) \vb{R}^T \vb{A} \vb{R} (\vb{P} \vb{P}^T)
+	= \vb{R}^T \vb{A} \vb{R}
+\)）.
+下面我们按照\(\DeterminantA{\vb{Q}}\)的符号，分两种情况讨论：\begin{itemize}
+	\item 当\(\DeterminantA{\vb{Q}} > 0\)时，
+	取\(
+		\vb{R} \defeq \vb{Q},
+		\vb{P} \defeq \vb{E}
+	\)，
+	显然有\(\vb{R} \vb{P} = \vb{Q}\)成立，
+	并且\(\vb{R}^T \vb{A} \vb{R}\)是对角矩阵；
+
+	\item 当\(\DeterminantA{\vb{Q}} < 0\)时，
+	取\(
+		\vb{P} \defeq \begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix},
+		\vb{R} \defeq \vb{Q} \vb{P}
+	\)，
+	则\begin{equation*}
+		\vb{R} \vb{P}
+		= (\vb{Q} \vb{P}) \vb{P}
+		= \vb{Q} \vb{P}^2
+		= \vb{Q}
+		\begin{bmatrix}
+			1^2 & 0 \\
+			0 & (-1)^2
+		\end{bmatrix}
+		= \vb{Q},
+	\end{equation*}
+	并且，由\(
+		\vb{P}^T
+		\begin{bmatrix}
+			a & 0 \\
+			0 & b
+		\end{bmatrix}
+		\vb{P}
+		= \begin{bmatrix}
+			a & 0 \\
+			0 & b
+		\end{bmatrix}
+	\)
+	可知\(
+		\vb{R}^T \vb{A} \vb{R}
+		= \vb{P}^T (\vb{Q}^T \vb{A} \vb{Q}) \vb{P}
+	\)还是对角矩阵.
+\end{itemize}
+综上所述，对于任意一个实对称矩阵\(\vb{A}\)，
+一定存在实数\(\theta\)，
+使得旋转矩阵\(
+	\vb{R} = \begin{bmatrix}
+		\cos\theta & -\sin\theta \\
+		\sin\theta & \cos\theta
+	\end{bmatrix}
+\)
+满足\(\vb{R}^T \vb{A} \vb{R}\)是对角矩阵.
+
+在证明\(\theta\)的存在性以后，
+我们终于可以尝试具体解出\(\theta\)的取值了.
+假设\(
+	\vb{A} = \begin{bmatrix}
+		a & b \\
+		b & c
+	\end{bmatrix}
+\)，
+%@Mathematica: A = ({ {a, b}, {b, c} })
+%@Mathematica: R = {{Cos[t], -Sin[t]}, {Sin[t], Cos[t]}}
+那么\begin{equation*}
+%@Mathematica: Transpose[R].A.R // FullSimplify
+	\vb{R}^T \vb{A} \vb{R}
+	= \begin{bmatrix}
+		a \cos^2\theta + c \sin^2\theta + b \sin2\theta
+		& b \cos2\theta + (c-a) \cos\theta \sin\theta \\
+		b \cos2\theta + (c-a) \cos\theta \sin\theta
+		& c \cos^2\theta - 2 b \cos\theta \sin\theta + a \sin^2\theta
+	\end{bmatrix},
+\end{equation*}
+%@Mathematica: (Transpose[R].A.R)[[1, 2]] // TrigReduce
+从而\(
+	b \cos2\theta - \frac{a-c}{2} \sin2\theta
+	= 0
+\)，
+因此\begin{equation*}
+	\theta = \frac12 \arctan\frac{2b}{a-c}
+	\quad\text{或}\quad
+	\theta = \frac12 \arccot\frac{a-c}{2b}.
+\end{equation*}
 
 假设\(\vb{A}\)的两个特征值相同，
 那么\(\vb{A}\)的属于特征值\(\lambda\)的特征子空间\(V_\lambda\)就是坐标平面\(\mathbb{R}^2\).
