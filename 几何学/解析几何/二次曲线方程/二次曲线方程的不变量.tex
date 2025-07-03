@@ -1,1 +1,403 @@
 \section{二次曲线方程的不变量}
+在上一节中，我们已经学会通过转轴和移轴，
+把二次曲线方程化简成标准形式，由此确定曲线的类型、形状和位置.
+但是，在不少问题中，我们常常希望直接从原二次方程的系数来判别它代表的曲线的类型和形状.
+本节就来解决这个问题.
+解决这个问题的途径是：
+先讨论在直角坐标变换下，二次方程的系数（看成参变量）的哪些函数的函数值是保持不变的，
+然后我们就能确定原方程的系数与经过转轴、移轴得到的最简方程的系数之间的关系，
+从而就可以用原方程的系数来直接判别曲线的类型和形状.
+
+\subsection{二次曲线的不变量和半不变量}
+曲线的方程一般是随着坐标系的改变而改变的，
+但是既然这些方程都是代表同一条曲线，
+它们就应该有某些共性，不随坐标系的变化而变化.
+刻画这种共性的量，称为不变量.
+确切地说：
+\begin{definition}
+%@see: 《解析几何》（丘维声） P158 定义5.1
+设\(f\colon \mathbb{R}^6 \to \mathbb{R}\)是
+关于曲线方程 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的系数的函数.
+如果在任意一个直角坐标变换下，
+它的函数值不变，
+即\begin{equation*}
+	f(a_{11},a_{12},a_{22},a_1,a_2,a_0)
+	= f(a'_{11},a'_{12},a'_{22},a'_1,a'_2,a_0),
+\end{equation*}
+那么称“函数\(f\)是曲线 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的
+一个\DefineConcept{正交不变量}”，
+简称\DefineConcept{不变量}.
+\end{definition}
+
+不变量既然与直角坐标系的选择无关，于是它就反映了曲线本身的几何性质.
+因此，找出曲线方程的不变量是解析几何研究中的一个重要课题.
+
+由于平面上任意一个右手直角坐标变换可以经过转轴、移轴得到，
+因此我们来探索二次曲线\(S\)的方程系数的什么样的函数在转轴时其函数值不改变，在移轴时其函数值也不改变.
+根据方程 \labelcref{equation:二次曲线方程的化简及其类型.转轴后所得方程}，
+\(S\)在经过\cref{equation:二次曲线方程的化简及其类型.转轴变换} 的转轴后，
+方程变为\begin{equation*}
+%@see: 《解析几何》（丘维声） P159 (2.1)
+	\lambda_1 (x')^2 + \lambda_2 (y')^2 + 2 a'_1 x' + 2 a'_2 y' + a_ 0 = 0,
+\end{equation*}
+其中\(\lambda_1,\lambda_2\)是\(S\)的原方程的二次项部分的矩阵\(\vb{A}\)的两个特征值，
+它们是\(\vb{A}\)的特征多项式的两个实根，
+于是根据韦达公式得\begin{equation*}
+%@see: 《解析几何》（丘维声） P159 (2.2)
+	\lambda_1 + \lambda_2 = \tr\vb{A},
+	\qquad
+	\lambda_1 \lambda_2 = \DeterminantA{\vb{A}}.
+\end{equation*}
+%@see: 《解析几何》（丘维声） P159 (2.3)
+由此，我们猜测：\begin{itemize}
+	\item 二次曲线\(S\)的方程的二次项系数之和\(I_1 \defeq \tr\vb{A}\)在任一转轴下保持不变，
+	\item 二次曲线\(S\)的方程的二次项部分的矩阵\(\vb{A}\)的
+	行列式\(I_2 \defeq \DeterminantA{\vb{A}}\)在任一转轴下保持不变.
+\end{itemize}
+
+由于\(I_1,I_2\)这两个量只涉及二次曲线的二次项系数，
+因此仅凭\(I_1,I_2\)肯定无法判断\(S\)的类型和形状，
+我们应当把一次项系数和常数项也考虑进来.
+令\begin{equation*}
+%@see: 《解析几何》（丘维声） P160 (2.6)
+	I_3 \defeq \DeterminantA{\vb{P}}
+	= \begin{bmatrix}
+		a_{11} & a_{12} & a_1 \\
+		a_{12} & a_{22} & a_2 \\
+		a_1 & a_2 & a_0
+	\end{bmatrix}.
+\end{equation*}
+
+现在我们来证明下述定理：
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P160 定理2.1
+\(I_1,I_2,I_3\)都是二次曲线的不变量.
+\begin{proof}
+作转轴\(\vb\alpha = \vb{R} \vb\alpha'\)，
+那么二次曲线\(S\)在转轴后的方程为\begin{equation*}
+%@see: 《解析几何》（丘维声） P147 (1.3)'
+%@see: 《解析几何》（丘维声） P161 (2.7)
+	\begin{bmatrix}
+		(\vb\alpha')^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{R}^T \vb{A} \vb{R} & \vb{R}^T \vb\delta \\
+		\vb\delta^T \vb{R} & a_0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb\alpha' \\ 1
+	\end{bmatrix}
+	= 0.
+\end{equation*}
+从而有\begin{align*}
+	I_1'
+	&= \tr(\vb{R}^T \vb{A} \vb{R})
+	= \tr(\vb{A} \vb{R} \vb{R}^T)
+	= \tr\vb{A}
+	= I_1, \\
+	I_2'
+	&= \DeterminantA{\vb{R}^T \vb{A} \vb{R}^T}
+	= \DeterminantA{\vb{R}^T} \DeterminantA{\vb{A}} \DeterminantA{\vb{R}}
+	= \DeterminantA{\vb{A}}
+	= I_2, \\
+	I_3'
+	&= \begin{vmatrix}
+		\vb{R}^T \vb{A} \vb{R} & \vb{R}^T \vb\delta \\
+		\vb\delta^T \vb{R} & a_0
+	\end{vmatrix}
+	= \DeterminantA{
+		\begin{bmatrix}
+			\vb{R}^T & \vb0 \\
+			\vb0 & 1
+		\end{bmatrix}
+		\begin{bmatrix}
+			\vb{A} & \vb\delta \\
+			\vb\delta^T & a_0
+		\end{bmatrix}
+		\begin{bmatrix}
+			\vb{R} & \vb0 \\
+			\vb0 & 1
+		\end{bmatrix}
+	}
+	= \DeterminantA{\vb{R}^T} I_3 \DeterminantA{\vb{R}}
+	= I_3.
+\end{align*}
+因此，在任一转轴下，\(I_1,I_2,I_3\)的值都保持不变.
+
+作任一移轴\(\vb\alpha = \vb\alpha^* + \vb\alpha_0\)，
+其中\(
+	\vb\alpha^* = (x^*,y^*)^T,
+	\vb\alpha_0 = (x_0,y_0)^T
+\)，
+则二次曲线\(S\)在移轴后的方程为\begin{equation}\label{equation:二次曲线方程的不变量.移轴后的方程}
+%@see: 《解析几何》（丘维声） P161 (2.8)
+	\begin{array}{r}
+		a_{11} (x^* + x_0)^2
+		+ 2 a_{12} (x^* + x_0) (y^* + y_0)
+		+ a_{22} (y^* + y_0)^2 \\
+		+ 2 a_1 (x^* + x_0)
+		+ 2 a_2 (y^* + y_0)
+		+ a_0
+		= 0.
+	\end{array}
+\end{equation}
+在方程 \labelcref{equation:二次曲线方程的不变量.移轴后的方程} 中，
+二次项系数分别为\(a_{11},2 a_{12},a_{22}\)，
+因此在移轴下\(I_1\)和\(I_2\)的值都保持不变.
+
+方程 \labelcref{equation:二次曲线方程的不变量.移轴后的方程} 可以写成\begin{equation*}
+%@see: 《解析几何》（丘维声） P161 (2.9)
+	(\vb\alpha^* + \vb\alpha_0)^T
+	\vb{A}
+	(\vb\alpha^* + \vb\alpha_0)
+	+ 2 \vb\delta^T
+	(\vb\alpha^* + \vb\alpha_0)
+	+ a_0
+	= 0,
+\end{equation*}
+即\begin{equation*}
+%@see: 《解析几何》（丘维声） P161 (2.10)
+	(\vb\alpha^*)^T
+	\vb{A}
+	\vb\alpha^*
+	+ (\vb\alpha^*)^T
+	\vb{A}
+	\vb\alpha_0
+	+ (\vb\alpha_0)^T
+	\vb{A}
+	\vb\alpha^*
+	+ (\vb\alpha_0)^T
+	\vb{A}
+	\vb\alpha_0
+	+ 2 \vb\delta^T \vb\alpha^*
+	+ 2 \vb\delta^T \vb\alpha_0
+	+ a_0
+	= 0,
+\end{equation*}
+即\begin{equation*}
+%@see: 《解析几何》（丘维声） P161 (2.11)
+	(\vb\alpha^*)^T
+	\vb{A}
+	\vb\alpha^*
+	+ (
+		(\vb\alpha^*)^T
+		\vb{A}
+		\vb\alpha_0
+	)^T
+	+ (\vb\alpha_0)^T
+	\vb{A}
+	\vb\alpha^*
+	+ (\vb\alpha_0)^T
+	\vb{A}
+	\vb\alpha_0
+	+ 2 \vb\delta^T \vb\alpha^*
+	+ 2 \vb\delta^T \vb\alpha_0
+	+ a_0
+	= 0,
+\end{equation*}
+即\begin{equation*}
+%@see: 《解析几何》（丘维声） P161 (2.12)
+	(\vb\alpha^*)^T
+	\vb{A}
+	\vb\alpha^*
+	+ 2 (\vb\alpha_0^T \vb{A} + \vb\delta^T) \vb\alpha^*
+	+ (\vb\alpha_0)^T
+	\vb{A}
+	\vb\alpha_0
+	+ 2 \vb\delta^T \vb\alpha_0
+	+ a_0
+	= 0.
+\end{equation*}
+于是\begin{align*}
+	I_3^*
+	&= \begin{vmatrix}
+		\vb{A} & \vb{A} \vb\alpha_0 + \vb\delta \\
+		\vb\alpha_0^T \vb{A} + \vb\delta^T & \vb\alpha_0^T \vb{A} \vb\alpha_0 + 2 \vb\delta^T \vb\alpha_0 + a_0
+	\end{vmatrix} \\
+	&= \DeterminantA{
+		\begin{bmatrix}
+			\vb{E} & 0 \\
+			\vb\alpha_0^T & 1
+		\end{bmatrix}
+		\begin{bmatrix}
+			\vb{A} & \vb\delta \\
+			\vb\delta^T & a_0
+		\end{bmatrix}
+		\begin{bmatrix}
+			\vb{E} & \vb\alpha_0 \\
+			\vb0 & 1
+		\end{bmatrix}
+	} \\
+	&= \DeterminantA{\vb{E}} I_3 \DeterminantA{\vb{E}}
+	= I_3.
+\end{align*}
+因此，在任一移轴下，\(I_3\)的值不改变.
+
+综上所述，\(I_1,I_2,I_3\)都是二次曲线的不变量.
+\end{proof}
+\end{theorem}
+
+\(I_3\)是二次曲线\(S\)的方程的矩阵\(\vb{P}\)的行列式.
+\(I_2\)是\(\vb{P}\)的一个2阶主子式\(\MatrixMinor{\vb{P}}{1,2 \\ 1,2}\).
+除了\(I_2\)以外，\(\vb{P}\)还有两个2阶主子式：\begin{equation*}
+	\MatrixMinor{\vb{P}}{1,3 \\ 1,3}
+	= \begin{vmatrix}
+		a_{11} & a_1 \\
+		a_1 & a_0
+	\end{vmatrix},
+	\qquad
+	\MatrixMinor{\vb{P}}{2,3 \\ 2,3}
+	= \begin{vmatrix}
+		a_{22} & a_2 \\
+		a_2 & a_0
+	\end{vmatrix}.
+\end{equation*}
+令\begin{equation*}
+	K_1 \defeq \MatrixMinor{\vb{P}}{1,3 \\ 1,3} + \MatrixMinor{\vb{P}}{2,3 \\ 2,3}.
+\end{equation*}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P162 定理2.2
+设\cref{equation:二次曲线方程.平面二次曲线的一般方程} 是
+二次曲线\(S\)在直角坐标系\(Oxy\)中的方程，
+则\begin{itemize}
+	\item 在转轴下\(K_1\)不变；
+	\item 如果\(S\)满足\(I_2 = I_3 = 0\)，\(K_1\)在移轴下也不变.
+\end{itemize}
+\begin{proof}
+作转轴\(\vb\alpha = \vb{R} \vb\alpha'\)，
+则因为\(\vb\delta' = \vb{R}^T \vb\delta\)，
+所以有\begin{align*}
+	K_1'
+	&= \begin{vmatrix}
+		a'_{11} & a'_1 \\
+		a'_1 & a'_0
+	\end{vmatrix}
+	+ \begin{vmatrix}
+		a'_{22} & a'_2 \\
+		a'_2 & a'_0
+	\end{vmatrix} \\
+	&= (a'_{11} + a'_{22}) a_0 - ((a'_1)^2 + (a'_2)^2)
+	= I_1' a_0 - (\vb\delta')^T \vb\delta' \\
+	&= I_1 a_0 - (\vb{R}^T \vb\delta)^T (\vb{R}^T \vb\delta)
+	= I_1 a_0 - \vb\delta^T \vb{R} \vb{R}^T \vb\delta \\
+	&= I_1 a_0 - \vb\delta^T \vb\delta
+	= I_1 a_0 - (a_1^2 + a_2^2)
+	= K_1.
+\end{align*}
+
+对于\(I_2 = I_3 = 0\)的二次曲线，
+由\(I_2 = 0\)
+得\(a_{11} a_{22} = a_{12}^2\)，
+即\begin{equation*}
+	\frac{a_{11}}{a_{12}} = \frac{a_{12}}{a_{22}}.
+\end{equation*}
+此时\(a_{11}\)和\(a_{22}\)至少有一个不为零
+（否则会有\(a_{11} = a_{22} = a_{12} = 0\)，矛盾）.
+不妨设\(a_{22} \neq 0\)，
+于是可以记\(l \defeq a_{12} / a_{22}\).
+此时有\begin{align*}
+	I_3
+	&= \begin{vmatrix}
+		a_{11} & a_{12} & a_1 \\
+		a_{12} & a_{22} & a_2 \\
+		a_1 & a_2 & a_0
+	\end{vmatrix}
+	= \begin{vmatrix}
+		l a_{12} & l a_{22} & a_1 \\
+		a_{12} & a_{22} & a_2 \\
+		a_1 & a_2 & a_0
+	\end{vmatrix}
+	= \begin{vmatrix}
+		0 & 0 & a_1 - l a_2 \\
+		a_{12} & a_{22} & a_2 \\
+		a_1 & a_2 & a_0
+	\end{vmatrix} \\
+	&= (a_1 - l a_2) \begin{vmatrix}
+		a_{12} & a_{22} \\
+		a_1 & a_2
+	\end{vmatrix}
+	= (a_1 - l a_2) \begin{vmatrix}
+		0 & a_{22} \\
+		a_1 - l a_2 & a_2
+	\end{vmatrix} \\
+	&= -a_{22} (a_1 - l a_2)^2.
+\end{align*}
+因为\(I_3 = 0\)且\(a_{22} \neq 0\)，
+所以\(a_1 - l a_2 = 0\).
+于是得到\begin{equation*}
+%@see: 《解析几何》（丘维声） P163 (2.13)
+	\frac{a_{11}}{a_{12}}
+	= \frac{a_{12}}{a_{22}}
+	= \frac{a_1}{a_2}
+	= l.
+	\eqno(1)
+\end{equation*}
+现在作移轴\(\vb\alpha = \vb\alpha^* + \vb\alpha_0\)，
+由方程 \labelcref{equation:二次曲线方程的不变量.移轴后的方程} 得\begin{align*}
+%@see: 《解析几何》（丘维声） P163 (2.14)
+	\begin{vmatrix}
+		a^*_{11} & a^*_1 \\
+		a^*_1 & a^*_0
+	\end{vmatrix}
+	&= \begin{vmatrix}
+		a_{11} & a_{11} x_0 + a_{12} y_0 + a_1 \\
+		a_{11} x_0 + a_{12} y_0 + a_1 & F(x_0,y_0)
+	\end{vmatrix} \\
+	&= \begin{vmatrix}
+		a_{11} & a_{12} y_0 + a_1 \\
+		a_{11} x_0 + a_{12} y_0 + a_1 & a_{12} x_0 y_0 + a_{22} y_0^2 + a_1 x_0 + 2 a_2 y_0 + a_0
+	\end{vmatrix} \\
+	&= \begin{vmatrix}
+		a_{11} & a_{12} y_0 + a_1 \\
+		a_{12} y_0 + a_1 & a_{22} y_0^2 + 2 a_2 y_0 a_0
+	\end{vmatrix}.
+	\tag2
+\end{align*}
+若\(l \neq 0\)，有\begin{align*}
+	\begin{vmatrix}
+		a^*_{11} & a^*_1 \\
+		a^*_1 & a^*_0
+	\end{vmatrix}
+	&= \begin{vmatrix}
+		a_{11} & \frac1l a_{11} y_0 + a_1 \\
+		\frac1l a_{11} y_0 + a_1 & \frac1{l^2} a_{11} y_0^2 + \frac2l a_1 y_0 + a_0
+	\end{vmatrix} \\
+	&= \begin{vmatrix}
+		a_{11} & a_1 \\
+		\frac1l a_{11} y_0 + a_1 & \frac1l a_1 y_0 + a_0
+	\end{vmatrix}
+	= \begin{vmatrix}
+		a_{11} & a_1 \\
+		a_1 & a_0
+	\end{vmatrix};
+\end{align*}
+若\(l = 0\)，则由(1)式可知\(a_{11} = a_{12} = a_1 = 0\)，于是(2)式等于零.
+总之，有\begin{equation*}
+	\begin{vmatrix}
+		a^*_{11} & a^*_1 \\
+		a^*_1 & a^*_0
+	\end{vmatrix}
+	= \begin{vmatrix}
+		a_{11} & a_1 \\
+		a_1 & a_0
+	\end{vmatrix}.
+\end{equation*}
+类似地，可证\begin{equation*}
+	\begin{vmatrix}
+		a^*_{22} & a^*_2 \\
+		a^*_2 & a^*_0
+	\end{vmatrix}
+	= \begin{vmatrix}
+		a_{22} & a_2 \\
+		a_2 & a_0
+	\end{vmatrix}.
+\end{equation*}
+因此\(K_1^* = K_1\).
+这表明，对于\(I_2 = I_3 = 0\)的二次曲线，\(K_1\)在移轴下也是不变的.
+\end{proof}
+\end{theorem}
+\begin{remark}
+对于任意二次曲线，\(K_1\)在移轴下其函数值可能发生变化.
+因此我们把\(K_1\)称为半不变量.
+\end{remark}
