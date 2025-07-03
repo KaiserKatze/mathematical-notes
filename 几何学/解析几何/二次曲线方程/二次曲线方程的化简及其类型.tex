@@ -243,7 +243,7 @@
 在证明\(\theta\)的存在性以后，
 我们终于可以尝试具体解出\(\theta\)的取值了.
 假设\(
-	\vb{A} = \begin{bmatrix}
+	\vb{A} \defeq \begin{bmatrix}
 		a & b \\
 		b & c
 	\end{bmatrix}
@@ -389,7 +389,7 @@
 	\lambda_1 (x')^2 + \lambda_2 (y')^2 + 2 a'_1 x' + 2 a'_2 y' + a_ 0 = 0.
 \end{equation}
 
-\begin{example}
+\begin{example}\label{example:二次曲线方程的化简及其类型.例1}
 %@see: 《解析几何》（丘维声） P150 例1.1
 设在右手直角坐标系\(Oxy\)中，
 二次曲线\(S\)的方程为\begin{equation*}
@@ -486,13 +486,14 @@
 \end{equation*}
 这时需要区分几种情况：
 \begin{enumerate}
-	\item 系数\(a'_{11}\)与\(a'_{22}\)同号.
+	\item 系数\(a'_{11}\)与\(a'_{22}\)同号，即\(a'_{11} a'_{22} > 0\).
 
 	由于椭圆的标准方程中，平方项的系数是同号的，
 	因此我们把消去交叉项后，平方项系数同号的二次曲线，称为\DefineConcept{椭圆型曲线}.
-	此时，把新方程 \labelcref{equation:二次曲线方程的化简及其类型.转轴后所得方程} 配方得\begin{equation*}
-		a'_{11} \left( x' + \frac{a'_1}{a'_{11}} \right)
-		+ a'_{22} \left( y' + \frac{a'_2}{a'_{22}} \right)
+	此时，把方程 \labelcref{equation:二次曲线方程的化简及其类型.转轴后所得方程}
+	配方得\begin{equation*}
+		a'_{11} \left( x' + \frac{a'_1}{a'_{11}} \right)^2
+		+ a'_{22} \left( y' + \frac{a'_2}{a'_{22}} \right)^2
 		+ a'_0
 		- \frac{(a'_1)^2}{a'_{11}}
 		- \frac{(a'_2)^2}{a'_{22}}
@@ -500,9 +501,10 @@
 	\end{equation*}
 	作移轴\begin{equation}\label{equation:二次曲线方程的化简及其类型.移轴变换}
 	%@see: 《解析几何》（丘维声） P152 (1.11)
+		\def\arraystretch{1.5}
 		\left\{ \begin{array}{l}
-			x^* = x' + \frac{a'_1}{a'_{11}}, \\
-			y^* = y' + \frac{a'_2}{a'_{22}},
+			x^* \defeq x' + \frac{a'_1}{a'_{11}}, \\
+			y^* \defeq y' + \frac{a'_2}{a'_{22}},
 		\end{array} \right.
 	\end{equation}
 	则二次方程 \labelcref{equation:二次曲线方程的化简及其类型.转轴后所得方程}
@@ -511,31 +513,39 @@
 		a'_{11} (x^*)^2 + a'_{22} (y^*)^2 + c^*_1 = 0,
 	\end{equation}
 	其中\begin{equation*}
-		c^*_1 = - \left( \frac{(a'_1)^2}{a'_{11}} + \frac{(a'_2)^2}{a'_{22}} \right) + a'_0.
+		c^*_1
+		\defeq a'_0
+		- \frac{(a'_1)^2}{a'_{11}}
+		- \frac{(a'_2)^2}{a'_{22}}.
 	\end{equation*}
 	\begin{enumerate}
-		\item 若\(c^*_1\)与\(a'_{11}\)异号，
+		\item 若\(c^*_1\)与\(a'_{11}\)异号，即\(c^*_1 a'_{11} < 0\)，
 		则\cref{equation:二次曲线方程的化简及其类型.移轴后所得方程1} 两边同除以\(-c^*_1\)，
+		得\begin{equation}\label{equation:二次曲线方程的化简及其类型.移轴后所得方程2}
+			\frac{a'_{11}}{-c^*_1} (x^*)^2
+			+ \frac{a'_{22}}{-c^*_1} (y^*)^2
+			= 1.
+		\end{equation}
+		再令\begin{equation*}
+			a_1^2 \defeq -\frac{c_1^*}{a'_{11}},
+			\qquad
+			b_1^2 \defeq -\frac{c_1^*}{a'_{22}},
+		\end{equation*}
 		得\begin{equation}\label{equation:二次曲线方程的化简及其类型.椭圆的标准方程}
 		%@see: 《解析几何》（丘维声） P152 (1.13)
 			\frac{(x^*)^2}{a_1^2} + \frac{(y^*)^2}{b_1^2} = 1,
 		\end{equation}
-		其中\begin{equation*}
-			a_1^2 = -\frac{c_1^*}{a'_{11}},
-			\qquad
-			b_1^2 = -\frac{c_1^*}{a'_{22}}.
-		\end{equation*}
-		显然，\cref{equation:二次曲线方程的化简及其类型.椭圆的标准方程} 是椭圆的标准方程.
+		显然，方程 \labelcref{equation:二次曲线方程的化简及其类型.椭圆的标准方程} 是椭圆的标准方程.
 
-		\item 若\(c^*_1\)与\(a'_{11}\)同号，
+		\item 若\(c^*_1\)与\(a'_{11}\)同号，即\(c^*_1 a'_{11} > 0\)，
 		则类似可得\begin{equation}\label{equation:二次曲线方程的化简及其类型.虚椭圆的标准方程}
 		%@see: 《解析几何》（丘维声） P152 (1.14)
 			\frac{(x^*)^2}{a_2^2} + \frac{(y^*)^2}{b_2^2} = -1,
 		\end{equation}
 		其中\begin{equation*}
-			a_2^2 = -\frac{c_1^*}{a'_{11}},
+			a_2^2 \defeq \frac{c_1^*}{a'_{11}},
 			\qquad
-			b_2^2 = -\frac{c_1^*}{a'_{22}}.
+			b_2^2 \defeq \frac{c_1^*}{a'_{22}}.
 		\end{equation*}
 		显然，方程 \labelcref{equation:二次曲线方程的化简及其类型.虚椭圆的标准方程} 没有轨迹，
 		我们称方程 \labelcref{equation:二次曲线方程的化简及其类型.虚椭圆的标准方程} 是虚椭圆的标准方程.
@@ -547,15 +557,15 @@
 			\frac{(x^*)^2}{a_3^2} + \frac{(y^*)^2}{b_3^2} = 0,
 		\end{equation}
 		其中\begin{equation*}
-			a_3^2 = -\frac1{\abs{a'_{11}}},
+			a_3^2 \defeq \frac1{\abs{a'_{11}}},
 			\qquad
-			b_3^2 = -\frac1{\abs{a'_{22}}}.
+			b_3^2 \defeq \frac1{\abs{a'_{22}}}.
 		\end{equation*}
 		显然，方程 \labelcref{equation:二次曲线方程的化简及其类型.点的方程} 表示一个点\(O^*\)
-		（即移轴后的坐标系的原点）.
+		（即移轴 \labelcref{equation:二次曲线方程的化简及其类型.移轴变换} 后的坐标系的原点）.
 	\end{enumerate}
 
-	\item 系数\(a'_{11}\)与\(a'_{22}\)异号.
+	\item 系数\(a'_{11}\)与\(a'_{22}\)异号，即\(a'_{11} a'_{22} < 0\).
 
 	由于双曲线的标准方程中，平方项的系数异号，
 	因此我们把消去交叉项后，平方项系数异号的二次曲线，称为\DefineConcept{双曲型曲线}.
@@ -566,25 +576,30 @@
 		\item 若\(c^*_1 \neq 0\)，
 		将 \labelcref{equation:二次曲线方程的化简及其类型.移轴后所得方程1}
 		两边同除以\(-c^*_1\)，
+		得方程 \labelcref{equation:二次曲线方程的化简及其类型.移轴后所得方程2}.
+
+		当\(c^*_1\)与\(a^*_{11}\)异号时，
+		令\begin{equation*}
+			a_4^2 \defeq -\frac{c^*_1}{a'_{11}},
+			\qquad
+			b_4^2 \defeq \frac{c^*_1}{a'_{22}},
+		\end{equation*}
 		得\begin{equation}\label{equation:二次曲线方程的化简及其类型.双曲线的标准方程1}
 		%@see: 《解析几何》（丘维声） P153 (1.16)
-			\frac{(x^*)^2}{a_4^2} - \frac{(y^*)^2}{b_4^2} = 1,
-			\quad\text{当$c^*_1$与$a^*_{11}$异号时},
+			\frac{(x^*)^2}{a_4^2} - \frac{(y^*)^2}{b_4^2} = 1.
 		\end{equation}
-		或\begin{equation}\label{equation:二次曲线方程的化简及其类型.双曲线的标准方程2}
-		%@see: 《解析几何》（丘维声） P153 (1.17)
-			- \frac{(x^*)^2}{a_5^2} + \frac{(y^*)^2}{b_5^2} = 1,
-			\quad\text{当$c^*_1$与$a^*_{11}$同号时},
-		\end{equation}
-		其中\begin{equation*}
-			a_4^2 = -\frac{c^*_1}{a'_{11}},
+
+		当\(c^*_1\)与\(a^*_{11}\)同号时，
+		令\begin{equation*}
+			a_5^2 \defeq \frac{c^*_1}{a'_{11}},
 			\qquad
-			b_4^2 = \frac{c^*_1}{a'_{22}},
-			\qquad
-			a_5^2 = \frac{c^*_1}{a'_{11}},
-			\qquad
-			b_5^2 = -\frac{c^*_1}{a'_{22}}.
+			b_5^2 \defeq -\frac{c^*_1}{a'_{22}},
 		\end{equation*}
+		得\begin{equation}\label{equation:二次曲线方程的化简及其类型.双曲线的标准方程2}
+		%@see: 《解析几何》（丘维声） P153 (1.17)
+			- \frac{(x^*)^2}{a_5^2} + \frac{(y^*)^2}{b_5^2} = 1.
+		\end{equation}
+
 		显然，方程 \labelcref{equation:二次曲线方程的化简及其类型.双曲线的标准方程1}
 		和方程 \labelcref{equation:二次曲线方程的化简及其类型.双曲线的标准方程2} 均表示双曲线.
 		我们还可以将坐标轴再转\(\frac\pi2\)，
@@ -593,11 +608,12 @@
 
 		\item 若\(c^*_1 = 0\)，
 		则方程 \labelcref{equation:二次曲线方程的化简及其类型.移轴后所得方程1}
-		可以化成\begin{equation*}
+		可以化成\begin{equation}\label{equation:二次曲线方程的化简及其类型.相交直线的方程}
 		%@see: 《解析几何》（丘维声） P153 (1.18)
-			\frac{(x^*)^2}{a_3^2} - \frac{(y^*)^2}{a_3^2} = 0.
-		\end{equation*}
-		对等号左边进行因式分解，可以看出这个方程表示一对相交直线.
+			\frac{(x^*)^2}{a_3^2} - \frac{(y^*)^2}{b_3^2} = 0.
+		\end{equation}
+		对方程 \labelcref{equation:二次曲线方程的化简及其类型.相交直线的方程}
+		等号左边进行因式分解，可以看出这个方程表示一对相交直线.
 	\end{enumerate}
 
 	\item 系数\(a'_{11}\)与\(a'_{22}\)中有一个为零（不可能全为零）.
@@ -630,10 +646,10 @@
 			\end{array} \right.
 		\end{equation*}
 		则方程 \labelcref{equation:二次曲线方程的化简及其类型.配方后所得方程}
-		成为\begin{equation*}
+		成为\begin{equation}\label{equation:二次曲线方程的化简及其类型.抛物线的标准方程}
 		%@see: 《解析几何》（丘维声） P154 (1.22)
 			a'_{22} (y^*)^2 + 2 a'_1 x^* = 0.
-		\end{equation*}
+		\end{equation}
 		显然，这是抛物线的方程.
 
 		\item 若\(a'_1 = 0\)，
@@ -660,11 +676,12 @@
 		\begin{enumerate}
 			\item 若\(c^*_2\)与\(a'_{22}\)异号，
 			则由方程 \labelcref{equation:二次曲线方程的化简及其类型.先配方再移轴后所得方程}
-			得\begin{equation*}
+			得\begin{equation}
 			%@see: 《解析几何》（丘维声） P154 (1.25)
 				(y^*)^2 = -\frac{c^*_2}{a'_{22}}.
-			\end{equation*}
-			显然，这个方程表示一对平行直线.
+			\end{equation}
+			显然，\(-c^*_2/a'_{22} > 0\)，
+			这个方程表示（与\(x^*\)轴平行的）一对平行直线.
 
 			\item 若\(c^*_2\)与\(a'_{22}\)同号，
 			则容易看出方程 \labelcref{equation:二次曲线方程的化简及其类型.先配方再移轴后所得方程} 没有轨迹，
@@ -672,10 +689,10 @@
 
 			\item 若\(c^*_2 = 0\)，
 			则由方程 \labelcref{equation:二次曲线方程的化简及其类型.先配方再移轴后所得方程}
-			得\begin{equation*}
+			得\begin{equation}
 			%@see: 《解析几何》（丘维声） P154 (1.26)
 				(y^*)^2 = 0.
-			\end{equation*}
+			\end{equation}
 			显然，这个方程表示（与\(x^*\)轴重合的）一对重合直线.
 		\end{enumerate}
 	\end{enumerate}
@@ -686,3 +703,31 @@
 双曲型曲线有2种，包括双曲线、一对相交直线；
 抛物型曲线有4种，包括抛物线、一对平行直线、一对虚平行直线、一对重合直线.
 椭圆、双曲线、抛物线这3种曲线，统称为\DefineConcept{圆锥曲线}.
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P154 例1.2
+确定\cref{example:二次曲线方程的化简及其类型.例1} 中二次方程表示的二次曲线\(S\)的类型、形状和位置.
+\begin{solution}
+\cref{example:二次曲线方程的化简及其类型.例1} 中我们通过转轴已经把二次方程化简成\begin{equation*}
+	6(x')^2 + (y')^2 - 12\sqrt5 x' + 18 = 0.
+\end{equation*}
+因为\(a'_{11}\)与\(a'_{22}\)同号，
+所以\(S\)是椭圆型曲线.
+配方得\begin{equation*}
+	6(x' - \sqrt5)^2 + (y')^2 - 12 = 0.
+\end{equation*}
+作转轴\begin{equation*}
+	\left\{ \begin{array}{l}
+		x^* = x' - \sqrt5, \\
+		y^* = y',
+	\end{array} \right.
+\end{equation*}
+得\begin{equation*}
+	6(x^*)^2 + (y^*)^2 - 12 = 0,
+\end{equation*}
+即\begin{equation*}
+	\frac{(x^*)^2}{2} + \frac{(y^*)^2}{12} = 1.
+\end{equation*}
+这是一个椭圆，长轴在\(y^*\)轴上，长半周长为\(2\sqrt3\)，短半轴长为\(\sqrt2\).
+\end{solution}
+\end{example}
