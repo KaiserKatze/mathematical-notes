@@ -401,3 +401,171 @@
 对于任意二次曲线，\(K_1\)在移轴下其函数值可能发生变化.
 因此我们把\(K_1\)称为半不变量.
 \end{remark}
+
+\subsection{利用不变量确定二次曲线的类型和形状}
+设二次曲线的方程 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程}
+经过直角坐标变换化成了最简形式.
+\begin{enumerate}
+	\item 如果最简形式是椭圆型曲线或双曲型曲线，此时最简方程为\begin{equation*}
+		a'_{11} (x^*)^2 + a'_{22} (y^*)^2 + c^*_1 = 0,
+	\end{equation*}
+	其中\(
+		a'_{11} = \lambda_1,
+		a'_{22} = \lambda_2
+	\).
+	当\(a'_{11}\)与\(a'_{22}\)同号时，曲线是椭圆型.
+	当\(a'_{11}\)与\(a'_{22}\)异号时，曲线是双曲型.
+	由于\(I_1\)和\(I_2\)是不变量，
+	所以有\begin{equation*}
+	%@see: 《解析几何》（丘维声） P164 (2.15)
+		\left\{ \begin{array}{l}
+			a'_{11} + a'_{22} = I_1, \\
+			a'_{11} a'_{22} = I_2.
+		\end{array} \right.
+	\end{equation*}
+	于是\(a'_{11}\)与\(a'_{22}\)同号的充分必要条件是\(I_2 > 0\).
+	这表明，若\(I_2 > 0\)，则曲线是椭圆型；
+	若\(I_2 < 0\)，则曲线是双曲型.
+
+	因为\(I_3\)也是不变量，
+	所以\begin{equation*}
+		I_3
+		= \begin{vmatrix}
+			a'_{11} & 0 & 0 \\
+			0 & a'_{22} & 0 \\
+			0 & 0 & c^*_1
+		\end{vmatrix}
+		= a'_{11} a'_{22} c^*_1
+		= I_2 c^*_1,
+	\end{equation*}
+	从而有\begin{equation*}
+	%@see: 《解析几何》（丘维声） P164 (2.16)
+		c^*_1 = \frac{I_3}{I_2}.
+	\end{equation*}
+	这样，椭圆型或双曲型曲线的
+	最简方程 \labelcref{equation:二次曲线方程的化简及其类型.移轴后所得方程1}
+	可以写成\begin{equation*}
+	%@see: 《解析几何》（丘维声） P164 (2.17)
+		\lambda_1 (x^*)^2 + \lambda_2 (y^*)^2 + \frac{I_3}{I_2} = 0.
+	\end{equation*}
+	由上述方程可以确定二次曲线的形状，并且得出判别曲线所属的类型的方法：
+	当\(I_2 > 0\)时，
+		若\(I_3\)与\(I_1\)异号，则曲线是椭圆；
+		若\(I_3\)与\(I_1\)同号，则曲线是虚椭圆；
+		若\(I_3 = 0\)，则曲线是一个点.
+	当\(I_2 < 0\)时，
+		若\(I_3 \neq 0\)，则曲线是双曲线；
+		若\(I_3 = 0\)，则曲线是一对相交直线.
+
+	\item 如果最简形式是抛物型曲线，我们可以再细分为两种情况进行讨论.
+	\begin{enumerate}
+		\item 曲线是抛物线，其最简方程为\begin{equation*}
+			a'_{22} (y^*)^2 + 2 a'_1 x^* = 0,
+			\quad a'_{22} \neq 0, a'_1 \neq 0.
+		\end{equation*}
+		由于\(I_1,I_2,I_3\)是不变量，
+		因此有\begin{equation*}
+			I_1 = a'_{22},
+			\qquad
+			I_2 = \begin{vmatrix}
+				0 & 0 \\
+				0 & a'_{22}
+			\end{vmatrix}
+			= 0,
+			\qquad
+			I_3 = \begin{vmatrix}
+				0 & 0 & a'_1 \\
+				0 & a'_{22} & 0 \\
+				a'_1 & 0 & 0
+			\end{vmatrix}
+			= - a'_{22} (a'_1)^2
+			= - I_1 (a'_1)^2.
+		\end{equation*}
+		于是最简方程 \labelcref{equation:二次曲线方程的化简及其类型.抛物线的标准方程}
+		可以写成\begin{equation*}
+		%@see: 《解析几何》（丘维声） P165 (2.18)
+			I_1 (y^*)^2 \pm 2 \sqrt{-\frac{I_3}{I_1}} x^* = 0.
+		\end{equation*}
+
+		\item 曲线不是抛物线，此时最简方程为\begin{equation*}
+			a'_{22} (y^*)^2 + c^*_2 = 0,
+			\quad a'_{22} \neq 0.
+		\end{equation*}
+		计算出\begin{equation*}
+			I_1 = a'_{22},
+			\qquad
+			I_2 = 0,
+			\qquad
+			I_3 = 0.
+		\end{equation*}
+		由于\(I_2 = I_3 = 0\)，
+		因此\(K_1\)在转轴和移轴下均不变，
+		从而有\begin{equation*}
+			K_1
+			= \begin{vmatrix}
+				0 & 0 \\
+				0 & c^*_2
+			\end{vmatrix}
+			+ \begin{vmatrix}
+				a'_{22} & 0 \\
+				0 & c^*_2
+			\end{vmatrix}
+			= a'_{22} c^*_2
+			= I_1 c^*_2.
+		\end{equation*}
+		于是最简方程 \labelcref{equation:二次曲线方程的化简及其类型.先配方再移轴后所得方程}
+		可以写成\begin{equation*}
+		%@see: 《解析几何》（丘维声） P165 (2.19)
+			I_1 (y^*)^2 + \frac{K_1}{I_1} = 0.
+		\end{equation*}
+	\end{enumerate}
+
+	综上所述，当\(I_2 = 0\)时，曲线是抛物型.
+	此时，若\(I_3 \neq 0\)，则曲线是抛物线.
+	若\(I_3 = 0\)，则又分三种情况：
+		当\(K_1 < 0\)时，曲线是一对平行直线；
+		当\(K_1 > 0\)时，曲线是一对虚平行直线；
+		当\(K_1 = 0\)时，曲线是一对重合直线.
+\end{enumerate}
+
+从上面看到，利用二次曲线的不变量\(I_1,I_2,I_3\)和半不变量\(K_1\)，
+就能完全确定曲线的类型和形状.
+把上述结果列成一个表，如\cref{table:二次曲线方程的不变量.利用不变量确定二次曲线的类型和形状} 所示.
+
+\begin{table}[hbt]
+	\centering
+	\begin{tblr}{c*4{|c}}
+		\hline
+		大类 & 大类判据 & 小类 & 小类判据 & 最简方程 \\
+		\hline
+		\SetCell[r=3]{c}
+		椭圆型
+		& \SetCell[r=3]{c} \(I_2 > 0\)
+		& 椭圆 & \(I_3 I_1 < 0\)
+		& \SetCell[r=5]{l}
+			\(\lambda_1 (x^*)^2 + \lambda_2 (y^*)^2 + \frac{I_3}{I_1} = 0\)
+		\\ \cline{3-4}
+		&& 虚椭圆 & \(I_3 I_1 > 0\) & \\ \cline{3-4}
+		&& 一个点 & \(I_3 = 0\) & \\ \hline
+		\SetCell[r=2]{c}
+		双曲型
+		& \SetCell[r=2]{c}
+		\(I_2 < 0\)
+		& 双曲线 & \(I_3 \neq 0\) & \\ \cline{3-4}
+		&& 一对相交直线 & \(I_3 = 0\) & \\ \hline
+		\SetCell[r=4]{c}
+		抛物型
+		& \SetCell[r=4]{c}
+		\(I_2 = 0\)
+		& 抛物线 & \(I_3 \neq 0\)
+		& \(I_1 (y^*)^2 \pm 2 \sqrt{-\frac{I_3}{I_1}} x^* = 0\) \\ \cline{3-5}
+		&& 一对平行直线 & \(I_3 = 0, K_1 < 0\)
+		& \SetCell[r=3]{c}
+			\(I_1 (y^*)^2 + \frac{K_1}{I_1} = 0\) \\ \cline{3-4}
+		&& 一对虚平行直线 & \(I_3 = 0, K_1 > 0\) & \\ \cline{3-4}
+		&& 一堆重合直线 & \(I_3 = 0, K_1 = 0\) & \\
+		\hline
+	\end{tblr}
+	\caption{}
+	\label{table:二次曲线方程的不变量.利用不变量确定二次曲线的类型和形状}
+\end{table}
