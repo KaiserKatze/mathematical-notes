@@ -120,12 +120,114 @@
 则称“点\(O'\)是曲线\(S\)的一个\DefineConcept{对称中心}”.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:二次曲线方程的对称中心.一点是二次曲线方程的对称中心的充分必要条件}
 %@see: 《解析几何》（丘维声） P172 定理3.2
-点\(O'(x_0,y_0)\)是二次曲线\(S\)的对称中心的充分必要条件是\begin{equation*}
+点\(O'(x_0,y_0)\)是二次曲线\(S\)的对称中心的充分必要条件
+是\begin{equation}\label{equation:二次曲线方程的对称中心.对称中心方程组}
+%@see: 《解析几何》（丘维声） P173 (3.4)
+	F_1(x_0,y_0) = F_2(x_0,y_0) = 0.
+\end{equation}
+\begin{proof}
+必要性.
+设\(O'(x_0,y_0)\)是二次曲线\(S\)的一个对称中心.
+任取\(S\)的一个非渐进方向\((\mu,\nu)\)，
+则经过\(O'\)且方向为\((\mu,\nu)\)的直线\(l\)
+与\(S\)由两个交点\(M_1(x_1,y_1)\)和\(M_2(x_2,y_2)\).
+由于\(O'\)是\(S\)的对称中心，
+所以\(O'\)是线段\(M_1 M_2\)的中点.
+于是\begin{equation*}
+%@see: 《解析几何》（丘维声） P173 (3.5)
+	x_0 = \frac{x_1 + x_2}{2},
+	\qquad
+	x_0 = \frac{x_1 + x_2}{2}.
+	\eqno(1)
+\end{equation*}
+设\(M_i\)对应的参数值为\(t_i\)，则有\begin{equation*}
+%@see: 《解析几何》（丘维声） P173 (3.6)
+	\left\{ \begin{array}{l}
+		x_i = x_0 + \mu t_i, \\
+		y_i = y_0 + \nu t_i,
+	\end{array} \right.
+	\quad i=1,2.
+	\eqno(2)
+\end{equation*}
+将(2)式代入(1)式，得\begin{equation*}
+	2 x_0 = 2 x_0 + \mu (t_1 + t_2),
+	\qquad
+	2 y_0 = 2 y_0 + \nu (t_1 + t_2),
+\end{equation*}
+于是有\begin{equation*}
+	\mu (t_1 + t_2) = \nu (t_1 + t_2) = 0.
+\end{equation*}
+由于\(\mu,\nu\)不全为零，
+因此\(t_1 + t_2 = 0\).
+因为\(M_1,M_2\)是\(l\)与\(S\)的交点，
+所以它对应的参数值\(t_1,t_2\)是
+关于\(t\)的一元二次方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 的根.
+根据韦达定理，
+有\begin{equation*}
+	t_1 + t_2
+	= \frac{-2}{\phi(\mu,\nu)} (
+		F_1(x_0,y_0) \mu
+		+ F_2(x_0,y_0) \nu
+	).
+\end{equation*}
+再由\(t_1 + t_2 = 0\)得\begin{equation*}
+%@see: 《解析几何》（丘维声） P173 (3.7)
+	\mu F_1(x_0,y_0) + \nu F_2(x_0,y_0) = 0.
+\end{equation*}
+上式对于\(S\)的任意非渐进方向\((\mu,\nu)\)都成立.
+取\(S\)的两个不共线的非渐进方向\(\vb{v}_1(\mu_1,\nu_1)\)和\(\vb{v}_2(\mu_2,\nu_2)\)，
+则有\begin{equation*}
+%@see: 《解析几何》（丘维声） P173 (3.8)
+	\mu_1 F_1(x_0,y_0) + \nu_1 F_2(x_0,y_0) = 0,
+	\qquad
+	\mu_2 F_1(x_0,y_0) + \nu_2 F_2(x_0,y_0) = 0.
+\end{equation*}
+这说明\((F_1(x_0,y_0),F_2(x_0,y_0))\)是关于\(x,y\)的齐次线性方程组\begin{equation*}
+%@see: 《解析几何》（丘维声） P173 (3.9)
+	\left\{ \begin{array}{l}
+		\mu_1 x + \nu_1 y = 0, \\
+		\mu_2 x + \nu_2 y = 0
+	\end{array} \right.
+	\eqno(3)
+\end{equation*}的解.
+由于\(\vb{v}_1\)与\(\vb{v}_2\)不共线，
+因此\begin{equation*}
+	\begin{vmatrix}
+		\mu_1 & \mu_2 \\
+		\nu_1 & \nu_2
+	\end{vmatrix}
+	\neq 0,
+\end{equation*}
+从而齐次线性方程组(3)只有零解，
+即\begin{equation*}
 	F_1(x_0,y_0) = F_2(x_0,y_0) = 0.
 \end{equation*}
-%TODO proof
+
+充分性.
+假设点\(O'\)的坐标\((x_0,y_0)\)是方程 \labelcref{equation:二次曲线方程的对称中心.对称中心方程组} 的解，
+即\begin{equation*}
+	F_1(x_0,y_0) = F_2(x_0,y_0) = 0.
+\end{equation*}
+作移轴，使\(O'\)为新坐标系的原点，移轴公式为\begin{equation*}
+	\left\{ \begin{array}{l}
+		x = x' + x_0, \\
+		y = y' + y_0.
+	\end{array} \right.
+\end{equation*}
+代入\(S\)的原方程 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程}，
+得到\(S\)的新方程为\begin{equation*}
+%@see: 《解析几何》（丘维声） P174 (3.10)
+	a_{11} (x')^2
+	+ 2 a_{12} x' y'
+	+ a_{22} (y')^2
+	+ F(x_0,y_0)
+	= 0.
+\end{equation*}
+在此方程中，用\(-x'\)代\(x'\)，用\(-y'\)代\(y'\)，方程不变，
+所以\(O'\)是\(S\)的对称中心.
+\end{proof}
 \end{theorem}
 
 \begin{theorem}
