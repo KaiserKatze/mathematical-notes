@@ -20,7 +20,8 @@
 \end{equation*}
 为了讨论直线\(l\)与二次曲线\(S\)的相关位置，
 我们把上式代入\cref{equation:二次曲线方程.平面二次曲线的一般方程}，
-整理得\begin{equation*}
+%@Mathematica: Collect[F[Subscript[x, 0] + \[Mu] t, Subscript[y, 0] + \[Nu] t] // Expand, {t, \[Mu], \[Nu]}]
+整理得\begin{equation}\label{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程}
 %@see: 《解析几何》（丘维声） P170 (3.2)
 	\phi(\mu,\nu) t^2
 	+ 2 (
@@ -29,10 +30,127 @@
 	) t
 	+ F(x_0,y_0)
 	= 0,
-\end{equation*}
+\end{equation}
 其中\(F(x,y)\)是\cref{equation:二次曲线方程.平面二次曲线的一般方程} 中等号左边的多项式，
 \(\phi(x,y)\)是\(F(x,y)\)的二次项部分，
-而\begin{gather*}
-	F_1(x,y) \defeq a_{11} x + a_{12} y + a_1, \\
+而\begin{equation*}
+	F_1(x,y) \defeq a_{11} x + a_{12} y + a_1,
+	\qquad
 	F_2(x,y) \defeq a_{12} x + a_{22} y + a_2.
-\end{gather*}
+\end{equation*}
+
+下面我们按\(\phi(\mu,\nu)\)的取值是否为零，分情况讨论.
+\begin{enumerate}
+	\item 当\(\phi(\mu,\nu) \neq 0\)时，
+	\cref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 是
+	关于\(t\)的一元二次方程，
+	它的判别式为\begin{equation*}
+		\Delta \defeq 4 (F_1(x_0,y_0) \mu + F_2(x_0,y_0) \nu)^2 - 4 \phi(\mu,\nu) F(x_0,y_0).
+	\end{equation*}
+	\begin{enumerate}
+		\item 如果\(\Delta > 0\)，则\(l\)与\(S\)有两个不同交点；
+
+		\item 如果\(\Delta = 0\)，则\(l\)与\(S\)有两个重合交点；
+
+		\item 如果\(\Delta < 0\)，则\(l\)与\(S\)没有交点
+		（由于此时方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 有两个共轭复根，
+		因此称\(l\)与\(S\)有两个虚交点）.
+	\end{enumerate}
+
+	\item 当\(\phi(\mu,\nu) = 0\)时，
+	我们又可以按照\(F_1(x_0,y_0) \mu + F_2(x_0,y_0) \nu\)是否等于零，分情况讨论.
+	\begin{enumerate}
+		\item 如果\(F_1(x_0,y_0) \mu + F_2(x_0,y_0) \nu \neq 0\)，
+		则方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 是
+		关于\(t\)的一元一次方程，
+		说明\(l\)与\(S\)有且仅有一个交点；
+
+		\item 如果\(F_1(x_0,y_0) \mu + F_2(x_0,y_0) \nu = 0\)，
+		我们还可以按照\(F(x_0,y_0)\)是否等于零，分情况讨论.
+		\begin{enumerate}
+			\item 如果\(F(x_0,y_0) = 0\)，
+			则方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 是一个恒等式，有无穷多解，
+			任意一个实数\(t\)都是方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 的一个解，
+			说明整条直线\(l\)都在\(S\)上，\(l\)是\(S\)的一个子集；
+
+			\item 如果\(F(x_0,y_0) \neq 0\)，
+			则方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 无解，
+			说明\(l\)与\(S\)没有交点.
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P171 定义3.1
+设二次曲线\(S\)的方程为 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程}.
+如果非零向量\(\vb{v}\)的坐标\((\mu,\nu)\)满足
+\(\phi(\mu,\nu) = 0\)，
+则称“向量\(\vb{v}\)是曲线\(S\)的\DefineConcept{渐进方向}”；
+否则称“向量\(\vb{v}\)是曲线\(S\)的\DefineConcept{非渐进方向}”.
+\end{definition}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P171 定理3.1
+椭圆型曲线没有渐进方向.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P171 定理3.1
+双曲型曲线有两个渐进方向.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P171 定理3.1
+抛物型曲线只有一个渐进方向.
+%TODO proof
+\end{theorem}
+
+\subsection{二次曲线的对称中心}
+我们已经知道，椭圆和双曲线都有一个对称中心，而抛物线没有对称中心.
+其中几种二次曲线有没有对称中心？
+如果一条二次曲线有对称中心，如何直接从原方程求出它的对称中心？
+本小节就来讨论这些问题.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P172 定义3.2
+设\(S\)是一个二次曲线.
+如果\(S\)上任意一点\(M_1\)关于定点\(O'\)的对称点\(M_2\)仍在\(S\)上，
+则称“点\(O'\)是曲线\(S\)的一个\DefineConcept{对称中心}”.
+\end{definition}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P172 定理3.2
+点\(O'(x_0,y_0)\)是二次曲线\(S\)的对称中心的充分必要条件是\begin{equation*}
+	F_1(x_0,y_0) = F_2(x_0,y_0) = 0.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P174 定理3.3
+椭圆型或双曲型曲线有唯一的对称中心.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P174 定理3.3
+\(I_3 = 0\)的抛物型曲线有无穷多个对称中心，
+且这些对称中心组成一条直线（方程为\(F_1(x,y) = 0\)或\(F_2(x,y) = 0\)）.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P174 定理3.3
+\(I_3 \neq 0\)的抛物型曲线没有对称中心.
+%TODO proof
+\end{theorem}
+
+我们把具有唯一对称中心的二次曲线称为\DefineConcept{中心型曲线}，
+把没有对称中心的二次曲线称为\DefineConcept{无心曲线}，
+把具有无穷多个对称中心的二次曲线称为\DefineConcept{线心曲线}，
+把无心曲线和线心曲线统称为\DefineConcept{非中心型曲线}.
+于是，椭圆型和双曲型曲线都是中心型曲线，
+抛物型曲线都是非中心型曲线，
+其中抛物线是无心曲线，一对平行直线、一对虚平行直线、一对重合直线都是线性曲线.
