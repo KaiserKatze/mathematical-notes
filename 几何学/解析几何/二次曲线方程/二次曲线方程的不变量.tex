@@ -450,39 +450,48 @@
 
 对于\(I_2 = I_3 = 0\)的二次曲线，
 由\(I_2 = 0\)
-得\(a_{11} a_{22} = a_{12}^2\)，
-即\begin{equation*}
-	\frac{a_{11}}{a_{12}} = \frac{a_{12}}{a_{22}}.
-\end{equation*}
+得\(a_{11} a_{22} = a_{12}^2\).
 此时\(a_{11}\)和\(a_{22}\)至少有一个不为零
-（否则会有\(a_{11} = a_{22} = a_{12} = 0\)，矛盾）.
+（否则会有\(a_{11} = a_{22} = a_{12} = 0\)，
+与方程 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程}
+所要求的前提条件“\(a_{11},a_{12},a_{22}\)不全为零”矛盾）.
 不妨设\(a_{22} \neq 0\)，
 于是可以记\(l \defeq a_{12} / a_{22}\).
-此时有\begin{align*}
+那么\(a_{12} = l a_{22}\)，
+从而\(a_{11} a_{22} = (l a_{22})^2 = l^2 a_{22}^2\)，
+消去\(a_{22}\)得\(a_{11} = l^2 a_{22}\)，
+因此\begin{align*}
 	I_3
 	&= \begin{vmatrix}
 		a_{11} & a_{12} & a_1 \\
 		a_{12} & a_{22} & a_2 \\
 		a_1 & a_2 & a_0
 	\end{vmatrix}
+	% 代入\(a_{12} = l a_{22}\)和\(a_{11} = l^2 a_{22}\)
 	= \begin{vmatrix}
-		l a_{12} & l a_{22} & a_1 \\
-		a_{12} & a_{22} & a_2 \\
+		l^2 a_{22} & l a_{22} & a_1 \\
+		l a_{22} & a_{22} & a_2 \\
 		a_1 & a_2 & a_0
 	\end{vmatrix}
+	%\cref{theorem:行列式.性质6}
 	= \begin{vmatrix}
 		0 & 0 & a_1 - l a_2 \\
-		a_{12} & a_{22} & a_2 \\
+		l a_{22} & a_{22} & a_2 \\
 		a_1 & a_2 & a_0
 	\end{vmatrix} \\
-	&= (a_1 - l a_2) \begin{vmatrix}
-		a_{12} & a_{22} \\
-		a_1 & a_2
-	\end{vmatrix}
-	= (a_1 - l a_2) \begin{vmatrix}
-		0 & a_{22} \\
-		a_1 - l a_2 & a_2
-	\end{vmatrix} \\
+	%\cref{theorem:行列式.行列式按行展开}
+	&= (a_1 - l a_2)
+		\begin{vmatrix}
+			l a_{22} & a_{22} \\
+			a_1 & a_2
+		\end{vmatrix}
+	%\cref{theorem:行列式.性质6}
+	= (a_1 - l a_2)
+		\begin{vmatrix}
+			0 & a_{22} \\
+			a_1 - l a_2 & a_2
+		\end{vmatrix} \\
+	%\cref{theorem:行列式.行列式按行展开}
 	&= -a_{22} (a_1 - l a_2)^2.
 \end{align*}
 因为\(I_3 = 0\)且\(a_{22} \neq 0\)，
