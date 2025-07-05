@@ -110,7 +110,8 @@
 			+ a_{22} y_0^2
 			+ 2 a_1 x_0
 			+ 2 a_2 y_0
-			+ a_0,
+			+ a_0
+			= F(x_0,y_0),
 	\end{gather*}
 	那么称“函数\(f\)是曲线 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的
 	一个\DefineConcept{平移不变量}”.
@@ -474,6 +475,7 @@
 		a_1 & a_2 & a_0
 	\end{vmatrix}
 	%\cref{theorem:行列式.性质6}
+	% 第一行减去第二行的\(l\)倍
 	= \begin{vmatrix}
 		0 & 0 & a_1 - l a_2 \\
 		l a_{22} & a_{22} & a_2 \\
@@ -486,6 +488,7 @@
 			a_1 & a_2
 		\end{vmatrix}
 	%\cref{theorem:行列式.性质6}
+	% 第一列减去第二列的\(l\)倍
 	= (a_1 - l a_2)
 		\begin{vmatrix}
 			0 & a_{22} \\
@@ -495,15 +498,8 @@
 	&= -a_{22} (a_1 - l a_2)^2.
 \end{align*}
 因为\(I_3 = 0\)且\(a_{22} \neq 0\)，
-所以\(a_1 - l a_2 = 0\).
-于是得到\begin{equation*}
-%@see: 《解析几何》（丘维声） P163 (2.13)
-	\frac{a_{11}}{a_{12}}
-	= \frac{a_{12}}{a_{22}}
-	= \frac{a_1}{a_2}
-	= l.
-	\eqno(1)
-\end{equation*}
+所以\(a_1 - l a_2 = 0\)，
+即\(a_1 = l a_2\).
 现在作移轴\(\vb\alpha = \vb\alpha^* + \vb\alpha_0\)，
 由方程 \labelcref{equation:二次曲线方程的不变量.移轴后的方程} 得\begin{align*}
 %@see: 《解析几何》（丘维声） P163 (2.14)
@@ -515,35 +511,47 @@
 		a_{11} & a_{11} x_0 + a_{12} y_0 + a_1 \\
 		a_{11} x_0 + a_{12} y_0 + a_1 & F(x_0,y_0)
 	\end{vmatrix} \\
+	%\cref{theorem:行列式.性质6}
+	% 第二列减去第一列的\(x_0\)倍
 	&= \begin{vmatrix}
 		a_{11} & a_{12} y_0 + a_1 \\
 		a_{11} x_0 + a_{12} y_0 + a_1 & a_{12} x_0 y_0 + a_{22} y_0^2 + a_1 x_0 + 2 a_2 y_0 + a_0
 	\end{vmatrix} \\
+	%\cref{theorem:行列式.性质6}
+	% 第二行减去第一行的\(x_0\)倍
+	%@Mathematica: MatP13 = {{1, 0}, {-Subscript[x, 0], 1}}.{{Subscript[a, 11], Subscript[a, 11] Subscript[x, 0] + Subscript[a, 12] Subscript[y, 0] + Subscript[a, 1]}, {Subscript[a, 11] Subscript[x, 0] + Subscript[a, 12] Subscript[y, 0] + Subscript[a, 1], F[Subscript[x, 0], Subscript[y, 0]]}}.{{1, -Subscript[x, 0]}, {0, 1}} // Expand
 	&= \begin{vmatrix}
 		a_{11} & a_{12} y_0 + a_1 \\
-		a_{12} y_0 + a_1 & a_{22} y_0^2 + 2 a_2 y_0 a_0
+		a_{12} y_0 + a_1 & a_{22} y_0^2 + 2 a_2 y_0 + a_0
 	\end{vmatrix}.
-	\tag2
+	\tag1
 \end{align*}
 若\(l \neq 0\)，有\begin{align*}
 	\begin{vmatrix}
 		a^*_{11} & a^*_1 \\
 		a^*_1 & a^*_0
 	\end{vmatrix}
+	% 代入\(a_{22} = \frac1l a_{12}\)和\(a_{22} = \frac1{l^2} a_{11}\)以及\(a_2 = \frac1l a_1\)
 	&= \begin{vmatrix}
 		a_{11} & \frac1l a_{11} y_0 + a_1 \\
 		\frac1l a_{11} y_0 + a_1 & \frac1{l^2} a_{11} y_0^2 + \frac2l a_1 y_0 + a_0
 	\end{vmatrix} \\
+	%\cref{theorem:行列式.性质6}
+	% 第二列减去第一列的\(y_0/l\)倍
 	&= \begin{vmatrix}
 		a_{11} & a_1 \\
 		\frac1l a_{11} y_0 + a_1 & \frac1l a_1 y_0 + a_0
 	\end{vmatrix}
+	%\cref{theorem:行列式.性质6}
+	% 第二行减去第一行的\(y_0/l\)倍
 	= \begin{vmatrix}
 		a_{11} & a_1 \\
 		a_1 & a_0
 	\end{vmatrix};
+	%@Mathematica: MatP131 = MatP13 /. {Subscript[a, 12] -> 1/l Subscript[a, 11], Subscript[a, 22] -> 1/l^2 Subscript[a, 11], Subscript[a, 2] -> 1/l Subscript[a, 1]}
+	%@Mathematica: {{1, 0}, {-Subscript[y, 0]/l, 1}}.MatP131.{{1, -Subscript[y, 0]/l}, {0, 1}} // Expand
 \end{align*}
-若\(l = 0\)，则由(1)式可知\(a_{11} = a_{12} = a_1 = 0\)，于是(2)式等于零.
+若\(l = 0\)，则\(a_{11} = a_{12} = a_1 = 0\)，于是(1)式等于零.
 总之，有\begin{equation*}
 	\begin{vmatrix}
 		a^*_{11} & a^*_1 \\
