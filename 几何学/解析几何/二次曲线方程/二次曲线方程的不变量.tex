@@ -18,15 +18,120 @@
 %@see: 《解析几何》（丘维声） P158 定义5.1
 设\(f\colon \mathbb{R}^6 \to \mathbb{R}\)是
 关于曲线方程 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的系数的函数.
-如果在任意一个直角坐标变换下，
-它的函数值不变，
-即\begin{equation*}
-	f(a_{11},a_{12},a_{22},a_1,a_2,a_0)
-	= f(a'_{11},a'_{12},a'_{22},a'_1,a'_2,a_0),
-\end{equation*}
-那么称“函数\(f\)是曲线 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的
-一个\DefineConcept{正交不变量}”，
-简称\DefineConcept{不变量}.
+\begin{itemize}
+	\item 如果在任意一个转轴\begin{equation*}
+		%\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.矩阵形式3}
+		\begin{bmatrix}
+			x \\ y
+		\end{bmatrix}
+		= \begin{bmatrix}
+			\cos\theta & -\sin\theta \\
+			\sin\theta & \cos\theta
+		\end{bmatrix}
+		\begin{bmatrix}
+			x' \\ y'
+		\end{bmatrix}
+	\end{equation*}下，
+	\(f\)的函数值不变，
+	即\begin{equation*}
+		f(a_{11},a_{12},a_{22},a_1,a_2,a_0)
+		= f(a'_{11},a'_{12},a'_{22},a'_1,a'_2,a'_0),
+	\end{equation*}
+	%@Mathematica: P = {{Subscript[a, 11], Subscript[a, 12], Subscript[a, 1]}, {Subscript[a, 12], Subscript[a, 22], Subscript[a, 2]}, {Subscript[a, 1], Subscript[a, 2], Subscript[a, 0]}}
+	%@Mathematica: R = {{Cos[\[Theta]], -Sin[\[Theta]], 0}, {Sin[\[Theta]], Cos[\[Theta]], 0}, {0, 0, 1}}
+	其中\begin{gather*}
+		%@Mathematica: (Transpose[R].P.R)[[1, 1]] // Expand
+		a'_{11} \defeq a_{11} \cos^2\theta + a_{12} \sin2\theta + a_{22} \sin^2\theta, \\
+		%@Mathematica: (Transpose[R].P.R)[[1, 2]] // Expand
+		a'_{12} \defeq - a_{11} \cos\theta \sin\theta + a_{12} \cos2\theta + a_{22} \cos\theta \sin\theta, \\
+		%@Mathematica: (Transpose[R].P.R)[[2, 2]] // Expand
+		a'_{22} \defeq a_{11} \sin^2\theta - 2 a_{12} \cos\theta \sin\theta + a_{22} \cos^2\theta, \\
+		%@Mathematica: (Transpose[R].P.R)[[1, 3]] // Expand
+		a'_1 \defeq a_1 \cos\theta + a_2 \sin\theta,
+		\qquad
+		%@Mathematica: (Transpose[R].P.R)[[2, 3]] // Expand
+		a'_2 \defeq - a_1 \sin\theta + a_2 \cos\theta,
+		\qquad
+		%@Mathematica: (Transpose[R].P.R)[[3, 3]] // Expand
+		a'_0 \defeq a_0,
+	\end{gather*}
+	那么称“函数\(f\)是曲线 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的
+	一个\DefineConcept{旋转不变量}”.
+
+	\item 如果在任一移轴\begin{equation*}
+		%\cref{equation:解析几何.平面坐标系的点的右手直角坐标变换公式I到II.代数形式2}
+		\left\{ \begin{array}{l}
+			x = x' + x_0, \\
+			y = y' + y_0.
+		\end{array} \right.
+	\end{equation*}下，
+	\(f\)的函数值不变，
+	即\begin{equation*}
+		f(a_{11},a_{12},a_{22},a_1,a_2,a_0)
+		= f(a'_{11},a'_{12},a'_{22},a'_1,a'_2,a'_0),
+	\end{equation*}
+	%@Mathematica: F[x_, y_] := Subscript[a, 11] x^2 + 2 Subscript[a, 12] x y + Subscript[a, 22] y^2 + 2 Subscript[a, 1] x + 2 Subscript[a, 2] y + Subscript[a, 0]
+	%@Mathematica: expr = F[Subscript[x, 1] + Subscript[x, 0], Subscript[y, 1] + Subscript[y, 0]] // Expand
+	% \begin{align*}
+	% 	&
+	% 	a_{11} (x')^2
+	% 	+ 2 a_{12} x' y'
+	% 	+ a_{22} (y')^2 \\
+	% 	&
+	% 	+ 2 (a_{11} x_0 + a_{12} y_0 + a_1) x' \\
+	% 	&
+	% 	+ 2 (a_{12} x_0 + a_{22} y_0 + a_2) y' \\
+	% 	&
+	% 	+ a_{11} x_0^2
+	% 	+ 2 a_{12} x_0 y_0
+	% 	+ a_{22} y_0^2
+	% 	+ 2 a_1 x_0
+	% 	+ 2 a_2 y_0
+	% 	+ a_0
+	% 	= 0,
+	% \end{align*}
+	其中\begin{gather*}
+		%@Mathematica: Coefficient[expr, Subscript[x, 1]^2]
+		a'_{11} \defeq a_{11},
+		\qquad
+		%@Mathematica: Coefficient[expr, Subscript[x, 1] Subscript[y, 1]]/2 // Expand
+		a'_{12} \defeq a_{12},
+		\qquad
+		%@Mathematica: Coefficient[expr, Subscript[y, 1]^2]
+		a'_{22} \defeq a_{22}, \\
+		%@Mathematica: Coefficient[expr, Subscript[x, 1]]/2 /. Subscript[y, 1] -> 0 // Expand
+		a'_1 \defeq a_{11} x_0 + a_{12} y_0 + a_1,
+		\qquad
+		%@Mathematica: Coefficient[expr, Subscript[y, 1]]/2 /. Subscript[x, 1] -> 0 // Expand
+		a'_2 \defeq a_{12} x_0 + a_{22} y_0 + a_2, \\
+		%@Mathematica: expr /. {Subscript[x, 1] -> 0, Subscript[y, 1] -> 0}
+		a'_0 \defeq a_{11} x_0^2
+			+ 2 a_{12} x_0 y_0
+			+ a_{22} y_0^2
+			+ 2 a_1 x_0
+			+ 2 a_2 y_0
+			+ a_0,
+	\end{gather*}
+	那么称“函数\(f\)是曲线 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的
+	一个\DefineConcept{平移不变量}”.
+
+	\item 如果在任意一个直角坐标变换（转轴或移轴）下，
+	\(f\)的函数值不变，
+	即\begin{equation*}
+		f(a_{11},a_{12},a_{22},a_1,a_2,a_0)
+		= f(a'_{11},a'_{12},a'_{22},a'_1,a'_2,a'_0),
+	\end{equation*}
+	那么称“函数\(f\)是曲线 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的
+	一个\DefineConcept{正交不变量}”，
+	简称\DefineConcept{不变量}.
+
+	\item 如果，
+		在任意一个转轴下\(f\)的函数值不变，但是在某个移轴下\(f\)的函数值发生变化，
+		或者，
+		在任意一个移轴下\(f\)的函数值不变，但是在某个转轴下\(f\)的函数值发生变化，
+	那么称“函数\(f\)是曲线 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程} 的
+	一个\DefineConcept{半不变量}”.
+\end{itemize}
 \end{definition}
 
 不变量既然与直角坐标系的选择无关，于是它就反映了曲线本身的几何性质.
@@ -51,15 +156,26 @@
 \end{equation*}
 %@see: 《解析几何》（丘维声） P159 (2.3)
 由此，我们猜测：\begin{itemize}
-	\item 二次曲线\(S\)的方程的二次项系数之和\(I_1 \defeq \tr\vb{A}\)在任一转轴下保持不变，
+	\item 二次曲线\(S\)的方程的二次项系数之和\begin{equation}
+		I_1 \defeq \tr\vb{A}
+		= a_{11} + a_{22}
+	\end{equation}
+	在任一转轴下保持不变，
 	\item 二次曲线\(S\)的方程的二次项部分的矩阵\(\vb{A}\)的
-	行列式\(I_2 \defeq \DeterminantA{\vb{A}}\)在任一转轴下保持不变.
+	行列式\begin{equation}
+		I_2 \defeq \DeterminantA{\vb{A}}
+		= \begin{vmatrix}
+			a_{11} & a_{12} \\
+			a_{12} & a_{22}
+		\end{vmatrix}
+	\end{equation}
+	在任一转轴下保持不变.
 \end{itemize}
 
 由于\(I_1,I_2\)这两个量只涉及二次曲线的二次项系数，
 因此仅凭\(I_1,I_2\)肯定无法判断\(S\)的类型和形状，
 我们应当把一次项系数和常数项也考虑进来.
-令\begin{equation*}
+令\begin{equation}
 %@see: 《解析几何》（丘维声） P160 (2.6)
 	I_3 \defeq \DeterminantA{\vb{P}}
 	= \begin{vmatrix}
@@ -71,7 +187,7 @@
 		a_{12} & a_{22} & a_2 \\
 		a_1 & a_2 & a_0
 	\end{vmatrix}.
-\end{equation*}
+\end{equation}
 
 现在我们来证明下述定理：
 \begin{theorem}
@@ -134,7 +250,8 @@
 	\vb\alpha^* = (x^*,y^*)^T,
 	\vb\alpha_0 = (x_0,y_0)^T
 \)，
-则二次曲线\(S\)在移轴后的方程为\begin{equation}\label{equation:二次曲线方程的不变量.移轴后的方程}
+则把\(x = x^* + x_0, y = y^* + y_0\)代入\cref{equation:二次曲线方程.平面二次曲线的一般方程}
+便可得到二次曲线\(S\)在移轴后的方程为\begin{equation}\label{equation:二次曲线方程的不变量.移轴后的方程}
 %@see: 《解析几何》（丘维声） P161 (2.8)
 	\begin{array}{r}
 		a_{11} (x^* + x_0)^2
@@ -146,11 +263,47 @@
 		= 0.
 	\end{array}
 \end{equation}
-在方程 \labelcref{equation:二次曲线方程的不变量.移轴后的方程} 中，
-二次项系数分别为\(a_{11},2 a_{12},a_{22}\)，
+只要展开方程 \labelcref{equation:二次曲线方程的不变量.移轴后的方程}，
+就可以发现它的二次项系数分别为\(a_{11},2 a_{12},a_{22}\)，
 因此在移轴下\(I_1\)和\(I_2\)的值都保持不变.
 
 方程 \labelcref{equation:二次曲线方程的不变量.移轴后的方程} 可以写成\begin{equation*}
+%@see: 《解析几何》（丘维声） P146 (0.9)
+	\begin{bmatrix}
+		(\vb\alpha^* + \vb\alpha_0)^T & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} & \vb\delta \\
+		\vb\delta^T & a_0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb\alpha^* + \vb\alpha_0 \\ 1
+	\end{bmatrix}
+	= 0,
+\end{equation*}
+即\begin{equation*}
+	\begin{bmatrix}
+		(\vb\alpha^* + \vb\alpha_0)^T \vb{A} + \vb\delta^T
+		& (\vb\alpha^* + \vb\alpha_0)^T \vb\delta + a_0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb\alpha^* + \vb\alpha_0 \\ 1
+	\end{bmatrix}
+	= 0,
+\end{equation*}
+即\begin{equation*}
+	(\vb\alpha^* + \vb\alpha_0)^T \vb{A} (\vb\alpha^* + \vb\alpha_0)
+	+ \vb\delta^T (\vb\alpha^* + \vb\alpha_0)
+	+ (\vb\alpha^* + \vb\alpha_0)^T \vb\delta + a_0
+	= 0,
+\end{equation*}
+考虑到\((\vb\alpha^* + \vb\alpha_0)^T \vb\delta\)是一个数，
+成立\(
+	(\vb\alpha^* + \vb\alpha_0)^T \vb\delta
+	= ((\vb\alpha^* + \vb\alpha_0)^T \vb\delta)^T
+	= \vb\delta^T (\vb\alpha^* + \vb\alpha_0)
+\)，
+代回上式得\begin{equation*}
 %@see: 《解析几何》（丘维声） P161 (2.9)
 	(\vb\alpha^* + \vb\alpha_0)^T
 	\vb{A}
@@ -160,7 +313,7 @@
 	+ a_0
 	= 0,
 \end{equation*}
-即\begin{equation*}
+展开得\begin{equation*}
 %@see: 《解析几何》（丘维声） P161 (2.10)
 	(\vb\alpha^*)^T
 	\vb{A}
@@ -168,10 +321,10 @@
 	+ (\vb\alpha^*)^T
 	\vb{A}
 	\vb\alpha_0
-	+ (\vb\alpha_0)^T
+	+ \vb\alpha_0^T
 	\vb{A}
 	\vb\alpha^*
-	+ (\vb\alpha_0)^T
+	+ \vb\alpha_0^T
 	\vb{A}
 	\vb\alpha_0
 	+ 2 \vb\delta^T \vb\alpha^*
@@ -179,34 +332,38 @@
 	+ a_0
 	= 0,
 \end{equation*}
-即\begin{equation*}
 %@see: 《解析几何》（丘维声） P161 (2.11)
-	(\vb\alpha^*)^T
-	\vb{A}
-	\vb\alpha^*
-	+ (
-		(\vb\alpha^*)^T
-		\vb{A}
-		\vb\alpha_0
-	)^T
-	+ (\vb\alpha_0)^T
-	\vb{A}
-	\vb\alpha^*
-	+ (\vb\alpha_0)^T
-	\vb{A}
-	\vb\alpha_0
-	+ 2 \vb\delta^T \vb\alpha^*
-	+ 2 \vb\delta^T \vb\alpha_0
-	+ a_0
-	= 0,
-\end{equation*}
-即\begin{equation*}
+考虑到\((\vb\alpha^*)^T \vb{A} \vb\alpha_0\)也是一个数，
+成立\(
+	(\vb\alpha^*)^T \vb{A} \vb\alpha_0
+	= ((\vb\alpha^*)^T \vb{A} \vb\alpha_0)^T
+	= \vb\alpha_0^T \vb{A}^T \vb\alpha^*
+\)，
+再考虑到\(\vb{A}\)是一个对称矩阵，
+成立\(\vb{A} = \vb{A}^T\)，
+故\(
+	(\vb\alpha^*)^T \vb{A} \vb\alpha_0
+	= \vb\alpha_0^T \vb{A} \vb\alpha^*
+\)，
+代回上式并提取公因式得\begin{equation*}
 %@see: 《解析几何》（丘维声） P161 (2.12)
 	(\vb\alpha^*)^T
 	\vb{A}
 	\vb\alpha^*
 	+ 2 (\vb\alpha_0^T \vb{A} + \vb\delta^T) \vb\alpha^*
-	+ (\vb\alpha_0)^T
+	+ \vb\alpha_0^T
+	\vb{A}
+	\vb\alpha_0
+	+ 2 \vb\delta^T \vb\alpha_0
+	+ a_0
+	= 0,
+\end{equation*}
+即\begin{equation*}
+	(\vb\alpha^*)^T
+	\vb{A}
+	\vb\alpha^*
+	+ 2 (\vb{A} \vb\alpha_0 + \vb\delta)^T \vb\alpha^*
+	+ \vb\alpha_0^T
 	\vb{A}
 	\vb\alpha_0
 	+ 2 \vb\delta^T \vb\alpha_0
@@ -404,7 +561,7 @@
 \end{theorem}
 \begin{remark}
 对于任意二次曲线，\(K_1\)在移轴下其函数值可能发生变化.
-因此我们把\(K_1\)称为半不变量.
+因此我们把\(K_1\)是一个半不变量.
 \end{remark}
 
 \subsection{利用不变量确定二次曲线的类型和形状}
