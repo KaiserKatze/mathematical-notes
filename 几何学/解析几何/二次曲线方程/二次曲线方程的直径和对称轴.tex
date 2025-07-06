@@ -78,6 +78,15 @@
 %TODO proof
 \end{corollary}
 
+\begin{proposition}\label{theorem:二次曲线方程的直径和对称轴.直径方向}
+%@see: 《解析几何》（丘维声） P177 命题4.1
+设二次曲线\(S\)的方程为 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程}，
+其二次项部分\(\phi(x,y)\)的矩阵为\(\vb{A}\)，
+\(S\)的共轭于非渐进方向\((\mu,\nu)\)的直径\(l\)的方向为\((\mu^*,\nu^*)\)，
+则\begin{equation*}
+	\phi(\mu^*,\nu^*) = I_2 \phi(\mu,\nu).
+\end{equation*}
+\begin{proof}
 从\cref{equation:二次曲线方程的直径和对称轴.二次曲线沿非渐进方向的平行弦的中垂线2} 看出，
 二次曲线\(S\)的共轭于非渐进方向\((\mu,\nu)\)的直径\(l\)的方向\((\mu^*,\nu^*)\)为\begin{equation*}
 	\begin{bmatrix}
@@ -94,16 +103,63 @@
 		a_{11} & a_{12}
 	\end{bmatrix}.
 \end{equation*}
-
-\begin{proposition}\label{theorem:二次曲线方程的直径和对称轴.直径方向}
-%@see: 《解析几何》（丘维声） P177 命题4.1
-设二次曲线\(S\)的方程为 \labelcref{equation:二次曲线方程.平面二次曲线的一般方程}，
-其二次项部分\(\phi(x,y)\)的矩阵为\(\vb{A}\)，
-\(S\)的共轭于非渐进方向\((\mu,\nu)\)的直径\(l\)的方向为\((\mu^*,\nu^*)\)，
-则\begin{equation*}
-	\phi(\mu^*,\nu^*) = I_2 \phi(\mu,\nu).
-\end{equation*}
-%TODO proof
+于是\begin{gather*}
+	\phi(\mu^*,\nu^*)
+	= \begin{bmatrix}
+		\mu^* & \nu^*
+	\end{bmatrix}
+	\vb{A}
+	\begin{bmatrix}
+		\mu^* \\ \nu^*
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\mu & \nu
+	\end{bmatrix}
+	\vb{B}^T
+	\vb{A}
+	\vb{B}
+	\begin{bmatrix}
+		\mu \\ \nu
+	\end{bmatrix}.
+\end{gather*}
+%@Mathematica: A = {{Subscript[a, 11], Subscript[a, 12]}, {Subscript[a, 12], Subscript[a, 22]}}
+%@Mathematica: B = {{-Subscript[a, 12], -Subscript[a, 22]}, {Subscript[a, 11], Subscript[a, 12]}}
+%@Mathematica: Transpose[B].A.B // Expand
+%@Mathematica: Det[A] A // Expand
+由于\begin{align*}
+	\vb{B}^T
+	\vb{A}
+	\vb{B}
+	&= \begin{bmatrix}
+		-a_{12} & a_{11} \\
+		-a_{22} & a_{12}
+	\end{bmatrix}
+	\begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{12} & a_{22}
+	\end{bmatrix}
+	\begin{bmatrix}
+		-a_{12} & -a_{22} \\
+		a_{11} & a_{12}
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
+		- a_{11} a_{12}^2 + a_{11}^2 a_{22}
+		& -a_{12}^3 + a_{11} a_{12} a_{22} \\
+		-a_{12}^3 + a_{11} a_{12} a_{22}
+		& -a_{12}^2 a_{22} + a_{11} a_{22}^2
+	\end{bmatrix} \\
+	&= \begin{vmatrix}
+		a_{11} & a_{12} \\
+		a_{12} & a_{22}
+	\end{vmatrix}
+	\begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{12} & a_{22}
+	\end{bmatrix}
+	= I_2 A,
+\end{align*}
+因此\(\phi(\mu^*,\nu^*) = I_2 \phi(\mu,\nu)\).
+\end{proof}
 \end{proposition}
 
 对于中心型曲线\(S\)，
