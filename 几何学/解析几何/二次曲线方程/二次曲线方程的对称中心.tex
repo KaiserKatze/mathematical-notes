@@ -125,6 +125,69 @@
 则称“点\(O'\)是曲线\(S\)的一个\DefineConcept{对称中心}”.
 \end{definition}
 
+\begin{definition}
+%@see: 《解析几何》（丘维声） P176
+设\(S\)是一个二次曲线，\(M_1,M_2\)是\(S\)上任意两点.
+把线段\(M_1 M_2\)称为“\(S\)的一条\DefineConcept{弦}”.
+\end{definition}
+
+\begin{lemma}\label{theorem:二次曲线方程的对称中心.弦中点方程}
+设\(M_1(x_1,y_1)\)和\(M_2(x_2,y_2)\)是二次曲线\(S\)上的两个不同的点，
+弦\(M_1 M_2\)所在的直线\(l\)的方向向量为\((\mu,\nu)\)，
+则弦\(M_1 M_2\)的中点\(M_0\)的坐标\((x_0,y_0)\)
+满足\begin{equation}\label{equation:二次曲线方程的对称中心.弦中点方程}
+	\mu F_1(x_0,y_0) + \nu F_2(x_0,y_0) = 0.
+\end{equation}
+\begin{proof}
+因为\(M_0(x_0,y_0)\)是弦\(M_1 M_2\)的中点，
+所以\begin{equation*}
+%@see: 《解析几何》（丘维声） P173 (3.5)
+	x_0 = \frac{x_1 + x_2}{2},
+	\qquad
+	y_0 = \frac{y_1 + y_2}{2}.
+	\eqno(1)
+\end{equation*}
+由\cref{equation:解析几何.直线的向量式参数方程} 可知，
+存在实数\(t_1,t_2\)使得\begin{equation*}
+%@see: 《解析几何》（丘维声） P173 (3.6)
+	\left\{ \begin{array}{l}
+		x_1 = x_0 + \mu t_1, \\
+		y_1 = y_0 + \nu t_1,
+	\end{array} \right.
+	\qquad
+	\left\{ \begin{array}{l}
+		x_2 = x_0 + \mu t_2, \\
+		y_2 = y_0 + \nu t_2.
+	\end{array} \right.
+	\eqno(2)
+\end{equation*}
+将(2)式代入(1)式，得\begin{equation*}
+	2 x_0 = 2 x_0 + \mu (t_1 + t_2),
+	\qquad
+	2 y_0 = 2 y_0 + \nu (t_1 + t_2),
+\end{equation*}
+于是有\begin{equation*}
+	\mu (t_1 + t_2) = \nu (t_1 + t_2) = 0.
+\end{equation*}
+由于\(\mu,\nu\)不全为零，
+因此\(t_1 + t_2 = 0\).
+因为\(M_1,M_2\)是\(l\)与\(S\)的交点，
+所以参数值\(t_1,t_2\)是
+关于\(t\)的一元二次方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 的根.
+根据\hyperref[theorem:一元二次方程.韦达定理]{韦达定理}，
+有\begin{equation*}
+	t_1 + t_2
+	= \frac{-2}{\phi(\mu,\nu)} (
+		F_1(x_0,y_0) \mu
+		+ F_2(x_0,y_0) \nu
+	).
+\end{equation*}
+再由\(t_1 + t_2 = 0\)得
+%@see: 《解析几何》（丘维声） P173 (3.7)
+\(\mu F_1(x_0,y_0) + \nu F_2(x_0,y_0) = 0\).
+\end{proof}
+\end{lemma}
+
 \begin{theorem}\label{theorem:二次曲线方程的对称中心.一点是二次曲线方程的对称中心的充分必要条件}
 %@see: 《解析几何》（丘维声） P172 定理3.2
 点\(O'(x_0,y_0)\)是二次曲线\(S\)的对称中心的充分必要条件
@@ -140,51 +203,10 @@
 与\(S\)一定有两个交点\(M_1(x_1,y_1)\)和\(M_2(x_2,y_2)\).
 由于\(O'\)是\(S\)的对称中心，
 所以\(O'\)是线段\(M_1 M_2\)的中点.
-于是\begin{equation*}
-%@see: 《解析几何》（丘维声） P173 (3.5)
-	x_0 = \frac{x_1 + x_2}{2},
-	\qquad
-	y_0 = \frac{y_1 + y_2}{2}.
-	\eqno(1)
-\end{equation*}
-设\(M_i\)对应的参数值为\(t_i\)，则有\begin{equation*}
-%@see: 《解析几何》（丘维声） P173 (3.6)
-	\left\{ \begin{array}{l}
-		x_i = x_0 + \mu t_i, \\
-		y_i = y_0 + \nu t_i,
-	\end{array} \right.
-	\quad i=1,2.
-	\eqno(2)
-\end{equation*}
-将(2)式代入(1)式，得\begin{equation*}
-	2 x_0 = 2 x_0 + \mu (t_1 + t_2),
-	\qquad
-	2 y_0 = 2 y_0 + \nu (t_1 + t_2),
-\end{equation*}
-于是有\begin{equation*}
-	\mu (t_1 + t_2) = \nu (t_1 + t_2) = 0.
-\end{equation*}
-% 由非渐进方向的定义，向量\(\vb{v} = (\mu,\nu)\)不是零向量
-由于\(\mu,\nu\)不全为零，
-因此\(t_1 + t_2 = 0\).
-因为\(M_1,M_2\)是\(l\)与\(S\)的交点，
-所以它对应的参数值\(t_1,t_2\)是
-关于\(t\)的一元二次方程 \labelcref{equation:二次曲线方程的对称中心.在曲线方程中代入直线方程} 的根.
-根据\hyperref[theorem:一元二次方程.韦达定理]{韦达定理}，
-有\begin{equation*}
-	t_1 + t_2
-	= \frac{-2}{\phi(\mu,\nu)} (
-		F_1(x_0,y_0) \mu
-		+ F_2(x_0,y_0) \nu
-	).
-\end{equation*}
-再由\(t_1 + t_2 = 0\)得\begin{equation*}
-%@see: 《解析几何》（丘维声） P173 (3.7)
-	\mu F_1(x_0,y_0) + \nu F_2(x_0,y_0) = 0.
-\end{equation*}
-上式对于\(S\)的任意非渐进方向\((\mu,\nu)\)都成立.
-取\(S\)的两个不共线的非渐进方向\(\vb{v}_1(\mu_1,\nu_1)\)和\(\vb{v}_2(\mu_2,\nu_2)\)，
-则有\begin{equation*}
+由于\cref{equation:二次曲线方程的对称中心.弦中点方程}
+对于\(S\)的任意非渐进方向\((\mu,\nu)\)都成立，
+所以只要取\(S\)的两个不共线的非渐进方向\(\vb{v}_1(\mu_1,\nu_1)\)和\(\vb{v}_2(\mu_2,\nu_2)\)，
+就有\begin{equation*}
 %@see: 《解析几何》（丘维声） P173 (3.8)
 	\mu_1 F_1(x_0,y_0) + \nu_1 F_2(x_0,y_0) = 0,
 	\qquad
