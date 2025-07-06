@@ -1,22 +1,24 @@
 \section{实二次型的分类}
 \subsection{实二次型的分类标准}
 \begin{definition}\label{definition:实二次型的分类.实二次型的分类}
-设有\(n\)元实二次型\(f(\vb{x}) = \vb{x}^T\vb{A}\vb{x}\).
+%@see: 《线性代数》（张慎语、周厚隆） P129 定义5
+%@see: 《线性代数》（张慎语、周厚隆） P131 定义7
+给定\(n\)元实二次型\(f(\vb{x}) = \vb{x}^T\vb{A}\vb{x}\).
 \begin{enumerate}
 	\item 如果\begin{equation*}
 		(\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})
 		[f(\vb{x}) > 0],
 	\end{equation*}
-	则称“\(f\)是\DefineConcept{正定的}（positive definite）”；
-	把\(\vb{A}\)称为\DefineConcept{正定矩阵}（positive definite matrix），
+	则称“\(f\)是\DefineConcept{正定的}（positive definite）”，
+	“\(\vb{A}\)是一个\DefineConcept{正定矩阵}（positive definite matrix）”，
 	记为\(\vb{A}\succ\vb0\).
 
 	\item 如果\begin{equation*}
 		(\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})
 		[f(\vb{x}) \geq 0],
 	\end{equation*}
-	则称“\(f\)是\DefineConcept{半正定的}（positive semi-definite）”；
-	把\(\vb{A}\)称为\DefineConcept{半正定矩阵}（positive semi-definite matrix），
+	则称“\(f\)是\DefineConcept{半正定的}（positive semi-definite）”，
+	“\(\vb{A}\)是一个\DefineConcept{半正定矩阵}（positive semi-definite matrix）”，
 	记为\(\vb{A}\succeq\vb0\).
 
 	\item 如果\begin{equation*}
@@ -24,23 +26,39 @@
 		[f(\vb{x}) < 0],
 	\end{equation*}
 	则称“\(f\)是\DefineConcept{负定的}（negative definite）”，
-	把\(\vb{A}\)称为\DefineConcept{负定矩阵}（negative definite matrix），
+	“\(\vb{A}\)是一个\DefineConcept{负定矩阵}（negative definite matrix）”，
 	记为\(\vb{A}\prec\vb0\).
 
 	\item 如果\begin{equation*}
 		(\forall\vb{x}\in\mathbb{R}^n-\{\vb0\})
 		[f(\vb{x}) \leq 0],
 	\end{equation*}
-	则称“\(f\)是\DefineConcept{半负定的}（negative semi-definite）”；
-	把\(\vb{A}\)称为\DefineConcept{半负定矩阵}（negative semi-definite matrix），
+	则称“\(f\)是\DefineConcept{半负定的}（negative semi-definite）”，
+	“\(\vb{A}\)是一个\DefineConcept{半负定矩阵}（negative semi-definite matrix）”，
 	记为\(\vb{A}\preceq\vb0\).
 
 	\item 否则，称\(f\)是\DefineConcept{不定的}（indefinite）.
 \end{enumerate}
 \end{definition}
 
+\begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P129 例1
+\(f(x_1,x_2,x_3) \defeq 3 x_1^2 + x_2^2 + 5 x_3^2\)是正定的.
+\end{example}
+
+\begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P129 例1
+\(f(x_1,x_2,x_3) \defeq -x_1^2 - x_3^2\)是半负定的.
+\end{example}
+
+\begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P129 例1
+\(f(x_1,x_2,x_3) \defeq x_1 x_2 + x_2^2 + 5 x_3^2\)是不定的.
+\end{example}
+
 \subsection{惯性定理}
 \begin{theorem}\label{theorem:二次型.惯性定理}
+%@see: 《线性代数》（张慎语、周厚隆） P129 惯性定理（inertial theorem）
 \(n\)元实二次型\(f(\vb{x}) = \vb{x}^T\vb{A}\vb{x}\)经过任意满秩线性变换化为标准型，
 所得的标准型的正平方项的项数\(p\)及负平方项的项数\(q\)都是唯一确定的.
 \begin{proof}
@@ -95,10 +113,10 @@
 \end{proof}
 %@see: https://mathworld.wolfram.com/SylvestersInertiaLaw.html
 \end{theorem}
-\cref{theorem:二次型.惯性定理}
-又称为“惯性定理（Inertial Theorem）”.
+我们把\cref{theorem:二次型.惯性定理} 称为“惯性定理（Inertial Theorem）”.
 
 \begin{corollary}
+%@see: 《线性代数》（张慎语、周厚隆） P130 推论
 任意\(n\)元实二次型\(f(\vb{x}) = \vb{x}^T\vb{A}\vb{x}\)，
 总可经过满秩线性变换，化为以下形式：\begin{equation*}
 	y_1^2+y_2^2+ \dotsb +y_p^2
@@ -124,6 +142,7 @@
 \end{corollary}
 
 \begin{definition}\label{definition:二次型.惯性系数的定义}
+%@see: 《线性代数》（张慎语、周厚隆） P131 定义6
 在秩为\(r\)的实二次型\(f(\vb{x})\)所化成的标准型（或规范型）中，
 \begin{itemize}
 	\item 正平方项的项数\(p\)
@@ -151,25 +170,29 @@
 即\begin{equation*}
 	\vb{A}\simeq\vb{B}
 	\iff
-	\rank\vb{A}=\rank\vb{B} \land p_{\vb{A}}=p_{\vb{B}} \land q_{\vb{A}}=q_{\vb{B}}.
+	\rank\vb{A}=\rank\vb{B},
+	p_{\vb{A}}=p_{\vb{B}},
+	q_{\vb{A}}=q_{\vb{B}}.
 \end{equation*}
 \end{theorem}
 
 \subsection{正定矩阵的等价条件}
 \begin{theorem}
+%@see: 《线性代数》（张慎语、周厚隆） P131 定理5
 设\(\vb{A}\)为\(n\)阶实对称矩阵，
 \(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}\)，
 则下列命题相互等价：\begin{itemize}
-	\item \(\vb{A}\)为正定矩阵.
-	\item \(\vb{A}\)的特征值全是正实数.
-	\item \(f(\AutoTuple{x}{n})\)的正惯性指数\(p=n\).
-	\item \(\vb{A} \cong \vb{E}\).
+	\item \(\vb{A}\)为正定矩阵；
+	\item \(\vb{A}\)的特征值全是正实数；
+	\item \(f(\AutoTuple{x}{n})\)的正惯性指数\(p=n\)；
+	\item \(\vb{A} \cong \vb{E}\)；
 	\item 存在可逆实阵\(\vb{P}\)，使得\(\vb{A}=\vb{P}^T\vb{P}\).
 \end{itemize}
 %TODO proof
 \end{theorem}
 
 \begin{corollary}
+%@see: 《线性代数》（张慎语、周厚隆） P132 推论1
 正定矩阵的行列式大于零.
 \begin{proof}
 因为\(\vb{A}\)正定，
@@ -185,6 +208,7 @@
 \end{corollary}
 
 \begin{theorem}
+%@see: 《线性代数》（张慎语、周厚隆） P132 定理6
 \(n\)元实二次型\(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}\ (\vb{A}=\vb{A}^T)\)正定的充分必要条件是：
 矩阵\(\vb{A}\)的各阶顺序主子式\(\det\vb{A}_k\)均大于零，
 即\begin{equation*}
@@ -258,8 +282,9 @@ x_i x_j a_{ij}\)正定，
 \end{theorem}
 
 \begin{corollary}
+%@see: 《线性代数》（张慎语、周厚隆） P133 推论2
 \(n\)元实二次型\(f(\AutoTuple{x}{n}) = \vb{x}^T\vb{A}\vb{x}\ (\vb{A}=\vb{A}^T)\)负定的充分必要条件是：
-矩阵\(\vb{A}\)的各阶顺序主子式\(\det\vb{A}_k\)与\((-1)^k\)的乘积均大于零，
+矩阵\(\vb{A}\)的奇数阶顺序主子式为负，偶数阶顺序主子式为正，
 即\begin{equation*}
 	(-1)^k \det\vb{A}_k > 0
 	\quad(k=1,2,\dotsc,n).
@@ -328,7 +353,9 @@ x_i x_j a_{ij}\)正定，
 \end{example}
 
 \begin{example}
-设\(\vb{A}\)为实对称矩阵，证明：当实数\(t\)充分大时，\(t\vb{E}+\vb{A}\)是正定矩阵.
+%@see: 《线性代数》（张慎语、周厚隆） P134 例4
+设\(\vb{A}\)为实对称矩阵.
+证明：当实数\(t\)充分大时，\(t\vb{E}+\vb{A}\)是正定矩阵.
 \begin{proof}
 因为\(\vb{A}\)为实对称矩阵，所以存在正交矩阵\(\vb{Q}\)，使得\begin{equation*}
 	\vb{Q}^T\vb{A}\vb{Q} = \diag(\AutoTuple{\lambda}{n}).
@@ -342,7 +369,10 @@ x_i x_j a_{ij}\)正定，
 \end{example}
 
 \begin{example}
-设\(\vb{A}\)、\(\vb{B}\)是同阶正定矩阵，证明：\(\vb{A}+\vb{B}\)、\(\vb{A}^{-1}\)、\(\vb{A}^*\)是正定矩阵.
+%@see: 《线性代数》（张慎语、周厚隆） P134 习题6.3 3.(1)
+%@see: 《线性代数》（张慎语、周厚隆） P134 习题6.3 3.(2)
+设\(\vb{A}\)、\(\vb{B}\)是同阶正定矩阵.
+证明：\(\vb{A}+\vb{B}\)、\(\vb{A}^{-1}\)、\(\vb{A}^*\)是正定矩阵.
 \begin{proof}
 根据正定矩阵的定义，因为\(\vb{A}\)是正定矩阵，任取非零列向量\(\vb{x}\)，都有\begin{equation*}
 	\vb{x}^T\vb{A}\vb{x} > 0;
@@ -369,7 +399,9 @@ x_i x_j a_{ij}\)正定，
 \end{example}
 
 \begin{example}
-设\(\vb{A}\)是正定矩阵，试证：存在正定矩阵\(\vb{B}\)，使得\(\vb{A}=\vb{B}^2\).
+%@see: 《线性代数》（张慎语、周厚隆） P134 习题6.3 3.(3)
+设\(\vb{A}\)是正定矩阵.
+试证：存在正定矩阵\(\vb{B}\)，使得\(\vb{A}=\vb{B}^2\).
 \begin{proof}
 设\(\vb{A}\)是\(n\)阶正定矩阵，那么存在正交矩阵\(\vb{P}\)满足\begin{equation*}
 	\vb{P}^T\vb{A}\vb{P} = \diag(\AutoTuple{\lambda}{n}) = \vb{\Lambda},
