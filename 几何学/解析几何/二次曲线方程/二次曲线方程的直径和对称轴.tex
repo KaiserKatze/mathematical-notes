@@ -19,6 +19,7 @@
 %@see: 《解析几何》（丘维声） P176 定理4.1
 二次曲线\(S\)的沿非渐进方向\((\mu,\nu)\)的平行弦的中点
 都在一条直线\begin{equation}\label{equation:二次曲线方程的直径和对称轴.二次曲线沿非渐进方向的平行弦的中垂线1}
+%@see: 《解析几何》（丘维声） P176 (4.1)
 	\mu F_1(x,y) + \nu F_2(x,y) = 0.
 \end{equation}上.
 \begin{proof}
@@ -175,12 +176,57 @@
 因此存在共轭于方向\((\mu^*_1,\nu^*_1)\)的直径\(l'\).
 我们把\(l\)和\(l'\)称为“曲线\(S\)的一对\DefineConcept{共轭直径}”.
 
+椭圆、双曲线的两条对称轴，显然是一对共轭直径.
+
 \subsection{圆锥曲线的对称轴}
 设\(l\)是圆锥曲线\(S\)的对称轴，根据上述讨论可知，\(l\)是\(S\)的一条直径，
 并且\(l\)与它所共轭的非渐进方向\((\mu,\nu)\)垂直.
 因此，\(l\)的方程是\cref{equation:二次曲线方程的直径和对称轴.二次曲线沿非渐进方向的平行弦的中垂线1}
 或\cref{equation:二次曲线方程的直径和对称轴.二次曲线沿非渐进方向的平行弦的中垂线2}.
 因为\(l\)与\((\mu,\nu)\)垂直，
-所以有\begin{equation*}
+所以有\begin{equation}\label{equation:二次曲线方程的直径和对称轴.非渐进方向及其共轭直径的垂直关系}
 	-\mu (a_{12} \mu + a_{22} \nu) + \nu (a_{11} \mu + a_{12} \nu) = 0.
+\end{equation}
+可以看出：\(a_{11} \mu + a_{12} \nu\)与\(\mu\)之比，
+等于\(a_{12} \mu + a_{22} \nu\)与\(\nu\)之比.
+%@see: 《解析几何》（丘维声） P179 (4.3)
+假设\(a_{11} \mu + a_{12} \nu = \xi \mu\)，
+移项并合并同类项，得\begin{equation*}
+	a_{11} \mu - \xi \mu + a_{12} \nu = 0,
+	\quad\text{即}\quad
+	(a_{11} - \xi) \mu + a_{12} \nu = 0.
 \end{equation*}
+%@see: 《解析几何》（丘维声） P179 (4.3)
+假设\(a_{12} \mu + a_{22} \nu = \xi \nu\)，
+移项并合并同类项，得\begin{equation*}
+	a_{12} \mu + a_{22} \nu - \xi \nu = 0,
+	\quad\text{即}\quad
+	a_{12} \mu + (a_{22} - \xi) \nu = 0.
+\end{equation*}
+联立上述两式，可得关于\(\mu,\nu\)的齐次线性方程组\begin{equation}\label{equation:二次曲线方程的直径和对称轴.属于特征值的主方向}
+%@see: 《解析几何》（丘维声） P179 (4.4)
+	\left\{ \begin{array}{l}
+		(a_{11} - \xi) \mu + a_{12} \nu = 0, \\
+		a_{12} \mu + (a_{22} - \xi) \nu = 0.
+	\end{array} \right.
+\end{equation}
+因为\(\mu,\nu\)不全为零，
+%\cref{theorem:线性方程组.n个n维向量组线性相关的充分必要条件}
+%\cref{theorem:线性方程组.齐次线性方程组有非零解的充分必要条件}
+所以\begin{equation*}
+%@Mathematica: Det[{{Subscript[a, 11] - \[Xi], Subscript[a, 12]}, {Subscript[a, 12], Subscript[a, 22] - \[Xi]}}]
+	\begin{vmatrix}
+		a_{11} - \xi & a_{12} \\
+		a_{12} & a_{22} - \xi
+	\end{vmatrix}
+	= \xi^2 - (a_{11} + a_{22}) \xi + a_{11} a_{22} - a_{12}^2
+	= \xi^2 - I_1 \xi + I_2
+	= 0.
+\end{equation*}
+这说明，上式公共比值\(\xi\)是二次曲线\(S\)的方程的二次项部分的矩阵\(\vb{A}\)的特征值.
+把特征值\(\xi\)代入方程组 \labelcref{equation:二次曲线方程的直径和对称轴.属于特征值的主方向} 中，
+可以求出\(\mu\)与\(\nu\)之比，
+这称为“属于\(\xi\)的\DefineConcept{主方向}”（即矩阵\(\vb{A}\)的属于特征值\(\xi\)的特征向量的方向）.
+若它是非渐进方向，那么只要把它代入
+方程 \labelcref{equation:二次曲线方程的直径和对称轴.二次曲线沿非渐进方向的平行弦的中垂线1}
+便可得到\(S\)的对称轴的方程.
