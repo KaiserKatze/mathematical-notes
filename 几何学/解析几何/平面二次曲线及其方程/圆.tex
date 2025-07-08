@@ -1,0 +1,314 @@
+\section{圆}
+\subsection{圆的概念}
+%@see: 《平面解析几何（甲种本）》 P72
+平面内与定点距离等于定长的点的集合
+称为\DefineConcept{圆}.
+定点称为\DefineConcept{圆心}，
+定长称为\DefineConcept{半径}.
+
+\subsection{圆的标准方程}
+%@see: 《平面解析几何（甲种本）》 P72
+根据圆的定义，我们来求圆心是\(C(a,b)\)，半径是\(r\)的圆的方程.
+
+设点\(P(x,y)\)是圆上任意一点，根据定义，点\(P\)到圆心\(C\)的距离等于\(r\).
+圆就是点集\begin{equation*}
+	\Set{ P \given \LineSegmentLength{PC} = r }.
+\end{equation*}
+
+由两点间的距离公式，
+点\(M\)适合的条件，
+可以表示为\begin{equation*}
+%@see: 《平面解析几何（甲种本）》 P72 (1)
+	\LineSegmentLength{PC} = \sqrt{(x-a)^2+(y-b)^2} = r.
+\end{equation*}
+把上式等号两边分别平方，
+得\begin{equation}\label{equation:平面解析几何.圆的标准方程}
+%@see: 《平面解析几何（甲种本）》 P72 (2)
+	(x-a)^2+(y-b)^2 = r^2.
+\end{equation}
+
+\cref{equation:平面解析几何.圆的标准方程}
+就是圆心是\(C(a,b)\)，半径是\(r\)的圆的方程，
+我们称之为\DefineConcept{圆的标准方程}.
+
+特别地，如果圆心在坐标原点，
+这时\(a=b=0\)，
+那么圆的方程就是\begin{equation}
+	x^2 + y^2 = r^2.
+\end{equation}
+
+\begin{example}
+%@see: 《平面解析几何（甲种本）》 P80 习题五 3.
+已知一个圆的直径端点是\(A(x_1,y_1)\)和\(B(x_2,y_2)\).
+证明：圆的方程是\begin{equation*}
+	(x-x_1)(x-x_2) + (y-y_1)(y-y_2) = 0.
+\end{equation*}
+\begin{proof}
+显然线段\(AB\)的中点\(C(x_0,y_0)\)就是圆心，
+其中\(
+	x_0 \defeq (x_1+x_2)/2,
+	y_0 \defeq (y_1+y_2)/2
+\)，
+并且圆的半径为\begin{equation*}
+	r = \frac{\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}}{2}.
+\end{equation*}
+那么所求圆的标准方程为\begin{equation*}
+	(x-x_0)^2 + (y-y_0)^2 = r^2.
+\end{equation*}
+代入\(x_0,y_0,r\)，得\begin{equation*}
+	\left( x - \frac{x_1+x_2}{2} \right)^2
+	+ \left( y - \frac{y_1+y_2}{2} \right)^2
+	= \frac{(x_1-x_2)^2+(y_1-y_2)^2}{4},
+\end{equation*}
+整理得\begin{equation*}
+	(x-x_1)(x-x_2) + (y-y_1)(y-y_2) = 0.
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{example}
+
+\subsection{圆的一般方程}
+%@see: 《平面解析几何（甲种本）》 P76
+把圆的标准方程\begin{equation*}
+	(x-a)^2 + (y-b)^2 = r^2
+\end{equation*}
+展开，得\begin{equation*}
+	x^2 + y^2 - 2ax - 2by + a^2 + b^2 - r^2 = 0.
+\end{equation*}
+可见，任何一个圆的方程都可以写成下面的形式\begin{equation}\label{equation:平面解析几何.圆的一般方程}
+%@see: 《平面解析几何（甲种本）》 P76 (1)
+	x^2 + y^2 + Dx + Ey + F = 0.
+\end{equation}
+反过来，我们来研究上式确定的曲线是不是圆.
+将上式左边配方，
+得\begin{equation}\label{equation:平面解析几何.圆的一般方程.配方后}
+%@see: 《平面解析几何（甲种本）》 P77 (2)
+	\left(x+\frac{D}{2}\right)^2+\left(y+\frac{E}{2}\right)^2 = \frac{D^2+E^2-4F}{4}.
+\end{equation}
+下面分情况讨论.
+\begin{enumerate}
+	\item 当\(D^2+E^2-4F > 0\)时，
+	比较方程 \labelcref{equation:平面解析几何.圆的一般方程.配方后} 与圆的标准方程，
+	可知上述曲线是以\((-\frac{D}{2},-\frac{E}{2})\)为圆心、
+	\(\frac{1}{2} \sqrt{D^2+E^2-4F}\)为半径的圆；
+
+	\item 当\(D^2+E^2-4F = 0\)时，
+	方程 \labelcref{equation:平面解析几何.圆的一般方程.配方后} 只有实数解\(x=-\frac{D}{2}\)，\(y=-\frac{E}{2}\)，
+	所以上述曲线是一个点\((-\frac{D}{2},-\frac{E}{2})\)；
+
+	\item 当\(D^2+E^2-4F < 0\)时，
+	方程 \labelcref{equation:平面解析几何.圆的一般方程.配方后} 没有实数解，因而它不表示任何图形.
+\end{enumerate}
+%@see: 《平面解析几何（甲种本）》 P77
+综上所述，
+当\(D^2+E^2-4F > 0\)时，
+方程 \labelcref{equation:平面解析几何.圆的一般方程.配方后} 表示一个圆，
+叫做\DefineConcept{圆的一般方程}.
+
+圆的标准方程的优点在于它明确地指出了圆心和半径，
+而一般方程突出了方程形式上的特点：\begin{enumerate}
+	\item \(x^2\)和\(y^2\)的系数相同，且均不为零；
+	\item 没有\(xy\)这样的二次项.
+\end{enumerate}
+以上两点是二元二次方程\begin{equation*}
+	A x^2 + B xy + C y^2 + D x + E y + F = 0
+\end{equation*}
+表示圆的必要不充分条件.
+
+要求圆的一般方程，只要求出\(D,E,F\)这三个系数就可以了.
+
+\begin{example}
+%@see: 《平面解析几何（甲种本）》 P77 例1
+求过三点\(O(0,0),M_1(1,1),M_2(4,2)\)的圆的方程.
+\begin{solution}
+设所求圆的方程为\(x^2 + y^2 + D x + E y + F = 0\).
+用待定系数法，建立关于\(D,E,F\)的三元一次方程组\begin{equation*}
+	\def\PtEqx#1#2{#1^2 + #2^2 + #1 D + #2 E + F = 0}
+	\left\{ \begin{array}{l}
+		\PtEqx{0}{0}, \\
+		\PtEqx{1}{1}, \\
+		\PtEqx{4}{2}.
+	\end{array} \right.
+\end{equation*}
+解得\(D = -8, E = 6, F = 0\)，
+于是所求圆的方程为\(x^2 + y^2 - 8x + 6y = 0\).
+\end{solution}
+\end{example}
+
+\begin{example}
+%@see: 《平面解析几何（甲种本）》 P78 例2
+已知一曲线是与两个定点\(O(0,0),A(3,0)\)距离之比为\(\frac12\)的点的轨迹.
+求这个曲线的方程.
+\begin{solution}
+设\(M(x,y)\)是所求曲线\(S\)上任意一点，即\begin{equation*}
+	S = \Set*{
+		M
+		\given
+		\frac{\LineSegmentLength{OM}}{\LineSegmentLength{AM}} = \frac12
+	}.
+\end{equation*}
+由两点间的距离公式，
+点\(M\)所适合的条件可以表示为\begin{equation*}
+%@see: 《平面解析几何（甲种本）》 P78 (1)
+	\frac{\sqrt{x^2+y^2}}{\sqrt{(x-3)^2+y^2}} = \frac12.
+\end{equation*}
+将上式两边平方，得\begin{equation*}
+	\frac{x^2+y^2}{(x-3)^2+y^2} = \frac14.
+\end{equation*}
+化简得\begin{equation*}
+%@see: 《平面解析几何（甲种本）》 P79 (2)
+	x^2+y^2+2x-3=0.
+\end{equation*}
+这就是所求的曲线方程.
+\end{solution}
+\end{example}
+
+\subsection{圆的参数方程}
+方程\begin{equation}
+	\left\{ \begin{array}{l}
+		x = a + r \cos\theta, \\
+		y = b + r \sin\theta
+	\end{array} \right.
+\end{equation}
+表示以\((a,b)\)为圆心、\(r\)为半径的圆，
+叫做\DefineConcept{圆的参数方程}.
+
+\subsection{圆与点的位置关系}
+已知圆\(C: (x-a)^2+(y-b)^2=r^2\).
+任给一点\(P(x_0,y_0)\)，令\(z_0 = (x_0-a)^2+(y_0-b)^2\).
+若\(z_0 < r^2\)，则称点\(P\)在圆\(C\)的内部；
+若\(z_0 = r^2\)，则称点\(P\)在圆\(C\)上；
+若\(z_0 > r^2\)，则称点\(P\)在圆\(C\)的外部.
+
+若圆\(C\)的方程是\(x^2+y^2+Dx+Ey+F=0\)，
+则令\(u_0 = x_0^2+y_0^2+Dx_0+Ey_0+F\).
+只要\(u_0 < 0\)，则称点\(P\)在圆\(C\)内；
+只要\(u_0 = 0\)，则称点\(P\)在圆\(C\)上；
+只要\(u_0 > 0\)，则称点\(P\)在圆\(C\)外.
+
+\subsection{圆与直线的位置关系}
+\begin{example}
+%@see: 《平面解析几何（甲种本）》 P74 例3
+已知圆的方程是\(x^2+y^2 = r^2\)，
+求经过圆上一点\(P(x_0,y_0)\)的切线的方程.
+\begin{solution}
+设切线的斜率为\(k\)，半径\(OP\)的斜率为\(k_1\).
+因为圆的切线垂直于过切点的半径，
+于是\(k = -\frac{1}{k_1}\).
+又因为\(k_1 = \frac{y_0}{x_0}\)，
+所以\(k = -\frac{x_0}{y_0}\)，
+那么经过点\(P\)的切线方程是\begin{equation*}
+	y-y_0 = -\frac{x_0}{y_0} (x-x_0),
+\end{equation*}
+整理得\begin{equation*}
+	x_0 x + y_0 y = x_0^2 + y_0^2.
+\end{equation*}
+因为\(P(x_0,y_0)\)在圆上，
+所以\(x_0^2 + y_0^2 = r^2\)，
+所求切线方程是\begin{equation}
+	x_0 x + y_0 y = r^2.
+\end{equation}
+\end{solution}
+\end{example}
+
+\begin{example}
+已知平面直线\(l: x + y = a\)与圆\(C: x^2 + y^2 = r^2\).
+求当直线\(l\)与圆\(C\)相交、相切或相离时，
+参数\(a\)与\(r\)的关系.
+%TODO
+\end{example}
+
+\subsection{圆与圆的位置关系}
+已知两个圆：\begin{equation*}
+	(x-x_1)^2+(y-y_1)^2=R^2
+	\quad\text{和}\quad
+	(x-x_2)^2+(y-y_2)^2=r^2,
+\end{equation*}其中\(R \geq r\).
+设两圆的圆心距为\(d\).
+记方程组\begin{equation*}
+	M: \begin{cases}
+		(x-x_1)^2+(y-y_1)^2=R^2, \\
+		(x-x_2)^2+(y-y_2)^2=r^2.
+	\end{cases}
+\end{equation*}
+
+\begin{table}[htb]
+	\centering
+	\begin{tblr}{*3c}
+		\hline
+		位置关系 & 几何特征 & 代数特征 \\ \hline
+		外离 & \(d>R+r\) & \(M\)无实数解 \\
+		外切 & \(d=R+r\) & \(M\)有一组实数解 \\
+		相交 & \(R-r<d<R+r\) & \(M\)有两组实数解 \\
+		内切 & \(d=R-r\) & \(M\)有一组实数解 \\
+		内含 & \(d<R-r\) & \(M\)无实数解 \\
+		\hline
+	\end{tblr}
+	\caption{圆与圆的位置关系}
+\end{table}
+
+\subsection{圆系的方程}
+%@see: https://www.bilibili.com/video/BV1UuChYJE1d/
+假设有两个不重合的定点\(P_1(x_1,y_1)\)和\(P_2(x_2,y_2)\).
+我们想求出经过这两个点的所有的圆的方程.
+设某个圆的方程为\begin{equation*}
+	x^2 + y^2 + Cx + Dy + E = 0.
+\end{equation*}
+依次代入\(P_1,P_2\)两点的坐标，得\begin{gather*}
+	x_1 C + y_1 D + E = -(x_1^2 + y_1^2), \\
+	x_2 C + y_2 D + E = -(x_2^2 + y_2^2),
+\end{gather*}
+或者\begin{equation}\label{equation:平面解析几何.过不重合两点的圆系方程}
+	\begin{bmatrix}
+		x_1 & y_1 & 1 \\
+		x_2 & y_2 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		C \\ D \\ E
+	\end{bmatrix}
+	= \begin{bmatrix}
+		-(x_1^2 + y_1^2) \\
+		-(x_2^2 + y_2^2)
+	\end{bmatrix}.
+\end{equation}
+由于\(P_1,P_2\)不重合，
+\((x_1,y_1) \neq (x_2,y_2)\)，
+所以\((x_1,y_1,1),(x_2,y_2,1)\)线性无关，
+从而有\begin{equation*}
+	\rank\begin{bmatrix}
+		x_1 & y_1 & 1 \\
+		x_2 & y_2 & 1
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		x_1 & y_1 & 1 & -(x_1^2 + y_1^2) \\
+		x_2 & y_2 & 1 & -(x_2^2 + y_2^2)
+	\end{bmatrix}
+	= 2 < 3.
+\end{equation*}
+方程 \labelcref{equation:平面解析几何.过不重合两点的圆系方程} 有无穷多解，
+它的解空间是\(1\)维的，
+其中每一个解都确定了一个圆.
+不妨设方程 \labelcref{equation:平面解析几何.过不重合两点的圆系方程} 的通解为\begin{equation*}
+	(C,D,E)^T
+	= (C_0,D_0,E_0)^T
+	+ \lambda (C_1,D_1,E_1)^T,
+\end{equation*}
+其中\(\lambda\)是任意常数.
+那么过\(P_1(x_1,y_1),P_2(x_2,y_2)\)两点的圆系方程为\begin{equation*}
+	x^2 + y^2 + C_0 x + D_0 y + E_0 + \lambda (C_1 x + D_1 y + E_1) = 0.
+\end{equation*}
+可以注意到，
+\((C_0,D_0,E_0)^T\)是非齐次方程\begin{equation*}
+	\begin{cases}
+		x_1 C + y_1 D + E = -(x_1^2 + y_1^2), \\
+		x_2 C + y_2 D + E = -(x_2^2 + y_2^2)
+	\end{cases}
+\end{equation*}
+的一个解，
+而\((C_1,D_1,E_1)^T\)是齐次方程\begin{equation*}
+	\begin{cases}
+		x_1 C + y_1 D + E = 0, \\
+		x_2 C + y_2 D + E = 0
+	\end{cases}
+\end{equation*}
+的解（或者说\((C_1,D_1,E_1)^T\)是由\(P_1(x_1,y_1),P_2(x_2,y_2)\)两点确定的直线的方程的参数）.

@@ -1,0 +1,306 @@
+\section{抛物线}
+\subsection{抛物线的概念}
+%@see: 《平面解析几何（甲种本）》 P103
+我们知道，与一个定点的距离和一条定直线的距离之比是常数\(e\)的点的轨迹，
+当\(e<1\)时，是椭圆，当\(e>1\)时，是双曲线.
+那么，当\(e=1\)时，它又是什么曲线？
+
+平面内与一个定点\(F\)和一条定直线\(l\)的距离相等的点的轨迹
+叫做\DefineConcept{抛物线}（parabola）.
+定点\(F\)叫做这条抛物线的\DefineConcept{焦点}.
+定直线\(l\)叫做这条抛物线的\DefineConcept{准线}.
+
+\subsection{抛物线的标准方程}
+%@see: 《平面解析几何（甲种本）》 P103
+取经过焦点\(F\)且垂直于准线\(l\)的直线为\(x\)轴，
+\(x\)轴于\(l\)相交于点\(K\)，
+以线段\(KF\)的垂直平分线为\(y\)轴.
+设\(\LineSegmentLength{KF}=p\)，
+那么，焦点\(F\)的坐标为\((p/2,0)\)，
+准线\(l\)的方程为\(x=-p/2\).
+
+设抛物线上的点\(P(x,y)\)到\(l\)的距离为\(d(P)\).
+抛物线就是点集\begin{equation*}
+	S \defeq \Set*{ P \given \LineSegmentLength{PF} = d(P) }.
+\end{equation*}
+把\(
+	\LineSegmentLength{PF} = \sqrt{\left(x-\frac{p}{2}\right)^2+y^2},
+	d(P) = \abs{x+\frac{p}{2}}
+\)
+代入\(\LineSegmentLength{PF} = d(P)\)，
+得\begin{equation*}
+	\sqrt{\left(x-\frac{p}{2}\right)^2+y^2} = \abs{x+\frac{p}{2}}.
+\end{equation*}
+将上式两边平方，并化简得\begin{equation}\label{equation:平面解析几何.抛物线的标准方程1}
+%@see: 《平面解析几何（甲种本）》 P104 (1)
+	y^2 = 2px,
+	\quad p > 0.
+\end{equation}
+这个方程叫做\DefineConcept{抛物线的标准方程}，
+它表示的抛物线的焦点在\(x\)轴的正半轴上，
+坐标是\((p/2,0)\)，
+准线方程是\(x=-p/2\).
+
+一条抛物线，由于它在坐标平面上的位置不同，方程也不同，
+所以抛物线的标准方程还有其他几种形式，
+它们的方程、焦点坐标、准线方程如\cref{table:平面解析几何.抛物线的四种标准方程} 所示.
+
+\begin{table}[hbt]
+	\centering
+	\begin{tblr}{*3c}
+		\hline
+		方程 & 焦点 & 准线 \\
+		\hline
+		\(y^2 = 2px\) & \(F(p/2,0)\) & \(x = -p/2\) \\
+		\(y^2 = -2px\) & \(F(-p/2,0)\) & \(x = p/2\) \\
+		\(x^2 = 2py\) & \(F(0,p/2)\) & \(y = -p/2\) \\
+		\(x^2 = -2py\) & \(F(0,-p/2)\) & \(y = p/2\) \\
+		\hline
+	\end{tblr}
+	\caption{抛物线的四种标准方程$(p>0)$}
+	\label{table:平面解析几何.抛物线的四种标准方程}
+\end{table}
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+		%\draw[gray,help lines,dashed] (-3,-3) grid (3,3);
+		\draw[thick,->] (-3,0) -> (4,0)node[above]{\(x\)};
+		\draw[thick,->] (0,-4) -> (0,4)node[right]{\(y\)};
+		\draw (0,0)node[below left]{\(O\)};
+		\pgfmathsetmacro{\p}{2}
+		\pgfmathsetmacro{\x}{3}
+		\pgfmathsetmacro{\y}{sqrt(2*\p*\x)}
+		\pgfmathsetmacro{\f}{\p/2}
+		\coordinate (F)at(\f,0);
+		\draw[orange] [rotate=-90](0,0)parabola(\y,\x) [rotate=180](0,0)parabola(\y,-\x);
+		\draw[purple] (-\f,-4)--(-\f,4);
+		\draw (2,2)node[above right]{\(C: y^2 = 2px\ (p>0)\)}
+			(-\f,-1)node[below left]{\(l: x = -\frac{p}{2}\)};
+		\fill (F)circle(2pt)node[below right]{\(F\)};
+		\pgfmathsetmacro{\px}{\f/2}
+		\pgfmathsetmacro{\py}{\p/sqrt(2)}
+		\coordinate (P)at(\px,\py);
+		\coordinate (Q)at(-\f,\py);
+		\coordinate (K)at(-\f,0);
+		\draw[red] (F)--(P)node[above,black]{\(P\)}--(Q)node[left,black]{\(Q\)}
+			pic[draw=gray,-,angle radius=0.3cm]{right angle=P--Q--K};
+		\draw (K)node[below left]{\(K\)};
+		\coordinate (M)at(\f,\p);
+		\coordinate (N)at(\f,-\p);
+		\draw[blue] (M)node[above,black]{\(M\)}--(N)node[below,black]{\(N\)}
+			pic[draw=gray,-,angle radius=0.3cm]{right angle=N--F--K};
+	\end{tikzpicture}
+	\caption{抛物线的图形}
+	\label{figure:平面解析几何.抛物线的图形}
+\end{figure}
+
+\subsection{抛物线的几何性质}
+%@see: 《平面解析几何（甲种本）》 P107
+我们根据抛物线的标准方程\begin{equation*}
+%@see: 《平面解析几何（甲种本）》 P107 (1)
+	y^2 = 2px,
+	\quad p > 0
+\end{equation*}
+来研究它的几何性质.
+\begin{enumerate}
+	\item 范围.
+
+	因为\(p>0\)，由方程 \labelcref{equation:平面解析几何.抛物线的标准方程1} 可知，
+	抛物线 \labelcref{equation:平面解析几何.抛物线的标准方程1} 上的点\(P(x,y)\)
+	都适合不等式\(x \geq 0\)，
+	所以这条抛物线在\(y\)轴的右侧.
+	当\(x\)的值增大时，
+	\(\abs{y}\)也增大，
+	这说明抛物线向右上方和右下方无限延伸.
+
+	\item 对称性.
+
+	以\(-y\)代\(y\)，方程 \labelcref{equation:平面解析几何.抛物线的标准方程1} 形式不变，
+	所以这个抛物线关于\(x\)轴对称，
+	我们把抛物线的对称轴叫做抛物线的\DefineConcept{轴}.
+
+	\item 顶点.
+
+	抛物线和它的轴的交点叫做抛物线的\DefineConcept{顶点}.
+	在方程 \labelcref{equation:平面解析几何.抛物线的标准方程1} 中，
+	当\(y=0\)时，有\(x=0\)，
+	因此抛物线 \labelcref{equation:平面解析几何.抛物线的标准方程1} 的顶点就是坐标原点.
+	抛物线的焦点到顶点的距离，称为抛物线的\DefineConcept{焦距}.
+
+	\item 离心率.
+
+	抛物线上的点\(P\)与焦点和准线的距离的比，
+	叫做抛物线的\DefineConcept{离心率}，用\(e\)表示.
+	由抛物线的定义，抛物线的离心率为\(e = 1\).
+\end{enumerate}
+
+\subsection{抛物线与直线的位置关系}
+已知抛物线方程\(C: y^2=2px\ (p>0)\).
+下面讨论过焦点\(F(p/2,0)\)的直线\(l\)与抛物线的交点个数和度量关系.
+\begin{enumerate}
+	\item 直线与抛物线交于一点.
+
+	当直线\(l\)的方程为\(y=0\)时，
+	代入抛物线方程得\(2px = 0\)，解得\(x=0\).
+	可见直线\(l\)与抛物线\(C\)只有一个交点，即坐标原点\(O\).
+
+	%@see: 《平面解析几何（甲种本）》 P110 练习 3.
+	同理可得：任意一条与抛物线的轴平行的直线和抛物线有且只有一个交点.
+
+	\item 直线与抛物线交于两点.
+
+	经过抛物线的焦点的弦，称为抛物线的\DefineConcept{焦点弦}.
+
+	%@see: 《平面解析几何（甲种本）》 P111 习题八 5.
+	抛物线的垂直于它的轴的焦点弦，称为抛物线的\DefineConcept{通径}.
+
+	\begin{enumerate}
+		\item 当直线\(l\)的方程为\(x=p/2\)时，
+		代入抛物线方程得\(y^2=2p\cdot(p/2)=p^2\)，解得\(y=\pm p\).
+		可见直线\(l\)与抛物线\(C\)有两个交点\(P(p/2,p)\)和\(Q(p/2,-p)\).
+		通径长为\(\LineSegmentLength{PQ} = 2p\).
+
+		\item 当直线\(l\)的方程为\(y=k\left(x-\frac{p}{2}\right)\ (k\neq0)\)时，
+		代入抛物线方程得\begin{equation*}
+			\left[k \left(x-\frac{p}{2}\right)\right]^2 = 2px,
+		\end{equation*}
+		化简得\begin{gather}
+			k^2 x^2 - (k^2 + 2)px + \frac{1}{4} k^2 p^2 = 0, \tag1
+		\end{gather}
+		因为这个关于\(x\)的一元二次方程的判别式为\begin{equation*}
+			\Delta
+			\defeq [- (k^2 + 2)p]^2 - 4 \cdot k^2 \cdot \frac{1}{4} k^2 p^2
+			= 4 p^2 (k^2 + 1)
+			> 0,
+		\end{equation*}
+		所以方程(1)总有两个实根\begin{equation*}
+			x_{1,2} = \frac{(k^2+2)p \pm \sqrt\Delta}{2 k^2}
+			= \frac{p}{2 k^2} (\sqrt{k^2+1} \pm 1)^2.
+		\end{equation*}
+		可见直线\(l\)与抛物线\(C\)有两个交点\(P(x_1,y_1)\)和\(Q(x_2,y_2)\).
+		不妨设\(x_1 > x_2\)，即\begin{gather*}
+			x_1 = \frac{(k^2+2)p + \sqrt\Delta}{2 k^2}
+			= \frac{p}{2 k^2} (\sqrt{k^2+1} + 1)^2, \\
+			x_2 = \frac{(k^2+2)p - \sqrt\Delta}{2 k^2}
+			= \frac{p}{2 k^2} (\sqrt{k^2+1} - 1)^2.
+		\end{gather*}
+		容易注意到\begin{gather*}
+			\frac{(\sqrt{k^2+1}+1)^2}{k^2}
+			= 1 + \frac2{k^2} (\sqrt{k^2+1} + 1)
+			> 1, \\
+			0 < \frac{(\sqrt{k^2+1}-1)^2}{k^2}
+			= 1 + \frac2{k^2} (1 - \sqrt{k^2+1})
+			= 1 - \frac2{1+\sqrt{k^2+1}}
+			< 1,
+		\end{gather*}
+		这说明\(x_1 > \frac{p}{2} > x_2 > 0\).
+		将\(x_{1,2}\)代入抛物线方程得\begin{equation*}
+			y^2 = 2 p^2 \frac{(\sqrt{k^2+1}\pm1)^2}{2 k^2}
+			= \frac{p^2}{k^2} (\sqrt{k^2+1}\pm1)^2,
+		\end{equation*}
+		开方得\begin{equation*}
+			y = \pm \frac{p}{k} (\sqrt{k^2+1}\pm1).
+		\end{equation*}
+		当\(k>0\)时，
+		由\(x_1 > \frac{p}{2} > x_2\)可知\(y_1 > 0 > y_2\)，
+		那么\begin{equation*}
+			y_1 = \frac{p}{k} (\sqrt{k^2+1}+1),
+			\qquad
+			y_2 = -\frac{p}{k} (\sqrt{k^2+1}-1).
+		\end{equation*}
+		%@see: 《平面解析几何（甲种本）》 P111 习题八 8.
+		容易注意到\begin{equation}
+			y_1 y_2 = -p^2.
+		\end{equation}
+		由两点间距离公式，焦点弦长为\begin{align}
+			\LineSegmentLength{PQ}
+			&= \sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
+				\notag \\
+			&= \sqrt{
+				\left(\frac{p}{2 k^2} \cdot 4 \sqrt{k^2+1}\right)^2
+				+ \left(\frac{p}{k} \cdot 2 \sqrt{k^2+1}\right)^2
+			}
+				\notag \\
+			&= 2p \left(1+\frac{1}{k^2}\right).
+		\end{align}
+		若记\(k=\tan\theta\)，则上述弦长公式也可改写为\begin{equation}
+			\LineSegmentLength{PQ}
+			= 2p \frac{\tan^2\theta+1}{\tan^2\theta}
+			= 2p \frac{\sec^2\theta}{\tan^2\theta}
+			= 2p \frac{1}{\sin^2\theta}
+			= 2p \csc^2\theta.
+		\end{equation}
+
+		现在我们来检验上述弦长公式的正确性.
+		根据抛物线的定义，抛物线上一点到焦点与其到准线的距离相等，
+		故\(\LineSegmentLength{PF} = \LineSegmentLength{P P_1} = x_1 + \frac{p}{2}\)，
+		\(\LineSegmentLength{QF} = \LineSegmentLength{Q Q_1} = x_2 + \frac{p}{2}\)，
+		那么\(\LineSegmentLength{PQ} = \LineSegmentLength{PF}+\LineSegmentLength{QF} = x_1 + x_2 + p\).
+		代入\(x_{1,2}\)，得\begin{align*}
+			\LineSegmentLength{PQ}
+			&= \frac{p}{2 k^2}
+				\left[
+					(\sqrt{k^2+1} + 1)^2
+					+ (\sqrt{k^2+1} - 1)^2
+				\right] + p \\
+			&= p\left[\frac{2(k^2 + 1) + 2}{2 k^2} + 1\right]
+			= p \frac{4k^2 + 4}{2k^2}
+			= 2p \left(1+\frac{1}{k^2}\right).
+		\end{align*}
+	\end{enumerate}
+
+	\begin{figure}[hbt]
+		\centering
+		\begin{tikzpicture}
+			%\draw[gray,help lines,dashed] (-3,-3) grid (3,3);
+			\draw[thick,->] (-2,0) -> (4,0)node[above]{\(x\)};
+			\draw[thick,->] (0,-4) -> (0,4)node[right]{\(y\)};
+			\draw (0,0)node[below left]{\(O\)};
+			\pgfmathsetmacro{\p}{2}  % 参数p
+			\pgfmathsetmacro{\x}{3}
+			\pgfmathsetmacro{\y}{sqrt(2*\p*\x)}
+			\pgfmathsetmacro{\f}{\p/2}  % 焦点横坐标
+			\coordinate (F)at(\f,0);
+			\coordinate (2F)at(2\f,0);
+			\draw[orange] [rotate=-90](0,0)parabola(\y,\x) [rotate=180](0,0)parabola(\y,-\x);
+			\draw[purple] (-\f,-4)--(-\f,4); % 准线
+			\draw (2,-3)node[above right]{\(C: y^2 = 2px\ (p>0)\)};
+			\pgfmathsetmacro{\k}{3}  % 焦点弦 斜率
+			\pgfmathsetmacro{\a}{\p/(2*\k^2)}
+			\pgfmathsetmacro{\b}{\p/\k}
+			\pgfmathsetmacro{\c}{sqrt(\k^2+1)}
+			\pgfmathsetmacro{\px}{\a*(\c+1)^2}
+			\pgfmathsetmacro{\py}{\b*(\c+1)}
+			\pgfmathsetmacro{\qx}{\a*(\c-1)^2}
+			\pgfmathsetmacro{\qy}{-\b*(\c-1)}
+			\coordinate (P)at(\px,\py);
+			\coordinate (Q)at(\qx,\qy);
+			\coordinate (P1)at(-\f,\py);
+			\coordinate (Q1)at(-\f,\qy);
+			\coordinate (K)at(-\f,0);
+			\fill (P)circle(2pt)node[below right]{\(P\)}
+				(F)circle(2pt)node[below right]{\(F\)}
+				(Q)circle(2pt)node[right]{\(Q\)};
+			\draw[red] (P)--(P1)node[left,black]{\(P_1\)}
+				pic[draw=gray,-,angle radius=0.3cm]{right angle=P--P1--K}
+				(Q)--(Q1)node[left,black]{\(Q_1\)}
+				pic[draw=gray,-,angle radius=0.3cm]{right angle=Q--Q1--K};
+			\draw[blue] (P)--(F)--(Q);
+			\draw pic["\(\theta\)",draw=gray,-,angle eccentricity=1.7,angle radius=5mm]{angle=2F--F--P};
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:平面解析几何.抛物线的通径}
+	\end{figure}
+\end{enumerate}
+
+另外，可以注意到，\(P\)、\(Q\)两点的坐标满足\begin{equation}
+	x_1 \cdot x_2 = \frac{p^2}{4},
+	\qquad
+	y_1 \cdot y_2 = -p^2.
+\end{equation}
+
+\(P\)、\(Q\)两点的焦半径\(\LineSegmentLength{FP}\)、\(\LineSegmentLength{FQ}\)满足\begin{equation}
+	\frac{1}{\LineSegmentLength{FP}} + \frac{1}{\LineSegmentLength{FB}}
+	= \frac{2}{p}.
+\end{equation}
