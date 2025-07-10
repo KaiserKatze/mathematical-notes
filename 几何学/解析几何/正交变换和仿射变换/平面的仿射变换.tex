@@ -289,3 +289,98 @@ I \([O;\vb{d}_1,\vb{d}_2]\)是仿射坐标系，
 下面我们来讨论仿射变换改变图形面积的规律.
 
 设在平面上规定了一个定向，用平面的单位法向量\(\vb{e}\)表示.
+用\(S(\vb{a},\vb{b})\)表示以\(\vb{a},\vb{b}\)为邻边，
+并且边界的环行方向为\(\vb{a}\)到\(\vb{b}\)的旋转方向的定向平行四边形的定向面积，
+由\cref{equation:解析几何.向量外积与定向平行四边形的定向面积之间的关系} 得\begin{equation*}
+	\VectorOuterProduct{\vb{a}}{\vb{b}}
+	= S(\vb{a},\vb{b})
+	\vb{e}.
+\end{equation*}
+
+\begin{theorem}\label{theorem:平面的仿射变换.仿射变换的变积系数}
+%@see: 《解析几何》（丘维声） P225 定理3.3
+设仿射变换\(\tau\)在仿射标架 I \([O;\vb{d}_1,\vb{d}_2]\)中的公式为\begin{equation*}
+%@see: 《解析几何》（丘维声） P225 (3.10)
+	\begin{bmatrix}
+		x' \\ y'
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{bmatrix}
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix}
+	+ \begin{bmatrix}
+		x_0 \\ y_0
+	\end{bmatrix},
+\end{equation*}
+对于任意不共线的向量\(\vb{a},\vb{b}\)，
+有\(
+	\tau(\vb{a}) = \vb{a}',
+	\tau(\vb{b}) = \vb{b}'
+\)，
+则有\begin{equation*}
+%@see: 《解析几何》（丘维声） P225 (3.11)
+	\frac{S(a',b')}{S(a,b)}
+	= \begin{vmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{vmatrix}.
+\end{equation*}
+\end{theorem}
+
+%@see: 《解析几何》（丘维声） P226
+易知，如果仿射变换\(\tau\)在仿射坐标系 I 中的公式的系数矩阵为\(\vb{A}\)，
+那么\(\tau\)在仿射坐标系 II 中的公式的系数矩阵为\(\vb{H}^{-1} \vb{A} \vb{H}\)，
+其中\(\vb{H}\)是 I 到 II 的过渡矩阵.
+因为\begin{equation*}
+	\DeterminantA{\vb{H}^{-1} \vb{A} \vb{H}}
+	= \DeterminantA{\vb{H}^{-1}}
+	\DeterminantA{\vb{A}}
+	\DeterminantA{\vb{H}}
+	= \DeterminantA{\vb{H}}^{-1}
+	\DeterminantA{\vb{A}}
+	\DeterminantA{\vb{H}}
+	= \DeterminantA{\vb{A}},
+\end{equation*}
+所以仿射变换\(\tau\)的公式中系数矩阵的行列式与仿射标架的选择无关.
+
+\begin{definition}
+%@see: 《解析几何》（丘维声） P226 定义3.8
+仿射变换\(\tau\)的公式中系数矩阵的行列式
+称为“仿射变换\(\tau\)的\DefineConcept{行列式}”，
+记作\(\det\tau\).
+如果\(\det\tau>0\)，则称\(\tau\)是\DefineConcept{第一类仿射变换}.
+如果\(\det\tau<0\)，则称\(\tau\)是\DefineConcept{第二类仿射变换}.
+\end{definition}
+
+\cref{theorem:平面的仿射变换.仿射变换的变积系数} 表明：
+仿射变换\(\tau\)按照同一个比值\(\det\tau\)来改变所有平行四边形的定向面积.
+
+\begin{corollary}\label{theorem:平面的仿射变换.仿射变换的变积系数.推论}
+%@see: 《解析几何》（丘维声） P226 推论3.6
+若平面上任意一块有面积的区域\(D\)
+经过仿射变换\(\tau\)映成区域\(D'\)，
+则有\begin{equation*}
+	\frac{S(D')}{S(D)} = \abs{\det\tau},
+\end{equation*}
+其中\(S(D'),S(D)\)分别表示\(D',D\)的面积.
+\end{corollary}
+
+\cref{theorem:平面的仿射变换.仿射变换的变积系数.推论} 说明：
+仿射变换\(\tau\)按照同一个比值\(\abs{\det\tau}\)来改变平面上所有（有面积的）图形的面积.
+因此，把\(\abs{\det\tau}\)称为仿射变换\(\tau\)的\DefineConcept{变积系数}.
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P228 习题6.3 6.
+如果一条直线与它在仿射变换\(\tau\)下的像重合，
+则称这条直线是\(\tau\)的\DefineConcept{不变直线}.
+求下述仿射变换的不变直线：\begin{equation*}
+	\begin{cases}
+		x' = 7x - y + 1, \\
+		y' = 4x + 2y + 4.
+	\end{cases}
+\end{equation*}
+%TODO
+\end{example}
