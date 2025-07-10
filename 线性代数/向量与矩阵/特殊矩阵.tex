@@ -171,6 +171,109 @@
 则称“矩阵\(\vb{A}\)是一个\DefineConcept{置换矩阵}”.
 \end{definition}
 
+\begin{example}
+3阶置换矩阵有6个：\begin{gather*}
+	P_1 \defeq \begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix},
+	\qquad
+	P_2 \defeq \begin{bmatrix}
+		0 & 1 & 0 \\
+		1 & 0 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix},
+	\qquad
+	P_3 \defeq \begin{bmatrix}
+		0 & 0 & 1 \\
+		0 & 1 & 0 \\
+		1 & 0 & 0
+	\end{bmatrix},
+	\\
+	P_4 \defeq \begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 0 & 1 \\
+		0 & 1 & 0
+	\end{bmatrix},
+	\qquad
+	P_5 \defeq \begin{bmatrix}
+		0 & 0 & 1 \\
+		1 & 0 & 0 \\
+		0 & 1 & 0
+	\end{bmatrix},
+	\qquad
+	P_6 \defeq \begin{bmatrix}
+		0 & 1 & 0 \\
+		0 & 0 & 1 \\
+		1 & 0 & 0
+	\end{bmatrix}.
+\end{gather*}
+%@Mathematica: Subscript[P, 1] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}
+%@Mathematica: Subscript[P, 2] = {{0, 1, 0}, {1, 0, 0}, {0, 0, 1}}
+%@Mathematica: Subscript[P, 3] = {{0, 0, 1}, {0, 1, 0}, {1, 0, 0}}
+%@Mathematica: Subscript[P, 4] = {{1, 0, 0}, {0, 0, 1}, {0, 1, 0}}
+%@Mathematica: Subscript[P, 5] = {{0, 0, 1}, {1, 0, 0}, {0, 1, 0}}
+%@Mathematica: Subscript[P, 6] = {{0, 1, 0}, {0, 0, 1}, {1, 0, 0}}
+%@Mathematica: TableForm[Table[Subscript[P, i].Subscript[P, j] // MatrixForm, {i, 1, 6}, {j, 1, 6}], TableHeadings -> Table[Table[Subscript["P", k], {k, 1, 6}], {p, 1, 2}]]
+%@Mathematica: TableForm[Table[Subscript["P", Switch[Subscript[P, i].Subscript[P, j], Subscript[P, 1], 1, Subscript[P, 2], 2, Subscript[P, 3], 3, Subscript[P, 4], 4, Subscript[P, 5], 5, Subscript[P, 6], 6]], {i, 1, 6}, {j, 1, 6}], TableHeadings -> Table[Table[Subscript["P", k], {k, 1, 6}], {p, 1, 2}]]
+%@Mathematica: Table[StringForm["P_`1` P_`2` = P_`3`", i, j, Switch[Subscript[P, i].Subscript[P, j], Subscript[P, 1], 1, Subscript[P, 2], 2, Subscript[P, 3], 3, Subscript[P, 4], 4, Subscript[P, 5], 5, Subscript[P, 6], 6]], {i, 1, 6}, {j, 1, 6}]
+可以验证：\begin{gather*}
+	P_1 P_1 = P_1,
+	P_1 P_2 = P_2,
+	P_1 P_3 = P_3,
+	P_1 P_4 = P_4,
+	P_1 P_5 = P_5,
+	P_1 P_6 = P_6, \\
+	P_2 P_1 = P_2,
+	P_2 P_2 = P_1,
+	P_2 P_3 = P_6,
+	P_2 P_4 = P_5,
+	P_2 P_5 = P_4,
+	P_2 P_6 = P_3, \\
+	P_3 P_1 = P_3,
+	P_3 P_2 = P_5,
+	P_3 P_3 = P_1,
+	P_3 P_4 = P_6,
+	P_3 P_5 = P_2,
+	P_3 P_6 = P_4, \\
+	P_4 P_1 = P_4,
+	P_4 P_2 = P_6,
+	P_4 P_3 = P_5,
+	P_4 P_4 = P_1,
+	P_4 P_5 = P_3,
+	P_4 P_6 = P_2, \\
+	P_5 P_1 = P_5,
+	P_5 P_2 = P_3,
+	P_5 P_3 = P_4,
+	P_5 P_4 = P_2,
+	P_5 P_5 = P_6,
+	P_5 P_6 = P_1, \\
+	P_6 P_1 = P_6,
+	P_6 P_2 = P_4,
+	P_6 P_3 = P_2,
+	P_6 P_4 = P_3,
+	P_6 P_5 = P_1,
+	P_6 P_6 = P_5.
+\end{gather*}
+我们可以把上述结果列成表格，如\cref{table:置换矩阵.3阶置换矩阵的乘法表} 所示.
+由此可见，这6个矩阵组成的集合对矩阵乘法成群，但是它不是交换群.
+\begin{table}[hbt]
+	\centering
+	\begin{tblr}{c|*6c}
+				& \(P_1\) & \(P_2\) & \(P_3\) & \(P_4\) & \(P_5\) & \(P_6\) \\ \hline
+		\(P_1\) & \(P_1\) & \(P_2\) & \(P_3\) & \(P_4\) & \(P_5\) & \(P_6\) \\
+		\(P_2\) & \(P_2\) & \(P_1\) & \(P_6\) & \(P_5\) & \(P_4\) & \(P_3\) \\
+		\(P_3\) & \(P_3\) & \(P_5\) & \(P_1\) & \(P_6\) & \(P_2\) & \(P_4\) \\
+		\(P_4\) & \(P_4\) & \(P_6\) & \(P_5\) & \(P_1\) & \(P_3\) & \(P_2\) \\
+		\(P_5\) & \(P_5\) & \(P_3\) & \(P_4\) & \(P_2\) & \(P_6\) & \(P_1\) \\
+		\(P_6\) & \(P_6\) & \(P_4\) & \(P_2\) & \(P_3\) & \(P_1\) & \(P_5\) \\
+	\end{tblr}
+	\caption{3阶置换矩阵的乘法表}
+	\label{table:置换矩阵.3阶置换矩阵的乘法表}
+\end{table}
+\end{example}
+
 \subsection{对角矩阵}
 \begin{definition}
 如果矩阵\(\vb{A}=(a_{ij})_n \in M_n(K)\)除对角线以外的元素全为零，即\begin{equation*}
