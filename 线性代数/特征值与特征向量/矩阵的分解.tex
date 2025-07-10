@@ -34,7 +34,7 @@
 \end{theorem}
 
 实施CR分解的步骤：\begin{enumerate}
-	\item 首先利用高斯--若尔当消元法，将矩阵\(\vb{A}\)化为行约化矩阵\(\vb{B}\)；
+	\item 首先利用高斯--若尔当消元法，将矩阵\(\vb{A}\)化为行阶梯形矩阵\(\vb{B}\)；
 	\item 用\(\vb{B}\)的非零首元所在的列组成一个矩阵，记作\(\vb{C}\)；
 	\item 去掉\(\vb{B}\)的零行，留下非零行，得到一个矩阵，记作\(\vb{R}\).
 \end{enumerate}
@@ -67,79 +67,37 @@
 QR分解的目的，是将一个实满秩矩阵分解成一个正定矩阵和一个主对角元都是正数的上三角矩阵的乘积.
 
 \section{LU分解}
-LU分解的目的，是将一个矩阵分解成一个下三角矩阵和一个上三角矩阵的乘积.
-
-\begin{theorem}
-设\(\vb{A} = (a_{ij})_n \in M_n(\mathbb{R})\)，
-存在下三角阵\(\vb{L} = (l_{ij})_n\)和上三角阵\(\vb{U} = (u_{ij})_n\)，
-使得\(\vb{A} = \vb{L} \vb{U}\)，
-其中\(l_{ii} = 1\ (i=1,2,\dotsc,n),
-l_{ij} = 0\ (i<j),
-u_{ij} = 0\ (i>j)\).
-\end{theorem}
-
-举例来说，令\begin{equation*}
-	\vb{A} = \begin{bmatrix}
-		a_{11} & a_{12} \\
-		a_{21} & a_{22}
-	\end{bmatrix}
-	= \begin{bmatrix}
-		1 & 0 \\
-		l_{21} & 1
-	\end{bmatrix}
-	\begin{bmatrix}
-		u_{11} & u_{12} \\
-		0 & u_{22}
-	\end{bmatrix}
-	= \vb{L} \vb{U},
+LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(\vb{L}\)和一个上三角矩阵\(\vb{U}\)的乘积，
+即\begin{equation*}
+	\vb{A} = \vb{L} \vb{U},
 \end{equation*}
-得\begin{equation*}
-	\left.\begin{array}{r}
-		1 \cdot u_{11} + 0 \cdot 0 = a_{11} \\
-		1 \cdot u_{12} + 0 \cdot u_{22} = a_{12} \\
-		l_{21} u_{11} + 1 \cdot 0 = a_{21} \\
-		l_{21} u_{12} + 1 \cdot u_{22} = a_{22}
-	\end{array}\right\}
-	\implies
-	\left\{\begin{array}{l}
-		u_{11} = a_{11}, \\
-		u_{12} = a_{12}, \\
-		l_{21} = a_{21} / u_{11}, \\
-		u_{22} = a_{22} - l_{21} u_{12}.
-	\end{array}\right.
+或者分解成一个下三角矩阵\(\vb{L}\)、一个上三角矩阵\(\vb{U}\)和一个对角矩阵\(\vb{D}\)的乘积，
+即\begin{equation*}
+	\vb{A} = \vb{L} \vb{D} \vb{U}.
 \end{equation*}
 
-又令\begin{equation*}
-	\vb{A} = \begin{bmatrix}
-		a_{11} & a_{12} & a_{13} \\
-		a_{21} & a_{22} & a_{23} \\
-		a_{31} & a_{32} & a_{33}
-	\end{bmatrix}
-	= \begin{bmatrix}
-		1 & 0 & 0 \\
-		l_{21} & 1 & 0 \\
-		l_{31} & l_{32} & 1
-	\end{bmatrix}
-	\begin{bmatrix}
-		u_{11} & u_{12} & u_{13} \\
-		0 & u_{22} & u_{23} \\
-		0 & 0 & u_{33}
-	\end{bmatrix} = \vb{L} \vb{U},
-\end{equation*}
-得\begin{equation*}
-	\left\{\begin{array}{l}
-		u_{11} = a_{11}, \\
-		u_{12} = a_{12}, \\
-		u_{13} = a_{13}, \\
-		l_{21} = a_{21} / u_{11}, \\
-		l_{31} = a_{31} / u_{11}, \\
-		u_{22} = a_{22} - l_{21} \cdot u_{12}, \\
-		u_{23} = a_{23} - l_{21} \cdot u_{13}, \\
-		l_{32} = (a_{32} - l_{31} \cdot u_{12}) / u_{22}, \\
-		u_{33} = a_{33} - (l_{31} \cdot u_{13} + l_{32} \cdot u_{23}).
-	\end{array}\right.
-\end{equation*}
+实施LU分解的步骤：\begin{enumerate}
+	\item 首先利用高斯--若尔当消元法，
+	将矩阵\((\vb{A},\vb{E})\)化为行阶梯形矩阵\((\vb{B},\vb{L})\)；
 
+	\item 决定是否需要进一步从\(\vb{B}\)中分解出对角矩阵，\begin{itemize}
+		\item 如果不需要得到对角矩阵，
+		则把\(\vb{B}\)记为\(\vb{U}\)，
+		便可成立\(\vb{A} = \vb{L} \vb{U}\)；
+
+		\item 如果需要得到对角矩阵，
+		则继续利用高斯--若尔当消元法，
+		将矩阵\(\begin{bmatrix}
+			\vb{B} \\
+			\vb{E}
+		\end{bmatrix}\)
+		化为列阶梯形矩阵\(\begin{bmatrix}
+			\vb{D} \\
+			\vb{U}
+		\end{bmatrix}\)，
+		由此便得\(\vb{A} = \vb{L} \vb{D} \vb{U}\).
+	\end{itemize}
+\end{enumerate}
 
 \section{谱分解}
 \begin{lemma}\label{theorem:矩阵分解.复方阵酉相似于上三角阵}
