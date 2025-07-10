@@ -172,7 +172,38 @@
 %@see: https://mathworld.wolfram.com/PermutationMatrix.html
 \end{definition}
 
-%@Mathematica: RenderTableOfPermutationMatrixOfOrder[n_] := TableForm[Table[Subscript["P", Switch @@ Flatten[{{{Subscript[P, i].Subscript[P, j]}}, Table[{Subscript[P, l], l}, {l, 1, n!}]}, 2]], {i, 1, n!}, {j, 1, n!}], TableHeadings -> Table[Table[Subscript["P", k], {k, 1, n!}], {p, 1, 2}]]
+%@Mathematica: GeneratePermutationMatrices[n_] := Table[
+%					SparseArray[
+%						Table[
+%							{perm[[i]], i} -> 1,
+%							{i, 1, n}
+%						],
+%						n, 0
+%					],
+%					{perm, Permutations[Range[n]]}
+%				]
+%@Mathematica: RenderTableOfPermutationMatrixOfOrder[n_] := Module[
+%					{permutationMatrices},
+%					permutationMatrices = GeneratePermutationMatrices[n];
+%					TableForm[
+%						Table[
+%							Subscript[
+%								"P",
+%								Switch @@ Flatten[
+%									{
+%										{{permutationMatrices[[i]].permutationMatrices[[j]]}},
+%										Table[{permutationMatrices[[l]], l}, {l, 1, n!}]
+%									},
+%									2
+%								]
+%							],
+%							{i, 1, n!},
+%							{j, 1, n!}
+%						],
+%						TableHeadings -> Table[Table[Subscript["P", k], {k, 1, n!}], {p, 1, 2}]
+%					]
+%				]
+
 \begin{example}
 2阶置换矩阵有2个：\begin{equation*}
 	P_1 \defeq \begin{bmatrix}
