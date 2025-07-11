@@ -181,16 +181,30 @@
 综上所述，\(\AutoTuple{\vb{x}}{n-r}\)是\(\vb{A}\vb{x}=\vb0\)的一个基础解系，含有\(n-r\)个解向量.
 \end{proof}
 \end{theorem}
-\begin{remark}
+
 \cref{theorem:线性方程组.齐次线性方程组的解向量个数} 的证明过程给出了
 求解齐次线性方程组\(\vb{A}\vb{x}=\vb0\)的基础解系的方法：
+\begin{algorithm}[求解齐次线性方程组]
+\hfill
 \begin{enumerate}
-	\item[第一步] 把齐次线性方程组的系数矩阵\(\vb{A}\)经过初等行变换化简成行约化矩阵\(\vb{J}\).
-	\item[第二步] 从\(\vb{J}\)直接写出方程组的一般解公式.
-	\item[第三步] 在一般解公式中，每一次让一个自由未知量取值1，其余自由未知量取值0，求出方程组的一个解向量.
-	这样得到的\(n-r\)个解向量就构成方程组的一个基础解系，其中\(r=\rank\vb{A}\).
+	\item 把齐次线性方程组的系数矩阵\(\vb{A}\)经过初等行变换化简成行约化矩阵\(\vb{J}\)；
+
+	\item 从\(\vb{J}\)中，找出非零首元对应的列\(\vb\beta_{i_1},\dotsc,\vb\beta_{i_r}\)，
+	将这些列称为\DefineConcept{主列}（pivot column）；
+
+	\item 从\(\vb{J}\)中，找出没有非零首元的列\(\vb\beta_{j_1},\dotsc,\vb\beta_{j_{n-r}}\)，
+	将这些列称为\DefineConcept{自由列}（free column）；
+
+	\item 当\(k=1,2,\dotsc,n-r\)时，
+	让解向量\(\vb{x} = (\AutoTuple{x}{n})^T\)
+	第\(j_k\)个分量\(x_{j_k}\)取\(1\)（或一个合适的非零数），
+	而\(x_{j_1},\dotsc,x_{j_{k-1}},x_{j_{k+1}},\dotsc,x_{j_{n-1}}\)全都取零，
+	代入\(\vb{J} \vb{x} = \vb0\)，
+	求出\(x_{i_1},\dotsc,x_{i_r}\)，
+	于是得到\(n-r\)个解向量\(\AutoTuple{\vb{x}}{n-r}\)，
+	这就是齐次线性方程组\(\vb{A}\vb{x}=\vb0\)的一个基础解系.
 \end{enumerate}
-\end{remark}
+\end{algorithm}
 
 \begin{corollary}
 %@see: 《线性代数》（张慎语、周厚隆） P83 推论
