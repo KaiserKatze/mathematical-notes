@@ -65,38 +65,44 @@
 则它的幂级数展开式是唯一的.
 \end{theorem}
 
-{\color{red}
 要把函数\(f(x)\)展开成麦克劳林级数，可以按照下列步骤进行：
+\begin{algorithm}[麦克劳林展开]\label{algorithm:函数项级数.麦克劳林展开}
+\hfill
 \begin{enumerate}
-	\item 求出函数\(f(x)\)的各阶导数\begin{equation*}
-		f'(x),f''(x),\dotsc,f^{(n)}(x),\dotsc.
+	\item 从一阶导数\(f'(x)\)开始，
+	由低阶导数到高阶导数，
+	逐个计算函数\(f(x)\)在点\(x=0\)的各阶导数\begin{equation*}
+		f'(0),f''(0),\dotsc,f^{(n)}(0),\dotsc.
 	\end{equation*}
-	如果在\(x=0\)处某阶导数不存在，就停止展开，因为这就说明函数\(f(x)\)不能展开为麦克劳林级数.
+	在上述计算过程中，
+	\begin{itemize}
+		\item 如果在\(x=0\)处某阶导数不存在，就停止展开，因为这就说明函数\(f(x)\)不能展开为麦克劳林级数；
 
-	\item 求出函数及其各阶导数在\(x=0\)处的值：\begin{equation*}
-		f(0),f'(0),f''(0),\dotsc,f^{(n)}(0),\dotsc.
-	\end{equation*}
+		\item 如果各阶倒数在点\(x=0\)都存在，就继续展开.
+		\begin{enumerate}
+			\item 写出幂级数\begin{equation*}
+				f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \dotsb + \frac{f^{(n)}(0)}{n!} x^n + \dotsb,
+			\end{equation*}
+			并求出收敛半径\(R\).
 
-	\item 写出幂级数\begin{equation*}
-		f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \dotsb + \frac{f^{(n)}(0)}{n!} x^n + \dotsb,
-	\end{equation*}
-	并求出收敛半径\(R\).
+			\item 利用余项\(R_n(x)\)的表达式\begin{equation*}
+				R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\theta x) x^{n+1}
+				\quad(0 < \theta < 1),
+			\end{equation*}
+			考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\lim_{n\to\infty} R_n(x)\)是否为零.
+			\begin{itemize}
+				\item 如果\(\lim_{n\to\infty} R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数.
 
-	\item 利用余项\(R_n(x)\)的表达式\begin{equation*}
-		R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\theta x) x^{n+1}
-		\quad(0 < \theta < 1),
-	\end{equation*}
-	考察当\(x\)在区间\((-R,R)\)内时余项的极限\(\lim_{n\to\infty} R_n(x)\)是否为零.
-
-	如果\(\lim_{n\to\infty} R_n(x) = 0\)，
-	则函数\(f(x)\)在区间\((-R,R)\)内的麦克劳林展开式为\begin{equation*}
-		f(x) = \sum_{n=0}^\infty \frac{1}{n!} f^{(n)}(0) x^n
-		\quad(-R < x < R).
-	\end{equation*}
-
-	如果\(\lim_{n\to\infty} R_n(x) \neq 0\)，则函数\(f(x)\)不能展开为麦克劳林级数.
+				\item 如果\(\lim_{n\to\infty} R_n(x) = 0\)，
+				则函数\(f(x)\)在区间\((-R,R)\)内的麦克劳林展开式为\begin{equation*}
+					f(x) = \sum_{n=0}^\infty \frac{1}{n!} f^{(n)}(0) x^n
+					\quad(-R < x < R).
+				\end{equation*}
+			\end{itemize}
+		\end{enumerate}
+	\end{itemize}
 \end{enumerate}
-}
+\end{algorithm}
 
 需要注意的是，不要错误地认为“如果一个函数的泰勒级数在点\(x_0\)处收敛，那么该级数就一定收敛到这个函数”.
 \begin{example}\label{example:无穷级数.函数的泰勒级数不一定收敛到函数}
