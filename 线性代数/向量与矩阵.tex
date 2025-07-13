@@ -17,14 +17,19 @@
 	}.
 \end{equation*}
 
-设\(\vb{A}\in M_{s \times n}(K)\).
+设\(\vb{A} \in M_{s \times n}(K)\).
 我们把\(s\)称为“\(\vb{A}\)的\DefineConcept{行数}”，
 把\(n\)称为“\(\vb{A}\)的\DefineConcept{列数}”.
-把\begin{equation*}
+
+当我们把矩阵\(\vb{A} \in M_{s \times n}(K)\)
+看作从\(\{1,\dotsc,s\}\times\{1,\dotsc,n\}\)到\(K\)的一个映射时，
+把它在\((i,j)\)的值\begin{equation*}
 	\vb{A}(i,j)
 	\quad(i=1,2,\dotsc,s;j=1,2,\dotsc,n)
-\end{equation*}称为“\(\vb{A}\)的\((i,j)\)元素”
-或“\(\vb{A}\)的第\(i\)行第\(j\)列\DefineConcept{元素}（element）”.
+\end{equation*}
+称为“\(\vb{A}\)的\((i,j)\)元素”
+或“\(\vb{A}\)的第\(i\)行第\(j\)列\DefineConcept{元素}（element）”，
+记作\(\MatrixEntry{\vb{A}}{i,j}\).
 %@see: https://mathworld.wolfram.com/MatrixElement.html
 
 对于任意给定的两个矩阵\(\vb{A}\)和\(\vb{B}\)，
@@ -40,11 +45,13 @@
 	M_{n \times n}(K).
 \end{equation*}
 
-设\(\vb{A}\in M_{s \times n}(K)\).
+设\(\vb{A} \in M_{s \times n}(K)\).
 我们把\begin{equation*}
-	\vb{A}(k,k)
+	\MatrixEntry{\vb{A}}{k,k}
 	\quad(k=1,2,\dotsc,\min\{s,n\})
-\end{equation*}称为“\(\vb{A}\)的\DefineConcept{主对角线}（main diagonal）上的元素”.
+\end{equation*}
+称为“\(\vb{A}\)的\DefineConcept{主对角线}（main diagonal）上的元素”
+或“\(\vb{A}\)的\DefineConcept{主对角元}”.
 %@see: https://mathworld.wolfram.com/Diagonal.html
 %@see: https://mathworld.wolfram.com/SkewDiagonal.html
 
@@ -71,7 +78,7 @@
 
 有时候为了强调矩阵的行数和列数，
 我们会在表示矩阵的字母的右下角标注矩阵的形状，例如，
-如果\(\vb{A}\in M_{s \times n}(K)\)，那么我们可以写出\(\vb{A}_{s \times n}\)；
+如果\(\vb{A} \in M_{s \times n}(K)\)，那么我们可以写出\(\vb{A}_{s \times n}\)；
 如果\(\vb{B}\in M_n(K)\)，那么我们可以写出\(\vb{B}_n\).
 
 “矩阵”之所以得名，是因为我们可以把矩阵\(\vb{A}\)写成\(s\)行\(n\)列的矩形表，再加上括号：\begin{equation*}
@@ -82,7 +89,11 @@
 		a_{s1} & a_{s2} & \dots & a_{sn}
 	\end{bmatrix},
 \end{equation*}
-其中\(a_{ij}=\vb{A}(i,j)\ (i=1,2,\dotsc,s;j=1,2,\dotsc,n)\).
+其中\(
+	a_{ij}
+	= \MatrixEntry{\vb{A}}{i,j}
+	\ (i=1,2,\dotsc,s;j=1,2,\dotsc,n)
+\).
 有时候为了强调矩阵的元素，
 我们会把\(\vb{A}_{s \times n}\)记作\(\vb{A}=(a_{ij})_{s \times n}\).
 
@@ -119,7 +130,7 @@
 
 \subsection{矩阵的分块}
 \begin{definition}
-设\(\vb{A}\in M_{s \times n}(K)\)；
+设\(\vb{A} \in M_{s \times n}(K)\)；
 给定介于\(1\)和\(s\)之间的两个正整数\(a,b\)，
 以及介于\(1\)和\(n\)之间的两个正整数\(c,d\).
 令\begin{equation*}
@@ -133,21 +144,28 @@
 以子块为元素的矩阵称为\DefineConcept{分块矩阵}.
 \end{definition}
 
-我们可以把矩阵\(\vb{A}\)分解成如下形式：
+我们可以把矩阵\(\vb{A} \in M_{s \times n}(K)\)分解成如下形式：
 \begin{equation*}
-	\begin{matrix}
+	\vb{A}
+	= \begin{matrix}
 		& \begin{matrix} n_1 & n_2 & \dots & n_r \end{matrix} \\
 			\begin{matrix} s_1 \\ s_2 \\ \vdots \\ s_t \end{matrix} & \begin{bmatrix}
 			\vb{A}_{11} & \vb{A}_{12} & \dots & \vb{A}_{1r} \\
 			\vb{A}_{21} & \vb{A}_{22} & \dots & \vb{A}_{2r} \\
-			\vdots & \vdots & \ddots & \vdots \\
+			\vdots & \vdots & & \vdots \\
 			\vb{A}_{t1} & \vb{A}_{t2} & \dots & \vb{A}_{tr}
-		\end{bmatrix}.
+		\end{bmatrix},
 	\end{matrix}
 \end{equation*}
+其中\(\vb{A}_{ij} \in M_{s_i \times n_j}(K)\)，
+\(\vb{A}_{ij}\)
+且\(
+	\sum_{i=1}^t s_i = s,
+	\sum_{j=1}^r n_j = n
+\).
 
 \subsection{矩阵的行向量组、列向量组}
-设\(\vb{A}\in M_{s \times n}(K)\).
+设\(\vb{A} \in M_{s \times n}(K)\).
 现在我们以\(\vb{A}\)为对象，研究两种特殊的分块方式.
 
 如果我们只把第\(i\ (i=1,2,\dotsc,s)\)行上的元素取出来，
@@ -160,7 +178,7 @@
 	\vb\alpha=\vb{A}\SetRestrict(\{i\}\times\{1,\dotsc,n\}),
 \end{equation*}
 那么称“\(\vb\alpha\)是\(\vb{A}\)的第\(i\) \DefineConcept{行向量}”，
-记作\(\MatrixEntry\vb{A}{i,*}\).
+记作\(\MatrixEntry{\vb{A}}{i,*}\).
 
 如果我们只把第\(j\ (j=1,2,\dotsc,n)\)列上的元素取出来，
 构成一个列向量\begin{equation*}
@@ -172,28 +190,29 @@
 	\vb\beta=\vb{A}\SetRestrict(\{1,\dotsc,s\}\times\{j\}),
 \end{equation*}
 那么称“\(\vb\beta\)是\(\vb{A}\)的第\(j\) \DefineConcept{列向量}”，
-记作\(\MatrixEntry\vb{A}{*,j}\).
+记作\(\MatrixEntry{\vb{A}}{*,j}\).
 
 把\(\vb{A}\)的全部行向量\begin{equation*}
 	\Set{ \vb\alpha \given \vb\alpha=\vb{A}\SetRestrict(\{i\}\times\{1,\dotsc,n\}), i=1,2,\dotsc,s }
 \end{equation*}或者说\begin{equation*}
-	\Set{\MatrixEntry\vb{A}{1,*},\MatrixEntry\vb{A}{2,*},\dotsc,\MatrixEntry\vb{A}{s,*}}
+	\Set{\MatrixEntry{\vb{A}}{1,*},\MatrixEntry{\vb{A}}{2,*},\dotsc,\MatrixEntry{\vb{A}}{s,*}}
 \end{equation*}
 称为“\(\vb{A}\)的\DefineConcept{行向量组}”.
 
 把\(\vb{A}\)的全部列向量\begin{equation*}
 	\Set{ \vb\beta \given \vb\beta=\vb{A}\SetRestrict(\{1,\dotsc,s\}\times\{j\}), j=1,2,\dotsc,n }
 \end{equation*}或者说\begin{equation*}
-	\Set{\MatrixEntry\vb{A}{*,1},\MatrixEntry\vb{A}{*,2},\dotsc,\MatrixEntry\vb{A}{*,n}}
+	\Set{\MatrixEntry{\vb{A}}{*,1},\MatrixEntry{\vb{A}}{*,2},\dotsc,\MatrixEntry{\vb{A}}{*,n}}
 \end{equation*}
 称为“\(\vb{A}\)的\DefineConcept{列向量组}”.
 
 \subsection{矩阵的转置}
 \begin{definition}
-设\(\vb{A}\in M_{s \times n}(K),
+设\(\vb{A} \in M_{s \times n}(K),
 \vb{B}\in M_{n \times s}(K)\).
 如果\begin{equation*}
-	\vb{B}(i,j)=\vb{A}(j,i),
+	\MatrixEntry{\vb{B}}{i,j}
+	= \MatrixEntry{\vb{A}}{j,i},
 	\quad i=1,2,\dotsc,s;j=1,2,\dotsc,n,
 \end{equation*}
 那么把\(\vb{B}\)称为“\(\vb{A}\)的\DefineConcept{转置矩阵}（transpose）”，
@@ -355,14 +374,14 @@
 \begin{gather}
 	(\forall\vb{A},\vb{B}\in M_{s\times n}(K))[\vb{A} + \vb{B} = \vb{B} + \vb{A}], \\
 	(\forall\vb{A},\vb{B},\vb{C}\in M_{s\times n}(K))[(\vb{A} + \vb{B}) + \vb{C} = \vb{A} + (\vb{B} + \vb{C})], \\
-	(\forall\vb{A}\in M_{s\times n}(K))[\vb{A} + \vb0 = \vb{A}], \\
-	(\forall\vb{A}\in M_{s\times n}(K))[\vb{A} + (-\vb{A}) = \vb0], \\
-	(\forall\vb{A}\in M_{s\times n}(K))[1 \vb{A} = \vb{A}], \\
-	(\forall\vb{A}\in M_{s\times n}(K))(\forall k,l\in K)[k(l \vb{A}) = (kl) \vb{A}], \\
+	(\forall\vb{A} \in M_{s\times n}(K))[\vb{A} + \vb0 = \vb{A}], \\
+	(\forall\vb{A} \in M_{s\times n}(K))[\vb{A} + (-\vb{A}) = \vb0], \\
+	(\forall\vb{A} \in M_{s\times n}(K))[1 \vb{A} = \vb{A}], \\
+	(\forall\vb{A} \in M_{s\times n}(K))(\forall k,l\in K)[k(l \vb{A}) = (kl) \vb{A}], \\
 	(\forall\vb{A},\vb{B}\in M_{s\times n}(K))(\forall k\in K)[k(\vb{A} + \vb{B}) = k\vb{A} + k\vb{B}], \\
-	(\forall\vb{A}\in M_{s\times n}(K))(\forall k,l\in K)[(k+l)\vb{A} = k\vb{A} + l\vb{A}], \\
-	(\forall\vb{A}\in M_{s\times n}(K))[0\vb{A} = \vb0], \\
-	(\forall\vb{A}\in M_{s\times n}(K))[(-1)\vb{A} = -\vb{A}], \\
+	(\forall\vb{A} \in M_{s\times n}(K))(\forall k,l\in K)[(k+l)\vb{A} = k\vb{A} + l\vb{A}], \\
+	(\forall\vb{A} \in M_{s\times n}(K))[0\vb{A} = \vb0], \\
+	(\forall\vb{A} \in M_{s\times n}(K))[(-1)\vb{A} = -\vb{A}], \\
 	(\forall k\in K)[k\vb0 = \vb0], \\
 	k\vb{A} = \vb0 \implies k = 0 \lor \vb{A} = \vb0.
 \end{gather}
