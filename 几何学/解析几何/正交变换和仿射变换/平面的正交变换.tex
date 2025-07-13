@@ -48,7 +48,7 @@
 恒等变换是正交变换.
 \end{property}
 
-\begin{property}
+\begin{property}\label{theorem:平面的正交变换.正交变换保持共线性}
 %@see: 《解析几何》（丘维声） P199 性质3
 正交变换
 把共线的三点映成共线的三点，并且保持它们的顺序不变；
@@ -105,6 +105,60 @@
 \begin{property}
 %@see: 《解析几何》（丘维声） P199 性质4
 正交变换把直线映成直线，把线段映成线段，并且保持线段的分比不变.
+\begin{proof}
+设\(\sigma\)是正交变换.
+任取一条直线\(l\)，
+在\(l\)上取两点\(A,B\).
+设\(\sigma\)把\(A,B\)分别映成\(A',B'\).
+由\cref{theorem:平面的正交变换.正交变换保持共线性} 可知，
+\(l\)上任意一点\(C\)的像\(C'\)一定在直线\(A'B'\)上.
+反之，在直线\(A'B'\)上任取一点\(Q'\)，
+要证\(Q'\)有原像，并且其原像在\(l\)上.
+不妨设\(Q'\)在线段\(A'B'\)上，
+于是\(
+	\LineSegmentLength{A'Q'}
+	< \LineSegmentLength{A'B'}
+	= \LineSegmentLength{AB}
+\).
+在线段\(AB\)上可以找到一点\(P\)，
+使得\(
+	\LineSegmentLength{AP}
+	= \LineSegmentLength{A'Q'}
+\).
+设\(P\)在\(\sigma\)下的像为\(P'\)，
+则\(
+	\LineSegmentLength{A'P'}
+	= \LineSegmentLength{AP}
+	= \LineSegmentLength{A'Q'}
+\)，
+并且\(P'\)在线段\(A'B'\)上.
+于是得出\(P'=Q'\).
+这表明\(P\)是\(Q'\)的一个原像.
+这证明了\(\sigma\)把直线\(l\)映成直线\(A'B'\).
+
+任取一条线段\(AB\).
+设\(A,B\)在\(\sigma\)下的像分别是\(A',B'\).
+在线段\(AB\)上任取一点\(C\)，
+则由\cref{theorem:平面的正交变换.正交变换保持共线性} 可知，
+\(C\)在\(\sigma\)下的像\(C'\)在线段\(A'B\)上.
+反之，在线段\(A'B'\)上任取一点\(D'\)，
+\(D'\)有原像\(D\)，
+并且\(D\)在直线\(AB\)上.
+由\cref{theorem:平面的正交变换.正交变换保持共线性} 可知，
+\(D\)必在线段\(AB\)上.
+这证明了\(\sigma\)把线段\(AB\)映成线段\(A'B'\).
+
+设\(C\)是线段\(AB\)的一个内分点，
+并且\(\frac{\LineSegmentLength{AC}}{\LineSegmentLength{CB}} = \lambda > 0\).
+又设\(\sigma\)把\(A,B,C\)分别映成\(A',B',C'\)，
+则\(C'\)在线段\(A'B'\)上，
+并且\begin{equation*}
+	\frac{\LineSegmentLength{A'C'}}{\LineSegmentLength{C'B'}}
+	= \frac{\LineSegmentLength{AC}}{\LineSegmentLength{CB}}
+	= \lambda.
+\end{equation*}
+对于线段\(AB\)的外分点，可以类似证得结论.
+\end{proof}
 \end{property}
 
 \begin{property}
