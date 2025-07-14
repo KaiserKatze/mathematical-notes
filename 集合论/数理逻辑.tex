@@ -130,6 +130,7 @@
 读作“非\(p\)”.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, Not[p]}, {p}] // Boole, TableHeadings -> {None, {"p", "\[Not]p"}}]
 	\centering
 	\begin{tabular}{|c|p{1.5cm}|}
 		\hline
@@ -154,6 +155,7 @@
 “虽然……但是……”“尽管……仍然……”等.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, And[p, q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[And] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -175,6 +177,7 @@
 析取联结词\(\lor\)相当于汉语中的“或”.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, Or[p, q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Or] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -200,6 +203,7 @@
 称为对\(p\)与\(q\)的\DefineConcept{不可兼或}.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, Xor[p, q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Xor] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -224,6 +228,7 @@
 或“\(p \limp q\)的\DefineConcept{结论}（conclusion）”.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, Implies[p, q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Implies] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -294,6 +299,7 @@
 \(p \liff q\)读作“\(p\)等价\(q\)”或“\(p\)双条件\(q\)”.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, Equivalent[p, q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Equivalent] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -313,6 +319,7 @@
 \(p \lnand q\)读作“\(p\)与非\(q\)”.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, Nand[p, q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Nand] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -332,6 +339,7 @@
 \(p \lnor q\)读作“\(p\)或非\(q\)”.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, Nor[p, q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Nor] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -351,6 +359,7 @@
 \(p \lnimp q\)读作“\(p\)条件否定\(q\)”.
 
 \begin{table}[ht]
+%@Mathematica: TableForm[BooleanTable[{p, q, Not[Implies[p, q]]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p !\[Implies] q"}}]
 	\centering
 	\begin{tabular}{|*{2}{c|}p{2cm}|}
 		\hline
@@ -530,6 +539,7 @@
 证明：命题公式\((p \limp q) \liff (\neg p \lor q)\)是永真式.
 \begin{proof}
 列出\((p \limp q) \liff (\neg p \lor q)\)的真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, Implies[p, q], Not[p], Or[Not[p], q], Equivalent[Implies[p, q], Or[Not[p], q]]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Implies] q", "\[Not]p", "\[Not]p\[Or]q", "(p\[Implies]q)\[Equivalent](\[Not]p\[Or]q)"}}]
 	\begin{tblr}{*2c|*3c|c}
 		\hline
 		\(p\) & \(q\) & \(p \limp q\) & \(\neg p\) & \(\neg p \lor q\) & \((p \limp q) \liff (\neg p \lor q)\) \\
@@ -569,6 +579,7 @@
 % 同一律
 \begin{proof}
 列出\(p \limp p\)的真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, Implies[p, p]}, p] // Boole, TableHeadings -> {None, {"p", "p \[Implies] p"}}]
 	\begin{tblr}{c|c}
 		\hline
 		\(p\) & \(p \limp p\) \\
@@ -587,6 +598,7 @@
 % 肯定后件律
 \begin{proof}
 列出\(p \limp (q \limp p)\)的真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, Implies[q, p], Implies[p, Implies[q, p]]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "q \[Implies] p", "p\[Implies](q \[Implies] p)"}}]
 	\begin{tblr}{*2c|c|c}
 		\hline
 		\(p\) & \(q\) & \(q \limp p\) & \(p \limp (q \limp p)\) \\
@@ -1366,6 +1378,7 @@
 \begin{proof}[证法一]
 真值表法.
 \begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, Implies[p, q], And[Implies[p, q], p], Implies[And[Implies[p, q], p], q]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "p \[Implies] q", "(p \[Implies] q)\[And]p", "((p \[Implies] q)\[And]p)\[Implies]q"}}]
 	\begin{tblr}{*5c}
 		\hline
 		\(p\) & \(q\) & \(p \limp q\) & \((p \limp q) \land p\) & \(((p \limp q) \land p) \limp q\) \\
