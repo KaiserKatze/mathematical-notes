@@ -53,6 +53,70 @@
 \end{proof}
 \end{proposition}
 
+\begin{example}
+设\(\vb{A} \in M_{s \times n}(K)\).
+证明：非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)有解的充分必要条件是：
+如果矩阵\(\vb{A}\)的行向量组的某个线性组合是零向量，
+那么向量\(\vb\beta\)的各个分量的相同线性组合也是零.
+\begin{proof}
+必要性.
+假设\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb\beta\)的一个解，
+即\(\vb{A} \vb{x}_0 = \vb\beta\)，
+那么\begin{equation*}
+	(\AutoTuple{k}{s}) \vb{A} \vb{x}_0
+	= (\AutoTuple{k}{s}) \vb\beta,
+\end{equation*}
+显然当\((\AutoTuple{k}{s}) \vb{A} = \vb0\)时，
+\(
+	(\AutoTuple{k}{s}) \vb\beta
+	= \vb0 \vb{x}_0
+	= 0
+\).
+
+充分性.
+假设\begin{equation*}
+	\vb{y}_0^T \vb{A} = \vb0
+	\implies
+	\vb{y}_0^T \vb\beta = 0,
+\end{equation*}
+其中\(\vb{y}_0 = (\AutoTuple{y}{s})^T\)，
+那么由\cref{theorem:齐次线性方程组的解集的结构.两个方程同解的充分必要条件1} 可知，
+\(\vb{A}^T \vb{y}_0 = \vb0\)
+与\(
+	\begin{bmatrix}
+		\vb{A}^T \\
+		\vb\beta^T
+	\end{bmatrix}
+	\vb{y}_0 = 0
+\)同解，
+再由\cref{theorem:齐次线性方程组的解集的结构.两个方程同解的充分必要条件2} 可知\begin{equation*}
+	\rank\vb{A}^T
+	= \rank\begin{bmatrix}
+		\vb{A}^T \\
+		\vb\beta^T
+	\end{bmatrix}.
+\end{equation*}
+因为\(
+	\rank\vb{A} = \rank\vb{A}^T,
+	\rank\begin{bmatrix}
+		\vb{A} & \vb\beta
+	\end{bmatrix}
+	= \rank\begin{bmatrix}
+		\vb{A}^T \\
+		\vb\beta^T
+	\end{bmatrix}
+\)，
+所以\(
+	\rank\vb{A}
+	= \rank\begin{bmatrix}
+		\vb{A} & \vb\beta
+	\end{bmatrix}
+\)，
+因此由\cref{theorem:向量空间.线性方程组有解判别定理} 可知，
+\(\vb{A} \vb{x} = \vb\beta\)有解.
+\end{proof}
+\end{example}
+
 \begin{theorem}\label{theorem:向量空间.非齐次线性方程组的解集的结构}
 %@see: 《高等代数（第三版 上册）》（丘维声） P97 定理1
 数域\(K\)上\(n\)元非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 有解，
