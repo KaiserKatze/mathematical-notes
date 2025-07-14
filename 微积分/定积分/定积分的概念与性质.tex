@@ -107,6 +107,43 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+利用定积分的定义计算\(\lim_{n\to\infty} \sum_{k=1}^n \frac{k}{n^2+k^2+1}\).
+\begin{solution}
+记\begin{equation*}
+	I_n \defeq \sum_{k=1}^n \frac{k}{n^2+k^2+1},
+	\qquad
+	J_n \defeq \sum_{k=1}^n \frac{k}{n^2+k^2}.
+\end{equation*}
+
+因为\begin{align*}
+	\lim_{n\to\infty} \abs{I_n - J_n}
+	&= \lim_{n\to\infty} \abs{
+		\sum_{k=1}^n \left( \frac{k}{n^2+k^2+1} - \frac{k}{n^2+k^2} \right)
+	} \\
+	&= \lim_{n\to\infty} \sum_{k=1}^n \frac{k}{(n^2+k^2)(n^2+k^2+1)} \\
+	&\leq \lim_{n\to\infty} \sum_{k=1}^n \frac{k}{n^2 \cdot n^2}
+	= \lim_{n\to\infty} \frac1{n^4} \sum_{k=1}^n k \\
+	&= \lim_{n\to\infty} \frac1{n^4} \cdot \frac{n(n+1)}2
+	= \lim_{n\to\infty} \frac{n+1}{2n^3}
+	= 0,
+\end{align*}
+所以由\cref{example:数列极限的概念.柯西列的等价性} 有\begin{align*}
+	\lim_{n\to\infty} I_n
+	&= \lim_{n\to\infty} J_n
+	= \lim_{n\to\infty} \sum_{k=1}^n \frac{k}{n^2+k^2} \\
+	&= \lim_{n\to\infty} \frac1n \sum_{k=1}^n
+		\frac{
+			k/n
+		}{
+			1 + \left( k/n \right)^2
+		} \\
+	&= \int_0^1 \frac{x}{1+x^2} \dd{x}
+	= \frac12 \ln2.
+\end{align*}
+\end{solution}
+\end{example}
+
 \subsection{黎曼可积条件}
 不是所有的有界函数都是可积的.
 考虑狄利克雷函数\begin{equation*}
