@@ -564,3 +564,77 @@
 以\(\sqrt{\frac{2 a^2 b^2}{a^2 + b^2}}\)为半径的圆上.
 \end{proof}
 \end{example}
+
+\begin{example}
+%@see: https://baike.baidu.com/item/%E5%A2%9E%E6%A0%B9/1613679
+设椭圆\(C: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\ (a>b>0)\)，
+\(O\)是坐标原点，
+\(A\)是\(C\)的右顶点.
+如果\(C\)上存在异于\(A\)的一点\(P\)，
+使得\(OP \perp PA\)，
+求\(C\)的离心率的范围.
+\begin{solution}
+假设\(C'\)是以\(OA\)为直径的圆，
+那么“\(C\)上存在一点\(P\)，使得\(OP \perp PA\)”的充分必要条件是“\(C'\)与\(C\)相交于不同两点”.
+由题意有，点\(O\)的坐标为\((0,0)\)，点\(A\)的坐标为\((a,0)\)，
+那么由\cref{equation:平面解析几何.圆的直径式方程} 可知
+\(C'\)的方程为\((x-0)(x-a) + (y-0)(y-0) = 0\)，
+即\(x^2 - a x + y^2 = 0\).
+联立方程组\begin{equation*}
+	\begin{cases}
+		x^2 - a x + y^2 = 0, \\
+		\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.
+	\end{cases}
+\end{equation*}
+消去\(y^2\)，得\(b^2 x^2 + a^2 (a x - x^2) = a^2 b^2\)，
+再整理得\begin{equation*}
+	(b^2 - a^2) x^2 + a^3 x - a^2 b^2 = 0.
+	\eqno(1)
+\end{equation*}
+容易注意到判别式\(
+	\Delta
+	\defeq (a^3)^2 - 4 (b^2 - a^2) (-a^2 b^2)
+	= a^6 - 4 a^4 b^2 + 4 a^2 b^4
+	= a^2 (a^2 - 2 b^2)^2
+	\geq 0
+\)，
+说明方程(1)一定有两个实根.
+%@credit: {c791c701-7186-45bd-86fa-47bac11b3e12} 提出可以利用韦达定理直接解出另一个根
+由于\(C\)和\(C'\)都过点\(A\)，
+所以\(x=a\)是方程(1)的一个根.
+考虑到\(C\)与\(C'\)应该交于不同两点，
+不妨设\(x=\xi\)是方程(1)的异于\(a\)另一个根，
+那么由\hyperref[theorem:一元二次方程.韦达定理]{韦达定理}有
+\(a \xi = \frac{- a^2 b^2}{b^2 - a^2}\)，
+于是\(\xi = \frac{a b^2}{a^2 - b^2}\).
+因为圆\(C'\)上点的横坐标的取值范围是\([0,a]\)，
+并且，点\(O(0,0)\)虽然在圆\(C'\)上却不在椭圆\(C\)上，
+所以\(0 < \xi < a\)，
+从而有\(0 < \frac{b^2}{a^2 - b^2} < 1\)，
+即\(\frac{a^2 - b^2}{b^2} > 1\)，
+亦即\(\frac{a^2}{b^2} > 2\)，
+那么由\(
+	e = \frac{c}{a}
+	= \frac{\sqrt{a^2-b^2}}{a}
+	= \sqrt{1 - \frac{b^2}{a^2}}
+\)可知，
+离心率的取值范围是\(\frac1{\sqrt2} < e < 1\).
+%@Mathematica: PlotEllipse[a_, e_] := Module[
+%				{b, c},
+%				c = e a;
+%				b = Sqrt[a^2 - c^2];
+%				{
+%					{"e", e},
+%					{"plot",
+%					Plot[{-Sqrt[((a^2 b^2 - b^2 x^2)/a^2)], Sqrt[(
+%						a^2 b^2 - b^2 x^2)/a^2], -Sqrt[a x - x^2], Sqrt[
+%						a x - x^2]}, {x, -a, a}, AspectRatio -> 1,
+%					PlotRange -> {-3, 3}]},
+%					{"intersect above axis x",
+%					NSolve[x (x - a) + y^2 == 0 && x^2/a^2 + y^2/b^2 == 1 &&
+%						y > 0, {x, y}]}
+%					} // TableForm
+%				];
+%@Mathematica: Manipulate[PlotEllipse[3, e], {e, 0.1, .9, .01}]
+\end{solution}
+\end{example}
