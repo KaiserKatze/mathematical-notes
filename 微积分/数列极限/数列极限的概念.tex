@@ -10,7 +10,10 @@
 不等式\(\abs{x_n - a} < \epsilon\)都成立，
 那么就称“数列\(\{x_n\}\)是\DefineConcept{收敛的}（convergent）”
 “数列\(\{x_n\}\)~\DefineConcept{收敛}（converge）”
+“数列\(\{x_n\}\)的极限存在”
+“极限\(\lim_{n\to\infty} x_n\)存在”
 “常数\(a\)是数列\(\{x_n\}\)的\DefineConcept{极限}（limit）”
+“数列\(\{x_n\}\)的极限是\(a\)”
 “数列\(\{x_n\}\)~\DefineConcept{收敛于}~\(a\)”，
 记为\begin{equation*}
 	\lim_{n\to\infty} x_n = a
@@ -20,6 +23,7 @@
 否则，称“数列\(\{x_n\}\)没有极限”
 “数列\(\{x_n\}\)是\DefineConcept{发散的}（divergent）”
 “数列\(\{x_n\}\)~\DefineConcept{发散}（diverge）”
+“数列\(\{x_n\}\)的极限不存在”
 “极限\(\lim_{n\to\infty} x_n\)不存在”.
 %@see: https://mathworld.wolfram.com/Limit.html
 \end{definition}
@@ -426,5 +430,57 @@
 这就是说，只要\(n>2N+1\)，
 就有\(\abs{x_n-a}<\epsilon\)成立；
 因此\(\lim_{n\to\infty} x_n = a\).
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:数列极限的概念.柯西列的等价性}
+设数列\(\{x_n\},\{y_n\}\)的极限都存在，
+且\(\lim_{n\to\infty} \abs{x_n - y_n} = 0\).
+证明：\(\lim_{n\to\infty} x_n = \lim_{n\to\infty} y_n\).
+\begin{proof}
+%@credit: {腾讯元宝}
+设\(\lim_{n\to\infty} x_n = a < \infty\)，
+那么对于任意\(\epsilon>0\)，
+存在正整数\(N_1\)，
+使得当\(n > N_1\)时，
+有\(\abs{x_n - a} < \frac\epsilon2\)成立.
+同时，由\(\lim_{n\to\infty} \abs{x_n - y_n} = 0\)可知，
+对于上述\(\epsilon\)，
+存在正整数\(N_2\)，
+使得当\(n > N_2\)时，
+有\(\abs{x_n - y_n} < \frac\epsilon2\)成立.
+取\(N = \max\{N_1,N_2\}\)，
+则当\(n > N\)时，
+有\begin{equation*}
+	\abs{y_n - a}
+	= \abs{(y_n - x_n) + (x_n - a)}
+	\leq \abs{y_n - x_n} + \abs{x_n - a}
+	< \frac\epsilon2 + \frac\epsilon2
+	= \epsilon,
+\end{equation*}
+这就说明\(\lim_{n\to\infty} y_n = a\).
+
+设\(\lim_{n\to\infty} x_n = \infty\)，
+那么对于任意\(G>0\)，
+存在正整数\(N_3\)，
+使得当\(n > N_3\)时，
+有\(\abs{x_n} > G\)成立.
+同时，由\(\lim_{n\to\infty} \abs{x_n - y_n} = 0\)可知，
+对于任意\(\epsilon<0\)，
+存在正整数\(N_4\)，
+使得当\(n > N_4\)时，
+有\(\abs{x_n - y_n} < \epsilon\)成立.
+不妨设\(G > \epsilon\)，
+取\(N' = \max\{N_3,N_4\}\)，
+则当\(n > N'\)时，
+有\begin{equation*}
+	\abs{y_n}
+	= \abs{(y_n - x_n) + x_n}
+	\geq \abs{
+		\abs{x_n} - \abs{y_n - x_n}
+	}
+	> G - \epsilon,
+\end{equation*}
+这就说明\(\lim_{n\to\infty} y_n = \infty\).
 \end{proof}
 \end{example}
