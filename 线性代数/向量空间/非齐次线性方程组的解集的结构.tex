@@ -193,6 +193,77 @@
 \end{equation*}
 称为“\cref{equation:向量空间.非齐次线性方程组} 的\DefineConcept{通解}”.
 
+同\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 的证明过程中给出的
+对系数矩阵\(\vb{A}\)进行初等行变换、初等列变换一样，
+我们可以对非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 的
+增广矩阵\((\vb{A},\vb\beta)\)进行类似的初等变换，
+将其化为\((\vb{J},\vb\gamma)\)，
+其中\(
+	\vb{J} = \begin{bmatrix}
+		\vb{E}_r & \vb{F} \\
+		\vb0 & \vb0
+	\end{bmatrix}
+\)，
+于是原方程化为\(\vb{J} \vb{x} = \vb\gamma\)，
+其中\(\vb\gamma = (\AutoTuple{c}{s})\)，
+从而有\begin{equation*}
+	\vb{E}_r
+	\begin{bmatrix}
+		x_1 \\ \vdots \\ x_r
+	\end{bmatrix}
+	+ \vb{F}
+	\begin{bmatrix}
+		x_{r+1} \\ \vdots \\ x_n
+	\end{bmatrix}
+	= \begin{bmatrix}
+		c_1 \\ \vdots \\ c_r
+	\end{bmatrix}.
+\end{equation*}
+令\(x_{r+1} = \dotsb = x_n = 0\)，
+那么有\(
+	x_1 = c_1,
+	x_2 = c_2,
+	\dotsc,
+	x_r = c_r
+\).
+因此\(\vb{x}_0 \defeq (\AutoTuple{c}{r},0,\dotsc,0)^T\)
+是\cref{equation:向量空间.非齐次线性方程组} 的一个特解.
+接下来只要加上\cref{equation:向量空间.非齐次线性方程组} 的导出组的通解，
+便可得到\cref{equation:向量空间.非齐次线性方程组} 的通解.
+
+根据上述讨论，我们可以总结出
+求解非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的基础解系的方法：
+\begin{algorithm}[求解非齐次线性方程组]
+\hfill
+\begin{enumerate}
+	\item 把非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 的
+	系数矩阵\(\vb{A} \in M_{s \times n}(K)\)和常数项\(\vb\beta\)
+	组成的增广矩阵\(\widetilde{\vb{A}} \defeq (\vb{A},\vb\beta)\)
+	经过初等行变换化简成行约化矩阵\((\vb{J},\vb\gamma)\)；
+
+	\item 检查\(\rank\vb{J}\)与\(\rank(\vb{J},\vb\gamma)\)是否相等，
+	判断\(\vb{A} \vb{x} = \vb\beta\)是否有解；
+	如果无解，停止计算；
+
+	\item 将\(\vb\gamma\)的前\(r = \rank\vb{J}\)个分量\(\AutoTuple{c}{r}\)与\(n-r\)个\(0\)一起，
+	组成向量\(\vb{x}_0 \defeq (\AutoTuple{c}{r},0,\dotsc,0)^T\)，
+	作为\cref{equation:向量空间.非齐次线性方程组} 的一个特解；
+
+	\item 从\(\vb{J}\)中，找出非零首元对应的列\(\vb\beta_{i_1},\dotsc,\vb\beta_{i_r}\)，
+	将这些列称为\DefineConcept{主列}（pivot column）；
+
+	\item 从\(\vb{J}\)中，找出没有非零首元的列\(\vb\beta_{j_1},\dotsc,\vb\beta_{j_{n-r}}\)，
+	将这些列称为\DefineConcept{自由列}（free column）；
+
+	\item 各个自由列的负向量\(-\vb\beta_{j_1},\dotsc,-\vb\beta_{j_{n-r}}\)
+	就是导出组\(\vb{A} \vb{x} = \vb0\)的一个基础解系；
+
+	\item 写出\cref{equation:向量空间.非齐次线性方程组} 的通解：\begin{equation*}
+		\vb{x}_0 - k_1 \vb\beta_{j_1} - \dotsb - k_{n-r} \vb\beta_{j_{n-r}}.
+	\end{equation*}
+\end{enumerate}
+\end{algorithm}
+
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P87 例1
 求线性方程组\begin{equation*}
