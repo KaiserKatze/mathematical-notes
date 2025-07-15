@@ -12,8 +12,9 @@
 我们把齐次线性方程组\(\vb{A} \vb{x} = \vb0\)
 称为“非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的\DefineConcept{导出组}”.
 
-\begin{proposition}
+\begin{proposition}\label{theorem:非齐次线性方程组的解集的结构.解集的结构1}
 %@see: 《高等代数（第三版 上册）》（丘维声） P97 性质1
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 上册）》（丘维声） P127 性质1
 非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的两个解的差是它的导出组的一个解.
 \begin{proof}
 设\(\vb{x}_1,\vb{x}_2\)是非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的任意两个解，
@@ -32,8 +33,9 @@
 \end{proof}
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}\label{theorem:非齐次线性方程组的解集的结构.解集的结构2}
 %@see: 《高等代数（第三版 上册）》（丘维声） P97 性质2
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 上册）》（丘维声） P127 性质2
 非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的一个解与它的导出组的一个解之和仍是它的一个解.
 \begin{proof}
 设\(\vb\xi\)是\(\vb{A} \vb{x} = \vb\beta\)的一个解，
@@ -128,13 +130,30 @@
 
 \begin{theorem}\label{theorem:向量空间.非齐次线性方程组的解集的结构}
 %@see: 《高等代数（第三版 上册）》（丘维声） P97 定理1
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 上册）》（丘维声） P127 定理1
 数域\(K\)上\(n\)元非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 有解，
-则它的解集\(U\)为
-\begin{equation}
-	\Set{ \vb{x}_0+\vb{x} \given \vb{x} \in W },
+则它的解集为\begin{equation}
+	\vb{x}_0 + W \defeq \Set{ \vb{x}_0+\vb{x} \given \vb{x} \in W },
 \end{equation}
-其中\(\vb{x}_0\)是这个非齐次线性方程组的一个解，
-\(W\)是它的导出组的解空间.
+其中\(\vb{x}_0\)是\cref{equation:向量空间.非齐次线性方程组} 的一个解，
+\(W\)是\cref{equation:向量空间.非齐次线性方程组} 的导出组的解空间.
+\begin{proof}
+记\(U \defeq \Set{ \vb{x} \given \vb{A} \vb{x} = \vb\beta }\).
+由题意有\(\vb{A} \vb{x}_0 = \vb\beta\)，即\(\vb{x}_0 \in U\)，
+并且\(W = \Set{ \vb{x} \given \vb{A} \vb{x} = \vb0 }\).
+
+假设\(\vb\eta \in W\)，
+由\cref{theorem:非齐次线性方程组的解集的结构.解集的结构2} 得\(\vb{x}_0 + \vb\eta \in U\)，
+因此\(\vb{x}_0 + W \subseteq U\).
+
+反之，假设\(\vb\gamma \in U\)，
+由\cref{theorem:非齐次线性方程组的解集的结构.解集的结构1} 得\(\vb\gamma - \vb{x}_0 \in W\).
+记\(\vb\eta \defeq \vb\gamma - \vb{x}_0\)，
+则\(\vb\gamma = \vb{x}_0 + \vb\eta \in \vb{x}_0 + W\)，
+因此\(\vb{x}_0 + W \supseteq U\).
+
+综上所述，\(U = \vb{x}_0 + W\).
+\end{proof}
 \end{theorem}
 
 我们把\cref{theorem:向量空间.非齐次线性方程组的解集的结构} 中的解向量\(\vb{x}_0\)
