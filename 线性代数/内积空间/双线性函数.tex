@@ -611,15 +611,78 @@ Y = P Y_0\)，
 \end{proof}
 \end{proposition}
 
-\begin{proposition}
-%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 8.
-设\(V\)是域\(F\)上的线性空间，
-\(f\)是\(V\)上的非退化的对称双线性函数，
+\begin{proposition}\label{theorem:双线性函数.利用双线性函数构造的正交补.正交补空间的维数}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 8.(1)
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 下册）》（丘维声） P448 例8(1)
+设\(V\)是域\(F\)上的\(n\)维线性空间，
+\(f\)是\(V\)上的非退化的双线性函数，
+\(f\)是对称的或斜对称的，
 \(W\)是\(V\)的一个子空间，
-则\begin{itemize}
-	\item \(\dim W + \dim W^\perp = \dim V\)；
-	\item \((W^\perp)^\perp = W\).
-\end{itemize}
+则\(\dim W + \dim W^\perp = \dim V\).
+\begin{proof}
+设\(f\)是\(V\)上的非退化的对称双线性函数.
+在\(W\)中取一个基\(\AutoTuple{\alpha}{m}\)，
+把它扩充成\(V\)的一个基\(\AutoTuple{\alpha}{m},\AutoTuple{\alpha}[m+1]{n}\).
+设\(f\)在此基下的度量矩阵为\(A\).
+由于\(f\)是非退化的，
+所以\(A\)是满秩的.
+对于\(V\)中向量\(\alpha = (\AutoTuple{a}{n}) x\)，
+有\begin{align*}
+	\alpha \in W^\perp
+	&\iff (\forall \beta \in W)[f(\alpha,\beta) = 0] \\
+	&\iff f(\alpha,\alpha_1)
+			= f(\alpha,\alpha_2)
+			= \dotsb
+			= f(\alpha,\alpha_m)
+			= 0 \\
+	&\iff x^T A \epsilon_1
+			= x^T A \epsilon_2
+			= \dotsb
+			= x^T A \epsilon_m
+			= 0 \\
+	&\iff x^T A (\AutoTuple{\epsilon}{m}) = 0 \\
+	&\iff (\AutoTuple{\epsilon}{m})^T A^T x = 0 \\
+	&\iff \text{$x$是关于$z$的齐次线性方程组$(\AutoTuple{\epsilon}{m})^T A^T z = 0$的解}.
+\end{align*}
+把上述齐次线性方程组的解空间记作\(U\)，
+则\(\alpha \in W^\perp\)，
+当且仅当\(\alpha\)在上述基下的坐标\(x \in U\).
+由于\(\alpha \mapsto x\)是\(V\)到\(F^n\)的一个同构映射，
+且\(W^\perp\)在此同构映射下的象是\(U\)，
+因此\(
+	\dim W^\perp
+	= \dim U
+	= n - \rank((\AutoTuple{\epsilon}{m})^T A^T)
+	= n - \rank(\AutoTuple{\epsilon}{m})^T
+	= n - m
+	= \dim V - \dim W
+\)，
+从而\(\dim W + \dim W^\perp = \dim V\).
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《高等代数（第三版 下册）》（丘维声） P173 习题10.1 8.(2)
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 下册）》（丘维声） P448 例8(2)
+设\(V\)是域\(F\)上的\(n\)维线性空间，
+\(f\)是\(V\)上的非退化的双线性函数，
+\(f\)是对称的或斜对称的，
+\(W\)是\(V\)的一个子空间，
+则\((W^\perp)^\perp = W\).
+\begin{proof}
+任取\(\gamma \in W\)，
+对于任意\(\delta \in W^\perp\)，
+有\(f(\delta,\gamma) = 0\).
+由于\(f\)要么是对称的，要么是斜对称的，
+因此\(f(\gamma,\delta) = 0\)，
+从而\(\gamma \in (W^\perp)^\perp\)，
+于是\(W \subseteq (W^\perp)^\perp\).
+对于\(W^\perp\)，
+由\cref{theorem:双线性函数.利用双线性函数构造的正交补.正交补空间的维数} 可知，
+\(\dim W^\perp + \dim(W^\perp)^\perp = \dim V\).
+与\(\dim W + \dim W^\perp = \dim V\)比较可得\(\dim W = \dim(W^\perp)^\perp\).
+因此\(W = (W^\perp)^\perp\).
+\end{proof}
 \end{proposition}
 
 \subsection{对称双线性函数的度量矩阵}
