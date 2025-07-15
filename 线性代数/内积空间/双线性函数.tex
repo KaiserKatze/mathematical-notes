@@ -715,6 +715,7 @@ Y = P Y_0\)，
 
 \begin{theorem}\label{theorem:双线性函数.特征不为2的域上的对称双线性函数在某个基下的度量矩阵是对角矩阵}
 %@see: 《高等代数（第三版 下册）》（丘维声） P170 定理4
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 下册）》（丘维声） P429 定理3
 设\(f\)是域\(F\ (\FieldChar F\neq2)\)上\(n\)维线性空间\(V\)上的一个对称双线性函数，
 则\(V\)中存在一个基\(\AutoTuple{\epsilon}{n}\)，
 使得\(f\)在基\(\AutoTuple{\epsilon}{n}\)下的度量矩阵是对角矩阵.
@@ -775,6 +776,7 @@ f(\alpha,\alpha) = 0\).
 
 \begin{theorem}\label{theorem:双线性函数.特征不为2的域上的斜对称双线性函数在某个基下的度量矩阵是分块对角矩阵}
 %@see: 《高等代数（第三版 下册）》（丘维声） P171 定理5
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 下册）》（丘维声） P430 定理4
 \def\MatrixChunk{\begin{bmatrix}
 	0 & 1 \\
 	-1 & 0
@@ -824,3 +826,147 @@ f(\alpha,\alpha) = 0\).
 由\cref{theorem:双线性函数.特征不为2的域上的斜对称双线性函数在某个基下的度量矩阵是分块对角矩阵} 可得.
 \end{proof}
 \end{proposition}
+
+\begin{example}
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 下册）》（丘维声） P446 例6
+设\(f\)是域\(F\ (\FieldChar F\neq2)\)上线性空间\(V\)上的一个对称或斜对称的双线性函数，
+\(W\)是\(V\)的一个有限维真子空间，
+向量\(\xi \in V-W\)与\(\Rad W\)中的每一个向量都正交.
+证明：在\(W\)的陪集\(\xi+W\)中，
+存在\(\eta\neq0\)，
+使得对于任意\(\beta \in W\)，
+成立\(f(\eta,\beta) = 0\).
+\begin{proof}
+设\(\dim W = m\).
+\begin{enumerate}
+	\item 假设\(f\)是对称的，
+	则\(f\)在\(W\)上的限制\(f \SetRestrict W\)是\(W\)上的一个对称双线性函数.
+
+	如果\(f \SetRestrict W = 0\)，
+	则\(\Rad W = W\)，
+	于是对于任意\(\beta \in W\)，
+	有\(f(\xi,\beta) = 0\)，
+	从而对于\(\xi+W\)中任意一个向量\(\xi+\gamma\)（其中\(\gamma \in W\)）有\begin{equation*}
+		f(\xi+\gamma,\beta)
+		= f(\xi,\beta)
+		+ f(\gamma,\beta)
+		= 0.
+	\end{equation*}
+
+	如果\(f \SetRestrict W \neq 0\)，
+	那么由\cref{theorem:双线性函数.特征不为2的域上的对称双线性函数在某个基下的度量矩阵是对角矩阵} 可知，
+	\(W\)中存在一个基\(\AutoTuple{\alpha}{m}\)，
+	使得\(f \SetRestrict W\)在此基下的度量矩阵为\begin{equation*}
+		D = \diag(d_1,d_2,\dotsc,d_r,0,\dotsc,0),
+	\end{equation*}
+	其中\(d_i\neq0\ (i=1,2,\dotsc,r)\)且\(1 \leq r \leq m\).
+	令\begin{equation*}
+		\eta
+		\defeq
+		\xi - \sum_{i=1}^r \frac{f(\xi,\alpha_i)}{f(\alpha_i,\alpha_i)} \alpha_i,
+	\end{equation*}
+	则当\(1 \leq j \leq r\)时，
+	有\begin{align*}
+		f(\eta,\alpha_j)
+		&= f(\xi,\alpha_j) - \sum_{i=1}^r \frac{f(\xi,\alpha_i)}{f(\alpha_i,\alpha_i)} f(\alpha_i,\alpha_j) \\
+		&= f(\xi,\alpha_j) - f(\xi,\alpha_j)
+		= 0;
+	\end{align*}
+	当\(r < j \leq m\)时，
+	由于\(f(\alpha_i,\alpha_j) = 0\ (i=1,2,\dotsc,m)\)，
+	因此\(\alpha_j \in \Rad W\)，
+	从而有\begin{equation*}
+		f(\eta,\alpha_j)
+		= f(\xi,\alpha_j)
+		= 0.
+	\end{equation*}
+	因此，对于\(W\)中任意一个向量\(\beta = \sum_{i=1}^m b_i \alpha_i\)，
+	有\begin{equation*}
+		f(\eta,\beta)
+		= f\left( \eta,\sum_{i=1}^m b_i \alpha_i \right)
+		= \sum_{i=1}^m b_i f(\eta,\alpha_i)
+		= 0.
+	\end{equation*}
+
+	\item 假设\(f\)是斜对称的.
+
+	如果\(f \SetRestrict W = 0\)，
+	则与“\(f\)是对称双线性函数”这个情形一样，命题依然成立.
+
+	如果\(f \SetRestrict W \neq 0\)，
+	那么由\cref{theorem:双线性函数.特征不为2的域上的斜对称双线性函数在某个基下的度量矩阵是分块对角矩阵} 可知，
+	\(W\)中存在一个基\(
+		\delta_1, \allowbreak
+		\delta_{-1}, \allowbreak
+		\delta_2, \allowbreak
+		\delta_{-2}, \allowbreak
+		\dotsc, \allowbreak
+		\delta_r, \allowbreak
+		\delta_{-r}, \allowbreak
+		\eta_1, \allowbreak
+		\eta_2, \allowbreak
+		\dotsc, \allowbreak
+		\eta_{m-2r}
+	\)，
+	使得\(f\)在这个基下的度量矩阵是\begin{equation*}
+		\def\MatrixChunk{\begin{bmatrix}
+			0 & 1 \\
+			-1 & 0
+		\end{bmatrix}}
+		\diag\left(
+			\MatrixChunk,
+			\dotsc,
+			\MatrixChunk,
+			0,
+			\dotsc,
+			0
+		\right),
+	\end{equation*}
+	其中\(2 \leq 2r \leq m\).
+	令\begin{equation*}
+		\eta
+		\defeq
+		\xi + \sum_{i=1}^r (
+			-f(\xi,\delta_{-i}) \delta_i
+			+f(\xi,\delta_i) \delta_{-i}
+		),
+	\end{equation*}
+	则当\(1 \leq j \leq r\)时，
+	有\begin{align*}
+		f(\eta,\delta_j)
+		&= f(\xi,\delta_j)
+		+ \sum_{i=1}^r (
+			-f(\xi,\delta_{-i}) f(\delta_i,\delta_j)
+			+f(\xi,\delta_i) f(\delta_{-i},\delta_j)
+		) \\
+		&= f(\xi,\delta_j)
+		+ f(\xi,\delta_j) (-1)
+		= 0, \\
+		f(\eta,\delta_{-j})
+		&= f(\xi,\delta_{-j})
+		+ \sum_{i=1}^r (
+			-f(\xi,\delta_{-i}) f(\delta_i,\delta_{-j})
+			+f(\xi,\delta_i) f(\delta_{-i},\delta_{-j})
+		) \\
+		&= f(\xi,\delta_{-j})
+		+ f(\xi,\delta_{-j}) (-1)
+		= 0.
+	\end{align*}
+	当\(1 \leq s \leq m-2r\)时，
+	由于\((\forall \beta \in W)[f(\eta_s,\beta) = 0]\)，
+	因此\(\eta_s \in \Rad W\)，
+	从而\(f(\xi,\eta_s) = 0\)，
+	于是\begin{equation*}
+		f(\eta,\eta_s)
+		= f(\xi,\eta_s)
+		+ \sum_{i=1}^r (
+			-f(\xi,\delta_{-i}) f(\delta_i,\eta_s)
+			+f(\xi,\delta_i) f(\delta_{-i},\eta_s)
+		)
+		= 0.
+	\end{equation*}
+	综上所述，有\((\forall \beta \in W)[f(\eta,\beta) = 0]\).
+	\qedhere
+\end{enumerate}
+\end{proof}
+\end{example}
