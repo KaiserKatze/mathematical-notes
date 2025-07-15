@@ -447,8 +447,90 @@ Y = P Y_0\)，
 	\iff
 	\Rad_R f = 0.
 \end{equation*}
-%TODO proof
+\begin{proof}
+设\(\AutoTuple{\alpha}{n}\)是\(V\)的一个基.
+
+首先证明\(
+	\Rad_L f = 0
+	\implies
+	\text{$A$是满秩矩阵}
+\).
+如果\(f\)在基\(\AutoTuple{\alpha}{n}\)下的度量矩阵\(A\)不可逆，
+那么存在不全为零的\(\AutoTuple{c}{n} \in F\)，
+使得\begin{equation*}
+	\sum_{i=1}^n c_i (
+		f(\alpha_i,\alpha_1),
+		\dotsc,
+		f(\alpha_i,\alpha_n)
+	) = 0,
+\end{equation*}
+从而\begin{equation*}
+	\left(
+		f\left( \sum_{i=1}^n c_i \alpha_i, \alpha_1 \right),
+		\dotsc,
+		f\left( \sum_{i=1}^n c_i \alpha_i, \alpha_n \right)
+	\right)
+	= 0.
+\end{equation*}
+由于\(\AutoTuple{c}{n}\)不全为零，
+所以\(
+	\alpha = \sum_{i=1}^n c_i \alpha_i
+	\neq 0
+\)，
+且\(
+	f(\alpha,\alpha_i)
+	= 0
+	\ (i=1,2,\dotsc,n)
+\).
+设\(\beta \in V\)，
+则存在\(\AutoTuple{x}{n} \in F\)，
+使得\(\beta = \sum_{i=1}^n x_i \alpha_i\).
+因此\begin{equation*}
+	f(\alpha,\beta)
+	= f\left( \alpha, \sum_{i=1}^n x_i \alpha_i \right)
+	= \sum_{i=1}^n x_i f(\alpha,\alpha_i)
+	= 0.
+\end{equation*}
+因此\(\alpha \in \Rad_L f\)，
+与前提条件“\(\Rad_L f = 0\)”矛盾！
+
+接着证明\(
+	\text{$A$是满秩矩阵}
+	\implies
+	\Rad_L f = 0
+\).
+若由非零向量\(\alpha = \sum_{i=1}^n c_i \alpha_i \in \Rad_L f\)，
+则\begin{equation*}
+	\left(
+		f\left( \sum_{i=1}^n c_i \alpha_i, \alpha_1 \right),
+		\dotsc,
+		f\left( \sum_{i=1}^n c_i \alpha_i, \alpha_n \right)
+	\right)
+	= 0,
+\end{equation*}
+即\begin{equation*}
+	\sum_{i=1}^n c_i (
+		f(\alpha_i,\alpha_1),
+		\dotsc,
+		f(\alpha_i,\alpha_n)
+	)
+	= 0.
+\end{equation*}
+由此可见，\(f\)在基\(\AutoTuple{\alpha}{n}\)下的度量矩阵\(A\)的行向量组线性相关，
+因此\(A\)不是可逆矩阵，
+与前提条件“\(A\)是满秩矩阵”矛盾！
+
+类似可证\(
+	\text{$A$是满秩矩阵}
+	\iff
+	\Rad_R f = 0
+\).
+\end{proof}
 \end{theorem}
+\begin{remark}
+容易看出，若\(f\)是对称双线性函数，那么\(f\)在任意一个基下的度量矩阵都是对称矩阵；
+若\(f\)是斜对称双线性函数，那么\(f\)在任意一个基下的度量矩阵都是斜对称矩阵.
+\end{remark}
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P168 定义3
