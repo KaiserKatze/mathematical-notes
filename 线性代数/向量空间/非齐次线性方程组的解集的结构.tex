@@ -29,7 +29,7 @@
 	= \vb\beta - \vb\beta
 	= \vb0;
 \end{equation*}
-所以\(\vb{x}_1 - \vb{x}_2\)是\(\vb{A} \vb{x}=\vb0\)的解.
+所以\(\vb{x}_1 - \vb{x}_2\)是\(\vb{A} \vb{x} = \vb0\)的解.
 \end{proof}
 \end{proposition}
 
@@ -159,13 +159,26 @@
 我们把\cref{theorem:向量空间.非齐次线性方程组的解集的结构} 中的解向量\(\vb{x}_0\)
 称为“\cref{equation:向量空间.非齐次线性方程组} 的\DefineConcept{特解}（particular solution）”.
 
-\begin{corollary}
+\begin{corollary}\label{theorem:向量空间.非齐次线性方程组的解集的结构.推论1}
 %@see: 《高等代数（第三版 上册）》（丘维声） P98 推论2
+%@see: 《高等代数（大学高等代数课程创新教材 第二版 上册）》（丘维声） P128 推论1
 如果\(n\)元非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 有解，
 则它的解唯一的充分必要条件是它的导出组只有零解.
+\begin{proof}
+当\(n\)元非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 有解时，
+有\begin{align*}
+	\text{\cref{equation:向量空间.非齐次线性方程组} 有唯一解}
+	&\iff
+	\text{\cref{equation:向量空间.非齐次线性方程组} 的解集为$U = \vb{x}_0 + W = \{\vb{x}_0\}$} \\
+	&\iff
+	W = \{\vb0\}.
+	\qedhere
+\end{align*}
+\end{proof}
 \end{corollary}
 
-于是当非齐次线性方程组有无穷多个解时，
+从\cref{theorem:向量空间.非齐次线性方程组的解集的结构.推论1} 立即得出，
+当非齐次线性方程组有无穷多个解时，
 它的导出组必有非零解.
 此时取导出组的一个基础解系\(\AutoTuple{k}{n-r}\)，
 其中\(r\)是导出组的系数矩阵的秩，
@@ -178,9 +191,10 @@
 	\vb{x}_0+k_1\vb{x}_1+k_2\vb{x}_2+ \dotsb +k_{n-r}\vb{x}_{n-r}
 	\quad(\AutoTuple{k}{n-r} \in K)
 \end{equation*}
-称为“\cref{equation:向量空间.非齐次线性方程组} 的通解”.
+称为“\cref{equation:向量空间.非齐次线性方程组} 的\DefineConcept{通解}”.
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P87 例1
 求线性方程组\begin{equation*}
 	\left\{ \begin{array}{*{9}{r}}
 		x_1 &-& 2 x_2 &-& x_3 &+& 2 x_4 &=& 4 \\
@@ -248,11 +262,12 @@
 \end{example}
 
 \begin{example}
+%@see: 《线性代数》（张慎语、周厚隆） P88 例2
 写出线性方程组\begin{equation*}
 	\left\{ \begin{array}{l}
-		x_1 - x_2 = a_1 \\
-		x_2 - x_3 = a_2 \\
-		x_3 - x_4 = a_3 \\
+		x_1 - x_2 = a_1, \\
+		x_2 - x_3 = a_2, \\
+		x_3 - x_4 = a_3, \\
 		x_4 - x_1 = a_4
 	\end{array} \right.
 \end{equation*}有解的充分必要条件，并求解.
@@ -298,11 +313,12 @@
 解线性方程组是线性代数的基本问题之一，现代科学技术方面用到的数学问题也有很多要归结到解线性方程组.
 
 \begin{example}
-设\(\vb{x}_0\)是非齐次线性方程组\(\vb{A} \vb{x}=\vb\beta\)的一个解，
-\(\AutoTuple{\vb{x}}{n-r}\)是其导出组\(\vb{A} \vb{x}=\vb0\)的一个基础解系.
+%@see: 《线性代数》（张慎语、周厚隆） P89 习题4.6 4.
+设\(\vb{x}_0\)是非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的一个解，
+\(\AutoTuple{\vb{x}}{n-r}\)是其导出组\(\vb{A} \vb{x} = \vb0\)的一个基础解系.
 证明：\(\vb{x}_0,\AutoTuple{\vb{x}}{n-r}\)线性无关.
 \begin{proof}
-因为\(\AutoTuple{\vb{x}}{n-r}\)是其导出组\(\vb{A} \vb{x}=\vb0\)的一个基础解系，
+因为\(\AutoTuple{\vb{x}}{n-r}\)是其导出组\(\vb{A} \vb{x} = \vb0\)的一个基础解系，
 根据基础解系的定义，显然有\(\AutoTuple{\vb{x}}{n-r}\)线性无关.
 假设\(\vb{x}_0,\AutoTuple{\vb{x}}{n-r}\)线性相关，
 那么\(\vb{x}_0\)可由\(\AutoTuple{\vb{x}}{n-r}\)线性表出，
@@ -314,14 +330,16 @@
 	&= k_1 \vb{A} \vb{x}_1 + k_2 \vb{A} \vb{x}_2 + \dotsb + k_{n-r} \vb{A} \vb{x}_{n-r}
 	= \vb0 + \vb0 + \dotsb + \vb0 = \vb0,
 \end{align*}
-即\(\vb{x}_0\)是\(\vb{A} \vb{x}=\vb0\)的一个解，
-这与\(\vb{x}_0\)是\(\vb{A} \vb{x}=\vb\beta\neq\vb0\)的一个解矛盾，
+即\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb0\)的一个解，
+这与\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb\beta\neq\vb0\)的一个解矛盾，
 所以\(\vb{x}_0,\AutoTuple{\vb{x}}{n-r}\)线性无关.
 \end{proof}
 \end{example}
 
 \begin{example}
-设线性方程组\(\vb{A} \vb{x}=\vb\beta\)的增广矩阵\(\widetilde{\vb{A}} = (\vb{A},\vb\beta)\)是一个\(n\)阶可逆矩阵.
+%@see: 《线性代数》（张慎语、周厚隆） P89 习题4.6 6.
+设线性方程组\(\vb{A} \vb{x} = \vb\beta\)的增广矩阵
+\(\widetilde{\vb{A}} = (\vb{A},\vb\beta)\)是一个\(n\)阶可逆矩阵.
 证明：方程组无解.
 \begin{proof}
 因为\(\widetilde{\vb{A}}\)是\(n\)阶方阵，
@@ -329,7 +347,7 @@
 从而\(\rank\vb{A} \leq \min\{n-1,n\} = n-1\).
 又因为\(\widetilde{\vb{A}}\)可逆，所以\(\rank\widetilde{\vb{A}} = n\).
 因为\(\rank\widetilde{\vb{A}} = n > n-1 \geq \rank\vb{A}\)，
-所以方程组\(\vb{A} \vb{x}=\vb\beta\)无解.
+所以方程组\(\vb{A} \vb{x} = \vb\beta\)无解.
 \end{proof}
 \end{example}
 
