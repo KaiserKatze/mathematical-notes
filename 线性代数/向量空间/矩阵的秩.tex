@@ -73,6 +73,65 @@
 \end{proof}
 \end{proposition}
 
+于\(\vb{A} \in M_{s \times n}(K)\)而言，
+最重要的四个子空间就是：
+它的列空间\(\SpanC\vb{A}\)，
+它的行空间\(\SpanR\vb{A}\)，
+它的核空间\(\Ker\vb{A}\)，
+和它的转置的核空间\(\Ker\vb{A}^T\).
+显然\(
+	\SpanR\vb{A} \leq K^n,
+	\Ker\vb{A} \leq K^n,
+	\SpanC\vb{A} \leq K^s,
+	\Ker\vb{A}^T \leq K^s
+\).
+
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+		\begin{scope}[rotate=40]
+			\fill[fill=blue!30] (0,0)rectangle(2,3);
+			\fill[fill=yellow!30] (0,0)rectangle(-3,-2);
+			\coordinate (rsnw) at (0,3);
+			\coordinate (rsne) at (2,3);
+			\coordinate (nsnw) at (-3,0);
+			\coordinate (nssw) at (-3,-2);
+			\fill (1,1.5)coordinate(xr)circle(2pt)node[above]{$\vb{x}_1$};
+			\fill (-1.8,-.8)coordinate(xn)circle(2pt)node[below]{$\vb{x}_0$};
+			\fill (xr|-xn)coordinate(x)circle(2pt)node[below right]{$\vb{x} = \vb{x}_1 + \vb{x}_0$};
+			\draw (0,0)node[left]{$\vb0$};
+		\end{scope}
+		\begin{scope}[rotate=-30,xshift=5cm,yshift=2.5cm]
+			\fill[fill=red!30] (0,0)rectangle(-2,3);
+			\fill[fill=green!30] (0,0)rectangle(3,-2);
+			\coordinate (csnw) at (-2,3);
+			\coordinate (csne) at (0,3);
+			\coordinate (lsne) at (3,0);
+			\coordinate (lsse) at (3,-2);
+			\fill (-.6,1.4)coordinate(b)circle(2pt)node[right]{$\vb{b}$};
+			\draw (0,0)coordinate(o)node[right]{$\vb0$};
+		\end{scope}
+		\begin{scope}[-{Stealth[length=4.5mm,width=0pt 8]}]
+			\draw (xr)--(b)node[sloped,midway,above]{$\vb{A} \vb{x}_1 = \vb{b}$};
+			\draw (x)--(b)node[sloped,pos=.35,above]{$\vb{A} \vb{x} = \vb{b}$};
+			\draw (xn)--(o)node[sloped,pos=.55,below]{$\vb{A} \vb{x}_0 = \vb0$};
+		\end{scope}
+		\draw[white] (rsnw)--(rsne)node[sloped,midway,below,black]{$\Im\vb{A}^T$};
+		\draw[white] (nsnw)--(nssw)node[sloped,midway,above,black]{$\Ker\vb{A}$};
+		\draw[white] (csnw)--(csne)node[sloped,midway,below,black]{$\Im\vb{A}$};
+		\draw[white] (lsne)--(lsse)node[sloped,midway,above,black]{$\Ker\vb{A}^T$};
+		\draw[dashed] (xr)--(x)--(xn);
+		\draw (-2,0)node{\Huge$K^n$};
+		\draw (7.5,0)node{\Huge$K^s$};
+	\end{tikzpicture}
+	% 在图中，我们把\(\Ker\vb{A}\)和\(\Im\vb{A}^T\)都画在左侧，靠近符号\(K^n\)，就是表示它们都是向量空间\(K^n\)的子空间；
+	% 我们把\(\Ker\vb{A}^T\)和\(\Im\vb{A}\)都画在右侧，靠近符号\(K^s\)，就是表示它们都是向量空间\(K^s\)的子空间.
+	% 根据\cref{example:齐次线性方程组的解集的结构.矩阵的像空间与它的转置的核空间互为正交补}，
+	% 我们把代表\(\Ker\vb{A}\)和\(\Im\vb{A}^T\)的两个矩形的长边画成互相垂直，就是表示这两个子空间中的向量互相正交；
+	% 同样地，我们把代表\(\Ker\vb{A}^T\)和\(\Im\vb{A}\)的两个矩形的长边画成互相垂直，就是表示这两个子空间中的向量互相正交.
+	\caption{}
+\end{figure}
+
 \begin{definition}
 设矩阵\(\vb{A} \in M_{s \times n}(K)\).
 \begin{itemize}
