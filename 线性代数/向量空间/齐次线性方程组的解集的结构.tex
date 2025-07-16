@@ -228,28 +228,48 @@
 \end{proof}
 \end{theorem}
 
+\begin{definition}
+设\(\vb{J} = (a_{ij}) \in M_{s \times n}(K)\)是一个行约化矩阵，
+将\(\vb{J}\)按列分块为\((\AutoTuple{\vb\alpha}{n})\).
+
+如果\(\vb\alpha_j = (a_{1j},\dotsc,a_{sj})^T\)满足\begin{equation*}
+	a_{ik} = 0
+	\ (k<j),
+	\quad\text{且}\quad
+	a_{kj}
+	= \begin{cases}[cl]
+		1, & k = i, \\
+		0, & k \neq i,
+	\end{cases}
+\end{equation*}
+则称“\(\vb\alpha_j\)是\(\vb{J}\)的一个\DefineConcept{主列}（pivot column）”；
+否则称“\(\vb\alpha_j\)是\(\vb{J}\)的一个\DefineConcept{自由列}（free column）”.
+\end{definition}
+
 \cref{theorem:线性方程组.齐次线性方程组的解向量个数} 的证明过程给出了
 求解齐次线性方程组\(\vb{A} \vb{x} = \vb0\)的基础解系的方法：
-\begin{algorithm}[求解齐次线性方程组]
+\begin{algorithm}[求解齐次线性方程组]\label{algorithm:线性方程组.求解齐次线性方程组}
 \hfill
 \begin{enumerate}
 	\item 把齐次线性方程组的系数矩阵\(\vb{A} \in M_{s \times n}(K)\)
 	经过初等行变换化简成行约化矩阵\(\vb{J}\)；
 
-	\item 从\(\vb{J}\)中，找出非零首元对应的列\(\vb\beta_{i_1},\dotsc,\vb\beta_{i_r}\)，
-	将这些列称为\DefineConcept{主列}（pivot column）；
+	\item 检查\(\rank\vb{J}\)，判断\(\vb{J}\)是否可逆矩阵；
+	如果\(\vb{J}\)可逆，则原方程只有零解，停止计算；
 
-	\item 从\(\vb{J}\)中，找出没有非零首元的列\(\vb\beta_{j_1},\dotsc,\vb\beta_{j_{n-r}}\)，
-	将这些列称为\DefineConcept{自由列}（free column）；
+	\item 从\(\vb{J}\)中找出自由列\(\vb\beta_{j_1},\dotsc,\vb\beta_{j_{n-r}}\)；
 
 	\item 各个自由列的负向量\(-\vb\beta_{j_1},\dotsc,-\vb\beta_{j_{n-r}}\)
 	分别加上\(
 		(0,\dotsc,0,\epsilon_1^T)^T,
 		\dotsc,
 		(0,\dotsc,0,\epsilon_{n-r}^T)^T
-	\)，
-	其中\(\AutoTuple{\epsilon}{n-r}\)是\(\vb{E}_{n-r}\)的列向量组，
-	就是齐次线性方程组\(\vb{A} \vb{x} = \vb0\)的一个基础解系.
+	\)
+	（其中\(\AutoTuple{\epsilon}{n-r}\)是\(\vb{E}_{n-r}\)的列向量组），
+	就是齐次线性方程组\(\vb{A} \vb{x} = \vb0\)的一个基础解系
+	（特别地，当\(n-r = 1\)时，只有1个自由列\(\vb\beta_{j_1}\)，
+	那么\(-\vb\beta_{j_1} + (0,\dotsc,0,1)^T\)
+	就是方程组\(\vb{A} \vb{x} = \vb0\)的一个基础解系）.
 \end{enumerate}
 \end{algorithm}
 
