@@ -274,22 +274,50 @@
 	判断\(\vb{A} \vb{x} = \vb\beta\)是否有解；
 	如果无解，停止计算；
 
-	\item 将\(\vb\gamma\)的前\(r = \rank\vb{J}\)个分量\(\AutoTuple{c}{r}\)与\(n-r\)个\(0\)一起，
-	组成向量\(\vb{x}_0 \defeq (\AutoTuple{c}{r},0,\dotsc,0)^T\)，
+	\item 假设\(\rank\vb{J} = \rank(\vb{J},\vb\gamma) = r\)，
+	方程组\(\vb{A} \vb{x} = \vb\beta\)有解；
+	从\(\vb{J}\)中找出主列\(\vb\beta_{i_1},\dotsc,\vb\beta_{i_r}\)；
+
+	\item 构造置换矩阵\begin{equation*}
+		\vb{P}
+		\defeq
+		% 交换第\(1\)列与第\(i_1\)列
+		\begin{bmatrix}
+			0 & & 1 \\
+			& \vb{E}_{i_1-2} \\
+			1 & & 0 \\
+			& & & \vb{E}_{n-i_1}
+		\end{bmatrix}
+		% 交换第\(2\)列与第\(i_2\)列
+		\begin{bmatrix}
+			1 \\
+			& 0 & & 1 \\
+			& & \vb{E}_{i_2-3} \\
+			& 1 & & 0 \\
+			& & & & \vb{E}_{n-i_2}
+		\end{bmatrix}
+		\dotsm
+		% 交换第\(r\)列与第\(i_r\)列
+		\begin{bmatrix}
+			\vb{E}_{r-1} \\
+			& 0 & & 1 \\
+			& & \vb{E}_{i_r-r-1} \\
+			& 1 & & 0 \\
+			& & & & \vb{E}_{n-i_r}
+		\end{bmatrix};
+	\end{equation*}
+
+	\item
+	% 交换第\(1\)个分量与第\(i_1\)个分量
+	% 交换第\(2\)个分量与第\(i_2\)个分量
+	% 交换第\(r\)个分量与第\(i_r\)个分量
+	将\(\vb{x}_0 \defeq \vb{P} \vb\gamma\)
 	作为\cref{equation:向量空间.非齐次线性方程组} 的一个特解；
 
-	\item 从\(\vb{J}\)中，找出非零首元对应的列\(\vb\beta_{i_1},\dotsc,\vb\beta_{i_r}\)，
-	将这些列称为\DefineConcept{主列}（pivot column）；
+	\item 利用\cref{algorithm:线性方程组.求解齐次线性方程组}
+	计算导出组\(\vb{A} \vb{x} = \vb0\)的一个基础解系；
 
-	\item 从\(\vb{J}\)中，找出没有非零首元的列\(\vb\beta_{j_1},\dotsc,\vb\beta_{j_{n-r}}\)，
-	将这些列称为\DefineConcept{自由列}（free column）；
-
-	\item 各个自由列的负向量\(-\vb\beta_{j_1},\dotsc,-\vb\beta_{j_{n-r}}\)
-	就是导出组\(\vb{A} \vb{x} = \vb0\)的一个基础解系；
-
-	\item 写出\cref{equation:向量空间.非齐次线性方程组} 的通解：\begin{equation*}
-		\vb{x}_0 - k_1 \vb\beta_{j_1} - \dotsb - k_{n-r} \vb\beta_{j_{n-r}}.
-	\end{equation*}
+	\item 写出\cref{equation:向量空间.非齐次线性方程组} 的通解.
 \end{enumerate}
 \end{algorithm}
 
