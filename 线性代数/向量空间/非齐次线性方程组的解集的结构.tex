@@ -193,43 +193,72 @@
 \end{equation*}
 称为“\cref{equation:向量空间.非齐次线性方程组} 的\DefineConcept{通解}”.
 
-同\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 的证明过程中给出的
-对系数矩阵\(\vb{A}\)进行初等行变换、初等列变换一样，
-我们可以对非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 的
-增广矩阵\((\vb{A},\vb\beta)\)进行类似的初等变换，
-将其化为\((\vb{J},\vb\gamma)\)，
-其中\(
-	\vb{J} = \begin{bmatrix}
+同\cref{theorem:线性方程组.齐次线性方程组的解向量个数} 的证明过程中
+对系数矩阵\(\vb{A}\)进行初等行变换一样，
+我们也可以对非齐次线性方程组 \labelcref{equation:向量空间.非齐次线性方程组} 的
+增广矩阵\((\vb{A},\vb\beta)\)进行类似的初等行变换，
+将其化为行约化矩阵\((\vb{J},\vb\gamma)\)，
+于是原方程变形为\(\vb{J} \vb{x} = \vb\gamma\)，
+其中\(\vb\gamma \defeq (\AutoTuple{c}{s})\).
+根据\cref{theorem:向量空间.线性方程组有解判别定理}，
+\(\vb{J} \vb{x} = \vb\gamma\)有解，
+当且仅当\(\vb{J}\)和\(\vb\gamma\)的后\(s-r\)行全为零.
+于是，当\(\vb{J} \vb{x} = \vb\gamma\)有解时，
+\(c_{r+1} = \dotsb = c_n = 0\)，
+即\(\vb\gamma = (\AutoTuple{c}{r},0,\dotsc,0)^T\).
+下面默认\(\vb{J} \vb{x} = \vb\gamma\)有解.
+单独对\(\vb{J}\)作初等列变换，
+得到\(
+	\vb{R}
+	\defeq \vb{J} \vb{P}
+	= \begin{bmatrix}
 		\vb{E}_r & \vb{F} \\
 		\vb0 & \vb0
 	\end{bmatrix}
-\)，
-于是原方程化为\(\vb{J} \vb{x} = \vb\gamma\)，
-其中\(\vb\gamma = (\AutoTuple{c}{s})\)，
-从而有\begin{equation*}
-	\vb{E}_r
+\).
+考虑方程组\begin{equation*}
 	\begin{bmatrix}
-		x_1 \\ \vdots \\ x_r
+		\vb{E}_r & \vb{F}
 	\end{bmatrix}
-	+ \vb{F}
 	\begin{bmatrix}
-		x_{r+1} \\ \vdots \\ x_n
+		y_1 \\ \vdots \\ y_n
 	\end{bmatrix}
 	= \begin{bmatrix}
 		c_1 \\ \vdots \\ c_r
-	\end{bmatrix}.
+	\end{bmatrix},
+	\quad\text{或}\quad
+	\vb{E}_r
+	\begin{bmatrix}
+		y_1 \\ \vdots \\ y_r
+	\end{bmatrix}
+	+ \vb{F}
+	\begin{bmatrix}
+		y_{r+1} \\ \vdots \\ y_n
+	\end{bmatrix}
+	= \begin{bmatrix}
+		c_1 \\ \vdots \\ c_r
+	\end{bmatrix},
 \end{equation*}
-令\(x_{r+1} = \dotsb = x_n = 0\)，
-那么有\(
-	x_1 = c_1,
-	x_2 = c_2,
+容易看出，只要取\(y_{r+1} = \dotsb = y_n = 0\)，
+就有\(
+	y_1 = c_1,
+	y_2 = c_2,
 	\dotsc,
-	x_r = c_r
+	y_r = c_r
 \).
-因此\(\vb{x}_0 \defeq (\AutoTuple{c}{r},0,\dotsc,0)^T\)
-是\cref{equation:向量空间.非齐次线性方程组} 的一个特解.
-接下来只要加上\cref{equation:向量空间.非齐次线性方程组} 的导出组的通解，
-便可得到\cref{equation:向量空间.非齐次线性方程组} 的通解.
+因此\(
+	\vb{y}_0
+	\defeq \vb\gamma
+	= (\AutoTuple{c}{r},0,\dotsc,0)^T
+\)
+是\(\vb{R} \vb{y} = \vb\gamma\)的一个解，
+那么\(
+	\vb{x}_0
+	\defeq \vb{P} \vb{y}_0
+	= \vb{P} \vb\gamma
+\)是\cref{equation:向量空间.非齐次线性方程组} 的一个特解.
+接下来只要加上\cref{equation:向量空间.非齐次线性方程组} 的导出组的通解\(W\)，
+便可得到\cref{equation:向量空间.非齐次线性方程组} 的通解\(x_0 + W\).
 
 根据上述讨论，我们可以总结出
 求解非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的基础解系的方法：
