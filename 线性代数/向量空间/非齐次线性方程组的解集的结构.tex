@@ -441,6 +441,93 @@
 解线性方程组是线性代数的基本问题之一，现代科学技术方面用到的数学问题也有很多要归结到解线性方程组.
 
 \begin{example}
+举例说明：虽然\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb\beta\)的一个解，
+但是\(\vb{x}_0 \notin \Im\vb{A}^T\).
+\begin{solution}
+%@credit: {de3029b8-10a6-4ae5-8f64-108dae1c10a9}
+取\(
+	\vb{A}
+	\defeq \begin{bmatrix}
+		1 & 0 \\
+		0 & 0
+	\end{bmatrix},
+	\vb\beta
+	\defeq \begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix}
+\)，
+则方程组\(\vb{A} \vb{x} = \vb\beta\)的解集为\begin{equation*}
+	W_1
+	\defeq
+	\Set*{
+		\vb{x}
+		\given
+		\vb{x}
+		= \begin{bmatrix}
+			1 \\ 0
+		\end{bmatrix}
+		+ k_1
+		\begin{bmatrix}
+			0 \\ 1
+		\end{bmatrix},
+		\text{$k_1$是任意常数}
+	}.
+\end{equation*}
+注意到\(\vb{A}^T = \vb{A}\)，
+于是\begin{equation*}
+	W_2
+	\defeq
+	\Im\vb{A}^T
+	= \Im\vb{A}
+	= \Set*{
+		\vb{x}
+		\given
+		\vb{x}
+		= k_2
+		\begin{bmatrix}
+			1 \\ 0
+		\end{bmatrix},
+		\text{$k_2$是任意常数}
+	}.
+\end{equation*}
+考虑关于\(k_1,k_2\)的向量方程\(
+	\begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix}
+	+ k_1
+	\begin{bmatrix}
+		0 \\ 1
+	\end{bmatrix}
+	= k_2
+	\begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix}
+\)，
+解得\(k_1 = 0, k_2 = 1\)，
+于是\begin{equation*}
+	W_1 - W_2
+	= \Set*{
+		\vb{x}
+		\given
+		\vb{x}
+		= \begin{bmatrix}
+			1 \\ 0
+		\end{bmatrix}
+		+ k_1
+		\begin{bmatrix}
+			0 \\ 1
+		\end{bmatrix},
+		\text{$k_1$是任意常数},
+		k_1 \neq 0
+	}.
+\end{equation*}
+显然\(\vb{x}_0 \defeq (1,1)^T \in W_1 - W_2\)，
+这就说明\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb\beta\)的一个解，
+但是\(\vb{x}_0 \notin \Im\vb{A}^T\).
+\end{solution}
+\end{example}
+
+\begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P89 习题4.6 4.
 设\(\vb{x}_0\)是非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)的一个解，
 \(\AutoTuple{\vb{x}}{n-r}\)是其导出组\(\vb{A} \vb{x} = \vb0\)的一个基础解系.
