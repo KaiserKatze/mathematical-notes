@@ -157,3 +157,46 @@
 \cref{theorem:线性方程组.方程个数少于未知量个数的齐次线性方程组必有非零解} 的逆命题不成立，
 即方程组有非零解，不能得出未知量个数与方程个数的关系.
 \end{remark}
+
+\begin{example}
+设\(
+	\vb{A},\vb{B} \in M_{s \times n}(K),
+	\vb\beta \in K^s
+\).
+举例说明：虽然有\(\rank\vb{A} = \rank\vb{B}\)，
+但\(\rank(\vb{A},\vb\beta) = \rank(\vb{B},\vb\beta)\)不成立.
+\begin{solution}
+取\(
+	\vb{A}
+	\defeq
+	\begin{bmatrix}
+		1 & 0 \\
+		0 & 0
+	\end{bmatrix},
+	\vb{B}
+	\defeq
+	\begin{bmatrix}
+		0 & 0 \\
+		1 & 0
+	\end{bmatrix},
+	\vb\beta
+	\defeq
+	\begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix}
+\)，
+那么\(\rank\vb{A} = \rank\vb{B} = 1\)，
+但是\(
+	\rank(\vb{A},\vb\beta)
+	= 1
+	\neq
+	\rank(\vb{B},\vb\beta)
+	= 2
+\).
+\end{solution}
+%@Mathematica: A = {{1, 0}, {0, 0}};
+%@Mathematica: B = {{0, 0}, {1, 0}};
+%@Mathematica: b = {1, 0};
+%@Mathematica: MatrixRank[AugmentedMatrix[A, b]]
+%@Mathematica: MatrixRank[AugmentedMatrix[B, b]]
+\end{example}
