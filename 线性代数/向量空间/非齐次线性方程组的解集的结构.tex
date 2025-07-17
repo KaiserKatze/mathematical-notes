@@ -440,6 +440,111 @@
 至此，我们讨论了线性方程组的解的存在性、解的性质、解的结构及求解方法，建立起了线性方程组的完整理论.
 解线性方程组是线性代数的基本问题之一，现代科学技术方面用到的数学问题也有很多要归结到解线性方程组.
 
+\begingroup
+下面我们来讨论：
+当实数域上的非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)有解时，
+它的解是否一定属于\(\vb{A}^T\)的像空间.
+要使\(\vb{A} \vb{x} = \vb\beta\)的每一个解\(\vb{x}_0\)都在\(\vb{A}^T\)的像空间中，
+就必须使\(\vb{A}^T \vb{y} = \vb{x}_0\)有解.
+因为\begin{align*}
+	\rank\vb{A}
+	&= \rank(\vb{A} \vb{A}^T)
+		\tag{\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩}} \\
+	&\leq \rank(\vb{A} \vb{A}^T,\vb\beta)
+		\tag{\cref{example:矩阵乘积的秩.分块矩阵的秩的等式2}} \\
+	&= \rank(\vb{A} \vb{A}^T,\vb{A} \vb{x}_0) \\
+	&= \rank(\vb{A} (\vb{A}^T,\vb{x}_0)) \\
+	&\leq \rank\vb{A}
+		\tag{\cref{theorem:线性方程组.矩阵乘积的秩}},
+\end{align*}
+所以\begin{equation}\label{equation:非齐次线性方程组的解集的结构.非齐次线性方程组的解是否属于它的系数矩阵的行空间.中间步骤1}
+	\rank(\vb{A} \vb{A}^T,\vb\beta)
+	= \rank\vb{A}
+	= \rank(\vb{A} \vb{A}^T),
+\end{equation}
+说明非齐次线性方程组\(\vb{A} \vb{A}^T \vb{y} = \vb\beta\)有解.
+下面研究\(\vb{A} \vb{A}^T \vb{y} = \vb\beta\)与\(\vb{A}^T \vb{y} = \vb{x}_0\)是否同解.
+由\cref{example:线性方程组.左乘系数矩阵的转置矩阵同解} 可知
+\(\vb{A}^T \vb{y} = \vb0\)与\(\vb{A} \vb{A}^T \vb{y} = \vb0\)同解.
+下面研究满足\(\vb{A} \vb{A}^T \vb{y}_0 = \vb\beta\)的
+向量\(\vb{y}_0\)是否一定满足\(\vb{A}^T \vb{y}_0 = \vb{x}_0\).
+因为\begin{gather*}
+	\begin{bmatrix}
+		\vb{E} & \vb0 \\
+		-\vb{A} & \vb{E}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} \vb{A}^T & \vb\beta \\
+		\vb{A}^T & \vb{x}_0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{E} & -\vb{y}_0 \\
+		\vb0 & \vb{E}
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{A} \vb{A}^T & \vb0 \\
+		\vb0 & -\vb{A}^T \vb{y}_0 + \vb{x}_0
+	\end{bmatrix},
+\end{gather*}
+所以\begin{align*}
+	\rank\begin{bmatrix}
+		\vb{A} \vb{A}^T & \vb\beta \\
+		\vb{A}^T & \vb{x}_0
+	\end{bmatrix}
+	&= \rank\begin{bmatrix}
+		\vb{A} \vb{A}^T & \vb0 \\
+		\vb0 & \vb{x}_0 - \vb{A}^T \vb{y}_0
+	\end{bmatrix} \\
+	&= \rank(\vb{A} \vb{A}^T) + \rank(\vb{x}_0 - \vb{A}^T \vb{y}_0) \\
+	&= \rank\vb{A} + \rank(\vb{x}_0 - \vb{A}^T \vb{y}_0).
+		\tag{\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩}}
+\end{align*}
+又因为\begin{equation*}
+	\begin{bmatrix}
+		\vb{E} & -\vb{A} \\
+		\vb0 & \vb{E}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{A} \vb{A}^T \\
+		\vb{A}^T
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb0 \\ \vb{A}
+	\end{bmatrix},
+\end{equation*}
+所以\begin{equation*}
+	\rank\begin{bmatrix}
+		\vb{A} \vb{A}^T \\
+		\vb{A}^T
+	\end{bmatrix}
+	= \rank\vb{A}.
+\end{equation*}
+于是\begin{equation*}
+	\rank\begin{bmatrix}
+		\vb{A} \vb{A}^T & \vb\beta \\
+		\vb{A}^T & \vb{x}_0
+	\end{bmatrix}
+	- \rank\begin{bmatrix}
+		\vb{A} \vb{A}^T \\
+		\vb{A}^T
+	\end{bmatrix}
+	= \rank(\vb{x}_0 - \vb{A}^T \vb{y}_0).
+\end{equation*}
+由此可见\begin{equation*}
+	\rank\begin{bmatrix}
+		\vb{A} \vb{A}^T & \vb\beta \\
+		\vb{A}^T & \vb{x}_0
+	\end{bmatrix}
+	\neq
+	\rank\begin{bmatrix}
+		\vb{A} \vb{A}^T \\
+		\vb{A}^T
+	\end{bmatrix},
+\end{equation*}
+也就是说，
+当实数域上的非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)有解时，
+它的解不一定属于\(\vb{A}^T\)的像空间.
+实际上，我们可以举例说明这个问题：
 \begin{example}
 举例说明：虽然\(\vb{x}_0\)是\(\vb{A} \vb{x} = \vb\beta\)的一个解，
 但是\(\vb{x}_0 \notin \Im\vb{A}^T\).
@@ -531,24 +636,13 @@
 如果实数域上的非齐次线性方程组\(\vb{A} \vb{x} = \vb\beta\)有解，
 那么它的解集\(U\)与\(\vb{A}^T\)的像空间\(\Im\vb{A}^T\)有非空交集.
 \begin{proof}
-因为\begin{align*}
-	\rank\vb{A}
-	&= \rank(\vb{A} \vb{A}^T)
-		\tag{\cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩}} \\
-	&\leq \rank(\vb{A} \vb{A}^T,\vb\beta)
-		\tag{\cref{example:矩阵乘积的秩.分块矩阵的秩的等式2}} \\
-	&= \rank(\vb{A} \vb{A}^T,\vb{A} \vb{x}_0) \\
-	&= \rank(\vb{A} (\vb{A}^T,\vb{x}_0)) \\
-	&\leq \rank\vb{A}
-		\tag{\cref{theorem:线性方程组.矩阵乘积的秩}},
-\end{align*}
-所以\(
+因为 \hyperref[equation:非齐次线性方程组的解集的结构.非齐次线性方程组的解是否属于它的系数矩阵的行空间.中间步骤1]{\(
 	\rank(\vb{A} \vb{A}^T,\vb\beta)
 	= \rank\vb{A}
 	= \rank(\vb{A} \vb{A}^T)
-\)，
-说明非齐次线性方程组\(\vb{A} \vb{A}^T \vb{y} = \vb\beta\)有解.
-那么存在向量\(\vb{y}_1\)
+\)}，
+非齐次线性方程组\(\vb{A} \vb{A}^T \vb{y} = \vb\beta\)有解，
+所以存在向量\(\vb{y}_1\)
 使得\(\vb{x}_1 \defeq \vb{A}^T \vb{y}_1\)
 满足\(\vb{A} \vb{x}_1 = \vb\beta\)，
 也就是说，存在向量\(\vb{x}_1 \in \Im\vb{A}^T\)使得\(\vb{x}_1 \in U\)，
@@ -562,6 +656,7 @@
 那么它的解集\(U\)与\(\vb{A}^H\)的像空间\(\Im\vb{A}^H\)有非空交集.
 %TODO proof
 \end{proposition}
+\endgroup
 
 \begin{example}
 %@see: 《线性代数》（张慎语、周厚隆） P89 习题4.6 4.
