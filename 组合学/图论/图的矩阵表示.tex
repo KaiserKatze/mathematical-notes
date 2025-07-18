@@ -39,7 +39,7 @@
 设\(G = (V,E)\)是图，
 顶点集\(V = \{\AutoTuple{v}{n}\}\).
 将\begin{equation*}
-	\vb{P}(A) \defeq (p_{ij})_n
+	\vb{P}(G) \defeq (p_{ij})_n
 \end{equation*}
 称为“\(G\)的\DefineConcept{可达矩阵}（accessible matrix）”，
 其中，\begin{equation*}
@@ -69,7 +69,7 @@
 顶点集\(V = \{\AutoTuple{v}{n}\}\)，
 边集\(E = \{\AutoTuple{e}{m}\}\).
 将\begin{equation*}
-	\vb{M}(A) \defeq (m_{ij})_n
+	\vb{M}(G) \defeq (m_{ij})_n
 \end{equation*}
 称为“\(G\)的\DefineConcept{关联矩阵}（incidence matrix）”，
 其中，\(m_{ij}\)表示顶点\(v_i\)与边\(e_j\)的关联次数.
@@ -83,12 +83,13 @@
 顶点集\(V = \{\AutoTuple{v}{n}\}\)，
 边集\(E = \{\AutoTuple{e}{m}\}\).
 将\begin{equation*}
-	\vb{M}(A) \defeq (m_{ij})_n
+	\vb{M}(G) \defeq (m_{ij})_n
 \end{equation*}
 称为“\(G\)的\DefineConcept{关联矩阵}（incidence matrix）”，
 其中，\begin{equation*}
 	m_{ij}
-	= \left\{ \begin{array}{rl}
+	\defeq
+	\left\{ \begin{array}{rl}
 		1, & \text{$v_i$是$e_j$的起点}, \\
 		-1, & \text{$v_i$是$e_j$的终点}, \\
 		0, & \text{$v_i$与$e_j$不关联}
@@ -96,3 +97,133 @@
 	\quad(i=1,2,\dotsc,n;j=1,2,\dotsc,m).
 \end{equation*}
 \end{definition}
+\begin{remark}
+关联矩阵的元素也可以定义为\begin{equation*}
+	m_{ij}
+	\defeq
+	\left\{ \begin{array}{rl}
+		-1, & \text{$v_i$是$e_j$的起点}, \\
+		1, & \text{$v_i$是$e_j$的终点}, \\
+		0, & \text{$v_i$与$e_j$不关联}
+	\end{array} \right.
+	\quad(i=1,2,\dotsc,n;j=1,2,\dotsc,m).
+\end{equation*}
+\end{remark}
+
+\begin{example}
+%@see: 《Introduction to Linear Algebra (2016)》（Gilbert Strang） P145 Problem Set 3.2 32
+基尔霍夫电流定律\(\vb{A}^T \vb{y} = \vb0\)描述了一个简单的物理图景：
+对于无源电路中任意一个顶点，流进的电流等于流出的电流.
+我们可以为\cref{figure:图的矩阵表示.基尔霍夫电流定律1} 表示的电路图\(G\)
+写出相应的关联矩阵：\begin{equation*}
+	\vb{A}
+	\defeq \vb{M}(G)
+	= \begin{bmatrix}
+		-1 & 1 & 0 & 0 \\
+		0 & -1 & 1 & 0 \\
+		1 & 0 & -1 & 0 \\
+		-1 & 0 & 0 & 1 \\
+		0 & -1 & 0 & 1 \\
+		0 & 0 & -1 & 1
+	\end{bmatrix}.
+\end{equation*}
+
+假设电路图\(G\)中顶点\(\AutoTuple{v}{4}\)的电势分别是\(\AutoTuple{x}{4}\)，
+记\(\vb{x} \defeq (\AutoTuple{x}{4})^T\)，
+那么\(\vb{A} \vb{x}\)就表示各边上的电势差.
+解方程\(\vb{A} \vb{x} = \vb0\)
+可得\(\Ker\vb{A} = \Span\{(1,1,1,1)^T\}\).
+在实际应用中，我们尝尝将某个顶点“接地”，把这个顶点的电势记作\(0\).
+假设将\(v_4\)接地，
+即\(x_4 = 0\)，
+那么方程\(\vb{A} \vb{x} = \vb0\)
+可以化简为\begin{equation*}
+	\begin{bmatrix}
+		-1 & 1 & 0 \\
+		0 & -1 & 1 \\
+		1 & 0 & -1 \\
+		-1 & 0 & 0 \\
+		0 & -1 & 0 \\
+		0 & 0 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}
+	= \vb0.
+\end{equation*}
+
+
+\(\vb{A}\)的行最简形为\begin{equation*}
+	R = \begin{bmatrix}
+		1 & 0 & 0 & -1 \\
+		0 & 1 & 0 & -1 \\
+		0 & 0 & 1 & -1 \\
+		0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{equation*}
+由此可见\(\rank\vb{A} = 3\)
+（应该注意到，当我们把\(G\)看作无向图时，
+\(G\)一共有4个圈，它们分别是\(
+	v_1 v_2 v_3 v_1,
+	v_1 v_2 v_4 v_1,
+	v_1 v_3 v_4 v_1,
+	v_2 v_3 v_4 v_2
+\)，
+而\(\rank\vb{A}\)恰好等于\(G\)中的{圈}的个数减\(1\)）.
+
+假设电路图\(G\)中有向边\(\AutoTuple{y}{6}\)都表示电流，
+记\(\vb{y} \defeq (\AutoTuple{y}{6})^T\)，
+那么\(\vb{A}^T \vb{y}\)就表示各顶点的电荷量.
+解方程\(\vb{A}^T \vb{y} = \vb0\)
+可得\(
+	\Ker\vb{A}^T = \Span\{
+		(1,1,0,-1,0,1)^T,\allowbreak
+		(1,0,0,-1,1,0)^T,\allowbreak
+		(1,1,1,0,0,0)^T
+	\}
+\).
+
+\(\vb{A}^T\)的行最简形为\begin{equation*}
+	R' = \begin{bmatrix}
+		1 & 0 & -1 & 0 & -1 & -1 \\
+		0 & 1 & -1 & 0 & 0 & -1 \\
+		0 & 0 & 0 & 1 & 1 & 1 \\
+		0 & 0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{equation*}
+
+\(\vb{A}\)的每一个线性相关向量组，
+都对应着电路图\(G\)（看作无向图）的一个圈.
+
+\(\vb{A}\)的行向量组的每一个极大线性无关组，
+都对应着电路图\(G\)的一个生成树.
+
+\begin{figure}[hbt]
+	\centering
+	\def\n{3}  % 控制顶点数
+	\def\b{180}  % 控制图像绕其几何中心旋转的角度（相位）
+	\def\scale{2}  % 放大图形
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\a}{360/\n}
+		\foreach \j in {1,...,\n} {
+			\fill({\scale*sin(\j*\a+\b)},{\scale*cos(\j*\a+\b)})coordinate(A\j)circle(2pt);
+		}
+		\draw(A1)node[left]{$v_1$};
+		\draw(A2)node[right]{$v_2$};
+		\draw(A3)node[below]{$v_3$};
+		\fill(0,0)coordinate(A4)circle(2pt)node[below left]{$v_4$};
+		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
+			\draw(A1)--(A2)node[midway]{$y_1$};
+			\draw(A1)--(A4)node[midway]{$y_4$};
+			\draw(A2)--(A3)node[midway]{$y_2$};
+			\draw(A2)--(A4)node[midway]{$y_5$};
+			\draw(A3)--(A1)node[midway]{$y_3$};
+			\draw(A3)--(A4)node[midway]{$y_6$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:图的矩阵表示.基尔霍夫电流定律1}
+\end{figure}
+\end{example}
