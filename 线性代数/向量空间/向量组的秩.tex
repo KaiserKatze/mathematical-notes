@@ -917,21 +917,12 @@ B=\{(1,0)\}\).
 	\qquad
 	A_3 \defeq \{(0,1)^T,(1,1)^T\}.
 \end{equation*}
-因为\begin{equation*}
-	\rank\begin{bmatrix}
-		1 & 0 \\
-		0 & 1
-	\end{bmatrix}
-	= \rank\begin{bmatrix}
-		1 & 0 \\
-		1 & 1
-	\end{bmatrix}
-	= \rank\begin{bmatrix}
-		0 & 1 \\
-		1 & 1
-	\end{bmatrix}
-	= 2,
-\end{equation*}
+因为\(
+	\rank A_1
+	= \rank A_2
+	= \rank A_3
+	= 2
+\)，
 所以\(A_1,A_2,A_3\)都是\(A\)的极大线性无关组，
 \(A\)有3个不同的极大线性无关组.
 \end{solution}
@@ -951,4 +942,19 @@ B=\{(1,0)\}\).
 单纯依据一个向量组中的向量个数和向量组的秩，
 不能断定这个向量组的不同的极大线性无关组的个数.
 \end{remark}
+%@Mathematica: DependentVectorListQ[A_?MatrixQ (* 向量组 *)] := MatrixRank[A] < Length[A]
+%@Mathematica: IndependentVectorListQ[A_?MatrixQ (* 向量组 *)] := MatrixRank[A] == Length[A]
+%@Mathematica: AllVectorLists[A_?MatrixQ (* 向量组 *)] := Module[
+%					{n = Length[A], indexes},
+%					indexes = Subsets[Range[n], n];
+%					(* 输出给定向量组的部分组 *)
+%					Table[A[[index]], {index, indexes}]
+%				];
+%@Mathematica: MaximallyLinearIndependentSubset[A_?MatrixQ (* 向量组 *)] := Module[
+%					{n, r, indexes},
+%					n = Length[A];
+%					r = MatrixRank[A];
+%					indexes = Subsets[Range[n], r];
+%					Select[Table[A[[index]], {index, indexes}], IndependentVectorListQ]
+%				];
 \endgroup
