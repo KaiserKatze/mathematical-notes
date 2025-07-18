@@ -75,7 +75,10 @@ if [ $? -ne 0 ]; then
 fi
 
 # 在后台执行推送
-git_push_all
+for remote in $(git remote); do
+	echo "[INFO] Start pushing to '$(git remote get-url $remote)' ..."
+	git push -f $remote
+done
 
 # 在本地重命名 texlive 输出的 PDF 文件
 SOURCE_FILE="math.pdf"
