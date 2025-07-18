@@ -77,15 +77,6 @@ fi
 # 在后台执行推送
 git_push_all
 
-# 数据统计
-find . -type f \( -name '*.tex' -o -name '*.sty' \) |\
-	xargs cat | wc -lc|\
-	awk '{print "LaTeX 代码共计：" $1 " 行，" $2 " 字节."}'
-find . -type f -name '*.tex' | wc -l |\
-	awk '{print ".tex 文件共计：" $1 " 个."}'
-find . -type f -name '*.sty' | wc -l |\
-	awk '{print ".sty 文件共计：" $1 " 个."}'
-
 # 在本地重命名 texlive 输出的 PDF 文件
 SOURCE_FILE="math.pdf"
 OUTPUT_FILE="数学笔记.pdf"
