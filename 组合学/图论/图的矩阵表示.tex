@@ -120,7 +120,7 @@
 %@see: 《Introduction to Linear Algebra (2016)》（Gilbert Strang） P145 Problem Set 3.2 32
 基尔霍夫电流定律\(\vb{A}^T \vb{y} = \vb0\)描述了一个简单的物理图景：
 对于无源电路中任意一个顶点，流进的电流等于流出的电流.
-我们可以为\cref{figure:图的矩阵表示.基尔霍夫电流定律1} 表示的电路图\(G\)
+我们可以为\cref{figure:图的矩阵表示.基尔霍夫电流定律1} 表示的电路图\(G = (V,E)\)
 写出相应的关联矩阵：\begin{equation*}
 	\vb{A}
 	\defeq \vb{M}(G)
@@ -133,6 +133,37 @@
 		0 & 0 & -1 & 1
 	\end{bmatrix}.
 \end{equation*}
+
+\begin{figure}[hbt]
+	\centering
+	\def\n{3}  % 控制顶点数
+	\def\b{180}  % 控制图像绕其几何中心旋转的角度（相位）
+	\def\scale{2}  % 放大图形
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\a}{360/\n}
+		\foreach \j in {1,...,\n} {
+			\fill({\scale*sin(\j*\a+\b)},{\scale*cos(\j*\a+\b)})coordinate(A\j)circle(2pt);
+		}
+		\draw(A1)node[left]{$v_1$};
+		\draw(A2)node[right]{$v_2$};
+		\draw(A3)node[below]{$v_3$};
+		\fill(0,0)coordinate(A4)circle(2pt)node[below left]{$v_4$};
+		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
+			\draw(A1)--(A2)node[midway]{$y_1$};
+			\draw(A1)--(A4)node[midway]{$y_4$};
+			\draw(A2)--(A3)node[midway]{$y_2$};
+			\draw(A2)--(A4)node[midway]{$y_5$};
+			\draw(A3)--(A1)node[midway]{$y_3$};
+			\draw(A3)--(A4)node[midway]{$y_6$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:图的矩阵表示.基尔霍夫电流定律1}
+\end{figure}
+
+从矩阵\(\vb{A}\)中选取若干个行向量，组成\(\vb{A}\)的一个子阵\(\vb{A}'\)，
+就表示\(G\)的一个子图\(G' = (V,E')\)，
+其中\(E' \subseteq E\).
 
 假设电路图\(G\)中顶点\(\AutoTuple{v}{4}\)的电势分别是\(\AutoTuple{x}{4}\)，
 记\(\vb{x} \defeq (\AutoTuple{x}{4})^T\)，
@@ -208,30 +239,4 @@
 \(\vb{A}\)的行向量组的每一个极大线性无关组，
 都对应着电路图\(G\)的一个生成树.
 
-\begin{figure}[hbt]
-	\centering
-	\def\n{3}  % 控制顶点数
-	\def\b{180}  % 控制图像绕其几何中心旋转的角度（相位）
-	\def\scale{2}  % 放大图形
-	\begin{tikzpicture}
-		\pgfmathsetmacro{\a}{360/\n}
-		\foreach \j in {1,...,\n} {
-			\fill({\scale*sin(\j*\a+\b)},{\scale*cos(\j*\a+\b)})coordinate(A\j)circle(2pt);
-		}
-		\draw(A1)node[left]{$v_1$};
-		\draw(A2)node[right]{$v_2$};
-		\draw(A3)node[below]{$v_3$};
-		\fill(0,0)coordinate(A4)circle(2pt)node[below left]{$v_4$};
-		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
-			\draw(A1)--(A2)node[midway]{$y_1$};
-			\draw(A1)--(A4)node[midway]{$y_4$};
-			\draw(A2)--(A3)node[midway]{$y_2$};
-			\draw(A2)--(A4)node[midway]{$y_5$};
-			\draw(A3)--(A1)node[midway]{$y_3$};
-			\draw(A3)--(A4)node[midway]{$y_6$};
-		\end{scope}
-	\end{tikzpicture}
-	\caption{}
-	\label{figure:图的矩阵表示.基尔霍夫电流定律1}
-\end{figure}
 \end{example}
