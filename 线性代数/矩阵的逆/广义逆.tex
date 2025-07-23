@@ -178,7 +178,7 @@
 \end{definition}
 
 \begin{corollary}
-%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P250 定理1
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 推论
 设\(\vb{A}\)是数域\(K\)上的\(s \times n\)非零矩阵，
 则矩阵方程 \labelcref{equation:线性方程组.广义逆1矩阵方程} 有唯一解的
 充分必要条件是\(\rank\vb{A} = s = n\).
@@ -203,6 +203,97 @@
 \begin{property}\label{theorem:线性方程组.广义逆的性质2}
 %@see: 《高等代数（第三版 上册）》（丘维声） P166
 任意一个\(n \times s\)矩阵都是\(\vb0_{s \times n}\)的广义逆.
+\end{property}
+
+\begin{theorem}
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 定理6.4(1)
+设\(\vb{A} \in M_{s \times n}(K)\)，
+\(\vb{A}^-\)是\(\vb{A}\)的一个广义逆，
+则\((\vb{A}^-)^T\)是\(\vb{A}^T\)的一个广义逆.
+\begin{proof}
+因为\(
+	\vb{A}^T (\vb{A}^-)^T \vb{A}^T
+	= (\vb{A} \vb{A}^- \vb{A})^T
+	= \vb{A}^T
+\)，
+所以\((\vb{A}^-)^T\)是\(\vb{A}^T\)的一个广义逆.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 定理6.4(1)
+设\(\vb{A} \in M_{s \times n}(\mathbb{C})\)，
+\(\vb{A}^-\)是\(\vb{A}\)的一个广义逆，
+则\((\vb{A}^-)^H\)是\(\vb{A}^H\)的一个广义逆.
+\begin{proof}
+因为\(
+	\vb{A}^H (\vb{A}^-)^H \vb{A}^H
+	= (\vb{A} \vb{A}^- \vb{A})^H
+	= \vb{A}^H
+\)，
+所以\((\vb{A}^-)^H\)是\(\vb{A}^H\)的一个广义逆.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 定理6.4(2)
+设\(\vb{A} \in M_{s \times n}(K)\)，
+\(\vb{A}^-\)是\(\vb{A}\)的一个广义逆，
+\(\lambda \in K\)，
+则\(\lambda^- \vb{A}^-\)是\(\lambda \vb{A}\)的一个广义逆，
+其中\begin{equation*}
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 (6.3)
+	\lambda^-
+	\defeq
+	\begin{cases}[cl]
+		\lambda^{-1}, & \lambda\neq0, \\
+		0, & \lambda=0.
+	\end{cases}
+\end{equation*}
+\begin{proof}
+当\(\lambda\neq0\)时，
+有\begin{equation*}
+	(\lambda \vb{A})
+	(\lambda^- \vb{A}^-)
+	(\lambda \vb{A})
+	= (\lambda \lambda^{-1} \lambda) (\vb{A} \vb{A}^- \vb{A})
+	= \lambda \vb{A}.
+\end{equation*}
+当\(\lambda=0\)时，
+有\begin{equation*}
+	(\lambda \vb{A})
+	(\lambda^- \vb{A}^-)
+	(\lambda \vb{A})
+	= \vb0
+	= \lambda \vb{A}.
+\end{equation*}
+综上所述，\(\lambda^- \vb{A}^-\)是\(\lambda \vb{A}\)的一个广义逆.
+\end{proof}
+\end{theorem}
+
+\begin{property}
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 定理6.4(4)
+设\(\vb{A} \in M_{s \times n}(K)\)，
+\(\vb{A}^-\)是\(\vb{A}\)的一个广义逆，
+则\(\rank\vb{A}^- \geq \rank\vb{A}\).
+\begin{proof}
+由\cref{theorem:线性方程组.矩阵乘积的秩} 可知\(
+	\rank\vb{A}
+	= \rank(\vb{A} \vb{A}^- \vb{A})
+	\leq \rank\vb{A}^-
+\).
+\end{proof}
+\end{property}
+
+\begin{property}
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 定理6.4(5)
+设\(\vb{A} \in M_{s \times n}(K)\)，
+\(\vb{A}^-\)是\(\vb{A}\)的一个广义逆，
+则\(
+	\rank(\vb{A} \vb{A}^-)
+	= \rank(\vb{A}^- \rank\vb{A})
+	= \rank\vb{A}
+\).
 \end{property}
 
 \begin{example}
@@ -243,6 +334,23 @@
 \).
 \end{proof}
 \end{example}
+
+\begin{proposition}
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 定理6.4(6)
+%@see: 《矩阵论简明教程（第三版）》（徐仲、张凯院、陆全、冷国伟） P146 定理6.4(7)
+设\(\vb{A} \in M_{s \times n}(K)\)，
+\(\vb{A}^-\)是\(\vb{A}\)的一个广义逆，
+\(\vb{E}_s\)是\(s\)阶单位矩阵，
+\(\vb{E}_n\)是\(n\)阶单位矩阵，
+则\begin{gather*}
+	\vb{A} \vb{A}^- = \vb{E}_s
+	\iff
+	\rank\vb{A} = s, \\
+	\vb{A}^- \vb{A} = \vb{E}_n
+	\iff
+	\rank\vb{A} = n.
+\end{gather*}
+\end{proposition}
 
 \subsection{用广义逆表示线性方程组的解}
 \begin{theorem}[非齐次线性方程组的相容性定理]\label{theorem:线性方程组.非齐次线性方程组的相容性定理}
