@@ -48,6 +48,7 @@
 \vb{C}\in M_{(n-r)\times r}(K),
 \vb{D}\in M_{(n-r)\times(s-r)}(K)\).
 \begin{proof}
+首先解方程\(\vb{A} \vb{X} \vb{A} = \vb{A}\).
 把\(
 	\vb{A}
 	= \vb{P}
@@ -123,15 +124,8 @@
 		\vb{E}_r & \vb0 \\
 		\vb0 & \vb0
 	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		\vb{E}_r & \vb0 \\
-		\vb0 & \vb0
-	\end{bmatrix},
-\end{equation*}
-从而有\begin{equation*}
-%@see: 《高等代数（第三版 上册）》（丘维声） P166 (10)
-	\begin{bmatrix}
+	%@see: 《高等代数（第三版 上册）》（丘维声） P166 (10)
+	= \begin{bmatrix}
 		\vb{H} & \vb0 \\
 		\vb0 & \vb0
 	\end{bmatrix}
@@ -140,7 +134,7 @@
 		\vb0 & \vb0
 	\end{bmatrix},
 \end{equation*}
-即有\(\vb{H} = \vb{E}_r\)，
+从而有\(\vb{H} = \vb{E}_r\)，
 因此\begin{equation*}
 %@see: 《高等代数（第三版 上册）》（丘维声） P166 (11)
 	\vb{X}
@@ -172,6 +166,7 @@
 \end{theorem}
 
 \begin{definition}
+%@see: 《高等代数（第三版 上册）》（丘维声） P166 定义1
 设\(\vb{A}\)是数域\(K\)上的\(s \times n\)矩阵，
 矩阵方程\(\vb{A} \vb{X} \vb{A} = \vb{A}\)的每一个解都称为
 “\(\vb{A}\)的一个\DefineConcept{广义逆矩阵}（generalized inverse）”，
@@ -180,6 +175,7 @@
 
 \begin{property}\label{theorem:线性方程组.广义逆的性质1}
 广义逆满足以下性质：\begin{gather}
+%@see: 《高等代数（第三版 上册）》（丘维声） P166 (12)
 	\vb{A}\vb{A}^-\vb{A}=\vb{A}, \\
 	\vb{A}^-\vb{A}\vb{A}^-=\vb{A}^-, \\
 	(\vb{A}\vb{A}^-)^H=\vb{A}\vb{A}^-, \\
@@ -188,21 +184,24 @@
 \end{property}
 
 \begin{property}\label{theorem:线性方程组.广义逆的性质2}
+%@see: 《高等代数（第三版 上册）》（丘维声） P166
 任意一个\(n \times s\)矩阵都是\(\vb0_{s \times n}\)的广义逆.
 \end{property}
 
 \begin{theorem}[非齐次线性方程组的相容性定理]\label{theorem:线性方程组.非齐次线性方程组的相容性定理}
+%@see: 《高等代数（第三版 上册）》（丘维声） P166 定理2（非齐次线性方程组的相容性定理）
 非齐次线性方程组\(\vb{A} \vb{X} = \vb\beta\)有解的充分必要条件是
+%@see: 《高等代数（第三版 上册）》（丘维声） P166 (14)
 \(\vb\beta = \vb{A} \vb{A}^- \vb\beta\).
 \begin{proof}
 必要性.
 设\(\vb\alpha\)是\(\vb{A} \vb{X} = \vb\beta\)的一个解，
-则\begin{equation*}
+则\(
 	\vb\beta
 	= \vb{A} \vb\alpha
 	= (\vb{A} \vb{A}^- \vb{A}) \vb\alpha
-	= \vb{A} \vb{A}^- \vb\beta.
-\end{equation*}
+	= \vb{A} \vb{A}^- \vb\beta
+\).
 
 充分性.
 设\(\vb\beta = \vb{A} \vb{A}^- \vb\beta\)，
@@ -211,14 +210,193 @@
 \end{theorem}
 
 \begin{theorem}[非齐次线性方程组的解的结构定理]\label{theorem:线性方程组.非齐次线性方程组的解的结构定理}
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 定理3（非齐次线性方程组的解的结构定理）
 非齐次线性方程组\(\vb{A} \vb{X} = \vb\beta\)有解时，
-它的通解为\begin{equation}\label{equation:线性方程组.非齐次线性方程组的通解1}
-	\vb{X} = \vb{A}^- \vb\beta.
-\end{equation}
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (15)
+%\label{equation:线性方程组.非齐次线性方程组的通解1}
+它的通解为\(
+	\vb{X} = \vb{A}^- \vb\beta
+\)，
+其中\(\vb{A}^-\)是\(\vb{A}\)的任意一个广义逆.
+\begin{proof}
+设\(
+	\vb{A} \in M_{s \times n}(K),
+	\vb\beta \in K^s
+\)，
+且\(\vb\gamma\)是\(\vb{A} \vb{X} = \vb\beta\)的一个解，即\(\vb{A} \vb\gamma = \vb\beta\).
+再设\(\rank\vb{A} = r\)，而\(\vb{E}_r\)是\(r\)阶单位矩阵.
+下面我们首先证明：存在\(\vb{A}\)的一个广义逆\(\vb{A}^-\)，使得\(\vb{A}^- \vb\beta = \vb\gamma\).
+要找到这样的\(\vb{A}^-\)，
+关键是在\(\vb{A}^-\)的表达式\(
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (13)
+	\vb{A}^-
+	= \vb{Q}^{-1}
+	\begin{bmatrix}
+		\vb{E}_r & \vb{B} \\
+		\vb{C} & \vb{D}
+	\end{bmatrix}
+	\vb{P}^{-1}
+\)中，
+选取合适的矩阵\(\vb{B},\vb{C},\vb{D}\).
+设\(
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (16)
+	\vb{A}
+	= \vb{P}
+	\begin{bmatrix}
+		\vb{E}_r & \vb0 \\
+		\vb0 & \vb0
+	\end{bmatrix}
+	\vb{Q}
+\)，
+那么代入\(\vb{A} \vb\gamma = \vb\beta\)
+得\(
+	\left(
+		\vb{P}
+		\begin{bmatrix}
+			\vb{E}_r & \vb0 \\
+			\vb0 & \vb0
+		\end{bmatrix}
+		\vb{Q}
+	\right)
+	\vb\gamma
+	= \vb\beta
+\)，
+从而\(
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (17)
+	\begin{bmatrix}
+		\vb{E}_r & \vb0 \\
+		\vb0 & \vb0
+	\end{bmatrix}
+	\vb{Q} \vb\gamma
+	= \vb{P}^{-1} \vb\beta.
+\)
+为了求出\(\vb\gamma\)的表达式，
+先来求\(\vb{Q} \vb\gamma\)的表达式.
+把\(\vb{Q} \vb\gamma\)和\(\vb{P}^{-1} \vb\beta\)分别写成分块矩阵的形式：\begin{equation*}
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (18)
+	\vb{Q} \vb\gamma
+	= \begin{bmatrix}
+		\vb{Y}_1 \\ \vb{Y}_2
+	\end{bmatrix},
+	\qquad
+	\vb{P}^{-1} \vb\beta
+	= \begin{bmatrix}
+		\vb{Z}_1 \\ \vb{Z}_2
+	\end{bmatrix},
+\end{equation*}
+其中\(
+	\vb{Y}_1 \in K^r,
+	\vb{Y}_2 \in K^{n-r},
+	\vb{Z}_1 \in K^r,
+	\vb{Z}_2 \in K^{s-r}
+\).
+于是\begin{equation*}
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (19)
+	\begin{bmatrix}
+		\vb{E}_r & \vb0 \\
+		\vb0 & \vb0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{Y}_1 \\ \vb{Y}_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{Y}_1 \\
+		\vb0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{Z}_1 \\ \vb{Z}_2
+	\end{bmatrix},
+\end{equation*}
+从而有\(
+	\vb{Z}_1 = \vb{Y}_1,
+	\vb{Z}_2 = \vb0
+\).
+接下来求\(\vb{Y}_2\)的表达式.
+由于\(\vb\beta \neq \vb0\)，
+因此\(\vb{P}^{-1} \vb\beta \neq \vb0\)，
+从而\(\vb{Z}_1 \neq \vb0\).
+设\(\vb{Z}_1 = (\AutoTuple{k}{r})^T\)，
+其中\(k_i \neq 0\).
+在\(\vb{A}^-\)的表达式中
+取\(
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (20)
+	\vb{C} = (
+		\vb0_{(n-r) \times (i-1)},
+		% \underbrace{\vb0,\dotsc,\vb0}_{\text{$i-1$个}},
+		k_i^{-1} \vb{Y}_2,
+		\vb0_{(n-r) \times (r-i)}
+		% \underbrace{\vb0,\dotsc,\vb0}_{\text{$r-i$个}}
+	)
+\)，
+%@see: 《高等代数（第三版 上册）》（丘维声） P167 (21)
+便得\(\vb{C} \vb{Z}_1 = \vb{Y}_2\)，
+于是\(
+	\vb{Q} \vb\gamma
+	= \begin{bmatrix}
+		\vb{Y}_1 \\
+		\vb{Y}_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{Z}_1 \\
+		\vb{C} \vb{Z}_1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\vb{E}_r & \vb0 \\
+		\vb{C} & \vb0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{Z}_1 \\
+		\vb0
+	\end{bmatrix}
+\).
+由此得出\begin{equation*}
+	\vb\gamma
+	= \vb{Q}^{-1}
+	\begin{bmatrix}
+		\vb{E}_r & \vb0 \\
+		\vb{C} & \vb0
+	\end{bmatrix}
+	\begin{bmatrix}
+		\vb{Z}_1 \\
+		\vb0
+	\end{bmatrix}
+	= \left(
+		\vb{Q}^{-1}
+		\begin{bmatrix}
+			\vb{E}_r & \vb0 \\
+			\vb{C} & \vb0
+		\end{bmatrix}
+		\vb{P}^{-1}
+	\right)
+	\vb\beta.
+\end{equation*}
+这就是说，
+要让\(\vb{A}^- \vb\beta\)成为\(\vb{A} \vb{X} = \vb\beta\)的一个解，
+\(\vb{A}^-\)就应该取为\(
+	\vb{Q}^{-1}
+	\begin{bmatrix}
+		\vb{E}_r & \vb0 \\
+		\vb{C} & \vb0
+	\end{bmatrix}
+	\vb{P}^{-1}
+\).
+
+反过来，对于\(\vb{A}\)的任意一个广义逆\(\vb{A}^-\)，
+因为\(\vb{A} \vb{X} = \vb\beta\)有解，
+所以由\cref{theorem:线性方程组.非齐次线性方程组的相容性定理}
+可知\(\vb\beta = \vb{A} \vb{A}^- \vb\beta\)，
+因此\(\vb{A}^- \vb\beta\)是\(\vb{A} \vb{X} = \vb\beta\)的一个解.
+
+综上所述，\(\vb{A} \vb{X} = \vb\beta\)有解时，
+它的通解是\(\vb{X} = \vb{A}^- \vb\beta\)，
+其中\(\vb{A}^-\)是\(\vb{A}\)的任意一个广义逆.
+\end{proof}
 \end{theorem}
 从\cref{theorem:线性方程组.非齐次线性方程组的解的结构定理} 看出，
 任意非齐次线性方程组\(\vb{A} \vb{X} = \vb\beta\)有解时，
-它的通解有简洁漂亮的形式 \labelcref{equation:线性方程组.非齐次线性方程组的通解1}.
+它的通解有简洁漂亮的形式\(\vb{X} = \vb{A}^- \vb\beta\).
+这与当\(\vb{A}\)可逆时，\(\vb{A} \vb{X} = \vb\beta\)的唯一解
+\(\vb{X} = \vb{A}^{-1} \vb\beta\)相媲美.
 
 \begin{theorem}[齐次线性方程组的解的结构定理]\label{theorem:线性方程组.齐次线性方程组的解的结构定理}
 数域\(K\)上\(n\)元齐次线性方程组\(\vb{A}\vb{X}=\vb0\)的通解为\begin{equation}\label{equation:线性方程组.齐次线性方程组的通解}
@@ -229,7 +407,8 @@
 \end{theorem}
 
 \begin{corollary}\label{theorem:线性方程组.齐次线性方程组的解的结构定理.推论1}
-设数域\(K\)上\(n\)元非齐次线性方程组\(\vb{A} \vb{X} = \vb\beta\)有解，则它的通解为\begin{equation}\label{equation:线性方程组.非齐次线性方程组的通解2}
+设数域\(K\)上\(n\)元非齐次线性方程组\(\vb{A} \vb{X} = \vb\beta\)有解，
+则它的通解为\begin{equation}\label{equation:线性方程组.非齐次线性方程组的通解2}
 	\vb{X} = \vb{A}^- \vb\beta + (\vb{E}_n - \vb{A}^- \vb{A}) \vb{Z},
 \end{equation}
 其中\(\vb{A}^-\)是\(\vb{A}\)的任意给定的一个广义逆，\(\vb{Z}\)取遍\(K^n\)中任意列向量.
