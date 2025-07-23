@@ -287,5 +287,54 @@
 它就是\(\alpha\)在\(U\)上的正交投影.
 \end{proposition}
 
-% \subsection{正交投影的应用 --- 最小二乘法}
-% 正交投影可以用于最小二乘法.
+\subsection{正交投影的应用 --- 最小二乘法}
+%@see: 《高等代数（第三版 下册）》（丘维声） P183
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P338 定义8.5.3
+实际问题中，从观测数据列出的线性方程组\(\vb{A} \vb{x} = \vb\beta\)可能无解，
+其中\(
+	\vb{A} \in M_{s \times n}(\mathbb{R}),
+	\vb\beta \in \mathbb{R}^s
+\).
+当\(\vb{A} \vb{x} = \vb\beta\)无解时，
+我们还是想要找出一个向量\(\vb{x} \in \mathbb{R}^n\)，
+使得\(\vb{A} \vb{x}\)充分接近\(\vb\beta\)，
+即函数\begin{equation*}
+	f(\vb{x})
+	\defeq
+	\VectorLengthA{\vb{A} \vb{x} - \vb\beta}^2
+	=
+	(\vb{A} \vb{x} - \vb\beta)^T (\vb{A} \vb{x} - \vb\beta)
+\end{equation*}
+取最小值，
+我们把使\(f(\vb{x})\)取得最小值的向量\(\vb{x}\)
+称为“线性方程组\(\vb{A} \vb{x} = \vb\beta\)的\DefineConcept{最小二乘解}（least squares solution）”.
+将最小二乘解作为\(\vb{A} \vb{x} = \vb\beta\)的近似解的方法，
+称为\DefineConcept{最小二乘法}（method of least squares）.
+
+容易看出：\begin{align*}
+	&\text{$\vb\eta$是$\vb{A} \vb{x} = \vb\beta$的最小二乘解} \\
+	&\iff
+	(\forall \vb{x} \in \mathbb{R}^n)
+	[f(\vb\eta) \leq f(\vb{x})] \\
+	&\iff
+	(\forall \vb\gamma \in \Im\vb{A})
+	[\VectorLengthA{\vb{A} \vb\eta - \vb\beta} \leq \VectorLengthA{\vb\gamma - \vb\beta}] \\
+	&\iff
+	(\forall \vb\gamma \in \Im\vb{A})
+	[d(\vb{A} \vb\eta,\vb\beta) \leq d(\vb\gamma,\vb\beta)] \\
+	&\iff
+	\text{$\vb{A} \vb\eta$是$\vb\beta$在$\Im\vb{A}$上的正交投影} \\
+	&\iff
+	\vb{A} \vb\eta - \vb\beta \in (\Im\vb{A})^\perp \\
+	&\iff
+	\vb{A} \vb\eta - \vb\beta \in \Ker\vb{A}^T \\
+	&\iff
+	\vb{A}^T (\vb{A} \vb\eta - \vb\beta) = \vb0 \\
+	&\iff
+	\vb{A}^T \vb{A} \vb\eta = \vb{A}^T \vb\beta \\
+	&\iff
+	\text{$\vb\eta$是$\vb{A}^T \vb{A} \vb{x} = \vb{A}^T \vb\beta$的解}.
+\end{align*}
+
+因为 \hyperref[example:线性方程组有解的充分必要条件.最小二乘解的存在性]{$\rank(\vb{A}^T \vb{A}, \vb{A}^T \vb\beta) = \rank(\vb{A}^T \vb{A})$}，
+所以线性方程组\(\vb{A}^T \vb{A} \vb{x} = \vb{A}^T \vb\beta\)有解.
