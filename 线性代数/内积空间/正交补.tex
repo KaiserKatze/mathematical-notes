@@ -338,3 +338,71 @@
 
 因为 \hyperref[example:线性方程组有解的充分必要条件.最小二乘解的存在性]{$\rank(\vb{A}^T \vb{A}, \vb{A}^T \vb\beta) = \rank(\vb{A}^T \vb{A})$}，
 所以线性方程组\(\vb{A}^T \vb{A} \vb{x} = \vb{A}^T \vb\beta\)有解.
+下面来具体求出该方程组的解.
+
+\begingroup  % 线性方程组\(\vb{A}^T \vb{A} \vb{x} = \vb{A}^T \vb\beta\)的解
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P338 定理8.5.4
+%\cref{theorem:线性方程组.齐次线性方程组的解的结构定理.推论1}
+设\(\vb{A}^+\)是\(\vb{A}\)的穆尔--彭罗斯广义逆.
+首先有\begin{equation*}
+	\vb{A}^T \vb{A} (\vb{A}^+ \vb\beta)
+	% 矩阵乘法的结合律
+	= \vb{A}^T (\vb{A} \vb{A}^+) \vb\beta
+	% \cref{theorem:线性方程组.广义逆的性质1}
+	= \vb{A}^T (\vb{A} \vb{A}^+)^H \vb\beta
+	% 矩阵乘积的转置
+	= (\vb{A} \vb{A}^+ \vb{A})^T \vb\beta
+	% \cref{theorem:线性方程组.广义逆的性质1}
+	= \vb{A}^T \vb\beta,
+\end{equation*}
+这就是说\(\vb{A}^+ \vb\beta\)是\(\vb{A}^T \vb{A} \vb{x} = \vb{A}^T \vb\beta\)的一个特解.
+其次，对于任意\(\vb{Z} \in \mathbb{R}^n\)，有\begin{equation*}
+	\vb{A}^T \vb{A} (\vb{E}_n - \vb{A}^+ \vb{A}) \vb{Z}
+	= (\vb{A}^T \vb{A} - \vb{A}^T \vb{A} \vb{A}^+ \vb{A}) \vb{Z}
+	= (\vb{A}^T \vb{A} - \vb{A}^T \vb{A}) \vb{Z}
+	= \vb0,
+\end{equation*}
+其中\(\vb{E}_n\)是\(n\)阶单位矩阵，
+这就说明\(
+	\Im(\vb{E}_n - \vb{A}^+ \vb{A})
+	\subseteq
+	\Ker(\vb{A}^T \vb{A})
+\)；
+再由\(\vb{A} = \vb{A} \vb{A}^+ \vb{A}\)
+可知\(
+	\vb{A}^+ \vb{A}
+	= (\vb{A}^+ \vb{A})^2
+\)，
+说明\(\vb{A}^+ \vb{A}\)是一个幂等矩阵，
+并且由\cref{example:矩阵乘积的秩.矩阵相乘不变秩的特例1} 可知\(\rank(\vb{A}^+ \vb{A}) = \rank\vb{A}\)，
+所以\begin{align*}
+	\dim\Im(\vb{E}_n - \vb{A}^+ \vb{A})
+	&= \rank(\vb{E}_n - \vb{A}^+ \vb{A})
+	% \cref{example:幂等矩阵.幂等矩阵的秩的性质1}
+	% \(\rank\vb{A} + \rank(\vb{E} - \vb{A}) = n\)
+	% \(\rank(\vb{A}^+ \vb{A}) + \rank(\vb{E}_n - \vb{A}^+ \vb{A}) = n\)
+	= n - \rank(\vb{A}^+ \vb{A}) \\
+	% \(\rank(\vb{A}^+ \vb{A}) = \rank\vb{A}\)
+	&= n - \rank\vb{A}
+	% \cref{equation:矩阵乘积的秩.实矩阵及其转置矩阵的乘积的秩}
+	% \(\rank\vb{A} = \rank(\vb{A}^T \vb{A})\)
+	= n - \rank(\vb{A}^T \vb{A})
+	% \cref{theorem:线性方程组.齐次线性方程组的解向量个数}
+	= \dim\Ker(\vb{A}^T \vb{A});
+\end{align*}
+% \cref{theorem:向量空间.两个非零子空间的关系2}
+因此\(
+	\Im(\vb{E}_n - \vb{A}^+ \vb{A})
+	= \Ker(\vb{A}^T \vb{A})
+\).
+综上所述，\(\vb{A}^T \vb{A} \vb{x} = \vb{A}^T \vb\beta\)的解集是\begin{equation*}
+	\Set*{
+		\vb{A}^+ \vb\beta
+		+ (\vb{E}_n - \vb{A}^+ \vb{A}) \vb{Z}
+		\given
+		\vb{Z} \in \mathbb{R}^n
+	}.
+\end{equation*}
+\endgroup
+容易看出，最小二乘解唯一，当且仅当\(\vb{A}^+ \vb{A} = \vb{E}_n\).
+%TODO proof 尚未证明“最小二乘解唯一，当且仅当\(\vb{A}^+ \vb{A} = \vb{E}_n\)”
