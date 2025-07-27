@@ -119,17 +119,6 @@
 	\beta - \alpha \in W.
 \end{equation*}
 
-应该注意到\begin{equation*}
-%@see: 《高等代数（第三版 下册）》（丘维声） P98 (6)
-%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P435 性质1
-	\alpha + W = \delta + W
-	\iff
-	\alpha - \delta \in W.
-\end{equation*}
-可以看出，一个陪集的陪集代表不唯一，
-只要\(\delta\)满足\(\alpha-\delta \in W\)，
-那么\(\delta\)也可以作为这个陪集的代表.
-
 \begin{proposition}
 设\(V\)是域\(F\)上的一个线性空间，
 向量\(\alpha \in V\)，
@@ -172,6 +161,58 @@
 	= \alpha + 0
 \).
 \end{proposition}
+
+\begin{proposition}
+%@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P100 3.101
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P435 性质1
+设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间，
+向量\(\alpha,\beta \in V\)，
+则\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P98 (6)
+	\alpha - \beta \in W
+	\iff
+	\alpha + W = \beta + W
+	\iff
+	(\alpha + W) \cap (\beta + W) \neq \emptyset.
+\end{equation*}
+\begin{proof}
+首先证明“\(
+	\alpha - \beta \in W
+	\implies
+	\alpha + W = \beta + W
+\)”.
+假设\(\alpha - \beta \in W\).
+任取\(\gamma \in W\)，有\(
+	\alpha + \gamma
+	= \beta + ((\alpha - \beta) + \gamma)
+	\in \beta + W
+\)，
+从而有\(\alpha + W \subseteq \beta + W\).
+同理可证\(\beta + W \subseteq \alpha + W\).
+于是\(\alpha + W = \beta + W\).
+
+显然\(
+	\alpha + W = \beta + W
+	\implies
+	(\alpha + W) \cap (\beta + W) \neq \emptyset
+\).
+
+最后证明“\(
+	(\alpha + W) \cap (\beta + W) \neq \emptyset
+	\implies
+	\alpha - \beta \in W
+\)”.
+假设\((\alpha + W) \cap (\beta + W) \neq \emptyset\)，
+那么存在\(\gamma_1,\gamma_2 \in W\)
+使得\(\alpha + \gamma_1 = \beta + \gamma_2 \in (\alpha + W) \cap (\beta + W)\)，
+于是\(\alpha - \beta = \gamma_2 - \gamma_1 \in W\).
+\end{proof}
+\end{proposition}
+\begin{remark}
+从上述命题可以看出，一个陪集的陪集代表不唯一，
+只要\(\beta\)满足\(\alpha-\beta \in W\)，
+那么\(\beta\)也可以作为这个陪集的代表.
+\end{remark}
 
 \begin{proposition}
 %@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P435 性质2
