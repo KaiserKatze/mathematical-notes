@@ -15,5 +15,8 @@ compile:
 debug:
 	xelatex -synctex=1 ${MAINENTRY}
 
+timeit:
+	time latexmk -xelatex -synctex=1 -interaction=nonstopmode -halt-on-error -silent ${MAINENTRY}
+
 clean:
 	git clean -Xf
