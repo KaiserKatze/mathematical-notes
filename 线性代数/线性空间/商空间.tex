@@ -54,38 +54,60 @@
 得到的所有等价类组成的集合就是\(V\)的一个划分.
 
 \subsection{陪集，陪集代表}
+\begin{definition}
+%@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P98 3.95
+%@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P99 3.97
+%@see: [Functional Analysis Lecture Notes - Quotient Spaces - Christopher Heil](https://heil.math.gatech.edu/handouts/quotient.pdf)
+设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间，
+向量\(\alpha \in V\).
+把集合\(\Set{ \alpha + \gamma \given \gamma \in W }\)
+记作\(\alpha+W\)，
+称之为“（以\(\alpha\)为代表的）\(W\)的一个\DefineConcept{陪集}%
+（a \emph{coset} of \(W\)，a \emph{translate} of \(W\)）”；
+把\(\alpha\)称为\DefineConcept{陪集代表}.
+\end{definition}
+
 设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间.
 在\(V\)上定义一个二元关系\(\sim\)满足\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P97 (3)
 	\alpha\sim\beta
 	\defiff
-	\alpha-\beta\in W,
+	\alpha-\beta\in W.
 \end{equation*}
-则\(\sim\)是一个等价关系.
-
-\(\alpha\)的等价类\begin{align*}
+显然\(\sim\)是一个等价关系：\begin{itemize}
+	\item 任取\(\alpha \in V\)，
+	因为\(\alpha - \alpha = 0 \in W\)，
+	所以\(\alpha \in \alpha\)，
+	因此\(\sim\)具有自反性；
+	\item 任取\(\alpha,\beta \in V\)，
+	假设\(\alpha \sim \beta\)，
+	则\(\alpha - \beta \in W\)，
+	从而\(\beta - \alpha = - (\alpha - \beta) \in W\)，
+	所以\(\beta \sim \alpha\)，
+	因此\(\sim\)具有对称性；
+	\item 任取\(\alpha,\beta,\gamma \in V\)，
+	假设\(\alpha \sim \beta\)且\(\beta \sim \gamma\)，
+	则\(\alpha - \beta \in W\)且\(\beta - \gamma \in W\)，
+	于是\(
+		(\alpha - \beta)	\allowbreak
+		+					\allowbreak
+		(\beta - \gamma)	\allowbreak
+		\in W
+	\)，
+	从而\(\alpha - \gamma \in W\)，
+	所以\(\alpha \sim \gamma\)，
+	因此\(\sim\)具有传递性.
+\end{itemize}
+易知\(\alpha\)的等价类\begin{align*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P97 (4)
 	\EquivalenceClassO{\alpha}
-	&=\Set{ \beta \in V \given \beta \sim \alpha }
-	=\Set{ \beta \in V \given \beta-\alpha \in W } \\
-	&=\Set{ \beta \in V \given \beta=\alpha+\gamma \land \gamma \in W } \\
-	&=\Set{ \alpha+\gamma \given \gamma \in W }
+	&= \Set{ \beta \in V \given \beta \sim \alpha }
+	= \Set{ \beta \in V \given \beta - \alpha \in W } \\
+	&= \Set{ \beta \in V \given \beta = \alpha + \gamma, \gamma \in W } \\
+	&= \Set{ \alpha+\gamma \given \gamma \in W }
+	= \alpha+W,
 \end{align*}
-%@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P98 3.95
-%@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P99 3.97
-可以记作\(\alpha+W\)，称为“\(W\)的一个\DefineConcept{陪集}（a \emph{translate} of \(W\)）”，
-\(\alpha\)称为\DefineConcept{陪集代表}.
-特别地，可以将\begin{equation*}
-	\EquivalenceClassO{0}
-	= 0+W
-	= \Set{
-		\gamma \in V
-		\given
-		\gamma \in W
-	}
-\end{equation*}
-简记为\(W\).
-于是\(\alpha\)的等价类\(\EquivalenceClassO{\alpha}\)
+说明\(\alpha\)的等价类\(\EquivalenceClassO{\alpha}\)
 就是以\(\alpha\)为代表的\(W\)的一个陪集\(\alpha+W\).
 从而\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P98 (5)
@@ -107,6 +129,38 @@
 可以看出，一个陪集的陪集代表不唯一，
 只要\(\delta\)满足\(\alpha-\delta \in W\)，
 那么\(\delta\)也可以作为这个陪集的代表.
+
+\begin{proposition}
+设\(V\)是域\(F\)上的一个线性空间，
+向量\(\alpha \in V\)，
+则\(V\)就是以\(\alpha\)为代表的\(V\)的一个陪集，
+即\(
+	V
+	= \EquivalenceClassO{\alpha}
+	= \alpha + V
+\).
+\end{proposition}
+
+\begin{proposition}
+设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间，
+则\(W\)就是以零向量为代表的\(W\)的一个陪集，
+即\(
+	W
+	= \EquivalenceClassO{0}
+	= 0 + W
+\).
+\end{proposition}
+
+\begin{proposition}
+设\(V\)是域\(F\)上的一个线性空间，\(0\)是\(V\)的零子空间，
+向量\(\alpha \in V\)，
+则\(\{\alpha\}\)就是以\(\alpha\)为代表的\(0\)的一个陪集，
+即\(
+	\{\alpha\}
+	= \EquivalenceClassO{\alpha}
+	= \alpha + 0
+\).
+\end{proposition}
 
 \begin{proposition}
 %@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P435 性质2
