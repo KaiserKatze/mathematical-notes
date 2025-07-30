@@ -125,8 +125,8 @@
 	%@see: 《点集拓扑讲义（第四版）》（熊金城） P10 习题 1.(1)
 	A \cap B \subseteq A, \\
 	%@see: 《点集拓扑讲义（第四版）》（熊金城） P10 习题 1.(1)
-	A \subseteq A \cup B, \\
-	A \subseteq C, B \subseteq C \implies A \cup B \subseteq C, \\
+	A \subseteq A \cup B, \label{equation:集合论.集合代数公式6-7} \\
+	A \subseteq C, B \subseteq C \implies A \cup B \subseteq C, \label{equation:集合论.集合代数公式6-8} \\
 	%@see: 《测度论讲义（第三版）》（严加安） P4 习题 1.1.1 (3)
 	(A \cup B) \symdiff (C \cup D) \subseteq (A \symdiff C) \cup (B \symdiff D).
 \end{gather}
@@ -234,6 +234,27 @@
 		(\forall a)[a \in A \implies x \in a]
 	] \\
 	&\iff (\forall x)[x \in \bigcap B \implies x \in \bigcap A].
+\end{align*}
+
+对\cref{equation:集合论.集合代数公式6-7} 证明如下：
+\begin{align*}
+	&\emptyset \subseteq B
+		\tag{\cref{theorem:子集公理.空集是任何集合的子集}} \\
+	&\implies \emptyset \cup A \subseteq B \cup A
+		\tag{\cref{equation:集合论.集合代数公式6-1}} \\
+	&\iff A \subseteq A \cup B.
+		\tag{\cref{equation:集合论.集合代数公式5-1}}
+\end{align*}
+
+对\cref{equation:集合论.集合代数公式6-8} 证明如下：
+\begin{align*}
+	A \subseteq C, B \subseteq C
+	&\iff (\forall x)[x \in A \limp x \in C] \land (\forall x)[x \in B \limp x \in C] \\
+	% 量词分配律
+	&\iff (\forall x)[(x \in A \limp x \in C) \land (x \in B \limp x \in C)] \\
+	&\iff (\forall x)[(x \in A \lor x \in B) \limp x \in C] \\
+	&\iff (\forall x)[x \in A \cup B \limp x \in C] \\
+	&\iff A \cup B \subseteq C.
 	\qedhere
 \end{align*}
 \end{proof}
