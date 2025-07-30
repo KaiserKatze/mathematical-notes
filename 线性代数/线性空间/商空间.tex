@@ -974,6 +974,8 @@
 
 \cref{theorem:线性空间.商空间.陪集.线性空间中全体陪集对联运算封闭} 说明：
 线性空间\(V\)中的全体陪集\(
+	\mathscr{C}
+	\defeq
 	\Set{
 		\alpha + W
 		\given
@@ -982,10 +984,73 @@
 	}
 \)对“陪集的联”运算封闭.
 
+\begin{property}
 %@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P436
-陪集的联运算符合结合律，即对于陪集\(S_1,S_2,S_3\)，成立\begin{equation}
-	(S_1 \vee S_2) \vee S_3 = S_1 \vee (S_2 \vee S_3).
+陪集的联运算适合结合律，即对于任意陪集\(x,y,z\)，成立\begin{equation}
+	(x \vee y) \vee z = x \vee (y \vee z).
 \end{equation}
+\begin{proof}
+任取\(x,y,z \in \mathscr{C}\).
+由定义可知\(
+	x \vee y
+	\supseteq
+	x \cup y
+\)，
+于是，对于任意\(c \in \mathscr{C}\)，
+当\(c \supseteq (x \vee y) \cup z\)时，
+必有\(c \supseteq (x \cup y) \cup z\).
+因此\begin{equation*}
+	(x \vee y) \vee z
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \vee y) \cup z
+	}
+	\supseteq
+	\bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \cup y) \cup z
+	}.
+\end{equation*}
+与此同时，由\(x \cup y \subseteq (x \cup y) \cup z\)可知，
+包含\((x \cup y) \cup z\)的任意一个陪集\(c\)必定包含\(x \cup y\)，
+由定义可知这样的\(c\)必定包含\(x \vee y\).
+于是当\(c \supseteq (x \cup y) \cup z\)时，
+必有\(c \supseteq (x \vee y) \cup z\).
+因此\begin{equation*}
+	(x \vee y) \vee z
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \vee y) \cup z
+	}
+	\subseteq
+	\bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \cup y) \cup z
+	}.
+\end{equation*}
+综上所述\begin{equation*}
+	(x \vee y) \vee z
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \cup y) \cup z
+	}.
+\end{equation*}
+利用对称性可得\begin{equation*}
+	x \vee (y \vee z)
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq x \cup (y \cup z)
+	},
+\end{equation*}
+于是\((x \vee y) \vee z = x \vee (y \vee z)\).
+\end{proof}
+\end{property}
 
 通过下面的例子可以看出“陪集的联”这个运算的几何意义.
 \begin{example}
