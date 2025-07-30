@@ -696,6 +696,33 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+证明：对于任意命题公式\(p,q,r\)，有\begin{equation}
+	(p \limp q) \land (p \limp r) = p \limp (q \land r).
+\end{equation}
+%@Mathematica: TableForm[BooleanTable[{p, q, r, And[Implies[p, q], Implies[p, r]], Implies[p, And[q, r]]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "(p\[Implies]q)\[And](p\[Implies]r)", "p\[Implies](q\[And]r)"}}]
+\begin{proof}
+列出真值表：\begin{center}
+	\begin{tblr}{*5c}
+		\hline
+		\(p\) & \(q\) & \(r\)
+		& \((p \limp q) \land (p \limp r)\)
+		& \(p \limp (q \land r)\) \\ \hline
+		1 & 1 & 1 & 1 & 1 \\
+		1 & 1 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 & 0 \\
+		0 & 1 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 1 \\
+		0 & 0 & 0 & 1 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+显然有\((p \limp q) \land (p \limp r) = p \limp (q \land r)\).
+\end{proof}
+\end{example}
+
 \begin{theorem}
 %@see: 《离散数学》（邓辉文） P91 定理3-3
 设\(A_1(\AutoTuple{p}{n}) = A_2(\AutoTuple{p}{n})\).
