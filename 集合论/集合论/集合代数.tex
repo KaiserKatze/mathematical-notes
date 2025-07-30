@@ -126,7 +126,8 @@
 	A \cap B \subseteq A, \\
 	%@see: 《点集拓扑讲义（第四版）》（熊金城） P10 习题 1.(1)
 	A \subseteq A \cup B, \label{equation:集合论.集合代数公式6-7} \\
-	A \subseteq C, B \subseteq C \implies A \cup B \subseteq C, \label{equation:集合论.集合代数公式6-8} \\
+	A \subseteq C, B \subseteq C \iff A \cup B \subseteq C, \label{equation:集合论.集合代数公式6-8} \\
+	A \subseteq B, A \subseteq C \iff A \subseteq B \cap C, \label{equation:集合论.集合代数公式6-9} \\
 	%@see: 《测度论讲义（第三版）》（严加安） P4 习题 1.1.1 (3)
 	(A \cup B) \symdiff (C \cup D) \subseteq (A \symdiff C) \cup (B \symdiff D).
 \end{gather}
@@ -255,6 +256,17 @@
 	&\iff (\forall x)[(x \in A \lor x \in B) \limp x \in C] \\
 	&\iff (\forall x)[x \in A \cup B \limp x \in C] \\
 	&\iff A \cup B \subseteq C.
+\end{align*}
+
+对\cref{equation:集合论.集合代数公式6-9} 证明如下：
+\begin{align*}
+	A \subseteq B, A \subseteq C
+	&\iff (\forall x)[x \in A \limp x \in B] \land (\forall x)[x \in A \limp x \in C] \\
+	% 量词分配律
+	&\iff (\forall x)[(x \in A \limp x \in B) \land (x \in A \limp x \in C)] \\
+	&\iff (\forall x)[x \in A \limp (x \in B \land x \in C)] \\
+	&\iff (\forall x)[x \in A \limp x \in B \cap C] \\
+	&\iff A \subseteq B \cap C.
 	\qedhere
 \end{align*}
 \end{proof}
