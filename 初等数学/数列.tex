@@ -338,6 +338,32 @@
 \end{equation}
 \end{property}
 
+\begin{property}
+如果把等差数列\(\{a_n\}\)的前\(n\)项和\(S_n\)拆为偶数项之和\(A_n\)与奇数项之和\(B_n\)，
+即\begin{equation*}
+	A_n \defeq \sum_{1 \leq k \leq \floor{n/2}} a_{2k},
+	\qquad
+	B_n \defeq \sum_{1 \leq k \leq \ceil{n/2}} a_{2k-1},
+\end{equation*}
+%@Mathematica: a[n_] := a1 + (n - 1) d;
+%@Mathematica: A[n_] := Sum[a[2 k], {k, 1, Floor[n/2]}];
+%@Mathematica: B[n_] := Sum[a[2 k - 1], {k, 1, Ceiling[n/2]}];
+%@Mathematica: Assuming[n \[Element] Integers, A[2 n] - B[2 n]]
+%@Mathematica: Assuming[n \[Element] Integers, A[2 n]/B[2 n]] // Simplify
+%@Mathematica: Assuming[n \[Element] Integers, B[2 n - 1] - A[2 n - 1]] // Simplify
+%@Mathematica: Assuming[n \[Element] Integers, A[2 n - 1]/B[2 n - 1]] // Factor
+那么\begin{gather}
+	% A_{2n} = n a_1 + n^2 d, \\
+	% B_{2n} = n a_1 + n(n-1)d, \\
+	A_{2n} - B_{2n} = n d, \\
+	\frac{A_{2n}}{B_{2n}} = \frac{a_{n+1}}{a_n}, \\
+	% A_{2n-1} = (n-1) a_n, \\
+	% B_{2n-1} = n a_n, \\
+	B_{2n-1} - A_{2n-1} = a_n, \\
+	\frac{A_{2n-1}}{B_{2n-1}} = \frac{n-1}{n}.
+\end{gather}
+\end{property}
+
 根据\hyperref[equation:数列.等差数列的前n项和1]{等差数列的前\(n\)项和公式}，立即有如下结论：
 \begin{equation}
     \sum_{k=1}^n k = \frac{1}{2} n(n+1).
