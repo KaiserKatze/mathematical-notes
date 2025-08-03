@@ -4,7 +4,7 @@
 GITHUB_TOKEN="github-token.ignore"
 
 get_ssh_agent_pid() {
-	ps -ef | grep ssh-agent | grep -Po '^\w+\s+\K\d+'
+	ps -ef | grep ssh-agent | awk '{print $2}'
 }
 
 git_push_all() {
@@ -56,11 +56,17 @@ git_push_all() {
 kill_ssh_agents() {
 	pid_ssh_agent=($(get_ssh_agent_pid))  # 获取 SSH Agent 进程的 PID，并保存到数组中
 	echo "[INFO] 正在运行的 SSH Agent 进程共计${#pid_ssh_agent[@]}个."
-	for ((i = 0; i < ${#pid_ssh_agent[@]}; i++)); do
-		if [ "$SSH_AGENT_PID" -ne "${pid_ssh_agent[i]}" ]; then
-			kill -9 "${pid_ssh_agent[i]}" && echo "杀死 SSH Agent 进程(pid=${pid_ssh_agent[i]})."  # 杀死已存在的 SSH Agent 进程
-		fi
-	done
+	if [[ -z "$SSH_AGENT_PID" || ! "$SSH_AGENT_PID" =~ ^[0-9]+$ ]]; then
+		for pid in "${pid_ssh_agent[@]}"; do
+			kill -9 "$pid" && echo "杀死 SSH Agent 进程(pid=$pid)."  # 杀死已存在的 SSH Agent 进程
+		done
+	else
+		for ((i = 0; i < ${#pid_ssh_agent[@]}; i++)); do
+			if [ "$SSH_AGENT_PID" -ne "${pid_ssh_agent[i]}" ]; then
+				kill -9 "${pid_ssh_agent[i]}" && echo "杀死 SSH Agent 进程(pid=${pid_ssh_agent[i]})."  # 杀死已存在的 SSH Agent 进程
+			fi
+		done
+	fi
 
 	pid_ssh_agent=$(get_ssh_agent_pid)  # 重新获取 SSH Agent 进程的 PID
 	if [ -z "$pid_ssh_agent" ]; then  # 验证是否已经把 SSH Agent 进程清理干净
