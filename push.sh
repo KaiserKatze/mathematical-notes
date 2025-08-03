@@ -58,32 +58,35 @@ kill_ssh_agents() {
 	echo "[INFO] 正在运行的 SSH Agent 进程共计${#pid_ssh_agent[@]}个."
 	echo "[INFO] 上次正常运行的 SSH Agent 信息：(SSH_AUTH_SOCK='$SSH_AUTH_SOCK',SSH_AGENT_PID='$SSH_AGENT_PID')"
 	if [[ -z "$SSH_AGENT_PID" || ! "$SSH_AGENT_PID" =~ ^[0-9]+$ ]]; then
+		# 如果 SSH_AGENT_PID 为空，或者 SSH_AGENT_PID 不是纯数字
 		for pid in "${pid_ssh_agent[@]}"; do
 			kill -9 "$pid" && echo "杀死 SSH Agent 进程(pid=$pid)."  # 杀死已存在的 SSH Agent 进程
 		done
+
+		pid_ssh_agent=$(get_ssh_agent_pid)  # 重新获取 SSH Agent 进程的 PID
+		if [ -z "$pid_ssh_agent" ]; then  # 验证是否已经把 SSH Agent 进程清理干净
+			echo "[INFO] 成功创建 SSH Agent："  # 如果一个 SSH Agent 都没有，就创建一个
+			eval $(ssh-agent)
+		fi
+
+		# 准备 SSH 密匙
+		ssh-add
+		if [ $? -ne 0 ]; then
+			echo "[ERROR] 没有启动 SSH Agent 后台程序，或者无法添加 SSH 密匙!" 1>&2
+			exit 1
+		fi
 	else
+		# 如果已有正在运行的 ssh-agent
+		# 清除其他非正常运行的 ssh-agent
 		for ((i = 0; i < ${#pid_ssh_agent[@]}; i++)); do
 			if [ "$SSH_AGENT_PID" -ne "${pid_ssh_agent[i]}" ]; then
 				kill -9 "${pid_ssh_agent[i]}" && echo "杀死 SSH Agent 进程(pid=${pid_ssh_agent[i]})."  # 杀死已存在的 SSH Agent 进程
 			fi
 		done
 	fi
-
-	pid_ssh_agent=$(get_ssh_agent_pid)  # 重新获取 SSH Agent 进程的 PID
-	if [ -z "$pid_ssh_agent" ]; then  # 验证是否已经把 SSH Agent 进程清理干净
-		echo "[INFO] 成功创建 SSH Agent："  # 如果一个 SSH Agent 都没有，就创建一个
-		eval $(ssh-agent)
-	fi
 }
 
 kill_ssh_agents
-
-# 准备 SSH 密匙
-ssh-add
-if [ $? -ne 0 ]; then
-	echo "[ERROR] 没有启动 SSH Agent 后台程序，或者无法添加 SSH 密匙!" 1>&2
-	exit 1
-fi
 
 # 在后台执行推送
 for remote in $(git remote); do
