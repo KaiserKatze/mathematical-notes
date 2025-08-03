@@ -56,6 +56,7 @@ git_push_all() {
 kill_ssh_agents() {
 	pid_ssh_agent=($(get_ssh_agent_pid))  # 获取 SSH Agent 进程的 PID，并保存到数组中
 	echo "[INFO] 正在运行的 SSH Agent 进程共计${#pid_ssh_agent[@]}个."
+	echo "[INFO] 上次正常运行的 SSH Agent 信息：(SSH_AUTH_SOCK='$SSH_AUTH_SOCK',SSH_AGENT_PID='$SSH_AGENT_PID')"
 	if [[ -z "$SSH_AGENT_PID" || ! "$SSH_AGENT_PID" =~ ^[0-9]+$ ]]; then
 		for pid in "${pid_ssh_agent[@]}"; do
 			kill -9 "$pid" && echo "杀死 SSH Agent 进程(pid=$pid)."  # 杀死已存在的 SSH Agent 进程
@@ -72,9 +73,6 @@ kill_ssh_agents() {
 	if [ -z "$pid_ssh_agent" ]; then  # 验证是否已经把 SSH Agent 进程清理干净
 		echo "[INFO] 成功创建 SSH Agent："  # 如果一个 SSH Agent 都没有，就创建一个
 		eval $(ssh-agent)
-	else
-		echo "[ERROR] 清理已有 SSH Agent 失败！"
-		exit 1  # 预料之外的错误
 	fi
 }
 
