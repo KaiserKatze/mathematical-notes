@@ -467,8 +467,10 @@
 	y = C e^{ -\int P(x) \dd{x} }
 	\quad(C = \pm e^{C_1}),
 \end{equation*}
-这是\cref{equation:微分方程.一阶线性齐次微分方程} 的通解\footnote{%
-这里记号\(\int P(x) \dd{x}\)表示\(P(x)\)的某个确定的原函数.}
+这是\cref{equation:微分方程.一阶线性齐次微分方程} 的通解
+\footnote{
+	这里记号\(\int P(x) \dd{x}\)表示\(P(x)\)的某个确定的原函数.
+}.
 
 现在我们使用所谓“常数变易法”来求\cref{equation:微分方程.一阶线性非齐次微分方程} 的通解.
 这方法是把\cref{equation:微分方程.一阶线性齐次微分方程} 的通解中的\(C\)换成\(x\)的未知函数\(u(x)\)，
@@ -685,6 +687,90 @@ Q = f(x)\)，
 注意到线性微分方程的通解包含它的所有解，
 故只要\(C\)唯一，则周期解\(y\)唯一.
 \end{proof}
+\end{example}
+
+\begin{example}
+%@see: http://www.youtube.com/watch?v=IZqwi0wJovM
+解方程组\begin{equation*}
+	\begin{cases}
+		u_1' = -u_1 + 2u_2, \\
+		u_2' = u_1 - 2u_2,
+	\end{cases}
+\end{equation*}
+其中\(
+	u_1(0) = 1,
+	u_2(0) = 0
+\).
+\begin{solution}
+这是一个一阶常系数线性方程组.
+记\begin{equation*}
+	U \defeq \begin{bmatrix}
+		u_1 \\ u_2
+	\end{bmatrix},
+	\qquad
+	U' \defeq \begin{bmatrix}
+		u_1' \\ u_2'
+	\end{bmatrix},
+	\qquad
+	D \defeq \begin{bmatrix}
+		-1 & 2 \\
+		1 & -2
+	\end{bmatrix},
+\end{equation*}
+便得\(D' = D U\).
+%@Mathematica: A = {{-1, 2}, {1, -2}};
+%@Mathematica: Eigenvalues[A]
+%@Mathematica: Eigenvectors[A]
+易知\(\lambda_1=-3\)和\(\lambda_2=0\)是\(D\)的特征值，
+\(x_1=(-1,1)^T\)和\(x_2=(2,1)^T\)是\(D\)的特征向量，
+于是所求方程组的通解为\begin{equation*}
+	U = C_1 e^{\lambda_1 t} x_1 + C_2 e^{\lambda_2 t} x_2
+	= C_1 e^{-3t} \begin{bmatrix}
+		-1 \\ 1
+	\end{bmatrix}
+	+ C_2 \begin{bmatrix}
+		2 \\ 1
+	\end{bmatrix},
+\end{equation*}
+其中\(C_1,C_2\)是任意常数.
+代入\(
+	U(0) \defeq \begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix}
+\)得\begin{equation*}
+	U(0)
+	= C_1 \begin{bmatrix}
+		-1 \\ 1
+	\end{bmatrix}
+	+ C_2 \begin{bmatrix}
+		2 \\ 1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		-1 & 2 \\
+		1 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		C_1 \\ C_2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix},
+\end{equation*}
+解得\(
+	C_1 = -\frac13,
+	C_2 = \frac13
+\)，
+即\(
+	U(t)
+	= -\frac13 e^{-3t} \begin{bmatrix}
+		-1 \\ 1
+	\end{bmatrix}
+	+ \frac13 \begin{bmatrix}
+		2 \\ 1
+	\end{bmatrix}
+\).
+%@Mathematica: DSolve[{u1'[t] == -u1[t] + 2 u2[t], u2'[t] == u1[t] - 2 u2[t], u1[0] == 1, u2[0] == 0}, {u1[t], u2[t]}, t] // FullSimplify
+\end{solution}
 \end{example}
 
 \section{伯努利方程}
