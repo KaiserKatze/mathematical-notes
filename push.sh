@@ -53,19 +53,26 @@ git_push_all() {
 	# esac
 }
 
-pid_ssh_agent=($(get_ssh_agent_pid))  # 获取 SSH Agent 进程的 PID，并保存到数组中
-echo "[INFO] 正在运行的 SSH Agent 进程共计${#pid_ssh_agent[@]}个."
-for ((i = 0; i < ${#pid_ssh_agent[@]}; i++)); do
-    kill -9 "${pid_ssh_agent[i]}" && echo "杀死 SSH Agent 进程(pid=${pid_ssh_agent[i]})."  # 杀死已存在的 SSH Agent 进程
-done
-pid_ssh_agent=$(get_ssh_agent_pid)  # 重新获取 SSH Agent 进程的 PID
-if [ -z "$pid_ssh_agent" ]; then  # 验证是否已经把 SSH Agent 进程清理干净
-	echo "[INFO] 成功创建 SSH Agent："  # 如果一个 SSH Agent 都没有，就创建一个
-	eval $(ssh-agent)
-else
-	echo "[ERROR] 清理已有 SSH Agent 失败！"
-	exit 1  # 预料之外的错误
-fi
+kill_ssh_agents() {
+	pid_ssh_agent=($(get_ssh_agent_pid))  # 获取 SSH Agent 进程的 PID，并保存到数组中
+	echo "[INFO] 正在运行的 SSH Agent 进程共计${#pid_ssh_agent[@]}个."
+	for ((i = 0; i < ${#pid_ssh_agent[@]}; i++)); do
+		if [ "$SSH_AGENT_PID" -ne "${pid_ssh_agent[i]}" ]; then
+			kill -9 "${pid_ssh_agent[i]}" && echo "杀死 SSH Agent 进程(pid=${pid_ssh_agent[i]})."  # 杀死已存在的 SSH Agent 进程
+		fi
+	done
+
+	pid_ssh_agent=$(get_ssh_agent_pid)  # 重新获取 SSH Agent 进程的 PID
+	if [ -z "$pid_ssh_agent" ]; then  # 验证是否已经把 SSH Agent 进程清理干净
+		echo "[INFO] 成功创建 SSH Agent："  # 如果一个 SSH Agent 都没有，就创建一个
+		eval $(ssh-agent)
+	else
+		echo "[ERROR] 清理已有 SSH Agent 失败！"
+		exit 1  # 预料之外的错误
+	fi
+}
+
+kill_ssh_agents
 
 # 准备 SSH 密匙
 ssh-add
