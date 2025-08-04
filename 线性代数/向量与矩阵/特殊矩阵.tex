@@ -791,6 +791,8 @@
 \subsection{傅里叶矩阵}
 当\(w \in \mathbb{C}\)满足\(w^n = 1\)时，
 我们把形如\begin{equation*}
+	\frac1{\sqrt{n}}
+	% 这里的常系数是用来将后面的矩阵中的列向量组变成正交规范组
 	\begin{bmatrix}
 		1 & 1 & 1 & \dots & 1 \\
 		1 & w & w^2 & \dots & w^{n-1} \\
@@ -800,5 +802,28 @@
 	\end{bmatrix}
 \end{equation*}
 的矩阵称为\DefineConcept{傅里叶矩阵}（Fourier matrix），
-记为\(F_n\).
+记为\(\vb{F}_n\).
 %@see: https://mathworld.wolfram.com/FourierMatrix.html
+
+\begin{example}
+%@Mathematica: FourierMatrix[4] // MatrixForm
+矩阵\(
+	\frac12
+	\begin{bmatrix}
+		1 & 1 & 1 & 1 \\
+		1 & \iu & -1 & -\iu \\
+		1 & -1 & 1 & -1 \\
+		1 & -\iu & -1 & \iu
+	\end{bmatrix}
+\)是一个4阶傅里叶矩阵.
+\end{example}
+
+容易看出，傅里叶矩阵\(\vb{F}_n\)的\((i,j)\)元素是\(
+	w^{(i-1)(j-1)}
+	\ (i,j=1,2,\dotsc,n)
+\).
+我们还可以看出，
+\(\vb{F}_n\)的第\(j\)列向量\(\alpha_j\)与它的第\(k\)列向量\(\alpha_k\)
+满足\(\alpha_j^H \alpha_k = 0\)，
+这就说明傅里叶矩阵\(\vb{F}_n\)的列向量组两两正交，
+从而有\(\vb{F}_n^H \vb{F}_n = \vb{E}\).
