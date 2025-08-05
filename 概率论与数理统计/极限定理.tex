@@ -1,6 +1,34 @@
 \chapter{极限定理}
 本章介绍概率论中的极限定理，即大数律和中心极限定理，藉此给出“频率\(f_n(A)\)随试验次数\(n\)增多而逐渐收敛于概率\(P(A)\)”的严格描述.
 
+\section{马尔可夫不等式}
+\begin{theorem}[马尔可夫不等式]
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P59 命题2.6
+设非负随机变量\(X\)的数学期望存在且有限，
+则\begin{equation*}
+	X \geq 0,
+	\qquad
+	E(X) = \mu < \infty,
+\end{equation*}
+则对任意\(a > 0\)，
+有\begin{equation}
+	P(X \geq a) \leq \frac{E(X)}{a}.
+\end{equation}
+\begin{proof}
+设\(X\)是连续型随机变量，\(f\)是\(X\)的密度函数，
+则\begin{align*}
+	E(X) &= \int_0^{+\infty} x f(x) \dd{x} \\
+	&= \int_0^a x f(x) \dd{x}
+	+ \int_a^{+\infty} x f(x) \dd{x} \\
+	&\geq \int_0^{+\infty} x f(x) \dd{x} \\
+	&\geq \int_a^{+\infty} a f(x) \dd{x} \\
+	&= a \int_a^{+\infty} f(x) \dd{x} \\
+	&= a P(X \geq a).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
 \section{切比雪夫不等式}
 由于随机变量\(X\)的方差\(D(X)\)刻画了\(X\)取值集中在期望\(E(X)\)周围的程度，
 故对任意\(\epsilon>0\)，事件\((\abs{X - E(X)} < \epsilon)\)的概率与\(D(X)\)有关，
@@ -9,7 +37,7 @@
 
 \begin{theorem}[切比雪夫不等式]\label{theorem:极限定理.切比雪夫不等式}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P101 定理2.4.8
-设随机变量\(X\)的数学期望与方差都存在，
+设随机变量\(X\)的数学期望与方差都存在且有限，
 即\begin{equation*}
 	E(X) = \mu < \infty,
 	\qquad
@@ -24,7 +52,8 @@
 	P(\abs{X-\mu}\geq\epsilon) \leq \frac{\sigma^2}{\epsilon^2}.
 \end{equation}
 \begin{proof}
-设连续型随机变量\(X\)的密度函数\(f(x)\)，
+\begin{proof}
+设\(X\)是连续型随机变量，\(f\)是\(X\)的密度函数，
 则\begin{align*}
 	P(\abs{X-\mu}\geq\epsilon)
 	&=\int_{\abs{x-\mu}\geq\epsilon} f(x) \dd{x} \\
@@ -35,6 +64,25 @@
 	&=\frac{\sigma^2}{\epsilon^2}.
 	\tag*\qedhere
 \end{align*}
+\end{proof}
+\begin{proof}
+设\(X\)是连续型随机变量，\(f\)是\(X\)的密度函数.
+显然\((X-\mu)^2\)是非负随机变量，所以由马尔可夫不等式得\begin{align*}
+	P((X-\mu)^2 \geq a)
+	\leq \frac{E(X-\mu)^2}{a}.
+\end{align*}
+因为\((X-\mu)^2 \geq a\)当且仅当\(\abs{X-\mu} \geq \sqrt{\abs{a}}\)，
+所以\(
+	P((X-\mu)^2 \geq a)
+	= P(\abs{X-\mu} \geq \sqrt{\abs{a}})
+\).
+令\(a = \epsilon^2\)，
+再由\(D(X) = E(X-\mu)^2 = \sigma^2\)可得\begin{equation*}
+	P(\abs{X-\mu} \geq \epsilon)
+	\leq \frac{\sigma^2}{\epsilon^2}.
+	\qedhere
+\end{equation*}
+\end{proof}\let\qed\relax
 \end{proof}
 \end{theorem}
 
