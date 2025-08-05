@@ -455,7 +455,7 @@ Y_n \toP b\)，
 只要将随机变量\(\frac1n \sum_{i=1}^n X_i\)标准化以后，
 得到的标准化随机变量的分布，就是标准正态分布.
 
-\subsection{林德伯格--列维中心极限定理}
+\subsection{特征函数}
 \begin{definition}
 %@see: https://zhuanlan.zhihu.com/p/69862244
 对于任意随机变量\(X\)，
@@ -466,6 +466,34 @@ Y_n \toP b\)，
 %@see: https://mathworld.wolfram.com/CharacteristicFunction.html
 \end{definition}
 
+\begin{property}
+设\(\phi_X\)是随机变量\(X\)的特征函数，
+则\(\phi_X(0) = 1\).
+\end{property}
+
+\begin{property}
+设\(\phi_X\)是随机变量\(X\)的特征函数，
+则\(\ComplexLengthA{\phi_X(t)} \leq 1\).
+\end{property}
+
+\begin{property}
+设\(\phi_X\)是随机变量\(X\)的特征函数，
+则\(\phi_X(-t) = \ComplexConjugate{\phi_X(t)}\).
+\end{property}
+
+\begin{lemma}
+相互独立的随机变量的和的特征函数等于各个随机变量的特征函数的乘积，
+即\begin{equation*}
+	\phi_{X_1+X_2+\dotsb+X_n}(t)
+	= \phi_{X_1}(t)
+	\cdot \phi_{X_2}(t)
+	\dotsb
+	\phi_{X_n}(t),
+\end{equation*}
+其中\(\AutoTuple{X}{n}\)是相互独立的随机变量.
+\end{lemma}
+
+\subsection{矩母函数}
 \begin{definition}
 %@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P48
 %@see: https://zhuanlan.zhihu.com/p/437777250
@@ -503,6 +531,17 @@ Y_n \toP b\)，
 \end{equation}
 \end{remark}
 
+\begin{definition}
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P53
+对于\(n\)维随机变量\((\AutoTuple{X}{n})\)，
+我们把函数\begin{equation*}
+	\varphi_{\AutoTuple{X}{n}}(\AutoTuple{t}{n})
+	\defeq
+	E(\exp(t_1 X_1 + \dotsb t_n X_n))
+\end{equation*}
+称为“随机变量\((\AutoTuple{X}{n})\)的\DefineConcept{矩母函数}”.
+\end{definition}
+
 \begin{proposition}
 %@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P51
 设随机变量\(X\)和\(Y\)相互独立，
@@ -523,18 +562,7 @@ Y_n \toP b\)，
 \end{proof}
 \end{proposition}
 
-\begin{lemma}
-相互独立的随机变量的和的特征函数等于各个随机变量的特征函数的乘积，
-即\begin{equation*}
-	\phi_{X_1+X_2+\dotsb+X_n}(t)
-	= \phi_{X_1}(t)
-	\cdot \phi_{X_2}(t)
-	\dotsb
-	\phi_{X_n}(t),
-\end{equation*}
-其中\(\AutoTuple{X}{n}\)是相互独立的随机变量.
-\end{lemma}
-
+\subsection{极限分布}
 \begin{definition}
 设随机变量序列\(\{X_n\}\)独立同分布，
 若存在一个分布函数\(F\)，
@@ -545,6 +573,7 @@ Y_n \toP b\)，
 则称“分布\(F\)是\(\{X_n\}\)的\DefineConcept{极限分布}”.
 \end{definition}
 
+\subsection{林德伯格--列维中心极限定理}
 \begin{theorem}[林德伯格--列维中心极限定理]\label{theorem:极限定理.林德伯格--列维中心极限定理}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P162 定理6.4
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P174 定理3.5.1（林德贝格--列维中心极限定理）
