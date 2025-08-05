@@ -311,6 +311,7 @@ Y_n \toP b\)，
 \begin{theorem}[辛钦大数律]\label{theorem:极限定理.大数律.辛钦大数律}
 %@see: https://www.math.pku.edu.cn/teachers/litj/notes/appl_stoch/Lect5_slides.pdf
 %@see: https://proofwiki.org/wiki/Khinchin%27s_Law
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P61 定理2.1（强大数律）
 设\(\{X_k\}\)是独立同分布随机变量序列，
 且\begin{equation*}
 	E(X_k) = \mu < \infty
@@ -459,10 +460,68 @@ Y_n \toP b\)，
 %@see: https://zhuanlan.zhihu.com/p/69862244
 对于任意随机变量\(X\)，
 我们把函数\begin{equation*}
-	\phi_X(t) = E(e^{\iu t X})
+	\phi_X(t) \defeq E(e^{\iu t X})
 \end{equation*}
-称为“\(X\)的特征函数”.
+称为“随机变量\(X\)的\DefineConcept{特征函数}（characteristic function）”.
+%@see: https://mathworld.wolfram.com/CharacteristicFunction.html
 \end{definition}
+
+\begin{definition}
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P48
+%@see: https://zhuanlan.zhihu.com/p/437777250
+对于任意随机变量\(X\)，
+我们把函数\begin{equation*}
+	\varphi_X(t) \defeq E(e^{t X})
+\end{equation*}
+称为“随机变量\(X\)的\DefineConcept{矩母函数}（moment generating function）”.
+%@see: https://mathworld.wolfram.com/Moment-GeneratingFunction.html
+\end{definition}
+\begin{remark}
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P49
+之所以将\(\varphi_X\)称为“矩母函数”，
+是因为只要对\(\varphi_X\)逐次求导，
+便可得到\(X\)的所有的矩.
+例如，由于\begin{equation*}
+	\varphi_X'(t)
+	= \dv{t} E(e^{t X})
+	= E\left( \dv{t} e^{t X} \right)
+	= E(X e^{t X}),
+\end{equation*}
+所以\(\varphi_X'(0) = E(X)\)；
+类似地，由于\begin{equation*}
+	\varphi_X''(t)
+	= \dv{t} \phi'(t)
+	= \dv{t} E(X e^{t X})
+	= E\left( \dv{t} (X e^{t X}) \right)
+	= E(X^2 e^{t X}),
+\end{equation*}
+所以\(\varphi_X''(0) = E(X^2)\)；
+以此类推，\(\varphi_X\)的\(n\)阶导数在\(t=0\)的值等于\(E(X^n)\)，
+即\begin{equation}
+	\varphi_X^{(n)}(0) = E(X^n)
+	\quad(n=1,2,\dotsc).
+\end{equation}
+\end{remark}
+
+\begin{proposition}
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P51
+设随机变量\(X\)和\(Y\)相互独立，
+\(\varphi_X\)和\(\varphi_Y\)分别是\(X\)和\(Y\)的矩母函数，
+则\(X+Y\)的矩母函数\(\varphi_{X+Y}\)满足\begin{equation*}
+	\varphi_{X+Y}(t)
+	= \varphi_X(t) \varphi_Y(t).
+\end{equation*}
+\begin{proof}
+直接计算的\begin{equation*}
+	\varphi_{X+Y}(t)
+	= E(e^{t(X+Y)})
+	= E(e^{tX} e^{tY})
+	= E(e^{tX}) E(e^{tY})
+	= \varphi_X(t) \varphi_Y(t).
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{proposition}
 
 \begin{lemma}
 相互独立的随机变量的和的特征函数等于各个随机变量的特征函数的乘积，
@@ -489,6 +548,7 @@ Y_n \toP b\)，
 \begin{theorem}[林德伯格--列维中心极限定理]\label{theorem:极限定理.林德伯格--列维中心极限定理}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P162 定理6.4
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P174 定理3.5.1（林德贝格--列维中心极限定理）
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P61 定理2.2（中心极限定理）
 %@see: http://www.individual.utoronto.ca/jordanbell/notes/lindeberg.pdf
 设随机变量序列\(\{X_k\}\)独立同分布，
 且\begin{equation*}
@@ -496,10 +556,11 @@ Y_n \toP b\)，
 	D(X_k)=\sigma^2\in(0,+\infty),
 	\quad k=1,2,\dotsc;
 \end{equation*}
-记\begin{equation*}
-	Y_n = \frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n} \sigma}
-	= \frac{ \frac1n \sum_{k=1}^n X_k - \mu}{\sigma / \sqrt{n}}.
-\end{equation*}
+记\(
+	Y_n
+	\defeq
+	\frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n} \sigma}
+\)，
 则标准正态分布是\(\{Y_n\}\)的极限分布.
 %TODO proof
 % \begin{proof}
@@ -517,14 +578,17 @@ Y_n \toP b\)，
 
 独立同分布的中心极限定理在概率论与数理统计的理论与应用中都非常重要.
 由独立同分布的中心极限定理，我们可以得到二项分布的中心极限定理.
+
 \subsection{棣莫弗--拉普拉斯中心极限定理}
 \begin{theorem}[棣莫弗--拉普拉斯中心极限定理]\label{theorem:极限定理.棣莫弗--拉普拉斯中心极限定理}
 %@see: 《概率论与数理统计》（陈鸿建、赵永红、翁洋） P163 定理6.5
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P176 定理3.5.2（德莫弗--拉普拉斯定理）
 设随机变量序列\(\{X_n\}\)独立同分布于\(B(n,p)\)，
-记\begin{equation*}
-	Y_n = \frac{X_n - np}{\sqrt{np(1-p)}},
-\end{equation*}
+记\(
+	Y_n
+	\defeq
+	\frac{X_n - np}{\sqrt{np(1-p)}}
+\)，
 则标准正态分布是\(\{Y_n\}\)的极限分布.
 \begin{proof}
 设独立同分布随机变量序列\(\{Y_k\}\)，
@@ -552,9 +616,9 @@ Y_n \toP b\)，
 \begin{corollary}
 设\(X_n \sim B(n,p)\)，\(q = 1-p\).
 当\(n\)充分大时，\(X_n\)近似地服从正态分布\(N(np,npq)\)，
-即\begin{equation*}
-	X_n \dotsim N(np,npq).
-\end{equation*}
+即\(
+	X_n \dotsim N(np,npq)
+\).
 \end{corollary}
 
 \begin{corollary}
