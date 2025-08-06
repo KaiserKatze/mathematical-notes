@@ -1,0 +1,53 @@
+\section{查普曼--柯尔莫哥洛夫方程}
+%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P153
+%@see: https://encyclopediaofmath.org/wiki/Kolmogorov-Chapman_equation
+现在，我们用\(P^n_{ij}\)表示“处于状态\(i\)的过程，在经过\(n\)次转移后，处于状态\(j\)”的概率，
+即\begin{equation*}
+	P^n_{ij}
+	\defeq
+	P(
+		X_{n+k} = j
+		\mid
+		X_k = i
+	),
+	\quad(n,i,j=0,1,2,\dotsc).
+\end{equation*}
+显然\(P^1_{ij} = P_{ij}\).
+
+容易看出：\begin{align}
+	P^{n+m}_{ij}
+	&= P(X_{n+m} = j \mid X_0 = i) \notag\\
+	&= \sum_k P(X_{n+m} = j, X_n = k \mid X_0 = i) \notag\\
+	&= \sum_k P(X_{n+m} = j \mid X_n = k, X_0 = i) P(X_n = k \mid X_0 = i) \notag\\
+	%@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P153 (4.2)
+	&= \sum_k P^m_{kj} P^n_{ik}.
+		\label{equation:马尔可夫链.CK方程}
+\end{align}
+我们把方程组 \labelcref{equation:马尔可夫链.CK方程}
+称为\DefineConcept{查普曼--柯尔莫哥洛夫方程}（Chapman-Kolmogorov equation）.
+
+我们把矩阵\begin{equation*}
+	\vb{P}^{(n)}
+	\defeq \begin{bmatrix}
+		P^n_{00} & P^n_{01} & \dots \\
+		P^n_{10} & P^n_{11} & \dots \\
+		\vdots & \vdots & \\
+	\end{bmatrix}
+\end{equation*}
+称为“马尔可夫链\(\{X_n\}_{n \in T}\)的 \DefineConcept{\(n\)步转移概率矩阵}（probability transition matrix，stochastic matrix）”
+或“马尔可夫链\(\{X_n\}_{n \in T}\)的 \DefineConcept{\(n\)步马尔可夫矩阵}（Markov matrix）”.
+于是\hyperref[equation:马尔可夫链.CK方程]{查普曼--柯尔莫哥洛夫方程}表明：\begin{equation}
+	\vb{P}^{(n+m)}
+	= \vb{P}^{(n)} \vb{P}^{(m)}.
+\end{equation}
+因此，\(
+	\vb{P}^{(2)}
+	= \vb{P}^{(1+1)}
+	= \vb{P} \vb{P}
+	= (\vb{P})^2
+\)，
+利用数学归纳法可得\begin{equation}
+	\vb{P}^{(n)}
+	= (\vb{P})^n,
+\end{equation}
+也就是说，\(n\)步转移概率矩阵就是矩阵\(\vb{P}\)的\(n\)次幂.
