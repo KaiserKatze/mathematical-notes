@@ -1,4 +1,5 @@
 \section{CR分解}
+%@see: https://blogs.mathworks.com/cleve/2020/10/23/gil-strang-and-the-cr-matrix-factorization/
 \DefineConcept{CR分解}（column-row factorization）的目的，
 是将一个矩阵分解成一个列满秩矩阵和一个行满秩矩阵的乘积.
 \begin{theorem}
@@ -64,6 +65,8 @@
 % Print["验证: A - C.R = ", Chop[A - C . R] // MatrixForm];
 
 \section{QR分解}
+%@see: https://mathworld.wolfram.com/QRDecomposition.html
+%@see: https://o-o-sudo.github.io/numerical-methods/qr-.html
 %@see: 《矩阵论》（詹兴致） P8 定理1.9（QR分解）
 QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上三角矩阵的乘积，
 或者将一个复方阵分解成一个酉矩阵和一个上三角矩阵的乘积.
@@ -102,6 +105,7 @@ LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(
 \end{enumerate}
 
 \section{谱分解}
+%@see: https://mathworld.wolfram.com/SchurDecomposition.html
 \begin{lemma}\label{theorem:矩阵分解.复方阵酉相似于上三角阵}
 %@see: 《矩阵论》（詹兴致） P6 定理1.5（Schur酉三角化）
 设矩阵\(\vb{A} \in M_n(\mathbb{C})\)，
@@ -165,6 +169,9 @@ LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(
 \end{remark}
 
 \section{奇异值分解}
+\DefineConcept{奇异值分解}（singular value decomposition）的目的，
+是将一个矩阵分解成一个半正定对角矩阵与两个正交矩阵的乘积.
+
 \begin{theorem}
 设矩阵\(\vb{A} \in M_{m \times n}(\mathbb{R})\)，
 则存在\(m\)阶正交矩阵\(\vb{U}\)、\(n\)阶正交矩阵\(\vb{V}\)和\(m \times n\)对角阵\(\vb\Sigma\)，
@@ -249,6 +256,18 @@ LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(
 将上式两边右乘\(\vb{V}^{-1}\)，即得\(\vb{A} = \vb{U}\vb\Sigma\vb{V}^T\).
 \end{proof}
 \end{theorem}
+\begin{remark}
+奇异值分解的过程，实际上就是
+先在\(\vb{A}\)的行空间中取一个标准正交基\(\AutoTuple{\vb{v}}{r}\)，
+在\(\vb{A}\)的核空间中取一个标准正交基\(\AutoTuple{\vb{v}}[r+1]{m}\)，
+合起来就得到向量空间\(K^m\)的一个标准正交基\(\AutoTuple{\vb{v}}{m}\)，
+接着组成矩阵\(\vb{V} \defeq (\AutoTuple{\vb{v}}{m})\)；
+再在\(\vb{A}\)的列空间中取一个标准正交基\(\AutoTuple{\vb{u}}{r}\)，
+在\(\vb{A}\)的左核空间中取一个标准正交基\(\AutoTuple{\vb{v}}[r+1]{m}\)，
+合起来就得到向量空间\(K^n\)的一个标准正交基\(\AutoTuple{\vb{u}}{n}\)，
+接着组成矩阵\(\vb{U} \defeq (\AutoTuple{\vb{u}}{n})\)；
+最终使得\(\vb{A} \vb{V} = \vb{U} \vb\Sigma\).
+\end{remark}
 
 \begin{example}
 对矩阵\(\vb{A} = \begin{bmatrix} 0 & 1 \\ 1 & 1 \\ 1 & 0 \end{bmatrix}\)进行奇异值分解.
@@ -341,9 +360,4 @@ p = \min\{m,n\}\).
 \end{proof}
 \end{theorem}
 
-%@see: https://mathworld.wolfram.com/QRDecomposition.html
-%@see: https://o-o-sudo.github.io/numerical-methods/qr-.html
-%@see: https://reference.wolfram.com/language/guide/MatrixDecompositions.html.zh
-%@see: https://blog.csdn.net/Insomnia_X/article/details/126787580
-%@see: https://mathworld.wolfram.com/SchurDecomposition.html
 %@see: https://mathworld.wolfram.com/JordanMatrixDecomposition.html
