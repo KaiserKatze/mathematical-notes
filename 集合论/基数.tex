@@ -20,11 +20,6 @@
 \end{definition}
 
 \begin{example}
-%@see: 《实变函数论（第三版）》（周民强） P15 例2
-自然数集\(\omega\)与\(\Set{ y \in \omega \given x \in \omega \land y = 2x }\)等势.
-\end{example}
-
-\begin{example}
 %@see: 《Elements of Set Theory》 P129 Example
 %@see: 《实变函数论（第三版）》（周民强） P15 例3
 自然数集\(\omega\)与\(\omega\times\omega\)等势.
@@ -102,11 +97,28 @@
 \end{example}
 
 \begin{example}
-全体完全平方数组成的集合与自然数集\(\omega\)等势.
+全体完全平方数组成的集合
+\(
+	\Set{
+		n^2
+		\given
+		n \in \omega
+	}
+\)
+与自然数集\(\omega\)等势.
 \end{example}
 
 \begin{example}
-全体偶数组成的集合与整数集\(\mathbb{Z}\)等势.
+%@see: 《实变函数论（第三版）》（周民强） P15 例2
+全体偶数组成的集合
+\(
+	\Set{
+		2k
+		\given
+		k \in \mathbb{Z}
+	}
+\)
+与整数集\(\mathbb{Z}\)等势.
 \end{example}
 
 \begin{theorem}\label{theorem:集合论.等势相当于等价关系}
@@ -115,7 +127,7 @@
 对于任意集合\(A,B,C\)：\begin{itemize}
 	\item \(A \approx A\).
 	\item \(A \approx B \implies B \approx A\).
-	\item \(A \approx B \land B \approx C \implies A \approx C\).
+	\item \(A \approx B, B \approx C \implies A \approx C\).
 \end{itemize}
 \end{theorem}
 \cref{theorem:集合论.等势相当于等价关系}
@@ -333,6 +345,22 @@
 \((\forall n\in\omega)[\card n = n]\).
 \end{example}
 
+\begin{property}
+\((\forall A)[A \approx \card A]\).
+\end{property}
+
+\begin{property}
+\(A \approx B \iff \card A = \card B\).
+\begin{proof}
+假设\(\card A = \card B\)，那么\(A \approx \card B\)和\(B \approx \card A\).
+利用传递性，再由\(A \approx \card A\)和\(B \approx \card B\)便得\(A \approx B\).
+\end{proof}
+\end{property}
+
+\begin{definition}
+定义：\(\card A \neq \card B \defiff A \napprox B\).
+\end{definition}
+
 \begin{example}
 设\(a,b,c,d\)各不相同，
 则\(\card\{a,b,c,d\} = 4\)，
@@ -343,6 +371,14 @@
 % 原话是：selecting a one-to-one correspondence is the process called `counting'.
 挑选一个一一对应的过程，
 称为\DefineConcept{计数}（counting）.
+
+\begin{property}
+设\(A,B\)都是集合，且\(\card A = \card B\).
+\begin{itemize}
+	\item 如果\(A\)是有限集，则\(B\)也是有限集.
+	\item 如果\(A\)是无限集，则\(B\)也是无限集.
+\end{itemize}
+\end{property}
 
 从\cref{example:基数.幂集与特征函数空间等势} 可以推出任一有限集的所有子集的个数.
 \begin{theorem}
@@ -520,22 +556,39 @@
 \end{definition}
 
 \begin{example}
+%@see: 《Elements of Set Theory》 P145
 \(A \preceq A\).
 \end{example}
 
 \begin{example}
+%@see: 《Elements of Set Theory》 P145
 \(A \subseteq B \implies A \preceq B\).
+\begin{proof}
+显然\(A\)上的恒等映射\(1_A\)是从\(A\)到\(B\)的一个单射.
+\end{proof}
 \end{example}
 
-\begin{theorem}
-\(A \preceq B
-\iff
-(\exists b)[b \subseteq B \implies A \approx b]\).
+\begin{theorem}\label{theorem:集合论.基数.集合主导关系的等价定义}
+%@see: 《Elements of Set Theory》 P145
+\(
+	A \preceq B
+	\iff
+	(\exists b)[b \subseteq B \limp A \approx b]
+\).
+\begin{proof}
+因为
+	映射\(f\)是从\(A\)到\(B\)的一个映射
+	当且仅当\(f\)是从\(A\)到\(B\)的某个子集上的一个映射，
+所以
+	\(A\)由\(B\)主导
+	当且仅当\(A\)与\(B\)的某个子集等势.
+\end{proof}
 \end{theorem}
 
 \begin{definition}
 设\(A,B\)都是集合.
 定义：\begin{gather}
+	%@see: 《Elements of Set Theory》 P145
 	\card A \leq \card B
 	\defiff A \preceq B, \\
 	\card A \geq \card B
@@ -546,6 +599,23 @@
 	\defiff A \succ B.
 \end{gather}
 \end{definition}
+
+\begin{proposition}
+设\(A,B,C\)都是集合，
+则\begin{gather}
+	\card A = \card B
+	\implies
+	\card A \leq \card B, \\
+	\card A \leq \card B,
+	\card B \leq \card C
+	\implies
+	\card A \leq \card C, \\
+	\card A \leq \card B,
+	\card B < \card C
+	\implies
+	\card A < \card C.
+\end{gather}
+\end{proposition}
 
 \begin{proposition}
 设映射\(f\colon A \to B\)，
@@ -694,7 +764,7 @@ g\ImageOfSetUnderRelation{Y_2}=X_2\).
 就可以间接证明\([-1,1]\)与\(\mathbb{R}\)等势.
 
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P7 0.9 Proposition
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7 0.9 Proposition
 设\(A\)是集合，
 则\begin{equation*}
 	\card A < \card(\Powerset A).
@@ -732,26 +802,62 @@ A \approx (A \cup C)\).
 
 \subsection{可数集，不可数集}
 \begin{definition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P7
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P29 定义1.7.1
+%@see: 《实变函数论（第三版）》（周民强） P18
+%@see: https://math.stackexchange.com/q/1431303/591741
 设\(A\)是集合.
-若\begin{equation*}
+
+若\(
 	% 存在一个从集合\(A\)到正整数集的单射
-	\card A \leq \card\mathbb{N},
-\end{equation*}
+	\card A \leq \card\mathbb{N}
+\)，
 则称“\(A\)是\DefineConcept{可数的}（countable）”
-或“\(A\)是\DefineConcept{可列的}（denumerable）”.
-反之，若\begin{equation*}
-	\card A > \card\mathbb{N},
-\end{equation*}
+或“\(A\)是\DefineConcept{可列的}（denumerable）”
+\footnote{
+	% 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland）把可数集与可列集定义为相同的概念，即基数不大于\(\card\mathbb{N}\)的集合.
+	% 《点集拓扑讲义（第四版）》（熊金城）没有定义“可列集”.
+	% 《实变函数论（第三版）》（周民强）把“可列集”定义为基数恰好等于\(\card\mathbb{N}\)的集合.
+	在有的书上，
+	“可列集”特指那些基数恰好等于\(\card\mathbb{N}\)的集合.
+}.
+
+反之，若\(
+	\card A > \card\mathbb{N}
+\)，
 则称“\(A\)是\DefineConcept{不可数的}（uncountable）”
 或“\(A\)是\DefineConcept{不可列的}（non-denumerable）”.
-% 虽然在很多教材上都定义\(\aleph_0 \defeq \card\mathbb{N}\)，但是这里不采取该记法.
+% 虽然在很多教材上都定义\(\aleph_0 \defeq \card\mathbb{N}\)和\(\aleph \defeq \card\mathbb{R}\)，但是这里不采取该记法.
 \end{definition}
+
+\begin{definition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7
+若集合\(A\)既是无限的又是可数的，
+则称“\(A\)是\DefineConcept{可数无限的}（countably infinite）”.
+\end{definition}
+
+\begin{proposition}
+设\(A\)是一个集合，
+则\(\card A = \card\mathbb{N}\)，
+当且仅当\(A\)是可数无限的.
+\begin{proof}
+假设\(\card A = \card\mathbb{N}\)，
+那么\(\card A \leq \card\mathbb{N}\)，
+由定义可知\(A\)是可数的.
+因为\hyperref[theorem:集合论.鸽巢原理.推论3]{自然数集是无限的}，
+所以\(A\)是无限的.
+因此\(A\)是可数无限的.
+
+假设\(A\)是可数无限的，
+即\(\card A \leq \card\mathbb{N}\)，
+且不存在与\(A\)等势的自然数（即\(A\)的基数\(\card A\)是无限基数）.
+因此\(\card A = \card\mathbb{N}\).
+\end{proof}
+\end{proposition}
 
 \begin{theorem}
 %@see: 《实变函数论（第三版）》（周民强） P18 定理1.6
-任一无限集必定包含一个可列子集.
+任一无限集必定包含一个可数无限子集.
 \begin{proof}
 设\(E\)是一个无限集，
 任取\(a_1 \in E\)，
@@ -760,7 +866,7 @@ A \approx (A \cup C)\).
 因为\(E\)是无限的，所以\(E-\{\AutoTuple{a}{n}\}\neq\emptyset\).
 于是我们还可以继续任取\(a_{n+1} \in E-\{\AutoTuple{a}{n}\}\).
 这样，我们就得到一个集合\(\{\AutoTuple{a}{n+1},\dotsc\}\)，
-它既是\(E\)的一个子集，也是一个可列集.
+它既是\(E\)的一个子集，也是一个可数无限集.
 \end{proof}
 \end{theorem}
 \begin{remark}
@@ -768,16 +874,10 @@ A \approx (A \cup C)\).
 \end{remark}
 
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P7
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7
 有限集是可数的.
 任一有限集\(A\)的基数\(\card A\)等于它的元素个数.
 \end{proposition}
-
-\begin{definition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P7
-若集合\(A\)既是无限的又是可数的，
-则称“\(A\)是\DefineConcept{可数无限的}（countably infinite）”.
-\end{definition}
 
 \begin{proposition}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P30 定理1.7.1
@@ -797,40 +897,83 @@ A \approx (A \cup C)\).
 \end{proposition}
 
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P8 0.10 Proposition
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.10 Proposition a.
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P30 定理1.7.4
 如果集合\(A,B\)都是可数的，
 那么\(A \times B\)也是可数的.
 \end{proposition}
 
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P8 0.10 Proposition
+%@see: 《实变函数论（第三版）》（周民强） P20 例9
+如果\(n\)个集合\(\AutoTuple{A}{n}\)都是可数无限的，
+那么\(\AutoTuple{A}{n}[\times]\)也是可数无限的.
+\end{proposition}
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P18 例6
+设\(A\)是有限集，\(B\)是可数无限集，则\(A \cup B\)是可数无限集.
+\begin{proof}
+不妨设\(A = \Set{\AutoTuple{a}{n}},
+B = \Set{b_1,\dotsc}\).
+若\(A \cap B = \emptyset\)，
+则由\begin{equation*}
+	A \cup B = \Set{\AutoTuple{a}{n},b_1,\dotsc}
+\end{equation*}
+可知\(A \cup B\)是可数无限集；
+若\(A \cap B = \emptyset\)，
+则由于\(A \cup B = (A-B) \cup B\)，
+易知\(A \cup B\)仍是可数无限集.
+\end{proof}
+\end{example}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.10 Proposition b.
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P31 定理1.7.5
 如果\begin{itemize}
-	\item 集合\(A\)是可数的；
+	\item 集合\(A\)是可数的，
 	\item 对于每个\(a \in A\)，\(X_a\)都是可数的，
 \end{itemize}
 那么\(\bigcup_{a \in A} X_a\)是可数的.
 \end{proposition}
 
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P8 0.10 Proposition
+%@see: 《实变函数论（第三版）》（周民强） P18 定理1.7
+如果\begin{itemize}
+	\item 集合\(A\)是可数无限的，
+	\item 对于每个\(a \in A\)，\(X_a\)都是可数无限的，
+\end{itemize}
+那么\(\bigcup_{a \in A} X_a\)是可数无限的.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.10 Proposition c.
 如果集合\(A\)是可数无限的，
 那么\(\card A = \card{\mathbb{N}}\).
 \end{proposition}
 
 \begin{corollary}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P8 0.11 Corollary
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.11 Corollary
 \(\mathbb{Z}\)是可数的.
 \end{corollary}
 
 \begin{corollary}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P8 0.11 Corollary
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.11 Corollary
+%@see: 《实变函数论（第三版）》（周民强） P19 例7
 \(\mathbb{Q}\)是可数的.
 \end{corollary}
 
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P20 例10
+\(\mathbb{R}\)中的互斥开区间族是可数集.
+\end{example}
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P20 例11
+\(\mathbb{R}\)上单调函数的不连续点集是可数集.
+\end{example}
+
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P8 0.12 Proposition
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.12 Proposition
 \(\card(\Powerset\mathbb{N}) = \card\mathbb{R}\).
 \begin{proof}
 定义映射\(f\colon \Powerset\mathbb{N}\to\mathbb{R}\)，
@@ -857,7 +1000,7 @@ A \approx (A \cup C)\).
 \end{proposition}
 
 \begin{corollary}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P8 0.13 Corollary
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.13 Corollary
 设\(A\)是集合.
 如果\(\card A \geq \card\mathbb{R}\)，
 那么\(A\)是不可数的.
@@ -869,19 +1012,21 @@ A \approx (A \cup C)\).
 \end{theorem}
 
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P9 0.14 Proposition
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P9 0.14 Proposition
 设\(A,B\)都是集合.
 若\(\card A \leq \card\mathbb{R}\)且\(\card B \leq \card\mathbb{R}\)，
 则\(\card(A \times B) \leq \card\mathbb{R}\).
 \end{proposition}
 
 \begin{proposition}
-%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》 P9 0.14 Proposition
-如果\begin{itemize}
-	\item \(\card A \leq \card\mathbb{R}\)；
-	\item \((\forall a \in A)
-	[\card X_a \leq \card\mathbb{R}]\)，
-\end{itemize}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P9 0.14 Proposition
+如果有标集族\(\{X_a\}_{a \in A}\)同时满足\(
+	\card A \leq \card\mathbb{R}
+\)
+和\(
+	(\forall a \in A)
+	[\card X_a \leq \card\mathbb{R}]
+\)，
 那么\begin{equation*}
 	\card\left( \bigcup_{a \in A} X_a \right) \leq \card\mathbb{R}.
 \end{equation*}
@@ -893,20 +1038,3 @@ A \approx (A \cup C)\).
 	\item 采用\hyperref[theorem:基数.集合在映射下的分解]{分解}、合并等思想.
 	\item 参照\hyperref[theorem:集合论.施罗德--伯恩斯坦定理]{施罗德--伯恩斯坦定理}，证明两个集合互相主导.
 \end{enumerate}
-
-\begin{example}
-%@see: 《实变函数论（第三版）》（周民强） P18 例6
-设\(A\)是有限集，\(B\)是可列集，则\(A \cup B\)是可列集.
-\begin{proof}
-不妨设\(A = \Set{\AutoTuple{a}{n}},
-B = \Set{b_1,\dotsc}\).
-若\(A \cap B = \emptyset\)，
-则由\begin{equation*}
-	A \cup B = \Set{\AutoTuple{a}{n},b_1,\dotsc}
-\end{equation*}
-可知\(A \cup B\)是可列集；
-若\(A \cap B = \emptyset\)，
-则由于\(A \cup B = (A-B) \cup B\)，
-易知\(A \cup B\)仍是可列集.
-\end{proof}
-\end{example}
