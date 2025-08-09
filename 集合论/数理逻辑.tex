@@ -2104,6 +2104,8 @@
 
 \subsection{基本等值式}
 \subsubsection{量词转换}
+%@see: 《离散数学》（邓辉文） P129
+%@see: 《离散数学》（邓辉文） P131 习题4.4 1.
 设谓词公式\(A\)含自由变元\(x\)，
 则\begin{gather}
 	\neg(\forall x)[A(x)]
@@ -2115,6 +2117,8 @@
 \end{gather}
 
 \subsubsection{量词辖域的收缩与扩张}
+%@see: 《离散数学》（邓辉文） P129
+%@see: 《离散数学》（邓辉文） P131 习题4.4 2.
 设谓词公式\(A\)含自由变元\(x\)，
 谓词公式\(B\)中不含自由变元\(x\)，
 则\begin{gather}
@@ -2201,6 +2205,8 @@
 \end{example}
 
 \subsubsection{量词分配律}
+%@see: 《离散数学》（邓辉文） P130
+%@see: 《离散数学》（邓辉文） P131 习题4.4 4.
 设谓词公式\(A,B\)都含自由变元\(x\)，
 则\begin{gather}
 	(\forall x)[A(x) \land B(x)]
@@ -2230,9 +2236,20 @@
 	(\exists x)[A(x) \limp B(x)]
 	= (\forall x)[A(x)] \limp (\exists x)[B(x)].
 \end{equation}
+\begin{proof}
+显然\begin{align*}
+	(\exists x)[A(x) \limp B(x)]
+	&= (\exists x)[\neg A(x) \lor B(x)] \\
+	&= (\exists x)[\neg A(x)] \lor (\exists x)[B(x)] \\
+	&= \neg(\forall x)[A(x)] \lor (\exists x)[B(x)] \\
+	&= (\forall x)[A(x)] \limp (\exists x)[B(x)].
+	\qedhere
+\end{align*}
+\end{proof}
 \end{example}
 
 \subsubsection{双重量词}
+%@see: 《离散数学》（邓辉文） P130
 设谓词公式\(A\)含自由变元\(x\)和\(y\)，
 则\begin{gather}
 	(\forall x)(\forall y)[A(x,y)]
@@ -2244,6 +2261,37 @@
 \((\forall x)(\exists y)[A(x,y)]
 \neq (\exists y)(\forall x)[A(x,y)]\).
 \end{remark}
+
+\begin{example}
+%@see: 《离散数学》（邓辉文） P130 例4-14
+证明：\begin{equation}
+	(\forall x)(\forall y)[A(x) \limp B(y)]
+	= (\exists x)[A(x)] \limp (\forall y)[B(y)].
+\end{equation}
+\begin{proof}
+显然\begin{align*}
+	(\forall x)(\forall y)[A(x) \limp B(y)]
+	&= (\forall x)(\forall y)[\neg A(x) \lor B(y)] \\
+	&= (\forall x)
+		[
+			(\forall y)
+			[
+				\neg A(x) \lor B(y)
+			]
+		] \\
+	&= (\forall x)
+		[
+			\neg A(x)
+			\lor
+			(\forall y)[B(y)]
+		] \\
+	&= (\forall x)[\neg A(x)] \lor (\forall y)[B(y)] \\
+	&= \neg(\exists x)[A(x)] \lor (\forall y)[B(y)] \\
+	&= (\exists x)[A(x)] \limp (\forall y)[B(y)].
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
 
 \begin{example}
 %@see: 《离散数学》（邓辉文） P131 习题4.4 6.(1)
