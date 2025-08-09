@@ -615,6 +615,50 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+证明：命题公式\((p \limp (q \limp r)) \limp ((p \limp q) \limp (p \limp r))\)是永真式.
+\begin{proof}
+列出\((p \limp (q \limp r)) \limp ((p \limp q) \limp (p \limp r))\)的真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Implies[Implies[p, Implies[q, r]], Implies[Implies[p, q], Implies[p, r]]]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "(p\[Implies](q\[Implies]r))\[Implies]((p\[Implies]q)\[Implies](p\\[Implies]r))"}}]
+	\begin{tblr}{*3c|c}
+		\hline
+		\(p\) & \(q\) & \(r\) & \((p \limp (q \limp r)) \limp ((p \limp q) \limp (p \limp r))\) \\
+		\hline
+		1 & 1 & 1 & 1 \\
+		1 & 1 & 0 & 1 \\
+		1 & 0 & 1 & 1 \\
+		1 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 \\
+		0 & 0 & 1 & 1 \\
+		0 & 0 & 0 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+由真值表可知，命题公式\((p \limp (q \limp r)) \limp ((p \limp q) \limp (p \limp r))\)是永真式.
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：命题公式\((\neg p \limp \neg q) \limp (q \limp p)\)是永真式.
+\begin{proof}
+列出\((\neg p \limp \neg q) \limp (q \limp p)\)的真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, Implies[Implies[Not[p], Not[q]], Implies[q, p]]}, {p, q}] // Boole, TableHeadings -> {None, {"p", "q", "(\[Not]p\[Implies]\[Not]q)\[Implies](q\[Implies]p)"}}]
+	\begin{tblr}{*2c|c}
+		\hline
+		\(p\) & \(q\) & \((\neg p \limp \neg q) \limp (q \limp p)\) \\
+		\hline
+		1 & 1 & 1 \\
+		1 & 0 & 1 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+由真值表可知，命题公式\((\neg p \limp \neg q) \limp (q \limp p)\)是永真式.
+\end{proof}
+\end{example}
+
 下面介绍\DefineConcept{永真式代入定理}（Rule of Substitution，简称RS）.
 \begin{theorem}
 %@see: 《离散数学》（邓辉文） P89 定理3-1
@@ -1730,7 +1774,7 @@
 
 在讨论个体时，通常要制定个体讨论的范围，
 称为\DefineConcept{个体域}（domain of individuals）
-或\DefineConcept{论域}（universe），
+或\DefineConcept{论域}（domain of discourse，universe），
 用\(D\)表示，一般假定\(D\)非空.
 
 个体域可以是有限汇集，也可以是无限汇集.
@@ -1901,15 +1945,6 @@
 
 % \subsection{逻辑公理，推理规则}
 % 我们有如下五条逻辑公理：
-% \begin{axiom}
-% \(\phi \limp [\psi \limp \phi]\).
-% \end{axiom}
-% \begin{axiom}
-% \([\phi \limp [\psi \limp \eta]] \limp [[\phi \limp \psi] \limp [\phi \limp \eta]]\).
-% \end{axiom}
-% \begin{axiom}
-% \([\neg\phi \limp \neg\psi] \limp [\psi \limp \phi]\).
-% \end{axiom}
 % \begin{axiom}
 % \((\forall x)[\phi \limp \psi(x)] \limp [\phi \limp (\forall x) \psi(x)]\)，
 % 其中，我们量化的自由变元\(a\)没有出现在公式\(\phi\)中.
