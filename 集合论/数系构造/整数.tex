@@ -59,7 +59,8 @@
 既然关系\(\sim\)是一个等价关系，
 那么对于任意给定的自然数对\(\opair{m,0}\)，
 我们可以取得它在关系\(\sim\)下唯一的等价类\begin{equation*}
-	[\opair{m,0}] = \Set{
+	\EquivalenceClassB{\opair{m,0}}[\sim]
+	= \Set{
 		\opair{m,0},
 		\opair{m+1,1},
 		\opair{m+2,2},
@@ -69,7 +70,8 @@
 类似地，
 对于任意给定的自然数对\(\opair{0,n}\)，
 我们也可以取得它在关系\(\sim\)下唯一的等价类\begin{equation*}
-	[\opair{0,n}] = \Set{
+	\EquivalenceClassB{\opair{0,n}}[\sim]
+	= \Set{
 		\opair{0,n},
 		\opair{1,n+1},
 		\opair{2,n+2},
@@ -90,11 +92,11 @@
 \end{definition}
 
 例如，整数\(2\)是等价类\begin{equation*}
-	[\opair{2,0}]
+	\EquivalenceClassB{\opair{2,0}}[\sim]
 	= \Set{\opair{2,0},\opair{3,1},\opair{4,2},\dotsc};
 \end{equation*}
 而整数\((-3)\)是等价类\begin{equation*}
-	[\opair{0,3}]
+	\EquivalenceClassB{\opair{0,3}}[\sim]
 	= \Set{\opair{0,3},\opair{1,4},\opair{2,5},\dotsc}.
 \end{equation*}
 
@@ -128,9 +130,9 @@
 \end{equation*}
 于是我们可以定义整数集上的加法运算：
 \begin{equation}\label{equation:集合论.整数集上的加法运算}
-	[\opair{m,n}] + [\opair{p,q}]
+	\EquivalenceClassB{\opair{m,n}}[\sim] + \EquivalenceClassB{\opair{p,q}}[\sim]
 	\defeq
-	[\opair{m+p,n+q}].
+	\EquivalenceClassB{\opair{m+p,n+q}}[\sim].
 \end{equation}
 虽然已经有了整数加法的定义了，
 但我们还不能确信它是良定的.
@@ -142,7 +144,7 @@
 		\opair{m,n} + \opair{p,q}
 		= \opair{m+p,n+q};
 	\end{equation*}
-	\item 构造运算结果的等价类\([\opair{m+p,n+q}]\).
+	\item 构造运算结果的等价类\(\EquivalenceClassB{\opair{m+p,n+q}}[\sim]\).
 \end{enumerate}
 
 \begin{lemma}\label{theorem:集合论.整数集上的加法运算是良定的}
@@ -171,7 +173,7 @@
 \end{equation*}和关系\(\sim\)兼容，
 那么根据\cref{theorem:集合论.与等价关系兼容的映射的性质}，
 在商集\(\IntegerQuotient\)上，唯一存在映射\(\hat{F}\)（这就是整数集上的加法运算），满足\begin{equation*}
-	\hat{F}([\opair{m,n}],[\opair{p,q}]) = [\opair{m+p,n+q}].
+	\hat{F}(\EquivalenceClassB{\opair{m,n}}[\sim],\EquivalenceClassB{\opair{p,q}}[\sim]) = \EquivalenceClassB{\opair{m+p,n+q}}[\sim].
 \end{equation*}
 
 \begin{theorem}\label{theorem:集合论.整数加法的运算法则}
@@ -187,7 +189,7 @@
 	\begin{equation}\label{equation:集合论.整数加法结合律}
 		(\forall a,b,c\in\mathbb{Z})[(a+b)+c=a+(b+c)].
 	\end{equation}
-	\item 任意整数加上整数\(0\defeq[\opair{0,0}]\)不变
+	\item 任意整数加上整数\(0\defeq\EquivalenceClassB{\opair{0,0}}[\sim]\)不变
 	\begin{equation}\label{equation:集合论.任意整数加上零不变}
 		(\forall a\in\mathbb{Z})[a+0=a].
 	\end{equation}
@@ -199,40 +201,40 @@
 \begin{proof}
 首先证明 \labelcref{equation:集合论.整数加法交换律,equation:集合论.整数加法结合律} 这两个命题.
 设\begin{equation*}
-	a = [\opair{m,n}], \qquad
-	b = [\opair{p,q}], \qquad
-	c = [\opair{u,v}],
+	a = \EquivalenceClassB{\opair{m,n}}[\sim], \qquad
+	b = \EquivalenceClassB{\opair{p,q}}[\sim], \qquad
+	c = \EquivalenceClassB{\opair{u,v}}[\sim],
 \end{equation*}
 其中\(m,n,p,q,u,v\)是自然数.
 那么\begin{align*}
-	a+b &= [\opair{m,n}]+[\opair{p,q}] \\
-	&= [\opair{m+p,n+q}]	\tag{\hyperref[equation:集合论.整数集上的加法运算]{整数加法的定义}} \\
-	&= [\opair{p+m,q+n}]	\tag{\hyperref[equation:集合论.自然数加法交换律]{自然数加法交换律}} \\
-	&= [\opair{p,q}]+[\opair{m,n}] \\
+	a+b &= \EquivalenceClassB{\opair{m,n}}[\sim]+\EquivalenceClassB{\opair{p,q}}[\sim] \\
+	&= \EquivalenceClassB{\opair{m+p,n+q}}[\sim]	\tag{\hyperref[equation:集合论.整数集上的加法运算]{整数加法的定义}} \\
+	&= \EquivalenceClassB{\opair{p+m,q+n}}[\sim]	\tag{\hyperref[equation:集合论.自然数加法交换律]{自然数加法交换律}} \\
+	&= \EquivalenceClassB{\opair{p,q}}[\sim]+\EquivalenceClassB{\opair{m,n}}[\sim] \\
 	&= b+a; \\
-	(a+b)+c &= [\opair{m+p,n+q}]+[\opair{u,v}] \\
-	&= [\opair{(m+p)+u,(n+q)+v}] \\
-	&= [\opair{m+(p+u),n+(q+v)}]	\tag{\hyperref[equation:集合论.自然数加法结合律]{自然数加法结合律}} \\
-	&= [\opair{m,n}]+[\opair{p+u,q+v}] \\
+	(a+b)+c &= \EquivalenceClassB{\opair{m+p,n+q}}[\sim]+\EquivalenceClassB{\opair{u,v}}[\sim] \\
+	&= \EquivalenceClassB{\opair{(m+p)+u,(n+q)+v}}[\sim] \\
+	&= \EquivalenceClassB{\opair{m+(p+u),n+(q+v)}}[\sim]	\tag{\hyperref[equation:集合论.自然数加法结合律]{自然数加法结合律}} \\
+	&= \EquivalenceClassB{\opair{m,n}}[\sim]+\EquivalenceClassB{\opair{p+u,q+v}}[\sim] \\
 	&= a+(b+c);
 \end{align*}
 因此整数加法满足交换律、结合律.
 
 命题 \labelcref{equation:集合论.任意整数加上零不变} 显然成立，
-这是因为对于任意给定的整数\(a = [\opair{m,n}]\)，总有\begin{equation*}
+这是因为对于任意给定的整数\(a = \EquivalenceClassB{\opair{m,n}}[\sim]\)，总有\begin{equation*}
 	a+0
-	= [\opair{m,n}]+[\opair{0,0}]
-	= [\opair{m+0,n+0}]
-	= [\opair{m,n}]
+	= \EquivalenceClassB{\opair{m,n}}[\sim]+\EquivalenceClassB{\opair{0,0}}[\sim]
+	= \EquivalenceClassB{\opair{m+0,n+0}}[\sim]
+	= \EquivalenceClassB{\opair{m,n}}[\sim]
 	= a.
 \end{equation*}
 
 最后，我们来证明命题 \labelcref{equation:集合论.整数加法可逆}.
-显然，对于任意取定整数\(a = [\opair{m,n}]\)，
-整数\(b = [\opair{n,m}]\)总是满足\begin{equation*}
+显然，对于任意取定整数\(a = \EquivalenceClassB{\opair{m,n}}[\sim]\)，
+整数\(b = \EquivalenceClassB{\opair{n,m}}[\sim]\)总是满足\begin{equation*}
 	a+b
-	= [\opair{m+n,n+m}]
-	= [\opair{0,0}]
+	= \EquivalenceClassB{\opair{m+n,n+m}}[\sim]
+	= \EquivalenceClassB{\opair{0,0}}[\sim]
 	= 0.
 \end{equation*}
 由此，我们不仅证明命题 \labelcref{equation:集合论.整数加法可逆} 中，
@@ -254,7 +256,7 @@
 于是，我们可以把\(b\)叫做“\(a\)的\DefineConcept{逆}（inverse）”，
 记作\((-a)\).
 那么有\begin{equation}
-	-[\opair{m,n}]=[\opair{n,m}].
+	-\EquivalenceClassB{\opair{m,n}}[\sim]=\EquivalenceClassB{\opair{n,m}}[\sim].
 \end{equation}
 整数的逆为我们提供了\DefineConcept{减法运算}（subtraction operation）：
 \begin{equation}
@@ -271,8 +273,8 @@
 \end{equation*}
 于是我们可以定义整数集上的乘法运算：
 \begin{equation}\label{equation:集合论.整数集上的乘法运算}
-	[\opair{m,n}]\cdot[\opair{p,q}]
-	\defeq [\opair{mp+nq,mq+np}].
+	\EquivalenceClassB{\opair{m,n}}[\sim]\cdot\EquivalenceClassB{\opair{p,q}}[\sim]
+	\defeq \EquivalenceClassB{\opair{mp+nq,mq+np}}[\sim].
 \end{equation}
 同样地，我们还是要验证整数乘法的定义在等价类上是不是良定的.
 也就是要验证映射\begin{equation*}
@@ -344,33 +346,33 @@
 	\end{equation}
 \end{enumerate}
 \begin{proof}
-设\(a=[\opair{m,n}]\)，\(b=[\opair{p,q}]\)，其中\(m,n,p,q\in\omega\).
+设\(a=\EquivalenceClassB{\opair{m,n}}[\sim]\)，\(b=\EquivalenceClassB{\opair{p,q}}[\sim]\)，其中\(m,n,p,q\in\omega\).
 那么根据\cref{equation:集合论.整数集上的乘法运算}，\begin{equation*}
-	a \cdot b = [\opair{mp+nq,mq+np}],
+	a \cdot b = \EquivalenceClassB{\opair{mp+nq,mq+np}}[\sim],
 \end{equation*}\begin{equation*}
-	b \cdot a = [\opair{pm+qn,pn+qm}].
+	b \cdot a = \EquivalenceClassB{\opair{pm+qn,pn+qm}}[\sim].
 \end{equation*}
 根据自然数的\hyperref[equation:集合论.自然数加法交换律]{加法交换律}%
 和\hyperref[equation:集合论.自然数乘法交换律]{乘法交换律}，
 有\(mp+nq=pm+qn\)和\(mq+np=pn+qm\)，
 于是\(a \cdot b = b \cdot a\)成立.
 
-又设\(c=[\opair{r,s}]\)，其中\(r,s\in\omega\).
+又设\(c=\EquivalenceClassB{\opair{r,s}}[\sim]\)，其中\(r,s\in\omega\).
 那么\begin{equation*}
 	(a \cdot b) \cdot c
-	= [\opair{(mp+nq)r+(mq+np)s,(mp+nq)s+(mq+np)r}],
+	= \EquivalenceClassB{\opair{(mp+nq)r+(mq+np)s,(mp+nq)s+(mq+np)r}}[\sim],
 \end{equation*}\begin{equation*}
 	a \cdot (b \cdot c)
-	= [\opair{m(pr+qs)+n(ps+qr),m(ps+qr)+n(pr+qs)}].
+	= \EquivalenceClassB{\opair{m(pr+qs)+n(ps+qr),m(ps+qr)+n(pr+qs)}}[\sim].
 \end{equation*}
 只要像上面一样，利用自然数的运算法则，
 易证\((a \cdot b) \cdot c = a \cdot (b \cdot c)\).
 
 最后，我们将\(a \cdot (b+c)\)展开，得\begin{equation*}
-	[\opair{m(p+r)+n(q+s),m(q+s)+n(p+r)}];
+	\EquivalenceClassB{\opair{m(p+r)+n(q+s),m(q+s)+n(p+r)}}[\sim];
 \end{equation*}
 将\((a \cdot b) + (a \cdot c)\)展开，得\begin{equation*}
-	[\opair{mp+nq+mr+ns,mq+np+ms+nr}].
+	\EquivalenceClassB{\opair{mp+nq+mr+ns,mq+np+ms+nr}}[\sim].
 \end{equation*}
 易证\(a \cdot (b + c) = (a \cdot b) + (a \cdot c)\)成立.
 \end{proof}
@@ -379,27 +381,26 @@
 \begin{theorem}\label{theorem:集合论.整数乘法的运算法则2}
 %@see: 《Elements of Set Theory》 P97 Theorem 5ZG
 以下命题恒成立：\begin{enumerate}
-	\item 任意整数乘上整数\(1\defeq[(1,0)]\)不变，即
-	\begin{equation}\label{equation:集合论.任意整数乘上一不变}
-		\forall a\in\mathbb{Z} \bigl(
-			a \cdot 1 = a
-		\bigr).
+	\item 任意整数乘上整数\(1\defeq\EquivalenceClassB{\opair{1,0}}[\sim]\)不变，
+	即\begin{equation}\label{equation:集合论.任意整数乘上一不变}
+		(\forall a\in\mathbb{Z})
+		[a \cdot 1 = a].
 	\end{equation}
 	\item 整数\(1\)与整数\(0\)不相等，即\(1\neq0\).
 	\item 如果\(a \cdot b = 0\)，那么\(a = 0 \lor b = 0\).
 \end{enumerate}
 \begin{proof}
-设\(a=[\opair{m,n}]\)，那么
+设\(a=\EquivalenceClassB{\opair{m,n}}[\sim]\)，那么
 \begin{align*}
 	a \cdot 1
-	&= [\opair{m,n}]\cdot[(1,0)] \\
-	&= [\opair{m\cdot1+n\cdot0,m\cdot0+n\cdot1}] \\
-	&= [\opair{m,n}] = a.
+	&= \EquivalenceClassB{\opair{m,n}}[\sim]\cdot\EquivalenceClassB{\opair{1,0}}[\sim] \\
+	&= \EquivalenceClassB{\opair{m\cdot1+n\cdot0,m\cdot0+n\cdot1}}[\sim] \\
+	&= \EquivalenceClassB{\opair{m,n}}[\sim] = a.
 \end{align*}
 于是命题 \labelcref{equation:集合论.任意整数乘上一不变} 成立.
 
 要证整数\(1\)与整数\(0\)不相等，
-即证\([(1,0)]\neq[\opair{0,0}]\)，
+即证\(\EquivalenceClassB{\opair{1,0}}[\sim]\neq\EquivalenceClassB{\opair{0,0}}[\sim]\)，
 那么只需证\begin{equation*}
 	\opair{0,0}\not\sim(1,0);
 \end{equation*}
@@ -408,12 +409,12 @@
 接下来，若要证\(a \cdot b = 0 \implies a = 0 \lor b = 0\)，
 可以用反证法，
 假设\(a,b\)都是非零整数，只需证\(a \cdot b \neq 0\)制造矛盾.
-设\(a=[\opair{m,n}]\)，\(b=[\opair{p,q}]\)，
+设\(a=\EquivalenceClassB{\opair{m,n}}[\sim]\)，\(b=\EquivalenceClassB{\opair{p,q}}[\sim]\)，
 其中\(m,n,p,q\)都是自然数.
 那么\begin{equation*}
-	a \cdot b = [\opair{mp+nq,mq+np}].
+	a \cdot b = \EquivalenceClassB{\opair{mp+nq,mq+np}}[\sim].
 \end{equation*}
-既然\(a\neq0=[\opair{0,0}]\)，
+既然\(a\neq0=\EquivalenceClassB{\opair{0,0}}[\sim]\)，
 那么\(m \neq n\)，即有\begin{equation*}
 	m < n \lor n < m;
 	\eqno(1)
@@ -448,7 +449,7 @@
 \end{equation*}
 于是我们可以定义整数集上的序：
 \begin{equation}\label{equation:集合论.整数集上的序}
-	[\opair{m,n}] < [\opair{p,q}]
+	\EquivalenceClassB{\opair{m,n}}[\sim] < \EquivalenceClassB{\opair{p,q}}[\sim]
 	\iff
 	m+q<p+n.
 \end{equation}
@@ -488,7 +489,7 @@
 即证\(<\)具有传递性，且满足三一律.
 
 先证\(<\)的传递性.
-考虑整数\(a=[\opair{m,n}]\)，\(b=[\opair{p,q}]\)，\(c=[\opair{r,s}]\)，
+考虑整数\(a=\EquivalenceClassB{\opair{m,n}}[\sim]\)，\(b=\EquivalenceClassB{\opair{p,q}}[\sim]\)，\(c=\EquivalenceClassB{\opair{r,s}}[\sim]\)，
 那么\begin{align*}
 	a<b \land b<c
 	&\implies
@@ -557,9 +558,9 @@
 \end{gather}
 \begin{proof}
 假设\begin{equation*}
-	a=[\opair{m,n}], \qquad
-	b=[\opair{p,q}], \qquad
-	c=[\opair{r,s}].
+	a=\EquivalenceClassB{\opair{m,n}}[\sim], \qquad
+	b=\EquivalenceClassB{\opair{p,q}}[\sim], \qquad
+	c=\EquivalenceClassB{\opair{r,s}}[\sim].
 \end{equation*}
 那么\cref{equation:集合论.整数的加法的保序性} 相当于\begin{equation*}
 	m+q<p+n \iff m+r+q+s<p+r+n+s.
@@ -593,5 +594,5 @@
 
 最后，我们还可以给出减法：%@see: P101.
 对于任意自然数\(m,n\)，有\begin{equation*}
-	[\opair{m,n}]=E(m)-E(n).
+	\EquivalenceClassB{\opair{m,n}}[\sim]=E(m)-E(n).
 \end{equation*}
