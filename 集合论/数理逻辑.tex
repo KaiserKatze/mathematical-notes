@@ -675,6 +675,34 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+证明：\(p \limp q\)是\(p \land r \limp q \land r\)的充分不必要条件.
+\begin{proof}
+列出真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Implies[p, q], Implies[And[p, r], And[q, r]], Implies[Implies[p, q], Implies[And[p, r], And[q, r]]], Implies[Implies[And[p, r], And[q, r]], Implies[p, q]]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[Implies]q", "p\[And]r\[Implies]q\[And]r","(p\[Implies]q)\[Implies](p\[And]r\[Implies]q\[And]r)", "(p\[And]r\[Implies]q\[And]r)\[Implies](p\[Implies]q)"}}]
+	\begin{tabular}{*3c|cc|cc}
+		\hline
+		\(p\) & \(q\) & \(r\)
+			& \(p \limp q\)
+			& \(p \land r \limp q \land r\)
+			& \((p \limp q) \limp (p \land r \limp q \land r)\)
+			& \((p \land r \limp q \land r) \limp (p \limp q)\) \\
+		\hline
+		1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		1 & 1 & 0 & 1 & 1 & 1 & 1 \\
+		1 & 0 & 1 & 0 & 0 & 1 & 1 \\
+		1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 1 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 1 & 1 & 1 \\
+		0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+		\hline
+	\end{tabular}
+\end{center}
+立即可知\(p \limp q\)是\(p \land r \limp q \land r\)的充分不必要条件.
+\end{proof}
+\end{example}
+
 \subsection{永真式代入定理}
 下面介绍\DefineConcept{永真式代入定理}（Rule of Substitution，简称RS）.
 \begin{theorem}
@@ -1675,38 +1703,6 @@
 由主范式可见\(((p \limp q) \land p) \limp q\)永真.
 \end{proof}
 \let\qed\relax
-\end{proof}
-\end{example}
-
-\begin{example}
-证明：\(p \limp q\)是\(p \land r \limp q \land r\)的充分不必要条件.
-\begin{proof}
-列出真值表：\begin{center}
-	\begin{tabular}{*9c}
-		\hline
-		\(p\) & \(q\) & \(r\) & \(p \limp q\) & \(p \land r\) & \(q \land r\)
-			& \(p \land r \limp q \land r\)
-			& \(\begin{array}{c}
-				(p \limp q) \limp \\
-				(p \land r \limp q \land r)
-			\end{array}\)
-			& \(\begin{array}{c}
-				(p \land r \limp q \land r) \\
-				\limp (p \limp q)
-			\end{array}\) \\
-		\hline
-		0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
-		0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 \\
-		0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
-		0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 \\
-		1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
-		1 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 \\
-		1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
-		1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
-		\hline
-	\end{tabular}
-\end{center}
-立即可知\(p \limp q\)是\(p \land r \limp q \land r\)的充分不必要条件.
 \end{proof}
 \end{example}
 
