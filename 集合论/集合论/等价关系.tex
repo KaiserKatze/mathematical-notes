@@ -377,24 +377,37 @@ the \emph{equivalence class} of \(x\) (modulo \(\rel{R}\))）”，
 \begin{proposition}\label{theorem:集合论.典范映射是满射}
 典范映射是满射.
 %TODO proof
-% \begin{proof}
-% 设\(\rel{R}\)是\(A\)上的一个等价关系.
-% 要证典范映射\(
-% 	\phi\colon A \to A/\rel{R}, x \mapsto \EquivalenceClassBH{x}[\rel{R}]
-% \)是满射，
-% 只需证\(\ran\phi = A/\rel{R}\)，
-% 即证\(
-% 	(\forall x)
-% 	[
-% 		x \in A/\rel{R}
-% 		\iff
-% 		(\exists t)
-% 		[
-% 			\opair{t,x} \in \rel{R}
-% 		]
-% 	]
-% \).
-% \end{proof}
+\begin{proof}
+设\(\rel{R}\)是\(A\)上的一个等价关系.
+下面证明典范映射\(
+	\phi\colon A \to A/\rel{R}, x \mapsto \EquivalenceClassBH{x}[\rel{R}]
+\)是满射.
+
+任取\(y \in A/\rel{R}\).
+根据商集的定义，\(A/\rel{R}\)的每一个元素都是\(A\)中某个元素在关系\(\rel{R}\)下的一个等价类.
+也就是说，存在\(a \in A\)，使得\(y = \EquivalenceClassBH{a}[\rel{R}]\).
+由典范映射的定义可知
+\(\phi(a) = \EquivalenceClassBH{a}[\rel{R}]\).
+因此\begin{equation*}
+	\ran\phi
+	= \Set{
+		y
+		\given
+		(\exists t)[\opair{t,y} \in \phi]
+	}
+	= \Set{
+		y
+		\given
+		(\exists t)
+		[
+			\EquivalenceClassBH{t}[\rel{R}]
+			= y
+		]
+	}
+	= A/\rel{R},
+\end{equation*}
+这就说明，典范映射\(\phi\)是满射.
+\end{proof}
 \end{proposition}
 
 %@see: 《Elements of Set Theory》 P59
