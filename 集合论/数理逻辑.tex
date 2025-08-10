@@ -397,7 +397,14 @@
 		\lnimp,
 	\end{equation*}
 	符合本约定的有些括号可以不写（详见\cref{definition:命题逻辑.逻辑联结词的优先顺序}）；
-	\item 同级运算从左至右依次进行.
+	\item 同级运算从右往左依次进行
+	\footnote{
+		有的书上规定同级运算从左往右依次进行.
+		以后我们会证明，
+		当改变运算顺序时，
+		\(\land,\lor,\lxor,\liff\)的运算结果不变，
+		\(\limp,\lnand,\lnor\)的运算结果改变.
+	}.
 \end{itemize}
 
 \begin{definition}\label{definition:命题逻辑.逻辑联结词的优先顺序}
@@ -432,13 +439,13 @@
 	(\phi\liff(\neg\psi)), \\
 	(\phi\land\psi\land\eta)
 	\defiff
-	((\phi\land\psi)\land\eta), \\
+	(\phi\land(\psi\land\eta)), \\
 	(\phi\land\psi\lor\eta)
 	\defiff
 	((\phi\land\psi)\lor\eta), \\
 	(\phi\lor\psi\lor\eta)
 	\defiff
-	((\phi\lor\psi)\lor\eta), \\
+	(\phi\lor(\psi\lor\eta)), \\
 	(\phi\lor\psi\land\eta)
 	\defiff
 	(\phi\lor(\psi\land\eta)), \\
@@ -447,7 +454,7 @@
 	((\phi\land\psi)\limp\eta), \\
 	(\phi\limp\psi\limp\eta)
 	\defiff
-	((\phi\limp\psi)\limp\eta), \\
+	(\phi\limp(\psi\limp\eta)), \\
 	(\phi\limp\psi\land\eta)
 	\defiff
 	(\phi\limp(\psi\land\eta)), \\
@@ -456,7 +463,7 @@
 	((\phi\land\psi)\liff\eta), \\
 	(\phi\liff\psi\liff\eta)
 	\defiff
-	((\phi\liff\psi)\liff\eta), \\
+	(\phi\liff(\psi\liff\eta)), \\
 	(\phi\liff\psi\land\eta)
 	\defiff
 	(\phi\liff(\psi\land\eta)), \\
@@ -678,6 +685,8 @@
 则称“命题公式\(A\)和\(B\) \DefineConcept{逻辑等值}（logically equal）”
 或“命题公式\(A\)和\(B\) \DefineConcept{逻辑等价}（logically equivalent）”，
 记为\(A = B\).
+反之，如果在某个真值指派下，\(A\)和\(B\)的真值不同，
+则记\(A \neq B\).
 \end{definition}
 \begin{remark}
 注意不要混淆“逻辑等价”与“等价联结词”这两个概念.
@@ -764,6 +773,125 @@
 	\end{tblr}
 \end{center}
 显然有\((p \limp q) \land (p \limp r) = p \limp (q \land r)\).
+\end{proof}
+\end{example}
+
+%@Mathematica: TableForm[BooleanTable[{p, q, r, And[p, And[q, r]], And[And[p, q], r]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[And](q\[And]r)", "(p\[And]q)\[And]r"}}]
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Or[p, Or[q, r]], Or[Or[p, q], r]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[Or](q\[Or]r)", "(p\[Or]q)\[Or]r"}}]
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Xor[p, Xor[q, r]], Xor[Xor[p, q], r]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[Xor](q\[Xor]r)", "(p\[Xor]q)\[Xor]r"}}]
+
+\begin{example}
+证明：对于任意命题公式\(p,q,r\)，有\begin{equation*}
+	p \limp (q \limp r)
+	\neq
+	(p \limp q) \limp r.
+\end{equation*}
+\begin{proof}
+列出真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Implies[p, Implies[q, r]], Implies[Implies[p, q], r]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[Equivalent](q\[Equivalent]r)", "(p\[Equivalent]q)\[Equivalent]r"}}]
+	\begin{tblr}{*3c|cc}
+		\hline
+		\(p\) & \(q\) & \(r\)
+		& \(p \limp (q \limp r)\)
+		& \((p \limp q) \limp r\) \\ \hline
+		1 & 1 & 1 & 1 & 1 \\
+		1 & 1 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 1 & 1 \\
+		0 & 1 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 0 \\
+		0 & 0 & 1 & 1 & 1 \\
+		0 & 0 & 0 & 1 & 0 \\
+		\hline
+	\end{tblr}
+\end{center}
+显然有\(p \limp (q \limp r) \neq (p \limp q) \limp r\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：对于任意命题公式\(p,q,r\)，有\begin{equation*}
+	p \liff (q \liff r)
+	= (p \liff q) \liff r.
+\end{equation*}
+\begin{proof}
+列出真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Equivalent[p, Equivalent[q, r]], Equivalent[Equivalent[p, q], r]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[Equivalent](q\[Equivalent]r)", "(p\[Equivalent]q)\[Equivalent]r"}}]
+	\begin{tblr}{*3c|cc}
+		\hline
+		\(p\) & \(q\) & \(r\)
+		& \(p \liff (q \liff r)\)
+		& \((p \liff q) \liff r\) \\ \hline
+		1 & 1 & 1 & 1 & 1 \\
+		1 & 1 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 1 & 1 \\
+		0 & 1 & 1 & 0 & 0 \\
+		0 & 1 & 0 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 1 \\
+		0 & 0 & 0 & 0 & 0 \\
+		\hline
+	\end{tblr}
+\end{center}
+显然有\(p \liff (q \liff r) = (p \liff q) \liff r\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：对于任意命题公式\(p,q,r\)，有\begin{equation*}
+	p \lnand (q \lnand r)
+	\neq
+	(p \lnand q) \lnand r.
+\end{equation*}
+\begin{proof}
+列出真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Nand[p, Nand[q, r]], Nand[Nand[p, q], r]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[Nand](q\[Nand]r)", "(p\[Nand]q)\[Nand]r"}}]
+	\begin{tblr}{*3c|cc}
+		\hline
+		\(p\) & \(q\) & \(r\)
+		& \(p \lnand (q \lnand r)\)
+		& \((p \lnand q) \lnand r\) \\ \hline
+		1 & 1 & 1 & 1 & 1 \\
+		1 & 1 & 0 & 0 & 1 \\
+		1 & 0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 1 & 0 \\
+		0 & 1 & 0 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 0 \\
+		0 & 0 & 0 & 1 & 1 \\
+		\hline
+	\end{tblr}
+\end{center}
+显然有\(p \lnand (q \lnand r) \neq (p \lnand q) \lnand r\).
+\end{proof}
+\end{example}
+
+\begin{example}
+证明：对于任意命题公式\(p,q,r\)，有\begin{equation*}
+	p \lnor (q \lnor r)
+	\neq
+	(p \lnor q) \lnor r.
+\end{equation*}
+\begin{proof}
+列出真值表：\begin{center}
+%@Mathematica: TableForm[BooleanTable[{p, q, r, Nor[p, Nor[q, r]], Nor[Nor[p, q], r]}, {p, q, r}] // Boole, TableHeadings -> {None, {"p", "q", "r", "p\[Nor](q\[Nor]r)", "(p\[Nor]q)\[Nor]r"}}]
+	\begin{tblr}{*3c|cc}
+		\hline
+		\(p\) & \(q\) & \(r\)
+		& \(p \lnor (q \lnor r)\)
+		& \((p \lnor q) \lnor r\) \\ \hline
+		1 & 1 & 1 & 0 & 0 \\
+		1 & 1 & 0 & 0 & 1 \\
+		1 & 0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 1 & 0 \\
+		0 & 1 & 0 & 1 & 1 \\
+		0 & 0 & 1 & 1 & 0 \\
+		0 & 0 & 0 & 0 & 0 \\
+		\hline
+	\end{tblr}
+\end{center}
+显然有\(p \lnor (q \lnor r) \neq (p \lnor q) \lnor r\).
 \end{proof}
 \end{example}
 
