@@ -411,6 +411,7 @@ h_i = x_i - \xi_i\ (i=1,2,\dotsc,n),
 	= \vb{X}_0^T (\vb{A} \vb{X}_0 + \vb{B})
 	+ \vb{X}_0^T \vb{B} + c
 	= -\vb{B}^T \vb{A}^{-1} \vb{B} + c.
+	\qedhere
 \end{equation*}
 \end{proof}
 \end{proposition}
@@ -727,6 +728,8 @@ x=y=z.
 最大值是\(\sqrt{9+5\sqrt3}\)，
 最小值是\(\sqrt{9-5\sqrt3}\).
 \end{solution}
+%@Mathematica: MinValue[{Sqrt[x^2 + y^2 + z^2], x^2 + y^2 - z == 0, x + y + z == 1}, {x, y, z}, Reals]
+%@Mathematica: MaxValue[{Sqrt[x^2 + y^2 + z^2], x^2 + y^2 - z == 0, x + y + z == 1}, {x, y, z}, Reals]
 \end{example}
 
 \begin{example}
@@ -758,10 +761,43 @@ x=y=z.
 由此得到点\((3a,3a,3a)\)是函数\(u = xyz\)在给定的约束条件下唯一可能的极值点.
 
 把约束条件确定的隐函数记作\(v = z(x,y)\)，将目标函数看作\(u = xyv = F(x,y)\)，\begin{equation*}
-\pdv{F}{x} = y\left(v+x\pdv{v}{x}\right);
-\end{equation*}再运用\cref{theorem:多元函数微分法.多元函数极值存在的充分条件} 判断，
+	\pdv{F}{x} = y\left(v+x\pdv{v}{x}\right);
+\end{equation*}
+再运用\cref{theorem:多元函数微分法.多元函数极值存在的充分条件} 判断，
 可知点\((3a,3a,3a)\)是函数\(u = xyz\)在给定约束条件下的极小值点，
 函数\(u = xyz\)在该点处取得极小值\(27a^3\).
+\end{solution}
+\end{example}
+
+\begin{example}
+求函数\(f(m,n) := m + n + \sqrt{m^2 + n^2}\)在约束条件\begin{equation*}
+	\frac1m + \frac8n = 1
+	\quad(m>0,n>0)
+\end{equation*}
+下的最小值.
+\begin{solution}
+作拉格朗日函数\begin{equation*}
+	L(m,n)
+	\defeq
+	f(m,n) + \lambda \left( \frac1m + \frac8n - 1 \right).
+\end{equation*}
+令\begin{equation*}
+	L'_m
+	= 1 + \frac{m}{\sqrt{m^2 + n^2}} - \frac{\lambda}{m^2}
+	= 0,
+	\qquad
+	L'_n
+	= 1 + \frac{n}{\sqrt{m^2 + n^2}} - \frac{8\lambda}{n^2}
+	= 0,
+\end{equation*}
+结合约束条件，
+得\(
+	m = \frac{13}{3},
+	n = \frac{52}{5},
+	\lambda = 26
+\)，
+于是函数\(f\)在给定约束条件下的最小值为\(f(13/3,52/5) = 26\).
+%@Mathematica: Minimize[{m + n + Sqrt[m^2 + n^2], 1/m + 8/n == 1}, {m, n}, PositiveReals]
 \end{solution}
 \end{example}
 
