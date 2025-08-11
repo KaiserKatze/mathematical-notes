@@ -1,1 +1,149 @@
 \section{一致收敛度量，一致收敛拓扑}
+在这一节中，我们先讨论从一个拓扑空间到一个度量空间的所有连续映射构成的集合，
+为它给出一个度量，并且研究它的特性.
+
+\begin{definition}\label{definition:映射空间.一致收敛拓扑}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P252 定义9.2.1
+设\(X\)是一个集合，\((Y,\rho)\)是一个度量空间，
+\(Y^X\)是从\(X\)到\(Y\)的映射空间，
+定义映射\(\wrho\colon Y^X \times Y^X \to \mathbb{R}\)，使之满足\begin{equation*}
+	\wrho(f,g)
+	\defeq \begin{cases}[cl]
+		1, & \text{存在$x \in X$使得$\rho(f(x),g(x)) \geq 1$}, \\
+		\sup\Set{ \rho(f(x),g(x)) \given x \in X }, & \text{其他}.
+	\end{cases}
+\end{equation*}
+把\(\wrho\)称为“\(Y^X\)的\DefineConcept{一致收敛度量}”.
+把度量空间\((Y^X,\wrho)\)称为\DefineConcept{从\(X\)到\(Y\)的带有一致收敛度量的映射空间}.
+把\(Y^X\)的由\(\wrho\)诱导出来的拓扑\(\T_{\wrho}\)称为“\(Y^X\)的\DefineConcept{一致收敛拓扑}”.
+把拓扑空间\((Y^X,\T_{\wrho})\)称为\DefineConcept{从\(X\)到\(Y\)的带有一致收敛拓扑的映射空间}.
+\end{definition}
+
+\begin{proposition}
+\cref{definition:映射空间.一致收敛拓扑} 中的一致收敛度量\(\wrho\)是\(Y^X\)的一个度量.
+%TODO proof
+\end{proposition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P252 定义9.2.2
+设\(X\)是一个集合，\((Y,\rho)\)是一个度量空间，
+映射\(f \in Y^X\)，
+\(\{f_n\}_{n \in \mathbb{N}}\)是\(Y^X\)中的一个序列.
+如果对于任意给定正数\(\epsilon\)，存在正整数\(N\)，
+使得当\(n>N\)时，对于任意\(x \in X\)，总有\begin{equation*}
+	\rho(f_n(x),f(x)) < \epsilon,
+\end{equation*}
+那么称“序列\(\{f_n\}_{n \in \mathbb{N}}\) \DefineConcept{一致收敛于}映射\(f\)”.
+\end{definition}
+
+下面的定理便是我们把\cref{definition:映射空间.一致收敛拓扑} 中的度量\(\wrho\)
+称为一致收敛度量的缘由.
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P253 定理9.2.1
+设\(X\)是一个集合，\((Y,\rho)\)是一个度量空间，
+\(Y^X\)是从\(X\)到\(Y\)的带有一致收敛度量的映射空间，
+映射\(f \in Y^X\)，
+\(\{f_n\}_{n \in \mathbb{N}}\)是\(Y^X\)中的一个序列，
+那么\(\{f_n\}_{n \in \mathbb{N}}\)收敛于\(f\)，
+当且仅当\(\{f_n\}_{n \in \mathbb{N}}\)一致收敛于\(f\).
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P253 定理9.2.2
+设\(X\)是一个集合，\((Y,\rho)\)是一个度量空间，
+\(Y^X\)是从\(X\)到\(Y\)的带有一致收敛度量的映射空间.
+如果\((Y,\rho)\)是一个完备度量空间，
+则\(Y^X\)也是一个完备度量空间.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P254 定理9.2.3
+设\(X\)是一个拓扑空间，\((Y,\rho)\)是一个度量空间，
+\(Y^X\)是从\(X\)到\(Y\)的带有一致收敛拓扑的映射空间，
+\(
+	\C(X,Y)
+	\defeq
+	\Set{
+		f \in Y^X
+		\given
+		\text{$f$是连续的}
+	}
+\)，
+则\(\C(X,Y)\)是\(Y^X\)中的一个闭集.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P254 定理9.2.3
+设\(X\)是一个拓扑空间，\((Y,\rho)\)是一个度量空间.
+如果\((Y,\rho)\)是一个完备度量空间，
+则从\(X\)到\(Y\)的带有一致收敛度量的连续映射空间\(
+	\C(X,Y)
+	\defeq
+	\Set{
+		f \in Y^X
+		\given
+		\text{$f$是连续的}
+	}
+\)也是一个完备度量空间.
+%TODO proof
+\end{theorem}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P255 习题 1.
+设\(X\)是一个集合，\((Y,\rho)\)是一个度量空间.
+\def\F{\mathscr{F}}
+令\begin{equation*}
+	\F
+	\defeq
+	\Set{
+		f \in Y^X
+		\given
+		\text{$f(X)$是$Y$中的一个有界子集}
+	},
+\end{equation*}
+定义映射\(d\colon \F \times \F \to \mathbb{R}\)并使之满足\begin{equation*}
+	d(f,g)
+	\defeq
+	\sup\Set{
+		\rho(f(x),g(x))
+		\given
+		x \in X
+	}.
+\end{equation*}
+验证：\begin{enumerate}
+	\item 映射\(d\)是\(\F\)的一个度量；
+	\item 设\(\wrho\)是\(Y^X\)中的一致收敛度量.
+	\begin{itemize}
+		\item 对于任意映射\(f,g \in \F\)，
+		如果\(d(f,g) \geq 1\)，
+		则\(\wrho(f,g) = 1\)；
+		\item 对于任意映射\(f,g \in \F\)，
+		如果\(d(f,g) < 1\)，
+		则\(\wrho(f,g) = d(f,g)\).
+	\end{itemize}
+\end{enumerate}
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P255 习题 2.
+设\(X\)是一个拓扑空间，
+\def\F{\mathscr{F}}
+\(\mathbb{R}^X\)是从\(X\)到\(\mathbb{R}\)的带有一致收敛度量的映射空间，
+令\begin{equation*}
+	\F
+	\defeq
+	\Set{
+		f \in \mathbb{R}^X
+		\given
+		\text{$f(X)$是$\mathbb{R}$中的一个有界子集}
+	}.
+\end{equation*}
+证明：\(\F\)是\(\mathbb{R}^X\)的一个闭子集，
+且\(\F\)作为\(\mathbb{R}^X\)的度量子空间是完备的.
+%TODO proof
+\end{example}
