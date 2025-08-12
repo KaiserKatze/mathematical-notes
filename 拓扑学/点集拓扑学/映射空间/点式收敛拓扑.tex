@@ -1,75 +1,83 @@
 \section{点式收敛拓扑}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P249
-设\(X\)是一个拓扑空间，
-\(\Gamma\)是一个集合.
-把从\(\Gamma\)到\(X\)的映射空间\(X^\Gamma\)
-可以看作拓扑空间族\(\{X_\gamma\}_{\gamma \in \Gamma}\)的笛卡尔积
-（其中每一个\(X_\gamma\)都等于\(X\)），
-对于任意\(\gamma \in \Gamma\)，
-把从\(X^\Gamma\)到坐标集\(X_\gamma\)的投射
-称为“\(X^\Gamma\)在点\(\gamma\)的\DefineConcept{赋值映射}”，
-记为\(e_\gamma\).
-显然，对于任意映射\(f \in X^\Gamma\)，有\(e_\gamma(f) = f(\gamma)\).
+设\(X\)是一个集合，
+\(Y\)是一个拓扑空间.
+把从\(X\)到\(Y\)的映射空间\(Y^X\)
+可以看作拓扑空间族\(\{Y_x\}_{x \in X}\)的笛卡尔积
+（其中每一个\(Y_x\)都等于\(Y\)），
+对于任意\(x \in X\)，
+把从\(Y^X\)到坐标集\(Y_x\)的投射
+称为“\(Y^X\)在点\(x\)的\DefineConcept{赋值映射}”，
+记为\(e_x\).
+显然，对于任意映射\(f \in Y^X\)，有\(e_x(f) = f(x)\).
 %\cref{theorem:一般情形下的积空间.由各坐标空间中的开集在投射的逆下的像组成的子基}
-我们已经知道，\(X^\Gamma\)的积拓扑\(\T\)是以\(
+我们已经知道，\(Y^X\)的积拓扑\(\T\)是以\(
 	\S = \Set{
-		e_\gamma^{-1}(U)
+		e_x^{-1}(U)
 		\given
-		\text{$U$是$X$的一个开集},
-		\gamma \in \Gamma
+		\text{$U$是$Y$的一个开集},
+		x \in X
 	}
 \)为子基的拓扑.
-我们把\(X^\Gamma\)的积拓扑\(\T\)
+我们把\(Y^X\)的积拓扑\(\T\)
 称为它的\DefineConcept{点式收敛拓扑}，
-将拓扑空间\((X^\Gamma,\T)\)称为\DefineConcept{从\(\Gamma\)到\(X\)的带有点式收敛拓扑的映射空间}.
+将拓扑空间\((Y^X,\T)\)
+称为“从\(X\)到\(Y\)的\DefineConcept{带有点式收敛拓扑的映射空间}”.
 
 由于带有点式收敛拓扑的映射空间本身便是一类特别的积空间，
 因此关于积空间的一般结论全部适用于它，无需另行证明，
 我们简要归纳如下：\begin{itemize}
-	\item 带有点式收敛拓扑的映射空间\(X^\Gamma\)满足性质\(\phi\)，
+	\item 带有点式收敛拓扑的映射空间\(Y^X\)满足性质\(\phi\)，
 	当且仅当
-		拓扑空间\(X\)满足性质\(\phi\)，
+		拓扑空间\(Y\)满足性质\(\phi\)，
 	其中性质\(\phi\)可以是\(T_0\)、\(T_1\)、豪斯多夫、\(T_3\)、提赫诺夫、正则、完全正则、紧致.
 
-	\item 带有点式收敛拓扑的映射空间\(X^\Gamma\)满足性质\(\phi\)，
+	\item 带有点式收敛拓扑的映射空间\(Y^X\)满足性质\(\phi\)，
 	当且仅当
-		要么\(X\)是一个平庸空间，
-		要么\(\Gamma\)是一个可数集并且\(X\)也满足性质\(\phi\)，
+		要么\(Y\)是一个平庸空间，
+		要么\(X\)是一个可数集并且\(Y\)也满足性质\(\phi\)，
 	其中性质\(\phi\)可以是第一可数性公理、第二可数性公理.
 
-	\item 带有点式收敛拓扑的映射空间\(X^\Gamma\)中的
+	\item 带有点式收敛拓扑的映射空间\(Y^X\)中的
 		序列\(\{f_n\}_{n \in \mathbb{N}}\)
-		收敛于映射\(f \in X^\Gamma\)，
+		收敛于映射\(f \in Y^X\)，
 	当且仅当
-		对于任意一个\(\gamma \in \Gamma\)，
-		拓扑空间\(X\)中的序列\(\{f_n(\gamma)\}_{n \in \mathbb{N}}\)收敛于\(f(\gamma)\).
+		对于任意一个\(x \in X\)，
+		拓扑空间\(Y\)中的序列\(\{f_n(x)\}_{n \in \mathbb{N}}\)收敛于\(f(x)\).
 \end{itemize}
 
 \begin{definition}
-%@see: 《点集拓扑讲义（第四版）》（熊金城） P250 定义9.1.1
-设\(X\)和\(Y\)是两个拓扑空间，
-\(
-	\C(X,Y)
-	\defeq
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P250
+设\(X\)和\(Y\)是两个拓扑空间.
+把集合\(
 	\Set{
 		f \in Y^X
 		\given
 		\text{$f$是连续的}
 	}
-\).
-如果把\(\C(X,Y)\)看作带有点式收敛拓扑的映射空间\(Y^X\)的子空间，
-则称“\(\C(X,Y)\)是\DefineConcept{从拓扑空间\(X\)到拓扑空间\(Y\)的带有点式收敛拓扑的连续映射空间}”，
-把\(\C(X,Y)\)的拓扑称为\DefineConcept{点式收敛拓扑}.
+\)称为“从拓扑空间\(X\)到拓扑空间\(Y\)的\DefineConcept{连续映射空间}（continuous function space）”，
+记作\(\ContinuousFunctionSpace(X,Y)\).
 \end{definition}
 
-\(\C(X,Y)\)作为\(Y^X\)的子空间，
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P250 定义9.1.1
+设\(X\)和\(Y\)是两个拓扑空间，
+\(\ContinuousFunctionSpace(X,Y)\)是从\(X\)到\(Y\)的连续映射空间.
+如果把\(\ContinuousFunctionSpace(X,Y)\)看作带有点式收敛拓扑的映射空间\(Y^X\)的子空间，
+则称“\(\ContinuousFunctionSpace(X,Y)\)是从拓扑空间\(X\)到拓扑空间\(Y\)的\DefineConcept{带有点式收敛拓扑的连续映射空间}”.
+把\(Y^X\)的点式收敛拓扑在\(\ContinuousFunctionSpace(X,Y)\)上的限制
+称为“\(\ContinuousFunctionSpace(X,Y)\)的\DefineConcept{点式收敛拓扑}”.
+\end{definition}
+
+从\(X\)到\(Y\)的带有点式收敛拓扑的连续映射空间
+\(\ContinuousFunctionSpace(X,Y)\)作为\(Y^X\)的子空间，
 自然可以继承\(Y^X\)的许多可遗传性质，
 我们就不在此一一枚举了.
 
 \begin{theorem}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P250 定理9.1.1
 设\(X\)是一个提赫诺夫空间，
-则从\(X\)到实数空间\(\mathbb{R}\)的带有点式收敛拓扑的连续映射空间\(\C(X,\mathbb{R})\)是
+则从\(X\)到实数空间\(\mathbb{R}\)的带有点式收敛拓扑的连续映射空间\(\ContinuousFunctionSpace(X,\mathbb{R})\)是
 带有点式收敛拓扑的映射空间\(\mathbb{R}^X\)中的一个稠密子集.
 %TODO proof
 \end{theorem}
@@ -94,7 +102,7 @@
 设\(X\)是一个可数的提赫诺夫空间，
 \(\mathbb{R}^X\)是带有点式收敛拓扑的映射空间.
 证明：如果\(f \in \mathbb{R}^X\)，
-则存在\(\C(X,\mathbb{R})\)中的一个序列\(\{f_n\}_{n \in \mathbb{N}}\)收敛于\(f\).
+则存在\(\ContinuousFunctionSpace(X,\mathbb{R})\)中的一个序列\(\{f_n\}_{n \in \mathbb{N}}\)收敛于\(f\).
 %TODO proof
 \end{example}
 
@@ -112,7 +120,7 @@
 \begin{example}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P252 习题 3.
 设\(X\)是一个提赫诺夫空间.
-试讨论：从拓扑空间\(X\)到欧氏平面\(Y \defeq \mathbb{R}^2\)的带有点式收敛拓扑的连续映射空间\(\C(X,Y)\)
+试讨论：从拓扑空间\(X\)到欧氏平面\(Y \defeq \mathbb{R}^2\)的带有点式收敛拓扑的连续映射空间\(\ContinuousFunctionSpace(X,Y)\)
 是不是带有点式收敛拓扑的映射空间\(Y^X\)中的一个稠密子集.
 %TODO
 \end{example}
@@ -120,7 +128,7 @@
 \begin{example}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P252 习题 3.
 设\(X\)是一个提赫诺夫空间.
-试讨论：从拓扑空间\(X\)到单位圆周\(Y \defeq S^1\)的带有点式收敛拓扑的连续映射空间\(\C(X,Y)\)
+试讨论：从拓扑空间\(X\)到单位圆周\(Y \defeq S^1\)的带有点式收敛拓扑的连续映射空间\(\ContinuousFunctionSpace(X,Y)\)
 是不是带有点式收敛拓扑的映射空间\(Y^X\)中的一个稠密子集.
 %TODO
 \end{example}

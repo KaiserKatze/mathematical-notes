@@ -2,6 +2,7 @@
 这一节讨论拓扑空间之间的所有映射构成的集合中的一个新的拓扑 --- 紧致开拓扑
 --- 并且指出在某些中药的情形下它与一致收敛拓扑的关联.
 
+\subsection{子集族开拓扑}
 \begin{definition}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P255
 设\(X\)和\(Y\)是两个集合.
@@ -19,7 +20,7 @@
 
 \def\E{\mathscr{E}}
 
-\begin{definition}
+\begin{definition}\label{definition:映射空间.子集族开拓扑}
 %@see: 《点集拓扑讲义（第四版）》（熊金城） P255 定义9.3.1
 设\(X\)是一个集合，\(Y\)是一个拓扑空间，
 \(\E\)是\(X\)的一个子集族，
@@ -38,7 +39,7 @@
 称为“\(Y^X\)的 \DefineConcept{\(\E\)-开拓扑}”，
 记作\(\T_\E\).
 把拓扑空间\((Y^X,\T_\E)\)
-称为\DefineConcept{从\(X\)到\(Y\)的带有\(\E\)-开拓扑的映射空间}.
+称为“从\(X\)到\(Y\)的\DefineConcept{带有\(\E\)-开拓扑的映射空间}”.
 \end{definition}
 
 \begin{proposition}
@@ -80,3 +81,62 @@
 \begin{remark}
 基于上述命题的结论，我们常常把点式收敛拓扑称为\DefineConcept{点开拓扑}.
 \end{remark}
+
+\begin{proposition}
+如果\(\E_1\)和\(\E_2\)都是\(X\)的子集族，
+并且\(\E_1 \subseteq \E_2\)，
+则\(\S_{\E_1} \subseteq \S_{\E_2}\)和\(\T_{\E_1} \subseteq \T_{\E_2}\).
+%TODO proof
+% \begin{proof}
+% 由\cref{definition:映射空间.子集族开拓扑} 易知.
+% \end{proof}
+\end{proposition}
+
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P256
+我们曾经说过，所谓点式收敛拓扑（即点开拓扑）便是刻画映射在有限个点处“逼近”的拓扑.
+与之类似，\(\E\)-开拓扑可以认为是要求映射在集族\(\E\)的元素上“逼近”的拓扑.
+另一方面，点式收敛拓扑明显与映射的定义域\(X\)中的拓扑毫无关系，
+然而我们现在却可以通过集族\(\E\)的选取，
+使得映射的定义域\(X\)中的拓扑介入到\(\E\)-开拓扑中去.
+
+\subsection{紧致开拓扑}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P256
+在不同类型的\(\E\)-开拓扑中，最为重要的一种便是紧致开拓扑.
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P256 定义9.3.2
+设\(X\)和\(Y\)是两个拓扑空间，
+\(\sfC\)是\(X\)的全体紧致子集，
+\(Y^X\)是从\(X\)到\(Y\)的映射空间.
+把\(Y^X\)的\(\sfC\)-开拓扑\(\T_\sfC\)
+称为“\(Y^X\)的\DefineConcept{紧致开拓扑}”.
+把拓扑空间\((Y^X,\T_\sfC)\)称为
+“从\(X\)到\(Y\)的\DefineConcept{带有紧致开拓扑的映射空间}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P256 定义9.3.2
+设\(X\)和\(Y\)是两个拓扑空间，
+\(Y^X\)是从\(X\)到\(Y\)的带有紧致开拓扑的映射空间.
+如果把从\(X\)到\(Y\)的连续映射空间\(\ContinuousFunctionSpace(X,Y)\)看作\(Y^X\)的子空间，
+则称“\(\ContinuousFunctionSpace(X,Y)\)是从拓扑空间\(X\)到拓扑空间\(Y\)的\DefineConcept{带有紧致开拓扑的连续映射空间}”.
+把\(Y^X\)的紧致开拓扑在\(\ContinuousFunctionSpace(X,Y)\)上的限制
+称为“\(\ContinuousFunctionSpace(X,Y)\)的\DefineConcept{紧致开拓扑}”.
+\end{definition}
+
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P256
+因为任意一个单点集都是紧致子集，
+所以\(X\)中所有单点子集\(\sfA\)与\(X\)的全体紧致子集\(\sfC\)满足\(\sfA \subseteq \sfC\)，
+从而有以下定理：
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P257 定理9.3.1
+设\(X\)和\(Y\)是两个拓扑空间，
+\(Y^X\)是从\(X\)到\(Y\)的映射空间，
+\(\T_\sfA\)是\(Y^X\)的点式收敛拓扑，
+\(\T_\sfC\)是\(Y^X\)的紧致开拓扑，
+则\begin{itemize}
+	\item \(\T_\sfA \subseteq \T_\sfC\)；
+	\item 对于任意\(x \in X\)，
+	\(Y^X\)在\(x\)的赋值映射\(e_x\)对于\(Y^X\)的紧致开拓扑而言是一个连续映射.
+\end{itemize}
+%TODO proof
+\end{theorem}
