@@ -10,9 +10,21 @@
 		"**/*.toc": true,
 		"**/*.synctex*": true,
 		"**/*.swp": true,
-		"**/*.tmp": true
+		"**/*.tmp": true,
+		"**/*.fls": true,
+		"**/*.fdb_latexmk": true,
+		"**/*.xdv": true,
+		"**/*.bcf": true,
+		"**/*.bbl": true,
+		"**/*.blg": true,
+		"**/*.run.xml": true,
 	},
 	"latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoClean.run": "onFailed",
+    "latex-workshop.latex.recipe.default": "first",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.synctex.path": "synctex",
+    "latex-workshop.latex.build.forceRecipeUsage": true,
 	"latex-workshop.intellisense.update.aggressive.enabled": true,
 	"latex-workshop.intellisense.update.delay": 10000,
 	"latex-workshop.intellisense.optionalArgsEntries.enabled": false,
@@ -88,4 +100,49 @@
 
     // Enable parameter hints
     "editor.parameterHints.enabled": true,
+
+	"latex-workshop.latex.tools": [
+		{
+			"name": "xelatexmk",
+			"command": "latexmk",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"-xelatex",
+				"-outdir=%OUTDIR%",
+				"%DOC%"
+			],
+			"env": {}
+		},
+		{
+			"name": "biber",
+			"command": "biber",
+			"args": [
+				"%DOCFILE%"
+			],
+			"env": {}
+		},
+		{
+			"name": "xelatex",
+			"command": "xelatex",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"%DOC%"
+			],
+			"env": {}
+		},
+	],
+	"latex-workshop.latex.recipes": [
+		{
+			"name": "xelatex",
+			"tools": [
+				"xelatex",
+				"biber",
+				"xelatexmk",
+			]
+		},
+	],
 }
