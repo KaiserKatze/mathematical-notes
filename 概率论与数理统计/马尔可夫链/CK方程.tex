@@ -1,6 +1,7 @@
 \section{查普曼--柯尔莫哥洛夫方程}
 %@see: 《应用随机过程：概率模型导论（第11版）》（Sheldon M. Ross，龚光鲁译） P153
 %@see: https://encyclopediaofmath.org/wiki/Kolmogorov-Chapman_equation
+%@see: [Lecture 2. Chapman–Kolmogorov equations](https://www.uio.no/studier/emner/matnat/math/STK2130/v22/lectures/lecture_2.pdf)
 现在，我们用\(P^n_{ij}\)表示“处于状态\(i\)的过程，在经过\(n\)次转移后，处于状态\(j\)”的概率，
 即\begin{equation*}
 	P^n_{ij}
@@ -172,3 +173,58 @@
 \end{equation*}
 \end{solution}
 \end{example}
+
+考虑一个具有转移概率\(P_{ij}\)的马尔可夫链\(\{X_n\}_{n \in T}\)，
+而\(\mathscr{A}\)是该马尔可夫链的状态空间的一个子集.
+马尔可夫链\(\{X_n\}_{n \in T}\)在时刻\(m\)前，
+曾经进入\(\mathscr{A}\)中任意一个状态的概率为\begin{equation*}
+	P(
+		\text{存在某个$k \in [1,m]$使得$X_k \in \mathscr{A}$}
+		\vert
+		X_0 = i
+	)
+	\quad(i \notin \mathscr{A}).
+\end{equation*}
+为了确定上述概率，我们另外定义一个马尔可夫链\(\{W_n\}_{n\geq0}\)，
+其状态是不属于\(\mathscr{A}\)中的状态外加一个附加状态\(A\).
+一旦马尔可夫链\(\{W_n\}_{n\geq0}\)进入状态\(A\)就永远保持在其中.
+把\(N\)定义为马尔可夫链首次进入状态集\(A\)的时间，
+即\begin{equation*}
+	N \defeq \begin{cases}[cl]
+		\min\Set{ n \given X_n \in \mathscr{A} }, & \text{存在$k$使得$X_k \in \mathscr{A}$}, \\
+		\infty, & \text{任意$k$总成立$X_k \notin \mathscr{A}$}.
+	\end{cases}
+\end{equation*}
+又定义：\begin{equation*}
+	W_n \defeq \begin{cases}[cl]
+		X_n, & n < N, \\
+		A, & n \geq N.
+	\end{cases}
+\end{equation*}
+于是，直到原本的马尔可夫链\(\{X_n\}_{n \in T}\)进入\(\mathscr{A}\)中的某个状态的时刻之前，
+过程\(\{W_n\}_{n\geq0}\)的状态都等于\(\{X_n\}_{n \in T}\)的状态；
+而在此时候以后，\(\{W_n\}_{n\geq0}\)到达状态\(A\)并且永远保持于此.
+据此，我们推出\(\{W_n\}_{n\geq0}\)是一个以\(i\ (i \notin \mathscr{A})\)和\(A\)为状态的马尔可夫链，
+其转移概率\(Q_{ij}\)满足\begin{gather*}
+	i \notin \mathscr{A},
+	j \notin \mathscr{A}
+	\implies
+	Q_{ij} = P_{ij}, \\
+	i \notin \mathscr{A}
+	\implies
+	Q_{iA} = \sum_{j \in \mathscr{A}} P_{ij}, \\
+	Q_{AA} = 1.
+\end{gather*}
+因为马尔可夫链\(\{X_n\}_{n \in T}\)在时刻\(m\)前进入\(\mathscr{A}\)中的状态，
+当且仅当马尔可夫链\(\{W_n\}_{n\geq0}\)在时刻\(m\)的状态是\(A\)，
+由此可知\begin{align*}
+	&\hspace{-20pt}
+	P(
+		\text{存在某个$k \in [1,m]$使得$X_k \in \mathscr{A}$}
+		\vert
+		X_0 = i
+	) \\
+	&= P(W_m = A \vert X_0 = i)
+	= P(W_m = A \vert W_0 = i)
+	= Q_{iA}^m.
+\end{align*}
