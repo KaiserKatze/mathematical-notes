@@ -192,7 +192,7 @@
 这就引出“数学归纳法”的方法论，即：
 如果我们要证明形如“对于每个自然数\(n\)，涉及\(n\)的命题公式\(\lambda(n)\)成立”的命题，
 我们可以基于自然数集\(\omega\)，构造一个集合\begin{equation*}
-	T = \Set{ n \in \omega \given \lambda(n) }.
+	T \defeq \Set{ n \in \omega \given \lambda(n) }.
 \end{equation*}
 我们只要证明集合\(T\)是归纳的，
 就能证明“对于每个自然数\(n\)，涉及\(n\)的命题公式\(\lambda(n)\)成立”是真命题.
@@ -202,8 +202,8 @@
 %@see: 《Elements of Set Theory》 P69 Theorem 4C
 除了\(0\)以外，所有自然数都是某个自然数的后继.
 \begin{proof}
-令集合\begin{equation*}
-	T = \Set*{ n \in \omega \given n = 0 \lor (\exists p\in\omega)[n = p^+] },
+令\begin{equation*}
+	T \defeq \Set*{ n \in \omega \given n = 0 \lor (\exists p\in\omega)[n = p^+] },
 \end{equation*}
 则\(0 \in T\)，且\(k \in T \implies k^+ \in T\).
 因此根据\hyperref[theorem:集合论.归纳原理1]{归纳原理}可知\(T = \omega\).
@@ -218,7 +218,9 @@
 即\begin{equation}\label{equation:集合论.传递集的定义式1}
 	\text{\(A\)是传递集}
 	\defiff
-	(\forall x)(\forall a)[
+	(\forall x)
+	(\forall a)
+	[
 		x \in a \in A
 		\limp
 		x \in A
@@ -1059,6 +1061,7 @@
 
 \begin{theorem}[良序原理]\label{theorem:集合论.自然数集的良序}
 %@see: 《Elements of Set Theory》 P86 Well Ordering of omega
+%@see: 《高等代数与解析几何（第三版 上册）》（孟道骥） P6 定理0.2.1
 设\(A\)是\(\omega\)的一个非空子集.
 存在\(m \in A\)，使得对于\(\forall n \in A\)，总有\begin{equation*}
 	m \leq n.
@@ -1108,6 +1111,10 @@
 于是\(B\)是归纳集，从而\(A = \emptyset\).
 \end{proof}
 \end{theorem}
+\begin{remark}
+\cref{theorem:集合论.自然数集的良序} 说明，
+自然数集\(\omega\)的任意一个非空子集都有一个最小数.
+\end{remark}
 
 \begin{theorem}
 %@see: 《Elements of Set Theory》 P87 Corollary 4Q
