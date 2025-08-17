@@ -538,9 +538,26 @@
 \end{property}
 
 \begin{property}\label{theorem:组合数性质7}
-\(C_{n+m}^k = \sum_{r=0}^{k} C_n^r C_m^{k-r}\).
+\(C_{n+m}^k = \sum_{r=0}^k C_n^r C_m^{k-r}\).
 %@Mathematica: Sum[Binomial[n, r] Binomial[m, k - r], {r, 0, k}]
-%TODO Mathematica 计算结果与公式不同
+%TODO Mathematica 计算结果\(\frac{(-1)^k (k-m-n-1)!}{k!(-m-n-1)!}\)与公式不同
+\begin{proof}
+由二项式定理可知，
+一方面\begin{equation*}
+	(1+x)^{n+m}
+	= \sum_{k=0}^{n+m} C_{n+m}^k x^k,
+\end{equation*}
+另一方面\begin{equation*}
+	(1+x)^{n+m}
+	= (1+x)^n (1+x)^m
+	= \left( \sum_{i=0}^n C_n^i x^i \right) \left( \sum_{j=0}^m C_m^j x^j \right)
+	= \sum_{k=0}^{n+m} \left( \sum_{r=0}^k C_n^r C_m^{k-r} \right) x^k.
+\end{equation*}
+比较上述两式可得\begin{equation*}
+	C_{n+m}^k = \sum_{r=0}^k C_n^r C_m^{k-r}.
+	\qedhere
+\end{equation*}
+\end{proof}
 \end{property}
 
 \begin{property}\label{theorem:组合数性质8}
