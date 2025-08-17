@@ -1,0 +1,580 @@
+\section{仿射几何}
+\subsection{陪集的交与联}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P435
+设\(V\)是域\(F\)上的一个线性空间，
+\(\{S_i\}_{i \in I}\)是一个有标集族.
+如果\begin{equation*}
+	(\forall i \in I)
+	(\exists W \leq V)
+	[
+		\text{$S_i$是$W$的一个陪集}
+	],
+\end{equation*}
+则称“\(\{S_i\}_{i \in I}\)是\(V\)的一个\DefineConcept{陪集族}”.
+
+\begin{proposition}
+设\(\{S_i\}_{i \in I}\)是域\(F\)上线性空间\(V\)的一个陪集族，
+则\(V\)是包含\(\bigcup_{i \in I} S_i\)的一个陪集.
+\begin{proof}
+因为\(V\)是一个陪集，
+并且\((\forall i \in I)[V \supseteq S_i]\)，
+所以\(V \supseteq \bigcup_{i \in I} S_i\).
+\end{proof}
+\end{proposition}
+
+\begin{lemma}\label{theorem:线性空间.商空间.陪集.线性空间中全体陪集对联运算封闭}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P438 定理10.2.1(1)
+设\(V\)是域\(F\)上的一个线性空间，
+\(W_1,W_2\)是\(V\)的两个子空间，
+向量\(\alpha_1,\alpha_2 \in V\)，
+则\begin{equation*}
+	\Gamma
+	\defeq
+	\bigcap\Set{
+		X
+		\given
+		X \supseteq (\alpha_1 + W_1) \cup (\alpha_2 + W_2),
+		\text{$X$是一个陪集}
+	}
+\end{equation*}
+是陪集.
+\begin{proof}
+设陪集\(\beta + U\)满足\(\beta + U \supseteq (\alpha_1 + W_1) \cup (\alpha_2 + W_2)\).
+由\(\beta + U \supseteq \alpha_1 + W_1\)
+可得\(\alpha_1 - \beta \in U\)和\(W_1 \subseteq U\)，
+即\(\Span\{\alpha_1 - \beta\} + W_1 \subseteq U\).
+由\(\beta + U \supseteq \alpha_2 + W_2\)
+可得\(\alpha_2 - \beta \in U\)和\(W_2 \subseteq U\)，
+即\(\Span\{\alpha_2 - \beta\} + W_2 \subseteq U\).
+%\cref{equation:集合论.集合代数公式6-8}
+于是有\begin{equation*}
+	\Span\{\alpha_1 - \beta,\alpha_2 - \beta\} + W_1 + W_2 \subseteq U.
+\end{equation*}
+令\(U_0 \defeq \Span\{\alpha_1 - \alpha_2\} + W_1 + W_2\).
+由于\(
+	\alpha_1 - \alpha_2
+	= (\alpha_1 - \beta) - (\alpha_2 - \beta)
+	\in \Span\{\alpha_1 - \beta,\alpha_2 - \beta\}
+\)，
+所以\(
+	\Span\{\alpha_1 - \alpha_2\}
+	\subseteq
+	\Span\{\alpha_1 - \beta,\alpha_2 - \beta\}
+\)，
+从而有\(U \supseteq U_0\).
+因此\(
+	\alpha_1 + U_0
+	\subseteq
+	\alpha_1 + U
+	= \beta + U
+\)，
+这就说明\(\alpha_1 + U_0\)是包含\((\alpha_1 + W_1) \cup (\alpha_2 + W_2)\)的每一个陪集的子集，
+于是由\cref{equation:集合论.集合代数公式6-9}
+可知\begin{equation*}
+	\alpha_1 + U_0
+	\subseteq
+	\Gamma.
+\end{equation*}
+
+由\(U_0 \supseteq W_1\)
+可得\(\alpha_1 + W_1 \subseteq \alpha_1 + U_0\).
+由\(U_0 \supseteq \Span\{\alpha_1 - \alpha_2\}\)
+可得\(
+	\alpha_2
+	= \alpha_1 - (\alpha_1 - \alpha_2)
+	\in \alpha_1 + \Span\{\alpha_1 - \alpha_2\}
+	\subseteq \alpha_1 + U_0
+\).
+由\(\alpha_2 \in \alpha_1 + U_0\)
+可得\(\alpha_2 + U_0 = \alpha_1 + U_0\).
+由\(U_0 \supseteq W_2\)
+可得\(
+	\alpha_2 + W_2
+	\subseteq
+	\alpha_2 + U_0
+	= \alpha_1 + U_0
+\).
+因此\begin{equation*}
+	(\alpha_1 + W_1) \cup (\alpha_2 + W_2)
+	\subseteq
+	\alpha_1 + U_0.
+\end{equation*}
+由上可知\(\alpha_1 + U_0\)是包含\((\alpha_1 + W_1) \cup (\alpha_2 + W_2)\)的一个陪集，
+即\begin{equation*}
+	\alpha_1 + U_0
+	\in
+	\Set{
+		X
+		\given
+		X \supseteq (\alpha_1 + W_1) \cup (\alpha_2 + W_2),
+		\text{$X$是一个陪集}
+	},
+\end{equation*}
+于是由\cref{equation:集合论.集合代数公式6-5}
+可知\begin{equation*}
+	\Gamma
+	\subseteq
+	\bigcap\{\alpha_1 + U_0\}
+	=
+	\alpha_1 + U_0.
+\end{equation*}
+
+综上所述，\(\Gamma = \alpha_1 + U_0\).
+\end{proof}
+\end{lemma}
+
+\begin{definition}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P436
+设\(S_1\)和\(S_2\)是\(V\)中两个陪集.
+把包含\(\mathscr{S} \defeq S_1 \cup S_2\)的所有陪集之交\begin{equation*}
+	\bigcap\Set{
+		X
+		\given
+		X \supseteq \mathscr{S},
+		\text{$X$是一个陪集}
+	}
+\end{equation*}
+称为“陪集\(S_1\)和\(S_2\)的\DefineConcept{联}”，
+记作\(S_1 \vee S_2\).
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P436 定义10.1.1
+设\(\{S_i\}_{i \in I}\)是\(V\)中一个陪集族.
+把包含\(\mathscr{S} \defeq \bigcup_{i \in I} S_i\)的所有陪集之交\begin{equation*}
+	\bigcap\Set{
+		X
+		\given
+		X \supseteq \mathscr{S},
+		\text{$X$是一个陪集}
+	}
+\end{equation*}
+称为“陪集族\(\{S_i\}_{i \in I}\)的\DefineConcept{联}”，
+记作\(\bigvee_{i \in I} S_i\).
+\end{definition}
+
+\cref{theorem:线性空间.商空间.陪集.线性空间中全体陪集对联运算封闭} 说明：
+线性空间\(V\)中全体陪集\(
+	\mathscr{C}
+	\defeq
+	\Set{
+		\alpha + W
+		\given
+		\alpha \in V,
+		W \leq V
+	}
+\)对“陪集的联”运算封闭.
+
+\cref{theorem:线性空间.商空间.陪集.线性空间中全体陪集对联运算封闭} 还说明：\begin{gather*}
+	(\alpha_1 + W_1) \vee (\alpha_2 + W_2)
+	= \alpha_1 + (\Span\{\alpha_1 - \alpha_2\} + W_1 + W_2), \\
+	((\alpha_1 + W_1) \vee (\alpha_2 + W_2)) \vee (\alpha_3 + W_3)
+	= \alpha_1 + (\Span\{\alpha_1 - \alpha_2,\alpha_1 - \alpha_3\} + W_1 + W_2 + W_3), \\
+	\bigvee_{i=1}^n (\alpha_i + W_i)
+	= \alpha_1 + (\Span\{\alpha_1 - \alpha_2,\dotsc,\alpha_1 - \alpha_n\} + W_1 + \dotsb + W_n).
+\end{gather*}
+
+\begin{property}
+陪集的联运算适合交换律，即对于任意陪集\(x,y\)，成立\begin{equation}
+	x \vee y = y \vee z.
+\end{equation}
+\begin{proof}
+显然\(
+	x \vee y
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq x \cup y
+	}
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq y \cup x
+	}
+	= y \vee x
+\).
+\end{proof}
+\end{property}
+
+\begin{property}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P436
+陪集的联运算适合结合律，即对于任意陪集\(x,y,z\)，成立\begin{equation}
+	(x \vee y) \vee z = x \vee (y \vee z).
+\end{equation}
+\begin{proof}
+任取\(x,y,z \in \mathscr{C}\).
+由定义可知\(
+	x \vee y
+	\supseteq
+	x \cup y
+\)，
+于是，对于任意\(c \in \mathscr{C}\)，
+当\(c \supseteq (x \vee y) \cup z\)时，
+必有\(c \supseteq (x \cup y) \cup z\).
+因此\begin{equation*}
+	(x \vee y) \vee z
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \vee y) \cup z
+	}
+	\supseteq
+	\bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \cup y) \cup z
+	}.
+\end{equation*}
+与此同时，由\(x \cup y \subseteq (x \cup y) \cup z\)可知，
+包含\((x \cup y) \cup z\)的任意一个陪集\(c\)必定包含\(x \cup y\)，
+由定义可知这样的\(c\)必定包含\(x \vee y\).
+于是当\(c \supseteq (x \cup y) \cup z\)时，
+必有\(c \supseteq (x \vee y) \cup z\).
+因此\begin{equation*}
+	(x \vee y) \vee z
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \vee y) \cup z
+	}
+	\subseteq
+	\bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \cup y) \cup z
+	}.
+\end{equation*}
+综上所述\begin{equation*}
+	(x \vee y) \vee z
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq (x \cup y) \cup z
+	}.
+\end{equation*}
+利用对称性可得\begin{equation*}
+	x \vee (y \vee z)
+	= \bigcap\Set{
+		c \in \mathscr{C}
+		\given
+		c \supseteq x \cup (y \cup z)
+	},
+\end{equation*}
+于是\((x \vee y) \vee z = x \vee (y \vee z)\).
+\end{proof}
+\end{property}
+
+通过下面的例子可以看出“陪集的联”这个运算的几何意义.
+\begin{example}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P436 例10.1
+设\(P,Q\)是几何空间\(V \defeq \mathbb{R}^3\)中的两个点，它们的坐标向量分别是\(\alpha,\beta\).
+显然\(\{\alpha\}\)是以\(\alpha\)为代表的零空间的陪集，
+\(\{\beta\}\)是以\(\beta\)为代表的零空间的陪集.
+假设\(V\)的子空间\(W\)满足\(
+	\{\alpha\} \vee \{\beta\}
+	= \alpha + W
+	= \beta + W
+\)，
+那么\(\alpha - \beta \in W\).
+显然\(U \defeq \Span\{\alpha - \beta\}\)是\(V\)的一个子空间，
+并且\(\alpha + U = \beta + U\)就是包含\(\alpha\)和\(\beta\)的一个陪集，
+因此\(W = U\).
+这表明\(\{\alpha\} \vee \{\beta\}\)是过\(P,Q\)两点的直线.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P436 例10.2
+%@see: https://math.stackexchange.com/q/5086322/591741
+在几何空间\(V \defeq \mathbb{R}^3\)中，
+取两个陪集\(
+	S_1 \defeq \alpha + 0,
+	S_2 \defeq \beta + U
+\)，
+其中\(U\)是\(V\)的一个1维子空间，
+且向量\(\alpha,\beta \in V\)，
+但\(\alpha \notin S_2\).
+显然\(S_1\)是一个点，\(S_2\)是一条直线.
+假设\(V\)的子空间\(W_1\)满足\(
+	S_1 \vee S_2
+	= \alpha + W_1
+	= \beta + W_1
+\)，
+那么\(\alpha - \beta \in W_1\)
+且\(U \subseteq W_1\)，
+于是\(
+	W_2
+	\allowbreak
+	\defeq \Span\{\alpha - \beta\} + U
+	\allowbreak
+	\subseteq W_1
+\).
+显然\(\alpha + W_2 = \beta + W_2\)是包含\(S_1\)和\(S_2\)的一个陪集，
+因此\(W_2 = W_1\).
+由于\(\alpha \notin S_2\)，
+所以\(\alpha - \beta \notin U\)，
+因此\(\dim W_1 = 2\).
+这表明\(S_1 \vee S_2\)是过点\(S_1\)与直线\(S_2\)的平面.
+\end{example}
+
+\begin{example}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P437 习题 2.
+设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间，
+向量\(\alpha \in W\).
+证明：\((\alpha + W) \vee \{0\} = \Span\{\alpha\} + W\).
+%TODO proof
+\end{example}
+
+\subsection{陪集的维数}
+\begin{definition}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P437 定义10.1.2
+设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间，
+向量\(\alpha \in V\).
+定义：\begin{equation}
+	\dim(\alpha + W)
+	\defeq
+	\dim W,
+\end{equation}
+称之为“陪集\(\alpha + W\)的\DefineConcept{维数}（the \emph{dimension} of \(\alpha + W\)）”.
+\end{definition}
+
+\subsection{陪集的应用 --- 利用陪集研究仿射几何}
+\begin{definition}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P437 定义10.1.3
+设\(V\)是域\(F\)上的一个线性空间，
+\(S\)是\(V\)中一个陪集.
+把\(S\)中全体陪集\begin{equation*}
+	\Set{
+		\alpha + W
+		\given
+		\alpha \in V,
+		W \leq V,
+		\alpha + W \subseteq S
+	}
+\end{equation*}
+称为“\(S\)上的\DefineConcept{仿射几何}（affine geometry）”，
+记作\(\mathcal{A}(S)\)；
+把陪集\(S\)的维数\(\dim S\)
+称为“\(\mathcal{A}(S)\)的\DefineConcept{维数}”，
+记作\(\dim\mathcal{A}(S)\)；
+将\(\mathcal{A}(S)\)中\(0\)维元素称为\DefineConcept{点}；
+将\(\mathcal{A}(S)\)中\(1\)维元素称为\DefineConcept{直线}；
+将\(\mathcal{A}(S)\)中\(2\)维元素称为\DefineConcept{平面}；
+将\(\mathcal{A}(S)\)中\(\dim S-1\)维元素称为\DefineConcept{超平面}.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P437 定义10.1.3
+设\(V\)是域\(F\)上的一个线性空间，
+\(R\)和\(S\)是\(V\)中两个陪集.
+如果\(R \subseteq S\)，
+则称“\(\mathcal{A}(R)\)是\(\mathcal{A}(S)\)的\DefineConcept{子几何}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P437 定义10.2.1
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+向量\(\alpha,\beta \in V\).
+如果\(U \subseteq W\)或\(W \subseteq U\)，
+则称“陪集\(\alpha + U\)与\(\beta + W\) \DefineConcept{平行}”，
+记作\((\alpha + U) \parallel (\beta + W)\)；
+反之，称“陪集\(\alpha + U\)与\(\beta + W\) \DefineConcept{不平行}”，
+记作\((\alpha + U) \nparallel (\beta + W)\).
+\end{definition}
+
+\begin{property}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P437
+陪集之间的平行关系具有自反性，
+即对于线性空间\(V\)中任意一个陪集\(x\)，
+有\(x \parallel x\).
+\end{property}
+
+\begin{property}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P437
+陪集之间的平行关系具有对称性，
+即对于线性空间\(V\)中任意两个陪集\(x\)和\(y\)，
+当\(x \parallel y\)时，必有\(y \parallel x\).
+\end{property}
+
+\begin{property}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P438
+陪集之间的平行关系不具有传递性.
+\begin{proof}
+设\(V \defeq \mathbb{R}^3\).
+取\begin{gather*}
+	\alpha_1 \defeq (0,0,1)^T,
+	\qquad
+	\alpha_2 \defeq (0,0,2)^T, \\
+	W_1 \defeq \Span\{(1,0,0)^T\},
+	\qquad
+	W_2 \defeq \Span\{(0,1,0)^T\},
+	\qquad
+	W \defeq W_1 + W_2, \\
+	S_1 \defeq \alpha_1 + W_1,
+	\qquad
+	S_2 \defeq \alpha_2 + W_2,
+	\qquad
+	S_3 \defeq W,
+\end{gather*}
+则有\(
+	S_1 \parallel S_3,
+	S_2 \parallel S_3
+\)，
+但是\(S_1 \nparallel S_2\).
+\end{proof}
+\end{property}
+
+\begin{theorem}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P438 定理10.2.1(3)
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+向量\(\alpha,\beta \in V\)，
+则\((\alpha + U) \cap (\beta + W) = \emptyset\)
+当且仅当\(\dim((\alpha + U) \vee (\beta + W)) = \dim(U + W) + 1\).
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P439 定理10.2.2(1)
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+向量\(\alpha,\beta \in V\).
+如果\(\alpha + U \subseteq \beta + W\)，
+则\(\dim(\alpha + U) \subseteq \dim(\beta + W)\).
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P439 定理10.2.2(1)
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+向量\(\alpha,\beta \in V\).
+如果\(\alpha + U \subseteq \beta + W\)，
+且\(\dim(\alpha + U) = \dim(\beta + W)\)，
+则\(\alpha + U = \beta + W\).
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P439 定理10.2.2(2)
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+向量\(\alpha,\beta \in V\).
+如果\((\alpha + U) \cap (\beta + W) \neq \emptyset\)，
+则\begin{equation*}
+	\dim((\alpha + U) \vee (\beta + W))
+	+ \dim((\alpha + U) \cap (\beta + W))
+	= \dim(\alpha + U)
+	+ \dim(\beta + W).
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P439 定理10.2.2(3)
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+向量\(\alpha,\beta \in V\).
+如果\((\alpha + U) \cap (\beta + W) \neq \emptyset\)，
+则\((\alpha + U) \parallel (\beta + W)\)
+当且仅当\(\alpha + U \subseteq \beta + W\)
+或\(\alpha + U \supseteq \beta + W\).
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P439 定理10.2.2(3)
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+向量\(\alpha,\beta \in V\).
+如果\((\alpha + U) \cap (\beta + W) = \emptyset\)，
+则\((\alpha + U) \parallel (\beta + W)\)
+当且仅当\begin{equation*}
+	\dim((\alpha + U) \vee (\beta + W))
+	= \max\{\dim(\alpha + U),\dim(\beta + W)\} + 1.
+\end{equation*}
+%TODO proof
+\end{theorem}
+\begin{remark}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P440 推论1
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P440 推论2
+从上述定理可以看出：
+在2维仿射几何中，
+两个不同点的联是一条直线，
+两条非平行直线的交是一个点；
+在3维仿射几何中，
+两个不同点的联是一条直线，
+两个非平行平面的交是一条直线，
+交于一点的两条直线的联是一个平面，
+两条共面的非平行直线的交是一个点，
+两条不同的平行直线的联是一个平面，
+一个点与不包含它的一条直线的联是一个平面，
+一个平面与一个不平行于它的直线的交是一个点.
+\end{remark}
+
+\begin{example}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 习题 2.(1)
+设\(x\)和\(y\)是3维仿射几何中两条异面直线.
+试证：存在唯一的平面\(p\)使得\(x \subseteq p\)且\(y \parallel p\).
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 习题 2.(2)
+设\(x\)和\(y\)是3维仿射几何中两条异面直线.
+试证：存在唯一的平面\(p\)使得\(y \subseteq p\)且\(x \parallel p\).
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 习题 2.(3)
+设\(x\)和\(y\)是3维仿射几何中两条异面直线，
+平面\(p_x\)满足\(x \subseteq p_x\)且\(y \parallel p_x\)，
+平面\(p_y\)满足\(y \subseteq p_y\)且\(x \parallel p_y\).
+试证：\(p_x \parallel p_y\).
+%TODO proof
+\end{example}
+
+\begin{definition}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 定义10.3.1
+设\(A\)与\(A'\)都是仿射几何，
+\(\sigma\)是从\(A\)到\(A'\)的一个双射.
+如果\begin{equation*}
+	(\forall S_1,S_2 \in A)
+	[
+		\sigma(S_1) \subseteq \sigma(S_2)
+		\iff
+		S_1 \subseteq S_2
+	],
+\end{equation*}
+那么称“\(\sigma\)是从\(A\)到\(A'\)的一个\DefineConcept{同构}（isomorphism）”
+“\(A\)到\(A'\)同构（\(A\) is \emph{isomorphic} to \(A'\)）”，
+记作\(A \Isomorphism A'\).
+\end{definition}
+
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441
+显然，仿射几何的同构关系是一个等价关系.
+
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 性质1
+仿射几何的同构保持交的运算，即\begin{equation*}
+	\sigma\left( \bigcap_i S_i \right)
+	= \bigcap_i \sigma(S_i).
+\end{equation*}
+
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 性质2
+仿射几何的同构保持联的运算，即\begin{equation*}
+	\sigma\left( \bigvee_i S_i \right)
+	= \bigcap_i \sigma(S_i).
+\end{equation*}
+
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 性质3
+仿射几何的同构保持维数不变，即\begin{equation*}
+	\dim\sigma(S) = \dim S.
+\end{equation*}
+
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P441 性质4
+仿射几何的同构保持平行关系，即\begin{equation*}
+	\sigma(S_1) \parallel \sigma(S_2)
+	\iff
+	S_1 \parallel S_2.
+\end{equation*}
