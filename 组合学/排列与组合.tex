@@ -337,6 +337,42 @@
 %\hyperref[theorem:排列组合.抽屉原理]{抽屉原理}有时候也称作\DefineConcept{鸽巢原理}；
 %因它最先是由狄利克雷明确地提出来的，因此也可称其为\DefineConcept{狄利克雷原理}.
 
+\begin{example}
+将\(n\)个相同的小球，放入\(m\)个不同的袋子中，求可能的放法种数.
+\begin{solution}
+与其考虑“将\(n\)个相同的小球，放入\(m\)个不同的袋子中”，
+不如研究“将\(n\)个相同的球与\(m-1\)个相同的木板排列在一条直线上”，
+把\(m-1\)个木板作为分隔，恰能将球分入\(m\)个袋子中，
+于是所求可能的方法种数就是\begin{equation*}
+	C_{n+m-1}^n
+	= \frac{
+		(n + m-1)!
+	}{
+		n! (m-1)!
+	}.
+\end{equation*}
+% 以下是错误解法：
+% 与其考虑“将\(n\)个相同的小球，放入\(m\)个不同的袋子中”，
+% 不如探究“将\(n\)个球排在一条直线上，形成\(n+1\)个空位
+% （每两个球之间有1个空位，最左侧的球的左边、最右侧的球的右边也都各算作1个空位），
+% 再将\(m-1\)个木板插入上述\(n+1\)个空位”.
+\end{solution}
+%@see: https://brilliant.org/wiki/integer-equations-star-and-bars/
+%@see: https://artofproblemsolving.com/wiki/index.php/Ball-and-urn
+%@see: https://www.geeksforgeeks.org/competitive-programming/stars-and-bars-algorithms-for-competitive-programming/
+%@see: https://codeforces.com/blog/entry/143449
+\end{example}
+
+\begin{example}
+将\(n\)个相同的小球，放入\(m\)个不同的袋子中，每个袋子至少放一个球，求可能的放法种数.
+\begin{solution}
+假设\(n \geq m\).
+“将\(n\)个相同的小球，放入\(m\)个不同的袋子中，每个袋子至少放一个球”
+相当于提前从\(n\)个相同的小球中取出\(m\)个，在\(m\)个袋子中各放\(1\)个，
+接着考虑“将\(n-m\)个相同的小球，放入\(m\)个不同的袋子中”，
+因此可能的方法种数为\(C_{n-1}^{m-1}\).
+\end{solution}
+\end{example}
 
 \subsection{组合数的性质}
 \begin{property}\label{theorem:组合数性质1}
