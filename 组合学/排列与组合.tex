@@ -358,7 +358,6 @@
 % 再将\(m-1\)个木板插入上述\(n+1\)个空位”.
 \end{solution}
 %@see: https://brilliant.org/wiki/integer-equations-star-and-bars/
-%@see: https://artofproblemsolving.com/wiki/index.php/Ball-and-urn
 %@see: https://www.geeksforgeeks.org/competitive-programming/stars-and-bars-algorithms-for-competitive-programming/
 \end{example}
 
@@ -374,16 +373,17 @@
 \end{example}
 \begin{remark}
 %@see: https://codeforces.com/blog/entry/143449
-%TODO 尚未验证以下两条公式是否正确
+%@see: https://artofproblemsolving.com/wiki/index.php/Ball-and-urn
 % stars and bars with lower bounds
 将\(n\)个相同的小球，放入\(m\)个不同的袋子中，每个袋子至少放\(l\ (l \leq n)\)个球，
 可能的放法总数为\begin{equation*}
-	\frac{(n-m(l-1)-1)!}{(n-ml)!(m-1)!}.
+	\frac{(n-ml+m-1)!}{(n-ml)!(m-1)!}.
 \end{equation*}
+%TODO 尚未验证以下公式是否正确
 % stars and bars with upper bounds
 将\(n\)个相同的小球，放入\(m\)个不同的袋子中，每个袋子至多放\(l\ (l \leq n)\)个球，
 可能的放法总数为\begin{equation*}
-	\frac{(n-(l+1)+r-1)!}{(n-l-1)!(r-1)!}.
+	\sum_{k=0}^{\floor{n/(l+1)}} (-1)^k C_m^k C_{n-k(l+1)+m-1}^{m-1}.
 \end{equation*}
 \end{remark}
 
