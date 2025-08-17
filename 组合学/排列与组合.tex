@@ -343,7 +343,7 @@
 与其考虑“将\(n\)个相同的小球，放入\(m\)个不同的袋子中”，
 不如研究“将\(n\)个相同的球与\(m-1\)个相同的木板排列在一条直线上”，
 把\(m-1\)个木板作为分隔，恰能将球分入\(m\)个袋子中，
-于是所求可能的方法种数就是\begin{equation*}
+于是所求可能的放法种数就是\begin{equation*}
 	C_{n+m-1}^n
 	= \frac{
 		(n + m-1)!
@@ -360,7 +360,6 @@
 %@see: https://brilliant.org/wiki/integer-equations-star-and-bars/
 %@see: https://artofproblemsolving.com/wiki/index.php/Ball-and-urn
 %@see: https://www.geeksforgeeks.org/competitive-programming/stars-and-bars-algorithms-for-competitive-programming/
-%@see: https://codeforces.com/blog/entry/143449
 \end{example}
 
 \begin{example}
@@ -370,9 +369,23 @@
 “将\(n\)个相同的小球，放入\(m\)个不同的袋子中，每个袋子至少放一个球”
 相当于提前从\(n\)个相同的小球中取出\(m\)个，在\(m\)个袋子中各放\(1\)个，
 接着考虑“将\(n-m\)个相同的小球，放入\(m\)个不同的袋子中”，
-因此可能的方法种数为\(C_{n-1}^{m-1}\).
+因此可能的放法种数为\(C_{n-1}^{m-1}\).
 \end{solution}
 \end{example}
+\begin{remark}
+%@see: https://codeforces.com/blog/entry/143449
+%TODO 尚未验证以下两条公式是否正确
+% stars and bars with lower bounds
+将\(n\)个相同的小球，放入\(m\)个不同的袋子中，每个袋子至少放\(l\ (l \leq n)\)个球，
+可能的放法总数为\begin{equation*}
+	\frac{(n-m(l-1)-1)!}{(n-ml)!(m-1)!}.
+\end{equation*}
+% stars and bars with upper bounds
+将\(n\)个相同的小球，放入\(m\)个不同的袋子中，每个袋子至多放\(l\ (l \leq n)\)个球，
+可能的放法总数为\begin{equation*}
+	\frac{(n-(l+1)+r-1)!}{(n-l-1)!(r-1)!}.
+\end{equation*}
+\end{remark}
 
 \subsection{组合数的性质}
 \begin{property}\label{theorem:组合数性质1}
