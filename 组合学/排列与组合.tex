@@ -454,6 +454,7 @@
 	= C_n^k. \qedhere
 \end{align*}
 \end{proof}
+%@Mathematica: Binomial[n - 1, k - 1] + Binomial[n - 1, k] // FullSimplify
 \end{property}
 \begin{remark}
 因此，在\(n\)不太大的时候，我们可以直接画出杨辉三角，从图中找到\(C_n^k\)的数值.
@@ -494,6 +495,7 @@
 	\sum_{i=0}^{k+1} C_{k+1}^i = 2^{k+1}
 \)成立.
 \end{proof}
+%@Mathematica: Sum[Binomial[n, k], {k, 0, n}]
 \end{property}
 
 \begin{property}
@@ -502,26 +504,34 @@
 	\sum_{i=0}^k C_{n+i}^i
 	= C_{n+k+1}^k
 \).
+%@Mathematica: Sum[Binomial[n + i, i], {i, 0, k}]
 \end{property}
 
 \begin{property}\label{theorem:组合数性质4}
 \(\sum_{k=0}^n (-1)^k C_n^k = 0\).
+%@Mathematica: Sum[(-1)^k Binomial[n, k], {k, 0, n}]
+%TODO Mathematica 计算结果与公式不同
 \end{property}
 
 \begin{property}\label{theorem:组合数性质5}
 \(\sum_{k=0}^{\floor{n/2}} C_n^{2k} = 2^{n-1}\).
+%@Mathematica: Sum[Binomial[n, 2 k], {k, 0, Floor[n/2]}]
 \end{property}
 \begin{property}\label{theorem:组合数性质6}
 \(\sum_{k=0}^{\floor{(n-1)/2}} C_n^{2k+1} = 2^{n-1}\).
+%@Mathematica: Sum[Binomial[n, 2 k + 1], {k, 0, Floor[(n - 1)/2]}]
 \end{property}
 
 \begin{property}\label{theorem:组合数性质7}
 \(C_{n+m}^k = \sum_{r=0}^{k} C_n^r C_m^{k-r}\).
+%@Mathematica: Sum[Binomial[n, r] Binomial[m, k - r], {r, 0, k}]
+%TODO Mathematica 计算结果与公式不同
 \end{property}
 
 \begin{property}\label{theorem:组合数性质8}
 %@see: 《高等代数与解析几何（第三版 上册）》（孟道骥） P10 习题 1.(4)
 \(\sum_{k=0}^n (C_n^k)^2 = C_{2n}^n\).
+%@Mathematica: Sum[Binomial[n, k]^2, {k, 0, n}]
 \end{property}
 
 \begin{property}\label{theorem:组合数性质9}
