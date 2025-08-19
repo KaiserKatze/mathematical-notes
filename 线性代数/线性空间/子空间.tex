@@ -871,6 +871,64 @@
 \end{equation*}
 \end{corollary}
 
+\begin{corollary}\label{theorem:子空间.子空间的和的维数等于最大子空间维数的等价条件}
+设\(V\)是域\(F\)上的一个线性空间，
+\(U\)和\(W\)是\(V\)的两个子空间，
+则\begin{equation*}
+	\dim(U + W) = \max\{\dim U,\dim W\}
+	\iff
+	(U \subseteq W) \lor (U \supseteq W).
+\end{equation*}
+\begin{proof}
+%@credit: {gemini}
+先证必要性.
+当\(U \subseteq W\)时，
+由\cref{theorem:子空间.同一线性空间的两个子空间成立包含关系的必要条件}
+可知\(U\)是\(W\)的一个子空间；
+再由\cref{theorem:线性空间.线性空间及其子空间的维数序关系}
+可知\(\dim U \leq \dim W\)，
+从而\(\max\{\dim U,\dim W\} = \dim W\)；
+最后由\cref{theorem:子空间.子空间的和适合吸收律}
+可知\(U + W = W\)，
+从而\(\dim(U+W) = \dim W\)，
+因此\(\dim(U+W) = \max\{\dim U,\dim W\}\).
+同理可知，当\(U \supseteq W\)时，
+也成立\(\dim(U+W) = \max\{\dim U,\dim W\}\).
+因此\(
+	(U \subseteq W) \lor (U \supseteq W)
+	\implies
+	\dim(U + W) = \max\{\dim U,\dim W\}
+\).
+
+再证充分性.
+假设\(\dim(U + W) = \max\{\dim U,\dim W\}\).
+由\cref{theorem:线性空间.子空间.子空间的维数公式}
+可知\(
+	\dim(U + W)
+	=  \dim U + \dim W - \dim(U \cap W)
+\)，
+那么\(
+	\dim(U \cap W)
+	= \dim U + \dim W - \max\{\dim U,\dim W\}
+	% \cref{equation:绝对值函数.两个数的最小值最大值的关联}
+	= \min\{\dim U,\dim W\}
+\).
+考虑到\(U \cap W\)既是\(U\)的子空间，也是\(W\)的子空间.
+当\(\dim U \leq \dim W\)时，
+有\(\dim(U \cap W) = \min\{\dim U,\dim W\} = \dim U\)，
+那么由\cref{theorem:子空间.与线性空间维数相等的子空间}
+可知\(U \cap W = U\)，
+从而\(U\)是\(W\)的子空间，即\(U \subseteq W\).
+同理，当\(\dim W \leq \dim U\)时，
+\(W\)是\(U\)的子空间，即\(U \supseteq W\).
+因此\(
+	\dim(U + W) = \max\{\dim U,\dim W\}
+	\implies
+	(U \subseteq W) \lor (U \supseteq W)
+\).
+\end{proof}
+\end{corollary}
+
 \begin{definition}
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P7 Definition
 域\(F\)上\(n\)维线性空间\(V\)的每一个\(n-1\)维子空间，
