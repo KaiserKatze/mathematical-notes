@@ -804,10 +804,26 @@
 %@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P443 例10.4
 设\(V\)是域\(F\)上的一个线性空间，
 向量\(\alpha \in V\)，
-\(\tau_\alpha\)是由\(\alpha\)决定的平移.
+变换\(
+	\tau_\alpha\colon \mathcal{A}(V) \to \mathcal{A}(V),
+	x \mapsto \alpha + x
+\)是由\(\alpha\)决定的平移.
 %TODO 定义“由某个向量决定的平移”
 证明：\(\tau_\alpha\)是\(\mathcal{A}(V)\)上的自同构.
-%TODO proof
+\begin{proof}
+设\(W_1,W_2\)是\(V\)的两个子空间，
+向量\(\beta_1,\beta_2 \in V\)，
+则\begin{align*}
+	\beta_1 + W_1 \subseteq \beta_2 + W_2
+	&\iff \beta_1 - \beta_2 \in W_2, W_1 \subseteq W_2
+		\tag{\cref{theorem:商空间.陪集之间成立包含关系的等价条件1}} \\
+	&\iff (\alpha + \beta_1) - (\alpha + \beta_2) \in W_2, W_1 \subseteq W_2 \\
+	&\iff \alpha + \beta_1 + W_1 \subseteq \alpha + \beta_2 + W_2 \\
+	&\iff \tau_\alpha(\beta_1 + W_1) \subseteq \tau_\alpha(\beta_2 + W_2).
+		\tag{变换\(\tau_\alpha\)的定义}
+\end{align*}
+因此\(\tau_\alpha\)是\(\mathcal{A}(V)\)上的自同构.
+\end{proof}
 \end{example}
 
 \begin{example}
