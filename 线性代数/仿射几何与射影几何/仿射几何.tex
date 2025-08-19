@@ -629,7 +629,37 @@
 	\dim((\alpha + U) \vee (\beta + W))
 	= \max\{\dim(\alpha + U),\dim(\beta + W)\} + 1.
 \end{equation*}
-%TODO proof
+\begin{proof}
+假设\((\alpha + U) \cap (\beta + W) = \emptyset\)，
+那么由\cref{theorem:仿射几何.陪集的交为空的充分必要条件1}
+可知\begin{equation*}
+	\dim((\alpha + U) \vee (\beta + W)) = \dim(U + W) + 1.
+\end{equation*}
+由\cref{theorem:线性空间.子空间.子空间的维数公式}
+可知\begin{equation*}
+	\dim(U + W)
+	=  \dim U + \dim W - \dim(U \cap W).
+\end{equation*}
+于是\begin{align*}
+	&\hspace{-20pt}
+	\dim((\alpha + U) \vee (\beta + W))
+	= \max\{\dim(\alpha + U),\dim(\beta + W)\} + 1 \\
+	&\iff
+	\dim(U + W)
+	% 比较上式和待证的等式可得
+	= \max\{\dim(\alpha + U),\dim(\beta + W)\} \\
+	&\iff
+	\dim(U + W)
+	= \max\{\dim U,\dim W\}
+		\tag{陪集的维数的定义} \\
+	&\iff
+	(U \subseteq W) \lor (U \supseteq W)
+		\tag{\cref{theorem:子空间.子空间的和的维数等于最大子空间维数的等价条件}} \\
+	&\iff	% 陪集平行的定义
+	(\alpha + U) \parallel (\beta + W).
+	\tag*\qedhere
+\end{align*}
+\end{proof}
 \end{theorem}
 \begin{remark}
 %@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P440 推论1
