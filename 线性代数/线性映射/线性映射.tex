@@ -1043,6 +1043,76 @@ k \in F\)，
 从\(F[x]\)的有关加法和乘法的等式
 得到\(F[\vb{A}]\)中有关加法和乘法的相应等式.
 
+\begin{example}\label{example:线性映射.可逆线性变换保持向量与子空间的所属关系}
+设线性映射\(\vb{A} \in \Hom(V,V')\)可逆.
+证明：对于任意向量\(\alpha \in V\)和\(V\)的任意一个子空间\(W\)，
+总有\begin{equation*}
+	\alpha \in W
+	\iff
+	\vb{A}\alpha \in \vb{A}(W).
+\end{equation*}
+\begin{proof}
+充分性显然成立.
+下面只证必要性.
+假设\(
+	\vb{A}\alpha
+	\in \vb{A}(W)
+	= \Set{
+		t
+		\given
+		(\exists w \in W)
+		[
+			\vb{A}w = t
+		]
+	}
+\)，
+那么存在向量\(w \in W\)
+使得\(
+	\vb{A}w = \vb{A}\alpha
+\).
+因为\(\vb{A}\)是单射，
+所以\(w = \alpha\)，
+从而\(\alpha \in W\).
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:线性映射.可逆线性变换保持子空间之间的包含关系}
+设线性映射\(\vb{A} \in \Hom(V,V')\)可逆.
+证明：对于\(V\)的任意两个子空间\(U\)和\(W\)，
+总有\begin{equation*}
+	U \subseteq W
+	\iff
+	\vb{A}(U) \subseteq \vb{A}(W).
+\end{equation*}
+\begin{proof}
+由\cref{example:线性映射.可逆线性变换保持向量与子空间的所属关系}
+可知\(
+	\alpha \in U \iff \vb{A}\alpha \in \vb{A}(U),
+	\alpha \in W \iff \vb{A}\alpha \in \vb{A}(W)
+\)，
+于是\begin{align*}
+	\vb{A}(U) \subseteq \vb{A}(W)
+	&\iff
+	(\forall \beta)
+	[
+		\beta \in \vb{A}(U)
+		\limp
+		\beta \in \vb{A}(W)
+	] \\
+	&\iff
+	(\forall \alpha)
+	[
+		\alpha \in U
+		\limp
+		\alpha \in W
+	] \\
+	&\iff
+	U \subseteq W.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P109
 线性变换\(\vb{A}\)如果满足\(\vb{A}^2=\vb{A}\)，
