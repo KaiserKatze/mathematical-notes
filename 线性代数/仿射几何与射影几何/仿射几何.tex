@@ -1003,6 +1003,141 @@
 
 \begin{property}
 %@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P445
+设\(\mathcal{A}(V)\)是域\(F\)上的一个\(3\)维仿射几何，
+\(O\)是原点，
+\(W\)是\(V\)的一个\(2\)维子空间，
+\(\alpha \in V - W\)是一个非零向量，
+% \(\alpha \in V - W\)可以保证平面\(S\)一定不经过原点\(O\)
+陪集\(S \defeq \alpha + W\)，
+记\(  % 通过\(O\)但是与\(S\)不平行的全体直线
+	L
+	\defeq
+	\Set{
+		U \AlgebraSubstructure V
+		\given
+		\dim U = 1,
+		U \nparallel S
+	}
+\)，
+那么映射\(
+	f\colon S \to L,
+	P \mapsto OP
+\)是双射.
+\begin{proof}
+%@credit: {gemini}
+对于任意向量\(w \in W\)，
+集合\(\{\alpha + w\}\)成为平面\(S\)上的一个点，
+那么由题意有\begin{equation*}
+	f(\{\alpha + w\})
+	= \{0\} \vee \{\alpha + w\}
+	= \Span\{\alpha + w\}.
+\end{equation*}
+
+首先证明\(f\)的值域\(\ran f = f(S)\)是\(f\)的陪域\(L\)的子集，即\(f(S) \subseteq L\).
+用反证法.
+在平面\(S\)上任意取定一点\(P \defeq \{\alpha + w\}\ (w \in W)\)，
+假设直线\(OP\)不属于直线系\(L\)，
+即\((O \vee P) \notin L\)，
+即\(\Span\{\alpha + w\} \parallel S\)，
+即\(\Span\{\alpha + w\} \subseteq W\)（\(W\)不可能包含于\(\Span\{\alpha + w\}\)），
+即\(\alpha + w \in W\)，
+即\(\alpha \in W\)，
+与\(\alpha \in V - W\)矛盾！
+因此，对于平面\(S\)上任意一点\(P\)，总有\(OP \in L\)，从而有\(f(S) \subseteq L\).
+
+然后证明\(f\)的单射性.
+在平面\(S\)上任意取定两点\(P_1 \defeq \{\alpha + w_1\}\)和\(P_2 \defeq \{\alpha + w_2\}\)，
+其中\(w_1,w_2 \in W\).
+假设\(f(P_1) = f(P_2)\)，
+那么\(\Span\{\alpha + w_1\} = \Span\{\alpha + w_2\}\).
+% 注意到\(\alpha \notin W\)，那么对于任意\(w \in W\)总有\(\alpha + w \neq 0\).
+于是，存在常数\(k \in F\)，使得\(\alpha + w_1 = k (\alpha + w_2)\)，
+移项得\((k-1) \alpha = w_1 - k w_2\)，
+从而有\((k-1) \alpha \in W\).
+鉴于\(\alpha \notin W\)，
+要想\((k-1) \alpha \in W\)成立，
+必有\(k = 1\)，
+从而\(\alpha + w_1 = \alpha + w_2\)，
+即\(P_1 = P_2\).
+这就证明\(f\)是单射.
+
+最后证明\(f\)的满射性.
+在直线系\(L\)中任意取定一条直线\(OP \defeq \Span\{\beta\}\ (\beta\neq0)\).
+由\(L\)的定义可知\(OP \nparallel S\)，
+即\(\Span\{\beta\} \nsubseteq W\)，
+即\(\beta \notin W\).
+要证\(f\)是满射，
+只需证平面\(S\)上存在一点\(P \defeq \{\alpha + w\}\ (w \in W)\)
+使得\(\Span\{\alpha + w\} = \Span\{\beta\}\)，
+即证存在\(k \in F\)
+使得\(\alpha + w = k \beta\)，
+即证存在\(k \in F\)
+使得\(k \beta - \alpha \in W\)，
+即证存在\(k \in F\)
+使得\(k \beta - \alpha\)可以由\(W\)的一个基\(w_1,w_2\)线性表出，
+即证\(\alpha\)可以由\(\beta,w_1,w_2\)线性表出.
+因为\(\beta \notin W\)，
+所以\(\Span\{\beta\} \cap W = 0\)，
+从而\(
+	\dim(\Span\{\beta\} \cap W) = 0
+\)，
+于是\(
+	\dim(\Span\{\beta\} + W)
+	= \dim\Span\{\beta\}
+	+ \dim W
+	= 3
+	= \dim V
+\)，
+这就说明\(V\)是\(\Span\{\beta\}\)与\(W\)的直和，
+\(V\)中任意一个向量（包括\(\alpha\)）均可由\(W\)的一个基\(w_1,w_2\)和\(\beta\)线性表出.
+这就证明\(f\)是满射.
+\end{proof}
+\end{property}
+\begin{remark}
+上述性质阐述了一个几何事实：
+在3维空间中，远离原点的任意一个平面上的每一个点都与经过原点且不与该平面平行的每一个直线一一对应.
+但是，如果仿射几何\(\mathcal{A}(V)\)的维数大于\(3\)，
+那么上述映射\(f\)就无法保持其满射性.
+例如，取\(V \defeq \mathbb{R}^4\)的一个标准基\(
+	e_1 \defeq (1,0,0,0)^T,
+	e_2 \defeq (0,1,0,0)^T,
+	e_3 \defeq (0,0,1,0)^T,
+	e_4 \defeq (0,0,0,1)^T
+\)，
+令\(W \defeq \Span\{e_1,e_2\}\)，
+令\(\alpha \defeq e_3\)，
+从而\(S = e_3 + \Span\{e_1,e_2\}\)，
+显然\(\Span\{e_4\}\)是通过原点\(O\)但是与\(S\)不平行的一条直线，
+但是\(S\)上不存在点\(P\)使得\(OP = \Span\{e_4\}\).
+不过，只要对直线系的定义稍加修改，
+令\(  % \(\Span\{\alpha\} + W\)中，通过\(O\)但是与\(S\)不平行的全体直线
+	L
+	\defeq
+	\Set{
+		U \AlgebraSubstructure (\Span\{\alpha\} + W)
+		\given
+		\dim U = 1,
+		U \nparallel S
+	}
+\)，
+那么\(f\colon S \to L, P \mapsto OP\)仍然是一个双射.
+\end{remark}
+
+\begin{property}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P445
 平面\(S\)上三点\(P,Q,R\)共线，
 当且仅当直线\(OP,OQ,OR\)共面.
 \end{property}
+
+\begin{lemma}
+%@see: 《高等代数与解析几何（第三版 下册）》（孟道骥） P446 引理10.4.1
+设\(P,Q,R\)是域\(F\)上仿射几何\(\mathcal{A}(V)\)中三个异于\(O\)的点，
+\(OP,OQ,OR\)共面，
+\(OQ \neq OR\)，
+\(p\)是对于点\(P\)的齐性向量，
+则对于任意\(x,y \in F - \{0\}\)，
+存在对于点\(Q\)的齐性向量\(q\)和对于\(R\)的齐性向量\(r\)（其中之一可能为\(0\)），
+使得\begin{equation*}
+	p = x q + y r.
+\end{equation*}
+\end{lemma}
