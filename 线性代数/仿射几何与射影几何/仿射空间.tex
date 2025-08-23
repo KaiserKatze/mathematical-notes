@@ -1,0 +1,287 @@
+\section{仿射空间}
+本节利用公理法描述仿射几何中的几何元素.
+
+\subsection{仿射空间}
+\begin{definition}
+%@see: 《基础代数（第二卷）》（席南华） P161 定义4.1
+%@see: 《代数学讲义（下册）》（李文威）
+设\(A\)是一个非空集合，
+\(V\)是域\(F\)上的一个线性空间.
+若映射\(f\colon A \times V \to A\)满足\begin{gather*}
+	(\forall p \in A)
+	(\forall x,y \in V)
+	[
+		f(f(p,x),y)
+		= f(p,x+y)
+	], \\
+	(\forall p \in A)
+	[
+		0 \in V
+		\implies
+		f(p,0) = p
+	], \\
+	(\forall p,q \in A)
+	(\exists! x \in V)
+	[
+		f(p,x) = q
+	],
+\end{gather*}
+则称“\((A,f)\)是与线性空间\(V\)关联的\DefineConcept{仿射空间}”.
+把\(f\)称为“仿射空间\(A\)的\DefineConcept{加法}”，
+在不致混淆的情况下把\(f(p,x)\)记为\(p + x\).
+把\(A\)中的每一个元素称为“仿射空间\(A\)中的一个\DefineConcept{点}”.
+对于\(A\)中任意两点\(p,q\)，把满足\(f(p,x) = q\)的向量\(x \in V\)
+称为“连接点\(p\)和点\(q\)的\DefineConcept{向量}”，记作\(\vec{pq}\)或\(q - p\).
+把线性空间\(V\)的维数\(\dim V\)称为“仿射空间\(A\)的\DefineConcept{维数}”，记为\(\dim A\).
+\end{definition}
+
+\begin{property}%\label{theorem:仿射空间.仿射空间的减法1}
+设\((A,f)\)是与线性空间\(V\)关联的仿射空间，
+则\(x = \vec{pq}\)当且仅当\(f(p,x) = q\).
+\end{property}
+
+\begin{property}%\label{theorem:仿射空间.仿射空间的减法2}
+设\((A,f)\)是与线性空间\(V\)关联的仿射空间，
+则\(f(p,v_1) = f(p,v_2)\)当且仅当\(v_1 = v_2\).
+\end{property}
+
+\begin{proposition}%\label{theorem:仿射空间.仿射空间与线性空间等势}
+设\(A\)是与线性空间\(V\)关联的仿射空间，
+则\(A\)与\(V\)等势.
+\begin{proof}
+由于仿射空间\(A\)是非空的，我们可以从中任意取定一个点\(o\).
+然后构造一个从\(A\)到\(V\)的映射\(\sigma\colon A \to V, p \mapsto \vec{op}\).
+根据仿射空间的定义，
+对于\(A\)中任意一点\(p\)，
+满足\(f(o,v) = p\)的向量\(v \in V\)存在且唯一，
+由此保证\(\sigma\)是单值的，且\(\ran\sigma \subseteq V\).
+由\begin{equation*}
+	(\forall p_1,p_2 \in A)
+	[
+		\sigma(p_1) = \sigma(p_2) = v
+		\iff
+		\vec{op_1} = \vec{op_2} = v
+		\iff
+		f(o,v) = p_1 = p_2
+	]
+\end{equation*}
+可知\(\sigma\)是单射.
+因为\begin{equation*}
+	\sigma(q) = v
+	\iff  % 映射\(\sigma\)的定义
+	\vec{oq} = v
+	\iff  % “连接两点的向量”的定义，\cref{theorem:仿射空间.仿射空间的减法1}
+	f(o,v) = q,
+\end{equation*}
+% 又因为\(f(o,v) = f(o,v)\)，
+所以\(
+	(\forall v \in V)
+	[
+		\sigma(f(o,v)) = v
+	]
+\)，
+可知\(\sigma\)是满射.
+因此\(\sigma\)是从\(A\)到\(V\)的双射，
+\(A\)与\(V\)等势.
+\end{proof}
+\end{proposition}
+
+\begin{example}
+%@see: 《基础代数（第二卷）》（席南华） P162 例4.2
+设\(V\)是域\(F\)上的一个线性空间.
+证明：\(V\)是一个仿射空间.
+\begin{proof}
+任意取定\(p,q \in V\).
+对于任意\(x,y \in V\)，
+利用向量加法的结合律可得\begin{equation*}
+	(p + x) + y
+	= p + (x + y),
+	\qquad
+	p + 0
+	= p.
+\end{equation*}
+同时，我们还有\begin{equation*}
+	p + x = q
+	\iff
+	x = q - p \in V,
+\end{equation*}
+这就说明\(
+	(\exists! x \in V)
+	[
+		f(p,x) = q
+	]
+\).
+综上所述，\((V,+)\)是与\(V\)关联的仿射空间.
+\end{proof}
+\end{example}
+
+\begin{example}\label{example:仿射空间.仿射空间与仿射几何的联系1}
+%@see: 《基础代数（第二卷）》（席南华） P162 例4.3
+设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间，
+\(S\)是以向量\(\alpha \in V\)为代表、子空间\(W\)的一个陪集.
+证明：\((S,+)\)是与\(W\)关联的仿射空间.
+\begin{proof}
+由题意有\(S = \alpha + W\).
+任意取定\(p,q \in S\)，
+则存在\(w_1,w_2 \in W\)
+使得\(p = \alpha + w_1, q = \alpha + w_2\).
+由向量加法的封闭性可知\(p,q \in V\).
+对于任意\(x,y \in W\)，
+利用向量加法的结合律可得\begin{equation*}
+	(p + x) + y
+	= p + (x + y),
+	\qquad
+	p + 0
+	= p.
+\end{equation*}
+同时，我们还有\begin{equation*}
+	p + x = q
+	\iff
+	x = q - p
+	\iff
+	x = (\alpha + w_2) - (\alpha + w_1)
+	\iff
+	x = w_2 - w_1 \in W,
+\end{equation*}
+这就说明\(
+	(\exists! x \in W)
+	[
+		f(p,x) = q
+	]
+\).
+综上所述，\((S,+)\)是与\(W\)关联的仿射空间.
+\end{proof}
+\end{example}
+
+\subsection{仿射空间中的仿射映射与仿射同构}
+\begin{definition}%\label{definition:仿射空间.仿射映射}
+%@see: 《基础代数（第二卷）》（席南华） P163 定义4.4
+设\(V,V'\)都是域\(F\)上的线性空间，
+\(A,A'\)分别是与线性空间\(V,V'\)关联的仿射空间.
+如果存在线性映射\(g \in \Hom(V,V')\)
+使得映射\(f\colon A \to A'\)满足\begin{equation*}
+%@see: 《基础代数（第二卷）》（席南华） P163 (4.1.1)
+	(\forall p \in A)
+	(\forall v \in V)
+	[
+		f(p + v)
+		= f(p) + g(v)
+	],
+\end{equation*}
+则称“\(f\)是从\(A\)到\(A'\)的一个\DefineConcept{仿射映射}”；
+把\(g\)称为“仿射映射\(f\)的\DefineConcept{线性部分}”
+或“仿射映射\(f\)的\DefineConcept{微分}”，
+记作\(\dd{f}\).
+\end{definition}
+
+\begin{definition}%\label{definition:仿射空间.平移变换}
+%@see: 《基础代数（第二卷）》（席南华） P162
+设\(A\)是与线性空间\(V\)关联的仿射空间，
+向量\(\alpha \in V\)，
+把映射\begin{equation*}
+	\tau_\alpha\colon A \to A,
+	p \mapsto p + \alpha
+\end{equation*}
+称为“（仿射空间\(A\)上）由向量\(\alpha\)决定的\DefineConcept{平移变换}”.
+\end{definition}
+
+\begin{theorem}%\label{theorem:仿射空间.平移变换对乘法成群}
+%@see: 《基础代数（第二卷）》（席南华） P162
+设\(V\)是域\(F\)上的一个线性空间，
+\(A\)是与线性空间\(V\)关联的仿射空间，
+\(\alpha,\beta \in V\)，
+\(\tau_\alpha,\tau_\beta\)分别是\(A\)上由\(\alpha,\beta\)决定的平移变换，
+\(I\)是\(A\)上的恒等映射，
+则\begin{gather*}
+	\tau_\alpha \tau_\beta = \tau_{\alpha + \beta}, \\
+	\tau_{-\alpha} \tau_\alpha = I.
+\end{gather*}
+\end{theorem}
+\begin{remark}
+%@see: 《基础代数（第二卷）》（席南华） P162
+上述定理说明：
+两个平移的复合还是平移，
+平移的逆映射也是平移.
+全体平移对复合成群，它同构于线性空间\(V\)的加法群.
+不难验证：
+对于任意\(x,y \in F\)，
+如果令\begin{equation*}
+	x \tau_\alpha + y \tau_\beta
+	\defeq \tau_{x \alpha + y \beta},
+\end{equation*}
+则\(A\)的全体平移就成为一个线性空间（记作\(A^\sharp\)），它与\(V\)同构.
+\end{remark}
+
+\begin{definition}%\label{definition:仿射空间.伸缩变换}
+%@see: 《基础代数（第二卷）》（席南华） P163 例4.6
+设\(V\)是域\(F\)上的一个线性空间，
+\(A\)是与线性空间\(V\)关联的仿射空间，
+\(o\)是\(A\)中的一个点，
+数\(\lambda \in F\)，
+把映射\begin{equation*}
+	\delta_\lambda\colon A \to A,
+	p \mapsto o + \lambda\vec{op}
+\end{equation*}
+称为“（仿射空间\(A\)上）以点\(o\)为中心、\(\lambda\)为伸缩率的\DefineConcept{伸缩变换}（dilatation）”.
+\end{definition}
+
+\begin{proposition}\label{theorem:仿射空间.仿射映射的微分的唯一性}
+%@see: 《基础代数（第二卷）》（席南华） P163
+设\(A,A'\)都是域\(F\)上的仿射空间，
+\(p,q\)是\(A\)中两点，
+\(f\)是从\(A\)到\(A'\)的一个仿射映射，
+记\(p' \defeq f(p), q' \defeq f(q)\)，
+则\(
+%@see: 《基础代数（第二卷）》（席南华） P163 (4.1.2)
+	\vec{p'q'}
+	= \dd{f}(\vec{pq})
+\).
+\end{proposition}
+\begin{remark}
+由\cref{theorem:仿射空间.仿射映射的微分的唯一性} 可以看出，
+仿射映射的微分存在且唯一.
+\end{remark}
+
+\begin{definition}%\label{definition:仿射空间.常值变换}
+%@see: 《基础代数（第二卷）》（席南华） P163 例4.5(1)
+设\(A\)是一个仿射空间，
+点\(a \in A\).
+把映射\(f\colon A \to A, x \mapsto a\)
+称为“仿射空间\(A\)上的\DefineConcept{常值变换}”.
+\end{definition}
+
+\begin{proposition}%\label{theorem:仿射空间.常值变换的微分是零映射}
+%@see: 《基础代数（第二卷）》（席南华） P163 例4.5(1)
+仿射空间\(A\)上的常值变换的微分是零映射.
+\end{proposition}
+
+\begin{definition}%\label{definition:仿射空间.仿射同构}
+%@see: 《基础代数（第二卷）》（席南华） P163 定义4.4
+设\(V,V'\)都是域\(F\)上的线性空间，
+\(A,A'\)分别是与线性空间\(V,V'\)关联的仿射空间.
+如果从\(A\)到\(A'\)的一个仿射映射\(f\)是双射，
+则称\(f\)是“从\(A\)到\(A'\)的一个\DefineConcept{仿射同构}”.
+如果存在从\(A\)到\(A'\)的一个仿射同构，
+则称“仿射空间\(A\)与\(A'\) \DefineConcept{同构}”.
+\end{definition}
+
+\begin{definition}%\label{definition:仿射空间.仿射自同构}
+%@see: 《基础代数（第二卷）》（席南华） P163 定义4.4
+设\(V\)都是域\(F\)上的线性空间，
+\(A\)分别是与线性空间\(V\)关联的仿射空间，
+\(f\)是从\(A\)到\(A\)的一个仿射映射.
+如果\(f\)是双射，
+则称\(f\)是“\(A\)上的一个\DefineConcept{仿射自同构}”.
+\end{definition}
+
+\begin{proposition}%\label{theorem:仿射空间.仿射映射是双射当且仅当它的微分是双射}
+%@see: 《基础代数（第二卷）》（席南华） P164 命题4.7
+仿射映射\(f\)是双射，当且仅当\(f\)的微分\(\dd{f}\)是双射.
+%TODO proof
+\end{proposition}
+
+\begin{proposition}%\label{theorem:仿射空间.两个仿射空间同构当且仅当它们的维数相同}
+%@see: 《基础代数（第二卷）》（席南华） P164 定理4.8
+设\(A\)和\(A'\)是域\(F\)上的两个仿射空间，
+则\(A\)与\(A'\)同构的充分必要条件是\(\dim A = \dim A'\).
+\end{proposition}
