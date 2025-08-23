@@ -531,34 +531,31 @@
 %TODO proof
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:仿射空间.仿射空间与仿射几何的联系1}
 %@see: 《基础代数（第二卷）》（席南华） P162 例4.3
-设\(\mathcal{A}(S)\)是域\(F\)上线性空间\(V\)中陪集\(S\)上的仿射几何.
-证明：\(\mathcal{A}(S)\)中的每一个元素都是一个仿射空间.
+设\(V\)是域\(F\)上的一个线性空间，\(W\)是\(V\)的一个子空间，
+\(S\)是以向量\(\alpha \in V\)为代表、子空间\(W\)的一个陪集.
+证明：\((S,+)\)是与\(W\)关联的仿射空间.
 \begin{proof}
-设\(S' \in \mathcal{A}(S)\)，
-那么存在\(\alpha \in V\)，存在\(W \AlgebraSubstructure V\)，
-使得\(S' = \alpha + W \subseteq S\).
-任意取定\(p,q \in S'\)，
+由题意有\(S = \alpha + W\).
+任意取定\(p,q \in S\)，
 则存在\(w_1,w_2 \in W\)
 使得\(p = \alpha + w_1, q = \alpha + w_2\).
+由向量加法的封闭性可知\(p,q \in V\).
 对于任意\(x,y \in W\)，
-显然有\begin{gather*}
-	% 向量加法的结合律
+利用向量加法的结合律可得\begin{equation*}
 	(p + x) + y
-	= ((\alpha + w_1) + x) + y
-	= (\alpha + w_1) + (x + y)
 	= p + (x + y),
-	\\
+	\qquad
 	p + 0
-	= (\alpha + w_1) + 0
-	= \alpha + w_1
 	= p.
-\end{gather*}
+\end{equation*}
 同时，我们还有\begin{equation*}
 	p + x = q
 	\iff
-	(\alpha + w_1) + x = \alpha + w_2
+	x = q - p
+	\iff
+	x = (\alpha + w_2) - (\alpha + w_1)
 	\iff
 	x = w_2 - w_1 \in W,
 \end{equation*}
@@ -568,9 +565,16 @@
 		f(p,x) = q
 	]
 \).
-综上所述，\((S',+)\)是与\(W\)关联的仿射空间.
+综上所述，\((S,+)\)是与\(W\)关联的仿射空间.
 \end{proof}
 \end{example}
+\begin{remark}
+\cref{example:仿射空间.仿射空间与仿射几何的联系1} 说明：
+对于域\(F\)上线性空间\(V\)中陪集\(S\)上的仿射几何\(\mathcal{A}(S)\)，
+陪集\(S \defeq \alpha + W\)一定是与\(W\)关联的仿射空间.
+实际上，“仿射几何”与“仿射空间”描述了相同的代数结构.
+只不过我们在表述“仿射几何”时采用了构造法，在表述“仿射空间”时采用了公理法.
+\end{remark}
 
 \subsection{仿射空间中的仿射映射与仿射同构}
 \begin{definition}
