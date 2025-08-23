@@ -385,6 +385,79 @@
 则称“\(\mathcal{A}(R)\)是\(\mathcal{A}(S)\)的\DefineConcept{子几何}”.
 \end{definition}
 
+\begin{definition}
+%@see: 《基础代数（第二卷）》（席南华） P161 定义4.1
+设\(A\)是一个非空集合，
+\(V\)是域\(F\)上的一个线性空间.
+若映射\(f\colon A \times V \to A\)满足\begin{gather*}
+	(\forall p \in A)
+	(\forall x,y \in V)
+	[
+		f(f(p,x),y)
+		= f(p,x+y)
+	], \\
+	(\forall p \in A)
+	[
+		0 \in V
+		\implies
+		f(p,0) = p
+	], \\
+	(\forall p,q \in A)
+	(\exists! x \in V)
+	[
+		f(p,x) = q
+	],
+\end{gather*}
+则称“\((A,f)\)是与线性空间\(V\)关联的\DefineConcept{仿射空间}”.
+\end{definition}
+
+\begin{example}
+%@see: 《基础代数（第二卷）》（席南华） P162 例4.2
+设\(V\)是域\(F\)上的一个线性空间.
+证明：\(V\)是一个仿射空间.
+\end{example}
+
+\begin{example}
+%@see: 《基础代数（第二卷）》（席南华） P162 例4.3
+设\(\mathcal{A}(S)\)是域\(F\)上线性空间\(V\)中陪集\(S\)上的仿射几何.
+证明：\(\mathcal{A}(S)\)中的每一个元素都是一个仿射空间.
+\begin{proof}
+设\(S' \in \mathcal{A}(S)\)，
+那么存在\(\alpha \in V\)，存在\(W \AlgebraSubstructure V\)，
+使得\(S' = \alpha + W \subseteq S\).
+任意取定\(p,q \in S'\)，
+则存在\(w_1,w_2 \in W\)
+使得\(p = \alpha + w_1, q = \alpha + w_2\).
+对于任意\(x,y \in W\)，
+显然有\begin{gather*}
+	% 向量加法的结合律
+	(p + x) + y
+	= ((\alpha + w_1) + x) + y
+	= (\alpha + w_1) + (x + y)
+	= p + (x + y),
+	\\
+	p + 0
+	= (\alpha + w_1) + 0
+	= \alpha + w_1
+	= p.
+\end{gather*}
+同时，我们还有\begin{equation*}
+	p + x = q
+	\iff
+	(\alpha + w_1) + x = \alpha + w_2
+	\iff
+	x = w_2 - w_1 \in W,
+\end{equation*}
+这就说明\(
+	(\exists! x \in W)
+	[
+		f(p,x) = q
+	]
+\).
+综上所述，\((S',+)\)是与\(W\)关联的仿射空间.
+\end{proof}
+\end{example}
+
 \subsection{陪集之间的相交关系}
 \begin{definition}
 设\(V\)是域\(F\)上的一个线性空间，
