@@ -364,3 +364,36 @@
 	那么点\(p + v\)的坐标是\((x_1+a_1,\dotsc,x_n+a_n)\).
 \end{itemize}
 \end{proposition}
+
+我们经常需要考虑同一个点在不同标架下的坐标之间的联系.
+假设\([o;\AutoTuple{e}{n}]\)和\([o';\AutoTuple{e}{n}]\)是仿射空间\(A\)的两个标架，
+点\(p\)在这两个标架下的坐标分别是\((\AutoTuple{x}{n})\)和\((\AutoTuple{x'}{n})\)，
+点\(o'\)在标架\([o;\AutoTuple{e}{n}]\)下的坐标为\(\AutoTuple{b}{n}\)，
+\(A = (a_{ij})\)是基\(\AutoTuple{e}{n}\)到基\(\AutoTuple{e'}{n}\)的过渡矩阵.
+由\begin{align*}
+	\sum_i x_i e_i
+	&= \vec{op}
+	= \vec{oo'} + \vec{o'p}
+	= \sum_i b_i e_i + \sum_j x'_j e'_j \\
+	&= \sum_i b_i e_i + \sum_j x'_j \sum_i a_{ij} e_i \\
+	&= \sum_i \left( \sum_j a_{ij} x'_j \right) e_i
+	+ \sum_i b_i e_i
+\end{align*}
+可知\begin{equation*}
+%@see: 《基础代数（第二卷）》（席南华） P165 (4.1.3)
+	x_i = \sum_{j=1}^n a_{ij} x'_j + b_i
+	\quad(i=1,2,\dotsc,n).
+\end{equation*}
+上式可以写成矩阵形式：\begin{equation*}
+	X = A X' + B,
+\end{equation*}
+其中\(
+	X \defeq (\AutoTuple{x}{n}),
+	X' \defeq (\AutoTuple{x'}{n}),
+	B \defeq (\AutoTuple{b}{n})
+\).
+由于\(A\)是可逆矩阵，
+所以\begin{equation*}
+	X' = A^{-1} (X - B)
+	= A^{-1} X - A^{-1} B.
+\end{equation*}
