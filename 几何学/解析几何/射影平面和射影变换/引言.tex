@@ -10,6 +10,7 @@
 它将一个平面的点映成另一个平面的点，
 在此过程中保持点的共线关系不变.
 譬如，在航空摄影时，我们要把地面（假定是平坦的）上的景物摄到底片上，
+如\cref{figure:解析几何.射影平面和射影变换.中心射影} 所示，
 这可以看成地平面\(\pi_0\)到底片\(\pi_1\)的一种保持点的共线关系不变的映射.
 通常来说，摄像机镜头不会恰好垂直地对着大地，
 因此\(\pi_0\)与\(\pi_1\)不平行，
@@ -17,7 +18,7 @@
 假设点\(O\)是平面\(\pi_0\)和\(\pi_1\)外一点.
 将平面\(\pi_0\)上的每一个点\(P\)，
 映成平面\(\pi_1\)与直线\(OP\)的交点\(P'\)的映射，
-称为从平面\(\pi_0\)到\(\pi_1\)、以点\(O\)为中心的\DefineConcept{中心投影}.
+称为“从平面\(\pi_0\)到\(\pi_1\)、以点\(O\)为中心的\DefineConcept{中心投影}”.
 显然，在中心投影下，点的共线关系仍然是保持的.
 但是，\(\pi_0\)上的点\(M\)如果满足\(OM \parallel \pi_1\)，
 则\(M\)在\(\pi_1\)上没有像；
@@ -31,8 +32,44 @@
 而在平面\(\pi_0\)上也添加一些新的点，
 使得\(\pi_1\)上\(N\)这样的点（它们也形成一条直线，也是两个平面交线，
 其中一个平面经过点\(O\)且与\(\pi_0\)平行，
-另一个平面就是\(pi_1\)）都有原像.
+另一个平面就是\(\pi_1\)）都有原像.
 像这样，添加一些点以后，就形成了射影平面.
+
+\begin{figure}[hbt]
+%@see: 《解析几何》（丘维声） P251 图7.1
+	\centering
+	\begin{tikzpicture}
+		\fill(.8,.8)coordinate(M)circle(2pt)node[below]{$M$};
+		\fill(3.6,.6)coordinate(P)circle(2pt)node[below]{$P$};
+		\draw(2.9,1.9)coordinate(O)node[above]{$O$};
+		\draw[name path=o](M)--(O)--(P);
+
+		\path[name path=a](0,1)--(4,1);
+		\draw[name path=b](2,0)coordinate(pi1a)--++(2.2,1.4)coordinate(pi1b);
+		\draw(pi1a)node[above right]{$\pi_1$};
+		\draw(pi1b)--++(.3,1)--++(-2.2,-1.4)coordinate(pi1d);
+		\begin{scope}[name intersections={of=a and b}]
+			% \fill[color=red](pi1d)circle(2pt);
+			% \fill[color=blue](intersection-1)circle(2pt);
+			\draw[dashed](pi1d)--(intersection-1);
+			\draw(0,0)--(4,0)--++(.5,1)--(intersection-1);
+			\draw(pi1d)--(.5,1)--(0,0)node[above right]{$\pi_0$};
+		\end{scope}
+		\draw[name path=c](pi1d)--(2,0);
+		\path[name path=d](P)--++(-3,0);
+		\begin{scope}[name intersections={of=c and d}]
+			% \fill[color=red](intersection-1)circle(2pt);
+			\path[name path=e](intersection-1)--($(intersection-1) + (pi1b) - (pi1a)$)coordinate(PN);
+			% \fill[color=red](PN)circle(2pt);
+			\path[name intersections={of=e and o}](intersection-1)circle(2pt)coordinate(P1);
+			\fill(P1)circle(2pt);
+			\draw(P1)node[right]{$P'$};
+		\end{scope}
+		\filldraw(O)--++(1.2,0)circle(2pt)node[above]{$N$};
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.射影平面和射影变换.中心射影}
+\end{figure}
 
 本章的主要研究内容是：
 射影平面，
