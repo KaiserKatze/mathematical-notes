@@ -325,3 +325,105 @@
 关联结构\((V,\mathscr{W},\subseteq)\)
 就是域\(F_q\)上的\(n\)维射影空间，
 记作\(\mathcal{P}_d(V)\).
+
+\subsection{点的齐次坐标}
+%@see: 《解析几何》（丘维声） P261
+解析几何的基本方法是坐标法，
+因此我们自然会想到在射影平面上建立某种坐标系，
+使得每一个点都有坐标.
+以前所讲的仿射坐标或直角坐标
+只能表示表示射影平面上的通常点，不能表示无穷远点，
+因此我们需要推广坐标的概念，
+使它既能表示通常点也能表示无穷远点.
+
+取扩充欧氏平面\(\overline{\pi_0}\)作为射影平面的代表.
+为了给\(\overline{\pi_0}\)上的每一个点建立坐标，
+考虑到\(\overline{\pi_0}\)上的全体点
+与把\(O\)中的全体直线
+在射影和截影下有一一对应关系，
+而把\(O\)中的每一条直线又由该直线的方向完全决定，
+因此自然有如下方法.
+
+对于扩充欧氏平面\(\overline{\pi_0}\)，
+在平面\(\pi_0\)上取一个仿射标架\([O_1;\AutoTuple{d}{2}]\)，
+再在\(\pi_0\)外取一点\(O\)（如\cref{figure:解析几何.射影平面和射影变换.齐次仿射坐标}），
+令\(d_3 \defeq \vec{OO_1}\).
+对于\(\overline{\pi_0}\)上任意一点\(M\)，
+将\(M\)在把\(O\)中所对应的直线\(l\)的任一方向向量\(v\)
+在空间仿射标架\([O;\AutoTuple{d}{3}]\)下的坐标\((\AutoTuple{x}{3})\)
+称为“点\(M\)在\([O_1;\AutoTuple{d}{2}]\)下的\DefineConcept{齐次仿射坐标}”，
+简称\DefineConcept{齐次坐标}.
+
+\begin{figure}[hbt]
+%@see: 《解析几何》（丘维声） P260
+	\centering
+	\begin{tikzpicture}
+		\draw(0,0)--(5,0)node[above left]{$\overline{\pi_0}$}
+			--++(1,2)--++(-5,0)--(0,0);
+		\coordinate(O)at(2,-1);
+		\coordinate(O1)at(1.4,1);
+		\coordinate(M)at(4,1.3);
+		\filldraw(O)node[below]{$O$}--(M)circle(2pt)node[right]{$M$}node[pos=.8,below right]{$l$};
+		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
+			\draw(O)--+(1,.5)node[right]{$d_2$};
+			\draw(O)--+(1,-.2)node[right]{$d_1$};
+			\draw(O)--(O1)node[pos=.3,left]{$d_3$}node[left]{$O_1$};
+			\draw(O1)--+(1,.4)node[right]{$d_2$};
+			\draw(O1)--+(1.2,-.1)node[right]{$d_1$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.射影平面和射影变换.齐次仿射坐标}
+\end{figure}
+
+在“坐标”之前加上“齐次”两个字的原因是：
+对于任一非零实数\(\lambda\)，
+以\((\AutoTuple{\lambda x}{3})\)与\((\AutoTuple{x}{3})\)为坐标的向量表示把\(O\)中同一条直线，
+从而它们表示\(\overline{\pi_0}\)上的同一个点.
+因此，若\((\AutoTuple{x}{3})\)是\(\overline{\pi_0}\)上点\(M\)的齐次坐标，
+那么\((\AutoTuple{\lambda x}{3})\ (\lambda\neq0)\)也是点\(M\)的齐次坐标.
+这说明，\(\overline{\pi_0}\)上每一个点的齐次坐标不唯一，但是它们成比例.
+如果两个向量的坐标不成比例，
+则它们表示把\(O\)中不同的直线，
+从而它们表示\(\overline{\pi_0}\)上不同的点.
+因此\(\overline{\pi_0}\)上不同点的齐次坐标不成比例.
+
+显然，平面\(\pi_0\)在标架\([O;\AutoTuple{d}{3}]\)下的方程是\(x_3 = 1\)，
+向量\(v = (\AutoTuple{x}{3})^T\)与\(\pi_0\)平行的充分必要条件是\(x_3 = 0\).
+由于\(\overline{\pi_0}\)上的通常点\(M\)对应于把\(O\)中与\(\pi_0\)相交的直线，
+因此它的齐次坐标\((\AutoTuple{x}{3})\)满足\(x_3\neq0\).
+由于无穷远点对应于把\(O\)中与\(\pi_0\)平行的直线，
+因此无穷远点的齐次坐标必形如\((x_1,x_2,0)\)，
+其中\(x_1,x_2\)不全为零.
+
+现在我们来说明齐次坐标与仿射坐标的关系.
+设点\(M\)是平面\(\overline{\pi_0}\)上的通常点，
+\((x,y)\)是它对于仿射标架\([O_1;\AutoTuple{d}{2}]\)的仿射坐标，
+则\(\vec{OM}\)对于仿射标架\([O;\AutoTuple{d}{3}]\)的坐标就是\((x,y,1)\).
+于是，点\(M\)的齐次坐标\((\AutoTuple{x}{3})\)与\((x,y,1)\)成比例，
+即存在非零实数\(\lambda\)，
+使得\begin{equation*}
+	(\AutoTuple{x}{3}) = \lambda (x,y,1).
+\end{equation*}
+假设\(x_3\neq0\)，则有\begin{equation*}
+	x = \frac{x_1}{x_3},
+	\qquad
+	y = \frac{x_2}{x_3}.
+\end{equation*}
+因此，通常点的齐次坐标和仿射坐标可以互相确定.
+现在考虑\(\overline{\pi_0}\)上的一个无穷远点\(P_\infty\)，
+假设它的齐次坐标为\((x_1,x_2,0)\)，
+这时在平面\(\pi_0\)上对于仿射标架\([O_1;\AutoTuple{d}{2}]\)
+具有坐标\((x,y) = (x_1,x_2)\)的向量
+显然平行于\(P_\infty\)所对应的把\(O\)中的直线
+（因为这条直线的方向向量是\((x_1,x_2,0)\)）；
+反过来，平面\(\pi_0\)上的每一个方向\((x,y)\)，
+在它的两个坐标\(x,y\)之后再添上一个\(0\)，
+我们就可以得到这个方向上的无穷远点\(P_\infty\)的齐次坐标\((x,y,0)\).
+因此，无穷远点\(P_\infty\)的齐次坐标与它所对应的方向的仿射坐标
+（对于仿射标架\([O_1;\AutoTuple{d}{2}]\)）可以互相确定.
+综上所述，我们看到\(\overline{\pi_0}\)上每一个点的齐次坐标
+都由仿射标架\([O_1;\AutoTuple{d}{2}]\)完全决定，
+而与点\(O\)的选取无关.
+
+有时我们把通常点\(M\)的仿射坐标称为它的\DefineConcept{非齐次坐标}.
