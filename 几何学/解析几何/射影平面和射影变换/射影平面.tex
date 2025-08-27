@@ -78,12 +78,13 @@
 		\draw(.6,0)coordinate(l1a)--(3,{sqrt(3)})coordinate(l1b)node[above]{$l'$};
 		\fill($.7*(l1a) + .3*(l1b)$)coordinate(O)circle(2pt)node[above left]{$O$};
 		\pgfmathsetmacro{\kp}{1.2}
-		\draw(-1.5,-4)coordinate(p0a)
-			--(4.5,-4)coordinate(p0b)node[above left]{$\pi_0$}
+		\pgfmathsetmacro{\yp}{-2.8}
+		\draw(-1.5,\yp)coordinate(p0a)
+			--++(6,0)coordinate(p0b)node[above left]{$\pi_0$}
 			--++(1.2,{\kp*sqrt(3)})coordinate(p0c);
 		\draw($(p0c) + (p0a) - (p0b)$)coordinate(p0d)--(p0a);
-		\draw[name path=l1al2a](l1a)--(-.5,-4)coordinate(l2a);
-		\draw[name path=lal1a](l1a)--(1.5,-4)coordinate(la);
+		\draw[name path=l1al2a](l1a)--(-.5,\yp)coordinate(l2a);
+		\draw[name path=lal1a](l1a)--(1.5,\yp)coordinate(la);
 		\draw(la)--($(la) + \kp*(l1b) - \kp*(l1a)$)coordinate(lb)node[pos=.7,below]{$l$};
 		\path[name path=l2](l2a)--($(l2a) + \kp*(l1b) - \kp*(l1a)$)coordinate(l2b);
 		\draw[dashed](l1b)--(l2b);
@@ -129,13 +130,16 @@
 由此我们抽象出射影平面的概念.
 
 \subsection{射影平面的定义和几何模型}
+下面我们首先给出“射影平面”的一个粗糙的定义，
+建立起对这个概念的感性认知.
+
 %@see: 《解析几何》（丘维声） P255 定义1.1
 由两类分别称为“点”和“直线”的元素所构成的集合\(S\)，
 如果在其中的“点”和“直线”之间规定了某种名为“关联”的关系，
 并且\(S\)中所有“点”和所有“直线”
 可以分别与欧氏空间中的一个把\(O\)中的所有直线和所有平面建立一一对应关系，
 使得对应关系保持关联性，
-则称\(S\)是一个\DefineConcept{射影平面}.
+则称\(S\)是一个“射影平面”.
 
 %@see: 《解析几何》（丘维声） P255 例1.1
 对于几何空间中的任意一个把\(O\)，
@@ -216,7 +220,6 @@
 射影平面上的无穷远直线与其他直线并无本质的不同，
 因此\(\overline{\pi_0}\)上的任意一条直线都不能把\(\overline{\pi_0}\)分成两块.
 
-\subsection{实射影平面}
 %@see: 《解析几何》（丘维声） P257
 几何空间是由所有点组成的集合，
 也可看成以定点\(O\)为起点的所有定位向量组成的集合.
@@ -258,3 +261,67 @@
 有且仅有一个点与这两条直线关联.
 %TODO proof
 \end{property}
+
+\begin{property}
+%@see: 《解析几何》（丘维声） P258 性质3
+存在四个不同的点，其中任意三点都不与一条直线关联.
+%TODO proof
+\end{property}
+
+从\(\mathcal{P}(\mathbb{R}^2)\)的上述性质受到启发，我们可以抽象出下述概念，
+建立起对“射影平面”的理性认知.
+
+%@see: 《解析几何》（丘维声） P259 定义1.2
+设\(V\)和\(\mathscr{B}\)是两个不相交的集合（即\(V \cap \mathscr{B} = \emptyset\)），
+取二元关系\(I \subseteq V \times \mathscr{B}\)，
+则称“\((V,\mathscr{B},I)\)是一个\DefineConcept{关联结构}”，
+把\(V\)的元素称为\DefineConcept{点}，
+把\(\mathscr{B}\)的元素称为\DefineConcept{区组}.
+若\((P,B) \in I\)，
+则称“点\(P\)与区组\(B\) \DefineConcept{关联}”
+“点\(P\)在区组\(B\)上”
+或“区组\(B\)经过点\(P\)”.
+
+%@see: 《解析几何》（丘维声） P259 定义1.3
+如果关联结构\(\mathscr{D} \defeq (V,\mathscr{B},I)\)满足\begin{enumerate}
+	\item 任给两个不同的点，它们恰好在一个区组上；
+	\item 任给两个不同的区组，它们相交于唯一一个点；
+	\item 存在四个不同的点，其中任意三点都不在一个区组上，
+\end{enumerate}
+那么称“\(\mathscr{D}\)是一个\DefineConcept{射影平面}”.
+
+%@see: 《解析几何》（丘维声） P259
+\(\mathcal{P}(\mathbb{R}^2)\)具有上述三个性质，
+那么根据定义，它是一个射影平面.
+特别地，在几何空间中，对于所有经过点\(O\)的直线构成的集合和所有经过点\(O\)的平面构成的集合，
+若经过点\(O\)的直线\(l\)在经过点\(O\)的平面\(\pi\)上，
+则称\(l\)与\(\pi\)关联，
+那么按照上述定义这个关联结构也是一个射影平面，
+所以几何空间中的任意一个把是一个射影平面.
+
+%@see: 《解析几何》（丘维声） P260
+我们可以把射影平面\(\mathcal{P}(\mathbb{R}^2)\)推广到任意域和任意有限维数.
+
+%@see: 《解析几何》（丘维声） P260 定义1.4
+设\(F\)是一个域，\(V\)是域\(F\)上的一个\(n+1\)维线性空间，
+\(\mathscr{W}\)是\(V\)的所有子空间构成的集合，
+则把关联结构\((V,\mathscr{W},\subseteq)\)
+称为“域\(F\)上的一个\(n\)维\DefineConcept{射影空间}”，
+记作\(\mathcal{P}(V)\).
+把\(\mathscr{W}\)中一维子空间称为\DefineConcept{点}.
+把\(\mathscr{W}\)中二维子空间称为\DefineConcept{直线}.
+把\(\mathscr{W}\)中三维子空间称为\DefineConcept{平面}.
+把\(\mathscr{W}\)中\(n\)维子空间称为\DefineConcept{超平面}.
+把\(\mathscr{W}\)中\(k+1\)维子空间称为\(k\) \DefineConcept{层}.
+
+特别地，
+当\(F\)是复数域\(\mathbb{C}\)时，
+把\(\mathcal{P}(\mathbb{C}^n)\)称为“\(n\)维\DefineConcept{复射影平面}”；
+当\(F\)是有限域\(F_q\)时，
+把\(\mathcal{P}(F_q^n)\)称为“\(n\)维\DefineConcept{有限射影平面}”.
+
+设\(V\)是有限域\(F_q\)上的一个\(n\)维线性空间，
+\(\mathscr{W}\)是\(V\)的所有向量、所有\(d\ (d>1)\)维子空间组成的集合，
+关联结构\((V,\mathscr{W},\subseteq)\)
+就是域\(F_q\)上的\(n\)维射影空间，
+记作\(\mathcal{P}_d(V)\).
