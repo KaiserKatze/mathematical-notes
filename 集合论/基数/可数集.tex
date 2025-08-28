@@ -1,0 +1,258 @@
+
+\section{可数集，不可数集}
+\begin{definition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P29 定义1.7.1
+%@see: 《实变函数论（第三版）》（周民强） P18
+%@see: 《Elements of Set Theory》 P159 Definition
+%@see: https://math.stackexchange.com/q/1431303/591741
+设\(A\)是集合.
+
+若\(
+	% 存在一个从集合\(A\)到正整数集的单射
+	\card A \leq \card\mathbb{N}
+\)，
+则称“\(A\)是\DefineConcept{可数的}（countable）”
+或“\(A\)是\DefineConcept{可列的}（denumerable）”
+\footnote{
+	% 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland）把可数集与可列集定义为相同的概念，即基数不大于\(\card\mathbb{N}\)的集合.
+	% 《点集拓扑讲义（第四版）》（熊金城）没有定义“可列集”.
+	% 《实变函数论（第三版）》（周民强）把“可列集”定义为基数恰好等于\(\card\mathbb{N}\)的集合.
+	在有的书上，
+	“可列集”特指那些基数恰好等于\(\card\mathbb{N}\)的集合.
+}.
+
+反之，若\(
+	\card A > \card\mathbb{N}
+\)，
+则称“\(A\)是\DefineConcept{不可数的}（uncountable）”
+或“\(A\)是\DefineConcept{不可列的}（non-denumerable）”.
+% 虽然在很多教材上都定义\(\aleph_0 \defeq \card\mathbb{N}\)和\(\aleph \defeq \card\mathbb{R}\)，但是这里不采取该记法.
+\end{definition}
+
+\begin{definition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7
+若集合\(A\)既是无限的又是可数的，
+则称“\(A\)是\DefineConcept{可数无限的}（countably infinite）”.
+\end{definition}
+
+\begin{theorem}\label{theorem:集合论.基数.任一无限集必定包含一个可数无限子集}
+%@see: 《实变函数论（第三版）》（周民强） P18 定理1.6
+任一无限集必定包含一个可数无限子集.
+\begin{proof}
+设\(E\)是一个无限集，
+任取\(a_1 \in E\)，
+再任取\(a_2 \in E-\{a_1\}\)，
+以此类推，直至选出\(\{\AutoTuple{a}{n}\}\).
+因为\(E\)是无限的，所以\(E-\{\AutoTuple{a}{n}\}\neq\emptyset\).
+于是我们还可以继续任取\(a_{n+1} \in E-\{\AutoTuple{a}{n}\}\).
+这样，我们就得到一个集合\(\{\AutoTuple{a}{n+1},\dotsc\}\)，
+它既是\(E\)的一个子集，也是一个可数无限集.
+\end{proof}
+\end{theorem}
+\begin{remark}
+\cref{theorem:集合论.基数.任一无限集必定包含一个可数无限子集} 说明：
+在众多的无限集中，最小的无限集的基数是\(\card\mathbb{N}\).
+\end{remark}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7
+有限集是可数的.
+任一有限集\(A\)的基数\(\card A\)等于它的元素个数.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P30 定理1.7.1
+%@see: 《Elements of Set Theory》 P159
+可数集的任何子集都是可数集.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P30 定理1.7.2
+设\(X\)和\(Y\)都是集合，映射\(f\colon X\to Y\).
+如果\(X\)是可数集，
+则\(f(X)\)也是可数集.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P30 定理1.7.3
+集合\(X\)是可数集，当且仅当存在从自然数集\(\omega\)到\(X\)的一个满射.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《Elements of Set Theory》 P159
+如果集合\(A,B\)都是可数的，
+那么\(A \cup B\)也是可数的.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.10 Proposition a.
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P30 定理1.7.4
+%@see: 《Elements of Set Theory》 P159
+如果集合\(A,B\)都是可数的，
+那么\(A \times B\)也是可数的.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《实变函数论（第三版）》（周民强） P20 例9
+如果\(n\)个集合\(\AutoTuple{A}{n}\)都是可数无限的，
+那么\(\AutoTuple{A}{n}[\times]\)也是可数无限的.
+\end{proposition}
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P18 例6
+设\(A\)是有限集，\(B\)是可数无限集，则\(A \cup B\)是可数无限集.
+\begin{proof}
+不妨设\(A = \Set{\AutoTuple{a}{n}},
+B = \Set{b_1,\dotsc}\).
+若\(A \cap B = \emptyset\)，
+则由\begin{equation*}
+	A \cup B = \Set{\AutoTuple{a}{n},b_1,\dotsc}
+\end{equation*}
+可知\(A \cup B\)是可数无限集；
+若\(A \cap B = \emptyset\)，
+则由于\(A \cup B = (A-B) \cup B\)，
+易知\(A \cup B\)仍是可数无限集.
+\end{proof}
+\end{example}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.10 Proposition b.
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P31 定理1.7.5
+%@see: 《Elements of Set Theory》 P159 Theorem 6Q
+如果\begin{itemize}
+	\item 集合\(A\)是可数的，
+	\item 对于每个\(a \in A\)，\(X_a\)都是可数的，
+\end{itemize}
+那么\(\bigcup_{a \in A} X_a\)是可数的.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《实变函数论（第三版）》（周民强） P18 定理1.7
+如果\begin{itemize}
+	\item 集合\(A\)是可数无限的，
+	\item 对于每个\(a \in A\)，\(X_a\)都是可数无限的，
+\end{itemize}
+那么\(\bigcup_{a \in A} X_a\)是可数无限的.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.10 Proposition c.
+如果集合\(A\)是可数无限的，
+那么\(\card A = \card{\mathbb{N}}\).
+\end{proposition}
+
+\begin{proposition}
+如果集合\(A\)满足\(\card A = \card\mathbb{N}\)，
+则\(A\)是可数无限的.
+\begin{proof}
+假设\(\card A = \card\mathbb{N}\)，
+那么\(\card A \leq \card\mathbb{N}\)，
+由定义可知\(A\)是可数的.
+因为\hyperref[theorem:集合论.鸽巢原理.推论3]{自然数集是无限的}，
+所以\(A\)是无限的.
+因此\(A\)是可数无限的.
+\end{proof}
+\end{proposition}
+
+\begin{corollary}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.11 Corollary
+%@see: 《Elements of Set Theory》 P159
+\(\mathbb{Z}\)是可数的.
+\end{corollary}
+
+\begin{corollary}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.11 Corollary
+%@see: 《Elements of Set Theory》 P159
+%@see: 《实变函数论（第三版）》（周民强） P19 例7
+\(\mathbb{Q}\)是可数的.
+\end{corollary}
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P20 例10
+\(\mathbb{R}\)中的互斥开区间族是可数集.
+\end{example}
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P20 例11
+\(\mathbb{R}\)上单调函数的不连续点集是可数集.
+\end{example}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.12 Proposition
+\(\card(\Powerset\mathbb{N}) = \card\mathbb{R}\).
+\begin{proof}
+定义映射\(f\colon \Powerset\mathbb{N}\to\mathbb{R}\)，
+使得\begin{equation*}
+	f(A) = \left\{ \begin{array}{cl}
+		\sum_{n \in A} 2^{-n}, & \text{集合$\mathbb{N}-A$是无限的}, \\
+		1 + \sum_{n \in A} 2^{-n}, & \text{集合$\mathbb{N}-A$是有限的}.
+	\end{array} \right.
+\end{equation*}
+易见\(f\)是单射.
+
+再定义映射\(g\colon \Powerset\mathbb{Z}\to\mathbb{R}\)，
+使得\begin{equation*}
+	g(A) = \left\{ \begin{array}{cl}
+		\log\left(\sum_{n \in A} 2^{-n}\right), & \text{集合$A$有下界}, \\
+		0, & \text{集合$A$没有下界}.
+	\end{array} \right.
+\end{equation*}
+易见\(g\)是满射.
+
+考虑到\(\card(\Powerset\mathbb{Z}) = \card(\Powerset\mathbb{N})\)，
+利用\hyperref[theorem:集合论.施罗德--伯恩斯坦定理]{施罗德--伯恩斯坦定理}便得结论.
+\end{proof}
+\end{proposition}
+
+\begin{corollary}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P8 0.13 Corollary
+设\(A\)是集合.
+如果\(\card A \geq \card\mathbb{R}\)，
+那么\(A\)是不可数的.
+\end{corollary}
+
+\begin{theorem}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P34 定理1.7.9
+%@see: 《Elements of Set Theory》 P159
+\(\mathbb{R}\)是不可数的.
+\end{theorem}
+
+\begin{proposition}
+%@see: 《Elements of Set Theory》 P159
+设\(A\)是无限集，
+则\(\Powerset A\)是不可数的.
+\end{proposition}
+\begin{corollary}
+%@see: 《Elements of Set Theory》 P159
+设集合\(A\)的幂集\(\Powerset A\)是可数的，
+则\(A\)是有限的.
+\end{corollary}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P9 0.14 Proposition
+设\(A,B\)都是集合.
+若\(\card A \leq \card\mathbb{R}\)且\(\card B \leq \card\mathbb{R}\)，
+则\(\card(A \times B) \leq \card\mathbb{R}\).
+\end{proposition}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P9 0.14 Proposition
+如果有标集族\(\{X_a\}_{a \in A}\)同时满足\(
+	\card A \leq \card\mathbb{R}
+\)
+和\(
+	(\forall a \in A)
+	[\card X_a \leq \card\mathbb{R}]
+\)，
+那么\begin{equation*}
+	\card\left( \bigcup_{a \in A} X_a \right) \leq \card\mathbb{R}.
+\end{equation*}
+\end{proposition}
+
+证明集合等势的方法：\begin{enumerate}
+	\item 利用\cref{definition:基数.等势的定义}，直接证明双射的存在性.
+	\item 根据\cref{theorem:集合论.等势相当于等价关系}，运用中间集合过渡.
+	\item 采用\hyperref[theorem:基数.集合在映射下的分解]{分解}、合并等思想.
+	\item 参照\hyperref[theorem:集合论.施罗德--伯恩斯坦定理]{施罗德--伯恩斯坦定理}，证明两个集合互相主导.
+\end{enumerate}

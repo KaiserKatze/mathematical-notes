@@ -1,0 +1,163 @@
+\section{等势}
+我们时不时想要研究讨论下面的问题：
+两个集合是否具有相同的大小？
+或者说，这两个集合的元素的个数是否相同？
+还是说，一个集合相比于另一个拥有更多的元素？
+
+\begin{definition}\label{definition:基数.等势的定义}
+%@see: 《Elements of Set Theory》 P129 Definition
+%@see: 《实变函数论（第三版）》（周民强） P15 定义1.15
+设\(A,B\)都是集合.
+如果存在一个从\(A\)到\(B\)的双射，
+那么称“\(A\)与\(B\) \DefineConcept{等势}（\(A\) is \emph{equinumerous} to \(B\)）”，
+% 《实变函数论（第三版）》（周民强）将这种情况称为“\(A\)与\(B\) \DefineConcept{对等}”，记为\(A \sim B\).
+记作\(A \approx B\)；
+并把这个映射称为“\(A\)和\(B\)之间的\DefineConcept{一一对应}%
+（\emph{one-to-one correspondence} between \(A\) and \(B\)）”；
+否则称“\(A\)与\(B\)不等势”，
+记作\(A \napprox B\).
+\end{definition}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P129 Example
+%@see: 《实变函数论（第三版）》（周民强） P15 例3
+自然数集\(\omega\)与\(\omega\times\omega\)等势.
+%@see: 《Elements of Set Theory》 P133 Exercise 2.
+这是因为映射\begin{equation*}
+	J_1\colon \omega\times\omega\to\omega,
+	\opair{m,n} \mapsto \frac12[(m+n)^2+3m+n]
+	% 相当于将\(\opair{m,n}\)映成\((1 + 2 + \dotsb + (m+n)) + m\)
+\end{equation*}是双射.
+%@see: 《Elements of Set Theory》 P133 Exercise 1.
+不止如此，映射\begin{equation*}
+	J_2\colon \omega\times\omega\to\omega,
+	\opair{m,n} \mapsto 2^m(2n+1)-1
+\end{equation*}也是双射.
+%TODO
+%Mathematica: Table[1/2 ((m + n)^2 + 3 m + n), {m, 0, 3}, {n, 0, 3}] // TableForm
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P130 Example
+\(\omega\)与\(\mathbb{Q}\)等势.
+%TODO
+\end{example}
+
+\begin{example}\label{example:基数.开区间与全体实数等势1}
+%@see: 《Elements of Set Theory》 P130 Example
+开区间\((0,1)\)与\(\mathbb{R}\)等势.
+这是因为\begin{equation*}
+	f(x) = \tan\frac{\pi(2x-1)}2
+	\quad(0<x<1)
+\end{equation*}是从\((0,1)\)到\(\mathbb{R}\)的双射.
+\end{example}
+
+\begin{example}\label{example:基数.开区间与全体实数等势2}
+%@see: 《实变函数论（第三版）》（周民强） P15 例4
+开区间\((-1,1)\)与\(\mathbb{R}\)等势.
+这是因为\begin{equation*}
+	f(x) = \frac{x}{1-x^2}
+	\quad(-1<x<1)
+\end{equation*}是从\((-1,1)\)到\(\mathbb{R}\)的双射.
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P133 Exercise 3.
+构造开区间\((0,1)\)与\(\mathbb{R}\)之间的一个一一对应，
+使得有理数映成有理数，无理数映成无理数.
+%TODO
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P133 Exercise 4.
+通过构造一一对应，证明：开区间\((0,1)\)与闭区间\([0,1]\)等势.
+%TODO proof
+\end{example}
+
+\begin{example}\label{example:基数.幂集与特征函数空间等势}
+%@see: 《Elements of Set Theory》 P131 Example
+证明：对于任意集合\(A\)，
+总有\(A\)的幂集\(\Powerset A\)与映射空间\(2^A\)等势.
+\begin{proof}
+对于\(A\)的每个子集\(a\)，
+定义从\(A\)到\(\{0,1\}\)的映射\begin{equation*}
+	f_a(x) = \left\{ \begin{array}{cl}
+		1, & x \in a, \\
+		0, & x \in A - a.
+	\end{array} \right.
+\end{equation*}
+注意到\(2=\{0,1\}\)，
+于是\(f_a \in 2^A\).
+再定义映射\begin{equation*}
+	H\colon \Powerset A \to 2^A,
+	a \mapsto f_a.
+\end{equation*}
+对于\(\forall a,b \in \Powerset A\)，
+只要\(a \neq b\)，
+就\(\exists x \in A\)，
+满足\(x \in a\)，但不满足\(x \in b\)，
+这就使得\(f_a(x) = 1\)而\(f_b(x) = 0\)，
+于是\(f_a \neq f_b\)，
+由此可见\(H\)是单射.
+又因为对于\(\forall g \in 2^A\)，
+若记\(G = \Set{ x \in A \given g(x) = 1 }\)，
+则必有\((\forall x \in A - G)[g(x) = 0]\)，
+于是\(H(G) = g\)，
+即\(g \in \ran H\).
+由\(g\)的任意性可知\(\ran H = 2^A\)，
+因此\(H\)是满射.
+既然\(H\)是双射，那么\(\Powerset A \approx 2^A\).
+\end{proof}
+\end{example}
+
+\begin{example}
+全体完全平方数组成的集合
+\(
+	\Set{
+		n^2
+		\given
+		n \in \omega
+	}
+\)
+与自然数集\(\omega\)等势.
+\end{example}
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P15 例2
+全体偶数组成的集合
+\(
+	\Set{
+		2k
+		\given
+		k \in \mathbb{Z}
+	}
+\)
+与整数集\(\mathbb{Z}\)等势.
+\end{example}
+
+\begin{theorem}\label{theorem:集合论.等势相当于等价关系}
+%@see: 《Elements of Set Theory》 P132 Theorem 6A
+%@see: 《Elements of Set Theory》 P133 Exercise 5.
+%@see: 《实变函数论（第三版）》（周民强） P15
+对于任意集合\(A,B,C\)：\begin{itemize}
+	\item \(A \approx A\).
+	\item \(A \approx B \implies B \approx A\).
+	\item \(A \approx B, B \approx C \implies A \approx C\).
+\end{itemize}
+\end{theorem}
+\cref{theorem:集合论.等势相当于等价关系}
+说明\DefineConcept{等势}（equinumerosity）
+和每一个等价关系都一样，
+也具有自反性、对称性、传递性，
+但要注意，它不是一个等价关系，
+这是因为它关注的是全体集合.
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P132 Theorem 6B(a)
+自然数集\(\omega\)与实数集\(\mathbb{R}\)不等势.
+\end{theorem}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P132 Theorem 6B(b)
+没有集合与它的幂集等势.
+\end{theorem}

@@ -1,0 +1,297 @@
+\section{基数排序}
+我们可以利用等势的概念来判定两个集合的大小是否一致，
+但是我们要怎么说明一个集合比另一个集合更大呢？
+
+\begin{definition}
+%@see: 《Elements of Set Theory》 P145 Definition
+设\(A,B\)都是集合.
+当且仅当存在从\(A\)到\(B\)的单射，
+称“\(A\)由\(B\)~\DefineConcept{主导}（\(A\) is \emph{dominated} by \(B\)）”，
+记作\(A \preceq B\)或\(B \succeq A\).
+\end{definition}
+
+\begin{definition}
+设\(A,B\)都是集合.
+定义：\begin{equation*}
+	A \prec B
+	\defiff
+	B \succ A
+	\defiff
+	A \preceq B \land A \napprox B.
+\end{equation*}
+\end{definition}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P145
+\(A \preceq A\).
+\end{example}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P145
+\(A \subseteq B \implies A \preceq B\).
+\begin{proof}
+显然\(A\)上的恒等映射\(1_A\)是从\(A\)到\(B\)的一个单射.
+\end{proof}
+\end{example}
+
+\begin{theorem}\label{theorem:集合论.基数.集合主导关系的等价定义}
+%@see: 《Elements of Set Theory》 P145
+\(
+	A \preceq B
+	\iff
+	(\exists b)[b \subseteq B \limp A \approx b]
+\).
+\begin{proof}
+因为
+	映射\(f\)是从\(A\)到\(B\)的一个映射
+	当且仅当\(f\)是从\(A\)到\(B\)的某个子集上的一个映射，
+所以
+	\(A\)由\(B\)主导
+	当且仅当\(A\)与\(B\)的某个子集等势.
+\end{proof}
+\end{theorem}
+
+\begin{definition}
+设\(A,B\)都是集合.
+定义：\begin{gather}
+	%@see: 《Elements of Set Theory》 P145
+	\card A \leq \card B
+	\defiff A \preceq B, \\
+	\card A \geq \card B
+	\defiff A \succeq B, \\
+	\card A < \card B
+	\defiff A \prec B, \\
+	\card A > \card B
+	\defiff A \succ B.
+\end{gather}
+\end{definition}
+
+\begin{proposition}
+设\(A,B,C\)都是集合，
+则\begin{gather}
+	\card A = \card B
+	\implies
+	\card A \leq \card B, \\
+	\card A \leq \card B,
+	\card B \leq \card C
+	\implies
+	\card A \leq \card C, \\
+	\card A \leq \card B,
+	\card B < \card C
+	\implies
+	\card A < \card C.
+\end{gather}
+\end{proposition}
+
+\begin{proposition}
+设映射\(f\colon A \to B\)，
+则\begin{align*}
+	\text{$f$是单射}
+	\implies
+	\card A \leq \card B, \\
+	\text{$f$是满射}
+	\implies
+	\card A \geq \card B, \\
+	\text{$f$是双射}
+	\implies
+	\card A = \card B.
+\end{align*}
+\end{proposition}
+
+\begin{proposition}
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P31 定理1.7.6
+设\(X\)是一个集合，集合\(Y=\{0,1\}\).
+从\(X\)到\(Y\)的映射空间\(Y^X\)满足\begin{equation*}
+	X \prec Y^X.
+\end{equation*}
+\end{proposition}
+
+\begin{lemma}\label{theorem:基数.集合在映射下的分解}
+%@see: 《实变函数论（第三版）》（周民强） P15 引理1.4（集合在映射下的分解）
+设映射\(f\colon A \to B,
+g\colon B \to A\)，
+则存在集合\(X_1,X_2,Y_1,Y_2\)，
+使得\begin{itemize}
+	\item \(\{X_1,X_2\}\)是\(A\)的一个划分，
+	\(\{Y_1,Y_2\}\)是\(B\)的一个划分，
+	\item \(X_1\)在\(f\)下的像为\(f\ImageOfSetUnderRelation{X_1}=Y_1\)，
+	\(Y_2\)在\(g\)下的像为\(g\ImageOfSetUnderRelation{Y_2}=X_2\).
+\end{itemize}
+\begin{proof}
+我们首先作出如下定义：
+设\(E\)是\(A\)的一个子集（不妨假定\(B - f\ImageOfSetUnderRelation{E} \neq \emptyset\)），
+若\begin{equation*}
+	E \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{E}} = \emptyset,
+	\eqno(1)
+\end{equation*}
+则称“\(E\)是\(A\)中的\DefineConcept{分离集}”.
+
+现将\(A\)中的分离集的全体记为\(\Gamma\).
+令\(X_1 = \bigcup \Gamma\).
+我们有\(X_1 \in \Gamma\).%TODO 为什么？
+事实上，
+对于\(\forall E \in \Gamma\)，
+由于\(X_1 \supseteq E\)，
+故从(1)式可知\(E \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_1}} = \emptyset\)，
+从而有\(X_1 \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_1}} = \emptyset\).
+这说明\(X_1\)不光是\(A\)中的分离集，而且是\(\Gamma\)中对包含关系\(\subseteq\)的最大元.
+
+现在令\(f\ImageOfSetUnderRelation{X_1}=Y_1,
+B-Y_1=Y_2,
+g\ImageOfSetUnderRelation{Y_2}=X_2\).
+首先知道\(B=Y_1 \cup Y_2\).
+其次，由于\(X_1 \cap X_2 = \emptyset\)，
+故又易得\(X_1 \cup X_2 = A\).
+事实上，若不然，那么\(\exists a \in A\)，
+使得\(a \notin X_1 \cup X_2\).
+现在取\(X_3 = X_1 \cup \{a\}\)，
+我们有\begin{equation*}
+	Y_1 = f\ImageOfSetUnderRelation{X_1} \subseteq f\ImageOfSetUnderRelation{X_3},
+	\qquad
+	Y_2 \supseteq B - f\ImageOfSetUnderRelation{X_3},
+\end{equation*}
+从而知\(X_2 \supseteq g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_3}}\).
+这就是说\begin{equation*}
+	X_1 \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_3}} = \emptyset.
+\end{equation*}
+由此可得\begin{equation*}
+	X_3 \cap g\ImageOfSetUnderRelation{B - f\ImageOfSetUnderRelation{X_3}} = \emptyset.
+\end{equation*}
+这与“\(X_1\)是\(\Gamma\)的最大元”相矛盾！
+\end{proof}
+\end{lemma}
+\hyperref[theorem:基数.集合在映射下的分解]{映射分解定理}是由巴拿赫建立的.
+
+\begin{theorem}\label{theorem:集合论.施罗德--伯恩斯坦定理}
+%@see: 《Elements of Set Theory》 P147 Schroder-Bernstein Theorem(a)
+%@see: 《点集拓扑讲义（第四版）》（熊金城） P33 定理1.7.8
+%@see: 《实变函数论（第三版）》（周民强） P16 定理1.5（Cantor-Bernstein定理）
+设\(A,B\)都是集合，则\begin{equation*}
+	A \preceq B,
+	B \preceq A
+	\implies
+	A \approx B.
+\end{equation*}
+\begin{proof}
+根据定义可知，
+存在单射\(f\colon A \to B\)和\(g\colon B \to A\).
+根据\hyperref[theorem:基数.集合在映射下的分解]{映射分解定理}知\begin{equation*}
+	A = X_1 \cup X_2, \qquad
+	B = Y_1 \cup Y_2, \qquad
+	f\ImageOfSetUnderRelation{X_1} = Y_1, \qquad
+	f\ImageOfSetUnderRelation{Y_2} = X_2.
+\end{equation*}
+因为\(f\)和\(g^{-1}\)是双射，
+所以我们可以构造一个从\(A\)到\(B\)的双射：\begin{equation*}
+	h(x) = \left\{ \begin{array}{cl}
+		f(x), & x \in X_1, \\
+		g^{-1}(x), & x \in X_2,
+	\end{array} \right.
+\end{equation*}
+这就说明\(A \approx B\).
+\end{proof}
+\end{theorem}
+\cref{theorem:集合论.施罗德--伯恩斯坦定理}
+常被称为“施罗德--伯恩斯坦定理”.
+不过有时候也把它称为“康托--伯恩斯坦定理”.
+
+最先是康托于1897年证明了该定理，
+但是他的证明利用了一条等价于选择公理的原理.
+后来，施罗德在他于1896年撰写的一篇摘要中发表了这条定理，
+但是他给出的证明是有缺陷的.
+菲利克斯·伯恩斯坦是第一个为这条定理给出完全令人满意的证明的人，
+波莱尔把他的证明发表在自己于1898年出版的
+《函数论讲义（Le\c{c}ons sur la th\'eorie des fonctions）》上.
+但是这里对\cref{theorem:集合论.施罗德--伯恩斯坦定理} 的证明是由巴拿赫给出的.
+
+\begin{corollary}
+%@see: 《Elements of Set Theory》 P147 Schroder-Bernstein Theorem(b)
+设\(\kappa,\lambda\)都是基数.
+如果\(\kappa \leq \lambda\)且\(\lambda \leq \kappa\)，
+则\(\kappa = \lambda\).
+\end{corollary}
+
+利用\cref{theorem:集合论.施罗德--伯恩斯坦定理} 可以得到如下推论.
+\begin{corollary}\label{theorem:集合论.施罗德--伯恩斯坦定理.推论1}
+%@see: 《Elements of Set Theory》 P148 Examples 1.
+设\(A,B,C\)是集合，
+且\(A \subseteq B \subseteq C\).
+若\(A \approx C\)，
+则\(B \approx C\).
+\end{corollary}
+
+\begin{example}\label{example:基数.闭区间与全体实数等势1}
+%@see: 《Elements of Set Theory》 P148 Examples 2.
+%@see: 《实变函数论（第三版）》（周民强） P17 例5
+因为\((-1,1)\subseteq[-1,1]\subseteq\mathbb{R}\)，
+且\((-1,1)\approx\mathbb{R}\)，
+所以\([-1,1]\approx\mathbb{R}\).
+
+因为\((0,1)\subseteq[0,1]\subseteq\mathbb{R}\)，
+且\((0,1)\approx\mathbb{R}\)，
+所以\([0,1]\approx\mathbb{R}\).
+\end{example}
+在\cref{example:基数.闭区间与全体实数等势1} 中，
+我们如果要直接建立\([-1,1]\)与\(\mathbb{R}\)之间的一一对应，就会比较繁琐.
+这是因为想用一个连续函数来表示所需的一一对应是不可能的，
+在以后我们会学到，闭区间上的连续函数的值域仍是闭区间（\cref{theorem:极限.最值定理}）.
+不过，只要运用\cref{theorem:集合论.施罗德--伯恩斯坦定理.推论1}
+以及\cref{example:基数.开区间与全体实数等势2} 的结论，
+就可以间接证明\([-1,1]\)与\(\mathbb{R}\)等势.
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P149 Theorem 6L
+设\(\kappa,\lambda,\mu\)都是基数，
+则\begin{gather}
+	\kappa \leq \lambda
+	\implies
+	\kappa + \mu \leq \kappa + \mu, \\
+	\kappa \leq \lambda
+	\implies
+	\kappa \cdot \mu \leq \lambda \cdot \mu, \\
+	\kappa \leq \lambda
+	\implies
+	\kappa^\mu \leq \lambda^\mu, \\
+	\kappa \leq \lambda,
+	\neg(\kappa = \mu = 0)
+	\implies
+	\mu^\kappa \leq \mu^\lambda.
+\end{gather}
+\end{theorem}
+
+\begin{proposition}
+%@see: 《Real Analysis Modern Techniques and Their Applications Second Edition》（Gerald B. Folland） P7 0.9 Proposition
+设\(A\)是集合，
+则\begin{equation*}
+	\card A < \card(\Powerset A).
+\end{equation*}
+\end{proposition}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P148 Examples 4.
+\(\mathbb{R}\approx2^\omega\)，
+\(\mathbb{R}\approx\Powerset\omega\).
+\end{example}
+
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P17 思考题 1.
+设\(A_1 \subseteq A_2,
+B_1 \subseteq B_2,
+A_1 \approx B_1,
+A_2 \approx B_2\).
+考察\((A_2 - A_2) \approx (B_2 - B_1)\)是否成立.
+%TODO
+\end{example}
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P17 思考题 2.
+设\((A - B) \approx (B - A)\).
+考察\(A \approx B\)是否成立.
+%TODO
+\end{example}
+\begin{example}
+%@see: 《实变函数论（第三版）》（周民强） P18 思考题 3.
+设\(A \subseteq B,
+A \approx (A \cup C)\).
+考察\(B \approx (B \cup C)\)是否成立.
+%TODO
+\end{example}

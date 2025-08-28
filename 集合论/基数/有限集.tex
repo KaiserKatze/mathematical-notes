@@ -1,0 +1,342 @@
+\section{有限集}
+\subsection{有限集，无限集}
+\begin{definition}
+%@see: 《Elements of Set Theory》 P133 Definition
+设\(A\)是集合.
+当且仅当存在自然数\(n\)与之等势时，
+称“\(A\)是\DefineConcept{有限的}（finite）”
+或“\(A\)是\DefineConcept{有限集}”；
+否则称“\(A\)是\DefineConcept{无限的}（infinite）”
+或“\(A\)是\DefineConcept{无限集}”，
+即\begin{gather}
+	\text{\(A\)是有限的}
+	\defiff
+	(\exists n\in\omega)[A \approx n]; \\
+	\text{\(A\)是无限的}
+	\defiff
+	(\forall n\in\omega)[A \napprox n].
+\end{gather}
+\end{definition}
+
+\begin{example}
+任一自然数是有限集.
+\end{example}
+
+\subsection{鸽巢原理}
+\begin{theorem}\label{theorem:集合论.鸽巢原理}
+%@see: 《Elements of Set Theory》 P134 Pigeonhole Principle
+没有自然数与它的真子集等势.
+\begin{proof}
+下面证明对于每一个自然数\(n \in \omega\)，
+任意一个从\(n\)到\(n\)的单射\(f\)都是满射.
+用数学归纳法.
+令\begin{equation*}
+	T \defeq \Set{
+		n \in \omega
+		\given
+		(\forall f \in n^n)
+		[\text{$f$是单射} \implies \ran f = n]
+	}.
+\end{equation*}
+显然\(0 \in T\)，
+% 映射空间\(\emptyset^\emptyset=\Set{\emptyset}\)
+这是因为从\(0\)到\(0\)的唯一一个映射是\(\emptyset\)，并且它的值域是\(0\).
+假设自然数\(k \in T\)，
+\(k^+\)是\(k\)的后继，
+且\(f\)是从\(k^+\)到\(k^+\)的单射.
+要证\(k^+ \in T\)，
+只需证\(\ran f = k^+\).
+注意到\(f\)在\(k\)上的限制\(f \SetRestrict k\)
+将\(k\)映射到\(k^+\)里.
+下面分情况讨论：\begin{itemize}
+	\item 假设集合\(k\)对\(f\)封闭，
+	也就是说，\(f \SetRestrict k\)将\(k\)映射到\(k\)里.
+	根据归纳假设有\(k \in T\)，
+	而\(f \SetRestrict k\)作为一个从\(k\)到\(k\)的单射，
+	必定成立\begin{equation*}
+		\ran(f \SetRestrict k) = k.
+	\end{equation*}
+	既然\(f\)是单射，
+	根据定义\begin{equation*}
+		(\forall y \in \ran f)
+		(\exists! x)
+		[\opair{x,y} \in f],
+	\end{equation*}
+	而\begin{equation*}
+		k^+ - \ran(f \SetRestrict k) = \{k\},
+	\end{equation*}
+	那么\(f(k)\)的取值只可能是\(k\)，
+	因此\(\ran f = k \cup \{k\} = k^+\).
+
+	\item 假设集合\(k\)对\(f\)不封闭，
+	也就是说，存在一个小于\(k\)的数\(p\)满足\(f(p) = k\).
+	在这种情况下，我们可以交换\(p\)和\(k\)这两个数在映射\(f\)下的像，
+	定义映射\(g\colon k^+ \to k^+\)，
+	令\begin{equation*}
+		g(x) = \left\{ \begin{array}{cl}
+			f(k), & x = p, \\
+			f(p), & x = k, \\
+			f(x), & \text{其他},
+		\end{array} \right.
+	\end{equation*}
+	那么\(g\)可以将\(k^+\)映射到\(k^+\)里，
+	且\(k\)对\(g\)封闭.
+	于是由上一种情况可知，\(\ran g = k^+\).
+	因为\(\ran f = \ran g\)，
+	所以\(\ran f = k^+\).
+\end{itemize}
+综上所述，不论是在哪种情况下，均有\(\ran f = k^+\).
+于是\(T\)是归纳的，且\(T = \omega\).
+\end{proof}
+\end{theorem}
+
+我们把\cref{theorem:集合论.鸽巢原理}
+称为\DefineConcept{鸽巢原理}（Pigeonhole Principle）.
+
+\begin{corollary}\label{theorem:集合论.鸽巢原理.推论1}
+%@see: 《Elements of Set Theory》 P135 Corollary 6C
+没有有限集与它的真子集等势.
+\begin{proof}
+假设\(A\)是有限集，
+根据定义，存在自然数\(n\)，使得\(A\)与\(n\)等势，
+不妨设\(g\)是\(A\)和\(n\)之间的一个一一对应.
+用反证法.
+假设\(A\)和它的某个真子集\(A'\)之间存在一个一一对应\(f\).
+
+如\cref{figure:基数.没有有限集与它的真子集等势} 所示，
+考虑复合映射\begin{equation*}
+	h \defeq g \circ f \circ g^{-1}.
+\end{equation*}
+显然，\(h\)将\(n\)映射到\(n\)里.
+因为\(g\)是双射，
+%TODO “双射的逆是双射”缺乏依据
+所以\(g^{-1}\)也是双射.
+因为\(g,g^{-1},f\)都是单射，
+所以由\cref{example:集合论.两个单根集的复合是单根的} 可知，
+\(h\)是单射.
+考虑到\((\forall a \in A - \ran f)[g(a) \in n - C]\)，
+%TODO 不知道这里翻译正不正确，原话说的是：Consider any a in \(A - \ran f\); then \(g(a) \in n - C\).
+可以看出\(h\)的值域\(\ran h = C\)是\(n\)的真子集.
+%TODO 怎么看出来的？
+于是\(n\)与\(\ran h\)等势，
+与鸽巢原理矛盾！
+\begin{figure}[hbt]
+	\centering
+	\tikzset{
+		myset/.style={x radius=2cm,y radius=1cm}
+	}
+	\def\labeloffset{1cm}
+	\begin{tikzpicture}
+		% \draw[help lines, color=gray!30, dashed] (0,0) grid (-6,-4);
+		\draw(0,0)circle[myset]node[above=\labeloffset]{$n$};
+		\draw(-6,0)circle[myset]node[above=\labeloffset]{$A$};
+		\draw(-6,-4)circle[myset]node[below=\labeloffset]{$A$};
+		\draw(0,-4)circle[myset]node[below=\labeloffset]{$n$};
+		\draw({2*cos(120)-6},{sin(120)-4})--({2*cos(120)-6},{-sin(120)-4});
+		\draw({2*cos(120)},{sin(120)-4})--({2*cos(120)},{-sin(120)-4});
+		\fill(-7.3,-4.3)circle(2pt)node[above left]{$a$}
+			++(5.8,0)circle(2pt)node[above]{$g(a)$};
+		\draw(-5.7,-4)node{$\ran f$}
+			++(6,0)node{$C$};
+		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
+			\draw(-2,0)--(-4,0)node[midway,above]{$g^{-1}$};
+			\draw(-6,-1)--(-6,-3)node[midway,left]{$f$};
+			\draw(-4,-4)--(-2,-4)node[midway,below]{$g$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:基数.没有有限集与它的真子集等势}
+\end{figure}
+\end{proof}
+\end{corollary}
+
+\begin{corollary}\label{theorem:集合论.鸽巢原理.推论2}
+%@see: 《Elements of Set Theory》 P136 Corollary 6D(a)
+任一集合，如果与其真子集等势，就是无限的.
+\begin{proof}
+这是\cref{theorem:集合论.鸽巢原理.推论1} 的逆否命题.
+\end{proof}
+\end{corollary}
+
+\begin{corollary}\label{theorem:集合论.鸽巢原理.推论3}
+%@see: 《Elements of Set Theory》 P136 Corollary 6D(b)
+自然数集\(\omega\)是无限的.
+\begin{proof}
+鉴于映射\(\sigma\colon \omega \to \omega-\{0\}, n \mapsto n^+\)是满射，
+可知\(\omega \approx \omega-\{0\} \subset \omega\)，
+于是由\cref{theorem:集合论.鸽巢原理.推论2} 可知\(\omega\)是无限集.
+\end{proof}
+\end{corollary}
+
+\begin{corollary}
+%@see: 《Elements of Set Theory》 P136 Corollary 6E
+任一有限集总与唯一一个自然数等势.
+\begin{proof}
+假设有限集\(A\)与自然数\(m\)等势，又与自然数\(n\)等势.
+那么有\(m\)与\(n\)等势.
+由\cref{theorem:集合论.自然数集的三一律,theorem:集合论.自然数集的三一律.推论1} 可知，
+自然数的序关系只有以下三种情况：
+要么成立\(m = n\)，要么成立\(m \subset n\)，要么成立\(n \subset m\).
+由\(m \approx n\)可知\(m \subset n\)和\(n \subset m\)都是不可能的.
+因此只能是\(m = n\)，唯一性得证.
+\end{proof}
+\end{corollary}
+
+\subsection{有限集的基数}
+\begin{definition}
+%@see: 《Elements of Set Theory》 P136
+设\(A\)是有限集.
+满足\(A \approx n\)的自然数\(n\)，
+称为“\(A\)的\DefineConcept{基数}（cardinal number）\footnote{%
+有的地方也将其称为\DefineConcept{元数}或\DefineConcept{浓度}.}”，
+记作\(\card A\)或\(\abs{A}\).
+\end{definition}
+
+\begin{example}
+%@see: 《Elements of Set Theory》 P136
+\((\forall n\in\omega)[\card n = n]\).
+\end{example}
+
+\begin{property}
+\((\forall A)[A \approx \card A]\).
+\end{property}
+
+\begin{property}
+\(A \approx B \iff \card A = \card B\).
+\begin{proof}
+假设\(\card A = \card B\)，那么\(A \approx \card B\)和\(B \approx \card A\).
+利用传递性，再由\(A \approx \card A\)和\(B \approx \card B\)便得\(A \approx B\).
+\end{proof}
+\end{property}
+
+\begin{definition}
+定义：\(\card A \neq \card B \defiff A \napprox B\).
+\end{definition}
+
+\begin{example}
+设\(a,b,c,d\)各不相同，
+则\(\card\{a,b,c,d\} = 4\)，
+这是因为\(\{a,b,c,d\} \approx 4\).
+\end{example}
+
+%@see: 《Elements of Set Theory》 P136
+% 原话是：selecting a one-to-one correspondence is the process called `counting'.
+挑选一个一一对应的过程，
+称为\DefineConcept{计数}（counting）.
+
+\begin{property}
+设\(A,B\)都是集合，且\(\card A = \card B\).
+\begin{itemize}
+	\item 如果\(A\)是有限集，则\(B\)也是有限集.
+	\item 如果\(A\)是无限集，则\(B\)也是无限集.
+\end{itemize}
+\end{property}
+
+从\cref{example:基数.幂集与特征函数空间等势} 可以推出任一有限集的所有子集的个数.
+\begin{theorem}
+设\(A\)是有限集，
+则\begin{equation}
+	\card \Powerset A
+	= 2^{\card A}.
+\end{equation}
+\end{theorem}
+\begin{remark}
+换一套记号，可能更有利于记忆：\begin{equation*}
+	\abs{2^A}
+	= 2^{\abs{A}}.
+\end{equation*}
+\end{remark}
+
+\begin{lemma}\label{theorem:基数.自然数n的真子集只能与小于n的自然数等势}
+%@see: 《Elements of Set Theory》 P137 Lemma 6F
+如果\(C\)是自然数\(n\)的真子集，
+那么存在\(m<n\)使得\(C \approx m\).
+\begin{proof}
+下面我们证明每一个自然数\(n\)的任意一个真子集都与\(n\)的某个元素等势.
+用数学归纳法.
+令\begin{equation*}
+	T \defeq \Set{
+		n \in \omega
+		\given
+		(\forall c \subset n)
+		(\exists m \in n)
+		[c \approx m]
+	}.
+\end{equation*}
+由于\(0 = \emptyset\)没有真子集，
+所以\(0 \in T\).
+假设自然数\(k \in T\)，
+考虑\(k\)的后继\(k^+\)的一个真子集\(C\)，
+分情况讨论.
+\begin{itemize}
+	\item 假设\(C = k\)，
+	那么\(C \approx k \in k^+\).
+
+	\item 假设\(C \subset k\)，
+	由于\(k \in T\)，于是存在\(m \in k \in k^+\)，使得\(C \approx m\).
+
+	\item 假设\(k \in C\)，
+	那么\(C = (C \cap k) \cup \{k\}\)
+	且\(C \cap k \subset k\).
+	因为\(k \in T\)，
+	所以存在\(m \in k\)使得\(C \cap k \approx m\).
+	假如\(f\)是\(C \cap k\)和\(m\)之间的一一对应，
+	那么\(f \cup \{\opair{k,m}\}\)就是\(C\)和\(m^+\)之间的一一对应.
+	鉴于\(m \in k\)，势必有\(m^+ \in k^+\).
+	因此\(C \approx m^+ \in k^+ \in T\).
+\end{itemize}
+综上所述，\(T\)是归纳的，且\(T = \omega\).
+\end{proof}
+\end{lemma}
+
+\begin{theorem}
+%@see: 《Elements of Set Theory》 P138 Corollary 6G
+任一有限集的任一子集也是有限的.
+\begin{proof}
+假设\(A \subseteq B\)，
+又假设\(f\)是\(B\)和某个自然数\(n\)之间的一一对应，
+那么\begin{equation*}
+	A \approx f\ImageOfSetUnderRelation{A} \subseteq n.
+\end{equation*}
+由\cref{theorem:基数.自然数n的真子集只能与小于n的自然数等势} 可知，
+存在自然数\(m\)满足\(m \ineq n\)，
+使得\(f\ImageOfSetUnderRelation{A} \approx m\).
+因此\(A \approx m \ineq n \in \omega\).
+\end{proof}
+\end{theorem}
+
+\subsection{基数概念的推广}
+我们可以看出，对于任意两个有限集\(A\)和\(B\)，
+我们有\begin{equation*}
+	A \approx \card A
+	\quad\text{和}\quad
+	\card A = \card B
+	\iff
+	A \approx B.
+\end{equation*}
+
+这让我们不禁思考无限集是否具有同样的性质，希望能够找到某种“数字”用以衡量无限集的大小，
+至于这种“数字”属于什么集合，就无足轻重了，
+就好比我们不关心数字\(2\)属于哪一个集合一样.
+因此我们需要扩展基数的定义，让它可以衡量无限集的大小，
+其中的核心需求是：
+对于任意集合\(A\)（不论它是有限的，还是有限的），
+定义\(\card A\)，
+使得\begin{equation*}
+	\card A = \card B
+	\iff
+	A \approx B
+\end{equation*}恒成立.
+
+考虑所有基数等于\(\alpha\)的集合的汇集\begin{equation*}
+	\Ka \defeq \Set{ X \given \card X = \alpha }.
+\end{equation*}
+只要\(\Ka\)中有1个集合是有限集，
+那么\(\Ka\)中的所有集合都是有限集，
+这种情况下，我们将\(\alpha\)称为\DefineConcept{有限基数}（finite cardinal）；
+反之，则称其为\DefineConcept{无限基数}（infinite cardinal）.
+显然，所有自然数都是有限基数，
+而\(\card\omega,
+\card\mathbb{R},
+\card\Powerset\omega,
+\card\Powerset\Powerset\omega\)都是无限基数.
