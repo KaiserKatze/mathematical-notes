@@ -339,6 +339,94 @@
 当\(F\)是有限域\(F_q\)时，
 把\(\mathcal{P}(F_q^2)\)称为\DefineConcept{有限射影平面}.
 
+\begin{example}
+%@see: 《解析几何》（丘维声） P260
+取有限域\(F_2 \defeq \mathbb{Z}_2 = \{\EquivalenceClassO{0},\EquivalenceClassO{1}\}\)，
+其中\(\EquivalenceClassO{0}\)表示偶数类，\(\EquivalenceClassO{1}\)表示奇数类.
+令\(V \defeq F_2^3\)，
+即\(V\)是\(F_2\)上的3维线性空间.
+显然\(\card V = 8\).
+\(V\)的每个非零向量\(\alpha\)生成一个1维子空间\(\Span\{\alpha\} = \{0,\alpha\}\)，
+因此\(\mathcal{P}(V)\)中有7个点.
+\(V\)的2维子空间\(\Span\{\alpha,\beta\}\)的个数为\(
+	\frac{7\cdot6}{3\cdot2} = 7
+\)，
+即\(\mathcal{P}(V)\)中有7条直线.
+由于\(
+	\Span\{\alpha,\beta\}
+	= \{0,\alpha,\beta,\alpha+\beta\}
+\)，
+因此每条直线\(\Span\{\alpha,\beta\}\)上恰好有3个点：\(
+	\Span\{\alpha\},
+	\Span\{\beta\},
+	\Span\{\alpha+beta\}
+\).
+任取\(\alpha \in V\)，
+把它扩充成\(V\)的一个基\(\alpha,\beta,\gamma\)，
+则\(
+	\Span\{\alpha,\beta\},
+	\Span\{\alpha,\gamma\},
+	\Span\{\alpha,\beta+\gamma\}
+\)都是2维子空间.
+由于\(
+	\Span\{\alpha\} \subseteq \Span\{\alpha,\beta\},
+	\Span\{\alpha\} \subseteq \Span\{\alpha,\gamma\},
+	\Span\{\alpha\} \subseteq \Span\{\alpha,\beta+\gamma\}
+\)，
+因此点\(\Span\{\alpha\}\)在三条直线\(
+	\Span\{\alpha,\beta\},
+	\Span\{\alpha,\gamma\},
+	\Span\{\alpha,\beta+\gamma\}
+\)上.
+假如点\(\Span\{\alpha\}\)还在第四条直线\(\Span\{\alpha,\delta\}\)上，
+由于\(\delta\)可以由\(\alpha,\beta,\gamma\)线性表出
+（不妨设\(\delta = k_1 \alpha + k_2 \beta + k_3 \gamma\)），
+那么\begin{equation*}
+	\Span\{\alpha,\delta\}
+	= \Span\{\alpha,k_1 \alpha + k_2 \beta + k_3 \gamma\}
+	= \Span\{\alpha,k_2 \beta\} + \Span\{\alpha,k_3 \gamma\},
+\end{equation*}
+从而\(
+	\Span\{\alpha,\delta\}
+	\in
+	\{
+		\Span\{\alpha,\beta\},
+		\Span\{\alpha,\gamma\},
+		\Span\{\alpha,\beta+\gamma\}
+	\}
+\).
+这证明了点\(\Span\{\alpha\}\)恰好在三条线上.
+我们可以用\cref{figure:射影平面.有限射影平面}
+形象地表现出\(\mathcal{P}(V)\)上的7个点、7条直线，以及它们之间的关联关系.
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\sf}{2}  % 放缩图形大小
+		\coordinate(pttt)at(0,0);
+		\coordinate(ptff)at(0,2*\sf);
+		\coordinate(pftt)at(0,-\sf);
+		\coordinate(pfft)at({sqrt(3)*\sf},-\sf);
+		\coordinate(pftf)at({-sqrt(3)*\sf},-\sf);
+		\coordinate(pttf)at($.5*(pftf)+.5*(ptff)$);
+		\coordinate(ptft)at($.5*(pfft)+.5*(ptff)$);
+		\fill(pttt)circle(2pt)node[above]{$(\EquivalenceClassO{1},\EquivalenceClassO{1},\EquivalenceClassO{1})$};
+		\fill(ptff)circle(2pt)node[above]{$(\EquivalenceClassO{1},\EquivalenceClassO{0},\EquivalenceClassO{0})$};
+		\fill(pftt)circle(2pt)node[below]{$(\EquivalenceClassO{0},\EquivalenceClassO{1},\EquivalenceClassO{1})$};
+		\fill(pfft)circle(2pt)node[below right]{$(\EquivalenceClassO{0},\EquivalenceClassO{0},\EquivalenceClassO{1})$};
+		\fill(pftf)circle(2pt)node[below left]{$(\EquivalenceClassO{0},\EquivalenceClassO{1},\EquivalenceClassO{0})$};
+		\fill(pttf)circle(2pt)node[left]{$(\EquivalenceClassO{1},\EquivalenceClassO{1},\EquivalenceClassO{0})$};
+		\fill(ptft)circle(2pt)node[right]{$(\EquivalenceClassO{1},\EquivalenceClassO{0},\EquivalenceClassO{1})$};
+		\draw(pttt)circle(\sf);
+		\draw(ptff)--(pftf)--(pfft)--(ptff);
+		\draw(ptff)--(pftt);
+		\draw(pftf)--(ptft);
+		\draw(pttf)--(pfft);
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:射影平面.有限射影平面}
+\end{figure}
+\end{example}
+
 从射影平面\(\mathcal{P}(F^2)\)的构造受到启发，我们引出下述概念.
 \begin{definition}
 %@see: 《解析几何》（丘维声） P260 定义1.4
