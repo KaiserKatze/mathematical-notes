@@ -1,11 +1,11 @@
 \chapter{复数}
 \section{复数的形式与运算}
 \subsection{复数的三角形式}
-\begin{definition}[复数的三角形式]
+\begin{definition}%[复数的三角形式]
 由于平面直角坐标系上的点\((x,y)\)也可以用极坐标\(\opair{r,\theta}\)表示，
 因此根据极坐标和直角坐标间的关系，
-复数\(z=x+\iu y\)也可以表示成\begin{equation*}
-	z = r(\cos\theta+\iu\sin\theta).
+复数\(z = x + \iu y\)也可以表示成\begin{equation*}
+	z = r(\cos\theta+ \iu \sin\theta).
 \end{equation*}
 这就是复数\(z\)的\DefineConcept{三角形式}，
 其中\begin{equation*}
@@ -19,7 +19,7 @@
 %@see: https://mathworld.wolfram.com/ComplexArgument.html
 \end{definition}
 
-对于复数\(z=x+\iu y=r(\cos\theta+\iu\sin\theta)\)，
+对于复数\(z = x + \iu y=r(\cos\theta+ \iu \sin\theta)\)，
 使得\(\tan\theta=\frac{y}{x}\)成立的\(\theta=\Arg z\)值有无穷多个.
 规定落在区间\((-\pi,\pi]\)内的辐角值为\(\Arg z\)的\DefineConcept{主值}，
 或称之为\DefineConcept{主辐角}，
@@ -40,7 +40,7 @@
 \end{enumerate}
 
 \begin{theorem}
-设非零复数\(z=r(\cos\theta+\iu\sin\theta)\)的主辐角为\(\arg{z} \in (-\pi,\pi]\)，则有\begin{equation*}
+设非零复数\(z=r(\cos\theta+ \iu \sin\theta)\)的主辐角为\(\arg{z} \in (-\pi,\pi]\)，则有\begin{equation*}
 \def\arraystretch{1.5}
 \arg{z} = \left\{ \begin{array}{lc}
 \arctan{\frac{y}{x}}, &\quad x > 0, \\
@@ -53,7 +53,7 @@
 \end{theorem}
 
 \begin{theorem}
-设非零复数\(z=x+\iu y=r(\cos\theta+\iu\sin\theta)\)的主辐角为\(\arg{z} = \alpha\)，则\begin{equation*}
+设非零复数\(z = x + \iu y=r(\cos\theta+ \iu \sin\theta)\)的主辐角为\(\arg{z} = \alpha\)，则\begin{equation*}
 \tan{\frac{\alpha}{2}}
 = \frac{\sin\alpha}{1+\cos\alpha}
 = \frac{r\sin\alpha}{r+r\cos\alpha}
@@ -65,39 +65,48 @@
 \end{equation*}
 \end{theorem}
 
-\begin{lemma}
-设非零复数\(z_1=\cos\theta_1+\iu\sin\theta_1\)、\(z_2=\cos\theta_2+\iu\sin\theta_2\)，则\begin{equation*}
-z_1z_2 = (\cos\theta_1+\iu\sin\theta_1)(\cos\theta_2+\iu\sin\theta_2)
-= \cos(\theta_1+\theta_2) + \iu\sin(\theta_1+\theta_2),
-\end{equation*}\begin{equation*}
-\frac{z_1}{z_2} = \frac{\cos\theta_1+\iu\sin\theta_1}{\cos\theta_2+\iu\sin\theta_2}
-= \cos(\theta_1-\theta_2) + \iu\sin(\theta_1-\theta_2),
-\end{equation*}
-\end{lemma}
+\begin{theorem}
+设复数\(
+	z_1 = r_1 (\cos\theta_1 + \iu \sin\theta_1),
+	z_2 = r_2 (\cos\theta_2 + \iu \sin\theta_2)
+\)，
+则\begin{gather*}
+	z_1 z_2
+	% = (\cos\theta_1+ \iu \sin\theta_1)(\cos\theta_2+ \iu \sin\theta_2)
+	= r_1 r_2 [\cos(\theta_1+\theta_2) + \iu \sin(\theta_1+\theta_2)], \\
+	\frac{z_1}{z_2}
+	% = \frac{\cos\theta_1+ \iu \sin\theta_1}{\cos\theta_2+ \iu \sin\theta_2}
+	= \frac{r_1}{r_2} [\cos(\theta_1-\theta_2) + \iu \sin(\theta_1-\theta_2)]
+	\quad(z_2\neq0), \\
+	z_1^n = r_1^n (\cos n\theta_1 + \iu \sin n\theta_1), \\
+	z_1^{\frac1n} = \sqrt[n]{r_1} \left( \cos\frac{2k\pi+\theta}{n} + \iu \sin\frac{2k\pi+\theta}{n} \right)
+	\quad(k=0,1,2,\dotsc,n-1).
+\end{gather*}
+\end{theorem}
 
 \subsection{复数的指数形式}
 根据以上引理，只要定义
 \begin{equation}\label{equation:复数.欧拉公式}
-	e^{\iu\theta}
+	e^{\iu \theta}
 	\defeq
-	\cos\theta+\iu\sin\theta,
+	\cos\theta+ \iu \sin\theta,
 \end{equation}
 就有\begin{equation*}
-	e^{\iu\theta_1} e^{\iu\theta_2} = e^{\iu(\theta_1+\theta_2)}
+	e^{\iu \theta_1} e^{\iu \theta_2} = e^{\iu(\theta_1+\theta_2)}
 	\quad \text{和} \quad
-	\frac{e^{\iu\theta_1}}{e^{\iu\theta_2}} = e^{\iu(\theta_1-\theta_2)}
+	\frac{e^{\iu \theta_1}}{e^{\iu \theta_2}} = e^{\iu(\theta_1-\theta_2)}
 \end{equation*}成立，
-继而可以将任意非零复数\(z=x+\iu y\)写成指数形式，即\begin{equation*}
-	z = r e^{\iu\theta}.
+继而可以将任意非零复数\(z = x + \iu y\)写成指数形式，即\begin{equation*}
+	z = r e^{\iu \theta}.
 \end{equation*}
 
 复数0的辐角无意义，不能写成指数形式.
 
-\begin{theorem}[指数形式下的复数的乘除法]
-设非零复数\(z_1 = r_1 e^{\iu\theta_1}\)、\(z_2 = r_2 e^{\iu\theta_2}\)，则\begin{equation*}
-z_1 z_2 = r_1 e^{\iu\theta_1} \cdot r_2 e^{\iu\theta_2} = r_1 r_2 e^{\iu(\theta_1+\theta_2)}
+\begin{theorem}%[指数形式下的复数的乘除法]
+设非零复数\(z_1 = r_1 e^{\iu \theta_1}\)、\(z_2 = r_2 e^{\iu \theta_2}\)，则\begin{equation*}
+z_1 z_2 = r_1 e^{\iu \theta_1} \cdot r_2 e^{\iu \theta_2} = r_1 r_2 e^{\iu(\theta_1+\theta_2)}
 \end{equation*}\begin{equation*}
-\frac{z_1}{z_2} = \frac{r_1 e^{\iu\theta_1}}{r_2 e^{\iu\theta_2}} = \frac{r_1}{r_2} e^{\iu(\theta_1-\theta_2)}
+\frac{z_1}{z_2} = \frac{r_1 e^{\iu \theta_1}}{r_2 e^{\iu \theta_2}} = \frac{r_1}{r_2} e^{\iu(\theta_1-\theta_2)}
 \end{equation*}
 \end{theorem}
 
@@ -116,8 +125,8 @@ z_1 z_2 = r_1 e^{\iu\theta_1} \cdot r_2 e^{\iu\theta_2} = r_1 r_2 e^{\iu(\theta_
 成立.
 \end{property}
 
-\begin{theorem}[指数形式下复数相等条件]
-非零复数\(z_1=r_1 e^{\iu\theta_1}\)、\(z_2=r_2 e^{\iu\theta_2}\)相等的充分必要条件是：\begin{equation*}
+\begin{theorem}%[指数形式下复数相等条件]
+非零复数\(z_1=r_1 e^{\iu \theta_1}\)、\(z_2=r_2 e^{\iu \theta_2}\)相等的充分必要条件是：\begin{equation*}
 \left\{ \begin{array}{l}
 r_1 = r_2 \\
 \theta_1 = \theta_2 + 2k\pi
@@ -128,12 +137,12 @@ r_1 = r_2 \\
 我们可以利用指数形式的复数作出对三角函数和积互化公式的证明.
 由于\begin{equation*}
 e^{\iu(\alpha+\beta)}
-= e^{\iu\alpha} e^{\iu\beta}
+= e^{\iu \alpha} e^{\iu \beta}
 \end{equation*}
 可以写为代数形式
 \begin{equation*}\begin{aligned}
-\cos(\alpha+\beta)+\iu\sin(\alpha+\beta)
-&= (\cos\alpha+\iu\sin\alpha)(\cos\beta+\iu\sin\beta) \\
+\cos(\alpha+\beta)+ \iu \sin(\alpha+\beta)
+&= (\cos\alpha+ \iu \sin\alpha)(\cos\beta+ \iu \sin\beta) \\
 &= (\cos\alpha \cos\beta - \sin\alpha \sin\beta)
     + \iu(\cos\alpha \sin\beta + \sin\alpha \cos\beta),
 \end{aligned}\end{equation*}
@@ -160,20 +169,20 @@ e^{\iu(\alpha+\beta)}
 \begin{definition}
 设\(n\)是正整数，则\(z^n\)表示\(n\)个\(z\)的乘积.
 规定：\(0^n=0\)，\(z^0=1\)，\(z^{-n}=\frac{1}{z^n}\).
-当\(z=re^{\iu\theta} \neq 0\)时，\begin{equation*}
-z^n = r^n e^{in\theta} = r^n(\cos n\theta+\iu\sin n\theta),
+当\(z=re^{\iu \theta} \neq 0\)时，\begin{equation*}
+z^n = r^n e^{in\theta} = r^n(\cos n\theta+ \iu \sin n\theta),
 \quad n \in \mathbb{Z}.
 \end{equation*}
 \end{definition}
 
-\begin{theorem}[棣莫弗公式]
+\begin{theorem}%[棣莫弗公式]
 \begin{equation}\label{equation:复数.棣莫弗公式}
-	(\cos\theta+i\sin\theta)^n = \cos{n\theta}+\iu\sin{n\theta}
+	(\cos\theta+i\sin\theta)^n = \cos{n\theta}+ \iu \sin{n\theta}
 \end{equation}
 \end{theorem}
 我们称\cref{equation:复数.棣莫弗公式} 为\DefineConcept{棣莫弗公式}.
 
-\begin{definition}[复数的方根]
+\begin{definition}%[复数的方根]
 已知\(z\in\mathbb{C}\)，
 关于复数\(w\)的方程\begin{equation*}
 	w^n = z \quad (n \geq 2, n \in \mathbb{Z})
@@ -183,8 +192,8 @@ z^n = r^n e^{in\theta} = r^n(\cos n\theta+\iu\sin n\theta),
 
 当\(z=0\)时，以上方程只有唯一解\(w = 0\).
 
-当\(z \neq 0\)时，设\(z=re^{\iu\theta}\)，\(w=\rho e^{\iu\phi}\)（其中\(r,\theta,\rho,\phi\in\mathbb{R}^+\)）代入原方程，得\begin{equation*}
-\rho^n e^{\iu n \phi} = r e^{\iu\theta}
+当\(z \neq 0\)时，设\(z=re^{\iu \theta}\)，\(w=\rho e^{\iu \phi}\)（其中\(r,\theta,\rho,\phi\in\mathbb{R}^+\)）代入原方程，得\begin{equation*}
+\rho^n e^{\iu n \phi} = r e^{\iu \theta}
 \end{equation*}根据复数相等的充分必要条件，得\begin{equation*}
 \left\{ \begin{array}{l}
 \rho^n = r \\
@@ -198,8 +207,8 @@ w_k = (\sqrt[n]{z})_k = \sqrt[n]{r} e^{\iu \frac{\theta + 2k\pi}{n}} \quad (k=0,
 \end{definition}
 
 在复平面上，\(\sqrt[n]{z}\)的不同值\(w_k\)表示为\begin{equation*}
-w_k = w_0 e^{\iu\frac{2k\pi}{n}} \quad (k \in \mathbb{Z}),
-\end{equation*}对给定的复数\(z\)，由\(z\)的模\(r\)和辐角\(\theta\)先在复平面上确定\(w_0 = \sqrt[n]{r} e^{\iu\frac{\theta}{n}}\)，然后将\(w_0\)依次绕原点旋转\begin{equation*}
+w_k = w_0 e^{\iu \frac{2k\pi}{n}} \quad (k \in \mathbb{Z}),
+\end{equation*}对给定的复数\(z\)，由\(z\)的模\(r\)和辐角\(\theta\)先在复平面上确定\(w_0 = \sqrt[n]{r} e^{\iu \frac{\theta}{n}}\)，然后将\(w_0\)依次绕原点旋转\begin{equation*}
 \def\f{\frac{2\pi}{n}}
 \f,\,2\cdot\f,\,3\cdot\f,\,\dots,\,(n-1)\cdot\f,
 \end{equation*}包括\(w_0\)在内，就在复平面上得到\(\sqrt[n]{z}\)的总共\(n\)个值的几何表示.它们均匀地分布在中心在原点、半径为\(\sqrt[n]{r}\)的圆周上，即它们是内接于此圆周的正\(n\)角形的\(n\)个顶点.
@@ -214,19 +223,19 @@ w_k = w_0 e^{\iu\frac{2k\pi}{n}} \quad (k \in \mathbb{Z}),
 F\left(\frac{z+\ComplexConjugate{z}}{2},\frac{z-\ComplexConjugate{z}}{2\iu}\right)=0.
 \end{equation*}
 
-\begin{example}[射线]
+\begin{example}%[射线]
 从点\(z_0\)出发，与正实轴夹角为\(\theta_0\)的射线的复变数方程为\begin{equation*}
 \arg(z-z_0) = \theta_0.
 \end{equation*}
 \end{example}
 
-\begin{example}[线段]
+\begin{example}%[线段]
 连接\(z_1\)、\(z_2\)两点的线段的参数方程为\begin{equation*}
 z = z_1 + t(z_2 - z_1), \qquad t \in [0,1].
 \end{equation*}
 \end{example}
 
-\begin{example}[直线]
+\begin{example}%[直线]
 过\(z_1\)、\(z_2\)两点的直线的参数方程为\begin{equation*}
 z = z_1 + t(z_2 - z_1), \qquad t \in (-\infty,+\infty).
 \end{equation*}
@@ -235,13 +244,13 @@ z = z_1 + t(z_2 - z_1), \qquad t \in (-\infty,+\infty).
 虚轴的方程为\(\Re z = 0\).
 \end{example}
 
-\begin{example}[三点共线的充分必要条件]
+\begin{example}%[三点共线的充分必要条件]
 三点\(z_1\)、\(z_2\)、\(z_3\)共线的充分必要条件为\begin{equation*}
 \frac{z_3 - z_1}{z_2 - z_1} = t \neq 0, \qquad t \in \mathbb{R}.
 \end{equation*}
 \end{example}
 
-\begin{example}[圆]
+\begin{example}%[圆]
 以\(z_0\)为圆心，\(R\)为半径的圆周的方程为\begin{equation*}
 \abs{z - z_0} = R.
 \end{equation*}而\(\abs{z-z_0}<R\)表示圆的内部，\(\abs{z-z_0}>R\)表示圆的外部.
