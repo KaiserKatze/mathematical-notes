@@ -1,4 +1,3 @@
-\chapter{数列}
 \section{数列的概念}
 \begin{definition}\label{definition:数列.数列的定义}
 一般地，如果\(D \subseteq \mathbb{Z}\)，
@@ -504,6 +503,28 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+设数列\(\{a_n\}\)
+满足\(a_n = c a_{n-1} + c^n\ (c\neq0)\).
+求\(\{a_n\}\)的通项公式.
+\begin{solution}
+记\(b_n \defeq \frac{a_n}{c^n}\).
+由题意有\(
+	\frac{a_n}{c^n} = \frac{a_{n-1}}{c^{n-1}} + 1
+\)，
+即\(b_n = b_{n-1} + 1\)，
+这就说明\(\{b_n\}\)是一个等差数列，
+它的通项公式为\(b_n = b_1 + (n-1)\).
+代入\(b_1 = \frac{a_1}{c}\)，
+便得\begin{align*}
+	a_n &= c^n b_n
+	= c^n (b_1 + n - 1) \\
+	&= c^n \left( \frac{a_1}{c} + n - 1 \right) \\
+	&= c^{n-1} a_1 + c^n (n - 1).
+\end{align*}
+\end{solution}
+\end{example}
+
 \section{平方数列}
 如果数列\(\{a_n\}\)的通项公式是\begin{equation*}
 a_n = n^2,
@@ -747,6 +768,44 @@ n^4
 \end{solution}
 \end{example}
 
+\begin{example}
+设数列\(\{a_n\}\)
+满足\(a_{n+1} = k a_n + b\ (k\neq0,k\neq1,b\neq0)\).
+求\(\{a_n\}\)的通项公式.
+\begin{solution}
+假设数列\(\{b_n\}\)
+满足\(b_n = a_n + t\)和\(b_{n+1} = k b_n\)，
+则\(\{b_n\}\)是一个等差数列，
+它的通项公式为\begin{equation*}
+	b_n = b_1 k^{n-1}.
+\end{equation*}
+将\(b_n = a_n + t\)代入\(b_{n+1} = k b_n\)得\(
+	a_{n+1} + t
+	= k (a_n + t)
+\)，
+即\begin{equation*}
+	a_{n+1}
+	= k a_n + (k-1) t.
+\end{equation*}
+与\(a_{n+1} = k a_n + b\)
+比较得\((k-1) t = b\)，
+解得\(t = \frac{b}{k-1}\).
+于是\begin{equation*}
+	b_1
+	= a_1 + t
+	= a_1 + \frac{b}{k-1},
+\end{equation*}
+从而\begin{equation*}
+	a_n = b_n - t
+	= b_1 k^{n-1} - t,
+\end{equation*}
+因此\begin{equation*}
+	a_n
+	= (a_1 + \frac{b}{k-1}) k^{n-1} - t.
+\end{equation*}
+\end{solution}
+\end{example}
+
 \section{调和数列}
 若数列\(\{a_n\}\)每相邻三项满足\begin{equation*}
     \frac{a_{n+1}}{a_{n-1}}
@@ -819,6 +878,9 @@ a_n = a_{n-1} + a_{n-2} \quad(n\geq3),
 \end{equation*}则称该数列为\DefineConcept{斐波那契数列}.
 
 \section{计算部分和的方法}
+计算部分和的方法大体有
+倒序相加法、裂项相消法、错位相减法、并项求和法等.
+
 \subsection{裂项相消法}
 \begin{gather}
 	\frac1{n(n+k)}
