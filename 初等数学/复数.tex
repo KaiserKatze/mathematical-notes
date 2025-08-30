@@ -9,13 +9,13 @@
 把由有序实数对\((x,y)\)作代数组合所确定的数\(z = x + \iu y\)称为代数形式的\DefineConcept{复数}.
 实数\(x\)、\(y\)分别称为复数\(z = x + \iu y\)的\DefineConcept{实部}、\DefineConcept{虚部}，记作\(x=\Re z\)、\(y=\Im z\).
 
-特别地，当\(\Im z=0\)时，\(z=\Re z = x\)是实数；
-当\(\Re z=0\)时，\(z=\iu\Im z=\iu y\)，称为\DefineConcept{纯虚数}.
+特别地，当\(\Im z = 0\)时，\(z=\Re z = x\)是实数；
+当\(\Re z = 0\)时，\(z = \iu \Im z = \iu y\)，称为\DefineConcept{纯虚数}.
 \end{definition}
 
 \begin{definition}%[代数形式下复数相等条件]
 设\(z_1\)和\(z_2\)都是复数，则当\(\Re z_1 = \Re z_2\)和\(\Im z_1 = \Im z_2\)同时成立时，则称\(z_1 = z_2\).
-特别地，对于复数\(z\)，则当且仅当\(\Re z=0\)且\(\Im z=0\)时，\(z=0\).
+特别地，对于复数\(z\)，则当且仅当\(\Re z = 0\)且\(\Im z = 0\)时，\(z = 0\).
 \end{definition}
 
 \begin{definition}%[共轭复数]
@@ -40,21 +40,28 @@
 %@see: 《复变函数》（史济怀、刘太顺） P3 命题1.1.3
 %@see: 《复变函数》（史济怀、刘太顺） P3 命题1.1.4
 %@see: 《复变函数》（史济怀、刘太顺） P4 习题1.1 1.
+%@see: 《复变函数》（史济怀、刘太顺） P4 习题1.1 3.
 共轭复数以及复数的模具有以下性质：\begin{gather}
 	\Re \ComplexConjugate{z} = \Re z, \\
 	\Im \ComplexConjugate{z} = -\Im z, \\
 	\ComplexConjugate{(\ComplexConjugate{z})} = z, \\
 	z+\ComplexConjugate{z} = 2 \Re z, \\
 	z-\ComplexConjugate{z} = 2\iu \Im z, \\
-	z\ComplexConjugate{z} = \abs{z}^2, \\
-	\abs{\ComplexConjugate{z}}=\abs{z}, \\
-	\abs{z_1 z_2} = \abs{z_1} \abs{z_2}, \\
-	\abs{\frac{z_1}{z_2}} = \frac{\abs{z_1}}{\abs{z_2}} \quad(z_2 \neq 0), \\
+	z\ComplexConjugate{z} = \ComplexLengthA{z}^2, \\
+	\abs{\ComplexConjugate{z}}=\ComplexLengthA{z}, \\
+	\ComplexLengthA{z_1 z_2} = \ComplexLengthA{z_1} \ComplexLengthA{z_2}, \\
+	\abs{\frac{z_1}{z_2}} = \frac{\ComplexLengthA{z_1}}{\ComplexLengthA{z_2}} \quad(z_2 \neq 0), \\
 	\ComplexConjugate{z_1 \pm z_2} = \ComplexConjugate{z_1} \pm \ComplexConjugate{z_2}, \\
 	\ComplexConjugate{z_1 z_2} = \ComplexConjugate{z_1} \cdot \ComplexConjugate{z_2}, \\
 	\ComplexConjugate{\left(\frac{z_1}{z_2}\right)} = \frac{\ComplexConjugate{z_1}}{\ComplexConjugate{z_2}} \quad (z_2 \neq 0), \\
-	-\abs{z} \leq \Re z \leq \abs{z} \leq \abs{\Re z} + \abs{\Im z}, \\
-	-\abs{z} \leq \Im z \leq \abs{z} \leq \abs{\Re z} + \abs{\Im z}.
+	\abs{\Re z} \leq \ComplexLengthA{z}, \\
+	\abs{\Im z} \leq \ComplexLengthA{z}, \\
+	\frac1{\sqrt2} (\abs{\Re z} + \abs{\Im z})
+	\leq \ComplexLengthA{z}
+	\leq \abs{\Re z} + \abs{\Im z}, \\
+	\frac1{\sqrt2} (\abs{\Re z} + \abs{\Im z})
+	\leq \ComplexLengthA{z}
+	\leq \abs{\Re z} + \abs{\Im z}.
 \end{gather}
 \end{property}
 
@@ -110,7 +117,7 @@ z = \frac{z_1}{z_2},
 设\(z_1 = x_1 + \iu y_1\)，\(z_2 = x_2 + \iu y_2 \neq 0\)，则\begin{equation*}
 	\frac{z_1}{z_2}
 	= \frac{z_1 \cdot \ComplexConjugate{z_2}}{z_2 \cdot \ComplexConjugate{z_2}}
-	= \frac{z_1 \cdot \ComplexConjugate{z_2}}{\abs{z_2}^2}
+	= \frac{z_1 \cdot \ComplexConjugate{z_2}}{\ComplexLengthA{z_2}^2}
 	= \frac{x_1 x_2 + y_1 y_2}{x_2^2 + y_2^2}
 	+ \iu \frac{x_2 y_1 - x_1 y_2}{x_2^2 + y_2^2}.
 \end{equation*}
@@ -145,32 +152,32 @@ z = \frac{z_1}{z_2},
 
 \begin{theorem}
 若\(z,w \in \mathbb{C}\)，则有\begin{equation}
-	\abs{z \pm w}^2
-	= \abs{z}^2 + \abs{w}^2 \pm 2 \Re(z \ComplexConjugate{w}).
+	\ComplexLengthA{z \pm w}^2
+	= \ComplexLengthA{z}^2 + \abs{w}^2 \pm 2 \Re(z \ComplexConjugate{w}).
 \end{equation}
 \begin{proof}
 \(
-	\abs{z + w}^2
+	\ComplexLengthA{z + w}^2
 	= (z + w) (\ComplexConjugate{z + w})
 	= z\ComplexConjugate{z}
 		+ z\ComplexConjugate{w}
 		+ w\ComplexConjugate{z}
 		+ w\ComplexConjugate{w}
-	= \abs{z}^2 + 2 \Re(z\ComplexConjugate{w}) + \abs{w}^2
+	= \ComplexLengthA{z}^2 + 2 \Re(z\ComplexConjugate{w}) + \abs{w}^2
 \).
 \end{proof}
 \end{theorem}
 
 \begin{theorem}
 若\(z,w \in \mathbb{C}\)，则有\begin{equation}
-	\abs{z + w}^2 \leq (\abs{z} + \abs{w})^2.
+	\ComplexLengthA{z + w}^2 \leq (\ComplexLengthA{z} + \abs{w})^2.
 \end{equation}
 \begin{proof}
 \(
-	\abs{z + w}^2
-	= \abs{z}^2 + 2 \Re(z \ComplexConjugate{w}) + \abs{w}^2
-	\leq \abs{z}^2 + 2 \abs{z}\abs{\ComplexConjugate{w}} + \abs{w}^2
-	= (\abs{z} + \abs{w})^2
+	\ComplexLengthA{z + w}^2
+	= \ComplexLengthA{z}^2 + 2 \Re(z \ComplexConjugate{w}) + \abs{w}^2
+	\leq \ComplexLengthA{z}^2 + 2 \ComplexLengthA{z}\abs{\ComplexConjugate{w}} + \abs{w}^2
+	= (\ComplexLengthA{z} + \abs{w})^2
 \).
 \end{proof}
 \end{theorem}
@@ -186,20 +193,20 @@ z = \frac{z_1}{z_2},
 \end{equation}
 \begin{proof}
 因为\begin{equation*}
-	\abs{z + w}^2 \leq (\abs{z} + \abs{w})^2,
+	\ComplexLengthA{z + w}^2 \leq (\ComplexLengthA{z} + \abs{w})^2,
 \end{equation*}
-所以\(\abs{z + w} \leq \abs{z} + \abs{w}\).
+所以\(\ComplexLengthA{z + w} \leq \ComplexLengthA{z} + \abs{w}\).
 
 又因为\begin{equation*}
-	\abs{z}
-	= \abs{z + w + (-w)} \leq \abs{z+w} + \abs{-w}
-	= \abs{z+w} + \abs{w},
+	\ComplexLengthA{z}
+	= \ComplexLengthA{z + w + (-w)} \leq \ComplexLengthA{z+w} + \abs{-w}
+	= \ComplexLengthA{z+w} + \abs{w},
 \end{equation*}
-所以\(\abs{z}-\abs{w} \leq \abs{z+w}\).
+所以\(\ComplexLengthA{z}-\abs{w} \leq \ComplexLengthA{z+w}\).
 
-同样地，有\(\abs{w}-\abs{z} \leq \abs{z+w}\).
+同样地，有\(\abs{w}-\ComplexLengthA{z} \leq \ComplexLengthA{z+w}\).
 
-综上所述，\(\abs{\abs{z}-\abs{w}}\leq\abs{z+w}\).
+综上所述，\(\abs{\ComplexLengthA{z}-\abs{w}}\leq\ComplexLengthA{z+w}\).
 \end{proof}
 \end{theorem}
 
@@ -214,7 +221,7 @@ z = \frac{z_1}{z_2},
 \end{corollary}
 
 \begin{example}
-证明：\(\abs{z_1+z_2}^2 + \abs{z_1-z_2}^2 = 2 (\abs{z_1}^2 + \abs{z_2}^2)\).
+证明：\(\ComplexLengthA{z_1+z_2}^2 + \ComplexLengthA{z_1-z_2}^2 = 2 (\ComplexLengthA{z_1}^2 + \ComplexLengthA{z_2}^2)\).
 \begin{proof}
 记\(
 	z_1 \defeq x_1 + \iu y_1,
@@ -222,15 +229,15 @@ z = \frac{z_1}{z_2},
 \)，
 那么有\(z_1+z_2 = (x_1+x_2) + \iu(y_1+y_2)\)，
 从而有\begin{equation*}
-	\abs{z_1+z_2}^2 = (x_1+x_2)^2 + (y_1+y_2)^2;
+	\ComplexLengthA{z_1+z_2}^2 = (x_1+x_2)^2 + (y_1+y_2)^2;
 \end{equation*}
-同理\(\abs{z_1-z_2}^2 = (x_1-x_2)^2 + (y_1-y_2)^2\).
+同理\(\ComplexLengthA{z_1-z_2}^2 = (x_1-x_2)^2 + (y_1-y_2)^2\).
 那么\begin{align*}
-	\abs{z_1+z_2}^2 + \abs{z_1-z_2}^2
+	\ComplexLengthA{z_1+z_2}^2 + \ComplexLengthA{z_1-z_2}^2
 	&= (x_1+x_2)^2 + (y_1+y_2)^2
 	+ (x_1-x_2)^2 + (y_1-y_2)^2 \\
 	&= 2 ( x_1^2 + x_2^2 + y_1^2 + y_2^2 )
-	= 2 ( \abs{z_1}^2 + \abs{z_2}^2 ).
+	= 2 ( \ComplexLengthA{z_1}^2 + \ComplexLengthA{z_2}^2 ).
 	\qedhere
 \end{align*}
 \end{proof}
@@ -261,6 +268,95 @@ z = \frac{z_1}{z_2},
 \end{gather*}
 \end{property}
 
+\begin{example}
+%@see: 《复变函数》（史济怀、刘太顺） P4 习题1.1 4.
+设复数\(z_1\)和\(z_2\)满足\(\ComplexLengthA{z_1} = \lambda \ComplexLengthA{z_2}\)，
+其中\(\lambda > 0\).
+证明：\begin{equation*}
+	\ComplexLengthA{z_1 - \lambda^2 z_2}
+	= \lambda \ComplexLengthA{z_1 - z_2}.
+\end{equation*}
+\end{example}
+
+\begin{example}
+%@see: 《复变函数》（史济怀、刘太顺） P4 习题1.1 5.
+设复数\(w\)满足\(\ComplexLengthA{w} < 1\).
+证明：如果复数\(z\)满足\(\ComplexLengthA{z} = 1\)，则\begin{equation*}
+	\ComplexLengthA{\frac{z - w}{1 - \ComplexConjugate{w} z}} = 1.
+\end{equation*}
+\end{example}
+
+\begin{example}
+%@see: 《复变函数》（史济怀、刘太顺） P4 习题1.1 6.(i)
+设复数\(a\)和\(z\)满足\(
+	\ComplexLengthA{a} < 1,
+	\ComplexLengthA{z} < 1
+\).
+证明：\begin{equation*}
+	\ComplexLengthA{\frac{z - a}{1 - \ComplexConjugate{a} z}} < 1.
+\end{equation*}
+\end{example}
+
+\begin{example}
+%@see: 《复变函数》（史济怀、刘太顺） P5 习题1.1 6.(ii)
+设复数\(a\)和\(z\)满足\(
+	\ComplexLengthA{a} < 1,
+	\ComplexLengthA{z} < 1
+\).
+证明：\begin{equation*}
+	1 - \ComplexLengthA{\frac{z - a}{1 - \ComplexConjugate{a} z}}^2
+	= \frac{(1 - \ComplexLengthA{a}^2)(1 - \ComplexLengthA{z}^2)}{\ComplexLengthA{1 - \ComplexConjugate{a} z}^2}.
+\end{equation*}
+\end{example}
+
+\begin{example}
+%@see: 《复变函数》（史济怀、刘太顺） P5 习题1.1 6.(iii)
+设复数\(a\)和\(z\)满足\(
+	\ComplexLengthA{a} < 1,
+	\ComplexLengthA{z} < 1
+\).
+证明：\begin{equation*}
+	\frac{\abs{\ComplexLengthA{z} - \ComplexLengthA{a}}}{1 - \ComplexLengthA{a} \ComplexLengthA{z}}
+	\leq \ComplexLengthA{\frac{z - a}{1 - \ComplexConjugate{a} z}}
+	\leq \frac{\ComplexLengthA{z} + \ComplexLengthA{a}}{1 + \ComplexLengthA{a} \ComplexLengthA{z}}.
+\end{equation*}
+\end{example}
+
+\begin{example}%[拉格朗日等式]
+%@see: 《复变函数》（史济怀、刘太顺） P5 习题1.1 7.
+设\(\AutoTuple{z}{n},\AutoTuple{w}{n}\)是\(2n\)个复数.
+证明：\begin{equation*}
+	\ComplexLengthA{
+		\sum_{j=1}^n z_j w_j
+	}^2
+	= \left( \sum_{j=1}^n \ComplexLengthA{z_j}^2 \right)
+	\left( \sum_{j=1}^n \ComplexLengthA{w_j}^2 \right)
+	- \sum_{1 \leq j < k \leq n} \ComplexLengthA{z_j \ComplexConjugate{w_k} - z_k \ComplexConjugate{w_j}}^2.
+\end{equation*}
+\end{example}
+
+\begin{example}%[柯西不等式]
+%@see: 《复变函数》（史济怀、刘太顺） P5 习题1.1 7.
+设\(\AutoTuple{z}{n},\AutoTuple{w}{n}\)是\(2n\)个复数.
+证明：\begin{equation*}
+	\ComplexLengthA{
+		\sum_{j=1}^n z_j w_j
+	}^2
+	\leq \left( \sum_{j=1}^n \ComplexLengthA{z_j}^2 \right)
+	\left( \sum_{j=1}^n \ComplexLengthA{w_j}^2 \right).
+\end{equation*}
+\end{example}
+
+\begin{example}
+%@see: 《复变函数》（史济怀、刘太顺） P5 习题1.1 8.
+设\(\AutoTuple{z}{n}\)是\(n\)个复数.
+证明：存在\(\{1,2,\dotsc,n\}\)的子集\(E\)，
+使得\begin{equation*}
+	\ComplexLengthA{\sum_{j \in E} z_j}
+	\geq \frac16 \sum_{j=1}^n \ComplexLengthA{z_j}.
+\end{equation*}
+\end{example}
+
 \subsection{复数的几何表示}
 \begin{definition}%[复数在复平面上的几何表示]
 在直角坐标系\(xOy\)上可以用点\((x,y)\)表示复数\(z = x + \iu y\)，
@@ -287,13 +383,13 @@ z = \frac{z_1}{z_2},
 复平面\(C\)交球面\(S\)于单位球的赤道.
 
 对于复平面\(C\)上的每一个点\(z\)，它与\(N\)连接的直线必与\(S\)交且只交于一点\(Z \neq N\).
-若\(\abs{z} < 1\)，则点\(Z\)在下半球面上；
-若\(\abs{z} > 1\)，则点\(Z\)在上半球面上；
-若\(\abs{z} = 1\)，则点\(Z\)在赤道上.
+若\(\ComplexLengthA{z} < 1\)，则点\(Z\)在下半球面上；
+若\(\ComplexLengthA{z} > 1\)，则点\(Z\)在上半球面上；
+若\(\ComplexLengthA{z} = 1\)，则点\(Z\)在赤道上.
 反之，取球面上任意一点\(Z \neq N\)，连接它与\(N\)的直线也只与复平面\(C\)交于一点\(z\).
 
 可见，除北极\(N=(0,0,1)\)以外，复平面\(C\)和球面\(S\)上的点是一一对应的.
-并且当\(\abs{z} \to +\infty\)时，\(Z \to N\).
+并且当\(\ComplexLengthA{z} \to +\infty\)时，\(Z \to N\).
 那么可以假想一个模为无穷大的复数，
 称作\DefineConcept{无穷远点}（point at infinity），
 %@see: https://mathworld.wolfram.com/PointatInfinity.html
@@ -328,9 +424,9 @@ C_\infty = C \cup \{\infty\}.
 设复数\(z = x + \iu y\)，其对应的复球面上的点为\(Z=\opair{x_1,x_2,x_3}\)，并满足：
 
 当\(z \neq \infty\)时，\(Z\)的坐标为\begin{equation*}
-	x_1 = \frac{z + \ComplexConjugate{z}}{\abs{z}^2 + 1}, \qquad
-	x_2 = \iu\frac{\ComplexConjugate{z} - z}{\abs{z}^2 + 1}, \qquad
-	x_3 = \frac{\abs{z}^2 - 1}{\abs{z}^2 + 1}
+	x_1 = \frac{z + \ComplexConjugate{z}}{\ComplexLengthA{z}^2 + 1}, \qquad
+	x_2 = \iu \frac{\ComplexConjugate{z} - z}{\ComplexLengthA{z}^2 + 1}, \qquad
+	x_3 = \frac{\ComplexLengthA{z}^2 - 1}{\ComplexLengthA{z}^2 + 1}
 \end{equation*}
 或\begin{equation*}
 	x_1 = \frac{2x}{x^2+y^2+1}, \quad
