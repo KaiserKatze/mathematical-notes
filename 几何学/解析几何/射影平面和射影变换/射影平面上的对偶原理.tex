@@ -31,8 +31,105 @@
 \end{table}
 
 对于射影平面上的每个命题与它的对偶命题，有下述重要性质.
-\begin{theorem}%[射影平面上的对偶原理]
+\begin{theorem}[对偶原理]\label{theorem:解析几何.射影平面上的对偶原理.对偶原理}
 %@see: 《解析几何》（丘维声） P266 射影平面上的对偶原理
 射影平面上，如果可以证明命题\(\phi(\text{点},\text{线})\)是一条定理，
 那么可以证明它的对偶命题\(\phi(\text{线},\text{点})\)也是一条定理.
 \end{theorem}
+
+根据射影平面上的对偶原理，
+我们只要证明一个命题\(\phi(\text{点},\text{线})\)成立，
+那么它的对偶命题\(\phi(\text{线},\text{点})\)就必然成立.
+譬如，我们已经证明了“射影平面上三点共线的充分必要条件是它们的齐次坐标组成的3阶行列式等于\(0\).”成立，
+那么它的对偶命题“射影平面上三线共点的充分必要条件是它们的齐次坐标组成的3阶行列式等于\(0\).”也成立.
+
+\begin{figure}[hbt]
+%@see: 《解析几何》（丘维声） P267 图7.6
+	\centering
+	% \begin{tikzpicture}[
+	% 	dot/.style={draw,fill,circle,inner sep=0pt,minimum size=2pt},
+	% 	label distance=4pt,
+	% ]
+	% 	\coordinate[dot,label=below left:$A$](A)at(0,0);
+	% 	\coordinate[dot,label=above left:$B$](B)at(1,2);
+	% 	\coordinate[dot,label=below left:$C$](C)at(2,-2);
+	% 	\coordinate[dot,label=right:$A'$](A1)at(6,-1);
+	% 	\coordinate[dot,label=above right:$B'$](B1)at(4,3);
+	% 	\coordinate[dot,label=below right:$C'$](C1)at(3,-2.5);
+	% 	\draw(A)--(B)--(C)--(A);
+	% 	\draw(A1)--(B1)--(C1)--(A1);
+	% 	\path[name path=lineAB](A)--($(A)!2.8!(B)$);
+	% 	\path[name path=lineA1B1](A1)--($(A1)!1.7!(B1)$);
+	% 	\draw[name intersections={of=lineAB and lineA1B1,by={P}}]
+	% 		(P)node[dot,label=right:$P$]{};
+	% 	\path[name path=lineAC](A)--($(A)!2!(C)$);
+	% 	\path[name path=lineA1C1](A1)--($(A1)!2!(C1)$);
+	% 	\draw[name intersections={of=lineAC and lineA1C1,by={Q}}]
+	% 		(Q)node[dot,label=below:$Q$]{};
+	% 	\path[name path=lineBC](B)--($(B)!1.7!(C)$);
+	% 	\path[name path=lineB1C1](B1)--($(B1)!1.4!(C1)$);
+	% 	\draw[name intersections={of=lineBC and lineB1C1,by={R}}]
+	% 		(R)node[dot,label=right:$R$]{};
+	% 	\path[name path=lineAA1](A1)--($(A1)!1.6!(A)$);
+	% 	\path[name path=lineBB1](B1)--($(B1)!2.5!(B)$);
+	% 	\draw[name intersections={of=lineAA1 and lineBB1,by={D}}]
+	% 		(D)node[dot,label=left:$D$]{};
+	% 	\begin{scope}[dashed]
+	% 		\draw(B)--(P)--(B1);
+	% 		\draw(C)--(Q)--(C1);
+	% 		\draw(C)--(R)--(C1);
+	% 		\draw(A1)--(D)--(B1);
+	% 		\draw(D)--(C1);
+	% 	\end{scope}
+	% \end{tikzpicture}
+	\begin{tikzpicture}[
+		label distance=2pt,
+	]
+		% 依赖 tkz-euclide 宏包
+		\coordinate[label=below left:$A$](A)at(0,0);
+		\coordinate[label=above left:$B$](B)at(1,2);
+		\coordinate[label=below left:$C$](C)at(2,-2);
+		\coordinate[label=below:$A'$](A1)at(6,-1);
+		\coordinate[label=above right:$B'$](B1)at(4,3);
+		\coordinate[label=below right:$C'$](C1)at(3,-2.5);
+
+		\draw(A)--(B)--(C)--(A);
+		\draw(A1)--(B1)--(C1)--(A1);
+
+		\tkzInterLL(A,B)(A1,B1) \tkzGetPoint{P}
+		\tkzInterLL(A,C)(A1,C1) \tkzGetPoint{Q}
+		\tkzInterLL(B,C)(B1,C1) \tkzGetPoint{R}
+		\tkzInterLL(A,A1)(B,B1) \tkzGetPoint{D}
+
+		\tkzDrawPoints(A,B,C,A1,B1,C1,D,P,Q,R)
+
+		\draw(P)node[label=right:$P$]{};
+		\draw(Q)node[label=below left:$Q$]{};
+		\draw(R)node[label=right:$R$]{};
+		\draw(D)node[label=above:$D$]{};
+
+		\begin{scope}[dashed]
+			\draw(B)--(P)--(B1);
+			\draw(C)--(Q)--(C1);
+			\draw(C)--(R)--(C1);
+			\draw(A1)--(D)--(B1);
+			\draw(D)--(C1);
+			\draw(P)--(R);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	% \label{figure:解析几何.射影平面上的对偶原理.德萨格定理}
+\end{figure}
+
+\begin{theorem}[德萨格定理]\label{theorem:解析几何.射影平面上的对偶原理.德萨格定理}
+%@see: 《解析几何》（丘维声） P267 德萨格定理
+射影平面上，如果两个三角形的对应顶点的连线共点，那么它们的对应边的交点共线.
+\end{theorem}
+
+\hyperref[theorem:解析几何.射影平面上的对偶原理.德萨格定理]{德萨格定理}说明：
+给定一点\(D\)和一个三角形\(ABC\)，
+当\(D\)在\(\triangle ABC\)以外时，
+如果\(\triangle A'B'C'\)是\(\triangle ABC\)在以\(D\)为中心的中心投影下的像，
+那么\(\triangle ABC\)和\(\triangle A'B'C'\)的对应边的交点共线.
+于是由\hyperref[theorem:解析几何.射影平面上的对偶原理.对偶原理]{对偶原理}可知
+德萨格定理的逆定理“射影平面上，如果它们的对应边的交点共线，那么两个三角形的对应顶点的连线共点.”也成立.
