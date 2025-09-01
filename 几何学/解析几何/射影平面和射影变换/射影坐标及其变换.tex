@@ -1,1 +1,519 @@
 \section{射影坐标和射影坐标变换}
+\subsection{点的射影坐标}
+之前我们在扩充欧氏平面\(\overline{\pi_0}\)上定义点的齐次坐标时，
+用了欧氏平面\(\pi_0\)上的仿射标架\([O_1;\AutoTuple{d}{2}]\).
+我们自然希望能够直接用射影平面\(\overline{\pi_0}\)上的“点”作为标架，
+在射影平面\(\overline{\pi_0}\)上建立射影坐标系.
+
+为了解决上述问题，我们首先回顾把\(O\)这个模型，
+借助它将上述问题转化成：
+能不能用把\(O\)中的直线（对应扩充欧氏平面上的点）作为标架，建立射影坐标系？
+我们已经知道，把\(O\)中的任意一条直线\(l\)完全被它的方向向量所决定，
+但是\(l\)的方向向量不唯一，它们可以相差一个非零倍数.
+基于这一事实，我们分两步来回答上述问题.
+
+首先，我们在把\(O\)中取一个仿射标架\([O;\AutoTuple{d}{3}]\).
+这是把\(O\)中的每一条直线\(l\)的方向向量\(v\)在这个仿射标架下就有仿射坐标\((\AutoTuple{x}{3})\).
+我们自然会想到，将\((\AutoTuple{x}{3})\)称为“直线\(l\)的坐标”.
+这种坐标可以相差一个非零倍数.
+这说明：只要在把\(O\)中取定一个仿射标架，那么把\(O\)中的每一条直线就都有了坐标.
+但是我们的目的是要以把\(O\)中的直线作为标架，
+因此我们要进一步分析：在把\(O\)中取定一个仿射标架\([O;\AutoTuple{d}{3}]\)后可以确定把\(O\)中的几条直线？
+显然，\(\AutoTuple{d}{3}\)这三个向量分别确定了把\(O\)中的三条直线\(\AutoTuple{l}{3}\)，
+其中\(d_i\)就是\(l_i\)的方向向量，
+于是\(l_1\)的坐标是\((1,0,0)\)，\(l_2\)的坐标是\((0,1,0)\)，\(l_3\)的坐标是\((0,0,1)\).
+这三条直线\(\AutoTuple{l}{3}\)称为“把\(O\)中的\DefineConcept{基本直线}”
+此外，若令\(d = d_1 + d_2 + d_3\)，
+则\(d\)也确定了把\(O\)中的一条直线\(l_4\)，它的坐标是\((1,1,1)\).
+直线\(l_4\)称为“把\(O\)中的\DefineConcept{单位直线}”.
+由于\(\AutoTuple{d}{3},d\)中任意三个向量都不共面，
+因此\(\AutoTuple{l}{4}\)中任意三条直线都不共面.
+这样的四条直线称为“把\(O\)中一般位置的四条直线”.
+上述讨论说明：把\(O\)中取定一个仿射标架\([O;\AutoTuple{d}{3}]\)后，
+就确定了把\(O\)中一般位置的四条直线\(\AutoTuple{l}{4}\)，
+其中前三条是基本直线，第四条是单位直线.
+
+其次，我们容易想到把上述把\(O\)中一般位置的四条直线\(\AutoTuple{l}{4}\)
+合在一起作为把\(O\)中的射影标架.
+但是，在这样做之前还要说明一件事，
+如果我们在单位直线\(l_4\)上取另一个方向向量\(d'\)，
+在基本直线\(l_i\)上取方向向量\(d'_i\ (i=1,2,3)\),
+使得\(d' = d'_1 + d'_2 + d'_3\)，
+那么我们又得到把\(O\)中的一个仿射标架\([O;\AutoTuple{d'}{3}]\).
+于是，把\(O\)中每一条直线\(l\)在这个仿射标架下也有坐标\((\AutoTuple{x'}{3})\)，
+它是\(l\)的方向向量\(v\)在标架\([O;\AutoTuple{d'}{3}]\)中的坐标.
+而且对于这个仿射标架，直线\(\AutoTuple{l}{4}\)的坐标分别是\(
+	(1,0,0),
+	(0,1,0),
+	(0,0,1),
+	(1,1,1)
+\).
+因此，对于这个仿射标架，\(\AutoTuple{l}{3}\)仍是基本直线，\(l_4\)仍是单位直线.
+既然对于三条基本直线和一条单位直线可以得到不同的仿射标架\([O;\AutoTuple{d}{3}]\)和\([O;\AutoTuple{d'}{3}]\)，
+那么我们必须说明把\(O\)中每一条直线\(l\)的方向向量\(v\)
+分别在这两个仿射标架下的坐标\((\AutoTuple{x}{3})\)和\((\AutoTuple{x'}{3})\)是成比例的，
+这样才能把上述三条基本直线和一条单位直线合在一起作为把\(O\)中的射影标架.
+现在就来说明\((\AutoTuple{x}{3})\)和\((\AutoTuple{x'}{3})\)为什么是成比例的.
+这是因为\(d'\)和\(d\)的\(l_4\)的方向向量，
+所以可设\(d' = \lambda d\).
+同理，可设\(d'_i = \lambda_i d_i\ (i=1,2,3)\).
+于是\begin{equation*}
+	d'
+	= d'_1 + d'_2 + d'_3
+	= \lambda_1 d_1 + \lambda_2 d_2 + \lambda_3 d_3,
+	\qquad
+	d'
+	= \lambda d
+	= \lambda (d_1 + d_2 + d_3),
+\end{equation*}
+因此\begin{equation*}
+	\lambda_1 d_1 + \lambda_2 d_2 + \lambda_3 d_3
+	= \lambda d_1 + \lambda d_2 + \lambda d_3,
+\end{equation*}
+比较可得\(\lambda_i = \lambda\ (i=1,2,3)\).
+所以\begin{equation*}
+	v = \sum_{i=1}^3 x'_i d'_i
+	= \sum_{i=1}^3 x'_i \lambda d_i.
+\end{equation*}
+由此得出\(x_i = \lambda x'_i\ (i=1,2,3)\).
+
+综上所述，我们可以给出下述定义.
+\begin{definition}\label{definition:解析几何.射影坐标及其变换.把的射影坐标系}
+%@see: 《解析几何》（丘维声） P279 定义4.1
+设\(l_1,l_2,l_3,l_4\)是把\(O\)中一般位置的四条直线，
+在\(l_4\)上取一个方向向量\(d\)，
+在\(l_i\)上取方向向量\(d_i\ (i=1,2,3)\)，
+使得\(d = d_1 + d_2 + d_3\)，
+则称“\([l_1,l_2,l_3,l_4]\)是把\(O\)的一个\DefineConcept{基底}”
+或“\([l_1,l_2,l_3,l_4]\)是把\(O\)的一个\DefineConcept{射影标架}”；
+同时称“\(l_1,l_2,l_3\)是把\(O\)中的\DefineConcept{基本直线}”
+“\(l_4\)是把\(O\)中的\DefineConcept{单位直线}”；
+把\(O\)中每一条直线\(l\)的方向向量\(v\)在仿射标架\([O;\AutoTuple{d}{3}]\)下的坐标\((\AutoTuple{x}{3})\)
+称为“直线\(l\)在基底\([l_1,l_2,l_3,l_4]\)中的\DefineConcept{齐次射影坐标}”.
+\end{definition}
+
+显然，把\(O\)中直线\(l\)在基底\([l_1,l_2,l_3,l_4]\)中的齐次射影坐标不唯一，但是它们成比例；
+不同直线在同一基底中的齐次射影坐标不成比例.
+
+既然我们已经在把\(O\)中建立了射影坐标系，
+下面就来研究如何在扩充欧氏平面\(\overline{\pi_0}\)上引进射影坐标系.
+
+在欧氏平面\(\pi_0\)外取一点\(O\)，
+于是扩充欧氏平面\(\overline{\pi_0}\)上的点、直线
+分别与把\(O\)中的直线、平面一一对应.
+显然，把\(O\)中一般位置的四条直线
+对应\(\overline{\pi_0}\)上一般位置的四个点（其中任意三点不共线）.
+于是容易想到下述定义.
+\begin{definition}\label{definition:解析几何.射影坐标及其变换.扩充欧氏平面的射影坐标系}
+%@see: 《解析几何》（丘维声） P280 定义4.2
+在扩充欧氏平面\(\overline{\pi_0}\)上取定一般位置的四个点\(A_1,A_2,A_3,E\)，
+在\(\pi_0\)外取一点\(O\).
+对于\(\overline{\pi_0}\)上的每一个点\(M\)，
+将直线\(OM\)在把\(O\)的基底\([OA_1,OA_2,OA_3,OE]\)中的齐次射影坐标\((x_1,x_2,x_3)\)
+称为“点\(M\)在扩充欧氏平面\(\overline{\pi_0}\)的基底\([A_1,A_2,A_3,E]\)中的\DefineConcept{齐次射影坐标}”.
+点\(A_1,A_2,A_3\)称为\DefineConcept{基本点}.
+点\(E\)称为单位点.
+\end{definition}
+
+显然，基本点\(A_1,A_2,A_3\)的射影坐标分别为\((1,0,0),(0,1,0),(0,0,1)\)，
+单位点\(E\)的射影坐标为\((1,1,1)\).
+基本点\(A_1,A_2,A_3\)的连线\(A_1A_2,A_2A_3,A_3A_1\)
+构成的三角形\(\triangle A_1A_2A_3\)称为\DefineConcept{坐标三角形}.
+
+现在来说明上述定义与\(\pi_0\)外一点\(O\)的取法无关.
+在\(OE\)上取一个方向向量\(d\)，
+在\(OA_i\)上取方向向量\(d_i\ (i=1,2,3)\)，
+使得\(d = d_1 + d_2 + d_3\).
+设\(\vec{OM}\)在仿射标架\([O;\AutoTuple{d}{3}]\)中的坐标为\((\AutoTuple{x}{3})\)，
+由\cref{definition:解析几何.射影坐标及其变换.把的射影坐标系,definition:解析几何.射影坐标及其变换.扩充欧氏平面的射影坐标系} 可知，
+\((x_1,x_2,x_3)\)就是点\(M\)在基底\([A_1,A_2,A_3,E]\)中的射影坐标.
+设直线\(A_3E\)与\(A_1A_2\)交于点\(A_{12}\)，
+直线\(A_3M\)与\(A_1A_2\)交于点\(M_{12}\).
+由于\(\vec{OA_{12}},\vec{OA_1},\vec{OA_2}\)共面，以及\(\vec{OA_{12}},\vec{OA_3},\vec{OE}\)共面，
+于是可以得到\(\vec{OA_{12}} = \lambda (1,1,0)\).
+类似地，由\(\vec{OM_{12}},\vec{OA_1},\vec{OA_2}\)共面，以及\(\vec{OM_{12}},\vec{OA_3},\vec{OM}\)共面，
+可得\(\vec{OM_{12}} = \mu (x_1,x_2,0)\).
+于是\(OA_1,OA_2,OA_{12},OM_{12}\)的方向向量分别为\(
+	d_1,
+	d_2,
+	d_1 + d_2,
+	x_1 d_1 + x_2 d_2
+\).
+在平面\(OA_1A_2\)上取仿射标架\([O;\AutoTuple{d}{2}]\)，
+则\(O,A_1,A_2,A_{12},M_{12}\)的齐次坐标分别为\(
+	(0,0,1),
+	(1,0,t_1),
+	(0,1,t_2),
+	(1,1,t_3),
+	(x_1,x_2,t_4)
+\).
+容易求出直线\(OA_1,OA_2,OA_{12},OM_{12}\)在齐次坐标中的方程，
+从而可得它们的齐次坐标依次为\(
+	(0,1,0),
+	(-1,0,0),
+	(-1,1,0),
+	(-x_2,x_1,0)
+\).
+显然，有\begin{equation*}
+	\begin{bmatrix}
+		-1 \\ 1 \\ 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		0 \\ 1 \\ 0
+	\end{bmatrix}
+	+ \begin{bmatrix}
+		-1 \\ 0 \\ 0
+	\end{bmatrix},
+	\qquad
+	\begin{bmatrix}
+		-x_2 \\ x_1 \\ 0
+	\end{bmatrix}
+	= x_1 \begin{bmatrix}
+		0 \\ 1 \\ 0
+	\end{bmatrix}
+	+ x_2 \begin{bmatrix}
+		-1 \\ 0 \\ 0
+	\end{bmatrix}.
+\end{equation*}
+于是，由\cref{equation:解析几何.射影平面上的交比.四线的交比1} 可得\begin{equation*}
+	R(OA_1,OA_2,OA_{12},OM_{12})
+	= \frac{x_1}{x_2} \bigg/ \frac11
+	= \frac{x_1}{x_2}.
+\end{equation*}
+那么，假如点\(M\)不在直线\(A_1A_3\)上，就有\begin{equation*}
+	R(A_1,A_2,A_{12},M_{12})
+	= x_1 / x_2.
+\end{equation*}
+类似地，假如点\(M\)不在直线\(A_1A_2\)上，就有\begin{equation*}
+	R(A_2,A_3,A_{23},M_{23})
+	= x_2 / x_3;
+\end{equation*}
+假如点\(M\)不在直线\(A_2A_3\)上，就有\begin{equation*}
+	R(A_3,A_1,A_{31},M_{31})
+	= x_3 / x_1.
+\end{equation*}
+由此可见，对于不在直线\(A_1A_2,A_2A_3,A_3A_1\)上的点\(M\)，
+我们可以利用它的射影坐标\(x_1,x_2,x_3\)计算出上述上个交比；
+而直线\(A_1A_3\)上的点\((x_1,0,x_3)\)，则交比等于\(x_3 / x_1\)；
+直线\(A_1A_2\)或\(A_2A_3\)上的点类似.
+因此\(\overline{\pi_0}\)上每一个点在基底\([A_1,A_2,A_3,E]\)中的射影坐标与点\(O\)取法无关
+（唯一的要求就是点\(O\)不在欧氏平面\(\pi_0\)上），
+并且点\(M\)的射影坐标的几何意义为\begin{gather*}
+	x_1 / x_2
+	= R(A_1,A_2,A_{12},M_{12}), \\
+	x_2 / x_3
+	= R(A_2,A_3,A_{23},M_{23}), \\
+	x_3 / x_1
+	= R(A_3,A_1,A_{31},M_{31}).
+\end{gather*}
+
+不难看出，之前定义的“点\(M\)在\([O_1;\AutoTuple{d}{2}]\)下的一个齐次仿射坐标”
+是在特殊基底\([\AutoTuple{A}{3},E]\)中的齐次射影坐标，
+其中\(A_1,A_2\)是无穷远点，\(A_3,E\)是通常点.
+
+应该注意到，在一般的基底下，不能用点\(M\)的射影坐标中\(x_3\)是否为零来判定\(M\)是不是无穷远点.
+
+设点\(M\)在基底\([A_1,A_2,A_3,E]\)下的射影坐标为\((x_1,x_2,x_3)\)，
+那么显然有\begin{equation*}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}
+	= x_1 \begin{bmatrix}
+		1 \\ 0 \\ 0
+	\end{bmatrix}
+	+ x_2 \begin{bmatrix}
+		0 \\ 1 \\ 0
+	\end{bmatrix}
+	+ x_3 \begin{bmatrix}
+		0 \\ 0 \\ 1
+	\end{bmatrix},
+\end{equation*}
+即任意一点\(M\)的射影坐标等于三个基本点的射影坐标的线性组合.
+
+\subsection{射影坐标变换公式}
+设\(\overline{\pi_0}\)上有两个基底I\([A_1,A_2,A_3,E]\)和II\([A'_1,A'_2,A'_3,E']\)，
+\(M\)是\(\overline{\pi_0}\)上一点，
+\(M\)在基底 I 中的射影坐标为\((x_1,x_2,x_3)\)，
+\(M\)在基底 II 中的射影坐标为\((x'_1,x'_2,x'_3)\).
+我们来讨论\((x_1,x_2,x_3)\)与\((x'_1,x'_2,x'_3)\)之间的关系.
+
+在\(\pi_0\)外取一点\(O\)，
+把\(O\)中相对地有两个基底\([OA_1,OA_2,OA_3,OE]\)和\([OA'_1,OA'_2,OA'_3,OE']\)，
+对于这两个基底分别取它们所对应的一个仿射标架
+\(\overline{I}[d_1,d_2,d_3,d]\)和\(\overline{II}[d'_1,d'_2,d'_3,d']\)，
+于是\(\vec{OM}\)在仿射标架\(\overline{I}\)中的坐标为\((\lambda x_1,\lambda x_2,\lambda x_3)\)，
+\(\vec{OM}\)在仿射标架\(\overline{II}\)中的坐标为\(\lambda' x'_1,\lambda' x'_2,\lambda' x'_3\).
+由几何空间中向量的仿射坐标变换公式可知，
+若\(d'_j\)的\(\overline{I}\)坐标为\((a_{1j},a_{2j},a_{3j})\ (j=1,2,3)\)，
+则\begin{equation*}
+	\begin{bmatrix}
+		\lambda x_1 \\ \lambda x_2 \\ \lambda x_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\lambda' x'_1 \\ \lambda' x'_2 \\ \lambda' x'_3
+	\end{bmatrix},
+\end{equation*}
+即\begin{equation}\label{equation:解析几何.射影坐标及其变换.射影坐标变换公式}
+%@see: 《解析几何》（丘维声） P283 (4.1)
+	\rho \begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		x'_1 \\ x'_2 \\ x'_3
+	\end{bmatrix},
+\end{equation}
+其中\(\rho\)是非零常数.
+对于不同的点，\(\rho\)的值不同.
+\cref{equation:解析几何.射影坐标及其变换.射影坐标变换公式} 就是点的射影坐标变换公式.
+由于\(d'_j,d'\)分别是\(\vec{OA'_j},\vec{OE'}\)的方向向量，
+因此\(
+	d'_j = \lambda_j \vec{OA'_j},
+	d' = \lambda \vec{OE'}
+	\ (j=1,2,3)
+\).
+由于\(d' = d'_1 + d'_2 + d'_3\)，
+因此\(
+	\lambda \vec{OE'}
+	= \lambda_1 \vec{OA'_1}
+	+ \lambda_2 \vec{OA'_2}
+	+ \lambda_3 \vec{OA'_3}
+\).
+又因为\(\vec{OA'_j},\vec{OE'}\)的\(\overline{I}\)坐标分别于\(A'_j,E'\)的 I 坐标成比例，
+那么可以求出\(\lambda_j\)，
+进而求出\(d'_j\)的\(\overline{I}\)坐标，
+最后写出射影坐标变换公式.
+
+\subsection{直线的射影坐标方程}
+设相异两点\(P,Q\)在基底\([A_1,A_2,A_3,E]\)中的射影坐标分别为\((p_1,p_2,p_3),(q_1,q_2,q_3)\).
+点\(M(\AutoTuple{x}{3})\)在直线\(PQ\)上的充分必要条件是把\(O\)中相应的直线\(OM,OP,OQ\)共面，
+从而存在不全为零的数\(\lambda,\mu\)，使得它们的方向向量\(v_M,v_P,v_Q\)使得\begin{equation}
+	v_M = \lambda v_P + \mu v_Q,
+\end{equation}
+即\begin{equation}\label{equation:解析几何.射影坐标及其变换.射影平面上相异两点确定的直线的射影坐标参数方程}
+%@see: 《解析几何》（丘维声） P284 (4.3)
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}
+	= \lambda \begin{bmatrix}
+		p_1 \\ p_2 \\ p_3
+	\end{bmatrix}
+	+ \mu \begin{bmatrix}
+		q_1 \\ q_2 \\ q_3
+	\end{bmatrix},
+\end{equation}
+亦即\begin{equation*}
+	\begin{vmatrix}
+		x_1 & p_1 & q_1 \\
+		x_2 & p_2 & q_2 \\
+		x_3 & p_3 & q_3
+	\end{vmatrix}
+	= 0,
+\end{equation*}
+展开得\begin{equation}\label{equation:解析几何.射影坐标及其变换.射影平面上相异两点确定的直线的射影坐标方程}
+%@see: 《解析几何》（丘维声） P284 (4.4)
+	\eta_1 x_1 + \eta_2 x_2 + \eta_3 x_3 = 0,
+\end{equation}
+其中\begin{equation*}
+	\eta_1 \defeq \begin{vmatrix}
+		p_2 & q_2 \\
+		p_3 & q_3
+	\end{vmatrix},
+	\qquad
+	\eta_2 \defeq \begin{vmatrix}
+		p_3 & q_3 \\
+		p_1 & q_1
+	\end{vmatrix},
+	\qquad
+	\eta_3 \defeq \begin{vmatrix}
+		p_1 & q_1 \\
+		p_2 & q_2
+	\end{vmatrix}
+\end{equation*}
+不全为零（因为\(P,Q\)是相异两点，所以\(v_P,v_Q\)不共线）.
+这说明，直线\(PQ\)的射影坐标方程
+\labelcref{equation:解析几何.射影坐标及其变换.射影平面上相异两点确定的直线的射影坐标方程}
+是一个三元一次齐次方程.
+反过来，容易看出，任意一个三元一次齐次方程（在射影坐标系中）都表示射影平面上的一条直线.
+
+\cref{equation:解析几何.射影坐标及其变换.射影平面上相异两点确定的直线的射影坐标参数方程}
+称为“直线\(PQ\)在给定射影坐标系中的\DefineConcept{参数方程}”.
+
+容易看出，两个方程\begin{equation*}
+	\eta_1 x_1 + \eta_2 x_2 + \eta_3 x_3 = 0
+	\quad\text{与}\quad
+	\omega_1 x_1 + \omega_2 x_2 + \omega_3 x_3 = 0
+\end{equation*}
+表示同一条直线的充分必要条件是\((\eta_1,\eta_2,\eta_3)\)与\((\omega_1,\omega_2,\omega_3)\)成比例.
+因此，我们将\((\eta_1,\eta_2,\eta_3)\)
+称为“直线\(\eta_1 x_1 + \eta_2 x_2 + \eta_3 x_3 = 0\)的\DefineConcept{齐次射影坐标}”.
+
+从上述讨论还可以看出：\begin{enumerate}
+	\item 在射影平面上，设三点\(P,Q,R\)的射影坐标分别为\(
+		(p_1,p_2,p_3),
+		(q_1,q_2,q_3),
+		(r_1,r_2,r_3)
+	\)，
+	则\(P,Q,R\)三点共线的充分必要条件是\begin{equation*}
+		\begin{vmatrix}
+			p_1 & q_1 & r_1 \\
+			p_2 & q_2 & r_2 \\
+			p_3 & q_3 & r_3
+		\end{vmatrix}
+		= 0;
+	\end{equation*}
+
+	\item 在射影平面上，设三点\(P,Q,R\)的射影坐标分别为\(
+		(p_1,p_2,p_3),
+		(q_1,q_2,q_3),
+		(r_1,r_2,r_3)
+	\)，
+	\(P\)与\(Q\)不重合，
+	则点\(R\)在直线\(PQ\)上的充分必要条件是，
+	存在不全为零的数\(\lambda,\mu\)，
+	使得\begin{equation*}
+		\begin{bmatrix}
+			r_1 \\ r_2 \\ r_3
+		\end{bmatrix}
+		= \lambda \begin{bmatrix}
+			p_1 \\ p_2 \\ p_3
+		\end{bmatrix}
+		+ \mu \begin{bmatrix}
+			q_1 \\ q_2 \\ q_3
+		\end{bmatrix}.
+	\end{equation*}
+\end{enumerate}
+
+\subsection{用射影坐标计算交比}
+之前我们得到了用齐次坐标计算交比的公式，
+即\cref{equation:解析几何.射影平面上的交比.四线的交比1,equation:解析几何.射影平面上的交比.四点的交比1}.
+现在我们来说明这两个公式在射影坐标下仍然成立.
+
+\begin{theorem}
+%@see: 《解析几何》（丘维声） P286 定理4.1
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+其中\(A,B,C\)各不相同，
+并且\(D \neq A\).
+又设\(A,B,C,D\)在任一基底\([A_1,A_2,A_3,E]\)中的射影坐标分别为\(
+	(\AutoTuple{a}{3}),
+	(\AutoTuple{b}{3}),
+	(\AutoTuple{c}{3}),
+	(\AutoTuple{d}{3})
+\)，
+且\begin{equation*}
+	\begin{bmatrix}
+		c_1 & d_1 \\
+		c_2 & d_2 \\
+		c_3 & d_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_1 & b_1 \\
+		a_2 & b_2 \\
+		a_3 & b_3
+	\end{bmatrix}
+	\begin{bmatrix}
+		\lambda_1 & \lambda_2 \\
+		\mu_1 & \mu_2
+	\end{bmatrix},
+\end{equation*}
+则\begin{equation}%\label{equation:解析几何.射影坐标及其变换.四点的交比1}
+%@see: 《解析几何》（丘维声） P286 (4.5)
+	R(A,B,C,D)
+	= \frac{\lambda_2}{\mu_2} \bigg/ \frac{\lambda_1}{\mu_1}.
+\end{equation}
+\end{theorem}
+
+类似地，关于用齐次坐标计算共点四线的交比的公式 \labelcref{equation:解析几何.射影平面上的交比.四线的交比1} 在射影坐标中仍然成立.
+
+此外，由\cref{equation:解析几何.射影平面上的交比.四点的交比2} 的推到过程可以看出，
+既然\cref{equation:解析几何.射影平面上的交比.四点的交比1} 对于射影坐标也成立，
+那么\cref{equation:解析几何.射影平面上的交比.四点的交比2} 对于射影坐标同样成立.
+并且，共点四线的交比的类似于\cref{equation:解析几何.射影平面上的交比.四点的交比2} 的公式对于射影坐标也成立.
+
+\subsection{点的非齐次射影坐标}
+\begin{definition}
+%@see: 《解析几何》（丘维声） P287 定义4.3
+在射影平面上取一个基底I\([A_1,A_2,A_3,E]\)，
+对于不在直线\(A_1A_2\)上的点\(M(x_1,x_2,x_3)\)，
+记\(
+	x \defeq x_1 / x_3,
+	y \defeq x_2 / x_3
+\)，
+把\((x,y)\)
+称为“点\(M\)的\DefineConcept{非齐次射影坐标}”.
+\end{definition}
+
+我们之前提到过一个点的齐次射影坐标的几何意义：\begin{equation*}
+	x_1 / x_3 = R(A_1,A_3,A_{13},M_{13}),
+	\qquad
+	x_2 / x_3 = R(A_2,A_3,A_{23},M_{23}),
+\end{equation*}
+因此点\(M\)的非齐次射影坐标实际上就是交比（如\cref{definition:解析几何.射影坐标及其变换.点的非齐次射影坐标} 所示）.
+
+\begin{figure}[hbt]
+%@see: 《解析几何》（丘维声） P287 图7.14
+	\centering
+	\begin{tikzpicture}[
+		label distance=2pt,
+	]
+		% 依赖 tkz-euclide 宏包
+		\coordinate[label=above:$A_1$](A1)at(0,0);
+		\coordinate[label=left:$A_2$](A2)at(-2.4,-3.4);
+		\coordinate[label=right:$A_3$](A3)at(2,-3.4);
+		\coordinate[label=left:$E$](E)at(0,-2);
+		\coordinate[label=right:$M$](M)at(-.8,-3);
+
+		\tkzInterLL(A1,E)(A2,A3) \tkzGetPoint{A23} \draw(A23)node[below]{$A_{23}$};
+		\tkzInterLL(A1,M)(A2,A3) \tkzGetPoint{M23} \draw(M23)node[below]{$M_{23}$};
+		\tkzInterLL(A2,E)(A1,A3) \tkzGetPoint{A13} \draw(A13)node[right]{$A_{13}$};
+		\tkzInterLL(A2,M)(A1,A3) \tkzGetPoint{M13} \draw(M13)node[right]{$M_{13}$};
+
+		\tkzDrawPoints(E,M)
+
+		\draw(A1)--(A2)--(A3)--cycle;
+		\draw(A13)--(A2)--(M13);
+		\draw(A23)--(A1)--(M23);
+	\end{tikzpicture}
+	\caption{}
+	\label{definition:解析几何.射影坐标及其变换.点的非齐次射影坐标}
+\end{figure}
+
+取另一基底II\([A'_1,A'_2,A'_3,E']\)，
+对于既不在直线\(A_1A_2\)上，
+又不在直线\(A'_1A'_2\)上的任意一点\(M\)，
+假设它在基底 I 、II 中的齐次射影坐标分别是\((x_1,x_2,x_3)\)、\((x'_1,x'_2,x'_3)\)，
+非齐次射影坐标分别是\((x,y)\)、\((x',y')\)，
+则\begin{equation*}
+	x = x_1 / x_3,
+	y = x_2 / x_3,
+	x' = x'_1 / x'_3,
+	y' = x'_2 / x'_3.
+\end{equation*}
+由齐次射影坐标变换公式 \labelcref{equation:解析几何.射影坐标及其变换.射影坐标变换公式} 可得\begin{equation*}
+	\rho x_i = \sum_{j=1}^3 a_{ij} x'_j
+	\quad(i=1,2,3),
+\end{equation*}
+从而有\begin{equation}\label{equation:解析几何.射影坐标及其变换.点的非齐次射影坐标变换公式}
+%@see: 《解析几何》（丘维声） P288 (4.6)
+	\begin{bmatrix}
+		x \\ y
+	\end{bmatrix}
+	= \frac1{a_{31} x' + a_{32} y' + a_{33}}
+	\begin{bmatrix}
+		a_{11} x' + a_{12} y' + a_{13} \\
+		a_{21} x' + a_{22} y' + a_{23}
+	\end{bmatrix}.
+\end{equation}
+\cref{equation:解析几何.射影坐标及其变换.点的非齐次射影坐标变换公式}
+是点的非齐次射影坐标变换公式，
+它表明一个点在基底 I 中的非齐次射影坐标\((x,y)\)
+可以用这个点在基底 II 中的非齐次射影坐标\((x',y')\)的分式线性函数来表达.
