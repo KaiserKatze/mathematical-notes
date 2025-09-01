@@ -261,7 +261,7 @@
 但是它在点\(O\)上的射影\(OA_1\)在直线\(l'\)上的截影\(A_1'\)是一个通常点.
 
 \begin{figure}[hbt]
-%@see: 《解析几何》（丘维声） P271 图7.8
+%@see: 《解析几何》（丘维声） P272 图7.9
 	\centering
 	\begin{tikzpicture}[
 		label distance=2pt,
@@ -289,3 +289,150 @@
 	\caption{}
 	\label{figure:解析几何.射影平面上的交比.四线的交比2}
 \end{figure}
+
+我们已经会用直线的齐次坐标计算共点四线的交比，现在我们来讨论如何用点的齐次坐标计算共线四点的交比.
+\begin{theorem}%\label{theorem:解析几何.射影平面上的交比.四点的交比1}
+%@see: 《解析几何》（丘维声） P272 定理3.1
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+其中\(A,B,C\)各不相同，
+并且\(D \neq A\)，
+又设\(A,B,C,D\)的齐次坐标分别为\(
+	(\AutoTuple{a}{3}),
+	(\AutoTuple{b}{3}),
+	(\AutoTuple{c}{3}),
+	(\AutoTuple{d}{3})
+\)，
+且\begin{equation*}
+	\begin{bmatrix}
+		c_1 & d_1 \\
+		c_2 & d_2 \\
+		c_3 & d_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_1 & b_1 \\
+		a_2 & b_2 \\
+		a_3 & b_3
+	\end{bmatrix}
+	\begin{bmatrix}
+		\lambda_1 & \lambda_2 \\
+		\mu_1 & \mu_2
+	\end{bmatrix},
+\end{equation*}
+则\begin{equation*}
+%@see: 《解析几何》（丘维声） P272 (3.5)
+	R(A,B,C,D)
+	= \frac{\lambda_2}{\mu_2} \bigg/ \frac{\lambda_1}{\mu_1}.
+\end{equation*}
+\end{theorem}
+
+共线四点的交比还可以通过另一种形式来计算.
+\begin{theorem}\label{theorem:解析几何.射影平面上的交比.四点的交比2}
+%@see: 《解析几何》（丘维声） P273 定理3.2
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+其中\(A,B,C\)各不相同，
+并且\(D \neq A\).
+在直线\(ABCD\)上取两点\(P,Q\)，
+设它们的齐次坐标分别为\(
+	(\AutoTuple{p}{3}),
+	(\AutoTuple{q}{3})
+\)，
+又设\(A,B,C,D\)的齐次坐标分别为\(
+	(\AutoTuple{a}{3}),
+	(\AutoTuple{b}{3}),
+	(\AutoTuple{c}{3}),
+	(\AutoTuple{d}{3})
+\)，
+且\begin{equation*}
+	\begin{bmatrix}
+		a_1 & b_1 & c_1 & d_1 \\
+		a_2 & b_2 & c_2 & d_2 \\
+		a_3 & b_3 & c_3 & d_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		p_1 & q_1 \\
+		p_2 & q_2 \\
+		p_3 & q_3
+	\end{bmatrix}
+	\begin{bmatrix}
+		\lambda_1 & \lambda_2 & \lambda_3 & \lambda_4 \\
+		\mu_1 & \mu_2 & \mu_3 & \mu_4
+	\end{bmatrix},
+\end{equation*}
+则\begin{equation*}
+%@see: 《解析几何》（丘维声） P273 (3.6)
+	R(A,B,C,D)
+	= \frac{
+		\begin{vmatrix}
+			\lambda_1 & \lambda_3 \\
+			\mu_1 & \mu_3
+		\end{vmatrix}
+		\begin{vmatrix}
+			\lambda_2 & \lambda_4 \\
+			\mu_2 & \mu_4
+		\end{vmatrix}
+	}{
+		\begin{vmatrix}
+			\lambda_1 & \lambda_4 \\
+			\mu_1 & \mu_4
+		\end{vmatrix}
+		\begin{vmatrix}
+			\lambda_2 & \lambda_3 \\
+			\mu_2 & \mu_3
+		\end{vmatrix}
+	}.
+\end{equation*}
+\end{theorem}
+
+从\cref{theorem:解析几何.射影平面上的交比.四点的交比2} 不难得出交比具有下列性质.
+\begin{property}
+%@see: 《解析几何》（丘维声） P274
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+其中\(A,B,C\)各不相同，
+并且\(D \neq A\)，
+则\begin{equation*}
+	R(C,D,A,B)
+	= R(A,B,C,D)
+	= R(B,A,D,C).
+\end{equation*}
+\end{property}
+
+\begin{property}
+%@see: 《解析几何》（丘维声） P274
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+其中\(A,B,C\)各不相同，
+并且\(D \neq A\)，\(D \neq B\)，
+则\begin{equation*}
+	R(B,A,C,D)
+	= \frac1{R(A,B,C,D)}
+	= R(A,B,D,C).
+\end{equation*}
+\end{property}
+
+\begin{property}
+%@see: 《解析几何》（丘维声） P274
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+其中\(A,B,C\)各不相同，
+并且\(D \neq A\)，
+则\begin{equation*}
+	R(A,C,B,D)
+	= 1 - R(A,B,C,D).
+\end{equation*}
+\end{property}
+
+由对偶原理可知，对于共点四线的交比，
+也有类似于\cref{theorem:解析几何.射影平面上的交比.四点的交比2} 的计算公式和上述三条性质.
+
+共点四线还有一条重要性质.
+\begin{property}
+%@see: 《解析几何》（丘维声） P274
+%@see: 《解析几何》（丘维声） P277 习题7.3 8.
+设\(\AutoTuple{l}{4}\)是射影平面\(\overline{\pi_0}\)上经过通常点\(O\)的四条不同直线，
+则\begin{equation*}
+%@see: 《解析几何》（丘维声） P274 (3.7)
+	R(l_1,l_2,l_3,l_4)
+	= \frac{\sin\angle(l_1,l_3)}{\sin\angle(l_3,l_2)}
+		\bigg/
+		\frac{\sin\angle(l_1,l_4)}{\sin\angle(l_4,l_2)},
+\end{equation*}
+其中\(\angle(l_i,l_j)\)表示直线\(l_i\)绕\(O\)逆时针旋转到\(l_j\)扫过的角度.
+\end{property}
