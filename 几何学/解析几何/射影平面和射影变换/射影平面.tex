@@ -486,14 +486,15 @@
 		\coordinate(O)at(2,-1);
 		\coordinate(O1)at(1.4,1);
 		\coordinate(M)at(4,1.3);
-		\filldraw(O)node[below]{$O$}--(M)circle(2pt)node[right]{$M$}node[pos=.8,below right]{$l$};
+		\filldraw(O)node[left]{$O$}--(M)circle(2pt)node[right]{$M$}node[pos=.8,below right]{$l$};
 		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
-			\draw(O)--+(1,.5)node[right]{$d_2$};
-			\draw(O)--+(1,-.2)node[right]{$d_1$};
+			\draw(O)--+(1,.5)coordinate(d2)node[right]{$d_2$};
+			\draw(O)--+(1,-.2)coordinate(d1)node[right]{$d_1$};
 			\draw(O)--(O1)node[pos=.3,left]{$d_3$}node[left]{$O_1$};
-			\draw(O1)--+(1,.4)node[right]{$d_2$};
-			\draw(O1)--+(1.2,-.1)node[right]{$d_1$};
+			\draw(O1)--($(O1)+(d2)-(O)$)coordinate(d2')node[right]{$d_2$};
+			\draw(O1)--($(O1)+(d1)-(O)$)coordinate(d1')node[right]{$d_1$};
 		\end{scope}
+		\draw[dashed](d1)--(d1') (d2)--(d2');
 	\end{tikzpicture}
 	\caption{}
 	\label{figure:解析几何.射影平面和射影变换.齐次仿射坐标}
