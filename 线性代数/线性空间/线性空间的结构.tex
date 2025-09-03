@@ -425,13 +425,13 @@
 		e \alpha = \alpha
 	].
 \end{equation*}
-证明：满足\(
+试讨论：满足\(
 	(\forall \alpha \in V)
 	[
 		e \alpha = \alpha
 	]
-\)的\(e \in F\)与\(F\)的单位元\(1\)相等.
-\begin{proof}
+\)的\(e \in F\)与\(F\)的单位元\(1\)是否相等.
+\begin{solution}
 %@credit: {gemini},{8b6edada-f2fd-4ae5-9020-eb533149a54c},{855486ab-2fcf-40c1-b774-09956dfb4012}
 假设\(e \in F\)满足
 对于任意\(\alpha \in V\)成立\(e \alpha = \alpha\)，
@@ -445,17 +445,80 @@
 \end{equation*}
 于是对于任意\(\alpha \in V\)，成立\begin{equation*}
 	1 \alpha = \alpha = e \alpha,
+	\eqno(1)
 \end{equation*}
 从而有\((1-e) \alpha = 0\).
-又因为 \hyperref[theorem:线性空间.线性空间的结构.线性空间的性质5]{
-\(
-	k\alpha=0 \implies k=0 \lor \alpha=0
-\)}，
-所以\(1-e = 0 \lor \alpha = 0\)，
-这就是说，
+
+\cref{theorem:线性空间.线性空间的结构.线性空间的性质5} 的证明过程
+用到了修改之前的\cref{definition:线性空间.运算法则5}，
+所以我们不能直接由它得出以下结论：\begin{equation*}
+	(\forall k \in F)
+	(\forall \alpha \in V)
+	[
+		k\alpha=0 \implies k=0 \lor \alpha=0
+	].
+\end{equation*}
+
+如果\(V\)只含零向量，
+那么由\cref{theorem:线性空间.线性空间的结构.线性空间的性质4} 可知，
+不论\((1-e)\)是否为零，
+\((1-e)\alpha\)恒等于零.
+这就说明，当\(V = \{0\}\)时，
+\(e\)不一定是\(F\)的单位元，
+事实上，\(e\)可以是\(F\)中的任意一个元素.
+
+如果\(V\)含有非零向量，
+那么，为了证明\(e=1\)，只需证\begin{equation*}
+	\alpha\neq0, k\alpha = 0 \implies k=0.
+\end{equation*}
+首先假设\(\alpha\neq0, k\alpha = 0\).
+接着用反证法，假设\(k\neq0\).
+鉴于域\(F\)中每个非零元\(k\)都有逆元\(k^{-1}\)，
+在\(k\alpha = 0\)两边同时乘以\(k^{-1}\)得\begin{equation*}
+	k^{-1}(k\alpha) = k^{-1}0.
+	\eqno(2)
+\end{equation*}
+由\cref{theorem:线性空间.线性空间的结构.线性空间的性质4} 可知\begin{equation*}
+	k^{-1}0 = 0.
+	\eqno(3)
+\end{equation*}
+由\cref{definition:线性空间.运算法则6} 可知\begin{equation*}
+	k^{-1}(k\alpha)
+	= (k^{-1} k)\alpha,
+\end{equation*}
+因为\(k^{-1} k = 1\)，
+所以\begin{equation*}
+	(k^{-1} k)\alpha
+	= 1\alpha,
+\end{equation*}
+于是\begin{equation*}
+	k^{-1}(k\alpha)
+	= 1\alpha,
+\end{equation*}
+再由(1)式可知\(1\alpha = \alpha\)，从而有\begin{equation*}
+	k^{-1}(k\alpha)
+	= \alpha.
+	\eqno(4)
+\end{equation*}
+由(2)(3)(4)可得\begin{equation*}
+	\alpha = 0.
+\end{equation*}
+这与前提条件“\(\alpha\neq0\)”相矛盾，
+因此一定有\(k=0\).
+于是由\((1-e)\alpha = 0\)得\(1-e=0\)，即\(e=1\).
+
+综上所述，
+在将\cref{definition:线性空间.运算法则5} 修改为\begin{equation*}
+	(\exists e \in F)
+	(\forall \alpha \in V)
+	[
+		e \alpha = \alpha
+	]
+\end{equation*}
+以后，
 要么\(e\)就是域\(F\)的单位元（即\(e = 1\)），
 要么\(V\)是只含零向量的线性空间（即\(V = \{0\}\)）.
-\end{proof}
+\end{solution}
 \end{example}
 
 \begin{example}
