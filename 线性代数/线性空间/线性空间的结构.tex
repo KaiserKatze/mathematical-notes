@@ -29,70 +29,119 @@
 
 %@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P12 1.20
 %@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P15 1.28
-如果\emph{加法}与\emph{纯量乘法}满足以下八条公理：
-\begin{center}
-	\begin{minipage}{.8\textwidth}
-		\begin{axiom}\label{definition:线性空间.运算法则1}
+\begingroup
+\let\labelitemi\relax
+\begin{itemize}
+		\item
+		\vspace{-1.2cm}
+		\begin{axiom}[加法交换律]\label{definition:线性空间.运算法则1}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (2)
-		% 加法交换律
-		\((\forall\alpha,\beta\in V)
-		[\alpha+\beta=\beta+\alpha]\).
+			\begin{equation*}
+				(\forall\alpha,\beta\in V)
+				[
+					\alpha + \beta = \beta + \alpha
+				].
+			\end{equation*}
 		\end{axiom}
-		\begin{axiom}\label{definition:线性空间.运算法则2}
+		\begin{axiom}[加法结合律]\label{definition:线性空间.运算法则2}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (3)
-		% 加法结合律
-		\((\forall\alpha,\beta,\gamma\in V)
-		[(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)]\).
+			\begin{equation*}
+				(\forall\alpha,\beta,\gamma\in V)
+				[
+					(\alpha + \beta) + \gamma
+					= \alpha + (\beta + \gamma)
+				].
+			\end{equation*}
 		\end{axiom}
-		\begin{axiom}\label{definition:线性空间.运算法则3}
+		\begin{axiom}[零元的存在性]\label{definition:线性空间.运算法则3}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (4)
-		% 零元
-		\(0\in V
-		\land
-		(\forall\alpha \in V)
-		[\alpha+0=\alpha]\)，
-		把\(0\)称为“\(V\)的\DefineConcept{零元}（additive identity）”.
+			\begin{equation*}
+				(\forall \alpha \in V)
+				(\exists \beta \in V)
+				[
+					\alpha + \beta = \alpha
+				].
+			\end{equation*}
+
+			如果\(\beta \in V\)满足\begin{equation*}
+				(\forall \alpha \in V)
+				[
+					\alpha + \beta = \alpha
+				],
+			\end{equation*}
+			则称“\(\beta\)是\(V\)的一个\DefineConcept{零元}（additive identity）”，
+			记为\(0_\alpha\).
 		\end{axiom}
-		\begin{axiom}\label{definition:线性空间.运算法则4}
+		\begin{axiom}[负元的存在性]\label{definition:线性空间.运算法则4}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (5)
-		% 负元
-		\((\forall\alpha \in V)
-		(\exists\beta \in V)
-		[\alpha+\beta=0]\)，
-		\(\beta\)称为“\(\alpha\)的\DefineConcept{负元}（additive inverse）”，
-		记作\(-\alpha\).
-		定义运算\(V\times V \to V,(\alpha,\beta) \mapsto \alpha-\beta \defeq \alpha+(-\beta)\)，
-		称之为\DefineConcept{减法}.
+			\begin{equation*}
+				(\forall \alpha \in V)
+				(\exists \beta \in V)
+				[
+					\alpha + \beta = 0_\alpha
+				].
+			\end{equation*}
+
+			如果\(\alpha,\beta \in V\)满足\begin{equation*}
+				\alpha + \beta = 0_\alpha,
+			\end{equation*}
+			则称“\(\beta\)是\(\alpha\)的一个\DefineConcept{负元}（additive inverse）”，
+			记作\((-\alpha)\).
+
+			定义运算\(
+				V\times V \to V,
+				(\alpha,\beta) \mapsto \alpha-\beta \defeq \alpha+(-\beta)
+			\)，
+			称之为\DefineConcept{减法}.
 		\end{axiom}
-		\begin{axiom}\label{definition:线性空间.运算法则5}
+		\begin{axiom}[域的单位元]\label{definition:线性空间.运算法则5}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (9)
-		% 幺元
-		\((\forall\alpha\in V)[1\alpha=\alpha]\)，
-		其中\(1\)是\(F\)的单位元.
+			设\(1\)是\(F\)的单位元，
+			则\begin{equation*}
+				(\forall \alpha \in V)
+				[
+					1 \alpha = \alpha
+				].
+			\end{equation*}
 		\end{axiom}
-		\begin{axiom}\label{definition:线性空间.运算法则6}
+		\begin{axiom}[纯量乘法结合律]\label{definition:线性空间.运算法则6}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (6)
-		% 纯量乘法
-		\((\forall\alpha\in V)
-		(\forall k,l\in F)
-		[k(l\alpha)=(kl)\alpha]\).
+			\begin{equation*}
+				(\forall \alpha \in V)
+				(\forall k,l \in F)
+				[
+					k (l \alpha)
+					= (k l) \alpha
+				].
+			\end{equation*}
 		\end{axiom}
-		\begin{axiom}\label{definition:线性空间.运算法则7}
+		\begin{axiom}[纯量乘法右分配律]\label{definition:线性空间.运算法则7}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (8)
 		% 纯量乘法
-		\((\forall\alpha\in V)
-		(\forall k,l\in F)
-		[(k+l)\alpha=k\alpha+l\alpha]\).
+			\begin{equation*}
+				(\forall \alpha \in V)
+				(\forall k,l \in F)
+				[
+					(k + l) \alpha
+					= k \alpha + l\alpha
+				].
+			\end{equation*}
 		\end{axiom}
-		\begin{axiom}\label{definition:线性空间.运算法则8}
+		\begin{axiom}[纯量乘法左分配律]\label{definition:线性空间.运算法则8}
 		%@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P2 (7)
 		% 纯量乘法
-		\((\forall\alpha,\beta\in V)
-		(\forall k\in F)
-		[k(\alpha+\beta)=k\alpha+k\beta]\).
+			\begin{equation*}
+				(\forall \alpha,\beta \in V)
+				(\forall k\in F)
+				[
+					k (\alpha + \beta)
+					= k \alpha + k \beta
+				].
+			\end{equation*}
 		\end{axiom}
-	\end{minipage}
-\end{center}
+\end{itemize}
+\endgroup
+如果\emph{加法}与\emph{纯量乘法}满足上述八条公理，
 则称“\(V\)是域\(F\)上的一个\DefineConcept{线性空间}%
 （\(V\) is a \emph{linear space} over field \(F\)）”，
 %@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P12 1.21
