@@ -569,10 +569,27 @@
 分别是\(l_1\)、\(l_2\)的方向向量.
 设\(\overline{\pi_0}\)上任意一点\(M\)的齐次坐标为\((\AutoTuple{x}{3})\)，
 则\(M\)所对应的把\(O\)中的直线\(l\)的一个方向向量\(v\)的仿射坐标为\((\AutoTuple{x}{3})\).
+记\begin{equation*}
+	\vb{U} \defeq \begin{bmatrix}
+		a_1 & b_1 \\
+		a_2 & b_2 \\
+		a_3 & b_3
+	\end{bmatrix},
+	\qquad
+	\vb{X} \defeq \begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}.
+\end{equation*}
+假设\(A,B\)是不同两点，\((\AutoTuple{a}{3})\)与\((\AutoTuple{b}{3})\)不成比例，
+则\(
+	\rank\vb{U} = 2
+\).
 点\(M\)在直线\(AB\)上的充分必要条件是
 \(l\)在\(l_1\)、\(l_2\)这两条相交直线决定的平面\(OAB\)上，
 即\(v,v_1,v_2\)共面，
-从而\begin{equation}\label{equation:射影平面.直线的齐次坐标方程1}
+那么由\cref{theorem:解析几何.三向量共面的必要条件1} 可知，
+存在不全为零的数\(\lambda,\mu\)，
+使得\begin{equation}\label{equation:射影平面.直线的齐次坐标方程1}
 %@see: 《解析几何》（丘维声） P263 (1.1)
 	\begin{cases}
 		x_1 = \lambda a_1 + \mu b_1, \\
@@ -580,16 +597,21 @@
 		x_3 = \lambda a_3 + \mu b_3,
 	\end{cases}
 \end{equation}
-其中\(\lambda,\mu\)是不全为零的数，
-亦即\begin{equation*}
-	\begin{vmatrix}
-		x_1 & a_1 & b_1 \\
-		x_2 & a_2 & b_2 \\
-		x_3 & a_3 & b_3
-	\end{vmatrix}
+即关于\(\lambda,\mu\)的方程\begin{equation*}
+	\vb{U}
+	(\lambda,\mu)^T
+	= \vb{X}
+\end{equation*}
+有非零解，
+即\begin{equation*}
+	\rank\vb{U}
+	= \rank(\vb{X},\vb{U}),
+\end{equation*}
+即\begin{equation*}
+	\DeterminantA{(\vb{X},\vb{U})}
 	= 0,
 \end{equation*}
-即\begin{equation}\label{equation:射影平面.直线的齐次坐标方程2}
+也即\begin{equation}\label{equation:射影平面.直线的齐次坐标方程2}
 %@see: 《解析几何》（丘维声） P263 (1.2)
 	\eta_1 x_1 + \eta_2 x_2 + \eta_3 x_3 = 0,
 \end{equation}
@@ -609,36 +631,23 @@
 		a_2 & b_2
 	\end{vmatrix}.
 \end{equation*}
-我们把\cref{equation:射影平面.直线的齐次坐标方程1}
-称为“直线\(AB\)的\DefineConcept{齐次（仿射）坐标参数方程}”.
-
-由于\(A,B\)是不同两点，
-因此\((\AutoTuple{a}{3})\)与\((\AutoTuple{b}{3})\)不成比例，
-即\begin{equation*}
-	\rank\begin{bmatrix}
-		a_1 & b_1 \\
-		a_2 & b_2 \\
-		a_3 & b_3
-	\end{bmatrix}
-	= 2,
-\end{equation*}
-% 即矩阵\(
-% 	\begin{bmatrix}
-% 		a_1 & b_1 \\
-% 		a_2 & b_2 \\
-% 		a_3 & b_3
-% 	\end{bmatrix}
-% \)的最高阶非零子式的阶数是\(2\)，
-从而\(\AutoTuple{\eta}{3}\)不全为零.
+由于\(\rank\vb{U} = 2\)，
+矩阵\(\vb{U}\)的最高阶非零子式的阶数是\(2\)，
+所以\(\AutoTuple{\eta}{3}\)作为矩阵\(\vb{U}\)的二阶子式，
+其中至少有一个不等于零，
+也就是说\(\AutoTuple{\eta}{3}\)不全为零.
 这说明，直线\(AB\)的齐次坐标方程 \labelcref{equation:射影平面.直线的齐次坐标方程2} 是一个三元一次齐次方程.
 反过来，任意一个三元一次齐次方程都表示射影平面上的一条直线.
+
+我们把\cref{equation:射影平面.直线的齐次坐标方程1}
+称为“直线\(AB\)的\DefineConcept{齐次（仿射）坐标参数方程}”.
 
 由于无穷远直线是由所有无穷远点组成的，
 而无穷远点的齐次坐标都形如\((x_1,x_2,0)\)，
 因此无穷远直线的方程是\begin{equation*}
 	x_3 = 0.
 \end{equation*}
-射影直线的齐次方程中，\(x_1\)、\(x_2\)的系数一定不全为零.
+射影直线的齐次方程中，\(x_1\)、\(x_2\)的系数\(\eta_1\)、\(\eta_2\)一定不全为零.
 
 从上面的推导过程还看到：\begin{enumerate}
 	\item 平面\(\overline{\pi_0}\)上三点
