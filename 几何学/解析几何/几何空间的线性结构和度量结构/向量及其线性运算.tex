@@ -178,6 +178,58 @@
 	\end{equation*}
 \end{enumerate}
 这些运算律都可以利用有向线段作图予以证明.
+如\cref{figure:解析几何.向量加法结合律}，
+作\(\vec{OA}\)表示\(\vb{a}\)，
+作\(\vec{AB}\)表示\(\vb{b}\)，
+作\(\vec{BC}\)表示\(\vb{c}\)，
+则\begin{gather*}
+	(\vb{a} + \vb{b}) + \vb{c}
+	= (\vec{OA} + \vec{AB}) + \vec{BC}
+	= \vec{OB} + \vec{BC}
+	= \vec{OC}, \\
+	\vb{a} + (\vb{b} + \vb{c})
+	= \vec{OA} + (\vec{AB} + \vec{BC})
+	= \vec{OA} + \vec{AC}
+	= \vec{OC},
+\end{gather*}
+因此\begin{equation*}
+	(\vb{a} + \vb{b}) + \vb{c}
+	= \vb{a} + (\vb{b} + \vb{c}).
+\end{equation*}
+
+\begin{figure}[hbt]
+%@see: 《解析几何》（丘维声） P3 图1.6
+	\centering
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\xmax}{6}
+		\pgfmathsetmacro{\xmin}{0}
+		\pgfmathsetmacro{\ymax}{4}
+		\pgfmathsetmacro{\ymin}{0}
+		\draw[help lines,color=gray!30,dashed](\xmin,\ymin)grid(\xmax,\ymax);
+		\begin{scope}[->,>=Stealth,ultra thick]
+			\draw(\xmin,0)--(\xmax,0)node[right]{\(x\)};
+			\draw(0,\ymin)--(0,\ymax)node[above]{\(y\)};
+		\end{scope}
+		\coordinate[label=left:$O$](O)at(1,2);
+		\coordinate[label=below:$A$](A)at(2,1);
+		\coordinate[label=right:$B$](B)at(5,1.5);
+		\coordinate[label=above:$C$](C)at(3,3);
+		\begin{scope}[-{Latex[length=3mm,width=0pt 10]}]
+			\begin{scope}[blue]
+				\draw(O)--(A)node[midway,below,black]{$\vb{a}$};
+				\draw(A)--(B)node[midway,below,black]{$\vb{b}$};
+				\draw(B)--(C)node[midway,above right,black]{$\vb{c}$};
+			\end{scope}
+			\begin{scope}[red]
+				\draw(O)--(B);
+				\draw(A)--(C);
+				\draw(O)--(C);
+			\end{scope}
+		\end{scope}
+	\end{tikzpicture}
+	\caption{}
+	\label{figure:解析几何.向量加法结合律}
+\end{figure}
 
 \begin{definition}
 %@see: 《解析几何》（丘维声） P4 定义1.2
