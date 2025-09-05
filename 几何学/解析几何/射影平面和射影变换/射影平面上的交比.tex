@@ -7,14 +7,19 @@
 \subsection{交比的定义和性质}
 %@see: 《平面解析几何（甲种本）》 P7
 %@see: 《解析几何》（丘维声） P269
-设\(A,B,C\)是欧氏平面\(\pi_0\)上共线三点，\(C \neq B\)（即\(C\)与\(B\)不重合），
-我们把线段长\(\LineSegmentLength{AC}\)和\(\LineSegmentLength{CB}\)之比
-称为“点\(C\)分线段\(AB\)所成的\DefineConcept{比}”，记作\(R(A,B,C)\)，
+设\(A,B,C\)是欧氏平面\(\pi_0\)上共线三点，\(C \neq B\)（即\(C\)与\(B\)不重合）.
+如果数\(\lambda\)满足\begin{equation*}
+	\vec{AC} = \lambda \vec{CB},
+\end{equation*}
+则称“\(\lambda\)是点\(C\)分线段\(AB\)所成的\DefineConcept{比}”
+“点\(C\)分线段\(AB\)成定比\(\lambda\)”，
+记\(R(A,B,C) \defeq \lambda\)，
 即\begin{equation*}
 %@see: 《解析几何》（丘维声） P269 (3.1)
 	R(A,B,C)
 	\defeq
-	\frac{\LineSegmentLength{AC}}{\LineSegmentLength{CB}}.
+	\frac{\LineSegmentLength{AC}}{\LineSegmentLength{CB}}
+	\cos\angle(\vec{AC},\vec{CB}).
 \end{equation*}
 把点\(C\)称为“线段\(AB\)的\DefineConcept{定比分点}”.
 这就是过去我们熟知的定比分点的概念.
@@ -71,7 +76,7 @@
 	R(A,B,C,D)
 	\defeq
 	\frac{R(A,B,C)}{R(A,B,D)}
-	= \frac{\LineSegmentLength{AC} \LineSegmentLength{DB}}{\LineSegmentLength{CB} \LineSegmentLength{AD}}.
+	= \frac{\LineSegmentLength{AC} \LineSegmentLength{DB} \cos\angle(\vec{AC},\vec{CB})}{\LineSegmentLength{CB} \LineSegmentLength{AD} \cos\angle(\vec{AD},\vec{DB})}.
 \end{equation*}
 若\(A,B,C\)各不相同，而\(D = B\)，则规定：\begin{equation*}
 	R(A,B,C,D) \defeq 0.
@@ -164,12 +169,10 @@
 与直线\(A x + B y + C = 0\)的交点\(M\)，
 则\begin{equation*}
 	R(M_1,M_2,M)
-	= \frac{\LineSegmentLength{M_1M}}{\LineSegmentLength{MM_2}}
 	= -\frac{A x_1 + B y_1 + C}{A x_2 + B y_2 + C}.
 \end{equation*}
 因此，我们得到\begin{equation*}
 	R(A_1,A_2,A_3)
-	= \frac{A_1A_3}{A_3A_2}
 	= -\frac{\eta_{31} \dfrac{a_{11}}{a_{13}} + \eta_{32} \dfrac{a_{12}}{a_{13}} + \eta_{33}}
 			{\eta_{31} \dfrac{a_{21}}{a_{23}} + \eta_{32} \dfrac{a_{22}}{a_{23}} + \eta_{33}}
 	= -\frac{\mu_1 \left( \eta_{21} \dfrac{a_{11}}{a_{13}} + \eta_{22} \dfrac{a_{12}}{a_{13}} + \eta_{23} \right)}
@@ -184,8 +187,6 @@
 %@see: 《解析几何》（丘维声） P271 (3.4)
 	R(l_1,l_2,l_3,l_4)
 	= R(A_1,A_2,A_3,A_4)
-	= \frac{\LineSegmentLength{A_1A_3} \LineSegmentLength{A_4A_2}}
-			{\LineSegmentLength{A_3A_2} \LineSegmentLength{A_1A_4}}
 	= \frac{\mu_1 \lambda_2}{\lambda_1 \mu_2}
 	= \frac{\lambda_2}{\mu_2} \bigg/ \frac{\lambda_1}{\mu_1}.
 \end{equation}
