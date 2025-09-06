@@ -45,7 +45,7 @@
 		& 分比\(\lambda \defeq R(A,B,C)\) \\
 		\hline
 		\(C\)在\(AB\)的延长线上
-		& \(\lambda<-1\) \\
+		& \(-\infty<\lambda<-1\) \\
 		{\color{red}\(C\)是无穷远点}
 		& \(\lambda=-1\) \\
 		\(C\)在\(BA\)的延长线上
@@ -57,11 +57,43 @@
 		\(C\)与\(AB\)的中点重合
 		& \(\lambda=1\) \\
 		\(C\)在\(AB\)的中点与\(B\)之间
-		& \(\lambda>1\) \\
+		& \(1<\lambda<+\infty\) \\
 		\hline
 	\end{tblr}
 	\caption{}
 \end{table}
+
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=-5,xmax=5,
+			ymin=-4,ymax=2,
+			grid=none,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			enlargelimits,
+			enlarge x limits=0.1,
+			enlarge y limits=0.1,
+			xscale=2,
+			xtick={-6,...,6},
+			ytick={-4,...,2},
+		]
+			\addplot[color=blue,samples=20,smooth,domain=-6:0]{x/(1-x)};
+			\addplot[color=blue,samples=30,smooth,domain=0:.95]{x/(1-x)};
+			\addplot[color=blue,samples=50,smooth,domain=1.05:6]{x/(1-x)};
+			\draw[dashed] (1,-6)--(1,-1) (1,0)--(1,4)
+				(-6,-1)--(-1,-1) (0,-1)--(6,-1)
+				(.5,0)|-(0,1);
+			\draw(0,0)coordinate(A)node[above left]{$A$}
+				(1,0)coordinate(B)node[above right]{$B$}
+				(-3,-3)node{$y=\frac{x}{1-x}$};
+		\end{axis}
+		\fill(A)circle(2pt) (B)circle(2pt);
+	\end{tikzpicture}
+	\caption{点$C(x,0)$分线段$AB$所成的比$y=R((0,0),(1,0),(x,0))$}
+\end{figure}
 
 接下来定义\(\overline{\pi_0}\)上共线四点的交比.
 \begin{definition}%\label{definition:解析几何.射影平面上的交比.四点的交比}
