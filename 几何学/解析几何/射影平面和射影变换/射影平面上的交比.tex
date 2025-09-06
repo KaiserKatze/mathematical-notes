@@ -45,7 +45,7 @@
 		& 分比\(\lambda \defeq R(A,B,C)\) \\
 		\hline
 		\(C\)在\(AB\)的延长线上
-		& \(\lambda<-1\) \\
+		& \(-\infty<\lambda<-1\) \\
 		{\color{red}\(C\)是无穷远点}
 		& \(\lambda=-1\) \\
 		\(C\)在\(BA\)的延长线上
@@ -57,11 +57,32 @@
 		\(C\)与\(AB\)的中点重合
 		& \(\lambda=1\) \\
 		\(C\)在\(AB\)的中点与\(B\)之间
-		& \(\lambda>1\) \\
+		& \(1<\lambda<+\infty\) \\
 		\hline
 	\end{tblr}
 	\caption{}
 \end{table}
+
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			ymin=-4,ymax=2,
+			grid=both,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			xmin=-5,xmax=5,
+		]
+			\addplot[color=blue,samples=50,smooth,domain=-5:.95]{x/(1-x)};
+			\addplot[color=blue,samples=50,smooth,domain=1.05:5]{x/(1-x)};
+			\draw[dashed] (1,-4)--(1,2) (-5,-1)--(5,-1);
+			\fill(0,0)circle(2pt)node[above left]{$A$}
+				(1,0)circle(2pt)node[above right]{$B$};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{点$C(x,0)$分线段$AB$所成的比$y=R((0,0),(1,0),(x,0))$}
+\end{figure}
 
 接下来定义\(\overline{\pi_0}\)上共线四点的交比.
 \begin{definition}%\label{definition:解析几何.射影平面上的交比.四点的交比}
