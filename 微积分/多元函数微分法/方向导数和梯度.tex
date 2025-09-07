@@ -203,7 +203,7 @@
 所以\(\grad f(1,1,1) = (1,2,3)\).
 又因为\begin{equation*}
 	\vb{n}^0
-	= \frac{\vb{n}}{\abs{\vb{n}}}
+	= \frac{\vb{n}}{\VectorLengthA{\vb{n}}}
 	= \frac1{\sqrt{2^2+2^2+(-1)^2}} (2,2,-1)
 	= \frac13 (2,2,-1),
 \end{equation*}
@@ -219,21 +219,31 @@
 
 我们知道，一般说来二元函数\(z = f(x,y)\)在几何上表示一个曲面，
 这曲面被平面\(z = c\)（\(c\)是常数）所截得的曲线\(L\)的方程为\begin{equation*}
-\left\{ \begin{array}{l}
-z = f(x,y), \\
-z = c.
-\end{array} \right.
-\end{equation*}这条曲线\(L\)在\(xOy\)面上的投影是一条平面曲线\(L^*\)，它在\(xOy\)平面直角坐标系中的方程为\begin{equation*}
-f(x,y) = c.
-\end{equation*}对于曲线\(L^*\)上的一切点，已给函数的函数值都是\(c\)，所以我们称平面曲线\(L^*\)为函数\(z = f(x,y)\)的\DefineConcept{等值线}.
-
-若\(f'_x\)和\(f'_y\)不同时为零，则等值线\(f(x,y) = c\)上任一点\(P_0(x_0,y_0)\)处的一个单位法向量为\begin{equation*}
-\vb{n}
-= \frac{\opair{f'_x(x_0,y_0),f'_y(x_0,y_0)}}{\sqrt{[f'_x(x_0,y_0)]^2+[f'_y(x_0,y_0)]^2}}
-= \frac{\grad f(x_0,y_0)}{\abs{\grad f(x_0,y_0)}}.
+	\begin{cases}
+		z = f(x,y), \\
+		z = c.
+	\end{cases}
 \end{equation*}
-这表明函数\(f\)在一点\((x_0,y_0)\)的梯度\(\grad f(x_0,y_0)\)的方向就是等值线\(f(x,y) = c\)在该点的法线方向\(\vb{n}\)，而梯度的模\(\abs{\grad f(x_0,y_0)}\)就是沿这个法线方向的方向导数\(\pdv{f}{\vb{n}}\)，于是有\begin{equation*}
-\grad f(x_0,y_0) = \pdv{f}{\vb{n}} \frac{\vb{n}}{\abs{\vb{n}}}.
+这条曲线\(L\)在\(xOy\)面上的投影是一条平面曲线\(L^*\)，
+它在\(xOy\)平面直角坐标系中的方程为\begin{equation*}
+	f(x,y) = c.
+\end{equation*}
+对于曲线\(L^*\)上的一切点，
+已给函数的函数值都是\(c\)，
+所以我们称平面曲线\(L^*\)为函数\(z = f(x,y)\)的\DefineConcept{等值线}.
+
+若\(f'_x\)和\(f'_y\)不同时为零，
+则等值线\(f(x,y) = c\)上任一点\(P_0(x_0,y_0)\)处的一个单位法向量为\begin{equation*}
+	\vb{n}
+	= \frac{\opair{f'_x(x_0,y_0),f'_y(x_0,y_0)}}{\sqrt{[f'_x(x_0,y_0)]^2+[f'_y(x_0,y_0)]^2}}
+	= \frac{\grad f(x_0,y_0)}{\abs{\grad f(x_0,y_0)}}.
+\end{equation*}
+这表明函数\(f\)在一点\((x_0,y_0)\)的梯度\(\grad f(x_0,y_0)\)的方向
+就是等值线\(f(x,y) = c\)在该点的法线方向\(\vb{n}\)，
+而梯度的模\(\abs{\grad f(x_0,y_0)}\)
+就是沿这个法线方向的方向导数\(\pdv{f}{\vb{n}}\)，
+于是有\begin{equation*}
+	\grad f(x_0,y_0) = \pdv{f}{\vb{n}} \frac{\vb{n}}{\VectorLengthA{\vb{n}}}.
 \end{equation*}
 
 上面讨论的梯度概念可以类似地推广到三元函数的情形.
@@ -242,25 +252,43 @@ f(x,y) = c.
 则对\(\forall P_0(x_0,y_0,z_0) \in G\)，
 都可定出一个向量\begin{equation*}
 f_x(x_0,y_0,z_0) \vb{i} + f_y(x_0,y_0,z_0) \vb{j} + f_z(x_0,y_0,z_0) \vb{k},
-\end{equation*}这向量称为函数\(f(x,y,z)\)在点\(P_0(x_0,y_0,z_0)\)的\DefineConcept{梯度}，记作\(\grad f(x_0,y_0,z_0)\)，即\begin{equation*}
-\grad f(x_0,y_0,z_0)
-= f_x(x_0,y_0) \vb{i} + f_y(x_0,y_0) \vb{j} + f_z(x_0,y_0,z_0) \vb{k},
-\end{equation*}其中\(\grad = \pdv{x} \vb{i} + \pdv{y} \vb{j} + \pdv{z} \vb{k}\)称为（三维的）\DefineConcept{向量微分算子}或\DefineConcept{Nabla算子}.记\begin{equation*}
-\grad f = \pdv{f}{x} \vb{i} + \pdv{f}{y} \vb{j} + \pdv{f}{z} \vb{k}.
+\end{equation*}
+这向量称为函数\(f(x,y,z)\)在点\(P_0(x_0,y_0,z_0)\)的\DefineConcept{梯度}，
+记作\(\grad f(x_0,y_0,z_0)\)，
+即\begin{equation*}
+	\grad f(x_0,y_0,z_0)
+	= f_x(x_0,y_0) \vb{i} + f_y(x_0,y_0) \vb{j} + f_z(x_0,y_0,z_0) \vb{k},
+\end{equation*}
+其中\(\grad = \pdv{x} \vb{i} + \pdv{y} \vb{j} + \pdv{z} \vb{k}\)
+称为（三维的）\DefineConcept{向量微分算子}或\DefineConcept{Nabla算子}.
+记\begin{equation*}
+	\grad f
+	\defeq
+	\pdv{f}{x} \vb{i} + \pdv{f}{y} \vb{j} + \pdv{f}{z} \vb{k}.
 \end{equation*}
 \end{definition}
 
-经过与二元函数的情形完全相似的讨论可知，三元函数\(f(x,y,z)\)在一点的梯度\(\grad f\)是这样一个向量，它的方向是函数\(f(x,y,z)\)在这点的方向导数取得最大值的方向，它的模就等于方向导数的最大值.
+经过与二元函数的情形完全相似的讨论可知，
+三元函数\(f(x,y,z)\)在一点的梯度\(\grad f\)是这样一个向量，
+它的方向是函数\(f(x,y,z)\)在这点的方向导数取得最大值的方向，
+它的模就等于方向导数的最大值.
 
 如果我们引进曲面\begin{equation*}
 f(x,y,z) = c
-\end{equation*}为函数\(f(x,y,z)\)的\DefineConcept{等值面}的概念，则可得函数\(f(x,y,z)\)在一点\((x_0,y_0,z_0)\)的梯度\(\grad f(x_0,y_0,z_0)\)的方向就是等值面\(f(x,y,z) = c\)在该点的法线方向\(\vb{n}\)，而梯度的模\(\abs{\grad f(x_0,y_0,z_0)}\)就是函数沿这个法线方向的方向导数\(\pdv{f}{\vb{n}}\).
+\end{equation*}为函数\(f(x,y,z)\)的\DefineConcept{等值面}的概念，
+则可得函数\(f(x,y,z)\)在一点\((x_0,y_0,z_0)\)的梯度\(\grad f(x_0,y_0,z_0)\)的方向
+就是等值面\(f(x,y,z) = c\)在该点的法线方向\(\vb{n}\)，
+而梯度的模\(\abs{\grad f(x_0,y_0,z_0)}\)
+就是函数沿这个法线方向的方向导数\(\pdv{f}{\vb{n}}\).
 
 \begin{example}
 求\(\grad \frac{1}{x^2+y^2}\).
 \begin{solution}
-记\(f(x,y) = \frac{1}{x^2+y^2}\).因为\(\pdv{f}{x} = -\frac{2x}{(x^2+y^2)^2}\)，\(\pdv{f}{y} = -\frac{2y}{(x^2+y^2)^2}\)，所以\begin{equation*}
-\grad f(x,y) = -\frac{2}{(x^2+y^2)^2} (x \vb{i} + y \vb{j}).
+记\(f(x,y) = \frac{1}{x^2+y^2}\).
+因为\(\pdv{f}{x} = -\frac{2x}{(x^2+y^2)^2}\)，
+\(\pdv{f}{y} = -\frac{2y}{(x^2+y^2)^2}\)，
+所以\begin{equation*}
+	\grad f(x,y) = -\frac{2}{(x^2+y^2)^2} (x \vb{i} + y \vb{j}).
 \end{equation*}
 \end{solution}
 \end{example}
@@ -313,11 +341,20 @@ f(x,y,z) = c
 
 \subsection{数量场与向量场}
 \begin{definition}
-如果对于空间区域\(G\)内的任一点\(M\)，都有一个确定的数量值\(f(M)\)，则称在这空间区域\(G\)内确定了一个\DefineConcept{数量场}.一个数量场可用一个数量值函数\(f(M)\)来确定.
+如果对于空间区域\(G\)内的任一点\(M\)，
+都有一个确定的数量值\(f(M)\)，
+则称在这空间区域\(G\)内确定了一个\DefineConcept{数量场}.
+一个数量场可用一个数量值函数\(f(M)\)来确定.
 
-如果与点\(M\)相对应的是一个向量值函数\(\vb{F}(M)\)，则称在这空间区域\(G\)内确定了一个\DefineConcept{向量场}.一个向量场可用一个向量值函数\(\vb{F}(M)\)来确定.
+如果与点\(M\)相对应的是一个向量值函数\(\vb{F}(M)\)，
+则称在这空间区域\(G\)内确定了一个\DefineConcept{向量场}.
+一个向量场可用一个向量值函数\(\vb{F}(M)\)来确定.
 
-若向量场\(\vb{F}(M)\)是某个数量值函数\(f(M)\)的梯度，则称\(f(M)\)是向量场\(\vb{F}(M)\)的一个\DefineConcept{势函数}，并称向量场\(\vb{F}(M)\)为\DefineConcept{势场}.
+若向量场\(\vb{F}(M)\)是某个数量值函数\(f(M)\)的梯度，
+则称\(f(M)\)是向量场\(\vb{F}(M)\)的一个\DefineConcept{势函数}，
+并称向量场\(\vb{F}(M)\)为\DefineConcept{势场}.
 \end{definition}
-由此可知，由数量值函数\(f(M)\)产生的梯度场\(\grad f(M)\)是一个势场.
-但任意一个向量场并不一定都是势场，因为它不一定是某个数量值函数的梯度.
+由此可知，
+由数量值函数\(f(M)\)产生的梯度场\(\grad f(M)\)是一个势场.
+但任意一个向量场并不一定都是势场，
+因为它不一定是某个数量值函数的梯度.

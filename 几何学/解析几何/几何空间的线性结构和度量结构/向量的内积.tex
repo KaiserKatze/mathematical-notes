@@ -105,7 +105,7 @@
 %@see: 《解析几何》（丘维声） P25 命题3.2
 几何空间中任一向量\(\vb{a}\)在方向\(\vb{e}\)上的分量为\begin{equation}
 	(\vb{a})_{\vb{e}}
-	= \abs{\vb{a}} \cos\angle(\vb{a},\vb{e}).
+	= \VectorLengthA{\vb{a}} \cos\angle(\vb{a},\vb{e}).
 \end{equation}
 \end{theorem}
 
@@ -190,7 +190,7 @@
 \begin{definition}
 %@see: 《解析几何》（丘维声） P26 定义3.1
 给定两个向量\(\vb{a},\vb{b}\)，
-称实数\(\abs{\vb{a}} \abs{\vb{b}} \cos\angle(\vb{a},\vb{b})\)
+称实数\(\VectorLengthA{\vb{a}} \VectorLengthA{\vb{b}} \cos\angle(\vb{a},\vb{b})\)
 为“\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{内积}（inner product）”
 %@see: https://mathworld.wolfram.com/InnerProduct.html
 或“\(\vb{a}\)与\(\vb{b}\)的\DefineConcept{数量积}（scalar product）”，
@@ -198,7 +198,7 @@
 \begin{equation}
 	\VectorInnerProductDot{\vb{a}}{\vb{b}}
 	\defeq
-	\abs{\vb{a}} \abs{\vb{b}} \cos\angle(\vb{a},\vb{b}).
+	\VectorLengthA{\vb{a}} \VectorLengthA{\vb{b}} \cos\angle(\vb{a},\vb{b}).
 \end{equation}
 \end{definition}
 
@@ -215,12 +215,12 @@
 若\(\vb{b}\neq\vb{0}\)，则有
 \begin{equation}
 	\VectorInnerProductDot{\vb{a}}{\vb{b}}
-	= (\vb{a})_{\vb{b}} \abs{\vb{b}},
+	= (\vb{a})_{\vb{b}} \VectorLengthA{\vb{b}},
 \end{equation}
 若\(\vb{a}\neq\vb{0}\)，则有
 \begin{equation}
 	\VectorInnerProductDot{\vb{a}}{\vb{b}}
-	= (\vb{b})_{\vb{a}} \abs{\vb{a}},
+	= (\vb{b})_{\vb{a}} \VectorLengthA{\vb{a}},
 \end{equation}
 由此可见，两向量的内积等于其中一个向量的长度，
 和另一个向量在前者方向上的分量的乘积.
@@ -228,9 +228,9 @@
 
 由向量内积的定义式可得
 \begin{gather}
-	\VectorInnerProductDot{\vb{a}}{\vb{a}}=\abs{\vb{a}}^2, \\
-	\abs{\vb{a}} = \sqrt{\VectorInnerProductDot{\vb{a}}{\vb{a}}}, \\
-	\cos\angle(\vb{a},\vb{b}) = \frac{\VectorInnerProductDot{\vb{a}}{\vb{b}}}{\abs{\vb{a}} \abs{\vb{b}}},
+	\VectorInnerProductDot{\vb{a}}{\vb{a}}=\VectorLengthA{\vb{a}}^2, \\
+	\VectorLengthA{\vb{a}} = \sqrt{\VectorInnerProductDot{\vb{a}}{\vb{a}}}, \\
+	\cos\angle(\vb{a},\vb{b}) = \frac{\VectorInnerProductDot{\vb{a}}{\vb{b}}}{\VectorLengthA{\vb{a}} \VectorLengthA{\vb{b}}},
 	\quad \vb{a}\neq\vb{0},\vb{b}\neq\vb{0}.
 \end{gather}
 以上两式表明，可以利用向量的内积来解决几何上长度和角度的问题.
@@ -374,7 +374,7 @@
 
 由\cref{theorem:解析几何.直角坐标系下向量内积的坐标计算式} 可知，
 在直角坐标系下，向量\(\vb{a}=(a_1,a_2,a_3)^T\)的长度为\begin{equation}
-	\abs{\vb{a}} = \sqrt{a_1^2+a_2^2+a_3^2};
+	\VectorLengthA{\vb{a}} = \sqrt{a_1^2+a_2^2+a_3^2};
 \end{equation}
 而两点\(A(x_1,y_1,z_1)^T\)和\(B(x_2,y_2,z_2)^T\)之间的距离为\begin{equation}
 	\abs{\vec{AB}} = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}.
@@ -411,21 +411,21 @@
 “方向\(\vb{a}\)的\DefineConcept{方向余弦}”.
 由上可知，\begin{equation*}
 	\cos\alpha
-	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_1}}{\abs{\vb{a}}\abs{\vb{e}_1}}
-	= \frac{a_1}{\abs{\vb{a}}},
+	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_1}}{\VectorLengthA{\vb{a}}\VectorLengthA{\vb{e}_1}}
+	= \frac{a_1}{\VectorLengthA{\vb{a}}},
 	\qquad
 	\cos\beta
-	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_2}}{\abs{\vb{a}}\abs{\vb{e}_2}}
-	= \frac{a_2}{\abs{\vb{a}}},
+	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_2}}{\VectorLengthA{\vb{a}}\VectorLengthA{\vb{e}_2}}
+	= \frac{a_2}{\VectorLengthA{\vb{a}}},
 	\qquad
 	\cos\gamma
-	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_3}}{\abs{\vb{a}}\abs{\vb{e}_3}}
-	= \frac{a_3}{\abs{\vb{a}}},
+	= \frac{\VectorInnerProductDot{\vb{a}}{\vb{e}_3}}{\VectorLengthA{\vb{a}}\VectorLengthA{\vb{e}_3}}
+	= \frac{a_3}{\VectorLengthA{\vb{a}}},
 \end{equation*}
 也就是说\(\vb{a}\)的方向余弦就是与\(\vb{a}\)同向的单位向量\(\vb{a}^0\)的直角坐标，即\begin{equation*}
 	(\cos\alpha,\cos\beta,\cos\gamma)^T
-	= \frac{1}{\abs{\vb{a}}} (a_1,a_2,a_3)^T
-	= \frac{1}{\abs{\vb{a}}} \vb{a},
+	= \frac{1}{\VectorLengthA{\vb{a}}} (a_1,a_2,a_3)^T
+	= \frac{1}{\VectorLengthA{\vb{a}}} \vb{a},
 \end{equation*}
 从而有\begin{equation*}
 	\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1.
