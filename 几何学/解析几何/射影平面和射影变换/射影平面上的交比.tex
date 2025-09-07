@@ -7,11 +7,13 @@
 \subsection{交比的定义和性质}
 %@see: 《平面解析几何（甲种本）》 P7
 %@see: 《解析几何》（丘维声） P269
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P1 定义1.1
 设\(A,B,C\)是欧氏平面\(\pi_0\)上共线三点，\(C \neq B\)（即\(C\)与\(B\)不重合）.
 如果数\(\lambda\)满足\begin{equation*}
 	\vec{AC} = \lambda \vec{CB},
 \end{equation*}
 则称“\(\lambda\)是点\(C\)分线段\(AB\)所成的\DefineConcept{比}”
+“\(\lambda\)是点\(A,B,C\)的\DefineConcept{单比}”
 “点\(C\)分线段\(AB\)成定比\(\lambda\)”，
 记\(R(A,B,C) \defeq \lambda\)，
 即\begin{equation*}
@@ -26,10 +28,11 @@
 	= \frac{\LineSegmentLength{AC}}{\LineSegmentLength{CB}}
 	\cos\angle(\vec{AC},\vec{CB}).
 \end{equation*}
-把点\(C\)称为“线段\(AB\)的\DefineConcept{定比分点}”.
-这就是过去我们熟知的定比分点的概念.
+把点\(A,B\)称为\DefineConcept{基点}.
+把点\(C\)称为\DefineConcept{分点}.
+这就是过去我们熟知的分点的概念.
 根据上述定义，显然不存在点\(C\)使得\(R(A,B,C) = -1\).
-因此，我们需要将定比分点从通常点推广为无穷远点.
+因此，我们需要将分点从通常点推广为无穷远点.
 
 设\(A,B,C\)是射影平面\(\overline{\pi_0}\)上共线三点，\(A,B\)是通常点，\(C \neq B\).
 当\(C\)是通常点时，规定\(R(A,B,C)\)的定义不变.
@@ -41,7 +44,7 @@
 	\centering
 	\begin{tblr}{c|c}
 		\hline
-		定比分点\(C\)相对于线段端点\(A,B\)的位置
+		分点\(C\)相对于线段端点\(A,B\)的位置
 		& 分比\(\lambda \defeq R(A,B,C)\) \\
 		\hline
 		\(C\)在\(AB\)的延长线上
@@ -98,27 +101,114 @@
 接下来定义\(\overline{\pi_0}\)上共线四点的交比.
 \begin{definition}%\label{definition:解析几何.射影平面上的交比.四点的交比}
 %@see: 《解析几何》（丘维声） P269 定义3.1
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P29 定义1.1
 设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
 \(A,B\)是通常点，
-\(A \neq B\)，
-\(C \neq B\)，
-\(D \neq A\)，
-\(D \neq B\).
-将\(R(A,B,C)\)与\(R(A,B,D)\)之比
-称为“点\(A,B,C,D\)的\DefineConcept{交比}”
-或“点\(A,B,C,D\)的\DefineConcept{二重比}”，
-记作\(R(A,B,C,D)\)，
-即\begin{equation*}
+\(
+	A \neq B,
+	C \neq B,
+	D \neq A
+\).
+定义：\begin{equation*}
 %@see: 《解析几何》（丘维声） P270 (3.2)
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P29 (1.1)
 	R(A,B,C,D)
 	\defeq
-	\frac{R(A,B,C)}{R(A,B,D)}
-	= \frac{\LineSegmentLength{AC} \LineSegmentLength{DB} \cos\angle(\vec{AC},\vec{CB})}{\LineSegmentLength{CB} \LineSegmentLength{AD} \cos\angle(\vec{AD},\vec{DB})}.
+	\begin{cases}[cl]
+		\frac{R(A,B,C)}{R(A,B,D)},	& D \neq B, \\
+		0,							& D = B.
+	\end{cases}
 \end{equation*}
-若\(A,B,C\)各不相同，而\(D = B\)，则规定：\begin{equation*}
-	R(A,B,C,D) \defeq 0.
-\end{equation*}
+称之为“点\(A,B,C,D\)的\DefineConcept{交比}”
+或“点\(A,B,C,D\)的\DefineConcept{二重比}”.
+把点\(A,B\)称为\DefineConcept{基点偶}.
+把点\(C,D\)称为\DefineConcept{分点偶}.
 \end{definition}
+
+\begin{property}
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P29
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+\(A,B\)是通常点，
+\(
+	A \neq B,
+	C \neq B,
+	D \neq A
+\).
+\begin{itemize}
+	\item 当分点偶\(C,D\)不分离基点偶\(A,B\)
+	（如\cref{figure:解析几何.射影平面上的交比.四点的交比大于零1,figure:解析几何.射影平面上的交比.四点的交比大于零2} 所示）时，
+	有\begin{equation*}
+		R(A,B,C,D) > 0.
+	\end{equation*}
+
+	\item 当分点偶\(C,D\)分离基点偶\(A,B\)
+	（如\cref{figure:解析几何.射影平面上的交比.四点的交比小于零1,figure:解析几何.射影平面上的交比.四点的交比小于零2} 所示）时，
+	有\begin{equation*}
+		R(A,B,C,D) < 0.
+	\end{equation*}
+
+	\item 当\(C\)与\(D\)重合时，有\begin{equation*}
+		R(A,B,C,D) = 1.
+	\end{equation*}
+
+	\item 当\(C\)与\(A\)重合时，有\begin{equation*}
+		R(A,B,C,D) = 0.
+	\end{equation*}
+\end{itemize}
+\end{property}
+\begin{figure}[hbt]
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P29 图3-1
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P29 图3-2
+	\centering
+	\def\subwidth{.4\linewidth}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\filldraw(0,0)--(5,0)
+				(1,0)circle(2pt)node[above]{$A$}
+				(2,0)circle(2pt)node[above]{$B$}
+				(3.5,0)circle(2pt)node[above]{$C$}
+				(4.5,0)circle(2pt)node[above]{$D$};
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:解析几何.射影平面上的交比.四点的交比大于零1}
+	\end{subfigure}~\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\filldraw(0,0)--(5,0)
+				(.5,0)circle(2pt)node[above]{$A$}
+				(1.3,0)circle(2pt)node[above]{$C$}
+				(2.2,0)circle(2pt)node[above]{$D$}
+				(4,0)circle(2pt)node[above]{$B$};
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:解析几何.射影平面上的交比.四点的交比大于零2}
+	\end{subfigure}
+	\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\filldraw(0,0)--(5,0)
+				(1,0)circle(2pt)node[above]{$A$}
+				(2,0)circle(2pt)node[above]{$C$}
+				(2.7,0)circle(2pt)node[above]{$B$}
+				(4.5,0)circle(2pt)node[above]{$D$};
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:解析几何.射影平面上的交比.四点的交比小于零1}
+	\end{subfigure}~\begin{subfigure}[b]{\subwidth}
+		\centering
+		\begin{tikzpicture}
+			\filldraw(0,0)--(5,0)
+				(.5,0)circle(2pt)node[above]{$A$}
+				(1.5,0)circle(2pt)node[above]{$D$}
+				(2.6,0)circle(2pt)node[above]{$B$}
+				(4.5,0)circle(2pt)node[above]{$C$};
+		\end{tikzpicture}
+		\caption{}
+		\label{figure:解析几何.射影平面上的交比.四点的交比小于零2}
+	\end{subfigure}
+	\caption{}
+\end{figure}
 
 类似地，我们也可以给射影平面上共点四线规定它们的交比.
 \begin{definition}\label{definition:解析几何.射影平面上的交比.四线的交比}
@@ -433,35 +523,63 @@
 从\cref{theorem:解析几何.射影平面上的交比.四点的交比2} 不难得出交比具有下列性质.
 \begin{property}
 %@see: 《解析几何》（丘维声） P274
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 定理1.1
 设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
 其中\(A,B,C\)各不相同，
 并且\(D \neq A\)，
 则\begin{equation*}
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 (1.3)
 	R(C,D,A,B)
-	= R(A,B,C,D)
-	= R(B,A,D,C).
+	= R(A,B,C,D).
 \end{equation*}
 \end{property}
+\begin{remark}
+上述性质说明：基点偶与分点偶交换时，交比不变.
+\end{remark}
 
 \begin{property}
 %@see: 《解析几何》（丘维声） P274
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 定理1.2
 设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
 其中\(A,B,C\)各不相同，
 并且\(D \neq A\)，\(D \neq B\)，
 则\begin{equation*}
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 (1.4)
 	R(B,A,C,D)
 	= \frac1{R(A,B,C,D)}
 	= R(A,B,D,C).
 \end{equation*}
 \end{property}
+\begin{remark}
+上述性质说明：基点偶对换或分点偶对换时，交比变为原交比的倒数.
+\end{remark}
 
 \begin{property}
 %@see: 《解析几何》（丘维声） P274
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 推论
 设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
 其中\(A,B,C\)各不相同，
 并且\(D \neq A\)，
 则\begin{equation*}
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 (1.5)
+	R(B,A,D,C)
+	= R(A,B,C,D).
+\end{equation*}
+\end{property}
+\begin{remark}
+上述性质说明：基点偶、分点偶同时对换时，交比不变.
+\end{remark}
+
+\begin{property}
+%@see: 《解析几何》（丘维声） P274
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 定理1.3
+设\(A,B,C,D\)是射影平面\(\overline{\pi_0}\)上共线四点，
+其中\(A,B,C\)各不相同，
+并且\(D \neq A\)，
+则\begin{equation*}
+%@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P30 (1.6)
 	R(A,C,B,D)
+	= R(D,B,C,A)
 	= 1 - R(A,B,C,D).
 \end{equation*}
 \end{property}
