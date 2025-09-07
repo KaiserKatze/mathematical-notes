@@ -8,6 +8,7 @@
 %@see: 《平面解析几何（甲种本）》 P7
 %@see: 《解析几何》（丘维声） P269
 %@see: 《高等几何（第四版）》（梅向明，刘增贤，王汇淳，王智秋） P1 定义1.1
+%@see: 《解析几何》（尤承业） P11
 设\(A,B,C\)是欧氏平面\(\pi_0\)上共线三点，\(C \neq B\)（即\(C\)与\(B\)不重合）.
 如果数\(\lambda\)满足\begin{equation*}
 	\vec{AC} = \lambda \vec{CB},
@@ -110,6 +111,42 @@
 	\end{tikzpicture}
 	\caption{点$C(x,0)$分线段$AB$所成的比$y=R((0,0),(1,0),(x,0))$}
 \end{figure}
+
+\begin{property}
+%@see: 《解析几何》（尤承业） P11
+设\(A,B,C\)是射影平面\(\overline{\pi_0}\)上共线三点，\(A,B\)是通常点，\(C \neq B\)，
+则\begin{equation*}
+	R(A,B,C) \cdot R(B,A,C) = 1.
+\end{equation*}
+\begin{proof}
+直接计算得\begin{align*}
+	R(A,B,C) \cdot R(B,A,C)
+	&= \frac{
+		\VectorInnerProductDot{\vec{AC}}{\vec{CB}}
+	}{
+		\VectorInnerProductDot{\vec{CB}}{\vec{CB}}
+	}
+	\cdot \frac{
+		\VectorInnerProductDot{\vec{BC}}{\vec{CA}}
+	}{
+		\VectorInnerProductDot{\vec{CA}}{\vec{CA}}
+	}
+	= \frac{
+		(\VectorInnerProductDot{\vec{AC}}{\vec{CB}})^2
+	}{
+		(\VectorInnerProductDot{\vec{CB}}{\vec{CB}})
+		(\VectorInnerProductDot{\vec{CA}}{\vec{CA}})
+	} \\
+	&= \frac{
+		\left( \VectorLengthA{\vec{AC}} \VectorLengthA{\vec{AC}} \cos\angle(\vec{AC},\vec{CB}) \right)^2
+	}{
+		\VectorLengthA{\vec{CB}}^2 \VectorLengthA{\vec{CA}}^2
+	}
+	= 1.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{property}
 
 接下来定义\(\overline{\pi_0}\)上共线四点的交比.
 \begin{definition}%\label{definition:解析几何.射影平面上的交比.四点的交比}
