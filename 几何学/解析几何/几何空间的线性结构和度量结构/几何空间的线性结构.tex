@@ -533,3 +533,187 @@ y = \frac{1}{1+k} \cdot k \cdot \frac{\mu}{1+\mu}
 \end{example}
 
 利用三线共点的判定定理（切瓦定理）可以证明三角形三条中线相交于一点.
+
+\begin{example}
+%@see: 《解析几何》（尤承业） P11 例1.3
+设点\(D,E,F\)分别在三角形\(ABC\)的边\(AB,BC,CA\)上，
+且线段\(AE,BF,CD\)交于一点\(O\).
+已知\(D\)分\(AB\)成定比\(\lambda\)，
+\(F\)分\(CA\)成定比\(\mu\).
+求：
+\(E\)分\(BC\)所成的比，
+\(O\)分\(AE\)所成的比，
+\(O\)分\(CD\)所成的比，
+\(O\)分\(BF\)所成的比.
+\begin{solution}\let\qed\relax
+\begin{proof}[解法一]
+因为\(A,B,D\)共线，
+且\(D\)分\(AB\)成定比\(\lambda\)，即\(\vec{AD} = \lambda \vec{DB}\)，
+所以\begin{equation*}
+%@see: 《解析几何》（尤承业） P12 (1.4)
+	\vec{CD} = \frac{1}{1+\lambda} \vec{CA} + \frac{\lambda}{1+\lambda} \vec{CB}.
+	\eqno(1)
+\end{equation*}
+因为\(F\)分\(CA\)成定比\(\mu\)，即\(\vec{CF} = \mu \vec{FA}\)，
+所以\begin{equation*}
+	\vec{CA} = \frac{1+\mu}{\mu} \vec{CF}.
+\end{equation*}
+代入(1)式得\begin{equation*}
+	\vec{CD} = \frac{1+\mu}{(1+\lambda)\mu} \vec{CF} + \frac{\lambda}{1+\lambda} \vec{CB}.
+\end{equation*}
+假设\(\vec{CO} = x \vec{CD}\)，
+则\begin{equation*}
+	\vec{CO} = \frac{1+\mu}{(1+\lambda)\mu} x \vec{CF} + \frac{\lambda}{1+\lambda} x \vec{CB}.
+\end{equation*}
+由于\(B,F,O\)共线，而\(C,B,F\)不共线，
+所以由\cref{theorem:解析几何.点在直线上的充分必要条件1} 可知
+\(\frac{1+\mu}{(1+\lambda)\mu} x + \frac{\lambda}{1+\lambda} x = 1\)，
+解得\(x = \frac{(1+\lambda)\mu}{1+(1+\lambda)\mu}\).
+代入上式得\begin{equation*}
+	\vec{CO}
+	= \frac{1+\mu}{1+(1+\lambda)\mu} \vec{CF}
+	+ \frac{\lambda\mu}{1+(1+\lambda)\mu} \vec{CB},
+\end{equation*}
+于是\(O\)分\(BF\)成定比\(
+	\frac{1+\mu}{1+(1+\lambda)\mu}
+	\bigg/
+	\frac{\lambda\mu}{1+(1+\lambda)\mu}
+	= \frac{1+\mu}{\lambda\mu}
+\).
+
+由于\(\vec{CO} = \frac{(1+\lambda)\mu}{1+(1+\lambda)\mu} \vec{CD}\)，
+所以\(
+	\vec{OD}
+	= \vec{CD} - \vec{CO}
+	% = \left( 1 - \frac{(1+\lambda)\mu}{1+(1+\lambda)\mu} \right) \vec{CD}
+	= \frac{1}{1+(1+\lambda)\mu} \vec{CD}
+\)，
+从而\(O\)分线段\(CD\)成定比\(
+	\frac{(1+\lambda)\mu}{1+(1+\lambda)\mu}
+	\bigg/
+	\frac{1}{1+(1+\lambda)\mu}
+	= (1+\lambda)\mu
+\).
+
+假设\(\vec{CB} = y \vec{CE}\)，
+代入(1)式，
+得\begin{equation*}
+	\vec{CD} = \frac{1}{1+\lambda} \vec{CA} + \frac{\lambda}{1+\lambda} y \vec{CE},
+\end{equation*}
+于是\begin{equation*}
+	\vec{CO}
+	% = \frac{(1+\lambda)\mu}{1+(1+\lambda)\mu}
+	% 	\left( \frac{1}{1+\lambda} \vec{CA} + \frac{\lambda}{1+\lambda} y \vec{CE} \right)
+	= \frac{\mu}{1+(1+\lambda)\mu} \vec{CA}
+	+ \frac{\lambda\mu}{1+(1+\lambda)\mu} y \vec{CE}.
+\end{equation*}
+由于\(A,E,O\)共线，而\(C,A,E\)不共线，
+所以\(\frac{\mu}{1+(1+\lambda)\mu} + \frac{\lambda\mu}{1+(1+\lambda)\mu} y = 1\)，
+解得\(y = 1 + \frac{1}{\lambda\mu}\)，
+代入上式得\begin{equation*}
+	\vec{CO}
+	% = \frac{\mu}{1+(1+\lambda)\mu} \vec{CA}
+	% + \frac{\lambda\mu}{1+(1+\lambda)\mu} \left( 1 + \frac{1}{\lambda\mu} \right) \vec{CE}
+	= \frac{\mu}{1+(1+\lambda)\mu} \vec{CA}
+	+ \frac{1+\lambda\mu}{1+(1+\lambda)\mu} \vec{CE},
+\end{equation*}
+于是\(O\)分线段\(AE\)成定比\(
+	\frac{1+\lambda\mu}{1+(1+\lambda)\mu}
+	\bigg/
+	\frac{\mu}{1+(1+\lambda)\mu}
+	= \frac{1+\lambda\mu}{\mu}
+\).
+
+因为\(\vec{CB} = \left( 1 + \frac{1}{\lambda\mu} \right) \vec{CE}\)，
+所以\begin{equation*}
+	\vec{EB}
+	= \vec{CB} - \vec{CE}
+	= \frac{1}{\lambda\mu} \vec{CE},
+\end{equation*}
+于是\(E\)分线段\(BC\)成定比\(\frac{1}{\lambda\mu}\).
+\end{proof}
+\begin{proof}[解法二]
+设\(\vec{AO} = x \vec{AB} + y \vec{AC}\).
+因为\(D\)分\(AB\)成定比\(\lambda\)，即\(\vec{AD} = \lambda \vec{DB}\)，
+所以\begin{equation*}
+	\vec{AB}
+	= \vec{AD} + \vec{DB}
+	= (1+\lambda^{-1}) \vec{AD}.
+\end{equation*}
+因为\(F\)分\(CA\)成定比\(\mu\)，即\(\vec{CF} = \mu \vec{FA}\)，
+所以\begin{equation*}
+	\vec{AC}
+	= \vec{AF} + \vec{FC}
+	= (1+\mu) \vec{AF}.
+\end{equation*}
+于是\begin{align*}
+	\vec{AO}
+	&= x (1+\lambda^{-1}) \vec{AD}
+	+ y \vec{AC} \\
+	&= x \vec{AB}
+	+ y (1+\mu) \vec{AF}.
+\end{align*}
+由于\(C,O,D\)共线，而\(B,O,F\)也共线，
+所以由\cref{theorem:解析几何.点在直线上的充分必要条件1} 可知\begin{equation*}
+	\begin{cases}
+		x (1+\lambda^{-1}) + y = 1, \\
+		x + y (1+\mu) = 1,
+	\end{cases}
+\end{equation*}
+解得\(
+	x = \frac{\lambda\mu}{1+(1+\lambda)\mu},
+	y = \frac{1}{1+(1+\lambda)\mu}
+\)，
+于是\begin{align*}
+	\vec{AO}
+	&= \frac{(1+\lambda)\mu}{1+(1+\lambda)\mu} \vec{AD}
+	+ \frac{1}{1+(1+\lambda)\mu} \vec{AC} \\
+	&= \frac{\lambda\mu}{1+(1+\lambda)\mu} \vec{AB}
+	+ \frac{1+\mu}{1+(1+\lambda)\mu} \vec{AF}.
+\end{align*}
+那么\(O\)分\(CD\)成定比\(
+	% \frac{(1+\lambda)\mu}{1+(1+\lambda)\mu}
+	% \bigg/
+	% \frac{1}{1+(1+\lambda)\mu}
+	% =
+	(1+\lambda)\mu
+\)，
+\(O\)分\(BF\)成定比\(
+	% \frac{1+\mu}{1+(1+\lambda)\mu}
+	% \bigg/
+	% \frac{\lambda\mu}{1+(1+\lambda)\mu}
+	% =
+	\frac{1+\mu}{\lambda\mu}
+\).
+
+再设\(\vec{AE} = t \vec{AO}\)，
+则\(
+	\vec{AE}
+	% = t \vec{AO}
+	% = t (x \vec{AB} + y \vec{AC})
+	= \frac{t \lambda\mu}{1+(1+\lambda)\mu} \vec{AB}
+	+ \frac{t}{1+(1+\lambda)\mu} \vec{AC}
+\).
+由于\(B,C,E\)共线，
+显然\(E\)分\(BC\)成定比\(
+	% \frac{t}{1+(1+\lambda)\mu}
+	% \bigg/
+	% \frac{t \lambda\mu}{1+(1+\lambda)\mu}
+	% =
+	\frac{1}{\lambda\mu}
+\)，
+另外由\cref{theorem:解析几何.点在直线上的充分必要条件1} 可知\begin{equation*}
+	\frac{t \lambda\mu}{1+(1+\lambda)\mu}
+	+ \frac{t}{1+(1+\lambda)\mu}
+	= 1,
+\end{equation*}
+解得\(t = \frac{1+(1+\lambda)\mu}{1+\lambda\mu}\)，
+% \(\frac{\vec{AO}}{\vec{OE}} = \frac{\vec{AO}}{\vec{OA}+\vec{AE}} = \frac{\vec{AO}}{t\vec{AO}-\vec{AO}} = \frac{1}{t-1}\)
+那么\(O\)分\(AE\)成定比\(
+	% \frac{1}{\frac{1+(1+\lambda)\mu}{1+\lambda\mu} - 1}
+	% =
+	\frac{1+\lambda\mu}{\mu}
+\).
+\end{proof}
+\end{solution}
+\end{example}
