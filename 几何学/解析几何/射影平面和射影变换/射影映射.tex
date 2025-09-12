@@ -133,3 +133,164 @@
 %@see: 《解析几何》（丘维声） P295 性质7
 射影映射保持共点四线的交比不变.
 \end{property}
+
+\subsection{射影变换}
+由于射影变换的乘积还是射影变换，恒等变换是射影变换，射影变换是可逆的，其逆变换仍是射影变换，
+所以射影平面上所有的射影变换成为一个群，我们称之为\DefineConcept{射影变换群}.
+
+上述关于射影映射的性质和定理，对于射影变换同样成立.
+交比是射影不变量.
+
+同样地，射影平面的一个射影点变换\(\sigma\)诱导了这个射影平面上所有直线组成的集合到自身的一个双射，
+并且\(\sigma\)保持点与直线的关联性.
+
+\begin{example}
+%@see: 《解析几何》（丘维声） P296 例5.1
+在射影平面上，
+求把点\(
+	A(1,0,1),
+	B(2,1,1),
+	C(3,-1,0),
+	D(3,5,2)
+\)分别映成点\(
+	A'(-1,0,3), \allowbreak
+	B'(1,1,3),
+	C'(2,3,8),
+	D'(2,1,-2)
+\)的射影变换\(\sigma\)的公式.
+\begin{solution}
+设\(\sigma\)的公式为\begin{equation*}
+	\lambda
+	\begin{bmatrix}
+		x'_1 \\ x'_2 \\ x'_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}.
+\end{equation*}
+那么由题意有\begin{equation*}
+	\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		% \(A,B,C,D\)四个点的坐标，作为列向量，组成的矩阵
+		1 & 2 & 3 & 3 \\
+		0 & 1 & -1 & 5 \\
+		1 & 1 & 0 & 2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		% \(A',B',C',D'\)四个点的坐标，作为列向量，组成的矩阵
+		-1 & 1 & 2 & 2 \\
+		0 & 1 & 3 & 1 \\
+		3 & 3 & 8 & -2
+	\end{bmatrix}
+	\begin{bmatrix}
+		% 四对点\((A,A'),(B,B'),(C,C'),(D,D')\)各有一个公式，取不同的\(\lambda\)
+		\lambda_1 \\
+		& \lambda_2 \\
+		&& \lambda_3 \\
+		&&& \lambda_4
+	\end{bmatrix},
+\end{equation*}
+取转置得\begin{equation*}
+	\begin{bmatrix}
+		1 & 0 & 1 \\
+		2 & 1 & 1 \\
+		3 & -1 & 0 \\
+		3 & 5 & 2
+	\end{bmatrix}
+	\begin{bmatrix}
+		a_{11} & a_{21} & a_{31} \\
+		a_{12} & a_{22} & a_{32} \\
+		a_{13} & a_{23} & a_{33}
+	\end{bmatrix}
+	= \begin{bmatrix}
+		-\lambda_1 & 0 & 3\lambda_1 \\
+		\lambda_2 & \lambda_2 & 3\lambda_2 \\
+		2\lambda_3 & 3\lambda_3 & 8\lambda_3 \\
+		2\lambda_4 & \lambda_4 & -2\lambda_4
+	\end{bmatrix}.
+	\eqno(1)
+\end{equation*}
+写出矩阵方程(1)的增广矩阵，作初等行变换，得\begin{align*}
+	&\begin{bmatrix}
+		1 & 0 & 1 & -\lambda_1 & 0 & 3\lambda_1 \\
+		2 & 1 & 1 & \lambda_2 & \lambda_2 & 3\lambda_2 \\
+		3 & -1 & 0 & 2\lambda_3 & 3\lambda_3 & 8\lambda_3 \\
+		3 & 5 & 2 & 2\lambda_4 & \lambda_4 & -2\lambda_4
+	\end{bmatrix}
+	\to
+	\\
+	&
+	{\def\arraystretch{1.5}
+	\begin{bmatrix}
+		1 & 0 & 0
+		& \frac14 \lambda_1 + \frac14 \lambda_2 + \frac12 \lambda_3
+		& \frac14 \lambda_2 + \frac34 \lambda_3
+		& -\frac34 \lambda_1 + \frac34 \lambda_2 + 2 \lambda_3 \\
+		0 & 1 & 0
+		& \frac34 \lambda_1 + \frac34 \lambda_2 - \frac12 \lambda_3
+		& \frac34 \lambda_2 - \frac34 \lambda_3
+		& -\frac94 \lambda_1 + \frac94 \lambda_2 - 2 \lambda_3 \\
+		0 & 0 & 1
+		& -\frac54 \lambda_1 - \frac14 \lambda_2 - \frac12 \lambda_3
+		& -\frac14 \lambda_2 - \frac34 \lambda_3
+		& \frac{15}4 \lambda_1 - \frac34 \lambda_2 - 2 \lambda_3 \\
+		0 & 0 & 0
+		& -2 \lambda_1 - 4 \lambda_2 + 2 \lambda_3 + 2 \lambda_4
+		& -4 \lambda_2 + 3 \lambda_3 + \lambda_4
+		& 6 \lambda_1 - 12 \lambda_2 + 8 \lambda_3 - 2 \lambda_4
+	\end{bmatrix}}.
+%@Mathematica: A = {{1, 0, 1, -a1, 0, 3 a1}, {2, 1, 1, a2, a2, 3 a2}, {3, -1, 0, 2 a3, 3 a3, 8 a3}, {3, 5, 2, 2 a4, a4, -2 a4}};
+%@Mathematica: RowReduce[A[[1 ;; 3]]] // Expand // MatrixForm
+\end{align*}
+于是，要使矩阵方程(1)有解，上述行约化矩阵最后一行的所有元素都应该等于零，即\begin{equation*}
+	\begin{cases}
+		-2 \lambda_1 - 4 \lambda_2 + 2 \lambda_3 + 2 \lambda_4
+		= 0, \\
+		-4 \lambda_2 + 3 \lambda_3 + \lambda_4
+		= 0, \\
+		6 \lambda_1 - 12 \lambda_2 + 8 \lambda_3 - 2 \lambda_4
+		= 0,
+	\end{cases}
+\end{equation*}
+解得\begin{equation*}
+	\lambda_1
+	= \frac34 \lambda_4,
+	\qquad
+	\lambda_2
+	= -\frac18 \lambda_4,
+	\qquad
+	\lambda_3
+	= -\frac12 \lambda_4.
+\end{equation*}
+取\(\lambda_4 \defeq 32\)，
+得\(
+	\lambda_1 = 24,
+	\lambda_2 = -4,
+	\lambda_3 = -16
+\).
+代入上述行约化矩阵的前3行、后3列，可以求出\(a_{ij}\)，
+于是\(\sigma\)的公式为\begin{equation*}
+	\lambda
+	\begin{bmatrix}
+		x'_1 \\ x'_2 \\ x'_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		-3 & 23 & -21 \\
+		-13 & 9 & 13 \\
+		-53 & -31 & 125
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}.
+\end{equation*}
+\end{solution}
+\end{example}
