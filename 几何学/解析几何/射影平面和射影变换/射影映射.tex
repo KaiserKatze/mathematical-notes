@@ -361,3 +361,152 @@
 	\neq 0.
 \end{equation*}
 由此可见，射影平面的射影变换用非齐次射影坐标表达时，是平面的分式线性变换.
+
+\subsection{仿射 -- 射影变换}
+考虑扩充欧氏平面\(\overline{\pi_0}\)上的、把无穷远直线映成无穷远直线的射影变换，
+这样的射影变换称为\DefineConcept{仿射 -- 射影变换}.
+
+取一个仿射 -- 射影变换\(\sigma\)，
+在\(\overline{\pi_0}\)上取一个基底 I \([A_1,A_2,A_3,E]\)，
+其中\(A_1,A_2\)是无穷远点.
+这时点的齐次射影坐标也就是点的齐次仿射坐标，
+点的非齐次射影坐标也就是点仿射坐标.
+设\(\sigma\)在 I 中的公式仍是\cref{equation:解析几何.射影映射.射影映射的基底变换公式}.
+由于无穷远直线\(l_\infty: x_3 = 0\)上的点均为无穷远点，
+所以有\begin{equation*}
+%@see: 《解析几何》（丘维声） P299 (5.9)
+	\lambda
+	\begin{bmatrix}
+		x'_1 \\ x'_2 \\ 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ 0
+	\end{bmatrix}.
+\end{equation*}
+
+取\(
+	x_1 = 1,
+	x_2 = 0
+\)，
+得\begin{equation*}
+	\begin{bmatrix}
+		\lambda x'_1 \\ \lambda x'_2 \\ 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} \\
+		a_{21} \\
+		a_{31}
+	\end{bmatrix},
+\end{equation*}
+从而有\(a_{31} = 0\).
+
+取\(
+	x_1 = 0,
+	x_2 = 1
+\)，
+得\begin{equation*}
+	\begin{bmatrix}
+		\lambda x'_1 \\ \lambda x'_2 \\ 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{12} \\
+		a_{22} \\
+		a_{32}
+	\end{bmatrix},
+\end{equation*}
+从而有\(a_{32} = 0\).
+
+于是\(\sigma\)在 I 中的公式成为\begin{equation*}
+%@see: 《解析几何》（丘维声） P299 (5.10)
+	\lambda
+	\begin{bmatrix}
+		x'_1 \\ x'_2 \\ x'_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		0 & 0 & a_{33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}.
+\end{equation*}
+
+由于\(\sigma\)的公式中系数矩阵应该是非奇异的，
+因此有\begin{equation*}
+	a_{33}
+	\begin{vmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{vmatrix}
+	\neq 0,
+\end{equation*}
+从而\(a_{33} \neq 0\).
+
+令\begin{equation*}
+	\lambda'
+	\defeq
+	\frac{\lambda}{a_{33}}
+	\qquad
+	c_{ij}
+	\defeq
+	\frac{a_{ij}}{a_{33}}
+	\quad(i,j=1,2,3),,
+\end{equation*}
+则\(\sigma\)在 I 中的公式又可以写成\begin{equation}\label{equation:解析几何.射影映射.仿射射影变换的公式}
+%@see: 《解析几何》（丘维声） P299 (5.11)
+	\lambda'
+	\begin{bmatrix}
+		x'_1 \\ x'_2 \\ x'_3
+	\end{bmatrix}
+	= \begin{bmatrix}
+		c_{11} & c_{12} & c_{13} \\
+		c_{21} & c_{22} & c_{23} \\
+		0 & 0 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3
+	\end{bmatrix}.
+\end{equation}
+并且\begin{equation}\label{equation:解析几何.射影映射.仿射射影变换的公式的系数行列式不等于零}
+%@see: 《解析几何》（丘维声） P299 (5.12)
+	\begin{vmatrix}
+		c_{11} & c_{12} \\
+		c_{21} & c_{22}
+	\end{vmatrix}
+	\neq 0.
+\end{equation}
+
+现在考虑\(\overline{\pi_0}\)上的任意一个通常点\(M(x_1,x_2,x_3)\).
+设它的仿射坐标为\((x,y)\)，
+则\begin{equation*}
+	x = \frac{x_1}{x_3},
+	\qquad
+	y = \frac{x_2}{x_3}.
+\end{equation*}
+设\(M\)在\(\sigma\)下的像\(M'\)（\(M'\)一定是通常点）的仿射坐标\((x',y')\).
+由\(\sigma\)用非齐次射影坐标表达的\cref{equation:解析几何.射影映射.射影变换在非齐次射影坐标中的表达式}
+得\begin{equation}\label{equation:解析几何.射影映射.射影平面上通常点在仿射射影变换下的像点的仿射坐标}
+%@see: 《解析几何》（丘维声） P300 (5.13)
+	\begin{cases}
+		x'
+		% = \frac{a_{11} x + a_{12} y + a_{13}}{a_{31} x + a_{32} y + a_{33}}
+		% = \frac{a_{11} x + a_{12} y + a_{13}}{0 x + 0 y + a_{33}}
+		= c_{11} x + c_{12} y + c_{13}, \\
+		y'
+		% = \frac{a_{21} x + a_{22} y + a_{23}}{a_{31} x + a_{32} y + a_{33}}
+		% = \frac{a_{21} x + a_{22} y + a_{23}}{0 x + 0 y + a_{33}}
+		= c_{21} x + c_{22} y + c_{23}.
+	\end{cases}
+\end{equation}
+由\cref{equation:解析几何.射影映射.仿射射影变换的公式的系数行列式不等于零} 可知，
+\cref{equation:解析几何.射影映射.射影平面上通常点在仿射射影变换下的像点的仿射坐标} 的系数矩阵是非奇异的.
+这说明，射影平面\(\overline{\pi_0}\)上的仿射 -- 射影变换\(\sigma\)
+在欧氏平面\(\pi_0\)上的限制
+就是仿射变换 \labelcref{equation:解析几何.射影映射.射影平面上通常点在仿射射影变换下的像点的仿射坐标}.
+在这个意义上，我们可以说：仿射变换是特殊的射影变换.
