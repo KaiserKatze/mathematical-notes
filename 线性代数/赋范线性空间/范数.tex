@@ -31,7 +31,6 @@
 
 	\item {\rm\bf 三角不等式}：\begin{equation*}
 		(\forall \alpha,\beta \in V)
-		(\forall k \in F)
 		[
 			p(\alpha+\beta) \leq p(\alpha) + p(\beta)
 		],
@@ -70,7 +69,6 @@
 
 	\item {\rm\bf 三角不等式}：\begin{equation*}
 		(\forall \alpha,\beta \in V)
-		(\forall k \in F)
 		[
 			p(\alpha+\beta) \leq p(\alpha) + p(\beta)
 		],
@@ -110,6 +108,69 @@
 \end{equation*}
 就是向量\(\alpha\)的一个半范数.
 但是，显然\(p(\alpha) = 0\)并不意味着\(\alpha = 0\).
+\end{example}
+
+\subsection{拟范数}
+\begin{definition}
+%@see: 《矩阵分析与应用（第2版）》（张贤达） P24 定义1.3.9
+设\(V\)是有序域\(F\)上的一个线性空间.
+如果映射\(p\colon V \to \mathbb{R}\)
+满足\begin{itemize}
+	\item {\rm\bf 非负性}：\begin{equation*}
+		(\forall \alpha \in V)
+		[p(\alpha) \geq 0],
+		\qquad
+		(\forall \alpha \in V)
+		[
+			p(\alpha) = 0
+			\iff
+			\alpha = 0
+		];
+	\end{equation*}
+
+	\item {\rm\bf 齐次性}：\begin{equation*}
+		(\forall \alpha \in V)
+		(\forall k \in F)
+		[
+			p(k \alpha) = \abs{k} p(\alpha)
+		];
+	\end{equation*}
+
+	\item {\rm\bf 三角不等式}：\begin{equation*}
+		(\forall \alpha,\beta \in V)
+		(\exists c \in C)
+		[
+			p(\alpha+\beta) \leq c [p(\alpha) + p(\beta)]
+		],
+	\end{equation*}
+	其中\(
+		C
+		\defeq
+		\Set{
+			x \in F
+			\given
+			x > 0,
+			x \neq 1
+		}
+	\),
+\end{itemize}
+则称“\(f\)是线性空间\(V\)的一个\DefineConcept{拟范数}（quasinorm）”.
+\end{definition}
+
+拟范数与范数的唯一区别是：
+拟范数不严格满足范数的三角不等式公理.
+
+\begin{example}
+%@see: 《矩阵分析与应用（第2版）》（张贤达） P24
+同一个定义公式，有时给出拟范数，有时给出范数，取决于参数的变化.
+例如，容易验证\begin{equation*}
+%@see: 《矩阵分析与应用（第2版）》（张贤达） P24 (1.3.24)
+	\norm{\alpha}_p
+	\defeq
+	\left( \sum_{i=1}^m x_i^p \right)^{1/p}
+\end{equation*}
+当\(0 < p < 1\)时给出的是拟范数，
+当\(p \geq 1\)时给出的是范数.
 \end{example}
 
 \subsection{向量范数}
