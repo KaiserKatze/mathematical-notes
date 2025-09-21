@@ -240,11 +240,14 @@
 \end{equation*}
 \end{solution}
 \end{example}
+\begin{remark}
 由上可知，当总体\(X \sim N(\mu,\sigma^2)\)时，
 \(\mu\)和\(\sigma^2\)的矩估计量与极大似然估计量是相同的.
-
+\end{remark}
+\begin{remark}
 需要指出的是，当似然方程或对数似然方程无解时，应从定义考虑求极大似然估计，
 即选择\(\hat{\theta}\)使得\(L(\hat{\theta})=\max L(\theta)\).
+\end{remark}
 
 \begin{example}
 设总体\(X \sim U(0,\theta)\)，\(\theta>0\)是未知参数，
@@ -252,24 +255,28 @@
 求\(\theta\)的极大似然估计.
 \begin{solution}
 \(X\)的密度函数为\begin{equation*}
-f(x,\theta) = \left\{ \begin{array}{cl}
-\theta^{-1}, & 0 \leq x \leq \theta, \\
-0, & \text{其他},
-\end{array} \right.
-\end{equation*}而似然函数为\begin{equation*}
-L(\theta) = \prod_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
-\quad x_i \in [0,\theta], \quad i=1,2,\dotsc,n.
-\end{equation*}由于似然方程\(\dv{\theta} L(\theta) = -n\theta^{-1-n} = 0\)在\(\theta>0\)无解.
+	f(x,\theta) = \left\{ \begin{array}{cl}
+		\theta^{-1}, & 0 \leq x \leq \theta, \\
+		0, & \text{其他},
+	\end{array} \right.
+\end{equation*}
+而似然函数为\begin{equation*}
+	L(\theta) = \prod_{i=1}^n{f(x_i,\theta)} = \theta^{-n},
+	\quad x_i \in [0,\theta], \quad i=1,2,\dotsc,n.
+\end{equation*}
+由于似然方程\(\dv{\theta} L(\theta) = -n\theta^{-1-n} = 0\)在\(\theta>0\)无解.
 所以应该考虑似然估计的定义.
 因为似然函数\(L(\theta)=\theta^{-n}\)在\(\theta>0\)时为\(\theta\)的单调递减函数，
-\(\theta\)越小则\(L(\theta)\)越大；但另一方面，\(x_i\in[0,\theta]\)，
+\(\theta\)越小则\(L(\theta)\)越大；
+但另一方面，\(x_i\in[0,\theta]\)，
 故有\(\max_{1 \leq i \leq n} x_i \in [0,\theta]\).
 故当\(\hat{\theta}=\max_{1 \leq i \leq n} x_i\)时，
 \(L(\hat{\theta})=\max L(\theta)\).
 所以，\(\theta\)的极大似然估计值为\begin{equation*}
-\hat{\theta} = \max_{1 \leq i \leq n} x_i,
-\end{equation*}而其极大似然估计量为\begin{equation*}
-\max_{1 \leq i \leq n} X_i.
+	\hat{\theta} = \max_{1 \leq i \leq n} x_i,
+\end{equation*}
+而其极大似然估计量为\begin{equation*}
+	\max_{1 \leq i \leq n} X_i.
 \end{equation*}
 \end{solution}
 \end{example}
