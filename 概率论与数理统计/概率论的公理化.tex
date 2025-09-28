@@ -1,0 +1,144 @@
+\chapter{概率论的公理化}
+\section{可测空间，概率空间}
+\begin{definition}
+%@see: 《应用随机过程》（林元烈） P1 定义1.1.1
+设\(\Omega\)是一个非空集合，
+\(\mathcal{F}\)是\(\Omega\)的一个子集族，且\(\mathcal{F}\neq\emptyset\).
+如果\begin{itemize}
+	\item \(\Omega \in \mathcal{F}\)；
+	\item \(A \in \mathcal{F}\)蕴含\(\SetComplementaryL{A} \in \mathcal{F}\)，其中\(\SetComplementaryL{A} \defeq \Omega - A\)；
+	\item \(A_n \in \mathcal{F}\ (n \in \mathbb{N})\)蕴含\(\bigcup_{n=1}^\infty A_n \in \mathcal{F}\)，
+\end{itemize}
+则称“\(\mathcal{F}\)是一个 \DefineConcept{\(\sigma\)代数}（\(\sigma\)-algebra）”
+或“\(\mathcal{F}\)是一个 \DefineConcept{\(\sigma\)域}”，
+同时称“\((\Omega,\mathcal{F})\)是一个\DefineConcept{可测空间}（measurable space）”.
+%@see: https://mathworld.wolfram.com/Sigma-Algebra.html
+%@see: https://mathworld.wolfram.com/MeasurableSpace.html
+\end{definition}
+
+\begin{example}
+%@see: 《应用随机过程》（林元烈） P1
+设\(\Omega\)是一个非空集合，
+则\begin{itemize}
+	\item 集类\(\mathcal{F}_0 \defeq \{\emptyset,\Omega\}\)是一个\(\sigma\)代数；
+	\item 集类\(\mathcal{F}_1 \defeq \{\emptyset,A,\Omega-A,\Omega\}\)是一个\(\sigma\)代数（其中\(A\)是\(\Omega\)的一个非空子集）；
+	\item 集类\(\mathcal{F}_2 \defeq \Set{ A \given A \subseteq \Omega}\)也是一个\(\sigma\)代数；
+	\item 集类\(\{\emptyset,A,\Omega\}\)不是\(\sigma\)代数（其中\(A\)是\(\Omega\)的一个非空子集）.
+\end{itemize}
+\end{example}
+
+\begin{property}
+%@see: 《应用随机过程》（林元烈） P1
+设\(\mathcal{F}\)是一个\(\sigma\)代数，
+则\(\mathcal{F}\)对可列交封闭.
+\end{property}
+
+\begin{property}
+%@see: 《应用随机过程》（林元烈） P1
+设\(\mathcal{F}\)是一个\(\sigma\)代数，
+则\(\mathcal{F}\)对可列并封闭.
+\end{property}
+
+\begin{property}
+%@see: 《应用随机过程》（林元烈） P1
+设\(\mathcal{F}\)是一个\(\sigma\)代数，
+则\(\mathcal{F}\)对可列差封闭.
+\end{property}
+
+\begin{definition}
+%@see: 《应用随机过程》（林元烈） P1
+设\(\Omega\)是一个非空集合，
+\(\mathcal{A}\)是\(\Omega\)的一个子集族，且\(\mathcal{A}\neq\emptyset\).
+把集类\begin{equation*}
+	\bigcap\Set{
+		\mathcal{F}
+		\given
+		\text{$\mathcal{F}$是一个$\sigma$代数},
+		\mathcal{F} \supseteq \mathcal{A}
+	}
+\end{equation*}
+称为“由\(\mathcal{A}\)生成的\(\sigma\)域”
+或“包含\(\mathcal{A}\)的最小\(\sigma\)域”，
+记为\(\sigma(\mathcal{A})\).
+\end{definition}
+
+\begin{example}
+%@see: 《应用随机过程》（林元烈） P1
+设\(\Omega\)是一个非空集合，
+\(A\)是\(\Omega\)的一个非空子集，
+记\(\mathcal{A} \defeq \{\emptyset,A,\Omega\}\)，
+则\(\sigma(\mathcal{A}) = \{\emptyset,A,\Omega-A,\Omega\}\).
+\end{example}
+
+\begin{definition}
+%@see: 《应用随机过程》（林元烈） P1
+把实数域\(\mathbb{R}\)的所有形如\((-\infty,a]\)的区间组成的集合\begin{equation*}
+	\Set{
+		A \subseteq \mathbb{R}
+		\given
+		A = (-\infty,a],
+		a \in (-\infty,+\infty)
+	}
+\end{equation*}
+的最小\(\sigma\)域称为\DefineConcept{一维波莱尔\(\sigma\)域}.
+\end{definition}
+
+\section{概率测度，概率空间，随机事件及其概率}
+\begin{definition}
+%@see: 《应用随机过程》（林元烈） P1 定义1.1.2
+设\((\Omega,\mathcal{F})\)是一个可测空间.
+如果映射\(P\colon \mathcal{F} \to \mathbb{R}\)满足\begin{itemize}
+	\item {\rm\bf 非负性}，即\begin{equation*}
+		(\forall A \in \mathcal{F})
+		[
+			P(A) \geq 0
+		];
+	\end{equation*}
+
+	\item {\rm\bf 规范性}，即\begin{equation*}
+		P(\Omega) = 1;
+	\end{equation*}
+
+	\item {\rm\bf 可列可加性}，即\begin{equation*}
+		(\forall A_1,A_2,\dotsc \in \mathcal{F})
+		[
+			(\forall A_i)(\forall A_j)
+			[
+				A_i A_j = \emptyset
+			]
+			\implies
+			P\left( \bigcup_{i=1}^\infty A_i \right)
+			= \sum_{i=1}^\infty P(A_i)
+		],
+	\end{equation*}
+\end{itemize}
+则称“映射\(P\)是可测空间\((\Omega,\mathcal{F})\)上的一个\DefineConcept{概率测度}（probability measure）”，
+在不致混淆的情况下简称为\DefineConcept{概率}（probability）；
+同时把\((\Omega,\mathcal{F},P)\)称为一个\DefineConcept{概率空间}（probability space），
+把\(\mathcal{F}\)称为一个\DefineConcept{事件域}.
+如果\(A \in \mathcal{F}\)，
+则称\(A\)是一个\DefineConcept{随机事件}（random event），简称\DefineConcept{事件}（event），
+同时把\(P(A)\)称为“事件\(A\)的\DefineConcept{概率}（probability）”.
+%@see: https://mathworld.wolfram.com/ProbabilityMeasure.html
+%@see: https://mathworld.wolfram.com/ProbabilitySpace.html
+\end{definition}
+
+公理化的事件概率，与我们之前建立的朴素认知，具有相同的基本性质.
+
+\section{随机变量，分布函数}
+\begin{definition}
+%@see: 《应用随机过程》（林元烈） P5 定义1.2.1
+设\((\Omega,\mathcal{F},P)\)是一个概率空间.
+如果映射\(X\colon \Omega \to \mathbb{R}\)满足\begin{equation*}
+	(\forall a \in \mathbb{R})
+	[
+		\Set{
+			\omega
+			\given
+			X(\omega) \leq a
+		}
+		\in \mathcal{F}
+	],
+\end{equation*}
+则称“映射\(X\)是一个\DefineConcept{随机变量}（random variable）”.
+\end{definition}
