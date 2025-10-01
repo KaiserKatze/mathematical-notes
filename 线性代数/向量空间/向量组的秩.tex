@@ -842,7 +842,7 @@ B=\{(1,0)\}\).
 同理可证充分性.
 \end{proof}
 \end{theorem}
-
+\begin{remark}
 \cref{theorem:向量空间.利用初等行变换求取列极大线性无关组的依据} 告诉我们，
 要想求出一组向量\(\AutoTuple{\vb\alpha}{s}\)的极大线性无关组，
 可以构造矩阵\(\vb{A}=(\AutoTuple{\vb\alpha}{s})\)，
@@ -855,20 +855,41 @@ B=\{(1,0)\}\).
 \)，
 回过头找出\(\vb{A}\)中对应的列\(\vb\alpha_{j_1},\vb\alpha_{j_2},\dotsc,\vb\alpha_{j_r}\)，
 那么\(\vb\alpha_{j_1},\vb\alpha_{j_2},\dotsc,\vb\alpha_{j_r}\)就是\(\AutoTuple{\vb\alpha}{s}\)的极大线性无关组.
-同时，可以注意到阶梯形矩阵\(\vb{B}\)的每一个列向量\(\vb\beta_i\)的前\(r\)个分量\(b_{1i},\dotsc,b_{ri}\)
+\end{remark}
+\begin{remark}
+如果\(\vb{B}\)是\(\vb{A}\)的行最简形，
+那么可以注意到\(\vb{B}\)的每一个列向量\(\vb\beta_i\)的前\(r\)个分量\(b_{1i},\dotsc,b_{ri}\)
 就是原矩阵\(\vb{A}\)中对应列向量\(\vb\alpha_i\)由\(\vb\alpha_{j_1},\vb\alpha_{j_2},\dotsc,\vb\alpha_{j_r}\)线性表出的系数，
-即\begin{equation*}
+即\begin{equation}\label{equation:向量组的秩.用原矩阵的列极大线性无关组线性表出全组}
 	\vb\alpha_i
 	= b_{1i} \vb\alpha_{j_1} + \dotsb + b_{ri} \vb\alpha_{j_r}
 	\quad(i=1,2,\dotsc,m),
-\end{equation*}
-亦即\begin{equation*}
+\end{equation}
+亦即\begin{equation}
 	\vb{A}
 	= \left( \vb\alpha_{j_1},\dotsc,\vb\alpha_{j_r},\underbrace{\vb0,\dotsc,\vb0}_{\text{$n-r$个}} \right)
 	\vb{B}.
-\end{equation*}
-%TODO proof
+\end{equation}
+%@credit: {4ae95023-f2b2-4b5d-b939-abcd2cb20dfd} 说：初等行变换不改变列向量组的线性关系
+%@credit: {5a781423-ba4e-4629-ac1a-eac743a4d445} 说：必须强调矩阵\(\vb{B}\)是行最简形
+这是因为\(\vb{B}\)的非零首元都是\(1\)，
+% 显然\(\vb{B}\)的列极大线性无关组可以线性表出\(\vb{B}\)的列向量组，
+所以\begin{equation}\label{equation:向量组的秩.用行最简形的列极大线性无关组线性表出全组}
+	\vb\beta_i
+	= b_{1i} \vb\beta_{j_1} + \dotsb + b_{ri} \vb\beta_{j_r}
+	\quad(i=1,2,\dotsc,m),
+\end{equation}
+再假设可逆矩阵\(\vb{P}\)满足\(\vb{B} = \vb{P} \vb{A}\)
+（这里\(\vb{P}\)就是将\(\vb{A}\)化为\(\vb{B}\)的初等行变换），
+则\begin{equation}\label{equation:向量组的秩.原矩阵及其行最简形之间的关系}
+	\vb\beta_i = \vb{P} \vb\alpha_i
+	\quad(i=1,2,\dotsc,m),
+\end{equation}
+于是只要在\cref{equation:向量组的秩.用行最简形的列极大线性无关组线性表出全组} 等号两边同时左乘\(\vb{P}\)，
+再代入\cref{equation:向量组的秩.原矩阵及其行最简形之间的关系}，
+便得\cref{equation:向量组的秩.用原矩阵的列极大线性无关组线性表出全组}.
 %@see: https://math.stackexchange.com/a/164021/591741
+\end{remark}
 
 \begin{example}
 求列向量组\begin{equation*}
