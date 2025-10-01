@@ -41,7 +41,7 @@
 
 \begin{example}
 %@see: 《数理统计教程》（王兆军，邹长亮） P30 例1.4.2
-设\(X_1,\dotsc,X_n\)独立同分布于\(B(1,p)\)，
+设\(X_1,\dotsc,X_n\)独立同分布于二项分布\(B(1,p)\)，
 其中\(0<p<1,n>2\).
 试问\(
 	T_1 \defeq \sum_{i=1}^n X_i,
@@ -104,3 +104,50 @@
 \(T_2\)不是\(p\)的充分统计量.
 \end{solution}
 \end{example}
+
+\begin{example}
+%@see: 《数理统计教程》（王兆军，邹长亮） P31 例1.4.3
+设\(X_1,\dotsc,X_n\)独立同分布于几何分布\(G(p)\)，
+其中\(0<p<1\).
+证明：\(T \defeq \sum_{i=1}^n X_i\)是参数\(p\)的充分统计量.
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《数理统计教程》（王兆军，邹长亮） P32 例1.4.4
+设\(X_1,\dotsc,X_n\)独立同分布于泊松分布\(P(\lambda)\).
+证明：\(T \defeq \sum_{i=1}^n X_i\)是参数\(\lambda\)的充分统计量.
+%TODO proof
+\end{example}
+
+\begin{example}
+%@see: 《数理统计教程》（王兆军，邹长亮） P33 例1.4.5
+设\(X_1,\dotsc,X_n\)独立同分布于正态分布\(N(\mu,1)\).
+证明：\(T \defeq \sum_{i=1}^n X_i\)是参数\(\mu\)的充分统计量.
+%TODO proof
+\end{example}
+
+从上例可以看出，对于正态总体\(N(\mu,\sigma^2)\)，
+如果\(\mu,\sigma^2\)都未知，
+则利用定义求解充分统计量比较困难.
+另外，从上面的例子也可以看出，
+想要求取充分统计量，
+就必须首先猜测一个统计量，
+之后再用定义证明它.
+显然这种方法不便于使用.
+于是有如下的定理.
+\begin{theorem}
+%@see: 《数理统计教程》（王兆军，邹长亮） P33 定理1.4.1（因子分解定理）
+对于含有未知参数\(\theta\)的分布族\(\mathcal{F} \defeq \Set{ F_\theta \given \theta \in \Theta }\)，
+设\(\AutoTuple{X}{n}\)独立同分布于\(F_\theta\)，\(T\)是一个统计量，
+则\(T\)是\(\theta\)的充分统计量的充分必要条件是：
+样本分布\(F_\theta(x_1,\dotsc,x_n)\)满足分解式\begin{equation*}
+%@see: 《数理统计教程》（王兆军，邹长亮） P33 (1.4.2)
+	F_\theta(x_1,\dotsc,x_n)
+	= g_\theta(t)
+	h(x_1,\dotsc,x_n),
+\end{equation*}
+其中\(t = T(x_1,\dotsc,x_n)\)，
+而\(h(x_1,\dotsc,x_n)\)不依赖于参数\(\theta\).
+%TODO proof
+\end{theorem}
