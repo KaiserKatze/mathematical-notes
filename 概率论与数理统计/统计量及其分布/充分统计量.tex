@@ -38,3 +38,69 @@
 则称“统计量\(T\)是分布族\(\Set{ F_\theta \given \theta \in \Theta }\)的\DefineConcept{充分统计量}（sufficient statistic）”
 或“统计量\(T\)是参数\(\theta\)的\DefineConcept{充分统计量}”.
 \end{definition}
+
+\begin{example}
+%@see: 《数理统计教程》（王兆军，邹长亮） P30 例1.4.2
+设\(X_1,\dotsc,X_n\)独立同分布于\(B(1,p)\)，
+其中\(0<p<1,n>2\).
+试问\(
+	T_1 \defeq \sum_{i=1}^n X_i,
+	T_2 \defeq X_1 + X_2
+\)是不是参数\(p\)的充分统计量.
+\begin{solution}
+由题意有，样本分布为\begin{equation*}
+	P(X_1=x_1,\dotsc,X_n=x_n)
+	= p^{x_1+\dotsb+x_n}
+	(1-p)^{n-(x_1+\dotsb+x_n)},
+\end{equation*}
+且\(T_1 \sim B(n,p)\)，
+故当\(T_1 = t\)时样本的条件分布为\begin{align*}
+	&P(X_1=x_1,\dotsc,X_n=x_n \vert T_1 = t) \\
+	&= \frac{
+		P\left(
+			X_1=x_1,
+			X_2=x_2,
+			X_3=x_3,
+			\dotsc,
+			X_{n-1}=x_{n-1},
+			X_n=t-(x_1+\dotsb+x_{n-1})
+		\right)
+	}{
+		P(T_1=t)
+	} \\
+	&= \frac{p^t (1-p)^{n-t}}{C_n^t p^t (1-p)^{n-t}}
+	= (C_n^t)^{-1}.
+\end{align*}
+显然\(P(X_1=x_1,\dotsc,X_n=x_n \vert T_1 = t) = (C_n^t)^{-1}\)与参数\(p\)无关，
+该条件分布中已经没有关于\(p\)的任何信息了，
+或者说，样本中关于\(p\)的所有信息都包含在统计量\(T_1\)中了.
+因此\(T_1\)是\(p\)的充分统计量.
+但是对于统计量\(T_2\)而言，
+由于\(T_2 \sim B(2,p)\)，
+所以\begin{align*}
+	&P(X_1=x_1,\dotsc,X_n=x_n \vert T_2 = t) \\
+	&= \frac{
+		P\left(
+			X_1=x_1,
+			X_2=t-x_1,
+			X_3=x_3,
+			\dotsc,
+			X_{n-1}=x_{n-1},
+			X_n=x_n
+		\right)
+	}{
+		P(T_2=t)
+	} \\
+	&= \frac{
+		p^{t+(x_3+\dotsb+x_n)}
+		(1-p)^{n-t-(x_3+\dotsb+x_n)}
+	}{
+		C_2^t p^t (1-p)^{2-t}
+	}
+	= (C_2^t)^{-1} p^{x_3+\dotsb+x_n} (1-p)^{n-2-(x_3+\dotsb+x_n)}.
+\end{align*}
+显然\(P(X_1=x_1,\dotsc,X_n=x_n \vert T_2 = t)\)与\(p\)有关，
+说明\(T_2\)没有把样本中关于\(p\)的所有信息都包含进来，
+\(T_2\)不是\(p\)的充分统计量.
+\end{solution}
+\end{example}
