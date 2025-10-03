@@ -22,3 +22,150 @@
 都会产生\DefineConcept{舍入误差}.
 
 研究计算结果的误差是否满足精度要求就是误差估计问题.
+数值分析主要讨论算法的截断误差、舍入误差.
+
+\subsection{误差与有效数字}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P4 定义1
+假设\(x\)是准确值，\(x^*\)是\(x\)的一个近似值，
+则称\begin{equation}
+	e^* \defeq x^* - x
+\end{equation}
+是近似值的\DefineConcept{绝对误差}.
+
+通常我们不能算出准确值\(x\)，
+也不能算出误差\(e^*\)的准确值，
+只能根据测量工具或计算情况估计出误差的绝对值不超过某个整数\(\epsilon^*\)，
+也就是误差绝对值的一个上界.
+我们把\(\epsilon^*\)称为近似值的\DefineConcept{绝对误差限}，
+它总是正数.
+例如，用毫米刻度的米尺测量一根棍子的长度，假设棍子长度的准确值是\(x\)，
+测量时读出的与棍子长度接近的刻度是\(x^*\)，
+\(x^*\)是\(x\)的近似值，
+它的绝对误差限是\(\qty{0.5}{\milli\meter}\)，
+可知\(\abs{x^* - x} \leq \qty{0.5}{\milli\meter}\).
+如果读出的长度是\(\qty{765}{\milli\meter}\)，
+则有\(\abs{765-x} \leq 0.5\)，
+从这个不等式我们仍不知道准确的\(x\)是多少，
+但是可以得出结论\(764.5 \leq x \leq 765.5\).
+对于一般情形，我们常常把不等式\(\abs{x^* - x} \leq \epsilon^*\)
+写成\begin{equation}
+	x = x^* \pm \epsilon^*.
+\end{equation}
+
+绝对误差限的大小还不能完全表示近似值的好坏.
+例如有两个量\(x = 10\pm1\)和\(y = 1000\pm5\)，
+虽然后者的绝对误差限是前者的5倍，
+但是\(5/1000 = 0.5\%\)比\(1/10 = 10\%\)要小得多，
+这说明\(y^*\)近似\(y\)的程度
+比\(x^*\)近似\(x\)的程度要好得多.
+也就是说，除了考虑误差的大小以外，
+还应该考虑准确值\(x\)本身的大小.
+
+我们把准确值的误差\(e^*\)与准确值\(x\)的比值\begin{equation}
+	e^*_r
+	\defeq \frac{e^*}{x}
+	= \frac{x^* - x}{x}
+\end{equation}
+称为近似值\(x^*\)的\DefineConcept{相对误差}.
+
+在实际计算中，由于真值\(x\)总是不知道的，
+当\(e^* / x^*\)较小时，
+通常取\begin{equation}
+	e^*_r
+	\defeq \frac{e^*}{x^*}
+	= \frac{x^* - x}{x^*}
+\end{equation}
+作为\(x^*\)的相对误差，
+此时\begin{equation*}
+	\frac{e^*}{x}
+	- \frac{e^*}{x^*}
+	= \frac{e^* (x^* - x)}{x^* x}
+	= \frac{(e^*)^2}{x^* (x^* - e^*)}
+	= \frac{(e^* / x^*)^2}{1 - (e^* / x^*)}
+\end{equation*}
+是\(e^*_r\)的平方项级，故可忽略不计.
+
+相对误差跟绝对误差一样，也可正可负，
+它的绝对值上界叫做相对误差限，
+记作\(\epsilon^*_r\)，
+即\begin{equation}
+	\epsilon^*_r
+	\defeq \frac{\epsilon^*}{\abs{x^*}}.
+\end{equation}
+
+根据定义，\(10\pm1\)和\(1000\pm5\)的相对误差限分别是\(10\%\)和\(0.5\%\)，
+由此可见后者的近似程度比前者的近视程度好.
+
+在\(p\)进制下，
+当准确值\(x\)有多位数时，
+常常按四舍五入的原则得到\(x\)的前几位近似值\(x^*\).
+如果近似值\(x^*\)的绝对误差限是某一位的半个单位，
+且该位到\(x^*\)的第一位非零数字共有\(n\)位，
+则称\(x^*\)有\(n\)位\DefineConcept{有效数字}.
+我们常常把\(x^*\)表示为\begin{equation*}
+	x^*
+	= \pm p^m \times (
+		a_1
+		+ a_2 \times p^{-1}
+		+ \dotsb
+		+ a_n \times p^{-(n-1)}
+	),
+\end{equation*}
+其中\(a_i\ (i=1,2,\dotsc,n)\)
+是\(0\)到\(p-1\)中的一个数字，
+\(a_1\neq0\)，
+\(m\)是整数，
+且\begin{equation*}
+	\abs{x - x^*}
+	\leq \frac12 \times p^{m-n+1}.
+\end{equation*}
+
+\begin{example}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P6 例1
+按四舍五入原则写出下列十进制数字的具有5位有效数字的近似数：\begin{equation*}
+	187.932~5, \qquad
+	0.037~855~51, \qquad
+	8.000~033, \qquad
+	2.718~281~8.
+\end{equation*}
+\begin{solution}
+根据定义，上述十进制数字的具有5位有效数字的近似数分别是：\begin{equation*}
+	187.93, \qquad
+	0.037~856, \qquad
+	8.000~0, \qquad
+	2.718~3.
+\end{equation*}
+\end{solution}
+\end{example}
+
+关于有效数字与相对误差限的关系，有下面的定理.
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P6 定理1
+设近似数\begin{equation*}
+	x^*
+	= \pm p^m \times (
+		a_1
+		+ a_2 \times p^{-1}
+		+ \dotsb
+		+ a_n \times p^{-(n-1)}
+	),
+\end{equation*}
+其中\(a_i\ (i=1,2,\dotsc,n)\)
+是\(0\)到\(p-1\)中的一个数字，
+\(a_1\neq0\)，
+\(m\)是整数.
+\begin{itemize}
+	\item 如果\(x^*\)具有\(n\)位有效数字，
+	则\(x^*\)的相对误差限为\begin{equation}
+		\epsilon^*_r
+		\leq \frac1{2 a_1} \times p^{-(n-1)}.
+	\end{equation}
+
+	\item 如果\(x^*\)的相对误差限为\begin{equation*}
+		\epsilon^*_r
+		\leq \frac1{2(a_1+1)} \times p^{-(n-1)},
+	\end{equation*}
+	则\(x^*\)至少具有\(n\)位有效数字.
+\end{itemize}
+\end{theorem}
+上述定理说明，一个近似数的有效位数越多，它的相对误差限就越小.
