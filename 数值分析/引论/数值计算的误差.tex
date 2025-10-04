@@ -47,7 +47,9 @@
 则有\(\abs{765-x} \leq 0.5\)，
 从这个不等式我们仍不知道准确的\(x\)是多少，
 但是可以得出结论\(764.5 \leq x \leq 765.5\).
-对于一般情形，我们常常把不等式\(\abs{x^* - x} \leq \epsilon^*\)
+对于一般情形，我们常常把不等式\begin{equation}
+	\abs{x^* - x} \leq \epsilon^*
+\end{equation}
 写成\begin{equation}
 	x = x^* \pm \epsilon^*.
 \end{equation}
@@ -170,3 +172,110 @@
 \end{theorem}
 \cref{theorem:数值分析.数值计算误差.有效数字与相对误差限的关系} 说明，
 一个近似数的有效位数越多，它的相对误差限就越小.
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P7 例3
+在十进制下，要使\(\sqrt{20}\)的近似值的相对误差限小于\(0.1\%\)，应该取几位有效数字？
+\begin{solution}
+假设应取\(n\)位有效数字，
+那么由\cref{theorem:数值分析.数值计算误差.有效数字与相对误差限的关系} 可知\begin{equation*}
+	\epsilon^*_r \leq \frac1{2a_1} \times 10^{-(n-1)}.
+\end{equation*}
+由于\(4 < \sqrt{20} < 5\)，
+所以\(a_1 = 4\)，
+故只要取\(n = 4\)，就有\begin{equation*}
+	\epsilon^*_r
+	\leq 0.125 \times 10^{-3}
+	< 10^{-3}
+	= 0.1\%,
+\end{equation*}
+因此，只要对\(\sqrt{20}\)的近似值取4位有效数字，
+即\(\sqrt{20} \approx 4.472\)，
+其相对误差限就小于\(0.1\%\).
+\end{solution}
+\end{theorem}
+
+\subsection{数值运算的误差估计}
+设两个近似数\(x^*_1\)与\(x^*_2\)的误差限分别是\(\epsilon(x^*_1)\)与\(\epsilon(x^*_2)\)，
+则它们进行加减乘除运算，得到的误差限分别满足不等式\begin{gather*}
+	\epsilon(x^*_1 \pm x^*_2)
+	\leq \epsilon(x^*_1) + \epsilon(x^*_2), \\
+	\epsilon(x^*_1 x^*_2)
+	\leq \abs{x^*_1} \epsilon(x^*_2) + \abs{x^*_2} \epsilon(x^*_1), \\
+	\epsilon(x^*_1 / x^*_2)
+	\leq \frac{\abs{x^*_1} \epsilon(x^*_2) + \abs{x^*_2} \epsilon(x^*_1)}{\abs{x^*_2}^2}
+	\quad(x^*_2 \neq 0).
+\end{gather*}
+
+更一般的情况是，当自变量有误差时，计算函数值也产生误差，
+其误差值可以利用函数的泰勒展开式进行估计.
+
+设\(f\)是一元可微函数，
+\(x^*\)是\(x\)的近似值，
+由\begin{equation*}
+	% \cref{equation:微分中值定理.泰勒公式.多项式1}
+	% \cref{equation:微分中值定理.泰勒公式.余项1}
+	f(x) = f(x^*) + f'(x^*) (x-x^*)
+	+ \dotsb
+	+ \frac{f^{(n)}(x^*)}{n!} (x-x^*)^n
+	+ \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x^*)^{n+1}
+	\footnote{
+		这里不写成\(f(x^*)\)的泰勒公式，是因为那样做会导致泰勒多项式中出现\(f'(x),f''(x)\)等含有未知真值的表达式.
+		我们现在采取的写法，则\(f'(x^*),f''(x^*)\)等都是已知的，剩下的\(x-x^*\)可以通过放缩用绝对误差限代替.
+	}
+\end{equation*}
+可知\begin{equation*}
+	% \(f(x^*) - f(x)\)才是用\(f(x^*)\)近似\(f(x)\)产生的绝对误差，这里是绝对误差的相反数
+	f(x) - f(x^*)
+	= f'(x^*) (x-x^*)
+	+ \dotsb
+	+ \frac{f^{(n)}(x^*)}{n!} (x-x^*)^n
+	+ \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x^*)^{n+1},
+\end{equation*}
+其中\(\xi\)在\(x\)与\(x^*\)之间.
+对上式取绝对值，
+考虑到\(\abs{x^* - x} \leq \epsilon^* \defeq \epsilon(x^*)\)，
+得\begin{align*}
+	\abs{f(x^*) - f(x)}
+	&= \abs{f'(x^*)} \abs{x-x^*}
+	+ \dotsb
+	+ \abs{\frac{f^{(n)}(x^*)}{n!}} \abs{x-x^*}^n
+	+ \abs{\frac{f^{(n+1)}(\xi)}{(n+1)!}} \abs{x-x^*}^{n+1} \\
+	&\leq \abs{f'(x^*)} \epsilon(x^*)
+	+ \dotsb
+	+ \abs{\frac{f^{(n)}(x^*)}{n!}} \epsilon^n(x^*)
+	+ \abs{\frac{f^{(n+1)}(\xi)}{(n+1)!}} \epsilon^{n+1}(x^*).
+\end{align*}
+我们通常只需要按\((x-x^*)\)的幂展开的1阶泰勒公式，即\begin{equation*}
+	\abs{f(x^*) - f(x)}
+	\leq \abs{f'(x^*)} \epsilon(x^*)
+	+ \frac{\abs{f''(\xi)}}{2!} \epsilon^2(x^*).
+\end{equation*}
+当\(f'(x^*)\)与\(f''(x^*)\)的比值不太大时，
+我们还可以忽略\(\epsilon(x^*)\)的高次项，
+于是得到计算函数的绝对误差限为\begin{equation}
+	\epsilon(f(x^*))
+	\approx \abs{f'(x^*)} \epsilon(x^*).
+\end{equation}
+
+设\(f\)是多元可微函数，
+\(x^*_1,\dotsc,x^*_m\)分别是\(x_1,\dotsc,x_m\)的近似值，
+那么由\hyperref[theorem:多元函数微分法.多元函数的泰勒公式]{多元函数的泰勒公式}可知，
+用\(A^* \defeq f(x^*_1,\dotsc,x^*_m)\)近似\(A \defeq f(x_1,\dotsc,x_m)\)产生的绝对误差为\begin{align*}
+	A^* - A
+	&= f(x^*_1,\dotsc,x^*_m) - f(x_1,\dotsc,x_m) \\
+	&\approx \sum_{k=1}^m \left( \pdv{f(x^*_1,\dotsc,x^*_m)}{x_k} \right) (x^*_k - x_k)
+	= \sum_{k=1}^m \left( \pdv{f}{x_k} \right)^* e^*_k,
+\end{align*}
+于是绝对误差限为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P8 (2.3)
+	\epsilon(A^*)
+	\approx \sum_{k=1}^m \abs{\left( \pdv{f}{x_k} \right)^*} \epsilon(x^*_k),
+\end{equation}
+而\(A^*\)的相对误差限为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P8 (2.4)
+	\epsilon^*_r
+	= \epsilon_r(A^*)
+	= \frac{\epsilon(A^*)}{\abs{A^*}}
+	\approx \sum_{k=1}^m \abs{\left( \pdv{f}{x_k} \right)^*} \frac{\epsilon(x^*_k)}{\abs{A^*}}.
+\end{equation}
