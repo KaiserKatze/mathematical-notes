@@ -87,8 +87,8 @@
 \end{equation*}
 是\(e^*_r\)的平方项级，故可忽略不计.
 
-相对误差跟绝对误差一样，也可正可负，
-它的绝对值上界叫做相对误差限，
+相对误差\((e^* / x^*)\)跟绝对误差\(e^*\)一样，也可正可负.
+我们把相对误差的绝对值上界称为\DefineConcept{相对误差限}，
 记作\(\epsilon^*_r\)，
 即\begin{equation}
 	\epsilon^*_r
@@ -97,6 +97,10 @@
 
 根据定义，\(10\pm1\)和\(1000\pm5\)的相对误差限分别是\(10\%\)和\(0.5\%\)，
 由此可见后者的近似程度比前者的近视程度好.
+
+需要注意的是，
+绝对误差、绝对误差限是有量纲的，
+相对误差、相对误差限是无量纲的.
 
 在\(p\)进制下，
 当准确值\(x\)有多位数时，
@@ -143,7 +147,7 @@
 关于有效数字与相对误差限的关系，有下面的定理.
 \begin{theorem}\label{theorem:数值分析.数值计算误差.有效数字与相对误差限的关系}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P6 定理1
-设近似数\begin{equation*}
+给定近似数\(x^*\)，用\(p\)进制下的科学计数法可以将\(x^*\)表示为\begin{equation*}
 	x^*
 	= \pm p^m \times (
 		a_1
@@ -173,7 +177,7 @@
 \cref{theorem:数值分析.数值计算误差.有效数字与相对误差限的关系} 说明，
 一个近似数的有效位数越多，它的相对误差限就越小.
 
-\begin{theorem}
+\begin{example}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P7 例3
 在十进制下，要使\(\sqrt{20}\)的近似值的相对误差限小于\(0.1\%\)，应该取几位有效数字？
 \begin{solution}
@@ -193,7 +197,7 @@
 即\(\sqrt{20} \approx 4.472\)，
 其相对误差限就小于\(0.1\%\).
 \end{solution}
-\end{theorem}
+\end{example}
 
 \subsection{数值运算的误差估计}
 设两个近似数\(x^*_1\)与\(x^*_2\)的误差限分别是\(\epsilon(x^*_1)\)与\(\epsilon(x^*_2)\)，
@@ -267,15 +271,58 @@
 	&\approx \sum_{k=1}^m \left( \pdv{f(x^*_1,\dotsc,x^*_m)}{x_k} \right) (x^*_k - x_k)
 	= \sum_{k=1}^m \left( \pdv{f}{x_k} \right)^* e^*_k,
 \end{align*}
-于是绝对误差限为\begin{equation}
+于是绝对误差限为\begin{equation}\label{equation:数值计算的误差.数值运算的绝对误差限}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P8 (2.3)
 	\epsilon(A^*)
 	\approx \sum_{k=1}^m \abs{\left( \pdv{f}{x_k} \right)^*} \epsilon(x^*_k),
 \end{equation}
-而\(A^*\)的相对误差限为\begin{equation}
+而\(A^*\)的相对误差限为\begin{equation}\label{equation:数值计算的误差.数值运算的相对误差限}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P8 (2.4)
 	\epsilon^*_r
 	= \epsilon_r(A^*)
 	= \frac{\epsilon(A^*)}{\abs{A^*}}
 	\approx \sum_{k=1}^m \abs{\left( \pdv{f}{x_k} \right)^*} \frac{\epsilon(x^*_k)}{\abs{A^*}}.
 \end{equation}
+
+\begin{example}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P8 例4
+已经测得某场地长为\(l^* = \qty{110}{\meter}\)，宽为\(d^* = \qty{80}{\meter}\)，
+且\(
+	\abs{l-l^*} \leq \qty{0.2}{\meter},
+	\abs{d-d^*} \leq \qty{0.1}{\meter}
+\).
+试求面积\(s = l d\)的绝对误差限和相对误差限.
+\begin{solution}
+由\(s = l d\)可知\(\pdv{s}{l} = d, \pdv{s}{d} = l\).
+由\cref{equation:数值计算的误差.数值运算的绝对误差限} 可知\begin{equation*}
+	\epsilon(s^*)
+	\approx \abs{\left( \pdv{s}{l} \right)^*} \epsilon(l^*)
+	+ \abs{\left( \pdv{s}{d} \right)^*} \epsilon(d^*),
+\end{equation*}
+其中\begin{equation*}
+	\left( \pdv{s}{l} \right)^*
+	= d^*
+	= \qty{80}{\meter},
+	\qquad
+	\left( \pdv{s}{d} \right)^*
+	= l^*
+	= \qty{110}{\meter},
+	\qquad
+	\epsilon(l^*) = \qty{0.2}{\meter},
+	\qquad
+	\epsilon(d^*) = \qty{0.1}{\meter},
+\end{equation*}
+于是绝对误差限为\begin{equation*}
+	\epsilon(s^*)
+	\approx 80 \times (0.2) + 110 \times (0.1)
+	= \qty{27}{\meter\squared},
+\end{equation*}
+相对误差限为\begin{equation*}
+	\epsilon_r(s^*)
+	= \frac{\epsilon(s^*)}{\abs{s^*}}
+	= \frac{\epsilon(s^*)}{l^* d^*}
+	\approx \frac{27}{8800}
+	= 0.31\%.
+\end{equation*}
+\end{solution}
+\end{example}
