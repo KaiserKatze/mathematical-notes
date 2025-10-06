@@ -1,25 +1,47 @@
 \section{极大似然估计法}
 \subsection{对离散型总体的极大似然估计}
-设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)，
+设总体\(X\)是离散型随机变量，分布律为\(P(X=x)=p(x,\theta)\)\footnote{
+	我们其实应该把\(p(x,\theta)\)看成
+	“未知参数\(\theta\)取定为某个值的条件下
+	\(X\)的条件概率分布”.
+}，
 其中\(\theta\)是未知参数.
 当样本\(\AutoTuple{X}{n}\)得到一组观测值\(\AutoTuple{x}{n}\)时，
 由样本的独立同分布性，
-记样本取得这组观测值的概率为\begin{equation*}
-	L(\theta)
-	\defeq P\left[ \bigcap_{i=1}^n (X_i=x_i) \right]
+样本取得这组观测值的概率为\begin{equation*}
+	P\left[ \bigcap_{i=1}^n (X_i=x_i) \right]
 	= \prod_{i=1}^n P(X_i=x_i)
-	= \prod_{i=1}^n p(x_i,\theta),
+	= \prod_{i=1}^n p(x_i,\theta).
 \end{equation*}
-称函数\(L(\theta)\)为“未知参数\(\theta\)的\DefineConcept{似然函数}”.
+可以看出，一旦选定了概率模型（例如二项分布、几何分布等），
+那么在观测值\(\AutoTuple{x}{n}\)固定不变的情况下，
+未知参数\(\theta\)的取值完全决定了这\(n\)个样本取得观测值的联合概率，
+或者说样本取得这组观测值的概率
+\(P\left[ \bigcap_{i=1}^n (X_i=x_i) \right]\)就成为了关于\(\theta\)的函数.
+我们把函数\begin{equation*}
+	L\colon \Theta \to \mathbb{R},
+	\theta \mapsto P\left[ \bigcap_{i=1}^n (X_i=x_i) \right]
+\end{equation*}
+称为“未知参数\(\theta\)的\DefineConcept{似然函数}（likelihood function）”，
+%@see: https://mathworld.wolfram.com/LikelihoodFunction.html
+把函数\begin{equation*}
+	\ln L\colon \Theta \to \mathbb{R}, \theta \mapsto \ln L(\theta)
+\end{equation*}
+称为“未知参数\(\theta\)的\DefineConcept{对数似然函数}（log-likelihood function）”.
 
-极大似然估计法的思想是：
+\DefineConcept{极大似然估计法}（maximum likelihood method）的思想是：
+%@see: https://mathworld.wolfram.com/MaximumLikelihood.html
 随机试验有若干个可能结果，如果在一次试验中某一结果出现了，
 由小概率事件原理，我们便自然认为这一结果出现的概率较大，
 从而可以认为这一结果是所有可能结果中出现概率最大的一个.
-因此\(p\)应该这样估计，即选择\(\hat{p}\)使得上述观测值出现的概率最大.
-也就是使\(L(\hat{p})\)为\(L(p)\)的最大值.
-而求\(L(p)\)的最大值点\(\hat{p}\)，
-可由方程\(\dv{p} L(p) = 0\)解得.
+
+按照极大似然估计法所秉持的思想，
+未知参数\(\theta\)应该这样估计：
+选择\(\hat{\theta}\)作为\(\theta\)的估计值，使得观测值\(\AutoTuple{x}{n}\)出现的概率最大，
+也就是使\(\max_\theta L(\theta) = L(\hat{\theta})\)
+或\(\hat{\theta} = \argmax_\theta L(\theta)\).
+而求\(L\)的最大值点\(\hat{\theta}\)，
+可由方程\(\dv{\theta} L(\theta) = 0\)解得.
 
 \begin{definition}
 设总体\(X\)仅含一个未知参数\(\theta\)，
@@ -33,6 +55,7 @@
 而把统计量\(\hat{\theta}(\AutoTuple{X}{n})\)称为
 “未知参数\(\theta\)的\DefineConcept{极大似然估计量}（maximum likelihood estimator）”.
 %@see: https://online.stat.psu.edu/stat415/lesson/1/1.2
+%@see: https://mathworld.wolfram.com/MaximumLikelihoodEstimator.html
 \end{definition}
 
 \subsection{对连续型总体的极大似然估计}
