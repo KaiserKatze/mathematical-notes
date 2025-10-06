@@ -1,17 +1,17 @@
 \section{常见统计分布}
-\(\x\)分布、\(t\)分布和\(F\)分布在数理统计中与正态分布一起构成四个最基本、最重要的分布.
+\(\chi^2\)分布、\(t\)分布和\(F\)分布在数理统计中与正态分布一起构成四个最基本、最重要的分布.
 下面逐一介绍前三个分布.
 
-\subsection{\texorpdfstring{\(\x\)}{卡方}分布}
+\subsection{\texorpdfstring{\(\chi^2\)}{卡方}分布}
 \begin{definition}\label{definition:数理统计的基础知识.卡方分布的定义}
 \(\AutoTuple{X}{n}\)独立同服从标准正态分布\(N(0,1)\)，
 称随机变量\begin{equation}
-	\x = \sum_{i=1}^n{X_i^2}
+	\chi^2 = \sum_{i=1}^n{X_i^2}
 \end{equation}
 所服从的分布为
-“自由度为\(n\)的 \DefineConcept{\(\x\)分布}”
+“自由度为\(n\)的 \DefineConcept{\(\chi^2\)分布}”
 \footnote{念作“卡方分布”.}，
-记为\(\x \sim \x(n)\).
+记为\(\chi^2 \sim \chi^2(n)\).
 \end{definition}
 
 \begin{figure}[htb]
@@ -37,16 +37,16 @@
 		\end{axis}
 		\node[draw,fill=white,inner sep=0pt,below left=0.5em]
 		at(ChiSquareDistribution.north east){\small\begin{tabular}{cl}
-			\ref{pgfplots:卡方分布.Chi^2(.5)} & \(\x(0.5)\) \\
-			\ref{pgfplots:卡方分布.Chi^2(3)} & \(\x(3)\) \\
-			\ref{pgfplots:卡方分布.Chi^2(5)} & \(\x(5)\) \\
+			\ref{pgfplots:卡方分布.Chi^2(.5)} & \(\chi^2(0.5)\) \\
+			\ref{pgfplots:卡方分布.Chi^2(3)} & \(\chi^2(3)\) \\
+			\ref{pgfplots:卡方分布.Chi^2(5)} & \(\chi^2(5)\) \\
 		\end{tabular}};
 	\end{tikzpicture}
-	\caption{\(\x\)分布的密度函数}
+	\caption{\(\chi^2\)分布的密度函数}
 \end{figure}
 
 \begin{theorem}\label{theorem:数理统计的基础知识.卡方分布的密度函数}
-\(\x(n)\)分布等价于\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\)分布，
+\(\chi^2(n)\)分布等价于\(\Gamma\left(\frac{n}{2},\frac{1}{2}\right)\)分布，
 其密度函数为\begin{equation}
 	f(x,n) = \left\{ \begin{array}{cl}
 		\frac{1}{2^{n/2} \Gamma(n/2)} x^{\frac{n}{2}-1} e^{-\frac{x}{2}}, & x > 0, \\
@@ -84,50 +84,50 @@
 所以\(\AutoTuple{X^2}{n}\)也独立同分布于\(\Gamma\left(\frac12,\frac12\right)\).
 
 再由~\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{\(\Gamma\)分布的可加性}可知
-\(\x = X_1^2+X_2^2+\dotsb+X_n^2\)服从\(\Gamma\left(\frac{n}{2},\frac12\right)\).
+\(\chi^2 = X_1^2+X_2^2+\dotsb+X_n^2\)服从\(\Gamma\left(\frac{n}{2},\frac12\right)\).
 \end{proof}
 \end{theorem}
 
-因为\(\x(n)=\Gamma\left(\frac{n}{2},\frac12\right)\)，
+因为\(\chi^2(n)=\Gamma\left(\frac{n}{2},\frac12\right)\)，
 所以由\cref{theorem:随机变量的数字特征.伽马分布的期望,theorem:随机变量的数字特征.伽马分布的方差}
 可以得到卡方分布的数学期望和方差.
 \begin{corollary}\label{theorem:数理统计的基础知识.卡方分布的数字特征}
 %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P101 例2.4.8
-设\(\x \sim \x(n)\)，则
+设\(\chi^2 \sim \chi^2(n)\)，则
 \begin{gather}
-	E(\x) = n, \\
-	D(\x) = 2n.
+	E(\chi^2) = n, \\
+	D(\chi^2) = 2n.
 \end{gather}
 \end{corollary}
 
 \begin{theorem}[可加性]\label{theorem:数理统计的基础知识.卡方分布的可加性1}
-设\(\x_1 \sim \x(n_1)\)，\(\x_2 \sim \x(n_2)\)，
-且\(\x_1\)与\(\x_2\)相互独立，则\begin{equation}
-	\x_1 + \x_2 \sim \x(n_1+n_2).
+设\(\chi^2_1 \sim \chi^2(n_1)\)，\(\chi^2_2 \sim \chi^2(n_2)\)，
+且\(\chi^2_1\)与\(\chi^2_2\)相互独立，则\begin{equation}
+	\chi^2_1 + \chi^2_2 \sim \chi^2(n_1+n_2).
 \end{equation}
 \begin{proof}
 因为\begin{equation*}
-	\x(n_1) = \Gamma\left(\frac{n_1}{2},\frac12\right), \qquad
-	\x(n_2) = \Gamma\left(\frac{n_2}{2},\frac12\right),
+	\chi^2(n_1) = \Gamma\left(\frac{n_1}{2},\frac12\right), \qquad
+	\chi^2(n_2) = \Gamma\left(\frac{n_2}{2},\frac12\right),
 \end{equation*}
 所以，根据\hyperref[theorem:多维随机变量及其分布.伽马分布的可加性1]{伽马分布的可加性}可知\begin{equation*}
-	\x_1 + \x_2 \sim \Gamma\left(\frac{n_1+n_2}{2},\frac12\right)
-	= \x(n_1+n_2).
+	\chi^2_1 + \chi^2_2 \sim \Gamma\left(\frac{n_1+n_2}{2},\frac12\right)
+	= \chi^2(n_1+n_2).
 	\qedhere
 \end{equation*}
 \end{proof}
 \end{theorem}
 
 \begin{corollary}\label{theorem:数理统计的基础知识.卡方分布的可加性2}
-设随机变量序列\(\x_k \sim \x(n_k)\ (k=1,2,\dotsc,n)\)，
-且\(\x_1,\x_2,\dotsc,\x_n\)相互独立，则\begin{equation}
-	\sum_{k=1}^n \x_k \sim \x\left(\sum_{k=1}^n{n_k}\right).
+设随机变量序列\(\chi^2_k \sim \chi^2(n_k)\ (k=1,2,\dotsc,n)\)，
+且\(\chi^2_1,\chi^2_2,\dotsc,\chi^2_n\)相互独立，则\begin{equation}
+	\sum_{k=1}^n \chi^2_k \sim \chi^2\left(\sum_{k=1}^n{n_k}\right).
 \end{equation}
 \end{corollary}
 
 \subsection{\texorpdfstring{\(t\)}{t}分布}
 \begin{definition}
-设随机变量\(X \sim N(0,1)\)，\(Y \sim \x(n)\)，
+设随机变量\(X \sim N(0,1)\)，\(Y \sim \chi^2(n)\)，
 且\(X\)与\(Y\)相互独立，称随机变量\begin{equation}
 	t = \frac{X}{\sqrt{Y/n}}
 \end{equation}
@@ -162,7 +162,7 @@
 
 \subsection{\texorpdfstring{\(F\)}{F}分布}
 \begin{definition}
-设随机变量\(X \sim \x(n)\)，\(Y \sim \x(m)\)，且\(X\)与\(Y\)独立，
+设随机变量\(X \sim \chi^2(n)\)，\(Y \sim \chi^2(m)\)，且\(X\)与\(Y\)独立，
 称随机变量\begin{equation}
 	F=\frac{X/n}{Y/m}
 \end{equation}
@@ -201,11 +201,11 @@
 求\(Y\)的分布.
 \begin{solution}
 由题意有\(X = \frac{U}{\sqrt{V/n}}\)，
-其中\(U \sim N(0,1)\)，\(V \sim \x(n)\)，且\(U\)与\(V\)相互独立.
+其中\(U \sim N(0,1)\)，\(V \sim \chi^2(n)\)，且\(U\)与\(V\)相互独立.
 因此\begin{equation*}
 	Y = \frac{V/n}{U^2}.
 \end{equation*}
-由于\(U^2 \sim \x(1)\)，
+由于\(U^2 \sim \chi^2(1)\)，
 所以\(Y \sim F(n,1)\).
 \end{solution}
 \end{example}
