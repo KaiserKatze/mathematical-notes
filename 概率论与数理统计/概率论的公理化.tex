@@ -225,14 +225,52 @@
 \end{theorem}
 
 \begin{example}
+%@see: 《概率论基础及其应用（第三版）》（王梓坤） P48 注意1
+设\((\Omega,\mathcal{F},P)\)是一个概率空间，
+其中\(\mathcal{F} = \Powerset\Omega\)，
+那么\(\Omega\)的任意一个子集
+都是\((\Omega,\mathcal{F},P)\)中的一个随机事件，
+并且映射空间\(\mathbb{R}^\Omega\)中的任意一个映射
+都是\((\Omega,\mathcal{F},P)\)中的一个随机变量.
+\end{example}
+
+\begin{example}
+%@see: 《概率论基础及其应用（第三版）》（王梓坤） P48
+设\(A\)是概率空间\((\Omega,\mathcal{F},P)\)中的一个随机事件，
+\(\chi_A\)是定义在\(\Omega\)上的\(A\)的示性函数，
+则\(\chi_A\)是概率空间\((\Omega,\mathcal{F},P)\)中的一个随机变量，
+这是因为对于\(
+	F(x)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		\chi_A(\omega) \leq x
+	}
+\)而言，
+有\begin{equation*}
+	F(x) = \begin{cases}
+		\Omega, & x \geq 1, \\
+		\Omega-A, & 0 \leq x < 1, \\
+		\emptyset, & x < 0,
+	\end{cases}
+\end{equation*}
+也就是说，对于任意实数\(x\)，
+总有\(
+	(\chi_A \leq x)
+	\in \mathcal{F}
+\).
+\end{example}
+
+\begin{example}
 %@see: 《应用随机过程》（林元烈） P6 例1
 设\(\Omega\)是一个非空集合，
 \(A\)和\(B\)是\(\Omega\)的两个非空子集，
 \(\mathcal{F} \defeq \{\emptyset,A,\Omega-A,\Omega\}\).
 如果\(B \notin \mathcal{F}\)，
-那么定义在\(\Omega\)上的\(B\)的示性函数\(I_B\)
-满足\((I_B \leq 1/2) \notin F\)，
-也就是说\(I_B\)不满足随机变量的定义.
+那么定义在\(\Omega\)上的\(B\)的示性函数\(\chi_B\)
+满足\((\chi_B \leq 1/2) \notin F\)，
+也就是说\(\chi_B\)不满足随机变量的定义.
 \end{example}
 
 \begin{example}
@@ -240,7 +278,8 @@
 设\((\Omega,\mathcal{F})\)是一个可测空间，
 序列\(\{B_k\}_{k\geq0}\)是\(\Omega\)的一个划分，
 且\(B_k \in \mathcal{F}\ (k\geq0)\)，
+而\(\chi_{B_k}\)是定义在\(\Omega\)上的\(B_k\)的示性函数，
 则\(
-	X(\omega) \defeq \sum_{k=1}^\infty x_k I_{B_k}(\omega)
+	X(\omega) \defeq \sum_{k=1}^\infty x_k \chi_{B_k}(\omega)
 \)是一个随机变量.
 \end{example}
