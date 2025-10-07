@@ -1,0 +1,102 @@
+\section{含有隐变量的参数估计问题}
+%@see: https://www.columbia.edu/~mh2078/MachineLearningORFE/EM_Algorithm.pdf
+给定两枚非均质硬币\(A\)和\(B\)（即它们正面朝上的概率\(P_A\)和\(P_B\)都不等于\(1/2\)），
+且\(P_A \neq P_B\).
+把这两枚硬币放进一个不透光的袋子中，
+每次从袋中随机摸出一枚硬币抛掷，
+记录抛掷的结果，
+最终正面向上的次数为\(n_1\)，
+反面向上的次数为\(n_2\).
+我们不禁要问：
+可否仅凭上述信息估计两枚硬币各自正面向上的概率呢？
+容易看出，
+如果采用极大似然估计法，
+那么只靠上述信息是无法估计\(P_A,P_B\)的，
+这是因为上述模型不仅含有可以直接观测到的变量（即每次抛掷硬币是正面朝上还是反面朝上），
+还含有隐藏的、未知的变量（即每次抛掷的硬币到底是硬币\(A\)还是硬币\(B\)）.
+
+我们把可以直接观测到的随机变量\(X\)称为\DefineConcept{可观测变量}（observable variable），
+把不可直接观测到的随机变量\(Y\)称为\DefineConcept{隐变量}（latent variable, hidden variable）.
+将可观测变量与隐变量合在一起，把得到的随机变量\(Z \defeq (X,Y)\)称为\DefineConcept{完全变量}（complete variable）；
+相对地，把可观测变量\(X\)称为\DefineConcept{不完全变量}（incomplete variable）.
+
+针对上述含有隐变量的混合模型，我们不能直接使用极大似然估计法.
+这种情况下就需要用到迭代法（又称EM算法、极大期望估计法）.
+
+设随机变量\(X\)是可观测的连续型随机变量，
+随机变量\(Y\)是隐藏的连续型随机变量，
+总体\(Z \defeq (X,Y)\)只含一个未知参数\(\theta\)，
+那么\(X\)的密度函数为\begin{align*}
+	p_X(x \vert \theta)
+	&= \int p(x,y \vert \theta) \dd{y}
+		\tag{\hyperref[theorem:多维随机变量及其分布.边缘分布.依据联合密度函数计算边缘密度函数]{边缘密度的计算式}} \\
+	&= \int \frac{p(x,y \vert \theta)}{p_Y(y \vert X=x,\theta=\theta_k)} \cdot p_Y(y \vert X=x,\theta=\theta_k) \dd{y} \\
+	&= E\left( \frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right).
+		\tag{随机变量的函数的条件期望}
+\end{align*}
+考虑到\(\ln\)是严格凸函数，
+利用\hyperref[theorem:随机变量的数字特征.延森不等式]{延森不等式}可得\begin{equation*}
+	\ln E\left( \frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right)
+	\geq E\left( \ln\frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right).
+\end{equation*}
+由\hyperref[equation:函数.对数的基本运算法则2]{对数基本运算法则}可得\begin{equation*}
+	\ln\frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)}
+	= \ln p(x,Y \vert \theta)
+	- \ln p_Y(Y \vert X=x,\theta=\theta_k),
+\end{equation*}
+从而\begin{align*}
+	&E\left( \ln\frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right) \\
+	&= E\left( \ln p(x,Y \vert \theta) \middle\vert X=x,\theta=\theta_k \right)
+	- E\left( \ln p_Y(Y \vert X=x,\theta=\theta_k) \middle\vert X=x,\theta=\theta_k \right).
+	% &= Q(\theta,\theta_k)
+	% - E\left( \ln p_Y(Y \vert X=x,\theta=\theta_k) \middle\vert X=x,\theta=\theta_k \right).
+\end{align*}
+记\begin{align*}
+	Q(\theta,\theta_k)
+	&\defeq
+	E\left( \ln p(x,Y \vert \theta) \middle\vert X=x,\theta=\theta_k \right), \\
+	R(\theta,\theta_k)
+	&\defeq
+	E\left( \ln p_Y(Y \vert X=x,\theta=\theta_k) \middle\vert X=x,\theta=\theta_k \right), \\
+	G(\theta \vert \theta_k)
+	&\defeq
+	Q(\theta,\theta_k) - R(\theta,\theta_k),
+\end{align*}
+则有\begin{equation*}
+	L(\theta;X)
+	= \ln p(X \vert \theta)
+	\geq G(\theta \vert \theta_k).
+\end{equation*}
+
+% 为了对\(\theta\)作出估计，可以采用以下数值算法.
+% \begin{algorithm}[极大期望估计法]
+% \hfil
+% \begin{enumerate}
+% 	\item 通过试验，取得随机变量\(X\)的观测值；
+% 	\item 对未知参数\(\theta\)作出合理的初始估计值\(\theta_0\)；
+% 	\item 根据随机变量\(X\)的观测值和未知参数的估计值\(\theta_k\)，
+% 	计算对数似然函数\(\mathcal{L}(\theta;X,Y)\)的条件数学期望\begin{equation*}
+% 		Q(\theta;\theta_k)
+% 		\defeq E(\mathcal{L}(\theta;X,Y) \vert X,\theta_k)  % 条件期望
+% 		= \int \mathcal{L}(\theta;X,y) f(y \vert X,\theta_k) \dd{y},
+% 	\end{equation*}
+% 	其中\(f(y \vert X, \theta_k)\)表示随机变量\(Y\)的条件概率密度函数；
+% 	\item 计算极大值点\begin{equation*}
+% 		\theta_{k+1}
+% 		\defeq \argmax_\theta Q(\theta;\theta_k),
+% 	\end{equation*}
+% 	并把它作为\(\theta\)的新的估计值；
+% 	\item 重复第3步和第4步，直到\(\theta\)的估计值收敛（即\(\theta_{k+1}\)与\(\theta_k\)之间的差值足够小）.
+% \end{enumerate}
+% \end{algorithm}
+
+% 在第\(n\)轮迭代时，我们能够利用第\(n\)轮的参数估计值\(\theta_n\)
+% 去估计第\(n+1\)轮的参数\(\theta_{n+1}\)：\begin{equation}\label{equation:含有隐变量的参数估计问题.极大期望估计法的迭代公式}
+% 	\theta_{n+1}
+% 	= \argmax_\theta \int_Z \log P(X,Z \vert \theta) P(Z \vert X, \theta_n) \dd{Z}
+% \end{equation}
+% 那么，只要假定一个初始值\(\theta_0\)，
+% 那么就能通过迭代公式 \labelcref{equation:含有隐变量的参数估计问题.极大期望估计法的迭代公式}，
+% 一轮一轮迭代下去.
+% 每轮迭代都可以让似然函数\(P(X \vert \theta)\)的值不断增大直至最终收敛.
+% 一般来说，只要保证每次迭代\(P(X \vert \theta)\)的值都在增大，这个算法就是可行的.
