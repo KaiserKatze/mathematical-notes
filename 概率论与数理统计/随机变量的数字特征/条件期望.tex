@@ -1,0 +1,123 @@
+\section{条件期望}
+%@see: 《概率论（上册）》（李增沪、张梅、何辉） P120
+考虑概率空间\((\Omega,\mathcal{F},P)\)，
+设事件\(B \in \mathcal{F}\)满足\(P(B) > 0\)，
+我们知道，映射\begin{equation*}
+%@see: 《概率论（上册）》（李增沪、张梅、何辉） P120 (4.4.1)
+	P_B\colon \mathcal{F} \to \mathbb{R},
+	A \mapsto P(A \vert B) \defeq \frac{P(AB)}{P(B)}.
+\end{equation*}
+也是可测空间\((\Omega,\mathcal{F})\)上的一个概率测度，
+即\((\Omega,\mathcal{F},P_B)\)也是一个概率空间，
+并且概率空间\((\Omega,\mathcal{F},P)\)上的任意一个随机变量\(X\)
+也可以视为概率空间\((\Omega,\mathcal{F},P_B)\)上的一个随机变量.
+
+\begin{definition}
+%@see: 《概率论（上册）》（李增沪、张梅、何辉） P120 定义4.4.1
+随机变量\(X\)在概率空间\((\Omega,\mathcal{F},P_B)\)上的数学期望，
+称为“随机变量\(X\)的（给定事件\(B\)的）\DefineConcept{条件期望}”，
+记作\(E(X \vert B)\).
+\end{definition}
+
+用\(F_X(x \vert B)\)表示\(X\)作为\((\Omega,\mathcal{F},P_B)\)上的随机变量的分布函数，
+给定\(\mathbb{R}\)上的波莱尔可测函数，
+% 根据定理4.2.7有
+\begin{equation}
+%@see: 《概率论（上册）》（李增沪、张梅、何辉） P120 (4.4.2)
+	E(g(X) \vert B)
+	= \int_{-\infty}^{+\infty} g(x) \dd{F_X(x \vert B)}.
+\end{equation}
+特别地，如果\(X\)是取值于可数集\(\{x_1,x_2,\dotsc\} \subseteq \mathbb{R}\)的离散型随机变量，
+% 应用命题4.2.6 得
+\begin{equation}
+%@see: 《概率论（上册）》（李增沪、张梅、何辉） P120 (4.4.3)
+	E(g(X) \vert B)
+	= \sum_{i=1}^\infty g(x_i) P(X=x_i \vert B).
+\end{equation}
+
+% \begin{definition}
+% %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P165 定义3.4.1
+% 条件概率分布的数学期望称为\DefineConcept{条件期望}.
+% \end{definition}
+% \begin{equation}
+% %@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P165 (3.4.10)
+% 	E(X \vert y)
+% 	= \left\{ \begin{array}{cl}
+% 		\sum_i x_i P(X=x_i \vert Y = y),
+% 		& \text{$(X,Y)$是二维离散型随机变量}, \\
+% 		\int_{-\infty}^{+\infty} x p_{X \vert Y}(x \vert y) \dd{x},
+% 		& \text{$(X,Y)$是二维连续型随机变量},
+% 	\end{array} \right.
+% \end{equation}
+% 其中\(P(X=x_i \vert Y=y)\)是\(Y=y\)条件下\(X\)的条件概率分布，
+% \(p(x \vert y)\)是\(Y=y\)条件下\(X\)的条件密度函数.
+
+与条件期望相对，把数学期望称为\DefineConcept{无条件期望}.
+
+条件期望是条件概率分布的数学期望，故它具有数学期望的一切性质.
+\begin{itemize}
+	\item 如果\(c\)是常数，则\begin{equation*}
+		E(c \vert y) = c;
+	\end{equation*}
+
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P167 (3.4.12)
+	\item \(E(a_1 X_1 + a_2 X_2 \vert y)
+	= a_1 E(X_1 \vert y) + a_2 E(X_2 \vert y)\).
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P167 (3.4.13)
+	对任一函数\(g(X)\)，有\begin{equation*}
+		E(g(X) \vert y)
+		= \left\{ \begin{array}{cl}
+			\sum_i g(x_i) P(X=x_i \vert Y = y),
+			& \text{在离散场合}, \\
+			\int_{-\infty}^{+\infty} g(x) p(x \vert y) \dd{x},
+			& \text{在连续场合}.
+		\end{array} \right.
+	\end{equation*}
+\end{itemize}
+
+\begin{theorem}\label{theorem:条件期望.条件期望与期望的关系}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P167 定理3.4.1
+条件期望的期望就是无条件期望，
+即\begin{equation}
+	%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P167 (3.4.14)
+	E(E(X \vert Y)) = E(X).
+\end{equation}
+%TODO proof
+\end{theorem}
+
+\begin{example}
+%@see: 《概率论与数理统计》（茆诗松、周纪芗、张日权） P168 例3.4.9
+一矿工被困在有三个门的矿井里.
+第一扇门通向一个坑道，沿此坑道走3小时可使他到达安全地点；
+第二扇门可使他走5小时后又回到原处；
+第三扇门可使他走7小时后也回到原地.
+假设该矿工在任何时刻都等可能地选定其中一扇门，
+试问他到达安全地点平均要用多长时间？
+\begin{solution}
+设\(X\)为该矿工到达安全地点所需时间（单位：小时），
+\(Y\)为他所选的门，则\begin{equation*}
+	E(X)
+	= E(X \vert Y=1) P(Y=1)
+	+ E(X \vert Y=2) P(Y=2)
+	+ E(X \vert Y=3) P(Y=3),
+\end{equation*}
+其中\(P(Y=1) = P(Y=2) = P(Y=3) = 1/3\)，
+\(P(X \vert Y=1) = 3\)，
+而\(E(X \vert Y=2)\)为矿工从第二扇门出去，要到达安全地点所需平均时间.
+而他沿此坑道走5小时又转回原地，而一旦返回原地，问题就与当初他还没有进第二扇门之前一样，
+因此他要到达安全地点平均还需用\(E(X)\)小时，
+故\begin{equation*}
+	E(X \vert Y=2)
+	= 5 + E(X).
+\end{equation*}
+同理可知\begin{equation*}
+	E(X \vert Y=3)
+	= 7 + E(X).
+\end{equation*}
+代回原式，可得\begin{equation*}
+	E(X) = \frac13[ 3 + (5 + E(X)) + (7 + E(X)) ],
+\end{equation*}
+解得\(E(X) = 15\)小时，
+即该矿工到达安全地点平均需要15小时.
+\end{solution}
+\end{example}
