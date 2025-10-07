@@ -101,7 +101,7 @@
 
 	\item {\rm\bf 可列可加性}，即\begin{equation*}
 		(\forall A_1,A_2,\dotsc \in \mathcal{F})
-		[
+		\left[
 			(\forall A_i)(\forall A_j)
 			[
 				A_i A_j = \emptyset
@@ -109,7 +109,7 @@
 			\implies
 			P\left( \bigcup_{i=1}^\infty A_i \right)
 			= \sum_{i=1}^\infty P(A_i)
-		],
+		\right],
 	\end{equation*}
 \end{itemize}
 则称“映射\(P\)是可测空间\((\Omega,\mathcal{F})\)上的一个\DefineConcept{概率测度}（probability measure）”，
@@ -117,7 +117,8 @@
 同时把\((\Omega,\mathcal{F},P)\)称为一个\DefineConcept{概率空间}（probability space），
 把\(\mathcal{F}\)称为一个\DefineConcept{事件域}.
 如果\(A \in \mathcal{F}\)，
-则称\(A\)是一个\DefineConcept{随机事件}（random event），简称\DefineConcept{事件}（event），
+则称“\(A\)是（概率空间\((\Omega,\mathcal{F},P)\)中的）一个\DefineConcept{随机事件}（random event）”，
+简称\DefineConcept{事件}（event），
 同时把\(P(A)\)称为“事件\(A\)的\DefineConcept{概率}（probability）”.
 %@see: https://mathworld.wolfram.com/ProbabilityMeasure.html
 %@see: https://mathworld.wolfram.com/ProbabilitySpace.html
@@ -133,12 +134,92 @@
 	(\forall a \in \mathbb{R})
 	[
 		\Set{
-			\omega
+			\omega \in \Omega
 			\given
 			X(\omega) \leq a
 		}
 		\in \mathcal{F}
 	],
 \end{equation*}
-则称“映射\(X\)是一个\DefineConcept{随机变量}（random variable）”.
+则称“映射\(X\)是（概率空间\((\Omega,\mathcal{F},P)\)中的）一个\DefineConcept{随机变量}（random variable）”.
 \end{definition}
+\begin{remark}
+%@see: 《应用随机过程》（林元烈） P6
+随机变量的定义要求
+所有满足\(X(\omega) \leq a\)的样本点\(\omega\)的集合\(
+	\Set{
+		\omega \in \Omega
+		\given
+		X(\omega) \leq a
+	}
+\)必须是概率空间\((\Omega,\mathcal{F},P)\)中的某个事件，
+如此方可定义它的概率.
+\end{remark}
+\begin{remark}
+%@see: 《应用随机过程》（林元烈） P6
+为了书写方便，我们常把集合\(
+	\Set{
+		\omega \in \Omega
+		\given
+		X(\omega) \leq a
+	}
+\)简写为\((X \leq a)\).
+\end{remark}
+
+\begin{theorem}
+%@see: 《应用随机过程》（林元烈） P6
+设\(X\)是概率空间\((\Omega,\mathcal{F},P)\)中的一个随机变量.
+任意取定\(a,b \in \overline{\mathbb{R}}\)，
+则集合\begin{gather*}
+	(X > a)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		X(\omega) > a
+	}, \\
+	(X < a)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		X(\omega) < a
+	}, \\
+	(X = a)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		X(\omega) = a
+	}, \\
+	(a < X \leq b)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		a < X(\omega) \leq b
+	}, \\
+	(a \leq X < b)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		a \leq X(\omega) < b
+	}, \\
+	(a < X < b)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		a < X(\omega) < b
+	}, \\
+	(a \leq X \leq b)
+	\defeq
+	\Set{
+		\omega \in \Omega
+		\given
+		a \leq X(\omega) \leq b
+	}
+\end{gather*}
+都是概率空间\((\Omega,\mathcal{F},P)\)中的随机事件.
+\end{theorem}
