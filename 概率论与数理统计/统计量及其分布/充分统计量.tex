@@ -136,9 +136,11 @@
 之后再用定义证明它.
 显然这种方法不便于使用.
 于是有如下的定理.
-\begin{theorem}
+\begin{theorem}\label{theorem:充分统计量.因子分解定理}
 %@see: 《数理统计教程》（王兆军，邹长亮） P33 定理1.4.1（因子分解定理）
-对于含有未知参数\(\theta\)的分布族\(\mathcal{F} \defeq \Set{ F_\theta \given \theta \in \Theta }\)，
+给定含有未知参数\(\theta\)的分布族\(\mathcal{F} \defeq \Set{ F_\theta \given \theta \in \Theta }\)
+（如果\(\mathcal{F}\)是离散型，那么\(F_\theta\)表示累积分布函数；
+如果\(\mathcal{F}\)是连续型，那么\(F_\theta\)表示概率密度函数），
 设\(\AutoTuple{X}{n}\)独立同分布于\(F_\theta\)，\(T\)是一个统计量，
 则\(T\)是\(\theta\)的充分统计量的充分必要条件是：
 样本分布\(F_\theta(x_1,\dotsc,x_n)\)满足分解式\begin{equation*}
@@ -151,3 +153,37 @@
 而\(h(x_1,\dotsc,x_n)\)不依赖于参数\(\theta\).
 %TODO proof
 \end{theorem}
+
+我们把\cref{theorem:充分统计量.因子分解定理}
+称为\DefineConcept{因子分解定理}.
+%@see: 《数理统计教程》（王兆军，邹长亮） P34
+% 该定理是费舍尔于20世纪20年代提出的，
+% 它的严格证明及一般形式是Halmos与Savage于1949年给出的.
+
+\begin{theorem}
+%@see: 《数理统计教程》（王兆军，邹长亮） P36 定理1.4.2（次序统计量的充分性）
+给定分布族\(\mathcal{F}\)，
+取\(F \in \mathcal{F}\)，
+设\(\AutoTuple{X}{n}\)独立同分布于\(F_\theta\)，
+则次序统计量\(X_{(1)},\dotsc,X_{(n)}\)是充分的.
+%TODO proof David 1981
+\end{theorem}
+
+\begin{definition}
+%@see: 《数理统计教程》（王兆军，邹长亮） P36 定义1.4.2（极小充分统计量）
+设\(S\)是分布族\(\mathcal{F}\)的一个充分统计量.
+如果对于\(\mathcal{F}\)的任意一个充分统计量\(T\)，
+存在单值函数\(F\)，
+使得\(S = f(T)\)，
+则称“\(S\)是分布族\(\mathcal{F}\)的\DefineConcept{极小充分统计量}”.
+\end{definition}
+\begin{remark}
+极小充分统计量和充分统计量一样，都不是唯一的.
+\end{remark}
+
+\begin{proposition}
+设\(S\)是分布族\(\mathcal{F}\)的一个充分统计量，
+\(f\)是一个双射，
+则\(f(S)\)也是分布族\(\mathcal{F}\)的一个充分统计量.
+%TODO proof
+\end{proposition}
