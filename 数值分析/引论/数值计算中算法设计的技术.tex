@@ -5,12 +5,12 @@
 
 \subsection{多项式求值的秦九韶算法}
 让我们考虑下面这个问题：
-给定\(n\)次多项式\begin{equation*}
+给定\(n\)次多项式\begin{equation}\label{equation:数值计算算法设计.秦九韶算法待计算的多项式}
 	p(x)
 	\defeq
 	a_0 x^n + a_1 x^{n-1} + \dotsb + a_{n-1} x + a_n
 	\quad(a_0\neq0),
-\end{equation*}
+\end{equation}
 求\(p(x^*)\).
 
 若直接计算每一项\(a_i x^{n-i}\)再相加，
@@ -21,12 +21,14 @@
 \end{equation*}
 次乘法和\(n\)次加法.
 
-但是，如果利用递推公式\begin{align*}
+但是，如果利用递推公式\begin{equation}\label{equation:数值计算算法设计.秦九韶算法递推公式1}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P13 (4.1)
-	b_0 &= a_0, \\
-	b_i &= b_{i-1} x^* + a_i
-	\quad(i=1,2,\dotsc,n),
-\end{align*}
+	\begin{cases}
+		b_0 = a_0, \\
+		b_i = b_{i-1} x^* + a_i
+		\quad(i=1,2,\dotsc,n),
+	\end{cases}
+\end{equation}
 计算出\(b_n\)，那么就会发现\(p(x^*)\)恰与\(b_n\)相等.
 这个算法便是秦九韶算法.
 用它计算\(n\)次多项式\(p(x^*)\)只需要\(n\)次乘法和\(n\)次加法，
@@ -37,13 +39,38 @@
 % 国外称此算法为 Horner 算法（1819年提出）.
 
 秦九韶算法还可以用于计算\(p'(x^*)\).
-由\begin{equation*}
+由递推公式 \labelcref{equation:数值计算算法设计.秦九韶算法递推公式1} 可知\begin{equation*}
+	\begin{cases}
+		a_0 = b_0, \\
+		a_i = b_i - b_{i-1} x^*
+		\quad(i=1,2,\dotsc,n),
+	\end{cases}
+\end{equation*}
+代入\cref{equation:数值计算算法设计.秦九韶算法待计算的多项式} 得\begin{align*}
 	p(x)
-	\defeq
-	a_0 x^n + a_1 x^{n-1} + \dotsb + a_{n-1} x + a_n
-	\quad(a_0\neq0)
+	&= b_0 x^n + (b_1 - b_0 x^*) x^{n-1} + \dotsb + (b_{n-1} - b_{n-2} x^*) x + (b_n - b_{n-1} x^*) \\
+	&= (b_0 x^{n-1} + b_1 x^{n-2} + \dotsb + b_{n-1}) x
+		- (b_0 x^{n-1} + \dotsb + b_{n-2} x + b_{n-1}) x^*
+		+ b_n \\
+	&= (b_0 x^{n-1} + b_1 x^{n-2} + \dotsb + b_{n-2} x + b_{n-1}) (x - x^*) + b_n,
+\end{align*}
+记\(q(x) \defeq b_0 x^{n-1} + b_1 x^{n-2} + \dotsb + b_{n-2} x + b_{n-1}\)，
+则\begin{equation*}
+	p(x) = (x - x^*) q(x) + p(x^*),
 \end{equation*}
 求导得\begin{equation*}
-	p'(x)
-	= n a_0 x^{n-1} + (n-1) a_1 x^{n-2} + \dotsb + a_{n-1}.
+	p'(x) = q(x) + (x - x^*) q'(x),
 \end{equation*}
+从而\begin{equation*}
+	p'(x^*) = q(x^*),
+\end{equation*}
+正如我们刚刚对\(p(x)\)运用秦九韶算法得到
+递推公式 \labelcref{equation:数值计算算法设计.秦九韶算法递推公式1} 一样，
+现在对\(q(x)\)运用秦九韶算法可得递推公式\begin{equation*}
+	\begin{cases}
+		c_0 = b_0, \\
+		c_i = c_{i-1} x^* + b_i
+		\quad(i=1,2,\dotsc,n-1),
+	\end{cases}
+\end{equation*}
+于是\(p'(x^*) = q(x^*) = c_{n-1}\).
