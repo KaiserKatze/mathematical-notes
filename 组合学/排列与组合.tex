@@ -387,7 +387,103 @@
 \end{equation*}
 \end{remark}
 
-\subsection{组合数的性质}
+\begin{example}[错排问题]
+将\(n\)个不同的小球，放入\(n\)个不同的袋子中，
+要求袋子序号与其中小球的序号不同，求可能的放法种数.
+\begin{solution}
+假设所求放法种数有\(D(n)\)种.
+当\(n=1\)时，显然不可能将小球放入序号不同的袋子，于是\(D(1) = 0\).
+当\(n=2\)时，要使袋子序号与其中小球的序号不同，只能将1号球放入2号袋，再将2号球放入1号袋，于是\(D(2) = 1\).
+当\(n=3\)时，如果不考虑上述限制，那么小球的排列为\begin{equation*}
+	123,
+	132,
+	213,
+	231,
+	312,
+	321,
+\end{equation*}
+将其中小球序号与袋子序号相同的排列去掉，
+就得到\(231,312\)，
+于是\(D(3) = 2\).
+让我们观察上述计算结果，便可归纳如下规律：
+\begin{enumerate}
+	\item 要使1号球不放入1号袋，一共有\(n-1\)种放法；
+	\item 假设1号球在\(x\ (x\neq1)\)号袋中，那么\(x\)号球有两类放法
+		--- 要么\(x\)号球在1号袋中，要么\(x\)号球不在1号袋中.
+
+		\begin{itemize}
+			\item 如果\(x\)号球在1号袋中，
+			于是剩余\(n-2\)个小球的放法种数是\(D(n-2)\).
+
+			\item 如果\(x\)号球不在1号袋中，
+			那么我们只能从除了1号袋、\(x\)号袋以外的其余\(n-2\)个袋子中选出1个袋子，将\(x\)号球放入其中.
+			此时\(x\)号球就好似1号球的“替身”，虽然1号袋空着，但是\(x\)号球不可放入1号袋.
+			换句话说，这种情况相当于从体系内排除了1号球、\(x\)号袋，只考虑剩余\(n-1\)个小球和袋子的放法种数，
+			于是它们的放法种数是\(D(n-1)\).
+		\end{itemize}
+
+		因此，根据加法原理，
+		在放好1号球以后，剩余小球的放法种数为\(D(n-2) + D(n-1)\).
+\end{enumerate}
+根据乘法原理，结合上述讨论可以建立递归方程\begin{equation*}
+	\begin{cases}
+		D(0) = 0, \\
+		D(1) = 1, \\
+		D(n) = (n-1) (D(n-1) + D(n-2)),
+	\end{cases}
+\end{equation*}
+于是\begin{equation*}
+%@Mathematica: RSolve[{a[n] == (n - 1) (a[n - 1] + a[n - 2]), a[1] == 0, a[2] == 1}, a[n], n]
+	D(n) = n! \sum_{k=0}^n \frac{(-1)^k}{k!}.
+% 	D(n) = \frac1e \Gamma(1+n,-1).
+\end{equation*}
+\begin{table}[hbt]
+%@Mathematica: Table[{n, Subfactorial[n]}, {n, 1, 10}] // TeXForm
+%@Mathematica: Table[{n, Subfactorial[n]}, {n, 11, 20}] // TeXForm
+%@Mathematica: Table[Subfactorial[n], {n, 1, 20}]
+	\centering
+	\begin{tblr}{rr}
+		\hline
+		小球个数 & 放法种数 \\
+		\hline
+		1 & \num{0} \\
+		2 & \num{1} \\
+		3 & \num{2} \\
+		4 & \num{9} \\
+		5 & \num{44} \\
+		6 & \num{265} \\
+		7 & \num{1854} \\
+		8 & \num{14833} \\
+		9 & \num{133496} \\
+		10 & \num{1334961} \\
+		\hline
+	\end{tblr}
+	\begin{tblr}{rr}
+		\hline
+		小球个数 & 放法种数 \\
+		\hline
+		11 & \num{14684570} \\
+		12 & \num{176214841} \\
+		13 & \num{2290792932} \\
+		14 & \num{32071101049} \\
+		15 & \num{481066515734} \\
+		16 & \num{7697064251745} \\
+		17 & \num{130850092279664} \\
+		18 & \num{2355301661033953} \\
+		19 & \num{44750731559645106} \\
+		20 & \num{895014631192902121} \\
+		\hline
+	\end{tblr}
+	\caption{错排问题}
+\end{table}
+\end{solution}
+%@see: https://blog.csdn.net/shulianghan/article/details/109438773
+%@see: https://oeis.org/A000166
+%@see: https://mathworld.wolfram.com/Subfactorial.html
+%@see: https://mathworld.wolfram.com/Derangement.html
+\end{example}
+
+\section{组合数的性质}
 \begin{property}\label{theorem:组合数性质1}
 \(C_n^k = C_n^{n-k}\).
 \begin{proof}
