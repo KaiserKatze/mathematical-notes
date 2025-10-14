@@ -60,12 +60,23 @@
 	E\left( \ln p_Y(Y \vert X=x,\theta=\theta_k) \middle\vert X=x,\theta=\theta_k \right), \\
 	G(\theta \vert \theta_k)
 	&\defeq
-	Q(\theta,\theta_k) - R(\theta,\theta_k),
+	Q(\theta,\theta_k) - R(\theta,\theta_k), \\
+	l(\theta;X)
+	&\defeq
+	\ln p(X \vert \theta),
 \end{align*}
 则有\begin{equation*}
-	L(\theta;X)
-	= \ln p(X \vert \theta)
+	l(\theta;X)
 	\geq G(\theta \vert \theta_k).
+\end{equation*}
+当且仅当\(\theta = \theta_k\)时，上式取“=”号.
+于是，只要\(G(\theta \vert \theta_k)\)大于\(G(\theta_k \vert \theta_k)\)，
+那么\(l(\theta;X)\)就大于\(l(\theta_k;X)\)，
+从而\begin{equation*}
+	\theta_{k+1}
+	\defeq
+	\argmax_\theta Q(\theta,\theta_k)
+	= \argmax_\theta G(\theta \vert \theta_k).
 \end{equation*}
 
 % 为了对\(\theta\)作出估计，可以采用以下数值算法.
