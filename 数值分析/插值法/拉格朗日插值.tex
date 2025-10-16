@@ -1,0 +1,222 @@
+\section{拉格朗日插值}
+\subsection{多项式插值的存在性}
+设\begin{equation*}
+	a \leq x_0 < x_1 < \dotsb < x_n \leq b,
+	\alpha \leq y_0 < y_1 < \dotsb < y_n \leq \beta,
+\end{equation*}
+现在要求次数不超过\(n\)的多项式\begin{equation*}
+	P(x) = a_0 + a_1 x + a_2 x^2 + \dotsb + a_n x^n,
+\end{equation*}
+使得\begin{equation}\label{equation:插值法.用于插值的多项式需要满足的方程组}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P23 (1.3)
+	P(x_i) = y_i
+	\quad(i=0,1,2,\dotsc,n)
+\end{equation}成立，
+那么可以建立关于\(a_0,\dotsc,a_n\)的\(n+1\)元线性方程组\begin{equation}\label{equation:插值法.用于插值的多项式的系数需要满足的线性方程组}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P23 (1.4)
+	\begin{cases}
+		a_0 + a_1 x_0 + a_2 x_0^2 + \dotsb + a_n x_0^n = y_0, \\
+		a_0 + a_1 x_1 + a_2 x_1^2 + \dotsb + a_n x_1^n = y_0, \\
+		\hdotsfor{1}, \\
+		a_0 + a_1 x_n + a_2 x_n^2 + \dotsb + a_n x_n^n = y_0, \\
+	\end{cases}
+\end{equation}
+此方程组的系数矩阵就是范德蒙德矩阵\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P23 (1.5)
+	A = \begin{bmatrix}
+		1 & x_0 & \dots & x_0^n \\
+		1 & x_1 & \dots & x_1^n \\
+		\vdots & \vdots & & \vdots \\
+		1 & x_n & \dots & x_n^n \\
+	\end{bmatrix}.
+\end{equation*}
+由于\(x_i\)互不相等，所以范德蒙德行列式\begin{equation*}
+	\det A
+	= \prod_{0 \leq j < i \leq n+1} (x_i - x_j)
+	\neq 0,
+\end{equation*}
+于是方程 \labelcref{equation:插值法.用于插值的多项式的系数需要满足的线性方程组} 的解存在且唯一，
+也就是说，满足条件 \labelcref{equation:插值法.用于插值的多项式需要满足的方程组} 的多项式存在且唯一.
+
+虽然只要求解方程 \labelcref{equation:插值法.用于插值的多项式的系数需要满足的线性方程组} 就能得到插值多项式函数\(P\)，
+但是这种解法十分繁琐，通常是不与采用的，下面我们介绍构造插值多项式的简便方法.
+
+\subsection{拉格朗日插值多项式}
+如前所述，给定\(n+1\)个节点\(x_0 < x_1 < \dotsb < x_n\)，
+要求\(n\)次插值多项式\(L_n\)，
+假定它满足\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P25 (2.6)
+	L_n(x_j) = y_j
+	\quad(j=0,1,2,\dotsc,n).
+\end{equation*}
+
+为了构造\(L_n\)，我们首先需要定义\(n\)次插值基函数.
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P25 定义1
+设\(n+1\)个\(n\)次多项式\(l_j\ (j=0,1,2,\dotsc,n)\)
+在\(n+1\)个节点\(x_0 < x_1 < \dotsb < x_n\)上满足\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P25 (2.7)
+	l_j(x_k) = \begin{cases}
+		1, & k=j, \\
+		0, & k \neq j,
+	\end{cases}
+	\quad(j,k=0,1,2,\dotsc,n),
+\end{equation*}
+则称多项式\(l_j\ (j=0,1,2,\dotsc,n)\)是
+节点\(x_0,x_1,\dotsc,x_n\)上的
+\DefineConcept{\(n\)次插值基函数}.
+\end{definition}
+\begin{remark}
+拉格朗日插值法用到的基函数是一组正交基.
+\end{remark}
+
+显然\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.8)
+	l_k(x)
+	= \prod_{0 \leq i \leq n, i \neq k} \frac{(x - x_i)}{(x_k - x_i)}
+	\quad(k=0,1,2,\dotsc,n).
+\end{equation}
+于是所求插值多项式为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.9)
+	L_n(x)
+	= \sum_{k=0}^n y_k l_k(x).
+\end{equation}
+我们把\(L_n\)称为\DefineConcept{拉格朗日插值多项式}.
+
+若记\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.10)
+	\omega_{n+1}(x)
+	\defeq
+	\prod_{i=0}^n (x - x_i),
+\end{equation}
+则有\begin{equation*}
+	\omega_{n+1}'(x_k)
+	= \prod_{0 \leq i \leq n, i \neq k} (x_k - x_i),
+\end{equation*}
+于是\(L_n\)又可写为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.11)
+	L_n(x) = \sum_{k=0}^n y_k \frac{\omega_{n+1}(x)}{(x - x_k) \omega_{n+1}'(x_k)}.
+\end{equation}
+
+\begin{example}
+给定数据\begin{center}
+	\begin{tblr}{c|*4c}
+		\hline
+		\(i\) & 0 & 1 & 2 & 3 \\
+		\hline
+		\(x_i\) & 0 & 1 & 2 & 3 \\
+		\(y_i\) & 0 & 1 & 5 & 14 \\
+		\hline
+	\end{tblr}
+\end{center}
+求三次拉格朗日插值多项式\(L_3\).
+\begin{solution}
+基函数为\begin{align*}
+	l_1(x)
+	&= \frac{(x-0)(x-2)(x-3)}{(1-0)(1-2)(1-3)}
+	= \frac{x(x-2)(x-3)}{2}, \\
+	l_2(x)
+	&= \frac{(x-0)(x-1)(x-3)}{(2-0)(2-1)(2-3)}
+	= \frac{x(x-1)(x-3)}{-2}, \\
+	l_3(x)
+	&= \frac{(x-0)(x-1)(x-2)}{(3-0)(3-1)(3-2)}
+	= \frac{x(x-1)(x-2)}{6}.
+\end{align*}
+于是所求插值多项式为\begin{align*}
+	L_3(x)
+	&= \sum_{k=0}^3 y_k l_k(x)
+	= 0 \cdot l_0(x)
+	+ 1 \cdot l_1(x)
+	+ 5 \cdot l_2(x)
+	+ 14 \cdot l_3(x) \\
+	&= \frac{x(x-2)(x-3)}{2}
+	+ 5 \frac{x(x-1)(x-3)}{-2}
+	+ 14 \frac{x(x-1)(x-2)}{6} \\
+	&= \frac13 x^3 + \frac12 x^2 + \frac16 x
+	= \frac16 x(x+1)(2x+1).
+\end{align*}
+\end{solution}
+%@Mathematica: Expand[InterpolatingPolynomial[{{0,0},{1,1},{2,5},{3,14}},x]]
+%@Mathematica: Expand[x(x-2)(x-3)/2+5x(x-1)(x-3)/(-2)+14x(x-1)(x-2)/6]
+\end{example}
+
+\subsection{插值余项与误差估计}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26
+在闭区间\([a,b]\)上用\(L_n\)近似\(f\)，
+则其截断误差为\begin{equation*}
+	R_n(x) \defeq f(x) - L_n(x).
+\end{equation*}
+我们把\(R_n\)称为“插值多项式\(L_n\)的\DefineConcept{余项}”.
+
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 定理2
+给定结点\(a \leq x_0 < x_1 < \dotsb + x_n \leq b\)，
+设函数\(f \in C^n[a,b] \cap D^{n+1}(a,b)\)，
+\(L_n\)是用来近似\(f\)的插值多项式，
+那么由\hyperref[equation:微分中值定理.泰勒公式.余项1]{带有拉格朗日余项的泰勒公式}可知，
+对于任意\(x \in [a,b]\)，
+插值余项满足\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.12)
+	R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} \omega_{n+1}(x),
+\end{equation*}
+其中\(\xi \in (a,b)\)且依赖于\(x\)的取值.
+记\(M \defeq \max_{a \leq x \leq b} \abs{f^{(n+1)}(x)}\)，
+那么用插值多项式\(L_n\)近似\(f\)的误差限为\begin{equation*}
+	% \sup_{a \leq x \leq b} \abs{R_n(x)}
+	\frac{M}{(n+1)!} \abs{\omega_{n+1}(x)}.
+\end{equation*}
+
+\begin{example}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P28 例2
+已知\begin{equation*}
+	\sin0.32 \approx \num{0.314567},
+	\qquad
+	\sin0.34 \approx \num{0.333487},
+	\qquad
+	\sin0.36 \approx \num{0.352274}.
+\end{equation*}
+用线性插值法和抛物插值法分别计算\(\sin\num{0.3367}\)的近似值，并估计截断误差.
+\begin{solution}
+首先采用线性插值法，
+拉格朗日插值多项式为\begin{equation*}
+	L_1(x) = \num{0.314567} \frac{x-0.34}{0.32-0.34}
+	+ \num{0.333487} \frac{x-0.32}{0.34-0.32},
+\end{equation*}
+于是\begin{equation*}
+	L_1(\num{0.3367})
+	\approx \num{0.330365}.
+\end{equation*}
+其截断误差\begin{equation*}
+	\abs{R_1(x)}
+	\leq \frac{M_2}{2} \abs{(x-0.32)(x-0.34)},
+\end{equation*}
+其中\(M_2 = \max_{0.32 \leq x \leq 0.34} \abs{f''(x)}\).
+因为对\(f(x) = \sin x\)求导可得\(f''(x) = -\sin x\)，
+所以\begin{equation*}
+	M_2
+	= \max_{0.32 \leq x \leq 0.34} \abs{\sin x}
+	= \sin0.34
+	\leq \num{0.3335},
+\end{equation*}
+于是截断误差为\begin{equation*}
+	\abs{R_1(\num{0.3367})}
+	\leq \frac{\num{0.3335}}{2} \abs{(\num{0.3367}-0.32)(\num{0.3367}-0.34)}
+	\leq \num{9.2e-6},
+\end{equation*}
+
+接着采用抛物插值法，
+拉格朗日插值多项式为\begin{align*}
+	L_2(x) &= \num{0.314567} \frac{(x-0.34)(x-0.36)}{(0.32-0.34)(0.32-0.36)} \\
+	&+ \num{0.333487} \frac{(x-0.32)(x-0.36)}{(0.34-0.32)(0.34-0.36)} \\
+	&+ \num{0.352274} \frac{(x-0.32)(x-0.34)}{(0.36-0.32)(0.36-0.34)},
+\end{align*}
+%@Mathematica: 0.314567(x-0.34)(x-0.36)/((0.32-0.34)(0.32-0.36))+0.333487(x-0.32)(x-0.36)/((0.34-0.32)(0.34-0.36))+0.352274(x-0.32)(x-0.34)/((0.36-0.32)(0.36-0.34)) /. x->0.3367
+于是\begin{equation*}
+	L_2(\num{0.3367})
+	\approx \num{0.330374}.
+\end{equation*}
+其截断误差为\begin{equation*}
+	\abs{R_2(\num{0.3367})}
+	\leq \num{2.0e-6}.
+\end{equation*}
+\end{solution}
+\end{example}
