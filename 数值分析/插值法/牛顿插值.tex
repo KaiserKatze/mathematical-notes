@@ -1,0 +1,105 @@
+\section{牛顿插值}
+当数据增加或减少时，
+拉格朗日插值法就非常不方便了，
+这是因为之前的计算结果全都作废了，计算要全部从头开始.
+因此，为了计算简便，就可以使用牛顿插值法.
+
+\subsection{差商}
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30 定义2
+设函数\(f\colon \mathbb{R} \to \mathbb{R}\).
+\begin{itemize}
+	\item 把\begin{equation*}
+		\frac{f(x_j) - f(x_i)}{x_j - x_i}
+	\end{equation*}
+	称为“函数\(f\)关于点\(x_i,x_j\)的\DefineConcept{一阶差商}”，
+	记作\(f[x_i,x_j]\).
+
+	\item 把\begin{equation*}
+		\frac{f[x_i,x_k] - f[x_i,x_j]}{x_k - x_j}
+	\end{equation*}
+	称为“函数\(f\)关于点\(x_i,x_j,x_k\)的\DefineConcept{二阶差商}”，
+	记作\(f[x_i,x_j,x_k]\).
+
+	\item 把\begin{equation*}
+	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30 (3.3)
+		\frac{f[x_0,\dotsc,x_{k-2},x_k] - f[x_0,\dotsc,x_{k-2},x_{k-1}]}{x_k - x_{k-1}}
+	\end{equation*}
+	称为“函数\(f\)关于点\(x_0,\dotsc,x_k\)的 \DefineConcept{\(k\)阶差商}”，
+	记作\(f[x_0,\dotsc,x_k]\).
+\end{itemize}
+\end{definition}
+\begin{remark}
+在\(k\)阶差商的定义式中，
+分子中的被减数\(f[x_0,\dotsc,x_{k-2},x_k]\)中没有符号\(x_{k-1}\)，
+与此同时，
+分子中的减数\(f[x_0,\dotsc,x_{k-2},x_{k-1}]\)中没有符号\(x_k\)，
+这正好与分母\(x_k - x_{k-1}\)的顺序相反.
+\end{remark}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30
+\(k\)阶差商\(f[x_0,\dotsc,x_k]\)
+可以表示为函数值\(f(x_0),\dotsc,f(x_k)\)的线性组合，
+即\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30 (3.4)
+	f[x_0,\dotsc,x_k]
+	= \sum_{j=0}^k
+	\frac{f(x_j)}{
+		\prod_{0 \leq i \leq k, i \neq j}
+		(x_j - x_i)
+	}.
+\end{equation}
+\end{property}
+
+\begin{property}[差商的对称性]
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30
+\(k\)阶差商\(f[x_0,\dotsc,x_k]\)的取值
+与数据的编号次序无关，
+即\begin{equation}
+	f[x_0,\dotsc,x_i,\dotsc,x_j,\dotsc,x_k]
+	= f[x_0,\dotsc,x_j,\dotsc,x_i,\dotsc,x_k].
+\end{equation}
+\end{property}
+
+\begin{property}
+\(k\)阶差商\(f[x_0,\dotsc,x_k]\)还可以表示为\begin{equation}\label{equation:牛顿插值.差商的计算式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30 (3.3)'
+	f[x_0,\dotsc,x_k]
+	= \frac{f[x_1,\dotsc,x_{k-1},x_k] - f[x_0,x_1,\dotsc,x_{k-1}]}{x_k - x_0}.
+\end{equation}
+\end{property}
+
+\begin{property}
+若\(f\)在\([a,b]\)上存在\(n\)阶导数，
+且\(x_0,\dotsc,x_n \in (a,b)\)，
+则\begin{equation*}%\label{equation:牛顿插值.差商与导数的关系}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30 (3.5)
+	f[x_0,\dotsc,x_n]
+	= \frac{f^{(n)}(\xi)}{n!}
+	\quad(a \leq \xi \leq b).
+\end{equation*}
+\end{property}
+
+当我们利用\cref{equation:牛顿插值.差商的计算式} 逐阶计算差商，
+可得\begin{align*}
+	f[x_0,x_1,x_2]
+	&= \frac{f[x_1,x_2] - f[x_0,x_1]}{x_2 - x_0}, \\
+	f[x_1,x_2,x_3]
+	&= \frac{f[x_2,x_3] - f[x_1,x_2]}{x_3 - x_1}, \\
+	f[x_0,x_1,x_2,x_3]
+	&= \frac{f[x_1,x_2,x_3] - f[x_0,x_1,x_2]}{x_3 - x_0}.
+\end{align*}
+根据上述计算结果，我们可以列出一张表：\begin{center}
+	\begin{tblr}{*3c|*3c}
+		\hline
+		\(k\) & \(x_k\) & \(f(x_k)\) & 一阶差商 & 二阶差商 & 三阶差商 \\
+		\hline
+		0 & \(x_0\) & \(f(x_0)\) \\
+		1 & \(x_1\) & \(f(x_1)\) & \(f[x_0,x_1]\) \\
+		2 & \(x_2\) & \(f(x_2)\) & \(f[x_1,x_2]\) & \(f[x_0,x_1,x_2]\) \\
+		3 & \(x_3\) & \(f(x_3)\) & \(f[x_2,x_3]\) & \(f[x_1,x_2,x_3]\) & \(f[x_0,x_1,x_2,x_3]\) \\
+		\hline
+	\end{tblr}
+\end{center}
+我们把上述表格称为\DefineConcept{差商表}.
