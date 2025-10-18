@@ -109,23 +109,180 @@
 我们把上述表格称为\DefineConcept{差商表}.
 
 \subsection{牛顿差商插值多项式}
-我们把\begin{align*}
+我们把\begin{align}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P31 (3.6)
 	N_n(x)
 	&\defeq
-	\sum_{j=0}^n f[x_0,\dotsc,x_j] \prod_{i=0}^{j-1} (x-x_i) \\
+	\sum_{j=0}^n f[x_0,\dotsc,x_j] \prod_{i=0}^{j-1} (x-x_i)
+		\label{equation:牛顿插值.牛顿差商插值多项式} \\
 	&= f(x_0)
 	+ f[x_0,x_1] (x-x_0)
-	+ f[x_0,x_1,x_2] (x-x_0)(x-x_1) \\
+	+ f[x_0,x_1,x_2] (x-x_0)(x-x_1)
+		\notag \\
 	&\hspace{20pt}+ \dotsb
 	+ f[x_0,\dotsc,x_n] (x-x_0)\dotsm(x-x_{n-1})
-\end{align*}
+		\notag
+\end{align}
 称为\DefineConcept{牛顿差商插值多项式}，
-把截断误差\begin{align*}
+把截断误差\begin{align}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P31 (3.7)
 	R_n(x)
 	&\defeq
-	f(x) - N_n(x) \\
-	&= f[x,x_0,\dotsc,x_n] \omega_{n+1}(x)
-\end{align*}
+	f(x) - N_n(x)
+		\notag \\
+	&= f[x,x_0,\dotsc,x_n] (x-x_0)\dotsm(x-x_n)
+		\label{equation:牛顿插值.牛顿差商插值多项式的余项}
+\end{align}
 称为“牛顿差商插值多项式\(N_n\)的\DefineConcept{余项}”.
+
+容易证明：\begin{gather*}
+	N_0(x)
+	= f[x_0], \\
+	N_{k+1}(x)
+	= N_k(x) + (x-x_0)\dotsm(x-x_k) \cdot f[x_0,\dotsc,x_k]
+	\quad(k=0,1,2,\dotsc,n-1).
+\end{gather*}
+
+\subsection{差分}
+牛顿差商插值多项式适用于节点分布不规律的情形.
+如果节点是等距的，
+那么插值公式可以简化.
+
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P33
+设函数\(f\colon \mathbb{R} \to \mathbb{R}\)，
+给定等距节点\(x_i = x_0 + i h\ (i=0,1,2,\dotsc,n)\).
+\begin{itemize}
+	\item 把\(h\)称为\DefineConcept{步长}.
+
+	\item 把\(f(x_{k+1}) - f(x_k)\)
+	称为\DefineConcept{一阶向前差分}，
+	记作\(\vartriangle f_k\).
+
+	\item 把\(f(x_k) - f(x_{k-1})\)
+	称为\DefineConcept{一阶向后差分}，
+	记作\(\triangledown f_k\).
+
+	\item 把\(f(x_{k+\frac12}) - f(x_{k-\frac12})\)
+	称为\DefineConcept{一阶中心差分}，
+	记作\(\delta f_k\).
+
+	\item 把\(\vartriangle f_{k+1} - \vartriangle f_k\)
+	称为\DefineConcept{二阶向前差分}，
+	记作\(\vartriangle^2 f_k\).
+
+	\item 把\(\triangledown f_k - \triangledown f_{k-1}\)
+	称为\DefineConcept{二阶向后差分}，
+	记作\(\triangledown^2 f_k\).
+
+	\item 把\(\delta f_{k+\frac12} - \delta f_{k-\frac12}\)
+	称为\DefineConcept{二阶中心差分}，
+	记作\(\delta^2 f_k\).
+
+	\item 把\(\vartriangle^{m-1} f_{k+1} - \vartriangle^{m-1} f_k\)
+	称为 \DefineConcept{\(m\)阶向前差分}，
+	记作\(\vartriangle^m f_k\).
+
+	\item 把\(\triangledown^{m-1} f_k - \triangledown^{m-1} f_{k-1}\)
+	称为 \DefineConcept{\(m\)阶向后差分}，
+	记作\(\triangledown^m f_k\).
+
+	\item 把\(\delta^{m-1} f_{k+\frac12} - \delta^{m-1} f_{k-\frac12}\)
+	称为 \DefineConcept{\(m\)阶中心差分}，
+	记作\(\delta^m f_k\).
+
+	\item 把映射\(I\colon g(x_k) \mapsto g(x_k)\)
+	称为\DefineConcept{不变算子}.
+
+	\item 把映射\(E\colon g(x_k) \mapsto g(x_{k+1})\)
+	称为\DefineConcept{移位算子}.
+\end{itemize}
+\end{definition}
+
+\begin{property}
+向前差分与不变算子、移位算子的关系：\begin{equation*}
+	\vartriangle = E - I.
+\end{equation*}
+\end{property}
+
+\begin{property}
+向后差分与不变算子、移位算子的关系：\begin{equation*}
+	\triangledown = I - E^{-1}.
+\end{equation*}
+\end{property}
+
+\begin{property}
+中心差分与不变算子、移位算子的关系：\begin{equation*}
+	\delta = E^{1/2} - E^{-1/2}.
+\end{equation*}
+\end{property}
+
+差分可以用函数值表示，即\begin{gather*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P33 (3.9)
+	\vartriangle^n f(x_k)
+	= (E - I)^n f(x_k)
+	= \sum_{j=0}^n (-1)^j C_n^j E^{n-j} f(x_k)
+	= \sum_{j=0}^n (-1)^j C_n^j f(x_{n+k-j}), \\
+	\triangledown^n f(x_k)
+	= (I - E^{-1})^n f(x_k)
+	= \sum_{j=0}^n (-1)^{n-j} C_n^j E^{j-n} f(x_k)
+	= \sum_{j=0}^n (-1)^{n-j} C_n^j f(x_{k+j-n}).
+\end{gather*}
+反过来，函数值也可以用差分表示，即\begin{gather*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P33 (3.10)
+	f(x_{n+k})
+	= E^n f(x_k)
+	= (I + \vartriangle)^n f(x_k)
+	= \left( \sum_{j=0}^n C_n^j \vartriangle^j \right) f(x_k).
+\end{gather*}
+
+差分与差商满足以下关系：\begin{gather*}
+	f[x_k,x_{k+1}]
+	= \frac{f(x_{k+1}) - f(x_k)}{x_{k+1} - x_k}
+	= \frac{\vartriangle f_k}{h}, \\
+	f[x_k,x_{k+1},x_{k+2}]
+	= \frac{f[x_{k+1},x_{k+2}] - f[x_k,x_{k+1}]}{x_{k+2} - x_k}
+	= \frac{\vartriangle^2 f_k}{2 h^2}, \\
+	f[x_{k-1},x_k]
+	= \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}
+	= \frac{\triangledown f_k}{h}, \\
+	f[x_{k-2},x_{k-1},x_k]
+	= \frac{f[x_{k-1},x_k] - f[x_{k-2},x_{k-1}]}{x_k - x_{k-2}}
+	= \frac{\triangledown^2 f_k}{2 h^2}.
+\end{gather*}
+一般地，有\begin{gather}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P33 (3.11)
+	f[x_k,\dotsc,x_{k+m}]
+	= \frac1{m! h^m} \vartriangle^m f_k,
+		\label{equation:牛顿插值.用向前差分表示差商} \\
+	f[x_{k-m},\dotsc,x_k]
+	= \frac1{m! h^m} \triangledown^m f_k.
+\end{gather}
+
+差分与导数满足以下关系：\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P33 (3.12)
+	\vartriangle^n f_k
+	= h^n f^{(n)}(\xi)
+	\quad(x_k < \xi < x_{k+n}).
+\end{equation*}
+
+\subsection{牛顿差分插值多项式}
+结合\cref{equation:牛顿插值.用向前差分表示差商,equation:牛顿插值.牛顿差商插值多项式} 两式，
+并令\(x \defeq x_0 + t h\)，便得\begin{equation}\label{equation:牛顿插值.牛顿前插公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P34 (3.13)
+	P_n(x_0 + t h)
+	= f_0
+	+ t \vartriangle f_0
+	+ \frac{t(t-1)}{2!} \vartriangle^2 f_0
+	+ \dotsb
+	+ \frac{t(t-1)\dotsm(t-n+1)}{n!} \vartriangle^n f_0.
+\end{equation}
+我们把\cref{equation:牛顿插值.牛顿前插公式}
+称为\DefineConcept{牛顿前插公式}.
+由\cref{equation:牛顿插值.牛顿差商插值多项式的余项}
+可得它的余项为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P34 (3.14)
+	R_n(x)
+	= \frac{t(t-1)\dotsm(t-n)}{(n+1)!} h^{n+1} f^{(n+1)}(\xi)
+	\quad(x_0 < \xi < x_n).
+\end{equation}
