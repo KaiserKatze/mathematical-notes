@@ -9,6 +9,10 @@
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P30 定义2
 设函数\(f\colon \mathbb{R} \to \mathbb{R}\).
 \begin{itemize}
+	\item 把\(f(x_i)\)
+	称为“函数\(f\)关于点\(x_i\)的\DefineConcept{零阶差商}”，
+	记作\(f[x_i]\).
+
 	\item 把\begin{equation*}
 		\frac{f(x_j) - f(x_i)}{x_j - x_i}
 	\end{equation*}
@@ -103,3 +107,25 @@
 	\end{tblr}
 \end{center}
 我们把上述表格称为\DefineConcept{差商表}.
+
+\subsection{牛顿差商插值多项式}
+我们把\begin{align*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P31 (3.6)
+	N_n(x)
+	&\defeq
+	\sum_{j=0}^n f[x_0,\dotsc,x_j] \prod_{i=0}^{j-1} (x-x_i) \\
+	&= f(x_0)
+	+ f[x_0,x_1] (x-x_0)
+	+ f[x_0,x_1,x_2] (x-x_0)(x-x_1) \\
+	&\hspace{20pt}+ \dotsb
+	+ f[x_0,\dotsc,x_n] (x-x_0)\dotsm(x-x_{n-1})
+\end{align*}
+称为\DefineConcept{牛顿差商插值多项式}，
+把截断误差\begin{align*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P31 (3.7)
+	R_n(x)
+	&\defeq
+	f(x) - N_n(x) \\
+	&= f[x,x_0,\dotsc,x_n] \omega_{n+1}(x)
+\end{align*}
+称为“牛顿差商插值多项式\(N_n\)的\DefineConcept{余项}”.
