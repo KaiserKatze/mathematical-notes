@@ -29,7 +29,7 @@
 且\(E(X)=\mu\)，\(E(X^k)=m_k\)，\(D(X)=\sigma^2\).
 \(\AutoTuple{X}{n}\)是样本.
 证明：样本均值\(\overline{X}\)、样本\(k\)阶原点矩\(A_k\)和样本方差\(S^2\)分别是
-\(\mu\)、\(m_k\)和\(\sigma^2\)的无偏估计量.
+总体期望\(\mu\)、总体\(k\)阶原点矩\(m_k\)和总体方差\(\sigma^2\)的无偏估计量.
 \begin{proof}
 因为\(E(A_k)
 = E\left(\frac{1}{n} \sum_{i=1}^n X_i^k\right)
@@ -238,6 +238,40 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 = \sigma\)，
 \(\hat\sigma\)是\(\sigma\)的无偏估计.
 \end{proof}
+\end{example}
+
+无偏估计量可能不唯一，可能不存在，可能不合理.
+
+\begin{example}
+%@see: 《数理统计教程》（王兆军，邹长亮） P60 例2.4.3
+设\(X_1\)是来自总体\(X \sim B(n,p)\)的样本，
+其中\(n\)已知，而\(p\)未知.
+假设统计量\(T(X_1)\)是参数\(1/p\)的无偏估计量，
+则\begin{equation*}
+	E(T(X_1))
+	= \sum_{k=0}^n T(k) C_n^k p^k (1-p)^{n-k}
+	= \frac1p.
+\end{equation*}
+显然，满足上式的统计量\(T(X_1)\)不存在，
+因为，当\(p\to0\)时，上式左边趋于\(0\)而右边趋于\(\infty\).
+\end{example}
+
+\begin{example}
+%@see: 《数理统计教程》（王兆军，邹长亮） P60 例2.4.2
+设\(X_1\)是来自总体\(P(\lambda)\)的样本，
+其中\(\lambda\ (\lambda>0)\)是未知参数.
+记\begin{equation*}
+	T(X) \defeq (-1)^X,
+\end{equation*}
+则\begin{equation*}
+	E(T(X))
+	= \sum_{k=0}^\infty (-1)^k \frac{\lambda^k}{k!} e^{-\lambda}
+	= e^{-2\lambda},
+\end{equation*}
+于是\(T(X_1)\)是\(e^{-2\lambda}\)的一个无偏估计.
+但是，当\(X_1\)是奇数时，这个估计并不合理，
+这是因为当\(X_1\)是奇数时有\(T(X_1) = -1 < 0\)，
+但是\(e^{-\lambda}\)恒大于零.
 \end{example}
 
 \subsection{有效性标准}
@@ -451,3 +485,38 @@ f(y) = \frac{1}{\sqrt{2\pi} \cdot \sqrt{2} \sigma} \exp(-\frac{y^2}{2 \cdot 2 \s
 由此可见，从不同侧面取考察估计量的好坏会得出不同的结论.
 因此我们在讨论估计浪的好坏时，必须明确我们所遵循的准则是什么.
 至于具体采用哪个评选标准，则需要根据实际问题来确定.
+
+\subsection{刀切法}
+当估计量的偏差较大时，可以采用刀切法缩小偏差.
+\begin{definition}
+%@see: 《数理统计教程》（王兆军，邹长亮） P60 例2.4.1
+设\(\vb{X} \defeq (X_1,\dotsc,X_n)\)，
+统计量\(T(\vb{X})\)是未知参数\(g(\theta)\)的一个估计量，
+且\begin{equation*}
+	E_\theta(T(\vb{X})) = g(\theta) + O\left( \frac1n \right).
+\end{equation*}
+把\begin{equation*}
+%@see: 《数理统计教程》（王兆军，邹长亮） P60 (2.4.1)
+	T_J(\vb{X})
+	\defeq
+	n T(\vb{X})
+	- \frac{n-1}{n} \sum_{i=1}^n T(\vb{X}_{(-i)}),
+\end{equation*}
+称为\(T(\vb{X})\)的\DefineConcept{刀切统计量}，
+其中\begin{equation*}
+	\vb{X}_{(-i)}
+	\defeq
+	(X_1,\dotsc,X_{i-1},X_{i+1},\dotsc,X_n).
+\end{equation*}
+%@see: https://en.wikipedia.org/wiki/Jackknife_resampling
+%@see: https://en.wikipedia.org/wiki/Bootstrapping_(statistics)
+\end{definition}
+
+可以证明：\begin{gather*}
+	E_\theta(T_J(\vb{X}))
+	= g(\theta)
+	+ O\left( \frac1{n^2} \right), \\
+	D_\theta(T_J(\vb{X}))
+	= D_\theta(T(\vb{X})).
+\end{gather*}
+%TODO proof
