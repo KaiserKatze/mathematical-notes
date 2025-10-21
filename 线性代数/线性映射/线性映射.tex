@@ -379,26 +379,68 @@ k \in K\)，
 	\item \(\vb{A}(0)=0'\)，
 	其中\(0\)和\(0'\)分别是\(V\)和\(V'\)的零元.
 
-	\item \((\forall\alpha\in V)[\vb{A}(-\alpha)=-\vb{A}(\alpha)]\).
+	\item \(
+		(\forall\alpha\in V)
+		[\vb{A}(-\alpha)=-\vb{A}(\alpha)]
+	\).
 
-	\item \(\vb{A}(k_1\alpha_1+\dotsb+k_s\alpha_s)
-	=k_1\vb{A}(\alpha_1)+\dotsb+k_s\vb{A}(\alpha_s)\).
+	\item \(
+		\vb{A}(k_1 \alpha_1 + \dotsb + k_s \alpha_s)
+		= k_1 \vb{A}(\alpha_1) + \dotsb + k_s \vb{A}(\alpha_s)
+	\).
 
 	\item 如果\(\AutoTuple{\alpha}{s}\)是\(V\)的一个线性相关的向量组，
 	则\(\vb{A}(\alpha_1),\dotsc,\vb{A}(\alpha_s)\)是\(V'\)的一个线性相关的向量组；
-	但是反之不成立（线性映射可以把线性无关向量组变为线性相关向量组）.
+	但是反之不成立（一个线性映射不一定会把一个线性无关的向量组映成一个线性无关向量组，
+	或者说，某些线性映射会把线性无关向量组映成线性相关向量组）.
 
 	\item 如果\(V\)是有限维的，
 	且\(\AutoTuple{\alpha}{s}\)是\(V\)的一个基，
-	则对于\(V\)中任一向量\(\alpha=k_1\alpha_1+\dotsb+k_s\alpha_s\)，
+	则对于\(V\)中任一向量\(\alpha \defeq k_1 \alpha_1 + \dotsb + k_s \alpha_s\)，
 	有\begin{equation*}
 		\vb{A}(\alpha)
-		=k_1\vb{A}(\alpha_1)+\dotsb+k_s\vb{A}(\alpha_s).
+		= k_1 \vb{A}(\alpha_1) + \dotsb + k_s \vb{A}(\alpha_s).
 	\end{equation*}
 	这表明，只要知道了\(V\)的一个基\(\AutoTuple{k}{s}\)在\(\vb{A}\)下的像，
 	那么\(V\)中任一向量在\(\vb{A}\)下的像就都确定了.
 	或者说，\(n\)维线性空间\(V\)到\(V'\)的线性映射完全被它在\(V\)的一个基上的作用所决定.
 \end{itemize}
+\begin{proof}
+任意取定\(\alpha \in V\)，
+根据负向量的定义有\(-\alpha = (-1)\alpha\)，
+又因为线性映射适合齐次性，
+所以\begin{equation*}
+	\vb{A}(-\alpha)
+	= \vb{A}((-1)\alpha)
+	= (-1)\vb{A}(\alpha)
+	= -\vb{A}(\alpha).
+\end{equation*}
+再由线性映射的定义可知\begin{equation*}
+	\vb{A}(\alpha + (-\alpha))
+	= \vb{A}(\alpha) + \vb{A}(-\alpha)
+	= \vb{A}(\alpha) + (-1) \vb{A}(\alpha)
+	= [1 + (-1)] \vb{A}(\alpha)
+	= 0 \vb{A}(\alpha)
+	= 0',
+\end{equation*}
+又因为\begin{equation*}
+	\vb{A}(\alpha + (-\alpha))
+	= \vb{A}(0),
+\end{equation*}
+所以\(\vb{A}(0) = 0'\).
+
+由线性映射的定义可知\begin{align*}
+	\vb{A}(k_1 \alpha_1 + \dotsb + k_s \alpha_s)
+	&= \vb{A}(k_1 \alpha_1) + \dotsb + \vb{A}(k_s \alpha_s) \\
+	&= k_1 \vb{A}(\alpha_1) + \dotsb + k_s \vb{A}(\alpha_s).
+\end{align*}
+
+设\(\AutoTuple{\alpha}{s}\)是\(V\)的一个线性无关的向量组.
+由于零映射\(\vb0\)会把任意一个向量映成零向量\(0\)，
+所以\(\AutoTuple{\alpha}{s}\)中每一个向量\(\alpha_i\)在零映射下的像都是\(0\)，
+即\(\vb0(\{\AutoTuple{\alpha}{s}\}) = \{0\}\)，
+显然\(\{0\}\)是线性相关的.
+\end{proof}
 \end{property}
 
 \subsection{线性映射的存在性}
