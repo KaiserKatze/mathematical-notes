@@ -74,3 +74,45 @@
 	\end{cases}
 \end{equation*}
 于是\(p'(x^*) = q(x^*) = c_{n-1}\).
+
+\subsection{迭代法与开方求值}
+迭代法是一种按同一公式重复计算、逐次逼近真值的算法，
+是数值计算普遍运用的重要方法.
+以开方运算为例，它不是四则运算，
+因此在计算机上求某个数的平方根的数值时，
+就要利用迭代法将其转化为四则运算.
+
+取定\(a>0\)，求\(\sqrt{a}\)等价于解方程\(x^2-a=0\).
+于是我们将“求解\(a\)的平方根的数值”这个问题
+转化为了一个方程求根问题.
+现在，取\(x_0>0\)，
+令\(\increment x \defeq x - x_0\)，
+那么方程\(x^2-a=0\)化为\begin{equation*}
+	(x_0 + \increment x)^2 = a,
+	\quad\text{即}\quad
+	x_0^2 + 2 x_0 \increment x + (\increment x)^2 = a.
+\end{equation*}
+当\(\increment x\)足够小时，
+\((\increment x)^2\)可以忽略不计，
+从而有\begin{equation*}
+	x_0^2 + 2 x_0 \increment x \approx a,
+	\quad\text{即}\quad
+	\increment x
+	\approx \frac{a - x_0^2}{2 x_0}
+	= \frac12 \left( \frac{a}{x_0} - x_0 \right),
+\end{equation*}
+于是\begin{equation*}
+	x = x_0 + \increment x
+	\approx \frac12 \left( \frac{a}{x_0} + x_0 \right).
+\end{equation*}
+记\begin{equation*}
+	x_1 \defeq \frac12 \left( \frac{a}{x_0} + x_0 \right).
+\end{equation*}
+这里\(x_1\)不是\(\sqrt{a}\)的真值，它也是对真值\(x = \sqrt{a}\)的近似.
+重复上述过程可得迭代公式\begin{equation*}
+	x_{k+1} \defeq \frac12 \left( \frac{a}{x_k} + x_k \right)
+	\quad(k=0,1,2,\dotsc).
+\end{equation*}
+由\cref{example:收敛准则.迭代法计算开平方}
+我们已经知道\(\lim_{k\to\infty} x_k = \sqrt{a}\).
+上述迭代公式在每次迭代时只做一次除法、一次加法与一次移位，计算量很小.
