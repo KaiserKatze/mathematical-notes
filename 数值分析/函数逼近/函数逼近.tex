@@ -1,0 +1,58 @@
+\section{函数逼近的基本概念}
+函数逼近问题：
+给定函数\(f\)（称之为目标函数），
+我们想要在某个函数空间\(\Phi\)中找到一个函数\(\phi\)
+使得误差\(f\)与\(\phi\)之间的距离在某种度量意义下最小.
+\begin{definition}
+% 这是我自己构思的定义
+设\(D_f \subseteq D_\phi \subseteq \mathbb{R}\)，
+取定\(\Phi \subseteq \mathbb{R}^{D_\phi}\)，
+给定函数\(f\colon D_f \to \mathbb{R}\)，
+给定\(\Phi\)的一个度量\(\rho\)，
+把\begin{equation*}
+	\argmin_{\phi \in \Phi} \rho(f,\phi \SetRestrict D_f)
+\end{equation*}
+称为“函数\(f\)在\(D_\phi\)上的\DefineConcept{最佳逼近函数}”.
+\end{definition}
+
+我们通常将函数空间\(\Phi\)限定为某个区间上的连续函数族\(C[a,b]\)，
+或者进一步限定为某个区间上的次数不超过\(n\)的多项式函数族\(H_n[a,b]\).
+
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P55 定义4
+设\(D \subseteq \mathbb{R}\).
+如果函数\(\rho\colon D \to [0,+\infty)\)满足\begin{itemize}
+	\item 积分\(\int_D x^k \rho(x) \dd{x}\ (k=0,1,2,\dotsc)\)存在且有限；
+	\item 对于任意函数\(g\colon D \to [0,+\infty)\)
+	总有\(\int_D g(x) \rho(x) \dd{x} = 0\)
+	蕴含\((\forall x \in D)[g(x) = 0]\)，
+\end{itemize}
+则称“\(\rho\)是定义域\(D\)上的一个\DefineConcept{权函数}”.
+\end{definition}
+\begin{remark}
+上述定义中，函数\(\rho\)的定义域\(D\)既可以是有限区间，也可以是无限区间.
+\end{remark}
+
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P55 例2
+设\(f,g \in C[a,b]\).
+对于\([a,b]\)上的任意一个权函数\(\rho\)，
+我们把积分\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P55 (1.15)
+	\int_a^b \rho(x) f(x) g(x) \dd{x}
+\end{equation*}
+称为“函数\(f\)与\(g\)的\DefineConcept{带权\(\rho\)的内积}”，
+记作\((f,g)_\rho\).
+\end{definition}
+
+显然两个函数的带权内积满足内积的四条性质，
+由它导出的范数\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P55 (1.16)
+	\norm{f}_{2,\rho}
+	\defeq
+	\sqrt{(f,f)_\rho}
+	= \sqrt{
+		\int_a^b \rho(x) f^2(x) \dd{x}
+	}
+\end{equation*}
+称为“函数\(f\)的\DefineConcept{带权\(\rho\)的范数}”.
