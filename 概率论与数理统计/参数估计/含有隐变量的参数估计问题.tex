@@ -1,4 +1,5 @@
 \section{含有隐变量的参数估计问题}
+\subsection{EM算法}
 %@see: https://www.columbia.edu/~mh2078/MachineLearningORFE/EM_Algorithm.pdf
 给定两枚非均质硬币\(A\)和\(B\)（即它们正面朝上的概率\(P_A\)和\(P_B\)都不等于\(1/2\)），
 且\(P_A \neq P_B\).
@@ -21,93 +22,184 @@
 相对地，把可观测变量\(X\)称为\DefineConcept{不完全变量}（incomplete variable）.
 
 针对上述含有隐变量的混合模型，我们不能直接使用极大似然估计法.
-这种情况下就需要用到迭代法（又称EM算法、极大期望估计法）.
+这种情况下就需要用到迭代法（又称\DefineConcept{EM算法}、\DefineConcept{极大期望估计法}）.
+\begin{algorithm}[极大期望估计法]
+\hfill
+\begin{enumerate}
+	\item 通过试验，取得随机变量\(X\)的观测值\(x\)；
+	\item 对未知参数\(\theta\)作出合理的初始估计值\(\theta_0\)；
+	\item （E步）根据随机变量\(X\)的观测值\(x\)和未知参数\(\theta\)的估计值\(\theta_k\ (k=0,1,2,\dotsc)\)，
+	计算隐变量\(Y\)的对数似然函数\(y \mapsto \ln p(x,y \vert \theta)\)的条件数学期望\begin{equation*}
+	%@see: 《数理统计教程》（王兆军，邹长亮） P54 (2.3.10)
+		Q(\theta',\theta_k)
+		\defeq
+		E(\ln p(x,Y \vert \theta=\theta') \vert X=x, \theta=\theta_k);
+	\end{equation*}
+	\item （M步）计算极大值点\begin{equation*}
+	%@see: 《数理统计教程》（王兆军，邹长亮） P54 (2.3.11)
+		\theta_{k+1}
+		\defeq \argmax_{\theta'} Q(\theta',\theta_k),
+	\end{equation*}
+	并把它作为\(\theta\)的新的估计值；
+	\item 重复第3步和第4步，直到\(\theta\)的估计值收敛（即\(\theta_{k+1}\)与\(\theta_k\)之间的差值足够小）.
+\end{enumerate}
+\end{algorithm}
 
-设随机变量\(X\)是可观测的连续型随机变量，
-随机变量\(Y\)是隐藏的连续型随机变量，
+下面我们来证明EM算法的收敛性.
+
+%@see: 《数理统计教程》（王兆军，邹长亮） P55 定理2.3.1
+设\(X,Y\)都是随机变量，
+\(X\)是可观测的，
+\(Y\)是隐藏的，
+\(X,Y\)相互独立，
 总体\(Z \defeq (X,Y)\)只含一个未知参数\(\theta\)，
-那么\(X\)的密度函数为\begin{align*}
-	p_X(x \vert \theta)
-	&= \int p(x,y \vert \theta) \dd{y}
-		\tag{\hyperref[theorem:多维随机变量及其分布.边缘分布.依据联合密度函数计算边缘密度函数]{边缘密度的计算式}} \\
-	&= \int \frac{p(x,y \vert \theta)}{p_Y(y \vert X=x,\theta=\theta_k)} \cdot p_Y(y \vert X=x,\theta=\theta_k) \dd{y} \\
-	&= E\left( \frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right).
-		\tag{随机变量的函数的条件期望}
-\end{align*}
-考虑到\(\ln\)是严格凸函数，
-利用\hyperref[theorem:随机变量的数字特征.延森不等式]{延森不等式}可得\begin{equation*}
-	\ln E\left( \frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right)
-	\geq E\left( \ln\frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right).
+那么已知\((X,\theta) = (x,\theta')\)条件下\(Y\)的条件密度函数为\begin{equation*}
+	p_{Y \vert X}(y \vert X=x, \theta=\theta')
+	= \frac{p(x,y \vert \theta=\theta')}{p_X(x \vert \theta=\theta')},
 \end{equation*}
-由\hyperref[equation:函数.对数的基本运算法则2]{对数基本运算法则}可得\begin{equation*}
-	\ln\frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)}
-	= \ln p(x,Y \vert \theta)
-	- \ln p_Y(Y \vert X=x,\theta=\theta_k),
+其中\(p(x,y \vert \theta=\theta')\)是已知\(\theta = \theta'\)条件下\((X,Y)\)的联合密度函数，
+\(p_X(x \vert \theta=\theta')\)是已知\(\theta = \theta'\)条件下\(X\)的边缘密度函数，
+从而有\begin{equation*}
+	p_X(x \vert \theta=\theta')
+	= \frac{p(x,y \vert \theta=\theta')}{p_{Y \vert X}(y \vert X=x, \theta=\theta')}.
 \end{equation*}
-从而\begin{align*}
-	&E\left( \ln\frac{p(x,Y \vert \theta)}{p_Y(Y \vert X=x,\theta=\theta_k)} \middle\vert X=x,\theta=\theta_k \right) \\
-	&= E\left( \ln p(x,Y \vert \theta) \middle\vert X=x,\theta=\theta_k \right)
-	- E\left( \ln p_Y(Y \vert X=x,\theta=\theta_k) \middle\vert X=x,\theta=\theta_k \right).
-	% &= Q(\theta,\theta_k)
-	% - E\left( \ln p_Y(Y \vert X=x,\theta=\theta_k) \middle\vert X=x,\theta=\theta_k \right).
-\end{align*}
-记\begin{align*}
-	Q(\theta,\theta_k)
-	&\defeq
-	E\left( \ln p(x,Y \vert \theta) \middle\vert X=x,\theta=\theta_k \right), \\
-	R(\theta,\theta_k)
-	&\defeq
-	E\left( \ln p_Y(Y \vert X=x,\theta=\theta_k) \middle\vert X=x,\theta=\theta_k \right), \\
-	G(\theta \vert \theta_k)
-	&\defeq
-	Q(\theta,\theta_k) - R(\theta,\theta_k), \\
-	l(\theta;X)
-	&\defeq
-	\ln p(X \vert \theta),
-\end{align*}
-则有\begin{equation*}
-	l(\theta;X)
-	\geq G(\theta \vert \theta_k).
+对上式取对数，得\begin{equation*}%\label{equation:含有隐变量的参数估计问题.对数似然函数等式1}
+	\ln p_X(x \vert \theta=\theta')
+	= \ln p(x,y \vert \theta=\theta')
+	- \ln p_{Y \vert X}(y \vert X=x, \theta=\theta').
 \end{equation*}
-当且仅当\(\theta = \theta_k\)时，上式取“=”号.
-于是，只要\(G(\theta \vert \theta_k)\)大于\(G(\theta_k \vert \theta_k)\)，
-那么\(l(\theta;X)\)就大于\(l(\theta_k;X)\)，
-从而\begin{equation*}
+在上式等号两边同时求\(Y\)在\((X,\theta) = (x,\theta_k)\)条件下的期望，
+得到\begin{align*}
+	&\hspace{-20pt}
+	E(\ln p_X(x \vert \theta=\theta') \vert X=x, \theta=\theta_k) \\
+	&= Q(\theta',\theta_k)
+	- E(\ln p_{Y \vert X}(Y \vert X=x, \theta=\theta') \vert X=x, \theta=\theta_k),
+\end{align*}
+即\begin{align*}
+%@credit: {5f4d2f8a-fc8b-4798-85d6-98670f6761e7} 指出我在本节中有几处符号使用有误，现已修改
+	&\hspace{-20pt}
+	\int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \cdot \ln p_X(x \vert \theta=\theta') \dd{y} \\
+	&= Q(\theta',\theta_k)
+	- \int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \cdot \ln p_{Y \vert X}(y \vert X=x, \theta=\theta') \dd{y}.
+\end{align*}
+因为\(X,Y\)相互独立，
+所以\(\ln p_X(x \vert \theta=\theta')\)与\(y\)无关；
+又因为\(\int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \dd{y} = 1\)，
+所以\begin{align*}
+	&\hspace{-20pt}
+	\int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \cdot \ln p_X(x \vert \theta=\theta') \dd{y} \\
+	&= \ln p_X(x \vert \theta=\theta') \cdot \int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \dd{y} \\
+	&= \ln p_X(x \vert \theta=\theta') \cdot 1
+	= \ln p_X(x \vert \theta=\theta'),
+\end{align*}
+从而有\begin{align*}
+%@see: 《数理统计教程》（王兆军，邹长亮） P55 (*)
+	\ln p_X(x \vert \theta=\theta')
+	= Q(\theta',\theta_k)
+	- \int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \cdot \ln p_{Y \vert X}(y \vert X=x, \theta=\theta') \dd{y}.
+\end{align*}
+上式依次取\(\theta' \defeq \theta_k\)和\(\theta' \defeq \theta_{k+1}\)，
+便得\begin{align*}
+%@see: 《数理统计教程》（王兆军，邹长亮） P55 (*1)
+%@see: 《数理统计教程》（王兆军，邹长亮） P55 (*2)
+	\ln p_X(x \vert \theta=\theta_k)
+	&=  Q(\theta_k,\theta_k)
+	- \int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \cdot \ln p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \dd{y}, \\
+	\ln p_X(x \vert \theta=\theta_{k+1})
+	&=  Q(\theta_{k+1},\theta_k)
+	- \int p_{Y \vert X}(y \vert X=x, \theta=\theta_k) \cdot \ln p_{Y \vert X}(y \vert X=x, \theta=\theta_{k+1}) \dd{y}.
+\end{align*}
+两式相减得\begin{align*}
+	&\hspace{-20pt}
+	\ln p_X(x \vert \theta=\theta_{k+1})
+	- \ln p_X(x \vert \theta=\theta_k) \\
+	&= Q(\theta_{k+1},\theta_k) - Q(\theta_k,\theta_k)
+	- \int p_{Y \vert X}(y \vert X=x, \theta=\theta_k)
+		\cdot \ln \frac{
+			p_{Y \vert X}(y \vert X=x, \theta=\theta_{k+1})
+		}{
+			p_{Y \vert X}(y \vert X=x, \theta=\theta_k)
+		}
+		\dd{y}.
+\end{align*}
+因为M步确保了\(
 	\theta_{k+1}
-	\defeq
-	\argmax_\theta Q(\theta,\theta_k)
-	= \argmax_\theta G(\theta \vert \theta_k).
+	\defeq \argmax_{\theta'} Q(\theta',\theta_k)
+\)，
+所以\(
+	Q(\theta_{k+1},\theta_k)
+	\geq Q(\theta_k,\theta_k)
+\).
+再由\hyperref[theorem:随机变量的数字特征.延森不等式]{延森不等式}可得\begin{align*}
+	&\hspace{-20pt}
+	\int p_{Y \vert X}(y \vert X=x, \theta=\theta_k)
+		\cdot \ln \frac{
+			p_{Y \vert X}(y \vert X=x, \theta=\theta_{k+1})
+		}{
+			p_{Y \vert X}(y \vert X=x, \theta=\theta_k)
+		}
+		\dd{y} \\
+	&\leq
+	\ln \int p_{Y \vert X}(y \vert X=x, \theta=\theta_k)
+		\cdot \frac{
+			p_{Y \vert X}(y \vert X=x, \theta=\theta_{k+1})
+		}{
+			p_{Y \vert X}(y \vert X=x, \theta=\theta_k)
+		}
+		\dd{y} \\
+	&\leq
+	\ln \int p_{Y \vert X}(y \vert X=x, \theta=\theta_{k+1}) \dd{y}
+	= \ln1
+	= 0.
+\end{align*}
+因此\begin{equation*}
+	\ln p_X(x \vert \theta=\theta_{k+1})
+	\geq \ln p_X(x \vert \theta=\theta_k).
+\end{equation*}
+这就说明，通过EM算法得到的序列\(\{\theta_k\}_{k\geq0}\)
+会使可观测变量\(X\)的对数似然函数\begin{equation*}
+	l(\theta') \defeq \ln p_X(x \vert \theta=\theta')
+\end{equation*}
+单调增加，
+即\begin{equation*}
+%@see: 《数理统计教程》（王兆军，邹长亮） P55 (2.3.12)
+	l(\theta_{k+1})
+	\geq l(\theta_k)
+	\geq 0.
 \end{equation*}
 
-% 为了对\(\theta\)作出估计，可以采用以下数值算法.
-% \begin{algorithm}[极大期望估计法]
-% \hfil
-% \begin{enumerate}
-% 	\item 通过试验，取得随机变量\(X\)的观测值；
-% 	\item 对未知参数\(\theta\)作出合理的初始估计值\(\theta_0\)；
-% 	\item 根据随机变量\(X\)的观测值和未知参数的估计值\(\theta_k\)，
-% 	计算对数似然函数\(\mathcal{L}(\theta;X,Y)\)的条件数学期望\begin{equation*}
-% 		Q(\theta;\theta_k)
-% 		\defeq E(\mathcal{L}(\theta;X,Y) \vert X,\theta_k)  % 条件期望
-% 		= \int \mathcal{L}(\theta;X,y) f(y \vert X,\theta_k) \dd{y},
-% 	\end{equation*}
-% 	其中\(f(y \vert X, \theta_k)\)表示随机变量\(Y\)的条件概率密度函数；
-% 	\item 计算极大值点\begin{equation*}
-% 		\theta_{k+1}
-% 		\defeq \argmax_\theta Q(\theta;\theta_k),
-% 	\end{equation*}
-% 	并把它作为\(\theta\)的新的估计值；
-% 	\item 重复第3步和第4步，直到\(\theta\)的估计值收敛（即\(\theta_{k+1}\)与\(\theta_k\)之间的差值足够小）.
-% \end{enumerate}
-% \end{algorithm}
 
-% 在第\(n\)轮迭代时，我们能够利用第\(n\)轮的参数估计值\(\theta_n\)
-% 去估计第\(n+1\)轮的参数\(\theta_{n+1}\)：\begin{equation}\label{equation:含有隐变量的参数估计问题.极大期望估计法的迭代公式}
-% 	\theta_{n+1}
-% 	= \argmax_\theta \int_Z \log P(X,Z \vert \theta) P(Z \vert X, \theta_n) \dd{Z}
-% \end{equation}
-% 那么，只要假定一个初始值\(\theta_0\)，
-% 那么就能通过迭代公式 \labelcref{equation:含有隐变量的参数估计问题.极大期望估计法的迭代公式}，
-% 一轮一轮迭代下去.
-% 每轮迭代都可以让似然函数\(P(X \vert \theta)\)的值不断增大直至最终收敛.
-% 一般来说，只要保证每次迭代\(P(X \vert \theta)\)的值都在增大，这个算法就是可行的.
+利用EM算法求得的估计量\(\hat{\theta}\)的渐进方差
+近似等于可观测变量的费舍尔信息量的倒数\begin{equation*}
+%@see: 《数理统计教程》（王兆军，邹长亮） P56 (2.3.13)
+	\left( - \eval{ \pdv[2]{ \ln p_X(x,\theta) }{ \theta } }_{\hat{\theta}} \right)^{-1}.
+\end{equation*}
+
+
+\subsection{GEM算法}
+%@see: 《数理统计教程》（王兆军，邹长亮） P58
+虽然EM算法已经得到了广泛的应用，但是在某些情况下，其M步的最大值是难以计算的，
+于是我们常常采用一个简单的方法确定\(\theta^{k+1}\)
+%TODO 所谓“简单的方法”具体是指什么？
+使得\begin{equation*}
+%@see: 《数理统计教程》（王兆军，邹长亮） P58 (2.3.14)
+	Q(\theta_{k+1},\theta_k)
+	> Q(\theta_k,\theta_k).
+\end{equation*}
+这种求取\(\theta\)的极大似然估计量的方法
+称为\DefineConcept{广义EM算法}或\DefineConcept{GEM算法}.
+
+\subsection{蒙特卡洛EM算法}
+GEM算法仅考虑了M步的计算难度，
+但是在某些情况下，E步的计算也很困难，
+它的本质是计算完全变量的对数似然函数
+在已知\((X,\theta) = (x,\theta_k)\)条件下的期望，
+既然期望可以用样本平均值予以估计，
+那么我们可以把E步拆成以下两步：\begin{enumerate}
+	\item （E1步）依据\(Y\)的条件分布\(p_{Y \vert X}(y \vert X=x, \theta=\theta_k)\)抽取\(m\)个随机数\(z_1,\dotsc,z_m\)；
+	\item （E2步）令\begin{equation*}
+		Q(\theta',\theta_k)
+		\defeq
+		\frac1m \sum_{i=1}^m \ln p_{Y \vert X}(\theta' \vert X=x, \theta=z_i).
+	\end{equation*}
+\end{enumerate}
