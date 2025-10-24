@@ -87,3 +87,62 @@
 一般地，只要给出\(m+1\)个插值条件（包括函数值和导数值），
 就可以造出次数不超过\(m\)次的厄米插值多项式.
 由于导数条件各不相同，这里就不给出一般的厄米插值公式，只讨论两个典型的例子.
+
+\subsection{厄米插值的应用 --- 三点三次厄米插值}
+先考虑满足条件\begin{equation*}
+	P(x_i) = f(x_i)
+	\ (i=0,1,2)
+	\quad\text{和}\quad
+	P'(x_1) = f'(x_1)
+\end{equation*}
+的插值多项式及其余项表达式.
+
+由给定条件，可以确定次数不超过3的插值多项式.
+由于该多项式通过点\(
+	(x_0,f(x_0)),
+	(x_1,f(x_1)),
+	(x_2,f(x_2))
+\)，
+所以它的形式为\begin{equation*}
+	P(x)
+	= f(x_0)
+	+ f[x_0,x_1] (x-x_0)
+	+ f[x_0,x_1,x_2] (x-x_0)(x-x_1)
+	+ A (x-x_0)(x-x_1)(x-x_2),
+\end{equation*}
+其中\(A\)是待定常数，
+可以根据条件\(P'(x_1) = f'(x_1)\)予以确定，
+即\begin{equation*}
+	A = \frac{
+		f'(x_1) - f[x_0,x_1] - (x_1-x_0) f[x_0,x_1,x_2]
+	}{
+		(x_1-x_0)(x_1-x_2)
+	}.
+\end{equation*}
+为了求出余项\(R(x) = f(x) - P(x)\)的表达式，
+可以设\begin{equation*}
+	R(x)
+	\defeq f(x) - P(x)
+	= k(x) (x-x_0) (x-x_1)^2 (x-x_2),
+\end{equation*}
+其中\(k(x)\)是待定函数.
+构造\begin{equation*}
+	\phi(t)
+	\defeq
+	f(t) - P(t) - k(x) (t-x_0) (t-x_1)^2 (t-x_2),
+\end{equation*}
+显然\(\phi(x_j) = 0\ (j=0,1,2)\)且\(\phi'(x_1) = \phi(x) = 0\).
+故\(\phi(t)\)在\((a,b)\)内有5个零点（其中二重根算两个）.
+假设\(f\)具有较好的可微性，
+那么只要反复应用罗尔定理，
+可得\(\phi^{(4)}(t)\)在\((a,b)\)内至少有一个零点\(\xi\)，
+故\begin{equation*}
+	\phi^{(4)}(\xi) = f^{(4)}(\xi) - 4! k(x) = 0,
+\end{equation*}
+于是\begin{equation*}
+	k(x) = \frac1{4!} f^{(4)}(\xi),
+\end{equation*}
+余项表达式为\begin{equation*}
+	R(x) = \frac1{4!} f^{(4)}(\xi) (x-x_0) (x-x_1)^2 (x-x_2),
+\end{equation*}
+其中\(\xi\)位于\(x_0,x_1,x_2\)和\(x\)所界定的范围内.
