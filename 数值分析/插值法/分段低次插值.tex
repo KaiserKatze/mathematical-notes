@@ -1,0 +1,132 @@
+\section{分段低次插值}
+\subsection{高次插值的病态性质}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P40
+人们一度认为：
+根据区间\([a,b]\)上给出的节点构造插值多项式\(L_n\)近似\(f\)，
+\(L_n\)的次数\(n\)越高，逼近\(f\)的精度就越好.
+但是事实并非如此，
+这是因为对于任意插值节点，
+当\(n\to\infty\)时，
+\(L_n(x)\)不一定收敛于\(f(x)\).
+%@see: https://personal.math.ubc.ca/~peirce/M406_Lecture_3_Runge_Phenomenon_Piecewise_Polynomial_Interpolation.pdf
+龙格发现函数\(f(x) = \frac1{1+x^2}\)在闭区间\([-5,5]\)上存在各阶导数，
+但是在\([-5,5]\)上取\(n+1\)个等距节点\(x_k = -5 + 10 \frac{k}{n}\ (k=0,1,2,\dotsc,n)\)
+所构造的拉格朗日插值多项式为\begin{equation*}
+	L_n(x)
+	= \sum_{j=0}^n \frac{1}{1+x_j^2} \cdot \frac{\omega_{n+1}(x)}{(x - x_j) \omega_{n+1}'(x_j)}.
+\end{equation*}
+令\(x_{n-1/2} \defeq \frac12 (x_{n-1} + x_n)\)，
+则\(x_{n-1/2} = 5 - \frac5n\)，
+可以通过计算验证：随着\(n\)的增加，\(R(x_{n-1/2})\)的绝对值几乎在成倍增加.
+这说明，当\(n\to\infty\)时，\(L_n\)在\([-5,5]\)上不收敛.
+龙格进一步证明了：存在一个常数\(c \approx 3.63\)，
+使得当\(\abs{x} \leq c\)时，
+有\(\lim_{n\to\infty} L_n(x) = f(x)\)；
+但是当\(\abs{x} > c\)时，
+函数列\(\{L_n(x)\}_{n\geq1}\)发散.
+
+\subsection{分段线性插值}
+所谓“分段线性插值”，就是用折线段连接插值点，再把折线段作为插值函数逼近\(f\).
+
+假设已知节点\(a = x_0 < x_1 < \dotsb < x_n = b\)上的函数值\(f_0,f_1,\dotsc,f_n\)，
+记\(
+	h_k \defeq x_{k+1} - x_k,
+	h \defeq \max_k h_k
+\)，
+求折线函数\(I_h(x)\)，
+使之满足\begin{enumerate}
+	\item \(I_h \in C[a,b]\)；
+	\item \(I_h(x_k) = f_k\ (k=0,1,2,\dotsc,n)\)；
+	\item \(I_h(x)\)在每个小区间\([x_k,x_{k+1}]\)上都是线性函数,
+\end{enumerate}
+则称“\(I_h\)是一个\DefineConcept{分段线性插值函数}”.
+
+根据上述定义，\(I_h\)可以表示为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P40 (5.1)
+	I_h(x)
+	= f_k \frac{x - x_{k+1}}{x_k - x_{k+1}}
+	+ f_{k+1} \frac{x - x_k}{x_{k+1} - x_k},
+\end{equation}
+其中\(
+	x_k \leq x \leq x_{k+1},
+	k=0,1,2,\dotsc,n-1
+\).
+
+分段线性插值的误差估计可以利用\hyperref[equation:拉格朗日插值.线性插值余项]{拉格朗日线性插值余项公式}得到\begin{equation*}
+	\max_{x_k \leq x \leq x_{k+1}}
+	\abs{f(x) - I_h(x)}
+	\leq \frac{M_2}{2}
+	\max_{x_k \leq x \leq x_{k+1}}
+	\abs{(x - x_k) (x - x_{k+1})}
+\end{equation*}
+或\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P40 (5.2)
+	\max_{a \leq x \leq b}
+	\abs{f(x) - I_h(x)}
+	\leq \frac{M_2}{8} h^2,
+\end{equation*}
+其中\(M_2 \defeq \max_{a \leq x \leq b} \abs{f''(x)}\).
+由此还可以得到\begin{equation*}
+	\lim_{h\to0} I_h(x) = f(x)
+\end{equation*}
+在\([a,b]\)上一致成立，
+即\(I_h\)在\([a,b]\)上一致收敛于\(f\).
+
+\subsection{分段三次厄米插值}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P40
+分段线性插值函数\(I_h\)的导数是间断的.
+若在节点\(x_k\ (k=0,1,2,\dotsc,n)\)上，除了已知函数值\(f_k\)以外，
+还给出导数值\(f'_k = m_k\ (k=0,1,2,\dotsc,n)\)，
+那么就可以构造一个导函数连续的分段插值函数\(I_h\)，
+它满足\begin{enumerate}
+	\item \(I_h \in C^1[a,b]\)；
+	\item \(I_h(x_k) = f_k\ (k=0,1,2,\dotsc,n)\)；
+	\item \(I_h'(x_k) = f'_k\ (k=0,1,2,\dotsc,n)\)；
+	\item \(I_h(x)\)在每个小区间\([x_k,x_{k+1}]\)上都是三次多项式函数.
+\end{enumerate}
+
+根据\hyperref[equation:厄米插值.两点三次厄米插值多项式]{两点三次厄米插值多项式}可知，
+\(I_h\)在区间\([x_k,x_{k+1}]\)上的表达式为\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P41 (5.3)
+	\begin{aligned}
+		I_h(x)
+		&= \left( 1 + 2 \frac{x - x_k}{x_{k+1} - x_k} \right)
+		\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2
+		f_k \\
+		&+ \left( 1 + 2 \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)
+		\left( \frac{x - x_k}{x_{k+1} - x_k} \right)^2
+		f_{k+1} \\
+		&+ (x - x_k)
+		\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2
+		f'_k
+		+ (x - x_{k+1})
+		\left( \frac{x - x_k}{x_{k+1} - x_k} \right)^2
+		f'_{k+1},
+	\end{aligned}
+\end{equation*}
+其中\(k=0,1,2,\dotsc,n-1\).
+
+利用\hyperref[equation:厄米插值.两点三次厄米插值余项]{两点三次厄米插值余项}可得\begin{equation*}
+	\abs{f(x) - I_h(x)}
+	\leq \frac1{384} h_k^4
+	\max_{x_k \leq x \leq x_{k+1}} \abs{f^{(4)}(x)}
+	\quad(x_k \leq x \leq x_{k+1}),
+\end{equation*}
+其中\(h_k \defeq x_{k+1} - x_k\)，
+于是可得下述定理.
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P41 定理4
+设\(f \in C^4[a,b]\)，
+而\(I_h\)是\(f\)在节点\(a = x_0 < x_1 < \dotsb < x_n = b\)上的分段三次厄米插值多项式，
+那么\begin{equation*}
+	\max_{a \leq x \leq b} \abs{f(x) - I_h(x)}
+	\leq \frac{h^4}{384} \max_{a \leq x \leq b} \abs{f^{(4)}(x)},
+\end{equation*}
+其中\(h \defeq \max_{0 \leq k \leq n-1}(x_{k+1} - x_k)\).
+%TODO
+\end{theorem}
+
+上述定理表明分段三次厄米插值比分段线性插值效果明显更好.
+但这种插值要求给出节点上的导数值，所需信息太多，其光滑度也不高（只有一阶导数连续，二阶以上导数不保证连续），
+改进这种插值以克服其缺点就导致三次样条插值的提出.
