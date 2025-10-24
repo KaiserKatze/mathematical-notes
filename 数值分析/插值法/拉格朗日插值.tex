@@ -165,6 +165,53 @@
 	\frac{M}{(n+1)!} \abs{\omega_{n+1}(x)}.
 \end{equation*}
 
+应当指出，余项表达式 \labelcref{equation:拉格朗日插值.拉格朗日插值余项}
+只有在\(f\)存在高阶导数时才能应用.
+\(\xi\)在\((a,b)\)内的具体位置通常不可能给出.
+如果我们可以求出\(M_{n+1} \defeq \max_{a \leq x \leq b} \abs{f^{(n+1)}(x)}\)，
+那么插值多项式\(L_n\)逼近\(f\)的截断误差限为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P27 (2.14)
+	\abs{R_n(x)}
+	\leq \frac{M_{n+1}}{(n+1)!} \abs{\omega_{n+1}(x)}.
+\end{equation}
+特别地，当\(n=1\)时，线性插值余项为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P27 (2.15)
+	R_1(x) = \frac12 f''(\xi) (x-x_0)(x-x_1)
+	\quad(x_0 \leq \xi \leq x_1);
+\end{equation}
+当\(n=2\)时，抛物插值余项为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P27 (2.16)
+	R_1(x) = \frac16 f'''(\xi) (x-x_0)(x-x_1)(x-x_2)
+	\quad(x_0 \leq \xi \leq x_2).
+\end{equation}
+
+利用余项表达式 \labelcref{equation:拉格朗日插值.拉格朗日插值余项}，
+当\(f(x) = x^k\ (k \leq n)\)时，
+由于\(f^{(n+1)}(x) = 0\)，
+所以\begin{equation*}
+	R_n(x)
+	= x^k - \sum_{i=0}^n x_i^k l_i(x)
+	= 0,
+\end{equation*}
+由此得\begin{equation}\label{equation:拉格朗日插值.拉格朗日插值基函数的性质1}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P27 (2.17)
+	\sum_{i=0}^n x_i^k l_i(x)
+	= x^k
+	\quad(k=0,1,2,\dotsc,n).
+\end{equation}
+特别地，当\(k=0\)时，有\begin{equation}\label{equation:拉格朗日插值.拉格朗日插值基函数的性质2}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P27 (2.18)
+	\sum_{i=0}^n l_i(x) = 1.
+\end{equation}
+\cref{equation:拉格朗日插值.拉格朗日插值基函数的性质1,equation:拉格朗日插值.拉格朗日插值基函数的性质2}
+也是插值基函数的性质，利用它们可以计算一些和式的值.
+
+利用余项表达式 \labelcref{equation:拉格朗日插值.拉格朗日插值余项} 还可以知道，
+如果目标函数\(f\)是一个\(n\)次一元多项式，
+由于\(f^{(n+1)}(x) = 0\)，
+所以\(R_n(x) = f(x) - L_n(x) = 0\)，
+即它的插值多项式\(L_n(x)\)与\(f(x)\)相等.
+
 \begin{example}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P28 例2
 已知\begin{equation*}
