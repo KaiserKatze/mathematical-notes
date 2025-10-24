@@ -146,3 +146,139 @@
 	R(x) = \frac1{4!} f^{(4)}(\xi) (x-x_0) (x-x_1)^2 (x-x_2),
 \end{equation*}
 其中\(\xi\)位于\(x_0,x_1,x_2\)和\(x\)所界定的范围内.
+
+\subsection{厄米插值的应用 --- 两点三次厄米插值}
+给定两个节点\(x_k\)和\(x_{k+1}\)，
+要求插值多项式\(H_3(x)\)，
+使之满足\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P37 (4.6)
+	H_3(x_k) = y_k,
+	\qquad
+	H_3(x_{k+1}) = y_{k+1},
+	\qquad
+	H_3'(x_k) = m_k,
+	\qquad
+	H_3'(x_{k+1}) = m_{k+1}.
+\end{equation*}
+采用基函数方法，
+令\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P37 (4.7)
+	H_3(x)
+	\defeq
+	\alpha_3(x) y_k
+	+ \alpha_{k+1}(x) y_{k+1}
+	+ \beta_k(x) + m_k
+	+ \beta_{k+1}(x) m_{k+1},
+\end{equation*}
+其中\(\alpha_k(x),\alpha_{k+1}(x),\beta_k(x),\beta_{k+1}(x)\)
+是关于节点\(x_k\)和\(x_{k+1}\)的三次厄米插值奇函数，
+它们应当分别满足条件\begin{gather*}
+	\alpha_k(x_k) = 1,
+	\qquad
+	\alpha_k(x_{k+1}) = 0,
+	\qquad
+	\alpha_k'(x_k)
+	= \alpha_k'(x_{k+1})
+	= 0, \\
+	\alpha_{k+1}(x_k) = 0,
+	\qquad
+	\alpha_{k+1}(x_{k+1}) = 1,
+	\qquad
+	\alpha_{k+1}'(x_k)
+	= \alpha_{k+1}'(x_{k+1})
+	= 0, \\
+	\beta_k(x_k)
+	= \beta_k(x_{k+1})
+	= 0,
+	\qquad
+	\beta_k'(x_k) = 1,
+	\qquad
+	\beta_k'(x_{k+1}) = 0, \\
+	\beta_{k+1}(x_k)
+	= \beta_{k+1}(x_{k+1})
+	= 0,
+	\qquad
+	\beta_{k+1}'(x_k) = 0,
+	\qquad
+	\beta_{k+1}(x_{k+1}) = 1.
+\end{gather*}
+根据给定条件，令\begin{equation*}
+	\alpha_k(x)
+	\defeq
+	(a x + b)
+	\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2,
+\end{equation*}
+显然\begin{equation*}
+	\alpha_k(x_{k+1})
+	= \alpha_k'(x_{k+1})
+	= 0.
+\end{equation*}
+再利用\begin{equation*}
+	\alpha_k(x_k)
+	= a x_k + b
+	= 1,
+\end{equation*}
+及\begin{equation*}
+	\alpha_k'(x_k)
+	= 2 \frac{a x_k + b}{x_k - x_{k+1}} + a
+	= 0,
+\end{equation*}
+解得\begin{equation*}
+	a = - \frac{2}{x_k - x_{k+1}},
+	\qquad
+	b = 1 + \frac{2 x_k}{x_k - x_{k+1}}.
+\end{equation*}
+于是求得\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P38 (4.8)
+	\alpha_k(x)
+	= \left( 1 + 2 \frac{x - x_k}{x_{k+1} - x_k} \right)
+	\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2.
+\end{equation*}
+同理可得\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P38 (4.9)
+	\alpha_{k+1}(x)
+	= \left( 1 + 2 \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)
+	\left( \frac{x - x_k}{x_{k+1} - x_k} \right)^2.
+\end{equation*}
+为求\(\beta_k(x)\)，
+根据给定条件，令\begin{equation*}
+	\beta_k(x)
+	\defeq
+	a (x-x_k)
+	\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2,
+\end{equation*}
+直接由\(\beta_k'(x_k) = a = 1\)得到\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P38 (4.10)
+	\beta_k(x)
+	= (x-x_k)
+	\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2.
+\end{equation*}
+同理有\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P38 (4.11)
+	\beta_{k+1}(x)
+	= (x-x_{k+1})
+	\left( \frac{x - x_k}{x_{k+1} - x_k} \right)^2.
+\end{equation*}
+综上所述，有\begin{align*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P38 (4.12)
+	H_3(x)
+	&= \left( 1 + 2 \frac{x - x_k}{x_{k+1} - x_k} \right)
+	\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2
+	y_k
+	+ \left( 1 + 2 \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)
+	\left( \frac{x - x_k}{x_{k+1} - x_k} \right)^2
+	y_{k+1} \\
+	&+ (x - x_k)
+	\left( \frac{x - x_{k+1}}{x_k - x_{k+1}} \right)^2
+	m_k
+	+ (x - x_{k+1})
+	\left( \frac{x - x_k}{x_{k+1} - x_k} \right)^2
+	m_{k+1},
+\end{align*}
+它的余项为\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P39 (4.13)
+	R_3(x) = f(x) - H_3(x)
+	= \frac1{4!} f^{(4)}(\xi)
+	(x - x_k)^2 (x - x_{k+1})^2
+	\quad(x_k < \xi < x_{k+1}).
+\end{equation*}
