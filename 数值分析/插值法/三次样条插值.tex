@@ -16,11 +16,66 @@
 \end{definition}
 
 \begin{definition}
+给定节点\(a = x_0 < x_1 < \dotsb < x_n = b\)，
+设\(S\)是节点\(x_0,x_1,\dotsc,x_n\)上的三次样条插值函数.
 若在节点\(x_j\)上给定函数值\(y_j = f(x_j)\ (j=0,1,2,\dotsc,n)\)，
-并成立\begin{equation*}
+并成立\begin{equation}\label{equation:三次样条插值.三次样条插值条件}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.1)
 	S(x_j) = y_j
 	\quad(j=0,1,2,\dotsc,n),
-\end{equation*}
+\end{equation}
 则称“\(S\)是\DefineConcept{三次样条插值函数}”.
 \end{definition}
+
+由定义可知，要想求出\(S\)，
+就必须在每个小区间\([x_j,x_{j+1}]\)上确定4个待定参数.
+由于共有\(n\)个小区间，
+所以一共需要确定\(4n\)个参数.
+因为\(S\)在\([a,b]\)上二阶导数连续，
+在节点\(x_j\ (j=1,2,\dotsc,n-1)\)满足\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.2)
+	S(x_j^-) = S(x_j^+),
+	\qquad
+	S'(x_j^-) = S'(x_j^+),
+	\qquad
+	S''(x_j^-) = S''(x_j^+).
+\end{equation*}
+这里一共有\(3n-3\)个条件，
+再加上\(S\)满足插值条件 \labelcref{equation:三次样条插值.三次样条插值条件}，
+一共有\(4n-2\)个条件，
+因此还需要加上2个条件才能确定\(S\).
+通常可以在区间\([a,b]\)的端点\(a = x_0, b = x_n\)的基础上各加一个条件（称之为\DefineConcept{边界条件}）.
+边界条件可以根据实际问题的要求予以确定.
+
+常见的边界条件有以下三种类型：\begin{enumerate}
+	\item 已知两端的一阶导数值，即\begin{equation*}
+	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.3)
+		S'(x_0) = f'_0,
+		\qquad
+		S'(x_n) = f'_n;
+	\end{equation*}
+
+	\item 已知两端的二阶导数值\begin{equation*}
+	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.4)
+		S''(x_0) = f''_0,
+		\qquad
+		S''(x_n) = f''_n;
+	\end{equation*}
+	特别地，把\begin{equation*}
+	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.4)'
+		S''(x_0) = S''(x_n) = 0
+	\end{equation*}
+	称为\DefineConcept{自然边界条件}；
+
+	\item 已知\(f\)以\(x_n-x_0\)为周期，从而有\begin{equation*}
+	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.5)
+		S(x_0^+) = S(x_n^-),
+		\qquad
+		S'(x_0^+) = S'(x_n^-),
+		\qquad
+		S''(x_0^+) = S''(x_n^-),
+		\qquad
+		y_0 = y_n,
+	\end{equation*}
+	并将\(S\)称为\DefineConcept{周期样条函数}.
+\end{enumerate}
