@@ -17,9 +17,9 @@
 
 \begin{definition}
 给定节点\(a = x_0 < x_1 < \dotsb < x_n = b\)，
-设\(S\)是节点\(x_0,x_1,\dotsc,x_n\)上的三次样条插值函数.
+设\(S\)是节点\(x_0,x_1,\dotsc,x_n\)上的三次样条函数.
 若在节点\(x_j\)上给定函数值\(y_j = f(x_j)\ (j=0,1,2,\dotsc,n)\)，
-并成立\begin{equation}\label{equation:三次样条插值.三次样条插值条件}
+并成立\begin{equation}\label{equation:三次样条插值.插值条件}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.1)
 	S(x_j) = y_j
 	\quad(j=0,1,2,\dotsc,n),
@@ -31,51 +31,252 @@
 就必须在每个小区间\([x_j,x_{j+1}]\)上确定4个待定参数.
 由于共有\(n\)个小区间，
 所以一共需要确定\(4n\)个参数.
+
 因为\(S\)在\([a,b]\)上二阶导数连续，
-在节点\(x_j\ (j=1,2,\dotsc,n-1)\)满足\begin{equation*}
+在节点\(x_j\ (j=1,2,\dotsc,n-1)\)满足\begin{equation}\label{equation:三次样条插值.中间条件}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.2)
 	S(x_j^-) = S(x_j^+),
 	\qquad
 	S'(x_j^-) = S'(x_j^+),
 	\qquad
 	S''(x_j^-) = S''(x_j^+).
-\end{equation*}
+\end{equation}
 这里一共有\(3n-3\)个条件，
-再加上\(S\)满足插值条件 \labelcref{equation:三次样条插值.三次样条插值条件}，
+再加上\(S\)满足插值条件 \labelcref{equation:三次样条插值.插值条件}，
 一共有\(4n-2\)个条件，
 因此还需要加上2个条件才能确定\(S\).
 通常可以在区间\([a,b]\)的端点\(a = x_0, b = x_n\)的基础上各加一个条件（称之为\DefineConcept{边界条件}）.
 边界条件可以根据实际问题的要求予以确定.
 
 常见的边界条件有以下三种类型：\begin{enumerate}
-	\item 已知两端的一阶导数值，即\begin{equation*}
+	\item 已知两端的一阶导数值，即\begin{equation}\label{equation:三次样条插值.边界条件1}
 	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.3)
 		S'(x_0) = f'_0,
 		\qquad
 		S'(x_n) = f'_n;
-	\end{equation*}
+	\end{equation}
 
-	\item 已知两端的二阶导数值\begin{equation*}
+	\item 已知两端的二阶导数值\begin{equation}\label{equation:三次样条插值.边界条件2}
 	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.4)
 		S''(x_0) = f''_0,
 		\qquad
 		S''(x_n) = f''_n;
-	\end{equation*}
-	特别地，把\begin{equation*}
+	\end{equation}
+	特别地，把\begin{equation}\label{equation:三次样条插值.边界条件3}
 	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.4)'
 		S''(x_0) = S''(x_n) = 0
-	\end{equation*}
+	\end{equation}
 	称为\DefineConcept{自然边界条件}；
 
-	\item 已知\(f\)以\(x_n-x_0\)为周期，从而有\begin{equation*}
+	\item 如果已知\(f\)以\(x_n-x_0\)为周期，
+	那么\(S\)必须满足以下周期性边界条件\begin{equation}\label{equation:三次样条插值.边界条件4}
 	%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.5)
-		S(x_0^+) = S(x_n^-),
+		S(x_0^+) = S(x_n^-)
+		= y_0 = y_n,
 		\qquad
 		S'(x_0^+) = S'(x_n^-),
 		\qquad
 		S''(x_0^+) = S''(x_n^-),
-		\qquad
-		y_0 = y_n,
-	\end{equation*}
-	并将\(S\)称为\DefineConcept{周期样条函数}.
+	\end{equation}
+	由此确定的样条函数\(S\)称为\DefineConcept{周期样条函数}.
 \end{enumerate}
+
+\subsection{样条插值函数的建立}
+构造满足插值条件 \labelcref{equation:三次样条插值.插值条件}
+及相应边界条件的三次样条插值函数\(S\)的表达式可以有多种方法.
+例如，可以直接利用分段三次厄米插值，
+只要假定\(S'(x_j) = m_j\ (j=0,1,2,\dotsc,n)\)，
+再由插值条件 \labelcref{equation:三次样条插值.插值条件}
+可得\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P42 (6.6)
+	S(x) = \sum_{j=0}^n (y_j \alpha_j(x) + m_j \beta_j(x)),
+\end{equation*}
+其中\(\alpha_j(x),\beta_j(x)\)是
+由\cref{equation:厄米插值.厄米插值基函数1,equation:厄米插值.厄米插值基函数2,equation:厄米插值.厄米插值基函数3,equation:厄米插值.厄米插值基函数4}
+表示的厄米插值基函数，
+利用内节点二阶光滑条件 \labelcref{equation:三次样条插值.中间条件}
+及相应边界条件
+\labelcref{equation:三次样条插值.边界条件1,equation:三次样条插值.边界条件2,equation:三次样条插值.边界条件3,equation:三次样条插值.边界条件4}，
+就可以得到一个关于\(m_j\ (j=0,1,2,\dotsc,n)\)的三对角方程组，
+只要求出\(m_j\)就能得到所求的三次样条函数\(S\).
+
+下面我们讨论另一种构造方法：
+利用\(S\)的二阶导数值\(S''(x_j) = M_j\ (j=0,1,2,\dotsc,n)\)表达\(S\).
+由于\(S\)在区间\([x_j,x_{j+1}]\)上是三次多项式，
+故\(S''(x)\)在\([x_j,x_{j+1}]\)上是线性函数，
+可以表示为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P43 (6.7)
+	S''(x) = M_j \frac{x_{j+1} - x}{h_j} + M_{j+1} \frac{x - x_j}{h_j}.
+\end{equation}
+对\(S''\)积分两次并利用\(S(x_j) = y_j\)和\(S(x_{j+1}) = y_{j+1}\)，
+可以定出积分常数，
+于是得到三次样条表达式\begin{equation}\label{equation:三次样条插值.用二阶导数值表示三次样条插值函数}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P43 (6.8)
+	\begin{aligned}
+		S(x) &= M_j \frac{(x_{j+1} - x)^3}{6 h_j} + M_{j+1} \frac{(x - x_j)^3}{6 h_j} \\
+		&+ \left( y_j - \frac{M_j h_j^2}{6} \right) \frac{x_{j+1} - x}{h_j}
+		+ \left( y_{j+1} - \frac{M_{j+1} h_j^2}{6} \right) \frac{x - x_j}{h_j},
+	\end{aligned}
+\end{equation}
+其中\(j=0,1,2,\dotsc,n-1\).
+这里\(M_j\ (j=0,1,2,\dotsc,n)\)是未知的.
+为了确定\(M_j\)的取值，
+对\(S\)求导得\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P43 (6.9)
+	S'(x) = -M_j \frac{(x_{j+1} - x)^2}{2 h_j}
+	+ M_{j+1} \frac{(x - x_j)^2}{2 h_j}
+	+ \frac{y_{j+1} - y_j}{h_j}
+	- \frac{M_{j+1} - M_j}{6} h_j;
+\end{equation}
+由此可以求得\begin{equation*}
+	S'(x_j^+)
+	= -\frac{h_j}{3} M_j
+	- \frac{h_j}{6} M_{j+1}
+	+ \frac{y_{j+1} - y_j}{h_j}.
+\end{equation*}
+类似地可以求出\(S\)在区间\([x_{j-1},x_j]\)上的表达式，
+进而有\begin{equation*}
+	S'(x_j^-)
+	= \frac{h_{j-1}}{6} M_{j-1}
+	+ \frac{h_{j-1}}{3} M_j
+	+ \frac{y_j - y_{i-1}}{h_{j-1}}.
+\end{equation*}
+利用\(S'(x_j^+) = S'(x_j^-)\)可得\begin{equation}\label{equation:三次样条插值.一阶光滑的必要条件}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P43 (6.10)
+	\mu_j M_{j-1} + 2 M_j + \lambda_j M_{j+1}
+	= d_j
+	\quad(j=1,2,\dotsc,n-1),
+\end{equation}
+其中\begin{align}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P43 (6.11)
+	\mu_j
+	&= \frac{h_{j-1}}{h_{j-1} + h_j}
+	\quad(j=1,2,\dotsc,n-1), \\
+	\lambda_j
+	&= \frac{h_j}{h_{j-1} + h_j}
+	\quad(j=1,2,\dotsc,n-1), \\
+	d_j
+	&= 6 \frac{f[x_j,x_{j+1}] - f[x_{j-1},x_j]}{h_{j-1} + h_j}
+	= 6 f[x_{j-1},x_j,x_{j+1}]
+	\quad(j=1,2,\dotsc,n-1).
+\end{align}
+
+由边界条件 \labelcref{equation:三次样条插值.边界条件1} 可以导出两个方程\begin{equation}\label{equation:三次样条插值.边界条件1的必要条件}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P43 (6.12)
+	\begin{cases}
+		2 M_0 + M_1 = \frac{6}{h_0} ( f[x_0,x_1] - f'_0 ), \\
+		M_{n-1} + 2 M_n = \frac{6}{h_{n-1}} ( f'_n - f[x_{n-1},x_n] ).
+	\end{cases}
+\end{equation}
+如果令\(
+	\lambda_0 \defeq 1,
+	d_0 \defeq \frac{6}{h_0} (f[x_0,x_1] - f'_0),
+	\mu_n = 1,
+	d_n = \frac{6}{h_{n-1}} (f'_n - f[x_{n-1},x_n])
+\)，
+那么\cref{equation:三次样条插值.一阶光滑的必要条件,equation:三次样条插值.边界条件1的必要条件}
+可以写成矩阵形式\begin{equation}\label{equation:三次样条插值.边界条件1对应的线性方程组}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P44 (6.13)
+	\begin{bmatrix}
+		2 & \lambda_0 \\
+		\mu_1 & 2 & \lambda_1 \\
+		& \ddots & \ddots & \ddots \\
+		&& \mu_{n-1} & 2 & \lambda_{n-1} \\
+		&&& \mu_n & 2
+	\end{bmatrix}
+	\begin{bmatrix}
+		M_0 \\ M_1 \\ \vdots \\ M_{n-1} \\ M_n
+	\end{bmatrix}
+	= \begin{bmatrix}
+		d_0 \\ d_1 \\ \vdots \\ d_{n-1} \\ d_n
+	\end{bmatrix}.
+\end{equation}
+
+由边界条件 \labelcref{equation:三次样条插值.边界条件2} 可以导出端点方程\begin{equation}\label{equation:三次样条插值.边界条件2的必要条件}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P44 (6.14)
+	M_0 = f''_0,
+	\qquad
+	M_n = f''_n.
+\end{equation}
+如果令\(
+	\lambda_0 \defeq 0,
+	\mu_n \defeq 0,
+	d_0 \defeq 2 f''_0,
+	d_n \defeq 2 f''_n
+\)，
+则\cref{equation:三次样条插值.一阶光滑的必要条件，equation:三次样条插值.边界条件2的必要条件}
+也可以写成\cref{equation:三次样条插值.边界条件1对应的线性方程组} 的形式.
+
+由边界条件 \labelcref{equation:三次样条插值.边界条件4} 可以导出\begin{equation}\label{equation:三次样条插值.边界条件4的必要条件}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P44 (6.15)
+	M_0 = M_n,
+	\qquad
+	\lambda_n M_1 + \mu_n M_{n-1} + 2 M_n = d_n,
+\end{equation}
+其中\begin{equation*}
+	\lambda_n = \frac{h_0}{h_{n-1} + h_0},
+	\qquad
+	\mu_n = 1 - \lambda_n
+	= \frac{h_{n-1}}{h_{n-1} + h_0},
+	\qquad
+	d_n = 6 \frac{f[x_0,x_1] - f[x_{n-1},x_n]}{h_0 + h_{n-1}}.
+\end{equation*}
+这时\cref{equation:三次样条插值.一阶光滑的必要条件,equation:三次样条插值.边界条件4的必要条件}
+可以写成矩阵形式\begin{equation}\label{equation:三次样条插值.边界条件4对应的线性方程组}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P44 (6.16)
+	\begin{bmatrix}
+		2 & \lambda_1 &&& 2 \\
+		\mu_2 & 2 & \lambda_2 \\
+		& \ddots & \ddots & \ddots \\
+		&& \mu_{n-1} & 2 & \lambda_{n-1} \\
+		\lambda_n &&& \mu_n & 2 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		M_0 \\ M_1 \\ \vdots \\ M_{n-1} \\ M_n
+	\end{bmatrix}
+	= \begin{bmatrix}
+		d_0 \\ d_1 \\ \vdots \\ d_{n-1} \\ d_n
+	\end{bmatrix}.
+\end{equation}
+\cref{equation:三次样条插值.边界条件1对应的线性方程组,equation:三次样条插值.边界条件4对应的线性方程组}
+都是关于\(M_j\ (j=0,1,2,\dotsc,n)\)的三对角线性方程组.
+\(M_j\)在力学上可以解释为细梁在\(x_j\)截面处的弯矩，因此我们称之为\(S\)的\DefineConcept{矩}，
+继而把\cref{equation:三次样条插值.边界条件1对应的线性方程组,equation:三次样条插值.边界条件4对应的线性方程组}
+称为\DefineConcept{三弯矩方程}.
+在三弯矩方程的系数矩阵中，元素\(\lambda_i,\mu_i\)均已完全确定，
+并且它们满足\(
+	\lambda_j \geq 0,
+	\mu_j \geq 0,
+	\lambda_j + \mu_j = 1
+\).
+因此三弯矩方程的系数矩阵是严格对角占优矩阵，
+%TODO 什么是{严格对角占优矩阵}？
+于是它有唯一解.
+求解三弯矩方程可以采用追赶法，
+%TODO 追赶法在《数值分析（第5版）》（李庆扬、王能超、易大义）第5章第3节
+将计算结果代入\cref{equation:三次样条插值.用二阶导数值表示三次样条插值函数} 即可.
+
+\subsection{样条插值函数的收敛性与误差限}
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P46 定理5
+设\(f \in C^4[a,b]\)，
+三次样条函数\(S\)满足边界条件
+\labelcref{equation:三次样条插值.边界条件1}
+或 \labelcref{equation:三次样条插值.边界条件2}，
+令\(
+	h \defeq \max_{0 \leq i \leq n-1} h_i,
+	h_i \defeq x_{i+1} - x_i
+	\ (i=0,1,2,\dotsc,n-1)
+\)，
+则有\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P46 (6.17)
+	\max_{a \leq x \leq b} \abs{f^{(k)}(x) - S^{(k)}(x)}
+	\leq C_k \max_{a \leq x \leq b} \abs{f^{(4)}(x)} h^{4-k}，
+\end{equation*}
+其中\(
+	k=0,1,2;
+	C_0 = \frac{5}{384},
+	C_1 = \frac{1}{24},
+	C_2 = \frac{3}{8}
+\).
+\end{theorem}
