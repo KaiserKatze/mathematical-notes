@@ -611,6 +611,154 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+设数域为\(\mathbb{R}\)，
+集合为\(V \defeq \Set{ \alpha \given \alpha = (\xi_1,\xi_2), \xi_i \in \mathbb{R} }\).
+对于\(\alpha = (\xi_1,\xi_2)\)、\(\beta = (\eta_1,\eta_2)\)及\(k \in \mathbb{R}\)，
+指定运算如下：\begin{center}
+	\begin{tblr}{*2c}
+		加法运算： & \(\alpha \oplus \beta \defeq (\xi_1 + \eta_1,\xi_2 + \eta_2 + \xi_1 \eta_1)\) \\
+		数乘运算： & \(k \odot \alpha \defeq (k \xi_1,k \xi_2 + \frac12 k (k-1) \xi_1^2)\) \\
+	\end{tblr}
+\end{center}
+判断\(V\)是否构成\(\mathbb{R}\)上的线性空间.
+\begin{solution}
+因为实数域对加法、乘法封闭，
+所以对于任意实数\(\xi_1,\xi_2,\eta_1,\eta_2,k\)，
+总有\begin{equation*}
+	\xi_1 + \eta_1,
+	\xi_2 + \eta_2 + \xi_1 \eta_1,
+	k \xi_1,
+	k \xi_2 + \frac12 k(k-1) \xi_1^2
+	\in \mathbb{R},
+\end{equation*}
+于是对于任意向量\(\alpha = (\xi_1,\xi_2),\beta = (\eta_1,\eta_2) \in V = \mathbb{R}^2\)和任意实数\(k\)，
+总有\(
+	\alpha \oplus \beta,
+	k \odot \alpha
+	\in V
+\)，
+也就是说\(V\)对加法、数乘运算都封闭.
+
+因为对于任意向量\(\alpha = (\xi_1,\xi_2),\beta = (\eta_1,\eta_2) \in V\)
+总有\begin{equation*}
+	\beta \oplus \alpha
+	= (\eta_1 + \xi_1,\eta_2 + \xi_2 + \eta_1 \xi_1)
+	= (\xi_1 + \eta_1,\xi_2 + \eta_2 + \xi_1 \eta_1)
+	= \alpha \oplus \beta,
+\end{equation*}
+所以\(\oplus\)满足交换律.
+
+因为对于任意向量\(\alpha = (\xi_1,\xi_2),\beta = (\eta_1,\eta_2),\gamma = (\zeta_1,\zeta_2) \in V\)
+总有\begin{align*}
+	&\hspace{-20pt}
+	\alpha \oplus (\beta \oplus \gamma) \\
+	&= (\xi_1,\xi_2) \oplus (\eta_1 + \zeta_1,\eta_2 + \zeta_2 + \eta_1 \zeta_1) \\
+	&= (\xi_1 + \eta_1 + \zeta_1,\xi_2 + \eta_2 + \zeta_2 + \eta_1 \zeta_1 + \xi_1 (\eta_1 + \zeta_1)) \\
+	&= (\xi_1 + \eta_1 + \zeta_1,\xi_2 + \eta_2 + \zeta_2 + \xi_1 \eta_1 + (\xi_1 + \eta_1) \zeta_1) \\
+	&= (\xi_1 + \eta_1,\xi_2 + \eta_2 + \xi_1 \eta_1) \oplus (\zeta_1,\zeta_2) \\
+	&= (\alpha \oplus \beta) \oplus \zeta,
+\end{align*}
+所以\(\oplus\)满足结合律.
+
+假设对于任意向量\(\alpha = (\xi_1,\xi_2) \in V\)，
+向量\(\omega = (\eta_1,\eta_2) \in V\)
+总满足\(\alpha \oplus \omega = \alpha\)，
+那么\begin{equation*}
+	(\xi_1 + \eta_1,\xi_2 + \eta_2 + \xi_1 \eta_1)
+	= (\xi_1,\xi_2),
+\end{equation*}
+建立关于\(\eta_1,\eta_2\)的方程组\begin{equation*}
+	\begin{cases}
+		\xi_1 + \eta_1 = \xi_1, \\
+		\xi_2 + \eta_2 + \xi_1 \eta_1 = \xi_2
+	\end{cases}
+\end{equation*}
+解得\(\eta_1 = \eta_2 = 0\)，
+即\(\omega = (0,0)\).
+因此\(\omega\)是\(\oplus\)的单位元，亦即是\(V\)的零向量.
+
+假设对于任意向量\(\alpha = (\xi_1,\xi_2) \in V\)，
+向量\(\beta = (\eta_1,\eta_2) \in V\)
+总满足\(\alpha \oplus \beta = \omega\)，
+那么\begin{equation*}
+	(\xi_1 + \eta_1,\xi_2 + \eta_2 + \xi_1 \eta_1)
+	= (0,0),
+\end{equation*}
+建立关于\(\eta_1,\eta_2\)的方程组\begin{equation*}
+	\begin{cases}
+		\xi_1 + \eta_1 = 0, \\
+		\xi_2 + \eta_2 + \xi_1 \eta_1 = 0,
+	\end{cases}
+\end{equation*}
+解得\(\eta_1 = -\xi_1,\eta_2 = \xi_1^2 - \xi_2\)，
+即\(\beta = (-\xi_1,\xi_1^2 - \xi_2)\).
+因此\(V\)中任意一个向量都存在负向量.
+
+\(1\)是实数域的单位元，
+对于任意向量\(\alpha = (\xi_1,\xi_2) \in V\)
+总有\begin{equation*}
+	1 \odot \alpha
+	= (1 \xi_1,1 \xi_2 + \frac12 1 (1-1) \xi_1^2)
+	= (\xi_1,\xi_2)
+	= \alpha.
+\end{equation*}
+
+对于任意实数\(k,l\)和任意向量\(\alpha = (\xi_1,\xi_2) \in V\)，
+总有\begin{align*}
+	&\hspace{-20pt}
+	k \odot (l \odot \alpha) \\
+	&= k \odot (l \xi_1,l \xi_2 + \frac12 l (l-1) \xi_1^2) \\
+	&= (k l \xi_1,k(l \xi_2 + \frac12 l (l-1) \xi_1^2) + \frac12 k (k-1) (l \xi_1)^2) \\
+	&= (kl \xi_1,kl \xi_2 + \frac12 kl (l-1) \xi_1^2 + \frac12 k(k-1) l^2 \xi_1^2) \\
+	&= (kl \xi_1,kl \xi_2 + \frac12 kl (kl-1) \xi_1^2) \\
+	&= (k l) \odot \alpha,
+\end{align*}
+所以\(\odot\)满足结合律.
+
+因为对于任意实数\(k,l\)和任意向量\(\alpha = (\xi_1,\xi_2) \in V\)，
+总有\begin{align*}
+	&\hspace{-20pt}
+	(k + l) \odot \alpha \\
+	&= ((k+l) \xi_1,(k+l) \xi_2 + \frac12 (k+l) ((k+l)-1) \xi_1^2) \\
+	&= (
+		k \xi_1 + l \xi_1,
+		k \xi_2 + \frac12 k (k-1) \xi_1^2
+		+ l \xi_2 + \frac12 l (l-1) \xi_1^2
+		+ (k \xi_1) (l \xi_1)
+	) \\
+	&= (k \xi_1,k \xi_2 + \frac12 k (k-1) \xi_1^2)
+		\oplus (l \xi_1,l \xi_2 + \frac12 l (l-1) \xi_1^2) \\
+	&= (k \odot \alpha) \oplus (l \odot \alpha),
+\end{align*}
+所以\(\odot\)满足对\(+\)的分配律.
+
+因为对于任意实数\(k\)和任意向量\(\alpha = (\xi_1,\xi_2),\beta = (\eta_1,\eta_2) \in V\)，
+总有\begin{align*}
+	&\hspace{-20pt}
+	k \odot (\alpha \oplus \beta) \\
+	&= k \odot (\xi_1 + \eta_1,\xi_2 + \eta_2 + \xi_1 \eta_1) \\
+	&= (
+		k(\xi_1 + \eta_1),
+		k(\xi_2 + \eta_2 + \xi_1 \eta_1)
+		+ \frac12 k (k-1) (\xi_1 + \eta_1)^2
+	) \\
+	&= (
+		k \xi_1 + k \eta_1,
+		(k \xi_2 + \frac12 k (k-1) \xi_1^2)
+		+ (k \eta_2 + \frac12 k (k-1) \eta_1^2)
+		+ (k \xi_1) (k \eta_1)
+	) \\
+	&= (k \xi_1,k \xi_2 + \frac12 k (k-1) \xi_1^2)
+		\oplus (k \eta_1,k \eta_2 + \frac12 k (k-1) \eta_1^2) \\
+	&= (k \odot \alpha) \oplus (k \odot \beta),
+\end{align*}
+所以\(\odot\)满足对\(\oplus\)的分配律.
+
+综上所述，\((V,\mathbb{R},\oplus,\odot)\)是一个线性空间.
+\end{solution}
+\end{example}
+
 \subsection{线性空间的线性关系}
 域\(F\)上的线性空间\(V\)的有限子集，称为“\(V\)中的一个\DefineConcept{向量组}”.
 
