@@ -289,12 +289,14 @@
 		w' = A (k_1,\dotsc,k_n)^T,
 		k_1,\dotsc,k_n \in F
 	} \\
+	% 把\((k_1,\dotsc,k_n)^T\)改写为向量\(w\)
 	&= \Set{
 		w' \in F^m
 		\given
 		w' = A w,
 		w \in F^n
 	}
+	% 由矩阵的像的定义可得
 	= \Img A.
 	\qedhere
 \end{align*}
@@ -319,7 +321,88 @@
 	\LinearMapMatrix(\Ker\vb{A},(\AutoTuple{\alpha}{n}))
 	= \Ker A.
 \end{equation*}
-%TODO proof
+\begin{proof}
+因为\(
+	\vb{A}(k_1 \alpha_1 + \dotsb + k_n \alpha_n)
+	= (\alpha_1,\dotsc,\alpha_n) A (k_1,\dotsc,k_n)^T
+\)，
+所以\begin{align*}
+	&\LinearMapMatrix(\Ker\vb{A},(\AutoTuple{\alpha}{n})) \\
+	% 由命题给出的定义可得
+	&= \Set{
+		w \in F^n
+		\given
+		w = \LinearMapMatrix(v,(\AutoTuple{\alpha}{n})),
+		v \in \Ker\vb{A}
+	} \\
+	% 由线性映射的核空间的定义可得
+	&= \Set{
+		w \in F^n
+		\given
+		w = \LinearMapMatrix(v,(\AutoTuple{\alpha}{n})),
+		\vb{A} v = 0_{V'} \in V',
+		v \in V
+	} \\
+	% 因为\(V\)中每一个向量\(v\)均可由\(V\)的一个基\(\alpha_1,\dotsc,\alpha_n\)线性表出
+	% 由线性空间中向量的坐标的定义可得
+	&= \Set{
+		w \in F^n
+		\given
+		w = (k_1,\dotsc,k_n)^T,
+		\vb{A}(k_1 \alpha_1 + \dotsb + k_n \alpha_n) = 0_{V'} \in V',
+		k_1,\dotsc,k_n \in F
+	} \\
+	% 把线性组合写成向量内积形式
+	&= \Set{
+		w \in F^n
+		\given
+		w = (k_1,\dotsc,k_n)^T,
+		\vb{A} ((\alpha_1,\dotsc,\alpha_n) (k_1,\dotsc,k_n)^T) = 0_{V'} \in V',
+		k_1,\dotsc,k_n \in F
+	} \\
+	% 应用结合律
+	&= \Set{
+		w \in F^n
+		\given
+		w = (k_1,\dotsc,k_n)^T,
+		(\vb{A} (\alpha_1,\dotsc,\alpha_n)) (k_1,\dotsc,k_n)^T = 0_{V'} \in V',
+		k_1,\dotsc,k_n \in F
+	} \\
+	% 由线性映射的矩阵表示的定义可得
+	&= \Set{
+		w \in F^n
+		\given
+		w = (k_1,\dotsc,k_n)^T,
+		((\beta_1,\dotsc,\beta_m) A) (k_1,\dotsc,k_n)^T = 0_{V'} \in V',
+		k_1,\dotsc,k_n \in F
+	} \\
+	% 再次运用结合律
+	&= \Set{
+		w \in F^n
+		\given
+		w = (k_1,\dotsc,k_n)^T,
+		(\beta_1,\dotsc,\beta_m) (A (k_1,\dotsc,k_n)^T) = 0_{V'} \in V',
+		k_1,\dotsc,k_n \in F
+	} \\
+	% 利用线性空间的基的线性无关性
+	&= \Set{
+		w \in F^n
+		\given
+		w = (k_1,\dotsc,k_n)^T,
+		A (k_1,\dotsc,k_n)^T = 0' \in F^m,
+		k_1,\dotsc,k_n \in F
+	} \\
+	% 把\((k_1,\dotsc,k_n)^T\)改写为向量\(w\)
+	&= \Set{
+		w \in F^n
+		\given
+		A w = 0' \in F^m
+	}
+	% 由矩阵的像的定义可得
+	= \Ker A.
+	\qedhere
+\end{align*}
+\end{proof}
 \end{proposition}
 
 \begin{example}
