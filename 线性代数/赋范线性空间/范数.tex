@@ -112,38 +112,6 @@
 但是，显然\(p(\alpha) = 0\)并不意味着\(\alpha = 0\).
 \end{example}
 
-\begin{definition}% 向量的范数
-%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P53
-设\(\vb{x} \defeq (x_1,\dotsc,x_n)^T \in \mathbb{R}^n\).
-定义：\begin{align*}
-	\norm{\vb{x}}_\infty
-	&\defeq
-	\max_{1 \leq i \leq n} \abs{x_i}, \\
-	\norm{\vb{x}}_1
-	&\defeq
-	\sum_{i=1}^n \abs{x_i}, \\
-	\norm{\vb{x}}_2
-	&\defeq
-	\left( \sum_{i=1}^n x_i^2 \right)^{\frac12}.
-\end{align*}
-\end{definition}
-
-\begin{definition}% 连续函数的范数
-%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P53
-设\(f \in C[a,b]\).
-定义：\begin{align*}
-	\norm{f}_\infty
-	&\defeq
-	\max_{a \leq x \leq b} \abs{f(x)}, \\
-	\norm{f}_1
-	&\defeq
-	\int_a^b \abs{f(x)} \dd{x}, \\
-	\norm{f}_2
-	&\defeq
-	\left( \int_a^b f^2(x) \dd{x} \right)^{\frac12}.
-\end{align*}
-\end{definition}
-
 \subsection{拟范数}
 \begin{definition}
 %@see: 《矩阵分析与应用（第2版）》（张贤达） P24 定义1.3.9
@@ -220,11 +188,42 @@
 其中\(\alpha = (\AutoTuple{a}{n})^T\).
 \end{definition}
 
-易见\begin{gather}
-	\norm{\alpha}_1 = \VectorLengthA{x_1} + \VectorLengthA{x_2} + \dotsb + \VectorLengthA{x_n}, \\
-	\norm{\alpha}_2 = \sqrt{x_1^2 + x_2^2 + \dotsb + x_n^2}, \\
-	\norm{\alpha}_\infty = \max\{\VectorLengthA{x_1},\VectorLengthA{x_2},\dotsc,\VectorLengthA{x_n}\}.
-\end{gather}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P53
+易见\begin{align}
+	\norm{\alpha}_1
+	&= \sum_{i=1}^n \abs{x_i}
+	= \VectorLengthA{x_1} + \VectorLengthA{x_2} + \dotsb + \VectorLengthA{x_n}, \\
+	\norm{\alpha}_2
+	&= \left( \sum_{i=1}^n x_i^2 \right)^{\frac12}
+	= \sqrt{x_1^2 + x_2^2 + \dotsb + x_n^2}, \\
+	\norm{\alpha}_\infty
+	&= \max_{1 \leq i \leq n} \abs{x_i}
+	= \max\{\VectorLengthA{x_1},\VectorLengthA{x_2},\dotsc,\VectorLengthA{x_n}\}.
+\end{align}
+
+\subsection{函数范数}
+\begin{definition}% 连续函数的范数
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P53
+设\(f \in C[a,b]\).
+定义：\begin{equation}
+	\norm{f}_p
+	\defeq
+	\left( \int_a^b f^p(x) \dd{x} \right)^{\frac1p},
+\end{equation}
+称之为“函数\(f\)（在区间\([a,b]\)上）的 \DefineConcept{\(L_p\)范数}”.
+\end{definition}
+
+易见\begin{align}
+	\norm{f}_\infty
+	&\defeq
+	\max_{a \leq x \leq b} \abs{f(x)}, \\
+	\norm{f}_1
+	&\defeq
+	\int_a^b \abs{f(x)} \dd{x}, \\
+	\norm{f}_2
+	&\defeq
+	\left( \int_a^b f^2(x) \dd{x} \right)^{\frac12}.
+\end{align}
 
 \subsection{矩阵范数}
 由所有形状相同的矩阵组成的集合，对加法和标量乘法，成为一个线性空间.
