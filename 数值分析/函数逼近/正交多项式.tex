@@ -407,4 +407,43 @@
 \end{equation*}
 \end{theorem}
 
+\subsection{第二类切比雪夫多项式}
+当区间为\(D \defeq [-1,1]\)，权函数为\(\rho(x) \defeq \sqrt{1-x^2}\)时，
+由\(\{1,x,\dotsc,x^n,\dotsc\}\)正交化得到的多项式函数族
+称为\DefineConcept{第二类切比雪夫多项式函数族}（Chebyshev polynomials of the second kind），
+%@see: https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html
+它可以表示为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P66 (2.16)
+	U_n(x)
+	\defeq
+	\frac{\sin((n+1) \arccos x)}{\sqrt{1-x^2}}.
+\end{equation}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P66
+设\(\{U_n\}_{n\geq0}\)是第二类切比雪夫多项式函数族，
+则\begin{gather}
+	U_0(x) = 1,
+	\qquad
+	U_1(x) = 2x,
+	\qquad
+	U_{n+1}(x) = 2x U_n(x) - U_{n-1}(x)
+	\quad(n=1,2,\dotsc).
+\end{gather}
+\end{property}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P66
+设\(\{U_n\}_{n\geq0}\)是第二类切比雪夫多项式函数族，
+则\(U_i\)和\(U_j\)在\([-1,1]\)上带权\(\rho\)正交，
+且\begin{equation}
+	\def\arraystretch{1.5}
+	\int_{-1}^1 U_i(x) U_j(x) \sqrt{1-x^2} \dd{x}
+	= \begin{cases}
+		0, & i \neq j, \\
+		\frac\pi2, & i = j.
+	\end{cases}
+\end{equation}
+\end{property}
+
 \subsection{其他常用的正交多项式}
