@@ -236,6 +236,109 @@
 \end{property}
 
 \subsection{第一类切比雪夫多项式}
+当区间为\(D \defeq [-1,1]\)，权函数为\(\rho(x) \defeq \frac1{\sqrt{1-x^2}}\)时，
+由\(\{1,x,\dotsc,x^n,\dotsc\}\)正交化得到的多项式函数族
+称为\DefineConcept{第一类切比雪夫多项式函数族}（Chebyshev polynomials of the first kind），
+%@see: https://mathworld.wolfram.com/ChebyshevPolynomialoftheFirstKind.html
+它可以表示为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P61 (2.10)
+	T_n(x) \defeq \cos(n \arccos x)
+	\quad(-1 \leq x \leq 1).
+\end{equation}
+
+第一类切比雪夫多项式具有以下几个重要性质.
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P61 性质1（递推关系）
+设\(\{T_n\}_{n\geq0}\)是第一类切比雪夫多项式函数族，
+则\begin{gather}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P61 (2.11)
+	T_0(x) = 1,
+	\qquad
+	T_1(x) = x,
+	\qquad
+	T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x)
+	\quad(n=1,2,\dotsc).
+\end{gather}
+\end{property}
+\begin{remark}
+由递推关系可以推得\(T_n(x)\)的最高次项系数为\(2^{n-1}\ (n=1,2,\dotsc)\).
+\end{remark}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P62 性质2
+设\(\{T_n\}_{n\geq0}\)是第一类切比雪夫多项式函数族，
+则\(T_i\)和\(T_j\)在\([-1,1]\)上带权\(\rho\)正交，
+且\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P62 (2.12)
+	\def\arraystretch{1.5}
+	\int_{-1}^1 \frac{T_i(x) T_j(x)}{\sqrt{1-x^2}} \dd{x}
+	= \begin{cases}
+		0, & i \neq j, \\
+		\frac\pi2, & i = j \neq 0, \\
+		\pi, & i = j = 0.
+	\end{cases}
+\end{equation}
+\end{property}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P62 性质3
+设\(\{T_n\}_{n\geq0}\)是第一类切比雪夫多项式函数族，
+那么\(T_{2k}(x)\)只含\(x\)的偶次幂，
+而\(T_{2k+1}(x)\)只含\(x\)的奇次幂.
+\end{property}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P62 性质4
+设\(\{T_n\}_{n\geq0}\)是第一类切比雪夫多项式函数族，
+则\(T_n\)在\([-1,1]\)上有\(n\)个零点：\begin{equation}
+	x_k = \cos\frac{2k-1}{2n}\pi
+	\quad(k=1,2,\dotsc,n).
+\end{equation}
+\end{property}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P62 性质5
+设\(\{T_n\}_{n\geq0}\)是第一类切比雪夫多项式函数族，
+则\(T_n\)的首项\(x^n\)的系数为\(2^{n-1}\ (n=1,2,\dotsc)\).
+\end{property}
+
+若令\begin{equation*}
+	\tilde{T}_0(x) \defeq 1,
+	\qquad
+	\tilde{T}_n(x) \defeq \frac1{2^{n-1}} T_n(x)
+	\quad(n=1,2,\dotsc),
+\end{equation*}
+则\(\tilde{T}_n\)的首项系数为\(1\).
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P62 定理6
+设\(\tilde{H}_n\)是所有次数不大于\(n\)的、首项系数为\(1\)的多项式的集合，
+则对于任意函数\(P \in \tilde{H}_n\)，
+有\begin{equation*}
+	\max_{-1 \leq x \leq 1} \abs{\tilde{T}_n(x)}
+	\leq \max_{-1 \leq x \leq 1} \abs{P(x)},
+\end{equation*}
+且\begin{equation*}
+	\max_{-1 \leq x \leq 1} \abs{\tilde{T}_n(x)}
+	= \frac1{2^{n-1}}.
+\end{equation*}
+\end{theorem}
+\begin{remark}
+上述定理表明，
+在所有首项系数为\(1\)的\(n\)次多项式的集合\(\tilde{H}_n\)中，
+有\begin{equation*}
+	\norm{\tilde{T}_n}_\infty
+	= \min_{P \in \tilde{H}_n} \norm{P}_\infty,
+\end{equation*}
+所有\(\tilde{T}_n\)是\(\tilde{H}_n\)中最大值最小的多项式，
+即\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P63 (2.13)
+	\max_{-1 \leq x \leq 1} \abs{\tilde{T}_n(x)}
+	= \min_{P \in \tilde{H}_n} \max_{-1 \leq x \leq 1} \abs{P(x)}
+	= \frac1{2^{n-1}}.
+\end{equation*}
+利用这个结论，可以求\(P \in H_n\)在\(H_{n-1}\)中的最佳一致逼近多项式.
+\end{remark}
 
 \subsection{切比雪夫多项式零点插值}
 
