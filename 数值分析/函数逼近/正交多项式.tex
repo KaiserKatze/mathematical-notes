@@ -1,0 +1,105 @@
+\section{正交多项式}
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P57 定义5
+设区间\(D \subseteq \mathbb{R}\)，
+\(f,g\)都是\(D\)上的连续函数，
+\(\rho\)是\(D\)上的一个权函数.
+如果函数\(f\)与\(g\)的带权\(\rho\)的内积为零，
+即\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P57 (2.1)
+	(f,g)
+	= \int_D \rho(x) f(x) g(x) \dd{x}
+	= 0,
+\end{equation*}
+则称“\(f\)与\(g\)在\(D\)上\DefineConcept{带权\(\rho\)正交}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P57 定义5
+设区间\(D \subseteq \mathbb{R}\)上的一个连续函数族\(\{\phi_n\}_{n\geq0}\)满足\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P57 (2.2)
+	(\phi_i,\phi_j)
+	= \int_D \rho(x) \phi_i(x) \phi_j(x) \dd{x}
+	= \begin{cases}[cl]
+		0, & i \neq j, \\
+		A_j, & i = j,
+	\end{cases}
+\end{equation*}
+其中\(A_j > 0\ (j=0,1,2,\dotsc)\)是常数，
+则称“\(\{\phi_n\}_{n\geq0}\)是\(D\)上的一个\DefineConcept{带权\(\rho\)正交函数族}”.
+特别地，如果\(A_j = 1\ (j=0,1,2,\dotsc)\)，
+则称“\(\{\phi_n\}_{n\geq0}\)是\(D\)上的一个\DefineConcept{（带权\(\rho\)）标准正交函数族}”.
+\end{definition}
+
+\begin{example}
+三角函数族\begin{equation*}
+	1,\cos x,\sin x,\cos2x,\sin2x,\dotsc
+\end{equation*}
+就是在区间\([-\pi,\pi]\)上的正交函数族，
+这是因为\begin{gather*}
+	(1,1) = 2\pi, \\
+	(\sin m x,\sin m x)
+	= (\cos m x,\cos m x)
+	= \pi
+	\quad(m=1,2,\dotsc), \\
+	(1,\cos m x)
+	= (1,\sin m x)
+	= 0
+	\quad(m=1,2,\dotsc), \\
+	(\cos m x,\sin n x)
+	= 0
+	\quad(m,n=1,2,\dotsc), \\
+	(\cos m x,\cos n x)
+	= (\sin m x,\sin n x)
+	= 0
+	\quad(m,n=1,2,\dotsc;m \neq n).
+\end{gather*}
+\end{example}
+
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P57 定义6
+设\(\{\phi_n\}_{n\geq0}\)是区间\(D \subseteq \mathbb{R}\)上的首项系数\(a_n\neq0\)的\(n\)次多项式函数族，
+\(\rho\)是\(D\)上的一个权函数.
+如果\(\{\phi_n\}_{n\geq0}\)是带权\(\rho\)的正交函数族，
+则称“\(\{\phi_n\}_{n\geq0}\)是\(D\)上的一个\DefineConcept{带权\(\rho\)正交多项式函数族}”.
+\end{definition}
+
+只要给定区间\(D\)和权函数\(\rho\)，
+我们总可以基于一族线性无关的幂函数族\(\{t_n\}_{n\geq0}\)
+（例如实数域上一元多项式环的标准基\(\{1,x,\dotsc,x^n,\dotsc\}\)），
+通过逐个正交化，构造出带权\(\rho\)正交多项式函数族\(\{\phi_n\}_{n\geq0}\)：\begin{equation*}
+	\phi_0(x) \defeq 1,
+	\qquad
+	\phi_n(x) \defeq x^n - \sum_{j=0}^{n-1} \frac{
+			(
+				t_n,
+				\phi_j
+			)
+		}{
+			(
+				\phi_j,
+				\phi_j
+			)
+		}
+		\phi_j(x)
+	\quad(n=1,2,\dotsc).
+\end{equation*}
+这样得到的正交多项式\(\phi_n\)的最高项系数为\(1\).
+
+事实上，若\begin{equation*}
+	c_0 \phi_0(x) + c_1 \phi_1(x) + \dotsb + c_n \phi_n(x) = 0,
+\end{equation*}
+那么用\(\rho(x) \phi_j(x)\ (j=0,1,2,\dotsc)\)去乘上式并积分得\begin{equation*}
+	\sum_{i=0}^n c_i \int_D \rho(x) \phi_i(x) \phi_j(x) \dd{x} = 0.
+\end{equation*}
+由正交性有\begin{equation*}
+	% 当\(i \neq j\)时有\(\int_D \rho(x) \phi_i(x) \phi_j(x) \dd{x} = 0\)
+	c_j \int_D \rho(x) \phi_j(x) \phi_j(x) \dd{x} = 0.
+\end{equation*}
+由于\begin{equation*}
+	(\phi_j,\phi_j)
+	= \int_D \rho(x) \phi_j^2(x) \dd{x}
+	> 0,
+\end{equation*}
+故\(c_j = 0\ (j=0,1,2,\dotsc,n)\).
+由此可知\(\phi_0,\phi_1,\dotsc,\phi_n\)线性无关.
