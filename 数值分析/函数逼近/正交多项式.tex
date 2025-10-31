@@ -490,3 +490,44 @@
 \end{property}
 
 \subsection{厄米多项式}
+当区间为\(D \defeq (-\infty,+\infty)\)，权函数为\(\rho(x) \defeq e^{-x^2}\)时，
+由\(\{1,x,\dotsc,x^n,\dotsc\}\)正交化得到的多项式函数族
+称为\DefineConcept{厄米多项式}（Hermite polynomials），
+%@see: https://mathworld.wolfram.com/HermitePolynomial.html
+它可以表示为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P66 (2.18)
+	H_n(x)
+	\defeq
+	(-1)^n e^{x^2} \dv[n]{x} e^{-x^2}.
+\end{equation}
+
+厄米多项式还可以表示为\begin{equation}
+	H_n(x) = \frac{n!}{2\pi\iu} \oint_\Gamma e^{-t^2 + 2 t x} t^{-n-1} \dd{t}.
+\end{equation}
+其中围线\(\Gamma\)包围原点且沿逆时针方向行进.
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P66
+设\(\{H_n\}_{n\geq0}\)是厄米多项式函数族，
+则\begin{gather}
+	H_0(x) = 1,
+	\qquad
+	H_1(x) = 2x, \\
+	H_{n+1}(x) = 2x H_n(x) - 2n H_{n-1}(x)
+	\quad(n=1,2,\dotsc).
+\end{gather}
+\end{property}
+
+\begin{property}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P66
+设\(\{H_n\}_{n\geq0}\)是厄米多项式函数族，
+则\(H_i\)和\(H_j\)在\([-1,1]\)上带权\(\rho\)正交，
+且\begin{equation}
+	\def\arraystretch{1.5}
+	\int_{-\infty}^{+\infty} H_i(x) H_j(x) e^{-x^2} \dd{x}
+	= \begin{cases}
+		0, & i \neq j, \\
+		2^n n! \sqrt{\pi}, & i = j.
+	\end{cases}
+\end{equation}
+\end{property}
