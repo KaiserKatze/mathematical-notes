@@ -85,21 +85,39 @@
 	\quad(n=1,2,\dotsc).
 \end{equation*}
 这样得到的正交多项式\(\phi_n\)的最高项系数为\(1\).
-
-事实上，若\begin{equation*}
+这是因为，如果假设\(c_0,c_1,\dotsc,c_n \in \mathbb{R}\)满足\begin{equation*}
 	c_0 \phi_0(x) + c_1 \phi_1(x) + \dotsb + c_n \phi_n(x) = 0,
 \end{equation*}
-那么用\(\rho(x) \phi_j(x)\ (j=0,1,2,\dotsc)\)去乘上式并积分得\begin{equation*}
-	\sum_{i=0}^n c_i \int_D \rho(x) \phi_i(x) \phi_j(x) \dd{x} = 0.
+那么用\(\rho(x) \phi_j(x)\ (j=0,1,2,\dotsc,n)\)依次去乘上式并积分得\begin{equation*}
+	\sum_{i=0}^n c_i \int_D \rho(x) \phi_i(x) \phi_j(x) \dd{x} = 0
+	\quad(j=0,1,2,\dotsc,n).
 \end{equation*}
-由正交性有\begin{equation*}
-	% 当\(i \neq j\)时有\(\int_D \rho(x) \phi_i(x) \phi_j(x) \dd{x} = 0\)
-	c_j \int_D \rho(x) \phi_j(x) \phi_j(x) \dd{x} = 0.
+由正交性有，当\(i \neq j\)时有\(\int_D \rho(x) \phi_i(x) \phi_j(x) \dd{x} = 0\)，
+于是上式化为\begin{equation*}
+	c_j \int_D \rho(x) \phi_j(x) \phi_j(x) \dd{x} = 0
+	\quad(j=0,1,2,\dotsc,n).
 \end{equation*}
 由于\begin{equation*}
 	(\phi_j,\phi_j)
 	= \int_D \rho(x) \phi_j^2(x) \dd{x}
-	> 0,
+	> 0
+	\quad(j=0,1,2,\dotsc,n),
 \end{equation*}
 故\(c_j = 0\ (j=0,1,2,\dotsc,n)\).
 由此可知\(\phi_0,\phi_1,\dotsc,\phi_n\)线性无关.
+%TODO 没有证明\(\phi_n\)一定是最高项系数为\(1\)的幂函数
+可以证明：
+\begin{enumerate}
+	\item 区间\(D\)上的次数不超过\(n\)的任意一个多项式函数\(P\)
+	均可表示成\(\phi_0,\phi_1,\dotsc,\phi_n\)的线性组合，
+	即\begin{equation*}
+		P(x) = \sum_{j=0}^n c_j \phi_j(x).
+	\end{equation*}
+
+	\item 函数\(\phi_n\)与区间\(D\)上次数小于\(n\)的任意一个多项式函数\(P\)正交，
+	即\begin{equation*}
+		(\phi_n,P)
+		= \int_D \rho(x) \phi_n(x) P(x) \dd{x}
+		= 0.
+	\end{equation*}
+\end{enumerate}
