@@ -5,15 +5,41 @@
 使得误差\(f\)与\(\phi\)之间的距离在某种度量意义下最小.
 \begin{definition}
 % 这是我自己构思的定义
-设\(D_f \subseteq D_\phi \subseteq \mathbb{R}\)，
-取定\(\Phi \subseteq \mathbb{R}^{D_\phi}\)，
+设\(D_f \subseteq D \subseteq \mathbb{R}\)，
+取定\(\Phi \subseteq \mathbb{R}^{D}\)，
 给定函数\(f\colon D_f \to \mathbb{R}\)，
 给定\(\Phi\)的一个度量\(\rho\)，
 把\begin{equation*}
 	\argmin_{\phi \in \Phi} \rho(f,\phi \SetRestrict D_f)
 \end{equation*}
-称为“函数\(f\)在\(D_\phi\)上的\DefineConcept{最佳逼近函数}”.
+称为“函数\(f\)在\(D\)上的\DefineConcept{最佳逼近函数}”.
 \end{definition}
 
 我们通常将函数空间\(\Phi\)限定为某个区间上的连续函数族\(C[a,b]\)，
 或者进一步限定为某个区间上的次数不超过\(n\)的多项式函数族\(H_n[a,b]\).
+在这种情况下，把\begin{equation*}
+	\argmin_{\phi \in H_n} \rho(f,\phi \SetRestrict D_f)
+\end{equation*}
+称为“函数\(f\)在\(D\)上的\DefineConcept{最佳逼近多项式}”.
+
+如果度量\(\rho\)取为\(L_\infty\)范数，
+那么把\begin{equation*}
+	\argmin_{\phi \in H_n} \max_{x \in D} \abs{f(x) - \phi(x)}
+\end{equation*}
+称为“函数\(f\)在\(D\)上的\DefineConcept{最佳一致逼近多项式}”.
+
+如果度量\(\rho\)取为\(L_2\)范数，
+且\(f\)是连续的，
+那么把\begin{equation*}
+	\argmin_{\phi \in H_n} \int_D (f(x) - \phi(x))^2 \dd{x}
+\end{equation*}
+称为“函数\(f\)在\(D\)上的\DefineConcept{最佳平方逼近多项式}”.
+
+如果度量\(\rho\)取为\(L_2\)范数，
+且\(f\)是离散的，
+那么把\begin{equation*}
+	\argmin_{\phi \in H_n} \sum_{x \in D} (f(x) - \phi(x))^2
+\end{equation*}
+称为“函数\(f\)在\(D\)上的\DefineConcept{最小二乘拟合}”.
+
+本章将着重讨论实际应用多且便于计算的最佳平方逼近与最小二乘拟合.
