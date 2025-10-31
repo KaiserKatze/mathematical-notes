@@ -349,6 +349,50 @@
 利用这个结论，可以求\(P \in H_n\)在\(H_{n-1}\)中的最佳一致逼近多项式.
 \end{remark}
 
+由于切比雪夫多项式是在区间\([-1,1]\)上定义的，
+所以对于任意给定的闭区间\([a,b]\)，
+要通过变换\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P63 (2.14)
+	x = \frac{b-a}{2} t + \frac{a+b}{2}
+\end{equation*}
+将\([a,b]\)映成\([-1,1]\).
+
 \subsection{切比雪夫多项式零点插值}
+切比雪夫多项式\(T_n\)在区间\([-1,1]\)上有\(n\)个零点\begin{equation*}
+	x_k = \cos\frac{2k-1}{2n}\pi
+	\quad(k=1,2,\dotsc,n)
+\end{equation*}
+和\(n+1\)个极值点（包括端点）\begin{equation*}
+	x_k = \cos\frac{k}{n}\pi
+	\quad(k=0,1,2,\dotsc,n).
+\end{equation*}
+这两组点合称为\DefineConcept{切比雪夫点}.
+它们在插值中有重要作用.
+切比雪夫点恰好是单位圆周上等距分布的点的横坐标.
+这些点的横坐标在接近区间\([-1,1]\)的端点处是密集的.
+
+利用切比雪夫点做插值，可以使插值区间最大误差最小化.
+具体来说，对于区间\([-1,1]\)上的\(n+1\)阶连续可导函数\(f\)，
+如果将\(T_{n+1}\)的零点\(
+	x_k = \cos\frac{2k+1}{2(n+1)}\pi
+	\ (k=0,1,2,\dotsc,n)
+\)作为插值节点，
+那么有\begin{equation*}
+	\max_{-1 \leq x \leq 1} \abs{\omega_{n+1}(x)}
+	= \max_{-1 \leq x \leq 1} \abs{\tilde{T}_{n+1}(x)}
+	= \frac1{2^n}.
+\end{equation*}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P64 定理7
+设插值节点\(x_0,x_1,\dotsc,x_n\)是第一类切比雪夫多项式\(T_{n+1}\)的零点，
+被插函数\(f\)在\([-1,1]\)上具有\(n+1\)阶连续导数，
+\(L_n\)是拉格朗日插值多项式，
+则\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P64 (2.15)
+	\max_{-1 \leq x \leq 1} \abs{f(x) - L_n(x)}
+	\leq \frac{1}{(n+1)! 2^n} \norm{f^{(n+1)}(x)}_\infty.
+\end{equation*}
+\end{theorem}
 
 \subsection{其他常用的正交多项式}
