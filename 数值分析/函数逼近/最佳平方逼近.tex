@@ -1,0 +1,79 @@
+\section{最佳平方逼近}
+\begin{definition}
+设区间\(D \subseteq \mathbb{R}\)，
+\(\rho\)是\(D\)上的一个权函数，
+给定连续函数\(f\colon D \to \mathbb{R}\)，
+取定\(\Phi \subseteq C(D)\)，
+把\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P67 (3.1)
+	\argmin_{\phi \in \Phi} \int_D \rho(x) (f(x) - \phi(x))^2 \dd{x}
+\end{equation*}
+称为“函数\(f\)在\(D\)上的\DefineConcept{最佳平方逼近函数}”.
+\end{definition}
+
+假设连续函数族\(\Phi\)可以由一个基\(\{\phi_0,\phi_1,\dotsc,\phi_n\}\)线性表出，
+那么\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P67 (3.2)
+	\argmin_{\phi \in \Phi} \int_D \rho(x) (f(x) - \phi(x))^2 \dd{x}
+	= \argmin_{a_0,a_1,\dotsc,a_n} \int_D \rho(x) \left( \sum_{j=0}^n a_j \phi_j(x) - f(x) \right)^2 \dd{x}.
+\end{equation*}
+由于\begin{equation*}
+	I(a_0,a_1,\dotsc,a_n)
+	\defeq
+	\int_D \rho(x) \left( \sum_{j=0}^n a_j \phi_j(x) - f(x) \right)^2 \dd{x}
+\end{equation*}
+是关于\(a_0,a_1,\dotsc,a_n\)的二次函数，
+那么利用多元函数求极值的必要条件可得\begin{equation*}
+	\pdv{I}{a_k}
+	= 2 \int_D \rho(x) \left( \sum_{j=0}^n a_j \phi_j(x) - f(x) \right) \phi_k(x) \dd{x}
+	= 0
+	\quad(k=0,1,2,\dotsc,n),
+\end{equation*}
+于是有\begin{equation}\label{equation:最佳平方逼近.法方程}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P67 (3.3)
+	\sum_{j=0}^n a_j (\phi_k,\phi_j)
+	= (f,\phi_k)
+	\quad(k=0,1,2,\dotsc,n).
+\end{equation}
+\cref{equation:最佳平方逼近.法方程}
+是关于\(a_0,a_1,\dotsc,a_n\)的线性方程组，
+我们称之为\DefineConcept{法方程}.
+由于\(\phi_0,\phi_1,\dotsc,\phi_n\)线性无关，
+所以\(\phi_0,\phi_1,\dotsc,\phi_n\)的格拉姆行列式
+\(\DeterminantA{G(\phi_0,\phi_1,\dotsc,\phi_n)} \neq 0\)，
+于是线性方程组 \labelcref{equation:最佳平方逼近.法方程} 有唯一解.
+不妨设线性方程组 \labelcref{equation:最佳平方逼近.法方程} 的解是\(a_k = a^*_k\ (k=0,1,2,\dotsc,n)\)，
+记\(
+	\phi^*
+	\defeq \sum_{k=0}^n a^*_k \phi_k
+\)，
+对于任意连续函数\(\phi \in \Phi\)，
+考虑\begin{align*}
+	&\hspace{-15pt}
+	\Delta
+	\defeq
+	\norm{f - \phi}_2^2 - \norm{f - \phi^*}_2^2 \\
+	&= \int_D \rho(x) (f(x) - \phi(x))^2 \dd{x}
+		- \int_D \rho(x) (f(x) - \phi^*(x))^2 \dd{x} \\
+	&= \int_D \rho(x) (\phi(x) - \phi^*(x))^2 \dd{x}
+		+ 2 \int_D \rho(x) (\phi^*(x) - \phi(x)) (f(x) - \phi^*(x)) \dd{x}.
+\end{align*}
+由于\(\phi^*\)的系数\(a^*_k\)是线性方程组 \labelcref{equation:最佳平方逼近.法方程} 的解，
+所以\begin{equation*}
+	\int_D \rho(x) (f(x) - \phi^*(x)) \phi_k(x) \dd{x} = 0
+	\quad(k=0,1,2,\dotsc,n),
+\end{equation*}
+从而有\begin{equation*}
+	\int_D \rho(x) (\phi^*(x) - \phi(x)) (f(x) - \phi^*(x)) \dd{x} = 0,
+\end{equation*}
+于是\begin{equation*}
+	\Delta
+	= \int_D \rho(x) (\phi(x) - \phi^*(x))^2 \dd{x}
+	\geq 0,
+\end{equation*}
+因此\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P67 (3.4)
+	\int_D \rho(x) (f(x) - \phi^*(x))^2 \dd{x}
+	\leq \int_D \rho(x) (f(x) - \phi(x))^2 \dd{x}.
+\end{equation*}
+这就说明函数\(\phi^*\)就是\(f\)在\(D\)上的最佳平方逼近函数.
