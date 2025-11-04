@@ -1569,6 +1569,93 @@
 \end{solution}
 \end{example}
 
+\begin{example}
+设4维线性空间\(V\)的基\(x_1,x_2,x_3,x_4\)
+和基\(y_1,y_2,y_3,y_4\)满足\begin{equation*}
+	\begin{cases}
+		x_1 + 2 x_2 = y_3, \\
+		x_2 + 2 x_3 = y_4, \\
+		y_1 + 2 y_2 = x_3, \\
+		y_2 + 2 y_3 = x_4.
+	\end{cases}
+\end{equation*}
+求基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵.
+\begin{solution}\let\qed\relax
+\begin{proof}[解法一]
+把\(x_1 + 2 x_2 = y_3\)代入\(y_2 + 2 y_3 = x_4\)得\begin{equation*}
+	y_2 + 2 (x_1 + 2 x_2) = x_4,
+	\quad\text{即}\quad
+	y_2 = -2 x_1 - 4 x_2 + x_4.
+\end{equation*}
+把\(y_2 = -2 x_1 - 4 x_2 + x_4\)
+代入\(y_1 + 2 y_2 = x_3\)得\begin{equation*}
+	y_1 + 2 (-2 x_1 - 4 x_2 + x_4) = x_3,
+	\quad\text{即}\quad
+	y_1 = 4 x_1 + 8 x_2 + x_3 - 2 x_4.
+\end{equation*}
+于是\begin{equation*}
+	(y_1,y_2,y_3,y_4)
+	= (x_1,x_2,x_3,x_4)
+	\begin{bmatrix}
+		4 & -2 & 1 & 0 \\
+		8 & -4 & 2 & 1 \\
+		1 & 0 & 0 & 2 \\
+		-2 & 1 & 0 & 0 \\
+	\end{bmatrix},
+\end{equation*}
+这就说明，基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵为\begin{equation*}
+	C \defeq \begin{bmatrix}
+		4 & -2 & 1 & 0 \\
+		8 & -4 & 2 & 1 \\
+		1 & 0 & 0 & 2 \\
+		-2 & 1 & 0 & 0 \\
+	\end{bmatrix}.
+\end{equation*}
+\end{proof}
+\begin{proof}[解法二]
+由题意有\begin{equation*}
+	(x_1,x_2,x_3,x_4)
+	\begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		2 & 1 & 0 & 0 \\
+		0 & 2 & 1 & 0 \\
+		0 & 0 & 0 & 1 \\
+	\end{bmatrix}
+	= (y_1,y_2,y_3,y_4)
+	\begin{bmatrix}
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 2 & 1 \\
+		1 & 0 & 0 & 2 \\
+		0 & 1 & 0 & 0 \\
+	\end{bmatrix}.
+\end{equation*}
+于是基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵为\begin{equation*}
+%@Mathematica: {{1,0,0,0},{2,1,0,0},{0,2,1,0},{0,0,0,1}}.Inverse[{{0,0,1,0},{0,0,2,1},{1,0,0,2},{0,1,0,0}}]
+	C
+	\defeq
+	\begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		2 & 1 & 0 & 0 \\
+		0 & 2 & 1 & 0 \\
+		0 & 0 & 0 & 1 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 2 & 1 \\
+		1 & 0 & 0 & 2 \\
+		0 & 1 & 0 & 0 \\
+	\end{bmatrix}^{-1}
+	= \begin{bmatrix}
+		4 & -2 & 1 & 0 \\
+		8 & -4 & 2 & 1 \\
+		1 & 0 & 0 & 2 \\
+		-2 & 1 & 0 & 0 \\
+	\end{bmatrix}.
+\end{equation*}
+\end{proof}
+\end{solution}
+\end{example}
+
 \subsection{线性空间的笛卡尔和}
 \begin{definition}
 %@see: 《Linear Algebra and Its Applications (Second Edition)》（Peter D. Lax） P10 Definition
