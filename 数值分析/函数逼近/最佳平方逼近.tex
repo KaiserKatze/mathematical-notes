@@ -1,4 +1,5 @@
 \section{最佳平方逼近}
+\subsection{最佳平方逼近的概念，法方程，误差}
 \begin{definition}
 设区间\(D \subseteq \mathbb{R}\)，
 \(\rho\)是\(D\)上的一个权函数，
@@ -94,3 +95,74 @@
 	\leq \int_D \rho(x) (f(x) - \phi(x))^2 \dd{x}.
 \end{equation*}
 这就说明函数\(\phi^*\)就是\(f\)在\(D\)上的最佳平方逼近函数.
+
+\subsection{用多项式函数族作最佳平方逼近}
+设\(H_n\)是区间\([0,1]\)上的次数不超过\(n\)的多项式函数族.
+给定函数\(f \in C[0,1]\).
+若取\begin{equation*}
+	\phi_k(x) \defeq x^k,
+	\qquad
+	\rho(x) \defeq 1,
+\end{equation*}
+则\begin{align*}
+	(\phi_j,\phi_k)
+	&= \int_0^1 x^j \cdot x^k \dd{x}
+	= \int_0^1 x^{j+k} \dd{x}
+	= \frac1{j+k+1},
+	\\
+	(f,\phi_k)
+	&= \int_0^1 f(x) \cdot x^k \dd{x},
+\end{align*}
+显然\(1,x,x^2,\dotsc,x^n\)的格拉姆矩阵\(G(1,x,x^2,\dotsc,x^n)\)
+就是希尔伯特矩阵\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P68 (3.6)
+	H
+	\defeq
+	\begin{bmatrix}
+		1 & 1/2 & \dots & 1/(n+1) \\
+		1/2 & 1/3 & \dots & 1/(n+2) \\
+		\vdots & \vdots && \vdots \\
+		1/(n+1) & 1/(n+2) & \dots & 1/(2n+1) \\
+	\end{bmatrix}
+\end{equation*}
+记\(
+	b_k \defeq (f,\phi_k),
+	\alpha \defeq (a_0,a_1,\dotsc,a_n)^T,
+	\beta \defeq (b_0,b_1,\dotsc,b_n)^T
+\)，
+则\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P68 (3.7)
+	H \alpha = \beta
+\end{equation*}
+的解\(\alpha^* \defeq (a^*_0,a^*_1,\dotsc,a^*_n)^T\)
+就是\(f\)在区间\([0,1]\)上的最佳平方逼近多项式.
+
+用\(\{1,x,x^2,\dotsc,x^n\}\)作基，
+求最佳平方逼近多项式，当\(n\)较大时，
+法方程的系数矩阵 --- 希尔伯特矩阵 --- 是高度病态的，
+%TODO 为什么是高度病态的？见《数值分析（第5版）》（李庆扬、王能超、易大义）第五章
+直接求解法方程是相当困难的，
+因此我们通常采用正交多项式函数作基.
+
+\subsection{用正交函数族作最佳平方逼近}
+设\(f \in C[a,b]\)，
+\(\Phi \defeq \Span\{\phi_0,\phi_1,\dotsc,\phi_n\}\).
+若\(\phi_0,\phi_1,\dotsc,\phi_n\)是正交函数族，
+则法方程的系数矩阵是非奇异矩阵，
+法方程的解为\begin{equation*}
+	\alpha^*
+	\defeq
+	(a^*_0,a^*_1,\dotsc,a^*_n),
+\end{equation*}
+其中\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P69 (3.8)
+	a^*_k
+	\defeq
+	\frac{(f,\phi_k)}{(\phi_k,\phi_k)}.
+\end{equation*}
+于是\(f\)在\(\Phi\)中的最佳平方逼近函数为\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P69 (3.9)
+	S^*(x)
+	\defeq
+	\sum_{k=0}^n \frac{(f,\phi_k)}{(\phi_k,\phi_k)} \phi_k(x).
+\end{equation*}
