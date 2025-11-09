@@ -111,10 +111,10 @@
 
 \subsection{最佳平方逼近的误差}
 显然\(I(a^*_0,a^*_1,\dotsc,a^*_n)\)就是最佳平方逼近的误差的平方，
-% 即\(
-% 	\norm{f - \phi^*}_2^2
-% 	= I(a^*_0,a^*_1,\dotsc,a^*_n)
-% \)，
+即\begin{equation*}
+	\norm{f - \phi^*}_2^2
+	= I(a^*_0,a^*_1,\dotsc,a^*_n).
+\end{equation*}
 将它展开得\begin{align*}
 	&I(a^*_0,a^*_1,\dotsc,a^*_n)
 	= \int_D \rho(x) \left( \sum_{j=0}^n a^*_j \phi_j(x) - f(x) \right)^2 \dd{x} \\
@@ -141,7 +141,7 @@
 	= \sum_{k=0}^n a^*_k (f,\phi_k)
 	= \sum_{j=0}^n a^*_j (f,\phi_j),
 \end{equation*}
-于是最佳平方逼近的误差为\begin{align*}
+于是\begin{align*}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P68 (3.5)
 	&I(a^*_0,a^*_1,\dotsc,a^*_n)
 	= \sum_{j=0}^n a^*_j (f,\phi_j)
@@ -149,10 +149,17 @@
 		+ (f,f) \\
 	&= (f,f) - \sum_{j=0}^n a^*_j (f,\phi_j)
 	%\cref{equation:最佳平方逼近.最佳平方逼近函数}
-	= \norm{f}_2^2 - (f,\phi^*).
+	= \norm{f}_2^2 - (f,\phi^*),
 \end{align*}
+因此最佳平方逼近的误差为\begin{equation}
+	\norm{f - \phi^*}
+	= \sqrt{
+		\norm{f}_2^2 - (f,\phi^*)
+	}.
+\end{equation}
 
 我们还可以借助内积记号理解最佳平方逼近的存在性、唯一性，并估计误差.
+
 由\cref{equation:最佳平方逼近.法方程代入解得到的恒等式,equation:最佳平方逼近.最佳平方逼近函数}
 可知\begin{equation}\label{equation:最佳平方逼近.法方程代入解得到的恒等式.内积形式}
 	(\phi_k,\phi^*)
@@ -189,9 +196,11 @@
 	\norm{f - \phi}_2^2
 	= (f-\phi^*,f-\phi^*) + (\phi-\phi^*,\phi-\phi^*)
 	\geq (f-\phi^*,f-\phi^*)
-	= \norm{f - \phi^*}_2^2.
+	= \norm{f - \phi^*}_2^2,
 \end{equation*}
-而且由\cref{equation:最佳平方逼近.法方程代入解得到的恒等式.内积形式}
+这就说明：\(\phi^*\)是\(f\)在\(D\)上的最佳平方逼近函数.
+
+由\cref{equation:最佳平方逼近.法方程代入解得到的恒等式.内积形式}
 可知\begin{equation*}
 	\sum_{k=0}^n a^*_k (\phi_k,\phi^*)
 	= \sum_{k=0}^n a^*_k (f,\phi_k)
@@ -199,7 +208,7 @@
 	(\phi^*,\phi^*)
 	= (f,\phi^*),
 \end{equation*}
-于是最佳平方逼近的误差为\begin{align*}
+于是\begin{align*}
 	\norm{f - \phi^*}_2^2
 	= (f - \phi^*,f - \phi^*)
 	= (f,f) - (f,\phi^*) - (\phi^*,f) + (\phi^*,\phi^*)
