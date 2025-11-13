@@ -1,1 +1,55 @@
 \section{数值积分}
+\subsection{数值积分的基本思想}
+设函数\(f\)在区间\([a,b]\)上黎曼可积，
+那么我们可以将\begin{equation}\label{equation:数值积分.梯形公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P97 (1.1)
+	\frac{f(a) + f(b)}{2} (b-a)
+\end{equation}
+作为定积分\(\int_a^b f(x) \dd{x}\)的近似值，
+也可以将\begin{equation}\label{equation:数值积分.中矩形公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P98 (1.2)
+	f\left( \frac{a+b}{2} \right) (b-a)
+\end{equation}
+作为定积分\(\int_a^b f(x) \dd{x}\)的近似值.
+我们把\cref{equation:数值积分.梯形公式} 称为\DefineConcept{梯形公式}，
+把\cref{equation:数值积分.中矩形公式} 称为\DefineConcept{中矩形公式}.
+
+一般地，我们常常将\begin{equation}\label{equation:数值积分.机械求积公式}
+	\sum_{k=0}^n A_k f(x_k)
+\end{equation}
+作为定积分\(\int_a^b f(x) \dd{x}\)的近似值，
+其中\(x_k\)称为\DefineConcept{求积节点}，
+\(A_k\)称为\DefineConcept{求积系数}或“伴随节点\(x_k\)的\DefineConcept{权}”.
+可以证明：\(A_k\)仅与\(x_k\)的选取有关，而不依赖于被积函数\(f\)的具体形式.
+
+我们把上述数值积分方法称为\DefineConcept{机械求积}.
+它的特点是将积分求值问题归结为被积函数值的计算，
+避开了牛顿--莱布尼茨公式需要寻求原函数的困难，
+很适合在计算机上使用.
+
+\subsection{代数精度的概念}
+数值求积方法是近似方法.
+为了保证计算精度，我们自然希望求积公式能对“尽可能多”的函数准确成立，这就引出了“代数精度”的概念.
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P99 定义1
+如果求积公式 \labelcref{equation:数值积分.机械求积公式}
+对于次数不超过\(m\)的一元多项式均能准确地成立，
+即\begin{equation*}
+	\int_a^b x^i \dd{x}
+	= \frac{1}{i+1} (b^{i+1} - a^{i+1})
+	= \sum_{k=0}^n A_k x_k^i
+	\quad(i=0,1,2,\dotsc,m),
+\end{equation*}
+但是对于\(m+1\)次一元多项式就不准确成立，
+即\begin{equation*}
+	\int_a^b x^{m+1} \dd{x}
+	= \frac{1}{m+2} (b^{m+2} - a^{m+2})
+	\neq \sum_{k=0}^n A_k x_k^{m+1},
+\end{equation*}
+则称“求积公式 \labelcref{equation:数值积分.机械求积公式}
+具有\(m\)次\DefineConcept{代数精度}”.
+\end{definition}
+
+显然，梯形公式 \labelcref{equation:数值积分.梯形公式}
+和中矩形公式 \labelcref{equation:数值积分.中矩形公式}
+均具有1次代数精度.
