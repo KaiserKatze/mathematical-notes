@@ -17,9 +17,10 @@
 一般地，我们常常将\begin{equation}\label{equation:数值积分.机械求积公式}
 	\sum_{k=0}^n A_k f(x_k)
 \end{equation}
-作为定积分\(\int_a^b f(x) \dd{x}\)的近似值，
-其中\(x_k\)称为\DefineConcept{求积节点}，
-\(A_k\)称为\DefineConcept{求积系数}或“伴随节点\(x_k\)的\DefineConcept{权}”.
+作为定积分\(\int_a^b f(x) \dd{x}\)的近似值.
+我们把\(x_k\)称为\DefineConcept{求积节点}，
+把\(A_k\)称为\DefineConcept{求积系数}或“伴随节点\(x_k\)的\DefineConcept{权}”.
+
 可以证明：\(A_k\)仅与\(x_k\)的选取有关，而不依赖于被积函数\(f\)的具体形式.
 
 我们把上述数值积分方法称为\DefineConcept{机械求积}.
@@ -53,3 +54,76 @@
 显然，梯形公式 \labelcref{equation:数值积分.梯形公式}
 和中矩形公式 \labelcref{equation:数值积分.中矩形公式}
 均具有1次代数精度.
+
+\subsection{插值型求积公式}
+给定一组节点\begin{equation*}
+	a \leq x_0 < x_1 < x_2 < \dotsb < x_n \leq b,
+\end{equation*}
+如果已知函数\(f\)在这些节点的值，
+那么我们可以构造拉格朗日插值多项式\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.9)
+	L_n(x)
+	= \sum_{k=0}^n y_k l_k(x),
+\end{equation*}
+其中\(y_k \defeq f(x_k)\ (k=0,1,2,\dotsc,n)\).
+由于代数多项式\(L_n\)的原函数是容易求出的，
+即\begin{equation*}
+	\int_a^b L_n(x) \dd{x}
+	= \int_a^b \sum_{k=0}^n y_k l_k(x) \dd{x}
+	= \sum_{k=0}^n y_k \int_a^b l_k(x) \dd{x},
+\end{equation*}
+所以可以将\begin{equation*}
+	I_n \defeq \int_a^b L_n(x) \dd{x}
+\end{equation*}
+作为积分\(I \defeq \int_a^b f(x) \dd{x}\)的近似值，
+这时求积系数\(A_k\)可以通过插值基函数\(l_k\)积分得到的，
+即\begin{equation}\label{equation:数值积分.插值型求积公式的求积系数}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P100 (1.6)
+	A_k \defeq \int_a^b l_k(x) \dd{x}
+	\quad(k=0,1,2,\dotsc,n).
+\end{equation}
+我们把采用上述方法构造出来的求积公式\(
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P100 (1.5)
+	\sum_{k=0}^n A_k f(x_k)
+\)
+称为“函数\(f\)的\(n\)阶\DefineConcept{（拉格朗日）插值型求积公式}”.
+
+插值型求积公式的余项为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P101 (1.7)
+	R[f] \defeq \int_a^b R_n(x) \dd{x},
+\end{equation}
+其中\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.12)
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 (2.10)
+% \cref{equation:拉格朗日插值.拉格朗日插值余项}
+	R_n(x) \defeq \frac{f^{(n+1)}(\xi)}{(n+1)!} \omega_{n+1}(x)
+	\quad(a<\xi<b),
+	\qquad
+	\omega_{n+1}(x)
+	\defeq
+	\prod_{i=0}^n (x - x_i).
+\end{equation*}
+
+如果求积公式 \labelcref{equation:数值积分.机械求积公式} 是一个插值型求积公式，
+那么它至少具有\(n\)次代数精度，
+这是因为对于任意一个次数不超过\(n\)的多项式函数\(f\)，它的余项\(R[f]\)等于零.
+
+反过来，如果求积公式 \labelcref{equation:数值积分.机械求积公式} 至少具有\(n\)次代数精度，
+那么它一定是一个插值型求积公式，
+这时求积公式 \labelcref{equation:数值积分.机械求积公式}
+对于每一个插值基函数\(l_k\)都准确成立，
+即\begin{equation*}
+	\int_a^b l_k(x) \dd{x}
+	= \sum_{j=0}^n A_j l_k(x_j).
+\end{equation*}
+注意到\(l_k(x_j) = \delta_{kj}\)，
+所以上式等号右端实际上等于\(A_k\),
+从而有\cref{equation:数值积分.插值型求积公式的求积系数} 成立.
+
+综上所述，我们有以下结论.
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P101 定理1
+求积公式 \labelcref{equation:数值积分.机械求积公式} 至少具有\(n\)次代数精度
+的充分必要条件是
+它是插值型求积公式.
+\end{theorem}
