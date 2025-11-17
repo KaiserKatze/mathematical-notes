@@ -1,1 +1,131 @@
 \section{复合求积公式}
+由于牛顿--柯特斯公式在\(n\geq8\)时不具有稳定性，
+故不可能通过提高阶的方法来提高求积精度.
+为了提高精度，通常可以把积分区间分成若干个子区间，
+再在每个子区间上运用低阶求积公式.
+这种方法称为复合求积法.
+本节只讨论复合梯形公式与复合辛普森公式.
+
+\subsection{复合梯形公式}
+将区间\([a,b]\)划分为\(n\)等份，
+分点\(
+	x_k \defeq a + k h
+	\ (k=0,1,2,\dotsc,n)
+\)，
+其中步长为\(
+	h \defeq \frac{b - a}{h}
+\).
+因为\(
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P106 (3.1)
+	\int_a^b f(x) \dd{x}
+	= \sum_{k=0}^{n-1} \int_{x_k}^{x_{k+1}} f(x) \dd{x}
+\)，
+所以只要在每个子区间\([x_k,x_{k+1}]\ (k=0,1,2,\dotsc,n-1)\)上
+运用梯形公式 \labelcref{equation:数值积分.梯形公式}，
+将\(
+	\frac{h}{2} ( f(x_k) + f(x_{k+1}) )
+\)
+作为定积分\(
+	\int_{x_k}^{x_{k+1}} f(x) \dd{x}
+\)的近似值，
+于是我们可以将\begin{equation}\label{equation:复合求积公式.复合梯形公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P106 (3.2)
+	\begin{aligned}
+		T_n
+		&\defeq \frac{h}{2} \sum_{k=0}^{n-1} ( f(x_k) + f(x_{k+1}) )
+		\\
+		&= \frac{h}{2}
+		\left(
+			f(a) + 2 \sum_{k=1}^{n-1} f(x_k) + f(b)
+		\right)
+	\end{aligned}
+\end{equation}
+作为定积分\(
+	\int_a^b f(x) \dd{x}
+\)的近似值.
+我们把\cref{equation:复合求积公式.复合梯形公式}
+称为\DefineConcept{复合梯形公式}.
+
+复合梯形公式 \labelcref{equation:复合求积公式.复合梯形公式} 的余项为\begin{equation}
+	R_n(f)
+	\defeq
+	-\frac{h^3}{12} \sum_{k=0}^{n-1} f''(\eta_k)
+	\quad(x_k < \eta_k < x_{k+1}).
+\end{equation}
+如果\(f \in C^2[a,b]\)且\begin{equation*}
+	\min_{0 \leq k \leq n-1} f''(\eta_k)
+	\leq
+	\frac1n \sum_{k=0}^{n-1} f''(\eta_k)
+	\leq
+	\max_{0 \leq k \leq n-1} f''(\eta_k),
+\end{equation*}
+则存在\(\eta \in (a,b)\)使得\(
+	f''(\eta)
+	= \frac1n \sum_{k=0}^{n-1} f''(\eta_k)
+\)，
+这时复合梯形公式 \labelcref{equation:复合求积公式.复合梯形公式} 的余项为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P107 (3.3)
+	R_n(f)
+	\defeq
+	-\frac{(b-a) h^2}{12} f''(\eta)
+	\quad(a < \eta < b).
+\end{equation}
+由此可见，对2阶连续可导函数运用复合梯形公式产生的求积误差是\(h^2\)阶无穷小，
+且\(
+	\lim_{n\to\infty} T_n
+	= \int_a^b f(x) \dd{x}
+\)（即复合梯形公式是收敛的）.
+实际上，即便只知道\(f \in C[a,b]\)，也可以得到\(T_n\)的收敛性，
+这是因为只要把\(T_n\)改写为\begin{equation*}
+	T_n = \frac12 \left( \frac{b-a}{n} \sum_{k=0}^{n-1} f(x_k) + \frac{b-a}{n} \sum_{k=1}^n f(x_k) \right),
+\end{equation*}
+当\(n\to\infty\)时，
+上式右端括号内的两个和式均收敛到积分\(\int_a^b f(x) \dd{x}\).
+
+由于\(T_n\)的求积系数总是正数，
+所以复合梯形公式 \labelcref{equation:复合求积公式.复合梯形公式} 是稳定的.
+%TODO proof
+
+\subsection{复合辛普森公式}
+将区间\([a,b]\)划分为\(n\)等份，
+分点\(
+	x_k \defeq a + k h
+	\ (k=0,1,2,\dotsc,n)
+\)，
+其中步长为\(
+	h \defeq \frac{b - a}{h}
+\).
+将每个子区间\([x_k,x_{k+1}]\ (k=0,1,2,\dotsc,n-1)\)的中点记为\(x_{k+\frac12}\)，
+那么我们可以将\begin{equation}\label{equation:复合求积公式.复合辛普森公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P107 (3.4)
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P107 (3.5)
+	\begin{aligned}
+		S_n
+		&\defeq \frac{h}{6} \sum_{k=0}^{n-1} ( f(x_k) + 4 f(x_{k+\frac12}) + f(x_{k+1}) )
+		\\
+		&= \frac{h}{6}
+		\left(
+			f(a) + 4 \sum_{k=0}^{k-1} f(x_{k+\frac12}) + 2 \sum_{k=1}^{n-1} f(x_k) + f(b)
+		\right)
+	\end{aligned}
+\end{equation}
+作为定积分\(
+	\int_a^b f(x) \dd{x}
+\)的近似值.
+我们把\cref{equation:复合求积公式.复合辛普森公式}
+称为\DefineConcept{复合辛普森公式}.
+
+复合辛普森公式 \labelcref{equation:复合求积公式.复合辛普森公式} 的余项为\begin{equation}
+	R_n(f)
+	\defeq
+	-\frac{h}{180} \left( \frac{h}{2} \right)^4
+	\sum_{k=0}^{n-1} f^{(4)}(\eta_k)
+	\quad(x_k < \eta_k < x_{k+1}).
+\end{equation}
+当\(f \in C^4[a,b]\)时，
+复合辛普森公式 \labelcref{equation:复合求积公式.复合辛普森公式} 的余项为\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P107 (3.6)
+	R_n(f)
+	= -\frac{b-a}{180} \left( \frac{h}{2} \right)^4 f^{(4)}(\eta)
+	\quad(a < \eta < b).
+\end{equation}
