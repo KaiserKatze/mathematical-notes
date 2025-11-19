@@ -287,3 +287,100 @@
 	\defeq
 	\sum_{k=0}^n \frac{(f,\phi_k)}{(\phi_k,\phi_k)} \phi_k(x).
 \end{equation*}
+这时平方逼近的误差为\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P69 (3.10)
+	\norm{f - S^*_n}_2
+	= \sqrt{
+		\norm{f}_2^2
+		- \sum_{k=0}^n \left[
+			\frac{(f,\phi_k)}{(\phi_k,\phi_k)}
+		\right]^2
+	}.
+	%TODO 需要验证公式推导是否正确！！！！！！！！！！！！！！！！！！！！！！
+	% 误差这里有点存疑！
+\end{equation*}
+由此可得\DefineConcept{贝塞尔不等式}：\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P69 (3.11)
+	\sum_{k=0}^n
+	(
+		a^*_k
+		\norm{\phi_k}_2
+	)^2
+	\leq
+	\norm{f}_2^2.
+\end{equation}
+
+%==============================================
+设\(f \in C[a,b]\)，
+\(\{\phi_n\}_{n\geq0}\)是\([a,b]\)上的一个带权\(\rho\)正交函数族，
+我们把无穷级数\begin{equation*}
+	\sum_{k=0}^\infty a^*_k \phi_k
+\end{equation*}
+称为\(f\)的广义傅里叶级数，
+其中\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P69 (3.8)
+	a^*_k
+	\defeq
+	\frac{(f,\phi_k)}{(\phi_k,\phi_k)}
+	\quad(k=0,1,2,\dotsc)
+\end{equation*}
+称为广义傅里叶系数.
+这是傅里叶级数的直接推广.
+
+% 下面讨论特殊情况，
+% 设\(\{\phi_k\}_{0 \leq k \leq n}\)是正交多项式，
+% 记\(\Phi \defeq \Span\{\phi_0,\phi_1,\dotsc,\phi_n\}\)，
+
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P70 定理8
+设\(f \in C[a,b]\)，
+记\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P69 (3.9)
+	S^*(x)
+	\defeq
+	\sum_{k=0}^n \frac{(f,\phi_k)}{(\phi_k,\phi_k)} \phi_k(x),
+\end{equation*}
+其中\(\{\phi_k\}_{0 \leq k \leq n}\)是正交多项式函数族，
+则\begin{equation*}
+	\lim_{n\to\infty} \norm{f - S^*_n}_2 = 0.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P70 定理9
+设\(f \in C[-1,1]\)，
+记\(
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P70 (3.13)
+	S^*(x)
+	\defeq
+	\sum_{k=0}^n a^*_k P_k(x),
+\)，
+其中\(\{P_k\}_{0 \leq k \leq n}\)是勒让德多项式函数族，
+而\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P70 (3.14)
+	a^*_k = \frac{(f,P_k)}{(P_k,P_k)}
+	= \frac{2k+1}{2} \int_{-1}^2 f(x) P_k(x) \dd{x},
+\end{equation*}
+则\begin{itemize}
+	\item 平方逼近误差为\begin{equation*}
+		\norm{\delta_k(x)}_2^2
+		= \int_{-1}^1 f^2(x) \dd{x}
+		- \sum_{k=0}^n \frac{2}{2k+1} (a^*_k)^2;
+	\end{equation*}
+
+	\item \begin{equation*}
+		\lim_{n\to\infty} \norm{f - S^*_n}_2 = 0;
+	\end{equation*}
+
+	\item 如果\(f \in C^2[-1,1]\)，
+	那么对于任意\(x \in [-1,1]\)和任意\(\epsilon > 0\)，
+	当\(n\)充分大时，
+	有\begin{equation*}
+		\abs{f(x) - S^*_n(x)}
+		\leq \frac{\epsilon}{\sqrt{n}}.
+	\end{equation*}
+\end{itemize}
+%TODO proof
+\end{theorem}
