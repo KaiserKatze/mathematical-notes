@@ -1,1 +1,49 @@
 \section{牛顿--柯特斯公式}
+\subsection{柯特斯系数}
+对于定积分\(\int_a^b f(x) \dd{x}\)，
+假设我们将积分区间\([a,b]\)划为\(n\)等份，
+步长为\(h = \frac{b-a}{n}\)，
+选取等距节点\(x_k \defeq a + k h\ (k=0,1,2,\dotsc,n)\)，
+构造插值型求积公式\begin{equation}\label{equation:柯特斯公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P103 (2.1)
+	I_n
+	\defeq
+	(b-a) \sum_{k=0}^n C^{(n)}_k f(x_k),
+\end{equation}
+其中\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P103 (2.2)
+	C^{(n)}_k
+	\defeq
+	\frac{h}{b-a} \int_0^n \prod_{\substack{0 \leq j \leq n \\ j \neq k}} \frac{t-j}{k-j} \dd{t}
+	= \frac{(-1)^{n-k}}{n k! (n-k)!} \int_0^n \prod_{\substack{0 \leq j \leq n \\ j \neq k}} (t-j) \dd{t}.
+\end{equation}
+
+当\(n=1\)时，
+有\begin{align*}
+	C^{(1)}_0
+\end{align*}
+这就是梯形公式
+
+当\(n=2\)时，
+有
+
+\begin{equation*}
+	\frac{b-a}{6}
+	\left[
+		f(a)
+		+ 4 f\left( \frac{a+b}{2} \right)
+		+ f(b)
+	\right]
+\end{equation*}
+我们将其称为\DefineConcept{辛普森公式}.
+% 辛普森公式给出了一个具有单峰结构的函数
+
+当\(n=4\)时，
+% 4阶柯特斯公式给出了一个具有双峰结构的函数
+
+% 柯特斯系数表，当\(n\geq8\)时出现负值，说明牛顿--柯特斯公式不稳定
+% 类似地，拉格朗日插值、勒让德也不稳定
+
+% 为什么用三次样条插值？因为它可以让拟合函数在不同子区间之间的节点处平滑过渡。
+
+% 辛普森公式的推导，辛普森公式的余项 （重要）

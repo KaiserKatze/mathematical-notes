@@ -1,1 +1,22 @@
 \section{龙贝格求积公式}
+%@see: https://mathworld.wolfram.com/RombergIntegration.html
+上一节介绍的复合求积方法可以提高求积精度.
+在实际计算中，如果无法预知需要划分的区间个数，
+那么可以运用迭代思想，在发现精度不够时，将步长减半.
+具体地，假设一开始将区间\([a,b]\)划分为\(n\)等份，
+
+
+% 变步长的优势：在无法预知需要划分的区间个数时，使用变步长方法，可以计算出符合精度要求的近似值，并且可以随时停止计算，节省算力
+% 变步长的劣势：只能求\(T_n,T_{2n},T_{4n},...\)，不能求\(T_3,T_7,T_{30}\).
+
+\begin{equation}
+	S_n = \frac{4}{3} T_{2n} - \frac{1}{3} T_n.
+\end{equation}
+
+\begin{equation}
+	C_n = \frac{16}{15} S_{2n} - \frac{1}{15} S_n.
+\end{equation}
+
+\begin{equation}
+	R_n = \frac{64}{63} C_{2n} - \frac{1}{63} C_n.
+\end{equation}
