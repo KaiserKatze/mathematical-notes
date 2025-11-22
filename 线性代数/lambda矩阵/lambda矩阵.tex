@@ -1,6 +1,8 @@
 \section{\texorpdfstring{$\lambda$}{\textlambda} - 矩阵}
+\subsection{\texorpdfstring{$\lambda$}{\textlambda} - 矩阵的概念}
 \begin{definition}% lambda矩阵的定义
 %@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P265 定义6.1.1
+%@see: 《矩阵分析》（史荣昌、魏丰） P55 定义2.1.1
 设\(F[\lambda]\)是域\(F\)上的一元多项式环，
 对于\(F[\lambda]\)中任意取定的\(mn\)个多项式\begin{equation*}
 	a_{ij}(\lambda)
@@ -48,23 +50,387 @@
 		A(\lambda)
 		\given
 		\text{\(A(\lambda)\)是域\(F\)上的一个\(m \times n\) \(\lambda\) - 矩阵}
-	}.
+	}, \\
+	M_n(F[\lambda])
+	&\defeq
+	M_{n \times n}(F[\lambda]).
 \end{align*}
 
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P267
+域\(F\)上的\(m \times n\)数字矩阵的加法、
+域\(F\)中的数与域\(F\)上的\(m \times n\)数字矩阵的纯量乘法、
+域\(F\)上的\(m \times n\)数字矩阵与域\(F\)上的\(n \times s\)数字矩阵的乘法，
+以及域\(F\)上的\(n\)阶数字矩阵的行列式，
+都是通过域\(F\)中的加法、减法、乘法定义的，
+因此域\(F\)上的\(m \times n\) \(\lambda\) - 矩阵的\DefineConcept{加法}、
+\(F[\lambda]\)中的多项式与域\(F\)上的\(m \times n\) \(\lambda\) - 矩阵的\DefineConcept{纯量乘法}、
+域\(F\)上的\(m \times n\) \(\lambda\) - 矩阵与域\(F\)上的\(n \times s\) \(\lambda\) - 矩阵的\DefineConcept{乘法}，
+以及\(n\)阶\(\lambda\) - 矩阵的\DefineConcept{行列式}，
+也可以类似地通过\(F[\lambda]\)中的多项式的加法、减法、乘法定义.
+同理，我们可以定义域\(F\)上的\(m \times n\) \(\lambda\) - 矩阵的\DefineConcept{转置}.
 
-与域\(F\)上的矩阵类似，
-我们也可以为\(M_{m \times n}(F[\lambda])\)
-定义加法、纯量乘法、乘法、转置，
-而且这四种运算满足与域\(F\)上矩阵一样的运算法则.
-类似地，我们也可以定义整环\(R\)上\(n\)阶矩阵的行列式.
-一般地，\(\lambda\) - 矩阵\(A(\lambda)\)的行列式是一个多项式.
-而且我们在之前介绍的行列式的性质、行列式展开定理，
-对于整环\(R\)上的\(n\)阶矩阵的行列式也成立.
-对于整环\(R\)上的\(n\)阶矩阵\(A\)，
-有\begin{equation*}
-	A A^* = A^* A = \abs{A} I,
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P267
+我们将\(\lambda\) - 矩阵的\DefineConcept{秩}定义为
+矩阵中非零子式的最大阶数，记为\(\rank A(\lambda)\).
+显然，域\(F\)上的一个\(n\)阶\(\lambda\) - 矩阵\(A(\lambda)\)的秩为\(n\)
+当且仅当\(\DeterminantA{A(\lambda)} \neq 0\).
+
+我们将\(\lambda\) - 矩阵的\DefineConcept{迹}定义为
+矩阵的主对角线上的元素之和，记为\(\tr A(\lambda)\).
+
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P267
+域\(F\)上的数字矩阵的那些只涉及域\(F\)的加、减、乘三种运算的性质
+在\(\lambda\) - 矩阵中仍然成立，
+譬如，域\(F\)上的一个\(n\)阶\(\lambda\) - 矩阵\(A(\lambda)\)的伴随矩阵\(A(\lambda)^*\)
+仍然是域\(F\)上的一个\(n\)阶\(\lambda\) - 矩阵；%
+\hyperref[theorem:行列式.拉普拉斯定理]{拉普拉斯定理}%
+和\hyperref[equation:线性方程组.柯西比内公式]{柯西--比内公式}%
+在\(\lambda\) - 矩阵中仍然成立.
+
+\subsection{\texorpdfstring{$\lambda$}{\textlambda} - 矩阵的逆}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P267
+%@see: 《矩阵分析》（史荣昌、魏丰） P56 定义2.1.3
+可逆\(\lambda\) - 矩阵与可逆数字矩阵可以类似定义.
+设\(A(\lambda) \in M_n(F[\lambda])\)，
+若存在\(B(\lambda) \in M_n(F[\lambda])\)
+使得\(
+	A(\lambda) B(\lambda)
+	B(\lambda) A(\lambda)
+	= I_n
+\)，
+其中\(I_n\)是\(n\)阶单位矩阵，
+则称“\(A(\lambda)\)是\DefineConcept{可逆的}”
+或“\(A(\lambda)\)是\DefineConcept{可逆矩阵}”；
+并把\(B(\lambda)\)称为“\(A(\lambda)\)的\DefineConcept{逆}”，记为\(A(\lambda)^{-1}\).
+可以证明任意\(\lambda\) - 矩阵\(A(\lambda)\)的逆\(B(\lambda)\)只要存在就必定唯一.
+为了简化描述，我们定义：\begin{equation*}
+	GL_n(F[\lambda])
+	\defeq
+	\Set{
+		A(\lambda)
+		\in M_n(F[\lambda])
+		\given
+		\text{$A(\lambda)$是可逆的}
+	}.
 \end{equation*}
-其中\(A^*\)是\(A\)的伴随矩阵.
+
+\begin{definition}% 可逆多项式
+设\(f(\lambda) \in F[\lambda]\).
+如果存在\(g(\lambda) \in F[\lambda]\)
+使得\(f(\lambda) g(\lambda) = 1\)，
+则称“\(f(\lambda)\)在\(F[\lambda]\)中\DefineConcept{可逆}”
+或“\(f(\lambda)\)是\(F[\lambda]\)中的一个\DefineConcept{可逆多项式}”.
+\end{definition}
+
+\begin{theorem}% 多项式可逆的充分必要条件
+设\(f(\lambda) \in F[\lambda]\)，
+则\(f(\lambda)\)是\(F[\lambda]\)中的一个可逆多项式，
+当且仅当\(f(\lambda)\)是\(F[\lambda]\)中的一个零次多项式.
+%TODO proof 根本原因是多项式只有非负次项，两个多项式相乘所得的新多项式的次数不小于原本的两个多项式
+%TODO 是不是应该把这个定理和上面“可逆多项式”的定义放在{多项式}那一章里去？
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P267 定理6.1.2
+%@see: 《矩阵分析》（史荣昌、魏丰） P56 定理2.1.1
+设\(A(\lambda) \in M_n(F[\lambda])\)，
+则\begin{itemize}
+	\item \(A(\lambda) \in GL_n(F[\lambda])\)
+	当且仅当\(\DeterminantA{A(\lambda)}\)是一个零次多项式；
+	\item 如果\(A(\lambda) \in GL_n(F[\lambda])\)，
+	则\(A(\lambda)^{-1} = \frac{1}{\DeterminantA{A(\lambda)}} A(\lambda)^*\)，
+	其中\(A(\lambda)^*\)是\(A(\lambda)\)的伴随矩阵.
+\end{itemize}
+%TODO proof
+\end{theorem}
+
+\subsection{\texorpdfstring{$\lambda$}{\textlambda} - 矩阵的初等变换与等价标准型}
+下面将采用研究数字矩阵的等价标准型的思想和方法
+来研究\(\lambda\) - 矩阵的等价标准型，
+为此首先给出\(\lambda\) - 矩阵的初等变换.
+\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P267 定义6.1.3
+%@see: 《矩阵分析》（史荣昌、魏丰） P55 定义2.1.4
+以下三种变换称为\(\lambda\) - 矩阵的\DefineConcept{初等行变换}：\begin{enumerate}
+	\item 互换\(\lambda\) - 矩阵中两行的位置；
+	\item 用\(F\)中一个非零数\(k\)乘\(\lambda\) - 矩阵的某一行；
+	\item 将\(\lambda\) - 矩阵中某一行的\(f(\lambda)\)倍加到另一行，其中\(f(\lambda) \in F[\lambda]\).
+\end{enumerate}
+\end{definition}\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P267 定义6.1.3
+%@see: 《矩阵分析》（史荣昌、魏丰） P55 定义2.1.4
+以下三种变换称为\(\lambda\) - 矩阵的\DefineConcept{初等列变换}：\begin{enumerate}
+	\item 互换\(\lambda\) - 矩阵中两列的位置；
+	\item 用\(F\)中一个非零数\(k\)乘\(\lambda\) - 矩阵的某一列；
+	\item 将\(\lambda\) - 矩阵中某一列的\(f(\lambda)\)倍加到另一列，其中\(f(\lambda) \in F[\lambda]\).
+\end{enumerate}
+\end{definition}
+
+与数字矩阵一样，我们可以引入三类\DefineConcept{初等\(\lambda\) - 矩阵}，
+即对单位矩阵进行一次初等变换得到的矩阵：\begin{enumerate}
+	\item 互换单位矩阵\(I_n\)的\(i\)，\(j\)两行（列）所得的矩阵\begin{equation*}
+		E(i,j)
+		\defeq
+		\begin{bmatrix}
+			I_{i-1} & & & \\
+			& 0 & & 1 & \\
+			& & I_{j-i-1} & & \\
+			& 1 & & 0 & \\
+			& & & & I_{n-j}
+		\end{bmatrix}_n;
+	\end{equation*}
+
+	\item 用非零数\(k\)乘以单位矩阵\(I_n\)的第\(i\)行（列）所得的矩阵\begin{equation*}
+		E(i(k))
+		\defeq
+		\begin{bmatrix}
+			I_{i-1} & & \\
+			& k & \\
+			& & I_{n-i}
+		\end{bmatrix}_n;
+	\end{equation*}
+
+	\item 把单位矩阵\(I_n\)的第\(j\)行（第\(i\)列）的\(f(\lambda)\)倍加到第\(i\)行（第\(j\)列）所得的矩阵\begin{equation*}
+		E(i,j(f(\lambda)))
+		\defeq
+		\begin{bmatrix}
+			I_{i-1} & & & \\
+			& 1 & & f(\lambda) & \\
+			& & I_{j-i-1} & & \\
+			& 0 & & 1 & \\
+			& & & & I_{n-j}
+		\end{bmatrix}_n
+		\quad(i<j)
+	\end{equation*}
+	或\begin{equation*}
+		E(i,j(f(\lambda)))
+		\defeq
+		\begin{bmatrix}
+			I_{i-1} & & & \\
+			& 1 & & 0 & \\
+			& & I_{j-i-1} & & \\
+			& f(\lambda) & & 1 & \\
+			& & & & I_{n-j}
+		\end{bmatrix}_n
+		\quad(i>j).
+	\end{equation*}
+\end{enumerate}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P269
+%@see: 《矩阵分析》（史荣昌、魏丰） P57
+与初等数字矩阵类似，初等\(\lambda\) - 矩阵都是可逆的，
+并且\begin{gather*}
+	E(i(k))^{-1}
+	= E(i(k^{-1})), \\
+	E(i,j(f(\lambda)))^{-1}
+	= E(i,j(-f(\lambda))), \\
+	E(i,j)^{-1} = E(i,j).
+\end{gather*}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P269
+%@see: 《矩阵分析》（史荣昌、魏丰） P57 定理2.1.2
+与数字矩阵的初等变换一样，
+\(\lambda\) - 矩阵的初等变换也不改变矩阵的秩，
+并且对\(\lambda\) - 矩阵\(A(\lambda)\)施行一次初等行变换相当于在它的左边乘相应的初等\(\lambda\) - 矩阵，
+对\(A(\lambda)\)施行一次初等列变换相当于在它的右边乘相应的初等\(\lambda\) - 矩阵.
+
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P269 定义6.1.5
+%@see: 《矩阵分析》（史荣昌、魏丰） P57 定义2.1.5
+设\(A(\lambda), B(\lambda) \in M_{m \times n}(F[\lambda])\).
+若\(A(\lambda)\)可以经过有限次初等变换化为\(B(\lambda)\)，
+则称“\(A(\lambda)\)与\(B(\lambda)\) \DefineConcept{等价}”
+或“\(A(\lambda)\)与\(B(\lambda)\) \DefineConcept{相抵}”，
+记作\(A(\lambda) \cong B(\lambda)\).
+
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P269
+%@see: 《矩阵分析》（史荣昌、魏丰） P57 定理2.1.3
+由\(\lambda\) - 矩阵的初等变换与初等\(\lambda\) - 矩阵的关系可知，
+\(m \times n\) \(\lambda\) - 矩阵\(A(\lambda)\)与\(B(\lambda)\)等价的充分必要条件
+是存在\(m\)阶初等\(\lambda\) - 矩阵\(P_1(\lambda),\dotsc,P_s(\lambda)\)
+以及\(n\)阶初等\(\lambda\) - 矩阵\(Q_1(\lambda),\dotsc,Q_t(\lambda)\)
+使得\begin{equation*}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P270 (6.1.1)
+	B(\lambda)
+	= P_1(\lambda) \dotsm P_s(\lambda)
+	A(\lambda)
+	Q_1(\lambda) \dotsm Q_t(\lambda).
+\end{equation*}
+
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P270 定理6.1.6
+%@see: 《矩阵分析》（史荣昌、魏丰） P57
+\(\lambda\) - 矩阵的等价关系满足自反性、对称性、传递性.
+
+\begin{lemma}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P270 引理6.1.7
+设\(A(\lambda) \in M_{m \times n}(F[\lambda]) - \{0\}\)，
+则存在\(B(\lambda) = (b_{ij}(\lambda))_{m \times n} \in M_{m \times n}(F[\lambda])\)
+满足\begin{itemize}
+	\item \(B(\lambda)\)与\(A(\lambda)\)等价，
+	\item \(b_{11}(\lambda) \neq 0\)，
+	\item \(
+		\truediv{ b_{ij}(\lambda) }{ b_{11}(\lambda) }  % \(b_{11}\)整除\(b_{ij}\)
+		\ (i=1,2,\dotsc,m;j=1,2,\dotsc,n)
+	\).
+\end{itemize}
+%TODO proof
+\end{lemma}
+
+\begin{lemma}
+%@see: 《矩阵分析》（史荣昌、魏丰） P58 引理2.1.1
+设\(A(\lambda) = (a_{ij})_{m \times n} \in M_{m \times n}(F[\lambda])\)满足\begin{itemize}
+	\item \(a_{11}(\lambda) \neq 0\)，
+	\item \(A(\lambda)\)中至少有一个元素不能被\(a_{11}(\lambda)\)整除，
+\end{itemize}
+那么存在\(B(\lambda) = (b_{ij}(\lambda))_{m \times n} \in M_{m \times n}(F[\lambda])\)
+满足\begin{itemize}
+	\item \(B(\lambda)\)与\(A(\lambda)\)等价，
+	\item \(b_{11}(\lambda) \neq 0\)，
+	\item \(\deg b_{11}(\lambda) < \deg a_{11}(\lambda)\).
+\end{itemize}
+%TODO proof
+\end{lemma}
+
+\begin{theorem}\label{theorem:lambda矩阵.lambda矩阵的史密斯标准型的存在性}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P271 定理6.1.8
+%@see: 《矩阵分析》（史荣昌、魏丰） P58 定理2.1.4
+设\(A(\lambda) \in M_{m \times n}(F[\lambda])\)，
+且\(\rank A(\lambda) = r \geq 1\)，
+则\(A(\lambda)\)等价于矩阵\begin{equation*}
+	S(\lambda)
+	\defeq
+	\begin{bmatrix}
+		d_1(\lambda) \\
+		& d_2(\lambda) \\
+		&& \ddots \\
+		&&& d_r(\lambda) \\
+		&&&& 0_{(m-r) \times (n-r)} \\
+	\end{bmatrix}_{m \times n},
+\end{equation*}
+其中\(d_1(\lambda),d_2(\lambda),\dotsc,d_r(\lambda)\)都是\(F\)上的首一多项式，
+且\(
+	\truediv{ d_{i+1}(\lambda) }{ d_i(\lambda) }  % \(d_i\)整除\(d_{i+1}\)
+	\ (i=1,2,\dotsc,r-1)
+\).
+%TODO proof
+\end{theorem}
+
+\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P272 定理6.1.8
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P275 定义6.2.4
+%@see: 《矩阵分析》（史荣昌、魏丰） P59 定义2.1.6
+我们把\cref{theorem:lambda矩阵.lambda矩阵的史密斯标准型的存在性} 中的
+矩阵\(S(\lambda)\)称为“矩阵\(A(\lambda)\)的\DefineConcept{史密斯标准型}（Smith normal form）”，
+把非零多项式\(d_1(\lambda),\dotsc,d_r(\lambda)\)称为“矩阵\(A(\lambda)\)的\DefineConcept{不变因子}（invariant factor）”.
+特别地，规定零矩阵的史密斯标准型是它本身.
+\end{definition}
+
+\begin{corollary}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P273 推论6.1.9
+设\(A(\lambda) \in M_{m \times n}(F[\lambda])\)，
+则存在\(m\)阶初等\(\lambda\) - 矩阵\(P_1(\lambda),\dotsc,P_s(\lambda)\)
+和\(n\)阶初等\(\lambda\) - 矩阵\(Q_1(\lambda),\dotsc,Q_t(\lambda)\)
+使得\(
+	P_1(\lambda) \dotsm P_s(\lambda)
+	A(\lambda)
+	Q_1(\lambda) \dotsm Q_t(\lambda)
+\)是\(A(\lambda)\)的史密斯标准型.
+%TODO proof
+\end{corollary}
+
+\begin{corollary}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P273 推论6.1.10
+%@see: 《矩阵分析》（史荣昌、魏丰） P66 推论2.1.2
+设\(A(\lambda) \in M_n(F[\lambda])\)，
+则\(A(\lambda)\)可逆
+当且仅当\(A(\lambda)\)可以表示为有限个初等\(\lambda\) - 矩阵的乘积.
+%TODO proof
+\end{corollary}
+
+\begin{corollary}
+%@see: 《矩阵分析》（史荣昌、魏丰） P66 推论2.1.1
+设\(A(\lambda) \in M_n(F[\lambda])\)，
+则\(A(\lambda)\)可逆
+当且仅当\(A(\lambda)\)与单位矩阵等价.
+%TODO proof
+\end{corollary}
+
+\begin{corollary}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P274 推论6.1.11
+设\(A(\lambda), B(\lambda) \in M_{m \times n}(F[\lambda])\)，
+则\(A(\lambda)\)与\(B(\lambda)\)等价的充分必要条件是
+存在\(P(\lambda) \in GL_m(F[\lambda])\)及\(Q(\lambda) \in GL_n(F[\lambda])\)
+使得\(
+	B(\lambda)
+	= P(\lambda) A(\lambda) Q(\lambda)
+\).
+%TODO proof
+\end{corollary}
+
+\subsection{\texorpdfstring{$\lambda$}{\textlambda} - 矩阵的等价不变量}
+\cref{theorem:lambda矩阵.lambda矩阵的史密斯标准型的存在性}
+证明了任意一个\(\lambda\) - 矩阵的史密斯标准型的存在性，
+接下来我们继续研究\(\lambda\) - 矩阵的等价不变量，
+并证明\(\lambda\) - 矩阵的史密斯标准型的唯一性.
+
+\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P274 定义6.2.1
+%@see: 《矩阵分析》（史荣昌、魏丰） P64 定义2.1.7
+设\(A(\lambda) \in M_{m \times n}(F[\lambda])\)且\(\rank A(\lambda) = r \geq 1\).
+对于任意一个正整数\(k\ (1 \leq k \leq r)\)，
+% 为什么下面不需要强调\(k\)阶子式是非零子式呢？这是因为零多项式可以被任意一个多项式整除！
+% 因为至少有一个\(k\)阶子式是非零多项式，所以\(k\)阶行列式因子一定是非零多项式！
+\(A(\lambda)\)的所有\(k\)阶子式的首一最大公因式
+称为“\(A(\lambda)\)的\(k\)阶\DefineConcept{行列式因子}（determinant divisor）”，
+记为\(D_k(A(\lambda))\)，
+或在不致混淆的情况下简记为\(D_k(\lambda)\).
+\end{definition}
+
+显然，秩为\(r\ (\geq1)\)的\(\lambda\) - 矩阵\(A(\lambda)\)的行列式因子
+\(D_1(\lambda),D_2(\lambda),\dotsc,D_r(\lambda)\)都是首一多项式.
+由{行列式的展开定理}可知，
+\(A(\lambda)\)的任意一个\(i+1\)阶子式都是
+\(A(\lambda)\)的\(i\)阶子式的组合，
+于是\(D_i(\lambda)\)整除\(A(\lambda)\)的每一个\(i+1\)阶子式，
+归纳可得\(
+	\truediv{ D_{i+1}(\lambda) }{ D_i(\lambda) }
+	\ (i=1,2,\dotsc,r-1)
+\).
+
+\begin{theorem}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P274 定理6.2.2
+%@see: 《矩阵分析》（史荣昌、魏丰） P64 定理2.1.5
+\(\lambda\) - 矩阵的初等变换不改变其行列式因子.
+%TODO proof
+\end{theorem}
+\begin{remark}
+上述定理说明：两个等价的\(\lambda\) - 矩阵
+具有相同的各阶行列式因子，有相同的秩.
+\end{remark}
+
+\begin{theorem}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P274 定理6.2.3
+%@see: 《矩阵分析》（史荣昌、魏丰） P65 定理2.1.6
+\(\lambda\) - 矩阵的史密斯标准型是唯一的.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P275 定理6.2.5
+%@see: 《矩阵分析》（史荣昌、魏丰） P65 定理2.1.7
+%@see: 《矩阵分析》（史荣昌、魏丰） P65 定理2.1.8
+设\(A(\lambda), B(\lambda) \in M_{m \times n}(F[\lambda])\)且\(A(\lambda) \neq 0, B(\lambda) \neq 0\)，
+则以下命题等价：\begin{itemize}
+	\item \(A(\lambda)\)与\(B(\lambda)\)等价；
+	\item \(A(\lambda)\)与\(B(\lambda)\)具有相同的不变因子；
+	\item \(A(\lambda)\)与\(B(\lambda)\)具有相同的行列式因子.
+\end{itemize}
+%TODO proof
+\end{theorem}
+\begin{remark}
+根据上述定理，求解一个\(\lambda\) - 矩阵的不变因子有两种方法：
+一种是利用\(\lambda\) - 矩阵的元素具有的某些特性，先求行列式因子，再求不变因子；
+一种是先应用初等变换将矩阵化为史密斯标准型，或者应用初等变换将矩阵化为对角\(\lambda\) - 矩阵并求出行列式因子，再写出不变因子.
+\end{remark}
+
+
 
 \begin{example}
 给定\(\lambda\) - 矩阵\begin{equation*}
