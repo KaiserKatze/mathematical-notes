@@ -412,7 +412,7 @@
 %TODO proof
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:lambda矩阵.两个lambda矩阵等价的等价条件}
 %@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P275 定理6.2.5
 %@see: 《矩阵分析》（史荣昌、魏丰） P65 定理2.1.7
 %@see: 《矩阵分析》（史荣昌、魏丰） P65 定理2.1.8
@@ -430,6 +430,193 @@
 一种是先应用初等变换将矩阵化为史密斯标准型，或者应用初等变换将矩阵化为对角\(\lambda\) - 矩阵并求出行列式因子，再写出不变因子.
 \end{remark}
 
+\subsection{\texorpdfstring{$\lambda$}{\textlambda} - 矩阵的初等因子}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P277 定义6.2.9
+%@see: 《矩阵分析》（史荣昌、魏丰） P66 定义2.2.1
+设\(A(\lambda) \in M_{m \times n}(F[\lambda])\)且\(\rank A(\lambda) = r \geq 1\).
+将\(A(\lambda)\)的不变因子\(
+	d_1(\lambda),
+	d_2(\lambda),
+	\dotsc,
+	d_r(\lambda)
+\)分解为互不相同的首一不可约因式的方幂的乘积\begin{equation*}
+	\begin{array}{c}
+		d_1(\lambda) = p_1(x)^{k_{11}} p_2(x)^{k_{12}} \dotsm p_t(x)^{k_{1t}}, \\
+		d_2(\lambda) = p_1(x)^{k_{21}} p_2(x)^{k_{22}} \dotsm p_t(x)^{k_{2t}}, \\
+		\hdotsfor{1} \\
+		d_r(\lambda) = p_1(x)^{k_{r1}} p_2(x)^{k_{r2}} \dotsm p_t(x)^{k_{rt}},
+	\end{array}
+\end{equation*}
+其中\(p_j(x)\ (j=1,2,\dotsc,t)\)都是域\(F\)上的首一不可约多项式，
+\(k_{ij}\ (i=1,2,\dotsc,r;j=1,2,\dotsc,t)\)都是域\(F\)中的常数.
+因为\(
+	\ExactlyDividedBy{ d_{i+1}(\lambda) }{ d_i(\lambda) }  % \(d_i\)整除\(d_{i+1}\)
+	\ (i=1,2,\dotsc,r-1)
+\)，
+所以\(
+	0 \leq k_{1j} \leq k_{2j} \leq \dotsb \leq k_{rj}
+	\ (j=1,2,\dotsc,t)
+\)
+且\(
+	k_{r1},
+	k_{r2},
+	\dotsc,
+	k_{rt}
+\)全不为零，
+从而有“\(k_{ij} = 0\ (i=1,2,\dotsc,r-1;j=1,2,\dotsc,t)\)
+蕴含\(k_{1j} = k_{2j} = \dotsb = k_{ij} = 0\)”.
+我们把\begin{equation*}
+%@see: 《矩阵分析》（史荣昌、魏丰） P67 (2.2.1)
+	\begin{array}{c}
+		p_1(x)^{k_{11}},
+		p_2(x)^{k_{12}},
+		\dotsc,
+		p_t(x)^{k_{1t}}, \\
+		p_1(x)^{k_{21}},
+		p_2(x)^{k_{22}},
+		\dotsc,
+		p_t(x)^{k_{2t}}, \\
+		\hdotsfor{1} \\
+		p_1(x)^{k_{r1}},
+		p_2(x)^{k_{r2}},
+		\dotsc,
+		p_t(x)^{k_{rt}}
+	\end{array}
+\end{equation*}
+中不等于\(1\)的（即次数\(k_{ij} > 0\)的）首一不可约因式的方幂的汇集
+称为“\(A(\lambda)\)的\DefineConcept{初等因子}（elementary divisor）”.
+%@see: 《高等代数（第三版 下册）》（丘维声） P157 定义1
+
+\begin{example}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P277 例6.2.10
+如果\(\lambda\) - 矩阵\(A(\lambda)\)的不变因子是\begin{align*}
+	d_1(\lambda) &\defeq \lambda(\lambda-1), \\
+	d_2(\lambda) &\defeq \lambda(\lambda-1)(\lambda+1), \\
+	d_3(\lambda) &\defeq \lambda(\lambda-1)^2(\lambda+1)^2,
+\end{align*}
+那么\(A(\lambda)\)的初等因子为\(
+	\lambda,
+	\lambda,
+	\lambda,
+	\lambda-1,
+	\lambda-1,
+	(\lambda-1)^2,
+	\lambda+1,
+	(\lambda+1)^2
+\).
+\end{example}
+
+\begin{example}
+%@see: 《矩阵分析》（史荣昌、魏丰） P67
+如果\(\lambda\) - 矩阵\(A(\lambda)\)的不变因子是\begin{align*}
+	d_1(\lambda) &\defeq 1, \\
+	d_2(\lambda) &\defeq 1, \\
+	d_3(\lambda) &\defeq (\lambda-2)^5(\lambda-3)^3, \\
+	d_4(\lambda) &\defeq (\lambda-2)^5(\lambda-3)^4(\lambda+2),
+\end{align*}
+那么\(A(\lambda)\)的初等因子为\(
+	(\lambda-2)^5,
+	(\lambda-2)^5,
+	(\lambda-3)^3,
+	(\lambda-3)^4,
+	\lambda+2
+\).
+\end{example}
+
+\begin{theorem}
+%@see: 《矩阵分析》（史荣昌、魏丰） P67
+设\(A(\lambda), B(\lambda) \in M_{m \times n}(F[\lambda])\)且\(A(\lambda) \neq 0, B(\lambda) \neq 0\)，
+\(A(\lambda)\)与\(B(\lambda)\)等价，
+则\(A(\lambda)\)与\(B(\lambda)\)的初等因子相同.
+\begin{proof}
+因为\(A(\lambda)\)与\(B(\lambda)\)等价，
+所以由\cref{theorem:lambda矩阵.两个lambda矩阵等价的等价条件} 可知，
+\(A(\lambda)\)与\(B(\lambda)\)的不变因子相同，
+于是\(A(\lambda)\)与\(B(\lambda)\)的初等因子相同.
+\end{proof}
+\end{theorem}
+
+\begin{example}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P278 注记6.2.12
+%@see: 《矩阵分析》（史荣昌、魏丰） P67
+举例说明：即便两个\(\lambda\) - 矩阵的初等因子相同，它们也可能不等价.
+\begin{solution}
+取\begin{equation*}
+	A(\lambda)
+	\defeq
+	\begin{bmatrix}
+		1 \\
+		& \lambda-4 \\
+		&& (\lambda-4)^2 \\
+	\end{bmatrix}_3,
+	\qquad
+	B(\lambda)
+	\defeq
+	\begin{bmatrix}
+		\lambda-4 \\
+		& (\lambda-4)^2 \\
+		&& 0 \\
+	\end{bmatrix}_3,
+\end{equation*}
+则\(A(\lambda)\)与\(B(\lambda)\)的初等因子都是\(\lambda-4,(\lambda-4)^2\)，
+但是\(\rank A(\lambda) = 3\)而\(\rank B(\lambda) = 2\)，它们的秩不相同，
+从而\(A(\lambda)\)与\(B(\lambda)\)不等价.
+\end{solution}
+\end{example}
+
+\begin{theorem}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P277 定理6.2.11
+%@see: 《矩阵分析》（史荣昌、魏丰） P67 定理2.2.1
+设\(A(\lambda), B(\lambda) \in M_{m \times n}(F[\lambda])\)且\(A(\lambda) \neq 0, B(\lambda) \neq 0\)，
+则\(A(\lambda)\)与\(B(\lambda)\)等价
+当且仅当它们具有相同的秩和初等因子.
+%TODO proof
+\end{theorem}
+\begin{remark}
+从上述定理可以看出，\(\lambda\) - 矩阵的不变因子由它的秩和初等因子唯一确定.
+\end{remark}
+
+\begin{example}
+%@see: 《矩阵分析》（史荣昌、魏丰） P68 例2.2.1
+设\(A(\lambda)\)是复数域上的一个\(5\times6\) \(\lambda\) - 矩阵，
+它的秩为\(4\)，
+它的初等因子为\begin{equation*}
+	\lambda,
+	\lambda,
+	\lambda^2,
+	\lambda-1,
+	(\lambda-1)^2,
+	(\lambda-1)^3,
+	(\lambda+2\iu)^3,
+	(\lambda-2\iu)^3.
+\end{equation*}
+求\(A(\lambda)\)的史密斯标准型.
+\begin{solution}
+首先写出\(A(\lambda)\)的不变因子\begin{align*}
+	d_4(\lambda)
+	&\defeq
+	\lambda^2(\lambda-1)^3(\lambda+2\iu)^3(\lambda-2\iu)^3, \\
+	d_3(\lambda)
+	&\defeq
+	\lambda(\lambda-1)^2, \\
+	d_2(\lambda)
+	&\defeq
+	\lambda(\lambda-1), \\
+	d_1(\lambda)
+	&\defeq
+	1,
+\end{align*}
+于是\(A(\lambda)\)的史密斯标准形为\begin{equation*}
+	\begin{bmatrix}
+		1 \\
+		& \lambda (\lambda - 1) \\
+		&& \lambda (\lambda - 1)^2 \\
+		&&& \lambda^2 (\lambda-1)^3 (\lambda^2+4)^3 \\
+		&&&& 0 & 0 \\
+	\end{bmatrix}_{5\times6}.
+\end{equation*}
+\end{solution}
+\end{example}
 
 
 \begin{example}
@@ -518,27 +705,3 @@
 可以推出，
 \(A(\lambda)\)与\(B(\lambda)\)相等，
 当且仅当它们系数矩阵对应相等.
-
-\begin{example}
-设\(A(\lambda)\)是一个\(5\times6\) \(\lambda\) - 矩阵，
-它的秩为\(4\)，
-它的初等因子为\begin{equation*}
-	\lambda,
-	\lambda,
-	\lambda^2,
-	\lambda-1,
-	(\lambda-1)^2,
-	(\lambda-1)^3,
-	(\lambda+2\iu)^3,
-	(\lambda-2\iu)^3,
-\end{equation*}
-则\(A(\lambda)\)的史密斯标准形为\begin{equation*}
-	\begin{bmatrix}
-		1 \\
-		& \lambda (\lambda - 1) \\
-		&& \lambda (\lambda - 1)^2 \\
-		&&& \lambda^2 (\lambda-1)^3 (\lambda^2+4)^3 \\
-		&&&& 0 & 0 \\
-	\end{bmatrix}.
-\end{equation*}
-\end{example}
