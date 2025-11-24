@@ -941,6 +941,75 @@
 
 \endgroup
 
+\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P288 注记6.3.8
+设\(V\)是域\(F\)上的一个\(n\)维线性空间，
+\(\sigma\)是\(V\)上的一个线性变换，
+\(A\)是\(\sigma\)在\(V\)的一个基\(\AutoTuple{\epsilon}{n}\)下的矩阵.
+把数字矩阵\(A\)的特征矩阵\(\lambda I_n - A\)的行列式因子、不变因子、初等因子
+分别称为矩阵\(A\)（或线性变换\(\sigma\)）的\DefineConcept{行列式因子}、\DefineConcept{不变因子}、\DefineConcept{初等因子}.
+\end{definition}
+
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P288 注记6.3.8
+由于\(
+	\DeterminantA{\lambda I_n - A}
+	= \lambda^n - p_1 \lambda^{n-1}
+	+ \dotsb + (-1)^{n-1} p_{n-1} \lambda
+	+ (-1)^n p_n
+	\neq 0  % 这里是指特征多项式不恒等于零
+\)，
+因此\(\rank(\lambda I_n - A) = n\)，
+从而矩阵\(A\)（线性变换\(\sigma\)）有\(n\)个行列式因子和\(n\)个不变因子，
+而且\(\DeterminantA{\lambda I_n - A}\)
+等于\(A\)的\(n\)阶行列式因子\(D_n(\lambda)\)，
+也等于\(A\)的所有不变因子的乘积\(\prod_{i=1}^n d_i(\lambda)\)，
+还等于\(A\)的所有初等因子的乘积.
+\begin{theorem}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P288 定理6.3.9
+设\(A,B \in M_n(F)\)，
+则以下命题等价：\begin{itemize}
+	\item \(A\)与\(B\)相似；
+	\item \(A\)与\(B\)具有相同的行列式因子；
+	\item \(A\)与\(B\)具有相同的不变因子；
+	\item \(A\)与\(B\)具有相同的初等因子.
+\end{itemize}
+\end{theorem}
+
+\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P234 例5.5.8
+设\(
+	f(\lambda)
+	\defeq
+	c_0 + c_1 \lambda + \dotsb + c_{n-1} \lambda^{n-1} + \lambda^n
+	\in F[\lambda]
+\).
+把矩阵\begin{equation*}
+	\begin{bmatrix}
+		0 &        &        &   & -c_0 \\
+		1 & \ddots &        &   & -c_1 \\
+		  & \ddots & \ddots &   & \vdots \\
+		  &        & \ddots & 0 & -c_{n-2} \\
+		  &        &        & 1 & -c_{n-1} \\
+	\end{bmatrix}_n
+\end{equation*}
+称为“首一多项式\(f(\lambda)\)的\DefineConcept{友矩阵}（companion matrix）”.
+\end{definition}
+
+\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P288 定义6.3.10
+设\(
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P288 (6.3.8)
+	R
+	\defeq
+	\diag(R_1,R_2,\dotsc,R_s)
+	\in M_n(F)
+\)，
+其中\(R_i \in M_{n_i}(F)\ (i=1,2,\dotsc,s)\)是首一多项式\(d_i(\lambda) \in F[\lambda]\)的友矩阵，
+并且\(\ExactlyDividedBy{ d_{i+1}(\lambda) }{ d_i(\lambda) }\ (i=1,2,\dotsc,s-1)\)，
+则称“\(R\)是\(F\)上的一个\DefineConcept{有理标准型}（rational canonical form）”
+或“\(R\)是\(F\)上的一个\DefineConcept{弗罗贝尼乌斯标准型}（Frobenius canonical form）”.
+\end{definition}
+
 假设我们把两个\(\lambda\) - 矩阵\(A(\lambda)\)和\(B(\lambda)\)
 都展开成\begin{equation*}
 	A(\lambda)
