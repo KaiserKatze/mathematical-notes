@@ -673,6 +673,43 @@
 %@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P278 例6.2.13
 %@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P71 例2.2.2
 
+\subsection{\texorpdfstring{$\lambda$}{\textlambda} - 矩阵的相似}
+我们知道，数字矩阵\(A \in M_n(F)\)的特征矩阵\(\lambda I_n - A\)是一个\(\lambda\) - 矩阵.
+本节来证明两个数字矩阵相似当且仅当它们的特征矩阵等价.
+
+\begin{lemma}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P72 引理
+设\(A,B \in M_n(F)\)，
+则\(A\)与\(B\)相似
+当且仅当\(\lambda I_n - A\)与\(\lambda I_n - B\)相似.
+\end{lemma}
+
+\begin{lemma}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P281 引理6.3.1
+设\(A(\lambda) \in M_{m \times n}(F[\lambda])\).
+如果\(A(\lambda) \neq 0\)，
+则存在唯一的自然数\(d\)，
+存在\(A_0,A_1,\dotsc,\allowbreak A_d \in M_{m \times n}(F)\)，
+使得\(A(\lambda)\)可以分解为以矩阵为“系数”的多项式\begin{equation}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P281 (6.3.1)
+	A(\lambda)
+	= \lambda^d A_d
+	+ \lambda^{d-1} A_{d-1}
+	+ \dotsb
+	+ \lambda A_1
+	+ A_0,
+\end{equation}
+或\begin{equation}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P281 (6.3.1)
+	A(\lambda)
+	= A_d \lambda^d
+	+ A_{d-1} \lambda^{d-1}
+	+ \dotsb
+	+ A_1 \lambda
+	+ A_0.
+\end{equation}
+\end{lemma}
+
 \begin{example}
 给定\(\lambda\) - 矩阵\begin{equation*}
 %@see: 《高等代数（第三版 下册）》（丘维声） P138 (1)
@@ -743,6 +780,166 @@
 	\end{bmatrix}
 \end{equation*}都是域\(F\)上的矩阵.
 \end{example}
+
+\begin{lemma}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P282 引理6.3.2
+设\(
+	A(\lambda) \in M_{m \times n}(F[\lambda]),
+	B(\lambda) \in M_{n \times p}(F[\lambda])
+\)
+并且\begin{gather*}
+	A(\lambda) \defeq A_d \lambda^d + A_{d-1} \lambda^{d-1} + \dotsb + A_1 \lambda + A_0, \\
+	B(\lambda) \defeq B_l \lambda^l + B_{l-1} \lambda_{l-1} + \dotsb + B_1 \lambda + B_0,
+\end{gather*}
+其中\(
+	A_0,A_1,\dotsc,A_d
+	\in M_{m \times n}(F[\lambda]),
+	A_d \neq 0,
+	B_0,B_1,\dotsc,B_l
+	\in M_{n \times p}(F[\lambda]),
+	B_l \neq 0
+\).
+若\begin{equation*}
+	A(\lambda) B(\lambda) \neq 0,
+\end{equation*}
+则\begin{equation*}
+	\deg( A(\lambda) B(\lambda) )
+	\leq \deg A(\lambda) + \deg B(\lambda),
+\end{equation*}
+当且仅当\(A_d B_l \neq 0\)时，
+上式取“\(=\)”号.
+\end{lemma}
+
+\begin{example}
+举例说明：存在\(
+	A(\lambda) \in M_{m \times n}(F[\lambda]),
+	B(\lambda) \in M_{n \times m}(F[\lambda])
+\)，
+使得\begin{equation*}
+	\deg( A(\lambda) B(\lambda) )
+	\neq
+	\deg( B(\lambda) A(\lambda) ).
+\end{equation*}
+\end{example}
+
+\begingroup
+
+\def\LV{\operatorname{L.V.}}
+\def\RV{\operatorname{R.V.}}
+\begin{definition}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P282 注记6.3.3(2)
+设\(
+	A(\lambda) \in M_n(F[\lambda]),
+	B \in M_n(F)
+\)，
+记\(d \defeq \deg A(\lambda)\)，
+将\(A(\lambda)\)分解为\begin{align*}
+	A(\lambda)
+	&= \lambda^d A_d
+	+ \lambda^{d-1} A_{d-1}
+	+ \dotsb
+	+ \lambda A_1
+	+ A_0 \\
+	&= A_d \lambda^d
+	+ A_{d-1} \lambda^{d-1}
+	+ \dotsb
+	+ A_1 \lambda
+	+ A_0,
+\end{align*}
+其中\(
+	A_0,A_1,\dotsc,A_d
+	\in M_n(F)
+\)，
+定义：\begin{align*}
+	\LV(A(\lambda), B)
+	&\defeq
+	\begin{cases}[cl]
+		B^d A_d
+		+ B^{d-1} A_{d-1}
+		+ \dotsb
+		+ B A_1
+		+ A_0,
+		& A(\lambda) \neq 0, \\
+		0,
+		& A(\lambda) = 0,
+	\end{cases}
+	\\
+	\RV(A(\lambda), B)
+	&\defeq
+	\begin{cases}[cl]
+		A_d B^d
+		+ A_{d-1} B^{d-1}
+		+ \dotsb
+		+ A_1 B
+		+ A_0,
+		& A(\lambda) \neq 0, \\
+		0,
+		& A(\lambda) = 0.
+	\end{cases}
+\end{align*}
+将\(\LV(A(\lambda), B)\)称为“\(A(\lambda)\)在\(B\)处的\DefineConcept{左值}（left value）”，
+将\(\LV(A(\lambda), B)\)称为“\(A(\lambda)\)在\(B\)处的\DefineConcept{右值}（right value）”.
+\end{definition}
+
+\begin{lemma}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P282 引理6.3.4
+设\(
+	A \in M_n(F),
+	U(\lambda) \in M_n(F[\lambda])
+\)，
+则存在唯一的\(Q(\lambda), R(\lambda) \in M_n(F[\lambda])\)及\(W, V \in M_n(F)\)
+使得\begin{equation*}
+	(\lambda I_n - A) Q(\lambda) + W
+	= U(\lambda)
+	= R(\lambda) (\lambda I_n - A) + V,
+\end{equation*}
+并且\(
+	W = \LV(U(\lambda), A),
+	V = \RV(U(\lambda), A)
+\).
+\end{lemma}
+
+\begin{theorem}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P283 定理6.3.5
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P72 定理2.2.5
+设\(A,B \in M_n(F)\)，
+则\(A\)与\(B\)相似
+当且仅当\(\lambda I_n - A\)与\(\lambda I_n - B\)等价.
+\end{theorem}
+
+\begin{corollary}
+%@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P285 推论6.3.6
+设\(
+	A, B \in M_n(F),
+	P(\lambda), Q(\lambda) \in GL_n(F[\lambda])
+\)且\(
+	P(\lambda) (\lambda I_n - A) Q(\lambda)
+	= \lambda I_n - B
+\)，
+记\(
+	M(\lambda) \defeq P(\lambda)^{-1},
+	N(\lambda) \defeq Q(\lambda)^{-1}
+\)，
+则\begin{gather*}
+	\left( \LV(P(\lambda), B) \right)
+	\left( \LV(M(\lambda), A) \right)
+	= I_n, \\
+	\left( \RV(Q(\lambda), B) \right)
+	\left( \RV(N(\lambda), A) \right)
+	= I_n, \\
+	\LV(P(\lambda), B)
+	= \RV(N(\lambda), A), \\
+	B = P^{-1} A P,
+\end{gather*}
+其中\(
+	P
+	= \RV(Q(\lambda), B)
+	= ( \LV(P(\lambda), B) )^{-1}
+	= \LV(M(\lambda), A)
+\).
+\end{corollary}
+
+\endgroup
 
 假设我们把两个\(\lambda\) - 矩阵\(A(\lambda)\)和\(B(\lambda)\)
 都展开成\begin{equation*}
