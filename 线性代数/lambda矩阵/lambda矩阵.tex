@@ -974,8 +974,39 @@
 	\item \(A\)与\(B\)具有相同的行列式因子；
 	\item \(A\)与\(B\)具有相同的不变因子；
 	\item \(A\)与\(B\)具有相同的初等因子.
+	% 这里之所以不叙述为“\(A\)与\(B\)具有相同的秩和初等因子”，
+	% 是因为数字矩阵的特征矩阵的秩为\(\rank(\lambda I_n - A) = n\)，
+	% 也就是说同型数字矩阵的特征矩阵一定具有相同的秩.
 \end{itemize}
 \end{theorem}
+
+\begin{example}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P74 例2.2.4
+设数字矩阵\(A \in M_n(F)\)的初等因子为\(\lambda,\lambda,\lambda^2,(\lambda-1)^2,\lambda+1\).
+求\(A\)的阶数\(n\)、不变因子和史密斯标准型.
+\begin{solution}
+因为特征矩阵\(\lambda I_n - A\)的行列式\(\DeterminantA{\lambda I_n - A}\)
+等于\(A\)的所有初等因子的乘积\begin{equation*}
+	f(\lambda)
+	\defeq
+	\lambda \cdot \lambda \cdot \lambda^2 \cdot (\lambda-1)^2 \cdot (\lambda+1)
+	= \lambda^4(\lambda-1)^2(\lambda+1),
+\end{equation*}
+这里\(f(\lambda)\)是一个7阶多项式，
+所以\(A\)的阶数为\(n=7\)，
+它的史密斯标准型为\begin{equation*}
+	\begin{bmatrix}
+		1 \\
+		& 1 \\
+		&& 1 \\
+		&&& 1 \\
+		&&&& \lambda \\
+		&&&&& \lambda \\
+		&&&&&& \lambda^2(\lambda-1)^2(\lambda+1) \\
+	\end{bmatrix}.
+\end{equation*}
+\end{solution}
+\end{example}
 
 \begin{definition}
 %@see: 《高等代数》（丁南庆、刘公祥、纪庆忠、郭学军） P234 例5.5.8
@@ -1052,3 +1083,9 @@
 % 初等变换求史密斯标准型
 % 先找非零常数（零次多项式）
 % 再找所有元素的公因式
+
+% 求数字矩阵的若尔当标准型的步骤：
+% 1. 先求初等因子，
+% 2. 再按初等因子的个数和次数确定若尔当块的个数和阶数，
+% 3. 然后根据初等因子的底数的减数确定若尔当块的主对角线上的元素，
+% 4. 最后将若尔当块组装成若尔当标准型.
