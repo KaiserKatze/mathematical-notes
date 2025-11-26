@@ -1,4 +1,4 @@
-\section{高斯消元法}
+\section{高斯消元法与LU分解}
 \subsection{高斯消元法}
 设\begin{equation*}
 	A \defeq \begin{bmatrix}
@@ -219,3 +219,76 @@
 	P A = L U.
 \end{equation*}
 \end{theorem}
+
+\subsection{杜立特方法}
+下面介绍一种LU分解算法
+--- \DefineConcept{杜立特方法}（Doolittle's method），
+它适用于顺序主子式都不等于零的矩阵，
+特别是对称正定矩阵和严格对角占优矩阵.
+%@see: https://math.stackexchange.com/a/1246507/591741
+
+给定矩阵\begin{equation*}
+	A \defeq \begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn} \\
+	\end{bmatrix},
+\end{equation*}
+我们可以用\(n\)步将\(A\)分解为单位下三角矩阵\(L\)与上三角矩阵\(U\)的乘积，
+即\begin{equation*}
+	A
+	=
+	\begin{bmatrix}
+		1 \\
+		l_{21} & 1 \\
+		\vdots & \vdots & \ddots \\
+		l_{n1} & l_{n2} & \dots & 1 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		u_{11} & u_{12} & \dots & u_{1n} \\
+		& u_{22} & \dots & u_{2n} \\
+		&& \ddots & \vdots \\
+		&&& u_{nn} \\
+	\end{bmatrix}.
+\end{equation*}
+具体操作步骤如下：
+首先将\(A\)的第一行作为\(U\)的第一行，
+令\begin{equation}
+	u_{1j} \defeq a_{1j}
+	\quad(j=1,2,\dotsc,n).
+\end{equation}
+接下来，注意到\(u_{k1} = 0\ (k>1)\)，
+从而\(
+	a_{i1}
+	= \sum_{k=1}^n l_{ik} u_{k1}
+	= l_{i1} u_{11}
+\)，
+解得\begin{equation}
+	l_{i1} \defeq a_{i1} / u_{11}
+	\quad(i=2,3,\dotsc,n).
+\end{equation}
+然后计算\(U\)的第\(r\)行、\(L\)的第\(r\)列（\(r=2,3,\dotsc,n\)）.
+注意到\(u_{kj} = 0\ (k>j)\)和\(l_{ii} = 1\)，
+于是有\(
+	a_{rj}
+	= \sum_{k=1}^n l_{rk} u_{kj}
+	= \sum_{k=1}^{r-1} l_{rk} u_{kj} + l_{rr} \cdot u_{rj}
+	= \sum_{k=1}^{r-1} l_{rk} u_{kj} + u_{rj}
+\)，
+解得\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P153 (3.2)
+	u_{rj} \defeq a_{rj} - \sum_{k=1}^{r-1} l_{rk} u_{kj}
+	\quad(j=r,r+1,\dotsc,n).
+\end{equation}
+同理有\(
+	a_{ir}
+	= \sum_{k=1}^n l_{ik} u_{kr}
+	= \sum_{k=1}^{r-1} l_{ik} u_{kr}
+	+ l_{ir} u_{rr}
+\)，
+解得\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P153 (3.3)
+	l_{ir} \defeq \frac{1}{u_{rr}} \left( a_{ir} - \sum_{k=1}^{r-1} l_{ik} u_{kr} \right)
+	\quad(i=r+1,r+2,\dotsc,n;r \neq n).
+\end{equation}
