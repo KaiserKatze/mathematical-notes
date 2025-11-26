@@ -61,3 +61,89 @@
 	x_k &\defeq \left( b^{(k)}_k - \sum_{j=k+1}^n a^{(k)}_{kj} x_j \right) \bigg/ a^{(k)}_{kk}
 	&(k=n-1,n-2,\dotsc,2,1).
 \end{align*}
+
+在上述算法中，
+第\(k\)步消元时，为了计算\(m^{(k)}_i\)用了\(n-k\)次除法，
+为了计算\(a^{(k+1)}_{ij}\)用了\((n-k)^2\)次乘法，
+为了计算\(b^{(k+1)}_i\)用了\(n-k\)次乘法，
+于是消元过程总共用了\(
+	\sum_{k=1}^{n-1} (n-k)^2
+	+ 2 \sum_{k=1}^{n-1} (n-k)
+	= \frac13 n^3 + \frac12 n^2 - \frac56 n
+\)次乘除法，
+加上回代过程总共用了\(
+	\sum_{k=1}^n k
+	= \frac12 n (n+1)
+\)次乘除法，
+那么消元过程和回代过程一共用了\(
+	\frac13 n^3 + n^2 - \frac13 n
+\)次乘除法；
+另外，判断主对角线上的元素是否为零，
+以及在断定主对角线上的元素为零以后作行交换，
+这两种操作各自最多有\(
+	\sum_{k=1}^{n-1} (n-k)
+	= \frac12 n (n-1)
+\)次.
+
+容易看出，上述高斯消元法的第\(1\)步中用到的初等行变换矩阵的乘积等于\begin{equation*}
+	L_1
+	\defeq
+	\begin{bmatrix}
+		1 \\
+		-m^{(1)}_2 & 1 \\
+		-m^{(1)}_3 && 1 \\
+		\vdots &&& \ddots \\
+		-m^{(1)}_n &&&& 1 \\
+	\end{bmatrix},
+\end{equation*}
+类似地，第\(k\ (k=1,2,\dotsc,n-1)\)步中用到的初等行变换矩阵的乘积等于\begin{equation*}
+	L_k
+	\defeq
+	\begin{bmatrix}
+		1 \\
+		& \ddots \\
+		&& 1 \\
+		&& -m^{(k)}_{k+1} & 1 \\
+		&& \vdots && \ddots \\
+		&& -m^{(k)}_n &&& 1 \\
+	\end{bmatrix}.
+\end{equation*}
+记\(L^{-1} \defeq L_{n-1} L_{n-2} \dotsm L_2 L_1\)，
+结合前面的讨论，我们可以确信：
+如果将\(C^{(n)}\)分块为\begin{equation*}
+	C^{(n)} = (U,B^{(n)}),
+\end{equation*}
+其中\begin{equation*}
+	U
+	\defeq
+	\begin{bmatrix}
+		a^{(n)}_{11} & a^{(n)}_{12} & \dots & a^{(n)}_{1n} \\
+		0 & a^{(n)}_{22} & \dots & a^{(n)}_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		0 & 0 & \dots & a^{(n)}_{nn} \\
+	\end{bmatrix},
+	\qquad
+	B^{(n)}
+	\defeq
+	\begin{bmatrix}
+		b^{(n)}_1 \\
+		b^{(n)}_2 \\
+		\vdots \\
+		b^{(n)}_n \\
+	\end{bmatrix},
+\end{equation*}
+那么\(L^{-1} B\)等于向量\(B^{(n)}\)，
+\(L^{-1} A\)等于上三角矩阵\(U\)，或者\(A = L U\)，
+其中\begin{equation*}
+	L
+	\defeq
+	L_1^{-1} L_2^{-1} \dotsm L_{n-1}^{-1}
+	=
+	\begin{bmatrix}
+		1 \\
+		m^{(1)}_2 & 1 \\
+		m^{(1)}_3 & m^{(2)}_3 & 1 \\
+		\vdots & \vdots & \vdots & \ddots \\
+		m^{(1)}_n & m^{(2)}_n & m^{(3)}_n & \dots & 1 \\
+	\end{bmatrix}.
+\end{equation*}
