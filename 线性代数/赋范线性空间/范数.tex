@@ -201,6 +201,10 @@
 	= \max\{\VectorLengthA{x_1},\VectorLengthA{x_2},\dotsc,\VectorLengthA{x_n}\}.
 \end{align}
 
+%@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
+向量的\(L_1\)范数、\(L_2\)范数、\(L_\infty\)范数各有一个别名，
+依次是\DefineConcept{曼哈顿范数}、\DefineConcept{欧氏范数}、\DefineConcept{最大范数}.
+
 \subsection{函数范数}
 \begin{definition}% 连续函数的范数
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P53
@@ -250,6 +254,49 @@
 由所有形状相同的矩阵组成的集合，对加法和标量乘法，成为一个线性空间.
 于是我们可以在这个线性空间\(M_{m \times n}(K)\)上定义范数.
 
+我们首先给出复数域上\(n\)阶方阵的矩阵范数的一般定义.
+\begin{definition}
+设数域\(K \defeq \mathbb{C}\)，
+线性空间\(V \defeq M_n(K)\).
+如果映射\(p\colon V \to \mathbb{R}\)
+满足\begin{itemize}
+	\item {\rm\bf 正定性}：\begin{equation*}
+		(\forall \alpha \in V)
+		[p(\alpha) \geq 0],
+		\qquad
+		(\forall \alpha \in V)
+		[
+			p(\alpha) = 0
+			\iff
+			\alpha = 0
+		];
+	\end{equation*}
+
+	\item {\rm\bf 齐次性}：\begin{equation*}
+		(\forall \alpha \in V)
+		(\forall k \in K)
+		[
+			p(k \alpha) = \abs{k} p(\alpha)
+		];
+	\end{equation*}
+
+	\item {\rm\bf 三角不等式}：\begin{equation*}
+		(\forall \alpha,\beta \in V)
+		[
+			p(\alpha+\beta) \leq p(\alpha) + p(\beta)
+		],
+	\end{equation*}
+
+	\item {\rm\bf 次可乘性}：\begin{equation*}
+		(\forall \alpha,\beta \in V)
+		[
+			p(\alpha \beta) \leq p(\alpha) p(\beta)
+		],
+	\end{equation*}
+\end{itemize}
+则称“\(p\)是线性空间\(V\)的一个\DefineConcept{矩阵范数}（matrix norm）”.
+\end{definition}
+
 \begin{definition}
 %@see: 《矩阵论》（詹兴致） P5
 设\(A \in M_{m \times n}(\mathbb{C})\)，
@@ -280,28 +327,6 @@
 
 \begin{definition}
 %@see: 《矩阵论》（詹兴致） P5
-设\(A \in M_{m \times n}(\mathbb{C})\).
-定义：\begin{equation}
-	\MatrixNorm{A}_r
-	\defeq
-	\max_{1 \leq i \leq m} \sum_{j=1}^n \abs{a_{ij}},
-\end{equation}
-称之为“矩阵\(A\)的\DefineConcept{行和范数}”.
-\end{definition}
-
-\begin{definition}
-%@see: 《矩阵论》（詹兴致） P5
-设\(A \in M_{m \times n}(\mathbb{C})\).
-定义：\begin{equation}
-	\MatrixNorm{A}_c
-	\defeq
-	\max_{1 \leq j \leq n} \sum_{i=1}^n \abs{a_{ij}},
-\end{equation}
-称之为“矩阵\(A\)的\DefineConcept{列和范数}”.
-\end{definition}
-
-\begin{definition}
-%@see: 《矩阵论》（詹兴致） P5
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 \(f\)是\(\mathbb{C}^m\)上的一个范数，
 \(g\)是\(\mathbb{C}^n\)上的一个范数.
@@ -310,7 +335,11 @@
 	\defeq
 	\max_{0 \neq x \in \mathbb{C}^n} \frac{f(Ax)}{g(x)},
 \end{equation}
-称之为“矩阵\(A\)由\(f\)和\(g\)诱导的\DefineConcept{算子范数}”.
+称之为“矩阵\(A\)由\(f\)和\(g\)诱导的\DefineConcept{算子范数}（operator norm）\footnote{
+	%@credit: {cee35532-e299-4587-89a0-7b84e7454774} 小飞机说“算子范数”就是L2范数.
+	在有的书上，矩阵的“算子范数”是指它的谱范数.
+}”.
+%@see: https://mathworld.wolfram.com/OperatorNorm.html
 \end{definition}
 
 \begin{definition}
@@ -324,24 +353,87 @@
 		\leq \MatrixNorm{A} \MatrixNorm{B}
 	],
 \end{equation*}
-则称“由\(f\)和\(g\)诱导的算子范数\(N\)是\DefineConcept{次可乘的}”.
+则称“由\(f\)和\(g\)诱导的算子范数\(N\)是\DefineConcept{次可乘的}（submultiplcative）”.
 \end{definition}
 
 \begin{definition}
-%@see: 《矩阵论》（詹兴致） P5
+%@credit: {8b6edada-f2fd-4ae5-9020-eb533149a54c},{6c964576-9569-472e-969e-54699e35974b}
 设\(A \in M_{m \times n}(\mathbb{C})\).
-定义：\begin{equation}
-	\MatrixNorm{A}_\infty
-	\defeq
-	\max_{x\neq0} \frac{\MatrixNorm{Ax}_2}{\MatrixNorm{x}_2},
-\end{equation}
-称之为“矩阵\(A\)的\DefineConcept{谱范数}”.
+\begin{itemize}
+	\item 把矩阵\(A\)由\(L_q\)向量范数和\(L_p\)向量范数诱导的算子范数\begin{equation}
+		\MatrixNorm{A}_{p \to q}
+		\defeq
+		\max_{0 \neq x \in \mathbb{C}^n} \frac{ \norm{Ax}_q }{ \norm{x}_p },
+	\end{equation}
+	称为“矩阵\(A\)的 \DefineConcept{\(L_p \to L_q\)范数}”.
+
+	\item 把矩阵\(A\)的\(L_p \to L_p\)范数\begin{equation}
+		\MatrixNorm{A}_p
+		\defeq
+		\MatrixNorm{A}_{p \to p}
+		=
+		\max_{0 \neq x \in \mathbb{C}^n} \frac{ \norm{Ax}_p }{ \norm{x}_p },
+	\end{equation}
+	称为“矩阵\(A\)的 \DefineConcept{\(L_p\)范数}”.
+\end{itemize}
 \end{definition}
+
+\begin{theorem}
+%@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
+设\(A \in M_{m \times n}(\mathbb{C})\)，
+则\begin{equation*}
+	\MatrixNorm{A}_1
+	= \max_{1 \leq j \leq n} \sum_{i=1}^n \abs{a_{ij}}.
+\end{equation*}
+%TODO
+\begin{proof}
+因为\begin{align*}
+	\MatrixNorm{A}_1
+	&= \max_{0 \neq x \in \mathbb{C}^n} \frac{ \norm{Ax}_1 }{ \norm{x}_1 } \\
+	&=
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
+设\(A \in M_{m \times n}(\mathbb{C})\)，
+则\begin{equation*}
+	\MatrixNorm{A}_2
+	= \max_{x\neq0} \frac{\MatrixNorm{Ax}_2}{\MatrixNorm{x}_2}.
+\end{equation*}
+%TODO
+\end{theorem}
+
+\begin{theorem}
+%@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
+设\(A \in M_{m \times n}(\mathbb{C})\)，
+则\begin{equation*}
+	\MatrixNorm{A}_\infty
+	= \max_{1 \leq i \leq m} \sum_{j=1}^n \abs{a_{ij}}.
+\end{equation*}
+%TODO
+\end{theorem}
+
+%@see: 《矩阵论》（詹兴致） P5
+%@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
+矩阵的\(L_1\)范数、\(L_2\)范数、\(L_\infty\)范数各有一个别名，
+依次是\DefineConcept{列和范数}、\DefineConcept{谱范数}、\DefineConcept{行和范数}.
+
+\begin{theorem}
+%@credit: {8b6edada-f2fd-4ae5-9020-eb533149a54c} 狗狗说矩阵的L2范数与它的谱半径相等.
+设\(A \in M_{m \times n}(\mathbb{C})\)，
+则\(A\)的谱范数等于\(A\)的谱半径，
+即\begin{equation*}
+	\MatrixNorm{A}_2
+	=  \max\Spec{A}.
+\end{equation*}
+\end{theorem}
 
 \begin{property}
 %@see: 《矩阵论》（詹兴致） P5
 如果\(B\)是\(A \in M_{m \times n}(\mathbb{C})\)的一个子矩阵，
-则\(\MatrixNorm{B}_\infty \leq \MatrixNorm{A}_\infty\).
+则\(\MatrixNorm{B}_2 \leq \MatrixNorm{A}_2\).
 \end{property}
 
 \begin{property}
@@ -350,8 +442,21 @@
 \(X\)是一个\(m\)阶酉矩阵，
 \(Y\)是一个\(n\)阶酉矩阵，
 则\begin{equation}
-	\MatrixNorm{A}_\infty
-	= \MatrixNorm{AY}_\infty
-	= \MatrixNorm{XA}_\infty.
+	\MatrixNorm{A}_2
+	= \MatrixNorm{AY}_2
+	= \MatrixNorm{XA}_2.
 \end{equation}
 \end{property}
+
+\begin{proposition}
+%@credit: {8b6edada-f2fd-4ae5-9020-eb533149a54c} 狗狗说“算子范数”有专门针对实对称矩阵的定义.
+定义：\begin{equation*}
+	\MatrixNorm{A}
+	\defeq
+	\begin{cases}
+		\text{$A$的谱半径}, & \text{$A$是实对称矩阵}, \\
+		\sqrt{ \MatrixNorm{A^TA} }, & \text{其他},
+	\end{cases}
+\end{equation*}
+则\(\MatrixNorm{A}\)等于\(A\)的谱范数\(\MatrixNorm{A}_2\).
+\end{proposition}
