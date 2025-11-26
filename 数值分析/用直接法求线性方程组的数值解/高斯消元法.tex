@@ -1,4 +1,5 @@
 \section{高斯消元法}
+\subsection{高斯消元法}
 设\begin{equation*}
 	A \defeq \begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1n} \\
@@ -85,6 +86,7 @@
 	= \frac12 n (n-1)
 \)次.
 
+\subsection{高斯消元法与LU分解的联系}
 容易看出，上述高斯消元法的第\(1\)步中用到的初等行变换矩阵的乘积等于\begin{equation*}
 	L_1
 	\defeq
@@ -147,3 +149,73 @@
 		m^{(1)}_n & m^{(2)}_n & m^{(3)}_n & \dots & 1 \\
 	\end{bmatrix}.
 \end{equation*}
+
+\subsection{列主元消去法}
+我们可以看出，
+当\(a^{(k)}_{kk}\)等于零时，
+根本无法计算乘数\(m^{(k)}_i \defeq \frac{a^{(k)}_{ik}}{a^{(k)}_{kk}}\)；
+当\(a^{(k)}_{kk}\)非常接近零时，
+乘数\(m^{(k)}_i \defeq \frac{a^{(k)}_{ik}}{a^{(k)}_{kk}}\)的计算会有很大的误差，
+导致其他元素的数量级严重增长和舍入误差的扩散，
+使得计算结果不可靠.
+
+于是，在第\(k\)步计算乘数\(m^{(k)}_i\)之前，
+我们首先在第\(k\)列选取绝对值最大的元素作为主元，
+令\begin{equation*}
+	i_k \defeq \argmax_{k \leq i \leq n} \abs{ a_{ik} },
+\end{equation*}
+然后交换第\(k\)行与第\(i_k\)行，
+再继续后续步骤.
+
+现在我们用初等行变换矩阵的乘积来表述列主元消去法.
+显然\begin{equation*}
+	A^{(k+1)} = L_k I_{k,i_k} A^{(k)},
+	\qquad
+	B^{(k+1)} = L_k I_{k,i_k} B^{(k)},
+\end{equation*}
+于是\begin{align*}
+	U
+	&= (L_n I_{n,i_n})
+		(L_{n-1} I_{n-1,i_{n-1}})
+		(L_{n-2} I_{n-2,i_{n-2}})
+		\dotsm
+		(L_1 I_{1,i_i})
+		A \\
+	&= L_n
+	(I_{n,i_n} L_{n-1} I_{n,i_n})
+	(I_{n,i_n} I_{n-1,i_{n-1}} L_{n-2} I_{n-1,i_{n-1}} I_{n,i_n}) \\
+	&\hspace{20pt}
+	\dotsm
+	(I_{n,i_n} \dotsm I_{1,i_1} L_1 I_{1,i_1} \dotsm I_{n,i_n})
+	(I_{n,i_n} I_{n-1,i_{n-1}} \dotsm I_{1,i_1})
+	A.
+\end{align*}
+记\begin{align*}
+	\widetilde{L}_n
+	&\defeq
+	L_n, \\
+	\widetilde{L}_k
+	&\defeq
+	I_{n,i_n} \dotsm I_{k+1,i_{k+1}} L_k I_{k+1,i_{k+1}} \dotsm I_{n,i_n}
+	\quad(k=1,2,\dotsc,n-1), \\
+	P
+	&\defeq
+	I_{n,i_n} I_{n-1,i_{n-1}} \dotsm I_{1,i_1}, \\
+	L
+	&\defeq
+	(\widetilde{L}_n \widetilde{L}_{n-1} \dotsm \widetilde{L}_1)^{-1}
+\end{align*}
+则\begin{equation*}
+	L U = P A.
+\end{equation*}
+于是我们可以得出如下结论.
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P152 定理8（列主元三角分解定理）
+如果\(A \in M_n(F)\)是非奇异矩阵，
+则存在置换矩阵\(P \in M_n(F)\)，
+存在单位下三角矩阵\(L \in M_n(F)\)，
+存在上三角矩阵\(U \in M_n(F)\)，
+使得\begin{equation*}
+	P A = L U.
+\end{equation*}
+\end{theorem}
