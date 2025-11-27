@@ -50,6 +50,53 @@
 \end{equation*}
 \end{definition}
 
+\begin{example}
+设\((V,p)\)是域\(F\)上的一个赋范线性空间，
+其中\(\mathbb{R} \subseteq F \subseteq \mathbb{C}\).
+给定\(\alpha \in V\)且\(\alpha \neq 0\).
+证明：存在唯一的数\(k \in F\)和向量\(\epsilon \in V\)，
+使得\(\norm{\epsilon}_p = 1\)且\(\alpha = k \epsilon\).
+\begin{proof}
+%@credit: gemini
+先证存在性.
+因为\(\alpha \neq 0\)，所以由范数的非负性可知\(p(\alpha) > 0\).
+取\(k \defeq p(\alpha)\).
+因为\(p(\alpha) > 0\)，
+所以\(k \in \mathbb{R}^+ \subseteq F\).
+再取\(\epsilon \defeq k^{-1} \alpha\).
+既然\(k \in \mathbb{R}^+\)，
+那么必有\(k^{-1} \in \mathbb{R}^+ \subseteq F\)，
+加之\(\alpha \in V\)，
+从而有\(\epsilon \in F\).
+显然成立\(k \epsilon = k (k^{-1} \alpha) = (k k^{-1}) \alpha = \alpha\).
+因为\(
+	p(\epsilon)
+	= p(k^{-1} \alpha)
+	= \abs{k^{-1}} p(\alpha)  % 齐次性
+	= k^{-1} k
+	= 1
+\)，
+所以\(\epsilon\)是单位向量.
+
+再证唯一性.
+假设存在另一组数\(k' \in \mathbb{R}^+\)和向量\(\epsilon' \in V\)
+满足\(p(\epsilon') = 1\)且\(\alpha = k' \epsilon'\).
+在等式\(\alpha = k' \epsilon'\)两边同时取范数\(p\)，
+得\(p(\alpha) = p(k' \epsilon')\).
+由范数的齐次性可知\(p(\alpha) = \abs{k'} p(\epsilon')\).
+考虑到\(k' \in \mathbb{R}^+\)，便知\(\abs{k'} = k'\).
+由假设\(p(\epsilon') = 1\)可知\(p(\alpha) = k' \cdot 1 = k'\).
+因此，数\(k'\)必须等于\(p(\alpha)\)，即\(k' = k\).
+故\(k\)是唯一的.
+既然\(k' = k\)，那么有\(\alpha = k \epsilon = k \epsilon'\).
+% 因为\(k \in \mathbb{R}^+\)，所以\(k^{-1} \in \mathbb{R}^+ \subseteq F\).
+在等式\(\alpha = k \epsilon'\)两边同时乘以\(k^{-1}\)，
+得\(k^{-1} \alpha = k^{-1} (k \epsilon') = (k^{-1} k) \epsilon' = \epsilon'\).
+由于\(\epsilon = k^{-1} \alpha\)，因此\(\epsilon' = \epsilon\).
+故\(\epsilon\)也是唯一的.
+\end{proof}
+\end{example}
+
 \subsection{半范数}
 \begin{definition}
 %@see: 《矩阵分析与应用（第2版）》（张贤达） P24 定义1.3.8
