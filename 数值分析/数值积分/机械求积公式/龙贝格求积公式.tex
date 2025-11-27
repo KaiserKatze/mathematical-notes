@@ -1,22 +1,126 @@
 \section{龙贝格求积公式}
 %@see: https://mathworld.wolfram.com/RombergIntegration.html
+%@see: https://zhuanlan.zhihu.com/p/1895142933969216910
 上一节介绍的复合求积方法可以提高求积精度.
 在实际计算中，如果无法预知需要划分的区间个数，
 那么可以运用迭代思想，在发现精度不够时，将步长减半.
 具体地，假设一开始将区间\([a,b]\)划分为\(n\)等份，
+分点\(
+	x_k \defeq a + k h
+	\ (k=0,1,2,\dotsc,n)
+\)，
+运用复合梯形公式\begin{equation*}
+	T_n
+	= \frac{h}{2}
+	\left(
+		f(a) + 2 \sum_{k=1}^{n-1} f(x_k) + f(b)
+	\right),
+\end{equation*}
+其中步长为\(
+	h \defeq \frac{b - a}{n}
+\).
+如果这时我们发现精度不够，
+则将区间\([a,b]\)划分为\(2n\)等份，
+在\(x_k\)与\(x_{k+1}\)之间新增分点\(x_{k+1/2}\)（\(k=0,1,2,\dotsc,n-1\)），
+运用复合梯形公式\begin{equation*}
+	T_{2n}
+	= \frac{h'}{2}
+	\left(
+		f(a) + 2 \sum_{k=1}^{n-1} f(x_k) + 2 \sum_{k=0}^{n-1} f(x_{k+1/2}) + f(b)
+	\right),
+\end{equation*}
+其中步长为\(
+	h' \defeq \frac{h}{2} = \frac{b - a}{2n}
+\).
+显然\(T_{2n}\)可以改写为一个递推公式\begin{align*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P110 (4.1)
+	T_{2n}
+	&= \frac{h'}{2}
+	\left(
+		f(a) + 2 \sum_{k=1}^{n-1} f(x_k) + 2 \sum_{k=0}^{n-1} f(x_{k+1/2}) + f(b)
+	\right) \\
+	&= \frac{h'}{2}
+	\left(
+		f(a) + 2 \sum_{k=1}^{n-1} f(x_k) + f(b)
+	\right)
+	+ \frac{h'}{2} \cdot 2 \sum_{k=0}^{n-1} f(x_{k+1/2}) \\
+	&= \frac{1}{2} \cdot \frac{h}{2}
+	\left(
+		f(a) + 2 \sum_{k=1}^{n-1} f(x_k) + f(b)
+	\right)
+	+ \frac{h}{2} \sum_{k=0}^{n-1} f(x_{k+1/2}) \\
+	&= \frac{1}{2} T_n + \frac{h}{2} \sum_{k=0}^{n-1} f(x_{k+1/2}).
+\end{align*}
+假设被积函数\(f\)在\([a,b]\)上是光滑的，
+记\(I \defeq \int_a^b f(x) \dd{x}\)，
+那么由\cref{equation:复合求积公式.复合梯形公式的余项2} 可知\begin{equation*}
+	I - T_n
+	= - \frac{b-a}{12} h^2 f''(\eta)
+	\quad(a \leq \eta \leq b).
+\end{equation*}
+如果把\(T_n\)看作关于\(h\)的函数，
+记\(g(h) \defeq T_n\)，
+则\(g(h) = I + \frac{b-a}{12} h^2 f''(\eta)\)，
+易知\begin{equation*}
+	\lim_{h\to0} g(h)
+	= g(0)
+	= I.
+\end{equation*}
+这就证明梯形公式的余项可以展成幂级数，
+因此我们得到如下结论.
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P111 定理4
+设\(f \in C^\infty[a,b]\)，
+则\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P111 (4.2)
+	g(h)
+	= I + \sum_{k=1}^\infty a_k h^{2k},
+\end{equation*}
+其中系数\(a_k\ (k=1,2,\dotsc)\)与\(h\)的取值无关.
+\end{theorem}
+
+上述定理表明，用\(g(h)\)近似\(I\)产生的绝对误差是比\(h^2\)高阶的无穷小\(o(h^2)\ (h\to0)\)，
+而用\begin{equation*}
+	g^*(h) \defeq \frac{ 4 g(h/2) - g(h) }{3}
+\end{equation*}
+近似\(I\)产生的绝对误差是\(o(h^4)\)，
+这比复合梯形公式\(g(h)\)的误差阶\(o(h^2)\)提高了，
+容易验证\(g^*(h)\)就是复合辛普森公式 \labelcref{equation:复合求积公式.复合辛普森公式}，
+即\begin{equation}\label{equation.龙贝格求积公式.复合梯形公式外推成复合辛普森公式}
+	S_n = \frac{4}{3} T_{2n} - \frac{1}{3} T_n.
+\end{equation}
+
+上面所说的，将计算积分的近似值的误差阶由\(o(h^{2n})\)提高到\(o(h^{2n+2})\)的方法，
+称为\DefineConcept{理查德外推算法}（Richardson extrapolation）.
+%@see: https://mathworld.wolfram.com/RichardsonExtrapolation.html
+%@see: https://en.wikipedia.org/wiki/Richardson_extrapolation
+这是数值分析中的一个重要的技巧：
+只要真值与近似值的误差可以表示成某个参数（例如\(h\)）的幂级数，
+就都可以使用理查德外推算法，提高精度.
+
+类似地，我们可以验证复合辛普森公式与复合柯特斯公式之间的关系为\begin{equation}\label{equation.龙贝格求积公式.复合辛普森公式外推成复合柯特斯公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P111 (4.7)
+	C_n = \frac{16}{15} S_{2n} - \frac{1}{15} S_n.
+\end{equation}
+显然复合柯特斯公式的误差阶为\(o(h^6)\).
+
+再进一步，继续运用外推技巧，就可以得到误差阶为\(o(h^8)\)的近似公式\begin{equation}\label{equation.龙贝格求积公式.复合柯特斯公式外推成复合龙贝格公式}
+	R_n \defeq \frac{64}{63} C_{2n} - \frac{1}{63} C_n.
+\end{equation}
+
+下面我们将\cref{equation.龙贝格求积公式.复合梯形公式外推成复合辛普森公式,equation.龙贝格求积公式.复合辛普森公式外推成复合柯特斯公式,equation.龙贝格求积公式.复合柯特斯公式外推成复合龙贝格公式}
+统一成一个公式.
+令\(g_0(h) \defeq T_n, g_1(h) \defeq S_n, g_2(h) \defeq C_n, g_3(h) \defeq R_n\)，
+则\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P112 (4.9)
+	g_m(h) = \frac{4^m}{4^m - 1} g_{m-1}(h/2) - \frac{1}{4^m - 1} g_{m-1}(h).
+\end{equation}
 
 
 % 变步长的优势：在无法预知需要划分的区间个数时，使用变步长方法，可以计算出符合精度要求的近似值，并且可以随时停止计算，节省算力
 % 变步长的劣势：只能求\(T_n,T_{2n},T_{4n},...\)，不能求\(T_3,T_7,T_{30}\).
 
-\begin{equation}
-	S_n = \frac{4}{3} T_{2n} - \frac{1}{3} T_n.
-\end{equation}
 
-\begin{equation}
-	C_n = \frac{16}{15} S_{2n} - \frac{1}{15} S_n.
-\end{equation}
 
-\begin{equation}
-	R_n = \frac{64}{63} C_{2n} - \frac{1}{63} C_n.
-\end{equation}
+
+
