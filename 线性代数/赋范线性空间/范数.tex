@@ -378,24 +378,84 @@
 \end{itemize}
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}% 列和范数
 %@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 则\begin{equation*}
 	\MatrixNorm{A}_1
-	= \max_{1 \leq j \leq n} \sum_{i=1}^n \abs{a_{ij}}.
+	= \max_{1 \leq j \leq n} \sum_{i=1}^m \abs{a_{ij}}.
 \end{equation*}
-%TODO
 \begin{proof}
-因为\begin{align*}
+根据矩阵\(L_p\)范数的定义有\(
 	\MatrixNorm{A}_1
-	&= \max_{0 \neq x \in \mathbb{C}^n} \frac{ \norm{Ax}_1 }{ \norm{x}_1 } \\
-	&=
+	= \max_{0 \neq x \in \mathbb{C}^n}
+		\frac{ \norm{Ax}_1 }{ \norm{x}_1 }
+\).
+由于对于任意非零向量\(x \in \mathbb{C}^n\)，
+存在唯一的复数\(k\)和单位向量\(e\)，
+使得\(x = k e\)，
+所以\begin{equation*}
+	\frac{ \norm{Ax}_1 }{ \norm{x}_1 }
+	= \frac{ \norm{A(ke)}_1 }{ \norm{ke}_1 }
+	= \frac{ k \norm{Ae}_1 }{ k \norm{e}_1 }
+	= \frac{ \norm{Ae}_1 }{ \norm{e}_1 }
+	= \norm{Ae}_1,
+\end{equation*}
+从而有\begin{align*}
+	\MatrixNorm{A}_1
+	&= \max_{\norm{x} = 1}
+		\norm{Ax}_1 \\
+	&= \max_{\norm{x} = 1}
+		\sum_{i=1}^m
+		\abs{
+			\sum_{j=1}^n a_{ij} x_j
+		}
+		\tag{向量$L_p$范数的定义} \\
+	&\leq \max_{\norm{x} = 1}
+		\sum_{i=1}^m
+		\sum_{j=1}^n
+		\abs{
+			a_{ij} x_j
+		}
+		\tag{\hyperref[theorem:不等式.三角不等式1.推论1]{三角不等式}} \\
+	&= \max_{\norm{x} = 1}
+		\sum_{i=1}^m
+		\sum_{j=1}^n
+		\abs{a_{ij}} \abs{x_j} \\
+	&= \max_{\norm{x} = 1}
+		\sum_{j=1}^n \abs{x_j}
+		\sum_{i=1}^m \abs{a_{ij}}.
 \end{align*}
+记\(M \defeq \max_{1 \leq j \leq n} \sum_{i=1}^m \abs{a_{ij}}\)，
+则\(\sum_{i=1}^m \abs{a_{ij}} \leq M\ (j=1,2,\dotsc,n)\)，
+从而有\begin{align*}
+	\max_{\norm{x} = 1} \sum_{j=1}^n \abs{x_j} \sum_{i=1}^m \abs{a_{ij}}
+	\leq \max_{\norm{x} = 1} \sum_{j=1}^n \abs{x_j} M
+	= M \max_{\norm{x} = 1} \sum_{j=1}^n \abs{x_j}
+	= M \max_{\norm{x} = 1} \norm{x}
+	= M,
+\end{align*}
+于是\(\MatrixNorm{A}_1 \leq M\).
+
+不妨设矩阵\(A\)第1列的绝对值之和最大，
+即\(M = \sum_{i=1}^m \abs{a_{i1}}\).
+因为当\(x = (1,0,\dotsc,0)^T\)时，有\begin{equation*}
+	\frac{ \norm{Ax}_1 }{ \norm{x}_1 }
+	= \frac{ \norm{ (a_{11},a_{21},\dotsc,a_{m1})^T } }{ \norm{ (1,0,\dotsc,0)^T } }
+	= \frac{ \abs{a_{11}} + \abs{a_{21}} + \dotsb + \abs{a_{m1}} }{ 1 }
+	= M,
+\end{equation*}
+% 既然最大值不能超过\(M\)，且能取到\(M\)，那么最大值就是\(M\)。
+所以\(
+	\MatrixNorm{A}_1
+	= \max_{0 \neq x \in \mathbb{C}^n}
+		\frac{ \norm{Ax}_1 }{ \norm{x}_1 }
+	= M
+\).
 \end{proof}
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}% 谱范数
 %@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 则\begin{equation*}
@@ -405,7 +465,7 @@
 %TODO
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}% 行和范数
 %@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 则\begin{equation*}
