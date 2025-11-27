@@ -86,7 +86,7 @@
 近似\(I\)产生的绝对误差是\(o(h^4)\)，
 这比复合梯形公式\(g(h)\)的误差阶\(o(h^2)\)提高了，
 容易验证\(g^*(h)\)就是复合辛普森公式 \labelcref{equation:复合求积公式.复合辛普森公式}，
-即\begin{equation}\label{equation.龙贝格求积公式.复合梯形公式外推成复合辛普森公式}
+即\begin{equation}\label{equation:龙贝格求积公式.复合梯形公式外推成复合辛普森公式}
 	S_n = \frac{4}{3} T_{2n} - \frac{1}{3} T_n.
 \end{equation}
 
@@ -98,24 +98,43 @@
 只要真值与近似值的误差可以表示成某个参数（例如\(h\)）的幂级数，
 就都可以使用理查德外推算法，提高精度.
 
-类似地，我们可以验证复合辛普森公式与复合柯特斯公式之间的关系为\begin{equation}\label{equation.龙贝格求积公式.复合辛普森公式外推成复合柯特斯公式}
+类似地，我们可以验证复合辛普森公式与复合柯特斯公式之间的关系为\begin{equation}\label{equation:龙贝格求积公式.复合辛普森公式外推成复合柯特斯公式}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P111 (4.7)
 	C_n = \frac{16}{15} S_{2n} - \frac{1}{15} S_n.
 \end{equation}
 显然复合柯特斯公式的误差阶为\(o(h^6)\).
 
-再进一步，继续运用外推技巧，就可以得到误差阶为\(o(h^8)\)的近似公式\begin{equation}\label{equation.龙贝格求积公式.复合柯特斯公式外推成复合龙贝格公式}
+再进一步，继续运用外推技巧，就可以得到误差阶为\(o(h^8)\)的近似公式\begin{equation}\label{equation:龙贝格求积公式.复合柯特斯公式外推成复合龙贝格公式}
 	R_n \defeq \frac{64}{63} C_{2n} - \frac{1}{63} C_n.
 \end{equation}
 
-下面我们将\cref{equation.龙贝格求积公式.复合梯形公式外推成复合辛普森公式,equation.龙贝格求积公式.复合辛普森公式外推成复合柯特斯公式,equation.龙贝格求积公式.复合柯特斯公式外推成复合龙贝格公式}
+下面我们将\cref{equation:龙贝格求积公式.复合梯形公式外推成复合辛普森公式,equation:龙贝格求积公式.复合辛普森公式外推成复合柯特斯公式,equation:龙贝格求积公式.复合柯特斯公式外推成复合龙贝格公式}
 统一成一个公式.
-令\(g_0(h) \defeq T_n, g_1(h) \defeq S_n, g_2(h) \defeq C_n, g_3(h) \defeq R_n\)，
+令\begin{equation*}
+	T_0(h) \defeq T_n,
+	\qquad
+	T_1(h) \defeq S_n,
+	\qquad
+	T_2(h) \defeq C_n,
+	\qquad
+	T_3(h) \defeq R_n,
+\end{equation*}
 则\begin{equation}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P112 (4.9)
-	g_m(h) = \frac{4^m}{4^m - 1} g_{m-1}(h/2) - \frac{1}{4^m - 1} g_{m-1}(h).
+	T_m(h) = \frac{4^m}{4^m - 1} T_{m-1}(h/2) - \frac{1}{4^m - 1} T_{m-1}(h).
 \end{equation}
 
+用\(T_0^{(k)}\)表示二分\(k\)次后求得的梯形值（利用复合梯形公式求得的近似值），
+用\(T_m^{(k)}\)表示序列\(\{T_0^{(k)}\}\)的\(m\)次加速值，
+则根据上述递推公式可得\begin{equation}\label{equation:龙贝格求积公式.龙贝格求积算法}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P112 (4.9)
+	T_m^{(k)}
+	= \frac{4^m}{4^m - 1} T_{m-1}^{(k+1)}
+	- \frac{1}{4^m - 1} T_{m-1}^{(k)}
+	\quad(k=1,2,\dotsc).
+\end{equation}
+我们把递推公式 \labelcref{equation:龙贝格求积公式.龙贝格求积算法}
+称为\DefineConcept{龙贝格求积算法}.
 
 % 变步长的优势：在无法预知需要划分的区间个数时，使用变步长方法，可以计算出符合精度要求的近似值，并且可以随时停止计算，节省算力
 % 变步长的劣势：只能求\(T_n,T_{2n},T_{4n},...\)，不能求\(T_3,T_7,T_{30}\).
