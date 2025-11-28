@@ -12,14 +12,18 @@
 
 当数学模型不能得到精确解时，
 通常需要用数值方法求它的近似解，
-其近似解与精确解之间的误差称为\DefineConcept{截断误差}或\DefineConcept{方法误差}.
+其近似解与精确解之间的误差称为\DefineConcept{截断误差}（truncation error）
+或\DefineConcept{方法误差}.
+%@see: https://en.wikipedia.org/wiki/Truncation_error
 
 有了求解数学问题的计算公式以后，
 就可以用计算机做数值计算了.
 但是由于计算机的字长有限，
 在计算机上表示原始数据、中间计算数据和输出数据，
 以及将二进制数据转化为十进制数据，或将十进制数据转化为二进制数据时，
-都会产生\DefineConcept{舍入误差}.
+都会产生\DefineConcept{舍入误差}（round-off error，rounding error）.
+%@see: https://en.wikipedia.org/wiki/Round-off_error
+%@see: https://mathworld.wolfram.com/RoundoffError.html
 
 研究计算结果的误差是否满足精度要求就是误差估计问题.
 数值分析主要讨论算法的截断误差、舍入误差.
@@ -30,7 +34,8 @@
 则称\begin{equation}
 	e^* \defeq x^* - x
 \end{equation}
-是近似值的\DefineConcept{绝对误差}.
+是近似值的\DefineConcept{绝对误差}（absolute error）.
+%@see: https://mathworld.wolfram.com/AbsoluteError.html
 
 通常我们不能算出准确值\(x\)，
 也不能算出误差\(e^*\)的准确值，
@@ -68,7 +73,8 @@
 	\defeq \frac{e^*}{x}
 	= \frac{x^* - x}{x}
 \end{equation}
-称为近似值\(x^*\)的\DefineConcept{相对误差}.
+称为近似值\(x^*\)的\DefineConcept{相对误差}（relative error）.
+%@see: https://mathworld.wolfram.com/RelativeError.html
 
 在实际计算中，由于真值\(x\)总是不知道的，
 当\(e^* / x^*\)较小时，
@@ -107,8 +113,9 @@
 常常按四舍五入的原则得到\(x\)的前几位近似值\(x^*\).
 如果近似值\(x^*\)的绝对误差限是某一位的半个单位，
 且该位到\(x^*\)的第一位非零数字共有\(n\)位，
-则称\(x^*\)有\(n\)位\DefineConcept{有效数字}.
-我们常常把\(x^*\)表示为\begin{equation*}
+则称“\(x^*\)有\(n\)位\DefineConcept{有效数字}（\(x^*\) has \(n\) \emph{significant digits}）”.
+%@see: https://mathworld.wolfram.com/SignificantDigits.html
+我们常常把\(x^*\)表示为\begin{equation}
 	x^*
 	= \pm p^m \times (
 		a_1
@@ -116,7 +123,7 @@
 		+ \dotsb
 		+ a_n \times p^{-(n-1)}
 	),
-\end{equation*}
+\end{equation}
 其中\(a_i\ (i=1,2,\dotsc,n)\)
 是\(0\)到\(p-1\)中的一个数字，
 \(a_1\neq0\)，
@@ -326,3 +333,8 @@
 \end{equation*}
 \end{solution}
 \end{example}
+
+
+%TODO
+%@see: https://mathworld.wolfram.com/ErrorPropagation.html
+%@see: https://mathworld.wolfram.com/SignificanceArithmetic.html
