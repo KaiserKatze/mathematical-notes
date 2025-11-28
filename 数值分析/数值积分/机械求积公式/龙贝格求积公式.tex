@@ -21,7 +21,8 @@
 \).
 如果这时我们发现精度不够，
 则将区间\([a,b]\)划分为\(2n\)等份，
-在\(x_k\)与\(x_{k+1}\)之间新增分点\(x_{k+1/2}\)（\(k=0,1,2,\dotsc,n-1\)），
+在\(x_k\)与\(x_{k+1}\)之间新增分点\(x_{k+1/2} \defeq (x_k + x_{k+1}) / 2\)（\(k=0,1,2,\dotsc,n-1\)），
+这时候节点个数由\(n+1\)个增加到\(2n+1\)个，
 运用复合梯形公式\begin{equation*}
 	T_{2n}
 	= \frac{h'}{2}
@@ -53,7 +54,8 @@
 这样我们就得到了\(T_n\)的递推公式\begin{equation}\label{equation:龙贝格求积公式.梯形值递推公式}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P110 (4.1)
 	T_{2n}
-	= \frac{1}{2} T_n + \frac{h}{2} \sum_{k=0}^{n-1} f(x_{k+1/2}).
+	= \frac{1}{2} T_n + \frac{h}{2} \sum_{k=0}^{n-1} f(x_{k+1/2})
+	\quad(n=1,2,\dotsc).
 \end{equation}
 假设被积函数\(f\)在\([a,b]\)上是光滑的，
 记\(I \defeq \int_a^b f(x) \dd{x}\)，
@@ -148,7 +150,7 @@
 	\item
 	欲求积分\(I \defeq \int_a^b f(x) \dd{x}\)，
 	取步长\(h \defeq b - a\)，
-	初始化区间均分次数为\(k \defeq 0\)，
+	初始化区间均分次数\(k \defeq 0\)，
 	建立T表：\begin{center}
 		\begin{tblr}{c|c|*6c}
 			\hline
@@ -165,27 +167,35 @@
 	\end{center}
 
 	\item
-	求\(T_0^{(0)} \defeq \frac{h}{2} ( f(a) + f(b) )\)，
-	再令\(k \defeq k+1\)；
+
+	求\(
+		T_0^{(0)}
+		\defeq
+		% = T_0\left( \frac{b-a}{2^0} \right)
+		% = T_0(b-a)
+		% = T_1
+		\frac{h}{2} ( f(a) + f(b) )
+	\)；
 
 	\item
-	令\(n \defeq 2^k + 1\)，
+	令\(
+		n \defeq 2^k,
+		k \defeq k+1
+	\)，
 	利用\cref{equation:龙贝格求积公式.梯形值递推公式}
-	\begin{equation*}
+	计算梯形值\begin{equation*}
 		T_0^{(k)}
-		= \frac{1}{2} T_0^{(k-1)} + \frac{h}{2} \sum_{i=0}^{n-1} f(x_{i+1/2}),
+		= \frac{1}{2} T_0^{(k-1)} + \frac{h}{2} \sum_{i=0}^{n-1} f(x_{i+1/2});
 	\end{equation*}
-	计算梯形值\(T_0^{(k)} = T_0\left( \frac{b-a}{2^k} \right)\)；
 
 	\item
 	利用\cref{equation:龙贝格求积公式.龙贝格求积算法}
-	\begin{equation*}
-		T_m^{(k)}
-		= \frac{4^m}{4^m - 1} T_{m-1}^{(k+1)}
-		- \frac{1}{4^m - 1} T_{m-1}^{(k)}
-		\quad(k=1,2,\dotsc),
+	计算加速值\begin{equation*}
+		T_j^{(k-j)}
+		= \frac{4^j}{4^j - 1} T_{j-1}^{(k-j+1)}
+		- \frac{1}{4^j - 1} T_{j-1}^{(k-j)}
+		\quad(j=1,2,\dotsc,k);
 	\end{equation*}
-	计算加速值\(T_j^{(k-j)}\ (j=1,2,\dotsc,k)\)（填入T表的第\(k\)行）；
 
 	\item
 	判断近似值是否达到预期精度\(\epsilon\)（例如\(\epsilon = 10^{-6}\)）：
@@ -194,7 +204,7 @@
 		如果\(\abs{ T_k^{(0)} - T_{k-1}^{(0)} } < \epsilon\)，
 		则终止计算，用\(T_k^{(0)}\)近似积分值\(I\)；
 		\item
-		否则，令\(k \defeq k+1\)，回到第3步，继续计算.
+		否则，令\(h \defeq h/2\)，回到第3步，继续计算.
 	\end{itemize}
 \end{enumerate}
 \end{algorithm}
