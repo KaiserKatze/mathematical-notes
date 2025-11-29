@@ -74,6 +74,7 @@ jobs:
             echo "tlmgr found. Attempting tlmgr install for each package (non-fatal on failure)."
             # try self-update (non-fatal)
             sudo tlmgr update --self || true
+            sudo tlmgr install ctex
             for pkg in "${PKGS[@]}"; do
               if [ -z "$pkg" ]; then
                 continue
@@ -85,6 +86,7 @@ jobs:
           else
             echo "tlmgr not found. Installing common texlive collections via apt as fallback."
             sudo apt-get update -qq
+            sudo apt-get install -y texlive-lang-chinese
             # Install collections that cover most common packages
             sudo apt-get install -y --no-install-recommends \
               texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex || true
