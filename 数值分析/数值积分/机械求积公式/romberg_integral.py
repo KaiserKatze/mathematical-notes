@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-本程序利用龙贝格求积算法计算定积分，
-在计算时打印超参数、梯形值和加速值。
+本程序利用龙贝格求积算法计算定积分。
+在计算时，以LaTeX的格式，打印超参数、梯形值和加速值。
 
 @author: KaiserKatze
 @date: 2025-11-29
@@ -13,6 +13,9 @@ import numpy as np
 
 
 def print_t_table(t_table: dict[tuple[int, int], float]):
+    """
+    打印 T 表
+    """
     for i in range(100):
         for j in range(i):
             row = i - 1 - j
@@ -26,7 +29,21 @@ def print_t_table(t_table: dict[tuple[int, int], float]):
         print()
 
 
-def romberg_integral(fn, a, b, tol, min_iter=5):
+def romberg_integral(fn, a, b, tol, min_iter=5, dtype=np.float32):
+    """
+    龙贝格求积算法
+
+    Args
+        fn          被积函数
+        a           积分下限
+        b           积分上限
+        tol         近似精度
+        min_iter    最低迭代次数
+
+    Returns
+        T[k,0]      积分近似值
+    """
+
     h = b - a  # 初始步长
     k = 0  # 初始均分次数
     T = {}
@@ -40,7 +57,7 @@ def romberg_integral(fn, a, b, tol, min_iter=5):
     while True:
         n = 2**k
         k += 1
-        x = a + (np.arange(n, dtype=np.float32) + .5) * h
+        x = a + (np.arange(n, dtype=dtype) + .5) * h
         sum_fn_x = fn(x).sum()
         T[0,k] = .5 * T[0,k-1] + .5 * h * sum_fn_x
         for j in range(1, k+1):
@@ -76,4 +93,5 @@ def romberg_integral(fn, a, b, tol, min_iter=5):
 
 
 if __name__ == '__main__':
+    # NIntegrate[x Sin[x],{x,0,2 Pi}]
     romberg_integral(lambda x: x * np.sin(x), 0, 2 * np.pi, 1e-5, min_iter=5)
