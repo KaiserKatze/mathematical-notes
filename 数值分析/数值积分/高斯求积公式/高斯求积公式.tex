@@ -108,6 +108,35 @@
 这时它变成关于\(A_k\)的线性方程组.
 下面讨论如何选取节点\(x_k\)，才能使求积公式具有\(2n+1\)次代数精度.
 
+给定\(n+1\)个节点\(a = x_0 < x_1 < \dotsb < x_n = b\)，
+被积函数\(f\)的拉格朗日插值多项式为\begin{equation*}
+	L_n(x) \defeq \sum_{k=0}^n f(x_k) ~ l_k(x),
+\end{equation*}
+其中\begin{equation*}
+	l_k(x) \defeq \prod_{0 \leq i \leq n, i \neq k} \frac{x - x_i}{x_k - x_i}
+	\quad(k=0,1,2,\dotsc,n),
+\end{equation*}
+则\begin{equation*}
+	f(x) = \sum_{k=0}^n f(x_k) ~ l_k(x) + \frac{1}{(n+1)!} ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x)
+	\quad(a < \xi(x) < b).
+\end{equation*}
+用\(\rho(x)\)乘上式，并积分，得\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P118 (6.6)
+	\int_a^b \rho(x) ~ f(x) \dd{x}
+	= \sum_{k=0}^n A_k f(x_k) + \frac{1}{(n+1)!} \int_a^b \rho(x) ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x) \dd{x},
+\end{equation*}
+其中\begin{equation*}
+	A_k \defeq \int_a^b \rho(x) ~ l_k(x) \dd{x}.
+\end{equation*}
+显然余项为\begin{equation*}
+	R[f] \defeq \frac{1}{(n+1)!} \int_a^b \rho(x) ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x) \dd{x}.
+\end{equation*}
+当\(f(x) = x^m\ (m=0,1,2,\dotsc,n)\)时，有\(R[f] = 0\)，
+此时有\begin{equation*}
+	\int_a^b \rho(x) ~ f(x) \dd{x}
+	= \sum_{k=0}^n A_k f(x_k).
+\end{equation*}
+这就说明求积公式至少具有\(n\)次代数精度.
 
 高斯求积公式与机械求积公式的最大区别：
 机械求积公式中未知待定的量仅有求积系数，
