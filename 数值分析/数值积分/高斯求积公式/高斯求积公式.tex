@@ -65,6 +65,32 @@
 所以求积公式\(f(-\sqrt3/3) + f(\sqrt3/3)\)的代数精度为\(3\).
 \end{example}
 
+实际上求积公式\(A_0 f(x_0) + A_1 f(x_1)\)的代数精度不可能超过\(3\)，
+这是因为对于任意给定的两个积分节点\(x_0,x_1 \in [-1,1]\)，
+4次多项式函数\(f(x) \defeq (x - x_0)^2 (x - x_1)^2\)的积分为\begin{equation*}
+	\int_{-1}^1 f(x) \dd{x}
+	% = 2 x_0^2 x_1^2 + \frac23 x_0^2 + \frac83 x_0 x_1 + \frac23 x_1^2 + \frac25
+	= \frac23 \left( x_0 + x_1 \right)^2
+	+ 2 \left( x_0 x_1 + \frac13 \right)^2
+	+ \frac{8}{45}
+	> 0,
+\end{equation*}
+而\(f(x_0) = f(x_1) = 0\)，
+故近似值为\(A_0 f(x_0) + A_1 f(x_1) = 0\)，
+它表明两个节点的求积公式的最高代数精度为\(3\).
+以此类推，我们可以如下结论.
+\begin{theorem}
+含\(n+1\)个节点的求积公式\(\sum_{k=0}^n A_k f(x_k)\)的代数精度最高为\(2n+1\)次.
+%TODO
+\end{theorem}
+
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P118 定义4
+如果在近似积分\(\int_a^b \rho(x) f(x) \dd{x}\)时，
+求积公式\(\sum_{k=0}^n A_k f(x_k)\)具有\(2n+1\)次代数精度，
+则把它称为\DefineConcept{高斯求积公式}，
+把它的节点\(x_k\ (k=0,1,2,\dotsc,n)\)称为\DefineConcept{高斯点}.
+\end{definition}
 
 
 
