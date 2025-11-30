@@ -88,14 +88,135 @@
 \begin{property}[莱布尼茨公式]
 %@credit: {gemini}
 设\(u,v\)都是定义在\(D\)上的一元实值函数，
-给定\(x_0,\dotsc,x_k \in D\)，
+给定\(k+1\ (k\geq0)\)个点\(x_0,\dotsc,x_k \in D\)，
 则\begin{equation}
 	(u \cdot v)[x_0,x_1,\dotsc,x_k]
 	= \sum_{i=0}^k
 	( u[x_0,x_1,\dotsc,x_i] )
 	\cdot ( v[x_i,x_{i+1},\dotsc,x_k] ).
 \end{equation}
-%TODO proof
+\begin{proof}
+对差商的阶数\(k\)运用数学归纳法.
+
+当\(k=0\)时，
+由零阶差商的定义有\(
+	(u v)[x_0]
+	= u(x_0) v(x_0)
+	= u[x_0] v[x_0]
+\).
+
+当\(k=1\)时，
+由一阶差商的定义有\begin{equation*}
+	(u v)[x_0, x_1]
+	= \frac{(u v)(x_1) - (u v)(x_0)}{x_1 - x_0}
+	= \frac{u(x_1)v(x_1) - u(x_0)v(x_0)}{x_1 - x_0},
+\end{equation*}
+而\begin{align*}
+	&\hspace{-20pt}
+	u[x_0] v[x_0, x_1] + u[x_0, x_1] v[x_1]
+	= u[x_0] \frac{v(x_1)-v(x_0)}{x_1-x_0} + \frac{u(x_1)-u(x_0)}{x_1-x_0} v[x_1] \\
+	&= \frac{u(x_0)v(x_1) - u(x_0)v(x_0)}{x_1 - x_0}
+		+ \frac{u(x_1)v(x_1) - u(x_0)v(x_1)}{x_1 - x_0} \\
+	&= \frac{u(x_1)v(x_1) - u(x_0)v(x_0)}{x_1 - x_0},
+\end{align*}
+所以\begin{equation*}
+	(u v)[x_0, x_1] = u[x_0] v[x_0, x_1] + u[x_0, x_1] v[x_1].
+\end{equation*}
+
+假设命题对任意小于\(k\)阶的差商成立，
+那么\begin{gather*}
+	(u \cdot v)[x_1,\dotsc,x_{k-1},x_k]
+	= \sum_{i=1}^k
+	( u[x_1,x_2,\dotsc,x_i] )
+	\cdot ( v[x_i,x_{i+1},\dotsc,x_k] ),
+	\\
+	(u \cdot v)[x_0,x_1,\dotsc,x_{k-1}]
+	= \sum_{i=0}^{k-1}
+	( u[x_0,x_1,\dotsc,x_i] )
+	\cdot ( v[x_i,x_{i+1},\dotsc,x_{k-1}] ).
+\end{gather*}
+由\cref{equation:牛顿插值.差商的计算式} 有\begin{equation*}
+	(u v)[x_0,x_1,\dotsc,x_{k-1},x_k]
+	= \frac{
+		(u v)[x_1,\dotsc,x_{k-1},x_k]
+		- (u v)[x_0,x_1,\dotsc,x_{k-1}]
+	}{
+		x_k - x_0
+	}.
+\end{equation*}
+要证\(
+	S_k
+	\defeq
+	\sum_{i=0}^k
+	( u[x_0,x_1,\dotsc,x_i] )
+	\cdot ( v[x_i,x_{i+1},\dotsc,x_k] )
+\)
+与\((u \cdot v)[x_0,x_1,\dotsc,x_{k-1},x_k]\)相等，
+只需证\begin{equation*}
+	(x_k - x_0) S_k
+	= (u v)[x_1,\dotsc,x_{k-1},x_k]
+	- (u v)[x_0,x_1,\dotsc,x_{k-1}].
+\end{equation*}
+
+下面利用差商的递推公式，
+对\(S_k\)的每一项\(( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] )\)进行分解.
+
+因为\(x_k - x_0 = (x_k - x_i) + (x_i - x_0)\)，
+所以\begin{align*}
+	&\hspace{-20pt}
+	(x_k - x_0) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&= (x_k - x_i) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&\hspace{20pt}
+	+ (x_i - x_0) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ).
+\end{align*}
+由\cref{equation:牛顿插值.差商的计算式} 有\begin{gather*}
+	( v[x_i,x_{i+1},\dotsc,x_k] ) \cdot (x_k - x_i)
+	= v[x_{i+1},\dotsc,x_k]
+	- v[x_i,\dotsc,x_{k-1}],
+	\\
+	( u[x_0,x_1,\dotsc,x_i] ) \cdot (x_i - x_0)
+	= u[x_1,\dotsc,x_i]
+	- u[x_0,\dotsc,x_{i-1}],
+\end{gather*}
+所以\begin{align*}
+	&\hspace{-20pt}
+	(x_k - x_0) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&= ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] - v[x_i,\dotsc,x_{k-1}] ) \\
+	&\hspace{20pt}
+	+ ( u[x_1,\dotsc,x_i] - u[x_0,\dotsc,x_{i-1}] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ),
+\end{align*}
+于是\begin{align*}
+	&\hspace{-20pt}
+	(x_k - x_0) S_k
+	= \sum_{i=0}^k (x_k - x_0) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&= \sum_{i=0}^k ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] - v[x_i,\dotsc,x_{k-1}] ) \\
+	&\hspace{20pt}
+		+ \sum_{i=0}^k ( u[x_1,\dotsc,x_i] - u[x_0,\dotsc,x_{i-1}] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&= \sum_{i=0}^k ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] ) \\
+	&\hspace{20pt}
+		- \sum_{i=0}^k ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_{k-1}] ) \\
+	&\hspace{20pt}
+		+ \sum_{i=0}^k ( u[x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&\hspace{20pt}
+		- \sum_{i=0}^k ( u[x_0,\dotsc,x_{i-1}] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	%TODO
+	&= \sum_{i=1}^k ( u[x_1,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_k] )
+		- \sum_{i=0}^{k-1} ( u[x_0,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_{k-1}] ) \\
+	&= (u v)[x_1,\dotsc,x_{k-1},x_k]
+	- (u v)[x_0,x_1,\dotsc,x_{k-1}],
+\end{align*}
+也就是说\begin{equation*}
+	S_k
+	= \frac{
+		(u v)[x_1,\dotsc,x_{k-1},x_k]
+		- (u v)[x_0,x_1,\dotsc,x_{k-1}]
+	}{
+		x_k - x_0
+	}
+	= (u \cdot v)[x_0,x_1,\dotsc,x_k].
+	\qedhere
+\end{equation*}
+\end{proof}
 \end{property}
 
 当我们利用\cref{equation:牛顿插值.差商的计算式} 逐阶计算差商，
