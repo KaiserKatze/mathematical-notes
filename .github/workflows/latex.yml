@@ -54,8 +54,11 @@ jobs:
           PKG_CSV=$(echo "$PKG_CSV" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
           echo "packages_csv=$PKG_CSV" >> "$GITHUB_OUTPUT"
 
+      - name: Update apt-get
+        run: sudo apt-get update -qq
+
       - name: Install necessary fonts
-        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk fonts-noto-serif-cjk
+        run: sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk || true
 
       - name: Try install packages via tlmgr (fallback to apt if needed)
         run: |
@@ -88,7 +91,6 @@ jobs:
             echo "tlmgr install attempts finished."
           else
             echo "tlmgr not found. Installing common texlive collections via apt as fallback."
-            sudo apt-get update -qq
             sudo apt-get install -y --no-install-recommends texlive-base
             sudo apt-get install -y --no-install-recommends latexmk                 # essential for 'latexmk'
             sudo apt-get install -y --no-install-recommends texlive-xetex           # essential for 'xelatex'
