@@ -58,7 +58,7 @@ jobs:
         run: sudo apt-get update -qq
 
       - name: Install necessary fonts
-        run: sudo apt-get install -yq --no-install-recommends fonts-noto-core fonts-noto-cjk || true
+        run: sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk || true
 
       - name: Try install packages via tlmgr (fallback to apt if needed)
         run: |
@@ -90,7 +90,7 @@ jobs:
             echo "tlmgr install attempts finished."
           else
             echo "tlmgr not found. Installing common texlive collections via apt as fallback."
-            sudo apt-get install -yq --no-install-recommends \
+            sudo apt-get install -y --no-install-recommends \
               texlive-base \
               latexmk \               # essential for 'latexmk'
               texlive-xetex \         # essential for 'xelatex'
@@ -124,7 +124,7 @@ jobs:
 
             # 如果列表 `PKGS_NOT_FOUND` 非空，则安装 apt-file 再依据 `PKGS_NOT_FOUND`（而不是 `PKGS`）生成列表 `APT_PKGS`
             if [ "${#PKGS_NOT_FOUND[@]}" -gt 0 ]; then
-              sudo apt-get install -yq --no-install-recommends apt-file
+              sudo apt-get install -y --no-install-recommends apt-file
               sudo apt-file update
               # Install packages
               APT_PKGS=()
@@ -151,7 +151,7 @@ jobs:
                 # deduplicate
                 mapfile -t APT_PKGS_UNIQ < <(printf "%s\n" "${APT_PKGS[@]}" | sort -u)
                 echo "APT packages to install: ${APT_PKGS_UNIQ[*]}"
-                sudo apt-get install -yq --no-install-recommends "${APT_PKGS_UNIQ[@]}"
+                sudo apt-get install -y --no-install-recommends "${APT_PKGS_UNIQ[@]}"
               fi
             else
               echo "No PKGS_NOT_FOUND; skipping apt-file search."
