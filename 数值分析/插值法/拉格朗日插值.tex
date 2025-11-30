@@ -148,6 +148,7 @@
 \end{equation*}
 我们把\(R_n\)称为“拉格朗日插值多项式\(L_n\)的\DefineConcept{余项}”.
 
+\begin{theorem}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P26 定理2
 给定结点\(a \leq x_0 < x_1 < \dotsb + x_n \leq b\)，
 设函数\(f \in C^n[a,b] \cap D^{n+1}(a,b)\)，
@@ -159,6 +160,46 @@
 	R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} \omega_{n+1}(x),
 \end{equation}
 其中\(\xi \in (a,b)\)且依赖于\(x\)的取值.
+\begin{proof}
+由给定条件可知\(R_n(x_k) = 0\ (k=0,1,\dotsc,n)\)，
+于是\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P27 (2.13)
+	R_n(x)
+	= K(x) \cdot (x - x_0) (x - x_1) \dotsm (x - x_n)
+	= K(x) ~ \omega_{n+1}(x),
+	\eqno(1)
+\end{equation*}
+其中\(K\)是与\(x\)有关的待定函数.
+
+现把\(x\)看作区间\([a, b]\)上的一个固定点，
+构造函数\begin{equation*}
+	\varphi(t)
+	\defeq f(t) - L_n(t) - K(x) ~ \omega_{n+1}(t).
+\end{equation*}
+根据\(f\)的假设可知\(\varphi^{(n)}\)在\([a, b]\)上连续，
+\(\varphi^{(n+1)}\)在\((a, b)\)内存在.
+根据插值条件及余项定义可知
+函数\(\varphi\)在点\(x_0, x_1, \dotsc, x_n\)及\(x\)的值均为零，
+故\(\varphi\)在\([a, b]\)上有\(n+2\)个零点.
+根据罗尔定理，
+\(\varphi'\)在\(\varphi\)的两个零点间至少有一个零点，
+故\(\varphi'\)在\([a, b]\)内至少有\(n+1\)个零点.
+对\(\varphi'\)再应用罗尔定理，
+可知\(\varphi''\)在\([a, b]\)内至少有\(n\)个零点.
+依此类推，
+\(\varphi^{(n+1)}\)在\((a, b)\)内至少有一个零点\(\xi\)，
+即\begin{equation*}
+	\varphi^{(n+1)}(\xi) = f^{(n+1)}(\xi) - (n+1)! K(x) = 0,
+\end{equation*}
+于是\begin{equation*}
+	K(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}.
+	\eqno(2)
+\end{equation*}
+将(2)式代入(1)式，
+就得到余项表达式 \labelcref{equation:拉格朗日插值.拉格朗日插值余项}.
+\end{proof}
+\end{theorem}
+
 记\(M \defeq \max_{a \leq x \leq b} \abs{f^{(n+1)}(x)}\)，
 那么用插值多项式\(L_n\)近似\(f\)的误差限为\begin{equation*}
 	% \sup_{a \leq x \leq b} \abs{R_n(x)}
