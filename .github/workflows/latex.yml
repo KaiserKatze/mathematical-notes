@@ -106,9 +106,9 @@ jobs:
                 # Try to find the sty file under /usr/share/texlive (case-insensitive)
                 foundpath=$(find /usr/share/texlive -type f -iname "${pkg}.sty" 2>/dev/null | head -n 1 || true)
                 if [ -n "$foundpath" ]; then
-                  echo "Found ${pkg}.sty at: $foundpath"
+                  echo "LaTeX style package '${pkg}.sty' found at: $foundpath"
                 else
-                  echo "Did NOT find ${pkg}.sty under /usr/share/texlive -> adding to PKGS_NOT_FOUND"
+                  echo "LaTeX style package '${pkg}.sty' not found under /usr/share/texlive -> adding to PKGS_NOT_FOUND"
                   PKGS_NOT_FOUND+=("$pkg")
                 fi
               done
@@ -119,7 +119,7 @@ jobs:
             fi
 
             # 如果列表 `PKGS_NOT_FOUND` 非空，则安装 apt-file 再依据 `PKGS_NOT_FOUND`（而不是 `PKGS`）生成列表 `APT_PKGS`
-            if [ "${#PKGS_NOT_FOUND[@]:-0}" -gt 0 ]; then
+            if [ "${#PKGS_NOT_FOUND[@]}" -gt 0 ]; then
               sudo apt-get install -y --no-install-recommends apt-file
               sudo apt-file update
               # Install packages
@@ -151,7 +151,6 @@ jobs:
               fi
             else
               echo "No PKGS_NOT_FOUND; skipping apt-file search."
-              APT_PKGS_UNIQ=()
             fi
             echo "Apt fallback installation finished."
           fi
