@@ -1,5 +1,5 @@
 \section{高斯求积公式}
-\subsection{高斯求积公式}
+\subsection{高斯求积公式的概念}
 当我们用求积公式\(\sum_{k=0}^n A_k f(x_k)\)近似\(\int_a^b f(x) \dd{x}\)时，
 \(\sum_{k=0}^n A_k f(x_k)\)实际上含有\(2(n+1)\)个待定参数：\begin{equation*}
 	x_0,x_1,\dotsc,x_n
@@ -110,6 +110,7 @@
 这时它变成关于\(A_k\)的线性方程组.
 下面讨论如何选取节点\(x_k\)，才能使求积公式具有\(2n+1\)次代数精度.
 
+\subsection{利用插值多项式确定求积节点}
 给定\(n+1\)个节点\(a = x_0 < x_1 < \dotsb < x_n = b\)，
 被积函数\(f\)的拉格朗日插值多项式为\begin{equation*}
 	L_n(x) \defeq \sum_{k=0}^n f(x_k) ~ l_k(x),
@@ -118,22 +119,39 @@
 	l_k(x) \defeq \prod_{0 \leq i \leq n, i \neq k} \frac{x - x_i}{x_k - x_i}
 	\quad(k=0,1,2,\dotsc,n),
 \end{equation*}
-则\begin{equation*}
-	f(x) = \sum_{k=0}^n f(x_k) ~ l_k(x) + \frac{1}{(n+1)!} ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x)
-	\quad(a < \xi(x) < b).
-\end{equation*}
-用\(\rho(x)\)乘上式，并积分，得\begin{equation*}
-%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P118 (6.6)
-	\int_a^b \rho(x) ~ f(x) \dd{x}
-	= \sum_{k=0}^n A_k f(x_k) + \frac{1}{(n+1)!} \int_a^b \rho(x) ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x) \dd{x},
+而插值余项为\begin{equation*}
+	R_n(x) \defeq \frac{1}{(n+1)!} ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x)
+	\quad(a < \xi(x) < b),
 \end{equation*}
 其中\begin{equation*}
-	A_k \defeq \int_a^b \rho(x) ~ l_k(x) \dd{x}.
+	\omega_{n+1}(x)
+	\defeq
+	\prod_{i=0}^n (x - x_i),
 \end{equation*}
-显然余项为\begin{equation*}
-	R[f] \defeq \frac{1}{(n+1)!} \int_a^b \rho(x) ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x) \dd{x}.
+则\begin{equation*}
+	f(x) = L_n(x) + R_n(x).
 \end{equation*}
-当\(f(x) = x^m\ (m=0,1,2,\dotsc,n)\)时，有\(R[f] = 0\)，
+用\(\rho(x)\)乘上式，并积分，得\begin{equation*}
+	\int_a^b \rho(x) ~ f(x) \dd{x}
+	= \int_a^b \rho(x) ~ L_n(x) \dd{x}
+	+ \int_a^b \rho(x) ~ R_n(x) \dd{x},
+\end{equation*}
+再令\begin{equation*}
+	A_k \defeq \int_a^b \rho(x) ~ l_k(x) \dd{x},
+\end{equation*}
+则\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P118 (6.6)
+	\int_a^b \rho(x) ~ f(x) \dd{x}
+	= \sum_{k=0}^n A_k f(x_k) + R[f],
+\end{equation*}
+其中\begin{equation*}
+	R[f] \defeq \frac{1}{(n+1)!} \int_a^b \rho(x) ~ f^{(n+1)}(\xi(x)) ~ \omega_{n+1}(x) \dd{x}
+\end{equation*}
+是求积余项.
+
+因为\(m \le n < n+1\)，
+所以\(f\)的\(n+1\)阶导数\(f^{(n+1)}\)在整个区间\([a,b]\)上恒为零.
+因此，当\(f(x) = x^m\ (m=0,1,2,\dotsc,n)\)时，有\(R[f] = 0\)，
 此时有\begin{equation*}
 	\int_a^b \rho(x) ~ f(x) \dd{x}
 	= \sum_{k=0}^n A_k f(x_k).
@@ -141,7 +159,10 @@
 这就说明求积公式至少具有\(n\)次代数精度.
 
 假设求积公式具有\(2n+1\)次代数精度，
-那么对于任意一个\(2n+1\)次多项式函数\(f\)有余项\(R[f]\)等于零，
+那么对于\(f(x) \defeq x^{2n+1}\)应该有求积余项\(R[f]\)等于零.
+因为\begin{equation*}
+	f^{(n+1)}(x) = \frac{(2n+1)!}{n!} x^n,
+\end{equation*}
 这时\(x \mapsto f^{(n+1)}(\xi(x))\)是一个\(n\)次多项式函数.
 若要求对于任意\(p \in H_n[a,b]\)，总有\begin{equation*}
 	\int_a^b \rho(x) ~ p(x) ~ \omega_{n+1}(x) \dd{x} = 0,
@@ -157,7 +178,7 @@
 	\quad(k=0,1,2,\dotsc,n),
 \end{equation}
 其中\(l_k\ (k=0,1,2,\dotsc,n)\)是节点\(x_0,x_1,\dotsc,x_n\)上的
-\(n\)次\hyperref[equation:拉格朗日插值.拉格朗日插值基函数]{插值基函数}，
+\(k\)次\hyperref[equation:拉格朗日插值.拉格朗日插值基函数]{插值基函数}，
 则求积公式\(\sum_{k=0}^n A_k f(x_k)\)是高斯求积公式，
 当且仅当\(
 	\omega_{n+1}(x)
@@ -217,6 +238,20 @@
 高斯求积公式与机械求积公式的最大区别：
 机械求积公式中未知待定的量仅有求积系数，
 高斯求积公式中未知待定的量除了求积系数以外还有求积节点.
+
+\subsection{高斯--勒让德求积公式}
+我们知道勒让德多项式是区间\([-1,1]\)上的正交多项式.
+如果我们要求的定积分中，
+权函数为\(\rho(x) \defeq 1\)，积分区间为\([-1,1]\)，
+那么可以将勒让德多项式\(P_{n+1}\)的零点
+\(x_0,x_1,\dotsc,x_n\)作为求积节点，
+于是求积公式\begin{equation*}
+	\int_{-1}^1 f(x) \dd{x}
+	\approx
+	\sum_{k=0}^n A_k f(x_k)
+\end{equation*}
+就一定是一个高斯求积公式，
+这时我们把它称为\DefineConcept{高斯--勒让德求积公式}.
 
 % 非线性方程组的求解：因式分解、替换、消元法
 
