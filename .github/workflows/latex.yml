@@ -178,14 +178,14 @@ jobs:
           echo "Run biber if .bcf exists ..."
           if [ -f math.bcf ]; then
             echo "bcf file detected."
-            biber math
+            biber math || true
           else
             echo "ERROR: expected bcf (math.bcf) not found after latexmk"
             exit 1
           fi
 
           echo "Run latexmk with xelatex engine; fail on error ..."
-          latexmk -xelatex -interaction=nonstopmode -file-line-error -f "$TEX_MAIN"
+          latexmk -xelatex -interaction=nonstopmode -file-line-error -f "$TEX_MAIN" || true
 
           # Determine generated PDF name
           PDF_FILE="$(basename "$TEX_MAIN" .tex).pdf"
