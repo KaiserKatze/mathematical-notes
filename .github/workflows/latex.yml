@@ -96,50 +96,63 @@ jobs:
               texlive-bibtex-extra texlive-pictures texlive-plain-generic \
               texlive-science texlive-fonts-recommended texlive-fonts-extra
 
-            sudo apt-get install -y --no-install-recommends apt-file
-            sudo apt-file update
-            # Install packages
-            APT_PKGS=()
-            for pkg in "${PKGS[@]}"; do
-              if [ -z "$pkg" ]; then
-                continue
-              fi
-              echo "Searching apt-file for /${pkg}.sty"
-              # collect package names that provide paths under /usr/share/texlive
-              mapfile -t found < <(apt-file search "/${pkg}.sty" | awk -F: '/\/usr\/share\/texlive/ {print $1}')
-              if [ "${#found[@]}" -gt 0 ]; then
-                for f in "${found[@]}"; do
-                  APT_PKGS+=("$f")
-                done
-              else
-                echo "No apt-file results for /${pkg}.sty"
-              fi
-            done
-            # 用 echo 打印列表 `APT_PKGS` 的内容
-            if [ "${#APT_PKGS[@]}" -eq 0 ]; then
-              echo "APT_PKGS is empty: no matching apt packages found for any LaTeX package"
-              APT_PKGS_UNIQ=()
+            # 先用 find 命令在 /usr/share/texlive 中查找 *.sty 文件，收集无法定位到路径的 *.sty 文件，形成一个列表 `PKGS_NOT_FOUND`
+            if [ -d /usr/share/texlive ]; then
+              PKGS_NOT_FOUND=()
+              for pkg in "${PKGS[@]}"; do
+                if [ -z "$pkg" ]; then
+                  continue
+                fi
+                # Try to find the sty file under /usr/share/texlive (case-insensitive)
+                foundpath=$(find /usr/share/texlive -type f -iname "${pkg}.sty" 2>/dev/null | head -n 1 || true)
+                if [ -n "$foundpath" ]; then
+                  echo "Found ${pkg}.sty at: $foundpath"
+                else
+                  echo "Did NOT find ${pkg}.sty under /usr/share/texlive -> adding to PKGS_NOT_FOUND"
+                  PKGS_NOT_FOUND+=("$pkg")
+                fi
+              done
+              echo "PKGS_NOT_FOUND: ${PKGS_NOT_FOUND[*]:-<empty>}"
             else
-              # deduplicate
-              mapfile -t APT_PKGS_UNIQ < <(printf "%s\n" "${APT_PKGS[@]}" | sort -u)
-              echo "APT packages to install: ${APT_PKGS_UNIQ[*]}"
+              echo "Directory '/usr/share/texlive' not found"
+              exit 1
             fi
 
-            for pkg in "${PKGS[@]}"; do
-              if [ -z "$pkg" ]; then
-                continue
-              fi
-              # 用 apt-get 安装列表 `APT_PKGS` 的软件包
-              if [ "${#APT_PKGS_UNIQ[@]}" -gt 0 ]; then
-                echo "Installing apt packages: ${APT_PKGS_UNIQ[*]}"
-                sudo apt-get install -y --no-install-recommends "${APT_PKGS_UNIQ[@]}" || echo "apt-get install of some packages failed, continuing"
-                # break after installing (they cover all found packages)
-                break
+            # 如果列表 `PKGS_NOT_FOUND` 非空，则安装 apt-file 再依据 `PKGS_NOT_FOUND`（而不是 `PKGS`）生成列表 `APT_PKGS`
+            if [ "${#PKGS_NOT_FOUND[@]:-0}" -gt 0 ]; then
+              sudo apt-get install -y --no-install-recommends apt-file
+              sudo apt-file update
+              # Install packages
+              APT_PKGS=()
+              for pkg in "${PKGS_NOT_FOUND[@]}"; do
+                if [ -z "$pkg" ]; then
+                  continue
+                fi
+                echo "Searching apt-file for /${pkg}.sty"
+                # collect package names that provide paths under /usr/share/texlive
+                mapfile -t found < <(apt-file search "/${pkg}.sty" | awk -F: '/\/usr\/share\/texlive/ {print $1}')
+                if [ "${#found[@]}" -gt 0 ]; then
+                  for f in "${found[@]}"; do
+                    APT_PKGS+=("$f")
+                  done
+                else
+                  echo "No apt-file results for /${pkg}.sty"
+                fi
+              done
+              # 用 echo 打印列表 `APT_PKGS` 的内容
+              if [ "${#APT_PKGS[@]}" -eq 0 ]; then
+                echo "APT_PKGS is empty: no matching apt packages found for any LaTeX package"
+                APT_PKGS_UNIQ=()
               else
-                echo "No apt packages to install for pkg '$pkg'"
+                # deduplicate
+                mapfile -t APT_PKGS_UNIQ < <(printf "%s\n" "${APT_PKGS[@]}" | sort -u)
+                echo "APT packages to install: ${APT_PKGS_UNIQ[*]}"
+                sudo apt-get install -y --no-install-recommends "${APT_PKGS_UNIQ[@]}"
               fi
-            done
-
+            else
+              echo "No PKGS_NOT_FOUND; skipping apt-file search."
+              APT_PKGS_UNIQ=()
+            fi
             echo "Apt fallback installation finished."
           fi
 
@@ -157,6 +170,16 @@ jobs:
 
           # Clean previous runs to avoid stale artifacts
           latexmk -C -silent || true
+
+          xelatex -interaction=nonstopmode -file-line-error math.tex
+
+          # run biber if .bcf exists
+          if [ -f math.bcf ]; then
+            biber math
+          else
+            echo "ERROR: expected bcf (math.bcf) not found after latexmk"
+            exit 1
+          fi
 
           # Run latexmk with xelatex engine; fail on error
           latexmk -xelatex -interaction=nonstopmode -file-line-error "$TEX_MAIN"
