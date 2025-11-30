@@ -54,6 +54,9 @@ jobs:
           PKG_CSV=$(echo "$PKG_CSV" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
           echo "packages_csv=$PKG_CSV" >> "$GITHUB_OUTPUT"
 
+      - name: Install necessary fonts
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk fonts-noto-serif-cjk
+
       - name: Try install packages via tlmgr (fallback to apt if needed)
         run: |
           set -euo pipefail
@@ -167,12 +170,13 @@ jobs:
             exit 1
           fi
 
-          # Clean previous runs to avoid stale artifacts
+          echo "Clean previous runs to avoid stale artifacts ..."
           latexmk -C -silent || true
 
+          echo "Start 1-pass xelatex ..."
           xelatex -interaction=nonstopmode -file-line-error math.tex
 
-          # run biber if .bcf exists
+          echo "Run biber if .bcf exists ..."
           if [ -f math.bcf ]; then
             biber math
           else
@@ -180,7 +184,7 @@ jobs:
             exit 1
           fi
 
-          # Run latexmk with xelatex engine; fail on error
+          echo "Run latexmk with xelatex engine; fail on error ..."
           latexmk -xelatex -interaction=nonstopmode -file-line-error "$TEX_MAIN"
 
           # Determine generated PDF name
