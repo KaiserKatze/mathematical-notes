@@ -86,23 +86,57 @@ jobs:
           else
             echo "tlmgr not found. Installing common texlive collections via apt as fallback."
             sudo apt-get update -qq
-            sudo apt-get install -y texlive
-            sudo apt-get install -y texlive-lang-chinese
-            # Install collections that cover most common packages
-            sudo apt-get install -y --no-install-recommends \
-              texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex || true
-            echo "Apt fallback installation finished."
-          fi
+            sudo apt-get install -y --no-install-recommends texlive-base
+            sudo apt-get install -y --no-install-recommends latexmk                 # essential for 'latexmk'
+            sudo apt-get install -y --no-install-recommends texlive-xetex           # essential for 'xelatex'
+            sudo apt-get install -y --no-install-recommends biber                   # essential for 'biber'
+            sudo apt-get install -y --no-install-recommends texlive-lang-chinese    # essential for 'ctexbook.cls'
 
-      - name: Ensure latexmk exists (install minimal if missing)
-        run: |
-          set -euo pipefail
-          if command -v latexmk >/dev/null 2>&1; then
-            echo "latexmk present: $(latexmk --version | head -n 1)"
-          else
-            echo "latexmk not found — installing via apt"
-            sudo apt-get update -qq
-            sudo apt-get install -y --no-install-recommends latexmk texlive-xetex || true
+            sudo apt-get install -y --no-install-recommends apt-file
+            sudo apt-file update
+            # Install packages
+            APT_PKGS=()
+            for pkg in "${PKGS[@]}"; do
+              if [ -z "$pkg" ]; then
+                continue
+              fi
+              echo "Searching apt-file for /${pkg}.sty"
+              # collect package names that provide paths under /usr/share/texlive
+              mapfile -t found < <(apt-file search "/${pkg}.sty" | awk -F: '/\/usr\/share\/texlive/ {print $1}')
+              if [ "${#found[@]}" -gt 0 ]; then
+                for f in "${found[@]}"; do
+                  APT_PKGS+=("$f")
+                done
+              else
+                echo "No apt-file results for /${pkg}.sty"
+              fi
+            done
+            # 用 echo 打印列表 `APT_PKGS` 的内容
+            if [ "${#APT_PKGS[@]}" -eq 0 ]; then
+              echo "APT_PKGS is empty: no matching apt packages found for any LaTeX package"
+              APT_PKGS_UNIQ=()
+            else
+              # deduplicate
+              mapfile -t APT_PKGS_UNIQ < <(printf "%s\n" "${APT_PKGS[@]}" | sort -u)
+              echo "APT packages to install: ${APT_PKGS_UNIQ[*]}"
+            fi
+
+            for pkg in "${PKGS[@]}"; do
+              if [ -z "$pkg" ]; then
+                continue
+              fi
+              # 用 apt-get 安装列表 `APT_PKGS` 的软件包
+              if [ "${#APT_PKGS_UNIQ[@]}" -gt 0 ]; then
+                echo "Installing apt packages: ${APT_PKGS_UNIQ[*]}"
+                sudo apt-get install -y --no-install-recommends "${APT_PKGS_UNIQ[@]}" || echo "apt-get install of some packages failed, continuing"
+                # break after installing (they cover all found packages)
+                break
+              else
+                echo "No apt packages to install for pkg '$pkg'"
+              fi
+            done
+
+            echo "Apt fallback installation finished."
           fi
 
       - name: Build with latexmk (xelatex)
