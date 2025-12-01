@@ -346,6 +346,15 @@
 %@see: https://mathworld.wolfram.com/MatrixNorm.html
 \end{definition}
 
+\begin{property}
+%@see: https://mathworld.wolfram.com/MatrixNorm.html
+设\(p\)是一个矩阵范数，
+则对于可逆矩阵\(A\)的任意一个特征值\(\lambda\)，
+有\begin{equation*}
+	\frac{1}{p(A^{-1})} \leq \abs{\lambda} \leq p(A).
+\end{equation*}
+\end{property}
+
 \begin{definition}% F-范数
 %@see: 《矩阵论》（詹兴致） P5
 设\(A \in M_{m \times n}(\mathbb{C})\)，
@@ -394,6 +403,24 @@
 \end{definition}
 
 \begin{definition}
+设\(A \in M_n(\mathbb{C})\)，
+\(f\)是\(\mathbb{C}^n\)上的一个范数.
+把矩阵\(A\)由\(f\)诱导的算子范数\begin{equation*}
+	\MatrixNorm{A}
+	\defeq
+	\max_{0 \neq x \in \mathbb{C}^n} \frac{f(Ax)}{f(x)},
+\end{equation*}
+称为“矩阵\(A\)的由\(f\)诱导的\DefineConcept{自然范数}（natural norm）”.
+%@see: https://mathworld.wolfram.com/NaturalNorm.html
+\end{definition}
+
+\begin{property}
+%@see: https://mathworld.wolfram.com/NaturalNorm.html
+对于任意一个自然范数，
+单位矩阵的自然范数恒等于\(1\).
+\end{property}
+
+\begin{definition}
 %@see: 《矩阵论》（詹兴致） P5
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定理16
 如果由\(f\)和\(g\)诱导的算子范数
@@ -406,6 +433,7 @@
 	],
 \end{equation*}
 则称“由\(f\)和\(g\)诱导的算子范数\(N\)是\DefineConcept{次可乘的}（submultiplcative）”.
+%@see: https://mathworld.wolfram.com/Compatible.html
 \end{definition}
 
 \begin{definition}
@@ -520,12 +548,12 @@
 
 \begin{theorem}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P165 定理17(3)
-设\(A \in M_n(\mathbb{R})\)，
+设\(A \in M_n(\mathbb{C})\)，
 则\(A\)的\(L_2\)范数等于\(A^T A\)的最大特征值的算术平方根，
 即\begin{equation*}
 	\MatrixNorm{A}_2
 	= \sqrt{
-		\max\Spec(A^T A)
+		\max\Spec(A^H A)
 	}.
 \end{equation*}
 %TODO
@@ -545,7 +573,12 @@
 %@see: 《矩阵论》（詹兴致） P5
 %@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
 矩阵的\(L_1\)范数、\(L_2\)范数、\(L_\infty\)范数各有一个别名，
-依次是\DefineConcept{列和范数}、\DefineConcept{谱范数}、\DefineConcept{行和范数}.
+依次是\DefineConcept{列和范数}（maximum absolute column sum norm）、%
+\DefineConcept{谱范数}（spectral norm）、%
+\DefineConcept{行和范数}（maximum absolute row sum norm）.
+%@see: https://mathworld.wolfram.com/MaximumAbsoluteColumnSumNorm.html
+%@see: https://mathworld.wolfram.com/SpectralNorm.html
+%@see: https://mathworld.wolfram.com/MaximumAbsoluteRowSumNorm.html
 
 \begin{theorem}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 定理18

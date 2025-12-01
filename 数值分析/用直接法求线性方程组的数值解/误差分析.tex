@@ -22,7 +22,7 @@
 	= A^{-1} \delta b,
 	\qquad
 	\norm{\delta x}
-	\leq \MatrixNorm{A^{-1}} \norm{\delta b}.
+	\leq \MatrixNorm{A^{-1}} \norm{\delta b \vphantom{A^{-1}}}.
 \end{equation*}
 又因为\begin{equation*}
 	\norm{b}
@@ -43,7 +43,7 @@
 		\norm{ x }
 	}
 	\leq
-	\MatrixNorm{ A^{-1} } \MatrixNorm{ A }
+	\MatrixNorm{ A^{-1} } \MatrixNorm{ A \vphantom{A^{-1}} }
 	\frac{
 		\norm{ \delta b }
 	}{
@@ -53,13 +53,15 @@
 \end{theorem}
 \begin{remark}
 上式给出了解的相对误差的上界，
-常数项\(b\)的相对误差可能在解中放大\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)倍.
+常数项\(b\)的相对误差可能在解中放大\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A \vphantom{A^{-1}} }\)倍.
 \end{remark}
 
 假设常数项是精确的，系数矩阵有误差\(\delta A\)，
 那么解也会相应地有误差\(\delta x\)，
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.6)
-于是有\((A + \delta A) (x + \delta x) = b\)，
+于是有\begin{equation*}
+	(A + \delta A) (x + \delta x) = b,
+\end{equation*}
 即\((A + \delta A) \delta x = - \delta A x\).
 如果\(\delta A\)不受限制的话，那么\(A + \delta A\)可能是一个奇异矩阵.
 显然\begin{equation*}
@@ -81,7 +83,7 @@
 		1 - \norm{A^{-1} \delta A}
 	}.
 \end{equation*}
-设\(\MatrixNorm{A^{-1}} \norm{\delta A} < 1\)，
+设\(\MatrixNorm{A^{-1}} \norm{\delta A \vphantom{A^{-1}}} < 1\)，
 则\begin{equation*}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.7)
 	\frac{\norm{\delta x}}{\norm{x}}
@@ -109,7 +111,7 @@
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169 定理22
 设\(A\)是非奇异矩阵.
 若\(A x = b \neq 0\)且\((A + \delta A) (x + \delta x) = b\)，
-那么当\(\MatrixNorm{A^{-1}} \norm{\delta A} < 1\)时，
+那么当\(\MatrixNorm{A^{-1}} \norm{\delta A \vphantom{A^{-1}}} < 1\)时，
 有\begin{equation*}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.7)
 	\frac{\norm{\delta x}}{\norm{x}}
@@ -134,40 +136,32 @@
 \end{equation*}
 \end{theorem}
 \begin{remark}
-如果\(\delta A\)充分小，那么在\(\MatrixNorm{A^{-1}} \norm{\delta A} < 1\)的情况下，
+如果\(\delta A\)充分小，那么在\(\MatrixNorm{A^{-1}} \norm{\delta A \vphantom{A^{-1}}} < 1\)的情况下，
 上式说明系数矩阵\(A\)的相对误差\(
 	\frac{
 		\MatrixNorm{\delta A}
 	}{
 		\MatrixNorm{A}
 	}
-\)可能在解中放大\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)倍.
+\)可能在解中放大\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A \vphantom{A^{-1}} }\)倍.
 \end{remark}
 
 总之，从上述两个定理我们可以看出，
-\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)越小，
+\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A \vphantom{A^{-1}} }\)越小，
 由系数矩阵或常数项的相对误差引起的解的相对误差就越小；
-反过来，\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)越大，
+反过来，\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A \vphantom{A^{-1}} }\)越大，
 解的相对误差就越大.
-所以\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)
+所以\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A \vphantom{A^{-1}} }\)
 实际上刻画了线性方程组的病态程度，
 于是我们可以引出下述定义.
+
 \begin{definition}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169 定义8
 设\(A\)是一个非奇异矩阵.
-
-\ifdefined\cond
-	cond 已定义
-\else
-	cond 未定义
-
-	\DeclareMathOperator{cond}{cond}  % 矩阵的条件数
-\fi
-
 把\begin{equation*}
 	\cond_p A
 	\defeq
-	\MatrixNorm{ A^{-1} }_p \MatrixNorm{ A }_p
+	\MatrixNorm{ A^{-1} }_p \MatrixNorm{ A \vphantom{A^{-1}} }_p
 \end{equation*}
 称为“矩阵\(A\)的\DefineConcept{条件数}”.
 \end{definition}
