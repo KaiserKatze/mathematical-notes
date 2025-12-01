@@ -303,6 +303,7 @@
 
 我们首先给出复数域上\(n\)阶方阵的矩阵范数的一般定义.
 \begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定义5（矩阵的范数）
 设数域\(K \defeq \mathbb{C}\)，
 线性空间\(V \defeq M_n(K)\).
 如果映射\(p\colon V \to \mathbb{R}\)
@@ -374,6 +375,7 @@
 
 \begin{definition}
 %@see: 《矩阵论》（詹兴致） P5
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定义6（矩阵的算子范数）
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 \(f\)是\(\mathbb{C}^m\)上的一个范数，
 \(g\)是\(\mathbb{C}^n\)上的一个范数.
@@ -391,6 +393,7 @@
 
 \begin{definition}
 %@see: 《矩阵论》（詹兴致） P5
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定理16
 如果由\(f\)和\(g\)诱导的算子范数
 \(N\colon M_n(\mathbb{C}) \to \mathbb{R}, A \mapsto \MatrixNorm{A}\)
 满足\begin{equation*}
@@ -426,6 +429,7 @@
 \end{definition}
 
 \begin{theorem}% 列和范数
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P165 定理17(2)
 %@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 则\begin{equation*}
@@ -503,6 +507,7 @@
 \end{theorem}
 
 \begin{theorem}% 谱范数
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P165 定理17(3)
 %@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 则\begin{equation*}
@@ -513,6 +518,7 @@
 \end{theorem}
 
 \begin{theorem}% 行和范数
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P165 定理17(1)
 %@credit: {6c964576-9569-472e-969e-54699e35974b} 菌菌笔记
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 则\begin{equation*}
@@ -528,13 +534,42 @@
 依次是\DefineConcept{列和范数}、\DefineConcept{谱范数}、\DefineConcept{行和范数}.
 
 \begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 定理18
+设\(A_M_n(\mathbb{R})\).
+如果\(f\)是\(L_p\)范数或弗罗贝尼乌斯范数，
+则\(A\)的谱半径不大于\(A\)的范数，
+即\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 (4.10)
+	\max\Spec{A} \leq f(A).
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+%TODO
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 (4.11)
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 定理19
 %@credit: {8b6edada-f2fd-4ae5-9020-eb533149a54c} 狗狗说矩阵的L2范数与它的谱半径相等.
-设\(A \in M_{m \times n}(\mathbb{C})\)，
+设\(A \in M_n(\mathbb{C})\)是对称矩阵，
 则\(A\)的谱范数等于\(A\)的谱半径，
 即\begin{equation*}
 	\MatrixNorm{A}_2
-	=  \max\Spec{A}.
+	= \max\Spec{A}.
 \end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 定理20
+设\(B \in M_n(\mathbb{C})\)满足\(\MatrixNorm{B}_p < 1\)，
+则\(I \pm B\)是非奇异矩阵，
+且\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P167 (4.12)
+	\MatrixNorm{ (I \pm B)^{-1} }_p
+	\leq ( 1 - \MatrixNorm{B}_p )^{-1}.
+\end{equation*}
+%TODO proof
 \end{theorem}
 
 \begin{property}
@@ -567,3 +602,15 @@
 \end{equation*}
 则\(\MatrixNorm{A}\)等于\(A\)的谱范数\(\MatrixNorm{A}_2\).
 \end{proposition}
+
+\begin{gather*}
+	\MatrixNorm{A x}_1
+	\leq \MatrixNorm{A}_1 \cdot \norm{x}_1, \\
+	\MatrixNorm{A x}_\infty
+	\leq \MatrixNorm{A}_\infty \cdot \norm{x}_\infty, \\
+	\MatrixNorm{A x}_2
+	\leq \MatrixNorm{A}_2 \cdot \norm{x}_2, \\
+	\MatrixNorm{A x}_2
+	\leq \MatrixNorm{A}_F \cdot \norm{x}_2.
+	%TODO proof
+\end{gather*}
