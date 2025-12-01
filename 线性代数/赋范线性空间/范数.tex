@@ -343,9 +343,10 @@
 	\end{equation*}
 \end{itemize}
 则称“\(p\)是线性空间\(V\)的一个\DefineConcept{矩阵范数}（matrix norm）”.
+%@see: https://mathworld.wolfram.com/MatrixNorm.html
 \end{definition}
 
-\begin{definition}
+\begin{definition}% F-范数
 %@see: 《矩阵论》（詹兴致） P5
 设\(A \in M_{m \times n}(\mathbb{C})\)，
 \(A^H\)是\(A\)的共轭转置.
@@ -356,7 +357,8 @@
 		\tr(A^H A)
 	},
 \end{equation}
-称之为“矩阵\(A\)的\DefineConcept{弗罗贝尼乌斯范数}”.
+称之为“矩阵\(A\)的\DefineConcept{弗罗贝尼乌斯范数}（Frobenius norm）”.
+%@see: https://mathworld.wolfram.com/FrobeniusNorm.html
 \end{definition}
 
 \begin{property}
@@ -523,7 +525,7 @@
 即\begin{equation*}
 	\MatrixNorm{A}_2
 	= \sqrt{
-		\max\Span(A^T A)
+		\max\Spec(A^T A)
 	}.
 \end{equation*}
 %TODO
@@ -550,7 +552,7 @@
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 (4.10)
 设\(A \in M_n(\mathbb{R})\).
 如果\(f\)是\(L_p\)范数或弗罗贝尼乌斯范数，
-则\(A\)的谱半径不大于\(A\)的范数\(f(A)\).
+则\(A\)的谱半径\(\SpecRad(A)\)不大于\(A\)的范数\(f(A)\).
 %TODO proof
 \end{theorem}
 
@@ -561,7 +563,7 @@
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 定理19
 %@credit: {8b6edada-f2fd-4ae5-9020-eb533149a54c} 狗狗说矩阵的L2范数与它的谱半径相等.
 设\(A \in M_n(\mathbb{C})\)是对称矩阵，
-则\(A\)的谱范数\(\MatrixNorm{A}_2\)等于\(A\)的谱半径.
+则\(A\)的谱范数\(\MatrixNorm{A}_2\)等于\(A\)的谱半径\(\SpecRad(A)\).
 %TODO proof
 \end{theorem}
 
@@ -601,10 +603,11 @@
 	\MatrixNorm{A}
 	\defeq
 	\begin{cases}
-		\text{$A$的谱半径}, & \text{$A$是实对称矩阵}, \\
+		\SpecRad(A), & \text{$A$是实对称矩阵}, \\
 		\sqrt{ \MatrixNorm{A^TA} }, & \text{其他},
 	\end{cases}
 \end{equation*}
+其中\(\SpecRad(A)\)是\(A\)的谱半径，
 则\(\MatrixNorm{A}\)等于\(A\)的谱范数\(\MatrixNorm{A}_2\).
 \end{proposition}
 
