@@ -90,7 +90,7 @@
 %@credit: {gemini}
 设\(u,v\)都是定义在\(D\)上的一元实值函数，
 给定\(k+1\ (k\geq0)\)个点\(x_0,\dotsc,x_k \in D\)，
-则\begin{equation}
+则\begin{equation}\label{equation:牛顿插值.莱布尼茨公式}
 	(u \cdot v)[x_0,x_1,\dotsc,x_k]
 	= \sum_{i=0}^k
 	( u[x_0,x_1,\dotsc,x_i] )
@@ -258,6 +258,91 @@
 	\end{tblr}
 \end{center}
 我们把上述表格称为\DefineConcept{差商表}.
+
+\begin{example}
+证明：幂函数\(f_m(x) \defeq x^m\ (m\in\mathbb{N}^+)\)
+关于\(k+1\ (k\geq0)\)个点\(x_0,\dotsc,x_k\)的\(k\)阶差商\(f_m[x_0,\dotsc,x_k]\)
+是关于点\(x_0,\dotsc,x_k\)的\(m-k\)次完全齐次对称多项式.
+\begin{proof}
+记\(H_d(x_0,\dotsc,x_k)\)为关于变量\(x_0,\dotsc,x_k\)的\(d\)次完全齐次对称多项式，
+即\begin{equation*}
+	H_d(x_0,\dotsc,x_k)
+	\defeq
+	\sum_{\substack{p_0 + \dotsb + p_k = d \\ p_0,\dotsc,p_k \geq 0}}
+	x_0^{p_0} \dotsm x_k^{p_k}.
+\end{equation*}
+记\(
+	a \defeq \min\{x_0,\dotsc,x_k\},
+	b \defeq \max\{x_0,\dotsc,x_k\}
+\)，
+那么由\cref{equation:牛顿插值.差商与导数的关系} 可知，
+存在\(\xi \in [a,b]\)
+使得\begin{equation*}
+	f_m[x_0,\dotsc,x_k]
+	= \frac{f_m^{(k)}(\xi)}{k!}
+	= \begin{cases}
+		\frac{m!}{k!(m-k)!} \xi^{m-k},	& k \leq m, \\
+		0,								& k > m.
+	\end{cases}
+	\eqno(1)
+\end{equation*}
+下面证明\begin{equation*}
+	f_m[x_0,\dotsc,x_k] = H_{m-k}(x_0,\dotsc,x_k).
+	\eqno(2)
+\end{equation*}
+
+对幂函数的次数\(m\)运用数学归纳法.
+
+当\(m = 0\)时，\(f_m(x) = x^0 = 1\).
+这时，如果\(k = 0\)，
+则\begin{align*}
+	f_m[x_0,\dotsc,x_k]
+	&= f_m[x_0]
+	= 1, \\
+	H_{m-k}(x_0,\dotsc,x_k)
+	&= H_0(x_0)
+	= x_0^0
+	= 1,
+\end{align*}
+从而有(2)式成立；
+如果\(k > 0 = m\)，
+则由(1)式可知\(f_m[x_0,\dotsc,x_k] = 0\)，
+又因为\(d \defeq m-k < 0\)时成立\(H_d(x_0,\dotsc,x_k) = 0\)，
+所以(2)式仍然成立.
+
+假设\(m-1\)次幂函数\(f_{m-1}\)也满足(2)式.
+接下来考虑\(m\)次幂函数\(f_m\).
+由\hyperref[equation:牛顿插值.莱布尼茨公式]{莱布尼茨公式}有\begin{align*}
+    f_m[x_0,\dotsc,x_k]
+	&= (f_1 \cdot f_{m-1})[x_0,\dotsc,x_k] \\
+	&= \sum_{j=0}^k ( f_1[x_0,\dotsc,x_j] ) \cdot ( f_{m-1}[x_j,\dotsc,x_k] ).
+	\tag3
+\end{align*}
+注意到\(f_1[x_0]=x_0\)，\(f_1[x_0,x_1]=1\)，且当\(j \geq 2\)时\(f_1[x_0,\dotsc,x_j] = 0\).
+因此(3)式中仅前两项非零，从而有\begin{equation*}
+    f_m[x_0,\dotsc,x_k]
+    = x_0 \cdot f_{m-1}[x_0,\dotsc,x_k] + 1 \cdot f_{m-1}[x_1,\dotsc,x_k].
+\end{equation*}
+利用归纳假设，将\(f_{m-1}\)的差商替换为完全齐次对称多项式，得\begin{align*}
+    f_m[x_0,\dotsc,x_k]
+	&= x_0 \cdot H_{(m-1)-k}(x_0,\dotsc,x_k)
+	+ H_{(m-1)-(k-1)}(x_1,\dotsc,x_k) \\
+	&= x_0 H_{m-k-1}(x_0,\dotsc,x_k) + H_{m-k}(x_1,\dotsc,x_k).
+	\tag4
+\end{align*}
+另一方面，完全齐次对称多项式满足如下递归性质\begin{equation*}
+	%TODO proof 将包含\(x_0\)的项与不包含\(x_0\)的项分离
+    H_d(x_0,\dotsc,x_k) = x_0 H_{d-1}(x_0,\dotsc,x_k) + H_d(x_1,\dotsc,x_k).
+	\eqno(5)
+\end{equation*}
+在(5)式中令\(d = m-k\)，得\begin{equation*}
+    H_{m-k}(x_0,\dotsc,x_k)
+	= x_0 H_{m-k-1}(x_0,\dotsc,x_k) + H_{m-k}(x_1,\dotsc,x_k).
+	\eqno(6)
+\end{equation*}
+比较(4)式与(6)式可知，(2)式仍然成立.
+\end{proof}
+\end{example}
 
 \subsection{牛顿差商插值多项式}
 我们把\begin{align}
