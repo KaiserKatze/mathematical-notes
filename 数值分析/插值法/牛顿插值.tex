@@ -345,6 +345,54 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+设\(f(x) \defeq x^{2n+1}\ (a \leq x \leq b)\)，
+给定\(a \leq x_0 < x_1 < \dotsb \leq x_n \leq b\)，
+令\begin{equation*}
+	L_n(x) \defeq \sum_{k=0}^n f(x_k) ~ l_k(x),
+\end{equation*}
+其中\begin{equation*}
+	l_k(x)
+	\defeq \prod_{0 \leq i \leq n, i \neq k} \frac{(x - x_i)}{(x_k - x_i)}
+	\quad(k=0,1,2,\dotsc,n).
+\end{equation*}
+解关于\(\xi\)的方程\begin{equation*}
+	f(x) - L_n(x)
+	= \frac{f^{(n+1)}(\xi)}{(n+1)!} \omega_{n+1}(x),
+\end{equation*}
+把\(\xi\)表示为\(x\)的函数.
+\begin{solution}
+由\cref{equation:牛顿插值.差商与导数的关系} 可知\begin{equation*}
+	f[x_0,x_1,\dotsc,x_n,x]
+	= \frac{f^{(n+1)}(\xi)}{(n+1)!}
+	= \frac{(2n+1)!}{(n+1)!n!} \xi^n,
+\end{equation*}
+解得\begin{equation*}
+	\xi^n
+	= \frac{n!(n+1)!}{(2n+1)!}
+	f[x_0,x_1,\dotsc,x_n,x].
+\end{equation*}
+
+由\cref{example:牛顿插值.幂函数的k阶差商就是完全齐次对称多项式}
+可知\(f(x) = x^{2n+1}\)
+关于\(n+1\ (n\geq0)\)个点\(x,x_0,\dotsc,x_n\)的\(n\)阶差商\(f[x,x_0,\dotsc,x_n]\)
+是关于点\(x,x_0,\dotsc,x_n\)的\(n+1\)次完全齐次对称多项式，
+即\begin{equation*}
+	f[x_0,\dotsc,x_n,x]
+	= \sum_{\substack{p_0 + p_1 + \dotsb + p_n + p = n \\ p_0,p_1,\dotsc,p_n,p \geq 0}}
+	x_0^{p_0} x_1^{p_1} \dotsm x_n^{p_n} x^p,
+\end{equation*}
+所以\begin{equation*}
+	\xi
+	= \left[
+		\frac{n! (n+1)!}{(2n+1)!}
+		\sum_{\substack{p_0 + p_1 + \dotsb + p_n + p = n \\ p_0,p_1,\dotsc,p_n,p \geq 0}}
+		x_0^{p_0} x_1^{p_1} \dotsm x_n^{p_n} x^p
+	\right]^{1/n}.
+\end{equation*}
+\end{solution}
+\end{example}
+
 \subsection{牛顿差商插值多项式}
 我们把\begin{align}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P31 (3.6)
