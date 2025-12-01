@@ -1,9 +1,181 @@
 \section{误差分析}
-\begin{definition}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 定义7
 给定线性方程组\(A X = B\)，
 如果系数矩阵\(A\)或常数项\(B\)的微小变化，
 引起解\(X\)的巨大变化，
-则称“线性方程组\(A X = B\)是\DefineConcept{病态的}”；
-否则称“线性方程组\(A X = B\)是\DefineConcept{良态的}”.
+则称“线性方程组\(A X = B\)是\DefineConcept{病态的}”或“\(A\)是\DefineConcept{病态的}”；
+否则称“线性方程组\(A X = B\)是\DefineConcept{良态的}”或“\(A\)是\DefineConcept{良态的}”.
+
+应该注意，病态性质是系数矩阵的内禀性质.
+接下来我们希望找出刻画矩阵的病态性质的量.
+
+考虑线性方程组\(
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.3)
+	A x = b
+\)，其中\(A\)是非奇异矩阵.
+如果系数矩阵是精确的，常数项有误差\(\delta b\)，
+那么解也会相应地有误差\(\delta x\)，
+于是\(A (x + \delta x) = b + \delta b\).
+由此可得\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.4)
+	\delta x = A^{-1} (b + \delta b) - A^{-1} b
+	= A^{-1} \delta b,
+	\qquad
+	\norm{\delta x}
+	\leq \MatrixNorm{A^{-1}} \norm{\delta b}.
+\end{equation*}
+又因为\begin{equation*}
+	\norm{b}
+	\leq \MatrixNorm{A} \norm{x},
+	\qquad
+	\frac{1}{\norm{x}}
+	\leq \frac{\MatrixNorm{A}}{\norm{b}},
+\end{equation*}
+于是我们可以得出如下结论.
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 定理21
+设\(A \in M_n(\mathbb{R})\)是非奇异矩阵.
+若\(A x = b \neq 0\)且\(A (x + \delta x) = b + \delta b\)，
+则\begin{equation*}
+	\frac{
+		\norm{ \delta x }
+	}{
+		\norm{ x }
+	}
+	\leq
+	\MatrixNorm{ A^{-1} } \MatrixNorm{ A }
+	\frac{
+		\norm{ \delta b }
+	}{
+		\norm{ b }
+	}.
+\end{equation*}
+\end{theorem}
+\begin{remark}
+上式给出了解的相对误差的上界，
+常数项\(b\)的相对误差可能在解中放大\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)倍.
+\end{remark}
+
+假设常数项是精确的，系数矩阵有误差\(\delta A\)，
+那么解也会相应地有误差\(\delta x\)，
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.6)
+于是有\((A + \delta A) (x + \delta x) = b\)，
+即\((A + \delta A) \delta x = - \delta A x\).
+如果\(\delta A\)不受限制的话，那么\(A + \delta A\)可能是一个奇异矩阵.
+显然\begin{equation*}
+	A + \delta A
+	= A + A A^{-1} \delta A
+	= A (I + A^{-1} \delta A).
+\end{equation*}
+根据定理20，%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P166 定理20
+当\(\norm{A^{-1} \delta A} < 1\)时，
+\(I + A^{-1} \delta A\)可逆，
+于是\begin{equation*}
+	\delta x = - (I + A^{-1} \delta A)^{-1} A^{-1} \delta A x.
+\end{equation*}
+因此\begin{equation*}
+	\norm{\delta x}
+	\leq \frac{
+		\MatrixNorm{A^{-1}} \MatrixNorm{\delta A} \norm{x}
+	}{
+		1 - \norm{A^{-1} \delta A}
+	}.
+\end{equation*}
+设\(\MatrixNorm{A^{-1}} \norm{\delta A} < 1\)，
+则\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.7)
+	\frac{\norm{\delta x}}{\norm{x}}
+	\leq \frac{
+		\MatrixNorm{A^{-1}}
+		\MatrixNorm{A}
+		\frac{
+			\MatrixNorm{\delta A}
+		}{
+			\MatrixNorm{A}
+		}
+	}{
+		1
+		- \MatrixNorm{A^{-1}}
+		\MatrixNorm{A}
+		\frac{
+			\MatrixNorm{\delta A}
+		}{
+			\MatrixNorm{A}
+		}
+	}.
+\end{equation*}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169 定理22
+设\(A\)是非奇异矩阵.
+若\(A x = b \neq 0\)且\((A + \delta A) (x + \delta x) = b\)，
+那么当\(\MatrixNorm{A^{-1}} \norm{\delta A} < 1\)时，
+有\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P168 (5.7)
+	\frac{\norm{\delta x}}{\norm{x}}
+	\leq \frac{
+		\MatrixNorm{A^{-1}}
+		\MatrixNorm{A}
+		\frac{
+			\MatrixNorm{\delta A}
+		}{
+			\MatrixNorm{A}
+		}
+	}{
+		1
+		- \MatrixNorm{A^{-1}}
+		\MatrixNorm{A}
+		\frac{
+			\MatrixNorm{\delta A}
+		}{
+			\MatrixNorm{A}
+		}
+	}.
+\end{equation*}
+\end{theorem}
+\begin{remark}
+如果\(\delta A\)充分小，那么在\(\MatrixNorm{A^{-1}} \norm{\delta A} < 1\)的情况下，
+上式说明系数矩阵\(A\)的相对误差\(
+	\frac{
+		\MatrixNorm{\delta A}
+	}{
+		\MatrixNorm{A}
+	}
+\)可能在解中放大\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)倍.
+\end{remark}
+
+总之，从上述两个定理我们可以看出，
+\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)越小，
+由系数矩阵或常数项的相对误差引起的解的相对误差就越小；
+反过来，\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)越大，
+解的相对误差就越大.
+所以\(\MatrixNorm{ A^{-1} } \MatrixNorm{ A }\)
+实际上刻画了线性方程组的病态程度，
+于是我们可以引出下述定义.
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169 定义8
+设\(A\)是一个非奇异矩阵.
+
+\ifdefined\cond
+	cond 已定义
+\else
+	cond 未定义
+
+	\DeclareMathOperator{cond}{cond}  % 矩阵的条件数
+\fi
+
+把\begin{equation*}
+	\cond_p A
+	\defeq
+	\MatrixNorm{ A^{-1} }_p \MatrixNorm{ A }_p
+\end{equation*}
+称为“矩阵\(A\)的\DefineConcept{条件数}”.
+\end{definition}
+
+现在我们就可以定量地定义病态性质了.
+\begin{definition}
+给定线性方程组\(A X = B\)，
+如果矩阵\(A\)的条件数\(\cond A \gg 1\)，
+则称“线性方程组\(A X = B\)是\DefineConcept{病态的}”或“\(A\)是\DefineConcept{病态的}”；
+否则称“线性方程组\(A X = B\)是\DefineConcept{良态的}”或“\(A\)是\DefineConcept{良态的}”.
 \end{definition}
