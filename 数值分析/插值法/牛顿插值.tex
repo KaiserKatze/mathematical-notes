@@ -75,6 +75,29 @@
 \end{equation}
 \end{property}
 
+当我们利用\cref{equation:牛顿插值.差商的计算式} 逐阶计算差商，
+可得\begin{align*}
+	f[x_0,x_1,x_2]
+	&= \frac{f[x_1,x_2] - f[x_0,x_1]}{x_2 - x_0}, \\
+	f[x_1,x_2,x_3]
+	&= \frac{f[x_2,x_3] - f[x_1,x_2]}{x_3 - x_1}, \\
+	f[x_0,x_1,x_2,x_3]
+	&= \frac{f[x_1,x_2,x_3] - f[x_0,x_1,x_2]}{x_3 - x_0}.
+\end{align*}
+根据上述计算结果，我们可以列出一张表：\begin{center}
+	\begin{tblr}{*3c|*3c}
+		\hline
+		\(k\) & \(x_k\) & \(f(x_k)\) & 一阶差商 & 二阶差商 & 三阶差商 \\
+		\hline
+		0 & \(x_0\) & \(f(x_0)\) \\
+		1 & \(x_1\) & \(f(x_1)\) & \(f[x_0,x_1]\) \\
+		2 & \(x_2\) & \(f(x_2)\) & \(f[x_1,x_2]\) & \(f[x_0,x_1,x_2]\) \\
+		3 & \(x_3\) & \(f(x_3)\) & \(f[x_2,x_3]\) & \(f[x_1,x_2,x_3]\) & \(f[x_0,x_1,x_2,x_3]\) \\
+		\hline
+	\end{tblr}
+\end{center}
+我们把上述表格称为\DefineConcept{差商表}.
+
 \begin{property}
 若\(f\)在\([a,b]\)上存在\(n\)阶导数，
 且\(x_0,\dotsc,x_n \in (a,b)\)，
@@ -236,30 +259,8 @@
 \end{proof}
 \end{property}
 
-当我们利用\cref{equation:牛顿插值.差商的计算式} 逐阶计算差商，
-可得\begin{align*}
-	f[x_0,x_1,x_2]
-	&= \frac{f[x_1,x_2] - f[x_0,x_1]}{x_2 - x_0}, \\
-	f[x_1,x_2,x_3]
-	&= \frac{f[x_2,x_3] - f[x_1,x_2]}{x_3 - x_1}, \\
-	f[x_0,x_1,x_2,x_3]
-	&= \frac{f[x_1,x_2,x_3] - f[x_0,x_1,x_2]}{x_3 - x_0}.
-\end{align*}
-根据上述计算结果，我们可以列出一张表：\begin{center}
-	\begin{tblr}{*3c|*3c}
-		\hline
-		\(k\) & \(x_k\) & \(f(x_k)\) & 一阶差商 & 二阶差商 & 三阶差商 \\
-		\hline
-		0 & \(x_0\) & \(f(x_0)\) \\
-		1 & \(x_1\) & \(f(x_1)\) & \(f[x_0,x_1]\) \\
-		2 & \(x_2\) & \(f(x_2)\) & \(f[x_1,x_2]\) & \(f[x_0,x_1,x_2]\) \\
-		3 & \(x_3\) & \(f(x_3)\) & \(f[x_2,x_3]\) & \(f[x_1,x_2,x_3]\) & \(f[x_0,x_1,x_2,x_3]\) \\
-		\hline
-	\end{tblr}
-\end{center}
-我们把上述表格称为\DefineConcept{差商表}.
-
-\begin{example}
+\begin{example}\label{example:牛顿插值.幂函数的k阶差商就是完全齐次对称多项式}
+%@credit: {gemini}
 证明：幂函数\(f_m(x) \defeq x^m\ (m\in\mathbb{N}^+)\)
 关于\(k+1\ (k\geq0)\)个点\(x_0,\dotsc,x_k\)的\(k\)阶差商\(f_m[x_0,\dotsc,x_k]\)
 是关于点\(x_0,\dotsc,x_k\)的\(m-k\)次完全齐次对称多项式.
