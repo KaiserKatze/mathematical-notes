@@ -194,17 +194,29 @@
 	&= \sum_{i=0}^k (x_k - x_i) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
 	&\hspace{20pt}
 		+ \sum_{i=0}^k (x_i - x_0) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
-	&= \sum_{i=0}^k ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] - v[x_i,\dotsc,x_{k-1}] ) \\
+	% 因为当\(i=k\)时有\(x_k - x_i = 0\)，所以要修改求和上限
+	&= \sum_{i=0}^{k-1} (x_k - x_i) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	% 因为当\(i=0\)时有\(x_i - x_0 = 0\)，所以要修改求和下限
 	&\hspace{20pt}
-		+ \sum_{i=0}^k ( u[x_1,\dotsc,x_i] - u[x_0,\dotsc,x_{i-1}] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
-	&= \sum_{i=0}^k ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] ) \\
+		+ \sum_{i=1}^k (x_i - x_0) \cdot ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&= \sum_{i=0}^{k-1} ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] - v[x_i,\dotsc,x_{k-1}] ) \\
 	&\hspace{20pt}
-		- \sum_{i=0}^k ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_{k-1}] ) \\
+		+ \sum_{i=1}^k ( u[x_1,\dotsc,x_i] - u[x_0,\dotsc,x_{i-1}] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&= \sum_{i=0}^{k-1} ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] ) \\
 	&\hspace{20pt}
-		+ \sum_{i=0}^k ( u[x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+		- \sum_{i=0}^{k-1} ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_{k-1}] ) \\
 	&\hspace{20pt}
-		- \sum_{i=0}^k ( u[x_0,\dotsc,x_{i-1}] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
-	%TODO
+		+ \sum_{i=1}^k ( u[x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&\hspace{20pt}
+		- \sum_{i=1}^k ( u[x_0,\dotsc,x_{i-1}] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	&= \sum_{i=0}^{k-1} ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_{i+1},\dotsc,x_k] ) \\
+	&\hspace{20pt}
+		- \sum_{i=0}^{k-1} ( u[x_0,x_1,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_{k-1}] ) \\
+	&\hspace{20pt}
+		+ \sum_{i=1}^k ( u[x_1,\dotsc,x_i] ) \cdot ( v[x_i,x_{i+1},\dotsc,x_k] ) \\
+	% 在第四个求和中令\(j \defeq i-1\)，那么当\(i=1\)时有\(j=0\)，当\(i=k\)时有\(j=k-1\)
+	&\hspace{20pt}
+		- \sum_{j=0}^{k-1} ( u[x_0,\dotsc,x_j] ) \cdot ( v[x_{j+1},x_{j+2},\dotsc,x_k] ) \\
 	&= \sum_{i=1}^k ( u[x_1,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_k] )
 		- \sum_{i=0}^{k-1} ( u[x_0,\dotsc,x_i] ) \cdot ( v[x_i,\dotsc,x_{k-1}] ) \\
 	&= (u v)[x_1,\dotsc,x_{k-1},x_k]
