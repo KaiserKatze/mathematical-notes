@@ -159,17 +159,42 @@
 这就说明求积公式至少具有\(n\)次代数精度.
 
 假设求积公式具有\(2n+1\)次代数精度，
-那么对于\(f(x) \defeq x^{2n+1}\)应该有求积余项\(R[f]\)等于零.
+那么对于\(f(x) \defeq x^{2n+1}\)应该有\(R[f] = 0\).
 因为\begin{equation*}
 	f^{(n+1)}(x) = \frac{(2n+1)!}{n!} x^n,
 \end{equation*}
-这时\(x \mapsto f^{(n+1)}(\xi(x))\)是一个\(n\)次多项式函数.
-若要求对于任意\(p \in H_n[a,b]\)，总有\begin{equation*}
-	\int_a^b \rho(x) ~ p(x) ~ \omega_{n+1}(x) \dd{x} = 0,
+再由\cref{example:牛顿插值.幂函数的插值余项的中值} 有\begin{equation*}
+%@credit: {gemini}
+	\xi(x)
+	= \left[
+		\frac{n! (n+1)!}{(2n+1)!}
+		\sum_{\substack{p_0 + p_1 + \dotsb + p_n + p = n \\ p_0,p_1,\dotsc,p_n,p \geq 0}}
+		x_0^{p_0} x_1^{p_1} \dotsm x_n^{p_n} x^p
+	\right]^{1/n},
 \end{equation*}
-就相当于要求\(\omega_{n+1}\)与每一个次数不超过\(n\)的多项式函数\(p\)
-在区间\([a,b]\)上带权\(\rho\)正交，
-也相当于要求所有以节点\(x_k\ (k=0,1,2,\dotsc,n)\)为零点的\(n+1\)次多项式函数的集合\(\{\omega_{n+1}\}\)是\([a,b]\)上带权\(\rho\)的正交多项式函数族.
+所以\begin{equation*}
+	f^{(n+1)}(\xi(x))
+	= (n+1)!
+		\sum_{\substack{p_0 + p_1 + \dotsb + p_n + p = n \\ p_0,p_1,\dotsc,p_n,p \geq 0}}
+		x_0^{p_0} x_1^{p_1} \dotsm x_n^{p_n} x^p
+\end{equation*}
+是一个\(n\)次多项式函数.
+因此，要使求积公式具有\(2n+1\)次代数精度，
+必须有\begin{equation*}
+	R[f]
+	= \sum_{\substack{p_0 + p_1 + \dotsb + p_n + p = n \\ p_0,p_1,\dotsc,p_n,p \geq 0}}
+			x_0^{p_0} x_1^{p_1} \dotsm x_n^{p_n}
+			\int_a^b \rho(x) ~ x^p ~ \omega_{n+1}(x) \dd{x}
+	= 0.
+\end{equation*}
+可以看出，只要有\begin{equation*}
+	\int_a^b \rho(x) ~ x^p ~ \omega_{n+1}(x) \dd{x} = 0
+	\quad(p=0,1,2,\dotsc,n),
+\end{equation*}
+便有\(R[f] = 0\).
+这就要求\(\omega_{n+1}\)与每一个次数不超过\(n\)的幂函数
+在区间\([a,b]\)上带权\(\rho\)正交.
+综上所述，我们可以得出如下结论.
 \begin{theorem}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P119 定理5
 设函数\(f \in C[a,b]\)，
@@ -195,12 +220,10 @@
 
 上述定理表明：区间\([a,b]\)上带权\(\rho\)的\(n+1\)次正交多项式的零点
 就是求积公式\(\sum_{k=0}^n A_k f(x_k)\)的高斯点.
-于是高斯求积公式的求积系数\(A_0,A_1,\dotsc,A_n\)有两种计算方法：\begin{enumerate}
-	\item 在已知求积节点\(x_0,x_1,\dotsc,x_n\)以后，
-	再利用方程组 \labelcref{equation:高斯求积公式.高斯求积公式的待定参数方程组}
-	求解求积系数；
-	\item 直接利用\cref{equation:高斯求积公式.高斯求积公式的求积系数} 计算得到.
-\end{enumerate}
+于是，在已知求积节点\(x_0,x_1,\dotsc,x_n\)以后，
+高斯求积公式的求积系数\(A_0,A_1,\dotsc,A_n\)有两种计算方法：
+要么解方程组 \labelcref{equation:高斯求积公式.高斯求积公式的待定参数方程组}，
+要么利用\cref{equation:高斯求积公式.高斯求积公式的求积系数} 计算得到.
 
 % \begin{example}
 % %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P120 例9
