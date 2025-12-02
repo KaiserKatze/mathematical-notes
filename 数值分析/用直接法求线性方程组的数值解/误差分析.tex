@@ -168,8 +168,152 @@
 
 现在我们就可以定量地定义病态性质了.
 \begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169
 给定线性方程组\(A X = B\)，
 如果矩阵\(A\)的条件数\(\cond A \gg 1\)，
 则称“线性方程组\(A X = B\)是\DefineConcept{病态的}”或“\(A\)是\DefineConcept{病态的}”；
 否则称“线性方程组\(A X = B\)是\DefineConcept{良态的}”或“\(A\)是\DefineConcept{良态的}”.
 \end{definition}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169
+设\(A \in M_n(\mathbb{C})\)，
+则\begin{equation*}
+	\cond_2 A
+	= \sqrt{
+		\frac{
+			\max\Spec(A^H A)
+		}{
+			\min\Spec(A A^H)
+		}
+	}.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169
+设\(A \in M_n(\mathbb{C})\)是对称矩阵，
+则\begin{equation*}
+	\cond_2 A
+	= \frac{
+		\abs{\lambda_1}
+	}{
+		\abs{\lambda_n}
+	},
+\end{equation*}
+其中\(\lambda_1\)分别是\(A\)的绝对值最大的特征值，
+\(\lambda_n\)分别是\(A\)的绝对值最小的特征值.
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169
+设\(A \in M_n(\mathbb{R})\)是非奇异矩阵，
+则\(\cond_p A \geq 1\).
+\begin{proof}
+因为\(L_p\)范数是矩阵范数，满足次可乘性，
+所以\begin{equation*}
+	\cond_p A
+	\equiv \MatrixNorm{ A^{-1} }_p \MatrixNorm{ A \vphantom{A^{-1}} }_p
+	\geq \MatrixNorm{ A^{-1} A }_p
+	= \MatrixNorm{ I }_p
+	% 单位矩阵的任意一个自然范数都等于1.
+	= 1.
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169
+设\(A \in M_n(\mathbb{R})\)是非奇异矩阵，
+那么对于任意非零实数\(c\)，
+有\begin{equation*}
+	\cond_p (c A)
+	= \cond_p A.
+\end{equation*}
+\begin{proof}
+% \cref{theorem:逆矩阵.数与矩阵乘积的逆}
+因为\((c A)^{-1} = c^{-1} A^{-1}\)，
+% 矩阵范数的齐次性
+且\(\MatrixNorm{ c A }_p = c \MatrixNorm{A}_p\)，
+所以\begin{align*}
+	\cond_p (c A)
+	&= \MatrixNorm{ (c A)^{-1} }_p \MatrixNorm{ c A \vphantom{A^{-1}} }_p
+	= \MatrixNorm{ c^{-1} A^{-1} }_p \MatrixNorm{ c A \vphantom{A^{-1}} }_p
+	= c^{-1} \MatrixNorm{ A^{-1} }_p \cdot c \MatrixNorm{ A \vphantom{A^{-1}} }_p \\
+	&= \MatrixNorm{ A^{-1} }_p \MatrixNorm{ A \vphantom{A^{-1}} }_p
+	= \cond_p A.
+	\qedhere
+\end{align*}
+\end{proof}
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169
+设\(A \in M_n(\mathbb{R})\)是正交矩阵，
+则\(\cond_2 A = 1\).
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P169
+设\(A \in M_n(\mathbb{R})\)是非奇异矩阵，
+\(Q \in M_n(\mathbb{R})\)是正交矩阵，
+则\begin{equation*}
+	\cond_2 (Q A)
+	= \cond_2 (A Q)
+	= \cond_2 A.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P170
+在理论上，要判别一个矩阵是否病态，可以通过计算条件数\(\cond A\)，
+但是在实际应用中，计算\(A^{-1}\)是比较费劲的.
+这时，要想发现矩阵的病态情况，有以下几种方法：\begin{itemize}
+	\item 如果在使用列主元消去法对矩阵\(A\)做LU分解时，某一列主元特别小，那么\(A\)很有可能是病态的；
+	\item 如果矩阵\(A\)的行列式的绝对值很小，或者\(A\)的某些行（或列）近似线性相关，那么\(A\)很有可能是病态的；
+	\item 如果矩阵\(A\)的各元素的数量级相差很大，并且没有规律，那么\(A\)很有可能是病态的.
+\end{itemize}
+
+在计算机上使用数值方法求解线性方程组\(A x = b\)时，
+为了缓解病态问题，有以下方法：\begin{itemize}
+	\item 采用高精度算术运算（例如使用双精度浮点数）；
+	\item 进行预处理，选取非奇异矩阵\(P,Q\)（通常令\(P,Q\)为对角阵或三角阵），
+	将\(A x = b\)转化为等价线性方程组\begin{equation*}
+		\begin{cases}
+			P A Q y = P b, \\
+			y = Q^{-1} x,
+		\end{cases}
+	\end{equation*}
+	同时保证\begin{equation*}
+		\cond(P A Q) < \cond A;
+	\end{equation*}
+	\item 当矩阵\(A\)的元素大小不均时，
+	对\(A\)的行（或列）引入适当的比例因子，
+	使\(A\)的所有行（或列）向量的\(L_\infty\)范数相等.
+\end{itemize}
+
+假设\(x^*\)是线性方程组\(A x = b\)的近似解，
+我们想知道，如果\(r \defeq b - A x^*\)足够小，
+那么可不可以说“\(x^*\)是\(A x = b\)的一个较好的近似解”呢？
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P172 定理23（事后误差估计）
+设\(A \in M_n(\mathbb{R})\)是非奇异矩阵，
+\(x^*\)是线性方程组\(A x = b \neq 0\)的近似解，
+记\(r \defeq b - A x^*\)，
+则\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P172 (5.11)
+	\frac{ \norm{x - x^*} }{ \norm{x} }
+	\leq \frac{ \norm{r} }{ \norm{b} } \cdot \cond A.
+\end{equation*}
+%TODO proof
+\end{theorem}
+上述定理说明：
+近似解的精度，不仅依赖于\(r\)的范数，
+还依赖于\(A\)的条件数.
+当\(A\)是病态矩阵时，
+即使\(r\)的范数很小，
+也不能保证\(x^*\)是高精度的近似解.
