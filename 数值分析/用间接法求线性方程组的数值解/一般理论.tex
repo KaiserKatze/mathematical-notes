@@ -1,0 +1,143 @@
+\section{迭代法的基本概念}
+\subsection{一阶定常迭代法}
+设\(A \in M_n(F)\)是非奇异矩阵.
+当\(A\)是低阶的、稠密的矩阵时，列主元消去法是求解线性方程组\(A x = b\)的有效方法.
+但是，当\(A\)的阶数\(n\)很大时，或者当\(A\)是稀疏矩阵时，
+就应该使用迭代法求解线性方程组\(A x = b\)了.
+
+设\begin{equation*}
+	A \defeq \begin{bmatrix}
+		a_{11} & a_{12} & \dots & a_{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \vdots & & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nn} \\
+	\end{bmatrix},
+	\qquad
+	X \defeq \begin{bmatrix}
+		x_1 \\ x_2 \\ \vdots \\ x_n
+	\end{bmatrix},
+	\qquad
+	B \defeq \begin{bmatrix}
+		b_1 \\ b_2 \\ \vdots \\ b_n
+	\end{bmatrix}.
+\end{equation*}
+在求解线性方程组\(A X = B\)
+或者\(
+	\sum_{j=1}^n a_{ij} x_j = b_i
+	\ (i=1,2,\dotsc,n)
+\)时，可以将其变形，得到\begin{equation}
+	x_i
+	= \frac{1}{a_{ii}}
+	\left(
+		b_i
+		- \sum_{j=1}^n a_{ij} x_j
+		+ a_{ii} x_i
+	\right)
+	\quad(i=1,2,\dotsc,n)
+\end{equation}
+或者\begin{equation}\label{equation:用迭代法求线性方程组的数值解.一般理论.线性方程组的等价形式}
+	X = D^{-1} (B - A X + D X)
+	= D^{-1} (D - A) X
+		+ D^{-1} B,
+\end{equation}
+其中\(D \defeq \diag(a_{11},a_{22},\dotsc,a_{nn})\).
+
+我们可以比照\cref{equation:用迭代法求线性方程组的数值解.一般理论.线性方程组的等价形式}
+写出递推公式\begin{equation}\label{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P181 (1.6)
+	X_{k+1}
+	\defeq
+	M X_k + N
+	\quad(k=1,2,\dotsc),
+\end{equation}
+其中\(
+	M \defeq D^{-1} (D - A),
+	N \defeq D^{-1} B
+\).
+把\(D\)称为\DefineConcept{分裂矩阵}.
+把\(M\)称为\DefineConcept{迭代矩阵}.
+
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P181 定义1
+我们把递推公式 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}
+所展示的迭代方法称为\DefineConcept{一阶定常迭代法}.
+之所以称之为“一阶”，是因为递推公式只描绘了\(X_{k+1}\)和\(X_k\)的关系，
+\(X_{k+1}\)的取值只依赖于前一步\(X_k\)，而不依赖于更早的步骤（例如\(X_{k-1},X_{k-2}\)等）.
+之所以称之为“定常”，是因为递推公式中迭代矩阵\(M\)和常数项\(N\)在整个迭代过程中保持不变，不随迭代步数\(k\)而改变.
+一阶定常迭代法形式简单、易于编程实现，但缺点是收敛速度较慢，甚至对于某些问题来说根本不收敛.
+常见的一阶定常迭代法包括我们即将展开介绍的“雅克比迭代法”“高斯--塞德尔迭代法”“超松弛迭代法”.
+
+容易验证：
+当\begin{equation*}
+	A = \begin{bmatrix}
+		8 & -3 & 2 \\
+		4 & 11 & -1 \\
+		6 & 3 & 12 \\
+	\end{bmatrix},
+	\qquad
+	B = \begin{bmatrix}
+		20 \\ 33 \\ 36
+	\end{bmatrix}
+\end{equation*}
+时，可以算出线性方程组\(A X = B\)的精确解为\(X^* = (3,2,1)^T\)，
+而如果令\begin{equation*}
+	M \defeq \begin{bmatrix}
+		0 & 3/8 & -2/8 \\
+		-4/11 & 0 & 1/11 \\
+		-6/12 & -3/12 & 0 \\
+	\end{bmatrix},
+	\qquad
+	N \defeq \begin{bmatrix}
+		20/8 \\ 33/11 \\ 36/12
+	\end{bmatrix},
+\end{equation*}
+再取初始值\(X_0 \defeq (0,0,0)^T\)，
+最后代入\cref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 反复迭代，
+在迭代10次以后可以得到\begin{equation*}
+	X_{10} = (
+		\num{3.000032},
+		\num{1.999838},
+		\num{0.999881}
+	)^T.
+\end{equation*}
+从这个例子我们可以看出：
+有的线性方程组可以使用迭代法产生一个近似解向量序列\(\{X_k\}_{k\geq0}\)，逐步逼近它的精确解.
+但是必须说明的是：不是所有线性方程组都可以用迭代法逼近精确解\(X^*\).
+例如，当\begin{equation*}
+	M = \begin{bmatrix}
+		0 & 2 \\
+		3 & 0 \\
+	\end{bmatrix},
+	\qquad
+	N = \begin{bmatrix}
+		5 \\ 5
+	\end{bmatrix}
+\end{equation*}
+时，利用\cref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}
+得到的向量序列为\(
+	(0,0)^T,
+	(5,5)^T,
+	(15,20)^T,
+	(45,50)^T,
+	\dotsc
+\)，
+这显然无法逼近线性方程组的精确解\(X^* \defeq (-3,-4)^T\).
+
+为了判断在什么情况下可以由递推公式 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}
+得到方程 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.线性方程组的等价形式} 的精确解\(X^*\)，
+我们需要知道经过迭代以后，\(X_k\)的误差是否逐渐缩小.
+于是，我们把\(\epsilon_k \defeq X_k - X^*\)称为“第\(k\)步的\DefineConcept{误差向量}”.
+如果随着迭代步数\(k\)增加，\(\epsilon_k\)逐渐“收敛”为零向量，
+那么我们就可以宣称迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 是有效的，
+或者说当迭代步数\(k\)足够多以后，就能利用这种方法得到足够精度的近似解.
+
+由递推公式 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 可知\begin{equation*}
+	\epsilon_{k+1} = M \epsilon_k
+	\quad(k=0,1,2,\dotsc),
+\end{equation*}
+所以\begin{equation*}
+	\epsilon_k
+	= M^k \epsilon_0.
+\end{equation*}
+从这里可以看出，除非我们一开始就将猜中精确解，将精确解作为初始向量\(X_0\)开始迭代，
+否则，误差向量\(\epsilon_k\)是否“收敛”为零向量，完全取决于迭代矩阵\(M\)的\(k\)次幂是否“收敛”为零矩阵.
+为此，我们需要建立向量序列与矩阵序列的收敛性的概念与判别法.
