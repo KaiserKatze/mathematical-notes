@@ -243,3 +243,51 @@
 实数列\(\{f(B^k)^{1/k}\}_{k\geq0}\)收敛于\(B\)的谱半径\(\SpecRad(B)\).
 %TODO
 \end{theorem}
+
+\subsection{迭代法的收敛性}
+在建立向量序列与矩阵序列的收敛性的概念与判别法以后，我们现在就可以定义迭代法的收敛性了.
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P181 定义1 (2)
+给定线性方程组 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.线性方程组的等价形式}
+及其一阶定常迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}.
+如果存在向量\(X^*\)，向量序列\(\{X_k\}_{k\geq0}\)收敛于\(X^*\)，
+则称“迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} \DefineConcept{收敛}”，
+否则称“迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} \DefineConcept{发散}”.
+\end{definition}
+
+可以证明，当迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 收敛时，
+向量序列\(\{X_k\}_{k\geq0}\)收敛于精确解\(X^*\).
+
+下面给出迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 收敛的充分必要条件.
+\begin{theorem}%[一阶定常迭代法基本定理]
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P184 定理5
+给定线性方程组 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.线性方程组的等价形式}
+及其一阶定常迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}.
+对于任意取定的初始向量\(X_0\)，
+迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 收敛的充分必要条件是
+迭代矩阵\(M\)的谱半径\(\SpecRad(M)<1\).
+\end{theorem}
+
+由于矩阵的谱半径总是不大于矩阵的范数，
+所以我们可以利用矩阵范数建立判别迭代法收敛的充分不必要条件.
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P185 定理6（迭代法收敛的充分条件）
+给定线性方程组 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.线性方程组的等价形式}
+及其一阶定常迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}.
+如果迭代矩阵\(M\)的某个范数\(q \defeq \MatrixNorm{M} < 1\)，
+则\begin{itemize}
+	\item 迭代法收敛，即对任意取定初始向量\(X_0\)有\(\lim_{k\to\infty} X_k = X^*\)且\(X^* = M X^* + N\)；
+	\item \(\MatrixNorm{X^* - X_k} \leq q^k \MatrixNorm{X^* - X_0}\)；
+	\item \(\MatrixNorm{X^* - X_k} \leq \frac{q}{1-q} \MatrixNorm{X_k - X_{k-1}}\)；
+	\item \(\MatrixNorm{X^* - X_k} \leq \frac{q^k}{1-q} \MatrixNorm{X_1 - X_0}\).
+\end{itemize}
+\end{theorem}
+由于上述定理仅是迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 收敛的充分不必要条件，
+所以即便已知迭代矩阵\(M\)的常见范数（即\(
+	\MatrixNorm{M}_\infty,
+	\MatrixNorm{M}_1,
+	\MatrixNorm{M}_2,
+	\MatrixNorm{M}_F
+\)都大于\(1\)，
+也不能断言迭代法不收敛，
+也就是说\(M\)的谱半径完全有可能小于\(1\).
