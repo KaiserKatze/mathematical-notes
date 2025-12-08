@@ -291,3 +291,100 @@
 \)都大于\(1\)，
 也不能断言迭代法不收敛，
 也就是说\(M\)的谱半径完全有可能小于\(1\).
+
+\subsection{迭代法的收敛速度}
+下面考察迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 的收敛速度.
+假设迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 是收敛的，
+初始误差\(\epsilon_0 \neq 0\).
+记\begin{equation*}
+	X^* \defeq \lim_{k\to\infty} X_k,
+	\qquad
+	\epsilon_k \defeq X_k - X^*.
+\end{equation*}
+那么由\(
+	\epsilon_k = M^k \epsilon_0,
+	\epsilon_0 = X_0 - X^*
+\)可得\begin{equation*}
+	\norm{\epsilon_k}
+	\leq
+	\MatrixNorm{M^k}
+	\norm{\epsilon_0},
+\end{equation*}
+于是\begin{equation*}
+	\frac{
+		\norm{\epsilon_k}
+	}{
+		\norm{\epsilon_0}
+	}
+	\leq
+	\MatrixNorm{M^k}.
+\end{equation*}
+根据矩阵范数的定义，有\begin{equation*}
+	\MatrixNorm{M^k}
+	= \max_{0 \neq \epsilon_0 \in \mathbb{C}^n} \frac{ \norm{M^k \epsilon_0}_p }{ \norm{\epsilon_0}_p }
+	= \max_{0 \neq \epsilon_0 \in \mathbb{C}^n} \frac{ \norm{\epsilon_k}_p }{ \norm{\epsilon_0}_p },
+\end{equation*}
+也就是说\(\MatrixNorm{M^k}\)是迭代\(k\)次以后，误差向量\(\epsilon_k\)的范数与初始误差向量\(\epsilon_0\)的范数之比的最大值.
+那么，迭代\(k\)次以后，平均每次迭代的误差向量的范数的“压缩率”可以看成是\(\MatrixNorm{M^k}^{1/k}\).
+如果要求迭代\(k\)次以后达到指定精度\(\sigma\)（我们常常取\(\sigma \defeq 10^{-s} \ll 1\)，这里\(s\)是某个正整数），
+即\begin{equation*}
+	\norm{\epsilon_k}
+	\leq \sigma \norm{\epsilon_0},
+	\quad\text{即}\quad
+	\frac{
+		\norm{\epsilon_k}
+	}{
+		\norm{\epsilon_0}
+	}
+	\leq
+	\MatrixNorm{M^k}
+	\leq
+	\sigma,
+\end{equation*}
+那么相当于要求\(\MatrixNorm{M^k}^{1/k} \leq \sigma^{1/k}\)，
+取对数得\begin{equation*}
+	\ln\MatrixNorm{M^k}^{1/k} \leq \ln\sigma^{1/k} = \frac1k \ln\sigma,
+\end{equation*}
+即\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P187 (1.12)
+	k
+	\geq \frac{ -\ln\sigma }{ -\ln\MatrixNorm{M^k}^{1/k} }
+	= \frac{ s \ln10 }{ -\ln\MatrixNorm{M^k}^{1/k} }.
+\end{equation}
+可以看出，迭代次数\(k\)与\(-\ln\MatrixNorm{M^k}^{1/k}\)成反比.
+
+据此，我们可以定义迭代法的平均收敛速度.
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P187 定义4
+把\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P187 (1.13)
+	R_k(M)
+	\defeq
+	-\ln\MatrixNorm{M^k}^{1/k}
+\end{equation}
+称为“迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 的\DefineConcept{平均收敛速度}”.
+\end{definition}
+
+由于平均收敛速度\(R_k(M)\)依赖于迭代次数以及矩阵范数的选取，给计算分析带来不便，
+加之我们已知\(\lim_{k\to\infty} \MatrixNorm{M^k}^{1/k} = \SpecRad(M)\)，
+从而有\(\lim_{k\to\infty} R_k(M) = -\ln\SpecRad(M)\).
+据此，我们可以定义迭代法的渐进收敛速度.
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P187 定义5
+把\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P187 (1.14)
+	R(M)
+	\defeq
+	-\ln\SpecRad(M)
+\end{equation}
+称为“迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 的\DefineConcept{渐进收敛速度}”.
+\end{definition}
+渐进收敛速度\(R(M)\)与迭代次数、矩阵范数的选取都没有关系，
+它反映了迭代次数趋于无穷时，迭代法的渐进性质.
+当\(\SpecRad(M)\)越小时，迭代法收敛越快.
+
+我们常常使用不等式\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P187 (1.15)
+	k \geq \frac{s \ln10}{R(M)}
+\end{equation}
+估计迭代法 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式} 所需的迭代次数.
