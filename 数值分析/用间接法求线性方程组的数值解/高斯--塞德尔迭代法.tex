@@ -1,0 +1,88 @@
+\section{高斯--塞德尔迭代法}
+将线性方程组\(A X = B\)的系数矩阵\(A\)分成三部分：\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P188 (2.1)
+	A = D - L - U,
+\end{equation*}
+其中\begin{align*}
+	D
+	&\defeq
+	\begin{bmatrix}
+		a_{11} \\
+		& a_{22} \\
+		&& \ddots \\
+		&&& a_{nn} \\
+	\end{bmatrix}, \\
+	L
+	&\defeq
+	- \begin{bmatrix}
+		0 \\
+		a_{21} & 0 \\
+		\vdots & \vdots & \ddots \\
+		a_{n-1,1} & a_{n-1,2} & \dots & 0 \\
+		a_{n1} & a_{n2} & \dots & a_{n,n-1} & 0 \\
+	\end{bmatrix}, \\
+	U
+	&\defeq
+	- \begin{bmatrix}
+		0 & a_{12} & \dots & a_{1,n-1} & a_{1n} \\
+		& 0 & \dots & a_{2,n-1} & a_{2n} \\
+		&& \ddots & \vdots & \vdots \\
+		&&& 0 & a_{n-1,n} \\
+		&&&& 0 \\
+	\end{bmatrix}.
+\end{align*}
+
+假设\(D \neq 0\)且\(D - L = A + U\)是可逆的.
+因为\begin{align*}
+	A X = B
+	&\iff
+	(A + U) X = B + U X \\
+	&\iff
+	(D - L) X = U X + B \\
+	&\iff
+	X = (D - L)^{-1} U X + (D - L)^{-1} B,
+\end{align*}
+所以只要令\(
+	G \defeq (D - L)^{-1} U,
+	C \defeq (D - L)^{-1} B
+\)，
+就可以写出递推公式\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P188 (2.4)
+	X_{k+1}
+	\defeq
+	G X_k + C
+	\quad(k=0,1,2,\dotsc),
+\end{equation}
+或\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P189 (2.5)
+	x_{k+1,i}
+	= \frac{1}{a_{ii}}
+	\left(
+		b_i
+		- \sum_{j=1}^{i-1} a_{ij} x_{k+1,j}
+		- \sum_{j=i+1}^{n} a_{ij} x_{k,j}
+	\right)
+	\quad(i=1,2,\dotsc,n;k=0,1,2,\dotsc),
+\end{equation}
+或\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P189 (2.6)
+	\begin{cases}
+		x_{k+1,i}
+		= x_{k,i} + \increment x_i, \\
+		\increment x_i
+		= \frac{1}{a_{ii}}
+		\left(
+			b_i
+			- \sum_{j=1}^{i-1} a_{ij} x_{k+1,j}
+			- \sum_{j=i}^{n} a_{ij} x_{k,j}
+		\right)
+	\end{cases}
+	\quad(i=1,2,\dotsc,n;k=0,1,2,\dotsc),
+\end{equation}
+其中\(X_k \defeq (x_{k,1},\dotsc,x_{k,n})\).
+
+雅克比迭代法不使用变量的最新信息计算\(x_{k+1,i}\)，
+而高斯--塞德尔迭代法在计算\(x_{k+1,i}\)时，
+利用了已经计算出的最新分量\(x_{k+1,j}\ (j=1,2,\dotsc,i-1)\).
+高斯--塞德尔迭代法可以看作是雅克比迭代法的一种改进.
+容易看出，该方法每迭代一次只需要计算一次矩阵和向量的乘法.
