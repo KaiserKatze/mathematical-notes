@@ -1,0 +1,65 @@
+\section{超松弛迭代法}
+%@see: https://mathworld.wolfram.com/SuccessiveOverrelaxationMethod.html
+\subsection{逐次超松弛迭代法的概念}
+假设\(D \neq 0\)，即\(a_{ii} \neq 0\ (i=1,2,\dotsc,n)\).
+选取\(\frac1\omega (D - \omega L)\)为分裂矩阵，
+其中\(\omega > 0\)是待定参数，称为\DefineConcept{松弛因子}，
+便可得到迭代矩阵\begin{equation*}
+	L_\omega
+	\defeq
+	(D - \omega L)^{-1}
+	[(1-\omega) D + \omega U],
+\end{equation*}
+那么递推公式 \labelcref{equation:用迭代法求线性方程组的数值解.一般理论.递推公式}
+可以写成\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P194 (3.1)
+	X_{k+1}
+	\defeq
+	L_\omega X_k + C
+	\quad(k=0,1,2,\dotsc),
+\end{equation}
+其中\(C \defeq \omega (D - \omega L)^{-1} B\)，
+或\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P194 (3.2)
+	x_{k+1,i}
+	= x_{k,i} + \frac{\omega}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_{k+1,j} - \sum_{j=i}^n a_{ij} x_{k,j} \right)
+	\quad(i=1,2,\dotsc,n;k=0,1,2,\dotsc),
+\end{equation}
+或\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P194 (3.3)
+	\begin{cases}
+		x_{k+1,i} = x_{k,i} + \increment x_i, \\
+		\increment x_i
+		= \frac{\omega}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_{k+1,j} - \sum_{j=i}^n a_{ij} x_{k,j} \right)
+	\end{cases}
+	\quad(i=1,2,\dotsc,n;k=0,1,2,\dotsc),
+\end{equation}
+其中\(X_k \defeq (x_{k,1},\dotsc,x_{k,n})\).
+
+可以注意到，当\(\omega = 1\)时，逐次超松弛迭代法成为高斯--塞德尔迭代法.
+因此逐次超松弛迭代法实际上是高斯--塞德尔迭代法的一种修正，
+具体地说，首先用高斯--塞德尔迭代法计算出\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P195 (3.4)
+	\widetilde{x}_{k+1,i}
+	\defeq \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_{k+1,j} - \sum_{j=i+1}^n a_{ij} x_{k,j} \right),
+\end{equation}
+再将\(x_{k,i}\)与\(\widetilde{x}_{k+1,i}\)加权平均，得到修正后的结果\begin{equation}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P195 (3.5)
+	x_{k+1,i} \defeq (1-\omega) x_{k,i} + \omega \widetilde{x}_{k+1,i}.
+\end{equation}
+
+逐次超松弛迭代法每迭代一次只需要计算一次矩阵和向量的乘法.
+当\(\omega > 1\)时，称之为超松弛法.
+当\(\omega < 1\)时，称之为低松弛法.
+
+在计算机实现时，可以用\begin{equation}
+	\max_{1 \leq i \leq n} \abs{\increment x_i}
+	= \max_{1 \leq i \leq n} \abs{x_{k+1,i} - x_{k,i}}
+	< \epsilon
+\end{equation}
+控制迭代终止，
+或者用\begin{equation}
+	\norm{B - A X_k}_\infty
+	< \epsilon
+\end{equation}
+控制迭代终止.
