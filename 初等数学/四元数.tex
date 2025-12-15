@@ -1,0 +1,355 @@
+\section{四元数}
+四元数是由1个实数单位与3个虚数单位\(\iu,\ju,\ku\)组成的、配上4个实系数的超复数，
+其代数表达式为\begin{equation*}
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku.
+\end{equation*}
+
+当\(\lambda_2 = \lambda_3 = 0\)时，四元数就变成了复数.
+
+我们把\begin{equation*}
+	\lambda_0
+\end{equation*}
+称为“四元数\(
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的\DefineConcept{标量部分}”.
+把\begin{equation*}
+	\lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\end{equation*}
+称为“四元数\(
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的\DefineConcept{向量部分}”.
+把\begin{equation*}
+	\sqrt{
+		\lambda_1^2
+		+ \lambda_2^2
+		+ \lambda_3^2
+	}
+\end{equation*}
+称为“四元数\(
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的向量部分的\DefineConcept{模}”.
+把\begin{equation*}
+	\sqrt{
+		\lambda_0^2
+		+ \lambda_1^2
+		+ \lambda_2^2
+		+ \lambda_3^2
+	}
+\end{equation*}
+称为“四元数\(
+	q
+	\defeq
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的\DefineConcept{模}”，
+记作\(\norm{q}\).
+
+\begin{theorem}
+对于任意四元数\(
+	q
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\)，
+存在实数\(\theta\)，
+使得\begin{equation*}
+	q = N (\cos\theta + \xi \sin\theta),
+\end{equation*}
+其中\begin{equation*}
+	N
+	\defeq
+	\sqrt{
+		\lambda_0^2
+		+ \lambda_1^2
+		+ \lambda_2^2
+		+ \lambda_3^2
+	},
+	\qquad
+	\xi
+	\defeq
+	\frac{
+		\lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	}{
+		\sqrt{
+			\lambda_1^2
+			+ \lambda_2^2
+			+ \lambda_3^2
+		}
+	}.
+\end{equation*}
+% 只要使\(\cos\theta = \lambda_0 / N, \sin\theta = \sqrt{\lambda_1^2 + \lambda_2^2 + \lambda_3^2} / N\)即可.
+\end{theorem}
+
+我们把\begin{equation*}
+	1 \defeq 1 \cdot 1 + 0 \cdot \iu + 0 \cdot \ju + 0 \cdot \ku
+\end{equation*}
+称为\DefineConcept{单元}.
+把\begin{equation*}
+	0 \defeq 0 \cdot 1 + 0 \cdot \iu + 0 \cdot \ju + 0 \cdot \ku
+\end{equation*}
+称为\DefineConcept{零元}.
+把\begin{equation*}
+	- \lambda_0 \cdot 1
+	- \lambda_1 \cdot \iu
+	- \lambda_2 \cdot \ju
+	- \lambda_3 \cdot \ku
+\end{equation*}
+称为“四元数\(
+	q
+	\defeq
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的\DefineConcept{负元}”，
+记作\((-q)\).
+把\begin{equation*}
+	\lambda_0 \cdot 1
+	- \lambda_1 \cdot \iu
+	- \lambda_2 \cdot \ju
+	- \lambda_3 \cdot \ku
+\end{equation*}
+称为“四元数\(
+	q
+	\defeq
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的\DefineConcept{共轭元}”，
+记作\(q^*\).
+把\begin{equation*}
+	\frac{
+		\lambda_0 \cdot 1
+		- \lambda_1 \cdot \iu
+		- \lambda_2 \cdot \ju
+		- \lambda_3 \cdot \ku
+	}{
+		\lambda_0^2
+		+ \lambda_1^2
+		+ \lambda_2^2
+		+ \lambda_3^2
+	}
+\end{equation*}
+称为“四元数\(
+	q
+	\defeq
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的\DefineConcept{逆元}”，
+记作\(q^{-1}\).
+
+\begin{definition}
+给定四元数\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\)和\(
+	q
+	\defeq
+	\mu_0 \cdot 1
+	+ \mu_1 \cdot \iu
+	+ \mu_2 \cdot \ju
+	+ \mu_3 \cdot \ku
+\).
+\begin{itemize}
+	\item 把\begin{equation}
+		p + q
+		\defeq
+		(\lambda_0 + \mu_0) \cdot 1
+		+ (\lambda_1 + \mu_1) \cdot \iu
+		+ (\lambda_2 + \mu_2) \cdot \ju
+		+ (\lambda_3 + \mu_3) \cdot \ku
+	\end{equation}
+	称为“四元数\(p\)与\(q\)的\DefineConcept{和}”.
+
+	\item 把\begin{equation}
+		p - q
+		\defeq
+		(\lambda_0 - \mu_0) \cdot 1
+		+ (\lambda_1 - \mu_1) \cdot \iu
+		+ (\lambda_2 - \mu_2) \cdot \ju
+		+ (\lambda_3 - \mu_3) \cdot \ku
+	\end{equation}
+	称为“四元数\(p\)与\(q\)的\DefineConcept{差}”.
+
+	\item 把\begin{equation}
+		\begin{aligned}
+			p \cdot q
+			&\defeq
+			(\lambda_0 \mu_0 - \lambda_1 \mu_1 - \lambda_2 \mu_2 - \lambda_3 \mu_3) \cdot 1 \\
+			&\hspace{20pt}
+				+ (\lambda_1 \mu_0 + \lambda_0 \mu_1 - \lambda_3 \mu_2 + \lambda_2 \mu_3) \cdot \iu \\
+			&\hspace{20pt}
+				+ (\lambda_2 \mu_0 + \lambda_3 \mu_1 + \lambda_0 \mu_2 - \lambda_1 \mu_3) \cdot \ju \\
+			&\hspace{20pt}
+				+ (\lambda_3 \mu_0 - \lambda_2 \mu_1 + \lambda_1 \mu_2 + \lambda_0 \mu_3) \cdot \ku,
+		\end{aligned}
+	\end{equation}
+	称为“四元数\(p\)与\(q\)的\DefineConcept{积}”.
+\end{itemize}
+\end{definition}
+
+\begin{property}
+四元数满足结合律.
+\end{property}
+
+\begin{property}
+四元数满足分配律.
+\end{property}
+
+\begin{example}
+举例说明：四元数的乘法不满足交换律.
+\end{example}
+
+\begin{property}
+设\(q\)是四元数，
+\(q^*\)是\(q\)的共轭元，
+则\(q \cdot q^* = \norm{q}\).
+\end{property}
+
+\begin{property}
+设\(q\)是四元数，
+\(q^*\)是\(q\)的共轭元，
+\(q^{-1}\)是\(q\)的逆元，
+则\(q^{-1} = q^* / \norm{q}\).
+\end{property}
+
+\begin{theorem}
+给定四元数\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\)和\(
+	q
+	\defeq
+	\mu_0 \cdot 1
+	+ \mu_1 \cdot \iu
+	+ \mu_2 \cdot \ju
+	+ \mu_3 \cdot \ku
+\)，
+有\begin{align*}
+	p \cdot q
+	&= \begin{bmatrix}
+		1 & \iu & \ju & \ku \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\mu_0 & -\mu_1 & -\mu_2 & -\mu_3 \\
+		\mu_1 & \mu_0 & -\mu_3 & \mu_2 \\
+		\mu_2 & \mu_3 & \mu_0 & -\mu_1 \\
+		\mu_3 & -\mu_2 & \mu_1 & \mu_0 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\lambda_0 \\
+		\lambda_1 \\
+		\lambda_2 \\
+		\lambda_3 \\
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
+		1 & \iu & \ju & \ku \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\lambda_0 & -\lambda_1 & -\lambda_2 & -\lambda_3 \\
+		\lambda_1 & \lambda_0 & \lambda_3 & -\lambda_2 \\
+		\lambda_2 & -\lambda_3 & \lambda_0 & \lambda_1 \\
+		\lambda_3 & \lambda_2 & -\lambda_1 & \lambda_0 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\mu_0 \\
+		\mu_1 \\
+		\mu_2 \\
+		\mu_3 \\
+	\end{bmatrix}.
+\end{align*}
+\end{theorem}
+
+\begin{definition}
+给定四元数\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\).
+把矩阵\begin{equation}
+	\begin{bmatrix}
+		\mu_0 & -\mu_3 & \mu_2 \\
+		\mu_3 & \mu_0 & -\mu_1 \\
+		-\mu_2 & \mu_1 & \mu_0 \\
+	\end{bmatrix}
+\end{equation}
+称为“四元数\(p\)的\DefineConcept{核}”.
+\end{definition}
+\begin{remark}
+可以看出：
+四元数\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\)的核是以它的分量\(
+	\lambda_0,
+	\lambda_1,
+	\lambda_2,
+	\lambda_3
+\)作为元素，
+构成的反对称矩阵.
+\end{remark}
+
+\begin{table}[hbt]
+%@see: 《离散数学》（邓辉文） P151 表5-7
+	\centering
+	\begin{tblr}{r|*3r}
+		\(\times\) & \(\iu\) & \(\ju\) & \(\ku\) \\ \hline
+		\(\iu\) & \(-1\) & \(\ku\) & \(-\ju\) \\
+		\(\ju\) & \(-\ku\) & \(-1\) & \(\iu\) \\
+		\(\ku\) & \(\ju\) & \(-\iu\) & \(-1\) \\
+	\end{tblr}
+	\caption{四元数的虚数单位的乘法运算}
+	\label{equation:四元数.四元数的虚数单位的乘法运算}
+\end{table}
