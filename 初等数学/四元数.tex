@@ -1,11 +1,44 @@
 \section{四元数}
-四元数是由1个实数单位与3个虚数单位\(\iu,\ju,\ku\)组成的、配上4个实系数的超复数，
-其代数表达式为\begin{equation*}
+%@Mathematica: Needs["Quaternions`"]
+
+把满足\(\iu^2 = \ju^2 = \ku^2 = \iu \ju \ku = -1\)的数\(\iu,\ju,\ku\)称为\DefineConcept{虚数单位}（imaginary unit）.
+把任意取定的实数四元组\((\lambda_0,\lambda_1,\lambda_2,\lambda_3)\)与虚数单位\(\iu,\ju,\ku\)组合而成的数\begin{equation*}
 	\lambda_0 \cdot 1
 	+ \lambda_1 \cdot \iu
 	+ \lambda_2 \cdot \ju
-	+ \lambda_3 \cdot \ku.
+	+ \lambda_3 \cdot \ku
 \end{equation*}
+称为一个\DefineConcept{四元数}（quaternion）.
+%@see: https://en.wikipedia.org/wiki/Quaternion
+把集合\begin{equation*}
+	\Set{
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+		\given
+		\lambda_0,\lambda_1,\lambda_2,\lambda_3 \in \mathbb{R}
+	}
+\end{equation*}
+称为\DefineConcept{四元数集}，
+记作\(\mathbb{H}\)
+\footnote{
+	这里用\(\mathbb{H}\)表示四元数集，
+	是为了纪念其发现者 哈密顿.
+}.
+
+\begin{table}[hbt]
+%@see: 《离散数学》（邓辉文） P151 表5-7
+	\centering
+	\begin{tblr}{r|*3r}
+		\(\times\) & \(\iu\) & \(\ju\) & \(\ku\) \\ \hline
+		\(\iu\) & \(-1\) & \(\ku\) & \(-\ju\) \\
+		\(\ju\) & \(-\ku\) & \(-1\) & \(\iu\) \\
+		\(\ku\) & \(\ju\) & \(-\iu\) & \(-1\) \\
+	\end{tblr}
+	\caption{四元数的虚数单位的乘法运算}
+	\label{equation:四元数.四元数的虚数单位的乘法运算}
+\end{table}
 
 当\(\lambda_2 = \lambda_3 = 0\)时，四元数就变成了复数.
 
@@ -13,26 +46,32 @@
 	\lambda_0
 \end{equation*}
 称为“四元数\(
+	q
+	\defeq
 	(
 		\lambda_0 \cdot 1
 		+ \lambda_1 \cdot \iu
 		+ \lambda_2 \cdot \ju
 		+ \lambda_3 \cdot \ku
 	)
-\)的\DefineConcept{标量部分}”.
+\)的\DefineConcept{标量部分}（scalar part）”，
+记作\(\Re q\).
 把\begin{equation*}
 	\lambda_1 \cdot \iu
 	+ \lambda_2 \cdot \ju
 	+ \lambda_3 \cdot \ku
 \end{equation*}
 称为“四元数\(
+	q
+	\defeq
 	(
 		\lambda_0 \cdot 1
 		+ \lambda_1 \cdot \iu
 		+ \lambda_2 \cdot \ju
 		+ \lambda_3 \cdot \ku
 	)
-\)的\DefineConcept{向量部分}”.
+\)的\DefineConcept{向量部分}（vector part）”，
+记作\(\vec{q}\).
 把\begin{equation*}
 	\sqrt{
 		\lambda_1^2
@@ -47,7 +86,8 @@
 		+ \lambda_2 \cdot \ju
 		+ \lambda_3 \cdot \ku
 	)
-\)的向量部分的\DefineConcept{模}”.
+\)的向量部分的\DefineConcept{模}（modulus）”，
+记作\(\abs{\vec{q}}\).
 把\begin{equation*}
 	\sqrt{
 		\lambda_0^2
@@ -65,8 +105,30 @@
 		+ \lambda_2 \cdot \ju
 		+ \lambda_3 \cdot \ku
 	)
-\)的\DefineConcept{模}”，
+\)的\DefineConcept{绝对值}（absolute value）”，
+记作\(\abs{q}\).
+把\begin{equation*}
+	\lambda_0^2
+	+ \lambda_1^2
+	+ \lambda_2^2
+	+ \lambda_3^2
+\end{equation*}
+称为“四元数\(
+	q
+	\defeq
+	(
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	)
+\)的\DefineConcept{范数}（norm）”，
 记作\(\norm{q}\).
+
+\begin{property}
+设\(q\)是四元数，
+则\(\norm{q} = \abs{q}^2\).
+\end{property}
 
 \begin{theorem}
 对于任意四元数\(
@@ -79,11 +141,13 @@
 \)，
 存在实数\(\theta\)，
 使得\begin{equation*}
-	q = N (\cos\theta + \xi \sin\theta),
+	q = N (\cos\theta + \vec{\xi} \sin\theta),
 \end{equation*}
 其中\begin{equation*}
 	N
 	\defeq
+	\abs{q}
+	=
 	\sqrt{
 		\lambda_0^2
 		+ \lambda_1^2
@@ -91,8 +155,10 @@
 		+ \lambda_3^2
 	},
 	\qquad
-	\xi
+	\vec{\xi}
 	\defeq
+	\frac{ \vec{q} }{ \abs{\vec{q}} }
+	=
 	\frac{
 		\lambda_1 \cdot \iu
 		+ \lambda_2 \cdot \ju
@@ -107,6 +173,13 @@
 \end{equation*}
 % 只要使\(\cos\theta = \lambda_0 / N, \sin\theta = \sqrt{\lambda_1^2 + \lambda_2^2 + \lambda_3^2} / N\)即可.
 \end{theorem}
+
+\begin{definition}
+设\(q\)是四元数.
+如果\(\abs{q} = 1\)，
+则称“\(q\)是一个\DefineConcept{规范化四元数}（versor）”.
+%@see: https://en.wikipedia.org/wiki/Versor
+\end{definition}
 
 我们把\begin{equation*}
 	1 \defeq 1 \cdot 1 + 0 \cdot \iu + 0 \cdot \ju + 0 \cdot \ku
@@ -226,6 +299,7 @@
 		\end{aligned}
 	\end{equation}
 	称为“四元数\(p\)与\(q\)的\DefineConcept{积}”.
+	%@Mathematica: Quaternion[p0, p1, p2, p3] ** Quaternion[q0, q1, q2, q3]
 \end{itemize}
 \end{definition}
 
@@ -239,7 +313,29 @@
 
 \begin{example}
 举例说明：四元数的乘法不满足交换律.
+\begin{solution}
+取\(
+	p \defeq 1 + 3 \iu - 2 \ju + 2 \ku,
+	q \defeq 2 + 0 \iu - 6 \ju + 3 \ku
+\)，
+便有\begin{equation*}
+	p \cdot q
+	= -16 + 12 \iu - 19 \ju - 11 \ku,
+	\qquad
+	q \cdot p
+	= -16 + 0 \iu - 1 \ju + 25 \ku,
+\end{equation*}
+显然\(p \neq q\).
+%@Mathematica: Quaternion[1, 3, -2, 2] ** Quaternion[2, 0, -6, 3]
+%@Mathematica: Quaternion[2, 0, -6, 3] ** Quaternion[1, 3, -2, 2]
+\end{solution}
 \end{example}
+
+\begin{property}
+设\(q\)是四元数，
+\(q^*\)是\(q\)的共轭元，
+则\(\norm{q^*} = \norm{q}\).
+\end{property}
 
 \begin{property}
 设\(q\)是四元数，
@@ -252,6 +348,20 @@
 \(q^*\)是\(q\)的共轭元，
 \(q^{-1}\)是\(q\)的逆元，
 则\(q^{-1} = q^* / \norm{q}\).
+\begin{proof}\hfill
+\begin{proof}[证法一]
+因为\(q \cdot q^{-1} = 1\)，
+所以\(q^* \cdot q \cdot q^{-1} = q^*\)，
+即\(\norm{q} \cdot q^{-1} = q^*\)，
+所以\(q^{-1} = \frac{q^*}{\norm{q}}\).
+\end{proof}
+\begin{proof}[证法二]
+因为\(q \cdot q^* = \norm{q}\)，
+所以\(q \cdot \frac{q^*}{\norm{q}} = 1\)，
+那么根据定义可知\(q^{-1} = \frac{q^*}{\norm{q}}\).
+\end{proof}
+\let\qed\relax
+\end{proof}
 \end{property}
 
 \begin{theorem}
@@ -303,6 +413,39 @@
 		\mu_3 \\
 	\end{bmatrix}.
 \end{align*}
+%@Mathematica: {{p0, -p1, -p2, -p3}, {p1, p0, -p3, p2}, {p2, p3, p0, -p1}, {p3, -p2, p1, p0}}.{q0, q1, q2, q3}
+%@Mathematica: {{q0, -q1, -q2, -q3}, {q1, q0, q3, -q2}, {q2, -q3, q0, q1}, {q3, q2, -q1, q0}}.{p0, p1, p2, p3}
+\end{theorem}
+
+\begin{theorem}
+给定四元数\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\)和\(
+	q
+	\defeq
+	\mu_0 \cdot 1
+	+ \mu_1 \cdot \iu
+	+ \mu_2 \cdot \ju
+	+ \mu_3 \cdot \ku
+\)，
+则\(p \cdot q\)的标量部分、向量部分各自等于\begin{equation*}
+	\lambda_0 \mu_0
+	- \VectorInnerProductDot{ \vec{p} }{ \vec{q} },
+	\quad\text{和}\quad
+	\lambda_0 \vec{p}
+	+ \mu_0 \vec{q}
+	+ \VectorOuterProduct{ \vec{p} }{ \vec{q} },
+\end{equation*}
+其中\(\vec{p}\)是四元数\(p\)的向量部分，
+\(\vec{q}\)是四元数\(q\)的向量部分，
+\(\VectorInnerProductDot{ \vec{p} }{ \vec{q} }\)是作向量的数量积运算，
+\(\lambda_0 \vec{p}\)和\(\mu_0 \vec{q}\)是作向量的标量乘法运算，
+\(\VectorOuterProduct{ \vec{p} }{ \vec{q} }\)是作向量的向量积运算.
 \end{theorem}
 
 \begin{definition}
@@ -340,16 +483,3 @@
 \)作为元素，
 构成的反对称矩阵.
 \end{remark}
-
-\begin{table}[hbt]
-%@see: 《离散数学》（邓辉文） P151 表5-7
-	\centering
-	\begin{tblr}{r|*3r}
-		\(\times\) & \(\iu\) & \(\ju\) & \(\ku\) \\ \hline
-		\(\iu\) & \(-1\) & \(\ku\) & \(-\ju\) \\
-		\(\ju\) & \(-\ku\) & \(-1\) & \(\iu\) \\
-		\(\ku\) & \(\ju\) & \(-\iu\) & \(-1\) \\
-	\end{tblr}
-	\caption{四元数的虚数单位的乘法运算}
-	\label{equation:四元数.四元数的虚数单位的乘法运算}
-\end{table}
