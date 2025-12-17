@@ -195,9 +195,9 @@
 		&= \VectorOuterProduct
 			{(a_1 \vb{d}_1 + a_2 \vb{d}_2 + a_3 \vb{d}_3)}
 			{(b_1 \vb{d}_1 + b_2 \vb{d}_2 + b_3 \vb{d}_3)} \\
-		&= (a_1 b_2 - a_2 b_1) \VectorOuterProduct{\vb{d}_1}{\vb{d}_2}
-		+ (a_3 b_1 - a_1 b_3) \VectorOuterProduct{\vb{d}_3}{\vb{d}_1}
-		+ (a_2 b_3 - a_3 b_2) \VectorOuterProduct{\vb{d}_2}{\vb{d}_3}.
+		&= (a_1 b_2 - a_2 b_1) (\VectorOuterProduct{\vb{d}_1}{\vb{d}_2})
+		+ (a_3 b_1 - a_1 b_3) (\VectorOuterProduct{\vb{d}_3}{\vb{d}_1})
+		+ (a_2 b_3 - a_3 b_2) (\VectorOuterProduct{\vb{d}_2}{\vb{d}_3}).
 	\end{split}
 \end{equation}
 由此可见，只要知道基向量之间的外积，就可求出\(\VectorOuterProduct{\vb{a}}{\vb{b}}\).
@@ -225,7 +225,7 @@
 于是我们有下述定理.
 \begin{theorem}
 %@see: 《解析几何》（丘维声） P36 定理4.2
-设\(\vb{a},\vb{b}\)在右手直角坐标系中的坐标分别为\begin{equation*}
+设\(\vb{a},\vb{b}\)在右手直角坐标系\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)中的坐标分别为\begin{equation*}
 	(a_1,a_2,a_3)^T, \qquad
 	(b_1,b_2,b_3)^T,
 \end{equation*}
@@ -234,15 +234,15 @@
 	\VectorOuterProduct{\vb{a}}{\vb{b}}
 	= \left( \begin{vmatrix}
 		a_2 & b_2 \\
-		a_3 & b_3
+		a_3 & b_3 \\
 	\end{vmatrix},
-	- \begin{vmatrix}
+	\begin{vmatrix}
+		a_3 & b_3 \\
 		a_1 & b_1 \\
-		a_3 & b_3
 	\end{vmatrix},
 	\begin{vmatrix}
 		a_1 & b_1 \\
-		a_2 & b_2
+		a_2 & b_2 \\
 	\end{vmatrix} \right)^T.
 \end{equation}
 \end{theorem}
@@ -254,6 +254,30 @@
 		b_1 & b_2 & b_3
 	\end{vmatrix}.
 \end{equation}
+
+设向量\(\vb{a},\vb{b}\)的坐标分别是\begin{equation*}
+	(a_1,a_2,a_3)^T,
+	\qquad
+	(b_1,b_2,b_3)^T,
+\end{equation*}
+那么我们还可以把它们的外积的坐标写成矩阵形式：\begin{equation}
+	\VectorOuterProduct{\vb{a}}{\vb{b}}
+	= \begin{bmatrix}
+		0 & -a_3 & a_2 \\
+		a_3 & 0 & -a_1 \\
+		-a_2 & a_1 & 0 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		b_1 \\ b_2 \\ b_3
+	\end{bmatrix}.
+\end{equation}
+容易看出\(
+	\begin{bmatrix}
+		0 & -a_3 & a_2 \\
+		a_3 & 0 & -a_1 \\
+		-a_2 & a_1 & 0 \\
+	\end{bmatrix}
+\)是反对称矩阵.
 
 \subsection{二重外积}
 向量的外积是否满足结合律？
