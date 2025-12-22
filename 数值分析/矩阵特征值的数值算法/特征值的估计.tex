@@ -1,0 +1,55 @@
+\section{特征值的估计}
+\begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P242 定义1
+设矩阵\(A = (a_{ij})_n \in M_n(\mathbb{C})\)，
+记\(
+	r_i
+	\defeq
+	\sum_{\substack{1 \leq j \leq n \\ j \neq i}} \abs{ a_{ij} }
+	\ (i=1,2,\dotsc,n)
+\).
+把复平面上以\(a_{ii}\)为圆心、以\(r_i\)为半径的所有圆盘\begin{equation*}
+	D_i
+	\defeq
+	\Set{
+		z \in \mathbb{C}
+		\given
+		\abs{ z - a_{ii} } \leq r_i
+	}
+	\quad(i=1,2,\dotsc,n)
+\end{equation*}
+称为“矩阵\(A\)的一个\DefineConcept{格什戈林圆盘}（Gershgorin disk）”.
+\end{definition}
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P242 定理5（格什戈林圆盘定理）
+%@see: 《Matrix Computations 4th Edition》（Gene H. Golub, Charles F. Van Loan） P442 Theorem 8.1.3 (Gershgorin)
+设矩阵\(A = (a_{ij})_n \in M_n(\mathbb{C})\)，
+则\(A\)的任意一个特征值\(\lambda\)必定属于\(A\)的全体格什戈林圆盘的并集，
+即有\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P242 (1.4)
+	\abs{ \lambda - a_{ii} }
+	\leq r_i = \sum_{\substack{1 \leq j \leq n \\ j \neq i}} \abs{ a_{ij} }
+	\quad(i=1,2,\dotsc,n).
+\end{equation*}
+%@see: https://mathworld.wolfram.com/GershgorinCircleTheorem.html
+\end{theorem}
+
+\begin{theorem}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P242 定理5（格什戈林圆盘定理）
+设矩阵\(A = (a_{ij})_n \in M_n(\mathbb{C})\)，
+\(S\)是\(A\)的\(m\)个格什戈林圆盘的并集，
+\(S'\)是\(A\)的其余\(n-m\)个格什戈林圆盘的并集.
+如果\(S\)是连通的，
+且\(S\)与\(S'\)是隔离的，
+则\(S\)内恰好含有\(A\)的\(m\)个特征值.
+\end{theorem}
+
+\begin{corollary}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P242 定理5（格什戈林圆盘定理）
+设矩阵\(A = (a_{ij})_n \in M_n(\mathbb{C})\)，
+\(S\)是\(A\)的\(1\)个格什戈林圆盘的并集，
+\(S'\)是\(A\)的其余\(n-1\)个格什戈林圆盘的并集.
+如果\(S\)是连通的，
+且\(S\)与\(S'\)是隔离的，
+则\(S\)内恰好含有\(A\)的\(1\)个特征值.
+\end{corollary}
