@@ -7,12 +7,116 @@
 %@see: https://mathworld.wolfram.com/NormalMatrix.html
 \end{definition}
 
+\begin{example}
+矩阵\(
+	\vb{A}
+	\defeq
+	\begin{bmatrix}
+		1 & -1 \\
+		1 & 1 \\
+	\end{bmatrix}
+\)
+就是一个正规矩阵.
+\end{example}
+
 \begin{property}
 实正交矩阵、实对称矩阵、实反对称矩阵都是实正规矩阵.
 %TODO proof
 \end{property}
 
 \begin{property}
+对角矩阵、厄米矩阵、反厄米矩阵、
 酉矩阵都是正规矩阵.
 %TODO proof
 \end{property}
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P118 引理3.6.1
+设\(\vb{A} \in M_n(\mathbb{C})\)是正规矩阵，
+则每一个与\(\vb{A}\)酉相似的矩阵都是一个正规矩阵.
+\end{property}
+% 正规矩阵的酉相似类
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P118 引理3.6.2
+设\(\vb{A} \in M_n(\mathbb{C})\)是正规矩阵.
+如果\(\vb{A}\)是三角矩阵，
+则\(\vb{A}\)是对角矩阵.
+\end{property}
+
+\begin{theorem}%[正规矩阵的结构定理]
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P119 定理3.6.3
+设矩阵\(\vb{A} \in M_n(\mathbb{C})\)，
+则\(\vb{A}\)是正规矩阵，
+当且仅当
+存在酉矩阵\(\vb{U} \in M_n(\mathbb{C})\)，
+使得\begin{equation*}
+	\vb{U}^H \vb{A} \vb{U} = \diag(\lambda_1,\dotsc,\lambda_n),
+\end{equation*}
+其中\(\lambda_1,\dotsc,\lambda_n\)是\(\vb{A}\)的特征值.
+\end{theorem}
+% 一个矩阵是正规矩阵当且仅当它可以酉相似对角化
+
+\begin{corollary}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P119 推论3.6.1
+设\(\vb{A} \in M_n(\mathbb{C})\)是正规矩阵，
+\(\lambda\)是\(\vb{A}\)的一个特征值，
+\(\vb{x}\)是\(\vb{A}\)的属于\(\lambda\)的一个特征向量，
+则\(\ComplexConjugate{\lambda}\)是\(\vb{A}^H\)的特征值，
+\(\vb{x}\)是\(\vb{A}^H\)的属于\(\ComplexConjugate{\lambda}\)的一个特征向量.
+\end{corollary}
+
+\begin{corollary}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P119 推论3.6.2
+设\(\vb{A} \in M_n(\mathbb{C})\)是正规矩阵，
+则\(\vb{A}\)有\(n\)个线性无关的特征向量.
+% 因为酉矩阵\(\vb{P}\)的列向量组是一个正交向量组
+\end{corollary}
+%TODO 正规矩阵的属于不同特征值的特征向量正交吗？
+%\cref{theorem:特征值与特征向量.实对称矩阵2}
+
+\begin{corollary}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P119 推论3.6.3
+设\(\vb{A} \in M_n(\mathbb{C})\)是正规矩阵，
+则\(\vb{A}\)的属于不同特征值的特征子空间是互相正交的.
+\end{corollary}
+
+\begin{theorem}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P122 定理3.6.4
+设\(\vb{A} \in M_n(\mathbb{C})\)是正规矩阵，
+则\begin{itemize}
+	\item \(\vb{A}\)是厄米矩阵，当且仅当它的特征值都是实数；
+	\item \(\vb{A}\)是反厄米矩阵，当且仅当它的特征值都是纯虚数；
+	\item \(\vb{A}\)是酉矩阵，当且仅当它的特征值都是绝对值等于\(1\)的复数.
+\end{itemize}
+\end{theorem}
+
+\begin{example}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P122 例3.6.4
+设矩阵\(\vb{A} \in M_n(\mathbb{C})\)满足\(\vb{A}^H = \vb{A}\)，
+且存在自然数\(k\)使得\(\vb{A}^k = \vb0\).
+证明：\(\vb{A} = \vb0\).
+\end{example}
+
+\begin{example}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P123 例3.6.5
+设\(\vb{U} \in M_n(\mathbb{C})\)是一个\(n\)阶酉矩阵，
+且\(\vb{U} - \vb{E}\)可逆.
+证明：\(\vb{A} \defeq (\vb{U} - \vb{E})^{-1} (\vb{U} + \vb{E})\)是反厄米矩阵.
+\end{example}
+
+\begin{theorem}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P123 定理3.6.5
+%@see: 《高等代数（第三版 上册）》（丘维声） P202 习题6.1 13.
+设\(\vb{A}, \vb{B} \in M_n(\mathbb{C})\)都是正规矩阵，
+则\(\vb{A}, \vb{B}\)可以同时酉对角化
+（即存在\(n\)阶酉矩阵\(\vb{U} \in M_n(\mathbb{C})\)，
+存在\(n\)阶对角矩阵\(\vb\Lambda_1, \vb\Lambda_2 \in M_n(\mathbb{C})\)，
+使得\(
+	\vb{U}^H \vb{A} \vb{U} = \vb\Lambda_1,
+	\vb{U}^H \vb{B} \vb{U} = \vb\Lambda_2
+\)）
+当且仅当
+\(\vb{A}\)与\(\vb{B}\)可交换
+（即\(\vb{A} \vb{B} = \vb{B} \vb{A}\)）.
+\end{theorem}
