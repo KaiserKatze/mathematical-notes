@@ -679,40 +679,19 @@
 \(\sum_{k=0}^n (C_n^k)^2 = C_{2n}^n\).
 %@Mathematica: Sum[Binomial[n, k]^2, {k, 0, n}]
 \begin{proof}
-%@credit: {gemini}
-考虑多项式\((1+x)^{2n}\)的二项式展开.
-一方面，根据二项式定理，我们有\begin{align*}
-	(1+x)^{2n} &= \sum_{m=0}^{2n} C_{2n}^m x^m.
-\end{align*}
-在此展开式中，\(x^n\)的系数明显是\(C_{2n}^n\).
-
-另一方面，我们可以将\((1+x)^{2n}\)分解为两个多项式的乘积，
-即\begin{align*}
-	(1+x)^{2n}
-	= (1+x)^n \cdot (1+x)^n
-	= \left( \sum_{k=0}^n C_n^k x^k \right) \left( \sum_{j=0}^n C_n^j x^j \right).
-\end{align*}
-我们需要计算上述乘积中\(x^n\)项的系数.
-根据多项式乘法规则，
-该系数由所有满足指数之和为\(n\)的项的系数乘积之和组成.
-具体来说，对于第一个因式中的每一项\(C_n^k x^k\)，
-必须与第二个因式中的\(C_n^{n-k} x^{n-k}\)相乘，
-才能得到\(x^n\)项.
-这里\(k\)的取值范围是从\(0\)到\(n\).
-因此，\(x^n\)的系数可以表示为\begin{align*}
-	\sum_{k=0}^n \left( C_n^k \cdot C_n^{n-k} \right)
-\end{align*}
-利用组合数的对称性质，
-即\(C_n^{n-k} = C_n^k\).
-我们可以将上式重写为\begin{align*}
-	\sum_{k=0}^n \left( C_n^k \cdot C_n^k \right) &= \sum_{k=0}^n (C_n^k)^2.
-\end{align*}
-因为两种展开方式对应同一个多项式，
-所以\(x^n\)的系数必须相等，
-于是\begin{align*}
-	\sum_{k=0}^n (C_n^k)^2 &= C_{2n}^n.
+由\cref{theorem:组合数性质7}
+有\(C_{n+m}^k = \sum_{r=0}^k C_n^r C_m^{k-r}\).
+令\(m \defeq n\)，
+再令\(k \defeq n\)，
+得\begin{equation*}
+	C_{2n}^n
+	= \sum_{r=0}^n C_n^r C_n^{n-r}
+	% \cref{theorem:组合数性质1}
+	% \(C_n^k = C_n^{n-k}\).
+	= \sum_{r=0}^n C_n^r C_n^r
+	= \sum_{r=0}^n (C_n^r)^2.
 	\qedhere
-\end{align*}
+\end{equation*}
 \end{proof}
 \end{property}
 
