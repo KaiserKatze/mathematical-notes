@@ -268,6 +268,13 @@
 \)的\DefineConcept{逆元}”，
 记作\(q^{-1}\).
 
+要将四元数\(\lambda_0 \cdot 1 + \lambda_1 \cdot \iu + \lambda_2 \cdot \ju + \lambda_3 \cdot \ku\)表示为向量，
+一般有两种方式：
+一种称为“标量前置”，
+将四元数表示成\((\lambda_0,\lambda_1,\lambda_2,\lambda_3)^T\)；
+一种称为“标量后置”，
+将四元数表示成\((\lambda_1,\lambda_2,\lambda_3,\lambda_0)^T\).
+
 \subsection{四元数的运算}
 \begin{definition}
 给定四元数\(
@@ -564,3 +571,49 @@
 \)作为元素，
 构成的反对称矩阵.
 \end{remark}
+
+\subsection{四元数的几何意义}
+把实数\(1\)和三个虚数单位\(\iu,\ju,\ku\)看作基向量时，
+\(\{1,\iu,\ju,\ku\}\)可以看作一个正交单位向量组，
+它们可以张成一个四维线性空间\(\Span\{1,\iu,\ju,\ku\}\).
+单位四元数的乘法可以表示四维空间中的“双旋转”.
+当某个四元数左乘某个虚数单位时，表示该四元数绕着给定虚数单位沿正方向
+（旋转方向的正负由右手规则确定，具体来说，
+就是让大拇指伸出的方向与代表旋转轴的给定虚数单位的正方向重合，
+其余四根手指的伸出方向就是旋转的正方向，相反方向就是旋转的负方向）旋转\(90^\circ\).
+例如，当\(\ju\)左乘\(\iu\)时，相当于\(\ju\)绕着\(\iu\)沿正方向旋转到与\(\ku\)重合，
+即\(\iu \cdot \ju = \ku\).
+当某个四元数右乘某个虚数单位时，表示该四元数绕着给定虚数单位沿负方向旋转\(90^\circ\).
+
+在单位球面上任意取定一个标量部分为零的四元数\(q\)，
+则它与复平面上的虚数单位等价，
+也就是说\(\{1,q\}\)可以张成复平面\(\pi_1\)，
+与此同时在三维空间\(\Span\{\iu,\ju,\ku\}\)中一定存在一个以\(q\)为法向量且经过原点的平面\(\pi_q\)
+（即\(\pi_q \DirectSum \Span\{q\} = \Span\{\iu,\ju,\ku\}\)）.
+由此可见\begin{equation*}
+	\pi_q \DirectSum \pi_1 = \Span\{1,\iu,\ju,\ku\},
+\end{equation*}
+也就是说，四维空间中的任意一个四元数\(p\)
+总能被唯一地分解为两个部分：\begin{equation*}
+	p = \lambda_1 q_1 + \lambda_2 q_2
+	\quad(
+		\lambda_1,\lambda_2 \in \mathbb{R},
+		q_1 \in \pi_1,
+		q_2 \in \pi_q
+	).
+\end{equation*}
+于是四元数\(q\)的乘法的作用
+可以看成是将被乘数\(p\)的两个部分\(\lambda_1 q_1, \lambda_2 q_2\)
+分别旋转后所得结果的叠加（称之为\DefineConcept{双旋转}），
+具体地说：
+\(p\)左乘\(q\)相当于让平面\(\pi_q\)内的向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(90^\circ\)，
+而\(p\)右乘\(q\)相当于让平面\(\pi_q\)内的向量\(\lambda_2 q_2\)绕着\(q\)沿负方向旋转\(90^\circ\)，
+但是不论左乘\(q\)还是右乘\(q\)都相当于让平面\(\pi_1\)内的向量\(\lambda_1 q_1\)沿逆时针方向旋转\(90^\circ\).
+因此，给定四元数\begin{equation*}
+	q_\theta \defeq \cos\theta + q \sin\theta,
+\end{equation*}
+左乘\(q_\theta\)相当于让向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(\theta\)，同时让向量\(\lambda_1 q_1\)沿逆时针方向旋转旋转\(\theta\)；
+右乘\(q_\theta\)的共轭元\(q_\theta^* = \cos\theta - q \sin\theta = \cos(-\theta) + q \sin(-\theta)\)
+相当于让向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(\theta\)，同时让向量\(\lambda_1 q_1\)沿顺时针方向旋转旋转\(\theta\)；
+那么，同时左乘\(q_\theta\)、右乘\(q_\theta^*\)（即\(p \mapsto q_\theta \cdot p \cdot q_\theta^*\)）
+相当于让向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(2\theta\)，而向量\(\lambda_1 q_1\)不旋转.
