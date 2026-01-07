@@ -335,11 +335,27 @@
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P175 定义5
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P99 定义3.2.1
 设\(\alpha,\beta\)是实内积空间\((V,\rho)\)中的两个非零向量.
 如果\(\rho(\alpha,\beta) = 0\)，
 则称“\(\alpha\)与\(\beta\) \DefineConcept{正交}（orthogonal）”，
 记为\(\alpha \perp \beta\).
 \end{definition}
+
+\begin{property}
+在欧几里得空间中，零向量与任意一个向量正交.
+%TODO proof
+\end{property}
+
+\begin{property}
+在欧几里得空间中，与每一个向量都正交的向量一定是零向量.
+%TODO proof
+\end{property}
+
+\begin{property}
+在欧几里得空间中，只有零向量与它本身正交.
+%TODO proof
+\end{property}
 
 \begin{corollary}\label{theorem:实内积空间.三角不等式}
 %@see: 《高等代数（第三版 下册）》（丘维声） P175 推论3
@@ -387,8 +403,10 @@
 \begin{property}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176
 在实内积空间\((V,\rho)\)中，
-距离\(d\colon V \times V \to \mathbb{R},
-(\alpha,\beta) \mapsto \VectorLengthA{\alpha-\beta}\)
+距离\(
+	d\colon V \times V \to \mathbb{R},
+	(\alpha,\beta) \mapsto \VectorLengthA{\alpha-\beta}
+\)
 满足以下性质：\begin{itemize}
 	\item {\rm\bf 对称性}：\begin{equation*}
 		(\forall \alpha,\beta \in V)
@@ -413,6 +431,10 @@
 	\end{equation*}
 \end{itemize}
 \end{property}
+\begin{remark}
+上述性质说明：
+距离是内积空间的一个度量.
+\end{remark}
 
 \subsection{欧几里得空间中的基}
 我们希望在欧几里得空间\(V\)中找出一类基，
@@ -421,9 +443,10 @@
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176
-设\((V,\rho)\)是一个欧几里得空间，
-\(A\)是\(V\)中的一个向量组，
-如果\begin{equation*}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P99
+设\((V,\rho)\)是一个欧几里得空间.
+如果\(A\)是\(V\)中的一个非零向量组，且\(A\)中的向量两两正交，
+即\begin{equation*}
 	(\forall \alpha \in A)
 	[\alpha\neq0],
 	\qquad
@@ -435,28 +458,57 @@
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176
-设\((V,\rho)\)是一个欧几里得空间，
-\(A\)是\(V\)中的一个向量组，
-如果\begin{equation*}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P99
+设\((V,\rho)\)是一个欧几里得空间.
+如果\(A\)是\(V\)中的一个单位向量组，且\(A\)中的向量两两正交，
+即\begin{equation*}
 	(\forall \alpha \in A)
 	[\VectorLengthA{\alpha} = 1],
 	\qquad
 	(\forall \alpha,\beta \in A)
 	[\alpha \perp \beta],
 \end{equation*}
-则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交单位向量组}”.
+则称“\(A\)是\((V,\rho)\)中的一个\DefineConcept{正交单位向量组}”
+或“\(A\)是\((V,\rho)\)中的一个\DefineConcept{标准正交向量组}”.
 \end{definition}
 
 \begin{proposition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176 命题5
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P99 定理3.2.1
 在欧几里得空间\((V,\rho)\)中，
 任意一个正交向量组一定线性无关.
-%TODO proof
+\begin{proof}
+设\(\AutoTuple{\alpha}{s}\)是一个正交向量组.
+假设\(\AutoTuple{k}{s} \in \mathbb{R}\)
+满足\(k_1 \alpha_1 + \dotsb + k_s \alpha_s = 0\)，
+那么对于向量\(\alpha_j\ (j=1,2,\dotsc,s)\)总有\begin{equation*}
+	\rho( k_1 \alpha_1 + \dotsb + k_s \alpha_s, \alpha_j )
+	= \sum_{i=1}^s k_i \rho(\alpha_i,\alpha_j)
+	% 因为当\(i \neq j\)时有\(\rho(\alpha_i,\alpha_j) = 0\)
+	= k_j \rho(\alpha_j,\alpha_j)
+	= 0,
+\end{equation*}
+% 因为正交向量组中的每一个向量都是非零向量，
+% 所以\(\rho(\alpha_j,\alpha_j) \neq 0\).
+% 又因为\(k \vb\alpha = \vb0 \implies k = 0 \lor \vb\alpha = \vb0\)，
+从而有\(k_j = 0\ (j=1,2,\dotsc,s)\)，
+说明\(\AutoTuple{\alpha}{s}\)是一个线性无关向量组.
+\end{proof}
 \end{proposition}
+
+\begin{proposition}
+设\((V,\rho)\)是一个\(n\)维内积空间，
+\(\AutoTuple{\alpha}{s}\)是一个正交向量组，
+则\(s \leq n\).
+\end{proposition}
+\begin{remark}
+\(n\)维内积空间中，两两正交的非零向量组最多有\(n\)个向量.
+\end{remark}
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176
 %@see: 《Linear Algebra Done Right (Fourth Edition)》（Sheldon Axler） P199 6.27
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P100 定义3.2.2
 设\((V,\rho)\)是\(n\)维欧几里得空间，
 \(A\)是\(V\)的一个基.
 如果\(A\)是正交向量组，
@@ -465,6 +517,7 @@
 
 \begin{definition}
 %@see: 《高等代数（第三版 下册）》（丘维声） P176
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P100 定义3.2.2
 设\((V,\rho)\)是\(n\)维欧几里得空间，
 \(A\)是\(V\)的一个基.
 如果\(A\)是正交单位向量组，
