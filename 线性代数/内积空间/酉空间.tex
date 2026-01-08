@@ -496,7 +496,48 @@ Y=(\AutoTuple{y}{n})^T\)，
 在有限维酉空间\((V,\rho)\)中，
 一个标准正交基到另一个标准正交基的过渡矩阵
 一定是酉矩阵.
-%TODO proof
+\begin{proof}
+设\((V,\rho)\)是一个\(n\)维酉空间，
+\(\AutoTuple{\eta}{n}\)是\(V\)的一个标准正交基，
+向量组\(\AutoTuple{\beta}{n}\)满足\begin{equation*}
+%@see: 《高等代数（第三版 下册）》（丘维声） P196 (11)
+	(\AutoTuple{\beta}{n})
+	= (\AutoTuple{\eta}{n}) P,
+\end{equation*}
+则\(\beta_i\)在标准正交基\(\AutoTuple{\beta}{n}\)下的坐标
+是矩阵\(P\)的第\(i\)列\(X_i\)，
+于是\begin{align*}
+	&\text{$\AutoTuple{\beta}{n}$是$V$的一个标准正交基} \\
+	&\iff \rho(\beta_i,\beta_j) = \delta_{ij}\ (i,j=1,2,\dotsc,n) \\
+	&\iff X_j^H X_i = \delta_{ij}\ (i,j=1,2,\dotsc,n) \\
+	&\iff
+	\begin{bmatrix}
+		X_1^H X_1 & X_1^H X_2 & \dots & X_1^H X_n \\
+		X_2^H X_1 & X_2^H X_2 & \dots & X_2^H X_n \\
+		\vdots & \vdots & & \vdots \\
+		X_n^H X_1 & X_n^H X_2 & \dots & X_n^H X_n \\
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & 0 & \dots & 0 \\
+		0 & 1 & \dots & 0 \\
+		\vdots & \vdots & & \vdots \\
+		0 & 0 & \dots & 1 \\
+	\end{bmatrix} \\
+	&\iff
+	\begin{bmatrix}
+		X_1^H \\
+		X_2^H \\
+		\vdots \\
+		X_n^H \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		X_1 & X_2 & \dots & X_n
+	\end{bmatrix}
+	= E_n \\
+	&\iff P^H P = E_n.
+\end{align*}
+其中\(\delta_{ij}\)是克罗内克\(\delta\)函数.
+\end{proof}
 \end{proposition}
 
 \begin{proposition}
@@ -512,6 +553,79 @@ Y=(\AutoTuple{y}{n})^T\)，
 那么\(\AutoTuple{\beta}{n}\)是\(V\)中一个标准正交基.
 %TODO proof
 \end{proposition}
+
+\begin{definition}% 格拉姆矩阵
+设\(\AutoTuple{\alpha}{m}\)是\(n\)维酉空间\((V,\rho)\)中一个向量组，
+把\begin{equation}%\label{equation:酉空间.格拉姆矩阵}
+	A \defeq \begin{bmatrix}
+		\rho(\alpha_1,\alpha_1) & \rho(\alpha_1,\alpha_2) & \dots & \rho(\alpha_1,\alpha_m) \\
+		\rho(\alpha_2,\alpha_1) & \rho(\alpha_2,\alpha_2) & \dots & \rho(\alpha_2,\alpha_m) \\
+		\vdots & \vdots & & \vdots \\
+		\rho(\alpha_m,\alpha_1) & \rho(\alpha_m,\alpha_2) & \dots & \rho(\alpha_m,\alpha_m) \\
+	\end{bmatrix},
+\end{equation}
+称为“向量组\(\AutoTuple{\alpha}{m}\)的\DefineConcept{格拉姆矩阵}”，
+记为\(G(\AutoTuple{\alpha}{m})\).
+把\(A\)的行列式\(\DeterminantA{A}\)
+称为“向量组\(\AutoTuple{\alpha}{m}\)的\DefineConcept{格拉姆行列式}”.
+\end{definition}
+
+\begin{definition}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P96
+设\(V\)是一个\(n\)维酉空间，
+\(\AutoTuple{\alpha}{n}\)是一个基，
+把\(\AutoTuple{\alpha}{n}\)的格拉姆矩阵
+称为“基\(\AutoTuple{\alpha}{n}\)的\DefineConcept{度量矩阵}”.
+\end{definition}
+
+\begin{theorem}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P96
+设\(V\)是一个\(n\)维酉空间，
+\(\AutoTuple{\alpha}{n}\)是一个基，
+\(G\)是\(\AutoTuple{\alpha}{n}\)的度量矩阵，
+向量\(\alpha,\beta \in V\)在基\(\AutoTuple{\alpha}{n}\)下的坐标分别为\(X,Y\)，
+% 即\(X = \VectorMatrix(\alpha), Y = \VectorMatrix(\beta)\)
+则\((\alpha,\beta) = X^T G \ComplexConjugate{Y}\).
+%TODO proof
+\end{theorem}
+
+\begin{theorem}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P97
+酉空间中任意一个基的度量矩阵是厄米矩阵.
+%TODO proof
+\end{theorem}
+
+对于酉空间中两个不同的基，它们的度量矩阵是不同的.
+\begin{theorem}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P97 定理3.1.1
+设\(V\)是一个\(n\)维酉空间，
+\(\AutoTuple{\alpha}{n}\)和\(\AutoTuple{\beta}{n}\)是\(V\)的两个基，
+\(A,B\)分别是它们的度量矩阵，
+\(P\)是基\(\AutoTuple{\alpha}{n}\)到基\(\AutoTuple{\beta}{n}\)的过渡矩阵，
+即\begin{equation*}
+	(\AutoTuple{\beta}{n})
+	= (\AutoTuple{\alpha}{n}) P,
+\end{equation*}
+则\begin{equation*}
+	B^T = P^H A^T P
+	\quad\text{或}\quad
+	B = P^T A \ComplexConjugate{P}.
+\end{equation*}
+%TODO proof
+\end{theorem}
+
+\begin{property}
+标准正交基的度量矩阵是单位矩阵.
+\end{property}
+
+\begin{definition}
+设\(A\)和\(B\)是复数域上的两个\(n\)阶矩阵.
+若存在复数域上的一个可逆矩阵\(P\)，
+使得\begin{equation*}
+	B = P^H A P,
+\end{equation*}
+则称“\(A\)与\(B\)~\DefineConcept{复相合}”.
+\end{definition}
 
 \subsection{酉空间之间的同构}
 \begin{definition}
@@ -574,6 +688,7 @@ Y=(\AutoTuple{y}{n})^T\)，
 设\(\vb{A}\)是\(n\)维酉空间\(V\)上的一个线性变换，
 则\begin{align*}
 	&\text{$\vb{A}$是酉变换} \\
+	&\iff (\forall \alpha \in V)[ \norm{\alpha} = \norm{\vb{A}\alpha} ] \\
 	&\iff \text{$\vb{A}$把$V$的标准正交基映成标准正交基} \\
 	&\iff \text{$\vb{A}$在$V$的标准正交基下的矩阵是酉矩阵}.
 \end{align*}
