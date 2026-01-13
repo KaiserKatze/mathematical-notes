@@ -10,7 +10,7 @@
 \begin{itemize}
 	\item \(\vb{A}\)的列向量组生成的子空间\begin{equation*}
 		\Set{
-			\vb{A}\vb{x} \given \vb{x}=(x_1,\dotsc,x_n)^T \in K^n
+			\vb{y} \in K^s \given \vb{y} = \vb{A} \vb{x}, \vb{x} \in K^n
 		}
 	\end{equation*}
 	称为“\(\vb{A}\)的\DefineConcept{列空间}（column space）”，
@@ -21,7 +21,7 @@
 
 	\item \(\vb{A}\)的行向量组生成的子空间\begin{equation*}
 		\Set{
-			\vb{x}^T\vb{A} \given \vb{x}=(x_1,\dotsc,x_s)^T \in K^s
+			\vb{y} \in K^n \given \vb{y}^H = \vb{x}^H \vb{A}, \vb{x} \in K^s
 		}
 	\end{equation*}
 	称为“\(\vb{A}\)的\DefineConcept{行空间}（row space）”，
@@ -39,12 +39,12 @@
 %@see: https://mathworld.wolfram.com/ColumnSpace.html
 \end{definition}
 
-矩阵\(\vb{A}\)的列空间就是它的转置的行空间，
-它的行空间就是它的转置的列空间，
+矩阵\(\vb{A}\)的行空间就是它的共轭转置的列空间，
+它的列空间就是它的共轭转置的行空间，
 即\begin{equation*}
-	\SpanC\vb{A} = \SpanR\vb{A}^T,
+	\SpanR\vb{A} = \SpanC\vb{A}^H,
 	\qquad
-	\SpanR\vb{A} = \SpanC\vb{A}^T.
+	\SpanC\vb{A} = \SpanR\vb{A}^H.
 \end{equation*}
 
 矩阵\(\vb{A}\)的列空间不一定与它的行空间相等，
@@ -118,7 +118,7 @@
 	\Ker\vb{A}^H \leq K^s
 \).
 
-\begin{figure}[hbt]
+\begin{figure}[hbt]% 实数域上向量空间的四个特殊子空间
 %@see: https://www.cs.utexas.edu/~flame/laff/alaff-beta/chapter04-four-fundamental-spaces.html
 	\centering
 	\begin{tikzpicture}
@@ -162,6 +162,53 @@
 	% 根据\cref{example:齐次线性方程组的解集的结构.矩阵的像空间与它的左核空间互为正交补}，
 	% 我们把代表\(\Ker\vb{A}\)和\(\Im\vb{A}^T\)的两个矩形的长边画成互相垂直，就是表示这两个子空间中的向量互相正交；
 	% 同样地，我们把代表\(\Ker\vb{A}^T\)和\(\Im\vb{A}\)的两个矩形的长边画成互相垂直，就是表示这两个子空间中的向量互相正交.
+	\caption{}
+\end{figure}
+
+\begin{figure}[hbt]% 复数域上向量空间的四个特殊子空间
+%@see: https://www.cs.utexas.edu/~flame/laff/alaff-beta/chapter04-four-fundamental-spaces.html
+	\centering
+	\begin{tikzpicture}
+		\begin{scope}[rotate=40]
+			\fill[fill=blue!30] (0,0)rectangle(2,3);
+			\fill[fill=yellow!30] (0,0)rectangle(-3,-2);
+			\coordinate (rsnw) at (0,3);
+			\coordinate (rsne) at (2,3);
+			\coordinate (nsnw) at (-3,0);
+			\coordinate (nssw) at (-3,-2);
+			\fill (1,1.5)coordinate(xr)circle(2pt)node[above]{$\vb{x}_1$};
+			\fill (-1.8,-.8)coordinate(xn)circle(2pt)node[below]{$\vb{x}_0$};
+			\fill (xr|-xn)coordinate(x)circle(2pt)node[below right]{$\vb{x} = \vb{x}_1 + \vb{x}_0$};
+			\draw (0,0)node[left]{$\vb0$};
+		\end{scope}
+		\begin{scope}[rotate=-30,xshift=5cm,yshift=2.5cm]
+			\fill[fill=red!30] (0,0)rectangle(-2,3);
+			\fill[fill=green!30] (0,0)rectangle(3,-2);
+			\coordinate (csnw) at (-2,3);
+			\coordinate (csne) at (0,3);
+			\coordinate (lsne) at (3,0);
+			\coordinate (lsse) at (3,-2);
+			\fill (-.6,1.4)coordinate(b)circle(2pt)node[right]{$\vb{b}$};
+			\draw (0,0)coordinate(o)node[right]{$\vb0$};
+		\end{scope}
+		\begin{scope}[-{Stealth[length=4.5mm,width=0pt 8]}]
+			\draw (xr)--(b)node[sloped,midway,above]{$\vb{A} \vb{x}_1 = \vb{b}$};
+			\draw (x)--(b)node[sloped,pos=.35,above]{$\vb{A} \vb{x} = \vb{b}$};
+			\draw (xn)--(o)node[sloped,pos=.55,below]{$\vb{A} \vb{x}_0 = \vb0$};
+		\end{scope}
+		\draw[white] (rsnw)--(rsne)node[sloped,midway,below,black]{$\Im\vb{A}^H$};
+		\draw[white] (nsnw)--(nssw)node[sloped,midway,above,black]{$\Ker\vb{A}$};
+		\draw[white] (csnw)--(csne)node[sloped,midway,below,black]{$\Im\vb{A}$};
+		\draw[white] (lsne)--(lsse)node[sloped,midway,above,black]{$\Ker\vb{A}^H$};
+		\draw[dashed] (xr)--(x)--(xn);
+		\draw (-2,0)node{\Huge$\mathbb{C}^n$};
+		\draw (7.5,0)node{\Huge$\mathbb{C}^s$};
+	\end{tikzpicture}
+	% 在图中，我们把\(\Ker\vb{A}\)和\(\Im\vb{A}^H\)都画在左侧，靠近符号\(K^n\)，就是表示它们都是向量空间\(K^n\)的子空间；
+	% 我们把\(\Ker\vb{A}^H\)和\(\Im\vb{A}\)都画在右侧，靠近符号\(K^s\)，就是表示它们都是向量空间\(K^s\)的子空间.
+	% 根据\cref{example:齐次线性方程组的解集的结构.矩阵的像空间与它的左核空间互为正交补}，
+	% 我们把代表\(\Ker\vb{A}\)和\(\Im\vb{A}^H\)的两个矩形的长边画成互相垂直，就是表示这两个子空间中的向量互相正交；
+	% 同样地，我们把代表\(\Ker\vb{A}^H\)和\(\Im\vb{A}\)的两个矩形的长边画成互相垂直，就是表示这两个子空间中的向量互相正交.
 	\caption{}
 \end{figure}
 
