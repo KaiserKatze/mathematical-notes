@@ -76,6 +76,44 @@
 QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上三角矩阵的乘积，
 或者将一个复方阵分解成一个酉矩阵和一个上三角矩阵的乘积.
 
+\subsection{基于施密特正交规范化方法进行QR分解}
+利用施密特正交化方法就可求出正交矩阵或酉矩阵.
+
+设矩阵\(\vb{A} \in M_{s \times n}(\mathbb{C})\).
+如果\(\vb{A}\)是可逆矩阵，
+则\(\vb{A}\)可以唯一地分解为
+一个酉矩阵与一个正线上三角矩阵的乘积
+或一个正线下三角矩阵与一个酉矩阵的乘积.
+如果\(\vb{A}\)是列满秩矩阵，
+则\(\vb{A}\)可以唯一地分解为
+一个列正交矩阵与一个正线上三角矩阵的乘积.
+如果\(\vb{A}\)是行满秩矩阵，
+则\(\vb{A}\)可以唯一地分解为
+一个正线下三角矩阵与一个行正交矩阵的乘积.
+如果\(\vb{A}\)既非列满秩矩阵也非行满秩矩阵，
+则\(\vb{A}\)可以分解为
+一个列正交矩阵、一个正线上三角矩阵、一个正线下三角矩阵与一个行正交矩阵的乘积.
+
+\begin{algorithm}[简单QR分解]
+\hfill
+\begin{enumerate}
+	\item 给定矩阵\(\vb{A} = (\vb\alpha_1,\vb\alpha_2,\dots,\vb\alpha_n)\)，对其列向量依次进行正交化；
+	\item 令\begin{align*}
+		\vb\beta_1
+		&\defeq \vb\alpha_1, \\
+		\vb\beta_k
+		&\defeq \vb\alpha_k - \sum_{i=1}^{k-1} \frac{ \vb\beta_i^T \vb\alpha_k }{ \vb\beta_i^T \vb\beta_i } \vb\beta_i
+		\quad(k=2,3,\dotsc,n), \\
+		\vb\gamma_k
+		&\defeq \frac{\vb\beta_k}{\abs{\vb\beta_k}}
+		\quad(k=1,2,\dotsc,n);
+	\end{align*}
+	\item 以\(\vb\gamma_1,\dots,\vb\gamma_n\)作为列向量构成矩阵\(\vb{Q}\)（\(\vb{Q}\)一定是正交矩阵或酉矩阵）；
+	\item 令\(\vb{R} \defeq \vb{Q}^H \vb{A}\)；
+	\item 得到分解\(\vb{A}=\vb{Q}\vb{R}\).
+\end{enumerate}
+\end{algorithm}
+
 \section{LU分解}
 LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(\vb{L}\)和一个上三角矩阵\(\vb{U}\)的乘积，
 即\begin{equation*}
