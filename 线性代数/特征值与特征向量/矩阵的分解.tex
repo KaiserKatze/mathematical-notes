@@ -114,6 +114,96 @@ QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上
 \end{enumerate}
 \end{algorithm}
 
+\subsection{基于豪斯霍尔德变换进行QR分解}
+%@see: https://mmids-textbook.github.io/chap02_ls/04_qr/roch-mmids-ls-qr.html
+\begin{definition}
+设\(\vb{H}\)是\(n\)维欧几里得空间\(V\)上的一个线性变换，
+\(W\)是\(V\)中的一个超平面，
+\(\nu\)是一个与\(W\)正交的单位向量.
+如果\begin{equation*}
+	\vb{H}\alpha
+	= \alpha - 2 (\nu^T \alpha) \nu,
+\end{equation*}
+则称\(\vb{H}\)是一个\DefineConcept{豪斯霍尔德变换}（Householder transformation）.
+\end{definition}
+容易看出，\(n\)维欧几里得空间上的豪斯赫尔德变换\(\vb{H}\)
+在任意一个标准正交基下的矩阵是\begin{equation*}
+	H \defeq E_n - 2 \nu \nu^T,
+\end{equation*}
+并且豪斯赫尔德矩阵\(H\)是正交矩阵.
+% “豪斯赫尔德矩阵\(H\)是正交矩阵”的证明：
+% \begin{align*}
+%     H^T H
+%     &= (E_n - 2 \nu \nu^T)^T (E_n - 2 \nu \nu^T)\\
+%     &= (E_n - 2 \nu \nu^T) (E_n - 2 \nu \nu^T)\\
+%     &= E_n - 2 \nu \nu^T - 2 \nu \nu^T + 4  \nu \nu^T \nu \nu^T\\
+%     &= E_n - 2 \nu \nu^T - 2 \nu \nu^T + 4  \nu \nu^T
+%     = E_n.
+% \end{align*}
+
+接下来，对于给定矩阵\(A \in M_n(\mathbb{R})\)，
+如果我们能找到\(n\)个豪斯霍尔德矩阵\(H_1,\dotsc,H_n\)，
+使得\(R \defeq Q^T A\)成为一个上三角矩阵，
+其中\(Q \defeq H_1^T H_2^T \dotsm H_{n-1}^T H_n^T\)，
+那么就有\(A = Q R\).
+
+设\(
+	\epsilon_1 \defeq (1,\dotsc,0)^T,
+	\dotsc,
+	\epsilon_n \defeq (0,\dotsc,1)^T
+\)是\(\mathbb{R}^n\)的标准正交基.
+若取\begin{equation*}
+	\beta_1 \defeq \norm{\alpha_1} \epsilon_1 - \alpha_1,
+	\qquad
+	\gamma_1 \defeq \beta_1 / \norm{\beta_1},
+	\qquad
+	H_1 \defeq E_n - 2 \gamma_1 \gamma_1^T.
+\end{equation*}
+可以证明\(H_1 \alpha_1 = \norm{\alpha_1} \epsilon_1\).
+记\(\alpha \defeq (a_{11},\dotsc,a_{n1})^T\)，
+注意到\begin{align*}
+	\norm{\beta_1}^2
+	&= \norm{\norm{\alpha_1} \epsilon_1 - \alpha_1}^2 \\
+	&= (\norm{\alpha_1} - a_{11})^2 + \sum_{j=2}^n a_{1j}^2 \\
+	&= \norm{\alpha_1}^2 - 2 \norm{\alpha_1} a_{11} + a_{11}^2 + \sum_{j=2}^n a_{1j}^2 \\
+	&= 2 (\norm{\alpha_1}^2 - \norm{\alpha_1} y_{11}),
+\end{align*}
+且\begin{align*}
+	2 \gamma_1 \gamma_1^T \alpha_1
+	&= 2 \gamma_1
+	\frac{
+		\norm{\alpha_1} \epsilon_1^T \alpha_1 - \alpha_1^T \alpha_1
+	}{
+		\norm{
+			\norm{\alpha_1} \epsilon_1 - \alpha_1
+		}
+	}
+	= 2
+	\frac{
+		\norm{\alpha_1} a_{11} - \norm{\alpha_1}^2
+	}{
+		\norm{
+			\norm{\alpha_1} \epsilon_1 - \alpha_1
+		}^2
+	}
+	(\norm{\alpha_1} \epsilon_1 - \alpha_1)
+	= - (\norm{\alpha_1} \epsilon_1 - \alpha_1),
+\end{align*}
+于是\begin{equation*}
+	H_1 \alpha_1
+	= (E_n - 2 \gamma_1 \gamma_1^T) \alpha_1
+	= \alpha_1 + (\norm{\alpha_1} \epsilon_1 - \alpha_1)
+	= \norm{\alpha_1} \epsilon_1.
+\end{equation*}
+对称地，若取\begin{equation*}
+	\widetilde{\beta}_1 \defeq \norm{\alpha_1} \epsilon_1 + \alpha_1,
+	\qquad
+	\widetilde{\gamma}_1 \defeq \widetilde{\beta}_1 / \norm{\widetilde{\beta}_1},
+	\qquad
+	\widetilde{H}_1 \defeq E_n - 2 \widetilde{\gamma}_1 \widetilde{\gamma}_1^T.
+\end{equation*}
+可以证明\(\widetilde{H}_1 \alpha_1 = - \norm{\alpha_1} \epsilon_1\).
+
 \section{LU分解}
 LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(\vb{L}\)和一个上三角矩阵\(\vb{U}\)的乘积，
 即\begin{equation*}
