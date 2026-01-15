@@ -141,41 +141,40 @@ QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上
 %     = E_n.
 % \end{align*}
 
-接下来，对于给定矩阵\(A \in M_n(\mathbb{R})\)，
-如果我们能找到\(n\)个豪斯霍尔德矩阵\(H_1,\dotsc,H_n\)，
+接下来，对于给定矩阵\(\vb{A} = (a_{ij})_{n \times m} = (\vb\alpha_1,\dotsc,\vb\alpha_m) \in M_{n \times m}(\mathbb{R})\)，
+如果我们能找到\(m\)个豪斯霍尔德矩阵\(H_1,\dotsc,H_m \in M_n(\mathbb{R})\)，
 使得\(R \defeq Q^T A\)成为一个上三角矩阵，
-其中\(Q \defeq H_1^T H_2^T \dotsm H_{n-1}^T H_n^T\)，
+其中\(Q \defeq H_1^T \dotsm H_m^T\)，
 那么就有\(A = Q R\).
+% Q \in M_n(\mathbb{R})
+% R \in M_{n \times m}(\mathbb{R})
 
-设\(
-	\epsilon_1 \defeq (1,\dotsc,0)^T,
-	\dotsc,
-	\epsilon_n \defeq (0,\dotsc,1)^T
-\)是\(\mathbb{R}^n\)的标准正交基.
+用\(\epsilon^{(s)}_t\)表示\(s\)阶单位矩阵的第\(t\)列列向量\((t=1,2,\dotsc,s)\).
 若取\begin{equation*}
-	\beta_1 \defeq \norm{\alpha_1} \epsilon_1 - \alpha_1,
+	\beta_1 \defeq \norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1,
 	\qquad
 	\gamma_1 \defeq \beta_1 / \norm{\beta_1},
 	\qquad
-	H_1 \defeq E_n - 2 \gamma_1 \gamma_1^T.
+	H_1 \defeq E_n - 2 \gamma_1 \gamma_1^T,
 \end{equation*}
-可以证明\(H_1 \alpha_1 = \norm{\alpha_1} \epsilon_1\).
-记\(\alpha \defeq (a_{11},\dotsc,a_{n1})^T\)，
-注意到\begin{align*}
+可以证明\(H_1 \alpha_1 = \norm{\alpha_1} \epsilon^{(n)}_1\).
+因为\(\alpha_1 = (a_{11},\dotsc,a_{n1})^T\)，
+所以向量\(\beta_1\)的欧氏范数\(\norm{\beta_1}\)满足\begin{align*}
 	\norm{\beta_1}^2
-	&= \norm{\norm{\alpha_1} \epsilon_1 - \alpha_1}^2 \\
-	&= (\norm{\alpha_1} - a_{11})^2 + \sum_{j=2}^n a_{1j}^2 \\
-	&= \norm{\alpha_1}^2 - 2 \norm{\alpha_1} a_{11} + a_{11}^2 + \sum_{j=2}^n a_{1j}^2 \\
-	&= 2 (\norm{\alpha_1}^2 - \norm{\alpha_1} y_{11}),
+	&= \norm{\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1}^2 \\
+	&= (\norm{\alpha_1} - a_{11})^2 + \sum_{i=2}^n a_{i1}^2 \\
+	&= \norm{\alpha_1}^2 - 2 \norm{\alpha_1} a_{11} + a_{11}^2 + \sum_{i=2}^n a_{i1}^2 \\
+	&= \norm{\alpha_1}^2 - 2 \norm{\alpha_1} a_{11} + \sum_{i=1}^n a_{i1}^2 \\
+	&= 2 (\norm{\alpha_1}^2 - \norm{\alpha_1} a_{11}),
 \end{align*}
 且\begin{align*}
 	2 \gamma_1 \gamma_1^T \alpha_1
 	&= 2 \gamma_1
 	\frac{
-		\norm{\alpha_1} \epsilon_1^T \alpha_1 - \alpha_1^T \alpha_1
+		\norm{\alpha_1} \epsilon^{(n)}_1^T \alpha_1 - \alpha_1^T \alpha_1
 	}{
 		\norm{
-			\norm{\alpha_1} \epsilon_1 - \alpha_1
+			\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1
 		}
 	}
 	= 2
@@ -183,26 +182,99 @@ QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上
 		\norm{\alpha_1} a_{11} - \norm{\alpha_1}^2
 	}{
 		\norm{
-			\norm{\alpha_1} \epsilon_1 - \alpha_1
+			\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1
 		}^2
 	}
-	(\norm{\alpha_1} \epsilon_1 - \alpha_1)
-	= - (\norm{\alpha_1} \epsilon_1 - \alpha_1),
+	(\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1)
+	= - (\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1),
 \end{align*}
 于是\begin{equation*}
 	H_1 \alpha_1
 	= (E_n - 2 \gamma_1 \gamma_1^T) \alpha_1
-	= \alpha_1 + (\norm{\alpha_1} \epsilon_1 - \alpha_1)
-	= \norm{\alpha_1} \epsilon_1.
+	= \alpha_1 + (\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1)
+	= \norm{\alpha_1} \epsilon^{(n)}_1.
 \end{equation*}
 对称地，若取\begin{equation*}
-	\widetilde{\beta}_1 \defeq \norm{\alpha_1} \epsilon_1 + \alpha_1,
+	\widetilde{\beta}_1 \defeq \norm{\alpha_1} \epsilon^{(n)}_1 + \alpha_1,
 	\qquad
 	\widetilde{\gamma}_1 \defeq \widetilde{\beta}_1 / \norm{\widetilde{\beta}_1},
 	\qquad
 	\widetilde{H}_1 \defeq E_n - 2 \widetilde{\gamma}_1 \widetilde{\gamma}_1^T.
 \end{equation*}
-可以证明\(\widetilde{H}_1 \alpha_1 = - \norm{\alpha_1} \epsilon_1\).
+可以证明\(\widetilde{H}_1 \alpha_1 = - \norm{\alpha_1} \epsilon^{(n)}_1\).
+
+由上述讨论可知，利用\(H_1 \alpha_1 = \norm{\alpha_1} \epsilon^{(n)}_1\)
+可以将矩阵\(A\)的第一列的主对角线下方元素全部化为零.
+接下来，要想对\(A\)的第二列如法炮制，
+需要用到分块矩阵的乘法\begin{equation*}
+	\begin{bmatrix}
+		X_{11} & X_{12} \\
+		X_{21} & X_{22} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		Y_{11} & Y_{12} \\
+		Y_{21} & Y_{22} \\
+	\end{bmatrix}
+	= \begin{bmatrix}
+		X_{11} Y_{11} + X_{12} Y_{21} & X_{11} Y_{12} + X_{12} Y_{22} \\
+		X_{21} Y_{11} + X_{22} Y_{21} & X_{21} Y_{12} + X_{22} Y_{22} \\
+	\end{bmatrix}.
+\end{equation*}
+若取\begin{equation*}
+	H_2 \defeq \begin{bmatrix}
+		1 & 0 \\
+		0 & F_2 \\
+	\end{bmatrix},
+	\qquad
+	F_2 \defeq E_{n-1} - 2 \gamma_2 \gamma_2^T,
+	\qquad
+	\gamma_2 \defeq \beta_2 / \norm{\beta_2},
+	\qquad
+	\beta_2 \defeq \norm{\alpha_2^{(n-1)}} \epsilon^{(n-1)}_1 - \alpha_2^{(n-1)},
+\end{equation*}
+其中\(\alpha_2^{(n-1)}\)表示\(H_1\)与\(A\)的乘积\(H_1 A = (b_{ij})_{n \times m}\)的第2列列向量的后\(n-1\)个元素组成的向量，
+即\(\alpha_2^{(n-1)} = (b_{22},\dotsc,b_{n2})\).
+容易看出\(F_2 \alpha_2^{(n-1)} = \norm{\alpha_2^{(n-1)}} \epsilon^{(n-1)}_1\).
+假设\begin{equation*}
+	H_1 A
+	=
+	\begin{bmatrix}
+		\norm{\alpha_1} & g_2^T \\
+		0 & G_2 \\
+	\end{bmatrix},
+\end{equation*}
+其中\(g_2 \in \mathbb{R}^{m-1}, G_2 \in M_{(n-1) \times (m-1)}(\mathbb{R})\)，
+那么\begin{equation*}
+	H_2 H_1 A
+	= \begin{bmatrix}
+		1 & 0 \\
+		0 & F_2 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\norm{\alpha_1} & g_2^T \\
+		0 & G_2 \\
+	\end{bmatrix}
+	= \begin{bmatrix}
+		\norm{\alpha_1} & g_2^T \\
+		0 & F_2 G_2 \\
+	\end{bmatrix},
+\end{equation*}
+其中矩阵乘积\(F_2 G_2\)的第1列是\(\norm{\alpha_2^{(n-1)}} \epsilon_1^{(n-1)}\)，
+也就是说\(H_2 H_1 A\)的第2列列向量的后\(n-2\)个元素都是零.
+以此类推，
+取\begin{equation*}
+	H_k \defeq \begin{bmatrix}
+		E_{k-1} & 0 \\
+		0 & F_k \\
+	\end{bmatrix},
+	\qquad
+	F_k \defeq E_{n-k+1} - 2 \gamma_k \gamma_k^T,
+	\qquad
+	\gamma_k \defeq \beta_k / \norm{\beta_k},
+	\qquad
+	\beta_k \defeq \norm{\alpha_k^{(n-k+1)}} \epsilon^{(n-k+1)}_1 - \alpha_k^{(n-k+1)},
+\end{equation*}
+其中\(\alpha_k^{(n-k+1)}\)是\(H_{k-1} \dotsm H_1 A\)的第\(k\)列列向量的后\(n-k+1\)个元素组成的向量.
 
 \section{LU分解}
 LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(\vb{L}\)和一个上三角矩阵\(\vb{U}\)的乘积，
