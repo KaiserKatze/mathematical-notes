@@ -167,11 +167,11 @@ QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上
 	&= \norm{\alpha_1}^2 - 2 \norm{\alpha_1} a_{11} + \sum_{i=1}^n a_{i1}^2 \\
 	&= 2 (\norm{\alpha_1}^2 - \norm{\alpha_1} a_{11}),
 \end{align*}
-且\begin{align*}
+且\begin{equation*}
 	2 \gamma_1 \gamma_1^T \alpha_1
-	&= 2 \gamma_1
+	= 2 \gamma_1
 	\frac{
-		\norm{\alpha_1} \epsilon^{(n)}_1^T \alpha_1 - \alpha_1^T \alpha_1
+		\norm{\alpha_1} (\epsilon^{(n)}_1)^T \alpha_1 - \alpha_1^T \alpha_1
 	}{
 		\norm{
 			\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1
@@ -187,7 +187,7 @@ QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上
 	}
 	(\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1)
 	= - (\norm{\alpha_1} \epsilon^{(n)}_1 - \alpha_1),
-\end{align*}
+\end{equation*}
 于是\begin{equation*}
 	H_1 \alpha_1
 	= (E_n - 2 \gamma_1 \gamma_1^T) \alpha_1
@@ -275,6 +275,26 @@ QR分解的目的，是将一个实方阵分解成一个正交矩阵和一个上
 	\beta_k \defeq \norm{\alpha_k^{(n-k+1)}} \epsilon^{(n-k+1)}_1 - \alpha_k^{(n-k+1)},
 \end{equation*}
 其中\(\alpha_k^{(n-k+1)}\)是\(H_{k-1} \dotsm H_1 A\)的第\(k\)列列向量的后\(n-k+1\)个元素组成的向量.
+%TODO 证明算法“带豪斯霍尔德变换的QR分解”的有效性
+
+\begin{algorithm}[带豪斯霍尔德变换的QR分解]
+\hfill
+\begin{enumerate}
+	\item 给定矩阵\(\vb{A} = (a_{ij})_{n \times m} = (\vb\alpha_1,\dotsc,\vb\alpha_m) \in M_{n \times m}(\mathbb{R})\)；
+	\item 构造豪斯霍尔德向量\begin{align*}
+		\vb{v}_k \defeq \vb\alpha_k + \sgn(a_{kk}) \abs{\vb\alpha_k} \vb\epsilon^{(n)}_1
+		\quad(k=1,2,\dotsc,n);
+	\end{align*}
+	\item 构造正交反射矩阵\begin{align*}
+		H_k \defeq E_n - 2 \frac{\vb{v}_k \vb{v}_k^T}{\vb{v}_k^T \vb{v}_k}
+		\quad(k=1,2,\dotsc,n);
+	\end{align*}
+	\item 更新矩阵\(\vb{A} \defeq H_k\vb{A}\)；
+	\item 累乘得到\(\vb{Q} \defeq H_1 H_2 \dotsm H_m\)，
+	并令\(\vb{R} \defeq \vb{Q}^T \vb{A}\)；
+	\item 得到分解\(\vb{A}=\vb{Q}\vb{R}\).
+\end{enumerate}
+\end{algorithm}
 
 \section{LU分解}
 LU分解的目的，是将一个矩阵\(\vb{A}\)分解成一个下三角矩阵\(\vb{L}\)和一个上三角矩阵\(\vb{U}\)的乘积，
