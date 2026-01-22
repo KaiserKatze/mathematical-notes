@@ -13,6 +13,7 @@
 \end{definition}
 
 \begin{definition}\label{definition:微分方程.函数系的等度连续性}
+%@see: 《数学分析八讲》（辛钦） P157
 设函数系\(S\)是由定义在某个区间\(D = [a,b]\)上的一些函数组成的集合.
 如果\begin{equation*}
 	(\forall\epsilon>0)
@@ -35,6 +36,7 @@
 \end{definition}
 
 \begin{lemma}[阿斯科拉--阿尔泽拉引理]\label{theorem:微分方程概论.阿斯科拉--阿尔泽拉引理}
+%@see: 《数学分析八讲》（辛钦） P157 引理（阿尔泽拉-阿斯科拉引理）
 任何在区间\([a,b]\)上一致有界且等度连续的函数系\(S\)都包含在此区间上一致收敛的函数列.
 \end{lemma}
 
@@ -47,16 +49,34 @@
 \end{theorem}
 
 \subsection{微分方程的解的唯一性}
-\begin{theorem}
-设函数\(f(x,y)\)在区域\(D\)上连续，
-且满足“利普希茨条件”，即\begin{equation*}
-	(\exists k>0)
-	[
-		\abs{f(x,y_1) - f(x,y_2)}
-		\leq
-		k \abs{y_1 - y_2}
-	],
+%@see: https://math.berkeley.edu/~mgu/MA128ASpring2017/MA128ALectureWeek9.pdf
+\begin{definition}
+设区域\(D \subseteq \mathbb{R}^2\)，
+函数\(f\colon D \to \mathbb{R}\).
+如果存在实数\(L > 0\)，
+使得对于任意两点\((x,y_1),(x,y_2) \in D\)，
+成立\begin{equation*}
+	\abs{ f(x,y_1) - f(x,y_2) }
+	\leq
+	L \abs{ y_1 - y_2 },
 \end{equation*}
+则称“函数\(f\)在区域\(D\)上关于\(y\)满足\DefineConcept{利普希茨条件}%
+（function \(f\) satisfies a \emph{Lipschitz condition} in the variable \(y\) on \(D\)）”，
+称“\(L\)是函数\(f\)的\DefineConcept{利普希茨常数}（Lipschitz constant）”.
+\end{definition}
+
+\begin{example}
+函数\(f(x,y) \defeq x y^2\)在区域\(D \defeq \Set{ (x,y) \in \mathbb{R}^2 \given 0 \leq x \leq X }\)上不满足利普希茨条件.
+\end{example}
+\begin{example}
+函数\(f(x,y) \defeq x y^2\)在区域\(D \defeq \Set{ (x,y) \in \mathbb{R}^2 \given 0 \leq x \leq X, -Y \leq y \leq Y }\)上满足利普希茨条件.
+\end{example}
+
+\begin{theorem}
+设区域\(D \subseteq \mathbb{R}^2\)，
+函数\(f\colon D \to \mathbb{R}\).
+如果\(f\)在区域\(D\)上连续，
+且\(f\)在区域\(D\)上关于\(y\)满足利普希茨条件，
 那么对于\(D\)中任意一个内点\((x_0,y_0)\)，
 存在唯一的函数\(\phi\)满足微分方程\begin{equation*}
 	\dv{y}{x} = f(x,y),
