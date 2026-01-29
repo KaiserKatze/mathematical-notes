@@ -324,7 +324,7 @@
 
 	\item 把\begin{equation}
 		\begin{aligned}
-			p \cdot q
+			p \circ q
 			&\defeq
 			(\lambda_0 \mu_0 - \lambda_1 \mu_1 - \lambda_2 \mu_2 - \lambda_3 \mu_3) \cdot 1 \\
 			&\hspace{20pt}
@@ -356,10 +356,10 @@
 	q \defeq 2 + 0 \iu - 6 \ju + 3 \ku
 \)，
 便有\begin{equation*}
-	p \cdot q
+	p \circ q
 	= -16 + 12 \iu - 19 \ju - 11 \ku,
 	\qquad
-	q \cdot p
+	q \circ p
 	= -16 + 0 \iu - 1 \ju + 25 \ku,
 \end{equation*}
 显然\(p \neq q\).
@@ -386,7 +386,7 @@
 \begin{property}
 设\(q\)是四元数，
 \(q^*\)是\(q\)的共轭元，
-则\(q \cdot q^* = \norm{q}\).
+则\(q \circ q^* = \norm{q}\).
 \end{property}
 
 \begin{property}
@@ -396,14 +396,14 @@
 则\(q^{-1} = q^* / \norm{q}\).
 \begin{proof}\hfill
 \begin{proof}[证法一]
-因为\(q \cdot q^{-1} = 1\)，
-所以\(q^* \cdot q \cdot q^{-1} = q^*\)，
-即\(\norm{q} \cdot q^{-1} = q^*\)，
+因为\(q \circ q^{-1} = 1\)，
+所以\(q^* \circ q \circ q^{-1} = q^*\)，
+即\(\norm{q} \circ q^{-1} = q^*\)，
 所以\(q^{-1} = \frac{q^*}{\norm{q}}\).
 \end{proof}
 \begin{proof}[证法二]
-因为\(q \cdot q^* = \norm{q}\)，
-所以\(q \cdot \frac{q^*}{\norm{q}} = 1\)，
+因为\(q \circ q^* = \norm{q}\)，
+所以\(q \circ \frac{q^*}{\norm{q}} = 1\)，
 那么根据定义可知\(q^{-1} = \frac{q^*}{\norm{q}}\).
 \end{proof}
 \let\qed\relax
@@ -427,7 +427,7 @@
 	+ \mu_3 \cdot \ku
 \)，
 有\begin{align*}
-	p \cdot q
+	p \circ q
 	&= \begin{bmatrix}
 		1 & \iu & \ju & \ku \\
 	\end{bmatrix}
@@ -463,7 +463,7 @@
 %@Mathematica: {{q0, -q1, -q2, -q3}, {q1, q0, q3, -q2}, {q2, -q3, q0, q1}, {q3, q2, -q1, q0}}.{p0, p1, p2, p3}
 % \begin{proof}
 % 因为\begin{align*}
-% 	p \cdot q
+% 	p \circ q
 % 	&=
 % 	(\lambda_0 \mu_0 - \lambda_1 \mu_1 - \lambda_2 \mu_2 - \lambda_3 \mu_3) \cdot 1 \\
 % 	&\hspace{20pt}
@@ -530,7 +530,7 @@
 	+ \mu_2 \cdot \ju
 	+ \mu_3 \cdot \ku
 \)，
-则\(p \cdot q\)的标量部分、向量部分各自等于\begin{equation*}
+则\(p \circ q\)的标量部分、向量部分各自等于\begin{equation*}
 	\lambda_0 \mu_0
 	- \VectorInnerProductDot{ \vec{p} }{ \vec{q} },
 	\quad\text{和}\quad
@@ -591,18 +591,17 @@
 就是让大拇指伸出的方向与代表旋转轴的给定虚数单位的正方向重合，
 其余四根手指的伸出方向就是旋转的正方向，相反方向就是旋转的负方向）旋转\(90^\circ\).
 例如，当\(\ju\)左乘\(\iu\)时，相当于\(\ju\)绕着\(\iu\)沿正方向旋转到与\(\ku\)重合，
-即\(\iu \cdot \ju = \ku\).
+即\(\iu \circ \ju = \ku\).
 当某个四元数右乘某个虚数单位时，表示该四元数绕着给定虚数单位沿负方向旋转\(90^\circ\).
 
-在单位球面上任意取定一个标量部分为零的四元数\(q\)，
-则它与复平面上的虚数单位等价，
-也就是说\(\{1,q\}\)可以张成复平面\(\pi_1\)，
+在单位球面上任意取定一个纯四元数\(q\)（这时\(q\)是一个单位四元数），
+显然它与复平面上的虚数单位等价，
+也就是说\(\{1,q\}\)可以张成复平面\(\pi_1\)；
 与此同时在三维空间\(\Span\{\iu,\ju,\ku\}\)中一定存在一个以\(q\)为法向量且经过原点的平面\(\pi_q\)
-（即\(\pi_q \DirectSum \Span\{q\} = \Span\{\iu,\ju,\ku\}\)）.
-由此可见\begin{equation*}
-	\pi_q \DirectSum \pi_1 = \Span\{1,\iu,\ju,\ku\},
-\end{equation*}
-也就是说，四维空间中的任意一个四元数\(p\)
+（即\(\Span\{\iu,\ju,\ku\}\)是\(\pi_q\)与\(\Span\{q\}\)的直积）.
+易见\(\Span\{1,\iu,\ju,\ku\}\)是\(\pi_q\)与\(\pi_1\)的直积.
+也就是说，对于任意给定的单位四元数\(q\)，
+四维空间中的任意一个四元数\(p\)
 总能被唯一地分解为两个部分：\begin{equation*}
 	p = \lambda_1 q_1 + \lambda_2 q_2
 	\quad(
@@ -615,14 +614,17 @@
 可以看成是将被乘数\(p\)的两个部分\(\lambda_1 q_1, \lambda_2 q_2\)
 分别旋转后所得结果的叠加（称之为\DefineConcept{双旋转}），
 具体地说：
-\(p\)左乘\(q\)相当于让平面\(\pi_q\)内的向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(90^\circ\)，
-而\(p\)右乘\(q\)相当于让平面\(\pi_q\)内的向量\(\lambda_2 q_2\)绕着\(q\)沿负方向旋转\(90^\circ\)，
+\(p\)左乘\(q\)（\(\lambda_2 q_2 \mapsto q \circ (\lambda_2 q_2)\)）相当于让平面\(\pi_q\)内的向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(90^\circ\)，
+而\(p\)右乘\(q\)（\(\lambda_2 q_2 \mapsto (\lambda_2 q_2) \circ q\)）相当于让平面\(\pi_q\)内的向量\(\lambda_2 q_2\)绕着\(q\)沿负方向旋转\(90^\circ\)，
 但是不论左乘\(q\)还是右乘\(q\)都相当于让平面\(\pi_1\)内的向量\(\lambda_1 q_1\)沿逆时针方向旋转\(90^\circ\).
-因此，给定四元数\begin{equation*}
+因此，给定四元数及其共轭元\begin{equation*}
 	q_\theta \defeq \cos\theta + q \sin\theta,
+	\qquad
+	q_\theta^* = \cos\theta - q \sin\theta = \cos(-\theta) + q \sin(-\theta),
 \end{equation*}
 左乘\(q_\theta\)相当于让向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(\theta\)，同时让向量\(\lambda_1 q_1\)沿逆时针方向旋转旋转\(\theta\)；
-右乘\(q_\theta\)的共轭元\(q_\theta^* = \cos\theta - q \sin\theta = \cos(-\theta) + q \sin(-\theta)\)
+右乘\(q_\theta^*\)
 相当于让向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(\theta\)，同时让向量\(\lambda_1 q_1\)沿顺时针方向旋转旋转\(\theta\)；
-那么，同时左乘\(q_\theta\)、右乘\(q_\theta^*\)（即\(p \mapsto q_\theta \cdot p \cdot q_\theta^*\)）
+那么，同时左乘\(q_\theta\)、右乘\(q_\theta^*\)（即\(p \mapsto q_\theta \circ p \circ q_\theta^*\)）
 相当于让向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(2\theta\)，而向量\(\lambda_1 q_1\)不旋转.
+这就是使用四元数表示三维空间中的旋转的方法.
