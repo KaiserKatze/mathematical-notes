@@ -335,8 +335,9 @@
 				+ (\lambda_3 \mu_0 - \lambda_2 \mu_1 + \lambda_1 \mu_2 + \lambda_0 \mu_3) \cdot \ku,
 		\end{aligned}
 	\end{equation}
-	称为“四元数\(p\)与\(q\)的\DefineConcept{积}”.
+	称为“四元数\(p\)与\(q\)的\DefineConcept{（哈密顿）积}（Hamilton product）”.
 	%@Mathematica: Quaternion[p0, p1, p2, p3] ** Quaternion[q0, q1, q2, q3]
+	%@Mathematica: Quaternion[Subscript[Î», 0], Subscript[Î», 1], Subscript[Î», 2], Subscript[Î», 3]] ** Quaternion[Subscript[Î¼, 0], Subscript[Î¼, 1], Subscript[Î¼, 2], Subscript[Î¼, 3]]
 \end{itemize}
 \end{definition}
 
@@ -408,6 +409,71 @@
 \end{proof}
 \let\qed\relax
 \end{proof}
+\end{property}
+
+\begin{definition}
+设四元数\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\)，
+记\begin{equation*}
+	p^\oplus
+	\defeq
+	\begin{bmatrix}
+		\lambda_0 & -\lambda_1 & -\lambda_2 & -\lambda_3 \\
+		\lambda_1 & \lambda_0 & -\lambda_3 & \lambda_2 \\
+		\lambda_2 & \lambda_3 & \lambda_0 & -\lambda_1 \\
+		\lambda_3 & -\lambda_2 & \lambda_1 & \lambda_0 \\
+	\end{bmatrix},
+	\qquad
+	p^+
+	\defeq
+	\begin{bmatrix}
+		\lambda_0 & -\lambda_1 & -\lambda_2 & -\lambda_3 \\
+		\lambda_1 & \lambda_0 & \lambda_3 & -\lambda_2 \\
+		\lambda_2 & -\lambda_3 & \lambda_0 & \lambda_1 \\
+		\lambda_3 & \lambda_2 & -\lambda_1 & \lambda_0 \\
+	\end{bmatrix}.
+\end{equation*}
+\end{definition}
+
+\begin{property}
+%@see: 《机器人学中的状态估计》（Timothy D. Barfoot著；高翔、谢晓佳译） P158
+设\(u,v,w\)都是四元数，\(\alpha,\beta\)都是标量，
+则\begin{gather*}
+	u^+ v
+	= v^\oplus u, \\
+	(u^+)^T
+	= (u^+)^{-1}
+	= (u^{-1})^+,
+	\qquad
+	(u^\oplus)^T
+	= (u^\oplus)^{-1}
+	= (u^{-1})^\oplus, \\
+	(u^+ v)^{-1}
+	= (v^{-1})^+ u^{-1},
+	\qquad
+	(u^\oplus v)^{-1}
+	= (v^{-1})^\oplus u^{-1}, \\
+	(u^+ v)^+ w
+	= u^+ (v^+ w)
+	= u^+ v^+ w,
+	\qquad
+	(u^\oplus v)^\oplus w
+	= u^\oplus (v^\oplus w)
+	= u^\oplus v^\oplus w, \\
+	\alpha u^+ + \beta v^+
+	= (\alpha u + \beta v)^+,
+	\qquad
+	\alpha u^\oplus + \beta v^\oplus
+	= (\alpha u + \beta v)^\oplus, \\
+	u^+ v^\oplus
+	= v^\oplus u^+.
+\end{gather*}
 \end{property}
 
 \begin{theorem}
