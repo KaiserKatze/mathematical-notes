@@ -431,6 +431,122 @@
 \end{equation*}
 \end{remark}
 
+\begin{property}
+设\(p,q\)都是四元数，
+则\((p \circ q)^* = q^* \circ p^*\).
+%@Mathematica: Conjugate[Quaternion[Subscript[q, 0], Subscript[q, 1], Subscript[q, 2], Subscript[q, 3]] ** Quaternion[Subscript[p, 0], Subscript[p, 1], Subscript[p, 2], Subscript[p, 3]]] - Conjugate[Quaternion[Subscript[p, 0], Subscript[p, 1], Subscript[p, 2], Subscript[p, 3]]] ** Conjugate[Quaternion[Subscript[q, 0], Subscript[q, 1], Subscript[q, 2], Subscript[q, 3]]]
+\begin{proof}
+设\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku,
+	q
+	\defeq
+	\mu_0 \cdot 1
+	+ \mu_1 \cdot \iu
+	+ \mu_2 \cdot \ju
+	+ \mu_3 \cdot \ku
+\)，
+则\begin{align*}
+	(p \circ q)^*
+	&=
+	(\lambda_0 \mu_0 - \lambda_1 \mu_1 - \lambda_2 \mu_2 - \lambda_3 \mu_3) \cdot 1
+		- (\lambda_1 \mu_0 + \lambda_0 \mu_1 - \lambda_3 \mu_2 + \lambda_2 \mu_3) \cdot \iu \\
+	&\hspace{20pt}
+		- (\lambda_2 \mu_0 + \lambda_3 \mu_1 + \lambda_0 \mu_2 - \lambda_1 \mu_3) \cdot \ju
+		- (\lambda_3 \mu_0 - \lambda_2 \mu_1 + \lambda_1 \mu_2 + \lambda_0 \mu_3) \cdot \ku, \\
+	&= (
+		\mu_0 \cdot 1
+		- \mu_1 \cdot \iu
+		- \mu_2 \cdot \ju
+		- \mu_3 \cdot \ku
+	) \circ (
+		\lambda_0 \cdot 1
+		- \lambda_1 \cdot \iu
+		- \lambda_2 \cdot \ju
+		- \lambda_3 \cdot \ku
+	)
+	= q^* \circ p^*,
+	% (\mu_0 \lambda_0 - \mu_1 \lambda_1 - \mu_2 \lambda_2 - \mu_3 \lambda_3) \cdot 1
+	% 	+ (- \mu_1 \lambda_0 - \mu_0 \lambda_1 - \mu_3 \lambda_2 + \mu_2 \lambda_3) \cdot \iu \\
+	% &\hspace{20pt}
+	% 	+ (- \mu_2 \lambda_0 + \mu_3 \lambda_1 - \mu_0 \lambda_2 - \mu_1 \lambda_3) \cdot \ju
+	% 	+ (- \mu_3 \lambda_0 - \mu_2 \lambda_1 + \mu_1 \lambda_2 - \mu_0 \lambda_3) \cdot \ku,
+	% &=
+	% (\lambda_0 \mu_0 - \lambda_1 \mu_1 - \lambda_2 \mu_2 - \lambda_3 \mu_3) \cdot 1
+	% 	+ (- \lambda_1 \mu_0 - \lambda_0 \mu_1 + \lambda_3 \mu_2 - \lambda_2 \mu_3) \cdot \iu \\
+	% &\hspace{20pt}
+	% 	+ (- \lambda_2 \mu_0 - \lambda_3 \mu_1 - \lambda_0 \mu_2 + \lambda_1 \mu_3) \cdot \ju
+	% 	+ (- \lambda_3 \mu_0 + \lambda_2 \mu_1 - \lambda_1 \mu_2 - \lambda_0 \mu_3) \cdot \ku,
+\end{align*}
+所以\((p \circ q)^* = q^* \circ p^*\).
+\end{proof}
+\end{property}
+
+\begin{property}
+设\(p,q\)都是四元数，
+则\(\norm{p \circ q} = \norm{p} \norm{q}\).
+\begin{proof}
+因为\begin{align*}
+	\norm{p \circ q}
+	&=
+	(\lambda_0 \mu_0 - \lambda_1 \mu_1 - \lambda_2 \mu_2 - \lambda_3 \mu_3)^2
+		+ (\lambda_1 \mu_0 + \lambda_0 \mu_1 - \lambda_3 \mu_2 + \lambda_2 \mu_3)^2 \\
+	&\hspace{20pt}
+		+ (\lambda_2 \mu_0 + \lambda_3 \mu_1 + \lambda_0 \mu_2 - \lambda_1 \mu_3)^2
+		+ (\lambda_3 \mu_0 - \lambda_2 \mu_1 + \lambda_1 \mu_2 + \lambda_0 \mu_3)^2 \\
+	&= \lambda_0^2 \mu_0^2
+		+ \lambda_1^2 \mu_0^2
+		+ \lambda_2^2 \mu_0^2
+		+ \lambda_3^2 \mu_0^2
+		+ \lambda_0^2 \mu_1^2
+		+ \lambda_1^2 \mu_1^2
+		+ \lambda_2^2 \mu_1^2
+		+ \lambda_3^2 \mu_1^2 \\
+	&\hspace{20pt}
+		+ \lambda_0^2 \mu_2^2
+		+ \lambda_1^2 \mu_2^2
+		+ \lambda_2^2 \mu_2^2
+		+ \lambda_3^2 \mu_2^2
+		+ \lambda_0^2 \mu_3^2
+		+ \lambda_1^2 \mu_3^2
+		+ \lambda_2^2 \mu_3^2
+		+ \lambda_3^2 \mu_3^2 \\
+	&= (
+		\lambda_0^2
+		+ \lambda_1^2
+		+ \lambda_2^2
+		+ \lambda_3^2
+	) (
+		\mu_0^2
+		+ \mu_1^2
+		+ \mu_2^2
+		+ \mu_3^2
+	)
+	= \norm{p} \norm{q},
+\end{align*}
+所以\(\norm{p \circ q} = \norm{p} \norm{q}\).
+\end{proof}
+\end{property}
+
+\begin{property}
+设\(p,q\)都是四元数，
+则\((p \circ q)^{-1} = q^{-1} \circ p^{-1}\).
+\begin{proof}
+显然\begin{equation*}
+	(p \circ q)^{-1}
+	= \frac{(p \circ q)^*}{\norm{p \circ q}}
+	= \frac{q^* \circ p^*}{\norm{p} \norm{q}}
+	= \frac{q^*}{\norm{q}} \circ \frac{p^*}{\norm{p}}
+	= q^{-1} \circ p^{-1}.
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{property}
+
 \begin{definition}
 设四元数\(
 	p
