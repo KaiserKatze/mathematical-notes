@@ -806,3 +806,49 @@
 那么，同时左乘\(q_\theta\)、右乘\(q_\theta^*\)（即\(p \mapsto q_\theta \circ p \circ q_\theta^*\)）
 相当于让向量\(\lambda_2 q_2\)绕着\(q\)沿正方向旋转\(2\theta\)，而向量\(\lambda_1 q_1\)不旋转.
 这就是使用四元数表示三维空间中的旋转的方法.
+
+接下来让我们尝试将四元数与旋转矩阵联系起来.
+假设\(q \defeq (q_0,q_1,q_2,q_3)^T\)是一个单位四元数
+（即\(\norm{q} = \lambda_0^2 + \lambda_1^2 + \lambda_2^2 + \lambda_3^2 = 1\)），
+用四元数\(p \defeq (1,p_1,p_2,p_3)^T\)表示某一个点的齐次坐标，
+则\begin{equation*}
+	q \circ p \circ q^*
+	= (q^\oplus p) \circ q^*
+	= q^\oplus (p \circ q^*)
+	= q^\oplus ((q^*)^+ p)
+	= (q^\oplus (q^*)^+) p,
+\end{equation*}
+其中\begin{equation*}
+	R \defeq q^\oplus (q^*)^+
+	= \begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & q_0^2 + q_1^2 - q_2^2 - q_3^2 & 2 (q_1 q_2 - q_0 q_3) & 2 (q_0 q_2 + q_1 q_3) \\
+		0 & 2 (q_1 q_2 + q_0 q_3) & q_0^2 - q_1^2 + q_2^2 - q_3^2 & 2 (q_2 q_3 - q_0 q_1) \\
+		0 & 2 (q_1 q_3 - q_0 q_2) & 2 (q_0 q_1 + q_2 q_3) & q_0^2 - q_1^2 - q_2^2 + q_3^2 \\
+	\end{bmatrix}.
+\end{equation*}
+记\begin{align*}
+	C &\defeq \begin{bmatrix}
+		q_0^2 + q_1^2 - q_2^2 - q_3^2 & 2 (q_1 q_2 - q_0 q_3) & 2 (q_0 q_2 + q_1 q_3) \\
+		2 (q_1 q_2 + q_0 q_3) & q_0^2 - q_1^2 + q_2^2 - q_3^2 & 2 (q_2 q_3 - q_0 q_1) \\
+		2 (q_1 q_3 - q_0 q_2) & 2 (q_0 q_1 + q_2 q_3) & q_0^2 - q_1^2 - q_2^2 + q_3^2 \\
+	\end{bmatrix} \\
+	&\hspace{3pt}\equiv \begin{bmatrix}
+		1 - 2 q_2^2 - 2 q_3^2 & 2 (q_1 q_2 - q_0 q_3) & 2 (q_0 q_2 + q_1 q_3) \\
+		2 (q_1 q_2 + q_0 q_3) & 1 - 2 q_1^2 - 2 q_3^2 & 2 (q_2 q_3 - q_0 q_1) \\
+		2 (q_1 q_3 - q_0 q_2) & 2 (q_0 q_1 + q_2 q_3) & 1 - 2 q_1^2 - 2 q_2^2 \\
+	\end{bmatrix} \\
+	&\hspace{3pt}\equiv \begin{bmatrix}
+		1 - d_2 q_2 - d_3 q_3 & d_1 q_2 - d_0 q_3 & d_0 q_2 + d_1 q_3 \\
+		d_1 q_2 + d_0 q_3 & 1 - d_1 q_1 - d_3 q_3 & d_2 q_3 - d_0 q_1 \\
+		d_1 q_3 - d_0 q_2 & d_0 q_1 + d_2 q_3 & 1 - d_1 q_1 - d_2 q_2 \\
+	\end{bmatrix},
+\end{align*}
+其中\(
+	d_0 = 2 q_0,
+	d_1 = 2 q_1,
+	d_2 = 2 q_2,
+	d_3 = 2 q_3
+\)，
+则\(C\)就是旋转变换\(p \mapsto q \circ p \circ q^*\)对应的旋转矩阵，
+它将\(\vec{p} \defeq (p_1,p_2,p_3)^T\)映成\(\left( C ~ \vec{p} \right)\).
