@@ -606,6 +606,38 @@
 \end{property}
 
 \begin{definition}
+给定四元数\(
+	p
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku
+\).
+把矩阵\begin{equation}
+	\lambda_0 E_3 + \vec{p}^\times
+	\equiv
+	\begin{bmatrix}
+		\lambda_0 & -\lambda_3 & \lambda_2 \\
+		\lambda_3 & \lambda_0 & -\lambda_1 \\
+		-\lambda_2 & \lambda_1 & \lambda_0 \\
+	\end{bmatrix}
+\end{equation}
+称为“四元数\(p\)的\DefineConcept{核}”，
+其中\(E_3\)是3阶单位矩阵，
+\(\vec{p}^\times\)是向量\(\vec{p} \equiv (\lambda_1,\lambda_2,\lambda_3)^T\)的外积矩阵，
+即\begin{equation*}
+	\vec{p}^\times
+	\equiv
+	\begin{bmatrix}
+		0 & -\lambda_3 & \lambda_2 \\
+		\lambda_3 & 0 & -\lambda_1 \\
+		-\lambda_2 & \lambda_1 & 0 \\
+	\end{bmatrix}.
+\end{equation*}
+\end{definition}
+
+\begin{definition}
 设四元数\(
 	p
 	\defeq
@@ -614,18 +646,29 @@
 	+ \lambda_2 \cdot \ju
 	+ \lambda_3 \cdot \ku
 \)，
-记\begin{equation*}
+记\begin{align*}
+%@see: 《机器人学中的状态估计》（Timothy D. Barfoot著；高翔、谢晓佳译） P157 (6.17)
 	p^\oplus
-	\defeq
+	&\defeq
+	\begin{bmatrix}
+		\lambda_0 & -\vec{p}^T \\
+		\vec{p} & \lambda_0 E_3 + \vec{p}^\times \\
+	\end{bmatrix}
+	\equiv
 	\begin{bmatrix}
 		\lambda_0 & -\lambda_1 & -\lambda_2 & -\lambda_3 \\
 		\lambda_1 & \lambda_0 & -\lambda_3 & \lambda_2 \\
 		\lambda_2 & \lambda_3 & \lambda_0 & -\lambda_1 \\
 		\lambda_3 & -\lambda_2 & \lambda_1 & \lambda_0 \\
 	\end{bmatrix},
-	\qquad
+	\\
 	p^+
-	\defeq
+	&\defeq
+	\begin{bmatrix}
+		\lambda_0 & -\vec{p}^T \\
+		\vec{p} & \lambda_0 E_3 - \vec{p}^\times \\
+	\end{bmatrix}
+	\equiv
 	\begin{bmatrix}
 		\lambda_0 & -\lambda_1 & -\lambda_2 & -\lambda_3 \\
 		\lambda_1 & \lambda_0 & \lambda_3 & -\lambda_2 \\
@@ -647,43 +690,8 @@
 % 		    { p2, -p3,  p0,  p1},
 % 		    { p3,  p2, -p1,  p0}
 % 		}
-\end{equation*}
+\end{align*}
 \end{definition}
-
-\begin{property}
-%@see: 《机器人学中的状态估计》（Timothy D. Barfoot著；高翔、谢晓佳译） P158
-设\(u,v,w\)都是四元数，\(\alpha,\beta\)都是标量，
-则\begin{gather*}
-	u^+ v
-	= v^\oplus u, \\
-	(u^+)^T
-	= (u^+)^{-1}
-	= (u^{-1})^+,
-	\qquad
-	(u^\oplus)^T
-	= (u^\oplus)^{-1}
-	= (u^{-1})^\oplus, \\
-	(u^+ v)^{-1}
-	= (v^{-1})^+ u^{-1},
-	\qquad
-	(u^\oplus v)^{-1}
-	= (v^{-1})^\oplus u^{-1}, \\
-	(u^+ v)^+ w
-	= u^+ (v^+ w)
-	= u^+ v^+ w,
-	\qquad
-	(u^\oplus v)^\oplus w
-	= u^\oplus (v^\oplus w)
-	= u^\oplus v^\oplus w, \\
-	\alpha u^+ + \beta v^+
-	= (\alpha u + \beta v)^+,
-	\qquad
-	\alpha u^\oplus + \beta v^\oplus
-	= (\alpha u + \beta v)^\oplus, \\
-	u^+ v^\oplus
-	= v^\oplus u^+.
-\end{gather*}
-\end{property}
 
 \begin{theorem}
 给定四元数\(
@@ -765,6 +773,62 @@
 则\(q^\oplus\)是一个正交矩阵.
 \end{remark}
 
+\begin{property}
+设四元数\(
+	p
+	\defeq
+	1
+	+ 0 \cdot \iu
+	+ 0 \cdot \ju
+	+ 0 \cdot \ku
+\)，
+则\begin{equation*}
+	p^\oplus
+	= p^+
+	= \begin{bmatrix}
+		1 \\
+		& 1 \\
+		&& 1 \\
+		&&& 1 \\
+	\end{bmatrix}.
+\end{equation*}
+\end{property}
+
+\begin{property}
+%@see: 《机器人学中的状态估计》（Timothy D. Barfoot著；高翔、谢晓佳译） P158
+设\(u,v,w\)都是四元数，\(\alpha,\beta\)都是标量，
+则\begin{gather*}
+	u^+ v
+	= v^\oplus u, \\
+	(u^+)^T
+	= (u^+)^{-1}
+	= (u^{-1})^+,
+	\qquad
+	(u^\oplus)^T
+	= (u^\oplus)^{-1}
+	= (u^{-1})^\oplus, \\
+	(u^+ v)^{-1}
+	= (v^{-1})^+ u^{-1},
+	\qquad
+	(u^\oplus v)^{-1}
+	= (v^{-1})^\oplus u^{-1}, \\
+	(u^+ v)^+ w
+	= u^+ (v^+ w)
+	= u^+ v^+ w,
+	\qquad
+	(u^\oplus v)^\oplus w
+	= u^\oplus (v^\oplus w)
+	= u^\oplus v^\oplus w, \\
+	\alpha u^+ + \beta v^+
+	= (\alpha u + \beta v)^+,
+	\qquad
+	\alpha u^\oplus + \beta v^\oplus
+	= (\alpha u + \beta v)^\oplus, \\
+	u^+ v^\oplus
+	= v^\oplus u^+.
+\end{gather*}
+\end{property}
+
 \begin{theorem}
 给定四元数\(
 	p
@@ -795,42 +859,6 @@
 \(\lambda_0 \vec{p}\)和\(\mu_0 \vec{q}\)是作向量的标量乘法运算，
 \(\VectorOuterProduct{ \vec{p} }{ \vec{q} }\)是作向量的向量积运算.
 \end{theorem}
-
-\begin{definition}
-给定四元数\(
-	p
-	\defeq
-	\lambda_0 \cdot 1
-	+ \lambda_1 \cdot \iu
-	+ \lambda_2 \cdot \ju
-	+ \lambda_3 \cdot \ku
-\).
-把矩阵\begin{equation}
-	\begin{bmatrix}
-		\lambda_0 & -\lambda_3 & \lambda_2 \\
-		\lambda_3 & \lambda_0 & -\lambda_1 \\
-		-\lambda_2 & \lambda_1 & \lambda_0 \\
-	\end{bmatrix}
-\end{equation}
-称为“四元数\(p\)的\DefineConcept{核}”.
-\end{definition}
-\begin{remark}
-可以看出：
-四元数\(
-	p
-	\defeq
-	\lambda_0 \cdot 1
-	+ \lambda_1 \cdot \iu
-	+ \lambda_2 \cdot \ju
-	+ \lambda_3 \cdot \ku
-\)的核是以它的分量\(
-	\lambda_0,
-	\lambda_1,
-	\lambda_2,
-	\lambda_3
-\)作为元素，
-构成的反对称矩阵.
-\end{remark}
 
 \subsection{四元数的几何意义}
 把实数\(1\)和三个虚数单位\(\iu,\ju,\ku\)看作基向量时，
