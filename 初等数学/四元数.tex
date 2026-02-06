@@ -401,7 +401,42 @@
 \begin{property}
 设\(q\)是四元数，
 \(q^*\)是\(q\)的共轭元，
-则\(q \circ q^* = \norm{q}\).
+则\(q \circ q^* = q^* \circ q = \norm{q}\).
+\begin{proof}
+设\(
+	q
+	\defeq
+	\lambda_0 \cdot 1
+	+ \lambda_1 \cdot \iu
+	+ \lambda_2 \cdot \ju
+	+ \lambda_3 \cdot \ku,
+\)，
+则\begin{align*}
+	q \circ q^*
+	&= (
+		\lambda_0 \cdot 1
+		+ \lambda_1 \cdot \iu
+		+ \lambda_2 \cdot \ju
+		+ \lambda_3 \cdot \ku
+	) \circ (
+		\lambda_0 \cdot 1
+		- \lambda_1 \cdot \iu
+		- \lambda_2 \cdot \ju
+		- \lambda_3 \cdot \ku
+	) \\
+	&=
+		(\lambda_0 \lambda_0 - \lambda_1 (- \lambda_1) - \lambda_2 (- \lambda_2) - \lambda_3 (- \lambda_3)) \cdot 1 \\
+		&\hspace{20pt}
+			+ (\lambda_1 \lambda_0 + \lambda_0 (- \lambda_1) - \lambda_3 (- \lambda_2) + \lambda_2 (- \lambda_3)) \cdot \iu \\
+		&\hspace{20pt}
+			+ (\lambda_2 \lambda_0 + \lambda_3 (- \lambda_1) + \lambda_0 (- \lambda_2) - \lambda_1 (- \lambda_3)) \cdot \ju \\
+		&\hspace{20pt}
+			+ (\lambda_3 \lambda_0 - \lambda_2 (- \lambda_1) + \lambda_1 (- \lambda_2) + \lambda_0 (- \lambda_3)) \cdot \ku \\
+	&= \lambda_0^2 + \lambda_1^2 + \lambda_2^2 + \lambda_3^2
+	= \norm{q}.
+	\qedhere
+\end{align*}
+\end{proof}
 \end{property}
 
 \begin{property}
@@ -477,6 +512,7 @@
 
 \begin{property}
 设\(p,q\)都是四元数，
+\(p^*,q^*\)分别是\(p,q\)的共轭元，
 则\((p \circ q)^* = q^* \circ p^*\).
 %@Mathematica: Conjugate[Quaternion[Subscript[q, 0], Subscript[q, 1], Subscript[q, 2], Subscript[q, 3]] ** Quaternion[Subscript[p, 0], Subscript[p, 1], Subscript[p, 2], Subscript[p, 3]]] - Conjugate[Quaternion[Subscript[p, 0], Subscript[p, 1], Subscript[p, 2], Subscript[p, 3]]] ** Conjugate[Quaternion[Subscript[q, 0], Subscript[q, 1], Subscript[q, 2], Subscript[q, 3]]]
 \begin{proof}
@@ -859,6 +895,17 @@
 \(\lambda_0 \vec{p}\)和\(\mu_0 \vec{q}\)是作向量的标量乘法运算，
 \(\VectorOuterProduct{ \vec{p} }{ \vec{q} }\)是作向量的向量积运算.
 \end{theorem}
+
+\begin{example}
+\(
+	q^\oplus - (q^*)^+
+	= 2 \begin{bmatrix}
+		0 & - \vec{q}^T \\
+		\vec{q} & 0_{3\times3} \\
+	\end{bmatrix}
+\).
+%@Mathematica: quatLToMatrix[{p0, p1, p2, p3}] - quatRToMatrix[{p0, -p1, -p2, -p3}] // MatrixForm
+\end{example}
 
 \subsection{四元数的几何意义}
 把实数\(1\)和三个虚数单位\(\iu,\ju,\ku\)看作基向量时，
