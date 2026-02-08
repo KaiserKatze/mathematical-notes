@@ -172,7 +172,7 @@
 \end{equation}
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:解析几何.在右手直角标架下计算混合积}
 %@see: 《解析几何》（丘维声） P41 定理5.1
 任意取定一个右手直角标架\([O;\vb{e}_1,\vb{e}_2,\vb{e}_3]\)，
 设向量\(\vb{a},\vb{b},\vb{c}\)的坐标分别为\begin{equation*}
@@ -192,6 +192,66 @@
 这个定理表明，以\(\vb{a},\vb{b},\vb{c}\)
 为棱的平行六面体的定向体积等于以这三个向量的右手直角坐标组成的三阶行列式.
 这也是3阶行列式的几何意义.
+
+\begin{example}
+设\(\vb{M}\)是3阶可逆矩阵.
+证明：对于任意向量\(\vb{a},\vb{b}\)，
+有\begin{equation*}
+	\VectorOuterProduct{(\vb{M} \vb{a})}{(\vb{M} \vb{b})}
+	= \DeterminantA{\vb{M}} (\vb{M}^{-1})^T (\VectorOuterProduct{\vb{a}}{\vb{b}}).
+\end{equation*}
+\begin{proof}
+由\cref{theorem:解析几何.在右手直角标架下计算混合积} 可知，
+对于任意向量\(\vb{v}\)，
+有\begin{equation*}
+	(\VectorOuterProduct{\vb{a}}{\vb{b}})^T \vb{v}
+	= \VectorMixedProductCD{\vb{a}}{\vb{b}}{\vb{v}}
+	= \begin{vmatrix}
+		\vb{a} & \vb{b} & \vb{v}
+	\end{vmatrix}.
+	\eqno(1)
+\end{equation*}
+
+由\hyperref[theorem:行列式.矩阵乘积的行列式]{矩阵乘积的行列式定理}可知，
+对于任意3阶矩阵\(\vb{M}\)和任意向量\(\vb{v}\)，
+有\begin{equation*}
+	\begin{vmatrix} \vb{M} \end{vmatrix}
+	\begin{vmatrix} \vb{a} & \vb{b} & \vb{v} \end{vmatrix}
+	= \DeterminantA{ \vb{M} \begin{bmatrix} \vb{a} & \vb{b} & \vb{v} \end{bmatrix} }
+	= \begin{vmatrix} \vb{M} \vb{a} & \vb{M} \vb{b} & \vb{M} \vb{v} \end{vmatrix};
+	\eqno(2)
+\end{equation*}
+再由\cref{theorem:解析几何.在右手直角标架下计算混合积} 可知\begin{equation*}
+	\begin{vmatrix} \vb{M} \vb{a} & \vb{M} \vb{b} & \vb{M} \vb{v} \end{vmatrix} \\
+	= \VectorMixedProductCD{(\vb{M} \vb{a})}{(\vb{M} \vb{b})}{(\vb{M} \vb{v})}
+	= (\VectorOuterProduct{(\vb{M} \vb{a})}{(\vb{M} \vb{b})})^T (\vb{M} \vb{v}).
+	\eqno(3)
+\end{equation*}
+
+由(1)(2)(3)可知，
+对于任意3阶矩阵\(\vb{M}\)和任意向量\(\vb{v}\)，
+有\begin{equation*}
+	(\VectorOuterProduct{(\vb{M} \vb{a})}{(\vb{M} \vb{b})})^T \vb{M} \vb{v}
+	= \DeterminantA{\vb{M}}
+	(\VectorOuterProduct{\vb{a}}{\vb{b}})^T \vb{v}.
+\end{equation*}
+利用\(\vb{v}\)的任意性，将其消去，再转置，得\begin{equation*}
+	\vb{M}^T
+	(\VectorOuterProduct{(\vb{M} \vb{a})}{(\vb{M} \vb{b})})
+	= \DeterminantA{\vb{M}}
+	(\VectorOuterProduct{\vb{a}}{\vb{b}}).
+\end{equation*}
+
+当\(\vb{M}\)可逆时，
+我们将\(( \vb{M}^T )^{-1}\)移至等式右侧，
+得\begin{equation*}
+	\VectorOuterProduct{(\vb{M} \vb{a})}{(\vb{M} \vb{b})}
+	= \DeterminantA{\vb{M}} (\vb{M}^T)^{-1} (\VectorOuterProduct{\vb{a}}{\vb{b}})
+	= \DeterminantA{\vb{M}} (\vb{M}^{-1})^T (\VectorOuterProduct{\vb{a}}{\vb{b}}).
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{example}
 
 \subsection{四点共面的条件}
 \begin{theorem}
