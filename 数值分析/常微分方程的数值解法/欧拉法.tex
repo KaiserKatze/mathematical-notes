@@ -1,0 +1,252 @@
+\section{欧拉法}
+\subsection{欧拉法}
+考虑一阶常微分方程的初值问题\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P256 (9.1)
+	\begin{cases}
+		y' = f(x,y), \quad x \in [x_0,b], \\
+		y(x_0) = y_0.
+	\end{cases}
+\end{equation*}
+如果我们用\(\increment y = f(x,y) \increment x\)近似代替\(\dd{y} = f(x,y) \dd{x}\)，
+那么我们就可以用折线段\(\overline{P_0 \dotso P_n}\)
+近似代替积分曲线\(y = y(x)\)，
+其中\(P_0\)表示初始点\((x_0,y_0)\)，
+其余点\(P_k(x_k,y_k)\ (k=1,2,\dotsc,n)\)满足\begin{equation*}
+	\frac{y_k - y_{k-1}}{x_k - x_{k-1}}
+	= f(x_{k-1},y_{k-1}),
+\end{equation*}
+或\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P257 (9.4)
+	y_k = y_{k-1} + h f(x_{k-1},y_{k-1}),
+\end{equation}
+并且\(x_1 - x_0 = x_2 - x_1 = \dotsb = x_n - x_{n-1} = h\).
+
+为了分析计算过程中递推公式的精度，
+假设准确值为\(y(x_k)\ (k=0,1,2,\dotsc,n)\)，
+再进行泰勒展开得\begin{equation*}
+	y(x_{k+1})
+	= y(x_k + h)
+	= y(x_k)
+	+ h y'(x_k)
+	+ \frac12 h^2 y''(\xi_k),
+	\quad(x_k < \xi_k < x_{k+1}).
+\end{equation*}
+因为\(
+	y'(x_k)
+	= f(x_k,y(x_k))
+\)，
+所以误差为\begin{align*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P258 (9.6)
+	y(x_{k+1}) - y_{k+1}
+	&=
+		y(x_k)
+		+ h y'(x_k)
+		+ \frac12 h^2 y''(\xi_k)
+		- y_k
+		- h f(x_k,y_k) \\
+	&=
+		[
+			y(x_k)
+			- y_k
+		]
+		+ h [
+			y'(x_k)
+			- f(x_k,y_k)
+		]
+		+ \frac12 h^2 y''(\xi_k),
+\end{align*}
+再假设\(x_k\)处的精确值与近似值恰好相等（即\(y(x_k) = y_k\)），
+则\begin{equation}
+	y(x_{k+1}) - y_{k+1}
+	= \frac12 h^2 y''(\xi_k)
+	\approx \frac12 h^2 y''(x_k).
+\end{equation}
+我们把这样算出的误差称为“欧拉法的\DefineConcept{局部截断误差}”.
+
+\subsection{后退欧拉法}
+由牛顿--莱布尼茨公式可知\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P259 (9.7)
+	y(x_{k+1})
+	= y(x_k)
+	+ \int_{x_k}^{x_{k+1}} f(t,y(t)) \dd{t}.
+\end{equation}
+显然欧拉法就相当于用左矩形公式\(h f(x_k,y_k)\)代替上式右端积分\(I_k \defeq \int_{x_k}^{x_{k+1}} f(t,y(t)) \dd{t}\).
+类似地，如果用右矩形公式\(h f(x_{k+1},y_{k+1})\)代替\(I_k\)，
+就能得到另一个公式\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P259 (9.8)
+	y_{k+1}
+	= y_k
+	+ h f(x_{k+1},y_{k+1})
+	\quad(k=0,1,2,\dotsc).
+\end{equation}
+我们把这个递推公式称为\DefineConcept{后退欧拉法}.
+
+后退欧拉法与欧拉法有着本质区别：
+后者是关于\(y_{k+1}\)的一个直接的计算公式，
+这类公式称为\DefineConcept{显式的}；
+然而后退欧拉法的右端含有位置的\(y_{k+1}\)，
+它实际上是关于\(y_{k+1}\)的一个函数方程，
+这类公式称为\DefineConcept{隐式的}.
+因此后退欧拉法也称为\DefineConcept{隐式欧拉法}.
+
+
+显式方法与隐式方法各有特点.
+有时考虑到数值稳定性等其他因素，人们需要选用隐式方法；
+但是通常来说使用显式方法远比隐式方法方便.
+
+
+后退欧拉法通常用迭代法求解，
+其迭代过程的实质是逐步显式化.
+
+假设我们首先用欧拉法算得\begin{equation*}
+	y_{k+1}^{(0)}
+	= y_k
+	+ h f(x_k,y_k)
+\end{equation*}
+并将其作为迭代初值，
+再代入后退欧拉法的递推公式中，使之转化为显式，
+直接计算得\begin{equation*}
+	y_{k+1}^{(1)}
+	= y_k
+	+ h f(x_{k+1},y_{k+1}^{(0)}),
+\end{equation*}
+然后继续将\(y_{k+1}^{(1)}\)代入后退欧拉法的递推公式中，
+又有\begin{equation*}
+	y_{k+1}^{(2)}
+	= y_n
+	+ h f(x_{k+1},y_{k+1}^{(1)}).
+\end{equation*}
+如此反复进行迭代，
+得到递推数列\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P259 (9.9)
+	y_{k+1}^{(m+1)}
+	= y_k
+	+ h f(x_{k+1},y_{k+1}^{(m)})
+	\quad(m=0,1,2,\dotsc).
+\end{equation}
+由于函数\(f\)关于\(y\)满足利普希茨条件，
+那么上式与后退欧拉法递推公式相减得\begin{equation*}
+	\abs{
+		y_{k+1}^{(m+1)}
+		- y_{k+1}
+	}
+	= h \abs{
+		f(x_{k+1},y_{k+1}^{(m)})
+		- f(x_{k+1},y_{k+1})
+	}
+	\leq h L
+	\abs{
+		y_{k+1}^{(m)}
+		- y_{k+1}
+	}.
+\end{equation*}
+由此可知，
+只要取\(h\)使得\(h L < 1\)，
+上述迭代显式化算法就能收敛到\(y_{k+1}\).
+
+后退欧拉法的局部截断误差与欧拉法是相似的.
+
+\subsection{梯形方法}
+为了得到比欧拉法精度更高的计算公式，
+我们可以用梯形公式近似代替积分\(I_k\)，
+同时用\(y_k\)代替\(y(x_k)\)，
+用\(y_{k+1}\)代替\(y(x_{k+1})\)，
+便得\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P259 (9.10)
+	y_{k+1}
+	= y_k
+	+ \frac{h}{2}
+	[
+		f(x_k,y_k)
+		+ f(x_{k+1},y_{k+1})
+	]
+	\quad(k=0,1,2,\dotsc).
+\end{equation*}
+我们把上述递推公式称为\DefineConcept{梯形方法}.
+
+梯形方法是隐式单步法，
+可以用迭代法求解.
+同后退欧拉法一样，
+仍然用欧拉法提供迭代初值，
+其迭代公式为\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P260 (9.11)
+	\begin{cases}
+		y_{k+1}^{(0)}
+		= y_k
+		+ h f(x_k,y_k), \\
+		y_{k+1}^{(m+1)}
+		= y_k
+		+ \frac{h}{2}
+		[
+			f(x_k,y_k)
+			+ f(x_{k+1},y_{k+1}^{(m)})
+		]
+		\quad(k=0,1,2,\dotsc).
+	\end{cases}
+\end{equation}
+
+为了分析迭代过程的收敛性，
+将递推公式与迭代公式相减得\begin{equation*}
+	y_{k+1}^{(m+1)}
+	- y_{k+1}
+	= \frac{h}{2}
+	[
+		f(x_{k+1},x_{k+1}^{(m)})
+		- f(x_{k+1},y_{k+1})
+	],
+\end{equation*}
+于是有\begin{equation*}
+	\abs{
+		y_{k+1}^{(m+1)}
+		- y_{k+1}
+	}
+	\leq \frac{h L}{2}
+	\abs{
+		y_{k+1}^{(m)}
+		- y_{k+1}
+	}.
+\end{equation*}
+可以看出，只要取\(h\)使得\(h L / 2 < 1\)，
+上述迭代显式化算法就能收敛到\(y_{k+1}\).
+
+\subsection{改进欧拉法}
+我们看到，梯形方法虽然提高了计算精度，
+但是它的算法复杂.
+在应用迭代公式进行实际计算时，每迭代一次，
+都要重新计算函数\(f(x,y)\)的值，
+而迭代又要反复进行若干次，计算量很大，
+而且往往难以预测迭代何时停止.
+为了控制计算量，通常只迭代一两次就转入下一步计算，这就简化了算法.
+
+具体地说，我们先用欧拉法求出一个初步的近似值（称之为\DefineConcept{预测值}），
+虽然其精度可能很差，
+但是我们可以用梯形方法将它校正一次（将校正后算出的结果称为\DefineConcept{校正值}）：
+\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P260 (9.12)
+	\begin{cases}
+		% 预测
+		\overline{y}_{k+1}
+		= y_k
+		+ h f(x_k,y_k), \\
+		y_{k+1}
+		= y_k
+		+ \frac{h}{2}
+		[
+			f(x_k,y_k)
+			+ f(x_{k+1},\overline{y}_{k+1})
+		]
+		\quad(k=0,1,2,\dotsc)
+	\end{cases}
+\end{equation}
+或\begin{equation*}
+	\begin{cases}
+		y_p
+		= y_k
+		+ h f(x_k,y_k), \\
+		y_c
+		= y_k + h f(x_{k+1},y_p), \\
+		y_{k+1}
+		= \frac12 (y_p + y_c).
+	\end{cases}
+\end{equation*}
+像这样建立的“预测--校正系统”通常称为\DefineConcept{改进欧拉法}.
