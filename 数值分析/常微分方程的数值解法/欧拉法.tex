@@ -1,12 +1,12 @@
 \section{欧拉法}
 \subsection{欧拉法}
-考虑一阶常微分方程的初值问题\begin{equation*}
+考虑一阶常微分方程的初值问题\begin{equation}\label{equation:一阶常微分方程的初值问题.微分形式}
 %@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P256 (9.1)
 	\begin{cases}
 		y' = f(x,y), \quad x \in [x_0,b], \\
 		y(x_0) = y_0.
 	\end{cases}
-\end{equation*}
+\end{equation}
 如果我们用\(\increment y = f(x,y) \increment x\)近似代替\(\dd{y} = f(x,y) \dd{x}\)，
 那么我们就可以用折线段\(\overline{P_0 \dotso P_n}\)
 近似代替积分曲线\(y = y(x)\)，
@@ -64,7 +64,9 @@
 我们把这样算出的误差称为“欧拉法的\DefineConcept{局部截断误差}”.
 
 \subsection{后退欧拉法}
-由牛顿--莱布尼茨公式可知\begin{equation}
+利用牛顿--莱布尼茨公式可以从
+一阶常微分方程 \labelcref{equation:一阶常微分方程的初值问题.微分形式}
+得到\begin{equation}\label{equation:一阶常微分方程的初值问题.积分递推公式}
 %@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P259 (9.7)
 	y(x_{k+1})
 	= y(x_k)
@@ -250,3 +252,140 @@
 	\end{cases}
 \end{equation*}
 像这样建立的“预测--校正系统”通常称为\DefineConcept{改进欧拉法}.
+
+\subsection{单步法的局部截断误差与阶}
+一阶常微分方程的初值问题的单步法可以表示为如下一般形式：
+\begin{equation}\label{equation:常微分方程初值问题的数值解法.单步法的一般形式}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P261 (9.13)
+	y_{k+1}
+	= y_k
+	+ h \phi(x_k,y_k,y_{k+1},h)
+	\quad(k=0,1,2,\dotsc),
+\end{equation}
+其中多元函数\(\phi\)与\(f\)有关.
+当\(\phi\)中含有\(y_{k+1}\)时，方法是隐式的；
+当\(\phi\)中不含\(y_{k+1}\)时，方法是显式的.
+因此，显式单步法可以表示为：
+\begin{equation}\label{equation:常微分方程初值问题的数值解法.显式单步法的一般形式}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P261 (9.14)
+	y_{k+1}
+	= y_k
+	+ h \phi(x_k,y_k,h)
+	\quad(k=0,1,2,\dotsc).
+\end{equation}
+我们把\(\phi(x,y,h)\)称为\DefineConcept{增量函数}.
+例如，欧拉法的增量函数为\(\phi(x,y,h) = f(x,y)\).
+
+\begin{definition}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P261 定义9.1
+设\(y\)是一阶常微分方程的初值问题的精确解，
+把\begin{equation*}
+	T_{k+1}
+	\defeq
+	y(x_{k+1})
+	- y(x_k)
+	- h \phi(x_k,y(x_k),h)
+\end{equation*}
+称为“显式单步法 \labelcref{equation:常微分方程初值问题的数值解法.显式单步法的一般形式} 的\DefineConcept{局部截断误差}”.
+\end{definition}
+
+误差\(T_{k+1}\)之所以被称为“局部的”，
+是因为它隐含地假设\(x_k\)前的每一步都没有误差.
+当第\(k\)步算得的近似值与精确值相等（即\(y_k = y(x_k)\)）时，只计算一步，就有\begin{equation*}
+	y(x_{k+1}) - y_{k+1}
+	= y(x_{k+1}) - [y_k + h \phi(x_k,y_k,h)]
+	= y(x_{k+1}) - y(x_k) - h \phi(x_k,y(x_k),h)
+	= T_{k+1}.
+\end{equation*}
+所以，局部截断误差可以理解为
+使用显式单步法 \labelcref{equation:常微分方程初值问题的数值解法.显式单步法的一般形式}
+计算一步的误差.
+
+根据上式定义，欧拉法的局部截断误差为\begin{equation*}
+	T_{k+1}
+	= y(x_{k+1}) - y(x_k) - h f(x_k,y(x_k))
+	= y(x_k + h)
+	- y(x_k)
+	- h y'(x_k)
+	= \frac{h^2}{2} y''(x_k)
+	+ O(h^3).
+\end{equation*}
+这里\(\frac{h^2}{2} y''(x_k)\)称为局部截断误差的主项.
+显然\(T_{k+1} = O(h^2)\).
+
+一般情形的局部截断误差主项的定义如下.
+\begin{definition}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P261 定义9.2
+设\(y\)是一阶常微分方程的初值问题的精确解.
+如果存在最大整数\(p\)
+使得显式单步法 \labelcref{equation:常微分方程初值问题的数值解法.显式单步法的一般形式} 的
+局部截断误差满足\begin{equation}\label{equation:常微分方程初值问题的数值解法.具有p阶精度的显式单步法需要满足的条件}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P261 (9.15)
+	T_{k+1}
+	= O(h^{p+1}),
+\end{equation}
+则称“方法 \labelcref{equation:常微分方程初值问题的数值解法.显式单步法的一般形式}
+具有\(p\)阶\DefineConcept{精度}”.
+\end{definition}
+%@see: 代数精度
+
+如果微分方程的解是\(p\)次多项式，
+那么具有\(p\)阶精度的方法能求出精确解.
+
+若将\cref{equation:常微分方程初值问题的数值解法.具有p阶精度的显式单步法需要满足的条件}
+展开，写成\begin{equation*}
+	T_{k+1}
+	= \psi(x_k,y(x_k)) h^{p+1}
+	+ O(h^{p+2}),
+\end{equation*}
+则\(\psi(x_k,y(x_k)) h^{p+1}\)称为\DefineConcept{局部截断误差主项}.
+
+\(p\)阶精度的定义
+对隐式单步法也是适用的.
+例如，后退欧拉法的局部截断误差为\begin{align*}
+	T_{k+1}
+	&= y(x_{k+1})
+	- y(x_k)
+	- h f(x_{k+1},y(x_{k+1})) \\
+	&= h y'(x_k)
+	+ \frac{h^2}{2} y''(x_k)
+	+ O(h^3)
+	- h [
+		y'(x_k)
+		+ h y''(x_k)
+		+ O(h^2)
+	] \\
+	&= -\frac{h^2}{2} y''(x_k)
+	+ O(h^3)
+	= O(h^2).
+\end{align*}
+这里\(p=1\)，
+说明隐式单步法具有1阶精度，其局部截断误差主项为\(-\frac{h^2}{2} y''(x_k)\).
+
+同样地，对梯形方法有\begin{align*}
+	T_{k+1}
+	&= y(x_{k+1})
+	- y(x_k)
+	- h [y'(x_k) + y'(x_{k+1})] \\
+	&= h y'(x_k)
+	+ \frac{h^2}{2} y''(x_k)
+	+ \frac{h^3}{3!} y'''(x_k)
+	- \frac{h}{2}
+	\left[
+		y'(x_k)
+		+ y'(x_k)
+		+ h y''(x_k)
+		+ \frac{h^2}{2} y'''(x_k)
+	\right]
+	+ O(h^4) \\
+	&= -\frac{h^3}{12} y'''(x_k)
+	+ O(h^4)
+	= O(h^3).
+\end{align*}
+因此梯形方法具有2阶精度，
+其局部误差主项为\(-\frac{h^3}{12} y'''(x_n)\).
+
+后退欧拉法及梯形法这两种隐式方法都是从与微分方程等价的积分形式 \labelcref{equation:一阶常微分方程的初值问题.积分递推公式} 得到的.
+由此可见，用数值积分中具有更高代数精度的求积公式（例如辛普森求积公式）
+代替\cref{equation:一阶常微分方程的初值问题.积分递推公式} 右端积分，
+虽然能使方法的精度提高，但由此建立的方法却不是显式的.
