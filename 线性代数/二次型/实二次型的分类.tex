@@ -56,6 +56,58 @@
 \(f(x_1,x_2,x_3) \defeq x_1 x_2 + x_2^2 + 5 x_3^2\)是不定的.
 \end{example}
 
+\begin{example}
+设\(\vb{A} \in M_n(\mathbb{R})\).
+证明：如果对于任意向量\(\vb{x} \in \mathbb{R}^n\)总有\(\vb{x}^T \vb{A} \vb{x} = \vb0\)，
+那么\(\vb{A}\)是反对称矩阵.
+\begin{proof}
+%@credit: {DeepSeek}
+对于任意\(\vb{x}, \vb{y} \in \mathbb{R}^n\)，
+由已知条件可知\begin{equation*}
+    (\vb{x} + \vb{y})^T \vb{A} (\vb{x} + \vb{y}) = 0.
+\end{equation*}
+将上式展开得\begin{equation*}
+    (\vb{x} + \vb{y})^T \vb{A} (\vb{x} + \vb{y})
+    = \vb{x}^T \vb{A} \vb{x}
+	+ \vb{y}^T \vb{A} \vb{y}
+	+ \vb{x}^T \vb{A} \vb{y}
+	+ \vb{y}^T \vb{A} \vb{x}.
+\end{equation*}
+因为\(\vb{x}^T \vb{A} \vb{x} = 0\)且\(\vb{y}^T \vb{A} \vb{y} = 0\)，
+所以上式可以化简为\begin{equation*}
+    \vb{x}^T \vb{A} \vb{y}
+	+ \vb{y}^T \vb{A} \vb{x}
+	= 0.
+\end{equation*}
+注意到\(\vb{y}^T \vb{A} \vb{x} \in \mathbb{R}\)，
+其转置等于自身，
+即\(\vb{y}^T \vb{A} \vb{x} = (\vb{y}^T \vb{A} \vb{x})^T = \vb{x}^T \vb{A}^T \vb{y}\)，
+于是上式又可化为\begin{equation*}
+    \vb{x}^T \vb{A} \vb{y}
+	+ \vb{x}^T \vb{A}^T \vb{y}
+	= \vb{x}^T (\vb{A} + \vb{A}^T) \vb{y}
+	= 0.
+\end{equation*}
+既然上式对所有\(\vb{x}, \vb{y} \in \mathbb{R}^n\)成立，
+不妨依次取标准基向量\(
+	\vb{x} = \vb{e}_i,
+	\vb{y} = \vb{e}_j
+\)，
+易见\(\vb{e}_i^T (\vb{A} + \vb{A}^T) \vb{e}_j = 0\)是矩阵\(\vb{A} + \vb{A}^T\)的\((i,j)\)元素，
+这就说明\(\vb{A} + \vb{A}^T = 0\)，
+即\(\vb{A}^T = -\vb{A}\)，
+因此\(\vb{A}\)为反对称矩阵.
+\end{proof}
+\end{example}
+\begin{remark}
+%@credit: {44bb3e13-540d-4744-b409-beeb15810d22} 说：
+上例结论在任意交换环上也成立，
+即对于任意交换环\(R\)，
+任意取定\(\vb{A} \in M_n(R)\)，
+如果对于任意向量\(\vb{x} \in \mathbb{R}^n\)总有\(\vb{x}^T \vb{A} \vb{x} = \vb0\)，
+那么\(\vb{A}\)是反对称矩阵.
+\end{remark}
+
 \subsection{惯性定理}
 \begin{theorem}\label{theorem:二次型.惯性定理}
 %@see: 《线性代数》（张慎语、周厚隆） P129 惯性定理（inertial theorem）
