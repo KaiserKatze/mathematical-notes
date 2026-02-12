@@ -16,8 +16,8 @@
 % 整理得\(\vb{X}(\vb{X}-\vb{E})=\vb0\)，
 % 解得\(\vb{X}=\vb0\)或\(\vb{X}=\vb{E}\).
 % 假设\(\vb{B}\vb{A}=\vb0\)，
-% 于是\(\abs{\vb{B}\vb{A}}=\abs{\vb{B}}\abs{\vb{A}}=0\)，
-% 这与\(\abs{\vb{A}\vb{B}}=\abs{\vb{A}}\abs{\vb{B}}=1\)矛盾，
+% 于是\(\DeterminantA{\vb{B}\vb{A}}=\DeterminantA{\vb{B}}\DeterminantA{\vb{A}}=0\)，
+% 这与\(\DeterminantA{\vb{A}\vb{B}}=\DeterminantA{\vb{A}}\DeterminantA{\vb{B}}=1\)矛盾，
 % 因此\(\vb{B}\vb{A}=\vb{E}\).
 % \end{proof}
 % \end{lemma}
@@ -48,10 +48,10 @@
 \begin{definition}
 设\(\vb{A} \in M_n(K)\).
 \begin{itemize}
-	\item 若\(\abs{\vb{A}}=0\)，
+	\item 若\(\DeterminantA{\vb{A}}=0\)，
 	则称“\(\vb{A}\)是\DefineConcept{奇异矩阵}（singular matrix）”.
 	%@see: https://mathworld.wolfram.com/SingularMatrix.html
-	\item 若\(\abs{\vb{A}} \neq 0\)，
+	\item 若\(\DeterminantA{\vb{A}} \neq 0\)，
 	则称“\(\vb{A}\)是\DefineConcept{非奇异矩阵}（nonsingular matrix，regular matrix）”.
 	%@see: https://mathworld.wolfram.com/NonsingularMatrix.html
 	%@see: https://mathworld.wolfram.com/RegularMatrix.html
@@ -72,15 +72,15 @@
 设\(\vb{A}\)是\(n\)阶方阵，则“\(\vb{A}\)可逆”的充分必要条件是“\(\vb{A}\)是非奇异矩阵”.
 \begin{proof}
 必要性.
-假设矩阵\(\vb{A}\)可逆，那么存在\(n\)阶方阵\(\vb{B}\)，使得\(\vb{A}\vb{B}=\vb{E}\)，于是\(\abs{\vb{A}\vb{B}}=\abs{\vb{E}}\)；
+假设矩阵\(\vb{A}\)可逆，那么存在\(n\)阶方阵\(\vb{B}\)，使得\(\vb{A}\vb{B}=\vb{E}\)，于是\(\DeterminantA{\vb{A}\vb{B}}=\DeterminantA{\vb{E}}\)；
 而根据\cref{theorem:行列式.矩阵乘积的行列式}，
-\(\abs{\vb{A}\vb{B}}=\abs{\vb{A}}\abs{\vb{B}}=1\)，\(\abs{\vb{A}}\neq0\).
+\(\DeterminantA{\vb{A}\vb{B}}=\DeterminantA{\vb{A}}\DeterminantA{\vb{B}}=1\)，\(\DeterminantA{\vb{A}}\neq0\).
 
 充分性.
-设\(\abs{\vb{A}}\neq0\)，\(\vb{A}^*\)是\(\vb{A}\)的伴随矩阵.
+设\(\DeterminantA{\vb{A}}\neq0\)，\(\vb{A}^*\)是\(\vb{A}\)的伴随矩阵.
 根据\cref{equation:行列式.伴随矩阵.恒等式1}，
 若令\begin{equation*}
-	\vb{B}=\frac{1}{\abs{\vb{A}}} \vb{A}^*,
+	\vb{B}=\frac{1}{\DeterminantA{\vb{A}}} \vb{A}^*,
 \end{equation*}
 则有\(\vb{A}\vb{B} = \vb{B}\vb{A} = \vb{E}\)，
 故由可逆矩阵的定义可知，矩阵\(\vb{A}\)可逆，
@@ -89,14 +89,16 @@
 \end{theorem}
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的唯一性}
-设\(\vb{A}\)是可逆矩阵，则它的逆矩阵存在且唯一，
+设\(\vb{A}\)是可逆矩阵，
+\(\vb{A}^*\)是\(\vb{A}\)的伴随矩阵，
+则\(\vb{A}\)的逆矩阵存在且唯一，
 且有\begin{equation}
-	\vb{A}^{-1} = \abs{\vb{A}}^{-1} \vb{A}^*.
+	\vb{A}^{-1} = \DeterminantA{\vb{A}}^{-1} \vb{A}^*.
 \end{equation}
 \begin{proof}
 存在性.
 在\cref{theorem:逆矩阵.矩阵可逆的充分必要条件1} 的证明过程中，
-我们看到矩阵\(\vb{B}=\abs{\vb{A}}^{-1} \vb{A}^*\)是可逆矩阵\(\vb{A}\)的一个逆矩阵，即\(\vb{A}\vb{B}=\vb{E}\).
+我们看到矩阵\(\vb{B}=\DeterminantA{\vb{A}}^{-1} \vb{A}^*\)是可逆矩阵\(\vb{A}\)的一个逆矩阵，即\(\vb{A}\vb{B}=\vb{E}\).
 
 唯一性.
 设矩阵\(\vb{C}\)也是\(\vb{A}\)的逆矩阵，即\(\vb{C}\vb{A}=\vb{E}\)，于是\begin{equation*}
@@ -112,7 +114,7 @@
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的行列式}
 %@see: 《线性代数》（张慎语、周厚隆） P44 性质3
-设\(\vb{A}\)可逆，则\(\abs{\vb{A}^{-1}} = \abs{\vb{A}}^{-1}\).
+设\(\vb{A}\)可逆，则\(\DeterminantA{\vb{A}^{-1}} = \DeterminantA{\vb{A}}^{-1}\).
 \end{property}
 
 \begin{property}\label{theorem:逆矩阵.逆矩阵的逆}
@@ -156,9 +158,9 @@
 \end{equation}
 \begin{proof}
 由\cref{theorem:行列式.性质2.推论2}，
-\(\abs{k\vb{A}} = k^n\abs{\vb{A}}\).
-因为\(\vb{A}\)可逆，所以\(\abs{\vb{A}}\neq0\)；
-又因为\(k\neq0\)，所以\(\abs{k\vb{A}}\neq0\)，即\(k\vb{A}\)可逆.
+\(\DeterminantA{k\vb{A}} = k^n\DeterminantA{\vb{A}}\).
+因为\(\vb{A}\)可逆，所以\(\DeterminantA{\vb{A}}\neq0\)；
+又因为\(k\neq0\)，所以\(\DeterminantA{k\vb{A}}\neq0\)，即\(k\vb{A}\)可逆.
 因此\begin{equation*}
 	(k^{-1}\vb{A}^{-1})(k\vb{A})
 	= (k^{-1} \cdot k)(\vb{A}^{-1}\vb{A})
@@ -180,7 +182,7 @@
 \end{equation}
 \begin{proof}
 由\cref{theorem:行列式.性质1}，
-\(\abs{\vb{A}^T}=\abs{\vb{A}}\neq0\)，
+\(\DeterminantA{\vb{A}^T}=\DeterminantA{\vb{A}}\neq0\)，
 于是\(\vb{A}^T\)可逆.
 由\cref{theorem:矩阵.矩阵乘积的转置}，
 \((\vb{A} \vb{A}^{-1})^T = (\vb{A}^{-1})^T \vb{A}^T\).
@@ -263,25 +265,25 @@
 证明：\(\vb{A}\)的伴随矩阵\(\vb{A}^*\)可逆，
 且\begin{equation}
 	(\vb{A}^*)^{-1}
-	= \abs{\vb{A}}^{-1} \vb{A}
+	= \DeterminantA{\vb{A}}^{-1} \vb{A}
 	= (\vb{A}^{-1})^*.
 \end{equation}
 \begin{proof}
 因为\begin{align*}
 	(\vb{A}^*)^{-1}
-	&= \left( \abs{\vb{A}} \vb{A}^{-1} \right)^{-1}
+	&= \left( \DeterminantA{\vb{A}} \vb{A}^{-1} \right)^{-1}
 		\tag{\cref{theorem:逆矩阵.逆矩阵的唯一性}} \\
-	&= \abs{\vb{A}}^{-1} (\vb{A}^{-1})^{-1}
+	&= \DeterminantA{\vb{A}}^{-1} (\vb{A}^{-1})^{-1}
 		\tag{\cref{theorem:逆矩阵.数与矩阵乘积的逆}} \\
-	&= \abs{\vb{A}}^{-1} \vb{A}
+	&= \DeterminantA{\vb{A}}^{-1} \vb{A}
 		\tag{\cref{theorem:逆矩阵.逆矩阵的逆}} \\
-	&= \abs{\vb{A}^{-1}} (\vb{A}^{-1})^{-1}
+	&= \DeterminantA{\vb{A}^{-1}} (\vb{A}^{-1})^{-1}
 		\tag{\cref{theorem:逆矩阵.逆矩阵的行列式}} \\
 	&= (\vb{A}^{-1})^*,
 		\tag{\cref{theorem:逆矩阵.逆矩阵的唯一性}}
 \end{align*}
 所以\((\vb{A}^*)^{-1}
-= \abs{\vb{A}}^{-1} \vb{A}
+= \DeterminantA{\vb{A}}^{-1} \vb{A}
 = (\vb{A}^{-1})^*\).
 \end{proof}
 \end{example}
@@ -291,12 +293,12 @@
 其中\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵.
 证明：\((\vb{A}^*)^m = \vb{E}\).
 \begin{proof}
-由\(\vb{A}^m = \vb{E}\)得\(\abs{\vb{A}}^m = 1\)，\(\vb{A}\)可逆，
-那么\(\vb{A}^* = \abs{\vb{A}} \vb{A}^{-1}\)，
+由\(\vb{A}^m = \vb{E}\)得\(\DeterminantA{\vb{A}}^m = 1\)，\(\vb{A}\)可逆，
+那么\(\vb{A}^* = \DeterminantA{\vb{A}} \vb{A}^{-1}\)，
 于是\begin{equation*}
 	(\vb{A}^*)^m
-	= (\abs{\vb{A}} \vb{A}^{-1})^m
-	= \abs{\vb{A}}^m (\vb{A}^{-1})^m
+	= (\DeterminantA{\vb{A}} \vb{A}^{-1})^m
+	= \DeterminantA{\vb{A}}^m (\vb{A}^{-1})^m
 	= (\vb{A}^m)^{-1}
 	= \vb{E}.
 	\qedhere
@@ -311,11 +313,11 @@
 假设\(\vb{A}^2=\vb{E}\)，
 其中\(\vb{E}\)是数域\(K\)上的\(n\)阶单位矩阵，
 那么由\cref{theorem:行列式.矩阵乘积的行列式} 可知\begin{equation*}
-	\abs{\vb{A}^2}
-	= \abs{\vb{A}}^2
+	\DeterminantA{\vb{A}^2}
+	= \DeterminantA{\vb{A}}^2
 	= 1,
 \end{equation*}
-从而\(\abs{\vb{A}}\neq0\)，
+从而\(\DeterminantA{\vb{A}}\neq0\)，
 \(\vb{A}\)可逆，
 因此\begin{equation*}
 	\vb{A}^{-1}
@@ -347,8 +349,8 @@
 	\end{bmatrix}.
 \end{equation*}
 \begin{proof}
-因为\(\vb{A}\)、\(\vb{B}\)为可逆矩阵，\(\abs{\vb{A}} \neq 0\)，\(\abs{\vb{B}} \neq 0\).
-所以\(\abs{\vb{M}}=\abs{\vb{A}}\abs{\vb{B}} \neq 0\)，即\(\vb{M}\)可逆.
+因为\(\vb{A}\)、\(\vb{B}\)为可逆矩阵，\(\DeterminantA{\vb{A}} \neq 0\)，\(\DeterminantA{\vb{B}} \neq 0\).
+所以\(\DeterminantA{\vb{M}}=\DeterminantA{\vb{A}}\DeterminantA{\vb{B}} \neq 0\)，即\(\vb{M}\)可逆.
 
 令\(\vb{M}\vb{x}=\vb{E}\)，即\begin{equation*}
 	\begin{bmatrix}
@@ -444,8 +446,8 @@
 		\vb0 & \vb{B}
 	\end{bmatrix}^*
 	= \begin{bmatrix}
-		\abs{\vb{B}} \vb{A}^* & -\vb{A}^*\vb{C}\vb{B}^* \\
-		\vb0 & \abs{\vb{A}} \vb{B}^*
+		\DeterminantA{\vb{B}} \vb{A}^* & -\vb{A}^*\vb{C}\vb{B}^* \\
+		\vb0 & \DeterminantA{\vb{A}} \vb{B}^*
 	\end{bmatrix},
 \end{equation*}\begin{equation*}
 	\begin{bmatrix}
@@ -453,8 +455,8 @@
 		\vb{D} & \vb{B}
 	\end{bmatrix}^*
 	= \begin{bmatrix}
-		\abs{\vb{B}} \vb{A}^* & \vb0 \\
-		-\vb{B}^* \vb{D} \vb{A}^* & \abs{\vb{A}} \vb{B}^*
+		\DeterminantA{\vb{B}} \vb{A}^* & \vb0 \\
+		-\vb{B}^* \vb{D} \vb{A}^* & \DeterminantA{\vb{A}} \vb{B}^*
 	\end{bmatrix},
 \end{equation*}\begin{equation*}
 	\begin{bmatrix}
@@ -462,8 +464,8 @@
 		\vb{B} & \vb0
 	\end{bmatrix}^*
 	= (-1)^{sn} \begin{bmatrix}
-		\vb0 & \abs{\vb{A}} \vb{B}^* \\
-		\abs{\vb{B}} \vb{A}^* & -\vb{A}^*\vb{C}\vb{B}^*
+		\vb0 & \DeterminantA{\vb{A}} \vb{B}^* \\
+		\DeterminantA{\vb{B}} \vb{A}^* & -\vb{A}^*\vb{C}\vb{B}^*
 	\end{bmatrix},
 \end{equation*}\begin{equation*}
 	\begin{bmatrix}
@@ -471,8 +473,8 @@
 		\vb{B} & \vb{D}
 	\end{bmatrix}^*
 	= (-1)^{sn} \begin{bmatrix}
-		-\vb{B}^*\vb{D}\vb{A}^* & \abs{\vb{A}} \vb{B}^* \\
-		\abs{\vb{B}} \vb{A}^* & \vb0
+		-\vb{B}^*\vb{D}\vb{A}^* & \DeterminantA{\vb{A}} \vb{B}^* \\
+		\DeterminantA{\vb{B}} \vb{A}^* & \vb0
 	\end{bmatrix}.
 \end{equation*}
 \end{remark}
