@@ -108,3 +108,122 @@
 \end{gather*}
 其中\(k\)是与\(x\)无关的常数.
 \end{property}
+
+\subsection{函数矩阵对纯量的导数}
+\begin{definition}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P231 定义7.1.3
+如果函数矩阵\(A(x) = (a_{ij}(x))_{m \times n}\)的
+每一个元素\(a_{ij}(x)\)都在\(x_0\)可导，
+则称“函数矩阵\(A(x)\)在点\(x_0\)可导”，
+记\begin{equation*}
+	A'(x_0)
+	\equiv \eval{\dv{A(x)}{x}}_{x=x_0}
+	\defeq \begin{bmatrix}
+		a_{11}'(x_0) & a_{12}'(x_0) & \dots & a_{1n}'(x_0) \\
+		a_{21}'(x_0) & a_{22}'(x_0) & \dots & a_{2n}'(x_0) \\
+		\vdots & \vdots & & \vdots \\
+		a_{m1}'(x_0) & a_{m2}'(x_0) & \dots & a_{mn}'(x_0) \\
+	\end{bmatrix}.
+\end{equation*}
+\end{definition}
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P232
+函数矩阵\(A(x)\)是常数矩阵的充分必要条件是\(A'(x)\)处处等于零.
+\end{property}
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P232
+设函数矩阵\(
+	A(x) = (a_{ij}(x))_{m \times n},
+	B(x) = (b_{ij}(x))_{m \times n}
+\)都可导，
+则\begin{equation*}
+	\dv{x} [ A(x) + B(x) ]
+	= \dv{A(x)}{x} + \dv{B(x)}{x}.
+\end{equation*}
+\end{property}
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P232
+设\(k(x)\)是\(x\)的纯量函数，
+\(A(x)\)是函数矩阵，
+\(k(x)\)与\(A(x)\)都可导，
+则\begin{equation*}
+	\dv{x} [ k(x) A(x) ]
+	= \dv{k(x)}{x} A(x)
+	+ k(x) \dv{A(x)}{x}.
+\end{equation*}
+\end{property}
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P232
+设\(
+	A(x) = (a_{ij}(x))_{m \times t},
+	B(x) = (b_{ij}(x))_{t \times n}
+\)都可导，
+则\begin{equation*}
+	\dv{x} [ A(x) B(x) ]
+	= \dv{A(x)}{x} B(x)
+	+ A(x) \dv{B(x)}{x}.
+\end{equation*}
+\end{property}
+\begin{remark}
+因为矩阵乘法不服从交换律，
+所以\begin{gather*}
+	\dv{x} A^2(x)
+	\neq 2 A(x) \dv{A(x)}{x}, \\
+	\dv{x} A^3(x)
+	\neq 3 A^2(x) \dv{A(x)}{x}.
+\end{gather*}
+\end{remark}
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P232
+设\(A(x) = (a_{ij}(x))_n\)及其逆矩阵\(A^{-1}(x)\)都可导，
+则\begin{equation*}
+	\dv{A^{-1}(x)}{x}
+	= - A^{-1}(x)
+	\dv{A(x)}{x}
+	A^{-1}(x).
+\end{equation*}
+\begin{proof}
+因为\(A^{-1}(x) A(x) = E\)，
+所以\begin{equation*}
+	\dv{x} [ A^{-1}(x) A(x) ]
+	= \dv{A^{-1}(x)}{x} A(x)
+	+ A^{-1}(x) \dv{A(x)}{x}
+	= \dv{x} E
+	= 0,
+\end{equation*}
+于是\begin{equation*}
+	\dv{A^{-1}(x)}{x}
+	= - A^{-1}(x)
+	\dv{A(x)}{x}
+	A^{-1}(x).
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{property}
+
+\begin{property}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P233
+设\(A(x)\)是函数矩阵，\(x = f(t)\)是\(t\)的纯量函数，
+\(A(x)\)与\(f(t)\)都可导，
+则\begin{equation*}
+	\dv{A(x(t))}{t}
+	= \dv{A(x)}{x} f'(t).
+\end{equation*}
+\end{property}
+
+函数矩阵的导数也是一个函数矩阵，
+只要可导就能继续求导，得到函数矩阵的高阶导数：
+\begin{align*}
+	\dv[2]{A(x)}{x}
+	&\defeq \dv{x}\left( \dv{A(x)}{x} \right), \\
+	\dv[3]{A(x)}{x}
+	&\defeq \dv{x}\left( \dv[2]{A(x)}{x} \right), \\
+	&\hspace{6pt}\vdots \\
+	\dv[k+1]{A(x)}{x}
+	&\defeq \dv{x}\left( \dv[k]{A(x)}{x} \right).
+\end{align*}
