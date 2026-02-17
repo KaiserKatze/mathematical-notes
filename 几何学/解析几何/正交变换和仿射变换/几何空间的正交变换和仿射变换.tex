@@ -1,4 +1,5 @@
 \section{几何空间的正交变换和仿射变换}
+\subsection{正交点变换}
 \begin{definition}
 %@see: 《解析几何》（丘维声） P241 定义6.1
 几何空间的一个点变换，如果保持任意两点的距离不变，
@@ -163,6 +164,7 @@
 %@see: 《解析几何》（丘维声） P245 命题6.2
 %@see: 《解析几何》（丘维声） P245 定理6.3
 
+\subsection{仿射点变换}
 \begin{definition}
 %@see: 《解析几何》（丘维声） P245 定义6.3
 几何空间的一个点变换\(\tau\)，
@@ -245,6 +247,7 @@
 上述定理表明，几何空间的一个仿射变换\(\tau\)按同一比值来改变所有平行六面体的定向体积，
 从而按同一比值改变几何空间中任意区域的体积.
 
+\subsection{绕坐标轴旋转的矩阵表示}
 容易看出：
 绕\(x\)轴旋转\(\alpha\)、
 绕\(y\)轴旋转\(\beta\)、
@@ -289,3 +292,41 @@
 	\alpha = \arctan(n_z/n_x),
 	\beta = \arcsin n_y
 \).
+
+\subsection{绕任意轴旋转的矩阵表示}
+%@see: 《视觉SLAM十四讲 : 从理论到实践（第2版）》（高翔、张涛） P53
+绕单位向量\(\vb{n}\)旋转\(\theta\)
+可以表示为旋转矩阵\begin{equation*}
+%@see: 《视觉SLAM十四讲 : 从理论到实践（第2版）》（高翔、张涛） P53 (3.15)
+	\vb{R}
+	\defeq
+	\cos\theta \vb{E}_3
+	+ (1 - \cos\theta) \vb{n} \vb{n}^T
+	+ \sin\theta \vb{n}^\times,
+\end{equation*}
+其中\(\vb{E}_3\)是3阶单位矩阵，
+\(\vb{n}^\times\)是向量\(\vb{n}\)的外积矩阵.
+
+对于任意给定的一个旋转矩阵\(\vb{R}\)，要想求出对应的旋转向量\(\theta \vb{n}\)，
+只需要先求\(\vb{R}\)的迹，
+得\begin{align*}
+%@see: 《视觉SLAM十四讲 : 从理论到实践（第2版）》（高翔、张涛） P53 (3.16)
+	\tr \vb{R}
+	&= \cos\theta \tr \vb{E}_3
+	+ (1 - \cos\theta) \tr(\vb{n} \vb{n}^T)
+	+ \sin\theta \tr\vb{n}^\times \\
+	&= 3 \cos\theta + (1 - \cos\theta)
+	= 1 + 2 \cos\theta,
+\end{align*}
+便有\begin{equation*}
+%@see: 《视觉SLAM十四讲 : 从理论到实践（第2版）》（高翔、张涛） P53 (3.17)
+	\theta = \arccos\frac{\tr \vb{R} - 1}{2}.
+\end{equation*}
+由于旋转轴\(\vb{n}\)上的向量在旋转后保持不变，
+%@see: 《视觉SLAM十四讲 : 从理论到实践（第2版）》（高翔、张涛） P54 (3.18)
+即\(\vb{R} (k \vb{n}) = (k \vb{n})\)，
+其中\(k\)是任意实数，
+所以旋转轴\(\vb{n}\)是旋转矩阵\(\vb{R}\)的属于特征值\(1\)的单位特征向量
+（只靠特征方程，会求出共线反向的单位特征向量，
+最终需要根据“右手规则”来确定\(\vb{n}\)的方向）.
+我们把向量\(\theta \vb{n}\)称为旋转矩阵\(\vb{R}\)对应的\DefineConcept{旋转向量}.
