@@ -299,16 +299,68 @@
 \end{definition}
 
 \section{矩阵范数}
+\subsection{矩阵范数的一般定义}
 由所有形状相同的矩阵组成的集合，对加法和标量乘法，成为一个线性空间.
 于是我们可以在这个线性空间\(M_{m \times n}(K)\)上定义范数.
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P180
+但是考虑到矩阵作为线性映射的表示，
+我们在定义矩阵范数时通常会额外添加一个条件：
+\begin{equation*}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P180 (5.2.1)
+	\norm{A B} \leq \norm{A} \norm{B}.
+\end{equation*}
+如果只是把向量范数形式上推广到矩阵范数，
+会发现有的范数（例如向量的\(L_1\)范数、\(L_2\)范数）都满足上式；
+但是有的范数却不满足上述要求，
+例如向量的\(L_\infty\)范数，
+当\(
+	A \defeq \begin{bmatrix}
+		1 & 1 \\
+		1 & 1 \\
+	\end{bmatrix},
+	B \defeq \begin{bmatrix}
+		1 & 1 \\
+		0 & 1 \\
+	\end{bmatrix}
+\)时，
+有\(
+	A B = \begin{bmatrix}
+		1 & 2 \\
+		1 & 2 \\
+	\end{bmatrix}，
+\)，
+而\(A,B,AB\)的向量\(L_\infty\)范数分别为
+\(
+	\norm{A}_\infty = 1,
+	\norm{B}_\infty = 1,
+	\norm{AB}_\infty = 2
+\).
 
-我们首先给出复数域上\(n\)阶方阵的矩阵范数的一般定义.
+% \begin{definition}
+% %@see: 《矩阵论》（詹兴致） P5
+% %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定理16
+% 设\(V\)是域\(F\)上的一个线性空间，
+% \(p\colon V \to \mathbb{R}\)是\(V\)的一个范数.
+% 如果运算\(f\colon V \times V \to V\)
+% 和\(g\colon \mathbb{R} \times \mathbb{R} \to \mathbb{R}\)
+% 满足\begin{equation*}
+% 	(\forall A,B \in V)
+% 	[
+% 		p(f( A , B )) \leq g( p(A), p(B) )
+% 	],
+% \end{equation*}
+% 则称“范数\(p\)（对于运算\(f\)和\(g\)）是\DefineConcept{次可乘的}（submultiplcative）”.
+% %@see: https://mathworld.wolfram.com/Compatible.html
+% \end{definition}
+
+我们给出复数域上\(n\)阶方阵的矩阵范数的一般定义.
 \begin{definition}
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定义5（矩阵的范数）
 设数域\(K \defeq \mathbb{C}\)，
 线性空间\(V \defeq M_n(K)\).
 如果映射\(p\colon V \to \mathbb{R}\)
 满足\begin{itemize}
+	% 《矩阵分析（第3版）》（史荣昌、魏丰）上称之为{非负性}
 	\item {\rm\bf 正定性}：\begin{equation*}
 		(\forall \alpha \in V)
 		[p(\alpha) \geq 0],
@@ -336,6 +388,7 @@
 		],
 	\end{equation*}
 
+	% 《矩阵分析（第3版）》（史荣昌、魏丰）上称之为{矩阵乘法相容性}
 	\item {\rm\bf 次可乘性}：\begin{equation*}
 		(\forall \alpha,\beta \in V)
 		[
@@ -356,6 +409,7 @@
 \end{equation*}
 \end{property}
 
+\subsection{弗罗贝尼乌斯范数}
 \begin{definition}% F-范数
 %@see: 《矩阵论》（詹兴致） P5
 设\(A \in M_{m \times n}(\mathbb{C})\)，
@@ -385,6 +439,7 @@
 %TODO proof
 \end{property}
 
+\subsection{算子范数，自然范数}
 \begin{definition}
 %@see: 《矩阵论》（詹兴致） P5
 %@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定义6（矩阵的算子范数）
@@ -420,22 +475,6 @@
 对于任意一个自然范数，
 单位矩阵的自然范数恒等于\(1\).
 \end{property}
-
-\begin{definition}
-%@see: 《矩阵论》（詹兴致） P5
-%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P164 定理16
-如果由\(f\)和\(g\)诱导的算子范数
-\(N\colon M_n(\mathbb{C}) \to \mathbb{R}, A \mapsto \MatrixNorm{A}\)
-满足\begin{equation*}
-	(\forall A,B \in M_n(\mathbb{C}))
-	[
-		\MatrixNorm{AB}
-		\leq \MatrixNorm{A} \MatrixNorm{B}
-	],
-\end{equation*}
-则称“由\(f\)和\(g\)诱导的算子范数\(N\)是\DefineConcept{次可乘的}（submultiplcative）”.
-%@see: https://mathworld.wolfram.com/Compatible.html
-\end{definition}
 
 \begin{definition}
 %@credit: {8b6edada-f2fd-4ae5-9020-eb533149a54c},{6c964576-9569-472e-969e-54699e35974b}
