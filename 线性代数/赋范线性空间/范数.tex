@@ -454,6 +454,8 @@
 称之为“矩阵\(A\)由\(f\)和\(g\)诱导的\DefineConcept{算子范数}（operator norm）\footnote{
 	%@credit: {cee35532-e299-4587-89a0-7b84e7454774} 小飞机说“算子范数”就是L2范数.
 	在有的书上，矩阵的“算子范数”是指它的谱范数.
+	%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P184 定义5.3.2
+	在有的书上，矩阵的“算子范数”是指它的\(L_p\)范数.
 }”.
 %@see: https://mathworld.wolfram.com/OperatorNorm.html
 \end{definition}
@@ -700,3 +702,71 @@
 	\leq \MatrixNorm{A}_F \cdot \norm{x}_2.
 	%TODO proof
 \end{gather*}
+
+\section{矩阵测度}
+作为矩阵范数的应用，下面定义矩阵的测度.
+\begin{definition}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P199 定义5.6.1
+设矩阵\(A \in M_n(\mathbb{C})\)，
+\(E\)是\(n\)阶单位矩阵.
+如果极限\begin{equation*}
+	\mu(A)
+	\defeq
+	\lim_{x \to 0^+}
+	\frac{
+		\norm{E + x A}_p - 1
+	}{x}
+\end{equation*}
+存在，
+那么称\(\mu\)是“矩阵\(A\)关于\(L_p\)范数的\DefineConcept{测度}”.
+\end{definition}
+
+\begin{example}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P199 例5.6.6
+设矩阵\(A \in M_n(\mathbb{C})\).
+证明：\begin{equation*}
+	\mu_1(A)
+	\defeq
+	\max_j \left(
+		\Re a_{jj}
+		+ \sum_{\substack{1 \leq i \leq n \\ i \neq j}} \ComplexLengthA{a_{ij}}
+	\right)
+\end{equation*}
+是矩阵\(A\)关于\(L_1\)范数的测度.
+\begin{proof}
+由定义有\begin{align*}
+	\mu_1(A)
+	&= \lim_{x \to 0^+} \frac{\norm{E + x A}_1 - 1}{x} \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \max_j \left( \sum_{i=1}^n \ComplexLengthA{ \delta_{ij} + x a_{ij} } \right) - 1 \right] \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \max_j \left( \ComplexLengthA{ 1 + x a_{jj} } + x \sum_{\substack{1 \leq i \leq n \\ i \neq j}} \ComplexLengthA{a_{ij}} \right) - 1 \right] \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \max_j \left( 1 + x \Re a_{jj} + o(x) + x \sum_{\substack{1 \leq i \leq n \\ i \neq j}} \ComplexLengthA{a_{ij}} \right) - 1 \right] \\
+	&= \max_j \left( \Re a_{jj} + \sum_{\substack{1 \leq i \leq n \\ i \neq j}} \ComplexLengthA{a_{ij}} \right).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P199 例5.6.6
+设矩阵\(A \in M_n(\mathbb{C})\).
+证明：\begin{equation*}
+	\mu_\infty(A)
+	\defeq
+	\max_i \left(
+		\Re a_{ii}
+		+ \sum_{\substack{1 \leq j \leq n \\ j \neq i}} \ComplexLengthA{a_{ij}}
+	\right)
+\end{equation*}
+是矩阵\(A\)关于\(L_\infty\)范数的测度.
+\begin{proof}
+由定义有\begin{align*}
+	\mu_\infty(A)
+	&= \lim_{x \to 0^+} \frac{\norm{E + x A}_\infty - 1}{x} \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \max_i \left( \sum_{j=1}^n \ComplexLengthA{ \delta_{ij} + x a_{ij} } \right) - 1 \right] \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \max_i \left( \ComplexLengthA{ 1 + x a_{ii} } + x \sum_{\substack{1 \leq j \leq n \\ j \neq i}} \ComplexLengthA{a_{ij}} \right) - 1 \right] \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \max_i \left( 1 + x \Re a_{ii} + o(x) + x \sum_{\substack{1 \leq j \leq n \\ j \neq i}} \ComplexLengthA{a_{ij}} \right) - 1 \right] \\
+	&= \max_i \left( \Re a_{ii} + \sum_{\substack{1 \leq j \leq n \\ j \neq i}} \ComplexLengthA{a_{ij}} \right).
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
