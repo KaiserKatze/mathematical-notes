@@ -770,3 +770,51 @@
 \end{align*}
 \end{proof}
 \end{example}
+
+\begin{example}
+%@see: 《矩阵分析（第3版）》（史荣昌、魏丰） P200 例5.6.2
+设矩阵\(A \in M_n(\mathbb{C})\).
+证明：\begin{equation*}
+	\mu_2(A)
+	\defeq
+	\max
+	\Set*{
+		% 显然矩阵\(B \defeq \frac{A + A^H}{2}\)是厄米矩阵，即\(B^H = B\).
+		% 由\cref{theorem:正规矩阵.厄米矩阵的特征值} 可知，厄米矩阵\(B\)的特征值都是实数.
+		\lambda
+		\given
+		\text{$\lambda \in \mathbb{R}$是矩阵$\frac{A + A^H}{2}$的一个特征值}
+	}
+\end{equation*}
+是矩阵\(A\)关于\(L_2\)范数的测度.
+\begin{proof}
+由定义有\begin{align*}
+	\mu_2(A)
+	&= \lim_{x \to 0^+} \frac{\norm{E + x A}_2 - 1}{x} \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \sqrt{ \max\Set*{
+		\lambda
+		\given
+		\text{$\lambda \in \mathbb{R}$是矩阵$(E + x A) (E + x A^H)$的一个特征值}
+	} } - 1 \right] \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \sqrt{ \max\Set*{
+		\lambda
+		\given
+		\text{$\lambda \in \mathbb{R}$是矩阵$\left( E + \frac{A + A^H}{2} 2 x + x^2 A A^H \right)$的一个特征值}
+	} } - 1 \right] \\
+	&= \lim_{x \to 0^+} \frac{1}{x} \left[ \sqrt{ \max\Set*{
+		1 + \lambda x + o(x)
+		\given
+		\text{$\lambda \in \mathbb{R}$是矩阵$\frac{A + A^H}{2}$的一个特征值}
+	} } - 1 \right] \\
+	&= \max
+	\Set*{
+		% 显然矩阵\(B \defeq \frac{A + A^H}{2}\)是厄米矩阵，即\(B^H = B\).
+		% 由\cref{theorem:正规矩阵.厄米矩阵的特征值} 可知，厄米矩阵\(B\)的特征值都是实数.
+		\lambda
+		\given
+		\text{$\lambda \in \mathbb{R}$是矩阵$\frac{A + A^H}{2}$的一个特征值}
+	}
+	\qedhere
+\end{align*}
+\end{proof}
+\end{example}
