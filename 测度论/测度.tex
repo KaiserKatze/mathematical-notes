@@ -24,6 +24,84 @@
 	\item \(\mu(Q)=1\)，
 	其中\(Q = \Set{ x\in\mathbb{R}^n \given 0\leq x_i<1\ (i=1,2,\dotsc,n) }\).
 \end{enumerate}
+可惜的是，这些条件相互矛盾.
+例如，在\(X \defeq [0,1)\)上定义一个等价关系\(x \sim y \iff \text{$x-y$是有理数}\)；
+设\(N\)是\(X\)的一个子集，
+且\(N\)恰好含有每一个等价类中的一个元素
+（为了构造\(N\)，必须应用选择公理）；
+接下来，令\(R \defeq \mathbb{Q} \cap X\)，
+再令\begin{equation*}
+	N_r \defeq
+	\Set{
+		x + r
+		\given
+		x \in N \cap [0,1-r)
+	}
+	\cup
+	\Set{
+		x + r - 1
+		\given
+		x \in N \cap [1-r,1)
+	}
+	\quad(r \in R);
+\end{equation*}
+那么\(N_r \subseteq X\)，
+且对于任意\(x \in X\)，\(x\)一定属于某一个\(N_r\).
+实际上，如果\(y\)是\(N\)的元素，且\(y\)属于\(x\)的等价类，
+那么\(x \in N_r\)，
+其中当\(x \geq y\)时有\(r = x - y\)，
+而当\(x < y\)时有\(r = x - y + 1\)；
+另一方面，如果\(x \in N_r \cap N_s\)，
+那么\(x - r\)（或\(x - r + 1\)）
+和\(x - s\)（或\(x - s + 1\)）
+就会是\(N\)中属于同一个等价类的不同元素，
+但是这是不可能的.
+
+假设\(\mu\colon \Powerset\mathbb{R} \to [0,+\infty]\)满足三个条件.
+根据条件1和条件2，
+对于任意\(r \in R\)有\begin{equation*}
+	\mu(N)
+	= \mu(N \cap [0,1-r))
+	+ \mu(N \cap [1-r,1))
+	= \mu(N_r).
+\end{equation*}
+而且，因为\(R\)是可数的，且\(X\)是全体\(N_r\)的互斥并，
+那么由条件1有\begin{equation*}
+	\mu(X) = \sum_{r \in R} \mu(N_r).
+\end{equation*}
+但是条件3要求\(\mu(X) = 1\)；
+而且根据\(\mu(N_r) = \mu(N)\)，
+可知上式右侧和式要么等于零（当\(\mu(N) = 0\)时）要么等于正无穷大（当\(\mu(N) > 0\)时.
+因此同时满足三个条件的映射\(\mu\)不存在.
+
+为了解决上述矛盾，有人尝试将条件1弱化为仅对有限的集合序列成立.
+但是这并不是一个好主意，
+因为与极限、连续相关的理论大多要求可列可加性.
+更何况当\(n \geq 3\)时，上述弱化版本的条件1依然与条件2、条件3水火不容.
+实际上，在1924年，巴拿赫和塔斯基证明了以下结论.
+\begin{proposition}
+设\(U,V\)是\(\mathbb{R}^n\ (n \geq 3)\)中的两个有界开集，
+那么存在\(k \in \mathbb{N}\)，
+存在\(\mathbb{R}^n\)的\(2k\)个子集\(E_1,\dotsc,E_k,F_1,\dotsc,F_k\)，
+使得\begin{itemize}
+	\item \(E_1,\dotsc,E_k\)是互斥的，且\(\bigcup_{j=1}^k E_j = U\)；
+	\item \(F_1,\dotsc,F_k\)是互斥的，且\(\bigcup_{j=1}^k F_j = V\)；
+	\item \(E_j\)与\(F_j\)全等（\(j=1,2,\dotsc,k\)）.
+\end{itemize}
+\end{proposition}
+形象地说，我们可以把一颗豌豆大小的球体切成有限个碎片，然后将它们重新组成为一个地球大小的球体！
+集合\(E_j\)和\(F_j\)是非常诡谲的，它们完全无法精确地可视化，其构造依赖于选择公理.
+但是这些集合的存在性确切地保证了
+我们无法构造同时满足以下条件的映射
+\(\mu\colon \Powerset\mathbb{R}^n \to [0,+\infty]\)：
+\begin{itemize}
+	\item 将有界开集映成正的有限值，
+	\item 对于有限序列满足条件1和条件2.
+\end{itemize}
+
+上述例子意在说明在\(\mathbb{R}^n\)的全体子集上定义一个具有合理几何意义的测度是不可能的，
+一个解决办法是修改条件，
+只在\(\mathbb{R}^n\)的某一类子集上定义映射\(\mu\)，
 
 \section{集族}
 在测度论中，我们常把一个非空集合记为\(\Omega\)，
