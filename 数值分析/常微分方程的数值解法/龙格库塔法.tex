@@ -1,0 +1,310 @@
+\section{龙格--库塔法}
+\subsection{显式龙格--库塔法}
+改进欧拉法可以表示为\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P262 (9.16)
+	y_{k+1}
+	= y_k
+	+ \frac{h}{2}
+	[
+		f_k
+		+ f(x_k + h,y_k + h f_k)
+	]
+	\quad(k=0,1,2,\dotsc).
+\end{equation*}
+其中\(f_k \defeq f(x_k,y_k)\)且\(y_k = y(x_k)\)，
+此时增量函数为\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P262 (9.17)
+	\phi(x_k,y_k,h)
+	= \frac12 [
+		f_k
+		+ f(x_k + h,y_k + h f_k)
+	],
+\end{equation*}
+局部截断误差为\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P262 (9.18)
+	T_{k+1}
+	= y(x_{k+1})
+	- y_k
+	- h [
+		f_k
+		+ f(x_k + h,y_k + h f_k)
+	].
+\end{equation*}
+为了得到\(T_{k+1}\)的精度阶数\(p\)，
+要将上式各项在\((x_k,y_k)\)处做泰勒展开：
+\begin{align*}
+	f(x_k + h,y_k + h f_k)
+	&= f_k
+	+ h f'_x(x_k,y_k)
+	+ h f'_y(x_k,y_k) f_k \\
+	&\hspace{20pt}
+	+ \frac{h^2}{2} [
+		f''_{xx}(x_k,y_k)
+		+ 2 f''_{xy}(x_k,y_k) f_k
+		+ f''_{yy}(x_k,y_k) f_k^2
+	]
+	+ O(h^3),
+	\\
+	y(x_{k+1})
+	&= y_k
+	+ h y'_k
+	+ \frac{h^2}{2} y''_k
+	+ \frac{h^3}{3!} y'''_k
+	+ O(h^4),
+\end{align*}
+其中\begin{align*}
+	y'_k
+	&\defeq
+	f(x_k,y_k)
+	= f_k,
+	\\
+	y''_k
+	&\defeq
+	\dv{x} f(x_k,y_k)
+	= f'_x(x_k,y_k)
+	+ f'_y(x_k,y_k) f_k,
+	\\
+	y'''_k
+	&\defeq
+	f''_{xx}(x_k,y_k)
+	+ 2 f''_{xy}(x_k,y_k) f_k
+	+ f''_{yy}(x_k,y_k) f_k^2
+	\\
+	&\hspace{20pt}
+	+ f'_y(x_k,y_k)
+	[
+		f'_x(x_k,y_k)
+		+ f'_y(x_k,y_k) f_k
+	].
+\end{align*}
+于是\begin{equation*}
+	T_{k+1}
+	= \frac{h^3}{3!}
+	f'_y(x_k,y_k)
+	[
+		f'_x(x_k,y_k)
+		+ f'_y(x_k,y_k) f_k
+	]
+	+ O(h^4).
+\end{equation*}
+由此可知改进欧拉法是2阶的，
+其局部误差主项为\begin{equation*}
+	\frac{h^3}{3!}
+	f'_y(x_k,y_k)
+	[
+		f'_x(x_k,y_k)
+		+ f'_y(x_k,y_k) f_k
+	].
+\end{equation*}
+
+改进欧拉法突破了数值求积公式中各节点\(x_k + \lambda_i h\)处取函数值\(f(x_k + \lambda_i h,y(x_k + \lambda_i h))\)的限制，
+改为取\(f(x_k + \lambda_i h,y_k + h f_k)\).
+
+更进一步，可以将改进欧拉法推广为\begin{equation}\label{equation:常微分方程初值问题的数值解法.龙格库塔法}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P263 (9.19)
+	y_{k+1}
+	= y_k
+	+ h \sum_{i=1}^r c_i K_i
+	\quad(k=0,1,2,\dotsc),
+\end{equation}
+其中\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P263 (9.20)
+	\begin{cases}
+		K_1 = f(x_k,y_k), \\
+		K_i = f\left( x_k + \lambda_i h, y_k + h \sum_{j=1}^{i-1} \mu_{ij} K_j \right)
+		\quad(i=2,3\dotsc,r).
+	\end{cases}
+\end{equation}
+这里\(c_i,\lambda_i,\mu_{ij}\)都是常数.
+\cref{equation:常微分方程初值问题的数值解法.龙格库塔法}
+称为\(r\)阶显式\DefineConcept{龙格--库塔法}（Runge--Kutta method）.
+
+当\(r=1\)且\(\phi(x_k,y_k,h) = f(x_k,y_k)\)且\(c_1=1\)时，
+龙格--库塔法退化为欧拉法，其阶数为\(p=1\).
+
+\subsection{二阶龙格--库塔法}
+二阶龙格--库塔法不唯一，
+例如，改进欧拉法就是一种二阶龙格--库塔法，
+除此以外，它的最常见的一个递推公式如下：
+\begin{equation}\label{equation:常微分方程初值问题的数值解法.2阶龙格库塔法}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P264 (9.23)
+	\begin{cases}
+		K_1 = f(x_k,y_k), \\
+		K_2 = f\left( x_k + \frac{h}{2}, y_k + \frac{h}{2} K_1 \right), \\
+		y_{k+1} = y_k + h K_2
+	\end{cases}
+	\quad(k=0,1,2,\dotsc).
+\end{equation}
+下面说明该递推公式的推导过程.
+
+由\cref{equation:常微分方程初值问题的数值解法.龙格库塔法}
+可知二阶龙格--库塔法递推公式为\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P263 (9.21)
+	\begin{cases}
+		K_1 = f(x_k,y_k), \\
+		K_2 = f(x_k + \lambda_2 h, y_k + \mu_{21} h K_1), \\
+		y_{k+1} = y_k + h (c_1 K_1 + c_2 K_2)
+	\end{cases}
+	\quad(k=0,1,2,\dotsc)
+\end{equation*}
+这里\(c_1,c_2,\lambda_2,\mu_{21}\)均是待定常数.
+二阶龙格--库塔法的局部截断误差为\begin{align*}
+	T_{k+1}
+	&= h f_k
+	+ \frac{h^2}{2}
+	[
+		f'_x(x_k,y_k)
+		+ f'_y(x_k,y_k) f_k
+	] \\
+	&\hspace{20pt}
+	- h [
+		c_1 f_k
+		+ c_2 (
+			f_k
+			+ \lambda_2
+			f'_x(x_k,y_k) h
+			+ \mu_{21} f'_y(x_k,y_k) f_k h
+		)
+	]
+	+ O(h^3) \\
+	&= (1 - c_1 - c_2) f_k h
+	+ \left( \frac12 - c_2 \lambda_2 \right)
+	f'_x(x_k,y_k) h^2
+	+ \left( \frac12 - c_2 \mu_{21} \right)
+	f'_y(x_k,y_k)
+	f_k h^2 \\
+	&\hspace{20pt}
+	+ \frac{h^3}{3!} f'_y(x_k,y_k)
+	[
+		f'_x(x_k,y_k)
+		+ f_k f'(x_k,y_k)
+	]
+	+ O(h^4).
+\end{align*}
+要使二阶龙格--库塔法具有\(p=2\)的精度阶数，
+必须使\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P264 (9.22)
+	\def\arraystretch{1.5}
+	\begin{cases}
+		1 - c_1 - c_2 = 0, \\
+		\frac12 - c_2 \lambda_2 = 0, \\
+		\frac12 - c_2 \mu_{21} = 0,
+	\end{cases}
+\end{equation*}
+即\begin{equation*}
+	c_2 \lambda_2 = \frac12,
+	\qquad
+	c_2 \mu_{21} = \frac12,
+	\qquad
+	c_1 + c_2 = 1.
+\end{equation*}
+上述非线性方程组是由具有4个未知数的3个非线性方程构成的，
+它的解不是唯一的.
+可以令\(c_2 = a \neq 0\)，
+则得\begin{equation*}
+	c_1 = 1 - a,
+	\qquad
+	\lambda_2 = \mu_{21} = \frac{1}{2a}.
+\end{equation*}
+若取\(a = 1\)，
+则\(c_2 = 1, c_1 = 0, \lambda_2 = \mu_{21} = 1/2\)，
+于是得到计算公式 \labelcref{equation:常微分方程初值问题的数值解法.2阶龙格库塔法}.
+
+\subsection{三阶龙格--库塔法}
+三阶龙格--库塔法不唯一，
+它的最常见的一个递推公式如下：\begin{equation}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P265
+	\begin{cases}
+		K_1 = f(x_k,y_k), \\
+		K_2 = f\left( x_k + \frac{h}{2}, y_k + \frac{h}{2} K_1 \right), \\
+		K_3 = f(x_k + h,y_k - h K_1 + 2 h K_2), \\
+		y_{k+1} = y_k + \frac{h}{6} (K_1 + 4 K_2 + K_3)
+	\end{cases}
+	\quad(k=0,1,2,\dotsc).
+\end{equation}
+
+\subsection{四阶龙格--库塔法}
+四阶龙格--库塔法不唯一，
+它的最常见的一个递推公式如下：\begin{equation}\label{equation:常微分方程初值问题的数值解法.4阶龙格库塔法}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P265 (9.26)
+	\def\arraystretch{1.5}
+	\begin{cases}
+		K_1 = f(x_k,y_k), \\
+		K_2 = f\left( x_k + \frac{h}{2}, y_k + \frac{h}{2} K_1 \right), \\
+		K_3 = f\left( x_k + \frac{h}{2}, y_k + \frac{h}{2} K_2 \right), \\
+		K_4 = f(x_k + h,y_k + h K_3), \\
+		y_{k+1} = y_k + \frac{h}{6} (K_1 + 2 K_2 + 2 K_3 + K_4)
+	\end{cases}
+	\quad(k=0,1,2,\dotsc).
+\end{equation}
+
+\subsection{变步长的龙格--库塔法}
+单从每一步来看，步长越小，局部截断误差就越小.
+但是随着步长的缩小，在一定求解范围内所要完成的步数就增加了.
+步数的增加不但引起计算量的增大，而且可能导致舍入误差的严重积累.
+因此，同积分的数值计算一样，微分方程的数值解法也有个步长选择的问题.
+
+在选择步长时，需要考虑两个问题：
+“怎么衡量和检验计算结果的精度”
+以及“如何依据所获得的精度处理步长”.
+
+我们考察经典的四阶显式龙格--库塔法 \labelcref{equation:常微分方程初值问题的数值解法.4阶龙格库塔法}.
+从节点\(x_k\)出发，先以\(h\)为步长求出一个近似值，记为\(y_{k+1}^{(h)}\).
+由于递推公式的局部截断误差为\(O(h^5)\)，
+故有\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P266 (9.27)
+	y(x_{k+1})
+	- y_{k+1}^{(h)}
+	\approx c h^5,
+\end{equation*}
+然后将步长折半，
+即取\(h/2\)为步长，
+从\(x_k\)跨两步到\(x_{k+1}\)，
+求得一个近似值\(y_{k+1}^{(h/2)}\)，
+每跨一步的截断误差为\(c (h/2)^T\)，
+因此有\begin{equation*}
+%@see: 《数值分析（第6版）》（李庆扬、王能超、易大义） P267 (9.28)
+	y(x_{k+1})
+	- y_{k+1}^{(h/2)}
+	\approx 2 c (h/2)^t.
+\end{equation*}
+比较上述两式可以看出，步长折半后，误差大约减少到\(1/16\)，
+即\begin{equation*}
+	\frac{
+		y(x_{k+1})
+		- y_{k+1}^{(h/2)}
+	}{
+		y(x_{k+1})
+		- y_{k+1}^{(h)}
+	}
+	\approx
+	\frac{1}{16}.
+\end{equation*}
+由此可得“事后估计式”：\begin{equation*}
+	y(x_{k+1})
+	- y_{k+1}^{(h/2)}
+	\approx \frac{1}{15} \left[ y_{k+1}^{(h/2)} - y_{k+1}^{(h)} \right].
+\end{equation*}
+这样，我们可以通过检查步长折半前后两次计算结果的偏差\begin{equation*}
+	\Delta \defeq \abs{ y_{k+1}^{(h/2)} - y_{k+1}^{(h)} }
+\end{equation*}
+来判定所选步长是否合适，具体地说，将区分以下两种情况处理：
+\begin{enumerate}
+	\item 对于给定的精度\(\epsilon\)，如果\(\Delta > \epsilon\)，
+	我们反复将步长折半进行计算，直到\(\Delta < \epsilon\)为止，
+	这时取最终得到的\(y_{k+1}^{(h/2)}\)作为结果；
+	\item 如果\(\Delta < \epsilon\)，
+	我们反复将步长加倍，直到\(\Delta > \epsilon\)为止，
+	这时再将步长折半一次，
+	就得到所要的结果.
+\end{enumerate}
+
+这种通过加倍或折半处理步长的方法称为\DefineConcept{变步长方法}.
+表面上看，为了选择步长，每一步的计算量增加了，
+但是由于解在局部的变化不会太大，
+故总体考虑往往是合算的.
+
+%TODO
+% 变步长方法还可以利用\(p\)阶与\(p+1\)阶龙格--库塔公式的局部截断误差
+% 得到误差控制与变步长的具体方法，
+% 可以参见文献《数值分析（第七版）》（Burden R L, Faires J D著；冯烟利、朱海燕译）（高等教育出版社，2025）.
