@@ -1,11 +1,47 @@
 \section{曲线拟合的最小二乘法}
 \begin{definition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P74 定义7
 设\(\phi_0,\phi_1,\dotsc,\phi_n\)都是区间\(D\)上的连续函数.
-如果\(\phi_0,\phi_1,\dotsc,\phi_n\)的任意线性组合
-在点集\(\{x_n\}_{0 \leq n \leq m}\)上
+如果\(\phi_0,\phi_1,\dotsc,\phi_n\)的任意一个线性组合
+\(
+	k_0 \phi_0 + k_1 \phi_1 + \dotsb + k_n \phi_n
+	\ (k_0,k_1,\dotsc,k_n \in \mathbb{R})
+\)
+在点集\(X \defeq \{x_0,x_1,\dotsc,x_m\}\ (m \geq n)\)上
 至多有\(n\)个不同的零点，
 则称“函数族\(\phi_0,\phi_1,\dotsc,\phi_n\)
-在点集\(\{x_n\}_{0 \leq n \leq m}\)上
+在点集\(X\)上
 满足\DefineConcept{哈尔条件}（Haar condition）”.
 %@see: https://mathworld.wolfram.com/HaarCondition.html
 \end{definition}
+
+\begin{proposition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P74
+函数族\(1,x,x^2,\dotsc,x^n\)在任意\(m\ (m \geq n)\)个点上满足哈尔条件.
+\end{proposition}
+
+\begin{proposition}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P74
+设\(\phi_0,\phi_1,\dotsc,\phi_n\)都是区间\(D\)上的连续函数.
+如果\(\phi_0,\phi_1,\dotsc,\phi_n\)
+在点集\(X \defeq \{x_0,x_1,\dotsc,x_m\}\)上满足哈尔条件，
+则法方程\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P74 (4.6)
+	\sum_{j=0}^n (\phi_k,\phi_j) a_j = (f,\phi_k)
+	\quad(k=0,1,2,\dotsc,n)
+\end{equation*}
+的系数矩阵\begin{equation*}
+%@see: 《数值分析（第5版）》（李庆扬、王能超、易大义） P74 (4.7)
+	G \defeq \begin{bmatrix}
+		(\phi_0,\phi_0) & (\phi_0,\phi_1) & \dots & (\phi_0,\phi_n) \\
+		(\phi_1,\phi_0) & (\phi_1,\phi_1) & \dots & (\phi_1,\phi_n) \\
+		\vdots & \vdots & & \vdots \\
+		(\phi_n,\phi_0) & (\phi_n,\phi_1) & \dots & (\phi_n,\phi_n) \\
+	\end{bmatrix}
+\end{equation*}
+是非奇异矩阵，
+法方程存在唯一解\(a_k = a^*_k\ (k=0,1,2,\dotsc,n)\)，
+函数\(f\)的最小二乘解为\begin{equation*}
+	S^*(x) \defeq a^*_0 \phi_0(x) + a^*_1 \phi_1(x) + \dotsb + a^*_n \phi_n(x).
+\end{equation*}
+\end{proposition}

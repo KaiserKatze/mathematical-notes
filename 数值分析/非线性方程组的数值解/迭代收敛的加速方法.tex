@@ -1,0 +1,35 @@
+%TODO
+\section{迭代收敛的加速方法}
+\subsection{埃特金加速收敛方法}
+
+%@see: https://mathworld.wolfram.com/AitkensDelta-SquaredProcess.html
+%@see: https://en.wikipedia.org/wiki/Aitken%27s_delta-squared_process
+
+令\begin{align*}
+	x_{k+1} &\defeq \phi(x_k), \\
+	x_{k+2} &\defeq \phi(x_{k+1}), \\
+	y_{k+1} &\defeq x_k - \frac{(x_{k+1} - x_k)^2}{x_{k+2} - 2 x_{k+1} + x_k},
+\end{align*}
+
+\subsection{斯蒂芬森迭代法}
+将不动点迭代法与埃特金加速技巧结合，
+就得到了\DefineConcept{斯蒂芬森迭代法}（Steffensen's method）.
+
+%@see: https://en.wikipedia.org/wiki/Steffensen%27s_method
+
+\begin{align*}
+	\begin{cases}
+		y_k \defeq \phi(x_k), \\
+		z_k \defeq \phi(y_k), \\
+		x_{k+1} \defeq x_k - \frac{(y_k - x_k)^2}{z_k - 2 y_k + x_k}
+	\end{cases}
+	\quad(k=0,1,2,\dotsc).
+\end{align*}
+
+
+所有的迭代法的通用特征：
+迭代时加上一个修正项，
+每次迭代时该修正项不断减小，直至为零.
+
+
+遇到含有指数函数的方程，可以尝试取对数.

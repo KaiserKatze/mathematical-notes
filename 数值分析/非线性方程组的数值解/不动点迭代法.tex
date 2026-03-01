@@ -22,4 +22,41 @@
 归结为一组显式的计算公式 \labelcref{definition:不动点迭代法.递推公式}，
 也就是说，该迭代过程实质上是一个逐步显式化的过程.
 
+%TODO
+变换方式不是唯一的.
+例如，要求方程\(x^3 - x - 1 = 0\)在\(x_0 = 1.5\)附近的根\(x^*\)，
+可以令\begin{equation*}
+	x^{(k+1)} \defeq (x^{(k)})^3 - 1,
+\end{equation*}
+也可以令\begin{equation*}
+	x^{(k+1)} \defeq \sqrt[3]{x^{(k)} + 1 },
+\end{equation*}
+但是前者是收敛的，后者不收敛.
+
+% def f(x):
+%     return (x + 1) ** (1/3)
+% def g(x):
+%     return x ** 3 - 1
+% def try_find_solution(x0, iter_fn, norm_fn, tol):
+%     while True:
+%         try:
+%             x = iter_fn(x0)
+%         except OverflowError:
+%             break
+%         if norm_fn(x0, x) < tol:
+%             return x
+
+
+迭代序列在整个定义域上收敛性（称为\DefineConcept{全局收敛性}）不容易判断，
+因此，在实际应用中，我们常常只在不动点\(x^*\)附近考察序列的收敛性（称为\DefineConcept{局部收敛性}）.
+
+
+一阶导数的绝对值越小，迭代序列收敛越快.
+如果一阶导数绝对值等于零，那么可以比较二阶导数的绝对值，二阶导数绝对值越小的迭代数列收敛越快.
+
+若\begin{equation*}
+	\lim_{k\to\infty} \frac{e_{k+1}}{e_k^p} = C
+\end{equation*}
+迭代过程是\(p\)阶收敛的.
+
 \subsection{不动点迭代法的收敛性}
