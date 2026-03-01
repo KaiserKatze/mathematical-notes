@@ -1040,3 +1040,42 @@
 	\end{bmatrix}.
 	%@Mathematica: quatLToMatrix[{Subscript[q,0],-Subscript[q,1],-Subscript[q,2],-Subscript[q,3]}].quatRToMatrix[{Subscript[q,0],Subscript[q,1],Subscript[q,2],Subscript[q,3]}]//Factor//MatrixForm
 \end{equation*}
+
+不难看出，当我们按顺序进行\(n\)次旋转\(q_1,q_2,\dotsc,q_{n-1},q_n\)时，
+映射\begin{align*}
+	p
+	&\mapsto
+	q_n \circ (q_{n-1} \circ \dotsm \circ (q_2 \circ (q_1 \circ p \circ q_1^*) \circ q_2^*) \dotsm \circ q_{n-1}^*) \circ q_n^*
+	\\
+	&=
+	(q_n \circ q_{n-1} \circ \dotsm \circ q_2 \circ q_1) \circ p \circ (q_1^* \circ q_2^* \circ \dotsm \circ q_{n-1}^* \circ q_n^*)
+	\\
+	&= \widetilde{q} \circ p \circ \widetilde{q}^*
+\end{align*}
+就相当于用一次旋转\(\widetilde{q} \defeq q_n \circ q_{n-1} \circ \dotsm \circ q_2 \circ q_1\)
+完成了上述\(n\)次旋转所要达到的效果.
+
+给定四元数\(q \defeq (\lambda_0,\lambda_1,\lambda_2,\lambda_3)^T\)，
+假设三维空间绕旋转轴\(\vec{q}\)旋转的角速率为\(\dd{\theta}/\dd{t}\)，
+则角速度为\begin{equation*}
+	\vec{\omega} \defeq \dv{\theta}{t} \vec{q} = (\omega_x,\omega_y,\omega_z)^T,
+\end{equation*}
+那么可以推导出用四元数表示的刚体旋转运动学方程\begin{equation*}
+	\dot{q}
+	= \frac12 ~ \omega \circ q
+	\quad\text{或}\quad
+	\begin{bmatrix}
+		\dot{\lambda}_0 \\
+		\dot{\lambda}_1 \\
+		\dot{\lambda}_2 \\
+		\dot{\lambda}_3 \\
+	\end{bmatrix}
+	= \frac12 ~
+	q^+
+	\begin{bmatrix}
+		0 \\
+		\omega_x \\
+		\omega_y \\
+		\omega_z \\
+	\end{bmatrix}.
+\end{equation*}
