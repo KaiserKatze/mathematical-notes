@@ -82,19 +82,22 @@ equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I}
 若\(\vb{e}_1\)旋转 90\textdegree 与\(\vb{e}_2\)重合，则为\DefineConcept{右手系}；
 若\(\vb{e}_1\)旋转 -90\textdegree 与\(\vb{e}_2\)重合，则为\DefineConcept{左手系}.
 
-设 I \([O;\vb{e}_1,\vb{e}_2]\)，II \([O';\vb{e}_1',\vb{e}_2']\)都是右手直角坐标系，且\begin{equation*}
+设 I \([O;\vb{e}_1,\vb{e}_2]\)，II \([O';\vb{e}_1',\vb{e}_2']\)都是右手直角坐标系，
+且\(O',\vb{e}_1',\vb{e}_2'\)的 I 坐标分别为\begin{equation*}
 	O'(x_0,y_0), \qquad
 	\vb{e}_1'(a_{11},a_{21}), \qquad
 	\vb{e}_2'(a_{12},a_{22}),
-\end{equation*}则有{\def\ExprA#1#2{%
-	a_{#1#2}  %
+\end{equation*}
+则有{\def\ExprA#1#2{%
+	\cos\angle(\vb{e}_#2',\vb{e}_#1)  %
 	= \VectorInnerProductDot{\vb{e}_#2'}{\vb{e}_#1}  %
-	= \cos\angle(\vb{e}_#2',\vb{e}_#1)  %
+	= \VectorInnerProductDot{(a_{1#2},a_{2#2})}{\ifnum0#1=1(1,0)\else(0,1)\fi}  %
+	= a_{#1#2}  %
 }%
 \begin{align*}
-	\ExprA{1}{1}, \qquad
+	\ExprA{1}{1}, \\
 	\ExprA{2}{1}, \\
-	\ExprA{1}{2}, \qquad
+	\ExprA{1}{2}, \\
 	\ExprA{2}{2}.
 \end{align*}}
 
@@ -136,28 +139,35 @@ equation:解析几何.平面坐标系的向量的仿射坐标变换公式II到I}
 \end{equation*}
 应该注意到，\(\VectorLengthA{\vb{A}}=1\).
 
-类似地，设\(\theta\)仍表示\(\vb{e}_1\)到\(\vb{e}_1'\)的转角，
 若 I 是右手直角坐标系，而 II 是左手直角坐标系，
 则 I 到 II 的过渡矩阵为\begin{equation*}
 	\begin{bmatrix}
 		\cos\theta & \sin\theta \\
 		\sin\theta & -\cos\theta
-	\end{bmatrix};
+	\end{bmatrix},
 \end{equation*}
+其中\(\theta\)仍表示\(\vb{e}_1\)到\(\vb{e}_1'\)的转角.
+应该注意到，\(\VectorLengthA{\vb{A}}=-1\).
+
 若 I 是左手直角坐标系，而 II 是右手直角坐标系，
 则 I 到 II 的过渡矩阵为\begin{equation*}
 	\begin{bmatrix}
 		\cos\theta & -\sin\theta \\
 		-\sin\theta & -\cos\theta
-	\end{bmatrix};
+	\end{bmatrix},
 \end{equation*}
+其中\(\theta\)仍表示\(\vb{e}_1\)到\(\vb{e}_1'\)的转角.
+应该注意到，\(\VectorLengthA{\vb{A}}=-1\).
+
 若 I 和 II 都是左手直角坐标系，
 则 I 到 II 的过渡矩阵为\begin{equation*}
 	\begin{bmatrix}
 		\cos\theta & \sin\theta \\
 		-\sin\theta & \cos\theta
-	\end{bmatrix}.
+	\end{bmatrix},
 \end{equation*}
+其中\(\theta\)仍表示\(\vb{e}_1\)到\(\vb{e}_1'\)的转角.
+应该注意到，\(\VectorLengthA{\vb{A}}=1\).
 
 \begin{definition}
 给定平面（或空间）的两个坐标系，
