@@ -193,7 +193,7 @@
 为棱的平行六面体的定向体积等于以这三个向量的右手直角坐标组成的三阶行列式.
 这也是3阶行列式的几何意义.
 
-\begin{example}
+\begin{example}\label{example:解析几何.先可逆变换再叉乘等于先叉乘再可逆变换}
 设\(\vb{M}\)是3阶可逆矩阵.
 证明：对于任意向量\(\vb{a},\vb{b}\)，
 有\begin{equation*}
@@ -252,6 +252,111 @@
 \end{equation*}
 \end{proof}
 \end{example}
+
+\begin{example}
+设\(\vb{R}\)是3阶正交矩阵，且\(\DeterminantA{\vb{R}} = 1\).
+证明：对于任意向量\(\vb{a}\)，
+有\begin{equation*}
+	(\vb{R} \vb{a})^\times \vb{R}
+	= \vb{R} \vb{a}^\times.
+\end{equation*}
+\begin{proof}
+因为\(\vb{R}\)是正交矩阵，所以\(\vb{R}\)肯定是可逆的，
+从而由\cref{example:解析几何.先可逆变换再叉乘等于先叉乘再可逆变换} 可知，
+对于任意向量\(\vb{a},\vb{b}\)，
+有\begin{equation*}
+	\VectorOuterProduct{(\vb{R} \vb{a})}{(\vb{R} \vb{b})}
+	= \DeterminantA{\vb{R}} (\vb{R}^{-1})^T (\VectorOuterProduct{\vb{a}}{\vb{b}}).
+\end{equation*}
+因为\(\vb{R}\)是正交矩阵，
+所以 \hyperref[equation:正交矩阵.正交矩阵的转置等于正交矩阵的逆]{\(\vb{R}^{-1} = \vb{R}^T\)}，
+进而有 \hyperref[theorem:逆矩阵.转置矩阵的逆与逆矩阵的转置]{\(
+	(\vb{R}^{-1})^T
+	= (\vb{R}^T)^{-1}
+	= \vb{R}
+\)}；
+又因为\(\DeterminantA{\vb{R}} = 1\)，
+所以上式化为\begin{equation*}
+	\VectorOuterProduct{(\vb{R} \vb{a})}{(\vb{R} \vb{b})}
+	= \vb{R} (\VectorOuterProduct{\vb{a}}{\vb{b}}),
+	\quad\text{即}\quad
+	(\vb{R} \vb{a})^\times (\vb{R} \vb{b})
+	= \vb{R} (\vb{a}^\times \vb{b}).
+\end{equation*}
+由于矩阵乘法满足结合律，
+所以\begin{equation*}
+	((\vb{R} \vb{a})^\times \vb{R}) \vb{b}
+	= (\vb{R} \vb{a}^\times) \vb{b}.
+\end{equation*}
+因为上式对于空间中的任意向量\(\vb{b}\)均成立，
+所以我们可以消去向量\(\vb{b}\)，
+得\begin{equation*}
+	(\vb{R} \vb{a})^\times \vb{R}
+	= \vb{R} \vb{a}^\times.
+	\qedhere
+\end{equation*}
+\end{proof}
+\end{example}
+\begin{remark}
+如果正交矩阵\(\vb{R}\)满足\(\DeterminantA{\vb{R}} = -1\)，
+则上述结论并不成立.
+例如，取\begin{equation*}
+	\vb{R}
+	= \begin{bmatrix}
+		-1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix},
+	\qquad
+	\vb{a}
+	= \begin{bmatrix}
+		1 \\
+		2 \\
+		3
+	\end{bmatrix},
+\end{equation*}
+则\begin{gather*}
+	\vb{R} \vb{a}
+	= \begin{bmatrix}
+		-1 \\ 2 \\ 3
+	\end{bmatrix},
+	\qquad
+	(\vb{R} \vb{a})^\times
+	= \begin{bmatrix}
+		0 & -3 & 2 \\
+		3 & 0 & 1 \\
+		-2 & -1 & 0
+	\end{bmatrix},
+	\qquad
+	(\vb{R} \vb{a})^\times \vb{R}
+	= \begin{bmatrix}
+		0 & -3 & 2 \\
+		-3 & 0 & 1 \\
+		2 & -1 & 0 \\
+	\end{bmatrix},
+%@Mathematica: B = DiagonalMatrix[{-1, 1, 1}]
+%@Mathematica: CrossProductMatrix[B.{1, 2, 3}].B
+	\\
+	(\vb{R}^{-1})^T
+	= \vb{R}
+	= \begin{bmatrix}
+		-1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix},
+	\qquad
+	(\vb{R}^{-1})^T \vb{a}^\times
+	= \begin{bmatrix}
+		0 & 3 & -2 \\
+		3 & 0 & -1 \\
+		-2 & 1 & 0 \\
+	\end{bmatrix}.
+\end{gather*}
+显然\(
+	(\vb{R} \vb{a})^\times \vb{R}
+	\neq (\vb{R}^{-1})^T \vb{a}^\times
+\).
+\end{remark}
 
 \subsection{四点共面的条件}
 \begin{theorem}
