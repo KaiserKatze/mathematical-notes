@@ -304,9 +304,13 @@
 %@see: 《机器人学中的状态估计》（Timothy D. Barfoot著；高翔、谢晓佳译） P152
 设\(
 	\vb{a} \defeq (a_1,a_2,a_3)^T,
-	\vb{b} \defeq (b_1,b_2,b_3)^T
+	\vb{b} \defeq (b_1,b_2,b_3)^T,
+	k \in \mathbb{R}
 \)，
 则\begin{equation*}
+	(k \vb{a})^\times
+	= k \vb{a}^\times,
+	\qquad
 	(\vb{a}^\times)^T
 	= -\vb{a}^\times,
 	\qquad
@@ -328,6 +332,37 @@
 由右分配律\((\vb{a} + \vb{b}) \times \vb{c} = \vb{a} \times \vb{c} + \vb{b} \times \vb{c}\)立即可得.
 \end{proof}
 \end{property}
+
+\begin{example}
+设向量\(\vb{a} = (a_1,a_2,a_3)^T\)，
+则\begin{align*}
+	(\vb{a}^\times)^2
+	&= \begin{bmatrix}
+		-a_2^2-a_3^2 & a_1 a_2 & a_1 a_3 \\
+		a_1 a_2 & -a_1^2-a_3^2 & a_2 a_3 \\
+		a_1 a_3 & a_2 a_3 & -a_1^2-a_2^2 \\
+	\end{bmatrix}
+	= \vb{a} \vb{a}^T - \norm{\vb{a}}^2 \vb{E}_3,
+	\\
+	(\vb{a}^\times)^3
+	&= \begin{bmatrix}
+		0 & a_3 (a_1^2+a_2^2+a_3^2) & -a_2 (a_1^2+a_2^2+a_3^2) \\
+		-a_3 (a_1^2+a_2^2+a_3^2) & 0 & a_1 (a_1^2+a_2^2+a_3^2) \\
+		a_2 (a_1^2+a_2^2+a_3^2) & -a_1 (a_1^2+a_2^2+a_3^2) & 0 \\
+	\end{bmatrix}
+	= -\norm{\vb{a}}^2 \vb{a}^\times.
+%@Mathematica: VecA = {Subscript[a, 1], Subscript[a, 2], Subscript[a, 3]};
+%@Mathematica: MatA = CrossProductMatrix[VecA];
+%@Mathematica: Simplify[MatrixPower[MatA, 3] + Norm[VecA]^2 MatA,
+%						Assumptions -> {Subscript[a, 1] \[Element] Reals,
+%						Subscript[a, 2] \[Element] Reals,
+%						Subscript[a, 3] \[Element] Reals}]
+%@Mathematica: Transpose[{VecA}].{VecA} - Simplify[Norm[VecA]^2,
+% 					 	 Assumptions -> {Subscript[a, 1] \[Element] Reals,
+% 					 	 Subscript[a, 2] \[Element] Reals,
+% 					 	 Subscript[a, 3] \[Element] Reals}] IdentityMatrix[3]
+\end{align*}
+\end{example}
 
 \subsection{二重外积}
 向量的外积是否满足结合律？
