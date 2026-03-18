@@ -1,4 +1,5 @@
 \section{多元函数的连续性}
+\subsection{多元函数的连续性}
 \begin{definition}
 %@see: 《高等数学（第六版 下册）》 P60 定义3
 %@see: 《数学分析（第二版 下册）》（陈纪修） P125 定义11.2.4
@@ -46,6 +47,81 @@
 \end{proof}
 \end{example}
 
+\begin{example}
+举例说明：即便二元函数在一点连续，但是它在该点的任意邻域内都不连续.
+\begin{solution}
+设\begin{equation*}
+	f(x,y) = \begin{cases}
+		x^2+y^2, & (x,y) \in \mathbb{Q}^2, \\
+		0, & \text{其他}.
+	\end{cases}
+\end{equation*}
+显然\(f(0,0) = 0\).
+
+\begin{itemize}
+	\item 假设\((x,y) \in \mathbb{Q}^2\).
+	对于任意给定\(\epsilon > 0\)，
+	只要取\(\delta = \sqrt{\epsilon}\)，
+	当\(\sqrt{x^2+y^2} < \delta\)时，
+	就有\begin{align*}
+		\abs{f(x,y) - f(0,0)}
+		= \abs{(x^2+y^2) - 0}
+		= x^2+y^2
+		< \delta^2
+		= \epsilon.
+	\end{align*}
+
+	\item 假设\((x,y) \notin \mathbb{Q}^2\).
+	对于任意给定\(\epsilon > 0\)，
+	恒有\begin{align*}
+		\abs{f(x,y) - f(0,0)}
+		= \abs{0 - 0}
+		= 0
+		< \epsilon.
+	\end{align*}
+\end{itemize}
+因此，
+对于任意的\(\epsilon > 0\)，
+总存在\(\delta > 0\)，
+使得当\(\sqrt{x^2+y^2} < \delta\)时，
+恒有\(\abs{f(x,y) - f(0,0)} < \epsilon\)；
+这就说明\(f\)在点\((0,0)\)连续.
+
+点\((0,0)\)的任意\(\delta\)邻域\(U_\delta(0,0)\)内均包含无数个坐标不全为有理数的点，
+同时也包含无数个坐标全为有理数的点.
+从\((0,0)\)的去心\(\delta\)邻域内取一点\((x_0,y_0) \in \mathring{U}_\delta(0,0)\).
+\begin{itemize}
+	\item 若\((x_0,y_0) \in \mathbb{Q}^2\)，
+	则\(f(x_0,y_0) = x_0^2+y_0^2 > 0\).
+
+	由于无理数在实数集中的稠密性，
+	可以在\((x_0,y_0)\)的任意小邻域内找到收敛于\((x_0,y_0)\)、坐标不全为有理数的点列\(\{(x_n,y_n)\}\)，
+	使得\begin{align*}
+		\lim_{n\to\infty} f(x_n,y_n)
+		= \lim_{n\to\infty} 0
+		= 0
+		\neq f(x_0,y_0);
+	\end{align*}
+
+	\item 若\((x_0,y_0) \notin \mathbb{Q}^2\)，
+	则\(f(x_0,y_0) = 0\).
+
+	由于有理数在实数集中的稠密性，
+	可以在\((x_0,y_0)\)的任意小邻域内找到收敛于\((x_0,y_0)\)、坐标全为有理数的点列\(\{(u_n,v_n)\}\)，
+	使得\begin{align*}
+		\lim_{n\to\infty} f(u_n,v_n)
+		= \lim_{n\to\infty} (u_n^2+v_n^2)
+		= x_0^2+y_0^2
+		\neq 0
+		= f(x_0,y_0).
+	\end{align*}
+\end{itemize}
+综上所述，
+\(f\)在\((0,0)\)的任意邻域内除原点外处处不连续.
+\end{solution}
+\end{example}
+
+\subsection{多元连续函数的和差积商以及复合函数的连续性}
 前面已经指出：一元函数中关于极限的运算法则，对于多元函数仍然适用.
 根据多元函数的极限运算法则，可以证明多元连续函数的和、差、积仍为连续函数；
 连续函数的商在分母不为零处仍连续；
@@ -79,6 +155,7 @@
 \end{solution}
 \end{example}
 
+\subsection{多元初等函数}
 与一元初等函数相类似，\DefineConcept{多元初等函数}是指可用一个式子表示的多元函数，
 这个式子是由常数及具有不同自变量的一元基本初等函数经过有限次的四则运算和复合运算而得到的.
 例如\begin{equation*}
@@ -113,6 +190,7 @@
 \end{solution}
 \end{example}
 
+\subsection{有界闭区域上的连续多元函数的性质}
 与闭区间上一元连续函数的性质相类似，在有界闭区域上连续的多元函数具有如下性质.
 
 \begin{property}[有界性与最值定理]\label{theorem:多元函数微分法.有界性与最值定理}
