@@ -1,0 +1,184 @@
+\section{矩阵分析}
+\begin{proposition}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(\vb{f}\colon K^n \to K^m\)，
+则\begin{equation*}
+	\def\arraystretch{1.5}
+	\pdv{\vb{f}}{\vb{x}}
+	= \begin{bmatrix}
+		\pdv{f_1}{x_1}
+		& \pdv{f_1}{x_2}
+		& \dots
+		& \pdv{f_1}{x_n} \\
+		\pdv{f_2}{x_1}
+		& \pdv{f_2}{x_2}
+		& \dots
+		& \pdv{f_2}{x_n} \\
+		\vdots & \vdots && \vdots \\
+		\pdv{f_m}{x_1}
+		& \pdv{f_m}{x_2}
+		& \dots
+		& \pdv{f_m}{x_n} \\
+	\end{bmatrix}.
+\end{equation*}
+\end{proposition}
+
+\begin{corollary}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(\vb{f}\colon K \to K^m\)，
+则\begin{equation*}
+	\def\arraystretch{1.5}
+	\pdv{\vb{f}}{x}
+	= \begin{bmatrix}
+		\pdv{f_1}{x} \\
+		\pdv{f_2}{x} \\
+		\vdots \\
+		\pdv{f_m}{x} \\
+	\end{bmatrix}.
+\end{equation*}
+\end{corollary}
+
+\begin{corollary}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(f\colon K^n \to K\)，
+则\begin{equation*}
+	\pdv{f}{\vb{x}}
+	= \begin{bmatrix}
+		\pdv{f}{x_1}
+		& \pdv{f}{x_2}
+		& \dots
+		& \pdv{f}{x_n} \\
+	\end{bmatrix}.
+\end{equation*}
+\end{corollary}
+
+\begin{proposition}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(\vb{y} = \vb{A} \vb{x}\)，
+其中\(\vb{A} \in K^{m \times n}, \vb{x} \in K^n, \vb{y} \in K^m\)，
+且\(\vb{A}\)不依赖于\(\vb{x}\)，
+则\begin{equation*}
+	\pdv{\vb{y}}{\vb{x}}
+	= \vb{A}.
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(\vb{y} = \vb{A} \vb{f}(\vb{x})\)，
+其中\(\vb{A} \in K^{m \times n}, \vb{x} \in K^s, \vb{y} \in K^m\)，
+且\(\vb{A}\)不依赖于\(\vb{x}\)，
+则\begin{equation*}
+	\pdv{\vb{y}}{\vb{x}}
+	= \vb{A} \pdv{\vb{f}}{\vb{x}}.
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(z = \vb{y}^T \vb{A} \vb{x}\)，
+其中\(\vb{A} \in K^{m \times n}, \vb{x} \in K^n, \vb{y} \in K^m, z \in K\)，
+且\(\vb{A}\)不依赖于\(\vb{x}\)和\(\vb{y}\)，
+则\begin{equation*}
+	\pdv{z}{\vb{x}}
+	= \vb{y}^T \vb{A},
+	\qquad
+	\pdv{z}{\vb{y}}
+	= \vb{x}^T \vb{A}^T.
+\end{equation*}
+\end{proposition}
+
+\begin{corollary}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(z = \vb{x}^T \vb{A} \vb{x}\)，
+其中\(\vb{A} \in K^{n \times n}, \vb{x} \in K^n, z \in K\)，
+且\(\vb{A}\)不依赖于\(\vb{x}\)，
+则\begin{equation*}
+	\pdv{z}{\vb{x}}
+	= \vb{x}^T (\vb{A} + \vb{A}^T).
+\end{equation*}
+\end{corollary}
+
+\begin{corollary}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(z = \vb{x}^T \vb{A} \vb{x}\)，
+其中\(\vb{A} \in K^{n \times n}, \vb{x} \in K^n, z \in K\)，
+\(\vb{A}\)是对称矩阵，
+且\(\vb{A}\)不依赖于\(\vb{x}\)，
+则\begin{equation*}
+	\pdv{z}{\vb{x}}
+	= 2 \vb{x}^T \vb{A}.
+\end{equation*}
+\end{corollary}
+
+\begin{proposition}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(w = \vb{y}^T \vb{x}\)，
+其中\(w \in K\)，
+而\(\vb{x},\vb{y} \in K^n\)都是\(\vb{z} \in K^m\)的函数，
+则\begin{equation*}
+	\pdv{w}{\vb{z}}
+	= \vb{x}^T \pdv{\vb{y}}{\vb{z}}
+	+ \vb{y}^T \pdv{\vb{x}}{\vb{z}}.
+\end{equation*}
+\end{proposition}
+
+\begin{corollary}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(w = \vb{x}^T \vb{x}\)，
+其中\(w \in K\)，
+而\(\vb{x} \in K^n\)是\(\vb{z} \in K^m\)的函数，
+则\begin{equation*}
+	\pdv{w}{\vb{z}}
+	= 2 \vb{x}^T \pdv{\vb{x}}{\vb{z}}.
+\end{equation*}
+\end{corollary}
+
+\begin{proposition}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(w = \vb{y}^T \vb{A} \vb{x}\)，
+其中\(\vb{A} \in K^{m \times n}, \vb{x} \in K^n, \vb{y} \in K^m, w \in K\)，
+\(\vb{x},\vb{y}\)都是\(\vb{z} \in K^s\)的函数，
+且\(\vb{A}\)不依赖于\(\vb{z}\)，
+则\begin{equation*}
+	\pdv{w}{\vb{z}}
+	= \vb{x}^T \vb{A}^T \pdv{\vb{y}}{\vb{z}}
+	+ \vb{y}^T \vb{A} \pdv{\vb{x}}{\vb{z}}.
+\end{equation*}
+\end{proposition}
+
+\begin{corollary}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(w = \vb{x}^T \vb{A} \vb{x}\)，
+其中\(\vb{A} \in K^{m \times n}, \vb{x} \in K^n, w \in K\)，
+\(\vb{x}\)是\(\vb{z} \in K^s\)的函数，
+且\(\vb{A}\)不依赖于\(\vb{z}\)，
+则\begin{equation*}
+	\pdv{w}{\vb{z}}
+	= \vb{x}^T (\vb{A}^T + \vb{A}) \pdv{\vb{x}}{\vb{z}}.
+\end{equation*}
+\end{corollary}
+
+\begin{corollary}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(w = \vb{x}^T \vb{A} \vb{x}\)，
+其中\(\vb{A} \in K^{m \times n}, \vb{x} \in K^n, w \in K\)，
+\(\vb{x}\)是\(\vb{z} \in K^s\)的函数，
+\(\vb{A}\)是对称矩阵，
+且\(\vb{A}\)不依赖于\(\vb{z}\)，
+则\begin{equation*}
+	\pdv{w}{\vb{z}}
+	= 2 \vb{x}^T \vb{A} \pdv{\vb{x}}{\vb{z}}.
+\end{equation*}
+\end{corollary}
+
+\begin{proposition}
+%@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
+设\(\vb{A}(t) \in K^{m \times m}\)是关于\(t\)的非奇异的函数矩阵，
+则\(\vb{A}\)的逆矩阵\(\vb{A}^{-1}\)对\(t\)的导数为\begin{equation*}
+	\pdv{\vb{A}^{-1}}{t}
+	= - \vb{A}^{-1} \pdv{\vb{A}}{t} \vb{A}^{-1}.
+\end{equation*}
+\end{proposition}
+
+%TODO https://ccrma.stanford.edu/~dattorro/matrixcalc.pdf
