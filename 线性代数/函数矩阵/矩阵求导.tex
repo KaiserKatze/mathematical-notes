@@ -52,6 +52,53 @@
 \end{equation*}
 \end{corollary}
 
+\begin{example}
+计算\(\pdv{(\vb\alpha / \norm{\vb\alpha})}{\vb\alpha}\)，
+其中\(\norm{\vb\alpha}\)是\(\vb\alpha\)的\(L_2\)范数.
+\begin{solution}
+设\(\vb\alpha = (a_1,\dotsc,a_n)^T\)，
+则\begin{align*}
+	\pdv{\norm{\vb\alpha}}{\vb\alpha}
+	&= \pdv{\sqrt{a_1^2 + \dotsb + a_n^2}}{\vb\alpha} \\
+	&= \begin{bmatrix}
+		\pdv{\sqrt{a_1^2 + \dotsb + a_n^2}}{a_1}
+		& \pdv{\sqrt{a_1^2 + \dotsb + a_n^2}}{a_2}
+		& \dots
+		& \pdv{\sqrt{a_1^2 + \dotsb + a_n^2}}{a_n}
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
+		\frac{a_1}{\sqrt{a_1^2 + \dotsb + a_n^2}}
+		& \frac{a_2}{\sqrt{a_1^2 + \dotsb + a_n^2}}
+		& \dots
+		& \frac{a_n}{\sqrt{a_1^2 + \dotsb + a_n^2}}
+	\end{bmatrix} \\
+	&= \frac{1}{\sqrt{a_1^2 + \dotsb + a_n^2}}
+		\begin{bmatrix}
+			a_1 & a_2 & \dots & a_n
+		\end{bmatrix}
+	= \frac{\vb\alpha^T}{\norm{\vb\alpha}},
+\end{align*}
+因此\begin{align*}
+	\pdv{(\vb\alpha / \norm{\vb\alpha})}{\vb\alpha}
+	&= \frac{1}{\norm{\vb\alpha}^2}
+		\left(
+			\pdv{\vb\alpha}{\vb\alpha} \norm{\vb\alpha}
+			- \vb\alpha \pdv{\norm{\vb\alpha}}{\vb\alpha}
+		\right) \\
+	&= \frac{1}{\norm{\vb\alpha}^2}
+		\left(
+			\vb{E}_3 \norm{\vb\alpha}
+			- \vb\alpha \frac{\vb\alpha^T}{\norm{\vb\alpha}}
+		\right) \\
+	&= \frac{1}{\norm{\vb\alpha}}
+		\left(
+			\vb{E}_3
+			- \frac{\vb\alpha \vb\alpha^T}{\norm{\vb\alpha}^2}
+		\right).
+\end{align*}
+\end{solution}
+\end{example}
+
 \begin{proposition}
 %@see: https://www.cse.cuhk.edu.hk/~cslui/CSCI3320_LECTURES/matrix_differentiation.pdf
 设\(\vb{y} = \vb{A} \vb{x}\)，
