@@ -12,12 +12,12 @@
 （set \(A\) is \emph{closed} under operation \(f\)）”.
 回过头来，我们可以看出，二元代数运算的定义保证了它的封闭性.
 但是，假如我们从\(A\)中取出一个非空子集\(C\)，
-我们能否断言\(f\)在直积\(C \times C\)上的限制具有封闭性呢？
+我们能否断言\(f\)在直积\(C^2 \defeq C \times C\)上的限制具有封闭性呢？
 
 \begin{lemma}\label{theorem:抽象代数.群的运算在子集上的限制的不变性}
 设\(\times\)是定义在\(G\)上的一个二元代数运算，
 \(\emptyset \neq H \subseteq G\)，
-\(\otimes = (\times \SetRestrict(H \times H))\)，
+\(\otimes = (\times \SetRestrict H^2)\)，
 则\begin{equation*}
 	(\forall a,b \in H)[a \otimes b = a \times b].
 \end{equation*}
@@ -28,16 +28,16 @@
 		\iff
 		\opair{\opair{a,b},c} \in \times
 		\land
-		\opair{a,b} \in H \times H
+		\opair{a,b} \in H^2
 	],
 \end{equation*}
 于是\((\forall a,b \in H)[a \otimes b = a \times b]\).
 \end{proof}
 \end{lemma}
 从\cref{theorem:抽象代数.群的运算在子集上的限制的不变性} 我们可以看出，
-运算\(\times\)的限制\(\otimes\)在新的定义域\(H \times H\)上仍然具有和原本的运算\(\times\)一样的性质.
-如果\(\times\)在\(G \times G\)上服从结合律，那么\(\otimes\)在\(H \times H\)上也服从结合律.
-如果\(\times\)在\(G \times G\)上服从交换律，那么\(\otimes\)在\(H \times H\)上也服从交换律.
+运算\(\times\)的限制\(\otimes\)在新的定义域\(H^2\)上仍然具有和原本的运算\(\times\)一样的性质.
+如果\(\times\)在\(G^2\)上服从结合律，那么\(\otimes\)在\(H^2\)上也服从结合律.
+如果\(\times\)在\(G^2\)上服从交换律，那么\(\otimes\)在\(H^2\)上也服从交换律.
 
 但是应该注意到，映射的限制只是限定了它的定义域，并没有限定它的值域，
 因此我们可能会遇到值\(c\)落在\(H\)之外的情形，
@@ -49,8 +49,8 @@
 %@see: https://mathworld.wolfram.com/Subgroup.html
 设\(\opair{G,\times}\)是群，
 \(H\)是\(G\)的一个非空子集.
-又设映射\(\otimes\)是\(\times\)在直积\(H \times H\)上的限制，
-即\(\otimes = (\times \SetRestrict(H \times H))\).
+又设映射\(\otimes\)是\(\times\)在直积\(H^2\)上的限制，
+即\(\otimes = (\times \SetRestrict H^2)\).
 如果\(H\)对于运算\(\otimes\)也成为一个群\(\opair{H,\otimes}\)，
 那么称“\(\opair{H,\otimes}\)是\(\opair{G,\times}\)的一个\DefineConcept{子群}（subgroup）”，
 记作\(\opair{H,\otimes} \AlgebraSubstructure \opair{G,\times}\).
@@ -97,7 +97,7 @@
 则\begin{equation*}
 	e' \otimes e' = e'.
 \end{equation*}
-根据子群的定义，\(\otimes = (\times \SetRestrict(H \times H))\)；
+根据子群的定义，\(\otimes = (\times \SetRestrict H^2)\)；
 再根据\cref{theorem:抽象代数.群的运算在子集上的限制的不变性}，
 \((\forall a,b \in H)[a \otimes b = a \times b]\)；
 于是\begin{equation*}
@@ -121,13 +121,15 @@
 \(e\)是\(\opair{G,\times}\)的单位元.
 我们将\(\opair{\{e\},\times}\)和\(\opair{G,\times}\)
 统称为“\(\opair{G,\times}\)的\DefineConcept{平凡子群}（trivial subgroup）”.
+除此以外的子群，但凡存在，
+都统称为“\(\opair{G,\times}\)的\DefineConcept{非平凡子群}（nontrivial subgroup）”.
 \end{definition}
 
 \begin{definition}
 设\(\opair{H,\times}\)是群\(\opair{G,\times}\)的子群.
 如果\(H \subset G\)，
 那么称“\(\opair{H,\times}\)是\(\opair{G,\times}\)的\DefineConcept{真子群}（proper subgroup）”，
-记作\(\opair{H,\times}\subset\opair{G,\times}\).
+记作\(\opair{H,\times}\AlgebraProperSubstructure\opair{G,\times}\).
 \end{definition}
 
 从\cref{definition:抽象代数.子群的定义} 看出，
@@ -154,7 +156,9 @@
 	= e \times b^{-1}
 	= b^{-1};
 \end{equation*}
-因此\(b^{-1} \in H\).
+因此\(b^{-1} \in H\)，
+这就说明：
+子群中任一元素的逆元都在子群中，且该元素在子群中的逆元也是它在群中的逆元.
 综上所述，如果\(\opair{H,\otimes}\)是群\(\opair{G,\times}\)的一个子群，
 那么\begin{equation*}
 	a,b \in H
@@ -167,7 +171,7 @@
 %@see: 《近世代数》（熊全淹） P41 命题1
 设\(\opair{G,\times}\)是群，
 \(H\)是\(G\)的一个非空子集，
-\(\otimes = (\times \SetRestrict(H \times H))\).
+\(\otimes = (\times \SetRestrict H^2)\).
 那么“\(\opair{H,\otimes}\)是\(\opair{G,\times}\)的子群”的充分必要条件是：\begin{equation*}
 	a,b \in H \implies a \times b^{-1} \in H,
 \end{equation*}
@@ -239,7 +243,7 @@
 %	n\in\mathbb{Z}
 %}\)，
 %定义运算：\begin{equation*}
-%	\otimes\colon G \times G \to G,
+%	\otimes\colon G^2 \to G,
 %	\opair{a,m}\otimes\opair{a,n}\mapsto\opair{a,m+n},
 %\end{equation*}
 %并规定\(\opair{a,-n}=\opair{\opair{a,-1},n}\).
